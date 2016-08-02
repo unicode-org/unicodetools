@@ -621,74 +621,74 @@
 'FFE8	'1.1	'So	'Nar	HALFWIDTH FORMS LIGHT VERTICAL	'￨	'│	'│	'│	Tr≠N4M			'FFE8	'2502	'2502	'2502	16. NFKC_CF-Narrow
 'FFED	'1.1	'So	'Nar	HALFWIDTH BLACK SQUARE	'￭	'■	'■	'■	Tr≠N4M			'FFED	'25A0	'25A0	'25A0	16. NFKC_CF-Narrow
 'FFEE	'1.1	'So	'Nar	HALFWIDTH WHITE CIRCLE	'￮	'○	'○	'○	Tr≠N4M			'FFEE	'25CB	'25CB	'25CB	16. NFKC_CF-Narrow
-'1F150	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER A	'🅐	'a	'🅐	'a	Tr≠N4M	Tr≠NF		'1F150	'0061	'1F150	'0061	04+. missing_NFKC
-'1F151	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER B	'🅑	'b	'🅑	'b	Tr≠N4M	Tr≠NF		'1F151	'0062	'1F151	'0062	04+. missing_NFKC
-'1F152	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER C	'🅒	'c	'🅒	'c	Tr≠N4M	Tr≠NF		'1F152	'0063	'1F152	'0063	04+. missing_NFKC
-'1F153	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER D	'🅓	'd	'🅓	'd	Tr≠N4M	Tr≠NF		'1F153	'0064	'1F153	'0064	04+. missing_NFKC
-'1F154	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER E	'🅔	'e	'🅔	'e	Tr≠N4M	Tr≠NF		'1F154	'0065	'1F154	'0065	04+. missing_NFKC
-'1F155	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER F	'🅕	'f	'🅕	'f	Tr≠N4M	Tr≠NF		'1F155	'0066	'1F155	'0066	04+. missing_NFKC
-'1F156	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER G	'🅖	'g	'🅖	'g	Tr≠N4M	Tr≠NF		'1F156	'0067	'1F156	'0067	04+. missing_NFKC
-'1F157	'5.2	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER H	'🅗	'h	'🅗	'h	Tr≠N4M	Tr≠NF		'1F157	'0068	'1F157	'0068	04+. missing_NFKC
-'1F158	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER I	'🅘	'i	'🅘	'i	Tr≠N4M	Tr≠NF		'1F158	'0069	'1F158	'0069	04+. missing_NFKC
-'1F159	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER J	'🅙	'j	'🅙	'j	Tr≠N4M	Tr≠NF		'1F159	'006A	'1F159	'006A	04+. missing_NFKC
-'1F15A	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER K	'🅚	'k	'🅚	'k	Tr≠N4M	Tr≠NF		'1F15A	'006B	'1F15A	'006B	04+. missing_NFKC
-'1F15B	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER L	'🅛	'l	'🅛	'l	Tr≠N4M	Tr≠NF		'1F15B	'006C	'1F15B	'006C	04+. missing_NFKC
-'1F15C	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER M	'🅜	'm	'🅜	'm	Tr≠N4M	Tr≠NF		'1F15C	'006D	'1F15C	'006D	04+. missing_NFKC
-'1F15D	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER N	'🅝	'n	'🅝	'n	Tr≠N4M	Tr≠NF		'1F15D	'006E	'1F15D	'006E	04+. missing_NFKC
-'1F15E	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER O	'🅞	'o	'🅞	'o	Tr≠N4M	Tr≠NF		'1F15E	'006F	'1F15E	'006F	04+. missing_NFKC
-'1F15F	'5.2	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER P	'🅟	'p	'🅟	'p	Tr≠N4M	Tr≠NF		'1F15F	'0070	'1F15F	'0070	04+. missing_NFKC
-'1F160	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER Q	'🅠	'q	'🅠	'q	Tr≠N4M	Tr≠NF		'1F160	'0071	'1F160	'0071	04+. missing_NFKC
-'1F161	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER R	'🅡	'r	'🅡	'r	Tr≠N4M	Tr≠NF		'1F161	'0072	'1F161	'0072	04+. missing_NFKC
-'1F162	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER S	'🅢	's	'🅢	's	Tr≠N4M	Tr≠NF		'1F162	'0073	'1F162	'0073	04+. missing_NFKC
-'1F163	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER T	'🅣	't	'🅣	't	Tr≠N4M	Tr≠NF		'1F163	'0074	'1F163	'0074	04+. missing_NFKC
-'1F164	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER U	'🅤	'u	'🅤	'u	Tr≠N4M	Tr≠NF		'1F164	'0075	'1F164	'0075	04+. missing_NFKC
-'1F165	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER V	'🅥	'v	'🅥	'v	Tr≠N4M	Tr≠NF		'1F165	'0076	'1F165	'0076	04+. missing_NFKC
-'1F166	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER W	'🅦	'w	'🅦	'w	Tr≠N4M	Tr≠NF		'1F166	'0077	'1F166	'0077	04+. missing_NFKC
-'1F167	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER X	'🅧	'x	'🅧	'x	Tr≠N4M	Tr≠NF		'1F167	'0078	'1F167	'0078	04+. missing_NFKC
-'1F168	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER Y	'🅨	'y	'🅨	'y	Tr≠N4M	Tr≠NF		'1F168	'0079	'1F168	'0079	04+. missing_NFKC
-'1F169	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER Z	'🅩	'z	'🅩	'z	Tr≠N4M	Tr≠NF		'1F169	'007A	'1F169	'007A	04+. missing_NFKC
-'1F170	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER A	'🅰	'a	'🅰	'a	Tr≠N4M	Tr≠NF		'1F170	'0061	'1F170	'0061	04+. missing_NFKC
-'1F171	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER B	'🅱	'b	'🅱	'b	Tr≠N4M	Tr≠NF		'1F171	'0062	'1F171	'0062	04+. missing_NFKC
-'1F172	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER C	'🅲	'c	'🅲	'c	Tr≠N4M	Tr≠NF		'1F172	'0063	'1F172	'0063	04+. missing_NFKC
-'1F173	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER D	'🅳	'd	'🅳	'd	Tr≠N4M	Tr≠NF		'1F173	'0064	'1F173	'0064	04+. missing_NFKC
-'1F174	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER E	'🅴	'e	'🅴	'e	Tr≠N4M	Tr≠NF		'1F174	'0065	'1F174	'0065	04+. missing_NFKC
-'1F175	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER F	'🅵	'f	'🅵	'f	Tr≠N4M	Tr≠NF		'1F175	'0066	'1F175	'0066	04+. missing_NFKC
-'1F176	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER G	'🅶	'g	'🅶	'g	Tr≠N4M	Tr≠NF		'1F176	'0067	'1F176	'0067	04+. missing_NFKC
-'1F177	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER H	'🅷	'h	'🅷	'h	Tr≠N4M	Tr≠NF		'1F177	'0068	'1F177	'0068	04+. missing_NFKC
-'1F178	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER I	'🅸	'i	'🅸	'i	Tr≠N4M	Tr≠NF		'1F178	'0069	'1F178	'0069	04+. missing_NFKC
-'1F179	'5.2	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER J	'🅹	'j	'🅹	'j	Tr≠N4M	Tr≠NF		'1F179	'006A	'1F179	'006A	04+. missing_NFKC
-'1F17A	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER K	'🅺	'k	'🅺	'k	Tr≠N4M	Tr≠NF		'1F17A	'006B	'1F17A	'006B	04+. missing_NFKC
-'1F17B	'5.2	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER L	'🅻	'l	'🅻	'l	Tr≠N4M	Tr≠NF		'1F17B	'006C	'1F17B	'006C	04+. missing_NFKC
-'1F17C	'5.2	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER M	'🅼	'm	'🅼	'm	Tr≠N4M	Tr≠NF		'1F17C	'006D	'1F17C	'006D	04+. missing_NFKC
-'1F17D	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER N	'🅽	'n	'🅽	'n	Tr≠N4M	Tr≠NF		'1F17D	'006E	'1F17D	'006E	04+. missing_NFKC
-'1F17E	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER O	'🅾	'o	'🅾	'o	Tr≠N4M	Tr≠NF		'1F17E	'006F	'1F17E	'006F	04+. missing_NFKC
-'1F17F	'5.2	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER P	'🅿	'p	'🅿	'p	Tr≠N4M	Tr≠NF		'1F17F	'0070	'1F17F	'0070	04+. missing_NFKC
-'1F180	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER Q	'🆀	'q	'🆀	'q	Tr≠N4M	Tr≠NF		'1F180	'0071	'1F180	'0071	04+. missing_NFKC
-'1F181	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER R	'🆁	'r	'🆁	'r	Tr≠N4M	Tr≠NF		'1F181	'0072	'1F181	'0072	04+. missing_NFKC
-'1F182	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER S	'🆂	's	'🆂	's	Tr≠N4M	Tr≠NF		'1F182	'0073	'1F182	'0073	04+. missing_NFKC
-'1F183	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER T	'🆃	't	'🆃	't	Tr≠N4M	Tr≠NF		'1F183	'0074	'1F183	'0074	04+. missing_NFKC
-'1F184	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER U	'🆄	'u	'🆄	'u	Tr≠N4M	Tr≠NF		'1F184	'0075	'1F184	'0075	04+. missing_NFKC
-'1F185	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER V	'🆅	'v	'🆅	'v	Tr≠N4M	Tr≠NF		'1F185	'0076	'1F185	'0076	04+. missing_NFKC
-'1F186	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER W	'🆆	'w	'🆆	'w	Tr≠N4M	Tr≠NF		'1F186	'0077	'1F186	'0077	04+. missing_NFKC
-'1F187	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER X	'🆇	'x	'🆇	'x	Tr≠N4M	Tr≠NF		'1F187	'0078	'1F187	'0078	04+. missing_NFKC
-'1F188	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER Y	'🆈	'y	'🆈	'y	Tr≠N4M	Tr≠NF		'1F188	'0079	'1F188	'0079	04+. missing_NFKC
-'1F189	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER Z	'🆉	'z	'🆉	'z	Tr≠N4M	Tr≠NF		'1F189	'007A	'1F189	'007A	04+. missing_NFKC
-'1F18A	'5.2	'So	'None	CROSSED NEGATIVE SQUARED LATIN CAPITAL LETTER P	'🆊	'p	'🆊	'p	Tr≠N4M	Tr≠NF		'1F18A	'0070	'1F18A	'0070	04+. missing_NFKC
-'1F18B	'5.2	'So	'None	NEGATIVE SQUARED IC	'🆋	'ic	'🆋	'ic	Tr≠N4M	Tr≠NF		'1F18B	'0069 0063	'1F18B	'0069 0063	04+. missing_NFKC
-'1F18C	'5.2	'So	'None	NEGATIVE SQUARED PA	'🆌	'pa	'🆌	'pa	Tr≠N4M	Tr≠NF		'1F18C	'0070 0061	'1F18C	'0070 0061	04+. missing_NFKC
-'1F18D	'5.2	'So	'None	NEGATIVE SQUARED SA	'🆍	'sa	'🆍	'sa	Tr≠N4M	Tr≠NF		'1F18D	'0073 0061	'1F18D	'0073 0061	04+. missing_NFKC
-'1F18E	'6.0	'So	'None	NEGATIVE SQUARED AB	'🆎	'ab	'🆎	'ab	Tr≠N4M	Tr≠NF		'1F18E	'0061 0062	'1F18E	'0061 0062	04+. missing_NFKC
-'1F18F	'6.0	'So	'None	NEGATIVE SQUARED WC	'🆏	'wc	'🆏	'wc	Tr≠N4M	Tr≠NF		'1F18F	'0077 0063	'1F18F	'0077 0063	04+. missing_NFKC
-'1F191	'6.0	'So	'None	SQUARED CL	'🆑	'cl	'🆑	'cl	Tr≠N4M	Tr≠NF		'1F191	'0063 006C	'1F191	'0063 006C	04+. missing_NFKC
-'1F192	'6.0	'So	'None	SQUARED COOL	'🆒	'cool	'🆒	'cool	Tr≠N4M	Tr≠NF		'1F192	'0063 006F 006F 006C	'1F192	'0063 006F 006F 006C	04+. missing_NFKC
-'1F193	'6.0	'So	'None	SQUARED FREE	'🆓	'free	'🆓	'free	Tr≠N4M	Tr≠NF		'1F193	'0066 0072 0065 0065	'1F193	'0066 0072 0065 0065	04+. missing_NFKC
-'1F194	'6.0	'So	'None	SQUARED ID	'🆔	'id	'🆔	'id	Tr≠N4M	Tr≠NF		'1F194	'0069 0064	'1F194	'0069 0064	04+. missing_NFKC
-'1F195	'6.0	'So	'None	SQUARED NEW	'🆕	'new	'🆕	'new	Tr≠N4M	Tr≠NF		'1F195	'006E 0065 0077	'1F195	'006E 0065 0077	04+. missing_NFKC
-'1F196	'6.0	'So	'None	SQUARED NG	'🆖	'ng	'🆖	'ng	Tr≠N4M	Tr≠NF		'1F196	'006E 0067	'1F196	'006E 0067	04+. missing_NFKC
-'1F197	'6.0	'So	'None	SQUARED OK	'🆗	'ok	'🆗	'ok	Tr≠N4M	Tr≠NF		'1F197	'006F 006B	'1F197	'006F 006B	04+. missing_NFKC
-'1F198	'6.0	'So	'None	SQUARED SOS	'🆘	'sos	'🆘	'sos	Tr≠N4M	Tr≠NF		'1F198	'0073 006F 0073	'1F198	'0073 006F 0073	04+. missing_NFKC
-'1F199	'6.0	'So	'None	SQUARED UP WITH EXCLAMATION MARK	'🆙	'up!	'🆙	'up!	Tr≠N4M	Tr≠NF		'1F199	'0075 0070 0021	'1F199	'0075 0070 0021	04+. missing_NFKC
-'1F19A	'6.0	'So	'None	SQUARED VS	'🆚	'vs	'🆚	'vs	Tr≠N4M	Tr≠NF		'1F19A	'0076 0073	'1F19A	'0076 0073	04+. missing_NFKC
+'1F150	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER A	'🅐	'a	'🅐	'a	Tr≠N4M	Tr≠NF		'1F150	'0061	'1F150	'0061	04+. missing_enclosed
+'1F151	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER B	'🅑	'b	'🅑	'b	Tr≠N4M	Tr≠NF		'1F151	'0062	'1F151	'0062	04+. missing_enclosed
+'1F152	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER C	'🅒	'c	'🅒	'c	Tr≠N4M	Tr≠NF		'1F152	'0063	'1F152	'0063	04+. missing_enclosed
+'1F153	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER D	'🅓	'd	'🅓	'd	Tr≠N4M	Tr≠NF		'1F153	'0064	'1F153	'0064	04+. missing_enclosed
+'1F154	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER E	'🅔	'e	'🅔	'e	Tr≠N4M	Tr≠NF		'1F154	'0065	'1F154	'0065	04+. missing_enclosed
+'1F155	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER F	'🅕	'f	'🅕	'f	Tr≠N4M	Tr≠NF		'1F155	'0066	'1F155	'0066	04+. missing_enclosed
+'1F156	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER G	'🅖	'g	'🅖	'g	Tr≠N4M	Tr≠NF		'1F156	'0067	'1F156	'0067	04+. missing_enclosed
+'1F157	'5.2	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER H	'🅗	'h	'🅗	'h	Tr≠N4M	Tr≠NF		'1F157	'0068	'1F157	'0068	04+. missing_enclosed
+'1F158	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER I	'🅘	'i	'🅘	'i	Tr≠N4M	Tr≠NF		'1F158	'0069	'1F158	'0069	04+. missing_enclosed
+'1F159	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER J	'🅙	'j	'🅙	'j	Tr≠N4M	Tr≠NF		'1F159	'006A	'1F159	'006A	04+. missing_enclosed
+'1F15A	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER K	'🅚	'k	'🅚	'k	Tr≠N4M	Tr≠NF		'1F15A	'006B	'1F15A	'006B	04+. missing_enclosed
+'1F15B	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER L	'🅛	'l	'🅛	'l	Tr≠N4M	Tr≠NF		'1F15B	'006C	'1F15B	'006C	04+. missing_enclosed
+'1F15C	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER M	'🅜	'm	'🅜	'm	Tr≠N4M	Tr≠NF		'1F15C	'006D	'1F15C	'006D	04+. missing_enclosed
+'1F15D	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER N	'🅝	'n	'🅝	'n	Tr≠N4M	Tr≠NF		'1F15D	'006E	'1F15D	'006E	04+. missing_enclosed
+'1F15E	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER O	'🅞	'o	'🅞	'o	Tr≠N4M	Tr≠NF		'1F15E	'006F	'1F15E	'006F	04+. missing_enclosed
+'1F15F	'5.2	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER P	'🅟	'p	'🅟	'p	Tr≠N4M	Tr≠NF		'1F15F	'0070	'1F15F	'0070	04+. missing_enclosed
+'1F160	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER Q	'🅠	'q	'🅠	'q	Tr≠N4M	Tr≠NF		'1F160	'0071	'1F160	'0071	04+. missing_enclosed
+'1F161	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER R	'🅡	'r	'🅡	'r	Tr≠N4M	Tr≠NF		'1F161	'0072	'1F161	'0072	04+. missing_enclosed
+'1F162	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER S	'🅢	's	'🅢	's	Tr≠N4M	Tr≠NF		'1F162	'0073	'1F162	'0073	04+. missing_enclosed
+'1F163	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER T	'🅣	't	'🅣	't	Tr≠N4M	Tr≠NF		'1F163	'0074	'1F163	'0074	04+. missing_enclosed
+'1F164	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER U	'🅤	'u	'🅤	'u	Tr≠N4M	Tr≠NF		'1F164	'0075	'1F164	'0075	04+. missing_enclosed
+'1F165	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER V	'🅥	'v	'🅥	'v	Tr≠N4M	Tr≠NF		'1F165	'0076	'1F165	'0076	04+. missing_enclosed
+'1F166	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER W	'🅦	'w	'🅦	'w	Tr≠N4M	Tr≠NF		'1F166	'0077	'1F166	'0077	04+. missing_enclosed
+'1F167	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER X	'🅧	'x	'🅧	'x	Tr≠N4M	Tr≠NF		'1F167	'0078	'1F167	'0078	04+. missing_enclosed
+'1F168	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER Y	'🅨	'y	'🅨	'y	Tr≠N4M	Tr≠NF		'1F168	'0079	'1F168	'0079	04+. missing_enclosed
+'1F169	'6.0	'So	'None	NEGATIVE CIRCLED LATIN CAPITAL LETTER Z	'🅩	'z	'🅩	'z	Tr≠N4M	Tr≠NF		'1F169	'007A	'1F169	'007A	04+. missing_enclosed
+'1F170	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER A	'🅰	'a	'🅰	'a	Tr≠N4M	Tr≠NF		'1F170	'0061	'1F170	'0061	04+. missing_enclosed
+'1F171	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER B	'🅱	'b	'🅱	'b	Tr≠N4M	Tr≠NF		'1F171	'0062	'1F171	'0062	04+. missing_enclosed
+'1F172	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER C	'🅲	'c	'🅲	'c	Tr≠N4M	Tr≠NF		'1F172	'0063	'1F172	'0063	04+. missing_enclosed
+'1F173	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER D	'🅳	'd	'🅳	'd	Tr≠N4M	Tr≠NF		'1F173	'0064	'1F173	'0064	04+. missing_enclosed
+'1F174	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER E	'🅴	'e	'🅴	'e	Tr≠N4M	Tr≠NF		'1F174	'0065	'1F174	'0065	04+. missing_enclosed
+'1F175	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER F	'🅵	'f	'🅵	'f	Tr≠N4M	Tr≠NF		'1F175	'0066	'1F175	'0066	04+. missing_enclosed
+'1F176	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER G	'🅶	'g	'🅶	'g	Tr≠N4M	Tr≠NF		'1F176	'0067	'1F176	'0067	04+. missing_enclosed
+'1F177	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER H	'🅷	'h	'🅷	'h	Tr≠N4M	Tr≠NF		'1F177	'0068	'1F177	'0068	04+. missing_enclosed
+'1F178	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER I	'🅸	'i	'🅸	'i	Tr≠N4M	Tr≠NF		'1F178	'0069	'1F178	'0069	04+. missing_enclosed
+'1F179	'5.2	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER J	'🅹	'j	'🅹	'j	Tr≠N4M	Tr≠NF		'1F179	'006A	'1F179	'006A	04+. missing_enclosed
+'1F17A	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER K	'🅺	'k	'🅺	'k	Tr≠N4M	Tr≠NF		'1F17A	'006B	'1F17A	'006B	04+. missing_enclosed
+'1F17B	'5.2	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER L	'🅻	'l	'🅻	'l	Tr≠N4M	Tr≠NF		'1F17B	'006C	'1F17B	'006C	04+. missing_enclosed
+'1F17C	'5.2	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER M	'🅼	'm	'🅼	'm	Tr≠N4M	Tr≠NF		'1F17C	'006D	'1F17C	'006D	04+. missing_enclosed
+'1F17D	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER N	'🅽	'n	'🅽	'n	Tr≠N4M	Tr≠NF		'1F17D	'006E	'1F17D	'006E	04+. missing_enclosed
+'1F17E	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER O	'🅾	'o	'🅾	'o	Tr≠N4M	Tr≠NF		'1F17E	'006F	'1F17E	'006F	04+. missing_enclosed
+'1F17F	'5.2	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER P	'🅿	'p	'🅿	'p	Tr≠N4M	Tr≠NF		'1F17F	'0070	'1F17F	'0070	04+. missing_enclosed
+'1F180	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER Q	'🆀	'q	'🆀	'q	Tr≠N4M	Tr≠NF		'1F180	'0071	'1F180	'0071	04+. missing_enclosed
+'1F181	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER R	'🆁	'r	'🆁	'r	Tr≠N4M	Tr≠NF		'1F181	'0072	'1F181	'0072	04+. missing_enclosed
+'1F182	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER S	'🆂	's	'🆂	's	Tr≠N4M	Tr≠NF		'1F182	'0073	'1F182	'0073	04+. missing_enclosed
+'1F183	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER T	'🆃	't	'🆃	't	Tr≠N4M	Tr≠NF		'1F183	'0074	'1F183	'0074	04+. missing_enclosed
+'1F184	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER U	'🆄	'u	'🆄	'u	Tr≠N4M	Tr≠NF		'1F184	'0075	'1F184	'0075	04+. missing_enclosed
+'1F185	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER V	'🆅	'v	'🆅	'v	Tr≠N4M	Tr≠NF		'1F185	'0076	'1F185	'0076	04+. missing_enclosed
+'1F186	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER W	'🆆	'w	'🆆	'w	Tr≠N4M	Tr≠NF		'1F186	'0077	'1F186	'0077	04+. missing_enclosed
+'1F187	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER X	'🆇	'x	'🆇	'x	Tr≠N4M	Tr≠NF		'1F187	'0078	'1F187	'0078	04+. missing_enclosed
+'1F188	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER Y	'🆈	'y	'🆈	'y	Tr≠N4M	Tr≠NF		'1F188	'0079	'1F188	'0079	04+. missing_enclosed
+'1F189	'6.0	'So	'None	NEGATIVE SQUARED LATIN CAPITAL LETTER Z	'🆉	'z	'🆉	'z	Tr≠N4M	Tr≠NF		'1F189	'007A	'1F189	'007A	04+. missing_enclosed
+'1F18A	'5.2	'So	'None	CROSSED NEGATIVE SQUARED LATIN CAPITAL LETTER P	'🆊	'p	'🆊	'p	Tr≠N4M	Tr≠NF		'1F18A	'0070	'1F18A	'0070	04+. missing_enclosed
+'1F18B	'5.2	'So	'None	NEGATIVE SQUARED IC	'🆋	'ic	'🆋	'ic	Tr≠N4M	Tr≠NF		'1F18B	'0069 0063	'1F18B	'0069 0063	04+. missing_sequence
+'1F18C	'5.2	'So	'None	NEGATIVE SQUARED PA	'🆌	'pa	'🆌	'pa	Tr≠N4M	Tr≠NF		'1F18C	'0070 0061	'1F18C	'0070 0061	04+. missing_sequence
+'1F18D	'5.2	'So	'None	NEGATIVE SQUARED SA	'🆍	'sa	'🆍	'sa	Tr≠N4M	Tr≠NF		'1F18D	'0073 0061	'1F18D	'0073 0061	04+. missing_sequence
+'1F18E	'6.0	'So	'None	NEGATIVE SQUARED AB	'🆎	'ab	'🆎	'ab	Tr≠N4M	Tr≠NF		'1F18E	'0061 0062	'1F18E	'0061 0062	04+. missing_sequence
+'1F18F	'6.0	'So	'None	NEGATIVE SQUARED WC	'🆏	'wc	'🆏	'wc	Tr≠N4M	Tr≠NF		'1F18F	'0077 0063	'1F18F	'0077 0063	04+. missing_sequence
+'1F191	'6.0	'So	'None	SQUARED CL	'🆑	'cl	'🆑	'cl	Tr≠N4M	Tr≠NF		'1F191	'0063 006C	'1F191	'0063 006C	04+. missing_sequence
+'1F192	'6.0	'So	'None	SQUARED COOL	'🆒	'cool	'🆒	'cool	Tr≠N4M	Tr≠NF		'1F192	'0063 006F 006F 006C	'1F192	'0063 006F 006F 006C	04+. missing_sequence
+'1F193	'6.0	'So	'None	SQUARED FREE	'🆓	'free	'🆓	'free	Tr≠N4M	Tr≠NF		'1F193	'0066 0072 0065 0065	'1F193	'0066 0072 0065 0065	04+. missing_sequence
+'1F194	'6.0	'So	'None	SQUARED ID	'🆔	'id	'🆔	'id	Tr≠N4M	Tr≠NF		'1F194	'0069 0064	'1F194	'0069 0064	04+. missing_sequence
+'1F195	'6.0	'So	'None	SQUARED NEW	'🆕	'new	'🆕	'new	Tr≠N4M	Tr≠NF		'1F195	'006E 0065 0077	'1F195	'006E 0065 0077	04+. missing_sequence
+'1F196	'6.0	'So	'None	SQUARED NG	'🆖	'ng	'🆖	'ng	Tr≠N4M	Tr≠NF		'1F196	'006E 0067	'1F196	'006E 0067	04+. missing_sequence
+'1F197	'6.0	'So	'None	SQUARED OK	'🆗	'ok	'🆗	'ok	Tr≠N4M	Tr≠NF		'1F197	'006F 006B	'1F197	'006F 006B	04+. missing_sequence
+'1F198	'6.0	'So	'None	SQUARED SOS	'🆘	'sos	'🆘	'sos	Tr≠N4M	Tr≠NF		'1F198	'0073 006F 0073	'1F198	'0073 006F 0073	04+. missing_sequence
+'1F199	'6.0	'So	'None	SQUARED UP WITH EXCLAMATION MARK	'🆙	'up!	'🆙	'up!	Tr≠N4M	Tr≠NF		'1F199	'0075 0070 0021	'1F199	'0075 0070 0021	04+. missing_sequence
+'1F19A	'6.0	'So	'None	SQUARED VS	'🆚	'vs	'🆚	'vs	Tr≠N4M	Tr≠NF		'1F19A	'0076 0073	'1F19A	'0076 0073	04+. missing_sequence
 '2E82	'3.0	'So	'None	CJK RADICAL SECOND ONE	'⺂	'乛	'⺂	'乛	Tr≠N4M	Tr≠NF		'2E82	'4E5B	'2E82	'4E5B	04+. radical
 '2E83	'3.0	'So	'None	CJK RADICAL SECOND TWO	'⺃	'乚	'⺃	'乚	Tr≠N4M	Tr≠NF		'2E83	'4E5A	'2E83	'4E5A	04+. radical
 '2E85	'3.0	'So	'None	CJK RADICAL PERSON	'⺅	'亻	'⺅	'亻	Tr≠N4M	Tr≠NF		'2E85	'4EBB	'2E85	'4EBB	04+. radical
@@ -751,30 +751,30 @@
 '2EEC	'3.0	'So	'None	CJK RADICAL C-SIMPLIFIED EVEN	'⻬	'齐	'⻬	'齐	Tr≠N4M	Tr≠NF		'2EEC	'9F50	'2EEC	'9F50	04+. radical
 '2EEE	'3.0	'So	'None	CJK RADICAL C-SIMPLIFIED TOOTH	'⻮	'齿	'⻮	'齿	Tr≠N4M	Tr≠NF		'2EEE	'9F7F	'2EEE	'9F7F	04+. radical
 '2EF0	'3.0	'So	'None	CJK RADICAL C-SIMPLIFIED DRAGON	'⻰	'龙	'⻰	'龙	Tr≠N4M	Tr≠NF		'2EF0	'9F99	'2EF0	'9F99	04+. radical
-'1F19B	'9.0	'So	'None	SQUARED THREE D	'🆛	'3d	'🆛	'🆛	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F19B	'0033 0064	'1F19B	'1F19B	04+. missing_NFKC + recursion
-'1F19C	'9.0	'So	'None	SQUARED SECOND SCREEN	'🆜	'2nd scr	'🆜	'🆜	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F19C	'0032 006E 0064 0020 0073 0063 0072	'1F19C	'1F19C	04+. missing_NFKC + recursion
-'1F19D	'9.0	'So	'None	SQUARED TWO K	'🆝	' 2k	'🆝	'🆝	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F19D	'0020 0032 006B	'1F19D	'1F19D	04+. missing_NFKC + recursion
-'1F19E	'9.0	'So	'None	SQUARED FOUR K	'🆞	'4k	'🆞	'🆞	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F19E	'0034 006B	'1F19E	'1F19E	04+. missing_NFKC + recursion
-'1F19F	'9.0	'So	'None	SQUARED EIGHT K	'🆟	'8k	'🆟	'🆟	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F19F	'0038 006B	'1F19F	'1F19F	04+. missing_NFKC + recursion
-'1F1A0	'9.0	'So	'None	SQUARED FIVE POINT ONE	'🆠	' 5.1 	'🆠	'🆠	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A0	'0020 0035 002E 0031 0020	'1F1A0	'1F1A0	04+. missing_NFKC
-'1F1A1	'9.0	'So	'None	SQUARED SEVEN POINT ONE	'🆡	' 7.1 	'🆡	'🆡	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A1	'0020 0037 002E 0031 0020	'1F1A1	'1F1A1	04+. missing_NFKC
-'1F1A2	'9.0	'So	'None	SQUARED TWENTY-TWO POINT TWO	'🆢	' 22.2 	'🆢	'🆢	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A2	'0020 0032 0032 002E 0032 0020	'1F1A2	'1F1A2	04+. missing_NFKC
-'1F1A3	'9.0	'So	'None	SQUARED SIXTY P	'🆣	' 60p 	'🆣	'🆣	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A3	'0020 0036 0030 0070 0020	'1F1A3	'1F1A3	04+. missing_NFKC + recursion
-'1F1A4	'9.0	'So	'None	SQUARED ONE HUNDRED TWENTY P	'🆤	' 120p 	'🆤	'🆤	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A4	'0020 0031 0032 0030 0070 0020	'1F1A4	'1F1A4	04+. missing_NFKC + recursion
-'1F1A5	'9.0	'So	'None	SQUARED LATIN SMALL LETTER D	'🆥	'd	'🆥	'🆥	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A5	'0064	'1F1A5	'1F1A5	04+. missing_NFKC
-'1F1A6	'9.0	'So	'None	SQUARED HC	'🆦	' hc 	'🆦	'🆦	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A6	'0020 0068 0063 0020	'1F1A6	'1F1A6	04+. missing_NFKC + recursion
-'1F1A7	'9.0	'So	'None	SQUARED HDR	'🆧	' hdr 	'🆧	'🆧	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A7	'0020 0068 0064 0072 0020	'1F1A7	'1F1A7	04+. missing_NFKC + recursion
-'1F1A8	'9.0	'So	'None	SQUARED HI-RES	'🆨	' hi-res 	'🆨	'🆨	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A8	'0020 0068 0069 002D 0072 0065 0073 0020	'1F1A8	'1F1A8	04+. missing_NFKC + recursion
-'1F1A9	'9.0	'So	'None	SQUARED LOSSLESS	'🆩	' lossless 	'🆩	'🆩	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A9	'0020 006C 006F 0073 0073 006C 0065 0073 0073 0020	'1F1A9	'1F1A9	04+. missing_NFKC + recursion
-'1F1AA	'9.0	'So	'None	SQUARED SHV	'🆪	' shv 	'🆪	'🆪	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1AA	'0020 0073 0068 0076 0020	'1F1AA	'1F1AA	04+. missing_NFKC + recursion
-'1F1AB	'9.0	'So	'None	SQUARED UHD	'🆫	' uhd 	'🆫	'🆫	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1AB	'0020 0075 0068 0064 0020	'1F1AB	'1F1AB	04+. missing_NFKC + recursion
-'1F1AC	'9.0	'So	'None	SQUARED VOD	'🆬	' vod 	'🆬	'🆬	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1AC	'0020 0076 006F 0064 0020	'1F1AC	'1F1AC	04+. missing_NFKC + recursion
-'1F520	'6.0	'So	'None	INPUT SYMBOL FOR LATIN CAPITAL LETTERS	'🔠	'abcd	'🔠	'🔠	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F520	'0061 0062 0063 0064	'1F520	'1F520	04+. missing_NFKC
-'1F521	'6.0	'So	'None	INPUT SYMBOL FOR LATIN SMALL LETTERS	'🔡	'abcd	'🔡	'🔡	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F521	'0061 0062 0063 0064	'1F521	'1F521	04+. missing_NFKC
-'1F522	'6.0	'So	'None	INPUT SYMBOL FOR NUMBERS	'🔢	'1234	'🔢	'🔢	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F522	'0031 0032 0033 0034	'1F522	'1F522	04+. missing_NFKC
-'1F523	'6.0	'So	'None	INPUT SYMBOL FOR SYMBOLS	'🔣	'〒♪&%	'🔣	'🔣	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F523	'3012 266A 0026 0025	'1F523	'1F523	04+. missing_NFKC
-'1F524	'6.0	'So	'None	INPUT SYMBOL FOR LATIN LETTERS	'🔤	'abc	'🔤	'🔤	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F524	'0061 0062 0063	'1F524	'1F524	04+. missing_NFKC
-'214D	'5.0	'So	'None	AKTIESELSKAB	'⅍	' a/s 	'⅍	'a/s	Tr≠N4M	Tr≠NF	Tr≠UCA	'214D	'0020 0061 002F 0073 0020	'214D	'0061 002F 0073	04+. missing_NFKC + add separator
+'1F19B	'9.0	'So	'None	SQUARED THREE D	'🆛	'3d	'🆛	'🆛	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F19B	'0033 0064	'1F19B	'1F19B	04+. missing_sequence + recursion
+'1F19C	'9.0	'So	'None	SQUARED SECOND SCREEN	'🆜	'2nd scr	'🆜	'🆜	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F19C	'0032 006E 0064 0020 0073 0063 0072	'1F19C	'1F19C	04+. missing_sequence + recursion
+'1F19D	'9.0	'So	'None	SQUARED TWO K	'🆝	' 2k	'🆝	'🆝	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F19D	'0020 0032 006B	'1F19D	'1F19D	04+. missing_sequence + recursion
+'1F19E	'9.0	'So	'None	SQUARED FOUR K	'🆞	'4k	'🆞	'🆞	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F19E	'0034 006B	'1F19E	'1F19E	04+. missing_sequence + recursion
+'1F19F	'9.0	'So	'None	SQUARED EIGHT K	'🆟	'8k	'🆟	'🆟	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F19F	'0038 006B	'1F19F	'1F19F	04+. missing_sequence + recursion
+'1F1A0	'9.0	'So	'None	SQUARED FIVE POINT ONE	'🆠	' 5.1 	'🆠	'🆠	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A0	'0020 0035 002E 0031 0020	'1F1A0	'1F1A0	04+. missing_sequence
+'1F1A1	'9.0	'So	'None	SQUARED SEVEN POINT ONE	'🆡	' 7.1 	'🆡	'🆡	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A1	'0020 0037 002E 0031 0020	'1F1A1	'1F1A1	04+. missing_sequence
+'1F1A2	'9.0	'So	'None	SQUARED TWENTY-TWO POINT TWO	'🆢	' 22.2 	'🆢	'🆢	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A2	'0020 0032 0032 002E 0032 0020	'1F1A2	'1F1A2	04+. missing_sequence
+'1F1A3	'9.0	'So	'None	SQUARED SIXTY P	'🆣	' 60p 	'🆣	'🆣	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A3	'0020 0036 0030 0070 0020	'1F1A3	'1F1A3	04+. missing_sequence + recursion
+'1F1A4	'9.0	'So	'None	SQUARED ONE HUNDRED TWENTY P	'🆤	' 120p 	'🆤	'🆤	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A4	'0020 0031 0032 0030 0070 0020	'1F1A4	'1F1A4	04+. missing_sequence + recursion
+'1F1A5	'9.0	'So	'None	SQUARED LATIN SMALL LETTER D	'🆥	'd	'🆥	'🆥	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A5	'0064	'1F1A5	'1F1A5	04+. missing_sequence
+'1F1A6	'9.0	'So	'None	SQUARED HC	'🆦	' hc 	'🆦	'🆦	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A6	'0020 0068 0063 0020	'1F1A6	'1F1A6	04+. missing_sequence + recursion
+'1F1A7	'9.0	'So	'None	SQUARED HDR	'🆧	' hdr 	'🆧	'🆧	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A7	'0020 0068 0064 0072 0020	'1F1A7	'1F1A7	04+. missing_sequence + recursion
+'1F1A8	'9.0	'So	'None	SQUARED HI-RES	'🆨	' hi-res 	'🆨	'🆨	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A8	'0020 0068 0069 002D 0072 0065 0073 0020	'1F1A8	'1F1A8	04+. missing_sequence + recursion
+'1F1A9	'9.0	'So	'None	SQUARED LOSSLESS	'🆩	' lossless 	'🆩	'🆩	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1A9	'0020 006C 006F 0073 0073 006C 0065 0073 0073 0020	'1F1A9	'1F1A9	04+. missing_sequence + recursion
+'1F1AA	'9.0	'So	'None	SQUARED SHV	'🆪	' shv 	'🆪	'🆪	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1AA	'0020 0073 0068 0076 0020	'1F1AA	'1F1AA	04+. missing_sequence + recursion
+'1F1AB	'9.0	'So	'None	SQUARED UHD	'🆫	' uhd 	'🆫	'🆫	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1AB	'0020 0075 0068 0064 0020	'1F1AB	'1F1AB	04+. missing_sequence + recursion
+'1F1AC	'9.0	'So	'None	SQUARED VOD	'🆬	' vod 	'🆬	'🆬	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F1AC	'0020 0076 006F 0064 0020	'1F1AC	'1F1AC	04+. missing_sequence + recursion
+'1F520	'6.0	'So	'None	INPUT SYMBOL FOR LATIN CAPITAL LETTERS	'🔠	'abcd	'🔠	'🔠	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F520	'0061 0062 0063 0064	'1F520	'1F520	04+. missing_sequence
+'1F521	'6.0	'So	'None	INPUT SYMBOL FOR LATIN SMALL LETTERS	'🔡	'abcd	'🔡	'🔡	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F521	'0061 0062 0063 0064	'1F521	'1F521	04+. missing_sequence
+'1F522	'6.0	'So	'None	INPUT SYMBOL FOR NUMBERS	'🔢	'1234	'🔢	'🔢	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F522	'0031 0032 0033 0034	'1F522	'1F522	04+. missing_sequence
+'1F523	'6.0	'So	'None	INPUT SYMBOL FOR SYMBOLS	'🔣	'〒♪&%	'🔣	'🔣	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F523	'3012 266A 0026 0025	'1F523	'1F523	04+. missing_sequence
+'1F524	'6.0	'So	'None	INPUT SYMBOL FOR LATIN LETTERS	'🔤	'abc	'🔤	'🔤	Tr≠N4M	Tr≠NF	Tr≠UCA	'1F524	'0061 0062 0063	'1F524	'1F524	04+. missing_sequence
+'214D	'5.0	'So	'None	AKTIESELSKAB	'⅍	' a/s 	'⅍	'a/s	Tr≠N4M	Tr≠NF	Tr≠UCA	'214D	'0020 0061 002F 0073 0020	'214D	'0061 002F 0073	04+. missing_sequence + add separator
 '2EE7	'3.0	'So	'None	CJK RADICAL C-SIMPLIFIED SALT	'⻧	'卤	'⻧	'⻧	Tr≠N4M	Tr≠NF	Tr≠UCA	'2EE7	'5364	'2EE7	'2EE7	04+. radical
 '1F130	'6.0	'So	'Sqr	SQUARED LATIN CAPITAL LETTER A	'🄰	'a	'a	'a	Tr≠N4M			'1F130	'0061	'0061	'0061	16. NFKC_CF-Square
 '1F131	'5.2	'So	'Sqr	SQUARED LATIN CAPITAL LETTER B	'🄱	'b	'b	'b	Tr≠N4M			'1F131	'0062	'0062	'0062	16. NFKC_CF-Square
@@ -1065,16 +1065,16 @@
 '1F16B	'6.1	'So	'Sup	RAISED MD SIGN	'🅫	'🅫	'md	'md		Tr≠NF	Tr≠UCA	'1F16B	'1F16B	'006D 0064	'006D 0064	9 skip certain types
 '2120	'1.1	'So	'Sup	SERVICE MARK	'℠	'℠	'sm	'sm		Tr≠NF	Tr≠UCA	'2120	'2120	'0073 006D	'0073 006D	9 skip certain types
 '2122	'1.1	'So	'Sup	TRADE MARK SIGN	'™	'™	'tm	'tm		Tr≠NF	Tr≠UCA	'2122	'2122	'0074 006D	'0074 006D	9 skip certain types
-'3196	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION TOP MARK	'㆖	'㆖	'上	'上		Tr≠NF	Tr≠UCA	'3196	'3196	'4E0A	'4E0A	04+. fixed_NFKC
-'3197	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION MIDDLE MARK	'㆗	'㆗	'中	'中		Tr≠NF	Tr≠UCA	'3197	'3197	'4E2D	'4E2D	04+. fixed_NFKC
-'3198	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION BOTTOM MARK	'㆘	'㆘	'下	'下		Tr≠NF	Tr≠UCA	'3198	'3198	'4E0B	'4E0B	04+. fixed_NFKC
-'3199	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION FIRST MARK	'㆙	'㆙	'甲	'甲		Tr≠NF	Tr≠UCA	'3199	'3199	'7532	'7532	04+. fixed_NFKC
-'319A	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION SECOND MARK	'㆚	'㆚	'乙	'乙		Tr≠NF	Tr≠UCA	'319A	'319A	'4E59	'4E59	04+. fixed_NFKC
-'319B	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION THIRD MARK	'㆛	'㆛	'丙	'丙		Tr≠NF	Tr≠UCA	'319B	'319B	'4E19	'4E19	04+. fixed_NFKC
-'319C	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION FOURTH MARK	'㆜	'㆜	'丁	'丁		Tr≠NF	Tr≠UCA	'319C	'319C	'4E01	'4E01	04+. fixed_NFKC
-'319D	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION HEAVEN MARK	'㆝	'㆝	'天	'天		Tr≠NF	Tr≠UCA	'319D	'319D	'5929	'5929	04+. fixed_NFKC
-'319E	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION EARTH MARK	'㆞	'㆞	'地	'地		Tr≠NF	Tr≠UCA	'319E	'319E	'5730	'5730	04+. fixed_NFKC
-'319F	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION MAN MARK	'㆟	'㆟	'人	'人		Tr≠NF	Tr≠UCA	'319F	'319F	'4EBA	'4EBA	04+. fixed_NFKC
+'3196	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION TOP MARK	'㆖	'㆖	'上	'上		Tr≠NF	Tr≠UCA	'3196	'3196	'4E0A	'4E0A	04+. retain_superscript
+'3197	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION MIDDLE MARK	'㆗	'㆗	'中	'中		Tr≠NF	Tr≠UCA	'3197	'3197	'4E2D	'4E2D	04+. retain_superscript
+'3198	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION BOTTOM MARK	'㆘	'㆘	'下	'下		Tr≠NF	Tr≠UCA	'3198	'3198	'4E0B	'4E0B	04+. retain_superscript
+'3199	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION FIRST MARK	'㆙	'㆙	'甲	'甲		Tr≠NF	Tr≠UCA	'3199	'3199	'7532	'7532	04+. retain_superscript
+'319A	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION SECOND MARK	'㆚	'㆚	'乙	'乙		Tr≠NF	Tr≠UCA	'319A	'319A	'4E59	'4E59	04+. retain_superscript
+'319B	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION THIRD MARK	'㆛	'㆛	'丙	'丙		Tr≠NF	Tr≠UCA	'319B	'319B	'4E19	'4E19	04+. retain_superscript
+'319C	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION FOURTH MARK	'㆜	'㆜	'丁	'丁		Tr≠NF	Tr≠UCA	'319C	'319C	'4E01	'4E01	04+. retain_superscript
+'319D	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION HEAVEN MARK	'㆝	'㆝	'天	'天		Tr≠NF	Tr≠UCA	'319D	'319D	'5929	'5929	04+. retain_superscript
+'319E	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION EARTH MARK	'㆞	'㆞	'地	'地		Tr≠NF	Tr≠UCA	'319E	'319E	'5730	'5730	04+. retain_superscript
+'319F	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION MAN MARK	'㆟	'㆟	'人	'人		Tr≠NF	Tr≠UCA	'319F	'319F	'4EBA	'4EBA	04+. retain_superscript
 '2ADC	'3.2	'Sm	'Can	FORKING	'⫝̸	'⫝̸	'⫝̸	'⫝̸	Tr≠N4M			'2ADC	'2ADD 0338	'2ADD 0338	'2ADD 0338	16. NFKC_CF-Canonical
 '222C	'1.1	'Sm	'Com	DOUBLE INTEGRAL	'∬	'∫∫	'∫∫	'∫∫	Tr≠N4M			'222C	'222B 222B	'222B 222B	'222B 222B	16. NFKC_CF-Compat
 '222D	'1.1	'Sm	'Com	TRIPLE INTEGRAL	'∭	'∫∫∫	'∫∫∫	'∫∫∫	Tr≠N4M			'222D	'222B 222B 222B	'222B 222B 222B	'222B 222B 222B	16. NFKC_CF-Compat
@@ -1201,13 +1201,13 @@
 'FE6B	'1.1	'Po	'Sml	SMALL COMMERCIAL AT	'﹫	'@	'@	'@	Tr≠N4M			'FE6B	'0040	'0040	'0040	16. NFKC_CF-Small
 'FE19	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL HORIZONTAL ELLIPSIS	'︙	'︙	'...	'...		Tr≠NF	Tr≠UCA	'FE19	'FE19	'002E 002E 002E	'002E 002E 002E	9 skip certain types
 'FE30	'1.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL TWO DOT LEADER	'︰	'︰	'..	'..		Tr≠NF	Tr≠UCA	'FE30	'FE30	'002E 002E	'002E 002E	9 skip certain types
-'FE10	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL COMMA	'︐	',	',	',	Tr≠N4M			'FE10	'002C	'002C	'002C	04+. fixed_NFKC
-'FE11	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC COMMA	'︑	'、	'、	'、	Tr≠N4M			'FE11	'3001	'3001	'3001	04+. fixed_NFKC
-'FE12	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC FULL STOP	'︒	'。	'。	'。	Tr≠N4M			'FE12	'3002	'3002	'3002	04+. fixed_NFKC
-'FE13	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL COLON	'︓	':	':	':	Tr≠N4M			'FE13	'003A	'003A	'003A	04+. fixed_NFKC
-'FE14	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL SEMICOLON	'︔	';	';	';	Tr≠N4M			'FE14	'003B	'003B	'003B	04+. fixed_NFKC
-'FE15	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL EXCLAMATION MARK	'︕	'!	'!	'!	Tr≠N4M			'FE15	'0021	'0021	'0021	04+. fixed_NFKC
-'FE16	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL QUESTION MARK	'︖	'?	'?	'?	Tr≠N4M			'FE16	'003F	'003F	'003F	04+. fixed_NFKC
+'FE10	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL COMMA	'︐	',	',	',	Tr≠N4M			'FE10	'002C	'002C	'002C	04+. retain_vertical
+'FE11	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC COMMA	'︑	'、	'、	'、	Tr≠N4M			'FE11	'3001	'3001	'3001	04+. retain_vertical
+'FE12	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC FULL STOP	'︒	'。	'。	'。	Tr≠N4M			'FE12	'3002	'3002	'3002	04+. retain_vertical
+'FE13	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL COLON	'︓	':	':	':	Tr≠N4M			'FE13	'003A	'003A	'003A	04+. retain_vertical
+'FE14	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL SEMICOLON	'︔	';	';	';	Tr≠N4M			'FE14	'003B	'003B	'003B	04+. retain_vertical
+'FE15	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL EXCLAMATION MARK	'︕	'!	'!	'!	Tr≠N4M			'FE15	'0021	'0021	'0021	04+. retain_vertical
+'FE16	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL QUESTION MARK	'︖	'?	'?	'?	Tr≠N4M			'FE16	'003F	'003F	'003F	04+. retain_vertical
 '232A	'1.1	'Pe	'Can	RIGHT-POINTING ANGLE BRACKET	'〉	'〉	'〉	'〉	Tr≠N4M		Tr≠UCA	'232A	'3009	'3009	'232A	16. NFKC_CF-Canonical
 'FF63	'1.1	'Pe	'Nar	HALFWIDTH RIGHT CORNER BRACKET	'｣	'」	'」	'」	Tr≠N4M			'FF63	'300D	'300D	'300D	16. NFKC_CF-Narrow
 'FE5A	'1.1	'Pe	'Sml	SMALL RIGHT PARENTHESIS	'﹚	')	')	')	Tr≠N4M			'FE5A	'0029	'0029	'0029	16. NFKC_CF-Small
@@ -1377,67 +1377,67 @@
 '215E	'1.1	'No	'Fra	VULGAR FRACTION SEVEN EIGHTHS	'⅞	' 7/8 	'7⁄8	'7⁄8	Tr≠N4M	Tr≠NF	Tr≠UCA	'215E	'0020 0037 002F 0038 0020	'0037 2044 0038	'0037 2044 0038	16. NFKC_CF-Fraction + fix fraction slash + add separator
 '215F	'1.1	'No	'Fra	FRACTION NUMERATOR ONE	'⅟	' 1/ 	'1⁄	'1⁄	Tr≠N4M	Tr≠NF	Tr≠UCA	'215F	'0020 0031 002F 0020	'0031 2044	'0031 2044	16. NFKC_CF-Fraction + fix fraction slash + add separator
 '2189	'5.2	'No	'Fra	VULGAR FRACTION ZERO THIRDS	'↉	' 0/3 	'0⁄3	'0⁄3	Tr≠N4M	Tr≠NF	Tr≠UCA	'2189	'0020 0030 002F 0033 0020	'0030 2044 0033	'0030 2044 0033	16. NFKC_CF-Fraction + fix fraction slash + add separator
-'1F10B	'7.0	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT ZERO	'🄋	'0	'🄋	'0	Tr≠N4M	Tr≠NF		'1F10B	'0030	'1F10B	'0030	04+. missing_NFKC
-'1F10C	'7.0	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ZERO	'🄌	'0	'🄌	'0	Tr≠N4M	Tr≠NF		'1F10C	'0030	'1F10C	'0030	04+. missing_NFKC
-'24EB	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER ELEVEN	'⓫	'11	'⓫	'11	Tr≠N4M	Tr≠NF		'24EB	'0031 0031	'24EB	'0031 0031	04+. missing_NFKC
-'24EC	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER TWELVE	'⓬	'12	'⓬	'12	Tr≠N4M	Tr≠NF		'24EC	'0031 0032	'24EC	'0031 0032	04+. missing_NFKC
-'24ED	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER THIRTEEN	'⓭	'13	'⓭	'13	Tr≠N4M	Tr≠NF		'24ED	'0031 0033	'24ED	'0031 0033	04+. missing_NFKC
-'24EE	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER FOURTEEN	'⓮	'14	'⓮	'14	Tr≠N4M	Tr≠NF		'24EE	'0031 0034	'24EE	'0031 0034	04+. missing_NFKC
-'24EF	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER FIFTEEN	'⓯	'15	'⓯	'15	Tr≠N4M	Tr≠NF		'24EF	'0031 0035	'24EF	'0031 0035	04+. missing_NFKC
-'24F0	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER SIXTEEN	'⓰	'16	'⓰	'16	Tr≠N4M	Tr≠NF		'24F0	'0031 0036	'24F0	'0031 0036	04+. missing_NFKC
-'24F1	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER SEVENTEEN	'⓱	'17	'⓱	'17	Tr≠N4M	Tr≠NF		'24F1	'0031 0037	'24F1	'0031 0037	04+. missing_NFKC
-'24F2	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER EIGHTEEN	'⓲	'18	'⓲	'18	Tr≠N4M	Tr≠NF		'24F2	'0031 0038	'24F2	'0031 0038	04+. missing_NFKC
-'24F3	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER NINETEEN	'⓳	'19	'⓳	'19	Tr≠N4M	Tr≠NF		'24F3	'0031 0039	'24F3	'0031 0039	04+. missing_NFKC
-'24F4	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER TWENTY	'⓴	'20	'⓴	'20	Tr≠N4M	Tr≠NF		'24F4	'0032 0030	'24F4	'0032 0030	04+. missing_NFKC
-'24F5	'3.2	'No	'None	DOUBLE CIRCLED DIGIT ONE	'⓵	'1	'⓵	'1	Tr≠N4M	Tr≠NF		'24F5	'0031	'24F5	'0031	04+. missing_NFKC
-'24F6	'3.2	'No	'None	DOUBLE CIRCLED DIGIT TWO	'⓶	'2	'⓶	'2	Tr≠N4M	Tr≠NF		'24F6	'0032	'24F6	'0032	04+. missing_NFKC
-'24F7	'3.2	'No	'None	DOUBLE CIRCLED DIGIT THREE	'⓷	'3	'⓷	'3	Tr≠N4M	Tr≠NF		'24F7	'0033	'24F7	'0033	04+. missing_NFKC
-'24F8	'3.2	'No	'None	DOUBLE CIRCLED DIGIT FOUR	'⓸	'4	'⓸	'4	Tr≠N4M	Tr≠NF		'24F8	'0034	'24F8	'0034	04+. missing_NFKC
-'24F9	'3.2	'No	'None	DOUBLE CIRCLED DIGIT FIVE	'⓹	'5	'⓹	'5	Tr≠N4M	Tr≠NF		'24F9	'0035	'24F9	'0035	04+. missing_NFKC
-'24FA	'3.2	'No	'None	DOUBLE CIRCLED DIGIT SIX	'⓺	'6	'⓺	'6	Tr≠N4M	Tr≠NF		'24FA	'0036	'24FA	'0036	04+. missing_NFKC
-'24FB	'3.2	'No	'None	DOUBLE CIRCLED DIGIT SEVEN	'⓻	'7	'⓻	'7	Tr≠N4M	Tr≠NF		'24FB	'0037	'24FB	'0037	04+. missing_NFKC
-'24FC	'3.2	'No	'None	DOUBLE CIRCLED DIGIT EIGHT	'⓼	'8	'⓼	'8	Tr≠N4M	Tr≠NF		'24FC	'0038	'24FC	'0038	04+. missing_NFKC
-'24FD	'3.2	'No	'None	DOUBLE CIRCLED DIGIT NINE	'⓽	'9	'⓽	'9	Tr≠N4M	Tr≠NF		'24FD	'0039	'24FD	'0039	04+. missing_NFKC
-'24FE	'3.2	'No	'None	DOUBLE CIRCLED NUMBER TEN	'⓾	'10	'⓾	'10	Tr≠N4M	Tr≠NF		'24FE	'0031 0030	'24FE	'0031 0030	04+. missing_NFKC
-'24FF	'4.0	'No	'None	NEGATIVE CIRCLED DIGIT ZERO	'⓿	'0	'⓿	'0	Tr≠N4M	Tr≠NF		'24FF	'0030	'24FF	'0030	04+. missing_NFKC
-'2776	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED DIGIT ONE	'❶	'1	'❶	'1	Tr≠N4M	Tr≠NF		'2776	'0031	'2776	'0031	04+. missing_NFKC
-'2777	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED DIGIT TWO	'❷	'2	'❷	'2	Tr≠N4M	Tr≠NF		'2777	'0032	'2777	'0032	04+. missing_NFKC
-'2778	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED DIGIT THREE	'❸	'3	'❸	'3	Tr≠N4M	Tr≠NF		'2778	'0033	'2778	'0033	04+. missing_NFKC
-'2779	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED DIGIT FOUR	'❹	'4	'❹	'4	Tr≠N4M	Tr≠NF		'2779	'0034	'2779	'0034	04+. missing_NFKC
-'277A	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED DIGIT FIVE	'❺	'5	'❺	'5	Tr≠N4M	Tr≠NF		'277A	'0035	'277A	'0035	04+. missing_NFKC
-'277B	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED DIGIT SIX	'❻	'6	'❻	'6	Tr≠N4M	Tr≠NF		'277B	'0036	'277B	'0036	04+. missing_NFKC
-'277C	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED DIGIT SEVEN	'❼	'7	'❼	'7	Tr≠N4M	Tr≠NF		'277C	'0037	'277C	'0037	04+. missing_NFKC
-'277D	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED DIGIT EIGHT	'❽	'8	'❽	'8	Tr≠N4M	Tr≠NF		'277D	'0038	'277D	'0038	04+. missing_NFKC
-'277E	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED DIGIT NINE	'❾	'9	'❾	'9	Tr≠N4M	Tr≠NF		'277E	'0039	'277E	'0039	04+. missing_NFKC
-'277F	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED NUMBER TEN	'❿	'10	'❿	'10	Tr≠N4M	Tr≠NF		'277F	'0031 0030	'277F	'0031 0030	04+. missing_NFKC
-'2780	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT ONE	'➀	'1	'➀	'1	Tr≠N4M	Tr≠NF		'2780	'0031	'2780	'0031	04+. missing_NFKC
-'2781	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT TWO	'➁	'2	'➁	'2	Tr≠N4M	Tr≠NF		'2781	'0032	'2781	'0032	04+. missing_NFKC
-'2782	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT THREE	'➂	'3	'➂	'3	Tr≠N4M	Tr≠NF		'2782	'0033	'2782	'0033	04+. missing_NFKC
-'2783	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT FOUR	'➃	'4	'➃	'4	Tr≠N4M	Tr≠NF		'2783	'0034	'2783	'0034	04+. missing_NFKC
-'2784	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT FIVE	'➄	'5	'➄	'5	Tr≠N4M	Tr≠NF		'2784	'0035	'2784	'0035	04+. missing_NFKC
-'2785	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT SIX	'➅	'6	'➅	'6	Tr≠N4M	Tr≠NF		'2785	'0036	'2785	'0036	04+. missing_NFKC
-'2786	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT SEVEN	'➆	'7	'➆	'7	Tr≠N4M	Tr≠NF		'2786	'0037	'2786	'0037	04+. missing_NFKC
-'2787	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT EIGHT	'➇	'8	'➇	'8	Tr≠N4M	Tr≠NF		'2787	'0038	'2787	'0038	04+. missing_NFKC
-'2788	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT NINE	'➈	'9	'➈	'9	Tr≠N4M	Tr≠NF		'2788	'0039	'2788	'0039	04+. missing_NFKC
-'2789	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF NUMBER TEN	'➉	'10	'➉	'10	Tr≠N4M	Tr≠NF		'2789	'0031 0030	'2789	'0031 0030	04+. missing_NFKC
-'278A	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ONE	'➊	'1	'➊	'1	Tr≠N4M	Tr≠NF		'278A	'0031	'278A	'0031	04+. missing_NFKC
-'278B	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT TWO	'➋	'2	'➋	'2	Tr≠N4M	Tr≠NF		'278B	'0032	'278B	'0032	04+. missing_NFKC
-'278C	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT THREE	'➌	'3	'➌	'3	Tr≠N4M	Tr≠NF		'278C	'0033	'278C	'0033	04+. missing_NFKC
-'278D	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT FOUR	'➍	'4	'➍	'4	Tr≠N4M	Tr≠NF		'278D	'0034	'278D	'0034	04+. missing_NFKC
-'278E	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT FIVE	'➎	'5	'➎	'5	Tr≠N4M	Tr≠NF		'278E	'0035	'278E	'0035	04+. missing_NFKC
-'278F	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT SIX	'➏	'6	'➏	'6	Tr≠N4M	Tr≠NF		'278F	'0036	'278F	'0036	04+. missing_NFKC
-'2790	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT SEVEN	'➐	'7	'➐	'7	Tr≠N4M	Tr≠NF		'2790	'0037	'2790	'0037	04+. missing_NFKC
-'2791	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT EIGHT	'➑	'8	'➑	'8	Tr≠N4M	Tr≠NF		'2791	'0038	'2791	'0038	04+. missing_NFKC
-'2792	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT NINE	'➒	'9	'➒	'9	Tr≠N4M	Tr≠NF		'2792	'0039	'2792	'0039	04+. missing_NFKC
-'2793	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF NUMBER TEN	'➓	'10	'➓	'10	Tr≠N4M	Tr≠NF		'2793	'0031 0030	'2793	'0031 0030	04+. missing_NFKC
-'3248	'5.2	'No	'None	CIRCLED NUMBER TEN ON BLACK SQUARE	'㉈	'10	'㉈	'10	Tr≠N4M	Tr≠NF		'3248	'0031 0030	'3248	'0031 0030	04+. missing_NFKC
-'3249	'5.2	'No	'None	CIRCLED NUMBER TWENTY ON BLACK SQUARE	'㉉	'20	'㉉	'20	Tr≠N4M	Tr≠NF		'3249	'0032 0030	'3249	'0032 0030	04+. missing_NFKC
-'324A	'5.2	'No	'None	CIRCLED NUMBER THIRTY ON BLACK SQUARE	'㉊	'30	'㉊	'30	Tr≠N4M	Tr≠NF		'324A	'0033 0030	'324A	'0033 0030	04+. missing_NFKC
-'324B	'5.2	'No	'None	CIRCLED NUMBER FORTY ON BLACK SQUARE	'㉋	'40	'㉋	'40	Tr≠N4M	Tr≠NF		'324B	'0034 0030	'324B	'0034 0030	04+. missing_NFKC
-'324C	'5.2	'No	'None	CIRCLED NUMBER FIFTY ON BLACK SQUARE	'㉌	'50	'㉌	'50	Tr≠N4M	Tr≠NF		'324C	'0035 0030	'324C	'0035 0030	04+. missing_NFKC
-'324D	'5.2	'No	'None	CIRCLED NUMBER SIXTY ON BLACK SQUARE	'㉍	'60	'㉍	'60	Tr≠N4M	Tr≠NF		'324D	'0036 0030	'324D	'0036 0030	04+. missing_NFKC
-'324E	'5.2	'No	'None	CIRCLED NUMBER SEVENTY ON BLACK SQUARE	'㉎	'70	'㉎	'70	Tr≠N4M	Tr≠NF		'324E	'0037 0030	'324E	'0037 0030	04+. missing_NFKC
-'324F	'5.2	'No	'None	CIRCLED NUMBER EIGHTY ON BLACK SQUARE	'㉏	'80	'㉏	'80	Tr≠N4M	Tr≠NF		'324F	'0038 0030	'324F	'0038 0030	04+. missing_NFKC
+'1F10B	'7.0	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT ZERO	'🄋	'0	'🄋	'0	Tr≠N4M	Tr≠NF		'1F10B	'0030	'1F10B	'0030	04+. missing_enclosed
+'1F10C	'7.0	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ZERO	'🄌	'0	'🄌	'0	Tr≠N4M	Tr≠NF		'1F10C	'0030	'1F10C	'0030	04+. missing_enclosed
+'24EB	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER ELEVEN	'⓫	'11	'⓫	'11	Tr≠N4M	Tr≠NF		'24EB	'0031 0031	'24EB	'0031 0031	04+. missing_enclosed
+'24EC	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER TWELVE	'⓬	'12	'⓬	'12	Tr≠N4M	Tr≠NF		'24EC	'0031 0032	'24EC	'0031 0032	04+. missing_enclosed
+'24ED	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER THIRTEEN	'⓭	'13	'⓭	'13	Tr≠N4M	Tr≠NF		'24ED	'0031 0033	'24ED	'0031 0033	04+. missing_enclosed
+'24EE	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER FOURTEEN	'⓮	'14	'⓮	'14	Tr≠N4M	Tr≠NF		'24EE	'0031 0034	'24EE	'0031 0034	04+. missing_enclosed
+'24EF	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER FIFTEEN	'⓯	'15	'⓯	'15	Tr≠N4M	Tr≠NF		'24EF	'0031 0035	'24EF	'0031 0035	04+. missing_enclosed
+'24F0	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER SIXTEEN	'⓰	'16	'⓰	'16	Tr≠N4M	Tr≠NF		'24F0	'0031 0036	'24F0	'0031 0036	04+. missing_enclosed
+'24F1	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER SEVENTEEN	'⓱	'17	'⓱	'17	Tr≠N4M	Tr≠NF		'24F1	'0031 0037	'24F1	'0031 0037	04+. missing_enclosed
+'24F2	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER EIGHTEEN	'⓲	'18	'⓲	'18	Tr≠N4M	Tr≠NF		'24F2	'0031 0038	'24F2	'0031 0038	04+. missing_enclosed
+'24F3	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER NINETEEN	'⓳	'19	'⓳	'19	Tr≠N4M	Tr≠NF		'24F3	'0031 0039	'24F3	'0031 0039	04+. missing_enclosed
+'24F4	'3.2	'No	'None	NEGATIVE CIRCLED NUMBER TWENTY	'⓴	'20	'⓴	'20	Tr≠N4M	Tr≠NF		'24F4	'0032 0030	'24F4	'0032 0030	04+. missing_enclosed
+'24F5	'3.2	'No	'None	DOUBLE CIRCLED DIGIT ONE	'⓵	'1	'⓵	'1	Tr≠N4M	Tr≠NF		'24F5	'0031	'24F5	'0031	04+. missing_enclosed
+'24F6	'3.2	'No	'None	DOUBLE CIRCLED DIGIT TWO	'⓶	'2	'⓶	'2	Tr≠N4M	Tr≠NF		'24F6	'0032	'24F6	'0032	04+. missing_enclosed
+'24F7	'3.2	'No	'None	DOUBLE CIRCLED DIGIT THREE	'⓷	'3	'⓷	'3	Tr≠N4M	Tr≠NF		'24F7	'0033	'24F7	'0033	04+. missing_enclosed
+'24F8	'3.2	'No	'None	DOUBLE CIRCLED DIGIT FOUR	'⓸	'4	'⓸	'4	Tr≠N4M	Tr≠NF		'24F8	'0034	'24F8	'0034	04+. missing_enclosed
+'24F9	'3.2	'No	'None	DOUBLE CIRCLED DIGIT FIVE	'⓹	'5	'⓹	'5	Tr≠N4M	Tr≠NF		'24F9	'0035	'24F9	'0035	04+. missing_enclosed
+'24FA	'3.2	'No	'None	DOUBLE CIRCLED DIGIT SIX	'⓺	'6	'⓺	'6	Tr≠N4M	Tr≠NF		'24FA	'0036	'24FA	'0036	04+. missing_enclosed
+'24FB	'3.2	'No	'None	DOUBLE CIRCLED DIGIT SEVEN	'⓻	'7	'⓻	'7	Tr≠N4M	Tr≠NF		'24FB	'0037	'24FB	'0037	04+. missing_enclosed
+'24FC	'3.2	'No	'None	DOUBLE CIRCLED DIGIT EIGHT	'⓼	'8	'⓼	'8	Tr≠N4M	Tr≠NF		'24FC	'0038	'24FC	'0038	04+. missing_enclosed
+'24FD	'3.2	'No	'None	DOUBLE CIRCLED DIGIT NINE	'⓽	'9	'⓽	'9	Tr≠N4M	Tr≠NF		'24FD	'0039	'24FD	'0039	04+. missing_enclosed
+'24FE	'3.2	'No	'None	DOUBLE CIRCLED NUMBER TEN	'⓾	'10	'⓾	'10	Tr≠N4M	Tr≠NF		'24FE	'0031 0030	'24FE	'0031 0030	04+. missing_enclosed
+'24FF	'4.0	'No	'None	NEGATIVE CIRCLED DIGIT ZERO	'⓿	'0	'⓿	'0	Tr≠N4M	Tr≠NF		'24FF	'0030	'24FF	'0030	04+. missing_enclosed
+'2776	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED DIGIT ONE	'❶	'1	'❶	'1	Tr≠N4M	Tr≠NF		'2776	'0031	'2776	'0031	04+. missing_enclosed
+'2777	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED DIGIT TWO	'❷	'2	'❷	'2	Tr≠N4M	Tr≠NF		'2777	'0032	'2777	'0032	04+. missing_enclosed
+'2778	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED DIGIT THREE	'❸	'3	'❸	'3	Tr≠N4M	Tr≠NF		'2778	'0033	'2778	'0033	04+. missing_enclosed
+'2779	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED DIGIT FOUR	'❹	'4	'❹	'4	Tr≠N4M	Tr≠NF		'2779	'0034	'2779	'0034	04+. missing_enclosed
+'277A	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED DIGIT FIVE	'❺	'5	'❺	'5	Tr≠N4M	Tr≠NF		'277A	'0035	'277A	'0035	04+. missing_enclosed
+'277B	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED DIGIT SIX	'❻	'6	'❻	'6	Tr≠N4M	Tr≠NF		'277B	'0036	'277B	'0036	04+. missing_enclosed
+'277C	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED DIGIT SEVEN	'❼	'7	'❼	'7	Tr≠N4M	Tr≠NF		'277C	'0037	'277C	'0037	04+. missing_enclosed
+'277D	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED DIGIT EIGHT	'❽	'8	'❽	'8	Tr≠N4M	Tr≠NF		'277D	'0038	'277D	'0038	04+. missing_enclosed
+'277E	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED DIGIT NINE	'❾	'9	'❾	'9	Tr≠N4M	Tr≠NF		'277E	'0039	'277E	'0039	04+. missing_enclosed
+'277F	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED NUMBER TEN	'❿	'10	'❿	'10	Tr≠N4M	Tr≠NF		'277F	'0031 0030	'277F	'0031 0030	04+. missing_enclosed
+'2780	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT ONE	'➀	'1	'➀	'1	Tr≠N4M	Tr≠NF		'2780	'0031	'2780	'0031	04+. missing_enclosed
+'2781	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT TWO	'➁	'2	'➁	'2	Tr≠N4M	Tr≠NF		'2781	'0032	'2781	'0032	04+. missing_enclosed
+'2782	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT THREE	'➂	'3	'➂	'3	Tr≠N4M	Tr≠NF		'2782	'0033	'2782	'0033	04+. missing_enclosed
+'2783	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT FOUR	'➃	'4	'➃	'4	Tr≠N4M	Tr≠NF		'2783	'0034	'2783	'0034	04+. missing_enclosed
+'2784	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT FIVE	'➄	'5	'➄	'5	Tr≠N4M	Tr≠NF		'2784	'0035	'2784	'0035	04+. missing_enclosed
+'2785	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT SIX	'➅	'6	'➅	'6	Tr≠N4M	Tr≠NF		'2785	'0036	'2785	'0036	04+. missing_enclosed
+'2786	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT SEVEN	'➆	'7	'➆	'7	Tr≠N4M	Tr≠NF		'2786	'0037	'2786	'0037	04+. missing_enclosed
+'2787	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT EIGHT	'➇	'8	'➇	'8	Tr≠N4M	Tr≠NF		'2787	'0038	'2787	'0038	04+. missing_enclosed
+'2788	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF DIGIT NINE	'➈	'9	'➈	'9	Tr≠N4M	Tr≠NF		'2788	'0039	'2788	'0039	04+. missing_enclosed
+'2789	'1.1	'No	'None	DINGBAT CIRCLED SANS-SERIF NUMBER TEN	'➉	'10	'➉	'10	Tr≠N4M	Tr≠NF		'2789	'0031 0030	'2789	'0031 0030	04+. missing_enclosed
+'278A	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ONE	'➊	'1	'➊	'1	Tr≠N4M	Tr≠NF		'278A	'0031	'278A	'0031	04+. missing_enclosed
+'278B	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT TWO	'➋	'2	'➋	'2	Tr≠N4M	Tr≠NF		'278B	'0032	'278B	'0032	04+. missing_enclosed
+'278C	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT THREE	'➌	'3	'➌	'3	Tr≠N4M	Tr≠NF		'278C	'0033	'278C	'0033	04+. missing_enclosed
+'278D	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT FOUR	'➍	'4	'➍	'4	Tr≠N4M	Tr≠NF		'278D	'0034	'278D	'0034	04+. missing_enclosed
+'278E	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT FIVE	'➎	'5	'➎	'5	Tr≠N4M	Tr≠NF		'278E	'0035	'278E	'0035	04+. missing_enclosed
+'278F	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT SIX	'➏	'6	'➏	'6	Tr≠N4M	Tr≠NF		'278F	'0036	'278F	'0036	04+. missing_enclosed
+'2790	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT SEVEN	'➐	'7	'➐	'7	Tr≠N4M	Tr≠NF		'2790	'0037	'2790	'0037	04+. missing_enclosed
+'2791	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT EIGHT	'➑	'8	'➑	'8	Tr≠N4M	Tr≠NF		'2791	'0038	'2791	'0038	04+. missing_enclosed
+'2792	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT NINE	'➒	'9	'➒	'9	Tr≠N4M	Tr≠NF		'2792	'0039	'2792	'0039	04+. missing_enclosed
+'2793	'1.1	'No	'None	DINGBAT NEGATIVE CIRCLED SANS-SERIF NUMBER TEN	'➓	'10	'➓	'10	Tr≠N4M	Tr≠NF		'2793	'0031 0030	'2793	'0031 0030	04+. missing_enclosed
+'3248	'5.2	'No	'None	CIRCLED NUMBER TEN ON BLACK SQUARE	'㉈	'10	'㉈	'10	Tr≠N4M	Tr≠NF		'3248	'0031 0030	'3248	'0031 0030	04+. missing_enclosed
+'3249	'5.2	'No	'None	CIRCLED NUMBER TWENTY ON BLACK SQUARE	'㉉	'20	'㉉	'20	Tr≠N4M	Tr≠NF		'3249	'0032 0030	'3249	'0032 0030	04+. missing_enclosed
+'324A	'5.2	'No	'None	CIRCLED NUMBER THIRTY ON BLACK SQUARE	'㉊	'30	'㉊	'30	Tr≠N4M	Tr≠NF		'324A	'0033 0030	'324A	'0033 0030	04+. missing_enclosed
+'324B	'5.2	'No	'None	CIRCLED NUMBER FORTY ON BLACK SQUARE	'㉋	'40	'㉋	'40	Tr≠N4M	Tr≠NF		'324B	'0034 0030	'324B	'0034 0030	04+. missing_enclosed
+'324C	'5.2	'No	'None	CIRCLED NUMBER FIFTY ON BLACK SQUARE	'㉌	'50	'㉌	'50	Tr≠N4M	Tr≠NF		'324C	'0035 0030	'324C	'0035 0030	04+. missing_enclosed
+'324D	'5.2	'No	'None	CIRCLED NUMBER SIXTY ON BLACK SQUARE	'㉍	'60	'㉍	'60	Tr≠N4M	Tr≠NF		'324D	'0036 0030	'324D	'0036 0030	04+. missing_enclosed
+'324E	'5.2	'No	'None	CIRCLED NUMBER SEVENTY ON BLACK SQUARE	'㉎	'70	'㉎	'70	Tr≠N4M	Tr≠NF		'324E	'0037 0030	'324E	'0037 0030	04+. missing_enclosed
+'324F	'5.2	'No	'None	CIRCLED NUMBER EIGHTY ON BLACK SQUARE	'㉏	'80	'㉏	'80	Tr≠N4M	Tr≠NF		'324F	'0038 0030	'324F	'0038 0030	04+. missing_enclosed
 '2080	'1.1	'No	'Sub	SUBSCRIPT ZERO	'₀	'₀	'0	'0		Tr≠NF	Tr≠UCA	'2080	'2080	'0030	'0030	9 skip certain types
 '2081	'1.1	'No	'Sub	SUBSCRIPT ONE	'₁	'₁	'1	'1		Tr≠NF	Tr≠UCA	'2081	'2081	'0031	'0031	9 skip certain types
 '2082	'1.1	'No	'Sub	SUBSCRIPT TWO	'₂	'₂	'2	'2		Tr≠NF	Tr≠UCA	'2082	'2082	'0032	'0032	9 skip certain types
@@ -1458,10 +1458,10 @@
 '2077	'1.1	'No	'Sup	SUPERSCRIPT SEVEN	'⁷	'⁷	'7	'7		Tr≠NF	Tr≠UCA	'2077	'2077	'0037	'0037	9 skip certain types
 '2078	'1.1	'No	'Sup	SUPERSCRIPT EIGHT	'⁸	'⁸	'8	'8		Tr≠NF	Tr≠UCA	'2078	'2078	'0038	'0038	9 skip certain types
 '2079	'1.1	'No	'Sup	SUPERSCRIPT NINE	'⁹	'⁹	'9	'9		Tr≠NF	Tr≠UCA	'2079	'2079	'0039	'0039	9 skip certain types
-'3192	'1.1	'No	'Sup	IDEOGRAPHIC ANNOTATION ONE MARK	'㆒	'㆒	'一	'一		Tr≠NF	Tr≠UCA	'3192	'3192	'4E00	'4E00	04+. fixed_NFKC
-'3193	'1.1	'No	'Sup	IDEOGRAPHIC ANNOTATION TWO MARK	'㆓	'㆓	'二	'二		Tr≠NF	Tr≠UCA	'3193	'3193	'4E8C	'4E8C	04+. fixed_NFKC
-'3194	'1.1	'No	'Sup	IDEOGRAPHIC ANNOTATION THREE MARK	'㆔	'㆔	'三	'三		Tr≠NF	Tr≠UCA	'3194	'3194	'4E09	'4E09	04+. fixed_NFKC
-'3195	'1.1	'No	'Sup	IDEOGRAPHIC ANNOTATION FOUR MARK	'㆕	'㆕	'四	'四		Tr≠NF	Tr≠UCA	'3195	'3195	'56DB	'56DB	04+. fixed_NFKC
+'3192	'1.1	'No	'Sup	IDEOGRAPHIC ANNOTATION ONE MARK	'㆒	'㆒	'一	'一		Tr≠NF	Tr≠UCA	'3192	'3192	'4E00	'4E00	04+. retain_superscript
+'3193	'1.1	'No	'Sup	IDEOGRAPHIC ANNOTATION TWO MARK	'㆓	'㆓	'二	'二		Tr≠NF	Tr≠UCA	'3193	'3193	'4E8C	'4E8C	04+. retain_superscript
+'3194	'1.1	'No	'Sup	IDEOGRAPHIC ANNOTATION THREE MARK	'㆔	'㆔	'三	'三		Tr≠NF	Tr≠UCA	'3194	'3194	'4E09	'4E09	04+. retain_superscript
+'3195	'1.1	'No	'Sup	IDEOGRAPHIC ANNOTATION FOUR MARK	'㆕	'㆕	'四	'四		Tr≠NF	Tr≠UCA	'3195	'3195	'56DB	'56DB	04+. retain_superscript
 '2160	'1.1	'Nl	'Com	ROMAN NUMERAL ONE	'ⅰ	'i	'i	'i	Tr≠N4M			'2170	'0069	'0069	'0069	16. NFKC_CF-Compat
 '2161	'1.1	'Nl	'Com	ROMAN NUMERAL TWO	'ⅱ	'ii	'ii	'ii	Tr≠N4M			'2171	'0069 0069	'0069 0069	'0069 0069	16. NFKC_CF-Compat
 '2162	'1.1	'Nl	'Com	ROMAN NUMERAL THREE	'ⅲ	'iii	'iii	'iii	Tr≠N4M			'2172	'0069 0069 0069	'0069 0069 0069	'0069 0069 0069	16. NFKC_CF-Compat
@@ -1494,11 +1494,11 @@
 '217D	'1.1	'Nl	'Com	SMALL ROMAN NUMERAL ONE HUNDRED	'ⅽ	'c	'c	'c	Tr≠N4M			'217D	'0063	'0063	'0063	16. NFKC_CF-Compat
 '217E	'1.1	'Nl	'Com	SMALL ROMAN NUMERAL FIVE HUNDRED	'ⅾ	'd	'd	'd	Tr≠N4M			'217E	'0064	'0064	'0064	16. NFKC_CF-Compat
 '217F	'1.1	'Nl	'Com	SMALL ROMAN NUMERAL ONE THOUSAND	'ⅿ	'm	'm	'm	Tr≠N4M			'217F	'006D	'006D	'006D	16. NFKC_CF-Compat
-'034F	'3.2	'Mn	'None	COMBINING GRAPHEME JOINER	'͏	'͏	'∅	'∅		Tr≠NF	Tr≠UCA	'034F	'034F	'	'	04+. fixed_NFKC
+'034F	'3.2	'Mn	'None	COMBINING GRAPHEME JOINER	'͏	'͏	'∅	'∅		Tr≠NF	Tr≠UCA	'034F	'034F	'	'	04+. retain_cf
 '17B4	'3.0	'Mn	'None	KHMER VOWEL INHERENT AQ	'឴	'∅	'∅	'∅	Tr≠N4M			'17B4	'	'	'	16. NFKC_CF-None
 '17B5	'3.0	'Mn	'None	KHMER VOWEL INHERENT AA	'឵	'∅	'∅	'∅	Tr≠N4M			'17B5	'	'	'	16. NFKC_CF-None
 '0130	'1.1	'Lu	'Can	LATIN CAPITAL LETTER I WITH DOT ABOVE	'i	'i	'i̇	'i̇		Tr≠NF	Tr≠UCA	'0069	'0069	'0069 0307	'0069 0307	04+. fixed_NFKC
-'1E9E	'5.1	'Lu	'None	LATIN CAPITAL LETTER SHARP S	'ß	'ß	'ss	'ss		Tr≠NF	Tr≠UCA	'00DF	'00DF	'0073 0073	'0073 0073	04+. missing_NFKC
+'1E9E	'5.1	'Lu	'None	LATIN CAPITAL LETTER SHARP S	'ß	'ß	'ss	'ss		Tr≠NF	Tr≠UCA	'00DF	'00DF	'0073 0073	'0073 0073	04+. missing_case
 '104B0	'9.0	'Lu	'None	OSAGE CAPITAL LETTER A	'𐒰	'𐓘	'𐓘	'𐒰	Tr≠N4M		Tr≠UCA	'104B0	'104D8	'104D8	'104B0	16. NFKC_CF-None
 '104B1	'9.0	'Lu	'None	OSAGE CAPITAL LETTER AI	'𐒱	'𐓙	'𐓙	'𐒱	Tr≠N4M		Tr≠UCA	'104B1	'104D9	'104D9	'104B1	16. NFKC_CF-None
 '104B2	'9.0	'Lu	'None	OSAGE CAPITAL LETTER AIN	'𐒲	'𐓚	'𐓚	'𐒲	Tr≠N4M		Tr≠UCA	'104B2	'104DA	'104DA	'104B2	16. NFKC_CF-None
@@ -1895,12 +1895,12 @@
 '05F0	'1.1	'Lo	'None	HEBREW LIGATURE YIDDISH DOUBLE VAV	'וו	'וו	'װ	'וו		Tr≠NF		'05D5 05D5	'05D5 05D5	'05F0	'05D5 05D5	04+. digraph
 '05F1	'1.1	'Lo	'None	HEBREW LIGATURE YIDDISH VAV YOD	'וי	'וי	'ױ	'וי		Tr≠NF		'05D5 05D9	'05D5 05D9	'05F1	'05D5 05D9	04+. digraph
 '05F2	'1.1	'Lo	'None	HEBREW LIGATURE YIDDISH DOUBLE YOD	'יי	'יי	'ײ	'יי		Tr≠NF		'05D9 05D9	'05D9 05D9	'05F2	'05D9 05D9	04+. digraph
-'0D7A	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU NN	'ണ്	'ണ്	'ൺ	'ണ്		Tr≠NF		'0D23 0D4D	'0D23 0D4D	'0D7A	'0D23 0D4D	04+. fixed_NFKC
-'0D7B	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU N	'ന്	'ന്	'ൻ	'ന്		Tr≠NF		'0D28 0D4D	'0D28 0D4D	'0D7B	'0D28 0D4D	04+. fixed_NFKC
-'0D7C	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU RR	'ര്	'ര്	'ർ	'ര്		Tr≠NF		'0D30 0D4D	'0D30 0D4D	'0D7C	'0D30 0D4D	04+. fixed_NFKC
-'0D7D	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU L	'ല്	'ല്	'ൽ	'ല്		Tr≠NF		'0D32 0D4D	'0D32 0D4D	'0D7D	'0D32 0D4D	04+. fixed_NFKC
-'0D7E	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU LL	'ള്	'ള്	'ൾ	'ള്		Tr≠NF		'0D33 0D4D	'0D33 0D4D	'0D7E	'0D33 0D4D	04+. fixed_NFKC
-'0D7F	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU K	'ക്	'ക്	'ൿ	'ക്		Tr≠NF		'0D15 0D4D	'0D15 0D4D	'0D7F	'0D15 0D4D	04+. fixed_NFKC
+'0D7A	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU NN	'ണ്	'ണ്	'ൺ	'ണ്		Tr≠NF		'0D23 0D4D	'0D23 0D4D	'0D7A	'0D23 0D4D	04+. missing_sequence
+'0D7B	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU N	'ന്	'ന്	'ൻ	'ന്		Tr≠NF		'0D28 0D4D	'0D28 0D4D	'0D7B	'0D28 0D4D	04+. missing_sequence
+'0D7C	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU RR	'ര്	'ര്	'ർ	'ര്		Tr≠NF		'0D30 0D4D	'0D30 0D4D	'0D7C	'0D30 0D4D	04+. missing_sequence
+'0D7D	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU L	'ല്	'ല്	'ൽ	'ല്		Tr≠NF		'0D32 0D4D	'0D32 0D4D	'0D7D	'0D32 0D4D	04+. missing_sequence
+'0D7E	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU LL	'ള്	'ള്	'ൾ	'ള്		Tr≠NF		'0D33 0D4D	'0D33 0D4D	'0D7E	'0D33 0D4D	04+. missing_sequence
+'0D7F	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU K	'ക്	'ക്	'ൿ	'ക്		Tr≠NF		'0D15 0D4D	'0D15 0D4D	'0D7F	'0D15 0D4D	04+. missing_sequence
 'FE73	'3.2	'Lo	'None	ARABIC TAIL FRAGMENT	'∅	'∅	'ﹳ	'∅		Tr≠NF		'	'	'FE73	'	04+. fixed_NFKC
 '115F	'1.1	'Lo	'None	HANGUL CHOSEONG FILLER	'ᅟ	'∅	'∅	'∅	Tr≠N4M			'115F	'	'	'	16. NFKC_CF-None
 '1160	'1.1	'Lo	'None	HANGUL JUNGSEONG FILLER	'ᅠ	'∅	'∅	'∅	Tr≠N4M			'1160	'	'	'	16. NFKC_CF-None
@@ -2066,16 +2066,16 @@
 '1C86	'9.0	'Ll	'None	CYRILLIC SMALL LETTER TALL HARD SIGN	'ᲆ	'ъ	'ъ	'ᲆ	Tr≠N4M		Tr≠UCA	'1C86	'044A	'044A	'1C86	16. NFKC_CF-None
 '1C87	'9.0	'Ll	'None	CYRILLIC SMALL LETTER TALL YAT	'ᲇ	'ѣ	'ѣ	'ᲇ	Tr≠N4M		Tr≠UCA	'1C87	'0463	'0463	'1C87	16. NFKC_CF-None
 '1C88	'9.0	'Ll	'None	CYRILLIC SMALL LETTER UNBLENDED UK	'ᲈ	'ꙋ	'ꙋ	'ᲈ	Tr≠N4M		Tr≠UCA	'1C88	'A64B	'A64B	'1C88	16. NFKC_CF-None
-'180E	'3.0	'Cf	'None	MONGOLIAN VOWEL SEPARATOR	'᠎	'᠎	'∅	'∅		Tr≠NF	Tr≠UCA	'180E	'180E	'	'	04+. fixed_NFKC
-'200B	'1.1	'Cf	'None	ZERO WIDTH SPACE	'​	'​	'∅	'∅		Tr≠NF	Tr≠UCA	'200B	'200B	'	'	04+. fixed_NFKC
-'2061	'3.2	'Cf	'None	FUNCTION APPLICATION	'⁡	'⁡	'∅	'∅		Tr≠NF	Tr≠UCA	'2061	'2061	'	'	04+. fixed_NFKC
-'2062	'3.2	'Cf	'None	INVISIBLE TIMES	'⁢	'⁢	'∅	'∅		Tr≠NF	Tr≠UCA	'2062	'2062	'	'	04+. fixed_NFKC
-'2063	'3.2	'Cf	'None	INVISIBLE SEPARATOR	'⁣	'⁣	'∅	'∅		Tr≠NF	Tr≠UCA	'2063	'2063	'	'	04+. fixed_NFKC
-'2064	'5.1	'Cf	'None	INVISIBLE PLUS	'⁤	'⁤	'∅	'∅		Tr≠NF	Tr≠UCA	'2064	'2064	'	'	04+. fixed_NFKC
-'2066	'6.3	'Cf	'None	LEFT-TO-RIGHT ISOLATE	'⁦	'⁦	'∅	'∅		Tr≠NF	Tr≠UCA	'2066	'2066	'	'	04+. fixed_NFKC
-'2067	'6.3	'Cf	'None	RIGHT-TO-LEFT ISOLATE	'⁧	'⁧	'∅	'∅		Tr≠NF	Tr≠UCA	'2067	'2067	'	'	04+. fixed_NFKC
-'2068	'6.3	'Cf	'None	FIRST STRONG ISOLATE	'⁨	'⁨	'∅	'∅		Tr≠NF	Tr≠UCA	'2068	'2068	'	'	04+. fixed_NFKC
-'2069	'6.3	'Cf	'None	POP DIRECTIONAL ISOLATE	'⁩	'⁩	'∅	'∅		Tr≠NF	Tr≠UCA	'2069	'2069	'	'	04+. fixed_NFKC
+'180E	'3.0	'Cf	'None	MONGOLIAN VOWEL SEPARATOR	'᠎	'᠎	'∅	'∅		Tr≠NF	Tr≠UCA	'180E	'180E	'	'	04+. retain_cf
+'200B	'1.1	'Cf	'None	ZERO WIDTH SPACE	'​	'​	'∅	'∅		Tr≠NF	Tr≠UCA	'200B	'200B	'	'	04+. retain_cf
+'2061	'3.2	'Cf	'None	FUNCTION APPLICATION	'⁡	'⁡	'∅	'∅		Tr≠NF	Tr≠UCA	'2061	'2061	'	'	04+. retain_cf
+'2062	'3.2	'Cf	'None	INVISIBLE TIMES	'⁢	'⁢	'∅	'∅		Tr≠NF	Tr≠UCA	'2062	'2062	'	'	04+. retain_cf
+'2063	'3.2	'Cf	'None	INVISIBLE SEPARATOR	'⁣	'⁣	'∅	'∅		Tr≠NF	Tr≠UCA	'2063	'2063	'	'	04+. retain_cf
+'2064	'5.1	'Cf	'None	INVISIBLE PLUS	'⁤	'⁤	'∅	'∅		Tr≠NF	Tr≠UCA	'2064	'2064	'	'	04+. retain_cf
+'2066	'6.3	'Cf	'None	LEFT-TO-RIGHT ISOLATE	'⁦	'⁦	'∅	'∅		Tr≠NF	Tr≠UCA	'2066	'2066	'	'	04+. retain_cf
+'2067	'6.3	'Cf	'None	RIGHT-TO-LEFT ISOLATE	'⁧	'⁧	'∅	'∅		Tr≠NF	Tr≠UCA	'2067	'2067	'	'	04+. retain_cf
+'2068	'6.3	'Cf	'None	FIRST STRONG ISOLATE	'⁨	'⁨	'∅	'∅		Tr≠NF	Tr≠UCA	'2068	'2068	'	'	04+. retain_cf
+'2069	'6.3	'Cf	'None	POP DIRECTIONAL ISOLATE	'⁩	'⁩	'∅	'∅		Tr≠NF	Tr≠UCA	'2069	'2069	'	'	04+. retain_cf
 'E0001	'3.1	'Cf	'None	LANGUAGE TAG	'󠀁	'󠀁	'∅	'∅		Tr≠NF	Tr≠UCA	'E0001	'E0001	'	'	9 skip certain types
 'E0020	'3.1	'Cf	'None	TAG SPACE	'󠀠	'󠀠	'∅	'∅		Tr≠NF	Tr≠UCA	'E0020	'E0020	'	'	9 skip certain types
 'E0021	'3.1	'Cf	'None	TAG EXCLAMATION MARK	'󠀡	'󠀡	'∅	'∅		Tr≠NF	Tr≠UCA	'E0021	'E0021	'	'	9 skip certain types
@@ -2173,7 +2173,7 @@
 'E007D	'3.1	'Cf	'None	TAG RIGHT CURLY BRACKET	'󠁽	'󠁽	'∅	'∅		Tr≠NF	Tr≠UCA	'E007D	'E007D	'	'	9 skip certain types
 'E007E	'3.1	'Cf	'None	TAG TILDE	'󠁾	'󠁾	'∅	'∅		Tr≠NF	Tr≠UCA	'E007E	'E007E	'	'	9 skip certain types
 'E007F	'3.1	'Cf	'None	CANCEL TAG	'󠁿	'󠁿	'∅	'∅		Tr≠NF	Tr≠UCA	'E007F	'E007F	'	'	9 skip certain types
-'FEFF	'1.1	'Cf	'None	ZERO WIDTH NO-BREAK SPACE	'﻿	'﻿	'∅	'∅		Tr≠NF	Tr≠UCA	'FEFF	'FEFF	'	'	04+. fixed_NFKC
+'FEFF	'1.1	'Cf	'None	ZERO WIDTH NO-BREAK SPACE	'﻿	'﻿	'∅	'∅		Tr≠NF	Tr≠UCA	'FEFF	'FEFF	'	'	04+. retain_cf
 '00AD	'1.1	'Cf	'None	SOFT HYPHEN	'­	'∅	'∅	'∅	Tr≠N4M			'00AD	'	'	'	16. NFKC_CF-None
 '061C	'6.3	'Cf	'None	ARABIC LETTER MARK	'؜	'∅	'∅	'∅	Tr≠N4M			'061C	'	'	'	16. NFKC_CF-None
 '1BCA0	'7.0	'Cf	'None	SHORTHAND FORMAT LETTER OVERLAP	'𛲠	'∅	'∅	'∅	Tr≠N4M			'1BCA0	'	'	'	16. NFKC_CF-None

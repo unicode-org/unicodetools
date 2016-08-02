@@ -1,11 +1,12 @@
 package org.unicode.tools;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -16,7 +17,6 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CldrUtility;
-import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.With;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyValueSets;
@@ -96,8 +96,8 @@ public class GenerateNormalizeForMatch {
     // Results
     private static final UnicodeMap<String> N4M = gatherData();
     private static final UnicodeMap<String> TRIAL = new UnicodeMap<>();
-    private static final UnicodeMap<String> REASONS = new UnicodeMap<>();
-    private static final NormalizeForMatch ADDITIONS_TO_NFKCCF = NormalizeForMatch.load("XNFKCCF-Curated.txt");
+    private static final UnicodeMap<Set<SpecialReason>> REASONS = new UnicodeMap<>();
+    private static final NormalizeForMatch ADDITIONS_TO_NFKCCF = NormalizeForMatch.load(null, "XNFKCCF-Curated.txt");
 
 
     private static final UnicodeSet HANGUL_COMPAT_minus_DI_CN 
@@ -177,12 +177,30 @@ public class GenerateNormalizeForMatch {
         compareTrial(true);
         showSimpleData(TRIAL, REASONS, "XNFKCCF-NFKCCF.txt", "# Cases where XNFKCCF differs from NFKCCF.", cpToNFKCCF);
         showSimpleData(N4M, REASONS, "N4M-XNFKCCF.txt", "# Cases where N4M differs from XNFKCCF", TRIAL);
-        NormalizeForMatch curated = NormalizeForMatch.load("XNFKCCF-Curated.txt");
+        NormalizeForMatch curated = NormalizeForMatch.load(null, "XNFKCCF-Curated.txt");
         showSimpleData(curated.getSourceToTarget(), curated.getSourceToReason(), "XNFKCCF-Curated.txt", "# Curated file of exceptions", null);
+        NormalizeForMatch newCurated = NormalizeForMatch.load(Settings.DATA_DIR + "n4m/9.0.0/", "XNFKCCF-Curated.txt");
+        checkNewCurated(curated, newCurated);
+        //    private static final NormalizeForMatch ADDITIONS_TO_NFKCCF = NormalizeForMatch.load("XNFKCCF-Curated.txt");
+
         computeCandidateFile(Age_Values.V9_0);
         //if (true) return;
         //        printData();
         //        showItemsIn(new UnicodeSet(N4M.keySet()).addAll(TRIAL.keySet()));
+    }
+
+    private static void checkNewCurated(NormalizeForMatch curated, NormalizeForMatch newCurated) {
+        UnicodeSet sources = new UnicodeSet(curated.getSourceToTarget().keySet()).addAll(newCurated.getSourceToTarget().keySet());
+        int diffCount = 0;
+        for (String s : sources) {
+            String t1 = curated.getSourceToTarget().get(s);
+            String t2 = newCurated.getSourceToTarget().get(s);
+            if (!Objects.equal(t1, t2)) {
+                System.out.println("Diff: " + t1 + ", " + t2);
+                diffCount++;
+            }
+        }
+        System.out.println("Total diff from old to new Curated: " + diffCount + " out of " + sources.size());
     }
 
     private static void findExtraCaps() {
@@ -247,7 +265,7 @@ public class GenerateNormalizeForMatch {
                 if (ucaOnly != trial_n4m_nfkccfEqual) {
                     continue;
                 }
-                String reasons = REASONS.get(s);
+                String reasons = CollectionUtilities.join(REASONS.get(s), " + ");
                 final int cp = s.codePointAt(0);
                 String line = "'" + Utility.hex(s) 
                         + "\t'" + AGE.get(cp).getShortName() // UCharacter.getAge(cp).getVersionString(2, 2)
@@ -385,7 +403,9 @@ public class GenerateNormalizeForMatch {
             sorted.addAll(values);
             for (T reason : sorted) {
                 UnicodeSet set = reasons2.getSet(reason);
-                showSimpleSet(out, set, mapping, reason.toString(), skipIfSame);
+                String reasons = reason instanceof Set ? CollectionUtilities.join((Set)reason, " + ") : reason.toString();
+
+                showSimpleSet(out, set, mapping, reasons, skipIfSame);
             }
             if (skipIfSame != null) {
                 showSimpleSet(out, new UnicodeSet(mapping.keySet()).complement(), mapping, "other", skipIfSame);
@@ -476,11 +496,11 @@ public class GenerateNormalizeForMatch {
                 String source = UTF16.valueOf(cp);
                 String nfkccf = Normalizer3.NFKCCF.normalize(source);
                 String target = source;
-                String reason = "??";
+                Set<SpecialReason> reason = new LinkedHashSet<>();
 
                 subloop: {
                     if (HANGUL_COMPAT_minus_DI_CN.contains(cp)) {
-                        reason = ("02. Skip Hangul Compat");
+                        reason.add(SpecialReason.retain_hangul);
                         break subloop;
                     }
 
@@ -488,7 +508,7 @@ public class GenerateNormalizeForMatch {
                     remapped = ADDITIONS_TO_NFKCCF.getSourceToTarget().get(source);
                     if (remapped != null) {
                         target = remapped;
-                        reason = ("04+. " + ADDITIONS_TO_NFKCCF.getSourceToReason().get(source)); // also , #5, #6. #10., #11. 
+                        reason.add(ADDITIONS_TO_NFKCCF.getSourceToReason().get(source));
                         break subloop;
                     }
 
@@ -512,8 +532,12 @@ public class GenerateNormalizeForMatch {
                     //                    }
 
                     // decomposition type = super, sub → do not map, stop
-                    if (NOCHANGE_DECOMP_TYPES.contains(cp) || TAGS.contains(cp)) {
-                        reason = "9 skip certain types";
+                    if (NOCHANGE_DECOMP_TYPES.contains(cp)) {
+                        reason.add(SpecialReason.forString("retain_"+DT.get(cp))); // "9 skip certain types";
+                        break subloop;
+                    }
+                    if (TAGS.contains(cp)) {
+                        reason.add(SpecialReason.retain_tags); // "9 skip certain types";
                         break subloop;
                     }
                     // Get NFKC_CF mapping
@@ -524,24 +548,26 @@ public class GenerateNormalizeForMatch {
 
                     if (target.codePointCount(0, target.length()) > 1
                             && skipIfInMultiCodepointDecomp.containsSome(target)) {
-                        reason = ("14 Skip decomp contains «"
-                                + new UnicodeSet().addAll(target).retainAll(skipIfInMultiCodepointDecomp)
-                                + "» (and isn't singleton)");
+                        reason.add(SpecialReason.retain_sequences_with_exclusions);
+//                        ("14 Skip decomp contains «"
+//                                + new UnicodeSet().addAll(target).retainAll(skipIfInMultiCodepointDecomp)
+//                                + "» (and isn't singleton)");
                         target=source;
                     } else if (!REASONS.containsKey(cp)) {
                         // if we don't have a reason, it is because of NFKC_CF, so add that reason.
-                        reason = "16. NFKC_CF-" + DT.get(cp);
+                        reason.add(SpecialReason.forString("nfkccf_" + DT.get(cp))); // "16. NFKC_CF-" + DT.get(cp);
                     }
                 }
                 if (target.contains("\u2044") || target.contains("\u2215")) {
                     target = target.replace('\u2044', '/').replace('\u2215', '/'); // fraction slash #15
-                    reason += " + fix fraction slash";
+                    reason.add(SpecialReason.fix_slash); // " + fix fraction slash";
                 }
 
                 if (!target.equals("/") && target.contains("/")) {
                     target = SEPARATOR + target + SEPARATOR;
                     //System.out.println("«" + target + "»");
-                    reason += " + add separator";
+                    reason.add(SpecialReason.add_separator);
+                    //reason += " + add separator";
                 }
 
                 target = nfc.normalize(target); // just in case!!
@@ -564,8 +590,9 @@ public class GenerateNormalizeForMatch {
                         removals.add(source);
                     } else {
                         delta.put(source, newTarget);
-                        String reason = REASONS.get(source);
-                        REASONS.put(source, reason + " + recursion");
+                        LinkedHashSet<SpecialReason> reason = new LinkedHashSet<>(REASONS.get(source));
+                        reason.add(SpecialReason.recursion);
+                        REASONS.put(source, reason);
                     }
                 }
             }
