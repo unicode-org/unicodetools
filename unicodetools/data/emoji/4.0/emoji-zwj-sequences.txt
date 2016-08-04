@@ -31,7 +31,7 @@
 1F3CB FE0F 200D 2642 FE0F                        ; Emoji_ZWJ_Sequence  ; Man weight lifting                             # 7.0  [1] (🏋️‍♂)
 1F3CC FE0F 200D 2640 FE0F                        ; Emoji_ZWJ_Sequence  ; Woman golfing                                  # 7.0  [1] (🏌️‍♀)
 1F3CC FE0F 200D 2642 FE0F                        ; Emoji_ZWJ_Sequence  ; Man golfing                                    # 7.0  [1] (🏌️‍♂)
-1F441 FE0F 200D 1F5E8 FE0F                            ; Emoji_ZWJ_Sequence  ; Witness                                         # 7.0  [1] (👁‍🗨)
+1F441 FE0F 200D 1F5E8 FE0F                            ; Emoji_ZWJ_Sequence  ; Eye in speech bubble                                         # 7.0  [1] (👁‍🗨)
 1F468 200D 2695 FE0F                        ; Emoji_ZWJ_Sequence  ; Male health worker                              # 6.0  [1] (👨‍⚕)
 1F468 200D 2764 FE0F 200D 1F468             ; Emoji_ZWJ_Sequence  ; Couple with heart: man, man                     # 6.0  [1] (👨‍❤️‍👨)
 1F468 200D 2764 FE0F 200D 1F48B 200D 1F468  ; Emoji_ZWJ_Sequence  ; Kiss: man, man                                  # 6.0  [1] (👨‍❤️‍💋‍👨)
@@ -133,5 +133,29 @@
 
 1F46F 200D 2640 FE0F; Emoji_ZWJ_Sequence  ;Women partying
 1F46F 200D 2642 FE0F; Emoji_ZWJ_Sequence  ;Men partying
+
+# new 
+1F468 200D 1F466                 ; Emoji_ZWJ_Sequence  ; Family: man, boy                           # 6.0  [1] 
+1F468 200D 1F466 200D 1F466      ; Emoji_ZWJ_Sequence  ; Family: man, boy, boy                      # 6.0  [1] 
+1F468 200D 1F467                 ; Emoji_ZWJ_Sequence  ; Family: man, girl                          # 6.0  [1]
+1F468 200D 1F467 200D 1F466      ; Emoji_ZWJ_Sequence  ; Family: man, girl, boy                     # 6.0  [1]
+1F468 200D 1F467 200D 1F467      ; Emoji_ZWJ_Sequence  ; Family: man, girl, girl                    # 6.0  [1]
+
+1F469 200D 1F466                 ; Emoji_ZWJ_Sequence  ; Family: woman, boy                         # 6.0  [1]
+1F469 200D 1F466 200D 1F466      ; Emoji_ZWJ_Sequence  ; Family: woman, boy, boy                    # 6.0  [1]
+1F469 200D 1F467                 ; Emoji_ZWJ_Sequence  ; Family: woman, girl                        # 6.0  [1]
+1F469 200D 1F467 200D 1F466      ; Emoji_ZWJ_Sequence  ; Family: woman, girl, boy                   # 6.0  [1]
+1F469 200D 1F467 200D 1F467      ; Emoji_ZWJ_Sequence  ; Family: woman, girl, girl                  # 6.0  [1]
+
+1F468 200D 1F3A8 ; Emoji_ZWJ_Sequence  ; Male artist
+1F469 200D 1F3A8 ; Emoji_ZWJ_Sequence  ; Female artist
+1F468 200D 1F692 ; Emoji_ZWJ_Sequence  ; Male firefighter
+1F469 200D 1F692 ; Emoji_ZWJ_Sequence  ; Female firefighter
+1F468 200D 2708 FE0F ; Emoji_ZWJ_Sequence  ; Male pilot
+1F469 200D 2708 FE0F ; Emoji_ZWJ_Sequence  ; Female pilot
+1F468 200D 1F680 ; Emoji_ZWJ_Sequence  ; Male astronaut
+1F469 200D 1F680 ; Emoji_ZWJ_Sequence  ; Female astronaut
+1F468 200D 2696 ; Emoji_ZWJ_Sequence  ; Male judge
+1F469 200D 2696 ; Emoji_ZWJ_Sequence  ; Female judge
 
 #EOF
