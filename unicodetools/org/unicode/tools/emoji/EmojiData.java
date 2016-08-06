@@ -42,7 +42,9 @@ import com.ibm.icu.util.VersionInfo;
 
 public class EmojiData {
     public static final String SAMPLE_WITHOUT_TRAILING_EVS = "👮🏻‍♀";
-    private static UnicodeSet SUPPRESS_SECONDARY = new UnicodeSet("[😀 😁 😂 😃 😄 😅 😆 😉 😊 😋 😎 😍 😘 😗 😙 😚 ☺ 🙂 🤗 😇 🤔 😐 😑 😶 🙄 😏 😣 😥 😮 🤐 😯 😪 😫 😴 😌 🤓 😛 😜 😝 ☹ 🙁 😒 😓 😔 😕 😖 🙃 😷 🤒 🤕 🤑 😲 😞 😟 😤 😢 😭 😦 😧 😨 😩 😬 😰 😱 😳 😵 😡 😠 👿 😈]").freeze();
+//    private static UnicodeSet SUPPRESS_SECONDARY = new UnicodeSet("[😀 😁 😂 😃 😄 😅 😆 😉 😊 😋 😎 😍 😘 😗 😙 😚 ☺ 🙂 🤗 😇 🤔 😐 😑 😶 🙄 😏 😣 😥 😮 🤐 😯 😪 😫 😴 😌 🤓 😛 😜 😝 ☹ 🙁 😒 😓 😔 😕 😖 🙃 😷 🤒 🤕 🤑 😲 😞 😟 😤 😢 😭 😦 😧 😨 😩 😬 😰 😱 😳 😵 😡 😠 👿 😈]").freeze();
+
+    public static final UnicodeSet MODIFIERS = new UnicodeSet(0x1F3FB, 0x1F3FF).freeze();
 
     public enum DefaultPresentation {text, emoji}
 
@@ -276,7 +278,7 @@ public class EmojiData {
                         final Set<String> noVariantPlusModifiers = addModifiers(noVariant);
                         for (String modSeq : noVariantPlusModifiers) {
                             zwjSequencesAll.add(modSeq); 
-                            addName(list, typeName(modSeq), modSeq);
+                            addName(modSeq, list);
                         }
 
                         //                        if (!source.contains("\u2764") || source.contains(Emoji.EMOJI_VARIANT_STRING)) {
@@ -305,7 +307,7 @@ public class EmojiData {
                         }
                     }
                     
-                    addName(list, null, noVariant);
+                    addName(noVariant, list);
 
                     if (!Emoji.DEFECTIVE.contains(first)) { // HACK
                         continue;
@@ -314,6 +316,15 @@ public class EmojiData {
                     //                    if (Emoji.REGIONAL_INDICATORS.contains(first)) {
                     //                        emojiData.add(source, EmojiProp.Emoji_Presentation);
                     //                    }
+                }
+            }
+            for (String s : modifierSequences) {
+                s = s.replace(Emoji.EMOJI_VARIANT_STRING, "");
+                if (s.startsWith("🏂")) {
+                    int debug = 0;
+                }
+                if (names.get(s) == null) { // catch missing names during development
+                    addName(s, null);
                 }
             }
             emojiData.freeze();
@@ -395,15 +406,41 @@ public class EmojiData {
         return shortModName(first).toLowerCase(Locale.ENGLISH);
     }
 
-    private void addName(List<String> lineParts, final String addOn, final String noVariantSource) {
+    private void addName(final String source, List<String> lineParts) {
+        StringBuilder filtered = new StringBuilder();
+        StringBuilder noVariant = new StringBuilder();
+        StringBuilder modifierNames = new StringBuilder();
+        for (int cp : CharSequences.codePoints(source)) {
+            if (Emoji.EMOJI_VARIANTS.contains(cp)) {
+                continue;
+            }
+            if (MODIFIERS.contains(cp)) {
+                final boolean empty = modifierNames.length() == 0;
+                modifierNames.append(", ");
+                if (empty) {
+                    modifierNames.append("type");
+                }
+                modifierNames.append(shortModNameX(cp));
+            } else {
+                filtered.appendCodePoint(cp);
+            }
+            noVariant.appendCodePoint(cp);
+        }
+        String filteredSource = filtered.toString();
+        String noVariantSource = noVariant.toString();
+        
         String name;
-        if (lineParts.size() > 2) {
+        if (lineParts != null && lineParts.size() > 2) {
             name = UCharacter.toTitleCase(lineParts.get(2), BreakIterator.getSentenceInstance(ULocale.ENGLISH));
         } else {
-            name = getFallbackName(noVariantSource);
+            name = getFallbackName(filteredSource);
         }
-        if (addOn != null) {
-            name += ", " + addOn;
+        if (modifierNames.length() != 0) {
+            name += modifierNames;
+        }
+        String old = names.get(noVariantSource);
+        if (old != null && !name.equals(old)) {
+            System.out.println(noVariantSource + ";\told: " + old + ";\t" + name);
         }
         names.put(noVariantSource, name);
     }
@@ -590,7 +627,6 @@ public class EmojiData {
     }
 
     public static final EmojiData EMOJI_DATA = of(Emoji.VERSION_TO_GENERATE);
-    public static final UnicodeSet MODIFIERS = EMOJI_DATA.getModifierStatusSet(ModifierStatus.modifier);
 
     public UnicodeSet getFlagSequences() {
         return flagSequences;
@@ -775,6 +811,10 @@ public class EmojiData {
         return Emoji.NAME.get(cp2).substring("emoji modifier fitzpatrick ".length());
     }
 
+    static String shortModNameX(int cp2) {
+        return Emoji.NAME.get(cp2).substring("EMOJI MODIFIER FITZPATRICK TYPE".length());
+    }
+
     public String normalizeVariant(String emojiSequence) {
         String result = toNormalizedVariant.get(emojiSequence);
         if (result != null) {
@@ -837,6 +877,8 @@ public class EmojiData {
 
     public static void main(String[] args) {
         EmojiData betaData = new EmojiData(Emoji.VERSION_BETA);
+        String name = betaData.getName("🏂🏻", false);
+        String name2 = betaData.getName("🏂🏻", true);
         
         for (String s : betaData.getModifierBases()) {
             String comp = betaData.addEmojiVariants(s, Emoji.EMOJI_VARIANT, VariantHandling.all) + "\u200D\u2642\uFE0F";
