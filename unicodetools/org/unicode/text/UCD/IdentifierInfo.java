@@ -22,7 +22,6 @@ import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
 import org.unicode.cldr.util.BagFormatter;
 import org.unicode.cldr.util.UnicodeProperty;
-import org.unicode.cldr.util.BagFormatter.NameLabel;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;

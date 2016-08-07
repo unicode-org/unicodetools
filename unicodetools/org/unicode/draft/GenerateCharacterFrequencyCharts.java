@@ -11,15 +11,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.draft.ExemplarInfo;
 import org.unicode.cldr.draft.ExemplarInfo.Status;
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.SupplementalDataInfo;
-import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.cldr.util.SupplementalDataInfo.PopulationData;
+import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 

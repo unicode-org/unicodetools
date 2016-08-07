@@ -5,7 +5,6 @@ import java.util.regex.Pattern;
 
 import com.ibm.icu.impl.UnicodeRegex;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSet.EntryRange;
 
 /**
  * Lenient parsing of Unicode values.

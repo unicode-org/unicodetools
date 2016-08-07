@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.tools.emoji.Emoji.Source;
-import org.unicode.tools.emoji.EmojiData.EmojiDatum;
 import org.unicode.tools.emoji.GenerateEmoji.Style;
 
 import com.ibm.icu.impl.Utility;
@@ -147,13 +146,7 @@ class EmojiStats {
         // .addAll(totalData.get(Source.kddi))
         // .addAll(totalData.get(Source.dcm))
         // .freeze();
-        UnicodeSet textStyle = new UnicodeSet();
-        for (String s : EmojiData.EMOJI_DATA.getChars()) {
-            final EmojiDatum data2 = EmojiData.EMOJI_DATA.getData(s);
-            if (data2 == null || Style.valueOf(data2.style) == Style.text) {
-                textStyle.add(s);
-            }
-        }
+        UnicodeSet textStyle = EmojiData.EMOJI_DATA.getTextPresentationSet();
         UnicodeSet needsVS = new UnicodeSet();
         for (String s : jc) {
             int first = s.codePointAt(0);

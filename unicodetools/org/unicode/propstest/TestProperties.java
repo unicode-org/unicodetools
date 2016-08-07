@@ -26,9 +26,7 @@ import org.unicode.props.UcdPropertyValues.Line_Break_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.ValueCardinality;
-import org.unicode.tools.emoji.Emoji.ModifierStatus;
 import org.unicode.tools.emoji.EmojiData;
-import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.util.CollectionUtilities;
@@ -100,11 +98,11 @@ public class TestProperties extends TestFmwk {
             assertSameContents("Emoji", emojiData.getSingletonsWithoutDefectives(), emoji.getSet(Binary.Yes));
         }{
             UnicodeMap<Binary> presentation = iup.loadEnum(UcdProperty.Emoji_Presentation, Binary.class);
-            assertSameContents("Emoji_Presentation", emojiData.getDefaultPresentationSet(DefaultPresentation.emoji), 
+            assertSameContents("Emoji_Presentation", emojiData.getEmojiPresentationSet(), 
                     presentation.getSet(Binary.Yes));
         }{
             UnicodeMap<Binary> modifiers = iup.loadEnum(UcdProperty.Emoji_Modifier, Binary.class);
-            assertSameContents("Emoji_Modifier", emojiData.getModifierStatusSet(ModifierStatus.modifier), 
+            assertSameContents("Emoji_Modifier", EmojiData.MODIFIERS, 
                     modifiers.getSet(Binary.Yes));
         }{
             UnicodeMap<Binary> bases = iup.loadEnum(UcdProperty.Emoji_Modifier_Base, Binary.class);

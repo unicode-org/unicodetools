@@ -14,7 +14,6 @@ import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.DtdType;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.text.utility.Settings;
-import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.CollectionUtilities;
@@ -78,7 +77,6 @@ public class GenerateOtherAnnotations {
 
     private static void showSimple() {
         int count = 0;
-        final UnicodeSet textStyle = emojiData.getDefaultPresentationSet(DefaultPresentation.text);
         for (String s : SORTED_EMOJI_CHARS_SET) {
             if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
                 continue;

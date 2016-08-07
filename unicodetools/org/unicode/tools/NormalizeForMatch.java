@@ -6,18 +6,10 @@ import java.util.List;
 import java.util.Locale;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.UcdProperty;
-import org.unicode.props.UcdPropertyValues;
-import org.unicode.props.UcdPropertyValues.Age_Values;
-import org.unicode.props.UcdPropertyValues.General_Category_Values;
-import org.unicode.text.UCD.DerivedProperty;
 import org.unicode.text.utility.Utility;
-import org.unicode.tools.NormalizeForMatch.SpecialReason;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUUncheckedIOException;
 
 public class NormalizeForMatch {

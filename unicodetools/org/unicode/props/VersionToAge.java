@@ -7,7 +7,6 @@ import java.util.Map.Entry;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSortedMap;
 
 public class VersionToAge {
     private static Map<Age_Values, Long> versionToDate 

@@ -7,14 +7,12 @@ import java.util.Locale;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiData.VariantHandling;
 
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.ICUUncheckedIOException;
 
 public class GenerateEmojiKeyboard {
     public static void main(String[] args) throws Exception {

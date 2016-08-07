@@ -10,8 +10,8 @@ import java.util.TreeMap;
 
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.UnicodeProperty;
-import org.unicode.cldr.util.With;
 import org.unicode.cldr.util.UnicodeProperty.RegexMatcher;
+import org.unicode.cldr.util.With;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
@@ -23,7 +23,6 @@ import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.CandidateData;
 import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiData;
-import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
 import org.unicode.tools.emoji.GenerateEmojiData;
 
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -54,11 +53,11 @@ public class ShowCharacters {
         UnicodeSet mods = EmojiData.EMOJI_DATA.getModifierBases();
         UnicodeSet modsWithVS = new UnicodeSet(mods).retainAll(Emoji.HAS_EMOJI_VS);
         UnicodeSet modsWithVSAndDefaultEmoji = new UnicodeSet(modsWithVS)
-        .removeAll(EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.text));
+        .removeAll(EmojiData.EMOJI_DATA.getEmojiPresentationSet());
         show("basesWithVSAndDefaultEmoji", modsWithVSAndDefaultEmoji);
 
         UnicodeSet modsWithVSAndDefaultText = new UnicodeSet(modsWithVS)
-        .retainAll(EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.text));
+        .retainAll(EmojiData.EMOJI_DATA.getTextPresentationSet());
         show("basesWithVSAndDefaultText", modsWithVSAndDefaultText);
     }
     

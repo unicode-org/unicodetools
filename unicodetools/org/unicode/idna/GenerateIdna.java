@@ -7,8 +7,8 @@ import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.BagFormatter;
-import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.cldr.util.BagFormatter.NameLabel;
+import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.cldr.util.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.text.UCD.Default;

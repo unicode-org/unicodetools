@@ -5,14 +5,12 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.unicode.cldr.unittest.TestFmwkPlus;
-import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.StandardCodes.LstrType;
 import org.unicode.cldr.util.Validity;
 import org.unicode.cldr.util.Validity.Status;
 import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.EmojiOrder;
-import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 import org.unicode.tools.emoji.GenerateEmojiData;
 import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
