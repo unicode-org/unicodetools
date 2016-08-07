@@ -37,17 +37,14 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
-import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.VersionToAge;
 import org.unicode.text.UCD.NamesList;
 import org.unicode.text.utility.Birelation;
 import org.unicode.text.utility.Utility;
-import org.unicode.tools.emoji.Emoji.ModifierStatus;
 import org.unicode.tools.emoji.Emoji.Source;
 import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
-import org.unicode.tools.emoji.EmojiData.EmojiDatum;
 import org.unicode.tools.emoji.EmojiData.VariantHandling;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 
@@ -62,11 +59,8 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
-import com.ibm.icu.impl.Row.R3;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -141,7 +135,7 @@ public class GenerateEmoji {
         }
         TO_FIRST_VERSION_FOR_VARIANT.freeze();
         // verify that all are present
-        for (String key : new UnicodeSet(EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.text))
+        for (String key : new UnicodeSet(EmojiData.EMOJI_DATA.getTextPresentationSet())
         .removeAll(Emoji.REGIONAL_INDICATORS)
         .removeAll(EmojiData.EMOJI_DATA.getFlagSequences())
                 ) {
@@ -282,9 +276,8 @@ public class GenerateEmoji {
     enum Style {
         plain, text, emoji, emojiFont, bestImage, refImage;
 
-        public static Style valueOf(DefaultPresentation style) {
-            return style == DefaultPresentation.emoji ? Style.emoji 
-                    : style == DefaultPresentation.text ? Style.text : null;
+        public static Style fromString(String cp) {
+            return EmojiData.EMOJI_DATA.getEmojiPresentationSet().contains(cp) ? Style.emoji : Style.text;
         }
     }
 
@@ -610,8 +603,7 @@ public class GenerateEmoji {
         // print(Form.extraForm, missingMap, null);
         //showNewCharacters();
         for (String e : EmojiData.EMOJI_DATA.getChars()) {
-            final EmojiDatum data = EmojiData.EMOJI_DATA.getData(e);
-            STYLE_TO_CHARS.put(data == null ? Style.text : Style.valueOf(data.style), e);
+            STYLE_TO_CHARS.put(Style.fromString(e), e);
         }
         STYLE_TO_CHARS.freeze();
         //printAnnotations();
@@ -781,19 +773,7 @@ public class GenerateEmoji {
 
     /** Main Chart */
     private static void showTextStyle() throws IOException {
-        UnicodeSet defaultText = new UnicodeSet();
-        for (String chars2 : EmojiData.EMOJI_DATA.getChars()) {
-            final EmojiDatum data2 = EmojiData.EMOJI_DATA.getData(chars2);
-            if (data2 == null || Style.valueOf(data2.style) == Style.text) {
-                defaultText.add(chars2);
-            }
-        }
-        //        if (!DEFAULT_TEXT_STYLE.equals(defaultText)) {
-        //            throw new IllegalArgumentException(new UnicodeSet(defaultText).removeAll(DEFAULT_TEXT_STYLE)
-        //                    + ", "
-        //                    + new UnicodeSet(DEFAULT_TEXT_STYLE).removeAll(defaultText));
-        //        }
-        defaultText.freeze();
+        UnicodeSet defaultText = EmojiData.EMOJI_DATA.getTextPresentationSet();
         PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "text-style.html");
         PrintWriter out2 = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "text-vs.txt");
         writeHeader(out, "Text vs Emoji", null, "<p>This chart shows the default display style (text vs emoji) by version. "
@@ -2308,12 +2288,10 @@ public class GenerateEmoji {
         // "# Code ;\tDefault Style ;\tLevel ;\tModifier ;\tSources ;\tVersion\t# (Character) Name\n"
 
         String extraString = "";
-        final EmojiDatum data = EmojiData.EMOJI_DATA.getData(chars2);
-        ModifierStatus modifier = data.modifierStatus;
-        extraString = " ;\t" + modifier;
+        extraString = " ;\t" + (EmojiData.MODIFIERS.contains(chars2) ? "modifier" : EmojiData.EMOJI_DATA.getModifierBases().contains(chars2) ? "modifierBase" : "non-modifier");
 
         return Utility.hex(chars2, " ")
-                + " ;\t" + Style.valueOf(EmojiData.EMOJI_DATA.getData(chars2).style)
+                + " ;\t" + Style.fromString(chars2) // (EmojiData.EMOJI_DATA.getEmojiPresentationSet(chars2) 
                 + extraString
                 + " ;\t" + getSources(chars2, new StringBuilder(), false)
                 + "\t# " + showVersion(Emoji.getNewest(chars2))
@@ -2439,7 +2417,7 @@ public class GenerateEmoji {
         String chars2WithVS = chars2; // EmojiData.EMOJI_DATA.addEmojiVariants(chars2, Emoji.EMOJI_VARIANT, VariantHandling.sequencesOnly);
         String anchor = getAnchor(Emoji.toUHex(chars2WithVS));
         final boolean shortForm = form != Form.fullForm && form != Form.extraForm;
-        EmojiDatum emojiDatum = EmojiData.EMOJI_DATA.getData(chars2);
+        DefaultPresentation style = EmojiData.EMOJI_DATA.getStyle(chars2);
         return "<tr>"
         + "<td class='rchars'>" + item + "</td>\n"
         + "<td class='code'>" + getDoubleLink(anchor, Emoji.toUHex(chars2WithVS)) + "</td>\n"
@@ -2450,7 +2428,7 @@ public class GenerateEmoji {
             + "<td class='name'>" + name2 + "</td>\n"
             + (shortForm ? "" : 
                 "<td class='age'>" + VersionToAge.getYear(Emoji.getNewest(chars2)) + getSources(chars2, new StringBuilder(), true) + "</td>\n"
-                + "<td class='default'>" + (emojiDatum == null ? "n/a" : emojiDatum.style) + (!textChars.equals(chars2) ? "*" : "") + "</td>\n")
+                + "<td class='default'>" + (style == null ? "n/a" : style) + (!textChars.equals(chars2) ? "*" : "") + "</td>\n")
                 + "<td class='name'>" + getAnnotationsString(chars2) + "</td>\n"
                 + "</tr>";
     }
@@ -2534,8 +2512,6 @@ public class GenerateEmoji {
 
     static void showCandidates(boolean future, String filename) throws IOException {
         // gather data
-        EmojiData betaEmojiData = EmojiData.of(Emoji.VERSION_BETA);
-        UnicodeSet modBase = betaEmojiData.getModifierStatusSet(ModifierStatus.modifier_base);
         UnicodeMap<CandidateData.Quarter> quartersForChars = new UnicodeMap<>();
         // The data file is designed to take the contents of the table, when pasted as plain text, and format it.
         CandidateData cd = CandidateData.getInstance();        

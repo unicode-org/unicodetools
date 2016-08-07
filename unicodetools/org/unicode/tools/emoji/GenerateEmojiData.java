@@ -13,9 +13,7 @@ import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Tabber;
-import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
 import org.unicode.tools.emoji.EmojiData.VariantHandling;
-import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -102,7 +100,7 @@ public class GenerateEmojiData {
 
         try (TempPrintWriter outText2 = new TempPrintWriter(Emoji.DATA_DIR, "emoji-data.txt")) {
             UnicodeSet emoji = EmojiData.EMOJI_DATA.getSingletonsWithDefectives();
-            UnicodeSet emoji_presentation = new UnicodeSet(EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.emoji));
+            UnicodeSet emoji_presentation = EmojiData.EMOJI_DATA.getEmojiPresentationSet();
             UnicodeSet emoji_modifiers = EmojiData.MODIFIERS;
             UnicodeSet emoji_modifier_bases = EmojiData.EMOJI_DATA.getModifierBases();
             outText2.println(Utility.getBaseDataHeader("emoji-data", 51, "Emoji Data", Emoji.VERSION_STRING));
@@ -317,7 +315,7 @@ public class GenerateEmojiData {
                 //out.println("# UnicodeSet: " + emojiChars.toPattern(false));
                 out.write("# Total elements: " + totalCount
                         + "\n");
-                UnicodeSet needsEvs = EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.text);
+                UnicodeSet needsEvs = EmojiData.EMOJI_DATA.getTextPresentationSet();
                 for (String s : emojiChars) {
                     String sMinus = s.replace(Emoji.EMOJI_VARIANT_STRING, "");
                     final int[] codePoints = CharSequences.codePoints(sMinus);

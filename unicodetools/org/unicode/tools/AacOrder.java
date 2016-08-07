@@ -2,7 +2,6 @@ package org.unicode.tools;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.Set;
 
 import org.unicode.cldr.draft.FileUtilities;
@@ -10,7 +9,6 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyValueSets;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Binary;
-import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -19,13 +17,11 @@ import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.EmojiOrder;
 
 import com.google.common.collect.ImmutableSet;
-import com.ibm.icu.dev.util.PrettyPrinter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
-import com.ibm.icu.util.VersionInfo;
 
 public class AacOrder {
     static final boolean showName = false;

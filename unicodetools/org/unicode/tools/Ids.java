@@ -18,10 +18,10 @@ import java.util.regex.Matcher;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.ChainedMap;
-import org.unicode.cldr.util.XEquivalenceClass;
 import org.unicode.cldr.util.ChainedMap.M3;
 import org.unicode.cldr.util.ChainedMap.M4;
 import org.unicode.cldr.util.Counter;
+import org.unicode.cldr.util.XEquivalenceClass;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;

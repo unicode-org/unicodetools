@@ -6,7 +6,6 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.Emoji;
-import org.unicode.tools.emoji.Emoji.ModifierStatus;
 import org.unicode.tools.emoji.EmojiData;
 
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -52,14 +51,14 @@ public class CheckEmojiProps {
                 }
             }
         }
-        showSet("Modifiers", data.getModifierStatusSet(ModifierStatus.modifier));
+        showSet("Modifiers", data.MODIFIERS);
         showSet("Modifier_Bases", data.getModifierBases());
         showSet("After_Joiners", zwjs);
         
         final UnicodeSet others = new UnicodeSet(data.getSingletonsWithDefectives())
         .removeAll(specials)
         .removeAll(flags)
-        .removeAll(data.getModifierStatusSet(ModifierStatus.modifier))
+        .removeAll(data.MODIFIERS)
         .removeAll(data.getModifierBases())
         .removeAll(zwjs)
         ;

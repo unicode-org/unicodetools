@@ -4,7 +4,6 @@ import org.unicode.cldr.util.Timer;
 import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
-import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.ValueCardinality;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;

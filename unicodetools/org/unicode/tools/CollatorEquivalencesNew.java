@@ -1,15 +1,9 @@
 package org.unicode.tools;
 
 import java.io.IOException;
-import java.rmi.server.Skeleton;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Locale;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
@@ -35,7 +29,6 @@ import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.ULocale;
 
 public class CollatorEquivalencesNew {
     private static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(Default.ucdVersion());

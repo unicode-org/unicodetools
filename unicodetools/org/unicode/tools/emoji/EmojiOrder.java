@@ -18,12 +18,9 @@ import org.unicode.cldr.util.MultiComparator;
 //import org.unicode.text.UCA.UCA;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
-import org.unicode.tools.emoji.Emoji.ModifierStatus;
 import org.unicode.tools.emoji.EmojiData.VariantHandling;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.text.Collator;
@@ -221,7 +218,7 @@ public class EmojiOrder {
     }
 
     private void addAllModifiers(Relation<String, String> result, Set<String> sorted, Output<Set<String>> lastLabel, MajorGroup majorGroup, String... strings) {
-        for (String mod : emojiData.getModifierStatusSet(ModifierStatus.modifier)) {
+        for (String mod : emojiData.MODIFIERS) {
             for (String string : strings) {
                 final String addedModifier = emojiData.addModifier(string, mod);
                 if (addedModifier != null) {

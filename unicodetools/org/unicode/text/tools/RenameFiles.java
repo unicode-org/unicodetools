@@ -12,12 +12,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.RegexUtilities;
-import org.unicode.props.UcdProperty;
-import org.unicode.props.UcdPropertyValues;
-import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
-import org.unicode.tools.emoji.Emoji;
 
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;

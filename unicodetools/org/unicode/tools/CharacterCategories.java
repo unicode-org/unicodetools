@@ -1,6 +1,5 @@
 package org.unicode.tools;
 
-import java.text.CollationKey;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;

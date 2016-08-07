@@ -1,15 +1,12 @@
 package org.unicode.text.tools;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.UCD.IdentifierInfo.IdentifierStatus;
 import org.unicode.text.UCD.IdentifierInfo.IdentifierType;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableList.Builder;
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.UnicodeMap;
 

@@ -1,7 +1,5 @@
 package org.unicode.tools;
 
-import org.unicode.cldr.util.CLDRPaths;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.text.utility.Settings;
 
 /**

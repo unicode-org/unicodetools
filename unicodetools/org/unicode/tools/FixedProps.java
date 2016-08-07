@@ -28,8 +28,8 @@ import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.VersionToAge;
 import org.unicode.text.UCD.Normalizer;
-import org.unicode.text.utility.UnicodeSetParser;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UnicodeSetParser;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;

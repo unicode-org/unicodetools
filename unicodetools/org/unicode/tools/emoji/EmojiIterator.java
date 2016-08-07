@@ -4,8 +4,6 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import org.unicode.tools.emoji.Emoji.ModifierStatus;
-
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UnicodeSet;
 
@@ -22,7 +20,7 @@ public final class EmojiIterator implements Iterable<String>, Iterator<String> {
 
     public EmojiIterator(EmojiData data, boolean stripTrailingStyleVariants) {
         this.modifierBase = data.getModifierBases();
-        this.modifier = data.getModifierStatusSet(ModifierStatus.modifier);
+        this.modifier = data.MODIFIERS;
         this.stripTrailingStyleVariants = stripTrailingStyleVariants;
     }
     /**

@@ -7,30 +7,22 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CldrUtility;
-import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.cldr.util.With;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
-import org.unicode.tools.emoji.EmojiData.EmojiDatum;
 import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.ImmutableSortedSet;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.LocaleDisplayNames;
@@ -82,10 +74,6 @@ public class Emoji {
 
     public enum ModifierStatus {
         none, modifier, modifier_base;
-        static ModifierStatus fromString(String s) {
-            if (s.equals("primary") || s.equals("secondary")) return modifier_base;
-            return valueOf(s);
-        }
     }
     
     // HACK

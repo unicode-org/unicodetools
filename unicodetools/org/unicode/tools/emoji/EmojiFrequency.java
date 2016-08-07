@@ -9,7 +9,6 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
-import org.unicode.tools.emoji.EmojiData.EmojiDatum;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row.R2;
@@ -71,7 +70,6 @@ public class EmojiFrequency {
         NumberFormat nf = NumberFormat.getInstance(Locale.ENGLISH);
         for (Entry<String, Long> entry : data.entrySet()) {
             final String cp = entry.getKey();
-            EmojiDatum data = EMOJIDATA.getData(cp);
             System.out.println(cp
                     + "\t" + nf.format(entry.getValue())
                     + "\t" + UCharacter.getName(cp, ", ")
