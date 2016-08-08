@@ -45,7 +45,6 @@ import org.unicode.text.utility.Birelation;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.Emoji.Source;
 import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
-import org.unicode.tools.emoji.EmojiData.VariantHandling;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 
 import com.google.common.base.Joiner;
@@ -1148,13 +1147,20 @@ public class GenerateEmoji {
         UnicodeSet colorful = new UnicodeSet();
         UnicodeSet colorfulWithVs = new UnicodeSet();
         UnicodeSet mods = new UnicodeSet();
+        UnicodeSet zwjWoVs = new UnicodeSet();
+        UnicodeSet zwjWithVs = new UnicodeSet();
         UnicodeSet zwj = new UnicodeSet();
 
         for (String s : EmojiData.EMOJI_DATA.getChars()) {
             String nvs = s.replace(Emoji.EMOJI_VARIANT_STRING,"");
-            String vs = EmojiData.EMOJI_DATA.addEmojiVariants(nvs, Emoji.EMOJI_VARIANT, VariantHandling.all);
+            String vs = EmojiData.EMOJI_DATA.addEmojiVariants(nvs);
             if (nvs.contains(Emoji.JOINER_STRING)) {
-                zwj.add(nvs);
+                if (nvs.equals(vs)) {
+                    zwjWithVs.add(vs);
+                    zwjWoVs.add(nvs);
+                } else {
+                    zwj.add(nvs); 
+                }
             } else if (EmojiData.MODIFIERS.containsSome(nvs)) {
                 mods.add(nvs);
             } else if (nvs.equals(vs)) {
@@ -1166,11 +1172,13 @@ public class GenerateEmoji {
         }
         // otherwise text
 
-        showText("text", dull, out, outText, style);
-        showText("text w/ vs", colorfulWithVs, out, outText, style);
+        showText("text-vs", dull, out, outText, style);
+        showText("text+vs", colorfulWithVs, out, outText, style);
         showText("emoji", colorful, out, outText, style);
         showText("modifier", mods, out, outText, style);
-        showText("zwj", zwj, out, outText, style);
+        showText("zwj text-vs", zwjWoVs, out, outText, style);
+        showText("zwj text+vs", zwjWithVs, out, outText, style);
+        showText("zwj emoji", zwj, out, outText, style);
     }
 
     private static void showText(String title, UnicodeSet dull, PrintWriter out, PrintWriter outText, Style style) {
@@ -1794,7 +1802,7 @@ public class GenerateEmoji {
                 switch (showEmoji) {
                 case text:
                 case emoji:
-                    cell = EmojiData.EMOJI_DATA.addEmojiVariants(s, showEmoji == Style.emoji ? Emoji.EMOJI_VARIANT : Emoji.TEXT_VARIANT, null);
+                    cell = EmojiData.EMOJI_DATA.addEmojiVariants(s, showEmoji == Style.emoji ? Emoji.EMOJI_VARIANT : Emoji.TEXT_VARIANT);
                     //Emoji.getEmojiVariant(s, showEmoji == Style.emoji ? Emoji.EMOJI_VARIANT_STRING : Emoji.TEXT_VARIANT_STRING);
                     break;
                 case emojiFont:
@@ -1825,7 +1833,7 @@ public class GenerateEmoji {
     }
 
     private static String addTitle(String s, String cell) {
-        String chars2WithVS = EmojiData.EMOJI_DATA.addEmojiVariants(s, Emoji.EMOJI_VARIANT, VariantHandling.sequencesOnly);
+        String chars2WithVS = s; // EmojiData.EMOJI_DATA.addEmojiVariants(s);
         return "<span title='" 
         + getCodeAndName2(chars2WithVS, true)
         //Emoji.toUHex(s) + " " + Emoji.getName(s, true, GenerateEmoji.EXTRA_NAMES)
@@ -2067,7 +2075,7 @@ public class GenerateEmoji {
                     out.print("\n");
                 }
                 out.print("<span title='" + Emoji.getName(s, false, null) + "'>"
-                        + EmojiData.EMOJI_DATA.addEmojiVariants(s, Emoji.EMOJI_VARIANT, null)
+                        + EmojiData.EMOJI_DATA.addEmojiVariants(s)
                         //+ Emoji.getEmojiVariant(s, Emoji.EMOJI_VARIANT_STRING)
                         + "</span>");
             }
@@ -2411,7 +2419,7 @@ public class GenerateEmoji {
             name2 += getNamesListInfo(chars2);
         }
 
-        String textChars = EmojiData.EMOJI_DATA.addEmojiVariants(chars2, Emoji.TEXT_VARIANT, null);
+        String textChars = EmojiData.EMOJI_DATA.addEmojiVariants(chars2);
         // Emoji.getEmojiVariant(chars2, Emoji.TEXT_VARIANT_STRING);
 
         String chars2WithVS = chars2; // EmojiData.EMOJI_DATA.addEmojiVariants(chars2, Emoji.EMOJI_VARIANT, VariantHandling.sequencesOnly);

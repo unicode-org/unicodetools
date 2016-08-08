@@ -81,7 +81,7 @@ public class GenerateOtherAnnotations {
             if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
                 continue;
             }
-            String s2 = EmojiData.EMOJI_DATA.addEmojiVariants(s, Emoji.EMOJI_VARIANT, null);
+            String s2 = EmojiData.EMOJI_DATA.addEmojiVariants(s);
             // Emoji.getEmojiVariant(s, Emoji.EMOJI_VARIANT_STRING);
 
             System.out.println(++count

@@ -13,7 +13,6 @@ import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Tabber;
-import org.unicode.tools.emoji.EmojiData.VariantHandling;
 import org.unicode.tools.emoji.GenerateEmojiKeyboard.Target;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
@@ -366,7 +365,7 @@ public class GenerateEmojiData {
         if (!addVariants) {
             return s;
         }
-        return EmojiData.EMOJI_DATA.addEmojiVariants(s, Emoji.EMOJI_VARIANT, VariantHandling.sequencesOnly);
+        return EmojiData.EMOJI_DATA.addEmojiVariants(s);
         // hack to add VS to v2.0 to make comparison easier.
         //return Emoji.getEmojiVariant(s, Emoji.EMOJI_VARIANT_STRING, EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.text));
     }
