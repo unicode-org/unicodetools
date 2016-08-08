@@ -9,7 +9,6 @@ import java.util.Set;
 
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Tabber;
-import org.unicode.tools.emoji.EmojiData.VariantHandling;
 
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.CollectionUtilities;
@@ -73,16 +72,11 @@ public class GenerateEmojiKeyboard {
         Totals totals = new Totals();
         
         int maxField1 = 0;
-        int maxField2 = 0;
+        int maxField2 = 10;
         for (String cp : retain) {
             String hcp1 = Utility.hex(cp, " ");
             if (hcp1.length() > maxField1) {
                 maxField1 = hcp1.length();
-            }
-            final String withoutRaw = cp.replace(Emoji.EMOJI_VARIANT_STRING, "");
-            String hcp2 = Utility.hex(withoutRaw, " ");
-            if (hcp2.length() > maxField2) {
-                maxField2 = hcp2.length();
             }
         }
         Tabber tabber = new Tabber.MonoTabber()
@@ -107,7 +101,7 @@ public class GenerateEmojiKeyboard {
                     }
                 }
                 if (out == null) {
-                    String filename = target == Target.csv ? majorGroup.toString().toLowerCase(Locale.ENGLISH).replaceAll("[^a-z]+", "_") : "emoji-input-display";
+                    String filename = target == Target.csv ? majorGroup.toString().toLowerCase(Locale.ENGLISH).replaceAll("[^a-z]+", "_") : "emoji-test";
                     final String suffix = target == Target.csv ? ".csv" : ".txt";
                     out = new TempPrintWriter(directory, filename + suffix);
                     if (target == Target.csv) {
@@ -115,10 +109,19 @@ public class GenerateEmojiKeyboard {
                         out.println("\n# Format\n"
                                 + "#   Hex code points, characters, name");
                     } else {
-                        out.println(Utility.getBaseDataHeader(filename, 51, "Emoji Keyboard/Display Data", Emoji.VERSION_STRING));
-                        out.println("# Format\n"
-                                + "#   Keyboard hex code points; alternate displayed hex code points # emoji name");
-                        out.println("# Note that this omits the 12 keycap bases, the 5 modifier characters, and 26 singleton Regional Indicator characters\n");
+                        out.println(Utility.getBaseDataHeader(filename, 51, "Emoji Keyboard/Display Test Data", Emoji.VERSION_STRING));
+                        out.println("# This file provides data for testing which emoji forms should be in keyboards and which should also be displayed/processed.\n"
+                                + "# Format\n"
+                                + "#   Code points; status # emoji name\n"
+                                + "#     Status\n"
+                                + "#       keyboard — should be the form to show up on keyboard palettes, if supported\n"
+                                + "#       process — should also be processed and displayed if the keyboard version is supported"
+                                );
+                        out.println("# Notes:\n"
+                                + "#   • This currently omits the 12 keycap bases, the 5 modifier characters, and 26 singleton Regional Indicator characters\n"
+                                + "#   • The file is in CLDR order, not codepoint order. This is recommended (but not required!) for keyboard palettes.\n"
+                                + "#   • The groups and subgroups are purely illustrative. See the Emoji Order chart for more information."
+                                );
                     }
                 }
                 if (target == Target.propFile) {
@@ -136,7 +139,7 @@ public class GenerateEmojiKeyboard {
             out.println("\n# subgroup: " + label); //  + "; size: " + filtered.size() + "; list: [" + CollectionUtilities.join(filtered, " ") + "]\n");
             
             for (String cp_raw : filtered) {
-                String cp = emojiOrder.emojiData.addEmojiVariants(cp_raw, Emoji.EMOJI_VARIANT, VariantHandling.all);
+                String cp = emojiOrder.emojiData.addEmojiVariants(cp_raw);
                 charactersNotShown.remove(cp);
                 final String withoutRaw = cp.replace(Emoji.EMOJI_VARIANT_STRING, "");
                 String withoutVs = cp.contains(Emoji.JOINER_STRING) ? withoutRaw : cp;
@@ -148,8 +151,14 @@ public class GenerateEmojiKeyboard {
                             + "," + Emoji.getName(cp, false, null));
                     break;
                 case propFile:
-                    out.println(tabber.process(Utility.hex(cp) + "\t; " + (withoutVs.equals(cp) ? "" : Utility.hex(withoutVs))
+                    out.println(tabber.process(Utility.hex(cp) + "\t; " 
+                            + "keyboard"
                             + "\t# " + cp + " " + Emoji.getName(cp, false, null)));
+                    if (!withoutVs.equals(cp)) {
+                        out.println(tabber.process(Utility.hex(withoutVs) + "\t; " 
+                            + "process"
+                            + "\t# " + withoutVs + " " + Emoji.getName(withoutVs, false, null)));
+                    }
                     break;
                 }
                 totals.add(cp);

@@ -650,15 +650,22 @@ public class EmojiData {
     /**
      * Add EVS to sequences where needed (and remove where not)
      * @param source
-     * @param variantHandling TODO
      * @return
      */
-    public String addEmojiVariants(String source, char variant, VariantHandling variantHandling) {
-        if (variantHandling == VariantHandling.sequencesOnly) {
-            if (!UTF16.hasMoreCodePointsThan(source, 1)) {
-                return source;
-            }
-        } 
+    public String addEmojiVariants(String source) {
+        return addEmojiVariants(source, Emoji.EMOJI_VARIANT);
+    }
+    /**
+     * Add EVS or TVS to sequences where needed (and remove where not)
+     * @param source
+     * @return
+     */
+    public String addEmojiVariants(String source, char variant) {
+//        if (variantHandling == VariantHandling.sequencesOnly) {
+//            if (!UTF16.hasMoreCodePointsThan(source, 1)) {
+//                return source;
+//            }
+//        } 
         StringBuilder result = new StringBuilder();
         int[] sequences = CharSequences.codePoints(source);
         for (int i = 0; i < sequences.length; ++i) {
@@ -845,7 +852,7 @@ public class EmojiData {
         String name2 = betaData.getName("🏂🏻", true);
 
         for (String s : betaData.getModifierBases()) {
-            String comp = betaData.addEmojiVariants(s, Emoji.EMOJI_VARIANT, VariantHandling.all) + "\u200D\u2642\uFE0F";
+            String comp = betaData.addEmojiVariants(s, Emoji.EMOJI_VARIANT) + "\u200D\u2642\uFE0F";
             System.out.println(Utility.hex(comp, " ") + "\t" + s + "\t" + betaData.getName(s,false));
         }
         if (true) return;
@@ -854,7 +861,7 @@ public class EmojiData {
         }
         EmojiData lastReleasedData = new EmojiData(Emoji.VERSION_LAST_RELEASED);
         String test = Utility.fromHex("1F482 200D 2640");
-        betaData.addEmojiVariants(test, Emoji.EMOJI_VARIANT, VariantHandling.sequencesOnly);
+        betaData.addEmojiVariants(test, Emoji.EMOJI_VARIANT);
         //        for (String s : betaData.getZwjSequencesNormal()) {
         //            if ("👁‍🗨".equals(s)) {
         //                continue;

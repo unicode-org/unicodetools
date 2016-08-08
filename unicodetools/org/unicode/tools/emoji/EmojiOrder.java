@@ -18,7 +18,6 @@ import org.unicode.cldr.util.MultiComparator;
 //import org.unicode.text.UCA.UCA;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
-import org.unicode.tools.emoji.EmojiData.VariantHandling;
 
 import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -238,7 +237,7 @@ public class EmojiOrder {
      */
     private void addVariants(Relation<String, String> result, Set<String> sorted, MajorGroup majorGroup, Output<Set<String>> lastLabel, String string) {
         // add variant form, since it is interior
-        String withEmojiVariant = emojiData.addEmojiVariants(string, Emoji.EMOJI_VARIANT, VariantHandling.all);
+        String withEmojiVariant = emojiData.addEmojiVariants(string);
         add(result, sorted, majorGroup, lastLabel, withEmojiVariant);
 
         String withoutFinal = null;
@@ -266,7 +265,7 @@ public class EmojiOrder {
             int debug = 0;
         }
         majorGroupings.put(string, majorGroup);
-        String full = emojiData.addEmojiVariants(string, Emoji.EMOJI_VARIANT, VariantHandling.all);
+        String full = emojiData.addEmojiVariants(string);
         boolean didAdd = sorted.add(string);
         for (String item : lastLabel.value) {
             result.put(item, string);
