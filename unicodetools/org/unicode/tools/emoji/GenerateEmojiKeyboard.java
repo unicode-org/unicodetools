@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.Tabber;
 import org.unicode.tools.emoji.EmojiData.VariantHandling;
 
 import com.google.common.collect.ImmutableSet;
@@ -15,8 +16,11 @@ import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.text.UnicodeSet;
 
 public class GenerateEmojiKeyboard {
+    enum Target {csv, propFile}
+
     public static void main(String[] args) throws Exception {
-        GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, true);
+        GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, Target.csv, Emoji.TR51_INTERNAL_DIR + "keyboard");
+        GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, Target.propFile, Emoji.DATA_DIR);
         //        boolean foo2 = EmojiData.EMOJI_DATA.getChars().contains(EmojiData.SAMPLE_WITHOUT_TRAILING_EVS);
         //        Set<String> foo = EmojiOrder.sort(EmojiOrder.STD_ORDER.codepointCompare, 
         //                EmojiData.EMOJI_DATA.getChars());
@@ -29,109 +33,145 @@ public class GenerateEmojiKeyboard {
         System.out.println(new UnicodeSet(sortingChars).removeAll(chars));
     }
 
-    public static void showLines(EmojiOrder emojiOrder, boolean spreadsheet) throws IOException {
-        Set<String> retain = ImmutableSet.copyOf(
-                new UnicodeSet(emojiOrder.emojiData
-                .getSortingChars())
-                .removeAll(EmojiData.MODIFIERS)
-                .addAllTo(new HashSet<String>()));
-        UnicodeSet allCharacters = new UnicodeSet();
-        EmojiOrder.MajorGroup lastMajorGroup = null;
-        TempPrintWriter out = null;
-        int i = 0;
+    static class Totals {
         int total = 0;
         int totalNoMod = 0;
         int totalNoModNoSign = 0;
+
+        private void add(String cp) {
+            Totals totals = this;
+            ++totals.total;
+            if (!EmojiData.MODIFIERS.containsSome(cp)) {
+                ++totals.totalNoMod;
+                if (!Emoji.GENDER_MARKERS.containsSome(cp)) {
+                    ++totals.totalNoModNoSign;
+                }
+            }
+        }
+
+        private void show(TempPrintWriter out, EmojiOrder.MajorGroup lastMajorGroup) throws IOException {
+            Totals totals = this;
+            out.println("# subtotal:\t\t" + totals.total);
+            out.println("# subtotal:\t\t" + totals.totalNoMod + "\tw/o modifiers");
+            System.out.println("\t" + lastMajorGroup + "\t" + totals.total + "\t" + totals.totalNoMod + "\t" + totals.totalNoModNoSign);
+            totals.total = 0;
+            totals.totalNoMod = 0;
+            totals.totalNoModNoSign = 0;
+        }
+    }
+
+    public static void showLines(EmojiOrder emojiOrder, Target target, String directory) throws IOException {
+        Set<String> retain = ImmutableSet.copyOf(
+                new UnicodeSet(emojiOrder.emojiData
+                        .getSortingChars())
+                .removeAll(EmojiData.MODIFIERS)
+                .addAllTo(new HashSet<String>()));
+        
+        UnicodeSet charactersNotShown = new UnicodeSet().addAll(retain);
+        EmojiOrder.MajorGroup lastMajorGroup = null;
+        TempPrintWriter out = null;
+        Totals totals = new Totals();
+        
+        int maxField1 = 0;
+        int maxField2 = 0;
+        for (String cp : retain) {
+            String hcp1 = Utility.hex(cp, " ");
+            if (hcp1.length() > maxField1) {
+                maxField1 = hcp1.length();
+            }
+            final String withoutRaw = cp.replace(Emoji.EMOJI_VARIANT_STRING, "");
+            String hcp2 = Utility.hex(withoutRaw, " ");
+            if (hcp2.length() > maxField2) {
+                maxField2 = hcp2.length();
+            }
+        }
+        Tabber tabber = new Tabber.MonoTabber()
+        .add(maxField1+1, Tabber.LEFT)
+        .add(maxField2+2, Tabber.LEFT);
+        ;
+
         for (Entry<String, Set<String>> labelToSet : emojiOrder.orderingToCharacters.keyValuesSet()) {
-            boolean isFirst = true;
             final String label = labelToSet.getKey();
             final Set<String> list = labelToSet.getValue();
-            EmojiOrder.MajorGroup majorGroup = emojiOrder.getMajorGroup(list); // majorGroupings.get(list.iterator().next());
-            if (lastMajorGroup != majorGroup) {
-                if (out != null) {
-                    out.println("# total:\t\t" + total);
-                    out.println("# total base:\t\t" + totalNoMod + "\tw/o modifiers");
-                    System.out.println("\t" + lastMajorGroup + "\t" + total + "\t" + totalNoMod + "\t" + totalNoModNoSign);
-                    total = 0;
-                    totalNoMod = 0;
-                    totalNoModNoSign = 0;
-                    out.close();
-                }
-                String filename = majorGroup.toString().toLowerCase(Locale.ENGLISH).replaceAll("[^a-z]+", "_");
-                out = new TempPrintWriter(Emoji.TR51_INTERNAL_DIR + "keyboard", filename + ".csv");
-                out.println("# Hex code points, characters, name");
-                lastMajorGroup = majorGroup;
-            }
             if (list.contains("👮")) {
                 int debug = 0;
             }
-            if (spreadsheet) {
-                LinkedHashSet<String> filtered = new LinkedHashSet<>(list);
-                if (retain != null) {
-                    filtered.retainAll(retain);
-                }
-                if (!filtered.isEmpty()) {
-                    out.println("# sublabel=" + label + ", size=" + filtered.size() + ", list=[" + CollectionUtilities.join(filtered, " ") + "]");
-                    for (String cp_raw : filtered) {
-                        String cp = emojiOrder.emojiData.addEmojiVariants(cp_raw, Emoji.EMOJI_VARIANT, VariantHandling.all);
-                        out.println("U+" + Utility.hex(cp,"U+") 
-                                + "," + cp 
-//                                + "," + Emoji.getNewest(cp).getShortName() 
-                                + "," + Emoji.getName(cp, false, null));
-                        ++total;
-                        if (!EmojiData.MODIFIERS.containsSome(cp)) {
-                            ++totalNoMod;
-                            if (!Emoji.GENDER_MARKERS.containsSome(cp)) {
-                                ++totalNoModNoSign;
-                            }
-                        }
+            EmojiOrder.MajorGroup majorGroup = emojiOrder.getMajorGroup(list); // majorGroupings.get(list.iterator().next());
+            if (lastMajorGroup != majorGroup) {
+                if (out != null) {
+                    totals.show(out, lastMajorGroup);
+                    if (target == Target.csv){ 
+                        out.println("\n#EOF");
+                        out.close();
+                        out = null;
                     }
                 }
-                allCharacters.add(filtered);
+                if (out == null) {
+                    String filename = target == Target.csv ? majorGroup.toString().toLowerCase(Locale.ENGLISH).replaceAll("[^a-z]+", "_") : "emoji-input-display";
+                    final String suffix = target == Target.csv ? ".csv" : ".txt";
+                    out = new TempPrintWriter(directory, filename + suffix);
+                    if (target == Target.csv) {
+                        out.println("# " + filename);
+                        out.println("\n# Format\n"
+                                + "#   Hex code points, characters, name");
+                    } else {
+                        out.println(Utility.getBaseDataHeader(filename, 51, "Emoji Keyboard/Display Data", Emoji.VERSION_STRING));
+                        out.println("# Format\n"
+                                + "#   Keyboard hex code points; alternate displayed hex code points # emoji name");
+                        out.println("# Note that this omits the 12 keycap bases, the 5 modifier characters, and 26 singleton Regional Indicator characters\n");
+                    }
+                }
+                if (target == Target.propFile) {
+                    out.println("\n# group: " + majorGroup);
+                }
+                lastMajorGroup = majorGroup;
+            }
+            LinkedHashSet<String> filtered = new LinkedHashSet<>(list);
+            if (retain != null) {
+                filtered.retainAll(retain);
+            }
+            if (filtered.isEmpty()) {
                 continue;
             }
-            //                for (String cp : list) {
-            //                    if (emojiOrder.emojiData.getModifierSequences().contains(cp)) {
-            //                        continue;
-            //                    }
-            //                    ++i;
-            //                    if (majorGroup != lastMajorGroup) {
-            //                        if (lastMajorGroup != null) {
-            //                            out.println("# " + lastMajorGroup + " count:\t" + i);
-            //                            i = 0;
-            //                        }
-            //                        out.println("####################");
-            //                        out.println("# " + majorGroup);
-            //                        out.println("####################");
-            //                        lastMajorGroup = majorGroup;
-            //                    }
-            //                    if (isFirst) {
-            //                        out.println("# " + label);
-            //                        isFirst = false;
-            //                    }
-            //                    out.println(Utility.hex(cp) 
-            //                            + "," + cp 
-            //                            + "," + Emoji.getNewest(cp).getShortName() 
-            //                            + "," + Emoji.getName(cp, false, null));
-            //                }
-            if (spreadsheet) {
-                if (!allCharacters.equals(new UnicodeSet().addAll(retain))) {
-                    out.println(
-                            retain.size() 
-                            + "\t" + allCharacters.size() 
-                            + "\t" + new UnicodeSet().addAll(retain).removeAll(allCharacters)
-                            + "\t" + new UnicodeSet().addAll(allCharacters).removeAll(retain)
-                            );
+            out.println("\n# subgroup: " + label); //  + "; size: " + filtered.size() + "; list: [" + CollectionUtilities.join(filtered, " ") + "]\n");
+            
+            for (String cp_raw : filtered) {
+                String cp = emojiOrder.emojiData.addEmojiVariants(cp_raw, Emoji.EMOJI_VARIANT, VariantHandling.all);
+                charactersNotShown.remove(cp);
+                final String withoutRaw = cp.replace(Emoji.EMOJI_VARIANT_STRING, "");
+                String withoutVs = cp.contains(Emoji.JOINER_STRING) ? withoutRaw : cp;
+                charactersNotShown.remove(withoutRaw);
+                switch(target) {
+                case csv: 
+                    out.println("U+" + Utility.hex(cp,"U+") 
+                            + "," + cp 
+                            + "," + Emoji.getName(cp, false, null));
+                    break;
+                case propFile:
+                    out.println(tabber.process(Utility.hex(cp) + "\t; " + (withoutVs.equals(cp) ? "" : Utility.hex(withoutVs))
+                            + "\t# " + cp + " " + Emoji.getName(cp, false, null)));
+                    break;
                 }
-                //                } else {
-                //                    out.println("# " + lastMajorGroup + " count:\t" + i);
+                totals.add(cp);
             }
+
+            //          allCharacters.add(filtered);
+            //          if (!allCharacters.equals(new UnicodeSet().addAll(retain))) {
+            //              out.println(
+            //                      retain.size() 
+            //                      + "\t" + allCharacters.size() 
+            //                      + "\t" + new UnicodeSet().addAll(retain).removeAll(allCharacters)
+            //                      + "\t" + new UnicodeSet().addAll(allCharacters).removeAll(retain)
+            //                      );
+            //          }
         }
         if (out != null) {
-            out.println("# total:\t\t" + total);
-            out.println("# total base:\t\t" + totalNoMod + "\tw/o modifiers");
-            System.out.println("\t" + lastMajorGroup + "\t" + total + "\t" + totalNoMod + "\t" + totalNoModNoSign);
+            totals.show(out, lastMajorGroup);
+            out.println("\n#EOF");
             out.close();
+        }
+        if (charactersNotShown.size() != 0) {
+            throw new IllegalArgumentException("Missing characters: " + charactersNotShown.size() + "\t" + charactersNotShown.toPattern(false));
         }
     }
 }
