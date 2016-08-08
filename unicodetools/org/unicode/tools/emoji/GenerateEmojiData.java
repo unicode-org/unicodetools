@@ -14,6 +14,7 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Tabber;
 import org.unicode.tools.emoji.EmojiData.VariantHandling;
+import org.unicode.tools.emoji.GenerateEmojiKeyboard.Target;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -156,6 +157,8 @@ public class GenerateEmojiData {
             printer.show(out, "Emoji_ZWJ_Sequence", "Other", width, 44, types.getSet(ZwjType.other), false, false, true);
             out.write("\n#EOF\n");
         }
+
+        GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, Target.propFile, Emoji.DATA_DIR);
 
         if (DO_TAGS) {
             printer.setFlat(true);
