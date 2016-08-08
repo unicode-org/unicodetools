@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -40,75 +39,11 @@ import com.ibm.icu.util.VersionInfo;
 
 public class EmojiData {
     public static final String SAMPLE_WITHOUT_TRAILING_EVS = "👮🏻‍♀";
-    //    private static UnicodeSet SUPPRESS_SECONDARY = new UnicodeSet("[😀 😁 😂 😃 😄 😅 😆 😉 😊 😋 😎 😍 😘 😗 😙 😚 ☺ 🙂 🤗 😇 🤔 😐 😑 😶 🙄 😏 😣 😥 😮 🤐 😯 😪 😫 😴 😌 🤓 😛 😜 😝 ☹ 🙁 😒 😓 😔 😕 😖 🙃 😷 🤒 🤕 🤑 😲 😞 😟 😤 😢 😭 😦 😧 😨 😩 😬 😰 😱 😳 😵 😡 😠 👿 😈]").freeze();
 
     public static final UnicodeSet MODIFIERS = new UnicodeSet(0x1F3FB, 0x1F3FF).freeze();
 
     public enum DefaultPresentation {text, emoji}
 
-//    private class EmojiDatum {
-//        private final EmojiData.DefaultPresentation style;
-//        private final Emoji.ModifierStatus modifierStatus;
-//        private final Set<Emoji.CharSource> sources;
-//
-//        /**
-//         * Sets must be immutable.
-//         * @param style
-//         * @param order
-//         * @param annotations
-//         * @param sources
-//         */
-//        private EmojiDatum(EmojiData.DefaultPresentation style, Emoji.ModifierStatus modifierClass, Set<Emoji.CharSource> sources) {
-//            this.style = style;
-//            this.modifierStatus = modifierClass;
-//            this.sources = sources == null ? Collections.<Emoji.CharSource>emptySet() : sources;
-//        }
-//
-//        @Override
-//        public String toString() {
-//            return "Emoji=Yes; " 
-//                    + "Emoji_Presentation=" + (getStyle() == EmojiData.DefaultPresentation.emoji ? "Yes" : "No") + "; "
-//                    + "Emoji_Modifier=" + (getModifierStatus() == Emoji.ModifierStatus.modifier ? "Yes" : "No") + "; "
-//                    + "Emoji_Modifier_Base=" + (getModifierStatus() == Emoji.ModifierStatus.modifier_base ? "Yes" : "No") + "; "
-//                    ;
-//        }
-//        @Override
-//        public boolean equals(Object obj) {
-//            EmojiDatum other = (EmojiDatum) obj;
-//            return obj != null 
-//                    && Objects.equals(getStyle(), other.getStyle())
-//                    && Objects.equals(getModifierStatus(), other.getModifierStatus())
-//                    && Objects.equals(getSources(), other.getSources());
-//        }
-//        @Override
-//        public int hashCode() {
-//            return Objects.hash(getStyle(), getModifierStatus(), getSources());
-//        }
-//
-//        /**
-//         * @return the style
-//         */
-//        public EmojiData.DefaultPresentation getStyle() {
-//            return style;
-//        }
-//
-//        /**
-//         * @return the modifierStatus
-//         */
-//        private Emoji.ModifierStatus getModifierStatus() {
-//            return modifierStatus;
-//        }
-//
-//        /**
-//         * @return the sources
-//         */
-//        private Set<Emoji.CharSource> getSources() {
-//            return sources;
-//        }
-//    }
-
-//    private final UnicodeMap<EmojiDatum> data = new UnicodeMap<>();
-    private final UnicodeSet dataKeySet = new UnicodeSet();
     private final UnicodeSet singletonsWithDefectives = new UnicodeSet();
     private final UnicodeSet singletonsWithoutDefectives = new UnicodeSet();
 
@@ -154,7 +89,7 @@ public class EmojiData {
         return result;
     }
 
-    enum EmojiProp {Emoji, Emoji_Presentation, Emoji_Modifier, Emoji_Modifier_Base}
+    private enum EmojiProp {Emoji, Emoji_Presentation, Emoji_Modifier, Emoji_Modifier_Base}
     // 0023          ; Emoji                #   [1] (#️)      NUMBER SIGN
     // 231A..231B    ; Emoji_Presentation   #   [2] (⌚️..⌛️)  WATCH..HOURGLASS
     // 1F3FB..1F3FF  ; Emoji_Modifier
@@ -220,21 +155,19 @@ public class EmojiData {
                 if (!Emoji.DEFECTIVE.contains(cp)) {
                     singletonsWithoutDefectives.add(cp);
                 }
+                
                 EmojiData.DefaultPresentation styleIn = set.contains(EmojiProp.Emoji_Presentation) ? EmojiData.DefaultPresentation.emoji : EmojiData.DefaultPresentation.text;
-                Emoji.ModifierStatus modClass = set.contains(EmojiProp.Emoji_Modifier) ? Emoji.ModifierStatus.modifier
-                        : set.contains(EmojiProp.Emoji_Modifier_Base) ? Emoji.ModifierStatus.modifier_base 
-                                : Emoji.ModifierStatus.none;
-                Set<Emoji.CharSource> sources = sourceData.get(cp);
-                dataKeySet.add(cp);
-//                data.put(cp, new EmojiDatum(styleIn, modClass, sources));
                 if (styleIn == EmojiData.DefaultPresentation.emoji) {
                     emojiPresentationSet.add(cp);
                 } else {
                     textPresentationSet.add(cp);
                 }
+                
+                Emoji.ModifierStatus modClass = set.contains(EmojiProp.Emoji_Modifier) ? Emoji.ModifierStatus.modifier
+                        : set.contains(EmojiProp.Emoji_Modifier_Base) ? Emoji.ModifierStatus.modifier_base 
+                                : Emoji.ModifierStatus.none;
                 putUnicodeSetValue(_modifierClassMap, cp, modClass);
             }
-            dataKeySet.freeze();
             singletonsWithDefectives.freeze();
             singletonsWithoutDefectives.freeze();
 
@@ -565,10 +498,6 @@ public class EmojiData {
     //        return data.entrySet();
     //    }
 
-    public UnicodeSet keySet() {
-        return dataKeySet;
-    }
-
     private static Set<Emoji.CharSource> getSet(EnumMap<Emoji.CharSource, UnicodeSet> _defaultPresentationMap, String source, String string) {
         if (string.isEmpty()) {
             return Collections.emptySet();
@@ -715,7 +644,7 @@ public class EmojiData {
     public enum VariantHandling {sequencesOnly, all}
 
     public static final UnicodeSet TAKES_NO_VARIANT = new UnicodeSet(Emoji.EMOJI_VARIANTS_JOINER)
-    .addAll(new UnicodeSet("[[:M:][:Variation_Selector:]]"))
+    .addAll(new UnicodeSet("[[:M:][:Variation_Selector:]]")) // TODO fix to use indexed props
     .freeze();
 
     /**
@@ -970,7 +899,7 @@ public class EmojiData {
         System.out.println(EmojiData.DefaultPresentation.emoji + ", " + (EmojiData.DefaultPresentation.emoji == EmojiData.DefaultPresentation.emoji ? betaData.getEmojiPresentationSet() : betaData.getTextPresentationSet()).toPattern(false));
         show(0x1F3CB, names, betaData);
         show(0x1F3CB, names, lastReleasedData);
-        UnicodeSet keys = new UnicodeSet(betaData.keySet()).addAll(lastReleasedData.keySet());
+        UnicodeSet keys = new UnicodeSet(betaData.getSingletonsWithDefectives()).addAll(lastReleasedData.getSingletonsWithDefectives());
         System.out.println("Diffs");
         for (String key : keys) {
 //            EmojiDatum datum = lastReleasedData.data.get(key);
@@ -997,7 +926,7 @@ public class EmojiData {
      * @return
      */
     private static boolean dataEquals(EmojiData lastReleasedData, EmojiData betaData, String key) {
-        return lastReleasedData.dataKeySet.contains(key) == betaData.dataKeySet.contains(key)
+        return lastReleasedData.singletonsWithDefectives.contains(key) == betaData.singletonsWithDefectives.contains(key)
                 && lastReleasedData.emojiPresentationSet.contains(key) == betaData.emojiPresentationSet.contains(key)
                         && lastReleasedData.modifierBases.contains(key) == betaData.modifierBases.contains(key)
                 ;
