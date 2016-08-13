@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -13,7 +12,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.EnumSet;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -27,7 +25,6 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 
-import org.apache.xerces.impl.dv.util.Base64;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.tool.GenerateTransformCharts.CollectionOfComparablesComparator;
 import org.unicode.cldr.util.Pair;
@@ -78,8 +75,8 @@ public class GenerateEmoji {
     private static final String            BETA_TITLE_AFFIX          = Emoji.IS_BETA ? " — Beta" : "";
     private static final String            BETA_HEADER_AFFIX          = Emoji.IS_BETA ? " — <i>Beta</i>" : "";
 
-    private static final boolean           DATAURL                     = true;
-    private static final int               RESIZE_IMAGE                = -1;
+    static final boolean           DATAURL                     = true;
+    static final int               RESIZE_IMAGE                = -1;
 
     private static final String            BREAK                       = "<br>";
     private static final String            DOC_DATA_FILES              = "/../../../reports/tr51/index.html#Data_Files";
@@ -444,7 +441,7 @@ public class GenerateEmoji {
                     //: " height=\"24\" width=\"auto\""
                     : " class='imga'"
                     ) +
-                    " src='" + (useDataUrl ? getDataUrl(filename) : "../images/" + filename) + "'" +
+                    " src='" + (useDataUrl ? EmojiImageData.getDataUrl(filename) : "../images/" + filename) + "'" +
                     " title='" + getCodeCharsAndName(chars, " ") + "'" +
                     ">";
         }
@@ -561,7 +558,7 @@ public class GenerateEmoji {
                 + " alt='" + chars + "'"
                 + " class='imgf" + extraClasses + "'"
                 + " title='" + getCodeCharsAndName(chars, " ") + "'"
-                + " src='" + getDataUrl(filename) + "'>";
+                + " src='" + EmojiImageData.getDataUrl(filename) + "'>";
     }
 
     public static void main(String[] args) throws IOException {
@@ -588,7 +585,8 @@ public class GenerateEmoji {
 
         EmojiStats stats = new EmojiStats();
         print(Form.fullForm, stats, null, null);
-        stats.write(Source.VENDOR_SOURCES);
+        //stats.write(Source.VENDOR_SOURCES);
+        EmojiImageData.write(Source.VENDOR_SOURCES);
 
         print(Form.noImages, null, null, null);
         if (DO_SPECIALS) {
@@ -1894,7 +1892,7 @@ public class GenerateEmoji {
         int item = 0;
         String lastOrderingGroup = "";
         int headerGroupCount = 0;
-        for (String s : SORTED_ALL_EMOJI_CHARS_SET // form == Form.fullForm ? SORTED_ALL_EMOJI_CHARS_SET : SORTED_EMOJI_CHARS_SET
+        for (String s : SORTED_ALL_EMOJI_CHARS_SET
                 ) {
             if (filter != null && !filter.contains(s)) {
                 continue;
@@ -2110,36 +2108,11 @@ public class GenerateEmoji {
         return getDoubleLink(anchor, anchor);
     }
 
-    static Map<String, String> IMAGE_CACHE = new HashMap<>();
-
+    /**
+     * @deprecated Use {@link EmojiImageData#getDataUrl(String)} instead
+     */
     static String getDataUrl(String filename) {
-        try {
-            String result = IMAGE_CACHE.get(filename);
-            if (result == null) {
-                final File file = new File(getImageDirectory(filename), filename);
-                if (!file.exists()) {
-                    result = "";
-                } else if (!DATAURL) {
-                    result = "../images/" + filename;
-                } else {
-                    byte[] bytes = RESIZE_IMAGE <= 0 ? Files.readAllBytes(file.toPath())
-                            : LoadImage.resizeImage(file, RESIZE_IMAGE, RESIZE_IMAGE);
-                    result = "data:image/png;base64," + Base64.encode(bytes);
-                }
-                IMAGE_CACHE.put(filename, result);
-            }
-            return result.isEmpty() ? null : result;
-        } catch (IOException e) {
-            throw new IllegalArgumentException(e);
-        }
-    }
-
-    private static String getImageDirectory(String filename) {
-        return 
-                //                filename.startsWith("samsung") || filename.startsWith("google")
-                //                ? Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji/" 
-                //                        : 
-                Emoji.IMAGES_OUTPUT_DIR;
+        return EmojiImageData.getDataUrl(filename);
     }
 
     static void printCollationOrder() throws IOException {
@@ -2161,7 +2134,7 @@ public class GenerateEmoji {
                     + "<cr><![CDATA[\n"
                     + "# START AUTOGENERATED EMOJI ORDER\n");
             EmojiOrder.STD_ORDER.appendCollationRules(outText, 
-                    EmojiData.EMOJI_DATA.getSortingChars()); // those without VS are added
+                    EmojiData.EMOJI_DATA.getAllEmojiWithDefectives()); // those without VS are added
             outText.write("\n]]></cr>\n</collation>");
         }
     }
@@ -2341,10 +2314,10 @@ public class GenerateEmoji {
         String filename = Emoji.getImageFilenameFromChars(type, core);
         String androidCell = "<td class='"+ cellClass + " miss'>—</td>\n";
         if (filename != null) {
-            String fullName = getDataUrl(filename);
+            String fullName = EmojiImageData.getDataUrl(filename);
             if (fullName == null && Emoji.IS_BETA && type == Source.ref) {
                 filename = Emoji.getImageFilenameFromChars(Source.proposed, core);
-                fullName = getDataUrl(filename);
+                fullName = EmojiImageData.getDataUrl(filename);
             }
             if (fullName != null) {
                 String className = type.getClassAttribute(core);

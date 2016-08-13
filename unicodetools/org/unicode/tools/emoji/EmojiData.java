@@ -155,14 +155,14 @@ public class EmojiData {
                 if (!Emoji.DEFECTIVE.contains(cp)) {
                     singletonsWithoutDefectives.add(cp);
                 }
-                
+
                 EmojiData.DefaultPresentation styleIn = set.contains(EmojiProp.Emoji_Presentation) ? EmojiData.DefaultPresentation.emoji : EmojiData.DefaultPresentation.text;
                 if (styleIn == EmojiData.DefaultPresentation.emoji) {
                     emojiPresentationSet.add(cp);
                 } else {
                     textPresentationSet.add(cp);
                 }
-                
+
                 Emoji.ModifierStatus modClass = set.contains(EmojiProp.Emoji_Modifier) ? Emoji.ModifierStatus.modifier
                         : set.contains(EmojiProp.Emoji_Modifier_Base) ? Emoji.ModifierStatus.modifier_base 
                                 : Emoji.ModifierStatus.none;
@@ -312,7 +312,7 @@ public class EmojiData {
         }
 
         charSourceMap = Collections.unmodifiableMap(_charSourceMap);
-//        data.freeze();
+        //        data.freeze();
         //        charsWithData.addAll(data.keySet());
         //        charsWithData.freeze();
         //        flatChars.addAll(singletonsWithDefectives)
@@ -404,6 +404,14 @@ public class EmojiData {
 
     public UnicodeSet getAllEmojiWithDefectives() {
         return allEmojiWithDefectives;
+    }
+
+    public UnicodeSet getEmojiForSortRules() {
+        return new UnicodeSet()
+        .addAll(getAllEmojiWithoutDefectives())
+        .removeAll(Emoji.DEFECTIVE)
+        .addAll(getZwjSequencesAll()) 
+        .addAll(getKeycapSequencesAll());
     }
 
     public UnicodeSet getAllEmojiWithoutDefectives() {
@@ -661,11 +669,11 @@ public class EmojiData {
      * @return
      */
     public String addEmojiVariants(String source, char variant) {
-//        if (variantHandling == VariantHandling.sequencesOnly) {
-//            if (!UTF16.hasMoreCodePointsThan(source, 1)) {
-//                return source;
-//            }
-//        } 
+        //        if (variantHandling == VariantHandling.sequencesOnly) {
+        //            if (!UTF16.hasMoreCodePointsThan(source, 1)) {
+        //                return source;
+        //            }
+        //        } 
         StringBuilder result = new StringBuilder();
         int[] sequences = CharSequences.codePoints(source);
         for (int i = 0; i < sequences.length; ++i) {
@@ -909,8 +917,8 @@ public class EmojiData {
         UnicodeSet keys = new UnicodeSet(betaData.getSingletonsWithDefectives()).addAll(lastReleasedData.getSingletonsWithDefectives());
         System.out.println("Diffs");
         for (String key : keys) {
-//            EmojiDatum datum = lastReleasedData.data.get(key);
-//            EmojiDatum other = betaData.data.get(key);
+            //            EmojiDatum datum = lastReleasedData.data.get(key);
+            //            EmojiDatum other = betaData.data.get(key);
             if (!dataEquals(lastReleasedData, betaData, key)) {
                 //System.out.println("\n" + key + "\t" + Utility.hex(key) + "\t" + names.get(key));
                 show(key, ages, betaNames, betaData);
@@ -935,7 +943,7 @@ public class EmojiData {
     private static boolean dataEquals(EmojiData lastReleasedData, EmojiData betaData, String key) {
         return lastReleasedData.singletonsWithDefectives.contains(key) == betaData.singletonsWithDefectives.contains(key)
                 && lastReleasedData.emojiPresentationSet.contains(key) == betaData.emojiPresentationSet.contains(key)
-                        && lastReleasedData.modifierBases.contains(key) == betaData.modifierBases.contains(key)
+                && lastReleasedData.modifierBases.contains(key) == betaData.modifierBases.contains(key)
                 ;
     }
 
