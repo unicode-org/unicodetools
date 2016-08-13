@@ -204,6 +204,9 @@ public class Emoji {
         StringBuilder result = new StringBuilder();
         boolean first = true;
         for (int cp : With.codePointArray(chars)) {
+            if (cp == Emoji.EMOJI_VARIANT) {
+                continue;
+            }
             if (first) {
                 first = false;
             } else {
@@ -263,6 +266,7 @@ public class Emoji {
     public static final UnicodeSet FACES = new UnicodeSet("[☺ ☹ 🙁 🙂 😀-😆 😉-😷 😇 😈 👿 🙃 🙄 🤐-🤕 🤗]").freeze();
     
     public static final char JOINER = '\u200D';
+    public static final String JOINER_STR = "\u200D";
 
     public static final char EMOJI_VARIANT = '\uFE0F';
     public static final char TEXT_VARIANT = '\uFE0E';

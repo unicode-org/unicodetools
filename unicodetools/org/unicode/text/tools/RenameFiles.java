@@ -29,23 +29,23 @@ public class RenameFiles {
     private static final boolean RECURSIVE = true;
 
     private static final String DIR_OF_FILES_TO_CHANGE = 
-            "/Users/markdavis/Downloads/emoji_thumbnails"
+            //"/Users/markdavis/Downloads/emoji_thumbnails"
             //Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji/twitter"
             //Settings.UNICODE_DRAFT_DIRECTORY + "/reports/tr51/images/android"
             //"/Users/markdavis/Downloads/PNG 2"
             //Settings.UNICODE_DRAFT_DIRECTORY + "/reports/tr51/images/"
             //Settings.UNICODE_DRAFT_DIRECTORY + "/reports/tr51/images/proposed"
-            //Settings.UNICODE_DRAFT_DIRECTORY + "/reports/tr51/images/samsung"
+            Settings.UNICODE_DRAFT_DIRECTORY + "/reports/tr51/images/apple"
             // Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji/staging"
             ;
     private static final String FILE_MATCH = 
-            "(?:([a-zA-Z]+|emoji_thumbnail)_[xu])?([0-9a-fA-F_]+)\\.png"
+            "(?:[a-zA-Z]+|emoji_thumbnail)?(?:_[xu])?([0-9a-fA-F_]+)\\.png"
             //"proposed_(?:x)?(.*)\\.png";
             // U+270C,U+1F3FC_256.png
             ;
 
     private static final String OUTPUT_PLATFORM_PREFIX = 
-            "android"
+            "apple"
             //null // null means use old prefix
             // "ref";
             ;
@@ -98,7 +98,7 @@ public class RenameFiles {
             if (!m.reset(name).matches()) {
                 throw new IllegalArgumentException(RegexUtilities.showMismatch(m, name));
             }
-            final String oldName = m.group(2).replaceAll("[-_,]", " ");
+            final String oldName = m.group(1).replaceAll("[-_,]", " ");
             String oldHex = Utility.fromHex(oldName, false, 2);
             if (FILTER != null && !FILTER.containsAll(oldHex)) {
                 return;

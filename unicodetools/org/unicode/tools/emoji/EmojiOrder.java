@@ -337,13 +337,16 @@ public class EmojiOrder {
                     isFirst = false;
                     continue;
                 }
-                if (multiCodePoint) { // flags and keycaps
+                if (multiCodePoint || true) { // flags and keycaps
                     if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
                         if (!haveFlags) {
                             // put all the 26 regional indicators in order at
                             // this point
-                            StringBuilder b = new StringBuilder("\n<*");
+                            //StringBuilder b = new StringBuilder("\n<*");
+                            StringBuilder b = new StringBuilder();
+                            // HACK to get around collation bug
                             for (int i = Emoji.FIRST_REGIONAL; i <= Emoji.LAST_REGIONAL; ++i) {
+                                b.append("\n<");
                                 b.appendCodePoint(i);
                             }
                             outText.append(b);
