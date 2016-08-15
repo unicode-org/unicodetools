@@ -410,8 +410,8 @@ public class EmojiData {
         return new UnicodeSet()
         .addAll(getAllEmojiWithoutDefectives())
         .removeAll(Emoji.DEFECTIVE)
-        .addAll(getZwjSequencesAll()) 
-        .addAll(getKeycapSequencesAll());
+        .addAll(getZwjSequencesNormal()) 
+        .addAll(getKeycapSequences());
     }
 
     public UnicodeSet getAllEmojiWithoutDefectives() {
