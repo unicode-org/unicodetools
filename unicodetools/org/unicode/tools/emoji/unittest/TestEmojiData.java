@@ -11,6 +11,7 @@ import org.unicode.cldr.util.Validity;
 import org.unicode.cldr.util.Validity.Status;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.Emoji;
+import org.unicode.tools.emoji.EmojiAnnotations;
 import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.EmojiOrder;
 import org.unicode.tools.emoji.GenerateEmojiData;
@@ -72,15 +73,15 @@ public class TestEmojiData extends TestFmwkPlus {
         int SKIPTO = 400;
         RuleBasedCollator ruleBasedCollator;
         ruleBasedCollator = new RuleBasedCollator("&a <*🍱🍘🍙🍚🍛🍜🍝🍠🍢🍣🍤🍥🍡");
-        UnicodeSet ruleSet = new UnicodeSet();
-        for (String s : EmojiData.EMOJI_DATA.getEmojiForSortRules()) {
-            // skip modifiers not in zwj, as hack
-            if (s.contains(Emoji.JOINER_STR) || EmojiData.MODIFIERS.containsNone(s)) {
-                ruleSet.add(s);
-            }
-        }
+//        UnicodeSet ruleSet = new UnicodeSet();
+//        for (String s : EmojiData.EMOJI_DATA.getEmojiForSortRules()) {
+//            // skip modifiers not in zwj, as hack
+//            if (true || s.contains(Emoji.JOINER_STR) || EmojiData.MODIFIERS.containsNone(s)) {
+//                ruleSet.add(s);
+//            }
+//        }
         StringBuilder outText = new StringBuilder();
-        EmojiOrder.STD_ORDER.appendCollationRules(outText, ruleSet);
+        EmojiOrder.STD_ORDER.appendCollationRules(outText, EmojiData.EMOJI_DATA.getEmojiForSortRules());
         String rules = outText.toString();
         try {
             ruleBasedCollator = new RuleBasedCollator(rules);
@@ -160,5 +161,25 @@ public class TestEmojiData extends TestFmwkPlus {
             tbuffer.setLength(0);
         }
         return buffer.toString();
+    }
+    
+    public void TestEnglishAnnotationsCompleteness() {
+        EmojiAnnotations em = new EmojiAnnotations(EmojiOrder.STD_ORDER.codepointCompare);
+        UnicodeSet missingTts = new UnicodeSet();
+        UnicodeSet missingKeywords = new UnicodeSet();
+        for (String s : EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives()) {
+            Set<String> keywords = em.getKeys(s);
+            if (keywords == null) {
+                missingKeywords.add(s);
+            }
+            String tts = em.getShortName(s);
+            if (tts == null) {
+                missingTts.add(s);
+            }
+            logln(s + "\t" + tts + "\t" + keywords);
+        }
+        if (!missingKeywords.isEmpty() || !missingTts.isEmpty()) {
+            errln("missing keywords and/or tts:" + missingKeywords + "\t" + missingTts);
+        }
     }
 }
