@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -318,17 +319,41 @@ public class EmojiOrder {
             boolean isFirst = true;
             Set<String> temp = sort(codepointCompare, characters);
 
+            outText.append("& [last primary ignorable]<<*");
+            for (String m : EmojiData.MODIFIERS) {
+                outText.append(m);
+            }
             String lastGroup = null;
             // HACK
-            outText.append("& [first trailing]");
+            outText.append("\n& [last regular]");
             isFirst = false;
+            Set<String> haveSeen = new HashSet<>();
             for (String s : temp) {
                 String group = charactersToOrdering.get(s);
                 if (!Objects.equal(group,lastGroup)) {
                     needRelation = true;
                     lastGroup = group;
                 }
+                if (haveSeen.contains(s)) {
+                    continue;
+                }
+                
                 boolean multiCodePoint = s.codePointCount(0, s.length()) > 1;
+                boolean containsModifier = EmojiData.MODIFIERS.containsSome(s);
+                if (containsModifier) {
+                    if (!multiCodePoint) {
+                        continue; // skip single modifiers, they are ignorable
+                    }
+                    int last = Character.codePointBefore(s, s.length());
+                    if (EmojiData.MODIFIERS.contains(last)) {
+                        s = s.substring(0, Character.charCount(last)); // remove last
+                        if (temp.contains(s)) {
+                            continue; // skip if present
+                        }
+                        containsModifier = EmojiData.MODIFIERS.containsSome(s);
+                    }
+                }
+                // at this point, the only Modifiers can be medial.
                 if (isFirst) {
                     if (multiCodePoint) {
                         throw new IllegalArgumentException("Cannot have first item with > 1 codepoint: " + s);
@@ -337,7 +362,7 @@ public class EmojiOrder {
                     isFirst = false;
                     continue;
                 }
-                if (multiCodePoint || true) { // flags and keycaps
+                if (multiCodePoint) { // flags and keycaps
                     if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
                         if (!haveFlags) {
                             // put all the 26 regional indicators in order at
@@ -356,23 +381,36 @@ public class EmojiOrder {
                     }
                     
                     // keycaps, zwj sequences, can't use <* syntax
-                    String withoutTrail = withoutTrailingVariant(s);
-                    String quoted = quoteSyntax(withoutTrail);
-                    String quoted2 = quoteSyntax(s.replaceAll(Emoji.EMOJI_VARIANT_STRING, ""));
-                    outText.append("\n<").append(quoted);
-                    if (!quoted2.equals(quoted)) {
-                        outText.append(" = ").append(quoted2);
+ 
+                    final String withoutAnyVS = s.replaceAll(Emoji.EMOJI_VARIANT_STRING, "");
+                    if (haveSeen.contains(withoutAnyVS)) {
+                        continue;
                     }
+                    String quoted2 = quoteSyntax(withoutAnyVS);
+                    outText.append(containsModifier ? "\n<<" : "\n<");
+                    outText.append(quoted2);
+                    haveSeen.add(withoutAnyVS);
                     needRelation = true;
+
+                    String allVariants = EmojiData.EMOJI_DATA.addEmojiVariants(s);
+                    String withoutTrail = withoutTrailingVariant(allVariants);
+                    if (haveSeen.contains(withoutTrail)) {
+                        continue;
+                    }
+                    String quoted = quoteSyntax(withoutTrail);
+                    outText.append(" = ").append(quoted);
+                    haveSeen.add(withoutTrail);
                 } else {
                     if (needRelation) {
                         outText.append("\n<*");
                         needRelation = false;
                     }
                     outText.append(s);
-                    //                    // break arbitrarily (but predictably)
-                    //                    int bottomBits = s.codePointAt(0) & 0xF;
-                    //                    needRelation = bottomBits == 0;
+                    haveSeen.add(s);
+                    needRelation = true;
+                                        // break arbitrarily (but predictably)
+                                        int bottomBits = s.codePointAt(0) & 0x7;
+                                        needRelation = bottomBits == 0;
                 }
             }
         } catch (IOException e) {
@@ -388,7 +426,7 @@ public class EmojiOrder {
     private String quoteSyntax(String source) {
         for (String s : Arrays.asList("*", "#", "\u20E3", "\u20E0", Emoji.EMOJI_VARIANT_STRING)) {
             if (source.contains(s)) {
-                source = source.replace(s, "\\u" + Utility.hex(s));
+                source = source.replace(s, "\\" + s);
             }
         }
         return source;

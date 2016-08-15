@@ -12,7 +12,7 @@ import com.ibm.icu.text.UnicodeSet;
 class GlueAfterZwj {
     static final UnicodeSet GLUE_AFTER_ZWJ = new UnicodeSet();
     static final String HEADER;
-    
+
     static {
         StringBuilder header = new StringBuilder();
         boolean inHeader = true;
@@ -42,5 +42,11 @@ class GlueAfterZwj {
         }
         GLUE_AFTER_ZWJ.freeze();
         HEADER = header.toString();
+    }
+    public static void main(String[] args) {
+        System.out.println(
+                new UnicodeSet(GLUE_AFTER_ZWJ)
+                .addAll(EmojiData.EMOJI_DATA.getSingletonsWithoutDefectives())
+                .toPattern(false));
     }
 }
