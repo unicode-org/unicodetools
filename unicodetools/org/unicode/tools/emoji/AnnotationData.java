@@ -23,7 +23,10 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
 public class AnnotationData {
-
+    static {
+        String s = null;
+        s.length(); // throw error
+    }
     private static final boolean NEWSTYLE = true;
 
     private static final ULocale NORWEGIAN_NB = new ULocale("nb");
