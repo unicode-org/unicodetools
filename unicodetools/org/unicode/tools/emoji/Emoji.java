@@ -335,10 +335,10 @@ public class Emoji {
     };
 
 
-    static final UnicodeSet ASCII_LETTERS = new UnicodeSet("[A-Za-z]").freeze();
-    static final String EMOJI_VARIANT_STRING = String.valueOf(EMOJI_VARIANT);
-    static final String TEXT_VARIANT_STRING = String.valueOf(TEXT_VARIANT);
-    static final String JOINER_STRING = String.valueOf(JOINER);
+    public static final UnicodeSet ASCII_LETTERS = new UnicodeSet("[A-Za-z]").freeze();
+    public static final String EMOJI_VARIANT_STRING = String.valueOf(EMOJI_VARIANT);
+    public static final String TEXT_VARIANT_STRING = String.valueOf(TEXT_VARIANT);
+    public static final String JOINER_STRING = String.valueOf(JOINER);
 
     public static String getLabelFromLine(Output<Set<String>> newLabel, String line) {
         line = line.replace(EMOJI_VARIANT_STRING, "").replace(TEXT_VARIANT_STRING, "").trim();

@@ -22,7 +22,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.ULocale;
 
-public class GenerateOtherAnnotations {
+public class GenerateOldestAnnotations {
 
     private static final Set<String> ANNOTATED_CHARS = new UnicodeSet(EmojiData.EMOJI_DATA.getSortingChars())
     .removeAll(EmojiData.EMOJI_DATA.getModifierSequences())
@@ -39,7 +39,7 @@ public class GenerateOtherAnnotations {
     static final Splitter SPACE = Splitter.on(" ").trimResults();
 
 
-    static final AnnotationData english = AnnotationData.getEnglish();
+    static final OldAnnotationData english = OldAnnotationData.getEnglishOldRaw();
 
     static final Set<String> SORTED_EMOJI_CHARS_SET
     = EmojiOrder.sort(EmojiOrder.STD_ORDER.codepointCompare, english.map.keySet());
@@ -57,7 +57,7 @@ public class GenerateOtherAnnotations {
             if (!file.endsWith(".tsv")) {
                 continue;
             }
-            AnnotationData data = AnnotationData.load(dir, file);
+            OldAnnotationData data = OldAnnotationData.load(dir, file);
             printXml(data, missing);
             //printText(data);
         }
@@ -92,7 +92,7 @@ public class GenerateOtherAnnotations {
         }
     }
 
-    private static void printText(AnnotationData data) throws IOException {
+    private static void printText(OldAnnotationData data) throws IOException {
         try (PrintWriter outText = FileUtilities.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/emoji/tts/", data.locale + ".tsv")) {
             //#Code Image   TTS English TTS German  Annotations English Annotations German  Comments    INTERNAL
             //U+1F600   =vlookup(A2,Internal!A:B,2,0)   grinning face   Lachender Smiley    face; grin  Lachender Smiley; Gesicht; lustig; lol       
@@ -142,7 +142,7 @@ public class GenerateOtherAnnotations {
         }
     }
 
-    private static LocaleData printXml(AnnotationData data, UnicodeSet missing) throws IOException {
+    private static LocaleData printXml(OldAnnotationData data, UnicodeSet missing) throws IOException {
         final boolean isEnglish = data.locale.equals(ULocale.ENGLISH);
         LocaleData ld = LocaleData.getInstance(data.locale);
         String language = data.locale.getLanguage();

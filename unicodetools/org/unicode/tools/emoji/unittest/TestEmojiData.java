@@ -1,5 +1,9 @@
 package org.unicode.tools.emoji.unittest;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -17,17 +21,18 @@ import org.unicode.tools.emoji.EmojiOrder;
 import org.unicode.tools.emoji.GenerateEmojiData;
 import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
+import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.CollationElementIterator;
 import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.UnicodeSet;
 
 public class TestEmojiData extends TestFmwkPlus {
-    
+
     public static void main(String[] args) {
         new TestEmojiData().run(args);
     }
-    
+
     public void TestFlags() {
         UnicodeSet shouldBeFlagEmoji = new UnicodeSet().add(Emoji.getHexFromFlagCode("EU")).add(Emoji.getHexFromFlagCode("UN"));
         Validity validity = Validity.getInstance();
@@ -55,7 +60,7 @@ public class TestEmojiData extends TestFmwkPlus {
         logln("Should not be flags: " + shouldNOTBeFlagEmoji.toPattern(false));
         assertEquals("Contains no bad regions", UnicodeSet.EMPTY, new UnicodeSet(shouldNOTBeFlagEmoji).retainAll(EmojiData.EMOJI_DATA.getChars()));
     }
-    
+
     public void TestZwjCategories () {
         UnicodeMap<String> chars = new UnicodeMap<>();
         for (String s : EmojiData.EMOJI_DATA.getZwjSequencesNormal()) {
@@ -68,18 +73,18 @@ public class TestEmojiData extends TestFmwkPlus {
             System.out.println(value + "\t" + set.size() + "\t" + set.toPattern(false));
         }
     }
-    
+
     public void TestOrderRules() throws Exception {
         int SKIPTO = 400;
         RuleBasedCollator ruleBasedCollator;
         ruleBasedCollator = new RuleBasedCollator("&a <*🍱🍘🍙🍚🍛🍜🍝🍠🍢🍣🍤🍥🍡");
-//        UnicodeSet ruleSet = new UnicodeSet();
-//        for (String s : EmojiData.EMOJI_DATA.getEmojiForSortRules()) {
-//            // skip modifiers not in zwj, as hack
-//            if (true || s.contains(Emoji.JOINER_STR) || EmojiData.MODIFIERS.containsNone(s)) {
-//                ruleSet.add(s);
-//            }
-//        }
+        //        UnicodeSet ruleSet = new UnicodeSet();
+        //        for (String s : EmojiData.EMOJI_DATA.getEmojiForSortRules()) {
+        //            // skip modifiers not in zwj, as hack
+        //            if (true || s.contains(Emoji.JOINER_STR) || EmojiData.MODIFIERS.containsNone(s)) {
+        //                ruleSet.add(s);
+        //            }
+        //        }
         StringBuilder outText = new StringBuilder();
         EmojiOrder.STD_ORDER.appendCollationRules(outText, EmojiData.EMOJI_DATA.getEmojiForSortRules());
         String rules = outText.toString();
@@ -162,24 +167,104 @@ public class TestEmojiData extends TestFmwkPlus {
         }
         return buffer.toString();
     }
-    
-    public void TestEnglishAnnotationsCompleteness() {
-        EmojiAnnotations em = new EmojiAnnotations(EmojiOrder.STD_ORDER.codepointCompare);
-        UnicodeSet missingTts = new UnicodeSet();
-        UnicodeSet missingKeywords = new UnicodeSet();
-        for (String s : EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives()) {
+
+    public void TestAnnotationsCompleteness() {
+        EmojiAnnotations em = checkAnnotations("en", null);
+        checkAnnotations("de", em);
+    }
+
+    private EmojiAnnotations checkAnnotations(final String localeStr, EmojiAnnotations em2) {
+        EmojiAnnotations em = new EmojiAnnotations(localeStr, EmojiOrder.STD_ORDER.codepointCompare);
+        Set<String> missing = new LinkedHashSet<>();
+
+        TreeSet<String> sorted = EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives()
+                .addAllTo(new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare));
+        int maxLen = 32;
+        
+        for (String s : sorted) {
+            if (s.equals("🕵‍♂️")) {
+                int debug = 0;
+            }
             Set<String> keywords = em.getKeys(s);
-            if (keywords == null) {
-                missingKeywords.add(s);
-            }
             String tts = em.getShortName(s);
-            if (tts == null) {
-                missingTts.add(s);
+            EmojiAnnotations.Status status = em.getStatus(s);
+            if (status != EmojiAnnotations.Status.missing) {
+                if (tts.equals("???") || keywords.contains("???")) {
+                    logln(s + "\t" + tts + "\t" + keywords);
+                }
+//                if (tts.contains(",")) {
+//                    // do nothing
+//                } else if (tts.length() > maxLen) {
+//                    warnln("Name long:\t" + s + "\t" + tts.length() + "\t" + tts + "\t" + keywords);
+//                }
+//                else if (tts.contains(" and ")) {
+//                    warnln("name:\t" + s + "\t" + tts.length() + "\t" + tts + "\t" + keywords);
+//                } 
             }
-            logln(s + "\t" + tts + "\t" + keywords);
+            if (EmojiData.MODIFIERS.containsSome(s)) {
+                if (false && em2 == null && status != EmojiAnnotations.Status.missing) {
+                    String rem = EmojiData.MODIFIERS.stripFrom(s, false);
+                    String s1 = EmojiData.MODIFIERS.stripFrom(s, true);
+                    s1 = EmojiData.EMOJI_DATA.addEmojiVariants(s1); // modifiers replace EV characters.
+                    Set<String> strippedKeywords = em.getKeys(s1);
+                    String strippedTts = em.getShortName(s1);
+                    EmojiAnnotations.Status strippedStatus = em.getStatus(s1);
+                    if (strippedStatus == EmojiAnnotations.Status.missing) {
+                        errln("Modifier removed causing missing: "  + s);
+                    } else {
+                        if (!keywords.containsAll(strippedKeywords)) {
+                            errln("Modifier screwy: "  + s + "\t" + keywords + "\t" + strippedKeywords);
+                        }
+                        if (!tts.startsWith(strippedTts)) {
+                            errln("Modifier screwy: "  + s + "\t" + tts + "\t" + strippedTts);
+                        }
+                    }
+                }
+                continue;
+            }
+            if (status != EmojiAnnotations.Status.found) {
+                if (em2 == null) {
+                    String oldTts = EmojiData.EMOJI_DATA.getName(s, true);
+                    Set<String> oldAnnotations = keywords == null ? new TreeSet<>() : new TreeSet<>(keywords);
+                    oldAnnotations.addAll(Arrays.asList(oldTts.split("\\s+")));
+                    oldAnnotations = oldAnnotations.isEmpty() ? Collections.singleton("???") : oldAnnotations;
+                    missing.add("<annotation cp=\"" + s + "\">" + CollectionUtilities.join(oldAnnotations, " | ") + "</annotation>");
+                    missing.add("<annotation cp=\"" + s + "\" type=\"tts\">" + oldTts + "</annotation>");
+                } else {
+                    tts = tts == null ? "???" : tts;
+                    keywords = keywords == null ? Collections.singleton("???") : keywords;
+                    missing.add(s 
+                            + "\t" + Utility.hex(s.replace(Emoji.EMOJI_VARIANT_STRING, ""), "_").toLowerCase(Locale.ENGLISH) 
+                            + "\t" + em2.getShortName(s) 
+                            + "\t" + CollectionUtilities.join(em2.getKeys(s), " | ") 
+                            + "\t\t\t" + tts 
+                            + "\t" + CollectionUtilities.join(keywords, " | "));
+                }
+            } else {
+                boolean fail = false;
+                if (tts.contains("|")) {
+                    errln("TTS with |\t" + s + "\t" + tts + "\t" + keywords);
+                    fail = true;
+                }
+                if (keywords.size() < 1) {
+                    warnln("Keywords without |\t" + s + "\t" + tts + "\t" + keywords);
+                    fail = true;
+                }
+                if (!fail) {
+                    logln(s + "\t" + tts + "\t" + keywords);
+                }
+            }
         }
-        if (!missingKeywords.isEmpty() || !missingTts.isEmpty()) {
-            errln("missing keywords and/or tts:" + missingKeywords + "\t" + missingTts);
+        if (!missing.isEmpty()) {
+            errln("Missing: " + missing.size());
+            if (em2 != null) {
+                System.out.println("Constructing text for translating missing items.");
+                System.out.println("Chars\tEnglish Name\tEnglish Annotations\tNative Name\tNative Annotations\tName Name (constructed!)\tNative Keywords (constructed!)");
+            }
+            for (String s : missing) {
+                System.out.println(s);
+            }
         }
+        return em;
     }
 }
