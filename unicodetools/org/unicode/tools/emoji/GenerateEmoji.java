@@ -205,27 +205,26 @@ public class GenerateEmoji {
 
     //public static final UnicodeSet APPLE_COMBOS_WITHOUT_VS = EmojiData.EMOJI_DATA.getZwjSequencesAll();
 
-    static final Comparator<String> EMOJI_COMPARATOR;
-    static {
-        try {
-            EMOJI_COMPARATOR = EmojiOrder.STD_ORDER.codepointCompare;
-            //            EmojiOrder.sort(, new UnicodeSet(EmojiData.EMOJI_DATA.getChars());
-            //                    STD_ORDER.appendCollationRules(new StringBuilder(), 
-            //                    new UnicodeSet(EmojiData.EMOJI_DATA.getChars())
-            ////                    EmojiData.EMOJI_DATA.getChars()).removeAll(Emoji.DEFECTIVE), 
-            ////                    EmojiData.EMOJI_DATA.getZwjSequencesAll(), 
-            ////                    EmojiData.EMOJI_DATA.getKeycapSequencesAll())
-            //                    ).toString();
-            //            System.out.println(rules);
-            //            final RuleBasedCollator ruleBasedCollator = new RuleBasedCollator(rules);
-            //            ruleBasedCollator.setStrength(Collator.IDENTICAL);
-            //            ruleBasedCollator.freeze();
-            //            EMOJI_COMPARATOR = (Comparator) ruleBasedCollator;
-            int x = EMOJI_COMPARATOR.compare("#️⃣","☺️");
-        } catch (Exception e) {
-            throw new ICUUncheckedIOException("Internal Error", e);
-        }
-    }
+    static final Comparator<String> EMOJI_COMPARATOR = EmojiOrder.STD_ORDER.codepointCompare;
+//    static {
+//        try {
+//            //            EmojiOrder.sort(, new UnicodeSet(EmojiData.EMOJI_DATA.getChars());
+//            //                    STD_ORDER.appendCollationRules(new StringBuilder(), 
+//            //                    new UnicodeSet(EmojiData.EMOJI_DATA.getChars())
+//            ////                    EmojiData.EMOJI_DATA.getChars()).removeAll(Emoji.DEFECTIVE), 
+//            ////                    EmojiData.EMOJI_DATA.getZwjSequencesAll(), 
+//            ////                    EmojiData.EMOJI_DATA.getKeycapSequencesAll())
+//            //                    ).toString();
+//            //            System.out.println(rules);
+//            //            final RuleBasedCollator ruleBasedCollator = new RuleBasedCollator(rules);
+//            //            ruleBasedCollator.setStrength(Collator.IDENTICAL);
+//            //            ruleBasedCollator.freeze();
+//            //            EMOJI_COMPARATOR = (Comparator) ruleBasedCollator;
+//            int x = EMOJI_COMPARATOR.compare("#️⃣","☺️");
+//        } catch (Exception e) {
+//            throw new ICUUncheckedIOException("Internal Error", e);
+//        }
+//    }
 
     //    private static final EmojiAnnotations          ANNOTATIONS_TO_CHARS_GROUPS = new EmojiAnnotations(EMOJI_COMPARATOR,
     //            "emojiAnnotationsGroupsSpecial.txt"

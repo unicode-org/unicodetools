@@ -22,11 +22,7 @@ import com.ibm.icu.text.LocaleDisplayNames.DialectHandling;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
-public class AnnotationData {
-    static {
-        String s = null;
-        s.length(); // throw error
-    }
+public class OldAnnotationData {
     private static final boolean NEWSTYLE = true;
 
     private static final ULocale NORWEGIAN_NB = new ULocale("nb");
@@ -34,16 +30,12 @@ public class AnnotationData {
     private static final ULocale HEBREW = new ULocale("he");
     private static final ULocale HEBREW_OLD = new ULocale("iw");
     private static final ULocale ZHTW = new ULocale("zh_TW");
-    private static final Set<String> SKIP = new HashSet<>(AnnotationData.GROUP_ANNOTATIONS);
-    static {
-        SKIP.add("flag");
-    }
     static final LocaleDisplayNames ENGLISH_DISPLAY_NAMES = LocaleDisplayNames.getInstance(new ULocale("en"), DialectHandling.STANDARD_NAMES);
     static final Splitter TAB = Splitter.on("\t").trimResults();
 
-    final ULocale locale;
-    final UnicodeMap<Set<String>> map = new UnicodeMap<>();
-    final UnicodeMap<String> tts = new UnicodeMap<>();
+    public final ULocale locale;
+    public final UnicodeMap<Set<String>> map = new UnicodeMap<>();
+    public final UnicodeMap<String> tts = new UnicodeMap<>();
 
     static final Set<String> GROUP_ANNOTATIONS = new HashSet<>(Arrays.asList(
     "default-text-style",
@@ -83,7 +75,13 @@ public class AnnotationData {
     "communication",
     "education"
     ));
-    AnnotationData(String file) {
+    
+    private static final Set<String> SKIP = new HashSet<>(OldAnnotationData.GROUP_ANNOTATIONS);
+    static {
+        SKIP.add("flag");
+    }
+
+    OldAnnotationData(String file) {
         this(fixLocale(file));
     }
 
@@ -99,10 +97,11 @@ public class AnnotationData {
         }
         return ULocale.minimizeSubtags(ulocale);
     }
-    public AnnotationData(ULocale inLocale) {
+    public OldAnnotationData(ULocale inLocale) {
         locale = inLocale;
     }
-    AnnotationData freeze() {
+    
+    OldAnnotationData freeze() {
         if (!map.keySet().equals(tts.keySet())) {
             //map: flags
             //tts: groups
@@ -128,7 +127,7 @@ public class AnnotationData {
 
     static final Splitter SEMISPACE = Splitter.on(";").trimResults();
 
-    static AnnotationData load(String dir, String infile) {
+    static OldAnnotationData load(String dir, String infile) {
         // New file structure
         // "Emoji Annotations Project- Tier 1 - de.tsv"
         // or
@@ -143,10 +142,10 @@ public class AnnotationData {
         }
         String file = infile + ".tsv";
 
-        AnnotationData data = new AnnotationData(file);
+        OldAnnotationData data = new OldAnnotationData(file);
         //LocaleData ld = LocaleData.getInstance(data.locale);
-        Splitter localeSplitter = data.locale.equals(ULocale.JAPANESE) ? GenerateOtherAnnotations.SPACE 
-                : GenerateOtherAnnotations.COMMA;
+        Splitter localeSplitter = data.locale.equals(ULocale.JAPANESE) ? GenerateOldestAnnotations.SPACE 
+                : GenerateOldestAnnotations.COMMA;
         //LocaleDisplayNames ldn = LocaleDisplayNames.getInstance(data.locale, DialectHandling.STANDARD_NAMES);
         int annotationField = 3;
         int lineCount = 0;
@@ -165,7 +164,7 @@ public class AnnotationData {
             //U+01F004<tab>🀄<tab>MAHJONG TILE RED DRAGON<tab>Mahjong-Stein, roter Drache, Mahjong<tab><tab>N
             //as:
             //U+00A9<tab>©<tab>COPYRIGHT SIGN<tab>Copyright sign, Copyright<tab><tab>স্বত্বাধিকাৰ চিন, স্বত্বাধিকাৰ<tab>Copyright sign, Copyright<tab>N
-            List<String> parts = GenerateOtherAnnotations.TAB.splitToList(line);
+            List<String> parts = GenerateOldestAnnotations.TAB.splitToList(line);
             String chars = parts.get(1);
             if (parts.size() <= annotationField || chars.length() == 0) {
                 System.out.println(data.locale + " (" + lineCount + "): Line/Chars too short, skipping: " + line);
@@ -189,8 +188,8 @@ public class AnnotationData {
         return data;
     }
 
-    static AnnotationData loadNew(String dir, String file, String baseName) {
-        AnnotationData data = new AnnotationData(baseName);
+    static OldAnnotationData loadNew(String dir, String file, String baseName) {
+        OldAnnotationData data = new OldAnnotationData(baseName);
         Splitter localeSplitter = SEMISPACE;
         int fieldTtsNative = 3;
         int fieldTtsFixed = 4;
@@ -202,7 +201,7 @@ public class AnnotationData {
             if (line.startsWith("#") || line.isEmpty()) {
                 continue;
             }
-            List<String> parts = GenerateOtherAnnotations.TAB.splitToList(line);
+            List<String> parts = GenerateOldestAnnotations.TAB.splitToList(line);
             if (parts.size() <= fieldAnnotationFixed) {
                 System.out.println(data.locale + " (" + lineCount + "): Line/Chars too short, skipping: " + parts);
                 continue;
@@ -253,9 +252,9 @@ public class AnnotationData {
     }
 
 
-    static AnnotationData getEnglish() {
-        AnnotationData data = new AnnotationData(ULocale.ENGLISH);
-        for (String line : FileUtilities.in(GenerateOtherAnnotations.class, "en-tts.tsv")) {
+     static OldAnnotationData getEnglishOldRaw() {
+        OldAnnotationData data = new OldAnnotationData(ULocale.ENGLISH);
+        for (String line : FileUtilities.in(GenerateOldestAnnotations.class, "en-tts.tsv")) {
             if (line.startsWith("#") || line.isEmpty()) continue;
             List<String> list = TAB.splitToList(line);
             String source = org.unicode.text.utility.Utility.fromHex(list.get(0));

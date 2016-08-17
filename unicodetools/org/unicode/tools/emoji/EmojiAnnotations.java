@@ -14,27 +14,26 @@ import java.util.TreeSet;
 import org.unicode.cldr.util.Annotations;
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
+import org.unicode.cldr.util.CldrUtility;
 import org.unicode.text.utility.Birelation;
 
-import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.SimpleFormatter;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.Output;
 
 public class EmojiAnnotations extends Birelation<String,String> {
+    public enum Status {missing, gender, constructed, found}
 
     final Map<String,UnicodeSet> TO_UNICODE_SET;
-    static LinkedHashSet<String> CAPTURE = new LinkedHashSet<>();
-
-
     final private UnicodeMap<String> shortNames = new UnicodeMap<>();
+    final private UnicodeMap<Status> statusValues = new UnicodeMap<>();
 
     // Add to CLDR
-    static final UnicodeSet MALE_SET = new UnicodeSet("[👦  👨  👴 🎅   🤴  🤵  👲🕴 🕺]");
-    static final UnicodeSet FEMALE_SET = new UnicodeSet("[ 👧  👩  👵 🤶👸👰🤰💃]");
+    private static final UnicodeSet MALE_SET = new UnicodeSet("[👦  👨  👴 🎅   🤴  🤵  👲🕴 🕺]");
+    private static final UnicodeSet FEMALE_SET = new UnicodeSet("[ 👧  👩  👵 🤶👸👰🤰💃]");
 
 
     //    private static final Splitter TAB = Splitter.on("\t").trimResults();
@@ -47,21 +46,21 @@ public class EmojiAnnotations extends Birelation<String,String> {
     //            "states", "sar", "people's", "minor",
     //            "sts."));
 
-    public static final EmojiAnnotations          ANNOTATIONS_TO_CHARS        = new EmojiAnnotations(
-            GenerateEmoji.EMOJI_COMPARATOR
-            //,
-            //            "emojiAnnotations.txt",
-            //            "emojiAnnotationsFlags.txt",
-            //            "emojiAnnotationsGroups.txt",
-            //            "emojiAnnotationsZwj.txt"
-            );
+    public static final EmojiAnnotations          ANNOTATIONS_TO_CHARS        = new EmojiAnnotations("en", EmojiOrder.STD_ORDER.codepointCompare);
 
+    /**
+     * @deprecated Use {@link #EmojiAnnotations(String,Comparator<String>,String...)} instead
+     */
     public EmojiAnnotations(Comparator<String> codepointCompare, String... filenames) {
+        this("en", codepointCompare, filenames);
+    }
+
+    public EmojiAnnotations(String localeString, Comparator<String> codepointCompare, String... filenames) {
         super(new TreeMap(EmojiOrder.FULL_COMPARATOR), 
-                new TreeMap(codepointCompare), 
+                new HashMap(), 
                 TreeSet.class, 
                 TreeSet.class, 
-                codepointCompare, 
+                EmojiOrder.UCA_COLLATOR, 
                 EmojiOrder.FULL_COMPARATOR);
 
         //        for (String s : sorted) {
@@ -71,20 +70,28 @@ public class EmojiAnnotations extends Birelation<String,String> {
         //            }
         //            System.out.println(s + "\t" + CollectionUtilities.join(plainAnnotations, " | "));
         //        }
-        UnicodeMap<Annotations> data = Annotations.getData("en");
-        CLDRFile english = CLDRConfig.getInstance().getEnglish();
+        final UnicodeMap<Annotations> annotationData = Annotations.getData(localeString);
+        if (annotationData == null) {
+            throw new IllegalArgumentException("No annotation data for " + localeString);
+        }
+        Loader loader = new Loader(CLDRConfig.getInstance().getCLDRFile(localeString, true), annotationData);
         final Set<String> keywords = new LinkedHashSet<>();
+        Output<String> outShortName = new Output<>();
         for (String s : EmojiData.EMOJI_DATA.getChars()) {
             keywords.clear();
-            String shortName = getNameAndAnnotations(s, english, data, keywords);
-            if (shortName == null) {
-                continue;
+            Status status = loader.getNameAndAnnotations(s, keywords, outShortName);
+            if (status != Status.missing) {
+                if (outShortName.value == null || keywords.isEmpty()) {
+                    status = Status.missing; // incomplete
+                }
             }
             for (String annotation : keywords) {
                 add(annotation, s);
             }
-            shortNames.put(s, shortName);
+            statusValues.put(s,status);
+            shortNames.put(s, outShortName.value);
         }
+        statusValues.freeze();
         shortNames.freeze();
 
         //        CandidateData candidateData = CandidateData.getInstance();
@@ -199,11 +206,11 @@ public class EmojiAnnotations extends Birelation<String,String> {
             _TO_UNICODE_SET.put(entry.getKey(), new UnicodeSet().addAll(entry.getValue()).freeze());
         }
         TO_UNICODE_SET = Collections.unmodifiableMap(_TO_UNICODE_SET);
-        UnicodeSet annotationCharacters = new UnicodeSet().addAll(valuesSet());
-        if (!annotationCharacters.containsAll(EmojiData.EMOJI_DATA.getChars())) {
-            UnicodeSet missing = new UnicodeSet().addAll(EmojiData.EMOJI_DATA.getChars()).removeAll(annotationCharacters);
-            throw new IllegalArgumentException("Missing annotations: " + missing.toPattern(false));
-        }
+        //        UnicodeSet annotationCharacters = new UnicodeSet().addAll(valuesSet());
+        //        if (!annotationCharacters.containsAll(EmojiData.EMOJI_DATA.getChars())) {
+        //            UnicodeSet missing = new UnicodeSet().addAll(EmojiData.EMOJI_DATA.getChars()).removeAll(annotationCharacters);
+        //            throw new IllegalArgumentException("Missing annotations: " + missing.toPattern(false));
+        //        }
     }
 
     //    static final UnicodeMap<String> TTS = new UnicodeMap<>();
@@ -262,192 +269,177 @@ public class EmojiAnnotations extends Birelation<String,String> {
     //        }
     //    }
 
+    static class Loader {
+        final CLDRFile cldrFile;
+        final UnicodeMap<Annotations> data;
+        final SimpleFormatter sep;
+        final boolean isEnglish;
+        static final UnicodeSet FAMILY_PLUS = new UnicodeSet(Emoji.FAMILY_MARKERS)
+        .add(Emoji.JOINER)
+        .add(Emoji.EMOJI_VARIANT)
+        .freeze();
+        static final String KISS = "\u2764\uFE0F\u200D\uD83D\uDC8B\u200D";
+        static final String HEART = "\u2764\uFE0F\u200D";
 
-    public static String getNameAndAnnotations(String s, CLDRFile english, UnicodeMap<Annotations> data, final Set<String> keywords) {
-        String shortName = null;
-        switch(s) {
-        // put into CLDR
-        //                case Emoji.MALE:
-        //                    shortName = "male sign"; 
-        //                    addString(keywords, "male, man");
-        //                    return shortName;
-        //                case Emoji.FEMALE:
-        //                    shortName = "female sign"; 
-        //                    addString(keywords, "female, woman");
-        //                    return shortName;
-        //                case Emoji.HEALTHCARE:
-        //                    shortName = "medical symbol"; 
-        //                    addString(keywords, "staff, aesculapius");
-        //                    return shortName;
-        //                case "🌾":
-        //                    addString(keywords, "farmer, rancher, gardener");
-        //                    break;
-        case Emoji.UN:
-            shortName = "United Nations"; 
-            keywords.add("UN");
-            return shortName;
+        public Loader(CLDRFile cldrFile, UnicodeMap<Annotations> data) {
+            this.cldrFile = cldrFile;
+            this.isEnglish = cldrFile.getLocaleID().equals("en");
+            this.data = data;
+            //           <listPatternPart type="2">{0}, {1}</listPatternPart>  type="unit-short"
+            sep = SimpleFormatter.compile(cldrFile.getStringValue("//ldml/listPatterns/listPattern[@type=\"unit-short\"]/listPatternPart[@type=\"2\"]"));
         }
-        Annotations datum = data.get(s);
-        if (datum != null) {
-            shortName = fix(s, datum.tts);
-            keywords.addAll(datum.annotations);
-        } else if (Emoji.REGIONAL_INDICATORS.containsAll(s)) {
-            String countryCode = Emoji.getFlagCode(s);
-            shortName = english.getName(CLDRFile.TERRITORY_NAME, countryCode);
-            keywords.addAll(Collections.singleton("flag"));
-        } else if (s.contains(Emoji.KEYCAP_MARK_STRING)) {
-            shortName = "keycap " + UCharacter.getName(s.codePointAt(0)).toLowerCase(Locale.ENGLISH);
-            keywords.addAll(ImmutableSet.of("keycap", UCharacter.getName(s.codePointAt(0)).toLowerCase(Locale.ENGLISH)));
-        } else if (EmojiData.MODIFIERS.containsSome(s)) {
-            String rem = EmojiData.MODIFIERS.stripFrom(s, false);
-            String type = EmojiData.shortModName(rem.codePointAt(0)).toLowerCase(Locale.ENGLISH);
-            s = EmojiData.MODIFIERS.stripFrom(s, true);
-            shortName = getNameAndAnnotations(s, english, data, keywords) + ", " + type;
-            if (shortName != null) {
-                shortName = shortName.toLowerCase(Locale.ENGLISH);
-                keywords.add(type);
+
+        private Status getNameAndAnnotations(String s, final Set<String> keywordsToAppendTo, Output<String> outShortName) {
+            if (s.equals("🕵🏻‍♂️") || s.equals("🕵️‍♂️")) {
+                int debug = 0;
             }
-        } else if (s.contains(Emoji.JOINER_STRING)) {
-            shortName = EmojiData.EMOJI_DATA.getName(s, true);
-            boolean special = false;
-            for (int cp : CharSequences.codePoints(s)) {
-                switch (cp) {
-                case Emoji.EMOJI_VARIANT:
-                case Emoji.JOINER:
-                    continue;
-                    //                case 0x1F33E:
-                    //                    addString(keywords, "farmer, rancher, gardener");
-                    //                    break;
-                    //                case 0x1F373:
-                    //                    special = addString(keywords, "cook, chef");
-                    //                    break;
-                    //                case 0x1F3ED:
-                    //                    special = addString(keywords, "industrial, assembly, factory, worker");
-                    //                    break;
-                    //                case 0x2695:
-                    //                    special = addString(keywords, "healthcare, doctor, nurse, therapist");
-                    //                    break;
-                    //                case 0x1F527:
-                    //                    special = addString(keywords, "tradesperson, mechanic, plumber, electrician");
-                    //                    break;
-                    //                case 0x1F4BC:
-                    //                    special = addString(keywords, "office, business, manager, architect, white-collar");
-                    //                    break;
-                    //                case 0x1F52C:
-                    //                    special = addString(keywords, "scientist, engineer, mathematician, chemist, physicist, biologist");
-                    //                    break;
-                    //                case 0x1F3A4:
-                    //                    special = addString(keywords, "singer, entertainer, rock, star, actor");
-                    //                    break;
-                    //                case 0x1F393:
-                    //                    special = addString(keywords, "student, graduate");
-                    //                    break;
-                    //                case 0x1F3EB:
-                    //                    special = addString(keywords, "professor, instructor, teacher");
-                    //                    break;
-                    //                case 0x1F4BB:
-                    //                    special = addString(keywords, "technologist, coder, software, developer, inventor");
-                    //                    break;
+            outShortName.value = null;
+            // TODO put into CLDR
+            if (isEnglish) {
+                switch(s) {
+                case Emoji.UN:
+                    outShortName.value = "United Nations"; 
+                    keywordsToAppendTo.add("UN");
+                    return Status.found;
                 }
-                final String cps = UTF16.valueOf(cp);
-                if (special) {
-                    CAPTURE.add("<annotation cp=\"" + s + "\" type=\"tts\">" + CollectionUtilities.join(keywords, " | ") + "</annotation>");
-                    CAPTURE.add("<annotation cp=\"" + s + "\">" + shortName + "</annotation>");
-                }
-                getNameAndAnnotations(cps, english, data, keywords);
             }
+            Annotations datum = data.get(s);
+            // try without variant
+            if (datum == null) {
+                String s1 = s.replace(Emoji.EMOJI_VARIANT_STRING,"");
+                if (!s.equals(s1)) {
+                    datum = data.get(s1);
+                }
+            }
+            if (datum != null) {
+                outShortName.value = fix(s, null, datum.tts);
+                keywordsToAppendTo.addAll(datum.annotations);
+                return Status.found;
+            } else if (Emoji.REGIONAL_INDICATORS.containsAll(s)) {
+                String countryCode = Emoji.getFlagCode(s);
+                outShortName.value = cldrFile.getName(CLDRFile.TERRITORY_NAME, countryCode);
+                keywordsToAppendTo.addAll(Collections.singleton("flag"));
+                return outShortName.value == null ? Status.missing : Status.found;
+            } else if (s.contains(Emoji.KEYCAP_MARK_STRING)) {
+                Annotations keycapDatum = data.get("🔟");
+                if (keycapDatum != null && keycapDatum.tts.contains("#")) {
+                    outShortName.value = fix(s, outShortName.value, keycapDatum.tts.replace('#', s.charAt(0)));
+                    keywordsToAppendTo.addAll(keycapDatum.annotations);
+                    return Status.found;
+                }
+                return Status.missing;
+            } else if (EmojiData.MODIFIERS.containsSome(s)) {
+                // TODO Handle multiple modifiers
+                String rem = EmojiData.MODIFIERS.stripFrom(s, false);
+                s = EmojiData.MODIFIERS.stripFrom(s, true);
+                s = EmojiData.EMOJI_DATA.addEmojiVariants(s); // modifiers replace EV characters.
+                if (s.isEmpty()) {
+                    return Status.missing;
+                }
+                Status status = getNameAndAnnotations(s, keywordsToAppendTo, outShortName);
+                Annotations skinDatum = data.get(rem.codePointAt(0));
+                if (skinDatum != null) {
+                    outShortName.value = fix(s, outShortName.value, skinDatum.tts);
+                    keywordsToAppendTo.add(skinDatum.tts);
+                    status = Status.found;
+                } else {
+                    status = Status.missing;
+                }
+                //String type = EmojiData.shortModNameZ(rem.codePointAt(0));
+                //                if (status != Status.missing) {
+                //                    outShortName.value = sep.format(outShortName.value.toLowerCase(Locale.ENGLISH), type);
+                //                    keywordsToAppendTo.add(type);
+                //                }
+                return status;
+            } else if (s.contains(Emoji.JOINER_STRING)) {
+                // shortName = EmojiData.EMOJI_DATA.getName(s, true);
+                Status status = Status.constructed;
+                //s = s.replace(Emoji.JOINER_STRING,"");
+                if (s.contains(KISS)) {
+                    Annotations familyDatum = data.get("💏");
+                    s = s.replace(KISS, "");
+                    if (familyDatum != null) {
+                        outShortName.value = fix(s, outShortName.value, familyDatum.tts);
+                        keywordsToAppendTo.addAll(familyDatum.annotations);
+                        status = Status.found;
+                    } else {
+                        status = Status.missing;
+                    }
+                } else if (s.contains(HEART)) {
+                    Annotations familyDatum = data.get("💑");
+                    s = s.replace(HEART, "");
+                    if (familyDatum != null) {
+                        outShortName.value = fix(s, outShortName.value, familyDatum.tts);
+                        keywordsToAppendTo.addAll(familyDatum.annotations);
+                        status = Status.found;
+                    } else {
+                        status = Status.missing;
+                    }
+                } else if (FAMILY_PLUS.containsAll(s)) {
+                    Annotations familyDatum = data.get("👪");//        <annotation cp="👪" type="tts">Familie</annotation>
+                    if (familyDatum != null) {
+                        outShortName.value = fix(s, outShortName.value, familyDatum.tts);
+                        keywordsToAppendTo.addAll(familyDatum.annotations);
+                        status = Status.found;
+                    } else {
+                        status = Status.missing;
+                    }
+                } else if (Emoji.GENDER_MARKERS.containsSome(s)) {
+                    String rem = Emoji.GENDER_MARKERS.stripFrom(s, false);
+                    s = Emoji.GENDER_MARKERS.stripFrom(s, true);
+                    Annotations familyDatum = data.get(rem.contains("♂") ? "👨" : "👩");//        <annotation cp="👪" type="tts">Familie</annotation>
+                    if (familyDatum != null) {
+                        outShortName.value = fix(s, outShortName.value, familyDatum.tts);
+                        keywordsToAppendTo.addAll(familyDatum.annotations);
+                        status = Status.gender;
+                    } else {
+                        status = Status.missing;
+                    }
+                }
+                for (int cp : CharSequences.codePoints(s)) {
+                    if (cp == Emoji.EMOJI_VARIANT || cp == Emoji.JOINER) {
+                        continue;
+                    }
+                    Annotations partDatum = data.get(cp);
+                    if (partDatum != null) {
+                        outShortName.value = fix(s, outShortName.value, partDatum.tts);
+                        keywordsToAppendTo.addAll(partDatum.annotations);
+                    } else {
+                        outShortName.value = fix(s, outShortName.value, "???");
+                        keywordsToAppendTo.add("???");
+                        status = Status.missing;
+                    }
+                }
+                return status;
+            }
+            // TODO Add to CLDR
+            //        if (MALE_SET.contains(s)) {
+            //            keywords.add("male");
+            //        } else if (FEMALE_SET.contains(s)) {
+            //            keywords.add("female");
+            //        }
+            return Status.missing;
         }
-        if (MALE_SET.contains(s)) {
-            keywords.add("male");
-        } else if (FEMALE_SET.contains(s)) {
-            keywords.add("female");
+
+        private String fix(String cps, String oldTts, String tts) {
+            return oldTts == null ? tts : sep.format(oldTts, tts);
         }
-        return shortName;
     }
 
-    private static String fix(String s, String tts) {
-        switch(s) { // add to CLDR
-        //        case "👮":
-        //            return "police officer";
-        //        case "🕵":
-        //            return "sleuth";
-        //        case "💂":
-        //            return "guard";
-        //        case "👷":
-        //            return "construction worker";
-        //        case "👳":
-        //            return "person with turban";
-        //        case "👱":
-        //            return "blond person";
-        //        case "🙍":
-        //            return "person frowning";
-        //        case "🙎":
-        //            return "person pouting";
-        //        case "🙅":
-        //            return "person gesturing not ok";
-        //        case "🙆":
-        //            return "person gesturing ok";
-        //        case "💁":
-        //            return "person tipping hand";
-        //        case "🙋":
-        //            return "person raising hand";
-        //        case "🙇":
-        //            return "person bowing";
-        //        case "🤦":
-        //            return "person facepalming";
-        //        case "🤷":
-        //            return "person shrugging";
-        //        case "💆":
-        //            return "person getting face massage";
-        //        case "💇":
-        //            return "person getting haircut";
-        //        case "🚶":
-        //            return "person walking";
-        //        case "🏃":
-        //            return "person running";
-        //        case "👯":
-        //            return "people partying";
-        //        case "🏌":
-        //            return "person golfing";
-        //        case "🏄":
-        //            return "person surfing";
-        //        case "🚣":
-        //            return "person rowing boat";
-        //        case "🏊":
-        //            return "person swimming";
-        //        case "⛹":
-        //            return "person with ball";
-        //        case "🏋":
-        //            return "person weight lifting";
-        //        case "🚴":
-        //            return "person biking";
-        //        case "🚵":
-        //            return "person mountain biking";
-        //        case "🤸":
-        //            return "person doing cartwheel";
-        //        case "🤼":
-        //            return "people wrestling";
-        //        case "🤽":
-        //            return "person playing water polo";
-        //        case "🤾":
-        //            return "person playing handball";
-        //        case "🤹":
-        //            return "person juggling";
-        default:         
-            return tts;
-        }
-    }
-
-    private static boolean addString(Set<String> keywords, String string) {
-        boolean result = false;
-        for (String s : string.split(",")) {
-            result |= keywords.add(s.trim());
-        }
-        return result;
-    }
+    //    private static boolean addString(Set<String> keywords, String string) {
+    //        boolean result = false;
+    //        for (String s : string.split(",")) {
+    //            result |= keywords.add(s.trim());
+    //        }
+    //        return result;
+    //    }
 
     public String getShortName(String s) {
         return shortNames.get(s);
+    }
+
+    public Status getStatus(String s) {
+        return CldrUtility.ifNull(statusValues.get(s), Status.missing);
     }
 
     public static void main(String[] args) {
@@ -488,8 +480,15 @@ public class EmojiAnnotations extends Birelation<String,String> {
             System.out.println(s + "\t" + shortName + "\t" + CollectionUtilities.join(keywords, " | "));
         }
         System.out.println("Missing: " + missing);
-        for (String s : CAPTURE) {
-            System.out.println(s);
-        }
     }
+
+    //    public static String stripModifiers(String source, Output<String> modsFound) {
+    //        StringBuilder newSource = new StringBuilder();
+    //        StringBuilder newMods = new StringBuilder();
+    //        for (int cp : CharSequences.codePoints(source)) {
+    //            if (EmojiData.MODIFIERS.contains(cp)) {
+    //                
+    //            }
+    //        }
+    //    }
 }

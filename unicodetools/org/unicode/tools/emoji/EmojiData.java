@@ -793,6 +793,15 @@ public class EmojiData {
     static String shortModNameX(int cp2) {
         return Emoji.NAME.get(cp2).substring("EMOJI MODIFIER FITZPATRICK TYPE".length());
     }
+    static String shortModNameZ(int cp2) {
+        switch (cp2) {
+        case 0x1F3FB: return "t1/2";
+        case 0x1F3FC: case 0x1F3FD: case 0x1F3FE: case 0x1F3FF: 
+            return "t"+(cp2-0x1F3F9);
+            default:
+                throw new IllegalArgumentException("Illegal Modifier Name");
+        }  
+    }
 
     public String normalizeVariant(String emojiSequence) {
         String result = toNormalizedVariant.get(emojiSequence);
