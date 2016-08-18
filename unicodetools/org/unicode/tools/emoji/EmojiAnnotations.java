@@ -290,7 +290,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
         }
 
         private Status getNameAndAnnotations(String s, final Set<String> keywordsToAppendTo, Output<String> outShortName) {
-            if (s.equals("🕵🏻‍♂️") || s.equals("🕵️‍♂️")) {
+            if (s.equals("💃")) {
                 int debug = 0;
             }
             outShortName.value = null;
@@ -440,6 +440,10 @@ public class EmojiAnnotations extends Birelation<String,String> {
 
     public Status getStatus(String s) {
         return CldrUtility.ifNull(statusValues.get(s), Status.missing);
+    }
+    
+    public UnicodeSet getStatusKeys() {
+        return statusValues.keySet();
     }
 
     public static void main(String[] args) {

@@ -68,6 +68,9 @@ public class CandidateData {
                 quartersForChars.put(source, CandidateData.Quarter.fromString(quarter));
                 final String name = parts.get(4).trim();
                 names.put(source, name);
+                if (!EmojiOrder.STD_ORDER.groupOrder.containsKey(category)) {
+                    throw new IllegalArgumentException("Illegal category: " + category + ". Must be in: " + EmojiOrder.STD_ORDER.groupOrder.keySet());
+                }
                 categories.put(source, category);
             } else { // must be category
                 category = line.trim();

@@ -1403,7 +1403,7 @@ public class GenerateEmoji {
     /** Main Chart */
     private static void showVersions() throws IOException {
         PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-versions-sources.html");
-        writeHeader(out, "Emoji Versions &amp; Sources", null, "<p>This chart shows when each emoji code point first appeared in a Unicode version, "
+        writeHeader(out, "Emoji Versions &amp; Sources", null, "<p>This chart shows when each emoji <i>code point</i> first appeared in a Unicode version, "
                 + "and which "
                 + "sources the character corresponds to. It does not include the emoji sequences. "
                 + "For example, “ZDings+ARIB+JCarrier” indicates that the character also appears in the Zapf Dingbats, "
@@ -1412,6 +1412,7 @@ public class GenerateEmoji {
         TreeSet<VersionData> sorted = getSortedVersionInfo(m);
         for (VersionData value : sorted) {
             UnicodeSet chars = m.getSet(value);
+            chars = new UnicodeSet(chars).retainAll(EmojiData.EMOJI_DATA.getSingletonsWithDefectives());
             displayUnicodesetTD(out, 
                     Collections.singleton(value.getCharSources()), 
                     null,
@@ -1436,7 +1437,8 @@ public class GenerateEmoji {
     /** Main Chart */
     private static void showVersionsOnly() throws IOException {
         PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-versions.html");
-        writeHeader(out, "Emoji Versions", null, "<p>This chart shows when each emoji character first appeared in a Unicode version.</p>\n", "border='1'", true);
+        writeHeader(out, "Emoji Versions", null, "<p>This chart shows when each emoji first appeared in a Unicode version. "
+                + "Modifier sequences are omitted. Other sequences are included in the earliest version that contains all the characters.</p>\n", "border='1'", true);
         UnicodeMap<Age_Values> m = new UnicodeMap<>();
         for (String s : EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectivesOrModifiers()) {
             m.put(s, Emoji.getNewest(s));
@@ -2382,10 +2384,17 @@ public class GenerateEmoji {
                 //EmojiData.EMOJI_DATA.addEmojiVariants(chars2, Emoji.EMOJI_VARIANT, null)
                 //Emoji.getEmojiVariant(chars2, Emoji.EMOJI_VARIANT_STRING)
                 + "</td>\n";
+        if (chars2.equals("💃")) {
+            int debug = 0;
+        }
         String name2 = Emoji.getName(chars2, false, GenerateEmoji.EXTRA_NAMES);
         String tts = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getShortName(chars2);
-        if (tts != null && !tts.equalsIgnoreCase(name2)) {
-            name2 += "<br>≊ " + TransliteratorUtilities.toHTML.transform(tts);
+        if (tts != null) {
+            if (CharSequences.getSingleCodePoint(chars2) == Integer.MAX_VALUE) {
+                name2 = tts;
+            } else if (!tts.equalsIgnoreCase(name2)) {
+                name2 += "<br>≊ " + TransliteratorUtilities.toHTML.transform(tts);
+            }
         }
         if (SHOW_NAMES_LIST) {
             name2 += getNamesListInfo(chars2);
