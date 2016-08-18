@@ -13,6 +13,6 @@ U+1F961			2016Q1	TAKEOUT BOX
 • oyster pail 
 U+1F962			2016Q1	CHOPSTICKS
 • also kuaizi (筷子), hashi (箸), jeotgarak (젓가락)
-sports
+sport
 U+100001			2016Q2	SLED
 U+100002			2016Q2	CURLING STONE
