@@ -38,6 +38,7 @@ public class Emoji {
     /**
      * Change each following once we release. That is, VERSION_LAST_RELEASED* becomes VERSION_BETA*, and both the latter increment.
      */
+    public static final VersionInfo VERSION_LAST_RELEASED2 = VersionInfo.getInstance(2);
     public static final VersionInfo VERSION_LAST_RELEASED = VersionInfo.getInstance(3);
     public static final VersionInfo VERSION_LAST_RELEASED_UNICODE = VersionInfo.getInstance(9);
     
@@ -57,6 +58,8 @@ public class Emoji {
      */
 
     public static final VersionInfo VERSION_TO_GENERATE = IS_BETA ? VERSION_BETA : VERSION_LAST_RELEASED;
+    public static final VersionInfo VERSION_TO_GENERATE_PREVIOUS = IS_BETA ? VERSION_LAST_RELEASED : VERSION_LAST_RELEASED2;
+    
     public static final String VERSION_STRING = VERSION_TO_GENERATE.getVersionString(2, 4);
 
     public static final VersionInfo VERSION_TO_GENERATE_UNICODE = IS_BETA ? VERSION_BETA_UNICODE : VERSION_LAST_RELEASED_UNICODE;
