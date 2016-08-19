@@ -20,6 +20,7 @@ import org.unicode.draft.CharacterFrequency;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.GenerateEmoji.Style;
+import org.unicode.tools.emoji.GenerateEmoji.Visibility;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.CollectionUtilities;
@@ -171,7 +172,7 @@ public class GenerateEmojiFrequency {
     }
 
     private static void showItems(PrintWriter out, Collection<String> items) {
-        GenerateEmoji.displayUnicodeSet(out, items, Style.bestImage, 9999, 1, 1, "../../emoji/charts/full-emoji-list.html", " s18", true);
+        GenerateEmoji.displayUnicodeSet(out, items, Style.bestImage, 9999, 1, 1, "../../emoji/charts/full-emoji-list.html", " s18", Visibility.external);
     }
 
     final static Splitter ONTAB = Splitter.on('\t').trimResults();

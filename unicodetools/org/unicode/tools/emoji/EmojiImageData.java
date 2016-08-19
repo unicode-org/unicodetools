@@ -17,6 +17,7 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.Emoji.Source;
 import org.unicode.tools.emoji.GenerateEmoji.Style;
+import org.unicode.tools.emoji.GenerateEmoji.Visibility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
@@ -160,7 +161,7 @@ public class EmojiImageData {
             for (Emoji.Source source : platforms2) {
                 final UnicodeSet us = breakdown.getMissing(source);
                 final UnicodeSet missing = new UnicodeSet(us).removeAll(common);
-                GenerateEmoji.displayUnicodeSet(out, missing, Style.bestImage, 0, 1, 1, "../../emoji/charts/full-emoji-list.html", GenerateEmoji.EMOJI_COMPARATOR, true);
+                GenerateEmoji.displayUnicodeSet(out, missing, Style.bestImage, 0, 1, 1, "../../emoji/charts/full-emoji-list.html", GenerateEmoji.EMOJI_COMPARATOR, Visibility.external);
             }
             out.print("</tr>");
         }
@@ -173,7 +174,7 @@ public class EmojiImageData {
                     + "<td class='cchars' colSpan='" + platforms2.size() + "'>"
                     + common.size() + "</td></tr>");
             out.println("<tr><th>" + title + "</th>");
-            GenerateEmoji.displayUnicodeSet(out, common, Style.bestImage, 0, platforms2.size(), 1, null, GenerateEmoji.EMOJI_COMPARATOR, true);
+            GenerateEmoji.displayUnicodeSet(out, common, Style.bestImage, 0, platforms2.size(), 1, null, GenerateEmoji.EMOJI_COMPARATOR, Visibility.external);
             out.println("</td></tr>");
         }
     }

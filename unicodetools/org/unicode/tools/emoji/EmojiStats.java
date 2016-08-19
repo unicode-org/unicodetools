@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.tools.emoji.Emoji.Source;
 import org.unicode.tools.emoji.GenerateEmoji.Style;
+import org.unicode.tools.emoji.GenerateEmoji.Visibility;
 
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UnicodeSet;
@@ -218,7 +219,7 @@ class EmojiStats {
             for (Emoji.Source source : platforms2) {
                 final UnicodeSet us = org.unicode.text.utility.Utility.ifNull(values.get(source), UnicodeSet.EMPTY);
                 final UnicodeSet missing = new UnicodeSet(us).removeAll(common);
-                GenerateEmoji.displayUnicodeSet(out, missing, Style.bestImage, 0, 1, 1, "../../emoji/charts/full-emoji-list.html", GenerateEmoji.EMOJI_COMPARATOR, true);
+                GenerateEmoji.displayUnicodeSet(out, missing, Style.bestImage, 0, 1, 1, "../../emoji/charts/full-emoji-list.html", GenerateEmoji.EMOJI_COMPARATOR, Visibility.external);
                 outText.println(source + "\t" + missing.size());
                 propPrinter.show(outText, source+"", null, 14, 14, us, true, false, false);
             }
@@ -233,7 +234,7 @@ class EmojiStats {
                     + "<td class='cchars' colSpan='" + platforms2.size() + "'>"
                     + common.size() + "</td></tr>");
             out.println("<tr><th>" + title + "</th>");
-            GenerateEmoji.displayUnicodeSet(out, common, Style.bestImage, 0, platforms2.size(), 1, null, GenerateEmoji.EMOJI_COMPARATOR, true);
+            GenerateEmoji.displayUnicodeSet(out, common, Style.bestImage, 0, platforms2.size(), 1, null, GenerateEmoji.EMOJI_COMPARATOR, Visibility.external);
             out.println("</td></tr>");
             outText.println("common \t" + common.size());
             propPrinter.show(outText, "common", null, 14, 14, common, true, false, false);
