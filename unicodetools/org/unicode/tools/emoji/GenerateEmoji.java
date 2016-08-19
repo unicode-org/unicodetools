@@ -558,7 +558,6 @@ public class GenerateEmoji {
 
     public static void main(String[] args) throws IOException {
         FileUtilities.copyFile(GenerateEmoji.class, "emoji-list.css", Emoji.CHARTS_DIR);
-        FileUtilities.copyFile(GenerateEmoji.class, "emoji-list.css", Emoji.TR51_INTERNAL_DIR);
         if (Emoji.IS_BETA) {
             GenerateEmojiData.printData(GenerateEmoji.EXTRA_NAMES);
         }
@@ -577,7 +576,6 @@ public class GenerateEmoji {
         if (SHOW) System.out.println("Other 6.3:\t" + newItems63.size() + "\t" + newItems63);
         if (SHOW) System.out.println("Other 7.0:\t" + newItems70.size() + "\t" + newItems70);
 
-        print(Emoji.CHARTS_DIR, Form.fullForm, "Full Emoji Data", "full-emoji-list.html", null);
         print(Emoji.CHARTS_DIR, Form.noImages, "Emoji Data", "emoji-list.html", null);
         final EmojiData previousEmoji = EmojiData.of(Emoji.VERSION_TO_GENERATE_PREVIOUS);
         UnicodeSet onlyNew = new UnicodeSet(EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives())
@@ -613,20 +611,15 @@ public class GenerateEmoji {
         showDefaultStyle();
         showVariationSequences();
         showSequences();
-        // showSubhead();
         showAnnotations(Emoji.CHARTS_DIR, "emoji-annotations.html", EmojiData.EMOJI_DATA.getChars(), null, false);
-        //        showAnnotations(Emoji.TR51_INTERNAL_DIR
-        //                , "emoji-annotations-flags.html", EmojiData.EMOJI_DATA.getFlagSequences(), AnnotationData.GROUP_ANNOTATIONS, true);
-        //        showAnnotations(Emoji.TR51_INTERNAL_DIR
-        //                , "emoji-annotations-groups.html", EmojiData.EMOJI_DATA.getChars(), AnnotationData.GROUP_ANNOTATIONS, false);
-        //        showAnnotationsBySize(Emoji.TR51_INTERNAL_DIR
-        //                , "emoji-annotations-size.html", new UnicodeSet(EmojiData.EMOJI_DATA.getChars()).removeAll(EmojiData.EMOJI_DATA.getFlagSequences()));
+
+        print(Emoji.CHARTS_DIR, Form.fullForm, "Full Emoji Data", "full-emoji-list.html", null);
 
         System.out.println("internal stuff");
+        FileUtilities.copyFile(GenerateEmoji.class, "emoji-list.css", Emoji.TR51_INTERNAL_DIR);
         showOrdering(Style.bestImage, Visibility.internal, false);
         EmojiImageData.write(Source.VENDOR_SOURCES);
         printCollationOrder();
-
         showConstructedNames();
 
         // showAnnotationsDiff();
@@ -1128,24 +1121,33 @@ public class GenerateEmoji {
         writeHeader(out, "Emoji Default Style Values", null, "<p>This chart provides a listing of characters for testing the display of emoji characters. "
                 + "Unlike the other charts, the emoji are presented as text rather than images, to show the style supplied in your browser. "
                 + "The text is given a gray color, so as to help distinguish the emoji presentation from a plain text presentation. "
-                + "</p><ul><li>"
+                + "</p>\n"
+                + "<ul><li>"
                 + "The Plain subtable shows a listing of all emoji characters and sequences without an emoji font. "
                 + "The characters with a default “text” display are separated out, and shown with and without variation selectors. "
-                + "</li><li>"
+                + "</li>\n<li>"
                 + "The Emoji subtable lists the same characters but with common color fonts on the text, to show a colorful display if possible. "
-                + "</li><li>"
-                + "See also <a target='variants' href='emoji-variants.html'>Emoji Variation Sequences</a>."
+                + "</li></ul>\n"
+                + "<ul><li>"
+                + "“-vs” indicates that emoji varation selectors <i>are not</i> present, and a character has Emoji_Presentation=False."
+                + "</li>\n<li>"
+                + "“+vs” indicates that emoji varation selectors <i>are</i> present, and a character has Emoji_Presentation=False."
                 + "</ul>\n"
                 + "<p>The default presentation choice (colorful vs gray) is discussed in "
-                + "<a href='" + TR51_HTML + "#Presentation_Style'>Presentation Style</a>.</p>\n", "border='1'", true);
+                + "<a href='" + TR51_HTML + "#Presentation_Style'>Presentation Style</a>. "
+                + "See also <a target='variants' href='emoji-variants.html'>Emoji Variation Sequences</a>.</p>\n", "border='1'", true);
+        outText.println("\uFEFFThis text file provides a listing of characters for testing the display of emoji characters.\n"
+                + "• “-vs” indicates that emoji variation selectors are not present, and a character has Emoji_Presentation=False.\n"
+                + "• “+vs” indicates that emoji variation selectors are present, and a character has Emoji_Presentation=False.\n"
+                + "For more information on presentation style, see UTR #51.");
 
-        out.println("<tr><th colSpan='3'>Plain  (“text” should be all gray; others should all be colorful)</th></tr>");
-        outText.println("\uFEFFThis text file provides a listing of characters for testing the display of emoji characters. ");
+        final String mainMessage = "Should all be colorful, except where marked with “text-vs”.";
+        out.println("<tr><th colSpan='3'>Plain: " + mainMessage + "</th></tr>");
+        outText.println("\n" + mainMessage);
 
-        outText.println("\nPlain  (“text” should be all gray; others should all be colorful)");
         showText(out, outText, Style.plain);
 
-        out.println("<tr><th colSpan='3'>Emoji Font (should all be colorful)</th></tr>");
+        out.println("<tr><th colSpan='3'>Emoji Font: should all be colorful, even “text-vs”.</th></tr>");
         showText(out, null, Style.emojiFont);
 
         //        out.println("<tr><th colSpan='3'>Emoji Locale (should all be colorful)</th></tr>");
@@ -1162,6 +1164,8 @@ public class GenerateEmoji {
         UnicodeSet dull = new UnicodeSet();
         UnicodeSet colorful = new UnicodeSet();
         UnicodeSet colorfulWithVs = new UnicodeSet();
+        UnicodeSet modsWoVs = new UnicodeSet();
+        UnicodeSet modsWithVs = new UnicodeSet();
         UnicodeSet mods = new UnicodeSet();
         UnicodeSet zwjWoVs = new UnicodeSet();
         UnicodeSet zwjWithVs = new UnicodeSet();
@@ -1192,8 +1196,8 @@ public class GenerateEmoji {
         showText("text+vs", colorfulWithVs, out, outText, style);
         showText("emoji", colorful, out, outText, style);
         showText("modifier", mods, out, outText, style);
-        showText("zwj text-vs", zwjWoVs, out, outText, style);
-        showText("zwj text+vs", zwjWithVs, out, outText, style);
+        showText("zwj-vs", zwjWoVs, out, outText, style);
+        showText("zwj+vs", zwjWithVs, out, outText, style);
         showText("zwj emoji", zwj, out, outText, style);
     }
 
@@ -1758,8 +1762,8 @@ public class GenerateEmoji {
     public static <T extends Object> void displayUnicodesetTD(PrintWriter out, Set<T> labels, String sublabel, 
             Set<String> otherCols,
             UnicodeSet uset, Style showEmoji, int maxPerLine, String link) {
-                displayUnicodesetTD(out, labels, sublabel, otherCols, uset, showEmoji, maxPerLine, link, Visibility.external);
-            }
+        displayUnicodesetTD(out, labels, sublabel, otherCols, uset, showEmoji, maxPerLine, link, Visibility.external);
+    }
 
     public static <T extends Object> void displayUnicodesetTD(PrintWriter out, Set<T> labels, String sublabel, 
             Set<String> otherCols,
