@@ -73,7 +73,7 @@ public class GenerateEmoji {
     private static final boolean SHOW_NAMES_LIST = false;
 
     private static final String            BETA_TITLE_AFFIX          = Emoji.IS_BETA ? " — Beta" : "";
-    private static final String            BETA_HEADER_AFFIX          = Emoji.IS_BETA ? " — <i>Beta</i>" : "";
+    private static final String            BETA_HEADER_AFFIX          = Emoji.IS_BETA ? "<span style='color:red'><i> — Beta</i></span>" : "";
 
     static final boolean           DATAURL                     = true;
     static final int               RESIZE_IMAGE                = -1;
@@ -206,25 +206,25 @@ public class GenerateEmoji {
     //public static final UnicodeSet APPLE_COMBOS_WITHOUT_VS = EmojiData.EMOJI_DATA.getZwjSequencesAll();
 
     static final Comparator<String> EMOJI_COMPARATOR = EmojiOrder.STD_ORDER.codepointCompare;
-//    static {
-//        try {
-//            //            EmojiOrder.sort(, new UnicodeSet(EmojiData.EMOJI_DATA.getChars());
-//            //                    STD_ORDER.appendCollationRules(new StringBuilder(), 
-//            //                    new UnicodeSet(EmojiData.EMOJI_DATA.getChars())
-//            ////                    EmojiData.EMOJI_DATA.getChars()).removeAll(Emoji.DEFECTIVE), 
-//            ////                    EmojiData.EMOJI_DATA.getZwjSequencesAll(), 
-//            ////                    EmojiData.EMOJI_DATA.getKeycapSequencesAll())
-//            //                    ).toString();
-//            //            System.out.println(rules);
-//            //            final RuleBasedCollator ruleBasedCollator = new RuleBasedCollator(rules);
-//            //            ruleBasedCollator.setStrength(Collator.IDENTICAL);
-//            //            ruleBasedCollator.freeze();
-//            //            EMOJI_COMPARATOR = (Comparator) ruleBasedCollator;
-//            int x = EMOJI_COMPARATOR.compare("#️⃣","☺️");
-//        } catch (Exception e) {
-//            throw new ICUUncheckedIOException("Internal Error", e);
-//        }
-//    }
+    //    static {
+    //        try {
+    //            //            EmojiOrder.sort(, new UnicodeSet(EmojiData.EMOJI_DATA.getChars());
+    //            //                    STD_ORDER.appendCollationRules(new StringBuilder(), 
+    //            //                    new UnicodeSet(EmojiData.EMOJI_DATA.getChars())
+    //            ////                    EmojiData.EMOJI_DATA.getChars()).removeAll(Emoji.DEFECTIVE), 
+    //            ////                    EmojiData.EMOJI_DATA.getZwjSequencesAll(), 
+    //            ////                    EmojiData.EMOJI_DATA.getKeycapSequencesAll())
+    //            //                    ).toString();
+    //            //            System.out.println(rules);
+    //            //            final RuleBasedCollator ruleBasedCollator = new RuleBasedCollator(rules);
+    //            //            ruleBasedCollator.setStrength(Collator.IDENTICAL);
+    //            //            ruleBasedCollator.freeze();
+    //            //            EMOJI_COMPARATOR = (Comparator) ruleBasedCollator;
+    //            int x = EMOJI_COMPARATOR.compare("#️⃣","☺️");
+    //        } catch (Exception e) {
+    //            throw new ICUUncheckedIOException("Internal Error", e);
+    //        }
+    //    }
 
     //    private static final EmojiAnnotations          ANNOTATIONS_TO_CHARS_GROUPS = new EmojiAnnotations(EMOJI_COMPARATOR,
     //            "emojiAnnotationsGroupsSpecial.txt"
@@ -567,7 +567,7 @@ public class GenerateEmoji {
             GenerateEmojiData.printData(GenerateEmoji.EXTRA_NAMES);
         }
         showOrdering(Style.bestImage, true, false);
-        showCandidates(false, "emoji-released.html");
+        //showCandidates(false, "emoji-released.html");
         showCandidates(true, "emoji-candidates.html");
         // show data
         if (SHOW) System.out.println("Total Emoji:\t" + EmojiData.EMOJI_DATA.getChars().size());
@@ -582,18 +582,25 @@ public class GenerateEmoji {
         if (SHOW) System.out.println("Other 6.3:\t" + newItems63.size() + "\t" + newItems63);
         if (SHOW) System.out.println("Other 7.0:\t" + newItems70.size() + "\t" + newItems70);
 
-        EmojiStats stats = new EmojiStats();
-        print(Form.fullForm, stats, null, null);
+        print(Emoji.CHARTS_DIR, Form.fullForm, "Full Emoji Data", "full-emoji-list.html", null);
+        print(Emoji.CHARTS_DIR, Form.noImages, "Emoji Data", "emoji-list.html", null);
+        final EmojiData previousEmoji = EmojiData.of(Emoji.VERSION_TO_GENERATE_PREVIOUS);
+        UnicodeSet onlyNew = new UnicodeSet(EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives())
+        .removeAll(previousEmoji.getAllEmojiWithoutDefectives())
+        .removeAll(previousEmoji.getZwjSequencesAll()) // catch the eye witness
+        ;
+        print(Emoji.CHARTS_DIR, Form.onlyNew, "Emoji Recently Added", "emoji-released.html", onlyNew);
         //stats.write(Source.VENDOR_SOURCES);
         EmojiImageData.write(Source.VENDOR_SOURCES);
 
-        print(Form.noImages, null, null, null);
+        
         if (DO_SPECIALS) {
             final UnicodeSet male = new UnicodeSet("[👮  🕵 💂 👷 👳 👱 🙇 🚶 🏃🏌🏄🚣🏊⛹🏋🚴🚵🤼🤽🤾🤹]");
-            print(Form.fullForm, null, male, "male-");
+            print(Emoji.INTERNAL_OUTPUT_DIR, Form.fullForm, "Male Emoji Data", "male-emoji-list.html", male);
             final UnicodeSet female = new UnicodeSet("[🙍 🙎  🙅 🙆  💁  🙋  🤦 🤷 💆  💇  👯🤸]");
-            print(Form.fullForm, null, female, "female-");
-            print(Form.fullForm, null, new UnicodeSet(EmojiData.EMOJI_DATA.getGenderBases()).removeAll(male).removeAll(female), "missing-");
+            print(Emoji.INTERNAL_OUTPUT_DIR, Form.fullForm, "Female Emoji Data", "female-emoji-list.html", female);
+            final UnicodeSet otherGenderBases = new UnicodeSet(EmojiData.EMOJI_DATA.getGenderBases()).removeAll(male).removeAll(female);
+            print(Emoji.INTERNAL_OUTPUT_DIR, Form.fullForm, "Missing Emoji Data", "missing-emoji-list.html", otherGenderBases);
         }
 
         // print(Form.extraForm, missingMap, null);
@@ -1850,45 +1857,44 @@ public class GenerateEmoji {
     private static final String CLDR_DATA_LINK = "<a target='cldr' href='http://cldr.unicode.org/#TOC-What-is-CLDR-'>Unicode CLDR data</a>";
 
     enum Form {
-        shortForm("short", " short form"),
-        noImages("", " with single image and annotations. (See also the <a target='full' href='full-emoji-list.html'>full list</a>.) "
+        noImages("This chart provides a list of the Unicode emoji characters,  with single image and annotations. (See also the <a target='full' href='full-emoji-list.html'>full list</a>.) "
                 + "The ordering of the emoji and the annotations are based on "
                 + CLDR_DATA_LINK + ". Emoji sequences have more than one code point in the <b>Code</b> column."),
-                fullForm("full", "with images from different vendors, version and source information, default style, and annotations. "
+                fullForm("This chart provides a list of the Unicode emoji characters, with images from different vendors, version and source information, default style, and annotations. "
                         + "The ordering of the emoji and the annotations are based on "
                         + CLDR_DATA_LINK + ". This list does  include the "
                         + "<a target='style' href='emoji-sequences.html#modifier_sequences'>emoji modifier sequences</a>, "
                         + "and the <a target='zwj' href='emoji-zwj-sequences.html'>emoji zwj sequences</a>."),
-                        extraForm("extra", " with images; have icons but are not including");
+                        onlyNew("This chart provides a list of the Unicode emoji characters that have been added to the most recent version of Unicode Emoji. "
+                    + "See also the <a target='candidates' href='emoji-candidates.html'>Emoji Candidates</a>.");
 
-        final String filePrefix;
-        final String title;
         final String description;
 
-        Form(String prefix, String description) {
-            this.description = description
-                    ;
-            filePrefix = prefix.isEmpty() ? "" : prefix + "-";
-            title = (prefix.isEmpty() ? "" : UCharacter.toTitleCase(prefix, null) + " ")
-                    + "Emoji Data";
+        Form(String description) {
+            this.description = description;
         }
     }
 
     /** Main charts 
+     * @param outputDir TODO
      * @param filter TODO
      * @param filteredName TODO
+     * @param extraPlatforms TODO
+     * @deprecated Use {@link #print(String,Form,String,String,UnicodeSet)} instead*/
+    public static <T> void print(String chartsDir, Form form, UnicodeSet filter, String title, String filename) throws IOException {
+        print(chartsDir, form, title, filename, filter);
+    }
+
+    /** Main charts 
+     * @param filter TODO
+     * @param outputDir TODO
+     * @param filteredName TODO
      * @param extraPlatforms TODO*/
-    public static <T> void print(Form form, EmojiStats stats, UnicodeSet filter, String filteredName) throws IOException {
-        String chartsDir = Emoji.CHARTS_DIR;
-        String filename = form.filePrefix + "emoji-list" + ".html";
-        if (filter != null) {
-            chartsDir = Emoji.INTERNAL_OUTPUT_DIR;
-            filename = filteredName + form.filePrefix + "emoji-list" + ".html";
-        }
+    public static <T> void print(String chartsDir, Form form, String title, String filename, UnicodeSet filter) throws IOException {
         PrintWriter out = FileUtilities.openUTF8Writer(chartsDir, filename);
         int order = 0;
         UnicodeSet level1 = null;
-        writeHeader(out, form.title, null, "<p>This chart provides a list of the Unicode emoji characters, " + form.description + "</p>\n", "border='1'", false);
+        writeHeader(out, title, null, "<p>" + form.description + "</p>\n", "border='1'", false);
         final String htmlHeaderString = GenerateEmoji.toHtmlHeaderString(form);
         int item = 0;
         String lastOrderingGroup = "";
@@ -1907,7 +1913,7 @@ public class GenerateEmoji {
                 out.println(htmlHeaderString);
                 headerGroupCount = 0;
             }
-            out.println(toHtmlString(s, form, ++item, stats));
+            out.println(toHtmlString(s, form, ++item));
             ++headerGroupCount;
         }
         writeFooter(out, "");
@@ -1938,7 +1944,7 @@ public class GenerateEmoji {
 
     public static void writeHeader(PrintWriter out, String title, String styles, String firstLine, String tableAttrs, boolean showGeneralComments) {
         final String chartIndex = "<a target='text' href='index.html'>Emoji Chart Index</a>";
-        final String fullTitle = title + " v" + Emoji.VERSION_STRING ;
+        final String fullTitle = title + ", v" + Emoji.VERSION_STRING ;
         out.println("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n" +
                 "<html>\n" +
                 "<head>\n" +
@@ -2370,7 +2376,7 @@ public class GenerateEmoji {
 
     static final String ALT_COLUMN = "%%%";
 
-    public static String toHtmlString(String chars2, Form form, int item, EmojiStats stats) {
+    public static String toHtmlString(String chars2, Form form, int item) {
         String bestCell = getCell(null, chars2, ALT_COLUMN);
         String symbolaCell = getCell(Emoji.Source.ref, chars2, ALT_COLUMN);
 
@@ -2405,17 +2411,16 @@ public class GenerateEmoji {
 
         String chars2WithVS = chars2; // EmojiData.EMOJI_DATA.addEmojiVariants(chars2, Emoji.EMOJI_VARIANT, VariantHandling.sequencesOnly);
         String anchor = getAnchor(Emoji.toUHex(chars2WithVS));
-        final boolean shortForm = form != Form.fullForm && form != Form.extraForm;
         DefaultPresentation style = EmojiData.EMOJI_DATA.getStyle(chars2);
         return "<tr>"
         + "<td class='rchars'>" + item + "</td>\n"
         + "<td class='code'>" + getDoubleLink(anchor, Emoji.toUHex(chars2WithVS)) + "</td>\n"
         + altClass(browserCell)
-        + (shortForm ?  altClass(bestCell) : 
+        + (form == Form.noImages ?  altClass(bestCell) : 
             altClass(symbolaCell)
             + otherCells)
             + "<td class='name'>" + name2 + "</td>\n"
-            + (shortForm ? "" : 
+            + (form == Form.noImages ? "" : 
                 "<td class='age'>" + VersionToAge.getYear(Emoji.getNewest(chars2)) + getSources(chars2, new StringBuilder(), true) + "</td>\n"
                 + "<td class='default'>" + (style == null ? "n/a" : style) + (!textChars.equals(chars2) ? "*" : "") + "</td>\n")
                 + "<td class='name'>" + getAnnotationsString(chars2) + "</td>\n"
@@ -2447,8 +2452,6 @@ public class GenerateEmoji {
     }
 
     public static String toHtmlHeaderString(Form form) {
-        boolean shortForm = form.compareTo(Form.shortForm) <= 0;
-        final boolean shortForm2 = form != Form.fullForm && form != Form.extraForm;
         StringBuilder otherCells = new StringBuilder();
         for (Source s : Emoji.Source.platformsToIncludeNormal) {
             otherCells.append("<th class='cchars'><a target='text' href='index.html#col-vendor'>" + s.shortName() + "</a></th>\n");
@@ -2457,7 +2460,7 @@ public class GenerateEmoji {
         return "<tr>"
         + "<th class='rchars'><a target='text' href='index.html#col-num'>№</a></th>\n"
         + "<th class='rchars'><a target='text' href='index.html#col-code'>Code</a></th>\n"
-        + (shortForm2
+        + (form == Form.noImages
                 ? "<th class='cchars'><a target='text' href='index.html#col-browser'>Browser</a></th>\n"
                 + "<th class='cchars'><a target='text' href='index.html#col-vendor'>Sample</a></th>\n"
                 :
@@ -2466,13 +2469,11 @@ public class GenerateEmoji {
                     + otherCells
                 )
                 // + "<th class='cchars'>Browser</th>\n"
-                + (shortForm ? "" :
-                    "<th><a target='text' href='index.html#col-name'>Name</a></th>\n"
-                    + (shortForm2 ? "" : "<th><a target='text' href='index.html#col-data'>Date</a></th>\n"
-                            + "<th><a target='text' href='index.html#col-default'>Default</a></th>\n")
-                            + "<th><a target='text' href='index.html#col-annotations'>Keywords</a></th>\n"
-                            // + "<th>Block: <i>Subhead</i></th>\n"
-                        )
+                + "<th><a target='text' href='index.html#col-name'>Name</a></th>\n"
+                + (form == Form.noImages ? "" : "<th><a target='text' href='index.html#col-data'>Date</a></th>\n"
+                        + "<th><a target='text' href='index.html#col-default'>Default</a></th>\n")
+                        + "<th><a target='text' href='index.html#col-annotations'>Keywords</a></th>\n"
+                        // + "<th>Block: <i>Subhead</i></th>\n"
                         + "</tr>";
     }
 
