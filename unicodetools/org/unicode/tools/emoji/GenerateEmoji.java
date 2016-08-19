@@ -1136,7 +1136,9 @@ public class GenerateEmoji {
                 + "<p>The default presentation choice (colorful vs gray) is discussed in "
                 + "<a href='" + TR51_HTML + "#Presentation_Style'>Presentation Style</a>. "
                 + "See also <a target='variants' href='emoji-variants.html'>Emoji Variation Sequences</a>.</p>\n", "border='1'", true);
-        outText.println("\uFEFFThis text file provides a listing of characters for testing the display of emoji characters.\n"
+        outText.println("\uFEFF"
+                + "Emoji Default Style Values, v" + Emoji.VERSION_STRING + BETA_TITLE_AFFIX + "\n"
+                + "This text file provides a listing of characters for testing the display of emoji characters.\n"
                 + "• “-vs” indicates that emoji variation selectors are not present, and a character has Emoji_Presentation=False.\n"
                 + "• “+vs” indicates that emoji variation selectors are present, and a character has Emoji_Presentation=False.\n"
                 + "For more information on presentation style, see UTR #51.");
@@ -1172,14 +1174,17 @@ public class GenerateEmoji {
         UnicodeSet zwj = new UnicodeSet();
 
         for (String s : EmojiData.EMOJI_DATA.getChars()) {
+            if (s.equals("👮‍♂️")) {
+                int debug = 0;
+            }
             String nvs = s.replace(Emoji.EMOJI_VARIANT_STRING,"");
             String vs = EmojiData.EMOJI_DATA.addEmojiVariants(nvs);
             if (nvs.contains(Emoji.JOINER_STRING)) {
                 if (nvs.equals(vs)) {
+                    zwj.add(nvs); 
+                } else {
                     zwjWithVs.add(vs);
                     zwjWoVs.add(nvs);
-                } else {
-                    zwj.add(nvs); 
                 }
             } else if (EmojiData.MODIFIERS.containsSome(nvs)) {
                 mods.add(nvs);
