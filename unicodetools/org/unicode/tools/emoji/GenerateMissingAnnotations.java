@@ -2,10 +2,10 @@ package org.unicode.tools.emoji;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumSet;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Map;
@@ -25,16 +25,22 @@ import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.Emoji.Source;
 import org.unicode.tools.emoji.EmojiAnnotations.Status;
 
+import com.google.common.base.Splitter;
 import com.google.common.collect.HashMultimap;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.text.UnicodeSet;
 
 public class GenerateMissingAnnotations {
+    static final boolean DO_MISSING = true;
     public static void main(String[] args) throws IOException {
-        countWords();
-        //generateMissing();
+        if (DO_MISSING) {
+            generateMissing();
+        } else {
+            countWords();
+        }
     }
 
     private static void countWords() {
@@ -44,7 +50,7 @@ public class GenerateMissingAnnotations {
         for (Entry<String, Set<String>> entry : EmojiOrder.STD_ORDER.orderingToCharacters.keyValuesSet()) {
             final String orderWords = entry.getKey();
             final Set<String> cps = entry.getValue();
-            System.out.println(orderWords + "\t" + cps);
+            //System.out.println(orderWords + "\t" + cps);
             for (String orderWord : orderWords.split("[-\\s]+")) {
                 for (String cp : cps) {
                     if (EmojiData.MODIFIERS.containsSome(cp)) {
@@ -81,7 +87,7 @@ public class GenerateMissingAnnotations {
         System.out.println("\nKeywords\n");
         for (R2<Long, String> s : keywordCounter.getEntrySetSortedByCount(false, null)) {
             final Long count = s.get0();
-            if (count < 2) continue;
+            if (count < 5) continue;
             final String keyword = s.get1();
             if (keyword.equals("flag")) {
                 int debug = 0;
@@ -146,6 +152,8 @@ public class GenerateMissingAnnotations {
         items.add("🏳️‍🌈").add("🇺🇳").add("🔟").freeze();
 
         TreeSet<String> sorted = items.addAllTo(new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare));
+        sorted.remove("🔟"); // keycaps done differently
+
         final String emojiDir = Settings.GEN_DIR + "emoji/";
         final String annotationDir = emojiDir + "annotations-v4.0/";
         try (PrintWriter out = FileUtilities.openUTF8Writer(emojiDir, "images.txt")) {
@@ -160,7 +168,8 @@ public class GenerateMissingAnnotations {
         Map<String, Counts> countMap = new TreeMap<>();
         for (String s : locales) {
             if (!Annotations.getAvailableLocales().contains(s) 
-                    || s.equals("en") || s.equals("ga")
+                    || s.equals("en") 
+                    //|| s.equals("ga")
                     || (s.contains("_") && !s.equals("zh_Hant")) // hack for now to reduce data size. Redo once base locales are populated
                     ) {
                 skipped.add(s);
@@ -226,25 +235,80 @@ public class GenerateMissingAnnotations {
                 }
                 tts = tts == null ? "???" : tts;
                 keywords = keywords == null || keywords.isEmpty() ? Collections.singleton("???") : keywords;
-                missing.add(getKey(s) 
-                        + "\t" + "=vlookup(A" + ++count + ",Internal!A:C,2,0)" 
-                        + "\t" + em2.getShortName(s) 
-                        + "\t" + CollectionUtilities.join(em2.getKeys(s), " | ") 
-                        + "\t\t\t" + tts 
-                        + "\t" + CollectionUtilities.join(keywords, " | ")
-                        + "\t" + "-");
-                counts.add(em2.getShortName(s), em2.getKeys(s));
+                ++count;
+                final String engShortName = em2.getShortName(s);
+                final Set<String> engKeys = em2.getKeys(s);
+                showMissingLine(missing, count, getKey(s), engShortName, engKeys, "", "", tts, keywords);
+                counts.add(engShortName, engKeys);
             }
+        }
+        String patternLabel = null;
+        showMissingLine(missing, ++count, "category-list", "{0}: {1}", "n/a");
+        counts.add("category-list", Collections.<String>emptySet());
+        showMissingLine(missing, ++count, "emoji", "emoji: {0}", "n/a");
+        counts.add("emoji", Collections.<String>emptySet());
+        showMissingLine(missing, ++count, "keycap", "keycap: {0}", "keycap");
+        counts.add("keycap", Collections.singleton("keycap"));
+
+        for (String s : Arrays.asList(
+                "person",
+                "body",
+                "place",
+                "plant",
+                "nature",
+                "animal",
+                "smiley",
+                "female",
+                "male",
+                "weather",
+                "travel",
+                "sport",
+                "flag",
+                "building",
+                "heart"
+                )) {
+            showMissingLine(missing, ++count, s, s, "n/a");
+            counts.add(s, Collections.<String>emptySet());
         }
         if (!missing.isEmpty()) {
             if (em2 != null) {
                 out.println(localeStr
-                        + "\tImage\tEnglish Name\tEnglish Keywords\tNative Name\tNative Keywords\tName (constructed!)\tNative Keywords (constructed!)\t-");
+                        + "\tImage\tEnglish Name\tEnglish Keywords\tNative Name\tNative Keywords\tFYI Name (constructed!)\tFYI Native Keywords (constructed!)\t-\tInternal GTN\tInternal GTK");
             }
             for (String s : missing) {
                 out.println(s);
             }
         }
         return em;
+    }
+    
+    static final Splitter BAR = Splitter.on('|').trimResults();
+
+    private static void showMissingLine(Set<String> missing, int count, String label, String engShortName, String englishKeywords) {
+        String nativeKeys = englishKeywords.equals("n/a") ? "n/a" : "";
+        showMissingLine(missing, count, label, 
+                engShortName, ImmutableSet.copyOf(BAR.splitToList(englishKeywords)), 
+                "", nativeKeys, 
+                "n/a", Collections.singleton(nativeKeys.isEmpty() ? "???" : nativeKeys));
+    }
+
+    private static void showMissingLine(Set<String> missing, int count, 
+            String emoji, 
+            String engShortName, Set<String> engKeys,
+            String nativeShortName, String nativeKeys, 
+            String fyiShortName, Set<String> fyiKeywords) {
+        final String image = emoji.contains("_") ? "=vlookup(A" + count + ",Internal!A:C,2,0)" : "n/a";
+        missing.add(emoji 
+                + "\t" + image 
+                + "\t" + engShortName 
+                + "\t" + CollectionUtilities.join(engKeys, " | ") 
+                + "\t" + nativeShortName
+                + "\t" + nativeKeys
+                + "\t" + fyiShortName 
+                + "\t" + CollectionUtilities.join(fyiKeywords, " | ")
+                + "\t" + "-"
+                + "\t" + (nativeShortName.isEmpty() ? "=googletranslate(E" + count + ",A$1,\"en\")" : "n/a")
+                + "\t" + (nativeKeys.isEmpty() ? "=googletranslate(regexreplace(F" + count + ",\"\\s*\\|\\s*\",\"/ \"),A$1,\"en\")" : "n/a")
+                );
     }
 }

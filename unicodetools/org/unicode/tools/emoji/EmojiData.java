@@ -717,6 +717,10 @@ public class EmojiData {
         if (name != null) {
             return (toLower ? name.toLowerCase(Locale.ENGLISH) : name);
         }
+        if (s.equals("🇺🇳")) {
+            name = "United Nations";
+            return (toLower ? name.toLowerCase(Locale.ENGLISH) : name);
+        }
         throw new IllegalArgumentException("no name for " + s + " " + Utility.hex(s));
     }
 
@@ -864,7 +868,15 @@ public class EmojiData {
 
 
     public static void main(String[] args) {
+        EmojiData lastReleasedData = new EmojiData(Emoji.VERSION_LAST_RELEASED);
         EmojiData betaData = new EmojiData(Emoji.VERSION_BETA);
+        showDiff("Emoji", "v3.0", lastReleasedData.getSingletonsWithoutDefectives(),
+                "v4.0", betaData.getSingletonsWithoutDefectives());
+        showDiff("Emoji_Presentation", "v3.0", lastReleasedData.getEmojiPresentationSet(),
+                "v4.0", betaData.getEmojiPresentationSet());
+        showDiff("Emoji_Modifier_Base", "v3.0", lastReleasedData.getModifierBases(),
+                "v4.0", betaData.getModifierBases());
+
         String name = betaData.getName("🏂🏻", false);
         String name2 = betaData.getName("🏂🏻", true);
 
@@ -876,7 +888,6 @@ public class EmojiData {
         for (String s : betaData.allEmojiWithDefectives) {
             System.out.println(Emoji.show(s));
         }
-        EmojiData lastReleasedData = new EmojiData(Emoji.VERSION_LAST_RELEASED);
         String test = Utility.fromHex("1F482 200D 2640");
         betaData.addEmojiVariants(test, Emoji.EMOJI_VARIANT);
         //        for (String s : betaData.getZwjSequencesNormal()) {
@@ -937,6 +948,22 @@ public class EmojiData {
         System.out.println("Keycap0 " + betaData.getSortingChars().contains("0" + Emoji.KEYCAP_MARK_STRING));
         System.out.println("KeycapE " + betaData.getSortingChars().contains("0" + Emoji.EMOJI_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
         System.out.println("KeycapT " + betaData.getSortingChars().contains("0" + Emoji.TEXT_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
+    }
+
+    private static void showDiff(String title, String string1, UnicodeSet set1, String string2, UnicodeSet set2) {
+        int count = showAminusB(title, string1, set1, string2, set2);
+        count += showAminusB(title, string2, set2, string1, set1);
+        if (count == 0) {
+            System.out.println("Diff " + title + ": <none>");
+        }
+    }
+
+    private static int showAminusB(String title, String string1, UnicodeSet set1, String string2, UnicodeSet set2) {
+        UnicodeSet firstMinusSecond = new UnicodeSet(set1).removeAll(set2);
+        if (!firstMinusSecond.isEmpty()) {
+            System.out.println("Diff " + title + ": " + string1 + " - " + string2 + ": " + firstMinusSecond);
+        }
+        return firstMinusSecond.size();
     }
 
     /**
