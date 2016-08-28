@@ -1031,11 +1031,17 @@ public class GenerateEmoji {
                 + (showUca ? "for Emoji Ordering " : "")
                 + "indicate the rough categories that are used to organize related characters together. "
                 + "The categories are rough, and any character can fit in multiple categories: "
-                + "<i>they may change at any time, and should not be used in production.</i></p>"
-                + "<p>The <a target='style' href='emoji-sequences.html#modifier_sequences'>modifier sequences</a> are <i>omitted</i> for brevity, "
-                + "because they are simply ordered after their emoji modifier bases. Emoji without available images are shown as ✘; hovering with a mouse will show the name."
-                + (showUca ? "The cell divisions for the Default Unicode Collation Order are Unicode code-chart blocks. " : "")
-                + "To make suggestions for improvements, please file a " + getCldrTicket("collation", "Emoji ordering suggestions") + ".</p>\n", "border='1'", true);
+                + "<i>they may change at any time, and should not be used in production.</i> "
+                + "To make suggestions for improvements, please file a " + getCldrTicket("collation", "Emoji ordering suggestions") + ".</p>"
+                + "<p>The <a target='style' href='emoji-sequences.html#modifier_sequences'>modifier sequences</a> are omitted for brevity, "
+                + "because they are simply ordered after their emoji modifier bases. "
+                + "In the CLDR collation rules, the emoji modifiers cause a secondary difference. See also the machine-readable files: "
+                + "<a target='text' href='emoji-ordering.txt'>emoji-ordering.txt</a>"
+                + " and "
+                + "<a target='text' href='emoji-ordering-rules.txt'>emoji-ordering-rules.txt</a>"
+                + "</p>\n"
+                + (showUca ? "<p>The cell divisions for the Default Unicode Collation Order are Unicode code-chart blocks. </p>\n" : "")
+                , "border='1'", true);
 
         final Set<Entry<String, Set<String>>> keyValuesSet = EmojiOrder.STD_ORDER.orderingToCharacters.keyValuesSet();
         final int rows = keyValuesSet.size();
@@ -1807,7 +1813,7 @@ public class GenerateEmoji {
 
     static final String         FULL_LINK          = "<a href='full-emoji-list.html' target='full'>Full Emoji List</a>";
 
-    private static final String HOVER_INSTRUCTIONS = "Hovering over an emoji shows the name; clicking goes to the " + FULL_LINK + " entry for that emoji.";
+    private static final String HOVER_INSTRUCTIONS = "Emoji without available images are shown as ✘. Hovering over an emoji shows the name; clicking goes to the " + FULL_LINK + " entry for that emoji.";
 
     public static void displayUnicodeSet(PrintWriter out,
             Collection<String> sorted, Style showEmoji, int maxPerLine, int colSpan, int rowSpan,
@@ -1989,7 +1995,7 @@ public class GenerateEmoji {
                 + "<h1>" + fullTitle + BETA_HEADER_AFFIX + "</h1>\n"
                 //+ "<p><b>" + chartIndex + "</b></p>\n"
                 + firstLine
-                + "<p>For information about the images used in these charts, see <a href='../images.html'>Emoji Images and Rights</a>. "
+                + "<p style='font-size: 80%'>For information about the images used in these charts, see <a href='../images.html'>Emoji Images and Rights</a>. "
                 + "For details about the format and fields, see " + chartIndex + ". "
                 + "Support of emoji is not required for conformance to the Unicode Standard — for more information about emoji, see " + UTR_LINK + ". " 
                 + (showGeneralComments ? HOVER_INSTRUCTIONS : "")
@@ -2154,7 +2160,9 @@ public class GenerateEmoji {
 
     static void printCollationOrder() throws IOException {
         try (
-                PrintWriter outText = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-ordering-list.txt")) {
+                PrintWriter outText = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-ordering.txt")) {
+            outText.append("# Machine-readable version of the emoji ordering.\n"
+                    + "# Note that the skin-tone modifiers are primary-ignorable in the CLDR collation rules.\n");
             for (String s : SORTED_ALL_EMOJI_CHARS_SET) {
                 outText.println(Emoji.toUHex(s) 
                         + " ; " + Emoji.getNewest(s).getShortName() 
@@ -2163,10 +2171,8 @@ public class GenerateEmoji {
             }
         }
         try (
-                PrintWriter outText = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-ordering.txt")) {
-            outText.append("<!-- emoji-ordering.txt\n"
-                    + "\tFor details about the format and other information, see " + TR51_HTML + "#Data_Files" + ".\n"
-                    + "\thttp://unicode.org/cldr/trac/ticket/7270 -->\n"
+                PrintWriter outText = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-ordering-rules.txt")) {
+            outText.append("<!-- Machine-readable version of the emoji ordering, for inclusion in CLDR. -->\n"
                     + "<collation type='emoji'>\n"
                     + "<cr><![CDATA[\n"
                     + "# START AUTOGENERATED EMOJI ORDER\n");
