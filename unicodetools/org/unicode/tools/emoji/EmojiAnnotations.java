@@ -21,6 +21,7 @@ import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.SimpleFormatter;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
 
@@ -30,6 +31,8 @@ public class EmojiAnnotations extends Birelation<String,String> {
     final Map<String,UnicodeSet> TO_UNICODE_SET;
     final private UnicodeMap<String> shortNames = new UnicodeMap<>();
     final private UnicodeMap<Status> statusValues = new UnicodeMap<>();
+    
+
 
     // Add to CLDR
     private static final UnicodeSet MALE_SET = new UnicodeSet("[👦  👨  👴 🎅   🤴  🤵  👲🕴 🕺]");
@@ -79,6 +82,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
         Output<String> outShortName = new Output<>();
         for (String s : EmojiData.EMOJI_DATA.getChars()) {
             keywords.clear();
+            final String sNoVariants = s.replace(Emoji.EMOJI_VARIANT_STRING, "");
             Status status = loader.getNameAndAnnotations(s, keywords, outShortName);
             if (status != Status.missing) {
                 if (outShortName.value == null || keywords.isEmpty()) {
@@ -88,8 +92,16 @@ public class EmojiAnnotations extends Birelation<String,String> {
             for (String annotation : keywords) {
                 add(annotation, s);
             }
+            if (!s.equals(sNoVariants)) {
+                for (String annotation : keywords) {
+                    add(annotation, sNoVariants);
+                }
+            }
             statusValues.put(s,status);
             shortNames.put(s, outShortName.value);
+            if (!s.equals(sNoVariants)) {
+                shortNames.put(sNoVariants, outShortName.value);
+            }
         }
         statusValues.freeze();
         shortNames.freeze();
@@ -274,6 +286,9 @@ public class EmojiAnnotations extends Birelation<String,String> {
         final UnicodeMap<Annotations> data;
         final SimpleFormatter sep;
         final boolean isEnglish;
+        private final SimpleFormatter KEYCAP_PATTERN;
+        private final SimpleFormatter COMBINE_PATTERN;
+        
         static final UnicodeSet FAMILY_PLUS = new UnicodeSet(Emoji.FAMILY_MARKERS)
         .add(Emoji.JOINER)
         .add(Emoji.EMOJI_VARIANT)
@@ -286,6 +301,8 @@ public class EmojiAnnotations extends Birelation<String,String> {
             this.isEnglish = cldrFile.getLocaleID().equals("en");
             this.data = data;
             //           <listPatternPart type="2">{0}, {1}</listPatternPart>  type="unit-short"
+            this.KEYCAP_PATTERN = SimpleFormatter.compile(cldrFile.getStringValue("//ldml/characterLabels/characterLabelPattern[@type=\"keycap\"]"));
+            this.COMBINE_PATTERN = SimpleFormatter.compile(cldrFile.getStringValue("//ldml/characterLabels/characterLabelPattern[@type=\"category-list\"]"));
             sep = SimpleFormatter.compile(cldrFile.getStringValue("//ldml/listPatterns/listPattern[@type=\"unit-short\"]/listPatternPart[@type=\"2\"]"));
         }
 
@@ -312,7 +329,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
                 }
             }
             if (datum != null) {
-                outShortName.value = fix(s, null, datum.tts);
+                outShortName.value = fix(s, sep, null, datum.tts);
                 keywordsToAppendTo.addAll(datum.annotations);
                 return Status.found;
             } else if (Emoji.REGIONAL_INDICATORS.containsAll(s)) {
@@ -322,12 +339,11 @@ public class EmojiAnnotations extends Birelation<String,String> {
                 return outShortName.value == null ? Status.missing : Status.found;
             } else if (s.contains(Emoji.KEYCAP_MARK_STRING)) {
                 Annotations keycapDatum = data.get("🔟");
+                outShortName.value = fix(s, sep, outShortName.value, KEYCAP_PATTERN.format(UTF16.valueOf(s.charAt(0))));
                 if (keycapDatum != null && keycapDatum.tts.contains("#")) {
-                    outShortName.value = fix(s, outShortName.value, keycapDatum.tts.replace('#', s.charAt(0)));
                     keywordsToAppendTo.addAll(keycapDatum.annotations);
-                    return Status.found;
                 }
-                return Status.missing;
+                return Status.found;
             } else if (EmojiData.MODIFIERS.containsSome(s)) {
                 // TODO Handle multiple modifiers
                 String rem = EmojiData.MODIFIERS.stripFrom(s, false);
@@ -339,7 +355,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
                 Status status = getNameAndAnnotations(s, keywordsToAppendTo, outShortName);
                 Annotations skinDatum = data.get(rem.codePointAt(0));
                 if (skinDatum != null) {
-                    outShortName.value = fix(s, outShortName.value, skinDatum.tts);
+                    outShortName.value = fix(s, sep, outShortName.value, skinDatum.tts);
                     keywordsToAppendTo.add(skinDatum.tts);
                     status = Status.found;
                 } else {
@@ -354,12 +370,13 @@ public class EmojiAnnotations extends Birelation<String,String> {
             } else if (s.contains(Emoji.JOINER_STRING)) {
                 // shortName = EmojiData.EMOJI_DATA.getName(s, true);
                 Status status = Status.constructed;
+                String base = null;
                 //s = s.replace(Emoji.JOINER_STRING,"");
                 if (s.contains(KISS)) {
                     Annotations familyDatum = data.get("💏");
                     s = s.replace(KISS, "");
                     if (familyDatum != null) {
-                        outShortName.value = fix(s, outShortName.value, familyDatum.tts);
+                        base = familyDatum.tts; 
                         keywordsToAppendTo.addAll(familyDatum.annotations);
                         status = Status.found;
                     } else {
@@ -369,7 +386,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
                     Annotations familyDatum = data.get("💑");
                     s = s.replace(HEART, "");
                     if (familyDatum != null) {
-                        outShortName.value = fix(s, outShortName.value, familyDatum.tts);
+                        base = familyDatum.tts; 
                         keywordsToAppendTo.addAll(familyDatum.annotations);
                         status = Status.found;
                     } else {
@@ -378,7 +395,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
                 } else if (FAMILY_PLUS.containsAll(s)) {
                     Annotations familyDatum = data.get("👪");//        <annotation cp="👪" type="tts">Familie</annotation>
                     if (familyDatum != null) {
-                        outShortName.value = fix(s, outShortName.value, familyDatum.tts);
+                        base = familyDatum.tts; 
                         keywordsToAppendTo.addAll(familyDatum.annotations);
                         status = Status.found;
                     } else {
@@ -389,7 +406,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
                     s = Emoji.GENDER_MARKERS.stripFrom(s, true);
                     Annotations familyDatum = data.get(rem.contains("♂") ? "👨" : "👩");//        <annotation cp="👪" type="tts">Familie</annotation>
                     if (familyDatum != null) {
-                        outShortName.value = fix(s, outShortName.value, familyDatum.tts);
+                        outShortName.value = fix(s, sep, outShortName.value, familyDatum.tts);
                         keywordsToAppendTo.addAll(familyDatum.annotations);
                         status = Status.gender;
                     } else {
@@ -402,13 +419,16 @@ public class EmojiAnnotations extends Birelation<String,String> {
                     }
                     Annotations partDatum = data.get(cp);
                     if (partDatum != null) {
-                        outShortName.value = fix(s, outShortName.value, partDatum.tts);
+                        outShortName.value = fix(s, sep, outShortName.value, partDatum.tts);
                         keywordsToAppendTo.addAll(partDatum.annotations);
                     } else {
-                        outShortName.value = fix(s, outShortName.value, "???");
+                        outShortName.value = fix(s, sep, outShortName.value, "???");
                         keywordsToAppendTo.add("???");
                         status = Status.missing;
                     }
+                }
+                if (base != null) {
+                    outShortName.value = COMBINE_PATTERN.format(base, outShortName.value);
                 }
                 return status;
             }
@@ -421,8 +441,8 @@ public class EmojiAnnotations extends Birelation<String,String> {
             return Status.missing;
         }
 
-        private String fix(String cps, String oldTts, String tts) {
-            return oldTts == null ? tts : sep.format(oldTts, tts);
+        private String fix(String cps, SimpleFormatter simpleFormatter, String oldTts, String tts) {
+            return oldTts == null ? tts : simpleFormatter.format(oldTts, tts);
         }
     }
 
@@ -463,27 +483,23 @@ public class EmojiAnnotations extends Birelation<String,String> {
         LinkedHashSet<String> missing = new LinkedHashSet<>();
 
         for (String s : sorted) {
-            //            keywords.clear();
-            //            String shortName = getNameAndAnnotations(s, english, data, keywords);
-            String shortName = EmojiAnnotations.ANNOTATIONS_TO_CHARS.shortNames.get(s);
-            Set<String> keywords = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(s);
-            if (shortName == null) {
-                missing.add(s);
-                continue;
+            show(s, missing);
+            String sNoVariants = s.replace(Emoji.EMOJI_VARIANT_STRING, "");
+            if (!s.equals(sNoVariants)) {
+                show(sNoVariants, missing);
             }
-            //            if (s.endsWith("♀️") && !s.equals("♀️") && !EmojiData.MODIFIERS.containsSome(s)) {
-            //                int first = s.codePointAt(0);
-            //                System.out.println("case \"" + UTF16.valueOf(first) + "\": return \""
-            //                        + shortName.replace("woman", "person")
-            //                        .replace("women", "people")
-            //                        .replace("female", "person")
-            //                        + "\";");
-            //                //             case "👮": return "police officer";
-            //
-            //            }
-            System.out.println(s + "\t" + shortName + "\t" + CollectionUtilities.join(keywords, " | "));
         }
         System.out.println("Missing: " + missing);
+    }
+
+    private static void show(String s, LinkedHashSet<String> missing) {
+        String shortName = EmojiAnnotations.ANNOTATIONS_TO_CHARS.shortNames.get(s);
+        Set<String> keywords = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(s);
+        if (shortName == null) {
+            missing.add(s);
+            return;
+        }
+        System.out.println(s + "\t" + shortName + "\t" + CollectionUtilities.join(keywords, " | "));
     }
 
     //    public static String stripModifiers(String source, Output<String> modsFound) {
