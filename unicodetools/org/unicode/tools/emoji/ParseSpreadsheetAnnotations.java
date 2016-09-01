@@ -45,6 +45,7 @@ import com.ibm.icu.util.Output;
 import com.ibm.icu.util.ULocale;
 
 public class ParseSpreadsheetAnnotations {
+    enum Target {annotations, main};
 
     private static final CLDRConfig CONFIG = CLDRConfig.getInstance();
     private static final String SOURCE_DIR = CLDRPaths.DATA_DIRECTORY + "emoji/annotations_import";
@@ -518,38 +519,46 @@ public class ParseSpreadsheetAnnotations {
             }
         }
 
-        try (PrintWriter out = BagFormatter.openUTF8Writer(TARGET_DIR, "modify_config.txt")) {
-            for (Entry<String, UnicodeMap<NewAnnotation>> entry : localeToNewAnnotations.entrySet()) {
-                String locale = entry.getKey();
-                Multimap<ItemType, String> missingFromLocale = missing.get(locale);
 
-                UnicodeMap<NewAnnotation> map = entry.getValue();
-                for (Entry<String, NewAnnotation> entry2 : map.entrySet()) {
-                    String codepoints = entry2.getKey();
-                    if (codepoints.equals("⛹️‍♀")) {
-                        int debug = 0;
-                    }
-                    NewAnnotation emoji = entry2.getValue();
-                    if (emoji.annotationProblems.isEmpty()) {
-                        showConfigLine(out, locale, codepoints, "", emoji.keywords);
-                        missingFromLocale.remove(ItemType.keywords, codepoints);
-                    }
-                    if (emoji.shortNameProblems.isEmpty()) {
-                        showConfigLine(out, locale, codepoints, "[@type=\"tts\"]", emoji.shortName);
-                        missingFromLocale.remove(ItemType.short_name, codepoints);
+        try (PrintWriter out = BagFormatter.openUTF8Writer(TARGET_DIR, "modify_config.txt")) {
+            Target target = Target.main;
+            if (target == Target.annotations) {
+                for (Entry<String, UnicodeMap<NewAnnotation>> entry : localeToNewAnnotations.entrySet()) {
+                    String locale = entry.getKey();
+                    Multimap<ItemType, String> missingFromLocale = missing.get(locale);
+
+                    UnicodeMap<NewAnnotation> map = entry.getValue();
+                    for (Entry<String, NewAnnotation> entry2 : map.entrySet()) {
+                        String codepoints = entry2.getKey();
+                        if (codepoints.equals("⛹️‍♀")) {
+                            int debug = 0;
+                        }
+                        NewAnnotation emoji = entry2.getValue();
+                        if (emoji.annotationProblems.isEmpty()) {
+                            writeConfigLine(out, locale, ItemType.keywords, codepoints, emoji.keywords);
+                            missingFromLocale.remove(ItemType.keywords, codepoints);
+                        }
+                        if (emoji.shortNameProblems.isEmpty()) {
+                            writeConfigLine(out, locale, ItemType.short_name, codepoints, emoji.shortName);
+                            missingFromLocale.remove(ItemType.short_name, codepoints);
+                        }
                     }
                 }
-            }
-            for (Entry<String, Map<ItemType, Map<String, String>>> localeAndItemTypeToLabelCodeToTrans : localeToLabelCodeToTrans.entrySet()) {
-                String locale = localeAndItemTypeToLabelCodeToTrans.getKey();
-                for (Entry<ItemType, Map<String, String>> itemTypeAndLabelCodeToTrans : localeAndItemTypeToLabelCodeToTrans.getValue().entrySet()) {
-                    ItemType itemType = itemTypeAndLabelCodeToTrans.getKey();
+            } else {
+                for (Entry<String, Map<ItemType, Map<String, String>>> localeAndItemTypeToLabelCodeToTrans : localeToLabelCodeToTrans.entrySet()) {
+                    String locale = localeAndItemTypeToLabelCodeToTrans.getKey();
                     Multimap<ItemType, String> missingFromLocale = missing.get(locale);
-                    for (Entry<String, String> labelToTrans : itemTypeAndLabelCodeToTrans.getValue().entrySet()) {
-                        String codepoint = labelToTrans.getKey();
-                        String charLabel = labelToTrans.getValue();
-                        showConfigLabels(out, locale, codepoint, charLabel);
-                        missingFromLocale.remove(itemType, codepoint);
+                    for (Entry<ItemType, Map<String, String>> itemTypeAndLabelCodeToTrans : localeAndItemTypeToLabelCodeToTrans.getValue().entrySet()) {
+                        ItemType itemType = itemTypeAndLabelCodeToTrans.getKey();
+                        for (Entry<String, String> labelToTrans : itemTypeAndLabelCodeToTrans.getValue().entrySet()) {
+                            String labelCode = labelToTrans.getKey();
+                            String charLabel = labelToTrans.getValue();
+                            if (itemType == ItemType.label_pattern && !labelCode.equals("category-list")) {
+                                continue;
+                            }
+                            writeConfigLine(out, locale, itemType, labelCode, charLabel);
+                            missingFromLocale.remove(itemType, labelCode);
+                        }
                     }
                 }
             }
@@ -568,18 +577,11 @@ public class ParseSpreadsheetAnnotations {
         }
     }
 
+
     private static String getKey(ItemType itemType, String key) {
         return itemType == ItemType.keywords || itemType == ItemType.short_name 
                 ? GenerateMissingAnnotations.getKey(key)
                         : key;
-    }
-
-    private static void showConfigLabels(PrintWriter out, String locale, String codepoint, String charLabel) {
-        System.out.println("Config Label TODO: " + locale + "\t" + codepoint + "\t" + charLabel);
-    }
-
-    private static void showConfigTerritory(PrintWriter out, String locale, String codepoint, String shortName, String abbreviation) {
-        System.out.println("Config Territory TODO: " + locale + "\t" + shortName + "\t" + abbreviation);
     }
 
     private static void addDuplicates2(String localeName, ItemType itemType, final String translation, String CLDR, Collection<String> keys,
@@ -614,18 +616,12 @@ public class ParseSpreadsheetAnnotations {
             englishName = englishAnnotations.getShortName(code1);
             break;
         case label: 
-            //      <characterLabel type="activities">activity</characterLabel>
-            englishName = ENGLISH.getStringValue("//ldml/characterLabels/characterLabel[@type=\"" + code1 + "\"]");
-            break;
         case label_pattern: 
-            //      <characterLabelPattern type="all">{0} — all</characterLabelPattern>
-            englishName = ENGLISH.getStringValue("//ldml/characterLabels/characterLabelPattern[@type=\"" + code1 + "\"]");
-            break;
         case region:
-            englishName = "United Nations";
-            break;
         case region_short:
-            englishName = "UN";
+            englishName = ENGLISH.getStringValue(getLabelPath(itemType, code1));
+            //englishName = "United Nations";
+            //englishName = "UN";
             break;
         default: 
             throw new IllegalArgumentException();
@@ -633,6 +629,26 @@ public class ParseSpreadsheetAnnotations {
         return englishName == null 
                 ? "???" 
                         : englishName;
+    }
+
+
+    private static String getLabelPath(ItemType itemType, String code1) {
+        switch (itemType) {
+        case label:
+            return "//ldml/characterLabels/characterLabel[@type=\"" + code1 + "\"]";
+        case label_pattern:
+            return "//ldml/characterLabels/characterLabelPattern[@type=\"" + code1 + "\"]";
+        case region:
+            return "//ldml/localeDisplayNames/territories/territory[@type=\"" + code1 + "\"]";
+        case region_short:
+            return "//ldml/localeDisplayNames/territories/territory[@type=\"" + code1 + "\"][@alt=\"short\"]";
+        case keywords:
+            return "//ldml/annotations/annotation[@cp=\"" + code1 + "\"]";
+        case short_name:
+            return "//ldml/annotations/annotation[@cp=\"" + code1 + "\"][@type=\"tts\"]";
+        default:
+            throw new IllegalArgumentException();
+        }
     }
 
     /*
@@ -858,10 +874,9 @@ public class ParseSpreadsheetAnnotations {
         return annotations;
     }
 
-    private static void showConfigLine(PrintWriter out, String locale, String codepoints, String type, String value) {
+    private static void writeConfigLine(PrintWriter out, String locale, ItemType itemType, String codepoints, String value) {
         out.println("locale=" + locale
-                + " ; action=addNew ; new_path=//ldml/annotations/annotation[@cp=\"" + codepoints + "\"]"
-                + type
+                + " ; action=addNew ; new_path=" + getLabelPath(itemType, codepoints)
                 + " ; new_value=" + TransliteratorUtilities.toXML.transform(value)
                 );
     }
