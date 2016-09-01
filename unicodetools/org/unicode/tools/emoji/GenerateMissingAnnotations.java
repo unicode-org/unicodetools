@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -34,6 +35,47 @@ import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.text.UnicodeSet;
 
 public class GenerateMissingAnnotations {
+    private final static EmojiAnnotations ENGLISH = new EmojiAnnotations("en", EmojiOrder.STD_ORDER.codepointCompare);
+    public final static Set<String> SORTED;
+    static {
+        UnicodeSet items = new UnicodeSet();
+
+        for (String s : EmojiImageData.getSupported(Source.google)) {
+            if ((ENGLISH.getStatus(s) != Status.found)
+                    || Emoji.REGIONAL_INDICATORS.containsSome(s)
+                    || EmojiData.MODIFIERS.containsSome(s)
+                    || s.contains(Emoji.KEYCAP_MARK_STRING)
+                    //|| s.contains(Emoji.JOINER_STRING)
+                    ) {
+                continue;
+            }
+            items.add(s);
+        }
+        items.add("🏳️‍🌈").add("🇺🇳").add("🔟").freeze();
+
+        TreeSet<String> sorted = items.addAllTo(new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare));
+        sorted.remove("🔟"); // keycaps done differently
+        SORTED = ImmutableSet.copyOf(sorted);
+    }
+
+    public static final Set<String> LABELS = ImmutableSet.of(
+            "person",
+            "body",
+            "place",
+            "plant",
+            "nature",
+            "animal",
+            "smiley",
+            "female",
+            "male",
+            "weather",
+            "travel",
+            "sport",
+            "flag",
+            "building",
+            "heart"
+            );
+    
     static final boolean DO_MISSING = true;
     public static void main(String[] args) throws IOException {
         if (DO_MISSING) {
@@ -135,32 +177,14 @@ public class GenerateMissingAnnotations {
         final CLDRConfig config = CLDRConfig.getInstance();
         Set<String> locales = config.getStandardCodes().getLocaleCoverageLocales(Organization.google, EnumSet.of(Level.MODERN));
 
-        UnicodeSet items = new UnicodeSet();
-        EmojiAnnotations em = new EmojiAnnotations("en", EmojiOrder.STD_ORDER.codepointCompare);
-
-        for (String s : EmojiImageData.getSupported(Source.google)) {
-            if ((em.getStatus(s) != Status.found)
-                    || Emoji.REGIONAL_INDICATORS.containsSome(s)
-                    || EmojiData.MODIFIERS.containsSome(s)
-                    || s.contains(Emoji.KEYCAP_MARK_STRING)
-                    //|| s.contains(Emoji.JOINER_STRING)
-                    ) {
-                continue;
-            }
-            items.add(s);
-        }
-        items.add("🏳️‍🌈").add("🇺🇳").add("🔟").freeze();
-
-        TreeSet<String> sorted = items.addAllTo(new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare));
-        sorted.remove("🔟"); // keycaps done differently
 
         final String emojiDir = Settings.GEN_DIR + "emoji/";
         final String annotationDir = emojiDir + "annotations-v4.0/";
         try (PrintWriter out = FileUtilities.openUTF8Writer(emojiDir, "images.txt")) {
-            for (String s : sorted) {
+            for (String s : SORTED) {
                 out.println(getKey(s) 
                         + "\t" + s
-                        + "\t" + em.getShortName(s));
+                        + "\t" + ENGLISH.getShortName(s));
             }
         }
 
@@ -178,7 +202,7 @@ public class GenerateMissingAnnotations {
             Counts counts = new Counts();
             try (PrintWriter out = FileUtilities.openUTF8Writer(annotationDir, s + ".tsv")) {
                 System.out.println(s + "\t" + config.getEnglish().getName(s));
-                doAnnotations(s, out, em, sorted, counts);
+                doAnnotations(s, out, ENGLISH, SORTED, counts);
                 countMap.put(s, counts);
             }
         }
@@ -210,11 +234,11 @@ public class GenerateMissingAnnotations {
         }
     }
 
-    private static String getKey(String s) {
+    public static String getKey(String s) {
         return "_" + Utility.hex(s,"_").toLowerCase(Locale.ROOT).replace("_fe0f", "");
     }
 
-    private static EmojiAnnotations doAnnotations(final String localeStr, PrintWriter out, EmojiAnnotations em2, TreeSet<String> sorted, Counts counts) {
+    private static EmojiAnnotations doAnnotations(final String localeStr, PrintWriter out, EmojiAnnotations em2, Set<String> sorted, Counts counts) {
         EmojiAnnotations em = new EmojiAnnotations(localeStr, EmojiOrder.STD_ORDER.codepointCompare);
         Set<String> missing = new LinkedHashSet<>();
         int maxLen = 32;
@@ -250,23 +274,7 @@ public class GenerateMissingAnnotations {
         showMissingLine(missing, ++count, "keycap", "keycap: {0}", "keycap");
         counts.add("keycap", Collections.singleton("keycap"));
 
-        for (String s : Arrays.asList(
-                "person",
-                "body",
-                "place",
-                "plant",
-                "nature",
-                "animal",
-                "smiley",
-                "female",
-                "male",
-                "weather",
-                "travel",
-                "sport",
-                "flag",
-                "building",
-                "heart"
-                )) {
+        for (String s : LABELS) {
             showMissingLine(missing, ++count, s, s, "n/a");
             counts.add(s, Collections.<String>emptySet());
         }
