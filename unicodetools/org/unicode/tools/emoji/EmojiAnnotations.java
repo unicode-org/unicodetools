@@ -1,11 +1,9 @@
 package org.unicode.tools.emoji;
 
-import java.lang.annotation.Annotation;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -14,7 +12,6 @@ import java.util.TreeSet;
 
 import org.unicode.cldr.util.Annotations;
 import org.unicode.cldr.util.Annotations.AnnotationSet;
-import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.text.utility.Birelation;
@@ -50,7 +47,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
     //            "sts."));
 
     public static final EmojiAnnotations          ANNOTATIONS_TO_CHARS        = new EmojiAnnotations("en", EmojiOrder.STD_ORDER.codepointCompare);
-
+    public static final AnnotationSet ANNOTATION_SET = Annotations.getDataSet("en");
     /**
      * @deprecated Use {@link #EmojiAnnotations(String,Comparator<String>,String...)} instead
      */

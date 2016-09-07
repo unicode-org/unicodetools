@@ -1,4 +1,5 @@
 table {
+	clear: both;
 	border-collapse: collapse;
 	border: silver solid 1px;
 }
@@ -6,6 +7,7 @@ table {
 td, th {
 	border: silver solid 1px;
 	vertical-align: top;
+	font-size: 90%;
 }
 
 th {
@@ -161,10 +163,19 @@ body {
 }
 
 .aacButton {
-	height: 110;
-	width: 95;
+	border: silver solid 1px;
+	height: auto;
+	width: auto;
+	text-align: center;
     float: right;
     margin: 0.5em 0 1em 1em;
+}
+
+.aacImage {
+    margin-left: auto;
+    margin-right: auto;
+	height: auto;
+	width: auto;
 }
 
 A.bar {
@@ -198,6 +209,7 @@ A.bar:active, A.bar:hover {
 }
 .main {
 	margin:1em;
+	font-size: 90%;
 }
 .logo {
 	border-style: none;

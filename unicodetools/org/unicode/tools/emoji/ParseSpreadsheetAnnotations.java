@@ -64,7 +64,7 @@ public class ParseSpreadsheetAnnotations {
         NEED_CHARACTER_CODE, NEED_CODE
     }
 
-    static final Splitter BAR = Splitter.onPattern("[।|၊/]").trimResults().omitEmptyStrings();
+    static final Splitter BAR = Splitter.onPattern("[।|၊]").trimResults().omitEmptyStrings();
     static final Joiner BAR_JOINER = Joiner.on(" | ");
     private static final String DEBUG_CODEPOINT = new StringBuilder().appendCodePoint(0x1f951).toString();
     //private static UnicodeSet OK_CODEPOINTS = new UnicodeSet("[\\-[:L:][:M:][:Nd:]\\u0020/|“”„’,.\u200C\u200D\u05F4\u104D\u2018]").freeze();
@@ -864,25 +864,21 @@ public class ParseSpreadsheetAnnotations {
                                                     ? ItemType.label_pattern 
                                                             : ItemType.label;
                                     Output<Boolean> isOkOut = new Output<>();
-                                    shortName = localeInfo.check(codePoint, itemType, shortName, isOkOut);
-
-                                    if (isOkOut.value) { // skipping bad value.
-                                        addItem(itemTypeTolabelCodeToTrans, itemType, codePoint, shortName);
-
-                                        // hack for keycap, emoji
-
-                                        if (itemType == ItemType.label_pattern && isOkOut.value && annotations.isEmpty()
-                                                && (codePoint.equals("keycap") || codePoint.equals("emoji"))) {
-                                            annotations = shortName.replace("{0}","").trim();
-                                            while (!annotations.isEmpty()) {
-                                                int last = annotations.codePointBefore(annotations.length());
-                                                if (ALPHA.contains(last)) {
-                                                    addItem(itemTypeTolabelCodeToTrans, ItemType.label, codePoint, annotations);
-                                                    break;
-                                                }
-                                                annotations = annotations.substring(0,annotations.length()-Character.charCount(last));
+                                    if ((codePoint.equals("keycap") || codePoint.equals("emoji"))) {
+                                        shortName = shortName.replace("{0}","").trim();
+                                        while (!shortName.isEmpty()) {
+                                            int last = shortName.codePointBefore(shortName.length());
+                                            if (ALPHA.contains(last)) {
+                                                addItem(itemTypeTolabelCodeToTrans, ItemType.label, codePoint, annotations);
+                                                break;
                                             }
+                                            shortName = shortName.substring(0,shortName.length()-Character.charCount(last));
                                         }
+                                    }
+                                    shortName = localeInfo.check(codePoint, itemType, shortName, isOkOut);
+                                    if (isOkOut.value) { // skipping bad value.
+                                        // hack for keycap, emoji
+                                        addItem(itemTypeTolabelCodeToTrans, itemType, codePoint, shortName);
                                     }
                                 }
                             } else if (shortName.isEmpty() && annotations.isEmpty()) {

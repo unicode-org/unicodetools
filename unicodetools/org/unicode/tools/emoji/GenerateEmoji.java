@@ -2429,13 +2429,15 @@ public class GenerateEmoji {
         if (chars2.equals("💃")) {
             int debug = 0;
         }
-        String name2 = Emoji.getName(chars2, false, GenerateEmoji.EXTRA_NAMES);
-        String tts = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getShortName(chars2);
-        if (tts != null) {
-            if (CharSequences.getSingleCodePoint(chars2) == Integer.MAX_VALUE) {
-                name2 = tts;
-            } else if (!tts.equalsIgnoreCase(name2)) {
-                name2 += "<br>≊ " + TransliteratorUtilities.toHTML.transform(tts);
+        String name2 = EmojiAnnotations.ANNOTATION_SET.getShortName(chars2);
+        String vanilla = Emoji.getName(chars2, false, GenerateEmoji.EXTRA_NAMES);
+        if (name2 == null) {
+            name2 = vanilla.toLowerCase(Locale.ENGLISH);
+        }
+        if (vanilla != null) {
+            String noVs = chars2.replace(Emoji.EMOJI_VARIANT_STRING, "");
+            if (noVs.codePointCount(0, noVs.length()) == 1 && !vanilla.equalsIgnoreCase(name2)) {
+                name2 += "<br>≊ " + TransliteratorUtilities.toHTML.transform(vanilla);
             }
         }
         if (SHOW_NAMES_LIST) {
@@ -2723,9 +2725,9 @@ public class GenerateEmoji {
     //        }
     //    }
     public static String getButton() {
-        return "<div class='aacButton' title='Show your support of Unicode'>"
-                + "<a target='adopt' href='../../consortium/adopt-a-character.html'>"
-                + "<img src='../../consortium/images/aac-button.png'></a>"
+        return "\n<div class='aacButton' title='Show your support of Unicode'>"
+                + "<a target='sponsors' href='../../consortium/adopt-a-character.html'><b>Adopt-a-Character</b><br>"
+                + "<img class='aacImage' alt='AAC Animation' src='../../consortium/images/aac-some-sponsors.gif'></a>"
                 + "</div>";
     }
     // <a href='http://www.unicode.org/cldr/trac/newticket?component=survey&amp;summary=Feedback+on+BOOTING+%3F'>Report Problem in Tool</a> 
