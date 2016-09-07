@@ -1522,7 +1522,7 @@ public class GenerateEmoji {
     private static void showAnnotations(String dir, String filename, UnicodeSet filterOut, Set<String> retainAnnotations, boolean removeInsteadOf)
             throws IOException {
         try (PrintWriter out = FileUtilities.openUTF8Writer(dir, filename)) {
-            writeHeader(out, "Emoji Annotations", null, "<p>This chart shows the English emoji character annotations based on " + CLDR_DATA_LINK + ". "
+            writeHeader(out, "Emoji Annotations", null, "<p>This chart shows the English emoji character annotations based on " + CLDR_ANNOTATIONS_LINK + ". "
                     + "It does not include the annotations or short names that are algorithmically generated for sequences, such as flags. "
                     + "To make suggestions for improvements, "
                     + "please file a " + getCldrTicket("annotations", "Emoji annotation suggestions") + ".</p>\n", "border='1'", true);
@@ -1890,7 +1890,11 @@ public class GenerateEmoji {
 
     static final UnicodeSet SPECIAL_INCLUSIONS = new UnicodeSet("[#*0-9 ⃣]").addAll(Emoji.REGIONAL_INDICATORS).freeze();
 
-    private static final String CLDR_DATA_LINK = "<a target='cldr' href='http://cldr.unicode.org/#TOC-What-is-CLDR-'>Unicode CLDR data</a>";
+    private static final String CLDR_DATA_LINK 
+    = "<a target='cldr' href='http://cldr.unicode.org/#TOC-What-is-CLDR-'>Unicode CLDR data</a>";
+    private static final String CLDR_ANNOTATIONS_LINK 
+    = "<a target='cldr_annotations' href='http://unicode.org/cldr/charts/"
+    + (Emoji.IS_BETA ? "dev" : "latest") + "/annotations/index.html'>Unicode CLDR Annotations</a>";
 
     enum Form {
         noImages("This chart provides a list of the Unicode emoji characters,  with single image and annotations. (See also the <a target='full' href='full-emoji-list.html'>full list</a>.) "
@@ -1898,7 +1902,7 @@ public class GenerateEmoji {
                 + CLDR_DATA_LINK + ". Emoji sequences have more than one code point in the <b>Code</b> column."),
                 fullForm("This chart provides a list of the Unicode emoji characters, with images from different vendors, version and source information, default style, and annotations. "
                         + "The ordering of the emoji and the annotations are based on "
-                        + CLDR_DATA_LINK + ". This list does  include the "
+                        + CLDR_DATA_LINK + ". This list does include the "
                         + "<a target='style' href='emoji-sequences.html#modifier_sequences'>emoji modifier sequences</a>, "
                         + "and the <a target='zwj' href='emoji-zwj-sequences.html'>emoji zwj sequences</a>."),
                         onlyNew("This chart provides a list of the Unicode emoji characters that have been added to the most recent version of Unicode Emoji. "
@@ -2460,7 +2464,8 @@ public class GenerateEmoji {
             + "<td class='name'>" + name2 + "</td>\n"
             + (form == Form.noImages ? "" : 
                 "<td class='age'>" + VersionToAge.getYear(Emoji.getNewest(chars2)) + getSources(chars2, new StringBuilder(), true) + "</td>\n"
-                + "<td class='default'>" + (style == null ? "n/a" : style) + (!textChars.equals(chars2) ? "*" : "") + "</td>\n")
+                //+ "<td class='default'>" + (style == null ? "n/a" : style) + (!textChars.equals(chars2) ? "*" : "") + "</td>\n"
+                )
                 + "<td class='name'>" + getAnnotationsString(chars2) + "</td>\n"
                 + "</tr>";
     }
@@ -2509,7 +2514,8 @@ public class GenerateEmoji {
                 // + "<th class='cchars'>Browser</th>\n"
                 + "<th><a target='text' href='index.html#col-name'>Name</a></th>\n"
                 + (form == Form.noImages ? "" : "<th><a target='text' href='index.html#col-data'>Date</a></th>\n"
-                        + "<th><a target='text' href='index.html#col-default'>Default</a></th>\n")
+                        //+ "<th><a target='text' href='index.html#col-default'>Default</a></th>\n"
+                        )
                         + "<th><a target='text' href='index.html#col-annotations'>Keywords</a></th>\n"
                         // + "<th>Block: <i>Subhead</i></th>\n"
                         + "</tr>";
