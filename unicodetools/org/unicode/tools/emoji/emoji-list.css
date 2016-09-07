@@ -1,3 +1,7 @@
+.main {
+	margin:2em;
+	font-size: 90%;
+}
 table {
 	clear: both;
 	border-collapse: collapse;
@@ -206,10 +210,6 @@ A.bar:active, A.bar:hover {
 	FONT-SIZE: 50%;
 	COLOR: #fffffe;
 	BACKGROUND-COLOR: #999999;
-}
-.main {
-	margin:1em;
-	font-size: 90%;
 }
 .logo {
 	border-style: none;
