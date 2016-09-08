@@ -215,6 +215,15 @@ public class GenerateUnihanCollators {
         addRadicals(kRSUnicode);
         closeUnderNFKD("Unihan", kRSUnicode);
 
+        final UnicodeMap<String> kMandarin = IUP.load(UcdProperty.kMandarin);
+        System.out.println("UcdProperty.kMandarin " + kMandarin.size());
+        for (final String s : kMandarin.keySet()) {
+            final String original = kMandarin.get(s);
+            String source = original.toLowerCase();
+            source = fromNumericPinyin.transform(source);
+            addAllKeepingOld(s, original, PinyinSource.m, ONSPACE.split(source));
+        }
+
         // all kHanyuPinlu readings first; then take all kXHC1983; then
         // kHanyuPinyin.
 
@@ -223,7 +232,7 @@ public class GenerateUnihanCollators {
             final String original = kHanyuPinlu.get(s);
             String source = original.replaceAll("\\([0-9]+\\)", "");
             source = fromNumericPinyin.transform(source);
-            addAll(s, original, PinyinSource.l, ONBAR.split(source));
+            addAllKeepingOld(s, original, PinyinSource.l, ONBAR.split(source));
         }
 
         // kXHC1983
@@ -234,7 +243,7 @@ public class GenerateUnihanCollators {
             final String original = kXHC1983.get(s);
             String source = nfc.normalize(original);
             source = source.replaceAll("([0-9,.*]+:)*", "");
-            addAll(s, original, PinyinSource.x, ONBAR.split(source));
+            addAllKeepingOld(s, original, PinyinSource.x, ONBAR.split(source));
         }
 
         Pattern stuffToRemove = Pattern.compile("(\\d{5}\\.\\d{2}0,)*\\d{5}\\.\\d{2}0:");
@@ -249,18 +258,9 @@ public class GenerateUnihanCollators {
                 // for
                 // medial
                 //source = source.replaceAll("\\s*(\\d{5}\\.\\d{2}0,)*\\d{5}\\.\\d{2}0:", ",");
-                addAll(s, original, PinyinSource.p, ONCOMMA.split(source));
+                addAllKeepingOld(s, original, PinyinSource.p, ONCOMMA.split(source));
             }
 
-        }
-
-        final UnicodeMap<String> kMandarin = IUP.load(UcdProperty.kMandarin);
-        System.out.println("UcdProperty.kMandarin " + kMandarin.size());
-        for (final String s : kMandarin.keySet()) {
-            final String original = kMandarin.get(s);
-            String source = original.toLowerCase();
-            source = fromNumericPinyin.transform(source);
-            addAll(s, original, PinyinSource.m, ONSPACE.split(source));
         }
 
         originalPinyin = mergedPinyin.keySet().freeze();
@@ -1193,7 +1193,7 @@ public class GenerateUnihanCollators {
         return result;
     }
 
-    private static void addAll(String han, String original, PinyinSource pinyin, Iterable<String> pinyinList) {
+    private static void addAllKeepingOld(String han, String original, PinyinSource pinyin, Iterable<String> pinyinList) {
         int count = 0;
         for (final String source : pinyinList) {
             if (source.length() == 0) {
