@@ -265,7 +265,7 @@ public class IdentifierInfo {
         not_nfkc(Identifier_Type_Values.Not_NFKC, IdentifierStatus.restricted),
         default_ignorable(Identifier_Type_Values.Default_Ignorable, IdentifierStatus.restricted),
         deprecated(Identifier_Type_Values.Deprecated, IdentifierStatus.restricted),
-        not_chars(Identifier_Type_Values.Not_Character, IdentifierStatus.restricted),
+        not_characters(Identifier_Type_Values.Not_Character, IdentifierStatus.restricted),
         ;
 
         public final Identifier_Type_Values type;
@@ -468,7 +468,7 @@ public class IdentifierInfo {
             if (GenerateConfusables.DEBUG) System.out.println("*Removal Collision\t" + value + "\n\t" + removalCollision.getSet(value).toPattern(false));
         }
         removals.freeze();
-        identifierTypesMap.putAll(NON_CHARACTERS, Collections.singleton(IdentifierType.not_chars));
+        identifierTypesMap.putAll(NON_CHARACTERS, Collections.singleton(IdentifierType.not_characters));
         identifierTypesMap.putAll(identifierTypesMap.getSet(null), Collections.singleton(IdentifierType.recommended));
         identifierTypesMap.freeze();
         //removals.putAll(getNonIICore(), PROHIBITED + "~IICore");
@@ -694,7 +694,7 @@ public class IdentifierInfo {
         //        sortedValues.addAll(recastRemovals.values());
         //        if (GenerateConfusables.DEBUG) System.out.println("Restriction Values: " + sortedValues);
         for (IdentifierType value : IdentifierType.values()) {
-            if (value == IdentifierType.not_chars) {
+            if (value == IdentifierType.not_characters) {
                 continue;
             }
             final UnicodeSet uset = recastRemovals.getSet(value.propertyFileFormat());
@@ -838,7 +838,7 @@ public class IdentifierInfo {
         final UnicodeMap<String> tempMap = new UnicodeMap<String>();
         final Map<String,Set<IdentifierType>> sortingMap = new HashMap<>();
         for (Set<IdentifierType> value : identifierTypesMap.values()) {
-            if (value.contains(IdentifierType.not_chars)) {
+            if (value.contains(IdentifierType.not_characters)) {
                 continue;
             }
             UnicodeSet set = identifierTypesMap.getSet(value);
