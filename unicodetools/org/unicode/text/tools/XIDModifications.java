@@ -15,11 +15,13 @@ public class XIDModifications {
     private UnicodeMap<Set<IdentifierType>> identifierType = new UnicodeMap<>();
 
     public XIDModifications(String directory) {
-        identifierType.putAll(0,0x10FFFF, Collections.singleton(IdentifierType.not_chars));
-        identifierStatus.putAll(0,0x10FFFF, IdentifierType.not_chars.identifierStatus);
+        identifierStatus.putAll(0,0x10FFFF, IdentifierStatus.restricted);
         if (directory.contains("8")) {
+            identifierType.putAll(0,0x10FFFF, Collections.singleton(IdentifierType.not_characters));
             new MyReader().process(directory, "xidmodifications.txt");
         } else {
+            // Version 9.0.0: Everything that isn't in IdentifierType.txt is RECOMMENDED.
+            identifierType.putAll(0,0x10FFFF, Collections.singleton(IdentifierType.recommended));
             new MyReaderType().process(directory, "IdentifierType.txt");
             new MyReaderStatus().process(directory, "IdentifierStatus.txt");
         }
