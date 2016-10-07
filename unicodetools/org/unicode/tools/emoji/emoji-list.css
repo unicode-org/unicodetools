@@ -203,7 +203,8 @@ body {
 	width: auto;
 	text-align: center;
     float: right;
-    margin: 0.5em 0 1em 1em;
+    margin: 0 0 1em 1em;
+    padding: 0.5em 0 0 0;
 }
 
 .aacImage {

@@ -47,7 +47,6 @@ public class EmojiAnnotations extends Birelation<String,String> {
     //            "sts."));
 
     public static final EmojiAnnotations          ANNOTATIONS_TO_CHARS        = new EmojiAnnotations("en", EmojiOrder.STD_ORDER.codepointCompare);
-    public static final AnnotationSet ANNOTATION_SET = Annotations.getDataSet("en");
     /**
      * @deprecated Use {@link #EmojiAnnotations(String,Comparator<String>,String...)} instead
      */

@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.tools.emoji.Emoji;
+import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.GenerateEmoji;
 
 import com.ibm.icu.impl.Utility;
@@ -36,7 +37,7 @@ public class MakeEmojiTable {
                         + "<td><img class='imgb' alt='" + chars + "' src='images/ref/ref_" + hexLower + ".png'></td>"
                         + "<td><img class='imgb' alt='" + chars + "' src='images/apple/apple_" + hexLower + ".png'></td>"
                         + "<td><img class='imgb' alt='" + chars + "' src='images/android/android_" + hexLower + ".png'></td>"
-                        + "<td>" + Emoji.getName(chars, false, GenerateEmoji.EXTRA_NAMES) + "</td>"
+                        + "<td>" + EmojiData.EMOJI_DATA.getName(chars, false) + "</td>"
                         + "<td>"
                         );
                 firstText = true;

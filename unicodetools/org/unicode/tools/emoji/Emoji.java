@@ -529,10 +529,6 @@ public class Emoji {
 
     static final UnicodeMap<Age_Values>        VERSION_ENUM            = BETA.loadEnum(UcdProperty.Age, Age_Values.class);
 
-    public static String getName(String s, boolean toLower, UnicodeMap<String> extraNames) {
-        return EmojiData.EMOJI_DATA.getName(s, toLower);
-    }
-
     // Certain resources we always load from latest.
     
     static final UnicodeMap<String>        NAME                        = BETA.load(UcdProperty.Name);
