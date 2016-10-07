@@ -266,6 +266,6 @@ class EmojiStats {
                 source.getPrefix() + "_" + Emoji.buildFileName(cp, "_") + ".png"
                 + " ;\t" + cp 
                 + " ;\tv" + Emoji.getNewest(cp).getShortName() 
-                + " ;\t" + Emoji.getName(cp, false, null));
+                + " ;\t" + EmojiData.EMOJI_DATA.getName(cp, false));
     }
 }

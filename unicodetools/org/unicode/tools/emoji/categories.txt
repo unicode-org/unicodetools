@@ -1,0 +1,98 @@
+YYY ; all # {0} — all
+YYY ; category-list # {0}: {1}
+YYY ; compatibility # {0} — compatibility
+YYY ; enclosed # {0} — enclosed
+YYY ; extended # {0} — extended
+YYY ; historic # {0} — historic
+YYY ; miscellaneous # {0} — miscellaneous
+YYY ; other # {0} — other
+YYY ; scripts # scripts — {0}
+YYY ; strokes" count="one # {0} stroke
+YYY ; strokes" count="other # {0} strokes
+
+XXX ; activities # activity
+XXX ; african_scripts # African script
+XXX ; american_scripts # American script
+XXX ; animal # animal
+XXX ; animals_nature # animal or nature
+XXX ; arrows # arrow
+XXX ; body # body
+XXX ; box_drawing # box drawing
+XXX ; braille # braille
+XXX ; building # building
+XXX ; bullets_stars # bullet or star
+XXX ; consonantal_jamo # consonantal jamo
+XXX ; currency_symbols # currency symbol
+XXX ; dash_connector # dash or connector
+XXX ; digits # digit
+XXX ; dingbats # dingbat
+XXX ; divination_symbols # divination symbol
+XXX ; downwards_arrows # downwards arrow
+XXX ; downwards_upwards_arrows # downwards upwards arrow
+XXX ; east_asian_scripts # East Asian script
+XXX ; emoji # emoji
+XXX ; european_scripts # European script
+XXX ; female # female
+XXX ; flag # flag
+XXX ; flags # flags
+XXX ; food_drink # food &amp; drink
+XXX ; format # format
+XXX ; format_whitespace # format &amp; whitespace
+XXX ; full_width_form_variant # full-width variant
+XXX ; geometric_shapes # geometric shape
+XXX ; half_width_form_variant # half-width variant
+XXX ; han_characters # Han character
+XXX ; han_radicals # Han radical
+XXX ; hanja # hanja
+XXX ; hanzi_simplified # Hanzi (simplified)
+XXX ; hanzi_traditional # Hanzi (traditional)
+XXX ; heart # heart
+XXX ; historic_scripts # historic script
+XXX ; ideographic_desc_characters # ideographic desc. character
+XXX ; japanese_kana # Japanese kana
+XXX ; kanbun # kanbun
+XXX ; kanji # kanji
+XXX ; keycap # keycap
+XXX ; leftwards_arrows # leftwards arrow
+XXX ; leftwards_rightwards_arrows # leftwards rightwards arrow
+XXX ; letterlike_symbols # letterlike symbol
+XXX ; limited_use # limited-use
+XXX ; male # male
+XXX ; math_symbols # math symbol
+XXX ; middle_eastern_scripts # Middle Eastern script
+XXX ; miscellaneous # miscellaneous
+XXX ; modern_scripts # modern script
+XXX ; modifier # modifier
+XXX ; musical_symbols # musical symbol
+XXX ; nature # nature
+XXX ; nonspacing # nonspacing
+XXX ; numbers # numbers
+XXX ; objects # object
+XXX ; other # other
+XXX ; paired # paired
+XXX ; person # person
+XXX ; phonetic_alphabet # phonetic alphabet
+XXX ; pictographs # pictograph
+XXX ; place # place
+XXX ; plant # plant
+XXX ; punctuation # punctuation
+XXX ; rightwards_arrows # rightwards arrow
+XXX ; sign_standard_symbols # sign or symbol
+XXX ; small_form_variant # small variants
+XXX ; smiley # smiley
+XXX ; smileys_people # smiley or person
+XXX ; south_asian_scripts # South Asian script
+XXX ; southeast_asian_scripts # Southeast Asian script
+XXX ; spacing # spacing
+XXX ; sport # sport
+XXX ; symbols # symbol
+XXX ; technical_symbols # technical symbol
+XXX ; tone_marks # tone mark
+XXX ; travel # travel
+XXX ; travel_places # travel or place
+XXX ; upwards_arrows # upwards arrows
+XXX ; variant_forms # variant
+XXX ; vocalic_jamo # vocalic jamo
+XXX ; weather # weather
+XXX ; western_asian_scripts # Western Asian script
+XXX ; whitespace # whitespace

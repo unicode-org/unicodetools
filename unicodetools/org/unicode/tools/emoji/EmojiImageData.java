@@ -128,6 +128,8 @@ public class EmojiImageData {
             }
 
             GenerateEmoji.writeFooter(out, "");
+        } catch (java.lang.IllegalArgumentException e) {
+            e.printStackTrace();
         }
     }
 

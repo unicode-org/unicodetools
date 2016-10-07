@@ -648,7 +648,7 @@ public class GenerateEmoji {
                     )) {
                 int len = s.codePointCount(0, s.length());
                 if (len > 1) {
-                    outText.println(Utility.hex(s) + " ; " + Emoji.getName(s, false, GenerateEmoji.EXTRA_NAMES));
+                    outText.println(Utility.hex(s) + " ; " + EmojiData.EMOJI_DATA.getName(s, false));
                 }
             }
         }
@@ -898,7 +898,7 @@ public class GenerateEmoji {
     }
 
     private static String getCodeAndName2(String s, boolean toLower) {
-        return Emoji.toUHex(s) + " " + Emoji.getName(s, toLower, GenerateEmoji.EXTRA_NAMES);
+        return Emoji.toUHex(s) + " " + EmojiData.EMOJI_DATA.getName(s, toLower);
     }
 
     private static void showExplicitAppleImages(PrintWriter out, Set<String> minimal) {
@@ -1253,8 +1253,7 @@ public class GenerateEmoji {
                 + "the standard variation sequence. "
                 + "It is not the version in which the <i>emoji base</i> was added to Unicode, "
                 + "but rather the one in which the <i>emoji variation sequence</i> was first defined. "
-                + "Note that a version identified as “9.0” marks those sequences that "
-                + "will be included in Unicode 9.0, which is to be scheduled for release in June 2016. "
+                + "Unlike the other emoji charts, the names are the standard Unicode character names. "
                 + "Keycap images (those with a * on the Name) are for sequences "
                 + "followed by U+20E3 COMBINING ENCLOSING KEYCAP. </p>\n", "border='1'", true);
 
@@ -1276,12 +1275,12 @@ public class GenerateEmoji {
                 out.println(GenerateEmoji.getCell(Emoji.Source.ref, cp2, "andr"));
                 out.println(GenerateEmoji.getCell(null, cp2, "andr"));
                 out.println("<td>" + version + "</td>");
-                out.println("<td>" + Emoji.getName(cp, false, GenerateEmoji.EXTRA_NAMES) + keycapIndicator + "</td>");
+                out.println("<td>" + UCharacter.getName(cp.codePointAt(0)) + keycapIndicator + "</td>");
             } else {
                 out.println(GenerateEmoji.getCell(Emoji.Source.ref, cp, "andr"));
                 out.println(GenerateEmoji.getCell(null, cp, "andr"));
                 out.println("<td>" + version + "</td>");
-                out.println("<td>" + Emoji.getName(cp, false, GenerateEmoji.EXTRA_NAMES) + "</td>");
+                out.println("<td>" + UCharacter.getName(cp.codePointAt(0)) + "</td>");
             }
             out.println("</tr>");
         }
@@ -1375,7 +1374,7 @@ public class GenerateEmoji {
             //                name.insert(0, prefix);
             //                name.append("</i>");
             //            }
-            out.println("<td>" + Emoji.getName(s, true, GenerateEmoji.EXTRA_NAMES) + "</td>");
+            out.println("<td>" + EmojiData.EMOJI_DATA.getName(s, true) + "</td>");
             out.println("</tr>");
         }
         out.println("<tr><th colSpan='6'>Character list for copying</th></tr>");
@@ -1885,7 +1884,7 @@ public class GenerateEmoji {
     }
 
     public static String getCodeCharsAndName(String chars1, String separator) {
-        return Emoji.toUHex(chars1) + separator + chars1 + separator + Emoji.getName(chars1, true, GenerateEmoji.EXTRA_NAMES);
+        return Emoji.toUHex(chars1) + separator + chars1 + separator + EmojiData.EMOJI_DATA.getName(chars1, true);
     }
 
     static final UnicodeSet SPECIAL_INCLUSIONS = new UnicodeSet("[#*0-9 ⃣]").addAll(Emoji.REGIONAL_INDICATORS).freeze();
@@ -2119,7 +2118,7 @@ public class GenerateEmoji {
                 } else {
                     out.print("\n");
                 }
-                out.print("<span title='" + Emoji.getName(s, false, null) + "'>"
+                out.print("<span title='" + EmojiData.EMOJI_DATA.getName(s, false) + "'>"
                         + EmojiData.EMOJI_DATA.addEmojiVariants(s)
                         //+ Emoji.getEmojiVariant(s, Emoji.EMOJI_VARIANT_STRING)
                         + "</span>");
@@ -2171,7 +2170,7 @@ public class GenerateEmoji {
                 outText.println(Emoji.toUHex(s) 
                         + " ; " + Emoji.getNewest(s).getShortName() 
                         + " # " + s 
-                        + " " + Emoji.getName(s, false, GenerateEmoji.EXTRA_NAMES));
+                        + " " + EmojiData.EMOJI_DATA.getName(s, false));
             }
         }
         try (
@@ -2324,7 +2323,7 @@ public class GenerateEmoji {
                 + " ;\t" + getSources(chars2, new StringBuilder(), false)
                 + "\t# " + showVersion(Emoji.getNewest(chars2))
                 + " (" + chars2
-                + ") " + Emoji.getName(chars2, false, GenerateEmoji.EXTRA_NAMES);
+                + ") " + EmojiData.EMOJI_DATA.getName(chars2, false);
         // Set<String> annotations = new
         // LinkedHashSet<>(ifNull(GenerateEmoji.ANNOTATIONS_TO_CHARS.getKeys(chars),
         // Collections.EMPTY_SET));
@@ -2400,9 +2399,9 @@ public class GenerateEmoji {
                 String image = EmojiData.EMOJI_DATA.getAllEmojiWithDefectives().contains(x) ? getBestImageNothrow(x, x, true, " imgb", doFirst) : null;
                 if (image == null) {
                     String fixed = TransliteratorUtilities.toHTML.transform(x);
-                    image = UTF16.hasMoreCodePointsThan(x, 1) ? fixed : Emoji.toUHex(x) + " " + fixed + " " + Emoji.getName(x, false, GenerateEmoji.EXTRA_NAMES);
+                    image = UTF16.hasMoreCodePointsThan(x, 1) ? fixed : Emoji.toUHex(x) + " " + fixed + " " + EmojiData.EMOJI_DATA.getName(x, false);
                 } else {
-                    image = Emoji.toUHex(x) + " " + image + " " + Emoji.getName(x, false, GenerateEmoji.EXTRA_NAMES);
+                    image = Emoji.toUHex(x) + " " + image + " " + EmojiData.EMOJI_DATA.getName(x, false);
                 }
                 result.append("<br>" + symbol + " " + image);
             }
@@ -2430,11 +2429,11 @@ public class GenerateEmoji {
                 //EmojiData.EMOJI_DATA.addEmojiVariants(chars2, Emoji.EMOJI_VARIANT, null)
                 //Emoji.getEmojiVariant(chars2, Emoji.EMOJI_VARIANT_STRING)
                 + "</td>\n";
-        if (chars2.equals("💃")) {
+        if (chars2.equals("👩🏼‍⚖")) {
             int debug = 0;
         }
-        String name2 = EmojiAnnotations.ANNOTATION_SET.getShortName(chars2);
-        String vanilla = Emoji.getName(chars2, false, GenerateEmoji.EXTRA_NAMES);
+        String name2 = EmojiData.ANNOTATION_SET.getShortName(chars2);
+        String vanilla = EmojiData.EMOJI_DATA.getName(chars2, false);
         if (name2 == null) {
             name2 = vanilla.toLowerCase(Locale.ENGLISH);
         }

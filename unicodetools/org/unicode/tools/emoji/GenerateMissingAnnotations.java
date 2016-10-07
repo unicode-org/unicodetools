@@ -39,6 +39,11 @@ import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row.R2;
 
+/**
+ * Generates csvs for spreadsheet, to be parsed with ParseSpreadsheetAnnotations
+ * @author markdavis
+ *
+ */
 public class GenerateMissingAnnotations {
     private final static Factory FACTORY = CLDRConfig.getInstance().getCldrFactory();
     public final static CLDRFile ENGLISH_CLDR = CLDRConfig.getInstance().getEnglish();

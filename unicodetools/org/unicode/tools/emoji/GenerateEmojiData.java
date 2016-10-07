@@ -279,12 +279,12 @@ public class GenerateEmojiData {
                             out.write(tabber.process(
                                     Utility.hex(s) 
                                     + "\t" + titleField 
-                                    + (showName ? "\t;" + Emoji.getName(s, false, extraNames) + " " : "")
+                                    + (showName ? "\t;" + EmojiData.EMOJI_DATA.getName(s, false) + " " : "")
                                     + "\t#"
                                     + "\t" + range.value.getShortName()
                                     + "\t"
                                     + "\t(" + addEmojiVariant(s, addVariants) + ")"
-                                    + (showName ? "" : "\t" + Emoji.getName(s, false, extraNames)))
+                                    + (showName ? "" : "\t" + EmojiData.EMOJI_DATA.getName(s, false)))
                                     + "\n");
                         }
                     } else if (rangeCount == 1) {
@@ -292,24 +292,24 @@ public class GenerateEmojiData {
                         out.write(tabber.process(
                                 Utility.hex(addEmojiVariant(s, isException && range.string != null))
                                 + "\t" + titleField 
-                                + (showName ? "\t; " + Emoji.getName(s, false, extraNames) + " " : "")
+                                + (showName ? "\t; " + EmojiData.EMOJI_DATA.getName(s, false) + " " : "")
                                 + "\t#"
                                 + "\t" + range.value.getShortName()
                                 + "\t[1] "
                                 + "\t(" + addEmojiVariant(s, isException && (addVariants || range.string != null)) + ")"
-                                + (showName ? "" : "\t" + Emoji.getName(s, false, extraNames)))
+                                + (showName ? "" : "\t" + EmojiData.EMOJI_DATA.getName(s, false)))
                                 + "\n");
                     } else  {
                         final String e = UTF16.valueOf(range.codepointEnd);
                         out.write(tabber.process(
                                 Utility.hex(range.codepoint) + ".." + Utility.hex(range.codepointEnd)
                                 + "\t" + titleField 
-                                + (showName ? "\t; " + Emoji.getName(s, false, extraNames) + " " : "")
+                                + (showName ? "\t; " + EmojiData.EMOJI_DATA.getName(s, false) + " " : "")
                                 + "\t#"
                                 + "\t" + range.value.getShortName()
                                 + "\t["+ (range.codepointEnd - range.codepoint + 1) + "] "
                                 + "\t(" + addEmojiVariant(s, addVariants) + ".." + addEmojiVariant(e, addVariants) + ")"
-                                + (showName ? "" : "\t" + Emoji.getName(s, false, extraNames) + ".." + Emoji.getName(e, false, extraNames)))
+                                + (showName ? "" : "\t" + EmojiData.EMOJI_DATA.getName(s, false) + ".." + EmojiData.EMOJI_DATA.getName(e, false)))
                                 + "\n");
                     }
                 }

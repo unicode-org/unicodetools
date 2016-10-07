@@ -13,7 +13,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.Annotations;
 import org.unicode.cldr.util.CldrUtility;
+import org.unicode.cldr.util.Annotations.AnnotationSet;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -39,6 +41,7 @@ import com.ibm.icu.util.VersionInfo;
 
 public class EmojiData {
     public static final String SAMPLE_WITHOUT_TRAILING_EVS = "👮🏻‍♀";
+    public static final AnnotationSet ANNOTATION_SET = Annotations.getDataSet("en");
 
     public static final UnicodeSet MODIFIERS = new UnicodeSet(0x1F3FB, 0x1F3FF).freeze();
 
@@ -701,27 +704,25 @@ public class EmojiData {
     }
 
     public String getName(String source, boolean toLower) {
-        String s = source.replace(Emoji.EMOJI_VARIANT_STRING, "");
-        if (s.contains("☝🏻")) {
+        source = source.replace(Emoji.EMOJI_VARIANT_STRING, "");
+        if (source.equals("❤")) {
             int debug = 0;
-        }
-        String name = names.get(s);
+            }
+         String name = ANNOTATION_SET.getShortName(source);
         if (name != null) {
             return (toLower ? name.toLowerCase(Locale.ENGLISH) : name);
         }
-        name = Emoji.NAME.get(s);
+//        System.out.println("*** not using name for " + code + "\t" + Utility.hex(code));
+//
+        name = CandidateData.getInstance().getName(source);
         if (name != null) {
             return (toLower ? name.toLowerCase(Locale.ENGLISH) : name);
         }
-        name = CandidateData.getInstance().getName(s);
+        name = UCharacter.getName(source, ", "); 
         if (name != null) {
             return (toLower ? name.toLowerCase(Locale.ENGLISH) : name);
         }
-        if (s.equals("🇺🇳")) {
-            name = "United Nations";
-            return (toLower ? name.toLowerCase(Locale.ENGLISH) : name);
-        }
-        throw new IllegalArgumentException("no name for " + s + " " + Utility.hex(s));
+        throw new IllegalArgumentException("no name for " + source + " " + Utility.hex(source));
     }
 
     /**

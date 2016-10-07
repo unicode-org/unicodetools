@@ -1,6 +1,7 @@
 package org.unicode.tools;
 
 import org.unicode.tools.emoji.Emoji;
+import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.GenerateEmoji;
 
 import com.ibm.icu.impl.Utility;
@@ -27,7 +28,7 @@ public class AacCheck {
     public static void main(String[] args) {
         Output<String> message = new Output<>();
         if (args.length == 0) {
-            Emoji.getName("👨", false, GenerateEmoji.EXTRA_NAMES);
+            EmojiData.EMOJI_DATA.getName("👨", false);
             for (EntryRange range : ALLOWED.ranges()) {
                 if (range.codepoint == range.codepointEnd) {
                     System.out.println(Utility.hex(range.codepoint) 
@@ -39,7 +40,7 @@ public class AacCheck {
             }
             for (String cps: ALLOWED.strings()) {
                 System.out.println(Utility.hex(cps) 
-                        + " ; " + Emoji.getName(cps, false, GenerateEmoji.EXTRA_NAMES));
+                        + " ; " + EmojiData.EMOJI_DATA.getName(cps, false));
             }
         } else {
             int value = process(message, args);

@@ -148,16 +148,16 @@ public class GenerateEmojiKeyboard {
                 case csv: 
                     out.println("U+" + Utility.hex(cp,"U+") 
                             + "," + cp 
-                            + "," + Emoji.getName(cp, false, null));
+                            + "," + EmojiData.EMOJI_DATA.getName(cp, false));
                     break;
                 case propFile:
                     out.println(tabber.process(Utility.hex(cp) + "\t; " 
                             + "keyboard"
-                            + "\t# " + cp + " " + Emoji.getName(cp, false, null)));
+                            + "\t# " + cp + " " + EmojiData.EMOJI_DATA.getName(cp, false)));
                     if (!withoutVs.equals(cp)) {
                         out.println(tabber.process(Utility.hex(withoutVs) + "\t; " 
                             + "process"
-                            + "\t# " + withoutVs + " " + Emoji.getName(withoutVs, false, null)));
+                            + "\t# " + withoutVs + " " + EmojiData.EMOJI_DATA.getName(withoutVs, false)));
                     }
                     break;
                 }
