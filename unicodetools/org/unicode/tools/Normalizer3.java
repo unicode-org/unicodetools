@@ -20,4 +20,10 @@ public abstract class Normalizer3 implements Transform<String, String> {
             return Default.nfc().normalize(NFKC_Casefold.transform(source));
         }
     };
+    public static final Normalizer3 NFKC = new Normalizer3() {
+        @Override
+        public String transform(String source) {
+            return Default.nfkc().normalize(source);
+        }
+    };
 }

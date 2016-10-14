@@ -29,6 +29,7 @@ import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UnicodeRelation;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Settings;
 import org.unicode.tools.NormalizeForMatch.SpecialReason;
 
@@ -81,6 +82,16 @@ public class GenerateNormalizeForMatch {
     private static final UnicodeSet DI = iup.loadEnumSet(UcdProperty.Default_Ignorable_Code_Point, Binary.Yes);
 
     private static final UnicodeMap<String> cpToNFKCCF = iup.load(UcdProperty.NFKC_Casefold);
+    private static final UnicodeMap<String> cpToNFKC = new UnicodeMap<>();
+    static {
+        Normalizer nfkc = Default.nfkc();
+        for (int i = 0; i <= 0x10FFFF; ++i) {
+            if (!nfkc.isNormalized(i)) {
+                cpToNFKC.put(i, nfkc.normalize(i));
+            }
+        }
+        cpToNFKC.freeze();
+    }
     private static final UnicodeMap<String> cpToLower = iup.load(UcdProperty.Lowercase_Mapping);
     private static final UnicodeMap<String> cpToSimpleLower = iup.load(UcdProperty.Simple_Lowercase_Mapping);
     private static final UnicodeSet UNASSIGNED = GC.getSet(General_Category_Values.Unassigned);
@@ -95,8 +106,11 @@ public class GenerateNormalizeForMatch {
     // Results
     private static final UnicodeMap<String> N4M = gatherData();
     private static final UnicodeMap<String> TRIAL = new UnicodeMap<>();
+    private static final UnicodeMap<String> TRIAL_BASE = new UnicodeMap<>();
     private static final UnicodeMap<Set<SpecialReason>> REASONS = new UnicodeMap<>();
-    private static final NormalizeForMatch ADDITIONS_TO_NFKCCF = NormalizeForMatch.load(null, "XNFKCCF-Curated.txt");
+    private static final UnicodeMap<Set<SpecialReason>> REASONS_BASE = new UnicodeMap<>();
+    private static final NormalizeForMatch ADDITIONS_TO_NFKCCF = NormalizeForMatch.load(null, "XNFKCCF-Curated.txt", true);
+    private static final NormalizeForMatch ADDITIONS_TO_NFKC = NormalizeForMatch.load(Settings.UNICODETOOLS_DIRECTORY + "data/cldr/", "NFXC-Curated.txt", true);
 
 
     private static final UnicodeSet HANGUL_COMPAT_minus_DI_CN 
@@ -171,14 +185,32 @@ public class GenerateNormalizeForMatch {
         //        if (true) return;
 
         //        gatherData();
-        computeTrial();
+        computeTrial(Normalizer3.NFKCCF, ADDITIONS_TO_NFKCCF, TRIAL, REASONS);
+        computeTrial(Normalizer3.NFKC, ADDITIONS_TO_NFKC, TRIAL_BASE, REASONS_BASE);
         compareTrial(false);
         compareTrial(true);
+
+//        UnicodeMap<String> trialWithoutCase = new UnicodeMap<>();
+//        for (String s : TRIAL.keySet()) {
+//            String trial = TRIAL.get(s);
+//            String lower = Default.ucd().getCase(s, UCD_Types.FULL, UCD_Types.LOWER);
+//            if (!trial.equals(lower)) {
+//                trialWithoutCase.put(s, trial);
+//            }
+//        }
+//        trialWithoutCase.freeze();
         showSimpleData(TRIAL, REASONS, "XNFKCCF-NFKCCF.txt", "# Cases where XNFKCCF differs from NFKCCF.", cpToNFKCCF);
+        showSimpleData(TRIAL_BASE, REASONS_BASE, "NFXC-NFKC.txt", "# Cases where NFXC differs from NFKC.", cpToNFKC);
+        showSimpleData(TRIAL_BASE, REASONS_BASE, "NFXC-Curated.txt", "# Curated file of exceptions", null);
+
+        
+        showSimpleData(TRIAL, REASONS, "XNFKCCF-NFKC2.txt", "# Cases where XNFKCCF differs from NFKC.", cpToNFKC);
+        
         showSimpleData(N4M, REASONS, "N4M-XNFKCCF.txt", "# Cases where N4M differs from XNFKCCF", TRIAL);
-        NormalizeForMatch curated = NormalizeForMatch.load(null, "XNFKCCF-Curated.txt");
+        NormalizeForMatch curated = NormalizeForMatch.load(null, "XNFKCCF-Curated.txt", true);
+        
         showSimpleData(curated.getSourceToTarget(), curated.getSourceToReason(), "XNFKCCF-Curated.txt", "# Curated file of exceptions", null);
-        NormalizeForMatch newCurated = NormalizeForMatch.load(Settings.DATA_DIR + "n4m/9.0.0/", "XNFKCCF-Curated.txt");
+        NormalizeForMatch newCurated = NormalizeForMatch.load(Settings.DATA_DIR + "n4m/9.0.0/", "XNFKCCF-Curated.txt", true);
         checkNewCurated(curated, newCurated);
         //    private static final NormalizeForMatch ADDITIONS_TO_NFKCCF = NormalizeForMatch.load("XNFKCCF-Curated.txt");
 
@@ -464,8 +496,12 @@ public class GenerateNormalizeForMatch {
 
     /**
      * Here we try to reverse engineer the derivation, starting with NFKCCasefold
+     * @param normalizer3 TODO
+     * @param additions TODO
+     * @param trial TODO
+     * @param reasons TODO
      */
-    private static void computeTrial() {
+    private static void computeTrial(Normalizer3 normalizer3, NormalizeForMatch additions, UnicodeMap<String> trial, UnicodeMap<Set<SpecialReason>> reasons) {
 
         UnicodeSet skipIfInMultiCodepointDecomp = new UnicodeSet("[\\u0020<>]");
 
@@ -493,7 +529,7 @@ public class GenerateNormalizeForMatch {
                 }
 
                 String source = UTF16.valueOf(cp);
-                String nfkccf = Normalizer3.NFKCCF.normalize(source);
+                String nfkccf = normalizer3.normalize(source);
                 String target = source;
                 Set<SpecialReason> reason = new LinkedHashSet<>();
 
@@ -504,10 +540,10 @@ public class GenerateNormalizeForMatch {
                     }
 
                     String remapped = null;
-                    remapped = ADDITIONS_TO_NFKCCF.getSourceToTarget().get(source);
+                    remapped = additions.getSourceToTarget().get(source);
                     if (remapped != null) {
                         target = remapped;
-                        reason.add(ADDITIONS_TO_NFKCCF.getSourceToReason().get(source));
+                        reason.add(additions.getSourceToReason().get(source));
                         break subloop;
                     }
 
@@ -548,11 +584,11 @@ public class GenerateNormalizeForMatch {
                     if (target.codePointCount(0, target.length()) > 1
                             && skipIfInMultiCodepointDecomp.containsSome(target)) {
                         reason.add(SpecialReason.retain_sequences_with_exclusions);
-//                        ("14 Skip decomp contains «"
-//                                + new UnicodeSet().addAll(target).retainAll(skipIfInMultiCodepointDecomp)
-//                                + "» (and isn't singleton)");
+                        //                        ("14 Skip decomp contains «"
+                        //                                + new UnicodeSet().addAll(target).retainAll(skipIfInMultiCodepointDecomp)
+                        //                                + "» (and isn't singleton)");
                         target=source;
-                    } else if (!REASONS.containsKey(cp)) {
+                    } else if (!reasons.containsKey(cp)) {
                         // if we don't have a reason, it is because of NFKC_CF, so add that reason.
                         reason.add(SpecialReason.forString("nfkccf_" + DT.get(cp))); // "16. NFKC_CF-" + DT.get(cp);
                     }
@@ -571,36 +607,35 @@ public class GenerateNormalizeForMatch {
 
                 target = nfc.normalize(target); // just in case!!
                 if (!source.equals(target)) {
-                    TRIAL.put(cp, target);
+                    trial.put(cp, target);
                 }
-                REASONS.put(cp, reason);
+                reasons.put(cp, reason);
             }
-        NFKCCF_SET.freeze();
-        // TODO Recurse on trial
+        // Recurse on trial
         while (true) {
             UnicodeMap<String> delta = new UnicodeMap<String>();
             UnicodeSet removals = new UnicodeSet();
-            for (Entry<String, String> entry : TRIAL.entrySet()) {
+            for (Entry<String, String> entry : trial.entrySet()) {
                 String source = entry.getKey();
                 String oldTarget = entry.getValue();
-                String newTarget = nfc.normalize(TRIAL.transform(oldTarget));
+                String newTarget = nfc.normalize(trial.transform(oldTarget));
                 if (!newTarget.equals(oldTarget)) {
                     if (newTarget.equals(source)) { // just in case
                         removals.add(source);
                     } else {
                         delta.put(source, newTarget);
-                        LinkedHashSet<SpecialReason> reason = new LinkedHashSet<>(REASONS.get(source));
+                        LinkedHashSet<SpecialReason> reason = new LinkedHashSet<>(reasons.get(source));
                         reason.add(SpecialReason.recursion);
-                        REASONS.put(source, reason);
+                        reasons.put(source, reason);
                     }
                 }
             }
             if (delta.isEmpty()) break;
-            TRIAL.putAll(delta);
+            trial.putAll(delta);
             //System.out.println("# Recursion " + delta);
         }
-        TRIAL.freeze();
-        REASONS.freeze();
+        trial.freeze();
+        reasons.freeze();
         long out2 = System.nanoTime();
         System.out.println((out2-out)/1000000000.0 + " sec");
     }
