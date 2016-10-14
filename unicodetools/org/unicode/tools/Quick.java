@@ -27,18 +27,18 @@ public class Quick {
     public static void main(String[] args) {
         Set<Block_Values> emojiBlocks = EnumSet.noneOf(Block_Values.class);
         UnicodeSet emoji = emojiData.getSingletonsWithoutDefectives();
-        for (String s : new UnicodeSet(emoji).addAll(GlueAfterZwj.GLUE_AFTER_ZWJ)) {
+        for (String s : new UnicodeSet(emoji).addAll(ExtendedPictographic.GLUE_AFTER_ZWJ)) {
             Block_Values block = blocks.get(s);
             emojiBlocks.add(block);
         }
 
-        System.out.println(GlueAfterZwj.HEADER);
+        System.out.println(ExtendedPictographic.HEADER);
         for (Block_Values block : emojiBlocks) {
             System.out.println("# " + block);
             
             UnicodeSet blockSet = blocks.getSet(block);
             UnicodeSet emojiInBlock = new UnicodeSet(blockSet).retainAll(emoji);
-            UnicodeSet gazInBlock = new UnicodeSet(blockSet).retainAll(GlueAfterZwj.GLUE_AFTER_ZWJ);
+            UnicodeSet gazInBlock = new UnicodeSet(blockSet).retainAll(ExtendedPictographic.GLUE_AFTER_ZWJ);
             UnicodeSet gazInBlockNoCn = new UnicodeSet(gazInBlock).removeAll(Cn);
             UnicodeSet gazInBlockCn = new UnicodeSet(gazInBlock).retainAll(Cn);
             UnicodeSet cnInBlock = new UnicodeSet(blockSet).retainAll(Cn).removeAll(gazInBlock);
@@ -59,7 +59,7 @@ public class Quick {
             showNonEmpty("count", gazInBlock, false);
             System.out.println();
         }
-        showNonEmpty("total_count", GlueAfterZwj.GLUE_AFTER_ZWJ, false);
+        showNonEmpty("total_count", ExtendedPictographic.GLUE_AFTER_ZWJ, false);
         System.out.println("# EOF");
     }
 

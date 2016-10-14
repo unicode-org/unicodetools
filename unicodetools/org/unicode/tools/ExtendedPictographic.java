@@ -18,7 +18,7 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 
-class GlueAfterZwj {
+class ExtendedPictographic {
     static final UnicodeSet GLUE_AFTER_ZWJ = new UnicodeSet();
     static final String HEADER;
 
