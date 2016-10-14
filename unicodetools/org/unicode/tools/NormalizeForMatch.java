@@ -78,7 +78,14 @@ public class NormalizeForMatch {
 
     static String TEST = Utility.fromHex("1F19B");
 
+    /**
+     * @deprecated Use {@link #load(String,String,boolean)} instead
+     */
     public static NormalizeForMatch load(String directory, String file) {
+        return load(directory, file, true);
+    }
+
+    public static NormalizeForMatch load(String directory, String file, boolean acceptRawChars) {
         UnicodeMap<String> sourceToTarget = new UnicodeMap<>();
         UnicodeMap<SpecialReason> sourceToReason = new UnicodeMap<>();
         NormalizeForMatch.SpecialReason overrideReason = null;
@@ -101,11 +108,11 @@ public class NormalizeForMatch {
                 }
 
                 List<String> parts = SEMI.splitToList(clean);
-                String source = Utility.fromHex(parts.get(0));
+                String source = Utility.fromHex(parts.get(0), acceptRawChars);
                 if (source.equals(TEST)) {
                     boolean debug = true;
                 }
-                String target = Utility.fromHex(parts.get(1));
+                String target = Utility.fromHex(parts.get(1), acceptRawChars);
                 SpecialReason reason =  parts.size() > 2 ? NormalizeForMatch.SpecialReason.forString(parts.get(2)) : overrideReason;
 
                 sourceToTarget.put(source, target);

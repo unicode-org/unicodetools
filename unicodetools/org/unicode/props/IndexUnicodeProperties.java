@@ -33,6 +33,7 @@ import org.unicode.draft.UnicodeDataOutput;
 import org.unicode.draft.UnicodeDataOutput.ItemWriter;
 import org.unicode.props.PropertyNames.Named;
 import org.unicode.props.PropertyUtilities.Merge;
+import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -133,6 +134,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     public static final IndexUnicodeProperties make(UcdPropertyValues.Age_Values ucdVersion) {
         return make(VersionInfo.getInstance(ucdVersion.getShortName()));
+    }
+    
+    public static final IndexUnicodeProperties make() {
+        final Age_Values[] values = Age_Values.values();
+        return make(values[values.length-2]);
     }
 
     final VersionInfo ucdVersion;
@@ -517,7 +523,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         return result.toString();
     }
 
-    private String getName(int cp) {
+    public String getName(int cp) {
         if (nameMap == null) {
             nameMap = load(UcdProperty.Name);
             gcMap = loadEnum(UcdProperty.General_Category, UcdPropertyValues.General_Category_Values.class);
