@@ -183,7 +183,7 @@ Let $caseOverlap = [\u02B0-\u02B8\u02C0\u02C1\u02E0-\u02E4\u0345\u037A\u1D2C-\u1
 
 ##########################
 # Property Stability Policies
-#   http://www.unicode.org/policies/property_value_stability_table.html
+#   http://www.unicode.org/policies/stability_policy.html#Property_Value
 ##########################
 
 ##########################
@@ -231,6 +231,10 @@ Let $BN_Exceptions = [\u001C-\u001F\u17B4\u17B5]
 
 # Stability: The Case_Folding property value is limited so that no string when case folded expands to more than 3× in length (measured in code units). 
 # TODO
+
+# Case folding is not the same as lowercasing: Cherokee case folds to uppercase.
+In \p{sc=Cher} cf = uc
+In \p{sc=Cher} scf = suc
 
 # Stability: All characters with the Lowercase property and all characters with the Uppercase property have the Alphabetic property. 
 \p{Alphabetic} ⊃ [\p{Uppercase} \p{Lowercase}]
@@ -626,7 +630,7 @@ $punct  ⊇ [[\u0021-\u007E] - [0-9 A-Z a-z]]
 # Verify that the mappings in Case_Folding for the old characters, 
 # are the same as the previous version's
 
-Map {\m{Case_Folding}&\p{age=7.0}} = {\m{*Case_Folding}&\p{age=7.0}}
+Map {\m{Case_Folding}&\p{age=8.0}} = {\m{*Case_Folding}&\p{age=8.0}}
 
 # The following are 'red flag' tests, just so that we review the changes and make sure they are ok.
 
