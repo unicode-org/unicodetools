@@ -1,0 +1,384 @@
+#Source;	RSC;	RNU;	RUI;	#				Source Name	Causes
+2F00;	1;	1;	4E00;	#	⼀	→	一	KANGXI RADICAL ONE;	CJKRadicals.txt, NFKC
+2F01;	1;	2;	4E28;	#	⼁	→	丨	KANGXI RADICAL LINE;	CJKRadicals.txt, NFKC
+2F02;	1;	3;	4E36;	#	⼂	→	丶	KANGXI RADICAL DOT;	CJKRadicals.txt, NFKC
+2F03;	1;	4;	4E3F;	#	⼃	→	丿	KANGXI RADICAL SLASH;	CJKRadicals.txt, NFKC
+2F04;	1;	5;	4E59;	#	⼄	→	乙	KANGXI RADICAL SECOND;	CJKRadicals.txt, NFKC
+2E82;	1;	5;	4E5B;	#	⺂	→	乛	CJK RADICAL SECOND ONE;	UCA, NamesList
+2E83;	1;	5;	4E5A;	#	⺃	→	乚	CJK RADICAL SECOND TWO;	UCA, NamesList
+2E84;	1;	5;	4E59;	#	⺄	→	乙	CJK RADICAL SECOND THREE;	NamesList
+2F05;	1;	6;	4E85;	#	⼅	→	亅	KANGXI RADICAL HOOK;	CJKRadicals.txt, NFKC
+2F06;	2;	7;	4E8C;	#	⼆	→	二	KANGXI RADICAL TWO;	CJKRadicals.txt, NFKC
+2E80;	2;	3;	;	#	⺀	→		CJK RADICAL REPEAT;	
+2F07;	2;	8;	4EA0;	#	⼇	→	亠	KANGXI RADICAL LID;	CJKRadicals.txt, NFKC
+2F08;	2;	9;	4EBA;	#	⼈	→	人	KANGXI RADICAL MAN;	CJKRadicals.txt, NFKC
+2E85;	2;	9;	4EBB;	#	⺅	→	亻	CJK RADICAL PERSON;	UCA, NamesList
+2F09;	2;	10;	513F;	#	⼉	→	儿	KANGXI RADICAL LEGS;	CJKRadicals.txt, NFKC
+2F0A;	2;	11;	5165;	#	⼊	→	入	KANGXI RADICAL ENTER;	CJKRadicals.txt, NFKC
+2F0B;	2;	12;	516B;	#	⼋	→	八	KANGXI RADICAL EIGHT;	CJKRadicals.txt, NFKC
+2F0C;	2;	13;	5182;	#	⼌	→	冂	KANGXI RADICAL DOWN BOX;	CJKRadicals.txt, NFKC
+2E86;	2;	13;	5182;	#	⺆	→	冂	CJK RADICAL BOX;	NamesList
+2F0D;	2;	14;	5196;	#	⼍	→	冖	KANGXI RADICAL COVER;	CJKRadicals.txt, NFKC
+2F0E;	2;	15;	51AB;	#	⼎	→	冫	KANGXI RADICAL ICE;	CJKRadicals.txt, NFKC
+2F0F;	2;	16;	51E0;	#	⼏	→	几	KANGXI RADICAL TABLE;	CJKRadicals.txt, NFKC
+2E87;	2;	16;	51E0;	#	⺇	→	几	CJK RADICAL TABLE;	NamesList
+2E87;	2;	16;	20628;	#	⺇	→	𠘨	CJK RADICAL TABLE;	kRSUnicode
+2F10;	2;	17;	51F5;	#	⼐	→	凵	KANGXI RADICAL OPEN BOX;	CJKRadicals.txt, NFKC
+2F11;	2;	18;	5200;	#	⼑	→	刀	KANGXI RADICAL KNIFE;	CJKRadicals.txt, NFKC
+2E88;	2;	18;	5200;	#	⺈	→	刀	CJK RADICAL KNIFE ONE;	NamesList
+2E89;	2;	18;	5202;	#	⺉	→	刂	CJK RADICAL KNIFE TWO;	UCA, NamesList
+2F12;	2;	19;	529B;	#	⼒	→	力	KANGXI RADICAL POWER;	CJKRadicals.txt, NFKC
+2F13;	2;	20;	52F9;	#	⼓	→	勹	KANGXI RADICAL WRAP;	CJKRadicals.txt, NFKC
+2F14;	2;	21;	5315;	#	⼔	→	匕	KANGXI RADICAL SPOON;	CJKRadicals.txt, NFKC
+2F15;	2;	22;	531A;	#	⼕	→	匚	KANGXI RADICAL RIGHT OPEN BOX;	CJKRadicals.txt, NFKC
+2F16;	2;	23;	5338;	#	⼖	→	匸	KANGXI RADICAL HIDING ENCLOSURE;	CJKRadicals.txt, NFKC
+2F17;	2;	24;	5341;	#	⼗	→	十	KANGXI RADICAL TEN;	CJKRadicals.txt, NFKC
+2F18;	2;	25;	535C;	#	⼘	→	卜	KANGXI RADICAL DIVINATION;	CJKRadicals.txt, NFKC
+2E8A;	2;	25;	535C;	#	⺊	→	卜	CJK RADICAL DIVINATION;	NamesList
+2F19;	2;	26;	5369;	#	⼙	→	卩	KANGXI RADICAL SEAL;	CJKRadicals.txt, NFKC
+2E8B;	2;	26;	353E;	#	⺋	→	㔾	CJK RADICAL SEAL;	NamesList
+2F1A;	2;	27;	5382;	#	⼚	→	厂	KANGXI RADICAL CLIFF;	CJKRadicals.txt, NFKC
+2E81;	2;	27;	5382;	#	⺁	→	厂	CJK RADICAL CLIFF;	NamesList
+2F1B;	2;	28;	53B6;	#	⼛	→	厶	KANGXI RADICAL PRIVATE;	CJKRadicals.txt, NFKC
+2F1C;	2;	29;	53C8;	#	⼜	→	又	KANGXI RADICAL AGAIN;	CJKRadicals.txt, NFKC
+2F1D;	3;	30;	53E3;	#	⼝	→	口	KANGXI RADICAL MOUTH;	CJKRadicals.txt, NFKC
+2F1E;	3;	31;	56D7;	#	⼞	→	囗	KANGXI RADICAL ENCLOSURE;	CJKRadicals.txt, NFKC
+2F1F;	3;	32;	571F;	#	⼟	→	土	KANGXI RADICAL EARTH;	CJKRadicals.txt, NFKC
+2F20;	3;	33;	58EB;	#	⼠	→	士	KANGXI RADICAL SCHOLAR;	CJKRadicals.txt, NFKC
+2F21;	3;	34;	5902;	#	⼡	→	夂	KANGXI RADICAL GO;	CJKRadicals.txt, NFKC
+2F22;	3;	35;	590A;	#	⼢	→	夊	KANGXI RADICAL GO SLOWLY;	CJKRadicals.txt, NFKC
+2F23;	3;	36;	5915;	#	⼣	→	夕	KANGXI RADICAL EVENING;	CJKRadicals.txt, NFKC
+2F24;	3;	37;	5927;	#	⼤	→	大	KANGXI RADICAL BIG;	CJKRadicals.txt, NFKC
+2F25;	3;	38;	5973;	#	⼥	→	女	KANGXI RADICAL WOMAN;	CJKRadicals.txt, NFKC
+2F26;	3;	39;	5B50;	#	⼦	→	子	KANGXI RADICAL CHILD;	CJKRadicals.txt, NFKC
+2F27;	3;	40;	5B80;	#	⼧	→	宀	KANGXI RADICAL ROOF;	CJKRadicals.txt, NFKC
+2F28;	3;	41;	5BF8;	#	⼨	→	寸	KANGXI RADICAL INCH;	CJKRadicals.txt, NFKC
+2F29;	3;	42;	5C0F;	#	⼩	→	小	KANGXI RADICAL SMALL;	CJKRadicals.txt, NFKC
+2E8C;	3;	42;	5C0F;	#	⺌	→	小	CJK RADICAL SMALL ONE;	NamesList
+2E8D;	3;	42;	5C0F;	#	⺍	→	小	CJK RADICAL SMALL TWO;	NamesList
+2F2A;	3;	43;	5C22;	#	⼪	→	尢	KANGXI RADICAL LAME;	CJKRadicals.txt, NFKC
+2E8E;	3;	43;	5C22;	#	⺎	→	尢	CJK RADICAL LAME ONE;	NamesList
+2E8F;	4;	43;	5C23;	#	⺏	→	尣	CJK RADICAL LAME TWO;	UCA, NamesList
+2E90;	3;	43;	5C22;	#	⺐	→	尢	CJK RADICAL LAME THREE;	UCA, NamesList
+2E91;	4;	43;	5C23;	#	⺑	→	尣	CJK RADICAL LAME FOUR;	NamesList
+2E91;	4;	43;	21BC2;	#	⺑	→	𡯂	CJK RADICAL LAME FOUR;	kRSUnicode
+2E8E;	3;	43;	5140;	#	⺎	→	兀	CJK RADICAL LAME ONE;	kRSAdobe
+2F2B;	3;	44;	5C38;	#	⼫	→	尸	KANGXI RADICAL CORPSE;	CJKRadicals.txt, NFKC
+2F2C;	3;	45;	5C6E;	#	⼬	→	屮	KANGXI RADICAL SPROUT;	CJKRadicals.txt, NFKC
+2F2D;	3;	46;	5C71;	#	⼭	→	山	KANGXI RADICAL MOUNTAIN;	CJKRadicals.txt, NFKC
+2F2E;	3;	47;	5DDB;	#	⼮	→	巛	KANGXI RADICAL RIVER;	CJKRadicals.txt, NFKC
+2F2F;	3;	48;	5DE5;	#	⼯	→	工	KANGXI RADICAL WORK;	CJKRadicals.txt, NFKC
+2F30;	3;	49;	5DF1;	#	⼰	→	己	KANGXI RADICAL ONESELF;	CJKRadicals.txt, NFKC
+2E92;	3;	49;	5DF3;	#	⺒	→	巳	CJK RADICAL SNAKE;	UCA, NamesList
+2F31;	3;	50;	5DFE;	#	⼱	→	巾	KANGXI RADICAL TURBAN;	CJKRadicals.txt, NFKC
+2F32;	3;	51;	5E72;	#	⼲	→	干	KANGXI RADICAL DRY;	CJKRadicals.txt, NFKC
+2F33;	3;	52;	5E7A;	#	⼳	→	幺	KANGXI RADICAL SHORT THREAD;	CJKRadicals.txt, NFKC
+2E93;	3;	52;	5E7A;	#	⺓	→	幺	CJK RADICAL THREAD;	UCA, NamesList
+2F34;	3;	53;	5E7F;	#	⼴	→	广	KANGXI RADICAL DOTTED CLIFF;	CJKRadicals.txt, NFKC
+2F35;	2, 3;	54;	5EF4;	#	⼵	→	廴	KANGXI RADICAL LONG STRIDE;	CJKRadicals.txt, NFKC
+2F36;	3;	55;	5EFE;	#	⼶	→	廾	KANGXI RADICAL TWO HANDS;	CJKRadicals.txt, NFKC
+2F37;	3;	56;	5F0B;	#	⼷	→	弋	KANGXI RADICAL SHOOT;	CJKRadicals.txt, NFKC
+2F38;	3;	57;	5F13;	#	⼸	→	弓	KANGXI RADICAL BOW;	CJKRadicals.txt, NFKC
+2F39;	3;	58;	5F50;	#	⼹	→	彐	KANGXI RADICAL SNOUT;	CJKRadicals.txt, NFKC
+2E94;	3;	58;	5F51;	#	⺔	→	彑	CJK RADICAL SNOUT ONE;	UCA, NamesList
+2E95;	3;	58;	5F50;	#	⺕	→	彐	CJK RADICAL SNOUT TWO;	NamesList
+2F3A;	3;	59;	5F61;	#	⼺	→	彡	KANGXI RADICAL BRISTLE;	CJKRadicals.txt, NFKC
+2F3B;	3;	60;	5F73;	#	⼻	→	彳	KANGXI RADICAL STEP;	CJKRadicals.txt, NFKC
+2F3C;	4;	61;	5FC3;	#	⼼	→	心	KANGXI RADICAL HEART;	CJKRadicals.txt, NFKC
+2E96;	3;	61;	5FC4;	#	⺖	→	忄	CJK RADICAL HEART ONE;	UCA, NamesList
+2E97;	4;	61;	5FC3;	#	⺗	→	心	CJK RADICAL HEART TWO;	NamesList
+2E97;	4;	61;	38FA;	#	⺗	→	㣺	CJK RADICAL HEART TWO;	kRSAdobe
+2F3D;	4;	62;	6208;	#	⼽	→	戈	KANGXI RADICAL HALBERD;	CJKRadicals.txt, NFKC
+2F3E;	4;	63;	6236;	#	⼾	→	戶	KANGXI RADICAL DOOR;	CJKRadicals.txt, NFKC
+2F3E;	4;	63;	6237;	#	⼾	→	户	KANGXI RADICAL DOOR;	kRSUnicode
+2F3E;	4;	63;	6238;	#	⼾	→	戸	KANGXI RADICAL DOOR;	kRSUnicode
+2F3F;	4;	64;	624B;	#	⼿	→	手	KANGXI RADICAL HAND;	CJKRadicals.txt, NFKC
+2E98;	3;	64;	624C;	#	⺘	→	扌	CJK RADICAL HAND;	UCA, NamesList
+2F40;	4;	65;	652F;	#	⽀	→	支	KANGXI RADICAL BRANCH;	CJKRadicals.txt, NFKC
+2F41;	4;	66;	6534;	#	⽁	→	攴	KANGXI RADICAL RAP;	CJKRadicals.txt, NFKC
+2E99;	4;	66;	6535;	#	⺙	→	攵	CJK RADICAL RAP;	UCA, NamesList
+2F42;	4;	67;	6587;	#	⽂	→	文	KANGXI RADICAL SCRIPT;	CJKRadicals.txt, NFKC
+2F43;	4;	68;	6597;	#	⽃	→	斗	KANGXI RADICAL DIPPER;	CJKRadicals.txt, NFKC
+2F44;	4;	69;	65A4;	#	⽄	→	斤	KANGXI RADICAL AXE;	CJKRadicals.txt, NFKC
+2F45;	4;	70;	65B9;	#	⽅	→	方	KANGXI RADICAL SQUARE;	CJKRadicals.txt, NFKC
+2F46;	4;	71;	65E0;	#	⽆	→	无	KANGXI RADICAL NOT;	CJKRadicals.txt, NFKC
+2E9B;	4, 5;	71;	65E1;	#	⺛	→	旡	CJK RADICAL CHOKE;	UCA, NamesList
+2F47;	4;	72;	65E5;	#	⽇	→	日	KANGXI RADICAL SUN;	CJKRadicals.txt, NFKC
+2E9C;	4;	72;	65E5;	#	⺜	→	日	CJK RADICAL SUN;	NamesList
+2F48;	4;	73;	66F0;	#	⽈	→	曰	KANGXI RADICAL SAY;	CJKRadicals.txt, NFKC
+2F49;	4;	74;	6708;	#	⽉	→	月	KANGXI RADICAL MOON;	CJKRadicals.txt, NFKC
+2E9D;	4;	74;	6708;	#	⺝	→	月	CJK RADICAL MOON;	NamesList
+2F4A;	4;	75;	6728;	#	⽊	→	木	KANGXI RADICAL TREE;	CJKRadicals.txt, NFKC
+2F4B;	4;	76;	6B20;	#	⽋	→	欠	KANGXI RADICAL LACK;	CJKRadicals.txt, NFKC
+2F4C;	4;	77;	6B62;	#	⽌	→	止	KANGXI RADICAL STOP;	CJKRadicals.txt, NFKC
+2F4D;	4;	78;	6B79;	#	⽍	→	歹	KANGXI RADICAL DEATH;	CJKRadicals.txt, NFKC
+2E9E;	5;	78;	6B7A;	#	⺞	→	歺	CJK RADICAL DEATH;	NamesList
+2F4E;	4;	79;	6BB3;	#	⽎	→	殳	KANGXI RADICAL WEAPON;	CJKRadicals.txt, NFKC
+2F4F;	4;	80;	6BCB;	#	⽏	→	毋	KANGXI RADICAL DO NOT;	CJKRadicals.txt, NFKC
+2E9F;	5;	80;	6BCD;	#	⺟	→	母	CJK RADICAL MOTHER;	NFKC, NamesList
+2F50;	4;	81;	6BD4;	#	⽐	→	比	KANGXI RADICAL COMPARE;	CJKRadicals.txt, NFKC
+2F51;	4;	82;	6BDB;	#	⽑	→	毛	KANGXI RADICAL FUR;	CJKRadicals.txt, NFKC
+2F52;	4;	83;	6C0F;	#	⽒	→	氏	KANGXI RADICAL CLAN;	CJKRadicals.txt, NFKC
+2EA0;	5;	83;	6C11;	#	⺠	→	民	CJK RADICAL CIVILIAN;	UCA, NamesList
+2F53;	4;	84;	6C14;	#	⽓	→	气	KANGXI RADICAL STEAM;	CJKRadicals.txt, NFKC
+2F54;	4;	85;	6C34;	#	⽔	→	水	KANGXI RADICAL WATER;	CJKRadicals.txt, NFKC
+2EA1;	3;	85;	6C35;	#	⺡	→	氵	CJK RADICAL WATER ONE;	UCA, NamesList
+2EA2;	5;	85;	6C3A;	#	⺢	→	氺	CJK RADICAL WATER TWO;	UCA, NamesList
+2F55;	4;	86;	706B;	#	⽕	→	火	KANGXI RADICAL FIRE;	CJKRadicals.txt, NFKC
+2EA3;	4;	86;	706C;	#	⺣	→	灬	CJK RADICAL FIRE;	UCA, NamesList
+2F56;	4;	87;	722A;	#	⽖	→	爪	KANGXI RADICAL CLAW;	CJKRadicals.txt, NFKC
+2EA4;	4;	87;	722B;	#	⺤	→	爫	CJK RADICAL PAW ONE;	UCA, NamesList
+2EA5;	4;	87;	722B;	#	⺥	→	爫	CJK RADICAL PAW TWO;	NamesList
+2F57;	4;	88;	7236;	#	⽗	→	父	KANGXI RADICAL FATHER;	CJKRadicals.txt, NFKC
+2F58;	4;	89;	723B;	#	⽘	→	爻	KANGXI RADICAL DOUBLE X;	CJKRadicals.txt, NFKC
+2F59;	4;	90;	723F;	#	⽙	→	爿	KANGXI RADICAL HALF TREE TRUNK;	CJKRadicals.txt, NFKC
+2EA6;	3;	90';	4E2C;	#	⺦	→	丬	CJK RADICAL SIMPLIFIED HALF TREE TRUNK;	CJKRadicals.txt, UCA, NamesList, kRSUnicode
+2F5A;	4;	91;	7247;	#	⽚	→	片	KANGXI RADICAL SLICE;	CJKRadicals.txt, NFKC
+2F5B;	4,5;	92;	7259;	#	⽛	→	牙	KANGXI RADICAL FANG;	CJKRadicals.txt, NFKC
+2F5C;	4;	93;	725B;	#	⽜	→	牛	KANGXI RADICAL COW;	CJKRadicals.txt, NFKC
+2EA7;	4;	93;	725B;	#	⺧	→	牛	CJK RADICAL COW;	NamesList
+2F5D;	4;	94;	72AC;	#	⽝	→	犬	KANGXI RADICAL DOG;	CJKRadicals.txt, NFKC
+2EA8;	3;	94;	72AD;	#	⺨	→	犭	CJK RADICAL DOG;	UCA, NamesList
+2F5E;	5;	95;	7384;	#	⽞	→	玄	KANGXI RADICAL PROFOUND;	CJKRadicals.txt, NFKC
+2F5F;	5;	96;	7389;	#	⽟	→	玉	KANGXI RADICAL JADE;	CJKRadicals.txt, NFKC
+2EA9;	4;	96;	738B;	#	⺩	≠	王	CJK RADICAL JADE;	NamesList
+2EA9;	4;	96;	248E9;	#	⺩	→	𤣩	CJK RADICAL JADE;	kRSUnicode
+2F60;	5, 6;	97;	74DC;	#	⽠	→	瓜	KANGXI RADICAL MELON;	CJKRadicals.txt, NFKC
+2F61;	4, 5;	98;	74E6;	#	⽡	→	瓦	KANGXI RADICAL TILE;	CJKRadicals.txt, NFKC
+2F62;	5;	99;	7518;	#	⽢	→	甘	KANGXI RADICAL SWEET;	CJKRadicals.txt, NFKC
+2F63;	5;	100;	751F;	#	⽣	→	生	KANGXI RADICAL LIFE;	CJKRadicals.txt, NFKC
+2F64;	5;	101;	7528;	#	⽤	→	用	KANGXI RADICAL USE;	CJKRadicals.txt, NFKC
+2F65;	5;	102;	7530;	#	⽥	→	田	KANGXI RADICAL FIELD;	CJKRadicals.txt, NFKC
+2F66;	5;	103;	758B;	#	⽦	→	疋	KANGXI RADICAL BOLT OF CLOTH;	CJKRadicals.txt, NFKC
+2EAA;	5;	103;	758B;	#	⺪	→	疋	CJK RADICAL BOLT OF CLOTH;	NamesList
+2EAA;	5;	103;	24D14;	#	⺪	→	𤴔	CJK RADICAL BOLT OF CLOTH;	kRSUnicode
+2F67;	5;	104;	7592;	#	⽧	→	疒	KANGXI RADICAL SICKNESS;	CJKRadicals.txt, NFKC
+2F68;	5;	105;	7676;	#	⽨	→	癶	KANGXI RADICAL DOTTED TENT;	CJKRadicals.txt, NFKC
+2F69;	5;	106;	767D;	#	⽩	→	白	KANGXI RADICAL WHITE;	CJKRadicals.txt, NFKC
+2F6A;	5;	107;	76AE;	#	⽪	→	皮	KANGXI RADICAL SKIN;	CJKRadicals.txt, NFKC
+2F6B;	5;	108;	76BF;	#	⽫	→	皿	KANGXI RADICAL DISH;	CJKRadicals.txt, NFKC
+2F6C;	5;	109;	76EE;	#	⽬	→	目	KANGXI RADICAL EYE;	CJKRadicals.txt, NFKC
+2EAB;	5;	109;	76EE;	#	⺫	→	目	CJK RADICAL EYE;	NamesList
+2EAB;	5;	109;	7F52;	#	⺫	→	罒	CJK RADICAL EYE;	kRSAdobe
+2F6D;	5;	110;	77DB;	#	⽭	→	矛	KANGXI RADICAL SPEAR;	CJKRadicals.txt, NFKC
+2F6E;	5;	111;	77E2;	#	⽮	→	矢	KANGXI RADICAL ARROW;	CJKRadicals.txt, NFKC
+2F6F;	5;	112;	77F3;	#	⽯	→	石	KANGXI RADICAL STONE;	CJKRadicals.txt, NFKC
+2F70;	5;	113;	793A;	#	⽰	→	示	KANGXI RADICAL SPIRIT;	CJKRadicals.txt, NFKC
+2EAC;	5;	113;	793A;	#	⺬	→	示	CJK RADICAL SPIRIT ONE;	NamesList
+2EAD;	4;	113';	793B;	#	⺭	→	礻	CJK RADICAL SPIRIT TWO;	UCA, NamesList
+2F71;	4;	114;	79B8;	#	⽱	→	禸	KANGXI RADICAL TRACK;	CJKRadicals.txt, NFKC
+2F72;	5;	115;	79BE;	#	⽲	→	禾	KANGXI RADICAL GRAIN;	CJKRadicals.txt, NFKC
+2F73;	5;	116;	7A74;	#	⽳	→	穴	KANGXI RADICAL CAVE;	CJKRadicals.txt, NFKC
+2F74;	5;	117;	7ACB;	#	⽴	→	立	KANGXI RADICAL STAND;	CJKRadicals.txt, NFKC
+2F75;	6;	118;	7AF9;	#	⽵	→	竹	KANGXI RADICAL BAMBOO;	CJKRadicals.txt, NFKC
+2EAE;	6;	118;	7AF9;	#	⺮	→	竹	CJK RADICAL BAMBOO;	NamesList
+2EAE;	6;	118;	25AD7;	#	⺮	→	𥫗	CJK RADICAL BAMBOO;	kRSUnicode
+2F76;	6;	119;	7C73;	#	⽶	→	米	KANGXI RADICAL RICE;	CJKRadicals.txt, NFKC
+2F77;	6;	120;	7CF8;	#	⽷	→	糸	KANGXI RADICAL SILK;	CJKRadicals.txt, NFKC
+2EAF;	6;	120;	7CF9;	#	⺯	→	糹	CJK RADICAL SILK;	UCA, NamesList
+2EB0;	3;	120';	7E9F;	#	⺰	→	纟	CJK RADICAL C-SIMPLIFIED SILK;	CJKRadicals.txt, UCA, NamesList
+2F78;	6;	121;	7F36;	#	⽸	→	缶	KANGXI RADICAL JAR;	CJKRadicals.txt, NFKC
+2F79;	6;	122;	7F51;	#	⽹	→	网	KANGXI RADICAL NET;	CJKRadicals.txt, NFKC
+2EB1;	4;	122;	7F53;	#	⺱	→	罓	CJK RADICAL NET ONE;	UCA, NamesList
+2EB2;	5;	122;	7F52;	#	⺲	→	罒	CJK RADICAL NET TWO;	UCA, NamesList
+2EB3;	6;	122;	7F51;	#	⺳	→	网	CJK RADICAL NET THREE;	NamesList
+2EB4;	6;	122;	7F51;	#	⺴	→	网	CJK RADICAL NET FOUR;	NamesList
+2EB5;	4;	122;	2626B;	#	⺵	→	𦉫	CJK RADICAL MESH;	NamesList
+2EB3;	4;	122;	2626A;	#	⺳	→	𦉪	CJK RADICAL NET THREE;	kRSUnicode
+2F7A;	6;	123;	7F8A;	#	⽺	→	羊	KANGXI RADICAL SHEEP;	CJKRadicals.txt, NFKC
+2EB6;	6;	123;	7F8A;	#	⺶	→	羊	CJK RADICAL SHEEP;	NamesList
+2EB7;	6;	123;	7F8A;	#	⺷	→	羊	CJK RADICAL RAM;	NamesList
+2EB8;	8;	123;	7F8B;	#	⺸	→	羋	CJK RADICAL EWE;	UCA, NamesList
+2EB8;	7;	123;	2634B;	#	⺸	→	𦍋	CJK RADICAL EWE;	kRSUnicode
+2EB7;	6;	123;	2634C;	#	⺷	→	𦍌	CJK RADICAL RAM;	kRSUnicode
+2F7B;	6;	124;	7FBD;	#	⽻	→	羽	KANGXI RADICAL FEATHER;	CJKRadicals.txt, NFKC
+2F7C;	6;	125;	8001;	#	⽼	→	老	KANGXI RADICAL OLD;	CJKRadicals.txt, NFKC
+2EB9;	4;	125;	8002;	#	⺹	→	耂	CJK RADICAL OLD;	UCA, NamesList
+2F7D;	6;	126;	800C;	#	⽽	→	而	KANGXI RADICAL AND;	CJKRadicals.txt, NFKC
+2F7E;	6;	127;	8012;	#	⽾	→	耒	KANGXI RADICAL PLOW;	CJKRadicals.txt, NFKC
+2F7F;	6;	128;	8033;	#	⽿	→	耳	KANGXI RADICAL EAR;	CJKRadicals.txt, NFKC
+2F80;	6;	129;	807F;	#	⾀	→	聿	KANGXI RADICAL BRUSH;	CJKRadicals.txt, NFKC
+2EBA;	4;	129;	8080;	#	⺺	→	肀	CJK RADICAL BRUSH ONE;	UCA, NamesList
+2EBB;	6;	129;	807F;	#	⺻	→	聿	CJK RADICAL BRUSH TWO;	NamesList
+2F81;	6;	130;	8089;	#	⾁	→	肉	KANGXI RADICAL MEAT;	CJKRadicals.txt, NFKC
+2EBC;	6;	130;	8089;	#	⺼	→	肉	CJK RADICAL MEAT;	NamesList
+2F82;	6, 7;	131;	81E3;	#	⾂	→	臣	KANGXI RADICAL MINISTER;	CJKRadicals.txt, NFKC
+2F83;	6;	132;	81EA;	#	⾃	→	自	KANGXI RADICAL SELF;	CJKRadicals.txt, NFKC
+2F84;	6;	133;	81F3;	#	⾄	→	至	KANGXI RADICAL ARRIVE;	CJKRadicals.txt, NFKC
+2F85;	6;	134;	81FC;	#	⾅	→	臼	KANGXI RADICAL MORTAR;	CJKRadicals.txt, NFKC
+2EBD;	6;	134;	81FC;	#	⺽	→	臼	CJK RADICAL MORTAR;	NamesList
+2EBD;	7;	134;	26951;	#	⺽	→	𦥑	CJK RADICAL MORTAR;	kRSUnicode
+2F86;	6;	135;	820C;	#	⾆	→	舌	KANGXI RADICAL TONGUE;	CJKRadicals.txt, NFKC
+2F87;	6, 7;	136;	821B;	#	⾇	→	舛	KANGXI RADICAL OPPOSE;	CJKRadicals.txt, NFKC
+2F88;	6;	137;	821F;	#	⾈	→	舟	KANGXI RADICAL BOAT;	CJKRadicals.txt, NFKC
+2F89;	6;	138;	826E;	#	⾉	→	艮	KANGXI RADICAL STOPPING;	CJKRadicals.txt, NFKC
+2F8A;	6;	139;	8272;	#	⾊	→	色	KANGXI RADICAL COLOR;	CJKRadicals.txt, NFKC
+2F8B;	6;	140;	8278;	#	⾋	→	艸	KANGXI RADICAL GRASS;	CJKRadicals.txt, NFKC
+2EBE;	3;	140';	8279;	#	⺾	→	艹	CJK RADICAL GRASS ONE;	UCA, NamesList
+2EBF;	4;	140;	8279;	#	⺿	→	艹	CJK RADICAL GRASS TWO;	NamesList
+2EC0;	4;	140;	8279;	#	⻀	→	艹	CJK RADICAL GRASS THREE;	NamesList
+2F8C;	6;	141;	864D;	#	⾌	→	虍	KANGXI RADICAL TIGER;	CJKRadicals.txt, NFKC
+2EC1;	8;	141;	864E;	#	⻁	→	虎	CJK RADICAL TIGER;	UCA, NamesList
+2F8D;	6;	142;	866B;	#	⾍	→	虫	KANGXI RADICAL INSECT;	CJKRadicals.txt, NFKC
+2F8E;	6;	143;	8840;	#	⾎	→	血	KANGXI RADICAL BLOOD;	CJKRadicals.txt, NFKC
+2F8F;	6;	144;	884C;	#	⾏	→	行	KANGXI RADICAL WALK ENCLOSURE;	CJKRadicals.txt, NFKC
+2F90;	6;	145;	8863;	#	⾐	→	衣	KANGXI RADICAL CLOTHES;	CJKRadicals.txt, NFKC
+2EC2;	5;	145;	8864;	#	⻂	→	衤	CJK RADICAL CLOTHES;	UCA, NamesList
+2F91;	6;	146;	897E;	#	⾑	→	襾	KANGXI RADICAL WEST;	CJKRadicals.txt, NFKC
+2EC3;	6;	146;	8980;	#	⻃	→	覀	CJK RADICAL WEST ONE;	UCA, NamesList
+2EC4;	6;	146;	897F;	#	⻄	→	西	CJK RADICAL WEST TWO;	UCA, NamesList
+2F92;	7;	147;	898B;	#	⾒	→	見	KANGXI RADICAL SEE;	CJKRadicals.txt, NFKC
+2EC5;	4;	147';	89C1;	#	⻅	→	见	CJK RADICAL C-SIMPLIFIED SEE;	CJKRadicals.txt, UCA, NamesList
+2F93;	7;	148;	89D2;	#	⾓	→	角	KANGXI RADICAL HORN;	CJKRadicals.txt, NFKC
+2EC6;	7;	148';	89D2;	#	⻆	→	角	CJK RADICAL SIMPLIFIED HORN;	UCA, NamesList
+2EC7;	8;	148;	278B2;	#	⻇	→	𧢲	CJK RADICAL HORN;	NamesList
+2F94;	7;	149;	8A00;	#	⾔	→	言	KANGXI RADICAL SPEECH;	CJKRadicals.txt, NFKC
+2EC8;	2;	149';	8BA0;	#	⻈	→	讠	CJK RADICAL C-SIMPLIFIED SPEECH;	CJKRadicals.txt, UCA, NamesList
+2F95;	7;	150;	8C37;	#	⾕	→	谷	KANGXI RADICAL VALLEY;	CJKRadicals.txt, NFKC
+2F96;	7;	151;	8C46;	#	⾖	→	豆	KANGXI RADICAL BEAN;	CJKRadicals.txt, NFKC
+2F97;	7;	152;	8C55;	#	⾗	→	豕	KANGXI RADICAL PIG;	CJKRadicals.txt, NFKC
+2F98;	7;	153;	8C78;	#	⾘	→	豸	KANGXI RADICAL BADGER;	CJKRadicals.txt, NFKC
+2F99;	7;	154;	8C9D;	#	⾙	→	貝	KANGXI RADICAL SHELL;	CJKRadicals.txt, NFKC
+2EC9;	4;	154';	8D1D;	#	⻉	→	贝	CJK RADICAL C-SIMPLIFIED SHELL;	CJKRadicals.txt, UCA, NamesList
+2F9A;	7;	155;	8D64;	#	⾚	→	赤	KANGXI RADICAL RED;	CJKRadicals.txt, NFKC
+2F9B;	7;	156;	8D70;	#	⾛	→	走	KANGXI RADICAL RUN;	CJKRadicals.txt, NFKC
+2F9C;	7;	157;	8DB3;	#	⾜	→	足	KANGXI RADICAL FOOT;	CJKRadicals.txt, NFKC
+2ECA;	7;	157;	8DB3;	#	⻊	→	足	CJK RADICAL FOOT;	NamesList
+2ECA;	7;	157;	27FB7;	#	⻊	→	𧾷	CJK RADICAL FOOT;	kRSUnicode
+2F9D;	7;	158;	8EAB;	#	⾝	→	身	KANGXI RADICAL BODY;	CJKRadicals.txt, NFKC
+2F9E;	7;	159;	8ECA;	#	⾞	→	車	KANGXI RADICAL CART;	CJKRadicals.txt, NFKC
+2ECB;	4;	159';	8F66;	#	⻋	→	车	CJK RADICAL C-SIMPLIFIED CART;	CJKRadicals.txt, UCA, NamesList
+2F9F;	7;	160;	8F9B;	#	⾟	→	辛	KANGXI RADICAL BITTER;	CJKRadicals.txt, NFKC
+2FA0;	7;	161;	8FB0;	#	⾠	→	辰	KANGXI RADICAL MORNING;	CJKRadicals.txt, NFKC
+2FA1;	7;	162;	8FB5;	#	⾡	→	辵	KANGXI RADICAL WALK;	CJKRadicals.txt, NFKC
+2ECD;	4;	162;	8FB6;	#	⻍	→	辶	CJK RADICAL WALK ONE;	NamesList
+2ECE;	4,3;	162;	8FB6;	#	⻎	→	辶	CJK RADICAL WALK TWO;	NamesList
+2ECC;	3,4;	162';	8FB6;	#	⻌	→	辶	CJK RADICAL SIMPLIFIED WALK;	CJKRadicals.txt, UCA, NamesList
+2FA2;	7;	163;	9091;	#	⾢	→	邑	KANGXI RADICAL CITY;	CJKRadicals.txt, NFKC
+2ECF;	7;	163;	9091;	#	⻏	→	邑	CJK RADICAL CITY;	NamesList
+2FA3;	7;	164;	9149;	#	⾣	→	酉	KANGXI RADICAL WINE;	CJKRadicals.txt, NFKC
+2FA4;	7;	165;	91C6;	#	⾤	→	釆	KANGXI RADICAL DISTINGUISH;	CJKRadicals.txt, NFKC
+2FA5;	7;	166;	91CC;	#	⾥	→	里	KANGXI RADICAL VILLAGE;	CJKRadicals.txt, NFKC
+2FA6;	8;	167;	91D1;	#	⾦	→	金	KANGXI RADICAL GOLD;	CJKRadicals.txt, NFKC
+2ED0;	5;	167';	9485;	#	⻐	→	钅	CJK RADICAL C-SIMPLIFIED GOLD;	CJKRadicals.txt, UCA, NamesList
+2FA7;	8;	168;	9577;	#	⾧	→	長	KANGXI RADICAL LONG;	CJKRadicals.txt, NFKC
+2ED1;	8;	168;	9577;	#	⻑	→	長	CJK RADICAL LONG ONE;	UCA, NamesList
+2ED2;	7;	168;	9578;	#	⻒	→	镸	CJK RADICAL LONG TWO;	UCA, NamesList
+2ED3;	4;	168';	957F;	#	⻓	→	长	CJK RADICAL C-SIMPLIFIED LONG;	CJKRadicals.txt, UCA, NamesList
+2FA8;	8;	169;	9580;	#	⾨	→	門	KANGXI RADICAL GATE;	CJKRadicals.txt, NFKC
+2ED4;	3;	169';	95E8;	#	⻔	→	门	CJK RADICAL C-SIMPLIFIED GATE;	CJKRadicals.txt, UCA, NamesList
+2FA9;	8;	170;	961C;	#	⾩	→	阜	KANGXI RADICAL MOUND;	CJKRadicals.txt, NFKC
+2ED5;	8;	170;	28E0F;	#	⻕	→	𨸏	CJK RADICAL MOUND ONE;	NamesList
+2ED6;	3;	170;	961D;	#	⻖	→	阝	CJK RADICAL MOUND TWO;	UCA, NamesList
+2FAA;	8;	171;	96B6;	#	⾪	→	隶	KANGXI RADICAL SLAVE;	CJKRadicals.txt, NFKC
+2FAB;	8;	172;	96B9;	#	⾫	→	隹	KANGXI RADICAL SHORT TAILED BIRD;	CJKRadicals.txt, NFKC
+2FAC;	8;	173;	96E8;	#	⾬	→	雨	KANGXI RADICAL RAIN;	CJKRadicals.txt, NFKC
+2ED7;	8;	173;	96E8;	#	⻗	→	雨	CJK RADICAL RAIN;	NamesList
+2FAD;	8;	174;	9751;	#	⾭	→	靑	KANGXI RADICAL BLUE;	CJKRadicals.txt, NFKC
+2ED8;	8;	174;	9752;	#	⻘	→	青	CJK RADICAL BLUE;	UCA, NamesList
+2FAE;	8;	175;	975E;	#	⾮	→	非	KANGXI RADICAL WRONG;	CJKRadicals.txt, NFKC
+2FAF;	9;	176;	9762;	#	⾯	→	面	KANGXI RADICAL FACE;	CJKRadicals.txt, NFKC
+2FB0;	9;	177;	9769;	#	⾰	→	革	KANGXI RADICAL LEATHER;	CJKRadicals.txt, NFKC
+2FB1;	9, 10;	178;	97CB;	#	⾱	→	韋	KANGXI RADICAL TANNED LEATHER;	CJKRadicals.txt, NFKC
+2ED9;	4;	178';	97E6;	#	⻙	→	韦	CJK RADICAL C-SIMPLIFIED TANNED LEATHER;	CJKRadicals.txt, UCA, NamesList
+2FB2;	9;	179;	97ED;	#	⾲	→	韭	KANGXI RADICAL LEEK;	CJKRadicals.txt, NFKC
+2FB3;	9;	180;	97F3;	#	⾳	→	音	KANGXI RADICAL SOUND;	CJKRadicals.txt, NFKC
+2FB4;	9;	181;	9801;	#	⾴	→	頁	KANGXI RADICAL LEAF;	CJKRadicals.txt, NFKC
+2EDA;	6;	181';	9875;	#	⻚	→	页	CJK RADICAL C-SIMPLIFIED LEAF;	CJKRadicals.txt, UCA, NamesList
+2FB5;	9, 10;	182;	98A8;	#	⾵	→	風	KANGXI RADICAL WIND;	CJKRadicals.txt, NFKC
+2EDB;	4;	182';	98CE;	#	⻛	→	风	CJK RADICAL C-SIMPLIFIED WIND;	CJKRadicals.txt, UCA, NamesList
+2FB6;	9;	183;	98DB;	#	⾶	→	飛	KANGXI RADICAL FLY;	CJKRadicals.txt, NFKC
+2EDC;	3;	183';	98DE;	#	⻜	→	飞	CJK RADICAL C-SIMPLIFIED FLY;	CJKRadicals.txt, UCA, NamesList
+2FB7;	9;	184;	98DF;	#	⾷	→	食	KANGXI RADICAL EAT;	CJKRadicals.txt, NFKC
+2EDD;	9;	184;	98DF;	#	⻝	→	食	CJK RADICAL EAT ONE;	UCA, NamesList
+2EDE;	9;	184;	2967F;	#	⻞	→	𩙿	CJK RADICAL EAT TWO;	NamesList
+2EDF;	8;	184;	98E0;	#	⻟	→	飠	CJK RADICAL EAT THREE;	UCA, NamesList
+2EE0;	3;	184';	9963;	#	⻠	→	饣	CJK RADICAL C-SIMPLIFIED EAT;	CJKRadicals.txt, UCA, NamesList
+2FB8;	9;	185;	9996;	#	⾸	→	首	KANGXI RADICAL HEAD;	CJKRadicals.txt, NFKC
+2EE1;	10;	185;	29810;	#	⻡	→	𩠐	CJK RADICAL HEAD;	NamesList
+2FB9;	9;	186;	9999;	#	⾹	→	香	KANGXI RADICAL FRAGRANT;	CJKRadicals.txt, NFKC
+2FBA;	10;	187;	99AC;	#	⾺	→	馬	KANGXI RADICAL HORSE;	CJKRadicals.txt, NFKC
+2EE2;	3;	187';	9A6C;	#	⻢	→	马	CJK RADICAL C-SIMPLIFIED HORSE;	CJKRadicals.txt, UCA, NamesList
+2FBB;	10;	188;	9AA8;	#	⾻	→	骨	KANGXI RADICAL BONE;	CJKRadicals.txt, NFKC
+2EE3;	9;	188';	9AA8;	#	⻣	→	骨	CJK RADICAL BONE;	NamesList
+2FBC;	10;	189;	9AD8;	#	⾼	→	高	KANGXI RADICAL TALL;	CJKRadicals.txt, NFKC
+2FBD;	10;	190;	9ADF;	#	⾽	→	髟	KANGXI RADICAL HAIR;	CJKRadicals.txt, NFKC
+2FBE;	10;	191;	9B25;	#	⾾	→	鬥	KANGXI RADICAL FIGHT;	CJKRadicals.txt, NFKC
+2FBF;	10;	192;	9B2F;	#	⾿	→	鬯	KANGXI RADICAL SACRIFICIAL WINE;	CJKRadicals.txt, NFKC
+2FC0;	10;	193;	9B32;	#	⿀	→	鬲	KANGXI RADICAL CAULDRON;	CJKRadicals.txt, NFKC
+2FC1;	10;	194;	9B3C;	#	⿁	→	鬼	KANGXI RADICAL GHOST;	CJKRadicals.txt, NFKC
+2EE4;	10;	194;	9B3C;	#	⻤	→	鬼	CJK RADICAL GHOST;	NamesList
+2FC2;	11;	195;	9B5A;	#	⿂	→	魚	KANGXI RADICAL FISH;	CJKRadicals.txt, NFKC
+2EE5;	8;	195';	9C7C;	#	⻥	→	鱼	CJK RADICAL C-SIMPLIFIED FISH;	CJKRadicals.txt, UCA, NamesList
+2FC3;	11;	196;	9CE5;	#	⿃	→	鳥	KANGXI RADICAL BIRD;	CJKRadicals.txt, NFKC
+2EE6;	5;	196';	9E1F;	#	⻦	→	鸟	CJK RADICAL C-SIMPLIFIED BIRD;	CJKRadicals.txt, UCA, NamesList
+2FC4;	11;	197;	9E75;	#	⿄	→	鹵	KANGXI RADICAL SALT;	CJKRadicals.txt, NFKC
+2EE7;	7;	197';	5364;	#	⻧	→	卤	CJK RADICAL C-SIMPLIFIED SALT;	CJKRadicals.txt, NamesList
+2FC5;	11;	198;	9E7F;	#	⿅	→	鹿	KANGXI RADICAL DEER;	CJKRadicals.txt, NFKC
+2FC6;	11;	199;	9EA5;	#	⿆	→	麥	KANGXI RADICAL WHEAT;	CJKRadicals.txt, NFKC
+2EE8;	7;	199';	9EA6;	#	⻨	→	麦	CJK RADICAL SIMPLIFIED WHEAT;	CJKRadicals.txt, UCA, NamesList, kRSAdobe
+2FC7;	11;	200;	9EBB;	#	⿇	→	麻	KANGXI RADICAL HEMP;	CJKRadicals.txt, NFKC
+2FC8;	11, 12;	201;	9EC3;	#	⿈	→	黃	KANGXI RADICAL YELLOW;	CJKRadicals.txt, NFKC
+2EE9;	11;	201';	9EC4;	#	⻩	→	黄	CJK RADICAL SIMPLIFIED YELLOW;	CJKRadicals.txt, UCA, NamesList, kRSUnicode
+2FC9;	12;	202;	9ECD;	#	⿉	→	黍	KANGXI RADICAL MILLET;	CJKRadicals.txt, NFKC
+2FCA;	12;	203;	9ED1;	#	⿊	→	黑	KANGXI RADICAL BLACK;	CJKRadicals.txt, NFKC
+2FCA;	11;	203;	9ED2;	#	⿊	→	黒	KANGXI RADICAL BLACK;	kRSUnicode
+2FCB;	12, 13;	204;	9EF9;	#	⿋	→	黹	KANGXI RADICAL EMBROIDERY;	CJKRadicals.txt, NFKC
+2FCC;	13;	205;	9EFD;	#	⿌	→	黽	KANGXI RADICAL FROG;	CJKRadicals.txt, NFKC
+2EEA;	8;	205';	9EFE;	#	⻪	→	黾	CJK RADICAL C-SIMPLIFIED FROG;	CJKRadicals.txt, UCA, NamesList
+2FCD;	13;	206;	9F0E;	#	⿍	→	鼎	KANGXI RADICAL TRIPOD;	CJKRadicals.txt, NFKC
+2FCE;	13;	207;	9F13;	#	⿎	→	鼓	KANGXI RADICAL DRUM;	CJKRadicals.txt, NFKC
+2FCF;	13;	208;	9F20;	#	⿏	→	鼠	KANGXI RADICAL RAT;	CJKRadicals.txt, NFKC
+2FCF;	8;	208;	9F21;	#	⿏	→	鼡	KANGXI RADICAL RAT;	kRSUnicode
+2FD0;	14;	209;	9F3B;	#	⿐	→	鼻	KANGXI RADICAL NOSE;	CJKRadicals.txt, NFKC
+2FD1;	14;	210;	9F4A;	#	⿑	→	齊	KANGXI RADICAL EVEN;	CJKRadicals.txt, NFKC
+2EEB;	8;	210;	6589;	#	⻫	→	斉	CJK RADICAL J-SIMPLIFIED EVEN;	NamesList
+2EEC;	6;	210';	9F50;	#	⻬	→	齐	CJK RADICAL C-SIMPLIFIED EVEN;	CJKRadicals.txt, UCA, NamesList
+2FD2;	15;	211;	9F52;	#	⿒	→	齒	KANGXI RADICAL TOOTH;	CJKRadicals.txt, NFKC
+2EED;	12;	211;	6B6F;	#	⻭	→	歯	CJK RADICAL J-SIMPLIFIED TOOTH;	NamesList
+2EEE;	8;	211';	9F7F;	#	⻮	→	齿	CJK RADICAL C-SIMPLIFIED TOOTH;	CJKRadicals.txt, UCA, NamesList
+2FD3;	16;	212;	9F8D;	#	⿓	→	龍	KANGXI RADICAL DRAGON;	CJKRadicals.txt, NFKC
+2EEF;	10;	212;	7ADC;	#	⻯	→	竜	CJK RADICAL J-SIMPLIFIED DRAGON;	NamesList, kRSAdobe
+2EF0;	5;	212';	9F99;	#	⻰	→	龙	CJK RADICAL C-SIMPLIFIED DRAGON;	CJKRadicals.txt, UCA, NamesList
+2FD4;	16;	213;	9F9C;	#	⿔	→	龜	KANGXI RADICAL TURTLE;	CJKRadicals.txt, NFKC
+2EF1;	16;	213;	9F9C;	#	⻱	→	龜	CJK RADICAL TURTLE;	NamesList
+2EF2;	11;	213;	4E80;	#	⻲	→	亀	CJK RADICAL J-SIMPLIFIED TURTLE;	NamesList
+2EF3;	7;	213';	9F9F;	#	⻳	→	龟	CJK RADICAL C-SIMPLIFIED TURTLE;	CJKRadicals.txt, NFKC, NamesList
+2FD5;	17;	214;	9FA0;	#	⿕	→	龠	KANGXI RADICAL FLUTE;	CJKRadicals.txt, NFKC
+
+31D0	;	1	;		;	4E00	#	㇐	→	一	一 三 丁 丞 丈 世 不 上 十 卅 七
+31C0	;	1	;		;	4E3F	#	㇀	→	丿	冰 淋 治 冶 冽 暴 氾 录 地 虫
+31D1	;	1	;		;	4E28	#	㇑	→	丨	丩 中 串 讧 乍 上 五 丑
+31DA	;	1	;		;	4E85	#	㇚	→	亅	爭 事 求 水
+31D2	;	1	;		;	4E3F	#	㇒	→	丿	乂 爻 禾 毛 乏 乖 釆 衣 八 行
+31D3	;	1	;		;	4E3F	#	㇓	→	丿	乃 月 用 齊 几 人 班 大
+31D4	;	1	;		;	4E36	#	㇔	→	丶	丸 义 永 冰 凡 丹 主 求 火 刃
+31CF	;	1	;		;	4E40	#	㇏	→	乀	大 人 天 入 走 边 廷 尺
+31DD	;	1	;		;	4E41	#	㇝	→	乁	尐 八 入 廻
+31D5	;	1	;		;	200CD	#	㇕	→	𠃍	口 囗 田 品 吕 申 甲 圆 巪
+31C7	;	1	;		;	4E5B	#	㇇	→	乛	又 双 叒 今
+31D6	;	1	;		;	4E5B	#	㇖	→	乛	疋 了 予 矛 子 字 疏 写 冖
+31D7	;	1	;		;	200CA	#	㇗	→	𠃊	断 继 山 互 彙 牙 乐 东
+31D8	;	1	;		;	200CE	#	㇘	→	𠃎	肅嘯蕭簫
+31C4	;	1	;		;	200CA	#	㇄	→	𠃊	區 亡 妄 四
+31D9	;	1	;		;	2010C	#	㇙	→	𠄌	食 良 艮 很 狠 鄉 民
+31DC	;	1	;		;	200CB	#	㇜	→	𠃋	弘 公 翁
+31DB	;	1	;		;	21FE8	#	㇛	→	𡿨	巡 獵 災 甾 女 巛
+31E2	;	1	;		;	4E3F	#	㇢	→	丿	乄
+31C1	;	1	;		;	4E3F	#	㇁	→	丿	狐 嶽 貓 家 逐
+31C2	;	1	;		;	4E41	#	㇂	→	乁	戈 弋 戰 我
+31C3	;	1	;		;	4E40	#	㇃	→	乀	心 必 沁 惢 蕊
+31C5	;	1	;		;	4E59	#	㇅	→	乙	卍
+31CD	;	1	;		;	4E59	#	㇍	→	乙	殳 投 朵
+31CA	;	1	;		;	4E59	#	㇊	→	乙	讠 计 鳩
+31C6	;	1	;		;	200CC	#	㇆	→	𠃌	羽 习 包 勻 葡 用 青 甫 勺 月 也 乜
+31C8	;	1	;		;	4E59	#	㇈	→	乙	飞 风 瘋 九 几 气 虱
+31DE	;	1	;		;	200D1	#	㇞	→	𠃑	亞 鼎 卐 吳 专 𧦮 𤓷 𤦡
+31DF	;	1	;		;	4E5A	#	㇟	→	乚	乱 己 已 巳
+31CE	;	1	;		;	2010E	#	㇎	→	𠄎	凸
+31CB	;	1	;		;	2010E	#	㇋	→	𠄎	建 及
+31E0	;	1	;		;	4E59	#	㇠	→	乙	乙 氹 乞
+31CC	;	1	;		;	2010E	#	㇌	→	𠄎	阝 队 邮
+31C9	;	1	;		;	200D1	#	㇉	→	𠃑	号 亏 弓 强 丐 马 丂
+31E1	;	1	;		;	2010E	#	㇡	→	𠄎	乃 孕 仍
+31E3	;	1	;		;		#	㇣	→	#VALUE!	〇 㔔 㪳 㫈
