@@ -19,14 +19,13 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.util.MultiComparator;
+
 import com.ibm.icu.impl.Relation;
-import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
-import com.ibm.icu.util.ULocale;
 
 public class Subheader implements Iterable<String> { 
     static final boolean DEBUG = false;

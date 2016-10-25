@@ -6,7 +6,6 @@ import org.unicode.jsp.UnicodeJsp;
 import org.unicode.jsp.XIDModifications;
 
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.UnicodeSet;
 

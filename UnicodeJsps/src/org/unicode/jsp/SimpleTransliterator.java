@@ -9,12 +9,6 @@
  */
 
 package org.unicode.jsp;
-import java.util.HashMap;
-import java.util.Map;
-
-import com.ibm.icu.impl.Norm2AllModes;
-import com.ibm.icu.impl.Normalizer2Impl;
-import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.Replaceable;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
