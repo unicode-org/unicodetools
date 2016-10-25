@@ -11,7 +11,6 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeSet;
 
-import org.unicode.jsp.Builder;
 import org.unicode.jsp.CharEncoder;
 import org.unicode.jsp.Common;
 import org.unicode.jsp.UnicodeJsp;
@@ -21,11 +20,8 @@ import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.XPropertyFactory;
 
 import com.google.common.base.Objects;
-import com.ibm.icu.dev.test.AbstractTestLog;
-import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.Utility;
 import com.ibm.icu.impl.Row.R2;
+import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;

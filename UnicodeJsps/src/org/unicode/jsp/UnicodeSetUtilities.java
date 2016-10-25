@@ -5,16 +5,16 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.util.MultiComparator;
 import org.unicode.jsp.UnicodeProperty.PatternMatcher;
 import org.unicode.jsp.UnicodeSetUtilities.ComparisonMatcher.Relation;
 
-import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UTF16.StringComparator;
+import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
 public class UnicodeSetUtilities {

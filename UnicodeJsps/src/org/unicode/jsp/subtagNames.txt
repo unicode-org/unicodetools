@@ -58,7 +58,7 @@ Afak;Afaka
 Aghb;Caucasian Albanian
 Ahom;Ahom
 Arab;Arabic
-Aran;Arabic (Nastaliq variant)
+Aran;Arabic
 Armi;Imperial Aramaic
 Armn;Armenian
 Avst;Avestan
@@ -88,7 +88,8 @@ Bali;Balinese
 Bamu;Bamum
 Bass;Bassa Vah
 Batk;Batak
-Beng;Bengali
+Beng;Bangla
+Bhks;Bhaiksuki
 Blis;Blissymbols
 Bopo;Bopomofo
 Brah;Brahmi
@@ -146,6 +147,7 @@ ER;Eritrea
 ES;Spain
 ET;Ethiopia
 EU;European Union
+EZ;Eurozone
 Egyd;Egyptian demotic
 Egyh;Egyptian hieratic
 Egyp;Egyptian hieroglyphs
@@ -191,6 +193,7 @@ HN;Honduras
 HR;Croatia
 HT;Haiti
 HU;Hungary
+Hanb;Han with Bopomofo
 Hang;Hangul
 Hani;Han
 Hano;Hanunoo
@@ -220,6 +223,7 @@ JE;Jersey
 JM;Jamaica
 JO;Jordan
 JP;Japan
+Jamo;Jamo
 Java;Javanese
 Jpan;Japanese
 Jurc;Jurchen
@@ -261,6 +265,7 @@ Laoo;Lao
 Latf;Fraktur Latin
 Latg;Gaelic Latin
 Latn;Latin
+Leke;Leke
 Lepc;Lepcha
 Limb;Limbu
 Lina;Linear A
@@ -323,6 +328,7 @@ NU;Niue
 NZ;New Zealand
 Narb;Old North Arabian
 Nbat;Nabataean
+Newa;Newa
 Nkgb;Naxi Geba
 Nkoo;N’Ko
 Nshu;Nüshu
@@ -330,7 +336,7 @@ OM;Oman
 Ogam;Ogham
 Olck;Ol Chiki
 Orkh;Orkhon
-Orya;Oriya
+Orya;Odia
 Osge;Osage
 Osma;Osmanya
 PA;Panama
@@ -356,6 +362,7 @@ Phli;Inscriptional Pahlavi
 Phlp;Psalter Pahlavi
 Phlv;Book Pahlavi
 Phnx;Phoenician
+Piqd;Klingon
 Plrd;Pollard Phonetic
 Prti;Inscriptional Parthian
 QA;Qatar
@@ -446,6 +453,7 @@ Tirh;Tirhuta
 UA;Ukraine
 UG;Uganda
 UM;U.S. Outlying Islands
+UN;United Nations
 US;United States
 UY;Uruguay
 UZ;Uzbekistan
@@ -478,6 +486,7 @@ ZW;Zimbabwe
 ZZ;Unknown Region
 Zinh;Inherited
 Zmth;Mathematical Notation
+Zsye;Emoji
 Zsym;Symbols
 Zxxx;Unwritten
 Zyyy;Common
@@ -518,6 +527,7 @@ abh;Tajiki Arabic
 abi;Abidji
 abj;Aka-Bea
 abl;Lampung Nyo
+abl1943;Orthographic formulation of 1943 - Official in Brazil (Formulário Ortográfico de 1943 - Oficial no Brasil)
 abm;Abanyom
 abn;Abua
 abo;Abon
@@ -785,6 +795,7 @@ anw;Anaang
 anx;Andra-Hus
 any;Anyin
 anz;Anem
+ao1990;Portuguese Language Orthographic Agreement of 1990 (Acordo Ortográfico da Língua Portuguesa de 1990)
 aoa;Angolar
 aob;Abom
 aoc;Pemon
@@ -801,7 +812,7 @@ aom;Ömie
 aon;Bumbita Arapesh
 aor;Aore
 aos;Taikat
-aot;Atong
+aot;Atong (India)
 aou;A'ou
 aox;Atorada
 aoz;Uab Meto
@@ -906,7 +917,7 @@ atk;Ati
 atl;Mt. Iraya Agta
 atm;Ata
 atn;Ashtiani
-ato;Atong
+ato;Atong (Cameroon)
 atp;Pudtol Atta
 atq;Aralle-Tabulahan
 atr;Waimiri-Atroari
@@ -1037,6 +1048,7 @@ bap;Bantawa
 bar;Bavarian
 barla;The Barlavento dialect group of Kabuverdianu
 bas;Basaa
+basiceng;Basic English
 bat;Baltic (Other)
 bau;Bada (Nigeria)
 bauddha;Buddhist Hybrid Sanskrit
@@ -1077,7 +1089,7 @@ bcc;Southern Balochi
 bcd;North Babar
 bce;Bamenyam
 bcf;Bamu
-bcg;Baga Binari
+bcg;Baga Pokur
 bch;Bariai
 bci;Baoulé
 bcj;Bardi
@@ -1354,7 +1366,7 @@ bmw;Bomwali
 bmx;Baimak
 bmy;Bemba (Democratic Republic of Congo)
 bmz;Baramu
-bn;Bengali
+bn;Bangla
 bna;Bonerate
 bnb;Bookan
 bnc;Bontok
@@ -1868,7 +1880,7 @@ cna;Changthang
 cnb;Chinbon Chin
 cnc;Côông
 cng;Northern Qiang
-cnh;Haka Chin
+cnh;Hakha Chin
 cni;Asháninka
 cnk;Khumi Chin
 cnl;Lalana Chinantec
@@ -1890,11 +1902,13 @@ coh;Chonyi-Dzihana-Kauma
 coj;Cochimi
 cok;Santa Teresa Cora
 col;Columbia-Wenatchi
+colb1945;Portuguese-Brazilian Orthographic Convention of 1945 (Convenção Ortográfica Luso-Brasileira de 1945)
 com;Comanche
 con;Cofán
 coo;Comox
 cop;Coptic
 coq;Coquille
+cornu;Cornu-English
 cot;Caquinte
 cou;Wamey
 cov;Cao Miao
@@ -2119,7 +2133,7 @@ dgx;Doghoro
 dgz;Daga
 dha;Dhanwar (India)
 dhd;Dhundari
-dhg;Dhangu
+dhg;Dhangu-Djangu
 dhi;Dhimal
 dhl;Dhalandji
 dhm;Zemba
@@ -2242,7 +2256,7 @@ drd;Darmiya
 dre;Dolpo
 drg;Rungus
 drh;Darkhat
-dri;C'lela
+dri;C'Lela
 drl;Paakantyi
 drn;West Damar
 dro;Daro-Matu Melanau
@@ -2268,6 +2282,7 @@ dth;Adithinngithigh
 dti;Ana Tinga Dogon
 dtk;Tene Kan Dogon
 dtm;Tomo Kan Dogon
+dtn;Daatsʼíin
 dto;Tommo So Dogon
 dtp;Central Dusun
 dtr;Lotud
@@ -2299,14 +2314,16 @@ duv;Duvle
 duw;Dusun Witu
 dux;Duungooma
 duy;Dicamay Agta
-duz;Duli
+duz;Duli-Gey
 dv;Divehi
 dva;Duau
 dwa;Diri
 dwl;Walo Kumbe Dogon
 dwr;Dawro
 dws;Dutton World Speedwords
+dwu;Dhuwal
 dww;Dawawa
+dwy;Dhuwaya
 dya;Dyan
 dyb;Dyaberdyaber
 dyd;Dyugun
@@ -2419,6 +2436,7 @@ ert;Eritai
 erw;Erokwanas
 es;Spanish
 ese;Ese Ejja
+esg;Aheri Gondi
 esh;Eshtehardi
 esi;North Alaskan Inupiatun
 esk;Northwest Alaska Inupiatun
@@ -2502,6 +2520,7 @@ flr;Fuliiru
 fly;Flaaitaal
 fmp;Fe'fe'
 fmu;Far Western Muria
+fnb;Fanbak
 fng;Fanagalo
 fni;Fania
 fo;Faroese
@@ -2510,6 +2529,7 @@ foi;Foi
 fom;Foma
 fon;Fon
 fonipa;International Phonetic Alphabet
+fonnapa;North American Phonetic Alphabet
 fonupa;Uralic Phonetic Alphabet
 fonxsamp;X-SAMPA transcription
 for;Fore
@@ -2641,7 +2661,7 @@ geg;Gengle
 geh;Hutterite German
 gei;Gebe
 gej;Gen
-gek;Yiwom
+gek;Ywom
 gel;ut-Ma'in
 gem;Germanic (Other)
 geq;Geme
@@ -2702,6 +2722,7 @@ gji;Geji
 gjk;Kachi Koli
 gjm;Gunditjmara
 gjn;Gonja
+gjr;Gurindji Kriol
 gju;Gujari
 gka;Guya
 gke;Ndai
@@ -2816,7 +2837,7 @@ gse;Ghanaian Sign Language
 gsg;German Sign Language
 gsl;Gusilay
 gsm;Guatemalan Sign Language
-gsn;Gusan
+gsn;Nema
 gso;Southwest Gbaya
 gsp;Wasembo
 gss;Greek Sign Language
@@ -2860,7 +2881,7 @@ gvm;Gurmana
 gvn;Kuku-Yalanji
 gvo;Gavião Do Jiparaná
 gvp;Pará Gavião
-gvr;Western Gurung
+gvr;Gurung
 gvs;Gumawana
 gvy;Guyani
 gwa;Mbato
@@ -3050,7 +3071,7 @@ hsh;Hungarian Sign Language
 hsl;Hausa Sign Language
 hsn;Xiang Chinese
 hss;Harsusi
-ht;Haitian
+ht;Haitian Creole
 hti;Hoti
 hto;Minica Huitoto
 hts;Hadza
@@ -3178,7 +3199,9 @@ ilg;Garig-Ilgar
 ili;Ili Turki
 ilk;Ilongot
 ill;Iranun
+ilm;Iranun (Malaysia)
 ilo;Iloko
+ilp;Iranun (Philippines)
 ils;International Sign
 ilu;Ili'uun
 ilv;Ilue
@@ -3244,6 +3267,7 @@ isu;Isu (Menchum Division)
 it;Italian
 itb;Binongan Itneg
 itc;Italic languages
+itd;Southern Tidung
 ite;Itene
 iti;Inlaod Itneg
 itihasa;Epic Sanskrit
@@ -3351,6 +3375,7 @@ jiv;Shuar
 jiy;Buyuan Jinuo
 jje;Jejueo
 jjr;Bankal
+jka;Kaera
 jkm;Mobwa Karen
 jko;Kubo
 jkp;Paku Karen
@@ -3378,6 +3403,7 @@ jnl;Rawat
 jns;Jaunsari
 job;Joba
 jod;Wojenaka
+jog;Jogi
 jor;Jorá
 jos;Jordanian Sign Language
 jow;Jowulu
@@ -3429,7 +3455,7 @@ kag;Kajaman
 kah;Kara (Central African Republic)
 kai;Karekare
 kaj;Jju
-kak;Kayapa Kallahan
+kak;Kalanguya
 kam;Kamba
 kao;Xaasongaxango
 kap;Bezhta
@@ -3558,7 +3584,7 @@ kfn;Kuk
 kfo;Koro
 kfp;Korwa
 kfq;Korku
-kfr;Kachchi
+kfr;Kachhi
 kfs;Bilaspuri
 kft;Kanjari
 kfu;Katkari
@@ -4343,7 +4369,7 @@ loq;Lobala
 lor;Téén
 los;Loniu
 lot;Otuho
-lou;Louisiana Creole French
+lou;Louisiana Creole
 lov;Lopi
 low;Tampias Lobu
 lox;Loun
@@ -4640,7 +4666,7 @@ mhz;Mor (Mor Islands)
 mi;Maori
 mia;Miami
 mib;Atatláhuca Mixtec
-mic;Micmac
+mic;Mi'kmaq
 mid;Mandaic
 mie;Ocotepec Mixtec
 mif;Mofu-Gudur
@@ -4664,6 +4690,7 @@ mix;Mixtepec Mixtec
 miy;Ayutla Mixtec
 miz;Coatzospan Mixtec
 mja;Mahei
+mjb;Makalero
 mjc;San Juan Colorado Mixtec
 mjd;Northwest Maidu
 mje;Muskum
@@ -4952,7 +4979,7 @@ muh;Mündü
 mui;Musi
 muj;Mabire
 muk;Mugom
-mul;Multiple Languages
+mul;Multiple languages
 mum;Maiwala
 mun;Munda languages
 muo;Nyong
@@ -5214,6 +5241,7 @@ net;Nete
 neu;Neo
 nev;Nyaheun
 new;Newari
+newfound;Newfoundland English
 nex;Neme
 ney;Neyo
 nez;Nez Perce
@@ -5449,7 +5477,7 @@ nqg;Southern Nago
 nqk;Kura Ede Nago
 nqm;Ndom
 nqn;Nen
-nqo;NʼKo
+nqo;N’Ko
 nqq;Kyan-Karyaw Naga
 nqy;Akyaung Ari Naga
 nr;South Ndebele
@@ -5494,6 +5522,7 @@ nsw;Navut
 nsx;Nsongo
 nsy;Nasal
 nsz;Nisenan
+ntd;Northern Tidung
 nte;Nathembo
 ntg;Ngantangarra
 nti;Natioro
@@ -5667,6 +5696,7 @@ olm;Oloma
 olo;Livvi
 olr;Olrat
 olt;Old Lithuanian
+olu;Kuvale
 om;Oromo
 oma;Omaha-Ponca
 omb;East Ambae
@@ -5713,7 +5743,7 @@ opm;Oksapmin
 opo;Opao
 opt;Opata
 opy;Ofayé
-or;Oriya
+or;Odia
 ora;Oroha
 orc;Orma
 ore;Orejón
@@ -5728,7 +5758,7 @@ oru;Ormuri
 orv;Old Russian
 orw;Oro Win
 orx;Oro
-ory;Oriya (individual language)
+ory;Odia
 orz;Ormu
 os;Ossetic
 osa;Osage
@@ -5765,8 +5795,10 @@ oue;Oune
 oui;Old Uighur
 oum;Ouma
 oun;!O!ung
+ovd;Övdalian
 owi;Owiniga
 owl;Old Welsh
+oxendict;Oxford English Dictionary spelling
 oyb;Oy
 oyd;Oyda
 oym;Wayampi
@@ -5874,6 +5906,7 @@ pgn;Paelignian
 pgs;Pangseng
 pgu;Pagu
 pgy;Pongyong
+pgz;Papua New Guinean Sign Language
 pha;Pa-Hng
 phd;Phudagi
 phg;Phuong
@@ -6329,6 +6362,7 @@ rrt;Arritinngithigh
 rsb;Romano-Serbian
 rsi;Rennellese Sign Language
 rsl;Russian Sign Language
+rsm;Miriwoong Sign Language
 rtc;Rungtu Chin
 rth;Ratahan
 rtm;Rotuman
@@ -6362,6 +6396,7 @@ rxw;Karuwali
 ryn;Northern Amami-Oshima
 rys;Yaeyama
 ryu;Central Okinawan
+rzh;Rāziḥī
 sa;Sanskrit
 saa;Saba
 sab;Buglere
@@ -6550,6 +6585,7 @@ sij;Numbami
 sik;Sikiana
 sil;Tumulung Sisaala
 sim;Mende (Papua New Guinea)
+simple;Simplified form
 sio;Siouan languages
 sip;Sikkimese
 siq;Sonia
@@ -6990,6 +7026,7 @@ tdi;Tomadino
 tdj;Tajio
 tdk;Tambas
 tdl;Sur
+tdm;Taruma
 tdn;Tondano
 tdo;Teme
 tdq;Tita
@@ -7150,7 +7187,7 @@ tlp;Filomena Mata-Coahuitlán Totonac
 tlq;Tai Loi
 tlr;Talise
 tls;Tambotalo
-tlt;Teluti
+tlt;Sou Nama
 tlu;Tulehu
 tlv;Taliabu
 tlw;South Wemale
@@ -7206,7 +7243,7 @@ tnv;Tangchangya
 tnw;Tonsawang
 tnx;Tanema
 tny;Tongwe
-tnz;Tonga (Thailand)
+tnz;Ten'edn
 to;Tongan
 tob;Toba
 toc;Coyutla Totonac
@@ -7512,7 +7549,7 @@ umr;Umbugarla
 ums;Pendau
 umu;Munsee
 una;North Watut
-und;Unknown Language
+und;Unknown language
 une;Uneme
 ung;Ngarinyin
 unifon;Unifon phonetic alphabet
@@ -7745,7 +7782,7 @@ wgo;Waigeo
 wgu;Wirangu
 wgw;Wagawaga
 wgy;Warrgamay
-wha;Manusela
+wha;Sou Upaa
 whg;North Wahgi
 whk;Wahau Kenyah
 whu;Wahau Kayan
@@ -7859,6 +7896,7 @@ wrx;Wae Rana
 wry;Merwari
 wrz;Waray (Australia)
 wsa;Warembori
+wsg;Adilabad Gondi
 wsi;Wusi
 wsk;Waskia
 wsr;Owenia
@@ -7905,6 +7943,7 @@ xae;Aequian
 xag;Aghwan
 xai;Kaimbé
 xaj;Ararandewára
+xak;Máku
 xal;Kalmyk
 xam;/Xam
 xan;Xamtanga
@@ -8281,6 +8320,7 @@ ygw;Yagwoia
 yha;Baha Buyang
 yhd;Judeo-Iraqi Arabic
 yhl;Hlepho Phowa
+yhs;Yan-nhaŋu Sign Language
 yi;Yiddish
 yia;Yinggarda
 yif;Ache
@@ -8388,6 +8428,7 @@ yrk;Nenets
 yrl;Nheengatu
 yrm;Yirrk-Mel
 yrn;Yerong
+yro;Yaroamë
 yrs;Yarsun
 yrw;Yarawata
 yry;Yarluyandi
@@ -8452,7 +8493,7 @@ yzg;E'ma Buyang
 yzk;Zokhuo
 za;Zhuang
 zaa;Sierra de Juárez Zapotec
-zab;San Juan Guelavía Zapotec
+zab;Western Tlacolula Valley Zapotec
 zac;Ocotlán Zapotec
 zad;Cajonos Zapotec
 zae;Yareni Zapotec

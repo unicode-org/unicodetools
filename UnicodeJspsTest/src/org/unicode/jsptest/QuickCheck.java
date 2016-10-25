@@ -3,9 +3,7 @@ package org.unicode.jsptest;
 import java.io.IOException;
 
 import org.unicode.jsp.UnicodeJsp;
-import org.unicode.jsp.UnicodeUtilities;
 
-import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UnicodeSet;
 
 public class QuickCheck {

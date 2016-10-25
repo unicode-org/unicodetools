@@ -6,7 +6,6 @@ import org.unicode.jsp.UnicodeJsp;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.XPropertyFactory;
 
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.text.UnicodeSet;
 
 public class TestEmoji extends TestFmwk2 {

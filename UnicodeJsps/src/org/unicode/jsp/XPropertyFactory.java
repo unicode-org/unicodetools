@@ -13,7 +13,6 @@ import org.unicode.jsp.UnicodeProperty.SimpleProperty;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.CollationElementIterator;
 import com.ibm.icu.text.Normalizer;
