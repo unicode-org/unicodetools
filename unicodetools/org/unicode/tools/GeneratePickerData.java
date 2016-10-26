@@ -32,13 +32,14 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.CharacterListCompressor;
 import org.unicode.cldr.draft.Compacter;
-import org.unicode.cldr.draft.ScriptCategories;
+import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.Typology;
 import org.unicode.cldr.tool.Option;
 import org.unicode.cldr.tool.Option.Options;
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.CLDRTool;
 import org.unicode.cldr.util.CldrUtility;
+import org.unicode.draft.ScriptCategories2;
 import org.unicode.tools.GeneratePickerData.CategoryTable.Separation;
 
 import com.ibm.icu.lang.UCharacter;
@@ -79,16 +80,16 @@ class GeneratePickerData {
 
     private static final String EAST_ASIAN = "Other East Asian Scripts";
 
-    static final UnicodeSet COMPATIBILITY = (UnicodeSet) ScriptCategories.parseUnicodeSet("[[:nfkcqc=n:]-[:Lm:]]")
-        .removeAll(ScriptCategories.IPA).removeAll(ScriptCategories.IPA_EXTENSIONS).freeze();
+    static final UnicodeSet COMPATIBILITY = (UnicodeSet) ScriptCategories2.parseUnicodeSet("[[:nfkcqc=n:]-[:Lm:]]")
+        .removeAll(ScriptCategories2.IPA).removeAll(ScriptCategories2.IPA_EXTENSIONS).freeze();
 
     private static final UnicodeSet PRIVATE_USE = (UnicodeSet) new UnicodeSet("[:private use:]").freeze();
 
-    static final UnicodeSet SKIP = (UnicodeSet) ScriptCategories.parseUnicodeSet("[[:cn:][:cs:][:co:][:cc:]\uFFFC]")
-        .addAll(ScriptCategories.DEPRECATED_NEW).freeze();
-    private static final UnicodeSet KNOWN_DUPLICATES = (UnicodeSet) ScriptCategories.parseUnicodeSet("[:Nd:]").freeze();
+    static final UnicodeSet SKIP = (UnicodeSet) ScriptCategories2.parseUnicodeSet("[[:cn:][:cs:][:co:][:cc:]\uFFFC]")
+        .addAll(ScriptCategories2.DEPRECATED_NEW).freeze();
+    private static final UnicodeSet KNOWN_DUPLICATES = (UnicodeSet) ScriptCategories2.parseUnicodeSet("[:Nd:]").freeze();
 
-    public static final UnicodeSet HISTORIC = ScriptCategories.ARCHAIC;
+    public static final UnicodeSet HISTORIC = ScriptCategories2.ARCHAIC;
     // public static final UnicodeSet UNCOMMON = (UnicodeSet) new
     // UnicodeSet(ScriptCategories.ARCHAIC).addAll(COMPATIBILITY).freeze();
 
@@ -97,10 +98,10 @@ class GeneratePickerData {
     private static final UnicodeSet MODERN_JAMO = (UnicodeSet) new UnicodeSet(
         "[\u1100-\u1112 \u1161-\u1175 \u11A8-\u11C2]").removeAll(SKIP).freeze();
 
-    private static final UnicodeSet HST_L = (UnicodeSet) ScriptCategories.parseUnicodeSet("[:HST=L:]").freeze();
-    private static final UnicodeSet single = (UnicodeSet) ScriptCategories.parseUnicodeSet(
+    private static final UnicodeSet HST_L = (UnicodeSet) ScriptCategories2.parseUnicodeSet("[:HST=L:]").freeze();
+    private static final UnicodeSet single = (UnicodeSet) ScriptCategories2.parseUnicodeSet(
         "[[:HST=L:][:HST=V:][:HST=T:]]").freeze();
-    private static final UnicodeSet syllable = (UnicodeSet) ScriptCategories.parseUnicodeSet("[[:HST=LV:][:HST=LVT:]]")
+    private static final UnicodeSet syllable = (UnicodeSet) ScriptCategories2.parseUnicodeSet("[[:HST=LV:][:HST=LVT:]]")
         .freeze();
     private static final UnicodeSet all = (UnicodeSet) new UnicodeSet(single).addAll(syllable).freeze();
     static RuleBasedCollator UCA_BASE = (RuleBasedCollator) Collator.getInstance(Locale.ENGLISH);
@@ -116,8 +117,8 @@ class GeneratePickerData {
     static Comparator<String> buttonComparator = new MultilevelComparator(
         // new UnicodeSetInclusionFirst(ScriptCategories.parseUnicodeSet("[:ascii:]")),
         // new UnicodeSetInclusionFirst(ScriptCategories.parseUnicodeSet("[[:Letter:]&[:^NFKC_QuickCheck=N:]]")),
-        new UnicodeSetInclusionFirst(ScriptCategories.parseUnicodeSet("[[:Letter:]-[:Lm:]]")),
-        new UnicodeSetInclusionFirst(ScriptCategories.parseUnicodeSet("[:Lm:]")), UCA_BASE, CODE_POINT_ORDER);
+        new UnicodeSetInclusionFirst(ScriptCategories2.parseUnicodeSet("[[:Letter:]-[:Lm:]]")),
+        new UnicodeSetInclusionFirst(ScriptCategories2.parseUnicodeSet("[:Lm:]")), UCA_BASE, CODE_POINT_ORDER);
 
     static Comparator<String> LinkedHashSetComparator = new Comparator<String>() {
         public int compare(String arg0, String arg1) {
@@ -189,7 +190,7 @@ class GeneratePickerData {
 
         if (DEBUG)
             System.out.println("Whitespace? "
-                + ScriptCategories.parseUnicodeSet("[:z:]").equals(ScriptCategories.parseUnicodeSet("[:whitespace:]")));
+                + ScriptCategories2.parseUnicodeSet("[:z:]").equals(ScriptCategories2.parseUnicodeSet("[:whitespace:]")));
 
         buildMainTable();
         addEmojiCharacters();
@@ -290,38 +291,38 @@ class GeneratePickerData {
         addSymbols();
 
         addProperty("General_Category", "Category", buttonComparator,
-            ScriptCategories.parseUnicodeSet("[[:script=common:][:script=inherited:][:N:]" + "-[:letter:]"
+            ScriptCategories2.parseUnicodeSet("[[:script=common:][:script=inherited:][:N:]" + "-[:letter:]"
                 + "-[:default_ignorable_code_point:]" + "-[:cf:]" + "-[:whitespace:]" + "-[:So:]" +
                 // "-[[:M:]-[:script=common:]-[:script=inherited:]]" +
                 "]"));
 
         CATEGORYTABLE.add("Format & Whitespace", true, "Whitespace", buttonComparator, Separation.AUTOMATIC,
-            ScriptCategories.parseUnicodeSet("[:whitespace:]"));
+            ScriptCategories2.parseUnicodeSet("[:whitespace:]"));
         CATEGORYTABLE.add("Format & Whitespace", true, "Format", buttonComparator, Separation.AUTOMATIC,
-            ScriptCategories.parseUnicodeSet("[:cf:]"));
+            ScriptCategories2.parseUnicodeSet("[:cf:]"));
         CATEGORYTABLE.add("Format & Whitespace", true, "Other", buttonComparator, Separation.AUTOMATIC,
-            ScriptCategories.parseUnicodeSet("[[:default_ignorable_code_point:]-[:cf:]-[:whitespace:]]"));
+            ScriptCategories2.parseUnicodeSet("[[:default_ignorable_code_point:]-[:cf:]-[:whitespace:]]"));
 
         addLatin();
-        Set<String> EuropeanMinusLatin = new TreeSet<String>(ScriptCategories.EUROPEAN);
+        Set<String> EuropeanMinusLatin = new TreeSet<String>(ScriptCategories2.EUROPEAN);
         EuropeanMinusLatin.remove("Latn");
-        Set<String> EastAsianMinusHanAndHangul = new TreeSet<String>(ScriptCategories.EAST_ASIAN);
+        Set<String> EastAsianMinusHanAndHangul = new TreeSet<String>(ScriptCategories2.EAST_ASIAN);
         EastAsianMinusHanAndHangul.remove("Hani");
         EastAsianMinusHanAndHangul.remove("Hang");
         addProperty("Script", EUROPEAN, buttonComparator, EuropeanMinusLatin);
-        addProperty("Script", AFRICAN, buttonComparator, ScriptCategories.AFRICAN);
-        addProperty("Script", MIDDLE_EASTERN, buttonComparator, ScriptCategories.MIDDLE_EASTERN);
-        addProperty("Script", SOUTH_ASIAN, buttonComparator, ScriptCategories.SOUTH_ASIAN);
-        addProperty("Script", SOUTHEAST_ASIAN, buttonComparator, ScriptCategories.SOUTHEAST_ASIAN);
+        addProperty("Script", AFRICAN, buttonComparator, ScriptCategories2.AFRICAN);
+        addProperty("Script", MIDDLE_EASTERN, buttonComparator, ScriptCategories2.MIDDLE_EASTERN);
+        addProperty("Script", SOUTH_ASIAN, buttonComparator, ScriptCategories2.SOUTH_ASIAN);
+        addProperty("Script", SOUTHEAST_ASIAN, buttonComparator, ScriptCategories2.SOUTHEAST_ASIAN);
         addHangul();
         addHan();
         addProperty("Script", EAST_ASIAN, buttonComparator, EastAsianMinusHanAndHangul);
-        addProperty("Script", AMERICAN, buttonComparator, ScriptCategories.AMERICAN);
+        addProperty("Script", AMERICAN, buttonComparator, ScriptCategories2.AMERICAN);
     }
 
     private static void addHan() throws IOException {
 
-        UnicodeSet others = ScriptCategories.parseUnicodeSet("[:script=Han:]");
+        UnicodeSet others = ScriptCategories2.parseUnicodeSet("[:script=Han:]");
         // find base values
         for (int radicalStrokes : RadicalStroke.SINGLETON.radStrokesToRadToRemainingStrokes.keySet()) {
             // String mainCat = null;
@@ -330,7 +331,7 @@ class GeneratePickerData {
             for (String radical : char2RemStrokes2Set.keySet()) {
                 Map<Integer, UnicodeSet> remStrokes2Set = char2RemStrokes2Set.get(radical);
                 for (int remStrokes : remStrokes2Set.keySet()) {
-                    int radicalChar = ScriptCategories.getRadicalNum2char(radical);
+                    int radicalChar = ScriptCategories2.getRadicalNum2char(radical);
                     String mainCat = "Han " + (radicalStrokes > 10 ? "11..17" : String.valueOf(radicalStrokes))
                         + "-Stroke Radicals";
                     String subCat = UTF16.valueOf(radicalChar);
@@ -377,7 +378,7 @@ class GeneratePickerData {
 
     }
 
-    static UnicodeSet LATIN = (UnicodeSet) ScriptCategories.parseUnicodeSet("[:script=Latin:]").freeze();
+    static UnicodeSet LATIN = (UnicodeSet) ScriptCategories2.parseUnicodeSet("[:script=Latin:]").freeze();
     static Set<String> SKIP_LOCALES = new HashSet<String>();
     static {
         SKIP_LOCALES.add("kl");
@@ -419,22 +420,22 @@ class GeneratePickerData {
             addAndNoteNew(loc, exemplars, exemplarSet);
         }
         UnicodeSet closed = new UnicodeSet(exemplars);
-        closeOver(closed).retainAll(ScriptCategories.parseUnicodeSet("[[:L:][:M:]-[:nfkcqc=n:]]"));
+        closeOver(closed).retainAll(ScriptCategories2.parseUnicodeSet("[[:L:][:M:]-[:nfkcqc=n:]]"));
 
         System.out.println("Exemplars: " + closed);
-        final UnicodeSet common = ScriptCategories
+        final UnicodeSet common = ScriptCategories2
             .parseUnicodeSet("[[aáàăâấầåäãąāảạậ æ b c ćčç dđð eéèêếềểěëėęēệ ə f ƒ gğ h iíìî ïįīị ı j-lľļł m nńňñņ oóòô ốồổöőõøơớờởợọộ œ p-rř s śšş tťţ uúùûůüűųūủưứữ ựụ v-yýÿ zźžż þ]]");
-        closeOver(common).retainAll(ScriptCategories.parseUnicodeSet("[[:L:][:M:]-[:nfkcqc=n:]]"));
+        closeOver(common).retainAll(ScriptCategories2.parseUnicodeSet("[[:L:][:M:]-[:nfkcqc=n:]]"));
 
         System.out.println("Common: " + common);
 
-        exemplars.retainAll(ScriptCategories.parseUnicodeSet("[[:L:][:M:]-[:nfkcqc=n:]]"));
+        exemplars.retainAll(ScriptCategories2.parseUnicodeSet("[[:L:][:M:]-[:nfkcqc=n:]]"));
 
         CATEGORYTABLE.add("Latin", true, "Common", buttonComparator, Separation.ALL_ORDINARY, exemplars);
         CATEGORYTABLE.add("Latin", true, "Phonetics (IPA)", buttonComparator, Separation.ALL_ORDINARY,
-            ScriptCategories.IPA);
+            ScriptCategories2.IPA);
         CATEGORYTABLE.add("Latin", true, "Phonetics (X-IPA)", buttonComparator, Separation.ALL_ORDINARY,
-            ScriptCategories.IPA_EXTENSIONS);
+            ScriptCategories2.IPA_EXTENSIONS);
         String flipped = "ɒdɔbɘᎸǫʜiꞁʞlmnoqpɿƨƚuvwxʏƹ؟" + "AᙠƆᗡƎꟻᎮHIႱᐴᏗMИOꟼϘЯƧTUVWXYƸ" + "ɐqɔpǝɟɓɥɪſʞ1ɯuodbɹsʇnʌʍxʎz¿"
             + "∀ᙠƆᗡƎℲ⅁HIΓᐴ⅂ꟽNOԀÓᴚƧ⊥ȠɅM⅄Z";
         CATEGORYTABLE.add("Latin", true, "Flipped/Mirrored", ListComparator, Separation.ALL_ORDINARY, flipped);
@@ -444,9 +445,9 @@ class GeneratePickerData {
             "Other",
             buttonComparator,
             Separation.AUTOMATIC,
-            ScriptCategories.parseUnicodeSet("[:script=Latin:]").removeAll(ScriptCategories.SCRIPT_CHANGED)
-                .addAll(ScriptCategories.SCRIPT_NEW.get("Latin")).removeAll(ScriptCategories.IPA)
-                .removeAll(ScriptCategories.IPA_EXTENSIONS).removeAll(exemplars));
+            ScriptCategories2.parseUnicodeSet("[:script=Latin:]").removeAll(ScriptCategories2.SCRIPT_CHANGED)
+                .addAll(ScriptCategories2.SCRIPT_NEW.get("Latin")).removeAll(ScriptCategories2.IPA)
+                .removeAll(ScriptCategories2.IPA_EXTENSIONS).removeAll(exemplars));
     }
 
     private static UnicodeSet closeOver(UnicodeSet closed) {
@@ -504,14 +505,14 @@ class GeneratePickerData {
     // }
 
     private static void addSymbols() {
-        final UnicodeSet symbolsMinusScripts = ScriptCategories
+        final UnicodeSet symbolsMinusScripts = ScriptCategories2
             .parseUnicodeSet("[[[:script=common:][:script=inherited:]]&[[:S:][:Letter:]]]");
         if (true) {
             System.out.println("***Contains:" + symbolsMinusScripts.contains(0x3192));
         }
-        final UnicodeSet math = ScriptCategories.parseUnicodeSet("[:math:]");
-        final UnicodeSet superscripts = ScriptCategories.parseUnicodeSet("[[:dt=super:]-[:block=kanbun:]]");
-        final UnicodeSet subscripts = ScriptCategories.parseUnicodeSet("[:dt=sub:]");
+        final UnicodeSet math = ScriptCategories2.parseUnicodeSet("[:math:]");
+        final UnicodeSet superscripts = ScriptCategories2.parseUnicodeSet("[[:dt=super:]-[:block=kanbun:]]");
+        final UnicodeSet subscripts = ScriptCategories2.parseUnicodeSet("[:dt=sub:]");
 
         UnicodeSet skip = new UnicodeSet().addAll(math).addAll(superscripts).addAll(subscripts)
             .retainAll(COMPATIBILITY);
@@ -522,7 +523,7 @@ class GeneratePickerData {
                 UProperty.NameChoice.LONG);
 
             UnicodeSet temp = new UnicodeSet();
-            ScriptCategories.applyPropertyAlias("General Category", valueAlias, temp);
+            ScriptCategories2.applyPropertyAlias("General Category", valueAlias, temp);
             for (UnicodeSetIterator it = new UnicodeSetIterator(temp.retainAll(symbolsMinusScripts).removeAll(skip)); it
                 .next();) {
                 String block = UCharacter.getStringPropertyValue(UProperty.BLOCK, it.codepoint,
@@ -543,7 +544,7 @@ class GeneratePickerData {
             for (int modern = 0; modern < 2; ++modern) {
                 for (char c : new char[] { 'L', 'V', 'T' }) {
                     UnicodeSet uset = new UnicodeSet();
-                    for (UnicodeSetIterator it = new UnicodeSetIterator(ScriptCategories.parseUnicodeSet("[:HST=" + c
+                    for (UnicodeSetIterator it = new UnicodeSetIterator(ScriptCategories2.parseUnicodeSet("[:HST=" + c
                         + ":]")); it.next();) {
                         if (UCharacter.getName(it.codepoint).contains("FILLER")) continue;
                         String s = it.getString();
@@ -595,7 +596,7 @@ class GeneratePickerData {
         Map<String, String> decomp2comp = new HashMap<String, String>();
 
         System.out.println("find defectives");
-        for (UnicodeSetIterator it = new UnicodeSetIterator(ScriptCategories.parseUnicodeSet("[:script=Hangul:]")); it
+        for (UnicodeSetIterator it = new UnicodeSetIterator(ScriptCategories2.parseUnicodeSet("[:script=Hangul:]")); it
             .next();) {
             final String comp = it.getString();
             String decomp = MKD.transform(comp);
@@ -657,10 +658,10 @@ class GeneratePickerData {
     }
 
     private static void addHangul() {
-        for (UnicodeSetIterator it = new UnicodeSetIterator(ScriptCategories.parseUnicodeSet("[:script=Hangul:]")
+        for (UnicodeSetIterator it = new UnicodeSetIterator(ScriptCategories2.parseUnicodeSet("[:script=Hangul:]")
             .removeAll(SKIP)); it.next();) {
             String str = it.getString();
-            if (ScriptCategories.ARCHAIC.contains(it.codepoint)) {
+            if (ScriptCategories2.ARCHAIC.contains(it.codepoint)) {
                 CATEGORYTABLE.add("Hangul", true, "Archaic Hangul", buttonComparator, Separation.AUTOMATIC,
                     it.codepoint, it.codepoint);
                 continue;
@@ -1168,7 +1169,7 @@ class GeneratePickerData {
 
             valueChars.clear();
             // valueChars.applyPropertyAlias(propertyAlias, valueAlias);
-            ScriptCategories.applyPropertyAlias(propertyAlias, valueAlias, valueChars);
+            ScriptCategories2.applyPropertyAlias(propertyAlias, valueAlias, valueChars);
 
             if (DEBUG) System.out.println(valueAlias + ": " + valueChars.size() + ", " + valueChars);
             valueChars.removeAll(SKIP);
@@ -1194,7 +1195,7 @@ class GeneratePickerData {
             valueChars.clear();
             // valueChars.applyPropertyAlias(propertyAlias, valueAlias);
             try {
-                ScriptCategories.applyPropertyAlias(propertyAlias, valueAlias, valueChars);
+                ScriptCategories2.applyPropertyAlias(propertyAlias, valueAlias, valueChars);
             } catch (RuntimeException e) {
                 if (propertyAlias == "Script") {
                     System.out.println("Skipping script " + valueAlias);
@@ -1202,7 +1203,7 @@ class GeneratePickerData {
                 }
                 throw e;
             }
-            valueAlias = ScriptCategories.getFixedPropertyValue(propertyAlias, valueAlias, UProperty.NameChoice.SHORT);
+            valueAlias = ScriptCategories2.getFixedPropertyValue(propertyAlias, valueAlias, UProperty.NameChoice.SHORT);
 
             if (DEBUG) System.out.println(valueAlias + ": " + valueChars.size() + ", " + valueChars);
             valueChars.removeAll(SKIP);
@@ -1212,12 +1213,12 @@ class GeneratePickerData {
 
             for (UnicodeSetIterator it = new UnicodeSetIterator(valueChars); it.next();) {
                 Separation separation = Separation.AUTOMATIC;
-                if (ScriptCategories.HISTORIC_SCRIPTS.contains(valueAlias)) {
+                if (ScriptCategories2.HISTORIC_SCRIPTS.contains(valueAlias)) {
                     separation = Separation.ALL_HISTORIC;
                 } else {
                     int debug = 0;
                 }
-                String longName = ScriptCategories.TO_LONG_SCRIPT.transform(valueAlias);
+                String longName = ScriptMetadata.TO_LONG_SCRIPT.transform(valueAlias);
                 CATEGORYTABLE.add(title, true, longName,
                     sortItems(sort, propertyAlias, longName), separation,
                     it.codepoint);
@@ -1577,10 +1578,10 @@ class GeneratePickerData {
     static Pattern IS_ARCHAIC = Pattern.compile("(Obsolete|Ancient|Archaic|Medieval|New Testament|\\bUPA\\b)",
         Pattern.CASE_INSENSITIVE);
 
-    public static final UnicodeSet ADD_SUBHEAD = (UnicodeSet) ScriptCategories
+    public static final UnicodeSet ADD_SUBHEAD = (UnicodeSet) ScriptCategories2
         .parseUnicodeSet("[[:S:][:P:][:M:]&[[:script=common:][:script=inherited:]]-[:nfkdqc=n:]]")
-        .removeAll(ScriptCategories.ARCHAIC).freeze();
-    static UnicodeSet UNCOMMON_HAN = ScriptCategories.parseUnicodeSet("[" + "[:script=han:]"
+        .removeAll(ScriptCategories2.ARCHAIC).freeze();
+    static UnicodeSet UNCOMMON_HAN = ScriptCategories2.parseUnicodeSet("[" + "[:script=han:]"
         + "-[:block=CJK Unified Ideographs:]" + "-[:block=CJK Symbols And Punctuation:]"
         + "-[:block=CJK Radicals Supplement:]" + "-[:block=Ideographic Description Characters:]"
         + "-[:block=CJK Strokes:]" + "-[:script=hiragana:]" + "-[:script=katakana:]" + "-[〇]" + "]"); // we'll alter

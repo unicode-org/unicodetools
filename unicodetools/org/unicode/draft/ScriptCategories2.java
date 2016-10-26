@@ -17,7 +17,6 @@ import java.util.TreeSet;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.Groupings;
 import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
-import org.unicode.cldr.util.Containment;
 import org.unicode.cldr.util.With;
 
 import com.ibm.icu.lang.UCharacter;
@@ -576,30 +575,6 @@ public class ScriptCategories2 {
             checkDifferences(propertyName + "=" + propertyValue, result, original);
         }
         return result;
-    }
-
-    static class RegionFilter implements com.ibm.icu.text.Transform<String, String> {
-        final String[] containingRegion;
-
-        RegionFilter(String... containingRegion) {
-            this.containingRegion = containingRegion;
-        }
-
-        @Override
-        public String transform(String script) {
-            String currentRegion = ScriptMetadata.getInfo(script).originCountry;
-            while (true) {
-                for (String s : containingRegion) {
-                    if (s.equals(currentRegion)) {
-                        return script;
-                    }
-                }
-                if (currentRegion.equals("001") || currentRegion.equals("ZZ")) {
-                    return null;
-                }
-                currentRegion = Containment.getContainer(currentRegion);
-            }
-        }
     }
 
     static class UsageFilter implements com.ibm.icu.text.Transform<String, String> {
