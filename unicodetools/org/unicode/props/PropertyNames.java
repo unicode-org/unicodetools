@@ -23,6 +23,7 @@ public class PropertyNames<T extends Enum> {
         //        public PropertyNames getName();
         //        public PropertyNames getShortName();
         public PropertyNames getNames();
+        public String getShortName();
     }
 
     final static Map<Class, NameMatcher> CLASS2NAME2ENUM = new HashMap<Class, NameMatcher>();

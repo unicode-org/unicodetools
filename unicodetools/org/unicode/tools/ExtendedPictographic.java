@@ -1,9 +1,12 @@
 package org.unicode.tools;
 
 import java.util.List;
+import java.util.Set;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.draft.GetNames;
+import org.unicode.cldr.tool.Option;
+import org.unicode.cldr.tool.Option.Options;
+import org.unicode.cldr.tool.Option.Params;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
@@ -11,8 +14,6 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiData;
 
-import com.google.common.collect.Multimap;
-import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -53,22 +54,57 @@ class ExtendedPictographic {
         HEADER = header.toString();
     }
 
+    enum MyOptions {
+        list(new Params().setHelp("List the extended pictographs and emoji")),
+        operations(new Params().setHelp("List the operations")),
+        extended(new Params().setHelp("List the extended pictographs without emoji")),
+        ;
+
+        // BOILERPLATE TO COPY
+        final Option option;
+        private MyOptions(Params params) {
+            option = new Option(this, params);
+        }
+        private static Options myOptions = new Options();
+        static {
+            for (MyOptions option : MyOptions.values()) {
+                myOptions.add(option, option.option);
+            }
+        }
+        private static Set<String> parse(String[] args, boolean showArguments) {
+            return myOptions.parse(MyOptions.values()[0], args, true);
+        }
+    }
+
     public static void main(String[] args) {
         IndexUnicodeProperties iup = IndexUnicodeProperties.make();
         UnicodeMap<Age_Values> age = iup.loadEnum(UcdProperty.Age);
-
+        
         final UnicodeSet picto = new UnicodeSet(GLUE_AFTER_ZWJ)
         .addAll(EmojiData.EMOJI_DATA.getSingletonsWithoutDefectives())
         .freeze();
-//        System.out.println(picto.toPattern(false));
-//        showAge(picto, iup, age, false);
-
-        UnicodeSet ops = new UnicodeSet("[[:s:][:p:]-[:sc:]-[:xidcontinue:]-[:nfkcqc=n:]&[:scx=Common:]]")
-        .removeAll(picto);
-//        showAge(ops, iup, age, true);
         
-        for (String cp : ops) {
-            System.out.println(showCodePoint(iup, null, cp.codePointAt(0))); 
+        MyOptions.parse(args, true);
+       
+        if (MyOptions.list.option.doesOccur()) {
+            System.out.println(picto.toPattern(false));
+            showAge(picto, iup, age, false);
+        }
+
+        if (MyOptions.extended.option.doesOccur()) {
+            System.out.println(GLUE_AFTER_ZWJ.toPattern(false));
+            showAge(GLUE_AFTER_ZWJ, iup, age, false);
+        }
+
+
+        if (MyOptions.operations.option.doesOccur()) {
+            UnicodeSet ops = new UnicodeSet("[[:s:][:p:]-[:sc:]-[:xidcontinue:]-[:nfkcqc=n:]&[:scx=Common:]]")
+            .removeAll(picto);
+//            showAge(ops, iup, age, true);
+            
+            for (String cp : ops) {
+                System.out.println(showCodePoint(iup, null, cp.codePointAt(0))); 
+            }
         }
     }
     private static void showAge(final UnicodeSet picto, IndexUnicodeProperties iup, UnicodeMap<Age_Values> age, boolean all) {
