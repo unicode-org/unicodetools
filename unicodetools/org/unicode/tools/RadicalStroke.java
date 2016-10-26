@@ -10,9 +10,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.CodePoints;
-import org.unicode.cldr.draft.ScriptCategories;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.PatternCache;
+import org.unicode.draft.ScriptCategories2;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
@@ -36,14 +36,14 @@ public class RadicalStroke {
     private RadicalStroke() {
         try {
             // load the radicals
-            for (Integer cjk : ScriptCategories.RADICAL_CHAR2STROKES.keySet()) {
-                charToTotalStrokes.put(cjk, ScriptCategories.RADICAL_CHAR2STROKES.get(cjk));
+            for (Integer cjk : ScriptCategories2.RADICAL_CHAR2STROKES.keySet()) {
+                charToTotalStrokes.put(cjk, ScriptCategories2.RADICAL_CHAR2STROKES.get(cjk));
             }
             Matcher radStrokeMatcher = RAD_STROKE.matcher("");
             Matcher radDataMatcher = RAD_DATA.matcher("");
             Matcher iiCore = IICORE.matcher("");
             radStrokesToRadToRemainingStrokes = new TreeMap<Integer, Map<String, Map<Integer, UnicodeSet>>>();
-            remainder = ScriptCategories.parseUnicodeSet("[:script=Han:]").removeAll(GeneratePickerData.SKIP);
+            remainder = ScriptCategories2.parseUnicodeSet("[:script=Han:]").removeAll(GeneratePickerData.SKIP);
             String dataDir = DraftUtils.UCD_DIRECTORY + "/Unihan/";
 
             BufferedReader in = new BufferedReader(
@@ -66,13 +66,13 @@ public class RadicalStroke {
                             throw new IllegalArgumentException("Bad line: " + line);
                         }
                         String radical = radDataMatcher.group(1);
-                        Integer radicalChar = ScriptCategories.getRadicalNum2char(radical);
+                        Integer radicalChar = ScriptCategories2.getRadicalNum2char(radical);
                         if (radicalChar == null) {
                             in.close();
                             throw new IllegalArgumentException("No radical value for <" + radical + ">");
                         }
                         charToRadical.put(cp, radicalChar);
-                        int radicalStrokes = ScriptCategories.RADICAL_CHAR2STROKES.get(radicalChar);
+                        int radicalStrokes = ScriptCategories2.RADICAL_CHAR2STROKES.get(radicalChar);
                         int remainingStrokes = Integer.parseInt(radDataMatcher.group(2));
                         charToTotalStrokes.put(cp, radicalStrokes + remainingStrokes);
                         charToRemainingStrokes.put(cp, remainingStrokes);
