@@ -1,7 +1,5 @@
 package org.unicode.text.UCD;
 
-import com.ibm.icu.text.SpoofChecker;
-import com.ibm.icu.text.UnicodeSet;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -13,6 +11,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.IntStream;
+
+import com.ibm.icu.text.SpoofChecker;
+import com.ibm.icu.text.UnicodeSet;
 
 /**
  * A class to detect and generate strings that are whole-script confusable with input strings.

@@ -11,7 +11,6 @@ import org.unicode.text.utility.Utility;
 import org.unicode.tools.Tabber;
 
 import com.google.common.collect.ImmutableSet;
-import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.text.UnicodeSet;
 
 public class GenerateEmojiKeyboard {
