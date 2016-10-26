@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Comparator;
 import java.util.TreeSet;
 
+import org.unicode.cldr.util.BagFormatter;
+import org.unicode.cldr.util.UnicodeLabel;
 import org.unicode.jsp.Idna;
 import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.jsp.Idna2003;
@@ -11,8 +13,6 @@ import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.Uts46;
 
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.util.BagFormatter;
-import com.ibm.icu.dev.util.UnicodeLabel;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;

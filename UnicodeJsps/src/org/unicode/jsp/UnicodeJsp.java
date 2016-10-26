@@ -10,10 +10,10 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.util.BNF;
+import org.unicode.cldr.util.Quoter;
 import org.unicode.jsp.UnicodeUtilities.CodePointShower;
 
-import com.ibm.icu.dev.util.BNF;
-import com.ibm.icu.dev.util.Quoter;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Normalizer;

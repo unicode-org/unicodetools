@@ -14,13 +14,13 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.MultiComparator;
+import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.jsp.Subheader;
 import org.unicode.jsp.Typology;
 
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.util.BagFormatter;
-import com.ibm.icu.dev.util.PrettyPrinter;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.Row.R3;
@@ -41,7 +41,7 @@ public class TestTypology extends TestFmwk {
             Collator.getInstance(), 
             new UTF16.StringComparator(true, false, 0));
     Collator primaryOnly = Collator.getInstance();
-    PrettyPrinter pp = new PrettyPrinter().setOrdering(Collator.getInstance()).setSpaceComparator(primaryOnly);
+    UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter().setOrdering(Collator.getInstance()).setSpaceComparator(primaryOnly);
 
     public void TestSimple() throws IOException {
         Set<String> archaicLabels = new HashSet<String>(Arrays.asList("Archaic Ancient Biblical Historic".split("\\s")));
@@ -65,8 +65,8 @@ public class TestTypology extends TestFmwk {
         logln(list.toString());
 
         String GEN_DIR = "/Users/markdavis/Documents/workspace/Generated/";
-        PrintWriter out = BagFormatter.openUTF8Writer(GEN_DIR  + "/categories", "CategoryLabels.txt");
-        PrintWriter html = BagFormatter.openUTF8Writer(GEN_DIR + "/categories", "CategoryLabels.html");
+        PrintWriter out = FileUtilities.openUTF8Writer(GEN_DIR  + "/categories", "CategoryLabels.txt");
+        PrintWriter html = FileUtilities.openUTF8Writer(GEN_DIR + "/categories", "CategoryLabels.html");
         String fontList = "Georgia, 'Times New Roman', Times, Symbola, Aegyptus, Aegean, Akkadian, Analecta, Musica, Code2000,  Code2001,  Code2002, serif";
         html.println(
                 "<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN'>\n" +
@@ -364,7 +364,7 @@ public class TestTypology extends TestFmwk {
     enum LabelStyle {title, normal, subhead}
     enum LabelRowStyle {normal, sub}
 
-    private void showLabel(PrintWriter html, PrintWriter printStream, PrettyPrinter ppx, 
+    private void showLabel(PrintWriter html, PrintWriter printStream, UnicodeSetPrettyPrinter ppx, 
             String labelName, LabelStyle subhead, LabelRowStyle labelRowStyle, 
             UnicodeSet... usets) {
         String cell;
