@@ -4,9 +4,12 @@ import java.util.EnumSet;
 import java.util.Set;
 
 import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.PropertyNames.Named;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
+import org.unicode.props.UcdPropertyValues.Word_Break_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiData;
@@ -25,6 +28,11 @@ public class Quick {
     static final UnicodeSet Cn = gencat.getSet(General_Category_Values.Unassigned);
     
     public static void main(String[] args) {
+        showValue(0xE0041, UcdProperty.Word_Break, UcdPropertyValues.Word_Break_Values.class);
+        showValue(0xE0041, UcdProperty.Line_Break, UcdPropertyValues.Line_Break_Values.class);
+        showValue(0xE0041, UcdProperty.Grapheme_Cluster_Break, UcdPropertyValues.Grapheme_Cluster_Break_Values.class);
+        if (true) return;
+        
         Set<Block_Values> emojiBlocks = EnumSet.noneOf(Block_Values.class);
         UnicodeSet emoji = emojiData.getSingletonsWithoutDefectives();
         for (String s : new UnicodeSet(emoji).addAll(ExtendedPictographic.GLUE_AFTER_ZWJ)) {
@@ -61,6 +69,12 @@ public class Quick {
         }
         showNonEmpty("total_count", ExtendedPictographic.GLUE_AFTER_ZWJ, false);
         System.out.println("# EOF");
+    }
+
+    private static void showValue(int cp, final UcdProperty prop, final Class classIn) {
+        Named value = (Named) iup.loadEnum(prop, classIn).get(cp);
+        System.out.println(Utility.hex(cp) + " " + names.get(cp) 
+                + " → " + prop.getShortName() + "=" + value.getShortName() + "\t" + prop + "=" + value);
     }
 
     private static void showRanges(UnicodeSet gazInBlock, boolean includeSetName) {

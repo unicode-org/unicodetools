@@ -90,8 +90,9 @@ public class Emoji {
         // order is important
         charOverride,
         color, 
-        apple, google("Googᵈ"), twitter("Twtr."), emojione("One"), // more complete
-        fbm("FBM", "Messenger (Facebook)"), windows("Wind."), samsung("Sams."), 
+        apple, google("Googᵈ"), twitter("Twtr."), emojione("One"),
+        fb("FB", "Facebook"), fbm("FBM", "Messenger (Facebook)"), samsung("Sams."), 
+        windows("Wind."),
         ref, proposed, emojipedia, emojixpress, sample,
         // gifs; don't change order!
         gmail("GMail"), sb("SB", "SoftBank"), dcm("DCM", "DoCoMo"), kddi("KDDI", "KDDI");
@@ -99,10 +100,10 @@ public class Emoji {
         static final Set<Source> OLD_SOURCES = ImmutableSet.copyOf(
                 EnumSet.of(gmail, sb, dcm, kddi)); // do this to get same order as Source
         static final Set<Source> VENDOR_SOURCES = ImmutableSet.copyOf(
-                EnumSet.of(apple, google, twitter, emojione, samsung, fbm, windows)); // do this to get same order as Source
+                EnumSet.of(apple, google, twitter, emojione, samsung, fb, windows)); // do this to get same order as Source
         static final Set<Emoji.Source> platformsToIncludeNormal = ImmutableSet.copyOf(EnumSet.of(
                 Source.apple, Source.google, Source.windows, Source.twitter, Source.emojione, Source.samsung, 
-                Source.fbm,
+                Source.fb, Source.fbm,
                 Source.gmail, Source.dcm, Source.kddi, Source.sb
                 ));
 
