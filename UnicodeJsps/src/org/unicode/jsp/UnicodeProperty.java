@@ -21,10 +21,11 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
-import com.ibm.icu.dev.util.BagFormatter;
+import org.unicode.cldr.util.UnicodeLabel;
+
+import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.CollectionUtilities.InverseMatcher;
 import com.ibm.icu.dev.util.CollectionUtilities.ObjectMatcher;
-import com.ibm.icu.dev.util.UnicodeLabel;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.SymbolTable;
@@ -174,7 +175,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             result = _getValueAliases(valueAlias, result); // for debugging
             throw new IllegalArgumentException("Internal error: " + getName()
                     + " doesn't contain " + valueAlias + ": "
-                    + new BagFormatter().join(result));
+                    + CollectionUtilities.join(result, ", "));
         }
         return result;
     }
@@ -243,7 +244,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             if (DEBUG && CHECK_NAME.equals(getName())) {
                 System.out.println("First Alias: " + getName() + ": " + value
                         + " => " + first
-                        + new BagFormatter().join(getValueAliases(value)));
+                        + CollectionUtilities.join(getValueAliases(value), ", "));
             }
             valueToFirstValueAlias.put(value, first);
             if (value.length() > maxValueWidth) {

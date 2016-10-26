@@ -10,15 +10,14 @@ import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.Uts46;
 import org.unicode.jsp.Uts46.Errors;
 import org.unicode.jsp.Uts46.IdnaChoice;
 
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.FileUtilities;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.Normalizer2;
@@ -186,7 +185,7 @@ public class TestUts46 extends TestFmwk{
 
   private int generateTests(int lines) throws IOException {
     String filename = "IdnaTest.txt";
-    PrintWriter out = BagFormatter.openUTF8Writer(DIR, filename);
+    PrintWriter out = FileUtilities.openUTF8Writer(DIR, filename);
     out.println("# " + filename + "\n" +
             "# Date: " + dateFormat.format(new Date()) + " [MD]\n" +
             "#");

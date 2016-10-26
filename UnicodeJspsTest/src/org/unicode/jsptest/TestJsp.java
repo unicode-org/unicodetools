@@ -14,7 +14,10 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.util.BNF;
 import org.unicode.cldr.util.Counter;
+import org.unicode.cldr.util.Quoter;
+import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.jsp.Common;
 import org.unicode.jsp.Idna;
 import org.unicode.jsp.Idna.IdnaType;
@@ -30,9 +33,6 @@ import org.unicode.jsp.Uts46;
 import org.unicode.jsp.XPropertyFactory;
 
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.util.BNF;
-import com.ibm.icu.dev.util.PrettyPrinter;
-import com.ibm.icu.dev.util.Quoter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
@@ -69,7 +69,7 @@ public class TestJsp  extends TestFmwk {
 
     enum Subtag {language, script, region, mixed, fail}
 
-    static PrettyPrinter pretty = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ENGLISH));
+    static UnicodeSetPrettyPrinter pretty = new UnicodeSetPrettyPrinter().setOrdering(Collator.getInstance(ULocale.ENGLISH));
 
     static String prettyTruncate(int max, UnicodeSet set) {
         String prettySet = pretty.format(set);

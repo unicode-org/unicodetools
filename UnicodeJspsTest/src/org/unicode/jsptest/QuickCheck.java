@@ -13,6 +13,8 @@ public static void main(String[] args) throws IOException {
 
     StringBuilder out = new StringBuilder();
     UnicodeSet a = new UnicodeSet();
+    String a_out = UnicodeJsp.getSimpleSet("[:confusables:]", a, true, true);
+    System.out.println(a_out);
 
     String outer = UnicodeJsp.getSimpleSet("[:emoji=yes:]", a, false, false);
     //UnicodeJsp.showSet("", a, true, false, out);
