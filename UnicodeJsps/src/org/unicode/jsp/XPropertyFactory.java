@@ -60,7 +60,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(new HanType());
         add(new UnicodeProperty.UnicodeMapProperty().set(XIDModifications.getStatus()).setMain("Identifier_Status", "ids", UnicodeProperty.ENUMERATED, "1.1"));
         add(new UnicodeProperty.UnicodeMapProperty().set(XIDModifications.getTypes()).setMain("Identifier_Type", "idt", UnicodeProperty.ENUMERATED, "1.1"));
-        add(new UnicodeProperty.UnicodeMapProperty().set(Confusables.getMap()).setMain("confusable", "confusable", UnicodeProperty.ENUMERATED, "1.1"));
+        // add(new UnicodeProperty.UnicodeMapProperty().set(Confusables.getMap()).setMain("confusable", "confusable", UnicodeProperty.ENUMERATED, "1.1"));
         add(new UnicodeProperty.UnicodeMapProperty().set(Idna2003.SINGLETON.mappings).setMain("toIdna2003", "toIdna2003", UnicodeProperty.STRING, "1.1"));
         add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings).setMain("toUts46t", "toUts46t", UnicodeProperty.STRING, "1.1"));
         add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings_display).setMain("toUts46n", "toUts46n", UnicodeProperty.STRING, "1.1"));
