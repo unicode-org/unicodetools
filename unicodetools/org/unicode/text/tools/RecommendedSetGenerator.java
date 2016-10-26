@@ -1,10 +1,12 @@
 package org.unicode.text.tools;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UnicodeSet;
 import java.util.Set;
+
 import org.unicode.text.UCD.IdentifierInfo.IdentifierStatus;
 import org.unicode.text.UCD.IdentifierInfo.IdentifierType;
+
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
 
 /**
  * Generates the recommended UnicodeSet according to UTS 39. Used for updating the constant in ICU

@@ -18,7 +18,6 @@ import org.unicode.cldr.util.MapComparator;
 import org.unicode.cldr.util.MultiComparator;
 //import org.unicode.text.UCA.UCA;
 import org.unicode.text.utility.Settings;
-import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.UnicodeMap;

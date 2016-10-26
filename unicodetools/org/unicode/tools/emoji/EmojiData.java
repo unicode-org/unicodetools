@@ -14,8 +14,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Annotations;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Annotations.AnnotationSet;
+import org.unicode.cldr.util.CldrUtility;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -34,7 +34,6 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.BreakIterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;

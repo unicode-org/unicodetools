@@ -29,7 +29,6 @@ import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UnicodeRelation;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
-import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Settings;
 import org.unicode.tools.NormalizeForMatch.SpecialReason;
 

@@ -1,8 +1,6 @@
 package org.unicode.tools;
 
-import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiData;
-import org.unicode.tools.emoji.GenerateEmoji;
 
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
