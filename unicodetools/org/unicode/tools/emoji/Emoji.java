@@ -35,15 +35,19 @@ import com.ibm.icu.util.VersionInfo;
 
 public class Emoji {
 
+    private static final String BETA_PLAIN = " — Beta";
+    private static final String BETA_COLORED = "<span style='color:red'><i> — Beta</i></span>";
     /**
      * Change each following once we release. That is, VERSION_LAST_RELEASED* becomes VERSION_BETA*, and both the latter increment.
      */
     public static final VersionInfo VERSION_LAST_RELEASED2 = VersionInfo.getInstance(2);
     public static final VersionInfo VERSION_LAST_RELEASED = VersionInfo.getInstance(3);
     public static final VersionInfo VERSION_LAST_RELEASED_UNICODE = VersionInfo.getInstance(9);
-    
+
     public static final VersionInfo VERSION_BETA = VersionInfo.getInstance(4);
     public static final VersionInfo VERSION_BETA_UNICODE = VersionInfo.getInstance(9);
+
+
     
     /**
      * Change the following according to whether we are generating the beta version of files, or the new version.
@@ -56,6 +60,13 @@ public class Emoji {
     /**
      * Computed
      */
+    
+    public static final String            BETA_TITLE_AFFIX          = Emoji.IS_BETA ? BETA_PLAIN : "";
+    public static final String            BETA_HEADER_AFFIX          = Emoji.IS_BETA ? BETA_COLORED : "";
+
+    public static final String VERSION_LAST_RELEASED_STRING = VERSION_LAST_RELEASED.getVersionString(2, 4);
+    public static final String VERSION_BETA_STRING = VERSION_BETA.getVersionString(2, 4) + BETA_COLORED;
+
 
     public static final VersionInfo VERSION_TO_GENERATE = IS_BETA ? VERSION_BETA : VERSION_LAST_RELEASED;
     public static final VersionInfo VERSION_TO_GENERATE_PREVIOUS = IS_BETA ? VERSION_LAST_RELEASED : VERSION_LAST_RELEASED2;
@@ -90,10 +101,10 @@ public class Emoji {
         // order is important
         charOverride,
         color, 
-        apple, google("Googᵈ"), twitter("Twtr."), emojione("One"),
+        apple("Applᵈ"), google("Goog"), twitter("Twtr."), emojione("One"),
         fb("FB", "Facebook"), fbm("FBM", "Messenger (Facebook)"), samsung("Sams."), 
         windows("Wind."),
-        ref, proposed, emojipedia, emojixpress, sample,
+        ref, proposed, emojipedia, emojixpress, emojination, adobe, sample,
         // gifs; don't change order!
         gmail("GMail"), sb("SB", "SoftBank"), dcm("DCM", "DoCoMo"), kddi("KDDI", "KDDI");
         

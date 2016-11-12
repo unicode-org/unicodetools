@@ -56,25 +56,29 @@ public class CandidateData {
         String source = null;
         Builder<Integer> _order = ImmutableList.builder();
         for (String line : FileUtilities.in(CandidateData.class, "candidateData.txt")) {
-            if (line.startsWith("#")) { // annotation
-                continue;
-            } else if (line.startsWith("•")) { // annotation
-                annotations.add(source,line.substring(1).trim());
-            } else if (line.startsWith("U+")) { // data
-                List<String> parts = TAB.splitToList(line);
-                source = Utility.fromHex(parts.get(0));
-                _order.add(source.codePointAt(0));
-                final String quarter = parts.get(3).trim();
-                quartersForChars.put(source, CandidateData.Quarter.fromString(quarter));
-                final String name = parts.get(4).trim();
-                names.put(source, name);
-                if (!EmojiOrder.STD_ORDER.groupOrder.containsKey(category)) {
-                    throw new IllegalArgumentException("Illegal category: " + category + ". Must be in: " + EmojiOrder.STD_ORDER.groupOrder.keySet());
+            try {
+                if (line.startsWith("#")) { // annotation
+                    continue;
+                } else if (line.startsWith("•") || line.startsWith("×")) { // annotation
+                    annotations.add(source,line.charAt(0) + " " + line.substring(1).trim());
+                } else if (line.startsWith("U+")) { // data
+                    List<String> parts = TAB.splitToList(line);
+                    source = Utility.fromHex(parts.get(0));
+                    _order.add(source.codePointAt(0));
+                    final String quarter = parts.get(3).trim();
+                    quartersForChars.put(source, CandidateData.Quarter.fromString(quarter));
+                    final String name = parts.get(4).trim();
+                    names.put(source, name);
+                    if (!EmojiOrder.STD_ORDER.groupOrder.containsKey(category)) {
+                        throw new IllegalArgumentException("Illegal category: " + category + ". Must be in: " + EmojiOrder.STD_ORDER.groupOrder.keySet());
+                    }
+                    categories.put(source, category);
+                } else { // must be category
+                    category = line.trim();
+                    line= line.trim();
                 }
-                categories.put(source, category);
-            } else { // must be category
-                category = line.trim();
-                line= line.trim();
+            } catch (Exception e) {
+                throw new IllegalArgumentException(line, e);
             }
         }
         order = _order.build();
