@@ -139,7 +139,8 @@ class EmojiStats {
 
     public void write(Set<Source> platforms2) throws IOException {
         final boolean extraPlatforms = false;
-        PrintWriter out = FileUtilities.openUTF8Writer(extraPlatforms ? Emoji.INTERNAL_OUTPUT_DIR : Emoji.TR51_INTERNAL_DIR, "missing-emoji-list.html");
+        final String outFileName = "missing-emoji-list.html";
+        PrintWriter out = FileUtilities.openUTF8Writer(extraPlatforms ? Emoji.INTERNAL_OUTPUT_DIR : Emoji.TR51_INTERNAL_DIR, outFileName);
         PrintWriter outText = FileUtilities.openUTF8Writer(extraPlatforms ? Emoji.INTERNAL_OUTPUT_DIR : Emoji.TR51_INTERNAL_DIR, "missing-emoji-list.txt");
         UnicodeSet jc = EmojiData.JCARRIERS;
         // new UnicodeSet()
@@ -169,7 +170,7 @@ class EmojiStats {
             if (SHOW) System.out.println(entry.getKey() + "\t" + entry.getValue().toPattern(false));
         }
 
-        GenerateEmoji.writeHeader(out, "Missing", null, "<p>Missing list of emoji characters.</p>\n", "border='1'", true);
+        GenerateEmoji.writeHeader(outFileName, out, "Missing", null, "<p>Missing list of emoji characters.</p>\n", "border='1'", true, false);
         String headerRow = "<tr><th>Type</th>";
         for (Emoji.Source type : platforms2) {
             headerRow += "<th class='centerTop' width='" + (80.0 / platforms2.size()) + "%'>" + type + " missing</th>";

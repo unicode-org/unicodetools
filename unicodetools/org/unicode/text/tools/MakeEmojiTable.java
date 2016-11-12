@@ -14,8 +14,9 @@ import com.ibm.icu.text.UTF16;
 
 public class MakeEmojiTable {
     public static void main(String[] args) throws IOException {
-        PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-glyphs.html");
-        GenerateEmoji.writeHeader(out, "recommended glyphs", null, "<p>" + "" + "</p>\n", "border='1'", true);
+        final String outFileName = "emoji-glyphs.html";
+        PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, outFileName);
+        GenerateEmoji.writeHeader(outFileName, out, "recommended glyphs", null, "<p>" + "" + "</p>\n", "border='1'", true, false);
         boolean first = true;
         boolean firstText = true;
         out.println("<tr><th>Code</th><th>Ref</th><th>Apple</th><th>Andr.</th><th>Name</th><th>Remarks</th></tr>");

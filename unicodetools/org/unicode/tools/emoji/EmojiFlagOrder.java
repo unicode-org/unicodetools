@@ -231,8 +231,9 @@ public class EmojiFlagOrder {
         NumberFormat percent2 = NumberFormat.getPercentInstance();
         double base = -1;
         StringBuilder emojiList = new StringBuilder();
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "flag-emoji-list.html")) {
-            GenerateEmoji.writeHeader(out, "Emoji Flags", null, "<p>" + "Flag list. " + "</p>\n", "border='1'", true);
+        final String outFileName = "flag-emoji-list.html";
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, outFileName)) {
+            GenerateEmoji.writeHeader(outFileName, out, "Emoji Flags", null, "<p>" + "Flag list. " + "</p>\n", "border='1'", true, false);
             out.println("<html><body><table border='1px'>");
             for (Pair<ImageInfo, String> colorChar : sorted) {
                 final ImageInfo info = colorChar.getFirst();

@@ -1,18 +1,120 @@
-#Code Point	Chart Glyph	Sample Colored Glyph	Name
-face-neutral
+#Code Point	Chart Glyph	Sample Colored Glyph	Name	
+face-neutral				
 U+1F928			2016Q1	FACE WITH ONE EYEBROW RAISED
-emotion
-U+100000			2016Q2	ORANGE HEART
-food-prepared
+food-prepared				
 U+1F95F			2016Q1	DUMPLING
-• typically stuffed
-• potsticker, gyōza (餃子), jiaozi (餃子/饺子), pierogi, empanada, …
+• typically stuffed				
+• potsticker, gyōza (餃子), jiaozi (餃子/饺子), pierogi, empanada, …				
 U+1F960			2016Q1	FORTUNE COOKIE
-dishware
+dishware				
 U+1F961			2016Q1	TAKEOUT BOX
-• oyster pail 
+• oyster pail				
 U+1F962			2016Q1	CHOPSTICKS
-• also kuaizi (筷子), hashi (箸), jeotgarak (젓가락)
-sport
-U+100001			2016Q2	SLED
-U+100002			2016Q2	CURLING STONE
+• also kuaizi (筷子), hashi (箸), jeotgarak (젓가락)				
+face-neutral				
+U+1F92B			2016Q4	FACE WITH FINGER COVERING CLOSED LIPS
+U+1F92A			2016Q4	GRINNING FACE WITH CRAZY EYES
+U+1F92C			2016Q4	SERIOUS FACE WITH SYMBOLS COVERING MOUTH
+U+1F92D			2016Q4	SMILING FACE WITH SMILING EYES AND HAND COVERING MOUTH
+U+1F92E			2016Q4	FACE WITH OPEN MOUTH VOMITING
+U+1F9D0			2016Q4	FACE WITH MONOCLE
+U+1F92F			2016Q4	SHOCKED FACE WITH EXPLODING HEAD
+U+1F929			2016Q4	GRINNING FACE WITH STAR EYES
+creature-face				
+U+1F9D9			2016Q4	MAGE
+• wizard, witch, sorcerer, sorceress, etc.				
+• design note: peaked hat				
+U+1F9DA			2016Q4	FAIRY
+U+1F9DB			2016Q4	VAMPIRE
+U+1F9DC			2016Q4	MERPERSON
+• mermaid, merman				
+U+1F9DD			2016Q4	ELF
+• design note: LOTR style				
+U+1F9DE			2016Q4	GENIE
+• takes gender signs, inhuman color				
+U+1F9DF			2016Q4	ZOMBIE
+• no gender signs, inhuman color				
+person				
+U+1F9D1			2016Q4	ADULT
+• no specified gender				
+× 1F468 MAN				
+× 1F469 WOMAN				
+U+1F9D2			2016Q4	CHILD
+• no specified gender				
+× 1F466 BOY				
+× 1F467 GIRL				
+U+1F9D3			2016Q4	OLDER ADULT
+• no specified gender				
+× 1F474 OLDER MAN				
+× 1F475 OLDER WOMAN				
+U+1F9D4			2016Q4	BEARDED PERSON
+U+1F9D5			2016Q4	PERSON WITH HEADSCARF
+• woman's headscarf, hijab
+• design note: main feature is that it completely covers the hair.				
+person-activity				
+U+1F9D7			2016Q4	PERSON CLIMBING
+U+1F9D8			2016Q4	PERSON IN LOTUS POSITION
+• yoga, meditation				
+• design note: hand position may vary, clothing may vary				
+U+1F931			2016Q4	BREAST-FEEDING
+• font/design note: shown as head and upper torso of woman cradling and feeding infant				
+U+1F9D6			2016Q4	PERSON IN STEAMY ROOM
+• sauna, steam room				
+body				
+U+1F9E0			2016Q4	BRAIN
+U+1F91F			2016Q4	I LOVE YOU HAND SIGN
+• abbreviated as ILY				
+U+1F932			2016Q4	PALMS UP TOGETHER
+• used for prayer in some cultures				
+emotion				
+U+1F9E1			2016Q4	ORANGE HEART
+× 1F499 BLUE HEART				
+× 1F49A GREEN HEART				
+× 1F49B YELLOW HEART				
+× 1F49C PURPLE HEART				
+clothing				
+U+1F9E3			2016Q4	SCARF
+• design note: not limited to winter				
+U+1F9E4			2016Q4	GLOVES
+• design note: not limited to winter				
+U+1F9E5			2016Q4	COAT
+• design note: not limited to winter				
+U+1F9E6			2016Q4	SOCKS
+• design note: not limited to winter				
+U+1F9E2			2016Q4	BILLED CAP
+• baseball cap				
+• design note: color is not specified	
+animal-mammal			
+U+1F992			2016Q4	GIRAFFE FACE
+U+1F993			2016Q4	ZEBRA FACE
+U+1F994			2016Q4	HEDGEHOG
+animal-bug
+U+1F997			2016Q4	CRICKET
+animal-reptile
+U+1F995			2016Q4	SAUROPOD
+• includes Brontosaurus, Diplodocus, Brachiosaurus, etc.				
+U+1F996			2016Q4	T-REX
+• Tyrannosaurus Rex				
+food-vegetable				
+U+1F965			2016Q4	COCONUT
+U+1F966			2016Q4	BROCCOLI
+food-prepared				
+U+1F967			2016Q4	PIE
+• may be sweet or savory				
+U+1F968			2016Q4	PRETZEL
+• can indicate twistiness, convolutedness"				
+U+1F969			2016Q4	CUT OF MEAT
+• porkchop, chop, steak				
+U+1F96B			2016Q4	CANNED FOOD
+• font note: change image to be generic				
+U+1F96A			2016Q4	SANDWICH
+U+1F963			2016Q4	BOWL WITH SPOON
+• can indicate breakfast, cereal, congee, etc.				
+dishware				
+U+1F964			2016Q4	CUP WITH STRAW
+• can indicate soda, juice, etc.				
+transport-air				
+U+1F6F8			2016Q4	FLYING SAUCER
+sport				
+U+1F6F7			2016Q4	SLED
+U+1F94C			2016Q4	CURLING STONE
