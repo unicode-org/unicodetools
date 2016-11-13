@@ -1116,7 +1116,7 @@ public class GenerateEmoji {
         out.close();
     }
 
-    static final String UTR_LINK = "<em><a target='doc' href='" + TR51_HTML + "'>UTR #51 Unicode Emoji</a></em>";
+    static final String UTR_LINK = "<i><a target='doc' href='" + TR51_HTML + "'>UTR #51 Unicode Emoji</a></i>";
 
     /** Main Chart */
     private static void showDefaultStyle() throws IOException {
@@ -1246,8 +1246,8 @@ public class GenerateEmoji {
                 + "Sample glyphs are provided to illustrate the contrast between "
                 + "the desired appearances for each of these selectors. "
                 + "For more information, see "
-                + "<em><a target='doc' href='" + TR51_HTML + "#Definitions'>Definitions</a></em> "
-                + "in <em><a target='doc' href='" + TR51_HTML + "'>UTR #51: Unicode Emoji</a></em>. "
+                + "<i><a target='doc' href='" + TR51_HTML + "#Definitions'>Definitions</a></i> "
+                + "in <i><a target='doc' href='" + TR51_HTML + "'>UTR #51: Unicode Emoji</a></i>. "
                 + "</p><p>"
                 + "The Version column shows the first version of Unicode containing "
                 + "the standard variation sequence. "
@@ -2651,53 +2651,56 @@ public class GenerateEmoji {
         }
         if (SHOW) System.out.println(items.toString().replace("\\", "\\\\"));
         // now print
-        String topHeader = "<p>At the 2016Q4 Unicode Technical meeting, " + count
-                + " emoji characters were provisionally approved for Unicode 10.0, "
+        String topHeader = "<p>"
+                + "At the 2016Q4 Unicode Technical Committee meeting (UTC #149), " + count 
+                + " new emoji characters were provisionally approved for Unicode 10.0, "
                 + "for release in June, 2017. These are listed in the table below."
                 + "<blockquote style='color:#CC0000'>"
-                + "NOTE: while the emoji will be in the release, the code points, names, chart glyphs, "
-                + "and annotations for these characters are <em>not</em> yet final. "
-                + "The colored images are just illustrative samples, and vary considerably from what vendors deploy. "
-                + "Additional images may be added over time. \n"
-                + "<em>Do not deploy any of these until the Unicode 10.0 release is available.</em>\n"
+                + "NOTE: While the 56 emoji will be in the Unicode 10.0 release, "
+                + "their code points, character names, representative chart glyphs, "
+                + "emoji properties, and annotations are <i>not</i> yet final. "
+                + "The colored glyphs are merely illustrative samples, and vary considerably from what vendors actually deploy. "
+                + "These sample glyphs may change at any time, and others may be added.</blockquote>\n"
+                + "<blockquote style='color:#CC0000'><i>Do not deploy any of these characters until the Unicode 10.0 release is available.</i>\n"
                 + "</blockquote>\n"
-                + "<p style='top-margin:3em'>These characters were based on proposals received by the Emoji "
-                + "Subcommittee, and selected on the basis of the "
-                + "Emoji <i>Selection Factors</i> in "
+                + "<p style='top-margin:3em'>These characters were based on proposals received by the Unicode "
+                + "Consortium, reviewed by the Unicode Emoji Subcommittee, and selected on the basis of the "
+                + "<i>Emoji Selection Factors</i> in "
                 + "<a target='_blank' href='../../emoji/selection.html'>Submitting Emoji Character Proposals</a>. "
                 + "That page also describes the <a href='http://unicode.org/emoji/selection.html#timeline'>Process and Timeline</a> for proposals.</p>\n"
-                + "<p>Thanks to EmojiXpress, Emojipedia, Emojination, and Adobe for the color sample images. "
-                + "The representative chart images (black and white) are not yet available for most of these emoji.</p>"
+                + "<p>Thanks to EmojiXpress, Emojipedia, Emojination, and Adobe for the color sample glyphs. "
+                + "The representative chart glyphs (black and white) are not yet available for most of these emoji.</p>"
                 ;
-        String midHeader = "<p>The Unicode Technical Committee (UTC) has accepted the following "
-                + count
-                + " characters as <i>candidates</i> for emoji. "
-                + "At the 2016Q4 UTC meeting, a final determination has been made for the " + count
-                + "emoji characters to be added to Unicode 10.0, "
-                + "for release in June, 2017. These are listed in the first table below."
-                + "<blockquote style='color:#CC0000'>Candidates are tentative: they may be removed or their code point, glyph, or name changed. "
-                + "No code point values for candidates are final, until (and if) the candidates are included as characters in a version of Unicode.\n"
-                + "Do <em>not</em> deploy any of these.\n"
-                + "</blockquote>\n"
-                + "See also the <a target='released' href='emoji-released.html'>Emoji Recently Added</a>.</p>"
-                ;
+//        String midHeader = "<p>The Unicode Technical Committee (UTC) has accepted the following "
+//                + count
+//                + " characters as <i>candidates</i> for emoji. "
+//                + "At the 2016Q4 UTC meeting, a final determination has been made for the " + count
+//                + "emoji characters to be added to Unicode 10.0, "
+//                + "for release in June, 2017. These are listed in the first table below."
+//                + "<blockquote style='color:#CC0000'>Candidates are tentative: they may be removed or their code point, glyph, or name changed. "
+//                + "No code point values for candidates are final, until (and if) the candidates are included as characters in a version of Unicode.\n"
+//                + "Do <i>not</i> deploy any of these.\n"
+//                + "</blockquote>\n"
+//                + "See also the <a target='released' href='emoji-released.html'>Emoji Recently Added</a>.</p>"
+//                ;
 
-        String footer = "<p>Any further candidates would be targeted at possible approval for Unicode 11.0 (June 2017).</p>"
+        String footer = "<p>Any emoji candidates beyond these 56 approved ones would be targeted for inclusion in a future version of the standard, "
+                + "the earliest being Unicode 11.0 (June 2017).</p>"
                 //+ "although some additional <a href='http://www.unicode.org/emoji/charts/emoji-zwj-sequences.html'>emoji zwj sequences</a> could be added."
 
                 ;        
-        String finalFooter = "<p style='top-margin:3em'>These candidates were based on proposals received by the Emoji "
-                + "Subcommittee and Unicode members, and selected on the basis of the "
-                + "Emoji <i>Selection Factors</i> in "
-                + "<a target='_blank' href='../../emoji/selection.html'>Submitting Emoji Character Proposals</a>. "
-                + "Anyone can file a proposal for a new emoji: see the instructions on that page. That page also describes the process and timeline for proposals.</p>\n"
-                + "<p>Candidates have placeholder code points (like X00000) until the UTC meeting in Q4 of each year. "
-                + "After prioritization at that Q4 UTC meeting, some candidates will then be given final code points (like U+1F939), "
-                + "and appear in the Unicode Standard in Q2 of the next year. "
-                + "The process was different before 2016Q2, so candidates from 2016Q1 had already been given provisional code points. "
-                + "This does not necessarily mean that they will be in the 2017 version of Unicode. "
-                + "For more information on the timeline, see "
-                + "<a href='http://unicode.org/emoji/selection.html#timeline'>Process and Timeline</a>.</p>\n";
+//        String finalFooter = "<p style='top-margin:3em'>These candidates were based on proposals received by the Emoji "
+//                + "Subcommittee and Unicode members, and selected on the basis of the "
+//                + "Emoji <i>Selection Factors</i> in "
+//                + "<a target='_blank' href='../../emoji/selection.html'>Submitting Emoji Character Proposals</a>. "
+//                + "Anyone can file a proposal for a new emoji: see the instructions on that page. That page also describes the process and timeline for proposals.</p>\n"
+//                + "<p>Candidates have placeholder code points (like X00000) until the UTC meeting in Q4 of each year. "
+//                + "After prioritization at that Q4 UTC meeting, some candidates will then be given final code points (like U+1F939), "
+//                + "and appear in the Unicode Standard in Q2 of the next year. "
+//                + "The process was different before 2016Q2, so candidates from 2016Q1 had already been given provisional code points. "
+//                + "This does not necessarily mean that they will be in the 2017 version of Unicode. "
+//                + "For more information on the timeline, see "
+//                + "<a href='http://unicode.org/emoji/selection.html#timeline'>Process and Timeline</a>.</p>\n";
         String title = "Emoji Candidates";
         if (!future) {
             topHeader = "<p>The charts on this page show the emoji that have been added to the most recent version of the Unicode Standard. "
@@ -2712,7 +2715,7 @@ public class GenerateEmoji {
         //                + "have yet been assigned.</li>\n"
         //                + "<li>The cell-divisions (like <a href='#face-happy'>face-happy</a>) are as "
         //                + "in <a href='emoji-ordering.html' target='order'>Emoji Ordering</a>.</li>\n"
-        //                + "<li>All of the images are <em>only</em> for illustration.</li>\n"
+        //                + "<li>All of the images are <i>only</i> for illustration.</li>\n"
         //                + "<li>The draft black and white <strong>Chart Glyphs</strong> are drafts for the Unicode charts. "
         //                + "They may change. "
         //                + "These drafts are courtesy of Adobe, Microsoft, Apple, and proposers "
