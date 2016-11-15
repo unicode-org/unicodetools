@@ -3,6 +3,7 @@ package org.unicode.tools.emoji;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -10,6 +11,7 @@ import java.util.Set;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Tabber;
 
+import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.text.UnicodeSet;
 
@@ -17,8 +19,8 @@ public class GenerateEmojiKeyboard {
     enum Target {csv, propFile}
 
     public static void main(String[] args) throws Exception {
-        GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, Target.csv, Emoji.TR51_INTERNAL_DIR + "keyboard");
         GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, Target.propFile, Emoji.DATA_DIR);
+        // GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, Target.csv, Emoji.TR51_INTERNAL_DIR + "keyboard");
         //        boolean foo2 = EmojiData.EMOJI_DATA.getChars().contains(EmojiData.SAMPLE_WITHOUT_TRAILING_EVS);
         //        Set<String> foo = EmojiOrder.sort(EmojiOrder.STD_ORDER.codepointCompare, 
         //                EmojiData.EMOJI_DATA.getChars());
@@ -80,7 +82,7 @@ public class GenerateEmojiKeyboard {
         }
         Tabber tabber = new Tabber.MonoTabber()
         .add(maxField1+1, Tabber.LEFT)
-        .add(maxField2+2, Tabber.LEFT);
+        .add("non-fully-qualified".length()+3, Tabber.LEFT);
         ;
 
         for (Entry<String, Set<String>> labelToSet : emojiOrder.orderingToCharacters.keyValuesSet()) {
@@ -113,8 +115,8 @@ public class GenerateEmojiKeyboard {
                                 + "# Format\n"
                                 + "#   Code points; status # emoji name\n"
                                 + "#     Status\n"
-                                + "#       keyboard — should be the form to show up on keyboard palettes, if supported\n"
-                                + "#       process — should also be processed and displayed if the keyboard version is supported"
+                                + "#       keyboard — see “Emoji Implementation Notes” in UTR#51\n"
+                                + "#       process — see “Emoji Implementation Notes” in UTR#51"
                                 );
                         out.println("# Notes:\n"
                                 + "#   • This currently omits the 12 keycap bases, the 5 modifier characters, and 26 singleton Regional Indicator characters\n"
@@ -139,10 +141,12 @@ public class GenerateEmojiKeyboard {
             
             for (String cp_raw : filtered) {
                 String cp = emojiOrder.emojiData.addEmojiVariants(cp_raw);
-                charactersNotShown.remove(cp);
+                
                 final String withoutRaw = cp.replace(Emoji.EMOJI_VARIANT_STRING, "");
-                String withoutVs = cp.contains(Emoji.JOINER_STRING) ? withoutRaw : cp;
+                // String withoutVs = cp.contains(Emoji.JOINER_STRING) ? withoutRaw : cp;
                 charactersNotShown.remove(withoutRaw);
+
+                charactersNotShown.remove(cp);
                 switch(target) {
                 case csv: 
                     out.println("U+" + Utility.hex(cp,"U+") 
@@ -151,13 +155,9 @@ public class GenerateEmojiKeyboard {
                     break;
                 case propFile:
                     out.println(tabber.process(Utility.hex(cp) + "\t; " 
-                            + "keyboard"
+                            + "fully-qualified"
                             + "\t# " + cp + " " + EmojiData.EMOJI_DATA.getName(cp, false)));
-                    if (!withoutVs.equals(cp)) {
-                        out.println(tabber.process(Utility.hex(withoutVs) + "\t; " 
-                            + "process"
-                            + "\t# " + withoutVs + " " + EmojiData.EMOJI_DATA.getName(withoutVs, false)));
-                    }
+                    showWithoutVS(out, tabber, cp, charactersNotShown);
                     break;
                 }
                 totals.add(cp);
@@ -180,6 +180,41 @@ public class GenerateEmojiKeyboard {
         }
         if (charactersNotShown.size() != 0) {
             throw new IllegalArgumentException("Missing characters: " + charactersNotShown.size() + "\t" + charactersNotShown.toPattern(false));
+        }
+    }
+
+    static Splitter vsSplitter = Splitter.on(Emoji.EMOJI_VARIANT);
+    
+    /** Show all of the combinations with VS, except for all VS characters.
+     */
+    private static void showWithoutVS(TempPrintWriter out, Tabber tabber, String cp, UnicodeSet charactersNotShown) throws IOException {
+        if (!cp.contains(Emoji.JOINER_STRING)) {
+            return;
+        }
+        int pos = cp.indexOf(Emoji.EMOJI_VARIANT);
+        if (pos < 0) {
+            return;
+        }
+        String name = EmojiData.EMOJI_DATA.getName(cp, false);
+        
+        final List<String> parts = vsSplitter.splitToList(cp);
+        final int size = parts.size();
+        if (size > 2) {
+            int debug = 0;
+        }
+        int count = (1 << (size-1)) - 1; // 3 parts => 100 => 11
+        for (int bitmap = 0; bitmap < count; ++bitmap) {
+            String temp = parts.get(0);
+            for (int rest = 0; rest < size - 1; ++rest) {
+                if ((bitmap & (1<<rest)) != 0) {
+                    temp += Emoji.EMOJI_VARIANT_STRING;
+                }
+                temp += parts.get(rest+1);
+            }
+            out.println(tabber.process(Utility.hex(temp) + "\t; " 
+                    + "non-fully-qualified"
+                    + "\t# " + temp + " " + name));
+            charactersNotShown.remove(temp);
         }
     }
 }

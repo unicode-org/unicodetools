@@ -31,9 +31,9 @@ U+1F9DC			2016Q4	MERPERSON
 U+1F9DD			2016Q4	ELF
 • design note: LOTR style				
 U+1F9DE			2016Q4	GENIE
-• takes gender signs, inhuman color				
+• non-human color				
 U+1F9DF			2016Q4	ZOMBIE
-• no gender signs, inhuman color				
+• non-human color				
 person				
 U+1F9D1			2016Q4	ADULT
 • no specified gender				

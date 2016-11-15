@@ -396,23 +396,24 @@
 1F6B4..1F6B6  ; Emoji_Modifier_Base  # 6.0  [3] (🚴..🚶)    BICYCLIST..PEDESTRIAN
 1F6C0         ; Emoji_Modifier_Base  # 6.0  [1] (🛀)       BATH
 1F918         ; Emoji_Modifier_Base  # 8.0  [1] (🤘)       SIGN OF THE HORNS
-1F919..1F91E  ; Emoji_Modifier_Base  # 9.0  [6] (🤙..🤞)    CALL ME HAND..HAND WITH INDEX AND MIDDLE FINGERS CROSSED
+1F919..1F91C  ; Emoji_Modifier_Base  # 9.0  [6] (🤙..🤞)    CALL ME HAND..HAND WITH INDEX AND MIDDLE FINGERS CROSSED
+1F91E  ; Emoji_Modifier_Base  # 9.0  [6] (🤙..🤞)    CALL ME HAND..HAND WITH INDEX AND MIDDLE FINGERS CROSSED
 1F926         ; Emoji_Modifier_Base  # 9.0  [1] (🤦)       FACE PALM
 1F930         ; Emoji_Modifier_Base  # 9.0  [1] (🤰)       PREGNANT WOMAN
 1F933..1F939  ; Emoji_Modifier_Base  # 9.0  [7] (🤳..🤹)    SELFIE..JUGGLING
-1F93C..1F93E  ; Emoji_Modifier_Base  # 9.0  [3] (🤼..🤾)    WRESTLERS..HANDBALL
+1F93D..1F93E  ; Emoji_Modifier_Base  # 9.0  [3] (🤼..🤾)    WRESTLERS..HANDBALL
 
 1F3C2  ; Emoji_Modifier_Base  #Snowboarder
 1F3C7  ; Emoji_Modifier_Base  #Horse Racing
 1F3CC  ; Emoji_Modifier_Base  #Golfer
-1F46A  ; Emoji_Modifier_Base  #Family
-1F46B  ; Emoji_Modifier_Base  #Man and Woman Holding Hands
-1F46C  ; Emoji_Modifier_Base  #Two Men Holding Hands
-1F46D  ; Emoji_Modifier_Base  #Two Women Holding Hands
-1F46F  ; Emoji_Modifier_Base  #Woman With Bunny Ears
+#1F46A  ; Emoji_Modifier_Base  #Family
+#1F46B  ; Emoji_Modifier_Base  #Man and Woman Holding Hands
+#1F46C  ; Emoji_Modifier_Base  #Two Men Holding Hands
+#1F46D  ; Emoji_Modifier_Base  #Two Women Holding Hands
+#1F46F  ; Emoji_Modifier_Base  #Woman With Bunny Ears
 1F574  ; Emoji_Modifier_Base  #Man in Business Suit Levitating
 1F6CC  ; Emoji_Modifier_Base  #Sleeping Accommodation
-1F93C  ; Emoji_Modifier_Base  #Wrestlers
+#1F93C  ; Emoji_Modifier_Base  #Wrestlers
 # Total elements: 83
 
 #EOF
