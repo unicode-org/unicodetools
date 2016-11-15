@@ -2578,7 +2578,7 @@ public class GenerateEmoji {
                 + "<th><a target='text' href='index.html#col-vendor'>Sample Colored Glyphs</a></th>"
                 + "<th width='50%'><a target='text' href='index.html#col-name'>Name</a></th>"
                 //+ "<th><a target='text' href='index.html#col-annotations'>Keywords</a></th>"
-                + (future ? "<th><a target='text' href='index.html#col-data'>Date</a></th>"
+                + (future ? "<th><a target='text' href='index.html#col-data'>Acceptance Date</a></th>"
                         //+ "<th>EMB</th>" 
                         : "")
                         + "</tr>" 
