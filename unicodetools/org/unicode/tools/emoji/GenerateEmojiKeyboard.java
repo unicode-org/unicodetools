@@ -51,8 +51,9 @@ public class GenerateEmojiKeyboard {
 
         private void show(TempPrintWriter out, EmojiOrder.MajorGroup lastMajorGroup) throws IOException {
             Totals totals = this;
-            out.println("# subtotal:\t\t" + totals.total);
-            out.println("# subtotal:\t\t" + totals.totalNoMod + "\tw/o modifiers");
+            out.println("");
+            out.println("# " + lastMajorGroup + " subtotal:\t\t" + totals.total);
+            out.println("# " + lastMajorGroup + " subtotal:\t\t" + totals.totalNoMod + "\tw/o modifiers");
             System.out.println("\t" + lastMajorGroup + "\t" + totals.total + "\t" + totals.totalNoMod + "\t" + totals.totalNoModNoSign);
             totals.total = 0;
             totals.totalNoMod = 0;

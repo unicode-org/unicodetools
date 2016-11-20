@@ -33,7 +33,7 @@ public class GenerateEmojiData {
             + "# See the CLDR collation order for Emoji.\n";
 
     public static final String SV_WARNING
-    = "Three characters used in emoji zwj sequences with the emoji variation selector (VS16 = FE0F) do not yet appear in StandardizedVariants.txt.\n"
+    = "Three characters used in emoji zwj sequences with the emoji presentation selector (VS16 = FE0F) do not yet appear in StandardizedVariants.txt.\n"
             + "Implementations fully supporting these three characters as emoji will need to allow for FE0F, by the following addition to that file:";
 
     public static final String SV_CHARS

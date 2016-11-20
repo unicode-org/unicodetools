@@ -82,6 +82,7 @@ public class Emoji {
             + (IS_BETA ? "internal-beta/" : "internal/");
     public static final String CHARTS_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/" 
             + (IS_BETA ? "charts-beta/" : "charts/");
+    public static final String RELEASE_CHARTS_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/charts/";
     public static final String DATA_DIR = Settings.UNICODE_DRAFT_PUBLIC + "emoji/" + VERSION_STRING + "/";
 
     static final String IMAGES_OUTPUT_DIR = TR51_SVN_DIR + "images/";
