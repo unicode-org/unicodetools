@@ -40,11 +40,11 @@ public class Emoji {
     /**
      * Change each following once we release. That is, VERSION_LAST_RELEASED* becomes VERSION_BETA*, and both the latter increment.
      */
-    public static final VersionInfo VERSION_LAST_RELEASED2 = VersionInfo.getInstance(2);
-    public static final VersionInfo VERSION_LAST_RELEASED = VersionInfo.getInstance(3);
+    public static final VersionInfo VERSION_LAST_RELEASED2 = VersionInfo.getInstance(3);
+    public static final VersionInfo VERSION_LAST_RELEASED = VersionInfo.getInstance(4);
     public static final VersionInfo VERSION_LAST_RELEASED_UNICODE = VersionInfo.getInstance(9);
 
-    public static final VersionInfo VERSION_BETA = VersionInfo.getInstance(4);
+    public static final VersionInfo VERSION_BETA = VersionInfo.getInstance(5);
     public static final VersionInfo VERSION_BETA_UNICODE = VersionInfo.getInstance(9);
 
 

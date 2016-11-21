@@ -127,7 +127,8 @@ public class EmojiOrder {
         Output<Set<String>> lastLabel = new Output<Set<String>>(new TreeSet<String>());
         MajorGroup majorGroup = null;
         EmojiIterator ei = new EmojiIterator(emojiData, false);
-        for (String line : FileUtilities.in(Settings.DATA_DIR + "/emoji/" + version.getVersionString(2, 2) + "/source",
+        final String directory = Settings.DATA_DIR + "/emoji/" + version.getVersionString(2, 2) + "/source";
+        for (String line : FileUtilities.in(directory,
                 sourceFile)) {
             if (line.isEmpty() || line.startsWith("#")) {
                 continue;
@@ -206,7 +207,7 @@ public class EmojiOrder {
             for (String s : missing) {
                 System.err.println("\t" + s + "\t\t" + Emoji.show(s));
             }
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(directory);
         }
         sorted.addAll(missing);
         mapComparator.add(sorted);

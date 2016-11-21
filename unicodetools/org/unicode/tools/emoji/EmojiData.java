@@ -394,7 +394,7 @@ public class EmojiData {
             name += modifierNames;
         }
         String old = names.get(noVariantSource);
-        if (old != null && !name.equals(old)) {
+        if (false && old != null && !name.equals(old)) {
             System.out.println(noVariantSource + ";\told: " + old + ";\t" + name);
         }
         names.put(noVariantSource, name);
@@ -831,9 +831,10 @@ public class EmojiData {
         StringBuilder b = new StringBuilder();
         int countMod = 0;
         boolean justSetMod = false;
-        for (int cp : CharSequences.codePoints(singletonOrSequence)) {
-            // handle special condition; we don't want emoji variant after modifier!
-            if (justSetMod && cp == Emoji.EMOJI_VARIANT) {
+        final int[] codePoints = CharSequences.codePoints(singletonOrSequence);
+        for (int cp : codePoints) {
+            // handle special condition; we don't want emoji variant or modifier after modifier!
+            if (justSetMod && (cp == Emoji.EMOJI_VARIANT || MODIFIERS.contains(cp))) {
                 continue;
             }
             justSetMod = false;
