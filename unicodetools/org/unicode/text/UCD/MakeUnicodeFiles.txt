@@ -1,5 +1,5 @@
 Generate: .*
-DeltaVersion: 28
+DeltaVersion: 29
 CopyrightYear: 2016
 
 File: extra/ScriptNfkc
@@ -195,17 +195,10 @@ Property:	Bidi_Class
 #
 #     Hebrew:            U+0590  -  U+05FF
 #     NKo:               U+07C0  -  U+07FF
-#     Cypriot_Syllabary: U+10800 - U+1083F
-#     Phoenician:        U+10900 - U+1091F
-#     Lydian:            U+10920 - U+1093F
-#     Meroitic Hieroglyphs:  
-#                        U+10980 - U+1099F
-#     Meroitic Cursive:  U+109A0 - U+109FF
-#     Kharoshthi:        U+10A00 - U+10A5F
-#     and any others in the ranges:
+#     and many other blocks (not explicitly listed here) in the ranges:
 #                        U+0800  -  U+089F,
 #                        U+FB1D  -  U+FB4F,
-#                        U+10840 - U+10FFF,
+#                        U+10800 - U+10FFF,
 #                        U+1E800 - U+1EDFF,
 #                        U+1EF00 - U+1EFFF
 #
