@@ -1,5 +1,5 @@
 Generate: .*
-DeltaVersion: 29
+DeltaVersion: 30
 CopyrightYear: 2016
 
 File: extra/ScriptNfkc
@@ -177,35 +177,17 @@ Property:	Bidi_Class
 # The unassigned code points that default to AL are in the ranges:
 #     [\u0600-\u07BF \u08A0-\u08FF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF \U0001EE00-\U0001EEFF]
 #
-#     Arabic:            U+0600  -  U+06FF
-#     Syriac:            U+0700  -  U+074F
-#     Arabic_Supplement: U+0750  -  U+077F
-#     Thaana:            U+0780  -  U+07BF
-#     Arabic Extended-A: U+08A0  -  U+08FF 
-#     Arabic_Presentation_Forms_A:
-#                        U+FB50  -  U+FDCF
-#                        U+FDF0  -  U+FDFF
-#     Arabic_Presentation_Forms_B:
-#                        U+FE70  -  U+FEFF
-#     Arabic Mathematical Alphabetic Symbols:
-#                       U+1EE00  - U+1EEFF
+#     This includes code points in the Arabic, Syriac, and Thaana blocks, among others.
 #
 # The unassigned code points that default to R are in the ranges:
 #     [\u0590-\u05FF \u07C0-\u089F \uFB1D-\uFB4F \U00010800-\U00010FFF \U0001E800-\U0001EDFF \U0001EF00-\U0001EFFF]
 #
-#     Hebrew:            U+0590  -  U+05FF
-#     NKo:               U+07C0  -  U+07FF
-#     and many other blocks (not explicitly listed here) in the ranges:
-#                        U+0800  -  U+089F,
-#                        U+FB1D  -  U+FB4F,
-#                        U+10800 - U+10FFF,
-#                        U+1E800 - U+1EDFF,
-#                        U+1EF00 - U+1EFFF
+#     This includes code points in the Hebrew, NKo, and Phoenician blocks, among others.
 #
 # The unassigned code points that default to ET are in the range:
 #     [\u20A0-\u20CF]
 #
-#     Currency Symbols:  U+20A0  -  U+20CF
+#     This consists of code points in the Currency Symbols block.
 #
 # The unassigned code points that default to BN have one of the following properties:
 #     Default_Ignorable_Code_Point
