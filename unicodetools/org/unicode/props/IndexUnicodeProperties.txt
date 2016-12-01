@@ -107,6 +107,7 @@ SentenceBreakProperty ; Sentence_Break
 WordBreakProperty ; Word_Break
 BidiBrackets ; Bidi_Paired_Bracket ; 1
 BidiBrackets ; Bidi_Paired_Bracket_Type ; 2
+VerticalOrientation ; Vertical_Orientation
 
 #
 NameAliases ; Name_Alias

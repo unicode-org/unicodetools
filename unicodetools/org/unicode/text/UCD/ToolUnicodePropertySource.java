@@ -365,6 +365,14 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         .setMain("Bidi_Paired_Bracket_Type", "bpt", UnicodeProperty.ENUMERATED, version);
         add(bpt);
 
+        BaseProperty vo = new UnicodeProperty.SimpleProperty() {
+            @Override
+            public String _getValue(int codepoint) {
+                return ucd.getVertical_OrientationID(codepoint);
+            }
+        }.setValues(UCD_Names.Vertical_Orientation, UCD_Names.Vertical_Orientation_SHORT)
+        .setMain("Vertical_Orientation", "vo", UnicodeProperty.ENUMERATED, version);
+        add(vo);
 
         add(new UnicodeProperty.SimpleProperty() {
             @Override

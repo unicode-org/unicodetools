@@ -1,5 +1,5 @@
 Generate: .*
-DeltaVersion: 30
+DeltaVersion: 31
 CopyrightYear: 2016
 
 File: extra/ScriptNfkc
@@ -720,5 +720,6 @@ EastAsianWidth
 LineBreak
 StandardizedVariants
 UnicodeData
+VerticalOrientation
 
 
