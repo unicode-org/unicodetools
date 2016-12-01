@@ -44,6 +44,7 @@ public final class UCD_Names implements UCD_Types {
         {"age", "Age"},
         {"bpb", "Bidi_Paired_Bracket"},
         {"bpt", "Bidi_Paired_Bracket_Type"},
+        {"vo", "Vertical_Orientation"},
     };
 
     static final String[] UNIFIED_PROPERTIES = {
@@ -1233,6 +1234,19 @@ public final class UCD_Names implements UCD_Types {
         "c"
     };
 
+    public static final String[] Vertical_Orientation = {
+        "Rotated",
+        "Transformed_Rotated",
+        "Transformed_Upright",
+        "Upright"
+    };
+
+    public static final String[] Vertical_Orientation_SHORT = {
+        "R",
+        "Tr",
+        "Tu",
+        "U"
+    };
 
     /*
 LETTER: 23598
@@ -1379,6 +1393,9 @@ IDEOGRAPHIC/TELEGRAPH/SYMBOL/FOR:       2176
         }
         if (LIMIT_BPT != Bidi_Paired_Bracket_Type.length) {
             throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: Bidi_Paired_Bracket_Type");
+        }
+        if (LIMIT_VO != Vertical_Orientation.length) {
+            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: Vertical_Orientation");
         }
         if (LIMIT_AGE != SHORT_AGE.length || LIMIT_AGE != LONG_AGE.length) {
             throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: age");

@@ -1017,6 +1017,9 @@ public final class UCD implements UCD_Types {
         return get(codePoint, false).Bidi_Paired_Bracket;
     }
 
+    public byte getVertical_Orientation(int codePoint) {
+        return get(codePoint, false).Vertical_Orientation;
+    }
 
     public byte getAge(int codePoint) {
         return get(codePoint, false).age;
@@ -1288,6 +1291,23 @@ public final class UCD implements UCD_Types {
     public static String getBidi_Paired_Bracket_TypeID_fromIndex(short prop, byte length) {
         return prop < 0 || prop >= UCD_Names.Bidi_Paired_Bracket_Type.length ? null
                 : (length == SHORT) ? UCD_Names.Bidi_Paired_Bracket_Type_SHORT[prop] : UCD_Names.Bidi_Paired_Bracket_Type[prop];
+    }
+
+    public String getVertical_OrientationID(int codePoint) {
+        return getVertical_OrientationID_fromIndex(getVertical_Orientation(codePoint));
+    }
+
+    public String getVertical_OrientationID(int codePoint, byte length) {
+        return getVertical_OrientationID_fromIndex(getVertical_Orientation(codePoint), length);
+    }
+
+    public static String getVertical_OrientationID_fromIndex(short prop) {
+        return getVertical_OrientationID_fromIndex(prop, NORMAL);
+    }
+
+    public static String getVertical_OrientationID_fromIndex(short prop, byte length) {
+        return prop < 0 || prop >= UCD_Names.Vertical_Orientation.length ? null
+                : (length == SHORT) ? UCD_Names.Vertical_Orientation_SHORT[prop] : UCD_Names.Vertical_Orientation[prop];
     }
 
     public String getAgeID(int codePoint) {

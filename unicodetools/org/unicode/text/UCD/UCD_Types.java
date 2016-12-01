@@ -526,7 +526,11 @@ public interface UCD_Types {
 
     // Bidi_Paired_Bracket_Type
     public static final byte
-    BPB_N = 0, BPT_O = 1, BPT_C = 2, LIMIT_BPT = 3;
+    BPT_N = 0, BPT_O = 1, BPT_C = 2, LIMIT_BPT = 3;
+
+    // Vertical_Orientation
+    public static final byte
+    VO_R = 0, VO_TR = 1, VO_TU = 2, VO_U = 3, LIMIT_VO = 4;
 
     static final int  // TODO: change to using an enum
     UNKNOWN = 0,

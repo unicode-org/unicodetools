@@ -92,6 +92,7 @@ public final class ConvertUCD implements UCD_Types {
         {"BidiMirroring", "*bg"},
         {"Scripts", "sn"},
         {"BidiBrackets", "bpb", "bpt"}, // 0028; 0029; o # LEFT PARENTHESIS Bidi_Paired_Bracket, Bidi_Paired_Bracket_Type
+        {"VerticalOrientation", "vo", "OMIT"},
         //{"Jamo", "jn"},
         //{"Scripts-1d4", "RANGE", "sn"},
         //{"Age", "*sn"},
@@ -996,7 +997,9 @@ public final class ConvertUCD implements UCD_Types {
             } else if (fieldName.equals("bpb")) {
                 uData.Bidi_Paired_Bracket = Integer.parseInt(fieldValue, 16);
             } else if (fieldName.equals("bpt")) {
-                uData.Bidi_Paired_Bracket_Type = Utility.lookup(fieldValue, UCD_Names.Bidi_Paired_Bracket_Type_SHORT, true);;
+                uData.Bidi_Paired_Bracket_Type = Utility.lookup(fieldValue, UCD_Names.Bidi_Paired_Bracket_Type_SHORT, true);
+            } else if (fieldName.equals("vo")) {
+                uData.Vertical_Orientation = Utility.lookup(fieldValue, UCD_Names.Vertical_Orientation_SHORT, true);
             } else {
                 throw new IllegalArgumentException("Unknown fieldName");
             }

@@ -54,6 +54,7 @@ class UData implements UCD_Types {
 
     int Bidi_Paired_Bracket = 0;
     byte Bidi_Paired_Bracket_Type = 0;
+    byte Vertical_Orientation = 0;
 
     static final UData UNASSIGNED = new UData();
     //static final UData NONCHARACTER = new UData();
@@ -175,6 +176,9 @@ class UData implements UCD_Types {
             return false;
         }
         if (Bidi_Paired_Bracket_Type != other.Bidi_Paired_Bracket_Type) {
+            return false;
+        }
+        if (Vertical_Orientation != other.Vertical_Orientation) {
             return false;
         }
         return true;
@@ -396,6 +400,9 @@ class UData implements UCD_Types {
         if (full || Bidi_Paired_Bracket_Type != 0) {
             result.append(" bpt='").append(UCD_Names.Bidi_Paired_Bracket_Type_SHORT[Bidi_Paired_Bracket_Type]).append('\'');
         }
+        if (full || Vertical_Orientation != 0) {
+            result.append(" vo='").append(UCD_Names.Vertical_Orientation_SHORT[Vertical_Orientation]).append('\'');
+        }
 
         if (lastPos != result.length()) {
             result.append("\n");
@@ -480,6 +487,7 @@ class UData implements UCD_Types {
         os.writeShort(script);
         os.writeByte(age);
         os.writeByte(Bidi_Paired_Bracket_Type);
+        os.writeByte(Vertical_Orientation);
     }
 
     public void readBytes(DataInputStream is) throws IOException {
@@ -514,6 +522,7 @@ class UData implements UCD_Types {
         script = is.readShort();
         age = is.readByte();
         Bidi_Paired_Bracket_Type = is.readByte();
+        Vertical_Orientation = is.readByte();
         fleshOut();
 
         // HACK
