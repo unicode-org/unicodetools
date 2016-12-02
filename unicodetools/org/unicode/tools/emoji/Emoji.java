@@ -35,6 +35,8 @@ import com.ibm.icu.util.VersionInfo;
 
 public class Emoji {
 
+    static final boolean BETA_IS_OPEN = false;
+
     private static final String BETA_PLAIN = " — Beta";
     private static final String BETA_COLORED = "<span style='color:red'><i> — Beta</i></span>";
     /**
@@ -619,4 +621,5 @@ public class Emoji {
         }
         return b.toString();
     }
+
 }

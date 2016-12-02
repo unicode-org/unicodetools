@@ -102,12 +102,12 @@ public class GenerateUnihanCollators {
     // specifically restrict this to the set version. Theoretically there could be some variance in ideographic, but it isn't worth worrying about
 
     private static final UnicodeSet                   UNIHAN_LATEST         = new UnicodeSet("[[:ideographic:][:script=han:]]")
-            .removeAll(NOT_NFC)
-            .freeze();
+    .removeAll(NOT_NFC)
+    .freeze();
     private static final UnicodeSet                   UNIHAN                = version == null ? UNIHAN_LATEST
             : new UnicodeSet("[:age=" + version + ":]")
-            .retainAll(UNIHAN_LATEST)
-            .freeze();
+    .retainAll(UNIHAN_LATEST)
+    .freeze();
     static {
         if (!UNIHAN.contains(0x2B820)) {
             throw new ICUException(Utility.hex(0x2B820) + " not supported");
@@ -182,7 +182,7 @@ public class GenerateUnihanCollators {
     private static UnicodeSet                INITIALS   = new UnicodeSet("[b c {ch} d f g h j k l m n p q r s {sh} t w x y z {zh}]").freeze();
     private static UnicodeSet                FINALS     = new UnicodeSet(
             "[a {ai} {an} {ang} {ao} e {ei} {en} {eng} {er} i {ia} {ian} {iang} {iao} {ie} {in} {ing} {iong} {iu} o {ong} {ou} u {ua} {uai} {uan} {uang} {ue} {ui} {un} {uo} ü {üe}]")
-            .freeze();
+    .freeze();
     private static final int NO_STROKE_INFO = Integer.MAX_VALUE;
 
     // We need to quote at least the collation syntax characters, see
@@ -191,7 +191,7 @@ public class GenerateUnihanCollators {
 
     private static final XEquivalenceClass<Integer, Integer> variantEquivalents = new XEquivalenceClass<Integer, Integer>();
     private static final String INDENT = "               ";
-
+    private static final UnicodeMap<String> kMandarin = IUP.load(UcdProperty.kMandarin);
 
     static {
         System.out.println("kRSUnicode " + kRSUnicode.size());
@@ -215,13 +215,12 @@ public class GenerateUnihanCollators {
         addRadicals(kRSUnicode);
         closeUnderNFKD("Unihan", kRSUnicode);
 
-        final UnicodeMap<String> kMandarin = IUP.load(UcdProperty.kMandarin);
         System.out.println("UcdProperty.kMandarin " + kMandarin.size());
         for (final String s : kMandarin.keySet()) {
             final String original = kMandarin.get(s);
             String source = original.toLowerCase();
             source = fromNumericPinyin.transform(source);
-            addAllKeepingOld(s, original, PinyinSource.m, ONSPACE.split(source));
+            addAllKeepingOld(s, original, PinyinSource.m, ONBAR.split(source));
         }
 
         // all kHanyuPinlu readings first; then take all kXHC1983; then
@@ -1077,35 +1076,31 @@ public class GenerateUnihanCollators {
     }
 
     private static void printExtraPinyinForUnihan() {
-        PrintWriter out = Utility.openPrintWriter(GenerateUnihanCollatorFiles.OUTPUT_DIRECTORY, "kMandarinAdditions.txt", null);
+        try (
+                PrintWriter out = Utility.openPrintWriter(GenerateUnihanCollatorFiles.OUTPUT_DIRECTORY, "kMandarinAdditions.txt", null);
+                PrintWriter overrideOut = Utility.openPrintWriter(GenerateUnihanCollatorFiles.OUTPUT_DIRECTORY, "kMandarinOverride.txt", null);) {
+            final String header = "#Code\t“Best”\tValue\t#\tChar";
+            String description = "# the format is like Unihan, with “kMandarin” being the field, and the value being a possible replacement for what is there.";
+            out.println(header + "\n" + description);
+            overrideOut.println(header + "\tkMandarin\n" + description);
 
-        out.println("#Code\tkMandarin\tValue\t#\tChar");
-        for (final String s : new UnicodeSet(bestPinyin.keySet()).removeAll(originalPinyin)) {
-            if (s.codePointAt(0) < 0x3400) {
-                continue;
+            for (final String s : new UnicodeSet(bestPinyin.keySet())) {
+                final String bestValue = bestPinyin.get(s);
+                final String kMandarinString = kMandarin.get(s);
+                if (kMandarinString == null) {
+                    final String bestValueNumeric = toNumericPinyin.transform(bestValue).toUpperCase();
+                    out.println("U+" + Utility.hex(s) + "\tkMandarin\t" + bestValueNumeric + "\t#\t" + s);
+                    continue;
+                }
+
+                String firstMandarin = ONBAR.split(kMandarinString).iterator().next();
+                if (bestValue.equals(firstMandarin)) {
+                    continue;
+                }
+                final String bestValueNumeric = toNumericPinyin.transform(bestValue).toUpperCase();
+                overrideOut.println("U+" + Utility.hex(s) + "\tkMandarin\t" + bestValueNumeric + "\t#\t" + s + "\t" + kMandarinString);
             }
-            final String value = bestPinyin.get(s);
-            final String oldValue = toNumericPinyin.transform(value).toUpperCase();
-            out.println("U+" + Utility.hex(s) + "\tkMandarin\t" + oldValue + "\t#\t" + s);
         }
-        out.close();
-
-        out = Utility.openPrintWriter(GenerateUnihanCollatorFiles.OUTPUT_DIRECTORY, "kPinyinOverride.txt", null);
-        out.println("#Code\t'Best'\tValue\t#\tChar\tUnihan");
-        for (final String s : new UnicodeSet(bestPinyin.keySet()).retainAll(originalPinyin).retainAll(bihuaData.keySet())) {
-            if (s.codePointAt(0) < 0x3400) {
-                continue;
-            }
-            final String value = bestPinyin.get(s);
-            final R2<String, String> datum = bihuaData.get(s);
-            final String bihua = datum.get0();
-            if (value.equals(bihua)) {
-                continue;
-            }
-            out.println("U+" + Utility.hex(s) + "\tkPinyinOverride\t" + value + "\t#\t" + s + "\t" + bihua);
-        }
-        out.close();
-
     }
 
     private static int addPinyinFromVariants(String title, int count) {
@@ -1208,6 +1203,9 @@ public class GenerateUnihanCollators {
     }
 
     private static void addPinyin(String title, String han, String source, OverrideItems override) {
+        if (han.equals("賈")) {
+            int debug = 0;
+        }
         if (!validPinyin(source)) {
             System.out.println("***Invalid Pinyin - " + title + ": " + han + "\t" + source + "\t" + Utility.hex(han));
             return;
