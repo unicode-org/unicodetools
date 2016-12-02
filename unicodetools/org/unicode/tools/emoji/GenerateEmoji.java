@@ -2032,7 +2032,7 @@ public class GenerateEmoji {
                 + UNICODE_HEADER
                 + getButton()
                 + "<h1>" + fullTitle + (skipVersion ? "" : Emoji.BETA_HEADER_AFFIX) + "</h1>\n"
-                + (skipVersion ? "" : "<blockquote>" + getPointToOther(outFileName, title) + "</blockquote>")
+                + (skipVersion ? "" : getPointToOther(outFileName, title))
                 //+ "<p><b>" + chartIndex + "</b></p>\n"
                 + firstLine
                 + "<p style='font-size: 80%'>For information about the images used in these charts, see <a href='../images.html'>Emoji Images and Rights</a>. "
@@ -2045,10 +2045,10 @@ public class GenerateEmoji {
     }
 
     private static String getPointToOther(String outFileName, String title) {
-        return "<i>For the " + (Emoji.IS_BETA ? 
+        return !Emoji.BETA_IS_OPEN ? "" : "<blockquote><i>For the " + (Emoji.IS_BETA ? 
                 "current released version, see <b><a href='../charts/" + outFileName + "'>" + title + ", v" + Emoji.VERSION_LAST_RELEASED_STRING 
                 : "new beta version, see <b><a href='../charts-beta/" + outFileName + "'>" + title + ", v" + Emoji.VERSION_BETA_STRING)
-                + "</a></b>.</i>";
+                + "</a></b>.</i></blockquote>";
     }
 
     static boolean CHECKFACE = false;
