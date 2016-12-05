@@ -21,7 +21,6 @@ import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.CandidateData;
-import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.GenerateEmojiData;
 
@@ -51,7 +50,7 @@ public class ShowCharacters {
         show("Emoji_Direction_Base", GenerateEmojiData.directionBase);
         
         UnicodeSet mods = EmojiData.EMOJI_DATA.getModifierBases();
-        UnicodeSet modsWithVS = new UnicodeSet(mods).retainAll(Emoji.HAS_EMOJI_VS);
+        UnicodeSet modsWithVS = new UnicodeSet(mods).retainAll(EmojiData.EMOJI_DATA.getEmojiWithVariants());
         UnicodeSet modsWithVSAndDefaultEmoji = new UnicodeSet(modsWithVS)
         .removeAll(EmojiData.EMOJI_DATA.getEmojiPresentationSet());
         show("basesWithVSAndDefaultEmoji", modsWithVSAndDefaultEmoji);

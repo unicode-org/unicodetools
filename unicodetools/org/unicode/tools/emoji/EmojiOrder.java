@@ -211,7 +211,7 @@ public class EmojiOrder {
         }
         sorted.addAll(missing);
         mapComparator.add(sorted);
-        mapComparator.setErrorOnMissing(true);
+        //mapComparator.setErrorOnMissing(true);
         mapComparator.freeze();
         result.freeze();
         return result;

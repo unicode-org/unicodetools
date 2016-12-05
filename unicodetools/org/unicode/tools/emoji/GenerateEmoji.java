@@ -86,16 +86,8 @@ public class GenerateEmoji {
 
     public static final UnicodeMap<String> TO_FIRST_VERSION_FOR_VARIANT = new UnicodeMap<>();
     static {
-        //        UnicodeSet HAS_EMOJI_VS = new UnicodeSet();
-        //        final UnicodeSet flatChars = new UnicodeSet(EmojiData.EMOJI_DATA.getSingletonsWithDefectives()).removeAll(Emoji.REGIONAL_INDICATORS).freeze();
-        //        for (String s : flatChars) {
-        //            if (Emoji.STANDARDIZED_VARIANT.containsKey(s + Emoji.EMOJI_VARIANT)) {
-        //                HAS_EMOJI_VS.add(s);
-        //            }
-        //        }
-        //        if (SHOW) System.out.println("HAS_EMOJI_VS: " + HAS_EMOJI_VS.toPattern(false));
-        // Default is 9.0
-        EmojiData betaData = EmojiData.of(Emoji.VERSION_BETA);
+        TO_FIRST_VERSION_FOR_VARIANT.putAll(EmojiData.EMOJI_DATA.getEmojiWithVariants(), "E");
+        // override with versions from Unicode, where available.
         List<Age_Values> reversed = new ArrayList<>(Arrays.asList(UcdPropertyValues.Age_Values.values()));
         Collections.reverse(reversed);
         for (Age_Values v : reversed) {
@@ -113,7 +105,7 @@ public class GenerateEmoji {
                     int debug = 0;
                 }
                 // filter to only emoji in beta version
-                if (!betaData.getSingletonsWithDefectives().contains(first)) {
+                if (!EmojiData.EMOJI_DATA.getSingletonsWithDefectives().contains(first)) {
                     continue;
                 }
                 int second = key.codePointAt(Character.charCount(first));
@@ -123,6 +115,7 @@ public class GenerateEmoji {
             }
         }
         TO_FIRST_VERSION_FOR_VARIANT.freeze();
+        
         // verify that all are present
         for (String key : new UnicodeSet(EmojiData.EMOJI_DATA.getTextPresentationSet())
         .removeAll(Emoji.REGIONAL_INDICATORS)
@@ -135,6 +128,7 @@ public class GenerateEmoji {
             }
         }
     }
+    
     static final UnicodeMap<String>        VERSION                     = Emoji.LATEST.load(UcdProperty.Age);
     static {
         if (SHOW) System.out.println("🤧, " + Emoji.VERSION_ENUM.get("🤧"));
@@ -824,10 +818,10 @@ public class GenerateEmoji {
             return;
         }
         String title = version + (minusDings ? " <span style='color:gray'>⊖ Dings</span>" : " ∩ Dings");
-        UnicodeSet emojiSet = new UnicodeSet(current).removeAll(defaultText).removeAll(Emoji.HAS_EMOJI_VS);
-        UnicodeSet emojiSetVs = new UnicodeSet(current).removeAll(defaultText).retainAll(Emoji.HAS_EMOJI_VS);
-        UnicodeSet textSet = new UnicodeSet(current).retainAll(defaultText).removeAll(Emoji.HAS_EMOJI_VS);
-        UnicodeSet textSetVs = new UnicodeSet(current).retainAll(defaultText).retainAll(Emoji.HAS_EMOJI_VS);
+        UnicodeSet emojiSet = new UnicodeSet(current).removeAll(defaultText).removeAll(EmojiData.EMOJI_DATA.getEmojiWithVariants());
+        UnicodeSet emojiSetVs = new UnicodeSet(current).removeAll(defaultText).retainAll(EmojiData.EMOJI_DATA.getEmojiWithVariants());
+        UnicodeSet textSet = new UnicodeSet(current).retainAll(defaultText).removeAll(EmojiData.EMOJI_DATA.getEmojiWithVariants());
+        UnicodeSet textSetVs = new UnicodeSet(current).retainAll(defaultText).retainAll(EmojiData.EMOJI_DATA.getEmojiWithVariants());
         if (outExternal != null) {
             outExternal.print("<tr><th>" + title + "</th><td>");
             getImages(outExternal, textSet, true);
@@ -1244,12 +1238,6 @@ public class GenerateEmoji {
         return result.toString();
     }
 
-    static final String[] extraPresentationSequences = new String[] {
-        "\u2640", //  text style;  # FEMALE SIGN
-        "\u2642", // text style;  # MALE SIGN
-        "\u2695", // text style;  # STAFF OF AESCULAPIUS
-    };
-
     private static void showVariationSequences() throws IOException {
         boolean hasExtra = Emoji.VERSION_TO_GENERATE.compareTo(VersionInfo.getInstance(4)) >= 0;
         final String outFileName = "emoji-variants.html";
@@ -1269,11 +1257,10 @@ public class GenerateEmoji {
                 + "It is not the version in which the <i>emoji base</i> was added to Unicode, "
                 + "but rather the one in which the <i>emoji presentation sequence</i> was first defined. "
                 + "Unlike the other emoji charts, the names are the standard Unicode character names. "
-                + (hasExtra ? "The version “E4.0” indicates a sequence that is added as a part of Unicode Emoji 4.0." : "")
+                + (hasExtra ? "The version “E” indicates a sequence that is added as a part of Unicode Emoji 4.0 or later. " : "")
                 + "Keycap images (those with a * on the Name) are for sequences "
                 + "followed by U+20E3 COMBINING ENCLOSING KEYCAP. </p>\n", "border='1'", true, false);
 
-        UnicodeSet x = Emoji.HAS_EMOJI_VS; 
         out.println("<tr><th class='cchars'>Code</th>"
                 + "<th class='narrow cchars'>Sample Text (+FE0E)</th>"
                 + "<th class='narrow cchars'>Sample Emoji (+FE0F)</th>"
@@ -1281,17 +1268,12 @@ public class GenerateEmoji {
                 + "<th>Name</th></tr>");
         final String keycapIndicator = "*";
         TreeSet<String> sorted = new TreeSet<>(EmojiOrder.PLAIN_STRING_COMPARATOR);
-        TO_FIRST_VERSION_FOR_VARIANT.keySet().addAllTo(sorted);
-        if (hasExtra) {
-            for (String s : extraPresentationSequences) {
-                sorted.add(s);
-            }
-        }
+        EmojiData.EMOJI_DATA.getEmojiWithVariants().addAllTo(sorted);
         for (String cp : sorted) {
             String version = TO_FIRST_VERSION_FOR_VARIANT.get(cp);
-            if (version == null) {
-                version = "E4.0";
-            }
+//            if (version == null) {
+//                version = "E4.0";
+//            }
             out.println("<tr>");
             out.println("<td class='code cchars'>" + getDoubleLink(Utility.hex(cp)) + "</td>");
             if (EmojiData.EMOJI_DATA.getKeycapBases().contains(cp)) {
