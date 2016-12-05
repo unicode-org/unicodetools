@@ -137,12 +137,12 @@ public class GenerateUnihanCollators {
 
     private static final UnicodeMap<Integer>          bestStrokesS        = new UnicodeMap<Integer>();
     private static final UnicodeMap<Integer>          bestStrokesT         = new UnicodeMap<Integer>();
+    private static final UnicodeMap<String> kTotalStrokes = IUP.load(UcdProperty.kTotalStrokes);
     private static final Splitter ONBAR = Splitter.on('|').trimResults();
     private static final Splitter ONSPACE = Splitter.on(' ').trimResults();
     private static final Splitter ONCOMMA = Splitter.on(',').trimResults();
 
     static {
-        UnicodeMap<String> kTotalStrokes = IUP.load(UcdProperty.kTotalStrokes);
         for (EntryRange<String> s : kTotalStrokes.entryRanges()) {
             List<String> parts = ONBAR.splitToList(s.value);
             Integer sValue = Integer.parseInt(parts.get(0));
@@ -286,6 +286,7 @@ public class GenerateUnihanCollators {
         closeUnderNFKD("Pinyin", bestPinyin);
 
         printExtraPinyinForUnihan();
+        printExtraStrokesForUnihan();
     }
 
     public static void main(String[] args) throws Exception {
@@ -1102,6 +1103,37 @@ public class GenerateUnihanCollators {
             }
         }
     }
+
+    private static void printExtraStrokesForUnihan() {
+        try (
+                PrintWriter out = Utility.openPrintWriter(GenerateUnihanCollatorFiles.OUTPUT_DIRECTORY, "kTotalStrokesAdditions.txt", null);
+                PrintWriter overrideOut = Utility.openPrintWriter(GenerateUnihanCollatorFiles.OUTPUT_DIRECTORY, "kTotalStrokesOverride.txt", null);) {
+            final String header = "#Code\t“Best”\tValue\t#\tChar";
+            String description = "# the format is like Unihan, with “kTotalStrokes” being the field, and the value being a possible replacement for what is there.";
+            out.println(header + "\n" + description);
+            overrideOut.println(header + "\tkTotalStrokes\n" + description);
+
+            UnicodeSet keys = new UnicodeSet(bestStrokesS.keySet()).addAll(bestStrokesT.keySet()).freeze();
+            for (final String s : keys) {
+                Integer bestS = bestStrokesS.get(s);
+                Integer bestT = bestStrokesT.get(s);
+                String replacement = bestS == null ? bestT.toString() 
+                        : bestT == null ? bestS.toString() 
+                                : bestS.equals(bestT) ? bestS.toString()
+                                        : bestS + "|" + bestT;
+                final String kTotalStrokesString = kTotalStrokes.get(s);
+                if (kTotalStrokesString == null) {
+                    out.println("U+" + Utility.hex(s) + "\tkTotalStrokes\t" + replacement.replace('|', ' ') + "\t#\t" + s);
+                    continue;
+                }
+                if (kTotalStrokesString.equals(replacement)) {
+                    continue;
+                }
+                overrideOut.println("U+" + Utility.hex(s) + "\tkTotalStrokes\t" + replacement.replace('|', ' ') + "\t#\t" + s + "\t" + kTotalStrokesString);
+            }
+        }
+    }
+
 
     private static int addPinyinFromVariants(String title, int count) {
         for (final Set<Integer> s : variantEquivalents.getEquivalenceSets()) {
