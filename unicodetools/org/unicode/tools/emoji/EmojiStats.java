@@ -152,7 +152,7 @@ class EmojiStats {
         UnicodeSet needsVS = new UnicodeSet();
         for (String s : jc) {
             int first = s.codePointAt(0);
-            if (!Emoji.HAS_EMOJI_VS.contains(first) && textStyle.contains(first)) {
+            if (!EmojiData.EMOJI_DATA.getEmojiWithVariants().contains(first) && textStyle.contains(first)) {
                 needsVS.add(first);
             }
         }

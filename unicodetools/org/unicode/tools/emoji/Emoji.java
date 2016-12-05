@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
@@ -21,6 +22,7 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
@@ -35,21 +37,32 @@ import com.ibm.icu.util.VersionInfo;
 
 public class Emoji {
 
-    static final boolean BETA_IS_OPEN = false;
+    /**
+     * Set the following to true iff the beta is available. The main function is to add pointers between the release and beta charts.
+     */
+    static final boolean BETA_IS_OPEN = true;
 
-    private static final String BETA_PLAIN = " — Beta";
-    private static final String BETA_COLORED = "<span style='color:red'><i> — Beta</i></span>";
     /**
      * Change each following once we release. That is, VERSION_LAST_RELEASED* becomes VERSION_BETA*, and both the latter increment.
+     * Also add to EMOJI_TO_UNICODE_VERSION
      */
     public static final VersionInfo VERSION_LAST_RELEASED2 = VersionInfo.getInstance(3);
     public static final VersionInfo VERSION_LAST_RELEASED = VersionInfo.getInstance(4);
-    public static final VersionInfo VERSION_LAST_RELEASED_UNICODE = VersionInfo.getInstance(9);
-
     public static final VersionInfo VERSION_BETA = VersionInfo.getInstance(5);
-    public static final VersionInfo VERSION_BETA_UNICODE = VersionInfo.getInstance(9);
+    
+    public static Map<VersionInfo, VersionInfo> EMOJI_TO_UNICODE_VERSION = ImmutableMap.of(
+            VersionInfo.getInstance(5), VersionInfo.getInstance(9), // TODO may change to 10.0
+            VersionInfo.getInstance(4), VersionInfo.getInstance(9),
+            VersionInfo.getInstance(3), VersionInfo.getInstance(9),
+            VersionInfo.getInstance(2), VersionInfo.getInstance(8),
+            VersionInfo.getInstance(1), VersionInfo.getInstance(8)
+            );
 
-
+    public static final VersionInfo VERSION_LAST_RELEASED_UNICODE = EMOJI_TO_UNICODE_VERSION.get(VERSION_LAST_RELEASED);
+    public static final VersionInfo VERSION_BETA_UNICODE = EMOJI_TO_UNICODE_VERSION.get(VERSION_BETA);
+    
+    private static final String BETA_PLAIN = " — Beta";
+    private static final String BETA_COLORED = "<span style='color:red'><i> — Beta</i></span>";
     
     /**
      * Change the following according to whether we are generating the beta version of files, or the new version.
@@ -513,34 +526,6 @@ public class Emoji {
 
     public static final IndexUnicodeProperties    LATEST  = IndexUnicodeProperties.make(VERSION_TO_GENERATE_UNICODE);
     public static final IndexUnicodeProperties    BETA  = IndexUnicodeProperties.make(VERSION_BETA_UNICODE);
-
-//    public static String getEmojiVariant(String browserChars, String variant) {
-//        return getEmojiVariant(browserChars, variant, null);
-//    }
-    
-//    public static String getEmojiVariant(String browserChars, String variant, UnicodeSet extraVariants) {
-//        int first = browserChars.codePointAt(0);
-//        String probe = new StringBuilder()
-//        .appendCodePoint(first)
-//        .append(variant).toString();
-//        if (Emoji.STANDARDIZED_VARIANT.get(probe) != null || extraVariants != null && extraVariants.contains(first)) {
-//            browserChars = probe + browserChars.substring(Character.charCount(first));
-//        }
-//        return browserChars;
-//    }
-
-    public static final UnicodeMap<String> STANDARDIZED_VARIANT = BETA.load(UcdProperty.Standardized_Variant);
-    
-    public static final UnicodeSet HAS_EMOJI_VS = new UnicodeSet();
-    
-    static {
-        for (String vs : Emoji.STANDARDIZED_VARIANT.keySet()) {
-            if (vs.contains(Emoji.TEXT_VARIANT_STRING)) {
-                Emoji.HAS_EMOJI_VS.add(vs.codePointAt(0));
-            }
-        }
-        Emoji.HAS_EMOJI_VS.freeze();
-    }
 
     static final UnicodeMap<Age_Values>        VERSION_ENUM            = BETA.loadEnum(UcdProperty.Age, Age_Values.class);
 

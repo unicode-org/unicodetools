@@ -9,6 +9,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.props.GenerateEnums;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -158,6 +162,21 @@ public class GenerateEmojiData {
         }
 
         GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, Target.propFile, Emoji.DATA_DIR);
+        
+        try (Writer out = new TempPrintWriter(Emoji.DATA_DIR, "emoji-variation-sequences.txt")) {
+            out.write(Utility.getBaseDataHeader("emoji-variation-sequences", 51, "Emoji Variation Sequences", Emoji.VERSION_STRING) + "\n");
+            final UnicodeSet withVariants = EmojiData.EMOJI_DATA.getEmojiWithVariants();
+            for (String s : withVariants) {
+                // 0023 FE0E; text style;  # NUMBER SIGN
+                // 0023 FE0F; emoji style; # NUMBER SIGN
+                final String code = Utility.hex(s);
+                String gap = code.length() == 4 ? " " : "";
+                out.write(code + " FE0E " + gap + "; text style;  # " + getVariationComment(s) + "\n"
+                        + code + " FE0F " + gap + "; emoji style; # " + getVariationComment(s) + "\n");
+            }
+            out.write("\n#Total sequences: " + withVariants.size() + "\n");
+            out.write("\n#EOF\n");
+        }
 
         if (DO_TAGS) {
             printer.setFlat(true);
@@ -180,6 +199,13 @@ public class GenerateEmojiData {
         if (SHOW) System.out.println("Regional_Indicators ; " + Emoji.REGIONAL_INDICATORS.toPattern(false));
         if (SHOW) System.out.println("Emoji Combining Bases ; " + EmojiData.EMOJI_DATA.getKeycapBases().toPattern(false));
         if (SHOW) System.out.println("Emoji All ; " + EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().toPattern(false));
+    }
+
+    static final UnicodeMap<String> NAMES = IndexUnicodeProperties.make(Settings.latestVersion).load(UcdProperty.Name);
+    static final UnicodeMap<Age_Values> AGES = IndexUnicodeProperties.make(Settings.latestVersion).loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
+
+    private static String getVariationComment(String s) {
+        return "(" + AGES.get(s).getShortName() + ") " + NAMES.get(s);
     }
 
     private static void showTypeFieldsMessage(Writer out, Collection<String> type_fields) throws IOException {

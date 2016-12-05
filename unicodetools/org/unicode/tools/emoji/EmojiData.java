@@ -1,5 +1,6 @@
 package org.unicode.tools.emoji;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -74,6 +75,7 @@ public class EmojiData {
     private final UnicodeMap<String> fromNormalizedVariant = new UnicodeMap<String>();
 
     private final UnicodeMap<String> names = new UnicodeMap<>();
+    private final UnicodeSet emojiWithVariants = new UnicodeSet();
 
     public static final Splitter semi = Splitter.onPattern("[;#]").trimResults();
     public static final Splitter semiOnly = Splitter.onPattern(";").trimResults();
@@ -273,6 +275,29 @@ public class EmojiData {
                     //                    }
                 }
             }
+
+            if (version.compareTo(VersionInfo.getInstance(5)) < 0) {
+                UnicodeMap<String> sv = IndexUnicodeProperties.make(Emoji.VERSION_TO_GENERATE_UNICODE).load(UcdProperty.Standardized_Variant);
+                emojiWithVariants.addAll(sv.keySet());
+                if (Emoji.VERSION_TO_GENERATE.compareTo(VersionInfo.getInstance(3)) > 0) {
+                    emojiWithVariants.add(0x2640).add(0x2642).add(0x2695);
+                }
+            } else {
+                for (String line : FileUtilities.in(directory, "emoji-variation-sequences.txt")) {
+                    int hashPos = line.indexOf('#');
+                    if (hashPos >= 0) {
+                        line = line.substring(0, hashPos);
+                    }
+                    if (line.isEmpty()) continue;
+
+                    List<String> list = semi.splitToList(line);
+                    String source = Utility.fromHex(list.get(0));
+                    int cp = source.codePointAt(0);
+                    emojiWithVariants.add(cp);
+                }
+            }
+            emojiWithVariants.freeze();
+
             for (String s : modifierSequences) {
                 s = s.replace(Emoji.EMOJI_VARIANT_STRING, "");
                 if (s.startsWith("🏂")) {
@@ -706,13 +731,13 @@ public class EmojiData {
         source = source.replace(Emoji.EMOJI_VARIANT_STRING, "");
         if (source.equals("❤")) {
             int debug = 0;
-            }
-         String name = ANNOTATION_SET.getShortName(source);
+        }
+        String name = ANNOTATION_SET.getShortName(source);
         if (name != null) {
             return (toLower ? name.toLowerCase(Locale.ENGLISH) : name);
         }
-//        System.out.println("*** not using name for " + code + "\t" + Utility.hex(code));
-//
+        //        System.out.println("*** not using name for " + code + "\t" + Utility.hex(code));
+        //
         name = CandidateData.getInstance().getName(source);
         if (name != null) {
             return (toLower ? name.toLowerCase(Locale.ENGLISH) : name);
@@ -802,8 +827,8 @@ public class EmojiData {
         case 0x1F3FB: return "t1/2";
         case 0x1F3FC: case 0x1F3FD: case 0x1F3FE: case 0x1F3FF: 
             return "t"+(cp2-0x1F3F9);
-            default:
-                throw new IllegalArgumentException("Illegal Modifier Name");
+        default:
+            throw new IllegalArgumentException("Illegal Modifier Name");
         }  
     }
 
@@ -986,5 +1011,9 @@ public class EmojiData {
 
     public UnicodeSet getGenderBases() {
         return genderBases;
+    }
+
+    public UnicodeSet getEmojiWithVariants() {
+        return emojiWithVariants;
     }
 }
