@@ -63,7 +63,7 @@ public class EmojiFrequency {
         return data.get(word);
     }
     
-    static final EmojiData EMOJIDATA = EmojiData.of(VersionInfo.getInstance(1));
+    static final EmojiData EMOJIDATA = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
     
     public static void main(String[] args) {
         System.out.println("Emoji\tTw. Count\tName\tAnnotations");

@@ -22,7 +22,7 @@ public class Quick {
     static final UnicodeMap<String> names = iup.load(UcdProperty.Name);
     static final UnicodeMap<Block_Values> blocks = iup.loadEnum(UcdProperty.Block, Block_Values.class);
     static final IndexUnicodeProperties iupOld = IndexUnicodeProperties.make(Settings.lastVersion);
-    static final EmojiData emojiData = EmojiData.forUcd(VersionInfo.getInstance(9));
+    static final EmojiData emojiData = EmojiData.EMOJI_DATA;
     static final UnicodeMap<General_Category_Values> gencat = iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
     static final UnicodeSet Cn = gencat.getSet(General_Category_Values.Unassigned);
     

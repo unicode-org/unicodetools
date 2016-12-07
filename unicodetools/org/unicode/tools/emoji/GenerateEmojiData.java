@@ -162,20 +162,22 @@ public class GenerateEmojiData {
         }
 
         GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, Target.propFile, Emoji.DATA_DIR);
-        
-        try (Writer out = new TempPrintWriter(Emoji.DATA_DIR, "emoji-variation-sequences.txt")) {
-            out.write(Utility.getBaseDataHeader("emoji-variation-sequences", 51, "Emoji Variation Sequences", Emoji.VERSION_STRING) + "\n");
-            final UnicodeSet withVariants = EmojiData.EMOJI_DATA.getEmojiWithVariants();
-            for (String s : withVariants) {
-                // 0023 FE0E; text style;  # NUMBER SIGN
-                // 0023 FE0F; emoji style; # NUMBER SIGN
-                final String code = Utility.hex(s);
-                String gap = code.length() == 4 ? " " : "";
-                out.write(code + " FE0E " + gap + "; text style;  # " + getVariationComment(s) + "\n"
-                        + code + " FE0F " + gap + "; emoji style; # " + getVariationComment(s) + "\n");
+
+        if (EmojiData.EMOJI_DATA.getVersion().compareTo(Emoji.VERSION5) >= 0) {
+            try (Writer out = new TempPrintWriter(Emoji.DATA_DIR, "emoji-variation-sequences.txt")) {
+                out.write(Utility.getBaseDataHeader("emoji-variation-sequences", 51, "Emoji Variation Sequences", Emoji.VERSION_STRING) + "\n");
+                final UnicodeSet withVariants = EmojiData.EMOJI_DATA.getEmojiWithVariants();
+                for (String s : withVariants) {
+                    // 0023 FE0E; text style;  # NUMBER SIGN
+                    // 0023 FE0F; emoji style; # NUMBER SIGN
+                    final String code = Utility.hex(s);
+                    String gap = code.length() == 4 ? " " : "";
+                    out.write(code + " FE0E " + gap + "; text style;  # " + getVariationComment(s) + "\n"
+                            + code + " FE0F " + gap + "; emoji style; # " + getVariationComment(s) + "\n");
+                }
+                out.write("\n#Total sequences: " + withVariants.size() + "\n");
+                out.write("\n#EOF\n");
             }
-            out.write("\n#Total sequences: " + withVariants.size() + "\n");
-            out.write("\n#EOF\n");
         }
 
         if (DO_TAGS) {
