@@ -102,7 +102,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         UnicodeSet tags = new UnicodeSet(0xE0020,0xE007f).freeze();
         VersionInfo versionInfo = VersionInfo.getInstance(version);
 
-        EmojiData emojiData = EmojiData.forUcd(versionInfo);
+        EmojiData emojiData = EmojiData.EMOJI_DATA;
         final UnicodeSet E_Modifier = emojiData.getModifiers();
 
         UnicodeSet _E_Base = emojiData.getModifierBases();

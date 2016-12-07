@@ -38,7 +38,7 @@ class ScriptPopulation {
     static final Normalizer2 NFC = Normalizer2.getNFCInstance();
     private static final boolean SHOW_DECTILES = false;
 
-    static final EmojiData EMOJI_DATA = EmojiData.forUcd(VersionInfo.getInstance(8));
+    static final EmojiData EMOJI_DATA = EmojiData.EMOJI_DATA;
     private static final UnicodeSet SINGLETONS_WITHOUT_DEFECTIVES = new UnicodeSet()
     .addAll(EMOJI_DATA.getSingletonsWithoutDefectives())
     .removeAll("©®♥™")

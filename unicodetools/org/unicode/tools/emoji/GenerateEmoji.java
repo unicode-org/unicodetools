@@ -83,6 +83,10 @@ public class GenerateEmoji {
             "sign", "for", "of", "black"));
 
     static int MODIFIER_STATUS;
+    
+    private static boolean VERSION5PLUS = Emoji.VERSION_TO_GENERATE.compareTo(Emoji.VERSION5) >= 0;
+    private static final String EMOJI_ZWJ_SEQUENCES_TITLE = VERSION5PLUS ? "Recommended Emoji ZWJ Sequences" : "Emoji ZWJ Sequences Catalog";
+    private static final String CATALOG = VERSION5PLUS ? "list of recommended" : "catalog of" ;
 
     public static final UnicodeMap<String> TO_FIRST_VERSION_FOR_VARIANT = new UnicodeMap<>();
     static {
@@ -784,9 +788,9 @@ public class GenerateEmoji {
                                         + "<p>The <a target='style' href='emoji-sequences.html#modifier_sequences'>modifier sequences</a> are <i>omitted</i> for brevity, "
                                         + "because they are simply ordered after their emoji modifier bases.</p>\n", "border='1'", true, false);
                         if (out != null) out.println("<tr><th>Version</th>"
-                                + "<th width='25%'>Default Text Style; no VS in U8.0</th>"
+                                + "<th width='25%'>Default Text Style; no VS</th>"
                                 + "<th width='25%'>Default Text Style; has VSs</th>"
-                                + "<th width='25%'>Default Emoji Style; no VS in U8.0</th>"
+                                + "<th width='25%'>Default Emoji Style; no VS</th>"
                                 + "<th width='25%'>Default Emoji Style; has VSs</th>"
                                 + "</tr>");
                         UnicodeSet dings = new UnicodeSet(DINGBATS)
@@ -1239,7 +1243,7 @@ public class GenerateEmoji {
     }
 
     private static void showVariationSequences() throws IOException {
-        boolean hasExtra = Emoji.VERSION_TO_GENERATE.compareTo(VersionInfo.getInstance(4)) >= 0;
+        boolean hasExtra = Emoji.VERSION_TO_GENERATE.compareTo(Emoji.VERSION4) >= 0;
         final String outFileName = "emoji-variants.html";
         PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, outFileName);
         writeHeader(outFileName, out, "Emoji Presentation Sequences", "", "<p>This chart specifies the exact list of "
@@ -1304,7 +1308,9 @@ public class GenerateEmoji {
                     + "<a href='#flags'>flags</a>, and "
                     + "<a href='#modifier_sequences'>modifier sequences</a>. "
                     + "For presentation sequences, see <a href='emoji-style.html'>Emoji Default Style Values</a>. "
-                    + "For a catalog of emoji zwj sequences, see <a href='emoji-zwj-sequences.html'>Emoji ZWJ Sequences Catalog</a>. </p>\n", "border='1'", true, false);
+                    + "For a " + CATALOG + " emoji zwj sequences, see <a href='emoji-zwj-sequences.html'>"
+                            + EMOJI_ZWJ_SEQUENCES_TITLE
+                            + "</a>. </p>\n", "border='1'", true, false);
 
             displayUnicodesetTD(out, Collections.singleton("keycaps"), null, Collections.singleton(""+Emoji.KEYCAPS.size()), Emoji.KEYCAPS, Style.bestImage, -1, null, Visibility.external);
             displayUnicodesetTD(out, Collections.singleton("flags"), null, Collections.singleton(""+EmojiData.EMOJI_DATA.getFlagSequences().size()), EmojiData.EMOJI_DATA.getFlagSequences(), Style.bestImage, -1, null, Visibility.external);
@@ -1315,11 +1321,11 @@ public class GenerateEmoji {
 
         outFileName = "emoji-zwj-sequences.html";
         try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, outFileName)) {
-            writeHeader(outFileName, out, "Emoji ZWJ Sequences Catalog", 
+            writeHeader(outFileName, out, EMOJI_ZWJ_SEQUENCES_TITLE, 
                     null
-                    , "<p>For interoperability, this page catalogs emoji zwj sequences that are or will soon be "
-                            + "supported on at least one commonly available platform, "
-                            + "so that other vendors can choose whether or not to support them as well. "
+                    , "<p>This page provides a " + CATALOG
+                            + " emoji zwj sequences that are or will soon be "
+                            + "supported on at least one commonly available platform. "
                             + "</p><p>The U+200D ZERO WIDTH JOINER (ZWJ) can be used between the elements of a sequence of characters to indicate that a single glyph should be presented if available. "
                             + "An implementation may use this mechanism to handle such an emoji zwj sequence as a single glyph, "
                             + "with a palette or keyboard that generates the appropriate sequences for the glyphs shown. "
@@ -2028,8 +2034,8 @@ public class GenerateEmoji {
 
     private static String getPointToOther(String outFileName, String title) {
         return !Emoji.BETA_IS_OPEN ? "" : "<blockquote><i>For the " + (Emoji.IS_BETA ? 
-                "current released version, see <b><a href='../charts/" + outFileName + "'>" + title + ", v" + Emoji.VERSION_LAST_RELEASED_STRING 
-                : "new beta version, see <b><a href='../charts-beta/" + outFileName + "'>" + title + ", v" + Emoji.VERSION_BETA_STRING)
+                "current released version, see <b><a href='../charts/" + outFileName + "'>v" + Emoji.VERSION_LAST_RELEASED_STRING 
+                : "new beta version, see <b><a href='../charts-beta/" + outFileName + "'>v" + Emoji.VERSION_BETA_STRING)
                 + "</a></b>.</i></blockquote>";
     }
 

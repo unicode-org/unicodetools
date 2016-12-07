@@ -26,7 +26,7 @@ public class ShowStats {
     private static final UnicodeMap<Age_Values> ageMap = latest.loadEnum(UcdProperty.Age, Age_Values.class);
     private static final UnicodeMap<Script_Values> script = latest.loadEnum(UcdProperty.Script, Script_Values.class);
     private static final UnicodeMap<General_Category_Values> cat = latest.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
-    private static final UnicodeSet EMOJI = EmojiData.forUcd(VersionInfo.getInstance(GenerateEnums.ENUM_VERSION)).getSingletonsWithDefectives();
+    private static final UnicodeSet EMOJI = EmojiData.EMOJI_DATA.getSingletonsWithDefectives();
     
     //    private static final UnicodeMap<String> name = latest.load(UcdProperty.Name);
     //    private static final UnicodeMap<String> block = latest.load(UcdProperty.Block);

@@ -114,7 +114,7 @@ public class EmojiData {
 
         this.version = version;
         final String directory = Settings.DATA_DIR + "emoji/" + version.getVersionString(2, 4);
-        if (version.compareTo(VersionInfo.getInstance(2)) < 0) {
+        if (version.compareTo(Emoji.VERSION2) < 0) {
             throw new IllegalArgumentException("Can't read old data");
         } else {
             UnicodeRelation<EmojiProp> emojiData = new UnicodeRelation<>();
@@ -276,10 +276,14 @@ public class EmojiData {
                 }
             }
 
-            if (version.compareTo(VersionInfo.getInstance(5)) < 0) {
+            if (version.compareTo(Emoji.VERSION4) <= 0) {
                 UnicodeMap<String> sv = IndexUnicodeProperties.make(Emoji.VERSION_TO_GENERATE_UNICODE).load(UcdProperty.Standardized_Variant);
-                emojiWithVariants.addAll(sv.keySet());
-                if (Emoji.VERSION_TO_GENERATE.compareTo(VersionInfo.getInstance(3)) > 0) {
+                for (String s : sv.keySet()) {
+                    if (s.contains(Emoji.EMOJI_VARIANT_STRING)) {
+                        emojiWithVariants.add(s.codePointAt(0));
+                    }
+                }
+                if (version.compareTo(Emoji.VERSION4) == 0) {
                     emojiWithVariants.add(0x2640).add(0x2642).add(0x2695);
                 }
             } else {
@@ -661,14 +665,6 @@ public class EmojiData {
         return false;
     }
 
-    private static final VersionInfo UCD9 = VersionInfo.getInstance(9,0);
-    private static final VersionInfo Emoji3 = VersionInfo.getInstance(3,0);
-    private static final VersionInfo Emoji2 = VersionInfo.getInstance(2,0);
-
-    public static EmojiData forUcd(VersionInfo versionInfo) {
-        return EmojiData.of(versionInfo.equals(UCD9) ? Emoji3 : Emoji2);
-    }
-
     static final UnicodeSet             JCARRIERS     = new UnicodeSet()
     .addAll(Emoji.BETA.load(UcdProperty.Emoji_DCM).keySet())
     .addAll(Emoji.BETA.load(UcdProperty.Emoji_KDDI).keySet())
@@ -1015,5 +1011,9 @@ public class EmojiData {
 
     public UnicodeSet getEmojiWithVariants() {
         return emojiWithVariants;
+    }
+    
+    public VersionInfo getVersion() {
+        return version;
     }
 }

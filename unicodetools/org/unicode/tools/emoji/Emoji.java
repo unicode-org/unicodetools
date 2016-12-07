@@ -43,19 +43,31 @@ public class Emoji {
     static final boolean BETA_IS_OPEN = true;
 
     /**
+     * Constants for versions
+     */
+    public static final VersionInfo VERSION5 = VersionInfo.getInstance(5);
+    public static final VersionInfo VERSION4 = VersionInfo.getInstance(4);
+    public static final VersionInfo VERSION3 = VersionInfo.getInstance(3);
+    public static final VersionInfo VERSION2 = VersionInfo.getInstance(2);
+    public static final VersionInfo VERSION1 = VersionInfo.getInstance(1);
+
+    public static final VersionInfo UCD9 = VersionInfo.getInstance(9);
+    public static final VersionInfo UCD8 = VersionInfo.getInstance(8);
+
+    /**
      * Change each following once we release. That is, VERSION_LAST_RELEASED* becomes VERSION_BETA*, and both the latter increment.
      * Also add to EMOJI_TO_UNICODE_VERSION
      */
-    public static final VersionInfo VERSION_LAST_RELEASED2 = VersionInfo.getInstance(3);
-    public static final VersionInfo VERSION_LAST_RELEASED = VersionInfo.getInstance(4);
-    public static final VersionInfo VERSION_BETA = VersionInfo.getInstance(5);
+    public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION3;
+    public static final VersionInfo VERSION_LAST_RELEASED = VERSION4;
+    public static final VersionInfo VERSION_BETA = VERSION5;
     
     public static Map<VersionInfo, VersionInfo> EMOJI_TO_UNICODE_VERSION = ImmutableMap.of(
-            VersionInfo.getInstance(5), VersionInfo.getInstance(9), // TODO may change to 10.0
-            VersionInfo.getInstance(4), VersionInfo.getInstance(9),
-            VersionInfo.getInstance(3), VersionInfo.getInstance(9),
-            VersionInfo.getInstance(2), VersionInfo.getInstance(8),
-            VersionInfo.getInstance(1), VersionInfo.getInstance(8)
+            VERSION5, UCD9, // TODO may change to 10.0
+            VERSION4, UCD9,
+            VERSION3, UCD9,
+            VERSION2, UCD8,
+            VERSION1, UCD8
             );
 
     public static final VersionInfo VERSION_LAST_RELEASED_UNICODE = EMOJI_TO_UNICODE_VERSION.get(VERSION_LAST_RELEASED);
