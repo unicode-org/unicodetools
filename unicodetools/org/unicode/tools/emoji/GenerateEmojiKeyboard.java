@@ -116,8 +116,8 @@ public class GenerateEmojiKeyboard {
                                 + "# Format\n"
                                 + "#   Code points; status # emoji name\n"
                                 + "#     Status\n"
-                                + "#       keyboard — see “Emoji Implementation Notes” in UTR#51\n"
-                                + "#       process — see “Emoji Implementation Notes” in UTR#51"
+                                + "#       fully-qualified — see “Emoji Implementation Notes” in UTR#51\n"
+                                + "#       non-fully-qualified — see “Emoji Implementation Notes” in UTR#51"
                                 );
                         out.println("# Notes:\n"
                                 + "#   • This currently omits the 12 keycap bases, the 5 modifier characters, and 26 singleton Regional Indicator characters\n"
