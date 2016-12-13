@@ -125,11 +125,11 @@ public class Emoji {
     .freeze();
 
     public enum Source {
-        // for accessing pngs
-        // order is important
+        // also used for accessing pngs; order is important
+        // if a source is in developer release, add ᵈ to the name, eg "Googᵈ"
         charOverride,
         color, 
-        apple("Applᵈ"), google("Goog"), twitter("Twtr."), emojione("One"),
+        apple("Appl"), google("Goog"), twitter("Twtr."), emojione("One"),
         fb("FB", "Facebook"), fbm("FBM", "Messenger (Facebook)"), samsung("Sams."), 
         windows("Wind."),
         ref, proposed, emojipedia, emojixpress, emojination, adobe, sample,
