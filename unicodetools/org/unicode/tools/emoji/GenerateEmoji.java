@@ -23,6 +23,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
@@ -47,6 +48,7 @@ import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ComparisonChain;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
 import com.ibm.icu.dev.util.CollectionUtilities;
@@ -83,7 +85,7 @@ public class GenerateEmoji {
             "sign", "for", "of", "black"));
 
     static int MODIFIER_STATUS;
-    
+
     private static boolean VERSION5PLUS = Emoji.VERSION_TO_GENERATE.compareTo(Emoji.VERSION5) >= 0;
     private static final String EMOJI_ZWJ_SEQUENCES_TITLE = VERSION5PLUS ? "Recommended Emoji ZWJ Sequences" : "Emoji ZWJ Sequences Catalog";
     private static final String CATALOG = VERSION5PLUS ? "list of recommended" : "catalog of" ;
@@ -119,7 +121,7 @@ public class GenerateEmoji {
             }
         }
         TO_FIRST_VERSION_FOR_VARIANT.freeze();
-        
+
         // verify that all are present
         for (String key : new UnicodeSet(EmojiData.EMOJI_DATA.getTextPresentationSet())
         .removeAll(Emoji.REGIONAL_INDICATORS)
@@ -132,7 +134,7 @@ public class GenerateEmoji {
             }
         }
     }
-    
+
     static final UnicodeMap<String>        VERSION                     = Emoji.LATEST.load(UcdProperty.Age);
     static {
         if (SHOW) System.out.println("🤧, " + Emoji.VERSION_ENUM.get("🤧"));
@@ -852,10 +854,10 @@ public class GenerateEmoji {
     }
 
     private static void getImages(PrintWriter out, UnicodeSet textSet, boolean useDataUrl) {
-        String link = "full-emoji-list.html";
+        String link = IMAGE_MORE_INFO;
         for (String emoji : textSet.addAllTo(new TreeSet<String>(EMOJI_COMPARATOR))) {
             if (link != null) {
-                out.print("<a href='" + link + "#" + Emoji.buildFileName(emoji, "_") + "' target='full'>");
+                out.print(getMoreInfoLink(link, emoji));
             }
             out.print(getBestImage(emoji, useDataUrl, ""));
             if (link != null) {
@@ -1275,21 +1277,21 @@ public class GenerateEmoji {
         EmojiData.EMOJI_DATA.getEmojiWithVariants().addAllTo(sorted);
         for (String cp : sorted) {
             String version = TO_FIRST_VERSION_FOR_VARIANT.get(cp);
-//            if (version == null) {
-//                version = "E4.0";
-//            }
+            //            if (version == null) {
+            //                version = "E4.0";
+            //            }
             out.println("<tr>");
             out.println("<td class='code cchars'>" + getDoubleLink(Utility.hex(cp)) + "</td>");
             if (EmojiData.EMOJI_DATA.getKeycapBases().contains(cp)) {
                 // keycaps, treat specially
                 String cp2 = cp + Emoji.KEYCAP_MARK;
-                out.println(GenerateEmoji.getCell(Emoji.Source.ref, cp2, "andr"));
-                out.println(GenerateEmoji.getCell(null, cp2, "andr"));
+                out.println(GenerateEmoji.getCell(Emoji.Source.ref, cp2, "andr", false));
+                out.println(GenerateEmoji.getCell(null, cp2, "andr", false));
                 out.println("<td>" + version + "</td>");
                 out.println("<td>" + UCharacter.getName(cp.codePointAt(0)) + keycapIndicator + "</td>");
             } else {
-                out.println(GenerateEmoji.getCell(Emoji.Source.ref, cp, "andr"));
-                out.println(GenerateEmoji.getCell(null, cp, "andr"));
+                out.println(GenerateEmoji.getCell(Emoji.Source.ref, cp, "andr", false));
+                out.println(GenerateEmoji.getCell(null, cp, "andr", false));
                 out.println("<td>" + version + "</td>");
                 out.println("<td>" + UCharacter.getName(cp.codePointAt(0)) + "</td>");
             }
@@ -1309,8 +1311,8 @@ public class GenerateEmoji {
                     + "<a href='#modifier_sequences'>modifier sequences</a>. "
                     + "For presentation sequences, see <a href='emoji-style.html'>Emoji Default Style Values</a>. "
                     + "For a " + CATALOG + " emoji zwj sequences, see <a href='emoji-zwj-sequences.html'>"
-                            + EMOJI_ZWJ_SEQUENCES_TITLE
-                            + "</a>. </p>\n", "border='1'", true, false);
+                    + EMOJI_ZWJ_SEQUENCES_TITLE
+                    + "</a>. </p>\n", "border='1'", true, false);
 
             displayUnicodesetTD(out, Collections.singleton("keycaps"), null, Collections.singleton(""+Emoji.KEYCAPS.size()), Emoji.KEYCAPS, Style.bestImage, -1, null, Visibility.external);
             displayUnicodesetTD(out, Collections.singleton("flags"), null, Collections.singleton(""+EmojiData.EMOJI_DATA.getFlagSequences().size()), EmojiData.EMOJI_DATA.getFlagSequences(), Style.bestImage, -1, null, Visibility.external);
@@ -1324,20 +1326,20 @@ public class GenerateEmoji {
             writeHeader(outFileName, out, EMOJI_ZWJ_SEQUENCES_TITLE, 
                     null
                     , "<p>This page provides a " + CATALOG
-                            + " emoji zwj sequences that are or will soon be "
-                            + "supported on at least one commonly available platform. "
-                            + "</p><p>The U+200D ZERO WIDTH JOINER (ZWJ) can be used between the elements of a sequence of characters to indicate that a single glyph should be presented if available. "
-                            + "An implementation may use this mechanism to handle such an emoji zwj sequence as a single glyph, "
-                            + "with a palette or keyboard that generates the appropriate sequences for the glyphs shown. "
-                            + "So to the user, these would behave like single emoji characters, even though internally they are sequences. "
-                            + "</p><p>When an emoji zwj sequence is sent to a system that does not have a corresponding single glyph, "
-                            + "the ZWJ characters would be ignored and a fallback sequence of separate emoji would be displayed. "
-                            + "Thus an emoji zwj sequence should only be supported where the fallback sequence would also make sense to a recipient. "
-                            + "Note that the emoji presentation selector (U+FE0F) should be used after any emoji character for which Emoji_Presentation=No "
-                            + "(in current practice there is one exception to this, the ZWJ sequence for EYE + LEFT SPEECH BUBBLE)."
-                            + "</p>\n"
-                            + "<p>" + GenerateEmojiData.SV_WARNING + "</p>\n"
-                            + "<pre>" + GenerateEmojiData.SV_CHARS + "</pre>\n", "border='1'", true, false);
+                    + " emoji zwj sequences that are or will soon be "
+                    + "supported on at least one commonly available platform. "
+                    + "</p><p>The U+200D ZERO WIDTH JOINER (ZWJ) can be used between the elements of a sequence of characters to indicate that a single glyph should be presented if available. "
+                    + "An implementation may use this mechanism to handle such an emoji zwj sequence as a single glyph, "
+                    + "with a palette or keyboard that generates the appropriate sequences for the glyphs shown. "
+                    + "So to the user, these would behave like single emoji characters, even though internally they are sequences. "
+                    + "</p><p>When an emoji zwj sequence is sent to a system that does not have a corresponding single glyph, "
+                    + "the ZWJ characters would be ignored and a fallback sequence of separate emoji would be displayed. "
+                    + "Thus an emoji zwj sequence should only be supported where the fallback sequence would also make sense to a recipient. "
+                    + "Note that the emoji presentation selector (U+FE0F) should be used after any emoji character for which Emoji_Presentation=No "
+                    + "(in current practice there is one exception to this, the ZWJ sequence for EYE + LEFT SPEECH BUBBLE)."
+                    + "</p>\n"
+                    + "<p>" + GenerateEmojiData.SV_WARNING + "</p>\n"
+                    + "<pre>" + GenerateEmojiData.SV_CHARS + "</pre>\n", "border='1'", true, false);
             displayZwjTD(out, "ZWJ sequences", new UnicodeSet("[💏💑👪]").addAll(EmojiData.EMOJI_DATA.getZwjSequencesNormal()));
             //displayZwjTD(out, "ZWJ sequences: No VS", Emoji.APPLE_COMBOS_WITHOUT_VS);
 
@@ -1588,7 +1590,7 @@ public class GenerateEmoji {
                 // labelSeen.add(words);
                 UnicodeSet filtered = new UnicodeSet(uset).retainAll(filterOut);
                 if (!filtered.isEmpty()) {
-                    displayUnicodesetTD(out, words, null, Collections.<String> emptySet(), filtered, Style.bestImage, -1, "full-emoji-list.html", Visibility.external);
+                    displayUnicodesetTD(out, words, null, Collections.<String> emptySet(), filtered, Style.bestImage, -1, IMAGE_MORE_INFO, Visibility.external);
                 }
             }
             writeFooter(out, "");
@@ -1827,15 +1829,45 @@ public class GenerateEmoji {
         displayUnicodeSet(out, sorted, showEmoji, maxPerLine, colSpan, rowSpan, link, "", visibility);
     }
 
-    static final String         FULL_LINK          = "<a href='full-emoji-list.html' target='full'>Full Emoji List</a>";
+    static final Pattern PREDICTABLE_TARGET = Pattern.compile("emoji-([a-z]+).html");
+    
+    public static String getTargetForFile(String file) {
+        Matcher m = PREDICTABLE_TARGET.matcher(file);
+        if (m.matches()) {
+            return m.group(1);
+        }
+        switch(file) {
+        case "full-emoji-list.html": return "full";
+        default: throw new IllegalArgumentException("Unknown target for file: " + file);
+        }
+    }
+    
+    static final String         IMAGE_MORE_INFO    = "emoji-list.html";
+    private static final String IMAGE_MORE_INFO_TITLE = "Emoji List";
+    static final String         IMAGE_MORE_INFO_LINK          = "<a href='"
+            + IMAGE_MORE_INFO
+            + "' target='"
+            + getTargetForFile(IMAGE_MORE_INFO) + "'>"
+            + IMAGE_MORE_INFO_TITLE
+            + "</a>";
+    
+    private static String getMoreInfoLink(String link, String emoji) {
+        if (link == null) {
+            link = IMAGE_MORE_INFO;
+        }
+        return "<a href='" + link + "#" + Emoji.buildFileName(emoji, "_") + "' target='" + getTargetForFile(link) + "'>";
+    }
 
-    private static final String HOVER_INSTRUCTIONS = "Emoji without available images are shown as ✘. Hovering over an emoji shows the name; clicking goes to the " + FULL_LINK + " entry for that emoji.";
+    private static final String HOVER_INSTRUCTIONS = "Emoji without available images are shown as ✘. "
+            + "Hovering over an emoji shows the name; clicking goes to the " + IMAGE_MORE_INFO_LINK + " entry for that emoji.";
 
     public static void displayUnicodeSet(PrintWriter out,
             Collection<String> sorted, Style showEmoji, int maxPerLine, int colSpan, int rowSpan,
             String link, String extraClasses, Visibility visibility) {
+        String target = null;
         if (link == null) {
-            link = "full-emoji-list.html";
+            link = IMAGE_MORE_INFO;
+            target = getTargetForFile(link);
         } else if (link.isEmpty()) {
             link = null;
         }
@@ -1880,7 +1912,7 @@ public class GenerateEmoji {
                 }
             }
             if (link != null) {
-                cell = "<a" + classString + " href='" + link + "#" + Emoji.buildFileName(s, "_") + "' target='full'>" + cell + "</a>";
+                cell = "<a" + classString + " href='" + link + "#" + Emoji.buildFileName(s, "_") + "' target='" + target + "'>" + cell + "</a>";
             }
             if (!gotTitle) {
                 cell = addTitle(s, cell);
@@ -1913,7 +1945,8 @@ public class GenerateEmoji {
             + (Emoji.IS_BETA ? "dev" : "latest") + "/annotations/index.html'>Unicode CLDR Annotations</a>";
 
     enum Form {
-        noImages("This chart provides a list of the Unicode emoji characters,  with single image and annotations. (See also the <a target='full' href='full-emoji-list.html'>full list</a>.) "
+        noImages("This chart provides a list of the Unicode emoji characters, with single image and annotations."
+                + "Clicking on a Sample goes to the emoji in the <a target='full' href='full-emoji-list.html'>full list</a>.) "
                 + "The ordering of the emoji and the annotations are based on "
                 + CLDR_DATA_LINK + ". Emoji sequences have more than one code point in the <b>Code</b> column."),
                 fullForm("This chart provides a list of the Unicode emoji characters, with images from different vendors, version and source information, default style, and annotations. "
@@ -2383,10 +2416,12 @@ public class GenerateEmoji {
         // + ") " + getName(chars, true);
     }
 
-    public static String getCell(Emoji.Source type, String core, String cellClass) {
+    public static String getCell(Emoji.Source type, String core, String cellClass, boolean addLink) {
+        String linkPre = addLink ? getMoreInfoLink("full-emoji-list.html", core) : "";
+        String linkPost = addLink ? "</a>" : "";
         if (type == null) {
             return "<td class='andr'>"
-                    + getBestImage(core, true, "", Emoji.Source.color)
+                    + linkPre + getBestImage(core, true, "", Emoji.Source.color) + linkPost
                     + "</td>\n";
         }
 
@@ -2402,8 +2437,9 @@ public class GenerateEmoji {
                 String className = type.getClassAttribute(core);
                 androidCell = "<td class='"
                         + cellClass
-                        + "'><img alt='" + core + "' class='" +
-                        className + "' src='" + fullName + "'></td>\n";
+                        + "'>"
+                        + linkPre + "<img alt='" + core + "' class='" +
+                        className + "' src='" + fullName + "'>" + linkPost + "</td>\n";
             }
         }
         return androidCell;
@@ -2449,13 +2485,13 @@ public class GenerateEmoji {
     static final String ALT_COLUMN = "%%%";
 
     public static String toHtmlString(String chars2, Form form, int item) {
-        String bestCell = getCell(null, chars2, ALT_COLUMN);
-        String symbolaCell = getCell(Emoji.Source.ref, chars2, ALT_COLUMN);
+        String bestCell = getCell(null, chars2, ALT_COLUMN, form == Form.noImages);
+        String symbolaCell = getCell(Emoji.Source.ref, chars2, ALT_COLUMN, false);
 
         StringBuilder otherCells = new StringBuilder();
 
         for (Source s : Emoji.Source.platformsToIncludeNormal) {
-            otherCells.append(altClass(getCell(s, chars2, ALT_COLUMN)));
+            otherCells.append(altClass(getCell(s, chars2, ALT_COLUMN, false)));
         }
 
         String browserCell = "<td class='chars'>" + chars2
@@ -2489,17 +2525,14 @@ public class GenerateEmoji {
         return "<tr>"
         + "<td class='rchars'>" + item + "</td>\n"
         + "<td class='code'>" + getDoubleLink(anchor, Emoji.toUHex(chars2WithVS)) + "</td>\n"
-        + altClass(browserCell)
-        + (form == Form.noImages ?  altClass(bestCell) : 
-            altClass(symbolaCell)
-            + otherCells)
-            + "<td class='name'>" + name2 + "</td>\n"
-            + (form == Form.noImages ? "" : 
-                "<td class='age'>" + VersionToAge.getYear(Emoji.getNewest(chars2)) + getSources(chars2, new StringBuilder(), true) + "</td>\n"
-                //+ "<td class='default'>" + (style == null ? "n/a" : style) + (!textChars.equals(chars2) ? "*" : "") + "</td>\n"
-                    )
-                    + "<td class='name'>" + getAnnotationsString(chars2) + "</td>\n"
-                    + "</tr>";
+        + (form == Form.noImages ? altClass(bestCell) : altClass(browserCell) + altClass(symbolaCell) + otherCells)
+        + "<td class='name'>" + name2 + "</td>\n"
+        + (form == Form.noImages ? "" : 
+            "<td class='age'>" + VersionToAge.getYear(Emoji.getNewest(chars2)) + getSources(chars2, new StringBuilder(), true) + "</td>\n"
+            + "<td class='name'>" + getAnnotationsString(chars2) + "</td>\n"
+            //+ "<td class='default'>" + (style == null ? "n/a" : style) + (!textChars.equals(chars2) ? "*" : "") + "</td>\n"
+                )
+                + "</tr>";
     }
     private static StringBuilder getAnnotationsString(String chars2) {
         Set<String> plainAnnotations = null;
@@ -2538,8 +2571,7 @@ public class GenerateEmoji {
         + "<th class='rchars'><a target='text' href='index.html#col-num'>№</a></th>\n"
         + "<th class='rchars'><a target='text' href='index.html#col-code'>Code</a></th>\n"
         + (form == Form.noImages
-        ? "<th class='cchars'><a target='text' href='index.html#col-browser'>Browser</a></th>\n"
-        + "<th class='cchars'><a target='text' href='index.html#col-vendor'>Sample</a></th>\n"
+        ? "<th class='cchars'><a target='text' href='index.html#col-vendor'>Sample</a></th>\n"
         :
             "<th class='cchars'><a target='text' href='index.html#col-browser'>Brow.</a></th>\n"
             + "<th class='cchars'><a target='text' href='index.html#col-chart'>Chart</a></th>\n"
@@ -2548,9 +2580,9 @@ public class GenerateEmoji {
                 // + "<th class='cchars'>Browser</th>\n"
                 + "<th><a target='text' href='index.html#col-name'>Name</a></th>\n"
                 + (form == Form.noImages ? "" : "<th><a target='text' href='index.html#col-data'>Date</a></th>\n"
+                        + "<th><a target='text' href='index.html#col-annotations'>Keywords</a></th>\n"
                     //+ "<th><a target='text' href='index.html#col-default'>Default</a></th>\n"
                         )
-                        + "<th><a target='text' href='index.html#col-annotations'>Keywords</a></th>\n"
                         // + "<th>Block: <i>Subhead</i></th>\n"
                         + "</tr>";
     }
