@@ -3,9 +3,9 @@ package org.unicode.text.utility;
 import org.unicode.cldr.util.CldrUtility;
 
 public class Settings {
-    public static final String SVN_WORKSPACE_DIRECTORY = Utility.fixFileName(CldrUtility.getProperty("SVN_WORKSPACE", "/Users/markdavis/workspace")) + "/";
+    public static final String SVN_WORKSPACE_DIRECTORY = Utility.fixFileName(CldrUtility.getProperty("SVN_WORKSPACE", "/Users/markdavis/Documents/workspace")) + "/";
     public static final String OTHER_WORKSPACE_DIRECTORY = Utility.fixFileName(
-            CldrUtility.getProperty("OTHER_WORKSPACE", SVN_WORKSPACE_DIRECTORY + "../Google Drive/workspace")) + "/";
+            CldrUtility.getProperty("OTHER_WORKSPACE", "/Users/markdavis/Google Drive/workspace")) + "/";
 
     /**
      * Used for the default version.
