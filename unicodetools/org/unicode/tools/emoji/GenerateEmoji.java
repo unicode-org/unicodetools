@@ -1355,11 +1355,14 @@ public class GenerateEmoji {
         int i = 0;
         StringBuilder buffer = new StringBuilder();
         for (String s : EmojiOrder.sort(EMOJI_COMPARATOR, items)) {
+        	if (s.startsWith("\u200d")) {
+        		int debug = 0;
+        	}
             boolean isSingle = s.codePointCount(0, s.length()) == 1;
             out.println("<tr>");
             out.println("<td class='rchars'>" + (isSingle ? "<i>neutral</i>" : ""+(++i)) + "</td>");
             out.println("<td>U+" + Utility.hex(s, " U+") + "</td>");
-            out.println("<td class='chars'>‍" + s + "</td>");
+            out.println("<td class='chars'>" + s + "</td>");
             final String bestImage = getBestImage(s, true, "");
             out.println("<td class='andr'>" + bestImage + "</td>");
             if (buffer.length() != 0) {
@@ -2006,7 +2009,8 @@ public class GenerateEmoji {
                     out.println(htmlHeaderString);
                     headerGroupCount = 0;
                 }
-                out.println(toHtmlString(s, form, ++item));
+                String toAdd = toHtmlString(s, form, ++item);
+				out.println(toAdd);
                 outPlain.println(Utility.hex(s, 4, " ") + "\t" + EmojiData.ANNOTATION_SET.getShortName(s));
                 ++headerGroupCount;
             }
@@ -2494,6 +2498,9 @@ public class GenerateEmoji {
             otherCells.append(altClass(getCell(s, chars2, ALT_COLUMN, false)));
         }
 
+        if (chars2.contains("\uD83D\uDC68\u200D\u2695") && form != Form.noImages) {
+        	int debug = 0;
+        }
         String browserCell = "<td class='chars'>" + chars2
                 //EmojiData.EMOJI_DATA.addEmojiVariants(chars2, Emoji.EMOJI_VARIANT, null)
                 //Emoji.getEmojiVariant(chars2, Emoji.EMOJI_VARIANT_STRING)
@@ -2525,7 +2532,8 @@ public class GenerateEmoji {
         return "<tr>"
         + "<td class='rchars'>" + item + "</td>\n"
         + "<td class='code'>" + getDoubleLink(anchor, Emoji.toUHex(chars2WithVS)) + "</td>\n"
-        + (form == Form.noImages ? altClass(bestCell) : altClass(browserCell) + altClass(symbolaCell) + otherCells)
+        + (form == Form.noImages ? altClass(bestCell) : 
+        	altClass(browserCell) + altClass(symbolaCell) + otherCells)
         + "<td class='name'>" + name2 + "</td>\n"
         + (form == Form.noImages ? "" : 
             "<td class='age'>" + VersionToAge.getYear(Emoji.getNewest(chars2)) + getSources(chars2, new StringBuilder(), true) + "</td>\n"
