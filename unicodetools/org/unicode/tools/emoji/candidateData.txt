@@ -102,7 +102,7 @@ food-prepared
 U+1F967			2016Q4	PIE
 • may be sweet or savory				
 U+1F968			2016Q4	PRETZEL
-• can indicate twistiness, convolutedness"				
+• can indicate twistiness, convolutedness				
 U+1F969			2016Q4	CUT OF MEAT
 • porkchop, chop, steak				
 U+1F96B			2016Q4	CANNED FOOD
@@ -118,3 +118,7 @@ U+1F6F8			2016Q4	FLYING SAUCER
 sport				
 U+1F6F7			2016Q4	SLED
 U+1F94C			2016Q4	CURLING STONE
+@Symbols
+other-symbol
+U+263F			2016Q4	person sign
+• existing Unicode character, marked now as emoji; for gender-neutral professions			

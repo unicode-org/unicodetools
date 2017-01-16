@@ -159,7 +159,7 @@ public class LoadImage extends Component {
             System.out.println(Utility.hex(u) 
                     + "\t" + u 
                     + "\t" + (generated.containsKey(u) ? "✔" :  "❌")
-                    + "\t" + EmojiData.EMOJI_DATA.getName(u, false));
+                    + "\t" + EmojiData.EMOJI_DATA.getName(u, false, null));
         }
         if (true) return;
 

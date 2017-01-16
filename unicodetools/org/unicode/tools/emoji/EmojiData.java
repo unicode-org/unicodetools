@@ -35,6 +35,7 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.BreakIterator;
+import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
@@ -56,6 +57,8 @@ public class EmojiData {
 
     private final UnicodeSet emojiPresentationSet = new UnicodeSet();
     private final UnicodeSet textPresentationSet = new UnicodeSet();
+    private final UnicodeSet emojiRegionalIndicators = new UnicodeSet();
+    private final UnicodeSet emojiComponents = new UnicodeSet();
 
     private final Map<Emoji.CharSource, UnicodeSet> charSourceMap;
     private final UnicodeSet modifierBases;
@@ -93,7 +96,7 @@ public class EmojiData {
         return result;
     }
 
-    private enum EmojiProp {Emoji, Emoji_Presentation, Emoji_Modifier, Emoji_Modifier_Base}
+    private enum EmojiProp {Emoji, Emoji_Presentation, Emoji_Modifier, Emoji_Modifier_Base, Emoji_Regional_Indicator, Emoji_Component}
     // 0023          ; Emoji                #   [1] (#️)      NUMBER SIGN
     // 231A..231B    ; Emoji_Presentation   #   [2] (⌚️..⌛️)  WATCH..HOURGLASS
     // 1F3FB..1F3FF  ; Emoji_Modifier
@@ -315,6 +318,10 @@ public class EmojiData {
             names.freeze();
             emojiDefectives.removeAll(emojiData.keySet()).freeze();
 
+            // TODO make it cleaner to add new properties
+            emojiRegionalIndicators.addAll(emojiData.getKeys(EmojiProp.Emoji_Regional_Indicator)).freeze();
+            emojiComponents.addAll(emojiData.getKeys(EmojiProp.Emoji_Component)).freeze();
+            
             zwjSequencesNormal.freeze();
             zwjSequencesAll.removeAll(zwjSequencesNormal).freeze();
             afterZwj.freeze();
@@ -723,21 +730,21 @@ public class EmojiData {
         return names;
     }
 
-    public String getName(String source, boolean toLower) {
+    public String getName(String source, boolean toLower, Transform<String,String> otherNameSource) {
         source = source.replace(Emoji.EMOJI_VARIANT_STRING, "");
-        if (source.equals("❤")) {
+        if (source.startsWith("🤱")) {
             int debug = 0;
         }
-        String name = ANNOTATION_SET.getShortName(source);
+        String name = ANNOTATION_SET.getShortName(source, otherNameSource);
         if (name != null) {
             return (toLower ? name.toLowerCase(Locale.ENGLISH) : name);
         }
         //        System.out.println("*** not using name for " + code + "\t" + Utility.hex(code));
         //
-        name = CandidateData.getInstance().getName(source);
-        if (name != null) {
-            return (toLower ? name.toLowerCase(Locale.ENGLISH) : name);
-        }
+//        name = CandidateData.getInstance().getName(source);
+//        if (name != null) {
+//            return name.toLowerCase(Locale.ENGLISH); // (toLower ?  : name);
+//        }
         name = UCharacter.getName(source, ", "); 
         if (name != null) {
             return (toLower ? name.toLowerCase(Locale.ENGLISH) : name);
@@ -892,19 +899,19 @@ public class EmojiData {
     public static void main(String[] args) {
         EmojiData lastReleasedData = new EmojiData(Emoji.VERSION_LAST_RELEASED);
         EmojiData betaData = new EmojiData(Emoji.VERSION_BETA);
-        showDiff("Emoji", "v3.0", lastReleasedData.getSingletonsWithoutDefectives(),
-                "v4.0", betaData.getSingletonsWithoutDefectives());
-        showDiff("Emoji_Presentation", "v3.0", lastReleasedData.getEmojiPresentationSet(),
-                "v4.0", betaData.getEmojiPresentationSet());
-        showDiff("Emoji_Modifier_Base", "v3.0", lastReleasedData.getModifierBases(),
-                "v4.0", betaData.getModifierBases());
+		showDiff("Emoji", Emoji.VERSION_LAST_RELEASED_STRING, lastReleasedData.getSingletonsWithoutDefectives(),
+				Emoji.VERSION_BETA_STRING, betaData.getSingletonsWithoutDefectives());
+        showDiff("Emoji_Presentation", Emoji.VERSION_LAST_RELEASED_STRING, lastReleasedData.getEmojiPresentationSet(),
+        		Emoji.VERSION_BETA_STRING, betaData.getEmojiPresentationSet());
+        showDiff("Emoji_Modifier_Base", Emoji.VERSION_LAST_RELEASED_STRING, lastReleasedData.getModifierBases(),
+                Emoji.VERSION_BETA_STRING, betaData.getModifierBases());
 
-        String name = betaData.getName("🏂🏻", false);
-        String name2 = betaData.getName("🏂🏻", true);
+        String name = betaData.getName("🏂🏻", false, null);
+        String name2 = betaData.getName("🏂🏻", true, null);
 
         for (String s : betaData.getModifierBases()) {
             String comp = betaData.addEmojiVariants(s, Emoji.EMOJI_VARIANT) + "\u200D\u2642\uFE0F";
-            System.out.println(Utility.hex(comp, " ") + "\t" + s + "\t" + betaData.getName(s,false));
+            System.out.println(Utility.hex(comp, " ") + "\t" + s + "\t" + betaData.getName(s,false, CandidateData.getInstance()));
         }
         if (true) return;
         for (String s : betaData.allEmojiWithDefectives) {
@@ -1016,4 +1023,13 @@ public class EmojiData {
     public VersionInfo getVersion() {
         return version;
     }
+
+	public UnicodeSet getRegionalIndicators() {
+		// TODO Auto-generated method stub
+		return emojiRegionalIndicators;
+	}
+
+	public UnicodeSet getEmojiComponents() {
+		return emojiComponents;
+	}
 }

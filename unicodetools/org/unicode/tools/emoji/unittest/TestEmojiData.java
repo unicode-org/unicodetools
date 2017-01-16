@@ -224,7 +224,7 @@ public class TestEmojiData extends TestFmwkPlus {
             }
             if (status != EmojiAnnotations.Status.found) {
                 if (em2 == null) {
-                    String oldTts = EmojiData.EMOJI_DATA.getName(s, true);
+                    String oldTts = EmojiData.EMOJI_DATA.getName(s, true, null);
                     Set<String> oldAnnotations = keywords == null ? new TreeSet<>() : new TreeSet<>(keywords);
                     oldAnnotations.addAll(Arrays.asList(oldTts.split("\\s+")));
                     oldAnnotations = oldAnnotations.isEmpty() ? Collections.singleton("???") : oldAnnotations;

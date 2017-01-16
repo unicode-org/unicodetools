@@ -26,7 +26,7 @@ public class AacCheck {
      */
     public static void main(String[] args) {
         if (args.length == 0) {
-            EmojiData.EMOJI_DATA.getName("👨", false);
+            EmojiData.EMOJI_DATA.getName("👨", false, null);
             for (EntryRange range : ALLOWED.ranges()) {
                 if (range.codepoint == range.codepointEnd) {
                     System.out.println(Utility.hex(range.codepoint) 
@@ -38,7 +38,7 @@ public class AacCheck {
             }
             for (String cps: ALLOWED.strings()) {
                 System.out.println(Utility.hex(cps) 
-                        + " ; " + EmojiData.EMOJI_DATA.getName(cps, false));
+                        + " ; " + EmojiData.EMOJI_DATA.getName(cps, false, null));
             }
         } else {
             Output<String> message = new Output<>();
