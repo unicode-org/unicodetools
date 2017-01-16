@@ -652,7 +652,7 @@ public class GenerateEmoji {
                     )) {
                 int len = s.codePointCount(0, s.length());
                 if (len > 1) {
-                    outText.println(Utility.hex(s) + " ; " + EmojiData.EMOJI_DATA.getName(s, false));
+                    outText.println(Utility.hex(s) + " ; " + EmojiData.EMOJI_DATA.getName(s, false, null));
                 }
             }
         }
@@ -903,7 +903,7 @@ public class GenerateEmoji {
     }
 
     private static String getCodeAndName2(String s, boolean toLower) {
-        return Emoji.toUHex(s) + " " + EmojiData.EMOJI_DATA.getName(s, toLower);
+        return Emoji.toUHex(s) + " " + EmojiData.EMOJI_DATA.getName(s, toLower, null);
     }
 
     private static void showExplicitAppleImages(PrintWriter out, Set<String> minimal) {
@@ -1394,7 +1394,7 @@ public class GenerateEmoji {
             //                name.insert(0, prefix);
             //                name.append("</i>");
             //            }
-            out.println("<td>" + EmojiData.EMOJI_DATA.getName(s, true) + "</td>");
+            out.println("<td>" + EmojiData.EMOJI_DATA.getName(s, true, null) + "</td>");
             out.println("</tr>");
         }
         out.println("<tr><th colSpan='6'>Character list for copying</th></tr>");
@@ -1936,7 +1936,7 @@ public class GenerateEmoji {
     }
 
     public static String getCodeCharsAndName(String chars1, String separator) {
-        return Emoji.toUHex(chars1) + separator + chars1 + separator + EmojiData.EMOJI_DATA.getName(chars1, true);
+        return Emoji.toUHex(chars1) + separator + chars1 + separator + EmojiData.EMOJI_DATA.getName(chars1, true, null);
     }
 
     static final UnicodeSet SPECIAL_INCLUSIONS = new UnicodeSet("[#*0-9 ⃣]").addAll(Emoji.REGIONAL_INDICATORS).freeze();
@@ -2188,7 +2188,7 @@ public class GenerateEmoji {
                 } else {
                     out.print("\n");
                 }
-                out.print("<span title='" + EmojiData.EMOJI_DATA.getName(s, false) + "'>"
+                out.print("<span title='" + EmojiData.EMOJI_DATA.getName(s, false, null) + "'>"
                         + EmojiData.EMOJI_DATA.addEmojiVariants(s)
                         //+ Emoji.getEmojiVariant(s, Emoji.EMOJI_VARIANT_STRING)
                         + "</span>");
@@ -2240,7 +2240,7 @@ public class GenerateEmoji {
                 outText.println(Emoji.toUHex(s) 
                         + " ; " + Emoji.getNewest(s).getShortName() 
                         + " # " + s 
-                        + " " + EmojiData.EMOJI_DATA.getName(s, false));
+                        + " " + EmojiData.EMOJI_DATA.getName(s, false, null));
             }
         }
         try (
@@ -2393,7 +2393,7 @@ public class GenerateEmoji {
                 + " ;\t" + getSources(chars2, new StringBuilder(), false)
                 + "\t# " + showVersion(Emoji.getNewest(chars2))
                 + " (" + chars2
-                + ") " + EmojiData.EMOJI_DATA.getName(chars2, false);
+                + ") " + EmojiData.EMOJI_DATA.getName(chars2, false, null);
         // Set<String> annotations = new
         // LinkedHashSet<>(ifNull(GenerateEmoji.ANNOTATIONS_TO_CHARS.getKeys(chars),
         // Collections.EMPTY_SET));
@@ -2472,9 +2472,9 @@ public class GenerateEmoji {
                 String image = EmojiData.EMOJI_DATA.getAllEmojiWithDefectives().contains(x) ? getBestImageNothrow(x, x, true, " imgb", doFirst) : null;
                 if (image == null) {
                     String fixed = TransliteratorUtilities.toHTML.transform(x);
-                    image = UTF16.hasMoreCodePointsThan(x, 1) ? fixed : Emoji.toUHex(x) + " " + fixed + " " + EmojiData.EMOJI_DATA.getName(x, false);
+                    image = UTF16.hasMoreCodePointsThan(x, 1) ? fixed : Emoji.toUHex(x) + " " + fixed + " " + EmojiData.EMOJI_DATA.getName(x, false, null);
                 } else {
-                    image = Emoji.toUHex(x) + " " + image + " " + EmojiData.EMOJI_DATA.getName(x, false);
+                    image = Emoji.toUHex(x) + " " + image + " " + EmojiData.EMOJI_DATA.getName(x, false, null);
                 }
                 result.append("<br>" + symbol + " " + image);
             }
@@ -2509,7 +2509,7 @@ public class GenerateEmoji {
             int debug = 0;
         }
         String name2 = EmojiData.ANNOTATION_SET.getShortName(chars2);
-        String vanilla = EmojiData.EMOJI_DATA.getName(chars2, false);
+        String vanilla = EmojiData.EMOJI_DATA.getName(chars2, false, null);
         if (name2 == null) {
             name2 = vanilla.toLowerCase(Locale.ENGLISH);
         }

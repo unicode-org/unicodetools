@@ -207,7 +207,7 @@ public class EmojiOrder {
             for (String s : missing) {
                 System.err.println("\t" + s + "\t\t" + Emoji.show(s));
             }
-            throw new IllegalArgumentException(directory);
+            System.err.println(directory);
         }
         sorted.addAll(missing);
         mapComparator.add(sorted);

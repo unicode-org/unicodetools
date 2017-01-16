@@ -51,6 +51,7 @@ public class Emoji {
     public static final VersionInfo VERSION2 = VersionInfo.getInstance(2);
     public static final VersionInfo VERSION1 = VersionInfo.getInstance(1);
 
+    public static final VersionInfo UCD10 = VersionInfo.getInstance(10);
     public static final VersionInfo UCD9 = VersionInfo.getInstance(9);
     public static final VersionInfo UCD8 = VersionInfo.getInstance(8);
 
@@ -315,7 +316,7 @@ public class Emoji {
     public static final char TEXT_VARIANT = '\uFE0E';
     public static final UnicodeSet GENDER_MARKERS = new UnicodeSet().add(0x2640).add(0x2642).freeze();
     public static final UnicodeSet FAMILY_MARKERS = new UnicodeSet().add(0x1F466,0x1F469);
-    public static final UnicodeSet ACTIVITY_MARKER = new UnicodeSet("[\\U0001F487 \\U0001F486 \u26F9 \\U0001F3C4 \\U0001F3CA \\U0001F3CB \\U0001F3CC 👯 🗣 🚣 🚴 🚵 \\U0001F938 \\U0001F939 \\U0001F93C-\\U0001F93E 👤 👥 🚶 🏃 💃 🕴 \\U0001F57A \\U0001F930]");
+    public static final UnicodeSet ACTIVITY_MARKER = new UnicodeSet("[🤱 🧖 🧗 🧘 \\U0001F487 \\U0001F486 \u26F9 \\U0001F3C4 \\U0001F3CA \\U0001F3CB \\U0001F3CC 👯 🗣 🚣 🚴 🚵 \\U0001F938 \\U0001F939 \\U0001F93C-\\U0001F93E 👤 👥 🚶 🏃 💃 🕴 \\U0001F57A \\U0001F930]");
     public static final UnicodeSet ROLE_MARKER = new UnicodeSet("[👱 👮 👳 👷 💂 🕵]");
     
     public static final UnicodeSet EMOJI_VARIANTS = new UnicodeSet()

@@ -152,12 +152,12 @@ public class GenerateEmojiKeyboard {
                 case csv: 
                     out.println("U+" + Utility.hex(cp,"U+") 
                             + "," + cp 
-                            + "," + EmojiData.EMOJI_DATA.getName(cp, false));
+                            + "," + EmojiData.EMOJI_DATA.getName(cp, false, CandidateData.getInstance()));
                     break;
                 case propFile:
                     out.println(tabber.process(Utility.hex(cp) + "\t; " 
                             + "fully-qualified"
-                            + "\t# " + cp + " " + EmojiData.EMOJI_DATA.getName(cp, false)));
+                            + "\t# " + cp + " " + EmojiData.EMOJI_DATA.getName(cp, false, CandidateData.getInstance())));
                     showWithoutVS(out, tabber, cp, charactersNotShown);
                     break;
                 }
@@ -196,7 +196,7 @@ public class GenerateEmojiKeyboard {
         if (pos < 0) {
             return;
         }
-        String name = EmojiData.EMOJI_DATA.getName(cp, false);
+        String name = EmojiData.EMOJI_DATA.getName(cp, false, CandidateData.getInstance());
         
         final List<String> parts = vsSplitter.splitToList(cp);
         final int size = parts.size();
