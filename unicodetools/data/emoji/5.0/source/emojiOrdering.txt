@@ -3,17 +3,16 @@ face-positive	😀 😁 😂 🤣 😃 😄 😅 😆 😉 😊 😋 😎 😍 �
 face-neutral	🤔 😐 😑 😶 🙄 😏 😣 😥 
 😮 🤐 😯 😪 😫 😴 😌 🤓 😛 😜 😝 🤤 
  😒 😓 😔 😕  🙃🤑 😲
-🤨 🤨 🤩 🤪 🤫 🤬 🤭 🤮 🤯 🧐
-face-negative	☹ 🙁😖  😞 😟 😤 😢 😭 😦 😧 😨 😩 
+🤨 🤨 🤩 🤪 🤫 🤬 🤭  🧐
+face-negative	☹ 🙁😖  😞 😟 😤 😢 😭 😦 😧 😨 😩 🤮 🤯
 😬 😰 😱 😳 😵 😡 😠  
 face-role	😇 🤠 🤡  🤥🤓
 face-sick	 😷 🤒 🤕 🤢  🤧 
-creature-face	😈 👿  👹 👺 💀 ☠ 👻 👽 👾 🤖 💩  
-🧙 🧚 🧛 🧜 🧝 🧞 🧟
+face-fantasy	😈 👿   👹 👺 💀 ☠ 👻 👽 👾 🤖 💩 🦄
 cat-face	😺 😸 😹 😻 😼 😽 🙀 😿 😾 
 monkey-face	🙈 🙉 🙊
-person	👦 👧 👨 👩 👴 👵 👶 👼
-🧑 🧒 🧓 🧔 🧕
+person	👶 🧒 👦 👧 🧑 👨 👩 🧓 👴 👵  
+   
 person-role	 👨‍⚕️ 👩‍⚕️
 👨‍🎓 👩‍🎓 
 👨‍🏫 👩‍🏫 
@@ -32,15 +31,23 @@ person-role	 👨‍⚕️ 👩‍⚕️
 👨‍✈️ 👩‍✈️
 👨‍🚀 👩‍🚀
 👨‍🚒  👩‍🚒 
-👮 🕵    💂  👷 👳 👱 🎅🤶👸 🤴👰🤵 🤰 👲
+👮 🕵    💂  👷 👳 👱 🎅🤶👸 🤴👰🤵 🤰 🤱   🧔👲 🧕
+person-fantasy
+🧙  🧙‍♀️  🧙‍♂️
+🧚  🧚‍♀️  🧚‍♂️
+🧛  🧛‍♀️  🧛‍♂️
+🧜  🧜‍♀️  🧜‍♂️ 
+🧝  🧝‍♀️  🧝‍♂
+🧞  🧞‍♀️  🧞‍♂️
+🧟  🧟‍♀️  🧟‍♂
+👼
 person-gesture	🙍 🙎 🙅 🙆 💁 🙋 🙇 🤦 🤷
 person-activity	 💆 💇 🙍 🙎 🙅 🙆 
 💁 🤷 🙋🤦 🙇  🚶 🏃  💃  🕺   👯
-🤱 
-🧖
-🧗
-🧘
-🧖‍♀️  🧖‍♂️  🧗‍♀️  🧗‍♂️  🧘‍♀️  🧘‍♂️  🧙‍♀️  🧙‍♂️  🧚‍♀️  🧚‍♂️  🧛‍♀️  🧛‍♂️  🧜‍♀️  🧜‍♂️  🧝‍♀️  🧝‍♂️  🧞‍♀️  🧞‍♂️  🧟‍♀️  🧟‍♂️
+
+🧖 🧖‍♀️  🧖‍♂
+🧗 🧗‍♀️  🧗‍♂️ 
+🧘  🧘‍♀️  🧘‍♂️ 
 
    🕴🗣 👤 👥
 person-sport	🤺 🏇 ⛷ 🏂 🏌 🏄  🚣 🏊 ⛹ 🏋 🚴 🚵 🏎 🏍 
@@ -56,44 +63,44 @@ family	👫 👬 👭
 👩‍👦 👩‍👦‍👦 👩‍👧 👩‍👧‍👦 👩‍👧‍👧
 skin-tone	🏻 🏼 🏽 🏾 🏿 
 body	🤳 💪👈 👉 ☝ 👆 🖕 👇 ✌ 🤞🖖 🤘🤙 🖐  ✋ 👌 👍 👎 ✊ 👊 🤛 🤜🤚👋 👏 ✍ 
-👐  🙌 🙏 
+👐  🙌 🤟 🤲 🙏 
     🤝 
- 💅 👂 👃 👣 👀 👁 👁️‍🗨️ 👅 👄 
-🤟 🤲 🧠
+ 💅 👂 👃 👣 👀 👁 👁️‍🗨️ 🧠 👅 👄 
+
 emotion	💋 💘 ❤ 💓 💔 💕 💖 💗 💙 💚 💛 🧡 💜 
 🖤
 💝 💞 💟 ❣ 💌 💤 💢 💣 💥 💦 💨 💫 💬 
 🗨 🗯 💭 🕳 
-clothing	👓 🕶 👔 👕 👖 👗 👘 👙 👚 👛 👜 👝 🛍 🎒 👞 👟 👠 👡 👢 👑 👒 🎩 🎓⛑ 📿 
+clothing	👓 🕶 👔 👕 👖 👗 👘 👙 👚 👛 👜 👝 🛍 🎒 👞 👟 👠 👡 👢 👑 👒 🎩 🎓🧢⛑ 🧣 🧤 🧥 🧦 📿 
 💄 💍 💎 
-🧢 🧣 🧤 🧥 🧦
+
 @Animals_and_Nature
-animal-mammal	🐵 🐒 🦍 🐶 🐕 🐩 🐺 🦊 🐱 🐈 🦁 🐯 🐅 🐆 🐴 🐎 🦌 🦄 🐮 🐂 🐃 🐄 🐷 🐖 🐗 🐽 
-🐏 🐑 🐐 🐪 🐫 🐘 🦏 🐭 🐁 🐀 🐹 🐰 🐇 🐿  🦇 🐻 🐨 🐼 🐾
-🦒 🦓 🦔
+animal-mammal	🐵 🐒 🦍 🐶 🐕 🐩 🐺 🦊 🐱 🐈 🦁 🐯 🐅 🐆 🐴 🐎 🦌 🦓  🐮 🐂 🐃 🐄 🐷 🐖 🐗 🐽 
+🐏 🐑 🐐 🐪 🐫 🦒 🐘 🦏 🐭 🐁 🐀 🐹 🐰 🐇 🐿 🦔 🦇 🐻 🐨 🐼 🐾
+  
 animal-bird	🦃 🐔 🐓 🐣 🐤 🐥 🐦 🐧 🕊 🦅 🦆 🦉
 animal-amphibian	🐸
 animal-reptile	🐊 🐢 🦎 🐍 🐲 🐉
 🦕 🦖
 animal-marine	🐳 🐋 🐬 🐟 🐠 🐡 🦈 🐙 🐚 🦀 🦐 🦑
-animal-bug	🦋 🐌 🐛 🐜 🐝 🐞 🕷 🕸 🦂 
-🦗
+animal-bug	🦋 🐌 🐛 🐜 🐝 🐞 🦗 🕷 🕸 🦂 
+
 plant-flower	💐 🌸 💮 🏵 🌹 🥀
 🌺 🌻 🌼 🌷 
 plant-other	🌱 🌲 🌳 🌴 🌵 🌾 🌿 ☘ 🍀 🍁 🍂 🍃 
 @Food_and_Drink
-food-fruit	🍇 🍈 🍉 🍊 🍋 🍌 🍍 🍎 🍏 🍐 🍑 🍒 🍓  🥝🍅
+food-fruit	🍇 🍈 🍉 🍊 🍋 🍌 🍍 🍎 🍏 🍐 🍑 🍒 🍓  🥝🍅 🥥
 food-vegetable	🥑 🍆🥔 🥕 🌽 🌶🥒 🍄 🥜 🌰 
-🥥 🥦
+ 🥦
 food-prepared	🍞 🥐 🥖    🥞 🧀 🍖 🍗 🥓 🍔 🍟 🍕 🌭 🌮 
-🌯 🥙 🥚 🍳 🥘 🍲 
+🌯 🥙 🥚 🍳 🥘 🍲  🥣
 🥗   🍿
-🥟 🥠 🥣 🥧 🥨 🥩 🥪 🥫
-food-asian	🍱 🍘 🍙 🍚 🍛 🍜 🍝 🍠 🍢 🍣 🍤 🍥 🍡
-food-sweet	🍦 🍧 🍨 🍩 🍪 🎂 🍰 🍫 🍬 🍭 🍮 🍯 
-drink	🍼 🥛 ☕ 🍵 🍶 🍾 🍷 🍸 🍹 🍺 🍻 🥂 🥃
+  🥨 🥩 🥪 🥫
+food-asian	🍱 🍘 🍙 🍚 🍛 🍜 🍝 🍠 🍢 🍣 🍤 🍥 🍡🥟 🥠🥡
+food-sweet	🍦 🍧 🍨 🍩 🍪 🎂 🍰 🍫 🍬 🍭 🍮 🍯 🥧
+drink	🍼 🥛 ☕ 🍵 🍶 🍾 🍷 🍸 🍹 🍺 🍻 🥂 🥃🥤
 dishware	🍽 🍴 🥄 🔪 🏺
-🥡 🥢 🥤
+ 🥢 
 @Travel_and_Places
 place-map	🌍 🌎 🌏 🌐 🗺 🗾 
 place-geographic	🏔 ⛰ 🌋 🗻 🏕 🏖 🏜 🏝 🏞 

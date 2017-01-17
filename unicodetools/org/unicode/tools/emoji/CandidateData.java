@@ -243,21 +243,27 @@ public class CandidateData implements Transform<String, String> {
 
 	@Override
 	public String transform(String source) {
-		String temp = null;
-		if (Emoji.GENDER_MARKERS.containsSome(source)) {
+		String temp = getName(source);
+		if (temp == null && Emoji.GENDER_MARKERS.containsSome(source)) {
+			String replacement = null;
 			if (source.endsWith(Emoji.JOINER_STR + Emoji.MALE)) {
-				temp = getName(source.codePointAt(0));
-				temp = temp == null ? null : temp.replaceAll("PERSON", "MAN");
+				replacement = "MAN";
+				temp = getName(source.substring(0, (Emoji.JOINER_STR + Emoji.MALE).length()));
 			} else if (source.endsWith(Emoji.JOINER_STR + Emoji.FEMALE)) {
-				temp = getName(source.codePointAt(0));
-				temp = temp == null ? null : temp.replaceAll("PERSON", "WOMAN");
-			} 
-		}else {
-			temp = getName(source);
+				replacement = "WOMAN";
+				temp = getName(source.substring(0, (Emoji.JOINER_STR + Emoji.MALE).length()));
+			}
+			if (temp != null) {
+				if (temp.contains("PERSON")) {
+					temp = temp.replaceAll("PERSON", replacement);
+				} else if (temp.contains("person")) {
+					temp = temp.replaceAll("person", replacement);
+				} else {
+					temp = replacement + " " + temp;
+				}
+			}
 		}
 
-		return temp == null 
-				? temp 
-						: temp.toLowerCase(Locale.ROOT);
+		return temp == null ? temp : temp.toLowerCase(Locale.ROOT);
 	}
 }
