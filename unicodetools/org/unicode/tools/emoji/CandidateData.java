@@ -262,6 +262,8 @@ public class CandidateData implements Transform<String, String> {
 					temp = replacement + " " + temp;
 				}
 			}
+		} else if ("I LOVE YOU HAND SIGN".equals(temp)) {
+			temp = "LOVE-YOU HAND";
 		}
 
 		return temp == null ? temp : temp.toLowerCase(Locale.ROOT);
