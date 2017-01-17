@@ -261,3 +261,8 @@ H2 {
     FONT-SIZE: 125%;
     margin-top:2em;
 }
+
+.new {
+	background-color: yellow;
+	border: 2px solid red;
+}

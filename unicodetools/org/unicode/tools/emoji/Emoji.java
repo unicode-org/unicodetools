@@ -37,7 +37,7 @@ import com.ibm.icu.util.VersionInfo;
 
 public class Emoji {
 
-    /**
+	/**
      * Set the following to true iff the beta is available. The main function is to add pointers between the release and beta charts.
      */
     static final boolean BETA_IS_OPEN = true;
@@ -314,21 +314,25 @@ public class Emoji {
 
     public static final char EMOJI_VARIANT = '\uFE0F';
     public static final char TEXT_VARIANT = '\uFE0E';
-    public static final UnicodeSet GENDER_MARKERS = new UnicodeSet().add(0x2640).add(0x2642).freeze();
-    public static final UnicodeSet FAMILY_MARKERS = new UnicodeSet().add(0x1F466,0x1F469);
-    public static final UnicodeSet ACTIVITY_MARKER = new UnicodeSet("[🤱 🧖 🧗 🧘 \\U0001F487 \\U0001F486 \u26F9 \\U0001F3C4 \\U0001F3CA \\U0001F3CB \\U0001F3CC 👯 🗣 🚣 🚴 🚵 \\U0001F938 \\U0001F939 \\U0001F93C-\\U0001F93E 👤 👥 🚶 🏃 💃 🕴 \\U0001F57A \\U0001F930]");
-    public static final UnicodeSet ROLE_MARKER = new UnicodeSet("[👱 👮 👳 👷 💂 🕵]");
     
-    public static final UnicodeSet EMOJI_VARIANTS = new UnicodeSet()
-    .add(EMOJI_VARIANT)
-    .add(TEXT_VARIANT)
-    .freeze();
+    public static final UnicodeSet EMOJI_VARIANTS = new UnicodeSet().add(EMOJI_VARIANT).add(TEXT_VARIANT).freeze();
     
     public static final UnicodeSet EMOJI_VARIANTS_JOINER = new UnicodeSet(EMOJI_VARIANTS)
     .add(JOINER)
     .freeze();
 
-
+    public static final String PERSON = "\u263F";
+    public static final String FEMALE = "\u2640";
+    public static final String MALE = "\u2642";
+    
+	private static final int BOY = 0x1F466;
+    private static final int WOMAN = 0x1F469;
+    
+    public static final UnicodeSet FAMILY_MARKERS = new UnicodeSet().add(BOY, WOMAN).freeze();
+    public static final UnicodeSet ACTIVITY_MARKER = new UnicodeSet("[🤱 🧖 🧗 🧘🤰 💆 💇 🚶 🏃 💃 🕺 👯 🕴 🗣 👤 👥 🏌 🏄 🚣 🏊 ⛹ 🏋 🚴 🚵 🤸 🤼-🤾 🤹]").freeze();
+    public static final UnicodeSet GENDER_MARKERS = new UnicodeSet().add(FEMALE).add(MALE).add(PERSON).freeze();
+    public static final UnicodeSet ROLE_MARKER = new UnicodeSet("[\\U0001F9D9-\\U0001F9DF 👱 👮 👳 👷 💂 🕵]").freeze();
+    
     static final int FIRST_REGIONAL = 0x1F1E6;
     static final int LAST_REGIONAL = 0x1F1FF;
 
@@ -570,8 +574,6 @@ public class Emoji {
     }
 
     static final String INTERNAL_OUTPUT_DIR = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/emoji/";
-    public static final String MALE = "\u2642";
-    public static final String FEMALE = "\u2640";
     public static final String HEALTHCARE = "⚕";
     public static final String UN = "🇺🇳";
 

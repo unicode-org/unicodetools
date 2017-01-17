@@ -428,8 +428,9 @@ public class GenerateEmoji {
             // if (type == Source.ref && getFlagCode(chars) != null) {
             // className = "imgf";
             // }
+            Age_Values age = Emoji.getNewest(chars);
             return "<img alt='" + chars + "'" +
-            (useDataUrl ? " class='" + className + extraClasses + "'" 
+            (useDataUrl ? " class='" + className + extraClasses + (age == Age_Values.Unassigned ? " new" : "") + "'" 
                     //: " height=\"24\" width=\"auto\""
                     : " class='imga'"
                     ) +
