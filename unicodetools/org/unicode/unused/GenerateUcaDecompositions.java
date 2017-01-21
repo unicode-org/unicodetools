@@ -10,6 +10,7 @@ import org.unicode.text.UCA.CEList;
 import org.unicode.text.UCA.UCA;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -117,7 +118,7 @@ public class GenerateUcaDecompositions {
     public static void compareUcaDecomp() {
         final UnicodeMap<String> kensDecomp = new UnicodeMap();
         final UnicodeMap<String> kensDecompType = new UnicodeMap();
-        for (final String line : FileUtilities.in("/Users/markdavis/Documents/indigo/" +
+        for (final String line : FileUtilities.in(Settings.BASE_DIRECTORY + "Documents/indigo/" +
         		"DATA/UCA/6.2.0/","decomps-6.2.0.txt")) {
             final String[] parts = FileUtilities.cleanSemiFields(line);
             if (parts == null) {

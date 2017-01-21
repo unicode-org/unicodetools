@@ -309,3 +309,5 @@ emoji/*/emoji-data; Emoji
 emoji/*/emoji-data; Emoji_Presentation
 emoji/*/emoji-data; Emoji_Modifier
 emoji/*/emoji-data; Emoji_Modifier_Base
+emoji/*/emoji-data; Emoji_Regional_Indicator
+emoji/*/emoji-data; Emoji_Component

@@ -3,9 +3,12 @@ package org.unicode.text.utility;
 import org.unicode.cldr.util.CldrUtility;
 
 public class Settings {
-    public static final String SVN_WORKSPACE_DIRECTORY = Utility.fixFileName(CldrUtility.getProperty("SVN_WORKSPACE", "/Users/markdavis/Documents/workspace")) + "/";
+    public static final String BASE_DIRECTORY = Utility.fixFileName(
+    		CldrUtility.getProperty("BASE_DIRECTORY", "/Users/markdavis")) + "/";
+    public static final String SVN_WORKSPACE_DIRECTORY = Utility.fixFileName(
+    		CldrUtility.getProperty("SVN_WORKSPACE", Settings.BASE_DIRECTORY + "Documents/workspace")) + "/";
     public static final String OTHER_WORKSPACE_DIRECTORY = Utility.fixFileName(
-            CldrUtility.getProperty("OTHER_WORKSPACE", "/Users/markdavis/Google Drive/workspace")) + "/";
+            CldrUtility.getProperty("OTHER_WORKSPACE", Settings.BASE_DIRECTORY + "Google Drive/workspace")) + "/";
 
     /**
      * Used for the default version.
@@ -21,7 +24,8 @@ public class Settings {
     public static final String DICT_DIR = DATA_DIR + "dict/";
     
 
-    public static final String GEN_DIR = Utility.fixFileName(CldrUtility.getProperty("GEN_DIR", OTHER_WORKSPACE_DIRECTORY+"Generated")) + "/";
+    public static final String GEN_DIR = Utility.fixFileName(
+    		CldrUtility.getProperty("GEN_DIR", OTHER_WORKSPACE_DIRECTORY+"Generated")) + "/";
     public static final String BIN_DIR = GEN_DIR + "BIN/";
     public static final String GEN_UCD_DIR = GEN_DIR + "ucd/";
     

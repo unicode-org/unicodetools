@@ -51,6 +51,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import org.unicode.text.utility.Settings;
+
 //import com.sun.image.codec.jpeg.JPEGCodec;
 //import com.sun.image.codec.jpeg.JPEGEncodeParam;
 //import com.sun.image.codec.jpeg.JPEGImageEncoder;
@@ -224,7 +226,7 @@ public class Globe {
         // Add the ubiquitous "Hello World" label.
         // JLabel label = new JLabel("Hello World");
         // frame.getContentPane().add(label);
-        final String sname = "/Users/markdavis/workspace/unicode-jsps/WebContent/images/earth-living.jpg";
+        final String sname = Settings.BASE_DIRECTORY + "workspace/unicode-jsps/WebContent/images/earth-living.jpg";
         // "ev11656_land_shallow_topo_8192.tiff";
         // "ev11656_land_shallow_topo_8192.PNG";
         // earthmap1k.jpg";
@@ -553,7 +555,7 @@ public class Globe {
         final File file = new File("jsp/Globe.txt");
         System.out.println(file.getAbsolutePath());
 
-        String globe = "/Users/markdavis/workspace/unicodetools/org/unicode/jsp/Globe.txt";
+        String globe = Settings.BASE_DIRECTORY + "workspace/unicodetools/org/unicode/jsp/Globe.txt";
         System.out.println(new File(globe).getCanonicalPath());
 
         final BufferedReader br = new BufferedReader(

@@ -2,12 +2,11 @@
 package org.unicode.props;
 import java.util.EnumSet;
 import java.util.Set;
-
 import org.unicode.props.PropertyNames.NameMatcher;
+import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Bidi_Class_Values;
 import org.unicode.props.UcdPropertyValues.Bidi_Paired_Bracket_Type_Values;
-import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.Canonical_Combining_Class_Values;
 import org.unicode.props.UcdPropertyValues.Decomposition_Type_Values;
@@ -31,7 +30,6 @@ import org.unicode.props.UcdPropertyValues.NFKD_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UcdPropertyValues.Sentence_Break_Values;
-import org.unicode.props.UcdPropertyValues.Vertical_Orientation_Values;
 import org.unicode.props.UcdPropertyValues.Word_Break_Values;
 
 public enum UcdProperty {
@@ -194,7 +192,6 @@ public enum UcdProperty {
     NFKD_Quick_Check(PropertyType.Enumerated, NFKD_Quick_Check_Values.class, null, "NFKD_QC"),
     Numeric_Type(PropertyType.Enumerated, Numeric_Type_Values.class, null, "nt"),
     Sentence_Break(PropertyType.Enumerated, Sentence_Break_Values.class, null, "SB"),
-    Vertical_Orientation(PropertyType.Enumerated, Vertical_Orientation_Values.class, null, "vo"),
     Word_Break(PropertyType.Enumerated, Word_Break_Values.class, null, "WB"),
 
 		// Binary
@@ -216,9 +213,11 @@ public enum UcdProperty {
     Deprecated(PropertyType.Binary, Binary.class, null, "Dep"),
     Diacritic(PropertyType.Binary, Binary.class, null, "Dia"),
     Emoji(PropertyType.Binary, Binary.class, null, "EM"),
+    Emoji_Component(PropertyType.Binary, Binary.class, null, "ECP"),
     Emoji_Modifier(PropertyType.Binary, Binary.class, null, "EMM"),
     Emoji_Modifier_Base(PropertyType.Binary, Binary.class, null, "EMB"),
     Emoji_Presentation(PropertyType.Binary, Binary.class, null, "EMP"),
+    Emoji_Regional_Indicator(PropertyType.Binary, Binary.class, null, "ERI"),
     Expands_On_NFC(PropertyType.Binary, Binary.class, null, "XO_NFC"),
     Expands_On_NFD(PropertyType.Binary, Binary.class, null, "XO_NFD"),
     Expands_On_NFKC(PropertyType.Binary, Binary.class, null, "XO_NFKC"),

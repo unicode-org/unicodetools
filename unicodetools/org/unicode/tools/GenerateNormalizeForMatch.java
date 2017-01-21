@@ -47,7 +47,7 @@ import com.ibm.icu.text.UnicodeSet.EntryRange;
 
 public class GenerateNormalizeForMatch {
 
-    private static final String dir = "/Users/markdavis/Google Drive/workspace/DATA/frequency/";
+    private static final String dir = Settings.BASE_DIRECTORY + "Google Drive/workspace/DATA/frequency/";
     private static final String GOOGLE_FOLDING_TXT = "google_folding.txt";
     private static final Pattern SPACES = Pattern.compile("[,\\s]+");
 
