@@ -10,6 +10,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
@@ -18,7 +19,7 @@ import com.ibm.icu.impl.Row;
 public class LanguageQuadgrams {
 
     public static void main(String[] args) throws IOException {
-        final BufferedReader in = FileUtilities.openUTF8Reader("/Users/markdavis/Downloads/", "languageQuadgrams.txt");
+        final BufferedReader in = FileUtilities.openUTF8Reader(Settings.BASE_DIRECTORY + "Downloads/", "languageQuadgrams.txt");
         while (true) {
             final String line = in.readLine();
             if (line == null) {

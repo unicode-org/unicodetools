@@ -3,13 +3,15 @@ package org.unicode.bidi;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+import org.unicode.text.utility.Settings;
+
 import com.ibm.icu.lang.UCharacterEnums.ECharacterDirection;
 
 public class BidiTestIcu4jConformance {
     static com.ibm.icu.text.Bidi bidi;
 
     public static void main(String[] args) throws Exception {
-        final String file = "/Users/markdavis/Desktop/BidiConformance.txt";
+        final String file = Settings.BASE_DIRECTORY + "Desktop/BidiConformance.txt";
         System.out.println("Reading: " + file);
         String result = "";
         final BufferedReader in = new BufferedReader(new FileReader(file));

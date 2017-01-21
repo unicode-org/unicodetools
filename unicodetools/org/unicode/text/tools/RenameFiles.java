@@ -12,6 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.RegexUtilities;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.text.UnicodeSet;
@@ -39,7 +40,7 @@ public class RenameFiles {
             ;
 
     private static final String DIR_OF_FILES_TO_CHANGE = 
-            "/Users/markdavis/Google Drive/workspace/DATA/emoji/twitter/"
+            Settings.BASE_DIRECTORY + "Google Drive/workspace/DATA/emoji/twitter/"
             // Settings.UNICODE_DRAFT_DIRECTORY + "/reports/tr51/images/" + OUTPUT_PLATFORM_PREFIX
             ;
     

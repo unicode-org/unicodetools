@@ -117,6 +117,8 @@ idtype	; rec	; Recommended
 # @-missing: 0000..10FFFF; Emoji_Presentation  	; No
 # @-missing: 0000..10FFFF; Emoji_Modifier  	; No
 # @-missing: 0000..10FFFF; Emoji_Modifier_Base  	; No
+# @-missing: 0000..10FFFF; Emoji_Regional_Indicator  	; No
+# @-missing: 0000..10FFFF; Emoji_Component  	; No
 
 sc ; Jpan                             ; Japanese
 sc ; Kore                             ; Korean
