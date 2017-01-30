@@ -8,7 +8,8 @@ import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UnicodeSet;
 
 public final class EmojiIterator implements Iterable<String>, Iterator<String> {
-    private static UnicodeSet COMBINING = new UnicodeSet("[:M:]");
+    private static UnicodeSet COMBINING = new UnicodeSet("[:M:]").freeze();
+    private static UnicodeSet TAGS = new UnicodeSet(0xE0020,0xE007F).freeze();
 
     private int[] line;
     private int pos;
@@ -79,6 +80,19 @@ public final class EmojiIterator implements Iterable<String>, Iterator<String> {
                     break;
                 }
                 current = line[pos++];
+            }
+            
+            int lastTag = -1;
+            while (TAGS.contains(current)) {
+                lastTag = current;
+                result.appendCodePoint(current);
+                if (pos >= line.length) {
+                    break main;
+                }
+                current = line[pos++];
+            }
+            if (lastTag != -1 && lastTag != Emoji.TAG_TERM_CHAR) {
+            	throw new IllegalArgumentException("Bad emoji tag sequence " + result);
             }
 
             // add any combining marks

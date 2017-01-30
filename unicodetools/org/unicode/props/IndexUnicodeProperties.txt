@@ -107,7 +107,7 @@ SentenceBreakProperty ; Sentence_Break
 WordBreakProperty ; Word_Break
 BidiBrackets ; Bidi_Paired_Bracket ; 1
 BidiBrackets ; Bidi_Paired_Bracket_Type ; 2
-VerticalOrientation ; Vertical_Orientation
+# VerticalOrientation ; Vertical_Orientation
 
 #
 NameAliases ; Name_Alias
@@ -309,5 +309,5 @@ emoji/*/emoji-data; Emoji
 emoji/*/emoji-data; Emoji_Presentation
 emoji/*/emoji-data; Emoji_Modifier
 emoji/*/emoji-data; Emoji_Modifier_Base
-emoji/*/emoji-data; Emoji_Regional_Indicator
+#emoji/*/emoji-data; Emoji_Regional_Indicator
 emoji/*/emoji-data; Emoji_Component

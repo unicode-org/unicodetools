@@ -163,7 +163,8 @@ public class EmojiImageData {
 			for (Emoji.Source source : platforms2) {
 				final UnicodeSet us = breakdown.getMissing(source);
 				final UnicodeSet missing = new UnicodeSet(us).removeAll(common);
-				GenerateEmoji.displayUnicodeSet(out, missing, Style.bestImage, 0, 1, 1, "../../emoji/charts/full-emoji-list.html", GenerateEmoji.EMOJI_COMPARATOR, Visibility.external);
+				GenerateEmoji.displayUnicodeSet(out, missing, Style.bestImage, 0, 1, 1, 
+						"../../emoji/charts/full-emoji-list.html", GenerateEmoji.EMOJI_COMPARATOR, Visibility.external);
 			}
 			out.print("</tr>");
 		}
@@ -217,6 +218,7 @@ public class EmojiImageData {
 			Breakdown.add(result, "singletons", version, last.getSingletonsWithoutDefectives(), current.getSingletonsWithoutDefectives());
 			Breakdown.add(result, "keycaps", version, last.getKeycapSequences(), current.getKeycapSequences());
 			Breakdown.add(result, "flags", version, last.getFlagSequences(), current.getFlagSequences());
+			Breakdown.add(result, "tags", version, last.getTagSequences(), current.getTagSequences());
 			Breakdown.add(result, "modifiers", version, last.getModifierSequences(), current.getModifierSequences());
 			Breakdown.add(result, "zwj", version, last.getZwjSequencesNormal(), current.getZwjSequencesNormal());
 		}

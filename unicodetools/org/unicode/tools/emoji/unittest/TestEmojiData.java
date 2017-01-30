@@ -30,6 +30,7 @@ import com.ibm.icu.text.UnicodeSet;
 public class TestEmojiData extends TestFmwkPlus {
 
     public static void main(String[] args) {
+    	System.out.println("Version: " + Emoji.VERSION_TO_GENERATE + "; isBeta: " + Emoji.IS_BETA);
         new TestEmojiData().run(args);
     }
 
@@ -72,6 +73,25 @@ public class TestEmojiData extends TestFmwkPlus {
             final UnicodeSet set = chars.getSet(value);
             System.out.println(value + "\t" + set.size() + "\t" + set.toPattern(false));
         }
+        Set<String> testSet = new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare);
+        EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().addAllTo(testSet);
+        
+        ZwjType oldZwjType = ZwjType.na; 
+        String last = "";
+        for (String s : testSet) {
+            ZwjType zwjType = ZwjType.getType(s);
+            if (zwjType == ZwjType.na) {
+            	continue;
+            }
+            if (zwjType.compareTo(oldZwjType) < 0 && oldZwjType != ZwjType.na) {
+            	errln(zwjType + " < " + oldZwjType 
+            			+ ", but they should be ascending"
+            			+ "\n\t" + oldZwjType + "\t" + last 
+            			+ "\n\t" + zwjType + "\t" + s);
+            }
+            last = s;
+            oldZwjType = zwjType;
+        }
     }
 
     public void TestOrderRules() throws Exception {
@@ -86,21 +106,34 @@ public class TestEmojiData extends TestFmwkPlus {
         //            }
         //        }
         StringBuilder outText = new StringBuilder();
-        EmojiOrder.STD_ORDER.appendCollationRules(outText, EmojiData.EMOJI_DATA.getEmojiForSortRules());
+        EmojiOrder.STD_ORDER.appendCollationRules(outText, EmojiData.EMOJI_DATA.getEmojiForSortRules(), EmojiOrder.GENDER_NEUTRALS);
         String rules = outText.toString();
+        UnicodeSet modifierBases = EmojiData.EMOJI_DATA.getModifierBases();
+        UnicodeSet modifiers = EmojiData.EMOJI_DATA.getModifiers();
         try {
             ruleBasedCollator = new RuleBasedCollator(rules);
             Set<String> testSet = new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare);
             EmojiData.EMOJI_DATA.getAllEmojiWithDefectives().addAllTo(testSet);
             String lastItem = "";
+            String highestWithModifierBase = null;
+            String lowestWithModifierBase = null;
             for (String item : testSet) {
-                if (ruleBasedCollator.compare(lastItem, item) > 0) {
+                if (ruleBasedCollator.compare(lastItem, item) > 0 
+                		&& !modifiers.contains(item)) {
                     errln("Out of order: " + lastItem + ">" + item);
                 } else {
                     logln(lastItem + "≤" + item);
                 }
                 lastItem = item;
+				if (modifierBases.containsSome(item)) {
+                	if (lowestWithModifierBase == null) {
+                		lowestWithModifierBase = item;
+                	}
+                	highestWithModifierBase = item;
+                }
             }
+            System.out.println("\nlowestWithModifierBase " + lowestWithModifierBase);
+            System.out.println("\nhighestWithModifierBase " + highestWithModifierBase);
         } catch (Exception e) {
             errln("Can't build rules: analysing problem…");
             // figure out where the problem is
@@ -170,7 +203,7 @@ public class TestEmojiData extends TestFmwkPlus {
 
     public void TestAnnotationsCompleteness() {
         EmojiAnnotations em = checkAnnotations("en", null);
-        checkAnnotations("de", em);
+        //checkAnnotations("de", em);
     }
 
     private EmojiAnnotations checkAnnotations(final String localeStr, EmojiAnnotations em2) {
@@ -233,10 +266,11 @@ public class TestEmojiData extends TestFmwkPlus {
                 } else {
                     tts = tts == null ? "???" : tts;
                     keywords = keywords == null ? Collections.singleton("???") : keywords;
-                    missing.add(s 
+                    Set<String> keys = em2.getKeys(s);
+					missing.add(s 
                             + "\t" + Utility.hex(s.replace(Emoji.EMOJI_VARIANT_STRING, ""), "_").toLowerCase(Locale.ENGLISH) 
                             + "\t" + em2.getShortName(s) 
-                            + "\t" + CollectionUtilities.join(em2.getKeys(s), " | ") 
+                            + "\t" + (keys == null ? null : CollectionUtilities.join(keys, " | "))
                             + "\t\t\t" + tts 
                             + "\t" + CollectionUtilities.join(keywords, " | "));
                 }

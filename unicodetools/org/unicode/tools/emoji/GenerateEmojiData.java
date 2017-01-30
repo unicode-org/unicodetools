@@ -53,7 +53,7 @@ public class GenerateEmojiData {
 	public static final UnicodeSet genderBase = new UnicodeSet(
 			"[👲 👳  💂  👯  🕴   👱 👮  🕵 💆" + " 💇 👰 🙍 🙎 🙅 🙆 💁 🙋 🗣 👤 👥 🙇 🚶 🏃 🚴 🚵 🚣 🛀 🏄 🏊 ⛹ 🏋"
 					+ " \\U0001F935 \\U0001F926 \\U0001F937 \\U0001F938 \\U0001F93B \\U0001F93C \\U0001F93D \\U0001F93E]")
-							.freeze();
+			.freeze();
 	public static final UnicodeSet hairBase = new UnicodeSet(
 			"[👶 👮 👲 👳 👸 🕵 👼 💆 💇 👰 🙍 🙎 🙅 🙆 💁 🙋 🙇 " + "🚶 🏃 💃 🚣  🏄 🏊 ⛹ 🏋 " + "👦 👧  👩 👴 👵  "
 					+ "\\U0001F935 \\U0001F926 \\U0001F937 \\U0001F938 \\U0001F93B \\U0001F93C \\U0001F93D \\U0001F93E"
@@ -63,26 +63,26 @@ public class GenerateEmojiData {
 					+ "\\U0001F93A \\U0001F93D \\U0001F93E \\U0001F946]").freeze();
 	private static final boolean SHOW = false;
 
-public enum ZwjType {
-	family, role, genderRole, activity, gestures, other, na;
-	public static ZwjType getType(String s) {
-		if (!s.contains(Emoji.JOINER_STRING)) {
-			return na;
+	public enum ZwjType {
+		roleWithObject, roleWithSign, gestures, activity, family, other, na;
+		public static ZwjType getType(String s) {
+			if (!s.contains(Emoji.JOINER_STRING)) {
+				return na;
+			}
+			int[] cps = CharSequences.codePoints(s);
+			ZwjType zwjType = ZwjType.other;
+			if (Emoji.FAMILY_MARKERS.contains(cps[cps.length - 1])) { // last character is in boy..woman
+				zwjType = family;
+			} else if (Emoji.ACTIVITY_MARKER.containsSome(s)) {
+				zwjType = activity;
+			} else if (Emoji.ROLE_MARKER.containsSome(s)) { //  || Emoji.FAMILY_MARKERS.containsSome(s)
+				zwjType = Emoji.GENDER_MARKERS.containsSome(s) ? roleWithSign : roleWithObject;
+			} else if (Emoji.GENDER_MARKERS.containsSome(s)) {
+				zwjType = gestures;
+			}
+			return zwjType;
 		}
-		int[] cps = CharSequences.codePoints(s);
-		ZwjType zwjType = ZwjType.other;
-		if (Emoji.FAMILY_MARKERS.contains(cps[cps.length - 1])) { // last character is in boy..woman
-			zwjType = family;
-		} else if (Emoji.ACTIVITY_MARKER.containsSome(s)) {
-			zwjType = activity;
-		} else if (Emoji.ROLE_MARKER.containsSome(s) || Emoji.FAMILY_MARKERS.containsSome(s)) {
-			zwjType = Emoji.GENDER_MARKERS.containsSome(s) ? genderRole : role;
-		} else if (Emoji.GENDER_MARKERS.containsSome(s)) {
-			zwjType = gestures;
-		}
-		return zwjType;
 	}
-}
 
 	public static <T> void printData(UnicodeMap<String> extraNames) throws IOException {
 
@@ -93,7 +93,7 @@ public enum ZwjType {
 			UnicodeSet emoji_presentation = EmojiData.EMOJI_DATA.getEmojiPresentationSet();
 			UnicodeSet emoji_modifiers = EmojiData.MODIFIERS;
 			UnicodeSet emoji_modifier_bases = EmojiData.EMOJI_DATA.getModifierBases();
-			UnicodeSet emoji_regional_indicators = EmojiData.EMOJI_DATA.getRegionalIndicators();
+			//UnicodeSet emoji_regional_indicators = EmojiData.EMOJI_DATA.getRegionalIndicators();
 			UnicodeSet emoji_components = EmojiData.EMOJI_DATA.getEmojiComponents();
 			outText2.println(Utility.getBaseDataHeader("emoji-data", 51, "Emoji Data", Emoji.VERSION_STRING));
 			int width = Math.max("Emoji".length(),
@@ -110,8 +110,8 @@ public enum ZwjType {
 			printer.show(outText2, "Emoji_Presentation", null, width, 14, emoji_presentation, true, true, false);
 			printer.show(outText2, "Emoji_Modifier", null, width, 14, emoji_modifiers, true, true, false);
 			printer.show(outText2, "Emoji_Modifier_Base", null, width, 14, emoji_modifier_bases, true, true, false);
-			printer.show(outText2, "Emoji_Regional_Indicator", null, width, 14, emoji_regional_indicators, true, true,
-					false);
+			//			printer.show(outText2, "Emoji_Regional_Indicator", null, width, 14, emoji_regional_indicators, true, true,
+			//					false);
 			printer.show(outText2, "Emoji_Component", null, width, 14, emoji_components, true, true, false);
 			outText2.println("\n#EOF");
 		}
@@ -128,7 +128,10 @@ public enum ZwjType {
 			printer.show(out, "Emoji_Flag_Sequence",
 					"This list does not include deprecated or macroregion flags, except for UN and EU.\n"
 							+ "# See Annex B of TR51 for more information.",
-					width, 14, EmojiData.EMOJI_DATA.getFlagSequences(), true, false, true);
+							width, 14, EmojiData.EMOJI_DATA.getFlagSequences(), true, false, true);
+			printer.show(out, "Emoji_Tag_Sequence",
+					"See Annex C of TR51 for more information.",
+					width, 14, EmojiData.EMOJI_DATA.getTagSequences(), true, false, true);
 			printer.show(out, "Emoji_Modifier_Sequence", null, width, 14, EmojiData.EMOJI_DATA.getModifierSequences(),
 					false, false, true);
 			out.write("\n#EOF\n");
@@ -151,9 +154,9 @@ public enum ZwjType {
 			}
 			printer.show(out, "Emoji_ZWJ_Sequence", "Family", width, 44, types.getSet(ZwjType.family), false, false,
 					true);
-			printer.show(out, "Emoji_ZWJ_Sequence", "Gendered Role, with object", width, 44, types.getSet(ZwjType.role),
+			printer.show(out, "Emoji_ZWJ_Sequence", "Gendered Role, with object", width, 44, types.getSet(ZwjType.roleWithObject),
 					false, false, true);
-			printer.show(out, "Emoji_ZWJ_Sequence", "Gendered Role", width, 44, types.getSet(ZwjType.genderRole), false,
+			printer.show(out, "Emoji_ZWJ_Sequence", "Gendered Role", width, 44, types.getSet(ZwjType.roleWithSign), false,
 					false, true);
 			printer.show(out, "Emoji_ZWJ_Sequence", "Gendered Activity", width, 44, types.getSet(ZwjType.activity),
 					false, false, true);
@@ -262,9 +265,9 @@ public enum ZwjType {
 					tabber.add(65, Tabber.LEFT);
 				}
 				tabber.add(2, Tabber.LEFT) // hash
-						.add(3, Tabber.RIGHT) // version
-						.add(6, Tabber.RIGHT) // count
-						.add(10, Tabber.LEFT) // character
+				.add(3, Tabber.RIGHT) // version
+				.add(6, Tabber.RIGHT) // count
+				.add(10, Tabber.LEFT) // character
 				;
 
 				// # @missing: 0000..10FFFF; Bidi_Mirroring_Glyph; <none>
@@ -322,7 +325,7 @@ public enum ZwjType {
 											+ (showName ? ""
 													: "\t" + EmojiData.EMOJI_DATA.getName(s, false,
 															CandidateData.getInstance())))
-											+ "\n");
+									+ "\n");
 						}
 					} else if (rangeCount == 1) {
 						final boolean isException = !s.equals(EXCEPTION_ZWJ);
@@ -339,17 +342,17 @@ public enum ZwjType {
 					} else {
 						final String e = UTF16.valueOf(range.codepointEnd);
 						out.write(tabber.process(Utility.hex(range.codepoint) + ".." + Utility.hex(range.codepointEnd)
-								+ "\t" + titleField
-								+ (showName ? "\t; "
-										+ EmojiData.EMOJI_DATA.getName(s, false, CandidateData.getInstance()) + " "
-										: "")
-								+ "\t#" + "\t" + getAgeString(range.value) + "\t["
-								+ (range.codepointEnd - range.codepoint + 1) + "] " + "\t("
-								+ addEmojiVariant(s, addVariants) + ".." + addEmojiVariant(e, addVariants) + ")"
-								+ (showName ? ""
-										: "\t" + EmojiData.EMOJI_DATA.getName(s, false, CandidateData.getInstance())
-												+ ".."
-												+ EmojiData.EMOJI_DATA.getName(e, false, CandidateData.getInstance())))
+						+ "\t" + titleField
+						+ (showName ? "\t; "
+								+ EmojiData.EMOJI_DATA.getName(s, false, CandidateData.getInstance()) + " "
+								: "")
+						+ "\t#" + "\t" + getAgeString(range.value) + "\t["
+						+ (range.codepointEnd - range.codepoint + 1) + "] " + "\t("
+						+ addEmojiVariant(s, addVariants) + ".." + addEmojiVariant(e, addVariants) + ")"
+						+ (showName ? ""
+								: "\t" + EmojiData.EMOJI_DATA.getName(s, false, CandidateData.getInstance())
+								+ ".."
+								+ EmojiData.EMOJI_DATA.getName(e, false, CandidateData.getInstance())))
 								+ "\n");
 					}
 				}
@@ -413,7 +416,7 @@ public enum ZwjType {
 		// return Emoji.getEmojiVariant(s, Emoji.EMOJI_VARIANT_STRING,
 		// EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.text));
 	}
-	
+
 	// ##############################3
 	public static void main(String[] args) throws IOException {
 		UnicodeMap<ZwjType> types = new UnicodeMap<>();
