@@ -6,7 +6,7 @@ EM ; Emoji
 EMP ; Emoji_Presentation
 EMM ; Emoji_Modifier
 EMB ; Emoji_Modifier_Base
-ERI ; Emoji_Regional_Indicator
+#ERI ; Emoji_Regional_Indicator
 ECP ; Emoji_Component
 
 # ================================================

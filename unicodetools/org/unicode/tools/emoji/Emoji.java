@@ -133,7 +133,7 @@ public class Emoji {
         apple("Appl"), google("Goog"), twitter("Twtr."), emojione("One"),
         fb("FB", "Facebook"), fbm("FBM", "Messenger (Facebook)"), samsung("Sams."), 
         windows("Wind."),
-        ref, proposed, emojipedia, emojixpress, emojination, adobe, sample,
+        ref, emojipedia, emojixpress, emojination, adobe, sample, proposed, 
         // gifs; don't change order!
         gmail("GMail"), sb("SB", "SoftBank"), dcm("DCM", "DoCoMo"), kddi("KDDI", "KDDI");
         
@@ -206,6 +206,9 @@ public class Emoji {
         }
     }
 
+
+    public static final int TAG_TERM_CHAR = 0xE007F;
+    public static final String TAG_TERM = UTF16.valueOf(TAG_TERM_CHAR);
 
     public static final char KEYCAP_MARK = '\u20E3';
     public static final String KEYCAP_MARK_STRING = String.valueOf(KEYCAP_MARK);
@@ -321,17 +324,22 @@ public class Emoji {
     .add(JOINER)
     .freeze();
 
-    public static final String PERSON = "\u263F";
+    //public static final String PERSON = "\u263F";
     public static final String FEMALE = "\u2640";
     public static final String MALE = "\u2642";
     
-	private static final int BOY = 0x1F466;
-    private static final int WOMAN = 0x1F469;
-    
+    public static final int BOY = 0x1F466;
+    public static final int WOMAN = 0x1F469;
+	public static final int ADULT_CP = 0x1f9d1;
+	public static final String ADULT = UTF16.valueOf(ADULT_CP);
+	public static final String WOMAN_STR = UTF16.valueOf(WOMAN);
+
     public static final UnicodeSet FAMILY_MARKERS = new UnicodeSet().add(BOY, WOMAN).freeze();
     public static final UnicodeSet ACTIVITY_MARKER = new UnicodeSet("[🤱 🧖 🧗 🧘🤰 💆 💇 🚶 🏃 💃 🕺 👯 🕴 🗣 👤 👥 🏌 🏄 🚣 🏊 ⛹ 🏋 🚴 🚵 🤸 🤼-🤾 🤹]").freeze();
-    public static final UnicodeSet GENDER_MARKERS = new UnicodeSet().add(FEMALE).add(MALE).add(PERSON).freeze();
-    public static final UnicodeSet ROLE_MARKER = new UnicodeSet("[\\U0001F9D9-\\U0001F9DF 👱 👮 👳 👷 💂 🕵]").freeze();
+    public static final UnicodeSet GENDER_MARKERS = new UnicodeSet().add(FEMALE).add(MALE)
+//    		.add(PERSON)
+    		.freeze();
+    public static final UnicodeSet ROLE_MARKER = new UnicodeSet("[\\U0001F9D1 \\U0001F468 \\U0001F469 \\U0001F9D9-\\U0001F9DF 👱 👮 👳 👷 💂 🕵]").freeze();
     
     static final int FIRST_REGIONAL = 0x1F1E6;
     static final int LAST_REGIONAL = 0x1F1FF;

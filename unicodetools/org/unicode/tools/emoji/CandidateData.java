@@ -14,6 +14,7 @@ import org.unicode.cldr.util.CldrUtility;
 import org.unicode.props.UnicodeRelation;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
+import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
@@ -22,6 +23,7 @@ import com.google.common.collect.ImmutableList.Builder;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.Transform;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class CandidateData implements Transform<String, String> {
@@ -32,6 +34,7 @@ public class CandidateData implements Transform<String, String> {
 		_RELEASED,
 		_2015Q1, _2015Q2, _2015Q3, _2015Q4,
 		_2016Q1, _2016Q2, _2016Q3, _2016Q4,
+		_2017Q1
 		;
 		public boolean isFuture() {
 			return compareTo(_2016Q1) >= 0;
@@ -134,6 +137,10 @@ public class CandidateData implements Transform<String, String> {
 
 	public String getName(String source) {
 		return names.get(source);
+	}
+
+	public String getShorterName(String source) {
+		return transform(source);
 	}
 
 	public Set<String> getAnnotations(String source) {
@@ -244,28 +251,48 @@ public class CandidateData implements Transform<String, String> {
 	@Override
 	public String transform(String source) {
 		String temp = getName(source);
-		if (temp == null && Emoji.GENDER_MARKERS.containsSome(source)) {
-			String replacement = null;
-			if (source.endsWith(Emoji.JOINER_STR + Emoji.MALE)) {
-				replacement = "MAN";
-				temp = getName(source.substring(0, (Emoji.JOINER_STR + Emoji.MALE).length()));
-			} else if (source.endsWith(Emoji.JOINER_STR + Emoji.FEMALE)) {
-				replacement = "WOMAN";
-				temp = getName(source.substring(0, (Emoji.JOINER_STR + Emoji.MALE).length()));
+		main: {
+			if ("I LOVE YOU HAND SIGN".equals(temp)) {
+				temp = "LOVE-YOU HAND";
+				break main;
 			}
 			if (temp != null) {
-				if (temp.contains("PERSON")) {
-					temp = temp.replaceAll("PERSON", replacement);
-				} else if (temp.contains("person")) {
-					temp = temp.replaceAll("person", replacement);
-				} else {
-					temp = replacement + " " + temp;
+				break main;
+			}
+			switch(ZwjType.getType(source)) {
+			default:
+				break;
+			case activity:
+			case roleWithSign:
+			case gestures:
+				String replacement = null;
+				int trailPos = source.lastIndexOf(Emoji.JOINER_STR);
+				if (trailPos < 0) {
+					break main;
+				}
+				String ending = source.substring(trailPos);
+				switch (ending.replace(Emoji.EMOJI_VARIANT_STRING, "")) {
+				case Emoji.JOINER_STR + Emoji.MALE:
+					replacement = "MAN";
+				break;
+				case Emoji.JOINER_STR + Emoji.FEMALE:
+					replacement = "WOMAN";
+
+				}
+				if (replacement != null) {
+					temp = getName(source.substring(0, source.length() - ending.length()));
+				}
+				if (temp != null) {
+					if (temp.contains("PERSON")) {
+						temp = temp.replaceAll("PERSON", replacement);
+					} else if (temp.contains("person")) {
+						temp = temp.replaceAll("person", replacement);
+					} else {
+						temp = replacement + " " + temp;
+					}
 				}
 			}
-		} else if ("I LOVE YOU HAND SIGN".equals(temp)) {
-			temp = "LOVE-YOU HAND";
 		}
-
 		return temp == null ? temp : temp.toLowerCase(Locale.ROOT);
 	}
 }

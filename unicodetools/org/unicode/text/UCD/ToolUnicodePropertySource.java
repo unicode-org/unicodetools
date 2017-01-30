@@ -371,6 +371,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 return ucd.getVertical_OrientationID(codepoint);
             }
         }.setValues(UCD_Names.Vertical_Orientation, UCD_Names.Vertical_Orientation_SHORT)
+        .swapFirst2ValueAliases()
         .setMain("Vertical_Orientation", "vo", UnicodeProperty.ENUMERATED, version);
         add(vo);
 
