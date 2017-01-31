@@ -65,6 +65,12 @@ public class GenerateAnnotations {
 					+ "</annotation>");
 			System.out.println();
 		}
+		
+		for (String s : missed) {
+			System.out.println("**** Fetching from candidateData, not CLDR: " + s + "\t" + Utility.hex(s));
+
+		}
+
 	}
 
 	static private String MAN = UTF16.valueOf(0x1F468);
@@ -112,18 +118,31 @@ public class GenerateAnnotations {
 	static private int ADULT_CP = ADULT.codePointAt(0);
 
 	private static String getName(String source) {
-		String name = english.getShortName(source, candidateData);
+		String name = getShortName(source);
 		if (name == null) {
 			int first = source.codePointAt(0);
 			if (first == ADULT_CP) {
 				String seq = MAN + source.substring(ADULT.length());
-				name = english.getShortName(seq, candidateData);
+				name = getShortName(seq);
 				if (name != null) {
 					name =  name.startsWith("man ") ? name.substring(4) : "??"+name;
 				}
 			}
 		}
 		return name;
+	}
+
+	static final UnicodeSet missed = new UnicodeSet();
+	
+	private static String getShortName(String source) {
+		String result = english.getShortName(source);
+		if (result == null) {
+			result = english.getShortName(source, candidateData);
+			if (result != null) {
+				missed.add(source);
+			}
+		}
+		return result;
 	}
 
 	private static void showStats(VersionInfo... versions) {

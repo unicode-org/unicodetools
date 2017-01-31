@@ -429,13 +429,11 @@ public class EmojiOrder {
         return s.endsWith(Emoji.EMOJI_VARIANT_STRING) ? s.substring(0, s.length()-1) : s;
     }
 
+    static final UnicodeSet NEEDS_QUOTE = new UnicodeSet("[*#']").freeze();
+    
     private String quoteSyntax(String source) {
-        for (String s : Arrays.asList("*", "#")) { //, "\u20E3", "\u20E0", Emoji.EMOJI_VARIANT_STRING)) {
-            if (source.contains(s)) {
-                source = source.replace(s, "\\" + s);
-            }
-        }
-        return source;
+    	return NEEDS_QUOTE.containsNone(source) ? source :
+    		"'" + source.replace("'", "''") + "'";
     }
 
     public static Set<String> sort(Comparator<String> comparator, UnicodeSet... characters) {
