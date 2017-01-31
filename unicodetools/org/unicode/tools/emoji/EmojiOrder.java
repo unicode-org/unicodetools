@@ -429,7 +429,7 @@ public class EmojiOrder {
         return s.endsWith(Emoji.EMOJI_VARIANT_STRING) ? s.substring(0, s.length()-1) : s;
     }
 
-    static final UnicodeSet NEEDS_QUOTE = new UnicodeSet("[*#']").freeze();
+    static final UnicodeSet NEEDS_QUOTE = new UnicodeSet("[[:Pattern_White_Space:][\\&\\[\\]#@!<;,=*]]").freeze();
     
     private String quoteSyntax(String source) {
     	return NEEDS_QUOTE.containsNone(source) ? source :
