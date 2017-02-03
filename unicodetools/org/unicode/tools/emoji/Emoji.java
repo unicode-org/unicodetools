@@ -70,6 +70,14 @@ public class Emoji {
             VERSION2, UCD8,
             VERSION1, UCD8
             );
+    
+    public static Map<VersionInfo, String> EMOJI_TO_DATE = ImmutableMap.of(
+            VERSION5, "2017H1",
+            VERSION4, "2016-11-22",
+            VERSION3, "2016-06-03",
+            VERSION2, "2015-11-12",
+            VERSION1, "2015-06-09"
+            );
 
     public static final VersionInfo VERSION_LAST_RELEASED_UNICODE = EMOJI_TO_UNICODE_VERSION.get(VERSION_LAST_RELEASED);
     public static final VersionInfo VERSION_BETA_UNICODE = EMOJI_TO_UNICODE_VERSION.get(VERSION_BETA);
