@@ -1041,4 +1041,14 @@ public class EmojiData {
 	public UnicodeSet getTagSequences() {
 		return emojiTagSequences;
 	}
+	
+	static final UnicodeSet TYPICAL_DUP = new UnicodeSet("[{👩‍❤️‍💋‍👨} {👨‍👩‍👧‍👦} {👩‍❤️‍👨} {\u200D\u2642}]").freeze();
+	
+	public static boolean isTypicallyDuplicate(String emoji) {
+		boolean result = TYPICAL_DUP.containsSome(emoji);
+//		if (result == true) {
+//			System.out.println(emoji + "\t dup");
+//		}
+		return result;
+	}
 }
