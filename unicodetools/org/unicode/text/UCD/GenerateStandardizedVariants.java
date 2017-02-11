@@ -133,13 +133,14 @@ public final class GenerateStandardizedVariants implements UCD_Types {
 
         final PrintWriter out = outfile.out;
 
+        final UCD ucd = Default.ucd();
         final String version = Default.ucd().getVersion();
         final String lastVersion = Utility.getPreviousUcdVersion(version);
         final int lastDot = version.lastIndexOf('.');
         String updateDirectory;
         String lastDirectory;
         String partialFilename;
-        if (version.compareTo("4.1.0") < 0) {
+        if (ucd.getCompositeVersion() < 0x40100) {  // version < 4.1.0
             updateDirectory = version.substring(0,lastDot) + "-Update";
             final int updateV = version.charAt(version.length()-1) - '0';
             if (updateV != 0) {
@@ -148,9 +149,9 @@ public final class GenerateStandardizedVariants implements UCD_Types {
             if (DEBUG) {
                 System.out.println("updateDirectory: " + updateDirectory);
             }
-            partialFilename = "StandardizedVariants-" + Default.ucd().getVersion();
-        } else if (version.compareTo("4.1.0") == 0) {
-            updateDirectory = version.substring(0,lastDot) + "/ucd";
+            partialFilename = "StandardizedVariants-" + ucd.getVersion();
+        } else if (ucd.getCompositeVersion() == 0x40100) {  // version == 4.1.0
+            updateDirectory = "4.1/ucd";
             partialFilename = "StandardizedVariants";
         } else {
             updateDirectory = version + "/ucd";

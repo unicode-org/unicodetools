@@ -426,7 +426,7 @@ public class TestJsp  extends TestFmwk {
         final Map<ULocale,Counter<Subtag>> canDisplay = new TreeMap<ULocale,Counter<Subtag>>(new Comparator<ULocale>() {
             @Override
             public int compare(ULocale o1, ULocale o2) {
-                return o1.toLanguageTag().compareTo(o2.toString());
+                return o1.toLanguageTag().compareTo(o2.toLanguageTag());
             }
         });
 

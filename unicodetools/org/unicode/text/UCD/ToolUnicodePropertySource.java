@@ -1542,11 +1542,12 @@ isTitlecase(X) is false.
             }
             if (needAgeCache) {
                 for (int i = UCD_Types.AGE11; i < UCD_Types.LIMIT_AGE; ++i) {
-                    final String version = UCD_Types.AGE_VERSIONS[i];
-                    if (version.compareTo(ucd.getVersion()) > 0) {
+                    final String versionString = UCD_Types.AGE_VERSIONS[i];
+                    VersionInfo version = VersionInfo.getInstance(versionString);
+                    if (version.compareTo(ucd.getVersionInfo()) > 0) {
                         break;
                     }
-                    ucdCache[i] = UCD.make(version);
+                    ucdCache[i] = UCD.make(versionString);
                 }
                 needAgeCache = false;
             }

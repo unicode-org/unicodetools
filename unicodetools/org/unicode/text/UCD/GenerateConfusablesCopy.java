@@ -3077,7 +3077,7 @@ public class GenerateConfusablesCopy {
                 int debug = 0;
             }
             String age = AGE_MAP.get(cp);
-            if (latest == null || age.compareTo(latest) > 0) {
+            if (latest == null || Utility.NumericComparator.INSTANCE.compare(age, latest) > 0) {
                 latest = age;
             }
         }

@@ -28,6 +28,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -39,6 +40,7 @@ import org.unicode.text.UCD.UCD_Types;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Replaceable;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
@@ -779,6 +781,18 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         return (aEnd - aStart) - (bEnd - bStart);
     }
 
+    public static final class NumericComparator implements Comparator<String> {
+        public static final NumericComparator INSTANCE = new NumericComparator();
+        // kn turns on numeric ordering: "10" > "9"
+        private final Collator coll = Collator.getInstance(
+                Locale.forLanguageTag("und-u-kn")).freeze();
+
+        @Override
+        public int compare(String s1, String s2) {
+            return coll.compare(s1, s2);
+        }
+    }
+    
     /**
      * Joins an array together, using divider between the pieces
      */

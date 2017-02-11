@@ -16,7 +16,7 @@ import org.unicode.jsp.PropertyMetadata;
 import org.unicode.jsp.UnicodeJsp;
 import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.XPropertyFactory;
-
+import org.unicode.text.utility.Utility;
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row.R4;
@@ -134,7 +134,7 @@ public class TestProperties extends TestFmwk {
             if (UnicodeProperty.equalNames("age", prop)) {
                 expectedNormal = new UnicodeSet(expectedNormal);
                 for (final String other : values) {
-                    if (other.compareTo(value) < 0) {
+                    if (Utility.NumericComparator.INSTANCE.compare(other, value) < 0) {
                         expectedNormal.addAll(property.getSet(other));
                     }
                 }

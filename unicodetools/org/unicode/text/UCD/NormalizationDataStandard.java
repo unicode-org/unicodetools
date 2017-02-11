@@ -40,7 +40,7 @@ class NormalizationDataStandard implements NormalizationData {
                     final int len = UTF16.countCodePoint(s);
                     if (len != 2) {
                         if (len > 2) {
-                            if (ucd.getVersion().compareTo("3.0.0") >= 0) {
+                            if (ucd.getCompositeVersion() >= 0x30000) {  // version >= 3.0.0
                                 throw new IllegalArgumentException("BAD LENGTH: " + len + ucd.toString(i));
                             }
                         }
