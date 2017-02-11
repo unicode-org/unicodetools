@@ -1,3 +1,4 @@
+Adlam ; Adlam
 Aegean_Numbers	;	Aegean_Numbers
 Ahom	;	Ahom
 Alchemical	;	Alchemical_Symbols
@@ -51,6 +52,7 @@ CJK_Ext_B	;	CJK_Unified_Ideographs_Extension_B
 CJK_Ext_C	;	CJK_Unified_Ideographs_Extension_C
 CJK_Ext_D	;	CJK_Unified_Ideographs_Extension_D
 CJK_Ext_E	;	CJK_Unified_Ideographs_Extension_E
+CJK_Ext_F ; CJK_Unified_Ideographs_Extension_F
 Diacriticals	;	Combining_Diacritical_Marks
 Diacriticals_Ext	;	Combining_Diacritical_Marks_Extended
 Diacriticals_For_Symbols	;	Combining_Diacritical_Marks_For_Symbols
@@ -121,6 +123,7 @@ Inscriptional_Parthian	;	Inscriptional_Parthian
 IPA_Ext	;	IPA_Extensions
 Javanese	;	Javanese
 Kaithi	;	Kaithi
+Kana_Ext_A ; Kana_Extended_A
 Kana_Sup	;	Kana_Supplement
 Kanbun	;	Kanbun
 Kangxi	;	Kangxi_Radicals
@@ -157,6 +160,7 @@ Malayalam	;	Malayalam
 Mandaic	;	Mandaic
 Manichaean	;	Manichaean
 Marchen	;	Marchen
+Masaram_Gondi ; Masaram_Gondi
 Math_Alphanum	;	Mathematical_Alphanumeric_Symbols
 Math_Operators	;	Mathematical_Operators
 Meetei_Mayek	;	Meetei_Mayek
@@ -183,9 +187,11 @@ Myanmar_Ext_A	;	Myanmar_Extended_A
 Myanmar_Ext_B	;	Myanmar_Extended_B
 Nabataean	;	Nabataean
 New_Tai_Lue	;	New_Tai_Lue
+Newa  ; Newa
 NKo	;	NKo
 NB	;	No_Block
 Number_Forms	;	Number_Forms
+Nushu ; Nushu
 Ogham	;	Ogham
 Ol_Chiki	;	Ol_Chiki
 Old_Italic	;	Old_Italic
@@ -225,6 +231,7 @@ Sinhala_Archaic_Numbers	;	Sinhala_Archaic_Numbers
 Small_Forms	;	Small_Form_Variants
 Sora_Sompeng	;	Sora_Sompeng
 Modifier_Letters	;	Spacing_Modifier_Letters
+Soyombo ; Soyombo
 Specials	;	Specials
 Sundanese	;	Sundanese
 Sundanese_Sup	;	Sundanese_Supplement
@@ -240,6 +247,7 @@ Sup_PUA_B	;	Supplementary_Private_Use_Area_B
 Sutton_SignWriting	;	Sutton_SignWriting
 Syloti_Nagri	;	Syloti_Nagri
 Syriac	;	Syriac
+Syriac_Sup ; Syriac_Supplement
 Tagalog	;	Tagalog
 Tagbanwa	;	Tagbanwa
 Tags	;	Tags
@@ -270,5 +278,4 @@ Warang_Citi	;	Warang_Citi
 Yi_Radicals	;	Yi_Radicals
 Yi_Syllables	;	Yi_Syllables
 Yijing	;	Yijing_Hexagram_Symbols
-Newa	;	Newa
-Adlam	;	Adlam
+Zanabazar_Square ; Zanabazar_Square

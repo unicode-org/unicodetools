@@ -41,12 +41,6 @@ public final class UCD implements UCD_Types {
     static final boolean SHOW_LOADING = false;
 
     /**
-     * Moved to Settings.java
-     */
-    //public static final String latestVersion = "7.0.0";
-    //public static final String lastVersion = "6.3.0"; // last released version
-
-    /**
      * Create singleton instance for default (latest) version
      */
     public static UCD makeLatestVersion() {
@@ -1368,6 +1362,9 @@ public final class UCD implements UCD_Types {
             if (ch <= 0x9FD5 && rCompositeVersion >= 0x80000) {
                 return CJK_BASE;
             }
+            if (ch <= 0x9FEA && rCompositeVersion >= 0xa0000) {
+                return CJK_BASE;
+            }
             if (ch < 0xAC00) {
                 return ch;
             }
@@ -1469,6 +1466,15 @@ public final class UCD implements UCD_Types {
                 }
                 if (ch < CJK_E_LIMIT) {
                     return CJK_E_BASE;
+                }
+            }
+            // 2CEB0..2EBEF; CJK Unified Ideographs Extension F
+            if (rCompositeVersion >= 0xa0000) {
+                if (ch <= CJK_F_BASE) {
+                    return ch;
+                }
+                if (ch < CJK_F_LIMIT) {
+                    return CJK_F_BASE;
                 }
             }
 
@@ -1627,6 +1633,7 @@ to guarantee identifier closure.
         case 0x2A700: // Extension C
         case 0x2B740: // Extension D
         case 0x2B820: // Extension E
+        case 0x2CEB0: // Extension F
         case 0xAC00: // Hangul Syllable
         case 0xE000: // Private Use
         case 0xF0000: // Private Use
@@ -1717,6 +1724,7 @@ to guarantee identifier closure.
         case 0x2A700: // Extension C
         case 0x2B740: // Extension D
         case 0x2B820: // Extension E
+        case 0x2CEB0: // Extension F
             if (fixStrings) {
                 constructedName = "CJK UNIFIED IDEOGRAPH-" + Utility.hex(codePoint, 4);
             }
@@ -1810,6 +1818,7 @@ to guarantee identifier closure.
                 || CJK_C_BASE <= bigChar && bigChar < CJK_C_LIMIT
                 || CJK_D_BASE <= bigChar && bigChar < CJK_D_LIMIT
                 || CJK_E_BASE <= bigChar && bigChar < CJK_E_LIMIT
+                || CJK_F_BASE <= bigChar && bigChar < CJK_F_LIMIT
                 );
     }
 
@@ -2171,7 +2180,9 @@ to guarantee identifier closure.
                 }
                 blockData.setMissing("No_Block");
             } finally {
-                in.close();
+                if (in != null) {
+                    in.close();
+                }
                 blockData.freeze();
             }
             for (final String line : org.unicode.cldr.draft.FileUtilities.in(UCD.class, "ShortBlockNames.txt")) {

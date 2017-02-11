@@ -366,6 +366,11 @@ public final class UCD_Names implements UCD_Types {
         "Newa",
         "Osage",
         "Tangut",
+        // Unicode 10
+        "Masaram_Gondi",
+        "Nushu",
+        "Soyombo",
+        "Zanabazar_Square",
     };
 
     public static final Relation<String,String> EXTRA_SCRIPT =
@@ -517,6 +522,12 @@ public final class UCD_Names implements UCD_Types {
         "Newa",
         "Osge",
         "Tang",
+        // Unicode 10
+        "Gonm",
+        "Nshu",
+        "Soyo",
+        "Zanb",
+
     };
 
     static final String[] SHORT_AGE = {
@@ -539,6 +550,7 @@ public final class UCD_Names implements UCD_Types {
         "7.0",
         "8.0",
         "9.0",
+        "10.0",
     };
 
     static final String[] LONG_AGE = {
@@ -561,6 +573,7 @@ public final class UCD_Names implements UCD_Types {
         "V7_0",
         "V8_0",
         "V9_0",
+        "V10_0",
     };
 
     static final String[] GENERAL_CATEGORY = {

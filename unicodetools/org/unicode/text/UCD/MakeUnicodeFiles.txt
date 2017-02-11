@@ -1,6 +1,6 @@
 Generate: .*
-DeltaVersion: 31
-CopyrightYear: 2016
+DeltaVersion: 4
+CopyrightYear: 2017
 
 File: extra/ScriptNfkc
 Property: SPECIAL
@@ -167,6 +167,9 @@ Value:  V8_0
 
 Value:  V9_0
 # Newly assigned in Unicode 9.0.0 (June, 2016)
+
+Value:  V10_0
+# Newly assigned in Unicode 10.0.0 (June, 2017)
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class

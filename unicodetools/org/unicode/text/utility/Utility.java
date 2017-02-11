@@ -44,6 +44,7 @@ import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeMatcher;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 
 public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
@@ -805,6 +806,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     public static final String[] searchPath = {
         // "EXTRAS" + (FIX_FOR_NEW_VERSION == 0 ? "" : ""),
+        "10.0.0",
         "9.0.0",
         "8.0.0",
         "7.0.0",
@@ -1277,15 +1279,17 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         return getMostRecentUnicodeDataFile(filename, version, acceptLatest, show, ".txt");
     }
 
-    public static String getMostRecentUnicodeDataFile(String filename, String version,
+    public static String getMostRecentUnicodeDataFile(String filename, String versionString,
             boolean acceptLatest, boolean show, String fileType) {
         // get all the files in the directory
-
+        VersionInfo version = versionString.isEmpty() ?
+                null : VersionInfo.getInstance(versionString);
         final int compValue = acceptLatest ? 0 : 1;
         Set<String> tries = show ? new LinkedHashSet<String>() : null;
         String result = null;
         for (String element : searchPath) {
-            if (version.length() != 0 && version.compareTo(element) < compValue) {
+            VersionInfo currentVersion = VersionInfo.getInstance(element);
+            if (version != null && version.compareTo(currentVersion) < compValue) {
                 continue;
             }
             // check the standard ucd directory
@@ -1304,7 +1308,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                 result = directoryName + parts[2] + fileType;
                 break;
             }
-            String directoryName = Settings.UCD_DIR + File.separator + element + "-Update" + File.separator;
+            String directoryName = Settings.UCD_DIR + element + "-Update" + File.separator;
             result = searchDirectory(new File(directoryName), filename, show, fileType);
             if (result != null) {
                 break;
@@ -1622,9 +1626,11 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         return Transliterator.createFromRules(id, buffer.toString(), direction);
     }
 
-    public static String getPreviousUcdVersion(String version) {
+    public static String getPreviousUcdVersion(String versionString) {
+        VersionInfo version = VersionInfo.getInstance(versionString);
         for (final String element : searchPath) {
-            if (version.compareTo(element) > 0) {
+            VersionInfo currentVersion = VersionInfo.getInstance(element);
+            if (version.compareTo(currentVersion) > 0) {
                 return element;
             }
         }
