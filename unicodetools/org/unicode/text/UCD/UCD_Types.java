@@ -31,9 +31,9 @@ public interface UCD_Types {
 
     public static final int
     // 4E00;<CJK Ideograph, First>;Lo;0;L;;;;;N;;;;;
-    // 9FD5;<CJK Ideograph, Last>;Lo;0;L;;;;;N;;;;;
+    // 9FEA;<CJK Ideograph, Last>;Lo;0;L;;;;;N;;;;;
     CJK_BASE = 0x4E00,
-    CJK_LIMIT = 0x9FD5+1,
+    CJK_LIMIT = 0x9FEA+1,
 
     CJK_COMPAT_USED_BASE = 0xFA0E,
     CJK_COMPAT_USED_LIMIT = 0xFA2F+1,
@@ -65,7 +65,12 @@ public interface UCD_Types {
     // 2B820;<CJK Ideograph Extension E, First>;Lo;0;L;;;;;N;;;;;
     // 2CEA1;<CJK Ideograph Extension E, Last>;Lo;0;L;;;;;N;;;;;
     CJK_E_BASE = 0x2B820,
-    CJK_E_LIMIT = 0x2CEA1+1
+    CJK_E_LIMIT = 0x2CEA1+1,
+
+    // 2CEB0;<CJK Ideograph Extension F, First>;Lo;0;L;;;;;N;;;;;
+    // 2EBE0;<CJK Ideograph Extension F, Last>;Lo;0;L;;;;;N;;;;;
+    CJK_F_BASE = 0x2CEB0,
+    CJK_F_LIMIT = 0x2EBE0+1
 
     // when adding to this list, look for all occurrences (in project) of CJK_C_BASE and CJK_C_LIMIT to check for code that needs changing.
     ;
@@ -522,7 +527,11 @@ public interface UCD_Types {
     Newa = 137,
     Osage = 138,
     Tangut = 139,
-    LIMIT_SCRIPT = Tangut + 1;
+    Masaram_Gondi = 140,
+    Nushu = 141,
+    Soyombo = 142,
+    Zanabazar_Square = 143,
+    LIMIT_SCRIPT = Zanabazar_Square + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte
@@ -552,7 +561,8 @@ public interface UCD_Types {
     AGE70 = 16,
     AGE80 = 17,
     AGE90 = 18,
-    LIMIT_AGE = AGE90 + 1; // + FIX_FOR_NEW_VERSION;
+    AGE100 = 19,
+    LIMIT_AGE = AGE100 + 1; // + FIX_FOR_NEW_VERSION;
 
     static final String[] AGE_VERSIONS = {
         "?",
@@ -574,6 +584,7 @@ public interface UCD_Types {
         "7.0.0",
         "8.0.0",
         "9.0.0",
+        "10.0.0",
     };
 
     public static byte
