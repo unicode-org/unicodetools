@@ -1167,13 +1167,10 @@ public class WriteCollationData {
         String latestAge = "";
         for (int i = 0; i < chr.length(); i += Character.charCount(cp)) {
             final String age = getAge(cp = chr.codePointAt(i));
-            if (latestAge.compareTo(age) < 0) {
+            if (Utility.NumericComparator.INSTANCE.compare(latestAge, age) < 0) {
                 latestAge = age;
             }
         }
-        // if (latestAge.endsWith(".0")) {
-        // latestAge = latestAge.substring(0, latestAge.length() - 2);
-        // }
         return latestAge;
     }
 

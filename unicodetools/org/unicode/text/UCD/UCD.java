@@ -34,6 +34,7 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 
 public final class UCD implements UCD_Types {
 
@@ -68,10 +69,17 @@ public final class UCD implements UCD_Types {
     }
 
     /**
-     * Get the version of the UCD
+     * Get the version of the UCD as a dotted-decimal string.
      */
     public String getVersion() {
-        return version;
+        return versionString;
+    }
+
+    /**
+     * Get the version of the UCD.
+     */
+    public VersionInfo getVersionInfo() {
+        return versionInfo;
     }
 
     /**
@@ -618,7 +626,8 @@ public final class UCD implements UCD_Types {
             if (filename == null) {
                 throw new IllegalArgumentException("Missing file for " + propertyName);
             }
-            final BufferedReader in = Utility.openUnicodeFile(filename, version, true, Utility.UTF8);
+            final BufferedReader in = Utility.openUnicodeFile(
+                    filename, versionString, true, Utility.UTF8);
             int lineCounter = 0;
             while (true) {
                 Utility.dot(++lineCounter);
@@ -664,7 +673,7 @@ public final class UCD implements UCD_Types {
         try {
             String hanNumericName = compositeVersion >= 0x50200 ? "Unihan_NumericValues" : "Unihan";
             
-            in = Utility.openUnicodeFile(hanNumericName, version, true, Utility.UTF8);
+            in = Utility.openUnicodeFile(hanNumericName, versionString, true, Utility.UTF8);
             int lineCounter = 0;
             while (true) {
                 Utility.dot(++lineCounter);
@@ -1587,7 +1596,8 @@ to guarantee identifier closure.
 
     // extras
     private final BitSet combiningClassSet = new BitSet(256);
-    private String version;
+    private String versionString;
+    private VersionInfo versionInfo;
     private long date = -1;
     private byte format = -1;
     private int compositeVersion = -1;
@@ -2011,6 +2021,7 @@ to guarantee identifier closure.
             final byte minor = dataIn.readByte();
             final byte update = dataIn.readByte();
             compositeVersion = (major << 16) | (minor << 8) | update;
+            versionInfo = VersionInfo.getInstance(major, minor, update);
 
             final String foundVersion = major + "." + minor + "." + update;
             if (format != BINARY_FORMAT || !version.equals(foundVersion)) {
@@ -2076,7 +2087,7 @@ to guarantee identifier closure.
             }
              */
             // everything is ok!
-            this.version = version;
+            this.versionString = version;
         } catch (final IOException e) {
             throw new ChainException("Can't read data file for {0}", new Object[]{version}, e);
         } finally {
@@ -2149,7 +2160,8 @@ to guarantee identifier closure.
         blockData = new UnicodeMap<String>();
 
         try {
-            final BufferedReader in = Utility.openUnicodeFile("Blocks", version, true, Utility.LATIN1);
+            final BufferedReader in = Utility.openUnicodeFile(
+                    "Blocks", versionString, true, Utility.LATIN1);
             try {
                 for (int i = 1; ; ++i) {
                     // 0000..007F; Basic Latin
@@ -2276,17 +2288,11 @@ to guarantee identifier closure.
     }
      */
     /**
-     * @return
+     * @return The UCD version packed into one int.
+     *         For example, 2.1.5 = 0x20105.
      */
     public int getCompositeVersion() {
         return compositeVersion;
-    }
-
-    /**
-     * @param i
-     */
-    public void setCompositeVersion(int i) {
-        compositeVersion = i;
     }
 
     public BitSet getScripts(CharSequence norm, BitSet result) {
