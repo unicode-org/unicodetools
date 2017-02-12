@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Annotations;
@@ -27,10 +28,15 @@ import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UnicodeRelation;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.Emoji.Qualified;
 
 import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
+import com.google.common.collect.LinkedHashMultimap;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
@@ -206,6 +212,7 @@ public class EmojiData {
 					.appendCodePoint(0xFE0F)
 					.toString());
 
+			VariantFactory vf = new VariantFactory();
 			for (String file : Arrays.asList("emoji-sequences.txt", "emoji-zwj-sequences.txt")) {
 				boolean zwj = file.contains("zwj");
 				for (String line : FileUtilities.in(directory, file)) {
@@ -684,11 +691,73 @@ public class EmojiData {
 			.removeAll(new UnicodeSet("[:whitespace:]"))
 			.freeze();
 
-	public enum VariantHandling {sequencesOnly, all}
-
 	public static final UnicodeSet TAKES_NO_VARIANT = new UnicodeSet(Emoji.EMOJI_VARIANTS_JOINER)
-			.addAll(new UnicodeSet("[[:M:][:Variation_Selector:]]")) // TODO fix to use indexed props
+			.addAll(new UnicodeSet("[[:M:][:Variation_Selector:][:Block=Tags:]]")) // TODO fix to use indexed props
 			.freeze();
+
+	private static Pattern EMOJI_VARIANTs = Pattern.compile("[" + Emoji.EMOJI_VARIANT + Emoji.TEXT_VARIANT + "]");
+
+	public class VariantFactory {
+		private List<String> parts;
+		private String full;
+
+		public VariantFactory set(String source) {
+			ImmutableList.Builder<String> _parts = ImmutableList.builder(); 
+			StringBuilder result = new StringBuilder();
+			int[] sequences = CharSequences.codePoints(EMOJI_VARIANTs.matcher(source).replaceAll(""));
+			for (int i = 0; i < sequences.length; ++i) {
+				int cp = sequences[i];
+				result.appendCodePoint(cp);
+				if (!TAKES_NO_VARIANT.contains(cp) 
+						&& !emojiPresentationSet.contains(cp) 
+						&& (i == sequences.length - 1 || !MODIFIERS.contains(sequences[i+1]))) {
+					_parts.add(result.toString());
+					result.setLength(0);
+				}
+			}
+			_parts.add(result.toString()); // can be ""
+			parts = _parts.build();
+			full = null;
+			return this;
+		}
+
+		Set<String> getCombinations() {
+			int size = parts.size();
+			if (size == 1) {
+				full = parts.get(0);
+				return Collections.singleton(full);
+			}
+			ImmutableSet.Builder<String> combo = ImmutableSet.builder(); 
+			int max = 1 << (size-1);
+			StringBuilder result = new StringBuilder();
+			for (int mask = max-1; mask >= 0; --mask) {
+				int item = 0;
+				result.setLength(0);
+				for (; item < size-1; ++item) {
+					result.append(parts.get(item));
+					int itemMask = 1 << item;
+					if ((mask & itemMask) != 0) {
+						result.append(Emoji.EMOJI_VARIANT);
+					}
+				}
+				result.append(parts.get(item));
+				String itemString = result.toString();
+				if (full == null) {
+					full = itemString;
+				}
+				combo.add(itemString);
+			}
+			return combo.build();
+		}
+
+		public boolean hasCombinations() {
+			return parts.size() > 1;
+		}
+
+		public String getFull() {
+			return full;
+		}
+	}
 
 	/**
 	 * Add EVS to sequences where needed (and remove where not)
@@ -696,14 +765,16 @@ public class EmojiData {
 	 * @return
 	 */
 	public String addEmojiVariants(String source) {
-		return addEmojiVariants(source, Emoji.EMOJI_VARIANT);
+		return getVariant(source, Emoji.Qualified.all, Emoji.EMOJI_VARIANT);
 	}
+
 	/**
 	 * Add EVS or TVS to sequences where needed (and remove where not)
 	 * @param source
+	 * @param qualified TODO
 	 * @return
 	 */
-	public String addEmojiVariants(String source, char variant) {
+	public String getVariant(String source, Emoji.Qualified qualified, char variant) {
 		//        if (variantHandling == VariantHandling.sequencesOnly) {
 		//            if (!UTF16.hasMoreCodePointsThan(source, 1)) {
 		//                return source;
@@ -711,6 +782,7 @@ public class EmojiData {
 		//        } 
 		StringBuilder result = new StringBuilder();
 		int[] sequences = CharSequences.codePoints(source);
+		boolean skip = qualified == Qualified.none;
 		for (int i = 0; i < sequences.length; ++i) {
 			int cp = sequences[i];
 			// remove VS so we start with a clean slate
@@ -719,7 +791,7 @@ public class EmojiData {
 			}
 			result.appendCodePoint(cp);
 			// TODO fix so that this works with string of characters containing emoji and others.
-			if (!getEmojiPresentationSet().contains(cp)
+			if (!skip && !getEmojiPresentationSet().contains(cp)
 					&& !TAKES_NO_VARIANT.contains(cp)) {
 				// items followed by skin-tone modifiers don't use variation selector.
 				if (i == sequences.length - 1 
@@ -727,6 +799,7 @@ public class EmojiData {
 					result.appendCodePoint(variant);
 				}
 			}
+			skip = qualified != Qualified.all;
 		}
 		return result.toString();
 	}
@@ -902,8 +975,38 @@ public class EmojiData {
 
 
 	public static void main(String[] args) {
-		EmojiData lastReleasedData = new EmojiData(Emoji.VERSION_LAST_RELEASED);
 		EmojiData betaData = new EmojiData(Emoji.VERSION_BETA);
+		VariantFactory vf = betaData.new VariantFactory();
+		Multimap<Integer, String> mm = TreeMultimap.create();
+		//1F575 FE0F 200D 2640 FE0F                   ; Emoji_ZWJ_Sequence  ; woman detective                                                # 7.0  [1] (🕵️‍♀️)
+//		String testString = new StringBuilder().appendCodePoint(0x0023).appendCodePoint(0x20E3).toString();
+//		vf.set(testString);
+//		for (String combo : vf.getCombinations()) {
+//			System.out.println(Utility.hex(combo, " ")
+//						+ "\t" + betaData.getName(combo, false, CandidateData.getInstance()));
+//		}
+		for (String s : betaData.getEmojiForSortRules()) {
+			vf.set(s);
+			Set<String> combos = vf.getCombinations();
+			mm.putAll(combos.size(), combos);
+		}
+
+		for (Entry<Integer, Collection<String>> combos : mm.asMap().entrySet()) {
+			int max = 9999;
+			for (String combo : combos.getValue()) {
+				Integer count = combos.getKey();
+				System.out.println(count
+						+ "\t" + Utility.hex(combo, " ")
+						+ "\t(" + combo + ")"
+						+ "\t" + betaData.getName(combo, false, CandidateData.getInstance()));
+				if (--max < 0) break;
+			}
+			System.out.println();
+		}
+
+		if (true) return;
+
+		EmojiData lastReleasedData = new EmojiData(Emoji.VERSION_LAST_RELEASED);
 		showDiff("Emoji", Emoji.VERSION_LAST_RELEASED_STRING, lastReleasedData.getSingletonsWithoutDefectives(),
 				Emoji.VERSION_BETA_STRING, betaData.getSingletonsWithoutDefectives());
 		showDiff("Emoji_Presentation", Emoji.VERSION_LAST_RELEASED_STRING, lastReleasedData.getEmojiPresentationSet(),
@@ -915,7 +1018,7 @@ public class EmojiData {
 		String name2 = betaData.getName("🏂🏻", true, null);
 
 		for (String s : betaData.getModifierBases()) {
-			String comp = betaData.addEmojiVariants(s, Emoji.EMOJI_VARIANT) + "\u200D\u2642\uFE0F";
+			String comp = betaData.getVariant(s, Emoji.Qualified.all, Emoji.EMOJI_VARIANT) + "\u200D\u2642\uFE0F";
 			System.out.println(Utility.hex(comp, " ") + "\t" + s + "\t" + betaData.getName(s,false, CandidateData.getInstance()));
 		}
 		if (true) return;
@@ -923,7 +1026,7 @@ public class EmojiData {
 			System.out.println(Emoji.show(s));
 		}
 		String test = Utility.fromHex("1F482 200D 2640");
-		betaData.addEmojiVariants(test, Emoji.EMOJI_VARIANT);
+		betaData.getVariant(test, Emoji.Qualified.all, Emoji.EMOJI_VARIANT);
 		//        for (String s : betaData.getZwjSequencesNormal()) {
 		//            if ("👁‍🗨".equals(s)) {
 		//                continue;
@@ -1041,14 +1144,15 @@ public class EmojiData {
 	public UnicodeSet getTagSequences() {
 		return emojiTagSequences;
 	}
-	
+
 	static final UnicodeSet TYPICAL_DUP = new UnicodeSet("[{👩‍❤️‍💋‍👨} {👨‍👩‍👧‍👦} {👩‍❤️‍👨} {\u200D\u2642}]").freeze();
-	
+
 	public static boolean isTypicallyDuplicate(String emoji) {
 		boolean result = TYPICAL_DUP.containsSome(emoji);
-//		if (result == true) {
-//			System.out.println(emoji + "\t dup");
-//		}
+		//		if (result == true) {
+		//			System.out.println(emoji + "\t dup");
+		//		}
 		return result;
 	}
+
 }
