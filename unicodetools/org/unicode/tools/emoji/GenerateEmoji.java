@@ -41,6 +41,7 @@ import org.unicode.props.VersionToAge;
 import org.unicode.text.UCD.NamesList;
 import org.unicode.text.utility.Birelation;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.Emoji.Qualified;
 import org.unicode.tools.emoji.Emoji.Source;
 import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
@@ -135,7 +136,6 @@ public class GenerateEmoji {
 		}
 	}
 
-	static final UnicodeMap<String>        VERSION                     = Emoji.LATEST.load(UcdProperty.Age);
 	static {
 		if (SHOW) System.out.println("🤧, " + Emoji.VERSION_ENUM.get("🤧"));
 	}
@@ -458,7 +458,7 @@ public class GenerateEmoji {
 		}
 	}
 
-	static final UnicodeSet                 VERSION70                = VERSION.getSet(UcdPropertyValues.Age_Values.V7_0.toString());
+//	static final UnicodeSet                 VERSION70                = VERSION.getSet(UcdPropertyValues.Age_Values.V7_0.toString());
 
 	private static final Birelation<String, String> OLD_ANNOTATIONS_TO_CHARS = new Birelation(
 			new TreeMap(EmojiOrder.FULL_COMPARATOR),
@@ -570,16 +570,16 @@ public class GenerateEmoji {
 		showCandidates(true, "emoji-candidates.html");
 		// show data
 		if (SHOW) System.out.println("Total Emoji:\t" + EmojiData.EMOJI_DATA.getChars().size());
-		UnicodeSet newItems = new UnicodeSet();
-		newItems.addAll(EmojiData.EMOJI_DATA.getChars());
-		newItems.removeAll(JSOURCES);
-		UnicodeSet newItems70 = new UnicodeSet(newItems).retainAll(VERSION70);
-		UnicodeSet newItems63 = new UnicodeSet(newItems).removeAll(newItems70);
-		UnicodeSet newItems63flags = getStrings(newItems63);
-		newItems63.removeAll(newItems63flags);
-		if (SHOW) System.out.println("Other 6.3 Flags:\t" + newItems63flags.size() + "\t" + newItems63flags);
-		if (SHOW) System.out.println("Other 6.3:\t" + newItems63.size() + "\t" + newItems63);
-		if (SHOW) System.out.println("Other 7.0:\t" + newItems70.size() + "\t" + newItems70);
+//		UnicodeSet newItems = new UnicodeSet();
+//		newItems.addAll(EmojiData.EMOJI_DATA.getChars());
+//		newItems.removeAll(JSOURCES);
+//		UnicodeSet newItems70 = new UnicodeSet(newItems).retainAll(VERSION70);
+//		UnicodeSet newItems63 = new UnicodeSet(newItems).removeAll(newItems70);
+//		UnicodeSet newItems63flags = getStrings(newItems63);
+//		newItems63.removeAll(newItems63flags);
+//		if (SHOW) System.out.println("Other 6.3 Flags:\t" + newItems63flags.size() + "\t" + newItems63flags);
+//		if (SHOW) System.out.println("Other 6.3:\t" + newItems63.size() + "\t" + newItems63);
+//		if (SHOW) System.out.println("Other 7.0:\t" + newItems70.size() + "\t" + newItems70);
 
 		print(Emoji.CHARTS_DIR, Form.noImages, "Emoji Data", "emoji-list.html", null);
 		final EmojiData previousEmoji = EmojiData.of(Emoji.VERSION_TO_GENERATE_PREVIOUS);
@@ -783,32 +783,29 @@ public class GenerateEmoji {
 				final PrintWriter out2 = visibility == Visibility.internal 
 						? FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "text-vs.txt") : null;
 						if (out != null) writeHeader(outFileName, out, "Text vs Emoji", null
-								, "<p>This chart shows the default display style (text vs emoji) by version. "
-										+ "It does not include emoji sequences. "
-										+ "The 'Dings' include Dingbats, Webdings, and Wingdings. "
-										+ "The label V1.1 ⊖ Dings indicates those characters (except for Dings) that are in Unicode version 1.1. "
-										+ "The label V1.1 ∩ Dings indicates those Ding characters that are in Unicode version 1.1.</p>\n"
-										+ "<p>The <a target='style' href='emoji-sequences.html#modifier_sequences'>modifier sequences</a> are <i>omitted</i> for brevity, "
-										+ "because they are simply ordered after their emoji modifier bases.</p>\n", "border='1'", true, false);
-						if (out != null) out.println("<tr><th>Version</th>"
-								+ "<th width='25%'>Default Text Style; no VS</th>"
-								+ "<th width='25%'>Default Text Style; has VSs</th>"
-								+ "<th width='25%'>Default Emoji Style; no VS</th>"
-								+ "<th width='25%'>Default Emoji Style; has VSs</th>"
-								+ "</tr>");
+								, "<p>This chart lists the emoji singletons by version, "
+										+ "showing for each character whether it has an emoji presentation by default (EP)"
+										+ "and whether or it has an emoji presentation sequence (EPSq). "
+										+ "There are no characters with an EP without an EPS.</p>\n"
+										+ "<p>The 'Dings' include Dingbats, Webdings, and Wingdings. "
+										+ "The label v1.1 ⊖ Dings indicates the Unicode version 1.1 non-Ding characters. "
+										+ "The label v1.1 ∩ Dings indicates the Unicode version 1.1 Ding characters.</p>\n", "border='1'", true, false);
 						UnicodeSet dings = new UnicodeSet(DINGBATS)
 								.addAll(DING_MAP.keySet())
 								.retainAll(EmojiData.EMOJI_DATA.getSingletonsWithoutDefectives()).freeze();
-						for (String version : new TreeSet<String>(VERSION.values())) {
+						final UnicodeMap<Age_Values> VERSION = Emoji.LATEST.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
+
+						ArrayList<Age_Values> ordered = new ArrayList(Arrays.asList(Age_Values.values()));
+						Collections.reverse(ordered);
+						for (Age_Values version : ordered) {
 							UnicodeSet current = VERSION.getSet(version).retainAll(EmojiData.EMOJI_DATA.getSingletonsWithoutDefectives());
 							if (current.size() == 0) {
 								continue;
 							}
 							UnicodeSet currentDings = new UnicodeSet(current).retainAll(dings);
 							current.removeAll(dings);
-							String versionString = version.replace("_", ".");
-							showTextRow(out, out2, versionString, true, current, defaultText);
-							showTextRow(out, out2, versionString, false, currentDings, defaultText);
+							showTextRow(out, out2, version, true, current, defaultText);
+							showTextRow(out, out2, version, false, currentDings, defaultText);
 						}
 						if (out != null) {
 							writeFooter(out, "");
@@ -819,32 +816,47 @@ public class GenerateEmoji {
 						}
 	}
 
-	private static void showTextRow(PrintWriter outExternal, PrintWriter outInternal, String version, boolean minusDings, UnicodeSet current,
+	private static void showTextRow(PrintWriter outExternal, PrintWriter outInternal, Age_Values version, boolean minusDings, UnicodeSet current,
 			UnicodeSet defaultText) {
 		if (current.size() == 0) {
 			return;
 		}
-		String title = version + (minusDings ? " <span style='color:gray'>⊖ Dings</span>" : " ∩ Dings");
+		String versionString = version == Age_Values.Unassigned ? "v10.0" 
+				: version.toString().toLowerCase(Locale.ENGLISH).replace("_", ".");
+		String title = versionString + (minusDings ? " <span style='color:gray'>⊖ Dings</span>" : " ∩ Dings");
 		UnicodeSet emojiSet = new UnicodeSet(current).removeAll(defaultText).removeAll(EmojiData.EMOJI_DATA.getEmojiWithVariants());
 		UnicodeSet emojiSetVs = new UnicodeSet(current).removeAll(defaultText).retainAll(EmojiData.EMOJI_DATA.getEmojiWithVariants());
 		UnicodeSet textSet = new UnicodeSet(current).retainAll(defaultText).removeAll(EmojiData.EMOJI_DATA.getEmojiWithVariants());
 		UnicodeSet textSetVs = new UnicodeSet(current).retainAll(defaultText).retainAll(EmojiData.EMOJI_DATA.getEmojiWithVariants());
 		if (outExternal != null) {
+			if (emojiSet.size() > 50 || emojiSetVs.size() > 50 || textSetVs.size() > 50) {
+				outExternal.println(
+						"<tr><th rowSpan='2'></th>"
+						+ "<th width='60%' colSpan='2' style='text-align: center'>Emoji Presentation</th>"
+						+ "<th width='30%' style='text-align: center'>Text Presentation</th>"
+						+ "</tr>"
+						+ "<tr>"
+						+ "<th width='30%' style='text-align: center'><i>Doesn't have or need EPSq</i></th>"
+						+ "<th width='30%' style='text-align: center'><i>Has EPSq, doesn't need it</i></th>"
+						+ "<th width='30%' style='text-align: center'><i>Has and needs EPSq</i></th>"
+						+ "</tr>"
+					);
+			}
 			outExternal.print("<tr><th>" + title + "</th><td>");
-			getImages(outExternal, textSet, true);
-			outExternal.print("</td><td>");
-			getImages(outExternal, textSetVs, true);
-			outExternal.print("</td><td>");
+//			getImages(outExternal, textSet, true);
+//			outExternal.print("</td><td>");
 			getImages(outExternal, emojiSet, true);
 			outExternal.print("</td><td>");
 			getImages(outExternal, emojiSetVs, true);
+			outExternal.print("</td><td>");
+			getImages(outExternal, textSetVs, true);
 			outExternal.print("</td></tr>");
 		}
 		if (outInternal != null) {
 			if (textSet.isEmpty()) {
 				return;
 			}
-			outInternal.println("\n#\t" + version + (minusDings ? " ⊖ Dings" : " ∩ Dings") + "\n");
+			outInternal.println("\n#\t" + versionString + (minusDings ? " ⊖ Dings" : " ∩ Dings") + "\n");
 			for (String s : textSet) {
 				// 2764 FE0E; text style; # HEAVY BLACK HEART
 				// 2764 FE0F; emoji style; # HEAVY BLACK HEART
@@ -1896,7 +1908,7 @@ public class GenerateEmoji {
 				switch (showEmoji) {
 				case text:
 				case emoji:
-					cell = EmojiData.EMOJI_DATA.addEmojiVariants(s, showEmoji == Style.emoji ? Emoji.EMOJI_VARIANT : Emoji.TEXT_VARIANT);
+					cell = EmojiData.EMOJI_DATA.getVariant(s, Emoji.Qualified.all, showEmoji == Style.emoji ? Emoji.EMOJI_VARIANT : Emoji.TEXT_VARIANT);
 					//Emoji.getEmojiVariant(s, showEmoji == Style.emoji ? Emoji.EMOJI_VARIANT_STRING : Emoji.TEXT_VARIANT_STRING);
 					break;
 				case emojiFont:
@@ -2079,98 +2091,98 @@ public class GenerateEmoji {
 
 	static boolean CHECKFACE = false;
 
-	static void oldAnnotationDiff() throws IOException {
-		final String outFileName = "emoji-diff.html";
-		PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, outFileName);
-		writeHeader(outFileName, out, "Diff List", null, "<p>Differences from other categories.</p>\n", "border='1'", true, false);
+//	static void oldAnnotationDiff() throws IOException {
+//		final String outFileName = "emoji-diff.html";
+//		PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, outFileName);
+//		writeHeader(outFileName, out, "Diff List", null, "<p>Differences from other categories.</p>\n", "border='1'", true, false);
+//
+//		UnicodeSet AnimalPlantFood = new UnicodeSet("[☕ 🌰-🌵 🌷-🍼 🎂 🐀-🐾]");
+//		testEquals(out, "AnimalPlantFood", AnimalPlantFood, Label.nature, Label.food);
+//
+//		UnicodeSet Object = new UnicodeSet("[⌚ ⌛ ⏰ ⏳ ☎ ⚓ ✂ ✉ ✏ 🎀 🎁 👑-👣 💄 💉 💊 💌-💎 💐 💠 💡 💣 💮 💰-📷 📹-📼 🔋-🔗 🔦-🔮 🕐-🕧]");
+//		testEquals(out, "Object", Object, Label.object, Label.office, Label.clothing);
+//
+//		CHECKFACE = true;
+//		UnicodeSet PeopleEmotion = new UnicodeSet("[☝ ☺ ✊-✌ ❤ 👀 👂-👐 👤-💃 💅-💇 💋 💏 💑 💓-💟 💢-💭 😀-🙀 🙅-🙏]");
+//		testEquals(out, "PeopleEmotion", PeopleEmotion, Label.person, Label.body, Label.emotion, Label.face);
+//		CHECKFACE = false;
+//
+//		UnicodeSet SportsCelebrationActivity = new UnicodeSet("[⛑ ⛷ ⛹ ♠-♧ ⚽ ⚾ 🀀-🀫 🂠-🂮 🂱-🂾 🃁-🃏 🃑-🃟 🎃-🎓 🎠-🏄 🏆-🏊 💒]");
+//		testEquals(out, "SportsCelebrationActivity", SportsCelebrationActivity, Label.game, Label.sport, Label.activity);
+//
+//		UnicodeSet TransportMapSignage = new UnicodeSet("[♨ ♻ ♿ ⚠ ⚡ ⛏-⛡ ⛨-⛿ 🏠-🏰 💈 🗻-🗿 🚀-🛅]");
+//		testEquals(out, "TransportMapSignage", TransportMapSignage, Label.travel, Label.place);
+//
+//		UnicodeSet WeatherSceneZodiacal = new UnicodeSet("[☀-☍ ☔ ♈-♓ ⛄-⛈ ⛎ ✨ 🌀-🌠 🔥]");
+//		testEquals(out, "WeatherSceneZodiacal", WeatherSceneZodiacal, Label.weather, Label.time);
+//
+//		UnicodeSet Enclosed = new UnicodeSet(
+//				"[[\u24C2\u3297\u3299][\\U0001F150-\\U0001F19A][\\U0001F200-\\U0001F202][\\U0001F210-\\U0001F23A][\\U0001F240-\\U0001F248][\\U0001F250-\\U0001F251]]");
+//		testEquals(out, "Enclosed", Enclosed, Label.word);
+//
+//		UnicodeSet Symbols = new UnicodeSet(
+//				"[[\\U0001F4AF][\\U0001F500-\\U0001F525][\\U0001F52F-\\U0001F53D][\\U0001F540-\\U0001F543[\u00A9\u00AE\u2002\u2003\u2005\u203C\u2049\u2122\u2139\u2194\u2195\u2196\u2197\u2198\u2199\u21A9\u21AA\u231B\u23E9\u23EA\u23EB\u23EC\u25AA\u25AB\u25B6\u25C0\u25FB\u25FC\u25FD\u25FE\u2611\u2660\u2663\u2665\u2666\u267B\u2693\u26AA\u26AB\u2705\u2708\u2712\u2714\u2716\u2728\u2733\u2734\u2744\u2747\u274C\u274E\u2753\u2754\u2755\u2757\u2764\u2795\u2796\u2797\u27A1\u27B0\u2934\u2935\u2B05\u2B06\u2B07\u2B1B\u2B1C\u2B50\u2B55\u3030\u303D]]]");
+//		testEquals(out, "Symbols", Symbols, Label.sign);
+//
+//		UnicodeSet other = new UnicodeSet(get70(Label.values()))
+//				.removeAll(AnimalPlantFood)
+//				.removeAll(Object)
+//				.removeAll(PeopleEmotion)
+//				.removeAll(SportsCelebrationActivity)
+//				.removeAll(TransportMapSignage)
+//				.removeAll(WeatherSceneZodiacal)
+//				.removeAll(Enclosed)
+//				.removeAll(Symbols);
+//
+//		testEquals(out, "Other", other, Label.flag, Label.sign, Label.arrow);
+//
+//		UnicodeSet ApplePeople = new UnicodeSet("[☝☺✊-✌✨❤🌂🌟🎀🎩🎽🏃👀👂-👺👼👽 👿-💇💋-💏💑💓-💜💞💢💤-💭💼🔥😀-🙀🙅-🙏 🚶]");
+//		testEquals(out, "ApplePeople", ApplePeople, Label.person, Label.emotion, Label.face, Label.body, Label.clothing);
+//
+//		UnicodeSet AppleNature = new UnicodeSet("[☀☁☔⚡⛄⛅❄⭐🌀🌁🌈🌊-🌕🌙-🌞🌠🌰-🌵 🌷-🌼🌾-🍄🐀-🐾💐💩]");
+//		testEquals(out, "AppleNature", AppleNature, Label.nature, Label.food, Label.weather);
+//
+//		UnicodeSet ApplePlaces = new UnicodeSet("[♨⚓⚠⛪⛲⛵⛺⛽✈🇧-🇬🇮-🇰🇳🇵🇷-🇺 🌃-🌇🌉🎠-🎢🎪🎫🎭🎰🏠-🏦🏨-🏰💈💒💺📍 🔰🗻-🗿🚀-🚝🚟-🚩🚲]");
+//		testEquals(out, "ApplePlaces", ApplePlaces, Label.place, Label.travel);
+//
+//		UnicodeSet AppleSymbols = new UnicodeSet(
+//				"[©®‼⁉⃣™ℹ↔-↙↩↪⏩-⏬ Ⓜ▪▫▶◀◻-◾☑♈-♓♠♣♥♦♻♿⚪⚫⛎ ⛔✅✔✖✳✴❇❌❎❓-❕❗➕-➗➡➰➿⤴⤵ ⬅-⬇⬛⬜⭕〰〽㊗㊙🅰🅱🅾🅿🆎🆑-🆚🈁🈂🈚 🈯🈲-🈺🉐🉑🌟🎦🏧👊👌👎💙💛💟💠💢💮💯💱💲 💹📳-📶🔀-🔄🔗-🔤🔯🔱-🔽🕐-🕧🚫🚭-🚱 🚳🚷-🚼🚾🛂-🛅]");
+//		testEquals(out, "AppleSymbols", AppleSymbols, Label.sign, Label.game);
+//
+//		UnicodeSet AppleTextOrEmoji = new UnicodeSet(
+//				"[‼⁉ℹ↔-↙↩↪Ⓜ▪▫▶◀◻-◾☀☁☎ ☑☔☕☝☺♈-♓♠♣♥♦♨♻♿⚓⚠⚡⚪⚫⚰ ⚾✂✈✉✌✏✒✳✴❄❇❤➡⤴⤵⬅-⬇〽㊗㊙ 🅰🅱🅾🅿🈂🈷🔝{#⃣}{0⃣}{1⃣}{2 ⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8 ⃣}{9⃣}{🇨🇳}{🇩🇪}{🇪🇸}{🇫🇷}{🇬🇧}{ 🇮🇹}{🇯🇵}{🇰🇷}{🇷🇺}{🇺🇸}]");
+//		UnicodeSet AppleOnlyEmoji = new UnicodeSet(
+//				"[⌚⌛⏩-⏬⏰⏳⚽⛄⛅⛎⛔⛪⛲⛳⛵⛺⛽✅ ✊✋✨❌❎❓-❕❗➿⬛⬜⭐⭕🀄🃏🆎🆑-🆚🈁 🈚🈯🈲-🈶🈸-🈺🉐🉑🌀-🌠🌰-🌵🌷-🍼🎀-🎓 🎠-🏊🏠-🏰🐀-🐾👀👂-📷📹-📼🔀-🔘🔞-🔽 🕐-🕧🗻-🙀🙅-🙏🚀-🛅]");
+//
+//		UnicodeSet AppleAll = new UnicodeSet(AppleTextOrEmoji).addAll(AppleOnlyEmoji);
+//		UnicodeSet AppleObjects = new UnicodeSet(AppleAll)
+//				.removeAll(ApplePeople)
+//				.removeAll(AppleNature)
+//				.removeAll(ApplePlaces)
+//				.removeAll(AppleSymbols);
+//
+//		testEquals(out, "AppleObjects", AppleObjects, Label.flag, Label.sign, Label.arrow);
+//
+//		writeFooter(out, "");
+//		out.close();
+//	}
 
-		UnicodeSet AnimalPlantFood = new UnicodeSet("[☕ 🌰-🌵 🌷-🍼 🎂 🐀-🐾]");
-		testEquals(out, "AnimalPlantFood", AnimalPlantFood, Label.nature, Label.food);
+//	private static void testEquals(PrintWriter out, String title1, UnicodeSet AnimalPlantFood,
+//			String title2, UnicodeSet labelNatureFood) {
+//		testContains(out, title1, AnimalPlantFood, title2, labelNatureFood);
+//		testContains(out, title2, labelNatureFood, title1, AnimalPlantFood);
+//	}
 
-		UnicodeSet Object = new UnicodeSet("[⌚ ⌛ ⏰ ⏳ ☎ ⚓ ✂ ✉ ✏ 🎀 🎁 👑-👣 💄 💉 💊 💌-💎 💐 💠 💡 💣 💮 💰-📷 📹-📼 🔋-🔗 🔦-🔮 🕐-🕧]");
-		testEquals(out, "Object", Object, Label.object, Label.office, Label.clothing);
-
-		CHECKFACE = true;
-		UnicodeSet PeopleEmotion = new UnicodeSet("[☝ ☺ ✊-✌ ❤ 👀 👂-👐 👤-💃 💅-💇 💋 💏 💑 💓-💟 💢-💭 😀-🙀 🙅-🙏]");
-		testEquals(out, "PeopleEmotion", PeopleEmotion, Label.person, Label.body, Label.emotion, Label.face);
-		CHECKFACE = false;
-
-		UnicodeSet SportsCelebrationActivity = new UnicodeSet("[⛑ ⛷ ⛹ ♠-♧ ⚽ ⚾ 🀀-🀫 🂠-🂮 🂱-🂾 🃁-🃏 🃑-🃟 🎃-🎓 🎠-🏄 🏆-🏊 💒]");
-		testEquals(out, "SportsCelebrationActivity", SportsCelebrationActivity, Label.game, Label.sport, Label.activity);
-
-		UnicodeSet TransportMapSignage = new UnicodeSet("[♨ ♻ ♿ ⚠ ⚡ ⛏-⛡ ⛨-⛿ 🏠-🏰 💈 🗻-🗿 🚀-🛅]");
-		testEquals(out, "TransportMapSignage", TransportMapSignage, Label.travel, Label.place);
-
-		UnicodeSet WeatherSceneZodiacal = new UnicodeSet("[☀-☍ ☔ ♈-♓ ⛄-⛈ ⛎ ✨ 🌀-🌠 🔥]");
-		testEquals(out, "WeatherSceneZodiacal", WeatherSceneZodiacal, Label.weather, Label.time);
-
-		UnicodeSet Enclosed = new UnicodeSet(
-				"[[\u24C2\u3297\u3299][\\U0001F150-\\U0001F19A][\\U0001F200-\\U0001F202][\\U0001F210-\\U0001F23A][\\U0001F240-\\U0001F248][\\U0001F250-\\U0001F251]]");
-		testEquals(out, "Enclosed", Enclosed, Label.word);
-
-		UnicodeSet Symbols = new UnicodeSet(
-				"[[\\U0001F4AF][\\U0001F500-\\U0001F525][\\U0001F52F-\\U0001F53D][\\U0001F540-\\U0001F543[\u00A9\u00AE\u2002\u2003\u2005\u203C\u2049\u2122\u2139\u2194\u2195\u2196\u2197\u2198\u2199\u21A9\u21AA\u231B\u23E9\u23EA\u23EB\u23EC\u25AA\u25AB\u25B6\u25C0\u25FB\u25FC\u25FD\u25FE\u2611\u2660\u2663\u2665\u2666\u267B\u2693\u26AA\u26AB\u2705\u2708\u2712\u2714\u2716\u2728\u2733\u2734\u2744\u2747\u274C\u274E\u2753\u2754\u2755\u2757\u2764\u2795\u2796\u2797\u27A1\u27B0\u2934\u2935\u2B05\u2B06\u2B07\u2B1B\u2B1C\u2B50\u2B55\u3030\u303D]]]");
-		testEquals(out, "Symbols", Symbols, Label.sign);
-
-		UnicodeSet other = new UnicodeSet(get70(Label.values()))
-				.removeAll(AnimalPlantFood)
-				.removeAll(Object)
-				.removeAll(PeopleEmotion)
-				.removeAll(SportsCelebrationActivity)
-				.removeAll(TransportMapSignage)
-				.removeAll(WeatherSceneZodiacal)
-				.removeAll(Enclosed)
-				.removeAll(Symbols);
-
-		testEquals(out, "Other", other, Label.flag, Label.sign, Label.arrow);
-
-		UnicodeSet ApplePeople = new UnicodeSet("[☝☺✊-✌✨❤🌂🌟🎀🎩🎽🏃👀👂-👺👼👽 👿-💇💋-💏💑💓-💜💞💢💤-💭💼🔥😀-🙀🙅-🙏 🚶]");
-		testEquals(out, "ApplePeople", ApplePeople, Label.person, Label.emotion, Label.face, Label.body, Label.clothing);
-
-		UnicodeSet AppleNature = new UnicodeSet("[☀☁☔⚡⛄⛅❄⭐🌀🌁🌈🌊-🌕🌙-🌞🌠🌰-🌵 🌷-🌼🌾-🍄🐀-🐾💐💩]");
-		testEquals(out, "AppleNature", AppleNature, Label.nature, Label.food, Label.weather);
-
-		UnicodeSet ApplePlaces = new UnicodeSet("[♨⚓⚠⛪⛲⛵⛺⛽✈🇧-🇬🇮-🇰🇳🇵🇷-🇺 🌃-🌇🌉🎠-🎢🎪🎫🎭🎰🏠-🏦🏨-🏰💈💒💺📍 🔰🗻-🗿🚀-🚝🚟-🚩🚲]");
-		testEquals(out, "ApplePlaces", ApplePlaces, Label.place, Label.travel);
-
-		UnicodeSet AppleSymbols = new UnicodeSet(
-				"[©®‼⁉⃣™ℹ↔-↙↩↪⏩-⏬ Ⓜ▪▫▶◀◻-◾☑♈-♓♠♣♥♦♻♿⚪⚫⛎ ⛔✅✔✖✳✴❇❌❎❓-❕❗➕-➗➡➰➿⤴⤵ ⬅-⬇⬛⬜⭕〰〽㊗㊙🅰🅱🅾🅿🆎🆑-🆚🈁🈂🈚 🈯🈲-🈺🉐🉑🌟🎦🏧👊👌👎💙💛💟💠💢💮💯💱💲 💹📳-📶🔀-🔄🔗-🔤🔯🔱-🔽🕐-🕧🚫🚭-🚱 🚳🚷-🚼🚾🛂-🛅]");
-		testEquals(out, "AppleSymbols", AppleSymbols, Label.sign, Label.game);
-
-		UnicodeSet AppleTextOrEmoji = new UnicodeSet(
-				"[‼⁉ℹ↔-↙↩↪Ⓜ▪▫▶◀◻-◾☀☁☎ ☑☔☕☝☺♈-♓♠♣♥♦♨♻♿⚓⚠⚡⚪⚫⚰ ⚾✂✈✉✌✏✒✳✴❄❇❤➡⤴⤵⬅-⬇〽㊗㊙ 🅰🅱🅾🅿🈂🈷🔝{#⃣}{0⃣}{1⃣}{2 ⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8 ⃣}{9⃣}{🇨🇳}{🇩🇪}{🇪🇸}{🇫🇷}{🇬🇧}{ 🇮🇹}{🇯🇵}{🇰🇷}{🇷🇺}{🇺🇸}]");
-		UnicodeSet AppleOnlyEmoji = new UnicodeSet(
-				"[⌚⌛⏩-⏬⏰⏳⚽⛄⛅⛎⛔⛪⛲⛳⛵⛺⛽✅ ✊✋✨❌❎❓-❕❗➿⬛⬜⭐⭕🀄🃏🆎🆑-🆚🈁 🈚🈯🈲-🈶🈸-🈺🉐🉑🌀-🌠🌰-🌵🌷-🍼🎀-🎓 🎠-🏊🏠-🏰🐀-🐾👀👂-📷📹-📼🔀-🔘🔞-🔽 🕐-🕧🗻-🙀🙅-🙏🚀-🛅]");
-
-		UnicodeSet AppleAll = new UnicodeSet(AppleTextOrEmoji).addAll(AppleOnlyEmoji);
-		UnicodeSet AppleObjects = new UnicodeSet(AppleAll)
-				.removeAll(ApplePeople)
-				.removeAll(AppleNature)
-				.removeAll(ApplePlaces)
-				.removeAll(AppleSymbols);
-
-		testEquals(out, "AppleObjects", AppleObjects, Label.flag, Label.sign, Label.arrow);
-
-		writeFooter(out, "");
-		out.close();
-	}
-
-	public static void testEquals(PrintWriter out, String title1, UnicodeSet AnimalPlantFood,
-			String title2, UnicodeSet labelNatureFood) {
-		testContains(out, title1, AnimalPlantFood, title2, labelNatureFood);
-		testContains(out, title2, labelNatureFood, title1, AnimalPlantFood);
-	}
-
-	public static void testEquals(PrintWriter out, String title1, UnicodeSet AnimalPlantFood,
-			Label... labels) {
-		title1 = "<b>" + title1 + "</b>";
-		for (Label label : labels) {
-			testContains(out, title1, AnimalPlantFood, label.toString(), get70(label));
-		}
-		String title2 = CollectionUtilities.join(labels, "+");
-		UnicodeSet labelNatureFood = get70(labels);
-		testContains(out, title2, labelNatureFood, title1, AnimalPlantFood);
-	}
+//	public static void testEquals(PrintWriter out, String title1, UnicodeSet AnimalPlantFood,
+//			Label... labels) {
+//		title1 = "<b>" + title1 + "</b>";
+//		for (Label label : labels) {
+//			testContains(out, title1, AnimalPlantFood, label.toString(), get70(label));
+//		}
+//		String title2 = CollectionUtilities.join(labels, "+");
+//		UnicodeSet labelNatureFood = get70(labels);
+//		testContains(out, title2, labelNatureFood, title1, AnimalPlantFood);
+//	}
 
 	private static void testContains(PrintWriter out, String title, UnicodeSet container, String title2, UnicodeSet containee) {
 		if (!container.containsAll(containee)) {
@@ -2198,15 +2210,15 @@ public class GenerateEmoji {
 		}
 	}
 
-	public static UnicodeSet get70(Label... labels) {
-		UnicodeSet containee = new UnicodeSet();
-		for (Label label : labels) {
-			containee.addAll(Label.CHARS_TO_LABELS.getKeys(label));
-		}
-		containee.removeAll(VERSION70);
-		// containee.retainAll(JSOURCES);
-		return containee;
-	}
+//	public static UnicodeSet get70(Label... labels) {
+//		UnicodeSet containee = new UnicodeSet();
+//		for (Label label : labels) {
+//			containee.addAll(Label.CHARS_TO_LABELS.getKeys(label));
+//		}
+//		containee.removeAll(VERSION70);
+//		// containee.retainAll(JSOURCES);
+//		return containee;
+//	}
 
 	public static String getDoubleLink(String href, String anchorText) {
 		href = href.replace(' ', '_').toLowerCase(Locale.ENGLISH);
@@ -2616,7 +2628,6 @@ public class GenerateEmoji {
 	public static final UnicodeMap<String> EXTRA_NAMES = new UnicodeMap<>();
 
 	static final Joiner SPACE_JOINER = Joiner.on(' ').skipNulls();
-
 
 	static void showCandidates(boolean future, String outFileName) throws IOException {
 		if (Emoji.IS_BETA) {

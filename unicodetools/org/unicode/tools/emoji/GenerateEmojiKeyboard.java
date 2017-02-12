@@ -17,10 +17,12 @@ import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.VersionToAge;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Tabber;
+import org.unicode.tools.emoji.EmojiData.VariantFactory;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableSet;
+import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 
@@ -35,7 +37,7 @@ public class GenerateEmojiKeyboard {
 	enum Target {csv, propFile, summary}
 
 	public static void main(String[] args) throws Exception {
-		System.out.println("\t\tCount w/o Skintones\t-Typical Dups\tCount Total\t-Typical Dups");
+		System.out.println("\t\tSingletons\tCount w/o Skintones\t-Typical Dups\tCount Total\t-Typical Dups");
 		if (true) {
 			for (VersionInfo version : Arrays.asList(V6, V61, V7)) {
 				GenerateEmojiKeyboard.getCounts(version, false);
@@ -44,7 +46,6 @@ public class GenerateEmojiKeyboard {
 			for (VersionInfo version : Arrays.asList(Emoji.VERSION2, Emoji.VERSION3, Emoji.VERSION4, Emoji.VERSION5)) {
 				GenerateEmojiKeyboard.getCounts(version, true);
 			}
-			return;
 		}
 		GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, Target.propFile, Emoji.DATA_DIR);
 		GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, Target.csv, Emoji.TR51_INTERNAL_DIR + "keyboard");
@@ -76,6 +77,7 @@ public class GenerateEmojiKeyboard {
 			System.out.println("\nEmoji Version Date:\t" + date);
 		}
 
+		Counter<EmojiOrder.MajorGroup> totalSingletons = new Counter<>();
 		Counter<EmojiOrder.MajorGroup> totalsWithoutModifiers = new Counter<>();
 		Counter<EmojiOrder.MajorGroup> totalDuplicatesWithoutModifiers = new Counter<>();
 		Counter<EmojiOrder.MajorGroup> totals = new Counter<>();
@@ -83,6 +85,11 @@ public class GenerateEmojiKeyboard {
 		for (String emoji : setToList) {
 			boolean isDup = EmojiData.isTypicallyDuplicate(emoji);
 			MajorGroup majorGroup = EmojiOrder.STD_ORDER.majorGroupings.get(emoji);
+
+			if (isSingleCodePoint(emoji)) {
+				totalSingletons.add(majorGroup, 1);
+			}
+
 			if (!EmojiData.MODIFIERS.containsSome(emoji)) {
 				totalsWithoutModifiers.add(majorGroup, 1);
 				if (isDup) {
@@ -96,12 +103,19 @@ public class GenerateEmojiKeyboard {
 		}
 		for (MajorGroup group : EmojiOrder.MajorGroup.values()) {
 			System.out.println(group + "\t" + date
+					+ "\t" + totalSingletons.get(group)
 					+ "\t" + totalsWithoutModifiers.get(group) + "\t" + totalDuplicatesWithoutModifiers.get(group)
 					+ (!emojiVersion ? "" : "\t" + totals.get(group) +  "\t" + totalDuplicates.get(group)));
 		}
 		System.out.println("TOTAL:\t" + date  
+				+ "\t" + totalSingletons.getTotal()
 				+ "\t" + (totalsWithoutModifiers.getTotal()+totalDuplicatesWithoutModifiers.getTotal())
 				+ (!emojiVersion ? "" : "\t\t" + (totals.getTotal()+totalDuplicates.getTotal())));
+	}
+
+	private static boolean isSingleCodePoint(String emoji) {
+		int cp = emoji.codePointAt(0);
+		return (UCharacter.charCount(cp) == emoji.length());
 	}
 
 	private static void showDiff(UnicodeSet chars, UnicodeSet sortingChars) {
@@ -216,28 +230,29 @@ public class GenerateEmojiKeyboard {
 			}
 			out.println("\n# subgroup: " + label); //  + "; size: " + filtered.size() + "; list: [" + CollectionUtilities.join(filtered, " ") + "]\n");
 
+			VariantFactory vf = emojiOrder.emojiData.new VariantFactory();
 			for (String cp_raw : filtered) {
-				String cp = emojiOrder.emojiData.addEmojiVariants(cp_raw);
+				vf.set(cp_raw);
+				for (String cp : vf.getCombinations()) {
+					charactersNotShown.remove(cp);
+					boolean isFull = vf.getFull().equals(cp);
 
-				final String withoutRaw = cp.replace(Emoji.EMOJI_VARIANT_STRING, "");
-				// String withoutVs = cp.contains(Emoji.JOINER_STRING) ? withoutRaw : cp;
-				charactersNotShown.remove(withoutRaw);
-
-				charactersNotShown.remove(cp);
-				switch(target) {
-				case csv: 
-					out.println("U+" + Utility.hex(cp,"U+") 
-					+ "," + cp 
-					+ "," + EmojiData.EMOJI_DATA.getName(cp, false, CandidateData.getInstance()));
-					break;
-				case propFile:
-					out.println(tabber.process(Utility.hex(cp) + "\t; " 
-							+ "fully-qualified"
-							+ "\t# " + cp + " " + EmojiData.EMOJI_DATA.getName(cp, false, CandidateData.getInstance())));
-					showWithoutVS(out, tabber, cp, charactersNotShown);
-					break;
+					switch(target) {
+					case csv:
+						if (isFull) {
+							out.println("U+" + Utility.hex(cp,"U+") 
+							+ "," + cp 
+							+ "," + EmojiData.EMOJI_DATA.getName(cp, false, CandidateData.getInstance()));
+						}
+						break;
+					case propFile:
+						out.println(tabber.process(Utility.hex(cp) + "\t; " 
+								+ (isFull ? "fully-qualified" : "non-fully-qualified")
+								+ "\t# " + cp + " " + EmojiData.EMOJI_DATA.getName(cp, false, CandidateData.getInstance())));
+						break;
+					}
+					totals.add(cp);
 				}
-				totals.add(cp);
 			}
 
 			//          allCharacters.add(filtered);
@@ -260,38 +275,38 @@ public class GenerateEmojiKeyboard {
 		}
 	}
 
-	static Splitter vsSplitter = Splitter.on(Emoji.EMOJI_VARIANT);
+//	static Splitter vsSplitter = Splitter.on(Emoji.EMOJI_VARIANT);
 
 	/** Show all of the combinations with VS, except for all VS characters.
 	 */
-	private static void showWithoutVS(TempPrintWriter out, Tabber tabber, String cp, UnicodeSet charactersNotShown) throws IOException {
-		if (!cp.contains(Emoji.JOINER_STRING)) {
-			return;
-		}
-		int pos = cp.indexOf(Emoji.EMOJI_VARIANT);
-		if (pos < 0) {
-			return;
-		}
-		String name = EmojiData.EMOJI_DATA.getName(cp, false, CandidateData.getInstance());
-
-		final List<String> parts = vsSplitter.splitToList(cp);
-		final int size = parts.size();
-		if (size > 2) {
-			int debug = 0;
-		}
-		int count = (1 << (size-1)) - 1; // 3 parts => 100 => 11
-		for (int bitmap = 0; bitmap < count; ++bitmap) {
-			String temp = parts.get(0);
-			for (int rest = 0; rest < size - 1; ++rest) {
-				if ((bitmap & (1<<rest)) != 0) {
-					temp += Emoji.EMOJI_VARIANT_STRING;
-				}
-				temp += parts.get(rest+1);
-			}
-			out.println(tabber.process(Utility.hex(temp) + "\t; " 
-					+ "non-fully-qualified"
-					+ "\t# " + temp + " " + name));
-			charactersNotShown.remove(temp);
-		}
-	}
+//	private static void showWithoutVS(TempPrintWriter out, Tabber tabber, String cp, UnicodeSet charactersNotShown) throws IOException {
+//		if (!cp.contains(Emoji.JOINER_STRING)) {
+//			return;
+//		}
+//		int pos = cp.indexOf(Emoji.EMOJI_VARIANT);
+//		if (pos < 0) {
+//			return;
+//		}
+//		String name = EmojiData.EMOJI_DATA.getName(cp, false, CandidateData.getInstance());
+//
+//		final List<String> parts = vsSplitter.splitToList(cp);
+//		final int size = parts.size();
+//		if (size > 2) {
+//			int debug = 0;
+//		}
+//		int count = (1 << (size-1)) - 1; // 3 parts => 100 => 11
+//		for (int bitmap = 0; bitmap < count; ++bitmap) {
+//			String temp = parts.get(0);
+//			for (int rest = 0; rest < size - 1; ++rest) {
+//				if ((bitmap & (1<<rest)) != 0) {
+//					temp += Emoji.EMOJI_VARIANT_STRING;
+//				}
+//				temp += parts.get(rest+1);
+//			}
+//			out.println(tabber.process(Utility.hex(temp) + "\t; " 
+//					+ "non-fully-qualified"
+//					+ "\t# " + temp + " " + name));
+//			charactersNotShown.remove(temp);
+//		}
+//	}
 }

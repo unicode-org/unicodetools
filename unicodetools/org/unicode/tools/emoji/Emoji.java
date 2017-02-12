@@ -215,7 +215,9 @@ public class Emoji {
     }
 
 
-    public static final int TAG_TERM_CHAR = 0xE007F;
+    public enum Qualified {all, first, none}
+
+	public static final int TAG_TERM_CHAR = 0xE007F;
     public static final String TAG_TERM = UTF16.valueOf(TAG_TERM_CHAR);
 
     public static final char KEYCAP_MARK = '\u20E3';

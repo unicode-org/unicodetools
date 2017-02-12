@@ -124,7 +124,7 @@ public class GenerateEmojiData {
 			int width = maxLength(type_fields);
 			showTypeFieldsMessage(out, type_fields);
 
-			printer.show(out, "Emoji_Combining_Sequence", null, width, 14, Emoji.KEYCAPS, true, false, true);
+			printer.show(out, "Emoji_Keycap_Sequence", null, width, 14, Emoji.KEYCAPS, true, false, true);
 			printer.show(out, "Emoji_Flag_Sequence",
 					"This list does not include deprecated or macroregion flags, except for UN and EU.\n"
 							+ "# See Annex B of TR51 for more information.",
