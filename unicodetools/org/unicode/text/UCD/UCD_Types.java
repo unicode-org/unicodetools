@@ -131,8 +131,7 @@ public interface UCD_Types {
     AGE = 0xB00,
     HANGUL_SYLLABLE_TYPE = 0xC00,
     DERIVED = 0xE00,
-    LIMIT_ENUM = DERIVED + 0x100,
-    NEXT_ENUM = 0x100;
+    LIMIT_ENUM = DERIVED + 0x100;
 
     public static final int LIMIT_COMBINING_CLASS = 256;
 
@@ -258,7 +257,8 @@ public interface UCD_Types {
     Pattern_White_Space = 35,
     Pattern_Syntax = 36,
     Prepended_Concatenation_Mark = 37,
-    LIMIT_BINARY_PROPERTIES = 38;
+    Regional_Indicator = 38,
+    LIMIT_BINARY_PROPERTIES = 39;
 
     /*
     static final int
