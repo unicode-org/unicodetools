@@ -20,5 +20,4 @@ public class TestAll extends TestFmwk.TestGroup {
                 "TestInvariants"
         });
     }
-
 }

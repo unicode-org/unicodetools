@@ -217,7 +217,6 @@ public enum UcdProperty {
     Emoji_Modifier(PropertyType.Binary, Binary.class, null, "EMM"),
     Emoji_Modifier_Base(PropertyType.Binary, Binary.class, null, "EMB"),
     Emoji_Presentation(PropertyType.Binary, Binary.class, null, "EMP"),
-    Emoji_Regional_Indicator(PropertyType.Binary, Binary.class, null, "ERI"),
     Expands_On_NFC(PropertyType.Binary, Binary.class, null, "XO_NFC"),
     Expands_On_NFD(PropertyType.Binary, Binary.class, null, "XO_NFD"),
     Expands_On_NFKC(PropertyType.Binary, Binary.class, null, "XO_NFKC"),

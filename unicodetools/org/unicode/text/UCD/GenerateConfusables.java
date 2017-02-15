@@ -75,7 +75,7 @@ import com.ibm.icu.util.ULocale;
 
 public class GenerateConfusables {
 
-    private static final String REFERENCE_VERSION = Settings.lastVersion; // Change to lastVersion once we are well past 7.0
+    private static final String REFERENCE_VERSION = Settings.lastVersion;
 
     static final Normalizer NFKD = Default.nfkd();
     private static final ToolUnicodeTransformFactory TOOL_FACTORY = new ToolUnicodeTransformFactory();
@@ -85,7 +85,7 @@ public class GenerateConfusables {
     static final String VERSION_PROP_VALUE = REVISION; // "V7_0";
 
     static final String reformatedInternal = Settings.UNICODETOOLS_DIRECTORY + "data/security/" + REVISION + "/data/";
-    static final String DRAFT_OUT = Settings.UNICODE_DRAFT_PUBLIC + "security/" + REVISION + "/";
+    public static final String DRAFT_OUT = Settings.UNICODE_DRAFT_PUBLIC + "security/" + REVISION + "/";
 
     //    static final XIDModifications REFERENCE_VALUES = new XIDModifications(Settings.UNICODETOOLS_DIRECTORY + "data/security/"
     //            + REFERENCE_VERSION
