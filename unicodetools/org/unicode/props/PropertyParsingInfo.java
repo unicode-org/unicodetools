@@ -104,6 +104,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
         this.special = special;
     }
 
+    static final Pattern VERSION = Pattern.compile("v\\d+\\.\\d+");
+    
     public static void fromStrings(String... propertyInfo) {
         if (propertyInfo.length < 2 || propertyInfo.length > 4) {
             throw new UnicodePropertyException("Must have 2 to 4 args: " + Arrays.asList(propertyInfo));
@@ -112,17 +114,18 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
         final String propName = propertyInfo[1];
         UcdProperty _property = UcdProperty.forString(propName);
 
+        String last = propertyInfo[propertyInfo.length-1];
+        if (VERSION.matcher(last).matches()) {
+        	propertyInfo[propertyInfo.length-1] = "";
+            PropertyParsingInfo result = PropertyParsingInfo.property2PropertyInfo.get(_property);
+            result.oldFile = _file;
+            result.maxOldVersion = VersionInfo.getInstance(last.substring(1));
+            PropertyParsingInfo.getFile2PropertyInfoSet().put(_file, result);
+            return;
+        }
+        
         int temp = 1;
         if (propertyInfo.length > 2 && !propertyInfo[2].isEmpty()) {
-            // HACK for old version
-            if (propertyInfo[2].startsWith("v")) {
-                PropertyParsingInfo result = PropertyParsingInfo.property2PropertyInfo.get(_property);
-                result.oldFile = _file;
-                result.maxOldVersion = VersionInfo.getInstance(propertyInfo[2].substring(1));
-                PropertyParsingInfo.getFile2PropertyInfoSet().put(_file, result);
-                //                    System.err.println(_property + ", " + result);
-                return;
-            }
             temp = Integer.parseInt(propertyInfo[2]);
         }
         int _fieldNumber = temp;

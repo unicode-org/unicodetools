@@ -3,6 +3,8 @@
 # =======================================
 
 # Special file types that need particular processing.
+# Parsed by PropertyParsingInfo.
+#
 # In addition to the following, if the first field starts with U+, the file is tab delimited, NOT semicolon delimited.
 
 # HackField File Type
@@ -292,8 +294,8 @@ idna/*/IdnaMappingTable; Idn_Status;
 idna/*/IdnaMappingTable; Idn_Mapping; 2
 idna/*/IdnaMappingTable; Idn_2008; 3
 
-security/*/xidmodifications; Identifier_Status;
-security/*/xidmodifications; Identifier_Type; 2
+security/*/IdentifierStatus; Identifier_Status;
+security/*/IdentifierType; Identifier_Type; 2
 
 # an abbreviation of the property value is in field 2
 FileType ; security/*/confusables ; Confusables

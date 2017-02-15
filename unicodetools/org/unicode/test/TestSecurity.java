@@ -32,6 +32,7 @@ import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.test.CheckWholeScript.Status;
 import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.GenerateConfusables;
 import org.unicode.text.UCD.IdentifierInfo.IdentifierStatus;
 import org.unicode.text.UCD.IdentifierInfo.IdentifierType;
 import org.unicode.text.UCD.UCD;
@@ -54,16 +55,17 @@ import com.ibm.icu.text.UnicodeSet;
 
 
 public class TestSecurity extends TestFmwkPlus {
-    private static final String SECURITY_PUBLIC = Settings.UNICODE_DRAFT_PUBLIC + "security/";
-    private static final String SECURITY = Settings.UNICODETOOLS_DIRECTORY + "data/security/";
+    private static final String SECURITY = Settings.UNICODE_DRAFT_PUBLIC + "security/";
+
+    // private static final String SECURITY_PUBLIC = Settings.UNICODE_DRAFT_PUBLIC + "security/";
+    public static XIDModifications XIDMOD = new XIDModifications(SECURITY + Settings.latestVersion);
+    public static final Confusables CONFUSABLES = new Confusables(SECURITY + Settings.latestVersion);
+
 
     public static void main(String[] args) {
         new TestSecurity().run(args);
     }
 
-    static XIDModifications XIDMOD = new XIDModifications(SECURITY_PUBLIC + Settings.latestVersion);
-
-    public static final Confusables CONFUSABLES = new Confusables(SECURITY_PUBLIC + Settings.latestVersion);
 
     public void TestSpacing() {
         IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);

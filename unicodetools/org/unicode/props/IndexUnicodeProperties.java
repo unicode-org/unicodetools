@@ -475,7 +475,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             cacheFileSize.put(prop2, cacheFile.length());
             return newItem.freeze();
         } catch (final IOException e) {
-            throw new UnicodePropertyException(e);
+            return null;
         }
     }
 
