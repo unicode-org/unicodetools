@@ -807,6 +807,14 @@ public class EmojiData {
 	public UnicodeMap<String> getRawNames() {
 		return names;
 	}
+	
+	public String getName(String source) {
+		return getName(source, false, CandidateData.getInstance());
+	}
+
+	public String getName(String source, boolean toLower) {
+		return getName(source, toLower, CandidateData.getInstance());
+	}
 
 	public String getName(String source, boolean toLower, Transform<String,String> otherNameSource) {
 		source = source.replace(Emoji.EMOJI_VARIANT_STRING, "");

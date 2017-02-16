@@ -21,6 +21,8 @@ import org.unicode.tools.Tabber;
 import org.unicode.tools.emoji.GenerateEmojiKeyboard.Target;
 
 import com.google.common.base.Joiner;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
@@ -54,6 +56,40 @@ public class GenerateEmojiData {
 			"[👲 👳  💂  👯  🕴   👱 👮  🕵 💆" + " 💇 👰 🙍 🙎 🙅 🙆 💁 🙋 🗣 👤 👥 🙇 🚶 🏃 🚴 🚵 🚣 🛀 🏄 🏊 ⛹ 🏋"
 					+ " \\U0001F935 \\U0001F926 \\U0001F937 \\U0001F938 \\U0001F93B \\U0001F93C \\U0001F93D \\U0001F93E]")
 			.freeze();
+	
+	public static final String EXPLICIT_GENDER_LIST = new StringBuffer()
+			.appendCodePoint(0x1F466)
+			.appendCodePoint(0x1F467)
+			.appendCodePoint(0x1F468)
+			.appendCodePoint(0x1F469)
+			.appendCodePoint(0x1F474)
+			.appendCodePoint(0x1F475)
+
+
+			.appendCodePoint(0x1F46B)
+			.appendCodePoint(0x1F46C)
+			.appendCodePoint(0x1F46D)
+
+
+			.appendCodePoint(0x1F385)
+			.appendCodePoint(0x1F936)
+			.appendCodePoint(0x1F478)
+			.appendCodePoint(0x1F934)
+			.appendCodePoint(0x1F483)
+			.appendCodePoint(0x1F57A)
+
+			.appendCodePoint(0x1F470)
+			.appendCodePoint(0x1F935)
+
+			.appendCodePoint(0x1F930)
+			.appendCodePoint(0x1F931)
+			.appendCodePoint(0x1F9D5)
+
+
+			.appendCodePoint(0x1F574)
+			.appendCodePoint(0x1F472)
+			.toString();
+	
 	public static final UnicodeSet hairBase = new UnicodeSet(
 			"[👶 👮 👲 👳 👸 🕵 👼 💆 💇 👰 🙍 🙎 🙅 🙆 💁 🙋 🙇 " + "🚶 🏃 💃 🚣  🏄 🏊 ⛹ 🏋 " + "👦 👧  👩 👴 👵  "
 					+ "\\U0001F935 \\U0001F926 \\U0001F937 \\U0001F938 \\U0001F93B \\U0001F93C \\U0001F93D \\U0001F93E"
@@ -419,6 +455,9 @@ public class GenerateEmojiData {
 
 	// ##############################3
 	public static void main(String[] args) throws IOException {
+		for (int cp : CharSequences.codePoints(EXPLICIT_GENDER_LIST)) {
+			System.out.println("U+" + Utility.hex(cp) + " " + EmojiData.EMOJI_DATA.getName(UTF16.valueOf(cp)));
+		}
 		UnicodeMap<ZwjType> types = new UnicodeMap<>();
 		for (String s : EmojiData.EMOJI_DATA.getZwjSequencesNormal()) {
 			types.put(s, ZwjType.getType(s));
@@ -427,7 +466,7 @@ public class GenerateEmojiData {
 			UnicodeSet chars = types.getSet(value);
 			System.out.println(value + "\t\t" + chars.toPattern(false));
 			for (String s : chars) {
-				System.out.println(value + ";\t" + Utility.hex(s) + ";\t" + s + ";\t" + EmojiData.EMOJI_DATA.getName(s, false, CandidateData.getInstance()));
+				System.out.println(value + ";\t" + Utility.hex(s) + ";\t" + s + ";\t" + EmojiData.EMOJI_DATA.getName(s));
 			}
 		}
 		printData(EmojiData.EMOJI_DATA.getRawNames());
