@@ -420,6 +420,9 @@ public class GenerateEmoji {
 		return getImage(type, chars, chars, useDataUrl, extraClasses);
 	}
 
+	/*
+	 * Note that Emoji.BESTOVERRIDE can override the source type for specific characters.
+	 */
 	static public String getImage(Emoji.Source type, String charsForFile, String chars, boolean useDataUrl, String extraClasses) {
 		String filename = Emoji.getImageFilenameFromChars(type, charsForFile);
 		if (filename != null && new File(Emoji.IMAGES_OUTPUT_DIR, filename).exists()) {
