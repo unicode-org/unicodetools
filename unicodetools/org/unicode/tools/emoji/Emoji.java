@@ -138,10 +138,12 @@ public class Emoji {
         // if a source is in developer release, add ᵈ to the name, eg "Googᵈ"
         charOverride,
         color, 
-        apple("Appl"), google("Goog"), twitter("Twtr."), emojione("One"),
+        apple("Appl"), google("Goog"), 
+        emojipedia, emojixpress, // put these here, so they are picked up for candidates first
+        twitter("Twtr."), emojione("One"),
         fb("FB", "Facebook"), fbm("FBM", "Messenger (Facebook)"), samsung("Sams."), 
         windows("Wind."),
-        ref, emojipedia, emojixpress, emojination, adobe, sample, proposed, 
+        ref, emojination, adobe, sample, proposed, 
         // gifs; don't change order!
         gmail("GMail"), sb("SB", "SoftBank"), dcm("DCM", "DoCoMo"), kddi("KDDI", "KDDI");
         
