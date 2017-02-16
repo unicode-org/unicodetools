@@ -30,6 +30,7 @@ import org.unicode.props.UcdPropertyValues.NFKD_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UcdPropertyValues.Sentence_Break_Values;
+import org.unicode.props.UcdPropertyValues.Vertical_Orientation_Values;
 import org.unicode.props.UcdPropertyValues.Word_Break_Values;
 
 public enum UcdProperty {
@@ -192,6 +193,7 @@ public enum UcdProperty {
     NFKD_Quick_Check(PropertyType.Enumerated, NFKD_Quick_Check_Values.class, null, "NFKD_QC"),
     Numeric_Type(PropertyType.Enumerated, Numeric_Type_Values.class, null, "nt"),
     Sentence_Break(PropertyType.Enumerated, Sentence_Break_Values.class, null, "SB"),
+    Vertical_Orientation(PropertyType.Enumerated, Vertical_Orientation_Values.class, null, "vo"),
     Word_Break(PropertyType.Enumerated, Word_Break_Values.class, null, "WB"),
 
 		// Binary
@@ -251,6 +253,7 @@ public enum UcdProperty {
     Prepended_Concatenation_Mark(PropertyType.Binary, Binary.class, null, "PCM"),
     Quotation_Mark(PropertyType.Binary, Binary.class, null, "QMark"),
     Radical(PropertyType.Binary, Binary.class, null, "Radical"),
+    Regional_Indicator(PropertyType.Binary, Binary.class, null, "RI"),
     Sentence_Terminal(PropertyType.Binary, Binary.class, null, "STerm"),
     Soft_Dotted(PropertyType.Binary, Binary.class, null, "SD"),
     Terminal_Punctuation(PropertyType.Binary, Binary.class, null, "Term"),
