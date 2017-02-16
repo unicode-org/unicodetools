@@ -527,6 +527,7 @@ public class Emoji {
     
     static final UnicodeMap<Emoji.Source> BEST_OVERRIDE = new UnicodeMap<>();
     static {
+    	BEST_OVERRIDE.put(0x1F635, Emoji.Source.fb);
         // BEST_OVERRIDE.putAll(new UnicodeSet("[⛹🏃🏄🏊-🏌👨👩👮👯👱👳👷💁💂💆💇🕵🙅-🙇🙋🙍🙎🚣🚴-🚶🤦🤷-🤹🤼-🤾]"), Emoji.Source.google);
         BEST_OVERRIDE.freeze();
     }
