@@ -1,6 +1,6 @@
-# PropertyValueAliases-9.0.0.txt
-# Date: 2016-03-02, 18:55:05 GMT
-# © 2016 Unicode®, Inc.
+# PropertyValueAliases-10.0.0.txt
+# Date: 2017-02-14, 04:26:16 GMT
+# © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -63,6 +63,7 @@ AHex; Y                               ; Yes                              ; T    
 # Age (age)
 
 age; 1.1                              ; V1_1
+age; 10.0                             ; V10_0
 age; 2.0                              ; V2_0
 age; 2.1                              ; V2_1
 age; 3.0                              ; V3_0
@@ -192,6 +193,7 @@ blk; CJK_Ext_B                        ; CJK_Unified_Ideographs_Extension_B
 blk; CJK_Ext_C                        ; CJK_Unified_Ideographs_Extension_C
 blk; CJK_Ext_D                        ; CJK_Unified_Ideographs_Extension_D
 blk; CJK_Ext_E                        ; CJK_Unified_Ideographs_Extension_E
+blk; CJK_Ext_F                        ; CJK_Unified_Ideographs_Extension_F
 blk; CJK_Radicals_Sup                 ; CJK_Radicals_Supplement
 blk; CJK_Strokes                      ; CJK_Strokes
 blk; CJK_Symbols                      ; CJK_Symbols_And_Punctuation
@@ -264,6 +266,7 @@ blk; Jamo_Ext_A                       ; Hangul_Jamo_Extended_A
 blk; Jamo_Ext_B                       ; Hangul_Jamo_Extended_B
 blk; Javanese                         ; Javanese
 blk; Kaithi                           ; Kaithi
+blk; Kana_Ext_A                       ; Kana_Extended_A
 blk; Kana_Sup                         ; Kana_Supplement
 blk; Kanbun                           ; Kanbun
 blk; Kangxi                           ; Kangxi_Radicals
@@ -300,6 +303,7 @@ blk; Malayalam                        ; Malayalam
 blk; Mandaic                          ; Mandaic
 blk; Manichaean                       ; Manichaean
 blk; Marchen                          ; Marchen
+blk; Masaram_Gondi                    ; Masaram_Gondi
 blk; Math_Alphanum                    ; Mathematical_Alphanumeric_Symbols
 blk; Math_Operators                   ; Mathematical_Operators
 blk; Meetei_Mayek                     ; Meetei_Mayek
@@ -331,6 +335,7 @@ blk; New_Tai_Lue                      ; New_Tai_Lue
 blk; Newa                             ; Newa
 blk; NKo                              ; NKo
 blk; Number_Forms                     ; Number_Forms
+blk; Nushu                            ; Nushu
 blk; OCR                              ; Optical_Character_Recognition
 blk; Ogham                            ; Ogham
 blk; Ol_Chiki                         ; Ol_Chiki
@@ -370,6 +375,7 @@ blk; Sinhala                          ; Sinhala
 blk; Sinhala_Archaic_Numbers          ; Sinhala_Archaic_Numbers
 blk; Small_Forms                      ; Small_Form_Variants
 blk; Sora_Sompeng                     ; Sora_Sompeng
+blk; Soyombo                          ; Soyombo
 blk; Specials                         ; Specials
 blk; Sundanese                        ; Sundanese
 blk; Sundanese_Sup                    ; Sundanese_Supplement
@@ -385,6 +391,7 @@ blk; Super_And_Sub                    ; Superscripts_And_Subscripts
 blk; Sutton_SignWriting               ; Sutton_SignWriting
 blk; Syloti_Nagri                     ; Syloti_Nagri
 blk; Syriac                           ; Syriac
+blk; Syriac_Sup                       ; Syriac_Supplement
 blk; Tagalog                          ; Tagalog
 blk; Tagbanwa                         ; Tagbanwa
 blk; Tags                             ; Tags
@@ -415,6 +422,7 @@ blk; Warang_Citi                      ; Warang_Citi
 blk; Yi_Radicals                      ; Yi_Radicals
 blk; Yi_Syllables                     ; Yi_Syllables
 blk; Yijing                           ; Yijing_Hexagram_Symbols
+blk; Zanabazar_Square                 ; Zanabazar_Square
 
 blk ; CJK_Ext_F ;         CJK_Unified_Ideographs_Extension_F
 blk; Kana_Ext_A ; Kana_Extended_A 
@@ -1144,6 +1152,11 @@ QMark; Y                              ; Yes                              ; T    
 Radical; N                            ; No                               ; F                                ; False
 Radical; Y                            ; Yes                              ; T                                ; True
 
+# Regional_Indicator (RI)
+
+RI ; N                                ; No                               ; F                                ; False
+RI ; Y                                ; Yes                              ; T                                ; True
+
 # Script (sc)
 
 sc ; Adlm                             ; Adlam
@@ -1180,6 +1193,7 @@ sc ; Elba                             ; Elbasan
 sc ; Ethi                             ; Ethiopic
 sc ; Geor                             ; Georgian
 sc ; Glag                             ; Glagolitic
+sc ; Gonm                             ; Masaram_Gondi
 sc ; Goth                             ; Gothic
 sc ; Gran                             ; Grantha
 sc ; Grek                             ; Greek
@@ -1232,6 +1246,7 @@ sc ; Narb                             ; Old_North_Arabian
 sc ; Nbat                             ; Nabataean
 sc ; Newa                             ; Newa
 sc ; Nkoo                             ; Nko
+sc ; Nshu                             ; Nushu
 sc ; Ogam                             ; Ogham
 sc ; Olck                             ; Ol_Chiki
 sc ; Orkh                             ; Old_Turkic
@@ -1259,6 +1274,7 @@ sc ; Sidd                             ; Siddham
 sc ; Sind                             ; Khudawadi
 sc ; Sinh                             ; Sinhala
 sc ; Sora                             ; Sora_Sompeng
+sc ; Soyo                             ; Soyombo
 sc ; Sund                             ; Sundanese
 sc ; Sylo                             ; Syloti_Nagri
 sc ; Syrc                             ; Syriac
@@ -1282,6 +1298,7 @@ sc ; Wara                             ; Warang_Citi
 sc ; Xpeo                             ; Old_Persian
 sc ; Xsux                             ; Cuneiform
 sc ; Yiii                             ; Yi
+sc ; Zanb                             ; Zanabazar_Square
 sc ; Zinh                             ; Inherited                        ; Qaai
 sc ; Zyyy                             ; Common
 sc ; Zzzz                             ; Unknown
@@ -1371,6 +1388,13 @@ Upper; Y                              ; Yes                              ; T    
 
 VS ; N                                ; No                               ; F                                ; False
 VS ; Y                                ; Yes                              ; T                                ; True
+
+# Vertical_Orientation (vo)
+
+vo ; R                                ; Rotated
+vo ; Tr                               ; Transformed_Rotated
+vo ; Tu                               ; Transformed_Upright
+vo ; U                                ; Upright
 
 # White_Space (WSpace)
 

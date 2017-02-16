@@ -1,6 +1,6 @@
-# DerivedAge-9.0.0.txt
-# Date: 2016-03-02, 18:54:54 GMT
-# © 2016 Unicode®, Inc.
+# DerivedAge-10.0.0.txt
+# Date: 2017-02-14, 04:25:59 GMT
+# © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -1598,6 +1598,12 @@ A8C5          ; 9.0 #       SAURASHTRA SIGN CANDRABINDU
 
 # Total code points: 7500
 
+# ================================================
+
+# Age=V10_0
+
+# Newly assigned in Unicode 10.0.0 (June, 2017)
+
 0860..086A    ; 10.0 #  [11] SYRIAC LETTER MALAYALAM NGA..SYRIAC LETTER MALAYALAM SSA
 09FC..09FD    ; 10.0 #   [2] BENGALI LETTER VEDIC ANUSVARA..BENGALI ABBREVIATION SIGN
 0AFA..0AFF    ; 10.0 #   [6] GUJARATI SIGN SUKUN..GUJARATI SIGN TWO-CIRCLE NUKTA ABOVE
@@ -1639,5 +1645,6 @@ A8C5          ; 9.0 #       SAURASHTRA SIGN CANDRABINDU
 1F9D0..1F9E6  ; 10.0 #  [23] FACE WITH MONOCLE..SOCKS
 2CEB0..2EBE0  ; 10.0 # [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 
+# Total code points: 8518
 
 # EOF

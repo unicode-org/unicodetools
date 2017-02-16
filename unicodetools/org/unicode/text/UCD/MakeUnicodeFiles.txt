@@ -1,5 +1,5 @@
 Generate: .*
-DeltaVersion: 5
+DeltaVersion: 6
 CopyrightYear: 2017
 
 File: extra/ScriptNfkc
