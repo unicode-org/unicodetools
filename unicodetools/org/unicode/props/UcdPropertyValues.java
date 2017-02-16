@@ -43,6 +43,7 @@ public class UcdPropertyValues {
         V7_0("7.0"),
         V8_0("8.0"),
         V9_0("9.0"),
+        V10_0("10.0"),
         Unassigned("NA");
         private final PropertyNames<Age_Values> names;
         private Age_Values (String shortName, String...otherNames) {
@@ -1452,6 +1453,28 @@ public class UcdPropertyValues {
 		// Titlecase_Mapping
 		// Unicode_1_Name
 		// Uppercase_Mapping
+	public enum Vertical_Orientation_Values implements Named {
+        Rotated("R"),
+        Transformed_Rotated("Tr"),
+        Transformed_Upright("Tu"),
+        Upright("U");
+        private final PropertyNames<Vertical_Orientation_Values> names;
+        private Vertical_Orientation_Values (String shortName, String...otherNames) {
+            names = new PropertyNames<Vertical_Orientation_Values>(
+                Vertical_Orientation_Values.class, this, shortName, otherNames);
+        }
+        public PropertyNames<Vertical_Orientation_Values> getNames() {
+            return names;
+        }
+        public String getShortName() {
+            return names.getShortName();
+        }
+        private static final NameMatcher<Vertical_Orientation_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Vertical_Orientation_Values.class);
+        public static Vertical_Orientation_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
 	public enum Word_Break_Values implements Named {
         CR("CR"),
         Double_Quote("DQ"),
