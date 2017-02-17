@@ -1018,9 +1018,21 @@ public final class UCD_Names implements UCD_Types {
         "MANICHAEAN_YODH",
         "MANICHAEAN_ZAYIN",
         // Unicode 9:
-        "AFRICAN FEH",
-        "AFRICAN QAF",
-        "AFRICAN NOON",
+        "AFRICAN_FEH",
+        "AFRICAN_QAF",
+        "AFRICAN_NOON",
+        // Unicode 10:
+        "MALAYALAM_NGA",
+        "MALAYALAM_JA",
+        "MALAYALAM_NYA",
+        "MALAYALAM_TTA",
+        "MALAYALAM_NNA",
+        "MALAYALAM_NNNA",
+        "MALAYALAM_BHA",
+        "MALAYALAM_RA",
+        "MALAYALAM_LLA",
+        "MALAYALAM_LLLA",
+        "MALAYALAM_SSA",
     };
     static {
         fixArray(JOINING_GROUP);

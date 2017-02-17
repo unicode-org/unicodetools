@@ -1,5 +1,5 @@
 # ScriptExtensions-10.0.0.txt
-# Date: 2017-02-14, 04:26:29 GMT
+# Date: 2017-02-16, 00:24:33 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -305,10 +305,11 @@ FF9E..FF9F    ; Hira Kana # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFW
 # Script_Extensions=Arab Syrc Thaa
 
 060C          ; Arab Syrc Thaa # Po       ARABIC COMMA
-061B..061C    ; Arab Syrc Thaa # Po       ARABIC SEMICOLON
+061B          ; Arab Syrc Thaa # Po       ARABIC SEMICOLON
+061C          ; Arab Syrc Thaa # Cf       ARABIC LETTER MARK
 061F          ; Arab Syrc Thaa # Po       ARABIC QUESTION MARK
 
-# Total code points: 3
+# Total code points: 4
 
 # ================================================
 

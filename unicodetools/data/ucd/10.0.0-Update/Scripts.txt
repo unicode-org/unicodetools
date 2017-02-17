@@ -1,5 +1,5 @@
 # Scripts-10.0.0.txt
-# Date: 2017-02-14, 04:26:29 GMT
+# Date: 2017-02-16, 00:24:33 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -93,7 +93,6 @@
 0605          ; Common # Cf       ARABIC NUMBER MARK ABOVE
 060C          ; Common # Po       ARABIC COMMA
 061B          ; Common # Po       ARABIC SEMICOLON
-061C          ; Arabic # Cf       ARABIC LETTER MARK
 061F          ; Common # Po       ARABIC QUESTION MARK
 0640          ; Common # Lm       ARABIC TATWEEL
 06DD          ; Common # Cf       ARABIC END OF AYAH
@@ -603,7 +602,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 E0001         ; Common # Cf       LANGUAGE TAG
 E0020..E007F  ; Common # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 7363
+# Total code points: 7362
 
 # ================================================
 
@@ -797,6 +796,7 @@ FB46..FB4F    ; Hebrew # Lo  [10] HEBREW LETTER TSADI WITH DAGESH..HEBREW LIGATU
 060D          ; Arabic # Po       ARABIC DATE SEPARATOR
 060E..060F    ; Arabic # So   [2] ARABIC POETIC VERSE SIGN..ARABIC SIGN MISRA
 0610..061A    ; Arabic # Mn  [11] ARABIC SIGN SALLALLAHOU ALAYHE WASSALLAM..ARABIC SMALL KASRA
+061C          ; Arabic # Cf       ARABIC LETTER MARK
 061E          ; Arabic # Po       ARABIC TRIPLE DOT PUNCTUATION MARK
 0620..063F    ; Arabic # Lo  [32] ARABIC LETTER KASHMIRI YEH..ARABIC LETTER FARSI YEH WITH THREE DOTS ABOVE
 0641..064A    ; Arabic # Lo  [10] ARABIC LETTER FEH..ARABIC LETTER YEH
@@ -870,7 +870,7 @@ FE76..FEFC    ; Arabic # Lo [135] ARABIC FATHA ISOLATED FORM..ARABIC LIGATURE LA
 1EEAB..1EEBB  ; Arabic # Lo  [17] ARABIC MATHEMATICAL DOUBLE-STRUCK LAM..ARABIC MATHEMATICAL DOUBLE-STRUCK GHAIN
 1EEF0..1EEF1  ; Arabic # Sm   [2] ARABIC MATHEMATICAL OPERATOR MEEM WITH HAH WITH TATWEEL..ARABIC MATHEMATICAL OPERATOR HAH WITH DAL
 
-# Total code points: 1279
+# Total code points: 1280
 
 # ================================================
 

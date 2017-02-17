@@ -688,7 +688,20 @@ public interface UCD_Types {
     AFRICAN_FEH = 87,
     AFRICAN_QAF = 88,
     AFRICAN_NOON = 89,
-    LIMIT_JOINING_GROUP = 90;
+    // Unicode 10:
+    MALAYALAM_NGA = 90,
+    MALAYALAM_JA = 91,
+    MALAYALAM_NYA = 92,
+    MALAYALAM_TTA = 93,
+    MALAYALAM_NNA = 94,
+    MALAYALAM_NNNA = 95,
+    MALAYALAM_BHA = 96,
+    MALAYALAM_RA = 97,
+    MALAYALAM_LLA = 98,
+    MALAYALAM_LLLA = 99,
+    MALAYALAM_SSA = 100,
+    // limit
+    LIMIT_JOINING_GROUP = 101;
 
     static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;
     public static final int

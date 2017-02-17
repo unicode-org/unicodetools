@@ -81,7 +81,6 @@ age; 6.3                              ; V6_3
 age; 7.0                              ; V7_0
 age; 8.0                              ; V8_0
 age; 9.0                              ; V9_0
-age; 10.0                              ; V10_0
 age; NA                               ; Unassigned
 
 # Alphabetic (Alpha)
@@ -423,14 +422,6 @@ blk; Yi_Radicals                      ; Yi_Radicals
 blk; Yi_Syllables                     ; Yi_Syllables
 blk; Yijing                           ; Yijing_Hexagram_Symbols
 blk; Zanabazar_Square                 ; Zanabazar_Square
-
-blk ; CJK_Ext_F ;         CJK_Unified_Ideographs_Extension_F
-blk; Kana_Ext_A ; Kana_Extended_A 
-blk; Masaram_Gondi ; Masaram_Gondi
-blk; Nushu ; Nushu
-blk; Soyombo ; Soyombo
-blk; Syriac_Sup; Syriac_Supplement
-blk; Zanabazar_Square; Zanabazar_Square; 
 
 # Canonical_Combining_Class (ccc)
 
@@ -1302,12 +1293,6 @@ sc ; Zanb                             ; Zanabazar_Square
 sc ; Zinh                             ; Inherited                        ; Qaai
 sc ; Zyyy                             ; Common
 sc ; Zzzz                             ; Unknown
-
-sc ; Gonm ; Masaram_Gondi
-sc ; Nshu ; Nushu  
-sc ; Soyo ; Soyombo
-sc ; Zanb ; Zanabazar_Square
-
 
 # Script_Extensions (scx)
 
