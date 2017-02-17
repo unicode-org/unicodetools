@@ -489,6 +489,11 @@ public final class UCD implements UCD_Types {
             if (compositeVersion >= 0x50200) {
                 BIDI_R_Delta.add(0x1E800, 0x1EFFF);
             }
+            if (versionInfo.getMajor() >= 10) {
+                // Unicode 10: Syriac Supplement block R->AL
+                BIDI_R_Delta.remove(0x0860, 0x086F);
+                BIDI_AL_SET.add(0x0860, 0x086F);
+            }
             BIDI_R_Delta.removeAll(BIDI_R_SET);
             if (SHOW_LOADING) {
                 System.out.println("R: Adding " + BIDI_R_Delta);
