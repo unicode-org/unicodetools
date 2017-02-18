@@ -641,7 +641,7 @@ public class GenerateEmoji {
 		showDefaultStyle();
 		showVariationSequences();
 //		showSequences();
-		showAnnotations(Emoji.CHARTS_DIR, "emoji-annotations.html", EmojiData.EMOJI_DATA.getChars(), null, false);
+		//showAnnotations(Emoji.CHARTS_DIR, "emoji-annotations.html", EmojiData.EMOJI_DATA.getChars(), null, false);
 
 		print(Emoji.CHARTS_DIR, Form.fullForm, "Full Emoji Data", "full-emoji-list.html", null);
 
@@ -2702,8 +2702,9 @@ public class GenerateEmoji {
 				if (annotationString.length() != 0) {
 					annotationString.append(candidate ? "<br>" : " | ");
 				}
-				annotationString.append(candidate ? annotation
-						: getLink("emoji-annotations.html#" + annotation, annotation, "annotate"));
+//				annotationString.append(candidate ? annotation
+//						: getLink("emoji-annotations.html#" + annotation, annotation, "annotate"));
+				annotationString.append(annotation);
 			}
 		}
 		return annotationString;
