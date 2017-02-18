@@ -266,3 +266,7 @@ H2 {
 	background-color: yellow;
 	border: 2px solid red;
 }
+
+.indent {
+    margin: 1em 1em 1em 1em;
+}

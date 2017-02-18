@@ -340,7 +340,7 @@ public class EmojiOrder {
             	if (s.startsWith(Emoji.ADULT)) {
             		int debug = 0;
             	}
-                String group = charactersToOrdering.get(s);
+                String group = getCategory(s);
                 if (!Objects.equal(group,lastGroup)) {
                     needRelation = true;
                     lastGroup = group;
@@ -428,6 +428,10 @@ public class EmojiOrder {
         }
         return outText;
     }
+
+	public String getCategory(String emoji) {
+		return charactersToOrdering.get(emoji);
+	}
 
     private String withoutTrailingVariant(String s) {
         return s.endsWith(Emoji.EMOJI_VARIANT_STRING) ? s.substring(0, s.length()-1) : s;
