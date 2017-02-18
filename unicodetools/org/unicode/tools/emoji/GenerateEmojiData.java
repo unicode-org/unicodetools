@@ -152,29 +152,29 @@ public class GenerateEmojiData {
 			outText2.println("\n#EOF");
 		}
 
-		try (Writer out = new TempPrintWriter(Emoji.DATA_DIR, "emoji-sequences.txt")) {
-			out.write(Utility.getBaseDataHeader("emoji-sequences", 51, "Emoji Sequence Data", Emoji.VERSION_STRING)
-					+ "\n");
-			List<String> type_fields = Arrays.asList("Emoji_Combining_Sequence", "Emoji_Flag_Sequence",
-					"Emoji_Modifier_Sequences");
-			int width = maxLength(type_fields);
-			showTypeFieldsMessage(out, type_fields);
-
-			printer.show(out, "Emoji_Keycap_Sequence", null, width, 14, Emoji.KEYCAPS, true, false, true);
-			printer.show(out, "Emoji_Flag_Sequence",
-					"This list does not include deprecated or macroregion flags, except for UN and EU.\n"
-							+ "# See Annex B of TR51 for more information.",
-							width, 14, EmojiData.EMOJI_DATA.getFlagSequences(), true, false, true);
-			printer.show(out, "Emoji_Tag_Sequence",
-					"See Annex C of TR51 for more information.",
-					width, 14, EmojiData.EMOJI_DATA.getTagSequences(), true, false, true);
-			printer.show(out, "Emoji_Modifier_Sequence", null, width, 14, EmojiData.EMOJI_DATA.getModifierSequences(),
-					false, false, true);
-			out.write("\n#EOF\n");
-		}
+//		try (Writer out = new TempPrintWriter(Emoji.DATA_DIR, "emoji-sequences.txt")) {
+//			out.write(Utility.getBaseDataHeader("emoji-sequences", 51, "Emoji Sequence Data", Emoji.VERSION_STRING)
+//					+ "\n");
+//			List<String> type_fields = Arrays.asList("Emoji_Combining_Sequence", "Emoji_Flag_Sequence",
+//					"Emoji_Modifier_Sequences");
+//			int width = maxLength(type_fields);
+//			showTypeFieldsMessage(out, type_fields);
+//
+//			printer.show(out, "Emoji_Keycap_Sequence", null, width, 14, Emoji.KEYCAPS, true, false, true);
+//			printer.show(out, "Emoji_Flag_Sequence",
+//					"This list does not include deprecated or macroregion flags, except for UN and EU.\n"
+//							+ "# See Annex B of TR51 for more information.",
+//							width, 14, EmojiData.EMOJI_DATA.getFlagSequences(), true, false, true);
+//			printer.show(out, "Emoji_Tag_Sequence",
+//					"See Annex C of TR51 for more information.",
+//					width, 14, EmojiData.EMOJI_DATA.getTagSequences(), true, false, true);
+//			printer.show(out, "Emoji_Modifier_Sequence", null, width, 14, EmojiData.EMOJI_DATA.getModifierSequences(),
+//					false, false, true);
+//			out.write("\n#EOF\n");
+//		}
 
 		try (Writer out = new TempPrintWriter(Emoji.DATA_DIR, "emoji-zwj-sequences.txt")) {
-			out.write(Utility.getBaseDataHeader("emoji-zwj-sequences", 51, "Emoji ZWJ Sequence Catalog",
+			out.write(Utility.getBaseDataHeader("emoji-zwj-sequences", 51, "Emoji ZWJ Sequences",
 					Emoji.VERSION_STRING) + "\n");
 			List<String> type_fields = Arrays.asList("Emoji_ZWJ_Sequence");
 			int width = maxLength(type_fields);
