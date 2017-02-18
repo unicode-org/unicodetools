@@ -1,5 +1,5 @@
 # emoji-variation-sequences.txt
-# Date: 2017-01-03, 18:25:00 GMT
+# Date: 2017-01-26, 13:54:04 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -9,9 +9,6 @@
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr51
 #
-
-# Emoji variation sequences for use as part of keycap symbols
-
 0023 FE0E  ; text style;  # (1.1) NUMBER SIGN
 0023 FE0F  ; emoji style; # (1.1) NUMBER SIGN
 002A FE0E  ; text style;  # (1.1) ASTERISK
@@ -36,9 +33,6 @@
 0038 FE0F  ; emoji style; # (1.1) DIGIT EIGHT
 0039 FE0E  ; text style;  # (1.1) DIGIT NINE
 0039 FE0F  ; emoji style; # (1.1) DIGIT NINE
-
-# Emoji variation sequences
-
 00A9 FE0E  ; text style;  # (1.1) COPYRIGHT SIGN
 00A9 FE0F  ; emoji style; # (1.1) COPYRIGHT SIGN
 00AE FE0E  ; text style;  # (1.1) REGISTERED SIGN
@@ -718,6 +712,6 @@
 1F6F3 FE0E ; text style;  # (7.0) PASSENGER SHIP
 1F6F3 FE0F ; emoji style; # (7.0) PASSENGER SHIP
 
-#Total sequences: 352
+#Total sequences: 351
 
 #EOF
