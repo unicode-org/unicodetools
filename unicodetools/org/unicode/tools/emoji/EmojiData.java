@@ -817,13 +817,13 @@ public class EmojiData {
 	}
 
 	public String getName(String source, boolean toLower, Transform<String,String> otherNameSource) {
-		source = source.replace(Emoji.EMOJI_VARIANT_STRING, "");
-		if (source.startsWith("🤱")) {
+		if (source.contains("🧙")) {
 			int debug = 0;
 		}
 		String name = ANNOTATION_SET.getShortName(source, otherNameSource);
 		if (name != null) {
-			return (toLower ? name.toLowerCase(Locale.ENGLISH) : name);
+//			return (toLower ? name.toLowerCase(Locale.ENGLISH) : name);
+			return name;
 		}
 		//        System.out.println("*** not using name for " + code + "\t" + Utility.hex(code));
 		//
@@ -831,9 +831,15 @@ public class EmojiData {
 		//        if (name != null) {
 		//            return name.toLowerCase(Locale.ENGLISH); // (toLower ?  : name);
 		//        }
-		name = UCharacter.getName(source, ", "); 
+		if (!Emoji.DEFECTIVE.contains(source)) {
+			ANNOTATION_SET.getShortName(source, otherNameSource);
+			throw new IllegalArgumentException("no name for " + source + " " + Utility.hex(source));
+		}
+
+		source = source.replace(Emoji.EMOJI_VARIANT_STRING, "");
+		name = latest.getName(source, ", "); 
 		if (name != null) {
-			return (toLower ? name.toLowerCase(Locale.ENGLISH) : name);
+			return name.toLowerCase(Locale.ENGLISH);
 		}
 		throw new IllegalArgumentException("no name for " + source + " " + Utility.hex(source));
 	}
@@ -981,9 +987,13 @@ public class EmojiData {
 		return builder.build();
 	}
 
+	static final IndexUnicodeProperties latest = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
 
 	public static void main(String[] args) {
 		EmojiData betaData = new EmojiData(Emoji.VERSION_BETA);
+		String name3 = betaData.getName("🧙");
+		String name4 = betaData.getName("🧙‍♀️");
+
 		VariantFactory vf = betaData.new VariantFactory();
 		Multimap<Integer, String> mm = TreeMultimap.create();
 		//1F575 FE0F 200D 2640 FE0F                   ; Emoji_ZWJ_Sequence  ; woman detective                                                # 7.0  [1] (🕵️‍♀️)
@@ -1006,7 +1016,7 @@ public class EmojiData {
 				System.out.println(count
 						+ "\t" + Utility.hex(combo, " ")
 						+ "\t(" + combo + ")"
-						+ "\t" + betaData.getName(combo, false, CandidateData.getInstance()));
+						+ "\t" + betaData.getName(combo));
 				if (--max < 0) break;
 			}
 			System.out.println();
@@ -1022,7 +1032,7 @@ public class EmojiData {
 		showDiff("Emoji_Modifier_Base", Emoji.VERSION_LAST_RELEASED_STRING, lastReleasedData.getModifierBases(),
 				Emoji.VERSION_BETA_STRING, betaData.getModifierBases());
 
-		String name = betaData.getName("🏂🏻", false, null);
+		String name = betaData.getName("🏂🏻");
 		String name2 = betaData.getName("🏂🏻", true, null);
 
 		for (String s : betaData.getModifierBases()) {
@@ -1047,7 +1057,6 @@ public class EmojiData {
 		//            }
 		//        }
 
-		final IndexUnicodeProperties latest = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
 		System.out.println("Version " + GenerateEnums.ENUM_VERSION);
 		final IndexUnicodeProperties beta = IndexUnicodeProperties.make(Age_Values.V9_0);
 		final UnicodeMap<String> betaNames = beta.load(UcdProperty.Name);

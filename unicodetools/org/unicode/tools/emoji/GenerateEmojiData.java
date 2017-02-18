@@ -39,13 +39,13 @@ public class GenerateEmojiData {
 			+ "# Characters and sequences are listed in code point order. Users should be shown a more natural order.\n"
 			+ "# See the CLDR collation order for Emoji.\n";
 
-	public static final String SV_WARNING = "Three characters used in emoji zwj sequences with the emoji presentation selector (VS16 = FE0F) do not yet appear in StandardizedVariants.txt.\n"
-			+ "Implementations fully supporting these three characters as emoji will need to allow for FE0F, by the following addition to that file:";
-
-	public static final String SV_CHARS = "2640 FE0E; text style; # FEMALE SIGN\n"
-			+ "2640 FE0F; emoji style; # FEMALE SIGN\n" + "2642 FE0E; text style;  # MALE SIGN\n"
-			+ "2642 FE0F; emoji style; # MALE SIGN\n" + "2695 FE0E; text style;  # STAFF OF AESCULAPIUS\n"
-			+ "2695 FE0F; emoji style; # STAFF OF AESCULAPIUS\n";
+//	public static final String SV_WARNING = "Three characters used in emoji zwj sequences with the emoji presentation selector (VS16 = FE0F) do not yet appear in StandardizedVariants.txt.\n"
+//			+ "Implementations fully supporting these three characters as emoji will need to allow for FE0F, by the following addition to that file:";
+//
+//	public static final String SV_CHARS = "2640 FE0E; text style; # FEMALE SIGN\n"
+//			+ "2640 FE0F; emoji style; # FEMALE SIGN\n" + "2642 FE0E; text style;  # MALE SIGN\n"
+//			+ "2642 FE0F; emoji style; # MALE SIGN\n" + "2695 FE0E; text style;  # STAFF OF AESCULAPIUS\n"
+//			+ "2695 FE0F; emoji style; # STAFF OF AESCULAPIUS\n";
 
 	private static final boolean DO_TAGS = false;
 
@@ -269,10 +269,10 @@ public class GenerateEmojiData {
 				+ "and is not intended to be maintained as a property.\n");
 		out.write("#   description: (optional) short description of sequence.\n");
 		out.write(ORDERING_NOTE);
-		if (type_fields.contains("Emoji_ZWJ_Sequence")) {
-			out.write("#\n" + "# In display and processing, sequences should be supported both with and without FE0F."
-					+ "\n# " + SV_WARNING.replace("\n", "\n# ") + "\n#" + "\n# " + SV_CHARS.replace("\n", "\n# "));
-		}
+//		if (type_fields.contains("Emoji_ZWJ_Sequence")) {
+//			out.write("#\n" + "# In display and processing, sequences should be supported both with and without FE0F."
+//					+ "\n# " + SV_WARNING.replace("\n", "\n# ") + "\n#" + "\n# " + SV_CHARS.replace("\n", "\n# "));
+//		}
 	}
 
 	private static int maxLength(Iterable<String> type_fields) {
@@ -354,13 +354,11 @@ public class GenerateEmojiData {
 							s = UTF16.valueOf(cp);
 							out.write(
 									tabber.process(Utility.hex(s) + "\t" + titleField
-											+ (showName ? "\t;" + EmojiData.EMOJI_DATA.getName(s, false,
-													CandidateData.getInstance()) + " " : "")
+											+ (showName ? "\t;" + getName(s) + " " : "")
 											+ "\t#" + "\t" + getAgeString(range.value) + "\t" + "\t("
 											+ addEmojiVariant(s, addVariants) + ")"
 											+ (showName ? ""
-													: "\t" + EmojiData.EMOJI_DATA.getName(s, false,
-															CandidateData.getInstance())))
+													: "\t" + getName(s)))
 									+ "\n");
 						}
 					} else if (rangeCount == 1) {
@@ -368,27 +366,27 @@ public class GenerateEmojiData {
 						out.write(tabber.process(Utility.hex(addEmojiVariant(s, isException && range.string != null))
 								+ "\t" + titleField
 								+ (showName ? "\t; "
-										+ EmojiData.EMOJI_DATA.getName(s, false, CandidateData.getInstance()) + " "
+										+ getName(s) + " "
 										: "")
 								+ "\t#" + "\t" + getAgeString(range.value) + "\t[1] " + "\t("
 								+ addEmojiVariant(s, isException && (addVariants || range.string != null)) + ")"
 								+ (showName ? ""
-										: "\t" + EmojiData.EMOJI_DATA.getName(s, false, CandidateData.getInstance())))
+										: "\t" + getName(s)))
 								+ "\n");
 					} else {
 						final String e = UTF16.valueOf(range.codepointEnd);
 						out.write(tabber.process(Utility.hex(range.codepoint) + ".." + Utility.hex(range.codepointEnd)
 						+ "\t" + titleField
 						+ (showName ? "\t; "
-								+ EmojiData.EMOJI_DATA.getName(s, false, CandidateData.getInstance()) + " "
+								+ getName(s) + " "
 								: "")
 						+ "\t#" + "\t" + getAgeString(range.value) + "\t["
 						+ (range.codepointEnd - range.codepoint + 1) + "] " + "\t("
 						+ addEmojiVariant(s, addVariants) + ".." + addEmojiVariant(e, addVariants) + ")"
 						+ (showName ? ""
-								: "\t" + EmojiData.EMOJI_DATA.getName(s, false, CandidateData.getInstance())
+								: "\t" + getName(s)
 								+ ".."
-								+ EmojiData.EMOJI_DATA.getName(e, false, CandidateData.getInstance())))
+								+ getName(e)))
 								+ "\n");
 					}
 				}
@@ -455,8 +453,10 @@ public class GenerateEmojiData {
 
 	// ##############################3
 	public static void main(String[] args) throws IOException {
+		String result = EmojiData.EMOJI_DATA.getName("🧙‍♀️");
+
 		for (int cp : CharSequences.codePoints(EXPLICIT_GENDER_LIST)) {
-			System.out.println("U+" + Utility.hex(cp) + " " + EmojiData.EMOJI_DATA.getName(UTF16.valueOf(cp)));
+			System.out.println("U+" + Utility.hex(cp) + " " + getName(UTF16.valueOf(cp)));
 		}
 		UnicodeMap<ZwjType> types = new UnicodeMap<>();
 		for (String s : EmojiData.EMOJI_DATA.getZwjSequencesNormal()) {
@@ -466,9 +466,18 @@ public class GenerateEmojiData {
 			UnicodeSet chars = types.getSet(value);
 			System.out.println(value + "\t\t" + chars.toPattern(false));
 			for (String s : chars) {
-				System.out.println(value + ";\t" + Utility.hex(s) + ";\t" + s + ";\t" + EmojiData.EMOJI_DATA.getName(s));
+				System.out.println(value + ";\t" + Utility.hex(s) + ";\t" + s + ";\t" + getName(s));
 			}
 		}
 		printData(EmojiData.EMOJI_DATA.getRawNames());
+	}
+
+	private static String getName(String s) {
+		String result = EmojiData.EMOJI_DATA.getName(s);
+		if (result.startsWith("null")) {
+			EmojiData.EMOJI_DATA.getName(s);
+			throw new IllegalAccessError();
+		}
+		return result;
 	}
 }

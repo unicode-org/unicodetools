@@ -60,9 +60,9 @@ public class Emoji {
 	 * Change each following once we release. That is, VERSION_LAST_RELEASED* becomes VERSION_BETA*, and both the latter increment.
 	 * Also add to EMOJI_TO_UNICODE_VERSION
 	 */
-	public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION4;
-	public static final VersionInfo VERSION_LAST_RELEASED = VERSION5;
-	public static final VersionInfo VERSION_BETA = VERSION6;
+	public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION3;
+	public static final VersionInfo VERSION_LAST_RELEASED = VERSION4;
+	public static final VersionInfo VERSION_BETA = VERSION5;
 
 	public static Map<VersionInfo, VersionInfo> EMOJI_TO_UNICODE_VERSION = ImmutableMap.<VersionInfo, VersionInfo>builder()
 			.put(VERSION6, UCD10)

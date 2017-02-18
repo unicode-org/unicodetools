@@ -2592,9 +2592,9 @@ public class GenerateEmoji {
 						if (image == null) {
 							String fixed = TransliteratorUtilities.toHTML.transform(x);
 							image = UTF16.hasMoreCodePointsThan(x, 1) ? fixed
-									: Emoji.toUHex(x) + " " + fixed + " " + EmojiData.EMOJI_DATA.getName(x, false, null);
+									: Emoji.toUHex(x) + " " + fixed + " " + EmojiData.EMOJI_DATA.getName(x);
 						} else {
-							image = Emoji.toUHex(x) + " " + image + " " + EmojiData.EMOJI_DATA.getName(x, false, null);
+							image = Emoji.toUHex(x) + " " + image + " " + EmojiData.EMOJI_DATA.getName(x);
 						}
 						result.append("<br>" + symbol + " " + image);
 			}

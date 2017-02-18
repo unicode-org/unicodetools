@@ -1,5 +1,5 @@
 # emoji-data.txt
-# Date: 2017-02-16, 08:44:52 GMT
+# Date: 2017-02-18, 15:28:35 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -22,9 +22,9 @@
 # All omitted code points have Emoji=No 
 # @missing: 0000..10FFFF  ; Emoji ; No
 
-0023          ; Emoji                # 1.1  [1] (#️)       NUMBER SIGN
-002A          ; Emoji                # 1.1  [1] (*️)       ASTERISK
-0030..0039    ; Emoji                # 1.1 [10] (0️..9️)    DIGIT ZERO..DIGIT NINE
+0023          ; Emoji                # 1.1  [1] (#️)       number sign
+002A          ; Emoji                # 1.1  [1] (*️)       asterisk
+0030..0039    ; Emoji                # 1.1 [10] (0️..9️)    digit zero..digit nine
 00A9          ; Emoji                # 1.1  [1] (©️)       copyright
 00AE          ; Emoji                # 1.1  [1] (®️)       registered
 203C          ; Emoji                # 1.1  [1] (‼️)       double exclamation mark
@@ -121,7 +121,7 @@
 1F17F         ; Emoji                # 5.2  [1] (🅿️)       P button
 1F18E         ; Emoji                # 6.0  [1] (🆎)       AB button (blood type)
 1F191..1F19A  ; Emoji                # 6.0 [10] (🆑..🆚)    CL button..VS button
-1F1E6..1F1FF  ; Emoji                # 6.0 [26] (🇦..🇿)    REGIONAL INDICATOR SYMBOL LETTER A..REGIONAL INDICATOR SYMBOL LETTER Z
+1F1E6..1F1FF  ; Emoji                # 6.0 [26] (🇦..🇿)    regional indicator symbol letter a..regional indicator symbol letter z
 1F201..1F202  ; Emoji                # 6.0  [2] (🈁..🈂️)    Japanese “here” button..Japanese “service charge” button
 1F21A         ; Emoji                # 5.2  [1] (🈚)       Japanese “free of charge” button
 1F22F         ; Emoji                # 5.2  [1] (🈯)       Japanese “reserved” button
@@ -285,7 +285,7 @@
 1F0CF         ; Emoji_Presentation   # 6.0  [1] (🃏)       joker
 1F18E         ; Emoji_Presentation   # 6.0  [1] (🆎)       AB button (blood type)
 1F191..1F19A  ; Emoji_Presentation   # 6.0 [10] (🆑..🆚)    CL button..VS button
-1F1E6..1F1FF  ; Emoji_Presentation   # 6.0 [26] (🇦..🇿)    REGIONAL INDICATOR SYMBOL LETTER A..REGIONAL INDICATOR SYMBOL LETTER Z
+1F1E6..1F1FF  ; Emoji_Presentation   # 6.0 [26] (🇦..🇿)    regional indicator symbol letter a..regional indicator symbol letter z
 1F201         ; Emoji_Presentation   # 6.0  [1] (🈁)       Japanese “here” button
 1F21A         ; Emoji_Presentation   # 5.2  [1] (🈚)       Japanese “free of charge” button
 1F22F         ; Emoji_Presentation   # 5.2  [1] (🈯)       Japanese “reserved” button
@@ -432,10 +432,10 @@
 # All omitted code points have Emoji_Component=No 
 # @missing: 0000..10FFFF  ; Emoji_Component ; No
 
-0023          ; Emoji_Component      # 1.1  [1] (#️)       NUMBER SIGN
-002A          ; Emoji_Component      # 1.1  [1] (*️)       ASTERISK
-0030..0039    ; Emoji_Component      # 1.1 [10] (0️..9️)    DIGIT ZERO..DIGIT NINE
-1F1E6..1F1FF  ; Emoji_Component      # 6.0 [26] (🇦..🇿)    REGIONAL INDICATOR SYMBOL LETTER A..REGIONAL INDICATOR SYMBOL LETTER Z
+0023          ; Emoji_Component      # 1.1  [1] (#️)       number sign
+002A          ; Emoji_Component      # 1.1  [1] (*️)       asterisk
+0030..0039    ; Emoji_Component      # 1.1 [10] (0️..9️)    digit zero..digit nine
+1F1E6..1F1FF  ; Emoji_Component      # 6.0 [26] (🇦..🇿)    regional indicator symbol letter a..regional indicator symbol letter z
 1F3FB..1F3FF  ; Emoji_Component      # 8.0  [5] (🏻..🏿)    light skin tone..dark skin tone
 
 # Total elements: 43
