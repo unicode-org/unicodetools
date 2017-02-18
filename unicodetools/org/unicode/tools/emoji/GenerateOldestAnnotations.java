@@ -87,7 +87,7 @@ public class GenerateOldestAnnotations {
             System.out.println(++count
                     + "\t" + Emoji.toUHex(s)
                     + "\t" + s2
-                    + "\t" + EmojiData.EMOJI_DATA.getName(s, true, null)
+                    + "\t" + EmojiData.EMOJI_DATA.getName(s)
                     );
         }
     }

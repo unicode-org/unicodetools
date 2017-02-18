@@ -242,13 +242,13 @@ public class GenerateEmojiKeyboard {
 						if (isFull) {
 							out.println("U+" + Utility.hex(cp,"U+") 
 							+ "," + cp 
-							+ "," + EmojiData.EMOJI_DATA.getName(cp, false, CandidateData.getInstance()));
+							+ "," + EmojiData.EMOJI_DATA.getName(cp));
 						}
 						break;
 					case propFile:
 						out.println(tabber.process(Utility.hex(cp) + "\t; " 
 								+ (isFull ? "fully-qualified" : "non-fully-qualified")
-								+ "\t# " + cp + " " + EmojiData.EMOJI_DATA.getName(cp, false, CandidateData.getInstance())));
+								+ "\t# " + cp + " " + EmojiData.EMOJI_DATA.getName(cp)));
 						break;
 					}
 					totals.add(cp);

@@ -809,14 +809,10 @@ public class EmojiData {
 	}
 	
 	public String getName(String source) {
-		return getName(source, false, CandidateData.getInstance());
+		return _getName(source, false, CandidateData.getInstance());
 	}
 
-	public String getName(String source, boolean toLower) {
-		return getName(source, toLower, CandidateData.getInstance());
-	}
-
-	public String getName(String source, boolean toLower, Transform<String,String> otherNameSource) {
+	private String _getName(String source, boolean toLower, Transform<String,String> otherNameSource) {
 		if (source.contains("🧙")) {
 			int debug = 0;
 		}
@@ -1033,11 +1029,10 @@ public class EmojiData {
 				Emoji.VERSION_BETA_STRING, betaData.getModifierBases());
 
 		String name = betaData.getName("🏂🏻");
-		String name2 = betaData.getName("🏂🏻", true, null);
 
 		for (String s : betaData.getModifierBases()) {
 			String comp = betaData.getVariant(s, Emoji.Qualified.all, Emoji.EMOJI_VARIANT) + "\u200D\u2642\uFE0F";
-			System.out.println(Utility.hex(comp, " ") + "\t" + s + "\t" + betaData.getName(s,false, CandidateData.getInstance()));
+			System.out.println(Utility.hex(comp, " ") + "\t" + s + "\t" + betaData.getName(s));
 		}
 		if (true) return;
 		for (String s : betaData.allEmojiWithDefectives) {
