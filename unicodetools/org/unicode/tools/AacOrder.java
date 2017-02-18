@@ -147,11 +147,11 @@ public class AacOrder {
             last = -2;
         }
         private String getName(String s) {
-            String name = emojiData.getName(s, false, null);
+            String name = emojiData.getName(s);
             return name != null ? name : UCharacter.getName(s,"+");
         }
         private String getName(int s) {
-            String name = emojiData.getName(UTF16.valueOf(s), false, null);
+            String name = emojiData.getName(UTF16.valueOf(s));
             return name != null ? name : UCharacter.getName(s);
         }
         public void add(String s) {

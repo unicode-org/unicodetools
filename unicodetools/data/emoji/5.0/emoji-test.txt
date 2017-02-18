@@ -1,5 +1,5 @@
 # emoji-test.txt
-# Date: 2017-02-17, 13:33:17 GMT
+# Date: 2017-02-18, 15:26:57 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -792,18 +792,18 @@
 1F9DC 1F3FD                                ; fully-qualified     # 🧜🏽 merperson: medium skin tone
 1F9DC 1F3FE                                ; fully-qualified     # 🧜🏾 merperson: medium-dark skin tone
 1F9DC 1F3FF                                ; fully-qualified     # 🧜🏿 merperson: dark skin tone
-1F9DC 200D 2640 FE0F                       ; fully-qualified     # 🧜‍♀️ merwoman
-1F9DC 200D 2640                            ; non-fully-qualified # 🧜‍♀ merwoman
-1F9DC 1F3FB 200D 2640 FE0F                 ; fully-qualified     # 🧜🏻‍♀️ merwoman: light skin tone
-1F9DC 1F3FB 200D 2640                      ; non-fully-qualified # 🧜🏻‍♀ merwoman: light skin tone
-1F9DC 1F3FC 200D 2640 FE0F                 ; fully-qualified     # 🧜🏼‍♀️ merwoman: medium-light skin tone
-1F9DC 1F3FC 200D 2640                      ; non-fully-qualified # 🧜🏼‍♀ merwoman: medium-light skin tone
-1F9DC 1F3FD 200D 2640 FE0F                 ; fully-qualified     # 🧜🏽‍♀️ merwoman: medium skin tone
-1F9DC 1F3FD 200D 2640                      ; non-fully-qualified # 🧜🏽‍♀ merwoman: medium skin tone
-1F9DC 1F3FE 200D 2640 FE0F                 ; fully-qualified     # 🧜🏾‍♀️ merwoman: medium-dark skin tone
-1F9DC 1F3FE 200D 2640                      ; non-fully-qualified # 🧜🏾‍♀ merwoman: medium-dark skin tone
-1F9DC 1F3FF 200D 2640 FE0F                 ; fully-qualified     # 🧜🏿‍♀️ merwoman: dark skin tone
-1F9DC 1F3FF 200D 2640                      ; non-fully-qualified # 🧜🏿‍♀ merwoman: dark skin tone
+1F9DC 200D 2640 FE0F                       ; fully-qualified     # 🧜‍♀️ mermaid
+1F9DC 200D 2640                            ; non-fully-qualified # 🧜‍♀ mermaid
+1F9DC 1F3FB 200D 2640 FE0F                 ; fully-qualified     # 🧜🏻‍♀️ mermaid: light skin tone
+1F9DC 1F3FB 200D 2640                      ; non-fully-qualified # 🧜🏻‍♀ mermaid: light skin tone
+1F9DC 1F3FC 200D 2640 FE0F                 ; fully-qualified     # 🧜🏼‍♀️ mermaid: medium-light skin tone
+1F9DC 1F3FC 200D 2640                      ; non-fully-qualified # 🧜🏼‍♀ mermaid: medium-light skin tone
+1F9DC 1F3FD 200D 2640 FE0F                 ; fully-qualified     # 🧜🏽‍♀️ mermaid: medium skin tone
+1F9DC 1F3FD 200D 2640                      ; non-fully-qualified # 🧜🏽‍♀ mermaid: medium skin tone
+1F9DC 1F3FE 200D 2640 FE0F                 ; fully-qualified     # 🧜🏾‍♀️ mermaid: medium-dark skin tone
+1F9DC 1F3FE 200D 2640                      ; non-fully-qualified # 🧜🏾‍♀ mermaid: medium-dark skin tone
+1F9DC 1F3FF 200D 2640 FE0F                 ; fully-qualified     # 🧜🏿‍♀️ mermaid: dark skin tone
+1F9DC 1F3FF 200D 2640                      ; non-fully-qualified # 🧜🏿‍♀ mermaid: dark skin tone
 1F9DC 200D 2642 FE0F                       ; fully-qualified     # 🧜‍♂️ merman
 1F9DC 200D 2642                            ; non-fully-qualified # 🧜‍♂ merman
 1F9DC 1F3FB 200D 2642 FE0F                 ; fully-qualified     # 🧜🏻‍♂️ merman: light skin tone
