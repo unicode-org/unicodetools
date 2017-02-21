@@ -42,6 +42,7 @@ import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Transform;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
@@ -807,7 +808,7 @@ public class EmojiData {
 	public UnicodeMap<String> getRawNames() {
 		return names;
 	}
-	
+
 	public String getName(String source) {
 		return _getName(source, false, CandidateData.getInstance());
 	}
@@ -818,7 +819,7 @@ public class EmojiData {
 		}
 		String name = ANNOTATION_SET.getShortName(source, otherNameSource);
 		if (name != null) {
-//			return (toLower ? name.toLowerCase(Locale.ENGLISH) : name);
+			//			return (toLower ? name.toLowerCase(Locale.ENGLISH) : name);
 			return name;
 		}
 		//        System.out.println("*** not using name for " + code + "\t" + Utility.hex(code));
@@ -986,6 +987,41 @@ public class EmojiData {
 	static final IndexUnicodeProperties latest = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
 
 	public static void main(String[] args) {
+		// find the items whose filtered form needs a VS
+		int countPlain = 0;
+		int countFirst = 0;
+		int countFull = 0;
+		int countOther = 0;
+		for (String itemFull : EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives()) {
+			String itemWithout = itemFull.replace(Emoji.EMOJI_VARIANT_STRING, "");
+			if (itemWithout.equals(itemFull)) {
+				countPlain++;
+				continue;
+			}
+			//without=first=full
+			//without=first≠full
+			//without≠first≠full
+			//without≠first=full
+			String itemFirst = EmojiData.EMOJI_DATA.getOnlyFirstVariant(itemFull);
+			if (!itemFirst.equals(itemFull)) {
+				if (!itemFirst.equals(itemWithout)) {
+					countOther++;
+					showLine(countOther, "without≠first≠full", itemWithout, itemFirst, itemFull);
+				}
+				countFirst++;
+				showLine(countFirst, "without=first≠full", itemWithout, itemFirst, itemFull);
+				continue;
+			}
+			++countFull;
+			showLine(countFull, "without≠first=full", itemWithout, itemFirst, itemFull);
+		}
+		System.out.println("countPlain: " + countPlain);
+		System.out.println("without≠first=full: " + countFull);
+		System.out.println("without=first≠full: " + countFirst);
+		System.out.println("without≠first≠full: " + countOther);
+		if (true) return;
+
+
 		EmojiData betaData = new EmojiData(Emoji.VERSION_BETA);
 		String name3 = betaData.getName("🧙");
 		String name4 = betaData.getName("🧙‍♀️");
@@ -993,12 +1029,12 @@ public class EmojiData {
 		VariantFactory vf = betaData.new VariantFactory();
 		Multimap<Integer, String> mm = TreeMultimap.create();
 		//1F575 FE0F 200D 2640 FE0F                   ; Emoji_ZWJ_Sequence  ; woman detective                                                # 7.0  [1] (🕵️‍♀️)
-//		String testString = new StringBuilder().appendCodePoint(0x0023).appendCodePoint(0x20E3).toString();
-//		vf.set(testString);
-//		for (String combo : vf.getCombinations()) {
-//			System.out.println(Utility.hex(combo, " ")
-//						+ "\t" + betaData.getName(combo, false, CandidateData.getInstance()));
-//		}
+		//		String testString = new StringBuilder().appendCodePoint(0x0023).appendCodePoint(0x20E3).toString();
+		//		vf.set(testString);
+		//		for (String combo : vf.getCombinations()) {
+		//			System.out.println(Utility.hex(combo, " ")
+		//						+ "\t" + betaData.getName(combo, false, CandidateData.getInstance()));
+		//		}
 		for (String s : betaData.getEmojiForSortRules()) {
 			vf.set(s);
 			Set<String> combos = vf.getCombinations();
@@ -1097,6 +1133,33 @@ public class EmojiData {
 		System.out.println("Keycap0 " + betaData.getSortingChars().contains("0" + Emoji.KEYCAP_MARK_STRING));
 		System.out.println("KeycapE " + betaData.getSortingChars().contains("0" + Emoji.EMOJI_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
 		System.out.println("KeycapT " + betaData.getSortingChars().contains("0" + Emoji.TEXT_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
+	}
+
+	private static void showLine(int countFirst, String title, String itemWithout, String itemFirst, String itemFull) {
+		System.out.println(title 
+				+ "\t" + countFirst
+				+ "\t" + Utility.hex(itemWithout, " ")
+				+ "\t" + Utility.hex(itemFirst, " ")
+				+ "\t" + Utility.hex(itemFull, " ")
+				+ "\t(" + itemFull + ")"
+				+ "\t" + EmojiData.EMOJI_DATA.getName(itemFull));
+	}
+
+	public String getOnlyFirstVariant(String item) {
+		item = item.replace(Emoji.EMOJI_VARIANT_STRING, "");
+		int first = item.codePointAt(0);
+		if (emojiPresentationSet.contains(first)) {
+			return item;
+		}
+		int firstLen = Character.charCount(first);
+		if (item.length() == firstLen) {
+			return item;
+		}
+		int second = item.codePointAt(firstLen);
+		if (MODIFIERS.contains(second)) {
+			return item;
+		}
+		return UTF16.valueOf(first) + Emoji.EMOJI_VARIANT_STRING + item.substring(firstLen);
 	}
 
 	private static void showDiff(String title, String string1, UnicodeSet set1, String string2, UnicodeSet set2) {

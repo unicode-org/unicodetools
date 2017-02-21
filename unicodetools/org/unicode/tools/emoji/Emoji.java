@@ -101,7 +101,7 @@ public class Emoji {
 	 */
 
 	public static final String            BETA_TITLE_AFFIX          = Emoji.IS_BETA ? BETA_PLAIN : "";
-	public static final String            BETA_HEADER_AFFIX          = Emoji.IS_BETA ? BETA_COLORED : "";
+	public static final String            BETA_HEADER_AFFIX          = Emoji.IS_BETA ? " " + BETA_COLORED : "";
 
 	public static final String VERSION_LAST_RELEASED_STRING = VERSION_LAST_RELEASED.getVersionString(2, 4);
 	public static final String VERSION_BETA_STRING = VERSION_BETA.getVersionString(2, 4) + BETA_COLORED;
