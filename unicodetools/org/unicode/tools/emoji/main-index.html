@@ -48,7 +48,7 @@
 				</tr>
 				<tr>
 					<td class="navColCell navColCellPlus" valign="top"><a
-						href="http://www.unicode.org/reports/tr51/index.html">UTR #51,
+						href="http://www.unicode.org/reports/tr51/index.html">UTS #51,
 							Unicode Emoji</a></td>
 				</tr>
 				<tr>
@@ -90,12 +90,12 @@
 				<h1>
 					Unicode® Emoji Charts v%%VERSION%%</i>
 				</h1>
-				<p style='text-align:center'><a target='emoji_subsite' href='../index.html'>Index</a></p>
+				<p style='text-align:center'><a target='emoji_subsite' href='../index.html'>Main Emoji Page</a></p>
 				%%LINK_OTHER%%
 				<p>
 					The following charts have been generated to illustrate various
 					features of the emoji characters in Unicode. These are derived from
-					the <a target='tr51' href='%%TR51_DATA%%'>data files associated with UTR #51,
+					the <a target='tr51' href='%%TR51_DATA%%'>data files for UTS #51,
 							Unicode Emoji</a>, and the annotation and ordering data from the <a
 						target='cldr' href="http://cldr.unicode.org">Unicode CLDR project</a>.
 						For a set of slides about emoji, see <a target='emoji_subsite' href='../index.html'>Emoji Slides</a>.
@@ -115,15 +115,15 @@
 							<td>Emoji characters and sequences for Emoji v%%VERSION%%.</td>
 						</tr>
 						<tr>
-							<td nowrap><a target='released' href="emoji-released.html">Emoji
-									Recently Added</a></td>
-							<td>Emoji recently added to Emoji v%%VERSION%%.</td>
-						</tr>
-						<tr>
 							<td nowrap><a target='full' href="full-emoji-list.html">Full
 									Emoji Data</a></td>
 							<td>Emoji characters and sequences for Emoji v%%VERSION%%, with images from major sources, dates, and keywords. 
 							</td>
+						</tr>
+						<tr>
+							<td nowrap><a target='released' href="emoji-released.html">Emoji
+									Recently Added</a></td>
+							<td>Emoji recently added to Emoji v%%VERSION%%.</td>
 						</tr>
 						<tr>
 							<td nowrap><a target='candidates'
@@ -275,12 +275,6 @@
 						</tr>
 						<!--
 						<tr>
-							<th><a name='col-browser' href='#col-browser'>Browser</a>
-								(Brow.)</th>
-							<td colspan="2">The character, showing whatever image would
-								be native for the browser.</td>
-						</tr>
-						<tr>
 							<th><a name='col-chart' href='#col-chart'>Chart</a></th>
 							<td colspan="2">The character as shown using the B&amp;W
 								Unicode chart font.</td>
@@ -354,27 +348,40 @@
 								</td>
 						</tr>
 						<tr>
-							<th><a name='col-date' href='#col-date'>Date</a></th>
-							<td colspan="2">The year
-								an emoji was added to Unicode. For sequences
-								of emoji, the date is for the latest character. A superscript (if present) indicates the
-								source of the character, using the characters from column L of
-								the <a target='tr51'
-								href="../../reports/tr51/proposed.html#Major_Sources">Major
-									Sources</a> table in <em><a target='tr51'
-									href="../../reports/tr51/proposed.html">UTR #51, Unicode
-										Emoji</a></em>, or <em>x</em> for other sources not listed in that
-								table. <br>
-							</td>
+							<th><a name='col-browser' href='#col-fallback'>Sample Fallback</a></th>
+							<td colspan="2">Images to show what an <i>emoji sequence</i> should look like if not supported.</td>
 						</tr>
 						<tr>
-							<th><a name='col-name' href='#col-name'>Name</a></th>
+							<th><a name='col-browser' href='#col-browser'>Browser</a></th>
+							<td colspan="2">The character, showing whatever image would
+								be native for the browser.</td>
+						</tr>
+						<tr>
+							<th><a name='col-name' href='#col-name'>CLDR Short Name</a></th>
 							<td colspan="2">The CLDR short name for the character or sequence. Short names vary by language, and are from the CLDR
 								data. Values for different languages can be found via <a
 								target='cldr_annotations'
 								href="http://unicode.org/cldr/charts/dev/annotations/index.html"
 								name="Character_Annotations">CLDR Character Annotations</a>.
 							</td>
+						</tr>
+						<tr>
+							<th><a name='col-date' href='#col-date'>Date</a></th>
+							<td colspan="2">The year
+								an emoji was added to Unicode. For sequences
+								of emoji, the date is for the latest character. A superscript (if present) indicates the
+								source of the character, using the characters from column L of
+								<a href='#col-sources'>Sources</a>, or <em>x</em> for other sources not listed in that
+								table. <br>
+							</td>
+						</tr>
+						<tr>
+							<th><a name='col-sources' href='#col-sources'>Sources</a></th>
+							<td colspan="2">Compatibility sources listed in the <a target='tr51'
+								href="http://unicode.org/reports/tr51/#Major_Sources">Major
+									Sources</a> table in <em><a target='tr51'
+									href="http://unicode.org/reports/tr51/">UTS #51, Unicode
+										Emoji</a></em>.</td>
 						</tr>
 						<!--
 				<tr>
@@ -396,6 +403,15 @@
 								href="http://unicode.org/cldr/charts/dev/annotations/index.html"
 								name="Character_Annotations">CLDR Character Annotations</a>.
 							</td>
+						</tr>
+						<tr>
+							<th><a name='col-count' href='#col-count'>Count</a></th>
+							<td colspan="2">The number of emoji of a particular type.</td>
+						</tr>
+						<tr>
+							<th><a name='col-emoji' href='#col-emoji'>Emoji</a></th>
+							<td colspan="2">A set of emoji characters or sequences, as images. 
+							When copied and pasted into text, they should appear as the underlying characters.</td>
 						</tr>
 					</table>
 				</div>

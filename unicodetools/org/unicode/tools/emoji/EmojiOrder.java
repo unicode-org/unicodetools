@@ -45,7 +45,8 @@ public class EmojiOrder {
         Activities,
         Objects,
         Symbols,
-        Flags;
+        Flags,
+        Other;
         public String toString() {
             return name().replace("_and_", " & ").replace('_', ' ');
         };
