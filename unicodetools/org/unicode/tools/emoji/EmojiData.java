@@ -987,38 +987,6 @@ public class EmojiData {
 	static final IndexUnicodeProperties latest = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
 
 	public static void main(String[] args) {
-		// find the items whose filtered form needs a VS
-		int countPlain = 0;
-		int countFirst = 0;
-		int countFull = 0;
-		int countOther = 0;
-		for (String itemFull : EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives()) {
-			String itemWithout = itemFull.replace(Emoji.EMOJI_VARIANT_STRING, "");
-			if (itemWithout.equals(itemFull)) {
-				countPlain++;
-				continue;
-			}
-			//without=first=full
-			//without=first≠full
-			//without≠first≠full
-			//without≠first=full
-			String itemFirst = EmojiData.EMOJI_DATA.getOnlyFirstVariant(itemFull);
-			if (!itemFirst.equals(itemFull)) {
-				if (!itemFirst.equals(itemWithout)) {
-					countOther++;
-					showLine(countOther, "without≠first≠full", itemWithout, itemFirst, itemFull);
-				}
-				countFirst++;
-				showLine(countFirst, "without=first≠full", itemWithout, itemFirst, itemFull);
-				continue;
-			}
-			++countFull;
-			showLine(countFull, "without≠first=full", itemWithout, itemFirst, itemFull);
-		}
-		System.out.println("countPlain: " + countPlain);
-		System.out.println("without≠first=full: " + countFull);
-		System.out.println("without=first≠full: " + countFirst);
-		System.out.println("without≠first≠full: " + countOther);
 		if (true) return;
 
 
@@ -1135,16 +1103,6 @@ public class EmojiData {
 		System.out.println("KeycapT " + betaData.getSortingChars().contains("0" + Emoji.TEXT_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
 	}
 
-	private static void showLine(int countFirst, String title, String itemWithout, String itemFirst, String itemFull) {
-		System.out.println(title 
-				+ "\t" + countFirst
-				+ "\t" + Utility.hex(itemWithout, " ")
-				+ "\t" + Utility.hex(itemFirst, " ")
-				+ "\t" + Utility.hex(itemFull, " ")
-				+ "\t(" + itemFull + ")"
-				+ "\t" + EmojiData.EMOJI_DATA.getName(itemFull));
-	}
-
 	public String getOnlyFirstVariant(String item) {
 		item = item.replace(Emoji.EMOJI_VARIANT_STRING, "");
 		int first = item.codePointAt(0);
@@ -1230,4 +1188,7 @@ public class EmojiData {
 		return result;
 	}
 
+	public String removeEmojiVariants(String s) {
+		return s.replace(Emoji.EMOJI_VARIANT_STRING, "");
+	}
 }

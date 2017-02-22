@@ -71,6 +71,7 @@ import com.ibm.icu.util.VersionInfo;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class GenerateEmoji {
+	private static final String SINGLETONS_KEYCAPS_FLAGS = "It does not include emoji sequences, except for keycaps and flags. ";
 	static boolean SHOW = false;
 	static boolean DO_SPECIALS = false;
 	private static final boolean DEBUG = false;
@@ -78,6 +79,20 @@ public class GenerateEmoji {
 
 	static final boolean DATAURL = true;
 	static final int RESIZE_IMAGE = -1;
+
+	private static final String HEADER_NUM = "<th class='rchars'><a target='text' href='index.html#col-num'>№</a></th>\n";
+	private static final String HEADER_COUNT = "<th class='rchars'><a target='text' href='index.html#col-count'>Count</a></th>\n";
+	private static final String HEADER_CODE = "<th class='rchars'><a target='text' href='index.html#col-code'>Code</a></th>\n";
+	private static final String HEADER_SAMPLE_IMAGE = "<th class='center'><a target='text' href='index.html#col-vendor'>Sample</a></th>\n";
+	private static final String HEADER_SAMPLE_FALLBACK_IMAGES = "<th class='center'><a target='text' href='index.html#col-fallback'>Sample Fallback</a></th>\n";
+	private static final String HEADER_SAMPLE_EMOJI = "<th class='narrow center'><a target='text' href='index.html#col-vendor'>Sample Emoji (+FE0F)</a</th>";
+	private static final String HEADER_SAMPLE_TEXT = "<th class='narrow center'><a target='text' href='index.html#col-vendor'>Sample Text (+FE0E)</a></th>";
+	private static final String HEADER_BROWSER = "<th class='center'><a target='text' href='index.html#col-browser'>Browser</a></th>"; 
+	private static final String HEADER_NAME = "<th><a target='text' href='index.html#col-name'>CLDR Short Name</a></th>\n";
+	private static final String HEADER_DATE = "<th><a target='text' href='index.html#col-date'>Date</a></th>\n";
+	private static final String HEADER_KEYWORDS = "<th><a target='text' href='index.html#col-annotations'>Keywords</a></th>\n";
+	private static final String HEADER_EMOJI = "<th><a target='text' href='index.html#col-emoji'>Emoji</a></th>";
+	private static final String HEADER_SOURCES = "<th><a target='text' href='index.html#col-sources'>Sources</a></th>";
 
 	private static final String BREAK = "<br>";
 	private static final String TR51_HTML = "../../reports/tr51/" + (Emoji.IS_BETA ? "proposed.html" : "index.html");
@@ -159,8 +174,13 @@ public class GenerateEmoji {
 		UnicodeMap<String> kddiProp = Emoji.LATEST.load(UcdProperty.Emoji_KDDI);
 		UnicodeMap<String> sbProp = Emoji.LATEST.load(UcdProperty.Emoji_SB);
 		checkDuplicates(dcmProp, kddiProp, sbProp);
-		JSOURCES.addAll(dcmProp.keySet()).addAll(kddiProp.keySet()).addAll(sbProp.keySet())
-		.removeAll(WHITESPACE.getSet(UcdPropertyValues.Binary.Yes.toString())).freeze();
+		JSOURCES.addAll(dcmProp.keySet())
+		.addAll(kddiProp.keySet())
+		.addAll(sbProp.keySet())
+		.removeAll(WHITESPACE.getSet(UcdPropertyValues.Binary.Yes.toString()))
+		// HACK
+		.addAll(new UnicodeSet("[{0️⃣} {1️⃣} {2️⃣} {3️⃣} {4️⃣} {5️⃣} {6️⃣} {7️⃣} {8️⃣} {9️⃣} {#️⃣} {🇨🇳} {🇩🇪} {🇪🇸} {🇫🇷} {🇬🇧} {🇮🇹} {🇯🇵} {🇰🇷} {🇷🇺} {🇺🇸}]"))
+		.freeze();
 		// if (true)
 		// System.out.println("Core:\t" + JSOURCES.size() + "\t" + JSOURCES);
 	}
@@ -844,12 +864,13 @@ public class GenerateEmoji {
 		final PrintWriter out2 = visibility == Visibility.internal ? FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "text-vs.txt") : null;
 		if (out != null)
 			writeHeader(outFileName, out, "Text vs Emoji", null,
-					"<p>This chart lists the emoji code points by version, "
+					"<p>This chart lists the emoji code points by date, "
 							+ "showing for each character whether it has an emoji presentation (EP) by default "
 							+ "and whether or it has an emoji presentation sequence (EPSq). "
-							+ "There are no characters with an EP without an EPS.</p>\n"
-							+ "<p>The notation “vX ∩ Dings” indicates the Dingbats, Webdings, and Wingdings characters in version X. "
-							+ "The label “vX ⊖ Dings” indicates other characters in version X. "
+							+ "There are no characters with an EP without an EPS (no “-EP -EPSq“).</p>\n"
+							+ "<p>The notation “<i>year</i> ∩ Dings” indicates the Dingbats, Webdings, and Wingdings characters in <i>year</i>, "
+							+ "since the Dings were a principle source of emoji with text presentation (-EP). "
+							+ "The label “<i>year</i> ⊖ Dings” indicates other characters in <i>year</i>. "
 							+ "</p>\n",
 							"border='1'", true, false);
 		UnicodeSet dings = new UnicodeSet(DINGBATS).addAll(DING_MAP.keySet())
@@ -885,8 +906,9 @@ public class GenerateEmoji {
 		if (current.size() == 0) {
 			return max;
 		}
-		String versionString = version == Age_Values.Unassigned ? "v10.0"
-				: version.toString().toLowerCase(Locale.ENGLISH).replace("_", ".");
+		String versionString = VersionToAge.getYear(version)+"";
+//				Age_Values.Unassigned ? "v10.0"
+//				: version.toString().toLowerCase(Locale.ENGLISH).replace("_", ".");
 		String title = versionString + (minusDings ? " <span style='color:gray'>⊖ Dings</span>" : " ∩ Dings");
 		UnicodeSet emojiSet = new UnicodeSet(current).removeAll(defaultText)
 				.removeAll(EmojiData.EMOJI_DATA.getEmojiWithVariants());
@@ -897,7 +919,7 @@ public class GenerateEmoji {
 		UnicodeSet textSetVs = new UnicodeSet(current).retainAll(defaultText)
 				.retainAll(EmojiData.EMOJI_DATA.getEmojiWithVariants());
 		if (outExternal != null) {
-			if (max > 50) {
+			if (max > 50 && minusDings) {
 				outExternal.println("<tr><th></th>"
 						+ "<th width='30%' style='text-align: center'><i>+EP -EPSq</i></th>"
 						+ "<th width='30%' style='text-align: center'><i>+EP +EPSq</i></th>"
@@ -1235,7 +1257,7 @@ public class GenerateEmoji {
 						+ "This text file provides a listing of characters for testing the display of emoji characters.\n"
 						+ "• “-vs” indicates that emoji presentation selectors are not present, and a character has Emoji_Presentation=False.\n"
 						+ "• “+vs” indicates that emoji presentation selectors are present, and a character has Emoji_Presentation=False.\n"
-						+ "For more information on presentation style, see UTR #51.");
+						+ "For more information on presentation style, see UTS #51.");
 
 		final String mainMessage = "Should all be colorful, except where marked with “text-vs”.";
 		out.println("<tr><th colSpan='3'>Plain: " + mainMessage + "</th></tr>");
@@ -1338,7 +1360,7 @@ public class GenerateEmoji {
 						+ "Sample glyphs are provided to illustrate the contrast between "
 						+ "the desired appearances for each of these selectors. " + "For more information, see "
 						+ "<i><a target='doc' href='" + TR51_HTML + "#Definitions'>Definitions</a></i> "
-						+ "in <i><a target='doc' href='" + TR51_HTML + "'>UTR #51: Unicode Emoji</a></i>. " + "</p><p>"
+						+ "in <i><a target='doc' href='" + TR51_HTML + "'>UTS #51: Unicode Emoji</a></i>. " + "</p><p>"
 						+ "The Version column shows the first version of Unicode containing "
 						+ "the standard presentation sequence. "
 						+ "It is not the version in which the <i>emoji base</i> was added to Unicode, "
@@ -1351,8 +1373,13 @@ public class GenerateEmoji {
 						+ "followed by U+20E3 COMBINING ENCLOSING KEYCAP. </p>\n",
 						"border='1'", true, false);
 
-		out.println("<tr><th class='cchars'>Code</th>" + "<th class='narrow cchars'>Sample Text (+FE0E)</th>"
-				+ "<th class='narrow cchars'>Sample Emoji (+FE0F)</th>" + "<th>Version</th>" + "<th>Name</th></tr>");
+		out.println("<tr>"
+				+ HEADER_CODE // + "<th class='cchars'>Code</th>" 
+				+ HEADER_SAMPLE_TEXT
+				+ HEADER_SAMPLE_EMOJI
+				+ HEADER_DATE // + "<th>Version</th>" 
+				+ HEADER_NAME
+				+ "</tr>");
 		final String keycapIndicator = "*";
 		TreeSet<String> sorted = new TreeSet<>(EmojiOrder.PLAIN_STRING_COMPARATOR);
 		EmojiData.EMOJI_DATA.getEmojiWithVariants().addAllTo(sorted);
@@ -1431,7 +1458,14 @@ public class GenerateEmoji {
 	private static void displayZwjTD(PrintWriter out, String title, UnicodeSet items) {
 		out.println("<tr><th colSpan='6'>" + TransliteratorUtilities.toHTML.transform(title) + "</th></tr>");
 		out.println(
-				"<tr><th>№</th><th style='width:10em'>Code Points</th><th>Browser</th><th>Sample Image</th><th>Sample Fallback Images</th><th>Description</th></tr>");
+				"<tr>"
+				+ HEADER_NUM // "<th>№</th>"
+				+ HEADER_CODE // "<th style='width:10em'>Code Points</th>"
+				+ HEADER_BROWSER
+				+ HEADER_SAMPLE_IMAGE // "<th>Sample Image</th>"
+				+ HEADER_SAMPLE_FALLBACK_IMAGES
+				+ HEADER_NAME
+				+ "</tr>");
 		// StringBuffer name = new StringBuffer();
 		// String prefix = "";
 		int i = 0;
@@ -1442,8 +1476,8 @@ public class GenerateEmoji {
 			}
 			boolean isSingle = s.codePointCount(0, s.length()) == 1;
 			out.println("<tr>");
-			out.println("<td class='rchars'>" + (isSingle ? "<i>neutral</i>" : "" + (++i)) + "</td>");
-			out.println("<td>" + getDoubleLink("U+" + Utility.hex(s, " U+")) + "</td>");
+			out.println(getCellNum(++i));
+			out.println(getCellCode(s));
 			out.println("<td class='chars'>" + s + "</td>");
 			final String bestImage = getBestImage(s, true, "");
 			out.println("<td class='andr'>" + bestImage + "</td>");
@@ -1541,16 +1575,23 @@ public class GenerateEmoji {
 		writeHeader(outFileName, out, "Emoji Versions &amp; Sources", null,
 				"<p>This chart shows when each emoji <i>code point</i> first appeared in a Unicode version, "
 						+ "and which "
-						+ "sources the character corresponds to. It does not include the emoji sequences. "
+						+ "sources the character corresponds to. "
 						+ "For example, “ZDings+ARIB+JCarrier” indicates that the character also appears in the Zapf Dingbats, "
-						+ "the ARIB set, and the Japanese Carrier set. </p>\n",
+						+ "the ARIB set, and the Japanese Carrier set. "
+						+ SINGLETONS_KEYCAPS_FLAGS
+						+ "</p>\n",
 						"border='1'", true, false);
-		out.println("<tr><th>Date</th><th>Sources</th><th>Count</th><th>Emoji</th></tr>");
+		out.println("<tr>"
+				+ HEADER_DATE
+				+ HEADER_SOURCES
+				+ HEADER_COUNT
+				+ HEADER_EMOJI
+				+ "</tr>");
 		UnicodeMap<VersionData> m = new UnicodeMap<>();
 		TreeSet<VersionData> sorted = getSortedVersionInfo(m);
 		for (VersionData value : sorted) {
 			UnicodeSet chars = m.getSet(value);
-			chars = new UnicodeSet(chars).retainAll(EmojiData.EMOJI_DATA.getSingletonsWithDefectives());
+			chars = new UnicodeSet(chars).retainAll(getCharsForVersion());
 			if (chars.isEmpty()) {
 				continue;
 			}
@@ -1566,6 +1607,15 @@ public class GenerateEmoji {
 		out.close();
 	}
 
+	private static UnicodeSet getCharsForVersion() {
+		return new UnicodeSet()
+				.addAll(EmojiData.EMOJI_DATA.getSingletonsWithDefectives())
+				.addAll(EmojiData.EMOJI_DATA.getFlagSequences())
+				.addAll(EmojiData.EMOJI_DATA.getKeycapSequences())
+				.removeAll(EmojiData.EMOJI_DATA.getEmojiComponents())
+				.freeze();
+	}
+
 	public static TreeSet<VersionData> getSortedVersionInfo(UnicodeMap<VersionData> m) {
 		for (String s : EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectivesOrModifiers()) {
 			m.put(s, new VersionData(s));
@@ -1579,16 +1629,22 @@ public class GenerateEmoji {
 		final String outFileName = "emoji-versions.html";
 		PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, outFileName);
 		writeHeader(outFileName, out, "Emoji Versions", null,
-				"<p>This chart shows when each emoji first appeared in a Unicode version. "
-						+ "Modifier sequences are omitted. Other sequences are included in the earliest version that contains all the characters.</p>\n",
+				"<p>This chart shows when each emoji character first appeared in a Unicode version. "
+				+ SINGLETONS_KEYCAPS_FLAGS
+				+ "</p>\n",
 						"border='1'", true, false);
 		UnicodeMap<Integer> m = new UnicodeMap<>();
-		for (String s : EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectivesOrModifiers()) {
+		
+		for (String s : getCharsForVersion()) {
 			m.put(s, VersionToAge.getYear(Emoji.getNewest(s)));
 		}
 		TreeSet<Integer> sorted = new TreeSet<>(Collections.reverseOrder());
 		sorted.addAll(m.values());
-		out.println("<tr><th>Date</th><th>Count</th><th>Emoji</th></tr>");
+		out.println("<tr>"
+				+ HEADER_DATE
+				+ HEADER_COUNT
+				+ HEADER_EMOJI
+				+ "</tr>");
 		for (Integer value : sorted) {
 			UnicodeSet chars = m.getSet(value);
 			displayUnicodesetTD(out, Collections.singleton(value), null,
@@ -1961,10 +2017,10 @@ public class GenerateEmoji {
 		+ "'>";
 	}
 
-	private static final String HOVER_INSTRUCTIONS = "Emoji without available skintone show a small swatch afterwards;"
-			+ " those without available images are shown as ✘. "
-			+ "Hovering over an emoji shows the name; clicking goes to the " + IMAGE_MORE_INFO_LINK
-			+ " entry for that emoji.";
+	//	private static final String HOVER_INSTRUCTIONS = "Emoji without available skintone show a small swatch afterwards;"
+	//			+ " those without available images are shown as ✘. "
+	//			+ "Hovering over an emoji shows the name; clicking goes to the " + IMAGE_MORE_INFO_LINK
+	//			+ " entry for that emoji.";
 
 	public static void displayUnicodeSet(PrintWriter out, Collection<String> sorted, Style showEmoji, int maxPerLine,
 			int colSpan, int rowSpan, String link, String extraClasses, Visibility visibility) {
@@ -2045,18 +2101,16 @@ public class GenerateEmoji {
 	private static final String CLDR_ANNOTATIONS_LINK = "<a target='cldr_annotations' href='http://unicode.org/cldr/charts/"
 			+ (Emoji.IS_BETA ? "dev" : "latest") + "/annotations/index.html'>Unicode CLDR Annotations</a>";
 
-	private static final String formCommon = ("The ordering of the emoji and the annotations are based on " + CLDR_DATA_LINK + ". "
-			+ "Emoji sequences have more than one code point in the <b>Code</b> column. "
-			+ "New characters show as a group with “…” before and after.</p>"
-			+ "<p>For more information, see <a target='text' href='index.html'>Index & Help</a>.</p>");
-
 	enum Form {
 		noImages("This chart provides a list of the Unicode emoji characters and sequences, with single image and annotations."
 				+ " Clicking on a Sample goes to the emoji in the <a target='full' href='full-emoji-list.html'>full list</a>.) "
-				+ formCommon), 
+				+ ("The ordering of the emoji and the annotations are based on " + GenerateEmoji.CLDR_DATA_LINK + ". "
+						+ "Emoji sequences have more than one code point in the <b>Code</b> column.</p>")), 
 		fullForm("This chart provides a list of the Unicode emoji characters and sequences, with images from different vendors, "
 				+ "CLDR name, date, source, and keywords. "
-				+ formCommon), 
+				+ ("The ordering of the emoji and the annotations are based on " + GenerateEmoji.CLDR_DATA_LINK + ". "
+						+ "Emoji sequences have more than one code point in the <b>Code</b> column. "
+						+ "New characters show as a group with “…” before and after.</p>")), 
 		onlyNew("This chart provides a list of the Unicode emoji characters and sequences that have been added to the most recent version of Unicode Emoji. "
 				+ "See also the <a target='candidates' href='emoji-candidates.html'>Emoji Candidates</a>.");
 
@@ -2196,6 +2250,7 @@ public class GenerateEmoji {
 						+ " | <a target='submitting-emoji' href='../../emoji/selection.html'>Proposing Additions</a>"
 						+ "</p>"
 						+ firstLine
+						+ "<p>For more information, see <a target='text' href='index.html'>Index & Help</a>.</p>"
 						+ "<table " + tableAttrs + ">");
 	}
 
@@ -2696,10 +2751,10 @@ public class GenerateEmoji {
 		String chars2WithVS = chars2; // EmojiData.EMOJI_DATA.addEmojiVariants(chars2,
 		// Emoji.EMOJI_VARIANT,
 		// VariantHandling.sequencesOnly);
-		String anchor = getAnchor(Emoji.toUHex(chars2WithVS));
 		DefaultPresentation style = EmojiData.EMOJI_DATA.getStyle(chars2);
-		return "<tr>" + "<td class='rchars'>" + item + "</td>\n" + "<td class='code'>"
-		+ getDoubleLink(anchor, Emoji.toUHex(chars2WithVS)) + "</td>\n"
+		return "<tr>" 
+				+ getCellNum(item)
+				+ getCellCode(chars2WithVS)
 		+ (form == Form.noImages ? altClass(bestCell)
 				: 
 					//altClass(browserCell) + altClass(symbolaCell) +
@@ -2707,11 +2762,20 @@ public class GenerateEmoji {
 		+ "<td class='name'>" + name2 + "</td>\n"
 		+ (form == Form.noImages ? ""
 				: "<td class='age'>" + VersionToAge.getYear(Emoji.getNewest(chars2))
-				+ getSources(chars2, new StringBuilder(), true) + "</td>\n" + "<td class='name'>"
-				+ getAnnotationsString(chars2) + "</td>\n"
+				+ getSources(chars2, new StringBuilder(), true) + "</td>\n" 
+				+ "<td class='name'>" + getAnnotationsString(chars2) + "</td>\n"
 				// + "<td class='default'>" + (style == null ? "n/a" : style) +
 				// (!textChars.equals(chars2) ? "*" : "") + "</td>\n"
 				) + "</tr>";
+	}
+
+	private static String getCellCode(String chars2WithVS) {
+		String uHex = Emoji.toUHex(chars2WithVS);
+		return "<td class='code'>" + getDoubleLink(getAnchor(uHex), uHex) + "</td>\n";
+	}
+
+	private static String getCellNum(int item) {
+		return "<td class='rchars'>" + item + "</td>\n";
 	}
 
 	private static StringBuilder getAnnotationsString(String chars2) {
@@ -2750,24 +2814,22 @@ public class GenerateEmoji {
 			+ "</a></th>\n");
 		}
 
-		return "<tr>" + "<th class='rchars'><a target='text' href='index.html#col-num'>№</a></th>\n"
-		+ "<th class='rchars'><a target='text' href='index.html#col-code'>Code</a></th>\n"
-		+ (form == Form.noImages
-		? "<th class='cchars'><a target='text' href='index.html#col-vendor'>Sample</a></th>\n"
-				: 
-					//					"<th class='cchars'><a target='text' href='index.html#col-browser'>Brow.</a></th>\n"
-					//				+ "<th class='cchars'><a target='text' href='index.html#col-chart'>Chart</a></th>\n"
-					otherCells)
-		// + "<th class='cchars'>Browser</th>\n"
-		+ "<th><a target='text' href='index.html#col-name'>Name</a></th>\n"
-		+ (form == Form.noImages ? ""
-				: "<th><a target='text' href='index.html#col-data'>Date</a></th>\n"
-				+ "<th><a target='text' href='index.html#col-annotations'>Keywords</a></th>\n"
-				// + "<th><a target='text'
-				// href='index.html#col-default'>Default</a></th>\n"
-				)
-		// + "<th>Block: <i>Subhead</i></th>\n"
-		+ "</tr>";
+		return "<tr>" + HEADER_NUM
+				+ HEADER_CODE
+				+ (form == Form.noImages
+				? HEADER_SAMPLE_IMAGE
+						: 
+							//					"<th class='cchars'><a target='text' href='index.html#col-browser'>Brow.</a></th>\n"
+							//				+ "<th class='cchars'><a target='text' href='index.html#col-chart'>Chart</a></th>\n"
+							otherCells)
+				// + "<th class='cchars'>Browser</th>\n"
+				+ HEADER_NAME
+				+ (form == Form.noImages ? ""
+						: HEADER_DATE
+						+ HEADER_KEYWORDS
+						)
+				// + "<th>Block: <i>Subhead</i></th>\n"
+				+ "</tr>";
 	}
 
 	private static final Set<String> SUPPRESS_ANNOTATIONS = ImmutableSet.of("default-text-style", "other", "nature",
@@ -2806,11 +2868,12 @@ public class GenerateEmoji {
 		Set<String> sorted = emoji.addAllTo(new TreeSet<String>(comparator));
 		String lastCategory = null;
 		MajorGroup lastMajorGroup = null;
-		String header = "<tr>" + "<th><a target='text' href='index.html#col-num'>№</a></th>"
-				+ "<th width='7em'><a target='text' href='index.html#col-code'>Code</a></th>"
+		String header = "<tr>"
+				+ HEADER_NUM // "<th><a target='text' href='index.html#col-num'>№</a></th>"
+				+ HEADER_CODE // + "<th width='7em'><a target='text' href='index.html#col-code'>Code</a></th>"
 				//+ "<th width='5em'><a target='text' href='index.html#col-chart'>Chart Glyph</a></th>"
-				+ "<th><a target='text' href='index.html#col-vendor'>Sample Colored Glyphs</a></th>"
-				+ "<th width='50%'><a target='text' href='index.html#col-name'>Name</a></th>"
+				+ HEADER_SAMPLE_IMAGE // + "<th><a target='text' href='index.html#col-vendor'>Sample Colored Glyphs</a></th>"
+				+ HEADER_NAME
 				+ "</tr>";
 
 		List<String> output = new ArrayList<>();
@@ -2913,9 +2976,10 @@ public class GenerateEmoji {
 
 		if (!future) {
 			topHeader = "<p>This chart shows the emoji that have been added to this release of Unicode Emoji. "
-					+ "See also the <a target='candidates' href='emoji-candidates.html'>Emoji Candidates</a>.</p>"
+					+ "See also the <a target='candidates' href='emoji-candidates.html'>Emoji Candidates</a>."
 					+ (Emoji.IS_BETA ? footer : 
-							"<p>Thanks to EmojiXpress, Emojipedia, Emojination, Adobe, and submitters for the color sample glyphs.</p>");
+							" Thanks to EmojiXpress, Emojipedia, Emojination, Adobe, and submitters for the color sample glyphs.")
+					+ "</p>";
 			footer = "";
 			title = "Emoji Recently Added";
 		}
