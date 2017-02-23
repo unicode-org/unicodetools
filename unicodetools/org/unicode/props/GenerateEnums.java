@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -18,12 +19,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.ArrayComparator;
 import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.util.VersionInfo;
 
 public class GenerateEnums {
@@ -113,13 +117,35 @@ public class GenerateEnums {
         }
         @Override
         public int compareTo(PropName arg0) {
-            return longName.compareTo(arg0.longName);
+        	if (longName.contains("10")) {
+        		int debug = 0;
+        	}
+            return COL.compare(longName, arg0.longName);
         }
     }
+    
+    static final RuleBasedCollator COL = (RuleBasedCollator) Collator.getInstance(Locale.ROOT);
+    static {
+    	COL.setNumericCollation(true);
+    	COL.freeze();
+    }
+	private static final Comparator<String[]> ARRAY_SORT = new Comparator<String[]>() {
+		@Override
+		public int compare(String[] o1, String[] o2) {
+			int min = o1.length < o2.length ? o1.length : o2.length;
+			for (int i = 0; i < min; ++i) {
+				int diff = COL.compare(o1[i], o2[i]);
+				if (diff != 0) {
+					return diff;
+				}
+			}
+			return o1.length - o2.length;
+		}
+	};
 
     public static void main(String[] args) throws IOException {
 
-        final Map<PropName, List<String[]>> values = new TreeMap<PropName, List<String[]>>();
+        final Map<PropName, Set<String[]>> values = new TreeMap<PropName, Set<String[]>>();
 
         addPropertyAliases(values, FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyAliases", ENUM_VERSION, true, true)));
         addPropertyAliases(values, FileUtilities.in(GenerateEnums.class, "ExtraPropertyAliases.txt"));
@@ -155,7 +181,7 @@ public class GenerateEnums {
                 "    }\n";
     }
 
-    public static void writeValueEnumFile(Map<PropName, List<String[]>> values) throws IOException {
+    public static void writeValueEnumFile(Map<PropName, Set<String[]>> values) throws IOException {
         final PrintWriter output = FileUtilities.openUTF8Writer("", PROPERTY_VALUE_OUTPUT);
         output.println("package org.unicode.props;\n"
                 + "import org.unicode.props.PropertyNames.NameMatcher;\n"
@@ -184,13 +210,13 @@ public class GenerateEnums {
                         //                        "    }\n"
                 );
 
-        for (final Entry<PropName, List<String[]>> value : values.entrySet()) {
+        for (final Entry<PropName, Set<String[]>> value : values.entrySet()) {
             final PropName propName = value.getKey();
             System.out.println("Writing:\t" + propName.longName);
             if (propName.propertyType == PropertyType.Binary) {
                 continue;
             }
-            final List<String[]> partList = value.getValue();
+            final Set<String[]> partList = value.getValue();
             if (partList.size() == 0) {
                 output.println("\t\t// " + propName.longName);
                 continue;
@@ -462,7 +488,7 @@ public class GenerateEnums {
     }
 
 
-    public static void addPropertyValueAliases(Map<PropName, List<String[]>> values, Iterable<String> lines) {
+    public static void addPropertyValueAliases(Map<PropName, Set<String[]>> values, Iterable<String> lines) {
         for (final String line : lines) {
             final String[] parts = FileUtilities.cleanSemiFields(line);
             if (parts == null) {
@@ -472,13 +498,13 @@ public class GenerateEnums {
             if (propName == null) {
                 throw new UnicodePropertyException("Missing Prop Name in " + Arrays.asList(parts));
             }
-            final List<String[]> set = values.get(propName);
+            final Set<String[]> set = values.get(propName);
             set.add(parts);
             //System.out.println(propName.longName + "\t" + Arrays.asList(parts));
         }
     }
 
-    public static void addPropertyAliases(Map<PropName, List<String[]>> values, Iterable<String> lines) {
+    public static void addPropertyAliases(Map<PropName, Set<String[]>> values, Iterable<String> lines) {
         final Matcher propType = Pattern.compile("#\\s+(\\p{Alpha}+)\\s+Properties\\s*").matcher("");
         PropertyType type = null;
         for (final String line : lines) {
@@ -491,7 +517,7 @@ public class GenerateEnums {
                 continue;
             }
             final PropName propName = new PropName(type, parts);
-            values.put(propName, new ArrayList<String[]>());
+            values.put(propName, propName.longName.equals("Age") ? new TreeSet<>(ARRAY_SORT) : new LinkedHashSet<>());
             System.out.println(propName);
             //            if (!Locations.contains(propName.longName)) {
             //                System.out.println("Missing file: " + propName.longName);

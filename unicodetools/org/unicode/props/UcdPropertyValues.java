@@ -178,6 +178,7 @@ public class UcdPropertyValues {
         CJK_Unified_Ideographs_Extension_C("CJK_Ext_C"),
         CJK_Unified_Ideographs_Extension_D("CJK_Ext_D"),
         CJK_Unified_Ideographs_Extension_E("CJK_Ext_E"),
+        CJK_Unified_Ideographs_Extension_F("CJK_Ext_F"),
         CJK_Radicals_Supplement("CJK_Radicals_Sup"),
         CJK_Strokes("CJK_Strokes"),
         CJK_Symbols_And_Punctuation("CJK_Symbols"),
@@ -250,6 +251,7 @@ public class UcdPropertyValues {
         Hangul_Jamo_Extended_B("Jamo_Ext_B"),
         Javanese("Javanese"),
         Kaithi("Kaithi"),
+        Kana_Extended_A("Kana_Ext_A"),
         Kana_Supplement("Kana_Sup"),
         Kanbun("Kanbun"),
         Kangxi_Radicals("Kangxi"),
@@ -286,6 +288,7 @@ public class UcdPropertyValues {
         Mandaic("Mandaic"),
         Manichaean("Manichaean"),
         Marchen("Marchen"),
+        Masaram_Gondi("Masaram_Gondi"),
         Mathematical_Alphanumeric_Symbols("Math_Alphanum"),
         Mathematical_Operators("Math_Operators"),
         Meetei_Mayek("Meetei_Mayek"),
@@ -317,6 +320,7 @@ public class UcdPropertyValues {
         Newa("Newa"),
         NKo("NKo"),
         Number_Forms("Number_Forms"),
+        Nushu("Nushu"),
         Optical_Character_Recognition("OCR"),
         Ogham("Ogham"),
         Ol_Chiki("Ol_Chiki"),
@@ -356,6 +360,7 @@ public class UcdPropertyValues {
         Sinhala_Archaic_Numbers("Sinhala_Archaic_Numbers"),
         Small_Form_Variants("Small_Forms"),
         Sora_Sompeng("Sora_Sompeng"),
+        Soyombo("Soyombo"),
         Specials("Specials"),
         Sundanese("Sundanese"),
         Sundanese_Supplement("Sundanese_Sup"),
@@ -371,6 +376,7 @@ public class UcdPropertyValues {
         Sutton_SignWriting("Sutton_SignWriting"),
         Syloti_Nagri("Syloti_Nagri"),
         Syriac("Syriac"),
+        Syriac_Supplement("Syriac_Sup"),
         Tagalog("Tagalog"),
         Tagbanwa("Tagbanwa"),
         Tags("Tags"),
@@ -401,12 +407,6 @@ public class UcdPropertyValues {
         Yi_Radicals("Yi_Radicals"),
         Yi_Syllables("Yi_Syllables"),
         Yijing_Hexagram_Symbols("Yijing"),
-        CJK_Unified_Ideographs_Extension_F("CJK_Ext_F"),
-        Kana_Extended_A("Kana_Ext_A"),
-        Masaram_Gondi("Masaram_Gondi"),
-        Nushu("Nushu"),
-        Soyombo("Soyombo"),
-        Syriac_Supplement("Syriac_Sup"),
         Zanabazar_Square("Zanabazar_Square");
         private final PropertyNames<Block_Values> names;
         private Block_Values (String shortName, String...otherNames) {
@@ -425,7 +425,6 @@ public class UcdPropertyValues {
         }
     }
 
-		// CJK_Radical
 	public enum Canonical_Combining_Class_Values implements Named {
         Not_Reordered("0", "NR"),
         Overlay("1", "OV"),
@@ -502,6 +501,7 @@ public class UcdPropertyValues {
     }
 
 		// Case_Folding
+		// CJK_Radical
 		// Confusable_MA
 		// Confusable_ML
 		// Confusable_SA
@@ -687,7 +687,6 @@ public class UcdPropertyValues {
         }
     }
 
-		// ISO_Comment
 	public enum Identifier_Status_Values implements Named {
         Restricted("r"),
         Allowed("a");
@@ -870,6 +869,7 @@ public class UcdPropertyValues {
         }
     }
 
+		// ISO_Comment
 	public enum Jamo_Short_Name_Values implements Named {
         A("A"),
         AE("AE"),
@@ -970,17 +970,6 @@ public class UcdPropertyValues {
         Knotted_Heh("Knotted_Heh"),
         Lam("Lam"),
         Lamadh("Lamadh"),
-        Malayalam_Bha("Malayalam_Bha"),
-        Malayalam_Ja("Malayalam_Ja"),
-        Malayalam_Nga("Malayalam_Nga"),
-        Malayalam_Nna("Malayalam_Nna"),
-        Malayalam_Nnna("Malayalam_Nnna"),
-        Malayalam_Nya("Malayalam_Nya"),
-        Malayalam_Lla("Malayalam_Lla"),
-        Malayalam_Llla("Malayalam_Llla"),
-        Malayalam_Ra("Malayalam_Ra"),
-        Malayalam_Ssa("Malayalam_Ssa"),
-        Malayalam_Tta("Malayalam_Tta"),
         Manichaean_Aleph("Manichaean_Aleph"),
         Manichaean_Ayin("Manichaean_Ayin"),
         Manichaean_Beth("Manichaean_Beth"),
@@ -1082,6 +1071,97 @@ public class UcdPropertyValues {
         }
     }
 
+		// kAccountingNumeric
+		// kBigFive
+		// kCangjie
+		// kCantonese
+		// kCCCII
+		// kCheungBauer
+		// kCheungBauerIndex
+		// kCihaiT
+		// kCNS1986
+		// kCNS1992
+		// kCompatibilityVariant
+		// kCowles
+		// kDaeJaweon
+		// kDefinition
+		// kEACC
+		// kFenn
+		// kFennIndex
+		// kFourCornerCode
+		// kFrequency
+		// kGB0
+		// kGB1
+		// kGB3
+		// kGB5
+		// kGB7
+		// kGB8
+		// kGradeLevel
+		// kGSR
+		// kHangul
+		// kHanYu
+		// kHanyuPinlu
+		// kHanyuPinyin
+		// kHDZRadBreak
+		// kHKGlyph
+		// kHKSCS
+		// kIBMJapan
+		// kIICore
+		// kIRG_GSource
+		// kIRG_HSource
+		// kIRG_JSource
+		// kIRG_KPSource
+		// kIRG_KSource
+		// kIRG_MSource
+		// kIRG_TSource
+		// kIRG_USource
+		// kIRG_VSource
+		// kIRGDaeJaweon
+		// kIRGDaiKanwaZiten
+		// kIRGHanyuDaZidian
+		// kIRGKangXi
+		// kJa
+		// kJapaneseKun
+		// kJapaneseOn
+		// kJis0
+		// kJis1
+		// kJIS0213
+		// kKangXi
+		// kKarlgren
+		// kKorean
+		// kKPS0
+		// kKPS1
+		// kKSC0
+		// kKSC1
+		// kLau
+		// kMainlandTelegraph
+		// kMandarin
+		// kMatthews
+		// kMeyerWempe
+		// kMorohashi
+		// kNelson
+		// kOtherNumeric
+		// kPhonetic
+		// kPrimaryNumeric
+		// kPseudoGB1
+		// kRSAdobe_Japan1_6
+		// kRSJapanese
+		// kRSKangXi
+		// kRSKanWa
+		// kRSKorean
+		// kRSUnicode
+		// kSBGY
+		// kSemanticVariant
+		// kSimplifiedVariant
+		// kSpecializedSemanticVariant
+		// kTaiwanTelegraph
+		// kTang
+		// kTotalStrokes
+		// kTraditionalVariant
+		// kVietnamese
+		// kXerox
+		// kXHC1983
+		// kZVariant
 	public enum Line_Break_Values implements Named {
         Ambiguous("AI"),
         Alphabetic("AL"),
@@ -1144,6 +1224,10 @@ public class UcdPropertyValues {
     }
 
 		// Lowercase_Mapping
+		// Name
+		// Name_Alias
+		// Named_Sequences
+		// Named_Sequences_Prov
 	public enum NFC_Quick_Check_Values implements Named {
         Maybe("M"),
         No("N"),
@@ -1227,10 +1311,6 @@ public class UcdPropertyValues {
         }
     }
 
-		// Name
-		// Name_Alias
-		// Named_Sequences
-		// Named_Sequences_Prov
 	public enum Numeric_Type_Values implements Named {
         Decimal("De"),
         Digit("Di"),
@@ -1289,6 +1369,7 @@ public class UcdPropertyValues {
         Ethiopic("Ethi"),
         Georgian("Geor"),
         Glagolitic("Glag"),
+        Masaram_Gondi("Gonm"),
         Gothic("Goth"),
         Grantha("Gran"),
         Greek("Grek"),
@@ -1341,6 +1422,7 @@ public class UcdPropertyValues {
         Nabataean("Nbat"),
         Newa("Newa"),
         Nko("Nkoo"),
+        Nushu("Nshu"),
         Ogham("Ogam"),
         Ol_Chiki("Olck"),
         Old_Turkic("Orkh"),
@@ -1368,6 +1450,7 @@ public class UcdPropertyValues {
         Khudawadi("Sind"),
         Sinhala("Sinh"),
         Sora_Sompeng("Sora"),
+        Soyombo("Soyo"),
         Sundanese("Sund"),
         Syloti_Nagri("Sylo"),
         Syriac("Syrc"),
@@ -1391,13 +1474,10 @@ public class UcdPropertyValues {
         Old_Persian("Xpeo"),
         Cuneiform("Xsux"),
         Yi("Yiii"),
+        Zanabazar_Square("Zanb"),
         Inherited("Zinh", "Qaai"),
         Common("Zyyy"),
         Unknown("Zzzz"),
-        Masaram_Gondi("Gonm"),
-        Nushu("Nshu"),
-        Soyombo("Soyo"),
-        Zanabazar_Square("Zanb"),
         Japanese("Jpan"),
         Korean("Kore"),
         Han_with_Bopomofo("Hanb"),
@@ -1526,95 +1606,4 @@ public class UcdPropertyValues {
         }
     }
 
-		// kAccountingNumeric
-		// kBigFive
-		// kCCCII
-		// kCNS1986
-		// kCNS1992
-		// kCangjie
-		// kCantonese
-		// kCheungBauer
-		// kCheungBauerIndex
-		// kCihaiT
-		// kCompatibilityVariant
-		// kCowles
-		// kDaeJaweon
-		// kDefinition
-		// kEACC
-		// kFenn
-		// kFennIndex
-		// kFourCornerCode
-		// kFrequency
-		// kGB0
-		// kGB1
-		// kGB3
-		// kGB5
-		// kGB7
-		// kGB8
-		// kGSR
-		// kGradeLevel
-		// kHDZRadBreak
-		// kHKGlyph
-		// kHKSCS
-		// kHanYu
-		// kHangul
-		// kHanyuPinlu
-		// kHanyuPinyin
-		// kIBMJapan
-		// kIICore
-		// kIRGDaeJaweon
-		// kIRGDaiKanwaZiten
-		// kIRGHanyuDaZidian
-		// kIRGKangXi
-		// kIRG_GSource
-		// kIRG_HSource
-		// kIRG_JSource
-		// kIRG_KPSource
-		// kIRG_KSource
-		// kIRG_MSource
-		// kIRG_TSource
-		// kIRG_USource
-		// kIRG_VSource
-		// kJIS0213
-		// kJa
-		// kJapaneseKun
-		// kJapaneseOn
-		// kJis0
-		// kJis1
-		// kKPS0
-		// kKPS1
-		// kKSC0
-		// kKSC1
-		// kKangXi
-		// kKarlgren
-		// kKorean
-		// kLau
-		// kMainlandTelegraph
-		// kMandarin
-		// kMatthews
-		// kMeyerWempe
-		// kMorohashi
-		// kNelson
-		// kOtherNumeric
-		// kPhonetic
-		// kPrimaryNumeric
-		// kPseudoGB1
-		// kRSAdobe_Japan1_6
-		// kRSJapanese
-		// kRSKanWa
-		// kRSKangXi
-		// kRSKorean
-		// kRSUnicode
-		// kSBGY
-		// kSemanticVariant
-		// kSimplifiedVariant
-		// kSpecializedSemanticVariant
-		// kTaiwanTelegraph
-		// kTang
-		// kTotalStrokes
-		// kTraditionalVariant
-		// kVietnamese
-		// kXHC1983
-		// kXerox
-		// kZVariant
 }
