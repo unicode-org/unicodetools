@@ -454,13 +454,53 @@ public class MakeUnicodeFiles {
                 new GenerateSentenceBreakTest(Default.ucd()).run();
             } else if (filename.contains("ScriptNfkc")) {
                 generateScriptNfkc(filename);
+            } else if (filename.equals("DerivedName")) {
+                generateDerivedName(filename);
             } else {
                 generatePropertyFile(filename);
             }
         }
     }
 
-    private static void generateScriptNfkc(String filename) throws IOException {
+    private static void generateDerivedName(String filename) throws IOException {
+        final UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY, filename);
+        final PrintWriter pw = udf.out;
+        Format.theFormat.printFileComments(pw, filename);
+        final UCD ucd = Default.ucd();
+
+        final UnicodeMap<String> names = new UnicodeMap<>();
+        Set<String> seen = new HashSet<>();
+        for (int i = 0; i <= 0x10FFFF; ++i) {
+        	if (!ucd.isAssigned(i)) {
+        		continue;
+        	}
+        	String name = ucd.getName(i);
+        	if (seen.contains(name)) {
+        		throw new IllegalArgumentException("Duplicate name or label");
+        	}
+        	seen.add(name);
+        	String hex = Utility.hex(i);
+        	name = name.replace(hex, "*");
+        	names.put(i, name);
+        }		
+        names.freeze();
+        UnicodeLabel nameProp = new UnicodeProperty.UnicodeMapProperty()
+        		.set(names)
+        		.setMain("Name", "Name", UnicodeProperty.STRING, Default.ucdVersion());
+
+        final BagFormatter bf = new BagFormatter();
+		bf.setHexValue(false)
+        .setMergeRanges(true)
+        .setNameSource(null)
+        .setLabelSource(null)
+        .setShowCount(false)
+        .setValueSource(nameProp)
+        .showSetNames(pw,new UnicodeSet(0,0x10FFFF));
+
+        udf.close();
+	}
+
+	private static void generateScriptNfkc(String filename) throws IOException {
         final String dir = Format.theFormat.fileToDirectory.get(filename);
         final UnicodeDataFile udf =
                 UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY + dir, filename);

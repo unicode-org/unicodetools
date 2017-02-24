@@ -155,7 +155,12 @@ public final class UCD implements UCD_Types {
      * Get the character name.
      */
     public String getName(int codePoint) {
-        return getName(codePoint, NORMAL);
+        String name = getName(codePoint, NORMAL);
+        // make sure labels are unique.
+    	if (name.equals("<control>")) {
+    		name = "<control-" + Utility.hex(codePoint) + ">";
+    	}
+    	return name;
     }
 
     /**
