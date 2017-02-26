@@ -9,29 +9,37 @@ Property: SPECIAL
 
 File: DerivedName
 #
-# The Unicode Name property is specified by a derivation in 
-# “Section 4.8, Name” of the Unicode Standard,
-# based on the Name field in UnicodeData.txt, 
-# the Jamo_Short_Name file, and other properties.
-# This file provides a full listing of the values of the Name property
-# so that implementations do not have to properly code that derivation.
+# This file lists the values of the Name property.
+# This property is specified by the derivation documented in
+# "Section 4.8, Name" of the Unicode Standard,
+# based on the Name field in UnicodeData.txt,
+# the Jamo_Short_Name property in Jamo.txt,
+# and a specified list of pattern strings used to derive names
+# for certain ranges of characters from their code points.
+# This file provides a full listing of the derived values
+# so that implementations do not have to properly
+# code that derivation.
 #
-# Format for field 1:
+# The format is two fields separated by a semicolon.
+# Field 0: Unicode code point value or range of code point values
+# Field 1: Name property value or pattern.
 #
-# • A value enclosed in <angle brackets> is a code point label,
-#   providing an informal label for the code point.
-#   In such cases, the formal Name property value is null.
+# • Values containing a * character are patterns which
+#   use the placeholder * in place of the code point in hex.
+#   In such cases, the name property value for any code point in Field 0
+#   is formed by replacing the '*' with that code point value
+#   in the usual 4- to 6-digit hexadecimal format.
 #
-# • Values can be abbreviated by using a * character.
-#   That is, the value is determined by replacing any *
-#   by the code point’s hex value. For example, consider:
-#       3400..4DB5    ; CJK UNIFIED IDEOGRAPH-*
-#   Because of that line, the name for U+3456 is:
-#       “CJK UNIFIED IDEOGRAPH-3456”
+#   UAX #42 and its data files use a similar convention,
+#   except that the metacharacter there is '#'.
 #
-# @missing: 0000..10FFFF; <reserved-*>
+#   For example, the Name property value of U+4E12,
+#   generated from the pattern string "CJK UNIFIED IDEOGRAPH-*",
+#   is CJK UNIFIED IDEOGRAPH-4E12.
+#   Similarly, the Name property value of U+2F89F, 
+#   generated from the pattern string "CJK COMPATIBILITY IDEOGRAPH-*",
+#   is CJK COMPATIBILITY IDEOGRAPH-2F89F.
 #
-
 Property: SPECIAL
 
 File: ScriptExtensions

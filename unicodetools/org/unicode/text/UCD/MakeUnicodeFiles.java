@@ -429,40 +429,55 @@ public class MakeUnicodeFiles {
             } else {
                 generateAliasFile(filename);
             }
+        } else if (filename.startsWith("NamedSequences")) {
+            GenerateNamedSequences.generate(filename);
+        } else if (filename.contains("ScriptNfkc")) {
+            generateScriptNfkc(filename);
         } else {
-            if (filename.equals("unihan")) {
+            switch(filename) {
+            case "unihan":
                 writeUnihan(MAIN_OUTPUT_DIRECTORY + "unihan/");
-            } else if (filename.equals("NormalizationTest")) {
+                break;
+            case "NormalizationTest":
                 GenerateData.writeNormalizerTestSuite(MAIN_OUTPUT_DIRECTORY, "NormalizationTest");
-            } else if (filename.equals("BidiTest")) {
+                break;
+            case "BidiTest":
                 doBidiTest(filename);
-            } else if (filename.equals("CaseFolding")) {
+                break;
+            case "CaseFolding":
                 GenerateCaseFolding.makeCaseFold(false);
-            } else if (filename.equals("SpecialCasing")) {
+                break;
+            case "SpecialCasing":
                 GenerateCaseFolding.generateSpecialCasing(false);
-            } else if (filename.equals("StandardizedVariants")) {
+                break;
+            case "StandardizedVariants":
                 GenerateStandardizedVariants.generate();
-            } else if (filename.startsWith("NamedSequences")) {
-                GenerateNamedSequences.generate(filename);
-            } else if (filename.equals("GraphemeBreakTest")) {
+                break;
+            case "GraphemeBreakTest":
                 new GenerateGraphemeBreakTest(Default.ucd()).run();
-            } else if (filename.equals("WordBreakTest")) {
+                break;
+            case "WordBreakTest":
                 new GenerateWordBreakTest(Default.ucd()).run();
-            } else if (filename.equals("LineBreakTest")) {
+                break;
+            case "LineBreakTest":
                 new GenerateLineBreakTest(Default.ucd()).run();
-            } else if (filename.equals("SentenceBreakTest")) {
+                break;
+            case "SentenceBreakTest":
                 new GenerateSentenceBreakTest(Default.ucd()).run();
-            } else if (filename.contains("ScriptNfkc")) {
-                generateScriptNfkc(filename);
-            } else if (filename.equals("DerivedName")) {
+                break;
+            case "DerivedName":
+            case "DerivedLabel":
                 generateDerivedName(filename);
-            } else {
+                break;
+            default:
                 generatePropertyFile(filename);
+                break;
             }
         }
     }
 
     private static void generateDerivedName(String filename) throws IOException {
+        boolean isLabel = filename.contains("Label");
         final UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY, filename);
         final PrintWriter pw = udf.out;
         Format.theFormat.printFileComments(pw, filename);
@@ -471,36 +486,43 @@ public class MakeUnicodeFiles {
         final UnicodeMap<String> names = new UnicodeMap<>();
         Set<String> seen = new HashSet<>();
         for (int i = 0; i <= 0x10FFFF; ++i) {
-        	if (!ucd.isAssigned(i)) {
-        		continue;
-        	}
-        	String name = ucd.getName(i);
-        	if (seen.contains(name)) {
-        		throw new IllegalArgumentException("Duplicate name or label");
-        	}
-        	seen.add(name);
-        	String hex = Utility.hex(i);
-        	name = name.replace(hex, "*");
-        	names.put(i, name);
+            if (i > 0xFF && !ucd.isAssigned(i) && !ucd.isNoncharacter(i)) {
+                continue;
+            }
+            if (i == 0x9FD5 || i == 0x9FD6) {
+                int debug = 0;
+            }
+            String name = ucd.getName(i);
+            if (name.startsWith("<") != isLabel) {
+                continue;
+            }
+            if (seen.contains(name)) {
+                throw new IllegalArgumentException("Duplicate name or label");
+            }
+            seen.add(name);
+            String hex = Utility.hex(i);
+            name = name.replace(hex, "*");
+            names.put(i, name);
         }		
         names.freeze();
         UnicodeLabel nameProp = new UnicodeProperty.UnicodeMapProperty()
-        		.set(names)
-        		.setMain("Name", "Name", UnicodeProperty.STRING, Default.ucdVersion());
+                .set(names)
+                .setMain("X", "X", UnicodeProperty.STRING, Default.ucdVersion());
 
         final BagFormatter bf = new BagFormatter();
-		bf.setHexValue(false)
+        bf.setHexValue(false)
         .setMergeRanges(true)
         .setNameSource(null)
         .setLabelSource(null)
         .setShowCount(false)
         .setValueSource(nameProp)
-        .showSetNames(pw,new UnicodeSet(0,0x10FFFF));
+        .setRangeBreakSource(new UnicodeLabel.Constant("")) // prevent breaking on category boundaries
+        .showSetNames(pw, UnicodeSet.ALL_CODE_POINTS);
 
         udf.close();
-	}
+    }
 
-	private static void generateScriptNfkc(String filename) throws IOException {
+    private static void generateScriptNfkc(String filename) throws IOException {
         final String dir = Format.theFormat.fileToDirectory.get(filename);
         final UnicodeDataFile udf =
                 UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY + dir, filename);
@@ -641,8 +663,8 @@ public class MakeUnicodeFiles {
         = ToolUnicodePropertySource.make(Default.ucdVersion());
         final TreeSet<String> sortedSet = new TreeSet<String>(CASELESS_COMPARATOR);
         final Tabber.MonoTabber mt = (Tabber.MonoTabber) new Tabber.MonoTabber()
-        .add(25,Tabber.LEFT)
-        .add(30,Tabber.LEFT);
+                .add(25,Tabber.LEFT)
+                .add(30,Tabber.LEFT);
         int count = 0;
 
         for (int i = UnicodeProperty.LIMIT_TYPE - 1; i >= UnicodeProperty.BINARY; --i) {
@@ -709,30 +731,30 @@ public class MakeUnicodeFiles {
     }
 
     static String[] specialMisc = {
-        //"isc\t; ISO_Comment",
-        //"na1\t; Unicode_1_Name",
-        //"URS\t; Unicode_Radical_Stroke"
+            //"isc\t; ISO_Comment",
+            //"na1\t; Unicode_1_Name",
+            //"URS\t; Unicode_Radical_Stroke"
     };
 
     static String[] specialString = {
-        "dm\t; Decomposition_Mapping",
-        "lc\t; Lowercase_Mapping",
-        //"scc\t; Special_Case_Condition",
-        //"sfc\t; Simple_Case_Folding",
-        "slc\t; Simple_Lowercase_Mapping",
-        "stc\t; Simple_Titlecase_Mapping",
-        "suc\t; Simple_Uppercase_Mapping",
-        "tc\t; Titlecase_Mapping",
+            "dm\t; Decomposition_Mapping",
+            "lc\t; Lowercase_Mapping",
+            //"scc\t; Special_Case_Condition",
+            //"sfc\t; Simple_Case_Folding",
+            "slc\t; Simple_Lowercase_Mapping",
+            "stc\t; Simple_Titlecase_Mapping",
+            "suc\t; Simple_Uppercase_Mapping",
+            "tc\t; Titlecase_Mapping",
     "uc\t; Uppercase_Mapping"};
 
     static String[] specialGC = {
-        "gc\t;\tC\t;\tOther\t# Cc | Cf | Cn | Co | Cs",
-        "gc\t;\tL\t;\tLetter\t# Ll | Lm | Lo | Lt | Lu",
-        "gc\t;\tLC\t;\tCased_Letter\t# Ll | Lt | Lu",
-        "gc\t;\tM\t;\tMark\t;\tCombining_Mark\t# Mc | Me | Mn",
-        "gc\t;\tN\t;\tNumber\t# Nd | Nl | No",
-        "gc\t;\tP\t;\tPunctuation\t;\tpunct\t# Pc | Pd | Pe | Pf | Pi | Po | Ps",
-        "gc\t;\tS\t;\tSymbol\t# Sc | Sk | Sm | So",
+            "gc\t;\tC\t;\tOther\t# Cc | Cf | Cn | Co | Cs",
+            "gc\t;\tL\t;\tLetter\t# Ll | Lm | Lo | Lt | Lu",
+            "gc\t;\tLC\t;\tCased_Letter\t# Ll | Lt | Lu",
+            "gc\t;\tM\t;\tMark\t;\tCombining_Mark\t# Mc | Me | Mn",
+            "gc\t;\tN\t;\tNumber\t# Nd | Nl | No",
+            "gc\t;\tP\t;\tPunctuation\t;\tpunct\t# Pc | Pd | Pe | Pf | Pi | Po | Ps",
+            "gc\t;\tS\t;\tSymbol\t# Sc | Sk | Sm | So",
     "gc\t;\tZ\t;\tSeparator\t# Zl | Zp | Zs"};
 
     public static void generateValueAliasFile(String filename) throws IOException {
@@ -756,25 +778,25 @@ public class MakeUnicodeFiles {
         // sc ; Arab      ; Arabic
 
         final Tabber.MonoTabber mt2 = (Tabber.MonoTabber) new Tabber.MonoTabber()
-        .add(3,Tabber.LEFT)
-        .add(2,Tabber.LEFT) // ;
-        .add(33,Tabber.LEFT)
-        .add(2,Tabber.LEFT) // ;
-        .add(33,Tabber.LEFT)
-        .add(2,Tabber.LEFT) // ;
-        .add(33,Tabber.LEFT);
+                .add(3,Tabber.LEFT)
+                .add(2,Tabber.LEFT) // ;
+                .add(33,Tabber.LEFT)
+                .add(2,Tabber.LEFT) // ;
+                .add(33,Tabber.LEFT)
+                .add(2,Tabber.LEFT) // ;
+                .add(33,Tabber.LEFT);
 
         // ccc; 216; ATAR ; Attached_Above_Right
         final Tabber.MonoTabber mt3 = (Tabber.MonoTabber) new Tabber.MonoTabber()
-        .add(3,Tabber.LEFT)
-        .add(2,Tabber.LEFT) // ;
-        .add(3,Tabber.RIGHT)
-        .add(2,Tabber.LEFT) // ;
-        .add(27,Tabber.LEFT)
-        .add(2,Tabber.LEFT) // ;
-        .add(33,Tabber.LEFT)
-        .add(2,Tabber.LEFT) // ;
-        .add(33,Tabber.LEFT);
+                .add(3,Tabber.LEFT)
+                .add(2,Tabber.LEFT) // ;
+                .add(3,Tabber.RIGHT)
+                .add(2,Tabber.LEFT) // ;
+                .add(27,Tabber.LEFT)
+                .add(2,Tabber.LEFT) // ;
+                .add(33,Tabber.LEFT)
+                .add(2,Tabber.LEFT) // ;
+                .add(33,Tabber.LEFT);
 
         //final Set<String> skipNames = new HashSet<String>(Arrays.asList("Lowercase_Mapping", "Uppercase_Mapping", "Titlecase_Mapping"));
 
@@ -785,9 +807,9 @@ public class MakeUnicodeFiles {
             if ((type & UnicodeProperty.EXTENDED_MASK) != 0) {
                 continue;
             }
-//            if (skipNames.contains(propName)) {
-//                continue;
-//            }
+            //            if (skipNames.contains(propName)) {
+            //                continue;
+            //            }
 
             final String shortProp = up.getFirstNameAlias();
             sortedSet.clear();
@@ -1177,18 +1199,18 @@ public class MakeUnicodeFiles {
                 pw.println();
                 pw.println(valueComment);
             }
-//            if (false && ps.longValueHeading != null) {
-//                String headingValue = value;
-//                if (ps.longValueHeading == "ccc") {
-//                    headingValue = Utility.replace(value, "_", "");
-//                    final char c = headingValue.charAt(0);
-//                    if ('0' <= c && c <= '9') {
-//                        headingValue = "Other Combining Class";
-//                    }
-//                }
-//                pw.println();
-//                pw.println("# " + headingValue);
-//            }
+            //            if (false && ps.longValueHeading != null) {
+            //                String headingValue = value;
+            //                if (ps.longValueHeading == "ccc") {
+            //                    headingValue = Utility.replace(value, "_", "");
+            //                    final char c = headingValue.charAt(0);
+            //                    if ('0' <= c && c <= '9') {
+            //                        headingValue = "Other Combining Class";
+            //                    }
+            //                }
+            //                pw.println();
+            //                pw.println("# " + headingValue);
+            //            }
             pw.println();
             //if (s.size() != 0)
             bf.setMergeRanges(ps.mergeRanges);
@@ -1447,15 +1469,15 @@ public class MakeUnicodeFiles {
                 if (overlaps.length() != 0) {
                     out.println("\t" + overlaps);
                 }
-//                if (false && overlapsSet.size() != 0) {
-//                    out.println("\t\u2260\u2284\u2285");
-//                    for (final Iterator<String> it3 = overlapsSet.iterator(); it3.hasNext();) {
-//                        final String v3 = it3.next();
-//                        final UnicodeSet s3 = p2.getSet(v3);
-//                        out.println("\t" + v3);
-//                        bf.showSetDifferences(out,v1,s1,v3,s3);
-//                    }
-//                }
+                //                if (false && overlapsSet.size() != 0) {
+                //                    out.println("\t\u2260\u2284\u2285");
+                //                    for (final Iterator<String> it3 = overlapsSet.iterator(); it3.hasNext();) {
+                //                        final String v3 = it3.next();
+                //                        final UnicodeSet s3 = p2.getSet(v3);
+                //                        out.println("\t" + v3);
+                //                        bf.showSetDifferences(out,v1,s1,v3,s3);
+                //                    }
+                //                }
             }
     }
 
