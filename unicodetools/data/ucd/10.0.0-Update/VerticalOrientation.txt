@@ -1,5 +1,5 @@
 # VerticalOrientation-10.0.0.txt
-# Date: 2017-02-15, 17:27:02 GMT [EM, KI, LI]
+# Date: 2017-02-16, 21:34:57 GMT [EM, KI, LI]
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -20,6 +20,47 @@
 #   R - Rotated 90 degrees clockwise compared to the code charts
 #   Tu - Transformed typographically, with fallback to Upright
 #   Tr - Transformed typographically, with fallback to Rotated
+#
+#  - Certain ranges of unassigned code points default to U. These ranges
+#      are mostly associated with CJK scripts and punctuation, or with
+#      a small number of other scripts which are predominantly Upright.
+#      The private use areas also default to U, because of their most
+#      common use for CJK. In the following list of explicit code points
+#      and ranges, all unassigned code points default to U:
+#         Canadian Syllabics Extended:        U+18B0..U+18FF
+#         Reserved Default_Ignorable_Code_Point:      U+2065
+#         Number Forms:                       U+2150..U+218F
+#         Control Pictures & OCR              U+2400..U+245F
+#         Symbols:                            U+2BB8..U+2BFF
+#         CJK-Related & Yi:                   U+2E80..U+A4CF
+#         Hangul Jamo Extended-A:             U+A960..U+A97F
+#         Hangul Syllables & Jamo Extended-B: U+AC00..U+D7FF
+#         PUA & CJK Compatibility Ideographs: U+E000..U+FAFF
+#         Vertical Forms:                     U+FE10..U+FE1F
+#         Small Form Variants:                U+FE50..U+FE6F
+#         Fullwidth Forms:                            U+FFE7
+#         Specials:                           U+FFF0..U+FFF8
+#         Siddham:                           U+11580..U+115FF
+#         Zanabazar Square & Soyombo:        U+11A00..U+11AAF
+#         Egyptian Hieroglyphs:              U+13000..U+1342F
+#         Anatolian Hieroglyphs:             U+14400..U+1467F
+#         Ideographic Symbols & Tangut:      U+16FE0..U+18AFF
+#         Kana Extended-A:                   U+1B100..U+1B12F
+#         Nushu:                             U+1B170..U+1B2FF
+#         Musical Symbols:                   U+1D000..U+1D1FF
+#         Symbols & Rods:                    U+1D300..U+1D37F
+#         Sutton SignWriting:                U+1D800..U+1DAAF
+#         Game Symbols:                      U+1F000..U+1F0FF
+#         Enclosed Symbols:                  U+1F100..U+1F2FF
+#         Symbols:                           U+1F680..U+1F7FF
+#         Symbols and Pictographs:           U+1F900..U+1F9FF
+#         Plane 2:                           U+20000..U+2FFFD
+#         Plane 3:                           U+30000..U+3FFFD
+#         Plane 15 PUA:                      U+F0000..U+FFFFD
+#         Plane 16 PUA:                     U+100000..U+10FFFD
+#
+#  - All other code points, assigned and unassigned, that are not listed
+#      explicitly in the data section of this file are given the value R.
 #
 # The comments following the number sign "#" list the General_Category
 # property value or the L& alias of the derived value LC, the Unicode

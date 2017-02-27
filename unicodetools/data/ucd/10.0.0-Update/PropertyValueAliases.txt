@@ -1,5 +1,5 @@
 # PropertyValueAliases-10.0.0.txt
-# Date: 2017-02-14, 04:26:16 GMT
+# Date: 2017-02-17, 04:46:14 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -893,6 +893,17 @@ jg ; Khaph                            ; Khaph
 jg ; Knotted_Heh                      ; Knotted_Heh
 jg ; Lam                              ; Lam
 jg ; Lamadh                           ; Lamadh
+jg ; Malayalam_Bha                    ; Malayalam_Bha
+jg ; Malayalam_Ja                     ; Malayalam_Ja
+jg ; Malayalam_Lla                    ; Malayalam_Lla
+jg ; Malayalam_Llla                   ; Malayalam_Llla
+jg ; Malayalam_Nga                    ; Malayalam_Nga
+jg ; Malayalam_Nna                    ; Malayalam_Nna
+jg ; Malayalam_Nnna                   ; Malayalam_Nnna
+jg ; Malayalam_Nya                    ; Malayalam_Nya
+jg ; Malayalam_Ra                     ; Malayalam_Ra
+jg ; Malayalam_Ssa                    ; Malayalam_Ssa
+jg ; Malayalam_Tta                    ; Malayalam_Tta
 jg ; Manichaean_Aleph                 ; Manichaean_Aleph
 jg ; Manichaean_Ayin                  ; Manichaean_Ayin
 jg ; Manichaean_Beth                  ; Manichaean_Beth
