@@ -23,8 +23,8 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.Predicate;
-import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.idna.GenerateIdnaTest;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Idna2003;

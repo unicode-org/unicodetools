@@ -16,11 +16,11 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.UnicodeProperty;
-import org.unicode.cldr.util.UnicodeProperty.AliasAddAction;
-import org.unicode.cldr.util.UnicodeProperty.BaseProperty;
-import org.unicode.cldr.util.UnicodeProperty.SimpleProperty;
-import org.unicode.cldr.util.UnicodeProperty.UnicodeMapProperty;
+import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.cldr.util.props.UnicodeProperty.AliasAddAction;
+import org.unicode.cldr.util.props.UnicodeProperty.BaseProperty;
+import org.unicode.cldr.util.props.UnicodeProperty.SimpleProperty;
+import org.unicode.cldr.util.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Settings;

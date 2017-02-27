@@ -30,11 +30,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.BagFormatter;
 import org.unicode.cldr.util.Counter;
-import org.unicode.cldr.util.ICUPropertyFactory;
 import org.unicode.cldr.util.Pair;
-import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.props.BagFormatter;
+import org.unicode.cldr.util.props.ICUPropertyFactory;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;

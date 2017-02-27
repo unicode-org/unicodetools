@@ -3,7 +3,7 @@ package org.unicode.jsp;
 import java.util.Comparator;
 import java.util.List;
 
-import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.props.UnicodeProperty;
 
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;

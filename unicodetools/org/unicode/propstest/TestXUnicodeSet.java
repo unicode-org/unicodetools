@@ -1,7 +1,7 @@
 package org.unicode.propstest;
 
 import org.unicode.cldr.unittest.TestFmwkPlus;
-import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.UCD.Default;
 

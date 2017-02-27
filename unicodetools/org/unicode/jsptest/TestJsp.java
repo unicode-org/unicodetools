@@ -17,8 +17,8 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.util.BNF;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Quoter;
-import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.idna.Idna;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Idna2003;
@@ -154,7 +154,7 @@ public class TestJsp  extends TestFmwk {
             if (type2003 == IdnaType.ignored) {
                 assertNotNull("2003ignored", map2003);
             }
-            if (type46 != type2003 || !org.unicode.cldr.util.UnicodeProperty.equals(map46, map2003)) {
+            if (type46 != type2003 || !org.unicode.cldr.util.props.UnicodeProperty.equals(map46, map2003)) {
                 final String map2 = map2003 == null ? UTF16.valueOf(i) : map2003;
                 final String nfcf = nfkc_cfMap.get(i);
                 if (!map2.equals(nfcf)) {
@@ -164,7 +164,7 @@ public class TestJsp  extends TestFmwk {
                 final String mapDiff = "[" + codeAndName(map46) + "\tvs 2003\t" + codeAndName(map2003);
                 errln((codeAndName(i)) + "\tdifference:"
                         + (type46 != type2003 ? "\ttype:\t" + typeDiff : "")
-                        + (!org.unicode.cldr.util.UnicodeProperty.equals(map46, map2003) ? "\tmap:\t" + mapDiff : "")
+                        + (!org.unicode.cldr.util.props.UnicodeProperty.equals(map46, map2003) ? "\tmap:\t" + mapDiff : "")
                         +  "\tNFKCCF:\t" + codeAndName(nfcf));
             }
         }

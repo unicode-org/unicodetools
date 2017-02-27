@@ -22,10 +22,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.BagFormatter;
 import org.unicode.cldr.util.Tabber;
-import org.unicode.cldr.util.UnicodeLabel;
-import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.props.BagFormatter;
+import org.unicode.cldr.util.props.UnicodeLabel;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateGraphemeBreakTest;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateLineBreakTest;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateSentenceBreakTest;

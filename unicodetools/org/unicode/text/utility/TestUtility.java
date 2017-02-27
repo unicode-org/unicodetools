@@ -32,8 +32,8 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 import org.unicode.cldr.util.Counter;
-import org.unicode.cldr.util.ICUPropertyFactory;
-import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.props.ICUPropertyFactory;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.unused.DataInputCompressor;
 import org.unicode.unused.DataOutputCompressor;

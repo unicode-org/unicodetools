@@ -1,6 +1,6 @@
 package org.unicode.props;
 
-import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.props.UnicodeProperty;
 
 public enum PropertyType {
     Numeric(UnicodeProperty.NUMERIC), 

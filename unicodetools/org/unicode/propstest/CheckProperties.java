@@ -16,11 +16,11 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.ICUPropertyFactory;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.Timer;
-import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.cldr.util.With;
+import org.unicode.cldr.util.props.ICUPropertyFactory;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.draft.UnicodeDataOutput;
 import org.unicode.draft.UnicodeDataOutput.ItemWriter;
 import org.unicode.props.IndexUnicodeProperties;

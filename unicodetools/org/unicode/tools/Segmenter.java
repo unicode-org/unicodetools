@@ -25,7 +25,7 @@ import java.util.regex.PatternSyntaxException;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
-import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.tools.Segmenter.Rule.Breaks;
 

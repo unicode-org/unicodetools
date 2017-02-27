@@ -37,14 +37,14 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.ArrayComparator;
-import org.unicode.cldr.util.BagFormatter;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Pair;
-import org.unicode.cldr.util.UnicodeLabel;
-import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.cldr.util.With;
 import org.unicode.cldr.util.XEquivalenceClass;
 import org.unicode.cldr.util.XEquivalenceClass.Linkage;
+import org.unicode.cldr.util.props.BagFormatter;
+import org.unicode.cldr.util.props.UnicodeLabel;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Uts46;
 import org.unicode.props.IndexUnicodeProperties;

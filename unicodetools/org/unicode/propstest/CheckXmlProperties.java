@@ -1,7 +1,7 @@
 package org.unicode.propstest;
 
 import org.unicode.cldr.util.Timer;
-import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.ValueCardinality;
