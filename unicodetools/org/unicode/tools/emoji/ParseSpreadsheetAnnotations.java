@@ -20,6 +20,7 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.tool.LanguageCodeConverter;
 import org.unicode.cldr.util.Annotations;
 import org.unicode.cldr.util.CLDRConfig;
@@ -37,7 +38,6 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.Normalizer2;
@@ -581,7 +581,7 @@ public class ParseSpreadsheetAnnotations {
             }
         }
 
-        try (PrintWriter out = BagFormatter.openUTF8Writer(TARGET_DIR, "spreadsheetSuspectChars.txt")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(TARGET_DIR, "spreadsheetSuspectChars.txt")) {
             out.println("#Locale\tType\tEmoji or Label\tEnglish Version\tNative Version\tSuspect characters\tGoogle translate (just for comparison)\tComments");
             for (LocaleInfo localeInfo : localeInfoMap.values()) {
                 for (String value : localeInfo.badChars) {
@@ -590,13 +590,13 @@ public class ParseSpreadsheetAnnotations {
             }
         }
 
-        try (PrintWriter out = BagFormatter.openUTF8Writer(TARGET_DIR, "spreadsheetBadLocales.txt")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(TARGET_DIR, "spreadsheetBadLocales.txt")) {
             for (String s : badLocales) {
                 out.println(s + "\t" + ULocale.getDisplayName(s, "en"));
             }
         }
 
-        try (PrintWriter out = BagFormatter.openUTF8Writer(TARGET_DIR, "spreadsheetDuplicates.txt")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(TARGET_DIR, "spreadsheetDuplicates.txt")) {
             out.println("#Locale\tType\tCLDR Emoji\tEnglish\tSheet Emoji\tEnglish2\tNative Collision\tGoogle translate (just for comparison)\tFix for CLDR (in cell, not comment). Put fix for sheet in sheet.");
             for (Entry<String, Collection<String>> s : duplicates.asMap().entrySet()) {
                 for (String value : s.getValue()) {
@@ -606,7 +606,7 @@ public class ParseSpreadsheetAnnotations {
         }
 
         Set<String> localesFound = new LinkedHashSet<>();
-        try (PrintWriter out = BagFormatter.openUTF8Writer(TARGET_DIR, "modify_config_annotations.txt")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(TARGET_DIR, "modify_config_annotations.txt")) {
             for (Entry<String, UnicodeMap<NewAnnotation>> entry : localeToNewAnnotations.entrySet()) {
                 String locale = entry.getKey();
                 Multimap<ItemType, String> missingFromLocale = missing.get(locale);
@@ -631,7 +631,7 @@ public class ParseSpreadsheetAnnotations {
             out.println("# -m^(" + CollectionUtilities.join(localesFound, "|") + ")$");
         }
         localesFound.clear();
-        try (PrintWriter out = BagFormatter.openUTF8Writer(TARGET_DIR, "modify_config_main.txt")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(TARGET_DIR, "modify_config_main.txt")) {
             for (Entry<String, Map<ItemType, Map<String, String>>> localeAndItemTypeToLabelCodeToTrans : localeToLabelCodeToTrans.entrySet()) {
                 String locale = localeAndItemTypeToLabelCodeToTrans.getKey();
                 Multimap<ItemType, String> missingFromLocale = missing.get(locale);
@@ -651,7 +651,7 @@ public class ParseSpreadsheetAnnotations {
             out.println("# -m^(" + CollectionUtilities.join(localesFound, "|") + ")$");
         }
 
-        try (PrintWriter out = BagFormatter.openUTF8Writer(TARGET_DIR, "spreadsheetMissing.txt")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(TARGET_DIR, "spreadsheetMissing.txt")) {
             for (Entry<String, Multimap<ItemType, String>> entry : missing.entrySet()) {
                 String locale = entry.getKey();
                 if (locale.equals("pt_PT")) {
@@ -665,7 +665,7 @@ public class ParseSpreadsheetAnnotations {
                 }
             }
         }
-        try (PrintWriter out = BagFormatter.openUTF8Writer(TARGET_DIR, "spreadsheetMissingSheet.txt")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(TARGET_DIR, "spreadsheetMissingSheet.txt")) {
             for (Entry<String, Multimap<ItemType, String>> entry : missing.entrySet()) {
                 String locale = entry.getKey();
                 if (locale.equals("pt_PT")) {
@@ -824,7 +824,7 @@ public class ParseSpreadsheetAnnotations {
             Set<String> linesFound) {
         UnicodeMap<NewAnnotation> newAnnotations = new UnicodeMap<>();
 
-        try (BufferedReader in = BagFormatter.openUTF8Reader(parent, name)) {
+        try (BufferedReader in = FileUtilities.openUTF8Reader(parent, name)) {
             SimpleHtmlParser simple = new SimpleHtmlParser().setReader(in);
             StringBuilder result = new StringBuilder();
             String codePoint = null;
