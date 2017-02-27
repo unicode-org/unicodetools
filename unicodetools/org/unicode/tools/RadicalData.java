@@ -25,6 +25,7 @@ import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.Output;
+import org.unicode.cldr.util.Tabber;
 
 class RadicalData {
     private final String radical;

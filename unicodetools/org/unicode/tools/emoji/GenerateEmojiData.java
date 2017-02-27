@@ -17,7 +17,7 @@ import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
-import org.unicode.tools.Tabber;
+import org.unicode.cldr.util.Tabber;
 import org.unicode.tools.emoji.GenerateEmojiKeyboard.Target;
 
 import com.google.common.base.Joiner;
