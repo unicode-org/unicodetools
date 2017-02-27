@@ -14,14 +14,14 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.BagFormatter;
-import org.unicode.cldr.util.ICUPropertyFactory;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.Tabber.HTMLTabber;
-import org.unicode.cldr.util.UnicodeLabel;
-import org.unicode.cldr.util.UnicodeProperty;
-import org.unicode.cldr.util.UnicodeProperty.Factory;
-import org.unicode.cldr.util.UnicodeProperty.PatternMatcher;
+import org.unicode.cldr.util.props.BagFormatter;
+import org.unicode.cldr.util.props.ICUPropertyFactory;
+import org.unicode.cldr.util.props.UnicodeLabel;
+import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.cldr.util.props.UnicodeProperty.Factory;
+import org.unicode.cldr.util.props.UnicodeProperty.PatternMatcher;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.utility.Settings;
 

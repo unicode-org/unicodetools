@@ -3,7 +3,7 @@ package org.unicode.props;
 import java.util.BitSet;
 import java.util.HashMap;
 
-import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.props.UcdPropertyValues.Canonical_Combining_Class_Values;
 import org.unicode.text.UCD.NormalizationData;
 import org.unicode.text.utility.Utility;

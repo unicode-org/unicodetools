@@ -32,12 +32,12 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.BagFormatter;
 import org.unicode.cldr.util.CaseIterator;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Tabber;
-import org.unicode.cldr.util.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
+import org.unicode.cldr.util.props.BagFormatter;
+import org.unicode.cldr.util.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.util.UnicodeMap;

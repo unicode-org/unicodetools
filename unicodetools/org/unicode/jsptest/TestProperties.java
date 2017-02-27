@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.jsp.Builder;
 import org.unicode.jsp.NFM;
 import org.unicode.jsp.PropertyMetadata;

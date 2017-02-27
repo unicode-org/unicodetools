@@ -10,12 +10,12 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import org.unicode.cldr.util.BagFormatter;
 import org.unicode.cldr.util.Log;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.TransliteratorUtilities;
-import org.unicode.cldr.util.UnicodeLabel;
-import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.props.BagFormatter;
+import org.unicode.cldr.util.props.UnicodeLabel;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.ToolUnicodePropertySource;

@@ -11,10 +11,10 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.BagFormatter;
-import org.unicode.cldr.util.ICUPropertyFactory;
-import org.unicode.cldr.util.UnicodeLabel;
-import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.props.BagFormatter;
+import org.unicode.cldr.util.props.ICUPropertyFactory;
+import org.unicode.cldr.util.props.UnicodeLabel;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 

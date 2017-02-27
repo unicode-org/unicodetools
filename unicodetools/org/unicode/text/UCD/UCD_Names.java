@@ -16,7 +16,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.TreeMap;
 
-import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.impl.Relation;

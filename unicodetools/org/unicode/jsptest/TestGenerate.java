@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.Comparator;
 import java.util.TreeSet;
 
-import org.unicode.cldr.util.BagFormatter;
-import org.unicode.cldr.util.UnicodeLabel;
-import org.unicode.cldr.util.UnicodePropertySymbolTable;
+import org.unicode.cldr.util.props.BagFormatter;
+import org.unicode.cldr.util.props.UnicodeLabel;
+import org.unicode.cldr.util.props.UnicodePropertySymbolTable;
 import org.unicode.idna.Idna;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Idna2003;

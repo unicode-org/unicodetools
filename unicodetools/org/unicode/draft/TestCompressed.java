@@ -13,8 +13,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.zip.GZIPOutputStream;
 
-import org.unicode.cldr.util.ICUPropertyFactory;
-import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.props.ICUPropertyFactory;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.draft.UnicodeDataInput.StringReader;
 import org.unicode.draft.UnicodeDataOutput.StringWriter;
 

@@ -9,9 +9,9 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.unicode.cldr.util.CldrUtility;
-import org.unicode.cldr.util.UnicodeProperty;
-import org.unicode.cldr.util.UnicodeProperty.RegexMatcher;
 import org.unicode.cldr.util.With;
+import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.cldr.util.props.UnicodeProperty.RegexMatcher;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;

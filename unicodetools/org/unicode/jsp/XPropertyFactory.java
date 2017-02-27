@@ -8,11 +8,11 @@ import java.util.SortedMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.ICUPropertyFactory;
-import org.unicode.cldr.util.UnicodeProperty;
-import org.unicode.cldr.util.UnicodeProperty.AliasAddAction;
-import org.unicode.cldr.util.UnicodeProperty.SimpleProperty;
-import org.unicode.cldr.util.UnicodeProperty.UnicodeSetProperty;
+import org.unicode.cldr.util.props.ICUPropertyFactory;
+import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.cldr.util.props.UnicodeProperty.AliasAddAction;
+import org.unicode.cldr.util.props.UnicodeProperty.SimpleProperty;
+import org.unicode.cldr.util.props.UnicodeProperty.UnicodeSetProperty;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Idna2003;
 import org.unicode.idna.Idna2008;

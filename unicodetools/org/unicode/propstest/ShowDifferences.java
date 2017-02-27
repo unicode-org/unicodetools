@@ -3,7 +3,7 @@ package org.unicode.propstest;
 import java.util.Iterator;
 import java.util.List;
 
-import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;

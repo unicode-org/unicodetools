@@ -2,7 +2,7 @@ package org.unicode.jsp;
 
 import java.io.IOException;
 
-import org.unicode.cldr.util.ICUPropertyFactory;
+import org.unicode.cldr.util.props.ICUPropertyFactory;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMapIterator;

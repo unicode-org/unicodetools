@@ -7,10 +7,10 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.BagFormatter;
-import org.unicode.cldr.util.BagFormatter.NameLabel;
-import org.unicode.cldr.util.UnicodeProperty;
-import org.unicode.cldr.util.UnicodeProperty.UnicodeMapProperty;
+import org.unicode.cldr.util.props.BagFormatter;
+import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.cldr.util.props.BagFormatter.NameLabel;
+import org.unicode.cldr.util.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;

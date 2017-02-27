@@ -11,8 +11,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.UnicodeProperty;
-import org.unicode.cldr.util.UnicodePropertySymbolTable;
+import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.cldr.util.props.UnicodePropertySymbolTable;
 import org.unicode.idna.Idna2008.Idna2008Type;
 import org.unicode.idna.Uts46.Errors;
 import org.unicode.idna.Uts46.IdnaChoice;

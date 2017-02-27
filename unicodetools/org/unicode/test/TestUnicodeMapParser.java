@@ -3,7 +3,7 @@ package org.unicode.test;
 import java.text.ParsePosition;
 
 import org.unicode.cldr.unittest.TestFmwkPlus;
-import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.UCD.UnicodeMapParser;
 import org.unicode.text.UCD.UnicodeMapParser.ValueParser;

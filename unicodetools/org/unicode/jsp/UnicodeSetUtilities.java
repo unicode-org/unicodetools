@@ -2,7 +2,7 @@ package org.unicode.jsp;
 
 import java.text.ParsePosition;
 
-import org.unicode.cldr.util.UnicodePropertySymbolTable;
+import org.unicode.cldr.util.props.UnicodePropertySymbolTable;
 
 import com.ibm.icu.text.UnicodeSet;
 
