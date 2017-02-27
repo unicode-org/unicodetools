@@ -1,17 +1,11 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 10.0.0
-@@@+	U10M170203.lst
-	Unicode 10.0.0 names list, third delta.
-	Repertoire synched with UnicodeData-10.0.0d2.txt
-	Third delta of annotation fixes.
-	Updated annotations for Shavian block.
-	Added annotations for emoji-specific variation selectors.
-	Removed xref for 26F0.
-	Removed annotations for 1F3B1 and 1F4A9.
-	Added annotation for 026A.
-	Added glyph annotation for 0A75.
-	Updated alias for 1B001 to a formal name alias.
-	Adjusted subhead for 1B001.
+@@@+	U10M170217.lst
+	Unicode 10.0.0 names list, fourth delta.
+	Repertoire synched with UnicodeData-10.0.0d3.txt
+	Fourth delta of annotation fixes.
+	Added xrefs for Garshuni Malayalam additions.
+	Adjusted generation of Mongolian contextual forms.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -131,8 +125,6 @@
 	x (l b bar symbol - 2114)
 	x (viewdata square - 2317)
 	x (music sharp sign - 266F)
-	~ 0023 FE0E text style
-	~ 0023 FE0F emoji style
 0024	DOLLAR SIGN
 	= milréis, escudo
 	* used for many peso currencies in Latin America and elsewhere
@@ -176,8 +168,6 @@
 	x (asterisk operator - 2217)
 	x (sextile - 26B9)
 	x (heavy asterisk - 2731)
-	~ 002A FE0E text style
-	~ 002A FE0F emoji style
 002B	PLUS SIGN
 	x (heavy plus sign - 2795)
 002C	COMMA
@@ -211,35 +201,15 @@
 @		ASCII digits
 0030	DIGIT ZERO
 	~ 0030 FE00 short diagonal stroke form
-	~ 0030 FE0E text style
-	~ 0030 FE0F emoji style
 0031	DIGIT ONE
-	~ 0031 FE0E text style
-	~ 0031 FE0F emoji style
 0032	DIGIT TWO
-	~ 0032 FE0E text style
-	~ 0032 FE0F emoji style
 0033	DIGIT THREE
-	~ 0033 FE0E text style
-	~ 0033 FE0F emoji style
 0034	DIGIT FOUR
-	~ 0034 FE0E text style
-	~ 0034 FE0F emoji style
 0035	DIGIT FIVE
-	~ 0035 FE0E text style
-	~ 0035 FE0F emoji style
 0036	DIGIT SIX
-	~ 0036 FE0E text style
-	~ 0036 FE0F emoji style
 0037	DIGIT SEVEN
-	~ 0037 FE0E text style
-	~ 0037 FE0F emoji style
 0038	DIGIT EIGHT
-	~ 0038 FE0E text style
-	~ 0038 FE0F emoji style
 0039	DIGIT NINE
-	~ 0039 FE0E text style
-	~ 0039 FE0F emoji style
 @		ASCII punctuation and symbols
 003A	COLON
 	* also used to denote division or scale; for that mathematical use 2236 is preferred
@@ -533,8 +503,6 @@
 00A9	COPYRIGHT SIGN
 	x (sound recording copyright - 2117)
 	x (circled latin capital letter c - 24B8)
-	~ 00A9 FE0E text style
-	~ 00A9 FE0F emoji style
 00AA	FEMININE ORDINAL INDICATOR
 	* Spanish
 	# <super> 0061
@@ -553,8 +521,6 @@
 00AE	REGISTERED SIGN
 	= registered trade mark sign (1.0)
 	x (circled latin capital letter r - 24C7)
-	~ 00AE FE0E text style
-	~ 00AE FE0F emoji style
 00AF	MACRON
 	= overline, APL overbar
 	* this is a spacing character
@@ -810,7 +776,6 @@
 	* French, medieval Hungarian orthography
 	* uppercase is 0178
 	: 0079 0308
-@~	!
 @@	0100	Latin Extended-A	017F
 @		European Latin
 0100	LATIN CAPITAL LETTER A WITH MACRON
@@ -4649,16 +4614,27 @@
 @		Syriac letters
 @+		Used for writing Suriyani Malayalam, which is also known as Garshuni (Karshoni) and Syriac Malayalam.
 0860	SYRIAC LETTER MALAYALAM NGA
+	x (malayalam letter nga - 0D19)
 0861	SYRIAC LETTER MALAYALAM JA
+	x (malayalam letter ja - 0D1C)
 0862	SYRIAC LETTER MALAYALAM NYA
+	x (malayalam letter nya - 0D1E)
 0863	SYRIAC LETTER MALAYALAM TTA
+	x (malayalam letter tta - 0D1F)
 0864	SYRIAC LETTER MALAYALAM NNA
+	x (malayalam letter nna - 0D23)
 0865	SYRIAC LETTER MALAYALAM NNNA
+	x (malayalam letter nnna - 0D29)
 0866	SYRIAC LETTER MALAYALAM BHA
+	x (malayalam letter bha - 0D2D)
 0867	SYRIAC LETTER MALAYALAM RA
+	x (malayalam letter ra - 0D30)
 0868	SYRIAC LETTER MALAYALAM LLA
+	x (malayalam letter lla - 0D33)
 0869	SYRIAC LETTER MALAYALAM LLLA
+	x (malayalam letter llla - 0D34)
 086A	SYRIAC LETTER MALAYALAM SSA
+	x (malayalam letter ssa - 0D37)
 @@	08A0	Arabic Extended-A	08FF
 @		Arabic letters for African languages
 08A0	ARABIC LETTER BEH WITH SMALL V BELOW
@@ -9283,6 +9259,7 @@
 1808	MONGOLIAN MANCHU COMMA
 1809	MONGOLIAN MANCHU FULL STOP
 180A	MONGOLIAN NIRUGU
+	~ 180A ALT1 first form (medial)
 @		Format controls
 180B	MONGOLIAN FREE VARIATION SELECTOR ONE
 	* abbreviated FVS1
@@ -9475,23 +9452,56 @@
 	~ 1838 180B second form (final)
 1839	MONGOLIAN LETTER FA
 	x (cyrillic small letter ef - 0444)
+	~ 1839 ALT1 first form (initial)
+	~ 1839 ALT1 first form (medial)
+	~ 1839 ALT1 first form (final)
 183A	MONGOLIAN LETTER KA
 	x (cyrillic small letter ha - 0445)
+	~ 183A ALT1 first form (initial)
+	~ 183A ALT1 first form (medial)
+	~ 183A ALT1 first form (final)
 183B	MONGOLIAN LETTER KHA
 	x (cyrillic small letter ka - 043A)
+	~ 183B ALT1 first form (initial)
+	~ 183B ALT1 first form (medial)
+	~ 183B ALT1 first form (final)
 183C	MONGOLIAN LETTER TSA
 	x (cyrillic small letter tse - 0446)
+	~ 183C ALT1 first form (initial)
+	~ 183C ALT1 first form (medial)
+	~ 183C ALT1 first form (final)
 183D	MONGOLIAN LETTER ZA
 	x (cyrillic small letter ze - 0437)
+	~ 183D ALT1 first form (initial)
+	~ 183D ALT1 first form (medial)
+	~ 183D ALT1 first form (final)
 183E	MONGOLIAN LETTER HAA
 	x (cyrillic small letter ha - 0445)
+	~ 183E ALT1 first form (initial)
+	~ 183E ALT1 first form (medial)
+	~ 183E ALT1 first form (final)
 183F	MONGOLIAN LETTER ZRA
 	x (cyrillic small letter zhe - 0436)
+	~ 183F ALT1 first form (initial)
+	~ 183F ALT1 first form (medial)
+	~ 183F ALT1 first form (final)
 1840	MONGOLIAN LETTER LHA
+	~ 1840 ALT1 first form (initial)
+	~ 1840 ALT1 first form (medial)
+	~ 1840 ALT1 first form (final)
 1841	MONGOLIAN LETTER ZHI
+	~ 1841 ALT1 first form (initial)
+	~ 1841 ALT1 first form (medial)
+	~ 1841 ALT1 first form (final)
 1842	MONGOLIAN LETTER CHI
+	~ 1842 ALT1 first form (initial)
+	~ 1842 ALT1 first form (medial)
+	~ 1842 ALT1 first form (final)
 @		Todo letters
 1843	MONGOLIAN LETTER TODO LONG VOWEL SIGN
+	~ 1843 ALT1 first form (initial)
+	~ 1843 ALT1 first form (medial)
+	~ 1843 ALT1 first form (final)
 1844	MONGOLIAN LETTER TODO E
 	~ 1844 ALT1 first form (initial)
 	~ 1844 ALT1 first form (medial)
@@ -9527,8 +9537,17 @@
 	~ 1849 180B second form (isolate)
 	~ 1849 180B second form (medial)
 184A	MONGOLIAN LETTER TODO ANG
+	~ 184A ALT1 first form (initial)
+	~ 184A ALT1 first form (medial)
+	~ 184A ALT1 first form (final)
 184B	MONGOLIAN LETTER TODO BA
+	~ 184B ALT1 first form (initial)
+	~ 184B ALT1 first form (medial)
+	~ 184B ALT1 first form (final)
 184C	MONGOLIAN LETTER TODO PA
+	~ 184C ALT1 first form (initial)
+	~ 184C ALT1 first form (medial)
+	~ 184C ALT1 first form (final)
 184D	MONGOLIAN LETTER TODO QA
 	~ 184D ALT1 first form (initial)
 	~ 184D ALT1 first form (medial)
@@ -9541,19 +9560,61 @@
 	~ 184E ALT1 first form (final)
 	~ 184E 180B second form (medial)
 184F	MONGOLIAN LETTER TODO MA
+	~ 184F ALT1 first form (initial)
+	~ 184F ALT1 first form (medial)
+	~ 184F ALT1 first form (final)
 1850	MONGOLIAN LETTER TODO TA
+	~ 1850 ALT1 first form (initial)
+	~ 1850 ALT1 first form (medial)
+	~ 1850 ALT1 first form (final)
 1851	MONGOLIAN LETTER TODO DA
+	~ 1851 ALT1 first form (initial)
+	~ 1851 ALT1 first form (medial)
+	~ 1851 ALT1 first form (final)
 1852	MONGOLIAN LETTER TODO CHA
+	~ 1852 ALT1 first form (initial)
+	~ 1852 ALT1 first form (medial)
+	~ 1852 ALT1 first form (final)
 1853	MONGOLIAN LETTER TODO JA
+	~ 1853 ALT1 first form (initial)
+	~ 1853 ALT1 first form (medial)
+	~ 1853 ALT1 first form (final)
 1854	MONGOLIAN LETTER TODO TSA
+	~ 1854 ALT1 first form (initial)
+	~ 1854 ALT1 first form (medial)
+	~ 1854 ALT1 first form (final)
 1855	MONGOLIAN LETTER TODO YA
+	~ 1855 ALT1 first form (initial)
+	~ 1855 ALT1 first form (medial)
+	~ 1855 ALT1 first form (final)
 1856	MONGOLIAN LETTER TODO WA
+	~ 1856 ALT1 first form (initial)
+	~ 1856 ALT1 first form (medial)
+	~ 1856 ALT1 first form (final)
 1857	MONGOLIAN LETTER TODO KA
+	~ 1857 ALT1 first form (initial)
+	~ 1857 ALT1 first form (medial)
+	~ 1857 ALT1 first form (final)
 1858	MONGOLIAN LETTER TODO GAA
+	~ 1858 ALT1 first form (initial)
+	~ 1858 ALT1 first form (medial)
+	~ 1858 ALT1 first form (final)
 1859	MONGOLIAN LETTER TODO HAA
+	~ 1859 ALT1 first form (initial)
+	~ 1859 ALT1 first form (medial)
+	~ 1859 ALT1 first form (final)
 185A	MONGOLIAN LETTER TODO JIA
+	~ 185A ALT1 first form (initial)
+	~ 185A ALT1 first form (medial)
+	~ 185A ALT1 first form (final)
 185B	MONGOLIAN LETTER TODO NIA
+	~ 185B ALT1 first form (initial)
+	~ 185B ALT1 first form (medial)
+	~ 185B ALT1 first form (final)
 185C	MONGOLIAN LETTER TODO DZA
+	~ 185C ALT1 first form (initial)
+	~ 185C ALT1 first form (medial)
+	~ 185C ALT1 first form (final)
 @		Sibe letters
 185D	MONGOLIAN LETTER SIBE E
 	~ 185D ALT1 first form (initial)
@@ -9570,6 +9631,9 @@
 	~ 185E 180C third form (medial)
 	~ 185E 180C third form (final)
 185F	MONGOLIAN LETTER SIBE IY
+	~ 185F ALT1 first form (initial)
+	~ 185F ALT1 first form (medial)
+	~ 185F ALT1 first form (final)
 1860	MONGOLIAN LETTER SIBE UE
 	~ 1860 ALT1 first form (initial)
 	~ 1860 ALT1 first form (medial)
@@ -9577,16 +9641,34 @@
 	~ 1860 180B second form (medial)
 	~ 1860 180B second form (final)
 1861	MONGOLIAN LETTER SIBE U
+	~ 1861 ALT1 first form (initial)
+	~ 1861 ALT1 first form (medial)
+	~ 1861 ALT1 first form (final)
 1862	MONGOLIAN LETTER SIBE ANG
+	~ 1862 ALT1 first form (initial)
+	~ 1862 ALT1 first form (medial)
+	~ 1862 ALT1 first form (final)
 1863	MONGOLIAN LETTER SIBE KA
 	~ 1863 ALT1 first form (initial)
 	~ 1863 ALT1 first form (medial)
 	~ 1863 ALT1 first form (final)
 	~ 1863 180B second form (medial)
 1864	MONGOLIAN LETTER SIBE GA
+	~ 1864 ALT1 first form (initial)
+	~ 1864 ALT1 first form (medial)
+	~ 1864 ALT1 first form (final)
 1865	MONGOLIAN LETTER SIBE HA
+	~ 1865 ALT1 first form (initial)
+	~ 1865 ALT1 first form (medial)
+	~ 1865 ALT1 first form (final)
 1866	MONGOLIAN LETTER SIBE PA
+	~ 1866 ALT1 first form (initial)
+	~ 1866 ALT1 first form (medial)
+	~ 1866 ALT1 first form (final)
 1867	MONGOLIAN LETTER SIBE SHA
+	~ 1867 ALT1 first form (initial)
+	~ 1867 ALT1 first form (medial)
+	~ 1867 ALT1 first form (final)
 1868	MONGOLIAN LETTER SIBE TA
 	~ 1868 ALT1 first form (initial)
 	~ 1868 ALT1 first form (medial)
@@ -9601,10 +9683,25 @@
 	~ 1869 180B second form (initial)
 	~ 1869 180B second form (medial)
 186A	MONGOLIAN LETTER SIBE JA
+	~ 186A ALT1 first form (initial)
+	~ 186A ALT1 first form (medial)
+	~ 186A ALT1 first form (final)
 186B	MONGOLIAN LETTER SIBE FA
+	~ 186B ALT1 first form (initial)
+	~ 186B ALT1 first form (medial)
+	~ 186B ALT1 first form (final)
 186C	MONGOLIAN LETTER SIBE GAA
+	~ 186C ALT1 first form (initial)
+	~ 186C ALT1 first form (medial)
+	~ 186C ALT1 first form (final)
 186D	MONGOLIAN LETTER SIBE HAA
+	~ 186D ALT1 first form (initial)
+	~ 186D ALT1 first form (medial)
+	~ 186D ALT1 first form (final)
 186E	MONGOLIAN LETTER SIBE TSA
+	~ 186E ALT1 first form (initial)
+	~ 186E ALT1 first form (medial)
+	~ 186E ALT1 first form (final)
 186F	MONGOLIAN LETTER SIBE ZA
 	~ 186F ALT1 first form (initial)
 	~ 186F ALT1 first form (medial)
@@ -9612,8 +9709,17 @@
 	~ 186F 180B second form (initial)
 	~ 186F 180B second form (medial)
 1870	MONGOLIAN LETTER SIBE RAA
+	~ 1870 ALT1 first form (initial)
+	~ 1870 ALT1 first form (medial)
+	~ 1870 ALT1 first form (final)
 1871	MONGOLIAN LETTER SIBE CHA
+	~ 1871 ALT1 first form (initial)
+	~ 1871 ALT1 first form (medial)
+	~ 1871 ALT1 first form (final)
 1872	MONGOLIAN LETTER SIBE ZHA
+	~ 1872 ALT1 first form (initial)
+	~ 1872 ALT1 first form (medial)
+	~ 1872 ALT1 first form (final)
 @		Manchu letters
 1873	MONGOLIAN LETTER MANCHU I
 	~ 1873 ALT1 first form (initial)
@@ -9634,6 +9740,9 @@
 	~ 1874 180C third form (final)
 	~ 1874 180D fourth form (medial)
 1875	MONGOLIAN LETTER MANCHU RA
+	~ 1875 ALT1 first form (initial)
+	~ 1875 ALT1 first form (medial)
+	~ 1875 ALT1 first form (final)
 1876	MONGOLIAN LETTER MANCHU FA
 	~ 1876 ALT1 first form (initial)
 	~ 1876 ALT1 first form (medial)
@@ -9641,6 +9750,9 @@
 	~ 1876 180B second form (initial)
 	~ 1876 180B second form (medial)
 1877	MONGOLIAN LETTER MANCHU ZHA
+	~ 1877 ALT1 first form (initial)
+	~ 1877 ALT1 first form (medial)
+	~ 1877 ALT1 first form (final)
 @		Extensions for Sanskrit and Tibetan
 1880	MONGOLIAN LETTER ALI GALI ANUSVARA ONE
 	x (tibetan sign sna ldan - 0F83)
@@ -9670,6 +9782,9 @@
 	~ 1888 ALT1 first form (final)
 	~ 1888 180B second form (final)
 1889	MONGOLIAN LETTER ALI GALI KA
+	~ 1889 ALT1 first form (initial)
+	~ 1889 ALT1 first form (medial)
+	~ 1889 ALT1 first form (final)
 188A	MONGOLIAN LETTER ALI GALI NGA
 	~ 188A ALT1 first form (initial)
 	~ 188A ALT1 first form (medial)
@@ -9677,37 +9792,130 @@
 	~ 188A 180B second form (initial)
 	~ 188A 180B second form (medial)
 188B	MONGOLIAN LETTER ALI GALI CA
+	~ 188B ALT1 first form (initial)
+	~ 188B ALT1 first form (medial)
+	~ 188B ALT1 first form (final)
 188C	MONGOLIAN LETTER ALI GALI TTA
+	~ 188C ALT1 first form (initial)
+	~ 188C ALT1 first form (medial)
+	~ 188C ALT1 first form (final)
 188D	MONGOLIAN LETTER ALI GALI TTHA
+	~ 188D ALT1 first form (initial)
+	~ 188D ALT1 first form (medial)
+	~ 188D ALT1 first form (final)
 188E	MONGOLIAN LETTER ALI GALI DDA
+	~ 188E ALT1 first form (initial)
+	~ 188E ALT1 first form (medial)
+	~ 188E ALT1 first form (final)
 188F	MONGOLIAN LETTER ALI GALI NNA
+	~ 188F ALT1 first form (initial)
+	~ 188F ALT1 first form (medial)
+	~ 188F ALT1 first form (final)
 1890	MONGOLIAN LETTER ALI GALI TA
+	~ 1890 ALT1 first form (initial)
+	~ 1890 ALT1 first form (medial)
+	~ 1890 ALT1 first form (final)
 1891	MONGOLIAN LETTER ALI GALI DA
+	~ 1891 ALT1 first form (initial)
+	~ 1891 ALT1 first form (medial)
+	~ 1891 ALT1 first form (final)
 1892	MONGOLIAN LETTER ALI GALI PA
+	~ 1892 ALT1 first form (initial)
+	~ 1892 ALT1 first form (medial)
+	~ 1892 ALT1 first form (final)
 1893	MONGOLIAN LETTER ALI GALI PHA
+	~ 1893 ALT1 first form (initial)
+	~ 1893 ALT1 first form (medial)
+	~ 1893 ALT1 first form (final)
 1894	MONGOLIAN LETTER ALI GALI SSA
+	~ 1894 ALT1 first form (initial)
+	~ 1894 ALT1 first form (medial)
+	~ 1894 ALT1 first form (final)
 1895	MONGOLIAN LETTER ALI GALI ZHA
+	~ 1895 ALT1 first form (initial)
+	~ 1895 ALT1 first form (medial)
+	~ 1895 ALT1 first form (final)
 1896	MONGOLIAN LETTER ALI GALI ZA
+	~ 1896 ALT1 first form (initial)
+	~ 1896 ALT1 first form (medial)
+	~ 1896 ALT1 first form (final)
 1897	MONGOLIAN LETTER ALI GALI AH
+	~ 1897 ALT1 first form (initial)
+	~ 1897 ALT1 first form (medial)
+	~ 1897 ALT1 first form (final)
 1898	MONGOLIAN LETTER TODO ALI GALI TA
+	~ 1898 ALT1 first form (initial)
+	~ 1898 ALT1 first form (medial)
+	~ 1898 ALT1 first form (final)
 1899	MONGOLIAN LETTER TODO ALI GALI ZHA
+	~ 1899 ALT1 first form (initial)
+	~ 1899 ALT1 first form (medial)
+	~ 1899 ALT1 first form (final)
 189A	MONGOLIAN LETTER MANCHU ALI GALI GHA
+	~ 189A ALT1 first form (initial)
+	~ 189A ALT1 first form (medial)
+	~ 189A ALT1 first form (final)
 189B	MONGOLIAN LETTER MANCHU ALI GALI NGA
+	~ 189B ALT1 first form (initial)
+	~ 189B ALT1 first form (medial)
+	~ 189B ALT1 first form (final)
 189C	MONGOLIAN LETTER MANCHU ALI GALI CA
+	~ 189C ALT1 first form (initial)
+	~ 189C ALT1 first form (medial)
+	~ 189C ALT1 first form (final)
 189D	MONGOLIAN LETTER MANCHU ALI GALI JHA
+	~ 189D ALT1 first form (initial)
+	~ 189D ALT1 first form (medial)
+	~ 189D ALT1 first form (final)
 189E	MONGOLIAN LETTER MANCHU ALI GALI TTA
+	~ 189E ALT1 first form (initial)
+	~ 189E ALT1 first form (medial)
+	~ 189E ALT1 first form (final)
 189F	MONGOLIAN LETTER MANCHU ALI GALI DDHA
+	~ 189F ALT1 first form (initial)
+	~ 189F ALT1 first form (medial)
+	~ 189F ALT1 first form (final)
 18A0	MONGOLIAN LETTER MANCHU ALI GALI TA
+	~ 18A0 ALT1 first form (initial)
+	~ 18A0 ALT1 first form (medial)
+	~ 18A0 ALT1 first form (final)
 18A1	MONGOLIAN LETTER MANCHU ALI GALI DHA
+	~ 18A1 ALT1 first form (initial)
+	~ 18A1 ALT1 first form (medial)
+	~ 18A1 ALT1 first form (final)
 18A2	MONGOLIAN LETTER MANCHU ALI GALI SSA
+	~ 18A2 ALT1 first form (initial)
+	~ 18A2 ALT1 first form (medial)
+	~ 18A2 ALT1 first form (final)
 18A3	MONGOLIAN LETTER MANCHU ALI GALI CYA
+	~ 18A3 ALT1 first form (initial)
+	~ 18A3 ALT1 first form (medial)
+	~ 18A3 ALT1 first form (final)
 18A4	MONGOLIAN LETTER MANCHU ALI GALI ZHA
+	~ 18A4 ALT1 first form (initial)
+	~ 18A4 ALT1 first form (medial)
+	~ 18A4 ALT1 first form (final)
 18A5	MONGOLIAN LETTER MANCHU ALI GALI ZA
+	~ 18A5 ALT1 first form (initial)
+	~ 18A5 ALT1 first form (medial)
+	~ 18A5 ALT1 first form (final)
 18A6	MONGOLIAN LETTER ALI GALI HALF U
+	~ 18A6 ALT1 first form (initial)
+	~ 18A6 ALT1 first form (medial)
+	~ 18A6 ALT1 first form (final)
 18A7	MONGOLIAN LETTER ALI GALI HALF YA
+	~ 18A7 ALT1 first form (initial)
+	~ 18A7 ALT1 first form (medial)
+	~ 18A7 ALT1 first form (final)
 18A8	MONGOLIAN LETTER MANCHU ALI GALI BHA
+	~ 18A8 ALT1 first form (initial)
+	~ 18A8 ALT1 first form (medial)
+	~ 18A8 ALT1 first form (final)
 18A9	MONGOLIAN LETTER ALI GALI DAGALGA
 18AA	MONGOLIAN LETTER MANCHU ALI GALI LHA
+	~ 18AA ALT1 first form (initial)
+	~ 18AA ALT1 first form (medial)
+	~ 18AA ALT1 first form (final)
 @@@~	Contextual Variants and Standardized Variation Sequences
 @+		Unlike other blocks, these variation sequences use the script-specific variation selectors for Mongolian.
 @@	18B0	Unified Canadian Aboriginal Syllabics Extended	18FF
@@ -12645,8 +12853,6 @@
 @		Double punctuation for vertical text
 203C	DOUBLE EXCLAMATION MARK
 	x (exclamation mark - 0021)
-	~ 203C FE0E text style
-	~ 203C FE0F emoji style
 	# 0021 0021
 @		General punctuation
 203D	INTERROBANG
@@ -12682,8 +12888,6 @@
 2048	QUESTION EXCLAMATION MARK
 	# 003F 0021
 2049	EXCLAMATION QUESTION MARK
-	~ 2049 FE0E text style
-	~ 2049 FE0F emoji style
 	# 0021 003F
 @		General punctuation
 204A	TIRONIAN SIGN ET
@@ -12785,7 +12989,6 @@
 206D	ACTIVATE ARABIC FORM SHAPING
 206E	NATIONAL DIGIT SHAPES
 206F	NOMINAL DIGIT SHAPES
-@~	!
 @@	2070	Superscripts and Subscripts	209F
 @		Superscripts
 @+		See also superscript Latin letters in the Spacing Modifier Letters block starting at 02B0.
@@ -13164,8 +13367,6 @@
 	# 0054 0045 004C
 2122	TRADE MARK SIGN
 	x (circled wz - 1F12E)
-	~ 2122 FE0E text style
-	~ 2122 FE0F emoji style
 	# <super> 0054 004D
 2123	VERSICLE
 2124	DOUBLE-STRUCK CAPITAL Z
@@ -13247,8 +13448,6 @@
 2139	INFORMATION SOURCE
 	* intended for use with 20DD
 	x (circled information source - 1F6C8)
-	~ 2139 FE0E text style
-	~ 2139 FE0F emoji style
 	# <font> 0069 latin small letter i
 213A	ROTATED CAPITAL Q
 	* a binding signature mark
@@ -13307,7 +13506,6 @@
 	x (greek small letter digamma - 03DD)
 @		Biblical editorial symbol
 214F	SYMBOL FOR SAMARITAN SOURCE
-@~	!
 @@	2150	Number Forms	218F
 @		Fractions
 @+		Other fraction number forms are found in the Latin-1 Supplement block.
@@ -13457,23 +13655,11 @@
 	* IPA: ingressive airflow
 2194	LEFT RIGHT ARROW
 	= z notation relation
-	~ 2194 FE0E text style
-	~ 2194 FE0F emoji style
 2195	UP DOWN ARROW
-	~ 2195 FE0E text style
-	~ 2195 FE0F emoji style
 2196	NORTH WEST ARROW
-	~ 2196 FE0E text style
-	~ 2196 FE0F emoji style
 2197	NORTH EAST ARROW
-	~ 2197 FE0E text style
-	~ 2197 FE0F emoji style
 2198	SOUTH EAST ARROW
-	~ 2198 FE0E text style
-	~ 2198 FE0F emoji style
 2199	SOUTH WEST ARROW
-	~ 2199 FE0E text style
-	~ 2199 FE0F emoji style
 @		Arrows with modifications
 219A	LEFTWARDS ARROW WITH STROKE
 	* negation of 2190
@@ -13506,11 +13692,7 @@
 	= depth symbol
 21A8	UP DOWN ARROW WITH BASE
 21A9	LEFTWARDS ARROW WITH HOOK
-	~ 21A9 FE0E text style
-	~ 21A9 FE0F emoji style
 21AA	RIGHTWARDS ARROW WITH HOOK
-	~ 21AA FE0E text style
-	~ 21AA FE0F emoji style
 21AB	LEFTWARDS ARROW WITH LOOP
 21AC	RIGHTWARDS ARROW WITH LOOP
 21AD	LEFT RIGHT WAVE ARROW
@@ -13648,7 +13830,6 @@
 21FD	LEFTWARDS OPEN-HEADED ARROW
 21FE	RIGHTWARDS OPEN-HEADED ARROW
 21FF	LEFT RIGHT OPEN-HEADED ARROW
-@~	!
 @@	2200	Mathematical Operators	22FF
 @@+
 @		Miscellaneous mathematical symbols
@@ -14267,12 +14448,8 @@
 231A	WATCH
 	x (alarm clock - 23F0)
 	x (clock face one oclock - 1F550)
-	~ 231A FE0E text style
-	~ 231A FE0F emoji style
 231B	HOURGLASS
 	= alchemical symbol for hour
-	~ 231B FE0E text style
-	~ 231B FE0F emoji style
 @		Quine corners
 @+		These form a set of four quine corners, for quincuncial arrangement. They are also used in upper and lower pairs in mathematic, or more rarely in editorial usage as alternatives to half brackets.
 231C	TOP LEFT CORNER
@@ -14301,8 +14478,6 @@
 2328	KEYBOARD
 	x (keyboard and mouse - 1F5A6)
 	x (wired keyboard - 1F5AE)
-	~ 2328 FE0E text style
-	~ 2328 FE0F emoji style
 @		Deprecated angle brackets
 @+		These characters are deprecated and are strongly discouraged for mathematical use because of their canonical equivalence to CJK punctuation.
 2329	LEFT-POINTING ANGLE BRACKET
@@ -14578,8 +14753,6 @@
 	x (return left - 2B90)
 23CF	EJECT SYMBOL
 	* UI symbol to eject media
-	~ 23CF FE0E text style
-	~ 23CF FE0F emoji style
 @		Special character extension
 23D0	VERTICAL LINE EXTENSION
 	* used for extension of arrows
@@ -14633,24 +14806,14 @@
 23EB	BLACK UP-POINTING DOUBLE TRIANGLE
 23EC	BLACK DOWN-POINTING DOUBLE TRIANGLE
 23ED	BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR
-	~ 23ED FE0E text style
-	~ 23ED FE0F emoji style
 23EE	BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR
-	~ 23EE FE0E text style
-	~ 23EE FE0F emoji style
 23EF	BLACK RIGHT-POINTING TRIANGLE WITH DOUBLE VERTICAL BAR
-	~ 23EF FE0E text style
-	~ 23EF FE0F emoji style
 23F0	ALARM CLOCK
 	x (watch - 231A)
 	x (clock face one oclock - 1F550)
 	x (mantelpiece clock - 1F570)
 23F1	STOPWATCH
-	~ 23F1 FE0E text style
-	~ 23F1 FE0F emoji style
 23F2	TIMER CLOCK
-	~ 23F2 FE0E text style
-	~ 23F2 FE0F emoji style
 23F3	HOURGLASS WITH FLOWING SAND
 	x (hourglass - 231B)
 23F4	BLACK MEDIUM LEFT-POINTING TRIANGLE
@@ -14676,18 +14839,12 @@
 23F8	DOUBLE VERTICAL BAR
 	= pause
 	x (double vertical line - 2016)
-	~ 23F8 FE0E text style
-	~ 23F8 FE0F emoji style
 23F9	BLACK SQUARE FOR STOP
 	= stop
 	x (black medium square - 25FC)
-	~ 23F9 FE0E text style
-	~ 23F9 FE0F emoji style
 23FA	BLACK CIRCLE FOR RECORD
 	= record
 	x (medium black circle - 26AB)
-	~ 23FA FE0E text style
-	~ 23FA FE0F emoji style
 @		Power symbols from ISO 7000:2012
 23FB	POWER SYMBOL
 @+	* IEC 5009 standby symbol
@@ -14701,7 +14858,6 @@
 23FE	POWER SLEEP SYMBOL
 	x (last quarter moon - 263E)
 23FF	OBSERVER EYE SYMBOL
-@~	!
 @@	2400	Control Pictures	243F
 @+		The diagonal lettering glyphs are only exemplary; alternate representations may be, and often are used in the visible display of control codes.
 @		Graphic pictures for control codes
@@ -14986,8 +15142,6 @@
 24C1	CIRCLED LATIN CAPITAL LETTER L
 	# <circle> 004C
 24C2	CIRCLED LATIN CAPITAL LETTER M
-	~ 24C2 FE0E text style
-	~ 24C2 FE0F emoji style
 	# <circle> 004D
 24C3	CIRCLED LATIN CAPITAL LETTER N
 	# <circle> 004E
@@ -15097,7 +15251,6 @@
 @		Additional white on black circled number
 24FF	NEGATIVE CIRCLED DIGIT ZERO
 	x (dingbat negative circled digit one - 2776)
-@~	!
 @@	2500	Box Drawing	257F
 @+		All of these characters are intended for compatibility with character cell graphic sets in use prior to 1990.
 @		Light and heavy solid lines
@@ -15337,12 +15490,8 @@
 25AA	BLACK SMALL SQUARE
 	= square bullet
 	x (black very small square - 2B1D)
-	~ 25AA FE0E text style
-	~ 25AA FE0F emoji style
 25AB	WHITE SMALL SQUARE
 	x (white very small square - 2B1E)
-	~ 25AB FE0E text style
-	~ 25AB FE0F emoji style
 25AC	BLACK RECTANGLE
 25AD	WHITE RECTANGLE
 25AE	BLACK VERTICAL RECTANGLE
@@ -15369,8 +15518,6 @@
 25B6	BLACK RIGHT-POINTING TRIANGLE
 	x (black medium right-pointing triangle - 23F5)
 	x (black medium right-pointing triangle centred - 2BC8)
-	~ 25B6 FE0E text style
-	~ 25B6 FE0F emoji style
 25B7	WHITE RIGHT-POINTING TRIANGLE
 	= z notation range restriction
 25B8	BLACK RIGHT-POINTING SMALL TRIANGLE
@@ -15395,8 +15542,6 @@
 25C0	BLACK LEFT-POINTING TRIANGLE
 	x (black medium left-pointing triangle - 23F4)
 	x (black medium left-pointing triangle centred - 2BC7)
-	~ 25C0 FE0E text style
-	~ 25C0 FE0F emoji style
 25C1	WHITE LEFT-POINTING TRIANGLE
 	= z notation domain restriction
 25C2	BLACK LEFT-POINTING SMALL TRIANGLE
@@ -15503,24 +15648,15 @@
 	= always (modal operator)
 	x (white square - 25A1)
 	x (white square with leftwards tick - 27E4)
-	~ 25FB FE0E text style
-	~ 25FB FE0F emoji style
 25FC	BLACK MEDIUM SQUARE
 	x (black square for stop - 23F9)
 	x (black square - 25A0)
-	~ 25FC FE0E text style
-	~ 25FC FE0F emoji style
 25FD	WHITE MEDIUM SMALL SQUARE
 	x (white small square - 25AB)
-	~ 25FD FE0E text style
-	~ 25FD FE0F emoji style
 25FE	BLACK MEDIUM SMALL SQUARE
 	x (black small square - 25AA)
-	~ 25FE FE0E text style
-	~ 25FE FE0F emoji style
 25FF	LOWER RIGHT TRIANGLE
 	x (right triangle - 22BF)
-@~	!
 @@	2600	Miscellaneous Symbols	26FF
 @@+
 @		Weather and astrological symbols
@@ -15528,24 +15664,14 @@
 	= clear weather
 	x (sun - 2609)
 	x (high brightness symbol - 1F506)
-	~ 2600 FE0E text style
-	~ 2600 FE0F emoji style
 2601	CLOUD
 	= cloudy weather
-	~ 2601 FE0E text style
-	~ 2601 FE0F emoji style
 2602	UMBRELLA
 	= rainy weather
 	x (closed umbrella - 1F302)
-	~ 2602 FE0E text style
-	~ 2602 FE0F emoji style
 2603	SNOWMAN
 	= snowy weather
-	~ 2603 FE0E text style
-	~ 2603 FE0F emoji style
 2604	COMET
-	~ 2604 FE0E text style
-	~ 2604 FE0F emoji style
 2605	BLACK STAR
 	x (star operator - 22C6)
 	x (black small star - 2B51)
@@ -15576,16 +15702,12 @@
 	x (telephone location sign - 2706)
 	x (telephone receiver - 1F4DE)
 	x (black touchtone telephone - 1F57F)
-	~ 260E FE0E text style
-	~ 260E FE0F emoji style
 260F	WHITE TELEPHONE
 	x (white touchtone telephone - 1F57E)
 2610	BALLOT BOX
 	x (white square - 25A1)
 2611	BALLOT BOX WITH CHECK
 	x (ballot box with bold check - 1F5F9)
-	~ 2611 FE0E text style
-	~ 2611 FE0F emoji style
 2612	BALLOT BOX WITH X
 	x (squared times - 22A0)
 	x (ballot box with light x - 2BBD)
@@ -15598,8 +15720,6 @@
 @		Weather symbol
 2614	UMBRELLA WITH RAIN DROPS
 	= showery weather
-	~ 2614 FE0E text style
-	~ 2614 FE0F emoji style
 @		Miscellaneous symbol
 2615	HOT BEVERAGE
 	= tea or coffee, depending on locale
@@ -15607,16 +15727,12 @@
 	x (watch - 231A)
 	x (hourglass - 231B)
 	x (teacup without handle - 1F375)
-	~ 2615 FE0E text style
-	~ 2615 FE0F emoji style
 @		Japanese chess symbols
 2616	WHITE SHOGI PIECE
 2617	BLACK SHOGI PIECE
 @		Miscellaneous symbols
 2618	SHAMROCK
 	x (four leaf clover - 1F340)
-	~ 2618 FE0E text style
-	~ 2618 FE0F emoji style
 2619	REVERSED ROTATED FLORAL HEART BULLET
 	* a binding signature mark
 	x (rotated floral heart bullet - 2767)
@@ -15629,8 +15745,6 @@
 	x (sideways white left pointing index - 1F598)
 261D	WHITE UP POINTING INDEX
 	x (sideways white up pointing index - 1F59E)
-	~ 261D FE0E text style
-	~ 261D FE0F emoji style
 261E	WHITE RIGHT POINTING INDEX
 	= fist (typographic term)
 	x (sideways white right pointing index - 1F599)
@@ -15641,15 +15755,9 @@
 2620	SKULL AND CROSSBONES
 	= poison
 	x (black skull and crossbones - 1F571)
-	~ 2620 FE0E text style
-	~ 2620 FE0F emoji style
 2621	CAUTION SIGN
 2622	RADIOACTIVE SIGN
-	~ 2622 FE0E text style
-	~ 2622 FE0F emoji style
 2623	BIOHAZARD SIGN
-	~ 2623 FE0E text style
-	~ 2623 FE0F emoji style
 @		Medical and healing symbols
 2624	CADUCEUS
 	x (staff of aesculapius - 2695)
@@ -15657,8 +15765,6 @@
 2625	ANKH
 @		Religious and political symbols
 2626	ORTHODOX CROSS
-	~ 2626 FE0E text style
-	~ 2626 FE0F emoji style
 2627	CHI RHO
 	= Constantine's cross, Christogram
 	x (coptic symbol khi ro - 2CE9)
@@ -15666,20 +15772,14 @@
 2629	CROSS OF JERUSALEM
 	x (alchemical symbol for vinegar - 1F70A)
 262A	STAR AND CRESCENT
-	~ 262A FE0E text style
-	~ 262A FE0F emoji style
 262B	FARSI SYMBOL
 	= symbol of iran (1.0)
 262C	ADI SHAKTI
 	= Gurmukhi khanda
 262D	HAMMER AND SICKLE
 262E	PEACE SYMBOL
-	~ 262E FE0E text style
-	~ 262E FE0F emoji style
 262F	YIN YANG
 	x (tibetan symbol nor bu nyis -khyil - 0FCA)
-	~ 262F FE0E text style
-	~ 262F FE0F emoji style
 @		Yijing trigram symbols
 2630	TRIGRAM FOR HEAVEN
 	= qian2
@@ -15700,19 +15800,13 @@
 @		Miscellaneous symbol
 2638	WHEEL OF DHARMA
 	x (helm symbol - 2388)
-	~ 2638 FE0E text style
-	~ 2638 FE0F emoji style
 @		Emoticons
 @+		Many other emoticons are encoded in the Emoticons block starting at 1F600.
 2639	WHITE FROWNING FACE
 	x (slightly frowning face - 1F641)
-	~ 2639 FE0E text style
-	~ 2639 FE0F emoji style
 263A	WHITE SMILING FACE
 	x (slightly smiling face - 1F642)
 	= have a nice day!
-	~ 263A FE0E text style
-	~ 263A FE0F emoji style
 263B	BLACK SMILING FACE
 @		Miscellaneous symbol
 263C	WHITE SUN WITH RAYS
@@ -15755,51 +15849,27 @@
 @+		See also Asian zodiacal symbols among the animal symbols in the range 1F400-1F418.
 2648	ARIES
 	x (ram - 1F40F)
-	~ 2648 FE0E text style
-	~ 2648 FE0F emoji style
 2649	TAURUS
-	~ 2649 FE0E text style
-	~ 2649 FE0F emoji style
 264A	GEMINI
-	~ 264A FE0E text style
-	~ 264A FE0F emoji style
 264B	CANCER
 	x (crab - 1F980)
-	~ 264B FE0E text style
-	~ 264B FE0F emoji style
 264C	LEO
 	x (lion face - 1F981)
-	~ 264C FE0E text style
-	~ 264C FE0F emoji style
 264D	VIRGO
 	= minim (alternate glyph)
-	~ 264D FE0E text style
-	~ 264D FE0F emoji style
 264E	LIBRA
 	x (scales - 2696)
 	x (alchemical symbol for sublimation - 1F75E)
-	~ 264E FE0E text style
-	~ 264E FE0F emoji style
 264F	SCORPIUS
 	= scorpio
 	= minim, drop
 	x (scorpion - 1F982)
-	~ 264F FE0E text style
-	~ 264F FE0F emoji style
 2650	SAGITTARIUS
 	x (bow and arrow - 1F3F9)
-	~ 2650 FE0E text style
-	~ 2650 FE0F emoji style
 2651	CAPRICORN
-	~ 2651 FE0E text style
-	~ 2651 FE0F emoji style
 2652	AQUARIUS
 	x (amphora - 1F3FA)
-	~ 2652 FE0E text style
-	~ 2652 FE0F emoji style
 2653	PISCES
-	~ 2653 FE0E text style
-	~ 2653 FE0F emoji style
 @		Chess symbols
 2654	WHITE CHESS KING
 2655	WHITE CHESS QUEEN
@@ -15815,16 +15885,12 @@
 265F	BLACK CHESS PAWN
 @		Playing card symbols
 2660	BLACK SPADE SUIT
-	~ 2660 FE0E text style
-	~ 2660 FE0F emoji style
 2661	WHITE HEART SUIT
 2662	WHITE DIAMOND SUIT
 	x (white diamond - 25C7)
 	x (lozenge - 25CA)
 2663	BLACK CLUB SUIT
 	x (shamrock - 2618)
-	~ 2663 FE0E text style
-	~ 2663 FE0F emoji style
 2664	WHITE SPADE SUIT
 2665	BLACK HEART SUIT
 	= valentine
@@ -15832,17 +15898,11 @@
 	x (heart with tip on the left - 1F394)
 	x (blue heart - 1F499)
 	x (black heart - 1F5A4)
-	~ 2665 FE0E text style
-	~ 2665 FE0F emoji style
 2666	BLACK DIAMOND SUIT
 	x (black diamond - 25C6)
-	~ 2666 FE0E text style
-	~ 2666 FE0F emoji style
 2667	WHITE CLUB SUIT
 @		Miscellaneous symbol
 2668	HOT SPRINGS
-	~ 2668 FE0E text style
-	~ 2668 FE0F emoji style
 @		Musical symbols
 2669	QUARTER NOTE
 	= crotchet
@@ -15887,8 +15947,6 @@
 	* used together with other text and labels to indicate the type of material to be recycled
 267B	BLACK UNIVERSAL RECYCLING SYMBOL
 	x (clockwise rightwards and leftwards open circle arrows - 1F501)
-	~ 267B FE0E text style
-	~ 267B FE0F emoji style
 267C	RECYCLED PAPER SYMBOL
 	* used to indicate 100% recycled paper content
 267D	PARTIALLY-RECYCLED PAPER SYMBOL
@@ -15896,8 +15954,6 @@
 @		Miscellaneous symbols
 267E	PERMANENT PAPER SIGN
 267F	WHEELCHAIR SYMBOL
-	~ 267F FE0E text style
-	~ 267F FE0F emoji style
 @		Dice
 2680	DIE FACE-1
 	x (game die - 1F3B2)
@@ -15928,17 +15984,11 @@
 	= mining, working day (in timetables)
 	x (pick - 26CF)
 	x (hammer and wrench - 1F6E0)
-	~ 2692 FE0E text style
-	~ 2692 FE0F emoji style
 2693	ANCHOR
 	= nautical term, harbor (on maps)
-	~ 2693 FE0E text style
-	~ 2693 FE0F emoji style
 2694	CROSSED SWORDS
 	= military term, battleground (on maps), killed in action
 	x (fencer - 1F93A)
-	~ 2694 FE0E text style
-	~ 2694 FE0F emoji style
 2695	STAFF OF AESCULAPIUS
 	= medical term
 	* both inclined or upright renderings of this symbol are common
@@ -15947,13 +15997,9 @@
 2696	SCALES
 	= legal term, jurisprudence
 	x (libra - 264E)
-	~ 2696 FE0E text style
-	~ 2696 FE0F emoji style
 2697	ALEMBIC
 	= chemical term, chemistry
 	x (alchemical symbol for retort - 1F76D)
-	~ 2697 FE0E text style
-	~ 2697 FE0F emoji style
 2698	FLOWER
 	= botanical term
 	x (flower punctuation mark - 2055)
@@ -15961,19 +16007,13 @@
 	x (tulip - 1F337)
 2699	GEAR
 	= technology, tools
-	~ 2699 FE0E text style
-	~ 2699 FE0F emoji style
 269A	STAFF OF HERMES
 	* signifies a commercial term or commerce
 	* glyph shows a heraldic staff with a winged wheel
 269B	ATOM SYMBOL
 	= nuclear installation (on maps)
-	~ 269B FE0E text style
-	~ 269B FE0F emoji style
 @		Miscellaneous symbols
 269C	FLEUR-DE-LIS
-	~ 269C FE0E text style
-	~ 269C FE0F emoji style
 269D	OUTLINED WHITE STAR
 	* alternative form of the interlaced pentagram (a symbol of Morocco)
 	x (right-handed interlaced pentagram - 26E5)
@@ -15987,14 +16027,10 @@
 @		Miscellaneous symbols
 26A0	WARNING SIGN
 	x (octagonal sign - 1F6D1)
-	~ 26A0 FE0E text style
-	~ 26A0 FE0F emoji style
 26A1	HIGH VOLTAGE SIGN
 	= thunder
 	= lightning symbol
 	x (lightning mood - 1F5F2)
-	~ 26A1 FE0E text style
-	~ 26A1 FE0F emoji style
 @		Gender symbols
 26A2	DOUBLED FEMALE SIGN
 	= lesbianism
@@ -16024,13 +16060,9 @@
 	= engaged, betrothed
 	* base for male or female sign
 	x (medium bold white circle - 1F785)
-	~ 26AA FE0E text style
-	~ 26AA FE0F emoji style
 26AB	MEDIUM BLACK CIRCLE
 	* UI symbol for record function
 	x (black circle for record - 23FA)
-	~ 26AB FE0E text style
-	~ 26AB FE0F emoji style
 26AC	MEDIUM SMALL WHITE CIRCLE
 	= engaged, betrothed (genealogy)
 	* can represent wedding ring
@@ -16045,12 +16077,8 @@
 26B0	COFFIN
 	= buried (genealogy)
 	x (white rectangle - 25AD)
-	~ 26B0 FE0E text style
-	~ 26B0 FE0F emoji style
 26B1	FUNERAL URN
 	= cremated (genealogy)
-	~ 26B1 FE0E text style
-	~ 26B1 FE0F emoji style
 @		Gender symbol
 26B2	NEUTER
 @		Astrological signs
@@ -16072,11 +16100,7 @@
 @		Sport symbols
 @+		See other sport symbols in the Miscellaneous Symbols and Pictographs block.
 26BD	SOCCER BALL
-	~ 26BD FE0E text style
-	~ 26BD FE0F emoji style
 26BE	BASEBALL
-	~ 26BE FE0E text style
-	~ 26BE FE0F emoji style
 @		Miscellaneous symbol from ARIB STD B24
 26BF	SQUARED KEY
 	= parental lock
@@ -16089,13 +16113,9 @@
 @		Weather symbols from ARIB STD B24
 26C4	SNOWMAN WITHOUT SNOW
 	= light snow
-	~ 26C4 FE0E text style
-	~ 26C4 FE0F emoji style
 26C5	SUN BEHIND CLOUD
 	= partly cloudy
 	x (white sun with small cloud - 1F324)
-	~ 26C5 FE0E text style
-	~ 26C5 FE0F emoji style
 26C6	RAIN
 	= rainy weather
 26C7	BLACK SNOWMAN
@@ -16103,8 +16123,6 @@
 26C8	THUNDER CLOUD AND RAIN
 	= thunderstorm
 	x (cloud with lightning - 1F329)
-	~ 26C8 FE0E text style
-	~ 26C8 FE0F emoji style
 @		Game symbols from ARIB STD B24
 26C9	TURNED WHITE SHOGI PIECE
 26CA	TURNED BLACK SHOGI PIECE
@@ -16122,26 +16140,18 @@
 	= under construction
 	x (hammer and pick - 2692)
 	x (construction sign - 1F6A7)
-	~ 26CF FE0E text style
-	~ 26CF FE0F emoji style
 26D0	CAR SLIDING
 	= icy road
 26D1	HELMET WITH WHITE CROSS
 	= maintenance
 	x (construction worker - 1F477)
-	~ 26D1 FE0E text style
-	~ 26D1 FE0F emoji style
 26D2	CIRCLED CROSSING LANES
 	= road closed
 	x (circled times - 2297)
 26D3	CHAINS
 	= tyre chains required
-	~ 26D3 FE0E text style
-	~ 26D3 FE0F emoji style
 26D4	NO ENTRY
 	x (no entry sign - 1F6AB)
-	~ 26D4 FE0E text style
-	~ 26D4 FE0F emoji style
 26D5	ALTERNATE ONE-WAY LEFT WAY TRAFFIC
 	* left side traffic
 26D6	BLACK TWO-WAY LEFT WAY TRAFFIC
@@ -16192,11 +16202,7 @@
 	x (hospital - 1F3E5)
 26E9	SHINTO SHRINE
 	= torii
-	~ 26E9 FE0E text style
-	~ 26E9 FE0F emoji style
 26EA	CHURCH
-	~ 26EA FE0E text style
-	~ 26EA FE0F emoji style
 26EB	CASTLE
 	x (european castle - 1F3F0)
 26EC	HISTORIC SITE
@@ -16210,68 +16216,45 @@
 26EF	MAP SYMBOL FOR LIGHTHOUSE
 26F0	MOUNTAIN
 	x (snow capped mountain - 1F3D4)
-	~ 26F0 FE0E text style
-	~ 26F0 FE0F emoji style
 26F1	UMBRELLA ON GROUND
 	= bathing beach
 	x (umbrella - 2602)
 	x (beach with umbrella - 1F3D6)
-	~ 26F1 FE0E text style
-	~ 26F1 FE0F emoji style
 26F2	FOUNTAIN
 	= park
-	~ 26F2 FE0E text style
-	~ 26F2 FE0F emoji style
 26F3	FLAG IN HOLE
 	= golf course
 	x (triangular flag on post - 1F6A9)
-	~ 26F3 FE0E text style
-	~ 26F3 FE0F emoji style
 26F4	FERRY
 	= ferry boat terminal
 	x (ship - 1F6A2)
-	~ 26F4 FE0E text style
-	~ 26F4 FE0F emoji style
 26F5	SAILBOAT
 	= marina or yacht harbour
 	x (rowboat - 1F6A3)
-	~ 26F5 FE0E text style
-	~ 26F5 FE0F emoji style
 26F6	SQUARE FOUR CORNERS
 	= intersection
 26F7	SKIER
 	= ski resort
 	x (ski and ski boot - 1F3BF)
-	~ 26F7 FE0E text style
-	~ 26F7 FE0F emoji style
 26F8	ICE SKATE
 	= ice skating rink
-	~ 26F8 FE0E text style
-	~ 26F8 FE0F emoji style
 26F9	PERSON WITH BALL
 	= track and field, gymnasium
-	~ 26F9 FE0E text style
-	~ 26F9 FE0F emoji style
 26FA	TENT
 	= camping site
 	x (camping - 1F3D5)
-	~ 26FA FE0E text style
-	~ 26FA FE0F emoji style
 26FB	JAPANESE BANK SYMBOL
 	x (bank - 1F3E6)
 26FC	HEADSTONE GRAVEYARD SYMBOL
 	= graveyard, memorial park, cemetery
 26FD	FUEL PUMP
 	= petrol station, gas station
-	~ 26FD FE0E text style
-	~ 26FD FE0F emoji style
 26FE	CUP ON BLACK SQUARE
 	= drive-in restaurant
 	x (hot beverage - 2615)
 	x (teacup without handle - 1F375)
 26FF	WHITE FLAG WITH HORIZONTAL MIDDLE BLACK STRIPE
 	= Japanese self-defence force site
-@~	!
 @@	2700	Dingbats	27BF
 @+		ITC Zapf dingbats series 100. Some of the ITC Zapf dingbats have been unified with geometric shape characters. Gaps in the chart have subsequently been filled with other dingbat-like symbols.
 	x (black telephone - 260E)
@@ -16291,8 +16274,6 @@
 	* forms a pair with 2704 white scissors
 2701	UPPER BLADE SCISSORS
 2702	BLACK SCISSORS
-	~ 2702 FE0E text style
-	~ 2702 FE0F emoji style
 2703	LOWER BLADE SCISSORS
 2704	WHITE SCISSORS
 2705	WHITE HEAVY CHECK MARK
@@ -16303,13 +16284,9 @@
 2707	TAPE DRIVE
 2708	AIRPLANE
 	x (up-pointing airplane - 1F6E7)
-	~ 2708 FE0E text style
-	~ 2708 FE0F emoji style
 2709	ENVELOPE
 	x (incoming envelope - 1F4E8)
 	x (back of envelope - 1F582)
-	~ 2709 FE0E text style
-	~ 2709 FE0F emoji style
 270A	RAISED FIST
 	= rock in Rock, Paper, Scissors game
 	x (fisted hand sign - 1F44A)
@@ -16320,35 +16297,23 @@
 270C	VICTORY HAND
 	= scissors in Rock, Paper, Scissors game
 	x (reversed victory hand - 1F594)
-	~ 270C FE0E text style
-	~ 270C FE0F emoji style
 270D	WRITING HAND
 	x (left writing hand - 1F58E)
-	~ 270D FE0E text style
-	~ 270D FE0F emoji style
 270E	LOWER RIGHT PENCIL
 	x (lower left pencil - 1F589)
 270F	PENCIL
-	~ 270F FE0E text style
-	~ 270F FE0F emoji style
 2710	UPPER RIGHT PENCIL
 2711	WHITE NIB
 	x (lower left fountain pen - 1F58B)
 2712	BLACK NIB
-	~ 2712 FE0E text style
-	~ 2712 FE0F emoji style
 2713	CHECK MARK
 	x (square root - 221A)
 	x (light check mark - 1F5F8)
 2714	HEAVY CHECK MARK
-	~ 2714 FE0E text style
-	~ 2714 FE0F emoji style
 2715	MULTIPLICATION X
 	x (multiplication sign - 00D7)
 	x (box drawings light diagonal cross - 2573)
 2716	HEAVY MULTIPLICATION X
-	~ 2716 FE0E text style
-	~ 2716 FE0F emoji style
 2717	BALLOT X
 	x (saltire - 2613)
 	x (ballot script x - 1F5F4)
@@ -16361,8 +16326,6 @@
 271B	OPEN CENTRE CROSS
 271C	HEAVY OPEN CENTRE CROSS
 271D	LATIN CROSS
-	~ 271D FE0E text style
-	~ 271D FE0F emoji style
 271E	SHADOWED WHITE LATIN CROSS
 	x (white latin cross - 1F546)
 271F	OUTLINED LATIN CROSS
@@ -16372,8 +16335,6 @@
 @		Stars and asterisks
 2721	STAR OF DAVID
 	x (six pointed star with middle dot - 1F52F)
-	~ 2721 FE0E text style
-	~ 2721 FE0F emoji style
 2722	FOUR TEARDROP-SPOKED ASTERISK
 2723	FOUR BALLOON-SPOKED ASTERISK
 2724	HEAVY FOUR BALLOON-SPOKED ASTERISK
@@ -16399,11 +16360,7 @@
 2732	OPEN CENTRE ASTERISK
 2733	EIGHT SPOKED ASTERISK
 	x (light eight spoked asterisk - 1F7BB)
-	~ 2733 FE0E text style
-	~ 2733 FE0F emoji style
 2734	EIGHT POINTED BLACK STAR
-	~ 2734 FE0E text style
-	~ 2734 FE0F emoji style
 2735	EIGHT POINTED PINWHEEL STAR
 	x (heavy eight pointed pinwheel star - 1F7D1)
 2736	SIX POINTED BLACK STAR
@@ -16430,13 +16387,9 @@
 2742	CIRCLED OPEN CENTRE EIGHT POINTED STAR
 2743	HEAVY TEARDROP-SPOKED PINWHEEL ASTERISK
 2744	SNOWFLAKE
-	~ 2744 FE0E text style
-	~ 2744 FE0F emoji style
 2745	TIGHT TRIFOLIATE SNOWFLAKE
 2746	HEAVY CHEVRON SNOWFLAKE
 2747	SPARKLE
-	~ 2747 FE0E text style
-	~ 2747 FE0F emoji style
 2748	HEAVY SPARKLE
 2749	BALLOON-SPOKED ASTERISK
 	= jack
@@ -16461,8 +16414,6 @@
 2756	BLACK DIAMOND MINUS WHITE X
 2757	HEAVY EXCLAMATION MARK SYMBOL
 	= obstacles on the road, ARIB STD B24
-	~ 2757 FE0E text style
-	~ 2757 FE0F emoji style
 2758	LIGHT VERTICAL BAR
 	x (vertical line - 007C)
 2759	MEDIUM VERTICAL BAR
@@ -16488,12 +16439,8 @@
 2762	HEAVY EXCLAMATION MARK ORNAMENT
 	x (exclamation mark - 0021)
 2763	HEAVY HEART EXCLAMATION MARK ORNAMENT
-	~ 2763 FE0E text style
-	~ 2763 FE0F emoji style
 2764	HEAVY BLACK HEART
 	x (black heart suit - 2665)
-	~ 2764 FE0E text style
-	~ 2764 FE0F emoji style
 2765	ROTATED HEAVY BLACK HEART BULLET
 @		Fleurons
 2766	FLORAL HEART
@@ -16582,8 +16529,6 @@
 	* fonts may harmonize this glyph with the style for other black arrows
 	x (leftwards black arrow - 2B05)
 	x (rightwards black arrow - 2B95)
-	~ 27A1 FE0E text style
-	~ 27A1 FE0F emoji style
 27A2	THREE-D TOP-LIGHTED RIGHTWARDS ARROWHEAD
 	x (three-d top-lighted rightwards equilateral arrowhead - 2B9A)
 27A3	THREE-D BOTTOM-LIGHTED RIGHTWARDS ARROWHEAD
@@ -16628,7 +16573,6 @@
 27BE	OPEN-OUTLINED RIGHTWARDS ARROW
 @		Miscellaneous
 27BF	DOUBLE CURLY LOOP
-@~	!
 @@	27C0	Miscellaneous Mathematical Symbols-A	27EF
 @		Miscellaneous symbols
 27C0	THREE DIMENSIONAL ANGLE
@@ -17157,11 +17101,7 @@
 	x (rightwards wave arrow - 219D)
 	x (wave arrow pointing directly left - 2B3F)
 2934	ARROW POINTING RIGHTWARDS THEN CURVING UPWARDS
-	~ 2934 FE0E text style
-	~ 2934 FE0F emoji style
 2935	ARROW POINTING RIGHTWARDS THEN CURVING DOWNWARDS
-	~ 2935 FE0E text style
-	~ 2935 FE0F emoji style
 2936	ARROW POINTING DOWNWARDS THEN CURVING LEFTWARDS
 2937	ARROW POINTING DOWNWARDS THEN CURVING RIGHTWARDS
 2938	RIGHT-SIDE ARC CLOCKWISE ARROW
@@ -17254,7 +17194,6 @@
 297D	RIGHT FISH TAIL
 297E	UP FISH TAIL
 297F	DOWN FISH TAIL
-@~	!
 @@	2980	Miscellaneous Mathematical Symbols-B	29FF
 @		Miscellaneous mathematical symbols
 2980	TRIPLE VERTICAL BAR DELIMITER
@@ -17910,14 +17849,8 @@
 2B05	LEFTWARDS BLACK ARROW
 	x (black rightwards arrow - 27A1)
 	x (rightwards black arrow - 2B95)
-	~ 2B05 FE0E text style
-	~ 2B05 FE0F emoji style
 2B06	UPWARDS BLACK ARROW
-	~ 2B06 FE0E text style
-	~ 2B06 FE0F emoji style
 2B07	DOWNWARDS BLACK ARROW
-	~ 2B07 FE0E text style
-	~ 2B07 FE0F emoji style
 2B08	NORTH EAST BLACK ARROW
 2B09	NORTH WEST BLACK ARROW
 2B0A	SOUTH EAST BLACK ARROW
@@ -17945,12 +17878,8 @@
 2B1A	DOTTED SQUARE
 2B1B	BLACK LARGE SQUARE
 	x (black square - 25A0)
-	~ 2B1B FE0E text style
-	~ 2B1B FE0F emoji style
 2B1C	WHITE LARGE SQUARE
 	x (white square - 25A1)
-	~ 2B1C FE0E text style
-	~ 2B1C FE0F emoji style
 2B1D	BLACK VERY SMALL SQUARE
 	x (black small square - 25AA)
 2B1E	WHITE VERY SMALL SQUARE
@@ -18060,8 +17989,6 @@
 @		Stars
 2B50	WHITE MEDIUM STAR
 	x (white star - 2606)
-	~ 2B50 FE0E text style
-	~ 2B50 FE0F emoji style
 2B51	BLACK SMALL STAR
 	x (arabic five pointed star - 066D)
 	x (star operator - 22C6)
@@ -18075,8 +18002,6 @@
 	= basic symbol for speed limit
 	* forms a game tally pair with 274C
 	x (large circle - 25EF)
-	~ 2B55 FE0E text style
-	~ 2B55 FE0F emoji style
 @		Dictionary and map symbols from ARIB STD B24
 2B56	HEAVY OVAL WITH OVAL INSIDE
 	= prefectural office
@@ -18316,7 +18241,6 @@
 	= fast cursor right
 2BEF	DOWNWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS
 	= fast cursor down
-@~	!
 @@	2C00	Glagolitic	2C5F
 @		Capital letters
 2C00	GLAGOLITIC CAPITAL LETTER AZU
@@ -19871,8 +19795,6 @@
 3030	WAVY DASH
 	x (wavy line - 2307)
 	x (wave dash - 301C)
-	~ 3030 FE0E text style
-	~ 3030 FE0F emoji style
 3031	VERTICAL KANA REPEAT MARK
 3032	VERTICAL KANA REPEAT WITH VOICED SOUND MARK
 	* the preceding two semantic characters are preferred to the following three glyphic forms
@@ -19897,15 +19819,12 @@
 	x (squared rising diagonal slash - 29C4)
 303D	PART ALTERNATION MARK
 	* marks the start of a song part in Japanese
-	~ 303D FE0E text style
-	~ 303D FE0F emoji style
 @		Special CJK indicators
 @+		These are visibly displayed graphic characters, not invisible format control characters.
 303E	IDEOGRAPHIC VARIATION INDICATOR
 	* visual indicator that the following ideograph is to be taken as a variant of the intended character
 303F	IDEOGRAPHIC HALF FILL SPACE
 	* visual indicator of a screen space for half of an ideograph
-@~	!
 @@	3040	Hiragana	309F
 @		Hiragana letters
 3041	HIRAGANA LETTER SMALL A
@@ -20957,14 +20876,10 @@
 3296	CIRCLED IDEOGRAPH FINANCIAL
 	# <circle> 8CA1
 3297	CIRCLED IDEOGRAPH CONGRATULATION
-	~ 3297 FE0E text style
-	~ 3297 FE0F emoji style
 	# <circle> 795D
 3298	CIRCLED IDEOGRAPH LABOR
 	# <circle> 52B4
 3299	CIRCLED IDEOGRAPH SECRET
-	~ 3299 FE0E text style
-	~ 3299 FE0F emoji style
 	# <circle> 79D8
 329A	CIRCLED IDEOGRAPH MALE
 	# <circle> 7537
@@ -21174,7 +21089,6 @@
 	# <circle> 30F1
 32FE	CIRCLED KATAKANA WO
 	# <circle> 30F2
-@~	!
 @@	3300	CJK Compatibility	33FF
 @		Squared Katakana words
 3300	SQUARE APAATO
@@ -45226,8 +45140,6 @@ FFFF	<not a character>
 @		Dragon tiles
 1F004	MAHJONG TILE RED DRAGON
 	= hongzhong
-	~ 1F004 FE0E text style
-	~ 1F004 FE0F emoji style
 1F005	MAHJONG TILE GREEN DRAGON
 	= qingfa
 1F006	MAHJONG TILE WHITE DRAGON
@@ -45283,7 +45195,6 @@ FFFF	<not a character>
 1F02A	MAHJONG TILE JOKER
 	= baida
 1F02B	MAHJONG TILE BACK
-@~	!
 @@	1F030	Domino Tiles	1F09F
 @		Horizontal tiles
 1F030	DOMINO TILE HORIZONTAL BACK
@@ -45767,12 +45678,8 @@ FFFF	<not a character>
 @+		The square edges may be slightly rounded.
 1F170	NEGATIVE SQUARED LATIN CAPITAL LETTER A
 	= blood type A
-	~ 1F170 FE0E text style
-	~ 1F170 FE0F emoji style
 1F171	NEGATIVE SQUARED LATIN CAPITAL LETTER B
 	= blood type B
-	~ 1F171 FE0E text style
-	~ 1F171 FE0F emoji style
 1F172	NEGATIVE SQUARED LATIN CAPITAL LETTER C
 	= centre, city centre
 1F173	NEGATIVE SQUARED LATIN CAPITAL LETTER D
@@ -45794,12 +45701,8 @@ FFFF	<not a character>
 1F17D	NEGATIVE SQUARED LATIN CAPITAL LETTER N
 1F17E	NEGATIVE SQUARED LATIN CAPITAL LETTER O
 	= blood type O
-	~ 1F17E FE0E text style
-	~ 1F17E FE0F emoji style
 1F17F	NEGATIVE SQUARED LATIN CAPITAL LETTER P
 	= parking space empty-full (ARIB STD B24)
-	~ 1F17F FE0E text style
-	~ 1F17F FE0F emoji style
 1F180	NEGATIVE SQUARED LATIN CAPITAL LETTER Q
 1F181	NEGATIVE SQUARED LATIN CAPITAL LETTER R
 1F182	NEGATIVE SQUARED LATIN CAPITAL LETTER S
@@ -45902,7 +45805,6 @@ FFFF	<not a character>
 1F1FD	REGIONAL INDICATOR SYMBOL LETTER X
 1F1FE	REGIONAL INDICATOR SYMBOL LETTER Y
 1F1FF	REGIONAL INDICATOR SYMBOL LETTER Z
-@~	!
 @@	1F200	Enclosed Ideographic Supplement	1F2FF
 @		Squared hiragana from ARIB STD B24
 1F200	SQUARE HIRAGANA HOKA
@@ -45915,8 +45817,6 @@ FFFF	<not a character>
 1F202	SQUARED KATAKANA SA
 	= service sign
 	x (circled katakana sa - 32DA)
-	~ 1F202 FE0E text style
-	~ 1F202 FE0F emoji style
 	# <square> 30B5
 @		Squared ideographs and kana from ARIB STD B24
 1F210	SQUARED CJK UNIFIED IDEOGRAPH-624B
@@ -45953,8 +45853,6 @@ FFFF	<not a character>
 1F21A	SQUARED CJK UNIFIED IDEOGRAPH-7121
 	= free broadcasting service
 	= non-existence sign
-	~ 1F21A FE0E text style
-	~ 1F21A FE0F emoji style
 	# <square> 7121
 1F21B	SQUARED CJK UNIFIED IDEOGRAPH-6599
 	= pay broadcasting service
@@ -46019,8 +45917,6 @@ FFFF	<not a character>
 1F22F	SQUARED CJK UNIFIED IDEOGRAPH-6307
 	= designated hitter
 	= reserved sign
-	~ 1F22F FE0E text style
-	~ 1F22F FE0F emoji style
 	# <square> 6307
 1F230	SQUARED CJK UNIFIED IDEOGRAPH-8D70
 	= runner
@@ -46048,8 +45944,6 @@ FFFF	<not a character>
 1F237	SQUARED CJK UNIFIED IDEOGRAPH-6708
 	= monthly sign
 	x (circled ideograph moon - 328A)
-	~ 1F237 FE0E text style
-	~ 1F237 FE0F emoji style
 	# <square> 6708
 1F238	SQUARED CJK UNIFIED IDEOGRAPH-7533
 	= application sign
@@ -46120,7 +46014,6 @@ FFFF	<not a character>
 	* wealth
 	x 8CA1
 	x 8D22
-@~	!
 @@	1F300	Miscellaneous Symbols and Pictographs	1F5FF
 @		Weather, landscape, and sky symbols
 1F300	CYCLONE
@@ -46174,8 +46067,6 @@ FFFF	<not a character>
 @		Weather symbols
 1F321	THERMOMETER
 	= temperature, warm
-	~ 1F321 FE0E text style
-	~ 1F321 FE0F emoji style
 1F322	BLACK DROPLET
 	= droplet
 	x (droplet - 1F4A7)
@@ -46185,41 +46076,23 @@ FFFF	<not a character>
 1F324	WHITE SUN WITH SMALL CLOUD
 	= mostly sunny
 	x (sun behind cloud - 26C5)
-	~ 1F324 FE0E text style
-	~ 1F324 FE0F emoji style
 1F325	WHITE SUN BEHIND CLOUD
 	= mostly cloudy
-	~ 1F325 FE0E text style
-	~ 1F325 FE0F emoji style
 1F326	WHITE SUN BEHIND CLOUD WITH RAIN
 	= showers
-	~ 1F326 FE0E text style
-	~ 1F326 FE0F emoji style
 1F327	CLOUD WITH RAIN
 	= rain
-	~ 1F327 FE0E text style
-	~ 1F327 FE0F emoji style
 1F328	CLOUD WITH SNOW
 	= snow, snow showers
-	~ 1F328 FE0E text style
-	~ 1F328 FE0F emoji style
 1F329	CLOUD WITH LIGHTNING
 	= lightning, thunderstorm
 	x (thunder cloud and rain - 26C8)
-	~ 1F329 FE0E text style
-	~ 1F329 FE0F emoji style
 1F32A	CLOUD WITH TORNADO
 	= tornado, twister
-	~ 1F32A FE0E text style
-	~ 1F32A FE0F emoji style
 1F32B	FOG
 	x (foggy - 1F301)
-	~ 1F32B FE0E text style
-	~ 1F32B FE0F emoji style
 1F32C	WIND BLOWING FACE
 	= wind
-	~ 1F32C FE0E text style
-	~ 1F32C FE0F emoji style
 @		Food symbols
 1F32D	HOT DOG
 1F32E	TACO
@@ -46236,8 +46109,6 @@ FFFF	<not a character>
 	x (desert - 1F3DC)
 1F336	HOT PEPPER
 	= hot, spicy
-	~ 1F336 FE0E text style
-	~ 1F336 FE0F emoji style
 1F337	TULIP
 	x (flower - 2698)
 1F338	CHERRY BLOSSOM
@@ -46340,8 +46211,6 @@ FFFF	<not a character>
 1F37D	FORK AND KNIFE WITH PLATE
 	= dining
 	x (fork and knife - 1F374)
-	~ 1F37D FE0E text style
-	~ 1F37D FE0F emoji style
 @		Beverage and food symbols
 1F37E	BOTTLE WITH POPPING CORK
 1F37F	POPCORN
@@ -46387,11 +46256,7 @@ FFFF	<not a character>
 	= occasion
 	x (bouquet - 1F490)
 1F396	MILITARY MEDAL
-	~ 1F396 FE0E text style
-	~ 1F396 FE0F emoji style
 1F397	REMINDER RIBBON
-	~ 1F397 FE0E text style
-	~ 1F397 FE0F emoji style
 @		Musical symbols
 1F398	MUSICAL KEYBOARD WITH JACKS
 	= midi, midi keyboard
@@ -46399,16 +46264,10 @@ FFFF	<not a character>
 1F399	STUDIO MICROPHONE
 	= microphone
 	x (microphone - 1F3A4)
-	~ 1F399 FE0E text style
-	~ 1F399 FE0F emoji style
 1F39A	LEVEL SLIDER
 	= level control
-	~ 1F39A FE0E text style
-	~ 1F39A FE0F emoji style
 1F39B	CONTROL KNOBS
 	= audio control
-	~ 1F39B FE0E text style
-	~ 1F39B FE0F emoji style
 1F39C	BEAMED ASCENDING MUSICAL NOTES
 	= musical performance
 	= music, musical background
@@ -46421,13 +46280,9 @@ FFFF	<not a character>
 1F39E	FILM FRAMES
 	= film clip
 	x (movie camera - 1F3A5)
-	~ 1F39E FE0E text style
-	~ 1F39E FE0F emoji style
 1F39F	ADMISSION TICKETS
 	= ticket
 	x (ticket - 1F3AB)
-	~ 1F39F FE0E text style
-	~ 1F39F FE0F emoji style
 1F3A0	CAROUSEL HORSE
 	= amusement park
 1F3A1	FERRIS WHEEL
@@ -46516,20 +46371,12 @@ FFFF	<not a character>
 1F3CA	SWIMMER
 1F3CB	WEIGHT LIFTER
 	= health
-	~ 1F3CB FE0E text style
-	~ 1F3CB FE0F emoji style
 1F3CC	GOLFER
-	~ 1F3CC FE0E text style
-	~ 1F3CC FE0F emoji style
 1F3CD	RACING MOTORCYCLE
 	= motorcycle
 	* may be depicted as an ordinary motorcycle, especially in emoji presentation
-	~ 1F3CD FE0E text style
-	~ 1F3CD FE0F emoji style
 1F3CE	RACING CAR
 	= race car
-	~ 1F3CE FE0E text style
-	~ 1F3CE FE0F emoji style
 1F3CF	CRICKET BAT AND BALL
 1F3D0	VOLLEYBALL
 1F3D1	FIELD HOCKEY STICK AND BALL
@@ -46538,58 +46385,34 @@ FFFF	<not a character>
 @		Building and map symbols
 1F3D4	SNOW CAPPED MOUNTAIN
 	x (mountain - 26F0)
-	~ 1F3D4 FE0E text style
-	~ 1F3D4 FE0F emoji style
 1F3D5	CAMPING
 	= camping site
 	x (tent - 26FA)
-	~ 1F3D5 FE0E text style
-	~ 1F3D5 FE0F emoji style
 1F3D6	BEACH WITH UMBRELLA
 	x (umbrella on ground - 26F1)
-	~ 1F3D6 FE0E text style
-	~ 1F3D6 FE0F emoji style
 1F3D7	BUILDING CONSTRUCTION
 	= under construction
 	x (construction sign - 1F6A7)
-	~ 1F3D7 FE0E text style
-	~ 1F3D7 FE0F emoji style
 1F3D8	HOUSE BUILDINGS
 	= town
 	x (house with garden - 1F3E1)
-	~ 1F3D8 FE0E text style
-	~ 1F3D8 FE0F emoji style
 1F3D9	CITYSCAPE
 	= skyline, city
 	x (cityscape at dusk - 1F306)
-	~ 1F3D9 FE0E text style
-	~ 1F3D9 FE0F emoji style
 1F3DA	DERELICT HOUSE BUILDING
 	= derelict site
-	~ 1F3DA FE0E text style
-	~ 1F3DA FE0F emoji style
 1F3DB	CLASSICAL BUILDING
 	= public building
-	~ 1F3DB FE0E text style
-	~ 1F3DB FE0F emoji style
 1F3DC	DESERT
 	= desert
 	x (cactus - 1F335)
-	~ 1F3DC FE0E text style
-	~ 1F3DC FE0F emoji style
 1F3DD	DESERT ISLAND
 	= island
 	x (palm tree - 1F334)
-	~ 1F3DD FE0E text style
-	~ 1F3DD FE0F emoji style
 1F3DE	NATIONAL PARK
 	* by semantic extension has come to connote saving trees, and hence is also used as a symbol meaning "do not print this (email, document)"
 	x (evergreen tree - 1F332)
-	~ 1F3DE FE0E text style
-	~ 1F3DE FE0F emoji style
 1F3DF	STADIUM
-	~ 1F3DF FE0E text style
-	~ 1F3DF FE0F emoji style
 1F3E0	HOUSE BUILDING
 1F3E1	HOUSE WITH GARDEN
 	= home, house with yard
@@ -46627,22 +46450,16 @@ FFFF	<not a character>
 1F3F3	WAVING WHITE FLAG
 	= flag
 	x (white flag - 2690)
-	~ 1F3F3 FE0E text style
-	~ 1F3F3 FE0F emoji style
 1F3F4	WAVING BLACK FLAG
 @		Rosettes
 1F3F5	ROSETTE
 	x (white florette - 2740)
-	~ 1F3F5 FE0E text style
-	~ 1F3F5 FE0F emoji style
 1F3F6	BLACK ROSETTE
 	x (eight petalled outlined black florette - 2741)
 @		Miscellaneous symbol
 1F3F7	LABEL
 	= price, price tag
 	x (bookmark - 1F516)
-	~ 1F3F7 FE0E text style
-	~ 1F3F7 FE0F emoji style
 @		Sport symbols
 1F3F8	BADMINTON RACQUET AND SHUTTLECOCK
 1F3F9	BOW AND ARROW
@@ -46766,14 +46583,10 @@ FFFF	<not a character>
 	x (footprints - 1F463)
 1F43F	CHIPMUNK
 	= animal, critter
-	~ 1F43F FE0E text style
-	~ 1F43F FE0F emoji style
 @		Facial parts symbols
 1F440	EYES
 1F441	EYE
 	= sight
-	~ 1F441 FE0E text style
-	~ 1F441 FE0F emoji style
 1F442	EAR
 1F443	NOSE
 1F444	MOUTH
@@ -47089,8 +46902,6 @@ FFFF	<not a character>
 1F4FD	FILM PROJECTOR
 	= movies
 	x (cinema - 1F3A6)
-	~ 1F4FD FE0E text style
-	~ 1F4FD FE0F emoji style
 1F4FE	PORTABLE STEREO
 	= stereo
 @		Religious symbol
@@ -47243,12 +47054,8 @@ FFFF	<not a character>
 1F549	OM SYMBOL
 	* generic symbol independent of Devanagari font
 	x (devanagari om - 0950)
-	~ 1F549 FE0E text style
-	~ 1F549 FE0F emoji style
 1F54A	DOVE OF PEACE
 	= peace
-	~ 1F54A FE0E text style
-	~ 1F54A FE0F emoji style
 1F54B	KAABA
 1F54C	MOSQUE
 1F54D	SYNAGOGUE
@@ -47302,43 +47109,25 @@ FFFF	<not a character>
 1F56E	BOOK
 	x (open book - 1F4D6)
 1F56F	CANDLE
-	~ 1F56F FE0E text style
-	~ 1F56F FE0F emoji style
 1F570	MANTELPIECE CLOCK
 	= clock
 	x (alarm clock - 23F0)
-	~ 1F570 FE0E text style
-	~ 1F570 FE0F emoji style
 1F571	BLACK SKULL AND CROSSBONES
 	x (skull and crossbones - 2620)
 1F572	NO PIRACY
 1F573	HOLE
 	= portable hole
-	~ 1F573 FE0E text style
-	~ 1F573 FE0F emoji style
 1F574	MAN IN BUSINESS SUIT LEVITATING
 	= jump
-	~ 1F574 FE0E text style
-	~ 1F574 FE0F emoji style
 1F575	SLEUTH OR SPY
 	= investigate
-	~ 1F575 FE0E text style
-	~ 1F575 FE0F emoji style
 1F576	DARK SUNGLASSES
 	= cool
-	~ 1F576 FE0E text style
-	~ 1F576 FE0F emoji style
 @		Animal symbols
 1F577	SPIDER
-	~ 1F577 FE0E text style
-	~ 1F577 FE0F emoji style
 1F578	SPIDER WEB
-	~ 1F578 FE0E text style
-	~ 1F578 FE0F emoji style
 @		Game symbol
 1F579	JOYSTICK
-	~ 1F579 FE0E text style
-	~ 1F579 FE0F emoji style
 @		Role symbol
 1F57A	MAN DANCING
 	* forms a gender pair with 1F483
@@ -47375,8 +47164,6 @@ FFFF	<not a character>
 1F587	LINKED PAPERCLIPS
 	= links
 	x (paperclip - 1F4CE)
-	~ 1F587 FE0E text style
-	~ 1F587 FE0F emoji style
 1F588	BLACK PUSHPIN
 	= marker
 	x (pushpin - 1F4CC)
@@ -47385,21 +47172,13 @@ FFFF	<not a character>
 	x (lower right pencil - 270E)
 1F58A	LOWER LEFT BALLPOINT PEN
 	= ballpoint pen
-	~ 1F58A FE0E text style
-	~ 1F58A FE0F emoji style
 1F58B	LOWER LEFT FOUNTAIN PEN
 	= fountain pen
 	x (white nib - 2711)
-	~ 1F58B FE0E text style
-	~ 1F58B FE0F emoji style
 1F58C	LOWER LEFT PAINTBRUSH
 	= brush
-	~ 1F58C FE0E text style
-	~ 1F58C FE0F emoji style
 1F58D	LOWER LEFT CRAYON
 	= crayon
-	~ 1F58D FE0E text style
-	~ 1F58D FE0F emoji style
 @		Hand symbols
 1F58E	LEFT WRITING HAND
 	x (writing hand - 270D)
@@ -47408,8 +47187,6 @@ FFFF	<not a character>
 1F590	RAISED HAND WITH FINGERS SPLAYED
 	= halt
 	x (raised hand - 270B)
-	~ 1F590 FE0E text style
-	~ 1F590 FE0F emoji style
 1F591	REVERSED RAISED HAND WITH FINGERS SPLAYED
 1F592	REVERSED THUMBS UP SIGN
 	x (thumbs up sign - 1F44D)
@@ -47450,16 +47227,12 @@ FFFF	<not a character>
 @		Computer symbols
 1F5A5	DESKTOP COMPUTER
 	= tower computer
-	~ 1F5A5 FE0E text style
-	~ 1F5A5 FE0F emoji style
 1F5A6	KEYBOARD AND MOUSE
 	x (keyboard - 2328)
 1F5A7	THREE NETWORKED COMPUTERS
 	= computer network
 1F5A8	PRINTER
 	x (fax machine - 1F4E0)
-	~ 1F5A8 FE0E text style
-	~ 1F5A8 FE0F emoji style
 1F5A9	POCKET CALCULATOR
 	= calculator
 1F5AA	BLACK HARD SHELL FLOPPY DISK
@@ -47474,12 +47247,8 @@ FFFF	<not a character>
 1F5AF	ONE BUTTON MOUSE
 1F5B0	TWO BUTTON MOUSE
 1F5B1	THREE BUTTON MOUSE
-	~ 1F5B1 FE0E text style
-	~ 1F5B1 FE0F emoji style
 1F5B2	TRACKBALL
 	= ballpoint
-	~ 1F5B2 FE0E text style
-	~ 1F5B2 FE0F emoji style
 1F5B3	OLD PERSONAL COMPUTER
 	= personal computer
 	x (personal computer - 1F4BB)
@@ -47501,8 +47270,6 @@ FFFF	<not a character>
 	= graphic document
 1F5BC	FRAME WITH PICTURE
 	= art
-	~ 1F5BC FE0E text style
-	~ 1F5BC FE0F emoji style
 1F5BD	FRAME WITH TILES
 	= frames
 1F5BE	FRAME WITH AN X
@@ -47517,15 +47284,9 @@ FFFF	<not a character>
 1F5C2	CARD INDEX DIVIDERS
 	= index
 	x (card index - 1F4C7)
-	~ 1F5C2 FE0E text style
-	~ 1F5C2 FE0F emoji style
 1F5C3	CARD FILE BOX
 	= archive
-	~ 1F5C3 FE0E text style
-	~ 1F5C3 FE0F emoji style
 1F5C4	FILE CABINET
-	~ 1F5C4 FE0E text style
-	~ 1F5C4 FE0F emoji style
 1F5C5	EMPTY NOTE
 1F5C6	EMPTY NOTE PAGE
 1F5C7	EMPTY NOTE PAD
@@ -47542,18 +47303,12 @@ FFFF	<not a character>
 1F5D0	PAGES
 1F5D1	WASTEBASKET
 	= trashcan
-	~ 1F5D1 FE0E text style
-	~ 1F5D1 FE0F emoji style
 1F5D2	SPIRAL NOTE PAD
 	= note, empty calendar
 	x (calendar - 1F4C5)
-	~ 1F5D2 FE0E text style
-	~ 1F5D2 FE0F emoji style
 1F5D3	SPIRAL CALENDAR PAD
 	= calendar, day 1
 	x (tear-off calendar - 1F4C6)
-	~ 1F5D3 FE0E text style
-	~ 1F5D3 FE0F emoji style
 1F5D4	DESKTOP WINDOW
 1F5D5	MINIMIZE
 1F5D6	MAXIMIZE
@@ -47569,19 +47324,13 @@ FFFF	<not a character>
 1F5DB	DECREASE FONT SIZE SYMBOL
 1F5DC	COMPRESSION
 	* symbol depicts a hand press with a box inside
-	~ 1F5DC FE0E text style
-	~ 1F5DC FE0F emoji style
 1F5DD	OLD KEY
 	= encryption
 	x (key - 1F511)
-	~ 1F5DD FE0E text style
-	~ 1F5DD FE0F emoji style
 @		Miscellaneous symbols
 1F5DE	ROLLED-UP NEWSPAPER
 	= news
 	x (newspaper - 1F4F0)
-	~ 1F5DE FE0E text style
-	~ 1F5DE FE0F emoji style
 1F5DF	PAGE WITH CIRCLED TEXT
 	= classified
 1F5E0	STOCK CHART
@@ -47593,16 +47342,12 @@ FFFF	<not a character>
 	= rated for violence
 	= hate
 	x (hocho - 1F52A)
-	~ 1F5E1 FE0E text style
-	~ 1F5E1 FE0F emoji style
 1F5E2	LIPS
 	= rated for sex
 	= kiss
 	x (kiss mark - 1F48B)
 1F5E3	SPEAKING HEAD IN SILHOUETTE
 	= rated for strong language
-	~ 1F5E3 FE0E text style
-	~ 1F5E3 FE0F emoji style
 @		Sound symbols
 1F5E4	THREE RAYS ABOVE
 1F5E5	THREE RAYS BELOW
@@ -47612,8 +47357,6 @@ FFFF	<not a character>
 	x (three lines converging left - 269F)
 @		Bubble symbols
 1F5E8	LEFT SPEECH BUBBLE
-	~ 1F5E8 FE0E text style
-	~ 1F5E8 FE0F emoji style
 1F5E9	RIGHT SPEECH BUBBLE
 1F5EA	TWO SPEECH BUBBLES
 	= chat
@@ -47626,8 +47369,6 @@ FFFF	<not a character>
 	= shout left
 1F5EF	RIGHT ANGER BUBBLE
 	= shout right
-	~ 1F5EF FE0E text style
-	~ 1F5EF FE0F emoji style
 1F5F0	MOOD BUBBLE
 	= new
 	x (collision symbol - 1F4A5)
@@ -47640,8 +47381,6 @@ FFFF	<not a character>
 1F5F3	BALLOT BOX WITH BALLOT
 	= vote
 	x (ballot box with x - 2612)
-	~ 1F5F3 FE0E text style
-	~ 1F5F3 FE0F emoji style
 1F5F4	BALLOT SCRIPT X
 	= x mark
 	x (ballot x - 2717)
@@ -47657,8 +47396,6 @@ FFFF	<not a character>
 	x (ballot box with check - 2611)
 @		Map symbol
 1F5FA	WORLD MAP
-	~ 1F5FA FE0E text style
-	~ 1F5FA FE0F emoji style
 @		Cultural symbols
 1F5FB	MOUNT FUJI
 1F5FC	TOKYO TOWER
@@ -47666,7 +47403,6 @@ FFFF	<not a character>
 1F5FE	SILHOUETTE OF JAPAN
 1F5FF	MOYAI
 	* Japanese stone statue like Moai on Easter Island
-@~	!
 @@	1F600	Emoticons	1F64F
 @+		The emoticons have been organized by mouth shape to make it easier to locate the different characters in the code chart.
 @		Faces
@@ -47969,22 +47705,14 @@ FFFF	<not a character>
 @+		These symbols constitute a set along with 1F378 for lounge.
 1F6CB	COUCH AND LAMP
 	= furniture, lifestyles
-	~ 1F6CB FE0E text style
-	~ 1F6CB FE0F emoji style
 1F6CC	SLEEPING ACCOMMODATION
 	= hotel, guestrooms
 	x (hotel - 1F3E8)
 1F6CD	SHOPPING BAGS
 	= shopping
-	~ 1F6CD FE0E text style
-	~ 1F6CD FE0F emoji style
 1F6CE	BELLHOP BELL
 	= reception, services
-	~ 1F6CE FE0E text style
-	~ 1F6CE FE0F emoji style
 1F6CF	BED
-	~ 1F6CF FE0E text style
-	~ 1F6CF FE0F emoji style
 @		Signage and other symbols
 1F6D0	PLACE OF WORSHIP
 1F6D1	OCTAGONAL SIGN
@@ -48002,29 +47730,17 @@ FFFF	<not a character>
 1F6E0	HAMMER AND WRENCH
 	= tools, repair facility
 	x (hammer and pick - 2692)
-	~ 1F6E0 FE0E text style
-	~ 1F6E0 FE0F emoji style
 1F6E1	SHIELD
 	= US road interstate highway
-	~ 1F6E1 FE0E text style
-	~ 1F6E1 FE0F emoji style
 1F6E2	OIL DRUM
 	= commodities
-	~ 1F6E2 FE0E text style
-	~ 1F6E2 FE0F emoji style
 1F6E3	MOTORWAY
-	~ 1F6E3 FE0E text style
-	~ 1F6E3 FE0F emoji style
 1F6E4	RAILWAY TRACK
 	= railroad
-	~ 1F6E4 FE0E text style
-	~ 1F6E4 FE0F emoji style
 @		Vehicles
 1F6E5	MOTOR BOAT
 	= boat
 	x (speedboat - 1F6A4)
-	~ 1F6E5 FE0E text style
-	~ 1F6E5 FE0F emoji style
 1F6E6	UP-POINTING MILITARY AIRPLANE
 	= military airport
 1F6E7	UP-POINTING AIRPLANE
@@ -48033,16 +47749,12 @@ FFFF	<not a character>
 1F6E8	UP-POINTING SMALL AIRPLANE
 	= airfield
 1F6E9	SMALL AIRPLANE
-	~ 1F6E9 FE0E text style
-	~ 1F6E9 FE0F emoji style
 1F6EA	NORTHEAST-POINTING AIRPLANE
 1F6EB	AIRPLANE DEPARTURE
 	= departures
 1F6EC	AIRPLANE ARRIVING
 	= arrivals
 1F6F0	SATELLITE
-	~ 1F6F0 FE0E text style
-	~ 1F6F0 FE0F emoji style
 1F6F1	ONCOMING FIRE ENGINE
 	= fire
 	x (fire engine - 1F692)
@@ -48053,14 +47765,11 @@ FFFF	<not a character>
 1F6F3	PASSENGER SHIP
 	= cruise line vacation
 	x (ship - 1F6A2)
-	~ 1F6F3 FE0E text style
-	~ 1F6F3 FE0F emoji style
 1F6F4	SCOOTER
 1F6F5	MOTOR SCOOTER
 1F6F6	CANOE
 1F6F7	SLED
 1F6F8	FLYING SAUCER
-@~	!
 @@	1F700	Alchemical Symbols	1F77F
 @		Symbols for Aristotelian elements
 1F700	ALCHEMICAL SYMBOL FOR QUINTESSENCE
