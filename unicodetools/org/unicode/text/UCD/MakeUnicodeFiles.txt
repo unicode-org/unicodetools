@@ -7,7 +7,7 @@ Property: SPECIAL
 # Shows where the script values of a character don't agree with the script values of the NFKD form (skipping Common and Inherited)
 #
 
-File: DerivedName
+File: extracted/DerivedName
 #
 # This file lists the values of the Name property.
 # This property is specified by the derivation documented in
@@ -39,6 +39,10 @@ File: DerivedName
 #   Similarly, the Name property value of U+2F89F, 
 #   generated from the pattern string "CJK COMPATIBILITY IDEOGRAPH-*",
 #   is CJK COMPATIBILITY IDEOGRAPH-2F89F.
+#
+Property: SPECIAL
+
+File: extra/DerivedLabel
 #
 Property: SPECIAL
 

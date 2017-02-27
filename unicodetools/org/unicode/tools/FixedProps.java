@@ -17,6 +17,7 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
+import org.unicode.cldr.util.Tabber;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyValueSets;
 import org.unicode.props.ScriptInfo;

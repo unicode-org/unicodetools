@@ -16,7 +16,7 @@ import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.VersionToAge;
 import org.unicode.text.utility.Utility;
-import org.unicode.tools.Tabber;
+import org.unicode.cldr.util.Tabber;
 import org.unicode.tools.emoji.EmojiData.VariantFactory;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 

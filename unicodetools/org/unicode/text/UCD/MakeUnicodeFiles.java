@@ -478,7 +478,8 @@ public class MakeUnicodeFiles {
 
     private static void generateDerivedName(String filename) throws IOException {
         boolean isLabel = filename.contains("Label");
-        final UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY, filename);
+        final String dir = Format.theFormat.fileToDirectory.get(filename);
+        final UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY + dir, filename);
         final PrintWriter pw = udf.out;
         Format.theFormat.printFileComments(pw, filename);
         final UCD ucd = Default.ucd();
@@ -488,9 +489,6 @@ public class MakeUnicodeFiles {
         for (int i = 0; i <= 0x10FFFF; ++i) {
             if (i > 0xFF && !ucd.isAssigned(i) && !ucd.isNoncharacter(i)) {
                 continue;
-            }
-            if (i == 0x9FD5 || i == 0x9FD6) {
-                int debug = 0;
             }
             String name = ucd.getName(i);
             if (name.startsWith("<") != isLabel) {
