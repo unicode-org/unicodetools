@@ -38,9 +38,11 @@ import com.ibm.icu.util.VersionInfo;
 public class Emoji {
 
 	/**
-	 * Set the following to true iff the beta is available. The main function is to add pointers between the release and beta charts.
+	 * Set the following to true iff the beta is available. 
+	 * The main function is to add pointers between the release and beta charts.
+	 * Also change the VERSION_LAST_RELEASED2, etc below!!!
 	 */
-	static final boolean BETA_IS_OPEN = false;
+	static final boolean BETA_IS_OPEN = true;
 
 	/**
 	 * Constants for versions
@@ -60,9 +62,9 @@ public class Emoji {
 	 * Change each following once we release. That is, VERSION_LAST_RELEASED* becomes VERSION_BETA*, and both the latter increment.
 	 * Also add to EMOJI_TO_UNICODE_VERSION
 	 */
-	public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION4;
-	public static final VersionInfo VERSION_LAST_RELEASED = VERSION5;
-	public static final VersionInfo VERSION_BETA = VERSION6;
+	public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION3;
+	public static final VersionInfo VERSION_LAST_RELEASED = VERSION4;
+	public static final VersionInfo VERSION_BETA = VERSION5;
 
 	public static Map<VersionInfo, VersionInfo> EMOJI_TO_UNICODE_VERSION = ImmutableMap.<VersionInfo, VersionInfo>builder()
 			.put(VERSION6, UCD10)
@@ -100,8 +102,9 @@ public class Emoji {
 	 * Computed
 	 */
 
-	public static final String            BETA_TITLE_AFFIX          = Emoji.IS_BETA ? BETA_PLAIN : "";
-	public static final String            BETA_HEADER_AFFIX          = Emoji.IS_BETA ? " " + BETA_COLORED : "";
+        public static final String            BETA_TITLE_AFFIX          = Emoji.IS_BETA ? BETA_PLAIN : "";
+        public static final String            BETA_TITLE_AFFIX_SHORT    = Emoji.IS_BETA ? "β" : "";
+	public static final String            BETA_HEADER_AFFIX         = Emoji.IS_BETA ? " " + BETA_COLORED : "";
 
 	public static final String VERSION_LAST_RELEASED_STRING = VERSION_LAST_RELEASED.getVersionString(2, 4);
 	public static final String VERSION_BETA_STRING = VERSION_BETA.getVersionString(2, 4) + BETA_COLORED;
