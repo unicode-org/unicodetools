@@ -517,6 +517,8 @@ public class MakeUnicodeFiles {
         .setRangeBreakSource(new UnicodeLabel.Constant("")) // prevent breaking on category boundaries
         .showSetNames(pw, UnicodeSet.ALL_CODE_POINTS);
 
+        pw.println();
+        pw.println("# EOF");
         udf.close();
     }
 
