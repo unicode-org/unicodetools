@@ -65,7 +65,7 @@ public class GenerateEmojiKeyboard {
 			setToList = new UnicodeSet(IndexUnicodeProperties.make(version)
 					.loadEnumSet(UcdProperty.General_Category, UcdPropertyValues.General_Category_Values.Unassigned)).complement()
 					.retainAll(setToList);
-			date = "U" + version.getVersionString(2, 2) + " / " + VersionToAge.getYear(Age_Values.forName(version.getVersionString(2, 2))) + "";
+			date = "U" + version.getVersionString(2, 2) + " / " + VersionToAge.ucd.getYear(Age_Values.forName(version.getVersionString(2, 2))) + "";
 			System.out.println("\nUnicode Version Year:\t" + date);
 		} else {
 			EmojiData emojiData = EmojiData.of(version);
@@ -102,7 +102,7 @@ public class GenerateEmojiKeyboard {
 			}
 		}
 		for (MajorGroup group : EmojiOrder.MajorGroup.values()) {
-			System.out.println(group + "\t" + date
+			System.out.println(group.toPlainString() + "\t" + date
 					+ "\t" + totalSingletons.get(group)
 					+ "\t" + totalsWithoutModifiers.get(group) + "\t" + totalDuplicatesWithoutModifiers.get(group)
 					+ (!emojiVersion ? "" : "\t" + totals.get(group) +  "\t" + totalDuplicates.get(group)));
@@ -142,9 +142,9 @@ public class GenerateEmojiKeyboard {
 		private void show(TempPrintWriter out, EmojiOrder.MajorGroup lastMajorGroup) throws IOException {
 			Totals totals = this;
 			out.println("");
-			out.println("# " + lastMajorGroup + " subtotal:\t\t" + totals.total);
-			out.println("# " + lastMajorGroup + " subtotal:\t\t" + totals.totalNoMod + "\tw/o modifiers");
-			System.out.println("\t" + lastMajorGroup + "\t" + totals.total + "\t" + totals.totalNoMod + "\t" + totals.totalNoModNoSign);
+			out.println("# " + lastMajorGroup.toPlainString() + " subtotal:\t\t" + totals.total);
+			out.println("# " + lastMajorGroup.toPlainString() + " subtotal:\t\t" + totals.totalNoMod + "\tw/o modifiers");
+			System.out.println("\t" + lastMajorGroup.toPlainString() + "\t" + totals.total + "\t" + totals.totalNoMod + "\t" + totals.totalNoModNoSign);
 			totals.total = 0;
 			totals.totalNoMod = 0;
 			totals.totalNoModNoSign = 0;
@@ -193,7 +193,7 @@ public class GenerateEmojiKeyboard {
 					}
 				}
 				if (out == null) {
-					String filename = target == Target.csv ? majorGroup.toString().toLowerCase(Locale.ENGLISH).replaceAll("[^a-z]+", "_") : "emoji-test";
+					String filename = target == Target.csv ? majorGroup.toPlainString().toLowerCase(Locale.ENGLISH).replaceAll("[^a-z]+", "_") : "emoji-test";
 					final String suffix = target == Target.csv ? ".csv" : ".txt";
 					out = new TempPrintWriter(directory, filename + suffix);
 					if (target == Target.csv) {
@@ -217,7 +217,7 @@ public class GenerateEmojiKeyboard {
 					}
 				}
 				if (target == Target.propFile) {
-					out.println("\n# group: " + majorGroup);
+					out.println("\n# group: " + majorGroup.toPlainString());
 				}
 				lastMajorGroup = majorGroup;
 			}
