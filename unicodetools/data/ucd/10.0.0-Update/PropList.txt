@@ -1611,4 +1611,6 @@ FE45..FE46    ; Pattern_Syntax # Po   [2] SESAME DOT..WHITE SESAME DOT
 
 # Total code points: 10
 
+1F1E6..1F1FF ; Regional_Indicator
+
 # EOF
