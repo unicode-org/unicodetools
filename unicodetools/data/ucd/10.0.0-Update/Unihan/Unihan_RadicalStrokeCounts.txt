@@ -1,10 +1,10 @@
 #
 # Unihan_RadicalStrokeCounts.txt
-# Date: 2016-06-01 07:01:48 GMT [JHJ]
-# Unicode version: 9.0.0
+# Date: 2017-03-06 23:22:48 GMT [JHJ]
+# Unicode version: 10.0.0
 #
 # Unicode Character Database
-# © 1991-2016 Unicode®, Inc.
+# © 1991-2017 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 #
