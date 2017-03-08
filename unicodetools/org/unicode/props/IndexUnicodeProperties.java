@@ -48,6 +48,7 @@ import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.VersionInfo;
 
 /**
@@ -382,28 +383,32 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     }
 
     public UnicodeMap<String> load(UcdProperty prop2) {
-        if (prop2 == CHECK_PROPERTY) {
-            int debug = 0;
-        }
-        UnicodeMap<String> data0 = property2UnicodeMap.get(prop2);
-        if (data0 != null) {
-            return data0;
-        }
-
-        final PropertyParsingInfo fileInfo = PropertyParsingInfo.property2PropertyInfo.get(prop2);
-        final String fullFilename = fileInfo.getFullFileName(ucdVersion);
-        final String fileName = fileInfo.getFileName(ucdVersion);
-
-        if (FILE_CACHE) {
-            data0 = getCachedMap(prop2, fullFilename);
+        try {
+            if (prop2 == CHECK_PROPERTY) {
+                int debug = 0;
+            }
+            UnicodeMap<String> data0 = property2UnicodeMap.get(prop2);
             if (data0 != null) {
-                property2UnicodeMap.put(prop2, data0.freeze());
                 return data0;
             }
-        }
 
-        fileInfo.parseSourceFile(this, fullFilename, fileName);
-        return property2UnicodeMap.get(prop2);
+            final PropertyParsingInfo fileInfo = PropertyParsingInfo.property2PropertyInfo.get(prop2);
+            final String fullFilename = fileInfo.getFullFileName(ucdVersion);
+            final String fileName = fileInfo.getFileName(ucdVersion);
+
+            if (FILE_CACHE) {
+                data0 = getCachedMap(prop2, fullFilename);
+                if (data0 != null) {
+                    property2UnicodeMap.put(prop2, data0.freeze());
+                    return data0;
+                }
+            }
+
+            fileInfo.parseSourceFile(this, fullFilename, fileName);
+            return property2UnicodeMap.get(prop2);
+        } catch (Exception e) {
+            throw new ICUException(prop2.toString(), e);
+        }
     }
 
     void storeCachedMap(UcdProperty prop2, UnicodeMap<String> data) {

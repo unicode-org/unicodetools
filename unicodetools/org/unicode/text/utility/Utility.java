@@ -1340,8 +1340,12 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     private static String getEmojiVersion(String element) {
-        return element.startsWith("9") ? "3.0" 
-                : "2.0";
+        switch(Integer.parseInt(element.split("\\.")[0])) {
+        case 10: return "5.0";
+        case 9: return "4.0";
+        case 8: return "3.0";
+        default: return "2.0";
+        }
     }
 
     public static Set getDirectoryContentsLastFirst(File directory) {

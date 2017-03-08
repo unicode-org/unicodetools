@@ -44,9 +44,9 @@ public enum VersionToAge {
     //            .build()),
 
     ucd(ImmutableMap.<VersionInfo, Long>builder()
-            .put(VersionInfo.getInstance(10, 0), getDate(2017, 6))
-            .put(VersionInfo.getInstance(9, 0), getDate(2016, 6))
-            .put(VersionInfo.getInstance(8, 0), getDate(2015, 6))
+            .put(VersionInfo.getInstance(10, 0), getDate(2017, 6)) // emoji 5.0
+            .put(VersionInfo.getInstance(9, 0), getDate(2016, 6)) // emoji 4.0
+            .put(VersionInfo.getInstance(8, 0), getDate(2015, 6)) // emoji 3.0
             .put(VersionInfo.getInstance(7, 0), getDate(2014, 6))
             .put(VersionInfo.getInstance(6, 3), getDate(2013, 9))
             .put(VersionInfo.getInstance(6, 2), getDate(2012, 9))
@@ -68,6 +68,7 @@ public enum VersionToAge {
     emoji(ImmutableMap.<VersionInfo, Long>builder()
             .put(VersionInfo.getInstance(5, 0), getDate(2017, 5))
             .put(VersionInfo.getInstance(4, 0), getDate(2016, 4))
+            .put(VersionInfo.getInstance(3, 0), getDate(2016, 3))
             .put(VersionInfo.getInstance(2, 0), getDate(2015, 11))
             .put(VersionInfo.getInstance(1, 1), getDate(2015, 6))
             .build());
