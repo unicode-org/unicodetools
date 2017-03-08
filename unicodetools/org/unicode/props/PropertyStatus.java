@@ -20,10 +20,11 @@ public enum PropertyStatus {
             );
     private static final EnumSet<UcdProperty> STABLIZED_PROPERTY = EnumSet.of(
             UcdProperty.Hyphen,
-
             UcdProperty.ISO_Comment);
+    
     private static final EnumSet<UcdProperty> OBSOLETE_PROPERTY = EnumSet.of(
-            UcdProperty.ISO_Comment);
+            UcdProperty.Unicode_1_Name);
+    
     private static final EnumSet<UcdProperty> CONTRIBUTORY_PROPERTY = EnumSet.of(
             UcdProperty.Jamo_Short_Name,
             UcdProperty.Other_Alphabetic,

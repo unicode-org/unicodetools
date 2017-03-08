@@ -175,8 +175,8 @@ public class ShowStats {
         }
         Age_Values[] ages = Age_Values.values();
         Age_Values last = ages[ages.length-2];
-        int firstYear = VersionToAge.getYear(Age_Values.V1_1);
-        int lastYear = VersionToAge.getYear(last);
+        int firstYear = VersionToAge.ucd.getYear(Age_Values.V1_1);
+        int lastYear = VersionToAge.ucd.getYear(last);
 
         System.out.print("Year");
         for (int year = firstYear; year <= lastYear; ++year) {
@@ -186,15 +186,15 @@ public class ShowStats {
 
         System.out.print("Version");
         for (int year = firstYear; year <= lastYear; ++year) {
-            Age_Values age = VersionToAge.getAge(VersionToAge.getDate(year+1,1)-1);
-            System.out.print("\t" + (VersionToAge.getYear(age) == year ? age.getShortName() : ""));
+            Age_Values age = VersionToAge.ucd.getAge(VersionToAge.getDate(year+1,1)-1);
+            System.out.print("\t" + (VersionToAge.ucd.getYear(age) == year ? age.getShortName() : ""));
         }
         System.out.print("\n");
 
         System.out.print("Scripts");
         int lastScriptCount = 0;
         for (int year = firstYear; year <= lastYear; ++year) {
-            Age_Values age = VersionToAge.getAge(VersionToAge.getDate(year+1,1)-1);
+            Age_Values age = VersionToAge.ucd.getAge(VersionToAge.getDate(year+1,1)-1);
             final int scriptCount = scriptCounter.get(age).size();
             System.out.print("\t" + (scriptCount - lastScriptCount));
             lastScriptCount = scriptCount;
@@ -208,8 +208,8 @@ public class ShowStats {
             System.out.print(cat.title);
             
             for (int year = firstYear; year <= lastYear; ++year) {
-                Age_Values age = VersionToAge.getAge(VersionToAge.getDate(year+1,1)-1);
-                long value = VersionToAge.getYear(age) == year ? c.get(Row.of(cat,age)) : 0;
+                Age_Values age = VersionToAge.ucd.getAge(VersionToAge.getDate(year+1,1)-1);
+                long value = VersionToAge.ucd.getYear(age) == year ? c.get(Row.of(cat,age)) : 0;
                 System.out.print("\t" + value);
             }
             System.out.print("\n");
