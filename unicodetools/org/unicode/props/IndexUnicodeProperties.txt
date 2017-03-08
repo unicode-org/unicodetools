@@ -109,7 +109,7 @@ SentenceBreakProperty ; Sentence_Break
 WordBreakProperty ; Word_Break
 BidiBrackets ; Bidi_Paired_Bracket ; 1
 BidiBrackets ; Bidi_Paired_Bracket_Type ; 2
-# VerticalOrientation ; Vertical_Orientation
+VerticalOrientation ; Vertical_Orientation
 
 #
 NameAliases ; Name_Alias
@@ -184,6 +184,7 @@ PropList ; Unified_Ideograph
 PropList ; Variation_Selector
 PropList ; White_Space
 PropList ; Prepended_Concatenation_Mark
+PropList ; Regional_Indicator; 
 
 Unihan_DictionaryIndices ; kCheungBauerIndex
 Unihan_DictionaryIndices ; kCowles

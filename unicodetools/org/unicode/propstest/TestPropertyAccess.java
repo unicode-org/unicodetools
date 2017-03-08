@@ -19,6 +19,10 @@ public class TestPropertyAccess extends TestFmwkPlus {
 
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
 
+    public void TestEmoji() {
+        UnicodeMap<String> map = iup.load(UcdProperty.Emoji_Component);
+        System.out.println(map);
+    }
     public void TestLoad() {
         for (ValueCardinality cardinality : ValueCardinality.values()) {
             for (PropertyType propertyType : PropertyType.values()) {
@@ -100,6 +104,9 @@ public class TestPropertyAccess extends TestFmwkPlus {
 
     private <T> String show(UnicodeMap<T> map) {
         Collection<T> values = map.getAvailableValues();
+        if (values.isEmpty()) {
+            return "*** MISSING ***";
+        }
         StringBuilder b = new StringBuilder();
         for (T value : values) {
             if (b.length() != 0) {
