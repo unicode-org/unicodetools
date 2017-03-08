@@ -1,5 +1,5 @@
 # PropList-10.0.0.txt
-# Date: 2017-02-14, 04:26:14 GMT
+# Date: 2017-03-08, 08:41:56 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -732,8 +732,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 11727..1172A  ; Other_Alphabetic # Mn   [4] AHOM VOWEL SIGN AW..AHOM VOWEL SIGN AM
 11A01..11A06  ; Other_Alphabetic # Mn   [6] ZANABAZAR SQUARE VOWEL SIGN I..ZANABAZAR SQUARE VOWEL SIGN O
 11A07..11A08  ; Other_Alphabetic # Mc   [2] ZANABAZAR SQUARE VOWEL SIGN AI..ZANABAZAR SQUARE VOWEL SIGN AU
-11A09         ; Other_Alphabetic # Mn       ZANABAZAR SQUARE VOWEL SIGN REVERSED I
-11A0A         ; Other_Alphabetic # Mc       ZANABAZAR SQUARE VOWEL LENGTH MARK
+11A09..11A0A  ; Other_Alphabetic # Mn   [2] ZANABAZAR SQUARE VOWEL SIGN REVERSED I..ZANABAZAR SQUARE VOWEL LENGTH MARK
 11A35..11A38  ; Other_Alphabetic # Mn   [4] ZANABAZAR SQUARE SIGN CANDRABINDU..ZANABAZAR SQUARE SIGN ANUSVARA
 11A39         ; Other_Alphabetic # Mc       ZANABAZAR SQUARE SIGN VISARGA
 11A3B..11A3E  ; Other_Alphabetic # Mn   [4] ZANABAZAR SQUARE CLUSTER-FINAL LETTER YA..ZANABAZAR SQUARE CLUSTER-FINAL LETTER VA
@@ -857,8 +856,7 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 0C4D          ; Diacritic # Mn       TELUGU SIGN VIRAMA
 0CBC          ; Diacritic # Mn       KANNADA SIGN NUKTA
 0CCD          ; Diacritic # Mn       KANNADA SIGN VIRAMA
-0D3B          ; Diacritic # Mn       MALAYALAM SIGN VERTICAL BAR VIRAMA
-0D3C          ; Diacritic # Mc       MALAYALAM SIGN CIRCULAR VIRAMA
+0D3B..0D3C    ; Diacritic # Mn   [2] MALAYALAM SIGN VERTICAL BAR VIRAMA..MALAYALAM SIGN CIRCULAR VIRAMA
 0D4D          ; Diacritic # Mn       MALAYALAM SIGN VIRAMA
 0DCA          ; Diacritic # Mn       SINHALA SIGN AL-LAKUNA
 0E47..0E4C    ; Diacritic # Mn   [6] THAI CHARACTER MAITAIKHU..THAI CHARACTER THANTHAKHAT
@@ -1109,7 +1107,7 @@ FF9E..FF9F    ; Other_Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND
 114B0         ; Other_Grapheme_Extend # Mc       TIRHUTA VOWEL SIGN AA
 114BD         ; Other_Grapheme_Extend # Mc       TIRHUTA VOWEL SIGN SHORT O
 115AF         ; Other_Grapheme_Extend # Mc       SIDDHAM VOWEL SIGN AA
-11A0A         ; Other_Grapheme_Extend # Mc       ZANABAZAR SQUARE VOWEL LENGTH MARK
+11A0A         ; Other_Grapheme_Extend # Mn       ZANABAZAR SQUARE VOWEL LENGTH MARK
 11A5B         ; Other_Grapheme_Extend # Mn       SOYOMBO VOWEL LENGTH MARK
 1D165         ; Other_Grapheme_Extend # Mc       MUSICAL SYMBOL COMBINING STEM
 1D16E..1D172  ; Other_Grapheme_Extend # Mc   [5] MUSICAL SYMBOL COMBINING FLAG-1..MUSICAL SYMBOL COMBINING FLAG-5
