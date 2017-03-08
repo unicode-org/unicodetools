@@ -1,10 +1,10 @@
 #
 # Unihan_DictionaryLikeData.txt
-# Date: 2016-06-01 07:01:48 GMT [JHJ]
-# Unicode version: 9.0.0
+# Date: 2017-03-06 23:22:48 GMT [JHJ]
+# Unicode version: 10.0.0
 #
 # Unicode Character Database
-# © 1991-2016 Unicode®, Inc.
+# © 1991-2017 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 #
@@ -14322,6 +14322,7 @@ U+4DB4	kTotalStrokes	25
 U+4DB5	kCangjie	OBHYU
 U+4DB5	kCihaiT	1577.601
 U+4DB5	kTotalStrokes	27
+U+4DB6	kTotalStrokes	17
 U+4E00	kCangjie	M
 U+4E00	kCihaiT	1.101
 U+4E00	kFenn	1A
@@ -113764,53 +113765,93 @@ U+9FA5	kCangjie	OBMBC
 U+9FA5	kFenn	567*
 U+9FA5	kPhonetic	1527
 U+9FA5	kTotalStrokes	26
+U+9FA6	kCangjie	FFBB
 U+9FA6	kTotalStrokes	15
+U+9FA7	kCangjie	AAJA
 U+9FA7	kTotalStrokes	16
+U+9FA8	kCangjie	SOG
 U+9FA8	kTotalStrokes	10
+U+9FA9	kCangjie	TTJL
 U+9FA9	kTotalStrokes	17
+U+9FAA	kCangjie	GOO
 U+9FAA	kTotalStrokes	9
+U+9FAB	kCangjie	JJOMJ
 U+9FAB	kTotalStrokes	12
+U+9FAC	kCangjie	CBTV
 U+9FAC	kTotalStrokes	16
+U+9FAD	kCangjie	SFWTC
 U+9FAD	kTotalStrokes	21
+U+9FAE	kCangjie	SFSMC
 U+9FAE	kTotalStrokes	27
+U+9FAF	kCangjie	CIH
 U+9FAF	kTotalStrokes	13
+U+9FB0	kCangjie	YO
 U+9FB0	kTotalStrokes	4
+U+9FB1	kCangjie	WK
 U+9FB1	kTotalStrokes	5
+U+9FB2	kCangjie	CIJJ
 U+9FB2	kTotalStrokes	18
+U+9FB3	kCangjie	GGGCG
 U+9FB3	kTotalStrokes	16
+U+9FB4	kCangjie	NI
 U+9FB4	kTotalStrokes	2
+U+9FB5	kCangjie	HQ
 U+9FB5	kTotalStrokes	3
+U+9FB6	kCangjie	QM
 U+9FB6	kTotalStrokes	4
+U+9FB7	kCangjie	TM
 U+9FB7	kTotalStrokes	5
+U+9FB8	kCangjie	FB
 U+9FB8	kTotalStrokes	5
+U+9FB9	kCangjie	FQ
 U+9FB9	kTotalStrokes	6
+U+9FBA	kCangjie	JAJ
 U+9FBA	kTotalStrokes	8
+U+9FBB	kCangjie	VFYRF
 U+9FBB	kTotalStrokes	19
+U+9FBC	kCangjie	GYBU
 U+9FBC	kTotalStrokes	17
+U+9FBD	kCangjie	FNWF
 U+9FBD	kTotalStrokes	15
+U+9FBE	kCangjie	DHPFD
 U+9FBE	kTotalStrokes	13
+U+9FBF	kCangjie	TOGG
 U+9FBF	kTotalStrokes	11
+U+9FC0	kCangjie	TSEW
 U+9FC0	kTotalStrokes	21
+U+9FC1	kCangjie	YRTC
 U+9FC1	kTotalStrokes	13
+U+9FC2	kCangjie	JJHAF
 U+9FC2	kTotalStrokes	18
 U+9FC3	kCangjie	BUKOO
 U+9FC3	kCheungBauer	109/07;BUKOO;sip3
 U+9FC3	kCihaiT	951.404
 U+9FC3	kPhonetic	1197*
 U+9FC3	kTotalStrokes	12
+U+9FC4	kCangjie	EKD
 U+9FC4	kTotalStrokes	10
+U+9FC5	kCangjie	IFMBL
 U+9FC5	kTotalStrokes	17
+U+9FC6	kCangjie	IFKE
 U+9FC6	kTotalStrokes	8
+U+9FC7	kCangjie	ONSD
 U+9FC7	kTotalStrokes	8
+U+9FC8	kCangjie	HOSO
 U+9FC8	kTotalStrokes	7
+U+9FC9	kCangjie	HOMDM
 U+9FC9	kTotalStrokes	7
+U+9FCA	kCangjie	TEYM
 U+9FCA	kTotalStrokes	11
+U+9FCB	kCangjie	LGRR
 U+9FCB	kTotalStrokes	17
+U+9FCC	kCangjie	EYAF
 U+9FCC	kTotalStrokes	12
 U+9FCD	kTotalStrokes	9
 U+9FCE	kTotalStrokes	11
 U+9FCF	kTotalStrokes	12
+U+9FD0	kCangjie	NFEMW
 U+9FD0	kTotalStrokes	21
+U+9FD1	kCangjie	IMMGI
 U+9FD1	kTotalStrokes	7
 U+9FD2	kTotalStrokes	9
 U+9FD3	kTotalStrokes	12
@@ -159093,6 +159134,7 @@ U+2A3E9	kTotalStrokes	24
 U+2A3EA	kTotalStrokes	26
 U+2A3EB	kTotalStrokes	27
 U+2A3EC	kTotalStrokes	31
+U+2A3ED	kCangjie	HNOE
 U+2A3ED	kTotalStrokes	14
 U+2A3EE	kTotalStrokes	15
 U+2A3EF	kTotalStrokes	15
