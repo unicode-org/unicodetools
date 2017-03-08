@@ -23,9 +23,11 @@ public class PropertyGrowth {
             if (age == VersionToAge.UNASSIGNED) {
                 continue;
             }
-            System.out.println();
             IndexUnicodeProperties iup = IndexUnicodeProperties.make(age);
             for (UcdProperty prop : iup.getAvailableUcdProperties()) {
+                if (prop == UcdProperty.Name) {
+                    continue;
+                }
                 if (prop.toString().startsWith("k")) {
                     continue; // skip unihan
                 }
@@ -61,11 +63,12 @@ public class PropertyGrowth {
                 Collection<String> old = cumul.asMap().get(prop);
                 if (old != null) {
                     delta.removeAll(old);
-                    if (delta.isEmpty()) {
-                        continue;
-                    }
+                }
+                if (delta.isEmpty()) {
+                    continue;
                 }
                 cumul.putAll(prop, delta);
+                
                 System.out.println(year + "\t" + age.getVersionString(2, 2) + "\t" + prop + "\t" + prop.getType() + "\t" + delta.size() + "\t" + trim(delta));
             }
         }
