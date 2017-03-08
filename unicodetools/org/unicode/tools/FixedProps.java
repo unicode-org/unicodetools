@@ -480,7 +480,7 @@ public class FixedProps {
             if (av == av.Unassigned) {
                 continue;
             }
-            System.out.print("\t" + VersionToAge.getYear(av));
+            System.out.print("\t" + VersionToAge.ucd.getYear(av));
         }
         System.out.println();
         for (Entry<Script_Values, UnicodeSet> scriptEntry : scriptToUset.entrySet()) {
