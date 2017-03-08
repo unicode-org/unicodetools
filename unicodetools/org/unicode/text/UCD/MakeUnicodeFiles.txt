@@ -1,5 +1,5 @@
 Generate: .*
-DeltaVersion: 9
+DeltaVersion: 10
 CopyrightYear: 2017
 
 File: extra/ScriptNfkc
@@ -11,7 +11,7 @@ File: extracted/DerivedName
 #
 # This file lists the values of the Name property.
 # This property is specified by the derivation documented in
-# "Section 4.8, Name" of the Unicode Standard,
+# Section 4.8 of the Unicode Standard, Version 10.0,
 # based on the Name field in UnicodeData.txt,
 # the Jamo_Short_Name property in Jamo.txt,
 # and a specified list of pattern strings used to derive names

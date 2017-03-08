@@ -54,7 +54,7 @@ class UData implements UCD_Types {
 
     int Bidi_Paired_Bracket = 0;
     byte Bidi_Paired_Bracket_Type = 0;
-    byte Vertical_Orientation = 0;
+    byte Vertical_Orientation = VO_R;
 
     static final UData UNASSIGNED = new UData();
     //static final UData NONCHARACTER = new UData();

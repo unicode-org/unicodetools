@@ -1,5 +1,5 @@
 # DerivedName-10.0.0.txt
-# Date: 2017-02-26, 16:35:51 GMT
+# Date: 2017-03-08, 09:07:14 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -9,7 +9,7 @@
 #
 # This file lists the values of the Name property.
 # This property is specified by the derivation documented in
-# "Section 4.8, Name" of the Unicode Standard,
+# Section 4.8 of the Unicode Standard, Version 10.0,
 # based on the Name field in UnicodeData.txt,
 # the Jamo_Short_Name property in Jamo.txt,
 # and a specified list of pattern strings used to derive names
@@ -41337,3 +41337,5 @@ E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
 # Total code points: 136690
+
+# EOF
