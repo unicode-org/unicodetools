@@ -225,7 +225,8 @@ public class Emoji {
 
 	public enum Qualified {all, first, none}
 
-	public static final int TAG_TERM_CHAR = 0xE007F;
+        public static final int TAG_BASE = 0xE0000;
+        public static final int TAG_TERM_CHAR = 0xE007F;
 	public static final String TAG_TERM = UTF16.valueOf(TAG_TERM_CHAR);
 
 	public static final char KEYCAP_MARK = '\u20E3';
@@ -602,7 +603,7 @@ public class Emoji {
 		return output;
 	}
 
-	static final String INTERNAL_OUTPUT_DIR = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/emoji/";
+	static final String INTERNAL_OUTPUT_DIR = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/emoji/" + VERSION_TO_GENERATE + "/";
 	public static final String HEALTHCARE = "⚕";
 	public static final String UN = "🇺🇳";
 

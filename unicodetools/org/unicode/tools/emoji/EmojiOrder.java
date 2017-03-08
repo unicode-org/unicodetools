@@ -28,6 +28,7 @@ import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.Output;
 import com.ibm.icu.util.ULocale;
@@ -48,7 +49,14 @@ public class EmojiOrder {
         Flags,
         Other;
         public String toString() {
+            throw new ICUException();
+            //return name().replace("_and_", " & ").replace('_', ' ');
+        };
+        public String toPlainString() {
             return name().replace("_and_", " & ").replace('_', ' ');
+        };
+        public String toHTMLString() {
+            return toPlainString().replace("&", "&amp;");
         };
     }
 
