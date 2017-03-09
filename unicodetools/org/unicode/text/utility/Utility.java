@@ -1317,6 +1317,9 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                 //                } else 
                 if (base.equals("emoji")) {
                     element = getEmojiVersion(element);
+                    if (element == null) {
+                        return null;
+                    }
                 }
                 String directoryName = Settings.DATA_DIR + base + "/" + element + "/";
                 result = directoryName + parts[2] + fileType;
@@ -1344,7 +1347,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         case 10: return "5.0";
         case 9: return "4.0";
         case 8: return "3.0";
-        default: return "2.0";
+        default: return null;
         }
     }
 
