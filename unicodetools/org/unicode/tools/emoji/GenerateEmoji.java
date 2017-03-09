@@ -2714,7 +2714,7 @@ public class GenerateEmoji {
                 countFound++;
             }
         }
-        if (countFound < 2) {
+        if (countFound < 3) {
             otherCells.setLength(0);
             otherCells.append("<td class='andr' colSpan='" + Emoji.Source.platformsToIncludeNormal.size() + "'>… "
                     + getSamples(chars2) + " …</td>");
@@ -3043,9 +3043,18 @@ public class GenerateEmoji {
     }
 
     private static String getSamples(String source) {
-        String color = SPACE_JOINER.join(getImage(Source.google, source, true, ""),
-                getImage(Source.emojione, source, true, ""), getImage(Source.emojixpress, source, true, ""),
-                getImage(Source.emojipedia, source, true, ""), getImage(Source.emojination, source, true, ""),
+        // apple, google, twitter, emojione, samsung, fb, windows
+        String color = SPACE_JOINER.join(
+                getImage(Source.emojixpress, source, true, ""),
+                getImage(Source.emojipedia, source, true, ""), 
+                getImage(Source.apple, source, true, ""),
+                getImage(Source.google, source, true, ""),
+                getImage(Source.twitter, source, true, ""),
+                getImage(Source.emojione, source, true, ""), 
+                getImage(Source.samsung, source, true, ""),
+                getImage(Source.fb, source, true, ""),
+                getImage(Source.windows, source, true, ""),
+                getImage(Source.emojination, source, true, ""),
                 getImage(Source.adobe, source, true, ""),
                 getImage(Source.sample, source, true, ""),
                 getImage(Source.proposed, source, true, "")
