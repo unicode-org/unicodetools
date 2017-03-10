@@ -843,18 +843,23 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             // UnicodeSet graphemeExtend =
             // getProperty("Grapheme_Extend").getSet(UCD_Names.YES).remove(0xFF9E,0xFF9F);
             final UnicodeProperty lineBreak = getProperty("Line_Break");
-            unicodeMap.putAll(getProperty("Alphabetic").getSet(UCD_Names.YES).add(0x05F3).removeAll(
-                    getProperty("Ideographic").getSet(UCD_Names.YES))
+            unicodeMap.putAll(getProperty("Alphabetic").getSet(UCD_Names.YES)
+                    .add(0x05F3)
+                    .removeAll(getProperty("Ideographic").getSet(UCD_Names.YES))
                     .removeAll(unicodeMap.keySet("Katakana"))
                     // .removeAll(script.getSet("Thai"))
                     // .removeAll(script.getSet("Lao"))
-                    .removeAll(lineBreak.getSet("SA")).removeAll(script.getSet("Hiragana"))
+                    .removeAll(lineBreak.getSet("SA"))
+                    .removeAll(script.getSet("Hiragana"))
                     .removeAll(unicodeMap.keySet("Extend"))
-                    .removeAll(unicodeMap.keySet("Hebrew_Letter")),
-                    "ALetter");
+                    .removeAll(unicodeMap.keySet("Hebrew_Letter"))
+                    // see http://www.unicode.org/reports/tr29/tr29-30d2.html#ALetter for full context on the following:
+                    .addAll(new UnicodeSet(
+                            "[\\u02C2-\\u02C5\\u02D2-\\u02D7\\u02DE\\u02DF\\u02ED\\u02EF-\\u02FF\\uA720\\uA721\\uA789\\uA78A\\uAB5B]"))
+                    , "ALetter");
             unicodeMap
             .putAll(new UnicodeSet(
-                    "[\\u00B7\\u0387\\u05F4\\u2027\\u003A\\uFE13\\uFE55\\uFF1A\\u02D7]"),
+                    "[\\u00B7\\u0387\\u05F4\\u2027\\u003A\\uFE13\\uFE55\\uFF1A]"),
                     "MidLetter");
             /*
              * ? \\u02D7 U+02D7 ( ˗ ) MODIFIER LETTER MINUS SIGN
