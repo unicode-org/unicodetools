@@ -1,6 +1,6 @@
 #
 # Unihan_DictionaryLikeData.txt
-# Date: 2017-03-06 23:22:48 GMT [JHJ]
+# Date: 2017-03-09 16:13:49 GMT [JHJ]
 # Unicode version: 10.0.0
 #
 # Unicode Character Database
@@ -14322,7 +14322,6 @@ U+4DB4	kTotalStrokes	25
 U+4DB5	kCangjie	OBHYU
 U+4DB5	kCihaiT	1577.601
 U+4DB5	kTotalStrokes	27
-U+4DB6	kTotalStrokes	17
 U+4E00	kCangjie	M
 U+4E00	kCihaiT	1.101
 U+4E00	kFenn	1A

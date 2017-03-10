@@ -1,11 +1,12 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 10.0.0
-@@@+	U10M170217.lst
-	Unicode 10.0.0 names list, fourth delta.
-	Repertoire synched with UnicodeData-10.0.0d3.txt
-	Fourth delta of annotation fixes.
-	Added xrefs for Garshuni Malayalam additions.
-	Adjusted generation of Mongolian contextual forms.
+@@@+	U10M170309.lst
+	Unicode 10.0.0 names list, fifth delta.
+	Repertoire synched with UnicodeData-10.0.0d5.txt
+	Fifth delta of annotation fixes.
+	Updated some Zanabazar Square xrefs to Tibetan head marks.
+	Adjusted the end range in the header for the CJK URO block.
+	Added annotation for 2629.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -15770,6 +15771,8 @@
 	x (coptic symbol khi ro - 2CE9)
 2628	CROSS OF LORRAINE
 2629	CROSS OF JERUSALEM
+	= simple cross potent
+	* contrasts with the actual cross of Jerusalem, which adds a small crosslet at each corner
 	x (alchemical symbol for vinegar - 1F70A)
 262A	STAR AND CRESCENT
 262B	FARSI SYMBOL
@@ -21771,7 +21774,7 @@
 4DFD	HEXAGRAM FOR SMALL PREPONDERANCE
 4DFE	HEXAGRAM FOR AFTER COMPLETION
 4DFF	HEXAGRAM FOR BEFORE COMPLETION
-@@	4E00	CJK Unified Ideographs	9FD5
+@@	4E00	CJK Unified Ideographs	9FEA
 @@	A000	Yi Syllables	A48F
 @@+
 @		Syllables
@@ -33355,11 +33358,9 @@ FFFF	<not a character>
 @		Head marks
 11A3F	ZANABAZAR SQUARE INITIAL HEAD MARK
 	x (tibetan mark initial brda rnying yig mgo mdun ma - 0FD3)
-	x (tibetan mark initial yig mgo mdun ma - 0F04)
 	x (mongolian birga - 1800)
 11A40	ZANABAZAR SQUARE CLOSING HEAD MARK
 	x (tibetan mark closing brda rnying yig mgo sgab ma - 0FD4)
-	x (tibetan mark closing yig mgo sgab ma - 0F05)
 @		Punctuation
 11A41	ZANABAZAR SQUARE MARK TSHEG
 	x (tibetan mark intersyllabic tsheg - 0F0B)
@@ -33371,7 +33372,9 @@ FFFF	<not a character>
 	x (tibetan mark gter tsheg - 0F14)
 @		Head marks
 11A45	ZANABAZAR SQUARE INITIAL DOUBLE-LINED HEAD MARK
+	x (tibetan mark initial yig mgo mdun ma - 0F04)
 11A46	ZANABAZAR SQUARE CLOSING DOUBLE-LINED HEAD MARK
+	x (tibetan mark closing yig mgo sgab ma - 0F05)
 @		Subjoiner
 11A47	ZANABAZAR SQUARE SUBJOINER
 @@	11A50	Soyombo	11AAF
