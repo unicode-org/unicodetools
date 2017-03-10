@@ -1,5 +1,5 @@
 # PropList-10.0.0.txt
-# Date: 2017-03-10, 02:00:28 GMT
+# Date: 2017-03-10, 08:25:30 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1107,13 +1107,11 @@ FF9E..FF9F    ; Other_Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND
 114B0         ; Other_Grapheme_Extend # Mc       TIRHUTA VOWEL SIGN AA
 114BD         ; Other_Grapheme_Extend # Mc       TIRHUTA VOWEL SIGN SHORT O
 115AF         ; Other_Grapheme_Extend # Mc       SIDDHAM VOWEL SIGN AA
-11A0A         ; Other_Grapheme_Extend # Mn       ZANABAZAR SQUARE VOWEL LENGTH MARK
-11A5B         ; Other_Grapheme_Extend # Mn       SOYOMBO VOWEL LENGTH MARK
 1D165         ; Other_Grapheme_Extend # Mc       MUSICAL SYMBOL COMBINING STEM
 1D16E..1D172  ; Other_Grapheme_Extend # Mc   [5] MUSICAL SYMBOL COMBINING FLAG-1..MUSICAL SYMBOL COMBINING FLAG-5
 E0020..E007F  ; Other_Grapheme_Extend # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 127
+# Total code points: 125
 
 # ================================================
 
