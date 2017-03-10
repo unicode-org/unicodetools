@@ -1,6 +1,6 @@
 #
 # Unihan_Variants.txt
-# Date: 2017-03-06 23:22:48 GMT [JHJ]
+# Date: 2017-03-09 16:13:49 GMT [JHJ]
 # Unicode version: 10.0.0
 #
 # Unicode Character Database

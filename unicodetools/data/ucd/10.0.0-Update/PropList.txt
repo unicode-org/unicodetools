@@ -1,5 +1,5 @@
 # PropList-10.0.0.txt
-# Date: 2017-03-08, 08:41:56 GMT
+# Date: 2017-03-10, 02:00:28 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1611,6 +1611,10 @@ FE45..FE46    ; Pattern_Syntax # Po   [2] SESAME DOT..WHITE SESAME DOT
 
 # Total code points: 10
 
-1F1E6..1F1FF ; Regional_Indicator
+# ================================================
+
+1F1E6..1F1FF  ; Regional_Indicator # So  [26] REGIONAL INDICATOR SYMBOL LETTER A..REGIONAL INDICATOR SYMBOL LETTER Z
+
+# Total code points: 26
 
 # EOF
