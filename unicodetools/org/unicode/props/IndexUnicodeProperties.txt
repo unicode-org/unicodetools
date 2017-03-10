@@ -184,7 +184,7 @@ PropList ; Unified_Ideograph
 PropList ; Variation_Selector
 PropList ; White_Space
 PropList ; Prepended_Concatenation_Mark
-PropList ; Regional_Indicator; 
+PropList ; Regional_Indicator
 
 Unihan_DictionaryIndices ; kCheungBauerIndex
 Unihan_DictionaryIndices ; kCowles
