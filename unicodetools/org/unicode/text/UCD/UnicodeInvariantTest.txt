@@ -204,9 +204,10 @@ Let $BMExclusions =[≠ ∤ ∦ ≢ \u2ADC]
 In [\p{dt=canonical}-$BMExclusions] Bidi_M * \P{bc=NSM} * dm = Bidi_M * \P{bc=NSM}
 
 # Additional BIDI invariant constants
-Let $AL_blocks = [\u0600-\u07BF \u08A0-\u08FF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF \U0001EE00-\U0001EEFF]
-Let $R_blocks = [\u0590-\u05FF \u07C0-\u089F \uFB1D-\uFB4F \U00010800-\U00010FFF \U0001E800-\U0001EDFF \U0001EF00-\U0001EFFF]
+Let $AL_blocks = [\u0600-\u07BF \u0860-\u086F \u08A0-\u08FF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF \U0001EE00-\U0001EEFF]
+Let $R_blocks = [\u0590-\u05FF \u07C0-\u085F \u0870-\u089F \uFB1D-\uFB4F \U00010800-\U00010FFF \U0001E800-\U0001EDFF \U0001EF00-\U0001EFFF]
 # 6.1.0 updated blocks
+# 10.0 updated blocks (Syriac Supplement is bc=AL)
 
 # Unassigned characters in these blocks have R or AL respectively
 \p{Bidi_Class=R} ⊇ [$R_blocks & \p{gc=Cn}]
@@ -650,7 +651,8 @@ Map {\m{kMandarin}-[\U0002B851\u4E07\u4E37\u4E44\u4E67\u4EA3\u4EBD\u4EE9\u4EEE\u
 
 Let $ideohack = [〆 〇 〡-〩]
 
-[\p{ideographic}-\p{sc=tangut}-\p{nfkcqc=n}-$ideohack] = \p{Unified_Ideograph}
+[\p{ideographic}-\p{sc=tangut}-\p{sc=nushu}-\p{nfkcqc=n}-$ideohack] = \p{Unified_Ideograph}
+# 10.0 added Nushu
 
 # Following don't work yet. Tested independently in TestInvariants
 # \p{Unified_Ideograph} ⊇ \P{kRSUnicode=∅}
