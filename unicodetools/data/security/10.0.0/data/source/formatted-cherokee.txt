@@ -1,11 +1,11 @@
 ﻿# formatted-cherokee.txt
-# Date: 2016-06-16, 13:41:29 GMT
-# © 2016 Unicode®, Inc.
+# Date: 2017-03-12, 15:50:55 GMT
+# © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Unicode Security Mechanisms for UTR #39
-# Version: 9.0.0
+# Version: 10.0.0
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39
 #
@@ -65,9 +65,12 @@
 
 01AB ;	13BF	# ( ƫ ~ Ꮏ ) LATIN SMALL LETTER T WITH PALATAL HOOK ~ CHEROKEE LETTER HNA
 
+0241 ;	13AE	# ( Ɂ ~ Ꭾ ) LATIN CAPITAL LETTER GLOTTAL STOP ~ CHEROKEE LETTER HE
+
 0244 ;	13CC	# ( Ʉ ~ Ꮜ ) LATIN CAPITAL LETTER U BAR ~ CHEROKEE LETTER SA
 
 0370 ;	13A8	# ( Ͱ ~ Ꭸ ) GREEK CAPITAL LETTER HETA ~ CHEROKEE LETTER GE
+0370 ;	13B0	# ( Ͱ ~ Ꮀ ) GREEK CAPITAL LETTER HETA ~ CHEROKEE LETTER HO
 
 0398 ;	13BE	# ( Θ ~ Ꮎ ) GREEK CAPITAL LETTER THETA ~ CHEROKEE LETTER NA
 
@@ -84,10 +87,6 @@
 0472 ;	13EB	# ( Ѳ ~ Ꮻ ) CYRILLIC CAPITAL LETTER FITA ~ CHEROKEE LETTER WI
 
 13A4 ;	01A0	# ( Ꭴ ~ Ơ ) CHEROKEE LETTER U ~ LATIN CAPITAL LETTER O WITH HORN
-
-13AE ;	0241	# ( Ꭾ ~ Ɂ ) CHEROKEE LETTER HE ~ LATIN CAPITAL LETTER GLOTTAL STOP
-
-13B0 ;	0370	# ( Ꮀ ~ Ͱ ) CHEROKEE LETTER HO ~ GREEK CAPITAL LETTER HETA
 
 13EF ;	1FF6	# ( Ꮿ ~ ῶ ) CHEROKEE LETTER YA ~ GREEK SMALL LETTER OMEGA WITH PERISPOMENI
 
