@@ -702,7 +702,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             final UnicodeMap<String> unicodeMap = new UnicodeMap<String>();
             unicodeMap.setErrorOnReset(true); // will cause exception if we try assigning 2 different values
 
-            final UnicodeSet prepend = new UnicodeSet("[\\u0600-\\u0605\\u06DD\\u08E2\\u070F\\U000110BD \\u0D4E \\U000111C2 \\U000111C3]");
+            final UnicodeSet prepend = new UnicodeSet(
+                    "[\\u0600-\\u0605\\u06DD\\u070F\\u08E2\\U000110BD"              // Prepended_Concatenation_Mark
+                    + "\\u0D4E\\U00011D46"                                          // Consonant_Preceding_Repha
+                    + "\\U000111C2\\U000111C3\\U00011A3A\\U00011A86-\\U00011A89]"); // Consonant_Prefixed
             unicodeMap.putAll(prepend, "Prepend");
             unicodeMap.put(0xD, "CR");
             unicodeMap.put(0xA, "LF");

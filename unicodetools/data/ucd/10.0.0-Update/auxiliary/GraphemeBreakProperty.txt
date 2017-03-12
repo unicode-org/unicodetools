@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-10.0.0.txt
-# Date: 2017-03-08, 08:41:53 GMT
+# Date: 2017-03-12, 07:03:41 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -25,8 +25,11 @@
 0D4E          ; Prepend # Lo       MALAYALAM LETTER DOT REPH
 110BD         ; Prepend # Cf       KAITHI NUMBER SIGN
 111C2..111C3  ; Prepend # Lo   [2] SHARADA SIGN JIHVAMULIYA..SHARADA SIGN UPADHMANIYA
+11A3A         ; Prepend # Lo       ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA
+11A86..11A89  ; Prepend # Lo   [4] SOYOMBO CLUSTER-INITIAL LETTER RA..SOYOMBO CLUSTER-INITIAL LETTER SA
+11D46         ; Prepend # Lo       MASARAM GONDI REPHA
 
-# Total code points: 13
+# Total code points: 19
 
 # ================================================
 

@@ -390,9 +390,10 @@ Let $anyNumericValue = \p{Numeric_Value=/-?[0-9]+.[0-9]+/}
 
 # Musical symbol combining marks, other oddities
 
-Let $AlphaExclusions = [\uAA7D \u0F3E\u0F3F\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u1CE1\uAA7B\uABEC\U0001D165\U0001D166\U0001D16D-\U0001D172][[:gc=mc:]&[:ccc=9:][\u302E\u302F]]
+Let $AlphaExclusions = [\uAA7D \u0F3E\u0F3F\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u1CE1\u1CF7\uAA7B\uABEC\U0001D165\U0001D166\U0001D16D-\U0001D172][[:gc=mc:]&[:ccc=9:][\u302E\u302F]]
 # 6.1.0 Added HANGUL SINGLE DOT TONE MARK..HANGUL DOUBLE DOT TONE MARK
 # 7.0 Added AA7D
+# 10.0 Added 1CF7 (similar to 1CE1)
 \p{Alphabetic} ⊇ [\p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} \p{GC=Mc} - $AlphaExclusions]
 
 # Show [\p{GC=Mc} - \p{alphabetic}]

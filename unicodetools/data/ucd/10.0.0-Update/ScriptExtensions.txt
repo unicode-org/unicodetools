@@ -1,5 +1,5 @@
 # ScriptExtensions-10.0.0.txt
-# Date: 2017-02-16, 00:24:33 GMT
+# Date: 2017-03-11, 06:40:37 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -36,6 +36,14 @@
 # ================================================
 
 # Property:	Script_Extensions
+
+# ================================================
+
+# Script_Extensions=Beng
+
+1CF7          ; Beng # Mc       VEDIC SIGN ATIKRAMA
+
+# Total code points: 1
 
 # ================================================
 

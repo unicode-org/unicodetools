@@ -1,5 +1,5 @@
 # Scripts-10.0.0.txt
-# Date: 2017-03-08, 08:42:08 GMT
+# Date: 2017-03-11, 06:40:37 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -111,6 +111,7 @@
 1CEE..1CF1    ; Common # Lo   [4] VEDIC SIGN HEXIFORM LONG ANUSVARA..VEDIC SIGN ANUSVARA UBHAYATO MUKHA
 1CF2..1CF3    ; Common # Mc   [2] VEDIC SIGN ARDHAVISARGA..VEDIC SIGN ROTATED ARDHAVISARGA
 1CF5..1CF6    ; Common # Lo   [2] VEDIC SIGN JIHVAMULIYA..VEDIC SIGN UPADHMANIYA
+1CF7          ; Common # Mc       VEDIC SIGN ATIKRAMA
 2000..200A    ; Common # Zs  [11] EN QUAD..HAIR SPACE
 200B          ; Common # Cf       ZERO WIDTH SPACE
 200E..200F    ; Common # Cf   [2] LEFT-TO-RIGHT MARK..RIGHT-TO-LEFT MARK
@@ -602,7 +603,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 E0001         ; Common # Cf       LANGUAGE TAG
 E0020..E007F  ; Common # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 7362
+# Total code points: 7363
 
 # ================================================
 
@@ -1563,7 +1564,6 @@ A490..A4C6    ; Yi # So  [55] YI RADICAL QOT..YI RADICAL KE
 1CE2..1CE8    ; Inherited # Mn   [7] VEDIC SIGN VISARGA SVARITA..VEDIC SIGN VISARGA ANUDATTA WITH TAIL
 1CED          ; Inherited # Mn       VEDIC SIGN TIRYAK
 1CF4          ; Inherited # Mn       VEDIC TONE CANDRA ABOVE
-1CF7          ; Inherited # Mc       VEDIC SIGN ATIKRAMA
 1CF8..1CF9    ; Inherited # Mn   [2] VEDIC TONE RING ABOVE..VEDIC TONE DOUBLE RING ABOVE
 1DC0..1DF9    ; Inherited # Mn  [58] COMBINING DOTTED GRAVE ACCENT..COMBINING WIDE INVERTED BRIDGE BELOW
 1DFB..1DFF    ; Inherited # Mn   [5] COMBINING DELETION MARK..COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW
@@ -1585,7 +1585,7 @@ FE20..FE2D    ; Inherited # Mn  [14] COMBINING LIGATURE LEFT HALF..COMBINING CON
 1D1AA..1D1AD  ; Inherited # Mn   [4] MUSICAL SYMBOL COMBINING DOWN BOW..MUSICAL SYMBOL COMBINING SNAP PIZZICATO
 E0100..E01EF  ; Inherited # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 569
+# Total code points: 568
 
 # ================================================
 
