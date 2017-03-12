@@ -457,7 +457,7 @@ public class GenerateEmoji {
             + (useDataUrl
                     ? " class='" + className + extraClasses + (ARE_NEW.contains(chars) ? " new" : "") + "'"
                             // : " height=\"24\" width=\"auto\""
-                            : " class='imga'")
+                            : " class='imga" + (ARE_NEW.contains(chars) ? " new" : "") + "'")
             + " src='" + (useDataUrl ? EmojiImageData.getDataUrl(filename) : "../images/" + filename) + "'"
             + " title='" + getCodeCharsAndName(chars, " ") + "'" + ">";
         }
@@ -2714,7 +2714,7 @@ public class GenerateEmoji {
                 countFound++;
             }
         }
-        if (countFound < 3) {
+        if (countFound < 3 || Emoji.IS_BETA && ARE_NEW.contains(chars2)) {
             otherCells.setLength(0);
             otherCells.append("<td class='andr' colSpan='" + Emoji.Source.platformsToIncludeNormal.size() + "'>… "
                     + getSamples(chars2) + " …</td>");

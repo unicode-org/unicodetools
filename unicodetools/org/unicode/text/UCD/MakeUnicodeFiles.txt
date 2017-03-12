@@ -689,6 +689,7 @@ Property:	Pattern_Syntax
 Property:	Prepended_Concatenation_Mark
 Property:	Regional_Indicator
 
+Property:	Regional_Indicator
 
 File:	PropertyAliases
 Property: SPECIAL

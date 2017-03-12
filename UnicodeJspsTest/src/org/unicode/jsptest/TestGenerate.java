@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.Comparator;
 import java.util.TreeSet;
 
-import org.unicode.cldr.util.BagFormatter;
-import org.unicode.cldr.util.UnicodeLabel;
+import org.unicode.cldr.util.props.BagFormatter;
+import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.jsp.Idna;
 import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.jsp.Idna2003;

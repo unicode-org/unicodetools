@@ -34,6 +34,7 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.ICUException;
 
 public class IdentifierInfo {
 
@@ -287,8 +288,15 @@ public class IdentifierInfo {
                 return IdentifierType.obsolete;
                 //            } else if (rawReason.equals("limited_use")) {
                 //                return IdentifierType.uncommon_use;
+            } else if (rawReason.equalsIgnoreCase("not_chars")) {
+                return IdentifierType.not_characters;
             }
-            return valueOf(rawReason);
+            try {
+                return valueOf(rawReason);
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new ICUException(e);
+            }
         }
 
         public boolean isRestricted() {
@@ -413,8 +421,13 @@ public class IdentifierInfo {
 
         // first find all the "good" scripts
         UnicodeSet hasRecommendedScript = new UnicodeSet();
-        for (final String script : ScriptMetadata.getScripts()) {
-            if (ScriptMetadata.getInfo(script).idUsage == IdUsage.RECOMMENDED) {
+        Set<String> scripts = LATEST.load(UcdProperty.Script).values();
+        for (final String script : scripts) {
+            Info scriptInfo = ScriptMetadata.getInfo(script);
+            if (scriptInfo == null) {
+                System.out.println("No info for: " + script);
+            }
+            if (scriptInfo != null && scriptInfo.idUsage == IdUsage.RECOMMENDED) {
                 final UnicodeSet us = GenerateConfusables.IDENTIFIER_INFO.getSetWith(script);
                 if (us != null) {
                     hasRecommendedScript.addAll(us);
@@ -423,9 +436,11 @@ public class IdentifierInfo {
         }
         hasRecommendedScript.freeze();
 
-        for (final String script : ScriptMetadata.getScripts()) {
+        for (final String script : scripts) {
             final Info scriptInfo = ScriptMetadata.getInfo(script);
-            final IdUsage idUsage = scriptInfo.idUsage;
+            final IdUsage idUsage = scriptInfo != null 
+                    ? scriptInfo.idUsage 
+                    : IdUsage.EXCLUSION;
             IdentifierInfo.IdentifierType status;
             switch(idUsage) {
             case ASPIRATIONAL:
@@ -664,61 +679,62 @@ public class IdentifierInfo {
         bf.setShowLiteral(GenerateConfusables.EXCAPE_FUNNY);
         bf.setMergeRanges(true);
 
-        PrintWriter out = GenerateConfusables.openAndWriteHeader(GenerateConfusables.DRAFT_OUT, "xidmodifications.txt", "Security Profile for General Identifiers");
-        /* PrintWriter out = FileUtilities.openUTF8Writer(outdir, "xidmodifications.txt");
-
-		out.println("# Security Profile for General Identifiers");
-		out.println("# $Revision: 1.32 $");
-		out.println("# $Date: 2010-06-19 00:29:21 $");
-         */
-
-        //String skipping = "[^[:gc=cn:][:gc=co:][:gc=cs:][:gc=cc:]-[:whitespace:]]";
-        //UnicodeSet skippingSet = new UnicodeSet(skipping);
-
-        out.println("#  All code points not explicitly listed ");
-        out.println("#  have the values: Restricted; Not-Characters");
-        out.println("# @missing: 0000..10FFFF; Restricted ; Not-Characters");
-        out.println("");
-        /*
-         * for (Iterator it = values.iterator(); it.hasNext();) { String
-         * reason1 = (String)it.next(); bf.setValueSource(reason1);
-         * out.println(""); bf.showSetNames(out, removals.getSet(reason1)); }
-         */
-        bf.setValueSource((new UnicodeProperty.UnicodeMapProperty() {
-        })
-        .set(recastRemovals)
-        .setMain("Removals", "GCB", UnicodeProperty.ENUMERATED, "1.0"));
-
-        final Set<String> fullListing = new HashSet<String>(Arrays.asList("technical limited-use historic discouraged obsolete".split("\\s+")));
-        //        final Set<String> sortedValues = new TreeSet<String>(GenerateConfusables.UCAComparator);
-        //        sortedValues.addAll(recastRemovals.values());
-        //        if (GenerateConfusables.DEBUG) System.out.println("Restriction Values: " + sortedValues);
-        for (IdentifierType value : IdentifierType.values()) {
-            if (value == IdentifierType.not_characters) {
-                continue;
-            }
-            final UnicodeSet uset = recastRemovals.getSet(value.propertyFileFormat());
-            if (uset == null) {
-                throw new IllegalArgumentException("internal error");
-            }
-            out.println("");
-            out.println("#\tStatus/Type:\t" + value.name);
-            out.println("");
-            //bf.setMergeRanges(Collections.disjoint(fullListing, Arrays.asList(value.split("[\\s;]+"))));
-            //bf.setMergeRanges(value.propertyFileFormat());
-            bf.showSetNames(out, uset);
-        }
-
-        //      out.println("");
-        //      out.println("# Characters added");
-        //      out.println("");
-        //      bf.setMergeRanges(false);
-        //      bf.setValueSource("addition");
-        //      bf.showSetNames(out, additions.keySet());
-
-        //showRemapped(out, "Characters remapped on input", remap);
-
-        out.close();
+        PrintWriter out;
+//        PrintWriter out = GenerateConfusables.openAndWriteHeader(GenerateConfusables.DRAFT_OUT, "xidmodifications.txt", "Security Profile for General Identifiers");
+//        /* PrintWriter out = FileUtilities.openUTF8Writer(outdir, "xidmodifications.txt");
+//
+//		out.println("# Security Profile for General Identifiers");
+//		out.println("# $Revision: 1.32 $");
+//		out.println("# $Date: 2010-06-19 00:29:21 $");
+//         */
+//
+//        //String skipping = "[^[:gc=cn:][:gc=co:][:gc=cs:][:gc=cc:]-[:whitespace:]]";
+//        //UnicodeSet skippingSet = new UnicodeSet(skipping);
+//
+//        out.println("#  All code points not explicitly listed ");
+//        out.println("#  have the values: Restricted; Not-Characters");
+//        out.println("# @missing: 0000..10FFFF; Restricted ; Not-Characters");
+//        out.println("");
+//        /*
+//         * for (Iterator it = values.iterator(); it.hasNext();) { String
+//         * reason1 = (String)it.next(); bf.setValueSource(reason1);
+//         * out.println(""); bf.showSetNames(out, removals.getSet(reason1)); }
+//         */
+//        bf.setValueSource((new UnicodeProperty.UnicodeMapProperty() {
+//        })
+//        .set(recastRemovals)
+//        .setMain("Removals", "GCB", UnicodeProperty.ENUMERATED, "1.0"));
+//
+//        final Set<String> fullListing = new HashSet<String>(Arrays.asList("technical limited-use historic discouraged obsolete".split("\\s+")));
+//        //        final Set<String> sortedValues = new TreeSet<String>(GenerateConfusables.UCAComparator);
+//        //        sortedValues.addAll(recastRemovals.values());
+//        //        if (GenerateConfusables.DEBUG) System.out.println("Restriction Values: " + sortedValues);
+//        for (IdentifierType value : IdentifierType.values()) {
+//            if (value == IdentifierType.not_characters) {
+//                continue;
+//            }
+//            final UnicodeSet uset = recastRemovals.getSet(value.propertyFileFormat());
+//            if (uset == null) {
+//                throw new IllegalArgumentException("internal error");
+//            }
+//            out.println("");
+//            out.println("#\tStatus/Type:\t" + value.name);
+//            out.println("");
+//            //bf.setMergeRanges(Collections.disjoint(fullListing, Arrays.asList(value.split("[\\s;]+"))));
+//            //bf.setMergeRanges(value.propertyFileFormat());
+//            bf.showSetNames(out, uset);
+//        }
+//
+//        //      out.println("");
+//        //      out.println("# Characters added");
+//        //      out.println("");
+//        //      bf.setMergeRanges(false);
+//        //      bf.setValueSource("addition");
+//        //      bf.showSetNames(out, additions.keySet());
+//
+//        //showRemapped(out, "Characters remapped on input", remap);
+//
+//        out.close();
 
         out = GenerateConfusables.openAndWriteHeader(GenerateConfusables.reformatedInternal, "xidAllowed.txt", "Security Profile for General Identifiers");
         final UnicodeSet allowed = new UnicodeSet(xidPlus).removeAll(removals.keySet());
