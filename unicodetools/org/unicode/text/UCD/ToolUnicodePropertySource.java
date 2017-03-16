@@ -743,6 +743,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             unicodeMap.putAll(new UnicodeSet(graphemeExtend).remove(0x200d), "Extend");
             unicodeMap.putAll(new UnicodeSet("[[\u0E31 \u0E34-\u0E3A \u0EB1 \u0EB4-\u0EB9 \u0EBB \u0EBA]-[:cn:]]"), "Extend");
 
+            // GCB=Regional_Indicator must be maintained in sync with the binary Regional_Indicator=Y
             unicodeMap.putAll(0x1F1E6, 0x1F1FF, "Regional_Indicator");
 
             // (Currently there are no characters with this value)
@@ -827,6 +828,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     .addAll(cat.getSet("Spacing_Mark"))
                     .removeAll(Zwj), "Extend");
 
+            // WB=Regional_Indicator must be maintained in sync with the binary Regional_Indicator=Y
             unicodeMap.putAll(0x1F1E6, 0x1F1FF, "Regional_Indicator");
 
             unicodeMap.putAll(cat.getSet("Format")
