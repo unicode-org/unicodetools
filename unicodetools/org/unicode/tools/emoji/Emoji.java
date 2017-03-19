@@ -87,8 +87,8 @@ public class Emoji {
 	public static final VersionInfo VERSION_LAST_RELEASED_UNICODE = EMOJI_TO_UNICODE_VERSION.get(VERSION_LAST_RELEASED);
 	public static final VersionInfo VERSION_BETA_UNICODE = EMOJI_TO_UNICODE_VERSION.get(VERSION_BETA);
 
-	private static final String BETA_PLAIN = " — Beta";
-	private static final String BETA_COLORED = "<span style='color:red'><i> — Beta</i></span>";
+	private static final String BETA_PLAIN = "β";
+	private static final String BETA_COLORED = "<span style='color:red'>" + BETA_PLAIN + "</span>";
 
 	/**
 	 * Change the following according to whether we are generating the beta version of files, or the new version.
@@ -104,7 +104,7 @@ public class Emoji {
 
         public static final String            BETA_TITLE_AFFIX          = Emoji.IS_BETA ? BETA_PLAIN : "";
         public static final String            BETA_TITLE_AFFIX_SHORT    = Emoji.IS_BETA ? "β" : "";
-	public static final String            BETA_HEADER_AFFIX         = Emoji.IS_BETA ? " " + BETA_COLORED : "";
+	public static final String            BETA_HEADER_AFFIX         = Emoji.IS_BETA ? BETA_COLORED : "";
 
 	public static final String VERSION_LAST_RELEASED_STRING = VERSION_LAST_RELEASED.getVersionString(2, 4);
 	public static final String VERSION_BETA_STRING = VERSION_BETA.getVersionString(2, 4) + BETA_COLORED;

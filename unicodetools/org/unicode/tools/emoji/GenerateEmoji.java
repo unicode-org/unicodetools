@@ -68,7 +68,6 @@ import com.ibm.icu.util.ULocale;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class GenerateEmoji {
-    private static final String TABLE_TOTALS = "</table>\n<h2><a href='#totals' name='totals'>Totals</a></h2>\n<table>";
     private static final String SINGLETONS_KEYCAPS_FLAGS = "It does not include emoji sequences, except for keycaps and flags. ";
     static boolean SHOW = false;
     static boolean DO_SPECIALS = false;
@@ -91,6 +90,10 @@ public class GenerateEmoji {
     private static final String HEADER_KEYWORDS = "<th><a target='text' href='index.html#col-annotations'>Other Keywords</a></th>\n";
     private static final String HEADER_EMOJI = "<th><a target='text' href='index.html#col-emoji'>Emoji</a></th>";
     private static final String HEADER_SOURCES = "<th><a target='text' href='index.html#col-sources'>Sources</a></th>";
+    private static final String TABLE_TOTALS = "</table>\n"
+            + "<h2><a href='#totals' name='totals'>Totals</a></h2>\n"
+            + "<p>Totals for the above emoji. For more information, see <a href='index.html#col-totals'>Totals</a>.</p>\n"
+            + "<table>\n";
 
     private static final String BREAK = "<br>";
     private static final String TR51_HTML = "../../reports/tr51/" + (Emoji.IS_BETA ? "proposed.html" : "index.html");
