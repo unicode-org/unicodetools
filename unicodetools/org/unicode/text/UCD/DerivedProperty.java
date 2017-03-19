@@ -682,17 +682,19 @@ of characters, the first of which has a non-zero combining class.
                 shortName = "DI";
             }
 
+            // Prepended_Concatenation_Mark characters
             final UnicodeSet removals = new UnicodeSet("[\\u0600-\\u0605 \\u06DD \\u070F \\u08E2 \\U000110BD]").freeze();
 
             /**
+                (See MakeUnicodeFiles.txt)
                 # Derived Property: Default_Ignorable_Code_Point
                 #  Generated from
                 #    Other_Default_Ignorable_Code_Point
                 #  + Cf (Format characters)
                 #  + Variation_Selector
                 #  - White_Space
-                #  - FFF9..FFFB (Annotation Characters)
-                #  - <list of code points, see & update MakeUnicodeFiles.txt> (exceptional Cf characters that should be visible)
+                #  - FFF9..FFFB (Annotation characters)
+                #  - Prepended_Concatenation_Mark (Exceptional format characters that should be visible)
              */
             @Override
             public boolean hasValue(int cp) {
