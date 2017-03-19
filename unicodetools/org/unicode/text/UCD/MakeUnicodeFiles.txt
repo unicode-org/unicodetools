@@ -1,5 +1,5 @@
 Generate: .*
-DeltaVersion: 13
+DeltaVersion: 14
 CopyrightYear: 2017
 
 File: extra/ScriptNfkc
@@ -347,13 +347,13 @@ Property:	XID_Continue
 
 Property:	Default_Ignorable_Code_Point
 # Derived Property: Default_Ignorable_Code_Point
-#  Generated from 
+#  Generated from
 #    Other_Default_Ignorable_Code_Point
 #  + Cf (Format characters)
 #  + Variation_Selector
 #  - White_Space
-#  - FFF9..FFFB (Annotation Characters)
-#  - 0600..0605, 06DD, 070F, 08E2, 110BD (exceptional Cf characters that should be visible)
+#  - FFF9..FFFB (Annotation characters)
+#  - Prepended_Concatenation_Mark (Exceptional format characters that should be visible)
 
 Property:	Grapheme_Extend
 # Derived Property: Grapheme_Extend
