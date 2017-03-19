@@ -277,10 +277,14 @@ H2 {
 }
 
 .new {
-	background-color: #ffc;
-	border: 2px solid red;
+	border-radius: 5px;
+	border: 2px ridge green;
 }
 
 .indent {
     margin: 1em 1em 1em 1em;
+}
+
+.nomod {
+    color:gray;
 }

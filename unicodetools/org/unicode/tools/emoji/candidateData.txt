@@ -1,6 +1,11 @@
 #Code Point	Chart Glyph	Sample Colored Glyph	Name	
 event
 U+101700			2017Q1	Red Envelope
+• hóngbāo
+• lai see
 U+101701			2017Q1	Firecracker
+• dynamite
+• explosive
 food-asian
 U+101702			2017Q1	Moon Cake
+• yuèbĭng

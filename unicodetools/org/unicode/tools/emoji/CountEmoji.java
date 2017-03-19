@@ -1,5 +1,8 @@
 package org.unicode.tools.emoji;
 
+import java.io.PrintWriter;
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -15,6 +18,10 @@ import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UnicodeSet;
 
 public class CountEmoji {
+    private static final EmojiData EMOJI_DATA_PREVIOUS = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
+    private static final EmojiData EMOJI_DATA_BETA = EmojiData.of(Emoji.VERSION_BETA);
+    private static final EmojiOrder ORDER = EmojiOrder.of(Emoji.VERSION_BETA);
+
     enum MyOptions {
         nonincrementalCount(new Params()),
         countVs(new Params()),
@@ -54,10 +61,10 @@ public class CountEmoji {
     }
 
     private static void countNonincremental() {
-        UnicodeSet all = EmojiData.EMOJI_DATA.getAllEmojiWithDefectives();
+        UnicodeSet all = EMOJI_DATA_BETA.getAllEmojiWithDefectives();
 
         UnicodeSet missing = new UnicodeSet();
-        for (String zwj : EmojiData.EMOJI_DATA.getZwjSequencesNormal()) {
+        for (String zwj : EMOJI_DATA_BETA.getZwjSequencesNormal()) {
             int pos = zwj.length();
             while (true) {
                 int lastZwjIndex = zwj.lastIndexOf(Emoji.JOINER, pos);
@@ -72,31 +79,116 @@ public class CountEmoji {
                 pos = lastZwjIndex-1;
             }
         }
-        System.out.println("ZSeq Count: " + EmojiData.EMOJI_DATA.getZwjSequencesNormal().size());
+        System.out.println("ZSeq Count: " + EMOJI_DATA_BETA.getZwjSequencesNormal().size());
         System.out.println("NonIncremental count: " + missing.size());
     }
 
     private static void countNew() {
-        System.out.println(EmojiData.EMOJI_DATA.getEmojiComponents().size()
-                + "\t" + EmojiData.EMOJI_DATA.getEmojiComponents());
-        // TODO Auto-generated method stub
-        EmojiData EMOJI_DATA_PREVIOUS = EmojiData.of(Emoji.VERSION_TO_GENERATE_PREVIOUS);
-        UnicodeSet current = new UnicodeSet(EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives())
-                .addAll(EmojiData.EMOJI_DATA.getEmojiComponents())
+        UnicodeSet current = new UnicodeSet(EMOJI_DATA_BETA.getAllEmojiWithoutDefectives())
+                .addAll(EMOJI_DATA_BETA.getEmojiComponents())
                 .freeze();
         UnicodeSet previous = new UnicodeSet(EMOJI_DATA_PREVIOUS.getAllEmojiWithoutDefectives())
-                .addAll(EmojiData.EMOJI_DATA.getEmojiComponents())
+                .addAll(EMOJI_DATA_BETA.getEmojiComponents())
                 .freeze();
         UnicodeSet ARE_NEW = new UnicodeSet(current)
                 .removeAll(previous)
                 .freeze();
 
-        countItems("new", ARE_NEW);
-        countItems("v4.0", previous);
-        countItems("v5.0", current);
+        String vPrevious = "v" + Emoji.VERSION_LAST_RELEASED.getVersionString(2, 2);
+        String vCurrent = "v" + Emoji.VERSION_BETA.getVersionString(2, 2);
+
+        new CountEmoji().countItems(vCurrent + "-" + vPrevious, ARE_NEW);
+        new CountEmoji().countItems(vPrevious, previous);
+        new CountEmoji().countItems(vCurrent, current);
     }
 
-    enum Categories {
+    final Map<Category, Bucket> buckets = new EnumMap<>(Category.class);
+
+    static class Bucket {
+        final Counter<MajorGroup> majors = new Counter<>();
+        final UnicodeMap<MajorGroup> sets= new UnicodeMap<>();
+        public void add(MajorGroup maj, String cat, String s) {
+            majors.add(maj, 1);
+            sets.put(s,maj);
+        }
+    }
+    void add(String s) {
+        String cat = ORDER.getCategory(s);
+        MajorGroup maj = cat == null ? MajorGroup.Other : ORDER.getMajorGroupFromCategory(cat);
+        Category category = Category.getBucket(s);
+        Bucket bucket = buckets.get(category);
+        if (bucket == null) {
+            buckets.put(category, bucket = new Bucket());
+        }
+        bucket.add(maj, cat, s);
+        return;
+    }
+
+    public void showCounts(PrintWriter out, boolean showCharacters) {
+
+        String row = "<tr>";
+        String td = "<td class='rchars'>";
+        String th = "<th class='rchars'>";
+        MajorGroup[] groups = MajorGroup.values();
+        out.print(row + th + "</th>");
+        for (MajorGroup maj : groups) {
+            out.print(th + maj.toHTMLString() + "</th>");
+        }
+        out.println(th + "Total" + "</th>" + "</tr>");
+        boolean didSub = false;
+        
+        Counter<MajorGroup> columnCount = new Counter<MajorGroup>();
+        boolean doneSubtotal = false;
+        for (Category evalue : Category.values()) {
+            Bucket bucket = buckets.get(evalue);
+            if (bucket == null) {
+                continue;
+            }
+            if ((evalue == Category.component || evalue == Category.typical_dup) && !doneSubtotal) {
+                showTotalLine(out, "Subtotal", row, th, groups, columnCount);
+                doneSubtotal = true;
+            }
+            out.print(row + th + evalue + "</th>");
+            long rowTotal1 = 0;
+            for (MajorGroup maj : groups) {
+                long count = bucket.majors.get(maj);
+                rowTotal1 += count;
+                columnCount.add(maj, count);
+                out.print(td + (count == 0 ? "" : count) + "</td>");
+            }
+            out.println(th + rowTotal1 + "</th>" + "</tr>");
+        }
+        showTotalLine(out, "Total", row, th, groups, columnCount);
+
+        if (showCharacters) {
+            out.println();
+            for (Category evalue : Category.values()) {
+                Bucket bucket = buckets.get(evalue);
+                if (bucket == null) {
+                    continue;
+                }
+                out.print(evalue);
+                for (MajorGroup maj : groups) {
+                    out.print("\t" + bucket.sets.getSet(maj).toPattern(false));
+                }
+                out.println();
+            }
+        }
+    }
+
+    private void showTotalLine(PrintWriter out, String title2, String row, String th, MajorGroup[] groups,
+            Counter<MajorGroup> columnCount) {
+        long rowTotal = 0;
+        out.print(row + th + title2 + "</th>");
+        for (MajorGroup maj : groups) {
+            long count = columnCount.get(maj);
+            rowTotal += count;
+            out.print(th + count + "</th>");
+        }
+        out.println(th + rowTotal + "</th>" + "</tr>");
+    }
+
+    enum Category {
         character, 
         keycap_seq,
         flag_seq,
@@ -110,27 +202,22 @@ public class CountEmoji {
         typical_dup;
 
         final String name;
-        Categories() {
+        Category() {
             this(null);
         }
-        Categories(String _name) {
+        Category(String _name) {
             name = _name;
         }
         @Override
         public String toString() {
             return name == null ? name().replace('_', ' ') : name;
         }
-        //final Counter<String> categories = new Counter<>();
-        final Counter<MajorGroup> majors = new Counter<>();
-        final UnicodeMap<MajorGroup> sets= new UnicodeMap<>();
-        static void add(String s) {
-            String cat = EmojiOrder.STD_ORDER.getCategory(s);
-            MajorGroup maj = cat == null ? MajorGroup.Other : EmojiOrder.STD_ORDER.getMajorGroupFromCategory(cat);
-            String noVariants = EmojiData.EMOJI_DATA.removeEmojiVariants(s);
-            Categories bucket = null;
+        private static Category getBucket(String s) {
+            String noVariants = CountEmoji.EMOJI_DATA_BETA.removeEmojiVariants(s);
+            Category bucket = null;
             if (EmojiData.isTypicallyDuplicate(s)) {
                 bucket = typical_dup;
-            } else if (EmojiData.EMOJI_DATA.getEmojiComponents().contains(noVariants)) {
+            } else if (CountEmoji.EMOJI_DATA_BETA.getEmojiComponents().contains(noVariants)) {
                 bucket = component;
             } else if (CharSequences.getSingleCodePoint(noVariants) < Integer.MAX_VALUE) {
                 bucket = character;
@@ -162,56 +249,20 @@ public class CountEmoji {
                     throw new IllegalArgumentException();
                 }
             }
-            //			bucket.categories.add(cat, 1);
-            bucket.sets.put(s, maj);
-            bucket.majors.add(maj, 1);
-            return;
+            return bucket;
         }
 
-        static void clear() {
-            for (Categories evalue : values()) {
-                //				evalue.categories.clear();
-                evalue.sets.clear();
-                evalue.majors.clear();
-            }
-        }
-
-        static void showCount(String title, String sep) {
-            MajorGroup[] groups = MajorGroup.values();
-            System.out.println();
-            System.out.print(title);
-            for (MajorGroup maj : groups) {
-                System.out.print(sep + maj);
-            }
-            System.out.println();
-
-            for (Categories evalue : values()) {
-                System.out.print(evalue);
-                for (MajorGroup maj : groups) {
-                    long count = evalue.majors.get(maj);
-                    System.out.print(sep + count);
-                }
-                System.out.println();
-            }
-            System.out.println();
-            for (Categories evalue : values()) {
-                System.out.print(evalue);
-                for (MajorGroup maj : groups) {
-                    System.out.print(sep + evalue.sets.getSet(maj).toPattern(false));
-                }
-                System.out.println();
-            }
-
-        }
     }
 
-    private static void countItems(String title, UnicodeSet uset) {
-        Categories.clear();
-        Set<String> sorted = uset.addAllTo(new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare));
+    private void countItems(String title, UnicodeSet uset) {
+        Set<String> sorted = uset.addAllTo(new TreeSet<>(ORDER.codepointCompare));
         for (String s : sorted) {
-            Categories.add(s);
+            add(s);
         }
-        Categories.showCount(title, "\t");
+        System.out.println("\n" + title);
+        PrintWriter pw = new PrintWriter(System.out);
+        showCounts(pw, false);
+        pw.close();
     }
 
     //	private static <T> void showCount(Counter<T> majorsNoSkin) {
@@ -228,7 +279,7 @@ public class CountEmoji {
         int countFirst = 0;
         int countFull = 0;
         int countOther = 0;
-        for (String itemFull : EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives()) {
+        for (String itemFull : EMOJI_DATA_BETA.getAllEmojiWithoutDefectives()) {
             String itemWithout = itemFull.replace(Emoji.EMOJI_VARIANT_STRING, "");
             if (itemWithout.equals(itemFull)) {
                 countPlain++;
@@ -238,7 +289,7 @@ public class CountEmoji {
             //without=first≠full
             //without≠first≠full
             //without≠first=full
-            String itemFirst = EmojiData.EMOJI_DATA.getOnlyFirstVariant(itemFull);
+            String itemFirst = EMOJI_DATA_BETA.getOnlyFirstVariant(itemFull);
             if (!itemFirst.equals(itemFull)) {
                 if (!itemFirst.equals(itemWithout)) {
                     countOther++;
@@ -264,6 +315,6 @@ public class CountEmoji {
                 + "\t" + Utility.hex(itemFirst, " ")
                 + "\t" + Utility.hex(itemFull, " ")
                 + "\t(" + itemFull + ")"
-                + "\t" + EmojiData.EMOJI_DATA.getName(itemFull));
+                + "\t" + EMOJI_DATA_BETA.getName(itemFull));
     }
 }

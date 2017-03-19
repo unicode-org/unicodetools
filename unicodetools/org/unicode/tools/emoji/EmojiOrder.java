@@ -12,6 +12,7 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.MapComparator;
@@ -36,6 +37,8 @@ import com.ibm.icu.util.VersionInfo;
 
 public class EmojiOrder {
     private static final UnicodeSet MODIFIER_BASES = EmojiData.EMOJI_DATA.getModifierBases();
+    private static final ConcurrentHashMap<VersionInfo, EmojiOrder> VERSION_TO_DATA = new ConcurrentHashMap<>();
+
     private static final boolean DEBUG = false;
 
     public enum MajorGroup {
@@ -89,7 +92,7 @@ public class EmojiOrder {
                     PLAIN_STRING_COMPARATOR);
 
     //public static final EmojiOrder ALT_ORDER = new EmojiOrder(Emoji.VERSION_BETA, "altOrder.txt");
-    public static final EmojiOrder STD_ORDER = new EmojiOrder(Emoji.VERSION_TO_GENERATE, "emojiOrdering.txt");
+    public static final EmojiOrder STD_ORDER = EmojiOrder.of(Emoji.VERSION_TO_GENERATE);
 
     public final MapComparator<String>     mp;
     public final Relation<String, String>  orderingToCharacters;
@@ -107,7 +110,16 @@ public class EmojiOrder {
         return categoryToMajor.get(group);
     }
 
-    public EmojiOrder(VersionInfo version, String file) {
+    
+    public static EmojiOrder of(VersionInfo version) {
+        EmojiOrder result = VERSION_TO_DATA.get(version);
+        if (result == null) {
+            VERSION_TO_DATA.put(version, result = new EmojiOrder(version, "emojiOrdering.txt"));
+        }
+        return result;
+    }
+    
+    private EmojiOrder(VersionInfo version, String file) {
         emojiData = EmojiData.of(version);
         mp  = new MapComparator<String>()
                 .setErrorOnMissing(false)
