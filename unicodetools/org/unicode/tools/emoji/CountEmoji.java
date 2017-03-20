@@ -1,7 +1,9 @@
 package org.unicode.tools.emoji;
 
 import java.io.PrintWriter;
+import java.util.Collection;
 import java.util.EnumMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -10,9 +12,15 @@ import org.unicode.cldr.tool.Option;
 import org.unicode.cldr.tool.Option.Options;
 import org.unicode.cldr.tool.Option.Params;
 import org.unicode.cldr.util.Counter;
+import org.unicode.cldr.util.Validity;
+import org.unicode.cldr.util.Validity.Status;
+import org.unicode.cldr.util.StandardCodes.LstrType;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Multimaps;
+import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UnicodeSet;
@@ -25,6 +33,7 @@ public class CountEmoji {
     enum MyOptions {
         nonincrementalCount(new Params()),
         countVs(new Params()),
+        invalid(new Params()),
         verbose(new Params().setHelp("verbose debugging messages")),
         ;
 
@@ -51,6 +60,10 @@ public class CountEmoji {
             countVs();
             done=true;
         }
+//        if (MyOptions.invalid.option.doesOccur()) {
+//            countInvalid();
+//            done=true;
+//        }
         if (MyOptions.nonincrementalCount.option.doesOccur()) {
             countNonincremental();
             done=true;
