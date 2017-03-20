@@ -2,11 +2,11 @@
 U+1F928			2016Q1	FACE WITH ONE EYEBROW RAISED
 • scepticism | disbelief | disapproval | mild surprise
 U+1F95F			2016Q1	DUMPLING
-• potsticker | gyōza (餃子) | jiaozi (餃子/饺子) | pierogi | empanada			
+• potsticker | gyōza | jiaozi | pierogi | empanada			
 U+1F960			2016Q1	FORTUNE COOKIE
 U+1F961			2016Q1	TAKEOUT BOX
 U+1F962			2016Q1	CHOPSTICKS
-• kuaizi (筷子) | hashi (箸) | jeotgarak (젓가락)				
+• kuaizi | hashi | jeotgarak				
 U+1F92B			2016Q4	FACE WITH FINGER COVERING CLOSED LIPS
 U+1F92A			2016Q4	GRINNING FACE WITH ONE LARGE AND ONE SMALL EYE
 U+1F92C			2016Q4	SERIOUS FACE WITH SYMBOLS COVERING MOUTH
@@ -15,7 +15,7 @@ U+1F92D			2016Q4	SMILING FACE WITH SMILING EYES AND HAND COVERING MOUTH
 • sudden realization | surprise | shock
 U+1F92E			2016Q4	FACE WITH OPEN MOUTH VOMITING
 U+1F9D0			2016Q4	FACE WITH MONOCLE
-• wealth
+• wealthy
 U+1F92F			2016Q4	SHOCKED FACE WITH EXPLODING HEAD
 U+1F929			2016Q4	GRINNING FACE WITH STAR EYES
 • starry-eyed
@@ -67,7 +67,6 @@ U+1F994			2016Q4	HEDGEHOG
 U+1F997			2016Q4	CRICKET
 • Orthoptera
 U+1F995			2016Q4	SAUROPOD
-• Brontosaurus | Diplodocus | Brachiosaurus				
 U+1F996			2016Q4	T-REX
 • Tyrannosaurus Rex				
 U+1F965			2016Q4	COCONUT
@@ -84,7 +83,7 @@ U+1F963			2016Q4	BOWL WITH SPOON
 • oatmeal | cereal | congee | porridge
 dishware				
 U+1F964			2016Q4	CUP WITH STRAW
-• soda | juice | water | malt
+• soft drink | soda | juice | water | malt
 U+1F6F8			2016Q4	FLYING SAUCER
 • UFO
 U+1F6F7			2016Q4	SLED

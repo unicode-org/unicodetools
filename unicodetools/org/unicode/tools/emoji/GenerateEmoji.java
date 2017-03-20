@@ -84,7 +84,7 @@ public class GenerateEmoji {
     private static final String HEADER_SAMPLE_FALLBACK_IMAGES = "<th class='center'><a target='text' href='index.html#col-fallback'>Sample Fallback</a></th>\n";
     private static final String HEADER_SAMPLE_EMOJI = "<th class='narrow center'><a target='text' href='index.html#col-vendor'>Sample Emoji (+FE0F)</a</th>";
     private static final String HEADER_SAMPLE_TEXT = "<th class='narrow center'><a target='text' href='index.html#col-vendor'>Sample Text (+FE0E)</a></th>";
-    private static final String HEADER_BROWSER = "<th class='center'><a target='text' href='index.html#col-browser'>Browser</a></th>"; 
+    private static final String HEADER_BROWSER = "<th class='cchars'><a target='text' href='index.html#col-browser'>Browser</a></th>"; 
     private static final String HEADER_NAME = "<th><a target='text' href='index.html#col-name'>CLDR Short Name</a></th>\n";
     private static final String HEADER_DATE = "<th><a target='text' href='index.html#col-date'>Date</a></th>\n";
     private static final String HEADER_KEYWORDS = "<th><a target='text' href='index.html#col-annotations'>Other Keywords</a></th>\n";
@@ -2813,26 +2813,40 @@ public class GenerateEmoji {
     }
 
     private static String getAnnotationsString(String chars2) {
-        Set<String> annotations = new TreeSet<>();
+        Set<String> annotationsPlain = new TreeSet<>();
         try { // HACK
             Set<String> plainAnnotations2 = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(chars2);
             if (plainAnnotations2 != null) {
-                annotations.addAll(plainAnnotations2);
+                annotationsPlain.addAll(plainAnnotations2);
             }
         } catch (Exception e) {
         }
 
+        Set<String> annotationsExtra = new TreeSet<>();
+
         Set<String> plainAnnotations2 = CandidateData.getInstance().getAnnotations(chars2);
         if (plainAnnotations2 != null) {
-            annotations.addAll(plainAnnotations2);
+            annotationsExtra.addAll(plainAnnotations2);
         }
         
         Collection<String> plainAnnotations3 = Keywords.get(chars2);
         if (plainAnnotations3 != null) {
-            annotations.addAll(plainAnnotations3);
+            annotationsExtra.addAll(plainAnnotations3);
+        }
+        annotationsExtra.removeAll(annotationsPlain);
+
+        Set<String> annotations = new LinkedHashSet<>();
+
+        for (String a : annotationsPlain) {
+            annotations.add(TransliteratorUtilities.toHTML.transform(a));
+        }
+        for (String a : annotationsExtra) {
+            annotations.add("<span class='keye'>"
+                    + TransliteratorUtilities.toHTML.transform(a)
+                    + "</span>");
         }
 
-        return TransliteratorUtilities.toHTML.transform(BAR_JOIN.join(annotations));
+        return BAR_JOIN.join(annotations);
     }
 
     private static final Set<String> SUPPRESS_ANNOTATIONS = ImmutableSet.of("default-text-style", "other", "nature",
@@ -2849,6 +2863,7 @@ public class GenerateEmoji {
     }
 
     static final Joiner BAR_JOIN = Joiner.on(" | ");
+    static final Joiner BAR_I_JOIN = Joiner.on("</i> | <i>");
     
     static void showCandidateStyle(CandidateStyle candidateStyle, String outFileName, UnicodeSet emoji)
             throws IOException {
