@@ -19,6 +19,7 @@ import org.unicode.cldr.util.MapComparator;
 import org.unicode.cldr.util.MultiComparator;
 //import org.unicode.text.UCA.UCA;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiData.VariantFactory;
 import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
@@ -66,15 +67,15 @@ public class EmojiOrder {
     //static final EmojiData emojiDataLast = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
     public static final StringComparator PLAIN_STRING_COMPARATOR = new UTF16.StringComparator(true, false, 0);
     static final boolean USE_ORDER = true;
-//    static final ImmutableMap<String,ImmutableList<String>> hack = ImmutableMap.of(
-//            "👁", ImmutableList.of("👁️‍🗨️ "),
-//            "💏", ImmutableList.of("👩‍❤️‍💋‍👨", "👨‍❤️‍💋‍👨", "👩‍❤️‍💋‍👩"),
-//            "💑", ImmutableList.of("👩‍❤️‍👨", "👨‍❤️‍👨", "👩‍❤️‍👩"),
-//            "👪", ImmutableList.of(
-//                    "👨‍👩‍👦", "👨‍👩‍👧", "👨‍👩‍👧‍👦", "👨‍👩‍👦‍👦", "👨‍👩‍👧‍👧", 
-//                    "👨‍👨‍👦", "👨‍👨‍👧", "👨‍👨‍👧‍👦", "👨‍👨‍👦‍👦", "👨‍👨‍👧‍👧",
-//                    "👩‍👩‍👦", "👩‍👩‍👧", "👩‍👩‍👧‍👦", "👩‍👩‍👦‍👦", "👩‍👩‍👧‍👧")
-//            );
+    //    static final ImmutableMap<String,ImmutableList<String>> hack = ImmutableMap.of(
+    //            "👁", ImmutableList.of("👁️‍🗨️ "),
+    //            "💏", ImmutableList.of("👩‍❤️‍💋‍👨", "👨‍❤️‍💋‍👨", "👩‍❤️‍💋‍👩"),
+    //            "💑", ImmutableList.of("👩‍❤️‍👨", "👨‍❤️‍👨", "👩‍❤️‍👩"),
+    //            "👪", ImmutableList.of(
+    //                    "👨‍👩‍👦", "👨‍👩‍👧", "👨‍👩‍👧‍👦", "👨‍👩‍👦‍👦", "👨‍👩‍👧‍👧", 
+    //                    "👨‍👨‍👦", "👨‍👨‍👧", "👨‍👨‍👧‍👦", "👨‍👨‍👦‍👦", "👨‍👨‍👧‍👧",
+    //                    "👩‍👩‍👦", "👩‍👩‍👧", "👩‍👩‍👧‍👦", "👩‍👩‍👦‍👦", "👩‍👩‍👧‍👧")
+    //            );
 
     //    static {
     //        for (Entry<String, ImmutableList<String>> entry : hack.entrySet()) {
@@ -110,7 +111,7 @@ public class EmojiOrder {
         return categoryToMajor.get(group);
     }
 
-    
+
     public static EmojiOrder of(VersionInfo version) {
         EmojiOrder result = VERSION_TO_DATA.get(version);
         if (result == null) {
@@ -118,7 +119,7 @@ public class EmojiOrder {
         }
         return result;
     }
-    
+
     private EmojiOrder(VersionInfo version, String file) {
         emojiData = EmojiData.of(version);
         mp  = new MapComparator<String>()
@@ -138,6 +139,18 @@ public class EmojiOrder {
                         mp,
                         EmojiOrder.UCA_COLLATOR,
                         PLAIN_STRING_COMPARATOR);
+        if(DEBUG) {
+            String last = "";
+            for (String s : Arrays.asList("\u2017", "\u002D", "\uFF0D")) {
+                System.out.println(
+                        Utility.hex(last) + "/" + last 
+                        + " vs " 
+                        + Utility.hex(s) + "/" + s 
+                        + ": " + codepointCompare.compare(last, s)
+                        + " map: " + mp.getNumericOrder(s));
+                last = s;
+            }
+        }
     }
 
     Relation<String, String> loadOrdering(VersionInfo version, String sourceFile, 
@@ -156,7 +169,7 @@ public class EmojiOrder {
             if (line.isEmpty() || line.startsWith("#")) {
                 continue;
             }
-            if (line.contains("\u20E3")) {
+            if (line.contains("person-fantasy")) {
                 int debug = 0;
             }
 
@@ -180,7 +193,7 @@ public class EmojiOrder {
             line = Emoji.UNESCAPE.transform(line);
             line = line.replace(Emoji.TEXT_VARIANT_STRING, "").replace(Emoji.EMOJI_VARIANT_STRING, "");
             if (line.indexOf(Emoji.TAG_TERM) >= 0) {
-            	int debug = 0;
+                int debug = 0;
             }
             for (String string : ei.set(line)) {
                 // NOTE: all emoji variant selectors have been removed at this point
@@ -213,8 +226,8 @@ public class EmojiOrder {
         }
 
         Set<String> missing = new UnicodeSet(emojiData.getSortingChars())
-        .removeAll(emojiData.getModifierSequences())
-        .addAllTo(new LinkedHashSet<String>());
+                .removeAll(emojiData.getModifierSequences())
+                .addAllTo(new LinkedHashSet<String>());
         missing.removeAll(sorted);
         for (Iterator<String> it = missing.iterator(); it.hasNext();) {
             String s = it.next();
@@ -291,7 +304,7 @@ public class EmojiOrder {
         //            System.out.println("\t" + string);
         //        }
         // System.out.println(string + "\t" + Utility.hex(string));
-        if (string.equals("👁‍🗨")) {
+        if (string.equals("-")) {
             int debug = 0;
         }
         majorGroupings.put(string, majorGroup);
@@ -358,9 +371,9 @@ public class EmojiOrder {
             isFirst = false;
             Set<String> haveSeen = new HashSet<>();
             for (String s : temp) {
-            	if (s.startsWith(Emoji.ADULT)) {
-            		int debug = 0;
-            	}
+                if (s.startsWith(Emoji.ADULT)) {
+                    int debug = 0;
+                }
                 String group = getCategory(s);
                 if (!Objects.equal(group,lastGroup)) {
                     needRelation = true;
@@ -369,7 +382,7 @@ public class EmojiOrder {
                 if (haveSeen.contains(s)) {
                     continue;
                 }
-                
+
                 boolean multiCodePoint = s.codePointCount(0, s.length()) > 1;
                 boolean containsModifier = EmojiData.MODIFIERS.containsSome(s);
                 if (containsModifier) {
@@ -410,9 +423,9 @@ public class EmojiOrder {
                         }
                         continue;
                     }
-                    
+
                     // keycaps, zwj sequences, can't use <* syntax
- 
+
                     final String withoutAnyVS = s.replaceAll(Emoji.EMOJI_VARIANT_STRING, "");
                     if (haveSeen.contains(withoutAnyVS)) {
                         continue;
@@ -438,10 +451,10 @@ public class EmojiOrder {
                     }
                     outText.append(s);
                     haveSeen.add(s);
-//                    needRelation = true;
-//                                        // break arbitrarily (but predictably)
-//                                        int bottomBits = s.codePointAt(0) & 0x7;
-//                                        needRelation = bottomBits == 0;
+                    //                    needRelation = true;
+                    //                                        // break arbitrarily (but predictably)
+                    //                                        int bottomBits = s.codePointAt(0) & 0x7;
+                    //                                        needRelation = bottomBits == 0;
                 }
             }
         } catch (IOException e) {
@@ -450,19 +463,19 @@ public class EmojiOrder {
         return outText;
     }
 
-	public String getCategory(String emoji) {
-		return charactersToOrdering.get(emoji);
-	}
+    public String getCategory(String emoji) {
+        return charactersToOrdering.get(emoji);
+    }
 
     private String withoutTrailingVariant(String s) {
         return s.endsWith(Emoji.EMOJI_VARIANT_STRING) ? s.substring(0, s.length()-1) : s;
     }
 
     static final UnicodeSet NEEDS_QUOTE = new UnicodeSet("[[:Pattern_White_Space:][\\&\\[\\]#@!<;,=*]]").freeze();
-    
+
     private String quoteSyntax(String source) {
-    	return NEEDS_QUOTE.containsNone(source) ? source :
-    		"'" + source.replace("'", "''") + "'";
+        return NEEDS_QUOTE.containsNone(source) ? source :
+            "'" + source.replace("'", "''") + "'";
     }
 
     public static Set<String> sort(Comparator<String> comparator, UnicodeSet... characters) {
@@ -488,21 +501,21 @@ public class EmojiOrder {
     }
 
     public static final UnicodeSet GENDER_OBJECTS = new UnicodeSet();
-	public static final UnicodeSet GENDER_NEUTRALS = new UnicodeSet();
-	static {
-		for (String s : EmojiData.EMOJI_DATA.getEmojiForSortRules()) {
-			ZwjType type = ZwjType.getType(s);
-			if (type != ZwjType.roleWithObject) {
-				continue;
-			}
-			GENDER_OBJECTS.add(s.codePointBefore(s.length()));
-			if (s.startsWith(Emoji.WOMAN_STR)) {
-				GENDER_NEUTRALS.add(s.replace(Emoji.WOMAN_STR, Emoji.ADULT));
-			}
-		}
-		GENDER_OBJECTS.freeze();
-		GENDER_NEUTRALS.freeze();
-	}
+    public static final UnicodeSet GENDER_NEUTRALS = new UnicodeSet();
+    static {
+        for (String s : EmojiData.EMOJI_DATA.getEmojiForSortRules()) {
+            ZwjType type = ZwjType.getType(s);
+            if (type != ZwjType.roleWithObject) {
+                continue;
+            }
+            GENDER_OBJECTS.add(s.codePointBefore(s.length()));
+            if (s.startsWith(Emoji.WOMAN_STR)) {
+                GENDER_NEUTRALS.add(s.replace(Emoji.WOMAN_STR, Emoji.ADULT));
+            }
+        }
+        GENDER_OBJECTS.freeze();
+        GENDER_NEUTRALS.freeze();
+    }
 
     public static void main(String[] args) {
         System.out.println("# START AUTOGENERATED EMOJI ORDER");

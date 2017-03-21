@@ -89,3 +89,5 @@ U+1F6F8			2016Q4	FLYING SAUCER
 U+1F6F7			2016Q4	SLED
 • sledge | sleigh | luge | toboggan
 U+1F94C			2016Q4	CURLING STONE
+U+1F479
+• troll

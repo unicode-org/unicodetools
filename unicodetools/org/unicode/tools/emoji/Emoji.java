@@ -415,8 +415,8 @@ public class Emoji {
 	public static final String TEXT_VARIANT_STRING = String.valueOf(TEXT_VARIANT);
 	public static final String JOINER_STRING = String.valueOf(JOINER);
 
-	public static String getLabelFromLine(Output<Set<String>> newLabel, String line) {
-		line = line.replace(EMOJI_VARIANT_STRING, "").replace(TEXT_VARIANT_STRING, "").trim();
+	public static String getLabelFromLine(Output<Set<String>> newLabel, String original) {
+		String line = original.replace(EMOJI_VARIANT_STRING, "").replace(TEXT_VARIANT_STRING, "").trim();
 		int tabPos = line.indexOf('\t');
 		//        if (tabPos < 0 && Emoji.EMOJI_CHARS.contains(getEmojiSequence(line, 0))) {
 		//            tabPos = line.length();
@@ -433,6 +433,9 @@ public class Emoji {
 				}
 			}
 			line = line.substring(tabPos + 1);
+		}
+		if (!line.isEmpty() && ASCII_LETTERS.contains(line.charAt(0))) {
+		    throw new IllegalArgumentException("Malformed line: " + original);
 		}
 		return line;
 	}
