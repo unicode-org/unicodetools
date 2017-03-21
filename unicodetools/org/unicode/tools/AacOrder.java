@@ -22,26 +22,35 @@ import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
+import com.ibm.icu.util.VersionInfo;
 
 public class AacOrder {
-    static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
+
+    private static final VersionInfo VERSION = Emoji.VERSION_BETA;
+    private static final VersionInfo UCD_VERSION = Emoji.UCD9;
+    
+    private static final EmojiData EMOJI_DATA = EmojiData.of(VERSION);
+    private static final EmojiOrder ORDER = EmojiOrder.of(VERSION);
+
+    static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(UCD_VERSION);
     static final UnicodeMap<String> names = iup.load(UcdProperty.Name);
     static final UnicodeMap<General_Category_Values> gencat = iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
     static final UnicodeSet DI = iup.loadEnum(UcdProperty.Default_Ignorable_Code_Point, Binary.class).getSet(Binary.Yes);
-    static final EmojiData emojiData = EmojiData.of(Emoji.VERSION_TO_GENERATE);
     static final UnicodeSet EMOJI = new UnicodeSet();
     static {
-        UnicodeSet temp = new UnicodeSet()
-        .addAll(emojiData.getSingletonsWithoutDefectives())
-        .addAll(emojiData.getZwjSequencesNormal())
-        .addAll(emojiData.getFlagSequences())
-        .addAll(emojiData.getModifierSequences())
-        .addAll(emojiData.getKeycapSequences());
+        UnicodeSet temp = EMOJI_DATA.getAllEmojiWithoutDefectives();
+//        new UnicodeSet()
+//        .addAll(emojiData.getSingletonsWithoutDefectives())
+//        .addAll(emojiData.getZwjSequencesNormal())
+//        .addAll(emojiData.getFlagSequences())
+//        .addAll(emojiData.getModifierSequences())
+//        .addAll(emojiData.getKeycapSequences());
         for (String s : temp) {
             if (s.contains(Emoji.EMOJI_VARIANT_STRING)) {
                 s = s.replace(Emoji.EMOJI_VARIANT_STRING, "");
             }
             EMOJI.add(s);
+            System.out.println(Utility.hex(s) + "\t" + s);
         }
         EMOJI.freeze();
     }
@@ -62,7 +71,7 @@ public class AacOrder {
     }
 
     static final Set<String> SORTED_ALL_CHARS_SET
-    = EmojiOrder.sort(EmojiOrder.STD_ORDER.codepointCompare, ALLOWED);
+    = EmojiOrder.sort(ORDER.codepointCompare, ALLOWED);
 
     /**
      * First arg is output directory.
@@ -93,9 +102,9 @@ public class AacOrder {
         }
         writeUs(outputDir, ALLOWED, "aac-order-us.txt");
         writeUs(outputDir, new UnicodeSet(ALLOWED)
-        .addAll(emojiData.getKeycapSequencesAll())
-        .addAll(emojiData.getZwjSequencesAll()), "aac-order-us-full.txt");
-        writeUs(outputDir, emojiData.getAllEmojiWithoutDefectives(), "emoji-us.txt");
+        .addAll(EMOJI_DATA.getKeycapSequencesAll())
+        .addAll(EMOJI_DATA.getZwjSequencesAll()), "aac-order-us-full.txt");
+        writeUs(outputDir, EMOJI_DATA.getAllEmojiWithoutDefectives(), "emoji-us.txt");
     }
 
     private static void writeUs(String outputDir, UnicodeSet unicodeSet, String filename) throws IOException {
@@ -147,11 +156,15 @@ public class AacOrder {
             last = -2;
         }
         private String getName(String s) {
-            String name = emojiData.getName(s);
+            String name = EMOJI_DATA.getName(s);
             return name != null ? name : UCharacter.getName(s,"+");
         }
         private String getName(int s) {
-            String name = emojiData.getName(UTF16.valueOf(s));
+            String name = null;
+            try {
+                name = EMOJI_DATA.getName(UTF16.valueOf(s));
+            } catch (Exception e) {
+            }
             return name != null ? name : UCharacter.getName(s);
         }
         public void add(String s) {

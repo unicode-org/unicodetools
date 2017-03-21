@@ -2813,6 +2813,9 @@ public class GenerateEmoji {
     }
 
     private static String getAnnotationsString(String chars2) {
+        if (chars2.equals("👹")) {
+            int debug = 0;
+        }
         Set<String> annotationsPlain = new TreeSet<>();
         try { // HACK
             Set<String> plainAnnotations2 = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(chars2);
