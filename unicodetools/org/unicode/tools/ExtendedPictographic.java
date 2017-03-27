@@ -20,6 +20,7 @@ import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiData;
 
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -28,12 +29,13 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 
 class ExtendedPictographic {
+	static final EmojiData emojiData = EmojiData.of(Emoji.VERSION6);
+	
 	static final UnicodeSet GLUE_AFTER_ZWJ = new UnicodeSet();
 	static String HEADER;
 	static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
 	static final UnicodeMap<Age_Values> age = iup.loadEnum(UcdProperty.Age);
 	static final UnicodeMap<String> names = iup.load(UcdProperty.Name);
-	static final EmojiData emojiData = EmojiData.EMOJI_DATA;
 	static final UnicodeMap<General_Category_Values> gencat = iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
 	static final UnicodeSet Cn = gencat.getSet(General_Category_Values.Unassigned);
 	static final UnicodeMap<Block_Values> blocks = iup.loadEnum(UcdProperty.Block, Block_Values.class);
