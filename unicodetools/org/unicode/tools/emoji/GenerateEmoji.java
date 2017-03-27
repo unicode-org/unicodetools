@@ -96,7 +96,7 @@ public class GenerateEmoji {
             + "<table>\n";
 
     private static final String BREAK = "<br>";
-    private static final String TR51_HTML = "../../reports/tr51/" + (Emoji.IS_BETA ? "proposed.html" : "index.html");
+    private static final String TR51_HTML = "../../reports/tr51/" + (Emoji.USE_PROPOSED ? "proposed.html" : "index.html");
 
     static final Set<String> SKIP_WORDS = new HashSet<String>(
             Arrays.asList("with", "a", "in", "without", "and", "white", "symbol", "sign", "for", "of", "black"));

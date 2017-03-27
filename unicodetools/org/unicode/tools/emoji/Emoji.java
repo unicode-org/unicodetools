@@ -42,8 +42,9 @@ public class Emoji {
 	 * The main function is to add pointers between the release and beta charts.
 	 * Also change the VERSION_LAST_RELEASED2, etc below!!!
 	 */
-	static final boolean BETA_IS_OPEN = true;
-
+	public static final boolean BETA_IS_OPEN = false;
+	public static final boolean USE_PROPOSED = true; // set to true between the release of Emoji 5.0 & Unicode 10.0. (or similar situation)
+	
 	/**
 	 * Constants for versions
 	 */
@@ -62,9 +63,9 @@ public class Emoji {
 	 * Change each following once we release. That is, VERSION_LAST_RELEASED* becomes VERSION_BETA*, and both the latter increment.
 	 * Also add to EMOJI_TO_UNICODE_VERSION
 	 */
-	public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION3;
-	public static final VersionInfo VERSION_LAST_RELEASED = VERSION4;
-	public static final VersionInfo VERSION_BETA = VERSION5;
+	public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION4;
+	public static final VersionInfo VERSION_LAST_RELEASED = VERSION5;
+	public static final VersionInfo VERSION_BETA = VERSION6;
 
 	public static Map<VersionInfo, VersionInfo> EMOJI_TO_UNICODE_VERSION = ImmutableMap.<VersionInfo, VersionInfo>builder()
 			.put(VERSION6, UCD10)
