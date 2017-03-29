@@ -32,7 +32,7 @@ The following, and the warnings (not listed) are due to differences in the "miss
 
 Property     cp  xml     unicodetools
 Bidi_Paired_Bracket 0000    [0000]  null
-... The missing value according to PropertyValueAliases is "<none>", which the unicodeTools express as null, but ucdxml has 0000 for.
+... The missing value according to PropertyValueAliases is "<none>", which the unicodeTools express as null, but ucdxml has cp for.
 # @missing: 0000..10FFFF; Bidi_Paired_Bracket; <none>
 
 Property     cp  xml     unicodetools
@@ -41,9 +41,10 @@ Canonical_Combining_Class   0378    [Not_Reordered] null
 
 Property     cp  xml     unicodetools
 Prepended_Concatenation_Mark    0000    [No]    null
-... The unicodetools should use No for the missing value (since this is a binary property)
+Regional_Indicator  0000    [No]    null
+... The unicodetools should use No for the missing value (since these are binary properties)
 
-Failing tests:  8
+Failing tests:  9
 Warning tests:  4
      */
     private final static String ucdVersion = Utility.searchPath[0];
