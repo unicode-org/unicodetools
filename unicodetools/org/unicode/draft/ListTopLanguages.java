@@ -7,11 +7,13 @@ import java.util.TreeSet;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.Counter;
+import org.unicode.cldr.util.Counter2;
 import org.unicode.cldr.util.Factory;
 import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.cldr.util.SupplementalDataInfo.OfficialStatus;
 import org.unicode.cldr.util.SupplementalDataInfo.PopulationData;
 
+import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.Row.R3;
@@ -24,16 +26,27 @@ public class ListTopLanguages {
     static Factory cldrFactory = Factory.make(CLDRPaths.MAIN_DIRECTORY, ".*");
     static CLDRFile english = cldrFactory.make("en", true);
 
+    static Set<String> SCHEDULED = ImmutableSet.of("hi", "mr", "bn", "ta", "te", "gu", "ur", "kn", "ml", "pa", "or", "as", "mai", "sat", "ks", "ne", "kok", "sd", "doi", "mni", "brx", "sa");
+
     public static void main(String[] args) {
         final Counter<R3<OfficialStatus, String, String>> gathered = new Counter<R3<OfficialStatus, String, String>>();
-
+        Counter<String> scheduledLitPop = new Counter<>();
+        Counter2<String> scheduledGDP = new Counter2<>();
+        
         for (final String territory : sdata.getTerritoriesWithPopulationData()) {
+            PopulationData terrData = sdata.getPopulationDataForTerritory(territory);
+            double terrGdpPerLitCapita = terrData.getGdp() / terrData.getLiteratePopulation();
             for (final String language : sdata.getLanguagesForTerritoryWithPopulationData(territory)) {
                 if (language.equals("und")) {
                     continue;
                 }
                 final PopulationData data = sdata.getLanguageAndTerritoryPopulationData(language, territory);
                 final long pop = (long) data.getPopulation();
+                if (!territory.equals("IN") && SCHEDULED.contains(language)) {
+                    double literatePopulation = data.getLiteratePopulation();
+                    scheduledLitPop.add(language, (long) literatePopulation);
+                    scheduledGDP.add(language, literatePopulation * terrGdpPerLitCapita);
+                }
                 final OfficialStatus status = data.getOfficialStatus();
                 final String locale = language + "_" + territory;
 
@@ -53,6 +66,9 @@ public class ListTopLanguages {
                 gathered.add(Row.of(status, googled, name), pop);
                 gathered.add(Row.of(OfficialStatus.unknown, language, lname), pop);
             }
+        }
+        for (String sched : SCHEDULED) {
+            System.out.println(sched + "\tlitPop%:\t" + scheduledLitPop.get(sched) + "\tgdp%:\t" + scheduledGDP.getCount(sched));
         }
         int rank = 0;
         final NumberFormat format = NumberFormat.getInstance();
