@@ -1006,9 +1006,11 @@ public class EmojiData {
     }
 
     static final IndexUnicodeProperties latest = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
-
+    static boolean SKIP = true;
+    
     public static void main(String[] args) {
-        if (true) return;
+        System.out.println(EmojiData.EMOJI_DATA.getDerivableNames().toPattern(false));
+        if (SKIP) return;
 
 
         EmojiData betaData = new EmojiData(Emoji.VERSION_BETA);
@@ -1122,6 +1124,17 @@ public class EmojiData {
         System.out.println("Keycap0 " + betaData.getSortingChars().contains("0" + Emoji.KEYCAP_MARK_STRING));
         System.out.println("KeycapE " + betaData.getSortingChars().contains("0" + Emoji.EMOJI_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
         System.out.println("KeycapT " + betaData.getSortingChars().contains("0" + Emoji.TEXT_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
+    }
+
+    private UnicodeSet getDerivableNames() {
+        UnicodeSet allRaw = getAllEmojiWithoutDefectives();
+        UnicodeSet derived = new UnicodeSet();
+        for (String s : allRaw) {
+            derived.add(s.replace(Emoji.EMOJI_VARIANT_STRING,""));
+        }
+        UnicodeMap<Annotations> explicits = ANNOTATION_SET.getExplicitValues();
+        derived.removeAll(explicits.keySet());
+        return derived;
     }
 
     public String getOnlyFirstVariant(String item) {

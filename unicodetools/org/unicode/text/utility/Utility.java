@@ -495,7 +495,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         if (count != 0) {
             if (count < minHex || count > 6) {
                 if (acceptChars) {
-                    output.append(p.substring(p.length()-count, p.length()));
+                    return p;
                 } else {
                     throw new ChainException("bad hex value: '{0}' at position {1} in \"{2}\"",
                             new Object[] {"EOS", new Integer(p.length()), p});
@@ -503,6 +503,8 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             } else {
                 output.appendCodePoint(value);
             }
+        } else if (acceptChars) {
+            return p;
         }
         return output.toString();
     }

@@ -327,7 +327,7 @@ A78B..A78C ; uncommon-use # ( Ꞌ ) LATIN CAPITAL LETTER SALTILLO .. ( ꞌ ) LAT
 [:block=Vedic Extensions:] ; historic
 [:blk=Devanagari Extended:] ; historic
 
-#0138; technical # symbol (phonetic)
+#0138; historic # symbol (phonetic)
 0180 018D 01AA..01AB 01BA..01BB 01BE; technical # symbol (phonetic)
 01C0..01C3; technical # symbol (phonetic)
 0250..0252  0255  0258  025A  025C..25F  0261..0262  0264..0267  026A..026E  0270..0271  0273..274  0276..027F  0281..0282  0284..0287  0289  028C..0291  0293  0295..02A2; technical # symbol (phonetic)
@@ -404,7 +404,7 @@ FE73          ; technical # presentation form #      (ﹳ)  ARABIC TAIL FRAGMENT
 01AB; obsolete # LTN SML LTR T W/ PALATAL HOOK
 01B9..01BB; obsolete # LTN SML LTR EZH 
 01BE; obsolete # LTN LTR INVERTED GLOTTAL STOP W/ STROKE
-025F; obsolete # LTN SML LTR DOTLESS J W/ STROKE (“gy” in Hungarian/voiced palatal stop/form of j)
+025F; technical # LTN SML LTR DOTLESS J W/ STROKE (“gy” in Hungarian/voiced palatal stop/form of j)
 03D8..03E1; historic # GREEK LETTERS
 03F7..03F8; historic # (Bactrian) # GREEK LTR SHO
 03FA..03FB; historic # GREEK LTR SAN (SML and capital)
