@@ -15762,7 +15762,6 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 01F6..01F7    ;  ; Obsolete #  [2] (Ƕ..Ƿ)  LATIN CAPITAL LETTER HWAIR..LATIN CAPITAL LETTER WYNN
 021C          ;  ; Obsolete #      (Ȝ)  LATIN CAPITAL LETTER YOGH
 021D          ;  ; Obsolete #      (ȝ)  LATIN SMALL LETTER YOGH
-025F          ;  ; Obsolete #      (ɟ)  LATIN SMALL LETTER DOTLESS J WITH STROKE
 0277          ;  ; Obsolete #      (ɷ)  LATIN SMALL LETTER CLOSED OMEGA
 027C          ;  ; Obsolete #      (ɼ)  LATIN SMALL LETTER R WITH LONG LEG
 029E          ;  ; Obsolete #      (ʞ)  LATIN SMALL LETTER TURNED K
@@ -16454,7 +16453,7 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 1B000         ;  ; Obsolete #      (𛀀)  KATAKANA LETTER ARCHAIC E
 1B001         ;  ; Obsolete #      (𛀁)  HIRAGANA LETTER ARCHAIC YE
 
-# Total code points: 1301
+# Total code points: 1300
 
 0180          ;  ; Technical #      (ƀ)  LATIN SMALL LETTER B WITH STROKE
 01C0          ;  ; Technical #      (ǀ)  LATIN LETTER DENTAL CLICK
@@ -16473,6 +16472,7 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 025C          ;  ; Technical #      (ɜ)  LATIN SMALL LETTER REVERSED OPEN E
 025D          ;  ; Technical #      (ɝ)  LATIN SMALL LETTER REVERSED OPEN E WITH HOOK
 025E          ;  ; Technical #      (ɞ)  LATIN SMALL LETTER CLOSED REVERSED OPEN E
+025F          ;  ; Technical #      (ɟ)  LATIN SMALL LETTER DOTLESS J WITH STROKE
 0261          ;  ; Technical #      (ɡ)  LATIN SMALL LETTER SCRIPT G
 0262          ;  ; Technical #      (ɢ)  LATIN LETTER SMALL CAPITAL G
 0264          ;  ; Technical #      (ɤ)  LATIN SMALL LETTER RAMS HORN
@@ -16815,7 +16815,7 @@ FB1E          ;  ; Technical #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
 FE20..FE2F    ;  ; Technical # [16] (︠..︯)  COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITLO RIGHT HALF
 FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 
-# Total code points: 385
+# Total code points: 386
 
 0181..0182    ;  ; Uncommon_Use #  [2] (Ɓ..Ƃ)  LATIN CAPITAL LETTER B WITH HOOK..LATIN CAPITAL LETTER B WITH TOPBAR
 0183          ;  ; Uncommon_Use #      (ƃ)  LATIN SMALL LETTER B WITH TOPBAR
