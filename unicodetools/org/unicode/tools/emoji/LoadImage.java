@@ -9,13 +9,20 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
+import java.awt.image.FilteredImageSource;
+import java.awt.image.ImageFilter;
+import java.awt.image.ImageProducer;
+import java.awt.image.RGBImageFilter;
+import java.awt.image.RenderedImage;
 import java.awt.image.WritableRaster;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -58,6 +65,7 @@ import org.unicode.text.tools.GifSequenceWriter;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.GmailEmoji.Data;
+import org.unicode.tools.emoji.LoadImage.Resizing;
 
 import com.google.common.base.Objects;
 import com.ibm.icu.impl.Relation;
@@ -147,13 +155,17 @@ public class LoadImage extends Component {
     static String outputDir = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images/";
 
     public static void main(String[] args) throws IOException {
+        generatePngsFromFont(outputDir, "noto", "noto", "Noto Sans Egyptian Hieroglyphs", 
+                new UnicodeSet("[:Script=Egyptian_Hieroglyphs:]"), 72, false); // "Symbola"
+
+        if (true) return;
 //        doAnimatedGif(false, 72, 50);
         final CandidateData candidateData = CandidateData.getInstance();
         UnicodeSet u9 = candidateData.getCharacters();
 //        UnicodeSet u9 = new UnicodeSet(
 //                "[[\\U0001F6D2\\U0001F6F6\\U0001F927\\U0001F938-\\U0001F93E\\U0001F941\\U0001F943-\\U0001F94B\\U0001F956-\\U0001F959\\U0001F98B-\\U0001F98F]"
 //                        + "[\\U0001F95A-\\U0001F95E\\U0001F990\\U0001F991]]");
-        Map<String, BufferedImage> generated = generatePngsFromFont(outputDir, "proposed", "proposed", "Source Emoji", u9, 72, false); // "Symbola"
+        Map<String, Image> generated = generatePngsFromFont(outputDir, "proposed", "proposed", "Source Emoji", u9, 72, false); // "Symbola"
         System.out.println("Characters");
         for (String u : u9) {
             System.out.println(Utility.hex(u) 
@@ -206,7 +218,7 @@ public class LoadImage extends Component {
             System.out.println(result.toPattern(false));
             List<BufferedImage> list;
             UnicodeSet s = new UnicodeSet("[▫◻◼◽◾☀⚪⚫❗⤴⤵⬅⬆⬇⬛⬜⭐⭕〽]");
-            Map<String, BufferedImage> map = generatePngsFromFont(outputDir, null, "android", "AndroidEmoji", s, 144, false); // "Symbola"
+            Map<String, Image> map = generatePngsFromFont(outputDir, null, "android", "AndroidEmoji", s, 144, false); // "Symbola"
             list = doAndroid(inputDir, outputDir);
             doWindows(inputDir, outputDir);
             doRef(inputDir, outputDir);
@@ -354,7 +366,7 @@ public class LoadImage extends Component {
         }
     }
 
-    private static UnicodeSet checkCanDisplay(Font f) {
+    public static UnicodeSet checkCanDisplay(Font f) {
         UnicodeSet result = new UnicodeSet();
         UnicodeSet glyphCodes = new UnicodeSet();
         FontRenderContext frc = new FontRenderContext(null, true, true);
@@ -488,13 +500,13 @@ public class LoadImage extends Component {
         return sourceImage;
     }
 
-    public static Map<String, BufferedImage> generatePngsFromFont(String outputDir, String dir, 
+    public static Map<String, Image> generatePngsFromFont(String outputDir, String dir, 
             String prefix, String font, UnicodeSet unicodeSet, int height, boolean useFonts)
                     throws IOException { // 🌰-🌵
         if (dir == null) {
             dir = prefix;
         }
-        HashMap<String, BufferedImage> result = new LinkedHashMap<>();
+        HashMap<String, Image> result = new LinkedHashMap<>();
         Set<String> sorted = unicodeSet.addAllTo(new TreeSet<String>());
         int width = height;
         BufferedImage sourceImage = new BufferedImage(width, height, IMAGE_TYPE);
@@ -557,16 +569,58 @@ public class LoadImage extends Component {
             }
             int xStart = (int)(width - bounds.getWidth()+0.5)/2;
             int yStart = (int)(height - bounds.getHeight() + 0.5)/2 + metrics.getAscent();
+            graphics.setComposite(AlphaComposite.Src);
             graphics.drawString(s, xStart, yStart);
             if (reset) {
                 metrics = setFont(font, height, graphics);
             }
             String url = LoadImage.APPLE_URL.transform(s);
-            BufferedImage targetImage = writeResizedImage(sourceImage, fileDirectory, filename, height);
+            Resizing resizing = Resizing.DEFAULT;
+            int sourceHeight = sourceImage.getHeight();
+            int sourceWidth = sourceImage.getHeight();
+            BufferedImage targetImage;
+            if (height == sourceHeight && height == sourceWidth && !resizing.equals(Resizing.DEFAULT)) {
+                targetImage = sourceImage;
+            } else {
+                targetImage = resizeImage(sourceImage, height, height, resizing);
+            }
+            targetImage = TransformGrayToTransparency(targetImage);
+            writeImage(targetImage, fileDirectory, filename, "png");
             result.put(s, deepCopy(sourceImage));
             System.out.println(core + "\t" + s);
         }
         return result;
+    }
+
+    static final ImageFilter filter = new RGBImageFilter(){
+      public final int filterRGB(int x, int y, int rgb) {
+          // white (FF) => 0, 
+          // (rgb << 8) & 0xFF000000
+        int result = (rgb & 0xFFFFFF) | ((~rgb << 8) & 0xFF000000);
+        return result;
+      }
+    };
+
+    private static BufferedImage TransformGrayToTransparency(BufferedImage image) {
+      ImageProducer ip = new FilteredImageSource(image.getSource(), filter);
+      return toBufferedImage(Toolkit.getDefaultToolkit().createImage(ip));
+    }
+    
+    public static BufferedImage toBufferedImage(Image img) {
+        if (img instanceof BufferedImage) {
+            return (BufferedImage) img;
+        }
+
+        // Create a buffered image with transparency
+        BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+
+        // Draw the image on to the buffered image
+        Graphics2D bGr = bimage.createGraphics();
+        bGr.drawImage(img, 0, 0, null);
+        bGr.dispose();
+
+        // Return the buffered image
+        return bimage;
     }
 
     public static FontMetrics setFont(String font, int height2,
@@ -836,7 +890,7 @@ public class LoadImage extends Component {
         return targetImage;
     }
 
-    public static void writeImage(BufferedImage sourceImage, String outputDir,
+    public static void writeImage(RenderedImage sourceImage, String outputDir,
             String outputName, String fileSuffix) throws IOException {
         File outputfile = new File(outputDir, outputName + "." + fileSuffix);
         ImageIO.write(sourceImage, "png", outputfile);
