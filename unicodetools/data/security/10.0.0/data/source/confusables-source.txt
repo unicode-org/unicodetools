@@ -3881,14 +3881,14 @@ m ; rn
 09E0 ; 098C 09E2
 09E0 ; 098B 09C3
 
-w ; vv
+#w ; vv
 
 3163 ;  4E28    # HANGUL LETTER I → CJK UNIFIED IDEOGRAPH-4E28
 4E28 ; 23AE    #* ( | ~ ⎮ ) CJK UNIFIED IDEOGRAPH-4E28 ~ INTEGRAL EXTENSION
 FFE8 ;  |    # ( ￨ → │) HALFWIDTH FORMS LIGHT VERTICAL →  pipe
 ſ ; f
 ƍ ; g
-ꝡ ; vy
+ꝡ ; w  ̡ 
 ᶌ ; y
 ỿ ; y
 Æ ; AE
@@ -3940,20 +3940,21 @@ FFE8 ;  |    # ( ￨ → │) HALFWIDTH FORMS LIGHT VERTICAL →  pipe
  Ꜩ; TƷ
 ꝷ ; tf
 ꝸ ; &
-ʍ ; m
+ʍ ; м
 ﬅ ; ſt
 # additions from spoof files
 ℮ ; e
-п ; n
-π ; n
+#п ; n
+#π ; n
+п ; π
 ٥ ; o
 σ ; o
-к ; k
+#к ; k
 О ; O
-τ ; t
+#τ ; t
 Є ; €
 ɩ ; i
-ц ; u
+#ц ; u
 ⟙ ; T
 # additions from reader suggestions (filtered)
 #% ;  ℅ 
@@ -4395,7 +4396,7 @@ A4EF    ;   2C6F    #   frederic.grosshans@m4x.org
 0D3A    ;   டி  #   cibu@google.com
 0D4E    ;   02D9    #   cibu@google.com
 006C    ;   0196 #   chrisweber@live.com
-006D    ;   043C    #   chrisweber@live.com
+#006D    ;   043C    #   chrisweber@live.com
 0F43    ;   0F42 0FB7   #   chris.fynn@gmail.com
 0F4D    ;   0F4C 0FB7   #   chris.fynn@gmail.com
 0F52    ;   0F51 0FB7   #   chris.fynn@gmail.com
@@ -4860,7 +4861,7 @@ AB47	;	r
 AB48	;	r
 AB4D	;	0283
 AB4E	;	u
-AB51	;	m
+AB51	;	ṃ
 AB52	;	u
 AB53	;	03C7
 AB55	;	03C7
@@ -5406,3 +5407,8 @@ ABBB; 0473; V8_0; ꮻ => ѳ; CHEROKEE SMALL LETTER WI => CYRILLIC SMALL LETTER F
 11AF4; 11AF3 11AEF; V7_0; 𑫴 => 𑫳𑫯; PAU CIN HAU LOW-FALLING TONE => PAU CIN HAU LOW-FALLING TONE LONG + PAU CIN HAU MID-LEVEL TONE
 11AF5; 11AF3 11AF0; V7_0; 𑫵 => 𑫳𑫰; PAU CIN HAU GLOTTAL STOP => PAU CIN HAU LOW-FALLING TONE LONG + PAU CIN HAU GLOTTAL STOP VARIANT
 11642; 11641 11641; V7_0; 𑙂 => 𑙁𑙁; MODI DOUBLE DANDA => MODI DANDA + MODI DANDA
+
+[ᴋ ĸ κϰ𝛋𝛞𝜅𝜘𝜿𝝒𝝹𝞌𝞳𝟆 ⲕ к ꮶ] ; ᴋ
+[ᴛ τ𝛕𝜏𝝉𝞃𝞽 т ꭲ] ; ᴛ
+1170A ; w
+11706 ; v
