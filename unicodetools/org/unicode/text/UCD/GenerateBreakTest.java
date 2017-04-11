@@ -387,30 +387,53 @@ abstract public class GenerateBreakTest implements UCD_Types {
 
 
         out.println("<body bgcolor='#FFFFFF'>");
-        out.println("<h2>" + fileName + " Break Chart</h2>");
+        out.println("<h2>" + propertyName + " Chart</h2>");
         out.println("<p><b>Unicode Version:</b> " + ucd.getVersion() + "</p>");
         out.println("<p><b>Date:</b> " + Default.getDate() + "</p>");
-        out
-        .println("<p>This page illustrates the application of the boundary specification for " + fileName +
-                "s. The material here is informative, not normative.</p> "
+        out.println("<p>This page illustrates the application of the " + propertyName + " specification. "
+                + "The material here is informative, not normative.</p> "
                 + "<p>The first chart shows where breaks would appear between different sample characters or strings. "
                 + "The sample characters are chosen mechanically to represent the different properties used by the specification.</p>"
                 + "<p>Each cell shows the break-status for the position between the character(s) in its row header and the character(s) in its column header. "
                 + "The × symbol indicates no break, while the ÷ symbol indicated a break. "
                 + "The cells with × are also shaded to make it easier to scan the table. "
-                + "For example, in the cell at the intersection of the row headed by 'CR' and the column headed by 'LF', there is a × symbol, " +
-                "indicating that there is no break between CR and LF.</p>");
-        out.println("<p>After the heavy blue line in the table are additional rows, either with different sample characters or for sequences, such as \"ALetter MidLetter\" in WordBreak. " +
-                "Some column headers may be composed, reflecting 'treat as' or 'ignore' rules.</p>");
-        out.println("<p>If your browser handles titles (tool tips), then hovering the mouse over the row header will show a sample character of that type. "
+                + "For example, in the cell at the intersection of the row headed by “CR” and the column headed by “LF”, there is a × symbol, "
+                + "indicating that there is no break between CR and LF.</p>");
+        out.print("<p>");
+        if (fileName.equals("Grapheme") || fileName.equals("Word")) {
+            out.print("After the heavy blue line in the table are additional rows, either with different sample characters or for sequences"
+                + (fileName.equals("Word") ? ", such as “ALetter MidLetter”. " : ". "));
+        }
+        out.println("Some column headers may be composed, reflecting “treat as” or “ignore” rules.</p>");
+        out.print("<p>If your browser handles titles (tooltips), then hovering the mouse over the row header will show a sample character of that type. "
                 + "Hovering over a column header will show the sample character, plus its abbreviated general category and script. "
                 + "Hovering over the intersected cells shows the rule number that produces the break-status. "
-                + "For example, in GraphemeBreakTest, hovering over the cell at the intersection of LVT and T shows ×, with the rule 8.0. "
-                + "Checking below, the rule 8.0 is '( LVT | T) × T', which is the one that applies to that case. "
+                + "For example, hovering over the cell at the intersection of ");
+        switch(fileName) {
+        case "Line":
+            out.print("H3 and JT shows ×, with the rule 26.03. "); break;
+        case "Grapheme":
+            out.print("LVT and T shows ×, with the rule 8.0. "); break;
+        case "Word":
+            out.print("ExtendNumLet and ALetter shows ×, with the rule 13.2. "); break;
+        case "Sentence":
+            out.print("ATerm and Close shows ×, with the rule 9.0. "); break;
+        }
+        out.print("Checking below the table, ");
+        switch(fileName) {
+        case "Line":
+            out.print("rule 26.03 is “JT | H3 × JT”"); break;
+        case "Grapheme":
+            out.print("rule 8.0 is “( LVT | T) × T”"); break;
+        case "Word":
+            out.print("rule 13.2 is “ExtendNumLet × (AHLetter | Numeric | Katakana)”"); break;
+        case "Sentence":
+            out.print("rule 9.0 is “SATerm Close* × ( Close | Sp | ParaSep )”"); break;
+        }
+        out.println(", which is the one that applies to that case. "
                 + "Note that a rule is invoked only when no lower-numbered rules have applied.</p>");
         if (fileName.equals("Line")) {
-            out.println("<p>The Line Break tests use tailoring of numbers described in Example 7 of Section 8.2  Examples of Customization. " +
-                    "They also differ from the results produced by a pair table implementation in sequences like: ZW SP CL.</p>");
+            out.println("<p>The " + propertyName + " tests use tailoring of numbers described in Example 7 of Section 8.2, “Examples of Customization” of UAX #14.</p>");
         }
         generateTable(out);
 
@@ -465,7 +488,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
         int counter = 0;
 
         out.println("#");
-        out.println("# Default " + fileName + " Break Test");
+        out.println("# Default " + propertyName + " Test");
         out.println("#");
         out.println("# Format:");
         out.println("# <string> (# <comment>)? ");
@@ -475,10 +498,13 @@ abstract public class GenerateBreakTest implements UCD_Types {
         out.println("#  <comment> the format can change, but currently it shows:");
         out.println("#\t- the sample character name");
         out.println("#\t- (x) the " + propertyName + " property value for the sample character");
-        out.println("#\t- [x] the rule that determines whether there is a break or not");
+        out.println("#\t- [x] the rule that determines whether there is a break or not,");
+        out.println("#\t   as listed in the Rules section of " + fileName + "BreakTest.html");
         if (fileName.equals("Line")) {
-            out.println("# Note: The Line Break tests use tailoring of numbers described in Example 7 of Section 8.2 Examples of Customization.");
-            out.println("# They also differ from the results produced by a pair table implementation in sequences like: ZW SP CL.");
+            out.println("#");
+            out.println("# Note:");
+            out.println("#  The " + propertyName + " tests use tailoring of numbers described in");
+            out.println("#  Example 7 of Section 8.2, \"Examples of Customization\" of UAX #14.");
         }
         out.println("#");
         sampleDescription(out);
@@ -723,23 +749,41 @@ abstract public class GenerateBreakTest implements UCD_Types {
         }
 
         out.println("<h3>" + linkAndAnchor("rules", "Rules") + "</h3>");
-        out
-        .println("<p>This section shows the rules. They are mechanically modified for programmatic generation of the tables and test code, and"
+        out.print("<p>This section shows the rules. They are mechanically modified for programmatic generation of the tables and test code, and"
                 + " thus do not match the UAX rules precisely. "
                 + "In particular:</p>"
                 + "<ol>"
                 + "<li>The rules are cast into a form that is more like regular expressions.</li>"
-                + "<li>The rules \"sot ÷ <i>or</i> ×\", \"÷ eot\", and \"÷ Any\" are added mechanically, and have artificial numbers.</li>"
-                + "<li>The rules are given decimal numbers, so rules such as 11a are given a number using tenths, such as 11.1.</li>"
-                + "<li>Any 'treat as' or 'ignore' rules are handled as discussed in the UAX, and thus"
-                + " reflected in a transformation of the rules usually not visible here. " +
-                "Where it does show up, an extra variable like CM* or FE* may appear, and the rule may be recast. " +
-                "In addition, final rules like \"Any ÷ Any\" may be recast as the equivalent expression \"÷ Any\".</li>"
-                + "<li>Where a rule has multiple parts (lines), each one is numbered using hundredths, "
-                + "such as 21.01) × BA, 21.02) × HY,... In some cases, the numbering and form of a rule is changed due to 'treat as' rules.</li>"
-                + "</ol>" + "<p>For the original rules, see the UAX.</p>"
-
-                );
+                + "<li>The rules “sot " + (fileName.equals("Line") ? "×" : "÷") + "”, “÷ eot”, and “÷ Any” are added mechanically, and have artificial numbers.</li>"
+                + "<li>The rules are given decimal numbers using tenths, and are written without prefix. For example, ");
+        switch(fileName) {
+        case "Line":
+            out.print("rule LB21a is given the number 21.1"); break;
+        case "Grapheme":
+            out.print("rule GB9a is given the number 9.1"); break;
+        case "Word":
+            out.print("rule WB13a is given the number 13.1"); break;
+        case "Sentence":
+            out.print("rule SB8a is given the number 8.1"); break;
+        }
+        out.print(".</li>"
+                + "<li>Any “treat as” or “ignore” rules are handled as discussed in UAX #"
+                + (fileName.equals("Line") ? "14" : "29")
+                + ", and thus reflected in a transformation of the rules usually not visible here. ");
+        if (fileName.equals("Line")) {
+            out.print("Where it does show up, an extra variable like CM+ may appear, and the rule may be recast. ");
+        }
+        out.print("In addition, final rules like “Any ÷ Any” may be recast as the equivalent expression “÷ Any”.</li><li>");
+        if (fileName.equals("Line")) {
+            out.print("Where a rule has multiple parts (lines), each one is numbered using hundredths, "
+                + "such as 21.01) × BA, 21.02) × HY, ... ");
+        }
+        out.println("In some cases, the numbering and form of a rule is changed due to “treat as” rules.</li>"
+                + "</ol>" + "<p>For the original rules"
+                + (fileName.equals("Word") || fileName.equals("Sentence") ? " and the macro values they use" : "")
+                + ", see UAX #"
+                + (fileName.equals("Line") ? "14" : "29")
+                + ".</p>");
         //out.println("<ul style='list-style-type: none'>");
         out.println("<table>");
         // same pattern, but require _ at the end.
@@ -796,8 +840,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
             out.println("<p>" +
                     "The following samples illustrate the application of the rules. " +
                     "The blue lines indicate possible break points. " +
-                    "If your browser supports titles (tool-tips), then positioning the mouse over each character will show its name, " +
-                    "while positioning between characters shows the rule number of the rule responsible for the break-status." +
+                    "If your browser supports titles (tooltips), then positioning the mouse over each character will show its name, " +
+                    "while positioning between characters shows the number of the rule responsible for the break-status." +
                     "</p>");
             out.println("<table>");
             for (int ii = 0; ii < extraSingleSamples.size(); ++ii) {
