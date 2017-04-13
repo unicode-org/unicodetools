@@ -94,19 +94,19 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(new StringTransformProperty(new StringTransform() {
             public String transform(String source) {
                 return UCharacter.foldCase(source, true);
-            }}, false).setMain("toCasefold", "toCasefold", UnicodeProperty.STRING, "1.1"));
+            }}, false).setMain("toCasefold", "toCF", UnicodeProperty.STRING, "1.1"));
         add(new StringTransformProperty(new StringTransform() {
             public String transform(String source) {
                 return UCharacter.toLowerCase(ULocale.ROOT, source);
-            }}, false).setMain("toLowerCase", "toLowerCase", UnicodeProperty.STRING, "1.1"));
+            }}, false).setMain("toLowercase", "toLC", UnicodeProperty.STRING, "1.1"));
         add(new StringTransformProperty(new StringTransform() {
             public String transform(String source) {
                 return UCharacter.toUpperCase(ULocale.ROOT, source);
-            }}, false).setMain("toUpperCase", "toUpperCase", UnicodeProperty.STRING, "1.1"));
+            }}, false).setMain("toUppercase", "toUC", UnicodeProperty.STRING, "1.1"));
         add(new StringTransformProperty(new StringTransform() {
             public String transform(String source) {
                 return UCharacter.toTitleCase(ULocale.ROOT, source, null);
-            }}, false).setMain("toTitleCase", "toTitleCase", UnicodeProperty.STRING, "1.1"));
+            }}, false).setMain("toTitlecase", "toTC", UnicodeProperty.STRING, "1.1"));
 
         add(new StringTransformProperty(new StringTransform() {
             public String transform(String source) {
@@ -169,23 +169,27 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
 
         add(new UnicodeSetProperty()
         .set(SequenceData.EMOJI_DEFECTIVES)
-        .setMain("Emoji_Defectives", "EMD", UnicodeProperty.BINARY, "8.0"));
+        .setMain("Emoji_Component", "EMD", UnicodeProperty.BINARY, "10.0"));
 
         add(new UnicodeSetProperty()
         .set(SequenceData.EMOJI_FLAG_SEQUENCES)
-        .setMain("Emoji_Flag_Sequences", "EMFS", UnicodeProperty.BINARY, "8.0"));
+        .setMain("Emoji_Flag_Sequence", "EMFS", UnicodeProperty.BINARY, "10.0"));
 
         add(new UnicodeSetProperty()
         .set(SequenceData.EMOJI_KEYCAP_SEQUENCES)
-        .setMain("Emoji_Keycap_Sequences", "EMKS", UnicodeProperty.BINARY, "8.0"));
+        .setMain("Emoji_Keycap_Sequence", "EMKS", UnicodeProperty.BINARY, "10.0"));
 
         add(new UnicodeSetProperty()
         .set(SequenceData.EMOJI_MODIFIER_SEQUENCES)
-        .setMain("Emoji_Modifier_Sequences", "EMMS", UnicodeProperty.BINARY, "8.0"));
+        .setMain("Emoji_Modifier_Sequence", "EMMS", UnicodeProperty.BINARY, "10.0"));
 
         add(new UnicodeSetProperty()
         .set(SequenceData.EMOJI_ZWJ_SEQUENCES)
-        .setMain("Emoji_Zwj_Sequences", "EMZS", UnicodeProperty.BINARY, "8.0"));
+        .setMain("Emoji_Zwj_Sequence", "EMZS", UnicodeProperty.BINARY, "10.0"));
+
+        add(new UnicodeSetProperty()
+        .set(SequenceData.EMOJI_TAG_SEQUENCES)
+        .setMain("Emoji_Tag_Sequence", "EMTS", UnicodeProperty.BINARY, "10.0"));
 
         UnicodeSet emojiAll = new UnicodeSet("[:emoji:]")
         .removeAll(SequenceData.EMOJI_DEFECTIVES)
@@ -193,7 +197,9 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         .addAll(SequenceData.EMOJI_KEYCAP_SEQUENCES)
         .addAll(SequenceData.EMOJI_MODIFIER_SEQUENCES)
         .addAll(SequenceData.EMOJI_ZWJ_SEQUENCES)
+        .addAll(SequenceData.EMOJI_TAG_SEQUENCES)
         .freeze();
+        
         add(new UnicodeSetProperty()
         .set(emojiAll)
         .setMain("Emoji_All", "EMA", UnicodeProperty.BINARY, "8.0"));

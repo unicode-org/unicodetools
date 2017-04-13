@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.UnicodeLabel;
+import org.unicode.cldr.util.props.UnicodeLabel;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.CollectionUtilities.InverseMatcher;
@@ -731,7 +731,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             .get(toSkeleton(propertyAlias));
         }
 
-        public final List getAvailableNames() {
+        public final List<String> getAvailableNames() {
             return getAvailableNames(null);
         }
 

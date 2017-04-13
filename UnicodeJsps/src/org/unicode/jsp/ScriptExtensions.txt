@@ -1,6 +1,6 @@
-# ScriptExtensions-9.0.0.txt
-# Date: 2016-06-01, 10:34:37 GMT
-# © 2016 Unicode®, Inc.
+# ScriptExtensions-10.0.0.txt
+# Date: 2017-03-11, 06:40:37 GMT
+# © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -36,6 +36,14 @@
 # ================================================
 
 # Property:	Script_Extensions
+
+# ================================================
+
+# Script_Extensions=Beng
+
+1CF7          ; Beng # Mc       VEDIC SIGN ATIKRAMA
+
+# Total code points: 1
 
 # ================================================
 
@@ -306,9 +314,10 @@ FF9E..FF9F    ; Hira Kana # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFW
 
 060C          ; Arab Syrc Thaa # Po       ARABIC COMMA
 061B          ; Arab Syrc Thaa # Po       ARABIC SEMICOLON
+061C          ; Arab Syrc Thaa # Cf       ARABIC LETTER MARK
 061F          ; Arab Syrc Thaa # Po       ARABIC QUESTION MARK
 
-# Total code points: 3
+# Total code points: 4
 
 # ================================================
 

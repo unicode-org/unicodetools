@@ -20,6 +20,6 @@
 <%-- <%@ page import="com.ibm.icu.dev.demo.translit.*" %>
 <% /* << SRL: could not resolve this import, but doesn't seem to be used. */ %>
 --%>
-<%@ page import="org.unicode.cldr.icu.*" %>
+<!-- <%@ page import="org.unicode.cldr.icu.*" %> -->
 <%@ page import="org.unicode.jsp.*" %>
 
