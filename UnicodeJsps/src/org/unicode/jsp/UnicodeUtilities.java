@@ -23,11 +23,11 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.Predicate;
+import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.jsp.Idna2008.Idna2008Type;
 import org.unicode.jsp.UnicodeProperty.UnicodeMapProperty;
 
-import com.ibm.icu.dev.util.PrettyPrinter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row.R4;
 import com.ibm.icu.impl.Utility;
@@ -51,7 +51,8 @@ import com.ibm.icu.util.VersionInfo;
 public class UnicodeUtilities {
 
 
-    static final UnicodeSet OFF_LIMITS = new UnicodeSet(UnicodeProperty.UNASSIGNED).addAll(UnicodeProperty.PRIVATE_USE).addAll(UnicodeProperty.SURROGATE).freeze();
+    private static final Collator COLLATOR = Collator.getInstance(new ULocale("en-u-co-emoji"));
+	static final UnicodeSet OFF_LIMITS = new UnicodeSet(UnicodeProperty.UNASSIGNED).addAll(UnicodeProperty.PRIVATE_USE).addAll(UnicodeProperty.SURROGATE).freeze();
     static final UnicodeSet NONCHAR = new UnicodeSet(OFF_LIMITS).addAll(new UnicodeSet("[:Cc:]")).removeAll(new UnicodeSet("[:whitespace:]")).freeze();
 
 
@@ -813,7 +814,7 @@ public class UnicodeUtilities {
             return getLiteral(trans.transform(sample)).replace("\n", "<br>");
         }
 
-        PrettyPrinter pp = new PrettyPrinter().setOrdering(UnicodeSetUtilities.MAIN_COLLATOR)
+        UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter().setOrdering(UnicodeSetUtilities.MAIN_COLLATOR)
                 //.setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(RuleBasedCollator.PRIMARY))
                 .setSpaceComparator(new Comparator<String>() {
                     public int compare(String o1, String o2) {
@@ -971,8 +972,8 @@ public class UnicodeUtilities {
     public static String getPrettySet(UnicodeSet a, boolean abbreviate, boolean escape) {
         String a_out;
         if (a.size() < 10000 && !abbreviate) {
-            PrettyPrinter pp = new PrettyPrinter().setOrdering(UnicodeSetUtilities.MAIN_COLLATOR)
-                    .setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(RuleBasedCollator.PRIMARY));
+        	UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter().setOrdering(UnicodeSetUtilities.MAIN_COLLATOR)
+                    .setSpaceComparator(COLLATOR.setStrength2(RuleBasedCollator.PRIMARY));
 
             if (escape) {
                 pp.setToQuote(NON_ASCII);
@@ -1370,10 +1371,14 @@ public class UnicodeUtilities {
         //    .append("<th>Values</th></tr>\n");
 
         //for (String propName : Builder.with(new TreeSet<String>(col)).addAll((List<String>)factory.getAvailableNames()).get()) {
+        Set<String> missing = new TreeSet<String>(COLLATOR);
+        missing.addAll(factory.getAvailableNames());
         for (R4<String, String, String, String> propData : PropertyMetadata.CategoryDatatypeSourceProperty) {
             String propName = propData.get3();
             UnicodeProperty prop = factory.getProperty(propName);
             if (prop == null) continue;
+            missing.remove(prop.getName());
+            
             String shortName;
             try {
                 shortName = prop.getFirstNameAlias();
@@ -1385,17 +1390,6 @@ public class UnicodeUtilities {
             //            String title = shortName == null || shortName.equals(propName) ? "" : " title='" + shortHtml + "'";
             //            String propHtml = toHTML.transform(propName + (shortName.equalsIgnoreCase(propName) ? "" : " (" + shortName + ")"));
             String propInfo = propHtml ; // "<a name='" + propHtml + "'>" + propHtml + "</a>";
-            //            if (shortName != null && !shortName.equals(propName)) {
-            //                propInfo = "<span title='" + shortHtml + "'>" + propInfo + "</span>";
-            //            }
-            //      out.append("<tr>")
-            //      .append("<td>").append(propData.get0()).append("</td>\n")
-            //      .append("<td>").append(propData.get1()).append("</td>\n")
-            //      .append("<td>").append(propData.get2()).append("</td>\n")
-            //      .append("<th") .append(title) .append("><a name='") .append(propHtml) .append("'>")
-            //      .append(propHtml)
-            //      .append("</a></th>\n");
-            //      out.append("<td>");
             StringBuilder propValues = new StringBuilder();
             String dataType = propData.get1();
             if (propName.equals(propForValues) 
@@ -1414,6 +1408,18 @@ public class UnicodeUtilities {
             .addCell(propValues.toString())
             .finishRow();
             //out.append("</td></tr>\n");
+        }
+        for (String name : missing) {
+            String propHtml = toHTML.transform(name);
+
+            tablePrinter.addRow()
+            .addCell("Z-Other")
+            .addCell("Other")
+            .addCell("Other")
+            .addCell(propHtml)
+            //.addCell(shortHtml)
+            .addCell("Other")
+            .finishRow();
         }
         //out.append("</table>\n");
         out.append(tablePrinter.toTable());

@@ -93,7 +93,7 @@ Grapheme_Link ;  UCD ;    Binary ; Miscellaneous
 Hyphen ; UCD ;    Binary ; Miscellaneous
 Math ;   UCD ;    Binary ; Miscellaneous
 Quotation_Mark ; UCD ;    Binary ; Miscellaneous
-STerm ;  UCD ;    Binary ; Miscellaneous
+Sentence_Terminal ;  UCD ;    Binary ; Miscellaneous
 Terminal_Punctuation ;   UCD ;    Binary ; Miscellaneous
 ISO_Comment ;    UCD ;    Miscellaneous ;  Miscellaneous
 Unicode_1_Name ; UCD ;    Miscellaneous ;  Miscellaneous
@@ -116,10 +116,10 @@ NFKD_Quick_Check ;   UCD ;    Enumerated ; Normalization
 Trail_Canonical_Combining_Class ;    ICU ;    Enumerated ; Normalization
 Lead_Canonical_Combining_Class ; ICU ;    Enumerated ; Normalization
 NFKC_Casefold ;  UCD ;    String ; Normalization
-toNfkd ; Unicode ;    String ; Normalization
-toNfkc ; Unicode ;    String ; Normalization
-toNfd ;  Unicode ;    String ; Normalization
-toNfc ;  Unicode ;    String ; Normalization
+toNFKD ; Unicode ;    String ; Normalization
+toNFKC ; Unicode ;    String ; Normalization
+toNFD ;  Unicode ;    String ; Normalization
+toNFC ;  Unicode ;    String ; Normalization
 ASCII_Hex_Digit ;    UCD ;    Binary ; Numeric
 Hex_Digit ;  UCD ;    Binary ; Numeric
 Numeric_Type ;   UCD ;    Enumerated ; Numeric
@@ -162,8 +162,15 @@ Emoji_Modifier_Base ; UTR ;    Binary ; Emoji
 Emoji_Presentation ; UTR ;    Binary ; Emoji
 
 Emoji_All ; UTR ;    Binary ; Emoji
-Emoji_Defectives ; UTR ;    Binary ; Emoji
-Emoji_Flag_Sequences ; UTR ;    Binary ; Emoji
-Emoji_Keycap_Sequences ; UTR ;    Binary ; Emoji
-Emoji_Modifier_Sequences ; UTR ;    Binary ; Emoji
-Emoji_Zwj_Sequences ; UTR ;    Binary ; Emoji
+Emoji_Component ; UTR ;    Binary ; Emoji
+Emoji_Flag_Sequence ; UTR ;    Binary ; Emoji
+Emoji_Keycap_Sequence ; UTR ;    Binary ; Emoji
+Emoji_Modifier_Sequence ; UTR ;    Binary ; Emoji
+Emoji_Zwj_Sequence ; UTR ;    Binary ; Emoji
+Emoji_Tag_Sequence ; UTR ;    Binary ; Emoji
+
+toLowercase ;  Case ;    String ; Normalization
+toTitlecase ;  Case ;    String ; Normalization
+toUppercase ;  Case ;    String ; Normalization
+isNFM ; ICU ;    Binary ; Normalization
+toNFM ; ICU ;    String ; Normalization

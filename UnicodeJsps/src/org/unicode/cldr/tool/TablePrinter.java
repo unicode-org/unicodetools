@@ -237,7 +237,7 @@ public class TablePrinter {
   static class ColumnSorter<T extends Comparable> implements Comparator<T[]> {
     private int[] sortPriorities = new int[0];
     private BitSet ascending = new BitSet();
-    Collator englishCollator = Collator.getInstance(ULocale.ENGLISH);
+    Collator englishCollator = Collator.getInstance(new ULocale("en-u-co-emoji"));
 
     public int compare(T[] o1, T[] o2) {
       int result;

@@ -54,6 +54,10 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
               || propEnum == UProperty.PATTERN_SYNTAX
               || propEnum == UProperty.PATTERN_WHITE_SPACE
               || propEnum == UProperty.CHANGES_WHEN_CASEFOLDED
+              || propEnum == UProperty.EMOJI
+              || propEnum == UProperty.EMOJI_MODIFIER
+              || propEnum == UProperty.EMOJI_MODIFIER_BASE
+              || propEnum == UProperty.EMOJI_PRESENTATION
               ) {
         setUniformUnassigned(false);
       }
