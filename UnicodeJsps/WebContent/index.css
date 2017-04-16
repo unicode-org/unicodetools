@@ -63,3 +63,6 @@ caption {font-size:150%; font-weight: bold; }
     width: 3em;
     text-align: center;
 }
+.g-recaptcha {
+	display: none;
+}
