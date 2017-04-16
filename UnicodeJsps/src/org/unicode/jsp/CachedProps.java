@@ -31,13 +31,13 @@ import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.VersionInfo;
 
 public class CachedProps {
-	static ConcurrentHashMap<VersionInfo, CachedProps> versionToCachedProps = new ConcurrentHashMap<>();
+	static ConcurrentHashMap<VersionInfo, CachedProps> versionToCachedProps = new ConcurrentHashMap();
 
 	final VersionInfo version;
 	final Set<String> propNames;
 	final ConcurrentHashMap<String, UnicodeProperty> propertyCache = new ConcurrentHashMap<String, UnicodeProperty>();
 	final BiMultimap<String,String> nameToAliases = new BiMultimap<String,String>(null,null);
-	final Map<String,BiMultimap<String,String>> nameToValueToAliases = new LinkedHashMap<>();
+	final Map<String,BiMultimap<String,String>> nameToValueToAliases = new LinkedHashMap();
 
 	private CachedProps(VersionInfo version2) {
 		version = version2;
@@ -57,7 +57,7 @@ public class CachedProps {
 					continue;
 				}
 				String name = splitLine.get(1);
-				List<String> nameAliases = new ArrayList<>(splitLine);
+				List<String> nameAliases = new ArrayList(splitLine);
 				nameAliases.remove(1);
 				nameToAliases.putAll(name, nameAliases);
 			}
