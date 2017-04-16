@@ -3,16 +3,16 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
-		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cldr.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/guava.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/icu4j.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/utilities.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xercesImpl.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
