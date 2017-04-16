@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.jsp.UnicodeProperty.BaseProperty;
+import org.unicode.jsp.UnicodeProperty.Factory;
 import org.unicode.jsp.UnicodeProperty.SimpleProperty;
 
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -40,9 +41,22 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         singleton = new XPropertyFactory();
         return singleton;
     }
-
-
+    
+    public final Factory add2(UnicodeProperty sp) {
+        UnicodeProperty already = getProperty(sp.getName());
+        if (already== null) {
+            return add(sp);
+        } else {
+            System.err.println("Duplicate property:" + sp.getName());
+            return this;
+        }
+    }
+    
     {
+        CachedProps cp = CachedProps.getInstance(VersionInfo.getInstance(10));
+        for (String prop : cp.getAvailable()) {
+            add(cp.getProperty(prop));
+        }
         ICUPropertyFactory base = ICUPropertyFactory.make();
         for (String propertyAlias : (List<String>)base.getInternalAvailablePropertyAliases(new ArrayList())) {
             add(base.getProperty(propertyAlias));

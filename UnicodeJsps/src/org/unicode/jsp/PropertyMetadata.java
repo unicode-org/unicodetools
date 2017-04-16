@@ -21,6 +21,7 @@ public class PropertyMetadata {
         throw new IllegalArgumentException("Must have exactly 4 items: " + Arrays.asList(items));
       }
       set.add((R4<String, String, String, String>) Row.of(items[3], items[2], items[1], items[0]).freeze());
+      set.add((R4<String, String, String, String>) Row.of(items[3], items[2], items[1], items[0]+"β").freeze());
       return true;
     }
     protected void handleEnd() {

@@ -174,3 +174,6 @@ toTitlecase ;  Case ;    String ; Normalization
 toUppercase ;  Case ;    String ; Normalization
 isNFM ; ICU ;    Binary ; Normalization
 toNFM ; ICU ;    String ; Normalization
+
+Indic_Positional_Category ; UCD ; Enum ; Indic
+Indic_Syllabic_Category ; UCD ; Enum ; Indic
