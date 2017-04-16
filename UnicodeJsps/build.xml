@@ -20,6 +20,7 @@
         <!-- CLDR_TOOLS defaults to ../java, override if not correct. -->
         <!-- <property name="CLDR_TOOLS" value="../java"/> -->
         <property name="CLDR_JAR" value="WebContent/WEB-INF/lib/cldr.jar"/>
+        <property name="GUAVA_JAR" value="WebContent/WEB-INF/lib/guava.jar"/>
 	<property name="ICU4J_JAR" value="WebContent/WEB-INF/lib/icu4j.jar"/>
 	<property name="UTILITIES_JAR" value="WebContent/WEB-INF/lib/utilities.jar"/>
 
@@ -48,6 +49,7 @@
             <pathelement path="${CLDR_CLASSES}"/>
             <pathelement location="${ICU4J_JAR}"/>
             <pathelement location="${CLDR_JAR}"/>
+            <pathelement location="${GUAVA_JAR}"/>
             <pathelement location="${UTILITIES_JAR}"/>
             <pathelement location="${XML_APIS_JAR}"/>
             <pathelement location="${DERBY_LIB}"/>
@@ -142,6 +144,7 @@
         <echo/>
         <echo message="Derived properties"/>
         <echo message="CLDR_JAR: ${CLDR_JAR}"/>
+        <echo message="GUAVA_JAR: ${GUAVA_JAR}"/>
         <echo message="CLDR_CLASSES: ${CLDR_CLASSES}"/>
         <echo message="env.UTILITIES_JAR: ${env.UTILITIES_JAR}"/>
         <echo message="env.XML_APIS_JAR: ${env.XML_APIS_JAR}"/>
@@ -237,6 +240,7 @@
            <!-- <lib file="${UTILITIES_JAR}"/>  --> <!-- CLDR utilities -->
             <!-- <lib file="${ICU4J_JAR}"/>  --> <!-- CLDR jar -->
             <lib file="${CLDR_JAR}"/>   <!-- CLDR jar -->
+            <lib file="${GUAVA_JAR}"/>   <!-- CLDR jar -->
             <!-- May want this later. -->
             <!--  <pathelement path="${jsp.jar}"/> -->
 
