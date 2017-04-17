@@ -6,8 +6,13 @@ EM ; Emoji
 EMP ; Emoji_Presentation
 EMM ; Emoji_Modifier
 EMB ; Emoji_Modifier_Base
-#ERI ; Emoji_Regional_Indicator
 ECP ; Emoji_Component
+
+EMS ; Emoji_Modifier_Sequence
+EFS ; Emoji_Flag_Sequence
+EKS ; Emoji_Keycap_Sequence
+ETS ; Emoji_Tag_Sequence
+EZS ; Emoji_Zwj_Sequence
 
 # ================================================
 # Enumerated Properties
@@ -18,6 +23,12 @@ idtype ; Identifier_Type
 
 idns ; Idn_Status
 idn8 ; Idn_2008
+
+# ================================================
+# String Properties
+# ================================================
+
+#ESN ; Emoji_Short_Name
 
 # ================================================
 # Miscellaneous Properties
