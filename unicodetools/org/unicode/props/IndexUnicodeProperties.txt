@@ -312,5 +312,12 @@ emoji/*/emoji-data; Emoji
 emoji/*/emoji-data; Emoji_Presentation
 emoji/*/emoji-data; Emoji_Modifier
 emoji/*/emoji-data; Emoji_Modifier_Base
-#emoji/*/emoji-data; Emoji_Regional_Indicator
 emoji/*/emoji-data; Emoji_Component
+
+emoji/*/emoji-sequences; Emoji_Modifier_Sequence 
+emoji/*/emoji-sequences; Emoji_Flag_Sequence
+emoji/*/emoji-sequences; Emoji_Keycap_Sequence
+emoji/*/emoji-sequences; Emoji_Tag_Sequence
+emoji/*/emoji-zwj-sequences; Emoji_Zwj_Sequence
+
+#emoji/*/emoji-test ; Emoji_Short_Name
