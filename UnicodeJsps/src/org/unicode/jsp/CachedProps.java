@@ -140,7 +140,7 @@ public class CachedProps {
 				temp.add(nameAlias + "β");
 			}
 			this.nameAliases = ImmutableList.copyOf(temp);
-			this.valueToAliases = ImmutableMultimap.copyOf(biMultimap.getKeyToValues());
+			this.valueToAliases = biMultimap == null ? null : ImmutableMultimap.copyOf(biMultimap.getKeyToValues());
 			setName(propName);
 		}
 
@@ -164,7 +164,11 @@ public class CachedProps {
 		@Override
 		protected List _getValueAliases(String valueAlias, List result) {
 			result.clear();
-			result.addAll(valueToAliases.get(valueAlias));
+			if (valueToAliases != null) {
+				result.addAll(valueToAliases.get(valueAlias));
+			} else {
+				result.add(valueAlias);
+			}
 			return result;
 		}
 

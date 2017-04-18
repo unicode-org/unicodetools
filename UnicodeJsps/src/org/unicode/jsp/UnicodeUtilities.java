@@ -15,6 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -321,7 +322,7 @@ public class UnicodeUtilities {
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
             cp = s.codePointAt(i);
             final String current = prop.getValue(cp, getShortest);
-            if (!current.equals(last)) {
+            if (!Objects.equals(current, last)) {
                 if (i != 0) {
                     builder.append(separator);
                 }
@@ -603,6 +604,9 @@ public class UnicodeUtilities {
             String[] propNames = input.split("[;,\\s]\\s*");
             boolean getShortest = false;
             for (String s : propNames) {
+            	if (s.isEmpty()) {
+            		continue;
+            	}
                 try {
                     UnicodeProperty property = factory.getProperty(s);
                     String name = property.getName();
