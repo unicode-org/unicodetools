@@ -1,12 +1,18 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 10.0.0
-@@@+	U10M170309.lst
-	Unicode 10.0.0 names list, fifth delta.
+@@@+	U10M170412.lst
+	Unicode 10.0.0 names list, sixth delta.
 	Repertoire synched with UnicodeData-10.0.0d5.txt
-	Fifth delta of annotation fixes.
-	Updated some Zanabazar Square xrefs to Tibetan head marks.
-	Adjusted the end range in the header for the CJK URO block.
-	Added annotation for 2629.
+	Sixth delta of annotation fixes.
+	Updated several subheaders.
+	Add annotations for 11A47, 11A34.
+	Adjusted annotations for 11D46, 11D47.
+	Adjusted subhead for 18AF2.
+	Fixed typo in notice for 1F3BD.
+	Removed redundant alias for 1F3DC.
+	Updated end range in annotation for 00A4.
+	Corrected omission of name aliases for 2B7A, 2B7C.
+	Adjusted annotation for 1D300.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -487,7 +493,7 @@
 	x (turkish lira sign - 20BA)
 	x (roman semuncia sign - 10192)
 00A4	CURRENCY SIGN
-	* other currency symbol characters: 20A0-20BA
+	* other currency symbol characters: 20A0-20BF
 	x (dollar sign - 0024)
 00A5	YEN SIGN
 	= yuan sign
@@ -14858,6 +14864,7 @@
 @		Power symbol from IEEE 1621-2004
 23FE	POWER SLEEP SYMBOL
 	x (last quarter moon - 263E)
+@		Miscellaneous symbol
 23FF	OBSERVER EYE SYMBOL
 @@	2400	Control Pictures	243F
 @+		The diagonal lettering glyphs are only exemplary; alternate representations may be, and often are used in the visible display of control codes.
@@ -18085,9 +18092,11 @@
 	= end
 2B79	SOUTH WEST TRIANGLE-HEADED ARROW TO BAR
 2B7A	LEFTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE HORIZONTAL STROKE
+	% LEFTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE VERTICAL STROKE
 2B7B	UPWARDS TRIANGLE-HEADED ARROW WITH DOUBLE HORIZONTAL STROKE
 	= page up
 2B7C	RIGHTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE HORIZONTAL STROKE
+	% RIGHTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE VERTICAL STROKE
 2B7D	DOWNWARDS TRIANGLE-HEADED ARROW WITH DOUBLE HORIZONTAL STROKE
 	= page down
 @		Keyboard symbols
@@ -18960,8 +18969,8 @@
 @		Dash
 2E43	DASH WITH LEFT UPTURN
 @		Miscellaneous punctuation
-@		Typicon punctuation
 2E44	DOUBLE SUSPENSION MARK
+@		Typicon punctuation
 2E45	INVERTED LOW KAVYKA
 2E46	INVERTED LOW KAVYKA WITH KAVYKA ABOVE
 	x (modifier breve with inverted breve - AB5B)
@@ -33325,6 +33334,7 @@ FFFF	<not a character>
 @		Virama
 11A34	ZANABAZAR SQUARE SIGN VIRAMA
 	* indicates a bare consonant in Sanskrit and Tibetan
+	* not used for conjunct formation
 	x (tibetan mark halanta - 0F84)
 @		Candrabindu and candra ornaments
 11A35	ZANABAZAR SQUARE SIGN CANDRABINDU
@@ -33377,6 +33387,7 @@ FFFF	<not a character>
 	x (tibetan mark closing yig mgo sgab ma - 0F05)
 @		Subjoiner
 11A47	ZANABAZAR SQUARE SUBJOINER
+	* used for producing consonant conjuncts
 @@	11A50	Soyombo	11AAF
 @		Vowel letter
 11A50	SOYOMBO LETTER A
@@ -33795,9 +33806,9 @@ FFFF	<not a character>
 	* used for producing conjuncts
 @		Cluster-specific consonant forms
 11D46	MASARAM GONDI REPHA
-	* cluster-initial form of RA
+	* cluster-initial form of 11D26
 11D47	MASARAM GONDI RA-KARA
-	* cluster-final form of RA
+	* cluster-final form of 11D26
 @		Digits
 11D50	MASARAM GONDI DIGIT ZERO
 11D51	MASARAM GONDI DIGIT ONE
@@ -39224,7 +39235,7 @@ FFFF	<not a character>
 18AEF	TANGUT COMPONENT-752
 18AF0	TANGUT COMPONENT-753
 18AF1	TANGUT COMPONENT-754
-@		Sixteen-stroke components
+@		Sixteen-stroke component
 18AF2	TANGUT COMPONENT-755
 @@	1B000	Kana Supplement	1B0FF
 @		Historic Katakana
@@ -41482,7 +41493,7 @@ FFFF	<not a character>
 @		Monogram
 1D300	MONOGRAM FOR EARTH
 	= ren
-	* usually associated with human (Chinese ren), rather than earth
+	* usually associated with human (Chinese rén), rather than earth (Chinese dì)
 	x (monogram for yang - 268A)
 	x (monogram for yin - 268B)
 @		Digrams
@@ -46345,7 +46356,7 @@ FFFF	<not a character>
 1F3BC	MUSICAL SCORE
 	x (musical symbol g clef - 1D11E)
 @		Sport symbols
-@+		See other sport symbols in the Miscelleaneous Symbols block.
+@+		See other sport symbols in the Miscellaneous Symbols block.
 1F3BD	RUNNING SHIRT WITH SASH
 	= ekiden (Japanese)
 	* running shirt with separate sash signifies long-distance relay running
@@ -46407,7 +46418,6 @@ FFFF	<not a character>
 1F3DB	CLASSICAL BUILDING
 	= public building
 1F3DC	DESERT
-	= desert
 	x (cactus - 1F335)
 1F3DD	DESERT ISLAND
 	= island
