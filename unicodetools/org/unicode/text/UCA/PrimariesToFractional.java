@@ -663,15 +663,15 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.LAO_SCRIPT).newByte().twoBytePrimaries();
         // Recommended Script.
         setOptionsForScript(UCD_Types.TIBETAN_SCRIPT).newByte().twoBytePrimaries();
-        // Limited Use Script, has tertiary variants, avoid lead byte overflow.
-        setOptionsForScript(UCD_Types.Batak).newByte();
+        // Minor script, avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.Marchen).newByte();
         // Myanmar is a Recommended Script but needs three-byte primaries so that
         // they fit into one compressible lead byte.
         setOptionsForScript(UCD_Types.MYANMAR_SCRIPT).twoBytePunctuation();
         // Recommended Script.
         setOptionsForScript(UCD_Types.KHMER_SCRIPT).twoBytePrimaries();
-        // Aspirational Use Script, avoid lead byte overflow.
-        setOptionsForScript(UCD_Types.MONGOLIAN_SCRIPT).newByte();
+        // Minor script, avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.TAI_LE).newByte();
         // Limited Use Script, but "extinct" (no native speakers since 2005)
         // according to Wikipedia 2015. Language revitalization with very few speakers.
         setOptionsForScript(UCD_Types.Osage).noTwoBytePrimariesIfVariants();
@@ -682,10 +682,10 @@ public final class PrimariesToFractional {
         // Hangul uses one lead byte, with two-byte primaries for conjoining Jamo L/V/T.
         setOptionsForScript(UCD_Types.HANGUL_SCRIPT).wholeByte()
                 .noTwoBytePrimariesIfVariants().twoBytePunctuation();
-        // Kana uses one lead byte.
+        // Kana uses one lead byte, with two-byte primaries for common characters.
         setOptionsForScripts(
                 UCD_Types.HIRAGANA_SCRIPT, UCD_Types.KATAKANA_SCRIPT, UCD_Types.KATAKANA_OR_HIRAGANA)
-                .wholeByte().twoBytePrimaries();
+                .wholeByte();
         // Recommended Script, some characters have variants.
         setOptionsForScript(UCD_Types.BOPOMOFO_SCRIPT).newByte().twoBytePrimaries();
         // Minor script, avoid lead byte overflow.
@@ -863,6 +863,15 @@ public final class PrimariesToFractional {
                     }
                 } else {
                     // New script but not a new lead byte.
+                    if (reorderCode == ReorderCodes.CURRENCY) {
+                        // Reserve some 3000 three-byte primaries
+                        // at the end of the symbols range for a large emoji tailoring.
+                        // Normally there would be a two-byte gap here.
+                        // We add 5 more two-byte primaries, each with another gap.
+                        for (int i = 0; i < 5; ++i) {
+                            fractionalPrimary.next(2);
+                        }
+                    }
                     final int firstFractional = fractionalPrimary.startNewScript(options);
                     if (groupInfo.length() != 0) {
                         groupInfo.append(' ');
@@ -1227,11 +1236,19 @@ public final class PrimariesToFractional {
                         "\u1184-\u1188\u1191-\u1194\u119E-\u11A1" +
                         // Old final consonants
                         "\u11C7\u11C8\u11CC-\u11CE" +
+
+                        // Hiragana & Katakana main-block letters,
+                        // but not extensions nor Hentaigana.
+                        "\\u3041-\\u309E\u30A1-\u30FE" +
                 "]");
         final UnicodeSetIterator twoByteIter = new UnicodeSetIterator(twoByteChars);
         while (twoByteIter.next()) {
             setTwoBytePrimaryFor(firstScriptPrimary, twoByteIter.codepoint);
         }
+        // Two bytes for KATAKANA ITERATION MARK and KATAKANA VOICED ITERATION MARK.
+        // They are not letters (their primaries are below firstScriptPrimary),
+        // so they are not already set above.
+        setTwoBytePrimaryFor(1, 0x30FD);
     }
 
     private void setSingleBytePrimaryFor(char ch) {

@@ -381,7 +381,7 @@ final public class UCA implements Comparator<String>, UCA_Types {
                 break;
             case SHIFTED_TRIMMED:
             case SHIFTED:
-                if (ce == 0) {
+                if (CEList.getTertiary(ce) == 0) {
                     weight4 = 0;
                 } else if (ce == CE_FFFE) {
                     weight4 = getPrimary(ce);

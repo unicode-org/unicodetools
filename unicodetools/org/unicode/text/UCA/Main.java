@@ -23,7 +23,7 @@ import com.ibm.icu.text.UTF16;
 
 public class Main {
     static final String[] ICU_FILES = {
-        "writeCollationValidityLog", "writeFractionalUCA", "WriteAllKeys", "WriteAllKeysDucet",
+        "WriteAllKeys", "writeFractionalUCA", "writeCollationValidityLog", "WriteAllKeysDucet",
         "WriteRules", "WriteRulesCLDR",  // "WriteRulesXML", "WriteRulesCLDRXML",
         "writeconformance", "writeConformanceShifted", "writeConformanceCldr", "writeConformanceShiftedCldr",
         // "short",
