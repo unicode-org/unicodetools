@@ -1,5 +1,5 @@
 # TangutSources-10.0.0.txt
-# Date: 2017-03-09, 01:00:00 GMT [MS, KW]
+# Date: 2017-04-13, 01:00:00 GMT [MS, KW]
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -34,7 +34,7 @@
 #
 # H2004 = Hán Xiǎománg (韓小忙), 西夏文正字研究 (Xīxiàwén Zhèngzì Yánjiū)
 #	      [Research into the Correct Forms of Tangut Characters]. 2004.
-# L1986 = Lǐ Fànwén (李範文), 同音研究 (Tóngyīn Yánjiū) 
+# L1986 = Lǐ Fànwén (李範文), 同音研究 (Tóngyīn Yánjiū)
 #	      [Study of the Homophones]. Yinchuan. 1986
 # L1997 = Lǐ Fànwén (李範文), 夏漢字典 (Xià-Hàn Zìdiàn)
 #	      [Tangut-Chinese Dictionary]. Beijing. 1997.
@@ -43,9 +43,9 @@
 # L2008 = Lǐ Fànwén (李範文). 夏漢字典 (Xià-Hàn Zìdiàn)
 #         [Tangut-Chinese Dictionary]. Beijing, 2008.
 # N1966 = Nishida Tatsuo (西田龍雄), 西夏文小字典 (Seikabun Shōjiten)
-#         [Little Dictionary of Tangut]. 
+#         [Little Dictionary of Tangut].
 #	      In 西夏語の研 究 (Seikago no kenkyū) [A Study of the Hsi-Hsia Language] (1964-1966) vol.2. Tokyo, 1966.
-# S1968 = Sofronov M. V. (М. В. Софронов), Грамматика тангутского языка (Grammatika tangutskogo jazyka) 
+# S1968 = Sofronov M. V. (М. В. Софронов), Грамматика тангутского языка (Grammatika tangutskogo jazyka)
 #	      [Grammar of the Tangut Language]. Moscow, 1968.
 #
 #	For more information, see Section 18.10, Tangut, of the
