@@ -39,8 +39,11 @@ import org.unicode.text.utility.Utility;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R3;
+import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ULocale;
 
 public class MakeUnicodeFiles {
     public static final boolean SHOW_VERSION_IN_FILE = org.unicode.cldr.util.CldrUtility.getProperty("FILE_WITH_VERSION", "true").startsWith("t");
@@ -757,6 +760,12 @@ public class MakeUnicodeFiles {
             "gc\t;\tS\t;\tSymbol\t# Sc | Sk | Sm | So",
     "gc\t;\tZ\t;\tSeparator\t# Zl | Zp | Zs"};
 
+    static final RuleBasedCollator CASELESS_COMPARATOR = (RuleBasedCollator) Collator.getInstance(ULocale.ROOT);
+    static {
+        CASELESS_COMPARATOR.setNumericCollation(true);
+        CASELESS_COMPARATOR.freeze();
+    }
+
     public static void generateValueAliasFile(String filename) throws IOException {
         final UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY, filename).setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final UnicodeDataFile diff = UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY + "extra/", "diff");
@@ -1329,12 +1338,12 @@ public class MakeUnicodeFiles {
         }
     }
 
-    static Comparator<String> CASELESS_COMPARATOR = new Comparator<String>() {
-        @Override
-        public int compare(String s, String t) {
-            return s.compareToIgnoreCase(t);
-        }
-    };
+    //	static Comparator<String> CASELESS_COMPARATOR = new Comparator<String>() {
+    //		@Override
+    //		public int compare(String s, String t) {
+    //			return s.compareToIgnoreCase(t);
+    //		}
+    //	};
 
     public static void showDiff() throws IOException {
         final PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "propertyDifference.txt");
