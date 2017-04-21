@@ -1,5 +1,5 @@
 # NamedSequencesProv-10.0.0.txt
-# Date: 2017-02-01, 00:00:00 GMT [KW, LI]
+# Date: 2017-04-13, 01:00:00 GMT [KW, LI]
 # © 2017 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -26,7 +26,7 @@
 # in this data file, would correspond to an ISO/IEC 10646 USI
 # as follows:
 #
-# <1000, 1001, 1002> 
+# <1000, 1001, 1002>
 #
 # For more information, see UAX #34: Unicode Named Character
 # Sequences, at http://www.unicode.org/unicode/reports/tr34/
@@ -52,7 +52,7 @@
 # GURMUKHI PARI YA;0A4D 0A2F
 
 # Entry removed 2006-05-18:
-# 
+#
 # LATIN SMALL LETTER A WITH ACUTE AND OGONEK;00E1 0328
 #
 # This entry was removed because the sequence was not in NFC,

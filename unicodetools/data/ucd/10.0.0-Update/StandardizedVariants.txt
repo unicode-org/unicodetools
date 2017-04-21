@@ -1,5 +1,5 @@
 # StandardizedVariants-10.0.0.txt
-# Date: 2017-02-10, 00:00:00 GMT [KW, LI, RP]
+# Date: 2017-04-13, 01:00:00 GMT [KW, LI, RP]
 # © 2017 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -10,12 +10,12 @@
 # Unicode Character Database.
 #
 # Standardized variation sequences are defined in this file.
-# 
+#
 # Ideographic variation sequences are defined according to the registration
 # process specified in UTS #37, and are listed in the Ideographic
 # Variation Database.
 #
-# Emoji variation sequences are defined in the file 
+# Emoji variation sequences are defined in the file
 # emoji-variation-sequences.txt, documented in UTS #51, Unicode Emoji.
 #
 # Only those three types of variation sequences
@@ -24,8 +24,8 @@
 # not change the visual appearance of the preceding base character
 # from what it would have had in the absence of the variation selector.
 #
-# For more information on standardized variation sequences, 
-# see Section 23.4, Variation Selectors, 
+# For more information on standardized variation sequences,
+# see Section 23.4, Variation Selectors,
 # in The Unicode Standard, Version 10.0.
 #
 # For more information on the Ideographic Variation Database,
@@ -46,7 +46,7 @@
 
 0030 FE00; short diagonal stroke form; # DIGIT ZERO
 2205 FE00; zero with long diagonal stroke overlay form; # EMPTY SET
-2229 FE00; with serifs; # INTERSECTION 
+2229 FE00; with serifs; # INTERSECTION
 222A FE00; with serifs; # UNION
 2268 FE00; with vertical stroke; # LESS-THAN BUT NOT EQUAL TO
 2269 FE00; with vertical stroke; # GREATER-THAN BUT NOT EQUAL TO
@@ -126,15 +126,15 @@ A868 FE00; phags-pa letter reversed shaping subjoined ya; # PHAGS-PA SUBJOINED L
 # Mongolian
 
 1820 180B; second form; isolate medial final # MONGOLIAN LETTER A
-1820 180C; third form; medial # MONGOLIAN LETTER A 
+1820 180C; third form; medial # MONGOLIAN LETTER A
 1821 180B; second form; initial final # MONGOLIAN LETTER E
 1822 180B; second form; medial # MONGOLIAN LETTER I
-1823 180B; second form; medial final # MONGOLIAN LETTER O 
-1824 180B; second form; medial # MONGOLIAN LETTER U 
-1825 180B; second form; medial final # MONGOLIAN LETTER OE 
-1825 180C; third form; medial # MONGOLIAN LETTER OE 
-1826 180B; second form; isolate medial final # MONGOLIAN LETTER UE 
-1826 180C; third form; medial # MONGOLIAN LETTER UE 
+1823 180B; second form; medial final # MONGOLIAN LETTER O
+1824 180B; second form; medial # MONGOLIAN LETTER U
+1825 180B; second form; medial final # MONGOLIAN LETTER OE
+1825 180C; third form; medial # MONGOLIAN LETTER OE
+1826 180B; second form; isolate medial final # MONGOLIAN LETTER UE
+1826 180C; third form; medial # MONGOLIAN LETTER UE
 1828 180B; second form; initial medial # MONGOLIAN LETTER NA
 1828 180C; third form; medial # MONGOLIAN LETTER NA
 1828 180D; separate form; medial # MONGOLIAN LETTER NA
@@ -147,14 +147,14 @@ A868 FE00; phags-pa letter reversed shaping subjoined ya; # PHAGS-PA SUBJOINED L
 182D 180D; fourth form; medial # MONGOLIAN LETTER GA
 1830 180B; second form; final # MONGOLIAN LETTER SA
 1830 180C; third form; final # MONGOLIAN LETTER SA
-1832 180B; second form; medial # MONGOLIAN LETTER TA 
+1832 180B; second form; medial # MONGOLIAN LETTER TA
 1833 180B; second form; initial medial final # MONGOLIAN LETTER DA
 1835 180B; second form; medial # MONGOLIAN LETTER JA
 1836 180B; second form; initial medial # MONGOLIAN LETTER YA
 1836 180C; third form; medial # MONGOLIAN LETTER YA
 1838 180B; second form; final # MONGOLIAN LETTER WA
 1844 180B; second form; medial # MONGOLIAN LETTER TODO E
-1845 180B; second form; medial # MONGOLIAN LETTER TODO I 
+1845 180B; second form; medial # MONGOLIAN LETTER TODO I
 1846 180B; second form; medial # MONGOLIAN LETTER TODO O
 1847 180B; second form; isolate medial final # MONGOLIAN LETTER TODO U
 1847 180C; third form; medial # MONGOLIAN LETTER TODO U
@@ -183,7 +183,7 @@ A868 FE00; phags-pa letter reversed shaping subjoined ya; # PHAGS-PA SUBJOINED L
 1887 180B; second form; isolate final # MONGOLIAN LETTER ALI GALI A
 1887 180C; third form; final # MONGOLIAN LETTER ALI GALI A
 1887 180D; fourth form; final # MONGOLIAN LETTER ALI GALI A
-1888 180B; second form; final # MONGOLIAN LETTER ALI GALI I 
+1888 180B; second form; final # MONGOLIAN LETTER ALI GALI I
 188A 180B; second form; initial medial # MONGOLIAN LETTER ALI GALI NGA
 
 # CJK compatibility ideographs

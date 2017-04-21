@@ -1,5 +1,5 @@
 # NamedSequences-10.0.0.txt
-# Date: 2017-02-01, 00:00:00 GMT [KW, LI]
+# Date: 2017-04-13, 01:00:00 GMT [KW, LI]
 # © 2017 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -38,7 +38,7 @@
 # ================================================
 
 # Named keycap sequences for telephone keypad (used for emoji)
-# Provisional, 2015-05-05 
+# Provisional, 2015-05-05
 # FE0F added to the sequences, 2016-05-11
 # Approved 2017-05-12
 
@@ -541,7 +541,7 @@ KHMER VOWEL SIGN AAM;17B6 17C6
 
 # Entries for JIS X 0213 compatibility mapping.
 # Provisional 2008-11-07, Approved 2010-05-14
-# 
+#
 # Two of these were part of the original set of approved named sequences
 # for Unicode 4.1. 2005.
 

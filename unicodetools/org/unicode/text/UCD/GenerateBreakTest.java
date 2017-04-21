@@ -491,9 +491,9 @@ abstract public class GenerateBreakTest implements UCD_Types {
         out.println("# Default " + propertyName + " Test");
         out.println("#");
         out.println("# Format:");
-        out.println("# <string> (# <comment>)? ");
-        out.println("#  <string> contains hex Unicode code points, with ");
-        out.println("#\t" + BREAK + " wherever there is a break opportunity, and ");
+        out.println("# <string> (# <comment>)?");
+        out.println("#  <string> contains hex Unicode code points, with");
+        out.println("#\t" + BREAK + " wherever there is a break opportunity, and");
         out.println("#\t" + NOBREAK + " wherever there is not.");
         out.println("#  <comment> the format can change, but currently it shows:");
         out.println("#\t- the sample character name");

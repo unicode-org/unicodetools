@@ -1,7 +1,7 @@
 
 # ================================================================================
 # Conditional Mappings
-# The remainder of this file provides conditional casing data used to produce 
+# The remainder of this file provides conditional casing data used to produce
 # full case mappings.
 # ================================================================================
 # Language-Insensitive Mappings
