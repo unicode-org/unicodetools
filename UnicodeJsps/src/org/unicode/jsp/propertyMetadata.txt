@@ -66,11 +66,11 @@ Block ;  UCD ;    Catalog ;    General
 Script ; UCD ;    Catalog ;    General
 General_Category ;   UCD ;    Enumerated ; General
 Hangul_Syllable_Type ;   UCD ;    Enumerated ; General
-#Usage ;  UTS ;    Enumerated ; X-Security
-#Script_Specials ;    X-Demo ;    Enumerated ; X-Security
-Identifier_Status ; UTS ;    Enumerated ; X-Security
-Identifier_Type ; UTS ;    Enumerated ; X-Security
-confusable ; UTS ;    Enumerated ; X-Security
+#Usage ;  UTS ;    Enumerated ; Security
+#Script_Specials ;    X-Demo ;    Enumerated ; Security
+Identifier_Status ; UTS ;    Enumerated ; Security
+Identifier_Type ; UTS ;    Enumerated ; Security
+confusable ; UTS ;    Enumerated ; Security
 subhead ;    Nameslist ;    String ; General
 ID_Continue ;    UCD ;    Binary ; Identifiers
 ID_Start ;   UCD ;    Binary ; Identifiers
@@ -169,11 +169,22 @@ Emoji_Modifier_Sequence ; UTR ;    Binary ; Emoji
 Emoji_Zwj_Sequence ; UTR ;    Binary ; Emoji
 Emoji_Tag_Sequence ; UTR ;    Binary ; Emoji
 
-toLowercase ;  Case ;    String ; Normalization
-toTitlecase ;  Case ;    String ; Normalization
-toUppercase ;  Case ;    String ; Normalization
+toLowercase ;  Unicode ;    String ; Case
+toTitlecase ;  Unicode ;    String ; Case
+toUppercase ;  Unicode ;    String ; Case
 isNFM ; ICU ;    Binary ; Normalization
 toNFM ; ICU ;    String ; Normalization
 
-Indic_Positional_Category ; UCD ; Enum ; Indic
-Indic_Syllabic_Category ; UCD ; Enum ; Indic
+Indic_Positional_Category ; UCD ; Enumerated ; Miscellaneous
+Indic_Syllabic_Category ; UCD ; Enumerated ; Miscellaneous
+
+CJK_Radical	; UCD ; String ; CJK
+Idn_Mapping ; UCD ; Enumerated ; IDNA
+Idn_Status ; UCD ; Enumerated ; IDNA
+Name_Alias ; UCD ; Enumerated ; General
+Named_Sequences_Prov ; UCD ; Enumerated ; General
+Named_Sequences ; UCD ; Enumerated ; General
+Prepended_Concatenation_Mark ; UCD ; Enumerated ; Shaping and Rendering
+Regional_Indicator ; UCD ; Enumerated ; Emoji
+Standardized_Variant ; UCD ; Enumerated ; Shaping and Rendering
+Vertical_Orientation ; UCD ; Enumerated ; Shaping and Rendering

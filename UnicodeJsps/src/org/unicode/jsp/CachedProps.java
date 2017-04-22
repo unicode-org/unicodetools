@@ -63,6 +63,7 @@ public class CachedProps {
 			}
 		}
 		// AHex; Y                               ; Yes                              ; T                                ; True
+		// ccc;   0; NR                         ; Not_Reordered
 		for (String fileName : Arrays.asList("PropertyValueAliases.txt", "ExtraPropertyValueAliases.txt")) {
 			for (String line : FileUtilities.in(CachedProps.class, "data/" + fileName)) {
 				List<String> splitLine = breakLine(line);
@@ -76,7 +77,10 @@ public class CachedProps {
 				if (valueToAliases == null) {
 					nameToValueToAliases.put(longName, valueToAliases = new BiMultimap<String, String>(null,null));
 				}
-				valueToAliases.putAll(splitLine.get(2), splitLine.subList(1, splitLine.size()));
+                List<String> aliases = splitLine.subList(1, splitLine.size());
+				for (String item : aliases) {
+                    valueToAliases.putAll(item, aliases);
+				}
 			}
 		}
 		propNames = Collections.unmodifiableSet(temp);
@@ -117,7 +121,11 @@ public class CachedProps {
 			if (!propNames.contains(propName)) {
 				result = null;
 			} else {
-				return new DelayedUnicodeProperty(version, propName, nameToAliases.getValues(propName), nameToValueToAliases.get(propName));
+				try {
+                    return new DelayedUnicodeProperty(version, propName, nameToAliases.getValues(propName), nameToValueToAliases.get(propName));
+                } catch (Exception e) {
+                    throw new IllegalArgumentException(propName, e);
+                }
 			}
 		}
 		return result;
@@ -165,10 +173,9 @@ public class CachedProps {
 		protected List _getValueAliases(String valueAlias, List result) {
 			result.clear();
 			if (valueToAliases != null) {
-				result.addAll(valueToAliases.get(valueAlias));
-			} else {
-				result.add(valueAlias);
+                result.addAll(valueToAliases.get(valueAlias));
 			}
+			result.add(valueAlias);
 			return result;
 		}
 
@@ -237,14 +244,19 @@ public class CachedProps {
 		System.out.println(available);
 		for (String name : available) {
 			UnicodeProperty p = cp.getProperty(name);
-			System.out.println(p.getName() + "\t" + p.getNameAliases() + "\t" + p.getAvailableValues());
+			System.out.println(p.getName() + "\t" + p.getNameAliases() + "\t" + clip(p.getAvailableValues()));
 			String value = p.getValue('a');
 			System.out.println("value('a'): " + value + "\t" + p.getValueAliases(value));
 		}
 	}
 
 
-	public Set<String> getPropertyNames() {
+	private static String clip(Collection availableValues) {
+        return availableValues.size() > 24 ? new ArrayList(availableValues).subList(0, 23) + ", …" : availableValues.toString();
+    }
+
+
+    public Set<String> getPropertyNames() {
 		return nameToAliases.keySet();
 	}
 }

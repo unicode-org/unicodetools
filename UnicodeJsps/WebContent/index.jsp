@@ -10,6 +10,7 @@
 <body>
 
 <h1>Unicode Utilities: Description and Index</h1>
+<%@ include file="subtitle.jsp" %>
 <p><a target="help" href="http://cldr.unicode.org/unicode-utilities/"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <table><tr><td width='33%'>
 <h2>Boundaries</h2>

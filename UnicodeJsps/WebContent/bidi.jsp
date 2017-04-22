@@ -42,6 +42,7 @@ function insert(myField, myValue) {
         // 
 %>
 <h1>Unicode Utilities: BIDI (UBA)</h1>
+<%@ include file="subtitle.jsp" %>
 <p><a target="help" href="http://cldr.unicode.org/unicode-utilities/bidi"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <p>Shows processing by the UBA (<a target='doc' href='http://unicode.org/reports/tr9/'>Unicode Bidi Algorithm</a>), which is used to display all Unicode Arabic and Hebrew text.
 For more information, see <a target='doc' href='http://cldr.unicode.org/unicode-utilities/bidi'>bidi info</a>.</p>
