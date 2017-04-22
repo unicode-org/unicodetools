@@ -17,6 +17,7 @@
 		
 %>
 <h1>Unicode Utilities: Identifier</h1>
+<%@ include file="subtitle.jsp" %>
 <p><a target="help" href="http://cldr.unicode.org/unicode-utilities/identifier"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <form name="myform">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">

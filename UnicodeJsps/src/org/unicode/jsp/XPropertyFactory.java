@@ -72,9 +72,9 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(new IDNA2008c());
         //add(new Usage());
         add(new HanType());
-        add(new UnicodeProperty.UnicodeMapProperty().set(XIDModifications.getStatus()).setMain("Identifier_Status", "ids", UnicodeProperty.ENUMERATED, "1.1"));
-        add(new UnicodeProperty.UnicodeMapProperty().set(XIDModifications.getTypes()).setMain("Identifier_Type", "idt", UnicodeProperty.ENUMERATED, "1.1"));
-        add(new UnicodeProperty.UnicodeMapProperty().set(Confusables.getMap()).setMain("confusable", "confusable", UnicodeProperty.ENUMERATED, "1.1"));
+//        add(new UnicodeProperty.UnicodeMapProperty().set(XIDModifications.getStatus()).setMain("Identifier_Status", "ids", UnicodeProperty.ENUMERATED, "1.1"));
+//        add(new UnicodeProperty.UnicodeMapProperty().set(XIDModifications.getTypes()).setMain("Identifier_Type", "idt", UnicodeProperty.ENUMERATED, "1.1"));
+//        add(new UnicodeProperty.UnicodeMapProperty().set(Confusables.getMap()).setMain("confusable", "confusable", UnicodeProperty.ENUMERATED, "1.1"));
         add(new UnicodeProperty.UnicodeMapProperty().set(Idna2003.SINGLETON.mappings).setMain("toIdna2003", "toIdna2003", UnicodeProperty.STRING, "1.1"));
         add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings).setMain("toUts46t", "toUts46t", UnicodeProperty.STRING, "1.1"));
         add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings_display).setMain("toUts46n", "toUts46n", UnicodeProperty.STRING, "1.1"));
@@ -181,42 +181,42 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         //        .setMain("Emoji", "emoji", UnicodeProperty.ENUMERATED, "8.0")
         //                );
 
-        add(new UnicodeSetProperty()
-        .set(SequenceData.EMOJI_DEFECTIVES)
-        .setMain("Emoji_Component", "EMD", UnicodeProperty.BINARY, "10.0"));
+//        add(new UnicodeSetProperty()
+//        .set(SequenceData.EMOJI_DEFECTIVES)
+//        .setMain("Emoji_Component", "EMD", UnicodeProperty.BINARY, "10.0"));
+//
+//        add(new UnicodeSetProperty()
+//        .set(SequenceData.EMOJI_FLAG_SEQUENCES)
+//        .setMain("Emoji_Flag_Sequence", "EMFS", UnicodeProperty.BINARY, "10.0"));
+//
+//        add(new UnicodeSetProperty()
+//        .set(SequenceData.EMOJI_KEYCAP_SEQUENCES)
+//        .setMain("Emoji_Keycap_Sequence", "EMKS", UnicodeProperty.BINARY, "10.0"));
+//
+//        add(new UnicodeSetProperty()
+//        .set(SequenceData.EMOJI_MODIFIER_SEQUENCES)
+//        .setMain("Emoji_Modifier_Sequence", "EMMS", UnicodeProperty.BINARY, "10.0"));
+//
+//        add(new UnicodeSetProperty()
+//        .set(SequenceData.EMOJI_ZWJ_SEQUENCES)
+//        .setMain("Emoji_Zwj_Sequence", "EMZS", UnicodeProperty.BINARY, "10.0"));
+//
+//        add(new UnicodeSetProperty()
+//        .set(SequenceData.EMOJI_TAG_SEQUENCES)
+//        .setMain("Emoji_Tag_Sequence", "EMTS", UnicodeProperty.BINARY, "10.0"));
 
-        add(new UnicodeSetProperty()
-        .set(SequenceData.EMOJI_FLAG_SEQUENCES)
-        .setMain("Emoji_Flag_Sequence", "EMFS", UnicodeProperty.BINARY, "10.0"));
-
-        add(new UnicodeSetProperty()
-        .set(SequenceData.EMOJI_KEYCAP_SEQUENCES)
-        .setMain("Emoji_Keycap_Sequence", "EMKS", UnicodeProperty.BINARY, "10.0"));
-
-        add(new UnicodeSetProperty()
-        .set(SequenceData.EMOJI_MODIFIER_SEQUENCES)
-        .setMain("Emoji_Modifier_Sequence", "EMMS", UnicodeProperty.BINARY, "10.0"));
-
-        add(new UnicodeSetProperty()
-        .set(SequenceData.EMOJI_ZWJ_SEQUENCES)
-        .setMain("Emoji_Zwj_Sequence", "EMZS", UnicodeProperty.BINARY, "10.0"));
-
-        add(new UnicodeSetProperty()
-        .set(SequenceData.EMOJI_TAG_SEQUENCES)
-        .setMain("Emoji_Tag_Sequence", "EMTS", UnicodeProperty.BINARY, "10.0"));
-
-        UnicodeSet emojiAll = new UnicodeSet("[:emoji:]")
-        .removeAll(SequenceData.EMOJI_DEFECTIVES)
-        .addAll(SequenceData.EMOJI_FLAG_SEQUENCES)
-        .addAll(SequenceData.EMOJI_KEYCAP_SEQUENCES)
-        .addAll(SequenceData.EMOJI_MODIFIER_SEQUENCES)
-        .addAll(SequenceData.EMOJI_ZWJ_SEQUENCES)
-        .addAll(SequenceData.EMOJI_TAG_SEQUENCES)
-        .freeze();
+//        UnicodeSet emojiAll = new UnicodeSet("[:emoji:]")
+//        .removeAll(SequenceData.EMOJI_DEFECTIVES)
+//        .addAll(SequenceData.EMOJI_FLAG_SEQUENCES)
+//        .addAll(SequenceData.EMOJI_KEYCAP_SEQUENCES)
+//        .addAll(SequenceData.EMOJI_MODIFIER_SEQUENCES)
+//        .addAll(SequenceData.EMOJI_ZWJ_SEQUENCES)
+//        .addAll(SequenceData.EMOJI_TAG_SEQUENCES)
+//        .freeze();
         
-        add(new UnicodeSetProperty()
-        .set(emojiAll)
-        .setMain("Emoji_All", "EMA", UnicodeProperty.BINARY, "8.0"));
+//        add(new UnicodeSetProperty()
+//        .set(emojiAll)
+//        .setMain("Emoji_All", "EMA", UnicodeProperty.BINARY, "8.0"));
 
         //        UnicodeProperty prop2 = getProperty("emoji");
         //        UnicodeSet set = prop2.getSet("true");

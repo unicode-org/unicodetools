@@ -12,6 +12,7 @@ th           { text-align: left }
 <body>
 
 <h1>Unicode Utilities: Character Property Index</h1>
+<%@ include file="subtitle.jsp" %>
 <p><a target="help" href="http://cldr.unicode.org/unicode-utilities/properties"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <%
         request.setCharacterEncoding("UTF-8");

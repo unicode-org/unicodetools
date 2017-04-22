@@ -13,6 +13,7 @@ th           { text-align: left }
 <body>
 
 <h1>Unicode Utilities: Character Properties</h1>
+<%@ include file="subtitle.jsp" %>
 <p><a target="help" href="http://cldr.unicode.org/unicode-utilities/character"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <div style='text-align:center'>
 <form name="myform" action="character.jsp" method="get">
