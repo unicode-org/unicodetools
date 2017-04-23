@@ -296,7 +296,7 @@ idna/*/IdnaMappingTable; Idn_Mapping; 2
 idna/*/IdnaMappingTable; Idn_2008; 3
 
 security/*/IdentifierStatus; Identifier_Status;
-security/*/IdentifierType; Identifier_Type; 2
+security/*/IdentifierType; Identifier_Type
 
 # an abbreviation of the property value is in field 2
 FileType ; security/*/confusables ; Confusables
@@ -307,6 +307,8 @@ security/*/confusables ; Confusable_ML
 security/*/confusables ; Confusable_MA
 
 FileType ; emoji/*/emoji-data ; PropertyValue
+FileType ; emoji/*/emoji-sequences ; PropertyValue
+FileType ; emoji/*/emoji-zwj-sequences ; PropertyValue
 
 emoji/*/emoji-data; Emoji
 emoji/*/emoji-data; Emoji_Presentation

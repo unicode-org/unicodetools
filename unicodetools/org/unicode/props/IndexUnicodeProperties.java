@@ -645,8 +645,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         protected List _getValueAliases(String valueAlias, List result) {
             if (stringToNamedEnum != null) {
                 PropertyNames valueName = stringToNamedEnum.get(valueAlias);
-                result.addAll(valueName.getAllNames());
-            } else if (prop.getType() == PropertyType.Numeric) {
+                if (valueName != null) {
+                    result.addAll(valueName.getAllNames());
+                }
+            } 
+            if (!result.contains(valueAlias)) {
                 if (_getUnicodeMap().containsValue(valueAlias)) {
                     result.add(valueAlias);
                 }

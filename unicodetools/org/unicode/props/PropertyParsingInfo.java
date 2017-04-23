@@ -20,6 +20,7 @@ import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
+import com.ibm.icu.impl.locale.XCldrStub.Splitter;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UnicodeSet;
@@ -242,7 +243,15 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
                 // nothing
             } else {
                 try {
-                    string = Utility.fromHex(string);
+                    if (string.contains("|")) {
+                        StringBuilder result = new StringBuilder();
+                        for (String part : BAR.split(string)) {
+                            result.append(Utility.fromHex(part));
+                        }
+                        string = result.toString();
+                    } else {
+                        string = Utility.fromHex(string);
+                    }
                 } catch (RuntimeException e) {
                     throw e;
                 } catch (Exception e) {
@@ -253,6 +262,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
         }
         return string;
     }
+    
+    static Splitter BAR = Splitter.on('|').trimResults();
 
     public String normalizeEnum(String string) {
         if (getMultivalued().isBreakable(string)) {
