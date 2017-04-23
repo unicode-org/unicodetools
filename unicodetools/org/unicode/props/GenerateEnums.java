@@ -77,7 +77,7 @@ public class GenerateEnums {
         final String longName;
         final List<String> others;
         final Map<String, PropName> subnames = new TreeMap<String, PropName>();
-        PropName(PropertyType type, String...strings) {
+        PropName(PropertyType type, OverrideChoice override, String...strings) {
             shortName = strings[0];
             longName = strings[1];
             propertyType = longName.equals("Script_Extensions") ? PropertyType.Catalog : type; // HACK
@@ -91,9 +91,11 @@ public class GenerateEnums {
                 final List<String> temp = Arrays.asList(strings);
                 others = Collections.unmodifiableList(temp.subList(2, strings.length));
             }
-            for (final String name : strings) {
-                if (lookup.containsKey(name)) {
-                    throw new UnicodePropertyException("Duplicate propName");
+            if (override != OverrideChoice.allow) {
+                for (final String name : strings) {
+                    if (lookup.containsKey(name)) {
+                        throw new UnicodePropertyException("Duplicate propName");
+                    }
                 }
             }
             for (final String name : strings) {
@@ -117,38 +119,40 @@ public class GenerateEnums {
         }
         @Override
         public int compareTo(PropName arg0) {
-        	if (longName.contains("10")) {
-        		int debug = 0;
-        	}
+            if (longName.contains("10")) {
+                int debug = 0;
+            }
             return COL.compare(longName, arg0.longName);
         }
     }
-    
+
     static final RuleBasedCollator COL = (RuleBasedCollator) Collator.getInstance(Locale.ROOT);
     static {
-    	COL.setNumericCollation(true);
-    	COL.freeze();
+        COL.setNumericCollation(true);
+        COL.freeze();
     }
-	private static final Comparator<String[]> ARRAY_SORT = new Comparator<String[]>() {
-		@Override
-		public int compare(String[] o1, String[] o2) {
-			int min = o1.length < o2.length ? o1.length : o2.length;
-			for (int i = 0; i < min; ++i) {
-				int diff = COL.compare(o1[i], o2[i]);
-				if (diff != 0) {
-					return diff;
-				}
-			}
-			return o1.length - o2.length;
-		}
-	};
+    private static final Comparator<String[]> ARRAY_SORT = new Comparator<String[]>() {
+        @Override
+        public int compare(String[] o1, String[] o2) {
+            int min = o1.length < o2.length ? o1.length : o2.length;
+            for (int i = 0; i < min; ++i) {
+                int diff = COL.compare(o1[i], o2[i]);
+                if (diff != 0) {
+                    return diff;
+                }
+            }
+            return o1.length - o2.length;
+        }
+    };
+
+    enum OverrideChoice {allow, disallow}
 
     public static void main(String[] args) throws IOException {
 
         final Map<PropName, Set<String[]>> values = new TreeMap<PropName, Set<String[]>>();
 
-        addPropertyAliases(values, FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyAliases", ENUM_VERSION, true, true)));
-        addPropertyAliases(values, FileUtilities.in(GenerateEnums.class, "ExtraPropertyAliases.txt"));
+        addPropertyAliases(values, FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyAliases", ENUM_VERSION, true, true)), OverrideChoice.disallow);
+        addPropertyAliases(values, FileUtilities.in(GenerateEnums.class, "ExtraPropertyAliases.txt"), OverrideChoice.allow);
 
         writeMainUcdFile();
 
@@ -156,7 +160,7 @@ public class GenerateEnums {
         for (final String s : WARNINGS) {
             System.out.println(s);
         }
-        
+
         System.out.println("lookupMain: " + lookupMain.size());
         System.out.println(CollectionUtilities.join(lookupMain.values(), "\n"));
     }
@@ -504,7 +508,7 @@ public class GenerateEnums {
         }
     }
 
-    public static void addPropertyAliases(Map<PropName, Set<String[]>> values, Iterable<String> lines) {
+    public static void addPropertyAliases(Map<PropName, Set<String[]>> values, Iterable<String> lines, OverrideChoice override) {
         final Matcher propType = Pattern.compile("#\\s+(\\p{Alpha}+)\\s+Properties\\s*").matcher("");
         PropertyType type = null;
         for (final String line : lines) {
@@ -516,7 +520,7 @@ public class GenerateEnums {
             if (parts == null) {
                 continue;
             }
-            final PropName propName = new PropName(type, parts);
+            final PropName propName = new PropName(type, override, parts);
             values.put(propName, propName.longName.equals("Age") ? new TreeSet<>(ARRAY_SORT) : new LinkedHashSet<>());
             System.out.println(propName);
             //            if (!Locations.contains(propName.longName)) {
