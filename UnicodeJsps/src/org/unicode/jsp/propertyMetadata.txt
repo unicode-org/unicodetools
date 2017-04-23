@@ -156,18 +156,18 @@ uca2 ; UTS ;    Binary ; UCA
 uca2.5 ; UTS ;    Binary ; UCA
 uca3 ; UTS ;    Binary ; UCA
 
-Emoji ; UTR ;    Binary ; Emoji
-Emoji_Modifier ; UTR ;    Binary ; Emoji
-Emoji_Modifier_Base ; UTR ;    Binary ; Emoji
-Emoji_Presentation ; UTR ;    Binary ; Emoji
+Emoji ; UTS ;    Binary ; Emoji
+Emoji_Modifier ; UTS ;    Binary ; Emoji
+Emoji_Modifier_Base ; UTS ;    Binary ; Emoji
+Emoji_Presentation ; UTS ;    Binary ; Emoji
 
-Emoji_All ; UTR ;    Binary ; Emoji
-Emoji_Component ; UTR ;    Binary ; Emoji
-Emoji_Flag_Sequence ; UTR ;    Binary ; Emoji
-Emoji_Keycap_Sequence ; UTR ;    Binary ; Emoji
-Emoji_Modifier_Sequence ; UTR ;    Binary ; Emoji
-Emoji_Zwj_Sequence ; UTR ;    Binary ; Emoji
-Emoji_Tag_Sequence ; UTR ;    Binary ; Emoji
+Emoji_All ; UTS ;    Binary ; Emoji
+Emoji_Component ; UTS ;    Binary ; Emoji
+Emoji_Flag_Sequence ; UTS ;    Binary ; Emoji
+Emoji_Keycap_Sequence ; UTS ;    Binary ; Emoji
+Emoji_Modifier_Sequence ; UTS ;    Binary ; Emoji
+Emoji_Zwj_Sequence ; UTS ;    Binary ; Emoji
+Emoji_Tag_Sequence ; UTS ;    Binary ; Emoji
 
 toLowercase ;  Unicode ;    String ; Case
 toTitlecase ;  Unicode ;    String ; Case
@@ -188,3 +188,10 @@ Prepended_Concatenation_Mark ; UCD ; Enumerated ; Shaping and Rendering
 Regional_Indicator ; UCD ; Enumerated ; Emoji
 Standardized_Variant ; UCD ; Enumerated ; Shaping and Rendering
 Vertical_Orientation ; UCD ; Enumerated ; Shaping and Rendering
+
+Idn_2008β ; UTS ; Enumerated ; IDN
+kAccountingNumericβ ; UCD ; Enumerated ; Numeric
+kOtherNumericβ ; UCD ; Enumerated ; Numeric
+kPrimaryNumericβ	 ; UCD ; Enumerated ; Numeric
+kSimplifiedVariantβ ; UCD ; String ; CJK
+kTraditionalVariantβ	 ; UCD ; String ; CJK
