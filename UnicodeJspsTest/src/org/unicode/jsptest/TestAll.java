@@ -28,6 +28,7 @@ public class TestAll extends TestGroup {
                     // "org.unicode.jsptest.TestTypology",
                     "org.unicode.jsptest.TestUnicodeSet",
                     "org.unicode.jsptest.TestUts46",
+                    "org.unicode.jsptest.TestBasicProperties",
             },
     "All tests in jsptest");
   }
