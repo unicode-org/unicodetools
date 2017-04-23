@@ -23,37 +23,37 @@ public class TestBasicProperties extends TestFmwk2 {
 	}
 	static XPropertyFactory factory = XPropertyFactory.make();
 	static Collator col = Collator.getInstance(ULocale.ROOT);
-	static String sample = "🤩";
+	static String sample = "क";
 
 	public void TestListing() {
 		Set<String> withPropData = new TreeSet<String>();
-        for (R4<String, String, String, String> propData : PropertyMetadata.CategoryDatatypeSourceProperty) {
-            String propName = propData.get3();
-            UnicodeProperty prop = factory.getProperty(propName);
-            assertNotNull("PropertyMetadata:" + propName, prop);
-            String realName = prop.getName();
-			assertEquals("PropertyMetadata: canonicalName" + propName, realName, propName);
-            if (prop != null) {
-            	withPropData.add(realName.toUpperCase(Locale.ENGLISH));
-            }
-        }
+		for (R4<String, String, String, String> propData : PropertyMetadata.CategoryDatatypeSourceProperty) {
+			String propName = propData.get3();
+			if (propName.endsWith("β")) { continue; }
+			UnicodeProperty prop = factory.getProperty(propName);
+			if (assertNotNull("PropertyMetadata:" + propName, prop)) {
+				String realName = prop.getName();
+				assertEquals("PropertyMetadata: canonicalName" + propName, realName, propName);
+				withPropData.add(realName.toUpperCase(Locale.ENGLISH));
+			}
+		}
 		for (String name : factory.getAvailableNames()) {
 			UnicodeProperty prop = factory.getProperty(name);
-    		String value = prop.getValue(sample.codePointAt(0));
-			logln(name + "\tvalue('a') = " + value);
+			String value = prop.getValue(sample.codePointAt(0));
+			logln(name + "\tvalue('क') = " + value);
 			assertTrue("has PropertyMetadata: " + name, withPropData.contains(name.toUpperCase(Locale.ENGLISH)));
 		}
 	}
-	
+
 	public void TestPropertyMetadata() {
-        Set<String> hasMetadata = new TreeSet<String>();
-        for (R4<String, String, String, String> propData : PropertyMetadata.CategoryDatatypeSourceProperty) {
-            String propName = propData.get3();
-            hasMetadata.add(propName);
-        }
-        CachedProps cp = CachedProps.getInstance(VersionInfo.getInstance(10));
-        Set<String> propsMissingMetadata = new LinkedHashSet<String>(cp.getPropertyNames());
-        propsMissingMetadata.removeAll(hasMetadata);
-        assertEquals("PropertyMetadata", Collections.EMPTY_SET, propsMissingMetadata);
+		Set<String> hasMetadata = new TreeSet<String>();
+		for (R4<String, String, String, String> propData : PropertyMetadata.CategoryDatatypeSourceProperty) {
+			String propName = propData.get3();
+			hasMetadata.add(propName);
+		}
+		CachedProps cp = CachedProps.getInstance(VersionInfo.getInstance(10));
+		Set<String> propsMissingMetadata = new LinkedHashSet<String>(cp.getPropertyNames());
+		propsMissingMetadata.removeAll(hasMetadata);
+		assertEquals("PropertyMetadata", Collections.EMPTY_SET, propsMissingMetadata);
 	}
 }
