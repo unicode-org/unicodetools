@@ -168,8 +168,9 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     }
 
     public List getValueAliases(String valueAlias, List result) {
-        if (result == null)
+        if (result == null) {
             result = new ArrayList(1);
+        }
         result = _getValueAliases(valueAlias, result);
         if (!result.contains(valueAlias)) { // FIX && type < NUMERIC
             result = _getValueAliases(valueAlias, result); // for debugging

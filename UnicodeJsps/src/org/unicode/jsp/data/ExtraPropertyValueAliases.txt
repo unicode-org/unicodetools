@@ -67,6 +67,12 @@
 # @missing: 0000..10FFFF; Prepended_Concatenation_Mark  ; No
 # @missing: 0000..10FFFF; Regional_Indicator  ;  No
 
+# @missing: 0000..10FFFF; Emoji_Flag_Sequence  ; No
+# @missing: 0000..10FFFF; Emoji_Keycap_Sequence  ;  No
+# @missing: 0000..10FFFF; Emoji_Modifier_Sequence  ;  No
+# @missing: 0000..10FFFF; Emoji_Tag_Sequence  ;  No
+# @missing: 0000..10FFFF; Emoji_Zwj_Sequence  ;  No
+
 # Overrides for bugs
 
 # Extras
@@ -84,6 +90,7 @@ idns ; ds3m  ; disallowed_STD3_mapped
 # @missing: 0000..10FFFF; Idn_2008     ; na
 
 idn8 ; nv8   ; NV8						
+idn8 ; xv8   ; XV8						
 idn8 ; na	 ; na
 
 # @missing: 0000..10FFFF; Idn_Mapping  ; <code point>

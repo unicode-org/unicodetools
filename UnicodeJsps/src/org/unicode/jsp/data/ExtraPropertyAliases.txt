@@ -30,6 +30,19 @@ idn8 ; Idn_2008
 
 #ESN ; Emoji_Short_Name
 
+idnm ; Idn_Mapping
+
+ConfSL ; Confusable_SL
+ConfSA ; Confusable_SA
+ConfML ; Confusable_ML
+ConfMA ; Confusable_MA ; Confusable
+
+bmg                      ; Bidi_Mirroring_Glyph
+bpb                      ; Bidi_Paired_Bracket
+
+cjkSimplifiedVariant ; kSimplifiedVariant
+cjkTraditionalVariant ; kTraditionalVariant
+
 # ================================================
 # Miscellaneous Properties
 # ================================================
@@ -115,14 +128,6 @@ cjkTang ; kTang
 cjkVietnamese ; kVietnamese
 cjkXHC1983 ; kXHC1983
 cjkSemanticVariant ; kSemanticVariant
-cjkSimplifiedVariant ; kSimplifiedVariant
 cjkSpecializedSemanticVariant ; kSpecializedSemanticVariant
-cjkTraditionalVariant ; kTraditionalVariant
 cjkZVariant ; kZVariant
 
-idnm ; Idn_Mapping
-
-ConfSL ; Confusable_SL
-ConfSA ; Confusable_SA
-ConfML ; Confusable_ML
-ConfMA ; Confusable_MA ; Confusable
