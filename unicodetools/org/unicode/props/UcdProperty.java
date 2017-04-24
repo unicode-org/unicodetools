@@ -328,6 +328,4 @@ private final PropertyType type;
 	public Set<Enum> getEnums() {
 		return enums;
 	}
-
-
 }

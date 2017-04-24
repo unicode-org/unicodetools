@@ -411,9 +411,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
     }
 
-    void storeCachedMap(UcdProperty prop2, UnicodeMap<String> data) {
+    public void internalStoreCachedMap(String dir, UcdProperty prop2, UnicodeMap<String> data) {
         try {
-            final String cacheFileDirName = Settings.BIN_DIR + getUcdVersion();
+            final String cacheFileDirName = dir + getUcdVersion();
             final File cacheFileDir = new File(cacheFileDirName);
             if (!cacheFileDir.exists()) {
                 cacheFileDir.mkdir();
