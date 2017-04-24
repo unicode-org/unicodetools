@@ -8,7 +8,9 @@ public enum PropertyType {
     Miscellaneous(UnicodeProperty.MISC), 
     Catalog(UnicodeProperty.CATALOG), 
     Enumerated(UnicodeProperty.ENUMERATED), 
-    Binary(UnicodeProperty.BINARY);
+    Binary(UnicodeProperty.BINARY),
+    Unknown(-1)
+    ;
 
     private final int oldNumber;
     private PropertyType(int oldNumber) {
