@@ -2,77 +2,104 @@ package org.unicode.propstest;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.PropertyStatus;
 import org.unicode.props.PropertyType;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.ValueCardinality;
+import org.unicode.text.utility.Settings;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.dev.util.UnicodeMap;
 
 public class ListProps {
+
+    static final boolean ONLY_JSP = true;
+
+    static final Set<PropertyStatus> SKIP_JSP_STATUS = ImmutableSet.of(
+            PropertyStatus.Deprecated, 
+            PropertyStatus.Obsolete,
+            PropertyStatus.Stabilized,
+            PropertyStatus.Contributory,
+            PropertyStatus.Internal
+            );
+
     public static void main(String[] args) {
         IndexUnicodeProperties latest = IndexUnicodeProperties.make();
         PropertyType lastType = null;
-        for (UcdProperty item : UcdProperty.values()) {
-            PropertyType type = item.getType();
-            if (type != lastType) {
-                System.out.println("\n" + type + "\n");
-                lastType = type;
-            }
-            //            if (type == PropertyType.Miscellaneous || type == PropertyType.String) {
-            //                continue;
-            //            }
-            String propName = item.toString();
-            switch (item) {
-            case Identifier_Status:
-            case Bidi_Mirroring_Glyph:
-            case Bidi_Paired_Bracket:
-            case Confusable_MA:
-            case Idn_Mapping:
-            case kSimplifiedVariant:
-            case kTraditionalVariant:
-                break;
-            default: continue;
-            }
-            if (item == UcdProperty.Identifier_Status) {
-                int debug = 0;
-            }
-            System.out.println(item + (item.getCardinality() == ValueCardinality.Singleton ? "" : "\t\t**** " + item.getCardinality()));
-            try {
-                UnicodeMap<String> map = latest.load(item);
-                Set<String> values = map.values();
-                System.out.println("  values:\t" + clip(values));
-
-                UnicodeProperty uprop = latest.getProperty(propName);
-
-                Set<Enum> enums = item.getEnums();
-                if (enums != null) {
-                    Set<String> flatValues = flattenValues(values);
-                    System.out.println("  enums: \t" + clip(enums));
-                    Set<String> enumStrings = getStrings(enums);
-                    Collection<String> exceptions = propExceptions.get(propName);
-                    if (exceptions != null) {
-                        enumStrings.removeAll(exceptions);
+        Set<String> skipped = new LinkedHashSet<>();
+        main:
+            for (UcdProperty item : UcdProperty.values()) {
+                String propName = item.toString();
+                PropertyType type = item.getType();
+                ValueCardinality cardinality = item.getCardinality();
+                if (type != lastType) {
+                    System.out.println("\n" + type + "\n");
+                    lastType = type;
+                }
+                EnumSet<PropertyStatus> status = PropertyStatus.getPropertyStatusSet(item);
+                if (ONLY_JSP) {
+                    if (!Collections.disjoint(status, SKIP_JSP_STATUS)) {
+                        skipped.add("***Skipping:\t" + item + "\t" + type + "\t" + status + "\t" + cardinality);
+                        continue main;
                     }
-                    if (!enumStrings.equals(flatValues)) {
-                        System.out.println("\t" + "≠ VALUES!!!" + showDiff("enums", enumStrings, "values", flatValues));
-                    }
-                    for (String pval : uprop.getAvailableValues()) {
-                        uprop.getValueAliases(pval);
+                    if (propName.startsWith("k")) {
+                        switch (type) {
+                        case Miscellaneous:
+                        case String: 
+                            if (item == UcdProperty.kSimplifiedVariant 
+                            || item == UcdProperty.kTraditionalVariant) {
+                                break;
+                            }
+                            skipped.add("***Skipping:\t" + item + "\t" + type + "\t" + status + "\t" + cardinality);
+                            continue main;
+                        default: break;
+                        }
                     }
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println(item + "\t" + type + "\t" + status + "\t" + cardinality);
+                try {
+                    UnicodeMap<String> map = latest.load(item);
+                    Set<String> values = map.values();
+                    System.out.println("  values:\t" + clip(values));
+
+                    UnicodeProperty uprop = latest.getProperty(propName);
+
+                    Set<Enum> enums = item.getEnums();
+                    if (enums != null) {
+                        Set<String> flatValues = flattenValues(values);
+                        System.out.println("  enums: \t" + clip(enums));
+                        Set<String> enumStrings = getStrings(enums);
+                        Collection<String> exceptions = propExceptions.get(propName);
+                        if (exceptions != null) {
+                            enumStrings.removeAll(exceptions);
+                        }
+                        if (!enumStrings.equals(flatValues)) {
+                            System.out.println("\t" + "≠ VALUES!!!" + showDiff("enums", enumStrings, "values", flatValues));
+                        }
+                        for (String pval : uprop.getAvailableValues()) {
+                            uprop.getValueAliases(pval);
+                        }
+                    }
+                    latest.internalStoreCachedMap(Settings.GEN_DIR + "/bin-props/", item, map);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
+        for (String skip : skipped) {
+            System.out.println(skip);
         }
     }
     static final Splitter BAR = Splitter.on('|').omitEmptyStrings().trimResults();

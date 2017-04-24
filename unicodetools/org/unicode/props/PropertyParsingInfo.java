@@ -16,6 +16,7 @@ import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.idna.Regexes;
 import org.unicode.props.IndexUnicodeProperties.DefaultValueType;
 import org.unicode.props.PropertyUtilities.Merge;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -657,7 +658,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
             }
             data.freeze();
             if (IndexUnicodeProperties.FILE_CACHE) {
-                indexUnicodeProperties.storeCachedMap(propInfo.property, data);
+                indexUnicodeProperties.internalStoreCachedMap(Settings.BIN_DIR, propInfo.property, data);
             }
         }
     }

@@ -3,7 +3,7 @@ package org.unicode.props;
 import java.util.EnumSet;
 
 public enum PropertyStatus {
-    Obsolete, Stabilized, Deprecated, Contributory, Provisional, Informative, Normative, Immutable;
+    Obsolete, Stabilized, Deprecated, Internal, Contributory, Provisional, Informative, Normative, Immutable;
 
     private static final EnumSet<UcdProperty> DEPRECATED_PROPERTY = EnumSet.of(
             UcdProperty.Grapheme_Link,
@@ -16,15 +16,33 @@ public enum PropertyStatus {
             UcdProperty.FC_NFKC_Closure,
             UcdProperty.Confusable_ML,
             UcdProperty.Confusable_SA,
-            UcdProperty.Confusable_SL
-            );
+            UcdProperty.Confusable_SL);
+    
     private static final EnumSet<UcdProperty> STABLIZED_PROPERTY = EnumSet.of(
             UcdProperty.Hyphen,
             UcdProperty.ISO_Comment);
-    
+
     private static final EnumSet<UcdProperty> OBSOLETE_PROPERTY = EnumSet.of(
-            UcdProperty.Unicode_1_Name);
-    
+            UcdProperty.Unicode_1_Name,
+            UcdProperty.ISO_Comment,
+            UcdProperty.Grapheme_Base);
+
+    private static final EnumSet<UcdProperty> INTERNAL_PROPERTY = EnumSet.of(
+            UcdProperty.kCompatibilityVariant,
+            UcdProperty.Decomposition_Mapping,
+            UcdProperty.Composition_Exclusion,
+            UcdProperty.Full_Composition_Exclusion,
+            UcdProperty.kIICore, UcdProperty.kIRG_GSource, UcdProperty.kIRG_HSource, UcdProperty.kIRG_JSource,
+            UcdProperty.kIRG_KPSource, UcdProperty.kIRG_KSource, UcdProperty.kIRG_TSource, UcdProperty.kIRG_USource,
+            UcdProperty.kIRG_VSource, UcdProperty.kIRG_MSource, UcdProperty.kBigFive, UcdProperty.kCCCII,
+            UcdProperty.kCNS1986, UcdProperty.kCNS1992, UcdProperty.kEACC, UcdProperty.kGB0, UcdProperty.kGB1,
+            UcdProperty.kGB3, UcdProperty.kGB5, UcdProperty.kGB7, UcdProperty.kGB8, UcdProperty.kHKSCS,
+            UcdProperty.kIBMJapan, UcdProperty.kJa, UcdProperty.kJis0, UcdProperty.kJis1, UcdProperty.kJIS0213,
+            UcdProperty.kKPS0, UcdProperty.kKPS1, UcdProperty.kKSC0, UcdProperty.kKSC1, UcdProperty.kMainlandTelegraph,
+            UcdProperty.kPseudoGB1, UcdProperty.kTaiwanTelegraph, UcdProperty.kXerox,
+            UcdProperty.Emoji_DCM, UcdProperty.Emoji_KDDI, UcdProperty.Emoji_SB
+            );
+
     private static final EnumSet<UcdProperty> CONTRIBUTORY_PROPERTY = EnumSet.of(
             UcdProperty.Jamo_Short_Name,
             UcdProperty.Other_Alphabetic,
@@ -34,8 +52,10 @@ public enum PropertyStatus {
             UcdProperty.Other_ID_Start,
             UcdProperty.Other_Lowercase,
             UcdProperty.Other_Math,
-            UcdProperty.Other_Uppercase
+            UcdProperty.Other_Uppercase,
+            UcdProperty.Grapheme_Extend
             );
+    
     private static final EnumSet<UcdProperty> INFORMATIVE_PROPERTY = EnumSet.of(
             UcdProperty.Alphabetic,
             UcdProperty.Bidi_Mirroring_Glyph,
@@ -89,8 +109,8 @@ public enum PropertyStatus {
             UcdProperty.kOtherNumeric,
             UcdProperty.kPrimaryNumeric,
             UcdProperty.kRSUnicode,
-            UcdProperty.kTotalStrokes
-            );
+            UcdProperty.kTotalStrokes);
+    
     private static final EnumSet<UcdProperty> NORMATIVE_PROPERTY = EnumSet.of(
             UcdProperty.Age,
             UcdProperty.ASCII_Hex_Digit,
@@ -148,18 +168,16 @@ public enum PropertyStatus {
             UcdProperty.kIRG_MSource,
             UcdProperty.kIRG_TSource,
             UcdProperty.kIRG_USource,
-            UcdProperty.kIRG_VSource
-            );
+            UcdProperty.kIRG_VSource);
     private static final EnumSet<UcdProperty> IMMUTABLE_PROPERTY = EnumSet.of(
             UcdProperty.Name,
             UcdProperty.Jamo_Short_Name,
             UcdProperty.Canonical_Combining_Class,
             UcdProperty.Decomposition_Mapping,
             UcdProperty.Pattern_Syntax,
-            UcdProperty.Pattern_White_Space
-            );
+            UcdProperty.Pattern_White_Space);
     public static final EnumSet<UcdProperty> PROVISIONAL_PROPERTY;
-    
+
     static {
         final EnumSet<UcdProperty> temp2 = EnumSet.allOf(UcdProperty.class);
         temp2.removeAll(PropertyStatus.NORMATIVE_PROPERTY);
@@ -167,10 +185,13 @@ public enum PropertyStatus {
         temp2.removeAll(PropertyStatus.CONTRIBUTORY_PROPERTY);
         PROVISIONAL_PROPERTY = temp2;
     }
+
     public static PropertyStatus getPropertyStatus(UcdProperty prop) {
         if (OBSOLETE_PROPERTY.contains(prop)) {
             return Obsolete;
         } else if (STABLIZED_PROPERTY.contains(prop)) {
+            return Stabilized;
+        } else if (INTERNAL_PROPERTY.contains(prop)) {
             return Stabilized;
         } else if (DEPRECATED_PROPERTY.contains(prop)) {
             return Deprecated;
@@ -185,6 +206,7 @@ public enum PropertyStatus {
         }
         return Provisional;
     }
+
     public static EnumSet<PropertyStatus> getPropertyStatusSet(UcdProperty prop) {
         final EnumSet<PropertyStatus> result = EnumSet.noneOf(PropertyStatus.class);
         if (OBSOLETE_PROPERTY.contains(prop)) {
@@ -192,6 +214,9 @@ public enum PropertyStatus {
         }
         if (STABLIZED_PROPERTY.contains(prop)) {
             result.add(Stabilized);
+        }
+        if (INTERNAL_PROPERTY.contains(prop)) {
+            result.add(Internal);
         }
         if (DEPRECATED_PROPERTY.contains(prop)) {
             result.add(Deprecated);
@@ -216,5 +241,9 @@ public enum PropertyStatus {
         }
         return result;
     }
-
+    /*
+     * Unihan_DictionaryIndices.txt Unihan_DictionaryLikeData.txt
+     * Unihan_IRGSources.txt Unihan_NumericValues.txt Unihan_OtherMappings.txt
+     * Unihan_RadicalStrokeCounts.txt Unihan_Readings.txt Unihan_Variants.txt
+     */
 }
