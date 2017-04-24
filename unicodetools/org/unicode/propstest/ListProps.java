@@ -22,6 +22,7 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
+import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 
 public class ListProps {
@@ -46,13 +47,26 @@ public class ListProps {
                 PropertyType type = item.getType();
                 ValueCardinality cardinality = item.getCardinality();
                 if (type != lastType) {
-                    System.out.println("\n" + type + "\n");
+                    //System.out.println("\n" + type + "\n");
                     lastType = type;
                 }
                 EnumSet<PropertyStatus> status = PropertyStatus.getPropertyStatusSet(item);
+                
+                UnicodeMap<String> map = latest.load(item);
+                Set<String> values = map.values();
+
+                String itemInfo = item 
+                        + "\tType:\t" + type 
+                        + "\tStatus:\t"+ CollectionUtilities.join(status, ", ")
+                        + "\tCard:\t" + cardinality
+                        + "\tDefVal:\t" + IndexUnicodeProperties.getDefaultValue(item)
+                        + "\tScope:\t" + PropertyStatus.getScope(propName)
+                        + "\tOrigin:\t" + PropertyStatus.getOrigin(propName)
+                        + "\tValues:\t" + clip(values)
+                        ;
                 if (ONLY_JSP) {
                     if (!Collections.disjoint(status, SKIP_JSP_STATUS)) {
-                        skipped.add("***Skipping:\t" + item + "\t" + type + "\t" + status + "\t" + cardinality);
+                        skipped.add(itemInfo);
                         continue main;
                     }
                     if (propName.startsWith("k")) {
@@ -63,24 +77,20 @@ public class ListProps {
                             || item == UcdProperty.kTraditionalVariant) {
                                 break;
                             }
-                            skipped.add("***Skipping:\t" + item + "\t" + type + "\t" + status + "\t" + cardinality);
+                            skipped.add(itemInfo);
                             continue main;
                         default: break;
                         }
                     }
                 }
-                System.out.println(item + "\t" + type + "\t" + status + "\t" + cardinality);
+                System.out.println("➕\t" + itemInfo);
                 try {
-                    UnicodeMap<String> map = latest.load(item);
-                    Set<String> values = map.values();
-                    System.out.println("  values:\t" + clip(values));
 
                     UnicodeProperty uprop = latest.getProperty(propName);
 
                     Set<Enum> enums = item.getEnums();
                     if (enums != null) {
                         Set<String> flatValues = flattenValues(values);
-                        System.out.println("  enums: \t" + clip(enums));
                         Set<String> enumStrings = getStrings(enums);
                         Collection<String> exceptions = propExceptions.get(propName);
                         if (exceptions != null) {
@@ -99,7 +109,7 @@ public class ListProps {
                 }
             }
         for (String skip : skipped) {
-            System.out.println(skip);
+            System.out.println("➖\t" + skip);
         }
     }
     static final Splitter BAR = Splitter.on('|').omitEmptyStrings().trimResults();
