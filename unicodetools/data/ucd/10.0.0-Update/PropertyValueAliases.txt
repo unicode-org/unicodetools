@@ -1,5 +1,5 @@
 # PropertyValueAliases-10.0.0.txt
-# Date: 2017-02-17, 04:46:14 GMT
+# Date: 2017-04-21, 13:56:07 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -63,7 +63,6 @@ AHex; Y                               ; Yes                              ; T    
 # Age (age)
 
 age; 1.1                              ; V1_1
-age; 10.0                             ; V10_0
 age; 2.0                              ; V2_0
 age; 2.1                              ; V2_1
 age; 3.0                              ; V3_0
@@ -81,6 +80,7 @@ age; 6.3                              ; V6_3
 age; 7.0                              ; V7_0
 age; 8.0                              ; V8_0
 age; 9.0                              ; V9_0
+age; 10.0                             ; V10_0
 age; NA                               ; Unassigned
 
 # Alphabetic (Alpha)
