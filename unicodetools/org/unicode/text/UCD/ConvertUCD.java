@@ -44,8 +44,6 @@ public final class ConvertUCD implements UCD_Types {
     public static final boolean SHOW = false;
     public static final boolean DEBUG = false;
     static final boolean SHOW_SAMPLE = false;
-    private static final boolean DEBUG_SCRIPT = false;
-
 
     int major;
     int minor;
@@ -362,7 +360,7 @@ public final class ConvertUCD implements UCD_Types {
      */
 
 
-    List blockData = new LinkedList();
+    List<String[]> blockData = new LinkedList<String[]>();
 
     void readBlocks() throws Exception {
         System.out.println("Reading 'Blocks'");
@@ -379,11 +377,8 @@ public final class ConvertUCD implements UCD_Types {
                     System.out.println("//" + lineNumber + ": '" + line + "'");
                 }
 
-                //String original = line;
-                String comment = "";
                 final int commentPos = line.indexOf('#');
                 if (commentPos >= 0) {
-                    comment = line.substring(commentPos+1).trim();
                     line = line.substring(0, commentPos);
                 }
                 line = line.trim();
@@ -406,7 +401,7 @@ public final class ConvertUCD implements UCD_Types {
         }
     }
 
-    Set properties = new TreeSet();
+    Set<String> properties = new TreeSet<String>();
 
     void readSemi(String[] labels) throws Exception {
         System.out.println();
@@ -427,7 +422,6 @@ public final class ConvertUCD implements UCD_Types {
             return;
         }
         boolean showedSemi = false;
-        boolean showedShort = false;
         int minNumFields = labels.length;
         while (minNumFields > 0 && labels[minNumFields - 1].equals("OMIT")) {
             --minNumFields;
@@ -447,10 +441,8 @@ public final class ConvertUCD implements UCD_Types {
                     }
 
                     final String original = line;
-                    String comment = "";
                     final int commentPos = line.indexOf('#');
                     if (commentPos >= 0) {
-                        comment = line.substring(commentPos+1).trim();
                         line = line.substring(0, commentPos);
                     }
                     line = line.trim();
@@ -467,10 +459,8 @@ public final class ConvertUCD implements UCD_Types {
                             ++count;
                             parts[1] = "Y";
                         } else if (count >= minNumFields) {
-                            if (!showedShort) {
-                                System.out.println("Line shorter than labels: " + original);
-                            }
-                            showedShort = true;
+                            // There are fewer fields than we can handle, but the missing ones
+                            // all have the "OMIT" label.
                             for (int i = count; i < labels.length; ++i) {
                                 parts[i] = "";
                             }
@@ -481,10 +471,19 @@ public final class ConvertUCD implements UCD_Types {
                         }
                     } else if (count > labels.length) {
                         if (count == labels.length + 1 && parts[count-1].equals("")) {
-                            if (!showedSemi) {
-                                System.out.println("Extra semicolon in: " + original);
+                            if (labels[0].equals("SpecialCasing")) {
+                                // In SpecialCasing.txt, the condition_list field is optional,
+                                // and the semicolon is documented as being a terminator,
+                                // not a separator.
+                            } else if (labels[0].equals("CaseFolding")) {
+                                // In CaseFolding.txt, the semicolon is also documented as
+                                // being a terminator, not a separator.
+                            } else {
+                                if (!showedSemi) {
+                                    System.out.println("Extra semicolon in: " + original);
+                                }
+                                showedSemi = true;
                             }
-                            showedSemi = true;
                         } else {
                             System.out.println("Too many fields: " + original);
                             throw new ChainException("too many fields: {0}",
@@ -538,11 +537,9 @@ public final class ConvertUCD implements UCD_Types {
                         }
                     } else { // not range!
                         String val = "";
-                        String lastVal;
 
                         for (int i = 1; i < labels.length; ++i) {
                             final String key = labels[i];
-                            lastVal = val;
                             if (isHex.get(key) != null) {
                                 val = Utility.fromHex(parts[i]);
                             } else {
@@ -550,11 +547,11 @@ public final class ConvertUCD implements UCD_Types {
                             }
                             if (key.equals("OMIT"))
                             {
-                                continue; // do after val, so lastVal is correct
+                                continue;
                             }
                             if (key.equals("RANGE"))
                             {
-                                continue; // do after val, so lastVal is correct
+                                continue;
                             }
                             if (val.equals(""))
                             {
@@ -739,7 +736,7 @@ public final class ConvertUCD implements UCD_Types {
                     System.out.println(Utility.hex(cc));
                 }
 
-                final UData uData = (UData) charData.get(cc);
+                final UData uData = charData.get(cc);
                 if (false && uData.name == null) {
                     System.out.println("Warning: NULL name\n" + uData);
                     System.out.println();
