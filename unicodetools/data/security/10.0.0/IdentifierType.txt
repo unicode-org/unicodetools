@@ -1,5 +1,5 @@
 ﻿# IdentifierType.txt
-# Date: 2017-04-08, 16:13:41 GMT
+# Date: 2017-04-24, 19:57:04 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -537,79 +537,6 @@ FA27..FA29    ; Recommended                                             # 1.1   
 
 # Total code points: 19
 
-#	IdentifierType:	Aspirational
-
-1401..166C    ; Aspirational                                            # 3.0  [620] CANADIAN SYLLABICS E..CANADIAN SYLLABICS CARRIER TTSA
-166F..1676    ; Aspirational                                            # 3.0    [8] CANADIAN SYLLABICS QAI..CANADIAN SYLLABICS NNGAA
-1677..167F    ; Aspirational                                            # 5.2    [9] CANADIAN SYLLABICS WOODS-CREE THWEE..CANADIAN SYLLABICS BLACKFOOT W
-1810..1819    ; Aspirational                                            # 3.0   [10] MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
-1820..1877    ; Aspirational                                            # 3.0   [88] MONGOLIAN LETTER A..MONGOLIAN LETTER MANCHU ZHA
-1880..18A8    ; Aspirational                                            # 3.0   [41] MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONGOLIAN LETTER MANCHU ALI GALI BHA
-18AA          ; Aspirational                                            # 5.1        MONGOLIAN LETTER MANCHU ALI GALI LHA
-18B0..18F5    ; Aspirational                                            # 5.2   [70] CANADIAN SYLLABICS OY..CANADIAN SYLLABICS CARRIER DENTAL S
-2D30..2D65    ; Aspirational                                            # 4.1   [54] TIFINAGH LETTER YA..TIFINAGH LETTER YAZZ
-2D66..2D67    ; Aspirational                                            # 6.1    [2] TIFINAGH LETTER YE..TIFINAGH LETTER YO
-2D7F          ; Aspirational                                            # 6.0        TIFINAGH CONSONANT JOINER
-A000..A48C    ; Aspirational                                            # 3.0 [1165] YI SYLLABLE IT..YI SYLLABLE YYR
-16F00..16F44  ; Aspirational                                            # 6.1   [69] MIAO LETTER PA..MIAO LETTER HHA
-16F50..16F7E  ; Aspirational                                            # 6.1   [47] MIAO LETTER NASALIZATION..MIAO VOWEL SIGN NG
-16F8F..16F9F  ; Aspirational                                            # 6.1   [17] MIAO TONE RIGHT..MIAO LETTER REFORMED TONE-8
-
-# Total code points: 2202
-
-#	IdentifierType:	Aspirational Uncommon_Use
-
-18A9          ; Aspirational Uncommon_Use                               # 3.0        MONGOLIAN LETTER ALI GALI DAGALGA
-
-# Total code points: 1
-
-#	IdentifierType:	Aspirational Exclusion Not_XID
-
-1802..1803    ; Aspirational Exclusion Not_XID                          # 3.0    [2] MONGOLIAN COMMA..MONGOLIAN FULL STOP
-1805          ; Aspirational Exclusion Not_XID                          # 3.0        MONGOLIAN FOUR DOTS
-180A          ; Aspirational Exclusion Not_XID                          # 3.0        MONGOLIAN NIRUGU
-
-# Total code points: 4
-
-#	IdentifierType:	Aspirational Exclusion Not_XID Default_Ignorable
-
-180E          ; Aspirational Exclusion Not_XID Default_Ignorable        # 3.0        MONGOLIAN VOWEL SEPARATOR
-
-# Total code points: 1
-
-#	IdentifierType:	Aspirational Exclusion Default_Ignorable
-
-180B..180D    ; Aspirational Exclusion Default_Ignorable                # 3.0    [3] MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
-
-# Total code points: 3
-
-#	IdentifierType:	Aspirational Not_XID
-
-1400          ; Aspirational Not_XID                                    # 5.2        CANADIAN SYLLABICS HYPHEN
-166D..166E    ; Aspirational Not_XID                                    # 3.0    [2] CANADIAN SYLLABICS CHI SIGN..CANADIAN SYLLABICS FULL STOP
-1800..1801    ; Aspirational Not_XID                                    # 3.0    [2] MONGOLIAN BIRGA..MONGOLIAN ELLIPSIS
-1804          ; Aspirational Not_XID                                    # 3.0        MONGOLIAN COLON
-1806..1809    ; Aspirational Not_XID                                    # 3.0    [4] MONGOLIAN TODO SOFT HYPHEN..MONGOLIAN MANCHU FULL STOP
-2D70          ; Aspirational Not_XID                                    # 6.0        TIFINAGH SEPARATOR MARK
-A490..A4A1    ; Aspirational Not_XID                                    # 3.0   [18] YI RADICAL QOT..YI RADICAL GA
-A4A2..A4A3    ; Aspirational Not_XID                                    # 3.2    [2] YI RADICAL ZUP..YI RADICAL CYT
-A4A4..A4B3    ; Aspirational Not_XID                                    # 3.0   [16] YI RADICAL DDUR..YI RADICAL JO
-A4B4          ; Aspirational Not_XID                                    # 3.2        YI RADICAL NZUP
-A4B5..A4C0    ; Aspirational Not_XID                                    # 3.0   [12] YI RADICAL JJY..YI RADICAL SHAT
-A4C1          ; Aspirational Not_XID                                    # 3.2        YI RADICAL ZUR
-A4C2..A4C4    ; Aspirational Not_XID                                    # 3.0    [3] YI RADICAL SHOP..YI RADICAL ZZIET
-A4C5          ; Aspirational Not_XID                                    # 3.2        YI RADICAL NBIE
-A4C6          ; Aspirational Not_XID                                    # 3.0        YI RADICAL KE
-11660..1166C  ; Aspirational Not_XID                                    # 9.0   [13] MONGOLIAN BIRGA WITH ORNAMENT..MONGOLIAN TURNED SWIRL BIRGA WITH DOUBLE ORNAMENT
-
-# Total code points: 79
-
-#	IdentifierType:	Aspirational Not_NFKC
-
-2D6F          ; Aspirational Not_NFKC                                   # 4.1        TIFINAGH MODIFIER LETTER LABIALIZATION MARK
-
-# Total code points: 1
-
 #	IdentifierType:	Limited_Use
 
 0710..072C    ; Limited_Use                                             # 3.0   [29] SYRIAC LETTER ALAPH..SYRIAC LETTER TAW
@@ -623,6 +550,14 @@ A4C6          ; Aspirational Not_XID                                    # 3.0   
 13A0..13F4    ; Limited_Use                                             # 3.0   [85] CHEROKEE LETTER A..CHEROKEE LETTER YV
 13F5          ; Limited_Use                                             # 8.0        CHEROKEE LETTER MV
 13F8..13FD    ; Limited_Use                                             # 8.0    [6] CHEROKEE SMALL LETTER YE..CHEROKEE SMALL LETTER MV
+1401..166C    ; Limited_Use                                             # 3.0  [620] CANADIAN SYLLABICS E..CANADIAN SYLLABICS CARRIER TTSA
+166F..1676    ; Limited_Use                                             # 3.0    [8] CANADIAN SYLLABICS QAI..CANADIAN SYLLABICS NNGAA
+1677..167F    ; Limited_Use                                             # 5.2    [9] CANADIAN SYLLABICS WOODS-CREE THWEE..CANADIAN SYLLABICS BLACKFOOT W
+1810..1819    ; Limited_Use                                             # 3.0   [10] MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
+1820..1877    ; Limited_Use                                             # 3.0   [88] MONGOLIAN LETTER A..MONGOLIAN LETTER MANCHU ZHA
+1880..18A8    ; Limited_Use                                             # 3.0   [41] MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONGOLIAN LETTER MANCHU ALI GALI BHA
+18AA          ; Limited_Use                                             # 5.1        MONGOLIAN LETTER MANCHU ALI GALI LHA
+18B0..18F5    ; Limited_Use                                             # 5.2   [70] CANADIAN SYLLABICS OY..CANADIAN SYLLABICS CARRIER DENTAL S
 1900..191C    ; Limited_Use                                             # 4.0   [29] LIMBU VOWEL-CARRIER LETTER..LIMBU LETTER HA
 191D..191E    ; Limited_Use                                             # 7.0    [2] LIMBU LETTER GYAN..LIMBU LETTER TRA
 1920..192B    ; Limited_Use                                             # 4.0   [12] LIMBU VOWEL SIGN A..LIMBU SUBJOINED LETTER WA
@@ -650,6 +585,10 @@ A4C6          ; Aspirational Not_XID                                    # 3.0   
 1C00..1C37    ; Limited_Use                                             # 5.1   [56] LEPCHA LETTER KA..LEPCHA SIGN NUKTA
 1C40..1C49    ; Limited_Use                                             # 5.1   [10] LEPCHA DIGIT ZERO..LEPCHA DIGIT NINE
 1C4D..1C7D    ; Limited_Use                                             # 5.1   [49] LEPCHA LETTER TTA..OL CHIKI AHAD
+2D30..2D65    ; Limited_Use                                             # 4.1   [54] TIFINAGH LETTER YA..TIFINAGH LETTER YAZZ
+2D66..2D67    ; Limited_Use                                             # 6.1    [2] TIFINAGH LETTER YE..TIFINAGH LETTER YO
+2D7F          ; Limited_Use                                             # 6.0        TIFINAGH CONSONANT JOINER
+A000..A48C    ; Limited_Use                                             # 3.0 [1165] YI SYLLABLE IT..YI SYLLABLE YYR
 A4D0..A4FD    ; Limited_Use                                             # 5.2   [46] LISU LETTER BA..LISU LETTER TONE MYA JEU
 A500..A60C    ; Limited_Use                                             # 5.1  [269] VAI SYLLABLE EE..VAI SYLLABLE LENGTHENER
 A613..A629    ; Limited_Use                                             # 5.1   [23] VAI SYMBOL FEENG..VAI DIGIT NINE
@@ -679,10 +618,19 @@ ABF0..ABF9    ; Limited_Use                                             # 5.2   
 11400..1144A  ; Limited_Use                                             # 9.0   [75] NEWA LETTER A..NEWA SIDDHI
 11450..11459  ; Limited_Use                                             # 9.0   [10] NEWA DIGIT ZERO..NEWA DIGIT NINE
 16800..16A38  ; Limited_Use                                             # 6.0  [569] BAMUM LETTER PHASE-A NGKUE MFON..BAMUM LETTER PHASE-F VUEQ
+16F00..16F44  ; Limited_Use                                             # 6.1   [69] MIAO LETTER PA..MIAO LETTER HHA
+16F50..16F7E  ; Limited_Use                                             # 6.1   [47] MIAO LETTER NASALIZATION..MIAO VOWEL SIGN NG
+16F8F..16F9F  ; Limited_Use                                             # 6.1   [17] MIAO TONE RIGHT..MIAO LETTER REFORMED TONE-8
 1E900..1E94A  ; Limited_Use                                             # 9.0   [75] ADLAM CAPITAL LETTER ALIF..ADLAM NUKTA
 1E950..1E959  ; Limited_Use                                             # 9.0   [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 
-# Total code points: 2694
+# Total code points: 4896
+
+#	IdentifierType:	Limited_Use Uncommon_Use
+
+18A9          ; Limited_Use Uncommon_Use                                # 3.0        MONGOLIAN LETTER ALI GALI DAGALGA
+
+# Total code points: 1
 
 #	IdentifierType:	Limited_Use Technical
 
@@ -696,6 +644,26 @@ ABF0..ABF9    ; Limited_Use                                             # 5.2   
 A9CF          ; Limited_Use Exclusion                                   # 5.2        JAVANESE PANGRANGKEP
 
 # Total code points: 2
+
+#	IdentifierType:	Limited_Use Exclusion Not_XID
+
+1802..1803    ; Limited_Use Exclusion Not_XID                           # 3.0    [2] MONGOLIAN COMMA..MONGOLIAN FULL STOP
+1805          ; Limited_Use Exclusion Not_XID                           # 3.0        MONGOLIAN FOUR DOTS
+180A          ; Limited_Use Exclusion Not_XID                           # 3.0        MONGOLIAN NIRUGU
+
+# Total code points: 4
+
+#	IdentifierType:	Limited_Use Exclusion Not_XID Default_Ignorable
+
+180E          ; Limited_Use Exclusion Not_XID Default_Ignorable         # 3.0        MONGOLIAN VOWEL SEPARATOR
+
+# Total code points: 1
+
+#	IdentifierType:	Limited_Use Exclusion Default_Ignorable
+
+180B..180D    ; Limited_Use Exclusion Default_Ignorable                 # 3.0    [3] MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
+
+# Total code points: 3
 
 #	IdentifierType:	Limited_Use Obsolete
 
@@ -711,6 +679,11 @@ A62A..A62B    ; Limited_Use Obsolete                                    # 5.1   
 070F          ; Limited_Use Not_XID                                     # 3.0        SYRIAC ABBREVIATION MARK
 07F6..07F9    ; Limited_Use Not_XID                                     # 5.0    [4] NKO SYMBOL OO DENNEN..NKO EXCLAMATION MARK
 085E          ; Limited_Use Not_XID                                     # 6.0        MANDAIC PUNCTUATION
+1400          ; Limited_Use Not_XID                                     # 5.2        CANADIAN SYLLABICS HYPHEN
+166D..166E    ; Limited_Use Not_XID                                     # 3.0    [2] CANADIAN SYLLABICS CHI SIGN..CANADIAN SYLLABICS FULL STOP
+1800..1801    ; Limited_Use Not_XID                                     # 3.0    [2] MONGOLIAN BIRGA..MONGOLIAN ELLIPSIS
+1804          ; Limited_Use Not_XID                                     # 3.0        MONGOLIAN COLON
+1806..1809    ; Limited_Use Not_XID                                     # 3.0    [4] MONGOLIAN TODO SOFT HYPHEN..MONGOLIAN MANCHU FULL STOP
 1940          ; Limited_Use Not_XID                                     # 4.0        LIMBU SIGN LOO
 1944..1945    ; Limited_Use Not_XID                                     # 4.0    [2] LIMBU EXCLAMATION MARK..LIMBU QUESTION MARK
 19DE..19DF    ; Limited_Use Not_XID                                     # 4.1    [2] NEW TAI LUE SIGN LAE..NEW TAI LUE SIGN LAEV
@@ -722,6 +695,16 @@ A62A..A62B    ; Limited_Use Obsolete                                    # 5.1   
 1C3B..1C3F    ; Limited_Use Not_XID                                     # 5.1    [5] LEPCHA PUNCTUATION TA-ROL..LEPCHA PUNCTUATION TSHOOK
 1C7E..1C7F    ; Limited_Use Not_XID                                     # 5.1    [2] OL CHIKI PUNCTUATION MUCAAD..OL CHIKI PUNCTUATION DOUBLE MUCAAD
 1CC0..1CC7    ; Limited_Use Not_XID                                     # 6.1    [8] SUNDANESE PUNCTUATION BINDU SURYA..SUNDANESE PUNCTUATION BINDU BA SATANGA
+2D70          ; Limited_Use Not_XID                                     # 6.0        TIFINAGH SEPARATOR MARK
+A490..A4A1    ; Limited_Use Not_XID                                     # 3.0   [18] YI RADICAL QOT..YI RADICAL GA
+A4A2..A4A3    ; Limited_Use Not_XID                                     # 3.2    [2] YI RADICAL ZUP..YI RADICAL CYT
+A4A4..A4B3    ; Limited_Use Not_XID                                     # 3.0   [16] YI RADICAL DDUR..YI RADICAL JO
+A4B4          ; Limited_Use Not_XID                                     # 3.2        YI RADICAL NZUP
+A4B5..A4C0    ; Limited_Use Not_XID                                     # 3.0   [12] YI RADICAL JJY..YI RADICAL SHAT
+A4C1          ; Limited_Use Not_XID                                     # 3.2        YI RADICAL ZUR
+A4C2..A4C4    ; Limited_Use Not_XID                                     # 3.0    [3] YI RADICAL SHOP..YI RADICAL ZZIET
+A4C5          ; Limited_Use Not_XID                                     # 3.2        YI RADICAL NBIE
+A4C6          ; Limited_Use Not_XID                                     # 3.0        YI RADICAL KE
 A4FE..A4FF    ; Limited_Use Not_XID                                     # 5.2    [2] LISU PUNCTUATION COMMA..LISU PUNCTUATION FULL STOP
 A60D..A60F    ; Limited_Use Not_XID                                     # 5.1    [3] VAI COMMA..VAI QUESTION MARK
 A6F2..A6F7    ; Limited_Use Not_XID                                     # 5.2    [6] BAMUM NJAEMLI..BAMUM QUESTION MARK
@@ -738,9 +721,16 @@ ABEB          ; Limited_Use Not_XID                                     # 5.2   
 1144B..1144F  ; Limited_Use Not_XID                                     # 9.0    [5] NEWA DANDA..NEWA ABBREVIATION SIGN
 1145B         ; Limited_Use Not_XID                                     # 9.0        NEWA PLACEHOLDER MARK
 1145D         ; Limited_Use Not_XID                                     # 9.0        NEWA INSERTION SIGN
+11660..1166C  ; Limited_Use Not_XID                                     # 9.0   [13] MONGOLIAN BIRGA WITH ORNAMENT..MONGOLIAN TURNED SWIRL BIRGA WITH DOUBLE ORNAMENT
 1E95E..1E95F  ; Limited_Use Not_XID                                     # 9.0    [2] ADLAM INITIAL EXCLAMATION MARK..ADLAM INITIAL QUESTION MARK
 
-# Total code points: 138
+# Total code points: 217
+
+#	IdentifierType:	Limited_Use Not_NFKC
+
+2D6F          ; Limited_Use Not_NFKC                                    # 4.1        TIFINAGH MODIFIER LETTER LABIALIZATION MARK
+
+# Total code points: 1
 
 #	IdentifierType:	Uncommon_Use
 

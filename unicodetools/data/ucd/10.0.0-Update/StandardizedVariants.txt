@@ -1,5 +1,5 @@
 # StandardizedVariants-10.0.0.txt
-# Date: 2017-04-13, 01:00:00 GMT [KW, LI, RP]
+# Date: 2017-05-02, 01:00:00 GMT [KW, LI, RP]
 # © 2017 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -137,8 +137,8 @@ A868 FE00; phags-pa letter reversed shaping subjoined ya; # PHAGS-PA SUBJOINED L
 1826 180C; third form; medial # MONGOLIAN LETTER UE
 1828 180B; second form; initial medial # MONGOLIAN LETTER NA
 1828 180C; third form; medial # MONGOLIAN LETTER NA
-1828 180D; separate form; medial # MONGOLIAN LETTER NA
-182A 180B; alternative form; final # MONGOLIAN LETTER BA
+1828 180D; fourth form; medial # MONGOLIAN LETTER NA
+182A 180B; second form; final # MONGOLIAN LETTER BA
 182C 180B; second form; isolate initial medial # MONGOLIAN LETTER QA
 182C 180C; third form; medial # MONGOLIAN LETTER QA
 182C 180D; fourth form; medial # MONGOLIAN LETTER QA
