@@ -173,7 +173,9 @@ public class GenerateConfusables {
 
     public static void main(String[] args) throws IOException {
         //quickTest();
-
+        if (args.length == 0) {
+            args = new String[] {"-b", "-c"};
+        }
         try {
             for (final String arg : args) {
                 // use -b -c for the normal data files

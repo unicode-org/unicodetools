@@ -58,7 +58,7 @@ public class IdentifierInfo {
     private static Integer MARK_OUTPUT = new Integer(10);
     private static Integer MARK_ASCII = new Integer(10);
     static final String NOT_IN_XID = "not in XID+";
-    
+
     static final IndexUnicodeProperties LATEST = IndexUnicodeProperties
             .make(Default.ucdVersion());
 
@@ -126,7 +126,7 @@ public class IdentifierInfo {
         remainingOutputSet = new UnicodeSet(GenerateConfusables.IDNOutputSet).removeAll(removalSet);
 
         final UnicodeSet remainingInputSet1 = new UnicodeSet(GenerateConfusables.IDNInputSet)
-        .removeAll(removalSet).removeAll(remainingOutputSet);
+                .removeAll(removalSet).removeAll(remainingOutputSet);
         final UnicodeSet remainingInputSet = new UnicodeSet();
         final UnicodeSet specialRemove = new UnicodeSet();
         // remove any others that don't normalize/case fold to something in
@@ -163,7 +163,7 @@ public class IdentifierInfo {
         // hack
         inputSet_strict.remove(0x03F4).remove(0x2126).remove(0x212B);
         inputSet_lenient = new UnicodeSet(remainingInputSet)
-        .removeAll(inputSet_strict);
+                .removeAll(inputSet_strict);
         nonstarting = new UnicodeSet(remainingOutputSet).addAll(
                 remainingInputSet).retainAll(new UnicodeSet("[:M:]"));
         reviews = new UnicodeMap();
@@ -256,7 +256,7 @@ public class IdentifierInfo {
     public enum IdentifierType {
         recommended(Identifier_Type_Values.Recommended, IdentifierStatus.allowed),
         inclusion(Identifier_Type_Values.Inclusion, IdentifierStatus.allowed),
-        aspirational(Identifier_Type_Values.Aspirational, IdentifierStatus.restricted),
+        //aspirational(Identifier_Type_Values.Aspirational, IdentifierStatus.restricted),
         limited_use(Identifier_Type_Values.Limited_Use, IdentifierStatus.restricted),
         uncommon_use(Identifier_Type_Values.Uncommon_Use, IdentifierStatus.restricted),
         technical(Identifier_Type_Values.Technical, IdentifierStatus.restricted),
@@ -286,8 +286,8 @@ public class IdentifierInfo {
                 //rawReason = GenerateConfusables.recommended_scripts;
             } else if (rawReason.equals("historic")) {
                 return IdentifierType.obsolete;
-                //            } else if (rawReason.equals("limited_use")) {
-                //                return IdentifierType.uncommon_use;
+            } else if (rawReason.equals("aspirational")) {
+                return IdentifierType.limited_use;
             } else if (rawReason.equalsIgnoreCase("not_chars")) {
                 return IdentifierType.not_characters;
             }
@@ -440,12 +440,12 @@ public class IdentifierInfo {
             final Info scriptInfo = ScriptMetadata.getInfo(script);
             final IdUsage idUsage = scriptInfo != null 
                     ? scriptInfo.idUsage 
-                    : IdUsage.EXCLUSION;
+                            : IdUsage.EXCLUSION;
             IdentifierInfo.IdentifierType status;
             switch(idUsage) {
-            case ASPIRATIONAL:
-                status = IdentifierType.aspirational;
-                break;
+//            case ASPIRATIONAL:
+//                status = IdentifierType.aspirational;
+//                break;
             case LIMITED_USE:
                 status = IdentifierType.limited_use;
                 break;
@@ -673,68 +673,68 @@ public class IdentifierInfo {
     private void printIDModifications() throws IOException {
         printIdentifierTypes();
         printIdentifierStatus();
-        
+
         final BagFormatter bf = GenerateConfusables.makeFormatter();
         bf.setLabelSource(null);
         bf.setShowLiteral(GenerateConfusables.EXCAPE_FUNNY);
         bf.setMergeRanges(true);
 
         PrintWriter out;
-//        PrintWriter out = GenerateConfusables.openAndWriteHeader(GenerateConfusables.DRAFT_OUT, "xidmodifications.txt", "Security Profile for General Identifiers");
-//        /* PrintWriter out = FileUtilities.openUTF8Writer(outdir, "xidmodifications.txt");
-//
-//		out.println("# Security Profile for General Identifiers");
-//		out.println("# $Revision: 1.32 $");
-//		out.println("# $Date: 2010-06-19 00:29:21 $");
-//         */
-//
-//        //String skipping = "[^[:gc=cn:][:gc=co:][:gc=cs:][:gc=cc:]-[:whitespace:]]";
-//        //UnicodeSet skippingSet = new UnicodeSet(skipping);
-//
-//        out.println("#  All code points not explicitly listed ");
-//        out.println("#  have the values: Restricted; Not-Characters");
-//        out.println("# @missing: 0000..10FFFF; Restricted ; Not-Characters");
-//        out.println("");
-//        /*
-//         * for (Iterator it = values.iterator(); it.hasNext();) { String
-//         * reason1 = (String)it.next(); bf.setValueSource(reason1);
-//         * out.println(""); bf.showSetNames(out, removals.getSet(reason1)); }
-//         */
-//        bf.setValueSource((new UnicodeProperty.UnicodeMapProperty() {
-//        })
-//        .set(recastRemovals)
-//        .setMain("Removals", "GCB", UnicodeProperty.ENUMERATED, "1.0"));
-//
-//        final Set<String> fullListing = new HashSet<String>(Arrays.asList("technical limited-use historic discouraged obsolete".split("\\s+")));
-//        //        final Set<String> sortedValues = new TreeSet<String>(GenerateConfusables.UCAComparator);
-//        //        sortedValues.addAll(recastRemovals.values());
-//        //        if (GenerateConfusables.DEBUG) System.out.println("Restriction Values: " + sortedValues);
-//        for (IdentifierType value : IdentifierType.values()) {
-//            if (value == IdentifierType.not_characters) {
-//                continue;
-//            }
-//            final UnicodeSet uset = recastRemovals.getSet(value.propertyFileFormat());
-//            if (uset == null) {
-//                throw new IllegalArgumentException("internal error");
-//            }
-//            out.println("");
-//            out.println("#\tStatus/Type:\t" + value.name);
-//            out.println("");
-//            //bf.setMergeRanges(Collections.disjoint(fullListing, Arrays.asList(value.split("[\\s;]+"))));
-//            //bf.setMergeRanges(value.propertyFileFormat());
-//            bf.showSetNames(out, uset);
-//        }
-//
-//        //      out.println("");
-//        //      out.println("# Characters added");
-//        //      out.println("");
-//        //      bf.setMergeRanges(false);
-//        //      bf.setValueSource("addition");
-//        //      bf.showSetNames(out, additions.keySet());
-//
-//        //showRemapped(out, "Characters remapped on input", remap);
-//
-//        out.close();
+        //        PrintWriter out = GenerateConfusables.openAndWriteHeader(GenerateConfusables.DRAFT_OUT, "xidmodifications.txt", "Security Profile for General Identifiers");
+        //        /* PrintWriter out = FileUtilities.openUTF8Writer(outdir, "xidmodifications.txt");
+        //
+        //		out.println("# Security Profile for General Identifiers");
+        //		out.println("# $Revision: 1.32 $");
+        //		out.println("# $Date: 2010-06-19 00:29:21 $");
+        //         */
+        //
+        //        //String skipping = "[^[:gc=cn:][:gc=co:][:gc=cs:][:gc=cc:]-[:whitespace:]]";
+        //        //UnicodeSet skippingSet = new UnicodeSet(skipping);
+        //
+        //        out.println("#  All code points not explicitly listed ");
+        //        out.println("#  have the values: Restricted; Not-Characters");
+        //        out.println("# @missing: 0000..10FFFF; Restricted ; Not-Characters");
+        //        out.println("");
+        //        /*
+        //         * for (Iterator it = values.iterator(); it.hasNext();) { String
+        //         * reason1 = (String)it.next(); bf.setValueSource(reason1);
+        //         * out.println(""); bf.showSetNames(out, removals.getSet(reason1)); }
+        //         */
+        //        bf.setValueSource((new UnicodeProperty.UnicodeMapProperty() {
+        //        })
+        //        .set(recastRemovals)
+        //        .setMain("Removals", "GCB", UnicodeProperty.ENUMERATED, "1.0"));
+        //
+        //        final Set<String> fullListing = new HashSet<String>(Arrays.asList("technical limited-use historic discouraged obsolete".split("\\s+")));
+        //        //        final Set<String> sortedValues = new TreeSet<String>(GenerateConfusables.UCAComparator);
+        //        //        sortedValues.addAll(recastRemovals.values());
+        //        //        if (GenerateConfusables.DEBUG) System.out.println("Restriction Values: " + sortedValues);
+        //        for (IdentifierType value : IdentifierType.values()) {
+        //            if (value == IdentifierType.not_characters) {
+        //                continue;
+        //            }
+        //            final UnicodeSet uset = recastRemovals.getSet(value.propertyFileFormat());
+        //            if (uset == null) {
+        //                throw new IllegalArgumentException("internal error");
+        //            }
+        //            out.println("");
+        //            out.println("#\tStatus/Type:\t" + value.name);
+        //            out.println("");
+        //            //bf.setMergeRanges(Collections.disjoint(fullListing, Arrays.asList(value.split("[\\s;]+"))));
+        //            //bf.setMergeRanges(value.propertyFileFormat());
+        //            bf.showSetNames(out, uset);
+        //        }
+        //
+        //        //      out.println("");
+        //        //      out.println("# Characters added");
+        //        //      out.println("");
+        //        //      bf.setMergeRanges(false);
+        //        //      bf.setValueSource("addition");
+        //        //      bf.showSetNames(out, additions.keySet());
+        //
+        //        //showRemapped(out, "Characters remapped on input", remap);
+        //
+        //        out.close();
 
         out = GenerateConfusables.openAndWriteHeader(GenerateConfusables.reformatedInternal, "xidAllowed.txt", "Security Profile for General Identifiers");
         final UnicodeSet allowed = new UnicodeSet(xidPlus).removeAll(removals.keySet());
@@ -869,14 +869,14 @@ public class IdentifierInfo {
                 Set<IdentifierType> set1 = sortingMap.get(o2);
                 return CollectionUtilities.compare(set0.iterator(), set1.iterator());
             }
-            
+
         };
         final BagFormatter bf2 = GenerateConfusables.makeFormatter();
         bf2.setMergeRanges(true);
         final ToolUnicodePropertySource properties = ToolUnicodePropertySource.make(Default.ucdVersion());
         final UnicodeProperty age = properties.getProperty("age");
         bf2.setLabelSource(age);
-        
+
         final String propName = "IdentifierType";
         try (PrintWriter out2 = GenerateConfusables.openAndWriteHeader(GenerateConfusables.DRAFT_OUT, 
                 "IdentifierType.txt", "Security Profile for General Identifiers: "
@@ -887,13 +887,13 @@ public class IdentifierInfo {
                     + "\n# Field 1: set of IdentifierType values (see Table 1 of http://www.unicode.org/reports/tr39)"
                     + "\n#"
                     + "\n# Any missing code points have the " + propName + " value Not_Character");
-            
+
             bf2.setValueSource((new UnicodeProperty.UnicodeMapProperty() {
             }).set(tempMap).setMain(propName, "IDT",
                     UnicodeProperty.EXTENDED_MISC, "1.0"));
             TreeSet<String> sorted = new TreeSet<>(tempComp);
             sorted.addAll(tempMap.values());
-            
+
             for (String value : sorted) {
                 out2.println("");
                 out2.println("#\t"
@@ -904,7 +904,7 @@ public class IdentifierInfo {
             }
         }
     }
-    
+
     private void printIdentifierStatus() throws IOException {
         final UnicodeMap<String> tempMap = new UnicodeMap<String>();
         tempMap.putAll(0, 0x10FFFF, IdentifierStatus.allowed.toString());
@@ -914,13 +914,13 @@ public class IdentifierInfo {
                 tempMap.putAll(set, IdentifierStatus.restricted.toString());
             }
         }
-        
+
         final BagFormatter bf2 = GenerateConfusables.makeFormatter();
         bf2.setMergeRanges(true);
         final ToolUnicodePropertySource properties = ToolUnicodePropertySource.make(Default.ucdVersion());
         final UnicodeProperty age = properties.getProperty("age");
         bf2.setLabelSource(age);
-        
+
         final String propName = "IdentifierStatus";
         try (PrintWriter out2 = GenerateConfusables.openAndWriteHeader(GenerateConfusables.DRAFT_OUT, 
                 "IdentifierStatus.txt", "Security Profile for General Identifiers: " + propName)) {
@@ -934,7 +934,7 @@ public class IdentifierInfo {
             bf2.setValueSource((new UnicodeProperty.UnicodeMapProperty() {
             }).set(tempMap).setMain(propName, "IDS",
                     UnicodeProperty.EXTENDED_MISC, "1.0"));
-            
+
             for (IdentifierStatus value : IdentifierStatus.values()) {
                 if (value == IdentifierStatus.restricted) {
                     continue;
