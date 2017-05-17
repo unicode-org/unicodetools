@@ -787,6 +787,7 @@ public class UcdPropertyValues {
 
 	public enum Indic_Positional_Category_Values implements Named {
         Bottom("Bottom"),
+        Bottom_And_Left("Bottom_And_Left"),
         Bottom_And_Right("Bottom_And_Right"),
         Left("Left"),
         Left_And_Right("Left_And_Right"),
