@@ -2005,9 +2005,9 @@ E0020-E007F; [TAGGING CHARACTERS]
                     continue;
                 }
 
-                if (cp == 0xFDFB || cp == 0x0140) {
-                    System.out.println("debug point");
-                }
+//                if (cp == 0xFDFB || cp == 0x0140) {
+//                    System.out.println("debug point");
+//                }
 
                 final boolean norm;
                 final boolean plain;

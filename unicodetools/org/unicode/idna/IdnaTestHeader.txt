@@ -6,7 +6,8 @@
 #
 # This file is in UTF8, with certain characters escaped using the \uXXXX or \x{XXXX}
 # convention where they could otherwise have a confusing display.
-# These characters include: 
+# These characters include:
+# 
 # - General Categories C, Z, and M
 # - Default ignorable characters
 # - Bidi categories R, AL, AN
@@ -15,15 +16,26 @@
 # Leading and trailing spaces and tabs in each column are ignored.
 # Comments are indicated with hash marks.
 #
-#  Column 1: type - T for transitional, N for nontransitional, B for both
-#  Column 2: source - the source string to be tested
-#  Column 3: toUnicode - the result of applying toUnicode to the source, using the specified type. A blank value means the same as the source value.
-#  Column 4: toASCII - the result of applying toASCII to the source, using nontransitional. A blank value means the same as the toUnicode value.
-#  Column 5: NV8 - present if the toUnicode value would not be a valid domain name under IDNA2008. Not a normative field.
+#  Column 1: type -      T for transitional, N for nontransitional, B for both
+#  Column 2: source -    The source string to be tested
+#  Column 3: toUnicode - The result of applying toUnicode to the source, using nontransitional. 
+#                        A blank value means the same as the source value.
+#  Column 4: toASCII -   The result of applying toASCII to the source, using the specified type: T, N, or B.
+#                        A blank value means the same as the toUnicode value.
+#  Column 5: NV8 -       Present if the toUnicode value would not be a valid domain name under IDNA2008.
+#                        Not a normative field.
 #
 # If the value of toUnicode is the same as source, the column will be blank.
 # The line comments currently show visible characters that have been escaped 
 # (after removing default-ignorables and controls, except for whitespace)
+#
+# The test is performed with the following flag settings:
+#
+# VerifyDnsLength:   true
+# CheckHyphens:      true
+# CheckBidi:         true
+# CheckJoiners:      true
+# UseSTD3ASCIIRules: true
 #
 # An error in toUnicode or toASCII is indicated by a value in square brackets, such as "[B5 B6]".
 # In such a case, the contents is a list of error codes based on the step numbers in UTS46 and IDNA2008,
