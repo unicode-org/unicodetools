@@ -1547,9 +1547,9 @@ isTitlecase(X) is false.
         }
 
         public String getAge(int codePoint) {
-            if (codePoint == 0x1FFFE) {
-                System.out.println("debug point");
-            }
+//            if (codePoint == 0x1FFFE) {
+//                System.out.println("debug point");
+//            }
             if (needAgeCache) {
                 for (int i = UCD_Types.AGE11; i < UCD_Types.LIMIT_AGE; ++i) {
                     final String versionString = UCD_Types.AGE_VERSIONS[i];

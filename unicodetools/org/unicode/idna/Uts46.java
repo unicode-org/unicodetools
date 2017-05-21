@@ -1,17 +1,21 @@
 package org.unicode.idna;
 
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.unicode.jsp.FileUtilities;
 import org.unicode.text.utility.Settings;
 
+import com.google.common.base.Splitter;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
 
 public class Uts46 extends Idna {
+
+    public static final Splitter PERIOD = Splitter.on('.');
 
     public static Uts46 SINGLETON = new Uts46();
 
@@ -178,18 +182,16 @@ public class Uts46 extends Idna {
      * @return true if errors are found, otherwise false.
      */
     public static boolean hasBidiError(String label, Set<Errors> errors) {
-        if (!R_AL_AN.containsSome(label)) {
-            return false;
-        }
+
         final int oldErrorLength = errors.size();
 
         // #1
         final int firstChar = label.codePointAt(0);
 
         // 1. The first character must be a character with BIDI property L,
-        // R
-        // or AL. If it has the R or AL property, it is an RTL label; if it
-        // has the L property, it is an LTR label.
+        // R or AL. 
+        // If it has the R or AL property, it is an RTL label;
+        // if it has the L property, it is an LTR label.
 
         final boolean RTL = R_AL.contains(firstChar);
         final boolean LTR = L.contains(firstChar);
@@ -198,8 +200,7 @@ public class Uts46 extends Idna {
         }
 
         // 2. In an RTL label, only characters with the BIDI properties R,
-        // AL,
-        // AN, EN, ES, CS, ET, ON, BN and NSM are allowed.
+        // AL, AN, EN, ES, CS, ET, ON, BN and NSM are allowed.
 
         if (RTL && !R_AL_AN_EN_ES_CS_ET_ON_BN_NSM.containsAll(label)) {
             errors.add(Errors.B2);
@@ -217,20 +218,18 @@ public class Uts46 extends Idna {
         // 3. In an RTL label, the end of the label must be a character with
         // BIDI property R, AL, EN or AN, followed by zero or more
         // characters with BIDI property NSM.
-
         if (RTL && !R_AL_AN_EN.contains(lastChar)) {
             errors.add(Errors.B3);
         }
 
         // 4. In an RTL label, if an EN is present, no AN may be present,
-        // and
-        // vice versa.
+        // and vice versa.
         if (RTL && EN.containsSome(label) && AN.containsSome(label)) {
             errors.add(Errors.B4);
         }
+        
         // 5. In an LTR label, only characters with the BIDI properties L,
-        // EN,
-        // ES, CS. ET, ON, BN and NSM are allowed.
+        // EN, ES, CS. ET, ON, BN and NSM are allowed.
         if (LTR && !L_EN_ES_CS_ET_ON_BN_NSM.containsAll(label)) {
             errors.add(Errors.B5);
         }
@@ -238,7 +237,6 @@ public class Uts46 extends Idna {
         // 6. In an LTR label, the end of the label must be a character with
         // BIDI property L or EN, followed by zero or more characters with
         // BIDI property NSM.
-
         if (LTR && !L_EN.contains(lastChar)) {
             errors.add(Errors.B6);
         }
@@ -421,7 +419,7 @@ public class Uts46 extends Idna {
         // Form C.
         domainName = NFC.transform(domainName);
         // Break. Break the string into labels at U+002E ( . ) FULL STOP.
-        final String[] labels = Regexes.split(Idna.FULL_STOP, domainName);
+        final Iterable<String> labels = PERIOD.split(domainName);
         // Convert/Validate. For each label in the domain_name string:
         domainName = processConvertValidateLabels(idnaChoice, errors, labels);
         hasBidiOrContextError(domainName, errors);
@@ -438,21 +436,31 @@ public class Uts46 extends Idna {
         if (domainName.endsWith(".")) {
             domainName = domainName.substring(0,domainName.length() - 1);
         }
-        final String[] labels = Regexes.split(FULL_STOP, domainName);
+//        From end of https://tools.ietf.org/html/rfc5893#section-1.4
+//        An RTL label is a label that contains at least one character of type
+//        R, AL, or AN.
+//
+//        An LTR label is any label that is not an RTL label.
+//
+//        A "Bidi domain name" is a domain name that contains at least one RTL
+//        label.
+        boolean isBidi = R_AL_AN.containsSome(domainName);
         final int oldErrorLength = errors.size();
-        for (final String label : labels) {
+        for (final String label : PERIOD.split(domainName)) {
             if (label.isEmpty()) {
                 errors.add(Errors.A4_2);
                 continue;
             }
             // Check BIDI
-            hasBidiError(label, errors);
+            if (isBidi) {
+                hasBidiError(label, errors);
+            }
             // Check ContextJ
             hasContextJError(label, errors);
         }
         return errors.size() - oldErrorLength;
     }
-
+    
     private String processMap(String domainName, IdnaChoice idnaChoice, Set<Errors> errors) {
         final StringBuilder buffer = new StringBuilder();
         int cp;
@@ -502,9 +510,10 @@ public class Uts46 extends Idna {
         return domainName;
     }
 
-    private String processConvertValidateLabels(IdnaChoice idnaChoice, Set<Errors> errors, String[] labels) {
+    private String processConvertValidateLabels(IdnaChoice idnaChoice, Set<Errors> errors, Iterable<String> labels) {
         String domainName;
         final StringBuilder buffer = new StringBuilder();
+        boolean first = true;
         for (String label : labels) {
             // If the label starts with "xn--":
             if (label.startsWith("xn--")) {
@@ -532,11 +541,17 @@ public class Uts46 extends Idna {
                 // criteria are not satisfied, record that there was an error.
                 checkLabelValidity(label, idnaChoice, errors);
             }
-            if (buffer.length() != 0) {
+            if (first) {
+                first = false;
+            } else {
                 buffer.append('.');
             }
             buffer.append(label);
         }
+//        drop final period
+//        if (buffer.length() > 0 && Character.codePointBefore(buffer, buffer.length()) == '.') {
+//            buffer.setLength(buffer.length()-1);
+//        }
         domainName = buffer.toString();
         return domainName;
     }
@@ -606,9 +621,11 @@ public class Uts46 extends Idna {
         domainName = process(domainName, idnaChoice, errors);
         // Break the result into labels at U+002E FULL STOP.
         final StringBuilder buffer = new StringBuilder();
-        final String[] labels = Regexes.split(Idna.FULL_STOP, domainName);
-        for (int i = 0; i < labels.length; ++i) {
-            String label = labels[i];
+        final List<String> labels = PERIOD.splitToList(domainName);
+        int labelsLength = labels.size();
+        boolean first = true;
+        for (int i = 0; i < labelsLength; ++i) {
+            String label = labels.get(i);
             // Convert each label with non-ASCII characters into Punycode
             // [RFC3492]. This may record an error.
             if (!ASCII.containsAll(label)) {
@@ -624,19 +641,21 @@ public class Uts46 extends Idna {
             }
             // The length of each label is from 1 to 63.
             final int labelLength = UTF16.countCodePoint(label);
-            if (labelLength > 63 || labelLength < 1 && i != labels.length - 1) { // last
-                // one
-                // can
-                // be
-                // zero
-                // length
+            if (labelLength > 63 || labelLength < 1 && i != labelsLength - 1) {
+                // last one can be zero length
                 errors.add(Errors.A4_2);
             }
-            if (buffer.length() != 0) {
+            if (first) {
+                first = false;
+            } else {
                 buffer.append('.');
             }
             buffer.append(label);
         }
+//        drop final period
+//        if (buffer.length() > 0 && Character.codePointBefore(buffer, buffer.length()) == '.') {
+//            buffer.setLength(buffer.length()-1);
+//        }
         domainName = buffer.toString();
         // Verify DNS length restrictions. This may record an error. For more
         // information, see [STD13] and [STD3].
