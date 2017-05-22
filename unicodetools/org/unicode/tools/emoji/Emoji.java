@@ -145,7 +145,7 @@ public class Emoji {
 		// if a source is in developer release, add ᵈ to the name, eg "Googᵈ"
 		charOverride,
 		color, 
-		apple("Appl"), google("Goog"), 
+		apple("Appl"), google("Googᵈ"), 
 		emojipedia, emojixpress, // put these here, so they are picked up for candidates first
 		twitter("Twtr."), emojione("One"),
 		fb("FB", "Facebook"), fbm("FBM", "Messenger (Facebook)"), samsung("Sams."), 

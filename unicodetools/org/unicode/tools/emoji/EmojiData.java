@@ -1222,7 +1222,7 @@ public class EmojiData {
         return result;
     }
 
-    public String removeEmojiVariants(String s) {
+    public static String removeEmojiVariants(String s) {
         return s.replace(Emoji.EMOJI_VARIANT_STRING, "");
     }
     
