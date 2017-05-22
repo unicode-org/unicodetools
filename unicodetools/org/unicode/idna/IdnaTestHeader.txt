@@ -16,14 +16,16 @@
 # Leading and trailing spaces and tabs in each column are ignored.
 # Comments are indicated with hash marks.
 #
-#  Column 1: type -      T for transitional, N for nontransitional, B for both
-#  Column 2: source -    The source string to be tested
-#  Column 3: toUnicode - The result of applying toUnicode to the source, using nontransitional. 
-#                        A blank value means the same as the source value.
-#  Column 4: toASCII -   The result of applying toASCII to the source, using the specified type: T, N, or B.
-#                        A blank value means the same as the toUnicode value.
-#  Column 5: NV8 -       Present if the toUnicode value would not be a valid domain name under IDNA2008.
-#                        Not a normative field.
+#  Column 1: type -           T for transitional, N for nontransitional, B for both
+#  Column 2: source -         The source string to be tested
+#  Column 3: toUnicode -      The result of applying toUnicode to the source, using nontransitional. 
+#                             A blank value means the same as the source value; a value in [...] is a set of status codes.
+#  Column 4: toASCII -        The result of applying toASCII to the source, using the specified type: T, N, or B.
+#                             A blank value means the same as the toUnicode value; a value in [...] is a set of status codes.
+#  Column 5: idna2008Status - NV8 is only present if the status is valid but the character is excluded by IDNA2008
+#                             from all domain names for all versions of Unicode.
+#                             XV8 is present when the character is excluded by IDNA2008 for the current version of Unicode. 
+#                             These are informative values only.
 #
 # If the value of toUnicode is the same as source, the column will be blank.
 # The line comments currently show visible characters that have been escaped 
