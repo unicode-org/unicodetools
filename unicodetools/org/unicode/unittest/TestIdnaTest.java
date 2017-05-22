@@ -1,12 +1,15 @@
 package org.unicode.unittest;
 
+import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.swing.text.Utilities;
-
 import org.unicode.cldr.unittest.TestFmwkPlus;
+import org.unicode.cldr.util.CldrUtility;
+import org.unicode.idna.LoadIdnaTest;
+import org.unicode.idna.LoadIdnaTest.TestLine;
+import org.unicode.idna.LoadIdnaTest.Type;
 import org.unicode.idna.Uts46;
 import org.unicode.idna.Uts46.Errors;
 import org.unicode.idna.Uts46.IdnaChoice;
@@ -23,9 +26,23 @@ import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UnicodeSet;
 
-public class TestIdna extends TestFmwkPlus{
+public class TestIdnaTest extends TestFmwkPlus{
+    public String TEST_DIR;
+    
     public static void main(String[] args) {
-        new TestIdna().run(args);
+        new TestIdnaTest().run(args);
+    }
+    
+    @Override
+    protected void init() throws Exception {
+        super.init();
+        TEST_DIR = getProperty("DIR");
+        if (TEST_DIR == null) {
+            TEST_DIR = Settings.UNICODETOOLS_DIRECTORY + "data";
+        } else if (TEST_DIR.equalsIgnoreCase("DRAFT")) {
+            TEST_DIR = Settings.UNICODE_DRAFT_PUBLIC;
+        }
+        TEST_DIR += "idna/10.0.0/";
     }
 
     static IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
@@ -51,13 +68,16 @@ public class TestIdna extends TestFmwkPlus{
     public static final Splitter semi = Splitter.on(';').trimResults();
 
     public void testBroken() {
-        String[][] tests = {
-                {"B;    0à.\u05D0;  ;   xn--0-sfa.xn--4db   #   0à.א", "error"},
-                {"B;    à.\u05D00\u0660\u05D0;  [B4];   [B4]    #   à.א0٠א", "noerror"},
-                {"T;    \u200D。。\u06B9\u200C;   [C2 A4_2 B3 C1];    xn--skb #   ..ڹ", "error"}
+        String[] tests = {
+                "B; xn--fa-hia.de;  faß.de; xn--fa-hia.de",
+                "B; 0à.\u05D0;  [B1];   [B1]    #   0à.א",
+                "B; à.\u05D00\u0660\u05D0;  [B4];   [B4]    #   à.א0٠א",
+                "T; \u200D。。\u06B9\u200C;   [B1 B3 C1 C2 A4_2]; [A4_2]  #   ..ڹ",
+                "N;  \u200D。。\u06B9\u200C;   [B1 B3 C1 C2 A4_2]; [B1 B3 C1 C2 A4_2]  #   ..ڹ"
         };
-        for (String[] test : tests) {
-            check(test[0], test[1].equals("error"));
+        for (String test : tests) {
+            TestLine tl = TestLine.from(test);
+            checkTestLine(tl);
         }
     }
 
@@ -69,40 +89,45 @@ public class TestIdna extends TestFmwkPlus{
 #  Column 5: NV8 - present if the toUnicode value would not be a valid domain name under IDNA2008. Not a normative field.
      */
 
-    enum Type {T, N, B};
-    private void check(String test, boolean errors) {
-        List<String> parts = semi.splitToList(test);
-        Type type = Type.valueOf(parts.get(0));
-        String source = parts.get(1);
-        String toUnicode = parts.get(2);
-        if (toUnicode.isEmpty()) {
-            toUnicode = source;
+    private void checkTestLine(TestLine tl) {
+        String detailedSource = showBidi(tl.source);
+        if (tl.source.equals("0à.\u05D0")) {
+            int debug = 0;
         }
-        String toAscii = parts.get(3);
-        if (toAscii.isEmpty()) {
-            toAscii = toUnicode;
-        }
-        //boolean NV8 = parts.
-
-        System.out.println(test + " — ICU says errors = " + errors);
-        System.out.println("source: " + showBidi(source));
-
-        final Set<Errors> toUnicodeErrors = new LinkedHashSet<Errors>();
-        final String unicode = Uts46.SINGLETON.toUnicode(source, IdnaChoice.nontransitional, toUnicodeErrors);
-        System.out.println("toUnicode: " + showBidi(unicode) + "; " + toUnicodeErrors + "; ");
-
-        if (type == Type.B || type == Type.T) {
-            final Set<Errors> transitionalErrors = new LinkedHashSet<Errors>();
-            final String transitional = Uts46.SINGLETON.toASCII(source, IdnaChoice.transitional, transitionalErrors);
-            System.out.println("toAsciiT: " + transitional + "; " + transitionalErrors);
+        final Set<Errors> toUnicodeErrors = EnumSet.noneOf(Errors.class);
+        final String toUnicode = Uts46.SINGLETON.toUnicode(tl.source, IdnaChoice.nontransitional, toUnicodeErrors);
+        String lead = "toUnicode(";
+        if (tl.toUnicodeErrors.isEmpty()) {
+            if (!assertEquals(lead + detailedSource + ")", tl.toUnicode, toUnicode)) {
+                int debug = 0;
+            }
+        } else {
+            if (!assertEquals(lead + detailedSource + ")", tl.toUnicodeErrors, toUnicodeErrors)) {
+                int debug = 0;
+            }
         }
 
-        if (type == Type.B || type == Type.N) {
-            final Set<Errors> nonTransitionalErrors = new LinkedHashSet<Errors>();
-            final String nontransitional = Uts46.SINGLETON.toASCII(source, IdnaChoice.nontransitional, nonTransitionalErrors);
-            System.out.println("toAsciiN: " + nontransitional + "; " + nonTransitionalErrors);
+        if (tl.type == Type.B || tl.type == Type.T) {
+            checkAscii(tl, IdnaChoice.transitional, detailedSource);
         }
-        System.out.println();
+        if (tl.type == Type.B || tl.type == Type.N) {
+            checkAscii(tl, IdnaChoice.nontransitional, detailedSource);
+        }
+    }
+
+    private void checkAscii(TestLine tl, IdnaChoice idnaChoice, String detailedSource) {
+        final Set<Errors> toAsciiErrors = EnumSet.noneOf(Errors.class);
+        final String toAscii = Uts46.SINGLETON.toASCII(tl.source, idnaChoice, toAsciiErrors);
+        String f = idnaChoice == IdnaChoice.transitional ? " toAsciiT(" : " toAsciiN(";
+        if (tl.toAsciiErrors.isEmpty()) {
+            if (!assertEquals(f + detailedSource + ")", tl.toAscii, toAscii))  {
+                int debug = 0;
+            }
+        } else {
+            if (!assertEquals(f + detailedSource + ")", tl.toAsciiErrors, toAsciiErrors))  {
+                int debug = 0;
+            }
+        }
     }
 
     static final char LRM = '\u200E';
@@ -161,5 +186,11 @@ public class TestIdna extends TestFmwkPlus{
         final Set<Errors> toUnicodeErrors = new LinkedHashSet<Errors>();
         final String actual = Uts46.SINGLETON.toUnicode(source, IdnaChoice.nontransitional, toUnicodeErrors);
         assertEquals("toUnicode(" + source + "):", expected, actual);
+    }
+    
+    public void testFile() {
+        for (TestLine testLine : LoadIdnaTest.load(TEST_DIR)) {
+            checkTestLine(testLine);
+        }
     }
 }

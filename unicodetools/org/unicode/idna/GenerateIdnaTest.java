@@ -70,14 +70,14 @@ public class GenerateIdnaTest {
     public static void main(String[] args) throws IOException {
         final int count = new GenerateIdnaTest().generateTests(1000);
         System.out.println("DONE " + count);
-        System.out.println("Copy the new data to {workspace}/unicodetools/data/idna and run TestIdna!");
+        System.out.println("Copy the new data to {workspace}/unicodetools/data/idna and run TestIdna -prop:DIR=draft");
     }
 
-//    private static <T> void assertEquals(String string, T expected, T actual) {
-//        if (!Objects.equal(expected, actual)) {
-//            throw new IllegalArgumentException(string + ": expected: " + expected + " ≠ " + actual);
-//        }
-//    }
+    //    private static <T> void assertEquals(String string, T expected, T actual) {
+    //        if (!Objects.equal(expected, actual)) {
+    //            throw new IllegalArgumentException(string + ": expected: " + expected + " ≠ " + actual);
+    //        }
+    //    }
 
     public static void setUnicodeVersion() {
         Default.setUCD(Settings.latestVersion);
@@ -142,34 +142,34 @@ public class GenerateIdnaTest {
         }
 
         out.println("\n# RANDOMIZED TESTS\n");
-        
+
         Set<TestLine> testLines = LoadIdnaTest.load(Settings.UNICODETOOLS_DIRECTORY + "data/idna/9.0.0");
-        
+
         for (TestLine testLine : testLines) {
             count += generateLine(replaceNewerThan90(testLine.source), out);
         }
 
-//        final RandomString randomString = new RandomString();
-//        final char[] LABELSEPARATORS = {'\u002E', '\uFF0E', '\u3002', '\uFF61'};
-//        final StringBuilder sb = new StringBuilder();
-//
-//        final int labelLength = NEW_FORMAT ? 2 : 3;
-//
-//        for (int line = 0; line < lines; ++line) {
-//            sb.setLength(0);
-//            randomString.resetRandom(line); // provide predictable results based on line number
-//            // random number of labels
-//            int labels = RandomString.random.nextInt(labelLength);
-//            for (; labels >= 0; --labels) {
-//                randomString.appendNext(sb);
-//                if (labels != 0) {
-//                    sb.append(LABELSEPARATORS[RandomString.random.nextInt(4)]);
-//                }
-//            }
-//            // random length
-//            count += generateLine(sb.toString(), out);
-//        }
-        
+        //        final RandomString randomString = new RandomString();
+        //        final char[] LABELSEPARATORS = {'\u002E', '\uFF0E', '\u3002', '\uFF61'};
+        //        final StringBuilder sb = new StringBuilder();
+        //
+        //        final int labelLength = NEW_FORMAT ? 2 : 3;
+        //
+        //        for (int line = 0; line < lines; ++line) {
+        //            sb.setLength(0);
+        //            randomString.resetRandom(line); // provide predictable results based on line number
+        //            // random number of labels
+        //            int labels = RandomString.random.nextInt(labelLength);
+        //            for (; labels >= 0; --labels) {
+        //                randomString.appendNext(sb);
+        //                if (labels != 0) {
+        //                    sb.append(LABELSEPARATORS[RandomString.random.nextInt(4)]);
+        //                }
+        //            }
+        //            // random length
+        //            count += generateLine(sb.toString(), out);
+        //        }
+
         out.close();
         return count;
     }
@@ -187,7 +187,7 @@ public class GenerateIdnaTest {
     }
 
     int generateLine(String source, PrintWriter out) {
-        if (source.contains(".𐋱₂")) {
+        if (source.equals("0à.\u05D0")) {
             int debug = 0;
         }
         if (alreadyDone(source)) {
@@ -196,16 +196,17 @@ public class GenerateIdnaTest {
         int result = 0;
         final Set<Errors> transitionalErrors = EnumSet.noneOf(Errors.class);
         final String transitional = Uts46.SINGLETON.toASCII(source, IdnaChoice.transitional, transitionalErrors);
-        
+
         final Set<Errors> nonTransitionalErrors = EnumSet.noneOf(Errors.class);
         final String nontransitional = Uts46.SINGLETON.toASCII(source, IdnaChoice.nontransitional, nonTransitionalErrors);
-        
+
         final Set<Errors> toUnicodeErrors = EnumSet.noneOf(Errors.class);
         final String unicode = Uts46.SINGLETON.toUnicode(source, IdnaChoice.nontransitional, toUnicodeErrors);
 
         if (!transitionalErrors.equals(nonTransitionalErrors)
                 || !transitional.equals(nontransitional)
-                && transitionalErrors.size() == 0) {
+                //&& transitionalErrors.size() == 0
+                ) {
             showLine(source, "T", transitional, transitionalErrors, unicode, toUnicodeErrors, out);
             showLine(source, "N", nontransitional, nonTransitionalErrors, unicode, toUnicodeErrors, out);
             result += 2;
@@ -225,10 +226,10 @@ public class GenerateIdnaTest {
         result += generateLine(UCharacter.toTitleCase(source, null), out);
 
         //if (transitionalErrors.size() == 0) {
-            result += generateLine(transitional, out);
+        result += generateLine(transitional, out);
         //}
         //if (nonTransitionalErrors.size() == 0) {
-            result += generateLine(nontransitional, out);
+        result += generateLine(nontransitional, out);
         //}
         if (toUnicodeErrors.size() == 0) {
             result += generateLine(unicode, out);
@@ -272,15 +273,15 @@ public class GenerateIdnaTest {
             }
             result.appendCodePoint(cp);
         }
-//        final Matcher m = labelSeparator.reset(source);
-//        for (final String label : labelSeparator.split(source)) {
-//            if (IdnaTypes.LABEL_ASCII.containsAll(label)) {
-//                final String folded = Idna.CASEFOLD.transform(label);
-//                result.append(folded);
-//                continue;
-//            }
-//            result.append(label);
-//        }
+        //        final Matcher m = labelSeparator.reset(source);
+        //        for (final String label : labelSeparator.split(source)) {
+        //            if (IdnaTypes.LABEL_ASCII.containsAll(label)) {
+        //                final String folded = Idna.CASEFOLD.transform(label);
+        //                result.append(folded);
+        //                continue;
+        //            }
+        //            result.append(label);
+        //        }
         return result.toString();
     }
 
@@ -299,13 +300,11 @@ public class GenerateIdnaTest {
                 + ";\t"
                 + (hasUnicodeErrors ? showErrors(toUnicodeErrors) : unicode.equals(source) ? "" : unicodeReveal)
                 + ";\t"
-                + (hasAsciiErrors ? showErrors(asciiErrors) 
-                        : unicode.equals(ascii) ? "" 
-                                :  hexForTest.transform(ascii))
-                                + (Idna2008.GRANDFATHERED_VALID.containsSome(unicode) ? ";\tXV8" 
-                                        : hasUnicodeErrors || validIdna2008 ? "" :  ";\tNV8") // checking
-                                        + (!NEW_FORMAT ? "" : ""
-                                                + (unicodeReveal.equals(unicode) ? "" : "\t#\t" + removeInvisible.transform(unicode)))
+                + (hasAsciiErrors ? showErrors(asciiErrors) : unicode.equals(ascii) ? "" : hexForTest.transform(ascii))
+                + (Idna2008.GRANDFATHERED_VALID.containsSome(unicode) ? ";\tXV8" 
+                        : hasUnicodeErrors || validIdna2008 ? "" :  ";\tNV8") // checking
+                + (!NEW_FORMAT ? "" : ""
+                        + (unicodeReveal.equals(unicode) ? "" : "\t#\t" + removeInvisible.transform(unicode)))
                 );
     }
 
@@ -314,31 +313,31 @@ public class GenerateIdnaTest {
         static UnicodeSet[] sampleSets;
         static {
             final String[] samplesNew = {
-//                    // bidi
-//                    "[[:bc=R:][:bc=AL:]]",
-//                    "[[:bc=L:]]",
-//                    "[[:bc=ES:][:bc=CS:][:bc=ET:][:bc=ON:][:bc=BN:][:bc=NSM:]]",
-//                    "[[:bc=EN:]]",
-//                    "[[:bc=AN:]]",
-//                    "[[:bc=NSM:]]",
-//                    // contextj
-//                    "[\u200C\u200D]",
-//                    "[[:ccc=virama:]]",
-//                    "[[:jt=T:]]",
-//                    "[[:jt=L:][:jt=D:]]",
-//                    "[[:jt=R:][:jt=D:]]",
-//                    // syntax
-//                    "[-]",
-//                    // changed mapping from 2003
-//                    "[\u04C0 \u10A0-\u10C5 \u2132 \u2183 \u2F868 \u2F874 \u2F91F \u2F95F \u2F9BF \u3164 \uFFA0 \u115F \u1160 \u17B4 \u17B5 \u1806]",
-//                    // disallowed in 2003
-//                    "[\u200E-\u200F \u202A-\u202E \u2061-\u2063 \uFFFC \uFFFD \u1D173-\u1D17A \u206A-\u206F \uE0001 \uE0020-\uE007F]",
-//                    // Step 7
-//                    "[\u2260 \u226E \u226F \uFE12 \u2488]",
-//                    // disallowed
-//                    "[:age=9.0:]",
-//                    // deviations
-//                    "[\\u200C\\u200D\\u00DF\\u03C2]",
+                    //                    // bidi
+                    //                    "[[:bc=R:][:bc=AL:]]",
+                    //                    "[[:bc=L:]]",
+                    //                    "[[:bc=ES:][:bc=CS:][:bc=ET:][:bc=ON:][:bc=BN:][:bc=NSM:]]",
+                    //                    "[[:bc=EN:]]",
+                    //                    "[[:bc=AN:]]",
+                    //                    "[[:bc=NSM:]]",
+                    //                    // contextj
+                    //                    "[\u200C\u200D]",
+                    //                    "[[:ccc=virama:]]",
+                    //                    "[[:jt=T:]]",
+                    //                    "[[:jt=L:][:jt=D:]]",
+                    //                    "[[:jt=R:][:jt=D:]]",
+                    //                    // syntax
+                    //                    "[-]",
+                    //                    // changed mapping from 2003
+                    //                    "[\u04C0 \u10A0-\u10C5 \u2132 \u2183 \u2F868 \u2F874 \u2F91F \u2F95F \u2F9BF \u3164 \uFFA0 \u115F \u1160 \u17B4 \u17B5 \u1806]",
+                    //                    // disallowed in 2003
+                    //                    "[\u200E-\u200F \u202A-\u202E \u2061-\u2063 \uFFFC \uFFFD \u1D173-\u1D17A \u206A-\u206F \uE0001 \uE0020-\uE007F]",
+                    //                    // Step 7
+                    //                    "[\u2260 \u226E \u226F \uFE12 \u2488]",
+                    //                    // disallowed
+                    //                    "[:age=9.0:]",
+                    //                    // deviations
+                    //                    "[\\u200C\\u200D\\u00DF\\u03C2]",
                     // stable sets
                     // bidi
                     "[\\u05BE\\u05C0\\u05C3\\u05C6\\u05D0-\\u05EA\\u05F0-\\u05F4\\u0608\\u060B\\u060D\\u061B\\u061C\\U0001EE67-\\U0001EE6A\\U0001EE6C-\\U0001EE72\\U0001EE74-\\U0001EE77\\U0001EE79-\\U0001EE7C\\U0001EE7E\\U0001EE80-\\U0001EE89\\U0001EE8B-\\U0001EE9B\\U0001EEA1-\\U0001EEA3\\U0001EEA5-\\U0001EEA9\\U0001EEAB-\\U0001EEBB]",
@@ -392,8 +391,8 @@ public class GenerateIdnaTest {
             //UnicodeSet age = new UnicodeSet("[:age=6.0:]");
             for (int i = 0; i < samples.length; ++i) {
                 sampleSets[i] = new UnicodeSet(samples[i])
-                //                .retainAll(age)
-                .freeze();
+                        //                .retainAll(age)
+                        .freeze();
             }
         }
         void appendNext(StringBuilder sb) {
@@ -423,9 +422,9 @@ public class GenerateIdnaTest {
         //    return valid2008;
         final UnicodeMap<Idna2008Type> typeMapping = Idna2008.getTypeMapping();
         return new UnicodeSet(typeMapping.getSet(Idna2008Type.PVALID))
-        .addAll(typeMapping.getSet(Idna2008Type.CONTEXTJ))
-        .addAll(typeMapping.getSet(Idna2008Type.CONTEXTO))
-        ;
+                .addAll(typeMapping.getSet(Idna2008Type.CONTEXTJ))
+                .addAll(typeMapping.getSet(Idna2008Type.CONTEXTO))
+                ;
     }
 
     public static Transliterator hexForTest = Transliterator.getInstance(
@@ -465,14 +464,14 @@ public class GenerateIdnaTest {
     static final char SAMPLE_NSM = '\u0308'; // U+02C7 ( ˇ ) CARON
 
     public static String[][] bidiTests = {
-        {"à" + SAMPLE_R_AL, "B5", "B6"},
-        {"0à." + SAMPLE_R_AL,"B1"},
-        {"à." + SAMPLE_R_AL + SAMPLE_NSM},
-        {"à." + SAMPLE_R_AL + SAMPLE_EN + SAMPLE_AN + SAMPLE_R_AL, "B4"},
-        {SAMPLE_NSM + "." + SAMPLE_R_AL + "","B3"},
-        {"à." + SAMPLE_R_AL + "0" + SAMPLE_AN,"B4"},
-        {"à" + SAMPLE_ES_CS_ET_ON_BN + "." + SAMPLE_R_AL + "","B6"},
-        {"à" + SAMPLE_NSM + "." + SAMPLE_R_AL + ""},
+            {"à" + SAMPLE_R_AL, "B5", "B6"},
+            {"0à." + SAMPLE_R_AL,"B1"},
+            {"à." + SAMPLE_R_AL + SAMPLE_NSM},
+            {"à." + SAMPLE_R_AL + SAMPLE_EN + SAMPLE_AN + SAMPLE_R_AL, "B4"},
+            {SAMPLE_NSM + "." + SAMPLE_R_AL + "","B3"},
+            {"à." + SAMPLE_R_AL + "0" + SAMPLE_AN,"B4"},
+            {"à" + SAMPLE_ES_CS_ET_ON_BN + "." + SAMPLE_R_AL + "","B6"},
+            {"à" + SAMPLE_NSM + "." + SAMPLE_R_AL + ""},
     };
 
     public static String[][] contextTests = new String[][] {
@@ -496,8 +495,8 @@ public class GenerateIdnaTest {
             { "\uAB60", "B", "\uAB60", 0 },
 
             { "1234567890\u00E41234567890123456789012345678901234567890123456", "B",
-                    "1234567890\u00E41234567890123456789012345678901234567890123456",
-                    Uts46.UIDNA_ERROR_LABEL_TOO_LONG },
+                "1234567890\u00E41234567890123456789012345678901234567890123456",
+                Uts46.UIDNA_ERROR_LABEL_TOO_LONG },
             // all ASCII
             { "www.eXample.cOm", "B", "www.example.com", 0 },
             // u-umlaut
@@ -511,46 +510,46 @@ public class GenerateIdnaTest {
             { "XN--fA-hia.dE", "B", "fa\u00DF.de", 0 },
             // Greek with final sigma
             { "\u03B2\u03CC\u03BB\u03BF\u03C2.com", "N",
-                    "\u03B2\u03CC\u03BB\u03BF\u03C2.com", 0 },
+                "\u03B2\u03CC\u03BB\u03BF\u03C2.com", 0 },
             // Greek with final
             // sigma
             { "\u03B2\u03CC\u03BB\u03BF\u03C2.com", "T",
                     "\u03B2\u03CC\u03BB\u03BF\u03C3.com", 0 },
             { "xn--nxasmm1c", "B", // Greek with final sigma in Punycode
-                    "\u03B2\u03CC\u03BB\u03BF\u03C2", 0 },
+                        "\u03B2\u03CC\u03BB\u03BF\u03C2", 0 },
             { "www.\u0DC1\u0DCA\u200D\u0DBB\u0DD3.com", "N", // "Sri" in "Sri
-                                                             // Lanka" has a ZWJ
-                    "www.\u0DC1\u0DCA\u200D\u0DBB\u0DD3.com", 0 },
+                            // Lanka" has a ZWJ
+                            "www.\u0DC1\u0DCA\u200D\u0DBB\u0DD3.com", 0 },
             { "www.\u0DC1\u0DCA\u200D\u0DBB\u0DD3.com", "T", // "Sri" in "Sri
-                                                             // Lanka" has a ZWJ
-                    "www.\u0DC1\u0DCA\u0DBB\u0DD3.com", 0 },
+                                // Lanka" has a ZWJ
+                                "www.\u0DC1\u0DCA\u0DBB\u0DD3.com", 0 },
             { "www.xn--10cl1a0b660p.com", "B", // "Sri" in Punycode
-                    "www.\u0DC1\u0DCA\u200D\u0DBB\u0DD3.com", 0 },
+                                    "www.\u0DC1\u0DCA\u200D\u0DBB\u0DD3.com", 0 },
             { "\u0646\u0627\u0645\u0647\u200C\u0627\u06CC", "N", // ZWNJ
-                    "\u0646\u0627\u0645\u0647\u200C\u0627\u06CC", 0 },
+                                        "\u0646\u0627\u0645\u0647\u200C\u0627\u06CC", 0 },
             { "\u0646\u0627\u0645\u0647\u200C\u0627\u06CC", "T", // ZWNJ
-                    "\u0646\u0627\u0645\u0647\u0627\u06CC", 0 },
+                                            "\u0646\u0627\u0645\u0647\u0627\u06CC", 0 },
             { "xn--mgba3gch31f060k.com", "B", // ZWNJ in Punycode
-                    "\u0646\u0627\u0645\u0647\u200C\u0627\u06CC.com", 0 },
+                                                "\u0646\u0627\u0645\u0647\u200C\u0627\u06CC.com", 0 },
             { "a.b\uFF0Ec\u3002d\uFF61", "B",
-                    "a.b.c.d.", 0 },
+                                                    "a.b.c.d.", 0 },
             { "U\u0308.xn--tda", "B", // U+umlaut.u-umlaut
-                    "\u00FC.\u00FC", 0 },
+                                                        "\u00FC.\u00FC", 0 },
             { "xn--u-ccb", "B", // u+umlaut in Punycode
-                    "xn--u-ccb\uFFFD", Uts46.UIDNA_ERROR_INVALID_ACE_LABEL },
+                                                            "xn--u-ccb\uFFFD", Uts46.UIDNA_ERROR_INVALID_ACE_LABEL },
             { "a\u2488com", "B", // contains 1-dot
-                    "a\uFFFDcom", Uts46.UIDNA_ERROR_DISALLOWED },
+                                                                "a\uFFFDcom", Uts46.UIDNA_ERROR_DISALLOWED },
             { "xn--a-ecp.ru", "B", // contains 1-dot in Punycode
-                    "xn--a-ecp\uFFFD.ru", Uts46.UIDNA_ERROR_INVALID_ACE_LABEL },
+                                                                    "xn--a-ecp\uFFFD.ru", Uts46.UIDNA_ERROR_INVALID_ACE_LABEL },
             { "xn--0.pt", "B", // invalid Punycode
-                    "xn--0\uFFFD.pt", Uts46.UIDNA_ERROR_PUNYCODE },
+                                                                        "xn--0\uFFFD.pt", Uts46.UIDNA_ERROR_PUNYCODE },
             { "xn--a.pt", "B", // U+0080
-                    "xn--a\uFFFD.pt", Uts46.UIDNA_ERROR_INVALID_ACE_LABEL },
+                                                                            "xn--a\uFFFD.pt", Uts46.UIDNA_ERROR_INVALID_ACE_LABEL },
             { "xn--a-\u00C4.pt", "B", // invalid Punycode
-                    "xn--a-\u00E4.pt", Uts46.UIDNA_ERROR_PUNYCODE },
+                                                                                "xn--a-\u00E4.pt", Uts46.UIDNA_ERROR_PUNYCODE },
             { "\u65E5\u672C\u8A9E\u3002\uFF2A\uFF30", "B", // Japanese with
-                                                           // fullwidth ".jp"
-                    "\u65E5\u672C\u8A9E.jp", 0 },
+                                                                                    // fullwidth ".jp"
+                                                                                    "\u65E5\u672C\u8A9E.jp", 0 },
             { "\u2615", "B", "\u2615", 0 }, // Unicode 4.0 HOT BEVERAGE
             // many deviation characters, test the special mapping code
             { "1.a\u00DF\u200C\u200Db\u200C\u200Dc\u00DF\u00DF\u00DF\u00DFd"
@@ -563,7 +562,7 @@ public class GenerateIdnaTest {
                             + "\u00DF\u00DF\u00DF\u00DF\u00DF\u00DF\u00DF\u00DF\u00DF\u00DFx"
                             + "\u00DF\u00DF\u00DF\u00DF\u00DF\u00DF\u00DF\u00DF\u00DF\u00DFy"
                             + "\u00DF\u00DF\u00DF\u00DF\u00DF\u00DF\u00DF\u00DF\u0302\u00DFz",
-                    Uts46.UIDNA_ERROR_LABEL_TOO_LONG | Uts46.UIDNA_ERROR_CONTEXTJ },
+                            Uts46.UIDNA_ERROR_LABEL_TOO_LONG | Uts46.UIDNA_ERROR_CONTEXTJ },
             { "1.a\u00DF\u200C\u200Db\u200C\u200Dc\u00DF\u00DF\u00DF\u00DFd"
                     + "\u03C2\u03C3\u00DF\u00DF\u00DF\u00DF\u00DF\u00DF\u00DF\u00DFe"
                     + "\u00DF\u00DF\u00DF\u00DF\u00DF\u00DF\u00DF\u00DF\u00DF\u00DFx"
@@ -574,12 +573,12 @@ public class GenerateIdnaTest {
                             + "ssssssssssssssssssssx"
                             + "ssssssssssssssssssssy"
                             + "sssssssssssssss\u015Dssz",
-                    Uts46.UIDNA_ERROR_LABEL_TOO_LONG },
+                            Uts46.UIDNA_ERROR_LABEL_TOO_LONG },
             // "xn--bss" with deviation characters
             { "\u200Cx\u200Dn\u200C-\u200D-b\u00DF", "N",
-                    "\u200Cx\u200Dn\u200C-\u200D-b\u00DF", Uts46.UIDNA_ERROR_CONTEXTJ },
+                                "\u200Cx\u200Dn\u200C-\u200D-b\u00DF", Uts46.UIDNA_ERROR_CONTEXTJ },
             { "\u200Cx\u200Dn\u200C-\u200D-b\u00DF", "T",
-                    "\u5919", 0 },
+                                    "\u5919", 0 },
             // "xn--bssffl" written as:
             // 02E3 MODIFIER LETTER SMALL X
             // 034F COMBINING GRAPHEME JOINER (ignored)
@@ -612,7 +611,7 @@ public class GenerateIdnaTest {
                             + "123456789012345678901234567890123456789012345678901234567890123."
                             + "123456789012345678901234567890123456789012345678901234567890123."
                             + "1234567890123456789012345678901234567890123456789012345678901",
-                    0 },
+                            0 },
             { "123456789012345678901234567890123456789012345678901234567890123."
                     + "123456789012345678901234567890123456789012345678901234567890123."
                     + "123456789012345678901234567890123456789012345678901234567890123."
@@ -621,7 +620,7 @@ public class GenerateIdnaTest {
                             + "123456789012345678901234567890123456789012345678901234567890123."
                             + "123456789012345678901234567890123456789012345678901234567890123."
                             + "1234567890123456789012345678901234567890123456789012345678901.",
-                    0 },
+                            0 },
             { "123456789012345678901234567890123456789012345678901234567890123."
                     + "123456789012345678901234567890123456789012345678901234567890123."
                     + "123456789012345678901234567890123456789012345678901234567890123."
@@ -630,7 +629,7 @@ public class GenerateIdnaTest {
                             + "123456789012345678901234567890123456789012345678901234567890123."
                             + "123456789012345678901234567890123456789012345678901234567890123."
                             + "12345678901234567890123456789012345678901234567890123456789012",
-                    Uts46.UIDNA_ERROR_DOMAIN_NAME_TOO_LONG },
+                            Uts46.UIDNA_ERROR_DOMAIN_NAME_TOO_LONG },
             { "123456789012345678901234567890123456789012345678901234567890123."
                     + "1234567890123456789012345678901234567890123456789012345678901234."
                     + "123456789012345678901234567890123456789012345678901234567890123."
@@ -639,7 +638,7 @@ public class GenerateIdnaTest {
                             + "1234567890123456789012345678901234567890123456789012345678901234."
                             + "123456789012345678901234567890123456789012345678901234567890123."
                             + "123456789012345678901234567890123456789012345678901234567890",
-                    Uts46.UIDNA_ERROR_LABEL_TOO_LONG },
+                            Uts46.UIDNA_ERROR_LABEL_TOO_LONG },
             { "123456789012345678901234567890123456789012345678901234567890123."
                     + "1234567890123456789012345678901234567890123456789012345678901234."
                     + "123456789012345678901234567890123456789012345678901234567890123."
@@ -648,7 +647,7 @@ public class GenerateIdnaTest {
                             + "1234567890123456789012345678901234567890123456789012345678901234."
                             + "123456789012345678901234567890123456789012345678901234567890123."
                             + "123456789012345678901234567890123456789012345678901234567890.",
-                    Uts46.UIDNA_ERROR_LABEL_TOO_LONG },
+                            Uts46.UIDNA_ERROR_LABEL_TOO_LONG },
             { "123456789012345678901234567890123456789012345678901234567890123."
                     + "1234567890123456789012345678901234567890123456789012345678901234."
                     + "123456789012345678901234567890123456789012345678901234567890123."
@@ -657,14 +656,14 @@ public class GenerateIdnaTest {
                             + "1234567890123456789012345678901234567890123456789012345678901234."
                             + "123456789012345678901234567890123456789012345678901234567890123."
                             + "1234567890123456789012345678901234567890123456789012345678901",
-                    Uts46.UIDNA_ERROR_LABEL_TOO_LONG | Uts46.UIDNA_ERROR_DOMAIN_NAME_TOO_LONG },
+                            Uts46.UIDNA_ERROR_LABEL_TOO_LONG | Uts46.UIDNA_ERROR_DOMAIN_NAME_TOO_LONG },
             // label length 63:
             // xn--1234567890123456789012345678901234567890123456789012345-9te
             { "\u00E41234567890123456789012345678901234567890123456789012345", "B",
-                    "\u00E41234567890123456789012345678901234567890123456789012345", 0 },
+                                "\u00E41234567890123456789012345678901234567890123456789012345", 0 },
             { "1234567890\u00E41234567890123456789012345678901234567890123456", "B",
-                    "1234567890\u00E41234567890123456789012345678901234567890123456",
-                    Uts46.UIDNA_ERROR_LABEL_TOO_LONG },
+                                    "1234567890\u00E41234567890123456789012345678901234567890123456",
+                                    Uts46.UIDNA_ERROR_LABEL_TOO_LONG },
             { "123456789012345678901234567890123456789012345678901234567890123."
                     + "1234567890\u00E4123456789012345678901234567890123456789012345."
                     + "123456789012345678901234567890123456789012345678901234567890123."
@@ -673,7 +672,7 @@ public class GenerateIdnaTest {
                             + "1234567890\u00E4123456789012345678901234567890123456789012345."
                             + "123456789012345678901234567890123456789012345678901234567890123."
                             + "1234567890123456789012345678901234567890123456789012345678901",
-                    0 },
+                            0 },
             { "123456789012345678901234567890123456789012345678901234567890123."
                     + "1234567890\u00E4123456789012345678901234567890123456789012345."
                     + "123456789012345678901234567890123456789012345678901234567890123."
@@ -682,7 +681,7 @@ public class GenerateIdnaTest {
                             + "1234567890\u00E4123456789012345678901234567890123456789012345."
                             + "123456789012345678901234567890123456789012345678901234567890123."
                             + "1234567890123456789012345678901234567890123456789012345678901.",
-                    0 },
+                            0 },
             { "123456789012345678901234567890123456789012345678901234567890123."
                     + "1234567890\u00E4123456789012345678901234567890123456789012345."
                     + "123456789012345678901234567890123456789012345678901234567890123."
@@ -691,7 +690,7 @@ public class GenerateIdnaTest {
                             + "1234567890\u00E4123456789012345678901234567890123456789012345."
                             + "123456789012345678901234567890123456789012345678901234567890123."
                             + "12345678901234567890123456789012345678901234567890123456789012",
-                    Uts46.UIDNA_ERROR_DOMAIN_NAME_TOO_LONG },
+                            Uts46.UIDNA_ERROR_DOMAIN_NAME_TOO_LONG },
             { "123456789012345678901234567890123456789012345678901234567890123."
                     + "1234567890\u00E41234567890123456789012345678901234567890123456."
                     + "123456789012345678901234567890123456789012345678901234567890123."
@@ -700,7 +699,7 @@ public class GenerateIdnaTest {
                             + "1234567890\u00E41234567890123456789012345678901234567890123456."
                             + "123456789012345678901234567890123456789012345678901234567890123."
                             + "123456789012345678901234567890123456789012345678901234567890",
-                    Uts46.UIDNA_ERROR_LABEL_TOO_LONG },
+                            Uts46.UIDNA_ERROR_LABEL_TOO_LONG },
             { "123456789012345678901234567890123456789012345678901234567890123."
                     + "1234567890\u00E41234567890123456789012345678901234567890123456."
                     + "123456789012345678901234567890123456789012345678901234567890123."
@@ -709,7 +708,7 @@ public class GenerateIdnaTest {
                             + "1234567890\u00E41234567890123456789012345678901234567890123456."
                             + "123456789012345678901234567890123456789012345678901234567890123."
                             + "123456789012345678901234567890123456789012345678901234567890.",
-                    Uts46.UIDNA_ERROR_LABEL_TOO_LONG },
+                            Uts46.UIDNA_ERROR_LABEL_TOO_LONG },
             { "123456789012345678901234567890123456789012345678901234567890123."
                     + "1234567890\u00E41234567890123456789012345678901234567890123456."
                     + "123456789012345678901234567890123456789012345678901234567890123."
@@ -718,21 +717,21 @@ public class GenerateIdnaTest {
                             + "1234567890\u00E41234567890123456789012345678901234567890123456."
                             + "123456789012345678901234567890123456789012345678901234567890123."
                             + "1234567890123456789012345678901234567890123456789012345678901",
-                    Uts46.UIDNA_ERROR_LABEL_TOO_LONG | Uts46.UIDNA_ERROR_DOMAIN_NAME_TOO_LONG },
+                            Uts46.UIDNA_ERROR_LABEL_TOO_LONG | Uts46.UIDNA_ERROR_DOMAIN_NAME_TOO_LONG },
             // hyphen errors and empty-label errors
             // "xn---q----jra"=="-q--a-umlaut-"
             { "a.b..-q--a-.e", "B", "a.b..-q--a-.e",
-                    Uts46.UIDNA_ERROR_EMPTY_LABEL | Uts46.UIDNA_ERROR_LEADING_HYPHEN | Uts46.UIDNA_ERROR_TRAILING_HYPHEN
-                            |
-                            Uts46.UIDNA_ERROR_HYPHEN_3_4 },
+                                Uts46.UIDNA_ERROR_EMPTY_LABEL | Uts46.UIDNA_ERROR_LEADING_HYPHEN | Uts46.UIDNA_ERROR_TRAILING_HYPHEN
+                                |
+                                Uts46.UIDNA_ERROR_HYPHEN_3_4 },
             { "a.b..-q--\u00E4-.e", "B", "a.b..-q--\u00E4-.e",
-                    Uts46.UIDNA_ERROR_EMPTY_LABEL | Uts46.UIDNA_ERROR_LEADING_HYPHEN | Uts46.UIDNA_ERROR_TRAILING_HYPHEN
-                            |
-                            Uts46.UIDNA_ERROR_HYPHEN_3_4 },
+                                    Uts46.UIDNA_ERROR_EMPTY_LABEL | Uts46.UIDNA_ERROR_LEADING_HYPHEN | Uts46.UIDNA_ERROR_TRAILING_HYPHEN
+                                    |
+                                    Uts46.UIDNA_ERROR_HYPHEN_3_4 },
             { "a.b..xn---q----jra.e", "B", "a.b..-q--\u00E4-.e",
-                    Uts46.UIDNA_ERROR_EMPTY_LABEL | Uts46.UIDNA_ERROR_LEADING_HYPHEN | Uts46.UIDNA_ERROR_TRAILING_HYPHEN
-                            |
-                            Uts46.UIDNA_ERROR_HYPHEN_3_4 },
+                                        Uts46.UIDNA_ERROR_EMPTY_LABEL | Uts46.UIDNA_ERROR_LEADING_HYPHEN | Uts46.UIDNA_ERROR_TRAILING_HYPHEN
+                                        |
+                                        Uts46.UIDNA_ERROR_HYPHEN_3_4 },
             { "a..c", "B", "a..c", Uts46.UIDNA_ERROR_EMPTY_LABEL },
             { "a.-b.", "B", "a.-b.", Uts46.UIDNA_ERROR_LEADING_HYPHEN },
             { "a.b-.c", "B", "a.b-.c", Uts46.UIDNA_ERROR_TRAILING_HYPHEN },
@@ -749,71 +748,71 @@ public class GenerateIdnaTest {
             { "A0", "B", "a0", 0 },
             { "0A", "B", "0a", 0 }, // all-LTR is ok to start with a digit (EN)
             { "0A.\u05D0", "B", // ASCII label does not start with L/R/AL
-                    "0a.\u05D0", Uts46.UIDNA_ERROR_BIDI },
+                "0a.\u05D0", Uts46.UIDNA_ERROR_BIDI },
             { "c.xn--0-eha.xn--4db", "B", // 2nd label does not start with
-                                          // L/R/AL
+                    // L/R/AL
                     "c.0\u00FC.\u05D0", Uts46.UIDNA_ERROR_BIDI },
             { "b-.\u05D0", "B", // label does not end with L/EN
-                    "b-.\u05D0", Uts46.UIDNA_ERROR_TRAILING_HYPHEN | Uts46.UIDNA_ERROR_BIDI },
+                        "b-.\u05D0", Uts46.UIDNA_ERROR_TRAILING_HYPHEN | Uts46.UIDNA_ERROR_BIDI },
             { "d.xn----dha.xn--4db", "B", // 2nd label does not end with L/EN
-                    "d.\u00FC-.\u05D0", Uts46.UIDNA_ERROR_TRAILING_HYPHEN | Uts46.UIDNA_ERROR_BIDI },
+                            "d.\u00FC-.\u05D0", Uts46.UIDNA_ERROR_TRAILING_HYPHEN | Uts46.UIDNA_ERROR_BIDI },
             { "a\u05D0", "B", "a\u05D0", Uts46.UIDNA_ERROR_BIDI }, // first dir
-                                                                   // != last
-                                                                   // dir
+            // != last
+            // dir
             { "\u05D0\u05C7", "B", "\u05D0\u05C7", 0 },
             { "\u05D09\u05C7", "B", "\u05D09\u05C7", 0 },
             { "\u05D0a\u05C7", "B", "\u05D0a\u05C7", Uts46.UIDNA_ERROR_BIDI }, // first
-                                                                               // dir
-                                                                               // !=
-                                                                               // last
-                                                                               // dir
+            // dir
+            // !=
+            // last
+            // dir
             { "\u05D0\u05EA", "B", "\u05D0\u05EA", 0 },
             { "\u05D0\u05F3\u05EA", "B", "\u05D0\u05F3\u05EA", 0 },
             { "a\u05D0Tz", "B", "a\u05D0tz", Uts46.UIDNA_ERROR_BIDI }, // mixed
-                                                                       // dir
+            // dir
             { "\u05D0T\u05EA", "B", "\u05D0t\u05EA", Uts46.UIDNA_ERROR_BIDI }, // mixed
-                                                                               // dir
+            // dir
             { "\u05D07\u05EA", "B", "\u05D07\u05EA", 0 },
             { "\u05D0\u0667\u05EA", "B", "\u05D0\u0667\u05EA", 0 }, // Arabic 7
-                                                                    // in the
-                                                                    // middle
+            // in the
+            // middle
             { "a7\u0667z", "B", "a7\u0667z", Uts46.UIDNA_ERROR_BIDI }, // AN
-                                                                       // digit
-                                                                       // in LTR
+            // digit
+            // in LTR
             { "\u05D07\u0667\u05EA", "B", // mixed EN/AN digits in RTL
-                    "\u05D07\u0667\u05EA", Uts46.UIDNA_ERROR_BIDI },
+                "\u05D07\u0667\u05EA", Uts46.UIDNA_ERROR_BIDI },
             // ZWJ
             { "\u0BB9\u0BCD\u200D", "N", "\u0BB9\u0BCD\u200D", 0 }, // Virama+ZWJ
             { "\u0BB9\u200D", "N", "\u0BB9\u200D", Uts46.UIDNA_ERROR_CONTEXTJ }, // no
-                                                                                 // Virama
+            // Virama
             { "\u200D", "N", "\u200D", Uts46.UIDNA_ERROR_CONTEXTJ }, // no
-                                                                     // Virama
+            // Virama
             // ZWNJ
             { "\u0BB9\u0BCD\u200C", "N", "\u0BB9\u0BCD\u200C", 0 }, // Virama+ZWNJ
             { "\u0BB9\u200C", "N", "\u0BB9\u200C", Uts46.UIDNA_ERROR_CONTEXTJ }, // no
-                                                                                 // Virama
+            // Virama
             { "\u200C", "N", "\u200C", Uts46.UIDNA_ERROR_CONTEXTJ }, // no
-                                                                     // Virama
+            // Virama
             { "\u0644\u0670\u200C\u06ED\u06EF", "N", // Joining types D T ZWNJ T
-                                                     // R
-                    "\u0644\u0670\u200C\u06ED\u06EF", 0 },
+                // R
+                "\u0644\u0670\u200C\u06ED\u06EF", 0 },
             { "\u0644\u0670\u200C\u06EF", "N", // D T ZWNJ R
                     "\u0644\u0670\u200C\u06EF", 0 },
             { "\u0644\u200C\u06ED\u06EF", "N", // D ZWNJ T R
-                    "\u0644\u200C\u06ED\u06EF", 0 },
+                        "\u0644\u200C\u06ED\u06EF", 0 },
             { "\u0644\u200C\u06EF", "N", // D ZWNJ R
-                    "\u0644\u200C\u06EF", 0 },
+                            "\u0644\u200C\u06EF", 0 },
             { "\u0644\u0670\u200C\u06ED", "N", // D T ZWNJ T
-                    "\u0644\u0670\u200C\u06ED", Uts46.UIDNA_ERROR_BIDI | Uts46.UIDNA_ERROR_CONTEXTJ },
+                                "\u0644\u0670\u200C\u06ED", Uts46.UIDNA_ERROR_BIDI | Uts46.UIDNA_ERROR_CONTEXTJ },
             { "\u06EF\u200C\u06EF", "N", // R ZWNJ R
-                    "\u06EF\u200C\u06EF", Uts46.UIDNA_ERROR_CONTEXTJ },
+                                    "\u06EF\u200C\u06EF", Uts46.UIDNA_ERROR_CONTEXTJ },
             { "\u0644\u200C", "N", // D ZWNJ
-                    "\u0644\u200C", Uts46.UIDNA_ERROR_BIDI | Uts46.UIDNA_ERROR_CONTEXTJ },
+                                        "\u0644\u200C", Uts46.UIDNA_ERROR_BIDI | Uts46.UIDNA_ERROR_CONTEXTJ },
             // { "", "B",
             // "", 0 },
             {"0à.\u05D0"},
             {"à.\u05D00\u0660"},
             {"\u200D。。\u06B9\u200C"},
+            {"\u05D0\u0030\u0660"},
     };
-
 }
