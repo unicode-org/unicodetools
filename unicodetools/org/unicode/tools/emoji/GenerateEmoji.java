@@ -1999,7 +1999,8 @@ public class GenerateEmoji {
             link = IMAGE_MORE_INFO;
         }
         return "<a href='" + link + "#" + Emoji.buildFileName(emoji, "_") + "' target='" + getTargetForFile(link)
-        + "'>";
+        + "'>"
+        ;
     }
 
     //	private static final String HOVER_INSTRUCTIONS = "Emoji without available skintone show a small swatch afterwards;"
@@ -2120,10 +2121,10 @@ public class GenerateEmoji {
      * @deprecated Use {@link #print(String,Form,String,String,UnicodeSet)}
      *             instead
      */
-//    public static <T> void print(String chartsDir, Form form, UnicodeSet filter, String title, String filename)
-//            throws IOException {
-//        print(chartsDir, form, title, filename, filter);
-//    }
+    //    public static <T> void print(String chartsDir, Form form, UnicodeSet filter, String title, String filename)
+    //            throws IOException {
+    //        print(chartsDir, form, title, filename, filter);
+    //    }
 
     /**
      * Main charts
@@ -2429,6 +2430,11 @@ public class GenerateEmoji {
                 + "</a>";
     }
 
+    public static String getExtraLink(String href) {
+        return "<a" + " href='" + href + "'" + "></a>";
+    }
+
+
     public static String getDoubleLink(String anchor) {
         return getDoubleLink(anchor, anchor);
     }
@@ -2721,14 +2727,14 @@ public class GenerateEmoji {
                 + (form != Form.fullForm
                 ? HEADER_SAMPLE_IMAGE
                         : HEADER_BROWSER +
-                            //                                  "<th class='cchars'><a target='text' href='index.html#col-browser'>Brow.</a></th>\n"
-                            //                          + "<th class='cchars'><a target='text' href='index.html#col-chart'>Chart</a></th>\n"
-                            otherCells)
+                        //                                  "<th class='cchars'><a target='text' href='index.html#col-browser'>Brow.</a></th>\n"
+                        //                          + "<th class='cchars'><a target='text' href='index.html#col-chart'>Chart</a></th>\n"
+                        otherCells)
                 // + "<th class='cchars'>Browser</th>\n"
                 + HEADER_NAME
                 + (form == Form.fullForm ? ""
                         : //HEADER_DATE + 
-                        HEADER_KEYWORDS
+                            HEADER_KEYWORDS
                         )
                 // + "<th>Block: <i>Subhead</i></th>\n"
                 + "</tr>";
@@ -2792,20 +2798,25 @@ public class GenerateEmoji {
         + getCellCode(chars2WithVS)
         + (form == Form.noImages ? altClass(bestCell)
                 : altClass(browserCell) + 
-                    //altClass(browserCell) + altClass(symbolaCell) +
-                    otherCells)
+                //altClass(browserCell) + altClass(symbolaCell) +
+                otherCells)
         + "<td class='name'>" + name2 + "</td>\n"
         + (form == Form.fullForm ? ""
                 : //"<td class='age'>" + VersionToAge.ucd.getYear(Emoji.getNewest(chars2)) + getSources(chars2, new StringBuilder(), true) + "</td>\n" + 
-                "<td class='name'>" + getAnnotationsString(chars2) + "</td>\n"
-                // + "<td class='default'>" + (style == null ? "n/a" : style) +
-                // (!textChars.equals(chars2) ? "*" : "") + "</td>\n"
+                    "<td class='name'>" + getAnnotationsString(chars2) + "</td>\n"
+                    // + "<td class='default'>" + (style == null ? "n/a" : style) +
+                    // (!textChars.equals(chars2) ? "*" : "") + "</td>\n"
                 ) + "</tr>";
     }
 
     private static String getCellCode(String chars2WithVS) {
         String uHex = Emoji.toUHex(chars2WithVS);
-        return "<td class='code'>" + getDoubleLink(getAnchor(uHex), uHex) + "</td>\n";
+        String chars2WOVS = EmojiData.removeEmojiVariants(chars2WithVS);
+        return "<td class='code'>" 
+        + getDoubleLink(getAnchor(uHex), uHex)
+//        + getExtraLink(chars2WithVS)
+//        + (chars2WOVS.equals(chars2WithVS) ? "" : getExtraLink(chars2WOVS))
+        + "</td>\n";
     }
 
     private static String getCellNum(int item) {
@@ -2831,7 +2842,7 @@ public class GenerateEmoji {
         if (plainAnnotations2 != null) {
             annotationsExtra.addAll(plainAnnotations2);
         }
-        
+
         Collection<String> plainAnnotations3 = Keywords.get(chars2);
         if (plainAnnotations3 != null) {
             annotationsExtra.addAll(plainAnnotations3);
@@ -2867,7 +2878,7 @@ public class GenerateEmoji {
 
     static final Joiner BAR_JOIN = Joiner.on(" | ");
     static final Joiner BAR_I_JOIN = Joiner.on("</i> | <i>");
-    
+
     static void showCandidateStyle(CandidateStyle candidateStyle, String outFileName, UnicodeSet emoji)
             throws IOException {
         if (candidateStyle == CandidateStyle.candidate && Emoji.IS_BETA) {
