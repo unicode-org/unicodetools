@@ -1,18 +1,12 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 10.0.0
-@@@+	U10M170412.lst
-	Unicode 10.0.0 names list, sixth delta.
+@@@+	U10M170525.lst
+	Unicode 10.0.0 names list, eighth delta.
 	Repertoire synched with UnicodeData-10.0.0d5.txt
-	Sixth delta of annotation fixes.
-	Updated several subheaders.
-	Add annotations for 11A47, 11A34.
-	Adjusted annotations for 11D46, 11D47.
-	Adjusted subhead for 18AF2.
-	Fixed typo in notice for 1F3BD.
-	Removed redundant alias for 1F3DC.
-	Updated end range in annotation for 00A4.
-	Corrected omission of name aliases for 2B7A, 2B7C.
-	Adjusted annotation for 1D300.
+	Eighth delta of annotation fixes.
+	Added annotation for 1F4A9.
+	Added aliases for 1F6F7, 1F961.
+	Adjusted alt output to produce isolates for 185D, 185E, 1861, 1873.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -4475,10 +4469,13 @@
 07EF	NKO COMBINING LONG HIGH TONE
 07F0	NKO COMBINING LONG LOW TONE
 07F1	NKO COMBINING LONG RISING TONE
+@		Other diacritics
 07F2	NKO COMBINING NASALIZATION MARK
 	x (combining dot below - 0323)
 07F3	NKO COMBINING DOUBLE DOT ABOVE
 	x (combining diaeresis - 0308)
+@		Tonal apostrophes
+@+		These apostrophes mark elision of a vowel while preserving the tonal information of the syllable.
 07F4	NKO HIGH TONE APOSTROPHE
 	x (modifier letter apostrophe - 02BC)
 07F5	NKO LOW TONE APOSTROPHE
@@ -5986,7 +5983,7 @@
 0D54	MALAYALAM LETTER CHILLU M
 0D55	MALAYALAM LETTER CHILLU Y
 0D56	MALAYALAM LETTER CHILLU LLL
-@		Various signs
+@		Dependent vowel sign
 0D57	MALAYALAM AU LENGTH MARK
 	* used alone to write the /au/ dependent vowel in modern texts
 	x (malayalam vowel sign au - 0D4C)
@@ -9355,7 +9352,7 @@
 	~ 1828 180B second form (initial)
 	~ 1828 180B second form (medial)
 	~ 1828 180C third form (medial)
-	~ 1828 180D separate form (medial)
+	~ 1828 180D fourth form (medial)
 1829	MONGOLIAN LETTER ANG
 	~ 1829 ALT1 first form (initial)
 	~ 1829 ALT1 first form (medial)
@@ -9365,7 +9362,7 @@
 	~ 182A ALT1 first form (initial)
 	~ 182A ALT1 first form (medial)
 	~ 182A ALT1 first form (final)
-	~ 182A 180B alternative form (final)
+	~ 182A 180B second form (final)
 182B	MONGOLIAN LETTER PA
 	x (cyrillic small letter pe - 043F)
 	~ 182B ALT1 first form (initial)
@@ -9624,12 +9621,14 @@
 	~ 185C ALT1 first form (final)
 @		Sibe letters
 185D	MONGOLIAN LETTER SIBE E
+	~ 185D ALT1 first form (isolate)
 	~ 185D ALT1 first form (initial)
 	~ 185D ALT1 first form (medial)
 	~ 185D ALT1 first form (final)
 	~ 185D 180B second form (medial)
 	~ 185D 180B second form (final)
 185E	MONGOLIAN LETTER SIBE I
+	~ 185E ALT1 first form (isolate)
 	~ 185E ALT1 first form (initial)
 	~ 185E ALT1 first form (medial)
 	~ 185E ALT1 first form (final)
@@ -9648,6 +9647,7 @@
 	~ 1860 180B second form (medial)
 	~ 1860 180B second form (final)
 1861	MONGOLIAN LETTER SIBE U
+	~ 1861 ALT1 first form (isolate)
 	~ 1861 ALT1 first form (initial)
 	~ 1861 ALT1 first form (medial)
 	~ 1861 ALT1 first form (final)
@@ -9729,6 +9729,7 @@
 	~ 1872 ALT1 first form (final)
 @		Manchu letters
 1873	MONGOLIAN LETTER MANCHU I
+	~ 1873 ALT1 first form (isolate)
 	~ 1873 ALT1 first form (initial)
 	~ 1873 ALT1 first form (medial)
 	~ 1873 ALT1 first form (final)
@@ -11018,14 +11019,23 @@
 @@	1C80	Cyrillic Extended-C	1C8F
 @		Historic letter variants
 1C80	CYRILLIC SMALL LETTER ROUNDED VE
+	x (cyrillic small letter ve - 0432)
 1C81	CYRILLIC SMALL LETTER LONG-LEGGED DE
+	x (cyrillic small letter de - 0434)
 1C82	CYRILLIC SMALL LETTER NARROW O
+	x (cyrillic small letter o - 043E)
 1C83	CYRILLIC SMALL LETTER WIDE ES
+	x (cyrillic small letter es - 0441)
 1C84	CYRILLIC SMALL LETTER TALL TE
 1C85	CYRILLIC SMALL LETTER THREE-LEGGED TE
+	x (cyrillic small letter te - 0442)
 1C86	CYRILLIC SMALL LETTER TALL HARD SIGN
+	x (cyrillic small letter hard sign - 044A)
 1C87	CYRILLIC SMALL LETTER TALL YAT
+	x (cyrillic small letter yat - 0463)
 1C88	CYRILLIC SMALL LETTER UNBLENDED UK
+	x (cyrillic small letter uk - 0479)
+	x (cyrillic small letter monograph uk - A64B)
 @@	1CC0	Sundanese Supplement	1CCF
 @		Punctuation
 1CC0	SUNDANESE PUNCTUATION BINDU SURYA
@@ -14722,9 +14732,10 @@
 23B8	LEFT VERTICAL BOX LINE
 23B9	RIGHT VERTICAL BOX LINE
 @		Scan lines for terminal graphics
-@+		The scan line numbers here refer to old, low-resolution technology for terminals, with only 9 scan lines per fixed-size character glyph. Even-numbered scan lines are unified with box-drawing graphics.
+@+		The scan line numbers here refer to old, low-resolution technology for terminals, with only 9 scan lines per fixed-size character glyph.
 23BA	HORIZONTAL SCAN LINE-1
 23BB	HORIZONTAL SCAN LINE-3
+	* scan line-5 is unified with the box-drawing graphic character 2500
 23BC	HORIZONTAL SCAN LINE-7
 23BD	HORIZONTAL SCAN LINE-9
 @		Dentistry notation symbols
@@ -19803,17 +19814,20 @@
 	= single dot Bangjeom
 302F	HANGUL DOUBLE DOT TONE MARK
 	= double dot Bangjeom
-@		Other CJK symbols
+@		Other CJK punctuation
 3030	WAVY DASH
 	x (wavy line - 2307)
 	x (wave dash - 301C)
+@		Kana repeat marks
+@+		These characters are only used in vertical writing of Japanese.
 3031	VERTICAL KANA REPEAT MARK
 3032	VERTICAL KANA REPEAT WITH VOICED SOUND MARK
-	* the preceding two semantic characters are preferred to the following three glyphic forms
+	* implemented as glyphs that are two-em tall
 3033	VERTICAL KANA REPEAT MARK UPPER HALF
 3034	VERTICAL KANA REPEAT WITH VOICED SOUND MARK UPPER HALF
-	* the preceding two are glyphs used in conjunction with the following glyph
+	* implemented as glyphs that are one-em tall and that combine with the following character to form ligated two-em glyphs for the complete repeat marks
 3035	VERTICAL KANA REPEAT MARK LOWER HALF
+@		Other CJK symbols
 3036	CIRCLED POSTAL MARK
 	# 3012 postal mark
 3037	IDEOGRAPHIC TELEGRAPH LINE FEED SEPARATOR SYMBOL
@@ -21236,7 +21250,8 @@
 	* percent
 	# <square> 30D1 30FC 30BB 30F3 30C8
 332C	SQUARE PAATU
-	* parts
+	* a mistaken, unused representation originally intended for the Thai baht currency sign
+	x (thai currency symbol baht - 0E3F)
 	# <square> 30D1 30FC 30C4
 332D	SQUARE BAARERU
 	* barrel
@@ -25435,6 +25450,9 @@ F92A	CJK COMPATIBILITY IDEOGRAPH-F92A
 F92B	CJK COMPATIBILITY IDEOGRAPH-F92B
 	: 72FC
 F92C	CJK COMPATIBILITY IDEOGRAPH-F92C
+	* a mapping change removed the original K0 source
+	x (cjk unified ideograph-90DE - 90DE)
+	x (cjk compatibility ideograph-FA2E - FA2E)
 	: 90CE
 F92D	CJK COMPATIBILITY IDEOGRAPH-F92D
 	: 4F86
@@ -25715,7 +25733,9 @@ F9B6	CJK COMPATIBILITY IDEOGRAPH-F9B6
 F9B7	CJK COMPATIBILITY IDEOGRAPH-F9B7
 	: 91B4
 F9B8	CJK COMPATIBILITY IDEOGRAPH-F9B8
+	* a mapping change removed the original K0 source
 	x (cjk unified ideograph-96B7 - 96B7)
+	x (cjk compatibility ideograph-FA2F - FA2F)
 	: 96B8
 F9B9	CJK COMPATIBILITY IDEOGRAPH-F9B9
 	: 60E1
@@ -30670,10 +30690,10 @@ FFFF	<not a character>
 1091B	PHOENICIAN NUMBER THREE
 @		Punctuation
 1091F	PHOENICIAN WORD SEPARATOR
+	* sometimes shown with a glyph for a short vertical bar
 	x (full stop - 002E)
 	x (middle dot - 00B7)
 	x (word separator middle dot - 2E31)
-	* sometimes shown with a glyph for a short vertical bar
 @@	10920	Lydian	1093F
 @		Letters
 10920	LYDIAN LETTER A
@@ -39948,7 +39968,7 @@ FFFF	<not a character>
 1B1DB	NUSHU CHARACTER-1B1DB
 1B1DC	NUSHU CHARACTER-1B1DC
 1B1DD	NUSHU CHARACTER-1B1DD
-@	Six-stroke characters
+@		Six-stroke characters
 1B1DE	NUSHU CHARACTER-1B1DE
 1B1DF	NUSHU CHARACTER-1B1DF
 1B1E0	NUSHU CHARACTER-1B1E0
@@ -40602,7 +40622,7 @@ FFFF	<not a character>
 	* Romanian str-/-str
 1BC79	DUPLOYAN AFFIX ATTACHED TAIL
 	* orientating character
-	* French suffix -sionaire
+	* French suffix -sionnaire
 1BC7A	DUPLOYAN AFFIX ATTACHED E HOOK
 	* glyph is retrograde and opens up or down, depending on preceding letter
 	* French suffix -te
@@ -40674,12 +40694,12 @@ FFFF	<not a character>
 1BC93	DUPLOYAN AFFIX LOW LONG GRAVE
 	* Pernin extra-
 1BC94	DUPLOYAN AFFIX LOW DOT
-	* French suffix -ie
+	* French suffix -ié
 	* French iterative number
 	* Romanian affix inter-
 	* not Romanian millions - see 0323 combining dot below and 0324 combining diaeresis below
 1BC95	DUPLOYAN AFFIX LOW CIRCLE
-	* French suffix -iere
+	* French suffix -ière
 	* French percent
 	x (modifier letter low ring - 02F3)
 1BC96	DUPLOYAN AFFIX LOW LINE
@@ -46044,6 +46064,7 @@ FFFF	<not a character>
 1F308	RAINBOW
 1F309	BRIDGE AT NIGHT
 1F30A	WATER WAVE
+	= tsunami, tidal wave
 1F30B	VOLCANO
 1F30C	MILKY WAY
 @		Globe symbols
@@ -46273,7 +46294,7 @@ FFFF	<not a character>
 1F397	REMINDER RIBBON
 @		Musical symbols
 1F398	MUSICAL KEYBOARD WITH JACKS
-	= midi, midi keyboard
+	= midi, midi keyboard, master keyboard with plugs
 	x (musical keyboard - 1F3B9)
 1F399	STUDIO MICROPHONE
 	= microphone
@@ -46694,6 +46715,7 @@ FFFF	<not a character>
 1F47B	GHOST
 1F47C	BABY ANGEL
 1F47D	EXTRATERRESTRIAL ALIEN
+	x (flying saucer - 1F6F8)
 1F47E	ALIEN MONSTER
 	x (robot face - 1F916)
 1F47F	IMP
@@ -46772,6 +46794,7 @@ FFFF	<not a character>
 	= running dash, briffits
 1F4A9	PILE OF POO
 	= dog dirt
+	* may be depicted with or without a friendly face
 1F4AA	FLEXED BICEPS
 	= strong, muscled
 1F4AB	DIZZY SYMBOL
@@ -47782,7 +47805,10 @@ FFFF	<not a character>
 1F6F5	MOTOR SCOOTER
 1F6F6	CANOE
 1F6F7	SLED
+	= sledge, toboggan
 1F6F8	FLYING SAUCER
+	= UFO
+	x (extraterrestrial alien - 1F47D)
 @@	1F700	Alchemical Symbols	1F77F
 @		Symbols for Aristotelian elements
 1F700	ALCHEMICAL SYMBOL FOR QUINTESSENCE
@@ -48027,7 +48053,6 @@ FFFF	<not a character>
 1F785	MEDIUM BOLD WHITE CIRCLE
 	x (medium white circle - 26AA)
 1F786	BOLD WHITE CIRCLE
-	= very heavy circle
 1F787	HEAVY WHITE CIRCLE
 1F788	VERY HEAVY WHITE CIRCLE
 1F789	EXTREMELY HEAVY WHITE CIRCLE
@@ -48369,7 +48394,7 @@ FFFF	<not a character>
 1F91D	HANDSHAKE
 1F91E	HAND WITH INDEX AND MIDDLE FINGERS CROSSED
 1F91F	I LOVE YOU HAND SIGN
-	* can be abbreviated ILY 
+	* can be abbreviated ILY
 @		Emoticon faces
 1F920	FACE WITH COWBOY HAT
 1F921	CLOWN FACE
@@ -48472,7 +48497,7 @@ FFFF	<not a character>
 	= potsticker, gyooza, jiaozi, pierogi, empanada
 1F960	FORTUNE COOKIE
 1F961	TAKEOUT BOX
-	= oyster pail
+	= take-away box, oyster pail
 1F962	CHOPSTICKS
 	= kuaizi, hashi, jeotgarak
 1F963	BOWL WITH SPOON
@@ -48546,6 +48571,7 @@ FFFF	<not a character>
 1F9D7	PERSON CLIMBING
 1F9D8	PERSON IN LOTUS POSITION
 	= yoga, meditation
+@		Fantasy beings
 1F9D9	MAGE
 	= wizard, witch, sorcerer, sorceress
 1F9DA	FAIRY
