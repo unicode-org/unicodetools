@@ -1,5 +1,5 @@
 # PropertyValueAliases-10.0.0.txt
-# Date: 2017-04-21, 13:56:07 GMT
+# Date: 2017-05-17, 08:45:34 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -749,6 +749,7 @@ Ideo; Y                               ; Yes                              ; T    
 # Indic_Positional_Category (InPC)
 
 InPC; Bottom                          ; Bottom
+InPC; Bottom_And_Left                 ; Bottom_And_Left
 InPC; Bottom_And_Right                ; Bottom_And_Right
 InPC; Left                            ; Left
 InPC; Left_And_Right                  ; Left_And_Right
