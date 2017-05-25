@@ -2773,7 +2773,8 @@ public class GenerateEmoji {
                 countFound++;
             }
         }
-        if (countFound < 1 || Emoji.IS_BETA && ARE_NEW.contains(chars2)) {
+        final boolean areNew = ARE_NEW.contains(chars2);
+        if (countFound == 0 || Emoji.IS_BETA && areNew) {
             otherCells.setLength(0);
             otherCells.append("<td class='andr' colSpan='" + Emoji.Source.platformsToIncludeNormal.size() + "'>… "
                     + getSamples(chars2) + " …</td>");
@@ -2812,6 +2813,7 @@ public class GenerateEmoji {
         // Emoji.EMOJI_VARIANT,
         // VariantHandling.sequencesOnly);
         DefaultPresentation style = EmojiData.EMOJI_DATA.getStyle(chars2);
+        String nameWithStar = (areNew ? "⊛ " : "") + name2;
         return "<tr>"
                 + getCellNum(item)
                 + getCellCode(chars2WithVS)
@@ -2819,7 +2821,7 @@ public class GenerateEmoji {
                         : altClass(browserCell) +
                         // altClass(browserCell) + altClass(symbolaCell) +
                                 otherCells)
-                + "<td class='name'>" + name2 + "</td>\n"
+                + "<td class='name'>" + nameWithStar + "</td>\n"
                 + (form == Form.fullForm ? ""
                         : // "<td class='age'>" +
                           // VersionToAge.ucd.getYear(Emoji.getNewest(chars2)) +
@@ -3124,20 +3126,11 @@ public class GenerateEmoji {
 
     private static String getSamples(String source) {
         // apple, google, twitter, emojione, samsung, fb, windows
-        String color = SPACE_JOINER.join(
-                getImage(Source.emojixpress, source, true, ""),
-                getImage(Source.emojipedia, source, true, ""),
-                getImage(Source.apple, source, true, ""),
-                getImage(Source.google, source, true, ""),
-                getImage(Source.twitter, source, true, ""),
-                getImage(Source.emojione, source, true, ""),
-                getImage(Source.samsung, source, true, ""),
-                getImage(Source.fb, source, true, ""),
-                getImage(Source.windows, source, true, ""),
-                getImage(Source.emojination, source, true, ""),
-                getImage(Source.adobe, source, true, ""),
-                getImage(Source.sample, source, true, ""),
-                getImage(Source.proposed, source, true, ""));
+        LinkedHashSet<String> list = new LinkedHashSet<>();
+        for (Source item : Source.PLATFORM_FALLBACK) {
+            list.add(getImage(item, source, true, ""));
+        }
+        String color = SPACE_JOINER.join(list);
         if (color.isEmpty()) {
             color = getBestImage(source, true, "");
         }
