@@ -16,28 +16,20 @@
 # Leading and trailing spaces and tabs in each column are ignored.
 # Comments are indicated with hash marks.
 #
-#  Column 1: type -       T for transitional, N for nontransitional, B for both
-#  Column 2: source -     The source string to be tested
-#  Column 3: toUnicode -  The result of applying toUnicode to the source, using nontransitional. 
-#                         A blank value means the same as the source value; a value in [...] is a set of error codes.
-#  Column 4: toASCII -    The result of applying toASCII to the source, using the specified type: T, N, or B.
-#                         A blank value means the same as the toUnicode value; a value in [...] is a set of error codes.
-#  Column 5: idna2008 -   NV8 is only present if the status is valid but the character is excluded by IDNA2008
-#                         from all domain names for all versions of Unicode.
-#                         XV8 is present when the character is excluded by IDNA2008 for the current version of Unicode. 
-#                         These are informative values only.
+#  Column 1: type -           T for transitional, N for nontransitional, B for both
+#  Column 2: source -         The source string to be tested
+#  Column 3: toUnicode -      The result of applying toUnicode to the source, using nontransitional. 
+#                             A blank value means the same as the source value; a value in [...] is a set of status codes.
+#  Column 4: toASCII -        The result of applying toASCII to the source, using the specified type: T, N, or B.
+#                             A blank value means the same as the toUnicode value; a value in [...] is a set of status codes.
+#  Column 5: idna2008Status - NV8 is only present if the status is valid but the character is excluded by IDNA2008
+#                             from all domain names for all versions of Unicode.
+#                             XV8 is present when the character is excluded by IDNA2008 for the current version of Unicode. 
+#                             These are informative values only.
 #
 # If the value of toUnicode is the same as source, the column will be blank.
 # The line comments currently show visible characters that have been escaped 
 # (after removing default-ignorables and controls, except for whitespace)
-#
-# The test is performed with the following flag settings:
-#
-# VerifyDnsLength:   true
-# CheckHyphens:      true
-# CheckBidi:         true
-# CheckJoiners:      true
-# UseSTD3ASCIIRules: true
 #
 # An error in toUnicode or toASCII is indicated by a value in square brackets, such as "[B5 B6]".
 # In such a case, the contents is a list of error codes based on the step numbers in UTS46 and IDNA2008,
@@ -45,6 +37,7 @@
 #
 #   Pn for Section 4 Processing step n
 #   Vn for 4.1 Validity Criteria step n
+#   U1 for UseSTD3ASCIIRules
 #   An for 4.2 ToASCII step n
 #   Bn for Bidi (in IDNA2008)
 #   Cn for ContextJ (in IDNA2008)
@@ -55,15 +48,21 @@
 # CONFORMANCE:
 #
 # To test for conformance to UTS46, an implementation must first perform the toUnicode operation
-# on the source string, then the toASCII operation (with the indicated type) on the source string. 
+# on the source string, then the toASCII operation (with the indicated type) on the source string.
+#
+# Implementations that allow values of the input flags to be false would remove the corresponding
+# status codes listed in the table below.
+#
+# VerifyDnsLength:    P4
+# CheckHyphens:       V2, V3
+# CheckBidi:          V8
+# CheckJoiners:       V7
+# UseSTD3ASCIIRules:  U1
+# DisallowedIdna2008: NV8
+#
 # Implementations may be more strict than UTS46; thus they may have errors where the file indicates results.
 # In particular, an implementation conformant to IDNA2008 would disallow the input for lines marked with NV8.
 #
-# Moreover, the error codes in the file are informative; implementations need only record that there is an error:
-# they need not reproduce those codes. Thus to then verify conformance for the toASCII and toUnicode columns:
-#
-# - If the file indicates an error, the implementation must also have an error.
-# - If the file does not indicate an error, then the implementation must either have an error, 
-#   or must have a matching result.
+# Implementations need only record that there is an error: they need not reproduce the precise status codes.
 #
 # ====================================================================================================
