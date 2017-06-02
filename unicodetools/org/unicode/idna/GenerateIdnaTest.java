@@ -2,6 +2,7 @@ package org.unicode.idna;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -11,6 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.cldr.util.props.UnicodePropertySymbolTable;
@@ -45,12 +47,13 @@ import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 import com.ibm.icu.util.ULocale;
 
 public class GenerateIdnaTest {
-    private static final String TO_ESCAPE = "[[:c:][:z:][:m:][:di:][:bc=R:][:bc=AL:][:bc=AN:]#;]";
 
     static {
         // MUST BE FIRST
         GenerateIdnaTest.setUnicodeVersion();
     }
+
+    private static final String TO_ESCAPE = "[[:c:][:z:][:m:][:di:][:bc=R:][:bc=AL:][:bc=AN:]#;]";
 
     private static final Pattern IDNA2003_LABEL_SEPARATOR = Pattern.compile("[.\uFF0E \u3002\uFF61]");
     private static final boolean NEW_FORMAT = true;
@@ -96,6 +99,12 @@ public class GenerateIdnaTest {
         out.println(Utility.getDataHeader(filename));
 
         FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader.txt").toString().substring(5), "UTF-8", out);
+
+        final PrintWriter out2 = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.DIR_BETA, filename);
+        out2.println(Utility.getDataHeader(filename));
+
+        FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader2.txt").toString().substring(5), "UTF-8", out2);
+
         //        out.println(
         //                "# Format\n" +
         //                "# source ; type ; toASCII ; toUnicode\n" +
@@ -111,42 +120,46 @@ public class GenerateIdnaTest {
         //        );
         int count = 0;
 
-        count += generateLine("fass.de", out);
-        count += generateLine("faß.de", out);
+        count += generateLine("fass.de", out, out2);
+        count += generateLine("faß.de", out, out2);
 
         out.println("\n# BIDI TESTS\n");
+        out2.println("\n# BIDI TESTS\n");
 
 
         for (final String[] testCase : bidiTests) {
-            count += generateLine(testCase[0], out);
+            count += generateLine(testCase[0], out, out2);
         }
 
         out.println("\n# CONTEXT TESTS\n");
+        out2.println("\n# CONTEXT TESTS\n");
 
 
         for (final String[] testCase : contextTests) {
-            count += generateLine(testCase[0], out);
+            count += generateLine(testCase[0], out, out2);
         }
 
         out.println("\n# SELECTED TESTS\n");
+        out2.println("\n# SELECTED TESTS\n");
 
 
-        count += generateLine("\u00a1", out);
+        count += generateLine("\u00a1", out, out2);
         for (String s : Idna2008.GRANDFATHERED_VALID) {
-            count += generateLine(s, out);
+            count += generateLine(s, out, out2);
         }
 
         for (final Object[] testCaseLine : testCases) {
             final String source = testCaseLine[0].toString();
-            count += generateLine(source, out);
+            count += generateLine(source, out, out2);
         }
 
         out.println("\n# RANDOMIZED TESTS\n");
+        out2.println("\n# RANDOMIZED TESTS\n");
 
         Set<TestLine> testLines = LoadIdnaTest.load(Settings.UNICODETOOLS_DIRECTORY + "data/idna/9.0.0");
 
         for (TestLine testLine : testLines) {
-            count += generateLine(replaceNewerThan90(testLine.source), out);
+            count += generateLine(replaceNewerThan90(testLine.source), out, out2);
         }
 
         //        final RandomString randomString = new RandomString();
@@ -171,6 +184,7 @@ public class GenerateIdnaTest {
         //        }
 
         out.close();
+        out2.close();
         return count;
     }
 
@@ -186,22 +200,55 @@ public class GenerateIdnaTest {
         return sb.toString();
     }
 
-    int generateLine(String source, PrintWriter out) {
-        if (source.equals("0à.\u05D0")) {
+    int generateLine(String source, PrintWriter out, PrintWriter out2) {
+        if (source.equals("xn--a.pt")) {
             int debug = 0;
         }
         if (alreadyDone(source)) {
             return 0;
         }
         int result = 0;
+        final Set<Errors> toUnicodeErrors = EnumSet.noneOf(Errors.class);
+        final String unicode = Uts46.SINGLETON.toUnicode(source, IdnaChoice.nontransitional, toUnicodeErrors);
+
         final Set<Errors> transitionalErrors = EnumSet.noneOf(Errors.class);
         final String transitional = Uts46.SINGLETON.toASCII(source, IdnaChoice.transitional, transitionalErrors);
 
         final Set<Errors> nonTransitionalErrors = EnumSet.noneOf(Errors.class);
         final String nontransitional = Uts46.SINGLETON.toASCII(source, IdnaChoice.nontransitional, nonTransitionalErrors);
 
-        final Set<Errors> toUnicodeErrors = EnumSet.noneOf(Errors.class);
-        final String unicode = Uts46.SINGLETON.toUnicode(source, IdnaChoice.nontransitional, toUnicodeErrors);
+//        Set<Errors> toUnicodeErrors2 = toUnicodeErrors;
+//        if (!IDNA2008Valid.containsAll(source)) {
+//            toUnicodeErrors2 = EnumSet.copyOf(toUnicodeErrors2);
+//            toUnicodeErrors2.add(Errors.NV8);
+//        }
+//        
+//        // Hack to check whether problems were introduced. Needs to be deeper check in processMap
+//        
+//        final Set<Errors> throwAway = EnumSet.noneOf(Errors.class);
+//        Set<Errors> nonTransitionalErrors2 = nonTransitionalErrors;
+//        final String nontransitional2 = Uts46.SINGLETON.toASCII(unicode, IdnaChoice.nontransitional, throwAway);
+//        if (!IDNA2008Valid.containsAll(nontransitional2)) {
+//            nonTransitionalErrors2 = EnumSet.copyOf(nonTransitionalErrors);
+//            nonTransitionalErrors2.add(Errors.NV8);
+//        }
+//
+//        Set<Errors> transitionalErrors2 = transitionalErrors;
+//        final String transitional2 = Uts46.SINGLETON.toASCII(unicode, IdnaChoice.transitional, throwAway);
+//        if (!IDNA2008Valid.containsAll(transitional2)) {
+//            nonTransitionalErrors2 = EnumSet.copyOf(nonTransitionalErrors);
+//            nonTransitionalErrors2.add(Errors.NV8);
+//        }
+
+        out2.println(source 
+                + "; " + CldrUtility.ifEqual(unicode, source, "")
+                + "; " + CldrUtility.ifEqual(toUnicodeErrors, Collections.EMPTY_SET, "")
+                + "; " + CldrUtility.ifEqual(nontransitional, unicode, "")
+                + "; " + CldrUtility.ifEqual(nonTransitionalErrors, toUnicodeErrors, "")
+                + "; " + CldrUtility.ifEqual(transitional, nontransitional, "")
+                + "; " + CldrUtility.ifEqual(transitionalErrors, nonTransitionalErrors, "")
+                + " # " + removeInvisible.transform(unicode)
+                );
 
         if (!transitionalErrors.equals(nonTransitionalErrors)
                 || !transitional.equals(nontransitional)
@@ -215,24 +262,24 @@ public class GenerateIdnaTest {
             result += 1;
         }
         if (NEW_FORMAT) {
-            result += generateLine(Idna.NFC.transform(source), out);
-            result += generateLine(Idna.NFD.transform(source), out);
-            result += generateLine(Idna.NFKC.transform(source), out);
-            result += generateLine(Idna.NFKD.transform(source), out);
+            result += generateLine(Idna.NFC.transform(source), out, out2);
+            result += generateLine(Idna.NFD.transform(source), out, out2);
+            result += generateLine(Idna.NFKC.transform(source), out, out2);
+            result += generateLine(Idna.NFKD.transform(source), out, out2);
         }
-        result += generateLine(UCharacter.toLowerCase(source), out);
-        result += generateLine(UCharacter.toUpperCase(source), out);
-        result += generateLine(UCharacter.foldCase(source, true), out);
-        result += generateLine(UCharacter.toTitleCase(source, null), out);
+        result += generateLine(UCharacter.toLowerCase(source), out, out2);
+        result += generateLine(UCharacter.toUpperCase(source), out, out2);
+        result += generateLine(UCharacter.foldCase(source, true), out, out2);
+        result += generateLine(UCharacter.toTitleCase(source, null), out, out2);
 
         //if (transitionalErrors.size() == 0) {
-        result += generateLine(transitional, out);
+        result += generateLine(transitional, out, out2);
         //}
         //if (nonTransitionalErrors.size() == 0) {
-        result += generateLine(nontransitional, out);
+        result += generateLine(nontransitional, out, out2);
         //}
         if (toUnicodeErrors.size() == 0) {
-            result += generateLine(unicode, out);
+            result += generateLine(unicode, out, out2);
         }
         return result;
     }
@@ -815,5 +862,6 @@ public class GenerateIdnaTest {
             {"a。。b"},
             {"\u200D。。\u06B9\u200C"},
             {"\u05D0\u0030\u0660"},
+            {"$"},
     };
 }
