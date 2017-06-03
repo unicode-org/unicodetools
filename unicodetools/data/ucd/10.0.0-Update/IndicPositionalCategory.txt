@@ -1,5 +1,5 @@
 # IndicPositionalCategory-10.0.0.txt
-# Date: 2017-03-07, 23:35:00 GMT [RP]
+# Date: 2017-05-31, 01:07:00 GMT [RP]
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -188,7 +188,7 @@ A8B4..A8C3    ; Right # Mc  [16] SAURASHTRA CONSONANT SIGN HAARU..SAURASHTRA VOW
 A952..A953    ; Right # Mc   [2] REJANG CONSONANT SIGN H..REJANG VIRAMA
 A983          ; Right # Mc       JAVANESE SIGN WIGNYAN
 A9B4..A9B5    ; Right # Mc   [2] JAVANESE VOWEL SIGN TARUNG..JAVANESE VOWEL SIGN TOLONG
-A9BD..A9BF    ; Right # Mc   [3] JAVANESE CONSONANT SIGN KERET..JAVANESE CONSONANT SIGN CAKRA
+A9BD..A9BE    ; Right # Mc   [2] JAVANESE CONSONANT SIGN KERET..JAVANESE CONSONANT SIGN PENGKAL
 AA33          ; Right # Mc       CHAM CONSONANT SIGN YA
 AA4D          ; Right # Mc       CHAM CONSONANT SIGN FINAL H
 AA7B          ; Right # Mc       MYANMAR SIGN PAO KAREN TONE
@@ -678,6 +678,10 @@ ABED          ; Bottom # Mn       MEETEI MAYEK APUN IYEK
 
 1B3B          ; Bottom_And_Right # Mc       BALINESE VOWEL SIGN RA REPA TEDUNG
 A9C0          ; Bottom_And_Right # Mc       JAVANESE PANGKON
+
+# Indic_Positional_Category=Bottom_And_Left
+
+A9BF          ; Bottom_And_Left # Mc       JAVANESE CONSONANT SIGN CAKRA
 
 # Indic_Positional_Category=Top_And_Bottom_And_Right
 
