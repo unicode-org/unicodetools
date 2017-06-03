@@ -1,5 +1,5 @@
 # IndicSyllabicCategory-10.0.0.txt
-# Date: 2017-03-07, 19:32:00 GMT [KW, RP]
+# Date: 2017-05-31, 01:07:00 GMT [KW, RP]
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -21,7 +21,7 @@
 # of Indic script characters which are relevant to how Indic
 # syllables (or aksaras) are constructed. Note that rules for
 # syllabic structure in Indic scripts may differ significantly
-# from how phonological syllables are defined. 
+# from how phonological syllables are defined.
 #
 # Format:
 #    Field 0  Unicode code point value or range of code point values
@@ -92,6 +92,7 @@
 1036          ; Bindu # Mn       MYANMAR SIGN ANUSVARA
 17C6          ; Bindu # Mn       KHMER SIGN NIKAHIT
 1932          ; Bindu # Mn       LIMBU SMALL LETTER ANUSVARA
+1A74          ; Bindu # Mn       TAI THAM SIGN MAI KANG
 1B00..1B02    ; Bindu # Mn   [3] BALINESE SIGN ULU RICEM..BALINESE SIGN CECEK
 1B80          ; Bindu # Mn       SUNDANESE SIGN PANYECEK
 1C34..1C35    ; Bindu # Mc   [2] LEPCHA CONSONANT SIGN NYIN-DO..LEPCHA CONSONANT SIGN KANG
@@ -130,7 +131,7 @@ A980..A981    ; Bindu # Mn   [2] JAVANESE SIGN PANYANGGA..JAVANESE SIGN CECAK
 # Visarga (-h)
 # Includes specialized case for Sanskrit: ardhavisarga
 # Excludes letters for jihvamuliya and upadhmaniya, which are
-#   related, but structured somewhat differently. 
+#   related, but structured somewhat differently.
 
 # [Not derivable]
 
@@ -286,6 +287,7 @@ A9C0          ; Virama # Mc       JAVANESE PANGKON
 1714          ; Pure_Killer # Mn       TAGALOG SIGN VIRAMA
 1734          ; Pure_Killer # Mn       HANUNOO SIGN PAMUDPOD
 17D1          ; Pure_Killer # Mn       KHMER SIGN VIRIAM
+1A7A          ; Pure_Killer # Mn       TAI THAM SIGN RA HAAM
 1BAA          ; Pure_Killer # Mc       SUNDANESE SIGN PAMAAEH
 1BF2..1BF3    ; Pure_Killer # Mc   [2] BATAK PANGOLAT..BATAK PANONGONAN
 A806          ; Pure_Killer # Mn       SYLOTI NAGRI SIGN HASANTA
@@ -527,7 +529,7 @@ ABD1          ; Vowel_Independent # Lo       MEETEI MAYEK LETTER ATIYA
 1A63..1A64    ; Vowel_Dependent # Mc   [2] TAI THAM VOWEL SIGN AA..TAI THAM VOWEL SIGN TALL AA
 1A65..1A6C    ; Vowel_Dependent # Mn   [8] TAI THAM VOWEL SIGN I..TAI THAM VOWEL SIGN OA BELOW
 1A6D..1A72    ; Vowel_Dependent # Mc   [6] TAI THAM VOWEL SIGN OY..TAI THAM VOWEL SIGN THAM AI
-1A73..1A74    ; Vowel_Dependent # Mn   [2] TAI THAM VOWEL SIGN OA ABOVE..TAI THAM SIGN MAI KANG
+1A73          ; Vowel_Dependent # Mn       TAI THAM VOWEL SIGN OA ABOVE
 1B35          ; Vowel_Dependent # Mc       BALINESE VOWEL SIGN TEDUNG
 1B36..1B3A    ; Vowel_Dependent # Mn   [5] BALINESE VOWEL SIGN ULU..BALINESE VOWEL SIGN RA REPA
 1B3B          ; Vowel_Dependent # Mc       BALINESE VOWEL SIGN RA REPA TEDUNG
@@ -868,7 +870,7 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 
 # Indic_Syllabic_Category=Consonant_Prefixed
 
-# Cluster-intial consonants
+# Cluster-initial consonants
 
 # [Not derivable]
 
@@ -891,11 +893,14 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 
 # Indic_Syllabic_Category=Consonant_Succeeding_Repha
 
-# Repha Form of RA (reanalyzed in some scripts), when succeeding the main consonant
+# Repha Form of RA (reanalyzed in some scripts), when succeeding the main consonant.
+# Additionally, U+1A5A TAI THAM CONSONANT SIGN LOW PA has been temporarily classified
+# in this class due to its behavior, although it is not a RA.
 
 # [Not derivable]
 
 17CC          ; Consonant_Succeeding_Repha # Mn       KHMER SIGN ROBAT
+1A5A          ; Consonant_Succeeding_Repha # Mn       TAI THAM CONSONANT SIGN LOW PA
 1B03          ; Consonant_Succeeding_Repha # Mn       BALINESE SIGN SURANG
 1B81          ; Consonant_Succeeding_Repha # Mn       SUNDANESE SIGN PANGLAYAR
 A982          ; Consonant_Succeeding_Repha # Mn       JAVANESE SIGN LAYAR
@@ -911,6 +916,8 @@ A982          ; Consonant_Succeeding_Repha # Mn       JAVANESE SIGN LAYAR
 0F8D..0F97    ; Consonant_Subjoined # Mn  [11] TIBETAN SUBJOINED SIGN LCE TSA CAN..TIBETAN SUBJOINED LETTER JA
 0F99..0FBC    ; Consonant_Subjoined # Mn  [36] TIBETAN SUBJOINED LETTER NYA..TIBETAN SUBJOINED LETTER FIXED-FORM RA
 1929..192B    ; Consonant_Subjoined # Mc   [3] LIMBU SUBJOINED LETTER YA..LIMBU SUBJOINED LETTER WA
+1A57          ; Consonant_Subjoined # Mc       TAI THAM CONSONANT SIGN LA TANG LAI
+1A5B..1A5E    ; Consonant_Subjoined # Mn   [4] TAI THAM CONSONANT SIGN HIGH RATHA OR LOW PA..TAI THAM CONSONANT SIGN SA
 1BA1          ; Consonant_Subjoined # Mc       SUNDANESE CONSONANT SIGN PAMINGKAL
 1BA2..1BA3    ; Consonant_Subjoined # Mn   [2] SUNDANESE CONSONANT SIGN PANYAKRA..SUNDANESE CONSONANT SIGN PANYIKU
 1BAC..1BAD    ; Consonant_Subjoined # Mn   [2] SUNDANESE CONSONANT SIGN PASANGAN MA..SUNDANESE CONSONANT SIGN PASANGAN WA
@@ -958,8 +965,7 @@ AA35..AA36    ; Consonant_Medial # Mn   [2] CHAM CONSONANT SIGN LA..CHAM CONSONA
 1933..1938    ; Consonant_Final # Mc   [6] LIMBU SMALL LETTER TA..LIMBU SMALL LETTER LA
 1939          ; Consonant_Final # Mn       LIMBU SIGN MUKPHRENG
 19C1..19C7    ; Consonant_Final # Lo   [7] NEW TAI LUE LETTER FINAL V..NEW TAI LUE LETTER FINAL B
-1A57          ; Consonant_Final # Mc       TAI THAM CONSONANT SIGN LA TANG LAI
-1A58..1A5E    ; Consonant_Final # Mn   [7] TAI THAM SIGN MAI KANG LAI..TAI THAM CONSONANT SIGN SA
+1A58..1A59    ; Consonant_Final # Mn   [2] TAI THAM SIGN MAI KANG LAI..TAI THAM CONSONANT SIGN FINAL NGA
 1BBE..1BBF    ; Consonant_Final # Lo   [2] SUNDANESE LETTER FINAL K..SUNDANESE LETTER FINAL M
 1BF0..1BF1    ; Consonant_Final # Mn   [2] BATAK CONSONANT SIGN NG..BATAK CONSONANT SIGN H
 1C2D..1C33    ; Consonant_Final # Mn   [7] LEPCHA CONSONANT SIGN K..LEPCHA CONSONANT SIGN T
@@ -1096,7 +1102,7 @@ A8E0..A8F1    ; Cantillation_Mark # Mn  [18] COMBINING DEVANAGARI DIGIT ZERO..CO
 17D3          ; Syllable_Modifier # Mn       KHMER SIGN BATHAMASAT
 17DD          ; Syllable_Modifier # Mn       KHMER SIGN ATTHACAN
 193B          ; Syllable_Modifier # Mn       LIMBU SIGN SA-I
-1A7A..1A7C    ; Syllable_Modifier # Mn   [3] TAI THAM SIGN RA HAAM..TAI THAM SIGN KHUEN-LUE KARAN
+1A7B..1A7C    ; Syllable_Modifier # Mn   [2] TAI THAM SIGN MAI SAM..TAI THAM SIGN KHUEN-LUE KARAN
 1A7F          ; Syllable_Modifier # Mn       TAI THAM COMBINING CRYPTOGRAMMIC DOT
 1C36          ; Syllable_Modifier # Mn       LEPCHA SIGN RAN
 1DFB          ; Syllable_Modifier # Mn       COMBINING DELETION MARK
@@ -1151,6 +1157,10 @@ A8E0..A8F1    ; Cantillation_Mark # Mn  [18] COMBINING DEVANAGARI DIGIT ZERO..CO
 # Indic_Syllabic_Category=Number
 
 # Number (can be used as vowel-holders like consonant placeholders)
+# Note: A number may even hold subjoined consonants which may in turn
+# have been formed using a virama or a stacker, e.g. the sequence
+# <U+1A93, U+1A60, U+1A34> where THAI THAM LETTER LOW TA is subjoined to
+# TAI THAM THAM DIGIT THREE using an invisible stacker.
 
 # [Not derivable]
 
