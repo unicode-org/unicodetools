@@ -1,13 +1,12 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
        "http://www.w3.org/TR/html4/loose.dtd"> 
-<html><head>
+<html>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="en-us">
-<meta name="GENERATOR" content="Microsoft FrontPage 12.0">
-<meta name="ProgId" content="FrontPage.Editor.Document">
 <link rel="stylesheet" href="http://www.unicode.org/reports/reports.css" type="text/css">
-<title>UCA Conformance Tests</title></head>
-
+<title>UCA Conformance Tests</title>
+</head>
 
 <body>
 
@@ -22,10 +21,10 @@
   </tr>
 </tbody></table>
 <div class="body">
-  <h1><span class="removed">UCA</span> <span class="changed">Unicode® Collation Algorithm</span><br>Conformance Tests</h1>
-  <h2 align="center" class="changed">Version 9.0.0<br>2016-04-04</h2>
+  <h1>Unicode® Collation Algorithm<br>Conformance Tests</h1>
+  <h2 align="center" class="changed">Version 10.0.0<br>2017-05-03</h2>
 <p>The following files provide conformance tests for the Unicode Collation Algorithm
-  (<a href="http://www.unicode.org/reports/tr10/tr10-33.html">UTS #10: Unicode Collation Algorithm</a>).</p>
+  (<a href="http://www.unicode.org/reports/tr10/tr10-35.html">UTS #10: Unicode Collation Algorithm</a>).</p>
   <ul>
     <li>CollationTest_SHIFTED.txt</li>
     <li>CollationTest_NON_IGNORABLE.txt</li>
@@ -33,11 +32,12 @@
     <li>CollationTest_NON_IGNORABLE_SHORT.txt</li>
   </ul>
   <p>These files are large, and thus packaged in zip format to save download time.</p>
-  <h2>Format</h2>
+
+<h2>Format</h2>
   <p>There are four different files:</p>
   <ul>
     <li>The shifted vs non-ignorable files correspond to the two alternate
-      <a href="http://www.unicode.org/reports/tr10/tr10-33.html#Variable_Weighting">Variable Weighting</a> values.</li>
+      <a href="http://www.unicode.org/reports/tr10/tr10-35.html#Variable_Weighting">Variable Weighting</a> values.</li>
     <li>The SHORT versions omit the comments, for more compact storage.</li>
   </ul>
 <p>The format is illustrated by the following example:</p>
@@ -64,7 +64,7 @@
   <h2>Testing</h2>
   <p>The files are designed so each line in the file will order as being greater than or equal to 
   the previous one, when using the UCA and the
-  <a href="http://www.unicode.org/reports/tr10/tr10-33.html#Default_Unicode_Collation_Element_Table">Default
+  <a href="http://www.unicode.org/reports/tr10/tr10-35.html#Default_Unicode_Collation_Element_Table">Default
   Unicode Collation Element Table</a>.
   A test program can read in each line, compare it to 
   the last line, and signal an error if order is not correct. The exact comparison that should be 
@@ -105,6 +105,9 @@
   UCA 6.2 test files omitted the relevant test cases.
   For UCA 6.3, the test data generation code was fixed and those test cases were restored.</p>
 
+<p class="reviewnote">TODO: Adjust this text to match final wording of the UCA steps and associated notes
+  in UTS #10 for Version 10.0.</p>
+
   <p>For example, in the defective test data generation code,
   the strings 0FB2 0F80 0F71 0334 and 0F77 0334 compared equal.
   (U+0F77 is the TIBETAN VOWEL SIGN VOCALIC RR.)
@@ -115,15 +118,16 @@
     <li>S2.1.1 loops over each of the following three characters C,
     but there is no table entry for any of those three S+C.
     In particular, there is no DUCET mapping for 0FB2+0F71
-    (see <i><a href="http://www.unicode.org/reports/tr10/tr10-33.html#Well_Formed_DUCET">Well-Formedness of the DUCET</a></i>).</li>
+    (see <i><a href="http://www.unicode.org/reports/tr10/tr10-35.html#Well_Formed_DUCET"><span class="changedspan">Tibetan and</span>
+    Well-Formedness of <span class="removedspan">the</span> DUCET</a></i>).</li>
     <li>The loop exits without finding any match beyond S=0FB2.</li>
   </ul>
 
   <p>See “Also note that the Algorithm employs two distinct contraction matching methods:”
-  at the end of <i>Section 4.2, <a href="http://www.unicode.org/reports/tr10/tr10-33.html#Step_2">Produce Array</a></i>.</p>
+  at the end of <i>Section <span class="changedspan">7</span>.2, <a href="http://www.unicode.org/reports/tr10/tr10-35.html#Step_2">Produce <span class="changedspan">Collation Element</span> Array<span class="changedspan">s</span></a></i>.</p>
 
   <hr width="50%">
-  <p class="copyright changed">© 2016 Unicode, Inc. All Rights Reserved.
+  <p class="copyright">© 201<span class="changedspan">7</span> Unicode, Inc. All Rights Reserved.
   The Unicode Consortium makes no expressed or implied warranty 
   of any kind, and assumes no liability for errors or omissions. No liability 
   is assumed for incidental and consequential damages in connection with or arising 
@@ -131,7 +135,7 @@
   technical report. The Unicode
   <a href="http://www.unicode.org/copyright.html">Terms of Use</a> apply.
   </p>
-  <p class="copyright changed">Unicode and the Unicode logo are trademarks 
+  <p class="copyright">Unicode and the Unicode logo are trademarks 
   of Unicode, Inc., and are registered in some jurisdictions.</p>
 </div>
 

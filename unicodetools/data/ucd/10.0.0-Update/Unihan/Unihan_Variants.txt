@@ -1,6 +1,6 @@
 #
 # Unihan_Variants.txt
-# Date: 2017-03-09 16:13:49 GMT [JHJ]
+# Date: 2017-05-14 07:01:48 GMT [JHJ]
 # Unicode version: 10.0.0
 #
 # Unicode Character Database
@@ -5970,7 +5970,7 @@ U+7BFA	kSemanticVariant	U+68D1<kMeyerWempe
 U+7C00	kSimplifiedVariant	U+7BA6
 U+7C01	kSemanticVariant	U+7BE9<kMatthews U+7C1B<kMatthews
 U+7C08	kZVariant	U+7BB3
-U+7C0C	kSemanticVariant	U+96DD<kCowles 
+U+7C0C	kSemanticVariant	U+96DD<kCowles
 U+7C0D	kSimplifiedVariant	U+7BD3
 U+7C11	kZVariant	U+84D1
 U+7C12	kSemanticVariant	U+7BE1<kMatthews
@@ -8935,7 +8935,7 @@ U+908F	kZVariant	U+F913
 U+9090	kSimplifiedVariant	U+9026
 U+9091	kZVariant	U+961D
 U+9093	kTraditionalVariant	U+9127
-U+9095	kSemanticVariant	U+96CD<kMatthews,kMeyerWempe U+2AA9D<kMatthews 
+U+9095	kSemanticVariant	U+96CD<kMatthews,kMeyerWempe U+2AA9D<kMatthews
 U+909D	kTraditionalVariant	U+913A
 U+90A0	kSemanticVariant	U+37D7<kMatthews U+8C73<kMatthews
 U+90A2	kZVariant	U+90C9
@@ -9948,7 +9948,7 @@ U+96C6	kSemanticVariant	U+4EBC<kLau,kMatthews
 U+96C7	kSemanticVariant	U+50F1<kLau,kMeyerWempe
 U+96CB	kSemanticVariant	U+96BD<kMatthews
 U+96CB	kSimplifiedVariant	U+96BD
-U+96CD	kSemanticVariant	U+9095<kMatthews,kMeyerWempe U+2AA9D<kMatthews 
+U+96CD	kSemanticVariant	U+9095<kMatthews,kMeyerWempe U+2AA9D<kMatthews
 U+96CF	kTraditionalVariant	U+96DB
 U+96D1	kZVariant	U+96DC
 U+96D5	kSemanticVariant	U+34EE<kLau,kMatthews U+5F6B<kLau,kMatthews,kMeyerWempe
@@ -9962,7 +9962,7 @@ U+96DB	kSimplifiedVariant	U+96CF
 U+96DC	kSemanticVariant	U+894D<kMatthews
 U+96DC	kSimplifiedVariant	U+6742
 U+96DC	kZVariant	U+96D1
-U+96DD	kSemanticVariant	U+7C0C<kCowles 
+U+96DD	kSemanticVariant	U+7C0C<kCowles
 U+96DE	kSemanticVariant	U+9DC4<kLau,kMatthews U+9CEE<kFenn
 U+96DE	kSimplifiedVariant	U+9E21
 U+96DE	kZVariant	U+9DC4

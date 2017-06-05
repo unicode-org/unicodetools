@@ -1,9 +1,12 @@
 # Unicode Collation Algorithm
-# Date: 2015-11-25, 23:00:00 GMT [KW]
-# © 1991-2015 Unicode®, Inc.
+# Date: 2017-04-20
+# © 2017 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
-# See: http://www.unicode.org/reports/tr10/
+# DRAFT for UCA 10
+#
+# See http://www.unicode.org/reports/tr10/tr10-35.html
 # for documentation regarding the latest version of the 
 # Unicode Collation Algorithm.
 
@@ -17,4 +20,5 @@ http://www.unicode.org/Public/UCA/latest/ReadMe.txt
 then you are looking at the most current version of the data
 files for the Unicode Collation Algorithm.
 
-Otherwise the version number is part of the path name. 
+Otherwise the version number is part of the path name.
+

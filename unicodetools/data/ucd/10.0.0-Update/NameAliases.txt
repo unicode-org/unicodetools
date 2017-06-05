@@ -1,5 +1,5 @@
 # NameAliases-10.0.0.txt
-# Date: 2017-01-27, 23:03:00 GMT [KW, LI]
+# Date: 2017-05-06, 18:10:00 GMT [KW, LI]
 # © 2017 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -293,7 +293,6 @@
 2B7A;LEFTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE VERTICAL STROKE;correction
 2B7C;RIGHTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE VERTICAL STROKE;correction
 A015;YI SYLLABLE ITERATION MARK;correction
-FE18;PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET;correction
 FE00;VS1;abbreviation
 FE01;VS2;abbreviation
 FE02;VS3;abbreviation
@@ -310,6 +309,7 @@ FE0C;VS13;abbreviation
 FE0D;VS14;abbreviation
 FE0E;VS15;abbreviation
 FE0F;VS16;abbreviation
+FE18;PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET;correction
 FEFF;BYTE ORDER MARK;alternate
 FEFF;BOM;abbreviation
 FEFF;ZWNBSP;abbreviation
