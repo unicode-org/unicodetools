@@ -31,6 +31,10 @@ import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.VersionInfo;
 
 public class CachedProps {
+    
+    public static final Splitter HASH_SPLITTER = Splitter.on('#').trimResults();
+    public static final Splitter SEMI_SPLITTER = Splitter.on(';').trimResults();
+
 	static ConcurrentHashMap<VersionInfo, CachedProps> versionToCachedProps = new ConcurrentHashMap();
 
 	final VersionInfo version;
@@ -38,6 +42,10 @@ public class CachedProps {
 	final ConcurrentHashMap<String, UnicodeProperty> propertyCache = new ConcurrentHashMap<String, UnicodeProperty>();
 	final BiMultimap<String,String> nameToAliases = new BiMultimap<String,String>(null,null);
 	final Map<String,BiMultimap<String,String>> nameToValueToAliases = new LinkedHashMap();
+
+    static CachedProps CACHED_PROPS = getInstance(VersionInfo.getInstance(10));
+
+    static UnicodeProperty NAMES = CachedProps.CACHED_PROPS.getProperty("Name");
 
 	private CachedProps(VersionInfo version2) {
 		version = version2;
@@ -86,16 +94,13 @@ public class CachedProps {
 		propNames = Collections.unmodifiableSet(temp);
 	}
 
-	static Splitter hash = Splitter.on('#').trimResults();
-	static Splitter semi = Splitter.on(';').trimResults().omitEmptyStrings();
-
 	private List<String> breakLine(String line) {
-		Iterable<String> items = hash.split(line);
+		Iterable<String> items = HASH_SPLITTER.split(line);
 		String first = items.iterator().next();
 		if (first.isEmpty()) {
 			return null;
 		}
-		List<String> splitLine = semi.splitToList(first);
+		List<String> splitLine = SEMI_SPLITTER.splitToList(first);
 		if (splitLine.isEmpty()) {
 			return null;
 		}

@@ -7,6 +7,7 @@ EMP ; Emoji_Presentation
 EMM ; Emoji_Modifier
 EMB ; Emoji_Modifier_Base
 ECP ; Emoji_Component
+EEP ; Extended_Pictographic
 
 EMS ; Emoji_Modifier_Sequence
 EFS ; Emoji_Flag_Sequence

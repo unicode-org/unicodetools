@@ -52,8 +52,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         }
     }
     
-    {
-        CachedProps cp = CachedProps.getInstance(VersionInfo.getInstance(10));
+    {   CachedProps cp = CachedProps.CACHED_PROPS;
         for (String prop : cp.getAvailable()) {
             add(cp.getProperty(prop));
         }
