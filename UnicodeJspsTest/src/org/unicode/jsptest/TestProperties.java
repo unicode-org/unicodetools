@@ -83,7 +83,7 @@ public class TestProperties extends TestFmwk2 {
 
     public void TestScope() {
         Set<String> metaprops = new TreeSet<String>();
-        for (R4<String, String, String, String> propData : PropertyMetadata.CategoryDatatypeSourceProperty) {
+        for (R4<String, String, String, String> propData : PropertyMetadata.getCategoryDatatypeSourceProperty()) {
             String category = propData.get0();
             if (category.startsWith("X-")) {
                 continue;
@@ -132,7 +132,7 @@ public class TestProperties extends TestFmwk2 {
 
     public void TestPropertySupport() {
         Relation<String,Source> source = Relation.of(new TreeMap<String,Set<Source>>(LC), TreeSet.class);
-        for (R4<String, String, String, String> propData : PropertyMetadata.CategoryDatatypeSourceProperty) {
+        for (R4<String, String, String, String> propData : PropertyMetadata.getCategoryDatatypeSourceProperty()) {
             String propName = propData.get3();
             put(source, propName, Source.METADATA);
         }
@@ -234,7 +234,7 @@ public class TestProperties extends TestFmwk2 {
         //    }
 
         Set<String> notCovered = new HashSet<String>(availableNames);
-        for (R4<String, String, String, String> propData : PropertyMetadata.CategoryDatatypeSourceProperty) {
+        for (R4<String, String, String, String> propData : PropertyMetadata.getCategoryDatatypeSourceProperty()) {
             logln(propData.toString());
             notCovered.remove(propData.get3());
         }

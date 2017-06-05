@@ -309,12 +309,14 @@ security/*/confusables ; Confusable_MA
 FileType ; emoji/*/emoji-data ; PropertyValue
 FileType ; emoji/*/emoji-sequences ; PropertyValue
 FileType ; emoji/*/emoji-zwj-sequences ; PropertyValue
+FileType ; emoji/*/extended-pictographic ; PropertyValue
 
 emoji/*/emoji-data; Emoji
 emoji/*/emoji-data; Emoji_Presentation
 emoji/*/emoji-data; Emoji_Modifier
 emoji/*/emoji-data; Emoji_Modifier_Base
 emoji/*/emoji-data; Emoji_Component
+emoji/*/extended-pictographic; Extended_Pictographic
 
 emoji/*/emoji-sequences; Emoji_Modifier_Sequence 
 emoji/*/emoji-sequences; Emoji_Flag_Sequence

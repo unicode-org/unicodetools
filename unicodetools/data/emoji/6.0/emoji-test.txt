@@ -1,5 +1,5 @@
 # emoji-test.txt
-# Date: 2017-02-18, 15:26:57 GMT
+# Date: 2017-03-21, 12:10:30 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -678,6 +678,8 @@
 1F931 1F3FD                                ; fully-qualified     # 🤱🏽 breast-feeding: medium skin tone
 1F931 1F3FE                                ; fully-qualified     # 🤱🏾 breast-feeding: medium-dark skin tone
 1F931 1F3FF                                ; fully-qualified     # 🤱🏿 breast-feeding: dark skin tone
+
+# subgroup: person-fantasy
 1F47C                                      ; fully-qualified     # 👼 baby angel
 1F47C 1F3FB                                ; fully-qualified     # 👼🏻 baby angel: light skin tone
 1F47C 1F3FC                                ; fully-qualified     # 👼🏼 baby angel: medium-light skin tone

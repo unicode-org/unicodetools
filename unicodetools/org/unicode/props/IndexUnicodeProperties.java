@@ -383,6 +383,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     }
 
     public UnicodeMap<String> load(UcdProperty prop2) {
+        String fullFilename = "?";
         try {
             if (prop2 == CHECK_PROPERTY) {
                 int debug = 0;
@@ -393,7 +394,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
 
             final PropertyParsingInfo fileInfo = PropertyParsingInfo.property2PropertyInfo.get(prop2);
-            final String fullFilename = fileInfo.getFullFileName(ucdVersion);
+            fullFilename = fileInfo.getFullFileName(ucdVersion);
             final String fileName = fileInfo.getFileName(ucdVersion);
 
             if (FILE_CACHE) {
@@ -407,7 +408,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             fileInfo.parseSourceFile(this, fullFilename, fileName);
             return property2UnicodeMap.get(prop2);
         } catch (Exception e) {
-            throw new ICUException(prop2.toString(), e);
+            throw new ICUException(prop2.toString() + "(" + fullFilename + ")", e);
         }
     }
 

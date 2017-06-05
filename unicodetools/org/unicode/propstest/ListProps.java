@@ -1,5 +1,6 @@
 package org.unicode.propstest;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -9,14 +10,19 @@ import java.util.Map;
 import java.util.Set;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.PropertyLister;
 import org.unicode.props.PropertyStatus;
 import org.unicode.props.PropertyType;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
+import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.ValueCardinality;
 import org.unicode.text.utility.Settings;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSet;
@@ -24,12 +30,16 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
+import com.ibm.icu.impl.Utility;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ICUUncheckedIOException;
 
 public class ListProps {
 
     static final boolean ONLY_JSP = true;
 
-    static final Set<PropertyStatus> SKIP_JSP_STATUS = ImmutableSet.of(
+    public static final Set<PropertyStatus> SKIP_JSP_STATUS = ImmutableSet.of(
             PropertyStatus.Deprecated, 
             PropertyStatus.Obsolete,
             PropertyStatus.Stabilized,
@@ -39,6 +49,17 @@ public class ListProps {
 
     public static void main(String[] args) {
         IndexUnicodeProperties latest = IndexUnicodeProperties.make();
+        if (true) {
+            UnicodeSet ep = latest.loadEnum(UcdProperty.Extended_Pictographic, UcdPropertyValues.Binary.class).getSet(Binary.Yes);
+            UnicodeSet em = latest.loadEnum(UcdProperty.Emoji, UcdPropertyValues.Binary.class).getSet(Binary.Yes);
+            UnicodeSet combined = new UnicodeSet(ep).addAll(em).freeze();
+            PropertyLister pl = new PropertyLister(latest);
+            System.out.println(
+                    pl.listSet(combined, 
+                            UcdProperty.Extended_Pictographic.toString(),
+                            new StringBuilder()));
+            return;
+        }
         PropertyType lastType = null;
         Set<String> skipped = new LinkedHashSet<>();
         main:
@@ -51,7 +72,7 @@ public class ListProps {
                     lastType = type;
                 }
                 EnumSet<PropertyStatus> status = PropertyStatus.getPropertyStatusSet(item);
-                
+
                 UnicodeMap<String> map = latest.load(item);
                 Set<String> values = map.values();
 
@@ -112,6 +133,7 @@ public class ListProps {
             System.out.println("➖\t" + skip);
         }
     }
+    
     static final Splitter BAR = Splitter.on('|').omitEmptyStrings().trimResults();
 
     private static Set<String> flattenValues(Set<String> values) {

@@ -128,6 +128,7 @@ idtype	; rec	; Recommended
 # @missing: 0000..10FFFF; Emoji_Modifier  	; No
 # @missing: 0000..10FFFF; Emoji_Modifier_Base  	; No
 # @missing: 0000..10FFFF; Emoji_Component  	; No
+# @missing: 0000..10FFFF; Extended_Pictographic  	; No
 
 # @missing: 0000..10FFFF; Emoji_Modifier_Sequence  	; No
 # @missing: 0000..10FFFF; Emoji_Flag_Sequence  	; No
