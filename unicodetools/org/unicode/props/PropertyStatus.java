@@ -496,6 +496,7 @@ public enum PropertyStatus {
         process("Emoji_Presentation","UTS","Emoji","Binary");
         process("Emoji_All","UTS","Emoji","Binary");
         process("Emoji_Component","UTS","Emoji","Binary");
+        process("Extended_Pictographic","UTS","Emoji","Binary");
         process("Emoji_Flag_Sequence","UTS","Emoji","Binary");
         process("Emoji_Keycap_Sequence","UTS","Emoji","Binary");
         process("Emoji_Modifier_Sequence","UTS","Emoji","Binary");

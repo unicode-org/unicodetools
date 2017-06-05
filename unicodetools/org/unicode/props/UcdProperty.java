@@ -16,6 +16,7 @@ import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
 import org.unicode.props.UcdPropertyValues.Hangul_Syllable_Type_Values;
 import org.unicode.props.UcdPropertyValues.Identifier_Status_Values;
 import org.unicode.props.UcdPropertyValues.Identifier_Type_Values;
+
 import org.unicode.props.UcdPropertyValues.Idn_2008_Values;
 import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
 import org.unicode.props.UcdPropertyValues.Indic_Positional_Category_Values;
@@ -228,6 +229,7 @@ public enum UcdProperty {
     Expands_On_NFD(PropertyType.Binary, Binary.class, null, "XO_NFD"),
     Expands_On_NFKC(PropertyType.Binary, Binary.class, null, "XO_NFKC"),
     Expands_On_NFKD(PropertyType.Binary, Binary.class, null, "XO_NFKD"),
+    Extended_Pictographic(PropertyType.Binary, Binary.class, null, "EEP"),
     Extender(PropertyType.Binary, Binary.class, null, "Ext"),
     Full_Composition_Exclusion(PropertyType.Binary, Binary.class, null, "Comp_Ex"),
     Grapheme_Base(PropertyType.Binary, Binary.class, null, "Gr_Base"),
@@ -268,6 +270,8 @@ public enum UcdProperty {
     White_Space(PropertyType.Binary, Binary.class, null, "WSpace"),
     XID_Continue(PropertyType.Binary, Binary.class, null, "XIDC"),
     XID_Start(PropertyType.Binary, Binary.class, null, "XIDS"),
+
+		// Unknown
 		;
 
 private final PropertyType type;
@@ -328,4 +332,6 @@ private final PropertyType type;
 	public Set<Enum> getEnums() {
 		return enums;
 	}
+
+
 }

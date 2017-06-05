@@ -35,28 +35,23 @@ public class TestEmoji extends TestFmwk2 {
         checkContained("[:emoji_modifier:]", "[🏻]");
         checkContained("[:emoji_modifier:]", "[☝]", false);
 
-        checkContained("[:EMOJI_ZWJ_SEQUENCES:]", "[{👁‍🗨}{👨‍❤️‍👨}]");
-        checkContained("[:EMOJI_ZWJ_SEQUENCES:]", "[☝]", false);
+        checkContained("[:Emoji_Zwj_Sequenceβ:]", "[{👨‍❤️‍👨}]");
+        checkContained("[:Emoji_Zwj_Sequenceβ:]", "[☝]", false);
 
-        checkContained("[:EMOJI_FLAG_SEQUENCES:]", "[{🇦🇨}{🇦🇩}]");
-        checkContained("[:EMOJI_FLAG_SEQUENCES:]", "[☝]", false);
+        checkContained("[:Emoji_Flag_Sequenceβ:]", "[{🇦🇨}{🇦🇩}]");
+        checkContained("[:Emoji_Flag_Sequenceβ:]", "[☝]", false);
 
-        checkContained("[:EMOJI_KEYCAP_SEQUENCES:]", "[{#⃣}{*⃣}]");
-        checkContained("[:EMOJI_KEYCAP_SEQUENCES:]", "[☝]", false);
+        checkContained("[:Emoji_Keycap_Sequenceβ:]", "[{#️⃣}{9️⃣}]");
+        checkContained("[:Emoji_Keycap_Sequenceβ:]", "[☝]", false);
 
-        checkContained("[:EMOJI_MODIFIER_SEQUENCES:]", "[{☝🏻}{☝🏼}]");
-        checkContained("[:EMOJI_MODIFIER_SEQUENCES:]", "[☝]", false);
+        checkContained("[:Emoji_Modifier_Sequenceβ:]", "[{☝🏻}{☝🏼}]");
+        checkContained("[:Emoji_Modifier_Sequenceβ:]", "[☝]", false);
 
-        checkContained("[:EMOJI_DEFECTIVES:]", "[#*0]");
-        checkContained("[:EMOJI_DEFECTIVES:]", "[☝]", false);
-
-        checkContained("[:emoji_all:]", "[1]", false);
-        checkContained("[:emoji_all:]", "[\\x{1F1E6}]", false);
-        checkContained("[:emoji_all:]", "[{#️⃣}]");
-        checkContained("[:emoji_all:]", "[{#⃣}]");
-        checkContained("[:emoji_all:]", "[{🇦🇨}]");
-        checkContained("[:emoji_all:]", "[{☝🏻}]");
-        checkContained("[:emoji_all:]", "[{👁‍🗨}]");
+        checkContained("[:Emoji_Componentβ:]", "[#*0]");
+        checkContained("[:Emoji_Componentβ:]", "[☝]", false);
+        
+        checkContained("[:Emoji_Tag_Sequenceβ:]", "[{🏴󠁧󠁢󠁳󠁣󠁴󠁿}]");
+        checkContained("[:Emoji_Tag_Sequenceβ:]", "[☝]", false);
     }
 
 

@@ -1346,7 +1346,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     private static String getEmojiVersion(String element) {
         switch(Integer.parseInt(element.split("\\.")[0])) {
-        case 10: return "5.0";
+        case 10: return "6.0";
         case 9: return "4.0";
         case 8: return "3.0";
         default: return null;

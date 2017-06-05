@@ -14,13 +14,21 @@ public class TestFmwk2 extends TestFmwk {
 
     public void checkContained(final String setPattern, final String containedPattern, boolean expected) {
         String[] message = {""};
-        UnicodeSet primary = UnicodeUtilities.parseSimpleSet(setPattern, message);
-        UnicodeSet x = UnicodeUtilities.parseSimpleSet(containedPattern, message);
-        if (primary.containsAll(x) != expected) {
-            errln(primary.toPattern(false) + " doesn't contain " + x.toPattern(false));
+        UnicodeSet container = UnicodeUtilities.parseSimpleSet(setPattern, message);
+        UnicodeSet contained = UnicodeUtilities.parseSimpleSet(containedPattern, message);
+        if (container == null) {
+            errln(setPattern + " fails to parse");
+        } else if (contained == null) {
+            errln(containedPattern + " fails to parse");
+        } else if (container.containsAll(contained) != expected) {
+                errln(toPattern(setPattern, container) + " doesn't contain " + toPattern(containedPattern, contained));
         } else {
-            logln(primary.toPattern(false) + " contains " + x.toPattern(false));
+            logln(toPattern(setPattern, container) + " contains " + toPattern(containedPattern, contained));
         }
+    }
+
+    private static String toPattern(String title, UnicodeSet primary) {
+        return primary == null ? title : primary.toPattern(false);
     }
     
     @Override
@@ -44,7 +52,7 @@ public class TestFmwk2 extends TestFmwk {
         if (!actual.containsAll(expectedSubset)) {
             UnicodeSet inExpected = new UnicodeSet(expectedSubset).removeAll(actual);
             UnicodeSet has = new UnicodeSet(actual).removeAll(expectedSubset);
-            testFmwk.errln(test + " missing: " + inExpected.toPattern(false) + ", has: " + has.toPattern(false));
+            testFmwk.errln(test + " missing: " + toPattern("?", inExpected) + ", has: " + toPattern("*", has));
             return false;
         } else {
             testFmwk.logln("OK\t\t" + test);

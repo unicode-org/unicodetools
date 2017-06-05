@@ -30,6 +30,7 @@ public class Settings {
     public static final String GEN_UCD_DIR = GEN_DIR + "ucd/";
     
     public static final String UNICODETOOLS_DIRECTORY = SVN_WORKSPACE_DIRECTORY + "unicodetools/";
+    public static final String UNICODEJSPS_DIRECTORY = SVN_WORKSPACE_DIRECTORY + "UnicodeJsps/";
     public static final String UNICODE_DRAFT_DIRECTORY = SVN_WORKSPACE_DIRECTORY + "unicode-draft/";
     public static final String UNICODE_DRAFT_PUBLIC = SVN_WORKSPACE_DIRECTORY + "unicode-draft/Public/";
 
