@@ -1,2 +1,2 @@
 <p><a target="help" href="http://cldr.unicode.org/unicode-utilities/changes" style='color: red'>Warning:
-Testing version with both ICU and Unicode 10.0&beta; properties!</a></p>
+Testing version with properties from ICU (Unicode 9.0), Unicode 10.0&beta;, and emoji 6.0&beta;.</a></p>

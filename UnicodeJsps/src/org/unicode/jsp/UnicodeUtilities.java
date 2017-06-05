@@ -56,6 +56,9 @@ public class UnicodeUtilities {
 	static final UnicodeSet OFF_LIMITS = new UnicodeSet(UnicodeProperty.UNASSIGNED).addAll(UnicodeProperty.PRIVATE_USE).addAll(UnicodeProperty.SURROGATE).freeze();
     static final UnicodeSet NONCHAR = new UnicodeSet(OFF_LIMITS).addAll(new UnicodeSet("[:Cc:]")).removeAll(new UnicodeSet("[:whitespace:]")).freeze();
 
+    static {
+        CachedProps cp = CachedProps.CACHED_PROPS; // force load
+    }
 
     private static Subheader subheader = null;
 
@@ -695,7 +698,7 @@ public class UnicodeUtilities {
             if (andCode) {
                 result.append("U+").append(com.ibm.icu.impl.Utility.hex(cp, 4)).append(' ');
             }
-            result.append(UCharacter.getExtendedName(cp));
+            result.append(CachedProps.NAMES.getValue(cp));
         }
         return result.toString();
     }
@@ -1377,7 +1380,7 @@ public class UnicodeUtilities {
         //for (String propName : Builder.with(new TreeSet<String>(col)).addAll((List<String>)factory.getAvailableNames()).get()) {
         Set<String> missing = new TreeSet<String>(COLLATOR);
         missing.addAll(factory.getAvailableNames());
-        for (R4<String, String, String, String> propData : PropertyMetadata.CategoryDatatypeSourceProperty) {
+        for (R4<String, String, String, String> propData : PropertyMetadata.getCategoryDatatypeSourceProperty()) {
             String propName = propData.get3();
             UnicodeProperty prop = factory.getProperty(propName);
             if (prop == null) continue;

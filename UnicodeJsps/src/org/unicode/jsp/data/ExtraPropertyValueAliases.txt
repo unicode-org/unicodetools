@@ -96,7 +96,7 @@ idn8 ; na	 ; na
 # @missing: 0000..10FFFF; Idn_Mapping  ; <code point>
 
 
-# @-missing: 0000..10FFFF; Identifier_Status  	; r
+# @missing: 0000..10FFFF; Identifier_Status  	; r
 
 idstatus	; r	 ; Restricted			
 idstatus	; a	 ; Allowed				
@@ -123,20 +123,18 @@ idtype	; rec	; Recommended
 # @-missing: 0000..10FFFF; Confusable_ML    	; <code point>		
 # @-missing: 0000..10FFFF; Confusable_MA    	; <code point>		
 
-# @-missing: 0000..10FFFF; Emoji  	; No
-# @-missing: 0000..10FFFF; Emoji_Presentation  	; No
-# @-missing: 0000..10FFFF; Emoji_Modifier  	; No
-# @-missing: 0000..10FFFF; Emoji_Modifier_Base  	; No
-# @-missing: 0000..10FFFF; Emoji_Regional_Indicator  	; No
-# @-missing: 0000..10FFFF; Emoji_Component  	; No
+# @missing: 0000..10FFFF; Emoji  	; No
+# @missing: 0000..10FFFF; Emoji_Presentation  	; No
+# @missing: 0000..10FFFF; Emoji_Modifier  	; No
+# @missing: 0000..10FFFF; Emoji_Modifier_Base  	; No
+# @missing: 0000..10FFFF; Emoji_Component  	; No
+# @missing: 0000..10FFFF; Extended_Pictographic  	; No
 
-# @-missing: 0000..10FFFF; Emoji_Modifier_Sequence  	; No
-# @-missing: 0000..10FFFF; Emoji_Flag_Sequence  	; No
-# @-missing: 0000..10FFFF; Emoji_Keycap_Sequence  	; No
-# @-missing: 0000..10FFFF; Emoji_Tag_Sequence  	; No
-# @-missing: 0000..10FFFF; Emoji_Zwj_Sequence  	; No
-
-# @-missing: 0000..10FFFF; Emoji_Zwj_Sequence  	; No
+# @missing: 0000..10FFFF; Emoji_Modifier_Sequence  	; No
+# @missing: 0000..10FFFF; Emoji_Flag_Sequence  	; No
+# @missing: 0000..10FFFF; Emoji_Keycap_Sequence  	; No
+# @missing: 0000..10FFFF; Emoji_Tag_Sequence  	; No
+# @missing: 0000..10FFFF; Emoji_Zwj_Sequence  	; No
 
 sc ; Jpan                             ; Japanese
 sc ; Kore                             ; Korean

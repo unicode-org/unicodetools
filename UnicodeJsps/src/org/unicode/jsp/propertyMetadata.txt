@@ -70,7 +70,7 @@ Hangul_Syllable_Type ;   UCD ;    Enumerated ; General
 #Script_Specials ;    X-Demo ;    Enumerated ; Security
 Identifier_Status ; UTS ;    Enumerated ; Security
 Identifier_Type ; UTS ;    Enumerated ; Security
-confusable ; UTS ;    Enumerated ; Security
+Confusable_MA ; UTS ;    Enumerated ; Security
 subhead ;    Nameslist ;    String ; General
 ID_Continue ;    UCD ;    Binary ; Identifiers
 ID_Start ;   UCD ;    Binary ; Identifiers
@@ -150,7 +150,7 @@ Script_Extensions ; UCD ;    String ; General
 ANY ; UTS ;    Binary ; Regex
 ASCII ; UTS ;    Binary ; Regex
 bmp ; UTS ;    Binary ; Regex
-idna2008 ; UTS ;    Binary ; IDNA
+idna2008 ; UTS ;    Enumerated ; IDNA
 uca ; UTS ;    Binary ; UCA
 uca2 ; UTS ;    Binary ; UCA
 uca2.5 ; UTS ;    Binary ; UCA
@@ -161,7 +161,6 @@ Emoji_Modifier ; UTS ;    Binary ; Emoji
 Emoji_Modifier_Base ; UTS ;    Binary ; Emoji
 Emoji_Presentation ; UTS ;    Binary ; Emoji
 
-Emoji_All ; UTS ;    Binary ; Emoji
 Emoji_Component ; UTS ;    Binary ; Emoji
 Emoji_Flag_Sequence ; UTS ;    Binary ; Emoji
 Emoji_Keycap_Sequence ; UTS ;    Binary ; Emoji
@@ -179,8 +178,9 @@ Indic_Positional_Category ; UCD ; Enumerated ; Miscellaneous
 Indic_Syllabic_Category ; UCD ; Enumerated ; Miscellaneous
 
 CJK_Radical	; UCD ; String ; CJK
-Idn_Mapping ; UCD ; Enumerated ; IDNA
-Idn_Status ; UCD ; Enumerated ; IDNA
+Idn_Mapping ; UTS ; String ; IDNA
+Idn_Status ; UTS ; Enumerated ; IDNA
+Idn_2008 ; UTS ; Enumerated ; IDNA
 Name_Alias ; UCD ; Enumerated ; General
 Named_Sequences_Prov ; UCD ; Enumerated ; General
 Named_Sequences ; UCD ; Enumerated ; General
@@ -189,9 +189,8 @@ Regional_Indicator ; UCD ; Enumerated ; Emoji
 Standardized_Variant ; UCD ; Enumerated ; Shaping and Rendering
 Vertical_Orientation ; UCD ; Enumerated ; Shaping and Rendering
 
-Idn_2008β ; UTS ; Enumerated ; IDNA
-kAccountingNumericβ ; UCD ; Enumerated ; Numeric
-kOtherNumericβ ; UCD ; Enumerated ; Numeric
-kPrimaryNumericβ	 ; UCD ; Enumerated ; Numeric
-kSimplifiedVariantβ ; UCD ; String ; CJK
-kTraditionalVariantβ	 ; UCD ; String ; CJK
+kAccountingNumeric ; UCD ; Enumerated ; Numeric
+kOtherNumeric ; UCD ; Enumerated ; Numeric
+kPrimaryNumeric	 ; UCD ; Enumerated ; Numeric
+kSimplifiedVariant ; UCD ; String ; CJK
+kTraditionalVariant	 ; UCD ; String ; CJK
