@@ -51,7 +51,7 @@ public class ScriptTester2 {
         //System.out.println(new TreeSet(props.getAvailable()));
         UnicodeMap<String> confusables = props.getProperty("Confusable_MA").getUnicodeMap();
         UnicodeMap<UnicodeSet> equiv = new UnicodeMap();
-        SortedMap<String,Integer> multipleToSingle = new TreeMap<>(new UTF16.StringComparator(true,false,0));
+        SortedMap<String,Integer> multipleToSingle = new TreeMap<String,Integer>(new UTF16.StringComparator(true,false,0));
         for (String value : confusables.values()) {
             UnicodeSet us = new UnicodeSet(confusables.getSet(value)).add(value).retainAll(allowed);
             if (us.isEmpty()) {
