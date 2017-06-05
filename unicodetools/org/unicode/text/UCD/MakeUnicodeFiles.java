@@ -55,7 +55,6 @@ public class MakeUnicodeFiles {
     static boolean DEBUG = false;
 
     public static void main(String[] args) throws IOException {
-        System.setProperty("emoji-beta", "true");
         generateFile();
         System.out.println("DONE");
     }

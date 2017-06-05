@@ -1,6 +1,6 @@
 #
 # Unihan_RadicalStrokeCounts.txt
-# Date: 2017-03-09 16:13:49 GMT [JHJ]
+# Date: 2017-05-14 07:01:48 GMT [JHJ]
 # Unicode version: 10.0.0
 #
 # Unicode Character Database
@@ -15945,7 +15945,7 @@ U+7350	kRSKangXi	94.11
 U+7351	kRSKangXi	94.11
 U+7352	kRSAdobe_Japan1_6	C+18074+94.4.11
 U+7352	kRSKangXi	94.11
-U+7353	kRSKangXi	94.9
+U+7353	kRSKangXi	94.11
 U+7354	kRSKangXi	94.11
 U+7355	kRSKangXi	94.11
 U+7356	kRSAdobe_Japan1_6	C+21969+94.3.12
