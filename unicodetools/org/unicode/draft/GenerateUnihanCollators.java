@@ -1167,12 +1167,18 @@ public class GenerateUnihanCollators {
             }
             final int baseCp = s.codePointAt(0);
             for (final String part : ONBAR.split(value)) {
-                if (!unicodeCp.reset(part).matches()) {
-                    throw new IllegalArgumentException();
+                int cp;
+                if (unicodeCp.reset(part).matches()) {
+                    cp = Integer.parseInt(unicodeCp.group(1), 16);
                 } else {
-                    final int cp = Integer.parseInt(unicodeCp.group(1), 16);
-                    variantEquivalents.add(baseCp, cp);
+                    // New in Unicode 10: Characters are given as themselves
+                    // rather than as code point numbers.
+                    cp = part.codePointAt(0);
+                    if (cp < 0x3400) {
+                        throw new IllegalArgumentException();
+                    }
                 }
+                variantEquivalents.add(baseCp, cp);
             }
         }
     }
