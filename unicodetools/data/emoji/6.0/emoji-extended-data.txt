@@ -1,4 +1,4 @@
-# ExtendedPictographic.txt
+# extended-pictographic.txt
 # Date: 2016-10-12
 # © 2016 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -6,8 +6,9 @@
 # Extended_Pictographic (EP) is a binary code point property for characters that are pictographic 
 # (or otherwise similar in kind to characters with the Emoji property)
 # and used to customize segmentation (UAX #29 and UAX #14) so that possible future emoji zwj sequences
-# will not break grapheme clusters, words, or lines. It also includes unassigned codepoints that
-# are in blocks intended for use for emoji characters, added to the Unicode 9.0 Linebreak property.
+# will not break grapheme clusters, words, or lines. It is a superset of characters with the Emoji property.
+# It also includes unassigned codepoints that are in blocks intended for use for emoji characters, 
+# previously added to the Unicode 9.0 Linebreak property.
 #
 # For usage information, see http://unicode.org/reports/tr35/#Property_Data
 # 

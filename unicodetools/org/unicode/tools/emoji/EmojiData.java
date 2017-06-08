@@ -315,22 +315,30 @@ public class EmojiData {
             }
             emojiWithVariants.freeze();
 
-            for (String line : FileUtilities.in(directory + "/source", "ExtendedPictographic.txt")) {
-                //# Code ;  Default Style ; Ordering ;  Annotations ;   Sources #Version Char Name
-                // U+263A ;    text ;  0 ; face, human, outlined, relaxed, smile, smiley, smiling ;    jw  # V1.1 (☺) white smiling face
-                if (line.startsWith("#") || line.isEmpty()) continue;
-                List<String> coreList = hashOnly.splitToList(line);
-                List<String> list = semi.splitToList(coreList.get(0));
-                final String f0 = list.get(0);
-                int codePoint, codePointEnd;
-                int pos = f0.indexOf("..");
-                if (pos < 0) {
-                    codePoint = codePointEnd = Utility.fromHex(f0).codePointAt(0);
-                } else {
-                    codePoint = Utility.fromHex(f0.substring(0,pos)).codePointAt(0);
-                    codePointEnd = Utility.fromHex(f0.substring(pos+2)).codePointAt(0);
+            if (version.compareTo(Emoji.VERSION4) >= 0) {
+                String dir = directory;
+                String name = "emoji-extended-data.txt";
+                if (version.compareTo(Emoji.VERSION6) < 0) {
+                    dir = dir + "/source";
+                    name = "ExtendedPictographic.txt";
                 }
-                extendedPictographic.add(codePoint,codePointEnd);
+                for (String line : FileUtilities.in(dir, name)) {
+                    //# Code ;  Default Style ; Ordering ;  Annotations ;   Sources #Version Char Name
+                    // U+263A ;    text ;  0 ; face, human, outlined, relaxed, smile, smiley, smiling ;    jw  # V1.1 (☺) white smiling face
+                    if (line.startsWith("#") || line.isEmpty()) continue;
+                    List<String> coreList = hashOnly.splitToList(line);
+                    List<String> list = semi.splitToList(coreList.get(0));
+                    final String f0 = list.get(0);
+                    int codePoint, codePointEnd;
+                    int pos = f0.indexOf("..");
+                    if (pos < 0) {
+                        codePoint = codePointEnd = Utility.fromHex(f0).codePointAt(0);
+                    } else {
+                        codePoint = Utility.fromHex(f0.substring(0,pos)).codePointAt(0);
+                        codePointEnd = Utility.fromHex(f0.substring(pos+2)).codePointAt(0);
+                    }
+                    extendedPictographic.add(codePoint,codePointEnd);
+                }
             }
 
             for (String s : modifierSequences) {
