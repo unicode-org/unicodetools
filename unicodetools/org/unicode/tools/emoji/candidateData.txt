@@ -54,7 +54,7 @@ Proposal=L2/17-058
 
 U+101707
 Name=nazar
-Keywords= avert evil eye
+Keywords= talisman | charm | avert | evil eye
 
 Proposal=L2/17-113
 After=🕶
@@ -90,6 +90,7 @@ Keywords= calculation
 
 U+10170F
 Name=fire extinguisher
+Keywords= fire | extinguish | quench
 
 After=🕶
 U+10171A
