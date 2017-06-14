@@ -28,6 +28,7 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class CandidateData implements Transform<String, String> {
     static final Splitter barSplit = Splitter.on('|').trimResults();
+    static final Splitter equalSplit = Splitter.on('=').trimResults();
 
     public static final String CANDIDATE_VERSION = "10.0";
 
@@ -35,7 +36,7 @@ public class CandidateData implements Transform<String, String> {
         _RELEASED,
         _2015Q1, _2015Q2, _2015Q3, _2015Q4,
         _2016Q1, _2016Q2, _2016Q3, _2016Q4,
-        _2017Q1
+        _2017Q1, _2017Q2
         ;
         public boolean isFuture() {
             return compareTo(_2016Q1) >= 0;
@@ -48,42 +49,84 @@ public class CandidateData implements Transform<String, String> {
         }
     }
 
+    //    public static final class Info {
+    //        String name;
+    //        Set<String> keywords;
+    //        Quarter quarter;
+    //        String after;
+    //        boolean Emoji_Modifier_Base;
+    //        boolean Emoji_Gender_Base;
+    //    }
+
     private final List<Integer> order;
     private final UnicodeMap<String> categories = new UnicodeMap<>();
     private final UnicodeMap<String> names = new UnicodeMap<>();
     private final UnicodeRelation<String> annotations = new UnicodeRelation<>();
+    private final UnicodeRelation<String> status = new UnicodeRelation<>();
     private final UnicodeMap<CandidateData.Quarter> quarters = new UnicodeMap<>();
-    private final UnicodeSet characters;
+    private final UnicodeSet characters = new UnicodeSet();
+    private final UnicodeSet emoji_Modifier_Base = new UnicodeSet();
+    private final UnicodeSet emoji_Gender_Base = new UnicodeSet();
+    private final UnicodeMap<String> after = new UnicodeMap<>();
 
-    static final Splitter TAB = Splitter.on('\t');
     static final CandidateData SINGLE = new CandidateData();
 
     private CandidateData() {
-        UnicodeMap<CandidateData.Quarter> quartersForChars = quarters;
         String category = null;
         String source = null;
         Builder<Integer> _order = ImmutableList.builder();
+        Quarter quarter = null;
+        String afterItem = null;
+
         for (String line : FileUtilities.in(CandidateData.class, "candidateData.txt")) {
+            line = line.trim();
             try {
-                if (line.startsWith("#")) { // annotation
+                if (line.startsWith("#") || line.isEmpty()) { // comment
                     continue;
-                } else if (line.startsWith("•") || line.startsWith("×")) { // annotation
-                    annotations.addAll(source, barSplit.splitToList(line.substring(1)));
                 } else if (line.startsWith("U+")) { // data
-                    List<String> parts = TAB.splitToList(line);
-                    source = Utility.fromHex(parts.get(0));
-                    _order.add(source.codePointAt(0));
-                    final String quarter = parts.get(3).trim();
-                    quartersForChars.put(source, CandidateData.Quarter.fromString(quarter));
-                    final String name = parts.get(4).trim();
-                    names.put(source, name);
+                    source = Utility.fromHex(line);
+                    if (characters.contains(source)) {
+                        throw new IllegalArgumentException(Utility.hex(source) + " occurs twice");
+                    }
+                    characters.add(source);
+                    quarters.put(source, quarter);
+                    after.put(source, afterItem);
+                    status.add(source, "> " + afterItem);
                     //                    if (!EmojiOrder.STD_ORDER.groupOrder.containsKey(category)) {
                     //                        throw new IllegalArgumentException("Illegal category: " + category + ". Must be in: " + EmojiOrder.STD_ORDER.groupOrder.keySet());
                     //                    }
                     categories.put(source, category);
                 } else { // must be category
-                    category = line.trim();
-                    line= line.trim();
+                    List<String> parts = equalSplit.splitToList(line);
+                    switch(parts.get(0)) {
+                    // go before character
+                    case "Quarter": 
+                        quarter = CandidateData.Quarter.fromString(parts.get(1));
+                        break;
+                    case "After": 
+                        afterItem = parts.get(1);
+                        category = EmojiOrder.STD_ORDER.getCategory(afterItem);
+                        break;
+                        // go after character
+                    case "Name": 
+                        final String name = parts.get(1);
+                        names.put(source, name);
+                        break;
+                    case "Keywords": 
+                        List<String> cleanKeywords = barSplit.splitToList(parts.get(1));
+                        annotations.addAll(source, cleanKeywords);
+                        break;
+                    case "Emoji_Modifier_Base": 
+                        emoji_Modifier_Base.add(source);
+                        status.add(source, "∈ modifier_base");
+                        break;
+                    case "Emoji_Gender_Base": 
+                        emoji_Gender_Base.add(source);
+                        status.add(source, "∈ gender_base");
+                        break;
+                    default: 
+                        throw new IllegalArgumentException(line);
+                    }
                 }
             } catch (Exception e) {
                 throw new IllegalArgumentException(line, e);
@@ -93,8 +136,11 @@ public class CandidateData implements Transform<String, String> {
         categories.freeze();
         names.freeze();
         annotations.freeze();
+        status.freeze();
         quarters.freeze();
-        characters = categories.keySet().freeze();
+        characters.freeze();
+        emoji_Modifier_Base.freeze();
+        emoji_Gender_Base.freeze();
     }
 
     Comparator<String> comparator = new Comparator<String>() {
@@ -140,20 +186,34 @@ public class CandidateData implements Transform<String, String> {
         return names.get(source);
     }
 
+    public String getName(int source) {
+        return names.get(source);
+    }
+
     public String getShorterName(String source) {
         return transform(source);
     }
 
     public Set<String> getAnnotations(String source) {
+        Set<String> list = annotations.get(source);
+        return list == null ? Collections.<String>emptySet() : new TreeSet<>(list);
+    }
+    public Set<String> getAnnotations(int source) {
         return CldrUtility.ifNull(annotations.get(source), Collections.<String>emptySet());
     }
+
+    public Set<String> getStatus(String source) {
+        Set<String> list = status.get(source);
+        return list == null ? Collections.<String>emptySet() : new TreeSet<>(list);
+    }
+
     public CandidateData.Quarter getQuarter(String source) {
         return quarters.get(source);
     }
-
-    public String getName(int source) {
-        return names.get(source);
+    public CandidateData.Quarter getQuarter(int source) {
+        return quarters.get(source);
     }
+
 
     public String getCategory(int source) {
         String result = EmojiOrder.STD_ORDER.charactersToOrdering.get(source);
@@ -162,13 +222,6 @@ public class CandidateData implements Transform<String, String> {
     public String getCategory(String source) {
         String result = EmojiOrder.STD_ORDER.charactersToOrdering.get(source);
         return result != null ? result : categories.get(source);
-    }
-
-    public Set<String> getAnnotations(int source) {
-        return CldrUtility.ifNull(annotations.get(source), Collections.<String>emptySet());
-    }
-    public CandidateData.Quarter getQuarter(int source) {
-        return quarters.get(source);
     }
 
     public List<Integer> getOrder() {
@@ -296,4 +349,5 @@ public class CandidateData implements Transform<String, String> {
         }
         return temp == null ? temp : temp.toLowerCase(Locale.ROOT);
     }
+
 }
