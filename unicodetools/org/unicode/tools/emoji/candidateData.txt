@@ -36,16 +36,19 @@ Emoji_Gender_Base
 
 U+101704
 Name=curly-haired person
+Keywords= afro | curly | ringlets
 Emoji_Modifier_Base
 Emoji_Gender_Base
 
 U+101705
 Name=bald person
+Keywords= shaven | hairless
 Emoji_Modifier_Base
 Emoji_Gender_Base
 
 U+101706
 Name=white-haired person
+Keywords= gray | white | hair
 Emoji_Modifier_Base
 Emoji_Gender_Base
 
