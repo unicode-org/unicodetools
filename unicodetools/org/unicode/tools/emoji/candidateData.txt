@@ -1,11 +1,90 @@
 #Code Point	Chart Glyph	Sample Colored Glyph	Name	
-event
-U+101700			2017Q1	Red Envelope
-• hóngbāo
-• lai see
-U+101701			2017Q1	Firecracker
-• dynamite
-• explosive
-food-asian
-U+101702			2017Q1	Moon Cake
-• yuèbĭng
+
+Quarter=2017Q1
+After=🎑
+
+U+101700
+Name=red envelope
+Keywords= hóngbāo | lai see
+
+After=🎇
+
+U+101701
+Name=firecracker
+Keywords= dynamite | explosive
+
+After=🍥
+
+U+101702
+Name=moon cake
+Keywords= yuèbĭng
+
+Quarter=2017Q2
+
+After=👱
+
+U+101703
+Name=red-haired person
+Keywords= ginger | redhead
+Emoji_Modifier_Base
+Emoji_Gender_Base
+
+U+101704
+Name=curly-haired person
+Emoji_Modifier_Base
+Emoji_Gender_Base
+
+U+101705
+Name=bald person
+Emoji_Modifier_Base
+Emoji_Gender_Base
+
+U+101706
+Name=white-haired person
+Emoji_Modifier_Base
+Emoji_Gender_Base
+
+After=🔮
+
+U+101707
+Name=nazar
+Keywords= avert evil eye
+
+After=🕶
+U+101708
+Name=lab coat
+Keywords= scientist | doctor
+
+After=⚗
+
+U+101709
+Name=test tube
+Keywords= chemist
+
+U+10170A
+Name=microbe
+Keywords= bacteria | virus
+
+U+10170B
+Name=petri dish
+Keywords= biologist
+
+U+10170C
+Name=dna
+Keywords= biologist | life
+
+U+10170D
+Name=compass
+Keywords= naviation
+
+U+10170E
+Name=abacus
+Keywords= calculation
+
+U+10170F
+Name=fire extinguisher
+
+After=🕶
+U+10171A
+Name=goggles
+Keywords= eye protection | welding

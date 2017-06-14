@@ -125,8 +125,15 @@ public class CountEmoji {
             sets.put(s,maj);
         }
     }
+    
     void add(String s) {
+        add(s, null);
+    }
+    void add(String s, CandidateData candidateData) {
         String cat = ORDER.getCategory(s);
+        if (cat == null && candidateData != null) {
+            cat = candidateData.getCategory(s);
+        }
         MajorGroup maj = cat == null ? MajorGroup.Other : ORDER.getMajorGroupFromCategory(cat);
         Category category = Category.getBucket(s);
         Bucket bucket = buckets.get(category);

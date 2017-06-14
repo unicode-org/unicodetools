@@ -19,6 +19,7 @@ import org.unicode.props.PropertyType;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Binary;
+import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.ValueCardinality;
 import org.unicode.text.utility.Settings;
 
@@ -49,6 +50,14 @@ public class ListProps {
 
     public static void main(String[] args) {
         IndexUnicodeProperties latest = IndexUnicodeProperties.make();
+        if (true) {
+             Set<Script_Values> sc = EnumSet.copyOf(latest.loadEnum(UcdProperty.Script, Script_Values.class).values());
+             sc.remove(Script_Values.Inherited);
+             sc.remove(Script_Values.Common);
+             sc.remove(Script_Values.Unknown);
+            System.out.println(sc.size());
+            return;
+        }
         if (true) {
             UnicodeSet ep = latest.loadEnum(UcdProperty.Extended_Pictographic, UcdPropertyValues.Binary.class).getSet(Binary.Yes);
             UnicodeSet em = latest.loadEnum(UcdProperty.Emoji, UcdPropertyValues.Binary.class).getSet(Binary.Yes);
@@ -133,7 +142,7 @@ public class ListProps {
             System.out.println("➖\t" + skip);
         }
     }
-    
+
     static final Splitter BAR = Splitter.on('|').omitEmptyStrings().trimResults();
 
     private static Set<String> flattenValues(Set<String> values) {
