@@ -68,6 +68,8 @@ public class CandidateData implements Transform<String, String> {
     private final UnicodeSet emoji_Modifier_Base = new UnicodeSet();
     private final UnicodeSet emoji_Gender_Base = new UnicodeSet();
     private final UnicodeMap<String> after = new UnicodeMap<>();
+    
+    private final UnicodeMap<String> proposal = new UnicodeMap<>();
 
     static final CandidateData SINGLE = new CandidateData();
 
@@ -77,6 +79,7 @@ public class CandidateData implements Transform<String, String> {
         Builder<Integer> _order = ImmutableList.builder();
         Quarter quarter = null;
         String afterItem = null;
+        String proposalItem = null;
 
         for (String line : FileUtilities.in(CandidateData.class, "candidateData.txt")) {
             line = line.trim();
@@ -91,10 +94,8 @@ public class CandidateData implements Transform<String, String> {
                     characters.add(source);
                     quarters.put(source, quarter);
                     after.put(source, afterItem);
+                    proposal.put(source, proposalItem);
                     status.add(source, "> " + afterItem);
-                    //                    if (!EmojiOrder.STD_ORDER.groupOrder.containsKey(category)) {
-                    //                        throw new IllegalArgumentException("Illegal category: " + category + ". Must be in: " + EmojiOrder.STD_ORDER.groupOrder.keySet());
-                    //                    }
                     categories.put(source, category);
                 } else { // must be category
                     List<String> parts = equalSplit.splitToList(line);
@@ -107,6 +108,10 @@ public class CandidateData implements Transform<String, String> {
                         afterItem = parts.get(1);
                         category = EmojiOrder.STD_ORDER.getCategory(afterItem);
                         break;
+                    case "Proposal": 
+                        proposalItem = parts.get(1);
+                        break;
+                        
                         // go after character
                     case "Name": 
                         final String name = parts.get(1);
@@ -141,6 +146,7 @@ public class CandidateData implements Transform<String, String> {
         characters.freeze();
         emoji_Modifier_Base.freeze();
         emoji_Gender_Base.freeze();
+        proposal.freeze();
     }
 
     Comparator<String> comparator = new Comparator<String>() {
@@ -185,7 +191,6 @@ public class CandidateData implements Transform<String, String> {
     public String getName(String source) {
         return names.get(source);
     }
-
     public String getName(int source) {
         return names.get(source);
     }
@@ -205,6 +210,16 @@ public class CandidateData implements Transform<String, String> {
     public Set<String> getStatus(String source) {
         Set<String> list = status.get(source);
         return list == null ? Collections.<String>emptySet() : new TreeSet<>(list);
+    }
+
+    public String getProposal(String source) {
+        return proposal.get(source);
+    }
+
+    public String getProposalHtml(String source) {
+        // later add http://www.unicode.org/cgi-bin/GetMatchingDocs.pl?L2/17-023
+        String num = proposal.get(source);
+        return "<a target='e-prop' href='http://www.unicode.org/cgi-bin/GetMatchingDocs.pl?" + num + "'>" + num + "</a>";
     }
 
     public CandidateData.Quarter getQuarter(String source) {
