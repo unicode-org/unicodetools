@@ -89,6 +89,8 @@ public class GenerateEmoji {
     private static final String HEADER_DATE = "<th><a target='text' href='index.html#col-date'>Date</a></th>\n";
     private static final String HEADER_KEYWORDS = "<th><a target='text' href='index.html#col-annotations'>Other Keywords</a></th>\n";
     private static final String HEADER_STATUS = "<th><a target='text' href='index.html#col-status'>Status</a></th>\n";
+    private static final String HEADER_PROPOSAL = "<th><a target='text' href='index.html#col-prop'>Proposal</a></th>\n";
+    
     private static final String HEADER_EMOJI = "<th><a target='text' href='index.html#col-emoji'>Emoji</a></th>";
     private static final String HEADER_SOURCES = "<th><a target='text' href='index.html#col-sources'>Sources</a></th>";
     private static final String TABLE_TOTALS = "</table>\n"
@@ -2940,7 +2942,7 @@ public class GenerateEmoji {
                 // Colored Glyphs</a></th>"
                 + HEADER_NAME
                 + HEADER_KEYWORDS
-                + (candidateStyle == CandidateStyle.candidate ? HEADER_STATUS : "")
+                + (candidateStyle == CandidateStyle.candidate ? HEADER_STATUS + HEADER_PROPOSAL : "")
                 + "</tr>";
 
         List<String> output = new ArrayList<>();
@@ -3006,7 +3008,8 @@ public class GenerateEmoji {
             currentRow += "</td>\n";
             currentRow += " <td class='name'>" + getAnnotationsString(source) + "</td>\n";
             if (candidateStyle == CandidateStyle.candidate) {
-                currentRow += " <td class='name'>" + getStatusString(source) + "</td>\n";
+                currentRow += " <td class='status'>" + getStatusString(source) + "</td>\n";
+                currentRow += " <td class='proposal'>" +  CandidateData.getInstance().getProposalHtml(source) + "</td>\n";
             }
             currentRow += "</tr>\n";
             // (future ? " <td class='default'>" + quarter + "</td>\n"

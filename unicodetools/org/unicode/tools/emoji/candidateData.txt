@@ -1,18 +1,22 @@
 #Code Point	Chart Glyph	Sample Colored Glyph	Name	
 
 Quarter=2017Q1
+
+Proposal=L2/17-023
 After=🎑
 
 U+101700
 Name=red envelope
 Keywords= hóngbāo | lai see
 
+Proposal=L2/17-025
 After=🎇
 
 U+101701
 Name=firecracker
 Keywords= dynamite | explosive
 
+Proposal=L2/17-024
 After=🍥
 
 U+101702
@@ -21,6 +25,7 @@ Keywords= yuèbĭng
 
 Quarter=2017Q2
 
+Proposal=L2/17-082
 After=👱
 
 U+101703
@@ -45,11 +50,13 @@ Emoji_Modifier_Base
 Emoji_Gender_Base
 
 After=🔮
+Proposal=L2/17-058
 
 U+101707
 Name=nazar
 Keywords= avert evil eye
 
+Proposal=L2/17-113
 After=🕶
 U+101708
 Name=lab coat
