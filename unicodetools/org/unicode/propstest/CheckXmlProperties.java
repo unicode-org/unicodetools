@@ -28,7 +28,7 @@ Property     cp  xml     unicodetools
 Name    3400    [CJK UNIFIED IDEOGRAPH-#]   [CJK UNIFIED IDEOGRAPH-3400]
 ... Need to convert # to hex in the test.
 
-The following, and the warnings (not listed) are due to differences in the "missing values".
+The following, including the warnings, are due to differences in the "missing values".
 
 Property     cp  xml     unicodetools
 Bidi_Paired_Bracket 0000    [0000]  null
@@ -39,12 +39,13 @@ Property     cp  xml     unicodetools
 Canonical_Combining_Class   0378    [Not_Reordered] null
 ... The unicodetools should use Not_Reordered for the missing value.
 
-Property     cp  xml     unicodetools
-Prepended_Concatenation_Mark    0000    [No]    null
-Regional_Indicator  0000    [No]    null
-... The unicodetools should use No for the missing value (since these are binary properties)
+Warnings (reported as "empty" differences):
+kAccountingNumeric
+kOtherNumeric
+kPrimaryNumeric
+kCompatibilityVariant
 
-Failing tests:  9
+Failing tests:  7
 Warning tests:  4
      */
     private final static String ucdVersion = Utility.searchPath[0];
