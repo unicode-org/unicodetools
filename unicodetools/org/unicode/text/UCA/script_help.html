@@ -18,27 +18,46 @@ th {
 <body>
 
 	<h1>About Script Charts</h1>
-	<p>The Script charts provide an index to Unicode characters by
-		script:</p>
-	<ul>
-		<li>Characters with decompositions are listed under the script of
-			the decomposed characters.</li>
-		<li>Characters with multiple script values are listed under each
-			of those scripts.</li>
-		<li>Other characters (script values of Common or Inherited) are
-			listed under General Category values at the end of the index.</li>
-	    <li>The characters added in the last release are in yellow.</li>
-	</ul>
-	<p>Hovering over a cell will show the name of the character in that
-		cell.</p>
-	<p>
-		<i>To properly view these charts, you need to have an updated
-			browser and Unicode fonts that cover the characters you are
-			interested in. For more information, see <a
-			href='http://www.unicode.org/help/display_problems.html'>Display
-				Problems</a>.
-		</i>
-	</p>
+<p>The Script Charts lists Unicode characters organized by script. The same character may be in multiple charts if it has multiple <strong>Script_Extensions</strong> values or has a compatibility decomposition.</p>
+<p>Hovering over a cell will show the name of the character in that
+  cell; characters added in the last release are in yellow.</p>
+<p><i>To properly view these charts, you need to have an updated browser, and Unicode fonts (such as the <a href="http://www.google.com/get/noto/" target="_blank">Noto Fonts</a>)
+that cover the characters you are interested in</i>.</p>
+<div style='margin:2em; padding:0em 1em; border: 1px solid silver'>
+<p><strong>Details. </strong>The characters are listed in the charts according to their compatibility decompositions, which may be either a single character or be a multi-character string.</p>
+<ol>
+	<li>A single character decomposition with a single explicit Script property value in its <strong>Script_Extensions</strong> set  is listed in a chart for that script
+	  <ul>
+	    <li style='list-style-type:none; margin-left:-1em'><em>For example, the Greek chart lists</em></li>
+	    <li>U+03B1 (α) GREEK SMALL LETTER ALPHA, because it has Script_Extensions={Greek}</li>
+	    <li>  U+0342	( ͂) COMBINING GREEK PERISPOMENI, because it has Script_Extensions={Greek} — even though  it has Script=Inherited</li>
+      </ul>
+	</li>
+	<li>A single character decomposition with multiple explicit Script values in its <strong>Script_Extensions</strong> set  is listed in each  chart for  those Script values.
+      <ul>
+    <li style='list-style-type:none; margin-left:-1em'><em>For example, the Armenian  and the Georgian charts both list</em></li>
+    <li>U+0589	(։) ARMENIAN FULL STOP, because it has Script_Extensions={Armenian, Georgian}</li>
+    </ul>
+    </li>
+	<li>A single character decomposition with a single implicit Script property value in its <strong>Script_Extensions</strong> set is listed in charts at the end according to the characters General_Category value
+      <ul>
+      <li style='list-style-type:none; margin-left:-1em'><em>For example, the Number-Decimal chart lists</em></li>
+      <li>U+0030	(0 	) DIGIT ZERO, because it has Script_Extensions={Common} — and no decomposition into characters with other Script values</li>
+      </ul>
+  </li>
+    <li>A string is listed under the charts for each character in  decomposition, skipping implicit Script values <em>if</em> there is any explicit Script value
+      <ul>
+        <li style='list-style-type:none; margin-left:-1em'><em>For example, the Latin chart lists</em></li>
+        <li>U+3393 (㎓) SQUARE GHZ, because it has a compatibility decomposition [G H z] into a sequence of Latin letters  — even though   it has Script_Extensions={Common}</li>
+        <li style='list-style-type:none; margin-left:-1em'></li>
+        <li> U+33C7	(㏇) SQUARE CO, because it has a compatibility decomposition [C o .] into a sequence containing Latin letters, and a period — which is skipped because it has Script_Extensions={Common} </li>
+        <li style='list-style-type:none; margin-left:-1em'><em>The Punctuation-Other chart lists</em></li>
+        <li> U+2026	(…) HORIZONTAL ELLIPSIS, because the characters in its compatibility decomposition [. . .] have  no explicit script values, only Script_Extensions={Common}</li>
+      </ul>
+    </li>
+</ol>
+	<p>For more information about the Script and Script_Extensions properties, and explicit versus implicit Script values, see <a href="http://unicode.org/reports/tr24/">UAX #24: Unicode Script Property</a>.	</p>
+</div>
 </body>
 
 </html>
