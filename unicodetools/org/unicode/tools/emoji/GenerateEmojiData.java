@@ -31,6 +31,7 @@ import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
@@ -468,6 +469,18 @@ public class GenerateEmojiData {
 
     // ##############################3
     public static void main(String[] args) throws IOException {
+        IndexUnicodeProperties iup = IndexUnicodeProperties.make();
+        System.out.println("Gender Base");
+        for (EntryRange s : EmojiData.EMOJI_DATA.getGenderBases().ranges()) {
+            if (s.codepoint == s.codepointEnd) {
+                System.out.println(Utility.hex(s.codepoint) + " ;\tEmoji_Gender_Base ;\t" + iup.getName(s.codepoint));
+            } else {
+                System.out.println(Utility.hex(s.codepoint) + ".." + Utility.hex(s.codepointEnd) 
+                + " ;\tEmoji_Gender_Base ;\t" + iup.getName(s.codepoint) + ".." + iup.getName(s.codepointEnd));
+            }
+        }
+        System.out.println("END Gender Base");
+
         UnicodeSet us2 = EmojiData.EMOJI_DATA.getAllEmojiWithDefectives();
         UnicodeSet all = new UnicodeSet();
         for (String s : us2) {
