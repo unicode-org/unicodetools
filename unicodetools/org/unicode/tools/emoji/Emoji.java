@@ -37,6 +37,11 @@ import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
 public class Emoji {
+    /**
+     * Change the following according to whether we are generating the beta version of files, or the new version.
+     * We support generating the last version in order to make improvements to the charts.
+     */
+    public static final boolean IS_BETA = CldrUtility.getProperty("emoji-beta", false); // default to true
 
     /**
      * Set the following to true iff the beta is available. 
@@ -79,7 +84,7 @@ public class Emoji {
 
     public static Map<VersionInfo, String> EMOJI_TO_DATE = ImmutableMap.<VersionInfo, String>builder()
             .put(VERSION6, "2017H2")
-            .put(VERSION5, "2017H1")
+            .put(VERSION5, "2017-06-20")
             .put(VERSION4, "2016-11-22")
             .put(VERSION3, "2016-06-03")
             .put(VERSION2, "2015-11-12")
@@ -91,12 +96,6 @@ public class Emoji {
 
     private static final String BETA_PLAIN = "β";
     private static final String BETA_COLORED = "<span style='color:red'>" + BETA_PLAIN + "</span>";
-
-    /**
-     * Change the following according to whether we are generating the beta version of files, or the new version.
-     * We support generating the last version in order to make improvements to the charts.
-     */
-    public static final boolean IS_BETA = CldrUtility.getProperty("emoji-beta", false); // default to true
 
     //public static final VersionInfo VERSION_FORMAT1 = VersionInfo.getInstance(1);
 
@@ -111,7 +110,6 @@ public class Emoji {
     public static final String VERSION_LAST_RELEASED_STRING = VERSION_LAST_RELEASED.getVersionString(2, 4);
     public static final String VERSION_BETA_STRING = VERSION_BETA.getVersionString(2, 4) + BETA_COLORED;
 
-
     public static final VersionInfo VERSION_TO_GENERATE = IS_BETA ? VERSION_BETA : VERSION_LAST_RELEASED;
     public static final VersionInfo VERSION_TO_GENERATE_PREVIOUS = IS_BETA ? VERSION_LAST_RELEASED : VERSION_LAST_RELEASED2;
 
@@ -122,11 +120,10 @@ public class Emoji {
     public static final String TR51_SVN_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/";
     //public static final String TR51_PREFIX = IS_BETA ? "internal-beta/" : "internal/";
 
-    public static final String TR51_INTERNAL_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/"
-            + (IS_BETA ? "internal-beta/" : "internal/");
-    public static final String CHARTS_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/" 
-            + (IS_BETA ? "charts-beta/" : "charts/");
-    public static final String RELEASE_CHARTS_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/charts/";
+    public static final String CHARTS_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/charts-" + VERSION_STRING + "/";
+    public static final String TR51_INTERNAL_DIR = CHARTS_DIR + "internal/";
+    public static final String RELEASE_CHARTS_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/charts-" + VERSION_LAST_RELEASED_STRING + "/";
+
     public static final String DATA_DIR = Settings.UNICODE_DRAFT_PUBLIC + "emoji/" + VERSION_STRING + "/";
 
     static final String IMAGES_OUTPUT_DIR = TR51_SVN_DIR + "images/";
