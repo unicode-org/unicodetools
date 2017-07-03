@@ -37,6 +37,7 @@ import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
 public class Emoji {
+
     /**
      * Change the following according to whether we are generating the beta version of files, or the new version.
      * We support generating the last version in order to make improvements to the charts.
@@ -120,9 +121,12 @@ public class Emoji {
     public static final String TR51_SVN_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/";
     //public static final String TR51_PREFIX = IS_BETA ? "internal-beta/" : "internal/";
 
-    public static final String CHARTS_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/charts-" + VERSION_STRING + "/";
+    public static final String EMOJI_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/";
+    public static final String CHARTS_DIR = EMOJI_DIR + "charts-" + VERSION_STRING + "/";
+    public static final String FUTURE_DIR = EMOJI_DIR + "future/";
+    
     public static final String TR51_INTERNAL_DIR = CHARTS_DIR + "internal/";
-    public static final String RELEASE_CHARTS_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/charts-" + VERSION_LAST_RELEASED_STRING + "/";
+    public static final String RELEASE_CHARTS_DIR = EMOJI_DIR + "charts-" + VERSION_LAST_RELEASED_STRING + "/";
 
     public static final String DATA_DIR = Settings.UNICODE_DRAFT_PUBLIC + "emoji/" + VERSION_STRING + "/";
 

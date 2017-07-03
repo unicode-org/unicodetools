@@ -140,9 +140,10 @@ public class GenerateEmojiData {
                                     // Math.max("Emoji_Regional_Indicator".length(),
                                     Math.max("Emoji_Component".length(), "Emoji_Modifier_Base".length()))));
 
-            outText2.println("# Warning: the format has changed from Version 1.0");
+//            outText2.println("# Warning: the format has changed from Version 1.0");
             outText2.println("# Format: ");
-            outText2.println("# codepoint(s) ; property(=Yes) # comments ");
+            outText2.println("# <codepoint(s)> ; <property> # <comments> ");
+            outText2.println("# Note: there is no guarantee as to the structure of whitespace or comments");
             outText2.println(ORDERING_NOTE);
             printer.show(outText2, "Emoji", null, width, 14, emoji, true, true, false);
             printer.show(outText2, "Emoji_Presentation", null, width, 14, emoji_presentation, true, true, false);

@@ -16,10 +16,12 @@ import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
+import com.google.common.base.Joiner;
 import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
+import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.Transform;
@@ -27,6 +29,8 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class CandidateData implements Transform<String, String> {
+    private static final Splitter SPLITTER_COMMA = Splitter.on(',').trimResults().omitEmptyStrings();
+    private static final Joiner JOIN_COMMA = Joiner.on(", ");
     static final Splitter barSplit = Splitter.on('|').trimResults();
     static final Splitter equalSplit = Splitter.on('=').trimResults();
 
@@ -69,11 +73,12 @@ public class CandidateData implements Transform<String, String> {
     private final UnicodeSet emoji_Gender_Base = new UnicodeSet();
     private final UnicodeMap<String> after = new UnicodeMap<>();
     
-    private final UnicodeMap<String> proposal = new UnicodeMap<>();
+    private final UnicodeMap<Set<String>> proposal = new UnicodeMap<>();
 
-    static final CandidateData SINGLE = new CandidateData();
+    static final CandidateData SINGLE = new CandidateData("candidateData.txt");
+    static final CandidateData PROPOSALS = new CandidateData("proposalData.txt");
 
-    private CandidateData() {
+    private CandidateData(String sourceFile) {
         String category = null;
         String source = null;
         Builder<Integer> _order = ImmutableList.builder();
@@ -81,7 +86,7 @@ public class CandidateData implements Transform<String, String> {
         String afterItem = null;
         String proposalItem = null;
 
-        for (String line : FileUtilities.in(CandidateData.class, "candidateData.txt")) {
+        for (String line : FileUtilities.in(CandidateData.class, sourceFile)) {
             line = line.trim();
             try {
                 if (line.startsWith("#") || line.isEmpty()) { // comment
@@ -94,7 +99,7 @@ public class CandidateData implements Transform<String, String> {
                     characters.add(source);
                     quarters.put(source, quarter);
                     after.put(source, afterItem);
-                    proposal.put(source, proposalItem);
+                    proposal.put(source, ImmutableSet.copyOf(SPLITTER_COMMA.split(proposalItem)));
                     status.add(source, "> " + afterItem);
                     categories.put(source, category);
                 } else { // must be category
@@ -180,6 +185,10 @@ public class CandidateData implements Transform<String, String> {
         return SINGLE;
     }
 
+    public static CandidateData getProposalInstance() {
+        return PROPOSALS;
+    }
+
     public UnicodeSet keySet() {
         return names.keySet();
     }
@@ -212,14 +221,21 @@ public class CandidateData implements Transform<String, String> {
         return list == null ? Collections.<String>emptySet() : new TreeSet<>(list);
     }
 
-    public String getProposal(String source) {
+    public Set<String> getProposal(String source) {
         return proposal.get(source);
     }
 
     public String getProposalHtml(String source) {
         // later add http://www.unicode.org/cgi-bin/GetMatchingDocs.pl?L2/17-023
-        String num = proposal.get(source);
-        return "<a target='e-prop' href='http://www.unicode.org/cgi-bin/GetMatchingDocs.pl?" + num + "'>" + num + "</a>";
+        StringBuilder result = new StringBuilder();
+        for (String proposalItem :  proposal.get(source.codePointAt(0))) {
+            if (result.length() != 0) {
+                result.append(", ");
+            }
+            result.append("<a target='e-prop' href='http://www.unicode.org/cgi-bin/GetMatchingDocs.pl?" + proposalItem + "'>"
+            + proposalItem + "</a>");
+        }
+        return result.toString();
     }
 
     public CandidateData.Quarter getQuarter(String source) {
@@ -256,10 +272,15 @@ public class CandidateData implements Transform<String, String> {
     }
 
     public static void main(String[] args) {
-        CandidateData cd = CandidateData.getInstance();        
+        showCandidateData(CandidateData.getInstance(), true);
+        showCandidateData(CandidateData.getProposalInstance(), true);
+    }
+
+    private static void showCandidateData(CandidateData cd, boolean candidate) {
         System.out.println("Code Point\tChart\tGlyph\tSample\tColored Glyph\tName");
         final UnicodeSet chars2 = cd.getCharacters();
-        List<String> sorted = new ArrayList<>(chars2.addAllTo(new TreeSet<String>(cd.comparator)));
+        List<String> sorted = new ArrayList<>(chars2.addAllTo(new TreeSet<String>(
+                candidate ? cd.comparator : EmojiOrder.STD_ORDER.codepointCompare)));
         String lastCategory = null;
         MajorGroup lastMajorGroup = null;
         List<String> lastCategoryList = new ArrayList<String>();
@@ -282,32 +303,20 @@ public class CandidateData implements Transform<String, String> {
                 lastCategoryList.clear();
             }
             lastCategoryList.add(s);
+            if (cd.getProposal(s) == null) {
+                System.out.println("ERROR IN PROPOSAL!!");
+            }
             System.out.println(Utility.hex(s) 
                     + "\t" + s 
                     + "\t" + cd.getQuarter(s) 
-                    + "\t" + cd.getName(s));
+                    + "\t" + cd.getName(s)
+                    + "\t" + cd.getProposal(s) 
+                    );
             for (String annotation :  cd.getAnnotations(s)) {
                 System.out.println("• " + annotation);
             }
         }
         System.out.println("# list: " + lastCategory + " = \t" + CollectionUtilities.join(lastCategoryList, " "));
-
-
-        //        for (int s : cd.getOrder()) {
-        //            String cat = cd.getCategory(s);
-        //            if (!cat.equals(oldCat)) {
-        //                if (!last.isEmpty()) {
-        //                    showLast(last);
-        //                }
-        //                System.out.println("\n" + cat + "\n");
-        //                oldCat = cat;
-        //            }
-        //            last.add(s);
-        //            total.add(s);
-        //            System.out.println(Utility.hex(s) + "\t" + cd.getQuarter(s) + "\t" + cd.getName(s) + "\t" + cd.getAnnotations(s));
-        //        }
-        //        showLast(last);
-        //        showLast(total);
     }
 
     private static void showLast(UnicodeSet last) {
