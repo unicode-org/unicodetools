@@ -10,6 +10,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
@@ -1017,8 +1018,19 @@ public class EmojiData {
     static boolean SKIP = true;
     
     public static void main(String[] args) {
-        System.out.println(EmojiData.EMOJI_DATA.getDerivableNames().toPattern(false));
+        EmojiData v4 = new EmojiData(Emoji.VERSION4);
+        EmojiData v5 = new EmojiData(Emoji.VERSION5);
+        UnicodeSet newItems = new UnicodeSet(v5.getSingletonsWithoutDefectives()).removeAll(v4.getSingletonsWithoutDefectives());
+        Set<String> sorted2 = new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare);
+        for (String s : newItems.addAllTo(sorted2)) {
+            System.out.println("U+" + Utility.hex(s));
+            System.out.println("Name=" + v5.getName(s));
+            System.out.println();
+        }
         if (SKIP) return;
+
+        System.out.println(EmojiData.EMOJI_DATA.getDerivableNames().toPattern(false));
+
 
 
         EmojiData betaData = new EmojiData(Emoji.VERSION_BETA);

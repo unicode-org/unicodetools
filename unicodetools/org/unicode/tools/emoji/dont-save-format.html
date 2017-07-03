@@ -1,0 +1,313 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en-us">
+<title>Unicode Emoji v%%PLAIN_VERSION%%</title>
+<link rel="stylesheet" type="text/css"
+	href="http://www.unicode.org/webscripts/standard_styles.css">
+<link rel='stylesheet' type='text/css' href='emoji-list.css'>
+<style type="text/css">
+.changed {
+	background-color: yellow;
+}
+.changed1 {
+	background-color: yellow;
+}
+</style>
+</head>
+
+<body>
+<div class='icon'> <a href='http://www.unicode.org/'><img class='logo'
+			alt='[Unicode]' src='http://www.unicode.org/webscripts/logo60s2.gif'></a><a
+			class='bar' target='text' href='index.html'>Emoji Charts</a> </div>
+<div class='gray'>&nbsp;</div>
+<table width="100%" class='noborder'>
+  <tr>
+    <td class="navCol navColPlus" width='25%'><table class="navColTable navColTablePlus">
+        <tr>
+          <td class="navColTitle navColTitlePlus">Contents</td>
+        </tr>
+        <tr>
+          <td class="navColCell navColCellPlus" valign="top"><a
+						href="#emoji-available-charts">Available Charts</a></td>
+        </tr>
+        <tr>
+          <td class="navColCell navColCellPlus" valign="top"><a
+						href="#chart_notation">Chart Notation</a></td>
+        </tr>
+        <tr>
+          <td class="navColTitle navColTitlePlus">Related Unicode Links</td>
+        </tr>
+        <tr>
+          <td class="navColCell navColCellPlus" valign="top"><a href="../index.html">Unicode
+            Emoji</a></td>
+        </tr>
+        <tr>
+          <td class="navColCell navColCellPlus" valign="top"><a
+						href="%%TR51_HTML%%">UTS #51,
+            Unicode Emoji</a></td>
+        </tr>
+        <tr>
+          <td class="navColCell navColCellPlus" valign="top"><a
+						href="http://www.unicode.org/Public/emoji/latest/">Unicode
+            Emoji Data Files</a></td>
+        </tr>
+        <tr>
+          <td class="navColCell navColCellPlus" valign="top"><a
+						href="../selection.html">Submitting Emoji Character Proposals</a></td>
+        </tr>
+        <tr>
+          <td class="navColCell navColCellPlus" valign="top"><a
+						href="http://www.unicode.org/faq/emoji_dingbats.html">FAQ:
+            Emoji and Dingbats</a></td>
+        </tr>
+        <tr>
+          <td class="navColCell navColCellPlus" valign="top"><a
+						href="http://unicode.org/press/emoji.html">Emoji-related Press</a></td>
+        </tr>
+        <tr>
+          <td class="navColCell navColCellPlus" valign="top"><a
+						href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5B%3Aemoji%3A%5D&amp;g=emoji">Unicode
+            Utilities Emoji Set</a> (for developers)</td>
+        </tr>
+        <tr>
+          <td class="navColCell navColCellPlus" valign="top"><a
+						href="http://unicode.org/resources/emoji.html">Other Emoji
+            Resources</a></td>
+        </tr>
+      </table></td>
+    <td class='contents noborder'><div class='main'>
+        <div class='aacButton' title='Show your support of Unicode'> <a target='sponsors' href='../../consortium/adopt-a-character.html'><b>Adopt-a-Character</b><br>
+          <img class='aacImage' alt='AAC Animation'
+						src='../../consortium/images/aac-some-sponsors.gif'></a> </div>
+        <h1> Unicode® Emoji Charts Format</h1>
+        <p style='text-align:center'><a target='emoji_subsite' href='index.html'>Main Emoji Page</a>
+<a name='chart_notation' href='#chart_notation'></a><a name='emoji-data-chart-key' href='#emoji-data-chart-key'></a> </h2></p>
+        <p> In most of the charts, hovering over an image shows the code point
+          and name, and clicking on the image goes to the respective row in
+          the <a target='full' href="emoji-list.html">Emoji
+          List</a> chart. Emoji images without available skintone show a small swatch afterwards;
+          those without available images are shown as ✘.
+          Each image has the respective character as an “alt”
+          value, so copying the image into plain text should (OS permitting)
+          give the plain text character for that image. 
+          <!-- The "Unicode Fonts for Ancient Scripts" site may be permanently off-line, so this is being removed for now. --> 
+          <!--
+			<p>The <a target="_blank" href="http://users.teilar.gr/~g1951d/">Symbola</a>
+				font can be installed for a readable text presentation where the emoji
+				presentation or black&amp;white fonts are not available on your browser.
+				Your browser’s zoom is also useful for examining the characters and images.</p>
+	--> 
+          
+          <!--  <p>
+									For more information, including questions about fonts, see <a
+										href="http://www.unicode.org/help/display_problems.html">Display
+										Problems</a>.
+								</p>
+								--> 
+        </p>
+        <div align="center">
+          <table class='simple' border="1" cellpadding="1" cellspacing="0">
+            <tr>
+              <th>Column</th>
+              <th colspan="2">Description</th>
+            </tr>
+            <tr>
+              <th><a name='col-group' href='#col-group'>«Group»</a></th>
+              <td colspan="2">The subheaders indicate categories that can be used to organize related emoji together for keyboards.
+              There are both major categories (such as “Smileys &amp; People”) and minor categories (such as “person-gesture”).
+              These categories are broad, and not exclusive: emoji could go into multiple categories.</td>
+            </tr>
+            <tr>
+              <th><a name='col-num' href='#col-num'>№</a></th>
+              <td colspan="2">A line count, for reference.</td>
+            </tr>
+            <tr>
+              <th><a name='col-code' href='#col-code'>Code</a></th>
+              <td colspan="2">The code point(s) for the emoji characters and sequences.
+                Clicking on the code
+                point puts a link to that row in the address bar. <a
+								target='candidates' href="emoji-candidates.html">Candidates</a> have reference numbers instead, such as <a
+								target='candidates' href="emoji-candidates.html">X00000</a> — see <a href="http://unicode.org/emoji/selection.html#timeline">Process
+                and Timeline</a>. </td>
+            </tr>
+            <!--
+						<tr>
+							<th><a name='col-chart' href='#col-chart'>Chart</a></th>
+							<td colspan="2">The character as shown using the B&amp;W
+								Unicode chart font.</td>
+						</tr>
+						-->
+            <tr>
+              <th rowspan="16"><a name='col-vendor' href='#col-vendor'>Apple,
+                …, SB, Sample</a></th>
+              <td colspan="2">Images from the respective sources for
+                comparison, listed below.
+                Images for new characters or sequences are <span class='new'>marked</span>. 
+                Where a skin-tone variant emoji is missing, a small skin-tone swatch is shown. </td>
+            </tr>
+            <tr>
+              <th>Abbr.</th>
+              <th>Vendor</th>
+            </tr>
+            <tr>
+              <td>Sample</td>
+              <td>Chosen for illustration, from available images.</td>
+            </tr>
+            <tr>
+              <td>Apple</td>
+              <td>Apple</td>
+            </tr>
+            <tr>
+              <td>Goog.</td>
+              <td>Google</td>
+            </tr>
+            <tr>
+              <td>Twtr</td>
+              <td>Twitter</td>
+            </tr>
+            <tr>
+              <td>One</td>
+              <td>EmojiOne</td>
+            </tr>
+            <tr>
+              <td>FB</td>
+              <td>Facebook</td>
+            </tr>
+            <tr>
+              <td>FBM</td>
+              <td>Messenger (Facebook)</td>
+            </tr>
+            <tr>
+              <td>Wind.</td>
+              <td>Windows</td>
+            </tr>
+            <tr>
+              <td>Sams.</td>
+              <td>Samsung</td>
+            </tr>
+            <tr>
+              <td>GMail</td>
+              <td>GMail*</td>
+            </tr>
+            <tr>
+              <td>DCM</td>
+              <td>DoCoMo*</td>
+            </tr>
+            <tr>
+              <td>KDDI</td>
+              <td>KDDI*</td>
+            </tr>
+            <tr>
+              <td>SB</td>
+              <td>SoftBank*</td>
+            </tr>
+            <tr>
+              <td colspan="2">Columns marked with * show images
+                used before incorporation into Unicode, provided for historical
+                comparison. A ‘ᵈ’ marks sources with development preview images. </td>
+            </tr>
+            <tr>
+              <th><a name='col-fallback' href='#col-fallback'>Sample Fallback</a></th>
+              <td colspan="2">Images to show what an <i>emoji sequence</i> should look like if not supported.</td>
+            </tr>
+            <tr>
+              <th><a name='col-browser' href='#col-browser'>Browser</a></th>
+              <td colspan="2">The character, showing whatever image would
+                be native for the browser.</td>
+            </tr>
+            <tr>
+              <th><a name='col-name' href='#col-name'>CLDR Short Name</a></th>
+              <td colspan="2">The CLDR short name for the character or sequence. Short names vary by language, and are from the CLDR
+                data. Values for different languages can be found via <a
+								target='cldr_annotations'
+								href="http://unicode.org/cldr/charts/dev/annotations/index.html"
+								name="Character_Annotations">CLDR Character Annotations</a>.
+								In some of the charts, a ⊛ is prepended to newly-released characters, to allow for "Find in Page".</td>
+            </tr>
+            <tr>
+              <th><a name='col-date' href='#col-date'>Date</a></th>
+              <td colspan="2">The year
+                an emoji was added to Unicode. For sequences
+                of emoji, the date is for the latest character. A superscript (if present) indicates the
+                source of the character, using the characters from column L of <a href='#col-sources'>Sources</a>, or <em>x</em> for other sources not listed in that
+                table. <br></td>
+            </tr>
+            <tr>
+              <th><a name='col-sources' href='#col-sources'>Sources</a></th>
+              <td colspan="2">Compatibility sources listed in the <a target='tr51'
+								href="%%TR51_HTML%%#Major_Sources">Major
+                Sources</a> table in <em><a target='tr51'
+									href="%%TR51_HTML%%">UTS #51, Unicode
+                Emoji</a></em>.</td>
+            </tr>
+            <!--
+				<tr>
+					<th><a name='col-default' href='#col-default'>Default</a></th>
+					<td colspan="2">The default presentation style. A * indicates
+						that there are <a target='variants' href='emoji-variants.html'>presentation
+							selectors</a> (text and emoji) for the character. Note that as of
+						Unicode 9.0, all text presentation emoji are to have presentation
+						selectors.
+					</td>
+				</tr>
+				-->
+            <tr>
+              <th><a name='col-annotations' href='#col-annotations'>Keywords</a></th>
+              <td colspan="2">A list of informative English keywords. 
+                The keywords vary by language, and are from
+                the CLDR data: values for different languages can be found via <a
+								target='cldr_annotations'
+								href="http://unicode.org/cldr/charts/dev/annotations/index.html">CLDR Character Annotations</a>.
+								Provisional keywords and (notes) may be added for <a target='candidates'
+								href="emoji-candidates.html">Emoji Candidates</a> and <a target='released' href="emoji-released.html">Emoji
+                Recently Added</a>.</td>
+            </tr>
+            <tr>
+              <th><a name='col-status' href='#col-status'>Status</a></th>
+              <td colspan="2">In the <a target='candidates'
+								href="emoji-candidates.html">Emoji Candidates</a> chart, provisional information about the candidate that will be needed for character properties:
+                <ul>
+                  <li><strong>&gt; X</strong> indicates where the character (tentatively) would be after X in <a target="order" href="emoji-ordering.html">Emoji Ordering</a></li>
+                  <li><strong>∈ modifier_base</strong> indicates that the character would allow skin-tone modifiers</li>
+                  <li><strong>∈ gender_base</strong> indicates that the character would have ZWJ sequences for gender</li>
+              </ul></td>
+            </tr>
+            <tr>
+              <th><a name='col-prop' href='#col-prop'>Proposal</a></th>
+              <td colspan="2">In the <a target='candidates'
+								href="emoji-candidates.html">Emoji Candidates</a> chart, the original proposal for the character. Note that the form in <a target="_blank" href="../selection.html">Submitting Emoji Character Proposals</a> may change over time, so the original proposal may not contain all the information now required.</td>
+            </tr>
+            <tr>
+              <th><a name='col-count' href='#col-count'>Count</a></th>
+              <td colspan="2">The number of emoji of a particular type.</td>
+            </tr>
+            <tr>
+              <th><a name='col-emoji' href='#col-emoji'>Emoji</a></th>
+              <td colspan="2">A set of emoji characters or sequences, as images. 
+                When copied and pasted into text, they should appear as the underlying characters.</td>
+            </tr>
+            <tr>
+              <th><a name='col-totals' href='#col-totals'>Totals</a></th>
+              <td colspan="2">Totals for a set of characters listed on the page, using the same layout as in the <a target='tr51'
+								href="%%TR51_HTML%%#Emoji_Counts">Emoji Counts</a> table in <em><a target='tr51'
+									href="%%TR51_HTML%%">UTS #51, Unicode
+                Emoji</a></em>.</td>
+            </tr>
+          </table>
+        </div>
+        <div class='copyright'> <br>
+          <a href='http://www.unicode.org/unicode/copyright.html'><img
+						src='http://www.unicode.org/img/hb_notice.gif'
+						style='border-style: none; width: 216px;'
+						alt='Access to Copyright and terms of use'></a><br>
+          <script language='Javascript' type='text/javascript'
+						src='http://www.unicode.org/webscripts/lastModified.js'></script> 
+        </div>
+        <script type="text/javascript">(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');  ga('create', 'UA-19876713-1', 'auto');  ga('send', 'pageview');</script> 
+      </div></td>
+  </tr>
+</table>
+</body>
+</html>

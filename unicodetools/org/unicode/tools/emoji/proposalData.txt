@@ -1,0 +1,261 @@
+
+##############
+Quarter=2016Q1
+##############
+
+Proposal=L2/17-023
+
+#E.1.11 Dumpling Emoji Submission [Lee, et al, L2/16-024]
+#E.1.13 Chinese Takeout Box Emoji Proposal [Lee, et al, L2/16-026]
+#E.1.10 Chopsticks Emoji Proposal Submission [Lee, et al, L2/16-023]
+#E.1.12 Fortune Cookie Emoji Submission [Lee, et al, L2/16-025]
+
+Proposal=L2/16-024
+U+1F95F
+Name=dumpling
+
+Proposal=L2/16-025
+U+1F960
+Name=fortune cookie
+
+Proposal=L2/16-026
+U+1F961
+Name=takeout box
+
+Proposal=L2/16-023
+U+1F962
+Name=chopsticks
+
+# E.1.1 Proposal to Add Emoji: Face With One Eyebrow Raised [Merz, L2/15-325]
+Proposal=L2/15-325
+U+1F928
+Name=face with raised eyebrow
+
+##############
+Quarter=2016Q2
+##############
+
+# E.1.8 Proposal to encode ORANGE HEART emoji character [Hunt, L2/16-124]
+Proposal=L2/16-124
+U+1F9E1
+Name=orange heart
+
+#E.1.10 Proposal for more winter activity emojis [Emoji SC/Komatsu, L2/16-127]
+# [147-A73] Action Item for Peter Edberg: Add SLED and CURLING STONE to the emoji candidate list.
+
+Proposal=L2/16-127
+U+1F6F7
+Name=sled
+
+U+1F94C
+Name=curling stone
+
+##############
+Quarter=2016Q4
+##############
+
+#====
+Proposal=L2/16-197
+U+1F9D6
+Name=person in steamy room
+
+Proposal=L2/16-206R
+U+1F6F8
+Name=flying saucer
+
+#====
+Proposal=L2/16-240
+U+1F9E6
+Name=socks
+
+#====
+Proposal=L2/16-247
+U+1F9D7
+Name=person climbing
+
+#====
+Proposal=L2/16-260
+U+1F9D4
+Name=bearded person
+
+#====
+Proposal=L2/16-279
+#E.1.9 Proposal for person meditating emoji [Bramhill, L2/16-279]
+U+1F9D8
+Name=person in lotus position
+
+#====
+Proposal=L2/16-280,L2/16-282r
+U+1F931
+Name=breast-feeding
+
+#====
+Proposal=L2/16-284
+U+1F9D5
+# E.1.12 Hijab/Headscarf emoji [Alhumedhi, Lee, et al, L2/16-284]
+Name=woman with headscarf
+
+#====
+Proposal=L2/16-295R
+U+1F993
+Name=zebra
+
+U+1F992
+Name=giraffe
+
+U+1F994
+Name=hedgehog
+
+#====
+Proposal=L2/16-295R,L2/16-072,L2/16-103
+U+1F996
+Name=T-Rex
+
+#====
+Proposal=L2/16-295R,L2/16-072,L2/16-103,L2/16-289
+U+1F995
+Name=sauropod
+
+#====
+Proposal=L2/16-299
+U+1F9E0
+Name=brain
+
+#====
+Proposal=L2/16-300
+U+1F997
+Name=cricket
+
+#====
+Proposal=L2/16-304
+U+1F9D9
+Name=mage
+
+U+1F9DA
+Name=fairy
+
+U+1F9DB
+Name=vampire
+
+U+1F9DD
+Name=elf
+
+U+1F9DE
+Name=genie
+
+U+1F9DF
+Name=zombie
+
+#====
+Proposal=L2/16-304,L2/16-274
+U+1F9DC
+Name=merperson
+
+#====
+Proposal=L2/16-308
+U+1F91F
+Name=love-you gesture
+
+U+1F932
+Name=palms up together
+
+#====
+Proposal=L2/16-313
+U+1F929
+Name=star-struck
+
+U+1F92F
+Name=exploding head
+
+U+1F92A
+Name=crazy face
+
+U+1F92C
+Name=face with symbols on mouth
+
+U+1F92E
+Name=face vomiting
+
+U+1F92B
+Name=shushing face
+
+U+1F92D
+Name=face with hand over mouth
+
+U+1F9D0
+Name=face with monocle
+
+#====
+Proposal=L2/16-316
+U+1F969
+Name=cut of meat
+
+U+1F96A
+Name=sandwich
+
+U+1F963
+Name=bowl with spoon
+
+U+1F96B
+Name=canned food
+
+
+U+1F964
+Name=cup with straw
+
+U+1F968
+Name=pretzel
+
+U+1F966
+Name=broccoli
+
+#====
+Proposal=L2/16-316,L2/16-272
+U+1F967
+Name=pie
+
+#====
+Proposal=L2/16-316,L2/16-273
+U+1F965
+Name=coconut
+
+
+#====
+Proposal=L2/16-317
+U+1F9D2
+Name=child
+
+U+1F9D1
+Name=adult
+
+U+1F9D3
+Name=older adult
+
+#====
+Proposal=L2/16-357
+U+1F9E2
+Name=billed cap
+
+#====
+Proposal=L2/16-362
+U+1F9E3
+Name=scarf
+
+U+1F9E4
+Name=gloves
+
+U+1F9E5
+Name=coat
+
+
+Proposal=L2/16-010, L2/16-234, L2/16-346
+U+1F3F4
+
+
+
+
+
+
+
+
+
