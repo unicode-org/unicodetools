@@ -128,7 +128,7 @@ public class Emoji {
     public static final String TR51_INTERNAL_DIR = CHARTS_DIR + "internal/";
     public static final String RELEASE_CHARTS_DIR = EMOJI_DIR + "charts-" + VERSION_LAST_RELEASED_STRING + "/";
 
-    public static final String DATA_DIR = Settings.UNICODE_DRAFT_PUBLIC + "emoji/" + VERSION_STRING + "/";
+    public static final String DATA_DIR = "http://unicode.org/Public/emoji/" + VERSION_STRING + "/";
 
     static final String IMAGES_OUTPUT_DIR = TR51_SVN_DIR + "images/";
 
@@ -668,5 +668,7 @@ public class Emoji {
         }
         return b.toString();
     }
+
+    static final String TR51_HTML = IS_BETA ? "../../reports/tr51/proposed.html" : "http://unicode.org/reports/tr51/tr51-12.html";
 
 }
