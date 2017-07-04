@@ -16,7 +16,7 @@ public class MakeEmojiTable {
     public static void main(String[] args) throws IOException {
         final String outFileName = "emoji-glyphs.html";
         PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, outFileName);
-        GenerateEmoji.writeHeader(outFileName, out, "recommended glyphs", null, "border='1'", true, false, "<p>" + "" + "</p>\n");
+        GenerateEmoji.writeHeader(outFileName, out, "recommended glyphs", null, "border='1'", true, false, "<p>" + "" + "</p>\n", Emoji.DATA_DIR);
         boolean first = true;
         boolean firstText = true;
         out.println("<tr><th>Code</th><th>Ref</th><th>Apple</th><th>Andr.</th><th>Name</th><th>Remarks</th></tr>");

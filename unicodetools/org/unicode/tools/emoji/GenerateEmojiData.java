@@ -37,6 +37,8 @@ import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
 
 public class GenerateEmojiData {
+    private static final String OUTPUT_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "Public/emoji/";
+
     private static final String ORDERING_NOTE = "#\n"
             + "# Characters and sequences are listed in code point order. Users should be shown a more natural order.\n"
             + "# See the CLDR collation order for Emoji.\n";
@@ -126,7 +128,7 @@ public class GenerateEmojiData {
 
         PropPrinter printer = new PropPrinter().set(extraNames);
 
-        try (TempPrintWriter outText2 = new TempPrintWriter(Emoji.DATA_DIR, "emoji-data.txt")) {
+        try (TempPrintWriter outText2 = new TempPrintWriter(OUTPUT_DIR, "emoji-data.txt")) {
             UnicodeSet emoji = EmojiData.EMOJI_DATA.getSingletonsWithDefectives();
             UnicodeSet emoji_presentation = EmojiData.EMOJI_DATA.getEmojiPresentationSet();
             UnicodeSet emoji_modifiers = EmojiData.MODIFIERS;
@@ -156,7 +158,7 @@ public class GenerateEmojiData {
         }
 
         if(EmojiData.EMOJI_DATA.getVersion().compareTo(Emoji.VERSION6) >= 0) {
-            try (TempPrintWriter outText2 = new TempPrintWriter(Emoji.DATA_DIR, "emoji-extended-data.txt")) {
+            try (TempPrintWriter outText2 = new TempPrintWriter(OUTPUT_DIR, "emoji-extended-data.txt")) {
                 UnicodeSet emoji_pict = EmojiData.EMOJI_DATA.getExtendedPictographic();
                 outText2.println(Utility.getBaseDataHeader("emoji-extended-data", 51, "Emoji Data", Emoji.VERSION_STRING));
                 int width = "Extended_Pictographic".length();
@@ -169,7 +171,7 @@ public class GenerateEmojiData {
             }
         }
 
-        try (Writer out = new TempPrintWriter(Emoji.DATA_DIR, "emoji-sequences.txt")) {
+        try (Writer out = new TempPrintWriter(OUTPUT_DIR, "emoji-sequences.txt")) {
             out.write(Utility.getBaseDataHeader("emoji-sequences", 51, "Emoji Sequence Data", Emoji.VERSION_STRING)
                     + "\n");
             List<String> type_fields = Arrays.asList("Emoji_Combining_Sequence", "Emoji_Flag_Sequence",
@@ -190,7 +192,7 @@ public class GenerateEmojiData {
             out.write("\n#EOF\n");
         }
 
-        try (Writer out = new TempPrintWriter(Emoji.DATA_DIR, "emoji-zwj-sequences.txt")) {
+        try (Writer out = new TempPrintWriter(OUTPUT_DIR, "emoji-zwj-sequences.txt")) {
             out.write(Utility.getBaseDataHeader("emoji-zwj-sequences", 51, "Emoji ZWJ Sequences",
                     Emoji.VERSION_STRING) + "\n");
             List<String> type_fields = Arrays.asList("Emoji_ZWJ_Sequence");
@@ -221,7 +223,7 @@ public class GenerateEmojiData {
         }
 
         if (EmojiData.EMOJI_DATA.getVersion().compareTo(Emoji.VERSION5) >= 0) {
-            try (Writer out = new TempPrintWriter(Emoji.DATA_DIR, "emoji-variation-sequences.txt")) {
+            try (Writer out = new TempPrintWriter(OUTPUT_DIR, "emoji-variation-sequences.txt")) {
                 out.write(Utility.getBaseDataHeader("emoji-variation-sequences", 51, "Emoji Variation Sequences",
                         Emoji.VERSION_STRING) + "\n");
                 final UnicodeSet withVariants = EmojiData.EMOJI_DATA.getEmojiWithVariants();
@@ -263,7 +265,7 @@ public class GenerateEmojiData {
         if (SHOW)
             System.out.println("Emoji All ; " + EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().toPattern(false));
 
-        GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, Target.propFile, Emoji.DATA_DIR);
+        GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, Target.propFile, OUTPUT_DIR);
     }
 
     static final UnicodeMap<String> NAMES = IndexUnicodeProperties.make(Settings.latestVersion).load(UcdProperty.Name);

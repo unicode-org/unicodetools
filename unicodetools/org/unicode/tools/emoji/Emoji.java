@@ -38,6 +38,7 @@ import com.ibm.icu.util.VersionInfo;
 
 public class Emoji {
 
+
     /**
      * Change the following according to whether we are generating the beta version of files, or the new version.
      * We support generating the last version in order to make improvements to the charts.
@@ -128,7 +129,8 @@ public class Emoji {
     public static final String TR51_INTERNAL_DIR = CHARTS_DIR + "internal/";
     public static final String RELEASE_CHARTS_DIR = EMOJI_DIR + "charts-" + VERSION_LAST_RELEASED_STRING + "/";
 
-    public static final String DATA_DIR = "http://unicode.org/Public/emoji/" + VERSION_STRING + "/";
+    public static final String DATA_DIR_BASE = "http://unicode.org/Public/emoji/";
+    public static final String DATA_DIR = DATA_DIR_BASE + VERSION_STRING + "/";
 
     static final String IMAGES_OUTPUT_DIR = TR51_SVN_DIR + "images/";
 
