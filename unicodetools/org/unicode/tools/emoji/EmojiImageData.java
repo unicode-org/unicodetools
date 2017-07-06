@@ -94,7 +94,8 @@ public class EmojiImageData {
 				if (!file.exists()) {
 					result = "";
 				} else if (!GenerateEmoji.DATAURL) {
-					result = "../images/" + filename;
+					result = "data:image/gif;base64,R0lGODlhAQABAPAAABEA3v///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="; 
+					// "../images/" + filename;
 				} else {
 					byte[] bytes = GenerateEmoji.RESIZE_IMAGE <= 0 ? Files.readAllBytes(file.toPath())
 							: LoadImage.resizeImage(file, GenerateEmoji.RESIZE_IMAGE, GenerateEmoji.RESIZE_IMAGE);
