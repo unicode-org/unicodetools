@@ -116,7 +116,7 @@ public class EmojiImageData {
 
 		final String outFileName = "missing-emoji-list.html";
 		try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, outFileName)) {
-			GenerateEmoji.writeHeader(outFileName, out, "Missing", null, false, "<p>Missing list of emoji characters.</p>\n", Emoji.DATA_DIR);
+			GenerateEmoji.writeHeader(outFileName, out, "Missing", null, false, "<p>Missing list of emoji characters.</p>\n", Emoji.DATA_DIR_PRODUCTION);
             out.println("<table " + "border='1'" + ">");
 			String headerRow = "<tr><th>Type</th>";
 			for (Emoji.Source type : platforms2) {
