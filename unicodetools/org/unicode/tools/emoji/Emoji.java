@@ -129,8 +129,8 @@ public class Emoji {
     public static final String TR51_INTERNAL_DIR = CHARTS_DIR + "internal/";
     public static final String RELEASE_CHARTS_DIR = EMOJI_DIR + "charts-" + VERSION_LAST_RELEASED_STRING + "/";
 
-    public static final String DATA_DIR_BASE = "http://unicode.org/Public/emoji/";
-    public static final String DATA_DIR = DATA_DIR_BASE + VERSION_STRING + "/";
+    public static final String DATA_DIR_PRODUCTION_BASE = "http://unicode.org/Public/emoji/";
+    public static final String DATA_DIR_PRODUCTION = DATA_DIR_PRODUCTION_BASE + VERSION_STRING + "/";
 
     static final String IMAGES_OUTPUT_DIR = TR51_SVN_DIR + "images/";
 

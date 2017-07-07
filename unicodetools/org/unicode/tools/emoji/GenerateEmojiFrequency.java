@@ -105,7 +105,7 @@ public class GenerateEmojiFrequency {
 
         String outFileName = "emoji-frequency-all.html";
         try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, outFileName)) {
-            GenerateEmoji.writeHeader(outFileName, out, "Emoji Frequency", null, false, "<p>" + FIRST_LINE + "</p>\n", Emoji.DATA_DIR);
+            GenerateEmoji.writeHeader(outFileName, out, "Emoji Frequency", null, false, "<p>" + FIRST_LINE + "</p>\n", Emoji.DATA_DIR_PRODUCTION);
             out.println("<table " + "border='1'" + ">");
 
             String title = "%\tCP\tMain Category\tAnnotations";
@@ -149,7 +149,7 @@ public class GenerateEmojiFrequency {
         }
         outFileName = "emoji-frequency.html";
         try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, outFileName)) {
-            GenerateEmoji.writeHeader(outFileName, out, "Emoji Frequency", null, false, "<p>" + FIRST_LINE + "</p>\n", Emoji.DATA_DIR);
+            GenerateEmoji.writeHeader(outFileName, out, "Emoji Frequency", null, false, "<p>" + FIRST_LINE + "</p>\n", Emoji.DATA_DIR_PRODUCTION);
             out.println("<table " + "border='1'" + ">");
 
             System.out.println(Buckets.BUCKET_TITLE);

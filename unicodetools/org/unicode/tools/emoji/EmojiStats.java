@@ -170,7 +170,7 @@ class EmojiStats {
             if (SHOW) System.out.println(entry.getKey() + "\t" + entry.getValue().toPattern(false));
         }
 
-        GenerateEmoji.writeHeader(outFileName, out, "Missing", null, false, "<p>Missing list of emoji characters.</p>\n", Emoji.DATA_DIR);
+        GenerateEmoji.writeHeader(outFileName, out, "Missing", null, false, "<p>Missing list of emoji characters.</p>\n", Emoji.DATA_DIR_PRODUCTION);
         out.println("<table " + "border='1'" + ">");
         String headerRow = "<tr><th>Type</th>";
         for (Emoji.Source type : platforms2) {
