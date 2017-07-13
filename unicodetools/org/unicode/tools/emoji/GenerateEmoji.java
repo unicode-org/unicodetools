@@ -2966,6 +2966,11 @@ public class GenerateEmoji {
 
     static final Joiner BAR_JOIN = Joiner.on(" | ");
     static final Joiner BAR_I_JOIN = Joiner.on("</i> | <i>");
+    
+    static final String PROPOSAL_CAUTION = "<p>When looking at the linked proposals for candidates or accepted characters it is important to keep two points in mind:</p>"
+            + "<ol><li>New proposals must follow the form in <a target='_blank' href='../selection.html'>Submitting Emoji Character Proposals</a>."
+            + " This form may have changed since earlier proposals were submitted.</li>"
+            + "<li>The UTC may accept a proposal for reasons other than those stated in the proposal, and does not necessarily endorse or consider relevant all of the proposed reasons.</li></ol>";
 
     static void showCandidateStyle(CandidateStyle candidateStyle, String outFileName, UnicodeSet emoji)
             throws IOException {
@@ -3145,7 +3150,7 @@ public class GenerateEmoji {
                 + "would be after X in <a target='order' href='emoji-ordering.html'>Emoji Ordering</a></li>\n"
                 + "<li><strong>∈ modifier_base</strong> indicates that the character would allow skin-tone modifiers</li>\n"
                 + "<li><strong>∈ gender_base</strong> indicates that the character would have ZWJ sequences for gender</li></ul>\n"
-                + "<p>Thanks to submitters for the color sample glyphs.</p>\n";
+                + PROPOSAL_CAUTION + "\n";
         String footer = "";
         // "<p>Thanks to submitters for the color sample glyphs.</p>";
 
@@ -3154,6 +3159,7 @@ public class GenerateEmoji {
 
         if (!future) {
             topHeader = "<p>The following emoji characters and sequences have been added to this version of Unicode Emoji. "
+                    + PROPOSAL_CAUTION + "</p>\n"
                     // Comment out this text once Unicode 10. is released.
                     // + " The list includes characters that will be in Unicode
                     // v10.0, scheduled for June 2017, "
@@ -3164,8 +3170,9 @@ public class GenerateEmoji {
                     // + "See also the <a target='candidates'
                     // href='emoji-candidates.html'>Emoji Candidates</a>."
                     + (Emoji.IS_BETA ? footer
-                            : " Thanks to EmojiXpress, Emojipedia, Emojination, Adobe, and submitters for the color sample glyphs.")
-                    + "</p>";
+                            : "<p>Thanks to EmojiXpress, Emojipedia, Emojination, Adobe, and "
+                                    + "submitters for the color sample glyphs.</p>")
+                    ;
             footer = "";
             showCandidatesTitle = "Emoji Recently Added";
         }
