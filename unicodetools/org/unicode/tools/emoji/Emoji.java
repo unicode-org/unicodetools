@@ -37,6 +37,7 @@ import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
 public class Emoji {
+
     static final boolean ABBR = CldrUtility.getProperty("emoji-abbr", false);
 
     /**
@@ -379,8 +380,13 @@ public class Emoji {
     static final int FIRST_REGIONAL = 0x1F1E6;
     static final int LAST_REGIONAL = 0x1F1FF;
 
+    public static final UnicodeSet DEFECTIVE_COMPONENTS = new UnicodeSet("[\\u200d \\ufe0f \\u20e3 \\U000e0020-\\U000e007f]");
+
     public static final UnicodeSet REGIONAL_INDICATORS = new UnicodeSet(FIRST_REGIONAL,LAST_REGIONAL).freeze();
-    public static final UnicodeSet DEFECTIVE = new UnicodeSet("[0123456789*#]").addAll(REGIONAL_INDICATORS).freeze();
+    public static final UnicodeSet DEFECTIVE = new UnicodeSet("[0123456789*#]")
+            .addAll(REGIONAL_INDICATORS)
+            .addAll(DEFECTIVE_COMPONENTS)
+            .freeze();
 
     //    static final UnicodeSet EXCLUDE = new UnicodeSet(
     //    "[🂠-🂮 🂱-🂿 🃁-🃎 🃑-🃵 🀀-🀃 🀅-🀫 〠🕲⍾☸🀰-🂓 🙬 🙭 🙮 🙯🗴🗵🗶🗷🗸🗹★☆⛫\uFFFC⛤-⛧ ⌤⌥⌦⌧⌫⌬⎆⎇⎋⎗⎘⎙⎚⏣⚝⛌⛚⛬⛭⛮⛯⛶⛻✓🆊\\U0001F544-\\U0001F549" +
