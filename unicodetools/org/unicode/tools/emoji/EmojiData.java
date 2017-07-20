@@ -159,14 +159,17 @@ public class EmojiData {
                     }
                 }
             }
+            
             // check consistency, fix "with defectives"
             for (Entry<String, Set<EmojiProp>> entry : emojiData.entrySet()) {
                 final String cp = entry.getKey();
                 final Set<EmojiProp> set = entry.getValue();
-                if (!set.contains(EmojiProp.Emoji)) {
-                    System.err.println("**\t" + cp + "\t" + set);
+                if (!set.contains(EmojiProp.Emoji) && !set.contains(EmojiProp.Emoji_Component)) {
+                    throw new IllegalArgumentException("**\t" + cp + "\t" + set);
                 }
-                singletonsWithDefectives.add(cp);
+                if (!Emoji.DEFECTIVE_COMPONENTS.contains(cp)) {
+                    singletonsWithDefectives.add(cp);
+                }
                 if (!Emoji.DEFECTIVE.contains(cp)) {
                     singletonsWithoutDefectives.add(cp);
                 }
@@ -174,7 +177,7 @@ public class EmojiData {
                 EmojiData.DefaultPresentation styleIn = set.contains(EmojiProp.Emoji_Presentation) ? EmojiData.DefaultPresentation.emoji : EmojiData.DefaultPresentation.text;
                 if (styleIn == EmojiData.DefaultPresentation.emoji) {
                     emojiPresentationSet.add(cp);
-                } else {
+                } else if (!Emoji.DEFECTIVE_COMPONENTS.contains(cp)){
                     textPresentationSet.add(cp);
                 }
 
@@ -274,7 +277,7 @@ public class EmojiData {
                             }
                             keycapBases.add(firstString);
                         } else if (Emoji.DEFECTIVE.contains(first)) {
-                            throw new IllegalArgumentException("Unexpected");
+                            throw new IllegalArgumentException("Unexpected Defective");
                         }
                     }
 
@@ -358,6 +361,11 @@ public class EmojiData {
             // TODO make it cleaner to add new properties
             //emojiRegionalIndicators.addAll(emojiData.getKeys(EmojiProp.Emoji_Regional_Indicator)).freeze();
             emojiComponents.addAll(emojiData.getKeys(EmojiProp.Emoji_Component)).freeze();
+            
+            if (version.compareTo(Emoji.VERSION6) >= 0 
+                    && !new UnicodeSet(emojiComponents).removeAll(MODIFIERS).equals(Emoji.DEFECTIVE)) {
+                throw new IllegalArgumentException("Bad components or defectives\n" + emojiComponents + "\n" + Emoji.DEFECTIVE);
+            }
 
             zwjSequencesNormal.freeze();
             zwjSequencesAll.removeAll(zwjSequencesNormal).freeze();
@@ -1027,7 +1035,7 @@ public class EmojiData {
             System.out.println("Name=" + v5.getName(s));
             System.out.println();
         }
-        if (SKIP) return;
+        //if (SKIP) return;
 
         System.out.println(EmojiData.EMOJI_DATA.getDerivableNames().toPattern(false));
 

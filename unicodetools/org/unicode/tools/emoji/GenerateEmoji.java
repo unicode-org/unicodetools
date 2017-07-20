@@ -150,11 +150,12 @@ public class GenerateEmoji {
 
         // verify that all are present
         for (String key : new UnicodeSet(EmojiData.EMOJI_DATA.getTextPresentationSet())
-                .removeAll(Emoji.REGIONAL_INDICATORS).removeAll(EmojiData.EMOJI_DATA.getFlagSequences())) {
+                .removeAll(Emoji.REGIONAL_INDICATORS)
+                .removeAll(EmojiData.EMOJI_DATA.getFlagSequences())) {
             final int first = key.codePointAt(0);
             String version = TO_FIRST_VERSION_FOR_VARIANT.get(first);
             if (version == null) {
-                System.err.println("Missing from Standardized Variant: " + Utility.hex(key) + "\t" + key);
+                throw new IllegalArgumentException("Missing from Standardized Variant: " + Utility.hex(key) + "\t" + key);
             }
         }
     }

@@ -30,8 +30,19 @@ import com.ibm.icu.text.UnicodeSet;
 public class TestEmojiData extends TestFmwkPlus {
 
     public static void main(String[] args) {
-    	System.out.println("Version: " + Emoji.VERSION_TO_GENERATE + "; isBeta: " + Emoji.IS_BETA);
+        System.out.println("Version: " + Emoji.VERSION_TO_GENERATE + "; isBeta: " + Emoji.IS_BETA);
         new TestEmojiData().run(args);
+    }
+
+    public void TestDefectives() {
+        EmojiData beta = EmojiData.of(Emoji.VERSION_BETA);
+        EmojiData released = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
+        for (EmojiData ed : Arrays.asList(released, beta)) {
+            if (ed.getAllEmojiWithDefectives().containsSome(Emoji.DEFECTIVE_COMPONENTS)) {
+                errln("getChars contains defectives " 
+                        + new UnicodeSet().addAll(ed.getChars()).removeAll(Emoji.DEFECTIVE_COMPONENTS));
+            }
+        }
     }
 
     public void TestFlags() {
@@ -75,19 +86,19 @@ public class TestEmojiData extends TestFmwkPlus {
         }
         Set<String> testSet = new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare);
         EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().addAllTo(testSet);
-        
+
         ZwjType oldZwjType = ZwjType.na; 
         String last = "";
         for (String s : testSet) {
             ZwjType zwjType = ZwjType.getType(s);
             if (zwjType == ZwjType.na) {
-            	continue;
+                continue;
             }
             if (zwjType.compareTo(oldZwjType) < 0 && oldZwjType != ZwjType.na) {
-            	errln(zwjType + " < " + oldZwjType 
-            			+ ", but they should be ascending"
-            			+ "\n\t" + oldZwjType + "\t" + last 
-            			+ "\n\t" + zwjType + "\t" + s);
+                errln(zwjType + " < " + oldZwjType 
+                        + ", but they should be ascending"
+                        + "\n\t" + oldZwjType + "\t" + last 
+                        + "\n\t" + zwjType + "\t" + s);
             }
             last = s;
             oldZwjType = zwjType;
@@ -119,17 +130,17 @@ public class TestEmojiData extends TestFmwkPlus {
             String lowestWithModifierBase = null;
             for (String item : testSet) {
                 if (ruleBasedCollator.compare(lastItem, item) > 0 
-                		&& !modifiers.contains(item)) {
+                        && !modifiers.contains(item)) {
                     errln("Out of order: " + lastItem + ">" + item);
                 } else {
                     logln(lastItem + "≤" + item);
                 }
                 lastItem = item;
-				if (modifierBases.containsSome(item)) {
-                	if (lowestWithModifierBase == null) {
-                		lowestWithModifierBase = item;
-                	}
-                	highestWithModifierBase = item;
+                if (modifierBases.containsSome(item)) {
+                    if (lowestWithModifierBase == null) {
+                        lowestWithModifierBase = item;
+                    }
+                    highestWithModifierBase = item;
                 }
             }
             System.out.println("\nlowestWithModifierBase " + lowestWithModifierBase);
@@ -213,7 +224,7 @@ public class TestEmojiData extends TestFmwkPlus {
         TreeSet<String> sorted = EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives()
                 .addAllTo(new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare));
         int maxLen = 32;
-        
+
         for (String s : sorted) {
             if (s.equals("🕵‍♂️")) {
                 int debug = 0;
@@ -225,14 +236,14 @@ public class TestEmojiData extends TestFmwkPlus {
                 if (tts.equals("???") || keywords.contains("???")) {
                     logln(s + "\t" + tts + "\t" + keywords);
                 }
-//                if (tts.contains(",")) {
-//                    // do nothing
-//                } else if (tts.length() > maxLen) {
-//                    warnln("Name long:\t" + s + "\t" + tts.length() + "\t" + tts + "\t" + keywords);
-//                }
-//                else if (tts.contains(" and ")) {
-//                    warnln("name:\t" + s + "\t" + tts.length() + "\t" + tts + "\t" + keywords);
-//                } 
+                //                if (tts.contains(",")) {
+                //                    // do nothing
+                //                } else if (tts.length() > maxLen) {
+                //                    warnln("Name long:\t" + s + "\t" + tts.length() + "\t" + tts + "\t" + keywords);
+                //                }
+                //                else if (tts.contains(" and ")) {
+                //                    warnln("name:\t" + s + "\t" + tts.length() + "\t" + tts + "\t" + keywords);
+                //                } 
             }
             if (EmojiData.MODIFIERS.containsSome(s)) {
                 if (false && em2 == null && status != EmojiAnnotations.Status.missing) {
@@ -267,7 +278,7 @@ public class TestEmojiData extends TestFmwkPlus {
                     tts = tts == null ? "???" : tts;
                     keywords = keywords == null ? Collections.singleton("???") : keywords;
                     Set<String> keys = em2.getKeys(s);
-					missing.add(s 
+                    missing.add(s 
                             + "\t" + Utility.hex(s.replace(Emoji.EMOJI_VARIANT_STRING, ""), "_").toLowerCase(Locale.ENGLISH) 
                             + "\t" + em2.getShortName(s) 
                             + "\t" + (keys == null ? null : CollectionUtilities.join(keys, " | "))

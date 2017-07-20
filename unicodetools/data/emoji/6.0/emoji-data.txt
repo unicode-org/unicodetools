@@ -437,7 +437,10 @@
 0030..0039    ; Emoji_Component      #  1.1 [10] (0️..9️)    digit zero..digit nine
 1F1E6..1F1FF  ; Emoji_Component      #  6.0 [26] (🇦..🇿)    regional indicator symbol letter a..regional indicator symbol letter z
 1F3FB..1F3FF  ; Emoji_Component      #  8.0  [5] (🏻..🏿)    light skin tone..dark skin tone
+200D  ; Emoji_Component
+FE0F  ; Emoji_Component
+20E3  ; Emoji_Component
+E0020..E007F  ; Emoji_Component
 
-# Total elements: 43
 
 #EOF
