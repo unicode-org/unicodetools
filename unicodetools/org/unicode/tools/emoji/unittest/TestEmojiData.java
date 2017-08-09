@@ -37,11 +37,17 @@ public class TestEmojiData extends TestFmwkPlus {
     public void TestDefectives() {
         EmojiData beta = EmojiData.of(Emoji.VERSION_BETA);
         EmojiData released = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
+        UnicodeSet excluded = new UnicodeSet("[#*0-9🇦-🇿]");
+
         for (EmojiData ed : Arrays.asList(released, beta)) {
             if (ed.getAllEmojiWithDefectives().containsSome(Emoji.DEFECTIVE_COMPONENTS)) {
                 errln("getChars contains defectives " 
-                        + new UnicodeSet().addAll(ed.getChars()).removeAll(Emoji.DEFECTIVE_COMPONENTS));
+                        + new UnicodeSet().addAll(ed.getChars()).retainAll(Emoji.DEFECTIVE_COMPONENTS));
             }
+        }
+        if (beta.getExtendedPictographic().containsSome(excluded)) {
+            errln("getExtendedPictographic contains defectives " 
+                    + new UnicodeSet().addAll(beta.getExtendedPictographic()).retainAll(excluded));
         }
     }
 

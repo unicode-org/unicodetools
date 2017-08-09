@@ -53,7 +53,8 @@ public class MakeEmojiTable {
                 out.println(line + "</div>");
             }
         }
-        GenerateEmoji.writeFooter(out, "");
+        out.println("</table>");
+        GenerateEmoji.writeFooter(out);
         out.close();
         System.out.println("DONE");
     }
