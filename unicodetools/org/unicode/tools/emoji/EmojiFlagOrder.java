@@ -265,7 +265,8 @@ public class EmojiFlagOrder {
             out.println("</table>");
             out.println("<p>country-flag\t" + emojiList + "<p>");
             out.println("</body></html>");
-            GenerateEmoji.writeFooter(out, "");
+            out.println("</table>");
+            GenerateEmoji.writeFooter(out);
         }
     }
 

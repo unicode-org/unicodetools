@@ -387,6 +387,8 @@ public class Emoji {
             .addAll(REGIONAL_INDICATORS)
             .addAll(DEFECTIVE_COMPONENTS)
             .freeze();
+    
+    public static final UnicodeSet EXCLUDED_FOR_SEGMENTATION = new UnicodeSet("[#*0-9©®™〰〽🇦-🇿]");
 
     //    static final UnicodeSet EXCLUDE = new UnicodeSet(
     //    "[🂠-🂮 🂱-🂿 🃁-🃎 🃑-🃵 🀀-🀃 🀅-🀫 〠🕲⍾☸🀰-🂓 🙬 🙭 🙮 🙯🗴🗵🗶🗷🗸🗹★☆⛫\uFFFC⛤-⛧ ⌤⌥⌦⌧⌫⌬⎆⎇⎋⎗⎘⎙⎚⏣⚝⛌⛚⛬⛭⛮⛯⛶⛻✓🆊\\U0001F544-\\U0001F549" +

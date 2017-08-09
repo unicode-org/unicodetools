@@ -341,7 +341,18 @@ public class EmojiData {
                         codePoint = Utility.fromHex(f0.substring(0,pos)).codePointAt(0);
                         codePointEnd = Utility.fromHex(f0.substring(pos+2)).codePointAt(0);
                     }
-                    extendedPictographic.add(codePoint,codePointEnd);
+
+                    String prop = list.get(1);
+                    if (!"ExtendedPictographic".equals(prop.replace("_", ""))) {
+                        throw new IllegalArgumentException();
+                    }
+                    boolean negative = list.size() > 2 
+                            && "NO".equals(list.get(2).toUpperCase(Locale.ENGLISH));
+                    if (negative) {
+                        extendedPictographic.remove(codePoint,codePointEnd);
+                    } else {
+                        extendedPictographic.add(codePoint,codePointEnd);
+                    }
                 }
             }
 

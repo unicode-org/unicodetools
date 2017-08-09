@@ -1,6 +1,6 @@
 #Code Point	Chart Glyph	Sample Colored Glyph	Name	
 
-Quarter=2017Q1
+Status=Draft Candidates
 
 Proposal=L2/17-023
 After=🎑
@@ -23,41 +23,40 @@ U+101702
 Name=moon cake
 Keywords= yuèbĭng
 
-Quarter=2017Q2
-
 Proposal=L2/17-082
-After=👱
+After=👃🏿
 
-U+101703
-Name=red-haired person
+#U+101703
+U+1F9B0
+Name=red-haired
 Keywords= ginger | redhead
-Emoji_Modifier_Base
-Emoji_Gender_Base
+Emoji_Component
 
-U+101704
-Name=curly-haired person
+#U+101704
+U+1F9B1
+Name=curly-haired
 Keywords= afro | curly | ringlets
-Emoji_Modifier_Base
-Emoji_Gender_Base
+Emoji_Component
 
-U+101705
-Name=bald person
-Keywords= shaven | hairless
-Emoji_Modifier_Base
-Emoji_Gender_Base
+#U+101705
+U+1F9B2
+Name=bald
+Keywords= shaven | hairless | no hair
+Emoji_Component
 
-U+101706
+#U+101706
+U+1F9B3
 Name=white-haired person
 Keywords= gray | white | hair
-Emoji_Modifier_Base
-Emoji_Gender_Base
+Emoji_Component
 
 After=🔮
 Proposal=L2/17-058
 
+#U+1F9FF
 U+101707
-Name=nazar
-Keywords= talisman | charm | avert | evil eye
+Name=amulet
+Keywords= nazar | bead | نظر‎ | talisman | charm | avert | evil-eye
 
 Proposal=L2/17-113
 After=🕶
@@ -85,7 +84,7 @@ Keywords= biologist | life
 
 U+10170D
 Name=compass
-Keywords= naviation
+Keywords= navigation | magnetic
 
 U+10170E
 Name=abacus
@@ -99,3 +98,255 @@ After=🕶
 U+10171A
 Name=goggles
 Keywords= eye protection | welding
+
+Proposal=L2/17-244R
+
+U+1F970
+After=😘
+Name=smiling face with 3 hearts
+Keywords= in love | loved
+
+After=🤠
+U+1F971
+Name=superhero face
+Keywords=hero | heroine | cape | good guy | white hat
+
+
+U+1F972
+Name=supervillain face
+Keywords=villain | bandit | bad guy | black hat
+ 
+U+1F973
+Name=partying face
+Keywords=party | horn | hat
+
+U+1F974
+Name=drunkard face
+Keywords=uneven eyes | wavy mouth | inebriated | drunk
+
+U+1F977
+Name= question-mark face
+Keywords= frowning | puzzled | surprised | lost | confused
+
+U+1F978
+Name= ok face
+Keywords= letters | ok
+
+U+1F97A
+Name=sorry face
+Keywords= puppy eyes | begging
+
+
+After=🤧
+U+1F975
+Name=hot face
+Keywords= hot | red-faced | sweating | heat stroke | boiling | overheated
+
+U+1F976
+Name=cold face
+Keywords= cold | blue-faced | freezing | icicles | frostbite | shivering
+
+
+After=💩
+U+1F979
+Name=frowning pile of poo
+Keywords= unhappy | annoyed
+
+
+Proposal=L2/17-259, L2/14-174
+After=💪
+U+1F9B5
+Name=leg
+
+Proposal=L2/17-259
+U+1F9B6
+Name=foot
+
+After=🧠
+Proposal=L2/17-259, L2/17-246
+U+1F9B4
+Name=bone
+
+Proposal=L2/17-259
+U+1F9B7
+Name=tooth
+Keywords=dentist
+
+Proposal=L2/17-271
+After=👟
+U+1F97E
+Name=hiking boot
+
+Proposal=L2/17-274
+U+1F97F
+Name=woman’s flat shoe
+
+Proposal=L2/17-264
+After=🐼
+U+1F998
+Name=kangaroo
+
+Proposal=L2/17-266
+After=🐫
+U+1F999
+Name=llama
+Keywords=alpaca | vicuña | guanaco
+
+Proposal=L2/17-270
+After=🦉
+U+1F99A
+Name=peacock
+Keywords=peahen
+
+U+1F99C
+Name=PARROT
+Proposal=L2/17-280, Proposal=L2/17-281
+
+Proposal=L2/17-263
+After=🦏
+U+1F99B
+Name=hippopotamus
+Keywords=hippo
+
+Proposal=L2/17-278
+After=🦊
+U+1F99D
+Name=raccoon
+
+Proposal=L2/17-267, L2/17-217, L2/14-174
+After=🦀
+U+1F99E
+Name=lobster
+
+Proposal=L2/17-268After=🦂
+U+1F99F
+Name=mosquito
+Keywords=malaria | yellow fever | Chikungunya | West Nile virus | dengue fever | filariasis | Zika virus 
+
+Proposal=L2/17-265
+After=🥗
+U+1F96C
+Name=leafy green
+Keywords=bok choy | cabbage | collard greens | kale | lettuce | romaine lettuce | arugula | spinach | endive | chard
+
+Proposal=L2/17-272, L2/16-191
+U+1F9C2
+Name=salt
+Keywords=condiment | shaker
+
+Proposal=L2/17-203, L2/17-211
+After=🍍
+U+1F96D
+Name=mango
+
+Proposal=L2/17-261
+After=🥨
+U+1F96F
+Name=bagel
+
+Proposal=L2/17-262, L2/14-174
+After=🍰
+U+1F9C1
+Name=cupcake
+
+Proposal=L2/17-277, L2/16-382
+After=🏑
+U+1F94D
+Name=lacrosse
+
+Proposal=L2/17-277, L2/17-184
+After=⚾
+U+1F94E
+Name=softball
+
+Proposal=L2/17-277, L2/16-378
+After=🛴
+U+1F6F9
+Name=skateboard
+
+Proposal=L2/17-277, L2/17-257
+After=🏉
+U+1F94F
+Name=flying disk
+
+Proposal=L2/17-198
+After=🎲
+U+1F9E9
+Name=jigsaw
+Keywords=puzzle
+
+Proposal=L2/17-202
+After=⛓
+U+1F9F0
+Name=toolbox
+Keywords=tool | chest
+
+Proposal=L2/17-185
+U+1F9F2
+Name=magnet
+Keywords=horseshoe
+
+Proposal=L2/17-172
+After=🏡 
+U+1F9F1
+Name=brick wall
+
+Proposal=L2/17-205
+After=🛎
+U+1F9F3
+Name=luggage
+
+Proposal=L2/17-212
+After=🛒
+U+1F9F4
+Name=squeeze bottle
+Keywords=lotion | suntan
+
+Proposal=L2/17-249
+U+1F9F7
+Name=safety pin
+
+Proposal=L2/17-249
+U+1F9F5
+Name=thread
+Keywords=spool | string
+
+Proposal=L2/17-249
+U+1F9F6
+Name=yarn
+Keywords=ball
+
+Proposal=L2/17-273
+U+1F9F8
+Name=teddy bear
+Keywords=toy | plaything
+
+
+Proposal=L2/17-260
+U+1F9F9
+Name=BROOM
+
+Proposal=L2/17-260
+U+1F9FA
+Name=BASKET
+
+Proposal=L2/17-260
+U+1F9FB
+Name=TOILET PAPER
+Keywords=ROLL
+
+Proposal=L2/17-260
+U+1F9FC
+Name=soap
+Keywords= lather | bar | soapdish
+
+Proposal=L2/17-260
+U+1F9FD
+Name=SPONGE
+
+Proposal=L2/17-208
+After=💳
+U+1F9FE
+Name=RECEIPT
+
+

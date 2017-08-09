@@ -182,7 +182,8 @@ class EmojiStats {
             showDiff(out, outText, headerRow, entry.getKey().toString(), entry.getValue(), platforms2);
         }
 
-        GenerateEmoji.writeFooter(out, "");
+        out.println("</table>");
+        GenerateEmoji.writeFooter(out);
         out.close();
         outText.close();
     }

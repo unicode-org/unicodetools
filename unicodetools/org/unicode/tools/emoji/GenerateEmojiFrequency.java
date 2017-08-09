@@ -145,7 +145,8 @@ public class GenerateEmojiFrequency {
                 }
                 list.add(code, percent);
             }
-            GenerateEmoji.writeFooter(out, "");
+            out.println("</table>");
+            GenerateEmoji.writeFooter(out);
         }
         outFileName = "emoji-frequency.html";
         try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, outFileName)) {
@@ -170,7 +171,9 @@ public class GenerateEmojiFrequency {
                 list.toHtml(out, main);
                 out.append("</tr>\n");
             }
-            GenerateEmoji.writeFooter(out, "");
+            out.println("</table>");
+            out.println(""); // fix
+            GenerateEmoji.writeFooter(out);
 
         }
     }

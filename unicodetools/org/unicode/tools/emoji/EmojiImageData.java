@@ -128,7 +128,8 @@ public class EmojiImageData {
 				showDiff(out, headerRow, platforms2, breakdown);
 			}
 
-			GenerateEmoji.writeFooter(out, "");
+			out.println("</table>");
+            GenerateEmoji.writeFooter(out);
 		} catch (java.lang.IllegalArgumentException e) {
 			e.printStackTrace();
 		}
