@@ -5,152 +5,169 @@ Status=Draft Candidates
 Proposal=L2/17-023
 After=🎑
 
-U+101700
+U+1F9E7
 Name=red envelope
 Keywords= hóngbāo | lai see
 
 Proposal=L2/17-025
 After=🎇
 
-U+101701
+U+1F9E8
 Name=firecracker
 Keywords= dynamite | explosive
 
 Proposal=L2/17-024
 After=🍥
 
-U+101702
+U+1F96E
 Name=moon cake
 Keywords= yuèbĭng
 
 Proposal=L2/17-082
 After=👃🏿
 
-#U+101703
 U+1F9B0
 Name=red-haired
+UName=TOP OF HEAD WITH RED HAIR
 Keywords= ginger | redhead
 Emoji_Component
+Comment=For use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences: man/woman/adult (skin-tone) ZWJ red-haired
 
-#U+101704
 U+1F9B1
 Name=curly-haired
+UName=TOP OF HEAD WITH CURLY HAIR
 Keywords= afro | curly | ringlets
 Emoji_Component
+Comment=For use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences: man/woman/adult (skin-tone) ZWJ curly-haired
 
-#U+101705
 U+1F9B2
 Name=bald
+UName=TOP OF HEAD WITH NO HAIR
 Keywords= shaven | hairless | no hair
 Emoji_Component
+Comment=For use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences: man/woman/adult (skin-tone) ZWJ bald
 
-#U+101706
 U+1F9B3
-Name=white-haired person
+Name=white-haired
+UName=TOP OF HEAD WITH WHITE HAIR
 Keywords= gray | white | hair
 Emoji_Component
+Comment=For use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences: man/woman/adult (skin-tone) ZWJ white-haired
 
 After=🔮
 Proposal=L2/17-058
 
-#U+1F9FF
-U+101707
-Name=amulet
+U+1F9FF
+Name=nazar amulet
+UName=Nazar
 Keywords= nazar | bead | نظر‎ | talisman | charm | avert | evil-eye
 
 Proposal=L2/17-113
 After=🕶
-U+101708
+U+1F97C
 Name=lab coat
 Keywords= scientist | doctor
 
 After=⚗
 
-U+101709
+U+1F9EA
 Name=test tube
 Keywords= chemist
 
-U+10170A
+U+1F9A0
 Name=microbe
 Keywords= bacteria | virus
 
-U+10170B
+U+1F9EB
 Name=petri dish
 Keywords= biologist
 
-U+10170C
+U+1F9EC
 Name=dna
+UName=DNA DOUBLE HELIX
 Keywords= biologist | life
 
-U+10170D
+U+1F9ED
 Name=compass
 Keywords= navigation | magnetic
 
-U+10170E
+U+1F9EE
 Name=abacus
 Keywords= calculation
 
-U+10170F
+U+1F9EF
 Name=fire extinguisher
 Keywords= fire | extinguish | quench
 
 After=🕶
-U+10171A
+U+1F97D
 Name=goggles
 Keywords= eye protection | welding
 
-Proposal=L2/17-244R
+Proposal=L2/17-244
 
-U+1F970
 After=😘
+U+1F970
 Name=smiling face with 3 hearts
 Keywords= in love | loved
+UName=SMILING FACE WITH SMILING EYES AND THREE HEARTS
 
 After=🤠
 U+1F971
 Name=superhero face
+UName=SMILING FACE WITH CAPE
 Keywords=hero | heroine | cape | good guy | white hat
 
 
 U+1F972
 Name=supervillain face
+UName=SERIOUS FACE WITH EYE MASK AND CAPE
 Keywords=villain | bandit | bad guy | black hat
  
 U+1F973
 Name=partying face
+UName=FACE WITH SMILING EYES AND PARTY HORN AND PARTY HAT
 Keywords=party | horn | hat
 
 U+1F974
-Name=drunkard face
-Keywords=uneven eyes | wavy mouth | inebriated | drunk
+Name=drunk face
+UName=FACE WITH UNEVEN EYES AND WAVY MOUTH
+Keywords=uneven eyes | wavy mouth | inebriated | drunkard
 
 U+1F977
 Name= question-mark face
+UName=FROWNING FACE WITH QUESTION MARKS AS EYES
 Keywords= frowning | puzzled | surprised | lost | confused
 
 U+1F978
 Name= ok face
+UName=GRINNING FACE WITH LETTERS OK AS EYES
 Keywords= letters | ok
 
 U+1F97A
 Name=sorry face
+UName=FACE WITH GLISTENING EYES
 Keywords= puppy eyes | begging
 
 
-After=🤧
+After=😱 
 U+1F975
 Name=hot face
+UName=RED FACE WITH TONGUE STICKING OUT WITH BEAD OF SWEAT
 Keywords= hot | red-faced | sweating | heat stroke | boiling | overheated
 
 U+1F976
 Name=cold face
+UName=BLUE FACE WITH CLENCHED TEETH AND ICICLES
 Keywords= cold | blue-faced | freezing | icicles | frostbite | shivering
 
 
 After=💩
 U+1F979
-Name=frowning pile of poo
+Name=sad pile of poo
+UName=FROWNING PILE OF POO
 Keywords= unhappy | annoyed
+Comment=May change CLDR name of counterpart to <i>happy pile of poo</i>
 
 
 Proposal=L2/17-259, L2/14-174
@@ -176,10 +193,12 @@ Proposal=L2/17-271
 After=👟
 U+1F97E
 Name=hiking boot
+Keywords=hiking | boot
 
 Proposal=L2/17-274
 U+1F97F
 Name=woman’s flat shoe
+UName=WOMANS FLAT SHOE
 
 Proposal=L2/17-264
 After=🐼
@@ -218,20 +237,23 @@ After=🦀
 U+1F99E
 Name=lobster
 
-Proposal=L2/17-268After=🦂
+Proposal=L2/17-268
+After=🦂
 U+1F99F
 Name=mosquito
 Keywords=malaria | yellow fever | Chikungunya | West Nile virus | dengue fever | filariasis | Zika virus 
 
 Proposal=L2/17-265
-After=🥗
+After=🥒
 U+1F96C
 Name=leafy green
 Keywords=bok choy | cabbage | collard greens | kale | lettuce | romaine lettuce | arugula | spinach | endive | chard
 
 Proposal=L2/17-272, L2/16-191
+After=🍿
 U+1F9C2
 Name=salt
+UName=salt shaker
 Keywords=condiment | shaker
 
 Proposal=L2/17-203, L2/17-211
@@ -253,6 +275,7 @@ Proposal=L2/17-277, L2/16-382
 After=🏑
 U+1F94D
 Name=lacrosse
+UName=LACROSSE STICK AND BALL
 
 Proposal=L2/17-277, L2/17-184
 After=⚾
@@ -267,12 +290,13 @@ Name=skateboard
 Proposal=L2/17-277, L2/17-257
 After=🏉
 U+1F94F
-Name=flying disk
+Name=flying disc
 
 Proposal=L2/17-198
 After=🎲
 U+1F9E9
 Name=jigsaw
+UName=JIGSAW PUZZLE PIECE
 Keywords=puzzle
 
 Proposal=L2/17-202
@@ -309,11 +333,13 @@ Name=safety pin
 Proposal=L2/17-249
 U+1F9F5
 Name=thread
+UName=SPOOL OF THREAD
 Keywords=spool | string
 
 Proposal=L2/17-249
 U+1F9F6
 Name=yarn
+UName=BALL OF YARN
 Keywords=ball
 
 Proposal=L2/17-273
@@ -333,11 +359,13 @@ Name=BASKET
 Proposal=L2/17-260
 U+1F9FB
 Name=TOILET PAPER
+UName=ROLL OF TOILET PAPER
 Keywords=ROLL
 
 Proposal=L2/17-260
 U+1F9FC
 Name=soap
+UName=BAR OF SOAP
 Keywords= lather | bar | soapdish
 
 Proposal=L2/17-260
