@@ -296,3 +296,20 @@ H2 {
 .keye {
     /* color:gray; */
 }
+.uname {
+	font-size:75%;
+	margin:0.1em 1em 0.1em 1em;
+	font-style: italic;
+}
+.xxx:before {
+	content: "❌   ";
+}
+.member:before {
+	content: "∈ ";
+	font-style: bold;
+}
+.greater:before {
+	content: "> ";
+	font-style: bold;
+}
+

@@ -15,6 +15,7 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
+import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.cldr.util.Tabber;
@@ -135,6 +136,7 @@ public class GenerateEmojiData {
             UnicodeSet emoji_modifier_bases = EmojiData.EMOJI_DATA.getModifierBases();
             //UnicodeSet emoji_regional_indicators = EmojiData.EMOJI_DATA.getRegionalIndicators();
             UnicodeSet emoji_components = EmojiData.EMOJI_DATA.getEmojiComponents();
+            UnicodeSet emoji_pict = EmojiData.EMOJI_DATA.getExtendedPictographic();
             outText2.println(Utility.getBaseDataHeader("emoji-data", 51, "Emoji Data", Emoji.VERSION_STRING));
             int width = Math.max("Emoji".length(),
                     Math.max("Emoji_Presentation".length(),
@@ -154,22 +156,23 @@ public class GenerateEmojiData {
             //			printer.show(outText2, "Emoji_Regional_Indicator", null, width, 14, emoji_regional_indicators, true, true,
             //					false);
             printer.show(outText2, "Emoji_Component", null, width, 14, emoji_components, true, true, false);
+            printer.show(outText2, "Extended_Pictographic", null, width, 14, emoji_pict, true, true, false);
             outText2.println("\n#EOF");
         }
 
-        if(EmojiData.EMOJI_DATA.getVersion().compareTo(Emoji.VERSION6) >= 0) {
-            try (TempPrintWriter outText2 = new TempPrintWriter(OUTPUT_DIR, "emoji-extended-data.txt")) {
-                UnicodeSet emoji_pict = EmojiData.EMOJI_DATA.getExtendedPictographic();
-                outText2.println(Utility.getBaseDataHeader("emoji-extended-data", 51, "Emoji Data", Emoji.VERSION_STRING));
-                int width = "Extended_Pictographic".length();
-
-                outText2.println("# Format: ");
-                outText2.println("# codepoint(s) ; property(=Yes) # comments ");
-                outText2.println(ORDERING_NOTE);
-                printer.show(outText2, "Extended_Pictographic", null, width, 14, emoji_pict, true, true, false);
-                outText2.println("\n#EOF");
-            }
-        }
+//        if (EmojiData.EMOJI_DATA.getVersion().compareTo(Emoji.VERSION6) >= 0) {
+//            try (TempPrintWriter outText2 = new TempPrintWriter(OUTPUT_DIR, "emoji-extended-data.txt")) {
+//                UnicodeSet emoji_pict = EmojiData.EMOJI_DATA.getExtendedPictographic();
+//                outText2.println(Utility.getBaseDataHeader("emoji-extended-data", 51, "Emoji Data", Emoji.VERSION_STRING));
+//                int width = "Extended_Pictographic".length();
+//
+//                outText2.println("# Format: ");
+//                outText2.println("# codepoint(s) ; property(=Yes) # comments ");
+//                outText2.println(ORDERING_NOTE);
+//                printer.show(outText2, "Extended_Pictographic", null, width, 14, emoji_pict, true, true, false);
+//                outText2.println("\n#EOF");
+//            }
+//        }
 
         try (Writer out = new TempPrintWriter(OUTPUT_DIR, "emoji-sequences.txt")) {
             out.write(Utility.getBaseDataHeader("emoji-sequences", 51, "Emoji Sequence Data", Emoji.VERSION_STRING)
@@ -519,10 +522,14 @@ public class GenerateEmojiData {
     }
 
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
+    static final UnicodeMap<General_Category_Values> gcMap = iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
 
     private static String getName(String s) {
-        String result;
-        try {
+        String result = null;
+        if (gcMap.get(s) == General_Category_Values.Unassigned) {
+            result = iup.getName(s," + ");
+        }
+        if (result == null) try {
             result = EmojiData.EMOJI_DATA.getName(s);
         } catch (Exception e) {
             result = iup.getName(s," + ");

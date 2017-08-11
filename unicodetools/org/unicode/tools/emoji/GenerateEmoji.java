@@ -59,6 +59,7 @@ import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -2922,11 +2923,13 @@ public class GenerateEmoji {
         return "<td class='rchars'>" + item + "</td>\n";
     }
 
+    static final Collator ROOT_COL = Collator.getInstance(Locale.ROOT).freeze();
+    
     private static String getAnnotationsString(String chars2) {
         if (chars2.equals("👹")) {
             int debug = 0;
         }
-        Set<String> annotationsPlain = new TreeSet<>();
+        Set<String> annotationsPlain = new TreeSet<>(ROOT_COL);
         try { // HACK
             Set<String> plainAnnotations2 = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(chars2);
             if (plainAnnotations2 != null) {
@@ -2935,7 +2938,7 @@ public class GenerateEmoji {
         } catch (Exception e) {
         }
 
-        Set<String> annotationsExtra = new TreeSet<>();
+        Set<String> annotationsExtra = new TreeSet<>(ROOT_COL);
 
         Set<String> plainAnnotations2 = CandidateData.getInstance().getAnnotations(chars2);
         if (plainAnnotations2 != null) {
@@ -2992,15 +2995,14 @@ public class GenerateEmoji {
         // gather data
         Comparator<String> comparator = EMOJI_COMPARATOR;
         boolean future = false;
-        CandidateData cd = null;
 
+        CandidateData candidateData = CandidateData.getInstance();
         if (candidateStyle == CandidateStyle.candidate) {
-            UnicodeMap<CandidateData.Quarter> quartersForChars = new UnicodeMap<>();
+            // UnicodeMap<CandidateData.Quarter> quartersForChars = new UnicodeMap<>();
             // The data file is designed to take the contents of the table, when
             // pasted as plain text, and format it.
-            cd = CandidateData.getInstance();
-            comparator = cd.comparator;
-            emoji = cd.getCharacters();
+            comparator = candidateData.comparator;
+            emoji = candidateData.getCharacters();
             future = true;
         }
         Set<String> sorted = emoji.addAllTo(new TreeSet<String>(comparator));
@@ -3044,12 +3046,19 @@ public class GenerateEmoji {
                 + "<a target='_blank' href='../selection.html'>Submitting Emoji Character Proposals</a>.</p>\n"
                 + "<p>That page also describes the <a href='../selection.html#timeline'>Process and Timeline</a> for proposals.</p>"
                 + "<p><i>Provisional candidates</i> are subject to prioritization, and may not included be in the next release of Unicode."
-                + " <i>Final candidates</i> will be in the next release of Unicode, but do not have final code points or names.</p>"
+                + " <i>Draft candidates</i> are “short-listed”, and have been assigned draft code points, but are still subject to change or removal."
+                + " <i>Final candidates</i> will be in the next release of Unicode, but do not have final code points or properties."
+                + "</p>"
                 + "<p>The <strong>Attributes</strong> column contains provisional information about the candidate:</p>\n"
-                + "<ul style='list-style-type: none'><li><strong>> X</strong> indicates where the character (tentatively) "
-                + "would be after X in <a target='order' href='emoji-ordering.html'>Emoji Ordering</a></li>\n"
-                + "<li><strong>∈ modifier_base</strong> indicates that the character would allow skin-tone modifiers</li>\n"
-                + "<li><strong>∈ gender_base</strong> indicates that the character would have ZWJ sequences for gender</li></ul>\n"
+                + "<ul style='list-style-type: none'><li class='greater'><strong>X</strong> indicates where the character (tentatively) "
+                + "would be after X in <a target='order' href='../charts-" + Emoji.VERSION_LAST_RELEASED_STRING + "/"
+                + "emoji-ordering.html'>Emoji Ordering</a>.</li>\n"
+                + "<li class='member'><strong>modifier_base</strong> indicates that the character would allow skin-tone modifiers</li>\n"
+                + "<li class='member'><strong>gender_base</strong> indicates that the character would have ZWJ sequences for gender</li>\n"
+                + "<li class='member'><strong>component</strong> indicates that the character is used as a component of a sequence, "
+                + "and is not normally listed separately on emoji keyboards.</li>"
+                + "</ul>"
+                + "<p>Feedback on the CLDR Short Name, Keywords, ordering, and category is welcome.</p>\n"
                 + PROPOSAL_CAUTION + "\n";
         String footer = "";
         // "<p>Thanks to submitters for the color sample glyphs.</p>";
@@ -3088,10 +3097,10 @@ public class GenerateEmoji {
                 MajorGroup majorGroup;
                 Quarter quarter = null;
                 if (candidateStyle == CandidateStyle.candidate) {
-                    category = cd.getCategory(source);
-                    majorGroup = cd.getMajorGroup(source);
-                    quarter = cd.getQuarter(source);
-                    status = cd.getStatus(source);
+                    category = candidateData.getCategory(source);
+                    majorGroup = candidateData.getMajorGroup(source);
+                    quarter = candidateData.getQuarter(source);
+                    status = candidateData.getStatus(source);
                 } else {
                     category = EmojiOrder.STD_ORDER.getCategory(source);
                     majorGroup = EmojiOrder.STD_ORDER.getMajorGroupFromCategory(category);
@@ -3108,7 +3117,7 @@ public class GenerateEmoji {
                     out.println("<p>" + status.comment + "</p>");
                     oldStatus = status;
                 }
-                ce.add(source, cd);
+                ce.add(source, candidateData);
                 
                 // if (future != cd.getQuarter(source).isFuture()) {
                 // continue;
@@ -3141,9 +3150,8 @@ public class GenerateEmoji {
                 String color = getSamples(source);
                 String href = Utility.hex(source).replace(" ", "_");
                 String anchor = Emoji.toUHex(source);
-                int special = source.codePointAt(0) - 0x100000;
-                if (special >= 0) {
-                    href = anchor = "X" + Utility.hex(special, 5);
+                if (candidateStyle == CandidateStyle.candidate) {
+                    href = anchor = "X" + href;
                 }
                 ++count;
                 String currentRow = "<tr>\n" + " <td class='rchars'>" + count
@@ -3153,12 +3161,22 @@ public class GenerateEmoji {
                         + " <td class='default'>" + color + "</td>\n" + " <td class='name'>"
                         + EmojiData.EMOJI_DATA.getName(source);
                 currentRow += "</td>\n";
-                currentRow += " <td class='name'>" + getAnnotationsString(source) + "</td>\n";
+                String annotationsString = getAnnotationsString(source);
                 if (candidateStyle == CandidateStyle.candidate) {
+                    String uname = candidateData.getUName(source);
+                    if (uname != null) {
+                        annotationsString += "<div class='uname'>Unicode Name: " + uname + "</div>";
+                    }
+                    String comment = candidateData.getComment(source);
+                    if (comment != null) {
+                        annotationsString += "<div class='uname'>" + comment + "</div>";
+                    }
+                    currentRow += " <td class='name'>" + annotationsString + "</td>\n";
                     currentRow += " <td class='status'>" + getStatusString(source) + "</td>\n";
-                    currentRow += " <td class='proposal'>" + CandidateData.getInstance().getProposalHtml(source)
+                    currentRow += " <td class='proposal'>" + candidateData.getProposalHtml(source)
                             + "</td>\n";
                 } else {
+                    currentRow += " <td class='name'>" + annotationsString + "</td>\n";
 //                    currentRow += " <td class='proposal'>" + CandidateData.getProposalInstance().getProposalHtml(source)
 //                            + "</td>\n";
                 }

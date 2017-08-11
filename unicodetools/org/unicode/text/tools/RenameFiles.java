@@ -15,6 +15,7 @@ import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
 
@@ -29,27 +30,32 @@ public class RenameFiles {
     private static final boolean RECURSIVE = true;
     
     private static final String OUTPUT_PLATFORM_PREFIX = 
-            "twitter" // null means use old prefix
+            "proposed" // null means use old prefix
             ;
 
     private static final String FILE_MATCH = 
-            "([-0-9a-fA-F_]+)\\.png" // twitter
+            "proposed_([0-9a-fA-F]+)\\.png"
+            // "([-0-9a-fA-F_]+)\\.png" // twitter
             // "(?:[a-zA-Z]+|emoji_thumbnail)?(?:_[xu])?([-0-9a-fA-F_]+)\\.png" // anything else
             //"proposed_(?:x)?(.*)\\.png";
             // U+270C,U+1F3FC_256.png
             ;
 
+    private static final int HEX_ADDITION = 
+            0x10000 - 0x100000;
+            //  0;
+
     private static final String DIR_OF_FILES_TO_CHANGE = 
-            Settings.BASE_DIRECTORY + "Google Drive/workspace/DATA/emoji/twitter/"
+            "/Users/markdavis/Documents/workspace/unicode-draft/reports/tr51/images/proposed"
+            // Settings.BASE_DIRECTORY + "Google Drive/workspace/DATA/emoji/twitter/"
             // Settings.UNICODE_DRAFT_DIRECTORY + "/reports/tr51/images/" + OUTPUT_PLATFORM_PREFIX
             ;
     
     private static final Pattern REMOVE_FROM_HEX = Pattern.compile("_fe0f");
 
     private static final UnicodeSet FILTER = 
-            null
+            new UnicodeSet(0x10F000,0x10FFFF);
             // Emoji.BETA.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class).getSet(Age_Values.V9_0);
-            ;
 
 
     public static void main(String[] args) throws IOException {
@@ -96,6 +102,9 @@ public class RenameFiles {
             String oldHex = Utility.fromHex(oldName, false, 2);
             if (FILTER != null && !FILTER.containsAll(oldHex)) {
                 return;
+            }
+            if (HEX_ADDITION != 0) {
+                oldHex = UTF16.valueOf(HEX_ADDITION + oldHex.codePointAt(0));
             }
             String newHex = Utility.hex(oldHex, "_").toLowerCase(Locale.ENGLISH);
             newHex = REMOVE_FROM_HEX.matcher(newHex).replaceAll("");

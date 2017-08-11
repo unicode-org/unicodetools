@@ -1,5 +1,6 @@
 package org.unicode.tools.emoji;
 
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,6 +13,7 @@ import java.util.TreeSet;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.props.UcdPropertyValues.Age_Values;
+import org.unicode.props.UnicodeRelation.SetMaker;
 import org.unicode.props.UnicodeRelation;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
@@ -79,10 +81,19 @@ public class CandidateData implements Transform<String, String> {
     //        boolean Emoji_Gender_Base;
     //    }
 
+    public static SetMaker SORTED_TREESET_MAKER = new SetMaker<Comparable>() {
+        @Override
+        public Set<Comparable> make() {
+            return new TreeSet<Comparable>(Collator.getInstance(Locale.ENGLISH));
+        }
+    };
+
+    // TODO change to have a CandidateDatum object with this information, instead of separate maps
     private final List<Integer> order;
     private final UnicodeMap<String> categories = new UnicodeMap<>();
     private final UnicodeMap<String> names = new UnicodeMap<>();
-    private final UnicodeRelation<String> annotations = new UnicodeRelation<>();
+    private final UnicodeMap<String> unames = new UnicodeMap<>();
+    private final UnicodeRelation<String> annotations = new UnicodeRelation<>(SORTED_TREESET_MAKER);
     private final UnicodeRelation<String> attributes = new UnicodeRelation<>();
     private final UnicodeMap<Quarter> quarters = new UnicodeMap<>();
     private final UnicodeMap<Status> statuses = new UnicodeMap<>();
@@ -91,6 +102,7 @@ public class CandidateData implements Transform<String, String> {
     private final UnicodeSet emoji_Gender_Base = new UnicodeSet();
     private final UnicodeSet emoji_Component = new UnicodeSet();
     private final UnicodeMap<String> after = new UnicodeMap<>();
+    private final UnicodeMap<String> comments = new UnicodeMap<>();
     
     private final UnicodeMap<Set<String>> proposal = new UnicodeMap<>();
 
@@ -113,9 +125,6 @@ public class CandidateData implements Transform<String, String> {
                     continue;
                 } else if (line.startsWith("U+")) { // data
                     source = Utility.fromHex(line).codePointAt(0);
-                    if (source < 0x100000) {
-                        source = (source & 0xFFFF) + 0x100000;
-                    }
                     if (characters.contains(source)) {
                         throw new IllegalArgumentException(Utility.hex(source) + " occurs twice");
                     }
@@ -124,7 +133,7 @@ public class CandidateData implements Transform<String, String> {
                     quarters.put(source, quarter);
                     after.put(source, afterItem);
                     proposal.put(source, ImmutableSet.copyOf(SPLITTER_COMMA.split(proposalItem.replace('-', '\u2011'))));
-                    String afterString = "> " + afterItem;
+                    String afterString = "> " + afterItem;
                     Age_Values age = Emoji.VERSION_ENUM.get(afterItem.codePointAt(0));
                     if (age.compareTo(Age_Values.V10_0) >= 0) {
                         afterString += " (" + Utility.hex(afterItem) + ")";
@@ -132,45 +141,60 @@ public class CandidateData implements Transform<String, String> {
                     attributes.add(source, afterString);
                     categories.put(source, category);
                 } else { // must be category
-                    List<String> parts = equalSplit.splitToList(line);
-                    switch(parts.get(0)) {
+                    int equalPos = line.indexOf('=');
+                    String leftSide = equalPos < 0 ? line : line.substring(0,equalPos).trim();
+                    String rightSide = equalPos < 0 ? null : line.substring(equalPos+1).trim();
+                    switch(leftSide) {
                     // go before character
                     case "Status": 
-                        status = CandidateData.Status.fromString(parts.get(1));
+                        status = CandidateData.Status.fromString(rightSide);
                         break;
                     case "Quarter": 
-                        quarter = CandidateData.Quarter.fromString(parts.get(1));
+                        quarter = CandidateData.Quarter.fromString(rightSide);
                         break;
                     case "After": 
-                        afterItem = parts.get(1);
+                        afterItem = rightSide;
                         category = EmojiOrder.STD_ORDER.getCategory(afterItem);
                         break;
                     case "Proposal": 
-                        proposalItem = parts.get(1);
+                        proposalItem = rightSide;
                         break;
                         
                         // go after character
                     case "Name": 
-                        final String name = parts.get(1);
+                        final String name = rightSide;
                         names.put(source, name);
                         break;
+                    case "UName": 
+                        final String uname = rightSide.toUpperCase(Locale.ROOT);
+                        unames.put(source, uname);
+                        break;
                     case "Keywords": 
-                        List<String> cleanKeywords = barSplit.splitToList(parts.get(1));
+                        if (rightSide.contains("dengue")) {
+                            int debug = 0;
+                        }
+                        List<String> cleanKeywords = barSplit.splitToList(rightSide);
                         annotations.addAll(source, cleanKeywords);
                         break;
                     case "Emoji_Modifier_Base": 
                         emoji_Modifier_Base.add(source);
-                        attributes.add(source, "∈ modifier_base");
+                        attributes.add(source, "∈ modifier_base");
                         break;
                     case "Emoji_Gender_Base": 
                         emoji_Gender_Base.add(source);
-                        attributes.add(source, "∈ gender_base");
+                        attributes.add(source, "∈ gender_base");
                         break;
                     case "Emoji_Component": 
                         emoji_Component.add(source);
-                        attributes.add(source, "∈ component");
+                        attributes.add(source, "∈ component");
                         break;
-                        
+                    case "Comment":
+                        if (comments.containsKey(source)) {
+                            throw new IllegalArgumentException("duplication comment: " + rightSide);
+                        }
+                        comments.put(source, rightSide);
+                        break;
+
                     default: 
                         throw new IllegalArgumentException(line);
                     }
@@ -179,10 +203,12 @@ public class CandidateData implements Transform<String, String> {
                 throw new IllegalArgumentException(line, e);
             }
         }
+        comments.freeze();
         statuses.freeze();
         order = _order.build();
         categories.freeze();
         names.freeze();
+        unames.freeze();
         annotations.freeze();
         attributes.freeze();
         quarters.freeze();
@@ -252,6 +278,13 @@ public class CandidateData implements Transform<String, String> {
         return names.get(source);
     }
 
+    public String getUName(String source) {
+        return unames.get(source);
+    }
+    public String getUName(int source) {
+        return unames.get(source);
+    }
+
     public String getShorterName(String source) {
         return transform(source);
     }
@@ -280,7 +313,7 @@ public class CandidateData implements Transform<String, String> {
             if (result.length() != 0) {
                 result.append(", ");
             }
-            result.append("<a target='e-prop' href='http://www.unicode.org/cgi-bin/GetMatchingDocs.pl?" + proposalItem + "'>"
+            result.append("<a target='e-prop' href='http://www.unicode.org/cgi-bin/GetMatchingDocs.pl?" + proposalItem.replace('\u2011', '-') + "'>"
             + proposalItem + "</a>");
         }
         return result.toString();
@@ -298,6 +331,13 @@ public class CandidateData implements Transform<String, String> {
     }
     public Status getStatus(int source) {
         return statuses.get(source);
+    }
+
+    public String getComment(String source) {
+        return comments.get(source);
+    }
+    public String getComment(int source) {
+        return comments.get(source);
     }
 
     public String getCategory(int source) {
