@@ -3058,7 +3058,7 @@ public class GenerateEmoji {
                 + "<li class='member'><strong>component</strong> indicates that the character is used as a component of a sequence, "
                 + "and is not normally listed separately on emoji keyboards.</li>"
                 + "</ul>"
-                + "<p>Feedback on the CLDR Short Name, Keywords, ordering, and category is welcome.</p>\n"
+                + "<p><a target='feedback' href='http://unicode.org/reporting.html'>Feedback</a> on the CLDR Short Name, Keywords, ordering, and category is welcome.</p>\n"
                 + PROPOSAL_CAUTION + "\n";
         String footer = "";
         // "<p>Thanks to submitters for the color sample glyphs.</p>";
