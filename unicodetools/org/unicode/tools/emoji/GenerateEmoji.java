@@ -2294,7 +2294,7 @@ public class GenerateEmoji {
     }
 
     public static void writeFooter(PrintWriter out) {
-        out.println("</div>" + "<div class='copyright'>"
+        out.println("\n</div><div class='copyright'>"
                 // + "<hr width='50%'>"
                 + "<br><a href='http://www.unicode.org/unicode/copyright.html'>"
                 + "<img src='http://www.unicode.org/img/hb_notice.gif' style='border-style: none; width: 216px; height=50px;' alt='Access to Copyright and terms of use'>"
@@ -3057,7 +3057,7 @@ public class GenerateEmoji {
                 + "<li class='member'><strong>gender_base</strong> indicates that the character would have ZWJ sequences for gender</li>\n"
                 + "<li class='member'><strong>component</strong> indicates that the character is used as a component of a sequence, "
                 + "and is not normally listed separately on emoji keyboards.</li>"
-                + "</ul>"
+                + "</ul>\n"
                 + "<p><a target='feedback' href='http://unicode.org/reporting.html'>Feedback</a> on the CLDR Short Name, Keywords, ordering, and category is welcome.</p>\n"
                 + PROPOSAL_CAUTION + "\n";
         String footer = "";
@@ -3089,7 +3089,17 @@ public class GenerateEmoji {
         String dataDir = future ? Emoji.DATA_DIR_PRODUCTION_BASE : Emoji.DATA_DIR_PRODUCTION;
         try (PrintWriter out = FileUtilities.openUTF8Writer(dir, outFileName);) {
             writeHeader(outFileName, out, showCandidatesTitle, null, future, topHeader, dataDir);
+            boolean showingChars = false;
             for (String source : sorted) {
+                if (!EmojiData.MODIFIERS.containsSome(source)
+                        && !source.contains("\u200D\u2640")
+                        && !source.contains("\u200D\u2642")) {
+                    outputPlain.add(++countPlain
+                            + "\t" + Emoji.toUHex(source)
+                            + "\t" + source
+                            + "\t" + EmojiData.EMOJI_DATA.getName(source)
+                            + "\t" + getShortUnicodeName(source, ", "));
+                }
                 if (Emoji.ABBR && count > 20) {
                     break;
                 }
@@ -3186,19 +3196,15 @@ public class GenerateEmoji {
                 // "Yes" : "")
                 // : "") + "</tr>\n";
                 out.println(currentRow);
-                if (EmojiData.EMOJI_DATA.MODIFIERS.containsSome(source)
-                        || source.contains("\u200D\u2640")
-                        || source.contains("\u200D\u2642")) {
-                    continue;
-                }
-                outputPlain.add(++countPlain
-                        + "\t" + anchor
-                        + "\t" + source
-                        + "\t" + EmojiData.EMOJI_DATA.getName(source)
-                        + "\t" + getShortUnicodeName(source, ", "));
+                showingChars = true;
             }
-            out.println("</table>");
-            ce.showCounts(out, false);
+            if (inTable) {
+                out.println("</table>");
+                ce.showCounts(out, false);
+            }
+            if (!showingChars) {
+                System.out.println("<p>None at this time.</p>");
+            }
             out.println(footer); // fix
             writeFooter(out);
         }
