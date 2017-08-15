@@ -237,7 +237,7 @@ After=🦀
 U+1F99E
 Name=lobster
 
-Proposal=L2/17-268
+Proposal=L2/17-268, L2/17-295
 After=🦂
 U+1F99F
 Name=mosquito
