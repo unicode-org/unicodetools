@@ -68,15 +68,16 @@ U+1F97C
 Name=lab coat
 Keywords= scientist | doctor
 
+After=🦂
+U+1F9A0
+Name=microbe
+Keywords= bacteria | virus
+
 After=⚗
 
 U+1F9EA
 Name=test tube
 Keywords= chemist
-
-U+1F9A0
-Name=microbe
-Keywords= bacteria | virus
 
 U+1F9EB
 Name=petri dish
