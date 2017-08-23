@@ -1,12 +1,15 @@
 <html>
+<body>
+<p>This page has been disabled, pending resolution of unusual load problems.</p> 
+</body>
+</html>
+<!--  
 <head>
 <%@ include file="header.jsp" %>
 <title>Unicode Utilities: Character Properties</title>
 <link rel="stylesheet" type="text/css" href="index.css">
 <style>
-<!--
 th           { text-align: left }
--->
 </style>
 </head>
 
@@ -45,3 +48,4 @@ th           { text-align: left }
 </body>
 
 </html>
+-->
