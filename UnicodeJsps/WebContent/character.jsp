@@ -5,7 +5,7 @@
 </html>
 <!--  
 <head>
-<%@ include file="header.jsp" %>
+<xx%@ include file="header.jsp" %>
 <title>Unicode Utilities: Character Properties</title>
 <link rel="stylesheet" type="text/css" href="index.css">
 <style>
@@ -16,11 +16,11 @@ th           { text-align: left }
 <body>
 
 <h1>Unicode Utilities: Character Properties</h1>
-<%@ include file="subtitle.jsp" %>
-<p><a target="help" href="http://cldr.unicode.org/unicode-utilities/character"><b>help</b></a> | <%@ include file="others.jsp" %></p>
+<xx%@ include file="subtitle.jsp" %>
+<p><a target="help" href="http://cldr.unicode.org/unicode-utilities/character"><b>help</b></a> | <xx%@ include file="others.jsp" %></p>
 <div style='text-align:center'>
 <form name="myform" action="character.jsp" method="get">
-  <%
+  <xx%
 		request.setCharacterEncoding("UTF-8");
         String queryString = request.getQueryString();
         
@@ -33,18 +33,18 @@ th           { text-align: left }
 		String prevHex = "character.jsp?a=" + Utility.hex(cp > 0 ? cp-1 : 0x10FFFF, 4);
 %>
   <p>
-  <input name="B3" type="button" value="-" onClick="window.location.href='<%=prevHex%>'">
-  <input name="a" type="text" style='text-align:center; font-size:150%' size="10" value="<%=text%>">
-  <input name="B2" type="button" value="+" onClick="window.location.href='<%=nextHex%>'"><br>
+  <input name="B3" type="button" value="-" onClick="window.location.href='<xx%=prevHex%>'">
+  <input name="a" type="text" style='text-align:center; font-size:150%' size="10" value="<xx%=text%>">
+  <input name="B2" type="button" value="+" onClick="window.location.href='<xx%=nextHex%>'"><br>
   <input name="B1" type="submit" value="Show">
   </p>
 </form>
-<%
+<xx%
 	UnicodeJsp.showProperties(cp, out); 
 %>
 </div>
 <p>The list includes both Unicode Character Properties and some additions (like idna2003 or subhead)</p>
-<%@ include file="footer.jsp" %>
+<xx%@ include file="footer.jsp" %>
 </body>
 
 </html>
