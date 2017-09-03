@@ -1,4 +1,5 @@
-#Code Point	Chart Glyph	Sample Colored Glyph	Name	
+#Code Point	Chart Glyph	Sample Colored Glyph	Name
+#main data is in /unicodetools/data/emoji/N.M/source/emojiOrdering.txt
 
 Status=Draft Candidates
 
@@ -300,6 +301,11 @@ Name=jigsaw
 UName=JIGSAW PUZZLE PIECE
 Keywords=puzzle
 
+Proposal=L2/17-273
+U+1F9F8
+Name=teddy bear
+Keywords=toy | plaything
+
 Proposal=L2/17-202
 After=⛓
 U+1F9F0
@@ -322,7 +328,7 @@ U+1F9F3
 Name=luggage
 
 Proposal=L2/17-212
-After=🛒
+After=🛁
 U+1F9F4
 Name=squeeze bottle
 Keywords=lotion | suntan
@@ -343,10 +349,6 @@ Name=yarn
 UName=BALL OF YARN
 Keywords=ball
 
-Proposal=L2/17-273
-U+1F9F8
-Name=teddy bear
-Keywords=toy | plaything
 
 
 Proposal=L2/17-260
