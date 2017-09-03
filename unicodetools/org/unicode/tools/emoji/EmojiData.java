@@ -1088,11 +1088,11 @@ public class EmojiData {
 
         EmojiData lastReleasedData = new EmojiData(Emoji.VERSION_LAST_RELEASED);
         showDiff("Emoji", Emoji.VERSION_LAST_RELEASED_STRING, lastReleasedData.getSingletonsWithoutDefectives(),
-                Emoji.VERSION_BETA_STRING, betaData.getSingletonsWithoutDefectives());
+                Emoji.VERSION_BETA_STRING_WITH_COLOR, betaData.getSingletonsWithoutDefectives());
         showDiff("Emoji_Presentation", Emoji.VERSION_LAST_RELEASED_STRING, lastReleasedData.getEmojiPresentationSet(),
-                Emoji.VERSION_BETA_STRING, betaData.getEmojiPresentationSet());
+                Emoji.VERSION_BETA_STRING_WITH_COLOR, betaData.getEmojiPresentationSet());
         showDiff("Emoji_Modifier_Base", Emoji.VERSION_LAST_RELEASED_STRING, lastReleasedData.getModifierBases(),
-                Emoji.VERSION_BETA_STRING, betaData.getModifierBases());
+                Emoji.VERSION_BETA_STRING_WITH_COLOR, betaData.getModifierBases());
 
         String name = betaData.getName("🏂🏻");
 

@@ -51,7 +51,7 @@ public class Emoji {
      * The main function is to add pointers between the release and beta charts.
      * Also change the VERSION_LAST_RELEASED2, etc below!!!
      */
-    public static final boolean BETA_IS_OPEN = false;
+    public static final boolean BETA_IS_OPEN = true;
     public static final boolean USE_PROPOSED = true; // set to true between the release of Emoji 5.0 & Unicode 10.0. (or similar situation)
 
     /**
@@ -111,7 +111,8 @@ public class Emoji {
     public static final String            BETA_HEADER_AFFIX         = Emoji.IS_BETA ? BETA_COLORED : "";
 
     public static final String VERSION_LAST_RELEASED_STRING = VERSION_LAST_RELEASED.getVersionString(2, 4);
-    public static final String VERSION_BETA_STRING = VERSION_BETA.getVersionString(2, 4) + BETA_COLORED;
+    public static final String VERSION_BETA_STRING = VERSION_BETA.getVersionString(2, 4);
+    public static final String VERSION_BETA_STRING_WITH_COLOR = VERSION_BETA_STRING + BETA_COLORED;
 
     public static final VersionInfo VERSION_TO_GENERATE = IS_BETA ? VERSION_BETA : VERSION_LAST_RELEASED;
     public static final VersionInfo VERSION_TO_GENERATE_PREVIOUS = IS_BETA ? VERSION_LAST_RELEASED : VERSION_LAST_RELEASED2;
@@ -150,8 +151,8 @@ public class Emoji {
         // if a source is in developer release, add ᵈ to the name, eg "Googᵈ"
         charOverride,
         color, 
-        apple("Appl"), google("Googᵈ"), 
-        twitter("Twtr."),
+        apple("Appl"), google("Goog"), 
+        twitter("Twtr"),
         emojione("One"),
         fb("FB", "Facebook"), fbm("FBM", "Messenger (Facebook)"), samsung("Sams."), 
         windows("Wind."),
