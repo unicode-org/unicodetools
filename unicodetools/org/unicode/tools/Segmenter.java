@@ -1065,6 +1065,11 @@ public class Segmenter {
             "$ZWJ=\\p{Word_Break=ZWJ}",
             "$Glue_After_Zwj=\\p{Word_Break=Glue_After_Zwj}",
             "$EBG=\\p{Word_Break=E_Base_GAZ}",
+            
+            "# Macros",
+
+            "$AHLetter=($ALetter | $Hebrew_Letter)",
+            "$MidNumLetQ=($MidNumLet | $Single_Quote)",
 
             "# WARNING: For Rule 4: Fixes for GC, Format",
             // "# Subtract Format from Control, since we don't want to break before/after",
@@ -1092,10 +1097,8 @@ public class Segmenter {
             "$Glue_After_Zwj=($Glue_After_Zwj $FE*)",
             "$EBG=($EBG $FE*)",
 
-            "# Macros",
-
-            "$AHLetter=($ALetter | $Hebrew_Letter)",
-            "$MidNumLetQ=($MidNumLet | $Single_Quote)",
+            "$AHLetter=($AHLetter $FE*)",
+            "$MidNumLetQ=($MidNumLetQ $FE*)",
 
             "# Rules",
 
