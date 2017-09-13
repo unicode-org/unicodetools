@@ -331,7 +331,7 @@ Proposal=L2/17-212
 After=🛁
 U+1F9F4
 Name=squeeze bottle
-Keywords=lotion | suntan
+Keywords=lotion | sunscreen | shampoo | moisturizer
 
 Proposal=L2/17-249
 U+1F9F7
