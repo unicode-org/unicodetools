@@ -50,25 +50,25 @@ public class ListProps {
 
     public static void main(String[] args) {
         IndexUnicodeProperties latest = IndexUnicodeProperties.make();
-        if (true) {
-             Set<Script_Values> sc = EnumSet.copyOf(latest.loadEnum(UcdProperty.Script, Script_Values.class).values());
-             sc.remove(Script_Values.Inherited);
-             sc.remove(Script_Values.Common);
-             sc.remove(Script_Values.Unknown);
-            System.out.println(sc.size());
-            return;
-        }
-        if (true) {
-            UnicodeSet ep = latest.loadEnum(UcdProperty.Extended_Pictographic, UcdPropertyValues.Binary.class).getSet(Binary.Yes);
-            UnicodeSet em = latest.loadEnum(UcdProperty.Emoji, UcdPropertyValues.Binary.class).getSet(Binary.Yes);
-            UnicodeSet combined = new UnicodeSet(ep).addAll(em).freeze();
-            PropertyLister pl = new PropertyLister(latest);
-            System.out.println(
-                    pl.listSet(combined, 
-                            UcdProperty.Extended_Pictographic.toString(),
-                            new StringBuilder()));
-            return;
-        }
+//        if (true) {
+//             Set<Script_Values> sc = EnumSet.copyOf(latest.loadEnum(UcdProperty.Script, Script_Values.class).values());
+//             sc.remove(Script_Values.Inherited);
+//             sc.remove(Script_Values.Common);
+//             sc.remove(Script_Values.Unknown);
+//            System.out.println(sc.size());
+//            return;
+//        }
+//        if (true) {
+//            UnicodeSet ep = latest.loadEnum(UcdProperty.Extended_Pictographic, UcdPropertyValues.Binary.class).getSet(Binary.Yes);
+//            UnicodeSet em = latest.loadEnum(UcdProperty.Emoji, UcdPropertyValues.Binary.class).getSet(Binary.Yes);
+//            UnicodeSet combined = new UnicodeSet(ep).addAll(em).freeze();
+//            PropertyLister pl = new PropertyLister(latest);
+//            System.out.println(
+//                    pl.listSet(combined, 
+//                            UcdProperty.Extended_Pictographic.toString(),
+//                            new StringBuilder()));
+//            return;
+//        }
         PropertyType lastType = null;
         Set<String> skipped = new LinkedHashSet<>();
         main:
@@ -94,6 +94,12 @@ public class ListProps {
                         + "\tOrigin:\t" + PropertyStatus.getOrigin(propName)
                         + "\tValues:\t" + clip(values)
                         ;
+                if (item == UcdProperty.Confusable_MA) {
+                    for (String value : map.values()) {
+                        UnicodeSet uset = map.getSet(value);
+                        System.out.println(value + "\t" + Utility.hex(value) + "\t" + uset.toPattern(false));
+                    }
+                }
                 if (ONLY_JSP) {
                     if (!Collections.disjoint(status, SKIP_JSP_STATUS)) {
                         skipped.add(itemInfo);

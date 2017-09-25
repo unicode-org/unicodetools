@@ -136,7 +136,7 @@ public class CachedProps {
 		return result;
 	}
 
-	private class DelayedUnicodeProperty extends UnicodeProperty {
+	class DelayedUnicodeProperty extends UnicodeProperty {
 
 		private final VersionInfo version;
 		private UnicodeMap<String> map;
