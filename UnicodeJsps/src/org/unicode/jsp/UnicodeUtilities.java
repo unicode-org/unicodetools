@@ -312,7 +312,7 @@ public class UnicodeUtilities {
 
     public static String getStringProperties(UnicodeProperty prop, String s, String separator, boolean getShortest) {
         // check for single code point, later
-        if (prop instanceof UnicodeMapProperty) {
+        if (prop instanceof UnicodeMapProperty || prop instanceof CachedProps.DelayedUnicodeProperty) {
             Object value = prop.getUnicodeMap().get(s);
             if (value != null) {
                 return (String) value;

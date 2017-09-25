@@ -46,6 +46,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
                 string = null;
             } else if (source.contains(" ")) {
                 string = Utility.fromHex(source);
+                start=end=-1;
+            } else if (source.isEmpty()) {
+                string = "";
+                start=end=-1;
             } else {
                 start = end = Integer.parseInt(source, 16);
                 string = null;
@@ -509,6 +513,14 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
                     }
                     final UnicodeMap<String> data = indexUnicodeProperties.property2UnicodeMap.get(propInfo.property);
                     propInfo.put(data, intRange, parts[1]);
+                    intRange.set(parts[1]);
+                    if (intRange.string == null) {
+                        if (!data.containsKey(intRange.start)) {
+                            propInfo.put(data, intRange, parts[1]);
+                        }
+                    } else if (!intRange.string.isEmpty() && !data.containsKey(intRange.string)) {
+                        propInfo.put(data, intRange, parts[1]);
+                    }
                     break;
                 }
                 case StandardizedVariants:
