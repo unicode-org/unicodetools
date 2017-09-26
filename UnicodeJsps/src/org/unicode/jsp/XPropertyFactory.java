@@ -30,8 +30,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
 
     static final UnicodeSet ALL = new UnicodeSet("[[:^C:][:Cc:][:Cf:][:noncharactercodepoint:]]").freeze();
 
-    private static final boolean DEBUG_CHARSET_NAMES = false;
-
     private static XPropertyFactory singleton = null;
 
     public static synchronized XPropertyFactory make() {
@@ -52,10 +50,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         }
     }
     
-    {   CachedProps cp = CachedProps.CACHED_PROPS;
-        for (String prop : cp.getAvailable()) {
-            add(cp.getProperty(prop));
-        }
+    {   
         ICUPropertyFactory base = ICUPropertyFactory.make();
         for (String propertyAlias : (List<String>)base.getInternalAvailablePropertyAliases(new ArrayList())) {
             add(base.getProperty(propertyAlias));
@@ -71,21 +66,11 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(new IDNA2008c());
         //add(new Usage());
         add(new HanType());
-//        add(new UnicodeProperty.UnicodeMapProperty().set(XIDModifications.getStatus()).setMain("Identifier_Status", "ids", UnicodeProperty.ENUMERATED, "1.1"));
-//        add(new UnicodeProperty.UnicodeMapProperty().set(XIDModifications.getTypes()).setMain("Identifier_Type", "idt", UnicodeProperty.ENUMERATED, "1.1"));
-//        add(new UnicodeProperty.UnicodeMapProperty().set(Confusables.getMap()).setMain("confusable", "confusable", UnicodeProperty.ENUMERATED, "1.1"));
         add(new UnicodeProperty.UnicodeMapProperty().set(Idna2003.SINGLETON.mappings).setMain("toIdna2003", "toIdna2003", UnicodeProperty.STRING, "1.1"));
         add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings).setMain("toUts46t", "toUts46t", UnicodeProperty.STRING, "1.1"));
         add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings_display).setMain("toUts46n", "toUts46n", UnicodeProperty.STRING, "1.1"));
 
         add(new StringTransformProperty(Common.NFKC_CF, false).setMain("NFKC_Casefold", "NFKC_CF", UnicodeProperty.STRING, "1.1").addName("toNFKC_CF"));
-        //        add(new UnicodeSetProperty().set(Common.isNFKC_CF).setMain("isNFKC_Casefolded", "isNFKC_CF", UnicodeProperty.BINARY, "1.1"));
-        //
-        //        add(new UnicodeSetProperty().set(Common.isCaseFolded).setMain("isCaseFolded", "caseFolded", UnicodeProperty.BINARY, "1.1"));
-        //        add(new UnicodeSetProperty().set(Common.isUppercase).setMain("isUppercase", "uppercase", UnicodeProperty.BINARY, "1.1"));
-        //        add(new UnicodeSetProperty().set(Common.isLowercase).setMain("isLowercase", "lowercase", UnicodeProperty.BINARY, "1.1"));
-        //        add(new UnicodeSetProperty().set(Common.isTitlecase).setMain("isTitlecase", "titlecase", UnicodeProperty.BINARY, "1.1"));
-        //        add(new UnicodeSetProperty().set(Common.isCased).setMain("isCased", "cased", UnicodeProperty.BINARY, "1.1"));
 
         add(new CodepointTransformProperty(new Transform<Integer,String>() {
             public String transform(Integer source) {
@@ -150,85 +135,10 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(new UnicodeSetProperty().set("[\\u0000-\\u007F]").setMain("ASCII", "ASCII", UnicodeProperty.BINARY, "1.1"));
         add(new UnicodeSetProperty().set("[\\u0000-\\U0010FFFF]").setMain("ANY", "ANY", UnicodeProperty.BINARY, "1.1"));
 
-        //        UnicodeSet emojiSource = new UnicodeSet("[©®‼⁉™ℹ↔-↙↩↪⌚⌛⌨⏏⏩-⏳⏸-⏺Ⓜ▪▫▶◀◻-◾☀-☄☎☑☔☕☘☝☠☢☣☦☪☮☯☸-☺♈-♓♠♣♥♦♨♻♿⚒-⚔⚖⚗⚙⚛⚜⚠⚡"
-        //                + "⚪⚫⚰⚱⚽⚾⛄⛅⛈⛎⛏⛑⛓⛔⛩⛪⛰-⛵⛷-⛺⛽✂✅✈-✍✏✒✔✖✝✡✨✳✴❄❇❌❎❓-❕❗❣❤➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆑-🆚🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌡🌤-🎓🎖🎗🎙-🎛🎞-🏰🏳-🏵🏷-📽📿-🔽🕉-🕎🕐-🕧🕯🕰🕳-🕹🖇🖊-🖍🖐🖕🖖🖥🖨🖱🖲🖼🗂-🗄🗑-🗓🗜-🗞🗡🗣🗯🗳🗺-🙏🚀-🛅🛋-🛐🛠-🛥🛩🛫🛬🛰🛳🤐-🤘🦀-🦄🧀"
-        //                + "{#⃣}{*⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}{🇦🇨}"
-        //                + "{🇦🇩}{🇦🇪}{🇦🇫}{🇦🇬}{🇦🇮}{🇦🇱}{🇦🇲}{🇦🇴}{🇦🇶}{🇦🇷}{🇦🇸}{🇦🇹}{🇦🇺}{🇦🇼}{🇦🇽}{🇦🇿}{🇧🇦}{🇧🇧}{🇧🇩}{🇧🇪}{🇧🇫}{🇧🇬}{🇧🇭}{🇧🇮}{🇧🇯}{🇧🇱}{🇧🇲}{🇧🇳}{🇧🇴}{🇧🇶}{🇧🇷}{🇧🇸}"
-        //                + "{🇧🇹}{🇧🇻}{🇧🇼}{🇧🇾}{🇧🇿}{🇨🇦}{🇨🇨}{🇨🇩}{🇨🇫}{🇨🇬}{🇨🇭}{🇨🇮}{🇨🇰}{🇨🇱}{🇨🇲}{🇨🇳}{🇨🇴}{🇨🇵}{🇨🇷}{🇨🇺}{🇨🇻}{🇨🇼}{🇨🇽}{🇨🇾}{🇨🇿}{🇩🇪}{🇩🇬}{🇩🇯}{🇩🇰}{🇩🇲}{🇩🇴}"
-        //                + "{🇩🇿}{🇪🇦}{🇪🇨}{🇪🇪}{🇪🇬}{🇪🇭}{🇪🇷}{🇪🇸}{🇪🇹}{🇪🇺}{🇫🇮}{🇫🇯}{🇫🇰}{🇫🇲}{🇫🇴}{🇫🇷}{🇬🇦}{🇬🇧}{🇬🇩}{🇬🇪}{🇬🇫}{🇬🇬}{🇬🇭}{🇬🇮}{🇬🇱}{🇬🇲}{🇬🇳}{🇬🇵}{🇬🇶}{🇬🇷}"
-        //                + "{🇬🇸}{🇬🇹}{🇬🇺}{🇬🇼}{🇬🇾}{🇭🇰}{🇭🇲}{🇭🇳}{🇭🇷}{🇭🇹}{🇭🇺}{🇮🇨}{🇮🇩}{🇮🇪}{🇮🇱}{🇮🇲}{🇮🇳}{🇮🇴}{🇮🇶}{🇮🇷}{🇮🇸}{🇮🇹}{🇯🇪}{🇯🇲}{🇯🇴}{🇯🇵}{🇰🇪}{🇰🇬}{🇰🇭}{🇰🇮}{🇰🇲}"
-        //                + "{🇰🇳}{🇰🇵}{🇰🇷}{🇰🇼}{🇰🇾}{🇰🇿}{🇱🇦}{🇱🇧}{🇱🇨}{🇱🇮}{🇱🇰}{🇱🇷}{🇱🇸}{🇱🇹}{🇱🇺}{🇱🇻}{🇱🇾}{🇲🇦}{🇲🇨}{🇲🇩}{🇲🇪}{🇲🇫}{🇲🇬}{🇲🇭}{🇲🇰}{🇲🇱}{🇲🇲}{🇲🇳}{🇲🇴}{🇲🇵}{🇲🇶}{🇲🇷}{🇲🇸}"
-        //                + "{🇲🇹}{🇲🇺}{🇲🇻}{🇲🇼}{🇲🇽}{🇲🇾}{🇲🇿}{🇳🇦}{🇳🇨}{🇳🇪}{🇳🇫}{🇳🇬}{🇳🇮}{🇳🇱}{🇳🇴}{🇳🇵}{🇳🇷}{🇳🇺}{🇳🇿}{🇴🇲}{🇵🇦}{🇵🇪}{🇵🇫}{🇵🇬}{🇵🇭}{🇵🇰}{🇵🇱}{🇵🇲}{🇵🇳}{🇵🇷}{🇵🇸}"
-        //                + "{🇵🇹}{🇵🇼}{🇵🇾}{🇶🇦}{🇷🇪}{🇷🇴}{🇷🇸}{🇷🇺}{🇷🇼}{🇸🇦}{🇸🇧}{🇸🇨}{🇸🇩}{🇸🇪}{🇸🇬}{🇸🇭}{🇸🇮}{🇸🇯}{🇸🇰}{🇸🇱}{🇸🇲}{🇸🇳}{🇸🇴}{🇸🇷}{🇸🇸}{🇸🇹}{🇸🇻}{🇸🇽}{🇸🇾}{🇸🇿}{🇹🇦}{🇹🇨}"
-        //                + "{🇹🇩}{🇹🇫}{🇹🇬}{🇹🇭}{🇹🇯}{🇹🇰}{🇹🇱}{🇹🇲}{🇹🇳}{🇹🇴}{🇹🇷}{🇹🇹}{🇹🇻}{🇹🇼}{🇹🇿}{🇺🇦}{🇺🇬}{🇺🇲}{🇺🇸}{🇺🇾}{🇺🇿}{🇻🇦}{🇻🇨}{🇻🇪}{🇻🇬}{🇻🇮}{🇻🇳}{🇻🇺}{🇼🇫}"
-        //                + "{🇼🇸}{🇽🇰}{🇾🇪}{🇾🇹}{🇿🇦}{🇿🇲}{🇿🇼}]").freeze();    
-
-        //        UnicodeMap<String> emoji = new UnicodeMap<String>()
-        //                .putAll(0,0x10FFFF, "no")
-        //                .putAll(UnicodeSetUtilities.SINGLETONS, "other")
-        //                // do these after, since they remove singleton items
-        //                .putAll(UnicodeSetUtilities.FLAGS, "flag")
-        //                .putAll(UnicodeSetUtilities.KEYCAPS, "keycap")
-        //                .putAll(UnicodeSetUtilities.GROUPS, "group")
-        //                .putAll(UnicodeSetUtilities.FACE, "face")
-        //                .putAll(UnicodeSetUtilities.PRIMARY, "primary")
-        //                .putAll(UnicodeSetUtilities.MODIFIERS, "modifier")
-        //                .putAll(UnicodeSetUtilities.SECONDARY, "secondary")
-        //                ;
-        //        add(new UnicodeProperty.UnicodeMapProperty()
-        //        .set(emoji)
-        //        .setMain("Emoji", "emoji", UnicodeProperty.ENUMERATED, "8.0")
-        //                );
-
-//        add(new UnicodeSetProperty()
-//        .set(SequenceData.EMOJI_DEFECTIVES)
-//        .setMain("Emoji_Component", "EMD", UnicodeProperty.BINARY, "10.0"));
-//
-//        add(new UnicodeSetProperty()
-//        .set(SequenceData.EMOJI_FLAG_SEQUENCES)
-//        .setMain("Emoji_Flag_Sequence", "EMFS", UnicodeProperty.BINARY, "10.0"));
-//
-//        add(new UnicodeSetProperty()
-//        .set(SequenceData.EMOJI_KEYCAP_SEQUENCES)
-//        .setMain("Emoji_Keycap_Sequence", "EMKS", UnicodeProperty.BINARY, "10.0"));
-//
-//        add(new UnicodeSetProperty()
-//        .set(SequenceData.EMOJI_MODIFIER_SEQUENCES)
-//        .setMain("Emoji_Modifier_Sequence", "EMMS", UnicodeProperty.BINARY, "10.0"));
-//
-//        add(new UnicodeSetProperty()
-//        .set(SequenceData.EMOJI_ZWJ_SEQUENCES)
-//        .setMain("Emoji_Zwj_Sequence", "EMZS", UnicodeProperty.BINARY, "10.0"));
-//
-//        add(new UnicodeSetProperty()
-//        .set(SequenceData.EMOJI_TAG_SEQUENCES)
-//        .setMain("Emoji_Tag_Sequence", "EMTS", UnicodeProperty.BINARY, "10.0"));
-
-//        UnicodeSet emojiAll = new UnicodeSet("[:emoji:]")
-//        .removeAll(SequenceData.EMOJI_DEFECTIVES)
-//        .addAll(SequenceData.EMOJI_FLAG_SEQUENCES)
-//        .addAll(SequenceData.EMOJI_KEYCAP_SEQUENCES)
-//        .addAll(SequenceData.EMOJI_MODIFIER_SEQUENCES)
-//        .addAll(SequenceData.EMOJI_ZWJ_SEQUENCES)
-//        .addAll(SequenceData.EMOJI_TAG_SEQUENCES)
-//        .freeze();
-        
-//        add(new UnicodeSetProperty()
-//        .set(emojiAll)
-//        .setMain("Emoji_All", "EMA", UnicodeProperty.BINARY, "8.0"));
-
-        //        UnicodeProperty prop2 = getProperty("emoji");
-        //        UnicodeSet set = prop2.getSet("true");
-        //        System.out.println(emojiSource.toPattern(false));
-        //        System.out.println(set.toPattern(false));
-
         add(new UnicodeSetProperty().set(new UnicodeSet("[\\u0000-\\uFFFF]"))
                 .setMain("bmp", "bmp", UnicodeProperty.BINARY, "6.0"));
 
         addCollationProperty();
-
-        //add(new IcuBidiPairedBracket());
-        //        add(new IcuEnumProperty(UProperty.BIDI_PAIRED_BRACKET_TYPE));
 
         // set up the special script property
         UnicodeProperty scriptProp = base.getProperty("sc");
@@ -240,46 +150,11 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         .setMain("Script_Extensions", "scx", UnicodeProperty.ENUMERATED, "1.1")
         .addValueAliases(ScriptTester.getScriptSpecialsAlternates(), false)
                 );
-
-        //        SortedMap<String, Charset> charsets = Charset.availableCharsets();
-        //        if (DEBUG_CHARSET_NAMES) System.out.println(charsets.keySet());
-        //        Matcher charsetMatcher = Pattern.compile("ISO-8859-\\d*|GB2312|Shift_JIS|GBK|Big5|EUC-KR").matcher("");
-        //        for (String name : charsets.keySet()) {
-        //            if (!charsetMatcher.reset(name).matches()) {
-        //                continue;
-        //            }
-        //            Charset charset = charsets.get(name);
-        //            EncodingProperty prop = new EncodingProperty(charset);
-        //            prop.setType(UnicodeProperty.STRING);
-        //            prop.setName("enc_" + name);
-        //
-        //            EncodingPropertyBoolean isProp = new EncodingPropertyBoolean(charset);
-        //            isProp.setType(UnicodeProperty.BINARY);
-        //            isProp.setName("is_enc_" + name);
-        //
-        //            for (String alias : charset.aliases()) {
-        //                if (DEBUG_CHARSET_NAMES) System.out.println(name + " => " + alias);
-        //                prop.addName("enc_" + alias);
-        //                isProp.addName("isEnc_" + alias);
-        //            }
-        //
-        //            add(prop);
-        //            add(isProp);
-        //        }
-
-        // exemplars
-        //    String[] typeName = {"", "aux_"};
-        //    for (ULocale locale : ULocale.getAvailableLocales()) {
-        //        if (locale.getCountry().length() != 0 || locale.getVariant().length() != 0) {
-        //            continue;
-        //        }
-        //        LocaleData localeData = LocaleData.getInstance(locale);
-        //        for (int type = 0; type < LocaleData.ES_COUNT; ++type) {
-        //            String name = "exemplars_" + typeName[type] + locale;
-        //            UnicodeSet us = localeData.getExemplarSet(UnicodeSet.CASE, type).freeze();
-        //            add(new UnicodeSetProperty().set(us).setMain(name, name, UnicodeProperty.BINARY, "1.1"));
-        //        }
-        //    }
+        
+        CachedProps cp = CachedProps.CACHED_PROPS;
+        for (String prop : cp.getAvailable()) {
+            add2(cp.getProperty(prop));
+        }
     }
 
     private void addCollationProperty() {
