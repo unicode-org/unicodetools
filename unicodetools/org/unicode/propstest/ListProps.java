@@ -1,42 +1,32 @@
 package org.unicode.propstest;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.LinkedHashSet;
-import java.util.Map;
 import java.util.Set;
 
-import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.PropertyLister;
 import org.unicode.props.PropertyStatus;
 import org.unicode.props.PropertyType;
 import org.unicode.props.UcdProperty;
-import org.unicode.props.UcdPropertyValues;
-import org.unicode.props.UcdPropertyValues.Binary;
-import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.ValueCardinality;
 import org.unicode.text.utility.Settings;
 
-import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.ICUUncheckedIOException;
 
 public class ListProps {
+
+    private static final UcdProperty DEBUG_LIST_VALUES = null ; // UcdProperty.Confusable_MA;
 
     static final boolean ONLY_JSP = true;
 
@@ -94,7 +84,7 @@ public class ListProps {
                         + "\tOrigin:\t" + PropertyStatus.getOrigin(propName)
                         + "\tValues:\t" + clip(values)
                         ;
-                if (item == UcdProperty.Confusable_MA) {
+                if (item == DEBUG_LIST_VALUES) {
                     for (String value : map.values()) {
                         UnicodeSet uset = map.getSet(value);
                         System.out.println(value + "\t" + Utility.hex(value) + "\t" + uset.toPattern(false));
