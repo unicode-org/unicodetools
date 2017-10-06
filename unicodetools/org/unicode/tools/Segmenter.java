@@ -26,6 +26,8 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Settings;
 import org.unicode.tools.Segmenter.Rule.Breaks;
 
@@ -701,6 +703,8 @@ public class Segmenter {
             "$LF=\\p{Grapheme_Cluster_Break=LF}",
             "$Control=\\p{Grapheme_Cluster_Break=Control}",
             "$Extend=\\p{Grapheme_Cluster_Break=Extend}",
+            "$ZWJ=\\p{Grapheme_Cluster_Break=ZWJ}",
+            "$RI=\\p{Grapheme_Cluster_Break=Regional_Indicator}",
             "$Prepend=\\p{Grapheme_Cluster_Break=Prepend}",
             "$SpacingMark=\\p{Grapheme_Cluster_Break=SpacingMark}",
             "$L=\\p{Grapheme_Cluster_Break=L}",
@@ -708,13 +712,11 @@ public class Segmenter {
             "$T=\\p{Grapheme_Cluster_Break=T}",
             "$LV=\\p{Grapheme_Cluster_Break=LV}",
             "$LVT=\\p{Grapheme_Cluster_Break=LVT}",
-            "$RI=\\p{Grapheme_Cluster_Break=Regional_Indicator}",
 
             "$E_Base=\\p{Grapheme_Cluster_Break=E_Base}",
             "$E_Modifier=\\p{Grapheme_Cluster_Break=E_Modifier}",
-            "$ZWJ=\\p{Grapheme_Cluster_Break=ZWJ}",
-            "$Glue_After_Zwj=\\p{Grapheme_Cluster_Break=Glue_After_Zwj}",
             "$EBG=\\p{Grapheme_Cluster_Break=E_Base_GAZ}",
+            "$Glue_After_Zwj=\\p{Grapheme_Cluster_Break=Glue_After_Zwj}",
 
             "# Rules",
             "# Break at the start and end of text, unless the text is empty.",
@@ -795,7 +797,7 @@ public class Segmenter {
             "# Resolve AI, CB, SA, SG, and XX into other line breaking classes depending on criteria outside the scope of this algorithm.",
             "# NOTE: CB is ok to fall through, but must handle others here.",
             // "show $AL",
-            "$AL=[$AI $AL $XX $SA $SG]",
+            "$AL=[$AI $AL $SG $XX $SA]",
             "$NS=[$NS $CJ]",
             // "show $AL",
             // "$oldAL=$AL", // for debugging
@@ -1063,8 +1065,8 @@ public class Segmenter {
             "$E_Base=\\p{Word_Break=E_Base}",
             "$E_Modifier=\\p{Word_Break=E_Modifier}",
             "$ZWJ=\\p{Word_Break=ZWJ}",
-            "$Glue_After_Zwj=\\p{Word_Break=Glue_After_Zwj}",
             "$EBG=\\p{Word_Break=E_Base_GAZ}",
+            "$Glue_After_Zwj=\\p{Word_Break=Glue_After_Zwj}",
             
             "# Macros",
 
@@ -1175,6 +1177,28 @@ public class Segmenter {
                     hadHash = hasHash;
                 }
             }
+        }
+
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "cldr/segmentation/", "rootAddon.xml")) {
+            out.println("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
+                    + "<!DOCTYPE ldml SYSTEM \"../../common/dtd/ldml.dtd\">\n"
+                    + "<!--\n"
+                    + "Copyright © 1991-2015 Unicode, Inc.\n"
+                    + "CLDR data files are interpreted according to the LDML specification (http://unicode.org/reports/tr35/)\n"
+                    + "For terms of use, see http://www.unicode.org/copyright.html\n"
+                    + "-->\n"
+                    + "<ldml>\n"
+                    + "\t<identity>\n"
+                    + "\t\t<version number=\"$Revision: 13690 $\"/>\n"
+                    + "\t\t<language type=\"root\"/>\n"
+                    + "\t</identity>\n"
+                    + "\t<segmentations>");
+            for (final String type : new String[] {"GraphemeClusterBreak", "LineBreak", "SentenceBreak", "WordBreak"}) {
+                final Builder segBuilder = Segmenter.make(ToolUnicodePropertySource.make(Default.ucdVersion()), type);
+                out.print(segBuilder.toString(type,"\t\t"));
+            }
+            out.println("\t</segmentations>\n"
+                    + "</ldml>");
         }
     }
 }
