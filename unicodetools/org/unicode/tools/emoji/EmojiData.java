@@ -159,7 +159,7 @@ public class EmojiData {
                     }
                 }
             }
-            
+
             // check consistency, fix "with defectives"
             for (Entry<String, Set<EmojiProp>> entry : emojiData.entrySet()) {
                 final String cp = entry.getKey();
@@ -372,7 +372,7 @@ public class EmojiData {
             // TODO make it cleaner to add new properties
             //emojiRegionalIndicators.addAll(emojiData.getKeys(EmojiProp.Emoji_Regional_Indicator)).freeze();
             emojiComponents.addAll(emojiData.getKeys(EmojiProp.Emoji_Component)).freeze();
-            
+
             if (version.compareTo(Emoji.VERSION6) >= 0 
                     && !new UnicodeSet(emojiComponents).removeAll(MODIFIERS).equals(Emoji.DEFECTIVE)) {
                 throw new IllegalArgumentException("Bad components or defectives\n" + emojiComponents + "\n" + Emoji.DEFECTIVE);
@@ -1035,8 +1035,38 @@ public class EmojiData {
 
     static final IndexUnicodeProperties latest = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
     static boolean SKIP = true;
-    
+
+    private static String getSpecialAge(String s) {
+        return CandidateData.getInstance().getCharacters().containsAll(s) ? "Candidate"
+                : EmojiData.of(Emoji.VERSION3).getAllEmojiWithDefectives().contains(s) ? "Emoji v3.0"
+                        : EmojiData.of(Emoji.VERSION4).getAllEmojiWithDefectives().contains(s) ? "Emoji v4.0"
+                                : "Emoji v5.0";
+        //        
+        //        return version.compareTo(VersionInfo.UNICODE_10_0) == 0 ? "Candidate" 
+        //                : "Emoji v" + emojiVersion + ", Unicode v" + version.getVersionString(2, 2);
+    }
+
     public static void main(String[] args) {
+
+        EmojiData v6 = new EmojiData(Emoji.VERSION6);
+        EmojiOrder order6 = EmojiOrder.of(Emoji.VERSION6);
+        UnicodeSet Uv7 = new UnicodeSet("[:age=7.0:]");
+        UnicodeSet newItems6 = new UnicodeSet(v6.allEmojiWithoutDefectivesOrModifiers).addAll(CandidateData.getInstance().getCharacters());
+        for (String s : newItems6) {
+            if (Uv7.containsAll(s)) {
+                continue;
+            }
+            String category = order6.getCategory(s);
+            if (category == null) {
+                category = CandidateData.getInstance().getCategory(s);
+            }
+            System.out.println(UCharacter.toTitleCase(v6.getName(s), null)
+                    + "\t" + UCharacter.toTitleCase(category,null)
+                    + "\t" + getSpecialAge(s)
+                    );
+        }
+        if (SKIP) return;
+
         EmojiData v4 = new EmojiData(Emoji.VERSION4);
         EmojiData v5 = new EmojiData(Emoji.VERSION5);
         UnicodeSet newItems = new UnicodeSet(v5.getSingletonsWithoutDefectives()).removeAll(v4.getSingletonsWithoutDefectives());
@@ -1264,7 +1294,7 @@ public class EmojiData {
     public static String removeEmojiVariants(String s) {
         return s.replace(Emoji.EMOJI_VARIANT_STRING, "");
     }
-    
+
     public UnicodeSet getExtendedPictographic() {
         return extendedPictographic;
     }

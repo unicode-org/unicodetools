@@ -167,7 +167,7 @@ public class Emoji {
                 EnumSet.of(apple, google, twitter, emojione, samsung, fb, windows)); // do this to get same order as Source
         static final Set<Emoji.Source> platformsToIncludeNormal = ImmutableSet.copyOf(EnumSet.of(
                 Source.apple, Source.google, Source.windows, Source.twitter, Source.emojione, Source.samsung, 
-                Source.fb, Source.fbm,
+                Source.fb, // Source.fbm,
                 Source.gmail, Source.dcm, Source.kddi, Source.sb
                 ));
         // Ordering is what will appear with … fallback
