@@ -45,7 +45,7 @@ public class UnicodeJsp {
     try {
       Matcher matcher = Pattern.compile(regex, Pattern.COMMENTS).matcher(test);
       String result = UnicodeUtilities.toHTML.transform(matcher.replaceAll("⇑⇑$0⇓⇓"));
-      result = result.replaceAll("⇑⇑", "<u>").replaceAll("⇓⇓", "</u>");
+      result = result.replaceAll("⇑⇑", "<u>").replaceAll("⇓⇓", "</u>").replaceAll("\r?\n", "<br>");
       return result;
     } catch (Exception e) {
       return "Error: " + e.getMessage();
