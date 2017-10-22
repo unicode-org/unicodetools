@@ -8,6 +8,8 @@ import org.unicode.text.utility.Utility;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableMultimap.Builder;
+import com.ibm.icu.lang.CharSequences;
+import com.ibm.icu.text.UTF16;
 import com.google.common.collect.Multimap;
 
 public class ProposalData {
@@ -25,7 +27,7 @@ public class ProposalData {
         // later add http://www.unicode.org/cgi-bin/GetMatchingDocs.pl?L2/17-023
         StringBuilder result = new StringBuilder();
         source = source.replace(Emoji.EMOJI_VARIANT_STRING, "");
-        Collection<String> proposals = proposal.get(source);
+        Collection<String> proposals = getProposal(source);
         if (proposals.isEmpty()) {
             proposals = proposal.get(new StringBuilder().appendCodePoint(source.charAt(0)).toString());
         }
@@ -37,6 +39,19 @@ public class ProposalData {
                     + proposalItem + "</a>");
         }
         return result.toString();
+    }
+
+    private Collection<String> getProposal(String source) {
+        Collection<String> result = proposal.get(source);
+        if (result.isEmpty()) {
+            for (int cp : CharSequences.codePoints(source)) {
+                result = proposal.get(UTF16.valueOf(cp));
+                if (!result.isEmpty()) {
+                    break;
+                }
+            }
+        }
+        return result;
     }
 
     static Multimap<String, String> load() {
