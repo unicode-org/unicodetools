@@ -367,6 +367,7 @@ public class Emoji {
 
     public static final int BOY = 0x1F466;
     public static final int WOMAN = 0x1F469;
+    public static final int MAN = 0x1F468;
     public static final int ADULT_CP = 0x1f9d1;
     public static final String ADULT = UTF16.valueOf(ADULT_CP);
     public static final String WOMAN_STR = UTF16.valueOf(WOMAN);
@@ -376,6 +377,12 @@ public class Emoji {
     public static final UnicodeSet GENDER_MARKERS = new UnicodeSet().add(FEMALE).add(MALE)
             //    		.add(PERSON)
             .freeze();
+    
+    public static final UnicodeSet HAIR_BASE = new UnicodeSet().add(Emoji.WOMAN).add(Emoji.MAN)
+            .freeze();
+    public static final UnicodeSet HAIR_PIECES = new UnicodeSet().add(0x1F9B0).add(0x1F9B1).add(0x1F9B1).add(0x1F9B2).add(0x1F9B3)
+            .freeze();
+
     public static final UnicodeSet ROLE_MARKER = new UnicodeSet("[\\U0001F9D1 \\U0001F468 \\U0001F469 \\U0001F9D9-\\U0001F9DF 👱 👮 👳 👷 💂 🕵]").freeze();
 
     static final int FIRST_REGIONAL = 0x1F1E6;
@@ -562,6 +569,13 @@ public class Emoji {
 
     static final UnicodeMap<Emoji.Source> BEST_OVERRIDE = new UnicodeMap<>();
     static {
+        
+        BEST_OVERRIDE.put("🛌", Emoji.Source.google);
+        BEST_OVERRIDE.put("🛌🏻", Emoji.Source.google);
+        BEST_OVERRIDE.put("🛌🏼", Emoji.Source.google);
+        BEST_OVERRIDE.put("🛌🏽", Emoji.Source.google);
+        BEST_OVERRIDE.put("🛌🏾", Emoji.Source.google);
+        BEST_OVERRIDE.put("🛌🏿", Emoji.Source.google);
         BEST_OVERRIDE.put(0x1F635, Emoji.Source.fb);
         BEST_OVERRIDE.put(0x1F917, Emoji.Source.emojione);
 
