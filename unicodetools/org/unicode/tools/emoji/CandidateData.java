@@ -2,6 +2,7 @@ package org.unicode.tools.emoji;
 
 import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashSet;
@@ -98,6 +99,7 @@ public class CandidateData implements Transform<String, String> {
     private final UnicodeMap<Quarter> quarters = new UnicodeMap<>();
     private final UnicodeMap<Status> statuses = new UnicodeMap<>();
     private final UnicodeSet characters = new UnicodeSet();
+    private final UnicodeSet allCharacters = new UnicodeSet();
     private final UnicodeSet emoji_Modifier_Base = new UnicodeSet();
     private final UnicodeSet emoji_Gender_Base = new UnicodeSet();
     private final UnicodeSet emoji_Component = new UnicodeSet();
@@ -107,6 +109,7 @@ public class CandidateData implements Transform<String, String> {
     private final UnicodeMap<Set<String>> proposal = new UnicodeMap<>();
 
     static final CandidateData SINGLE = new CandidateData("candidateData.txt");
+    private static final boolean LATER = false;
     //static final CandidateData PROPOSALS = new CandidateData("proposalData.txt");
 
     private CandidateData(String sourceFile) {
@@ -203,6 +206,27 @@ public class CandidateData implements Transform<String, String> {
                 throw new IllegalArgumentException(line, e);
             }
         }
+        
+        allCharacters.addAll(characters);
+        for (String cp : emoji_Modifier_Base) {
+            for (String mod : EmojiData.MODIFIERS) {
+                addCombo(cp, cp + mod);
+            }
+        }
+        for (String cp : emoji_Gender_Base) {
+            for (String mod : Emoji.GENDER_MARKERS) {
+                addCombo(cp, cp + Emoji.JOINER_STR + mod + Emoji.EMOJI_VARIANT_STRING);
+            }
+        }
+
+        // Add this once we decide what to do
+        // needs modification if we add skin tones
+        if (LATER) for (String cp : Emoji.HAIR_BASE) {
+            for (String mod : Emoji.HAIR_PIECES) {
+                addCombo(mod, cp + Emoji.JOINER_STR + mod);
+            }
+        }
+
         comments.freeze();
         statuses.freeze();
         order = _order.build();
@@ -213,10 +237,26 @@ public class CandidateData implements Transform<String, String> {
         attributes.freeze();
         quarters.freeze();
         characters.freeze();
+        allCharacters.freeze();
+        
         emoji_Modifier_Base.freeze();
         emoji_Gender_Base.freeze();
         emoji_Component.freeze();
         proposal.freeze();
+    }
+
+    private void addCombo(String cp, String combo) {
+        allCharacters.add(combo);
+        statuses.put(combo, statuses.get(cp));
+        categories.put(combo, categories.get(cp));
+        after.put(combo, after.get(cp));
+        proposal.put(combo, proposal.get(cp));
+        if (Emoji.HAIR_PIECES.containsSome(cp)) { // HACK
+            names.put(combo, 
+                    EmojiData.EMOJI_DATA.getName(UTF16.valueOf(Character.codePointAt(combo, 0)))
+                    + ": " +
+                    getName(Character.codePointBefore(combo, combo.length())));
+        }
     }
 
     Comparator<String> comparator = new Comparator<String>() {
@@ -253,6 +293,10 @@ public class CandidateData implements Transform<String, String> {
      */
     public UnicodeSet getCharacters() {
         return characters;
+    }
+    
+    public UnicodeSet getAllCharacters() {
+        return allCharacters;
     }
 
     public static CandidateData getInstance() {
@@ -309,7 +353,11 @@ public class CandidateData implements Transform<String, String> {
     public String getProposalHtml(String source) {
         // later add http://www.unicode.org/cgi-bin/GetMatchingDocs.pl?L2/17-023
         StringBuilder result = new StringBuilder();
-        for (String proposalItem :  proposal.get(source.codePointAt(0))) {
+        Set<String> proposals = getProposal(source);
+        if (proposals == null || proposals.isEmpty()) {
+            throw new IllegalArgumentException("no proposals available for " + Utility.hex(source));
+        }
+        for (String proposalItem :  proposals) {
             if (result.length() != 0) {
                 result.append(", ");
             }
@@ -371,8 +419,12 @@ public class CandidateData implements Transform<String, String> {
     }
 
     private static void showCandidateData(CandidateData cd, boolean candidate) {
+        cd.comparator.compare(Utility.fromHex("1F9B5"), Utility.fromHex("1F9B6 1F3FF"));
+        
+        
+        
         System.out.println("Code Point\tChart\tGlyph\tSample\tColored Glyph\tName");
-        final UnicodeSet chars2 = cd.getCharacters();
+        final UnicodeSet chars2 = cd.getAllCharacters();
         List<String> sorted = new ArrayList<>(chars2.addAllTo(new TreeSet<String>(
                 candidate ? cd.comparator : EmojiOrder.STD_ORDER.codepointCompare)));
         String lastCategory = null;
@@ -402,7 +454,7 @@ public class CandidateData implements Transform<String, String> {
             }
             System.out.println(Utility.hex(s) 
                     + "\t" + s 
-                    + "\t" + cd.getQuarter(s) 
+//                    + "\t" + cd.getQuarter(s) 
                     + "\t" + cd.getName(s)
                     + "\t" + cd.getProposal(s) 
                     );
@@ -467,4 +519,5 @@ public class CandidateData implements Transform<String, String> {
         }
         return temp == null ? temp : temp.toLowerCase(Locale.ROOT);
     }
+
 }

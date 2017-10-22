@@ -47,6 +47,7 @@ public class GenerateEmojiKeyboard {
 				GenerateEmojiKeyboard.getCounts(version, true);
 			}
 		}
+		System.out.println();
 		GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, Target.propFile, Emoji.DATA_DIR_PRODUCTION);
 		GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, Target.csv, Emoji.TR51_INTERNAL_DIR + "keyboard");
 		//        boolean foo2 = EmojiData.EMOJI_DATA.getChars().contains(EmojiData.SAMPLE_WITHOUT_TRAILING_EVS);
@@ -83,7 +84,8 @@ public class GenerateEmojiKeyboard {
 		Counter<EmojiOrder.MajorGroup> totals = new Counter<>();
 		Counter<EmojiOrder.MajorGroup> totalDuplicates = new Counter<>();
 		for (String emoji : setToList) {
-			boolean isDup = EmojiData.isTypicallyDuplicate(emoji);
+			boolean isDup = EmojiData.isTypicallyDuplicate(emoji) || EmojiData.MODIFIERS.contains(emoji);
+			
 			MajorGroup majorGroup = EmojiOrder.STD_ORDER.majorGroupings.get(emoji);
 
 			if (isSingleCodePoint(emoji)) {
@@ -102,15 +104,24 @@ public class GenerateEmojiKeyboard {
 			}
 		}
 		for (MajorGroup group : EmojiOrder.MajorGroup.values()) {
-			System.out.println(group.toPlainString() + "\t" + date
+			System.out.println(group.toPlainString() 
+			        + "\t" + date
 					+ "\t" + totalSingletons.get(group)
-					+ "\t" + totalsWithoutModifiers.get(group) + "\t" + totalDuplicatesWithoutModifiers.get(group)
-					+ (!emojiVersion ? "" : "\t" + totals.get(group) +  "\t" + totalDuplicates.get(group)));
+//					+ "\t" + totalsWithoutModifiers.get(group) 
+//					+ "\t" + totalDuplicatesWithoutModifiers.get(group)
+					+ "\t" + totals.get(group) 
+                    + "\t" + totalDuplicates.get(group)
+                    + "\t" + (totals.get(group)+totalDuplicates.get(group))
+					);
 		}
-		System.out.println("TOTAL:\t" + date  
+		System.out.println("TOTAL:"
+		        + "\t" + date  
 				+ "\t" + totalSingletons.getTotal()
-				+ "\t" + (totalsWithoutModifiers.getTotal()+totalDuplicatesWithoutModifiers.getTotal())
-				+ (!emojiVersion ? "" : "\t\t" + (totals.getTotal()+totalDuplicates.getTotal())));
+//                + "\t" + totalsWithoutModifiers.getTotal() 
+//                + "\t" + (totalsWithoutModifiers.getTotal()+totalDuplicatesWithoutModifiers.getTotal())
+                + "\t" + totals.getTotal() 
+                + "\t" + totalDuplicates.getTotal()
+                + "\t" + (totals.getTotal()+totalDuplicates.getTotal()));
 	}
 
 	private static boolean isSingleCodePoint(String emoji) {

@@ -658,11 +658,11 @@ public class GenerateEmoji {
         showOrdering(Style.bestImage, Visibility.external, CandidateStyle.released);
         // showOrdering(Style.refImage);
         // showLabels();
-        showVersions();
-        showVersionsOnly();
+        showVersions(Style.bestImage);
+        showVersionsOnly(Style.bestImage);
         showDefaultStyle();
         showVariationSequences();
-        showSequences();
+        showSequences(Style.bestImage);
         // showAnnotations(Emoji.CHARTS_DIR, "emoji-annotations.html",
         // EmojiData.EMOJI_DATA.getChars(), null, false);
 
@@ -1437,8 +1437,9 @@ public class GenerateEmoji {
         out.close();
     }
 
-    /** Main Chart */
-    private static void showSequences() throws IOException {
+    /** Main Chart 
+     * @param style TODO*/
+    private static void showSequences(Style style) throws IOException {
         String outFileName = "emoji-sequences.html";
         try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, outFileName)) {
             writeHeader(outFileName, out, "Emoji Sequences", null, false, "<p>This chart provides a list of sequences of emoji characters, "
@@ -1450,14 +1451,14 @@ public class GenerateEmoji {
             out.println("<table " + "border='1'" + ">");
 
             displayUnicodesetTD(out, Collections.singleton("keycaps"), null,
-                    Collections.singleton("" + Emoji.KEYCAPS.size()), Emoji.KEYCAPS, Style.bestImage, -1, null,
+                    Collections.singleton("" + Emoji.KEYCAPS.size()), Emoji.KEYCAPS, style, -1, null,
                     Visibility.external);
             displayUnicodesetTD(out, Collections.singleton("flags"), null,
                     Collections.singleton("" + EmojiData.EMOJI_DATA.getFlagSequences().size()),
-                    EmojiData.EMOJI_DATA.getFlagSequences(), Style.bestImage, -1, null, Visibility.external);
+                    EmojiData.EMOJI_DATA.getFlagSequences(), style, -1, null, Visibility.external);
             displayUnicodesetTD(out, Collections.singleton("modifier sequences"), null,
                     Collections.singleton("" + EmojiData.EMOJI_DATA.getModifierSequences().size()),
-                    EmojiData.EMOJI_DATA.getModifierSequences(), Style.bestImage, -1, null, Visibility.external);
+                    EmojiData.EMOJI_DATA.getModifierSequences(), style, -1, null, Visibility.external);
 
             out.println("</table>");
 
@@ -1604,8 +1605,9 @@ public class GenerateEmoji {
         }
     }
 
-    /** Main Chart */
-    private static void showVersions() throws IOException {
+    /** Main Chart 
+     * @param style TODO*/
+    private static void showVersions(Style style) throws IOException {
         final String outFileName = "emoji-versions-sources.html";
         PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, outFileName);
         writeHeader(outFileName, out, "Emoji Versions &amp; Sources", null, false, "<p>This chart shows when each emoji <i>code point</i> first appeared in a Unicode version, "
@@ -1636,7 +1638,7 @@ public class GenerateEmoji {
                     ImmutableSet.of(
                             value.getCharSources(),
                             String.valueOf(chars.size())),
-                    chars, Style.bestImage, -1, null, Visibility.external);
+                    chars, style, -1, null, Visibility.external);
         }
         out.println("</table>");
 
@@ -1661,8 +1663,9 @@ public class GenerateEmoji {
         return sorted;
     }
 
-    /** Main Chart */
-    private static void showVersionsOnly() throws IOException {
+    /** Main Chart 
+     * @param style TODO*/
+    private static void showVersionsOnly(Style style) throws IOException {
         final String outFileName = "emoji-versions.html";
         PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, outFileName);
         writeHeader(outFileName, out, "Emoji Versions", null, false, "<p>This chart shows when each emoji character first appeared in a Unicode version. "
@@ -1689,7 +1692,7 @@ public class GenerateEmoji {
 
             UnicodeSet chars = m.getSet(value);
             displayUnicodesetTD(out, Collections.singleton(value), null,
-                    Collections.singleton(String.valueOf(chars.size())), chars, Style.bestImage, -1, null,
+                    Collections.singleton(String.valueOf(chars.size())), chars, style, -1, null,
                     Visibility.external);
         }
         out.println("</table>");
@@ -1731,9 +1734,10 @@ public class GenerateEmoji {
     // out.close();
     // }
 
-    /** Main charts */
-    private static void showAnnotations(String dir, String outFileName, UnicodeSet filterOut,
-            Set<String> retainAnnotations, boolean removeInsteadOf) throws IOException {
+    /** Main charts 
+     * @param style TODO*/
+    private static void showAnnotations(Style style, String dir, String outFileName,
+            UnicodeSet filterOut, Set<String> retainAnnotations, boolean removeInsteadOf) throws IOException {
         try (PrintWriter out = FileUtilities.openUTF8Writer(dir, outFileName)) {
             writeHeader(outFileName, out, "Emoji Annotations", null, false, "<p>This chart shows the English emoji character annotations based on " + CLDR_ANNOTATIONS_LINK
                     + ". "
@@ -1787,7 +1791,7 @@ public class GenerateEmoji {
                 // labelSeen.add(words);
                 UnicodeSet filtered = new UnicodeSet(uset).retainAll(filterOut);
                 if (!filtered.isEmpty()) {
-                    displayUnicodesetTD(out, words, null, Collections.<String>emptySet(), filtered, Style.bestImage, -1,
+                    displayUnicodesetTD(out, words, null, Collections.<String>emptySet(), filtered, style, -1,
                             IMAGE_MORE_INFO, Visibility.external);
                 }
             }
@@ -2086,11 +2090,11 @@ public class GenerateEmoji {
             }
 
             if (count == 0) {
-                out.print("\n");
+                //out.print("\n");
             } else if (maxPerLine > 0 && (count % maxPerLine) == 0) {
                 out.print(BREAK);
             } else {
-                out.print(" ");
+                out.print("\n");
             }
             ++count;
             boolean gotTitle = false;
@@ -3002,7 +3006,7 @@ public class GenerateEmoji {
             // The data file is designed to take the contents of the table, when
             // pasted as plain text, and format it.
             comparator = candidateData.comparator;
-            emoji = candidateData.getCharacters();
+            emoji = candidateData.getAllCharacters();
             future = true;
         }
         Set<String> sorted = emoji.addAllTo(new TreeSet<String>(comparator));
@@ -3091,6 +3095,9 @@ public class GenerateEmoji {
             writeHeader(outFileName, out, showCandidatesTitle, null, future, topHeader, dataDir);
             boolean showingChars = false;
             for (String source : sorted) {
+                if (source.equals("👨‍🦰")) {
+                    int debug = 0;
+                }
                 if (!EmojiData.MODIFIERS.containsSome(source)
                         && !source.contains("\u200D\u2640")
                         && !source.contains("\u200D\u2642")) {
@@ -3187,6 +3194,7 @@ public class GenerateEmoji {
                     + "</td>\n";
                 } else {
                     currentRow += " <td class='name'>" + annotationsString + "</td>\n";
+                    currentRow += " <td class='proposal'>" + ProposalData.getInstance().getProposalHtml(source);
                     //                    currentRow += " <td class='proposal'>" + CandidateData.getProposalInstance().getProposalHtml(source)
                     //                            + "</td>\n";
                 }

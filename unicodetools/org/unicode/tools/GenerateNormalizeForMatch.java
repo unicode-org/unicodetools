@@ -40,6 +40,7 @@ import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Utility;
+import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
@@ -484,7 +485,8 @@ public class GenerateNormalizeForMatch {
                     + ";\t" + Utility.hex(target, 4, " ") 
                     + (skipIfSame == null ? "" : ";\t" + Utility.hex(toFilterIfSame, 4, " "))
                     + ";\t" + reason
-                    + "\t # ( " + source + " → " + target + " )\t"
+                    + "\t #" + getStringValues(AGE, source, ", ")
+                    + "\t ( " + source + " → " + target + " )\t"
                     + getName(source) + " → " + getName(target));
         }
     }
@@ -675,7 +677,8 @@ public class GenerateNormalizeForMatch {
                     + " ;\t" + Utility.hex(target,4," ") 
                     + " ;\t" + (target.equals(nfkccfResult) ? "" : Utility.hex(nfkccfResult,4," "))
                     + " ;\t" + (target.equals(colEquiv) ? "" : Utility.hex(colEquiv,4," "))
-                    + " #\t(" + source + "→" + target + ")\t"
+                    + " #" + getStringValues(AGE, source, ", ")
+                    + "\t(" + source + "→" + target + ")\t"
                     + getName(source," + ") + " → " + getName(target," + ")
                     );
 
@@ -710,13 +713,29 @@ public class GenerateNormalizeForMatch {
             changed.add(source);
             System.out.println(Utility.hex(source)
                     + " ;\t" + Utility.hex(target,4," ") 
-                    + " #\t(" + source + "→" + target + ")\t"
+                    + " #" + getStringValues(AGE, source, ", ")
+                    + "\t(" + source + "→" + target + ")\t"
                     + getName(source," + ") + " → " + getName(target," + ")
                     );
 
         }
         System.out.println("# Total: " + changed.size());
         System.out.println("# " + changed.toPattern(false));
+    }
+
+    private static <T> String getStringValues(UnicodeMap<T> data, String source, String separator) {
+        T temp = data.get(source);
+        if (temp != null) {
+            return temp.toString();
+        }
+        Set<T> ages = new LinkedHashSet<>();
+        for (int cp : CharSequences.codePoints(source)) {
+            temp = data.get(cp);
+            if (temp != null) {
+                ages.add(temp);
+            }
+        }
+        return CollectionUtilities.join(ages, separator);
     }
 
     private static String getName(String best, String separator) {

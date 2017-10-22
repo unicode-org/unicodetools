@@ -176,10 +176,12 @@ Proposal=L2/17-259, L2/14-174
 After=💪
 U+1F9B5
 Name=leg
+Emoji_Modifier_Base
 
 Proposal=L2/17-259
 U+1F9B6
 Name=foot
+Emoji_Modifier_Base
 
 After=🧠
 Proposal=L2/17-259, L2/17-246
