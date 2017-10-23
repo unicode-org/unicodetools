@@ -15,7 +15,7 @@
 }
 
 .navColPlus {
-	width: 25%
+	width: 25%;
 	border: silver none 0px;
 	padding: 1em;
 }
@@ -306,14 +306,13 @@ H2 {
 }
 .member:before {
 	content: "∈ ";
-	font-style: bold;
+	font-weight: bold;
 }
 .greater:before {
 	content: "> ";
-	font-style: bold;
+	font-weight: bold;
 }
 
 .nowrap {
 	white-space: nowrap;
-}
 }
