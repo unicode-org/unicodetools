@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.xerces.impl.dv.util.Base64;
@@ -165,8 +166,7 @@ public class EmojiImageData {
 			for (Emoji.Source source : platforms2) {
 				final UnicodeSet us = breakdown.getMissing(source);
 				final UnicodeSet missing = new UnicodeSet(us).removeAll(common);
-				GenerateEmoji.displayUnicodeSet(out, missing, Style.bestImage, 0, 1, 1, 
-						"../../emoji/charts/full-emoji-list.html", GenerateEmoji.EMOJI_COMPARATOR, Visibility.external);
+				GenerateEmoji.displayUnicodeSet(out, missing.addAllTo(new TreeSet<String>(GenerateEmoji.EMOJI_COMPARATOR)), Style.bestImage, 0, 1, 1, "../../emoji/charts/full-emoji-list.html", "", "lchars", Visibility.external);
 			}
 			out.print("</tr>");
 		}
@@ -179,7 +179,7 @@ public class EmojiImageData {
 					+ "<td class='cchars' colSpan='" + platforms2.size() + "'>"
 					+ common.size() + "</td></tr>");
 			out.println("<tr><th>" + title + "</th>");
-			GenerateEmoji.displayUnicodeSet(out, common, Style.bestImage, 0, platforms2.size(), 1, null, GenerateEmoji.EMOJI_COMPARATOR, Visibility.external);
+			GenerateEmoji.displayUnicodeSet(out, common.addAllTo(new TreeSet<String>(GenerateEmoji.EMOJI_COMPARATOR)), Style.bestImage, 0, platforms2.size(), 1, null, "", "lchars", Visibility.external);
 			out.println("</td></tr>");
 		}
 	}

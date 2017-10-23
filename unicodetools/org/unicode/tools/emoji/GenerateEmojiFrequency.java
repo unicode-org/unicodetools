@@ -179,7 +179,7 @@ public class GenerateEmojiFrequency {
     }
 
     private static void showItems(PrintWriter out, Collection<String> items) {
-        GenerateEmoji.displayUnicodeSet(out, items, Style.bestImage, 9999, 1, 1, "../../emoji/charts/full-emoji-list.html", " s18", Visibility.external);
+        GenerateEmoji.displayUnicodeSet(out, items, Style.bestImage, 9999, 1, 1, "../../emoji/charts/full-emoji-list.html", " s18", "lchars", Visibility.external);
     }
 
     final static Splitter ONTAB = Splitter.on('\t').trimResults();

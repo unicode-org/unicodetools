@@ -316,3 +316,8 @@ H2 {
 .nowrap {
 	white-space: nowrap;
 }
+
+.tick {
+	border-left: 1px dashed green;
+	border-right: 1px dotted red;
+}
