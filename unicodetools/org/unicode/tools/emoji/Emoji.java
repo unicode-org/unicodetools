@@ -6,10 +6,14 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 
@@ -23,6 +27,7 @@ import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.Emoji.Source;
 import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
+import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -85,7 +90,7 @@ public class Emoji {
             .put(VERSION1, UCD8)
             .build();
 
-    public static Map<VersionInfo, String> EMOJI_TO_DATE = ImmutableMap.<VersionInfo, String>builder()
+    public final static Map<VersionInfo, String> EMOJI_TO_DATE = ImmutableMap.<VersionInfo, String>builder()
             .put(VERSION6, "2017H2")
             .put(VERSION5, "2017-06-20")
             .put(VERSION4, "2016-11-22")
@@ -93,7 +98,18 @@ public class Emoji {
             .put(VERSION2, "2015-11-12")
             .put(VERSION1, "2015-06-09")
             .build();
-
+    
+    public final static Map<Integer,VersionInfo> EMOJI_TO_YEAR_ASCENDING;
+    static {
+        Map<Integer,VersionInfo> _map = new TreeMap<>();
+        for (Entry<VersionInfo, String> entry : EMOJI_TO_DATE.entrySet()) {
+            int year = Integer.parseInt(entry.getValue().substring(0, 4));
+            if (!_map.containsKey(year)) {
+                _map.put(year, entry.getKey());
+            }
+        }
+        EMOJI_TO_YEAR_ASCENDING = ImmutableMap.copyOf(_map);
+    }
     public static final VersionInfo VERSION_LAST_RELEASED_UNICODE = EMOJI_TO_UNICODE_VERSION.get(VERSION_LAST_RELEASED);
     public static final VersionInfo VERSION_BETA_UNICODE = EMOJI_TO_UNICODE_VERSION.get(VERSION_BETA);
 

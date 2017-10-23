@@ -219,10 +219,10 @@ public class CountEmoji {
         flag_seq,
         tag_seq, 
         mod_seq, 
-        zwj_seq_gender("zwj seq + gender"), 
-        zwj_seq_mod("zwj seq + modifier"),
-        zwj_seq_mod_gender("zwj seq + gender, modifier"),
-        zwj_seq_other,
+        zwj_seq_gender("zwj+gender"), 
+        zwj_seq_mod("zwj+skin"),
+        zwj_seq_mod_gender("zwj+gender&skin"),
+        zwj_seq_other("zwj other"),
         component, 
         typical_dup;
 
@@ -235,7 +235,7 @@ public class CountEmoji {
         }
         @Override
         public String toString() {
-            return name == null ? name().replace('_', ' ') : name;
+            return name == null ? name().replace('_', ' ') : name;
         }
         private static Category getBucket(String s) {
             String noVariants = CountEmoji.EMOJI_DATA_BETA.removeEmojiVariants(s);
@@ -341,5 +341,11 @@ public class CountEmoji {
                 + "\t" + Utility.hex(itemFull, " ")
                 + "\t(" + itemFull + ")"
                 + "\t" + EMOJI_DATA_BETA.getName(itemFull));
+    }
+
+    public void addAll(Iterable<String> chars) {
+        for (String s : chars) {
+            add(s);
+        }        
     }
 }

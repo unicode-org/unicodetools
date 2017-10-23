@@ -14,6 +14,8 @@ import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
+import javax.xml.stream.events.Characters;
+
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Annotations;
 import org.unicode.cldr.util.Annotations.AnnotationSet;
@@ -26,6 +28,7 @@ import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UnicodeRelation;
+import org.unicode.props.VersionToAge;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.Emoji.Qualified;
@@ -1047,6 +1050,12 @@ public class EmojiData {
     }
 
     public static void main(String[] args) {
+        EmojiData v5 = new EmojiData(Emoji.VERSION6); 
+        UnicodeMap<Integer> yearData = v5.getYears();
+        for (Integer value : new TreeSet<Integer>(yearData.values())) {
+            System.out.println(value + "\t" + yearData.getSet(value));
+        }
+        if (SKIP) return;
 
         EmojiData v6 = new EmojiData(Emoji.VERSION6);
         EmojiOrder order6 = EmojiOrder.of(Emoji.VERSION6);
@@ -1065,10 +1074,8 @@ public class EmojiData {
                     + "\t" + getSpecialAge(s)
                     );
         }
-        if (SKIP) return;
 
         EmojiData v4 = new EmojiData(Emoji.VERSION4);
-        EmojiData v5 = new EmojiData(Emoji.VERSION5);
         UnicodeSet newItems = new UnicodeSet(v5.getSingletonsWithoutDefectives()).removeAll(v4.getSingletonsWithoutDefectives());
         Set<String> sorted2 = new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare);
         for (String s : newItems.addAllTo(sorted2)) {
@@ -1297,5 +1304,31 @@ public class EmojiData {
 
     public UnicodeSet getExtendedPictographic() {
         return extendedPictographic;
+    }
+
+    UnicodeMap<Integer> years = new UnicodeMap<Integer>();
+
+    public synchronized UnicodeMap<Integer> getYears() {
+        if (years.isEmpty()) {
+            for (String s : allEmojiWithoutDefectives) {
+                int year = -1;
+                if (Character.codePointCount(s, 0, s.length()) == 1) {
+                    VersionInfo age = UCharacter.getAge(s.codePointAt(0));
+                    year = VersionToAge.ucd.getYear(age);
+                } else if (s.contains(Emoji.KEYCAP_MARK_STRING) || Emoji.REGIONAL_INDICATORS.containsAll(s)) {
+                    year = 2010;
+                } else {
+                    for (Entry<Integer, VersionInfo> entry : Emoji.EMOJI_TO_YEAR_ASCENDING.entrySet()) {
+                        EmojiData data = EmojiData.of(entry.getValue());
+                        if (data.getAllEmojiWithDefectives().contains(s)) {
+                            year = entry.getKey();
+                            break;
+                        }
+                    }
+                }
+                years.put(s, year);
+            }
+        }
+        return years;
     }
 }
