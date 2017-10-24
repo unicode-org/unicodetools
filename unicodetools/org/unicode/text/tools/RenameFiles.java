@@ -30,11 +30,12 @@ public class RenameFiles {
     private static final boolean RECURSIVE = true;
     
     private static final String OUTPUT_PLATFORM_PREFIX = 
-            "proposed" // null means use old prefix
+            "emojipedia"
+            // "proposed" 
             ;
 
     private static final String FILE_MATCH = 
-            "proposed_([0-9a-fA-F]+)\\.png"
+            "emojipedia_([0-9a-fA-F_]+)\\.png"
             // "([-0-9a-fA-F_]+)\\.png" // twitter
             // "(?:[a-zA-Z]+|emoji_thumbnail)?(?:_[xu])?([-0-9a-fA-F_]+)\\.png" // anything else
             //"proposed_(?:x)?(.*)\\.png";
@@ -42,11 +43,12 @@ public class RenameFiles {
             ;
 
     private static final int HEX_ADDITION = 
-            0x10000 - 0x100000;
-            //  0;
+            // 0x10000 - 0x100000;
+             0;
 
     private static final String DIR_OF_FILES_TO_CHANGE = 
-            "/Users/markdavis/Documents/workspace/unicode-draft/reports/tr51/images/proposed"
+            "/Users/markdavis/Downloads/emojipedia leg and foot"
+            //"/Users/markdavis/Documents/workspace/unicode-draft/reports/tr51/images/proposed"
             // Settings.BASE_DIRECTORY + "Google Drive/workspace/DATA/emoji/twitter/"
             // Settings.UNICODE_DRAFT_DIRECTORY + "/reports/tr51/images/" + OUTPUT_PLATFORM_PREFIX
             ;
@@ -54,7 +56,8 @@ public class RenameFiles {
     private static final Pattern REMOVE_FROM_HEX = Pattern.compile("_fe0f");
 
     private static final UnicodeSet FILTER = 
-            new UnicodeSet(0x10F000,0x10FFFF);
+            null;
+            // new UnicodeSet(0x10F000,0x10FFFF);
             // Emoji.BETA.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class).getSet(Age_Values.V9_0);
 
 

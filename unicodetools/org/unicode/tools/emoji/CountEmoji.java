@@ -15,6 +15,7 @@ import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Validity;
 import org.unicode.cldr.util.Validity.Status;
 import org.unicode.cldr.util.StandardCodes.LstrType;
+import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 
@@ -226,16 +227,18 @@ public class CountEmoji {
         component, 
         typical_dup;
 
-        final String name;
+        final public String name;
+        final public String html;
         Category() {
             this(null);
         }
         Category(String _name) {
-            name = _name;
+            name = _name == null ? name().replace('_', ' ') : _name;
+            html = TransliteratorUtilities.toHTML.transform(name);
         }
         @Override
         public String toString() {
-            return name == null ? name().replace('_', ' ') : name;
+            return html;
         }
         private static Category getBucket(String s) {
             String noVariants = CountEmoji.EMOJI_DATA_BETA.removeEmojiVariants(s);
