@@ -28,14 +28,12 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.tool.GenerateTransformCharts.CollectionOfComparablesComparator;
-import org.unicode.cldr.util.Pair;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.cldr.util.With;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
-import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.VersionToAge;
 import org.unicode.text.UCD.NamesList;
@@ -1204,7 +1202,7 @@ public class GenerateEmoji {
                 lastMajorGroup = majorGroup;
                 out.println("<tr><th class='bighead'>" + getDoubleLink(majorGroup.toHTMLString()) + "</th></tr>");
             }
-            out.println("<tr><th class='mediumhead'>" + getDoubleLink(entry.getKey()) + "</th></tr>");
+            out.println("<tr><th class='mediumhead'>" + getDoubleLink(TransliteratorUtilities.toHTML.transform(entry.getKey())) + "</th></tr>");
             out.println("<tr>");
             all.addAll(values);
             totalSorted += values.size();
@@ -1283,7 +1281,7 @@ public class GenerateEmoji {
                 + "“-vs” indicates that emoji varation selectors <i>are not</i> present, and a character has Emoji_Presentation=False."
                 + "</li>\n<li>"
                 + "“+vs” indicates that emoji varation selectors <i>are</i> present, and a character has Emoji_Presentation=False."
-                + "</ul>\n" + "<p>The default presentation choice (colorful&monospace vs gray) is discussed in "
+                + "</ul>\n" + "<p>The default presentation choice (colorful &amp; monospace vs gray) is discussed in "
                 + "<a href='" + Emoji.TR51_HTML + "#Presentation_Style'>Presentation Style</a>. "
                 + "See also <a target='variants' href='emoji-variants.html'>Emoji Presentation Sequences</a>.</p>\n",
                 Emoji.DATA_DIR_PRODUCTION);
@@ -1295,18 +1293,18 @@ public class GenerateEmoji {
                         + "• “+vs” indicates that emoji presentation selectors are present, and a character has Emoji_Presentation=False.\n"
                         + "For more information on presentation style, see UTS #51.");
 
-        final String mainMessage = "Should all be colorful & monospace, except where marked with “text-vs”.";
+        final String mainMessage = "Should all be colorful &amp; monospace, except where marked with “text-vs”.";
         out.println("<tr><th colSpan='3'>Plain: " + mainMessage + "</th></tr>");
         outText.println("\n" + mainMessage);
 
         showText(out, outText, Style.plain, "");
 
         out.println(
-                "<tr><th colSpan='3'>Emoji Font: should all be colorful & monospace, <b>even “text-vs”</b>.</th></tr>");
+                "<tr><th colSpan='3'>Emoji Font: should all be colorful &amp; monospace, <b>even “text-vs”</b>.</th></tr>");
         showText(out, null, Style.emojiFont, "");
 
         out.println(
-                "<tr><th colSpan='3'>Emoji Locale: should all be colorful & monospace, <b>even “text-vs”</b>.</th></tr>");
+                "<tr><th colSpan='3'>Emoji Locale: should all be colorful &amp; monospace, <b>even “text-vs”</b>.</th></tr>");
         showText(out, null, Style.emojiLocale, "lang='en-u-em-emoji'");
 
         // out.println("<tr><th colSpan='3'>Emoji Locale (should all be
@@ -2323,7 +2321,7 @@ public class GenerateEmoji {
                     lastMajorGroup = majorGroup;
                 }
                 if (!orderingGroup.equals(lastOrderingGroup)) {
-                    out.println(smallHead + getDoubleLink(orderingGroup) + "</th></tr>");
+                    out.println(smallHead + getDoubleLink(TransliteratorUtilities.toHTML.transform(orderingGroup)) + "</th></tr>");
                     out.println(htmlHeaderString);
                     outPlain.println("@" + orderingGroup);
                     headerGroupCount = 0;
@@ -2944,6 +2942,7 @@ public class GenerateEmoji {
         if (name2 == null) {
             name2 = vanilla.toLowerCase(Locale.ENGLISH);
         }
+        name2 = TransliteratorUtilities.toHTML.transform(name2);
         if (vanilla != null) {
             String noVs = chars2.replace(Emoji.EMOJI_VARIANT_STRING, "");
             if (noVs.codePointCount(0, noVs.length()) == 1 && !vanilla.equalsIgnoreCase(name2)) {
@@ -3054,10 +3053,10 @@ public class GenerateEmoji {
     static final Joiner BAR_JOIN = Joiner.on(" | ");
     static final Joiner BAR_I_JOIN = Joiner.on("</i> | <i>");
 
-    static final String PROPOSAL_CAUTION = "<p>When looking at the linked proposals for candidates or accepted characters it is important to keep two points in mind:</p>"
+    static final String PROPOSAL_CAUTION = "<p>When looking at the linked proposals for candidates or accepted characters it is important to keep two points in mind:</p>\n"
             + "<ol><li>New proposals must follow the form in <a target='_blank' href='../selection.html'>Submitting Emoji Character Proposals</a>."
-            + " This form may have changed since earlier proposals were submitted.</li>"
-            + "<li>The UTC may accept a proposal for reasons other than those stated in the proposal, and does not necessarily endorse or consider relevant all of the proposed reasons.</li></ol>";
+            + " This form may have changed since earlier proposals were submitted.</li>\n"
+            + "<li>The UTC may accept a proposal for reasons other than those stated in the proposal, and does not necessarily endorse or consider relevant all of the proposed reasons.</li></ol>\n";
 
     static void showCandidateStyle(CandidateStyle candidateStyle, String outFileName, UnicodeSet emoji)
             throws IOException {
@@ -3133,15 +3132,15 @@ public class GenerateEmoji {
                 + "and is not normally listed separately on emoji keyboards.</li>"
                 + "</ul>\n"
                 + "<p><a target='feedback' href='http://unicode.org/reporting.html'>Feedback</a> on the CLDR Short Name, Keywords, ordering, and category is welcome.</p>\n"
-                + PROPOSAL_CAUTION + "\n";
+                + PROPOSAL_CAUTION;
         String footer = "";
         // "<p>Thanks to submitters for the color sample glyphs.</p>";
 
         String showCandidatesTitle = "Emoji Candidates";
 
         if (!future) {
-            topHeader = "<p>The following emoji characters and sequences have been added to this version of Unicode Emoji. "
-                    + PROPOSAL_CAUTION + "</p>\n"
+            topHeader = "<p>The following emoji characters and sequences have been added to this version of Unicode Emoji.</p>\n"
+                    + PROPOSAL_CAUTION
                     // Comment out this text once Unicode 10. is released.
                     // + " The list includes characters that will be in Unicode
                     // v10.0, scheduled for June 2017, "
