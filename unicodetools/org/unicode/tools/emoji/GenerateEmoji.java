@@ -414,19 +414,31 @@ public class GenerateEmoji {
             }
         }
 
-        if (EmojiData.MODIFIERS.containsSome(s) && !EmojiData.MODIFIERS.containsAll(s)) {
-            List<String> extracted = new ArrayList();
-            String s2 = UnicodeSets.removeAll(EmojiData.MODIFIERS, s, extracted);
-            for (Emoji.Source source : Emoji.orderedEnum(doFirst)) {
-                String cell = getImage(source, s2, s, useDataURL, extraClasses);
-                if (cell != null) {
-                    for (String mod : extracted) {
-                        String cell2 = getImage(Source.apple, mod, mod, useDataURL, " imgs");
-                        cell += cell2;
-                    }
-                    return cell;
+        if (!EmojiData.MODIFIERS.containsAll(s) 
+                && (EmojiData.MODIFIERS.containsSome(s) || s.contains(Emoji.JOINER_STR))) {
+            String classes = extraClasses;
+            String cell = "";
+            main:
+            for (int cp : CharSequences.codePoints(s)) {
+                if (Emoji.JOINER == cp || Emoji.EMOJI_VARIANT == cp 
+                        || EmojiData.MODIFIERS.contains(cp)) {
+                    continue;
                 }
+                String chars = UTF16.valueOf(cp);
+                for (Emoji.Source source : Emoji.orderedEnum(doFirst)) {
+                    if (source == source.proposed) {
+                        int debug = 0;
+                    }
+                    String cell2 = getImage(source, chars, s, useDataURL, classes);
+                    if (cell2 != null) {
+                        classes = " imgs";
+                        cell += cell2;
+                        continue main;
+                    }
+                }
+                return null; // failed
             }
+            return cell;
         }
         return null;
     }
@@ -3123,7 +3135,7 @@ public class GenerateEmoji {
                 + " <i>Final candidates</i> will be in the next release of Unicode, but do not have final code points or properties."
                 + "</p>"
                 + "<p>The <strong>Attributes</strong> column contains provisional information about the candidate:</p>\n"
-                + "<ul style='list-style-type: none'><li class='greater'><strong>X</strong> indicates where the character (tentatively) "
+                + "<ul style='list-style-type: none'><li class='greater'><strong>X</strong> indicates that the character (tentatively) "
                 + "would be after X in <a target='order' href='../charts-" + Emoji.VERSION_BETA_STRING + "/"
                 + "emoji-ordering.html'>Emoji Ordering</a>.</li>\n"
                 + "<li class='member'><strong>modifier_base</strong> indicates that the character would allow skin-tone modifiers</li>\n"
@@ -3234,11 +3246,7 @@ public class GenerateEmoji {
                 // blackAndWhite = "<i>n/a</i>";
                 // }
                 String color = getSamples(source);
-                String href = Utility.hex(source).replace(" ", "_");
-                String anchor = Emoji.toUHex(source);
-                if (candidateStyle == CandidateStyle.candidate) {
-                    href = anchor = "X" + href;
-                }
+                String href, anchor = href = getHex(source);
                 ++count;
                 String currentRow = "<tr>\n" + " <td class='rchars'>" + count
                         + "</td>\n" + " <td class='code'>"
@@ -3292,6 +3300,21 @@ public class GenerateEmoji {
                 out.println(outputLine);
             }
         }
+    }
+
+    private static String getHex(String source) {
+        UnicodeSet candidateCharacters = CandidateData.getInstance().getAllCharacters();
+        StringBuilder result = new StringBuilder();
+        for (int cp : CharSequences.codePoints(source)) {
+            if (result.length() != 0) {
+                result.append(' ');
+            }
+            if (candidateCharacters.contains(cp)) {
+                result.append('X');
+            }
+            result.append(Utility.hex(cp));
+        }
+        return result.toString();
     }
 
     private static String getStatusString(String source) {

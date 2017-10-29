@@ -31,6 +31,7 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ICUException;
 
 public class CandidateData implements Transform<String, String> {
     private static final Splitter SPLITTER_COMMA = Splitter.on(',').trimResults().omitEmptyStrings();
@@ -56,7 +57,7 @@ public class CandidateData implements Transform<String, String> {
             return name().substring(1);
         }
     }
-    
+
     public enum Status {
         Final_Candidates("Code points are final."), // final code points
         Draft_Candidates("Code points are draft."), // draft code points
@@ -92,6 +93,7 @@ public class CandidateData implements Transform<String, String> {
     // TODO change to have a CandidateDatum object with this information, instead of separate maps
     private final List<Integer> order;
     private final UnicodeMap<String> categories = new UnicodeMap<>();
+    private final UnicodeMap<Integer> suborder = new UnicodeMap<>();
     private final UnicodeMap<String> names = new UnicodeMap<>();
     private final UnicodeMap<String> unames = new UnicodeMap<>();
     private final UnicodeRelation<String> annotations = new UnicodeRelation<>(SORTED_TREESET_MAKER);
@@ -105,7 +107,7 @@ public class CandidateData implements Transform<String, String> {
     private final UnicodeSet emoji_Component = new UnicodeSet();
     private final UnicodeMap<String> after = new UnicodeMap<>();
     private final UnicodeMap<String> comments = new UnicodeMap<>();
-    
+
     private final UnicodeMap<Set<String>> proposal = new UnicodeMap<>();
 
     static final CandidateData SINGLE = new CandidateData("candidateData.txt");
@@ -114,7 +116,7 @@ public class CandidateData implements Transform<String, String> {
 
     private CandidateData(String sourceFile) {
         String category = null;
-        int source = -1;
+        String source = null;
         Builder<Integer> _order = ImmutableList.builder();
         Quarter quarter = null;
         String afterItem = null;
@@ -127,7 +129,7 @@ public class CandidateData implements Transform<String, String> {
                 if (line.startsWith("#") || line.isEmpty()) { // comment
                     continue;
                 } else if (line.startsWith("U+")) { // data
-                    source = Utility.fromHex(line).codePointAt(0);
+                    source = Utility.fromHex(line);
                     if (characters.contains(source)) {
                         throw new IllegalArgumentException(Utility.hex(source) + " occurs twice");
                     }
@@ -143,6 +145,28 @@ public class CandidateData implements Transform<String, String> {
                     }
                     attributes.add(source, afterString);
                     categories.put(source, category);
+                    suborder.put(source, suborder.size());
+
+                    // if single character
+                    //                    if (emoji_Modifier_Base.contains(source)) {
+                    //                        for (String mod : EmojiData.MODIFIERS) {
+                    //                            addCombo(source, source + mod);
+                    //                        }
+                    //                    }
+                    //                    if (emoji_Gender_Base.contains(source)) {
+                    //                        for (String mod : Emoji.GENDER_MARKERS) {
+                    //                            addCombo(source, source + Emoji.JOINER_STR + mod + Emoji.EMOJI_VARIANT_STRING);
+                    //                        }
+                    //                    }
+
+                    // Add this once we decide what to do
+                    // needs modification if we add skin tones
+                    //                    if (LATER) for (String cp : Emoji.HAIR_BASE) {
+                    //                        for (String mod : Emoji.HAIR_PIECES) {
+                    //                            addCombo(mod, cp + Emoji.JOINER_STR + mod);
+                    //                        }
+                    //                    }
+
                 } else { // must be category
                     int equalPos = line.indexOf('=');
                     String leftSide = equalPos < 0 ? line : line.substring(0,equalPos).trim();
@@ -162,15 +186,18 @@ public class CandidateData implements Transform<String, String> {
                     case "Proposal": 
                         proposalItem = rightSide;
                         break;
-                        
+
                         // go after character
                     case "Name": 
                         final String name = rightSide;
                         names.put(source, name);
                         break;
-                    case "UName": 
-                        final String uname = rightSide.toUpperCase(Locale.ROOT);
-                        unames.put(source, uname);
+                    case "UName":
+                        String oldName = names.get(source);
+                        if (oldName.equalsIgnoreCase(rightSide)) {
+                            final String uname = rightSide.toUpperCase(Locale.ROOT);
+                            unames.put(source, uname);
+                        }
                         break;
                     case "Keywords": 
                         if (rightSide.contains("dengue")) {
@@ -192,8 +219,9 @@ public class CandidateData implements Transform<String, String> {
                         attributes.add(source, "∈ component");
                         break;
                     case "Comment":
-                        if (comments.containsKey(source)) {
-                            throw new IllegalArgumentException("duplication comment: " + rightSide);
+                        String oldComment = comments.get(source);
+                        if (oldComment != null) {
+                            rightSide = oldComment + "\n" + rightSide;
                         }
                         comments.put(source, rightSide);
                         break;
@@ -206,31 +234,14 @@ public class CandidateData implements Transform<String, String> {
                 throw new IllegalArgumentException(line, e);
             }
         }
-        
-        allCharacters.addAll(characters);
-        for (String cp : emoji_Modifier_Base) {
-            for (String mod : EmojiData.MODIFIERS) {
-                addCombo(cp, cp + mod);
-            }
-        }
-        for (String cp : emoji_Gender_Base) {
-            for (String mod : Emoji.GENDER_MARKERS) {
-                addCombo(cp, cp + Emoji.JOINER_STR + mod + Emoji.EMOJI_VARIANT_STRING);
-            }
-        }
 
-        // Add this once we decide what to do
-        // needs modification if we add skin tones
-        if (LATER) for (String cp : Emoji.HAIR_BASE) {
-            for (String mod : Emoji.HAIR_PIECES) {
-                addCombo(mod, cp + Emoji.JOINER_STR + mod);
-            }
-        }
+        allCharacters.addAll(characters);
 
         comments.freeze();
         statuses.freeze();
         order = _order.build();
         categories.freeze();
+        suborder.freeze();
         names.freeze();
         unames.freeze();
         annotations.freeze();
@@ -238,7 +249,7 @@ public class CandidateData implements Transform<String, String> {
         quarters.freeze();
         characters.freeze();
         allCharacters.freeze();
-        
+
         emoji_Modifier_Base.freeze();
         emoji_Gender_Base.freeze();
         emoji_Component.freeze();
@@ -249,6 +260,7 @@ public class CandidateData implements Transform<String, String> {
         allCharacters.add(combo);
         statuses.put(combo, statuses.get(cp));
         categories.put(combo, categories.get(cp));
+        suborder.put(combo, suborder.size());
         after.put(combo, after.get(cp));
         proposal.put(combo, proposal.get(cp));
         if (Emoji.HAIR_PIECES.containsSome(cp)) { // HACK
@@ -268,7 +280,11 @@ public class CandidateData implements Transform<String, String> {
             Status s1 = statuses.get(o1);
             Status s2 = statuses.get(o2);
             if (s1 != s2) {
-                return s1.compareTo(s2);
+                try {
+                    return s1.compareTo(s2);
+                } catch (Exception e) {
+                    throw new ICUException(e);
+                }
             }
 
             int catOrder1 = EmojiOrder.STD_ORDER.getGroupOrder(getCategory(o1));
@@ -276,10 +292,17 @@ public class CandidateData implements Transform<String, String> {
             if (catOrder1 != catOrder2) {
                 return catOrder1 > catOrder2 ? 1 : -1;
             }
-            
+
             String after1 = after.get(o1);
             String after2 = after.get(o2);
             int order = EmojiOrder.STD_ORDER.codepointCompare.compare(after1, after2);
+            if (order != 0) {
+                return order;
+            }
+
+            Integer so1 = suborder.get(o1);
+            Integer so2 = suborder.get(o2);
+            order = so1-so2;
             if (order != 0) {
                 return order;
             }
@@ -294,7 +317,7 @@ public class CandidateData implements Transform<String, String> {
     public UnicodeSet getCharacters() {
         return characters;
     }
-    
+
     public UnicodeSet getAllCharacters() {
         return allCharacters;
     }
@@ -303,9 +326,9 @@ public class CandidateData implements Transform<String, String> {
         return SINGLE;
     }
 
-//    public static CandidateData getProposalInstance() {
-//        return PROPOSALS;
-//    }
+    //    public static CandidateData getProposalInstance() {
+    //        return PROPOSALS;
+    //    }
 
     public UnicodeSet keySet() {
         return names.keySet();
@@ -362,7 +385,7 @@ public class CandidateData implements Transform<String, String> {
                 result.append(", ");
             }
             result.append("<a target='e-prop' href='http://www.unicode.org/cgi-bin/GetMatchingDocs.pl?" + proposalItem.replace('\u2011', '-') + "'>"
-            + proposalItem + "</a>");
+                    + proposalItem + "</a>");
         }
         return result.toString();
     }
@@ -373,7 +396,7 @@ public class CandidateData implements Transform<String, String> {
     public CandidateData.Quarter getQuarter(int source) {
         return quarters.get(source);
     }
-    
+
     public Status getStatus(String source) {
         return statuses.get(source);
     }
@@ -420,9 +443,9 @@ public class CandidateData implements Transform<String, String> {
 
     private static void showCandidateData(CandidateData cd, boolean candidate) {
         cd.comparator.compare(Utility.fromHex("1F9B5"), Utility.fromHex("1F9B6 1F3FF"));
-        
-        
-        
+
+
+
         System.out.println("Code Point\tChart\tGlyph\tSample\tColored Glyph\tName");
         final UnicodeSet chars2 = cd.getAllCharacters();
         List<String> sorted = new ArrayList<>(chars2.addAllTo(new TreeSet<String>(
@@ -454,7 +477,7 @@ public class CandidateData implements Transform<String, String> {
             }
             System.out.println(Utility.hex(s) 
                     + "\t" + s 
-//                    + "\t" + cd.getQuarter(s) 
+                    //                    + "\t" + cd.getQuarter(s) 
                     + "\t" + cd.getName(s)
                     + "\t" + cd.getProposal(s) 
                     );
