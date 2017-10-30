@@ -194,7 +194,7 @@ public class CandidateData implements Transform<String, String> {
                         break;
                     case "UName":
                         String oldName = names.get(source);
-                        if (oldName.equalsIgnoreCase(rightSide)) {
+                        if (!oldName.equalsIgnoreCase(rightSide)) {
                             final String uname = rightSide.toUpperCase(Locale.ROOT);
                             unames.put(source, uname);
                         }
