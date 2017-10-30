@@ -136,7 +136,7 @@ Comment=Image to be changed to be humanform, without visible skin
 
 U+1F9B9
 Name=supervillain
-UName=SERIOUS FACE WITH EYE MASK AND CAPE
+UName=SUPERVILLAIN
 Keywords=villain | bandit | bad guy | black hat
 Comment=Image to be changed to be humanform, without visible skin
  
