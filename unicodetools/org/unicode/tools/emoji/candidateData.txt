@@ -155,9 +155,9 @@ UName=FACE WITH PARTY HORN AND PARTY HAT
 Keywords=party | horn | hat
 
 U+1F974
-Name=drunk face
+Name=woozy face
 UName=FACE WITH UNEVEN EYES AND WAVY MOUTH
-Keywords=uneven eyes | wavy mouth | inebriated | drunkard
+Keywords=uneven eyes | wavy mouth | intoxicated | drunk | tipsy | dizzy
 
 #U+1F977
 #Name= question-mark face

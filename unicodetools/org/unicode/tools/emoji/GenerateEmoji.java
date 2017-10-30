@@ -415,29 +415,38 @@ public class GenerateEmoji {
         }
 
         if (!EmojiData.MODIFIERS.containsAll(s) 
-                && (EmojiData.MODIFIERS.containsSome(s) || s.contains(Emoji.JOINER_STR))) {
+                && (EmojiData.MODIFIERS.containsSome(s) 
+                        || s.contains(Emoji.JOINER_STR))) {
             String classes = extraClasses;
             String cell = "";
             main:
-            for (int cp : CharSequences.codePoints(s)) {
-                if (Emoji.JOINER == cp || Emoji.EMOJI_VARIANT == cp 
-                        || EmojiData.MODIFIERS.contains(cp)) {
-                    continue;
-                }
-                String chars = UTF16.valueOf(cp);
-                for (Emoji.Source source : Emoji.orderedEnum(doFirst)) {
-                    if (source == source.proposed) {
-                        int debug = 0;
+                for (int start = 0; start < s.length(); ) {
+                    int cp = s.codePointAt(start);
+                    // skip certain start values
+                    if (Emoji.JOINER == cp || Emoji.EMOJI_VARIANT == cp) {
+                        start += Character.charCount(cp);
+                        continue;
                     }
-                    String cell2 = getImage(source, chars, s, useDataURL, classes);
-                    if (cell2 != null) {
-                        classes = " imgs";
-                        cell += cell2;
-                        continue main;
+
+                    // get longest initial substring
+
+                    for (int end = s.length(); end > start; --end) {
+                        String trial = s.substring(start, end);
+                        for (Emoji.Source source : Emoji.orderedEnum(doFirst)) {
+                            if (source == source.proposed) {
+                                int debug = 0;
+                            }
+                            String cell2 = getImage(source, trial, s, useDataURL, classes);
+                            if (cell2 != null) {
+                                classes = " imgs";
+                                cell += cell2;
+                                start = end;
+                                continue main;
+                            }
+                        }
                     }
+                    return null; // failed
                 }
-                return null; // failed
-            }
             return cell;
         }
         return null;
