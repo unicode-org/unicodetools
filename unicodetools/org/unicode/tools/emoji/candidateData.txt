@@ -429,25 +429,30 @@ After=💳
 U+1F9FE
 Name=RECEIPT
 
+Proposal=L2/17-403
 After=🦉
 U+1F9A2
 Name=swan
 
+Proposal=L2/17-404
 After=🐼
 U+1F9A1
 Name=badger
 Comment=Image to be changed to have better proportions
 
-After=🏴
-U+1F3F4 U+200D U+2620
-Name=Pirate Flag
-
+Proposal=L2/17-343
 After=⚛
 U+267E
 Name=infinity
 UName=PERMANENT PAPER SIGN
 Comment=emojification of existing character
 
+Proposal=In-Process
+After=🏴
+U+1F3F4 U+200D U+2620
+Name=Pirate Flag
+
+Proposal=L2/17‑082
 After=👱
 U+1F468 U+200D U+1F9B0 
 Name=man, red haired
