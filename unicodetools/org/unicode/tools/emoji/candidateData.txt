@@ -156,7 +156,7 @@ Keywords=party | horn | hat
 
 U+1F974
 Name=woozy face
-UName=FACE WITH UNEVEN EYES AND WAVY MOUTH
+UName=FACE WITH UNEVEN EYE AND WAVY MOUTH
 Keywords=uneven eyes | wavy mouth | intoxicated | drunk | tipsy | dizzy
 
 #U+1F977

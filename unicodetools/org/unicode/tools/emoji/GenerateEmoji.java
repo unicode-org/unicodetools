@@ -3157,7 +3157,9 @@ public class GenerateEmoji {
                 + PROPOSAL_CAUTION
                 + "<h2>Recent Changes</h2>\n"
                 + "<p>The following changes were made to the draft candidates in the October 2017 UTC meeting. Sample image changes are not yet provided, although comments have been\n"
-                + "added to indicate the pending changes.</p>\n"
+                + "added to indicate the pending changes. If you don’t know about the distinction between <i>emoji characters</i> and <i>emoji sequences</i>, "
+                + "see the <a target='slides' href='http://unicode.org/emoji/slides.html'>Unicode Emoji Slides</a> or "
+                + "<a target='slides' href='https://blog.emojipedia.org/emoji-zwj-sequences-three-letters-many-possibilities/'>Emojipedia</a>.</p>\n"
                 + "<ol>\n"
                 + "<li>The <i>superhero</i> and <i>supervillian</i> were changed from smileys to human-form emoji.</li>\n"
                 + "<li>Two new draft candidate emoji characters were added:\n"
