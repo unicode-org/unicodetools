@@ -438,7 +438,6 @@ Proposal=L2/17-404
 After=🐼
 U+1F9A1
 Name=badger
-Comment=Image to be changed to have better proportions
 
 Proposal=L2/17-343
 After=⚛
