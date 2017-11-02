@@ -2420,11 +2420,12 @@ public class GenerateEmoji {
                 + " | <a target='submitting-emoji' href='../../emoji/selection.html'>Proposing Additions</a>"
                 + "</p>\n"
                 + firstLine
+                + (dataDir == null ? "" : ""
                 + "<p>While these charts use a particular version of the <a target='emoji-data' href='"
                 + dataDir
                 + "'>Unicode Emoji data files</a>, the images and format may be updated at any time."
                 + " For any production usage, those data files should be consulted."
-                + " For more information, see <a target='text' href='index.html'>Index &amp; Help</a>.</p>\n";
+                + " For more information, see <a target='text' href='index.html'>Index &amp; Help</a>.</p>\n");
         out.print(headerLine);
     }
 
@@ -3156,34 +3157,43 @@ public class GenerateEmoji {
                 + "<p><a target='feedback' href='http://unicode.org/reporting.html'>Feedback</a> on the CLDR Short Name, Keywords, ordering, and category is welcome.</p>\n"
                 + PROPOSAL_CAUTION
                 + "<h2>Recent Changes</h2>\n"
-                + "<p>The following changes were made to the draft candidates in the October 2017 UTC meeting. Sample image changes are not yet provided, although comments have been\n"
-                + "added to indicate the pending changes. If you don’t know about the distinction between <i>emoji characters</i> and <i>emoji sequences</i>, "
-                + "see the <a target='slides' href='http://unicode.org/emoji/slides.html'>Unicode Emoji Slides</a> or "
-                + "<a target='slides' href='https://blog.emojipedia.org/emoji-zwj-sequences-three-letters-many-possibilities/'>Emojipedia</a>.</p>\n"
+                + "<p>The following changes were made to the draft candidates in the October 2017 UTC meeting. "
+                + "A few sample image changes are not yet done: comments have been\n"
+                + "added to indicate the pending changes.</p>\n"
                 + "<ol>\n"
-                + "<li>The <i>superhero</i> and <i>supervillian</i> were changed from smileys to human-form emoji.</li>\n"
-                + "<li>Two new draft candidate emoji characters were added:\n"
-                + "  <ol>\n"
-                + "  <li><i>swan</i> and <i>badger</i></li>\n"
-                + "  </ol>\n"
+                + "<li>Two characters were changed from smileys to human-form emoji."
+                + "<ul>\n"
+                + "  <li><i>superhero</i></li>\n"
+                + "  <li><i>supervillian</i></li>\n"
+                + "  </ul>\n"
                 + "</li>\n"
-                + "<li>New draft candidate emoji sequences were added:\n"
-                + "  <ol>\n"
+                + "<li>Two new draft candidate emoji characters were added.\n"
+                + "  <ul>\n"
+                + "  <li><i>swan</i></li>\n"
+                + "  <li><i>badger</i></li>\n"
+                + "  </ul>\n"
+                + "</li>\n"
+                + "<li>New draft candidate emoji sequences were added.\n"
+                + "  <ul>\n"
                 + "  <li>4 gender sequences for <i>superhero</i> and <i>supervillian</i> (two each)</li>\n"
                 + "  <li>10 skin-tone modifier sequences for <i>leg</i> and <i>foot</i> (5 each)</li>\n"
-                + "  <li>48 sequences for combinations of <i>man</i> and <i>woman</i> (2) with <i>skin-tone modifiers</i> (× 6) and the new <i>hair style components</i> (× 6)</li>\n"
+                + "  <li>48 sequences for combinations of <i>man</i> and <i>woman</i> (2) with <i>skin-tone modifiers</i> (× 6) and the new <i>hair style components</i> (× 4)</li>\n"
                 + "  <li><i>pirate flag</i>\n"
-                + "  </ol></li>\n"
-                + "<li>One new draft candidate ‘emojification’ was added:\n"
-                + "  <ol>\n"
+                + "  </ul></li>\n"
+                + "<li>One new draft candidate ‘emojification’ was added.\n"
+                + "  <ul>\n"
                 + "  <li><i>infinity symbol</i></li>\n"
-                + "  </ol></li>\n"
-                + "<li>Three draft candidate emoji were withdrawn <i>as characters</i>, pending review in the January UTC to see if they should be added as ZWJ sequences:\n"
-                + "  <ol>\n"
+                + "  </ul></li>\n"
+                + "<li>Three draft candidate emoji were withdrawn <i>as characters</i>, "
+                + "with a planned review in the January 2018 UTC meeting to see if they should be added as <i>emoji ZWJ sequences</i> instead. "
+                + "(For the distinction between <i>emoji characters</i> and <i>emoji sequences</i>, "
+                + "see the <a target='slides' href='http://unicode.org/emoji/slides.html'>Unicode Emoji Slides</a> (starting with the slide “Variation”) or "
+                + "<a target='slides' href='https://blog.emojipedia.org/emoji-zwj-sequences-three-letters-many-possibilities/'>Emojipedia</a>).\n"
+                + "  <ul>\n"
                 + "  <li><i>question-mark face</i> (aka FROWNING FACE WITH QUESTION MARKS AS EYES)</li>\n"
                 + "  <li><i>ok face</i> (aka GRINNING FACE WITH LETTERS OK AS EYES)</li>\n"
                 + "  <li><i>sad pile of poo</i> (aka FROWNING PILE OF POO)</li>\n"
-                + "  </ol></li>\n"
+                + "  </ul></li>\n"
                 + "<li>Some characters had names or keyword changes for clarity.</li>\n"
                 + "</ol>\n";
         String footer = "";
@@ -3210,7 +3220,7 @@ public class GenerateEmoji {
             showCandidatesTitle = "Emoji Recently Added";
         }
         String dir = future ? Emoji.FUTURE_DIR : Emoji.CHARTS_DIR;
-        String dataDir = future ? Emoji.DATA_DIR_PRODUCTION_BASE : Emoji.DATA_DIR_PRODUCTION;
+        String dataDir = future ? null : Emoji.DATA_DIR_PRODUCTION;
         try (PrintWriter out = FileUtilities.openUTF8Writer(dir, outFileName);) {
             writeHeader(outFileName, out, showCandidatesTitle, null, future, topHeader, dataDir);
             boolean showingChars = false;
