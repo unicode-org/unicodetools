@@ -34,7 +34,7 @@ UName=EMOJI COMPONENT RED HAIR
 Keywords= ginger | redhead
 Emoji_Component
 Comment=For use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences: man/woman/adult (skin-tone) ZWJ red-haired.
-Comment=Image to be changed to have dotted border to indicate use as component
+Comment=Image with dotted border to indicate use as component
 
 U+1F9B1
 Name=curly-haired
@@ -42,7 +42,7 @@ UName=EMOJI COMPONENT CURLY HAIR
 Keywords= afro | curly | ringlets
 Emoji_Component
 Comment=For use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences: man/woman/adult (skin-tone) ZWJ curly-haired.
-Comment=Image to be changed to have dotted border to indicate use as component
+Comment=Image with dotted border to indicate use as component
 
 U+1F9B3
 Name=white-haired
@@ -50,7 +50,7 @@ UName=→ EMOJI COMPONENT WHITE HAIR
 Keywords= gray | white | hair
 Emoji_Component
 Comment=For use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences: man/woman/adult (skin-tone) ZWJ white-haired.
-Comment=Image to be changed to have dotted border to indicate use as component
+Comment=Image with dotted border to indicate use as component
 
 U+1F9B2
 Name=bald
@@ -58,7 +58,7 @@ UName=EMOJI COMPONENT BALD
 Keywords= shaven | hairless | no hair
 Emoji_Component
 Comment=For use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences: man/woman/adult (skin-tone) ZWJ bald.
-Comment=Image to be changed to have dotted border to indicate use as component
+Comment=Image with dotted border to indicate use as component
 
 After=🔮
 Proposal=L2/17-058
@@ -124,29 +124,29 @@ U+1F9B8
 Name=superhero
 UName=SUPERHERO
 Keywords=hero | heroine | cape | good guy | white hat
-Comment=Image to be changed to be humanform, without visible skin
+
 
 U+1F9B8 200D 2642 FE0F
 Name=man superhero
-Comment=Image to be changed to be humanform, without visible skin
+
 
 U+1F9B8 200D 2640 FE0F
 Name=woman superhero
-Comment=Image to be changed to be humanform, without visible skin
+
 
 U+1F9B9
 Name=supervillain
 UName=SUPERVILLAIN
 Keywords=villain | bandit | bad guy | black hat
-Comment=Image to be changed to be humanform, without visible skin
+
  
 U+1F9B9 200D 2642 FE0F
 Name=man supervillain
-Comment=Image to be changed to be humanform, without visible skin
+
 
 U+1F9B9 200D 2640 FE0F
 Name=woman supervillain
-Comment=Image to be changed to be humanform, without visible skin
+
  
 After=🤠
 U+1F973
