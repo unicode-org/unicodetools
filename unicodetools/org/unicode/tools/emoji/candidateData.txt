@@ -156,7 +156,7 @@ Keywords=party | horn | hat
 
 U+1F974
 Name=woozy face
-UName=FACE WITH UNEVEN EYE AND WAVY MOUTH
+UName=FACE WITH UNEVEN EYES AND WAVY MOUTH
 Keywords=uneven eyes | wavy mouth | intoxicated | drunk | tipsy | dizzy
 
 #U+1F977
@@ -266,9 +266,9 @@ U+1F99A
 Name=peacock
 Keywords=peahen
 
+Proposal=L2/17-280, Proposal=L2/17-281
 U+1F99C
 Name=PARROT
-Proposal=L2/17-280, Proposal=L2/17-281
 
 Proposal=L2/17-263
 After=🦏
