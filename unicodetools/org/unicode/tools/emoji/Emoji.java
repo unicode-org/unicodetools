@@ -150,6 +150,7 @@ public class Emoji {
     public static final String DATA_DIR_PRODUCTION_BASE = "http://unicode.org/Public/emoji/";
     public static final String DATA_DIR_PRODUCTION = DATA_DIR_PRODUCTION_BASE + VERSION_STRING + "/";
 
+    public static final String IMAGES_SOURCE_DIR_SVG = Settings.UNICODETOOLS_DIRECTORY + "data/images/svg/";
     static final String IMAGES_OUTPUT_DIR = TR51_SVN_DIR + "images/";
 
     public enum ModifierStatus {
@@ -175,7 +176,8 @@ public class Emoji {
         emojipedia, emojixpress,
         ref, emojination, adobe, sample, proposed, 
         // gifs; don't change order!
-        gmail("GMail"), sb("SB", "SoftBank"), dcm("DCM", "DoCoMo"), kddi("KDDI", "KDDI");
+        gmail("GMail"), sb("SB", "SoftBank"), dcm("DCM", "DoCoMo"), kddi("KDDI", "KDDI"),
+        svg;
 
         static final Set<Source> OLD_SOURCES = ImmutableSet.copyOf(
                 EnumSet.of(gmail, sb, dcm, kddi)); // do this to get same order as Source
@@ -237,6 +239,20 @@ public class Emoji {
         @Override
         public String toString() {
             return longName;
+        }
+        public String getFullPrefix() {
+            return this == svg ? "svg/emoji_u"
+                    : getPrefix() + "/" + getPrefix() + "_";
+        }
+        
+        public String getSuffix() {
+            return isGif() ? ".gif" : this == Source.svg ? ".svg" : ".png";
+        }
+        public String getImageFileName(String cp) {
+                return getFullPrefix() + buildFileName(cp, "_") + getSuffix();
+        }
+        public String getImageDirectory() {
+            return this == svg ? Emoji.IMAGES_SOURCE_DIR_SVG : Emoji.IMAGES_OUTPUT_DIR;
         }
     }
 
@@ -540,11 +556,8 @@ public class Emoji {
         }
 
         String core = buildFileName(chars, "_");
-        String suffix = ".png";
-        if (type != null && type.isGif()) {
-            suffix = ".gif";
-        }
-        return type.getPrefix() + "/" + type.getPrefix() + "_" + core + suffix;
+        String suffix = type.getSuffix();
+        return type.getFullPrefix() + core + suffix;
     }
 
     static String getFlagCode(String chars) {
@@ -710,6 +723,6 @@ public class Emoji {
         return b.toString();
     }
 
-    static final String TR51_HTML = IS_BETA ? "../../reports/tr51/proposed.html" : "http://unicode.org/reports/tr51/tr51-12.html";
-
+    public static final String TR51_HTML_BETA = "../../reports/tr51/proposed.html";
+    public static final String TR51_HTML = IS_BETA ? TR51_HTML_BETA : "http://unicode.org/reports/tr51/tr51-12.html";
 }

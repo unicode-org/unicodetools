@@ -323,12 +323,8 @@ public class EmojiData {
             emojiWithVariants.freeze();
 
             if (version.compareTo(Emoji.VERSION4) >= 0) {
-                String dir = directory;
-                String name = "emoji-extended-data.txt";
-                if (version.compareTo(Emoji.VERSION11) < 0) {
-                    dir = dir + "/source";
-                    name = "ExtendedPictographic.txt";
-                }
+                String dir = directory + "/source";
+                String name = "ExtendedPictographic.txt";
                 for (String line : FileUtilities.in(dir, name)) {
                     //# Code ;  Default Style ; Ordering ;  Annotations ;   Sources #Version Char Name
                     // U+263A ;    text ;  0 ; face, human, outlined, relaxed, smile, smiley, smiling ;    jw  # V1.1 (☺) white smiling face

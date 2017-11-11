@@ -233,7 +233,7 @@ public class EmojiFlagOrder {
         StringBuilder emojiList = new StringBuilder();
         final String outFileName = "flag-emoji-list.html";
         try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, outFileName)) {
-            GenerateEmoji.writeHeader(outFileName, out, "Emoji Flags", null, false, "<p>" + "Flag list. " + "</p>\n", Emoji.DATA_DIR_PRODUCTION);
+            GenerateEmoji.writeHeader(outFileName, out, "Emoji Flags", null, false, "<p>" + "Flag list. " + "</p>\n", Emoji.DATA_DIR_PRODUCTION, Emoji.TR51_HTML);
             out.println("<table " + "border='1'" + ">");
             out.println("<html><body><table border='1px'>");
             for (Pair<ImageInfo, String> colorChar : sorted) {
