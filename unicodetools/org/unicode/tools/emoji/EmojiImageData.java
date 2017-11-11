@@ -18,6 +18,7 @@ import org.unicode.tools.emoji.Emoji.Source;
 import org.unicode.tools.emoji.GenerateEmoji.Style;
 import org.unicode.tools.emoji.GenerateEmoji.Visibility;
 
+import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
@@ -32,6 +33,11 @@ public class EmojiImageData {
 		this.fileName = fileName;
 	}
 
+	@Override
+	public String toString() {
+	    return fileName;
+	}
+	
 	public static UnicodeSet getSupported(Source source) {
 		return load(source).keySet();
 	}
@@ -51,7 +57,7 @@ public class EmojiImageData {
 		if (data == null) {
 			return null;
 		}
-		return getDataUrl(data.fileName);
+		return getDataUrlFromFilename(source, data.fileName);
 	}
 
 	public static String getDataUrl(Source source, int cp) {
@@ -59,7 +65,7 @@ public class EmojiImageData {
 		if (data == null) {
 			return null;
 		}
-		return getDataUrl(data.fileName);
+		return getDataUrlFromFilename(source, data.fileName);
 	}
 
 	private static UnicodeMap<EmojiImageData> load(Source source) {
@@ -69,34 +75,28 @@ public class EmojiImageData {
 		}
 		haveData = new UnicodeMap<EmojiImageData>();
 		for (String cp : EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives()) {
-			String core = Emoji.buildFileName(cp, "_");
-			String suffix = ".png";
-			if (source.isGif()) {
-				suffix = ".gif";
-			}
-			final String filename = source.getPrefix() + "/" + source.getPrefix() + "_" + core + suffix;
-			final File file = new File(EmojiImageData.getImageDirectory(filename), filename);
+			final String filename = source.getImageFileName(cp);
+			final File file = new File(source.getImageDirectory(), filename);
 			if (file.exists()) {
 				haveData.put(cp, new EmojiImageData(filename));
 			}
 		}
-		return haveData.freeze();
+		DATA.put(source, haveData.freeze());
+		return haveData;
 	}
 
-	static String getImageDirectory(String filename) {
-		return Emoji.IMAGES_OUTPUT_DIR;
-	}
-
-	static String getDataUrl(String filename) {
+	static String getDataUrlFromFilename(Source source, String filename) {
 		try {
 			String result = EmojiImageData.IMAGE_CACHE.get(filename);
 			if (result == null) {
-				final File file = new File(EmojiImageData.getImageDirectory(filename), filename);
+				final File file = new File(source.getImageDirectory(), filename);
 				if (!file.exists()) {
 					result = "";
 				} else if (!GenerateEmoji.DATAURL) {
 					result = "data:image/gif;base64,R0lGODlhAQABAPAAABEA3v///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="; 
 					// "../images/" + filename;
+                } else if (source == Source.svg) {
+                    result = CollectionUtilities.join(Files.readAllLines(file.toPath()), "\n");
 				} else {
 					byte[] bytes = GenerateEmoji.RESIZE_IMAGE <= 0 ? Files.readAllBytes(file.toPath())
 							: LoadImage.resizeImage(file, GenerateEmoji.RESIZE_IMAGE, GenerateEmoji.RESIZE_IMAGE);
@@ -117,7 +117,7 @@ public class EmojiImageData {
 
 		final String outFileName = "missing-emoji-list.html";
 		try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, outFileName)) {
-			GenerateEmoji.writeHeader(outFileName, out, "Missing", null, false, "<p>Missing list of emoji characters.</p>\n", Emoji.DATA_DIR_PRODUCTION);
+			GenerateEmoji.writeHeader(outFileName, out, "Missing", null, false, "<p>Missing list of emoji characters.</p>\n", Emoji.DATA_DIR_PRODUCTION, Emoji.TR51_HTML);
             out.println("<table " + "border='1'" + ">");
 			String headerRow = "<tr><th>Type</th>";
 			for (Emoji.Source type : platforms2) {
