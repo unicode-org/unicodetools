@@ -62,7 +62,7 @@ public class Emoji {
     /**
      * Constants for versions
      */
-    public static final VersionInfo VERSION6 = VersionInfo.getInstance(6);
+    public static final VersionInfo VERSION11 = VersionInfo.getInstance(11);
     public static final VersionInfo VERSION5 = VersionInfo.getInstance(5);
     public static final VersionInfo VERSION4 = VersionInfo.getInstance(4);
     public static final VersionInfo VERSION3 = VersionInfo.getInstance(3);
@@ -79,10 +79,10 @@ public class Emoji {
      */
     public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION4;
     public static final VersionInfo VERSION_LAST_RELEASED = VERSION5;
-    public static final VersionInfo VERSION_BETA = VERSION6;
+    public static final VersionInfo VERSION_BETA = VERSION11;
 
     public static Map<VersionInfo, VersionInfo> EMOJI_TO_UNICODE_VERSION = ImmutableMap.<VersionInfo, VersionInfo>builder()
-            .put(VERSION6, UCD10)
+            .put(VERSION11, UCD10)
             .put(VERSION5, UCD10)
             .put(VERSION4, UCD9)
             .put(VERSION3, UCD9)
@@ -91,7 +91,7 @@ public class Emoji {
             .build();
 
     public final static Map<VersionInfo, String> EMOJI_TO_DATE = ImmutableMap.<VersionInfo, String>builder()
-            .put(VERSION6, "2017H2")
+            .put(VERSION11, "2017H2")
             .put(VERSION5, "2017-06-20")
             .put(VERSION4, "2016-11-22")
             .put(VERSION3, "2016-06-03")
