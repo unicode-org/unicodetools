@@ -325,7 +325,7 @@ public class EmojiData {
             if (version.compareTo(Emoji.VERSION4) >= 0) {
                 String dir = directory;
                 String name = "emoji-extended-data.txt";
-                if (version.compareTo(Emoji.VERSION6) < 0) {
+                if (version.compareTo(Emoji.VERSION11) < 0) {
                     dir = dir + "/source";
                     name = "ExtendedPictographic.txt";
                 }
@@ -376,7 +376,7 @@ public class EmojiData {
             //emojiRegionalIndicators.addAll(emojiData.getKeys(EmojiProp.Emoji_Regional_Indicator)).freeze();
             emojiComponents.addAll(emojiData.getKeys(EmojiProp.Emoji_Component)).freeze();
 
-            if (version.compareTo(Emoji.VERSION6) >= 0 
+            if (version.compareTo(Emoji.VERSION11) >= 0 
                     && !new UnicodeSet(emojiComponents).removeAll(MODIFIERS).equals(Emoji.DEFECTIVE)) {
                 throw new IllegalArgumentException("Bad components or defectives\n" + emojiComponents + "\n" + Emoji.DEFECTIVE);
             }
@@ -1050,15 +1050,15 @@ public class EmojiData {
     }
 
     public static void main(String[] args) {
-        EmojiData v5 = new EmojiData(Emoji.VERSION6); 
+        EmojiData v5 = new EmojiData(Emoji.VERSION11); 
         UnicodeMap<Integer> yearData = v5.getYears();
         for (Integer value : new TreeSet<Integer>(yearData.values())) {
             System.out.println(value + "\t" + yearData.getSet(value));
         }
         if (SKIP) return;
 
-        EmojiData v6 = new EmojiData(Emoji.VERSION6);
-        EmojiOrder order6 = EmojiOrder.of(Emoji.VERSION6);
+        EmojiData v6 = new EmojiData(Emoji.VERSION11);
+        EmojiOrder order6 = EmojiOrder.of(Emoji.VERSION11);
         UnicodeSet Uv7 = new UnicodeSet("[:age=7.0:]");
         UnicodeSet newItems6 = new UnicodeSet(v6.allEmojiWithoutDefectivesOrModifiers).addAll(CandidateData.getInstance().getCharacters());
         for (String s : newItems6) {

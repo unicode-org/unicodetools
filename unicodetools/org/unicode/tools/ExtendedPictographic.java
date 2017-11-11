@@ -29,7 +29,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 
 class ExtendedPictographic {
-	static final EmojiData emojiData = EmojiData.of(Emoji.VERSION6);
+	static final EmojiData emojiData = EmojiData.of(Emoji.VERSION11);
 	
 	static final UnicodeSet GLUE_AFTER_ZWJ = new UnicodeSet();
 	static String HEADER;

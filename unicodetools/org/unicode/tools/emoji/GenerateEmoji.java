@@ -3141,7 +3141,8 @@ public class GenerateEmoji {
                 + "<a target='_blank' href='../selection.html'>Submitting Emoji Character Proposals</a>. \n"
                 + "That page also describes the <a href='../selection.html#timeline'>Process and Timeline</a> for proposals.</p>"
                 + "<h2>Background</h2>\n"
-                + "<p><i>Provisional candidates</i> are subject to prioritization, and may not included be in the next release of Unicode."
+                + "<p><i>Provisional candidates</i> are subject to prioritization, and may not included be in the next release of Unicode. "
+                + "Temporary IDs are assigned, not code points."
                 + " <i>Draft candidates</i> are “short-listed”, and have been assigned draft code points, but are still subject to change or removal."
                 + " <i>Final candidates</i> will be in the next release of Unicode, but do not have final code points or properties."
                 + "</p>"
@@ -3157,9 +3158,8 @@ public class GenerateEmoji {
                 + "<p><a target='feedback' href='http://unicode.org/reporting.html'>Feedback</a> on the CLDR Short Name, Keywords, ordering, and category is welcome.</p>\n"
                 + PROPOSAL_CAUTION
                 + "<h2>Recent Changes</h2>\n"
-                + "<p>The following changes were made to the draft candidates in the October 2017 UTC meeting. "
-                + "A few sample image changes are not yet done: comments have been\n"
-                + "added to indicate the pending changes.</p>\n"
+                + "<p>The following changes were made in the October 2017 UTC meeting to the draft candidates for 2018. "
+                + "Comments may be included to indicate the pending changes or other information.</p>\n"
                 + "<ol>\n"
                 + "<li>Two characters were changed from smileys to human-form emoji."
                 + "<ul>\n"
@@ -3195,7 +3195,18 @@ public class GenerateEmoji {
                 + "  <li><i>sad pile of poo</i> (aka FROWNING PILE OF POO)</li>\n"
                 + "  </ul></li>\n"
                 + "<li>Some characters had names or keyword changes for clarity.</li>\n"
-                + "</ol>\n";
+                + "</ol>\n"
+                + "<p>The following changes were made in the October 2017 UTC meeting to the provisional candidates for 2019. "
+                + "</p>\n"
+                + "<ol>\n"
+                + "<li>Two characters were added."
+                + "<ul>\n"
+                + "  <li><i>hindu temple</i></li>\n"
+                + "  <li><i>diving mask</i></li>\n"
+                + "  </ul>\n"
+                + "</li>\n"
+                + "</ol>\n"
+                ;
         String footer = "";
         // "<p>Thanks to submitters for the color sample glyphs.</p>";
 
@@ -3257,11 +3268,12 @@ public class GenerateEmoji {
                     if (inTable) {
                         out.println("</table>");
                         ce.showCounts(out, false);
+                        count = 0;
                         ce = new CountEmoji();
                         inTable = false;
                     }
                     out.println("<h2>" + getDoubleLink(status.toString()) + "</h2>");
-                    out.println("<p>" + status.comment + "</p>");
+                    //out.println("<p>" + status.comment + "</p>");
                     oldStatus = status;
                 }
                 ce.add(source, candidateData);

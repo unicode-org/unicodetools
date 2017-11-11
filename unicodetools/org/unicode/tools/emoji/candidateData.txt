@@ -553,3 +553,19 @@ Name=woman, bald: medium-dark skin tone
 U+1F469 U+1F3FF U+200D U+1F9B2 
 Name=woman, bald: dark skin tone
 
+Status=Provisional Candidates
+
+Proposal=L2/17-381
+After=🎣
+U+101900
+Name=diving mask
+UName=DIVING MASK AND SNORKEL
+Keywords= diving | scuba | snorkeling
+
+Proposal=L2/17-298
+After=🕌
+U+101901
+Name=hindu temple
+UName=HINDU TEMPLE
+Keywords= hindu | temple
+

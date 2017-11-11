@@ -145,8 +145,8 @@ public class CountEmoji {
         return;
     }
     private static final String TABLE_TOTALS2 = 
-            "<h2><a href='#totals' name='totals'>Totals</a></h2>\n"
-            + "<p>Totals for the above emoji. For more information, see <a href='../format.html#col-totals'>Totals</a>.</p>\n";
+            "<h3><a target='text' href='#totals' name='totals'>Totals</a></h3>\n"
+            + "<p>Totals for the above emoji. For information on the categories, see <a href='../format.html#col-totals'>Totals</a>.</p>\n";
 
     public void showCounts(PrintWriter out, boolean showCharacters) {
         out.println(TABLE_TOTALS2 + "<table>\n");

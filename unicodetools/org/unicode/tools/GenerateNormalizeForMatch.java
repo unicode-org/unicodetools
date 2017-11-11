@@ -214,7 +214,7 @@ public class GenerateNormalizeForMatch {
         checkNewCurated(curated, newCurated);
         //    private static final NormalizeForMatch ADDITIONS_TO_NFKCCF = NormalizeForMatch.load("XNFKCCF-Curated.txt");
 
-        computeCandidateFile(Age_Values.V9_0);
+        computeCandidateFile(Age_Values.V10_0);
         //if (true) return;
         //        printData();
         //        showItemsIn(new UnicodeSet(N4M.keySet()).addAll(TRIAL.keySet()));
