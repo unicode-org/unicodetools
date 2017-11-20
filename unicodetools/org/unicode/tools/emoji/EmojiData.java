@@ -49,7 +49,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
-public class EmojiData {
+public class EmojiData implements EmojiDataSource {
     public static final String SAMPLE_WITHOUT_TRAILING_EVS = "👮🏻‍♀";
     public static final AnnotationSet ANNOTATION_SET = Annotations.getDataSet("en");
 
@@ -861,8 +861,10 @@ public class EmojiData {
         return _getName(source, false, CandidateData.getInstance());
     }
 
+    static final String DEBUG_STRING = UTF16.valueOf(0x1F970);
+    
     private String _getName(String source, boolean toLower, Transform<String,String> otherNameSource) {
-        if (source.contains("🧙")) {
+        if (source.contains(DEBUG_STRING)) {
             int debug = 0;
         }
         String name = ANNOTATION_SET.getShortName(source, otherNameSource);
@@ -1326,5 +1328,10 @@ public class EmojiData {
             }
         }
         return years;
+    }
+
+    public String getUnicodeName(String s) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

@@ -48,8 +48,8 @@ public class GenerateEmojiKeyboard {
 			}
 		}
 		System.out.println();
-		GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, Target.propFile, Emoji.DATA_DIR_PRODUCTION);
-		GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, Target.csv, Emoji.TR51_INTERNAL_DIR + "keyboard");
+		GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, EmojiOrder.STD_ORDER.emojiData.getSortingChars(), Target.propFile, Emoji.DATA_DIR_PRODUCTION);
+		GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, EmojiOrder.STD_ORDER.emojiData.getSortingChars(), Target.csv, Emoji.TR51_INTERNAL_DIR + "keyboard");
 		//        boolean foo2 = EmojiData.EMOJI_DATA.getChars().contains(EmojiData.SAMPLE_WITHOUT_TRAILING_EVS);
 		//        Set<String> foo = EmojiOrder.sort(EmojiOrder.STD_ORDER.codepointCompare, 
 		//                EmojiData.EMOJI_DATA.getChars());
@@ -161,13 +161,9 @@ public class GenerateEmojiKeyboard {
 			totals.totalNoModNoSign = 0;
 		}
 	}
-
-	public static void showLines(EmojiOrder emojiOrder, Target target, String directory) throws IOException {
-		Set<String> retain = ImmutableSet.copyOf(
-				new UnicodeSet(emojiOrder.emojiData
-						.getSortingChars())
-				.removeAll(EmojiData.MODIFIERS)
-				.addAllTo(new HashSet<String>()));
+	
+	public static void showLines(EmojiOrder emojiOrder, UnicodeSet charactersToInclude, Target target, String directory) throws IOException {
+		Set<String> retain = ImmutableSet.copyOf(charactersToInclude.addAllTo(new HashSet<String>()));
 
 		UnicodeSet charactersNotShown = new UnicodeSet().addAll(retain);
 		EmojiOrder.MajorGroup lastMajorGroup = null;

@@ -481,13 +481,19 @@ public class GenerateEmoji {
             // if (type == Source.ref && getFlagCode(chars) != null) {
             // className = "imgf";
             // }
-            return "<img alt='" + chars + "'"
-            + (useDataUrl
-                    ? " class='" + className + extraClasses + (ARE_NEW.contains(chars) ? " new" : "") + "'"
-                            // : " height=\"24\" width=\"auto\""
-                            : " class='imga" + (ARE_NEW.contains(chars) ? " new" : "") + "'")
-            + " src='" + (useDataUrl ? EmojiImageData.getDataUrlFromFilename(type, filename) : "../images/" + filename) + "'"
-            + " title='" + getCodeCharsAndName(chars, " ") + "'" + ">";
+            String src = type == Emoji.Source.svg 
+                    ? "../../../../unicodetools/data/images/" + filename
+                            : useDataUrl 
+                            ? EmojiImageData.getDataUrlFromFilename(type, filename) 
+                                    : "../images/" + filename;
+                            // x
+                            return "<img alt='" + chars + "'"
+                            + (useDataUrl
+                                    ? " class='" + className + extraClasses + (ARE_NEW.contains(chars) ? " new" : "") + "'"
+                                            // : " height=\"24\" width=\"auto\""
+                                            : " class='imga" + (ARE_NEW.contains(chars) ? " new" : "") + "'")
+                            + " src='" + src + "'"
+                            + " title='" + getCodeCharsAndName(chars, " ") + "'" + ">";
         }
         return null;
     }
@@ -702,6 +708,7 @@ public class GenerateEmoji {
         System.out.println("internal stuff");
         FileUtilities.copyFile(GenerateEmoji.class, "emoji-list.css", Emoji.TR51_INTERNAL_DIR);
         showOrdering(Style.bestImage, Visibility.internal, CandidateStyle.released);
+        showOrdering(Style.svg, Visibility.internal, CandidateStyle.released);
         EmojiImageData.write(Source.VENDOR_SOURCES);
         printCollationOrder();
         showConstructedNames();
@@ -1416,7 +1423,7 @@ public class GenerateEmoji {
         int count = -1;
         for (String s : sorted) {
             ++count;
-            if (count > 30) {
+            if (count > 20) {
                 result.append('\n');
                 count = 0;
             } else if (count > 0) {
@@ -2212,7 +2219,13 @@ public class GenerateEmoji {
                     gotTitle = true;
                     break;
                 case svg:
+                    if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
+                        int debug = 0;
+                    }
                     cell = getImage(Emoji.Source.svg, s, s, true, extraClasses);
+                    if (cell == null) {
+                        continue;
+                    }
                     gotTitle = true;
                     break;
                 case refImage:
@@ -2221,7 +2234,7 @@ public class GenerateEmoji {
                     break;
                 }
             }
-            if (link != null) {
+            if (link != null && showEmoji != Style.svg) {
                 cell = "<a" + classString + " href='" + link + "#" + Emoji.buildFileName(s, "_") + "' target='" + target
                         + "'>" + cell + "</a>";
             }
@@ -2433,11 +2446,11 @@ public class GenerateEmoji {
                 + "</p>\n"
                 + firstLine
                 + (dataDir == null ? "" : ""
-                + "<p>While these charts use a particular version of the <a target='emoji-data' href='"
-                + dataDir
-                + "'>Unicode Emoji data files</a>, the images and format may be updated at any time."
-                + " For any production usage, those data files should be consulted."
-                + " For more information, see <a target='text' href='index.html'>Index &amp; Help</a>.</p>\n");
+                        + "<p>While these charts use a particular version of the <a target='emoji-data' href='"
+                        + dataDir
+                        + "'>Unicode Emoji data files</a>, the images and format may be updated at any time."
+                        + " For any production usage, those data files should be consulted."
+                        + " For more information, see <a target='text' href='index.html'>Index &amp; Help</a>.</p>\n");
         out.print(headerLine);
     }
 
