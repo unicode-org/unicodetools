@@ -44,7 +44,8 @@ import com.ibm.icu.util.VersionInfo;
 public class Emoji {
 
     static final boolean ABBR = CldrUtility.getProperty("emoji-abbr", false);
-
+    //static final boolean EMOJI_BUILD_VERSION = CldrUtility.getProperty("emoji-version", false);
+    
     /**
      * Change the following according to whether we are generating the beta version of files, or the new version.
      * We support generating the last version in order to make improvements to the charts.
@@ -150,7 +151,7 @@ public class Emoji {
     public static final String DATA_DIR_PRODUCTION_BASE = "http://unicode.org/Public/emoji/";
     public static final String DATA_DIR_PRODUCTION = DATA_DIR_PRODUCTION_BASE + VERSION_STRING + "/";
 
-    public static final String IMAGES_SOURCE_DIR_SVG = Settings.UNICODETOOLS_DIRECTORY + "data/images/svg/";
+    public static final String IMAGES_SOURCE_DIR_SVG = Settings.UNICODETOOLS_DIRECTORY + "data/images/";
     static final String IMAGES_OUTPUT_DIR = TR51_SVN_DIR + "images/";
 
     public enum ModifierStatus {
@@ -218,6 +219,9 @@ public class Emoji {
         }
 
         String getClassAttribute(String chars) {
+            if (this == Source.svg) {
+                return "imga";
+            }
             if (isGif()) {
                 return "imgs";
             }
@@ -241,12 +245,12 @@ public class Emoji {
             return longName;
         }
         public String getFullPrefix() {
-            return this == svg ? "svg/emoji_u"
+            return this == svg ? "svg/emoji_"
                     : getPrefix() + "/" + getPrefix() + "_";
         }
         
         public String getSuffix() {
-            return isGif() ? ".gif" : this == Source.svg ? ".svg" : ".png";
+            return this == Source.svg ? ".svg" : isGif() ? ".gif" : ".png";
         }
         public String getImageFileName(String cp) {
                 return getFullPrefix() + buildFileName(cp, "_") + getSuffix();
@@ -277,6 +281,7 @@ public class Emoji {
 
     public static final int TAG_BASE = 0xE0000;
     public static final int TAG_TERM_CHAR = 0xE007F;
+    public static final UnicodeSet TAGS = new UnicodeSet(TAG_BASE, TAG_TERM_CHAR).freeze();
     public static final String TAG_TERM = UTF16.valueOf(TAG_TERM_CHAR);
 
     public static final char KEYCAP_MARK = '\u20E3';
@@ -725,4 +730,13 @@ public class Emoji {
 
     public static final String TR51_HTML_BETA = "../../reports/tr51/proposed.html";
     public static final String TR51_HTML = IS_BETA ? TR51_HTML_BETA : "http://unicode.org/reports/tr51/tr51-12.html";
+
+    public static String getHexFromSubdivision(String string) {
+        string = string.toLowerCase(Locale.ROOT).replace("-","");
+        StringBuilder result = new StringBuilder().appendCodePoint(0x1F3F4);
+        for (int cp : CharSequences.codePoints(string)) {
+            result.appendCodePoint(TAG_BASE + cp);
+        }
+        return result.appendCodePoint(TAG_TERM_CHAR).toString();
+    }
 }

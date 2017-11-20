@@ -15,6 +15,7 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeRelation.SetMaker;
+import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeRelation;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
@@ -33,7 +34,8 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
 
-public class CandidateData implements Transform<String, String> {
+public class CandidateData implements Transform<String, String>, EmojiDataSource {
+    private static final UnicodeSet ZWJ_SET = new UnicodeSet(Emoji.JOINER,Emoji.JOINER);
     private static final Splitter SPLITTER_COMMA = Splitter.on(',').trimResults().omitEmptyStrings();
     private static final Joiner JOIN_COMMA = Joiner.on(", ");
     static final Splitter barSplit = Splitter.on('|').trimResults();
@@ -102,6 +104,9 @@ public class CandidateData implements Transform<String, String> {
     private final UnicodeMap<Status> statuses = new UnicodeMap<>();
     private final UnicodeSet characters = new UnicodeSet();
     private final UnicodeSet allCharacters = new UnicodeSet();
+    private final UnicodeSet allNonProvisional = new UnicodeSet();
+    private final UnicodeSet textPresentation = new UnicodeSet();
+    private UnicodeSet provisional = new UnicodeSet();
     private final UnicodeSet emoji_Modifier_Base = new UnicodeSet();
     private final UnicodeSet emoji_Gender_Base = new UnicodeSet();
     private final UnicodeSet emoji_Component = new UnicodeSet();
@@ -134,7 +139,10 @@ public class CandidateData implements Transform<String, String> {
                         throw new IllegalArgumentException(Utility.hex(source) + " occurs twice");
                     }
                     statuses.put(source, status);
-                    characters.add(source);
+                    allCharacters.add(source);
+                    if (source.codePointCount(0, source.length()) == 1) {
+                        characters.add(source);
+                    }
                     quarters.put(source, quarter);
                     after.put(source, afterItem);
                     proposal.put(source, ImmutableSet.copyOf(SPLITTER_COMMA.split(proposalItem.replace('-', '\u2011'))));
@@ -207,16 +215,13 @@ public class CandidateData implements Transform<String, String> {
                         annotations.addAll(source, cleanKeywords);
                         break;
                     case "Emoji_Modifier_Base": 
-                        emoji_Modifier_Base.add(source);
-                        attributes.add(source, "∈ modifier_base");
+                        addAttribute(source, emoji_Modifier_Base, "∈ modifier_base");
                         break;
                     case "Emoji_Gender_Base": 
-                        emoji_Gender_Base.add(source);
-                        attributes.add(source, "∈ gender_base");
+                        addAttribute(source, emoji_Gender_Base, "∈ gender_base");
                         break;
                     case "Emoji_Component": 
-                        emoji_Component.add(source);
-                        attributes.add(source, "∈ component");
+                        addAttribute(source, emoji_Component, "∈ component");
                         break;
                     case "Comment":
                         String oldComment = comments.get(source);
@@ -249,11 +254,32 @@ public class CandidateData implements Transform<String, String> {
         quarters.freeze();
         characters.freeze();
         allCharacters.freeze();
+        provisional = statuses.getSet(Status.Provisional_Candidates);
+        for (String s : allCharacters) {
+            if (!provisional.contains(s)) {
+                allNonProvisional.add(s);
+            }
+        }
+        UnicodeMap<Age_Values> ages = Emoji.LATEST.loadEnum(UcdProperty.Age, Age_Values.class);
+        for (String s : allCharacters) {
+            Age_Values age = ages.get(s);
+            if (age != Age_Values.Unassigned) {
+                textPresentation.add(s);
+            }
+        }
+        textPresentation.freeze();
 
         emoji_Modifier_Base.freeze();
         emoji_Gender_Base.freeze();
         emoji_Component.freeze();
         proposal.freeze();
+    }
+
+    private void addAttribute(String source, UnicodeSet unicodeSet, String title) {
+        if (source.codePointCount(0, source.length()) == 1) {
+            unicodeSet.add(source);
+            attributes.add(source, title);
+        }
     }
 
     private void addCombo(String cp, String combo) {
@@ -543,4 +569,106 @@ public class CandidateData implements Transform<String, String> {
         return temp == null ? temp : temp.toLowerCase(Locale.ROOT);
     }
 
+    enum MatchInclusion {includeFilterMatches, excludeFilterMatches}
+
+    private UnicodeSet addWithCharFilter(UnicodeSet source, UnicodeSet includeFilter) {
+        return addWithCharFilter(source, includeFilter, null);
+    }
+
+    private UnicodeSet addWithCharFilter(UnicodeSet source, UnicodeSet includeFilter, UnicodeSet excludeFilter) {
+        UnicodeSet result = new UnicodeSet();
+        for (String s : source) {
+            if ((includeFilter == null || includeFilter.containsSome(s)) 
+                    && (excludeFilter == null || !excludeFilter.containsSome(s))) {
+                result.add(s);
+            }
+        }
+        return result.freeze();
+    }
+
+
+    @Override
+    public UnicodeSet getEmojiComponents() {
+        return addWithCharFilter(emoji_Component, null, provisional);
+    }
+
+    @Override
+    public UnicodeSet getSingletonsWithDefectives() {
+        return addWithCharFilter(characters, null, provisional);
+    }
+
+    @Override
+    public UnicodeSet getEmojiPresentationSet() {
+        return addWithCharFilter(addWithCharFilter(characters, null, provisional), null, getTextPresentationSet());
+    }
+
+    @Override
+    public UnicodeSet getModifierBases() {
+        return addWithCharFilter(emoji_Modifier_Base, null, provisional);
+    }
+
+    @Override
+    public UnicodeSet getExtendedPictographic() {
+        return addWithCharFilter(characters, null, provisional);
+    }
+
+    @Override
+    public UnicodeSet getTagSequences() {
+        return addWithCharFilter(allNonProvisional, Emoji.TAGS);
+    }
+
+    @Override
+    public UnicodeSet getModifierSequences() {
+        return addWithCharFilter(allNonProvisional, EmojiData.MODIFIERS, ZWJ_SET);
+    }
+
+    @Override
+    public UnicodeSet getFlagSequences() {
+        return addWithCharFilter(allNonProvisional, Emoji.REGIONAL_INDICATORS);
+    }
+
+    @Override
+    public UnicodeSet getZwjSequencesNormal() {
+        return addWithCharFilter(allNonProvisional, ZWJ_SET);
+    }
+
+    @Override
+    public UnicodeSet getEmojiWithVariants() {
+        return addWithCharFilter(allNonProvisional, Emoji.REGIONAL_INDICATORS);
+    }
+
+    @Override
+    public UnicodeSet getAllEmojiWithoutDefectives() {
+        return addWithCharFilter(allNonProvisional, getEmojiComponents());
+    }
+
+    @Override
+    public UnicodeSet getTextPresentationSet() {
+        return addWithCharFilter(textPresentation, null, provisional);
+    }
+
+    @Override
+    public UnicodeSet getAllEmojiWithDefectives() {
+        return allNonProvisional;
+    }
+
+    @Override
+    public UnicodeSet getGenderBases() {
+        return addWithCharFilter(emoji_Gender_Base, null, provisional);
+    }
+
+    @Override
+    public UnicodeSet getSingletonsWithoutDefectives() {
+        return addWithCharFilter(characters, allNonProvisional, getEmojiComponents());
+    }
+
+    @Override
+    public UnicodeMap<String> getRawNames() {
+        return names;
+    }
+    
+    public String getUnicodeName(String source) {
+        String item = unames.get(source);
+        return item != null ? item : names.get(source);
+    }
 }

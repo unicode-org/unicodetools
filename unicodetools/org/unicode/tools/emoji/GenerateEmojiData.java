@@ -3,14 +3,13 @@ package org.unicode.tools.emoji;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.Tabber;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
@@ -18,16 +17,11 @@ import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
-import org.unicode.cldr.util.Tabber;
 import org.unicode.tools.emoji.GenerateEmojiKeyboard.Target;
 
-import com.google.common.base.Joiner;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.text.UTF16;
@@ -130,13 +124,13 @@ public class GenerateEmojiData {
         PropPrinter printer = new PropPrinter().set(extraNames);
 
         try (TempPrintWriter outText2 = new TempPrintWriter(OUTPUT_DIR, "emoji-data.txt")) {
-            UnicodeSet emoji = EmojiData.EMOJI_DATA.getSingletonsWithDefectives();
-            UnicodeSet emoji_presentation = EmojiData.EMOJI_DATA.getEmojiPresentationSet();
+            UnicodeSet emoji = EmojiDataSourceCombined.EMOJI_DATA.getSingletonsWithDefectives();
+            UnicodeSet emoji_presentation = EmojiDataSourceCombined.EMOJI_DATA.getEmojiPresentationSet();
             UnicodeSet emoji_modifiers = EmojiData.MODIFIERS;
-            UnicodeSet emoji_modifier_bases = EmojiData.EMOJI_DATA.getModifierBases();
-            //UnicodeSet emoji_regional_indicators = EmojiData.EMOJI_DATA.getRegionalIndicators();
-            UnicodeSet emoji_components = EmojiData.EMOJI_DATA.getEmojiComponents();
-            UnicodeSet emoji_pict = EmojiData.EMOJI_DATA.getExtendedPictographic();
+            UnicodeSet emoji_modifier_bases = EmojiDataSourceCombined.EMOJI_DATA.getModifierBases();
+            //UnicodeSet emoji_regional_indicators = EmojiDataSourceCombined.EMOJI_DATA.getRegionalIndicators();
+            UnicodeSet emoji_components = EmojiDataSourceCombined.EMOJI_DATA.getEmojiComponents();
+            UnicodeSet emoji_pict = EmojiDataSourceCombined.EMOJI_DATA.getExtendedPictographic();
             outText2.println(Utility.getBaseDataHeader("emoji-data", 51, "Emoji Data", Emoji.VERSION_STRING));
             int width = Math.max("Emoji".length(),
                     Math.max("Emoji_Presentation".length(),
@@ -144,7 +138,7 @@ public class GenerateEmojiData {
                                     // Math.max("Emoji_Regional_Indicator".length(),
                                     Math.max("Emoji_Component".length(), "Emoji_Modifier_Base".length()))));
 
-//            outText2.println("# Warning: the format has changed from Version 1.0");
+            //            outText2.println("# Warning: the format has changed from Version 1.0");
             outText2.println("# Format: ");
             outText2.println("# <codepoint(s)> ; <property> # <comments> ");
             outText2.println("# Note: there is no guarantee as to the structure of whitespace or comments");
@@ -156,23 +150,25 @@ public class GenerateEmojiData {
             //			printer.show(outText2, "Emoji_Regional_Indicator", null, width, 14, emoji_regional_indicators, true, true,
             //					false);
             printer.show(outText2, "Emoji_Component", null, width, 14, emoji_components, true, true, false);
-            printer.show(outText2, "Extended_Pictographic", null, width, 14, emoji_pict, true, true, false);
+            if (Emoji.VERSION5.compareTo(EmojiData.EMOJI_DATA.getVersion()) < 0) {
+                printer.show(outText2, "Extended_Pictographic", null, width, 14, emoji_pict, true, true, false);
+            }
             outText2.println("\n#EOF");
         }
 
-//        if (EmojiData.EMOJI_DATA.getVersion().compareTo(Emoji.VERSION6) >= 0) {
-//            try (TempPrintWriter outText2 = new TempPrintWriter(OUTPUT_DIR, "emoji-extended-data.txt")) {
-//                UnicodeSet emoji_pict = EmojiData.EMOJI_DATA.getExtendedPictographic();
-//                outText2.println(Utility.getBaseDataHeader("emoji-extended-data", 51, "Emoji Data", Emoji.VERSION_STRING));
-//                int width = "Extended_Pictographic".length();
-//
-//                outText2.println("# Format: ");
-//                outText2.println("# codepoint(s) ; property(=Yes) # comments ");
-//                outText2.println(ORDERING_NOTE);
-//                printer.show(outText2, "Extended_Pictographic", null, width, 14, emoji_pict, true, true, false);
-//                outText2.println("\n#EOF");
-//            }
-//        }
+        //        if (EmojiDataSourceCombined.EMOJI_DATA.getVersion().compareTo(Emoji.VERSION6) >= 0) {
+        //            try (TempPrintWriter outText2 = new TempPrintWriter(OUTPUT_DIR, "emoji-extended-data.txt")) {
+        //                UnicodeSet emoji_pict = EmojiDataSourceCombined.EMOJI_DATA.getExtendedPictographic();
+        //                outText2.println(Utility.getBaseDataHeader("emoji-extended-data", 51, "Emoji Data", Emoji.VERSION_STRING));
+        //                int width = "Extended_Pictographic".length();
+        //
+        //                outText2.println("# Format: ");
+        //                outText2.println("# codepoint(s) ; property(=Yes) # comments ");
+        //                outText2.println(ORDERING_NOTE);
+        //                printer.show(outText2, "Extended_Pictographic", null, width, 14, emoji_pict, true, true, false);
+        //                outText2.println("\n#EOF");
+        //            }
+        //        }
 
         try (Writer out = new TempPrintWriter(OUTPUT_DIR, "emoji-sequences.txt")) {
             out.write(Utility.getBaseDataHeader("emoji-sequences", 51, "Emoji Sequence Data", Emoji.VERSION_STRING)
@@ -186,11 +182,11 @@ public class GenerateEmojiData {
             printer.show(out, "Emoji_Flag_Sequence",
                     "This list does not include deprecated or macroregion flags, except for UN and EU.\n"
                             + "# See Annex B of TR51 for more information.",
-                            width, 14, EmojiData.EMOJI_DATA.getFlagSequences(), true, false, true);
+                            width, 14, EmojiDataSourceCombined.EMOJI_DATA.getFlagSequences(), true, false, true);
             printer.show(out, "Emoji_Tag_Sequence",
                     "See Annex C of TR51 for more information.",
-                    width, 14, EmojiData.EMOJI_DATA.getTagSequences(), true, false, true);
-            printer.show(out, "Emoji_Modifier_Sequence", null, width, 14, EmojiData.EMOJI_DATA.getModifierSequences(),
+                    width, 14, EmojiDataSourceCombined.EMOJI_DATA.getTagSequences(), true, false, true);
+            printer.show(out, "Emoji_Modifier_Sequence", null, width, 14, EmojiDataSourceCombined.EMOJI_DATA.getModifierSequences(),
                     false, false, true);
             out.write("\n#EOF\n");
         }
@@ -203,7 +199,7 @@ public class GenerateEmojiData {
 
             showTypeFieldsMessage(out, type_fields);
             UnicodeMap<ZwjType> types = new UnicodeMap<>();
-            for (String s : EmojiData.EMOJI_DATA.getZwjSequencesNormal()) {
+            for (String s : EmojiDataSourceCombined.EMOJI_DATA.getZwjSequencesNormal()) {
                 if (s.startsWith(new StringBuilder().appendCodePoint(0x1F9D6).toString())) {
                     int debug = 0;
                 }
@@ -229,7 +225,7 @@ public class GenerateEmojiData {
             try (Writer out = new TempPrintWriter(OUTPUT_DIR, "emoji-variation-sequences.txt")) {
                 out.write(Utility.getBaseDataHeader("emoji-variation-sequences", 51, "Emoji Variation Sequences",
                         Emoji.VERSION_STRING) + "\n");
-                final UnicodeSet withVariants = EmojiData.EMOJI_DATA.getEmojiWithVariants();
+                final UnicodeSet withVariants = EmojiDataSourceCombined.EMOJI_DATA.getEmojiWithVariants();
                 for (String s : withVariants) {
                     // 0023 FE0E; text style; # NUMBER SIGN
                     // 0023 FE0F; emoji style; # NUMBER SIGN
@@ -266,9 +262,10 @@ public class GenerateEmojiData {
         if (SHOW)
             System.out.println("Emoji Combining Bases ; " + EmojiData.EMOJI_DATA.getKeycapBases().toPattern(false));
         if (SHOW)
-            System.out.println("Emoji All ; " + EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().toPattern(false));
+            System.out.println("Emoji All ; " + EmojiDataSourceCombined.EMOJI_DATA.getAllEmojiWithoutDefectives().toPattern(false));
 
-        GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, Target.propFile, OUTPUT_DIR);
+        // generate emoji-test
+        GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, EmojiOrder.STD_ORDER.emojiData.getSortingChars(), Target.propFile, OUTPUT_DIR);
     }
 
     static final UnicodeMap<String> NAMES = IndexUnicodeProperties.make(Settings.latestVersion).load(UcdProperty.Name);
@@ -276,7 +273,12 @@ public class GenerateEmojiData {
             .loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
 
     private static String getVariationComment(String s) {
-        return "(" + AGES.get(s).getShortName() + ") " + NAMES.get(s);
+        Age_Values age = AGES.get(s);
+        String name = NAMES.get(s);
+        if (name == null) {
+            name = CandidateData.getInstance().getUnicodeName(s);
+        }
+        return "(" + (age == null ? Emoji.VERSION_BETA.getVersionString(2, 2) : age.getShortName()) + ") " + name;
     }
 
     private static void showTypeFieldsMessage(Writer out, Collection<String> type_fields) throws IOException {
@@ -415,7 +417,7 @@ public class GenerateEmojiData {
                 out.write("\n");
                 // out.println("# UnicodeSet: " + emojiChars.toPattern(false));
                 out.write("# Total elements: " + totalCount + "\n");
-                UnicodeSet needsEvs = EmojiData.EMOJI_DATA.getTextPresentationSet();
+                UnicodeSet needsEvs = EmojiDataSourceCombined.EMOJI_DATA.getTextPresentationSet();
                 for (String s : emojiChars) {
                     String sMinus = s.replace(Emoji.EMOJI_VARIANT_STRING, "");
                     final int[] codePoints = CharSequences.codePoints(sMinus);
@@ -470,14 +472,19 @@ public class GenerateEmojiData {
         return EmojiData.EMOJI_DATA.addEmojiVariants(s);
         // hack to add VS to v2.0 to make comparison easier.
         // return Emoji.getEmojiVariant(s, Emoji.EMOJI_VARIANT_STRING,
-        // EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.text));
+        // EmojiDataSourceCombined.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.text));
     }
 
     // ##############################3
     public static void main(String[] args) throws IOException {
+        //showExtraInfo();
+        printData(EmojiDataSourceCombined.EMOJI_DATA.getRawNames());
+    }
+
+    private static void showExtraInfo() {
         IndexUnicodeProperties iup = IndexUnicodeProperties.make();
         System.out.println("Gender Base");
-        for (EntryRange s : EmojiData.EMOJI_DATA.getGenderBases().ranges()) {
+        for (EntryRange s : EmojiDataSourceCombined.EMOJI_DATA.getGenderBases().ranges()) {
             if (s.codepoint == s.codepointEnd) {
                 System.out.println(Utility.hex(s.codepoint) + " ;\tEmoji_Gender_Base ;\t" + iup.getName(s.codepoint));
             } else {
@@ -487,26 +494,26 @@ public class GenerateEmojiData {
         }
         System.out.println("END Gender Base");
 
-        UnicodeSet us2 = EmojiData.EMOJI_DATA.getAllEmojiWithDefectives();
+        UnicodeSet us2 = EmojiDataSourceCombined.EMOJI_DATA.getAllEmojiWithDefectives();
         UnicodeSet all = new UnicodeSet();
         for (String s : us2) {
             all.addAll(s);
         }
-        all.removeAll(EmojiData.EMOJI_DATA.getSingletonsWithoutDefectives()).removeAll(EmojiData.EMOJI_DATA.getEmojiComponents());
+        all.removeAll(EmojiDataSourceCombined.EMOJI_DATA.getSingletonsWithoutDefectives()).removeAll(EmojiDataSourceCombined.EMOJI_DATA.getEmojiComponents());
         for (String s : all) {
             System.out.println(Utility.hex(s)+ "\t" + iup.getName(s, " + "));
         }
-        
-        UnicodeSet us = EmojiData.EMOJI_DATA.getExtendedPictographic();
+
+        UnicodeSet us = EmojiDataSourceCombined.EMOJI_DATA.getExtendedPictographic();
         System.out.println(us.toPattern(false));
 
-        //        String result = EmojiData.EMOJI_DATA.getName("🧙‍♀️");
+        //        String result = EmojiDataSourceCombined.EMOJI_DATA.getName("🧙‍♀️");
         //
         //        for (int cp : CharSequences.codePoints(EXPLICIT_GENDER_LIST)) {
         //            System.out.println("U+" + Utility.hex(cp) + " " + getName(UTF16.valueOf(cp)));
         //        }
         UnicodeMap<ZwjType> types = new UnicodeMap<>();
-        for (String s : EmojiData.EMOJI_DATA.getZwjSequencesNormal()) {
+        for (String s : EmojiDataSourceCombined.EMOJI_DATA.getZwjSequencesNormal()) {
             types.put(s, ZwjType.getType(s));
         }
 
@@ -518,7 +525,6 @@ public class GenerateEmojiData {
                 System.out.println(value + ";\t" + Utility.hex(s) + ";\t" + s + ";\t" + getName(s));
             }
         }
-        printData(EmojiData.EMOJI_DATA.getRawNames());
     }
 
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
@@ -526,16 +532,16 @@ public class GenerateEmojiData {
 
     private static String getName(String s) {
         String result = null;
-        if (gcMap.get(s) == General_Category_Values.Unassigned) {
-            result = iup.getName(s," + ");
-        }
-        if (result == null) try {
-            result = EmojiData.EMOJI_DATA.getName(s);
+        try {
+            result = EmojiDataSourceCombined.EMOJI_DATA.getName(s);
         } catch (Exception e) {
             result = iup.getName(s," + ");
         }
+        if (result == null && gcMap.get(s) == General_Category_Values.Unassigned) {
+            result = iup.getName(s," + ");
+        }
         if (result.startsWith("null")) {
-            EmojiData.EMOJI_DATA.getName(s);
+            EmojiDataSourceCombined.EMOJI_DATA.getName(s); // for debugging
             throw new IllegalAccessError();
         }
         result = result.replace("#", "\\x{23}");

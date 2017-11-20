@@ -1,0 +1,98 @@
+# extended-pictographic.txt
+# Date: 2016-10-12
+# © 2016 Unicode®, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
+#
+# Extended_Pictographic (EP) is a binary code point property for characters that are pictographic 
+# (or otherwise similar in kind to characters with the Emoji property)
+# and used to customize segmentation (UAX #29 and UAX #14) so that possible future emoji zwj sequences
+# will not break grapheme clusters, words, or lines. It is a superset of characters with the Emoji property.
+# It also includes unassigned codepoints that are in blocks intended for use for emoji characters, 
+# previously added to the Unicode 9.0 Linebreak property.
+#
+# For usage information, see http://unicode.org/reports/tr35/#Property_Data
+# 
+# Format
+#
+# This file follows the format used for UCD files. 
+# Field 1 indicates that the character(s) listed in Field 0 have the value ExtendedPictographic=Yes
+# All other characters have the value ExtendedPictographic=No
+#
+0023            ; Extended_Pictographic #    [1] (#) NUMBER SIGN
+002A            ; Extended_Pictographic #    [1] (*) ASTERISK
+0030..0039      ; Extended_Pictographic #   [10] (0..9) DIGIT ZERO..DIGIT NINE
+00A9            ; Extended_Pictographic #    [1] (©) COPYRIGHT SIGN
+00AE            ; Extended_Pictographic #    [1] (®) REGISTERED SIGN
+203C            ; Extended_Pictographic #    [1] (‼) DOUBLE EXCLAMATION MARK
+2049            ; Extended_Pictographic #    [1] (⁉) EXCLAMATION QUESTION MARK
+2122            ; Extended_Pictographic #    [1] (™) TRADE MARK SIGN
+2139            ; Extended_Pictographic #    [1] (ℹ) INFORMATION SOURCE
+2194..2199      ; Extended_Pictographic #    [6] (↔..↙) LEFT RIGHT ARROW..SOUTH WEST ARROW
+21A9..21AA      ; Extended_Pictographic #    [2] (↩..↪) LEFTWARDS ARROW WITH HOOK..RIGHTWARDS ARROW WITH HOOK
+231A..231B      ; Extended_Pictographic #    [2] (⌚..⌛) WATCH..HOURGLASS
+2328            ; Extended_Pictographic #    [1] (⌨) KEYBOARD
+2388            ; Extended_Pictographic #    [1] (⎈) HELM SYMBOL
+23CF            ; Extended_Pictographic #    [1] (⏏) EJECT SYMBOL
+23E9..23F3      ; Extended_Pictographic #   [11] (⏩..⏳) BLACK RIGHT-POINTING DOUBLE TRIANGLE..HOURGLASS WITH FLOWING SAND
+23F8..23FA      ; Extended_Pictographic #    [3] (⏸..⏺) DOUBLE VERTICAL BAR..BLACK CIRCLE FOR RECORD
+24C2            ; Extended_Pictographic #    [1] (Ⓜ) CIRCLED LATIN CAPITAL LETTER M
+25AA..25AB      ; Extended_Pictographic #    [2] (▪..▫) BLACK SMALL SQUARE..WHITE SMALL SQUARE
+25B6            ; Extended_Pictographic #    [1] (▶) BLACK RIGHT-POINTING TRIANGLE
+25C0            ; Extended_Pictographic #    [1] (◀) BLACK LEFT-POINTING TRIANGLE
+25FB..25FE      ; Extended_Pictographic #    [4] (◻..◾) WHITE MEDIUM SQUARE..BLACK MEDIUM SMALL SQUARE
+2600..2605      ; Extended_Pictographic #    [6] (☀..★) BLACK SUN WITH RAYS..BLACK STAR
+2607..2612      ; Extended_Pictographic #   [12] (☇..☒) LIGHTNING..BALLOT BOX WITH X
+2614..2705      ; Extended_Pictographic #  [242] (☔..✅) UMBRELLA WITH RAIN DROPS..WHITE HEAVY CHECK MARK
+2708..2712      ; Extended_Pictographic #   [11] (✈..✒) AIRPLANE..BLACK NIB
+2714            ; Extended_Pictographic #    [1] (✔) HEAVY CHECK MARK
+2716            ; Extended_Pictographic #    [1] (✖) HEAVY MULTIPLICATION X
+271D            ; Extended_Pictographic #    [1] (✝) LATIN CROSS
+2721            ; Extended_Pictographic #    [1] (✡) STAR OF DAVID
+2728            ; Extended_Pictographic #    [1] (✨) SPARKLES
+2733..2734      ; Extended_Pictographic #    [2] (✳..✴) EIGHT SPOKED ASTERISK..EIGHT POINTED BLACK STAR
+2744            ; Extended_Pictographic #    [1] (❄) SNOWFLAKE
+2747            ; Extended_Pictographic #    [1] (❇) SPARKLE
+274C            ; Extended_Pictographic #    [1] (❌) CROSS MARK
+274E            ; Extended_Pictographic #    [1] (❎) NEGATIVE SQUARED CROSS MARK
+2753..2755      ; Extended_Pictographic #    [3] (❓..❕) BLACK QUESTION MARK ORNAMENT..WHITE EXCLAMATION MARK ORNAMENT
+2757            ; Extended_Pictographic #    [1] (❗) HEAVY EXCLAMATION MARK SYMBOL
+2763..2767      ; Extended_Pictographic #    [5] (❣..❧) HEAVY HEART EXCLAMATION MARK ORNAMENT..ROTATED FLORAL HEART BULLET
+2795..2797      ; Extended_Pictographic #    [3] (➕..➗) HEAVY PLUS SIGN..HEAVY DIVISION SIGN
+27A1            ; Extended_Pictographic #    [1] (➡) BLACK RIGHTWARDS ARROW
+27B0            ; Extended_Pictographic #    [1] (➰) CURLY LOOP
+27BF            ; Extended_Pictographic #    [1] (➿) DOUBLE CURLY LOOP
+2934..2935      ; Extended_Pictographic #    [2] (⤴..⤵) ARROW POINTING RIGHTWARDS THEN CURVING UPWARDS..ARROW POINTING RIGHTWARDS THEN CURVING DOWNWARDS
+2B05..2B07      ; Extended_Pictographic #    [3] (⬅..⬇) LEFTWARDS BLACK ARROW..DOWNWARDS BLACK ARROW
+2B1B..2B1C      ; Extended_Pictographic #    [2] (⬛..⬜) BLACK LARGE SQUARE..WHITE LARGE SQUARE
+2B50            ; Extended_Pictographic #    [1] (⭐) WHITE MEDIUM STAR
+2B55            ; Extended_Pictographic #    [1] (⭕) HEAVY LARGE CIRCLE
+3030            ; Extended_Pictographic #    [1] (〰) WAVY DASH
+303D            ; Extended_Pictographic #    [1] (〽) PART ALTERNATION MARK
+3297            ; Extended_Pictographic #    [1] (㊗) CIRCLED IDEOGRAPH CONGRATULATION
+3299            ; Extended_Pictographic #    [1] (㊙) CIRCLED IDEOGRAPH SECRET
+1F000..1F0FF    ; Extended_Pictographic #  [256] (🀀..🃿) MAHJONG TILE EAST WIND..<reserved-1F0FF>
+1F10D..1F10F    ; Extended_Pictographic #    [3] (🄍..🄏) <reserved-1F10D>..<reserved-1F10F>
+1F12F           ; Extended_Pictographic #    [1] (🄯) <reserved-1F12F>
+1F16C..1F171    ; Extended_Pictographic #    [6] (🅬..🅱) <reserved-1F16C>..NEGATIVE SQUARED LATIN CAPITAL LETTER B
+1F17E..1F17F    ; Extended_Pictographic #    [2] (🅾..🅿) NEGATIVE SQUARED LATIN CAPITAL LETTER O..NEGATIVE SQUARED LATIN CAPITAL LETTER P
+1F18E           ; Extended_Pictographic #    [1] (🆎) NEGATIVE SQUARED AB
+1F191..1F19A    ; Extended_Pictographic #   [10] (🆑..🆚) SQUARED CL..SQUARED VS
+1F1AD..1F1FF    ; Extended_Pictographic #   [83] (🆭..🇿) <reserved-1F1AD>..REGIONAL INDICATOR SYMBOL LETTER Z
+1F201..1F20F    ; Extended_Pictographic #   [15] (🈁..🈏) SQUARED KATAKANA KOKO..<reserved-1F20F>
+1F21A           ; Extended_Pictographic #    [1] (🈚) SQUARED CJK UNIFIED IDEOGRAPH-7121
+1F22F           ; Extended_Pictographic #    [1] (🈯) SQUARED CJK UNIFIED IDEOGRAPH-6307
+1F232..1F23A    ; Extended_Pictographic #    [9] (🈲..🈺) SQUARED CJK UNIFIED IDEOGRAPH-7981..SQUARED CJK UNIFIED IDEOGRAPH-55B6
+1F23C..1F23F    ; Extended_Pictographic #    [4] (🈼..🈿) <reserved-1F23C>..<reserved-1F23F>
+1F249..1F64F    ; Extended_Pictographic # [1031] (🉉..🙏) <reserved-1F249>..PERSON WITH FOLDED HANDS
+1F680..1F6FF    ; Extended_Pictographic #  [128] (🚀..🛿) ROCKET..<reserved-1F6FF>
+1F774..1F77F    ; Extended_Pictographic #   [12] (🝴..🝿) <reserved-1F774>..<reserved-1F77F>
+1F7D5..1F7FF    ; Extended_Pictographic #   [43] (🟕..🟿) <reserved-1F7D5>..<reserved-1F7FF>
+1F80C..1F80F    ; Extended_Pictographic #    [4] (🠌..🠏) <reserved-1F80C>..<reserved-1F80F>
+1F848..1F84F    ; Extended_Pictographic #    [8] (🡈..🡏) <reserved-1F848>..<reserved-1F84F>
+1F85A..1F85F    ; Extended_Pictographic #    [6] (🡚..🡟) <reserved-1F85A>..<reserved-1F85F>
+1F888..1F88F    ; Extended_Pictographic #    [8] (🢈..🢏) <reserved-1F888>..<reserved-1F88F>
+1F8AE..1F93A    ; Extended_Pictographic #  [141] (🢮..🤺) <reserved-1F8AE>..FENCER
+1F93C..1F945    ; Extended_Pictographic #   [10] (🤼..🥅) WRESTLERS..GOAL NET
+1F947..1FFFD    ; Extended_Pictographic # [1719] (🥇..🿽) FIRST PLACE MEDAL..<reserved-1FFFD>
+
+# Total elements: 3866

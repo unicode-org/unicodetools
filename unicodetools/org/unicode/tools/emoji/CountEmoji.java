@@ -240,7 +240,10 @@ public class CountEmoji {
         public String toString() {
             return html;
         }
-        private static Category getBucket(String s) {
+        public String toStringPlain() {
+            return name;
+        }
+        static Category getBucket(String s) {
             String noVariants = CountEmoji.EMOJI_DATA_BETA.removeEmojiVariants(s);
             Category bucket = null;
             if (EmojiData.isTypicallyDuplicate(s)) {
