@@ -1,11 +1,11 @@
 # emoji-variation-sequences.txt
-# Date: 2017-02-18, 13:49:18 GMT
+# Date: 2017-11-14, 15:40:50 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Emoji Variation Sequences for UTR #51
-# Version: 5.0
+# Version: 11.0
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr51
 #
@@ -711,6 +711,10 @@
 1F6F0 FE0F ; emoji style; # (7.0) SATELLITE
 1F6F3 FE0E ; text style;  # (7.0) PASSENGER SHIP
 1F6F3 FE0F ; emoji style; # (7.0) PASSENGER SHIP
+267E FE0E ; text style;  # (7.0) infinity sign
+267E FE0F ; emoji style; # (7.0) infinity sign
+
+
 
 #Total sequences: 351
 
