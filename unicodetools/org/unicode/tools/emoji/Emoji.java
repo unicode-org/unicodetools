@@ -163,6 +163,7 @@ public class Emoji {
             .freeze();
     static final UnicodeSet PROFESSION_OBJECT = new UnicodeSet("[⚕🌾🍳🎓🎤🏫🏭💻💼🔧🔬]")
             .freeze();
+    static final UnicodeSet HAIR_STYLES = new UnicodeSet("[\\U0001F9B0-\\U0001F9B3]");
 
     public enum Source {
         // also used for accessing pngs; order is important
