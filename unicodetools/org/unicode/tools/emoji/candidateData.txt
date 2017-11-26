@@ -466,6 +466,7 @@ Name=man, red haired: medium-dark skin tone
 U+1F468 U+1F3FF U+200D U+1F9B0 
 Name=man, red haired: dark skin tone
 U+1F469 U+200D U+1F9B0 
+
 Name=woman, red haired
 U+1F469 U+1F3FB U+200D U+1F9B0 
 Name=woman, red haired: light skin tone

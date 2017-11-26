@@ -278,7 +278,7 @@ public class GenerateEmojiKeyboard {
 			out.close();
 		}
 		if (charactersNotShown.size() != 0) {
-			throw new IllegalArgumentException("Missing characters: " + charactersNotShown.size() + "\t" + charactersNotShown.toPattern(false));
+			System.err.println("Missing characters: " + charactersNotShown.size() + "\t" + charactersNotShown.toPattern(false));
 		}
 	}
 

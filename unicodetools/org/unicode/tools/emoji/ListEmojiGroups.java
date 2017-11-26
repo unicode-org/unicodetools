@@ -13,7 +13,6 @@ import org.unicode.tools.emoji.CountEmoji.Category;
 import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
 import com.ibm.icu.impl.Row.R2;
-import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
@@ -79,63 +78,7 @@ public class ListEmojiGroups {
         }
     }
 
-    static class EmojiMatcher {
-        static final UnicodeSet fixed;
-        static final UnicodeSet nopres = new UnicodeSet(EmojiData.EMOJI_DATA.getSingletonsWithDefectives())
-                .removeAll(EmojiData.EMOJI_DATA.getEmojiPresentationSet());
-        static {
-            final UnicodeSet components = EmojiData.of(Emoji.VERSION_BETA).getEmojiComponents();
-            fixed = new UnicodeSet(EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives())
-                    .removeAll(components)
-                    .removeAll(nopres);
-            for (String s : nopres) {
-                fixed.add(s + Emoji.EMOJI_VARIANT);
-            }
-            String heart = "\u2764";
-            boolean m = EmojiMatcher.fixed.contains(heart);
-
-            String heartVs = "❤️";
-            boolean m2 = EmojiMatcher.fixed.contains(heartVs);
-
-            fixed.freeze();
-        }
-        static UnicodeSet singletonFailures = new UnicodeSet();
-        
-        static void parse(String input, List<String> emoji, List<String> noPres, List<String> nonEmoji) {
-            int emojiEnd = 0;
-            for (int offset = 0; offset < input.length();) {
-                int match = matches(fixed, input, offset);
-                if (match > offset) {
-                    if (emojiEnd < offset) {
-                        String str = input.substring(emojiEnd, offset);
-                        addNonEmoji(str, nonEmoji, noPres);
-                    }
-                    emoji.add(input.substring(offset, match));
-                    offset = emojiEnd = match;
-                } else {
-                    ++offset;
-                }
-            }
-            if (emojiEnd < input.length()) {
-                String str = input.substring(emojiEnd);
-                addNonEmoji(str, nonEmoji, noPres);
-            }
-        }
-
-        private static boolean addNonEmoji(String str, List<String> nonEmoji, List<String> noPres2) {
-            StringBuilder nonEmojiBuffer = new StringBuilder();
-            for (int cp : CharSequences.codePoints(str)) {
-                if (nopres.contains(cp)) {
-                    noPres2.add(UTF16.valueOf(cp));
-                } else {
-                    nonEmojiBuffer.appendCodePoint(cp);
-                }
-            }
-            return nonEmoji.add(nonEmojiBuffer.toString());
-        }
-    }
-
-    private static int matches(UnicodeSet unicodeSet, String input, int offset) {
+    static int matches(UnicodeSet unicodeSet, String input, int offset) {
         SortedSet<String> items = (SortedSet<String>) unicodeSet.strings();
         int cp = input.codePointAt(offset);
         SortedSet<String> subset = items.subSet(UTF16.valueOf(cp), UTF16.valueOf(cp+1));

@@ -107,7 +107,7 @@ public class EmojiData implements EmojiDataSource {
         return result;
     }
 
-    private enum EmojiProp {Emoji, Emoji_Presentation, Emoji_Modifier, Emoji_Modifier_Base, Emoji_Component}
+    private enum EmojiProp {Emoji, Emoji_Presentation, Emoji_Modifier, Emoji_Modifier_Base, Emoji_Component, Extended_Pictographic}
     // 0023          ; Emoji                #   [1] (#️)      NUMBER SIGN
     // 231A..231B    ; Emoji_Presentation   #   [2] (⌚️..⌛️)  WATCH..HOURGLASS
     // 1F3FB..1F3FF  ; Emoji_Modifier
@@ -167,7 +167,12 @@ public class EmojiData implements EmojiDataSource {
             for (Entry<String, Set<EmojiProp>> entry : emojiData.entrySet()) {
                 final String cp = entry.getKey();
                 final Set<EmojiProp> set = entry.getValue();
-                if (!set.contains(EmojiProp.Emoji) && !set.contains(EmojiProp.Emoji_Component)) {
+                if (set.contains(EmojiProp.Extended_Pictographic) && set.size() == 1) {
+                    continue;
+                }
+                
+                if (!set.contains(EmojiProp.Emoji) 
+                        && !set.contains(EmojiProp.Emoji_Component)) {
                     throw new IllegalArgumentException("**\t" + cp + "\t" + set);
                 }
                 if (!Emoji.DEFECTIVE_COMPONENTS.contains(cp)) {
@@ -231,6 +236,9 @@ public class EmojiData implements EmojiDataSource {
 
                     List<String> list = semi.splitToList(line);
                     String source = Utility.fromHex(list.get(0));
+                    if (source.contains(UTF16.valueOf(0x1F9B0))) {
+                        int debug = 0;
+                    }
 
                     final String noVariant = source.replace(Emoji.EMOJI_VARIANT_STRING, "");
                     if (!noVariant.equals(source)) {
@@ -373,7 +381,10 @@ public class EmojiData implements EmojiDataSource {
             emojiComponents.addAll(emojiData.getKeys(EmojiProp.Emoji_Component)).freeze();
 
             if (version.compareTo(Emoji.VERSION11) >= 0 
-                    && !new UnicodeSet(emojiComponents).removeAll(MODIFIERS).equals(Emoji.DEFECTIVE)) {
+                    && !new UnicodeSet(emojiComponents)
+                    .removeAll(MODIFIERS)
+                    .removeAll(Emoji.HAIR_STYLES)
+                    .equals(Emoji.DEFECTIVE)) {
                 throw new IllegalArgumentException("Bad components or defectives\n" + emojiComponents + "\n" + Emoji.DEFECTIVE);
             }
 
@@ -869,9 +880,14 @@ public class EmojiData implements EmojiDataSource {
         }
         String name = ANNOTATION_SET.getShortName(source, otherNameSource);
         if (name != null) {
-            //			return (toLower ? name.toLowerCase(Locale.ENGLISH) : name);
             return name;
         }
+        String tToV = source.replace(Emoji.TEXT_VARIANT, Emoji.EMOJI_VARIANT);
+        name = ANNOTATION_SET.getShortName(tToV, otherNameSource);
+        if (name != null) {
+            return name;
+        }
+
         //        System.out.println("*** not using name for " + code + "\t" + Utility.hex(code));
         //
         //        name = CandidateData.getInstance().getName(source);
@@ -880,10 +896,11 @@ public class EmojiData implements EmojiDataSource {
         //        }
         if (!Emoji.DEFECTIVE.contains(source)) {
             ANNOTATION_SET.getShortName(source, otherNameSource);
-            throw new IllegalArgumentException("no name for " + source + " " + Utility.hex(source));
+            ANNOTATION_SET.getShortName(tToV, otherNameSource);
+            throw new IllegalArgumentException("no name for " + source + " " + Utility.hex(source) + " or " + Utility.hex(tToV));
         }
 
-        source = source.replace(Emoji.EMOJI_VARIANT_STRING, "");
+        source = source.replace(Emoji.EMOJI_VARIANT_STRING, "").replace(Emoji.TEXT_VARIANT_STRING, "");
         name = latest.getName(source, ", "); 
         if (name != null) {
             return name.toLowerCase(Locale.ENGLISH);

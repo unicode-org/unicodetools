@@ -8,7 +8,10 @@ import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
@@ -27,6 +30,8 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.LinkedListMultimap;
+import com.google.common.collect.ListMultimap;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.Transform;
@@ -463,8 +468,34 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     }
 
     public static void main(String[] args) {
-        showCandidateData(CandidateData.getInstance(), true);
+        showOrdering(CandidateData.getInstance());
+        // showCandidateData(CandidateData.getInstance(), true);
         //showCandidateData(CandidateData.getProposalInstance(), true);
+    }
+
+    private static void showOrdering(CandidateData instance) {
+        Map<String,List<String>> baseToList = new TreeMap<>(EmojiOrder.STD_ORDER.codepointCompare);
+        for (String item : instance.suborder) {
+//            if (EmojiData.MODIFIERS.containsSome(item)) {
+//                continue; // added automatically
+//            }
+            String base = instance.after.get(item);
+            List<String> list = baseToList.get(base);
+            if (list == null) {
+                baseToList.put(base, list = new ArrayList<>());
+            }
+            list.add(item);
+        }
+        for (Entry<String, List<String>> entry : baseToList.entrySet()) {
+           System.out.println(entry.getKey() + "\t" + CollectionUtilities.join(entry.getValue(), " ")); 
+        }
+        EmojiOrder ordering = EmojiOrder.of(Emoji.VERSION_BETA);
+//        for (String s : instance.allCharacters) {
+//            System.out.println(s + "\t" + ordering.getCategory(s));
+//        }
+        for (String s : new UnicodeSet("[{👨‍🦰️}{👨‍🦱️}{👨‍🦲️}{👨‍🦳️}{👨🏻‍🦰️}{👨🏻‍🦱️}{👨🏻‍🦲️}{👨🏻‍🦳️}{👨🏼‍🦰️}{👨🏼‍🦱️}{👨🏼‍🦲️}{👨🏼‍🦳️}{👨🏽‍🦰️}{👨🏽‍🦱️}{👨🏽‍🦲️}{👨🏽‍🦳️}{👨🏾‍🦰️}{👨🏾‍🦱️}{👨🏾‍🦲️}{👨🏾‍🦳️}{👨🏿‍🦰️}{👨🏿‍🦱️}{👨🏿‍🦲️}{👨🏿‍🦳️}{👩‍🦰️}{👩‍🦱️}{👩‍🦲️}{👩‍🦳️}{👩🏻‍🦰️}{👩🏻‍🦱️}{👩🏻‍🦲️}{👩🏻‍🦳️}{👩🏼‍🦰️}{👩🏼‍🦱️}{👩🏼‍🦲️}{👩🏼‍🦳️}{👩🏽‍🦰️}{👩🏽‍🦱️}{👩🏽‍🦲️}{👩🏽‍🦳️}{👩🏾‍🦰️}{👩🏾‍🦱️}{👩🏾‍🦲️}{👩🏾‍🦳️}{👩🏿‍🦰️}{👩🏿‍🦱️}{👩🏿‍🦲️}{👩🏿‍🦳️}{🦸️‍♀️}{🦸️‍♂️}{🦹️‍♀️}{🦹️‍♂️}]")) {
+            System.out.println(s + "\t" + ordering.getCategory(s));
+        }
     }
 
     private static void showCandidateData(CandidateData cd, boolean candidate) {
@@ -671,4 +702,5 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         String item = unames.get(source);
         return item != null ? item : names.get(source);
     }
+    
 }
