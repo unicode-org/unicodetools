@@ -66,6 +66,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.util.Output;
 import com.ibm.icu.util.ULocale;
+import com.ibm.icu.util.VersionInfo;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class GenerateEmoji {
@@ -1660,7 +1661,7 @@ public class GenerateEmoji {
                     .freeze();
 
     static class VersionData implements Comparable<VersionData> {
-        final Age_Values versionInfo;
+        final VersionInfo versionInfo;
         final Set<Emoji.CharSource> setCharSource;
 
         public VersionData(String s) {
@@ -1695,7 +1696,7 @@ public class GenerateEmoji {
         }
 
         public String getVersion() {
-            return showVersion(versionInfo);
+            return Emoji.getShortName(versionInfo);
         }
 
         public String getCharSources() {
@@ -2682,7 +2683,7 @@ public class GenerateEmoji {
                     + Emoji.DATA_DIR_PRODUCTION + "emoji-test.txt"
                     + "\n");
             for (String s : SORTED_ALL_EMOJI_CHARS_SET) {
-                outText.println(Emoji.toUHex(s) + " ; " + Emoji.getNewest(s).getShortName() + " # " + s + " "
+                outText.println(Emoji.toUHex(s) + " ; " + Emoji.getShortName(Emoji.getNewest(s)) + " # " + s + " "
                         + EmojiData.EMOJI_DATA.getName(s));
             }
         }
@@ -2798,12 +2799,8 @@ public class GenerateEmoji {
         }
     };
 
-    public static String showVersion(Age_Values age_Values) {
-        return showVersionOnly(age_Values) + " " + VersionToAge.ucd.getYear(age_Values);
-    }
-
-    private static String showVersionOnly(Age_Values age_Values) {
-        return age_Values.toString().replace('_', '.');
+    public static String showVersion(VersionInfo versionInfo) {
+        return Emoji.getShortName(versionInfo) + " " + VersionToAge.ucd.getYear(versionInfo);
     }
 
     public static String getSources(String chars2, StringBuilder suffix, boolean superscript) {

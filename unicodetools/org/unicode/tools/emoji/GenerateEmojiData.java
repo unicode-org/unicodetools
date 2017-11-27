@@ -30,6 +30,7 @@ import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
+import com.ibm.icu.util.VersionInfo;
 
 public class GenerateEmojiData {
     private static final String OUTPUT_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "Public/emoji/" + Emoji.VERSION_STRING;
@@ -349,12 +350,12 @@ public class GenerateEmojiData {
                 String titleField = maxTitleWidth == 0 ? "" : "; " + title;
 
                 // associated ages (newest for sequence)
-                UnicodeMap<Age_Values> emojiCharsWithAge = new UnicodeMap<Age_Values>();
+                UnicodeMap<VersionInfo> emojiCharsWithAge = new UnicodeMap<>();
                 for (String s : emojiChars) {
                     emojiCharsWithAge.put(s, Emoji.getNewest(s));
                 }
 
-                for (UnicodeMap.EntryRange<Age_Values> range : emojiCharsWithAge.entryRanges()) {
+                for (UnicodeMap.EntryRange<VersionInfo> range : emojiCharsWithAge.entryRanges()) {
                     String s;
                     final int rangeCount;
                     if (range.string != null) {
@@ -444,8 +445,8 @@ public class GenerateEmojiData {
             }
         }
 
-        private String getAgeString(Age_Values value) {
-            return value != Age_Values.Unassigned ? value.getShortName() : CandidateData.CANDIDATE_VERSION;
+        private String getAgeString(VersionInfo value) {
+            return Emoji.getShortName(value); // value != Age_Values.Unassigned ? value.getShortName() : CandidateData.CANDIDATE_VERSION;
         }
 
         public PropPrinter set(UnicodeMap<String> extraNames) {
