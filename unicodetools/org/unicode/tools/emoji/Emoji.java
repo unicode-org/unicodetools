@@ -70,6 +70,8 @@ public class Emoji {
     public static final VersionInfo VERSION2 = VersionInfo.getInstance(2);
     public static final VersionInfo VERSION1 = VersionInfo.getInstance(1);
 
+    // ALSO fix VersionToAge.java!
+    public static final VersionInfo UCD11 = VersionInfo.getInstance(11);
     public static final VersionInfo UCD10 = VersionInfo.getInstance(10);
     public static final VersionInfo UCD9 = VersionInfo.getInstance(9);
     public static final VersionInfo UCD8 = VersionInfo.getInstance(8);
@@ -83,7 +85,7 @@ public class Emoji {
     public static final VersionInfo VERSION_BETA = VERSION11;
 
     public static Map<VersionInfo, VersionInfo> EMOJI_TO_UNICODE_VERSION = ImmutableMap.<VersionInfo, VersionInfo>builder()
-            .put(VERSION11, UCD10)
+            .put(VERSION11, UCD11)
             .put(VERSION5, UCD10)
             .put(VERSION4, UCD9)
             .put(VERSION3, UCD9)
@@ -661,11 +663,12 @@ public class Emoji {
 
     static final transient Collection<Age_Values> output = new TreeSet(Collections.reverseOrder());
 
-    static Age_Values getNewest(String s) {
+    static VersionInfo getNewest(String s) {
         synchronized (Emoji.output) {
             Emoji.output.clear();
             Emoji.getValues(s, VERSION_ENUM, Emoji.output);
-            return Emoji.output.iterator().next();
+            Age_Values result = Emoji.output.iterator().next();
+            return result == Age_Values.Unassigned ? Emoji.UCD11 : VersionInfo.getInstance(result.getShortName());
         }
     }
 
@@ -739,5 +742,9 @@ public class Emoji {
             result.appendCodePoint(TAG_BASE + cp);
         }
         return result.appendCodePoint(TAG_TERM_CHAR).toString();
+    }
+
+    public static String getShortName(VersionInfo versionInfo) {
+        return versionInfo.getVersionString(2, 2);
     }
 }

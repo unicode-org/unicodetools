@@ -694,8 +694,8 @@ public class EmojiData implements EmojiDataSource {
 
     private static void show(String cp, UnicodeMap<Age_Values> ages, final UnicodeMap<String> names, EmojiData emojiData) {
         System.out.println(
-                Emoji.getNewest(cp).getShortName()
-                + ";\temojiVersion=" + emojiData.version.getVersionString(2, 2) 
+                Emoji.getShortName(Emoji.getNewest(cp))
+                + ";\temojiVersion=" + Emoji.getShortName(emojiData.version) 
                 + ";\t" + Utility.hex(cp) 
                 + ";\t" + cp
                 + ";\t" + names.get(cp)
@@ -1326,21 +1326,25 @@ public class EmojiData implements EmojiDataSource {
     public synchronized UnicodeMap<Integer> getYears() {
         if (years.isEmpty()) {
             for (String s : allEmojiWithoutDefectives) {
-                int year = -1;
-                if (Character.codePointCount(s, 0, s.length()) == 1) {
-                    VersionInfo age = UCharacter.getAge(s.codePointAt(0));
-                    year = VersionToAge.ucd.getYear(age);
-                } else if (s.contains(Emoji.KEYCAP_MARK_STRING) || Emoji.REGIONAL_INDICATORS.containsAll(s)) {
-                    year = 2010;
-                } else {
-                    for (Entry<Integer, VersionInfo> entry : Emoji.EMOJI_TO_YEAR_ASCENDING.entrySet()) {
-                        EmojiData data = EmojiData.of(entry.getValue());
-                        if (data.getAllEmojiWithDefectives().contains(s)) {
-                            year = entry.getKey();
-                            break;
-                        }
-                    }
-                }
+                VersionInfo item = Emoji.getNewest(s);
+                int year = VersionToAge.ucd.getYear(item);
+//                Emoji.getShortName();
+//
+//                int year = -1;
+//                if (Character.codePointCount(s, 0, s.length()) == 1) {
+//                    VersionInfo age = UCharacter.getAge(s.codePointAt(0));
+//                    year = VersionToAge.ucd.getYear(age);
+//                } else if (s.contains(Emoji.KEYCAP_MARK_STRING) || Emoji.REGIONAL_INDICATORS.containsAll(s)) {
+//                    year = 2010;
+//                } else {
+//                    for (Entry<Integer, VersionInfo> entry : Emoji.EMOJI_TO_YEAR_ASCENDING.entrySet()) {
+//                        EmojiData data = EmojiData.of(entry.getValue());
+//                        if (data.getAllEmojiWithDefectives().contains(s)) {
+//                            year = entry.getKey();
+//                            break;
+//                        }
+//                    }
+//                }
                 years.put(s, year);
             }
         }
