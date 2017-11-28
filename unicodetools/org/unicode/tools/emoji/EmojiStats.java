@@ -269,7 +269,7 @@ class EmojiStats {
         System.out.println(
                 source.getPrefix() + "_" + Emoji.buildFileName(cp, "_") + ".png"
                 + " ;\t" + cp 
-                + " ;\tv" + Emoji.getShortName(Emoji.getNewest(cp)) 
+                + " ;\tv" + EmojiData.getYear(cp)
                 + " ;\t" + EmojiData.EMOJI_DATA.getName(cp));
     }
 }

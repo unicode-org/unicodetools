@@ -3,6 +3,7 @@ package org.unicode.tools.emoji;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.regex.Pattern;
 import javax.xml.stream.events.Characters;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.tool.GenerateBirth;
 import org.unicode.cldr.util.Annotations;
 import org.unicode.cldr.util.Annotations.AnnotationSet;
 import org.unicode.cldr.util.CldrUtility;
@@ -694,7 +696,7 @@ public class EmojiData implements EmojiDataSource {
 
     private static void show(String cp, UnicodeMap<Age_Values> ages, final UnicodeMap<String> names, EmojiData emojiData) {
         System.out.println(
-                Emoji.getShortName(Emoji.getNewest(cp))
+                getYears().get(cp)
                 + ";\temojiVersion=" + Emoji.getShortName(emojiData.version) 
                 + ";\t" + Utility.hex(cp) 
                 + ";\t" + cp
@@ -1065,14 +1067,15 @@ public class EmojiData implements EmojiDataSource {
     }
 
     public static void main(String[] args) {
-        EmojiData v5 = new EmojiData(Emoji.VERSION11); 
-        UnicodeMap<Integer> yearData = v5.getYears();
+        EmojiData last = EmojiData.of(Emoji.VERSION_BETA);
+        UnicodeMap<Integer> yearData = getYears();
         for (Integer value : new TreeSet<Integer>(yearData.values())) {
-            System.out.println(value + "\t" + yearData.getSet(value));
+            UnicodeSet set = yearData.getSet(value);
+            System.out.println(value + "\t" + set.size() + "\t" + set.toPattern(false));
         }
         if (SKIP) return;
 
-        EmojiData v6 = new EmojiData(Emoji.VERSION11);
+        EmojiData v6 = EmojiData.of(Emoji.VERSION11);
         EmojiOrder order6 = EmojiOrder.of(Emoji.VERSION11);
         UnicodeSet Uv7 = new UnicodeSet("[:age=7.0:]");
         UnicodeSet newItems6 = new UnicodeSet(v6.allEmojiWithoutDefectivesOrModifiers).addAll(CandidateData.getInstance().getCharacters());
@@ -1090,12 +1093,12 @@ public class EmojiData implements EmojiDataSource {
                     );
         }
 
-        EmojiData v4 = new EmojiData(Emoji.VERSION4);
-        UnicodeSet newItems = new UnicodeSet(v5.getSingletonsWithoutDefectives()).removeAll(v4.getSingletonsWithoutDefectives());
+        EmojiData v4 = EmojiData.of(Emoji.VERSION4);
+        UnicodeSet newItems = new UnicodeSet(last.getSingletonsWithoutDefectives()).removeAll(v4.getSingletonsWithoutDefectives());
         Set<String> sorted2 = new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare);
         for (String s : newItems.addAllTo(sorted2)) {
             System.out.println("U+" + Utility.hex(s));
-            System.out.println("Name=" + v5.getName(s));
+            System.out.println("Name=" + last.getName(s));
             System.out.println();
         }
         //if (SKIP) return;
@@ -1104,7 +1107,7 @@ public class EmojiData implements EmojiDataSource {
 
 
 
-        EmojiData betaData = new EmojiData(Emoji.VERSION_BETA);
+        EmojiData betaData = EmojiData.of(Emoji.VERSION_BETA);
         String name3 = betaData.getName("🧙");
         String name4 = betaData.getName("🧙‍♀️");
 
@@ -1138,7 +1141,7 @@ public class EmojiData implements EmojiDataSource {
 
         if (true) return;
 
-        EmojiData lastReleasedData = new EmojiData(Emoji.VERSION_LAST_RELEASED);
+        EmojiData lastReleasedData = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
         showDiff("Emoji", Emoji.VERSION_LAST_RELEASED_STRING, lastReleasedData.getSingletonsWithoutDefectives(),
                 Emoji.VERSION_BETA_STRING_WITH_COLOR, betaData.getSingletonsWithoutDefectives());
         showDiff("Emoji_Presentation", Emoji.VERSION_LAST_RELEASED_STRING, lastReleasedData.getEmojiPresentationSet(),
@@ -1321,38 +1324,47 @@ public class EmojiData implements EmojiDataSource {
         return extendedPictographic;
     }
 
-    UnicodeMap<Integer> years = new UnicodeMap<Integer>();
-
-    public synchronized UnicodeMap<Integer> getYears() {
-        if (years.isEmpty()) {
-            for (String s : allEmojiWithoutDefectives) {
-                VersionInfo item = Emoji.getNewest(s);
-                int year = VersionToAge.ucd.getYear(item);
-//                Emoji.getShortName();
-//
-//                int year = -1;
-//                if (Character.codePointCount(s, 0, s.length()) == 1) {
-//                    VersionInfo age = UCharacter.getAge(s.codePointAt(0));
-//                    year = VersionToAge.ucd.getYear(age);
-//                } else if (s.contains(Emoji.KEYCAP_MARK_STRING) || Emoji.REGIONAL_INDICATORS.containsAll(s)) {
-//                    year = 2010;
-//                } else {
-//                    for (Entry<Integer, VersionInfo> entry : Emoji.EMOJI_TO_YEAR_ASCENDING.entrySet()) {
-//                        EmojiData data = EmojiData.of(entry.getValue());
-//                        if (data.getAllEmojiWithDefectives().contains(s)) {
-//                            year = entry.getKey();
-//                            break;
-//                        }
-//                    }
-//                }
-                years.put(s, year);
-            }
-        }
-        return years;
+    static final UnicodeMap<Integer> birthYear = new UnicodeMap<Integer>();
+    
+    public static int getYear(String s) {
+        return getYears().get(s);
     }
 
-    public String getUnicodeName(String s) {
-        // TODO Auto-generated method stub
-        return null;
+    public static synchronized UnicodeMap<Integer> getYears() {
+        if (birthYear.isEmpty()) {
+            Collection<Age_Values> output = new TreeSet(Collections.reverseOrder()); // latest first
+            VersionInfo firstVersion = null;
+
+            for (String s : EmojiData.of(Emoji.VERSION_BETA).allEmojiWithoutDefectives) {
+                int year = -1;
+                if (s.equals("☝🏻")) {
+                    int debug = 0;
+                }
+                for (Entry<Integer, VersionInfo> entry : Emoji.EMOJI_TO_YEAR_ASCENDING.entrySet()) {
+                    EmojiData data = EmojiData.of(entry.getValue());
+                    if (data.getAllEmojiWithDefectives().contains(s)) {
+                        year = entry.getKey();
+                        VersionInfo value = entry.getValue();
+                        if (firstVersion == null) {
+                            firstVersion = value; 
+                        }
+                        if (value == firstVersion) {
+                            // handle specially
+                            Collection<Age_Values> items = Emoji.getValues(s, Emoji.VERSION_ENUM, output);
+                            Age_Values ageValue = output.iterator().next();
+                            long date = VersionToAge.ucd.getLongDate(ageValue);
+                            year = new Date(date).getYear()+1900;
+                            if (year < 2010 && !Emoji.isSingleCodePoint(s)) { 
+                                // keycaps, etc. came in with Japanese
+                                year = 2010;
+                            }
+                        }
+                        break;
+                    }
+                }
+                birthYear.put(s, year);
+            }
+        }
+        return birthYear.freeze();
     }
 }
