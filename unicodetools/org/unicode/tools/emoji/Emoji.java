@@ -94,7 +94,7 @@ public class Emoji {
             .build();
 
     public final static Map<VersionInfo, String> EMOJI_TO_DATE = ImmutableMap.<VersionInfo, String>builder()
-            .put(VERSION11, "2017H2")
+            .put(VERSION11, "2018H2")
             .put(VERSION5, "2017-06-20")
             .put(VERSION4, "2016-11-22")
             .put(VERSION3, "2016-06-03")
@@ -113,6 +113,7 @@ public class Emoji {
         }
         EMOJI_TO_YEAR_ASCENDING = ImmutableMap.copyOf(_map);
     }
+    
     public static final VersionInfo VERSION_LAST_RELEASED_UNICODE = EMOJI_TO_UNICODE_VERSION.get(VERSION_LAST_RELEASED);
     public static final VersionInfo VERSION_BETA_UNICODE = EMOJI_TO_UNICODE_VERSION.get(VERSION_BETA);
 
@@ -665,7 +666,6 @@ public class Emoji {
 
     static VersionInfo getNewest(String s) {
         synchronized (Emoji.output) {
-            Emoji.output.clear();
             Emoji.getValues(s, VERSION_ENUM, Emoji.output);
             Age_Values result = Emoji.output.iterator().next();
             return result == Age_Values.Unassigned ? Emoji.UCD11 : VersionInfo.getInstance(result.getShortName());
@@ -674,6 +674,7 @@ public class Emoji {
 
     // should be method on UnicodeMap
     static final <T, C extends Collection<T>> C getValues(String source, UnicodeMap<T> data, C output) {
+        output.clear();
         for (int cp : CharSequences.codePoints(source)) {
             T datum = data.get(cp);
             if (datum != null) {
@@ -746,5 +747,10 @@ public class Emoji {
 
     public static String getShortName(VersionInfo versionInfo) {
         return versionInfo.getVersionString(2, 2);
+    }
+
+    public static boolean isSingleCodePoint(String nvs) {
+        int cp = nvs.codePointAt(0);
+        return Character.charCount(cp) == nvs.length();
     }
 }

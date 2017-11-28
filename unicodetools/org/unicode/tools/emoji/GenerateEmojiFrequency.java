@@ -42,6 +42,8 @@ public class GenerateEmojiFrequency {
         // <span class="score" id="score-1F602">1872748264</span>
         try (BufferedReader in = FileUtilities.openFile(GenerateEmojiFrequency.class, "emojitracker.txt")) {
             String lastBuffer = "";
+            double factor = 0;
+
             while (true) {
                 String line = in.readLine();
                 if (line == null) break;
@@ -55,10 +57,14 @@ public class GenerateEmojiFrequency {
                     int cp = Integer.parseInt(m.group(1),16);
                     String str = UTF16.valueOf(cp);
                     String category = order.getCategory(str);
+                    long count = Long.parseLong(m.group(2));
+                    if (factor == 0) {
+                        factor = 1_000_000_000.0/count;
+                    }
                     System.out.println(str
                             + "\tU+" + m.group(1)
                             + "\t" + EmojiData.EMOJI_DATA.getName(str)
-                            + "\t" + m.group(2)
+                            + "\t" + (long)Math.round(count*factor)
                             + "\t" + order.getMajorGroupFromCategory(category).toPlainString()
                             + "\t" + category
                             + "\t" + order.getGroupOrder(category)

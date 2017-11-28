@@ -1395,7 +1395,7 @@ public class GenerateEmoji {
             } else if (EmojiData.MODIFIERS.containsSome(nvs)) {
                 mods.add(nvs);
             } else if (nvs.equals(vs)) {
-                if (isSingleCodePoint(nvs)) {
+                if (Emoji.isSingleCodePoint(nvs)) {
                     colorfulSingles.add(nvs);
                 } else {
                     colorfulOther.add(nvs);
@@ -1424,11 +1424,6 @@ public class GenerateEmoji {
                         tdExtraAttrs);
             }
         }
-    }
-
-    private static boolean isSingleCodePoint(String nvs) {
-        int cp = nvs.codePointAt(0);
-        return Character.charCount(cp) == nvs.length();
     }
 
     private static void showText(String title, UnicodeSet dull, PrintWriter out, PrintWriter outText, Style style,
@@ -1661,11 +1656,11 @@ public class GenerateEmoji {
                     .freeze();
 
     static class VersionData implements Comparable<VersionData> {
-        final VersionInfo versionInfo;
+        final int versionYear;
         final Set<Emoji.CharSource> setCharSource;
 
         public VersionData(String s) {
-            this.versionInfo = Emoji.getNewest(s);
+            this.versionYear = EmojiData.getYear(s);
             this.setCharSource = Collections.unmodifiableSet(GenerateEmoji.getCharSources(s));
         }
 
@@ -1673,7 +1668,7 @@ public class GenerateEmoji {
 
         @Override
         public int hashCode() {
-            return versionInfo.hashCode() * 37 ^ setCharSource.hashCode();
+            return versionYear * 37 ^ setCharSource.hashCode();
         }
 
         @Override
@@ -1685,7 +1680,7 @@ public class GenerateEmoji {
         public int compareTo(VersionData o) {
             Comparator foo;
             return ComparisonChain.start()
-                    .compare(o.versionInfo, versionInfo)
+                    .compare(o.versionYear, versionYear)
                     .compare(setCharSource, o.setCharSource, ccc)
                     .result();
         }
@@ -1696,7 +1691,7 @@ public class GenerateEmoji {
         }
 
         public String getVersion() {
-            return Emoji.getShortName(versionInfo);
+            return String.valueOf(versionYear);
         }
 
         public String getCharSources() {
@@ -1719,6 +1714,7 @@ public class GenerateEmoji {
                 + "sources the character corresponds to. "
                 + "For example, “ZDings+ARIB+JCarrier” indicates that the character also appears in the Zapf Dingbats, "
                 + "the ARIB set, and the Japanese Carrier set. "
+                + "Some emoji before 2015 (and all emoji before 2010) are proleptic (they were only later considered emoji). "
                 + SINGLETONS_KEYCAPS_FLAGS
                 + "</p>\n",
                 Emoji.DATA_DIR_PRODUCTION, Emoji.TR51_HTML);
@@ -1738,7 +1734,7 @@ public class GenerateEmoji {
                 continue;
             }
             displayUnicodesetTD(out,
-                    ImmutableSet.of(VersionToAge.ucd.getYear(value.versionInfo)), //
+                    ImmutableSet.of(value.versionYear), //
                     null,
                     ImmutableSet.of(
                             value.getCharSources(),
@@ -1781,7 +1777,7 @@ public class GenerateEmoji {
                 + "<p>This chart shows when each emoji first appeared in Unicode. It includes both emoji characters and sequences. "
                 + "The detailed Counts are as described in <a target='doc' href='" + Emoji.TR51_HTML
                 + "#Identification'>§3 Which Characters are Emoji</a>. "
-                + "Some emoji before 2015 (and all emoji before 2010) are proleptic."
+                + "Some emoji before 2015 (and all emoji before 2010) are proleptic (they were only later considered emoji)."
                 + "</p>\n",
                 Emoji.DATA_DIR_PRODUCTION, Emoji.TR51_HTML);
         out.println("<table " + "border='1'" + ">");
@@ -1799,6 +1795,9 @@ public class GenerateEmoji {
                 break;
             }
             UnicodeSet chars = yearData.getSet(value);
+            if (!EmojiData.EMOJI_DATA.getAllEmojiWithDefectives().containsAll(chars)) {
+                continue; // skip beta
+            }
             CountEmoji ce = new CountEmoji();
             ce.addAll(chars);
             StringBuilder counts = new StringBuilder("<table class='simple' style='width:100%'>");
