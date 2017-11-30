@@ -1327,7 +1327,13 @@ public class EmojiData implements EmojiDataSource {
     static final UnicodeMap<Integer> birthYear = new UnicodeMap<Integer>();
     
     public static int getYear(String s) {
-        return getYears().get(s);
+        UnicodeMap<Integer> years = getYears();
+        try {
+            return years.get(s);
+        } catch (Exception e) {
+            int debug = 0;
+            throw e;
+        }
     }
 
     public static synchronized UnicodeMap<Integer> getYears() {
@@ -1335,7 +1341,8 @@ public class EmojiData implements EmojiDataSource {
             Collection<Age_Values> output = new TreeSet(Collections.reverseOrder()); // latest first
             VersionInfo firstVersion = null;
 
-            for (String s : EmojiData.of(Emoji.VERSION_BETA).allEmojiWithoutDefectives) {
+            EmojiData beta = EmojiData.of(Emoji.VERSION_BETA);
+            for (String s : beta.allEmojiWithoutDefectives) {
                 int year = -1;
                 if (s.equals("☝🏻")) {
                     int debug = 0;
@@ -1363,7 +1370,18 @@ public class EmojiData implements EmojiDataSource {
                     }
                 }
                 birthYear.put(s, year);
+                if (s.contains("⚕")) {
+                    int debug = 0;
+                }
+                String plusFef0 = beta.addEmojiVariants(s);
+                if (!s.equals(plusFef0)) {
+                        birthYear.put(plusFef0, year);
+                }
+                String minusFef0 = s.replace(Emoji.EMOJI_VARIANT_STRING, "");
+                if (!s.equals(minusFef0)) {
+                    birthYear.put(minusFef0, year);
             }
+           }
         }
         return birthYear.freeze();
     }
