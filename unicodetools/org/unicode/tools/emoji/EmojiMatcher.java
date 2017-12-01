@@ -64,12 +64,13 @@ emoji_zwj_element :=
                 // optional, fall through
             }
             case haveKeycap2: {
-                if (cp == 0x20E3) {
+                if (cp == Emoji.KEYCAP_MARK) {
                     this.end = offset + 1;
                     return FindStatus.full;
                 }
-                this.end = offset;
-                return FindStatus.partial;
+                // if we get to this point, we have a keycap without base. So go back to start
+                state = State.start;
+                break;
             }
             case haveRegionalIndicator: {
                 if (Emoji.REGIONAL_INDICATORS.contains(cp)) {
@@ -130,7 +131,10 @@ emoji_zwj_element :=
             }
         }
         switch (state) {
-        case start: {
+        case start:
+        case haveKeycap1:
+        case haveKeycap2:
+        {
             start = offset;
             this.end = offset;
             return FindStatus.none;
@@ -167,6 +171,8 @@ emoji_zwj_element :=
         for (String s : nopres) {
             fixed.add(s + Emoji.EMOJI_VARIANT);
         }
+
+        // debugging
         String heart = "\u2764";
         boolean m = EmojiMatcher.fixed.contains(heart);
 
@@ -201,7 +207,7 @@ emoji_zwj_element :=
     private static boolean addNonEmoji(String str, List<String> nonEmoji, List<String> noPres2) {
         StringBuilder nonEmojiBuffer = new StringBuilder();
         for (int cp : CharSequences.codePoints(str)) {
-            if (nopres.contains(cp)) {
+            if (nopres.contains(cp) && cp >= 0x7F) { // hack to exclude keycap bases 
                 noPres2.add(UTF16.valueOf(cp));
             } else {
                 nonEmojiBuffer.appendCodePoint(cp);
@@ -215,6 +221,12 @@ emoji_zwj_element :=
         boolean verbose = true;
         Object[][] tests = {
                 {"a", FindStatus.none, 1, 1},
+                {"1", FindStatus.none, 1, 1},
+                {"1a", FindStatus.none, 2, 2},
+                {"1\ufe0f", FindStatus.none, 2, 2},
+                {"1\ufe0fa", FindStatus.none, 3, 3},
+                {"1" + Emoji.KEYCAP_MARK, FindStatus.full, 2, 2},
+                {"1\ufe0f" + Emoji.KEYCAP_MARK, FindStatus.full, 3, 3},
                 {"a👶🏿b", FindStatus.full, 1, 5, FindStatus.none, 6, 6},
                 {"a👶👶🏿b", FindStatus.full, 1, 3, FindStatus.full, 3, 7, FindStatus.none, 8, 8},
         };
