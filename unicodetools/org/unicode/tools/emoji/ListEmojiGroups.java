@@ -31,17 +31,20 @@ public class ListEmojiGroups {
 
     public static void main(String[] args) {
         System.out.println("\n\n***MAIN***\n");
-        showCounts("gboardMain.tsv", GBoardCounts.counts);
+        showCounts("gboardMainRaw.tsv", GBoardCounts.countsRaw, null);
 
         System.out.println("\n\n***W/O FE0F***\n");
-        showCounts("gboardNoFE0F.tsv", GBoardCounts.countsNonPres);
+        showCounts("gboardNoFE0F.tsv", GBoardCounts.countsWithoutFe0f, GBoardCounts.countsRaw);
+        
+        System.out.println("\n\n***MAIN***\n");
+        showCounts("gboardMain.tsv", GBoardCounts.counts, null);
 
         System.out.println("\n\n***EmojiTracker***\n");
-        showCounts("emojiTracker.tsv", EmojiTracker.counts);
+        showCounts("emojiTracker.tsv", EmojiTracker.counts, null);
 
         System.out.println("\n\n***INFO***\n");
         showInfo("emojiInfo.txt");
-        
+
         showTextEmoji("emojiText.txt");
     }
 
@@ -111,16 +114,27 @@ public class ListEmojiGroups {
         }
     }
 
-    private static void showCounts(String filename, Counter<String> x) {
+    static final UnicodeSet HACK_FE0F = new UnicodeSet("[©®™✔]").freeze();
+    
+    private static void showCounts(String filename, Counter<String> x, Counter<String> withFe0f) {
+     
         try (PrintWriter out = FileUtilities.openUTF8Writer(OUTDIR, filename)) {
-            out.println("Hex\tCount\tRank\tEmoji");
+            boolean normal = withFe0f == null;
+            out.println("Hex\tCount"
+                    + (normal ? "\tRank" : "\tGB-Data\tto add to GB-Data")
+                    + "\tEmoji");
             int rank = 0;
             for (R2<Long, String> entry : x.getEntrySetSortedByCount(false, null)) {
-                out.println(
-                        hex(entry.get1())
-                        + "\t" + entry.get0()
-                        + "\t" + (++rank)
-                        + "\t" + entry.get1()
+                String term = entry.get1();
+                int cp = term.codePointAt(0);
+                Long count = entry.get0();
+                Long countWithFe0f = normal ? 0 : withFe0f.get(term + Emoji.EMOJI_VARIANT);
+                Long adjusted = GBoardCounts.toAddAdjusted(term, countWithFe0f, count);
+                out.println(hex(term)
+                        + "\t" + count
+                        + "\t" + (normal ? ++rank : countWithFe0f)
+                        + (normal ? "" : "\t" + adjusted)
+                        + "\t" + term
                         );
             }
         } catch (IOException e) {
@@ -161,8 +175,12 @@ public class ListEmojiGroups {
 
     static class GBoardCounts {
         private static final String FREQ_SOURCE = "/Users/markdavis/Google Drive/workspace/DATA/frequency/emoji/";
+        static Counter<String> countsRaw = new Counter<>();
         static Counter<String> counts = new Counter<>();
-        static Counter<String> countsNonPres = new Counter<>();
+        static Counter<String> countsWithoutFe0f = new Counter<>();
+        private static long toAddAdjusted(String term, Long countWithFe0f, Long countWithoutFe0f) {
+            return HACK_FE0F.contains(term) ? countWithFe0f * 4 : countWithoutFe0f;
+        }
         static {
             List<String> emojiSet = new ArrayList<>();
             List<String> nonPresSet = new ArrayList<>();
@@ -193,12 +211,19 @@ public class ListEmojiGroups {
                             + "\t" + nonEmojiSet
                             );
                     for (String s : emojiSet) {
-                        counts.add(s, count);
+                        countsRaw.add(s, count);
                     }
                     for (String s : nonPresSet) {
-                        countsNonPres.add(s, count);
+                        countsWithoutFe0f.add(s, count);
                     }
                 }
+            }
+            counts.addAll(countsRaw);
+            for (R2<Long, String> entry : countsWithoutFe0f.getEntrySetSortedByCount(false, null)) {
+                long countWithoutFe0f = entry.get0();
+                String term = entry.get1();
+                long countWithFe0f = counts.get(term);
+                counts.add(term + Emoji.EMOJI_VARIANT, toAddAdjusted(term, countWithFe0f, countWithoutFe0f));
             }
         }
     }
@@ -271,7 +296,7 @@ public class ListEmojiGroups {
                         if (factor == 0) {
                             factor = 1_000_000_000.0/count;
                         }
-                        counts.add(str, count);
+                        counts.add(EmojiData.EMOJI_DATA.addEmojiVariants(str), count);
                         pos = m.end();
                     }
                     lastBuffer = line.substring(pos);

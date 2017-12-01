@@ -40,6 +40,7 @@ import org.unicode.text.UCD.NamesList;
 import org.unicode.text.utility.Birelation;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.CandidateData.Quarter;
+import org.unicode.tools.emoji.CandidateData.Status;
 import org.unicode.tools.emoji.CountEmoji.Bucket;
 import org.unicode.tools.emoji.CountEmoji.Category;
 import org.unicode.tools.emoji.Emoji.Source;
@@ -638,6 +639,7 @@ public class GenerateEmoji {
 
         if (Emoji.IS_BETA) {
             showCandidateStyle(CandidateStyle.candidate, "emoji-candidates.html", UnicodeSet.EMPTY);
+            showCandidateStyle(CandidateStyle.provisional, "emoji-provisional.html", UnicodeSet.EMPTY);
         }
 
         UnicodeSet onlyNew = new UnicodeSet(EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives())
@@ -3111,7 +3113,7 @@ public class GenerateEmoji {
     static final Joiner SPACE_JOINER = Joiner.on(' ').skipNulls();
 
     enum CandidateStyle {
-        candidate, released
+        provisional, candidate, released
     }
 
     static final Joiner BAR_JOIN = Joiner.on(" | ");
@@ -3125,7 +3127,7 @@ public class GenerateEmoji {
     static void showCandidateStyle(CandidateStyle candidateStyle, String outFileName, UnicodeSet emoji)
             throws IOException {
 
-        if (candidateStyle == CandidateStyle.candidate) {
+        if (candidateStyle != CandidateStyle.released) {
             FileUtilities.copyFile(Emoji.class, "redirect-candidates.html", Emoji.FUTURE_DIR, "index.html");
         }
         // gather data
@@ -3133,7 +3135,7 @@ public class GenerateEmoji {
         boolean future = false;
 
         CandidateData candidateData = CandidateData.getInstance();
-        if (candidateStyle == CandidateStyle.candidate) {
+        if (candidateStyle != CandidateStyle.released) {
             // UnicodeMap<CandidateData.Quarter> quartersForChars = new
             // UnicodeMap<>();
             // The data file is designed to take the contents of the table, when
@@ -3157,7 +3159,7 @@ public class GenerateEmoji {
                 // Colored Glyphs</a></th>"
                 + HEADER_NAME
                 + HEADER_KEYWORDS
-                + (candidateStyle == CandidateStyle.candidate ? HEADER_STATUS : "")
+                + (candidateStyle != CandidateStyle.released ? HEADER_STATUS : "")
                 + HEADER_PROPOSAL
                 + "</tr>";
 
@@ -3182,6 +3184,9 @@ public class GenerateEmoji {
                 + "<i>Emoji Selection Factors</i> in "
                 + "<a target='_blank' href='../selection.html'>Submitting Emoji Character Proposals</a>. \n"
                 + "That page also describes the <a href='../selection.html#timeline'>Process and Timeline</a> for proposals.</p>"
+                + (candidateStyle == CandidateStyle.candidate ? 
+                        "<p>See also <a href='emoji-provisional.html' target='provisional'>Provisional Candidates</a>.</p>"
+                        : "<p>See also <a href='emoji-candidates.html' target='candidates'>Draft Candidates</a>.</p>")
                 + "<h2>Background</h2>\n"
                 + "<p><i>Provisional candidates</i> are subject to prioritization, and may not included be in the next release of Unicode. "
                 + "Temporary IDs are assigned, not code points."
@@ -3198,9 +3203,10 @@ public class GenerateEmoji {
                 + "and is not normally listed separately on emoji keyboards.</li>"
                 + "</ul>\n"
                 + "<p><a target='feedback' href='http://unicode.org/reporting.html'>Feedback</a> on the CLDR Short Name, Keywords, ordering, and category is welcome.</p>\n"
-                + PROPOSAL_CAUTION
-                + "<h2>Recent Changes</h2>\n"
-                + "<p>The following changes were made in the October 2017 UTC meeting to the draft candidates for 2018. "
+                + PROPOSAL_CAUTION;
+        String footer = "<h2>Recent Changes</h2>\n"
+                + (candidateStyle == CandidateStyle.candidate ? 
+                "<p>The following changes were made in the October 2017 UTC meeting to the draft candidates for 2018. "
                 + "Comments may be included to indicate the pending changes or other information.</p>\n"
                 + "<ol>\n"
                 + "<li>Two characters were changed from smileys to human-form emoji."
@@ -3238,7 +3244,7 @@ public class GenerateEmoji {
                 + "  </ul></li>\n"
                 + "<li>Some characters had names or keyword changes for clarity.</li>\n"
                 + "</ol>\n"
-                + "<p>The following changes were made in the October 2017 UTC meeting to the provisional candidates for 2019. "
+                : "<p>The following changes were made in the October 2017 UTC meeting to the provisional candidates for 2019. "
                 + "</p>\n"
                 + "<ol>\n"
                 + "<li>Two characters were added."
@@ -3247,11 +3253,10 @@ public class GenerateEmoji {
                 + "  <li><i>diving mask</i></li>\n"
                 + "  </ul>\n"
                 + "</li>\n"
-                + "</ol>\n";
-        String footer = "";
+                + "</ol>\n");
         // "<p>Thanks to submitters for the color sample glyphs.</p>";
 
-        String showCandidatesTitle = "Emoji Candidates";
+        String showCandidatesTitle = candidateStyle == CandidateStyle.candidate ? "Draft Emoji Candidates" : "Emoji Candidates (Provisional)";
 
         if (!future) {
             topHeader = "<p>The following emoji characters and sequences have been added to this version of Unicode Emoji.</p>\n"
@@ -3296,28 +3301,31 @@ public class GenerateEmoji {
                 String category;
                 MajorGroup majorGroup;
                 Quarter quarter = null;
-                if (candidateStyle == CandidateStyle.candidate) {
+                if (candidateStyle != CandidateStyle.released) {
                     category = candidateData.getCategory(source);
                     majorGroup = candidateData.getMajorGroup(source);
                     quarter = candidateData.getQuarter(source);
                     status = candidateData.getStatus(source);
+                    if ((status == Status.Provisional_Candidates) != (candidateStyle == CandidateStyle.provisional)) {
+                        continue;
+                    }                        
                 } else {
                     category = EmojiOrder.STD_ORDER.getCategory(source);
                     majorGroup = EmojiOrder.STD_ORDER.getMajorGroupFromCategory(category);
                 }
 
-                if (status != oldStatus) {
-                    if (inTable) {
-                        out.println("</table>");
-                        ce.showCounts(out, false);
-                        count = 0;
-                        ce = new CountEmoji();
-                        inTable = false;
-                    }
-                    out.println("<h2>" + getDoubleLink(status.toString()) + "</h2>");
-                    // out.println("<p>" + status.comment + "</p>");
-                    oldStatus = status;
-                }
+//                if (status != oldStatus) {
+//                    if (inTable) {
+//                        out.println("</table>");
+//                        ce.showCounts(out, false);
+//                        count = 0;
+//                        ce = new CountEmoji();
+//                        inTable = false;
+//                    }
+//                    out.println("<h2>" + getDoubleLink(status.toString()) + "</h2>");
+//                    // out.println("<p>" + status.comment + "</p>");
+//                    oldStatus = status;
+//                }
                 ce.add(source, candidateData);
 
                 // if (future != cd.getQuarter(source).isFuture()) {
@@ -3361,7 +3369,7 @@ public class GenerateEmoji {
                         + EmojiData.EMOJI_DATA.getName(source);
                 currentRow += "</td>\n";
                 String annotationsString = getAnnotationsString(source);
-                if (candidateStyle == CandidateStyle.candidate) {
+                if (candidateStyle  != CandidateStyle.released) {
                     String uname = candidateData.getUName(source);
                     if (uname != null) {
                         annotationsString += "<div class='uname'>Unicode Name: " + uname + "</div>";
