@@ -120,9 +120,12 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
     private final UnicodeMap<Set<String>> proposal = new UnicodeMap<>();
 
-    static final CandidateData SINGLE = new CandidateData("candidateData.txt");
+    static final UnicodeSet SEQUENCE_MAKER = new UnicodeSet().add(Emoji.JOINER).add(EmojiData.MODIFIERS).freeze();
+    
     private static final boolean LATER = false;
     //static final CandidateData PROPOSALS = new CandidateData("proposalData.txt");
+
+    static final CandidateData SINGLE = new CandidateData("candidateData.txt");
 
     private CandidateData(String sourceFile) {
         String category = null;
@@ -157,6 +160,9 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                         afterString += " (" + Utility.hex(afterItem) + ")";
                     }
                     attributes.add(source, afterString);
+                    if (SEQUENCE_MAKER.containsSome(source)) {
+                        attributes.add(source, "∈ sequences");
+                    }
                     categories.put(source, category);
                     suborder.put(source, suborder.size());
 

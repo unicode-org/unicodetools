@@ -3178,8 +3178,9 @@ public class GenerateEmoji {
         if (SHOW)
             System.out.println(items.toString().replace("\\", "\\\\"));
 
-        String topHeader = "<p>The following emoji characters are candidates for inclusion in a future version of Unicode."
-                + " These characters were based on proposals received by the Unicode "
+        String topHeader = "<p>The following emoji characters are candidates for inclusion in a future version of Unicode. "
+                + "<b>These characters are <i>not</i> final!</b> "
+                + "The characters were based on proposals received by the Unicode "
                 + "Consortium, reviewed by the Unicode Emoji Subcommittee, and selected on the basis of the "
                 + "<i>Emoji Selection Factors</i> in "
                 + "<a target='_blank' href='../selection.html'>Submitting Emoji Character Proposals</a>. \n"
@@ -3204,7 +3205,7 @@ public class GenerateEmoji {
                 + "</ul>\n"
                 + "<p><a target='feedback' href='http://unicode.org/reporting.html'>Feedback</a> on the CLDR Short Name, Keywords, ordering, and category is welcome.</p>\n"
                 + PROPOSAL_CAUTION;
-        String footer = "<h2>Recent Changes</h2>\n"
+        String footer = "<h3><a href='#recent_changes' name='recent_changes'>Recent Changes</a></h3>\n"
                 + (candidateStyle == CandidateStyle.candidate ? 
                 "<p>The following changes were made in the October 2017 UTC meeting to the draft candidates for 2018. "
                 + "Comments may be included to indicate the pending changes or other information.</p>\n"
