@@ -1384,6 +1384,9 @@ public final class UCD implements UCD_Types {
             if (ch <= 0x9FEA && rCompositeVersion >= 0xa0000) {
                 return CJK_BASE;
             }
+            if (ch <= 0x9FEF && rCompositeVersion >= 0xb0000) {
+                return CJK_BASE;
+            }
             if (ch < 0xAC00) {
                 return ch;
             }
@@ -1446,6 +1449,9 @@ public final class UCD implements UCD_Types {
                 }
                 if (ch < TANGUT_LIMIT) {
                     return TANGUT_BASE;  // 17000..187EC Tangut Ideograph
+                }
+                if (ch <= 0x187F1 && rCompositeVersion >= 0xb0000) {
+                    return TANGUT_BASE;
                 }
             }
 

@@ -21,10 +21,14 @@ import org.unicode.cldr.util.props.UnicodeProperty.AliasAddAction;
 import org.unicode.cldr.util.props.UnicodeProperty.BaseProperty;
 import org.unicode.cldr.util.props.UnicodeProperty.SimpleProperty;
 import org.unicode.cldr.util.props.UnicodeProperty.UnicodeMapProperty;
+import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues.Indic_Positional_Category_Values;
+import org.unicode.props.UcdPropertyValues.Indic_Syllabic_Category_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiData;
 
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -102,16 +106,20 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         UnicodeSet tags = new UnicodeSet(0xE0020,0xE007f).freeze();
         VersionInfo versionInfo = VersionInfo.getInstance(version);
 
-        EmojiData emojiData = EmojiData.EMOJI_DATA;
+        EmojiData emojiData = EmojiData.of(Emoji.VERSION11);
         final UnicodeSet E_Modifier = emojiData.getModifiers();
 
         UnicodeSet _E_Base = emojiData.getModifierBases();
-        UnicodeSet _Glue_After_Zwj = emojiData.getAfterZwj();
+        
+        //UnicodeSet _Glue_After_Zwj = emojiData.getAfterZwj();
 
         // break apart overlaps
-        final UnicodeSet E_Base_GAZ = new UnicodeSet(_Glue_After_Zwj).retainAll(_E_Base).freeze();
-        final UnicodeSet Glue_After_Zwj = new UnicodeSet(_Glue_After_Zwj).removeAll(E_Base_GAZ).freeze();
-        final UnicodeSet E_Base = new UnicodeSet(_E_Base).removeAll(E_Base_GAZ).freeze();
+        final UnicodeSet E_Base_GAZ = UnicodeSet.EMPTY; // new UnicodeSet(_Glue_After_Zwj).retainAll(_E_Base).freeze();
+        final UnicodeSet Glue_After_Zwj = UnicodeSet.EMPTY; // new UnicodeSet(_Glue_After_Zwj).removeAll(E_Base_GAZ).freeze();
+        
+        final UnicodeSet E_Base = new UnicodeSet(_E_Base)
+                //.removeAll(E_Base_GAZ)
+                .freeze();
 
         UnicodeSet Zwj = new UnicodeSet(0x200D,0x200D).freeze();
 
@@ -740,8 +748,30 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             }
             unicodeMap.putAll(temp, "Control");
 
-            unicodeMap.putAll(new UnicodeSet(graphemeExtend).remove(0x200d), "Extend");
-            unicodeMap.putAll(new UnicodeSet("[[\u0E31 \u0E34-\u0E3A \u0EB1 \u0EB4-\u0EB9 \u0EBB \u0EBA]-[:cn:]]"), "Extend");
+            /*
+Virama  = Indic_Syllabic_Category = Virama, or
+Indic_Syllabic_Category = Invisible_Stacker 
+and not General_Category = Spacing_Mark 
+
+LinkingConsonant    = Indic_Syllabic_Category = Consonant
+
+extend -and not GCB = Virama 
+*/
+            IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
+
+            UnicodeMap<Indic_Syllabic_Category_Values> isc = iup.loadEnum(UcdProperty.Indic_Syllabic_Category, Indic_Syllabic_Category_Values.class);
+
+            UnicodeSet virama = new UnicodeSet()
+                    .add(isc.getSet(Indic_Syllabic_Category_Values.Virama))
+                    .add(isc.getSet(Indic_Syllabic_Category_Values.Invisible_Stacker))
+                    .removeAll(cat.getSet("Spacing_Mark"))
+                    ;
+
+            UnicodeSet extend = new UnicodeSet(graphemeExtend)
+                    .remove(0x200d)
+                    .addAll(new UnicodeSet("[[\u0E31 \u0E34-\u0E3A \u0EB1 \u0EB4-\u0EB9 \u0EBB \u0EBA]-[:cn:]]"))
+                    .removeAll(virama);
+            unicodeMap.putAll(extend, "Extend");
 
             // GCB=Regional_Indicator must be maintained in sync with the binary Regional_Indicator=Y
             unicodeMap.putAll(0x1F1E6, 0x1F1FF, "Regional_Indicator");
@@ -768,11 +798,27 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             unicodeMap.putAll(hangul.getSet("LV"), "LV");
             unicodeMap.putAll(hangul.getSet("LVT"), "LVT");
 
+            unicodeMap.putAll(virama, "Virama");
+            
+            unicodeMap.putAll(isc.getSet(Indic_Syllabic_Category_Values.Consonant), "LinkingConsonant");
+
             // emoji support
             unicodeMap.putAll(tags, "Extend");
 
             unicodeMap.putAll(E_Base, "E_Base");
             unicodeMap.putAll(E_Modifier, "E_Modifier");
+            /*
+Virama  = Indic_Syllabic_Category = Virama, or
+Indic_Syllabic_Category = Invisible_Stacker 
+and not General_Category = Spacing_Mark 
+
+LinkingConsonant    = Indic_Syllabic_Category = Consonant
+
+extend -and not GCB = Virama 
+Glue_After_Zwj empty
+E_Base_GAZ empty
+E_Base  Emoji characters listed as Emoji_Modifier_Base=Yes in emoji-data.txt
+             */
 
             unicodeMap.putAll(Zwj, "ZWJ");
             unicodeMap.putAll(Glue_After_Zwj, "Glue_After_Zwj");
@@ -910,6 +956,9 @@ U+FF1A ( ： ) FULLWIDTH COLON
             unicodeMap.putAll(Zwj, "ZWJ");
             unicodeMap.putAll(Glue_After_Zwj, "Glue_After_Zwj");
             unicodeMap.putAll(E_Base_GAZ, "E_Base_GAZ");
+
+            UnicodeSet hspace = new UnicodeSet(cat.getSet("Zs")).removeAll(new UnicodeSet("[\u00A0\u2007\u202F]"));
+            unicodeMap.putAll(hspace, "HSpace");
 
             // note: during development it is easier to put new properties at the top.
             // that way you find out which other values overlap.

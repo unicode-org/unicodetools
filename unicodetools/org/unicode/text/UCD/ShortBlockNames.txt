@@ -279,3 +279,14 @@ Yi_Radicals	;	Yi_Radicals
 Yi_Syllables	;	Yi_Syllables
 Yijing	;	Yijing_Hexagram_Symbols
 Zanabazar_Square ; Zanabazar_Square
+Georgian_Extended ; Georgian_Extended
+Hanifi_Rohingya ; Hanifi_Rohingya
+Old_Sogdian ; Old_Sogdian
+Sogdian ; Sogdian
+Dogra ; Dogra
+Gunjala_Gondi ; Gunjala_Gondi
+Makasar ; Makasar
+Medefaidrin ; Medefaidrin
+Mayan_Numerals ; Mayan_Numerals
+Indic_Siyaq_Numbers ; Indic_Siyaq_Numbers
+Chess_Symbols ; Chess_Symbols
