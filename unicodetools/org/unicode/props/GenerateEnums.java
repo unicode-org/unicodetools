@@ -28,6 +28,7 @@ import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.RuleBasedCollator;
+import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.VersionInfo;
 
 public class GenerateEnums {
@@ -302,7 +303,8 @@ public class GenerateEnums {
     static Map<String,ValueCardinality> NAME2CARD = new HashMap<>();
     static {
         Splitter SEMICOLON = Splitter.on(";").trimResults();
-        for (final String line : FileUtilities.in(IndexUnicodeProperties.class, "IndexPropertyRegex.txt")) {
+        for (String line : FileUtilities.in(IndexUnicodeProperties.class, "IndexPropertyRegex.txt")) {
+            line = line.trim();
             if (line.startsWith("$") || line.isEmpty() || line.startsWith("#")) {
                 continue;
             }
@@ -310,7 +312,12 @@ public class GenerateEnums {
             // Bidi_Mirroring_Glyph ;        SINGLE_VALUED ;               $codePoint
 
             final String propertyName = parts.get(0).toLowerCase(Locale.ENGLISH);
-            final String multivalued = parts.get(1);
+            String multivalued;
+            try {
+                multivalued = parts.get(1);
+            } catch (Exception e) {
+                throw new ICUException("Bad line " + line, e);
+            }
             switch(multivalued) {
             case "ORDERED": NAME2CARD.put(propertyName, ValueCardinality.Ordered); break;
             case "MULTI_VALUED": NAME2CARD.put(propertyName, ValueCardinality.Unordered); break;
@@ -340,10 +347,13 @@ public class GenerateEnums {
             case Enumerated:
             case Catalog:
                 final String longName = pname.longName;
-                final ValueCardinality cardinality = NAME2CARD.get(longName.toLowerCase(Locale.ENGLISH));
-                if (cardinality == null || cardinality == ValueCardinality.Singleton) {
+                if (!pname.longName.equals("Script_Extensions")) {  // exception, since uses Script_Values
                     imports.add(longName);
                 }
+//                final ValueCardinality cardinality = NAME2CARD.get(longName.toLowerCase(Locale.ENGLISH));
+//                if (true || cardinality == null || cardinality == ValueCardinality.Singleton) {
+//                    imports.add(longName);
+//                }
                 break;
             default:
                 break;

@@ -255,6 +255,12 @@ Unihan_OtherMappings ;  kMainlandTelegraph
 Unihan_OtherMappings ;  kPseudoGB1
 Unihan_OtherMappings ;  kTaiwanTelegraph
 Unihan_OtherMappings ;  kXerox
+Unihan_OtherMappings ;  kJinmeiyoKanji
+Unihan_OtherMappings ;  kJoyoKanji
+Unihan_OtherMappings ;  kKoreanEducationHanja
+Unihan_OtherMappings ;  kKoreanName
+Unihan_OtherMappings ;  kTGH
+
 Unihan_RadicalStrokeCounts ; kRSAdobe_Japan1_6
 Unihan_RadicalStrokeCounts ;  kRSJapanese
 Unihan_RadicalStrokeCounts ;  kRSKangXi

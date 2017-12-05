@@ -4,10 +4,10 @@
 
 EM ; Emoji
 EMP ; Emoji_Presentation
-EMM ; Emoji_Modifier
+EMD ; Emoji_Modifier
 EMB ; Emoji_Modifier_Base
-ECP ; Emoji_Component
-EEP ; Extended_Pictographic
+EMC ; Emoji_Component
+EXP ; Extended_Pictographic
 
 EMS ; Emoji_Modifier_Sequence
 EFS ; Emoji_Flag_Sequence
@@ -131,4 +131,8 @@ cjkXHC1983 ; kXHC1983
 cjkSemanticVariant ; kSemanticVariant
 cjkSpecializedSemanticVariant ; kSpecializedSemanticVariant
 cjkZVariant ; kZVariant
-
+cjkJinmeiyoKanji ; kJinmeiyoKanji
+cjkJoyoKanji ; kJoyoKanji
+cjkKoreanEducationHanja ; kKoreanEducationHanja
+cjkKoreanName ; kKoreanName
+cjkTGH ; kTGH
