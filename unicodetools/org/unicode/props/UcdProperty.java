@@ -16,7 +16,6 @@ import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
 import org.unicode.props.UcdPropertyValues.Hangul_Syllable_Type_Values;
 import org.unicode.props.UcdPropertyValues.Identifier_Status_Values;
 import org.unicode.props.UcdPropertyValues.Identifier_Type_Values;
-
 import org.unicode.props.UcdPropertyValues.Idn_2008_Values;
 import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
 import org.unicode.props.UcdPropertyValues.Indic_Positional_Category_Values;
@@ -129,8 +128,10 @@ public enum UcdProperty {
     kJa(PropertyType.Miscellaneous, "cjkJa"),
     kJapaneseKun(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkJapaneseKun"),
     kJapaneseOn(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkJapaneseOn"),
+    kJinmeiyoKanji(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkJinmeiyoKanji"),
     kJis0(PropertyType.Miscellaneous, "cjkJis0"),
     kJis1(PropertyType.Miscellaneous, "cjkJis1"),
+    kJoyoKanji(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkJoyoKanji"),
     kKPS0(PropertyType.Miscellaneous, "cjkKPS0"),
     kKPS1(PropertyType.Miscellaneous, "cjkKPS1"),
     kKSC0(PropertyType.Miscellaneous, "cjkKSC0"),
@@ -138,6 +139,8 @@ public enum UcdProperty {
     kKangXi(PropertyType.Miscellaneous, "cjkKangXi"),
     kKarlgren(PropertyType.Miscellaneous, "cjkKarlgren"),
     kKorean(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkKorean"),
+    kKoreanEducationHanja(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkKoreanEducationHanja"),
+    kKoreanName(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkKoreanName"),
     kLau(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkLau"),
     kMainlandTelegraph(PropertyType.Miscellaneous, "cjkMainlandTelegraph"),
     kMandarin(PropertyType.Miscellaneous, null, ValueCardinality.Ordered, "cjkMandarin"),
@@ -156,6 +159,7 @@ public enum UcdProperty {
     kSBGY(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkSBGY"),
     kSemanticVariant(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkSemanticVariant"),
     kSpecializedSemanticVariant(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkSpecializedSemanticVariant"),
+    kTGH(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkTGH"),
     kTaiwanTelegraph(PropertyType.Miscellaneous, "cjkTaiwanTelegraph"),
     kTang(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkTang"),
     kTotalStrokes(PropertyType.Miscellaneous, null, ValueCardinality.Ordered, "cjkTotalStrokes"),
@@ -216,10 +220,10 @@ public enum UcdProperty {
     Deprecated(PropertyType.Binary, Binary.class, null, "Dep"),
     Diacritic(PropertyType.Binary, Binary.class, null, "Dia"),
     Emoji(PropertyType.Binary, Binary.class, null, "EM"),
-    Emoji_Component(PropertyType.Binary, Binary.class, null, "ECP"),
+    Emoji_Component(PropertyType.Binary, Binary.class, null, "EMC"),
     Emoji_Flag_Sequence(PropertyType.Binary, Binary.class, null, "EFS"),
     Emoji_Keycap_Sequence(PropertyType.Binary, Binary.class, null, "EKS"),
-    Emoji_Modifier(PropertyType.Binary, Binary.class, null, "EMM"),
+    Emoji_Modifier(PropertyType.Binary, Binary.class, null, "EMD"),
     Emoji_Modifier_Base(PropertyType.Binary, Binary.class, null, "EMB"),
     Emoji_Modifier_Sequence(PropertyType.Binary, Binary.class, null, "EMS"),
     Emoji_Presentation(PropertyType.Binary, Binary.class, null, "EMP"),
@@ -229,7 +233,7 @@ public enum UcdProperty {
     Expands_On_NFD(PropertyType.Binary, Binary.class, null, "XO_NFD"),
     Expands_On_NFKC(PropertyType.Binary, Binary.class, null, "XO_NFKC"),
     Expands_On_NFKD(PropertyType.Binary, Binary.class, null, "XO_NFKD"),
-    Extended_Pictographic(PropertyType.Binary, Binary.class, null, "EEP"),
+    Extended_Pictographic(PropertyType.Binary, Binary.class, null, "EXP"),
     Extender(PropertyType.Binary, Binary.class, null, "Ext"),
     Full_Composition_Exclusion(PropertyType.Binary, Binary.class, null, "Comp_Ex"),
     Grapheme_Base(PropertyType.Binary, Binary.class, null, "Gr_Base"),

@@ -483,8 +483,15 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
                 case PropertyValue: {
                     PropertyParsingInfo propInfo;
                     final UnicodeMap<String> data;
+                    UcdProperty item;
+                    item = UcdProperty.forString(parts[1]);
+                        
+                    if (item == null) {
+                        throw new IllegalArgumentException("Missing property enum in UcdProperty for " + parts[1]);
+                    }
+
                     try {
-                        propInfo = PropertyParsingInfo.property2PropertyInfo.get(UcdProperty.forString(parts[1]));
+                        propInfo = PropertyParsingInfo.property2PropertyInfo.get(item);
                         data = indexUnicodeProperties.property2UnicodeMap.get(propInfo.property);
                     } catch (Exception e) {
                         throw new IllegalArgumentException(Arrays.asList(parts).toString(), e);
@@ -695,6 +702,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
 
     public static void getRegexInfo(String line) {
         try {
+            line = line.trim();
             if (line.startsWith("$")) {
                 final String[] parts = PropertyParsingInfo.EQUALS.split(line);
                 IndexUnicodeProperties.vr.add(parts[0], IndexUnicodeProperties.vr.replace(parts[1]));

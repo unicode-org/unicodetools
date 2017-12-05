@@ -44,6 +44,7 @@ public class UcdPropertyValues {
         V8_0("8.0"),
         V9_0("9.0"),
         V10_0("10.0"),
+        V11_0("11.0"),
         Unassigned("NA");
         private final PropertyNames<Age_Values> names;
         private Age_Values (String shortName, String...otherNames) {
@@ -168,6 +169,7 @@ public class UcdPropertyValues {
         Cham("Cham"),
         Cherokee("Cherokee"),
         Cherokee_Supplement("Cherokee_Sup"),
+        Chess_Symbols("Chess_Symbols"),
         CJK_Unified_Ideographs("CJK"),
         CJK_Compatibility("CJK_Compat"),
         CJK_Compatibility_Forms("CJK_Compat_Forms"),
@@ -204,6 +206,7 @@ public class UcdPropertyValues {
         Combining_Diacritical_Marks_For_Symbols("Diacriticals_For_Symbols", "Combining_Marks_For_Symbols"),
         Combining_Diacritical_Marks_Supplement("Diacriticals_Sup"),
         Dingbats("Dingbats"),
+        Dogra("Dogra"),
         Domino_Tiles("Domino"),
         Duployan("Duployan"),
         Early_Dynastic_Cuneiform("Early_Dynastic_Cuneiform"),
@@ -221,6 +224,7 @@ public class UcdPropertyValues {
         Geometric_Shapes("Geometric_Shapes"),
         Geometric_Shapes_Extended("Geometric_Shapes_Ext"),
         Georgian("Georgian"),
+        Georgian_Extended("Georgian_Extended"),
         Georgian_Supplement("Georgian_Sup"),
         Glagolitic("Glagolitic"),
         Glagolitic_Supplement("Glagolitic_Sup"),
@@ -229,10 +233,12 @@ public class UcdPropertyValues {
         Greek_And_Coptic("Greek"),
         Greek_Extended("Greek_Ext"),
         Gujarati("Gujarati"),
+        Gunjala_Gondi("Gunjala_Gondi"),
         Gurmukhi("Gurmukhi"),
         Halfwidth_And_Fullwidth_Forms("Half_And_Full_Forms"),
         Combining_Half_Marks("Half_Marks"),
         Hangul_Syllables("Hangul"),
+        Hanifi_Rohingya("Hanifi_Rohingya"),
         Hanunoo("Hanunoo"),
         Hatran("Hatran"),
         Hebrew("Hebrew"),
@@ -243,6 +249,7 @@ public class UcdPropertyValues {
         Ideographic_Symbols_And_Punctuation("Ideographic_Symbols"),
         Imperial_Aramaic("Imperial_Aramaic"),
         Common_Indic_Number_Forms("Indic_Number_Forms"),
+        Indic_Siyaq_Numbers("Indic_Siyaq_Numbers"),
         Inscriptional_Pahlavi("Inscriptional_Pahlavi"),
         Inscriptional_Parthian("Inscriptional_Parthian"),
         IPA_Extensions("IPA_Ext"),
@@ -284,6 +291,7 @@ public class UcdPropertyValues {
         Lydian("Lydian"),
         Mahajani("Mahajani"),
         Mahjong_Tiles("Mahjong"),
+        Makasar("Makasar"),
         Malayalam("Malayalam"),
         Mandaic("Mandaic"),
         Manichaean("Manichaean"),
@@ -291,6 +299,8 @@ public class UcdPropertyValues {
         Masaram_Gondi("Masaram_Gondi"),
         Mathematical_Alphanumeric_Symbols("Math_Alphanum"),
         Mathematical_Operators("Math_Operators"),
+        Mayan_Numerals("Mayan_Numerals"),
+        Medefaidrin("Medefaidrin"),
         Meetei_Mayek("Meetei_Mayek"),
         Meetei_Mayek_Extensions("Meetei_Mayek_Ext"),
         Mende_Kikakui("Mende_Kikakui"),
@@ -329,6 +339,7 @@ public class UcdPropertyValues {
         Old_North_Arabian("Old_North_Arabian"),
         Old_Permic("Old_Permic"),
         Old_Persian("Old_Persian"),
+        Old_Sogdian("Old_Sogdian"),
         Old_South_Arabian("Old_South_Arabian"),
         Old_Turkic("Old_Turkic"),
         Oriya("Oriya"),
@@ -359,6 +370,7 @@ public class UcdPropertyValues {
         Sinhala("Sinhala"),
         Sinhala_Archaic_Numbers("Sinhala_Archaic_Numbers"),
         Small_Form_Variants("Small_Forms"),
+        Sogdian("Sogdian"),
         Sora_Sompeng("Sora_Sompeng"),
         Soyombo("Soyombo"),
         Specials("Specials"),
@@ -1136,12 +1148,16 @@ public class UcdPropertyValues {
 		// kJa
 		// kJapaneseKun
 		// kJapaneseOn
+		// kJinmeiyoKanji
 		// kJis0
 		// kJis1
 		// kJIS0213
+		// kJoyoKanji
 		// kKangXi
 		// kKarlgren
 		// kKorean
+		// kKoreanEducationHanja
+		// kKoreanName
 		// kKPS0
 		// kKPS1
 		// kKSC0
@@ -1169,6 +1185,7 @@ public class UcdPropertyValues {
 		// kSpecializedSemanticVariant
 		// kTaiwanTelegraph
 		// kTang
+		// kTGH
 		// kTotalStrokes
 		// kTraditionalVariant
 		// kVietnamese

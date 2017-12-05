@@ -90,6 +90,7 @@ public class ListProps {
                         System.out.println(value + "\t" + Utility.hex(value) + "\t" + uset.toPattern(false));
                     }
                 }
+
                 if (ONLY_JSP) {
                     if (!Collections.disjoint(status, SKIP_JSP_STATUS)) {
                         skipped.add(itemInfo);
