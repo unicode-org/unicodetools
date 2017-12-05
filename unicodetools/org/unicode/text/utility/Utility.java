@@ -794,7 +794,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             return coll.compare(s1, s2);
         }
     }
-    
+
     /**
      * Joins an array together, using divider between the pieces
      */
@@ -821,32 +821,33 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     public static final String[] searchPath = {
-        // "EXTRAS" + (FIX_FOR_NEW_VERSION == 0 ? "" : ""),
-        "10.0.0",
-        "9.0.0",
-        "8.0.0",
-        "7.0.0",
-        "6.3.0",
-        "6.2.0",
-        "6.1.0",
-        "6.0.0",
-        "5.2.0",
-        "5.1.0",
-        "5.0.0",
-        "4.1.0",
-        "4.0.1",
-        "4.0.0",
-        "3.2.0",
-        "3.1.1",
-        "3.1.0",
-        "3.0.1",
-        "3.0.0",
-        "2.1.9",
-        "2.1.8",
-        "2.1.5",
-        "2.1.2",
-        "2.0.0",
-        "1.1.0",
+            // "EXTRAS" + (FIX_FOR_NEW_VERSION == 0 ? "" : ""),
+            "11.0.0",
+            "10.0.0",
+            "9.0.0",
+            "8.0.0",
+            "7.0.0",
+            "6.3.0",
+            "6.2.0",
+            "6.1.0",
+            "6.0.0",
+            "5.2.0",
+            "5.1.0",
+            "5.0.0",
+            "4.1.0",
+            "4.0.1",
+            "4.0.0",
+            "3.2.0",
+            "3.1.1",
+            "3.1.0",
+            "3.0.1",
+            "3.0.0",
+            "2.1.9",
+            "2.1.8",
+            "2.1.5",
+            "2.1.2",
+            "2.0.0",
+            "1.1.0",
     };
 
     /*public static PrintWriter openPrintWriter(String filename) throws IOException {
@@ -1118,17 +1119,17 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             output.println(line);
         }
     }
-    
+
     /** If contents(newFile) ≠ contents(oldFile), rename newFile to old. Otherwise delete newfile. Return true if replaced. **/
     public static boolean replaceDifferentOrDelete(String oldFile, String newFile, boolean skipCopyright) throws IOException {
         final File oldFile2 = new File(oldFile);
         if (oldFile2.exists()) {
-        final String lines[] = new String[2];
-        final boolean identical = filesAreIdentical(oldFile, newFile, skipCopyright, lines);
-        if (identical) {
-            new File(newFile).delete();
-            return false;
-        }
+            final String lines[] = new String[2];
+            final boolean identical = filesAreIdentical(oldFile, newFile, skipCopyright, lines);
+            if (identical) {
+                new File(newFile).delete();
+                return false;
+            }
             System.out.println("Found difference in : " + oldFile + ", " + newFile);
             final int diff = compare(lines[0], lines[1]);
             System.out.println(" File1: '" + lines[0].substring(0,diff) + "', '" + lines[0].substring(diff) + "'");
@@ -1345,12 +1346,21 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     private static String getEmojiVersion(String element) {
-        switch(Integer.parseInt(element.split("\\.")[0])) {
-        case 10: return "6.0";
-        case 9: return "4.0";
-        case 8: return "3.0";
-        default: return null;
+        int major = Integer.parseInt(element.split("\\.")[0]);
+        switch(major) {
+        case 10: 
+            return "6.0";
+        case 9: 
+            return "4.0";
+        case 8: 
+            return "3.0";
+        default: 
+            if (major > 10) {
+                return major + ".0";
+            }
+            break;
         }
+        return null;
     }
 
     public static Set getDirectoryContentsLastFirst(File directory) {
@@ -1546,12 +1556,12 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                 for (int cp = start; cp <= end; ++cp) {
                     if (!IDN) {
                         pw.println(prefix + UCD.getCode(cp)
-                                + "\t# "
-                                + (useHTML ? "(" + getUnicodeImage(cp) + ") " : "")
-                                + (withChar && (cp >= 0x20) ? "(" + UTF16.valueOf(cp) + ") " : "")
-                                + (names != null ? names.getValue(cp) + " " : "")
-                                + ucd.getName(cp)
-                                + (useHTML ? "<br>" : ""));
+                        + "\t# "
+                        + (useHTML ? "(" + getUnicodeImage(cp) + ") " : "")
+                        + (withChar && (cp >= 0x20) ? "(" + UTF16.valueOf(cp) + ") " : "")
+                        + (names != null ? names.getValue(cp) + " " : "")
+                        + ucd.getName(cp)
+                        + (useHTML ? "<br>" : ""));
                     } else {
                         pw.println(prefix + Utility.hex(cp,4) + "; " + ucd.getName(cp));
                     }
@@ -1559,21 +1569,21 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             } else {
                 if (!IDN) {
                     pw.println(prefix + UCD.getCode(start)
-                            + ((start != end) ? (".." + UCD.getCode(end)) : "")
-                            + "\t# "
-                            + (withChar && (start >= 0x20) ? " (" + UTF16.valueOf(start)
-                                    + ((start != end) ? (".." + UTF16.valueOf(end)) : "") + ") " : "")
-                                    + ucd.getName(start) + ((start != end) ? (".." + ucd.getName(end)) : "")
+                    + ((start != end) ? (".." + UCD.getCode(end)) : "")
+                    + "\t# "
+                    + (withChar && (start >= 0x20) ? " (" + UTF16.valueOf(start)
+                    + ((start != end) ? (".." + UTF16.valueOf(end)) : "") + ") " : "")
+                    + ucd.getName(start) + ((start != end) ? (".." + ucd.getName(end)) : "")
                             );
                 } else {
 
                     pw.println(prefix + Utility.hex(start,4)
-                            + ((start != end) ? ("-" + Utility.hex(end,4)) : "")
-                            + (ucd.isAssigned(start)
-                                    ? "; " + ucd.getName(start) + ((start != end)
-                                            ? ("-" + ucd.getName(end))
-                                                    : "")
-                                                    : "")
+                    + ((start != end) ? ("-" + Utility.hex(end,4)) : "")
+                    + (ucd.isAssigned(start)
+                            ? "; " + ucd.getName(start) + ((start != end)
+                                    ? ("-" + ucd.getName(end))
+                                            : "")
+                                    : "")
                             );
                 }
             }

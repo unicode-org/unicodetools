@@ -136,161 +136,161 @@ public class CheckProperties {
 
         final List<UcdProperty> values =
                 extent == null ? new ArrayList(properties)
-        : extent == Extent.ALL ? Arrays.asList(UcdProperty.values())
-                : Arrays.asList(
-                        //UcdProperty.General_Category,
-                        UcdProperty.CJK_Radical,
-                        UcdProperty.Indic_Positional_Category,
-                        UcdProperty.Indic_Syllabic_Category,
-                        UcdProperty.Jamo_Short_Name
-                        // Bidi_Mirroring_Glyph
-                        //                    UcdProperty.CJK_Radical,
-                        //                    UcdProperty.Script_Extensions,
-                        //                    UcdProperty.Emoji_DoCoMo,
-                        //                    UcdProperty.Emoji_KDDI,
-                        //                    UcdProperty.Emoji_SoftBank,
-                        //                    UcdProperty.Name_Alias_Prov,
-                        //                    UcdProperty.Named_Sequences,
-                        //                    UcdProperty.Named_Sequences_Prov
-                        );
-        for (final Action action : actions) {
-            switch(action) {
-            case NAMES:
-                for (final Entry<String, PropertyParsingInfo> entry : PropertyParsingInfo.getFile2PropertyInfoSet().keyValueSet()) {
-                    out.println(entry.getKey() + " ; " + entry.getValue());
-                }
-                break;
-            case SHOW:
-                for (final UcdProperty prop : values) {
-                    show(latest, prop, actions.contains(Action.SPACES), false);
-                }
-                break;
-            case SPACES:
-                break;
-            case DETAILS:
-                for (final UcdProperty prop : values) {
-                    show(latest, prop, actions.contains(Action.SPACES), true);
-                }
-                break;
-            case COMPARE:
-            {
-                final Set<String> summary = new LinkedHashSet();
-                for (final UcdProperty prop : values) {
-                    if (PropertyStatus.getPropertyStatus(prop) == PropertyStatus.Deprecated) { // DEPRECATED_PROPERTY.contains(prop)
-                        continue;
-                    }
-                    compare(prop, last, latest, retain, summary);
-                }
-                showSummary(summary);
-            }
-            break;
-            case ICU:
-            {
-                out.println("Property\tICU-Value\tDirect-Value\tChars-Affected");
-                final Set<String> summary = new LinkedHashSet();
-                for (final UcdProperty prop : values) {
-                    compareICU(prop, LATEST_ICU ? latest : last, summary);
-                }
-                showSummary(summary);
-            }
-            break;
-            case DEFAULTS:
-                for (final UcdProperty prop : values) {
-                    showDefaults(prop);
-                }
-                break;
-            case EMPTY:
-                for (final UcdProperty prop : values) {
-                    checkEmpty(latest, prop);
-                }
-                break;
-            case JSON: {
-                for (final UcdProperty prop : values) {
-                    out.println(prop);
-                    writeJson(latest, prop);
-                }
-                break;
-            }
-            case INFO:
-                final Tabber tabber = new Tabber.MonoTabber()
-                .add(30, Tabber.LEFT)
-                .add(30, Tabber.LEFT)
-                .add(30, Tabber.LEFT);
-                final Relation<String, String> sorted = Relation.of(new TreeMap<String,Set<String>>(), LinkedHashSet.class);
-                final Set<UcdProperty> missingRegex = EnumSet.noneOf(UcdProperty.class);
-                for (final UcdProperty prop : UcdProperty.values()) {
-                    final PropertyParsingInfo propInfo = PropertyParsingInfo.getPropertyInfo(prop);
-                    if (propInfo.originalRegex == null) {
-                        continue;
-                    }
-                    final String line = tabber.process(propInfo.property + " ;\t" + propInfo.getMultivalued() + " ;\t" + propInfo.originalRegex);
-                    sorted.put(propInfo.originalRegex, line);
-                }
-                for (final Entry<String, String> regexLine : sorted.keyValueSet()) {
-                    out.println(regexLine.getValue());
-                }
+                        : extent == Extent.ALL ? Arrays.asList(UcdProperty.values())
+                                : Arrays.asList(
+                                        //UcdProperty.General_Category,
+                                        UcdProperty.CJK_Radical,
+                                        UcdProperty.Indic_Positional_Category,
+                                        UcdProperty.Indic_Syllabic_Category,
+                                        UcdProperty.Jamo_Short_Name
+                                        // Bidi_Mirroring_Glyph
+                                        //                    UcdProperty.CJK_Radical,
+                                        //                    UcdProperty.Script_Extensions,
+                                        //                    UcdProperty.Emoji_DoCoMo,
+                                        //                    UcdProperty.Emoji_KDDI,
+                                        //                    UcdProperty.Emoji_SoftBank,
+                                        //                    UcdProperty.Name_Alias_Prov,
+                                        //                    UcdProperty.Named_Sequences,
+                                        //                    UcdProperty.Named_Sequences_Prov
+                                        );
+                        for (final Action action : actions) {
+                            switch(action) {
+                            case NAMES:
+                                for (final Entry<String, PropertyParsingInfo> entry : PropertyParsingInfo.getFile2PropertyInfoSet().keyValueSet()) {
+                                    out.println(entry.getKey() + " ; " + entry.getValue());
+                                }
+                                break;
+                            case SHOW:
+                                for (final UcdProperty prop : values) {
+                                    show(latest, prop, actions.contains(Action.SPACES), false);
+                                }
+                                break;
+                            case SPACES:
+                                break;
+                            case DETAILS:
+                                for (final UcdProperty prop : values) {
+                                    show(latest, prop, actions.contains(Action.SPACES), true);
+                                }
+                                break;
+                            case COMPARE:
+                            {
+                                final Set<String> summary = new LinkedHashSet();
+                                for (final UcdProperty prop : values) {
+                                    if (PropertyStatus.getPropertyStatus(prop) == PropertyStatus.Deprecated) { // DEPRECATED_PROPERTY.contains(prop)
+                                        continue;
+                                    }
+                                    compare(prop, last, latest, retain, summary);
+                                }
+                                showSummary(summary);
+                            }
+                            break;
+                            case ICU:
+                            {
+                                out.println("Property\tICU-Value\tDirect-Value\tChars-Affected");
+                                final Set<String> summary = new LinkedHashSet();
+                                for (final UcdProperty prop : values) {
+                                    compareICU(prop, LATEST_ICU ? latest : last, summary);
+                                }
+                                showSummary(summary);
+                            }
+                            break;
+                            case DEFAULTS:
+                                for (final UcdProperty prop : values) {
+                                    showDefaults(prop);
+                                }
+                                break;
+                            case EMPTY:
+                                for (final UcdProperty prop : values) {
+                                    checkEmpty(latest, prop);
+                                }
+                                break;
+                            case JSON: {
+                                for (final UcdProperty prop : values) {
+                                    out.println(prop);
+                                    writeJson(latest, prop);
+                                }
+                                break;
+                            }
+                            case INFO:
+                                final Tabber tabber = new Tabber.MonoTabber()
+                                .add(30, Tabber.LEFT)
+                                .add(30, Tabber.LEFT)
+                                .add(30, Tabber.LEFT);
+                                final Relation<String, String> sorted = Relation.of(new TreeMap<String,Set<String>>(), LinkedHashSet.class);
+                                final Set<UcdProperty> missingRegex = EnumSet.noneOf(UcdProperty.class);
+                                for (final UcdProperty prop : UcdProperty.values()) {
+                                    final PropertyParsingInfo propInfo = PropertyParsingInfo.getPropertyInfo(prop);
+                                    if (propInfo.originalRegex == null) {
+                                        continue;
+                                    }
+                                    final String line = tabber.process(propInfo.property + " ;\t" + propInfo.getMultivalued() + " ;\t" + propInfo.originalRegex);
+                                    sorted.put(propInfo.originalRegex, line);
+                                }
+                                for (final Entry<String, String> regexLine : sorted.keyValueSet()) {
+                                    out.println(regexLine.getValue());
+                                }
 
-                for (final UcdProperty prop : UcdProperty.values()) {
-                    final PropertyParsingInfo propInfo = PropertyParsingInfo.getPropertyInfo(prop);
-                    out.println(propInfo);
-                    if (propInfo.getRegex() == null) {
-                        switch (prop.getType()) {
-                        case Binary: case Catalog: case Enumerated: break;
-                        default: missingRegex.add(prop);
+                                for (final UcdProperty prop : UcdProperty.values()) {
+                                    final PropertyParsingInfo propInfo = PropertyParsingInfo.getPropertyInfo(prop);
+                                    out.println(propInfo);
+                                    if (propInfo.getRegex() == null) {
+                                        switch (prop.getType()) {
+                                        case Binary: case Catalog: case Enumerated: break;
+                                        default: missingRegex.add(prop);
+                                        }
+                                    }
+                                }
+                                out.println("\nMissing Regex");
+                                for (final UcdProperty prop : missingRegex) {
+                                    final PropertyParsingInfo propInfo = PropertyParsingInfo.getPropertyInfo(prop);
+                                    out.println(
+                                            prop + " ;\t"
+                                                    + propInfo.getMultivalued() + " ;\t"
+                                                    + propInfo.getRegex()
+                                            );
+                                }
+                                break;
+                            }
                         }
-                    }
-                }
-                out.println("\nMissing Regex");
-                for (final UcdProperty prop : missingRegex) {
-                    final PropertyParsingInfo propInfo = PropertyParsingInfo.getPropertyInfo(prop);
-                    out.println(
-                            prop + " ;\t"
-                                    + propInfo.getMultivalued() + " ;\t"
-                                    + propInfo.getRegex()
-                            );
-                }
-                break;
-            }
-        }
 
-        showInfo("No Differences", SKIPPING, out);
-        showInfo("Property Enum Canonical Form wrong", PROPNAMEDIFFERENCES, outLog);
-        showInfo("Not In ICU", NOT_IN_ICU, outLog);
-        showInfo("Cache File Sizes", latest.getCacheFileSize().entrySet(), outLog);
+                        showInfo("No Differences", SKIPPING, out);
+                        showInfo("Property Enum Canonical Form wrong", PROPNAMEDIFFERENCES, outLog);
+                        showInfo("Not In ICU", NOT_IN_ICU, outLog);
+                        showInfo("Cache File Sizes", latest.getCacheFileSize().entrySet(), outLog);
 
-        final Set<Entry<UcdProperty, Set<String>>> dataLoadingErrors = IndexUnicodeProperties.getDataLoadingErrors().keyValuesSet();
-        if (dataLoadingErrors.size() != 0) {
-            outLog.println("Data loading errors: " + dataLoadingErrors.size());
-            for (final Entry<UcdProperty, Set<String>> s : dataLoadingErrors) {
-                outLog.println("\t" + s.getKey());
-                int max = 100;
-                for (final String value : s.getValue()) {
-                    outLog.println("\t\t" + value);
-                    if (--max < 0) {
-                        outLog.println("…");
-                        break;
-                    }
-                }
-            }
-        }
+                        final Set<Entry<UcdProperty, Set<String>>> dataLoadingErrors = IndexUnicodeProperties.getDataLoadingErrors().keyValuesSet();
+                        if (dataLoadingErrors.size() != 0) {
+                            outLog.println("Data loading errors: " + dataLoadingErrors.size());
+                            for (final Entry<UcdProperty, Set<String>> s : dataLoadingErrors) {
+                                outLog.println("\t" + s.getKey());
+                                int max = 100;
+                                for (final String value : s.getValue()) {
+                                    outLog.println("\t\t" + value);
+                                    if (--max < 0) {
+                                        outLog.println("…");
+                                        break;
+                                    }
+                                }
+                            }
+                        }
 
-        final Set<String> latestFiles = latest.getFileNames();
-        final File dir = new File(Settings.UCD_DIR);
-        final List<File> result = new ArrayList<File>();
-        checkFiles(latestFiles, dir, result);
-        showInfo("Files Not Read", result, outLog);
+                        final Set<String> latestFiles = latest.getFileNames();
+                        final File dir = new File(Settings.UCD_DIR);
+                        final List<File> result = new ArrayList<File>();
+                        checkFiles(latestFiles, dir, result);
+                        showInfo("Files Not Read", result, outLog);
 
-        total.stop();
-        System.out.println(total.toString());
-        out.println(total.toString());
-        out.flush();
-        out.close();
-        if (out != outCJK) {
-            outCJK.flush();
-            outCJK.close();
-            outLog.flush();
-            outLog.close();
-        }
+                        total.stop();
+                        System.out.println(total.toString());
+                        out.println(total.toString());
+                        out.flush();
+                        out.close();
+                        if (out != outCJK) {
+                            outCJK.flush();
+                            outCJK.close();
+                            outLog.flush();
+                            outLog.close();
+                        }
     }
 
     private static void showSummary(Set<String> summary) {
@@ -548,8 +548,22 @@ public class CheckProperties {
 
     private static void compare(UcdProperty prop, IndexUnicodeProperties last, IndexUnicodeProperties latest, 
             UnicodeSet retain, Set<String> summary) {
-        final UnicodeMap<String> lastMap = last.load(prop);
-        final UnicodeMap<String> latestMap = latest.load(prop);
+        UnicodeMap<String> lastMap;
+        UnicodeMap<String> latestMap;
+        try {
+            lastMap = last.load(prop);
+        } catch (Exception e) {
+            System.out.println(prop + "\t" + last.getUcdVersion());
+            e.printStackTrace();
+            return;
+        }
+        try {
+            latestMap = latest.load(prop);
+        } catch (Exception e) {
+            System.out.println(prop + "\t" + latest.getUcdVersion());
+            e.printStackTrace();
+            return;
+        }
         showChanges(prop, retain, last, lastMap, latest, latestMap, summary);
     }
 
@@ -729,11 +743,11 @@ public class CheckProperties {
             final UnicodeMap<String> gc = latest.load(UcdProperty.General_Category);
             final UnicodeMap<String> di = latest.load(UcdProperty.Default_Ignorable_Code_Point);
             INVISIBLES = new UnicodeSet(gc.getSet(UcdPropertyValues.General_Category_Values.Control.toString()))
-            //.addAll(gc.getSet(UcdPropertyValues.General_Category_Values.Format.toString()))
-            .addAll(gc.getSet(UcdPropertyValues.General_Category_Values.Surrogate.toString()))
-            .addAll(gc.getSet(UcdPropertyValues.General_Category_Values.Private_Use.toString()))
-            .addAll(di.getSet(UcdPropertyValues.Binary.Yes.toString()))
-            .freeze();
+                    //.addAll(gc.getSet(UcdPropertyValues.General_Category_Values.Format.toString()))
+                    .addAll(gc.getSet(UcdPropertyValues.General_Category_Values.Surrogate.toString()))
+                    .addAll(gc.getSet(UcdPropertyValues.General_Category_Values.Private_Use.toString()))
+                    .addAll(di.getSet(UcdPropertyValues.Binary.Yes.toString()))
+                    .freeze();
         }
         return INVISIBLES;
     }

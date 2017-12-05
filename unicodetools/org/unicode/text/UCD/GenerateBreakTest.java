@@ -29,6 +29,10 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 
 import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
+import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
@@ -48,6 +52,10 @@ abstract public class GenerateBreakTest implements UCD_Types {
 
     private static final String DOCTYPE =
             "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>";
+
+    // hack for now
+    static final String sampleEmoji = "🛑";
+    static final String sampleEXP = "✁";
 
     static boolean DEBUG = false;
     static final boolean SHOW_TYPE = false;
@@ -546,7 +554,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
         fc.close();
         Set<Double> numbers = getMissing(fileName, rulesFound);
         if (!numbers.isEmpty()) {
-            throw new IllegalArgumentException("***Rules missing from TESTS for " + fileName + ": " + numbers 
+            //throw new IllegalArgumentException
+            System.err.println("***Rules missing from TESTS for " + fileName + ": " + numbers 
                     + "You will need to add samples that trigger those rules. "
                     + "See https://sites.google.com/site/unicodetools/home/changing-ucd-properties#TOC-Adding-Segmentation-Sample-Strings");
         }
@@ -1172,6 +1181,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
         }
     }
 
+
     static class GenerateGraphemeBreakTest extends XGenerateBreakTest {
         public GenerateGraphemeBreakTest(UCD ucd) {
             super(ucd, 
@@ -1182,6 +1192,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
                     new String[]{});
 
             Sampler GCB = new Sampler("GCB");
+            
             this.extraSingleSamples.addAll(Arrays.asList(
                     GCB.get("L") + GCB.get("L"),
                     GCB.get("LV") + GCB.get("T") + GCB.get("L"),
@@ -1195,12 +1206,21 @@ abstract public class GenerateBreakTest implements UCD_Types {
                     "a" + "\u0308" + "b",
                     "a" + GCB.get("SpacingMark") + "b",
                     "a" + GCB.get("Prepend") + "b",
+                    "a" + GCB.get("LinkingConsonant") + GCB.get("Virama") + GCB.get("LinkingConsonant") + "b",
+                    "a" + GCB.get("Virama") + GCB.get("LinkingConsonant") + "b",
+                    "a" + GCB.get("ZWJ") + GCB.get("LinkingConsonant") + "b",
                     GCB.get("E_Base") + GCB.get("E_Modifier") + GCB.get("E_Base"),
-                    GCB.get("EBG") + GCB.get("E_Modifier"),
-                    GCB.get("ZWJ") + GCB.get("EBG") + GCB.get("E_Modifier"),
-                    GCB.get("ZWJ") + GCB.get("Glue_After_Zwj"),
-                    GCB.get("ZWJ") + GCB.get("EBG"),
-                    GCB.get("EBG") + GCB.get("EBG")
+                    "a" + GCB.get("E_Modifier") + GCB.get("E_Base"),
+                    
+                    sampleEmoji + GCB.get("ZWJ") + sampleEmoji,
+                    "a" + GCB.get("ZWJ") + sampleEmoji,
+                    sampleEXP + GCB.get("ZWJ") + sampleEXP,
+                    "a" + GCB.get("ZWJ") + sampleEXP
+
+                    //GCB.get("ZWJ") + GCB.get("EBG") + GCB.get("E_Modifier"),
+                    //GCB.get("ZWJ") + GCB.get("Glue_After_Zwj"),
+                    //GCB.get("ZWJ") + GCB.get("EBG"),
+                    //GCB.get("EBG") + GCB.get("EBG")
                     ));
         }
     }
@@ -1572,12 +1592,19 @@ abstract public class GenerateBreakTest implements UCD_Types {
                     "a" + WB.get("RI") + WB.get("ZWJ") + WB.get("RI",2) + WB.get("RI",3) + "b",
                     "a" + WB.get("RI") + WB.get("RI",2) + WB.get("RI",3) + WB.get("RI",4) + "b",
                     WB.get("E_Base") + WB.get("E_Modifier") + WB.get("E_Base"),
-                    WB.get("EBG") + WB.get("E_Modifier"),
-                    WB.get("ZWJ") + WB.get("EBG") + WB.get("E_Modifier"),
-                    WB.get("ZWJ") + WB.get("Glue_After_Zwj"),
-                    WB.get("ZWJ") + WB.get("EBG"),
-                    WB.get("EBG") + WB.get("EBG"),
-                    "a" + "\u0308" + WB.get("ZWJ") + "\u0308" + "b"
+                    
+                    sampleEmoji + WB.get("ZWJ") + sampleEmoji,
+                    "a" + WB.get("ZWJ") + sampleEmoji,
+                    sampleEXP + WB.get("ZWJ") + sampleEXP,
+                    "a" + WB.get("ZWJ") + sampleEXP,
+
+                    sampleEmoji + WB.get("E_Modifier"),
+                    WB.get("ZWJ") + sampleEmoji + WB.get("E_Modifier"),
+                    WB.get("ZWJ") +sampleEmoji,
+                    WB.get("ZWJ") + sampleEmoji,
+                    sampleEmoji + sampleEmoji,
+                    "a" + "\u0308" + WB.get("ZWJ") + "\u0308" + "b",
+                    "a  b"
                     ));
 
             // 1. ÷ (Numeric|ALetter) ÷ (MidLetter|MidNum|MidNumLet) ÷ (MidLetter|MidNum|MidNumLet) ÷ (Numeric|ALetter) ÷
