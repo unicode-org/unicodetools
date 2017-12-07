@@ -690,6 +690,7 @@ GCB; EX                               ; Extend
 GCB; GAZ                              ; Glue_After_Zwj
 GCB; L                                ; L
 GCB; LF                               ; LF
+GCB; LinkC                 ; LinkingConsonant
 GCB; LV                               ; LV
 GCB; LVT                              ; LVT
 GCB; PP                               ; Prepend
@@ -697,6 +698,7 @@ GCB; RI                               ; Regional_Indicator
 GCB; SM                               ; SpacingMark
 GCB; T                                ; T
 GCB; V                                ; V
+GCB; Virama                           ; Virama
 GCB; XX                               ; Other
 GCB; ZWJ                              ; ZWJ
 
@@ -1318,6 +1320,14 @@ sc ; Zinh                             ; Inherited                        ; Qaai
 sc ; Zyyy                             ; Common
 sc ; Zzzz                             ; Unknown
 
+sc ; Dogr ; Dogra
+sc ; Gong ; Gunjala_Gondi
+sc ; Maka ; Makasar
+sc ; Medf ; Medefaidrin
+sc ; Rohg ; Hanifi_Rohingya
+sc ; Sogd ; Sogdian
+sc ; Sogo ; Old_Sogdian
+
 # Script_Extensions (scx)
 
 # @missing: 0000..10FFFF; Script_Extensions; <script>
@@ -1422,6 +1432,7 @@ WB ; Extend                           ; Extend
 WB ; FO                               ; Format
 WB ; GAZ                              ; Glue_After_Zwj
 WB ; HL                               ; Hebrew_Letter
+WB ; HSpace                           ; HSpace
 WB ; KA                               ; Katakana
 WB ; LE                               ; ALetter
 WB ; LF                               ; LF

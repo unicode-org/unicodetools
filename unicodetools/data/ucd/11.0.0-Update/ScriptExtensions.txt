@@ -1,5 +1,5 @@
-# ScriptExtensions-10.0.0.txt
-# Date: 2017-05-31, 01:07:00 GMT [RP]
+# ScriptExtensions-11.0.0.txt
+# Date: 2017-12-06, 01:00:01 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -59,9 +59,8 @@
 1CE9..1CEC    ; Deva # Lo   [4] VEDIC SIGN ANUSVARA ANTARGOMUKHA..VEDIC SIGN ANUSVARA VAMAGOMUKHA WITH TAIL
 1CED          ; Deva # Mn       VEDIC SIGN TIRYAK
 1CEE..1CF1    ; Deva # Lo   [4] VEDIC SIGN HEXIFORM LONG ANUSVARA..VEDIC SIGN ANUSVARA UBHAYATO MUKHA
-1CF6          ; Deva # Lo       VEDIC SIGN UPADHMANIYA
 
-# Total code points: 26
+# Total code points: 25
 
 # ================================================
 
@@ -123,6 +122,14 @@
 
 # ================================================
 
+# Script_Extensions=Arab Rohg
+
+06D4          ; Arab Rohg # Mn       ARABIC FULL STOP
+
+# Total code points: 1
+
+# ================================================
+
 # Script_Extensions=Arab Syrc
 
 064B..0655    ; Arab Syrc # Mn  [11] ARABIC FATHATAN..ARABIC HAMZA BELOW
@@ -152,9 +159,11 @@ FDFD          ; Arab Thaa # So       ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHE
 
 # Script_Extensions=Beng Deva
 
+1CF5          ; Beng Deva # Lo       VEDIC SIGN JIHVAMULIYA
+1CF6          ; Beng Deva # Lo       VEDIC SIGN UPADHMANIYA
 A8F1          ; Beng Deva # Mn       COMBINING DEVANAGARI SIGN AVAGRAHA
 
-# Total code points: 1
+# Total code points: 3
 
 # ================================================
 
@@ -223,14 +232,6 @@ A66F          ; Cyrl Glag # Mn       COMBINING CYRILLIC VZMET
 
 # ================================================
 
-# Script_Extensions=Deva Knda
-
-1CF5          ; Deva Knda # Lo       VEDIC SIGN JIHVAMULIYA
-
-# Total code points: 1
-
-# ================================================
-
 # Script_Extensions=Deva Shrd
 
 1CD7          ; Deva Shrd # Mn       VEDIC TONE YAJURVEDIC KATHAKA INDEPENDENT SVARITA
@@ -260,16 +261,13 @@ A8F3          ; Deva Taml # Lo       DEVANAGARI SIGN CANDRABINDU VIRAMA
 
 # Script_Extensions=Gran Taml
 
-0BAA          ; Gran Taml # Lo       TAMIL LETTER PA
-0BB5          ; Gran Taml # Lo       TAMIL LETTER VA
 0BE6..0BEF    ; Gran Taml # Nd  [10] TAMIL DIGIT ZERO..TAMIL DIGIT NINE
 0BF0..0BF2    ; Gran Taml # No   [3] TAMIL NUMBER TEN..TAMIL NUMBER ONE THOUSAND
 11301         ; Gran Taml # Mn       GRANTHA SIGN CANDRABINDU
 11303         ; Gran Taml # Mc       GRANTHA SIGN VISARGA
 1133C         ; Gran Taml # Mn       GRANTHA SIGN NUKTA
 
-
-# Total code points: 18
+# Total code points: 16
 
 # ================================================
 
@@ -314,12 +312,9 @@ FF9E..FF9F    ; Hira Kana # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFW
 
 # Script_Extensions=Arab Syrc Thaa
 
-060C          ; Arab Syrc Thaa # Po       ARABIC COMMA
-061B          ; Arab Syrc Thaa # Po       ARABIC SEMICOLON
 061C          ; Arab Syrc Thaa # Cf       ARABIC LETTER MARK
-061F          ; Arab Syrc Thaa # Po       ARABIC QUESTION MARK
 
-# Total code points: 4
+# Total code points: 1
 
 # ================================================
 
@@ -380,6 +375,16 @@ A92E          ; Kali Latn Mymr # Po       KAYAH LI SIGN CWI
 
 # ================================================
 
+# Script_Extensions=Arab Rohg Syrc Thaa
+
+060C          ; Arab Rohg Syrc Thaa # Po       ARABIC COMMA
+061B          ; Arab Rohg Syrc Thaa # Po       ARABIC SEMICOLON
+061F          ; Arab Rohg Syrc Thaa # Po       ARABIC QUESTION MARK
+
+# Total code points: 3
+
+# ================================================
+
 # Script_Extensions=Buhd Hano Tagb Tglg
 
 1735..1736    ; Buhd Hano Tagb Tglg # Po   [2] PHILIPPINE SINGLE PUNCTUATION..PHILIPPINE DOUBLE PUNCTUATION
@@ -406,14 +411,6 @@ FE45..FE46    ; Bopo Hang Hani Hira Kana # Po   [2] SESAME DOT..WHITE SESAME DOT
 # Script_Extensions=Deva Knda Mlym Taml Telu
 
 1CDA          ; Deva Knda Mlym Taml Telu # Mn       VEDIC TONE DOUBLE SVARITA
-
-# Total code points: 1
-
-# ================================================
-
-# Script_Extensions=Adlm Arab Mand Mani Phlp Syrc
-
-0640          ; Adlm Arab Mand Mani Phlp Syrc # Lm       ARABIC TATWEEL
 
 # Total code points: 1
 
@@ -447,6 +444,14 @@ FF63          ; Bopo Hang Hani Hira Kana Yiii # Pe       HALFWIDTH RIGHT CORNER 
 FF64..FF65    ; Bopo Hang Hani Hira Kana Yiii # Po   [2] HALFWIDTH IDEOGRAPHIC COMMA..HALFWIDTH KATAKANA MIDDLE DOT
 
 # Total code points: 26
+
+# ================================================
+
+# Script_Extensions=Adlm Arab Mand Mani Phlp Rohg Sogd Syrc
+
+0640          ; Adlm Arab Mand Mani Phlp Rohg Sogd Syrc # Lm       ARABIC TATWEEL
+
+# Total code points: 1
 
 # ================================================
 

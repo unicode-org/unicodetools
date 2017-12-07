@@ -1606,7 +1606,7 @@ FE45..FE46    ; Pattern_Syntax # Po   [2] SESAME DOT..WHITE SESAME DOT
 070F          ; Prepended_Concatenation_Mark # Cf       SYRIAC ABBREVIATION MARK
 08E2          ; Prepended_Concatenation_Mark # Cf       ARABIC DISPUTED END OF AYAH
 110BD         ; Prepended_Concatenation_Mark # Cf       KAITHI NUMBER SIGN
-
+110CD ; Prepended_Concatenation_Mark # KAITHI NUMBER SIGN ABOVE
 # Total code points: 10
 
 # ================================================
