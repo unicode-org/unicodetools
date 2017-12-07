@@ -1,5 +1,5 @@
-# Scripts-10.0.0.txt
-# Date: 2017-03-11, 06:40:37 GMT
+# Scripts-11.0.0.txt
+# Date: 2017-12-05, 11:57:01 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1506,7 +1506,7 @@ FF71..FF9D    ; Katakana # Lo  [45] HALFWIDTH KATAKANA LETTER A..HALFWIDTH KATAK
 3038..303A    ; Han # Nl   [3] HANGZHOU NUMERAL TEN..HANGZHOU NUMERAL THIRTY
 303B          ; Han # Lm       VERTICAL IDEOGRAPHIC ITERATION MARK
 3400..4DB5    ; Han # Lo [6582] CJK UNIFIED IDEOGRAPH-3400..CJK UNIFIED IDEOGRAPH-4DB5
-4E00..9FEA    ; Han # Lo [20971] CJK UNIFIED IDEOGRAPH-4E00..CJK UNIFIED IDEOGRAPH-9FEA
+4E00..9FEF    ; Han # Lo [20976] CJK UNIFIED IDEOGRAPH-4E00..CJK UNIFIED IDEOGRAPH-9FEF
 F900..FA6D    ; Han # Lo [366] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIBILITY IDEOGRAPH-FA6D
 FA70..FAD9    ; Han # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COMPATIBILITY IDEOGRAPH-FAD9
 20000..2A6D6  ; Han # Lo [42711] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6D6
@@ -1516,7 +1516,7 @@ FA70..FAD9    ; Han # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COMPATIBILI
 2CEB0..2EBE0  ; Han # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2F800..2FA1D  ; Han # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# Total code points: 89228
+# Total code points: 89233
 
 # ================================================
 
@@ -2224,8 +2224,8 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 111B6..111BE  ; Sharada # Mn   [9] SHARADA VOWEL SIGN U..SHARADA VOWEL SIGN O
 111BF..111C0  ; Sharada # Mc   [2] SHARADA VOWEL SIGN AU..SHARADA SIGN VIRAMA
 111C1..111C4  ; Sharada # Lo   [4] SHARADA SIGN AVAGRAHA..SHARADA OM
-111C5..111C9  ; Sharada # Po   [5] SHARADA DANDA..SHARADA SANDHI MARK
-111CA..111CC  ; Sharada # Mn   [3] SHARADA SIGN NUKTA..SHARADA EXTRA SHORT VOWEL MARK
+111C5..111C8  ; Sharada # Po   [4] SHARADA DANDA..SHARADA SEPARATOR
+111C9..111CC  ; Sharada # Mn   [4] SHARADA SANDHI MARK..SHARADA EXTRA SHORT VOWEL MARK
 111CD         ; Sharada # Po       SHARADA SUTRA MARK
 111D0..111D9  ; Sharada # Nd  [10] SHARADA DIGIT ZERO..SHARADA DIGIT NINE
 111DA         ; Sharada # Lo       SHARADA EKAM
@@ -2631,10 +2631,10 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 # ================================================
 
 16FE0         ; Tangut # Lm       TANGUT ITERATION MARK
-17000..187EC  ; Tangut # Lo [6125] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187EC
+17000..187F1  ; Tangut # Lo [6130] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F1
 18800..18AF2  ; Tangut # Lo [755] TANGUT COMPONENT-001..TANGUT COMPONENT-755
 
-# Total code points: 6881
+# Total code points: 6886
 
 # ================================================
 
@@ -2689,5 +2689,123 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 11A47         ; Zanabazar_Square # Mn       ZANABAZAR SQUARE SUBJOINER
 
 # Total code points: 72
+
+
+
+0560 ; Armenian
+0588 ; Armenian
+
+
+
+05EF ; Hebrew
+
+
+
+07FD..07FF ; Nko
+
+
+
+08D3 ; Arabic
+
+
+
+09FE ; Bengali
+
+
+
+0A76 ; Gurmukhi
+
+
+
+0C04 ; Telugu
+
+
+
+0C84 ; Kannada
+
+
+
+1878 ; Mongolian
+
+
+
+1C90..1CBA ; Georgian
+1CBD..1CBF ; Georgian
+
+
+
+312F ; Bopomofo
+
+
+
+A7AF ; Latin
+A7B8..A7B9 ; Latin
+
+
+
+A8FE..A8FF ; Devanagari
+
+
+
+10A34..10A35 ; Kharoshthi
+10A48 ; Kharoshthi
+
+
+
+10D00..10D27 ; Hanifi_Rohingya
+10D30..10D39 ; Hanifi_Rohingya
+
+
+
+10F00..10F27 ; Old_Sogdian
+
+
+
+10F30..10F59 ; Sogdian
+
+
+
+110CD ; Kaithi
+
+
+
+11144..11146 ; Chakma
+
+
+
+1133B ; Inherited
+
+
+
+1145E ; Newa
+
+
+
+1171A ; Ahom
+
+
+
+11800..1183B ; Dogra
+
+
+
+11A9D ; Soyombo
+
+
+
+11D60..11D65 ; Gunjala_Gondi
+11D67..11D68 ; Gunjala_Gondi
+11D6A..11D8E ; Gunjala_Gondi
+11D90..11D91 ; Gunjala_Gondi
+11D93..11D98 ; Gunjala_Gondi
+11DA0..11DA9 ; Gunjala_Gondi
+
+
+
+11EE0..11EF8 ; Makasar
+
+
+
+16E40..16E9A ; Medefaidrin
 
 # EOF
