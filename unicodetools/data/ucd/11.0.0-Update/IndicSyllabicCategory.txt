@@ -1,5 +1,5 @@
-# IndicSyllabicCategory-10.0.0.txt
-# Date: 2017-05-31, 01:07:00 GMT [KW, RP]
+# IndicSyllabicCategory-11.0.0.txt
+# Date: 2017-08-14, 21:33:00 GMT [KW, RP]
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -401,7 +401,7 @@ ABD1          ; Vowel_Independent # Lo       MEETEI MAYEK LETTER ATIYA
 11A50         ; Vowel_Independent # Lo       SOYOMBO LETTER A
 11C00..11C08  ; Vowel_Independent # Lo   [9] BHAIKSUKI LETTER A..BHAIKSUKI LETTER VOCALIC L
 11C0A..11C0D  ; Vowel_Independent # Lo   [4] BHAIKSUKI LETTER E..BHAIKSUKI LETTER AU
-11D00..11D06  ; Vowel_Independent # Lo   [6] MASARAM GONDI LETTER A..MASARAM GONDI LETTER E
+11D00..11D06  ; Vowel_Independent # Lo   [7] MASARAM GONDI LETTER A..MASARAM GONDI LETTER E
 11D08..11D09  ; Vowel_Independent # Lo   [2] MASARAM GONDI LETTER AI..MASARAM GONDI LETTER O
 11D0B         ; Vowel_Independent # Lo       MASARAM GONDI LETTER AU
 
@@ -1108,6 +1108,7 @@ A8E0..A8F1    ; Cantillation_Mark # Mn  [18] COMBINING DEVANAGARI DIGIT ZERO..CO
 1DFB          ; Syllable_Modifier # Mn       COMBINING DELETION MARK
 2074          ; Syllable_Modifier # No       SUPERSCRIPT FOUR
 2082..2084    ; Syllable_Modifier # No   [3] SUBSCRIPT TWO..SUBSCRIPT FOUR
+111C9         ; Syllable_Modifier # Mn       SHARADA SANDHI MARK
 11A33         ; Syllable_Modifier # Mn       ZANABAZAR SQUARE FINAL CONSONANT MARK
 
 # ================================================

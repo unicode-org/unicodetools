@@ -1,5 +1,5 @@
-# DerivedBinaryProperties-10.0.0.txt
-# Date: 2017-02-14, 04:26:02 GMT
+# DerivedBinaryProperties-11.0.0.txt
+# Date: 2017-12-05, 11:56:41 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -123,7 +123,8 @@
 2996          ; Bidi_Mirrored # Pe       DOUBLE RIGHT ARC LESS-THAN BRACKET
 2997          ; Bidi_Mirrored # Ps       LEFT BLACK TORTOISE SHELL BRACKET
 2998          ; Bidi_Mirrored # Pe       RIGHT BLACK TORTOISE SHELL BRACKET
-299B..29AF    ; Bidi_Mirrored # Sm  [21] MEASURED ANGLE OPENING LEFT..MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING LEFT AND DOWN
+299B..29A0    ; Bidi_Mirrored # Sm   [6] MEASURED ANGLE OPENING LEFT..SPHERICAL ANGLE OPENING LEFT
+29A2..29AF    ; Bidi_Mirrored # Sm  [14] TURNED ANGLE..MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING LEFT AND DOWN
 29B8          ; Bidi_Mirrored # Sm       CIRCLED REVERSE SOLIDUS
 29C0..29C5    ; Bidi_Mirrored # Sm   [6] CIRCLED LESS-THAN..SQUARED FALLING DIAGONAL SLASH
 29C9          ; Bidi_Mirrored # Sm       TWO JOINED SQUARES
@@ -226,6 +227,6 @@ FF63          ; Bidi_Mirrored # Pe       HALFWIDTH RIGHT CORNER BRACKET
 1D789         ; Bidi_Mirrored # Sm       MATHEMATICAL SANS-SERIF BOLD PARTIAL DIFFERENTIAL
 1D7C3         ; Bidi_Mirrored # Sm       MATHEMATICAL SANS-SERIF BOLD ITALIC PARTIAL DIFFERENTIAL
 
-# Total code points: 545
+# Total code points: 544
 
 # EOF

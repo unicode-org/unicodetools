@@ -81,6 +81,7 @@ age; 7.0                              ; V7_0
 age; 8.0                              ; V8_0
 age; 9.0                              ; V9_0
 age; 10.0                             ; V10_0
+age; 11.0                             ; V11_0
 age; NA                               ; Unassigned
 
 # Alphabetic (Alpha)
@@ -182,6 +183,7 @@ blk; Chakma                           ; Chakma
 blk; Cham                             ; Cham
 blk; Cherokee                         ; Cherokee
 blk; Cherokee_Sup                     ; Cherokee_Supplement
+blk; Chess_Symbols                    ; Chess_Symbols
 blk; CJK                              ; CJK_Unified_Ideographs
 blk; CJK_Compat                       ; CJK_Compatibility
 blk; CJK_Compat_Forms                 ; CJK_Compatibility_Forms
@@ -218,6 +220,7 @@ blk; Diacriticals_Ext                 ; Combining_Diacritical_Marks_Extended
 blk; Diacriticals_For_Symbols         ; Combining_Diacritical_Marks_For_Symbols; Combining_Marks_For_Symbols
 blk; Diacriticals_Sup                 ; Combining_Diacritical_Marks_Supplement
 blk; Dingbats                         ; Dingbats
+blk; Dogra                            ; Dogra
 blk; Domino                           ; Domino_Tiles
 blk; Duployan                         ; Duployan
 blk; Early_Dynastic_Cuneiform         ; Early_Dynastic_Cuneiform
@@ -235,6 +238,7 @@ blk; Ethiopic_Sup                     ; Ethiopic_Supplement
 blk; Geometric_Shapes                 ; Geometric_Shapes
 blk; Geometric_Shapes_Ext             ; Geometric_Shapes_Extended
 blk; Georgian                         ; Georgian
+blk; Georgian_Ext                     ; Georgian_Extended
 blk; Georgian_Sup                     ; Georgian_Supplement
 blk; Glagolitic                       ; Glagolitic
 blk; Glagolitic_Sup                   ; Glagolitic_Supplement
@@ -243,10 +247,12 @@ blk; Grantha                          ; Grantha
 blk; Greek                            ; Greek_And_Coptic
 blk; Greek_Ext                        ; Greek_Extended
 blk; Gujarati                         ; Gujarati
+blk; Gunjala_Gondi                    ; Gunjala_Gondi
 blk; Gurmukhi                         ; Gurmukhi
 blk; Half_And_Full_Forms              ; Halfwidth_And_Fullwidth_Forms
 blk; Half_Marks                       ; Combining_Half_Marks
 blk; Hangul                           ; Hangul_Syllables
+blk; Hanifi_Rohingya                  ; Hanifi_Rohingya
 blk; Hanunoo                          ; Hanunoo
 blk; Hatran                           ; Hatran
 blk; Hebrew                           ; Hebrew
@@ -257,6 +263,7 @@ blk; IDC                              ; Ideographic_Description_Characters
 blk; Ideographic_Symbols              ; Ideographic_Symbols_And_Punctuation
 blk; Imperial_Aramaic                 ; Imperial_Aramaic
 blk; Indic_Number_Forms               ; Common_Indic_Number_Forms
+blk; Indic_Siyaq_Numbers              ; Indic_Siyaq_Numbers
 blk; Inscriptional_Pahlavi            ; Inscriptional_Pahlavi
 blk; Inscriptional_Parthian           ; Inscriptional_Parthian
 blk; IPA_Ext                          ; IPA_Extensions
@@ -298,6 +305,7 @@ blk; Lycian                           ; Lycian
 blk; Lydian                           ; Lydian
 blk; Mahajani                         ; Mahajani
 blk; Mahjong                          ; Mahjong_Tiles
+blk; Makasar                          ; Makasar
 blk; Malayalam                        ; Malayalam
 blk; Mandaic                          ; Mandaic
 blk; Manichaean                       ; Manichaean
@@ -305,6 +313,8 @@ blk; Marchen                          ; Marchen
 blk; Masaram_Gondi                    ; Masaram_Gondi
 blk; Math_Alphanum                    ; Mathematical_Alphanumeric_Symbols
 blk; Math_Operators                   ; Mathematical_Operators
+blk; Mayan_Numerals                   ; Mayan_Numerals
+blk; Medefaidrin                      ; Medefaidrin
 blk; Meetei_Mayek                     ; Meetei_Mayek
 blk; Meetei_Mayek_Ext                 ; Meetei_Mayek_Extensions
 blk; Mende_Kikakui                    ; Mende_Kikakui
@@ -343,6 +353,7 @@ blk; Old_Italic                       ; Old_Italic
 blk; Old_North_Arabian                ; Old_North_Arabian
 blk; Old_Permic                       ; Old_Permic
 blk; Old_Persian                      ; Old_Persian
+blk; Old_Sogdian                      ; Old_Sogdian
 blk; Old_South_Arabian                ; Old_South_Arabian
 blk; Old_Turkic                       ; Old_Turkic
 blk; Oriya                            ; Oriya
@@ -373,6 +384,7 @@ blk; Siddham                          ; Siddham
 blk; Sinhala                          ; Sinhala
 blk; Sinhala_Archaic_Numbers          ; Sinhala_Archaic_Numbers
 blk; Small_Forms                      ; Small_Form_Variants
+blk; Sogdian                          ; Sogdian
 blk; Sora_Sompeng                     ; Sora_Sompeng
 blk; Soyombo                          ; Soyombo
 blk; Specials                         ; Specials
@@ -678,6 +690,7 @@ GCB; EX                               ; Extend
 GCB; GAZ                              ; Glue_After_Zwj
 GCB; L                                ; L
 GCB; LF                               ; LF
+GCB; LinkC                 ; LinkingConsonant
 GCB; LV                               ; LV
 GCB; LVT                              ; LVT
 GCB; PP                               ; Prepend
@@ -685,6 +698,7 @@ GCB; RI                               ; Regional_Indicator
 GCB; SM                               ; SpacingMark
 GCB; T                                ; T
 GCB; V                                ; V
+GCB; Virama                           ; Virama
 GCB; XX                               ; Other
 GCB; ZWJ                              ; ZWJ
 
@@ -1306,6 +1320,14 @@ sc ; Zinh                             ; Inherited                        ; Qaai
 sc ; Zyyy                             ; Common
 sc ; Zzzz                             ; Unknown
 
+sc ; Dogr ; Dogra
+sc ; Gong ; Gunjala_Gondi
+sc ; Maka ; Makasar
+sc ; Medf ; Medefaidrin
+sc ; Rohg ; Hanifi_Rohingya
+sc ; Sogd ; Sogdian
+sc ; Sogo ; Old_Sogdian
+
 # Script_Extensions (scx)
 
 # @missing: 0000..10FFFF; Script_Extensions; <script>
@@ -1410,6 +1432,7 @@ WB ; Extend                           ; Extend
 WB ; FO                               ; Format
 WB ; GAZ                              ; Glue_After_Zwj
 WB ; HL                               ; Hebrew_Letter
+WB ; HSpace                           ; HSpace
 WB ; KA                               ; Katakana
 WB ; LE                               ; ALetter
 WB ; LF                               ; LF

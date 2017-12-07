@@ -304,8 +304,8 @@ Area, Supplementary CJK Ideographs	20000
 Area, Supplementary General Scripts	10000
 Area, Surrogates	D800
 Area, Symbols	2000
-Area-A, Supplementary Private Use	FFF80
-Area-B, Supplementary Private Use	10FF80
+Area-A, Supplementary Private Use	F0000
+Area-B, Supplementary Private Use	100000
 argentinian former currency	20B3
 ARIES	2648
 ARMENIAN ABBREVIATION MARK	055F
@@ -529,6 +529,7 @@ bernoulli function	212C
 BET SYMBOL	2136
 BETA SYMBOL, GREEK	03D0
 beta, curled	03D0
+Betty	BOOP
 BETWEEN	226C
 Beverage Symbols	1F375
 BEVERAGE, HOT	2615
@@ -1885,7 +1886,6 @@ ENQUIRY, SYMBOL FOR	2405
 enter key	2324
 ENTER SYMBOL	2386
 Entertainment Symbols	1F3A0
-entity &iinfin;, isotech	29DC
 ENVELOPE	2709
 ENVELOPE, BACK OF	1F582
 ENVELOPE, STAMPED	1F583
@@ -2653,6 +2653,7 @@ indicator, forward arrow	25BB
 Inequality Signs, Equality and	2243
 Inequality Signs, Equality and	22D5
 INFINITY	221E
+INFINITY, INCOMPLETE	29DC
 infix bag count	266F
 information	1F6C8
 INFORMATION SEPARATOR FOUR	001C
@@ -2743,7 +2744,6 @@ ISOLATE, FIRST STRONG	2068
 ISOLATE, LEFT-TO-RIGHT	2066
 ISOLATE, POP DIRECTIONAL	2069
 ISOLATE, RIGHT-TO-LEFT	2067
-isotech entity &iinfin;	29DC
 israeli currency	20AA
 ISSHAR, BENGALI	09FA
 ISSHAR, ORIYA	0B70
@@ -3111,6 +3111,7 @@ LENTICULAR BRACKET, RIGHT WHITE	3017
 LEO	264C
 LEOPARD	1F406
 Lepcha	1C00
+Leppard	DEAF
 LESS-THAN OR EQUAL TO	2264
 LESS-THAN SIGN	003C
 LESS-THAN, MUCH	226A
@@ -3630,10 +3631,8 @@ non-breaking space	00A0
 NON-JOINER, ZERO WIDTH	200C
 non-spacing iota below, greek	0345
 non-theorem	22A3
-Noncharacters	*FFFE
-Noncharacters	*FFFF
-Noncharacters	FDD*
-Noncharacters	FDE*
+Noncharacters (FDD0..FDEF)	FDD0
+Noncharacters (FFFE..FFFF)	FFFE
 NOR	22BD
 NORMAL FACTOR SEMIDIRECT PRODUCT, LEFT	22C9
 NORMAL FACTOR SEMIDIRECT PRODUCT, RIGHT	22CA
@@ -4172,6 +4171,7 @@ PROPORTIONAL TO	221D
 proportional to	223C
 proves	22A2
 psili, greek	0313
+PSIFISTOPARAKALESMA	1D06F
 published	2117
 pullback	27D3
 punch	1F44A
@@ -5407,6 +5407,7 @@ Thai Digits	0E50
 Thai Marks and Signs	0E48
 Thai Vowels	0E30
 THANTHAKHAT, THAI CHARACTER	0E4C
+the	DOOD
 theater masks	1F3AD
 THERE DOES NOT EXIST	2204
 THERE EXISTS	2203
@@ -6017,6 +6018,7 @@ ZIGZAG ABOVE, COMBINING	035B
 Zodiac, Signs of the Asian	1F400
 Zodiacal Symbols	2648
 ZOMBIE	1F9DF
+Zorro	1D1E9
 zwj	200D
 zwnbsp	FEFF
 zwnj	200C
