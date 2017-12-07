@@ -238,7 +238,7 @@ blk; Ethiopic_Sup                     ; Ethiopic_Supplement
 blk; Geometric_Shapes                 ; Geometric_Shapes
 blk; Geometric_Shapes_Ext             ; Geometric_Shapes_Extended
 blk; Georgian                         ; Georgian
-blk; Georgian_Extended                ; Georgian_Extended
+blk; Georgian_Ext                     ; Georgian_Extended
 blk; Georgian_Sup                     ; Georgian_Supplement
 blk; Glagolitic                       ; Glagolitic
 blk; Glagolitic_Sup                   ; Glagolitic_Supplement
