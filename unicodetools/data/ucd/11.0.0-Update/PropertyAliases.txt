@@ -93,6 +93,7 @@ na                       ; Name
 na1                      ; Unicode_1_Name
 Name_Alias               ; Name_Alias
 scx                      ; Script_Extensions
+EUIdeo			 		 ; Equivalent_Unified_Ideograph
 
 # ================================================
 # Catalog Properties
