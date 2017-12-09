@@ -46,7 +46,8 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
 public class MakeUnicodeFiles {
-    public static final boolean SHOW_VERSION_IN_FILE = org.unicode.cldr.util.CldrUtility.getProperty("FILE_WITH_VERSION", "true").startsWith("t");
+    public static final boolean SHOW_VERSION_IN_FILE = Settings.BUILD_IN_PUBLIC ? false 
+            : org.unicode.cldr.util.CldrUtility.getProperty("FILE_WITH_VERSION", "true").startsWith("t");
 
     public static String MAIN_OUTPUT_DIRECTORY = "UCD/";
 
@@ -301,7 +302,7 @@ public class MakeUnicodeFiles {
                             }
                         } else if (line.startsWith("DeltaVersion:")) {
                             dVersion = Integer.parseInt(lineValue);
-                            MAIN_OUTPUT_DIRECTORY = "UCD/d" + dVersion + "/";
+                            MAIN_OUTPUT_DIRECTORY = "UCD/" + (Settings.BUILD_IN_PUBLIC ? "" : "d" + dVersion + "/");
                         } else if (line.startsWith("CopyrightYear:")) {
                             Default.setYear(lineValue);
                         } else if (line.startsWith("File:")) {

@@ -821,8 +821,8 @@ E_Base  Emoji characters listed as Emoji_Modifier_Base=Yes in emoji-data.txt
              */
 
             unicodeMap.putAll(Zwj, "ZWJ");
-            unicodeMap.putAll(Glue_After_Zwj, "Glue_After_Zwj");
-            unicodeMap.putAll(E_Base_GAZ, "E_Base_GAZ");
+            //unicodeMap.putAll(Glue_After_Zwj, "Glue_After_Zwj");
+            //unicodeMap.putAll(E_Base_GAZ, "E_Base_GAZ");
 
             // note: during development it is easier to put new properties at the top.
             // that way you find out which other values overlap.
@@ -954,8 +954,8 @@ U+FF1A ( ： ) FULLWIDTH COLON
             unicodeMap.putAll(E_Modifier, "E_Modifier");
 
             unicodeMap.putAll(Zwj, "ZWJ");
-            unicodeMap.putAll(Glue_After_Zwj, "Glue_After_Zwj");
-            unicodeMap.putAll(E_Base_GAZ, "E_Base_GAZ");
+            //unicodeMap.putAll(Glue_After_Zwj, "Glue_After_Zwj");
+            //unicodeMap.putAll(E_Base_GAZ, "E_Base_GAZ");
 
             UnicodeSet hspace = new UnicodeSet(cat.getSet("Zs")).removeAll(new UnicodeSet("[\u00A0\u2007\u202F]"));
             unicodeMap.putAll(hspace, "HSpace");

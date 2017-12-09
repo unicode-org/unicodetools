@@ -69,6 +69,7 @@ public enum UcdProperty {
     Emoji_DCM(PropertyType.Miscellaneous, "EDCM"),
     Emoji_KDDI(PropertyType.Miscellaneous, "EKDDI"),
     Emoji_SB(PropertyType.Miscellaneous, "ESB"),
+    Equivalent_Unified_Ideograph(PropertyType.Miscellaneous, "EUIdeo"),
     ISO_Comment(PropertyType.Miscellaneous, "isc"),
     Jamo_Short_Name(PropertyType.Miscellaneous, "JSN"),
     Name(PropertyType.Miscellaneous, "na"),

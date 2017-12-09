@@ -531,7 +531,14 @@ public interface UCD_Types {
     Nushu = 141,
     Soyombo = 142,
     Zanabazar_Square = 143,
-    LIMIT_SCRIPT = Zanabazar_Square + 1;
+    Dogra = 144,
+    Gunjala_Gondi = 145,
+    Makasar = 146,
+    Medefaidrin = 147,
+    Hanifi_Rohingya = 148,
+    Sogdian = 149,
+    Old_Sogdian = 150,
+    LIMIT_SCRIPT = Old_Sogdian + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte
@@ -598,7 +605,7 @@ public interface UCD_Types {
     JT_T = 5,
     LIMIT_JOINING_TYPE = 6;
 
-    public static byte
+    public static short
     NO_SHAPING = 0,
     AIN = 1,
     ALAPH = 2,
@@ -702,8 +709,65 @@ public interface UCD_Types {
     MALAYALAM_LLA = 98,
     MALAYALAM_LLLA = 99,
     MALAYALAM_SSA = 100,
+    Hanifi_Rohingya_A = 101,
+    Hanifi_Rohingya_Ba = 102,
+    Hanifi_Rohingya_Pa = 103,
+    Hanifi_Rohingya_Ta = 104,
+    Hanifi_Rohingya_Tta = 105,
+    Hanifi_Rohingya_Ja = 106,
+    Hanifi_Rohingya_Ca = 107,
+    Hanifi_Rohingya_Ha = 108,
+    Hanifi_Rohingya_Kha = 109,
+    Hanifi_Rohingya_Da = 110,
+    Hanifi_Rohingya_Dda = 111,
+    Hanifi_Rohingya_Ra = 112,
+    Hanifi_Rohingya_Rra = 113,
+    Hanifi_Rohingya_Za = 114,
+    Hanifi_Rohingya_Sa = 115,
+    Hanifi_Rohingya_Sha = 116,
+    Hanifi_Rohingya_Ka = 117,
+    Hanifi_Rohingya_Ga = 118,
+    Hanifi_Rohingya_La = 119,
+    Hanifi_Rohingya_Ma = 120,
+    Hanifi_Rohingya_Na = 121,
+    Hanifi_Rohingya_Wa = 122,
+    Hanifi_Rohingya_Kinna_Wa = 123,
+    Hanifi_Rohingya_Ya = 124,
+    Hanifi_Rohingya_Kinna_Ya = 125,
+    Hanifi_Rohingya_Nga = 126,
+    Hanifi_Rohingya_Nya = 127,
+    Hanifi_Rohingya_Vowel_Sign_A = 128,
+    Hanifi_Rohingya_Vowel_Sign_U = 129,
+    Hanifi_Rohingya_Vowel_Sign_O = 130,
+    Hanifi_Rohingya_Sakin = 131,
+            SOGDIAN_ALEPH = 132,
+            SOGDIAN_BETH = 133,
+            SOGDIAN_GIMEL = 134,
+            SOGDIAN_HE = 135,
+            SOGDIAN_WAW = 136,
+            SOGDIAN_ZAYIN = 137,
+            SOGDIAN_HETH = 138,
+            SOGDIAN_YODH = 139,
+            SOGDIAN_KAPH = 140,
+            SOGDIAN_LAMEDH = 141,
+            SOGDIAN_MEM = 142,
+            SOGDIAN_NUN = 143,
+            SOGDIAN_SAMEKH = 144,
+            SOGDIAN_AYIN = 145,
+            SOGDIAN_PE = 146,
+            SOGDIAN_SADHE = 147,
+            SOGDIAN_RESH_AYIN = 148,
+            SOGDIAN_SHIN = 149,
+            SOGDIAN_TAW = 150,
+            SOGDIAN_FETH = 151,
+            SOGDIAN_LESH = 152,
+            SOGDIAN_PHONOGRAM_SHIN = 153,
+            SOGDIAN_ONE = 154,
+            SOGDIAN_TEN = 155,
+            SOGDIAN_TWENTY = 156,
+            SOGDIAN_ONE_HUNDRED = 157,
     // limit
-    LIMIT_JOINING_GROUP = 101;
+    LIMIT_JOINING_GROUP = SOGDIAN_ONE_HUNDRED + 1;
 
     static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;
     public static final int

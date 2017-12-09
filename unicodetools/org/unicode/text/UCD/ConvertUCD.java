@@ -267,7 +267,7 @@ public final class ConvertUCD implements UCD_Types {
 
         log = new PrintWriter(new BufferedWriter(
                 new OutputStreamWriter(
-                        new FileOutputStream(Settings.GEN_DIR + "UCD-log.txt"),
+                        new FileOutputStream(Settings.GEN_DIR_OLD + "ConvertUCD-log.txt"),
                         "UTF8"),
                         32*1024));
         log.write("\uFEFF"); // BOM
@@ -965,8 +965,8 @@ public final class ConvertUCD implements UCD_Types {
             } else if (fieldName.equals("jt")) {
                 uData.joiningType = Utility.lookup(fieldValue, UCD_Names.JOINING_TYPE, true);
             } else if (fieldName.equals("jg")) {
-                uData.joiningGroup = (byte)Utility.lookup(fieldValue,
-                        UCD_Names.OLD_JOINING_GROUP, UCD_Names.JOINING_GROUP, true, Byte.MAX_VALUE);
+                uData.joiningGroup = Utility.lookupShort(fieldValue,
+                        UCD_Names.OLD_JOINING_GROUP, UCD_Names.JOINING_GROUP, true);
             } else if (fieldName.equals("nv")) {
                 if (major < 2) {
                     if (fieldValue.equals("-")) {

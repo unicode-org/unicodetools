@@ -249,6 +249,10 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         return (short)lookup(source, target, null, skeletonize, Short.MAX_VALUE);
     }
 
+    public static short lookupShort(String source, String[] target, String[] altValues, boolean skeletonize) {
+        return (short)lookup(source, target, altValues, skeletonize, Short.MAX_VALUE);
+    }
+
     /**
      * Supplies a zero-padded hex representation of an integer (without 0x)
      */

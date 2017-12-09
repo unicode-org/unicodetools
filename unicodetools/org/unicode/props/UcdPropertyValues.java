@@ -224,7 +224,7 @@ public class UcdPropertyValues {
         Geometric_Shapes("Geometric_Shapes"),
         Geometric_Shapes_Extended("Geometric_Shapes_Ext"),
         Georgian("Georgian"),
-        Georgian_Extended("Georgian_Extended"),
+        Georgian_Extended("Georgian_Ext"),
         Georgian_Supplement("Georgian_Sup"),
         Glagolitic("Glagolitic"),
         Glagolitic_Supplement("Glagolitic_Sup"),
@@ -582,6 +582,7 @@ public class UcdPropertyValues {
 		// Emoji_DCM
 		// Emoji_KDDI
 		// Emoji_SB
+		// Equivalent_Unified_Ideograph
 		// FC_NFKC_Closure
 	public enum General_Category_Values implements Named {
         Other("C"),
@@ -649,6 +650,7 @@ public class UcdPropertyValues {
         Glue_After_Zwj("GAZ"),
         L("L"),
         LF("LF"),
+        LinkingConsonant("LinkC"),
         LV("LV"),
         LVT("LVT"),
         Prepend("PP"),
@@ -656,6 +658,7 @@ public class UcdPropertyValues {
         SpacingMark("SM"),
         T("T"),
         V("V"),
+        Virama("Virama"),
         Other("XX"),
         ZWJ("ZWJ");
         private final PropertyNames<Grapheme_Cluster_Break_Values> names;
@@ -1508,6 +1511,13 @@ public class UcdPropertyValues {
         Inherited("Zinh", "Qaai"),
         Common("Zyyy"),
         Unknown("Zzzz"),
+        Dogra("Dogr"),
+        Gunjala_Gondi("Gong"),
+        Makasar("Maka"),
+        Medefaidrin("Medf"),
+        Hanifi_Rohingya("Rohg"),
+        Sogdian("Sogd"),
+        Old_Sogdian("Sogo"),
         Japanese("Jpan"),
         Korean("Kore"),
         Han_with_Bopomofo("Hanb"),
@@ -1607,6 +1617,7 @@ public class UcdPropertyValues {
         Format("FO"),
         Glue_After_Zwj("GAZ"),
         Hebrew_Letter("HL"),
+        HSpace("HSpace"),
         Katakana("KA"),
         ALetter("LE"),
         LF("LF"),

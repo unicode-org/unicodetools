@@ -638,7 +638,7 @@ public class CheckProperties {
                     + "\t" + "OTHERS\t\t"
                     //+ "\t" + FIX_INVISIBLES.transform(chars.toPattern(false))
                     + "\t" + others.size()
-                    + "\t" + others.toPattern(false) // abbreviate(others, 50, false)
+                    + "\t" + abbreviate(others, 200, false) // others.toPattern(false) // 
                     );
         }
         out.flush();

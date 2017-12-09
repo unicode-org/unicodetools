@@ -124,7 +124,7 @@ public class ListProps {
                             enumStrings.removeAll(exceptions);
                         }
                         if (!enumStrings.equals(flatValues)) {
-                            System.out.println("\t" + "≠ VALUES!!!" + showDiff("enums", enumStrings, "values", flatValues));
+                            System.out.println("\t" + "≠ VALUES!!!\t" + showDiff("enums", enumStrings, "values", flatValues));
                         }
                         for (String pval : uprop.getAvailableValues()) {
                             uprop.getValueAliases(pval);
@@ -155,11 +155,14 @@ public class ListProps {
             .putAll("Script_Extensions", "Katakana_Or_Hiragana, Japanese, Korean, Han_with_Bopomofo, Math_Symbols, Emoji_Symbols, Other_Symbols, Unwritten".split(", "))
             .putAll("Canonical_Combining_Class", "CCC133, Attached_Below_Left".split(", "))
             .putAll("General_Category", "Other, Letter, Cased_Letter, Mark, Number, Punctuation, Symbol, Separator".split(", "))
+            .putAll("Identifier_Type", "Aspirational".split(", "))
+            .putAll("Word_Break", "E_Base_GAZ, Glue_After_Zwj".split(", "))
+            .putAll("Grapheme_Cluster_Break", "E_Base_GAZ, Glue_After_Zwj".split(", "))
             .build();
 
     private static String showDiff(String as, Set<String> a, String bs, Set<String> b) {
         // TODO Auto-generated method stub
-        return as + "-" + bs + ": " + diff(a,b) + "; " + bs + "-" + as + ": " + diff(b,a);
+        return as + " - " + bs + ": " + diff(a,b) + "; " + bs + " - " + as + ": " + diff(b,a);
     }
     private static <T> Set<T> diff(Collection<T> a, Collection<T> b) {
         Set<T> result = new LinkedHashSet<T>();
