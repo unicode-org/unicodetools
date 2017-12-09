@@ -48,7 +48,7 @@ class UData implements UCD_Types {
     byte eastAsianWidth = EAN;
     byte lineBreak = LB_XX;
     byte joiningType = -1;
-    byte joiningGroup = NO_SHAPING;
+    short joiningGroup = NO_SHAPING;
     short script = Unknown_Script;
     byte age = 0;
 

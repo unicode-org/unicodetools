@@ -1042,7 +1042,7 @@ public final class UCD implements UCD_Types {
         return get(codePoint, false).joiningType;
     }
 
-    public byte getJoiningGroup(int codePoint) {
+    public short getJoiningGroup(int codePoint) {
         return get(codePoint, false).joiningGroup;
     }
 
