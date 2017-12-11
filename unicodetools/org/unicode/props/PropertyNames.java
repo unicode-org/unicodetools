@@ -64,8 +64,8 @@ public class PropertyNames<T extends Enum> {
 
     public List<String> getAllNames() {
         final LinkedHashSet<String> result = new LinkedHashSet<String>();
+        result.add(shortName);  // UCD code expects the first name to be the short one
         result.add(enumItem.toString());
-        result.add(shortName);
         result.addAll(otherNames);
         return ImmutableList.copyOf(result);
     }

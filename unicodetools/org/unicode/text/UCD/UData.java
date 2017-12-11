@@ -483,7 +483,7 @@ class UData implements UCD_Types {
         os.writeByte(eastAsianWidth);
         os.writeByte(lineBreak);
         os.writeByte(joiningType);
-        os.writeByte(joiningGroup);
+        os.writeShort(joiningGroup);
         os.writeShort(script);
         os.writeByte(age);
         os.writeByte(Bidi_Paired_Bracket_Type);
@@ -518,7 +518,7 @@ class UData implements UCD_Types {
         eastAsianWidth = is.readByte();
         lineBreak = is.readByte();
         joiningType = is.readByte();
-        joiningGroup = is.readByte();
+        joiningGroup = is.readShort();
         script = is.readShort();
         age = is.readByte();
         Bidi_Paired_Bracket_Type = is.readByte();

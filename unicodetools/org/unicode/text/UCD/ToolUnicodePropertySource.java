@@ -21,10 +21,8 @@ import org.unicode.cldr.util.props.UnicodeProperty.AliasAddAction;
 import org.unicode.cldr.util.props.UnicodeProperty.BaseProperty;
 import org.unicode.cldr.util.props.UnicodeProperty.SimpleProperty;
 import org.unicode.cldr.util.props.UnicodeProperty.UnicodeMapProperty;
-import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
-import org.unicode.props.UcdPropertyValues.Indic_Positional_Category_Values;
 import org.unicode.props.UcdPropertyValues.Indic_Syllabic_Category_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -95,6 +93,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             }
         }
         UnicodeProperty.contractUNASSIGNED(unassigned);
+        final IndexUnicodeProperties iupCurrent = IndexUnicodeProperties.make(ucd.getVersion());
 
         nfc = new Normalizer(UCD_Types.NFC, ucd.getVersion());
         nfd = new Normalizer(UCD_Types.NFD, ucd.getVersion());
@@ -757,9 +756,9 @@ LinkingConsonant    = Indic_Syllabic_Category = Consonant
 
 extend -and not GCB = Virama 
 */
-            IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
+            //IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
 
-            UnicodeMap<Indic_Syllabic_Category_Values> isc = iup.loadEnum(UcdProperty.Indic_Syllabic_Category, Indic_Syllabic_Category_Values.class);
+            UnicodeMap<Indic_Syllabic_Category_Values> isc = iupCurrent.loadEnum(UcdProperty.Indic_Syllabic_Category, Indic_Syllabic_Category_Values.class);
 
             UnicodeSet virama = new UnicodeSet()
                     .add(isc.getSet(Indic_Syllabic_Category_Values.Virama))
@@ -840,6 +839,7 @@ E_Base  Emoji characters listed as Emoji_Modifier_Base=Yes in emoji-data.txt
                             { "E_Modifier", "EM" },
                             { "Glue_After_Zwj", "GAZ" },
                             { "E_Base_GAZ", "EBG" },
+                            { "LinkingConsonant", "LinkC" },
                             { "ZWJ", "ZWJ" }
                     }, AliasAddAction.ADD_MAIN_ALIAS)
                     .swapFirst2ValueAliases())
@@ -1171,18 +1171,19 @@ isTitlecase(X) is false.
             add(prop2);
         }
 
-        // Indic gorp
+        // Use IndexUnicodeProperties for all new stuff
 
-        final IndexUnicodeProperties latest = IndexUnicodeProperties.make(Default.ucdVersion());
-
-        UnicodeMap<String> map = latest.load(UcdProperty.Indic_Positional_Category);
-        //String defaultValue = IndexUnicodeProperties.getDefaultValue(UcdProperty.Indic_Matra_Category);
-        add(new UnicodeProperty.UnicodeMapProperty().set(map).setMain("Indic_Positional_Category", "InPC", UnicodeProperty.ENUMERATED, ""));
-
-        map = latest.load(UcdProperty.Indic_Syllabic_Category);
-        //defaultValue = IndexUnicodeProperties.getDefaultValue(UcdProperty.Indic_Matra_Category);
-        add(new UnicodeProperty.UnicodeMapProperty().set(map).setMain("Indic_Syllabic_Category", "InSC", UnicodeProperty.ENUMERATED, ""));
-
+//        UnicodeMap<String> map = latest.load(UcdProperty.Indic_Positional_Category);
+//        //String defaultValue = IndexUnicodeProperties.getDefaultValue(UcdProperty.Indic_Matra_Category);
+//        add(new UnicodeProperty.UnicodeMapProperty().set(map).setMain("Indic_Positional_Category", "InPC", UnicodeProperty.ENUMERATED, ""));
+//
+//        map = latest.load(UcdProperty.Indic_Syllabic_Category);
+//        //defaultValue = IndexUnicodeProperties.getDefaultValue(UcdProperty.Indic_Matra_Category);
+//        add(new UnicodeProperty.UnicodeMapProperty().set(map).setMain("Indic_Syllabic_Category", "InSC", UnicodeProperty.ENUMERATED, ""));
+        
+        add(iupCurrent.getProperty(UcdProperty.Indic_Positional_Category));
+        add(iupCurrent.getProperty(UcdProperty.Indic_Syllabic_Category));
+        add(iupCurrent.getProperty(UcdProperty.Equivalent_Unified_Ideograph));
     }
 
     private void addFakeProperty(String version, int unicodePropertyType, String defaultValue, String name, String abbr, String... alts) {

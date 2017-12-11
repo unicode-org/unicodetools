@@ -1,5 +1,5 @@
-# PropertyValueAliases-10.0.0.txt
-# Date: 2017-05-17, 08:45:34 GMT
+# PropertyValueAliases.txt
+# Date: 2017-12-09, 22:31:16 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -238,7 +238,7 @@ blk; Ethiopic_Sup                     ; Ethiopic_Supplement
 blk; Geometric_Shapes                 ; Geometric_Shapes
 blk; Geometric_Shapes_Ext             ; Geometric_Shapes_Extended
 blk; Georgian                         ; Georgian
-blk; Georgian_Ext                     ; Georgian_Extended
+blk; Georgian_Ext                ; Georgian_Extended
 blk; Georgian_Sup                     ; Georgian_Supplement
 blk; Glagolitic                       ; Glagolitic
 blk; Glagolitic_Sup                   ; Glagolitic_Supplement
@@ -898,6 +898,37 @@ jg ; Final_Semkath                    ; Final_Semkath
 jg ; Gaf                              ; Gaf
 jg ; Gamal                            ; Gamal
 jg ; Hah                              ; Hah
+jg ; Hanifi_Rohingya_A                ; Hanifi_Rohingya_A
+jg ; Hanifi_Rohingya_Ba               ; Hanifi_Rohingya_Ba
+jg ; Hanifi_Rohingya_Ca               ; Hanifi_Rohingya_Ca
+jg ; Hanifi_Rohingya_Da               ; Hanifi_Rohingya_Da
+jg ; Hanifi_Rohingya_Dda              ; Hanifi_Rohingya_Dda
+jg ; Hanifi_Rohingya_Ga               ; Hanifi_Rohingya_Ga
+jg ; Hanifi_Rohingya_Ha               ; Hanifi_Rohingya_Ha
+jg ; Hanifi_Rohingya_Ja               ; Hanifi_Rohingya_Ja
+jg ; Hanifi_Rohingya_Ka               ; Hanifi_Rohingya_Ka
+jg ; Hanifi_Rohingya_Kha              ; Hanifi_Rohingya_Kha
+jg ; Hanifi_Rohingya_Kinna_Wa         ; Hanifi_Rohingya_Kinna_Wa
+jg ; Hanifi_Rohingya_Kinna_Ya         ; Hanifi_Rohingya_Kinna_Ya
+jg ; Hanifi_Rohingya_La               ; Hanifi_Rohingya_La
+jg ; Hanifi_Rohingya_Ma               ; Hanifi_Rohingya_Ma
+jg ; Hanifi_Rohingya_Na               ; Hanifi_Rohingya_Na
+jg ; Hanifi_Rohingya_Nga              ; Hanifi_Rohingya_Nga
+jg ; Hanifi_Rohingya_Nya              ; Hanifi_Rohingya_Nya
+jg ; Hanifi_Rohingya_Pa               ; Hanifi_Rohingya_Pa
+jg ; Hanifi_Rohingya_Ra               ; Hanifi_Rohingya_Ra
+jg ; Hanifi_Rohingya_Rra              ; Hanifi_Rohingya_Rra
+jg ; Hanifi_Rohingya_Sa               ; Hanifi_Rohingya_Sa
+jg ; Hanifi_Rohingya_Sakin            ; Hanifi_Rohingya_Sakin
+jg ; Hanifi_Rohingya_Sha              ; Hanifi_Rohingya_Sha
+jg ; Hanifi_Rohingya_Ta               ; Hanifi_Rohingya_Ta
+jg ; Hanifi_Rohingya_Tta              ; Hanifi_Rohingya_Tta
+jg ; Hanifi_Rohingya_Vowel_Sign_A     ; Hanifi_Rohingya_Vowel_Sign_A
+jg ; Hanifi_Rohingya_Vowel_Sign_O     ; Hanifi_Rohingya_Vowel_Sign_O
+jg ; Hanifi_Rohingya_Vowel_Sign_U     ; Hanifi_Rohingya_Vowel_Sign_U
+jg ; Hanifi_Rohingya_Wa               ; Hanifi_Rohingya_Wa
+jg ; Hanifi_Rohingya_Ya               ; Hanifi_Rohingya_Ya
+jg ; Hanifi_Rohingya_Za               ; Hanifi_Rohingya_Za
 jg ; He                               ; He
 jg ; Heh                              ; Heh
 jg ; Heh_Goal                         ; Heh_Goal
@@ -963,6 +994,32 @@ jg ; Sadhe                            ; Sadhe
 jg ; Seen                             ; Seen
 jg ; Semkath                          ; Semkath
 jg ; Shin                             ; Shin
+jg ; Sogdian_Aleph                    ; Sogdian_Aleph
+jg ; Sogdian_Ayin                     ; Sogdian_Ayin
+jg ; Sogdian_Beth                     ; Sogdian_Beth
+jg ; Sogdian_Feth                     ; Sogdian_Feth
+jg ; Sogdian_Gimel                    ; Sogdian_Gimel
+jg ; Sogdian_He                       ; Sogdian_He
+jg ; Sogdian_Heth                     ; Sogdian_Heth
+jg ; Sogdian_Kaph                     ; Sogdian_Kaph
+jg ; Sogdian_Lamedh                   ; Sogdian_Lamedh
+jg ; Sogdian_Lesh                     ; Sogdian_Lesh
+jg ; Sogdian_Mem                      ; Sogdian_Mem
+jg ; Sogdian_Nun                      ; Sogdian_Nun
+jg ; Sogdian_One                      ; Sogdian_One
+jg ; Sogdian_One_Hundred              ; Sogdian_One_Hundred
+jg ; Sogdian_Pe                       ; Sogdian_Pe
+jg ; Sogdian_Phonogram_Shin           ; Sogdian_Phonogram_Shin
+jg ; Sogdian_Resh_Ayin                ; Sogdian_Resh_Ayin
+jg ; Sogdian_Sadhe                    ; Sogdian_Sadhe
+jg ; Sogdian_Samekh                   ; Sogdian_Samekh
+jg ; Sogdian_Shin                     ; Sogdian_Shin
+jg ; Sogdian_Taw                      ; Sogdian_Taw
+jg ; Sogdian_Ten                      ; Sogdian_Ten
+jg ; Sogdian_Twenty                   ; Sogdian_Twenty
+jg ; Sogdian_Waw                      ; Sogdian_Waw
+jg ; Sogdian_Yodh                     ; Sogdian_Yodh
+jg ; Sogdian_Zayin                    ; Sogdian_Zayin
 jg ; Straight_Waw                     ; Straight_Waw
 jg ; Swash_Kaf                        ; Swash_Kaf
 jg ; Syriac_Waw                       ; Syriac_Waw
@@ -1203,6 +1260,7 @@ sc ; Copt                             ; Coptic                           ; Qaac
 sc ; Cprt                             ; Cypriot
 sc ; Cyrl                             ; Cyrillic
 sc ; Deva                             ; Devanagari
+sc ; Dogr                             ; Dogra
 sc ; Dsrt                             ; Deseret
 sc ; Dupl                             ; Duployan
 sc ; Egyp                             ; Egyptian_Hieroglyphs
@@ -1210,6 +1268,7 @@ sc ; Elba                             ; Elbasan
 sc ; Ethi                             ; Ethiopic
 sc ; Geor                             ; Georgian
 sc ; Glag                             ; Glagolitic
+sc ; Gong                             ; Gunjala_Gondi
 sc ; Gonm                             ; Masaram_Gondi
 sc ; Goth                             ; Gothic
 sc ; Gran                             ; Grantha
@@ -1246,9 +1305,11 @@ sc ; Lisu                             ; Lisu
 sc ; Lyci                             ; Lycian
 sc ; Lydi                             ; Lydian
 sc ; Mahj                             ; Mahajani
+sc ; Maka                             ; Makasar
 sc ; Mand                             ; Mandaic
 sc ; Mani                             ; Manichaean
 sc ; Marc                             ; Marchen
+sc ; Medf                             ; Medefaidrin
 sc ; Mend                             ; Mende_Kikakui
 sc ; Merc                             ; Meroitic_Cursive
 sc ; Mero                             ; Meroitic_Hieroglyphs
@@ -1280,6 +1341,7 @@ sc ; Phnx                             ; Phoenician
 sc ; Plrd                             ; Miao
 sc ; Prti                             ; Inscriptional_Parthian
 sc ; Rjng                             ; Rejang
+sc ; Rohg                             ; Hanifi_Rohingya
 sc ; Runr                             ; Runic
 sc ; Samr                             ; Samaritan
 sc ; Sarb                             ; Old_South_Arabian
@@ -1290,6 +1352,8 @@ sc ; Shrd                             ; Sharada
 sc ; Sidd                             ; Siddham
 sc ; Sind                             ; Khudawadi
 sc ; Sinh                             ; Sinhala
+sc ; Sogd                             ; Sogdian
+sc ; Sogo                             ; Old_Sogdian
 sc ; Sora                             ; Sora_Sompeng
 sc ; Soyo                             ; Soyombo
 sc ; Sund                             ; Sundanese
@@ -1319,14 +1383,6 @@ sc ; Zanb                             ; Zanabazar_Square
 sc ; Zinh                             ; Inherited                        ; Qaai
 sc ; Zyyy                             ; Common
 sc ; Zzzz                             ; Unknown
-
-sc ; Dogr ; Dogra
-sc ; Gong ; Gunjala_Gondi
-sc ; Maka ; Makasar
-sc ; Medf ; Medefaidrin
-sc ; Rohg ; Hanifi_Rohingya
-sc ; Sogd ; Sogdian
-sc ; Sogo ; Old_Sogdian
 
 # Script_Extensions (scx)
 

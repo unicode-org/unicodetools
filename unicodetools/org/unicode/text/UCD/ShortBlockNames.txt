@@ -290,3 +290,4 @@ Medefaidrin ; Medefaidrin
 Mayan_Numerals ; Mayan_Numerals
 Indic_Siyaq_Numbers ; Indic_Siyaq_Numbers
 Chess_Symbols ; Chess_Symbols
+Georgian_Ext ; Georgian_Extended
