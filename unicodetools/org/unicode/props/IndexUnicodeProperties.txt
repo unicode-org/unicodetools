@@ -92,8 +92,8 @@ UnicodeData; Simple_Lowercase_Mapping ; 13
 UnicodeData; Simple_Titlecase_Mapping ; 14
 UnicodeData; Unicode_1_Name ; 10
 UnicodeData; ISO_Comment ; 11
-DerivedJoiningType; Joining_Type
-DerivedJoiningGroup; Joining_Group
+ArabicShaping; Joining_Type; 2
+ArabicShaping; Joining_Group; 3
 BidiMirroring; Bidi_Mirroring_Glyph;
 Blocks ; Block
 CompositionExclusions ; Composition_Exclusion
@@ -110,7 +110,7 @@ WordBreakProperty ; Word_Break
 BidiBrackets ; Bidi_Paired_Bracket ; 1
 BidiBrackets ; Bidi_Paired_Bracket_Type ; 2
 VerticalOrientation ; Vertical_Orientation
-Equivalent_Unified_Ideograph ; EquivalentUnifiedIdeograph
+EquivalentUnifiedIdeograph ; Equivalent_Unified_Ideograph
 
 #
 NameAliases ; Name_Alias

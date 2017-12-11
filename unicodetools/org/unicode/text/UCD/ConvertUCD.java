@@ -965,6 +965,9 @@ public final class ConvertUCD implements UCD_Types {
             } else if (fieldName.equals("jt")) {
                 uData.joiningType = Utility.lookup(fieldValue, UCD_Names.JOINING_TYPE, true);
             } else if (fieldName.equals("jg")) {
+                if (true) { // codepoint == 0x10D1D) {
+                    int debug = 0;
+                }
                 uData.joiningGroup = Utility.lookupShort(fieldValue,
                         UCD_Names.OLD_JOINING_GROUP, UCD_Names.JOINING_GROUP, true);
             } else if (fieldName.equals("nv")) {

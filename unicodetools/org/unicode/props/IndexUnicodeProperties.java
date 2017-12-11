@@ -596,6 +596,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     public VersionInfo getUcdVersion() {
         return ucdVersion;
     }
+    
+//    public UnicodeProperty getProperty(UcdProperty ucdProperty) {
+//        return (UnicodeProperty) skeletonNames
+//        .get(toSkeleton(propertyAlias));
+//    }
 
     class IndexUnicodeProperty extends UnicodeProperty.BaseProperty {
 
@@ -670,4 +675,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
     }
 
+    public UnicodeProperty getProperty(UcdProperty ucdProperty) {
+        return getProperty(ucdProperty.toString());
+    }
 }

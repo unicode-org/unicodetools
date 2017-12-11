@@ -1,5 +1,5 @@
-# PropertyAliases-10.0.0.txt
-# Date: 2017-02-14, 04:26:16 GMT
+# PropertyAliases.txt
+# Date: 2017-12-09, 22:31:16 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -93,7 +93,7 @@ na                       ; Name
 na1                      ; Unicode_1_Name
 Name_Alias               ; Name_Alias
 scx                      ; Script_Extensions
-EUIdeo			 		 ; Equivalent_Unified_Ideograph
+EUIdeo				     ; Equivalent_Unified_Ideograph
 
 # ================================================
 # Catalog Properties
