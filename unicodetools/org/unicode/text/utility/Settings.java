@@ -4,7 +4,7 @@ import org.unicode.cldr.util.CldrUtility;
 
 public class Settings {
     
-    public static final boolean BUILD_IN_PUBLIC = org.unicode.cldr.util.CldrUtility.getProperty("BUILD_IN_PUBLIC", "true").startsWith("t");
+    public static final boolean BUILD_FOR_COMPARE = org.unicode.cldr.util.CldrUtility.getProperty("BUILD_FOR_COMPARE", "false").startsWith("t");
 
     public static final String BASE_DIRECTORY = Utility.fixFileName(
     		CldrUtility.getProperty("BASE_DIRECTORY", "/Users/markdavis")) + "/";
@@ -32,7 +32,7 @@ public class Settings {
     public static final String UNICODE_DRAFT_PUBLIC = SVN_WORKSPACE_DIRECTORY + "unicode-draft/Public/";
 
     public static final String GEN_DIR_OLD = Utility.fixFileName(CldrUtility.getProperty("GEN_DIR", OTHER_WORKSPACE_DIRECTORY+"Generated")) + "/";
-    public static final String GEN_DIR = BUILD_IN_PUBLIC ? UNICODE_DRAFT_PUBLIC : GEN_DIR_OLD;
+    public static final String GEN_DIR = BUILD_FOR_COMPARE ? UNICODE_DRAFT_PUBLIC : GEN_DIR_OLD;
     public static final String BIN_DIR = GEN_DIR_OLD + "BIN/";
     public static final String GEN_UCD_DIR = GEN_DIR + "ucd/";
     

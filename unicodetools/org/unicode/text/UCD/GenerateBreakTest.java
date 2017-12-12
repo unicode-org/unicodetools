@@ -397,7 +397,9 @@ abstract public class GenerateBreakTest implements UCD_Types {
         out.println("<body bgcolor='#FFFFFF'>");
         out.println("<h2>" + propertyName + " Chart</h2>");
         out.println("<p><b>Unicode Version:</b> " + ucd.getVersion() + "</p>");
-        out.println("<p><b>Date:</b> " + Default.getDate() + "</p>");
+        if (!Settings.BUILD_FOR_COMPARE) {
+            out.println("<p><b>Date:</b> " + Default.getDate() + "</p>");
+        }
         out.println("<p>This page illustrates the application of the " + propertyName + " specification. "
                 + "The material here is informative, not normative.</p> "
                 + "<p>The first chart shows where breaks would appear between different sample characters or strings. "

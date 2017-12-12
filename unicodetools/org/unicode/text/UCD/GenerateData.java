@@ -22,6 +22,7 @@ import java.util.TreeSet;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.UnicodeDataFile;
+import org.unicode.text.utility.UnicodeDataFile.FileInfix;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.text.UTF16;
@@ -752,7 +753,7 @@ public class GenerateData implements UCD_Types {
         final UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(directory, fileName).setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter log = fc.out;
 
-        final String newFile = directory + fileName + UnicodeDataFile.getFileSuffix(true);
+        final String newFile = directory + fileName + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".txt";
         //PrintWriter log = Utility.openPrintWriter(newFile, Utility.UTF8_UNIX);
         //String[] batName = {""};
         //String mostRecent = org.unicode.cldr.util.Utility.generateBat(directory, fileName, UnicodeDataFile.getFileSuffix(true), batName);

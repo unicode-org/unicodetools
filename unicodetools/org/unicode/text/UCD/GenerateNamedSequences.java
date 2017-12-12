@@ -16,6 +16,7 @@ import java.io.PrintWriter;
 
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
+import org.unicode.text.utility.UnicodeDataFile.FileInfix;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.text.Transliterator;
@@ -111,8 +112,9 @@ public final class GenerateNamedSequences implements UCD_Types {
         // now write out the results
 
         final String directory = MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY + "extra/";
-        final String filename = directory + filename2 + UnicodeDataFile.getHTMLFileSuffix(true);
-        final UnicodeDataFile outfile = UnicodeDataFile.openHTMLAndWriteHeader(directory, filename2).setSkipCopyright(Settings.SKIP_COPYRIGHT);
+        final String filename = directory + filename2 + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".html";
+        final UnicodeDataFile outfile = UnicodeDataFile.openHTMLAndWriteHeader(directory, filename2)
+                .setSkipCopyright(Settings.SKIP_COPYRIGHT);
 
         final PrintWriter out = outfile.out; // Utility.openPrintWriter(filename, Utility.LATIN1_UNIX);
         /*
