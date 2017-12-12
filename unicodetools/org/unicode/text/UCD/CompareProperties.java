@@ -25,7 +25,9 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
+import org.unicode.text.utility.UnicodeDataFile.FileInfix;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.text.UnicodeSet;
@@ -245,7 +247,7 @@ public class CompareProperties implements UCD_Types {
     public void printPartition() throws IOException {
         System.out.println("Set Size: " + map.size());
         final PrintWriter output = Utility.openPrintWriterGenDir("Partition"
-                + UnicodeDataFile.getFileSuffix(true), Utility.LATIN1_WINDOWS);
+                + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".txt", Utility.LATIN1_WINDOWS);
 
         final Iterator it = map.keySet().iterator();
         while (it.hasNext()) {
@@ -271,7 +273,7 @@ public class CompareProperties implements UCD_Types {
     public void printStatistics() throws IOException {
         System.out.println("Set Size: " + map.size());
         final PrintWriter output = Utility.openPrintWriterGenDir("Statistics"
-                + UnicodeDataFile.getFileSuffix(true), Utility.LATIN1_WINDOWS);
+                + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".txt", Utility.LATIN1_WINDOWS);
 
         System.out.println("Finding disjoints/contains");
         for (int i = 0; i < count; ++i) {
@@ -432,7 +434,7 @@ public class CompareProperties implements UCD_Types {
 
     public static void listDifferences() throws IOException {
 
-        final PrintWriter output = Utility.openPrintWriterGenDir("PropertyDifferences" + UnicodeDataFile.getFileSuffix(true), Utility.LATIN1_UNIX);
+        final PrintWriter output = Utility.openPrintWriterGenDir("PropertyDifferences" + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".txt", Utility.LATIN1_UNIX);
         output.println("# Listing of relationships among properties, suitable for analysis by spreadsheet");
         output.println("# Generated for " + Default.ucd().getVersion());
         output.println(Utility.generateDateLine());

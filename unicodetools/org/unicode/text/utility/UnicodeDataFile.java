@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.MakeUnicodeFiles;
+import org.unicode.text.utility.UnicodeDataFile.FileInfix;
 import org.unicode.text.utility.Utility.RuntimeIOException;
 
 public class UnicodeDataFile {
@@ -27,7 +28,7 @@ public class UnicodeDataFile {
 
     private UnicodeDataFile (String directory, String filename, boolean isHTML) throws IOException {
         fileType = isHTML ? ".html" : ".txt";
-        final String newSuffix = UnicodeDataFile.getFileSuffix(true, fileType);
+        final String newSuffix = FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + fileType;
         newFile = directory + filename + newSuffix;
         out = Utility.openPrintWriterGenDir(newFile, Utility.UTF8_UNIX);
         mostRecent = Utility.getMostRecentUnicodeDataFile(
@@ -35,7 +36,7 @@ public class UnicodeDataFile {
         this.filename = filename;
 
         if (!isHTML) {
-            out.println(Utility.getDataHeader(filename + UnicodeDataFile.getFileSuffix(false)));
+            out.println(Utility.getDataHeader(filename + FileInfix.plain.getFileInfix() + ".txt"));
             out.println("#\n# Unicode Character Database"
                     + "\n#   For documentation, see http://www.unicode.org/reports/tr44/");
         }
@@ -61,23 +62,33 @@ public class UnicodeDataFile {
 
         }
         out.close();
-        Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), null, skipCopyright);
+        if (!Settings.BUILD_FOR_COMPARE) {
+            Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), null, skipCopyright);
+        }
     }
 
-    public static String getHTMLFileSuffix(boolean withDVersion) {
-        return getFileSuffix(withDVersion, ".html");
+    /**
+     * There are three cases:<br>
+     * no version (ArabicShaping.txt)<br>
+     * plain version (ArabicShaping-11.0.0.txt)<br>
+     * d version (ArabicShaping-11.0.0-d31.txt)<br>
+     */
+    public enum FileInfix {
+        none, 
+        plain, 
+        d;
+        public String getFileInfix() {
+            return this == FileInfix.none ? ""
+                    : "-" + Default.ucd().getVersion()
+                    + ((this == FileInfix.d && MakeUnicodeFiles.dVersion >= 0) 
+                            ? ("d" + MakeUnicodeFiles.dVersion) 
+                                    : "");
+        }
+        public static FileInfix fromFlags(boolean suppress, boolean withDVersion) {
+            return suppress ? FileInfix.none : !withDVersion ? FileInfix.plain : FileInfix.d;
+        }
     }
 
-    public static String getFileSuffix(boolean withDVersion) {
-        return getFileSuffix(withDVersion, ".txt");
-    }
-
-    public static String getFileSuffix(boolean withDVersion, String suffix) {
-        return (!MakeUnicodeFiles.SHOW_VERSION_IN_FILE ? ""
-                : "-" + Default.ucd().getVersion()
-                + ((withDVersion && MakeUnicodeFiles.dVersion >= 0) ? ("d" + MakeUnicodeFiles.dVersion) : ""))
-                + suffix;
-    }
 
     //Remove "d1" from DerivedJoiningGroup-3.1.0d1.txt type names
 

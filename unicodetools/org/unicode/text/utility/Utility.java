@@ -1695,7 +1695,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     public static String getDataHeader(String filename) {
         return "# " + filename 
-                + "\n" + generateDateLine() 
+                + (Settings.BUILD_FOR_COMPARE ? "" : "\n" + generateDateLine())
                 + "\n# © " + Default.getYear() + " Unicode®, Inc." 
                 + "\n# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries."
                 + "\n# For terms of use, see http://www.unicode.org/terms_of_use.html"

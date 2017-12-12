@@ -22,6 +22,7 @@ import java.util.TreeSet;
 
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
+import org.unicode.text.utility.UnicodeDataFile.FileInfix;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.text.UTF16;
@@ -48,8 +49,8 @@ public class GenerateCaseFolding implements UCD_Types {
     public static void makeCaseFold(boolean normalized) throws java.io.IOException {
         PICK_SHORT = NF_CLOSURE = normalized;
 
-        log = Utility.openPrintWriter(Settings.GEN_DIR_OLD + "/log", "CaseFoldingLog" + UnicodeDataFile.getFileSuffix(true), Utility.LATIN1_UNIX);
-        System.out.println("Writing Log: " + "CaseFoldingLog" + UnicodeDataFile.getFileSuffix(true));
+        log = Utility.openPrintWriter(Settings.GEN_DIR_OLD + "/log", "CaseFoldingLog" + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".txt", Utility.LATIN1_UNIX);
+        System.out.println("Writing Log: " + "CaseFoldingLog" + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".txt");
 
         System.out.println("Making Full Data");
         final Map<String, String> fullData = getCaseFolding(true, NF_CLOSURE, "");
@@ -549,7 +550,7 @@ public class GenerateCaseFolding implements UCD_Types {
         }
 
         final PrintWriter log = Utility.openPrintWriter(Settings.GEN_DIR_OLD, "log/SpecialCasingExceptions"
-        + suffix2 + UnicodeDataFile.getFileSuffix(true), Utility.LATIN1_UNIX);
+        + suffix2 + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".txt", Utility.LATIN1_UNIX);
 
         for (int ch = 0; ch <= 0x10FFFF; ++ch) {
             Utility.dot(ch);
