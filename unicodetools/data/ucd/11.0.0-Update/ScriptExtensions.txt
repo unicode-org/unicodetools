@@ -1,5 +1,5 @@
 # ScriptExtensions-11.0.0.txt
-# Date: 2017-12-06, 01:00:01 GMT
+# Date: 2017-12-07, 13:07:06 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -124,7 +124,7 @@
 
 # Script_Extensions=Arab Rohg
 
-06D4          ; Arab Rohg # Mn       ARABIC FULL STOP
+06D4          ; Arab Rohg # Po       ARABIC FULL STOP
 
 # Total code points: 1
 
@@ -159,8 +159,7 @@ FDFD          ; Arab Thaa # So       ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHE
 
 # Script_Extensions=Beng Deva
 
-1CF5          ; Beng Deva # Lo       VEDIC SIGN JIHVAMULIYA
-1CF6          ; Beng Deva # Lo       VEDIC SIGN UPADHMANIYA
+1CF5..1CF6    ; Beng Deva # Lo   [2] VEDIC SIGN JIHVAMULIYA..VEDIC SIGN UPADHMANIYA
 A8F1          ; Beng Deva # Mn       COMBINING DEVANAGARI SIGN AVAGRAHA
 
 # Total code points: 3
