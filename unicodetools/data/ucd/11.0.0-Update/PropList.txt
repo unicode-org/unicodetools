@@ -1,5 +1,5 @@
-# PropList-10.0.0.txt
-# Date: 2017-03-10, 08:25:30 GMT
+# PropList-11.0.0.txt
+# Date: 2017-12-07, 13:06:55 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -780,10 +780,10 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 3021..3029    ; Ideographic # Nl   [9] HANGZHOU NUMERAL ONE..HANGZHOU NUMERAL NINE
 3038..303A    ; Ideographic # Nl   [3] HANGZHOU NUMERAL TEN..HANGZHOU NUMERAL THIRTY
 3400..4DB5    ; Ideographic # Lo [6582] CJK UNIFIED IDEOGRAPH-3400..CJK UNIFIED IDEOGRAPH-4DB5
-4E00..9FEA    ; Ideographic # Lo [20971] CJK UNIFIED IDEOGRAPH-4E00..CJK UNIFIED IDEOGRAPH-9FEA
+4E00..9FEF    ; Ideographic # Lo [20976] CJK UNIFIED IDEOGRAPH-4E00..CJK UNIFIED IDEOGRAPH-9FEF
 F900..FA6D    ; Ideographic # Lo [366] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIBILITY IDEOGRAPH-FA6D
 FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COMPATIBILITY IDEOGRAPH-FAD9
-17000..187EC  ; Ideographic # Lo [6125] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187EC
+17000..187F1  ; Ideographic # Lo [6130] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F1
 18800..18AF2  ; Ideographic # Lo [755] TANGUT COMPONENT-001..TANGUT COMPONENT-755
 1B170..1B2FB  ; Ideographic # Lo [396] NUSHU CHARACTER-1B170..NUSHU CHARACTER-1B2FB
 20000..2A6D6  ; Ideographic # Lo [42711] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6D6
@@ -793,7 +793,7 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 2CEB0..2EBE0  ; Ideographic # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2F800..2FA1D  ; Ideographic # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# Total code points: 96174
+# Total code points: 96184
 
 # ================================================
 
@@ -1137,7 +1137,7 @@ E0020..E007F  ; Other_Grapheme_Extend # Cf  [96] TAG SPACE..CANCEL TAG
 # ================================================
 
 3400..4DB5    ; Unified_Ideograph # Lo [6582] CJK UNIFIED IDEOGRAPH-3400..CJK UNIFIED IDEOGRAPH-4DB5
-4E00..9FEA    ; Unified_Ideograph # Lo [20971] CJK UNIFIED IDEOGRAPH-4E00..CJK UNIFIED IDEOGRAPH-9FEA
+4E00..9FEF    ; Unified_Ideograph # Lo [20976] CJK UNIFIED IDEOGRAPH-4E00..CJK UNIFIED IDEOGRAPH-9FEF
 FA0E..FA0F    ; Unified_Ideograph # Lo   [2] CJK COMPATIBILITY IDEOGRAPH-FA0E..CJK COMPATIBILITY IDEOGRAPH-FA0F
 FA11          ; Unified_Ideograph # Lo       CJK COMPATIBILITY IDEOGRAPH-FA11
 FA13..FA14    ; Unified_Ideograph # Lo   [2] CJK COMPATIBILITY IDEOGRAPH-FA13..CJK COMPATIBILITY IDEOGRAPH-FA14
@@ -1151,7 +1151,7 @@ FA27..FA29    ; Unified_Ideograph # Lo   [3] CJK COMPATIBILITY IDEOGRAPH-FA27..C
 2B820..2CEA1  ; Unified_Ideograph # Lo [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 2CEB0..2EBE0  ; Unified_Ideograph # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 
-# Total code points: 87882
+# Total code points: 87887
 
 # ================================================
 
@@ -1521,14 +1521,10 @@ E0100..E01EF  ; Variation_Selector # Mn [240] VARIATION SELECTOR-17..VARIATION S
 2B74..2B75    ; Pattern_Syntax # Cn   [2] <reserved-2B74>..<reserved-2B75>
 2B76..2B95    ; Pattern_Syntax # So  [32] NORTH WEST TRIANGLE-HEADED ARROW TO BAR..RIGHTWARDS BLACK ARROW
 2B96..2B97    ; Pattern_Syntax # Cn   [2] <reserved-2B96>..<reserved-2B97>
-2B98..2BB9    ; Pattern_Syntax # So  [34] THREE-D TOP-LIGHTED LEFTWARDS EQUILATERAL ARROWHEAD..UP ARROWHEAD IN A RECTANGLE BOX
-2BBA..2BBC    ; Pattern_Syntax # Cn   [3] <reserved-2BBA>..<reserved-2BBC>
-2BBD..2BC8    ; Pattern_Syntax # So  [12] BALLOT BOX WITH LIGHT X..BLACK MEDIUM RIGHT-POINTING TRIANGLE CENTRED
+2B98..2BC8    ; Pattern_Syntax # So  [49] THREE-D TOP-LIGHTED LEFTWARDS EQUILATERAL ARROWHEAD..BLACK MEDIUM RIGHT-POINTING TRIANGLE CENTRED
 2BC9          ; Pattern_Syntax # Cn       <reserved-2BC9>
-2BCA..2BD2    ; Pattern_Syntax # So   [9] TOP HALF BLACK CIRCLE..GROUP MARK
-2BD3..2BEB    ; Pattern_Syntax # Cn  [25] <reserved-2BD3>..<reserved-2BEB>
-2BEC..2BEF    ; Pattern_Syntax # So   [4] LEFTWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS..DOWNWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS
-2BF0..2BFF    ; Pattern_Syntax # Cn  [16] <reserved-2BF0>..<reserved-2BFF>
+2BCA..2BFE    ; Pattern_Syntax # So  [53] TOP HALF BLACK CIRCLE..REVERSED RIGHT ANGLE
+2BFF          ; Pattern_Syntax # Cn       <reserved-2BFF>
 2E00..2E01    ; Pattern_Syntax # Po   [2] RIGHT ANGLE SUBSTITUTION MARKER..RIGHT ANGLE DOTTED SUBSTITUTION MARKER
 2E02          ; Pattern_Syntax # Pi       LEFT SUBSTITUTION BRACKET
 2E03          ; Pattern_Syntax # Pf       RIGHT SUBSTITUTION BRACKET
@@ -1566,8 +1562,8 @@ E0100..E01EF  ; Variation_Selector # Mn [240] VARIATION SELECTOR-17..VARIATION S
 2E40          ; Pattern_Syntax # Pd       DOUBLE HYPHEN
 2E41          ; Pattern_Syntax # Po       REVERSED COMMA
 2E42          ; Pattern_Syntax # Ps       DOUBLE LOW-REVERSED-9 QUOTATION MARK
-2E43..2E49    ; Pattern_Syntax # Po   [7] DASH WITH LEFT UPTURN..DOUBLE STACKED COMMA
-2E4A..2E7F    ; Pattern_Syntax # Cn  [54] <reserved-2E4A>..<reserved-2E7F>
+2E43..2E4E    ; Pattern_Syntax # Po  [12] DASH WITH LEFT UPTURN..PUNCTUS ELEVATUS MARK
+2E4F..2E7F    ; Pattern_Syntax # Cn  [49] <reserved-2E4F>..<reserved-2E7F>
 3001..3003    ; Pattern_Syntax # Po   [3] IDEOGRAPHIC COMMA..DITTO MARK
 3008          ; Pattern_Syntax # Ps       LEFT ANGLE BRACKET
 3009          ; Pattern_Syntax # Pe       RIGHT ANGLE BRACKET
@@ -1606,8 +1602,9 @@ FE45..FE46    ; Pattern_Syntax # Po   [2] SESAME DOT..WHITE SESAME DOT
 070F          ; Prepended_Concatenation_Mark # Cf       SYRIAC ABBREVIATION MARK
 08E2          ; Prepended_Concatenation_Mark # Cf       ARABIC DISPUTED END OF AYAH
 110BD         ; Prepended_Concatenation_Mark # Cf       KAITHI NUMBER SIGN
-110CD ; Prepended_Concatenation_Mark # KAITHI NUMBER SIGN ABOVE
-# Total code points: 10
+110CD         ; Prepended_Concatenation_Mark # Cf       KAITHI NUMBER SIGN ABOVE
+
+# Total code points: 11
 
 # ================================================
 

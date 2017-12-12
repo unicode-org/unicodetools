@@ -1,5 +1,5 @@
 # ArabicShaping-11.0.0.txt
-# Date: 2017-12-07, 01:00:00 GMT [RP, KW]
+# Date: 2017-12-11, 01:00:00 GMT [RP, KW]
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -801,7 +801,7 @@ A873; PHAGS-PA CANDRABINDU; U; No_Joining_Group
 10F42; SOGDIAN TAW; D; SOGDIAN TAW
 10F43; SOGDIAN FETH; D; SOGDIAN FETH
 10F44; SOGDIAN LESH; D; SOGDIAN LESH
-10F45; SOGDIAN PHONOGRAM SHIN; U; SOGDIAN PHONOGRAM SHIN
+10F45; SOGDIAN PHONOGRAM SHIN; U; No_Joining_Group
 10F51; SOGDIAN ONE; D; SOGDIAN ONE
 10F52; SOGDIAN TEN; D; SOGDIAN TEN
 10F53; SOGDIAN TWENTY; D; SOGDIAN TWENTY

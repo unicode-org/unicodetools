@@ -1,5 +1,5 @@
 # WordBreakProperty-11.0.0.txt
-# Date: 2017-12-05, 11:57:02 GMT
+# Date: 2017-12-07, 13:07:07 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -31,7 +31,7 @@
 # ================================================
 
 05D0..05EA    ; Hebrew_Letter # Lo  [27] HEBREW LETTER ALEF..HEBREW LETTER TAV
-05F0..05F2    ; Hebrew_Letter # Lo   [3] HEBREW LIGATURE YIDDISH DOUBLE VAV..HEBREW LIGATURE YIDDISH DOUBLE YOD
+05EF..05F2    ; Hebrew_Letter # Lo   [4] HEBREW YOD TRIANGLE..HEBREW LIGATURE YIDDISH DOUBLE YOD
 FB1D          ; Hebrew_Letter # Lo       HEBREW LETTER YOD WITH HIRIQ
 FB1F..FB28    ; Hebrew_Letter # Lo  [10] HEBREW LIGATURE YIDDISH YOD YOD PATAH..HEBREW LETTER WIDE TAV
 FB2A..FB36    ; Hebrew_Letter # Lo  [13] HEBREW LETTER SHIN WITH SHIN DOT..HEBREW LETTER ZAYIN WITH DAGESH
@@ -41,7 +41,7 @@ FB40..FB41    ; Hebrew_Letter # Lo   [2] HEBREW LETTER NUN WITH DAGESH..HEBREW L
 FB43..FB44    ; Hebrew_Letter # Lo   [2] HEBREW LETTER FINAL PE WITH DAGESH..HEBREW LETTER PE WITH DAGESH
 FB46..FB4F    ; Hebrew_Letter # Lo  [10] HEBREW LETTER TSADI WITH DAGESH..HEBREW LIGATURE ALEF LAMED
 
-# Total code points: 74
+# Total code points: 75
 
 # ================================================
 
@@ -645,7 +645,6 @@ FF71..FF9D    ; Katakana # Lo  [45] HALFWIDTH KATAKANA LETTER A..HALFWIDTH KATAK
 0531..0556    ; ALetter # L&  [38] ARMENIAN CAPITAL LETTER AYB..ARMENIAN CAPITAL LETTER FEH
 0559          ; ALetter # Lm       ARMENIAN MODIFIER LETTER LEFT HALF RING
 0560..0588    ; ALetter # L&  [41] ARMENIAN SMALL LETTER TURNED AYB..ARMENIAN SMALL LETTER YI WITH STROKE
-05EF          ; ALetter # Lo       HEBREW YOD TRIANGLE
 05F3          ; ALetter # Po       HEBREW PUNCTUATION GERESH
 0620..063F    ; ALetter # Lo  [32] ARABIC LETTER KASHMIRI YEH..ARABIC LETTER FARSI YEH WITH THREE DOTS ABOVE
 0640          ; ALetter # Lm       ARABIC TATWEEL
@@ -1194,7 +1193,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1F150..1F169  ; ALetter # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; ALetter # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 28495
+# Total code points: 28494
 
 # ================================================
 

@@ -1,5 +1,5 @@
-# PropertyValueAliases.txt
-# Date: 2017-12-09, 22:31:16 GMT
+# PropertyValueAliases-11.0.0.txt
+# Date: 2017-12-11, 12:03:24 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -238,7 +238,7 @@ blk; Ethiopic_Sup                     ; Ethiopic_Supplement
 blk; Geometric_Shapes                 ; Geometric_Shapes
 blk; Geometric_Shapes_Ext             ; Geometric_Shapes_Extended
 blk; Georgian                         ; Georgian
-blk; Georgian_Ext                ; Georgian_Extended
+blk; Georgian_Ext                     ; Georgian_Extended
 blk; Georgian_Sup                     ; Georgian_Supplement
 blk; Glagolitic                       ; Glagolitic
 blk; Glagolitic_Sup                   ; Glagolitic_Supplement
@@ -598,6 +598,10 @@ ea ; N                                ; Neutral
 ea ; Na                               ; Narrow
 ea ; W                                ; Wide
 
+# Equivalent_Unified_Ideograph (EUIdeo)
+
+# @missing: 0000..10FFFF; Equivalent_Unified_Ideograph; <none>
+
 # Expands_On_NFC (XO_NFC)
 
 XO_NFC; N                             ; No                               ; F                                ; False
@@ -690,7 +694,7 @@ GCB; EX                               ; Extend
 GCB; GAZ                              ; Glue_After_Zwj
 GCB; L                                ; L
 GCB; LF                               ; LF
-GCB; LinkC                 ; LinkingConsonant
+GCB; LinkC                            ; LinkingConsonant
 GCB; LV                               ; LV
 GCB; LVT                              ; LVT
 GCB; PP                               ; Prepend

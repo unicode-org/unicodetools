@@ -1,5 +1,5 @@
 # DerivedJoiningGroup-11.0.0.txt
-# Date: 2017-12-05, 11:56:45 GMT
+# Date: 2017-12-11, 11:13:28 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -696,6 +696,353 @@
 # ================================================
 
 086A          ; Malayalam_Ssa # Lo       SYRIAC LETTER MALAYALAM SSA
+
+# Total code points: 1
+
+# ================================================
+
+10D00         ; Hanifi_Rohingya_A # Lo       HANIFI ROHINGYA LETTER A
+
+# Total code points: 1
+
+# ================================================
+
+10D01         ; Hanifi_Rohingya_Ba # Lo       HANIFI ROHINGYA LETTER BA
+
+# Total code points: 1
+
+# ================================================
+
+10D02         ; Hanifi_Rohingya_Pa # Lo       HANIFI ROHINGYA LETTER PA
+10D09         ; Hanifi_Rohingya_Pa # Lo       HANIFI ROHINGYA LETTER FA
+10D1C         ; Hanifi_Rohingya_Pa # Lo       HANIFI ROHINGYA LETTER VA
+
+# Total code points: 3
+
+# ================================================
+
+10D03         ; Hanifi_Rohingya_Ta # Lo       HANIFI ROHINGYA LETTER TA
+
+# Total code points: 1
+
+# ================================================
+
+10D04         ; Hanifi_Rohingya_Tta # Lo       HANIFI ROHINGYA LETTER TTA
+
+# Total code points: 1
+
+# ================================================
+
+10D05         ; Hanifi_Rohingya_Ja # Lo       HANIFI ROHINGYA LETTER JA
+
+# Total code points: 1
+
+# ================================================
+
+10D06         ; Hanifi_Rohingya_Ca # Lo       HANIFI ROHINGYA LETTER CA
+
+# Total code points: 1
+
+# ================================================
+
+10D07         ; Hanifi_Rohingya_Ha # Lo       HANIFI ROHINGYA LETTER HA
+
+# Total code points: 1
+
+# ================================================
+
+10D08         ; Hanifi_Rohingya_Kha # Lo       HANIFI ROHINGYA LETTER KHA
+
+# Total code points: 1
+
+# ================================================
+
+10D0A         ; Hanifi_Rohingya_Da # Lo       HANIFI ROHINGYA LETTER DA
+
+# Total code points: 1
+
+# ================================================
+
+10D0B         ; Hanifi_Rohingya_Dda # Lo       HANIFI ROHINGYA LETTER DDA
+
+# Total code points: 1
+
+# ================================================
+
+10D0C         ; Hanifi_Rohingya_Ra # Lo       HANIFI ROHINGYA LETTER RA
+
+# Total code points: 1
+
+# ================================================
+
+10D0D         ; Hanifi_Rohingya_Rra # Lo       HANIFI ROHINGYA LETTER RRA
+
+# Total code points: 1
+
+# ================================================
+
+10D0E         ; Hanifi_Rohingya_Za # Lo       HANIFI ROHINGYA LETTER ZA
+
+# Total code points: 1
+
+# ================================================
+
+10D0F         ; Hanifi_Rohingya_Sa # Lo       HANIFI ROHINGYA LETTER SA
+
+# Total code points: 1
+
+# ================================================
+
+10D10         ; Hanifi_Rohingya_Sha # Lo       HANIFI ROHINGYA LETTER SHA
+
+# Total code points: 1
+
+# ================================================
+
+10D11         ; Hanifi_Rohingya_Ka # Lo       HANIFI ROHINGYA LETTER KA
+
+# Total code points: 1
+
+# ================================================
+
+10D12         ; Hanifi_Rohingya_Ga # Lo       HANIFI ROHINGYA LETTER GA
+
+# Total code points: 1
+
+# ================================================
+
+10D13         ; Hanifi_Rohingya_La # Lo       HANIFI ROHINGYA LETTER LA
+
+# Total code points: 1
+
+# ================================================
+
+10D14         ; Hanifi_Rohingya_Ma # Lo       HANIFI ROHINGYA LETTER MA
+
+# Total code points: 1
+
+# ================================================
+
+10D15         ; Hanifi_Rohingya_Na # Lo       HANIFI ROHINGYA LETTER NA
+
+# Total code points: 1
+
+# ================================================
+
+10D16         ; Hanifi_Rohingya_Wa # Lo       HANIFI ROHINGYA LETTER WA
+
+# Total code points: 1
+
+# ================================================
+
+10D17         ; Hanifi_Rohingya_Kinna_Wa # Lo       HANIFI ROHINGYA LETTER KINNA WA
+
+# Total code points: 1
+
+# ================================================
+
+10D18         ; Hanifi_Rohingya_Ya # Lo       HANIFI ROHINGYA LETTER YA
+
+# Total code points: 1
+
+# ================================================
+
+10D19         ; Hanifi_Rohingya_Kinna_Ya # Lo       HANIFI ROHINGYA LETTER KINNA YA
+10D1E         ; Hanifi_Rohingya_Kinna_Ya # Lo       HANIFI ROHINGYA VOWEL MARK I
+10D20         ; Hanifi_Rohingya_Kinna_Ya # Lo       HANIFI ROHINGYA VOWEL MARK E
+10D23         ; Hanifi_Rohingya_Kinna_Ya # Lo       HANIFI ROHINGYA MARK NA KHANNA
+
+# Total code points: 4
+
+# ================================================
+
+10D1A         ; Hanifi_Rohingya_Nga # Lo       HANIFI ROHINGYA LETTER NGA
+
+# Total code points: 1
+
+# ================================================
+
+10D1B         ; Hanifi_Rohingya_Nya # Lo       HANIFI ROHINGYA LETTER NYA
+
+# Total code points: 1
+
+# ================================================
+
+10D1D         ; Hanifi_Rohingya_Vowel_Sign_A # Lo       HANIFI ROHINGYA VOWEL MARK A
+
+# Total code points: 1
+
+# ================================================
+
+10D1F         ; Hanifi_Rohingya_Vowel_Sign_U # Lo       HANIFI ROHINGYA VOWEL MARK U
+
+# Total code points: 1
+
+# ================================================
+
+10D21         ; Hanifi_Rohingya_Vowel_Sign_O # Lo       HANIFI ROHINGYA VOWEL MARK O
+
+# Total code points: 1
+
+# ================================================
+
+10D22         ; Hanifi_Rohingya_Sakin # Lo       HANIFI ROHINGYA MARK SAKIN
+
+# Total code points: 1
+
+# ================================================
+
+10F30         ; Sogdian_Aleph # Lo       SOGDIAN LETTER ALEPH
+
+# Total code points: 1
+
+# ================================================
+
+10F31         ; Sogdian_Beth # Lo       SOGDIAN LETTER BETH
+
+# Total code points: 1
+
+# ================================================
+
+10F32         ; Sogdian_Gimel # Lo       SOGDIAN LETTER GIMEL
+
+# Total code points: 1
+
+# ================================================
+
+10F33         ; Sogdian_He # Lo       SOGDIAN LETTER HE
+
+# Total code points: 1
+
+# ================================================
+
+10F34         ; Sogdian_Waw # Lo       SOGDIAN LETTER WAW
+
+# Total code points: 1
+
+# ================================================
+
+10F35         ; Sogdian_Zayin # Lo       SOGDIAN LETTER ZAYIN
+
+# Total code points: 1
+
+# ================================================
+
+10F36         ; Sogdian_Heth # Lo       SOGDIAN LETTER HETH
+
+# Total code points: 1
+
+# ================================================
+
+10F37         ; Sogdian_Yodh # Lo       SOGDIAN LETTER YODH
+
+# Total code points: 1
+
+# ================================================
+
+10F38         ; Sogdian_Kaph # Lo       SOGDIAN LETTER KAPH
+
+# Total code points: 1
+
+# ================================================
+
+10F39         ; Sogdian_Lamedh # Lo       SOGDIAN LETTER LAMEDH
+
+# Total code points: 1
+
+# ================================================
+
+10F3A         ; Sogdian_Mem # Lo       SOGDIAN LETTER MEM
+
+# Total code points: 1
+
+# ================================================
+
+10F3B         ; Sogdian_Nun # Lo       SOGDIAN LETTER NUN
+
+# Total code points: 1
+
+# ================================================
+
+10F3C         ; Sogdian_Samekh # Lo       SOGDIAN LETTER SAMEKH
+
+# Total code points: 1
+
+# ================================================
+
+10F3D         ; Sogdian_Ayin # Lo       SOGDIAN LETTER AYIN
+
+# Total code points: 1
+
+# ================================================
+
+10F3E         ; Sogdian_Pe # Lo       SOGDIAN LETTER PE
+
+# Total code points: 1
+
+# ================================================
+
+10F3F         ; Sogdian_Sadhe # Lo       SOGDIAN LETTER SADHE
+
+# Total code points: 1
+
+# ================================================
+
+10F40         ; Sogdian_Resh_Ayin # Lo       SOGDIAN LETTER RESH-AYIN
+
+# Total code points: 1
+
+# ================================================
+
+10F41         ; Sogdian_Shin # Lo       SOGDIAN LETTER SHIN
+
+# Total code points: 1
+
+# ================================================
+
+10F42         ; Sogdian_Taw # Lo       SOGDIAN LETTER TAW
+
+# Total code points: 1
+
+# ================================================
+
+10F43         ; Sogdian_Feth # Lo       SOGDIAN LETTER FETH
+
+# Total code points: 1
+
+# ================================================
+
+10F44         ; Sogdian_Lesh # Lo       SOGDIAN LETTER LESH
+
+# Total code points: 1
+
+# ================================================
+
+10F45         ; Sogdian_Phonogram_Shin # Lo       SOGDIAN PHONOGRAM SHIN
+
+# Total code points: 1
+
+# ================================================
+
+10F51         ; Sogdian_One # No       SOGDIAN NUMBER ONE
+
+# Total code points: 1
+
+# ================================================
+
+10F52         ; Sogdian_Ten # No       SOGDIAN NUMBER TEN
+
+# Total code points: 1
+
+# ================================================
+
+10F53         ; Sogdian_Twenty # No       SOGDIAN NUMBER TWENTY
+
+# Total code points: 1
+
+# ================================================
+
+10F54         ; Sogdian_One_Hundred # No       SOGDIAN NUMBER ONE HUNDRED
 
 # Total code points: 1
 
