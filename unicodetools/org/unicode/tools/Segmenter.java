@@ -1093,7 +1093,7 @@ public class Segmenter {
                 //"$EBG=\\p{Word_Break=E_Base_GAZ}",
                 //"$Glue_After_Zwj=\\p{Word_Break=Glue_After_Zwj}",
 
-                "$HSpace=\\p{Word_Break=HSpace}",
+                "$WSegSpace=\\p{Word_Break=WSegSpace}",
 
                 "# Macros",
 
@@ -1139,7 +1139,7 @@ public class Segmenter {
                 "3.2) \u00F7    ($Newline | $CR | $LF)",
                 "# Do not break within emoji zwj sequences.",
                 "3.3) $ZWJ × $EXP",
-                "3.4) $HSpace × $HSpace",
+                "3.4) $WSegSpace × $WSegSpace",
 
                 // "3.4) ( $Control | $CR | $LF ) 	\u00F7",
                 // "3.5) \u00F7 	( $Control | $CR | $LF )",
