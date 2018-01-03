@@ -18,19 +18,21 @@ $E_Modifier = \p{gcb=E_Modifier} ;
 
 cluster = crlf | $Control | precore* core postcore* ;
 
+
 crlf = $CR $LF ;
 
 precore =  $Prepend ;
 
+core = (?: hangul-syllable | ri-sequence | xpicto-sequence | virama-sequence | [^$Control $CR $LF] );
+
 postcore = (?: virama-sequence | [$Extend $ZWJ $Virama $SpacingMark] );
 
-core = (?: hangul-syllable | ri-sequence | xpicto-sequence | virama-sequence | [^$Control $CR $LF] );
 
 hangul-syllable = $L* (?:$V+ | $LV $V* | $LVT) $T* | $L+ | $T+ ;
 
 ri-sequence = $RI $RI ;
 	  
-skin-sequence = $E_Base $E_Modifier ;
+skin-sequence = $E_Base $Extend* $E_Modifier ;
 
 xpicto-sequence = (?: skin-sequence | \p{Extended_Pictographic} ) (?: $Extend* $ZWJ (?: skin-sequence | \p{Extended_Pictographic} ))* ;
 
