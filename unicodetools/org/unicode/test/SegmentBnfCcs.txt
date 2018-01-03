@@ -1,7 +1,4 @@
-$CR = \r ;
-$LF = \n ;
-$Base = \P{gc=Cc} ;
-$Extend = \p{M} ;
+$Base = [\p{L}\p{N}\p{P}\p{S}\p{Zs}] ;
+$Extend = [\p{M}\p{Join_Control}] ;
 
-cluster = $CR $LF
-	| $Base $Extend* ;
+cluster = $Base? $Extend+ | . ;

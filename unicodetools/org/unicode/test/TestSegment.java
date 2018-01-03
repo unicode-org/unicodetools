@@ -156,9 +156,15 @@ public class TestSegment {
                 "÷ 0020 0308 ÷ 0061 ÷", 
                 "÷ 0020 0301 0301 ÷ 0061 ÷", 
                 "÷ 0061 ÷ 0062 ÷",
-                "÷ 000D 000A ÷"));
+                "÷ 000D 000A ÷",
+                "÷ 1F1E6 1F1E7 ÷", 
+                "÷ 1F1E6 1F1E7 ÷ 1F1E8 ÷", 
+                "÷ 1F1E6 1F1E7 ÷ 1F1E8 1F1E9 ÷"));
 
         TestSegment gc3 = new TestSegment("SegmentBnf" + "GraphemeBreak" + ".txt");
         gc3.test("Gb", "/Users/markdavis/Documents/workspace/unicode-draft/Public/UCD/auxiliary/","GraphemeBreak");
+        gc3.test("GB+", Arrays.asList("÷ 1F1E6 1F1E7 ÷", 
+                "÷ 1F1E6 1F1E7 ÷ 1F1E8 ÷", 
+                "÷ 1F1E6 1F1E7 ÷ 1F1E8 1F1E9 ÷"));
     }
 }
