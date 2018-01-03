@@ -1,0 +1,17 @@
+$CR = \p{gcb=cr} ;
+$LF = \p{gcb=lf} ;
+$Control = \p{gcb=control} ;
+$Extend = \p{gcb=Extend} ;
+
+$Any = . ;
+
+cluster = crlf
+	| $Control
+	| core postcore* ;
+
+postcore = $Extend ;
+
+core = (?: $Any );
+
+crlf = $CR $LF ;
+

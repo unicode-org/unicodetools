@@ -1013,7 +1013,6 @@ jg ; Sogdian_Nun                      ; Sogdian_Nun
 jg ; Sogdian_One                      ; Sogdian_One
 jg ; Sogdian_One_Hundred              ; Sogdian_One_Hundred
 jg ; Sogdian_Pe                       ; Sogdian_Pe
-jg ; Sogdian_Phonogram_Shin           ; Sogdian_Phonogram_Shin
 jg ; Sogdian_Resh_Ayin                ; Sogdian_Resh_Ayin
 jg ; Sogdian_Sadhe                    ; Sogdian_Sadhe
 jg ; Sogdian_Samekh                   ; Sogdian_Samekh

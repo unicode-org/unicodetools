@@ -1,0 +1,7 @@
+$CR = \r ;
+$LF = \n ;
+$Base = \P{gc=Cc} ;
+$Extend = \p{M} ;
+
+cluster = $CR $LF
+	| $Base $Extend* ;

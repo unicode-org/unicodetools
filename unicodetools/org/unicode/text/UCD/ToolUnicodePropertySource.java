@@ -958,7 +958,7 @@ U+FF1A ( ： ) FULLWIDTH COLON
             //unicodeMap.putAll(E_Base_GAZ, "E_Base_GAZ");
 
             UnicodeSet hspace = new UnicodeSet(cat.getSet("Zs")).removeAll(new UnicodeSet("[\u00A0\u2007\u202F]"));
-            unicodeMap.putAll(hspace, "HSpace");
+            unicodeMap.putAll(hspace, "WSegSpace");
 
             // note: during development it is easier to put new properties at the top.
             // that way you find out which other values overlap.

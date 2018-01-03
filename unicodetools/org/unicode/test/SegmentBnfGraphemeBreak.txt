@@ -1,0 +1,37 @@
+$CR = \p{gcb=cr} ;
+$LF = \p{gcb=lf} ;
+$Control = \p{gcb=control} ;
+$Virama = \p{gcb=Virama} ;
+$LinkingConsonant = \p{gcb=LinkingConsonant} ;
+$Extend = \p{gcb=Extend} ;
+$ZWJ = \p{gcb=zwj} ;
+$RI = \p{gcb=ri} ;
+$Prepend = \p{gcb=Prepend} ;
+$SpacingMark =  \p{gcb=SpacingMark} ;
+$L =   \p{gcb=l} ;
+$V =   \p{gcb=v} ;
+$T =   \p{gcb=t} ;
+$LV =   \p{gcb=lv} ;
+$LVT =   \p{gcb=lvt} ;
+$E_Base = \p{gcb=e_base} ;
+$E_Modifier = \p{gcb=E_Modifier} ;
+
+cluster = crlf | $Control | precore* core postcore* ;
+
+crlf = $CR $LF ;
+
+precore =  $Prepend ;
+
+postcore = (?: virama-sequence | [$Extend $ZWJ $Virama $SpacingMark] );
+
+core = (?: hangul-syllable | ri-sequence | xpicto-sequence | virama-sequence | [^$Control $CR $LF] );
+
+hangul-syllable = $L* (?:$V+ | $LV $V* | $LVT) $T* | $L+ | $T+ ;
+
+ri-sequence = $RI $RI ;
+	  
+skin-sequence = $E_Base $E_Modifier ;
+
+xpicto-sequence = (?: skin-sequence | \p{Extended_Pictographic} ) (?: $Extend* $ZWJ (?: skin-sequence | \p{Extended_Pictographic} ))* ;
+
+virama-sequence = [$Virama $ZWJ] $LinkingConsonant ;
