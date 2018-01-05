@@ -1088,6 +1088,7 @@ public class UcdPropertyValues {
         Sogdian_One("Sogdian_One"),
         Sogdian_One_Hundred("Sogdian_One_Hundred"),
         Sogdian_Pe("Sogdian_Pe"),
+        Sogdian_Phonogram_Shin("Sogdian_Phonogram_Shin"),
         Sogdian_Resh_Ayin("Sogdian_Resh_Ayin"),
         Sogdian_Sadhe("Sogdian_Sadhe"),
         Sogdian_Samekh("Sogdian_Samekh"),
