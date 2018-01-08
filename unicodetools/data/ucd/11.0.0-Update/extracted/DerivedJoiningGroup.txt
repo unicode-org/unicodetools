@@ -1,5 +1,5 @@
 # DerivedJoiningGroup-11.0.0.txt
-# Date: 2017-12-11, 11:13:28 GMT
+# Date: 2018-01-05, 17:47:21 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1013,12 +1013,6 @@
 # ================================================
 
 10F44         ; Sogdian_Lesh # Lo       SOGDIAN LETTER LESH
-
-# Total code points: 1
-
-# ================================================
-
-10F45         ; Sogdian_Phonogram_Shin # Lo       SOGDIAN PHONOGRAM SHIN
 
 # Total code points: 1
 

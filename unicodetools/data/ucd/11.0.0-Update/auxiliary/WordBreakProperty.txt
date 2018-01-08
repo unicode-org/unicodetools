@@ -1,5 +1,5 @@
 # WordBreakProperty-11.0.0.txt
-# Date: 2017-12-07, 13:07:07 GMT
+# Date: 2018-01-05, 17:47:40 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -767,9 +767,10 @@ FF71..FF9D    ; Katakana # Lo  [45] HALFWIDTH KATAKANA LETTER A..HALFWIDTH KATAK
 10A0..10C5    ; ALetter # L&  [38] GEORGIAN CAPITAL LETTER AN..GEORGIAN CAPITAL LETTER HOE
 10C7          ; ALetter # L&       GEORGIAN CAPITAL LETTER YN
 10CD          ; ALetter # L&       GEORGIAN CAPITAL LETTER AEN
-10D0..10FA    ; ALetter # Lo  [43] GEORGIAN LETTER AN..GEORGIAN LETTER AIN
+10D0..10FA    ; ALetter # L&  [43] GEORGIAN LETTER AN..GEORGIAN LETTER AIN
 10FC          ; ALetter # Lm       MODIFIER LETTER GEORGIAN NAR
-10FD..1248    ; ALetter # Lo [332] GEORGIAN LETTER AEN..ETHIOPIC SYLLABLE QWA
+10FD..10FF    ; ALetter # L&   [3] GEORGIAN LETTER AEN..GEORGIAN LETTER LABIAL SIGN
+1100..1248    ; ALetter # Lo [329] HANGUL CHOSEONG KIYEOK..ETHIOPIC SYLLABLE QWA
 124A..124D    ; ALetter # Lo   [4] ETHIOPIC SYLLABLE QWI..ETHIOPIC SYLLABLE QWE
 1250..1256    ; ALetter # Lo   [7] ETHIOPIC SYLLABLE QHA..ETHIOPIC SYLLABLE QHO
 1258          ; ALetter # Lo       ETHIOPIC SYLLABLE QHWA
@@ -1363,12 +1364,12 @@ FF3F          ; ExtendNumLet # Pc       FULLWIDTH LOW LINE
 
 # ================================================
 
-0020          ; HSpace # Zs       SPACE
-1680          ; HSpace # Zs       OGHAM SPACE MARK
-2000..2006    ; HSpace # Zs   [7] EN QUAD..SIX-PER-EM SPACE
-2008..200A    ; HSpace # Zs   [3] PUNCTUATION SPACE..HAIR SPACE
-205F          ; HSpace # Zs       MEDIUM MATHEMATICAL SPACE
-3000          ; HSpace # Zs       IDEOGRAPHIC SPACE
+0020          ; WSegSpace # Zs       SPACE
+1680          ; WSegSpace # Zs       OGHAM SPACE MARK
+2000..2006    ; WSegSpace # Zs   [7] EN QUAD..SIX-PER-EM SPACE
+2008..200A    ; WSegSpace # Zs   [3] PUNCTUATION SPACE..HAIR SPACE
+205F          ; WSegSpace # Zs       MEDIUM MATHEMATICAL SPACE
+3000          ; WSegSpace # Zs       IDEOGRAPHIC SPACE
 
 # Total code points: 14
 
