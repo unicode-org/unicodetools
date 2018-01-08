@@ -23,6 +23,7 @@ import org.unicode.cldr.util.props.UnicodeProperty.SimpleProperty;
 import org.unicode.cldr.util.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.Indic_Syllabic_Category_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -709,11 +710,18 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             final UnicodeMap<String> unicodeMap = new UnicodeMap<String>();
             unicodeMap.setErrorOnReset(true); // will cause exception if we try assigning 2 different values
 
-            final UnicodeSet prepend = new UnicodeSet(
-                    "[\\u0600-\\u0605\\u06DD\\u070F\\u08E2\\U000110BD"              // Prepended_Concatenation_Mark
-                    + "\\u0D4E\\U00011D46"                                          // Consonant_Preceding_Repha
-                    + "\\U000111C2\\U000111C3\\U00011A3A\\U00011A86-\\U00011A89]"); // Consonant_Prefixed
+            UnicodeMap<Indic_Syllabic_Category_Values> isc = iupCurrent.loadEnum(UcdProperty.Indic_Syllabic_Category, Indic_Syllabic_Category_Values.class);
+
+            UnicodeMap<Binary> pcm = iupCurrent.loadEnum(UcdProperty.Prepended_Concatenation_Mark, Binary.class);
+            
+            final UnicodeSet prepend = new UnicodeSet(pcm.getSet(Binary.Yes)) // Prepended_Concatenation_Mark
+                    .addAll(isc.getSet(Indic_Syllabic_Category_Values.Consonant_Preceding_Repha)) // Consonant_Preceding_Repha
+                    .addAll(isc.getSet(Indic_Syllabic_Category_Values.Consonant_Prefixed)); // Consonant_Prefixed
+//          "[\\u0600-\\u0605\\u06DD\\u070F\\u08E2\\U000110BD"              // Prepended_Concatenation_Mark
+//          + "\\u0D4E\\U00011D46"                                          // Consonant_Preceding_Repha
+//          + "\\U000111C2\\U000111C3\\U00011A3A\\U00011A86-\\U00011A89]"); // Consonant_Prefixed
             unicodeMap.putAll(prepend, "Prepend");
+
             unicodeMap.put(0xD, "CR");
             unicodeMap.put(0xA, "LF");
             final UnicodeProperty cat = getProperty("General_Category");
@@ -758,7 +766,8 @@ extend -and not GCB = Virama
 */
             //IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
 
-            UnicodeMap<Indic_Syllabic_Category_Values> isc = iupCurrent.loadEnum(UcdProperty.Indic_Syllabic_Category, Indic_Syllabic_Category_Values.class);
+
+
 
             UnicodeSet virama = new UnicodeSet()
                     .add(isc.getSet(Indic_Syllabic_Category_Values.Virama))

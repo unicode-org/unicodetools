@@ -1,0 +1,70 @@
+$CR = \p{wb=cr} ;
+$LF = \p{wb=lf} ;
+$Newline = \p{wb=Newline} ;
+$Extend = \p{wb=Extend} ;
+$ZWJ = \p{wb=zwj} ;
+$Virama = \p{wb=Virama} ;
+$RI = \p{wb=ri} ;
+$Format = \p{wb=Format} ;
+$Katakana = \p{wb=Katakana} ;
+$Hebrew_Letter =  \p{wb=Hebrew_Letter} ;
+$ALetter =   \p{wb=ALetter} ;
+$Single_Quote =   \p{wb=Single_Quote} ;
+$Double_Quote =   \p{wb=Double_Quote} ;
+$MidNumLet =   \p{wb=MidNumLet} ;
+$MidNum =   \p{wb=MidNum} ;
+$Numeric =   \p{wb=Numeric} ;
+$ExtendNumLet =   \p{wb=ExtendNumLet} ;
+$E_Base = \p{wb=e_base} ;
+$E_Modifier = \p{wb=E_Modifier} ;
+$WSegSpace = \p{wb=WSegSpace} ;
+# $EXP = \p{Extended_Pictographic}
+
+cluster = crlf | isolate | WSegSpace+ | ri-sequence | emojiSeq | word ;
+
+
+crlf = $CR $LF ;
+
+isolate =  [$Newline | $CR | $LF] ;
+
+p1 = [$Extend | $Format]
+p = [$Extend | $Format | $ZWJ]
+
+# Broader than should be, could exclude p* by moving WB15, WB16 up
+ri-sequence = $RI p* $RI p* ;
+
+# Broader than should be, could exclude some p* by moving WB14	up
+emojiSeq = (E_Base p* E_Modifier | $EXP) p* ($ZWJ p* (E_Base p* E_Modifier | $EXP) p*)*
+
+word = ExtendNumLet? (aWord | hWord | nWord | kWord) p* ;
+
+midLetPlus = [$MidLetter $MidNumLet $Single_Quote] ;
+midNumPlus = [$MidNum $MidNumLet $Single_Quote] ;
+pp = [$ExtendNumLet $p] ;
+
+aWord = $ALetter aContinue*;
+aContinue = (pp* (midLetPlus? ahStart aContinue? | )*);
+
+hWord = $Hebrew_Letter heContinue*;
+hContinue = (pp* ($ALetter aContinue)*) ;
+
+nWord = $Numeric nContinue*;
+nContinue = (pp* (midNumPlus? $Numeric p* numContinue* 
+	| $Hebrew_Letter p* hContinue* 
+	| $ALetter mid* aContinue*));
+
+kWord = $Katakana kContinue;
+kContinue = pp* (kWord | $ExtendNumLet+ (heContinue | ahContinue | numContinue | kaContinue)*);
+
+ ($Double_Quote $Hebrew_Letter | (Single_Quote p)?
+
+ahWord = [$ALetter $Hebrew_Letter] p* (Numeric | [$MidLetter | [$MidNumLet $Single_Quote]] p* [$ALetter $Hebrew_Letter] p*)*
+
+numeric = Numeric ((MidNum | [$MidNumLet $Single_Quote])? Numeric | [$ALetter $Hebrew_Letter])* 
+    | [$ALetter $Hebrew_Letter] p* (Numeric | [$MidLetter | $[$MidNumLet $Single_Quote]] p* [$ALetter $Hebrew_Letter] p*)*
+	| Hebrew_Letter p* Double_Quote Hebrew_Letter (Single_Quote p)?
+	| Katakana p* Katakana*
+	
+	[$ALetter $Hebrew_Letter] | Numberic | Katakana |
+
+
