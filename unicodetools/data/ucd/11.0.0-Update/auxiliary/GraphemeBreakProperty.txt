@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-11.0.0.txt
-# Date: 2017-12-05, 11:56:47 GMT
+# Date: 2018-01-05, 17:47:24 GMT
 # © 2017 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -24,12 +24,13 @@
 08E2          ; Prepend # Cf       ARABIC DISPUTED END OF AYAH
 0D4E          ; Prepend # Lo       MALAYALAM LETTER DOT REPH
 110BD         ; Prepend # Cf       KAITHI NUMBER SIGN
+110CD         ; Prepend # Cf       KAITHI NUMBER SIGN ABOVE
 111C2..111C3  ; Prepend # Lo   [2] SHARADA SIGN JIHVAMULIYA..SHARADA SIGN UPADHMANIYA
 11A3A         ; Prepend # Lo       ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA
 11A86..11A89  ; Prepend # Lo   [4] SOYOMBO CLUSTER-INITIAL LETTER RA..SOYOMBO CLUSTER-INITIAL LETTER SA
 11D46         ; Prepend # Lo       MASARAM GONDI REPHA
 
-# Total code points: 19
+# Total code points: 20
 
 # ================================================
 
@@ -64,7 +65,6 @@ D800..DFFF    ; Control # Cs [2048] <surrogate-D800>..<surrogate-DFFF>
 FEFF          ; Control # Cf       ZERO WIDTH NO-BREAK SPACE
 FFF0..FFF8    ; Control # Cn   [9] <reserved-FFF0>..<reserved-FFF8>
 FFF9..FFFB    ; Control # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANNOTATION TERMINATOR
-110CD         ; Control # Cf       KAITHI NUMBER SIGN ABOVE
 1BCA0..1BCA3  ; Control # Cf   [4] SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
 1D173..1D17A  ; Control # Cf   [8] MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
 E0000         ; Control # Cn       <reserved-E0000>
@@ -73,7 +73,7 @@ E0002..E001F  ; Control # Cn  [30] <reserved-E0002>..<reserved-E001F>
 E0080..E00FF  ; Control # Cn [128] <reserved-E0080>..<reserved-E00FF>
 E01F0..E0FFF  ; Control # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 5926
+# Total code points: 5925
 
 # ================================================
 
