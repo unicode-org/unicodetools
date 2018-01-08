@@ -15,9 +15,13 @@ import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Utility;
 
+import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
@@ -343,6 +347,8 @@ public final class DerivedProperty implements UCD_Types {
 
     private DerivedProperty(UCD ucd) {
         ucdData = ucd;
+        final IndexUnicodeProperties iupCurrent = IndexUnicodeProperties.make(ucd.getVersion());
+
 
         nfd = nf[NFD] = new Normalizer(UCD_Types.NFD, ucdData.getVersion());
         nfc = nf[NFC] = new Normalizer(UCD_Types.NFC, ucdData.getVersion());
@@ -683,7 +689,9 @@ of characters, the first of which has a non-zero combining class.
             }
 
             // Prepended_Concatenation_Mark characters
-            final UnicodeSet removals = new UnicodeSet("[\\u0600-\\u0605 \\u06DD \\u070F \\u08E2 \\U000110BD]").freeze();
+            UnicodeMap<Binary> pcm = iupCurrent.loadEnum(UcdProperty.Prepended_Concatenation_Mark, Binary.class);
+            
+            final UnicodeSet removals = new UnicodeSet(pcm.getSet(Binary.Yes)).freeze();
 
             /**
                 (See MakeUnicodeFiles.txt)
