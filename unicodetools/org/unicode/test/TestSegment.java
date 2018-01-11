@@ -166,5 +166,9 @@ public class TestSegment {
         gc3.test("GB+", Arrays.asList("÷ 1F1E6 1F1E7 ÷", 
                 "÷ 1F1E6 1F1E7 ÷ 1F1E8 ÷", 
                 "÷ 1F1E6 1F1E7 ÷ 1F1E8 1F1E9 ÷"));
+        
+        TestSegment gc4 = new TestSegment("SegmentBnf" + "WordBreak" + ".txt");
+        gc3.test("Wb", "/Users/markdavis/Documents/workspace/unicode-draft/Public/UCD/auxiliary/","WordBreak");
+
     }
 }

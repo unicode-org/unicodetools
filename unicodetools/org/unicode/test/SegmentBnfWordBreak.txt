@@ -42,11 +42,11 @@ midLetPlus = [$MidLetter $MidNumLet $Single_Quote] ;
 midNumPlus = [$MidNum $MidNumLet $Single_Quote] ;
 pp = [$ExtendNumLet $p] ;
 
-aWord = $ALetter aContinue*;
-aContinue = (pp* (midLetPlus? ahStart aContinue? | )*);
+aWord = $ALetter aContinue;
+aContinue = (pp* (midLetPlus? (aWord | hWord) | nWord)));
 
 hWord = $Hebrew_Letter heContinue*;
-hContinue = (pp* ($ALetter aContinue)*) ;
+hContinue = (pp* (midLetPlus? (aWord | hWord)) ;
 
 nWord = $Numeric nContinue*;
 nContinue = (pp* (midNumPlus? $Numeric p* numContinue* 

@@ -1102,7 +1102,6 @@ public final class UCD_Names implements UCD_Types {
         "SOGDIAN_TAW",
         "SOGDIAN_FETH",
         "SOGDIAN_LESH",
-        "SOGDIAN_PHONOGRAM_SHIN",
         "SOGDIAN_ONE",
         "SOGDIAN_TEN",
         "SOGDIAN_TWENTY",

@@ -99,6 +99,7 @@ public class EmojiOrder {
     public final Relation<String, String>  orderingToCharacters;
     public final UnicodeMap<String>  charactersToOrdering = new UnicodeMap<>();
     public final Comparator<String>        codepointCompare;
+    public final Comparator<String>        codepointCompareSeparateDefects;
     public final UnicodeMap<MajorGroup>  majorGroupings = new UnicodeMap<>(); 
     public final Map<String, Integer>  groupOrder; 
     final EmojiData emojiData;
@@ -139,6 +140,12 @@ public class EmojiOrder {
                         mp,
                         EmojiOrder.UCA_COLLATOR,
                         PLAIN_STRING_COMPARATOR);
+        codepointCompareSeparateDefects           =
+                new MultiComparator<String>(
+                        mp,
+                        EmojiOrder.UCA_COLLATOR,
+                        PLAIN_STRING_COMPARATOR,
+                        new UTF16.StringComparator(true,false,0));
         if(DEBUG) {
             String last = "";
             for (String s : Arrays.asList("\u2017", "\u002D", "\uFF0D")) {
