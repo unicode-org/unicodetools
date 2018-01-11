@@ -761,11 +761,10 @@ public interface UCD_Types {
             SOGDIAN_TAW = 150,
             SOGDIAN_FETH = 151,
             SOGDIAN_LESH = 152,
-            SOGDIAN_PHONOGRAM_SHIN = 153,
-            SOGDIAN_ONE = 154,
-            SOGDIAN_TEN = 155,
-            SOGDIAN_TWENTY = 156,
-            SOGDIAN_ONE_HUNDRED = 157,
+            SOGDIAN_ONE = 153,
+            SOGDIAN_TEN = 154,
+            SOGDIAN_TWENTY = 155,
+            SOGDIAN_ONE_HUNDRED = 156,
     // limit
     LIMIT_JOINING_GROUP = SOGDIAN_ONE_HUNDRED + 1;
 

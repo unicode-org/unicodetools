@@ -16,6 +16,7 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.CountEmoji.Category;
+import org.unicode.tools.emoji.EmojiData.VariantFactory;
 
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.text.UTF16;
@@ -30,12 +31,15 @@ public class ListEmojiGroups {
     private static final String OUTDIR = "/Users/markdavis/Google Drive/workspace/Generated/emoji/frequency";
 
     public static void main(String[] args) {
-//        System.out.println("\n\n***MAIN***\n");
-//        showCounts("gboardMainRaw.tsv", GBoardCounts.countsRaw, null);
-//
-//        System.out.println("\n\n***W/O FE0F***\n");
-//        showCounts("gboardNoFE0F.tsv", GBoardCounts.countsWithoutFe0f, GBoardCounts.countsRaw);
-//        
+        //        System.out.println("\n\n***MAIN***\n");
+        //        showCounts("gboardMainRaw.tsv", GBoardCounts.countsRaw, null);
+        //
+        //        System.out.println("\n\n***W/O FE0F***\n");
+        //        showCounts("gboardNoFE0F.tsv", GBoardCounts.countsWithoutFe0f, GBoardCounts.countsRaw);
+        //        
+        System.out.println("\n\n***RawSequencesToCount***\n");
+        showSequencesToCount("RawSequencesToCount.tsv");
+
         System.out.println("\n\n***MAIN***\n");
         showCounts("gboardMain.tsv", GBoardCounts.counts, null);
 
@@ -75,6 +79,31 @@ public class ListEmojiGroups {
         }
     }
 
+    private static void showSequencesToCount(String outputFileName) {
+        Set<String> sorted = EmojiData.of(Emoji.VERSION_LAST_RELEASED).getAllEmojiWithDefectives().addAllTo(new TreeSet<>(order.codepointCompareSeparateDefects));
+        VariantFactory vf = order.emojiData.new VariantFactory();
+        for (String s : EmojiData.EMOJI_DATA.getAllEmojiWithDefectives()) {
+            if (s.equals("\u263A")) {
+                int debug = 0;
+            }
+            vf.set(s);
+            for (String cp : vf.getCombinations()) {
+                sorted.add(cp);
+            }
+        }
+        try (PrintWriter out = FileUtilities.openUTF8Writer(OUTDIR, outputFileName)) {
+            out.println("Hex\tEmoji\tCLDR Name");
+            for (String s : sorted) {
+                out.println(hex(s,4) 
+                        + "\t" + s
+                        + "\t" + EmojiData.EMOJI_DATA.getName(s)
+                        );
+            }
+        } catch (IOException e) {
+            throw new ICUUncheckedIOException(e);
+        }
+    }
+
     private static void showInfo(String filename) {
         Set<String> sorted = EmojiData.EMOJI_DATA.getAllEmojiWithDefectives().addAllTo(new TreeSet<>(order.codepointCompare));
         for (String s : EmojiData.EMOJI_DATA.getAllEmojiWithDefectives()) {
@@ -83,12 +112,12 @@ public class ListEmojiGroups {
                 sorted.add(norm);
             }
 
-//            if (Emoji.isSingleCodePoint(s)) {
-//                String ex = EmojiData.EMOJI_DATA.addEmojiVariants(s);
-//                if (!ex.equals(s)) {
-//                    sorted.add(ex);
-//                }
-//            }
+            //            if (Emoji.isSingleCodePoint(s)) {
+            //                String ex = EmojiData.EMOJI_DATA.addEmojiVariants(s);
+            //                if (!ex.equals(s)) {
+            //                    sorted.add(ex);
+            //                }
+            //            }
         }
         int sortOrder = 0;
 
@@ -123,9 +152,9 @@ public class ListEmojiGroups {
     }
 
     static final UnicodeSet HACK_FE0F = new UnicodeSet("[©®™✔]").freeze();
-    
+
     private static void showCounts(String filename, Counter<String> x, Counter<String> withFe0f) {
-     
+
         try (PrintWriter out = FileUtilities.openUTF8Writer(OUTDIR, filename)) {
             boolean normal = withFe0f == null;
             out.println("Hex\tCount"
@@ -153,8 +182,8 @@ public class ListEmojiGroups {
             throw new ICUUncheckedIOException(e);
         }
     }
-    
-    
+
+
 
     static int matches(UnicodeSet unicodeSet, String input, int offset) {
         SortedSet<String> items = (SortedSet<String>) unicodeSet.strings();
@@ -190,8 +219,8 @@ public class ListEmojiGroups {
     static class GBoardCounts {
         private static final String FREQ_SOURCE = "/Users/markdavis/Google Drive/workspace/DATA/frequency/emoji/";
         static Counter<String> counts = new Counter<>();
-//        static Counter<String> countsRaw = new Counter<>();
-//        static Counter<String> countsWithoutFe0f = new Counter<>();
+        //        static Counter<String> countsRaw = new Counter<>();
+        //        static Counter<String> countsWithoutFe0f = new Counter<>();
         private static long toAddAdjusted(String term, Long countWithFe0f, Long countWithoutFe0f) {
             return HACK_FE0F.contains(term) ? countWithFe0f * 4 : countWithoutFe0f;
         }
@@ -235,18 +264,22 @@ public class ListEmojiGroups {
                 }
             }
             normalizeCounts(_counts, counts);
-//            counts.addAll(countsRaw);
-//            for (R2<Long, String> entry : countsWithoutFe0f.getEntrySetSortedByCount(false, null)) {
-//                long countWithoutFe0f = entry.get0();
-//                String term = entry.get1();
-//                long countWithFe0f = counts.get(term);
-//                counts.add(term + Emoji.EMOJI_VARIANT, toAddAdjusted(term, countWithFe0f, countWithoutFe0f));
-//            }
+            //            counts.addAll(countsRaw);
+            //            for (R2<Long, String> entry : countsWithoutFe0f.getEntrySetSortedByCount(false, null)) {
+            //                long countWithoutFe0f = entry.get0();
+            //                String term = entry.get1();
+            //                long countWithFe0f = counts.get(term);
+            //                counts.add(term + Emoji.EMOJI_VARIANT, toAddAdjusted(term, countWithFe0f, countWithoutFe0f));
+            //            }
         }
     }
 
     public static String hex(String string) {
-        return "\\x{" + Utility.hex(string, 1, " ") + "}";
+        return hex(string, 1);
+    }
+
+    private static String hex(String string, int minLen) {
+        return "\\x{" + Utility.hex(string, minLen, " ") + "}";
     }
 
     public static class CSVParser {
@@ -326,7 +359,7 @@ public class ListEmojiGroups {
             }
         }
     }
-    
+
     static class Twitter {
         static Counter<String> counts = new Counter<>();
         static {
@@ -350,7 +383,7 @@ public class ListEmojiGroups {
             normalizeCounts(_counts, counts);
         }
     }
-    
+
     private static void normalizeCounts(Counter<String> inputCounter, Counter<String> outputCounter) {
         double factor = -1;
         for (R2<Long, String> entry : inputCounter.getEntrySetSortedByCount(false, null)) {
@@ -362,9 +395,9 @@ public class ListEmojiGroups {
             outputCounter.add(codes, Math.round(factor*count));
         }
     }
-    
+
     static final UnicodeSet SKIP = new UnicodeSet("[© ® ™]").freeze();
-    
+
     private static String normalizeEmoji(String rawCodes) {
         if (SKIP.contains(rawCodes)) {
             return "";
