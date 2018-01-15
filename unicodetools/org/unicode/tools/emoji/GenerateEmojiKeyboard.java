@@ -43,7 +43,7 @@ public class GenerateEmojiKeyboard {
 				GenerateEmojiKeyboard.getCounts(version, false);
 			}
 
-			for (VersionInfo version : Arrays.asList(Emoji.VERSION2, Emoji.VERSION3, Emoji.VERSION4, Emoji.VERSION5)) {
+			for (VersionInfo version : Arrays.asList(Emoji.VERSION2, Emoji.VERSION3, Emoji.VERSION4, Emoji.VERSION5, Emoji.VERSION11)) {
 				GenerateEmojiKeyboard.getCounts(version, true);
 			}
 		}
@@ -84,7 +84,9 @@ public class GenerateEmojiKeyboard {
 		Counter<EmojiOrder.MajorGroup> totals = new Counter<>();
 		Counter<EmojiOrder.MajorGroup> totalDuplicates = new Counter<>();
 		for (String emoji : setToList) {
-			boolean isDup = EmojiData.isTypicallyDuplicate(emoji) || EmojiData.MODIFIERS.contains(emoji);
+			boolean isDup = EmojiData.isTypicallyDuplicateGroup(emoji) 
+			        || EmojiData.isTypicallyDuplicateSign(emoji) 
+			        || EmojiData.MODIFIERS.contains(emoji);
 			
 			MajorGroup majorGroup = EmojiOrder.STD_ORDER.majorGroupings.get(emoji);
 

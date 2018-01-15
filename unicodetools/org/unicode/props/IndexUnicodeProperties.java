@@ -34,6 +34,7 @@ import org.unicode.draft.UnicodeDataOutput.ItemWriter;
 import org.unicode.props.PropertyNames.Named;
 import org.unicode.props.PropertyUtilities.Merge;
 import org.unicode.props.UcdPropertyValues.Age_Values;
+import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -677,5 +678,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     public UnicodeProperty getProperty(UcdProperty ucdProperty) {
         return getProperty(ucdProperty.toString());
+    }
+
+    public UnicodeSet loadBinary(UcdProperty ucdProp) {
+        return load(ucdProp).getSet(Binary.Yes.toString());
     }
 }
