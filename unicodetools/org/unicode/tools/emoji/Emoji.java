@@ -407,20 +407,23 @@ public class Emoji {
     public static final String MALE = "\u2642";
 
     public static final int BOY = 0x1F466;
-    public static final int WOMAN = 0x1F469;
+    public static final int GIRL = 0x1F467;
     public static final int MAN = 0x1F468;
+    public static final int WOMAN = 0x1F469;
     public static final int ADULT_CP = 0x1f9d1;
     public static final String ADULT = UTF16.valueOf(ADULT_CP);
     public static final String WOMAN_STR = UTF16.valueOf(WOMAN);
+    public static final String NEUTRAL_FAMILY = UTF16.valueOf(0x1F46A);
 
-    public static final UnicodeSet FAMILY_MARKERS = new UnicodeSet().add(BOY, WOMAN).freeze();
+    public static final UnicodeSet FAMILY_MARKERS = new UnicodeSet().add(BOY, WOMAN).freeze(); // includes girl, man
     public static final UnicodeSet ACTIVITY_MARKER = new UnicodeSet("[🤱 🧖 🧗 🧘🤰 💆 💇 🚶 🏃 💃 🕺 👯 🕴 🗣 👤 👥 🏌 🏄 🚣 🏊 ⛹ 🏋 🚴 🚵 🤸 🤼-🤾 🤹]").freeze();
     public static final UnicodeSet GENDER_MARKERS = new UnicodeSet().add(FEMALE).add(MALE)
             //    		.add(PERSON)
             .freeze();
-    
-    public static final UnicodeSet HAIR_BASE = new UnicodeSet().add(Emoji.WOMAN).add(Emoji.MAN)
+    public static final UnicodeSet MAN_OR_WOMAN = new UnicodeSet().add(Emoji.WOMAN).add(Emoji.MAN)
             .freeze();
+
+    public static final UnicodeSet HAIR_BASE = MAN_OR_WOMAN;
     public static final UnicodeSet HAIR_PIECES = new UnicodeSet().add(0x1F9B0).add(0x1F9B1).add(0x1F9B1).add(0x1F9B2).add(0x1F9B3)
             .freeze();
 

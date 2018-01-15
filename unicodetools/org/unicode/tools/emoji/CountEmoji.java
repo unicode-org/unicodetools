@@ -18,6 +18,7 @@ import org.unicode.cldr.util.StandardCodes.LstrType;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
+import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
@@ -61,10 +62,10 @@ public class CountEmoji {
             countVs();
             done=true;
         }
-//        if (MyOptions.invalid.option.doesOccur()) {
-//            countInvalid();
-//            done=true;
-//        }
+        //        if (MyOptions.invalid.option.doesOccur()) {
+        //            countInvalid();
+        //            done=true;
+        //        }
         if (MyOptions.nonincrementalCount.option.doesOccur()) {
             countNonincremental();
             done=true;
@@ -126,7 +127,7 @@ public class CountEmoji {
             sets.put(s,maj);
         }
     }
-    
+
     void add(String s) {
         add(s, null);
     }
@@ -146,7 +147,7 @@ public class CountEmoji {
     }
     private static final String TABLE_TOTALS2 = 
             "<h3><a href='#totals' name='totals'>Totals</a></h3>\n"
-            + "<p>Totals for the above emoji. For information on the categories, see <a href='../format.html#col-totals'>Totals</a>.</p>\n";
+                    + "<p>Totals for the above emoji. For information on the categories, see <a href='../format.html#col-totals'>Totals</a>.</p>\n";
 
     public void showCounts(PrintWriter out, boolean showCharacters) {
         out.println(TABLE_TOTALS2 + "<table>\n");
@@ -161,7 +162,7 @@ public class CountEmoji {
         }
         out.println(th + "Total" + "</th>" + "</tr>");
         boolean didSub = false;
-        
+
         Counter<MajorGroup> columnCount = new Counter<MajorGroup>();
         boolean doneSubtotal = false;
         for (Category evalue : Category.values()) {
@@ -169,7 +170,8 @@ public class CountEmoji {
             if (bucket == null) {
                 continue;
             }
-            if ((evalue == Category.component || evalue == Category.typical_dup) && !doneSubtotal) {
+            if ((evalue == Category.component || evalue == Category.typical_dup_group | evalue == Category.typical_dup_sign) 
+                    && !doneSubtotal) {
                 showTotalLine(out, "Subtotal", row, th, groups, columnCount);
                 doneSubtotal = true;
             }
@@ -214,18 +216,27 @@ public class CountEmoji {
         out.println(th + rowTotal + "</th>" + "</tr>");
     }
 
+    static final String GENDER = Emoji.MALE+'/'+Emoji.FEMALE;
+    static final String WO_MAN = new StringBuilder().appendCodePoint(Emoji.MAN).append('/').appendCodePoint(Emoji.WOMAN).toString();
+    
     enum Category {
         character, 
         keycap_seq,
         flag_seq,
         tag_seq, 
         mod_seq, 
-        zwj_seq_gender("zwj+gender"), 
-        zwj_seq_mod("zwj+skin"),
-        zwj_seq_mod_gender("zwj+gender&skin"),
-        zwj_seq_other("zwj other"),
+        zwj_seq_gender("zwj:" + GENDER), 
+        zwj_seq_gender_mod("zwj:" + GENDER + "&skin"),
+        zwj_seq_role("zwj:"+WO_MAN+'-'+Emoji.NEUTRAL_FAMILY),
+        zwj_seq_role_mod("zwj:"+WO_MAN+'-'+Emoji.NEUTRAL_FAMILY + "&skin"), 
+        zwj_seq_fam("zwj:"+Emoji.NEUTRAL_FAMILY), 
+        //zwj_seq_fam_mod("zwj:"+Emoji.NEUTRAL_FAMILY + "&skin"), 
+        zwj_seq_other("zwj:other"),
+        zwj_seq_mod("zwj:other&skin"),
         component, 
-        typical_dup;
+        typical_dup_sign,
+        typical_dup_group, 
+        ;
 
         final public String name;
         final public String html;
@@ -244,11 +255,13 @@ public class CountEmoji {
             return name;
         }
         static Category getBucket(String s) {
-            String noVariants = CountEmoji.EMOJI_DATA_BETA.removeEmojiVariants(s);
+            String noVariants = EmojiData.removeEmojiVariants(s);
             Category bucket = null;
-            if (EmojiData.isTypicallyDuplicate(s)) {
-                bucket = typical_dup;
-            } else if (CountEmoji.EMOJI_DATA_BETA.getEmojiComponents().contains(noVariants)) {
+            if (EmojiData.isTypicallyDuplicateGroup(s)) {
+                bucket = typical_dup_group;
+//            } else if (EmojiData.isTypicallyDuplicateSign(s)) {
+//                bucket = typical_dup_sign;
+            } else if (noVariants.isEmpty() || CountEmoji.EMOJI_DATA_BETA.getEmojiComponents().contains(noVariants)) {
                 bucket = component;
             } else if (CharSequences.getSingleCodePoint(noVariants) < Integer.MAX_VALUE) {
                 bucket = character;
@@ -260,29 +273,48 @@ public class CountEmoji {
                 bucket = flag_seq;
             } else {
                 boolean mods = EmojiData.MODIFIERS.containsSome(noVariants);
+                String butFirst = noVariants.substring(Character.charCount(noVariants.codePointAt(0)));
                 boolean gender = Emoji.GENDER_MARKERS.containsSome(noVariants);
                 boolean zwj = noVariants.contains(Emoji.JOINER_STR);
-                if (zwj && mods && gender) {
-                    bucket = zwj_seq_mod_gender;
-                } else if (zwj && mods && !gender) {
-                    bucket = zwj_seq_mod;
-                } else if (zwj && !mods && gender) {
-                    bucket = zwj_seq_gender;
-                } else if (zwj && !mods && !gender) {
-                    bucket = zwj_seq_other;
-                } else if (!zwj && mods && gender) {
-                    throw new IllegalArgumentException();
-                } else if (!zwj && mods && !gender) {
-                    bucket = mod_seq;
-                } else if (!zwj && !mods && gender) {
-                    throw new IllegalArgumentException();
-                } else {
-                    throw new IllegalArgumentException();
+                boolean role = Emoji.MAN_OR_WOMAN.containsSome(noVariants) && !Emoji.FAMILY_MARKERS.containsSome(butFirst);
+                boolean family = Emoji.FAMILY_MARKERS.containsSome(s) && !role;
+                if (!zwj) {
+                    if (mods) {
+                        bucket = mod_seq;
+                    } else {
+                        throw new IllegalArgumentException();
+                    }
+                } else { // zwj
+                    if (gender) {
+                        if (mods) {
+                            bucket = zwj_seq_gender_mod;
+                        } else { //  if (!gender)
+                            bucket = zwj_seq_gender;
+                        }
+                    } else if (role) { // !mods
+                        if (mods) {
+                            bucket = zwj_seq_role_mod;
+                        } else {
+                            bucket = zwj_seq_role;
+                        }
+                    } else if (family) { // !mods
+                        if (mods) {
+                            throw new IllegalArgumentException("no zwj_seq_fam_mod yet, change when there are");
+                            // bucket = zwj_seq_fam_mod;
+                        } else {
+                            bucket = zwj_seq_fam;
+                        }
+                    } else { // !mods
+                        if (mods) {
+                            bucket = zwj_seq_mod;
+                        } else {
+                            bucket = zwj_seq_other;
+                        }
+                    }
                 }
             }
             return bucket;
         }
-
     }
 
     private void countItems(String title, UnicodeSet uset) {

@@ -583,6 +583,10 @@ public class Segmenter {
         // make substitution
         // easy
         private Map<Double, Rule> rules = new TreeMap<Double, Rule>();
+        
+        public Map<Double, Rule> getProcessedRules() {
+            return rules;
+        }
 
         /**
          * A workhorse. Replaces all variable references: anything of the form $id.
