@@ -151,8 +151,8 @@ public class TestSegment {
             }
             List<Integer> list = getbreaks(bnf, results, testCase.testLine);
             if (!testCase.breakPoints.equals(list)) {
-                System.out.println(
-                        title + "\t" + count
+                System.out.println("FAIL\t"
+                        + title + "\t" + count
                         + ")\t" + testCase.testLine
                         + "\nhex:\t" + Utility.hex(testCase.testLine)
                         + "\ntest:\t" + testCase.breakPoints
@@ -321,21 +321,14 @@ public class TestSegment {
 
 
     public static void main(String[] args) {
-        Map<String, UnicodeSet> extras = new LinkedHashMap<String, UnicodeSet>();
-        extras.put(UcdProperty.Extended_Pictographic.getShortName(), IUP.loadBinary(UcdProperty.Extended_Pictographic));
-        UnicodeMap<String> makesDifference = new UnicodeMap<>();
+        //checkExemplars();
+        //if (true) return;
 
-        UnicodeMap<Enum> exemplars = pickBestExemplars(UcdProperty.Grapheme_Cluster_Break,
-                extras,
-                makesDifference);
-        show(exemplars);
-        show(makesDifference);
-        
-        Builder segmenter = Segmenter.make(ToolUnicodePropertySource.make(Default.ucd().getVersion()),"GraphemeClusterBreak");
+        testSegments();
 
-        getExemplarStrings(exemplars, segmenter);
-        if (true) return;
+    }
 
+    private static void testSegments() {
         final XSymbolTable toolUPS = new UnicodePropertySymbolTable(IUP);
         UnicodeSet.setDefaultXSymbolTable(toolUPS);
 
@@ -365,7 +358,22 @@ public class TestSegment {
 
         //        TestSegment gc4 = new TestSegment("SegmentBnf" + "WordBreak" + ".txt");
         //        gc3.test("Wb", "/Users/markdavis/Documents/workspace/unicode-draft/Public/UCD/auxiliary/","WordBreak");
+    }
 
+    private static void checkExemplars() {
+        Map<String, UnicodeSet> extras = new LinkedHashMap<String, UnicodeSet>();
+        extras.put(UcdProperty.Extended_Pictographic.getShortName(), IUP.loadBinary(UcdProperty.Extended_Pictographic));
+        UnicodeMap<String> makesDifference = new UnicodeMap<>();
+
+        UnicodeMap<Enum> exemplars = pickBestExemplars(UcdProperty.Grapheme_Cluster_Break,
+                extras,
+                makesDifference);
+        show(exemplars);
+        show(makesDifference);
+        
+        Builder segmenter = Segmenter.make(ToolUnicodePropertySource.make(Default.ucd().getVersion()),"GraphemeClusterBreak");
+
+        getExemplarStrings(exemplars, segmenter);
     }
 
     private static <T> void getExemplarStrings(UnicodeMap<T> exemplars, Builder segmenter) {

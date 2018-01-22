@@ -220,15 +220,15 @@ public class CountEmoji {
     static final String WO_MAN = new StringBuilder().appendCodePoint(Emoji.MAN).append('/').appendCodePoint(Emoji.WOMAN).toString();
     
     enum Category {
-        character, 
+        character("char"), 
         keycap_seq,
         flag_seq,
         tag_seq, 
-        mod_seq, 
-        zwj_seq_gender("zwj:" + GENDER), 
-        zwj_seq_gender_mod("zwj:" + GENDER + "&skin"),
-        zwj_seq_role("zwj:"+WO_MAN+'-'+Emoji.NEUTRAL_FAMILY),
-        zwj_seq_role_mod("zwj:"+WO_MAN+'-'+Emoji.NEUTRAL_FAMILY + "&skin"), 
+        mod_seq("char&skin"), 
+        zwj_seq_gender("zwj:…" + GENDER), 
+        zwj_seq_gender_mod("zwj:…" + GENDER + "&skin"),
+        zwj_seq_role("zwj:"+WO_MAN+'…'),
+        zwj_seq_role_mod("zwj:"+WO_MAN+'…' + "&skin"), 
         zwj_seq_fam("zwj:"+Emoji.NEUTRAL_FAMILY), 
         //zwj_seq_fam_mod("zwj:"+Emoji.NEUTRAL_FAMILY + "&skin"), 
         zwj_seq_other("zwj:other"),

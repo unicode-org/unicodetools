@@ -172,7 +172,7 @@ public class EmojiData implements EmojiDataSource {
                 if (set.contains(EmojiProp.Extended_Pictographic) && set.size() == 1) {
                     continue;
                 }
-                
+
                 if (!set.contains(EmojiProp.Emoji) 
                         && !set.contains(EmojiProp.Emoji_Component)) {
                     throw new IllegalArgumentException("**\t" + cp + "\t" + set);
@@ -875,7 +875,7 @@ public class EmojiData implements EmojiDataSource {
     }
 
     static final String DEBUG_STRING = UTF16.valueOf(0x1F970);
-    
+
     private String _getName(String source, boolean toLower, Transform<String,String> otherNameSource) {
         if (source.contains(DEBUG_STRING)) {
             int debug = 0;
@@ -1327,24 +1327,33 @@ public class EmojiData implements EmojiDataSource {
     }
 
     static final UnicodeMap<Integer> birthYear = new UnicodeMap<Integer>();
-    
+
     public static int getYear(String s) {
         UnicodeMap<Integer> years = getYears();
         try {
-            return years.get(s);
+            Integer result = years.get(s);
+            return result == null ? -1 : result;
         } catch (Exception e) {
-            int debug = 0;
+            // for debugging
             throw e;
         }
     }
 
     public static synchronized UnicodeMap<Integer> getYears() {
         if (birthYear.isEmpty()) {
-            Collection<Age_Values> output = new TreeSet(Collections.reverseOrder()); // latest first
+            Collection<Age_Values> output = new TreeSet<>(Collections.reverseOrder()); // latest first
             VersionInfo firstVersion = null;
 
             EmojiData beta = EmojiData.of(Emoji.VERSION_BETA);
             for (String s : beta.allEmojiWithoutDefectives) {
+                String noVar = EmojiData.removeEmojiVariants(s);
+                // if single code point, remove var
+                if (Character.charCount(noVar.codePointAt(0)) == noVar.length()) {
+                    s = noVar;
+                }
+                if (birthYear.containsKey(s)) {
+                    continue;
+                }
                 int year = -1;
                 if (s.equals("☝🏻")) {
                     int debug = 0;
@@ -1372,18 +1381,18 @@ public class EmojiData implements EmojiDataSource {
                     }
                 }
                 birthYear.put(s, year);
-                if (s.contains("⚕")) {
-                    int debug = 0;
-                }
-                String plusFef0 = beta.addEmojiVariants(s);
-                if (!s.equals(plusFef0)) {
-                        birthYear.put(plusFef0, year);
-                }
-                String minusFef0 = s.replace(Emoji.EMOJI_VARIANT_STRING, "");
-                if (!s.equals(minusFef0)) {
-                    birthYear.put(minusFef0, year);
+//                if (s.contains("⚕")) {
+//                    int debug = 0;
+//                }
+//                String plusFef0 = beta.addEmojiVariants(s);
+//                if (!s.equals(plusFef0)) {
+//                    birthYear.put(plusFef0, year);
+//                }
+//                String minusFef0 = s.replace(Emoji.EMOJI_VARIANT_STRING, "");
+//                if (!s.equals(minusFef0)) {
+//                    birthYear.put(minusFef0, year);
+//                }
             }
-           }
         }
         return birthYear.freeze();
     }
