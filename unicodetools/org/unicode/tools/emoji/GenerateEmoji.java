@@ -1837,7 +1837,9 @@ public class GenerateEmoji {
      */
     private static void showVersionsOnly(Style style) throws IOException {
         final String outFileName = "emoji-versions.html";
+        final String outFile2Name = "emoji-versions.txt";
         PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, outFileName);
+        PrintWriter outPlain = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, outFile2Name);
         writeHeader(outFileName, out, "Emoji Versions", null, false, ""
                 + "<p>This chart shows when each emoji first appeared in Unicode. It includes both emoji characters and sequences. "
                 + "The detailed Counts are as described in <a target='doc' href='" + Emoji.TR51_HTML
@@ -1852,7 +1854,7 @@ public class GenerateEmoji {
                 + HEADER_EMOJI
                 + "</tr>");
         int count = 0;
-        UnicodeMap<Integer> yearData = EmojiData.EMOJI_DATA.getYears();
+        UnicodeMap<Integer> yearData = EmojiData.getYears();
         TreeSet<Integer> sorted = new TreeSet<Integer>(Collections.reverseOrder());
         sorted.addAll(yearData.values());
         for (Integer value : sorted) {
@@ -1875,12 +1877,16 @@ public class GenerateEmoji {
                 countHtml = "</th><td class='rchars' style='width:3em; font-weight:bold'>";
             }
             for (Entry<Category, Bucket> entry : ce.buckets.entrySet()) {
+                Category category = entry.getKey();
+                Bucket bucket = entry.getValue();
                 counts.append("<tr><th>")
-                .append(entry.getKey())
+                .append(category)
                 .append(countHtml)
-                .append(entry.getValue().sets.size())
+                .append(bucket.sets.size())
                 .append("</td></tr>\n");
+                outPlain.println(value + "\t" + category + "\t" + bucket.sets.size() + "\t" + bucket.sets.keySet().toPattern(false));
             }
+            outPlain.println();
             counts.append("</table>");
             displayUnicodesetTD(out, Collections.singleton(value), null,
                     Collections.singleton(counts.toString()), false, chars, style, -1,
@@ -1890,6 +1896,7 @@ public class GenerateEmoji {
 
         writeFooter(out);
         out.close();
+        outPlain.close();
     }
 
     // private static void showSubhead() throws IOException {
