@@ -1,5 +1,7 @@
 package org.unicode.unittest;
 
+import java.io.File;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -56,55 +58,60 @@ public class TestSegmenter extends TestFmwk{
     public void TestIndic() {
         System.out.println();
         int lineCount = 0;
-        
+
         CanonicalIterator it = new CanonicalIterator("");
         Set<String> seen = new HashSet<>();
-        for (String line : FileUtilities.in(TestSegmenter.class, "TestSegmenter.txt")) {
-            lineCount++;
-            int subcount = 0;
-            List<String> parts = SEMI.splitToList(line);
+        for (File file : new File(
+                FileUtilities.getRelativeFileName(TestSegmenter.class, "testData"))
+                .listFiles()) {
+            for (String line : FileUtilities.in(file)) {
+                lineCount++;
+                int subcount = 0;
+                List<String> parts = SEMI.splitToList(line);
 
-            String source = parts.get(1);
-            String expected = parts.get(2);
-            StringBuilder cleaned = new StringBuilder();
-            extractBreakPoints(expected, cleaned);
-            String cleanedStr = cleaned.toString();
-            if (!source.equals(cleanedStr)) {
-                errln("Expected value doesn't have same characters as source: "
-                        + line + " // " + source + " ≠ " + cleanedStr);
+                String source = parts.get(1);
+                String expected = parts.get(2);
+                StringBuilder cleaned = new StringBuilder();
+                extractBreakPoints(expected, cleaned);
+                String cleanedStr = cleaned.toString();
+                if (!source.equals(cleanedStr)) {
+                    errln("Expected value doesn't have same characters as source: "
+                            + file.getName()
+                            + "\t" + line + " // " + source + " ≠ " + cleanedStr);
+                }
+
+                showBreakLines(file, lineCount, subcount, expected);
+                //            seen.clear();
+                //            seen.add(expected);
+                //            it.setSource(expected);
+                //            for (String line2 = it.next(); line2 != null; line2 = it.next()) {
+                //                line2 = line2.replace("\u037E", ";");
+                //                if (seen.contains(line)) {
+                //                    continue;
+                //                }
+                //                System.out.println(Utility.hex(line));
+                //                System.out.println(Utility.hex(line2));
+                //                showBreakLines(lineCount, subcount++, line2);
+                //                seen.add(line);
+                //            }
             }
-
-            showBreakLines(lineCount, subcount, expected);
-//            seen.clear();
-//            seen.add(expected);
-//            it.setSource(expected);
-//            for (String line2 = it.next(); line2 != null; line2 = it.next()) {
-//                line2 = line2.replace("\u037E", ";");
-//                if (seen.contains(line)) {
-//                    continue;
-//                }
-//                System.out.println(Utility.hex(line));
-//                System.out.println(Utility.hex(line2));
-//                showBreakLines(lineCount, subcount++, line2);
-//                seen.add(line);
-//            }
         }
     }
 
     static final Splitter SEMI = Splitter.on(';').trimResults();
 
-    private void showBreakLines(final int lineCount, final int subcount, final String expected) {
+    private void showBreakLines(File file, final int lineCount, final int subcount, final String expected) {
         try {
             StringBuilder cleaned = new StringBuilder();
             Set<Integer> expectedBreaks = extractBreakPoints(expected, cleaned);
             String source = cleaned.toString();
             Set<Integer> actualBreaks = extractBreakPoints(gcb, source);
-            
+
             if (!expectedBreaks.equals(actualBreaks)) {
                 String actualForm = displayForm(source, actualBreaks);
                 String expectedForm = displayForm(source, expectedBreaks);
 
-                errln(lineCount + ":" + subcount +")\t" + source + "; expected: " + expectedForm + "; actual: " + actualForm);
+                errln(file.getName() + ":\t" + lineCount + ":" + subcount +")\t" + source + "; expected: " + expectedForm + "; actual: " + actualForm);
             }
         } catch (Exception e) {
             throw new IllegalArgumentException(lineCount + ":" + subcount + ") " + expected,e);
