@@ -92,6 +92,7 @@ public class EmojiData implements EmojiDataSource {
     private final UnicodeMap<String> names = new UnicodeMap<>();
     private final UnicodeSet emojiWithVariants = new UnicodeSet();
     private final UnicodeSet extendedPictographic = new UnicodeSet();
+    private final UnicodeSet extendedPictographic1 = new UnicodeSet();
 
     public static final Splitter semi = Splitter.onPattern("[;#]").trimResults();
     public static final Splitter semiOnly = Splitter.onPattern(";").trimResults();
@@ -139,6 +140,7 @@ public class EmojiData implements EmojiDataSource {
             for (String line : FileUtilities.in(directory, "emoji-data.txt")) {
                 //# Code ;  Default Style ; Ordering ;  Annotations ;   Sources #Version Char Name
                 // U+263A ;    text ;  0 ; face, human, outlined, relaxed, smile, smiley, smiling ;    jw  # V1.1 (☺) white smiling face
+                line = line.trim();
                 if (line.startsWith("#") || line.isEmpty()) continue;
                 List<String> coreList = hashOnly.splitToList(line);
                 List<String> list = semi.splitToList(coreList.get(0));
@@ -195,6 +197,10 @@ public class EmojiData implements EmojiDataSource {
                         : set.contains(EmojiProp.Emoji_Modifier_Base) ? Emoji.ModifierStatus.modifier_base 
                                 : Emoji.ModifierStatus.none;
                 putUnicodeSetValue(_modifierClassMap, cp, modClass);
+                
+                if (set.contains(EmojiProp.Extended_Pictographic)) {
+                    extendedPictographic1.add(cp);
+                }
             }
             singletonsWithDefectives.freeze();
             singletonsWithoutDefectives.freeze();
@@ -332,7 +338,7 @@ public class EmojiData implements EmojiDataSource {
             }
             emojiWithVariants.freeze();
 
-            if (version.compareTo(Emoji.VERSION4) >= 0) {
+            if (version.compareTo(Emoji.VERSION4) >= 0 && version.compareTo(Emoji.VERSION11) <= 0) {
                 String dir = directory + "/source";
                 String name = "ExtendedPictographic.txt";
                 for (String line : FileUtilities.in(dir, name)) {
@@ -363,6 +369,9 @@ public class EmojiData implements EmojiDataSource {
                         extendedPictographic.add(codePoint,codePointEnd);
                     }
                 }
+            }
+            if (!extendedPictographic1.equals(extendedPictographic)) {
+                showAminusB("pictographic", "file", extendedPictographic, "prop", extendedPictographic1);
             }
 
             for (String s : modifierSequences) {

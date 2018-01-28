@@ -412,6 +412,7 @@ public class Emoji {
     public static final int WOMAN = 0x1F469;
     public static final int ADULT_CP = 0x1f9d1;
     public static final String ADULT = UTF16.valueOf(ADULT_CP);
+    public static final String MAN_STR = UTF16.valueOf(MAN);
     public static final String WOMAN_STR = UTF16.valueOf(WOMAN);
     public static final String NEUTRAL_FAMILY = UTF16.valueOf(0x1F46A);
 
@@ -420,6 +421,9 @@ public class Emoji {
     public static final UnicodeSet GENDER_MARKERS = new UnicodeSet().add(FEMALE).add(MALE)
             //    		.add(PERSON)
             .freeze();
+    public static final UnicodeSet ZWJ_GENDER_MARKERS = new UnicodeSet().add(JOINER + FEMALE).add(JOINER + MALE)
+            .freeze();
+
     public static final UnicodeSet MAN_OR_WOMAN = new UnicodeSet().add(Emoji.WOMAN).add(Emoji.MAN)
             .freeze();
 
@@ -667,11 +671,10 @@ public class Emoji {
 
     static final transient Collection<Age_Values> output = new TreeSet(Collections.reverseOrder());
 
-    static VersionInfo getNewest(String s) {
+    static Age_Values getNewest(String s) {
         synchronized (Emoji.output) {
             Emoji.getValues(s, VERSION_ENUM, Emoji.output);
-            Age_Values result = Emoji.output.iterator().next();
-            return result == Age_Values.Unassigned ? Emoji.UCD11 : VersionInfo.getInstance(result.getShortName());
+            return Emoji.output.iterator().next();
         }
     }
 
@@ -750,6 +753,10 @@ public class Emoji {
 
     public static String getShortName(VersionInfo versionInfo) {
         return versionInfo.getVersionString(2, 2);
+    }
+
+    public static String getShortName(Age_Values versionInfo) {
+        return versionInfo.getShortName();
     }
 
     public static boolean isSingleCodePoint(String nvs) {

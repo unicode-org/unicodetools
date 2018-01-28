@@ -254,7 +254,7 @@ public class CountEmoji {
         public String toStringPlain() {
             return name;
         }
-        static Category getBucket(String s) {
+        static public Category getBucket(String s) {
             String noVariants = EmojiData.removeEmojiVariants(s);
             Category bucket = null;
             if (EmojiData.isTypicallyDuplicateGroup(s)) {

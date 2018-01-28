@@ -23,7 +23,7 @@ After=🍥
 
 U+1F96E
 Name=moon cake
-Keywords= yuèbĭng
+Keywords= yuèbǐng
 
 Proposal=L2/17-082
 After=👃🏿
@@ -77,7 +77,7 @@ Keywords= scientist | doctor
 After=🦂
 U+1F9A0
 Name=microbe
-Keywords= bacteria | virus
+Keywords= bacteria | virus | amoeba
 
 After=⚗
 
@@ -119,35 +119,21 @@ Name=smiling face with 3 hearts
 Keywords= in love | loved
 UName=SMILING FACE WITH SMILING EYES AND THREE HEARTS
 
-After=🕵
+After=🤶
 U+1F9B8
 Name=superhero
 UName=SUPERHERO
+Emoji_Modifier_Base
+Emoji_Gender_Base
 Keywords=hero | heroine | cape | good guy | white hat
-
-
-U+1F9B8 200D 2642 FE0F
-Name=man superhero
-
-
-U+1F9B8 200D 2640 FE0F
-Name=woman superhero
-
 
 U+1F9B9
 Name=supervillain
 UName=SUPERVILLAIN
+Emoji_Modifier_Base
+Emoji_Gender_Base
 Keywords=villain | bandit | bad guy | black hat
 
- 
-U+1F9B9 200D 2642 FE0F
-Name=man supervillain
-
-
-U+1F9B9 200D 2640 FE0F
-Name=woman supervillain
-
- 
 After=🤠
 U+1F973
 Name=partying face
@@ -200,32 +186,10 @@ U+1F9B5
 Name=leg
 Emoji_Modifier_Base
 
-U+1F9B5 U+1F3FB
-Name=leg: light skin tone
-U+1F9B5 U+1F3FC
-Name=leg: medium-light skin tone
-U+1F9B5 U+1F3FD
-Name=leg: medium skin tone
-U+1F9B5 U+1F3FE
-Name=eg: medium-dark skin tone
-U+1F9B5 U+1F3FF
-Name=leg: dark skin tone
-
 Proposal=L2/17-259
 U+1F9B6
 Name=foot
 Emoji_Modifier_Base
-
-U+1F9B6 U+1F3FB
-Name=foot: light skin tone
-U+1F9B6 U+1F3FC
-Name=foot: medium-light skin tone
-U+1F9B6 U+1F3FD
-Name=foot: medium skin tone
-U+1F9B6 U+1F3FE
-Name=foot: medium-dark skin tone
-U+1F9B6 U+1F3FF
-Name=foot: dark skin tone
 
 
 After=🧠
@@ -368,6 +332,7 @@ Proposal=L2/17-172
 After=🏡 
 U+1F9F1
 Name=bricks
+UName=BRICK
 Comment=Image to be changed to be pile of bricks
 
 Proposal=L2/17-205
@@ -554,6 +519,13 @@ Name=woman, bald: medium-dark skin tone
 U+1F469 U+1F3FF U+200D U+1F9B2 
 Name=woman, bald: dark skin tone
 
+Proposal=L2/18-018
+After= ♣
+U+265F
+Name=chess pawn
+UName=BLACK CHESS PAWN
+Keywords= chess | dupe
+
 Status=Provisional Candidates
 
 Proposal=L2/17-381
@@ -569,4 +541,28 @@ U+101901
 Name=hindu temple
 UName=HINDU TEMPLE
 Keywords= hindu | temple
+
+Proposal=L2/17-431
+After=🛁
+U+101902
+Name=razor
+Keywords=sharp
+
+Proposal=L2/17-432
+After=🤔
+U+101903
+Name=yawning face
+Keywords=bored | tired
+
+Proposal=L2/18-002
+After=🔨
+U+101904
+Name=axe
+Keywords=hatchet
+
+Proposal=L2/18-003
+After=🛬
+U+101905
+Name=parachute
+Keywords=parachute | skydive | hang-glide
 

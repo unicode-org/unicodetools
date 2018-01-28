@@ -38,6 +38,7 @@ import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
+import com.ibm.icu.util.VersionInfo;
 
 public class CandidateData implements Transform<String, String>, EmojiDataSource {
     private static final UnicodeSet ZWJ_SET = new UnicodeSet(Emoji.JOINER,Emoji.JOINER);
@@ -121,7 +122,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     private final UnicodeMap<Set<String>> proposal = new UnicodeMap<>();
 
     static final UnicodeSet SEQUENCE_MAKER = new UnicodeSet().add(Emoji.JOINER).add(EmojiData.MODIFIERS).freeze();
-    
+
     private static final boolean LATER = false;
     //static final CandidateData PROPOSALS = new CandidateData("proposalData.txt");
 
@@ -142,6 +143,8 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                 if (line.startsWith("#") || line.isEmpty()) { // comment
                     continue;
                 } else if (line.startsWith("U+")) { // data
+                    fixGenderSkin(source); // old source
+
                     source = Utility.fromHex(line);
                     if (characters.contains(source)) {
                         throw new IllegalArgumentException(Utility.hex(source) + " occurs twice");
@@ -163,20 +166,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                     if (SEQUENCE_MAKER.containsSome(source)) {
                         attributes.add(source, "∈ sequences");
                     }
-                    categories.put(source, category);
-                    suborder.put(source, suborder.size());
-
-                    // if single character
-                    //                    if (emoji_Modifier_Base.contains(source)) {
-                    //                        for (String mod : EmojiData.MODIFIERS) {
-                    //                            addCombo(source, source + mod);
-                    //                        }
-                    //                    }
-                    //                    if (emoji_Gender_Base.contains(source)) {
-                    //                        for (String mod : Emoji.GENDER_MARKERS) {
-                    //                            addCombo(source, source + Emoji.JOINER_STR + mod + Emoji.EMOJI_VARIANT_STRING);
-                    //                        }
-                    //                    }
+                    setCategoryAndSuborder(source, category);
 
                     // Add this once we decide what to do
                     // needs modification if we add skin tones
@@ -191,6 +181,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                     String leftSide = equalPos < 0 ? line : line.substring(0,equalPos).trim();
                     String rightSide = equalPos < 0 ? null : line.substring(equalPos+1).trim();
                     switch(leftSide) {
+
                     // go before character
                     case "Status": 
                         status = CandidateData.Status.fromString(rightSide);
@@ -286,6 +277,42 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         proposal.freeze();
     }
 
+    private void setCategoryAndSuborder(String source, String category) {
+        if (categories.containsKey(source)) {
+            throw new IllegalArgumentException("Already added!");
+        }
+        categories.put(source, category);
+        suborder.put(source, suborder.size());
+    }
+
+    private void fixGenderSkin(String source) {
+        if (source == null) {
+            return;
+        }
+        int single = UnicodeSet.getSingleCodePoint(source);
+        if (single == Integer.MAX_VALUE) {
+            return;
+        }
+        boolean isModBase = emoji_Modifier_Base.contains(source);
+        if (isModBase) {
+            for (String mod : EmojiData.MODIFIERS) {
+                addCombo(source, source + mod, "", ": " + EmojiData.EMOJI_DATA.getName(mod));
+            }
+        }
+        if (emoji_Gender_Base.contains(source)) {
+            for (String gen : Emoji.GENDER_MARKERS) {
+                String genSuffix = Emoji.JOINER_STR + gen + Emoji.EMOJI_VARIANT_STRING;
+                String genPrefix = gen.equals(Emoji.MALE) ? "man " : "woman ";
+                addCombo(source, source + genSuffix, genPrefix, "");
+                if (isModBase) {
+                    for (String mod : EmojiData.MODIFIERS) {
+                        addCombo(source, source + mod + genSuffix, genPrefix, ": " + EmojiData.EMOJI_DATA.getName(mod));
+                    }
+                }
+            }
+        }
+    }
+
     private void addAttribute(String source, UnicodeSet unicodeSet, String title) {
         if (source.codePointCount(0, source.length()) == 1) {
             unicodeSet.add(source);
@@ -293,19 +320,23 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         }
     }
 
-    private void addCombo(String cp, String combo) {
+    private void addCombo(String cp, String combo, String namePrefix, String nameSuffix) {
+        String newName = namePrefix + names.get(cp) + nameSuffix;
+        //System.out.println("Adding: " + newName);
         allCharacters.add(combo);
+        names.put(combo, newName);
         statuses.put(combo, statuses.get(cp));
-        categories.put(combo, categories.get(cp));
-        suborder.put(combo, suborder.size());
         after.put(combo, after.get(cp));
         proposal.put(combo, proposal.get(cp));
-        if (Emoji.HAIR_PIECES.containsSome(cp)) { // HACK
-            names.put(combo, 
-                    EmojiData.EMOJI_DATA.getName(UTF16.valueOf(Character.codePointAt(combo, 0)))
-                    + ": " +
-                    getName(Character.codePointBefore(combo, combo.length())));
-        }
+
+        setCategoryAndSuborder(combo, categories.get(cp));
+
+        //        if (Emoji.HAIR_PIECES.containsSome(cp)) { // HACK
+        //            names.put(combo, 
+        //                    EmojiData.EMOJI_DATA.getName(UTF16.valueOf(Character.codePointAt(combo, 0)))
+        //                    + ": " +
+        //                    getName(Character.codePointBefore(combo, combo.length())));
+        //        }
     }
 
     Comparator<String> comparator = new Comparator<String>() {
@@ -330,9 +361,11 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                 return catOrder1 > catOrder2 ? 1 : -1;
             }
 
+            int order;
+            
             String after1 = after.get(o1);
             String after2 = after.get(o2);
-            int order = EmojiOrder.STD_ORDER.codepointCompare.compare(after1, after2);
+            order = EmojiOrder.STD_ORDER.codepointCompare.compare(after1, after2);
             if (order != 0) {
                 return order;
             }
@@ -474,34 +507,59 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     }
 
     public static void main(String[] args) {
+        generateProposalData(CandidateData.getInstance());
         showOrdering(CandidateData.getInstance());
         // showCandidateData(CandidateData.getInstance(), true);
         //showCandidateData(CandidateData.getProposalInstance(), true);
     }
 
-    private static void showOrdering(CandidateData instance) {
-        Map<String,List<String>> baseToList = new TreeMap<>(EmojiOrder.STD_ORDER.codepointCompare);
-        for (String item : instance.suborder) {
-//            if (EmojiData.MODIFIERS.containsSome(item)) {
-//                continue; // added automatically
-//            }
-            String base = instance.after.get(item);
-            List<String> list = baseToList.get(base);
-            if (list == null) {
-                baseToList.put(base, list = new ArrayList<>());
+    private static void generateProposalData(CandidateData instance) {
+        System.out.println("\nData for proposalData.txt\n");
+        //1F931;  L2/16-280,L2/16-282r;   BREAST-FEEDING   
+        for (String item : instance.allCharacters) {
+            if (instance.statuses.get(item) == Status.Provisional_Candidates
+                    || EmojiData.MODIFIERS.containsSome(item)
+                    || Emoji.GENDER_MARKERS.containsSome(item)
+                    ) {
+                continue;
             }
-            list.add(item);
+            System.out.println(Utility.hex(item)
+                    + "; " + CollectionUtilities.join(instance.proposal.get(item), ", ")
+                    + "; " + instance.getName(item));
         }
-        for (Entry<String, List<String>> entry : baseToList.entrySet()) {
-           System.out.println(entry.getKey() + "\t" + CollectionUtilities.join(entry.getValue(), " ")); 
+    }
+
+    private static void showOrdering(CandidateData instance) {
+        System.out.println("\nOrdering Data\n");
+
+        Set<String> sorted = instance.getAllCharacters().addAllTo(
+                new TreeSet<>(instance.comparator));
+//        Map<String,List<String>> baseToList = new TreeMap<>(EmojiOrder.STD_ORDER.codepointCompare);
+//        baseToList.
+//        for (String item : instance.suborder) {
+//            //            if (EmojiData.MODIFIERS.containsSome(item)) {
+//            //                continue; // added automatically
+//            //            }
+//            String base = instance.after.get(item);
+//            List<String> list = baseToList.get(base);
+//            if (list == null) {
+//                baseToList.put(base, list = new ArrayList<>());
+//            }
+//            list.add(item);
+//        }
+        for (String subItem : sorted) {
+                System.out.println(instance.after.get(subItem) 
+                        + "\t" + subItem 
+                        + "\t" + instance.suborder.get(subItem) 
+                        + "\t" + instance.getName(subItem));
         }
         EmojiOrder ordering = EmojiOrder.of(Emoji.VERSION_BETA);
-//        for (String s : instance.allCharacters) {
+        //        for (String s : instance.allCharacters) {
+        //            System.out.println(s + "\t" + ordering.getCategory(s));
+        //        }
+//        for (String s : new UnicodeSet("[{👨‍🦰️}{👨‍🦱️}{👨‍🦲️}{👨‍🦳️}{👨🏻‍🦰️}{👨🏻‍🦱️}{👨🏻‍🦲️}{👨🏻‍🦳️}{👨🏼‍🦰️}{👨🏼‍🦱️}{👨🏼‍🦲️}{👨🏼‍🦳️}{👨🏽‍🦰️}{👨🏽‍🦱️}{👨🏽‍🦲️}{👨🏽‍🦳️}{👨🏾‍🦰️}{👨🏾‍🦱️}{👨🏾‍🦲️}{👨🏾‍🦳️}{👨🏿‍🦰️}{👨🏿‍🦱️}{👨🏿‍🦲️}{👨🏿‍🦳️}{👩‍🦰️}{👩‍🦱️}{👩‍🦲️}{👩‍🦳️}{👩🏻‍🦰️}{👩🏻‍🦱️}{👩🏻‍🦲️}{👩🏻‍🦳️}{👩🏼‍🦰️}{👩🏼‍🦱️}{👩🏼‍🦲️}{👩🏼‍🦳️}{👩🏽‍🦰️}{👩🏽‍🦱️}{👩🏽‍🦲️}{👩🏽‍🦳️}{👩🏾‍🦰️}{👩🏾‍🦱️}{👩🏾‍🦲️}{👩🏾‍🦳️}{👩🏿‍🦰️}{👩🏿‍🦱️}{👩🏿‍🦲️}{👩🏿‍🦳️}{🦸️‍♀️}{🦸️‍♂️}{🦹️‍♀️}{🦹️‍♂️}]")) {
 //            System.out.println(s + "\t" + ordering.getCategory(s));
 //        }
-        for (String s : new UnicodeSet("[{👨‍🦰️}{👨‍🦱️}{👨‍🦲️}{👨‍🦳️}{👨🏻‍🦰️}{👨🏻‍🦱️}{👨🏻‍🦲️}{👨🏻‍🦳️}{👨🏼‍🦰️}{👨🏼‍🦱️}{👨🏼‍🦲️}{👨🏼‍🦳️}{👨🏽‍🦰️}{👨🏽‍🦱️}{👨🏽‍🦲️}{👨🏽‍🦳️}{👨🏾‍🦰️}{👨🏾‍🦱️}{👨🏾‍🦲️}{👨🏾‍🦳️}{👨🏿‍🦰️}{👨🏿‍🦱️}{👨🏿‍🦲️}{👨🏿‍🦳️}{👩‍🦰️}{👩‍🦱️}{👩‍🦲️}{👩‍🦳️}{👩🏻‍🦰️}{👩🏻‍🦱️}{👩🏻‍🦲️}{👩🏻‍🦳️}{👩🏼‍🦰️}{👩🏼‍🦱️}{👩🏼‍🦲️}{👩🏼‍🦳️}{👩🏽‍🦰️}{👩🏽‍🦱️}{👩🏽‍🦲️}{👩🏽‍🦳️}{👩🏾‍🦰️}{👩🏾‍🦱️}{👩🏾‍🦲️}{👩🏾‍🦳️}{👩🏿‍🦰️}{👩🏿‍🦱️}{👩🏿‍🦲️}{👩🏿‍🦳️}{🦸️‍♀️}{🦸️‍♂️}{🦹️‍♀️}{🦹️‍♂️}]")) {
-            System.out.println(s + "\t" + ordering.getCategory(s));
-        }
     }
 
     private static void showCandidateData(CandidateData cd, boolean candidate) {
@@ -703,10 +761,15 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     public UnicodeMap<String> getRawNames() {
         return names;
     }
-    
+
     public String getUnicodeName(String source) {
         String item = unames.get(source);
         return item != null ? item : names.get(source);
     }
-    
+
+    public VersionInfo getNewest(String s) {
+        Age_Values result = Emoji.getNewest(s);
+        return result == Age_Values.Unassigned ? Emoji.UCD11 
+                : VersionInfo.getInstance(result.getShortName());
+    }
 }

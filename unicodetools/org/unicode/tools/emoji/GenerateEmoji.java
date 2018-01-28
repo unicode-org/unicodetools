@@ -2870,8 +2870,10 @@ public class GenerateEmoji {
         }
     };
 
-    public static String showVersion(VersionInfo versionInfo) {
-        return Emoji.getShortName(versionInfo) + " " + VersionToAge.ucd.getYear(versionInfo);
+    public static String showVersion(Age_Values versionInfo) {
+        return Emoji.getShortName(versionInfo) 
+                + " "
+                + VersionToAge.ucd.getYear(versionInfo);
     }
 
     public static String getSources(String chars2, StringBuilder suffix, boolean superscript) {
@@ -3275,53 +3277,32 @@ public class GenerateEmoji {
                 + "</ul>\n"
                 + "<p><a target='feedback' href='http://unicode.org/reporting.html'>Feedback</a> on the CLDR Short Name, Keywords, ordering, and category is welcome.</p>\n"
                 + PROPOSAL_CAUTION;
-        String footer = "<h3><a href='#recent_changes' name='recent_changes'>Recent Changes</a></h3>\n"
+        String footer = candidateStyle == CandidateStyle.released ? ""
+                : "<h3><a href='#recent_changes' name='recent_changes'>Recent Changes</a></h3>\n"
                 + (candidateStyle == CandidateStyle.candidate ? 
-                        "<p>The following changes were made in the October 2017 UTC meeting to the draft candidates for 2018. "
-                        + "Comments may be included to indicate the pending changes or other information.</p>\n"
+                        "<p>The following changes were made in the January 2016 UTC meeting to the draft candidates for 2018, which were then"
+                        + "advanced to final candidates.</p>\n"
                         + "<ol>\n"
-                        + "<li>Two characters were changed from smileys to human-form emoji."
-                        + "<ul>\n"
-                        + "  <li><i>superhero</i></li>\n"
-                        + "  <li><i>supervillain</i></li>\n"
-                        + "  </ul>\n"
-                        + "</li>\n"
-                        + "<li>Two new draft candidate emoji characters were added.\n"
+                        + "<li>Additional  emoji sequences were added.\n"
                         + "  <ul>\n"
-                        + "  <li><i>swan</i></li>\n"
-                        + "  <li><i>badger</i></li>\n"
-                        + "  </ul>\n"
-                        + "</li>\n"
-                        + "<li>New draft candidate emoji sequences were added.\n"
-                        + "  <ul>\n"
-                        + "  <li>4 gender sequences for <i>superhero</i> and <i>supervillain</i> (two each)</li>\n"
-                        + "  <li>10 skin-tone modifier sequences for <i>leg</i> and <i>foot</i> (5 each)</li>\n"
-                        + "  <li>48 sequences for combinations of <i>man</i> and <i>woman</i> (2) with <i>skin-tone modifiers</i> (× 6) and the new <i>hair style components</i> (× 4)</li>\n"
-                        + "  <li><i>pirate flag</i>\n"
+                        + "  <li>15 for <i>superhero</i> and 15 for <i>supervillain</i> "
+                        + "(5 for each gender variant: neutral, man, woman)</li>\n"
                         + "  </ul></li>\n"
-                        + "<li>One new draft candidate ‘emojification’ was added.\n"
+                        + "<li>One new ‘emojification’ was added.\n"
                         + "  <ul>\n"
-                        + "  <li><i>infinity symbol</i></li>\n"
-                        + "  </ul></li>\n"
-                        + "<li>Three draft candidate emoji were withdrawn <i>as characters</i>, "
-                        + "with a planned review in the January 2018 UTC meeting to see if they should be added as <i>emoji ZWJ sequences</i> instead. "
-                        + "(For the distinction between <i>emoji characters</i> and <i>emoji sequences</i>, "
-                        + "see the <a target='slides' href='http://unicode.org/emoji/slides.html'>Unicode Emoji Slides</a> (starting with the slide “Variation”) or "
-                        + "<a target='slides' href='https://blog.emojipedia.org/emoji-zwj-sequences-three-letters-many-possibilities/'>Emojipedia</a>).\n"
-                        + "  <ul>\n"
-                        + "  <li><i>question-mark face</i> (aka FROWNING FACE WITH QUESTION MARKS AS EYES)</li>\n"
-                        + "  <li><i>ok face</i> (aka GRINNING FACE WITH LETTERS OK AS EYES)</li>\n"
-                        + "  <li><i>sad pile of poo</i> (aka FROWNING PILE OF POO)</li>\n"
+                        + "  <li><i>chess pawn</i></li>\n"
                         + "  </ul></li>\n"
                         + "<li>Some characters had names or keyword changes for clarity.</li>\n"
                         + "</ol>\n"
                         : "<p>The following changes were made in the October 2017 UTC meeting to the provisional candidates for 2019. "
                         + "</p>\n"
                         + "<ol>\n"
-                        + "<li>Two characters were added."
+                        + "<li>Four characters were added."
                         + "<ul>\n"
-                        + "  <li><i>hindu temple</i></li>\n"
-                        + "  <li><i>diving mask</i></li>\n"
+                        + "  <li><i>yawning face</i></li>\n"
+                        + "  <li><i>parachute</i></li>\n"
+                        + "  <li><i>axe</i></li>\n"
+                        + "  <li><i>razor</i></li>\n"
                         + "  </ul>\n"
                         + "</li>\n"
                         + "</ol>\n");

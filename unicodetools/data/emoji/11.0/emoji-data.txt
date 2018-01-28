@@ -251,6 +251,8 @@
 1F9D0..1F9E6  ; Emoji                # 10.0 [23] (🧐..🧦)    face with monocle..socks
 1F9E7..1F9FF  ; Emoji                # 10.0 [25] (🧧️..🧿️)    red envelope..nazar amulet
 
+265F    ; Emoji                #  1.1  [2] (♟️)    chess pawn..spade suit
+
 # Total elements: 1249
 
 # ================================================
@@ -390,6 +392,9 @@
 1F9D0..1F9E6  ; Emoji_Presentation   # 10.0 [23] (🧐..🧦)    face with monocle..socks
 1F9E7..1F9FF  ; Emoji_Presentation   # 10.0 [25] (🧧️..🧿️)    red envelope..nazar amulet
 
+1F9E7..1F9FF  ; Emoji_Presentation   # 10.0 [25] (🧧️..🧿️)    red envelope..nazar amulet
+
+
 # Total elements: 1032
 
 # ================================================
@@ -446,6 +451,8 @@
 1F9B5..1F9B6  ; Emoji_Modifier_Base  # 10.0  [2] (🦵️..🦶️)    leg..foot
 1F9D1..1F9DD  ; Emoji_Modifier_Base  # 10.0 [13] (🧑..🧝)    adult..elf
 
+1F9B8..1F9B9  ; Emoji_Modifier_Base  # 11.0 [13] super...
+
 # Total elements: 104
 
 # ================================================
@@ -500,7 +507,10 @@ E0020..E007F  ; Emoji_Component      #  3.1 [96] (󠀠..󠁿)      tag space..ca
 2670..2671    ; Extended_Pictographic #  3.0  [2] (♰️..♱️)    WEST SYRIAC CROSS..EAST SYRIAC CROSS
 2672..267D    ; Extended_Pictographic #  3.2 [12] (♲️..♽️)    UNIVERSAL RECYCLING SYMBOL..PARTIALLY-RECYCLED PAPER SYMBOL
 267E..267F    ; Extended_Pictographic #  4.1  [2] (♾️..♿)    infinity..wheelchair symbol
-2680..2689    ; Extended_Pictographic #  3.2 [10] (⚀️..⚉️)    DIE FACE-1..BLACK CIRCLE WITH TWO WHITE DOTS
+2680..2685    ; Extended_Pictographic #  3.2 [10] (⚀️..⚉️)    DIE FACE-1..BLACK CIRCLE WITH TWO WHITE DOTS
+
+# remove U+2686 to U+2689
+
 268A..2691    ; Extended_Pictographic #  4.0  [8] (⚊️..⚑️)    MONOGRAM FOR YANG..BLACK FLAG
 2692..269C    ; Extended_Pictographic #  4.1 [11] (⚒️..⚜️)    hammer and pick..fleur-de-lis
 269D          ; Extended_Pictographic #  5.1  [1] (⚝️)       OUTLINED WHITE STAR
@@ -614,8 +624,11 @@ E0020..E007F  ; Emoji_Component      #  3.1 [96] (󠀠..󠁿)      tag space..ca
 1F4FF         ; Extended_Pictographic #  8.0  [1] (📿)       prayer beads
 1F500..1F53D  ; Extended_Pictographic #  6.0 [62] (🔀..🔽)    shuffle tracks button..downwards button
 1F53E..1F53F  ; Extended_Pictographic #  7.0  [2] (🔾️..🔿️)    LOWER RIGHT SHADOWED WHITE CIRCLE..UPPER RIGHT SHADOWED WHITE CIRCLE
-1F540..1F543  ; Extended_Pictographic #  6.1  [4] (🕀️..🕃️)    CIRCLED CROSS POMMEE..NOTCHED LEFT SEMICIRCLE WITH THREE DOTS
-1F544..1F54A  ; Extended_Pictographic #  7.0  [7] (🕄️..🕊️)    NOTCHED RIGHT SEMICIRCLE WITH THREE DOTS..dove
+1F540..1F540  ; Extended_Pictographic #  6.1  [4] (🕀️..🕃️)    CIRCLED CROSS POMMEE..NOTCHED LEFT SEMICIRCLE WITH THREE DOTS
+
+# remove U+1F540 to U+1F545
+
+1F546..1F54A  ; Extended_Pictographic #  7.0  [7] (🕄️..🕊️)    NOTCHED RIGHT SEMICIRCLE WITH THREE DOTS..dove
 1F54B..1F54F  ; Extended_Pictographic #  8.0  [5] (🕋..🕏️)    kaaba..BOWL OF HYGIEIA
 1F550..1F567  ; Extended_Pictographic #  6.0 [24] (🕐..🕧)    one o’clock..twelve-thirty
 1F568..1F579  ; Extended_Pictographic #  7.0 [18] (🕨️..🕹️)    RIGHT SPEAKER..joystick
@@ -668,7 +681,10 @@ E0020..E007F  ; Emoji_Component      #  3.1 [96] (󠀠..󠁿)      tag space..ca
 1F85A..1F85F  ; Extended_Pictographic # 10.0  [6] (🡚️..🡟️)    <reserved-1F85A>..<reserved-1F85F>
 1F888..1F88F  ; Extended_Pictographic # 10.0  [8] (🢈️..🢏️)    <reserved-1F888>..<reserved-1F88F>
 1F8AE..1F8FF  ; Extended_Pictographic # 10.0 [82] (🢮️..🣿️)    <reserved-1F8AE>..<reserved-1F8FF>
-1F900..1F90B  ; Extended_Pictographic # 10.0 [12] (🤀️..🤋️)    CIRCLED CROSS FORMEE WITH FOUR DOTS..DOWNWARD FACING NOTCHED HOOK WITH DOT
+#1F900..1F90B  ; Extended_Pictographic # 10.0 [12] (🤀️..🤋️)    CIRCLED CROSS FORMEE WITH FOUR DOTS..DOWNWARD FACING NOTCHED HOOK WITH DOT
+
+# remove U+1F900 to U+1F90B
+ 
 1F90C..1F90F  ; Extended_Pictographic # 10.0  [4] (🤌️..🤏️)    <reserved-1F90C>..<reserved-1F90F>
 1F910..1F918  ; Extended_Pictographic #  8.0  [9] (🤐..🤘)    zipper-mouth face..sign of the horns
 1F919..1F91E  ; Extended_Pictographic #  9.0  [6] (🤙..🤞)    call me hand..crossed fingers

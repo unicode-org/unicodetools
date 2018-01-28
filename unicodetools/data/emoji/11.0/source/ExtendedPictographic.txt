@@ -42,7 +42,11 @@
 25FB..25FE      ; Extended_Pictographic #    [4] (◻..◾) WHITE MEDIUM SQUARE..BLACK MEDIUM SMALL SQUARE
 2600..2605      ; Extended_Pictographic #    [6] (☀..★) BLACK SUN WITH RAYS..BLACK STAR
 2607..2612      ; Extended_Pictographic #   [12] (☇..☒) LIGHTNING..BALLOT BOX WITH X
-2614..2705      ; Extended_Pictographic #  [242] (☔..✅) UMBRELLA WITH RAIN DROPS..WHITE HEAVY CHECK MARK
+2614..2685      ; Extended_Pictographic #  [242] (☔..✅) UMBRELLA WITH RAIN DROPS..WHITE HEAVY CHECK MARK
+
+#U+2686 to U+2689, U+1F540 to U+1F545, and U+1F900 to U+1F90B
+
+2690..2705      ; Extended_Pictographic #  [242] (☔..✅) UMBRELLA WITH RAIN DROPS..WHITE HEAVY CHECK MARK
 2708..2712      ; Extended_Pictographic #   [11] (✈..✒) AIRPLANE..BLACK NIB
 2714            ; Extended_Pictographic #    [1] (✔) HEAVY CHECK MARK
 2716            ; Extended_Pictographic #    [1] (✖) HEAVY MULTIPLICATION X
@@ -83,7 +87,11 @@
 1F22F           ; Extended_Pictographic #    [1] (🈯) SQUARED CJK UNIFIED IDEOGRAPH-6307
 1F232..1F23A    ; Extended_Pictographic #    [9] (🈲..🈺) SQUARED CJK UNIFIED IDEOGRAPH-7981..SQUARED CJK UNIFIED IDEOGRAPH-55B6
 1F23C..1F23F    ; Extended_Pictographic #    [4] (🈼..🈿) <reserved-1F23C>..<reserved-1F23F>
-1F249..1F64F    ; Extended_Pictographic # [1031] (🉉..🙏) <reserved-1F249>..PERSON WITH FOLDED HANDS
+1F249..1F539    ; Extended_Pictographic # [1031] (🉉..🙏) <reserved-1F249>..PERSON WITH FOLDED HANDS
+
+#U+2686 to U+2689, U+1F540 to U+1F545, and U+1F900 to U+1F90B
+
+1F546..1F64F    ; Extended_Pictographic # [1031] (🉉..🙏) <reserved-1F249>..PERSON WITH FOLDED HANDS
 1F680..1F6FF    ; Extended_Pictographic #  [128] (🚀..🛿) ROCKET..<reserved-1F6FF>
 1F774..1F77F    ; Extended_Pictographic #   [12] (🝴..🝿) <reserved-1F774>..<reserved-1F77F>
 1F7D5..1F7FF    ; Extended_Pictographic #   [43] (🟕..🟿) <reserved-1F7D5>..<reserved-1F7FF>
@@ -91,8 +99,14 @@
 1F848..1F84F    ; Extended_Pictographic #    [8] (🡈..🡏) <reserved-1F848>..<reserved-1F84F>
 1F85A..1F85F    ; Extended_Pictographic #    [6] (🡚..🡟) <reserved-1F85A>..<reserved-1F85F>
 1F888..1F88F    ; Extended_Pictographic #    [8] (🢈..🢏) <reserved-1F888>..<reserved-1F88F>
-1F8AE..1F93A    ; Extended_Pictographic #  [141] (🢮..🤺) <reserved-1F8AE>..FENCER
+1F8AE..1F8FF    ; Extended_Pictographic #  [141] (🢮..🤺) <reserved-1F8AE>..FENCER
+
+#U+2686 to U+2689, U+1F540 to U+1F545, and U+1F900 to U+1F90B
+
+1F90C..1F93A    ; Extended_Pictographic #  [141] (🢮..🤺) <reserved-1F8AE>..FENCER
 1F93C..1F945    ; Extended_Pictographic #   [10] (🤼..🥅) WRESTLERS..GOAL NET
 1F947..1FFFD    ; Extended_Pictographic # [1719] (🥇..🿽) FIRST PLACE MEDAL..<reserved-1FFFD>
+
+
 
 # Total elements: 3866
