@@ -67,3 +67,82 @@
 U+1F3F4 U+E0067 U+E0062 U+E0065 U+E006E U+E0067 U+E007F; L2/16-180,L2/16-184
 U+1F3F4 U+E0067 U+E0062 U+E0073 U+E0063 U+E0074 U+E007F; L2/16-180,L2/16-184
 U+1F3F4 U+E0067 U+E0062 U+E0077 U+E006C U+E0073 U+E007F; L2/16-180,L2/16-184
+
+# Emoji 11.0
+
+265F; L2/18‑018; chess pawn
+267E; L2/17‑343; infinity
+1F6F9; L2/17‑277, L2/16‑378; skateboard
+1F94D; L2/17‑277, L2/16‑382; lacrosse
+1F94E; L2/17‑277, L2/17‑184; softball
+1F94F; L2/17‑277, L2/17‑257; flying disc
+1F96C; L2/17‑265; leafy green
+1F96D; L2/17‑203, L2/17‑211; mango
+1F96E; L2/17‑024; moon cake
+1F96F; L2/17‑261; bagel
+1F970; L2/17‑244; smiling face with 3 hearts
+1F973; L2/17‑244; partying face
+1F974; L2/17‑244; woozy face
+1F975; L2/17‑244; hot face
+1F976; L2/17‑244; cold face
+1F97A; L2/17‑244; pleading face
+1F97C; L2/17‑113; lab coat
+1F97D; L2/17‑113; goggles
+1F97E; L2/17‑271; hiking boot
+1F97F; L2/17‑274; woman’s flat shoe
+1F998; L2/17‑264; kangaroo
+1F999; L2/17‑266; llama
+1F99A; L2/17‑270; peacock
+1F99B; L2/17‑263; hippopotamus
+1F99C; L2/17‑280, L2/17‑281; PARROT
+1F99D; L2/17‑278; raccoon
+1F99E; L2/17‑267, L2/17‑217, L2/14‑174; lobster
+1F99F; L2/17‑268, L2/17‑295; mosquito
+1F9A0; L2/17‑113; microbe
+1F9A1; L2/17‑404; badger
+1F9A2; L2/17‑403; swan
+1F9B0; L2/17‑082; red-haired
+1F9B1; L2/17‑082; curly-haired
+1F9B2; L2/17‑082; bald
+1F9B3; L2/17‑082; white-haired
+1F9B4; L2/17‑259, L2/17‑246; bone
+1F9B5; L2/17‑259, L2/14‑174; leg
+1F9B6; L2/17‑259; foot
+1F9B7; L2/17‑259; tooth
+1F9B8; L2/17‑244; superhero
+1F9B9; L2/17‑244; supervillain
+1F9C1; L2/17‑262, L2/14‑174; cupcake
+1F9C2; L2/17‑272, L2/16‑191; salt
+1F9E7; L2/17‑023; red envelope
+1F9E8; L2/17‑025; firecracker
+1F9E9; L2/17‑198; jigsaw
+1F9EA; L2/17‑113; test tube
+1F9EB; L2/17‑113; petri dish
+1F9EC; L2/17‑113; dna
+1F9ED; L2/17‑113; compass
+1F9EE; L2/17‑113; abacus
+1F9EF; L2/17‑113; fire extinguisher
+1F9F0; L2/17‑202; toolbox
+1F9F1; L2/17‑172; bricks
+1F9F2; L2/17‑185; magnet
+1F9F3; L2/17‑205; luggage
+1F9F4; L2/17‑212; lotion bottle
+1F9F5; L2/17‑249; thread
+1F9F6; L2/17‑249; yarn
+1F9F7; L2/17‑249; safety pin
+1F9F8; L2/17‑273; teddy bear
+1F9F9; L2/17‑260; BROOM
+1F9FA; L2/17‑260; BASKET
+1F9FB; L2/17‑260; TOILET PAPER
+1F9FC; L2/17‑260; soap
+1F9FD; L2/17‑260; SPONGE
+1F9FE; L2/17‑208; RECEIPT
+1F9FF; L2/17‑058; nazar amulet
+1F468 200D 1F9B0; L2/17‑082; man, red haired
+1F468 200D 1F9B1; L2/17‑082; man, curly haired
+1F468 200D 1F9B2; L2/17‑082; man, bald
+1F468 200D 1F9B3; L2/17‑082; man, white haired
+1F469 200D 1F9B0; L2/17‑082; woman, red haired
+1F469 200D 1F9B1; L2/17‑082; woman, curly haired
+1F469 200D 1F9B2; L2/17‑082; woman, bald
+1F469 200D 1F9B3; L2/17‑082; woman, white haired

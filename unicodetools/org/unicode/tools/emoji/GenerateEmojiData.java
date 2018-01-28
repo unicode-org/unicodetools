@@ -350,12 +350,12 @@ public class GenerateEmojiData {
                 String titleField = maxTitleWidth == 0 ? "" : "; " + title;
 
                 // associated ages (newest for sequence)
-                UnicodeMap<VersionInfo> emojiCharsWithAge = new UnicodeMap<>();
+                UnicodeMap<Age_Values> emojiCharsWithAge = new UnicodeMap<>();
                 for (String s : emojiChars) {
                     emojiCharsWithAge.put(s, Emoji.getNewest(s));
                 }
 
-                for (UnicodeMap.EntryRange<VersionInfo> range : emojiCharsWithAge.entryRanges()) {
+                for (UnicodeMap.EntryRange<Age_Values> range : emojiCharsWithAge.entryRanges()) {
                     String s;
                     final int rangeCount;
                     if (range.string != null) {
@@ -380,7 +380,7 @@ public class GenerateEmojiData {
                             out.write(
                                     tabber.process(Utility.hex(s) + "\t" + titleField
                                             + (showName ? "\t;" + getName(s) + " " : "")
-                                            + "\t#" + "\t" + getAgeString(range.value) + "\t" + "\t("
+                                            + "\t#" + "\t" + Emoji.getShortName(range.value) + "\t" + "\t("
                                             + addEmojiVariant(s, addVariants) + ")"
                                             + (showName ? ""
                                                     : "\t" + getName(s)))
@@ -393,7 +393,7 @@ public class GenerateEmojiData {
                                 + (showName ? "\t; "
                                         + getName(s) + " "
                                         : "")
-                                + "\t#" + "\t" + getAgeString(range.value) + "\t[1] " + "\t("
+                                + "\t#" + "\t" + Emoji.getShortName(range.value) + "\t[1] " + "\t("
                                 + addEmojiVariant(s, isException && (addVariants || range.string != null)) + ")"
                                 + (showName ? ""
                                         : "\t" + getName(s)))
@@ -405,7 +405,7 @@ public class GenerateEmojiData {
                         + (showName ? "\t; "
                                 + getName(s) + " "
                                 : "")
-                        + "\t#" + "\t" + getAgeString(range.value) + "\t["
+                        + "\t#" + "\t" + Emoji.getShortName(range.value) + "\t["
                         + (range.codepointEnd - range.codepoint + 1) + "] " + "\t("
                         + addEmojiVariant(s, addVariants) + ".." + addEmojiVariant(e, addVariants) + ")"
                         + (showName ? ""

@@ -119,5 +119,9 @@ public class EmojiDataSourceCombined implements EmojiDataSource {
     public UnicodeMap<String> getRawNames() {
         return add(emojiData.getRawNames(), candidates.getRawNames());
     }
-
+    
+    public static void main(String[] args) {
+        UnicodeSet allChars = EMOJI_DATA.getAllEmojiWithDefectives();
+        
+    }
 }

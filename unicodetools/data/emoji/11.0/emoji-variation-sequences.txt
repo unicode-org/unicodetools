@@ -714,6 +714,11 @@
 267E FE0E ; text style;  # (7.0) infinity sign
 267E FE0F ; emoji style; # (7.0) infinity sign
 
+265F FE0E ; text style;  # (7.0) BLACK CHESS PAWN
+265F FE0F ; emoji style; # (7.0) BLACK CHESS PAWN
+
+
+
 
 
 #Total sequences: 351

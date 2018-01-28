@@ -18,15 +18,19 @@ import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.CountEmoji.Category;
 import org.unicode.tools.emoji.EmojiData.VariantFactory;
 
+import com.google.common.collect.ImmutableSortedSet;
+import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSet.SpanCondition;
 import com.ibm.icu.util.ICUUncheckedIOException;
 
 public class ListEmojiGroups {
     private static final boolean DEBUG = false;
 
     static final EmojiOrder order = EmojiOrder.of(Emoji.VERSION_LAST_RELEASED);
+    static final UnicodeSet SKIP = new UnicodeSet("[© ® ™]").freeze();
 
     private static final String OUTDIR = "/Users/markdavis/Google Drive/workspace/Generated/emoji/frequency";
 
@@ -48,6 +52,9 @@ public class ListEmojiGroups {
 
         System.out.println("\n\n***Twitter***\n");
         showCounts("twitter.tsv", Twitter.counts, null);
+
+        System.out.println("\n\n***Facebook***\n");
+        showCounts("facebook.tsv", Facebook.counts, null);
 
         System.out.println("\n\n***INFO***\n");
         showInfo("emojiInfo.txt");
@@ -104,12 +111,13 @@ public class ListEmojiGroups {
         }
     }
 
-    private static void showInfo(String filename) {
-        Set<String> sorted = EmojiData.EMOJI_DATA.getAllEmojiWithDefectives().addAllTo(new TreeSet<>(order.codepointCompare));
+    static final Set<String> SORTED;
+    static {
+        Set<String> SORTED2 = new TreeSet<>(order.codepointCompare);
         for (String s : EmojiData.EMOJI_DATA.getAllEmojiWithDefectives()) {
             String norm = normalizeEmoji(s);
             if (!norm.isEmpty()) {
-                sorted.add(norm);
+                SORTED2.add(norm);
             }
 
             //            if (Emoji.isSingleCodePoint(s)) {
@@ -119,13 +127,17 @@ public class ListEmojiGroups {
             //                }
             //            }
         }
+        SORTED = ImmutableSortedSet.copyOf(SORTED2);
+    }
+
+    private static void showInfo(String filename) {
         int sortOrder = 0;
 
         //try (PrintWriter out = FileUtilities.openUTF8Writer(OUTDIR, filename)) {
 
         try (PrintWriter out = FileUtilities.openUTF8Writer(OUTDIR, filename)) {
             out.println("Hex\tEmoji\tGroup\tSubgroup\tName (cldr)\tNorm?\tSort Order\tType\tYear");
-            for (String s : sorted) {
+            for (String s : SORTED) {
                 String subcategory = order.getCategory(s);
                 if (subcategory == null) {
                     subcategory = order.getCategory(UTF16.valueOf(s.codePointAt(0)));
@@ -384,6 +396,30 @@ public class ListEmojiGroups {
         }
     }
 
+    static class Facebook {
+        static Counter<String> counts = new Counter<>();
+        static {
+            Counter<String> _counts = new Counter<>();
+
+            int lineCount = 0;
+            try (BufferedReader in = FileUtilities.openFile("/Users/markdavis/Google Drive/workspace/DATA/frequency/emoji/", "facebookRaw.tsv")) {
+                while (true) {
+                    String line = in.readLine();
+                    if (line == null) break;
+                    ++lineCount;
+                    String[] parts = line.split("\t");
+                    String hexCodes = parts[1];
+                    String codes = normalizeHexEmoji(hexCodes);
+                    long count = Math.round(Double.parseDouble(parts[2].replace(",","")));
+                    _counts.add(codes, count);
+                }
+            } catch (IOException e) {
+                throw new ICUUncheckedIOException("Bad hex at " + lineCount, e);
+            }
+            normalizeCounts(_counts, counts);
+        }
+    }
+
     private static void normalizeCounts(Counter<String> inputCounter, Counter<String> outputCounter) {
         double factor = -1;
         for (R2<Long, String> entry : inputCounter.getEntrySetSortedByCount(false, null)) {
@@ -394,18 +430,69 @@ public class ListEmojiGroups {
             }
             outputCounter.add(codes, Math.round(factor*count));
         }
+        for (String s : SORTED) {
+            if (!outputCounter.containsKey(s)) {
+                
+            }
+        }
     }
 
-    static final UnicodeSet SKIP = new UnicodeSet("[© ® ™]").freeze();
 
     private static String normalizeEmoji(String rawCodes) {
-        if (SKIP.contains(rawCodes)) {
+        // remove skin tones
+        if (SKIP.containsSome(rawCodes)) {
             return "";
         }
-        String result = EmojiData.EMOJI_DATA.addEmojiVariants(EmojiData.EMOJI_DATA.MODIFIERS.stripFrom(rawCodes, true));
+
+        String result1 = EmojiData.EMOJI_DATA.MODIFIERS.stripFrom(rawCodes, true);
+        // remove gender
+        if (result1.contains("\u2642")) {
+            int debug = 0;
+        }
+        String result = stripFrom(Emoji.ZWJ_GENDER_MARKERS, result1, true);
+        if (!result.equals(result1)) {
+            int debug = 0;
+        }
+        Category cat = Category.getBucket(result);
+        if (cat == Category.zwj_seq_role) {
+            if (result.startsWith(Emoji.MAN_STR)) {
+                result = Emoji.MAN_STR + result.substring(Emoji.MAN_STR.length());
+            }
+        }
         if (result.isEmpty()) {
             int debug = 0;
         }
-        return result;
+        return EmojiData.EMOJI_DATA.addEmojiVariants(result);
+    }
+
+    public static String stripFrom(UnicodeSet uset, CharSequence source, boolean matches) {
+        StringBuilder result = new StringBuilder(); // could optimize to only allocate when needed
+        SpanCondition toKeep = matches ? SpanCondition.NOT_CONTAINED : SpanCondition.CONTAINED;
+        SpanCondition toSkip = matches ? SpanCondition.CONTAINED : SpanCondition.NOT_CONTAINED;
+        for (int pos = 0; pos < source.length();) {
+            int inside = uset.span(source, pos, toKeep);
+            result.append(source.subSequence(pos, inside));
+            pos = uset.span(source, inside, toSkip); // get next start
+        }
+        return result.toString();
+    }
+
+    private static String normalizeHexEmoji(String rawCodes) {
+        if (rawCodes.startsWith("\\x{") && rawCodes.endsWith("}")) {
+            rawCodes = rawCodes.substring(3, rawCodes.length()-1);
+        }
+        // hack
+        String[] parts = rawCodes.split("\\s+");
+        if (parts[0].length() == 1) {
+            parts[0] = Utility.hex(parts[0]);
+            rawCodes = CollectionUtilities.join(parts, " ");
+        } else if (parts[0].startsWith("\\X")) {
+            parts[0] = parts[0].substring(2);
+            rawCodes = CollectionUtilities.join(parts, " ");
+        }
+        if (rawCodes.contains("1F647")) {
+            int debug = 0;
+        }
+        return normalizeEmoji(Utility.fromHex(rawCodes, false, 2));
     }
 }
