@@ -175,7 +175,7 @@ public class GenerateEmojiData {
             out.write(Utility.getBaseDataHeader("emoji-sequences", 51, "Emoji Sequence Data", Emoji.VERSION_STRING)
                     + "\n");
             List<String> type_fields = Arrays.asList("Emoji_Combining_Sequence", "Emoji_Flag_Sequence",
-                    "Emoji_Modifier_Sequences");
+                    "Emoji_Modifier_Sequence");
             int width = maxLength(type_fields);
             showTypeFieldsMessage(out, type_fields);
 
