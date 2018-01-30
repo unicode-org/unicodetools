@@ -3192,7 +3192,7 @@ public class GenerateEmoji {
     static final Joiner BAR_I_JOIN = Joiner.on("</i> | <i>");
 
     static final String PROPOSAL_CAUTION = "<p>When looking at the linked proposals for candidates or accepted characters it is important to keep two points in mind:</p>\n"
-            + "<ol><li>New proposals must follow the form in <a target='_blank' href='../selection.html'>Submitting Emoji Character Proposals</a>."
+            + "<ol><li>New proposals must follow the form in <a target='_blank' href='../selection.html'>Submitting Emoji Proposals</a>."
             + " This form may have changed since earlier proposals were submitted.</li>\n"
             + "<li>The UTC may accept a proposal for reasons other than those stated in the proposal, and does not necessarily endorse or consider relevant all of the proposed reasons.</li></ol>\n";
 
@@ -3255,7 +3255,7 @@ public class GenerateEmoji {
                 + "The characters were based on proposals received by the Unicode "
                 + "Consortium, reviewed by the Unicode Emoji Subcommittee, and selected on the basis of the "
                 + "<i>Emoji Selection Factors</i> in "
-                + "<a target='_blank' href='../selection.html'>Submitting Emoji Character Proposals</a>. \n"
+                + "<a target='_blank' href='../selection.html'>Submitting Emoji Proposals</a>. \n"
                 + "That page also describes the <a href='../selection.html#timeline'>Process and Timeline</a> for proposals.</p>"
                 + (candidateStyle == CandidateStyle.candidate ? 
                         "<p>See also <a href='emoji-provisional.html' target='provisional'>Provisional Candidates</a>.</p>"
