@@ -1,6 +1,6 @@
 # GraphemeBreakProperty-11.0.0.txt
-# Date: 2018-01-05, 17:47:24 GMT
-# © 2017 Unicode®, Inc.
+# Date: 2018-01-31, 08:20:16 GMT
+# © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -1623,9 +1623,10 @@ ABD2..ABDA    ; LinkingConsonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYE
 1F930..1F939  ; E_Base # So  [10] PREGNANT WOMAN..JUGGLING
 1F93D..1F93E  ; E_Base # So   [2] WATER POLO..HANDBALL
 1F9B5..1F9B6  ; E_Base # So   [2] LEG..FOOT
+1F9B8..1F9B9  ; E_Base # So   [2] SUPERHERO..SUPERVILLAIN
 1F9D1..1F9DD  ; E_Base # So  [13] ADULT..ELF
 
-# Total code points: 104
+# Total code points: 106
 
 # ================================================
 

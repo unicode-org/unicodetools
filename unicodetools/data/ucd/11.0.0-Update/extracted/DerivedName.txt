@@ -1,6 +1,6 @@
 # DerivedName-11.0.0.txt
-# Date: 2017-12-05, 11:56:45 GMT
-# © 2017 Unicode®, Inc.
+# Date: 2018-01-31, 08:20:14 GMT
+# © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -9,7 +9,7 @@
 #
 # This file lists the values of the Name property.
 # This property is specified by the derivation documented in
-# Section 4.8 of the Unicode Standard, Version 10.0,
+# Section 4.8 of the Unicode Standard, Version 11.0,
 # based on the Name field in UnicodeData.txt,
 # the Jamo_Short_Name property in Jamo.txt,
 # and a specified list of pattern strings used to derive names
@@ -29636,11 +29636,11 @@ FFFD          ; REPLACEMENT CHARACTER
 10D1A         ; HANIFI ROHINGYA LETTER NGA
 10D1B         ; HANIFI ROHINGYA LETTER NYA
 10D1C         ; HANIFI ROHINGYA LETTER VA
-10D1D         ; HANIFI ROHINGYA VOWEL MARK A
-10D1E         ; HANIFI ROHINGYA VOWEL MARK I
-10D1F         ; HANIFI ROHINGYA VOWEL MARK U
-10D20         ; HANIFI ROHINGYA VOWEL MARK E
-10D21         ; HANIFI ROHINGYA VOWEL MARK O
+10D1D         ; HANIFI ROHINGYA VOWEL A
+10D1E         ; HANIFI ROHINGYA VOWEL I
+10D1F         ; HANIFI ROHINGYA VOWEL U
+10D20         ; HANIFI ROHINGYA VOWEL E
+10D21         ; HANIFI ROHINGYA VOWEL O
 10D22         ; HANIFI ROHINGYA MARK SAKIN
 10D23         ; HANIFI ROHINGYA MARK NA KHANNA
 10D24         ; HANIFI ROHINGYA SIGN HARBAHAY
@@ -29749,7 +29749,7 @@ FFFD          ; REPLACEMENT CHARACTER
 10F42         ; SOGDIAN LETTER TAW
 10F43         ; SOGDIAN LETTER FETH
 10F44         ; SOGDIAN LETTER LESH
-10F45         ; SOGDIAN PHONOGRAM SHIN
+10F45         ; SOGDIAN INDEPENDENT SHIN
 10F46         ; SOGDIAN COMBINING DOT BELOW
 10F47         ; SOGDIAN COMBINING TWO DOTS BELOW
 10F48         ; SOGDIAN COMBINING DOT ABOVE
@@ -29768,7 +29768,7 @@ FFFD          ; REPLACEMENT CHARACTER
 10F55         ; SOGDIAN PUNCTUATION TWO VERTICAL BARS
 10F56         ; SOGDIAN PUNCTUATION TWO VERTICAL BARS WITH DOTS
 10F57         ; SOGDIAN PUNCTUATION CIRCLE WITH DOT
-10F58         ; SOGDIAN PUNCTUATION CIRCLES WITH DOTS
+10F58         ; SOGDIAN PUNCTUATION TWO CIRCLES WITH DOTS
 10F59         ; SOGDIAN PUNCTUATION HALF CIRCLE WITH DOT
 11000         ; BRAHMI SIGN CANDRABINDU
 11001         ; BRAHMI SIGN ANUSVARA
@@ -41637,7 +41637,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1F9EE         ; ABACUS
 1F9EF         ; FIRE EXTINGUISHER
 1F9F0         ; TOOLBOX
-1F9F1         ; BRICKS
+1F9F1         ; BRICK
 1F9F2         ; MAGNET
 1F9F3         ; LUGGAGE
 1F9F4         ; LOTION BOTTLE
@@ -41647,7 +41647,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1F9F8         ; TEDDY BEAR
 1F9F9         ; BROOM
 1F9FA         ; BASKET
-1F9FB         ; ROLL OF TOILET PAPER
+1F9FB         ; ROLL OF PAPER
 1F9FC         ; BAR OF SOAP
 1F9FD         ; SPONGE
 1F9FE         ; RECEIPT

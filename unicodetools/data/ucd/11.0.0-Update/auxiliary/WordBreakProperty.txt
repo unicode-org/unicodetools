@@ -1,6 +1,6 @@
 # WordBreakProperty-11.0.0.txt
-# Date: 2018-01-12, 06:12:28 GMT
-# © 2017 Unicode®, Inc.
+# Date: 2018-01-31, 08:20:29 GMT
+# © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -1040,7 +1040,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 10D00..10D23  ; ALetter # Lo  [36] HANIFI ROHINGYA LETTER A..HANIFI ROHINGYA MARK NA KHANNA
 10F00..10F1C  ; ALetter # Lo  [29] OLD SOGDIAN LETTER ALEPH..OLD SOGDIAN LETTER FINAL TAW WITH VERTICAL TAIL
 10F27         ; ALetter # Lo       OLD SOGDIAN LIGATURE AYIN-DALETH
-10F30..10F45  ; ALetter # Lo  [22] SOGDIAN LETTER ALEPH..SOGDIAN PHONOGRAM SHIN
+10F30..10F45  ; ALetter # Lo  [22] SOGDIAN LETTER ALEPH..SOGDIAN INDEPENDENT SHIN
 11003..11037  ; ALetter # Lo  [53] BRAHMI SIGN JIHVAMULIYA..BRAHMI LETTER OLD TAMIL NNNA
 11083..110AF  ; ALetter # Lo  [45] KAITHI LETTER A..KAITHI LETTER HA
 110D0..110E8  ; ALetter # Lo  [25] SORA SOMPENG LETTER SAH..SORA SOMPENG LETTER MAE
@@ -1348,9 +1348,10 @@ FF3F          ; ExtendNumLet # Pc       FULLWIDTH LOW LINE
 1F930..1F939  ; E_Base # So  [10] PREGNANT WOMAN..JUGGLING
 1F93D..1F93E  ; E_Base # So   [2] WATER POLO..HANDBALL
 1F9B5..1F9B6  ; E_Base # So   [2] LEG..FOOT
+1F9B8..1F9B9  ; E_Base # So   [2] SUPERHERO..SUPERVILLAIN
 1F9D1..1F9DD  ; E_Base # So  [13] ADULT..ELF
 
-# Total code points: 104
+# Total code points: 106
 
 # ================================================
 

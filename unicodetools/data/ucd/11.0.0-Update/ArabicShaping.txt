@@ -1,5 +1,5 @@
 # ArabicShaping-11.0.0.txt
-# Date: 2018-01-09, 23:00:00 GMT [RP, KW]
+# Date: 2018-01-29, 03:38:00 GMT [KW, RP]
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -8,7 +8,7 @@
 # Unicode Character Database.
 #
 # This file defines the Joining_Type and Joining_Group property
-# values for Arabic, Syriac, N'Ko, Mandaic, Manichaean, 
+# values for Arabic, Syriac, N'Ko, Mandaic, Manichaean,
 # Hanifi Rohingya, and Sogdian positional
 # shaping, repeating in machine readable form the information
 # exemplified in Tables 9-3, 9-8, 9-9, 9-10, 9-14, 9-15, 9-16, 9-19,
@@ -24,7 +24,7 @@
 #
 # Field 0: the code point, in 4-digit hexadecimal
 #   form, of an Arabic, Syriac, N'Ko, Mandaic, Mongolian,
-#   Phags-pa, Manichaean, Psalter Pahlavi, Hanifi Rohingya, Sogdian, 
+#   Phags-pa, Manichaean, Psalter Pahlavi, Hanifi Rohingya, Sogdian,
 #   or other character.
 #
 # Field 1: gives a short schematic name for that character.
@@ -81,8 +81,8 @@
 # joining group values will be defined only if an explicit proposal
 # to define those values exactly has been approved by the UTC. This
 # is the convention exemplified by the N'Ko, Mandaic, Mongolian,
-# Phags-pa, Psalter Pahlavi, and Sogdian scripts. 
-# Only the Arabic, Manichaean, and Syriac scripts currently have 
+# Phags-pa, Psalter Pahlavi, and Sogdian scripts.
+# Only the Arabic, Manichaean, and Syriac scripts currently have
 # explicit joining group values defined for all characters, including
 # those which have only a single character in a particular Joining_Group
 # class. Hanifi Rohingya has explicit Joining_Group values assigned only for
@@ -268,7 +268,7 @@
 
 # Syriac Characters
 
-070F; SYRIAC ABBREVIATION MARK; U; No_Joining_Group
+070F; SYRIAC ABBREVIATION MARK; T; No_Joining_Group
 0710; ALAPH; R; ALAPH
 0712; BETH; D; BETH
 0713; GAMAL; D; GAMAL
@@ -561,7 +561,7 @@
 1875; MONGOLIAN MANCHU RA; D; No_Joining_Group
 1876; MONGOLIAN MANCHU FA; D; No_Joining_Group
 1877; MONGOLIAN MANCHU ZHA; D; No_Joining_Group
-1878; MONGOLIAN MANCHU CHA WITH TWO DOTS; D; No_Joining_Group
+1878; MONGOLIAN MANCHU CHA WITH 2 DOTS; D; No_Joining_Group
 1880; MONGOLIAN ALI GALI ANUSVARA ONE; U; No_Joining_Group
 1881; MONGOLIAN ALI GALI VISARGA ONE; U; No_Joining_Group
 1882; MONGOLIAN ALI GALI DAMARU; U; No_Joining_Group
@@ -773,12 +773,12 @@ A873; PHAGS-PA CANDRABINDU; U; No_Joining_Group
 10D19; HANIFI ROHINGYA KINNA YA; D; HANIFI ROHINGYA KINNA YA
 10D1A; HANIFI ROHINGYA NGA; D; No_Joining_Group
 10D1B; HANIFI ROHINGYA NYA; D; No_Joining_Group
-10D1C; HANIFI ROHINGYA PA WITH THREE DOTS ABOVE; D; HANIFI ROHINGYA PA
-10D1D; HANIFI ROHINGYA VOWEL SIGN A; D; No_Joining_Group
+10D1C; HANIFI ROHINGYA PA WITH 3 DOTS ABOVE; D; HANIFI ROHINGYA PA
+10D1D; HANIFI ROHINGYA VOWEL A; D; No_Joining_Group
 10D1E; HANIFI ROHINGYA DOTLESS KINNA YA WITH RIGHT-FACING HOOK BELOW; D; HANIFI ROHINGYA KINNA YA
-10D1F; HANIFI ROHINGYA VOWEL SIGN U; D; No_Joining_Group
+10D1F; HANIFI ROHINGYA VOWEL U; D; No_Joining_Group
 10D20; HANIFI ROHINGYA DOTLESS KINNA YA WITH LEFT-FACING HOOK BELOW; D; HANIFI ROHINGYA KINNA YA
-10D21; HANIFI ROHINGYA VOWEL SIGN O; D; No_Joining_Group
+10D21; HANIFI ROHINGYA VOWEL O; D; No_Joining_Group
 10D22; HANIFI ROHINGYA SAKIN; R; No_Joining_Group
 10D23; HANIFI ROHINGYA DOTLESS KINNA YA WITH DOT ABOVE; D; HANIFI ROHINGYA KINNA YA
 
@@ -805,7 +805,7 @@ A873; PHAGS-PA CANDRABINDU; U; No_Joining_Group
 10F42; SOGDIAN TAW; D; No_Joining_Group
 10F43; SOGDIAN FETH; D; No_Joining_Group
 10F44; SOGDIAN LESH; D; No_Joining_Group
-10F45; SOGDIAN PHONOGRAM SHIN; U; No_Joining_Group
+10F45; SOGDIAN INDEPENDENT SHIN; U; No_Joining_Group
 10F51; SOGDIAN ONE; D; No_Joining_Group
 10F52; SOGDIAN TEN; D; No_Joining_Group
 10F53; SOGDIAN TWENTY; D; No_Joining_Group
