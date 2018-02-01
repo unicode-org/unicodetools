@@ -1,6 +1,6 @@
 # Scripts-11.0.0.txt
-# Date: 2018-01-05, 17:47:39 GMT
-# © 2017 Unicode®, Inc.
+# Date: 2018-01-31, 08:20:28 GMT
+# © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -2762,7 +2762,7 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 
 # ================================================
 
-10F30..10F45  ; Sogdian # Lo  [22] SOGDIAN LETTER ALEPH..SOGDIAN PHONOGRAM SHIN
+10F30..10F45  ; Sogdian # Lo  [22] SOGDIAN LETTER ALEPH..SOGDIAN INDEPENDENT SHIN
 10F46..10F50  ; Sogdian # Mn  [11] SOGDIAN COMBINING DOT BELOW..SOGDIAN COMBINING STROKE BELOW
 10F51..10F54  ; Sogdian # No   [4] SOGDIAN NUMBER ONE..SOGDIAN NUMBER ONE HUNDRED
 10F55..10F59  ; Sogdian # Po   [5] SOGDIAN PUNCTUATION TWO VERTICAL BARS..SOGDIAN PUNCTUATION HALF CIRCLE WITH DOT
