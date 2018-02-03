@@ -1,5 +1,5 @@
 # DerivedLineBreak-11.0.0.txt
-# Date: 2018-01-31, 08:20:14 GMT
+# Date: 2018-02-01, 08:12:29 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1696,7 +1696,7 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 1F97C..1F9A2  ; ID # So  [39] LAB COAT..SWAN
 1F9A3..1F9AF  ; ID # Cn  [13] <reserved-1F9A3>..<reserved-1F9AF>
 1F9B0..1F9B4  ; ID # So   [5] EMOJI COMPONENT RED HAIR..BONE
-1F9B7..1F9B9  ; ID # So   [3] TOOTH..SUPERVILLAIN
+1F9B7         ; ID # So       TOOTH
 1F9BA..1F9BF  ; ID # Cn   [6] <reserved-1F9BA>..<reserved-1F9BF>
 1F9C0..1F9C2  ; ID # So   [3] CHEESE WEDGE..SALT SHAKER
 1F9C3..1F9CF  ; ID # Cn  [13] <reserved-1F9C3>..<reserved-1F9CF>
@@ -1719,7 +1719,7 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 2FA1E..2FFFD  ; ID # Cn [1504] <reserved-2FA1E>..<reserved-2FFFD>
 30000..3FFFD  ; ID # Cn [65534] <reserved-30000>..<reserved-3FFFD>
 
-# Total code points: 172788
+# Total code points: 172786
 
 # ================================================
 
@@ -3605,9 +3605,10 @@ FF70          ; CJ # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND MARK
 1F930..1F939  ; EB # So  [10] PREGNANT WOMAN..JUGGLING
 1F93D..1F93E  ; EB # So   [2] WATER POLO..HANDBALL
 1F9B5..1F9B6  ; EB # So   [2] LEG..FOOT
+1F9B8..1F9B9  ; EB # So   [2] SUPERHERO..SUPERVILLAIN
 1F9D1..1F9DD  ; EB # So  [13] ADULT..ELF
 
-# Total code points: 104
+# Total code points: 106
 
 # ================================================
 
