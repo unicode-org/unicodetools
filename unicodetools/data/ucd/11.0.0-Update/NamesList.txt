@@ -1,20 +1,22 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 11.0.0
-@@@+	U11M171214.lst
-	Unicode 11.0.0 names list, first delta.
-	Repertoire synched with UnicodeData-11.0.0d8.txt
-	First delta of annotation fixes.
-	Updated alias for 264F.
-	Added annotation to 1168B.
-	Updated annotations for 29FE and 29FF.
-	Synched with DAM1 plus Georgian and emoji from PDAM 2.
-	Spell Koranic as Quranic for consistency.
-	Added notices regarding alternative script names for several scripts.
-	Added notice for 1D377.
-	Added annotation for 20BF.
-	Added alias for 29E7.
-	Added xref for 2BD2.
-	Removed erroneous annotation for 1039.
+@@@+	U11M180201.lst
+	Unicode 11.0.0 names list, second delta.
+	Repertoire synched with UnicodeData-11.0.0d10.txt
+	Second delta of annotation fixes.
+	Updated names for UTC #154 changes.
+	Added Adlam, Hanifi Rohingya, and Sogdian to note about 0640 use.
+	Added annotation to 1F43F CHIPMUNK to indicate use for squirrel.
+	Added annotations about use of 0904.
+	Added annotations and xrefs for 2E43, 2E44.
+	Added xrefs for 09FE and 111C9.
+	Added xrefs for 1F14F, 1F18F, 1F6BE.
+	Corrected spelling in alias for 1FA67.
+	Added xrefs for 0289, 1D7E.
+	Updated header for Mongolian positional forms.
+	Added annotation for 1F9A0.
+	Added xrefs to 0D73, 0D74, 0D75 and annotation to A830.
+	Added alias to 06A9 and Sindhi to its language annotation.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -1924,6 +1926,7 @@
 0289	LATIN SMALL LETTER U BAR
 	* high central rounded vowel
 	* uppercase is 0244
+	x (latin small capital letter u with stroke - 1D7E)
 028A	LATIN SMALL LETTER UPSILON
 	* semi-high back rounded vowel
 	* preferred IPA alternate to 0277
@@ -3799,7 +3802,7 @@
 0640	ARABIC TATWEEL
 	= kashida
 	* inserted to stretch characters or to carry tashkil with no base letter
-	* also used with Mandaic, Manichaean, Psalter Pahlavi, and Syriac
+	* also used with Adlam, Hanifi Rohingya, Mandaic, Manichaean, Psalter Pahlavi, Sogdian, and Syriac
 0641	ARABIC LETTER FEH
 0642	ARABIC LETTER QAF
 0643	ARABIC LETTER KAF
@@ -4014,7 +4017,8 @@
 06A8	ARABIC LETTER QAF WITH THREE DOTS ABOVE
 	* Tunisian Arabic
 06A9	ARABIC LETTER KEHEH
-	* Persian, Urdu, ...
+	= kaf mashkula
+	* Persian, Urdu, Sindhi, ...
 06AA	ARABIC LETTER SWASH KAF
 	* represents a letter distinct from Arabic KAF (0643) in Sindhi
 06AB	ARABIC LETTER KAF WITH RING
@@ -4800,6 +4804,8 @@
 0903	DEVANAGARI SIGN VISARGA
 @		Independent vowels
 0904	DEVANAGARI LETTER SHORT A
+	* used for short e in Awadhi
+	* also used in Devanagari transliterations of some South Indian and Kashmiri languages by a publisher in Lucknow
 0905	DEVANAGARI LETTER A
 0906	DEVANAGARI LETTER AA
 0907	DEVANAGARI LETTER I
@@ -5153,6 +5159,8 @@
 09FD	BENGALI ABBREVIATION SIGN
 09FE	BENGALI SANDHI MARK
 	* indicates external sandhi in Sanskrit documents
+	x (bengali sign avagraha - 09BD)
+	x (sharada sandhi mark - 111C9)
 @@	0A00	Gurmukhi	0A7F
 @		Various signs
 0A01	GURMUKHI SIGN ADAK BINDI
@@ -6076,10 +6084,13 @@
 @		Fractions
 0D73	MALAYALAM FRACTION ONE QUARTER
 	= kaal
+	x (north indic fraction one quarter - A830)
 0D74	MALAYALAM FRACTION ONE HALF
 	= ara
+	x (north indic fraction one half - A831)
 0D75	MALAYALAM FRACTION THREE QUARTERS
 	= mukkaal
+	x (north indic fraction three quarters - A832)
 0D76	MALAYALAM FRACTION ONE SIXTEENTH
 	= maakaani
 0D77	MALAYALAM FRACTION ONE EIGHTH
@@ -9972,7 +9983,7 @@
 	~ 18AA ALT1 first form (initial)
 	~ 18AA ALT1 first form (medial)
 	~ 18AA ALT1 first form (final)
-@@@~	Contextual Variants and Standardized Variation Sequences
+@@@~	Positional Forms and Standardized Variation Sequences
 @+		Unlike other blocks, these variation sequences use the script-specific variation selectors for Mongolian.
 @@	18B0	Unified Canadian Aboriginal Syllabics Extended	18FF
 @		Syllables for Moose Cree
@@ -11483,6 +11494,7 @@
 	* uppercase is 2C63
 1D7E	LATIN SMALL CAPITAL LETTER U WITH STROKE
 	* used by Americanists
+	x (latin small letter u bar - 0289)
 1D7F	LATIN SMALL LETTER UPSILON WITH STROKE
 	* used by Americanists and Oxford dictionaries
 @@	1D80	Phonetic Extensions Supplement	1DBF
@@ -19177,10 +19189,13 @@
 	x (arabic comma - 060C)
 2E42	DOUBLE LOW-REVERSED-9 QUOTATION MARK
 	x (double low-9 quotation mark - 201E)
-@		Dash
-2E43	DASH WITH LEFT UPTURN
 @		Miscellaneous punctuation
+2E43	DASH WITH LEFT UPTURN
+	* functions as a paragraphos in some Slavonic texts
+	x (paragraphos - 2E0F)
 2E44	DOUBLE SUSPENSION MARK
+	* indicates omission of letters in a word on some Byzantine Greek seals and coins
+	x (greek numeral sign - 0374)
 @		Typicon punctuation
 2E45	INVERTED LOW KAVYKA
 2E46	INVERTED LOW KAVYKA WITH KAVYKA ABOVE
@@ -24240,6 +24255,7 @@ A82B	SYLOTI NAGRI POETRY MARK-4
 @@	A830	Common Indic Number Forms	A83F
 @		Number forms
 A830	NORTH INDIC FRACTION ONE QUARTER
+	* this and the following two fractions are also used in Malayalam
 A831	NORTH INDIC FRACTION ONE HALF
 A832	NORTH INDIC FRACTION THREE QUARTERS
 A833	NORTH INDIC FRACTION ONE SIXTEENTH
@@ -28494,6 +28510,7 @@ FF0E	FULLWIDTH FULL STOP
 FF0F	FULLWIDTH SOLIDUS
 	# <wide> 002F
 FF10	FULLWIDTH DIGIT ZERO
+	~ FF10 FE00 short diagonal stroke form
 	# <wide> 0030
 FF11	FULLWIDTH DIGIT ONE
 	# <wide> 0031
@@ -28927,6 +28944,7 @@ FFED	HALFWIDTH BLACK SQUARE
 	# <narrow> 25A0
 FFEE	HALFWIDTH WHITE CIRCLE
 	# <narrow> 25CB
+@~	!
 @@	FFF0	Specials	FFFF
 @		Interlinear annotation
 @+		Used internally for Japanese Ruby (furigana), etc.
@@ -31968,16 +31986,16 @@ FFFF	<not a character>
 @		Additional letter
 10D1C	HANIFI ROHINGYA LETTER VA
 	* was not used widely and its usage has been discontinued
-@		Vowel marks
-10D1D	HANIFI ROHINGYA VOWEL MARK A
+@		Vowels
+10D1D	HANIFI ROHINGYA VOWEL A
 	= aa-for
-10D1E	HANIFI ROHINGYA VOWEL MARK I
+10D1E	HANIFI ROHINGYA VOWEL I
 	= i-for
-10D1F	HANIFI ROHINGYA VOWEL MARK U
+10D1F	HANIFI ROHINGYA VOWEL U
 	= u-for
-10D20	HANIFI ROHINGYA VOWEL MARK E
+10D20	HANIFI ROHINGYA VOWEL E
 	= e-for
-10D21	HANIFI ROHINGYA VOWEL MARK O
+10D21	HANIFI ROHINGYA VOWEL O
 	= o-for
 @		Vowel silencer
 10D22	HANIFI ROHINGYA MARK SAKIN
@@ -32115,7 +32133,7 @@ FFFF	<not a character>
 10F44	SOGDIAN LETTER LESH
 	= hooked resh
 @		Phonogram
-10F45	SOGDIAN PHONOGRAM SHIN
+10F45	SOGDIAN INDEPENDENT SHIN
 	x 6240
 @		Modifier signs
 10F46	SOGDIAN COMBINING DOT BELOW
@@ -32138,7 +32156,7 @@ FFFF	<not a character>
 10F55	SOGDIAN PUNCTUATION TWO VERTICAL BARS
 10F56	SOGDIAN PUNCTUATION TWO VERTICAL BARS WITH DOTS
 10F57	SOGDIAN PUNCTUATION CIRCLE WITH DOT
-10F58	SOGDIAN PUNCTUATION CIRCLES WITH DOTS
+10F58	SOGDIAN PUNCTUATION TWO CIRCLES WITH DOTS
 10F59	SOGDIAN PUNCTUATION HALF CIRCLE WITH DOT
 @@	11000	Brahmi	1107F
 @		Various signs
@@ -32657,6 +32675,7 @@ FFFF	<not a character>
 111C8	SHARADA SEPARATOR
 111C9	SHARADA SANDHI MARK
 	* indicates external sandhi in Sanskrit documents
+	x (bengali sandhi mark - 09FE)
 @		Signs for Kashmiri
 111CA	SHARADA SIGN NUKTA
 	* for extending the alphabet to new letters
@@ -46481,6 +46500,7 @@ FFFF	<not a character>
 	# <square> 0050 0050 0056
 1F14F	SQUARED WC
 	= water closet, public toilet
+	x (water closet - 1F6BE)
 	# <square> 0057 0043
 @		White on black circled Latin letters
 1F150	NEGATIVE CIRCLED LATIN CAPITAL LETTER A
@@ -46587,6 +46607,7 @@ FFFF	<not a character>
 	= blood type AB
 1F18F	NEGATIVE SQUARED WC
 	= water closet, public toilet
+	x (water closet - 1F6BE)
 @		Squared Latin letter sequences
 1F190	SQUARE DJ
 	= disc jockey
@@ -47446,6 +47467,7 @@ FFFF	<not a character>
 	x (footprints - 1F463)
 1F43F	CHIPMUNK
 	= animal, critter
+	* also used to represent a squirrel
 @		Facial parts symbols
 1F440	EYES
 1F441	EYE
@@ -48548,6 +48570,8 @@ FFFF	<not a character>
 	= baby on board, baby changing station
 1F6BD	TOILET
 1F6BE	WATER CLOSET
+	x (squared wc - 1F14F)
+	x (negative squared wc - 1F18F)
 1F6BF	SHOWER
 1F6C0	BATH
 1F6C1	BATHTUB
@@ -49412,6 +49436,7 @@ FFFF	<not a character>
 1F99E	LOBSTER
 1F99F	MOSQUITO
 1F9A0	MICROBE
+	* microorganism, intended to cover bacteria, viruses, amoebas, etc.
 1F9A1	BADGER
 1F9A2	SWAN
 @		Emoji components
@@ -49490,7 +49515,7 @@ FFFF	<not a character>
 1F9EE	ABACUS
 1F9EF	FIRE EXTINGUISHER
 1F9F0	TOOLBOX
-1F9F1	BRICKS
+1F9F1	BRICK
 1F9F2	MAGNET
 1F9F3	LUGGAGE
 1F9F4	LOTION BOTTLE
@@ -49500,7 +49525,7 @@ FFFF	<not a character>
 1F9F8	TEDDY BEAR
 1F9F9	BROOM
 1F9FA	BASKET
-1F9FB	ROLL OF TOILET PAPER
+1F9FB	ROLL OF PAPER
 1F9FC	BAR OF SOAP
 1F9FD	SPONGE
 1F9FE	RECEIPT
@@ -49537,7 +49562,7 @@ FFFF	<not a character>
 	* design typically shows 5175
 	* design sometimes shows 5352 (Yuan and Ming dynasties)
 1FA67	XIANGQI BLACK GENERAL
-	= hēi jiāng
+	= hēi jiàng
 	* design typically shows 5C07 or 5C06
 1FA68	XIANGQI BLACK MANDARIN
 	= hēi shì

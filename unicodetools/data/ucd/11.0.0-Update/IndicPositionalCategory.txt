@@ -1,6 +1,6 @@
-# IndicPositionalCategory-10.0.0.txt
-# Date: 2017-05-31, 01:07:00 GMT [RP]
-# © 2017 Unicode®, Inc.
+# IndicPositionalCategory-11.0.0.txt
+# Date: 2018-02-02, 08:54:00 GMT [RP]
+# © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -601,10 +601,12 @@ ABED          ; Bottom # Mn       MEETEI MAYEK APUN IYEK
 11131..11132  ; Bottom # Mn   [2] CHAKMA O MARK..CHAKMA AU MARK
 11173         ; Bottom # Mn       MAHAJANI SIGN NUKTA
 111B6..111BB  ; Bottom # Mn   [6] SHARADA VOWEL SIGN U..SHARADA VOWEL SIGN VOCALIC LL
+111C9         ; Bottom # Mn       SHARADA SANDHI MARK
 111CC         ; Bottom # Mn       SHARADA EXTRA SHORT VOWEL MARK
 1122F         ; Bottom # Mn       KHOJKI VOWEL SIGN U
 112E3..112E4  ; Bottom # Mn   [2] KHUDAWADI VOWEL SIGN U..KHUDAWADI VOWEL SIGN UU
 112E9..112EA  ; Bottom # Mn   [2] KHUDAWADI SIGN NUKTA..KHUDAWADI SIGN VIRAMA
+1133C         ; Bottom # Mn       GRANTHA SIGN NUKTA
 11438..1143D  ; Bottom # Mn   [6] NEWA VOWEL SIGN U..NEWA VOWEL SIGN VOCALIC LL
 11442         ; Bottom # Mn       NEWA SIGN VIRAMA
 11446         ; Bottom # Mn       NEWA SIGN NUKTA

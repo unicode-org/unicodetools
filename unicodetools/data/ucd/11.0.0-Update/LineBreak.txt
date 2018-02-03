@@ -1,5 +1,5 @@
 # LineBreak-11.0.0.txt
-# Date: 2018-01-29, 10:19:51 GMT [KW, LI]
+# Date: 2018-02-02, 08:52:15 GMT [KW, LI]
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -2804,8 +2804,7 @@ FFFD;AI           # So         REPLACEMENT CHARACTER
 111C5..111C6;BA   # Po     [2] SHARADA DANDA..SHARADA DOUBLE DANDA
 111C7;AL          # Po         SHARADA ABBREVIATION SIGN
 111C8;BA          # Po         SHARADA SEPARATOR
-111C9;AL          # Mn         SHARADA SANDHI MARK
-111CA..111CC;CM   # Mn     [3] SHARADA SIGN NUKTA..SHARADA EXTRA SHORT VOWEL MARK
+111C9..111CC;CM   # Mn     [4] SHARADA SANDHI MARK..SHARADA EXTRA SHORT VOWEL MARK
 111CD;AL          # Po         SHARADA SUTRA MARK
 111D0..111D9;NU   # Nd    [10] SHARADA DIGIT ZERO..SHARADA DIGIT NINE
 111DA;AL          # Lo         SHARADA EKAM
@@ -3359,7 +3358,8 @@ FFFD;AI           # So         REPLACEMENT CHARACTER
 1F9A3..1F9AF;ID   # Cn    [13] <reserved-1F9A3>..<reserved-1F9AF>
 1F9B0..1F9B4;ID   # So     [5] EMOJI COMPONENT RED HAIR..BONE
 1F9B5..1F9B6;EB   # So     [2] LEG..FOOT
-1F9B7..1F9B9;ID   # So     [3] TOOTH..SUPERVILLAIN
+1F9B7;ID          # So         TOOTH
+1F9B8..1F9B9;EB   # So     [2] SUPERHERO..SUPERVILLAIN
 1F9BA..1F9BF;ID   # Cn     [6] <reserved-1F9BA>..<reserved-1F9BF>
 1F9C0..1F9C2;ID   # So     [3] CHEESE WEDGE..SALT SHAKER
 1F9C3..1F9CF;ID   # Cn    [13] <reserved-1F9C3>..<reserved-1F9CF>
