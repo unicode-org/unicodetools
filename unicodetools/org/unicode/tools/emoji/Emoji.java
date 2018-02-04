@@ -51,13 +51,13 @@ public class Emoji {
      * We support generating the last version in order to make improvements to the charts.
      */
     public static final boolean IS_BETA = CldrUtility.getProperty("emoji-beta", false);
+    public static final boolean BETA_IS_OPEN = CldrUtility.getProperty("emoji-beta-open", true);
 
     /**
      * Set the following to true iff the beta is available. 
      * The main function is to add pointers between the release and beta charts.
      * Also change the VERSION_LAST_RELEASED2, etc below!!!
      */
-    public static final boolean BETA_IS_OPEN = true;
     public static final boolean USE_PROPOSED = true; // set to true between the release of Emoji 5.0 & Unicode 10.0. (or similar situation)
 
     /**

@@ -3358,7 +3358,7 @@ public class GenerateEmoji {
                     majorGroup = candidateData.getMajorGroup(source);
                     quarter = candidateData.getQuarter(source);
                     status = candidateData.getStatus(source);
-                    if ((status == Status.Provisional_Candidates) != (candidateStyle == CandidateStyle.provisional)) {
+                    if ((status == Status.Provisional_Candidate) != (candidateStyle == CandidateStyle.provisional)) {
                         continue;
                     }                        
                 } else {
