@@ -1,7 +1,7 @@
 #Code Point	Chart Glyph	Sample Colored Glyph	Name
 #main data is in /unicodetools/data/emoji/N.M/source/emojiOrdering.txt
 
-Status=Draft Candidates
+Status=Draft Candidate
 
 Proposal=L2/17-023
 After=🎑
@@ -9,21 +9,21 @@ After=🎑
 U+1F9E7
 Name=red envelope
 UName=RED GIFT ENVELOPE
-Keywords= hóngbāo | lai see
+Keywords= hóngbāo | lai see | gift | money | good luck
 
 Proposal=L2/17-025
 After=🎇
 
 U+1F9E8
 Name=firecracker
-Keywords= dynamite | explosive
+Keywords= dynamite | explosive | fireworks
 
 Proposal=L2/17-024
 After=🍥
 
 U+1F96E
 Name=moon cake
-Keywords= yuèbǐng
+Keywords= festival | yuèbǐng | autumn
 
 Proposal=L2/17-082
 After=👃🏿
@@ -34,7 +34,7 @@ UName=EMOJI COMPONENT RED HAIR
 Keywords= ginger | redhead
 Emoji_Component
 Comment=For use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences: man/woman/adult (skin-tone) ZWJ red-haired.
-Comment=Image with dotted border to indicate use as component
+Comment=Images should have dotted border to indicate use as component
 
 U+1F9B1
 Name=curly-haired
@@ -42,23 +42,23 @@ UName=EMOJI COMPONENT CURLY HAIR
 Keywords= afro | curly | ringlets
 Emoji_Component
 Comment=For use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences: man/woman/adult (skin-tone) ZWJ curly-haired.
-Comment=Image with dotted border to indicate use as component
+Comment=Images should have dotted border to indicate use as component
 
 U+1F9B3
 Name=white-haired
-UName=→ EMOJI COMPONENT WHITE HAIR
-Keywords= gray | white | hair
+UName= EMOJI COMPONENT WHITE HAIR
+Keywords= gray | white | hair | old
 Emoji_Component
 Comment=For use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences: man/woman/adult (skin-tone) ZWJ white-haired.
-Comment=Image with dotted border to indicate use as component
+Comment=Images should have dotted border to indicate use as component
 
 U+1F9B2
 Name=bald
 UName=EMOJI COMPONENT BALD
-Keywords= shaven | hairless | no hair
+Keywords= shaven | hairless | no hair | chemotherapy
 Emoji_Component
 Comment=For use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences: man/woman/adult (skin-tone) ZWJ bald.
-Comment=Image with dotted border to indicate use as component
+Comment=Images should have dotted border to indicate use as component
 
 After=🔮
 Proposal=L2/17-058
@@ -66,13 +66,13 @@ Proposal=L2/17-058
 U+1F9FF
 Name=nazar amulet
 UName=NAZAR AMULET
-Keywords= nazar | bead | نظر‎ | talisman | charm | avert | evil-eye
+Keywords= nazar | bead | talisman | charm | evil-eye
 
 Proposal=L2/17-113
 After=🕶
 U+1F97C
 Name=lab coat
-Keywords= scientist | doctor
+Keywords= scientist | doctor | experiment
 
 After=🦂
 U+1F9A0
@@ -83,20 +83,20 @@ After=⚗
 
 U+1F9EA
 Name=test tube
-Keywords= chemist
+Keywords= chemist | chemistry | science | lab | experiment
 
 U+1F9EB
 Name=petri dish
-Keywords= biologist
+Keywords= biologist | biology | bacteria | lab | culture
 
 U+1F9EC
 Name=dna
 UName=DNA DOUBLE HELIX
-Keywords= biologist | life
+Keywords= biologist | life | gene | genetics | evolution
 
 U+1F9ED
 Name=compass
-Keywords= navigation | magnetic
+Keywords= navigation | magnetic | orienteering
 
 U+1F9EE
 Name=abacus
@@ -109,14 +109,14 @@ Keywords= fire | extinguish | quench
 After=🕶
 U+1F97D
 Name=goggles
-Keywords= eye protection | welding
+Keywords= eye protection | welding | swimming
 
 Proposal=L2/17-244
 
 After=😘
 U+1F970
 Name=smiling face with 3 hearts
-Keywords= in love | loved
+Keywords= in love | adore | crush
 UName=SMILING FACE WITH SMILING EYES AND THREE HEARTS
 
 After=🤶
@@ -125,25 +125,25 @@ Name=superhero
 UName=SUPERHERO
 Emoji_Modifier_Base
 Emoji_Gender_Base
-Keywords=hero | heroine | cape | good guy | white hat
+Keywords=hero | heroine | good | superpowers
 
 U+1F9B9
 Name=supervillain
 UName=SUPERVILLAIN
 Emoji_Modifier_Base
 Emoji_Gender_Base
-Keywords=villain | bandit | bad guy | black hat
+Keywords=villain | criminal | bad | evil | superpowers
 
 After=🤠
 U+1F973
 Name=partying face
 UName=FACE WITH PARTY HORN AND PARTY HAT
-Keywords=party | horn | hat
+Keywords=party | horn | hat | celebration
 
 U+1F974
 Name=woozy face
 UName=FACE WITH UNEVEN EYES AND WAVY MOUTH
-Keywords=uneven eyes | wavy mouth | intoxicated | drunk | tipsy | dizzy
+Keywords=uneven eyes | wavy mouth | intoxicated | tipsy | dizzy
 
 #U+1F977
 #Name= question-mark face
@@ -158,19 +158,19 @@ Keywords=uneven eyes | wavy mouth | intoxicated | drunk | tipsy | dizzy
 U+1F97A
 Name=pleading face
 UName=FACE WITH PLEADING EYES
-Keywords= puppy eyes | begging
+Keywords= puppy eyes | begging | mercy
 
 
 After=😱 
 U+1F975
 Name=hot face
 UName=OVERHEATED FACE
-Keywords= hot | red-faced | sweating | heat stroke | boiling | overheated
+Keywords= hot | red-faced | sweating | heat stroke | feverish
 
 U+1F976
 Name=cold face
 UName=FREEZING FACE
-Keywords= cold | blue-faced | freezing | icicles | frostbite | shivering
+Keywords= cold | blue-faced | freezing | icicles | frostbite
 
 
 #After=💩
@@ -185,17 +185,21 @@ After=💪
 U+1F9B5
 Name=leg
 Emoji_Modifier_Base
+Keywords= limb | kick
 
 Proposal=L2/17-259
 U+1F9B6
 Name=foot
 Emoji_Modifier_Base
+Keywords= kick | stomp
+
 
 
 After=🧠
 Proposal=L2/17-259, L2/17-246
 U+1F9B4
 Name=bone
+Keywords=skeleton
 
 Proposal=L2/17-259
 U+1F9B7
@@ -206,33 +210,36 @@ Proposal=L2/17-271
 After=👟
 U+1F97E
 Name=hiking boot
-Keywords=hiking | boot
+Keywords=hiking | boot | camping | backpacking
 
 Proposal=L2/17-274
 U+1F97F
 Name=woman’s flat shoe
 UName=FLAT SHOE
+Keywords=slipper | slip-on | ballet flat
 
 Proposal=L2/17-264
 After=🐼
 U+1F998
 Name=kangaroo
+Keywords=Australia | marsupial | jump | joey
 
 Proposal=L2/17-266
 After=🐫
 U+1F999
 Name=llama
-Keywords=alpaca | vicuña | guanaco
+Keywords=alpaca | vicuña | guanaco | wool
 
 Proposal=L2/17-270
 After=🦉
 U+1F99A
 Name=peacock
-Keywords=peahen
+Keywords=peahen | bird | proud | ostentatious
 
 Proposal=L2/17-280, Proposal=L2/17-281
 U+1F99C
 Name=PARROT
+Keywords=pirate | bird | talk
 
 Proposal=L2/17-263
 After=🦏
@@ -244,23 +251,26 @@ Proposal=L2/17-278
 After=🦊
 U+1F99D
 Name=raccoon
+Keywords= sly | curious 
 
 Proposal=L2/17-267, L2/17-217, L2/14-174
 After=🦀
 U+1F99E
 Name=lobster
+Keywords= seafood | claws | bisque 
 
 Proposal=L2/17-268, L2/17-295
 After=🦂
 U+1F99F
 Name=mosquito
-Keywords=malaria | yellow fever | Chikungunya | West Nile virus | dengue fever | filariasis | Zika virus 
+Keywords=insect | malaria | fever | disease | virus
 
 Proposal=L2/17-265
 After=🥒
 U+1F96C
 Name=leafy green
-Keywords=bok choy | cabbage | collard greens | kale | lettuce | romaine lettuce | arugula | spinach | endive | chard
+Keywords=bok choy | cabbage | kale | lettuce
+Comment= Other leafy greens such as arugula, spinach, endive, chard
 
 Proposal=L2/17-272, L2/16-191
 After=🍿
@@ -273,72 +283,80 @@ Proposal=L2/17-203, L2/17-211
 After=🍍
 U+1F96D
 Name=mango
+Keywords=tropical | shaker
 
 Proposal=L2/17-261
 After=🥨
 U+1F96F
 Name=bagel
+Keywords=bakery | schmear
 
 Proposal=L2/17-262, L2/14-174
 After=🍰
 U+1F9C1
 Name=cupcake
+Keywords= sweet | bakery
 
 Proposal=L2/17-277, L2/16-382
 After=🏑
 U+1F94D
 Name=lacrosse
 UName=LACROSSE STICK AND BALL
+Keywords=stick | ball | goal
 
 Proposal=L2/17-277, L2/17-184
 After=⚾
 U+1F94E
 Name=softball
+Keywords=ball | glove | underarm
 
 Proposal=L2/17-277, L2/16-378
 After=🛴
 U+1F6F9
 Name=skateboard
+Keywords=board
 
 Proposal=L2/17-277, L2/17-257
 After=🏉
 U+1F94F
 Name=flying disc
+Keywords=ultimate
 
 Proposal=L2/17-198
 After=🎲
 U+1F9E9
 Name=jigsaw
 UName=JIGSAW PUZZLE PIECE
-Keywords=puzzle
+Keywords=puzzle | clue | piece | interlocking
 
 Proposal=L2/17-273
 U+1F9F8
 Name=teddy bear
-Keywords=toy | plaything
+Keywords=toy | plaything | stuffed | plush
 
 Proposal=L2/17-202
 After=⛓
 U+1F9F0
 Name=toolbox
-Keywords=tool | chest
+Keywords=tool | chest | mechanic
 
 Proposal=L2/17-185
 U+1F9F2
 Name=magnet
-Keywords=horseshoe
+Keywords=horseshoe | attraction | magnetic
 
 Proposal=L2/17-172
 After=🏡 
 U+1F9F1
 Name=bricks
 UName=BRICK
-Comment=Image to be changed to be pile of bricks
+Keywords=construction | wall | mortar | clay
 
 Proposal=L2/17-205
 After=🛎
 U+1F9F3
 Name=luggage
+Keywords=travel | packing
 
 Proposal=L2/17-212
 After=🛁
@@ -349,60 +367,66 @@ Keywords=lotion | sunscreen | shampoo | moisturizer
 Proposal=L2/17-249
 U+1F9F7
 Name=safety pin
+Keywords=diaper | punk rock
 
 Proposal=L2/17-249
 U+1F9F5
 Name=thread
 UName=SPOOL OF THREAD
-Keywords=spool | string
+Keywords=spool | string | sewing | needle
 
 Proposal=L2/17-249
 U+1F9F6
 Name=yarn
 UName=BALL OF YARN
-Keywords=ball
+Keywords=ball | knit | crochet 
 
 
 
 Proposal=L2/17-260
 U+1F9F9
 Name=BROOM
+Keywords=sweeping | cleaning | witch
 
 Proposal=L2/17-260
 U+1F9FA
 Name=BASKET
-Keywords=laundry basket, picnic basket, farming basket
+Keywords=laundry | picnic | farming
 
 Proposal=L2/17-260
 U+1F9FB
-Name=TOILET PAPER
-UName=ROLL OF TOILET PAPER
-Keywords=ROLL
+Name=roll of paper
+Keywords=toilet paper | paper towels
 
 Proposal=L2/17-260
 U+1F9FC
 Name=soap
 UName=BAR OF SOAP
-Keywords= lather | bar | soapdish
+Keywords= lather | bar | soapdish | bathing | cleaning
 
 Proposal=L2/17-260
 U+1F9FD
 Name=SPONGE
+Keywords= cleaning | porous | absorbing
 
 Proposal=L2/17-208
 After=💳
 U+1F9FE
 Name=RECEIPT
+Keywords=bookkeeping | accounting | evidence | proof
 
 Proposal=L2/17-403
 After=🦉
 U+1F9A2
 Name=swan
+Keywords= bird | ugly duckling | cygnet
+
 
 Proposal=L2/17-404
 After=🐼
 U+1F9A1
 Name=badger
+Keywords= pester | honey badger
 
 Proposal=L2/17-343
 After=⚛
@@ -410,11 +434,13 @@ U+267E
 Name=infinity
 UName=PERMANENT PAPER SIGN
 Comment=emojification of existing character
+Keywords=universal | forever | unbounded
 
-Proposal=In-Process
+Proposal=L2/18-059
 After=🏴
 U+1F3F4 U+200D U+2620
-Name=Pirate Flag
+Name=pirate flag
+Keywords=pirate | treasure | plunder | Jolly Roger
 
 Proposal=L2/17‑082
 After=👱
@@ -524,9 +550,11 @@ After= ♣
 U+265F
 Name=chess pawn
 UName=BLACK CHESS PAWN
-Keywords= chess | dupe
+Keywords= chess | dupe | expendable | red shirt
+Comment=emojification of existing character
 
-Status=Provisional Candidates
+
+Status=Provisional Candidate
 
 Proposal=L2/17-381
 After=🎣
@@ -546,7 +574,7 @@ Proposal=L2/17-431
 After=🛁
 U+101902
 Name=razor
-Keywords=sharp
+Keywords=sharp | shave | sharp
 
 Proposal=L2/17-432
 After=🤔
@@ -558,11 +586,11 @@ Proposal=L2/18-002
 After=🔨
 U+101904
 Name=axe
-Keywords=hatchet
+Keywords=hatchet | chop | split | wood
 
 Proposal=L2/18-003
 After=🛬
 U+101905
 Name=parachute
-Keywords=parachute | skydive | hang-glide
+Keywords=parachute | skydive | hang-glide | parasail
 

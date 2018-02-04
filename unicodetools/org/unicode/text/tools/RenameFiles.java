@@ -24,6 +24,8 @@ public class RenameFiles {
 
     // Set PREVIEW to true.
     private static final boolean PREVIEW_ONLY = false;
+    private static final Choice choice = Choice.emojipedia;
+    
     private static final boolean RECURSIVE = true;
 
     // Modify the dir, regex, filter, and output-platform as needed
@@ -39,7 +41,12 @@ public class RenameFiles {
                 "/Users/markdavis/Downloads/svg-flags", 
                 null,
                 "(?<name>[A-Z]+)([-](?<codes>[A-Z]+))?\\.svg", 
-                "emoji")
+                "emoji"),
+        emojipedia(
+                "/Users/markdavis/Downloads/Emojipedia 11.0 Sample Images 72px", 
+                null,
+                "x?(?<codes>[-_A-Za-z0-9]+)?\\.png", 
+                "emojipedia")
         ;
         final String sourceDir;
         final Matcher filter;
@@ -54,7 +61,6 @@ public class RenameFiles {
         }
     }
 
-    static final Choice choice = Choice.fix_emoji_u;
 
 
     // FileMatch
@@ -141,28 +147,28 @@ public class RenameFiles {
                 break;
             }
             default: {
-                final String oldName = m.group("codes").replaceAll("[-_,]", " ");
+                final String oldName = m.group("codes").replaceAll("[-_,]", " ").trim();
                 oldHex = Utility.fromHex(oldName, false, 2);
                 // HACK for J.
-                final String oldPrefix = m.group("name");
-                if (oldPrefix != null) {
-                    // curlyhair | 1f3fb-200d-2640-fe0f = curly + zwj + woman
-                    oldHex = oldHex.replace("\ufe0f", "").replace("\u200d", "");
-                    // => 1f3fb-200d-2640
-                    int first = oldHex.endsWith("\u2640") ? 0x1F469 : oldHex.endsWith("\u2642") ? 0x1F468 : -1; 
-                    oldHex = oldHex.substring(0, oldHex.length()-1);
-                    // => 1f3fb-200d
-                    int last;
-                    switch(oldPrefix) {
-                    case "curlyhair": last = 0x1F9B1; break;
-                    case "nohair": last = 0x1F9B2; break;
-                    case "redhair": last = 0x1F9B0; break;
-                    case "whitehair": last = 0x1F9B3; break;
-                    default: throw new IllegalArgumentException("bad hair day");
-                    }
-                    // 1F469 1F3FB 200D 1F9B1 = woman, light skin, zwj curly
-                    oldHex = UTF16.valueOf(first) + oldHex + UTF16.valueOf(0x200d) + UTF16.valueOf(last);
-                }
+//                final String oldPrefix = m.group("name");
+//                if (oldPrefix != null) {
+//                    // curlyhair | 1f3fb-200d-2640-fe0f = curly + zwj + woman
+//                    oldHex = oldHex.replace("\ufe0f", "").replace("\u200d", "");
+//                    // => 1f3fb-200d-2640
+//                    int first = oldHex.endsWith("\u2640") ? 0x1F469 : oldHex.endsWith("\u2642") ? 0x1F468 : -1; 
+//                    oldHex = oldHex.substring(0, oldHex.length()-1);
+//                    // => 1f3fb-200d
+//                    int last;
+//                    switch(oldPrefix) {
+//                    case "curlyhair": last = 0x1F9B1; break;
+//                    case "nohair": last = 0x1F9B2; break;
+//                    case "redhair": last = 0x1F9B0; break;
+//                    case "whitehair": last = 0x1F9B3; break;
+//                    default: throw new IllegalArgumentException("bad hair day");
+//                    }
+//                    // 1F469 1F3FB 200D 1F9B1 = woman, light skin, zwj curly
+//                    oldHex = UTF16.valueOf(first) + oldHex + UTF16.valueOf(0x200d) + UTF16.valueOf(last);
+//                }
                 if (HEX_ADDITION != 0) {
                     oldHex = UTF16.valueOf(HEX_ADDITION + oldHex.codePointAt(0));
                 }
