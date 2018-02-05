@@ -299,6 +299,9 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         boolean result = true;
         IndexUnicodeProperties iup = IndexUnicodeProperties.make();
         for (String item : instance.allCharacters) {
+            if (item.contains("🧱")) {
+                int debug = 0;
+            }
             if (Emoji.GENDER_MARKERS.containsSome(item) 
                     || EmojiData.MODIFIERS.containsSome(item)
                     || Emoji.MAN_OR_WOMAN.containsSome(item)) {
@@ -612,6 +615,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                     + "\t" + instance.suborder.get(subItem) 
                     + "\t" + instance.getName(subItem)
                     + "\tkw:" + instance.getAnnotations(subItem)
+                    + "\tucd:" + instance.getUName(subItem)
                     );
         }
         EmojiOrder ordering = EmojiOrder.of(Emoji.VERSION_BETA);
