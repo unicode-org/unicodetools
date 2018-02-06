@@ -1,5 +1,5 @@
 # VerticalOrientation-11.0.0.txt
-# Date: 2018-01-29, 21:09:37 GMT [EM, KI, LI]
+# Date: 2018-02-03, 19:47:52 GMT [EM, KI, LI]
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -48,12 +48,14 @@
 #         Kana Extended-A:                   U+1B100..U+1B12F
 #         Nushu:                             U+1B170..U+1B2FF
 #         Musical Symbols:                   U+1D000..U+1D1FF
+#         Mayan Numerals:                    U+1D2E0..U+1D2FF
 #         Symbols & Rods:                    U+1D300..U+1D37F
 #         Sutton SignWriting:                U+1D800..U+1DAAF
 #         Game Symbols:                      U+1F000..U+1F0FF
 #         Enclosed Symbols:                  U+1F100..U+1F2FF
 #         Symbols:                           U+1F680..U+1F7FF
 #         Symbols and Pictographs:           U+1F900..U+1F9FF
+#         Chess Symbols:                     U+1FA00..U+1FA6F
 #         Plane 2:                           U+20000..U+2FFFD
 #         Plane 3:                           U+30000..U+3FFFD
 #         Plane 15 PUA:                      U+F0000..U+FFFFD
@@ -2049,6 +2051,7 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1D242..1D244   ; R  # Mn     [3] COMBINING GREEK MUSICAL TRISEME..COMBINING GREEK MUSICAL PENTASEME
 1D245          ; R  # So         GREEK MUSICAL LEIMMA
 1D2E0..1D2F3   ; U  # No    [20] MAYAN NUMERAL ZERO..MAYAN NUMERAL NINETEEN
+1D2F4..1D2FF   ; U  # Cn    [12] <reserved-1D2F4>..<reserved-1D2FF>
 1D300..1D356   ; U  # So    [87] MONOGRAM FOR EARTH..TETRAGRAM FOR FOSTERING
 1D357..1D35F   ; U  # Cn     [9] <reserved-1D357>..<reserved-1D35F>
 1D360..1D378   ; U  # No    [25] COUNTING ROD UNIT DIGIT ONE..TALLY MARK FIVE
@@ -2226,7 +2229,9 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1F9C0..1F9C2   ; U  # So     [3] CHEESE WEDGE..SALT SHAKER
 1F9C3..1F9CF   ; U  # Cn    [13] <reserved-1F9C3>..<reserved-1F9CF>
 1F9D0..1F9FF   ; U  # So    [48] FACE WITH MONOCLE..NAZAR AMULET
+1FA00..1FA5F   ; U  # Cn    [96] <reserved-1FA00>..<reserved-1FA5F>
 1FA60..1FA6D   ; U  # So    [14] XIANGQI RED GENERAL..XIANGQI BLACK SOLDIER
+1FA6E..1FA6F   ; U  # Cn     [2] <reserved-1FA6E>..<reserved-1FA6F>
 20000..2A6D6   ; U  # Lo [42711] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6D6
 2A6D7..2A6FF   ; U  # Cn    [41] <reserved-2A6D7>..<reserved-2A6FF>
 2A700..2B734   ; U  # Lo  [4149] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B734
