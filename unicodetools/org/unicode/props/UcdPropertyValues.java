@@ -842,6 +842,7 @@ public class UcdPropertyValues {
         Consonant_Dead("Consonant_Dead"),
         Consonant_Final("Consonant_Final"),
         Consonant_Head_Letter("Consonant_Head_Letter"),
+        Consonant_Initial_Postfixed("Consonant_Initial_Postfixed"),
         Consonant_Killer("Consonant_Killer"),
         Consonant_Medial("Consonant_Medial"),
         Consonant_Placeholder("Consonant_Placeholder"),
