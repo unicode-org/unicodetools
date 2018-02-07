@@ -22,6 +22,8 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeRelation;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.CountEmoji.Bucket;
+import org.unicode.tools.emoji.CountEmoji.Category;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
@@ -312,7 +314,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
             Set<String> keywords = instance.getAnnotations(item);
             if (keywords.size() > 5) {
                 System.err.println("Too many keywords? (" + keywords.size()
-                        + "): " + name + ": " + keywords);
+                + "): " + name + ": " + keywords);
             } else if (keywords.size() < 1) {
                 System.err.println("Too few keywords? (" + keywords.size()
                 + "): " + name + ": " + keywords); 
@@ -594,6 +596,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     private static void showOrdering(CandidateData instance) {
         System.out.println("\nOrdering Data\n");
 
+        CountEmoji cm = new CountEmoji();
         Set<String> sorted = instance.getAllCharacters().addAllTo(
                 new TreeSet<>(instance.comparator));
         //        Map<String,List<String>> baseToList = new TreeMap<>(EmojiOrder.STD_ORDER.codepointCompare);
@@ -617,6 +620,9 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                     + "\tkw:" + instance.getAnnotations(subItem)
                     + "\tucd:" + instance.getUName(subItem)
                     );
+            if (instance.getStatus(subItem) != Status.Provisional_Candidate) {
+                cm.add(subItem, instance);
+            }
         }
         EmojiOrder ordering = EmojiOrder.of(Emoji.VERSION_BETA);
         //        for (String s : instance.allCharacters) {
@@ -625,6 +631,29 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         //        for (String s : new UnicodeSet("[{👨‍🦰️}{👨‍🦱️}{👨‍🦲️}{👨‍🦳️}{👨🏻‍🦰️}{👨🏻‍🦱️}{👨🏻‍🦲️}{👨🏻‍🦳️}{👨🏼‍🦰️}{👨🏼‍🦱️}{👨🏼‍🦲️}{👨🏼‍🦳️}{👨🏽‍🦰️}{👨🏽‍🦱️}{👨🏽‍🦲️}{👨🏽‍🦳️}{👨🏾‍🦰️}{👨🏾‍🦱️}{👨🏾‍🦲️}{👨🏾‍🦳️}{👨🏿‍🦰️}{👨🏿‍🦱️}{👨🏿‍🦲️}{👨🏿‍🦳️}{👩‍🦰️}{👩‍🦱️}{👩‍🦲️}{👩‍🦳️}{👩🏻‍🦰️}{👩🏻‍🦱️}{👩🏻‍🦲️}{👩🏻‍🦳️}{👩🏼‍🦰️}{👩🏼‍🦱️}{👩🏼‍🦲️}{👩🏼‍🦳️}{👩🏽‍🦰️}{👩🏽‍🦱️}{👩🏽‍🦲️}{👩🏽‍🦳️}{👩🏾‍🦰️}{👩🏾‍🦱️}{👩🏾‍🦲️}{👩🏾‍🦳️}{👩🏿‍🦰️}{👩🏿‍🦱️}{👩🏿‍🦲️}{👩🏿‍🦳️}{🦸️‍♀️}{🦸️‍♂️}{🦹️‍♀️}{🦹️‍♂️}]")) {
         //            System.out.println(s + "\t" + ordering.getCategory(s));
         //        }
+        System.out.println("\n\nSO\tType\tCategory\tHex\tCldr Name\tUcd Name");
+        int sortOrder = 0;
+        for (Category evalue : Category.values()) {
+            Bucket bucket = cm.buckets.get(evalue);
+            if (bucket == null) continue;
+            for (MajorGroup maj : MajorGroup.values()) {
+                UnicodeSet uset = bucket.sets.getSet(maj);
+                if (uset.isEmpty()) continue;
+                Set<String> items = uset.addAllTo(new TreeSet<>(instance.comparator));
+                // System.out.println(evalue.toStringPlain() + "\t" + maj.toPlainString() + "\t" + items.size());
+                for (String subItem : items) {
+                    String uName = instance.getUName(subItem);
+                    System.out.println(
+                            ++sortOrder
+                            + "\t" + evalue.toStringPlain() 
+                            + "\t" + maj.toPlainString() 
+                            + "\tU+" + Utility.hex(subItem, ", U+")
+                            + "\t" + instance.getName(subItem) 
+                            + (uName != null ? "\t" + uName : "")
+                            );
+                }
+            }
+        }
     }
 
     private static void showCandidateData(CandidateData cd, boolean candidate) {
