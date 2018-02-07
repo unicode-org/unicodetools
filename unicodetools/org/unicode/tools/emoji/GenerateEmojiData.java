@@ -201,7 +201,7 @@ public class GenerateEmojiData {
             showTypeFieldsMessage(out, type_fields);
             UnicodeMap<ZwjType> types = new UnicodeMap<>();
             for (String s : EmojiDataSourceCombined.EMOJI_DATA.getZwjSequencesNormal()) {
-                if (s.startsWith(new StringBuilder().appendCodePoint(0x1F9D6).toString())) {
+                if (s.startsWith(new StringBuilder().appendCodePoint(0x1F3F4).toString())) {
                     int debug = 0;
                 }
                 ZwjType zwjType = ZwjType.getType(s);

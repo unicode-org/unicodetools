@@ -438,7 +438,7 @@ Keywords=universal | forever | unbounded
 
 Proposal=L2/18-059
 After=🏴
-U+1F3F4 U+200D U+2620
+U+1F3F4 U+200D U+2620 U+FE0F
 Name=pirate flag
 Keywords=pirate | treasure | plunder | Jolly Roger
 

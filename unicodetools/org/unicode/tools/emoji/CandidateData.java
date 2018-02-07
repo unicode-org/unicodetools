@@ -111,7 +111,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     private final UnicodeRelation<String> attributes = new UnicodeRelation<>();
     private final UnicodeMap<Quarter> quarters = new UnicodeMap<>();
     private final UnicodeMap<Status> statuses = new UnicodeMap<>();
-    private final UnicodeSet characters = new UnicodeSet();
+    private final UnicodeSet singleCharacters = new UnicodeSet();
     private final UnicodeSet allCharacters = new UnicodeSet();
     private final UnicodeSet allNonProvisional = new UnicodeSet();
     private final UnicodeSet textPresentation = new UnicodeSet();
@@ -149,13 +149,13 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                     fixGenderSkin(source); // old source
 
                     source = Utility.fromHex(line);
-                    if (characters.contains(source)) {
+                    if (allCharacters.contains(source)) {
                         throw new IllegalArgumentException(Utility.hex(source) + " occurs twice");
                     }
                     statuses.put(source, status);
                     allCharacters.add(source);
                     if (source.codePointCount(0, source.length()) == 1) {
-                        characters.add(source);
+                        singleCharacters.add(source);
                     }
                     quarters.put(source, quarter);
                     after.put(source, afterItem);
@@ -207,6 +207,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                             throw new IllegalArgumentException("Name with | on " + line);
                         }
                         names.put(source, name.toLowerCase(Locale.ENGLISH));
+                        names.put(source.replaceAll(Emoji.EMOJI_VARIANT_STRING, ""), name.toLowerCase(Locale.ENGLISH));
                         break;
                     case "UName":
                         String oldName = names.get(source);
@@ -259,7 +260,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
             }
         }
 
-        allCharacters.addAll(characters);
+        allCharacters.addAll(singleCharacters); // just to be sure
 
         comments.freeze();
         statuses.freeze();
@@ -271,7 +272,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         annotations.freeze();
         attributes.freeze();
         quarters.freeze();
-        characters.freeze();
+        singleCharacters.freeze();
         allCharacters.freeze();
         provisional = statuses.getSet(Status.Provisional_Candidate);
         for (String s : allCharacters) {
@@ -304,6 +305,9 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
             if (item.contains("🧱")) {
                 int debug = 0;
             }
+            // check that old emoji have emoji VS
+            // TODO
+            
             if (Emoji.GENDER_MARKERS.containsSome(item) 
                     || EmojiData.MODIFIERS.containsSome(item)
                     || Emoji.MAN_OR_WOMAN.containsSome(item)) {
@@ -447,7 +451,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
      * @return the characters
      */
     public UnicodeSet getCharacters() {
-        return characters;
+        return singleCharacters;
     }
 
     public UnicodeSet getAllCharacters() {
@@ -783,12 +787,12 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
     @Override
     public UnicodeSet getSingletonsWithDefectives() {
-        return addWithCharFilter(characters, null, provisional);
+        return addWithCharFilter(singleCharacters, null, provisional);
     }
 
     @Override
     public UnicodeSet getEmojiPresentationSet() {
-        return addWithCharFilter(addWithCharFilter(characters, null, provisional), null, getTextPresentationSet());
+        return addWithCharFilter(addWithCharFilter(singleCharacters, null, provisional), null, getTextPresentationSet());
     }
 
     @Override
@@ -798,7 +802,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
     @Override
     public UnicodeSet getExtendedPictographic() {
-        return addWithCharFilter(characters, null, provisional);
+        return addWithCharFilter(singleCharacters, null, provisional);
     }
 
     @Override
@@ -848,7 +852,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
     @Override
     public UnicodeSet getSingletonsWithoutDefectives() {
-        return addWithCharFilter(characters, allNonProvisional, getEmojiComponents());
+        return addWithCharFilter(singleCharacters, allNonProvisional, getEmojiComponents());
     }
 
     @Override
