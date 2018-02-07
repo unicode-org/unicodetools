@@ -622,9 +622,8 @@ public class GenerateEmoji {
         FileUtilities.copyFile(GenerateEmoji.class, "emoji-list.css", Emoji.CHARTS_DIR);
         FileUtilities.copyFile(GenerateEmoji.class, "emoji-list.css", Emoji.FUTURE_DIR);
 
-        if (Emoji.IS_BETA) {
-            GenerateEmojiData.printData(GenerateEmoji.EXTRA_NAMES);
-        }
+        GenerateEmojiData.printData(GenerateEmoji.EXTRA_NAMES);
+        
         String pointToOther = getPointToOther("index.html", "Unicode® Emoji Charts");
         String[] replacementList = new String[] {
                 "%%PLAIN_VERSION%%", Emoji.VERSION_STRING + " " + Emoji.BETA_TITLE_AFFIX, // "v4.0

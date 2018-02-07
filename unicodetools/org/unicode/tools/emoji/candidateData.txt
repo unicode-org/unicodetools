@@ -102,10 +102,6 @@ U+1F9EE
 Name=abacus
 Keywords= calculation
 
-U+1F9EF
-Name=fire extinguisher
-Keywords= fire | extinguish | quench
-
 After=🕶
 U+1F97D
 Name=goggles
@@ -346,7 +342,7 @@ Name=magnet
 Keywords=horseshoe | attraction | magnetic
 
 Proposal=L2/17-172
-After=🏡 
+After=🏗
 U+1F9F1
 Name=bricks
 UName=BRICK
@@ -369,17 +365,6 @@ U+1F9F7
 Name=safety pin
 Keywords=diaper | punk rock
 
-Proposal=L2/17-249
-U+1F9F5
-Name=thread
-UName=SPOOL OF THREAD
-Keywords=spool | string | sewing | needle
-
-Proposal=L2/17-249
-U+1F9F6
-Name=yarn
-UName=BALL OF YARN
-Keywords=ball | knit | crochet 
 
 
 
@@ -409,6 +394,24 @@ U+1F9FD
 Name=SPONGE
 Keywords= cleaning | porous | absorbing
 
+Proposal=L2/17-113
+U+1F9EF
+Name=fire extinguisher
+Keywords= fire | extinguish | quench
+
+Proposal=L2/17-249
+After=🎨
+U+1F9F5
+Name=thread
+UName=SPOOL OF THREAD
+Keywords=spool | string | sewing | needle
+
+Proposal=L2/17-249
+U+1F9F6
+Name=yarn
+UName=BALL OF YARN
+Keywords=ball | knit | crochet 
+
 Proposal=L2/17-208
 After=💳
 U+1F9FE
@@ -429,7 +432,7 @@ Name=badger
 Keywords= pester | honey badger
 
 Proposal=L2/17-343
-After=⚛
+After=⚕
 U+267E
 Name=infinity
 UName=PERMANENT PAPER SIGN
