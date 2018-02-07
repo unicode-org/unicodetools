@@ -51,10 +51,10 @@ public class Emoji {
      * We support generating the last version in order to make improvements to the charts.
      */
     public static final boolean IS_BETA = CldrUtility.getProperty("emoji-beta", false);
-    public static final boolean BETA_IS_OPEN = CldrUtility.getProperty("emoji-beta-open", true);
+    public static final boolean BETA_IS_OPEN = CldrUtility.getProperty("emoji-beta-open", false);
 
     /**
-     * Set the following to true iff the beta is available. 
+     * Set the following to true iff the charts for the release should still point to proposed.html for TR51. 
      * The main function is to add pointers between the release and beta charts.
      * Also change the VERSION_LAST_RELEASED2, etc below!!!
      */
@@ -63,6 +63,7 @@ public class Emoji {
     /**
      * Constants for versions
      */
+    public static final VersionInfo VERSION12 = VersionInfo.getInstance(12);
     public static final VersionInfo VERSION11 = VersionInfo.getInstance(11);
     public static final VersionInfo VERSION5 = VersionInfo.getInstance(5);
     public static final VersionInfo VERSION4 = VersionInfo.getInstance(4);
@@ -71,7 +72,8 @@ public class Emoji {
     public static final VersionInfo VERSION1 = VersionInfo.getInstance(1);
 
     // ALSO fix VersionToAge.java!
-    public static final VersionInfo UCD11 = VersionInfo.getInstance(11);
+    public static final VersionInfo UCD12 = VERSION12;
+    public static final VersionInfo UCD11 = VERSION11;
     public static final VersionInfo UCD10 = VersionInfo.getInstance(10);
     public static final VersionInfo UCD9 = VersionInfo.getInstance(9);
     public static final VersionInfo UCD8 = VersionInfo.getInstance(8);
@@ -80,11 +82,12 @@ public class Emoji {
      * Change each following once we release. That is, VERSION_LAST_RELEASED* becomes VERSION_BETA*, and both the latter increment.
      * Also add to EMOJI_TO_UNICODE_VERSION
      */
-    public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION4;
-    public static final VersionInfo VERSION_LAST_RELEASED = VERSION5;
-    public static final VersionInfo VERSION_BETA = VERSION11;
+    public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION5;
+    public static final VersionInfo VERSION_LAST_RELEASED = VERSION11;
+    public static final VersionInfo VERSION_BETA = VERSION12;
 
     public static Map<VersionInfo, VersionInfo> EMOJI_TO_UNICODE_VERSION = ImmutableMap.<VersionInfo, VersionInfo>builder()
+            .put(VERSION12, UCD12)
             .put(VERSION11, UCD11)
             .put(VERSION5, UCD10)
             .put(VERSION4, UCD9)
@@ -94,6 +97,7 @@ public class Emoji {
             .build();
 
     public final static Map<VersionInfo, String> EMOJI_TO_DATE = ImmutableMap.<VersionInfo, String>builder()
+            .put(VERSION12, "2018Q1")
             .put(VERSION11, "2018-02-07")
             .put(VERSION5, "2017-03-27")
             .put(VERSION4, "2016-11-22")
@@ -740,7 +744,7 @@ public class Emoji {
     }
 
     public static final String TR51_HTML_BETA = "../../reports/tr51/proposed.html";
-    public static final String TR51_HTML = IS_BETA ? TR51_HTML_BETA : "http://unicode.org/reports/tr51/tr51-12.html";
+    public static final String TR51_HTML = IS_BETA || USE_PROPOSED ? TR51_HTML_BETA : "http://unicode.org/reports/tr51/tr51-12.html";
 
     public static String getHexFromSubdivision(String string) {
         string = string.toLowerCase(Locale.ROOT).replace("-","");
