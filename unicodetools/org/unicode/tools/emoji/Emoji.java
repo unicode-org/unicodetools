@@ -94,8 +94,8 @@ public class Emoji {
             .build();
 
     public final static Map<VersionInfo, String> EMOJI_TO_DATE = ImmutableMap.<VersionInfo, String>builder()
-            .put(VERSION11, "2018H2")
-            .put(VERSION5, "2017-06-20")
+            .put(VERSION11, "2018-02-07")
+            .put(VERSION5, "2017-03-27")
             .put(VERSION4, "2016-11-22")
             .put(VERSION3, "2016-06-03")
             .put(VERSION2, "2015-11-12")

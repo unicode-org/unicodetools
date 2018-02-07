@@ -883,7 +883,7 @@ public class EmojiData implements EmojiDataSource {
         return _getName(source, false, CandidateData.getInstance());
     }
 
-    static final String DEBUG_STRING = UTF16.valueOf(0x1F970);
+    static final String DEBUG_STRING = UTF16.valueOf(0x1F3F4);
 
     private String _getName(String source, boolean toLower, Transform<String,String> otherNameSource) {
         if (source.contains(DEBUG_STRING)) {
@@ -898,7 +898,11 @@ public class EmojiData implements EmojiDataSource {
         if (name != null) {
             return name;
         }
-
+        name = otherNameSource.transform(source);
+        if (name != null) {
+            return name;
+        }
+ 
         //        System.out.println("*** not using name for " + code + "\t" + Utility.hex(code));
         //
         //        name = CandidateData.getInstance().getName(source);
@@ -906,6 +910,7 @@ public class EmojiData implements EmojiDataSource {
         //            return name.toLowerCase(Locale.ENGLISH); // (toLower ?  : name);
         //        }
         if (!Emoji.DEFECTIVE.contains(source)) {
+            // for debugging
             ANNOTATION_SET.getShortName(source, otherNameSource);
             ANNOTATION_SET.getShortName(tToV, otherNameSource);
             throw new IllegalArgumentException("no name for " + source + " " + Utility.hex(source) + " or " + Utility.hex(tToV));

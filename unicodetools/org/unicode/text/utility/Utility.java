@@ -1708,7 +1708,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         }
         return getDataHeader(filename) 
                 + "\n#"
-                + "\n# " + title + " for UTR #" + trNumber
+                + "\n# " + title + " for UTS #" + trNumber
                 + "\n# Version: "  + version
                 + "\n#"
                 + "\n# For documentation and usage, see http://www.unicode.org/reports/tr" + trNumber
