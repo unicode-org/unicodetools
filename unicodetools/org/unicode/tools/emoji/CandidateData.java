@@ -44,6 +44,7 @@ import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.VersionInfo;
 
 public class CandidateData implements Transform<String, String>, EmojiDataSource {
+    // TODO Replace after values by using emojiOrdering.
     private static final UnicodeSet ZWJ_SET = new UnicodeSet(Emoji.JOINER,Emoji.JOINER);
     private static final Splitter SPLITTER_COMMA = Splitter.on(',').trimResults().omitEmptyStrings();
     private static final Joiner JOIN_COMMA = Joiner.on(", ");
@@ -116,6 +117,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     private final UnicodeSet allNonProvisional = new UnicodeSet();
     private final UnicodeSet textPresentation = new UnicodeSet();
     private UnicodeSet provisional = new UnicodeSet();
+    private UnicodeSet draft = new UnicodeSet();
     private final UnicodeSet emoji_Modifier_Base = new UnicodeSet();
     private final UnicodeSet emoji_Gender_Base = new UnicodeSet();
     private final UnicodeSet emoji_Component = new UnicodeSet();
@@ -275,6 +277,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         singleCharacters.freeze();
         allCharacters.freeze();
         provisional = statuses.getSet(Status.Provisional_Candidate);
+        draft = statuses.getSet(Status.Draft_Candidate);
         for (String s : allCharacters) {
             if (!provisional.contains(s)) {
                 allNonProvisional.add(s);
@@ -575,8 +578,13 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
     public static void main(String[] args) {
         CandidateData instance = CandidateData.getInstance();
+        for (Status status : Status.values()) {
+            UnicodeSet items = instance.statuses.getSet(status);
+            System.out.println(status + "\t" + items.size());
+        }
         generateProposalData(instance);
         showOrdering(instance);
+        
         // showCandidateData(CandidateData.getInstance(), true);
         //showCandidateData(CandidateData.getProposalInstance(), true);
     }
