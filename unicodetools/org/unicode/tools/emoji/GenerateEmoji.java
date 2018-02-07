@@ -623,7 +623,7 @@ public class GenerateEmoji {
         FileUtilities.copyFile(GenerateEmoji.class, "emoji-list.css", Emoji.FUTURE_DIR);
 
         GenerateEmojiData.printData(GenerateEmoji.EXTRA_NAMES);
-        
+
         String pointToOther = getPointToOther("index.html", "Unicode® Emoji Charts");
         String[] replacementList = new String[] {
                 "%%PLAIN_VERSION%%", Emoji.VERSION_STRING + " " + Emoji.BETA_TITLE_AFFIX, // "v4.0
@@ -636,7 +636,8 @@ public class GenerateEmoji {
         };
         FileUtilities.copyFile(GenerateEmoji.class, "main-index.html", Emoji.CHARTS_DIR, "index.html", replacementList);
 
-        if (Emoji.IS_BETA) {
+        // TODO change this to last version
+        if (true) {
             showCandidateStyle(CandidateStyle.candidate, "emoji-candidates.html", UnicodeSet.EMPTY);
             showCandidateStyle(CandidateStyle.provisional, "emoji-provisional.html", UnicodeSet.EMPTY);
         }
@@ -1553,7 +1554,7 @@ public class GenerateEmoji {
                 + "</tr>");
         final String keycapIndicator = "*";
         TreeSet<String> sorted = new TreeSet<>(EmojiOrder.PLAIN_STRING_COMPARATOR);
-        EmojiData.EMOJI_DATA.getEmojiWithVariants().addAllTo(sorted);
+        EmojiDataSourceCombined.EMOJI_DATA.getEmojiWithVariants().addAllTo(sorted);
         int count = 0;
         for (String cp : sorted) {
             if (Emoji.ABBR && count++ > 20) {
@@ -1840,7 +1841,7 @@ public class GenerateEmoji {
         PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, outFileName);
         PrintWriter outPlain = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, outFile2Name);
         writeHeader(outFileName, out, "Emoji Versions", null, false, ""
-                + "<p>This chart shows when each emoji first appeared in Unicode. It includes both emoji characters and sequences. "
+                + "<p>This chart shows when each emoji was first defined. It includes both emoji characters and sequences. "
                 + "The detailed Counts are as described in <a target='doc' href='" + Emoji.TR51_HTML
                 + "#Identification'>§3 Which Characters are Emoji</a>. "
                 + "Some emoji before 2015 (and all emoji before 2010) are proleptic (they were only later considered emoji)."
@@ -3213,6 +3214,10 @@ public class GenerateEmoji {
             // pasted as plain text, and format it.
             comparator = candidateData.comparator;
             emoji = candidateData.getAllCharacters();
+            //            emoji = candidateData.getAllCharacters(candidateStyle == CandidateStyle.provisional 
+            //                    ? CandidateData.released 
+            //                            : CandidateData.);
+
             future = true;
         }
         Set<String> sorted = emoji.addAllTo(new TreeSet<String>(comparator));
@@ -3280,7 +3285,7 @@ public class GenerateEmoji {
                 : "<h3><a href='#recent_changes' name='recent_changes'>Recent Changes</a></h3>\n"
                 + (candidateStyle == CandidateStyle.candidate ? 
                         "<p>The following changes were made in the January 2016 UTC meeting to the draft candidates for 2018, which were then"
-                        + "advanced to final candidates.</p>\n"
+                        + " advanced to final candidates.</p>\n"
                         + "<ol>\n"
                         + "<li>Additional  emoji sequences were added.\n"
                         + "  <ul>\n"
@@ -3357,9 +3362,18 @@ public class GenerateEmoji {
                     majorGroup = candidateData.getMajorGroup(source);
                     quarter = candidateData.getQuarter(source);
                     status = candidateData.getStatus(source);
-                    if ((status == Status.Provisional_Candidate) != (candidateStyle == CandidateStyle.provisional)) {
-                        continue;
-                    }                        
+                    // TODO Replace CandidateStyle by Status.
+                    switch (candidateStyle) {
+                    case provisional: 
+                        if (status != Status.Provisional_Candidate) continue;
+                        break;
+                    case candidate: 
+                        if (status != Status.Draft_Candidate) continue;
+                        break;
+                    case released:
+                        // never occurs
+                        break;
+                    }
                 } else {
                     category = EmojiOrder.STD_ORDER.getCategory(source);
                     majorGroup = EmojiOrder.STD_ORDER.getMajorGroupFromCategory(category);
@@ -3453,7 +3467,7 @@ public class GenerateEmoji {
                 ce.showCounts(out, false);
             }
             if (!showingChars) {
-                System.out.println("<p>None at this time.</p>");
+                out.println("<table><tr><td><b>None at this time.</b></td></tr></table>");
             }
             out.println(footer); // fix
             writeFooter(out);

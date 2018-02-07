@@ -1,7 +1,7 @@
 #Code Point	Chart Glyph	Sample Colored Glyph	Name
 #main data is in /unicodetools/data/emoji/N.M/source/emojiOrdering.txt
 
-Status=Draft Candidate
+Status=Final Candidate
 
 Proposal=L2/17-023
 After=🎑
