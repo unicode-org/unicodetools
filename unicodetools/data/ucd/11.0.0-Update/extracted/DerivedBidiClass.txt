@@ -1,5 +1,5 @@
 # DerivedBidiClass-11.0.0.txt
-# Date: 2018-01-31, 08:20:11 GMT
+# Date: 2018-02-06, 06:59:34 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -854,7 +854,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 118EA..118F2  ; L # No   [9] WARANG CITI NUMBER TEN..WARANG CITI NUMBER NINETY
 118FF         ; L # Lo       WARANG CITI OM
 11A00         ; L # Lo       ZANABAZAR SQUARE LETTER A
-11A07..11A08  ; L # Mc   [2] ZANABAZAR SQUARE VOWEL SIGN AI..ZANABAZAR SQUARE VOWEL SIGN AU
+11A07..11A08  ; L # Mn   [2] ZANABAZAR SQUARE VOWEL SIGN AI..ZANABAZAR SQUARE VOWEL SIGN AU
 11A0B..11A32  ; L # Lo  [40] ZANABAZAR SQUARE LETTER KA..ZANABAZAR SQUARE LETTER KSSA
 11A39         ; L # Mc       ZANABAZAR SQUARE SIGN VISARGA
 11A3A         ; L # Lo       ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA

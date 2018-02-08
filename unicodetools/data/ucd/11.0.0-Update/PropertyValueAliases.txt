@@ -1,5 +1,5 @@
 # PropertyValueAliases-11.0.0.txt
-# Date: 2018-01-31, 08:20:20 GMT
+# Date: 2018-02-06, 06:59:47 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -598,7 +598,7 @@ ea ; N                                ; Neutral
 ea ; Na                               ; Narrow
 ea ; W                                ; Wide
 
-# Equivalent_Unified_Ideograph (EUIdeo)
+# Equivalent_Unified_Ideograph (EqUIdeo)
 
 # @missing: 0000..10FFFF; Equivalent_Unified_Ideograph; <none>
 
@@ -792,6 +792,7 @@ InSC; Consonant                       ; Consonant
 InSC; Consonant_Dead                  ; Consonant_Dead
 InSC; Consonant_Final                 ; Consonant_Final
 InSC; Consonant_Head_Letter           ; Consonant_Head_Letter
+InSC; Consonant_Initial_Postfixed     ; Consonant_Initial_Postfixed
 InSC; Consonant_Killer                ; Consonant_Killer
 InSC; Consonant_Medial                ; Consonant_Medial
 InSC; Consonant_Placeholder           ; Consonant_Placeholder
