@@ -1,5 +1,5 @@
 # DerivedCoreProperties-11.0.0.txt
-# Date: 2018-02-06, 06:59:35 GMT
+# Date: 2018-02-11, 19:04:57 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1033,6 +1033,7 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 1112C         ; Alphabetic # Mc       CHAKMA VOWEL SIGN E
 1112D..11132  ; Alphabetic # Mn   [6] CHAKMA VOWEL SIGN AI..CHAKMA AU MARK
 11144         ; Alphabetic # Lo       CHAKMA LETTER LHAA
+11145..11146  ; Alphabetic # Mc   [2] CHAKMA VOWEL SIGN AA..CHAKMA VOWEL SIGN EI
 11150..11172  ; Alphabetic # Lo  [35] MAHAJANI LETTER A..MAHAJANI LETTER RRA
 11176         ; Alphabetic # Lo       MAHAJANI LIGATURE SHRI
 11180..11181  ; Alphabetic # Mn   [2] SHARADA SIGN CANDRABINDU..SHARADA SIGN ANUSVARA
@@ -1127,6 +1128,7 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 11800..1182B  ; Alphabetic # Lo  [44] DOGRA LETTER A..DOGRA LETTER RRA
 1182C..1182E  ; Alphabetic # Mc   [3] DOGRA VOWEL SIGN AA..DOGRA VOWEL SIGN II
 1182F..11837  ; Alphabetic # Mn   [9] DOGRA VOWEL SIGN U..DOGRA SIGN ANUSVARA
+11838         ; Alphabetic # Mc       DOGRA SIGN VISARGA
 118A0..118DF  ; Alphabetic # L&  [64] WARANG CITI CAPITAL LETTER NGAA..WARANG CITI SMALL LETTER VIYO
 118FF         ; Alphabetic # Lo       WARANG CITI OM
 11A00         ; Alphabetic # Lo       ZANABAZAR SQUARE LETTER A
@@ -1292,7 +1294,7 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 2CEB0..2EBE0  ; Alphabetic # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2F800..2FA1D  ; Alphabetic # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# Total code points: 126986
+# Total code points: 126989
 
 # ================================================
 

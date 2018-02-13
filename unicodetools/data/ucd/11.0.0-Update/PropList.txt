@@ -1,5 +1,5 @@
 # PropList-11.0.0.txt
-# Date: 2018-02-06, 06:59:45 GMT
+# Date: 2018-02-11, 19:05:05 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -679,6 +679,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 11127..1112B  ; Other_Alphabetic # Mn   [5] CHAKMA VOWEL SIGN A..CHAKMA VOWEL SIGN UU
 1112C         ; Other_Alphabetic # Mc       CHAKMA VOWEL SIGN E
 1112D..11132  ; Other_Alphabetic # Mn   [6] CHAKMA VOWEL SIGN AI..CHAKMA AU MARK
+11145..11146  ; Other_Alphabetic # Mc   [2] CHAKMA VOWEL SIGN AA..CHAKMA VOWEL SIGN EI
 11180..11181  ; Other_Alphabetic # Mn   [2] SHARADA SIGN CANDRABINDU..SHARADA SIGN ANUSVARA
 11182         ; Other_Alphabetic # Mc       SHARADA SIGN VISARGA
 111B3..111B5  ; Other_Alphabetic # Mc   [3] SHARADA VOWEL SIGN AA..SHARADA VOWEL SIGN II
@@ -738,6 +739,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 11727..1172A  ; Other_Alphabetic # Mn   [4] AHOM VOWEL SIGN AW..AHOM VOWEL SIGN AM
 1182C..1182E  ; Other_Alphabetic # Mc   [3] DOGRA VOWEL SIGN AA..DOGRA VOWEL SIGN II
 1182F..11837  ; Other_Alphabetic # Mn   [9] DOGRA VOWEL SIGN U..DOGRA SIGN ANUSVARA
+11838         ; Other_Alphabetic # Mc       DOGRA SIGN VISARGA
 11A01..11A0A  ; Other_Alphabetic # Mn  [10] ZANABAZAR SQUARE VOWEL SIGN I..ZANABAZAR SQUARE VOWEL LENGTH MARK
 11A35..11A38  ; Other_Alphabetic # Mn   [4] ZANABAZAR SQUARE SIGN CANDRABINDU..ZANABAZAR SQUARE SIGN ANUSVARA
 11A39         ; Other_Alphabetic # Mc       ZANABAZAR SQUARE SIGN VISARGA
@@ -784,7 +786,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1331
+# Total code points: 1334
 
 # ================================================
 
