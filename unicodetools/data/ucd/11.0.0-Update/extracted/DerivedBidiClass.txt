@@ -1,5 +1,5 @@
 # DerivedBidiClass-11.0.0.txt
-# Date: 2018-02-06, 06:59:34 GMT
+# Date: 2018-02-11, 05:54:59 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -14,14 +14,14 @@
 # reserved for right-to-left scripts are given either types R or AL.
 #
 # The unassigned code points that default to AL are in the ranges:
-#     [\u0600-\u07BF \u0860-\u086F \u08A0-\u08FF
-#      \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF \U0001EE00-\U0001EEFF]
+#     [\u0600-\u07BF \u0860-\u086F \u08A0-\u08FF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF
+#      \U00010D00-\U00010D3F \U00010F30-\U00010F6F \U0001EC70-\U0001ECBF \U0001EE00-\U0001EEFF]
 #
 #     This includes code points in the Arabic, Syriac, and Thaana blocks, among others.
 #
 # The unassigned code points that default to R are in the ranges:
-#     [\u0590-\u05FF \u07C0-\u085F \u0870-\u089F \uFB1D-\uFB4F
-#      \U00010800-\U00010FFF \U0001E800-\U0001EDFF \U0001EF00-\U0001EFFF]
+#     [\u0590-\u05FF \u07C0-\u085F \u0870-\u089F \uFB1D-\uFB4F \U00010800-\U00010CFF \U00010D40-\U00010F2F
+#      \U00010F70-\U00010FFF \U0001E800-\U0001EC6F \U0001ECC0-\U0001EDFF \U0001EF00-\U0001EFFF]
 #
 #     This includes code points in the Hebrew, NKo, and Phoenician blocks, among others.
 #
@@ -1144,14 +1144,13 @@ FB46..FB4F    ; R # Lo  [10] HEBREW LETTER TSADI WITH DAGESH..HEBREW LIGATURE AL
 10CC0..10CF2  ; R # L&  [51] OLD HUNGARIAN SMALL LETTER A..OLD HUNGARIAN SMALL LETTER US
 10CF3..10CF9  ; R # Cn   [7] <reserved-10CF3>..<reserved-10CF9>
 10CFA..10CFF  ; R # No   [6] OLD HUNGARIAN NUMBER ONE..OLD HUNGARIAN NUMBER ONE THOUSAND
-10D28..10D2F  ; R # Cn   [8] <reserved-10D28>..<reserved-10D2F>
-10D3A..10E5F  ; R # Cn [294] <reserved-10D3A>..<reserved-10E5F>
+10D40..10E5F  ; R # Cn [288] <reserved-10D40>..<reserved-10E5F>
 10E7F..10EFF  ; R # Cn [129] <reserved-10E7F>..<reserved-10EFF>
 10F00..10F1C  ; R # Lo  [29] OLD SOGDIAN LETTER ALEPH..OLD SOGDIAN LETTER FINAL TAW WITH VERTICAL TAIL
 10F1D..10F26  ; R # No  [10] OLD SOGDIAN NUMBER ONE..OLD SOGDIAN FRACTION ONE HALF
 10F27         ; R # Lo       OLD SOGDIAN LIGATURE AYIN-DALETH
 10F28..10F2F  ; R # Cn   [8] <reserved-10F28>..<reserved-10F2F>
-10F5A..10FFF  ; R # Cn [166] <reserved-10F5A>..<reserved-10FFF>
+10F70..10FFF  ; R # Cn [144] <reserved-10F70>..<reserved-10FFF>
 1E800..1E8C4  ; R # Lo [197] MENDE KIKAKUI SYLLABLE M001 KI..MENDE KIKAKUI SYLLABLE M060 NYON
 1E8C5..1E8C6  ; R # Cn   [2] <reserved-1E8C5>..<reserved-1E8C6>
 1E8C7..1E8CF  ; R # No   [9] MENDE KIKAKUI DIGIT ONE..MENDE KIKAKUI DIGIT NINE
@@ -1161,11 +1160,11 @@ FB46..FB4F    ; R # Lo  [10] HEBREW LETTER TSADI WITH DAGESH..HEBREW LIGATURE AL
 1E950..1E959  ; R # Nd  [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 1E95A..1E95D  ; R # Cn   [4] <reserved-1E95A>..<reserved-1E95D>
 1E95E..1E95F  ; R # Po   [2] ADLAM INITIAL EXCLAMATION MARK..ADLAM INITIAL QUESTION MARK
-1E960..1EC70  ; R # Cn [785] <reserved-1E960>..<reserved-1EC70>
-1ECB5..1EDFF  ; R # Cn [331] <reserved-1ECB5>..<reserved-1EDFF>
+1E960..1EC6F  ; R # Cn [784] <reserved-1E960>..<reserved-1EC6F>
+1ECC0..1EDFF  ; R # Cn [320] <reserved-1ECC0>..<reserved-1EDFF>
 1EF00..1EFFF  ; R # Cn [256] <reserved-1EF00>..<reserved-1EFFF>
 
-# Total code points: 3893
+# Total code points: 3845
 
 # ================================================
 
@@ -2219,14 +2218,19 @@ FE75          ; AL # Cn       <reserved-FE75>
 FE76..FEFC    ; AL # Lo [135] ARABIC FATHA ISOLATED FORM..ARABIC LIGATURE LAM WITH ALEF FINAL FORM
 FEFD..FEFE    ; AL # Cn   [2] <reserved-FEFD>..<reserved-FEFE>
 10D00..10D23  ; AL # Lo  [36] HANIFI ROHINGYA LETTER A..HANIFI ROHINGYA MARK NA KHANNA
+10D28..10D2F  ; AL # Cn   [8] <reserved-10D28>..<reserved-10D2F>
+10D3A..10D3F  ; AL # Cn   [6] <reserved-10D3A>..<reserved-10D3F>
 10F30..10F45  ; AL # Lo  [22] SOGDIAN LETTER ALEPH..SOGDIAN INDEPENDENT SHIN
 10F51..10F54  ; AL # No   [4] SOGDIAN NUMBER ONE..SOGDIAN NUMBER ONE HUNDRED
 10F55..10F59  ; AL # Po   [5] SOGDIAN PUNCTUATION TWO VERTICAL BARS..SOGDIAN PUNCTUATION HALF CIRCLE WITH DOT
+10F5A..10F6F  ; AL # Cn  [22] <reserved-10F5A>..<reserved-10F6F>
+1EC70         ; AL # Cn       <reserved-1EC70>
 1EC71..1ECAB  ; AL # No  [59] INDIC SIYAQ NUMBER ONE..INDIC SIYAQ NUMBER PREFIXED NINE
 1ECAC         ; AL # So       INDIC SIYAQ PLACEHOLDER
 1ECAD..1ECAF  ; AL # No   [3] INDIC SIYAQ FRACTION ONE QUARTER..INDIC SIYAQ FRACTION THREE QUARTERS
 1ECB0         ; AL # Sc       INDIC SIYAQ RUPEE MARK
 1ECB1..1ECB4  ; AL # No   [4] INDIC SIYAQ NUMBER ALTERNATE ONE..INDIC SIYAQ ALTERNATE LAKH MARK
+1ECB5..1ECBF  ; AL # Cn  [11] <reserved-1ECB5>..<reserved-1ECBF>
 1EE00..1EE03  ; AL # Lo   [4] ARABIC MATHEMATICAL ALEF..ARABIC MATHEMATICAL DAL
 1EE04         ; AL # Cn       <reserved-1EE04>
 1EE05..1EE1F  ; AL # Lo  [27] ARABIC MATHEMATICAL WAW..ARABIC MATHEMATICAL DOTLESS QAF
@@ -2295,7 +2299,7 @@ FEFD..FEFE    ; AL # Cn   [2] <reserved-FEFD>..<reserved-FEFE>
 1EEBC..1EEEF  ; AL # Cn  [52] <reserved-1EEBC>..<reserved-1EEEF>
 1EEF2..1EEFF  ; AL # Cn  [14] <reserved-1EEF2>..<reserved-1EEFF>
 
-# Total code points: 1570
+# Total code points: 1618
 
 # ================================================
 
