@@ -499,6 +499,16 @@ public final class UCD implements UCD_Types {
                 BIDI_R_Delta.remove(0x0860, 0x086F);
                 BIDI_AL_SET.add(0x0860, 0x086F);
             }
+            if (versionInfo.getMajor() >= 11) {
+                // Unicode 11: Hanifi Rohingya, Sogdian, Indic Siyaq Numbers blocks R->AL
+            	// Note: Old Sogdian is R
+                BIDI_R_Delta.remove(0x10D00, 0x10D3F);
+                BIDI_R_Delta.remove(0x10F30, 0x10F6F);
+                BIDI_R_Delta.remove(0x1EC70, 0x1ECBF);
+                BIDI_AL_SET.add(0x10D00, 0x10D3F);
+                BIDI_AL_SET.add(0x10F30, 0x10F6F);
+                BIDI_AL_SET.add(0x1EC70, 0x1ECBF);
+            }
             BIDI_R_Delta.removeAll(BIDI_R_SET);
             if (SHOW_LOADING) {
                 System.out.println("R: Adding " + BIDI_R_Delta);
