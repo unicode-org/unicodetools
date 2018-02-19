@@ -84,6 +84,9 @@ public class EmojiData implements EmojiDataSource {
     private final UnicodeSet keycapSequenceAll = new UnicodeSet();
     private final UnicodeSet keycapBases = new UnicodeSet();
     private final UnicodeSet genderBases = new UnicodeSet();
+    private final UnicodeSet hairBases = new UnicodeSet();
+    private final UnicodeSet explicitGender = new UnicodeSet();
+    private final UnicodeSet explicitHair = new UnicodeSet();
 
     private final UnicodeSet emojiDefectives = new UnicodeSet();
     private final UnicodeMap<String> toNormalizedVariant = new UnicodeMap<String>();
@@ -409,6 +412,24 @@ public class EmojiData implements EmojiDataSource {
             keycapBases.freeze();
             toNormalizedVariant.freeze();
             fromNormalizedVariant.freeze();
+            UnicodeSet rawHairBases = new UnicodeSet()
+                    .addAll("🧒 👦 👧 🧑 👨 👩 🧓 👴 👵 👮 🕵 💂 👷 🤴 👸 👳 👲 🧔 🤵 👰 🤰 🤱 🎅 🤶 🧙-🧝 🙍 🙎 🙅 🙆 💁 🙋 🙇 🤦 🤷 💆 💇 🚶 🏃 💃 🕺 👯 🧖-🧘 🛀 🛌 🤺 🏇 ⛷ 🏂 🏌 🏄 🚣 🏊 ⛹ 🏋 🚴 🚵 🏎 🏍 🤸 🤼-🤾 🤹 🎓 🌾 🍳 🏫 🏭 🎨 🚒 ✈ 🚀 🎤 💻 🔬 💼 🔧 ⚖ ♀ ♂ ⚕ ")
+                    .add(0x1F9B8)
+                    .add(0x1F9B9)
+                    .freeze();
+            
+            System.out.println("rawHairBases: " + rawHairBases.toPattern(false));
+
+            explicitGender.addAll(new UnicodeSet("[[👦-👩 👴 👵 🤴 👸 👲 🧕 🤵 👰 🤰 🤱 🎅 🤶 💃 🕺 🕴 👫-👭]]"))
+            .freeze();
+            
+            explicitHair.addAll(new UnicodeSet("[👱]"))
+            .freeze();
+            
+            hairBases.addAll(rawHairBases)
+            .retainAll(modifierBases)
+            .freeze();
+            System.out.println(version + "Hairbases: " + hairBases.toPattern(false));
 
             for (String s : zwjSequencesNormal) {
                 if (s.contains("♀️") && !MODIFIERS.containsSome(s)) {
@@ -882,7 +903,7 @@ public class EmojiData implements EmojiDataSource {
     public String getName(String source) {
         return _getName(source, false, CandidateData.getInstance());
     }
-
+    
     static final String DEBUG_STRING = UTF16.valueOf(0x1F3F4);
 
     private String _getName(String source, boolean toLower, Transform<String,String> otherNameSource) {
@@ -1409,5 +1430,17 @@ public class EmojiData implements EmojiDataSource {
             }
         }
         return birthYear.freeze();
+    }
+
+    public UnicodeSet getHairBases() {
+        return hairBases;
+    }
+
+    public UnicodeSet getExplicitGender() {
+        return explicitGender;
+    }
+
+    public UnicodeSet getExplicitHair() {
+        return explicitHair;
     }
 }

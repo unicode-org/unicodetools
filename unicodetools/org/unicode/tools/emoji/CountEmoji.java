@@ -233,6 +233,8 @@ public class CountEmoji {
         //zwj_seq_fam_mod("zwj:"+Emoji.NEUTRAL_FAMILY + "&skin"), 
         zwj_seq_other("zwj:other"),
         zwj_seq_mod("zwj:other&skin"),
+        zwj_seq_hair("zwj:other&hair"),
+        zwj_seq_mod_hair("zwj:other&skin&hair"),
         component, 
         typical_dup_sign,
         typical_dup_group, 
@@ -273,45 +275,55 @@ public class CountEmoji {
                 bucket = flag_seq;
             } else {
                 boolean mods = EmojiData.MODIFIERS.containsSome(noVariants);
-                String butFirst = noVariants.substring(Character.charCount(noVariants.codePointAt(0)));
+                boolean hair = Emoji.HAIR_PIECES.containsSome(noVariants);
                 boolean gender = Emoji.GENDER_MARKERS.containsSome(noVariants);
                 boolean zwj = noVariants.contains(Emoji.JOINER_STR);
-                boolean role = Emoji.MAN_OR_WOMAN.containsSome(noVariants) && !Emoji.FAMILY_MARKERS.containsSome(butFirst);
-                boolean family = Emoji.FAMILY_MARKERS.containsSome(s) && !role;
+                
+                int first = noVariants.codePointAt(0);
+                String butFirst = noVariants.substring(Character.charCount(first));
+                boolean role = Emoji.MAN_OR_WOMAN.contains(first) 
+                        && Emoji.PROFESSION_OBJECT.containsSome(noVariants);
+                boolean family = Emoji.FAMILY_MARKERS.contains(first) && Emoji.FAMILY_MARKERS.containsSome(butFirst);
                 if (!zwj) {
                     if (mods) {
                         bucket = mod_seq;
                     } else {
-                        throw new IllegalArgumentException();
+                        throw new IllegalArgumentException("should never happen");
                     }
                 } else { // zwj
                     if (gender) {
-                        if (mods) {
-                            bucket = zwj_seq_gender_mod;
-                        } else { //  if (!gender)
-                            bucket = zwj_seq_gender;
-                        }
-                    } else if (role) { // !mods
-                        if (mods) {
-                            bucket = zwj_seq_role_mod;
-                        } else {
-                            bucket = zwj_seq_role;
-                        }
-                    } else if (family) { // !mods
-                        if (mods) {
-                            throw new IllegalArgumentException("no zwj_seq_fam_mod yet, change when there are");
-                            // bucket = zwj_seq_fam_mod;
-                        } else {
-                            bucket = zwj_seq_fam;
-                        }
-                    } else { // !mods
-                        if (mods) {
-                            bucket = zwj_seq_mod;
-                        } else {
-                            bucket = zwj_seq_other;
-                        }
+                        bucket = getVariety(mods, hair, zwj_seq_gender, zwj_seq_gender_mod, null, null);
+                    } else if (role) {
+                        bucket = getVariety(mods, hair, zwj_seq_role, zwj_seq_role_mod, null, null);
+                    } else if (family) {
+                        bucket = getVariety(mods, hair, zwj_seq_fam, null, null, null);
+                    } else {
+                        bucket = getVariety(mods, hair, zwj_seq_other, zwj_seq_mod, zwj_seq_hair, zwj_seq_mod_hair);
                     }
                 }
+            }
+            return bucket;
+        }
+        private static Category getVariety(boolean mods, boolean hair, 
+                Category noSkinNoHair, Category skinNoHair,
+                Category noSkinHair, Category skinHair
+                ) {
+            Category bucket;
+            if (mods) {
+                if (hair) {
+                    bucket = skinHair;
+                } else {
+                    bucket = skinNoHair;
+                }
+            } else { //  if (!gender)
+                if (hair) {
+                    bucket = noSkinHair;
+                } else {
+                    bucket = noSkinNoHair;
+                }
+            }
+            if (bucket == null) {
+                throw new IllegalArgumentException("no category available, add??");
             }
             return bucket;
         }

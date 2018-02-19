@@ -8,12 +8,17 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyValueSets;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.CandidateData;
+import org.unicode.tools.emoji.CandidateData.Status;
 import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiData;
+import org.unicode.tools.emoji.EmojiDataSource;
+import org.unicode.tools.emoji.EmojiDataSourceCombined;
 import org.unicode.tools.emoji.EmojiOrder;
 
 import com.google.common.collect.ImmutableSet;
@@ -26,26 +31,35 @@ import com.ibm.icu.util.VersionInfo;
 
 public class AacOrder {
 
-    private static final VersionInfo VERSION = Emoji.VERSION_BETA;
-    private static final VersionInfo UCD_VERSION = Emoji.UCD9;
-    
-    private static final EmojiData EMOJI_DATA = EmojiData.of(VERSION);
+    private static final VersionInfo VERSION = Emoji.VERSION11;
+    private static final VersionInfo UCD_VERSION = Emoji.UCD10;
+
+    private static final CandidateData CANDIDATE_DATA = CandidateData.getInstance();
+
+    private static final EmojiDataSource EMOJI_DATA = new EmojiDataSourceCombined();
     private static final EmojiOrder ORDER = EmojiOrder.of(VERSION);
 
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(UCD_VERSION);
     static final UnicodeMap<String> names = iup.load(UcdProperty.Name);
     static final UnicodeMap<General_Category_Values> gencat = iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
     static final UnicodeSet DI = iup.loadEnum(UcdProperty.Default_Ignorable_Code_Point, Binary.class).getSet(Binary.Yes);
+    static final UnicodeMap<Age_Values> AGE = iup.loadEnum(UcdProperty.Age, Age_Values.class);
+
+
     static final UnicodeSet EMOJI = new UnicodeSet();
     static {
         UnicodeSet temp = EMOJI_DATA.getAllEmojiWithoutDefectives();
-//        new UnicodeSet()
-//        .addAll(emojiData.getSingletonsWithoutDefectives())
-//        .addAll(emojiData.getZwjSequencesNormal())
-//        .addAll(emojiData.getFlagSequences())
-//        .addAll(emojiData.getModifierSequences())
-//        .addAll(emojiData.getKeycapSequences());
+        //        new UnicodeSet()
+        //        .addAll(emojiData.getSingletonsWithoutDefectives())
+        //        .addAll(emojiData.getZwjSequencesNormal())
+        //        .addAll(emojiData.getFlagSequences())
+        //        .addAll(emojiData.getModifierSequences())
+        //        .addAll(emojiData.getKeycapSequences());
         for (String s : temp) {
+            Status status = CANDIDATE_DATA.getStatus(s);
+            if (status == Status.Draft_Candidate || status == Status.Provisional_Candidate) {
+                continue;
+            }
             if (s.contains(Emoji.EMOJI_VARIANT_STRING)) {
                 s = s.replace(Emoji.EMOJI_VARIANT_STRING, "");
             }
@@ -54,6 +68,7 @@ public class AacOrder {
         }
         EMOJI.freeze();
     }
+
     static final UnicodeSet ALLOWED = new UnicodeSet(0,0x10FFFF);
     static {
         //      + "[^[:c:][:z:][:di:][࿕-࿘ 卍 卐]]" + emoji_sequences
@@ -79,6 +94,12 @@ public class AacOrder {
      * @throws IOException 
      */
     public static void main(String[] args) throws IOException {
+        UnicodeSet Not10 = AGE.getSet(Age_Values.Unassigned);
+        UnicodeSet Not9 = new UnicodeSet(Not10).addAll(AGE.getSet(Age_Values.V9_0)).freeze();
+
+        UnicodeSet extra10 = new UnicodeSet();
+        UnicodeSet extra9 = new UnicodeSet();
+
         if (SORTED_ALL_CHARS_SET.size() != ALLOWED.size()) {
             throw new IllegalArgumentException("Bad size");
         }
@@ -96,30 +117,63 @@ public class AacOrder {
             for (String s : SORTED_ALL_CHARS_SET) {
                 range.add(s);
                 rangeNone.add(s);
+                if (Not9.containsSome(s)) {
+                    extra9.add(s);
+                    if (Not10.contains(s)) {
+                        extra10.add(s);
+                    }
+                }
             }
             range.flush();
             rangeNone.flush();
         }
         writeUs(outputDir, ALLOWED, "aac-order-us.txt");
-        writeUs(outputDir, new UnicodeSet(ALLOWED)
-        .addAll(EMOJI_DATA.getKeycapSequencesAll())
-        .addAll(EMOJI_DATA.getZwjSequencesAll()), "aac-order-us-full.txt");
-        writeUs(outputDir, EMOJI_DATA.getAllEmojiWithoutDefectives(), "emoji-us.txt");
+        //        writeUs(outputDir, new UnicodeSet(ALLOWED)
+        ////        .addAll(EMOJI_DATA.getKeycapSequencesAll())
+        ////        .addAll(EMOJI_DATA.getZwjSequencesAll())
+        //        , "aac-order-us-full.txt");
+        // writeUs(outputDir, EMOJI_DATA.getAllEmojiWithoutDefectives(), "emoji-us.txt");
+        //        writeUs(outputDir, extra10, "aac-extra-emoji-U10.txt");
+        //        writeUs(outputDir, extra9, "aac-extra-emoji-U9.txt");
     }
 
     private static void writeUs(String outputDir, UnicodeSet unicodeSet, String filename) throws IOException {
         try (PrintWriter out = FileUtilities.openUTF8Writer(outputDir, filename)) {
-            out.println("static final UnicodeSet EMOJI_ALLOWED = new UnicodeSet(");
+            out.print("UnicodeSet EMOJI_ALLOWED = new UnicodeSet(");
+            int totalCodePoints = 0;
+            int totalStrings = 0;
             String separator = "";
             for (EntryRange entry : unicodeSet.ranges()) {
-                out.print(separator + "0x" + Integer.toHexString(entry.codepoint) + ",0x" + Integer.toHexString(entry.codepointEnd));
-                separator = ",\n";
+                out.print(separator);
+                separator = ",";
+                out.println("\n// (" + UTF16.valueOf(entry.codepoint) + ") " + getName(entry.codepoint) + 
+                        (entry.codepointEnd == entry.codepoint ? "" : 
+                            "\t..\t(" + UTF16.valueOf(entry.codepointEnd) + ") " + getName(entry.codepointEnd)));
+                out.print("0x" + Integer.toHexString(entry.codepoint) + ",0x" + Integer.toHexString(entry.codepointEnd));
+                totalCodePoints += (entry.codepointEnd - entry.codepoint) + 1;
             }
             out.println(")");
             for (String string : unicodeSet.strings()) {
+                out.println("// (" + string + ") " + getName(string));
                 out.println(".add(\"" + string + "\")");
+                ++totalStrings;
             }
             out.println(".freeze();");
+            out.println("// Total code points: " + totalCodePoints);
+            out.println("// Total strings: " + totalStrings);
+            out.println("// Total: " + (totalCodePoints + totalStrings));
+        }
+    }
+
+    private static String getName(String string) {
+        return EMOJI_DATA.getName(string);
+    }
+
+    private static String getName(int codepoint) {
+        try {
+            return getName(UTF16.valueOf(codepoint));
+        } catch (Exception e) {
+            return UCharacter.getExtendedName(codepoint);
         }
     }
 
@@ -150,7 +204,7 @@ public class AacOrder {
                     }
                 } else {
                     out.println(Utility.hex(first) + ".." + Utility.hex(last) 
-                            + (doIndexes ? " ; " + firstIndex : ""));
+                    + (doIndexes ? " ; " + firstIndex : ""));
                 }
             }
             last = -2;

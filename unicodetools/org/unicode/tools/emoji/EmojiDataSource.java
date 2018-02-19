@@ -2,6 +2,7 @@ package org.unicode.tools.emoji;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UTF16;
 
 public interface EmojiDataSource {
 
@@ -22,6 +23,9 @@ public interface EmojiDataSource {
     public UnicodeSet getSingletonsWithoutDefectives();
     
     public String getName(String s);
+    public default String getName(int codepoint) {
+        return getName(UTF16.valueOf(codepoint));
+    }
     public UnicodeMap<String> getRawNames();
 }
 

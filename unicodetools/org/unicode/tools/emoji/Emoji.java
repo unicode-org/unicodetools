@@ -432,7 +432,7 @@ public class Emoji {
             .freeze();
 
     public static final UnicodeSet HAIR_BASE = MAN_OR_WOMAN;
-    public static final UnicodeSet HAIR_PIECES = new UnicodeSet().add(0x1F9B0).add(0x1F9B1).add(0x1F9B1).add(0x1F9B2).add(0x1F9B3)
+    public static final UnicodeSet HAIR_PIECES = new UnicodeSet().add(0x1F9B0).add(0x1F9B1).add(0x1F9B2).add(0x1F9B3)
             .freeze();
 
     public static final UnicodeSet ROLE_MARKER = new UnicodeSet("[\\U0001F9D1 \\U0001F468 \\U0001F469 \\U0001F9D9-\\U0001F9DF 👱 👮 👳 👷 💂 🕵]").freeze();
@@ -745,6 +745,7 @@ public class Emoji {
 
     public static final String TR51_HTML_BETA = "../../reports/tr51/proposed.html";
     public static final String TR51_HTML = IS_BETA || USE_PROPOSED ? TR51_HTML_BETA : "http://unicode.org/reports/tr51/tr51-12.html";
+
 
     public static String getHexFromSubdivision(String string) {
         string = string.toLowerCase(Locale.ROOT).replace("-","");

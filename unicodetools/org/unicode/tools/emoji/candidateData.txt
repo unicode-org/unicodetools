@@ -25,7 +25,7 @@ U+1F96E
 Name=moon cake
 Keywords= festival | yuèbǐng | autumn
 
-Proposal=L2/17-082
+Proposal=L2/17-082, L2/17-011, L2/16-147, L2/16130, L2/16-008, L2/14-173
 After=👃🏿
 
 U+1F9B0
@@ -445,7 +445,7 @@ U+1F3F4 U+200D U+2620 U+FE0F
 Name=pirate flag
 Keywords=pirate | treasure | plunder | Jolly Roger
 
-Proposal=L2/17‑082
+Proposal=L2/17-082, L2/17-011, L2/16-147, L2/16130, L2/16-008, L2/14-173
 After=👱
 U+1F468 U+200D U+1F9B0 
 Name=man, red haired
