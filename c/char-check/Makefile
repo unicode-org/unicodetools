@@ -1,5 +1,9 @@
-#ICUBLD=$(HOME)/icu-inst
+#
+# This next line is for real:
 ICUBLD=/usr/local/icu
+# The next line is for test build:
+# ICUBLD=/usr/local/icu-next
+
 ICUINC=$(ICUBLD)/include
 ICULIB=$(ICUBLD)/lib
 ICULIBS=-L$(ICULIB) -licuuc -licui18n -licuio -licudata -Wl,-rpath -Wl,$(ICULIB)
