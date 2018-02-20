@@ -1,10 +1,11 @@
 #
 # Unihan_Variants.txt
-# Date: 2017-11-09 20:38:13 GMT [JHJ]
-# Unicode version: 10.0.0
+# Date: 2018-02-14 22:41:22 GMT [JHJ]
+# Unicode version: 11.0.0
 #
 # Unicode Character Database
-# © 1991-2017 Unicode®, Inc.
+# © 2018 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 #
@@ -9154,6 +9155,7 @@ U+9264	kSemanticVariant	U+920E<kHKGlyph,kLau,kMatthews
 U+9264	kSimplifiedVariant	U+94A9
 U+9264	kZVariant	U+920E
 U+9266	kSimplifiedVariant	U+94B2
+U+9268	kSimplifiedVariant	U+9FED
 U+926C	kSimplifiedVariant	U+94BC
 U+926D	kSimplifiedVariant	U+94BD
 U+9271	kZVariant	U+7926
@@ -9407,6 +9409,7 @@ U+9438	kZVariant	U+922C
 U+943A	kSimplifiedVariant	U+94DB
 U+943F	kSimplifiedVariant	U+9571
 U+9444	kSimplifiedVariant	U+94F8
+U+9448	kSimplifiedVariant	U+9FED
 U+944A	kSimplifiedVariant	U+956C
 U+944C	kSimplifiedVariant	U+9554
 U+9451	kSemanticVariant	U+9452<kHKGlyph,kMatthews,kMeyerWempe
@@ -11416,6 +11419,7 @@ U+9FD0	kSimplifiedVariant	U+4CA4
 U+9FD2	kSimplifiedVariant	U+9FD3
 U+9FD3	kTraditionalVariant	U+9FD2
 U+9FD4	kTraditionalVariant	U+93B6
+U+9FED	kTraditionalVariant	U+9268 U+9448
 U+F900	kZVariant	U+8C48
 U+F901	kZVariant	U+66F4
 U+F902	kZVariant	U+8ECA
