@@ -1,5 +1,5 @@
 # LineBreak-11.0.0.txt
-# Date: 2018-02-05, 13:14:09 GMT [KW, LI]
+# Date: 2018-02-19, 08:10:16 GMT [KW, LI]
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -331,7 +331,8 @@
 09FA;AL           # So         BENGALI ISSHAR
 09FB;PR           # Sc         BENGALI GANDA MARK
 09FC;AL           # Lo         BENGALI LETTER VEDIC ANUSVARA
-09FD..09FE;AL     # Po     [2] BENGALI ABBREVIATION SIGN..BENGALI SANDHI MARK
+09FD;AL           # Po         BENGALI ABBREVIATION SIGN
+09FE;CM           # Mn         BENGALI SANDHI MARK
 0A01..0A02;CM     # Mn     [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
 0A03;CM           # Mc         GURMUKHI SIGN VISARGA
 0A05..0A0A;AL     # Lo     [6] GURMUKHI LETTER A..GURMUKHI LETTER UU
@@ -2869,7 +2870,8 @@ FFFD;AI           # So         REPLACEMENT CHARACTER
 1144F;AL          # Po         NEWA ABBREVIATION SIGN
 11450..11459;NU   # Nd    [10] NEWA DIGIT ZERO..NEWA DIGIT NINE
 1145B;BA          # Po         NEWA PLACEHOLDER MARK
-1145D..1145E;AL   # Po     [2] NEWA INSERTION SIGN..NEWA SANDHI MARK
+1145D;AL          # Po         NEWA INSERTION SIGN
+1145E;CM          # Mn         NEWA SANDHI MARK
 11480..114AF;AL   # Lo    [48] TIRHUTA ANJI..TIRHUTA LETTER HA
 114B0..114B2;CM   # Mc     [3] TIRHUTA VOWEL SIGN AA..TIRHUTA VOWEL SIGN II
 114B3..114B8;CM   # Mn     [6] TIRHUTA VOWEL SIGN U..TIRHUTA VOWEL SIGN VOCALIC LL

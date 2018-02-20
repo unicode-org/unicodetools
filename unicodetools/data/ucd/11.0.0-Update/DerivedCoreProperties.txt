@@ -1,5 +1,5 @@
 # DerivedCoreProperties-11.0.0.txt
-# Date: 2018-02-11, 19:04:57 GMT
+# Date: 2018-02-19, 18:33:00 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -2855,6 +2855,7 @@ FF41..FF5A    ; Cased # L&  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN
 09C1..09C4    ; Case_Ignorable # Mn   [4] BENGALI VOWEL SIGN U..BENGALI VOWEL SIGN VOCALIC RR
 09CD          ; Case_Ignorable # Mn       BENGALI SIGN VIRAMA
 09E2..09E3    ; Case_Ignorable # Mn   [2] BENGALI VOWEL SIGN VOCALIC L..BENGALI VOWEL SIGN VOCALIC LL
+09FE          ; Case_Ignorable # Mn       BENGALI SANDHI MARK
 0A01..0A02    ; Case_Ignorable # Mn   [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
 0A3C          ; Case_Ignorable # Mn       GURMUKHI SIGN NUKTA
 0A41..0A42    ; Case_Ignorable # Mn   [2] GURMUKHI VOWEL SIGN U..GURMUKHI VOWEL SIGN UU
@@ -3138,6 +3139,7 @@ FFF9..FFFB    ; Case_Ignorable # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLI
 11438..1143F  ; Case_Ignorable # Mn   [8] NEWA VOWEL SIGN U..NEWA VOWEL SIGN AI
 11442..11444  ; Case_Ignorable # Mn   [3] NEWA SIGN VIRAMA..NEWA SIGN ANUSVARA
 11446         ; Case_Ignorable # Mn       NEWA SIGN NUKTA
+1145E         ; Case_Ignorable # Mn       NEWA SANDHI MARK
 114B3..114B8  ; Case_Ignorable # Mn   [6] TIRHUTA VOWEL SIGN U..TIRHUTA VOWEL SIGN VOCALIC LL
 114BA         ; Case_Ignorable # Mn       TIRHUTA VOWEL SIGN SHORT E
 114BF..114C0  ; Case_Ignorable # Mn   [2] TIRHUTA SIGN CANDRABINDU..TIRHUTA SIGN ANUSVARA
@@ -3214,7 +3216,7 @@ E0001         ; Case_Ignorable # Cf       LANGUAGE TAG
 E0020..E007F  ; Case_Ignorable # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Case_Ignorable # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2355
+# Total code points: 2357
 
 # ================================================
 
@@ -6643,6 +6645,7 @@ FFDA..FFDC    ; ID_Start # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL
 09E6..09EF    ; ID_Continue # Nd  [10] BENGALI DIGIT ZERO..BENGALI DIGIT NINE
 09F0..09F1    ; ID_Continue # Lo   [2] BENGALI LETTER RA WITH MIDDLE DIAGONAL..BENGALI LETTER RA WITH LOWER DIAGONAL
 09FC          ; ID_Continue # Lo       BENGALI LETTER VEDIC ANUSVARA
+09FE          ; ID_Continue # Mn       BENGALI SANDHI MARK
 0A01..0A02    ; ID_Continue # Mn   [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
 0A03          ; ID_Continue # Mc       GURMUKHI SIGN VISARGA
 0A05..0A0A    ; ID_Continue # Lo   [6] GURMUKHI LETTER A..GURMUKHI LETTER UU
@@ -7482,6 +7485,7 @@ FFDA..FFDC    ; ID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 11446         ; ID_Continue # Mn       NEWA SIGN NUKTA
 11447..1144A  ; ID_Continue # Lo   [4] NEWA SIGN AVAGRAHA..NEWA SIDDHI
 11450..11459  ; ID_Continue # Nd  [10] NEWA DIGIT ZERO..NEWA DIGIT NINE
+1145E         ; ID_Continue # Mn       NEWA SANDHI MARK
 11480..114AF  ; ID_Continue # Lo  [48] TIRHUTA ANJI..TIRHUTA LETTER HA
 114B0..114B2  ; ID_Continue # Mc   [3] TIRHUTA VOWEL SIGN AA..TIRHUTA VOWEL SIGN II
 114B3..114B8  ; ID_Continue # Mn   [6] TIRHUTA VOWEL SIGN U..TIRHUTA VOWEL SIGN VOCALIC LL
@@ -7723,7 +7727,7 @@ FFDA..FFDC    ; ID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 2F800..2FA1D  ; ID_Continue # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 E0100..E01EF  ; ID_Continue # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 128508
+# Total code points: 128510
 
 # ================================================
 
@@ -8556,6 +8560,7 @@ FFDA..FFDC    ; XID_Start # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGU
 09E6..09EF    ; XID_Continue # Nd  [10] BENGALI DIGIT ZERO..BENGALI DIGIT NINE
 09F0..09F1    ; XID_Continue # Lo   [2] BENGALI LETTER RA WITH MIDDLE DIAGONAL..BENGALI LETTER RA WITH LOWER DIAGONAL
 09FC          ; XID_Continue # Lo       BENGALI LETTER VEDIC ANUSVARA
+09FE          ; XID_Continue # Mn       BENGALI SANDHI MARK
 0A01..0A02    ; XID_Continue # Mn   [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
 0A03          ; XID_Continue # Mc       GURMUKHI SIGN VISARGA
 0A05..0A0A    ; XID_Continue # Lo   [6] GURMUKHI LETTER A..GURMUKHI LETTER UU
@@ -9400,6 +9405,7 @@ FFDA..FFDC    ; XID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HA
 11446         ; XID_Continue # Mn       NEWA SIGN NUKTA
 11447..1144A  ; XID_Continue # Lo   [4] NEWA SIGN AVAGRAHA..NEWA SIDDHI
 11450..11459  ; XID_Continue # Nd  [10] NEWA DIGIT ZERO..NEWA DIGIT NINE
+1145E         ; XID_Continue # Mn       NEWA SANDHI MARK
 11480..114AF  ; XID_Continue # Lo  [48] TIRHUTA ANJI..TIRHUTA LETTER HA
 114B0..114B2  ; XID_Continue # Mc   [3] TIRHUTA VOWEL SIGN AA..TIRHUTA VOWEL SIGN II
 114B3..114B8  ; XID_Continue # Mn   [6] TIRHUTA VOWEL SIGN U..TIRHUTA VOWEL SIGN VOCALIC LL
@@ -9641,7 +9647,7 @@ FFDA..FFDC    ; XID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HA
 2F800..2FA1D  ; XID_Continue # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 E0100..E01EF  ; XID_Continue # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 128489
+# Total code points: 128491
 
 # ================================================
 
@@ -9730,6 +9736,7 @@ E01F0..E0FFF  ; Default_Ignorable_Code_Point # Cn [3600] <reserved-E01F0>..<rese
 09CD          ; Grapheme_Extend # Mn       BENGALI SIGN VIRAMA
 09D7          ; Grapheme_Extend # Mc       BENGALI AU LENGTH MARK
 09E2..09E3    ; Grapheme_Extend # Mn   [2] BENGALI VOWEL SIGN VOCALIC L..BENGALI VOWEL SIGN VOCALIC LL
+09FE          ; Grapheme_Extend # Mn       BENGALI SANDHI MARK
 0A01..0A02    ; Grapheme_Extend # Mn   [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
 0A3C          ; Grapheme_Extend # Mn       GURMUKHI SIGN NUKTA
 0A41..0A42    ; Grapheme_Extend # Mn   [2] GURMUKHI VOWEL SIGN U..GURMUKHI VOWEL SIGN UU
@@ -9956,6 +9963,7 @@ FF9E..FF9F    ; Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK.
 11438..1143F  ; Grapheme_Extend # Mn   [8] NEWA VOWEL SIGN U..NEWA VOWEL SIGN AI
 11442..11444  ; Grapheme_Extend # Mn   [3] NEWA SIGN VIRAMA..NEWA SIGN ANUSVARA
 11446         ; Grapheme_Extend # Mn       NEWA SIGN NUKTA
+1145E         ; Grapheme_Extend # Mn       NEWA SANDHI MARK
 114B0         ; Grapheme_Extend # Mc       TIRHUTA VOWEL SIGN AA
 114B3..114B8  ; Grapheme_Extend # Mn   [6] TIRHUTA VOWEL SIGN U..TIRHUTA VOWEL SIGN VOCALIC LL
 114BA         ; Grapheme_Extend # Mn       TIRHUTA VOWEL SIGN SHORT E
@@ -10030,7 +10038,7 @@ FF9E..FF9F    ; Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK.
 E0020..E007F  ; Grapheme_Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Grapheme_Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 1941
+# Total code points: 1943
 
 # ================================================
 
@@ -10226,7 +10234,7 @@ E0100..E01EF  ; Grapheme_Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELE
 09FA          ; Grapheme_Base # So       BENGALI ISSHAR
 09FB          ; Grapheme_Base # Sc       BENGALI GANDA MARK
 09FC          ; Grapheme_Base # Lo       BENGALI LETTER VEDIC ANUSVARA
-09FD..09FE    ; Grapheme_Base # Po   [2] BENGALI ABBREVIATION SIGN..BENGALI SANDHI MARK
+09FD          ; Grapheme_Base # Po       BENGALI ABBREVIATION SIGN
 0A03          ; Grapheme_Base # Mc       GURMUKHI SIGN VISARGA
 0A05..0A0A    ; Grapheme_Base # Lo   [6] GURMUKHI LETTER A..GURMUKHI LETTER UU
 0A0F..0A10    ; Grapheme_Base # Lo   [2] GURMUKHI LETTER EE..GURMUKHI LETTER AI
@@ -11375,7 +11383,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 1144B..1144F  ; Grapheme_Base # Po   [5] NEWA DANDA..NEWA ABBREVIATION SIGN
 11450..11459  ; Grapheme_Base # Nd  [10] NEWA DIGIT ZERO..NEWA DIGIT NINE
 1145B         ; Grapheme_Base # Po       NEWA PLACEHOLDER MARK
-1145D..1145E  ; Grapheme_Base # Po   [2] NEWA INSERTION SIGN..NEWA SANDHI MARK
+1145D         ; Grapheme_Base # Po       NEWA INSERTION SIGN
 11480..114AF  ; Grapheme_Base # Lo  [48] TIRHUTA ANJI..TIRHUTA LETTER HA
 114B1..114B2  ; Grapheme_Base # Mc   [2] TIRHUTA VOWEL SIGN I..TIRHUTA VOWEL SIGN II
 114B9         ; Grapheme_Base # Mc       TIRHUTA VOWEL SIGN E
@@ -11651,7 +11659,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 2CEB0..2EBE0  ; Grapheme_Base # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2F800..2FA1D  ; Grapheme_Base # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# Total code points: 135376
+# Total code points: 135374
 
 # ================================================
 

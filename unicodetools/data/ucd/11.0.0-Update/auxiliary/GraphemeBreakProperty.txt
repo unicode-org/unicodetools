@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-11.0.0.txt
-# Date: 2018-02-06, 06:59:42 GMT
+# Date: 2018-02-19, 18:33:06 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -115,6 +115,7 @@ E01F0..E0FFF  ; Control # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 09C1..09C4    ; Extend # Mn   [4] BENGALI VOWEL SIGN U..BENGALI VOWEL SIGN VOCALIC RR
 09D7          ; Extend # Mc       BENGALI AU LENGTH MARK
 09E2..09E3    ; Extend # Mn   [2] BENGALI VOWEL SIGN VOCALIC L..BENGALI VOWEL SIGN VOCALIC LL
+09FE          ; Extend # Mn       BENGALI SANDHI MARK
 0A01..0A02    ; Extend # Mn   [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
 0A3C          ; Extend # Mn       GURMUKHI SIGN NUKTA
 0A41..0A42    ; Extend # Mn   [2] GURMUKHI VOWEL SIGN U..GURMUKHI VOWEL SIGN UU
@@ -335,6 +336,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 11438..1143F  ; Extend # Mn   [8] NEWA VOWEL SIGN U..NEWA VOWEL SIGN AI
 11443..11444  ; Extend # Mn   [2] NEWA SIGN CANDRABINDU..NEWA SIGN ANUSVARA
 11446         ; Extend # Mn       NEWA SIGN NUKTA
+1145E         ; Extend # Mn       NEWA SANDHI MARK
 114B0         ; Extend # Mc       TIRHUTA VOWEL SIGN AA
 114B3..114B8  ; Extend # Mn   [6] TIRHUTA VOWEL SIGN U..TIRHUTA VOWEL SIGN VOCALIC LL
 114BA         ; Extend # Mn       TIRHUTA VOWEL SIGN SHORT E
@@ -406,7 +408,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 1911
+# Total code points: 1913
 
 # ================================================
 

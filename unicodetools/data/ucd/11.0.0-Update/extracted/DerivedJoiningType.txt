@@ -1,5 +1,5 @@
 # DerivedJoiningType-11.0.0.txt
-# Date: 2018-02-06, 06:59:39 GMT
+# Date: 2018-02-19, 18:33:04 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -219,6 +219,7 @@ A872          ; L # Lo       PHAGS-PA SUPERFIXED LETTER RA
 09C1..09C4    ; T # Mn   [4] BENGALI VOWEL SIGN U..BENGALI VOWEL SIGN VOCALIC RR
 09CD          ; T # Mn       BENGALI SIGN VIRAMA
 09E2..09E3    ; T # Mn   [2] BENGALI VOWEL SIGN VOCALIC L..BENGALI VOWEL SIGN VOCALIC LL
+09FE          ; T # Mn       BENGALI SANDHI MARK
 0A01..0A02    ; T # Mn   [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
 0A3C          ; T # Mn       GURMUKHI SIGN NUKTA
 0A41..0A42    ; T # Mn   [2] GURMUKHI VOWEL SIGN U..GURMUKHI VOWEL SIGN UU
@@ -437,6 +438,7 @@ FFF9..FFFB    ; T # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANNOTATI
 11438..1143F  ; T # Mn   [8] NEWA VOWEL SIGN U..NEWA VOWEL SIGN AI
 11442..11444  ; T # Mn   [3] NEWA SIGN VIRAMA..NEWA SIGN ANUSVARA
 11446         ; T # Mn       NEWA SIGN NUKTA
+1145E         ; T # Mn       NEWA SANDHI MARK
 114B3..114B8  ; T # Mn   [6] TIRHUTA VOWEL SIGN U..TIRHUTA VOWEL SIGN VOCALIC LL
 114BA         ; T # Mn       TIRHUTA VOWEL SIGN SHORT E
 114BF..114C0  ; T # Mn   [2] TIRHUTA SIGN CANDRABINDU..TIRHUTA SIGN ANUSVARA
@@ -509,6 +511,6 @@ E0001         ; T # Cf       LANGUAGE TAG
 E0020..E007F  ; T # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; T # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 1951
+# Total code points: 1953
 
 # EOF

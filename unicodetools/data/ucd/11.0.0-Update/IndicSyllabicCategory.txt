@@ -1,5 +1,5 @@
 # IndicSyllabicCategory-11.0.0.txt
-# Date: 2018-02-05, 11:42:00 GMT [KW, RP]
+# Date: 2018-02-19, 16:17:00 GMT [KW, RP]
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1137,6 +1137,7 @@ A8E0..A8F1    ; Cantillation_Mark # Mn  [18] COMBINING DEVANAGARI DIGIT ZERO..CO
 # [Not derivable]
 
 00B2..00B3    ; Syllable_Modifier # No   [2] SUPERSCRIPT TWO..SUPERSCRIPT THREE
+09FE          ; Syllable_Modifier # Mn       BENGALI SANDHI MARK
 0F35          ; Syllable_Modifier # Mn       TIBETAN MARK NGAS BZUNG NYI ZLA
 0F37          ; Syllable_Modifier # Mn       TIBETAN MARK NGAS BZUNG SGOR RTAGS
 0FC6          ; Syllable_Modifier # Mn       TIBETAN SYMBOL PADMA GDAN
@@ -1152,6 +1153,7 @@ A8E0..A8F1    ; Cantillation_Mark # Mn  [18] COMBINING DEVANAGARI DIGIT ZERO..CO
 2074          ; Syllable_Modifier # No       SUPERSCRIPT FOUR
 2082..2084    ; Syllable_Modifier # No   [3] SUBSCRIPT TWO..SUBSCRIPT FOUR
 111C9         ; Syllable_Modifier # Mn       SHARADA SANDHI MARK
+1145E         ; Syllable_Modifier # Mn       NEWA SANDHI MARK
 11A33         ; Syllable_Modifier # Mn       ZANABAZAR SQUARE FINAL CONSONANT MARK
 
 # ================================================
