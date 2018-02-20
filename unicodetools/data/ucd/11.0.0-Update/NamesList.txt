@@ -1,29 +1,20 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 11.0.0
-@@@+	U11M180201.lst
-	Unicode 11.0.0 names list, second delta.
-	Repertoire synched with UnicodeData-11.0.0d10.txt
-	Second delta of annotation fixes.
-	Updated names for UTC #154 changes.
-	Added Adlam, Hanifi Rohingya, and Sogdian to note about 0640 use.
-	Added annotation to 1F43F CHIPMUNK to indicate use for squirrel.
-	Added annotations about use of 0904.
-	Added annotations and xrefs for 2E43, 2E44.
-	Added xrefs for 09FE and 111C9.
-	Added xrefs for 1F14F, 1F18F, 1F6BE.
-	Corrected spelling in alias for 1FA67.
-	Added xrefs for 0289, 1D7E.
-	Updated header for Mongolian positional forms.
-	Added annotation for 1F9A0.
-	Added xrefs to 0D73, 0D74, 0D75 and annotation to A830.
-	Added alias to 06A9 and Sindhi to its language annotation.
+@@@+	U11M180219.lst
+	Unicode 11.0.0 names list, third delta.
+	Repertoire synched with UnicodeData-11.0.0d12.txt
+	Third delta of annotation fixes.
+	Added notice re interpretation of moon symbols in Southern Hemisphere.
+	Added xrefs between moon symbols and between sun symbols.
+	Added xrefs for a few weather symbols.
+	Added xrefs for 1145E and corrected subhead for 111C9.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
 	for this process are aimed at readability for the human reader,
 	at the expense of some details; therefore, this file should not
 	be parsed for machine-readable information.
-@+		© 2017 Unicode®, Inc.
+@+		© 2018 Unicode®, Inc.
 	For terms of use, see http://www.unicode.org/terms_of_use.html
 @@	0000	C0 Controls and Basic Latin (Basic Latin)	007F
 @@+
@@ -5161,6 +5152,7 @@
 	* indicates external sandhi in Sanskrit documents
 	x (bengali sign avagraha - 09BD)
 	x (sharada sandhi mark - 111C9)
+	x (newa sandhi mark - 1145E)
 @@	0A00	Gurmukhi	0A7F
 @		Various signs
 0A01	GURMUKHI SIGN ADAK BINDI
@@ -15808,6 +15800,7 @@
 2602	UMBRELLA
 	= rainy weather
 	x (closed umbrella - 1F302)
+	x (cloud with rain - 1F327)
 2603	SNOWMAN
 	= snowy weather
 2604	COMET
@@ -15954,14 +15947,17 @@
 263C	WHITE SUN WITH RAYS
 	= compass
 	x (sun - 2609)
+	x (sun with face - 1F31E)
 	x (white sun - 1F323)
 	x (high brightness symbol - 1F506)
 @		Astrological symbols
 263D	FIRST QUARTER MOON
 	= alchemical symbol for silver
+	x (first quarter moon symbol - 1F313)
 263E	LAST QUARTER MOON
 	= alchemical symbol for silver
 	x (power sleep symbol - 23FE)
+	x (last quarter moon symbol - 1F317)
 	x (crescent moon - 1F319)
 263F	MERCURY
 	= alchemical symbol for quicksilver
@@ -32673,6 +32669,7 @@ FFFF	<not a character>
 111C6	SHARADA DOUBLE DANDA
 111C7	SHARADA ABBREVIATION SIGN
 111C8	SHARADA SEPARATOR
+@		Sign
 111C9	SHARADA SANDHI MARK
 	* indicates external sandhi in Sanskrit documents
 	x (bengali sandhi mark - 09FE)
@@ -33173,6 +33170,8 @@ FFFF	<not a character>
 1145D	NEWA INSERTION SIGN
 	= tansaa
 1145E	NEWA SANDHI MARK
+	* indicates external sandhi in Sanskrit documents
+	x (bengali sandhi mark - 09FE)
 @@	11480	Tirhuta	114DF
 @+		The Tirhuta script is also known by the names Mithilakshara and Maithili.
 @		Sign
@@ -46923,12 +46922,14 @@ FFFF	<not a character>
 1F310	GLOBE WITH MERIDIANS
 	* used to indicate international input source, world clocks with time zones, etc.
 @		Moon, sun, and star symbols
+@+		Use of the moon symbols is typically reversed in the Southern Hemisphere, with the waxing shapes used for the waning part of the cycle and vice versa. The character names are not intended for astronomical precision, but simply describe a particular shape displayed. 
 1F311	NEW MOON SYMBOL
 	x (black circle - 25CF)
 1F312	WAXING CRESCENT MOON SYMBOL
 1F313	FIRST QUARTER MOON SYMBOL
 	= half moon
 	x (circle with left half black - 25D0)
+	x (first quarter moon - 263D)
 1F314	WAXING GIBBOUS MOON SYMBOL
 	= waxing moon
 1F315	FULL MOON SYMBOL
@@ -46936,6 +46937,7 @@ FFFF	<not a character>
 1F316	WANING GIBBOUS MOON SYMBOL
 1F317	LAST QUARTER MOON SYMBOL
 	x (circle with right half black - 25D1)
+	x (last quarter moon - 263E)
 1F318	WANING CRESCENT MOON SYMBOL
 1F319	CRESCENT MOON
 	* may indicate either the first or last quarter moon
@@ -46947,6 +46949,7 @@ FFFF	<not a character>
 1F31D	FULL MOON WITH FACE
 1F31E	SUN WITH FACE
 1F31F	GLOWING STAR
+	x (white star - 2606)
 1F320	SHOOTING STAR
 @		Weather symbols
 1F321	THERMOMETER
@@ -46956,6 +46959,7 @@ FFFF	<not a character>
 	x (droplet - 1F4A7)
 1F323	WHITE SUN
 	= sunny
+	x (black sun with rays - 2600)
 	x (white sun with rays - 263C)
 1F324	WHITE SUN WITH SMALL CLOUD
 	= mostly sunny
@@ -46966,6 +46970,7 @@ FFFF	<not a character>
 	= showers
 1F327	CLOUD WITH RAIN
 	= rain
+	x (umbrella - 2602)
 1F328	CLOUD WITH SNOW
 	= snow, snow showers
 1F329	CLOUD WITH LIGHTNING
