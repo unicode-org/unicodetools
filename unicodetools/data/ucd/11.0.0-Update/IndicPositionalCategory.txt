@@ -1,5 +1,5 @@
 # IndicPositionalCategory-11.0.0.txt
-# Date: 2018-02-05, 11:42:00 GMT [RP]
+# Date: 2018-02-05, 16:21:00 GMT [KW, RP]
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -358,6 +358,7 @@ AABB..AABC    ; Visual_Order_Left # Lo   [2] TAI VIET VOWEL AUE..TAI VIET VOWEL 
 0951          ; Top # Mn       DEVANAGARI STRESS SIGN UDATTA
 0953..0955    ; Top # Mn   [3] DEVANAGARI GRAVE ACCENT..DEVANAGARI VOWEL SIGN CANDRA LONG E
 0981          ; Top # Mn       BENGALI SIGN CANDRABINDU
+09FE          ; Top # Mn       BENGALI SANDHI MARK
 0A01..0A02    ; Top # Mn   [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
 0A47..0A48    ; Top # Mn   [2] GURMUKHI VOWEL SIGN EE..GURMUKHI VOWEL SIGN AI
 0A4B..0A4C    ; Top # Mn   [2] GURMUKHI VOWEL SIGN OO..GURMUKHI VOWEL SIGN AU
@@ -499,6 +500,7 @@ ABE5          ; Top # Mn       MEETEI MAYEK VOWEL SIGN ANAP
 11370..11374  ; Top # Mn   [5] COMBINING GRANTHA LETTER A..COMBINING GRANTHA LETTER PA
 1143E..1143F  ; Top # Mn   [2] NEWA VOWEL SIGN E..NEWA VOWEL SIGN AI
 11443..11444  ; Top # Mn   [2] NEWA SIGN CANDRABINDU..NEWA SIGN ANUSVARA
+1145E         ; Top # Mn       NEWA SANDHI MARK
 114BA         ; Top # Mn       TIRHUTA VOWEL SIGN SHORT E
 114BF..114C0  ; Top # Mn   [2] TIRHUTA SIGN CANDRABINDU..TIRHUTA SIGN ANUSVARA
 115BC..115BD  ; Top # Mn   [2] SIDDHAM SIGN CANDRABINDU..SIDDHAM SIGN ANUSVARA

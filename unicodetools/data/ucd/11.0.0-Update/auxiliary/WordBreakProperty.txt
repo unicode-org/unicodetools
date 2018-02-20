@@ -1,5 +1,5 @@
 # WordBreakProperty-11.0.0.txt
-# Date: 2018-02-06, 06:59:55 GMT
+# Date: 2018-02-19, 18:33:19 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -114,6 +114,7 @@ FB46..FB4F    ; Hebrew_Letter # Lo  [10] HEBREW LETTER TSADI WITH DAGESH..HEBREW
 09CD          ; Extend # Mn       BENGALI SIGN VIRAMA
 09D7          ; Extend # Mc       BENGALI AU LENGTH MARK
 09E2..09E3    ; Extend # Mn   [2] BENGALI VOWEL SIGN VOCALIC L..BENGALI VOWEL SIGN VOCALIC LL
+09FE          ; Extend # Mn       BENGALI SANDHI MARK
 0A01..0A02    ; Extend # Mn   [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
 0A03          ; Extend # Mc       GURMUKHI SIGN VISARGA
 0A3C          ; Extend # Mn       GURMUKHI SIGN NUKTA
@@ -451,6 +452,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 11442..11444  ; Extend # Mn   [3] NEWA SIGN VIRAMA..NEWA SIGN ANUSVARA
 11445         ; Extend # Mc       NEWA SIGN VISARGA
 11446         ; Extend # Mn       NEWA SIGN NUKTA
+1145E         ; Extend # Mn       NEWA SANDHI MARK
 114B0..114B2  ; Extend # Mc   [3] TIRHUTA VOWEL SIGN AA..TIRHUTA VOWEL SIGN II
 114B3..114B8  ; Extend # Mn   [6] TIRHUTA VOWEL SIGN U..TIRHUTA VOWEL SIGN VOCALIC LL
 114B9         ; Extend # Mc       TIRHUTA VOWEL SIGN E
@@ -552,7 +554,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2330
+# Total code points: 2332
 
 # ================================================
 

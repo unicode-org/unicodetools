@@ -1,5 +1,5 @@
 # Scripts-11.0.0.txt
-# Date: 2018-02-06, 06:59:54 GMT
+# Date: 2018-02-19, 18:33:19 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -961,7 +961,8 @@ A8FF          ; Devanagari # Mn       DEVANAGARI VOWEL SIGN AY
 09FA          ; Bengali # So       BENGALI ISSHAR
 09FB          ; Bengali # Sc       BENGALI GANDA MARK
 09FC          ; Bengali # Lo       BENGALI LETTER VEDIC ANUSVARA
-09FD..09FE    ; Bengali # Po   [2] BENGALI ABBREVIATION SIGN..BENGALI SANDHI MARK
+09FD          ; Bengali # Po       BENGALI ABBREVIATION SIGN
+09FE          ; Bengali # Mn       BENGALI SANDHI MARK
 
 # Total code points: 96
 
@@ -2634,7 +2635,8 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 1144B..1144F  ; Newa # Po   [5] NEWA DANDA..NEWA ABBREVIATION SIGN
 11450..11459  ; Newa # Nd  [10] NEWA DIGIT ZERO..NEWA DIGIT NINE
 1145B         ; Newa # Po       NEWA PLACEHOLDER MARK
-1145D..1145E  ; Newa # Po   [2] NEWA INSERTION SIGN..NEWA SANDHI MARK
+1145D         ; Newa # Po       NEWA INSERTION SIGN
+1145E         ; Newa # Mn       NEWA SANDHI MARK
 
 # Total code points: 93
 
