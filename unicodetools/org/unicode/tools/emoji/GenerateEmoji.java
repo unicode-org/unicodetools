@@ -3481,14 +3481,22 @@ public class GenerateEmoji {
     }
 
     private static String getHex(String source) {
-        UnicodeSet candidateCharacters = CandidateData.getInstance().getAllCharacters();
+        CandidateData candidateData = CandidateData.getInstance();
+        UnicodeSet candidateCharacters = candidateData.getAllCharacters();
         StringBuilder result = new StringBuilder();
         for (int cp : CharSequences.codePoints(source)) {
             if (result.length() != 0) {
                 result.append(' ');
             }
             if (candidateCharacters.contains(cp)) {
-                result.append('X');
+                Status status = candidateData.getStatus(cp);
+                switch (status) {
+                case Draft_Candidate: 
+                case Provisional_Candidate: 
+                    result.append('X');
+                    break;
+                default: break;
+                }
             }
             result.append(Utility.hex(cp));
         }
