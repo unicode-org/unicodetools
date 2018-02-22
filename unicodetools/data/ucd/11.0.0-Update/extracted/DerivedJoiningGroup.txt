@@ -1,5 +1,5 @@
 # DerivedJoiningGroup-11.0.0.txt
-# Date: 2018-01-31, 08:20:14 GMT
+# Date: 2018-02-21, 05:34:05 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -712,7 +712,7 @@
 10D19         ; Hanifi_Rohingya_Kinna_Ya # Lo       HANIFI ROHINGYA LETTER KINNA YA
 10D1E         ; Hanifi_Rohingya_Kinna_Ya # Lo       HANIFI ROHINGYA VOWEL I
 10D20         ; Hanifi_Rohingya_Kinna_Ya # Lo       HANIFI ROHINGYA VOWEL E
-10D23         ; Hanifi_Rohingya_Kinna_Ya # Lo       HANIFI ROHINGYA MARK NA KHANNA
+10D23         ; Hanifi_Rohingya_Kinna_Ya # Lo       HANIFI ROHINGYA MARK NA KHONNA
 
 # Total code points: 4
 

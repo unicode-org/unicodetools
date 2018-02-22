@@ -1,5 +1,5 @@
 # DerivedBidiClass-11.0.0.txt
-# Date: 2018-02-19, 18:32:59 GMT
+# Date: 2018-02-21, 05:34:00 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -2219,7 +2219,7 @@ FE70..FE74    ; AL # Lo   [5] ARABIC FATHATAN ISOLATED FORM..ARABIC KASRATAN ISO
 FE75          ; AL # Cn       <reserved-FE75>
 FE76..FEFC    ; AL # Lo [135] ARABIC FATHA ISOLATED FORM..ARABIC LIGATURE LAM WITH ALEF FINAL FORM
 FEFD..FEFE    ; AL # Cn   [2] <reserved-FEFD>..<reserved-FEFE>
-10D00..10D23  ; AL # Lo  [36] HANIFI ROHINGYA LETTER A..HANIFI ROHINGYA MARK NA KHANNA
+10D00..10D23  ; AL # Lo  [36] HANIFI ROHINGYA LETTER A..HANIFI ROHINGYA MARK NA KHONNA
 10D28..10D2F  ; AL # Cn   [8] <reserved-10D28>..<reserved-10D2F>
 10D3A..10D3F  ; AL # Cn   [6] <reserved-10D3A>..<reserved-10D3F>
 10F30..10F45  ; AL # Lo  [22] SOGDIAN LETTER ALEPH..SOGDIAN INDEPENDENT SHIN

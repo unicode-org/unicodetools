@@ -1,5 +1,5 @@
 # DerivedName-11.0.0.txt
-# Date: 2018-01-31, 08:20:14 GMT
+# Date: 2018-02-21, 05:34:06 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -29642,7 +29642,7 @@ FFFD          ; REPLACEMENT CHARACTER
 10D20         ; HANIFI ROHINGYA VOWEL E
 10D21         ; HANIFI ROHINGYA VOWEL O
 10D22         ; HANIFI ROHINGYA MARK SAKIN
-10D23         ; HANIFI ROHINGYA MARK NA KHANNA
+10D23         ; HANIFI ROHINGYA MARK NA KHONNA
 10D24         ; HANIFI ROHINGYA SIGN HARBAHAY
 10D25         ; HANIFI ROHINGYA SIGN TAHALA
 10D26         ; HANIFI ROHINGYA SIGN TANA

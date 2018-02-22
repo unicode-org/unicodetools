@@ -1,13 +1,10 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 11.0.0
-@@@+	U11M180219.lst
-	Unicode 11.0.0 names list, third delta.
-	Repertoire synched with UnicodeData-11.0.0d12.txt
-	Third delta of annotation fixes.
-	Added notice re interpretation of moon symbols in Southern Hemisphere.
-	Added xrefs between moon symbols and between sun symbols.
-	Added xrefs for a few weather symbols.
-	Added xrefs for 1145E and corrected subhead for 111C9.
+@@@+	U11M180220.lst
+	Unicode 11.0.0 names list, fourth delta.
+	Repertoire synched with UnicodeData-11.0.0d13.txt
+	Fourth delta of annotation fixes.
+	Regeneration to pick up name correction for 10D23.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -31996,7 +31993,7 @@ FFFF	<not a character>
 @		Vowel silencer
 10D22	HANIFI ROHINGYA MARK SAKIN
 @		Nasalization mark
-10D23	HANIFI ROHINGYA MARK NA KHANNA
+10D23	HANIFI ROHINGYA MARK NA KHONNA
 @		Tone signs
 10D24	HANIFI ROHINGYA SIGN HARBAHAY
 	* short high tone
