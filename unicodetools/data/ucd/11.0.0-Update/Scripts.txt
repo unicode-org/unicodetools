@@ -1,5 +1,5 @@
 # Scripts-11.0.0.txt
-# Date: 2018-02-19, 18:33:19 GMT
+# Date: 2018-02-21, 05:34:31 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -2754,7 +2754,7 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 
 # ================================================
 
-10D00..10D23  ; Hanifi_Rohingya # Lo  [36] HANIFI ROHINGYA LETTER A..HANIFI ROHINGYA MARK NA KHANNA
+10D00..10D23  ; Hanifi_Rohingya # Lo  [36] HANIFI ROHINGYA LETTER A..HANIFI ROHINGYA MARK NA KHONNA
 10D24..10D27  ; Hanifi_Rohingya # Mn   [4] HANIFI ROHINGYA SIGN HARBAHAY..HANIFI ROHINGYA SIGN TASSI
 10D30..10D39  ; Hanifi_Rohingya # Nd  [10] HANIFI ROHINGYA DIGIT ZERO..HANIFI ROHINGYA DIGIT NINE
 

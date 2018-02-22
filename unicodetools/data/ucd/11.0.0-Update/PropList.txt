@@ -1,5 +1,5 @@
 # PropList-11.0.0.txt
-# Date: 2018-02-11, 19:05:05 GMT
+# Date: 2018-02-21, 05:34:15 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -968,7 +968,7 @@ FF9E..FF9F    ; Diacritic # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFW
 FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 102E0         ; Diacritic # Mn       COPTIC EPACT THOUSANDS MARK
 10AE5..10AE6  ; Diacritic # Mn   [2] MANICHAEAN ABBREVIATION MARK ABOVE..MANICHAEAN ABBREVIATION MARK BELOW
-10D22..10D23  ; Diacritic # Lo   [2] HANIFI ROHINGYA MARK SAKIN..HANIFI ROHINGYA MARK NA KHANNA
+10D22..10D23  ; Diacritic # Lo   [2] HANIFI ROHINGYA MARK SAKIN..HANIFI ROHINGYA MARK NA KHONNA
 10D24..10D27  ; Diacritic # Mn   [4] HANIFI ROHINGYA SIGN HARBAHAY..HANIFI ROHINGYA SIGN TASSI
 10F46..10F50  ; Diacritic # Mn  [11] SOGDIAN COMBINING DOT BELOW..SOGDIAN COMBINING STROKE BELOW
 110B9..110BA  ; Diacritic # Mn   [2] KAITHI SIGN VIRAMA..KAITHI SIGN NUKTA
