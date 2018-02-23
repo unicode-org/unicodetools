@@ -1,10 +1,15 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 11.0.0
-@@@+	U11M180220.lst
-	Unicode 11.0.0 names list, fourth delta.
+@@@+	U11M180222.lst
+	Unicode 11.0.0 names list, fifth delta.
 	Repertoire synched with UnicodeData-11.0.0d13.txt
-	Fourth delta of annotation fixes.
-	Regeneration to pick up name correction for 10D23.
+	Fifth delta of annotation fixes.
+	Added annotation for 26BC.
+	Corrected end range of main CJK block.
+	Corrected typo in annotation for 110BD.
+	Added subheader at 11D98.
+	Added notice about Mongolian positional forms at 1820.
+	Adjusted emission of alt variants for multiple Mongolian characters.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -9302,11 +9307,9 @@
 	* not a format control character, but simply a hyphen for Todo
 	x (soft hyphen - 00AD)
 1807	MONGOLIAN SIBE SYLLABLE BOUNDARY MARKER
-	~ 1807 ALT1 first form (medial)
 1808	MONGOLIAN MANCHU COMMA
 1809	MONGOLIAN MANCHU FULL STOP
 180A	MONGOLIAN NIRUGU
-	~ 180A ALT1 first form (medial)
 @		Format controls
 180B	MONGOLIAN FREE VARIATION SELECTOR ONE
 	* abbreviated FVS1
@@ -9329,8 +9332,10 @@
 1819	MONGOLIAN DIGIT NINE
 @		Basic letters
 @+		Cross-references show commonly used Cyrillic transliterations.
+@+		Letters unspecified for distinct positional forms are shown without them. Letters with unspecified positional forms use a squared question mark to indicate the gap. All vowels are expected to have explicit isolate forms. For consonants the isolate first form is the initial first form unless specified otherwise.
 1820	MONGOLIAN LETTER A
 	x (cyrillic small letter a - 0430)
+	~ 1820 ALT1 first form (isolate)
 	~ 1820 ALT1 first form (initial)
 	~ 1820 ALT1 first form (medial)
 	~ 1820 ALT1 first form (final)
@@ -9340,6 +9345,7 @@
 	~ 1820 180C third form (medial)
 1821	MONGOLIAN LETTER E
 	x (cyrillic small letter e - 044D)
+	~ 1821 ALT1 first form (isolate)
 	~ 1821 ALT1 first form (initial)
 	~ 1821 ALT1 first form (medial)
 	~ 1821 ALT1 first form (final)
@@ -9347,12 +9353,14 @@
 	~ 1821 180B second form (final)
 1822	MONGOLIAN LETTER I
 	x (cyrillic small letter i - 0438)
+	~ 1822 ALT1 first form (isolate)
 	~ 1822 ALT1 first form (initial)
 	~ 1822 ALT1 first form (medial)
 	~ 1822 ALT1 first form (final)
 	~ 1822 180B second form (medial)
 1823	MONGOLIAN LETTER O
 	x (cyrillic small letter o - 043E)
+	~ 1823 ALT1 first form (isolate)
 	~ 1823 ALT1 first form (initial)
 	~ 1823 ALT1 first form (medial)
 	~ 1823 ALT1 first form (final)
@@ -9367,6 +9375,7 @@
 	~ 1824 180B second form (medial)
 1825	MONGOLIAN LETTER OE
 	x (cyrillic small letter barred o - 04E9)
+	~ 1825 ALT1 first form (isolate)
 	~ 1825 ALT1 first form (initial)
 	~ 1825 ALT1 first form (medial)
 	~ 1825 ALT1 first form (final)
@@ -9384,6 +9393,7 @@
 	~ 1826 180B second form (final)
 	~ 1826 180C third form (medial)
 1827	MONGOLIAN LETTER EE
+	~ 1827 ALT1 first form (isolate)
 	~ 1827 ALT1 first form (initial)
 	~ 1827 ALT1 first form (medial)
 	~ 1827 ALT1 first form (final)
@@ -9413,6 +9423,7 @@
 	~ 182B ALT1 first form (final)
 182C	MONGOLIAN LETTER QA
 	x (cyrillic small letter ha - 0445)
+	~ 182C ALT1 first form (isolate)
 	~ 182C ALT1 first form (initial)
 	~ 182C ALT1 first form (medial)
 	~ 182C ALT1 first form (final)
@@ -9423,6 +9434,7 @@
 	~ 182C 180D fourth form (medial)
 182D	MONGOLIAN LETTER GA
 	x (cyrillic small letter ghe - 0433)
+	~ 182D ALT1 first form (isolate)
 	~ 182D ALT1 first form (initial)
 	~ 182D ALT1 first form (medial)
 	~ 182D ALT1 first form (final)
@@ -9537,34 +9549,32 @@
 	~ 1840 ALT1 first form (medial)
 	~ 1840 ALT1 first form (final)
 1841	MONGOLIAN LETTER ZHI
-	~ 1841 ALT1 first form (initial)
-	~ 1841 ALT1 first form (medial)
-	~ 1841 ALT1 first form (final)
 1842	MONGOLIAN LETTER CHI
-	~ 1842 ALT1 first form (initial)
-	~ 1842 ALT1 first form (medial)
-	~ 1842 ALT1 first form (final)
 @		Todo letters
 1843	MONGOLIAN LETTER TODO LONG VOWEL SIGN
 	~ 1843 ALT1 first form (initial)
 	~ 1843 ALT1 first form (medial)
 	~ 1843 ALT1 first form (final)
 1844	MONGOLIAN LETTER TODO E
+	~ 1844 ALT1 first form (isolate)
 	~ 1844 ALT1 first form (initial)
 	~ 1844 ALT1 first form (medial)
 	~ 1844 ALT1 first form (final)
 	~ 1844 180B second form (medial)
 1845	MONGOLIAN LETTER TODO I
+	~ 1845 ALT1 first form (isolate)
 	~ 1845 ALT1 first form (initial)
 	~ 1845 ALT1 first form (medial)
 	~ 1845 ALT1 first form (final)
 	~ 1845 180B second form (medial)
 1846	MONGOLIAN LETTER TODO O
+	~ 1846 ALT1 first form (isolate)
 	~ 1846 ALT1 first form (initial)
 	~ 1846 ALT1 first form (medial)
 	~ 1846 ALT1 first form (final)
 	~ 1846 180B second form (medial)
 1847	MONGOLIAN LETTER TODO U
+	~ 1847 ALT1 first form (isolate)
 	~ 1847 ALT1 first form (initial)
 	~ 1847 ALT1 first form (medial)
 	~ 1847 ALT1 first form (final)
@@ -9573,11 +9583,13 @@
 	~ 1847 180B second form (final)
 	~ 1847 180C third form (medial)
 1848	MONGOLIAN LETTER TODO OE
+	~ 1848 ALT1 first form (isolate)
 	~ 1848 ALT1 first form (initial)
 	~ 1848 ALT1 first form (medial)
 	~ 1848 ALT1 first form (final)
 	~ 1848 180B second form (medial)
 1849	MONGOLIAN LETTER TODO UE
+	~ 1849 ALT1 first form (isolate)
 	~ 1849 ALT1 first form (initial)
 	~ 1849 ALT1 first form (medial)
 	~ 1849 ALT1 first form (final)
@@ -9602,6 +9614,7 @@
 	~ 184D 180B second form (initial)
 	~ 184D 180B second form (medial)
 184E	MONGOLIAN LETTER TODO GA
+	~ 184E ALT1 first form (isolate)
 	~ 184E ALT1 first form (initial)
 	~ 184E ALT1 first form (medial)
 	~ 184E ALT1 first form (final)
@@ -9643,21 +9656,12 @@
 	~ 1857 ALT1 first form (medial)
 	~ 1857 ALT1 first form (final)
 1858	MONGOLIAN LETTER TODO GAA
-	~ 1858 ALT1 first form (initial)
-	~ 1858 ALT1 first form (medial)
-	~ 1858 ALT1 first form (final)
 1859	MONGOLIAN LETTER TODO HAA
 	~ 1859 ALT1 first form (initial)
 	~ 1859 ALT1 first form (medial)
 	~ 1859 ALT1 first form (final)
 185A	MONGOLIAN LETTER TODO JIA
-	~ 185A ALT1 first form (initial)
-	~ 185A ALT1 first form (medial)
-	~ 185A ALT1 first form (final)
 185B	MONGOLIAN LETTER TODO NIA
-	~ 185B ALT1 first form (initial)
-	~ 185B ALT1 first form (medial)
-	~ 185B ALT1 first form (final)
 185C	MONGOLIAN LETTER TODO DZA
 	~ 185C ALT1 first form (initial)
 	~ 185C ALT1 first form (medial)
@@ -9684,6 +9688,7 @@
 	~ 185F ALT1 first form (medial)
 	~ 185F ALT1 first form (final)
 1860	MONGOLIAN LETTER SIBE UE
+	~ 1860 ALT1 first form (isolate)
 	~ 1860 ALT1 first form (initial)
 	~ 1860 ALT1 first form (medial)
 	~ 1860 ALT1 first form (final)
@@ -9699,15 +9704,18 @@
 	~ 1862 ALT1 first form (medial)
 	~ 1862 ALT1 first form (final)
 1863	MONGOLIAN LETTER SIBE KA
+	~ 1863 ALT1 first form (isolate)
 	~ 1863 ALT1 first form (initial)
 	~ 1863 ALT1 first form (medial)
 	~ 1863 ALT1 first form (final)
 	~ 1863 180B second form (medial)
 1864	MONGOLIAN LETTER SIBE GA
+	~ 1864 ALT1 first form (isolate)
 	~ 1864 ALT1 first form (initial)
 	~ 1864 ALT1 first form (medial)
 	~ 1864 ALT1 first form (final)
 1865	MONGOLIAN LETTER SIBE HA
+	~ 1865 ALT1 first form (isolate)
 	~ 1865 ALT1 first form (initial)
 	~ 1865 ALT1 first form (medial)
 	~ 1865 ALT1 first form (final)
@@ -9741,13 +9749,7 @@
 	~ 186B ALT1 first form (medial)
 	~ 186B ALT1 first form (final)
 186C	MONGOLIAN LETTER SIBE GAA
-	~ 186C ALT1 first form (initial)
-	~ 186C ALT1 first form (medial)
-	~ 186C ALT1 first form (final)
 186D	MONGOLIAN LETTER SIBE HAA
-	~ 186D ALT1 first form (initial)
-	~ 186D ALT1 first form (medial)
-	~ 186D ALT1 first form (final)
 186E	MONGOLIAN LETTER SIBE TSA
 	~ 186E ALT1 first form (initial)
 	~ 186E ALT1 first form (medial)
@@ -9759,9 +9761,6 @@
 	~ 186F 180B second form (initial)
 	~ 186F 180B second form (medial)
 1870	MONGOLIAN LETTER SIBE RAA
-	~ 1870 ALT1 first form (initial)
-	~ 1870 ALT1 first form (medial)
-	~ 1870 ALT1 first form (final)
 1871	MONGOLIAN LETTER SIBE CHA
 	~ 1871 ALT1 first form (initial)
 	~ 1871 ALT1 first form (medial)
@@ -9782,6 +9781,7 @@
 	~ 1873 180C third form (final)
 	~ 1873 180D fourth form (medial)
 1874	MONGOLIAN LETTER MANCHU KA
+	~ 1874 ALT1 first form (isolate)
 	~ 1874 ALT1 first form (initial)
 	~ 1874 ALT1 first form (medial)
 	~ 1874 ALT1 first form (final)
@@ -9825,6 +9825,7 @@
 	x (tibetan mark paluta - 0F85)
 1886	MONGOLIAN LETTER ALI GALI THREE BALUDA
 1887	MONGOLIAN LETTER ALI GALI A
+	~ 1887 ALT1 first form (isolate)
 	~ 1887 ALT1 first form (initial)
 	~ 1887 ALT1 first form (medial)
 	~ 1887 ALT1 first form (final)
@@ -9833,11 +9834,13 @@
 	~ 1887 180C third form (final)
 	~ 1887 180D fourth form (final)
 1888	MONGOLIAN LETTER ALI GALI I
+	~ 1888 ALT1 first form (isolate)
 	~ 1888 ALT1 first form (initial)
 	~ 1888 ALT1 first form (medial)
 	~ 1888 ALT1 first form (final)
 	~ 1888 180B second form (final)
 1889	MONGOLIAN LETTER ALI GALI KA
+	~ 1889 ALT1 first form (isolate)
 	~ 1889 ALT1 first form (initial)
 	~ 1889 ALT1 first form (medial)
 	~ 1889 ALT1 first form (final)
@@ -9852,61 +9855,25 @@
 	~ 188B ALT1 first form (medial)
 	~ 188B ALT1 first form (final)
 188C	MONGOLIAN LETTER ALI GALI TTA
-	~ 188C ALT1 first form (initial)
-	~ 188C ALT1 first form (medial)
-	~ 188C ALT1 first form (final)
 188D	MONGOLIAN LETTER ALI GALI TTHA
-	~ 188D ALT1 first form (initial)
-	~ 188D ALT1 first form (medial)
-	~ 188D ALT1 first form (final)
 188E	MONGOLIAN LETTER ALI GALI DDA
-	~ 188E ALT1 first form (initial)
-	~ 188E ALT1 first form (medial)
-	~ 188E ALT1 first form (final)
 188F	MONGOLIAN LETTER ALI GALI NNA
-	~ 188F ALT1 first form (initial)
-	~ 188F ALT1 first form (medial)
-	~ 188F ALT1 first form (final)
 1890	MONGOLIAN LETTER ALI GALI TA
-	~ 1890 ALT1 first form (initial)
-	~ 1890 ALT1 first form (medial)
-	~ 1890 ALT1 first form (final)
 1891	MONGOLIAN LETTER ALI GALI DA
-	~ 1891 ALT1 first form (initial)
-	~ 1891 ALT1 first form (medial)
-	~ 1891 ALT1 first form (final)
 1892	MONGOLIAN LETTER ALI GALI PA
-	~ 1892 ALT1 first form (initial)
-	~ 1892 ALT1 first form (medial)
-	~ 1892 ALT1 first form (final)
 1893	MONGOLIAN LETTER ALI GALI PHA
-	~ 1893 ALT1 first form (initial)
-	~ 1893 ALT1 first form (medial)
-	~ 1893 ALT1 first form (final)
 1894	MONGOLIAN LETTER ALI GALI SSA
 	~ 1894 ALT1 first form (initial)
 	~ 1894 ALT1 first form (medial)
 	~ 1894 ALT1 first form (final)
 1895	MONGOLIAN LETTER ALI GALI ZHA
-	~ 1895 ALT1 first form (initial)
-	~ 1895 ALT1 first form (medial)
-	~ 1895 ALT1 first form (final)
 1896	MONGOLIAN LETTER ALI GALI ZA
 	~ 1896 ALT1 first form (initial)
 	~ 1896 ALT1 first form (medial)
 	~ 1896 ALT1 first form (final)
 1897	MONGOLIAN LETTER ALI GALI AH
-	~ 1897 ALT1 first form (initial)
-	~ 1897 ALT1 first form (medial)
-	~ 1897 ALT1 first form (final)
 1898	MONGOLIAN LETTER TODO ALI GALI TA
-	~ 1898 ALT1 first form (initial)
-	~ 1898 ALT1 first form (medial)
-	~ 1898 ALT1 first form (final)
 1899	MONGOLIAN LETTER TODO ALI GALI ZHA
-	~ 1899 ALT1 first form (initial)
-	~ 1899 ALT1 first form (medial)
-	~ 1899 ALT1 first form (final)
 189A	MONGOLIAN LETTER MANCHU ALI GALI GHA
 	~ 189A ALT1 first form (initial)
 	~ 189A ALT1 first form (medial)
@@ -9932,9 +9899,6 @@
 	~ 189F ALT1 first form (medial)
 	~ 189F ALT1 first form (final)
 18A0	MONGOLIAN LETTER MANCHU ALI GALI TA
-	~ 18A0 ALT1 first form (initial)
-	~ 18A0 ALT1 first form (medial)
-	~ 18A0 ALT1 first form (final)
 18A1	MONGOLIAN LETTER MANCHU ALI GALI DHA
 	~ 18A1 ALT1 first form (initial)
 	~ 18A1 ALT1 first form (medial)
@@ -9956,17 +9920,8 @@
 	~ 18A5 ALT1 first form (medial)
 	~ 18A5 ALT1 first form (final)
 18A6	MONGOLIAN LETTER ALI GALI HALF U
-	~ 18A6 ALT1 first form (initial)
-	~ 18A6 ALT1 first form (medial)
-	~ 18A6 ALT1 first form (final)
 18A7	MONGOLIAN LETTER ALI GALI HALF YA
-	~ 18A7 ALT1 first form (initial)
-	~ 18A7 ALT1 first form (medial)
-	~ 18A7 ALT1 first form (final)
 18A8	MONGOLIAN LETTER MANCHU ALI GALI BHA
-	~ 18A8 ALT1 first form (initial)
-	~ 18A8 ALT1 first form (medial)
-	~ 18A8 ALT1 first form (final)
 18A9	MONGOLIAN LETTER ALI GALI DAGALGA
 18AA	MONGOLIAN LETTER MANCHU ALI GALI LHA
 	~ 18AA ALT1 first form (initial)
@@ -16241,6 +16196,7 @@
 	* an aspect of 150 degrees
 	x (nand - 22BC)
 26BC	SESQUIQUADRATE
+	* an aspect of 135 degrees
 @		Sport symbols
 @+		See other sport symbols in the Miscellaneous Symbols and Pictographs block.
 26BD	SOCCER BALL
@@ -22026,7 +21982,7 @@
 4DFD	HEXAGRAM FOR SMALL PREPONDERANCE
 4DFE	HEXAGRAM FOR AFTER COMPLETION
 4DFF	HEXAGRAM FOR BEFORE COMPLETION
-@@	4E00	CJK Unified Ideographs	9FEA
+@@	4E00	CJK Unified Ideographs	9FEF
 @@	A000	Yi Syllables	A48F
 @@+
 @		Syllables
@@ -32343,7 +32299,7 @@ FFFF	<not a character>
 110BB	KAITHI ABBREVIATION SIGN
 110BC	KAITHI ENUMERATION SIGN
 110BD	KAITHI NUMBER SIGN
-	* used to indicate a numerical references
+	* used to indicate a numerical reference
 110BE	KAITHI SECTION MARK
 	* marks end of sentence
 	x (khojki section mark - 1123B)
@@ -34408,6 +34364,7 @@ FFFF	<not a character>
 @		Virama
 11D97	GUNJALA GONDI VIRAMA
 	* used for producing conjuncts
+@		Symbol
 11D98	GUNJALA GONDI OM
 @		Digits
 11DA0	GUNJALA GONDI DIGIT ZERO
