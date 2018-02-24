@@ -660,11 +660,10 @@ Map {\m{Case_Folding}&\p{age=9.0}} = {\m{*Case_Folding}&\p{age=9.0}}
 # are the same as the last version's
 # Once they are checked, reset the exceptions (in [...]) so that no warning is given
 
-Map {\m{kMandarin}-[\U000224B9]} = {\m{*kMandarin}}
-# 10.0 updated exclusions:
-#    - added 224B9 to the 10.0 exclusions: new kMandarin reading introduced in 10.0
-#    - removed characters whose readings had changed from 8.0 to 9.0 but stayed the same from 9.0 to 10.0
-#      (a total of 613 characters)
+Map {\m{kMandarin}-[\u9FEB-\u9FED \U0002C4FC \U0002C62D \U0002C925 \U0002CBCE \U0002CE23]} = {\m{*kMandarin}}
+# 11.0 updated exclusions:
+#    - added 9FEB..9FED, 2C4FC, 2C62D, 2C925, 2CBCE, 2CE23 to the 11.0 exclusions: new kMandarin readings introduced in 11.0 (confirmed)
+#    - removed 224B9 whose reading had changed from 9.0 to 10.0 but stayed the same from 10.0 to 11.0
 
 # Ideographic invariants
 
