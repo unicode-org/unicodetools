@@ -547,15 +547,20 @@ Let $Annotations = [\uFFF9-\uFFFB]
 
 \p{RI} ⊂ \p{Emoji_Component}
 \p{Emoji_Modifier} ⊂ \p{Emoji_Component}
-\p{Emoji_Component} ⊂ \p{Emoji}
+\p{Emoji_Component} ≉ \p{Emoji}
 \p{Emoji_Modifier_Base} ⊂ \p{Emoji}
 \p{Emoji_Modifier} ⊂ \p{Emoji_Presentation}
 \p{Emoji_Presentation} ⊂ \p{Emoji}
 
+Let $HairComponents = [\U0001F9B0-\U0001F9B3]
+[\p{Extended_Pictographic} & \p{Emoji_Component}] = $HairComponents
+\p{Extended_Pictographic} ⊃ [\p{Emoji} - \p{Emoji_Component}]
+\p{Extended_Pictographic} ⊃ [\p{Emoji_Presentation} - \p{Emoji_Component}]
+
 \p{lb=EB} = \p{Emoji_Modifier_Base}
 \p{lb=EM} = \p{Emoji_Modifier}
 # Recent pictographs with default emoji presentation are lb=ID, EB or EM:
-[\p{Emoji_Presentation} & [\p{age=7.0}\p{age=8.0}\p{age=9.0}\p{age=10.0}]] ⊂ [\p{lb=ID} \p{lb=EB} \p{lb=EM}]
+[\p{Emoji_Presentation} & [\p{age=7.0}\p{age=8.0}\p{age=9.0}\p{age=10.0}\p{age=11.0}]] ⊂ [\p{lb=ID} \p{lb=EB} \p{lb=EM}]
 
 [\p{Emoji_Presentation} - \p{RI}] ⊂ \p{ea=W}
 
