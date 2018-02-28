@@ -2373,9 +2373,11 @@ public class GenerateEmoji {
                                         + GenerateEmoji.CLDR_DATA_LINK + ". "
                                         + "Emoji sequences have more than one code point in the <b>Code</b> column. "
                                         + "<a target='released' href='emoji-released.html'>Recently-added emoji</a> are marked by a ⊛ in the name and outlined images;"
-                                        + "their images may show as a group with “…” before and after."), onlyNew(
-                                                "This chart provides a list of the Unicode emoji characters and sequences that have been added to the most recent version of Unicode Emoji. "
-                                                        + "See also the <a target='candidates' href='emoji-candidates.html'>Emoji Candidates</a>.");
+                                        + " their images may show as a group with “…” before and after."
+                                        + " Emoji with skin-tones are omitted from this chart. "),
+        onlyNew(
+                " This chart provides a list of the Unicode emoji characters and sequences that have been added to the most recent version of Unicode Emoji. "
+                        + " See also the <a target='candidates' href='emoji-candidates.html'>Emoji Candidates</a>.");
 
         final String description;
 
@@ -2447,13 +2449,20 @@ public class GenerateEmoji {
                     out.println("<a name='" + getAnchor(uHex) + "'></a>");
                     continue;
                 }
-
-                if (EmojiData.MODIFIERS.contains(s)) {
-                    continue;
-                }
                 if (filter != null && !filter.contains(s)) {
                     continue;
                 }
+
+                // record them.
+                ce.add(s);
+
+                // don't display skin-tone modifier versions.
+                if (EmojiData.MODIFIERS.containsSome(s)) {
+                    continue;
+                }
+                //                if (EmojiData.MODIFIERS.contains(s)) {
+                //                    continue;
+                //                }
                 String orderingGroup = EmojiOrder.STD_ORDER.charactersToOrdering.get(s);
                 if (orderingGroup == null) {
                     // debug
@@ -2478,7 +2487,6 @@ public class GenerateEmoji {
                 }
                 String toAdd = toHtmlString(s, form, ++item);
                 out.println(toAdd);
-                ce.add(s);
                 outPlain.println(Utility.hex(s, 4, " ") + "\t" + EmojiData.ANNOTATION_SET.getShortName(s));
                 ++headerGroupCount;
             }
@@ -3091,7 +3099,7 @@ public class GenerateEmoji {
             name2 += getNamesListInfo(chars2);
         }
 
-        String textChars = EmojiData.EMOJI_DATA.addEmojiVariants(chars2);
+        //String textChars = EmojiData.EMOJI_DATA.addEmojiVariants(chars2);
         // Emoji.getEmojiVariant(chars2, Emoji.TEXT_VARIANT_STRING);
 
         String chars2WithVS = chars2; // EmojiData.EMOJI_DATA.addEmojiVariants(chars2,
