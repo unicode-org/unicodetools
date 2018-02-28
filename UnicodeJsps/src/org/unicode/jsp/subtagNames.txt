@@ -34,6 +34,7 @@
 1959acad;"Academic" ("governmental") variant of Belarusian as codified in 1959
 1994;Standardized Resian orthography
 1996;German orthography of 1996
+202;Sub-Saharan Africa
 419;Latin America
 AC;Ascension Island
 AD;Andorra
@@ -116,7 +117,7 @@ CV;Cape Verde
 CW;Curaçao
 CX;Christmas Island
 CY;Cyprus
-CZ;Czech Republic
+CZ;Czechia
 Cakm;Chakma
 Cans;Unified Canadian Aboriginal Syllabics
 Cari;Carian
@@ -124,6 +125,7 @@ Cham;Cham
 Cher;Cherokee
 Cirt;Cirth
 Copt;Coptic
+Cpmn;Cypro-Minoan
 Cprt;Cypriot
 Cyrl;Cyrillic
 Cyrs;Old Church Slavonic Cyrillic
@@ -136,6 +138,7 @@ DM;Dominica
 DO;Dominican Republic
 DZ;Algeria
 Deva;Devanagari
+Dogr;Dogra
 Dsrt;Deseret
 Dupl;Duployan shorthand
 EA;Ceuta & Melilla
@@ -182,6 +185,8 @@ GY;Guyana
 Geok;Georgian Khutsuri
 Geor;Georgian
 Glag;Glagolitic
+Gong;Gunjala Gondi
+Gonm;Masaram Gondi
 Goth;Gothic
 Gran;Grantha
 Grek;Greek
@@ -204,6 +209,7 @@ Hebr;Hebrew
 Hira;Hiragana
 Hluw;Anatolian Hieroglyphs
 Hmng;Pahawh Hmong
+Hmnp;Nyiakeng Puachue Hmong
 Hrkt;Japanese syllabaries
 Hung;Old Hungarian
 IC;Canary Islands
@@ -298,10 +304,12 @@ MX;Mexico
 MY;Malaysia
 MZ;Mozambique
 Mahj;Mahajani
+Maka;Makasar
 Mand;Mandaean
 Mani;Manichaean
 Marc;Marchen
 Maya;Mayan hieroglyphs
+Medf;Medefaidrin
 Mend;Mende
 Merc;Meroitic Cursive
 Mero;Meroitic
@@ -329,6 +337,7 @@ NZ;New Zealand
 Narb;Old North Arabian
 Nbat;Nabataean
 Newa;Newa
+Nkdb;Naxi Dongba
 Nkgb;Naxi Geba
 Nkoo;N’Ko
 Nshu;Nüshu
@@ -375,6 +384,7 @@ RS;Serbia
 RU;Russia
 RW;Rwanda
 Rjng;Rejang
+Rohg;Hanifi Rohingya
 Roro;Rongorongo
 Runr;Runic
 SA;Saudi Arabia
@@ -407,10 +417,14 @@ Saur;Saurashtra
 Sgnw;SignWriting
 Shaw;Shavian
 Shrd;Sharada
+Shui;Shuishu
 Sidd;Siddham
 Sind;Khudawadi
 Sinh;Sinhala
+Sogd;Sogdian
+Sogo;Old Sogdian
 Sora;Sora Sompeng
+Soyo;Soyombo
 Sund;Sundanese
 Sylo;Syloti Nagri
 Syrc;Syriac
@@ -470,6 +484,7 @@ Visp;Visible Speech
 WF;Wallis & Futuna
 WS;Samoa
 Wara;Varang Kshiti
+Wcho;Wancho
 Wole;Woleai
 XK;Kosovo
 Xpeo;Old Persian
@@ -484,6 +499,7 @@ ZM;Zambia
 ZR;Zaire
 ZW;Zimbabwe
 ZZ;Unknown Region
+Zanb;Zanabazar Square
 Zinh;Inherited
 Zmth;Mathematical Notation
 Zsye;Emoji
@@ -566,7 +582,7 @@ acy;Cypriot Arabic
 acz;Acheron
 ada;Adangme
 adb;Adabe
-add;Dzodinka
+add;Lidzonka
 ade;Adele
 adf;Dhofari Arabic
 adg;Andegerebinha
@@ -682,7 +698,7 @@ ait;Arikem
 aiw;Aari
 aix;Aighon
 aiy;Ali
-aja;Aja (Sudan)
+aja;Aja (South Sudan)
 ajg;Aja (Benin)
 aji;Ajië
 ajn;Andajin
@@ -711,6 +727,7 @@ akr;Araki
 aks;Akaselem
 akt;Akolet
 aku;Akum
+akuapem;Akuapem Twi
 akv;Akhvakh
 akw;Akwa
 akx;Aka-Kede
@@ -880,11 +897,12 @@ ary;Moroccan Arabic
 arz;Egyptian Arabic
 as;Assamese
 asa;Asu
+asante;Asante Twi
 asb;Assiniboine
 asc;Casuarina Coast Asmat
 asd;Asas
 ase;American Sign Language
-asf;Australian Sign Language
+asf;Auslan
 asg;Cishingini
 ash;Abishira
 asi;Buruwai
@@ -1115,9 +1133,9 @@ bdd;Bunama
 bde;Bade
 bdf;Biage
 bdg;Bonggi
-bdh;Baka (Sudan)
+bdh;Baka (South Sudan)
 bdi;Burun
-bdj;Bai
+bdj;Bai (South Sudan)
 bdk;Budukh
 bdl;Indonesian Bajau
 bdm;Buduma
@@ -1326,7 +1344,7 @@ bli;Bolia
 blj;Bolongan
 blk;Pa'o Karen
 bll;Biloxi
-blm;Beli (Sudan)
+blm;Beli (South Sudan)
 bln;Southern Catanduanes Bikol
 blo;Anii
 blp;Blablanga
@@ -1334,7 +1352,7 @@ blq;Baluan-Pam
 blr;Blang
 bls;Balaesang
 blt;Tai Dam
-blv;Bolo
+blv;Kibala
 blw;Balangao
 blx;Mag-Indi Ayta
 bly;Notre
@@ -1345,7 +1363,7 @@ bmb;Bembe
 bmc;Biem
 bmd;Baga Manduri
 bme;Limassa
-bmf;Bom
+bmf;Bom-Kim
 bmg;Bamwe
 bmh;Kein
 bmi;Bagirmi
@@ -1885,6 +1903,7 @@ cni;Asháninka
 cnk;Khumi Chin
 cnl;Lalana Chinantec
 cno;Con
+cnr;Montenegrin
 cns;Central Asmat
 cnt;Tepetotutla Chinantec
 cnu;Chenoua
@@ -2001,7 +2020,7 @@ cu;Church Slavic
 cua;Cua
 cub;Cubeo
 cuc;Usila Chinantec
-cug;Cung
+cug;Chungmboko
 cuh;Chuka
 cui;Cuiba
 cuj;Mashco Piro
@@ -2485,7 +2504,7 @@ fak;Fang (Cameroon)
 fal;South Fali
 fam;Fam
 fan;Fang
-fap;Palor
+fap;Paloor
 far;Fataleka
 fat;Fanti
 fau;Fayu
@@ -2702,6 +2721,7 @@ gia;Kitja
 gib;Gibanawa
 gic;Gail
 gid;Gidar
+gie;Gaɓogbo
 gig;Goaria
 gih;Githabul
 gil;Gilbertese
@@ -2768,7 +2788,7 @@ gne;Ganang
 gng;Ngangam
 gnh;Lere
 gni;Gooniyandi
-gnk;//Gana
+gnk;||Gana
 gnl;Gangulu
 gnm;Ginuman
 gnn;Gumatj
@@ -2892,7 +2912,7 @@ gwe;Gweno
 gwf;Gowro
 gwg;Moo
 gwi;Gwichʼin
-gwj;/Gwi
+gwj;|Gwi
 gwm;Awngthim
 gwn;Gwandara
 gwr;Gwere
@@ -2960,7 +2980,7 @@ hei;Heiltsuk
 hem;Hemba
 hepburn;Hepburn romanization
 heploc;Hepburn romanization, Library of Congress method
-hgm;Hai//om
+hgm;Hai||om
 hgw;Haigwai
 hhi;Hoia Hoia
 hhr;Kerak
@@ -3021,7 +3041,7 @@ hmz;Hmong Shua
 hna;Mina (Cameroon)
 hnd;Southern Hindko
 hne;Chhattisgarhi
-hnh;//Ani
+hnh;||Ani
 hni;Hani
 hnj;Hmong Njua
 hnn;Hanunoo
@@ -3068,6 +3088,7 @@ hrx;Hunsrik
 hrz;Harzani
 hsb;Upper Sorbian
 hsh;Hungarian Sign Language
+hsistemo;Standard H-system orthographic fallback for spelling Esperanto
 hsl;Hausa Sign Language
 hsn;Xiang Chinese
 hss;Harsusi
@@ -3079,7 +3100,7 @@ htu;Hitu
 htx;Middle Hittite
 hu;Hungarian
 hub;Huambisa
-huc;=/Hua
+huc;‡Hua
 hud;Huaulu
 hue;San Francisco Del Mar Huave
 huf;Humene
@@ -3124,6 +3145,7 @@ ibb;Ibibio
 ibd;Iwaidja
 ibe;Akpes
 ibg;Ibanag
+ibh;Bih
 ibi;Ibilo
 ibl;Ibaloi
 ibm;Agoi
@@ -3241,7 +3263,7 @@ iqw;Ikwo
 ira;Iranian (Other)
 ire;Iresim
 irh;Irarutu
-iri;Irigwe
+iri;Rigwe
 irk;Iraqw
 irn;Irántxe
 iro;Iroquoian languages
@@ -3285,6 +3307,7 @@ ity;Moyadan Itneg
 itz;Itzá
 iu;Inuktitut
 ium;Iu Mien
+ivanchov;Bulgarian in 1899 orthography
 ivb;Ibatan
 ivv;Ivatan
 iw;Hebrew
@@ -3745,7 +3768,7 @@ kls;Kalasha
 klt;Nukna
 klu;Klao
 klv;Maskelynes
-klw;Lindu
+klw;Tado
 klx;Koluwawa
 kly;Kalao
 klz;Kabola
@@ -3894,7 +3917,7 @@ krm;Krim
 krn;Sapo
 kro;Kru
 krp;Korop
-krr;Kru'ng 2
+krr;Krung
 krs;Gbaya (Sudan)
 krt;Tumari Kanuri
 kru;Kurukh
@@ -3956,7 +3979,7 @@ ktv;Eastern Katu
 ktw;Kato
 ktx;Kaxararí
 kty;Kango (Bas-Uélé District)
-ktz;Ju/'hoan
+ktz;Ju|’hoan
 ku;Kurdish
 kub;Kutep
 kuc;Kwinsu
@@ -4224,7 +4247,7 @@ lgi;Lengilu
 lgk;Lingarak
 lgl;Wala
 lgm;Lega-Mwenga
-lgn;Opuuo
+lgn;T'apo
 lgq;Logba
 lgr;Lengo
 lgt;Pahi
@@ -4344,7 +4367,7 @@ lnj;Leningitij
 lnl;South Central Banda
 lnm;Langam
 lnn;Lorediakarkar
-lno;Lango (Sudan)
+lno;Lango (South Sudan)
 lns;Lamnso'
 lnu;Longuda
 lnw;Lanima
@@ -4411,6 +4434,7 @@ lsy;Mauritian Sign Language
 lt;Lithuanian
 ltc;Late Middle Chinese
 ltg;Latgalian
+lth;Thur
 lti;Leti (Indonesia)
 ltn;Latundê
 lto;Tsotso
@@ -5186,6 +5210,7 @@ ncm;Nambo
 ncn;Nauna
 nco;Sibe
 ncp;Ndaktup
+ncq;Northern Katang
 ncr;Ncane
 ncs;Nicaraguan Sign Language
 nct;Chothe Naga
@@ -5270,7 +5295,7 @@ ngp;Ngulu
 ngq;Ngurimi
 ngr;Engdewu
 ngs;Gvoko
-ngt;Ngeq
+ngt;Kriang
 ngu;Guerrero Nahuatl
 ngv;Nagumi
 ngw;Ngwaba
@@ -5472,9 +5497,11 @@ npn;Mondropolon
 npo;Pochuri Naga
 nps;Nipsan
 npu;Puimei Naga
+npx;Noipx
 npy;Napu
 nqg;Southern Nago
 nqk;Kura Ede Nago
+nql;Ngendelengo
 nqm;Ndom
 nqn;Nen
 nqo;N’Ko
@@ -5795,7 +5822,7 @@ oue;Oune
 oui;Old Uighur
 oum;Ouma
 oun;!O!ung
-ovd;Övdalian
+ovd;Elfdalian
 owi;Owiniga
 owl;Old Welsh
 oxendict;Oxford English Dictionary spelling
@@ -5813,6 +5840,9 @@ pae;Pagibete
 paf;Paranawát
 pag;Pangasinan
 pah;Tenharim
+pahawh2;Pahawh Hmong Second Stage Reduced orthography
+pahawh3;Pahawh Hmong Third Stage Reduced orthography
+pahawh4;Pahawh Hmong Final Version orthography
 pai;Pe
 pak;Parakanã
 pal;Pahlavi
@@ -6462,9 +6492,10 @@ scn;Sicilian
 sco;Scots
 scotland;Scottish Standard English
 scouse;Scouse
-scp;Helambu Sherpa
+scp;Hyolmo
 scq;Sa'och
 scs;North Slavey
+sct;Southern Katang
 scu;Shumcho
 scv;Sheni
 scw;Sha
@@ -6738,6 +6769,7 @@ sow;Sowanda
 sox;Swo
 soy;Miyobe
 soz;Temi
+spanglis;Spanglish
 spb;Sepa (Indonesia)
 spc;Sapé
 spd;Saep
@@ -6904,7 +6936,7 @@ swy;Sarua
 sxb;Suba
 sxc;Sicanian
 sxe;Sighu
-sxg;Shixing
+sxg;Shuhi
 sxk;Southern Kalapuya
 sxl;Selian
 sxm;Samre
@@ -6938,6 +6970,7 @@ szg;Sengele
 szl;Silesian
 szn;Sula
 szp;Suabo
+szs;Solomon Islands Sign Language
 szv;Isu (Fako Division)
 szw;Sawai
 ta;Tamil
@@ -7515,6 +7548,7 @@ uk;Ukrainian
 uka;Kaburi
 ukg;Ukuriguma
 ukh;Ukhwejo
+ukk;Muak Sa-aak
 ukl;Ukrainian Sign Language
 ukp;Ukpe-Bayobiri
 ukq;Ukwa
@@ -7747,6 +7781,7 @@ wbm;Wa
 wbp;Warlpiri
 wbq;Waddar
 wbr;Wagdi
+wbs;West Bengal Sign Language
 wbt;Wanman
 wbv;Wajarri
 wbw;Woi
@@ -7992,6 +8027,7 @@ xda;Darkinyung
 xdc;Dacian
 xdk;Dharuk
 xdm;Edomite
+xdo;Kwandu
 xdy;Malayic Dayak
 xeb;Eblan
 xed;Hdi
@@ -8165,6 +8201,7 @@ xsd;Sidetic
 xse;Sempan
 xsh;Shamang
 xsi;Sio
+xsistemo;Standard X-system orthographic fallback for spelling Esperanto
 xsj;Subi
 xsl;South Slavey
 xsm;Kasem
