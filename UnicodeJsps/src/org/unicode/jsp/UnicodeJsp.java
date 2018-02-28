@@ -97,7 +97,7 @@ public class UnicodeJsp {
       start = decimalEscapes.end();
     }
     result2.append(text.substring(start));
-    text = result2.toString();
+    text = UNESCAPER.transform(result2.toString());
 
     int lastBreak = 0;
     StringBuffer result = new StringBuffer();
@@ -109,7 +109,9 @@ public class UnicodeJsp {
       //piece = toHTML.transliterate(piece);
       piece = UnicodeUtilities.toHTML(piece);
 
-      piece = piece.replaceAll("&#xA;","<br>");
+      piece = piece.replaceAll("&#xA;","<br>")
+              .replaceAll("\r\n", "<br>")
+              .replaceAll("\n", "<br>");
       result.append("<span class='break'>").append(piece).append("</span>");
       lastBreak = nextBreak;
     }
