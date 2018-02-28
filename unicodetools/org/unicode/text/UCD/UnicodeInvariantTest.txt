@@ -534,7 +534,9 @@ Let $Annotations = [\uFFF9-\uFFFB]
 \p{Other_Grapheme_Extend} = [\p{Grapheme_Extend} - [\p{GC=Me} \p{GC=Mn}]]
 
 \p{GCB=Prepend} = [\p{InSC=Consonant_Preceding_Repha} \p{InSC=Consonant_Prefixed} \p{PCM}]
-\p{GCB=Extend} = \p{Grapheme_Extend}
+[\p{GCB=Extend} \p{GCB=Virama}] = \p{Grapheme_Extend}
+# 11.0: GCB=Extend was split into Extend and Virama; Grapheme_Extend=Y stayed as is
+\p{GCB=Virama} = [\p{InSC=Virama} \p{InSC=Invisible_Stacker} - \p{gc=Mc}]
 \p{WB=Extend} = [\p{Grapheme_Extend} \p{GC=Mc} - [\u200D]]
 \p{SB=Extend} = [\p{Grapheme_Extend} \p{GC=Mc} \u200D]
 
