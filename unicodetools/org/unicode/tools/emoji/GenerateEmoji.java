@@ -2366,15 +2366,17 @@ public class GenerateEmoji {
                         + "The ordering of the emoji and the annotations are based on " + GenerateEmoji.CLDR_DATA_LINK
                         + ". "
                         + "Emoji sequences have more than one code point in the <b>Code</b> column. "
-                        + "<a target='released' href='emoji-released.html'>Recently-added emoji</a> are marked by a ⊛ in the name and outlined images."), fullForm(
-                                "This chart provides a list of the Unicode emoji characters and sequences, with images from different vendors, "
-                                        + "CLDR name, date, source, and keywords. "
-                                        + "The ordering of the emoji and the annotations are based on "
-                                        + GenerateEmoji.CLDR_DATA_LINK + ". "
-                                        + "Emoji sequences have more than one code point in the <b>Code</b> column. "
-                                        + "<a target='released' href='emoji-released.html'>Recently-added emoji</a> are marked by a ⊛ in the name and outlined images;"
-                                        + " their images may show as a group with “…” before and after."
-                                        + " Emoji with skin-tones are omitted from this chart. "),
+                        + "<a target='released' href='emoji-released.html'>Recently-added emoji</a> are marked by a ⊛ in the name and outlined images."
+                        + " Emoji with skin-tones are omitted from this chart. "), 
+        fullForm(
+                "This chart provides a list of the Unicode emoji characters and sequences, with images from different vendors, "
+                        + "CLDR name, date, source, and keywords. "
+                        + "The ordering of the emoji and the annotations are based on "
+                        + GenerateEmoji.CLDR_DATA_LINK + ". "
+                        + "Emoji sequences have more than one code point in the <b>Code</b> column. "
+                        + "<a target='released' href='emoji-released.html'>Recently-added emoji</a> are marked by a ⊛ in the name and outlined images;"
+                        + " their images may show as a group with “…” before and after."
+                        + " Emoji with skin-tones are omitted from this chart. "),
         onlyNew(
                 " This chart provides a list of the Unicode emoji characters and sequences that have been added to the most recent version of Unicode Emoji. "
                         + " See also the <a target='candidates' href='emoji-candidates.html'>Emoji Candidates</a>.");
