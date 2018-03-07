@@ -51,6 +51,9 @@ public class TestSegment {
     private final Pattern bnf;
 
     TestSegment(String testBnf) {
+        BNF foo;
+        
+        
         StringBuilder generationRules = new StringBuilder();
         for (String line : FileUtilities.in(TestSegment.class, testBnf)) {
             if (line.startsWith("#")) {
