@@ -71,6 +71,17 @@ import com.ibm.icu.util.VersionInfo;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class GenerateEmoji {
+    private static final String HTML_HEAD = "<html>\n"
+    + "<head>\n"
+    + "<script async src='https://www.googletagmanager.com/gtag/js?id=UA-19876713-1'>"
+    + "</script>\n"
+    + "<script>\nwindow.dataLayer = window.dataLayer || [];\n"
+    + "function gtag(){dataLayer.push(arguments);}\n"
+    + "gtag('js', new Date());\n"
+    + "gtag('config', 'UA-19876713-1');\n"
+    + "</script>\n"
+    + "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>\n";
+
     private static final boolean OLD = false;
 
     private static final String SINGLETONS_KEYCAPS_FLAGS = "It does not include emoji sequences, except for keycaps and flags. ";
@@ -2524,12 +2535,7 @@ public class GenerateEmoji {
                 + "<br><a href='http://www.unicode.org/unicode/copyright.html'>"
                 + "<img src='http://www.unicode.org/img/hb_notice.gif' style='border-style: none; width: 216px; height=50px;' alt='Access to Copyright and terms of use'>"
                 + "</a><br><script language='Javascript' type='text/javascript' src='http://www.unicode.org/webscripts/lastModified.js'></script>"
-                + "</div><script type='text/javascript' >\n"
-                + "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){"
-                + "(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),"
-                + "m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)"
-                + "})(window,document,'script','//www.google-analytics.com/analytics.js','ga');"
-                + "  ga('create', 'UA-19876713-1', 'auto');" + "  ga('send', 'pageview');" + "</script>"
+                + "</div>"
                 + "</body></html>");
     }
 
@@ -2537,8 +2543,7 @@ public class GenerateEmoji {
             boolean skipVersion, String firstLine, String dataDir, String tr51Url) {
         final String fullTitle = title + (skipVersion ? "" : ", v" + Emoji.VERSION_STRING);
         String headerLine = "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n"
-                + "<html>\n" + "<head>\n"
-                + "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>\n"
+                + HTML_HEAD
                 + "<link rel='stylesheet' type='text/css' href='emoji-list.css'>\n"
                 + "<title>" + fullTitle
                 + (skipVersion ? "" : Emoji.BETA_TITLE_AFFIX) + "</title>\n"
@@ -2559,8 +2564,9 @@ public class GenerateEmoji {
                         + "<p>While these charts use a particular version of the <a target='emoji-data' href='"
                         + dataDir
                         + "'>Unicode Emoji data files</a>, the images and format may be updated at any time."
-                        + " For any production usage, those data files should be consulted."
-                        + " For more information, see <a target='text' href='index.html'>Index &amp; Help</a>.</p>\n");
+                        + " For any production usage, consult those data files. "
+                        + " For information about the contents of each column, such as the <b>CLDR Short Name</b>, click on the column header."
+                        + " For further information, see <a target='text' href='index.html'>Index &amp; Help</a>.</p>\n");
         out.print(headerLine);
     }
 
@@ -3352,13 +3358,14 @@ public class GenerateEmoji {
                 if (source.equals("👨‍🦰")) {
                     int debug = 0;
                 }
+                String cldrName = EmojiData.EMOJI_DATA.getName(source);
                 if (!EmojiData.MODIFIERS.containsSome(source)
                         && !source.contains("\u200D\u2640")
                         && !source.contains("\u200D\u2642")) {
                     outputPlain.add(++countPlain
                             + "\t" + Emoji.toUHex(source)
                             + "\t" + source
-                            + "\t" + EmojiData.EMOJI_DATA.getName(source)
+                            + "\t" + cldrName
                             + "\t" + getShortUnicodeName(source, ", "));
                 }
                 if (Emoji.ABBR && count > 20) {
@@ -3441,14 +3448,22 @@ public class GenerateEmoji {
                         + getDoubleLink(href, anchor) + "</td>\n"
                         // + " <td class='andr'>" + blackAndWhite + "</td>\n"
                         + " <td class='default nowrap'>" + color + "</td>\n" + " <td class='name'>"
-                        + EmojiData.EMOJI_DATA.getName(source);
+                        + cldrName;
                 currentRow += "</td>\n";
                 String annotationsString = getAnnotationsString(source);
-                if (candidateStyle  != CandidateStyle.released) {
+                
+                int single = UnicodeSet.getSingleCodePoint(source);
+                if (single != Integer.MAX_VALUE) {
                     String uname = candidateData.getUName(source);
-                    if (uname != null) {
-                        annotationsString += "<div class='uname'>Unicode Name: " + uname + "</div>";
+                    if (uname == null) {
+                        uname = IUP_LATEST.getName(single);
                     }
+                    if (uname != null && !uname.startsWith("<")
+                            && !skeleton(uname).equals(skeleton(cldrName))) {
+                        annotationsString += "<div class='uname'>" + uname + "</div>";
+                    }
+                }
+                if (candidateStyle  != CandidateStyle.released) {
                     String comment = candidateData.getComment(source);
                     if (comment != null) {
                         annotationsString += "<div class='uname'>" + comment + "</div>";
@@ -3488,6 +3503,12 @@ public class GenerateEmoji {
                 out.println(outputLine);
             }
         }
+    }
+
+    static final Pattern NON_ASCII_ALPHANUM = Pattern.compile("[^A-Za-z0-9]");
+    
+    private static String skeleton(String uname) {
+        return NON_ASCII_ALPHANUM.matcher(uname.toLowerCase(Locale.ROOT)).replaceAll("");
     }
 
     private static String getHex(String source) {
