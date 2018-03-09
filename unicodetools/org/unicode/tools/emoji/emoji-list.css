@@ -298,11 +298,15 @@ H2 {
     /* color:gray; */
 }
 .uname {
-	font-size:75%;
+	font-size:50%;
 	margin:0.1em 1em 0.1em 1em;
 	font-style: italic;
 }
-.xxx:before {
+.uname::before {
+	content: "UN: ";
+}
+
+.xxx::before {
 	content: "❌   ";
 }
 .member:before {
