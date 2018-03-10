@@ -25,6 +25,7 @@ import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+import org.unicode.text.utility.UtilityBase;
 
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UTF16;
@@ -190,9 +191,7 @@ public class MakeNamesChart {
             //out = FileUtilities.openUTF8Writer("C:/DATA/GEN/charts/namelist/", namePrefix + fileName);
             out = Utility.openPrintWriter(NAMESLIST_DIR, namePrefix + fileName, Utility.UTF8_WINDOWS);
             out.println("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n" +
-                    "<html>\n" +
-                    "<head>\n" +
-                    "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>\n" +
+                    UtilityBase.HTML_HEAD +
                     "<title>none</title>\n" +
                     "<link rel='stylesheet' type='text/css' href='nameslist.css'>\n" +
                     "</head>\n" +

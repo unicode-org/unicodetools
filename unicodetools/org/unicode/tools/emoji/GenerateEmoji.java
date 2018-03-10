@@ -39,6 +39,7 @@ import org.unicode.props.VersionToAge;
 import org.unicode.text.UCD.NamesList;
 import org.unicode.text.utility.Birelation;
 import org.unicode.text.utility.Utility;
+import org.unicode.text.utility.UtilityBase;
 import org.unicode.tools.emoji.CandidateData.Quarter;
 import org.unicode.tools.emoji.CandidateData.Status;
 import org.unicode.tools.emoji.CountEmoji.Bucket;
@@ -71,17 +72,6 @@ import com.ibm.icu.util.VersionInfo;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class GenerateEmoji {
-    private static final String HTML_HEAD = "<html>\n"
-    + "<head>\n"
-    + "<script async src='https://www.googletagmanager.com/gtag/js?id=UA-19876713-1'>"
-    + "</script>\n"
-    + "<script>\nwindow.dataLayer = window.dataLayer || [];\n"
-    + "function gtag(){dataLayer.push(arguments);}\n"
-    + "gtag('js', new Date());\n"
-    + "gtag('config', 'UA-19876713-1');\n"
-    + "</script>\n"
-    + "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>\n";
-
     private static final boolean OLD = false;
 
     private static final String SINGLETONS_KEYCAPS_FLAGS = "It does not include emoji sequences, except for keycaps and flags. ";
@@ -2543,7 +2533,7 @@ public class GenerateEmoji {
             boolean skipVersion, String firstLine, String dataDir, String tr51Url) {
         final String fullTitle = title + (skipVersion ? "" : ", v" + Emoji.VERSION_STRING);
         String headerLine = "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n"
-                + HTML_HEAD
+                + UtilityBase.HTML_HEAD
                 + "<link rel='stylesheet' type='text/css' href='emoji-list.css'>\n"
                 + "<title>" + fullTitle
                 + (skipVersion ? "" : Emoji.BETA_TITLE_AFFIX) + "</title>\n"
