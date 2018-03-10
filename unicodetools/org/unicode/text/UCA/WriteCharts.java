@@ -39,6 +39,7 @@ import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Pair;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+import org.unicode.text.utility.UtilityBase;
 
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
@@ -935,7 +936,7 @@ public class WriteCharts implements UCD_Types {
         showIndex(scriptName, fileName + hover);
         final String title = "UCA: " + scriptName;
         output.println("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n"
-                + "<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
+                + UtilityBase.HTML_HEAD);
         output.println("<title>" + title + "</title>");
         output.println("<link rel='stylesheet' href='charts.css' type='text/css'>");
         output.println("</head><body><h2>" + scriptName + "</h2>");
@@ -951,7 +952,7 @@ public class WriteCharts implements UCD_Types {
         showIndex(name, fileName);
         final String title = name;
         output.println("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n" +
-                "<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
+                UtilityBase.HTML_HEAD);
         output.println("<title>" + title + "</title>");
         output.println("<link rel='stylesheet' href='charts.css' type='text/css'>");
         output.println("</head><body>");
@@ -1134,7 +1135,7 @@ public class WriteCharts implements UCD_Types {
         final PrintWriter out = Utility.openPrintWriter(Settings.GEN_DIR + "log/", "composition_chart.html", Utility.UTF8_WINDOWS);
         try {
             out.println("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n" +
-                    "<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
+                    UtilityBase.HTML_HEAD);
             out.println("<style type='text/css'>");
 
             out.println("body { font-family: Arial Unicode MS }");
@@ -1369,7 +1370,7 @@ public class WriteCharts implements UCD_Types {
         final PrintWriter out = Utility.openPrintWriter(Settings.GEN_DIR + "log/", "allocation.html", Utility.UTF8_WINDOWS);
         try {
             out.println("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n" +
-                    "<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
+                    UtilityBase.HTML_HEAD);
             out.println("<title>Unicode Allocation</title></head>");
             out.println("<body bgcolor='#FFFFFF'><h1 align='center'><a href='#Notes'>Unicode Allocation</a></h1>");
 

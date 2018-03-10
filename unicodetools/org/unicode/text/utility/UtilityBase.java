@@ -28,5 +28,16 @@ public class UtilityBase  implements UCD_Types {
     }
 
     static UCDProperty defaultIgnorable = null;
+    
+    public static final String HTML_HEAD = "<html>\n"
+    + "<head>\n"
+    + "<script async src='https://www.googletagmanager.com/gtag/js?id=UA-19876713-1'>"
+    + "</script>\n"
+    + "<script>\nwindow.dataLayer = window.dataLayer || [];\n"
+    + "function gtag(){dataLayer.push(arguments);}\n"
+    + "gtag('js', new Date());\n"
+    + "gtag('config', 'UA-19876713-1');\n"
+    + "</script>\n"
+    + "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>\n";
 
 }
