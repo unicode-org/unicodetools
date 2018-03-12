@@ -690,8 +690,10 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.BOPOMOFO_SCRIPT).newByte().twoBytePrimaries();
         // Minor script, avoid lead byte overflow.
         setOptionsForScript(UCD_Types.DESERET_SCRIPT).newByte();
-        // Register the scripts as aliases, avoid lead byte overflow.
-        setOptionsForScripts(UCD_Types.Meroitic_Cursive, UCD_Types.Meroitic_Hieroglyphs).newByte();
+        // Minor script, avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.Egyptian_Hieroglyphs).newByte();
+        // Register the scripts as aliases.
+        setOptionsForScripts(UCD_Types.Meroitic_Cursive, UCD_Types.Meroitic_Hieroglyphs);
         // Larged Excluded Script, minimal gaps.
         setOptionsForScripts(UCD_Types.Tangut).minimalGap3();
         // Han uses many lead bytes, so that tailoring tens of thousands of characters
