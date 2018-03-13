@@ -303,7 +303,7 @@ H2 {
 	font-style: italic;
 }
 .uname::before {
-	content: "UN: ";
+	content: "🅄 ";
 }
 
 .xxx::before {
