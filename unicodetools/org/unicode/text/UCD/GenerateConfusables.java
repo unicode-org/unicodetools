@@ -74,7 +74,9 @@ import com.ibm.icu.util.ULocale;
 
 
 public class GenerateConfusables {
-
+    static {
+        System.setProperty("SCRIPT_UNICODE_VERSION", Default.ucdVersion());
+    }
     private static final String REFERENCE_VERSION = Settings.lastVersion;
 
     static final Normalizer NFKD = Default.nfkd();
@@ -199,7 +201,9 @@ public class GenerateConfusables {
             e.printStackTrace();
         } finally {
             System.out.println("Done");
-            System.out.println("!!! Remember to run TestSecurity.java !!!");
+            System.out.println("!!! Remember to run TestSecurity.java, after refreshing the generated files in Eclipse at "
+                    + DRAFT_OUT
+                    + " !!!");
         }
     }
 
