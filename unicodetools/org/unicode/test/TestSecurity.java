@@ -460,7 +460,7 @@ public class TestSecurity extends TestFmwkPlus {
                 {"乙一", Status.SAME}, // Hani
                 {"㇠ー", Status.SAME, Status.OTHER}, // Hiragana
                 {"Aー", Status.SAME},
-                {"カ"}, // KATAKANA LETTER KA // should be confusable with ⼒
+                {"カ", Status.SAME, Status.OTHER}, // KATAKANA LETTER KA // should be confusable with ⼒
                 {"⼒", Status.SAME}, // KANGXI RADICAL POWER
                 {"力", Status.SAME}, // CJK UNIFIED IDEOGRAPH-529B
                 {"!", Status.SAME, Status.OTHER},

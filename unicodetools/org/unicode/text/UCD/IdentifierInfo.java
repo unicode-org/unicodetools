@@ -24,6 +24,7 @@ import org.unicode.cldr.util.props.BagFormatter;
 import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Identifier_Type_Values;
 import org.unicode.text.UCD.GenerateConfusables.FakeBreak;
@@ -423,9 +424,10 @@ public class IdentifierInfo {
         UnicodeSet hasRecommendedScript = new UnicodeSet();
         Set<String> scripts = LATEST.load(UcdProperty.Script).values();
         for (final String script : scripts) {
-            Info scriptInfo = ScriptMetadata.getInfo(script);
+            String shortName = UcdPropertyValues.Script_Values.forName(script).getShortName();
+            Info scriptInfo = ScriptMetadata.getInfo(shortName);
             if (scriptInfo == null) {
-                System.out.println("No info for: " + script);
+                System.out.println("No script metadata info for: " + script);
             }
             if (scriptInfo != null && scriptInfo.idUsage == IdUsage.RECOMMENDED) {
                 final UnicodeSet us = GenerateConfusables.IDENTIFIER_INFO.getSetWith(script);
@@ -437,7 +439,8 @@ public class IdentifierInfo {
         hasRecommendedScript.freeze();
 
         for (final String script : scripts) {
-            final Info scriptInfo = ScriptMetadata.getInfo(script);
+            String shortName = UcdPropertyValues.Script_Values.forName(script).getShortName();
+            Info scriptInfo = ScriptMetadata.getInfo(shortName);
             final IdUsage idUsage = scriptInfo != null 
                     ? scriptInfo.idUsage 
                             : IdUsage.EXCLUSION;
