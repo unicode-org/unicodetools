@@ -94,14 +94,15 @@ public class GenerateIdnaTest {
     public static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss 'GMT'", ULocale.US);
 
     int generateTests(int lines) throws IOException {
-        final String filename = "IdnaTest.txt";
-        final PrintWriter out = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.DIR, filename);
-        out.println(Utility.getDataHeader(filename));
+        String fileName = "IdnaTest-old.txt";
+        final PrintWriter out = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.DIR, fileName);
+        out.println(Utility.getDataHeader(fileName));
 
         FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader.txt").toString().substring(5), "UTF-8", out);
 
-        final PrintWriter out2 = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.DIR_BETA, filename);
-        out2.println(Utility.getDataHeader(filename));
+        String filename2 = "IdnaTestV2.txt";
+        final PrintWriter out2 = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.DIR, filename2);
+        out2.println(Utility.getDataHeader(filename2));
 
         FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader2.txt").toString().substring(5), "UTF-8", out2);
 
