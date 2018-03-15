@@ -671,9 +671,9 @@ Brackets	2983
 Brackets, CJK Angle	3008
 Brackets, CJK Corner	300C
 Brackets, Corner	2308
+Brackets, Horizontal	23B4
 Brackets, Mathematical	27E6
 Brackets, Ornamental	2768
-Brackets, Vertical	23B4
 Brahmi	11000
 Braille Patterns	2800
 brazilian currency	20A2
@@ -2509,6 +2509,7 @@ HOOK, MODIFIER LETTER RHOTIC	02DE
 hook, nasal	0328
 hoot	2364
 HORIZONTAL BAR	2015
+Horizontal Brackets	23B4
 HORIZONTAL ELLIPSIS	2026
 HORIZONTAL ELLIPSIS, MIDLINE	22EF
 Horizontal Scan Lines	23BA
@@ -5772,7 +5773,6 @@ vertical bar, broken	00A6
 VERTICAL BAR, N-ARY WHITE	2AFF
 VERTICAL BAR, WHITE	2AFE
 vertical bowtie	29D6
-Vertical Brackets	23B4
 VERTICAL ELLIPSIS	22EE
 Vertical Form Variants	FE30
 VERTICAL FOUR DOTS	205E
