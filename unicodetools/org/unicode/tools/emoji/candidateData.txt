@@ -210,8 +210,7 @@ Keywords=hiking | boot | camping | backpacking
 
 Proposal=L2/17-274
 U+1F97F
-Name=woman’s flat shoe
-UName=FLAT SHOE
+Name=flat shoe
 Keywords=slipper | slip-on | ballet flat
 
 Proposal=L2/17-264
@@ -344,9 +343,8 @@ Keywords=horseshoe | attraction | magnetic
 Proposal=L2/17-172
 After=🏗
 U+1F9F1
-Name=bricks
-UName=BRICK
-Keywords=construction | wall | mortar | clay
+Name=brick
+Keywords=wall | mortar | clay | bricks
 
 Proposal=L2/17-205
 After=🛎
@@ -597,3 +595,8 @@ U+101905
 Name=parachute
 Keywords=parachute | skydive | hang-glide | parasail
 
+Proposal=L2/17-356, L2/18-029, L2/18-033
+After=🏮
+U+101906
+Name=diya lamp
+Keywords=lamp | oil | diya

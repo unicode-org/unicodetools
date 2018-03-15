@@ -16,23 +16,30 @@
 # Leading and trailing spaces and tabs in each column are ignored.
 # Comments are indicated with hash marks.
 #
-#  Column 1: type -           T for transitional, N for nontransitional, B for both
-#  Column 2: source -         The source string to be tested
-#  Column 3: toUnicode -      The result of applying toUnicode to the source, using nontransitional. 
-#                             A blank value means the same as the source value; a value in [...] is a set of status codes.
-#  Column 4: toASCII -        The result of applying toASCII to the source, using the specified type: T, N, or B.
-#                             A blank value means the same as the toUnicode value; a value in [...] is a set of status codes.
-#  Column 5: idna2008Status - NV8 is only present if the status is valid but the character is excluded by IDNA2008
-#                             from all domain names for all versions of Unicode.
-#                             XV8 is present when the character is excluded by IDNA2008 for the current version of Unicode. 
-#                             These are informative values only.
+# Column 1: source -          The source string to be tested
+# Column 2: toUnicode -       The result of applying toUnicode to the source, with Transitional_Processing=false.
+#                             A blank value means the same as the source value.
+# Column 3: toUnicodeStatus - A set of status codes, each corresponding to a particular test.
+#                             A blank value means [].
+# Column 4: toAsciiN -        The result of applying toASCII to the source, with Transitional_Processing=false.
+#                             A blank value means the same as the toUnicode value.
+# Column 5: toAsciiNStatus -  A set of status codes, each corresponding to a particular test.
+#                             A blank value means the same as the toUnicodeStatus value.
+# Column 6: toAsciiT -        The result of applying toASCII to the source, with Transitional_Processing=true.
+#                             A blank value means the same as the toAsciiN value.
+# Column 7: toAsciiTStatus -  A set of status codes, each corresponding to a particular test.
+#                             A blank value means the same as the toAsciiNStatus value.
 #
-# If the value of toUnicode is the same as source, the column will be blank.
 # The line comments currently show visible characters that have been escaped 
 # (after removing default-ignorables and controls, except for whitespace)
 #
-# An error in toUnicode or toASCII is indicated by a value in square brackets, such as "[B5 B6]".
-# In such a case, the contents is a list of error codes based on the step numbers in UTS46 and IDNA2008,
+# CONFORMANCE:
+#
+# To test for conformance to UTS46, an implementation will perform the toUnicode, toAsciiN, and toAsciiT
+# operations on the source string, then verify the resulting strings and relevant status values.
+#
+# A status in toUnicode, toAsciiN or toAsciiT is indicated by a value in square brackets, such as "[B5 B6]".
+# In such a case, the contents is a list of status codes based on the step numbers in UTS46 and IDNA2008,
 # with the following formats:
 #
 #   Pn for Section 4 Processing step n
@@ -42,27 +49,23 @@
 #   Bn for Bidi (in IDNA2008)
 #   Cn for ContextJ (in IDNA2008)
 #
-# However, these particular error codes are only informative;
-# the important feature is whether or not there is an error.
+# Thus C1 = Appendix A.1. ZERO WIDTH NON-JOINER, and C2 = Appendix A.2. ZERO WIDTH JOINER. 
+# (The CONTEXTO tests are optional for client software, and not tested here.)
 #
-# CONFORMANCE:
+# Implementations that allow values of particular input flags to be false would ignore
+# the corresponding status codes listed in the table below when testing for errors.
 #
-# To test for conformance to UTS46, an implementation must first perform the toUnicode operation
-# on the source string, then the toASCII operation (with the indicated type) on the source string.
+# VerifyDnsLength:   P4
+# CheckHyphens:      V2, V3
+# CheckBidi:         V8
+# CheckJoiners:      V7
+# UseSTD3ASCIIRules: U1
+# Idna2008:          NV8
 #
-# Implementations that allow values of the input flags to be false would remove the corresponding
-# status codes listed in the table below.
-#
-# VerifyDnsLength:    P4
-# CheckHyphens:       V2, V3
-# CheckBidi:          V8
-# CheckJoiners:       V7
-# UseSTD3ASCIIRules:  U1
-# DisallowedIdna2008: NV8
-#
-# Implementations may be more strict than UTS46; thus they may have errors where the file indicates results.
+# Implementations may be more strict than the default settings for UTS46.
 # In particular, an implementation conformant to IDNA2008 would disallow the input for lines marked with NV8.
 #
-# Implementations need only record that there is an error: they need not reproduce the precise status codes.
+# Implementations need only record that there is an error: they need not reproduce the precise status codes
+# (after removing the ignored status values).
 #
 # ====================================================================================================
