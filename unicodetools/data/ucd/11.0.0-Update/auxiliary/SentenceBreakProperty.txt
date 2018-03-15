@@ -1,5 +1,5 @@
 # SentenceBreakProperty-11.0.0.txt
-# Date: 2018-02-27, 06:43:50 GMT
+# Date: 2018-03-15, 04:28:45 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -2477,10 +2477,13 @@ FF0E          ; ATerm # Po       FULLWIDTH FULL STOP
 0021          ; STerm # Po       EXCLAMATION MARK
 003F          ; STerm # Po       QUESTION MARK
 0589          ; STerm # Po       ARMENIAN FULL STOP
-061F          ; STerm # Po       ARABIC QUESTION MARK
+061E..061F    ; STerm # Po   [2] ARABIC TRIPLE DOT PUNCTUATION MARK..ARABIC QUESTION MARK
 06D4          ; STerm # Po       ARABIC FULL STOP
 0700..0702    ; STerm # Po   [3] SYRIAC END OF PARAGRAPH..SYRIAC SUBLINEAR FULL STOP
 07F9          ; STerm # Po       NKO EXCLAMATION MARK
+0837          ; STerm # Po       SAMARITAN PUNCTUATION MELODIC QITSA
+0839          ; STerm # Po       SAMARITAN PUNCTUATION QITSA
+083D..083E    ; STerm # Po   [2] SAMARITAN PUNCTUATION SOF MASHFAAT..SAMARITAN PUNCTUATION ANNAAU
 0964..0965    ; STerm # Po   [2] DEVANAGARI DANDA..DEVANAGARI DOUBLE DANDA
 104A..104B    ; STerm # Po   [2] MYANMAR SIGN LITTLE SECTION..MYANMAR SIGN SECTION
 1362          ; STerm # Po       ETHIOPIC FULL STOP
@@ -2543,7 +2546,7 @@ FF61          ; STerm # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 1BC9F         ; STerm # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA88         ; STerm # Po       SIGNWRITING FULL STOP
 
-# Total code points: 133
+# Total code points: 138
 
 # ================================================
 

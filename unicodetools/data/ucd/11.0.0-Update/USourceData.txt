@@ -1,7 +1,7 @@
 # USourceData-11.0.0.txt
-# Date: 2017-10-31, 00:00:00 GMT [JHJ]
+# Date: 2018-03-08, 00:00:00 GMT [JHJ]
 #
-# © 2017 Unicode®, Inc.
+# © 2018 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr45/
 #
@@ -11,10 +11,10 @@
 #
 # Field 0: The U-source ID
 # Field 1: Text indicating the ideograph's status
-#      C: Included in Extension C
-#      D: Included in Extension D
-#      E: Included in Extension E
-#      F: Included in Extension F
+#      C: Encoded in Extension C
+#      D: Encoded in Extension D
+#      E: Encoded in Extension E
+#      F: Encoded in Extension F
 #      G: Submitted by the UTC for IRG Working Set 2015
 #      N: Planned to be submitted for a future extension
 #      U: Encoded
@@ -22,7 +22,7 @@
 #      UNC-2015: Included in the UTC's 2015 "Urgently Needed Characters" proposal
 #      UK-2015: Submitted by the UK for IRG Working Set 2015
 #      V: Variant of an encoded character
-#      W: Not to encode
+#      W: Not suitable for encoding as a CJK Unified Ideograph
 #      WS-2017: Submitted by the UTC for IRG Working Set 2017
 #      X: No action taken
 #      (UTC-\d{5})|(UCI-\d{5}): Duplicate entries deprecated in favor of other entries; the status value is the identifier of the non-deprecated character
@@ -156,7 +156,7 @@ UTC-00114;E;U+2BF1B;64.4;0422.121;⿰扌弔;kMatthews 6277
 UTC-00115;C;U+2AA9D;53.10;0349.201;⿸广邕;kMatthews 7550
 UTC-00116;U;U+7AB0;116.10;0867.351;⿱穴⿱肉缶;kCowles 1390
 UTC-00117;E;U+2CDD5;196.7;1505.141;⿰甫鸟;ABC2
-UTC-00118;W;;62.16;0414.291;⿰龍戈;UDR
+UTC-00118;WS-2017;;62.16;0414.291;⿰龍戈;UDR
 UTC-00119;X;;169.16;1343.061;⿵門龍;UDR
 UTC-00120;U;U+2F878;45.0;0304.130;屮;DYC 021.310
 UTC-00121;UTC-01159;U+2F936;102.4;0760.040;⿱𡿧田;DYC 041.311
@@ -353,7 +353,7 @@ UTC-00311;X;;67.13;0477.201;⿰文頊;LDS 60
 UTC-00312;E;U+2CBCC;170.9;1357.151;⿰阝春;LDS 61
 UTC-00313;C;U+2AAC7;119.12;0913.141;⿱彑頪;LDS 62
 UTC-00314;E;U+2C6C7;130.8;0987.231;⿰月庚;LDS 65
-UTC-00315;X;;155.8;1214.121;⿰赤兒;LDS 71
+UTC-00315;WS-2017;;155.8;1214.121;⿰赤兒;LDS 71
 UTC-00316;X;;162.12;1266.061;⿺辶𢄉;DYC 074.130
 UTC-00317;X;U+27D2A;154.3;1204.091;⿱⺌贝;WL EFBC
 UTC-00318;E;U+2B823;1.4;0078.021;;WL EFE5
@@ -828,7 +828,7 @@ UTC-00786;V;U+3A45;64.12;0457.161;;kCheungBauerIndex 422.08
 UTC-00787;W;;64.13;0459.201;⿰扌鼠;kCheungBauerIndex 425.03
 UTC-00788;E;U+2C5F8;120.11;0938.141;⿱絇糸;kCheungBauerIndex 450.05
 UTC-00789;V;U+8503;140.12;1059.291;⿱艹强;kCheungBauerIndex 457.06
-UTC-00790;W;;64.15;0462.161;⿰扌履;http://www.kentstaichi.com/abouttaichi.html 2006-08-02
+UTC-00790;WS-2017;;64.15;0462.161;⿰扌履;http://www.kentstaichi.com/abouttaichi.html 2006-08-02
 UTC-00791;G;;162.54;1267.411;⿺辶⿳穴⿰月⿰⿲⿱幺長⿱言馬⿱幺長刂心;http://en.wikipedia.org/wiki/Biang_Biang_Noodles 2007-10-31
 UTC-00792;W;;;;车;WL EF95
 UTC-00793;W;;;;鱼;WL EF72
@@ -1158,7 +1158,7 @@ UTC-01115;F;U+2E779;159'.13;1249.181;⿰车睘;UTCDoc L2-12/333 147
 UTC-01116;F;U+2E81E;164.4;1281.281;⿰酉仓;UTCDoc L2-12/333 148
 UTC-01117;F;U+2E8F2;167'.3;1328.061;⿰钅工;UTCDoc L2-12/333 149
 UTC-01118;F;U+2E8F3;167'.4;1299.191;⿰钅厷;UTCDoc L2-12/333 150
-UTC-01119;G;;167'.5;1328.061;⿰钅尔;UTCDoc L2-12/333 151
+UTC-01119;U;U+9FED;167'.5;1328.061;⿰钅尔;UTCDoc L2-12/333 151
 UTC-01120;F;U+2E8F4;167'.6;1313.051;⿰钅延;UTCDoc L2-12/333 152
 UTC-01121;F;U+2E8F5;167'.8;1313.051;⿰钅叕;UTCDoc L2-12/333 153
 UTC-01122;F;U+2E8F6;167'.10;1318.281;⿰钅虑;UTCDoc L2-12/333 154
@@ -1198,10 +1198,10 @@ UTC-01155;G;;30.18;0215.051;⿰口麌;UTCDoc L2-12/333 187
 UTC-01156;G;;38.12;0271.351;⿰女寍;UTCDoc L2-12/333 188
 UTC-01157;G;;66.8;0473.171;⿰育攵;UTCDoc L2-12/333 189
 UTC-01158;G;;77.4;0576.101;⿱止王;UTCDoc L2-12/333 190
-UTC-01159;G;U+753E;102.4;0760.341;⿱𡿧田;UTCDoc L2-12/333 191
+UTC-01159;WS-2017;U+753E;102.4;0760.341;⿱𡿧田;UTCDoc L2-12/333 191
 UTC-01160;G;;105.3;0783.311;⿱癶弓;UTCDoc L2-12/333 192
 UTC-01161;G;;118.10;0895.341;⿳𥫗⿰工口木;UTCDoc L2-12/333 193
-UTC-01162;G;U+7DC7;120.9;0933.061;⿰糹⿱𡿧田;UTCDoc L2-12/333 194
+UTC-01162;WS-2017;U+7DC7;120.9;0933.061;⿰糹⿱𡿧田;UTCDoc L2-12/333 194
 UTC-01163;G;;122.4;0947.101;⿱罒攴;UTCDoc L2-12/333 195
 UTC-01164;G;;130.9;0990.131;⿰月㲋;UTCDoc L2-12/333 196
 UTC-01165;G;;140.14;1064.421;⿱艹㪣;UTCDoc L2-12/333 197
@@ -1349,10 +1349,10 @@ UTC-01303;G;;167.10;1318.281;⿰金脊;UTCDoc L2/15-177 102
 UTC-01304;G;;167.11;1321.071;⿰金⿱谷心;UTCDoc L2/15-177 103
 UTC-01305;G;;167.14;1325.181;⿰金夐;UTCDoc L2/15-177 104
 UTC-01306;G;;167.14;1325.181;⿰金嘗;UTCDoc L2/15-177 105
-UTC-01307;G;;167.11;1326.121;⿰金許;UTCDoc L2/15-177 106
+UTC-01307;WS-2017;;167.11;1326.121;⿰金許;UTCDoc L2/15-177 106
 UTC-01308;G;;167.22;1328.061;⿰金⿳⿴𦥑同冖見;UTCDoc L2/15-177 107
 UTC-01309;G;;181.6;1404.071;⿰⿱火丁頁;UTCDoc L2/15-177 108
-UTC-01310;U;U+99EF;187.7;1440.041;⿰馬宋;UTCDoc L2/15-177 109
+UTC-01310;U;U+99EF;187.7;1440.041;⿰馬朱;UTCDoc L2/15-177 109
 UTC-01311;WS-2017;;195.17;1480.211;⿰魚嶷;UTCDoc L2/15-177 110
 UTC-01312;G;;162.39;1267.371;⿺辶⿳穴⿰月⿰⿲⿱幺长⿱言马⿱幺长刂心;UTCDoc L2/15-225
 UK-01313;UK-2015;;29.4;0165.351;⿰不又;UTCDoc L2/15-260 1
@@ -3049,7 +3049,7 @@ UTC-03001;WS-2017;U+4853;144.4;1109.091;⿲彳车亍;UTCDoc L2/17-062 21
 UTC-03002;WS-2017;;85.6;0623.171;⿰氵汆;UTCDoc L2/17-062 22
 UTC-03003;WS-2017;;15.10;0133.211;⿰冫蚕;UTCDoc L2/17-062 23
 UTC-03004;WS-2017;;72.6;0495.241;⿰日百;UTCDoc L2/17-062 24
-UTC-03005;WS-2017;U+25FE;120'.5;0921.291;⿰纟尼;UTCDoc L2/17-062 25
+UTC-03005;WS-2017;U+25FE1;120'.5;0921.291;⿰纟尼;UTCDoc L2/17-062 25
 UTC-03006;WS-2017;;162.4;1254.171;⿺辶化;UTCDoc L2/17-062 26
 UTC-03007;WS-2017;;5.5;0084.141;⿹⺄田;UTCDoc L2/17-062 27
 UTC-03008;WS-2017;;118.9;0893.291;⿱竹厘;UTCDoc L2/17-062 28
@@ -3211,4 +3211,5 @@ UTC-03163;X;U+4E0A;1.2;0076.071;上〾;UTCDoc L2/17-087
 UTC-03164;X;U+5C3A;44.1;0299.321;尺〾;UTCDoc L2/17-087
 UTC-03165;X;U+5DE5;48.0;0325.011;工〾;UTCDoc L2/17-087
 UTC-03166;X;U+51E1;16.1;0134.021;凡〾;UTCDoc L2/17-087
+UTC-03167;N;;142.6;1083.151;⿱⿰丬夕虫;UTCDoc L2/18-045
 # EOF
