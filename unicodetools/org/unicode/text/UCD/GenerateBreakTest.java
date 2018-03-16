@@ -1183,6 +1183,9 @@ abstract public class GenerateBreakTest implements UCD_Types {
         }
     }
 
+    static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(Default.ucdVersion());
+    static final String sampleEBase = IUP.load(UcdProperty.Emoji_Modifier_Base).keySet().iterator().next();
+    static final String sampleEMod = IUP.load(UcdProperty.Emoji_Modifier).keySet().iterator().next();
 
     static class GenerateGraphemeBreakTest extends XGenerateBreakTest {
         public GenerateGraphemeBreakTest(UCD ucd) {
@@ -1192,9 +1195,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
                     "Grapheme",
                     new String[]{unicodePropertySource.getSet("GC=Cn").iterator().next(), "\uD800"},
                     new String[]{});
-
-            Sampler GCB = new Sampler("GCB");
             
+            Sampler GCB = new Sampler("GCB");
             this.extraSingleSamples.addAll(Arrays.asList(
                     GCB.get("L") + GCB.get("L"),
                     GCB.get("LV") + GCB.get("T") + GCB.get("L"),
@@ -1208,12 +1210,17 @@ abstract public class GenerateBreakTest implements UCD_Types {
                     "a" + "\u0308" + "b",
                     "a" + GCB.get("SpacingMark") + "b",
                     "a" + GCB.get("Prepend") + "b",
-                    "a" + GCB.get("LinkingConsonant") + GCB.get("Virama") + GCB.get("LinkingConsonant") + "b",
-                    "a" + GCB.get("Virama") + GCB.get("LinkingConsonant") + "b",
-                    "a" + GCB.get("ZWJ") + GCB.get("LinkingConsonant") + "b",
-                    GCB.get("E_Base") + GCB.get("E_Modifier") + GCB.get("E_Base"),
-                    "a" + GCB.get("E_Modifier") + GCB.get("E_Base"),
+                    //"a" + GCB.get("LinkingConsonant") + GCB.get("Virama") + GCB.get("LinkingConsonant") + "b",
+                    //"a" + GCB.get("Virama") + GCB.get("LinkingConsonant") + "b",
+                    //"a" + GCB.get("ZWJ") + GCB.get("LinkingConsonant") + "b",
                     
+                    //GCB.get("E_Base") + GCB.get("E_Modifier") + GCB.get("E_Base"),
+                    //"a" + GCB.get("E_Modifier") + GCB.get("E_Base"),
+                    
+                    sampleEBase + sampleEMod + sampleEBase,
+                    "a" + sampleEMod + sampleEBase,
+                    "a" + sampleEMod + sampleEBase + GCB.get("ZWJ") + sampleEmoji,
+
                     sampleEmoji + GCB.get("ZWJ") + sampleEmoji,
                     "a" + GCB.get("ZWJ") + sampleEmoji,
                     sampleEXP + GCB.get("ZWJ") + sampleEXP,
@@ -1593,15 +1600,15 @@ abstract public class GenerateBreakTest implements UCD_Types {
                     "a" + WB.get("RI") + WB.get("RI",2) + WB.get("ZWJ") + WB.get("RI",3) + "b",
                     "a" + WB.get("RI") + WB.get("ZWJ") + WB.get("RI",2) + WB.get("RI",3) + "b",
                     "a" + WB.get("RI") + WB.get("RI",2) + WB.get("RI",3) + WB.get("RI",4) + "b",
-                    WB.get("E_Base") + WB.get("E_Modifier") + WB.get("E_Base"),
+                    sampleEBase + sampleEMod + sampleEBase,
                     
                     sampleEmoji + WB.get("ZWJ") + sampleEmoji,
                     "a" + WB.get("ZWJ") + sampleEmoji,
                     sampleEXP + WB.get("ZWJ") + sampleEXP,
                     "a" + WB.get("ZWJ") + sampleEXP,
 
-                    sampleEmoji + WB.get("E_Modifier"),
-                    WB.get("ZWJ") + sampleEmoji + WB.get("E_Modifier"),
+                    sampleEmoji + sampleEMod,
+                    WB.get("ZWJ") + sampleEmoji + sampleEMod,
                     WB.get("ZWJ") +sampleEmoji,
                     WB.get("ZWJ") + sampleEmoji,
                     sampleEmoji + sampleEmoji,

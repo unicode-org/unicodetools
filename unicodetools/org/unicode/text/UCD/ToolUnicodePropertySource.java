@@ -778,7 +778,9 @@ extend -and not GCB = Virama
             UnicodeSet extend = new UnicodeSet(graphemeExtend)
                     .remove(0x200d)
                     .addAll(new UnicodeSet("[[\u0E31 \u0E34-\u0E3A \u0EB1 \u0EB4-\u0EB9 \u0EBB \u0EBA]-[:cn:]]"))
-                    .removeAll(virama);
+//                    .removeAll(virama)
+                    .addAll(E_Modifier)
+                    ;
             unicodeMap.putAll(extend, "Extend");
 
             // GCB=Regional_Indicator must be maintained in sync with the binary Regional_Indicator=Y
@@ -806,15 +808,15 @@ extend -and not GCB = Virama
             unicodeMap.putAll(hangul.getSet("LV"), "LV");
             unicodeMap.putAll(hangul.getSet("LVT"), "LVT");
 
-            unicodeMap.putAll(virama, "Virama");
+            //unicodeMap.putAll(virama, "Virama");
             
-            unicodeMap.putAll(isc.getSet(Indic_Syllabic_Category_Values.Consonant), "LinkingConsonant");
+            //unicodeMap.putAll(isc.getSet(Indic_Syllabic_Category_Values.Consonant), "LinkingConsonant");
 
             // emoji support
             unicodeMap.putAll(tags, "Extend");
 
-            unicodeMap.putAll(E_Base, "E_Base");
-            unicodeMap.putAll(E_Modifier, "E_Modifier");
+//            unicodeMap.putAll(E_Base, "E_Base");
+//            unicodeMap.putAll(E_Modifier, "E_Modifier");
             /*
 Virama  = Indic_Syllabic_Category = Virama, or
 Indic_Syllabic_Category = Invisible_Stacker 
@@ -958,9 +960,10 @@ U+FF1A ( ： ) FULLWIDTH COLON
 
             // emoji support
             unicodeMap.putAll(tags, "Extend");
-
-            unicodeMap.putAll(E_Base, "E_Base");
-            unicodeMap.putAll(E_Modifier, "E_Modifier");
+            unicodeMap.putAll(E_Modifier, "Extend");
+            
+//            unicodeMap.putAll(E_Base, "E_Base");
+//            unicodeMap.putAll(E_Modifier, "E_Modifier");
 
             unicodeMap.putAll(Zwj, "ZWJ");
             //unicodeMap.putAll(Glue_After_Zwj, "Glue_After_Zwj");
