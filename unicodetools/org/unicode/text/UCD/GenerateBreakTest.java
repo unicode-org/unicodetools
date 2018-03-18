@@ -50,12 +50,17 @@ abstract public class GenerateBreakTest implements UCD_Types {
     private static final String DEBUG_STRING = "\u0001\u0061\u2060";
     private static final boolean DEBUG_RULE_REPLACEMENT = true;
 
-    private static final String DOCTYPE =
-            "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>";
-
+    static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(Default.ucdVersion());
     // hack for now
     static final String sampleEmoji = "🛑";
     static final String sampleEXP = "✁";
+    static final String sampleEBase = "👶";
+    static final String sampleEMod = "🏿";
+    static final String zwj = "\u200D";
+    static final String sampleMn = "\u0308";
+
+    private static final String DOCTYPE =
+            "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>";
 
     static boolean DEBUG = false;
     static final boolean SHOW_TYPE = false;
@@ -1122,7 +1127,13 @@ abstract public class GenerateBreakTest implements UCD_Types {
             final Collection<String> x = segSamples.getAvailableValues();
             for (final Iterator<String> it = x.iterator(); it.hasNext();) {
                 final String label = it.next();
-                map.add(label, segSamples.keySet(label), true, false);
+                UnicodeSet values = segSamples.keySet(label);
+                if (label.contains("ExtPict")) { // hack to use reasonable values
+                    System.out.println(label);
+                    UnicodeSet pres = IUP.load(UcdProperty.Emoji_Presentation).getSet("Yes");
+                    values = new UnicodeSet(pres).retainAll(values);
+                }
+                map.add(label, values, true, false);
             }
             fileName = filename;
             propertyName = (filename.equals("Grapheme") ? "Grapheme_Cluster" : fileName)
@@ -1183,10 +1194,6 @@ abstract public class GenerateBreakTest implements UCD_Types {
         }
     }
 
-    static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(Default.ucdVersion());
-    static final String sampleEBase = IUP.load(UcdProperty.Emoji_Modifier_Base).keySet().iterator().next();
-    static final String sampleEMod = IUP.load(UcdProperty.Emoji_Modifier).keySet().iterator().next();
-
     static class GenerateGraphemeBreakTest extends XGenerateBreakTest {
         public GenerateGraphemeBreakTest(UCD ucd) {
             super(ucd, 
@@ -1203,32 +1210,34 @@ abstract public class GenerateBreakTest implements UCD_Types {
                     GCB.get("LVT") + GCB.get("T") + GCB.get("L"),
                     GCB.get("RI") + GCB.get("RI",2) + GCB.get("RI",3) + "b",
                     "a" + GCB.get("RI") + GCB.get("RI",2) + GCB.get("RI",3) + "b",
-                    "a" + GCB.get("RI") + GCB.get("RI",2) + GCB.get("ZWJ") + GCB.get("RI",3) + "b",
-                    "a" + GCB.get("RI") + GCB.get("ZWJ") + GCB.get("RI",2) + GCB.get("RI",3) + "b",
+                    "a" + GCB.get("RI") + GCB.get("RI",2) + zwj + GCB.get("RI",3) + "b",
+                    "a" + GCB.get("RI") + zwj + GCB.get("RI",2) + GCB.get("RI",3) + "b",
                     "a" + GCB.get("RI") + GCB.get("RI",2) + GCB.get("RI",3) + GCB.get("RI",4) + "b",
-                    "a" + GCB.get("ZWJ"),
+                    "a" + zwj,
                     "a" + "\u0308" + "b",
                     "a" + GCB.get("SpacingMark") + "b",
                     "a" + GCB.get("Prepend") + "b",
                     //"a" + GCB.get("LinkingConsonant") + GCB.get("Virama") + GCB.get("LinkingConsonant") + "b",
                     //"a" + GCB.get("Virama") + GCB.get("LinkingConsonant") + "b",
-                    //"a" + GCB.get("ZWJ") + GCB.get("LinkingConsonant") + "b",
+                    //"a" + zwj + GCB.get("LinkingConsonant") + "b",
                     
                     //GCB.get("E_Base") + GCB.get("E_Modifier") + GCB.get("E_Base"),
                     //"a" + GCB.get("E_Modifier") + GCB.get("E_Base"),
                     
                     sampleEBase + sampleEMod + sampleEBase,
                     "a" + sampleEMod + sampleEBase,
-                    "a" + sampleEMod + sampleEBase + GCB.get("ZWJ") + sampleEmoji,
+                    "a" + sampleEMod + sampleEBase + zwj + sampleEmoji,
 
-                    sampleEmoji + GCB.get("ZWJ") + sampleEmoji,
-                    "a" + GCB.get("ZWJ") + sampleEmoji,
-                    sampleEXP + GCB.get("ZWJ") + sampleEXP,
-                    "a" + GCB.get("ZWJ") + sampleEXP
+                    sampleEBase + sampleEMod + sampleMn + zwj + sampleEBase + sampleEMod,
+                    
+                    sampleEmoji + zwj + sampleEmoji,
+                    "a" + zwj + sampleEmoji,
+                    sampleEXP + zwj + sampleEXP,
+                    "a" + zwj + sampleEXP
 
-                    //GCB.get("ZWJ") + GCB.get("EBG") + GCB.get("E_Modifier"),
-                    //GCB.get("ZWJ") + GCB.get("Glue_After_Zwj"),
-                    //GCB.get("ZWJ") + GCB.get("EBG"),
+                    //zwj + GCB.get("EBG") + GCB.get("E_Modifier"),
+                    //zwj + GCB.get("Glue_After_Zwj"),
+                    //zwj + GCB.get("EBG"),
                     //GCB.get("EBG") + GCB.get("EBG")
                     ));
         }
@@ -1597,22 +1606,25 @@ abstract public class GenerateBreakTest implements UCD_Types {
                     WB.get("ALetter") + WB.get("ExtendNumLet") + WB.get("ExtendNumLet") + WB.get("ALetter"),
                     WB.get("RI") + WB.get("RI",2) + WB.get("RI",3) + "b",
                     "a" + WB.get("RI") + WB.get("RI",2) + WB.get("RI",3) + "b",
-                    "a" + WB.get("RI") + WB.get("RI",2) + WB.get("ZWJ") + WB.get("RI",3) + "b",
-                    "a" + WB.get("RI") + WB.get("ZWJ") + WB.get("RI",2) + WB.get("RI",3) + "b",
+                    "a" + WB.get("RI") + WB.get("RI",2) + zwj + WB.get("RI",3) + "b",
+                    "a" + WB.get("RI") + zwj + WB.get("RI",2) + WB.get("RI",3) + "b",
                     "a" + WB.get("RI") + WB.get("RI",2) + WB.get("RI",3) + WB.get("RI",4) + "b",
+                    
                     sampleEBase + sampleEMod + sampleEBase,
                     
-                    sampleEmoji + WB.get("ZWJ") + sampleEmoji,
-                    "a" + WB.get("ZWJ") + sampleEmoji,
-                    sampleEXP + WB.get("ZWJ") + sampleEXP,
-                    "a" + WB.get("ZWJ") + sampleEXP,
+                    sampleEmoji + zwj + sampleEmoji,
+                    "a" + zwj + sampleEmoji,
+                    sampleEXP + zwj + sampleEXP,
+                    "a" + zwj + sampleEXP,
+
+                    sampleEBase + sampleEMod + sampleMn + zwj + sampleEBase + sampleEMod,
 
                     sampleEmoji + sampleEMod,
-                    WB.get("ZWJ") + sampleEmoji + sampleEMod,
-                    WB.get("ZWJ") +sampleEmoji,
-                    WB.get("ZWJ") + sampleEmoji,
+                    zwj + sampleEmoji + sampleEMod,
+                    zwj + sampleEmoji,
+                    zwj + sampleEmoji,
                     sampleEmoji + sampleEmoji,
-                    "a" + "\u0308" + WB.get("ZWJ") + "\u0308" + "b",
+                    "a" + sampleMn + zwj + sampleMn + "b",
                     "a  b"
                     ));
 
@@ -2829,6 +2841,9 @@ abstract public class GenerateBreakTest implements UCD_Types {
     }
     public String getSample(UnicodeProperty prop2, String value, int count) {
         UnicodeSet us = prop2.getSet(value);
+        if (prop.getName().startsWith("Extended_Pictographic")) {
+            count += 30;
+        }
         for (String s : us) {
             if (--count <= 0) {
                 return s;
