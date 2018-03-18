@@ -60,7 +60,7 @@ public class Segmenter {
     // // new UnicodeSet("[\\u0000-\\u00FF\\u2000-\\u20FF]"); //
     // or null
     private static final boolean SHOW_VAR_CONTENTS = false;
-    static boolean SHOW_SAMPLES = false;
+    static boolean SHOW_SAMPLES = true;
     private static final String DEBUG_AT_STRING = "\u0009\u0308\u00A0"; // null to turn off
     private static final String DEBUG_AT_RULE_CONTAINING = "$Spec3_"; // null to turn off
 
@@ -340,7 +340,7 @@ public class Segmenter {
             public boolean applyPropertyAlias(String propertyName, String propertyValue, UnicodeSet result) {
                 UnicodeProperty prop = propFactory.getProperty(propertyName);
                 if (prop == null) {
-                    if (propertyName.equals("EXP") || propertyName.equals("Extended_Pictographic")) {
+                    if (propertyName.equals("ExtPict") || propertyName.equals("Extended_Pictographic")) {
                         result.addAll(extended_pictographic);
                         return true;
                     } else {
@@ -737,10 +737,11 @@ public class Segmenter {
                 "$Virama=\\p{Grapheme_Cluster_Break=Virama}",
                 "$LinkingConsonant=\\p{Grapheme_Cluster_Break=LinkingConsonant}",
 
-                "$E_Base=\\p{Grapheme_Cluster_Break=E_Base}",
-                "$E_Modifier=\\p{Grapheme_Cluster_Break=E_Modifier}",
+//                "$E_Base=\\p{Grapheme_Cluster_Break=E_Base}",
+//                "$E_Modifier=\\p{Grapheme_Cluster_Break=E_Modifier}",
 
-                "$EXP=\\p{Extended_Pictographic}",
+                "$ExtPict=\\p{Extended_Pictographic}",
+                "$ExtCccZwj=[[$Extend-\\p{ccc=0}] $ZWJ]",
                 //"$EBG=\\p{Grapheme_Cluster_Break=E_Base_GAZ}",
                 //"$Glue_After_Zwj=\\p{Grapheme_Cluster_Break=Glue_After_Zwj}",
 
@@ -759,10 +760,10 @@ public class Segmenter {
                 "# Only for extended grapheme clusters: Do not break before SpacingMarks, or after Prepend characters.",
                 "9.1) \u00D7 	$SpacingMark",
                 "9.2) $Prepend  \u00D7",
-                "9.3) ($Virama | $ZWJ)  \u00D7 $LinkingConsonant",
+                "9.3) $Virama $ExtCccZwj*  \u00D7 $LinkingConsonant",
                 "# Do not break within emoji modifier sequences or emoji zwj sequences.",
-                "10) $E_Base $Extend* × $E_Modifier",
-                "11) $EXP $Extend* $ZWJ × $EXP", 
+                //"10) $E_Base $Extend* × $E_Modifier",
+                "11) $ExtPict $Extend* $ZWJ × $ExtPict", 
                 "# Do not break within emoji flag sequences. That is, do not break between regional indicator (RI) symbols if there is an odd number of RI characters before the break point.",
                 "12) ^ ($RI $RI)* $RI × $RI",
                 "13) [^$RI] ($RI $RI)* $RI × $RI",
@@ -1089,10 +1090,10 @@ public class Segmenter {
                 "$Double_Quote=\\p{Word_Break=Double_Quote}",
                 "$Single_Quote=\\p{Word_Break=Single_Quote}",
 
-                "$E_Base=\\p{Word_Break=E_Base}",
-                "$E_Modifier=\\p{Word_Break=E_Modifier}",
+//                "$E_Base=\\p{Word_Break=E_Base}",
+//                "$E_Modifier=\\p{Word_Break=E_Modifier}",
                 "$ZWJ=\\p{Word_Break=ZWJ}",
-                "$EXP=\\p{Extended_Pictographic}",
+                "$ExtPict=\\p{Extended_Pictographic}",
 
                 //"$EBG=\\p{Word_Break=E_Base_GAZ}",
                 //"$Glue_After_Zwj=\\p{Word_Break=Glue_After_Zwj}",
@@ -1124,8 +1125,8 @@ public class Segmenter {
                 "$Double_Quote=($Double_Quote $FE*)",
                 "$Single_Quote=($Single_Quote $FE*)",
 
-                "$E_Base=($E_Base $FE*)",
-                "$E_Modifier=($E_Modifier $FE*)",
+//                "$E_Base=($E_Base $FE*)",
+//                "$E_Modifier=($E_Modifier $FE*)",
                 //"$ZWJ=($ZWJ $FE*)", don't do this one!
                 //"$Glue_After_Zwj=($Glue_After_Zwj $FE*)",
                 //"$EBG=($EBG $FE*)",
@@ -1142,7 +1143,7 @@ public class Segmenter {
                 "3.1) ($Newline | $CR | $LF)	\u00F7",
                 "3.2) \u00F7    ($Newline | $CR | $LF)",
                 "# Do not break within emoji zwj sequences.",
-                "3.3) $ZWJ × $EXP",
+                "3.3) $ZWJ × $ExtPict",
                 "3.4) $WSegSpace × $WSegSpace",
 
                 // "3.4) ( $Control | $CR | $LF ) 	\u00F7",
@@ -1176,8 +1177,8 @@ public class Segmenter {
                 "13.1) ($AHLetter | $Numeric | $Katakana | $ExtendNumLet) 	\u00D7 	$ExtendNumLet",
                 "13.2) $ExtendNumLet 	\u00D7 	($AHLetter | $Numeric | $Katakana)",
 
-                "# Do not break within emoji modifier sequences.",
-                "14) $E_Base × $E_Modifier",
+                //"# Do not break within emoji modifier sequences.",
+                //"14) $E_Base × $E_Modifier",
 
                 "# Do not break within emoji flag sequences. That is, do not break between regional indicator (RI) symbols if there is an odd number of RI characters before the break point.",
                 "15) ^ ($RI $RI)* $RI × $RI",

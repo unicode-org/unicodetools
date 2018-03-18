@@ -851,6 +851,7 @@ E_Base  Emoji characters listed as Emoji_Modifier_Base=Yes in emoji-data.txt
                             { "Glue_After_Zwj", "GAZ" },
                             { "E_Base_GAZ", "EBG" },
                             { "LinkingConsonant", "LinkC" },
+                            { "Virama", "Virama" },
                             { "ZWJ", "ZWJ" }
                     }, AliasAddAction.ADD_MAIN_ALIAS)
                     .swapFirst2ValueAliases())
