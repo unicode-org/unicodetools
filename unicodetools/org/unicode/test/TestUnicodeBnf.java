@@ -17,7 +17,7 @@ public class TestUnicodeBnf {
         }
         bnf.build();
 
-        //System.out.println(bnf.getInternal());
+        System.out.println(bnf.getInternal());
 
         String status = "";
         Position p = new Position();

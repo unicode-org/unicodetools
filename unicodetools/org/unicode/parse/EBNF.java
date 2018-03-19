@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.unicode.parse.Tokenizer.Result;
+
 import com.ibm.icu.text.UnicodeSet;
 
 public class EBNF {
@@ -172,19 +174,33 @@ public class EBNF {
     }
  
     private boolean addRule() {
-        int type = t.next();
-        if (type == Tokenizer.DONE) return false;
-        if (type != Tokenizer.STRING) error("missing weight");
+        Tokenizer.Result type = t.next();
+        if (type == Tokenizer.Result.DONE) {
+            return false;
+        }
+        if (type != Tokenizer.Result.STRING) {
+            error("missing weight");
+        }
         String s = t.getString();
-        if (s.length() == 0 || s.charAt(0) != '$') error("missing $ in variable");
-        if (t.next() != '=') error("missing =");
+        if (s.length() == 0 || s.charAt(0) != '$') {
+            error("missing $ in variable");
+        }
+        
+        if (t.nextCodePoint() != '=') {
+            error("missing =");
+        }
         int startBody = t.index;
         Pick rule = getAlternation();
-        if (rule == null) error("missing expression");
+        if (rule == null) {
+            error("missing expression");
+        }
         t.addSymbol(s, t.getSource(), startBody, t.index);
-        if (t.next() != ';') error("missing ;");       
+        if (t.nextCodePoint() != ';') {
+            error("missing ;");       
+        }
         return addPick(s, rule.setName(s));
     }
+
 
     protected boolean addPick(String s, Pick rule) {
         Pick temp = map.get(s);
@@ -208,8 +224,9 @@ public class EBNF {
     }
         
     Pick qualify(Pick item) {
-        int type = t.next();
-        switch(type) {
+        Result result = t.next();
+        if (result == result.CODEPOINT) {
+        switch(t.getCodePoint()) {
             case '?': 
                 return Pick.repeat(0, 1, item);
             case '*': 
@@ -217,44 +234,49 @@ public class EBNF {
             case '+': 
                 return Pick.repeat(1, Integer.MAX_VALUE, item);
             case '{':
-                if (t.next() != Tokenizer.NUMBER) error("missing number");
+                if (t.next() != Tokenizer.Result.NUMBER) error("missing number");
                 int start = (int) t.getNumber();
                 int end = start;
-                type = t.next();
-                if (type == ',') {
+                result = t.next();
+                if (t.getCodePoint() == ',') {
                     end = Integer.MAX_VALUE;
-                    type = t.next();
-                    if (type == Tokenizer.NUMBER) {
-                        end = (int)t.getNumber();
-                        type = t.next();
+                    result = t.next();
+                    if (result == Tokenizer.Result.NUMBER) {
+                        end = (int) t.getNumber();
+                        result = t.next();
                     }
                 }
-                if (type != '}') {
+                if (t.getCodePoint() != '}') {
                     error("missing }");
                 }
                 return Pick.repeat(start, end, item);
+        }
         }
         t.backup();
         return item;
     }
     
     Pick getCore() {
-        int token = t.next();
-        if (token == Tokenizer.STRING) {
+        Result token = t.next();
+        if (token == Tokenizer.Result.STRING) {
             String s = t.getString();
-            if (s.charAt(0) == '$') variables.add(s);
+            if (s.charAt(0) == '$') {
+                variables.add(s);
+            }
             return Pick.string(s);
         }
-        if (token == Tokenizer.UNICODESET) {
+        if (token == Tokenizer.Result.UNICODESET) {
             return Pick.codePoint(t.getUnicodeSet());            
         }
-        if (token != '(') {
+        if (t.getCodePoint() != '(') {
             t.backup();
             return null;
         }
         Pick temp = getAlternation();
         token = t.next();
-        if (token != ')') error("missing )");    
+        if (t.getCodePoint() != ')') {
+            error("missing )");    
+        }
         return temp;    
     }
     
@@ -290,7 +312,9 @@ public class EBNF {
         Pick last = null;
         while (true) {
             Pick temp = getSequence();
-            if (temp == null) error("empty alternation");
+            if (temp == null) {
+                error("empty alternation");
+            }
             if (last == null) {
                 last = temp;
             } else {
@@ -299,8 +323,8 @@ public class EBNF {
                 }
                 result = result.or2(temp);   
             }
-            int token = t.next();
-            if (token != '|') {
+            t.next();
+            if (t.getCodePoint() != '|') {
                 t.backup();
                 if (result != null) return result;
                 if (last != null) return last;
