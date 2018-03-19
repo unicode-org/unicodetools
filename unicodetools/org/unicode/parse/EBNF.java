@@ -13,17 +13,17 @@ import org.unicode.parse.Tokenizer.Result;
 import com.ibm.icu.text.UnicodeSet;
 
 public class EBNF {
-    boolean DEBUG = false;
-    
+    boolean DEBUG = true;
+
     private Map<String, Pick> map = new HashMap<>();
     private Set<String> variables = new HashSet<>();
     private Pick pick = null;
     private Tokenizer t = new Tokenizer();
-    
+
     public String getInternal() {
         return pick.getInternal(0, new HashSet<>());
     }
-    
+
     /*
     + "rule = string '=' alternation;"; 
     + "alternation = sequence (weight? ('|' sequence weight?)+)?;"
@@ -35,24 +35,24 @@ public class EBNF {
     + "star = '*' weight*;"
     + "plus = '+' weight*;"
     + "maybe = '?' weight?;"
-    
-    
-    *      Match 0 or more times
+
+
+     *      Match 0 or more times
     +      Match 1 or more times
     ?      Match 1 or 0 times
     {n}    Match exactly n times
     {n,}   Match at least n times
     {n,m}  Match at least n but not more than m times  
 
-    */
-    
+     */
+
     public EBNF addRules(String rules) {
         t.setSource(rules);        
         while (addRule()) {
         }
         return this; // for chaining
     }
-    
+
     public EBNF build() {
         // check that the rules match the variables, except for $root in rules
         Set<String> ruleSet = map.keySet();
@@ -70,7 +70,7 @@ public class EBNF {
             }
             error(msg);           
         } 
-        
+
         if (!ruleSet.equals(variables)) {
             String msg = showDiff(variables, ruleSet);
             if (msg.length() != 0) msg = "Missing definitions for: " + msg;
@@ -82,7 +82,7 @@ public class EBNF {
             }
             error(msg);           
         } 
-        
+
         // replace variables by definitions
         Iterator<String> it = ruleSet.iterator();
         while (it.hasNext()) {
@@ -103,15 +103,15 @@ public class EBNF {
         // TODO remove temp collections
         return this;
     }
-    
+
     public static class Position {
         private int index;
         private List<String> items = new ArrayList<>();
-        
+
         public int getIndex() {
             return index;
         }
-        
+
         public List<String> getItems() {
             return items;
         }
@@ -121,7 +121,7 @@ public class EBNF {
             items.add(item);
             return this;
         }
-        
+
         public Position clear() {
             index = 0;
             items.clear();
@@ -135,25 +135,25 @@ public class EBNF {
         public State getState() {
             return new State();
         }
-        
+
         class State {
             int oldPos = getIndex();
             int oldItemSize = getItems().size();
         }
-        
+
         public Position restoreState(State state) {
             index = state.oldPos;
             while (items.size() > state.oldItemSize) {
-               items.remove(state.oldItemSize);
+                items.remove(state.oldItemSize);
             }
             return this;
         }
     }
-    
+
     public final boolean match(String s, int inputPos, Position p) {
         return pick.match(s, inputPos, p);
     }
-    
+
     <T> String showDiff(Set<T> a, Set<T> b) {
         Set<T> temp = new HashSet<>();
         temp.addAll(a);
@@ -167,25 +167,22 @@ public class EBNF {
         }
         return buffer.toString();
     }
-    
+
     void error(String msg) {
         throw new IllegalArgumentException(msg
-        + "\r\n" + t.toString());
+                + "\r\n" + t.toString());
     }
- 
+
     private boolean addRule() {
-        Tokenizer.Result type = t.next();
-        if (type == Tokenizer.Result.DONE) {
+        Result type = t.next();
+        if (type == Result.DONE) {
             return false;
         }
-        if (type != Tokenizer.Result.STRING) {
-            error("missing weight");
+        if (type != Result.IDENTIFIER) {
+            error("missing identifier");
         }
         String s = t.getString();
-        if (s.length() == 0 || s.charAt(0) != '$') {
-            error("missing $ in variable");
-        }
-        
+
         if (t.nextCodePoint() != '=') {
             error("missing =");
         }
@@ -213,7 +210,7 @@ public class EBNF {
         map.put(s, rule);
         return true;
     }
-    
+
     public EBNF addSet(String variable, UnicodeSet set) {
         if (set != null) {
             String body = set.toString();
@@ -222,11 +219,11 @@ public class EBNF {
         }
         return this;
     }
-        
+
     Pick qualify(Pick item) {
         Result result = t.next();
-        if (result == result.CODEPOINT) {
-        switch(t.getCodePoint()) {
+        if (result == Result.CODEPOINT) {
+            switch(t.getCodePoint()) {
             case '?': 
                 return Pick.repeat(0, 1, item);
             case '*': 
@@ -234,14 +231,14 @@ public class EBNF {
             case '+': 
                 return Pick.repeat(1, Integer.MAX_VALUE, item);
             case '{':
-                if (t.next() != Tokenizer.Result.NUMBER) error("missing number");
+                if (t.next() != Result.NUMBER) error("missing number");
                 int start = (int) t.getNumber();
                 int end = start;
                 result = t.next();
                 if (t.getCodePoint() == ',') {
                     end = Integer.MAX_VALUE;
                     result = t.next();
-                    if (result == Tokenizer.Result.NUMBER) {
+                    if (result == Result.NUMBER) {
                         end = (int) t.getNumber();
                         result = t.next();
                     }
@@ -250,22 +247,24 @@ public class EBNF {
                     error("missing }");
                 }
                 return Pick.repeat(start, end, item);
-        }
+            }
         }
         t.backup();
         return item;
     }
-    
+
     Pick getCore() {
         Result token = t.next();
-        if (token == Tokenizer.Result.STRING) {
+        if (token == Result.IDENTIFIER) {
             String s = t.getString();
-            if (s.charAt(0) == '$') {
-                variables.add(s);
-            }
+            variables.add(s);
             return Pick.string(s);
         }
-        if (token == Tokenizer.Result.UNICODESET) {
+        if (token == Result.STRING) {
+            String s = t.getString();
+            return Pick.string(s);
+        }
+        if (token == Result.UNICODESET) {
             return Pick.codePoint(t.getUnicodeSet());            
         }
         if (t.getCodePoint() != '(') {
@@ -279,7 +278,7 @@ public class EBNF {
         }
         return temp;    
     }
-    
+
     Pick getSequence() {
         Pick.Sequence result = null;
         Pick last = null;
@@ -305,7 +304,7 @@ public class EBNF {
             }
         }
     }
-    
+
     // for simplicity, we just use recursive descent
     Pick getAlternation() {
         Pick.Alternation result = null;

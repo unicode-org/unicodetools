@@ -11,7 +11,12 @@ public class TestTokenizer extends TestFmwk {
 
     public void TestTokens() {
         String[][] tests ={
-                {"abc'def'*546.10", "STRING:«abcdef» CODEPOINT:* NUMBER:546 CODEPOINT:. NUMBER:10 DONE"}
+                {"abc'def'*546.10", "IDENTIFIER:«abc» STRING:«def» CODEPOINT:* NUMBER:546 CODEPOINT:. NUMBER:10 DONE"},
+                {"'def'abc*546'a'", "STRING:«def» IDENTIFIER:«abc» CODEPOINT:* NUMBER:546 STRING:«a» DONE"},
+                {"'def\\'", "UNTERMINATED_QUOTE DONE"},
+                {"'def\\", "INCOMPLETE_BACKSLASH DONE"},
+                {"$abc'def'", "IDENTIFIER:«$abc» STRING:«def» DONE"},
+                {"$ab\uFFFF", "IDENTIFIER:«$ab» ILLEGAL_CHARACTER\\x{FFFF} DONE"},
         };
         Tokenizer tokenizer = new Tokenizer();
         for (String[] test : tests) {
