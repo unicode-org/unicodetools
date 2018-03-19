@@ -209,6 +209,9 @@ abstract public class Pick {
         private UnicodeSet source;
 
         private CodePoint(UnicodeSet source) {
+            if (source == null) {
+                throw new NullPointerException();
+            }
             this.source = source;
         }
         public boolean match(String s, int inputPos, Position p) {

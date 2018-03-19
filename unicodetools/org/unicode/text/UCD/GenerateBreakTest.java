@@ -608,8 +608,9 @@ abstract public class GenerateBreakTest implements UCD_Types {
         if (s == null) {
             return "<null>";
         }
-        if (s.length() == 1) {
-            return getTypeID(s.charAt(0));
+        int cp1 = UnicodeSet.getSingleCodePoint(s);
+        if (cp1 != Integer.MAX_VALUE) {
+            return getTypeID(cp1);
         }
         final StringBuffer result = new StringBuffer();
         int cp;
