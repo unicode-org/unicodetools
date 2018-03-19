@@ -1,11 +1,11 @@
 $root = $prop | '[-]' | '[' [\-\^]? $s $seq+ ']';
 $seq = $root ($s [\&\-] $s $root)* $s | $range $s;
 $range = $char ('-' $char)? | '{' ($s $char)+ $s '}';
-$prop = '\' [pP] '{' $propName ([≠=] $s $value1+)? '}' | '[:' '^'? $propName ([≠=] $s $value2+)? ':]' ;
+$prop = '\\' [pP] '{' $propName ([≠=] $s $value1+)? '}' | '[:' '^'? $propName ([≠=] $s $value2+)? ':]' ;
 $propName = $s [A-Za-z0-9] [A-Za-z0-9_\x20]* $s ;
-$value1 = [^\}] | '\' $quoted ;
-$value2 = [^:] | '\' $quoted ;
-$char = [^\& \- \[ \[ \] \\ \} \{ [:Pat_WS:]] | '\' $quoted ;
+$value1 = [^\}] | '\\' $quoted ;
+$value2 = [^:] | '\\' $quoted ;
+$char = [^\& \- \[ \[ \] \\ \} \{ [:Pat_WS:]] | '\\' $quoted ;
 $quoted = 'u' ($hex{4} | $bracketedHex) | 'x' ($hex{2} | $bracketedHex) | 'U00' ('0' $hex{5} | '10' $hex{4}) | 'N{' $propName '}' | [\u0000-\U00010FFFF] ;
 $bracketedHex = '{' $s $hexCodePoint ($s $hexCodePoint)* $s '}' ;
 $hexCodePoint = $hex{1,5} | '10' $hex{4} ;
