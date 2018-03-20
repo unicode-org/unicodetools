@@ -40,6 +40,8 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
@@ -607,15 +609,18 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
         private final UcdProperty prop;
         private final Map<String, PropertyNames> stringToNamedEnum;
-
+        private final Set<String> enumValueNames;
+        
         IndexUnicodeProperty(UcdProperty item) {
             this.prop = item;
             setName(prop.name());
             setType(prop.getType().getOldNumber());
             if (prop.getEnums() == null) {
                 stringToNamedEnum = null;
+                enumValueNames = null;
             } else {
                 Map<String, PropertyNames> _stringToNamedEnum = new HashMap<String, PropertyNames>();
+                Set<String> _mainNames = new LinkedHashSet<String>();
                 for (Enum enum2 : prop.getEnums()) {
                     Named namedEnum = (PropertyNames.Named) enum2;
                     PropertyNames names = namedEnum.getNames();
@@ -623,8 +628,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     for (String name : allNames) {
                         _stringToNamedEnum.put(name, names);
                     }
+                    _mainNames.add(enum2.toString());
                 }
-                stringToNamedEnum = Collections.unmodifiableMap(_stringToNamedEnum);
+                stringToNamedEnum = ImmutableMap.copyOf(_stringToNamedEnum);
+                enumValueNames = ImmutableSet.copyOf(_mainNames);
             }
         }
 
@@ -645,6 +652,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
         @Override
         protected List<String> _getAvailableValues(List result) {
+            if (stringToNamedEnum != null) {
+                result.addAll(enumValueNames);
+                return result;
+            } 
             return _getUnicodeMap().getAvailableValues(result);
         }
 

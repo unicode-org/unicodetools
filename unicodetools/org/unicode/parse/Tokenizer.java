@@ -193,7 +193,7 @@ public class Tokenizer {
         // record the last index in case we have to backup
         lastIndex = index;
 
-        if (cp == '[') {
+        if (cp == '[' || cp == '\\') {
             ParsePosition pos = new ParsePosition(index-1);
             unicodeSet = new UnicodeSet(source,pos,symbolTable);
             if (unicodeSet == null) {
