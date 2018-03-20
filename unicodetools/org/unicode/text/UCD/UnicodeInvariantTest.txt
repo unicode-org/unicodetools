@@ -491,9 +491,10 @@ $SAScriptExceptions ∥ [\p{Alphabetic} \p{gc=cf} \p{gc=Mn}]
 # Warning: the uax31 tables don't have machine-readable tables, so must be updated each release.
 Let $uax31table3 = [\u0027\u002D\u002E\u003A\u00B7\u058A\u05F3\u05F4\u0F0B\u200C\u200D\u2010\u2019\u2027\u30A0\u30FB]
 
-Let $WBRemovals = [\u0387\u0604\u2018\u2024\u202F\u2E2F\uFE13\uFE52\uFE55\uFF07\uFF0E\uFF1A\u200c\u200d'.\:\u00AD\u00B7\u05F3\u05F4\u0600-\u0603\u06DD\u070F\u17B4\u17B5\u200E\u200F\u2019\u2027\u202A-\u202E\u2060-\u2064\u206A-\u206F\uFEFF\uFFF9-\uFFFB\u02C2-\u02C5\u02D2-\u02D6\u02DE-\u02DF\u02ED\u02EF-\u02FF\uA720-\uA721\uA789-\uA78A\uAB5B\U000110BD\U0001D173-\U0001D17A\U000E0001\U000E0020-\U000E007F\p{gc=Cf}\p{Block=Enclosed Alphanumerics}[\u02D7\u0605\u061C\u180E\u2066-\u2069\U0001BCA0-\U0001BCA3\U0001F130-\U0001F149\U0001F150-\U0001F169\U0001F170-\U0001F189]]
+Let $WBRemovals = [\u0387\u0604\u2018\u2024\u202F\u2E2F\uFE13\uFE52\uFE55\uFF07\uFF0E\uFF1A\u200c\u200d'.\:\u00AD\u00B7\u05F3\u05F4\u0600-\u0603\u06DD\u070F\u17B4\u17B5\u200E\u200F\u2019\u2027\u202A-\u202E\u2060-\u2064\u206A-\u206F\uFEFF\uFFF9-\uFFFB\u02C2-\u02C5\u02D2-\u02D6\u02DE-\u02DF\u02ED\u02EF-\u02FF\uA720-\uA721\uA789-\uA78A\uAB5B\U000110BD\U0001D173-\U0001D17A\U000E0001\U000E0020-\U000E007F\p{gc=Cf}\p{Block=Enclosed Alphanumerics}[\u02D7\u0605\u061C\u180E\u2066-\u2069\U0001BCA0-\U0001BCA3\U0001F130-\U0001F149\U0001F150-\U0001F169\U0001F170-\U0001F189\U0001F3FB-\U0001F3FF]]
 # 9.0 corrected \p{gc=Cf} and added 202F
 # 10.0 added 34 characters which were absorbed into WB=LE (see http://www.unicode.org/reports/tr29/tr29-30d2.html#ALetter)
+# 11.0 added 5 skin tone modifiers which were absorbed into WB=Extend
 
 Let $Uax31Removals = [\-\u058A\u0F0B\u2010\u30A0\u30FB\u2E2F\u17B4-\u17B5]
 # 6.1.0 adjust SAMVAT, KHMER VOWEL INHERENT*
@@ -534,10 +535,12 @@ Let $Annotations = [\uFFF9-\uFFFB]
 \p{Other_Grapheme_Extend} = [\p{Grapheme_Extend} - [\p{GC=Me} \p{GC=Mn}]]
 
 \p{GCB=Prepend} = [\p{InSC=Consonant_Preceding_Repha} \p{InSC=Consonant_Prefixed} \p{PCM}]
-[\p{GCB=Extend} \p{GCB=Virama}] = \p{Grapheme_Extend}
-# 11.0: GCB=Extend was split into Extend and Virama; Grapheme_Extend=Y stayed as is
-\p{GCB=Virama} = [\p{InSC=Virama} \p{InSC=Invisible_Stacker} - \p{gc=Mc}]
-\p{WB=Extend} = [\p{Grapheme_Extend} \p{GC=Mc} - [\u200D]]
+\p{GCB=Extend} = [\p{Grapheme_Extend} \p{Emoji_Modifier} - \p{GCB=Virama}]
+# 11.0: GCB=Extend is no longer identical to Grapheme_Extend=Y
+\p{GCB=Virama} = []
+\p{GCB=LinkingConsonant} = []
+\p{WB=Extend} = [\p{Grapheme_Extend} \p{GC=Mc} [\U0001F3FB-\U0001F3FF] - [\u200D]]
+# 11.0: skin tone modifiers were absorbed into WB=Extend
 \p{SB=Extend} = [\p{Grapheme_Extend} \p{GC=Mc} \u200D]
 
 \p{RI=Y} = [\p{GCB=RI}]
