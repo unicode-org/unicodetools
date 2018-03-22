@@ -24,7 +24,7 @@ span.break   { border-right: 1px solid red;}
 <h1>Unicode Utilities: Breaks (Segmentation)</h1>
 <%@ include file="subtitle.jsp" %>
 <p><a target="help" href="http://cldr.unicode.org/unicode-utilities/breaks"><b>help</b></a> | <%@ include file="others.jsp" %></p>
-<form name="myform" action="<%= request.getContextPath() + request.getServletPath() %>" method="POST">
+<form name="myform" action="breaks.jsp" method="POST">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">
     <tr>
       <td style="width:50%"><b>Input </b></td>

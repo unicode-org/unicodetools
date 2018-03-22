@@ -1,5 +1,13 @@
-<meta http-equiv="Content-Language" content="en-us">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-19876713-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-19876713-1');
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en-us">
 <link rel="stylesheet" type="text/css" href="index.css">
 
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="ISO-8859-1"%>

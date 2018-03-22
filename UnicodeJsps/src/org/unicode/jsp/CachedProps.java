@@ -31,20 +31,20 @@ import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.VersionInfo;
 
 public class CachedProps {
-    private static final boolean IS_BETA = true;
+    public static final boolean IS_BETA = true;
 
     public static final Splitter HASH_SPLITTER = Splitter.on('#').trimResults();
     public static final Splitter SEMI_SPLITTER = Splitter.on(';').trimResults();
 
     static ConcurrentHashMap<VersionInfo, CachedProps> versionToCachedProps = new ConcurrentHashMap();
 
-    final VersionInfo version;
+    public final VersionInfo version;
     final Set<String> propNames;
     final ConcurrentHashMap<String, UnicodeProperty> propertyCache = new ConcurrentHashMap<String, UnicodeProperty>();
     final BiMultimap<String,String> nameToAliases = new BiMultimap<String,String>(null,null);
     final Map<String,BiMultimap<String,String>> nameToValueToAliases = new LinkedHashMap();
 
-    static CachedProps CACHED_PROPS = getInstance(VersionInfo.getInstance(10));
+    static CachedProps CACHED_PROPS = getInstance(VersionInfo.getInstance(11));
 
     static UnicodeProperty NAMES = CachedProps.CACHED_PROPS.getProperty("Name");
 
