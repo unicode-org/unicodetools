@@ -1,5 +1,5 @@
 # LineBreak-11.0.0.txt
-# Date: 2018-02-26, 11:07:28 GMT [KW, LI]
+# Date: 2018-03-22, 09:20:10 GMT [KW, LI]
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -3217,8 +3217,7 @@ FFFD;AI           # So         REPLACEMENT CHARACTER
 1F100..1F10C;AI   # No    [13] DIGIT ZERO FULL STOP..DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ZERO
 1F10D..1F10F;ID   # Cn     [3] <reserved-1F10D>..<reserved-1F10F>
 1F110..1F12D;AI   # So    [30] PARENTHESIZED LATIN CAPITAL LETTER A..CIRCLED CD
-1F12E;AL          # So         CIRCLED WZ
-1F12F;ID          # So         COPYLEFT SYMBOL
+1F12E..1F12F;AL   # So     [2] CIRCLED WZ..COPYLEFT SYMBOL
 1F130..1F169;AI   # So    [58] SQUARED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F16A..1F16B;AL   # So     [2] RAISED MC SIGN..RAISED MD SIGN
 1F16C..1F16F;ID   # Cn     [4] <reserved-1F16C>..<reserved-1F16F>
