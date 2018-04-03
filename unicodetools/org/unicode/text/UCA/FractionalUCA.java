@@ -574,6 +574,8 @@ public class FractionalUCA {
         fractionalLog.println("# Fractional UCA Table, generated from the UCA DUCET");
         fractionalLog.println("# " + WriteCollationData.getNormalDate());
         fractionalLog.println("# VERSION: UCA=" + getCollator().getDataVersion() + ", UCD=" + getCollator().getUCDVersion());
+        fractionalLog.println("# © 2016 and later: Unicode, Inc. and others.");
+        fractionalLog.println("# License & terms of use: http://www.unicode.org/copyright.html");
         fractionalLog.println("# For a description of the format and usage, see");
         fractionalLog.println("#   http://www.unicode.org/reports/tr35/tr35-collation.html");
         fractionalLog.println();
