@@ -145,12 +145,11 @@ public class CountEmoji {
         bucket.add(maj, cat, s);
         return;
     }
-    private static final String TABLE_TOTALS2 = 
-            "<h3><a href='#totals' name='totals'>Totals</a></h3>\n"
-                    + "<p>Totals for the above emoji. For information on the categories, see <a href='../format.html#col-totals'>Totals</a>.</p>\n";
-
-    public void showCounts(PrintWriter out, boolean showCharacters) {
-        out.println(TABLE_TOTALS2 + "<table>\n");
+    public void showCounts(PrintWriter out, boolean showCharacters, String title) {
+        out.println("<h3><a href='#totals' name='totals'>Totals</a></h3>\n"
+                + "<p>Totals for "
+                + title
+                + ". For information on the categories, see <a href='../format.html#col-totals'>Totals</a>.</p>\n" + "<table>\n");
 
         String row = "<tr>";
         String td = "<td class='rchars'>";
@@ -336,7 +335,7 @@ public class CountEmoji {
         }
         System.out.println("\n" + title);
         PrintWriter pw = new PrintWriter(System.out);
-        showCounts(pw, false);
+        showCounts(pw, false, "the above emoji");
         pw.close();
     }
 

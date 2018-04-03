@@ -24,7 +24,7 @@ public class RenameFiles {
 
     // Set PREVIEW to true.
     private static final boolean PREVIEW_ONLY = false;
-    private static final Choice choice = Choice.emojipedia;
+    private static final Choice choice = Choice.samsung;
     
     private static final boolean RECURSIVE = true;
 
@@ -46,7 +46,12 @@ public class RenameFiles {
                 "/Users/markdavis/Downloads/Emojipedia 11.0 Sample Images 72px", 
                 null,
                 "x?(?<codes>[-_A-Za-z0-9]+)?\\.png", 
-                "emojipedia")
+                "emojipedia"),
+        samsung(
+                "/Users/markdavis/Downloads/Samsung_Emoji_72x72_0322", 
+                "^.*[^s].png$",
+                "samsung_(?<codes>[-_A-Za-z0-9]+)\\.png", 
+                "samsung"),
         ;
         final String sourceDir;
         final Matcher filter;
@@ -122,11 +127,11 @@ public class RenameFiles {
             return;
         }
         try {
-            if (choice.fileMatch != null && !choice.fileMatch.reset(name).matches()) {
+            if (choice.filter != null && !choice.filter.reset(name).matches()) {
                 return;
             }
             if (!m.reset(name).matches()) {
-                throw new IllegalArgumentException(RegexUtilities.showMismatch(m, name));
+                throw new IllegalArgumentException(RegexUtilities.showMismatch(m, name) + "\nHex: " + Utility.hex(name, " "));
             }
             String suffix = ".png";
             String oldHex;
