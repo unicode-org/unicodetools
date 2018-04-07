@@ -33,32 +33,28 @@ Name=red-haired
 UName=EMOJI COMPONENT RED HAIR
 Keywords= ginger | redhead
 Emoji_Component
-Comment=For use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences: man/woman/adult (skin-tone) ZWJ red-haired.
-Comment=Images should have dotted border to indicate use as component
+Comment=Component for use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences. Isolated images should have dotted borders.
 
 U+1F9B1
 Name=curly-haired
 UName=EMOJI COMPONENT CURLY HAIR
 Keywords= afro | curly | ringlets
 Emoji_Component
-Comment=For use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences: man/woman/adult (skin-tone) ZWJ curly-haired.
-Comment=Images should have dotted border to indicate use as component
+Comment=Component for use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences. Isolated images should have dotted borders.
 
 U+1F9B3
 Name=white-haired
 UName= EMOJI COMPONENT WHITE HAIR
 Keywords= gray | white | hair | old
 Emoji_Component
-Comment=For use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences: man/woman/adult (skin-tone) ZWJ white-haired.
-Comment=Images should have dotted border to indicate use as component
+Comment=Component for use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences. Isolated images should have dotted borders.
 
 U+1F9B2
 Name=bald
 UName=EMOJI COMPONENT BALD
 Keywords= shaven | hairless | no hair | chemotherapy
 Emoji_Component
-Comment=For use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences: man/woman/adult (skin-tone) ZWJ bald.
-Comment=Images should have dotted border to indicate use as component
+Comment=Component for use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences. Isolated images should have dotted borders.
 
 After=🔮
 Proposal=L2/17-058
@@ -265,7 +261,7 @@ After=🥒
 U+1F96C
 Name=leafy green
 Keywords=bok choy | cabbage | kale | lettuce
-Comment= Other leafy greens such as arugula, spinach, endive, chard
+#Comment= Other leafy greens such as arugula, spinach, endive, chard
 
 Proposal=L2/17-272, L2/16-191
 After=🍿
@@ -434,7 +430,7 @@ After=⚕
 U+267E
 Name=infinity
 UName=PERMANENT PAPER SIGN
-Comment=emojification of existing character
+Comment=emojification of pre-existing character
 Keywords=universal | forever | unbounded
 
 Proposal=L2/18-059
@@ -552,7 +548,7 @@ U+265F
 Name=chess pawn
 UName=BLACK CHESS PAWN
 Keywords= chess | dupe | expendable | red shirt
-Comment=emojification of existing character
+Comment=emojification of pre-existing character
 
 
 Status=Provisional Candidate

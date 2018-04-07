@@ -305,6 +305,14 @@ H2 {
 .uname::before {
 	content: "🅄 ";
 }
+.comment {
+	font-size:75%;
+	margin:0.1em 1em 0.1em 1em;
+}
+/* .comment::before {
+	content: "➯ ";
+}
+*/
 
 .xxx::before {
 	content: "❌   ";
