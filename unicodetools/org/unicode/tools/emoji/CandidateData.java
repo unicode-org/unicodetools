@@ -48,7 +48,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     private static final UnicodeSet ZWJ_SET = new UnicodeSet(Emoji.JOINER,Emoji.JOINER);
     private static final Splitter SPLITTER_COMMA = Splitter.on(',').trimResults().omitEmptyStrings();
     private static final Joiner JOIN_COMMA = Joiner.on(", ");
-    static final Splitter barSplit = Splitter.on('|').trimResults();
+    static final Splitter barSplit = Splitter.on('|').trimResults().omitEmptyStrings();
     static final Splitter equalSplit = Splitter.on('=').trimResults();
 
     public static final String CANDIDATE_VERSION = "10.0";

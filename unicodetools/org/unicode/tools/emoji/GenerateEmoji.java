@@ -3183,6 +3183,7 @@ public class GenerateEmoji {
         if (plainAnnotations2 != null) {
             annotationsExtra.addAll(plainAnnotations2);
         }
+        
 
         Collection<String> plainAnnotations3 = Keywords.get(chars2);
         if (plainAnnotations3 != null) {
@@ -3200,8 +3201,14 @@ public class GenerateEmoji {
                     + TransliteratorUtilities.toHTML.transform(a)
                     + "</span>");
         }
+        
+        String result = BAR_JOIN.join(annotations);
 
-        return BAR_JOIN.join(annotations);
+        String comments = CandidateData.getInstance().getComment(chars2);
+        if (comments != null) {
+            result += ("\n<div class='comment'>➯ " + comments + "<div>");
+        }
+        return result;
     }
 
     private static final Set<String> SUPPRESS_ANNOTATIONS = ImmutableSet.of("default-text-style", "other", "nature",
