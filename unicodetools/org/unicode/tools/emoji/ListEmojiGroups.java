@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -18,6 +20,8 @@ import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.CountEmoji.Category;
 import org.unicode.tools.emoji.EmojiData.VariantFactory;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableList.Builder;
 import com.google.common.collect.ImmutableSortedSet;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.Row.R2;
@@ -45,7 +49,8 @@ public class ListEmojiGroups {
         showSequencesToCount("RawSequencesToCount.tsv");
 
         System.out.println("\n\n***MAIN***\n");
-        showCounts("gboardMain.tsv", GBoardCounts.counts, null);
+        showCounts("gboardMain.tsv", GBoardCounts.counts.get("001"), null);
+        showCounts("gboardDE.tsv", GBoardCounts.counts.get("de"), null);
 
         System.out.println("\n\n***EmojiTracker***\n");
         showCounts("emojiTracker.tsv", EmojiTracker.counts, null);
@@ -230,52 +235,105 @@ public class ListEmojiGroups {
 
     static class GBoardCounts {
         private static final String FREQ_SOURCE = "/Users/markdavis/Google Drive/workspace/DATA/frequency/emoji/";
-        static Counter<String> counts = new Counter<>();
+        //static Counter<String> counts = new Counter<>();
+        static Map<String, Counter<String>> counts = new LinkedHashMap<>();
         //        static Counter<String> countsRaw = new Counter<>();
         //        static Counter<String> countsWithoutFe0f = new Counter<>();
         private static long toAddAdjusted(String term, Long countWithFe0f, Long countWithoutFe0f) {
             return HACK_FE0F.contains(term) ? countWithFe0f * 4 : countWithoutFe0f;
         }
-        static {
-            Counter<String> _counts = new Counter<>();
+        enum Type {
+            global, 
+            locale;
 
-            List<String> emojiSet = new ArrayList<>();
+            public String getFile() {
+                switch(this) {
+                case global: return "emoji_frequency_";
+                case locale: return "emoji_frequency_by_locale_";
+                }
+                throw new IllegalArgumentException();
+            }
+            static final int rankIndex = 0, emojiIndex=1, decIndex=2, countIndex=3, hexIndex=4, limitIndex=5;
+            //global: 1,    ߘ  ,[128514] ,3354042, ['0x1F602'] 
+            //locale: ab_GE,    ߘ£  ,[128547]   ,24, ['0x1F623']
+
+            public int getRankIndex() {
+                return rankIndex;
+            }
+            public int getEmojiIndex() {
+                return emojiIndex;
+            }
+            public int getCountIndex() {
+                return countIndex;
+            }
+            public int getLocaleIndex() {
+                return rankIndex;
+            }
+            static public int size() {
+                return limitIndex;
+            }
+        }
+        static {
+            Map<String, Counter<String>> _counts = new LinkedHashMap<>();
+                    //Counter<String> _counts = new Counter<>();
+
+                    List<String> emojiSet = new ArrayList<>();
             List<String> nonPresSet = new ArrayList<>();
             List<String> nonEmojiSet = new ArrayList<>();
             //,text,decimal_code_points,count,hex_code_points
             // 8,❤️,"[10084, 65039]",705086,"['0x2764', '0xFE0F']"
-            int rankIndex = 0, emojiIndex=1, decIndex=2, countIndex=3, hexIndex=4, limitIndex=5;
             CSVParser csvParser = new CSVParser();
-            for (String id : Arrays.asList("20171031_20171113", "20171115_20171128")) {
-                for (String line : FileUtilities.in(FREQ_SOURCE + "/emoji_freqs_" + id,"emoji_frequency_" + id + ".csv")) {
-                    if (line.isEmpty() || line.startsWith(",text")) {
-                        continue;
-                    }
-                    String emojiString = csvParser.set(line).get(emojiIndex);
+            for (Type type : Type.values()) {
+                for (String id : Arrays.asList("20171031_20171113", "20171115_20171128")) {
+                    String filename = type.getFile() + id + ".csv";
+                    int offset = 0;
+                    for (String line : FileUtilities.in(FREQ_SOURCE + "/emoji_freqs_" + id, filename)) {
+                        if (line.isEmpty() || line.startsWith(",text") || line.startsWith("locale")) {
+                            continue;
+                        } else if (line.startsWith(",locale")) {
+                            offset = 1;
+                            continue;
+                        }
+                        csvParser.set(line);
+                        if (csvParser.size() != Type.size() + offset) {
+                            System.out.println(filename + "\tSkipping short line: " + csvParser);
+                            continue;
+                        }
+                        String emojiString = csvParser.get(type.getEmojiIndex() + offset);
 
-                    long rank = Long.parseLong(csvParser.get(rankIndex));
-                    long count = Long.parseLong(csvParser.get(countIndex));
-                    emojiSet.clear();
-                    nonEmojiSet.clear();
-                    nonPresSet.clear();
-                    EmojiMatcher.parse(emojiString, emojiSet, nonPresSet, nonEmojiSet);
-                    if (DEBUG) System.out.println(rank
-                            + "\t" + count
-                            + "\t" + emojiString 
-                            + "\t" + hex(emojiString)
-                            + "\t" + emojiSet
-                            + "\t" + nonPresSet
-                            + "\t" + nonEmojiSet
-                            );
-                    for (String s : emojiSet) {
-                        _counts.add(normalizeEmoji(s), count);
-                    }
-                    for (String s : nonPresSet) {
-                        _counts.add(normalizeEmoji(s), count);
+                        String rankString = csvParser.get(type.getRankIndex() + offset);
+                        long rank = type == Type.global ? Long.parseLong(rankString) : -1;
+                        
+                        String locale = type == Type.global ? "001" : csvParser.get(type.getLocaleIndex() + offset);
+
+                        String countString = csvParser.get(type.getCountIndex() + offset);
+                        long count = Long.parseLong(countString);
+
+                        emojiSet.clear();
+                        nonEmojiSet.clear();
+                        nonPresSet.clear();
+                        EmojiMatcher.parse(emojiString, emojiSet, nonPresSet, nonEmojiSet);
+                        if (DEBUG) System.out.println(rank
+                                + "\t" + count
+                                + "\t" + emojiString 
+                                + "\t" + hex(emojiString)
+                                + "\t" + emojiSet
+                                + "\t" + nonPresSet
+                                + "\t" + nonEmojiSet
+                                );
+                        Counter<String> c = _counts.get(locale);
+                        if (c == null) _counts.put(locale, c = new Counter<>());
+
+                        for (String s : emojiSet) {
+                            c.add(normalizeEmoji(s), count);
+                        }
+                        for (String s : nonPresSet) {
+                           c.add(normalizeEmoji(s), count);
+                        }
                     }
                 }
             }
-            normalizeCounts(_counts, counts);
+            normalizeLocaleCounts(_counts, counts);
             //            counts.addAll(countsRaw);
             //            for (R2<Long, String> entry : countsWithoutFe0f.getEntrySetSortedByCount(false, null)) {
             //                long countWithoutFe0f = entry.get0();
@@ -283,6 +341,14 @@ public class ListEmojiGroups {
             //                long countWithFe0f = counts.get(term);
             //                counts.add(term + Emoji.EMOJI_VARIANT, toAddAdjusted(term, countWithFe0f, countWithoutFe0f));
             //            }
+        }
+        private static void normalizeLocaleCounts(Map<String, Counter<String>> _counts, Map<String, Counter<String>> counts2) {
+            for (String locale : _counts.keySet()) {
+                Counter<String> c = _counts.get(locale);
+                Counter<String> outputCounter = new Counter<String>();
+                normalizeCounts(c, outputCounter);
+                counts2.put(locale, outputCounter);
+            }
         }
     }
 
@@ -302,6 +368,10 @@ public class ListEmojiGroups {
 
         public String get(int item) {
             return line.substring(commaPoints.get(item)+1, commaPoints.get(item+1));
+        }
+
+        public int size() {
+            return commaPoints.size() - 1;
         }
 
         public CSVParser set(String line) {
@@ -330,6 +400,17 @@ public class ListEmojiGroups {
             }
             commaPoints.add(i);
             return this;
+        }
+        public List<String> toList() {
+            Builder<String> builder = ImmutableList.builder();
+            for (int i = 0; i < size(); ++i) {
+                builder.add(get(i));
+            }
+            return builder.build();
+        }
+        @Override
+        public String toString() {
+            return toList().toString();
         }
     }
 
@@ -432,7 +513,7 @@ public class ListEmojiGroups {
         }
         for (String s : SORTED) {
             if (!outputCounter.containsKey(s)) {
-                
+
             }
         }
     }

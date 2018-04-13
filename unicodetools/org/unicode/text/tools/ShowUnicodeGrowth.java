@@ -16,7 +16,7 @@ public class ShowUnicodeGrowth {
     private static final int LATEST = UCD_Types.AGE_VERSIONS.length - 1;
 
     enum Type {format, whitespace, number, punctuation, symbol, mark, hangul, han, other_letter, surrogate, private_use, noncharacter, unassigned};
-    static UCD ucd = UCD.make("");
+    static UCD ucd = UCD.make(UCD_Types.AGE_VERSIONS[LATEST]);
 
     public static void main(String[] args) {
         TestData.countChars();

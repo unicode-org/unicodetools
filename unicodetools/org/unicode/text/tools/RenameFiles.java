@@ -24,7 +24,7 @@ public class RenameFiles {
 
     // Set PREVIEW to true.
     private static final boolean PREVIEW_ONLY = false;
-    private static final Choice choice = Choice.samsung;
+    private static final Choice choice = Choice.twitter;
     
     private static final boolean RECURSIVE = true;
 
@@ -52,6 +52,11 @@ public class RenameFiles {
                 "^.*[^s].png$",
                 "samsung_(?<codes>[-_A-Za-z0-9]+)\\.png", 
                 "samsung"),
+        twitter(
+                "/Users/markdavis/Downloads/72x72", 
+                "^(?!\\.).*.png$",
+                "(?<codes>[-_A-Za-z0-9]+)\\.png", 
+                "twitter"),
         ;
         final String sourceDir;
         final Matcher filter;
