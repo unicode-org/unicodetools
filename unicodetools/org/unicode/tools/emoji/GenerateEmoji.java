@@ -3087,7 +3087,7 @@ public class GenerateEmoji {
             }
         }
         final boolean areNew = ARE_NEW.contains(chars2);
-        if (countFound == 0 || Emoji.IS_BETA && areNew) {
+        if (countFound < 2 || Emoji.IS_BETA && areNew) {
             otherCells.setLength(0);
             otherCells.append("<td class='andr' colSpan='" + Emoji.Source.platformsToIncludeNormal.size() + "'>… "
                     + getSamples(chars2) + " …</td>");

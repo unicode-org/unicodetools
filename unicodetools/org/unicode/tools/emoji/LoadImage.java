@@ -890,10 +890,11 @@ public class LoadImage extends Component {
         return targetImage;
     }
 
-    public static void writeImage(RenderedImage sourceImage, String outputDir,
+    public static File writeImage(RenderedImage sourceImage, String outputDir,
             String outputName, String fileSuffix) throws IOException {
         File outputfile = new File(outputDir, outputName + "." + fileSuffix);
         ImageIO.write(sourceImage, "png", outputfile);
+        return outputfile;
     }
 
     public static BufferedImage resizeImage(BufferedImage sourceImage,
