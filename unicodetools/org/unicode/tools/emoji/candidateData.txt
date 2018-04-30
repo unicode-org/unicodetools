@@ -574,10 +574,10 @@ Name=razor
 Keywords=sharp | shave | sharp
 
 Proposal=L2/17-432
-After=🤔
+After=😫
 U+101903
 Name=yawning face
-Keywords=bored | tired
+Keywords=tired | bored | yawn
 
 Proposal=L2/18-002
 After=🔨
@@ -596,3 +596,282 @@ After=🏮
 U+101906
 Name=diya lamp
 Keywords=lamp | oil | diya
+
+
+Proposal=L2/18-091
+After=🚶
+U+101927
+Name=standing person
+Keywords=standing
+Emoji_Modifier_Base
+Emoji_Gender_Base
+
+Proposal=L2/18-091
+After=🚶
+U+101928
+Name=kneeling person
+Keywords=kneeling
+Emoji_Modifier_Base
+Emoji_Gender_Base
+
+Proposal=L2/18-080
+After=🚶
+U+101912
+Name=person with white cane
+Emoji_Modifier_Base
+Emoji_Gender_Base
+
+Keywords=accessibility
+
+Proposal=L2/18-139
+After=👌 
+U+101946
+Name=pinch
+Keywords=small amount
+Emoji_Modifier_Base
+
+
+Proposal=L2/18-080
+After=👂
+U+101919
+Name=deaf sign
+Keywords=accessibility | deaf
+Emoji_Modifier_Base
+Emoji_Gender_Base
+Comment=If we show only the ear and hand, don't need gender base
+
+Proposal=L2/18-080
+After=👂
+U+101917
+Name=ear with hearing aid
+Keywords=accessibility | hard of hearing
+Emoji_Modifier_Base
+
+
+Proposal=L2/18-080
+After=🛵
+U+101948
+Name=manual wheelchair
+Keywords=accessibility
+
+Proposal=L2/18-080
+After=🛵
+U+101949
+Name=mechanized wheelchair
+Keywords=accessibility
+
+Proposal=L2/18-080
+After=💪
+U+101916
+Name=mechanical arm
+Keywords=prosthetic | accessibility
+
+Proposal=L2/18-080
+After=💪
+U+101915
+Name=mechanical leg
+Keywords=prosthetic | accessibility
+
+Proposal=L2/18-113
+After=👡 
+U+101908
+Name=ballet shoes
+Keywords=ballet | dance
+
+Proposal=L2/18-074
+After=🐼
+U+101929
+Name=sloth 
+Keywords=lazy
+
+Proposal=L2/18-093
+After=🐼
+U+101931
+Name=otter
+Keywords=fish | playful
+
+Proposal=L2/18-137
+After=🐼
+U+101926
+Name=orangutan
+Keywords=ape
+
+Proposal=L2/18-128
+After=🐼
+U+101932
+Name=skunk
+Keywords=stink
+
+Proposal=L2/18-080
+After=🐕 
+U+101914
+Name=guide dog
+Keywords=guide | blind
+
+Proposal=L2/18-080
+After=🐕 
+U+101913
+Name=service dog
+Keywords=service
+
+Proposal=L2/18-098
+After=🦉
+U+101933
+Name=flamingo
+Keywords=flamboyant
+
+Proposal=L2/18-123
+After= 🐚
+U+101945
+Name=oyster
+Keywords=pearl | diving
+
+Proposal=L2/18-130
+After=🥤
+U+101934
+Name=beverage box
+Keywords=juice box
+
+Proposal=L2/18-076
+After=🥦
+U+101935
+Name=garlic
+Keywords=flavoring
+
+Proposal=L2/18-077
+After=🥦
+U+101936
+Name=onion
+Keywords=flavoring
+
+Proposal=L2/18-125
+After=🥙
+U+101938
+Name=falafel
+Keywords=chickpea
+
+Proposal=L2/18-087
+After=🥞
+U+101943
+Name=waffle
+Keywords=indecisive | iron
+
+Proposal=L2/18-112
+After=🍿
+U+101907
+Name=butter
+Keywords=dairy
+
+Proposal=L2/18-122
+After=🥤
+U+101910
+Name=maté
+Keywords=drink
+
+Proposal=L2/18-111
+After=🥤
+U+101937
+Name=ice cube
+Keywords=cold | iceberg
+
+Proposal=L2/18-086
+After=🛵
+U+101939
+Name=auto rickshaw
+Keywords=tuk tuk
+
+Proposal=L2/18-127
+After=🌞
+U+101909
+Name=ringed planet
+Keywords=saturn | saturnine
+
+Proposal=L2/18-129
+After=🎯
+U+101940
+Name=yo-yo
+Keywords=fluctuate
+
+Proposal=L2/18-135
+After=🎯
+U+101911
+Name=kite
+Keywords=fly | soar
+
+Proposal=L2/18-124
+After=🎻
+U+101925
+Name=banjo
+Keywords=stringed | music
+
+Proposal=L2/18-092
+After=💉
+U+101941
+Name=blood drop
+Keywords=medicine | blood donation | menstruation
+
+Proposal=L2/18-146
+After=💊
+U+101942
+Name=adhesive bandage
+Keywords=bandage
+
+Proposal=L2/18-091
+After=🛋 
+U+101930
+Name=chair
+Keywords=seat | sit
+
+Proposal=L2/18-144
+After=👘
+U+101947
+Name=sari
+Keywords=clothing | dress
+
+Proposal=L2/18-141
+After=🔵
+U+101950
+Name=yellow circle
+Keywords=yellow | circle
+Comment=For use in sequences, indicating color of previous emoji
+
+U+101952
+Name=orange circle
+Keywords=orange | circle
+Comment=For use in sequences, indicating color of previous emoji
+
+U+101953
+Name=green circle
+Keywords=green | circle
+Comment=For use in sequences, indicating color of previous emoji
+
+U+101954
+Name=purple circle
+Keywords=purple | circle
+Comment=For use in sequences, indicating color of previous emoji
+
+U+101955
+Name=brown circle
+Keywords=brown | circle
+Comment=For use in sequences, indicating color of previous emoji
+
+After=👘
+
+U+101956
+Name=one-piece
+Keywords=bathing suit
+
+U+101957
+Name=briefs
+Keywords=bathing suit | underwear
+
+U+101958
+Name=shorts
+Keywords=bathing suit | underwear | pants
+
+
+Proposal=L2/18-140
+After=💊
+U+101960
+Name=stethoscope
+Keywords=doctor | medicine | heart

@@ -3319,7 +3319,8 @@ public class GenerateEmoji {
                 + PROPOSAL_CAUTION;
         String footer = candidateStyle == CandidateStyle.released ? ""
                 : "<h3><a href='#recent_changes' name='recent_changes'>Recent Changes</a></h3>\n"
-                + (candidateStyle == CandidateStyle.candidate ? 
+                + (true ? "<p>TBD</>" 
+                        : candidateStyle == CandidateStyle.candidate ? 
                         "<p>The following changes were made in the January 2016 UTC meeting to the draft candidates for 2018, which were then"
                         + " advanced to final candidates.</p>\n"
                         + "<ol>\n"

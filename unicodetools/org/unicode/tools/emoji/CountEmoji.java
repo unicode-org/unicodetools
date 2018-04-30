@@ -1,12 +1,17 @@
 package org.unicode.tools.emoji;
 
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.EnumMap;
+import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.Map.Entry;
 
 import org.unicode.cldr.tool.Option;
 import org.unicode.cldr.tool.Option.Options;
@@ -17,12 +22,18 @@ import org.unicode.cldr.util.Validity.Status;
 import org.unicode.cldr.util.StandardCodes.LstrType;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.CountEmoji.Category;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.ImmutableSortedSet;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
+import com.google.common.collect.Ordering;
 import com.google.common.collect.TreeMultimap;
+import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UnicodeSet;
@@ -36,7 +47,8 @@ public class CountEmoji {
         nonincrementalCount(new Params()),
         countVs(new Params()),
         invalid(new Params()),
-        verbose(new Params().setHelp("verbose debugging messages")),
+        verbose(new Params().setHelp("verbose debugging messages")), 
+        list(new Params()),
         ;
 
         // BOILERPLATE TO COPY
@@ -70,8 +82,36 @@ public class CountEmoji {
             countNonincremental();
             done=true;
         }
+        if (MyOptions.list.option.doesOccur()) {
+            //Category bucket = Category.getBucket("👨‍⚖️");
+            UnicodeSet toDisplay = EmojiData.of(Emoji.VERSION_BETA).getAllEmojiWithoutDefectives();
+            System.out.println("\nEmoji v11");
+            listCategories(toDisplay);
+
+            EmojiData EMOJI_DATA_PREVIOUS = EmojiData.of(Emoji.VERSION_TO_GENERATE_PREVIOUS);
+            UnicodeSet onlyNew = new UnicodeSet(EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives())
+                    .removeAll(EMOJI_DATA_PREVIOUS.getAllEmojiWithoutDefectives());
+            System.out.println("\nEmoji v11-v5");
+            listCategories(onlyNew);
+            done = true;
+        }
         if (!done) {
             countNew();
+        }
+    }
+
+    private static void listCategories(UnicodeSet toDisplay) {
+        Multimap<Category,String> items = TreeMultimap.create(Ordering.natural(), EmojiOrder.STD_ORDER.codepointCompare);
+        for (String item : toDisplay) {
+            Category cat = Category.getBucket(item);
+            items.put(cat, item);
+        }
+        for (Category cat : Category.values()) {
+            Collection<String> set = items.get(cat);
+            System.out.println(cat.toStringPlain()
+                    + "\t" + CollectionUtilities.join(cat.getAttributes(), " ")
+                    + "\t" + set.size()
+                    + "\t" + CollectionUtilities.join(set, " "));
         }
     }
 
@@ -169,7 +209,7 @@ public class CountEmoji {
             if (bucket == null) {
                 continue;
             }
-            if ((evalue == Category.component || evalue == Category.typical_dup_group | evalue == Category.typical_dup_sign) 
+            if ((evalue == Category.component ) // || evalue == Category.typical_dup_group | evalue == Category.typical_dup_sign) 
                     && !doneSubtotal) {
                 showTotalLine(out, "Subtotal", row, th, groups, columnCount);
                 doneSubtotal = true;
@@ -217,52 +257,69 @@ public class CountEmoji {
 
     static final String GENDER = Emoji.MALE+'/'+Emoji.FEMALE;
     static final String WO_MAN = new StringBuilder().appendCodePoint(Emoji.MAN).append('/').appendCodePoint(Emoji.WOMAN).toString();
-    
+
+    enum Attribute {
+        singleton, zwj, skin, gender, role, family, hair,
+    }
+
     enum Category {
         character("char"), 
         keycap_seq,
         flag_seq,
         tag_seq, 
-        mod_seq("char&skin"), 
-        zwj_seq_gender("zwj:…" + GENDER), 
-        zwj_seq_gender_mod("zwj:…" + GENDER + "&skin"),
-        zwj_seq_role("zwj:"+WO_MAN+'…'),
-        zwj_seq_role_mod("zwj:"+WO_MAN+'…' + "&skin"), 
-        zwj_seq_fam("zwj:"+Emoji.NEUTRAL_FAMILY), 
+        mod_seq("char&skin", Attribute.skin), 
+        zwj_seq_gender("zwj:" + GENDER, Attribute.zwj, Attribute.gender), 
+        zwj_seq_gender_mod("zwj:" + GENDER + "&skin", Attribute.zwj, Attribute.gender, Attribute.skin),
+        zwj_seq_role("zwj:"+WO_MAN+"obj", Attribute.zwj, Attribute.role),
+        zwj_seq_role_mod("zwj:"+WO_MAN +"obj" + "&skin", Attribute.zwj, Attribute.role, Attribute.skin), 
+        zwj_seq_fam("zwj:"+Emoji.NEUTRAL_FAMILY, Attribute.zwj, Attribute.family), 
         //zwj_seq_fam_mod("zwj:"+Emoji.NEUTRAL_FAMILY + "&skin"), 
-        zwj_seq_other("zwj:other"),
-        zwj_seq_mod("zwj:other&skin"),
-        zwj_seq_hair("zwj:other&hair"),
-        zwj_seq_mod_hair("zwj:other&skin&hair"),
+        //zwj_seq_mod("zwj:other&skin", Attribute.zwj, Attribute.skin),
+        zwj_seq_hair("zwj:hair", Attribute.zwj, Attribute.hair),
+        zwj_seq_mod_hair("zwj:skin&hair", Attribute.zwj, Attribute.skin, Attribute.hair),
+        zwj_seq_other("zwj:other", Attribute.zwj),
         component, 
-        typical_dup_sign,
-        typical_dup_group, 
+//        typical_dup_sign,
+//        typical_dup_group, 
         ;
 
-        final public String name;
+        final public String displayName;
         final public String html;
+        final Set<Attribute> attributes;
+
         Category() {
             this(null);
         }
-        Category(String _name) {
-            name = _name == null ? name().replace('_', ' ') : _name;
-            html = TransliteratorUtilities.toHTML.transform(name);
+        Category(String _name, Attribute... _baseCategories) {
+            displayName = _name == null ? name().replace('_', ' ') : _name;
+            html = TransliteratorUtilities.toHTML.transform(displayName);
+            attributes = _baseCategories.length == 0 ? Collections.emptySortedSet() 
+                    : ImmutableSortedSet.copyOf(EnumSet.copyOf(Arrays.asList(_baseCategories)));
+        }
+        static Map<Set<Attribute>, Category> attributesToCategory;
+        static {
+            Map<Set<Attribute>, Category> _attributesToCategory = new HashMap<>();
+            for (Category cat : Category.values()) {
+                _attributesToCategory.put(cat.attributes, cat);
+            }
+            attributesToCategory = ImmutableMap.copyOf(_attributesToCategory);
         }
         @Override
         public String toString() {
             return html;
         }
         public String toStringPlain() {
-            return name;
+            return displayName;
         }
         static public Category getBucket(String s) {
             String noVariants = EmojiData.removeEmojiVariants(s);
             Category bucket = null;
-            if (EmojiData.isTypicallyDuplicateGroup(s)) {
-                bucket = typical_dup_group;
-//            } else if (EmojiData.isTypicallyDuplicateSign(s)) {
-//                bucket = typical_dup_sign;
-            } else if (noVariants.isEmpty() || CountEmoji.EMOJI_DATA_BETA.getEmojiComponents().contains(noVariants)) {
+            //            if (EmojiData.isTypicallyDuplicateGroup(s)) {
+            //                bucket = typical_dup_group;
+            //                //            } else if (EmojiData.isTypicallyDuplicateSign(s)) {
+            //                //                bucket = typical_dup_sign;
+            //            } else 
+            if (noVariants.isEmpty() || CountEmoji.EMOJI_DATA_BETA.getEmojiComponents().contains(noVariants)) {
                 bucket = component;
             } else if (CharSequences.getSingleCodePoint(noVariants) < Integer.MAX_VALUE) {
                 bucket = character;
@@ -273,35 +330,66 @@ public class CountEmoji {
             } else if (Emoji.REGIONAL_INDICATORS.containsSome(noVariants)) {
                 bucket = flag_seq;
             } else {
+                EnumSet<Attribute> attributes = EnumSet.noneOf(Attribute.class);
+
                 boolean mods = EmojiData.MODIFIERS.containsSome(noVariants);
+                if (mods) {
+                    attributes.add(Attribute.skin);
+                }
                 boolean hair = Emoji.HAIR_PIECES.containsSome(noVariants);
+                if (hair) {
+                    attributes.add(Attribute.hair);
+                }
                 boolean gender = Emoji.GENDER_MARKERS.containsSome(noVariants);
+                if (gender) {
+                    attributes.add(Attribute.gender);
+                }
                 boolean zwj = noVariants.contains(Emoji.JOINER_STR);
-                
+                if (zwj) {
+                    attributes.add(Attribute.zwj);
+                }
+
                 int first = noVariants.codePointAt(0);
                 String butFirst = noVariants.substring(Character.charCount(first));
                 boolean role = Emoji.MAN_OR_WOMAN.contains(first) 
                         && Emoji.PROFESSION_OBJECT.containsSome(noVariants);
-                boolean family = Emoji.FAMILY_MARKERS.contains(first) && Emoji.FAMILY_MARKERS.containsSome(butFirst);
-                if (!zwj) {
-                    if (mods) {
-                        bucket = mod_seq;
-                    } else {
-                        throw new IllegalArgumentException("should never happen");
-                    }
-                } else { // zwj
-                    if (gender) {
-                        bucket = getVariety(mods, hair, zwj_seq_gender, zwj_seq_gender_mod, null, null);
-                    } else if (role) {
-                        bucket = getVariety(mods, hair, zwj_seq_role, zwj_seq_role_mod, null, null);
-                    } else if (family) {
-                        bucket = getVariety(mods, hair, zwj_seq_fam, null, null, null);
-                    } else {
-                        bucket = getVariety(mods, hair, zwj_seq_other, zwj_seq_mod, zwj_seq_hair, zwj_seq_mod_hair);
-                    }
+                if (role) {
+                    attributes.add(Attribute.role);
                 }
+                boolean family = Emoji.FAMILY_MARKERS.contains(first) && Emoji.FAMILY_MARKERS.containsSome(butFirst);
+                if (family) {
+                    attributes.add(Attribute.family);
+                }
+                bucket = getCategory(attributes);
+                //                
+                //
+                //                if (!zwj) {
+                //                    if (mods) {
+                //                        bucket = mod_seq;
+                //                    } else {
+                //                        throw new IllegalArgumentException("should never happen");
+                //                    }
+                //                } else { // zwj
+                //                    if (gender) {
+                //                        bucket = getVariety(mods, hair, zwj_seq_gender, zwj_seq_gender_mod, null, null);
+                //                    } else if (role) {
+                //                        bucket = getVariety(mods, hair, zwj_seq_role, zwj_seq_role_mod, null, null);
+                //                    } else if (family) {
+                //                        bucket = getVariety(mods, hair, zwj_seq_fam, null, null, null);
+                //                    } else {
+                //                        bucket = getVariety(mods, hair, zwj_seq_other, zwj_seq_mod, zwj_seq_hair, zwj_seq_mod_hair);
+                //                    }
+                //                }
             }
             return bucket;
+        }
+
+        private static Category getCategory(EnumSet<Attribute> attributes) {
+            Category result = attributesToCategory.get(attributes);
+            if (result == null) {
+                throw new IllegalArgumentException("no category available, add??");
+            }
+            return result;
         }
         private static Category getVariety(boolean mods, boolean hair, 
                 Category noSkinNoHair, Category skinNoHair,
@@ -325,6 +413,13 @@ public class CountEmoji {
                 throw new IllegalArgumentException("no category available, add??");
             }
             return bucket;
+        }
+
+        public boolean hasBaseCategory(Attribute baseCategory) {
+            return attributes.contains(baseCategory);
+        }
+        public Set<Attribute> getAttributes() {
+            return attributes;
         }
     }
 
@@ -397,4 +492,5 @@ public class CountEmoji {
             add(s);
         }        
     }
+
 }

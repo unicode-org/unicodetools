@@ -33,6 +33,7 @@ import org.unicode.props.UnicodeRelation;
 import org.unicode.props.VersionToAge;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.CountEmoji.Category;
 import org.unicode.tools.emoji.Emoji.Qualified;
 
 import com.google.common.base.Splitter;
@@ -40,6 +41,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
 import com.google.common.collect.Multimap;
+import com.google.common.collect.SortedSetMultimap;
 import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
@@ -103,6 +105,7 @@ public class EmojiData implements EmojiDataSource {
     public static final Splitter comma = Splitter.on(",").trimResults();
 
     static final ConcurrentHashMap<VersionInfo, EmojiData> cache = new ConcurrentHashMap<>();
+    private static final boolean DEBUG = false;
 
     public static EmojiData of(VersionInfo version) {
         EmojiData result = cache.get(version);
@@ -373,9 +376,9 @@ public class EmojiData implements EmojiDataSource {
                     }
                 }
             }
-            if (!extendedPictographic1.equals(extendedPictographic)) {
-                showAminusB("pictographic", "file", extendedPictographic, "prop", extendedPictographic1);
-            }
+//            if (!extendedPictographic1.equals(extendedPictographic)) {
+//                showAminusB("pictographic", "file", extendedPictographic, "prop", extendedPictographic1);
+//            }
 
             for (String s : modifierSequences) {
                 s = s.replace(Emoji.EMOJI_VARIANT_STRING, "");
@@ -418,7 +421,7 @@ public class EmojiData implements EmojiDataSource {
                     .add(0x1F9B9)
                     .freeze();
             
-            System.out.println("rawHairBases: " + rawHairBases.toPattern(false));
+            if (DEBUG) System.out.println("rawHairBases: " + rawHairBases.toPattern(false));
 
             explicitGender.addAll(new UnicodeSet("[[👦-👩 👴 👵 🤴 👸 👲 🧕 🤵 👰 🤰 🤱 🎅 🤶 💃 🕺 🕴 👫-👭]]"))
             .freeze();
@@ -429,7 +432,7 @@ public class EmojiData implements EmojiDataSource {
             hairBases.addAll(rawHairBases)
             .retainAll(modifierBases)
             .freeze();
-            System.out.println(version + "Hairbases: " + hairBases.toPattern(false));
+            if (DEBUG) System.out.println(version + "Hairbases: " + hairBases.toPattern(false));
 
             for (String s : zwjSequencesNormal) {
                 if (s.contains("♀️") && !MODIFIERS.containsSome(s)) {
@@ -1089,6 +1092,7 @@ public class EmojiData implements EmojiDataSource {
     }
 
     static final IndexUnicodeProperties latest = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
+    static final IndexUnicodeProperties beta = IndexUnicodeProperties.make();
     static boolean SKIP = true;
 
     private static String getSpecialAge(String s) {
@@ -1103,12 +1107,18 @@ public class EmojiData implements EmojiDataSource {
 
     public static void main(String[] args) {
         EmojiData last = EmojiData.of(Emoji.VERSION_BETA);
-        UnicodeMap<Integer> yearData = getYears();
-        for (Integer value : new TreeSet<Integer>(yearData.values())) {
-            UnicodeSet set = yearData.getSet(value);
-            System.out.println(value + "\t" + set.size() + "\t" + set.toPattern(false));
+        Multimap<Category,String> items = TreeMultimap.create();
+        for (String item : last.getAllEmojiWithoutDefectives()) {
+            Category cat = Category.getBucket(item);
+            items.put(cat, item);
+        }
+        for ( Entry<Category, Collection<String>> entry : items.asMap().entrySet()) {
+            System.out.println(entry.getKey() 
+                    + "\t" + entry.getKey().getAttributes()
+                    + entry.getValue());
         }
         if (SKIP) return;
+        checkYears();
 
         EmojiData v6 = EmojiData.of(Emoji.VERSION11);
         EmojiOrder order6 = EmojiOrder.of(Emoji.VERSION11);
@@ -1209,7 +1219,6 @@ public class EmojiData implements EmojiDataSource {
         //        }
 
         System.out.println("Version " + GenerateEnums.ENUM_VERSION);
-        final IndexUnicodeProperties beta = IndexUnicodeProperties.make(Age_Values.V9_0);
         final UnicodeMap<String> betaNames = beta.load(UcdProperty.Name);
         final UnicodeMap<String> names = latest.load(UcdProperty.Name);
         final UnicodeMap<Age_Values> ages = beta.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
@@ -1253,6 +1262,14 @@ public class EmojiData implements EmojiDataSource {
         System.out.println("Keycap0 " + betaData.getSortingChars().contains("0" + Emoji.KEYCAP_MARK_STRING));
         System.out.println("KeycapE " + betaData.getSortingChars().contains("0" + Emoji.EMOJI_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
         System.out.println("KeycapT " + betaData.getSortingChars().contains("0" + Emoji.TEXT_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
+    }
+
+    private static void checkYears() {
+        UnicodeMap<Integer> yearData = getYears();
+        for (Integer value : new TreeSet<Integer>(yearData.values())) {
+            UnicodeSet set = yearData.getSet(value);
+            System.out.println(value + "\t" + set.size() + "\t" + set.toPattern(false));
+        }
     }
 
     private UnicodeSet getDerivableNames() {

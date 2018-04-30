@@ -1719,7 +1719,7 @@ final public class UCA implements Comparator<String>, UCA_Types {
         //  } catch (IOException e) {
         //    throw (IllegalArgumentException) new IllegalArgumentException().initCause(e);
         //  }
-        return BASE_UCA_GEN_DIR + Default.ucdVersion() + "/"; //  + getDataVersion() + "/";
+        return Settings.BASE_UCA_GEN_DIR + Default.ucdVersion() + "/"; //  + getDataVersion() + "/";
     }
 
 
