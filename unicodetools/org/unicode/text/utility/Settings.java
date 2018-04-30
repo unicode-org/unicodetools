@@ -35,10 +35,12 @@ public class Settings {
     public static final String GEN_DIR = BUILD_FOR_COMPARE ? UNICODE_DRAFT_PUBLIC : GEN_DIR_OLD;
     public static final String BIN_DIR = GEN_DIR_OLD + "BIN/";
     public static final String GEN_UCD_DIR = GEN_DIR + "ucd/";
-    
+    public static final String BASE_UCA_GEN_DIR = GEN_DIR + "UCA/"; // UCD_Types.GEN_DIR + "collation" + "/";
+
     public static final String CHARTS_GEN_DIR = UNICODE_DRAFT_DIRECTORY + "charts/";
 
     public static final String SRC_DIR = Utility.fixFileName("org/unicode/text") + "/";
     public static final String SRC_UCA_DIR = SRC_DIR + "UCA/";
     public static final String SRC_UCD_DIR = SRC_DIR + "UCD/";
+
 }

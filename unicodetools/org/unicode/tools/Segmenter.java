@@ -433,7 +433,7 @@ public class Segmenter {
         /**
          * Add a variable and value. Resolves the internal references in the value.
          *
-         * @param name
+         * @param displayName
          * @param value
          * @return
          */

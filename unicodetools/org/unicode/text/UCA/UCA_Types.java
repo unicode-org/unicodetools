@@ -13,10 +13,7 @@ package org.unicode.text.UCA;
 
 import java.util.BitSet;
 
-import org.unicode.text.utility.Settings;
-
 public interface UCA_Types {
-    public static final String BASE_UCA_GEN_DIR = Settings.GEN_DIR + "uca/"; // UCD_Types.GEN_DIR + "collation" + "/";
     public static final char LEVEL_SEPARATOR = '\u0000';
 
     static final int NEUTRAL_SECONDARY = 0x20;
