@@ -209,7 +209,7 @@ public class CountEmoji {
             if (bucket == null) {
                 continue;
             }
-            if ((evalue == Category.component ) // || evalue == Category.typical_dup_group | evalue == Category.typical_dup_sign) 
+            if ((evalue == Category.component || evalue == Category.typical_dup ) // || evalue == Category.typical_dup_group | evalue == Category.typical_dup_sign) 
                     && !doneSubtotal) {
                 showTotalLine(out, "Subtotal", row, th, groups, columnCount);
                 doneSubtotal = true;
@@ -264,29 +264,29 @@ public class CountEmoji {
 
     enum Category {
         character("char"), 
+        zwj_seq_gender("zwj: " + GENDER, Attribute.zwj, Attribute.gender), 
+        zwj_seq_role("zwj: "+WO_MAN+"obj", Attribute.zwj, Attribute.role),
+        zwj_seq_fam("zwj: "+Emoji.NEUTRAL_FAMILY, Attribute.zwj, Attribute.family), 
+        //zwj_seq_fam_mod("zwj: "+Emoji.NEUTRAL_FAMILY + "&skin"), 
+        //zwj_seq_mod("zwj: other&skin", Attribute.zwj, Attribute.skin),
+        zwj_seq_other("zwj: other", Attribute.zwj),
+        mod_seq("char & skin", Attribute.skin), 
+        zwj_seq_gender_mod("zwj: " + GENDER + " & skin", Attribute.zwj, Attribute.gender, Attribute.skin),
+        zwj_seq_role_mod("zwj: "+WO_MAN +"obj" + " & skin", Attribute.zwj, Attribute.role, Attribute.skin), 
+        zwj_seq_hair("zwj: hair", Attribute.zwj, Attribute.hair),
+        zwj_seq_mod_hair("zwj: skin & hair", Attribute.zwj, Attribute.skin, Attribute.hair),
         keycap_seq,
         flag_seq,
         tag_seq, 
-        mod_seq("char&skin", Attribute.skin), 
-        zwj_seq_gender("zwj:" + GENDER, Attribute.zwj, Attribute.gender), 
-        zwj_seq_gender_mod("zwj:" + GENDER + "&skin", Attribute.zwj, Attribute.gender, Attribute.skin),
-        zwj_seq_role("zwj:"+WO_MAN+"obj", Attribute.zwj, Attribute.role),
-        zwj_seq_role_mod("zwj:"+WO_MAN +"obj" + "&skin", Attribute.zwj, Attribute.role, Attribute.skin), 
-        zwj_seq_fam("zwj:"+Emoji.NEUTRAL_FAMILY, Attribute.zwj, Attribute.family), 
-        //zwj_seq_fam_mod("zwj:"+Emoji.NEUTRAL_FAMILY + "&skin"), 
-        //zwj_seq_mod("zwj:other&skin", Attribute.zwj, Attribute.skin),
-        zwj_seq_hair("zwj:hair", Attribute.zwj, Attribute.hair),
-        zwj_seq_mod_hair("zwj:skin&hair", Attribute.zwj, Attribute.skin, Attribute.hair),
-        zwj_seq_other("zwj:other", Attribute.zwj),
+        typical_dup, 
         component, 
-//        typical_dup_sign,
-//        typical_dup_group, 
+        //        typical_dup_sign,
+        //        typical_dup_group, 
         ;
 
         final public String displayName;
         final public String html;
         final Set<Attribute> attributes;
-
         Category() {
             this(null);
         }
@@ -314,12 +314,11 @@ public class CountEmoji {
         static public Category getBucket(String s) {
             String noVariants = EmojiData.removeEmojiVariants(s);
             Category bucket = null;
-            //            if (EmojiData.isTypicallyDuplicateGroup(s)) {
-            //                bucket = typical_dup_group;
-            //                //            } else if (EmojiData.isTypicallyDuplicateSign(s)) {
-            //                //                bucket = typical_dup_sign;
-            //            } else 
-            if (noVariants.isEmpty() || CountEmoji.EMOJI_DATA_BETA.getEmojiComponents().contains(noVariants)) {
+            if (EmojiData.EMOJI_DATA.isTypicallyDuplicateSign(s)) {
+                bucket = typical_dup;
+                //            } else if (EmojiData.isTypicallyDuplicateSign(s)) {
+                //                bucket = typical_dup_sign;
+            } else if (noVariants.isEmpty() || CountEmoji.EMOJI_DATA_BETA.getEmojiComponents().contains(noVariants)) {
                 bucket = component;
             } else if (CharSequences.getSingleCodePoint(noVariants) < Integer.MAX_VALUE) {
                 bucket = character;

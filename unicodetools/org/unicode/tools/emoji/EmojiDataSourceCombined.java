@@ -124,4 +124,10 @@ public class EmojiDataSourceCombined implements EmojiDataSource {
         UnicodeSet allChars = EMOJI_DATA.getAllEmojiWithDefectives();
         
     }
+
+    @Override
+    public UnicodeSet getTakesSign() {
+        return add(emojiData.getTakesSign(),
+                candidates.getTakesSign());
+    }
 }
