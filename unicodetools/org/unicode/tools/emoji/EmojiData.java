@@ -86,6 +86,7 @@ public class EmojiData implements EmojiDataSource {
     private final UnicodeSet keycapSequenceAll = new UnicodeSet();
     private final UnicodeSet keycapBases = new UnicodeSet();
     private final UnicodeSet genderBases = new UnicodeSet();
+    private final UnicodeSet takesSign = new UnicodeSet();
     private final UnicodeSet hairBases = new UnicodeSet();
     private final UnicodeSet explicitGender = new UnicodeSet();
     private final UnicodeSet explicitHair = new UnicodeSet();
@@ -438,8 +439,12 @@ public class EmojiData implements EmojiDataSource {
                 if (s.contains("♀️") && !MODIFIERS.containsSome(s)) {
                     genderBases.add(s.codePointAt(0));
                 }
+                if (s.contains(Emoji.JOINER_STR + Emoji.FEMALE + Emoji.EMOJI_VARIANT_STRING) || s.contains(Emoji.JOINER_STR + Emoji.MALE + Emoji.EMOJI_VARIANT_STRING)) {
+                    takesSign.add(s.substring(0, s.length()-(Emoji.JOINER_STR + Emoji.FEMALE + Emoji.EMOJI_VARIANT_STRING).length()));
+                }
             }
             genderBases.freeze();
+            takesSign.freeze();
 
             for (String line : FileUtilities.in(EmojiData.class, "emojiSources.txt")) {
                 if (line.startsWith("#") || line.isEmpty()) continue;
@@ -472,6 +477,7 @@ public class EmojiData implements EmojiDataSource {
                 .addAll(keycapSequences)
                 .addAll(zwjSequencesNormal)
                 .removeAll(Emoji.DEFECTIVE)
+                .addAll(MODIFIERS)
                 .freeze();
 
         allEmojiWithoutDefectivesOrModifiers = new UnicodeSet();
@@ -1333,8 +1339,14 @@ public class EmojiData implements EmojiDataSource {
                 ;
     }
 
+    @Override
     public UnicodeSet getGenderBases() {
         return genderBases;
+    }
+    
+    @Override
+    public UnicodeSet getTakesSign() {
+        return takesSign;
     }
 
     public UnicodeSet getEmojiWithVariants() {
@@ -1361,8 +1373,8 @@ public class EmojiData implements EmojiDataSource {
     static final UnicodeSet TYPICAL_DUP_GROUP = new UnicodeSet("[{👩‍❤️‍💋‍👨} {👨‍👩‍👧‍👦} {👩‍❤️‍👨}]").freeze();
     static final UnicodeSet TYPICAL_DUP_SIGN = new UnicodeSet("[{\u200D\u2642}]").freeze();
 
-    public static boolean isTypicallyDuplicateSign(String emoji) {
-        boolean result = TYPICAL_DUP_SIGN.containsSome(emoji);
+    public boolean isTypicallyDuplicateSign(String emoji) {
+        boolean result = getTakesSign().contains(emoji);
         return result;
     }
     public static boolean isTypicallyDuplicateGroup(String emoji) {

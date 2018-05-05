@@ -120,6 +120,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     private UnicodeSet draft = new UnicodeSet();
     private final UnicodeSet emoji_Modifier_Base = new UnicodeSet();
     private final UnicodeSet emoji_Gender_Base = new UnicodeSet();
+    private final UnicodeSet takesSign = new UnicodeSet();
     private final UnicodeSet emoji_Component = new UnicodeSet();
     private final UnicodeMap<String> after = new UnicodeMap<>();
     private final UnicodeMap<String> comments = new UnicodeMap<>();
@@ -282,6 +283,10 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
             if (!provisional.contains(s)) {
                 allNonProvisional.add(s);
             }
+            if (s.contains(Emoji.JOINER_STR + Emoji.FEMALE + Emoji.EMOJI_VARIANT_STRING) || s.contains(Emoji.JOINER_STR + Emoji.MALE + Emoji.EMOJI_VARIANT_STRING)) {
+                takesSign.add(s.substring(0, s.length()-(Emoji.JOINER_STR + Emoji.FEMALE + Emoji.EMOJI_VARIANT_STRING).length()));
+            }
+
         }
         UnicodeMap<Age_Values> ages = Emoji.LATEST.loadEnum(UcdProperty.Age, Age_Values.class);
         for (String s : allCharacters) {
@@ -294,6 +299,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
         emoji_Modifier_Base.freeze();
         emoji_Gender_Base.freeze();
+        takesSign.freeze();
         emoji_Component.freeze();
         proposal.freeze();
         if (!checkData(this)) {
@@ -310,7 +316,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
             }
             // check that old emoji have emoji VS
             // TODO
-            
+
             if (Emoji.GENDER_MARKERS.containsSome(item) 
                     || EmojiData.MODIFIERS.containsSome(item)
                     || Emoji.MAN_OR_WOMAN.containsSome(item)) {
@@ -330,7 +336,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                 continue;
             }
             Status status = instance.getStatus(item);
-            if (status == Status.Provisional_Candidate) {
+            if (status != Status.Final_Candidate) {
                 continue;
             }
             String cname = instance.getUName(item);
@@ -578,13 +584,15 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
     public static void main(String[] args) {
         CandidateData instance = CandidateData.getInstance();
+        if (false) return;
+
         for (Status status : Status.values()) {
             UnicodeSet items = instance.statuses.getSet(status);
             System.out.println(status + "\t" + items.size());
         }
         generateProposalData(instance);
         showOrdering(instance);
-        
+
         // showCandidateData(CandidateData.getInstance(), true);
         //showCandidateData(CandidateData.getProposalInstance(), true);
     }
@@ -877,5 +885,10 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         Age_Values result = Emoji.getNewest(s);
         return result == Age_Values.Unassigned ? Emoji.UCD11 
                 : VersionInfo.getInstance(result.getShortName());
+    }
+
+    @Override
+    public UnicodeSet getTakesSign() {
+        return addWithCharFilter(takesSign, null, provisional);
     }
 }

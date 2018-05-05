@@ -551,81 +551,78 @@ Keywords= chess | dupe | expendable | red shirt
 Comment=emojification of pre-existing character
 
 
-Status=Provisional Candidate
+Status=Draft Candidate
 
 Proposal=L2/17-381
 After=🎣
-U+101900
+U+1F93F
 Name=diving mask
 UName=DIVING MASK AND SNORKEL
 Keywords= diving | scuba | snorkeling
 
 Proposal=L2/17-298
 After=🕌
-U+101901
+U+1F6D5
 Name=hindu temple
 UName=HINDU TEMPLE
 Keywords= hindu | temple
 
 Proposal=L2/17-431
 After=🛁
-U+101902
+U+1FA92
 Name=razor
 Keywords=sharp | shave | sharp
 
 Proposal=L2/17-432
 After=😫
-U+101903
+U+1F971
 Name=yawning face
 Keywords=tired | bored | yawn
 
 Proposal=L2/18-002
 After=🔨
-U+101904
+U+1FA93
 Name=axe
 Keywords=hatchet | chop | split | wood
 
 Proposal=L2/18-003
 After=🛬
-U+101905
+U+1FA82
 Name=parachute
 Keywords=parachute | skydive | hang-glide | parasail
 
 Proposal=L2/17-356, L2/18-029, L2/18-033
 After=🏮
-U+101906
+U+1FA94
 Name=diya lamp
 Keywords=lamp | oil | diya
 
 
 Proposal=L2/18-091
 After=🚶
-U+101927
+U+1F9CD
 Name=standing person
-Keywords=standing
+Keywords=stand
 Emoji_Modifier_Base
 Emoji_Gender_Base
 
 Proposal=L2/18-091
 After=🚶
-U+101928
+U+1F9CE
 Name=kneeling person
-Keywords=kneeling
+Keywords=kneel
 Emoji_Modifier_Base
 Emoji_Gender_Base
 
 Proposal=L2/18-080
-After=🚶
-U+101912
-Name=person with white cane
-Emoji_Modifier_Base
-Emoji_Gender_Base
-
-Keywords=accessibility
+After=⚖
+U+1F9AF
+Name=probing cane
+Keywords=accessibility | blind
 
 Proposal=L2/18-139
 After=👌 
-U+101946
+U+1F90F
 Name=pinch
 Keywords=small amount
 Emoji_Modifier_Base
@@ -633,16 +630,7 @@ Emoji_Modifier_Base
 
 Proposal=L2/18-080
 After=👂
-U+101919
-Name=deaf sign
-Keywords=accessibility | deaf
-Emoji_Modifier_Base
-Emoji_Gender_Base
-Comment=If we show only the ear and hand, don't need gender base
-
-Proposal=L2/18-080
-After=👂
-U+101917
+U+1F9BB
 Name=ear with hearing aid
 Keywords=accessibility | hard of hearing
 Emoji_Modifier_Base
@@ -650,228 +638,267 @@ Emoji_Modifier_Base
 
 Proposal=L2/18-080
 After=🛵
-U+101948
+U+1F9BD
 Name=manual wheelchair
 Keywords=accessibility
 
 Proposal=L2/18-080
 After=🛵
-U+101949
-Name=mechanized wheelchair
+U+1F9BC
+Name=motorized wheelchair
 Keywords=accessibility
 
 Proposal=L2/18-080
 After=💪
-U+101916
+U+1F9BE
 Name=mechanical arm
 Keywords=prosthetic | accessibility
 
 Proposal=L2/18-080
 After=💪
-U+101915
+U+1F9BF
 Name=mechanical leg
 Keywords=prosthetic | accessibility
 
 Proposal=L2/18-113
 After=👡 
-U+101908
+U+1FA70
 Name=ballet shoes
 Keywords=ballet | dance
 
 Proposal=L2/18-074
 After=🐼
-U+101929
+U+1F9A5
 Name=sloth 
 Keywords=lazy
 
 Proposal=L2/18-093
 After=🐼
-U+101931
+U+1F9A6
 Name=otter
 Keywords=fish | playful
 
 Proposal=L2/18-137
 After=🐼
-U+101926
+U+1F9A7
 Name=orangutan
 Keywords=ape
 
 Proposal=L2/18-128
 After=🐼
-U+101932
+U+1F9A8
 Name=skunk
 Keywords=stink
 
 Proposal=L2/18-080
 After=🐕 
-U+101914
+U+1F9AE
 Name=guide dog
 Keywords=guide | blind
 
 Proposal=L2/18-080
-After=🐕 
-U+101913
-Name=service dog
-Keywords=service
+After= 👘
+U+1F9BA
+Name=service animal vest
+Keywords=service | animal | dog
 
 Proposal=L2/18-098
 After=🦉
-U+101933
+U+1F9A9
 Name=flamingo
 Keywords=flamboyant
 
 Proposal=L2/18-123
 After= 🐚
-U+101945
+U+1F9AA
 Name=oyster
 Keywords=pearl | diving
 
 Proposal=L2/18-130
 After=🥤
-U+101934
+U+1F9C3
 Name=beverage box
 Keywords=juice box
 
 Proposal=L2/18-076
 After=🥦
-U+101935
+U+1F9C4
 Name=garlic
 Keywords=flavoring
 
 Proposal=L2/18-077
 After=🥦
-U+101936
+U+1F9C5
 Name=onion
 Keywords=flavoring
 
 Proposal=L2/18-125
 After=🥙
-U+101938
+U+1F9C6
 Name=falafel
 Keywords=chickpea
 
 Proposal=L2/18-087
 After=🥞
-U+101943
+U+1F9C7
 Name=waffle
 Keywords=indecisive | iron
 
 Proposal=L2/18-112
 After=🍿
-U+101907
+U+1F9C8
 Name=butter
 Keywords=dairy
 
 Proposal=L2/18-122
 After=🥤
-U+101910
+U+1F9C9
 Name=maté
 Keywords=drink
+UName=MATE DRINK
 
 Proposal=L2/18-111
 After=🥤
-U+101937
+U+1F9CA
 Name=ice cube
 Keywords=cold | iceberg
 
 Proposal=L2/18-086
 After=🛵
-U+101939
+U+1F6FA
 Name=auto rickshaw
 Keywords=tuk tuk
 
 Proposal=L2/18-127
 After=🌞
-U+101909
+U+1FA90
 Name=ringed planet
 Keywords=saturn | saturnine
 
 Proposal=L2/18-129
 After=🎯
-U+101940
+U+1FA80
 Name=yo-yo
 Keywords=fluctuate
 
 Proposal=L2/18-135
 After=🎯
-U+101911
+U+1FA81
 Name=kite
 Keywords=fly | soar
 
 Proposal=L2/18-124
 After=🎻
-U+101925
+U+1FA95
 Name=banjo
 Keywords=stringed | music
 
 Proposal=L2/18-092
 After=💉
-U+101941
+U+1FA78
 Name=blood drop
 Keywords=medicine | blood donation | menstruation
 
 Proposal=L2/18-146
 After=💊
-U+101942
+U+1FA79
 Name=adhesive bandage
 Keywords=bandage
 
 Proposal=L2/18-091
 After=🛋 
-U+101930
+U+1FA91
 Name=chair
 Keywords=seat | sit
 
 Proposal=L2/18-144
 After=👘
-U+101947
+U+1F97B
 Name=sari
 Keywords=clothing | dress
 
-Proposal=L2/18-141
-After=🔵
-U+101950
-Name=yellow circle
-Keywords=yellow | circle
-Comment=For use in sequences, indicating color of previous emoji
+After=🖤
+U+1F90D
+Name=WHITE HEART
+Keywords=white | heart
 
-U+101952
+
+U+1F90E
+Name=BROWN HEART
+Keywords=brown | heart
+
+Proposal=L2/18-141
+After= 🔴
+U+1F7E0
 Name=orange circle
 Keywords=orange | circle
-Comment=For use in sequences, indicating color of previous emoji
 
-U+101953
+U+1F7E1
+Name=yellow circle
+Keywords=yellow | circle
+
+U+1F7E2
 Name=green circle
 Keywords=green | circle
-Comment=For use in sequences, indicating color of previous emoji
 
-U+101954
+After=🔵
+U+1F7E3
 Name=purple circle
 Keywords=purple | circle
-Comment=For use in sequences, indicating color of previous emoji
 
-U+101955
+After=⚪
+U+1F7E4
 Name=brown circle
 Keywords=brown | circle
-Comment=For use in sequences, indicating color of previous emoji
+
+
+U+1F7E5
+Name=RED SQUARE
+Keywords=red | square
+
+U+1F7E7
+Name=ORANGE SQUARE
+Keywords=orange | square
+
+U+1F7E8
+Name=YELLOW SQUARE
+Keywords=yellow | square
+
+U+1F7E9
+Name=GREEN SQUARE
+Keywords=green | square
+
+U+1F7E6
+Name=BLUE SQUARE
+Keywords=blue | square
+
+U+1F7EA
+Name=PURPLE SQUARE
+Keywords=purple | square
+
+
+After=⬜
+U+1F7EB
+Name=BROWN SQUARE
 
 After=👘
 
-U+101956
+U+1FA71
 Name=one-piece
 Keywords=bathing suit
+UName=ONE-PIECE SWIMSUIT
 
-U+101957
+U+1FA72
 Name=briefs
 Keywords=bathing suit | underwear
 
-U+101958
+U+1FA73
 Name=shorts
 Keywords=bathing suit | underwear | pants
 
 
 Proposal=L2/18-140
 After=💊
-U+101960
+U+1FA7A
 Name=stethoscope
 Keywords=doctor | medicine | heart

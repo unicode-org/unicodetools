@@ -43,6 +43,14 @@ public class GenerateCldrData {
 
         getLines(onlyNew, false);
         
+        System.out.println("CLDR:"
+                + "\nCopy final tr51 emoji data file (emoji-test.txt) into org.unicode.cldr.util.data.emoji"
+                + "\nMay need to change org.unicode.cldr.util.Emoji.SPECIALS to have TestAnnotations pass"
+                + "\nAlso add images to XXX"
+                + "\nAlso change the name composition algorithm"
+                + "\nAnd add documentation of composition of names (for new components like hair styles) to LDML"
+                ); 
+        
         //printXML(onlyNew);
     }
 

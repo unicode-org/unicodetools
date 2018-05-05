@@ -20,6 +20,7 @@ public interface EmojiDataSource {
     public UnicodeSet getTextPresentationSet();
     public UnicodeSet getAllEmojiWithDefectives();
     public UnicodeSet getGenderBases();
+    public UnicodeSet getTakesSign();
     public UnicodeSet getSingletonsWithoutDefectives();
     
     public String getName(String s);
