@@ -59,7 +59,7 @@ public class GenerateCldrData {
         NumberFormat nf = new DecimalFormat("000");
         for (String s : onlyNew.addAllTo(new TreeSet<>(new UTF16.StringComparator(true, false, 0)))) {
             Category bucket = Category.getBucket(s);
-            if (bucket.hasBaseCategory(Attribute.skin) || bucket.hasBaseCategory(Attribute.hair)) {
+            if (bucket.hasAttribute(Attribute.skin) || bucket.hasAttribute(Attribute.hair)) {
                 continue;
             }
             String rootCode = "E11-" + nf.format(++counter); // TODO pick up version

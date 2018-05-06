@@ -39,6 +39,7 @@ import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UnicodeSet;
 
 public class CountEmoji {
+    public static final String EMOJI_COUNT_KEY = "<a href='#col-totals'>Emoji Counts Key</a>";
     private static final EmojiData EMOJI_DATA_PREVIOUS = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
     private static final EmojiData EMOJI_DATA_BETA = EmojiData.of(Emoji.VERSION_BETA);
     private static final EmojiOrder ORDER = EmojiOrder.of(Emoji.VERSION_BETA);
@@ -185,12 +186,9 @@ public class CountEmoji {
         bucket.add(maj, cat, s);
         return;
     }
-    public void showCounts(PrintWriter out, boolean showCharacters, String title) {
-        out.println("<h3><a href='#totals' name='totals'>Totals</a></h3>\n"
-                + "<p>Totals for "
-                + title
-                + ". For information on the categories, see <a href='../format.html#col-totals'>Totals</a>.</p>\n" + "<table>\n");
-
+    
+    public void showCounts(PrintWriter out, boolean showCharacters) {
+        out.println("<table>\n");
         String row = "<tr>";
         String td = "<td class='rchars'>";
         String th = "<th class='rchars'>";
@@ -259,7 +257,7 @@ public class CountEmoji {
     static final String WO_MAN = new StringBuilder().appendCodePoint(Emoji.MAN).append('/').appendCodePoint(Emoji.WOMAN).toString();
 
     enum Attribute {
-        singleton, zwj, skin, gender, role, family, hair,
+        singleton, zwj, skin, gender, role, family, hair, dup
     }
 
     enum Category {
@@ -278,7 +276,8 @@ public class CountEmoji {
         keycap_seq,
         flag_seq,
         tag_seq, 
-        typical_dup, 
+        typical_dup(null, Attribute.dup), 
+        typical_dup_skin("typical dup & skin", Attribute.skin, Attribute.dup), 
         component, 
         //        typical_dup_sign,
         //        typical_dup_group, 
@@ -314,11 +313,7 @@ public class CountEmoji {
         static public Category getBucket(String s) {
             String noVariants = EmojiData.removeEmojiVariants(s);
             Category bucket = null;
-            if (EmojiData.EMOJI_DATA.isTypicallyDuplicateSign(s)) {
-                bucket = typical_dup;
-                //            } else if (EmojiData.isTypicallyDuplicateSign(s)) {
-                //                bucket = typical_dup_sign;
-            } else if (noVariants.isEmpty() || CountEmoji.EMOJI_DATA_BETA.getEmojiComponents().contains(noVariants)) {
+            if (noVariants.isEmpty() || CountEmoji.EMOJI_DATA_BETA.getEmojiComponents().contains(noVariants)) {
                 bucket = component;
             } else if (CharSequences.getSingleCodePoint(noVariants) < Integer.MAX_VALUE) {
                 bucket = character;
@@ -380,41 +375,24 @@ public class CountEmoji {
                 //                    }
                 //                }
             }
+            if (EmojiData.EMOJI_DATA.isTypicallyDuplicateSign(s)) {
+                EnumSet<Attribute> attributes2 = EnumSet.of(Attribute.dup);
+                attributes2.addAll(bucket.attributes);
+                bucket = getCategory(attributes2);
+            }
             return bucket;
         }
 
-        private static Category getCategory(EnumSet<Attribute> attributes) {
+        private static Category getCategory(Set<Attribute> attributes) {
             Category result = attributesToCategory.get(attributes);
             if (result == null) {
                 throw new IllegalArgumentException("no category available, add??");
             }
             return result;
         }
-        private static Category getVariety(boolean mods, boolean hair, 
-                Category noSkinNoHair, Category skinNoHair,
-                Category noSkinHair, Category skinHair
-                ) {
-            Category bucket;
-            if (mods) {
-                if (hair) {
-                    bucket = skinHair;
-                } else {
-                    bucket = skinNoHair;
-                }
-            } else { //  if (!gender)
-                if (hair) {
-                    bucket = noSkinHair;
-                } else {
-                    bucket = noSkinNoHair;
-                }
-            }
-            if (bucket == null) {
-                throw new IllegalArgumentException("no category available, add??");
-            }
-            return bucket;
-        }
+        
 
-        public boolean hasBaseCategory(Attribute baseCategory) {
+        public boolean hasAttribute(Attribute baseCategory) {
             return attributes.contains(baseCategory);
         }
         public Set<Attribute> getAttributes() {
@@ -429,7 +407,10 @@ public class CountEmoji {
         }
         System.out.println("\n" + title);
         PrintWriter pw = new PrintWriter(System.out);
-        showCounts(pw, false, "the above emoji");
+        pw.println("<p>For a key to the format of the table, see "
+                + EMOJI_COUNT_KEY
+                + ".</p>");
+        showCounts(pw, false);
         pw.close();
     }
 

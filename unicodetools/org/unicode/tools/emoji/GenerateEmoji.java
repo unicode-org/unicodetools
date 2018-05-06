@@ -69,6 +69,7 @@ import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
+import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.Output;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
@@ -639,6 +640,8 @@ public class GenerateEmoji {
                 "%%TR51_HTML%%", Emoji.TR51_HTML, // "../../reports/tr51/proposed.html#emoji_data"
         };
         FileUtilities.copyFile(GenerateEmoji.class, "main-index.html", Emoji.CHARTS_DIR, "index.html", replacementList);
+
+        writeCounts(Emoji.CHARTS_DIR, "Emoji Counts", "emoji-counts.html");
 
         // TODO change this to last version
         if (true) {
@@ -1850,7 +1853,8 @@ public class GenerateEmoji {
                 + "<p>This chart shows when each emoji was first defined. It includes both emoji characters and sequences. "
                 + "The detailed Counts are as described in <a target='doc' href='" + Emoji.TR51_HTML
                 + "#Identification'>§3 Which Characters are Emoji</a>. "
-                + "Some emoji before 2015 (and all emoji before 2010) are proleptic (they were only later considered emoji)."
+                + "Some emoji before 2015 (and all emoji before 2010) are proleptic (they were only later considered emoji). "
+                + "For a key to the counts of emoji, see " + CountEmoji.EMOJI_COUNT_KEY
                 + "</p>\n",
                 Emoji.DATA_DIR_PRODUCTION, Emoji.TR51_HTML);
         out.println("<table " + "border='1'" + ">");
@@ -2368,7 +2372,7 @@ public class GenerateEmoji {
     enum Form {
         noImages(
                 "This chart provides a list of the Unicode emoji characters and sequences, with single image and annotations."
-                        + " Clicking on a Sample goes to the emoji in the <a target='full' href='full-emoji-list.html'>full list</a>.) "
+                        + " Clicking on a Sample goes to the emoji in the <a target='full' href='full-emoji-list.html'>full list</a>. "
                         + "The ordering of the emoji and the annotations are based on " + GenerateEmoji.CLDR_DATA_LINK
                         + ". "
                         + "Emoji sequences have more than one code point in the <b>Code</b> column. "
@@ -2422,6 +2426,49 @@ public class GenerateEmoji {
     
     enum Skin {withoutSkin, withSkin}
     
+    public static void writeCounts(String chartsDir, String title, String outFileName) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(chartsDir, outFileName);
+                //PrintWriter outPlain = FileUtilities.openUTF8Writer(Emoji.INTERNAL_OUTPUT_DIR, outFileName.replace(".html", ".txt"));
+                ) {
+            writeHeader(outFileName, out, title, null, false, "<p>The following table provides details about the number of different kinds of emoji. "
+                    + "For a key to the format of the table, see "
+                            + CountEmoji.EMOJI_COUNT_KEY
+                            + ".</p>",
+                    Emoji.DATA_DIR_PRODUCTION, Emoji.TR51_HTML);
+
+            CountEmoji ce = new CountEmoji();
+            for (String s : SORTED_ALL_EMOJI_CHARS_SET) {
+                ce.add(s);
+            }
+            ce.showCounts(out, false);
+//            String htmlPiece = getHtmlPiece("html-pieces.html", "count");
+//            out.print(htmlPiece);
+            writeFooter(out);
+        } catch (IOException e) {
+            throw new ICUUncheckedIOException(e);
+        }
+    }
+    
+    private static String getHtmlPiece(String filename, String key) {
+        StringBuilder result = new StringBuilder();
+        boolean inKey = false;
+        for (String line : FileUtilities.in(GenerateEmoji.class, filename)) {
+            if (line.contains("<h1>KEY:")) {
+                if (inKey) break;
+                if (line.contains("<h1>KEY:" + key + "</h1>")) {
+                    inKey = true;
+                    continue;
+                }
+            } else if (inKey) {
+            if (result.length() != 0) {
+                result.append('\n');
+            }
+            result.append(line);
+            }
+        }
+        return result.toString();
+    }
+
     /**
      * Main charts
      * @param filter
@@ -2440,7 +2487,10 @@ public class GenerateEmoji {
         try (PrintWriter out = FileUtilities.openUTF8Writer(chartsDir, outFileName);
                 PrintWriter outPlain = FileUtilities.openUTF8Writer(Emoji.INTERNAL_OUTPUT_DIR,
                         outFileName.replace(".html", ".txt"));) {
-            CountEmoji ce = new CountEmoji();
+            //CountEmoji ce = new CountEmoji();
+//            for (String s : SORTED_ALL_EMOJI_CHARS_SET) {
+//                ce.add(s);
+//            }
             int order = 0;
             UnicodeSet level1 = null;
             writeHeader(outFileName, out, title, null, false, "<p>" + form.description + "</p>\n<p>"
@@ -2449,7 +2499,9 @@ public class GenerateEmoji {
                             + "<a target='full' href='full-emoji-list.html'>Full Emoji List</a>."
                             : "Emoji with skin-tones are not listed here: "
                                     + "see <a target='full-skin' href='full-emoji-modifiers.html'>Full Skin Tone List</a>.")
-                    + "</p>\n<p>",
+                    + "</p>\n" + "<p>For a key to the format of the table, see "
+                            + CountEmoji.EMOJI_COUNT_KEY
+                            + ".</p>",
                     Emoji.DATA_DIR_PRODUCTION, Emoji.TR51_HTML);
             out.println("<table " + "border='1'" + ">");
             final String htmlHeaderString = GenerateEmoji.toHtmlHeaderString(form);
@@ -2469,7 +2521,7 @@ public class GenerateEmoji {
                     continue;
                 }
                 // record them.
-                ce.add(s);
+//                ce.add(s);
 
                 // skip if skin choice doesn't match
                 if (EmojiData.MODIFIERS.containsSome(s) == (skinChoice == Skin.withoutSkin)) {
@@ -2519,9 +2571,9 @@ public class GenerateEmoji {
             if (extraLinks) {
                 out.println("</td></tr>");
             }
-            out.println("</table>");
-            ce.showCounts(out, false, skippingSome ? "all emoji" : "the above emoji");
-
+            out.println("</table>\n");
+//            ce.showTotalHeader(out, skippingSome ? "all emoji" : "the above emoji");
+//            ce.showCounts(out, false);
             writeFooter(out);
         }
     }
@@ -3318,8 +3370,8 @@ public class GenerateEmoji {
                 + "<p><a target='feedback' href='http://unicode.org/reporting.html'>Feedback</a> on the CLDR Short Name, Keywords, ordering, and category is welcome.</p>\n"
                 + PROPOSAL_CAUTION;
         String footer = candidateStyle == CandidateStyle.released ? ""
-                : "<h3><a href='#recent_changes' name='recent_changes'>Recent Changes</a></h3>\n"
-                + (true ? "<p>TBD</>" 
+                : "" // "<h3><a href='#recent_changes' name='recent_changes'>Recent Changes</a></h3>\n"
+                + (true ? "" // "<p>The above characters were advanced to draft candidate status</p>" 
                         : candidateStyle == CandidateStyle.candidate ? 
                         "<p>The following changes were made in the January 2016 UTC meeting to the draft candidates for 2018, which were then"
                         + " advanced to final candidates.</p>\n"
@@ -3509,8 +3561,12 @@ public class GenerateEmoji {
                 showingChars = true;
             }
             if (inTable) {
-                out.println("</table>");
-                ce.showCounts(out, false, "the above emoji");
+                out.println("</table>\n"
+                        + "<h2>Emoji Counts</h2>\n"
+                        + "<p>For a key to the format of the table, see "
+                        + CountEmoji.EMOJI_COUNT_KEY
+                        + ".</p>");
+                ce.showCounts(out, false);
             }
             if (!showingChars) {
                 out.println("<table><tr><td><b>None at this time.</b></td></tr></table>");
