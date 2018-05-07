@@ -557,7 +557,6 @@ Proposal=L2/17-381
 After=🎣
 U+1F93F
 Name=diving mask
-UName=DIVING MASK AND SNORKEL
 Keywords= diving | scuba | snorkeling
 
 Proposal=L2/17-298
@@ -736,7 +735,7 @@ Proposal=L2/18-125
 After=🥙
 U+1F9C6
 Name=falafel
-Keywords=chickpea
+Keywords=chickpea | meatball
 
 Proposal=L2/18-087
 After=🥞
@@ -779,7 +778,8 @@ Proposal=L2/18-129
 After=🎯
 U+1FA80
 Name=yo-yo
-Keywords=fluctuate
+Keywords=fluctuate | toy
+UName=YO-YO TOY
 
 Proposal=L2/18-135
 After=🎯
@@ -880,6 +880,7 @@ Keywords=purple | square
 After=⬜
 U+1F7EB
 Name=BROWN SQUARE
+Keywords=brown | square
 
 After=👘
 
