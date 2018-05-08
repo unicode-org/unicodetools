@@ -1433,7 +1433,10 @@ public class GenerateUnihanCollators {
             assert Character.charCount(c2) == s2.length();
             long order1 = getRSLongOrder(c1);
             long order2 = getRSLongOrder(c2);
-            return order1 < order2 ? -1 : order1 > order2 ? 1 : 0;
+            if (order1 != order2) {
+                return order1 < order2 ? -1 : 1;
+            }
+            return codepointComparator.compare(s1, s2);
         }
     };
 
