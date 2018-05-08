@@ -1,5 +1,5 @@
 # DerivedNumericValues-11.0.0.txt
-# Date: 2018-01-31, 08:20:16 GMT
+# Date: 2018-05-08, 06:52:34 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -2374,9 +2374,14 @@ F9FD          ; 10.0 ; ; 10 # Lo       CJK COMPATIBILITY IDEOGRAPH-F9FD
 # ================================================
 
 16B5E         ; 1000000.0 ; ; 1000000 # No       PAHAWH HMONG NUMBER MILLIONS
-1ECA1         ; 1000000.0 ; ; 1000000 # No       INDIC SIYAQ NUMBER KAROR
 
-# Total code points: 2
+# Total code points: 1
+
+# ================================================
+
+1ECA1         ; 10000000.0 ; ; 10000000 # No       INDIC SIYAQ NUMBER KAROR
+
+# Total code points: 1
 
 # ================================================
 

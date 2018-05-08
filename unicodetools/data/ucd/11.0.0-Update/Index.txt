@@ -386,6 +386,7 @@ ASTERISM	2042
 Astrological Signs	26B3
 Astrological Signs, Tibetan	0F15
 Astrological Symbols	263D
+Astrological Symbols	28D3
 Astrological Symbols, Weather and	2600
 asymptotic to	2248
 ASYMPTOTICALLY EQUAL TO	2243
@@ -844,6 +845,7 @@ CHEESE WEDGE	1F9C0
 Cherokee	13A0
 Cherokee Supplement	AB70
 Chess Symbols	2654
+Chess Symbols, Chinese XiangQi	1FA60
 Chess Symbols, Japanese	2616
 chevron bracket, left	27EA
 chevron bracket, right	27EB
@@ -862,6 +864,7 @@ Chinese Folk Religion Symbols	1F260
 chinese fourth tone, mandarin	02CB
 chinese second tone, mandarin	02CA
 chinese third tone, mandarin	02C7
+Chinese XiangQi Chess Symbols	1FA60
 Chinese, Corner Tone Marks for	A700
 CHIPMUNK	1F43F
 choice, dijkstra	2AFE
@@ -1240,6 +1243,7 @@ Coptic Letters Derived from Demotic	03E2
 Coptic, Bohairic	2C80
 Coptic, Continuous Macrons for	FE24
 Coptic, Extended	2CB2
+COPYLEFT SYMBOL	1F12F
 COPYRIGHT SIGN	00A9
 COPYRIGHT, SOUND RECORDING	2117
 Corner Brackets	2308
@@ -1607,6 +1611,7 @@ DOES NOT EXIST, THERE	2204
 does not yield	22A3
 DOG	1F415
 DOG FACE	1F436
+Dogra	11800
 DOLLAR SIGN	0024
 DOLPHIN	1F42C
 domain restriction	25C1
@@ -1838,6 +1843,7 @@ EM SPACE	2003
 EMBEDDING, LEFT-TO-RIGHT	202A
 EMBEDDING, RIGHT-TO-LEFT	202B
 emf	2130
+Emoji Components	1F9B0
 Emoji Modifiers	1F3FB
 Emoticon Faces	1F910
 Emoticons	1F600
@@ -2214,6 +2220,7 @@ Georgian Alphabet	10D0
 Georgian Capital Letters	10A0
 georgian comma	00B7
 georgian currency	20BE
+Georgian Extended	1C90
 Georgian Extensions	10F1
 georgian full stop	0589
 Georgian Khutsuri	10A0
@@ -2345,6 +2352,7 @@ Gujarati Dependent Vowel Signs	0ABE
 Gujarati Digits	0AE6
 Gujarati Independent Vowels	0A85
 GUJARATI RUPEE SIGN	0AF1
+Gunjala Gondi	11D60
 Gurmukhi	0A00
 GURMUKHI ADDAK	0A71
 Gurmukhi Consonants	0A15
@@ -2430,6 +2438,7 @@ Hangul Syllables, Circled Korean	326E
 Hangul Syllables, Parenthesized Korean	320E
 Hangul Variants, Halfwidth Korean	FFA0
 Hangzhou Numerals	3021
+Hanifi Rohingya	10D00
 Hanunoo	1720
 Harakat, Arabic	064B
 harbor symbol	2693
@@ -2651,6 +2660,7 @@ INDIAN RUPEE SIGN	20B9
 Indic Number Forms, Common	A830
 indicator, backward arrow	25C5
 indicator, forward arrow	25BB
+Indic Siyaq Numbers	1EC70
 Inequality Signs, Equality and	2243
 Inequality Signs, Equality and	22D5
 INFINITY	221E
@@ -3197,6 +3207,7 @@ lira, italian	00A3
 Lisu	A4D0
 liter	2113
 LIVRE TOURNOIS SIGN	20B6
+LOBSTER	1F99E
 Lock Symbols	1F50F
 lock, caps	21EA
 lock, caps	21EC
@@ -3288,6 +3299,7 @@ MAGNIFYING GLASS, RIGHT-POINTING	1F50E
 Mahajani	11150
 Mahjong Tiles	1F000
 Mail Symbols	1F4E4
+Makasar	1EE0
 Malayalam	0D00
 malayalam chandrakkala	0D4D
 Malayalam Chillu Letters	0D7A
@@ -3371,12 +3383,14 @@ Mathematical Symbols, Script	1D49C
 Mathematical Symbols-A, Miscellaneous	27C0
 Mathematical Symbols-B, Miscellaneous	2980
 MATRIX, HERMITIAN CONJUGATE	22B9
+Mayan Numerals	1D2E0
 MC SIGN, RAISED	1F16A
 MD SIGN, RAISED	1F16B
 MEASURED ANGLE	2221
 Measured Angles, Angles and	299B
 MEASURED BY	225E
 med avdrag av	2052
+Medefaidrin	16E40
 Medieval Superscript Letter Diacritics	0363
 Medieval Superscript Letter Diacritics, Latin	1DD3
 Medievalist Punctuation	2E2A
@@ -3682,6 +3696,7 @@ Numbers, Circled Inverse	2776
 numbers, complex	2102
 Numbers, Double Circled	24F5
 Numbers, Ethiopic	1369
+Numbers, Indic Siyaq	1EC70
 Numbers, Parenthesized	2474
 numbers, rational	211A
 numbers, real	211D
@@ -3689,6 +3704,7 @@ Numbers, Runic Golden	16EE
 Numbers, Tamil	0BE7
 Numbers, White on Black Circled	24EB
 Numerals, Hangzhou	3021
+Numerals, Mayan	1D2E0
 Numerals, Old Italic	10320
 Numerals, Roman	2160
 Numerals, Suzhou	3021
@@ -3766,6 +3782,7 @@ Old Hungarian	10C80
 Old Italic	10300
 Old Permic	10350
 Old Persian	103A0
+Old Sogdian	10F00
 old testament, greek	1D516
 OM SYMBOL	1F549
 OM, DEVANAGARI	0950
@@ -4530,6 +4547,7 @@ rlo	202E
 RNAM BCAD, TIBETAN SIGN	0F7F
 road closed	26D2
 rock in rock, paper, scissors game	270A
+Rohingya, Hanifi	10D00
 rofl	1F923
 Role Symbols	1F481
 Role Symbols, Portrait and	1F464
@@ -4855,6 +4873,8 @@ SOCCER BALL	26BD
 SOFT HYPHEN	00AD
 SOFT HYPHEN, MONGOLIAN TODO	1806
 SOFTWARE-FUNCTION SYMBOL	2394
+Sogdian	10F30
+Sogdian, Old	10F00
 solid	2588
 SOLIDUS	002F
 solidus	2044
@@ -5115,6 +5135,7 @@ Symbols, Area,	2000
 Symbols, Area, CJK Phonetics and	2E80
 Symbols, ASCII Punctuation and	0020
 Symbols, Astrological	263D
+Symbols, Astrological	2BD3
 Symbols, Audio and Video	1F4F7
 Symbols, Balinese Musical	1B61
 Symbols, Ballot	1F5F3
@@ -5329,6 +5350,7 @@ Tails, Fish	297C
 tainome japanese bullet	25C9
 TAKE, PRESCRIPTION	211E
 Takri	11680
+Tally Marks	1D372
 Tamil	0B80
 TAMIL AS ABOVE SIGN	0BF8
 tamil aytham	0B83
@@ -5949,6 +5971,7 @@ X, HEAVY BALLOT	2718
 X, HEAVY MULTIPLICATION	2716
 X, MODIFIER LETTER SMALL	02E3
 X, MULTIPLICATION	2715
+XiangQi Chess Symbols, Chinese	1FA60
 XOR	22BB
 Y WITH ACUTE, LATIN CAPITAL LETTER	00DD
 Y WITH ACUTE, LATIN SMALL LETTER	00FD
