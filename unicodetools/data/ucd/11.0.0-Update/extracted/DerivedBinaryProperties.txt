@@ -1,5 +1,5 @@
 # DerivedBinaryProperties-11.0.0.txt
-# Date: 2018-01-31, 08:20:12 GMT
+# Date: 2018-05-08, 06:52:27 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -164,6 +164,7 @@
 2AF3          ; Bidi_Mirrored # Sm       PARALLEL WITH TILDE OPERATOR
 2AF7..2AFB    ; Bidi_Mirrored # Sm   [5] TRIPLE NESTED LESS-THAN..TRIPLE SOLIDUS BINARY RELATION
 2AFD          ; Bidi_Mirrored # Sm       DOUBLE SOLIDUS OPERATOR
+2BFE          ; Bidi_Mirrored # So       REVERSED RIGHT ANGLE
 2E02          ; Bidi_Mirrored # Pi       LEFT SUBSTITUTION BRACKET
 2E03          ; Bidi_Mirrored # Pf       RIGHT SUBSTITUTION BRACKET
 2E04          ; Bidi_Mirrored # Pi       LEFT DOTTED SUBSTITUTION BRACKET
@@ -227,6 +228,6 @@ FF63          ; Bidi_Mirrored # Pe       HALFWIDTH RIGHT CORNER BRACKET
 1D789         ; Bidi_Mirrored # Sm       MATHEMATICAL SANS-SERIF BOLD PARTIAL DIFFERENTIAL
 1D7C3         ; Bidi_Mirrored # Sm       MATHEMATICAL SANS-SERIF BOLD ITALIC PARTIAL DIFFERENTIAL
 
-# Total code points: 544
+# Total code points: 545
 
 # EOF
