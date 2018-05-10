@@ -1409,7 +1409,10 @@ public class EmojiData implements EmojiDataSource {
             VersionInfo firstVersion = null;
 
             EmojiData beta = EmojiData.of(Emoji.VERSION_BETA);
-            for (String s : beta.allEmojiWithoutDefectives) {
+            for (String s : beta.allEmojiWithDefectives) {
+                if ("👨‍⚕".equals(s)) {
+                    int debug = 0;
+                }
                 String noVar = EmojiData.removeEmojiVariants(s);
                 // if single code point, remove var
                 if (Character.charCount(noVar.codePointAt(0)) == noVar.length()) {

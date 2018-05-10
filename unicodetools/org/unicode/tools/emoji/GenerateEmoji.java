@@ -3217,7 +3217,7 @@ public class GenerateEmoji {
     static final Collator ROOT_COL = Collator.getInstance(Locale.ROOT).freeze();
 
     private static String getAnnotationsString(String chars2) {
-        if (chars2.equals("👹")) {
+        if (chars2.equals("🦺")) {
             int debug = 0;
         }
         Set<String> annotationsPlain = new TreeSet<>(ROOT_COL);
@@ -3537,10 +3537,10 @@ public class GenerateEmoji {
                     }
                 }
                 if (candidateStyle  != CandidateStyle.released) {
-                    String comment = candidateData.getComment(source);
-                    if (comment != null) {
-                        annotationsString += "<div class='uname'>" + comment + "</div>";
-                    }
+//                    String comment = candidateData.getComment(source);
+//                    if (comment != null) {
+//                        annotationsString += "<div class='uname'>" + comment + "</div>";
+//                    }
                     currentRow += " <td class='name'>" + annotationsString + "</td>\n";
                     currentRow += " <td class='status'>" + getStatusString(source) + "</td>\n";
                     currentRow += " <td class='proposal'>" + candidateData.getProposalHtml(source)

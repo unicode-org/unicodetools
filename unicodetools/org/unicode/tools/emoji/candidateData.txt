@@ -669,13 +669,13 @@ Proposal=L2/18-074
 After=🐼
 U+1F9A5
 Name=sloth 
-Keywords=lazy
+Keywords=lazy | slow
 
 Proposal=L2/18-093
 After=🐼
 U+1F9A6
 Name=otter
-Keywords=fish | playful
+Keywords=fishing | playful
 
 Proposal=L2/18-137
 After=🐼
@@ -700,12 +700,14 @@ After= 👘
 U+1F9BA
 Name=service animal vest
 Keywords=service | animal | dog
+Comment=Like others, the sample image(s) for this should be improved over time, such as showing the vest on the outline of an animal to indicate intended usage.
+UName=service animal vest
 
 Proposal=L2/18-098
 After=🦉
 U+1F9A9
 Name=flamingo
-Keywords=flamboyant
+Keywords=flamboyant | tropical
 
 Proposal=L2/18-123
 After= 🐚
