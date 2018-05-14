@@ -2504,8 +2504,8 @@ public class GenerateEmoji {
                             + "<a target='full' href='full-emoji-list.html'>Full Emoji List</a>."
                             : "Emoji with skin-tones are not listed here: "
                                     + "see <a target='full-skin' href='full-emoji-modifiers.html'>Full Skin Tone List</a>.")
-                    + "</p>\n" + "<p>For a key to the format of the table, see "
-                            + CountEmoji.EMOJI_COUNT_KEY
+                    + "</p>\n" + "<p>For counts of emoji, see "
+                            + "<a target='counts' href='emoji-counts.html'>Emoji Counts</a>"
                             + ".</p>",
                     Emoji.DATA_DIR_PRODUCTION, Emoji.TR51_HTML);
             out.println("<table " + "border='1'" + ">");
