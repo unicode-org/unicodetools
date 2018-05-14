@@ -54,6 +54,11 @@ import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
 public class EmojiData implements EmojiDataSource {
+    
+    public static final UnicodeSet TAKES_NO_VARIANT = new UnicodeSet(Emoji.EMOJI_VARIANTS_JOINER)
+            .addAll(new UnicodeSet("[[:M:][:Variation_Selector:][:Block=Tags:]]")) // TODO fix to use indexed props
+            .freeze();
+
     public static final String SAMPLE_WITHOUT_TRAILING_EVS = "👮🏻‍♀";
     public static final AnnotationSet ANNOTATION_SET = Annotations.getDataSet("en");
 
@@ -439,8 +444,16 @@ public class EmojiData implements EmojiDataSource {
                 if (s.contains("♀️") && !MODIFIERS.containsSome(s)) {
                     genderBases.add(s.codePointAt(0));
                 }
-                if (s.contains(Emoji.JOINER_STR + Emoji.FEMALE + Emoji.EMOJI_VARIANT_STRING) || s.contains(Emoji.JOINER_STR + Emoji.MALE + Emoji.EMOJI_VARIANT_STRING)) {
-                    takesSign.add(s.substring(0, s.length()-(Emoji.JOINER_STR + Emoji.FEMALE + Emoji.EMOJI_VARIANT_STRING).length()));
+                String s2 = null;
+                if (s.contains(Emoji.JOINER_STR + Emoji.FEMALE)) {
+                    s2 = s.replace(Emoji.JOINER_STR + Emoji.FEMALE,"");
+                }
+                if (s.contains(Emoji.JOINER_STR + Emoji.MALE)) {
+                    s2 = s.replace(Emoji.JOINER_STR + Emoji.MALE,"");
+                }
+                if (s2 != null) {
+                    takesSign.add(EmojiData.removeEmojiVariants(s2));
+                    takesSign.add(addEmojiVariants(s2));
                 }
             }
             genderBases.freeze();
@@ -790,10 +803,6 @@ public class EmojiData implements EmojiDataSource {
             .addAll(Emoji.BETA.load(UcdProperty.Emoji_KDDI).keySet())
             .addAll(Emoji.BETA.load(UcdProperty.Emoji_SB).keySet())
             .removeAll(new UnicodeSet("[:whitespace:]"))
-            .freeze();
-
-    public static final UnicodeSet TAKES_NO_VARIANT = new UnicodeSet(Emoji.EMOJI_VARIANTS_JOINER)
-            .addAll(new UnicodeSet("[[:M:][:Variation_Selector:][:Block=Tags:]]")) // TODO fix to use indexed props
             .freeze();
 
     private static Pattern EMOJI_VARIANTs = Pattern.compile("[" + Emoji.EMOJI_VARIANT + Emoji.TEXT_VARIANT + "]");
@@ -1391,6 +1400,7 @@ public class EmojiData implements EmojiDataSource {
     }
 
     static final UnicodeMap<Integer> birthYear = new UnicodeMap<Integer>();
+    static final UnicodeMap<Integer> birthYearWithVariants = new UnicodeMap<Integer>();
 
     public static int getYear(String s) {
         UnicodeMap<Integer> years = getYears();
@@ -1403,7 +1413,17 @@ public class EmojiData implements EmojiDataSource {
         }
     }
 
-    public static synchronized UnicodeMap<Integer> getYears() {
+    public static UnicodeMap<Integer> getYears() {
+        buildYears();
+        return birthYear;
+    }
+    
+    public static UnicodeMap<Integer> getYearMapWithVariants() {
+        buildYears();
+        return birthYearWithVariants;
+    }
+
+    private static synchronized void buildYears() {
         if (birthYear.isEmpty()) {
             Collection<Age_Values> output = new TreeSet<>(Collections.reverseOrder()); // latest first
             VersionInfo firstVersion = null;
@@ -1413,10 +1433,11 @@ public class EmojiData implements EmojiDataSource {
                 if ("👨‍⚕".equals(s)) {
                     int debug = 0;
                 }
-                String noVar = EmojiData.removeEmojiVariants(s);
+                String withoutVariants = EmojiData.removeEmojiVariants(s);
+                String withVariants = beta.addEmojiVariants(s);
                 // if single code point, remove var
-                if (Character.charCount(noVar.codePointAt(0)) == noVar.length()) {
-                    s = noVar;
+                if (Character.charCount(withoutVariants.codePointAt(0)) == withoutVariants.length()) {
+                    s = withoutVariants;
                 }
                 if (birthYear.containsKey(s)) {
                     continue;
@@ -1448,6 +1469,9 @@ public class EmojiData implements EmojiDataSource {
                     }
                 }
                 birthYear.put(s, year);
+                birthYear.put(withVariants, year);
+                birthYear.put(withoutVariants, year);
+                birthYearWithVariants.put(withVariants, year);
 //                if (s.contains("⚕")) {
 //                    int debug = 0;
 //                }
@@ -1461,7 +1485,8 @@ public class EmojiData implements EmojiDataSource {
 //                }
             }
         }
-        return birthYear.freeze();
+        birthYearWithVariants.freeze();
+        birthYear.freeze();
     }
 
     public UnicodeSet getHairBases() {
@@ -1474,5 +1499,16 @@ public class EmojiData implements EmojiDataSource {
 
     public UnicodeSet getExplicitHair() {
         return explicitHair;
+    }
+
+    static UnicodeSet getWithoutMods(UnicodeSet chars) {
+        UnicodeSet noMods = new UnicodeSet();
+        for (String s : chars) {
+            if (MODIFIERS.containsSome(s) && !MODIFIERS.contains(s)) {
+              continue;  
+            }
+            noMods.add(EMOJI_DATA.addEmojiVariants(s));
+        }
+        return noMods;
     }
 }
