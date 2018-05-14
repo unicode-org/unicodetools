@@ -187,7 +187,7 @@ public class CountEmoji {
         return;
     }
     
-    public void showCounts(PrintWriter out, boolean showCharacters) {
+    public void showCounts(PrintWriter out, boolean showCharacters, PrintWriter outPlain) {
         out.println("<table>\n");
         String row = "<tr>";
         String td = "<td class='rchars'>";
@@ -219,6 +219,12 @@ public class CountEmoji {
                 rowTotal1 += count;
                 columnCount.add(maj, count);
                 out.print(td + (count == 0 ? "" : count) + "</td>");
+                if (count != 0 && outPlain != null) {
+                    outPlain.println(evalue.toStringPlain() 
+                            + "\t" + maj.toPlainString()
+                            + "\t" + count 
+                            + "\t" + EmojiData.getWithoutMods(bucket.sets.getSet(maj)).toPattern(false));
+                }
             }
             out.println(th + rowTotal1 + "</th>" + "</tr>");
         }
@@ -410,7 +416,7 @@ public class CountEmoji {
         pw.println("<p>For a key to the format of the table, see "
                 + EMOJI_COUNT_KEY
                 + ".</p>");
-        showCounts(pw, false);
+        showCounts(pw, false, null);
         pw.close();
     }
 
@@ -469,6 +475,9 @@ public class CountEmoji {
 
     public void addAll(Iterable<String> chars) {
         for (String s : chars) {
+            if (s.contains("🕵") && !EmojiData.MODIFIERS.containsSome(s)) {
+                int debug = 0;
+            }
             add(s);
         }        
     }

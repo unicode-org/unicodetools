@@ -3770,7 +3770,7 @@ FFEE ;  25CB    # ( ￮ → ○) HALFWIDTH WHITE CIRCLE → WHITE CIRCLE
 0660 ; .
 # From Mozilla. Some are redundant with above
 [:whitespace:] ; 0020
-[:defaultignorablecodepoint:] ; 00AD
+[:defaultignorablecodepoint:] ; 00AD # TODO remove!!
 01C3 ; ! # ( ǃ ) LATIN LETTER RETROFLEX CLICK
 02D0 ; : # ( ː ) MODIFIER LETTER TRIANGULAR COLON
 0337 ; 0338 # ( ̷ ) COMBINING SHORT SOLIDUS OVERLAY

@@ -1864,17 +1864,17 @@ public class GenerateEmoji {
                 + HEADER_EMOJI
                 + "</tr>");
         int count = 0;
-        UnicodeMap<Integer> yearData = EmojiData.getYears();
+        UnicodeMap<Integer> yearData = EmojiData.getYearMapWithVariants();
         TreeSet<Integer> sorted = new TreeSet<Integer>(Collections.reverseOrder());
         sorted.addAll(yearData.values());
-        for (Integer value : sorted) {
+        for (Integer year : sorted) {
             if (Emoji.ABBR && count++ > 20) {
                 break;
             }
-            UnicodeSet chars = yearData.getSet(value);
-            if (!EmojiData.EMOJI_DATA.getAllEmojiWithDefectives().containsAll(chars)) {
-                continue; // skip beta
-            }
+            UnicodeSet chars = yearData.getSet(year);
+//            if (!EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().containsAll(chars)) {
+//                continue; // skip beta
+//            }
             CountEmoji ce = new CountEmoji();
             ce.addAll(chars);
             StringBuilder counts = new StringBuilder("<table class='simple' style='width:100%'>");
@@ -1889,17 +1889,18 @@ public class GenerateEmoji {
             for (Entry<Category, Bucket> entry : ce.buckets.entrySet()) {
                 Category category = entry.getKey();
                 Bucket bucket = entry.getValue();
-                counts.append("<tr><th>")
-                .append(category)
+                counts.append("<tr><th nowrap>")
+                .append(category.toStringPlain())
                 .append(countHtml)
                 .append(bucket.sets.size())
                 .append("</td></tr>\n");
-                outPlain.println(value + "\t" + category + "\t" + bucket.sets.size() + "\t" + bucket.sets.keySet().toPattern(false));
+                outPlain.println(year + "\t" + category + "\t" + bucket.sets.size() + "\t" + bucket.sets.keySet().toPattern(false));
             }
             outPlain.println();
             counts.append("</table>");
-            displayUnicodesetTD(out, Collections.singleton(value), null,
-                    Collections.singleton(counts.toString()), false, chars, style, -1,
+            UnicodeSet noMods = EmojiData.getWithoutMods(chars);
+            displayUnicodesetTD(out, Collections.singleton(year), null,
+                    Collections.singleton(counts.toString()), false, noMods, style, -1,
                     null, "", Visibility.external);
         }
         out.println("</table>");
@@ -1908,6 +1909,7 @@ public class GenerateEmoji {
         out.close();
         outPlain.close();
     }
+
 
     // private static void showSubhead() throws IOException {
     // Map<String, UnicodeSet> subheadToChars = new TreeMap();
@@ -2428,7 +2430,7 @@ public class GenerateEmoji {
     
     public static void writeCounts(String chartsDir, String title, String outFileName) {
         try (PrintWriter out = FileUtilities.openUTF8Writer(chartsDir, outFileName);
-                //PrintWriter outPlain = FileUtilities.openUTF8Writer(Emoji.INTERNAL_OUTPUT_DIR, outFileName.replace(".html", ".txt"));
+                PrintWriter outPlain = FileUtilities.openUTF8Writer(chartsDir, outFileName.replace(".html", ".txt"));
                 ) {
             writeHeader(outFileName, out, title, null, false, "<p>The following table provides details about the number of different kinds of emoji. "
                     + "For a key to the format of the table, see "
@@ -2438,9 +2440,12 @@ public class GenerateEmoji {
 
             CountEmoji ce = new CountEmoji();
             for (String s : SORTED_ALL_EMOJI_CHARS_SET) {
+                if (s.contains("🕵") && !EmojiData.MODIFIERS.containsSome(s)) {
+                    int debug = 0;
+                }
                 ce.add(s);
             }
-            ce.showCounts(out, false);
+            ce.showCounts(out, false, outPlain);
 //            String htmlPiece = getHtmlPiece("html-pieces.html", "count");
 //            out.print(htmlPiece);
             writeFooter(out);
@@ -3566,7 +3571,7 @@ public class GenerateEmoji {
                         + "<p>For a key to the format of the table, see "
                         + CountEmoji.EMOJI_COUNT_KEY
                         + ".</p>");
-                ce.showCounts(out, false);
+                ce.showCounts(out, false, null);
             }
             if (!showingChars) {
                 out.println("<table><tr><td><b>None at this time.</b></td></tr></table>");
