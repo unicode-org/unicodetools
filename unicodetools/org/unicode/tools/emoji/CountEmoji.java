@@ -39,10 +39,11 @@ import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UnicodeSet;
 
 public class CountEmoji {
-    public static final String EMOJI_COUNT_KEY = "<a href='#col-totals'>Emoji Counts Key</a>";
+    public static final String EMOJI_COUNT_KEY = "<a target='info' href='../format.html#col-totals'>Emoji Counts Key</a>";
     private static final EmojiData EMOJI_DATA_PREVIOUS = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
     private static final EmojiData EMOJI_DATA_BETA = EmojiData.of(Emoji.VERSION_BETA);
     private static final EmojiOrder ORDER = EmojiOrder.of(Emoji.VERSION_BETA);
+    private static final boolean SHOW_SAMPLE = true;
 
     enum MyOptions {
         nonincrementalCount(new Params()),
@@ -186,18 +187,23 @@ public class CountEmoji {
         bucket.add(maj, cat, s);
         return;
     }
-    
+
     public void showCounts(PrintWriter out, boolean showCharacters, PrintWriter outPlain) {
         out.println("<table>\n");
         String row = "<tr>";
         String td = "<td class='rchars'>";
         String th = "<th class='rchars'>";
+        String thNowrap = "<th class='rchars' style='white-space: nowrap;'>";
+        String th9 = "<th class='rchars' style='width:10%'>";
         MajorGroup[] groups = MajorGroup.values();
-        out.print(row + th + "</th>");
+        out.print(row + thNowrap + "</th>");
         for (MajorGroup maj : groups) {
-            out.print(th + maj.toHTMLString() + "</th>");
+            if (maj == MajorGroup.Other) {
+                continue;
+            }
+            out.print(th9 + maj.toHTMLString() + "</th>");
         }
-        out.println(th + "Total" + "</th>" + "</tr>");
+        out.println(th9 + "Total" + "</th>" + "</tr>");
         boolean didSub = false;
 
         Counter<MajorGroup> columnCount = new Counter<MajorGroup>();
@@ -212,18 +218,24 @@ public class CountEmoji {
                 showTotalLine(out, "Subtotal", row, th, groups, columnCount);
                 doneSubtotal = true;
             }
-            out.print(row + th + evalue + "</th>");
+            out.print(row + thNowrap + evalue + "</th>");
             long rowTotal1 = 0;
             for (MajorGroup maj : groups) {
+                if (maj == MajorGroup.Other) {
+                    continue;
+                }
                 long count = bucket.majors.get(maj);
                 rowTotal1 += count;
                 columnCount.add(maj, count);
-                out.print(td + (count == 0 ? "" : count) + "</td>");
+                UnicodeSet set = bucket.sets.getSet(maj);
+                String tdTitle = SHOW_SAMPLE && count != 0 ? "<td class='rchars' title='" 
+                        + getBestSample(set) + "'>" : td;
+                out.print(tdTitle + (count == 0 ? "" : count) + "</td>");
                 if (count != 0 && outPlain != null) {
                     outPlain.println(evalue.toStringPlain() 
                             + "\t" + maj.toPlainString()
                             + "\t" + count 
-                            + "\t" + EmojiData.getWithoutMods(bucket.sets.getSet(maj)).toPattern(false));
+                            + "\t" + EmojiData.getWithoutMods(set).toPattern(false));
                 }
             }
             out.println(th + rowTotal1 + "</th>" + "</tr>");
@@ -247,11 +259,40 @@ public class CountEmoji {
         out.println("</table>\n");
     }
 
+    private String getBestSample(UnicodeSet set) {
+        String best = null;
+        boolean isEmojiPresentation = false;
+        int year = Integer.MAX_VALUE;
+        if (set != null && !set.isEmpty()) {
+            for (String s : set) {
+                if (best == null) {
+                    best = s;
+                    isEmojiPresentation = EMOJI_DATA_BETA.getEmojiPresentationSet().contains(s.codePointAt(0));
+                    year = EmojiData.getYear(s);
+                    continue;
+                }
+                boolean sEmojiPresentation = EMOJI_DATA_BETA.getEmojiPresentationSet().contains(s.codePointAt(0));
+                int sYear = EmojiData.getYear(s);
+                
+                if (!isEmojiPresentation 
+                        || isEmojiPresentation == sEmojiPresentation && year > sYear) {
+                    best = s;
+                    isEmojiPresentation = sEmojiPresentation;
+                    year = sYear;
+                }
+            }
+        }
+        return EMOJI_DATA_BETA.addEmojiVariants(best);
+    }
+
     private void showTotalLine(PrintWriter out, String title2, String row, String th, MajorGroup[] groups,
             Counter<MajorGroup> columnCount) {
         long rowTotal = 0;
         out.print(row + th + title2 + "</th>");
         for (MajorGroup maj : groups) {
+            if (maj == MajorGroup.Other) {
+                continue;
+            }
             long count = columnCount.get(maj);
             rowTotal += count;
             out.print(th + count + "</th>");
@@ -268,6 +309,9 @@ public class CountEmoji {
 
     enum Category {
         character("char"), 
+        keycap_seq,
+        flag_seq,
+        tag_seq, 
         zwj_seq_gender("zwj: " + GENDER, Attribute.zwj, Attribute.gender), 
         zwj_seq_role("zwj: "+WO_MAN+"obj", Attribute.zwj, Attribute.role),
         zwj_seq_fam("zwj: "+Emoji.NEUTRAL_FAMILY, Attribute.zwj, Attribute.family), 
@@ -279,9 +323,6 @@ public class CountEmoji {
         zwj_seq_role_mod("zwj: "+WO_MAN +"obj" + " & skin", Attribute.zwj, Attribute.role, Attribute.skin), 
         zwj_seq_hair("zwj: hair", Attribute.zwj, Attribute.hair),
         zwj_seq_mod_hair("zwj: skin & hair", Attribute.zwj, Attribute.skin, Attribute.hair),
-        keycap_seq,
-        flag_seq,
-        tag_seq, 
         typical_dup(null, Attribute.dup), 
         typical_dup_skin("typical dup & skin", Attribute.skin, Attribute.dup), 
         component, 
@@ -396,7 +437,7 @@ public class CountEmoji {
             }
             return result;
         }
-        
+
 
         public boolean hasAttribute(Attribute baseCategory) {
             return attributes.contains(baseCategory);
