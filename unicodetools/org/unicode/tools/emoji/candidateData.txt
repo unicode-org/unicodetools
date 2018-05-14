@@ -754,7 +754,7 @@ Keywords=dairy
 Proposal=L2/18-122
 After=🥤
 U+1F9C9
-Name=maté
+Name=mate
 Keywords=drink
 UName=MATE DRINK
 
