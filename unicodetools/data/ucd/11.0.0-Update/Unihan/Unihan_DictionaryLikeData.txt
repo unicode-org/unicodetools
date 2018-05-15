@@ -1,6 +1,6 @@
 #
 # Unihan_DictionaryLikeData.txt
-# Date: 2018-02-14 22:41:22 GMT [JHJ]
+# Date: 2018-05-11 20:24:12 GMT [JHJ]
 # Unicode version: 11.0.0
 #
 # Unicode Character Database
@@ -21866,6 +21866,7 @@ U+5397	kFourCornerCode	7124.1
 U+5397	kTotalStrokes	9
 U+5398	kCangjie	MWG
 U+5398	kCihaiT	229.301
+U+5398	kFenn	497F
 U+5398	kFourCornerCode	7121.4
 U+5398	kPhonetic	787 789
 U+5398	kTotalStrokes	9
@@ -44363,6 +44364,7 @@ U+6528	kCangjie	XQJCO
 U+6528	kTotalStrokes	23
 U+6529	kCangjie	QFBF
 U+6529	kCihaiT	598.206
+U+6529	kFenn	586B
 U+6529	kFourCornerCode	5903.1
 U+6529	kPhonetic	1378
 U+6529	kTotalStrokes	23
@@ -66820,6 +66822,7 @@ U+77BF	kTotalStrokes	18
 U+77C0	kCangjie	BUHOK
 U+77C0	kTotalStrokes	18
 U+77C1	kCangjie	BUHFP
+U+77C1	kFenn	450E
 U+77C1	kTotalStrokes	18
 U+77C2	kCangjie	BURRD
 U+77C2	kFourCornerCode	6609.4
@@ -145145,6 +145148,7 @@ U+27035	kTotalStrokes	19
 U+27036	kTotalStrokes	19
 U+27037	kTotalStrokes	19
 U+27038	kTotalStrokes	19
+U+27039	kFenn	201G
 U+27039	kTotalStrokes	19
 U+2703A	kTotalStrokes	19
 U+2703B	kTotalStrokes	19
@@ -166177,6 +166181,7 @@ U+2BF6A	kTotalStrokes	13
 U+2BF6B	kTotalStrokes	13
 U+2BF6C	kTotalStrokes	14
 U+2BF6D	kTotalStrokes	14
+U+2BF6E	kFenn	586B
 U+2BF6E	kTotalStrokes	13
 U+2BF6F	kTotalStrokes	14
 U+2BF70	kTotalStrokes	13
@@ -167444,6 +167449,7 @@ U+2C45D	kTotalStrokes	14
 U+2C45E	kTotalStrokes	15
 U+2C45F	kTotalStrokes	15
 U+2C460	kTotalStrokes	15
+U+2C461	kFenn	450E
 U+2C461	kTotalStrokes	15
 U+2C462	kTotalStrokes	14
 U+2C463	kTotalStrokes	15

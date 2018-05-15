@@ -1,6 +1,6 @@
 #
 # Unihan_NumericValues.txt
-# Date: 2018-02-14 22:41:22 GMT [JHJ]
+# Date: 2018-05-11 20:24:12 GMT [JHJ]
 # Unicode version: 11.0.0
 #
 # Unicode Character Database
