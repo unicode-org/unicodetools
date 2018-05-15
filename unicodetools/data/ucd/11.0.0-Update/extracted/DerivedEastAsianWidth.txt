@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-11.0.0.txt
-# Date: 2018-02-21, 05:34:04 GMT
+# Date: 2018-05-15, 06:52:54 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1108,7 +1108,6 @@
 2E42          ; N # Ps       DOUBLE LOW-REVERSED-9 QUOTATION MARK
 2E43..2E4E    ; N # Po  [12] DASH WITH LEFT UPTURN..PUNCTUS ELEVATUS MARK
 303F          ; N # So       IDEOGRAPHIC HALF FILL SPACE
-312F          ; N # Lo       BOPOMOFO LETTER NN
 4DC0..4DFF    ; N # So  [64] HEXAGRAM FOR THE CREATIVE HEAVEN..HEXAGRAM FOR BEFORE COMPLETION
 A4D0..A4F7    ; N # Lo  [40] LISU LETTER BA..LISU LETTER OE
 A4F8..A4FD    ; N # Lm   [6] LISU LETTER TONE MYA TI..LISU LETTER TONE MYA JEU
@@ -1864,7 +1863,7 @@ E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
 # The above property value applies to 768930 code points not listed here.
-# Total code points: 793330
+# Total code points: 793329
 
 # ================================================
 
@@ -2188,7 +2187,7 @@ FFED..FFEE    ; H # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 30FB          ; W # Po       KATAKANA MIDDLE DOT
 30FC..30FE    ; W # Lm   [3] KATAKANA-HIRAGANA PROLONGED SOUND MARK..KATAKANA VOICED ITERATION MARK
 30FF          ; W # Lo       KATAKANA DIGRAPH KOTO
-3105..312E    ; W # Lo  [42] BOPOMOFO LETTER B..BOPOMOFO LETTER O WITH DOT ABOVE
+3105..312F    ; W # Lo  [43] BOPOMOFO LETTER B..BOPOMOFO LETTER NN
 3131..318E    ; W # Lo  [94] HANGUL LETTER KIYEOK..HANGUL LETTER ARAEAE
 3190..3191    ; W # So   [2] IDEOGRAPHIC ANNOTATION LINKING MARK..IDEOGRAPHIC ANNOTATION REVERSE MARK
 3192..3195    ; W # No   [4] IDEOGRAPHIC ANNOTATION ONE MARK..IDEOGRAPHIC ANNOTATION FOUR MARK
@@ -2326,7 +2325,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 2FA1E..2FFFD  ; W # Cn [1504] <reserved-2FA1E>..<reserved-2FFFD>
 30000..3FFFD  ; W # Cn [65534] <reserved-30000>..<reserved-3FFFD>
 
-# Total code points: 181705
+# Total code points: 181706
 
 # ================================================
 

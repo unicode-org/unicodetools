@@ -1,15 +1,67 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 11.0.0
-@@@+	U11M180222.lst
-	Unicode 11.0.0 names list, fifth delta.
-	Repertoire synched with UnicodeData-11.0.0d13.txt
-	Fifth delta of annotation fixes.
-	Added annotation for 26BC.
-	Corrected end range of main CJK block.
-	Corrected typo in annotation for 110BD.
-	Added subheader at 11D98.
-	Added notice about Mongolian positional forms at 1820.
-	Adjusted emission of alt variants for multiple Mongolian characters.
+@@@+	U11M180511.lst
+	Unicode 11.0.0 names list, sixth delta.
+	Repertoire synched with UnicodeData-11.0.0d14.txt
+	Sixth delta of annotation fixes.
+	Adjusted annotations for 2E4A and 2E4E.
+	Adjusted notice at 1F9B0.
+	Removed extra space in annotation for 1F96C.
+	Removed redundant annotations for 0219, 021B.
+	Removed trailing space in notice at 1F311 and in alias for 1FA60.
+	Added notice to Mende Kikakui regarding sources for syllabary notes.
+	Lowercased sp in annotation for 1BC3B.
+	Added annotations to 3036.
+	Added more xrefs to 20B8, 2AE7 and 3012.
+	Added annotation for 16E99 and other notes for Medefaidrin.
+	Added annotation for 1806.
+	Added notice for 1E9E and annotations for 00DF and 1E9E.
+	Added xrefs to halfwidth forms for 3001 and 3002.
+	Added xrefs to similar ideographs to 3005 and 3006.
+	Dropped redundant annotations for 300D and 300F.
+	Adjusted subhead for 301C and added subhead for 3020.
+	Adjusted subhead for 302A.
+	Added xref to 301C from FF5E.
+	Added xrefs between 2045 and 2E20.
+	Added notices xrefing ranges at 2058 and 2E2A.
+	Added xrefs between 2B21 and 2394.
+	Added aliases to 23ED and 23EE and 23EF.
+	Added xrefs between 23FA and 1F534.
+	Added annotations to 0336, 033F.
+	Added xref from 0360 to FE22.
+	Adjusted subhead for 0339.
+	Added xrefs for 1DC0 and 1DC1.
+	Added annotation for 2106.
+	Added xrefs for 2116.
+	Added xrefs to 2715 and 2A2F to 00D7.
+	Added xref to 0186 from 2183 and to 0254 from 2184.
+	Updated notes for 10F12, 10F13, 10F27, to no longer use ASCII fallbacks.
+	Updated notes for 1BC24, 1BC26, 1BC2A, 1BC64 to use Romanian letters.
+	Added Tongan to note for 02BB.
+	Added Livonian to annotations for 00F5, 01ED.
+	Adjusted subheads in Kaithi block.
+	Adjusted subhead for 11A9D.
+	Adjusted subhead for 11D60.
+	Adjusted wording of annotations for 11D45, 11D97.
+	Adjusted wording on annotations/notices at 2720, 2BE8, 31A0, 23DC.
+	Adjusted annotations for Jawi in 06AC, 0762, 06A0, 06A4.
+	Fixed capitalization in annotations for 0690, 069F.
+	Added xrefs between 00F8 and 2300.
+	Added xrefs between 2327 and 2612.
+	Adjusted alias and add xref for 260A.
+	Added aliases for 267E, 267F.
+	Adjusted subhead for AA40.
+	Added subhead and annotation for 10AC8.
+	Added notice to Coptic block.
+	Adjusted subhead to notice at head of Thai block.
+	Reworded subhead for 1680.
+	Fixed format for a number of ranges, for uniformity.
+	Added subhead at 1039.
+	Added annotations clarifying use of 07F6, 07F7.
+	Added subheads at 27C5 and 27C7.
+	Added subhead at 22EE and adjusted annotation.
+	Added xrefs between 2245 and 2A70.
+	Adjusted subhead at A7A0.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -667,7 +719,9 @@
 @		Mathematical operator
 00D7	MULTIPLICATION SIGN
 	= z notation Cartesian product
+	x (multiplication x - 2715)
 	x (cross mark - 274C)
+	x (vector or cross product - 2A2F)
 @		Letters
 00D8	LATIN CAPITAL LETTER O WITH STROKE
 	= o slash
@@ -686,8 +740,8 @@
 00DF	LATIN SMALL LETTER SHARP S
 	= Eszett
 	* German
-	* uppercase is "SS"
-	* nonstandard uppercase is 1E9E
+	* not used in Swiss High German
+	* uppercase is "SS" or 1E9E
 	* typographically the glyph for this character can be based on a ligature of 017F with either 0073 or with an old-style glyph for 007A (the latter similar in appearance to 0292). Both forms exist interchangeably today.
 	x (greek small letter beta - 03B2)
 00E0	LATIN SMALL LETTER A WITH GRAVE
@@ -743,7 +797,7 @@
 00F4	LATIN SMALL LETTER O WITH CIRCUMFLEX
 	: 006F 0302
 00F5	LATIN SMALL LETTER O WITH TILDE
-	* Portuguese, Estonian
+	* Portuguese, Estonian, Livonian
 	: 006F 0303
 00F6	LATIN SMALL LETTER O WITH DIAERESIS
 	: 006F 0308
@@ -763,6 +817,7 @@
 00F8	LATIN SMALL LETTER O WITH STROKE
 	= o slash
 	* Danish, Norwegian, Faroese, IPA
+	x (diameter sign - 2300)
 00F9	LATIN SMALL LETTER U WITH GRAVE
 	* French, Italian
 	: 0075 0300
@@ -1485,7 +1540,7 @@
 01EC	LATIN CAPITAL LETTER O WITH OGONEK AND MACRON
 	: 01EA 0304
 01ED	LATIN SMALL LETTER O WITH OGONEK AND MACRON
-	* Old Icelandic
+	* Old Icelandic, Livonian (in recent linguistic scholarship)
 	: 01EB 0304
 01EE	LATIN CAPITAL LETTER EZH WITH CARON
 	: 01B7 030C
@@ -1581,13 +1636,11 @@
 0218	LATIN CAPITAL LETTER S WITH COMMA BELOW
 	: 0053 0326
 0219	LATIN SMALL LETTER S WITH COMMA BELOW
-	* Romanian
 	x (latin small letter s with cedilla - 015F)
 	: 0073 0326
 021A	LATIN CAPITAL LETTER T WITH COMMA BELOW
 	: 0054 0326
 021B	LATIN SMALL LETTER T WITH COMMA BELOW
-	* Romanian
 	x (latin small letter t with cedilla - 0163)
 	: 0074 0326
 @		Miscellaneous additions
@@ -2088,7 +2141,9 @@
 	x (double prime - 2033)
 02BB	MODIFIER LETTER TURNED COMMA
 	* typographical alternate for 02BD or 02BF
-	* used in Hawai`ian orthography as `okina (glottal stop)
+	* used in some Polynesian orthographies for glottal stop
+	* Hawaiʻian: ʻokina
+	* Tongan: fakauʻa
 	x (combining turned comma above - 0312)
 	x (nko low tone apostrophe - 07F5)
 	x (left single quotation mark - 2018)
@@ -2477,11 +2532,13 @@
 	* IPA: velarization or pharyngealization
 0335	COMBINING SHORT STROKE OVERLAY
 0336	COMBINING LONG STROKE OVERLAY
+	= strikethrough
+	* connects on left and right
 0337	COMBINING SHORT SOLIDUS OVERLAY
 	= short slash overlay
 0338	COMBINING LONG SOLIDUS OVERLAY
 	= long slash overlay
-@		Additions
+@		Miscellaneous additions
 0339	COMBINING RIGHT HALF RING BELOW
 033A	COMBINING INVERTED BRIDGE BELOW
 	* IPA: apical
@@ -2500,6 +2557,7 @@
 	x (vertical tilde - 2E2F)
 	x (combining cyrillic payerok - A67D)
 033F	COMBINING DOUBLE OVERLINE
+	* connects on left and right
 @		Vietnamese tone marks
 @+		Vietnamese-specific accent placement should be handled instead by specialized rendering of 0300 and 0301. Use of 0340 and 0341 is discouraged.
 0340	COMBINING GRAVE TONE MARK
@@ -2579,6 +2637,7 @@
 035E	COMBINING DOUBLE MACRON
 035F	COMBINING DOUBLE MACRON BELOW
 0360	COMBINING DOUBLE TILDE
+	x (combining double tilde left half - FE22)
 0361	COMBINING DOUBLE INVERTED BREVE
 	= ligature tie
 	x (combining ligature left half - FE20)
@@ -3959,7 +4018,7 @@
 	* Sindhi
 	* current shape used for DUL
 0690	ARABIC LETTER DAL WITH FOUR DOTS ABOVE
-	* old Urdu, not in current use
+	* Old Urdu, not in current use
 0691	ARABIC LETTER RREH
 	* Urdu
 0692	ARABIC LETTER REH WITH SMALL V
@@ -3989,9 +4048,9 @@
 069E	ARABIC LETTER SAD WITH THREE DOTS ABOVE
 	* Berber, Burushaski
 069F	ARABIC LETTER TAH WITH THREE DOTS ABOVE
-	* old Hausa
+	* Old Hausa
 06A0	ARABIC LETTER AIN WITH THREE DOTS ABOVE
-	* old Malay
+	* Jawi
 06A1	ARABIC LETTER DOTLESS FEH
 	* Adighe
 06A2	ARABIC LETTER FEH WITH DOT MOVED BELOW
@@ -4000,7 +4059,7 @@
 	* Ingush
 06A4	ARABIC LETTER VEH
 	* Middle Eastern Arabic for foreign words
-	* Kurdish, Khwarazmian, early Persian
+	* Kurdish, Khwarazmian, early Persian, Jawi
 06A5	ARABIC LETTER FEH WITH THREE DOTS BELOW
 	* North African Arabic for foreign words
 06A6	ARABIC LETTER PEHEH
@@ -4018,7 +4077,8 @@
 	* Pashto
 	* may appear like an Arabic KAF (0643) with a ring below the base
 06AC	ARABIC LETTER KAF WITH DOT ABOVE
-	* old Malay
+	* use for the Jawi gaf is not recommended, although it may be found in some existing text data; recommended character for Jawi gaf is 0762
+	x (arabic letter keheh with dot above - 0762)
 06AD	ARABIC LETTER NG
 	* Uighur, Kazakh, old Malay, early Persian, ...
 06AE	ARABIC LETTER KAF WITH THREE DOTS BELOW
@@ -4323,7 +4383,7 @@
 0760	ARABIC LETTER FEH WITH TWO DOTS BELOW
 0761	ARABIC LETTER FEH WITH THREE DOTS POINTING UPWARDS BELOW
 0762	ARABIC LETTER KEHEH WITH DOT ABOVE
-	* old Malay, preferred to 06AC
+	* Jawi, preferred to 06AC
 	x (arabic letter kaf with dot above - 06AC)
 0763	ARABIC LETTER KEHEH WITH THREE DOTS ABOVE
 	* Moroccan Arabic, Amazigh, Burushaski
@@ -4497,8 +4557,11 @@
 	x (modifier letter turned comma - 02BB)
 @		Symbol
 07F6	NKO SYMBOL OO DENNEN
+	* remote future placement of the topic under discussion
 @		Punctuation
 07F7	NKO SYMBOL GBAKURUNEN
+	* marks end of a major section of text
+	* symbol represents the three stones holding a cooking pot over a fire 
 07F8	NKO COMMA
 07F9	NKO EXCLAMATION MARK
 @		Letter extender
@@ -6296,7 +6359,7 @@
 0DF4	SINHALA PUNCTUATION KUNDDALIYA
 @@	0E00	Thai	0E7F
 @@+
-@		Based on TIS 620-2533
+@+		The encoding order is based on TIS 620-2533.
 @		Consonants
 0E01	THAI CHARACTER KO KAI
 0E02	THAI CHARACTER KHO KHAI
@@ -6988,6 +7051,7 @@
 	= aukmyit
 	* a tone mark
 1038	MYANMAR SIGN VISARGA
+@		Virama and killer
 1039	MYANMAR SIGN VIRAMA
 103A	MYANMAR SIGN ASAT
 	= killer (always rendered visibly)
@@ -8845,7 +8909,7 @@
 167F	CANADIAN SYLLABICS BLACKFOOT W
 @@	1680	Ogham	169F
 @+		An Ogham font typically displays all Ogham characters with a visible stemline, representing the edge of monumental Ogham inscriptions.
-@		Punctuation
+@		Space
 1680	OGHAM SPACE MARK
 	* glyph is blank in "stemless" style fonts
 	x (space - 0020)
@@ -9305,6 +9369,7 @@
 	* marks the end of a chapter
 1806	MONGOLIAN TODO SOFT HYPHEN
 	* not a format control character, but simply a hyphen for Todo
+	* also used in the Hudum (modern Mongolian) writing system
 	x (soft hyphen - 00AD)
 1807	MONGOLIAN SIBE SYLLABLE BOUNDARY MARKER
 1808	MONGOLIAN MANCHU COMMA
@@ -10102,7 +10167,7 @@
 194E	LIMBU DIGIT EIGHT
 194F	LIMBU DIGIT NINE
 @@	1950	Tai Le	197F
-@+		Note the similarly named but distinct New Tai Lue script encoded at 1980..19DF.
+@+		Note the similarly named but distinct New Tai Lue script encoded at 1980-19DF.
 @		Consonants
 1950	TAI LE LETTER KA
 1951	TAI LE LETTER XA
@@ -10142,7 +10207,7 @@
 1973	TAI LE LETTER TONE-5
 1974	TAI LE LETTER TONE-6
 @@	1980	New Tai Lue	19DF
-@+		Note the similarly named but distinct Tai Le script encoded at 1950..197F. The New Tai Lue script is also known as Xishuangbanna Dai.
+@+		Note the similarly named but distinct Tai Le script encoded at 1950-197F. The New Tai Lue script is also known as Xishuangbanna Dai.
 @		Consonants
 1980	NEW TAI LUE LETTER HIGH QA
 1981	NEW TAI LUE LETTER LOW QA
@@ -11577,8 +11642,10 @@
 @		Used for Ancient Greek
 @+		These are used as editorial signs for Ancient Greek to indicate scribal deletion of erroneous accent marks.
 1DC0	COMBINING DOTTED GRAVE ACCENT
+	x (combining grave accent - 0300)
 	x (greek dialytika and varia - 1FED)
 1DC1	COMBINING DOTTED ACUTE ACCENT
+	x (combining acute accent - 0301)
 	x (combining greek dialytika tonos - 0344)
 	x (greek dialytika and oxia - 1FEE)
 @		Miscellaneous marks
@@ -12026,7 +12093,9 @@
 	x (latin small letter s with oblique stroke - A7A9)
 1E9D	LATIN SMALL LETTER LONG S WITH HIGH STROKE
 @		Addition for German typography
+@+		The capital letter sharp s is part of the official German orthography since 2017. Along with "SS" it is an allowed variant spelling of 00DF in "all caps" style.
 1E9E	LATIN CAPITAL LETTER SHARP S
+	* not used in Swiss High German
 	* lowercase is 00DF
 	x (latin small letter sharp s - 00DF)
 @		Medievalist addition
@@ -12955,7 +13024,9 @@
 	* for composing arbitrary fractions
 	x (solidus - 002F)
 	x (division slash - 2215)
+@		Brackets
 2045	LEFT SQUARE BRACKET WITH QUILL
+	x (left vertical bar with quill - 2E20)
 2046	RIGHT SQUARE BRACKET WITH QUILL
 @		Double punctuation for vertical text
 2047	DOUBLE QUESTION MARK
@@ -13007,6 +13078,7 @@
 2057	QUADRUPLE PRIME
 	# 2032 2032 2032 2032
 @		Archaic punctuation
+@+		See also historic punctuation with multiple dots in the range 2E2A-2E2D.
 2058	FOUR DOT PUNCTUATION
 2059	FIVE DOT PUNCTUATION
 	= Greek pentonkion
@@ -13359,6 +13431,7 @@
 2105	CARE OF
 	# 0063 002F 006F
 2106	CADA UNA
+	* Spanish for "each one"
 	# 0063 002F 0075
 2107	EULER CONSTANT
 	x (latin capital letter e - 0045)
@@ -13407,6 +13480,8 @@
 	* a glyph variant with doubled vertical strokes exists
 	# <font> 004E latin capital letter n
 2116	NUMERO SIGN
+	x (number sign - 0023)
+	x (masculine ordinal indicator - 00BA)
 	# 004E 006F
 2117	SOUND RECORDING COPYRIGHT
 	= published
@@ -13695,10 +13770,12 @@
 	= Claudian antisigma
 	* used in combination with C and I to form large numbers
 	* lowercase is 2184
+	x (latin capital letter open o - 0186)
 	x (greek capital reversed lunate sigma symbol - 03FD)
 @		Lowercase Claudian letter
 @+		Claudian letters in inscriptions are uppercase, but may be transcribed by scholars in lowercase.
 2184	LATIN SMALL LETTER REVERSED C
+	x (latin small letter open o - 0254)
 	x (greek small reversed lunate sigma symbol - 037B)
 @		Archaic Roman numerals
 2185	ROMAN NUMERAL SIX LATE FORM
@@ -14112,6 +14189,7 @@
 2244	NOT ASYMPTOTICALLY EQUAL TO
 	: 2243 0338
 2245	APPROXIMATELY EQUAL TO
+	x (approximately equal or equal to - 2A70)
 2246	APPROXIMATELY BUT NOT ACTUALLY EQUAL TO
 2247	NEITHER APPROXIMATELY NOR ACTUALLY EQUAL TO
 	: 2245 0338
@@ -14432,14 +14510,16 @@
 	: 22B4 0338
 22ED	DOES NOT CONTAIN AS NORMAL SUBGROUP OR EQUAL
 	: 22B5 0338
+@		Matrix ellipses
+@+		These four ellipsis characters are used for matrix row/column elision.
 22EE	VERTICAL ELLIPSIS
-	* these four ellipses are used for matrix row/column elision
 	x (tricolon - 205D)
 	x (horizontal ellipsis - 2026)
 	x (presentation form for vertical horizontal ellipsis - FE19)
 22EF	MIDLINE HORIZONTAL ELLIPSIS
 22F0	UP RIGHT DIAGONAL ELLIPSIS
 22F1	DOWN RIGHT DIAGONAL ELLIPSIS
+@		Relations
 22F2	ELEMENT OF WITH LONG HORIZONTAL STROKE
 22F3	ELEMENT OF WITH VERTICAL BAR AT END OF HORIZONTAL STROKE
 22F4	SMALL ELEMENT OF WITH VERTICAL BAR AT END OF HORIZONTAL STROKE
@@ -14458,6 +14538,7 @@
 @@	2300	Miscellaneous Technical	23FF
 @		Miscellaneous technical
 2300	DIAMETER SIGN
+	x (latin small letter o with stroke - 00F8)
 	x (empty set - 2205)
 2301	ELECTRIC ARROW
 @+	* from ISO 2047
@@ -14555,6 +14636,7 @@
 	= delete to the right key
 2327	X IN A RECTANGLE BOX
 	= clear key
+	x (ballot box with x - 2612)
 2328	KEYBOARD
 	x (keyboard and mouse - 1F5A6)
 	x (wired keyboard - 1F5AE)
@@ -14734,6 +14816,7 @@
 2392	PASSIVE-PULL-UP-OUTPUT SYMBOL
 2393	DIRECT CURRENT SYMBOL FORM TWO
 2394	SOFTWARE-FUNCTION SYMBOL
+	x (white hexagon - 2B21)
 @		APL
 2395	APL FUNCTIONAL SYMBOL QUAD
 	x (apl functional symbol squish quad - 2337)
@@ -14855,7 +14938,7 @@
 23DA	EARTH GROUND
 23DB	FUSE
 @		Horizontal brackets
-@+		These are intended for bracketing terms of mathematical expressions where their glyph extends to accommodate the width of the bracketed expression
+@+		These are intended for bracketing terms of mathematical expressions where their glyph extends to accommodate the width of the bracketed expression.
 23DC	TOP PARENTHESIS
 	x (presentation form for vertical left parenthesis - FE35)
 23DD	BOTTOM PARENTHESIS
@@ -14883,12 +14966,15 @@
 23E9	BLACK RIGHT-POINTING DOUBLE TRIANGLE
 	= fast forward
 23EA	BLACK LEFT-POINTING DOUBLE TRIANGLE
-	= fast rewind
+	= rewind, fast backwards
 23EB	BLACK UP-POINTING DOUBLE TRIANGLE
 23EC	BLACK DOWN-POINTING DOUBLE TRIANGLE
 23ED	BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR
+	= skip to the end or next file/track/chapter
 23EE	BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR
+	= skip to the start or previous file/track/chapter
 23EF	BLACK RIGHT-POINTING TRIANGLE WITH DOUBLE VERTICAL BAR
+	= play/pause toggle
 23F0	ALARM CLOCK
 	x (watch - 231A)
 	x (clock face one oclock - 1F550)
@@ -14926,6 +15012,7 @@
 23FA	BLACK CIRCLE FOR RECORD
 	= record
 	x (medium black circle - 26AB)
+	x (large red circle - 1F534)
 @		Power symbols from ISO 7000:2012
 23FB	POWER SYMBOL
 @+	* IEC 5009 standby symbol
@@ -15774,7 +15861,8 @@
 	x (white sun with rays - 263C)
 	x (sun with face - 1F31E)
 260A	ASCENDING NODE
-	= alchemical symbol for sublimate
+	= alchemical symbol for sublimation
+	x (alchemical symbol for sublimation - 1F75E)
 260B	DESCENDING NODE
 	= alchemical symbol for purify
 	x (alchemical symbol for purify - 1F763)
@@ -15795,6 +15883,7 @@
 	x (ballot box with bold check - 1F5F9)
 2612	BALLOT BOX WITH X
 	x (squared times - 22A0)
+	x (x in a rectangle box - 2327)
 	x (ballot box with light x - 2BBD)
 	x (ballot box with ballot - 1F5F3)
 	x (ballot box with script x - 1F5F5)
@@ -16045,7 +16134,9 @@
 	* percentage of recycled paper content indicated in overlay or next to this symbol
 @		Miscellaneous symbols
 267E	PERMANENT PAPER SIGN
+	= non-acid paper
 267F	WHEELCHAIR SYMBOL
+	= accessible place
 @		Dice
 2680	DIE FACE-1
 	x (game die - 1F3B2)
@@ -16430,7 +16521,7 @@
 	x (white latin cross - 1F546)
 271F	OUTLINED LATIN CROSS
 2720	MALTESE CROSS
-	* Historically, the Maltese cross took many forms; the shape shown in the Zapf Dingbats is similar to one known as the Cross Formée.
+	* historically, the Maltese cross took many forms; the shape shown in the Zapf Dingbats is similar to one known as the Cross Formée
 	x (circled cross formee - 1F902)
 @		Stars and asterisks
 2721	STAR OF DAVID
@@ -16685,8 +16776,10 @@
 	x (up tack - 22A5)
 27C3	OPEN SUBSET
 27C4	OPEN SUPERSET
+@		Paired punctuation
 27C5	LEFT S-SHAPED BAG DELIMITER
 27C6	RIGHT S-SHAPED BAG DELIMITER
+@		Miscellaneous symbols
 27C7	OR WITH DOT INSIDE
 27C8	REVERSE SOLIDUS PRECEDING SUBSET
 27C9	SUPERSET PRECEDING SOLIDUS
@@ -17711,6 +17804,7 @@
 	x (star equals - 225B)
 2A6F	ALMOST EQUAL TO WITH CIRCUMFLEX ACCENT
 2A70	APPROXIMATELY EQUAL OR EQUAL TO
+	x (approximately equal to - 2245)
 2A71	EQUALS SIGN ABOVE PLUS SIGN
 	* black stands slightly better (chess notation)
 2A72	PLUS SIGN ABOVE EQUALS SIGN
@@ -17882,6 +17976,7 @@
 2AE7	SHORT DOWN TACK WITH OVERBAR
 	x (down tack - 22A4)
 	x (apl functional symbol up tack overbar - 2351)
+	x (postal mark - 3012)
 2AE8	SHORT UP TACK WITH UNDERBAR
 	x (up tack - 22A5)
 	x (apl functional symbol down tack underbar - 234A)
@@ -17992,6 +18087,7 @@
 2B20	WHITE PENTAGON
 @		Hexagons
 2B21	WHITE HEXAGON
+	x (software-function symbol - 2394)
 2B22	BLACK HEXAGON
 2B23	HORIZONTAL BLACK HEXAGON
 @		Circle
@@ -18371,7 +18467,7 @@
 2BE6	VULCANUS
 2BE7	POSEIDON
 @		Half star characters
-@+		Used together with 2605 in systems of ratings
+@+		These are used together with 2605 in systems of ratings.
 2BE8	LEFT HALF BLACK STAR
 	x (black star - 2605)
 2BE9	RIGHT HALF BLACK STAR
@@ -18582,6 +18678,7 @@
 	* lowercase is 0240
 @@	2C80	Coptic	2CFF
 @+		Other Coptic letters derived from Demotic are encoded in the Greek and Coptic block.
+@+		Coptic epact digits and numbers are encoded in the Coptic Epact Numbers block.
 @		Bohairic Coptic letters
 2C80	COPTIC CAPITAL LETTER ALFA
 2C81	COPTIC SMALL LETTER ALFA
@@ -19038,6 +19135,7 @@
 	* indicates derived form changes to lowercase
 @		Brackets
 2E20	LEFT VERTICAL BAR WITH QUILL
+	x (left square bracket with quill - 2045)
 2E21	RIGHT VERTICAL BAR WITH QUILL
 @		Half brackets
 @+		These form a set of four corner brackets and are used editorially. They are distinguished from mathematical floor and ceiling characters. Occasionally quine corners are substituted for half brackets.
@@ -19058,6 +19156,7 @@
 	x (fullwidth left white parenthesis - FF5F)
 2E29	RIGHT DOUBLE PARENTHESIS
 @		Historic punctuation
+@+		See also historic punctuation with multiple dots in the range 2058-205E.
 2E2A	TWO DOTS OVER ONE DOT PUNCTUATION
 2E2B	ONE DOT OVER TWO DOTS PUNCTUATION
 2E2C	SQUARED FOUR DOT PUNCTUATION
@@ -19157,7 +19256,7 @@
 @		Historic punctuation
 2E4A	DOTTED SOLIDUS
 	= virgula suspensiva
-	* indicates a medial disjunction less than solidus but more than punctus elevatus
+	* indicates a medial disjunction more than solidus but less than punctus elevatus
 2E4B	TRIPLE DAGGER
 	x (dagger - 2020)
 	x (double dagger - 2021)
@@ -19170,7 +19269,7 @@
 	x (paragraphos - 2E0F)
 	x (capitulum - 2E3F)
 2E4E	PUNCTUS ELEVATUS MARK
-	* indicates a minor medial pause where the sense is complete but the meaning is not
+	* indicates a major medial pause where the sense is complete but the meaning is not
 @@	2E80	CJK Radicals Supplement	2EFF
 @		CJK radicals supplement
 2E80	CJK RADICAL REPEAT
@@ -19895,14 +19994,18 @@
 	* in Chinese, delimits items in a list or series
 	x (comma - 002C)
 	x (fullwidth comma - FF0C)
+	x (halfwidth ideographic comma - FF64)
 3002	IDEOGRAPHIC FULL STOP
 	x (full stop - 002E)
+	x (halfwidth ideographic full stop - FF61)
 3003	DITTO MARK
 	x (double prime - 2033)
 3004	JAPANESE INDUSTRIAL STANDARD SYMBOL
 3005	IDEOGRAPHIC ITERATION MARK
+	x 206A4
 	x (tangut iteration mark - 16FE0)
 3006	IDEOGRAPHIC CLOSING MARK
+	x 4E44
 3007	IDEOGRAPHIC NUMBER ZERO
 	x (combining enclosing circle - 20DD)
 	x (white circle - 25CB)
@@ -19929,16 +20032,16 @@
 300C	LEFT CORNER BRACKET
 	x (left ceiling - 2308)
 300D	RIGHT CORNER BRACKET
-	* used as quotation marks
 	x (right floor - 230B)
 300E	LEFT WHITE CORNER BRACKET
 300F	RIGHT WHITE CORNER BRACKET
-	* used as quotation marks
 @		CJK brackets
 3010	LEFT BLACK LENTICULAR BRACKET
 3011	RIGHT BLACK LENTICULAR BRACKET
 @		CJK symbols
 3012	POSTAL MARK
+	x (tenge sign - 20B8)
+	x (short down tack with overbar - 2AE7)
 	x (japanese post office - 1F3E3)
 3013	GETA MARK
 	* substitute for ideograph not in font
@@ -19959,7 +20062,7 @@
 301B	RIGHT WHITE SQUARE BRACKET
 	= right abstract syntax bracket
 	x (mathematical right white square bracket - 27E7)
-@		CJK symbols and punctuation
+@		CJK punctuation
 301C	WAVE DASH
 @+		This character was encoded to match JIS C 6226-1978 1-33 "wave dash".
 	x (swung dash - 2053)
@@ -19975,6 +20078,7 @@
 	x (double prime - 2033)
 301F	LOW DOUBLE PRIME QUOTATION MARK
 	* may be depicted as low inverse double prime quotation mark
+@		CJK symbol
 3020	POSTAL MARK FACE
 @		Suzhou numerals
 @+		The Suzhou numerals (Chinese su1zhou1ma3zi) are special numeric forms used by traders to display the prices of goods. The use of "HANGZHOU" in the names is a misnomer.
@@ -19987,7 +20091,7 @@
 3027	HANGZHOU NUMERAL SEVEN
 3028	HANGZHOU NUMERAL EIGHT
 3029	HANGZHOU NUMERAL NINE
-@		Diacritics
+@		Combining tone marks
 302A	IDEOGRAPHIC LEVEL TONE MARK
 302B	IDEOGRAPHIC RISING TONE MARK
 302C	IDEOGRAPHIC DEPARTING TONE MARK
@@ -20011,6 +20115,8 @@
 3035	VERTICAL KANA REPEAT MARK LOWER HALF
 @		Other CJK symbols
 3036	CIRCLED POSTAL MARK
+	= symbol for type b electronics
+	* not used as a postal mark
 	# 3012 postal mark
 3037	IDEOGRAPHIC TELEGRAPH LINE FEED SEPARATOR SYMBOL
 @		Additional Suzhou numerals
@@ -20608,7 +20714,7 @@
 319F	IDEOGRAPHIC ANNOTATION MAN MARK
 	# <super> 4EBA
 @@	31A0	Bopomofo Extended	31BF
-@+		See also the Bopomofo block
+@+		See also the Bopomofo block.
 @		Extended Bopomofo for Minnan and Hakka
 31A0	BOPOMOFO LETTER BU
 31A1	BOPOMOFO LETTER ZI
@@ -24079,7 +24185,7 @@ A79C	LATIN CAPITAL LETTER VOLAPUK OE
 A79D	LATIN SMALL LETTER VOLAPUK OE
 A79E	LATIN CAPITAL LETTER VOLAPUK UE
 A79F	LATIN SMALL LETTER VOLAPUK UE
-@		Latvian letters for pre-1921 orthography
+@		Letters for pre-1921 Latvian orthography
 A7A0	LATIN CAPITAL LETTER G WITH OBLIQUE STROKE
 A7A1	LATIN SMALL LETTER G WITH OBLIQUE STROKE
 A7A2	LATIN CAPITAL LETTER K WITH OBLIQUE STROKE
@@ -24944,7 +25050,7 @@ AA33	CHAM CONSONANT SIGN YA
 AA34	CHAM CONSONANT SIGN RA
 AA35	CHAM CONSONANT SIGN LA
 AA36	CHAM CONSONANT SIGN WA
-@		Final letters
+@		Final consonants
 AA40	CHAM LETTER FINAL K
 AA41	CHAM LETTER FINAL G
 AA42	CHAM LETTER FINAL NG
@@ -25272,7 +25378,7 @@ AB65	GREEK LETTER SMALL CAPITAL OMEGA
 	x (latin small letter closed omega - 0277)
 	x (greek small letter omega - 03C9)
 @@	AB70	Cherokee Supplement	ABBF
-@+		The uppercase Cherokee syllables are encoded in the Cherokee block at 13A0..13FF. Lowercase ye, yi, yo, yu, yv, and mv are encoded in that same block.
+@+		The uppercase Cherokee syllables are encoded in the Cherokee block at 13A0-13FF. Lowercase ye, yi, yo, yu, yv, and mv are encoded in that same block.
 @		Lowercase syllables
 AB70	CHEROKEE SMALL LETTER A
 AB71	CHEROKEE SMALL LETTER E
@@ -28129,7 +28235,7 @@ FE6A	SMALL PERCENT SIGN
 FE6B	SMALL COMMERCIAL AT
 	# <small> 0040
 @@	FE70	Arabic Presentation Forms-B	FEFF
-@+		Preferred characters are found in the Arabic block 0600 - 06FF. Some of these characters are used for Arabic mathematics where contextual shape variations are important semantically.
+@+		Preferred characters are found in the Arabic block 0600-06FF. Some of these characters are used for Arabic mathematics where contextual shape variations are important semantically.
 @		Glyphs for spacing forms of Arabic points
 FE70	ARABIC FATHATAN ISOLATED FORM
 	# <isolated> 0020 064B
@@ -28616,6 +28722,7 @@ FF5C	FULLWIDTH VERTICAL LINE
 FF5D	FULLWIDTH RIGHT CURLY BRACKET
 	# <wide> 007D
 FF5E	FULLWIDTH TILDE
+	x (wave dash - 301C)
 	# <wide> 007E
 @		Fullwidth brackets
 FF5F	FULLWIDTH LEFT WHITE PARENTHESIS
@@ -28625,7 +28732,7 @@ FF5F	FULLWIDTH LEFT WHITE PARENTHESIS
 FF60	FULLWIDTH RIGHT WHITE PARENTHESIS
 	# <wide> 2986
 @		Halfwidth CJK punctuation
-@+		See CJK punctuation 3000 - 303F
+@+		See CJK punctuation 3000-303F
 FF61	HALFWIDTH IDEOGRAPHIC FULL STOP
 	# <narrow> 3002
 FF62	HALFWIDTH LEFT CORNER BRACKET
@@ -28635,7 +28742,7 @@ FF63	HALFWIDTH RIGHT CORNER BRACKET
 FF64	HALFWIDTH IDEOGRAPHIC COMMA
 	# <narrow> 3001
 @		Halfwidth Katakana variants
-@+		See Katakana 30A0 - 30FF
+@+		See Katakana 30A0-30FF
 FF65	HALFWIDTH KATAKANA MIDDLE DOT
 	# <narrow> 30FB
 FF66	HALFWIDTH KATAKANA LETTER WO
@@ -28755,7 +28862,7 @@ FF9E	HALFWIDTH KATAKANA VOICED SOUND MARK
 FF9F	HALFWIDTH KATAKANA SEMI-VOICED SOUND MARK
 	# <narrow> 309A
 @		Halfwidth Hangul variants
-@+		See Hangul Compatibility Jamo 3130 - 318F
+@+		See Hangul Compatibility Jamo 3130-318F
 FFA0	HALFWIDTH HANGUL FILLER
 	# <narrow> 3164
 FFA1	HALFWIDTH HANGUL LETTER KIYEOK
@@ -28861,7 +28968,7 @@ FFDB	HALFWIDTH HANGUL LETTER YI
 FFDC	HALFWIDTH HANGUL LETTER I
 	# <narrow> 3163
 @		Fullwidth symbol variants
-@+		See Latin-1 00A0 - 00FF
+@+		See Latin-1 00A0-00FF
 FFE0	FULLWIDTH CENT SIGN
 	# <wide> 00A2
 FFE1	FULLWIDTH POUND SIGN
@@ -31415,7 +31522,10 @@ FFFF	<not a character>
 10AC6	MANICHAEAN LETTER HE
 	~ 10AC6 FE00 alternate form (isolate)
 10AC7	MANICHAEAN LETTER WAW
+@		Logogram
 10AC8	MANICHAEAN SIGN UD
+	* represents the conjunction "and"
+@		Letters
 10AC9	MANICHAEAN LETTER ZAYIN
 10ACA	MANICHAEAN LETTER ZHAYIN
 10ACB	MANICHAEAN LETTER JAYIN
@@ -32027,10 +32137,10 @@ FFFF	<not a character>
 10F10	OLD SOGDIAN LETTER FINAL NUN WITH VERTICAL TAIL
 10F11	OLD SOGDIAN LETTER SAMEKH
 10F12	OLD SOGDIAN LETTER AYIN
-	* used only in the Aramaic heterogram `D
+	* used only in the Aramaic heterogram ʿD
 	* resh-ayin-daleth is used in other heterograms
 10F13	OLD SOGDIAN LETTER ALTERNATE AYIN
-	* used only in the Aramaic heterogram `D
+	* used only in the Aramaic heterogram ʿD
 	* resh-ayin-daleth is used in other heterograms
 10F14	OLD SOGDIAN LETTER PE
 10F15	OLD SOGDIAN LETTER SADHE
@@ -32054,7 +32164,7 @@ FFFF	<not a character>
 10F26	OLD SOGDIAN FRACTION ONE HALF
 @		Ligature
 10F27	OLD SOGDIAN LIGATURE AYIN-DALETH
-	* represents the Aramaic heterogram `D
+	* represents the Aramaic heterogram ʿD
 @@	10F30	Sogdian	10F6F
 @+		This block unifies the 'formal' and 'cursive' scripts. Representative glyphs are based upon the 'formal' style.
 @		Letters
@@ -32084,7 +32194,7 @@ FFFF	<not a character>
 @		Phonogram
 10F45	SOGDIAN INDEPENDENT SHIN
 	x 6240
-@		Modifier signs
+@		Combining marks
 10F46	SOGDIAN COMBINING DOT BELOW
 10F47	SOGDIAN COMBINING TWO DOTS BELOW
 10F48	SOGDIAN COMBINING DOT ABOVE
@@ -32293,13 +32403,15 @@ FFFF	<not a character>
 110B6	KAITHI VOWEL SIGN AI
 110B7	KAITHI VOWEL SIGN O
 110B8	KAITHI VOWEL SIGN AU
-@		Various signs
+@		Virama
 110B9	KAITHI SIGN VIRAMA
+@		Various signs
 110BA	KAITHI SIGN NUKTA
 110BB	KAITHI ABBREVIATION SIGN
 110BC	KAITHI ENUMERATION SIGN
 110BD	KAITHI NUMBER SIGN
 	* used to indicate a numerical reference
+@		Punctuation
 110BE	KAITHI SECTION MARK
 	* marks end of sentence
 	x (khojki section mark - 1123B)
@@ -33960,7 +34072,7 @@ FFFF	<not a character>
 11A9A	SOYOMBO MARK TSHEG
 11A9B	SOYOMBO MARK SHAD
 11A9C	SOYOMBO MARK DOUBLE SHAD
-@		Additional mark
+@		Elongation mark
 11A9D	SOYOMBO MARK PLUTA
 	* indicates vowel elongation
 @		Head marks
@@ -34287,7 +34399,7 @@ FFFF	<not a character>
 	* used for silencing the inherent vowel
 @		Virama
 11D45	MASARAM GONDI VIRAMA
-	* used for producing conjuncts
+	* used to form conjuncts
 @		Cluster-specific consonant forms
 11D46	MASARAM GONDI REPHA
 	* cluster-initial form of 11D26
@@ -34306,7 +34418,7 @@ FFFF	<not a character>
 11D59	MASARAM GONDI DIGIT NINE
 @@	11D60	Gunjala Gondi	11DAF
 @+		The script is also known as Koytura Gunjala Lipi.
-@		Vowels
+@		Independent vowels
 11D60	GUNJALA GONDI LETTER A
 11D61	GUNJALA GONDI LETTER AA
 11D62	GUNJALA GONDI LETTER I
@@ -34363,7 +34475,7 @@ FFFF	<not a character>
 11D96	GUNJALA GONDI SIGN VISARGA
 @		Virama
 11D97	GUNJALA GONDI VIRAMA
-	* used for producing conjuncts
+	* used to form conjuncts
 @		Symbol
 11D98	GUNJALA GONDI OM
 @		Digits
@@ -38888,6 +39000,7 @@ FFFF	<not a character>
 16E58	MEDEFAIDRIN CAPITAL LETTER X
 16E59	MEDEFAIDRIN CAPITAL LETTER D
 16E5A	MEDEFAIDRIN CAPITAL LETTER OE
+	* represents the open o vowel
 16E5B	MEDEFAIDRIN CAPITAL LETTER N
 16E5C	MEDEFAIDRIN CAPITAL LETTER R
 16E5D	MEDEFAIDRIN CAPITAL LETTER O
@@ -38921,6 +39034,7 @@ FFFF	<not a character>
 16E78	MEDEFAIDRIN SMALL LETTER X
 16E79	MEDEFAIDRIN SMALL LETTER D
 16E7A	MEDEFAIDRIN SMALL LETTER OE
+	* represents the open o vowel
 16E7B	MEDEFAIDRIN SMALL LETTER N
 16E7C	MEDEFAIDRIN SMALL LETTER R
 16E7D	MEDEFAIDRIN SMALL LETTER O
@@ -38955,7 +39069,9 @@ FFFF	<not a character>
 @		Punctuation
 16E97	MEDEFAIDRIN COMMA
 16E98	MEDEFAIDRIN FULL STOP
+@		Symbols
 16E99	MEDEFAIDRIN SYMBOL AIVA
+	* or
 16E9A	MEDEFAIDRIN EXCLAMATION OH
 @@	16F00	Miao	16F9F
 @		Consonant onsets
@@ -41053,12 +41169,12 @@ FFFF	<not a character>
 	* Chinook, Perrault j
 1BC24	DUPLOYAN LETTER J WITH DOTS INSIDE AND ABOVE
 	* used in isolation
-	* Romanian sign ici si colo
+	* Romanian sign ici și colo
 1BC25	DUPLOYAN LETTER S WITH DOT
 	* Chinook ts
 	* Chinook, Romanian, Sloan z
 1BC26	DUPLOYAN LETTER S WITH DOT BELOW
-	* Romanian sh
+	* Romanian ș
 1BC27	DUPLOYAN LETTER M S
 	* Sloan m m
 1BC28	DUPLOYAN LETTER N S
@@ -41069,7 +41185,7 @@ FFFF	<not a character>
 	* Sloan ch
 1BC2A	DUPLOYAN LETTER S S
 	* French, Sloan
-	* Romanian ts
+	* Romanian ț
 	* Pernin, Perrault z
 1BC2B	DUPLOYAN LETTER M N S
 1BC2C	DUPLOYAN LETTER N M S
@@ -41110,7 +41226,7 @@ FFFF	<not a character>
 1BC3B	DUPLOYAN LETTER S N
 	* Perrault
 	* Pernin krs
-	* Sloan SP
+	* Sloan sp
 1BC3C	DUPLOYAN LETTER S M
 	* Perrault
 	* Pernin grs
@@ -41243,7 +41359,7 @@ FFFF	<not a character>
 	* neutral nasal vowel for transcription of an ambiguous primary orientating nasal vowel
 	* Perrault vocalic n - an, en, in, un (with accents)
 	* Pernin on
-	* Romanian yn
+	* Romanian în
 @		Additional nasal vowels
 1BC65	DUPLOYAN LETTER PERNIN AN
 	* written downwards
@@ -45154,6 +45270,7 @@ FFFF	<not a character>
 1E029	COMBINING GLAGOLITIC LETTER IOTATED BIG YUS
 1E02A	COMBINING GLAGOLITIC LETTER FITA
 @@	1E800	Mende Kikakui	1E8DF
+@+		Annotations refer to the syllabaries of Amara Mansaray and David Dalby.
 @		Syllables in k-
 1E800	MENDE KIKAKUI SYLLABLE M001 KI
 1E801	MENDE KIKAKUI SYLLABLE M002 KA
@@ -46876,7 +46993,7 @@ FFFF	<not a character>
 1F310	GLOBE WITH MERIDIANS
 	* used to indicate international input source, world clocks with time zones, etc.
 @		Moon, sun, and star symbols
-@+		Use of the moon symbols is typically reversed in the Southern Hemisphere, with the waxing shapes used for the waning part of the cycle and vice versa. The character names are not intended for astronomical precision, but simply describe a particular shape displayed. 
+@+		Use of the moon symbols is typically reversed in the Southern Hemisphere, with the waxing shapes used for the waning part of the cycle and vice versa. The character names are not intended for astronomical precision, but simply describe a particular shape displayed.
 1F311	NEW MOON SYMBOL
 	x (black circle - 25CF)
 1F312	WAXING CRESCENT MOON SYMBOL
@@ -47851,6 +47968,7 @@ FFFF	<not a character>
 1F532	BLACK SQUARE BUTTON
 1F533	WHITE SQUARE BUTTON
 1F534	LARGE RED CIRCLE
+	x (black circle for record - 23FA)
 	x (black circle - 25CF)
 	x (large circle - 25EF)
 	x (black large circle - 2B24)
@@ -49337,7 +49455,7 @@ FFFF	<not a character>
 1F96A	SANDWICH
 1F96B	CANNED FOOD
 1F96C	LEAFY GREEN
-	* intended to represent cooked green vegetables such as  bok choy, kale, etc.
+	* intended to represent cooked green vegetables such as bok choy, kale, etc.
 1F96D	MANGO
 1F96E	MOON CAKE
 1F96F	BAGEL
@@ -49399,7 +49517,7 @@ FFFF	<not a character>
 1F9A1	BADGER
 1F9A2	SWAN
 @		Emoji components
-@+		The characters in the range 1F9B0..1F9B3 are intended to be used in ZWJ sequences to indicate hair style.
+@+		The characters in the range 1F9B0-1F9B3 are intended to be used in emoji ZWJ sequences to indicate hair style.
 1F9B0	EMOJI COMPONENT RED HAIR
 1F9B1	EMOJI COMPONENT CURLY HAIR
 1F9B2	EMOJI COMPONENT BALD
@@ -49492,7 +49610,7 @@ FFFF	<not a character>
 @@	1FA00	Chess Symbols	1FA6F
 @		Xiangqi symbols
 1FA60	XIANGQI RED GENERAL
-	= hóng shuài 
+	= hóng shuài
 	* design typically shows 5E25 or 5E05
 	* design sometimes shows 5C07 (Yuan dynasty)
 1FA61	XIANGQI RED MANDARIN

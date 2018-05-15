@@ -1,5 +1,5 @@
 # EastAsianWidth-11.0.0.txt
-# Date: 2018-02-20, 07:50:22 GMT [KW, LI]
+# Date: 2018-05-14, 09:41:59 GMT [KW, LI]
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1465,8 +1465,7 @@
 30FB;W           # Po         KATAKANA MIDDLE DOT
 30FC..30FE;W     # Lm     [3] KATAKANA-HIRAGANA PROLONGED SOUND MARK..KATAKANA VOICED ITERATION MARK
 30FF;W           # Lo         KATAKANA DIGRAPH KOTO
-3105..312E;W     # Lo    [42] BOPOMOFO LETTER B..BOPOMOFO LETTER O WITH DOT ABOVE
-312F;N           # Lo         BOPOMOFO LETTER NN
+3105..312F;W     # Lo    [43] BOPOMOFO LETTER B..BOPOMOFO LETTER NN
 3131..318E;W     # Lo    [94] HANGUL LETTER KIYEOK..HANGUL LETTER ARAEAE
 3190..3191;W     # So     [2] IDEOGRAPHIC ANNOTATION LINKING MARK..IDEOGRAPHIC ANNOTATION REVERSE MARK
 3192..3195;W     # No     [4] IDEOGRAPHIC ANNOTATION ONE MARK..IDEOGRAPHIC ANNOTATION FOUR MARK
