@@ -1,67 +1,13 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 11.0.0
-@@@+	U11M180511.lst
-	Unicode 11.0.0 names list, sixth delta.
+@@@+	U11M180515.lst
+	Unicode 11.0.0 names list, seventh delta.
 	Repertoire synched with UnicodeData-11.0.0d14.txt
-	Sixth delta of annotation fixes.
-	Adjusted annotations for 2E4A and 2E4E.
-	Adjusted notice at 1F9B0.
-	Removed extra space in annotation for 1F96C.
-	Removed redundant annotations for 0219, 021B.
-	Removed trailing space in notice at 1F311 and in alias for 1FA60.
-	Added notice to Mende Kikakui regarding sources for syllabary notes.
-	Lowercased sp in annotation for 1BC3B.
-	Added annotations to 3036.
-	Added more xrefs to 20B8, 2AE7 and 3012.
-	Added annotation for 16E99 and other notes for Medefaidrin.
-	Added annotation for 1806.
-	Added notice for 1E9E and annotations for 00DF and 1E9E.
-	Added xrefs to halfwidth forms for 3001 and 3002.
-	Added xrefs to similar ideographs to 3005 and 3006.
-	Dropped redundant annotations for 300D and 300F.
-	Adjusted subhead for 301C and added subhead for 3020.
-	Adjusted subhead for 302A.
-	Added xref to 301C from FF5E.
-	Added xrefs between 2045 and 2E20.
-	Added notices xrefing ranges at 2058 and 2E2A.
-	Added xrefs between 2B21 and 2394.
-	Added aliases to 23ED and 23EE and 23EF.
-	Added xrefs between 23FA and 1F534.
-	Added annotations to 0336, 033F.
-	Added xref from 0360 to FE22.
-	Adjusted subhead for 0339.
-	Added xrefs for 1DC0 and 1DC1.
-	Added annotation for 2106.
-	Added xrefs for 2116.
-	Added xrefs to 2715 and 2A2F to 00D7.
-	Added xref to 0186 from 2183 and to 0254 from 2184.
-	Updated notes for 10F12, 10F13, 10F27, to no longer use ASCII fallbacks.
-	Updated notes for 1BC24, 1BC26, 1BC2A, 1BC64 to use Romanian letters.
-	Added Tongan to note for 02BB.
-	Added Livonian to annotations for 00F5, 01ED.
-	Adjusted subheads in Kaithi block.
-	Adjusted subhead for 11A9D.
-	Adjusted subhead for 11D60.
-	Adjusted wording of annotations for 11D45, 11D97.
-	Adjusted wording on annotations/notices at 2720, 2BE8, 31A0, 23DC.
-	Adjusted annotations for Jawi in 06AC, 0762, 06A0, 06A4.
-	Fixed capitalization in annotations for 0690, 069F.
-	Added xrefs between 00F8 and 2300.
-	Added xrefs between 2327 and 2612.
-	Adjusted alias and add xref for 260A.
-	Added aliases for 267E, 267F.
-	Adjusted subhead for AA40.
-	Added subhead and annotation for 10AC8.
-	Added notice to Coptic block.
-	Adjusted subhead to notice at head of Thai block.
-	Reworded subhead for 1680.
-	Fixed format for a number of ranges, for uniformity.
-	Added subhead at 1039.
-	Added annotations clarifying use of 07F6, 07F7.
-	Added subheads at 27C5 and 27C7.
-	Added subhead at 22EE and adjusted annotation.
-	Added xrefs between 2245 and 2A70.
-	Adjusted subhead at A7A0.
+	Seventhth delta of annotation fixes.
+	Added four formal name aliases for Medefaidrin characters.
+	Removed trailing space after annotation for 07F7.
+	Tweaked wording of annotation for 07F6.
+	Updated Romanian spelling in annotations for 1BC20 and 1BC9E.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -4557,11 +4503,11 @@
 	x (modifier letter turned comma - 02BB)
 @		Symbol
 07F6	NKO SYMBOL OO DENNEN
-	* remote future placement of the topic under discussion
+	* indicates remote future placement of the topic under discussion
 @		Punctuation
 07F7	NKO SYMBOL GBAKURUNEN
 	* marks end of a major section of text
-	* symbol represents the three stones holding a cooking pot over a fire 
+	* symbol represents the three stones holding a cooking pot over a fire
 07F8	NKO COMMA
 07F9	NKO EXCLAMATION MARK
 @		Letter extender
@@ -38996,7 +38942,9 @@ FFFF	<not a character>
 16E54	MEDEFAIDRIN CAPITAL LETTER L
 16E55	MEDEFAIDRIN CAPITAL LETTER Q
 16E56	MEDEFAIDRIN CAPITAL LETTER HP
+	% MEDEFAIDRIN CAPITAL LETTER H
 16E57	MEDEFAIDRIN CAPITAL LETTER NY
+	% MEDEFAIDRIN CAPITAL LETTER NY
 16E58	MEDEFAIDRIN CAPITAL LETTER X
 16E59	MEDEFAIDRIN CAPITAL LETTER D
 16E5A	MEDEFAIDRIN CAPITAL LETTER OE
@@ -39030,7 +38978,9 @@ FFFF	<not a character>
 16E74	MEDEFAIDRIN SMALL LETTER L
 16E75	MEDEFAIDRIN SMALL LETTER Q
 16E76	MEDEFAIDRIN SMALL LETTER HP
+	% MEDEFAIDRIN SMALL LETTER H
 16E77	MEDEFAIDRIN SMALL LETTER NY
+	% MEDEFAIDRIN SMALL LETTER NY
 16E78	MEDEFAIDRIN SMALL LETTER X
 16E79	MEDEFAIDRIN SMALL LETTER D
 16E7A	MEDEFAIDRIN SMALL LETTER OE
@@ -41157,7 +41107,7 @@ FFFF	<not a character>
 1BC1F	DUPLOYAN LETTER J M
 	* not Romanian ceea ce sign
 1BC20	DUPLOYAN LETTER S J
-	* not Romanian sa se sign
+	* not Romanian să se sign
 1BC21	DUPLOYAN LETTER M WITH DOT
 	* Romanian sign mijloc
 1BC22	DUPLOYAN LETTER N WITH DOT
@@ -41509,7 +41459,7 @@ FFFF	<not a character>
 @+		The dots in the chart glyph for this mark show the position on and relative orientation to the base glyph the mark is attached to, and are not visibly rendered.
 1BC9E	DUPLOYAN DOUBLE MARK
 	* Romanian, Sloan
-	* should be used with m, n, j, and s for the Romanian word signs mai mult, nu nu, ceea ce, and sa se
+	* should be used with m, n, j, and s for the Romanian word signs mai mult, nu nu, ceea ce, and să se
 	* can be doubled and tripled
 @		Chinook punctuation
 1BC9F	DUPLOYAN PUNCTUATION CHINOOK FULL STOP

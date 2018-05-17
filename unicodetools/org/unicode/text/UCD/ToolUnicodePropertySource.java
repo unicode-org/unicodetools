@@ -919,6 +919,8 @@ E_Base  Emoji characters listed as Emoji_Modifier_Base=Yes in emoji-data.txt
                     // see http://www.unicode.org/reports/tr29/tr29-30d2.html#ALetter for full context on the following:
                     .addAll(new UnicodeSet(
                             "[\\u02C2-\\u02C5\\u02D2-\\u02D7\\u02DE\\u02DF\\u02ED\\u02EF-\\u02FF\\uA720\\uA721\\uA789\\uA78A\\uAB5B]"))
+                    // Armenian punctuation marks that occur within words; see http://www.unicode.org/L2/L2018/18115.htm#155-C3
+                    .addAll(new UnicodeSet("[\\u055B\\u055C\\u055E]"))
                     , "ALetter");
             unicodeMap
             .putAll(new UnicodeSet(
