@@ -1,6 +1,6 @@
 #
 # Unihan_RadicalStrokeCounts.txt
-# Date: 2018-05-11 20:24:12 GMT [JHJ]
+# Date: 2018-05-18 02:15:26 GMT [JHJ]
 # Unicode version: 11.0.0
 #
 # Unicode Character Database
