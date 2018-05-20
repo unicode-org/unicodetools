@@ -1,13 +1,10 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 11.0.0
-@@@+	U11M180515.lst
-	Unicode 11.0.0 names list, seventh delta.
+@@@+	U11M180518.lst
+	Unicode 11.0.0 names list, eighth delta.
 	Repertoire synched with UnicodeData-11.0.0d14.txt
-	Seventhth delta of annotation fixes.
-	Added four formal name aliases for Medefaidrin characters.
-	Removed trailing space after annotation for 07F7.
-	Tweaked wording of annotation for 07F6.
-	Updated Romanian spelling in annotations for 1BC20 and 1BC9E.
+	Eighth delta of annotation fixes.
+	Corrected typo in two of the formal name aliases for Medefaidrin characters.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -38944,7 +38941,7 @@ FFFF	<not a character>
 16E56	MEDEFAIDRIN CAPITAL LETTER HP
 	% MEDEFAIDRIN CAPITAL LETTER H
 16E57	MEDEFAIDRIN CAPITAL LETTER NY
-	% MEDEFAIDRIN CAPITAL LETTER NY
+	% MEDEFAIDRIN CAPITAL LETTER NG
 16E58	MEDEFAIDRIN CAPITAL LETTER X
 16E59	MEDEFAIDRIN CAPITAL LETTER D
 16E5A	MEDEFAIDRIN CAPITAL LETTER OE
@@ -38980,7 +38977,7 @@ FFFF	<not a character>
 16E76	MEDEFAIDRIN SMALL LETTER HP
 	% MEDEFAIDRIN SMALL LETTER H
 16E77	MEDEFAIDRIN SMALL LETTER NY
-	% MEDEFAIDRIN SMALL LETTER NY
+	% MEDEFAIDRIN SMALL LETTER NG
 16E78	MEDEFAIDRIN SMALL LETTER X
 16E79	MEDEFAIDRIN SMALL LETTER D
 16E7A	MEDEFAIDRIN SMALL LETTER OE
