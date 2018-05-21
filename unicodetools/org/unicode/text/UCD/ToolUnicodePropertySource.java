@@ -769,11 +769,11 @@ extend -and not GCB = Virama
 
 
 
-            UnicodeSet virama = new UnicodeSet()
-                    .add(isc.getSet(Indic_Syllabic_Category_Values.Virama))
-                    .add(isc.getSet(Indic_Syllabic_Category_Values.Invisible_Stacker))
-                    .removeAll(cat.getSet("Spacing_Mark"))
-                    ;
+//            UnicodeSet virama = new UnicodeSet()
+//                    .add(isc.getSet(Indic_Syllabic_Category_Values.Virama))
+//                    .add(isc.getSet(Indic_Syllabic_Category_Values.Invisible_Stacker))
+//                    .removeAll(cat.getSet("Spacing_Mark"))
+//                    ;
 
             UnicodeSet extend = new UnicodeSet(graphemeExtend)
                     .remove(0x200d)
@@ -850,8 +850,8 @@ E_Base  Emoji characters listed as Emoji_Modifier_Base=Yes in emoji-data.txt
                             { "E_Modifier", "EM" },
                             { "Glue_After_Zwj", "GAZ" },
                             { "E_Base_GAZ", "EBG" },
-                            { "LinkingConsonant", "LinkC" },
-                            { "Virama", "Virama" },
+                            //{ "LinkingConsonant", "LinkC" },
+                            //{ "Virama", "Virama" },
                             { "ZWJ", "ZWJ" }
                     }, AliasAddAction.ADD_MAIN_ALIAS)
                     .swapFirst2ValueAliases())

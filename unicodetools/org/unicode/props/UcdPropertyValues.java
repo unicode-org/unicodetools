@@ -650,7 +650,6 @@ public class UcdPropertyValues {
         Glue_After_Zwj("GAZ"),
         L("L"),
         LF("LF"),
-        LinkingConsonant("LinkC"),
         LV("LV"),
         LVT("LVT"),
         Prepend("PP"),
@@ -658,7 +657,6 @@ public class UcdPropertyValues {
         SpacingMark("SM"),
         T("T"),
         V("V"),
-        Virama("Virama"),
         Other("XX"),
         ZWJ("ZWJ");
         private final PropertyNames<Grapheme_Cluster_Break_Values> names;

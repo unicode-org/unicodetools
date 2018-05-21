@@ -536,10 +536,8 @@ Let $Annotations = [\uFFF9-\uFFFB]
 \p{Other_Grapheme_Extend} = [\p{Grapheme_Extend} - [\p{GC=Me} \p{GC=Mn}]]
 
 \p{GCB=Prepend} = [\p{InSC=Consonant_Preceding_Repha} \p{InSC=Consonant_Prefixed} \p{PCM}]
-\p{GCB=Extend} = [\p{Grapheme_Extend} \p{Emoji_Modifier} - \p{GCB=Virama}]
+\p{GCB=Extend} = [\p{Grapheme_Extend} \p{Emoji_Modifier}]
 # 11.0: GCB=Extend is no longer identical to Grapheme_Extend=Y
-\p{GCB=Virama} = []
-\p{GCB=LinkingConsonant} = []
 \p{WB=Extend} = [\p{Grapheme_Extend} \p{GC=Mc} [\U0001F3FB-\U0001F3FF] - [\u200D]]
 # 11.0: skin tone modifiers were absorbed into WB=Extend
 \p{SB=Extend} = [\p{Grapheme_Extend} \p{GC=Mc} \u200D]
