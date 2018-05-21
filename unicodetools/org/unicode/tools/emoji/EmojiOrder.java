@@ -30,6 +30,9 @@ import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSet.SpanCondition;
+import com.ibm.icu.text.UnicodeSetSpanner;
+import com.ibm.icu.text.UnicodeSetSpanner.TrimOption;
 import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.Output;
@@ -221,7 +224,8 @@ public class EmojiOrder {
                 //                    }
                 //                }
 
-                if (Emoji.GENDER_BASE.contains(string)) {
+                // We have a hack for blond person, and add them explicity.
+                if (Emoji.GENDER_BASE.contains(string) && !string.equals("👱")) {
                     addVariants(result, sorted, majorGroup, lastLabel, string + "\u200d\u2642"); 
                     addVariants(result, sorted, majorGroup, lastLabel, string + "\u200d\u2640"); 
                 }
@@ -264,7 +268,7 @@ public class EmojiOrder {
     }
 
     private void addAllModifiers(Relation<String, String> result, Set<String> sorted, Output<Set<String>> lastLabel, MajorGroup majorGroup, String... strings) {
-        for (String mod : emojiData.MODIFIERS) {
+        for (String mod : EmojiData.MODIFIERS) {
             for (String string : strings) {
                 final String addedModifier = emojiData.addModifier(string, mod);
                 if (addedModifier != null) {
@@ -369,9 +373,16 @@ public class EmojiOrder {
             Set<String> temp = sort(codepointCompare, characters);
 
             outText.append("& [last primary ignorable]<<*");
+
             for (String m : EmojiData.MODIFIERS) {
                 outText.append(m);
             }
+            for (String m : Emoji.HAIR_STYLES) {
+                outText.append(m);
+            }
+            UnicodeSet hairSkin = new UnicodeSet(EmojiData.MODIFIERS).addAll(Emoji.HAIR_STYLES_WITH_JOINERS).freeze();
+            UnicodeSetSpanner HairSkinSpanner = new UnicodeSetSpanner(hairSkin);
+
             String lastGroup = null;
             // HACK
             outText.append("\n& [before 1]\uFDD1€");
@@ -385,6 +396,10 @@ public class EmojiOrder {
                 if (!Objects.equal(group,lastGroup)) {
                     needRelation = true;
                     lastGroup = group;
+                }
+                int trimmed = hairSkin.spanBack(s, SpanCondition.SIMPLE);
+                if (trimmed < s.length()) {
+                    continue;
                 }
                 if (haveSeen.contains(s)) {
                     continue;
@@ -451,6 +466,11 @@ public class EmojiOrder {
                     String quoted = quoteSyntax(withoutTrail);
                     outText.append(" = ").append(quoted);
                     haveSeen.add(withoutTrail);
+                } else if (Emoji.HAIR_EXPLICIT.contains(s)) { // HACK the blond person to make secondary
+                    outText.append("\n<<");
+                    outText.append(s);
+                    haveSeen.add(s);
+                    needRelation = true;
                 } else {
                     if (needRelation) {
                         outText.append("\n<*");
@@ -550,7 +570,7 @@ public class EmojiOrder {
             }
         }
         System.out.println("roleObject: " + roleObject.toPattern(false));
-        
+
         UnicodeSet all = new UnicodeSet()
                 .addAll(EMOJI_DATA_RELEASE.getGenderBases())
                 .addAll(EMOJI_DATA_RELEASE.getHairBases())
@@ -558,7 +578,7 @@ public class EmojiOrder {
                 .addAll(EMOJI_DATA_RELEASE.getExplicitGender())
                 .addAll(EMOJI_DATA_RELEASE.getExplicitHair())
                 .addAll(roleBase)
-        ;
+                ;
         UnicodeSet missing = new UnicodeSet();
         Set<String> categories = new TreeSet<>();
         for (String s : all) {
@@ -571,17 +591,17 @@ public class EmojiOrder {
         missing.removeAll(skip).removeAll(EmojiData.EMOJI_DATA.getEmojiComponents());
         all.addAll(missing).freeze();
         System.out.println("Missing: " + missing);
-        
+
         UnicodeSet multiple = new UnicodeSet("[👯🤼👫👬👭💏💑👪🤝]");
 
         UnicodeMap<String> data = new UnicodeMap<>();
         for (String s : all) {
             data.put(s, (EMOJI_DATA_RELEASE.getModifierBases().contains(s) ? "skin" : multiple.contains(s) ? "multiple" : "")
-            + "\t" + (EMOJI_DATA_RELEASE.getExplicitGender().contains(s) ? "xgender" : EMOJI_DATA_RELEASE.getGenderBases().contains(s) ? "gender" : "")
-            + "\t" + (EMOJI_DATA_RELEASE.getExplicitHair().contains(s) ? "xhair" : EMOJI_DATA_RELEASE.getHairBases().contains(s) ? "hair" : "")
-            + "\t" + (roleBase.contains(s) ? "role" : "")
-            );
-            
+                    + "\t" + (EMOJI_DATA_RELEASE.getExplicitGender().contains(s) ? "xgender" : EMOJI_DATA_RELEASE.getGenderBases().contains(s) ? "gender" : "")
+                    + "\t" + (EMOJI_DATA_RELEASE.getExplicitHair().contains(s) ? "xhair" : EMOJI_DATA_RELEASE.getHairBases().contains(s) ? "hair" : "")
+                    + "\t" + (roleBase.contains(s) ? "role" : "")
+                    );
+
         }
         show(data);
         System.out.println();

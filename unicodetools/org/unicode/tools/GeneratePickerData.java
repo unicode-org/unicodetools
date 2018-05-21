@@ -40,6 +40,7 @@ import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.CLDRTool;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.draft.ScriptCategories2;
+import org.unicode.text.utility.Settings;
 import org.unicode.tools.GeneratePickerData.CategoryTable.Separation;
 
 import com.ibm.icu.lang.UCharacter;
@@ -161,8 +162,7 @@ class GeneratePickerData {
     final static Options myOptions = new Options();
 
     enum MyOptions {
-        output(".*", CLDRPaths.BASE_DIRECTORY + "tools/java/org/unicode/cldr/draft/picker/",
-            "output data directory"),
+        output(".*", Settings.GEN_DIR + "picker/", "output data directory"),
         unicodedata(".*", DraftUtils.UCD_DIRECTORY, "Unicode Data directory"),
         verbose(null, null, "verbose debugging messages"),
         korean(null, null, "generate korean hangul defectives instead"), ;
