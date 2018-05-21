@@ -694,7 +694,6 @@ GCB; EX                               ; Extend
 GCB; GAZ                              ; Glue_After_Zwj
 GCB; L                                ; L
 GCB; LF                               ; LF
-GCB; LinkC                            ; LinkingConsonant
 GCB; LV                               ; LV
 GCB; LVT                              ; LVT
 GCB; PP                               ; Prepend
@@ -702,7 +701,6 @@ GCB; RI                               ; Regional_Indicator
 GCB; SM                               ; SpacingMark
 GCB; T                                ; T
 GCB; V                                ; V
-GCB; Virama                           ; Virama
 GCB; XX                               ; Other
 GCB; ZWJ                              ; ZWJ
 
