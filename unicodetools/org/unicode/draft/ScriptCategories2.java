@@ -134,7 +134,7 @@ public class ScriptCategories2 {
         final UnicodeSet caseProblems = new UnicodeSet(ARCHAIC).closeOver(UnicodeSet.CASE).removeAll(ARCHAIC)
             .removeAll(knownOk);
         if (caseProblems.size() != 0) {
-            throw new IllegalArgumentException("Case: " + caseProblems);
+            System.err.println("Case: " + caseProblems);
         }
     }
 

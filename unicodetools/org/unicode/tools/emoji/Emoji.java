@@ -165,12 +165,28 @@ public class Emoji {
         none, modifier, modifier_base;
     }
 
+    public static final char JOINER = '\u200D';
+    public static final String JOINER_STR = "\u200D";
+
+    public static final char EMOJI_VARIANT = '\uFE0F';
+    public static final char TEXT_VARIANT = '\uFE0E';
+
     // HACK
     static final UnicodeSet GENDER_BASE = new UnicodeSet("[👯💂👳👱⛹🏃🏄🏊-🏌👮👷💁💆💇🕵🙅-🙇🙋🙍🙎🚣 🚴-🚶🤹 \\U0001F926\\U0001F937\\U0001F938\\U0001F93C-\\U0001F93E]")
             .freeze();
     static final UnicodeSet PROFESSION_OBJECT = new UnicodeSet("[⚕🌾🍳🎓🎤🏫🏭💻💼🔧🔬🎨 🚒 ✈ 🚀 ⚖]")
             .freeze();
-    static final UnicodeSet HAIR_STYLES = new UnicodeSet("[\\U0001F9B0-\\U0001F9B3]");
+    static final UnicodeSet HAIR_STYLES = new UnicodeSet("[\\U0001F9B0-\\U0001F9B3]")
+            .freeze();
+    static final UnicodeSet HAIR_EXPLICIT = new UnicodeSet("[🧔 👱]").freeze();
+
+    static final UnicodeSet HAIR_STYLES_WITH_JOINERS = new UnicodeSet();
+    static {
+        for (String s : HAIR_STYLES) {
+            HAIR_STYLES_WITH_JOINERS.add(JOINER_STR + s);
+        }
+        HAIR_STYLES_WITH_JOINERS.freeze();
+    }
 
     public enum Source {
         // also used for accessing pngs; order is important
@@ -394,12 +410,6 @@ public class Emoji {
 
     public static final UnicodeSet FACES = new UnicodeSet("[☺ ☹ 🙁 🙂 😀-😆 😉-😷 😇 😈 👿 🙃 🙄 🤐-🤕 🤗]").freeze();
 
-    public static final char JOINER = '\u200D';
-    public static final String JOINER_STR = "\u200D";
-
-    public static final char EMOJI_VARIANT = '\uFE0F';
-    public static final char TEXT_VARIANT = '\uFE0E';
-
     public static final UnicodeSet EMOJI_VARIANTS = new UnicodeSet().add(EMOJI_VARIANT).add(TEXT_VARIANT).freeze();
 
     public static final UnicodeSet EMOJI_VARIANTS_JOINER = new UnicodeSet(EMOJI_VARIANTS)
@@ -432,8 +442,7 @@ public class Emoji {
             .freeze();
 
     public static final UnicodeSet HAIR_BASE = MAN_OR_WOMAN;
-    public static final UnicodeSet HAIR_PIECES = new UnicodeSet().add(0x1F9B0).add(0x1F9B1).add(0x1F9B2).add(0x1F9B3)
-            .freeze();
+    public static final UnicodeSet HAIR_PIECES = HAIR_STYLES;
 
     public static final UnicodeSet ROLE_MARKER = new UnicodeSet("[\\U0001F9D1 \\U0001F468 \\U0001F469 \\U0001F9D9-\\U0001F9DF 👱 👮 👳 👷 💂 🕵]").freeze();
 
