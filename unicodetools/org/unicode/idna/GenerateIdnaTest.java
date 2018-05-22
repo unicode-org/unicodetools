@@ -47,6 +47,7 @@ import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 import com.ibm.icu.util.ULocale;
 
 public class GenerateIdnaTest {
+    private static final boolean MATCH_OLD = true;
 
     static {
         // MUST BE FIRST
@@ -58,6 +59,8 @@ public class GenerateIdnaTest {
     private static final Pattern IDNA2003_LABEL_SEPARATOR = Pattern.compile("[.\uFF0E \u3002\uFF61]");
     private static final boolean NEW_FORMAT = true;
     private static final int UNDEFINED;
+
+    
     static {
         // find a character that is likely to remain undefined, and is if possible in the BMP.
         // so we take the highest BMP if possible, then the highest smp
@@ -92,17 +95,17 @@ public class GenerateIdnaTest {
     }
 
     public static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss 'GMT'", ULocale.US);
+    public static String internalOldName = "internal-IdnaTest.txt";
+    public static String NEW_FILE_NAME = MATCH_OLD ? "IdnaTestV2.txt" : "internal-IdnaTestV2-fixed.txt";
 
     int generateTests(int lines) throws IOException {
-        String fileName = "IdnaTest-old.txt";
-        final PrintWriter out = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.DIR, fileName);
-        out.println(Utility.getDataHeader(fileName));
+        final PrintWriter out = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.DIR, internalOldName);
+        out.println(Utility.getDataHeader(internalOldName));
 
         FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader.txt").toString().substring(5), "UTF-8", out);
 
-        String filename2 = "IdnaTestV2.txt";
-        final PrintWriter out2 = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.DIR, filename2);
-        out2.println(Utility.getDataHeader(filename2));
+        final PrintWriter out2 = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.DIR, NEW_FILE_NAME);
+        out2.println(Utility.getDataHeader(NEW_FILE_NAME));
 
         FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader2.txt").toString().substring(5), "UTF-8", out2);
 
@@ -202,21 +205,39 @@ public class GenerateIdnaTest {
     }
 
     int generateLine(String source, PrintWriter out, PrintWriter out2) {
-        if (source.equals("xn--a.pt")) {
-            int debug = 0;
-        }
         if (alreadyDone(source)) {
             return 0;
+        }
+        if (source.equals("\u200d")) {
+            int debug = 0;
         }
         int result = 0;
         final Set<Errors> toUnicodeErrors = EnumSet.noneOf(Errors.class);
         final String unicode = Uts46.SINGLETON.toUnicode(source, IdnaChoice.nontransitional, toUnicodeErrors);
+        if (!Collections.disjoint(toUnicodeErrors, Errors.TO_ASCII_ERRORS)) {
+            System.err.println("Should never have ASCII errors in toUnicode:\t" + source + "\ty==>\t" + toUnicodeErrors);
+        }
+        if (MATCH_OLD) {
+            replace(toUnicodeErrors, Errors.X4_2, Errors.A4_2);
+            replace(toUnicodeErrors, Errors.P4, Errors.A3);
+            replace(toUnicodeErrors, Errors.X3, Errors.A3);
+        }
 
         final Set<Errors> transitionalErrors = EnumSet.noneOf(Errors.class);
         final String transitional = Uts46.SINGLETON.toASCII(source, IdnaChoice.transitional, transitionalErrors);
+        replace(transitionalErrors, Errors.X4_2, Errors.A4_2);
+        if (MATCH_OLD) {
+            replace(transitionalErrors, Errors.P4, Errors.A3);
+            replace(transitionalErrors, Errors.X3, Errors.A3);
+        }
 
         final Set<Errors> nonTransitionalErrors = EnumSet.noneOf(Errors.class);
         final String nontransitional = Uts46.SINGLETON.toASCII(source, IdnaChoice.nontransitional, nonTransitionalErrors);
+        replace(nonTransitionalErrors, Errors.X4_2, Errors.A4_2);
+        if (MATCH_OLD) {
+            replace(nonTransitionalErrors, Errors.P4, Errors.A3);
+            replace(nonTransitionalErrors, Errors.X3, Errors.A3);
+        }
 
 //        Set<Errors> toUnicodeErrors2 = toUnicodeErrors;
 //        if (!IDNA2008Valid.containsAll(source)) {
@@ -283,6 +304,13 @@ public class GenerateIdnaTest {
             result += generateLine(unicode, out, out2);
         }
         return result;
+    }
+
+    private void replace(final Set<Errors> transitionalErrors, Errors toReplace, Errors replacement) {
+        if (transitionalErrors.contains(toReplace)) {
+            transitionalErrors.remove(toReplace);
+            transitionalErrors.add(replacement);
+        }
     }
 
     Set<String> alreadySeen = new HashSet<String>();
