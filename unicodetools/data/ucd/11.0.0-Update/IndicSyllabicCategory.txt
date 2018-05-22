@@ -1,5 +1,5 @@
 # IndicSyllabicCategory-11.0.0.txt
-# Date: 2018-02-19, 16:17:00 GMT [KW, RP]
+# Date: 2018-05-21, 18:33:00 GMT [KW, RP]
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -988,6 +988,7 @@ A9BD          ; Consonant_Subjoined # Mc       JAVANESE CONSONANT SIGN KERET
 1082          ; Consonant_Medial # Mn       MYANMAR CONSONANT SIGN SHAN MEDIAL WA
 1A55          ; Consonant_Medial # Mc       TAI THAM CONSONANT SIGN MEDIAL RA
 1A56          ; Consonant_Medial # Mn       TAI THAM CONSONANT SIGN MEDIAL LA
+A8B4          ; Consonant_Medial # Mc       SAURASHTRA CONSONANT SIGN HAARU
 A9BE..A9BF    ; Consonant_Medial # Mc   [2] JAVANESE CONSONANT SIGN PENGKAL..JAVANESE CONSONANT SIGN CAKRA
 AA33..AA34    ; Consonant_Medial # Mc   [2] CHAM CONSONANT SIGN YA..CHAM CONSONANT SIGN RA
 AA35..AA36    ; Consonant_Medial # Mn   [2] CHAM CONSONANT SIGN LA..CHAM CONSONANT SIGN WA
@@ -1011,7 +1012,6 @@ AA35..AA36    ; Consonant_Medial # Mn   [2] CHAM CONSONANT SIGN LA..CHAM CONSONA
 1BBE..1BBF    ; Consonant_Final # Lo   [2] SUNDANESE LETTER FINAL K..SUNDANESE LETTER FINAL M
 1BF0..1BF1    ; Consonant_Final # Mn   [2] BATAK CONSONANT SIGN NG..BATAK CONSONANT SIGN H
 1C2D..1C33    ; Consonant_Final # Mn   [7] LEPCHA CONSONANT SIGN K..LEPCHA CONSONANT SIGN T
-A8B4          ; Consonant_Final # Mc       SAURASHTRA CONSONANT SIGN HAARU
 A94F..A951    ; Consonant_Final # Mn   [3] REJANG CONSONANT SIGN NG..REJANG CONSONANT SIGN R
 A952          ; Consonant_Final # Mc       REJANG CONSONANT SIGN H
 AA40..AA42    ; Consonant_Final # Lo   [3] CHAM LETTER FINAL K..CHAM LETTER FINAL NG
