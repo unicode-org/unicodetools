@@ -7,6 +7,8 @@ import java.util.Set;
 
 import org.unicode.cldr.unittest.TestFmwkPlus;
 import org.unicode.cldr.util.CldrUtility;
+import org.unicode.idna.GenerateIdna;
+import org.unicode.idna.GenerateIdnaTest;
 import org.unicode.idna.LoadIdnaTest;
 import org.unicode.idna.LoadIdnaTest.TestLine;
 import org.unicode.idna.LoadIdnaTest.Type;
@@ -18,6 +20,7 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Bidi_Class_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
+import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Settings;
 
 import com.google.common.base.Splitter;
@@ -53,11 +56,10 @@ public class TestIdnaTest extends TestFmwkPlus{
         super.init();
         TEST_DIR = getProperty("DIR");
         if (TEST_DIR == null) {
-            TEST_DIR = Settings.UNICODETOOLS_DIRECTORY + "data";
+            TEST_DIR = Settings.UNICODETOOLS_DIRECTORY + "data/idna/" + Default.ucdVersion();
         } else if (TEST_DIR.equalsIgnoreCase("DRAFT")) {
-            TEST_DIR = Settings.UNICODE_DRAFT_PUBLIC;
+            TEST_DIR = GenerateIdna.DIR + GenerateIdnaTest.NEW_FILE_NAME ; // Settings.UNICODE_DRAFT_PUBLIC;
         }
-        TEST_DIR += "idna/10.0.0/";
         loadedTests = LoadIdnaTest.load(TEST_DIR);
     }
 

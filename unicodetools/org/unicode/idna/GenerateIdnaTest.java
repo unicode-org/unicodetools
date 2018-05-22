@@ -76,7 +76,8 @@ public class GenerateIdnaTest {
     public static void main(String[] args) throws IOException {
         final int count = new GenerateIdnaTest().generateTests(1000);
         System.out.println("DONE " + count);
-        System.out.println("Copy the new data to {workspace}/unicodetools/data/idna and run TestIdna -prop:DIR=draft");
+        System.out.println("NOTE: use ICU to test until TestIdna is updated."
+                + "\nCopy the new data to {workspace}/unicodetools/data/idna and run TestIdna -prop:DIR=draft");
     }
 
     //    private static <T> void assertEquals(String string, T expected, T actual) {
