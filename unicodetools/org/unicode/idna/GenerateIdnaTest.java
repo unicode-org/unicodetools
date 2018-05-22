@@ -47,7 +47,6 @@ import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 import com.ibm.icu.util.ULocale;
 
 public class GenerateIdnaTest {
-    private static final boolean MATCH_OLD = true;
 
     static {
         // MUST BE FIRST
@@ -97,7 +96,7 @@ public class GenerateIdnaTest {
 
     public static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss 'GMT'", ULocale.US);
     public static String internalOldName = "internal-IdnaTest.txt";
-    public static String NEW_FILE_NAME = MATCH_OLD ? "IdnaTestV2.txt" : "internal-IdnaTestV2-fixed.txt";
+    public static String NEW_FILE_NAME = "IdnaTestV2.txt";
 
     int generateTests(int lines) throws IOException {
         final PrintWriter out = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.DIR, internalOldName);
@@ -218,27 +217,27 @@ public class GenerateIdnaTest {
         if (!Collections.disjoint(toUnicodeErrors, Errors.TO_ASCII_ERRORS)) {
             System.err.println("Should never have ASCII errors in toUnicode:\t" + source + "\ty==>\t" + toUnicodeErrors);
         }
-        if (MATCH_OLD) {
-            replace(toUnicodeErrors, Errors.X4_2, Errors.A4_2);
-            replace(toUnicodeErrors, Errors.P4, Errors.A3);
-            replace(toUnicodeErrors, Errors.X3, Errors.A3);
-        }
+//        if (MATCH_OLD) {
+//            replace(toUnicodeErrors, Errors.X4_2, Errors.A4_2);
+//            replace(toUnicodeErrors, Errors.P4, Errors.A3);
+//            replace(toUnicodeErrors, Errors.X3, Errors.A3);
+//        }
 
         final Set<Errors> transitionalErrors = EnumSet.noneOf(Errors.class);
         final String transitional = Uts46.SINGLETON.toASCII(source, IdnaChoice.transitional, transitionalErrors);
         replace(transitionalErrors, Errors.X4_2, Errors.A4_2);
-        if (MATCH_OLD) {
-            replace(transitionalErrors, Errors.P4, Errors.A3);
-            replace(transitionalErrors, Errors.X3, Errors.A3);
-        }
+//        if (MATCH_OLD) {
+//            replace(transitionalErrors, Errors.P4, Errors.A3);
+//            replace(transitionalErrors, Errors.X3, Errors.A3);
+//        }
 
         final Set<Errors> nonTransitionalErrors = EnumSet.noneOf(Errors.class);
         final String nontransitional = Uts46.SINGLETON.toASCII(source, IdnaChoice.nontransitional, nonTransitionalErrors);
         replace(nonTransitionalErrors, Errors.X4_2, Errors.A4_2);
-        if (MATCH_OLD) {
-            replace(nonTransitionalErrors, Errors.P4, Errors.A3);
-            replace(nonTransitionalErrors, Errors.X3, Errors.A3);
-        }
+//        if (MATCH_OLD) {
+//            replace(nonTransitionalErrors, Errors.P4, Errors.A3);
+//            replace(nonTransitionalErrors, Errors.X3, Errors.A3);
+//        }
 
 //        Set<Errors> toUnicodeErrors2 = toUnicodeErrors;
 //        if (!IDNA2008Valid.containsAll(source)) {
