@@ -8,6 +8,7 @@ import org.unicode.jsp.FileUtilities;
 import org.unicode.text.utility.Settings;
 
 import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableSortedSet;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -352,13 +353,17 @@ public class Uts46 extends Idna {
      * @return
      */
     protected String fromPunycode(String label, Set<Errors> errors) {
+        if (label.isEmpty()) {
+            errors.add(Errors.X3);
+            return label;
+        }
         try {
             final StringBuffer temp = new StringBuffer();
             temp.append(label.substring(4));
             final StringBuffer depuny = Punycode.decode(temp, null);
             return depuny.toString();
         } catch (final Exception e) {
-            errors.add(Errors.A3);
+            errors.add(Errors.P4);
             return null;
         }
     }
@@ -394,20 +399,25 @@ public class Uts46 extends Idna {
         C1(UIDNA_ERROR_CONTEXTJ),
         C2(UIDNA_ERROR_CONTEXTJ),
         P1(UIDNA_ERROR_DISALLOWED),
+        P4(UIDNA_ERROR_INVALID_ACE_LABEL),
         V1(UIDNA_ERROR_INVALID_ACE_LABEL),
         V2(UIDNA_ERROR_HYPHEN_3_4),
         V3(UIDNA_ERROR_LEADING_HYPHEN | UIDNA_ERROR_TRAILING_HYPHEN),
         V4(UIDNA_ERROR_LABEL_HAS_DOT),
         V5(UIDNA_ERROR_LEADING_COMBINING_MARK),
         V6(UIDNA_ERROR_INVALID_ACE_LABEL),
-        A3(UIDNA_ERROR_INVALID_ACE_LABEL | UIDNA_ERROR_PUNYCODE),
+        A3(UIDNA_ERROR_PUNYCODE),
         A4_1(UIDNA_ERROR_DOMAIN_NAME_TOO_LONG),
         A4_2(UIDNA_ERROR_EMPTY_LABEL | UIDNA_ERROR_LABEL_TOO_LONG),
-        NV8(UIDNA_NOT_IDNA2008),
+        NV8(UIDNA_NOT_IDNA2008), 
+        X3(UIDNA_ERROR_EMPTY_LABEL), 
+        X4_2(UIDNA_ERROR_EMPTY_LABEL),
         ;
-
+        static final Set<Errors> TO_ASCII_ERRORS = ImmutableSortedSet.of(A3, A4_1, A4_2);
+        static final Set<Errors> BOTH_X_A4_2 = ImmutableSortedSet.of(A4_2, X4_2);
+        
         int errorNum;
-
+        
         Errors(int errorNum) {
             this.errorNum = errorNum;
         }
@@ -450,7 +460,7 @@ public class Uts46 extends Idna {
         final int oldErrorLength = errors.size();
         for (final String label : PERIOD.split(domainName)) {
             if (label.isEmpty()) {
-                errors.add(Errors.A4_2);
+                errors.add(Errors.X4_2);
                 continue;
             }
             // Check BIDI
