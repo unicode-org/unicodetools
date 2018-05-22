@@ -92,11 +92,10 @@ public class CompareCompatProperties {
     }
 
     static final Splitter semiSplitter = Splitter.on(';').trimResults(CharMatcher.anyOf(" \t"));
-    static final String NEW_FILE_NAME = "IdnaTestV2.txt";
-
+    
     public static void main(String[] args) {
-        Map<String, List<String>> oldFile = fleshOut("internal-" + NEW_FILE_NAME);
-        Map<String, List<String>> newFile = fleshOut(NEW_FILE_NAME);
+        Map<String, List<String>> oldFile = fleshOut("internal-IdnaTestV2-fixed.txt");
+        Map<String, List<String>> newFile = fleshOut("IdnaTestV2.txt");
         LinkedHashSet<String> keys = new LinkedHashSet<>(oldFile.keySet());
         keys.addAll(newFile.keySet());
         for (String item : keys) {
