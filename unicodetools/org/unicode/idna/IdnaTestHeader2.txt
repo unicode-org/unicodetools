@@ -1,50 +1,51 @@
-#
-# Contains test cases for verifying UTS46 conformance. For more information,
+# Contains test cases for verifying UTS #46 conformance. For more information,
 # see http://www.unicode.org/reports/tr46/
 #
 # FORMAT:
 #
-# This file is in UTF8, with certain characters escaped using the \uXXXX or \x{XXXX}
+# This file is in UTF-8, where characters may be escaped using the \uXXXX or \x{XXXX}
 # convention where they could otherwise have a confusing display.
-# These characters include:
-# 
-# - General Categories C, Z, and M
-# - Default ignorable characters
-# - Bidi categories R, AL, AN
+# These characters include control codes and combining marks.
 # 
 # Columns (c1, c2,...) are separated by semicolons.
 # Leading and trailing spaces and tabs in each column are ignored.
 # Comments are indicated with hash marks.
 #
 # Column 1: source -          The source string to be tested
-# Column 2: toUnicode -       The result of applying toUnicode to the source, with Transitional_Processing=false.
+# Column 2: toUnicode -       The result of applying toUnicode to the source,
+#                             with Transitional_Processing=false.
 #                             A blank value means the same as the source value.
 # Column 3: toUnicodeStatus - A set of status codes, each corresponding to a particular test.
 #                             A blank value means [] (no errors).
-# Column 4: toAsciiN -        The result of applying toASCII to the source, with Transitional_Processing=false.
+# Column 4: toAsciiN -        The result of applying toASCII to the source,
+#                             with Transitional_Processing=false.
 #                             A blank value means the same as the toUnicode value.
 # Column 5: toAsciiNStatus -  A set of status codes, each corresponding to a particular test.
-#                             A blank value means the same as the toUnicodeStatus value. An explicit [] means no errors.
-# Column 6: toAsciiT -        The result of applying toASCII to the source, with Transitional_Processing=true.
+#                             A blank value means the same as the toUnicodeStatus value.
+#                             An explicit [] means no errors.
+# Column 6: toAsciiT -        The result of applying toASCII to the source,
+#                             with Transitional_Processing=true.
 #                             A blank value means the same as the toAsciiN value.
 # Column 7: toAsciiTStatus -  A set of status codes, each corresponding to a particular test.
-#                             A blank value means the same as the toAsciiNStatus value. An explicit [] means no errors.
+#                             A blank value means the same as the toAsciiNStatus value.
+#                             An explicit [] means no errors.
 #
 # The line comments currently show visible characters that have been escaped. 
-# (after removing default-ignorables and controls, except for whitespace)
-#
+# 
 # CONFORMANCE:
 #
-# To test for conformance to UTS46, an implementation will perform the toUnicode, toAsciiN, and toAsciiT
-# operations on the source string, then verify the resulting strings and relevant status values.
+# To test for conformance to UTS #46, an implementation will perform the toUnicode, toAsciiN, and
+# toAsciiT operations on the source string, then verify the resulting strings and relevant status 
+# values.
 #
 # If the implementation converts illegal code points into U+FFFD (as per
-# http://www.unicode.org/reports/tr46/proposed.html#Processing) then the string comparisons need to account for that
-# by treating U+FFFD in the actual value as a wildcard when comparing to the expected value in the test file.
+# http://www.unicode.org/reports/tr46/proposed.html#Processing) then the string comparisons need to
+# account for that by treating U+FFFD in the actual value as a wildcard when comparing to the 
+# expected value in the test file.
 #
-# A status in toUnicode, toAsciiN or toAsciiT is indicated by a value in square brackets, such as "[B5 B6]".
-# In such a case, the contents is a list of status codes based on the step numbers in UTS46 and IDNA2008,
-# with the following formats.
+# A status in toUnicode, toAsciiN or toAsciiT is indicated by a value in square brackets,
+# such as "[B5 B6]". In such a case, the contents is a list of status codes based on the step 
+# numbers in UTS #46 and IDNA2008, with the following formats.
 #
 #   Pn for Section 4 Processing step n
 #   Vn for 4.1 Validity Criteria step n
@@ -52,7 +53,7 @@
 #   An for 4.2 ToASCII step n
 #   Bn for Bidi (in IDNA2008)
 #   Cn for ContextJ (in IDNA2008)
-#   Xn for compatibility errors (see below)
+#   Xn for toUnicode issues (see below)
 #
 # Thus C1 = Appendix A.1. ZERO WIDTH NON-JOINER, and C2 = Appendix A.2. ZERO WIDTH JOINER. 
 # (The CONTEXTO tests are optional for client software, and not tested here.)
@@ -66,21 +67,21 @@
 # CheckJoiners:      V7
 # UseSTD3ASCIIRules: U1
 #
-# Implementations may be more strict than the default settings for UTS46.
-# In particular, an implementation conformant to IDNA2008 would disallow the input for lines marked with NV8.
+# Implementations may be more strict than the default settings for UTS #46.
+# In particular, an implementation conformant to IDNA2008 would disallow the input for lines
+# marked with NV8.
 #
-# Implementations need only record that there is an error: they need not reproduce the precise status codes
-# (after removing the ignored status values).
+# Implementations need only record that there is an error: they need not reproduce the
+# precise status codes (after removing the ignored status values).
 #
 # Compatibility errors
 #
-# There are special error codes X3 and X4_2 for compatibility.
-# These are returned where an error code was being generated in circumstances where it should not have been:
+# The special error codes X3 and X4_2 are now returned where a toASCII error code
+# was formerly being generated in toUnicode due to an empty label.
 #
 # A3 was being generated in the following cases (in addition to its normal usage).
 #   • an empty label in toUnicode. In this case, it is replaced by X3.
-#   • an illegal character in punycode. In this case, it is replaced by a P4.
+#
 # A4_2 was being generated in the following case (in addition to its normal usage).
 #   • an empty label in V8 (CheckBidi). In this case, it is being replaced by X4_2.
-#
-# ====================================================================================================
+# ============================================================================================
