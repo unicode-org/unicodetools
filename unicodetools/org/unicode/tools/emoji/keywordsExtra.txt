@@ -33,11 +33,8 @@ U+1F9DF			2016Q4	ZOMBIE
 • (non-human color)				
 person				
 U+1F9D1			2016Q4	ADULT
-• (no specific gender)
 U+1F9D2			2016Q4	CHILD
-• (no specific gender)
 U+1F9D3			2016Q4	OLDER ADULT
-• (no specific gender)
 U+1F9D4			2016Q4	BEARDED PERSON
 • bewhiskered
 U+1F9D5			2016Q4	PERSON WITH HEADSCARF
