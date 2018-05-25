@@ -19,10 +19,13 @@ public class RecommendedSetGenerator {
   /**
    * Update the directory to use for generating the data:
    */
-  private static final String DIRECTORY = "data/security/9.0.0";
+  private static final String DIRECTORY = "data/security/11.0.0";
 
   public static void main(String[] args) {
     Sets sets = generateSet();
+    System.out.println("# inclusion: \n" + sets.inclusion.toString());
+    System.out.println("\n# recommended: \n" + sets.recommended.toString());
+    System.out.println("\n\nJava Version:\n\n");
     System.out.println(uniSetToCodeString(sets.inclusion, "INCLUSION", true));
     System.out.println(uniSetToCodeString(sets.recommended, "RECOMMENDED", true));
     System.out.println("\n\nC++ Version:\n\n");
@@ -31,14 +34,50 @@ public class RecommendedSetGenerator {
   }
 
   public static String uniSetToCodeString(UnicodeSet uniset, String varName, boolean isJava) {
-    String str = uniset.toString();
+    String str = uniset.toString().replace("\\", "\\\\");
     StringBuilder result = new StringBuilder();
-    result.append(isJava ? "public static final UnicodeSet " + varName + " = new UnicodeSet("
-        : "static const char *" + varName + " = ");
-    for (int i = 0; i < str.length(); i += 75) {
-      String line = str.substring(i, Math.min(i + 75, str.length()));
-      line = line.replace("\\", "\\\\");
-      result.append("\n    " + (i == 0 || !isJava ? "  " : "+ ") + "\"" + line + "\"");
+    if (isJava) {
+      result.append("public static final UnicodeSet " + varName + " = new UnicodeSet(");
+    } else {
+      result.append("static const char16_t *" + varName + " =");
+    }
+    for (int i = 0; i < str.length();) {
+      // split into short lines
+      int end = i + 75;
+      if (end > str.length()) {
+        end = str.length();
+      }
+      // break before an escape, not in the middle
+      // 11 = "\\\\U0010FFFF".length()
+      int min = end - 11;
+      if (min < i) { min = i; }
+      char nextChar = 0;
+      for (int j = end; min < j;) {
+        char c = str.charAt(--j);
+        if (c == '\\') {
+          if ((nextChar == 'u' && (end - j) >= 6) || (nextChar == 'U' && (end - j) >= 10)) {
+            // The escape sequence is completely on this line.
+          } else {
+            // Truncate before double escape.
+        	if (i < j && str.charAt(j - 1) == '\\') {
+        	  --j;
+        	}
+        	// Do not truncate to nothing.
+            if (i < j) {
+              end = j;
+            }
+          }
+          break;
+        }
+        nextChar = c;
+      }
+      String line = str.substring(i, end);
+      if (isJava) {
+        result.append("\n    " + (i == 0 ? "\"" : "+ \"") + line + '"');
+      } else {
+        result.append("\n    u\"" + line + '"');
+      }
+      i = end;
     }
     result.append(isJava ? "\n).freeze();\n" : ";\n");
     return result.toString();

@@ -1,5 +1,5 @@
 ﻿# IdentifierType.txt
-# Date: 2018-03-13, 10:46:37 GMT
+# Date: 2018-05-25, 00:12:52 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -566,11 +566,6 @@ FA27..FA29    ; Recommended                                             # 1.1   
 1401..166C    ; Limited_Use                                             # 3.0  [620] CANADIAN SYLLABICS E..CANADIAN SYLLABICS CARRIER TTSA
 166F..1676    ; Limited_Use                                             # 3.0    [8] CANADIAN SYLLABICS QAI..CANADIAN SYLLABICS NNGAA
 1677..167F    ; Limited_Use                                             # 5.2    [9] CANADIAN SYLLABICS WOODS-CREE THWEE..CANADIAN SYLLABICS BLACKFOOT W
-1810..1819    ; Limited_Use                                             # 3.0   [10] MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
-1820..1877    ; Limited_Use                                             # 3.0   [88] MONGOLIAN LETTER A..MONGOLIAN LETTER MANCHU ZHA
-1878          ; Limited_Use                                             # 11.0       MONGOLIAN LETTER CHA WITH TWO DOTS
-1880..18A8    ; Limited_Use                                             # 3.0   [41] MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONGOLIAN LETTER MANCHU ALI GALI BHA
-18AA          ; Limited_Use                                             # 5.1        MONGOLIAN LETTER MANCHU ALI GALI LHA
 18B0..18F5    ; Limited_Use                                             # 5.2   [70] CANADIAN SYLLABICS OY..CANADIAN SYLLABICS CARRIER DENTAL S
 1900..191C    ; Limited_Use                                             # 4.0   [29] LIMBU VOWEL-CARRIER LETTER..LIMBU LETTER HA
 191D..191E    ; Limited_Use                                             # 7.0    [2] LIMBU LETTER GYAN..LIMBU LETTER TRA
@@ -648,11 +643,11 @@ ABF0..ABF9    ; Limited_Use                                             # 5.2   
 1E900..1E94A  ; Limited_Use                                             # 9.0   [75] ADLAM CAPITAL LETTER ALIF..ADLAM NUKTA
 1E950..1E959  ; Limited_Use                                             # 9.0   [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 
-# Total code points: 5015
+# Total code points: 4874
 
-#	IdentifierType:	Limited_Use Uncommon_Use
+#	IdentifierType:	Limited_Use Uncommon_Use Exclusion
 
-18A9          ; Limited_Use Uncommon_Use                                # 3.0        MONGOLIAN LETTER ALI GALI DAGALGA
+18A9          ; Limited_Use Uncommon_Use Exclusion                      # 3.0        MONGOLIAN LETTER ALI GALI DAGALGA
 
 # Total code points: 1
 
@@ -665,17 +660,23 @@ ABF0..ABF9    ; Limited_Use                                             # 5.2   
 #	IdentifierType:	Limited_Use Exclusion
 
 07FA          ; Limited_Use Exclusion                                   # 5.0        NKO LAJANYALAN
+1810..1819    ; Limited_Use Exclusion                                   # 3.0   [10] MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
+1820..1877    ; Limited_Use Exclusion                                   # 3.0   [88] MONGOLIAN LETTER A..MONGOLIAN LETTER MANCHU ZHA
+1878          ; Limited_Use Exclusion                                   # 11.0       MONGOLIAN LETTER CHA WITH TWO DOTS
+1880..18A8    ; Limited_Use Exclusion                                   # 3.0   [41] MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONGOLIAN LETTER MANCHU ALI GALI BHA
+18AA          ; Limited_Use Exclusion                                   # 5.1        MONGOLIAN LETTER MANCHU ALI GALI LHA
 A9CF          ; Limited_Use Exclusion                                   # 5.2        JAVANESE PANGRANGKEP
 
-# Total code points: 2
+# Total code points: 143
 
 #	IdentifierType:	Limited_Use Exclusion Not_XID
 
-1802..1803    ; Limited_Use Exclusion Not_XID                           # 3.0    [2] MONGOLIAN COMMA..MONGOLIAN FULL STOP
-1805          ; Limited_Use Exclusion Not_XID                           # 3.0        MONGOLIAN FOUR DOTS
-180A          ; Limited_Use Exclusion Not_XID                           # 3.0        MONGOLIAN NIRUGU
+1800..1801    ; Limited_Use Exclusion Not_XID                           # 3.0    [2] MONGOLIAN BIRGA..MONGOLIAN ELLIPSIS
+1804          ; Limited_Use Exclusion Not_XID                           # 3.0        MONGOLIAN COLON
+1806..180A    ; Limited_Use Exclusion Not_XID                           # 3.0    [5] MONGOLIAN TODO SOFT HYPHEN..MONGOLIAN NIRUGU
+11660..1166C  ; Limited_Use Exclusion Not_XID                           # 9.0   [13] MONGOLIAN BIRGA WITH ORNAMENT..MONGOLIAN TURNED SWIRL BIRGA WITH DOUBLE ORNAMENT
 
-# Total code points: 4
+# Total code points: 21
 
 #	IdentifierType:	Limited_Use Exclusion Not_XID Default_Ignorable
 
@@ -706,9 +707,6 @@ A62A..A62B    ; Limited_Use Obsolete                                    # 5.1   
 085E          ; Limited_Use Not_XID                                     # 6.0        MANDAIC PUNCTUATION
 1400          ; Limited_Use Not_XID                                     # 5.2        CANADIAN SYLLABICS HYPHEN
 166D..166E    ; Limited_Use Not_XID                                     # 3.0    [2] CANADIAN SYLLABICS CHI SIGN..CANADIAN SYLLABICS FULL STOP
-1800..1801    ; Limited_Use Not_XID                                     # 3.0    [2] MONGOLIAN BIRGA..MONGOLIAN ELLIPSIS
-1804          ; Limited_Use Not_XID                                     # 3.0        MONGOLIAN COLON
-1806..1809    ; Limited_Use Not_XID                                     # 3.0    [4] MONGOLIAN TODO SOFT HYPHEN..MONGOLIAN MANCHU FULL STOP
 1940          ; Limited_Use Not_XID                                     # 4.0        LIMBU SIGN LOO
 1944..1945    ; Limited_Use Not_XID                                     # 4.0    [2] LIMBU EXCLAMATION MARK..LIMBU QUESTION MARK
 19DE..19DF    ; Limited_Use Not_XID                                     # 4.1    [2] NEW TAI LUE SIGN LAE..NEW TAI LUE SIGN LAEV
@@ -746,10 +744,9 @@ ABEB          ; Limited_Use Not_XID                                     # 5.2   
 1144B..1144F  ; Limited_Use Not_XID                                     # 9.0    [5] NEWA DANDA..NEWA ABBREVIATION SIGN
 1145B         ; Limited_Use Not_XID                                     # 9.0        NEWA PLACEHOLDER MARK
 1145D         ; Limited_Use Not_XID                                     # 9.0        NEWA INSERTION SIGN
-11660..1166C  ; Limited_Use Not_XID                                     # 9.0   [13] MONGOLIAN BIRGA WITH ORNAMENT..MONGOLIAN TURNED SWIRL BIRGA WITH DOUBLE ORNAMENT
 1E95E..1E95F  ; Limited_Use Not_XID                                     # 9.0    [2] ADLAM INITIAL EXCLAMATION MARK..ADLAM INITIAL QUESTION MARK
 
-# Total code points: 219
+# Total code points: 199
 
 #	IdentifierType:	Limited_Use Not_NFKC
 
@@ -1463,6 +1460,8 @@ FFA0          ; Exclusion Obsolete Not_NFKC Default_Ignorable           # 1.1   
 1680          ; Exclusion Not_XID                                       # 3.0        OGHAM SPACE MARK
 169B..169C    ; Exclusion Not_XID                                       # 3.0    [2] OGHAM FEATHER MARK..OGHAM REVERSED FEATHER MARK
 1735..1736    ; Exclusion Not_XID                                       # 3.2    [2] PHILIPPINE SINGLE PUNCTUATION..PHILIPPINE DOUBLE PUNCTUATION
+1802..1803    ; Exclusion Not_XID                                       # 3.0    [2] MONGOLIAN COMMA..MONGOLIAN FULL STOP
+1805          ; Exclusion Not_XID                                       # 3.0        MONGOLIAN FOUR DOTS
 1A1E..1A1F    ; Exclusion Not_XID                                       # 4.1    [2] BUGINESE PALLAWA..BUGINESE END OF SECTION
 20DD          ; Exclusion Not_XID                                       # 1.1        COMBINING ENCLOSING CIRCLE
 2CE5..2CEA    ; Exclusion Not_XID                                       # 4.1    [6] COPTIC SYMBOL MI RO..COPTIC SYMBOL SHIMA SIMA
@@ -1549,7 +1548,7 @@ A95F          ; Exclusion Not_XID                                       # 5.1   
 1DA85..1DA8B  ; Exclusion Not_XID                                       # 8.0    [7] SIGNWRITING LOCATION TORSO..SIGNWRITING PARENTHESIS
 1E8C7..1E8CF  ; Exclusion Not_XID                                       # 7.0    [9] MENDE KIKAKUI DIGIT ONE..MENDE KIKAKUI DIGIT NINE
 
-# Total code points: 1162
+# Total code points: 1165
 
 #	IdentifierType:	Exclusion Not_XID Default_Ignorable
 

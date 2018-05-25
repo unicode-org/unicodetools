@@ -22,12 +22,18 @@ public class XIDModifications {
     	String finalPart = dir.getName();
     	VersionInfo version = VersionInfo.getInstance(finalPart);
         identifierStatus.putAll(0,0x10FFFF, IdentifierStatus.restricted);
+        if (version.getMajor() == 9) {
+            // Version 9 IdentifierType.txt:
+        	// Any missing values have the value: IdentifierType={Recommended}
+            identifierType.putAll(0, 0x10FFFF, Collections.singleton(IdentifierType.recommended));
+        } else {
+        	// Version 10+ IdentifierType.txt:
+        	// Any missing code points have the IdentifierType value Not_Character
+            identifierType.putAll(0, 0x10FFFF, Collections.singleton(IdentifierType.not_characters));
+        }
         if (version.getMajor() <= 8) {
-            identifierType.putAll(0,0x10FFFF, Collections.singleton(IdentifierType.not_characters));
             new MyReader().process(directory, "xidmodifications.txt");
         } else {
-            // Version 9.0.0+: Everything that isn't in IdentifierType.txt is RECOMMENDED.
-            identifierType.putAll(0,0x10FFFF, Collections.singleton(IdentifierType.recommended));
             new MyReaderType().process(directory, "IdentifierType.txt");
             new MyReaderStatus().process(directory, "IdentifierStatus.txt");
         }
