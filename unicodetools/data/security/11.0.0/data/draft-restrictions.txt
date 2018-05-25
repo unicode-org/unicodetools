@@ -97,6 +97,148 @@ E0100..E01EF  ;  ; Default_Ignorable # [240] (U+E0100..U+E01EF)  VARIATION SELEC
 1760..176C    ;  ; Exclusion # [13] (ᝠ..ᝬ)  TAGBANWA LETTER A..TAGBANWA LETTER YA
 176E..1770    ;  ; Exclusion #  [3] (ᝮ..ᝰ)  TAGBANWA LETTER LA..TAGBANWA LETTER SA
 1772..1773    ;  ; Exclusion #  [2] (ᝲ..ᝳ)  TAGBANWA VOWEL SIGN I..TAGBANWA VOWEL SIGN U
+1810          ;  ; Exclusion #      (᠐)  MONGOLIAN DIGIT ZERO
+1811          ;  ; Exclusion #      (᠑)  MONGOLIAN DIGIT ONE
+1812          ;  ; Exclusion #      (᠒)  MONGOLIAN DIGIT TWO
+1813          ;  ; Exclusion #      (᠓)  MONGOLIAN DIGIT THREE
+1814          ;  ; Exclusion #      (᠔)  MONGOLIAN DIGIT FOUR
+1815          ;  ; Exclusion #      (᠕)  MONGOLIAN DIGIT FIVE
+1816          ;  ; Exclusion #      (᠖)  MONGOLIAN DIGIT SIX
+1817          ;  ; Exclusion #      (᠗)  MONGOLIAN DIGIT SEVEN
+1818          ;  ; Exclusion #      (᠘)  MONGOLIAN DIGIT EIGHT
+1819          ;  ; Exclusion #      (᠙)  MONGOLIAN DIGIT NINE
+1820          ;  ; Exclusion #      (ᠠ)  MONGOLIAN LETTER A
+1821          ;  ; Exclusion #      (ᠡ)  MONGOLIAN LETTER E
+1822          ;  ; Exclusion #      (ᠢ)  MONGOLIAN LETTER I
+1823          ;  ; Exclusion #      (ᠣ)  MONGOLIAN LETTER O
+1824          ;  ; Exclusion #      (ᠤ)  MONGOLIAN LETTER U
+1825          ;  ; Exclusion #      (ᠥ)  MONGOLIAN LETTER OE
+1826          ;  ; Exclusion #      (ᠦ)  MONGOLIAN LETTER UE
+1827          ;  ; Exclusion #      (ᠧ)  MONGOLIAN LETTER EE
+1828          ;  ; Exclusion #      (ᠨ)  MONGOLIAN LETTER NA
+1829          ;  ; Exclusion #      (ᠩ)  MONGOLIAN LETTER ANG
+182A          ;  ; Exclusion #      (ᠪ)  MONGOLIAN LETTER BA
+182B          ;  ; Exclusion #      (ᠫ)  MONGOLIAN LETTER PA
+182C          ;  ; Exclusion #      (ᠬ)  MONGOLIAN LETTER QA
+182D          ;  ; Exclusion #      (ᠭ)  MONGOLIAN LETTER GA
+182E          ;  ; Exclusion #      (ᠮ)  MONGOLIAN LETTER MA
+182F          ;  ; Exclusion #      (ᠯ)  MONGOLIAN LETTER LA
+1830          ;  ; Exclusion #      (ᠰ)  MONGOLIAN LETTER SA
+1831          ;  ; Exclusion #      (ᠱ)  MONGOLIAN LETTER SHA
+1832          ;  ; Exclusion #      (ᠲ)  MONGOLIAN LETTER TA
+1833          ;  ; Exclusion #      (ᠳ)  MONGOLIAN LETTER DA
+1834          ;  ; Exclusion #      (ᠴ)  MONGOLIAN LETTER CHA
+1835          ;  ; Exclusion #      (ᠵ)  MONGOLIAN LETTER JA
+1836          ;  ; Exclusion #      (ᠶ)  MONGOLIAN LETTER YA
+1837          ;  ; Exclusion #      (ᠷ)  MONGOLIAN LETTER RA
+1838          ;  ; Exclusion #      (ᠸ)  MONGOLIAN LETTER WA
+1839          ;  ; Exclusion #      (ᠹ)  MONGOLIAN LETTER FA
+183A          ;  ; Exclusion #      (ᠺ)  MONGOLIAN LETTER KA
+183B          ;  ; Exclusion #      (ᠻ)  MONGOLIAN LETTER KHA
+183C          ;  ; Exclusion #      (ᠼ)  MONGOLIAN LETTER TSA
+183D          ;  ; Exclusion #      (ᠽ)  MONGOLIAN LETTER ZA
+183E          ;  ; Exclusion #      (ᠾ)  MONGOLIAN LETTER HAA
+183F          ;  ; Exclusion #      (ᠿ)  MONGOLIAN LETTER ZRA
+1840          ;  ; Exclusion #      (ᡀ)  MONGOLIAN LETTER LHA
+1841          ;  ; Exclusion #      (ᡁ)  MONGOLIAN LETTER ZHI
+1842          ;  ; Exclusion #      (ᡂ)  MONGOLIAN LETTER CHI
+1843          ;  ; Exclusion #      (ᡃ)  MONGOLIAN LETTER TODO LONG VOWEL SIGN
+1844          ;  ; Exclusion #      (ᡄ)  MONGOLIAN LETTER TODO E
+1845          ;  ; Exclusion #      (ᡅ)  MONGOLIAN LETTER TODO I
+1846          ;  ; Exclusion #      (ᡆ)  MONGOLIAN LETTER TODO O
+1847          ;  ; Exclusion #      (ᡇ)  MONGOLIAN LETTER TODO U
+1848          ;  ; Exclusion #      (ᡈ)  MONGOLIAN LETTER TODO OE
+1849          ;  ; Exclusion #      (ᡉ)  MONGOLIAN LETTER TODO UE
+184A          ;  ; Exclusion #      (ᡊ)  MONGOLIAN LETTER TODO ANG
+184B          ;  ; Exclusion #      (ᡋ)  MONGOLIAN LETTER TODO BA
+184C          ;  ; Exclusion #      (ᡌ)  MONGOLIAN LETTER TODO PA
+184D          ;  ; Exclusion #      (ᡍ)  MONGOLIAN LETTER TODO QA
+184E          ;  ; Exclusion #      (ᡎ)  MONGOLIAN LETTER TODO GA
+184F          ;  ; Exclusion #      (ᡏ)  MONGOLIAN LETTER TODO MA
+1850          ;  ; Exclusion #      (ᡐ)  MONGOLIAN LETTER TODO TA
+1851          ;  ; Exclusion #      (ᡑ)  MONGOLIAN LETTER TODO DA
+1852          ;  ; Exclusion #      (ᡒ)  MONGOLIAN LETTER TODO CHA
+1853          ;  ; Exclusion #      (ᡓ)  MONGOLIAN LETTER TODO JA
+1854          ;  ; Exclusion #      (ᡔ)  MONGOLIAN LETTER TODO TSA
+1855          ;  ; Exclusion #      (ᡕ)  MONGOLIAN LETTER TODO YA
+1856          ;  ; Exclusion #      (ᡖ)  MONGOLIAN LETTER TODO WA
+1857          ;  ; Exclusion #      (ᡗ)  MONGOLIAN LETTER TODO KA
+1858          ;  ; Exclusion #      (ᡘ)  MONGOLIAN LETTER TODO GAA
+1859          ;  ; Exclusion #      (ᡙ)  MONGOLIAN LETTER TODO HAA
+185A          ;  ; Exclusion #      (ᡚ)  MONGOLIAN LETTER TODO JIA
+185B          ;  ; Exclusion #      (ᡛ)  MONGOLIAN LETTER TODO NIA
+185C          ;  ; Exclusion #      (ᡜ)  MONGOLIAN LETTER TODO DZA
+185D          ;  ; Exclusion #      (ᡝ)  MONGOLIAN LETTER SIBE E
+185E          ;  ; Exclusion #      (ᡞ)  MONGOLIAN LETTER SIBE I
+185F          ;  ; Exclusion #      (ᡟ)  MONGOLIAN LETTER SIBE IY
+1860          ;  ; Exclusion #      (ᡠ)  MONGOLIAN LETTER SIBE UE
+1861          ;  ; Exclusion #      (ᡡ)  MONGOLIAN LETTER SIBE U
+1862          ;  ; Exclusion #      (ᡢ)  MONGOLIAN LETTER SIBE ANG
+1863          ;  ; Exclusion #      (ᡣ)  MONGOLIAN LETTER SIBE KA
+1864          ;  ; Exclusion #      (ᡤ)  MONGOLIAN LETTER SIBE GA
+1865          ;  ; Exclusion #      (ᡥ)  MONGOLIAN LETTER SIBE HA
+1866          ;  ; Exclusion #      (ᡦ)  MONGOLIAN LETTER SIBE PA
+1867          ;  ; Exclusion #      (ᡧ)  MONGOLIAN LETTER SIBE SHA
+1868          ;  ; Exclusion #      (ᡨ)  MONGOLIAN LETTER SIBE TA
+1869          ;  ; Exclusion #      (ᡩ)  MONGOLIAN LETTER SIBE DA
+186A          ;  ; Exclusion #      (ᡪ)  MONGOLIAN LETTER SIBE JA
+186B          ;  ; Exclusion #      (ᡫ)  MONGOLIAN LETTER SIBE FA
+186C          ;  ; Exclusion #      (ᡬ)  MONGOLIAN LETTER SIBE GAA
+186D          ;  ; Exclusion #      (ᡭ)  MONGOLIAN LETTER SIBE HAA
+186E          ;  ; Exclusion #      (ᡮ)  MONGOLIAN LETTER SIBE TSA
+186F          ;  ; Exclusion #      (ᡯ)  MONGOLIAN LETTER SIBE ZA
+1870          ;  ; Exclusion #      (ᡰ)  MONGOLIAN LETTER SIBE RAA
+1871          ;  ; Exclusion #      (ᡱ)  MONGOLIAN LETTER SIBE CHA
+1872          ;  ; Exclusion #      (ᡲ)  MONGOLIAN LETTER SIBE ZHA
+1873          ;  ; Exclusion #      (ᡳ)  MONGOLIAN LETTER MANCHU I
+1874          ;  ; Exclusion #      (ᡴ)  MONGOLIAN LETTER MANCHU KA
+1875          ;  ; Exclusion #      (ᡵ)  MONGOLIAN LETTER MANCHU RA
+1876          ;  ; Exclusion #      (ᡶ)  MONGOLIAN LETTER MANCHU FA
+1877          ;  ; Exclusion #      (ᡷ)  MONGOLIAN LETTER MANCHU ZHA
+1878          ;  ; Exclusion #      (ᡸ)  MONGOLIAN LETTER CHA WITH TWO DOTS
+1880          ;  ; Exclusion #      (ᢀ)  MONGOLIAN LETTER ALI GALI ANUSVARA ONE
+1881          ;  ; Exclusion #      (ᢁ)  MONGOLIAN LETTER ALI GALI VISARGA ONE
+1882          ;  ; Exclusion #      (ᢂ)  MONGOLIAN LETTER ALI GALI DAMARU
+1883          ;  ; Exclusion #      (ᢃ)  MONGOLIAN LETTER ALI GALI UBADAMA
+1884          ;  ; Exclusion #      (ᢄ)  MONGOLIAN LETTER ALI GALI INVERTED UBADAMA
+1885          ;  ; Exclusion #      (ᢅ)  MONGOLIAN LETTER ALI GALI BALUDA
+1886          ;  ; Exclusion #      (ᢆ)  MONGOLIAN LETTER ALI GALI THREE BALUDA
+1887          ;  ; Exclusion #      (ᢇ)  MONGOLIAN LETTER ALI GALI A
+1888          ;  ; Exclusion #      (ᢈ)  MONGOLIAN LETTER ALI GALI I
+1889          ;  ; Exclusion #      (ᢉ)  MONGOLIAN LETTER ALI GALI KA
+188A          ;  ; Exclusion #      (ᢊ)  MONGOLIAN LETTER ALI GALI NGA
+188B          ;  ; Exclusion #      (ᢋ)  MONGOLIAN LETTER ALI GALI CA
+188C          ;  ; Exclusion #      (ᢌ)  MONGOLIAN LETTER ALI GALI TTA
+188D          ;  ; Exclusion #      (ᢍ)  MONGOLIAN LETTER ALI GALI TTHA
+188E          ;  ; Exclusion #      (ᢎ)  MONGOLIAN LETTER ALI GALI DDA
+188F          ;  ; Exclusion #      (ᢏ)  MONGOLIAN LETTER ALI GALI NNA
+1890          ;  ; Exclusion #      (ᢐ)  MONGOLIAN LETTER ALI GALI TA
+1891          ;  ; Exclusion #      (ᢑ)  MONGOLIAN LETTER ALI GALI DA
+1892          ;  ; Exclusion #      (ᢒ)  MONGOLIAN LETTER ALI GALI PA
+1893          ;  ; Exclusion #      (ᢓ)  MONGOLIAN LETTER ALI GALI PHA
+1894          ;  ; Exclusion #      (ᢔ)  MONGOLIAN LETTER ALI GALI SSA
+1895          ;  ; Exclusion #      (ᢕ)  MONGOLIAN LETTER ALI GALI ZHA
+1896          ;  ; Exclusion #      (ᢖ)  MONGOLIAN LETTER ALI GALI ZA
+1897          ;  ; Exclusion #      (ᢗ)  MONGOLIAN LETTER ALI GALI AH
+1898          ;  ; Exclusion #      (ᢘ)  MONGOLIAN LETTER TODO ALI GALI TA
+1899          ;  ; Exclusion #      (ᢙ)  MONGOLIAN LETTER TODO ALI GALI ZHA
+189A          ;  ; Exclusion #      (ᢚ)  MONGOLIAN LETTER MANCHU ALI GALI GHA
+189B          ;  ; Exclusion #      (ᢛ)  MONGOLIAN LETTER MANCHU ALI GALI NGA
+189C          ;  ; Exclusion #      (ᢜ)  MONGOLIAN LETTER MANCHU ALI GALI CA
+189D          ;  ; Exclusion #      (ᢝ)  MONGOLIAN LETTER MANCHU ALI GALI JHA
+189E          ;  ; Exclusion #      (ᢞ)  MONGOLIAN LETTER MANCHU ALI GALI TTA
+189F          ;  ; Exclusion #      (ᢟ)  MONGOLIAN LETTER MANCHU ALI GALI DDHA
+18A0          ;  ; Exclusion #      (ᢠ)  MONGOLIAN LETTER MANCHU ALI GALI TA
+18A1          ;  ; Exclusion #      (ᢡ)  MONGOLIAN LETTER MANCHU ALI GALI DHA
+18A2          ;  ; Exclusion #      (ᢢ)  MONGOLIAN LETTER MANCHU ALI GALI SSA
+18A3          ;  ; Exclusion #      (ᢣ)  MONGOLIAN LETTER MANCHU ALI GALI CYA
+18A4          ;  ; Exclusion #      (ᢤ)  MONGOLIAN LETTER MANCHU ALI GALI ZHA
+18A5          ;  ; Exclusion #      (ᢥ)  MONGOLIAN LETTER MANCHU ALI GALI ZA
+18A6          ;  ; Exclusion #      (ᢦ)  MONGOLIAN LETTER ALI GALI HALF U
+18A7          ;  ; Exclusion #      (ᢧ)  MONGOLIAN LETTER ALI GALI HALF YA
+18A8          ;  ; Exclusion #      (ᢨ)  MONGOLIAN LETTER MANCHU ALI GALI BHA
+18A9          ;  ; Exclusion #      (ᢩ)  MONGOLIAN LETTER ALI GALI DAGALGA
+18AA          ;  ; Exclusion #      (ᢪ)  MONGOLIAN LETTER MANCHU ALI GALI LHA
 1A00          ;  ; Exclusion #      (ᨀ)  BUGINESE LETTER KA
 1A01          ;  ; Exclusion #      (ᨁ)  BUGINESE LETTER GA
 1A02          ;  ; Exclusion #      (ᨂ)  BUGINESE LETTER NGA
@@ -1029,7 +1171,7 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 10A05..10A06  ;  ; Exclusion #  [2] (𐨅..𐨆)  KHAROSHTHI VOWEL SIGN E..KHAROSHTHI VOWEL SIGN O
 10A0C..10A13  ;  ; Exclusion #  [8] (𐨌..𐨓)  KHAROSHTHI VOWEL LENGTH MARK..KHAROSHTHI LETTER GHA
 10A15..10A17  ;  ; Exclusion #  [3] (𐨕..𐨗)  KHAROSHTHI LETTER CA..KHAROSHTHI LETTER JA
-10A19..10A33  ;  ; Exclusion # [27] (𐨙..𐨳)  KHAROSHTHI LETTER NYA..KHAROSHTHI LETTER TTTHA
+10A19..10A35  ;  ; Exclusion # [29] (𐨙..𐨵)  KHAROSHTHI LETTER NYA..KHAROSHTHI LETTER VHA
 10A38..10A3A  ;  ; Exclusion #  [3] (𐨸..𐨺)  KHAROSHTHI SIGN BAR ABOVE..KHAROSHTHI SIGN DOT BELOW
 10A3F         ;  ; Exclusion #      (𐨿)  KHAROSHTHI VIRAMA
 10A60         ;  ; Exclusion #      (𐩠)  OLD SOUTH ARABIAN LETTER HE
@@ -1366,6 +1508,69 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 10CF0         ;  ; Exclusion #      (𐳰)  OLD HUNGARIAN SMALL LETTER EZS
 10CF1         ;  ; Exclusion #      (𐳱)  OLD HUNGARIAN SMALL LETTER ENT-SHAPED SIGN
 10CF2         ;  ; Exclusion #      (𐳲)  OLD HUNGARIAN SMALL LETTER US
+10F00         ;  ; Exclusion #      (𐼀)  OLD SOGDIAN LETTER ALEPH
+10F01         ;  ; Exclusion #      (𐼁)  OLD SOGDIAN LETTER FINAL ALEPH
+10F02         ;  ; Exclusion #      (𐼂)  OLD SOGDIAN LETTER BETH
+10F03         ;  ; Exclusion #      (𐼃)  OLD SOGDIAN LETTER FINAL BETH
+10F04         ;  ; Exclusion #      (𐼄)  OLD SOGDIAN LETTER GIMEL
+10F05         ;  ; Exclusion #      (𐼅)  OLD SOGDIAN LETTER HE
+10F06         ;  ; Exclusion #      (𐼆)  OLD SOGDIAN LETTER FINAL HE
+10F07         ;  ; Exclusion #      (𐼇)  OLD SOGDIAN LETTER WAW
+10F08         ;  ; Exclusion #      (𐼈)  OLD SOGDIAN LETTER ZAYIN
+10F09         ;  ; Exclusion #      (𐼉)  OLD SOGDIAN LETTER HETH
+10F0A         ;  ; Exclusion #      (𐼊)  OLD SOGDIAN LETTER YODH
+10F0B         ;  ; Exclusion #      (𐼋)  OLD SOGDIAN LETTER KAPH
+10F0C         ;  ; Exclusion #      (𐼌)  OLD SOGDIAN LETTER LAMEDH
+10F0D         ;  ; Exclusion #      (𐼍)  OLD SOGDIAN LETTER MEM
+10F0E         ;  ; Exclusion #      (𐼎)  OLD SOGDIAN LETTER NUN
+10F0F         ;  ; Exclusion #      (𐼏)  OLD SOGDIAN LETTER FINAL NUN
+10F10         ;  ; Exclusion #      (𐼐)  OLD SOGDIAN LETTER FINAL NUN WITH VERTICAL TAIL
+10F11         ;  ; Exclusion #      (𐼑)  OLD SOGDIAN LETTER SAMEKH
+10F12         ;  ; Exclusion #      (𐼒)  OLD SOGDIAN LETTER AYIN
+10F13         ;  ; Exclusion #      (𐼓)  OLD SOGDIAN LETTER ALTERNATE AYIN
+10F14         ;  ; Exclusion #      (𐼔)  OLD SOGDIAN LETTER PE
+10F15         ;  ; Exclusion #      (𐼕)  OLD SOGDIAN LETTER SADHE
+10F16         ;  ; Exclusion #      (𐼖)  OLD SOGDIAN LETTER FINAL SADHE
+10F17         ;  ; Exclusion #      (𐼗)  OLD SOGDIAN LETTER FINAL SADHE WITH VERTICAL TAIL
+10F18         ;  ; Exclusion #      (𐼘)  OLD SOGDIAN LETTER RESH-AYIN-DALETH
+10F19         ;  ; Exclusion #      (𐼙)  OLD SOGDIAN LETTER SHIN
+10F1A         ;  ; Exclusion #      (𐼚)  OLD SOGDIAN LETTER TAW
+10F1B         ;  ; Exclusion #      (𐼛)  OLD SOGDIAN LETTER FINAL TAW
+10F1C         ;  ; Exclusion #      (𐼜)  OLD SOGDIAN LETTER FINAL TAW WITH VERTICAL TAIL
+10F27         ;  ; Exclusion #      (𐼧)  OLD SOGDIAN LIGATURE AYIN-DALETH
+10F30         ;  ; Exclusion #      (𐼰)  SOGDIAN LETTER ALEPH
+10F31         ;  ; Exclusion #      (𐼱)  SOGDIAN LETTER BETH
+10F32         ;  ; Exclusion #      (𐼲)  SOGDIAN LETTER GIMEL
+10F33         ;  ; Exclusion #      (𐼳)  SOGDIAN LETTER HE
+10F34         ;  ; Exclusion #      (𐼴)  SOGDIAN LETTER WAW
+10F35         ;  ; Exclusion #      (𐼵)  SOGDIAN LETTER ZAYIN
+10F36         ;  ; Exclusion #      (𐼶)  SOGDIAN LETTER HETH
+10F37         ;  ; Exclusion #      (𐼷)  SOGDIAN LETTER YODH
+10F38         ;  ; Exclusion #      (𐼸)  SOGDIAN LETTER KAPH
+10F39         ;  ; Exclusion #      (𐼹)  SOGDIAN LETTER LAMEDH
+10F3A         ;  ; Exclusion #      (𐼺)  SOGDIAN LETTER MEM
+10F3B         ;  ; Exclusion #      (𐼻)  SOGDIAN LETTER NUN
+10F3C         ;  ; Exclusion #      (𐼼)  SOGDIAN LETTER SAMEKH
+10F3D         ;  ; Exclusion #      (𐼽)  SOGDIAN LETTER AYIN
+10F3E         ;  ; Exclusion #      (𐼾)  SOGDIAN LETTER PE
+10F3F         ;  ; Exclusion #      (𐼿)  SOGDIAN LETTER SADHE
+10F40         ;  ; Exclusion #      (𐽀)  SOGDIAN LETTER RESH-AYIN
+10F41         ;  ; Exclusion #      (𐽁)  SOGDIAN LETTER SHIN
+10F42         ;  ; Exclusion #      (𐽂)  SOGDIAN LETTER TAW
+10F43         ;  ; Exclusion #      (𐽃)  SOGDIAN LETTER FETH
+10F44         ;  ; Exclusion #      (𐽄)  SOGDIAN LETTER LESH
+10F45         ;  ; Exclusion #      (𐽅)  SOGDIAN INDEPENDENT SHIN
+10F46         ;  ; Exclusion #      (𐽆)  SOGDIAN COMBINING DOT BELOW
+10F47         ;  ; Exclusion #      (𐽇)  SOGDIAN COMBINING TWO DOTS BELOW
+10F48         ;  ; Exclusion #      (𐽈)  SOGDIAN COMBINING DOT ABOVE
+10F49         ;  ; Exclusion #      (𐽉)  SOGDIAN COMBINING TWO DOTS ABOVE
+10F4A         ;  ; Exclusion #      (𐽊)  SOGDIAN COMBINING CURVE ABOVE
+10F4B         ;  ; Exclusion #      (𐽋)  SOGDIAN COMBINING CURVE BELOW
+10F4C         ;  ; Exclusion #      (𐽌)  SOGDIAN COMBINING HOOK ABOVE
+10F4D         ;  ; Exclusion #      (𐽍)  SOGDIAN COMBINING HOOK BELOW
+10F4E         ;  ; Exclusion #      (𐽎)  SOGDIAN COMBINING LONG HOOK BELOW
+10F4F         ;  ; Exclusion #      (𐽏)  SOGDIAN COMBINING RESH BELOW
+10F50         ;  ; Exclusion #      (𐽐)  SOGDIAN COMBINING STROKE BELOW
 11000         ;  ; Exclusion #      (𑀀)  BRAHMI SIGN CANDRABINDU
 11001         ;  ; Exclusion #      (𑀁)  BRAHMI SIGN ANUSVARA
 11002         ;  ; Exclusion #      (𑀂)  BRAHMI SIGN VISARGA
@@ -2229,6 +2434,7 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 11717         ;  ; Exclusion #      (𑜗)  AHOM LETTER GHA
 11718         ;  ; Exclusion #      (𑜘)  AHOM LETTER BHA
 11719         ;  ; Exclusion #      (𑜙)  AHOM LETTER JHA
+1171A         ;  ; Exclusion #      (𑜚)  AHOM LETTER ALTERNATE BA
 1171D         ;  ; Exclusion #      (𑜝)  AHOM CONSONANT SIGN MEDIAL LA
 1171E         ;  ; Exclusion #      (𑜞)  AHOM CONSONANT SIGN MEDIAL RA
 1171F         ;  ; Exclusion #      (𑜟)  AHOM CONSONANT SIGN MEDIAL LIGATING RA
@@ -2254,6 +2460,65 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 11737         ;  ; Exclusion #      (𑜷)  AHOM DIGIT SEVEN
 11738         ;  ; Exclusion #      (𑜸)  AHOM DIGIT EIGHT
 11739         ;  ; Exclusion #      (𑜹)  AHOM DIGIT NINE
+11800         ;  ; Exclusion #      (𑠀)  DOGRA LETTER A
+11801         ;  ; Exclusion #      (𑠁)  DOGRA LETTER AA
+11802         ;  ; Exclusion #      (𑠂)  DOGRA LETTER I
+11803         ;  ; Exclusion #      (𑠃)  DOGRA LETTER II
+11804         ;  ; Exclusion #      (𑠄)  DOGRA LETTER U
+11805         ;  ; Exclusion #      (𑠅)  DOGRA LETTER UU
+11806         ;  ; Exclusion #      (𑠆)  DOGRA LETTER E
+11807         ;  ; Exclusion #      (𑠇)  DOGRA LETTER AI
+11808         ;  ; Exclusion #      (𑠈)  DOGRA LETTER O
+11809         ;  ; Exclusion #      (𑠉)  DOGRA LETTER AU
+1180A         ;  ; Exclusion #      (𑠊)  DOGRA LETTER KA
+1180B         ;  ; Exclusion #      (𑠋)  DOGRA LETTER KHA
+1180C         ;  ; Exclusion #      (𑠌)  DOGRA LETTER GA
+1180D         ;  ; Exclusion #      (𑠍)  DOGRA LETTER GHA
+1180E         ;  ; Exclusion #      (𑠎)  DOGRA LETTER NGA
+1180F         ;  ; Exclusion #      (𑠏)  DOGRA LETTER CA
+11810         ;  ; Exclusion #      (𑠐)  DOGRA LETTER CHA
+11811         ;  ; Exclusion #      (𑠑)  DOGRA LETTER JA
+11812         ;  ; Exclusion #      (𑠒)  DOGRA LETTER JHA
+11813         ;  ; Exclusion #      (𑠓)  DOGRA LETTER NYA
+11814         ;  ; Exclusion #      (𑠔)  DOGRA LETTER TTA
+11815         ;  ; Exclusion #      (𑠕)  DOGRA LETTER TTHA
+11816         ;  ; Exclusion #      (𑠖)  DOGRA LETTER DDA
+11817         ;  ; Exclusion #      (𑠗)  DOGRA LETTER DDHA
+11818         ;  ; Exclusion #      (𑠘)  DOGRA LETTER NNA
+11819         ;  ; Exclusion #      (𑠙)  DOGRA LETTER TA
+1181A         ;  ; Exclusion #      (𑠚)  DOGRA LETTER THA
+1181B         ;  ; Exclusion #      (𑠛)  DOGRA LETTER DA
+1181C         ;  ; Exclusion #      (𑠜)  DOGRA LETTER DHA
+1181D         ;  ; Exclusion #      (𑠝)  DOGRA LETTER NA
+1181E         ;  ; Exclusion #      (𑠞)  DOGRA LETTER PA
+1181F         ;  ; Exclusion #      (𑠟)  DOGRA LETTER PHA
+11820         ;  ; Exclusion #      (𑠠)  DOGRA LETTER BA
+11821         ;  ; Exclusion #      (𑠡)  DOGRA LETTER BHA
+11822         ;  ; Exclusion #      (𑠢)  DOGRA LETTER MA
+11823         ;  ; Exclusion #      (𑠣)  DOGRA LETTER YA
+11824         ;  ; Exclusion #      (𑠤)  DOGRA LETTER RA
+11825         ;  ; Exclusion #      (𑠥)  DOGRA LETTER LA
+11826         ;  ; Exclusion #      (𑠦)  DOGRA LETTER VA
+11827         ;  ; Exclusion #      (𑠧)  DOGRA LETTER SHA
+11828         ;  ; Exclusion #      (𑠨)  DOGRA LETTER SSA
+11829         ;  ; Exclusion #      (𑠩)  DOGRA LETTER SA
+1182A         ;  ; Exclusion #      (𑠪)  DOGRA LETTER HA
+1182B         ;  ; Exclusion #      (𑠫)  DOGRA LETTER RRA
+1182C         ;  ; Exclusion #      (𑠬)  DOGRA VOWEL SIGN AA
+1182D         ;  ; Exclusion #      (𑠭)  DOGRA VOWEL SIGN I
+1182E         ;  ; Exclusion #      (𑠮)  DOGRA VOWEL SIGN II
+1182F         ;  ; Exclusion #      (𑠯)  DOGRA VOWEL SIGN U
+11830         ;  ; Exclusion #      (𑠰)  DOGRA VOWEL SIGN UU
+11831         ;  ; Exclusion #      (𑠱)  DOGRA VOWEL SIGN VOCALIC R
+11832         ;  ; Exclusion #      (𑠲)  DOGRA VOWEL SIGN VOCALIC RR
+11833         ;  ; Exclusion #      (𑠳)  DOGRA VOWEL SIGN E
+11834         ;  ; Exclusion #      (𑠴)  DOGRA VOWEL SIGN AI
+11835         ;  ; Exclusion #      (𑠵)  DOGRA VOWEL SIGN O
+11836         ;  ; Exclusion #      (𑠶)  DOGRA VOWEL SIGN AU
+11837         ;  ; Exclusion #      (𑠷)  DOGRA SIGN ANUSVARA
+11838         ;  ; Exclusion #      (𑠸)  DOGRA SIGN VISARGA
+11839         ;  ; Exclusion #      (𑠹)  DOGRA SIGN VIRAMA
+1183A         ;  ; Exclusion #      (𑠺)  DOGRA SIGN NUKTA
 118A0..118BF  ;  ; Exclusion # [32] (𑢠..𑢿)  WARANG CITI CAPITAL LETTER NGAA..WARANG CITI CAPITAL LETTER VIYO
 118C0         ;  ; Exclusion #      (𑣀)  WARANG CITI SMALL LETTER NGAA
 118C1         ;  ; Exclusion #      (𑣁)  WARANG CITI SMALL LETTER A
@@ -2434,6 +2699,7 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 11A97         ;  ; Exclusion #      (𑪗)  SOYOMBO SIGN VISARGA
 11A98         ;  ; Exclusion #      (𑪘)  SOYOMBO GEMINATION MARK
 11A99         ;  ; Exclusion #      (𑪙)  SOYOMBO SUBJOINER
+11A9D         ;  ; Exclusion #      (𑪝)  SOYOMBO MARK PLUTA
 11AC0         ;  ; Exclusion #      (𑫀)  PAU CIN HAU LETTER PA
 11AC1         ;  ; Exclusion #      (𑫁)  PAU CIN HAU LETTER KA
 11AC2         ;  ; Exclusion #      (𑫂)  PAU CIN HAU LETTER LA
@@ -2705,6 +2971,29 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 11D57         ;  ; Exclusion #      (𑵗)  MASARAM GONDI DIGIT SEVEN
 11D58         ;  ; Exclusion #      (𑵘)  MASARAM GONDI DIGIT EIGHT
 11D59         ;  ; Exclusion #      (𑵙)  MASARAM GONDI DIGIT NINE
+11EE0         ;  ; Exclusion #      (𑻠)  MAKASAR LETTER KA
+11EE1         ;  ; Exclusion #      (𑻡)  MAKASAR LETTER GA
+11EE2         ;  ; Exclusion #      (𑻢)  MAKASAR LETTER NGA
+11EE3         ;  ; Exclusion #      (𑻣)  MAKASAR LETTER PA
+11EE4         ;  ; Exclusion #      (𑻤)  MAKASAR LETTER BA
+11EE5         ;  ; Exclusion #      (𑻥)  MAKASAR LETTER MA
+11EE6         ;  ; Exclusion #      (𑻦)  MAKASAR LETTER TA
+11EE7         ;  ; Exclusion #      (𑻧)  MAKASAR LETTER DA
+11EE8         ;  ; Exclusion #      (𑻨)  MAKASAR LETTER NA
+11EE9         ;  ; Exclusion #      (𑻩)  MAKASAR LETTER CA
+11EEA         ;  ; Exclusion #      (𑻪)  MAKASAR LETTER JA
+11EEB         ;  ; Exclusion #      (𑻫)  MAKASAR LETTER NYA
+11EEC         ;  ; Exclusion #      (𑻬)  MAKASAR LETTER YA
+11EED         ;  ; Exclusion #      (𑻭)  MAKASAR LETTER RA
+11EEE         ;  ; Exclusion #      (𑻮)  MAKASAR LETTER LA
+11EEF         ;  ; Exclusion #      (𑻯)  MAKASAR LETTER VA
+11EF0         ;  ; Exclusion #      (𑻰)  MAKASAR LETTER SA
+11EF1         ;  ; Exclusion #      (𑻱)  MAKASAR LETTER A
+11EF2         ;  ; Exclusion #      (𑻲)  MAKASAR ANGKA
+11EF3         ;  ; Exclusion #      (𑻳)  MAKASAR VOWEL SIGN I
+11EF4         ;  ; Exclusion #      (𑻴)  MAKASAR VOWEL SIGN U
+11EF5         ;  ; Exclusion #      (𑻵)  MAKASAR VOWEL SIGN E
+11EF6         ;  ; Exclusion #      (𑻶)  MAKASAR VOWEL SIGN O
 12000         ;  ; Exclusion #      (𒀀)  CUNEIFORM SIGN A
 12001         ;  ; Exclusion #      (𒀁)  CUNEIFORM SIGN A TIMES A
 12002         ;  ; Exclusion #      (𒀂)  CUNEIFORM SIGN A TIMES BAD
@@ -5773,6 +6062,38 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 16B8D         ;  ; Exclusion #      (𖮍)  PAHAWH HMONG CLAN SIGN TSWB
 16B8E         ;  ; Exclusion #      (𖮎)  PAHAWH HMONG CLAN SIGN KWM
 16B8F         ;  ; Exclusion #      (𖮏)  PAHAWH HMONG CLAN SIGN VWJ
+16E60         ;  ; Exclusion #      (𖹠)  MEDEFAIDRIN SMALL LETTER M
+16E61         ;  ; Exclusion #      (𖹡)  MEDEFAIDRIN SMALL LETTER S
+16E62         ;  ; Exclusion #      (𖹢)  MEDEFAIDRIN SMALL LETTER V
+16E63         ;  ; Exclusion #      (𖹣)  MEDEFAIDRIN SMALL LETTER W
+16E64         ;  ; Exclusion #      (𖹤)  MEDEFAIDRIN SMALL LETTER ATIU
+16E65         ;  ; Exclusion #      (𖹥)  MEDEFAIDRIN SMALL LETTER Z
+16E66         ;  ; Exclusion #      (𖹦)  MEDEFAIDRIN SMALL LETTER KP
+16E67         ;  ; Exclusion #      (𖹧)  MEDEFAIDRIN SMALL LETTER P
+16E68         ;  ; Exclusion #      (𖹨)  MEDEFAIDRIN SMALL LETTER T
+16E69         ;  ; Exclusion #      (𖹩)  MEDEFAIDRIN SMALL LETTER G
+16E6A         ;  ; Exclusion #      (𖹪)  MEDEFAIDRIN SMALL LETTER F
+16E6B         ;  ; Exclusion #      (𖹫)  MEDEFAIDRIN SMALL LETTER I
+16E6C         ;  ; Exclusion #      (𖹬)  MEDEFAIDRIN SMALL LETTER K
+16E6D         ;  ; Exclusion #      (𖹭)  MEDEFAIDRIN SMALL LETTER A
+16E6E         ;  ; Exclusion #      (𖹮)  MEDEFAIDRIN SMALL LETTER J
+16E6F         ;  ; Exclusion #      (𖹯)  MEDEFAIDRIN SMALL LETTER E
+16E70         ;  ; Exclusion #      (𖹰)  MEDEFAIDRIN SMALL LETTER B
+16E71         ;  ; Exclusion #      (𖹱)  MEDEFAIDRIN SMALL LETTER C
+16E72         ;  ; Exclusion #      (𖹲)  MEDEFAIDRIN SMALL LETTER U
+16E73         ;  ; Exclusion #      (𖹳)  MEDEFAIDRIN SMALL LETTER YU
+16E74         ;  ; Exclusion #      (𖹴)  MEDEFAIDRIN SMALL LETTER L
+16E75         ;  ; Exclusion #      (𖹵)  MEDEFAIDRIN SMALL LETTER Q
+16E76         ;  ; Exclusion #      (𖹶)  MEDEFAIDRIN SMALL LETTER HP
+16E77         ;  ; Exclusion #      (𖹷)  MEDEFAIDRIN SMALL LETTER NY
+16E78         ;  ; Exclusion #      (𖹸)  MEDEFAIDRIN SMALL LETTER X
+16E79         ;  ; Exclusion #      (𖹹)  MEDEFAIDRIN SMALL LETTER D
+16E7A         ;  ; Exclusion #      (𖹺)  MEDEFAIDRIN SMALL LETTER OE
+16E7B         ;  ; Exclusion #      (𖹻)  MEDEFAIDRIN SMALL LETTER N
+16E7C         ;  ; Exclusion #      (𖹼)  MEDEFAIDRIN SMALL LETTER R
+16E7D         ;  ; Exclusion #      (𖹽)  MEDEFAIDRIN SMALL LETTER O
+16E7E         ;  ; Exclusion #      (𖹾)  MEDEFAIDRIN SMALL LETTER AI
+16E7F         ;  ; Exclusion #      (𖹿)  MEDEFAIDRIN SMALL LETTER Y
 16FE0         ;  ; Exclusion #      (𖿠)  TANGUT ITERATION MARK
 16FE1         ;  ; Exclusion #      (𖿡)  NUSHU ITERATION MARK
 17000         ;  ; Exclusion #      (𗀀)  TANGUT IDEOGRAPH-17000
@@ -11900,6 +12221,11 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 187EA         ;  ; Exclusion #      (𘟪)  TANGUT IDEOGRAPH-187EA
 187EB         ;  ; Exclusion #      (𘟫)  TANGUT IDEOGRAPH-187EB
 187EC         ;  ; Exclusion #      (𘟬)  TANGUT IDEOGRAPH-187EC
+187ED         ;  ; Exclusion #      (𘟭)  TANGUT IDEOGRAPH-187ED
+187EE         ;  ; Exclusion #      (𘟮)  TANGUT IDEOGRAPH-187EE
+187EF         ;  ; Exclusion #      (𘟯)  TANGUT IDEOGRAPH-187EF
+187F0         ;  ; Exclusion #      (𘟰)  TANGUT IDEOGRAPH-187F0
+187F1         ;  ; Exclusion #      (𘟱)  TANGUT IDEOGRAPH-187F1
 18800         ;  ; Exclusion #      (𘠀)  TANGUT COMPONENT-001
 18801         ;  ; Exclusion #      (𘠁)  TANGUT COMPONENT-002
 18802         ;  ; Exclusion #      (𘠂)  TANGUT COMPONENT-003
@@ -13537,7 +13863,7 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 1E8D5         ;  ; Exclusion #      (𞣕)  MENDE KIKAKUI COMBINING NUMBER HUNDRED THOUSANDS
 1E8D6         ;  ; Exclusion #      (𞣖)  MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 14338
+# Total code points: 14666
 
 0710..073F    ;  ; Limited_Use # [48] (ܐ..ܿ)  SYRIAC LETTER ALAPH..SYRIAC RWAHA
 074D..074F    ;  ; Limited_Use #  [3] (ݍ..ݏ)  SYRIAC LETTER SOGDIAN ZHAIN..SYRIAC LETTER SOGDIAN FE
@@ -13592,6 +13918,7 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 07F3          ;  ; Limited_Use #      (߳)  NKO COMBINING DOUBLE DOT ABOVE
 07F4          ;  ; Limited_Use #      (ߴ)  NKO HIGH TONE APOSTROPHE
 07F5          ;  ; Limited_Use #      (ߵ)  NKO LOW TONE APOSTROPHE
+07FD          ;  ; Limited_Use #      (߽)  NKO DANTAYALAN
 0840          ;  ; Limited_Use #      (ࡀ)  MANDAIC LETTER HALQA
 0841          ;  ; Limited_Use #      (ࡁ)  MANDAIC LETTER AB
 0842          ;  ; Limited_Use #      (ࡂ)  MANDAIC LETTER AG
@@ -13710,146 +14037,6 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 13F8..13FD    ;  ; Limited_Use #  [6] (ᏸ..ᏽ)  CHEROKEE SMALL LETTER YE..CHEROKEE SMALL LETTER MV
 1401..166C    ;  ; Limited_Use # [620] (ᐁ..ᙬ)  CANADIAN SYLLABICS E..CANADIAN SYLLABICS CARRIER TTSA
 166F..167F    ;  ; Limited_Use # [17] (ᙯ..ᙿ)  CANADIAN SYLLABICS QAI..CANADIAN SYLLABICS BLACKFOOT W
-1810          ;  ; Limited_Use #      (᠐)  MONGOLIAN DIGIT ZERO
-1811          ;  ; Limited_Use #      (᠑)  MONGOLIAN DIGIT ONE
-1812          ;  ; Limited_Use #      (᠒)  MONGOLIAN DIGIT TWO
-1813          ;  ; Limited_Use #      (᠓)  MONGOLIAN DIGIT THREE
-1814          ;  ; Limited_Use #      (᠔)  MONGOLIAN DIGIT FOUR
-1815          ;  ; Limited_Use #      (᠕)  MONGOLIAN DIGIT FIVE
-1816          ;  ; Limited_Use #      (᠖)  MONGOLIAN DIGIT SIX
-1817          ;  ; Limited_Use #      (᠗)  MONGOLIAN DIGIT SEVEN
-1818          ;  ; Limited_Use #      (᠘)  MONGOLIAN DIGIT EIGHT
-1819          ;  ; Limited_Use #      (᠙)  MONGOLIAN DIGIT NINE
-1820          ;  ; Limited_Use #      (ᠠ)  MONGOLIAN LETTER A
-1821          ;  ; Limited_Use #      (ᠡ)  MONGOLIAN LETTER E
-1822          ;  ; Limited_Use #      (ᠢ)  MONGOLIAN LETTER I
-1823          ;  ; Limited_Use #      (ᠣ)  MONGOLIAN LETTER O
-1824          ;  ; Limited_Use #      (ᠤ)  MONGOLIAN LETTER U
-1825          ;  ; Limited_Use #      (ᠥ)  MONGOLIAN LETTER OE
-1826          ;  ; Limited_Use #      (ᠦ)  MONGOLIAN LETTER UE
-1827          ;  ; Limited_Use #      (ᠧ)  MONGOLIAN LETTER EE
-1828          ;  ; Limited_Use #      (ᠨ)  MONGOLIAN LETTER NA
-1829          ;  ; Limited_Use #      (ᠩ)  MONGOLIAN LETTER ANG
-182A          ;  ; Limited_Use #      (ᠪ)  MONGOLIAN LETTER BA
-182B          ;  ; Limited_Use #      (ᠫ)  MONGOLIAN LETTER PA
-182C          ;  ; Limited_Use #      (ᠬ)  MONGOLIAN LETTER QA
-182D          ;  ; Limited_Use #      (ᠭ)  MONGOLIAN LETTER GA
-182E          ;  ; Limited_Use #      (ᠮ)  MONGOLIAN LETTER MA
-182F          ;  ; Limited_Use #      (ᠯ)  MONGOLIAN LETTER LA
-1830          ;  ; Limited_Use #      (ᠰ)  MONGOLIAN LETTER SA
-1831          ;  ; Limited_Use #      (ᠱ)  MONGOLIAN LETTER SHA
-1832          ;  ; Limited_Use #      (ᠲ)  MONGOLIAN LETTER TA
-1833          ;  ; Limited_Use #      (ᠳ)  MONGOLIAN LETTER DA
-1834          ;  ; Limited_Use #      (ᠴ)  MONGOLIAN LETTER CHA
-1835          ;  ; Limited_Use #      (ᠵ)  MONGOLIAN LETTER JA
-1836          ;  ; Limited_Use #      (ᠶ)  MONGOLIAN LETTER YA
-1837          ;  ; Limited_Use #      (ᠷ)  MONGOLIAN LETTER RA
-1838          ;  ; Limited_Use #      (ᠸ)  MONGOLIAN LETTER WA
-1839          ;  ; Limited_Use #      (ᠹ)  MONGOLIAN LETTER FA
-183A          ;  ; Limited_Use #      (ᠺ)  MONGOLIAN LETTER KA
-183B          ;  ; Limited_Use #      (ᠻ)  MONGOLIAN LETTER KHA
-183C          ;  ; Limited_Use #      (ᠼ)  MONGOLIAN LETTER TSA
-183D          ;  ; Limited_Use #      (ᠽ)  MONGOLIAN LETTER ZA
-183E          ;  ; Limited_Use #      (ᠾ)  MONGOLIAN LETTER HAA
-183F          ;  ; Limited_Use #      (ᠿ)  MONGOLIAN LETTER ZRA
-1840          ;  ; Limited_Use #      (ᡀ)  MONGOLIAN LETTER LHA
-1841          ;  ; Limited_Use #      (ᡁ)  MONGOLIAN LETTER ZHI
-1842          ;  ; Limited_Use #      (ᡂ)  MONGOLIAN LETTER CHI
-1843          ;  ; Limited_Use #      (ᡃ)  MONGOLIAN LETTER TODO LONG VOWEL SIGN
-1844          ;  ; Limited_Use #      (ᡄ)  MONGOLIAN LETTER TODO E
-1845          ;  ; Limited_Use #      (ᡅ)  MONGOLIAN LETTER TODO I
-1846          ;  ; Limited_Use #      (ᡆ)  MONGOLIAN LETTER TODO O
-1847          ;  ; Limited_Use #      (ᡇ)  MONGOLIAN LETTER TODO U
-1848          ;  ; Limited_Use #      (ᡈ)  MONGOLIAN LETTER TODO OE
-1849          ;  ; Limited_Use #      (ᡉ)  MONGOLIAN LETTER TODO UE
-184A          ;  ; Limited_Use #      (ᡊ)  MONGOLIAN LETTER TODO ANG
-184B          ;  ; Limited_Use #      (ᡋ)  MONGOLIAN LETTER TODO BA
-184C          ;  ; Limited_Use #      (ᡌ)  MONGOLIAN LETTER TODO PA
-184D          ;  ; Limited_Use #      (ᡍ)  MONGOLIAN LETTER TODO QA
-184E          ;  ; Limited_Use #      (ᡎ)  MONGOLIAN LETTER TODO GA
-184F          ;  ; Limited_Use #      (ᡏ)  MONGOLIAN LETTER TODO MA
-1850          ;  ; Limited_Use #      (ᡐ)  MONGOLIAN LETTER TODO TA
-1851          ;  ; Limited_Use #      (ᡑ)  MONGOLIAN LETTER TODO DA
-1852          ;  ; Limited_Use #      (ᡒ)  MONGOLIAN LETTER TODO CHA
-1853          ;  ; Limited_Use #      (ᡓ)  MONGOLIAN LETTER TODO JA
-1854          ;  ; Limited_Use #      (ᡔ)  MONGOLIAN LETTER TODO TSA
-1855          ;  ; Limited_Use #      (ᡕ)  MONGOLIAN LETTER TODO YA
-1856          ;  ; Limited_Use #      (ᡖ)  MONGOLIAN LETTER TODO WA
-1857          ;  ; Limited_Use #      (ᡗ)  MONGOLIAN LETTER TODO KA
-1858          ;  ; Limited_Use #      (ᡘ)  MONGOLIAN LETTER TODO GAA
-1859          ;  ; Limited_Use #      (ᡙ)  MONGOLIAN LETTER TODO HAA
-185A          ;  ; Limited_Use #      (ᡚ)  MONGOLIAN LETTER TODO JIA
-185B          ;  ; Limited_Use #      (ᡛ)  MONGOLIAN LETTER TODO NIA
-185C          ;  ; Limited_Use #      (ᡜ)  MONGOLIAN LETTER TODO DZA
-185D          ;  ; Limited_Use #      (ᡝ)  MONGOLIAN LETTER SIBE E
-185E          ;  ; Limited_Use #      (ᡞ)  MONGOLIAN LETTER SIBE I
-185F          ;  ; Limited_Use #      (ᡟ)  MONGOLIAN LETTER SIBE IY
-1860          ;  ; Limited_Use #      (ᡠ)  MONGOLIAN LETTER SIBE UE
-1861          ;  ; Limited_Use #      (ᡡ)  MONGOLIAN LETTER SIBE U
-1862          ;  ; Limited_Use #      (ᡢ)  MONGOLIAN LETTER SIBE ANG
-1863          ;  ; Limited_Use #      (ᡣ)  MONGOLIAN LETTER SIBE KA
-1864          ;  ; Limited_Use #      (ᡤ)  MONGOLIAN LETTER SIBE GA
-1865          ;  ; Limited_Use #      (ᡥ)  MONGOLIAN LETTER SIBE HA
-1866          ;  ; Limited_Use #      (ᡦ)  MONGOLIAN LETTER SIBE PA
-1867          ;  ; Limited_Use #      (ᡧ)  MONGOLIAN LETTER SIBE SHA
-1868          ;  ; Limited_Use #      (ᡨ)  MONGOLIAN LETTER SIBE TA
-1869          ;  ; Limited_Use #      (ᡩ)  MONGOLIAN LETTER SIBE DA
-186A          ;  ; Limited_Use #      (ᡪ)  MONGOLIAN LETTER SIBE JA
-186B          ;  ; Limited_Use #      (ᡫ)  MONGOLIAN LETTER SIBE FA
-186C          ;  ; Limited_Use #      (ᡬ)  MONGOLIAN LETTER SIBE GAA
-186D          ;  ; Limited_Use #      (ᡭ)  MONGOLIAN LETTER SIBE HAA
-186E          ;  ; Limited_Use #      (ᡮ)  MONGOLIAN LETTER SIBE TSA
-186F          ;  ; Limited_Use #      (ᡯ)  MONGOLIAN LETTER SIBE ZA
-1870          ;  ; Limited_Use #      (ᡰ)  MONGOLIAN LETTER SIBE RAA
-1871          ;  ; Limited_Use #      (ᡱ)  MONGOLIAN LETTER SIBE CHA
-1872          ;  ; Limited_Use #      (ᡲ)  MONGOLIAN LETTER SIBE ZHA
-1873          ;  ; Limited_Use #      (ᡳ)  MONGOLIAN LETTER MANCHU I
-1874          ;  ; Limited_Use #      (ᡴ)  MONGOLIAN LETTER MANCHU KA
-1875          ;  ; Limited_Use #      (ᡵ)  MONGOLIAN LETTER MANCHU RA
-1876          ;  ; Limited_Use #      (ᡶ)  MONGOLIAN LETTER MANCHU FA
-1877          ;  ; Limited_Use #      (ᡷ)  MONGOLIAN LETTER MANCHU ZHA
-1880          ;  ; Limited_Use #      (ᢀ)  MONGOLIAN LETTER ALI GALI ANUSVARA ONE
-1881          ;  ; Limited_Use #      (ᢁ)  MONGOLIAN LETTER ALI GALI VISARGA ONE
-1882          ;  ; Limited_Use #      (ᢂ)  MONGOLIAN LETTER ALI GALI DAMARU
-1883          ;  ; Limited_Use #      (ᢃ)  MONGOLIAN LETTER ALI GALI UBADAMA
-1884          ;  ; Limited_Use #      (ᢄ)  MONGOLIAN LETTER ALI GALI INVERTED UBADAMA
-1885          ;  ; Limited_Use #      (ᢅ)  MONGOLIAN LETTER ALI GALI BALUDA
-1886          ;  ; Limited_Use #      (ᢆ)  MONGOLIAN LETTER ALI GALI THREE BALUDA
-1887          ;  ; Limited_Use #      (ᢇ)  MONGOLIAN LETTER ALI GALI A
-1888          ;  ; Limited_Use #      (ᢈ)  MONGOLIAN LETTER ALI GALI I
-1889          ;  ; Limited_Use #      (ᢉ)  MONGOLIAN LETTER ALI GALI KA
-188A          ;  ; Limited_Use #      (ᢊ)  MONGOLIAN LETTER ALI GALI NGA
-188B          ;  ; Limited_Use #      (ᢋ)  MONGOLIAN LETTER ALI GALI CA
-188C          ;  ; Limited_Use #      (ᢌ)  MONGOLIAN LETTER ALI GALI TTA
-188D          ;  ; Limited_Use #      (ᢍ)  MONGOLIAN LETTER ALI GALI TTHA
-188E          ;  ; Limited_Use #      (ᢎ)  MONGOLIAN LETTER ALI GALI DDA
-188F          ;  ; Limited_Use #      (ᢏ)  MONGOLIAN LETTER ALI GALI NNA
-1890          ;  ; Limited_Use #      (ᢐ)  MONGOLIAN LETTER ALI GALI TA
-1891          ;  ; Limited_Use #      (ᢑ)  MONGOLIAN LETTER ALI GALI DA
-1892          ;  ; Limited_Use #      (ᢒ)  MONGOLIAN LETTER ALI GALI PA
-1893          ;  ; Limited_Use #      (ᢓ)  MONGOLIAN LETTER ALI GALI PHA
-1894          ;  ; Limited_Use #      (ᢔ)  MONGOLIAN LETTER ALI GALI SSA
-1895          ;  ; Limited_Use #      (ᢕ)  MONGOLIAN LETTER ALI GALI ZHA
-1896          ;  ; Limited_Use #      (ᢖ)  MONGOLIAN LETTER ALI GALI ZA
-1897          ;  ; Limited_Use #      (ᢗ)  MONGOLIAN LETTER ALI GALI AH
-1898          ;  ; Limited_Use #      (ᢘ)  MONGOLIAN LETTER TODO ALI GALI TA
-1899          ;  ; Limited_Use #      (ᢙ)  MONGOLIAN LETTER TODO ALI GALI ZHA
-189A          ;  ; Limited_Use #      (ᢚ)  MONGOLIAN LETTER MANCHU ALI GALI GHA
-189B          ;  ; Limited_Use #      (ᢛ)  MONGOLIAN LETTER MANCHU ALI GALI NGA
-189C          ;  ; Limited_Use #      (ᢜ)  MONGOLIAN LETTER MANCHU ALI GALI CA
-189D          ;  ; Limited_Use #      (ᢝ)  MONGOLIAN LETTER MANCHU ALI GALI JHA
-189E          ;  ; Limited_Use #      (ᢞ)  MONGOLIAN LETTER MANCHU ALI GALI TTA
-189F          ;  ; Limited_Use #      (ᢟ)  MONGOLIAN LETTER MANCHU ALI GALI DDHA
-18A0          ;  ; Limited_Use #      (ᢠ)  MONGOLIAN LETTER MANCHU ALI GALI TA
-18A1          ;  ; Limited_Use #      (ᢡ)  MONGOLIAN LETTER MANCHU ALI GALI DHA
-18A2          ;  ; Limited_Use #      (ᢢ)  MONGOLIAN LETTER MANCHU ALI GALI SSA
-18A3          ;  ; Limited_Use #      (ᢣ)  MONGOLIAN LETTER MANCHU ALI GALI CYA
-18A4          ;  ; Limited_Use #      (ᢤ)  MONGOLIAN LETTER MANCHU ALI GALI ZHA
-18A5          ;  ; Limited_Use #      (ᢥ)  MONGOLIAN LETTER MANCHU ALI GALI ZA
-18A6          ;  ; Limited_Use #      (ᢦ)  MONGOLIAN LETTER ALI GALI HALF U
-18A7          ;  ; Limited_Use #      (ᢧ)  MONGOLIAN LETTER ALI GALI HALF YA
-18A8          ;  ; Limited_Use #      (ᢨ)  MONGOLIAN LETTER MANCHU ALI GALI BHA
-18AA          ;  ; Limited_Use #      (ᢪ)  MONGOLIAN LETTER MANCHU ALI GALI LHA
 18B0..18F5    ;  ; Limited_Use # [70] (ᢰ..ᣵ)  CANADIAN SYLLABICS OY..CANADIAN SYLLABICS CARRIER DENTAL S
 1900          ;  ; Limited_Use #      (ᤀ)  LIMBU VOWEL-CARRIER LETTER
 1901          ;  ; Limited_Use #      (ᤁ)  LIMBU LETTER KA
@@ -15454,6 +15641,56 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 104F9         ;  ; Limited_Use #      (𐓹)  OSAGE SMALL LETTER GHA
 104FA         ;  ; Limited_Use #      (𐓺)  OSAGE SMALL LETTER ZA
 104FB         ;  ; Limited_Use #      (𐓻)  OSAGE SMALL LETTER ZHA
+10D00         ;  ; Limited_Use #      (𐴀)  HANIFI ROHINGYA LETTER A
+10D01         ;  ; Limited_Use #      (𐴁)  HANIFI ROHINGYA LETTER BA
+10D02         ;  ; Limited_Use #      (𐴂)  HANIFI ROHINGYA LETTER PA
+10D03         ;  ; Limited_Use #      (𐴃)  HANIFI ROHINGYA LETTER TA
+10D04         ;  ; Limited_Use #      (𐴄)  HANIFI ROHINGYA LETTER TTA
+10D05         ;  ; Limited_Use #      (𐴅)  HANIFI ROHINGYA LETTER JA
+10D06         ;  ; Limited_Use #      (𐴆)  HANIFI ROHINGYA LETTER CA
+10D07         ;  ; Limited_Use #      (𐴇)  HANIFI ROHINGYA LETTER HA
+10D08         ;  ; Limited_Use #      (𐴈)  HANIFI ROHINGYA LETTER KHA
+10D09         ;  ; Limited_Use #      (𐴉)  HANIFI ROHINGYA LETTER FA
+10D0A         ;  ; Limited_Use #      (𐴊)  HANIFI ROHINGYA LETTER DA
+10D0B         ;  ; Limited_Use #      (𐴋)  HANIFI ROHINGYA LETTER DDA
+10D0C         ;  ; Limited_Use #      (𐴌)  HANIFI ROHINGYA LETTER RA
+10D0D         ;  ; Limited_Use #      (𐴍)  HANIFI ROHINGYA LETTER RRA
+10D0E         ;  ; Limited_Use #      (𐴎)  HANIFI ROHINGYA LETTER ZA
+10D0F         ;  ; Limited_Use #      (𐴏)  HANIFI ROHINGYA LETTER SA
+10D10         ;  ; Limited_Use #      (𐴐)  HANIFI ROHINGYA LETTER SHA
+10D11         ;  ; Limited_Use #      (𐴑)  HANIFI ROHINGYA LETTER KA
+10D12         ;  ; Limited_Use #      (𐴒)  HANIFI ROHINGYA LETTER GA
+10D13         ;  ; Limited_Use #      (𐴓)  HANIFI ROHINGYA LETTER LA
+10D14         ;  ; Limited_Use #      (𐴔)  HANIFI ROHINGYA LETTER MA
+10D15         ;  ; Limited_Use #      (𐴕)  HANIFI ROHINGYA LETTER NA
+10D16         ;  ; Limited_Use #      (𐴖)  HANIFI ROHINGYA LETTER WA
+10D17         ;  ; Limited_Use #      (𐴗)  HANIFI ROHINGYA LETTER KINNA WA
+10D18         ;  ; Limited_Use #      (𐴘)  HANIFI ROHINGYA LETTER YA
+10D19         ;  ; Limited_Use #      (𐴙)  HANIFI ROHINGYA LETTER KINNA YA
+10D1A         ;  ; Limited_Use #      (𐴚)  HANIFI ROHINGYA LETTER NGA
+10D1B         ;  ; Limited_Use #      (𐴛)  HANIFI ROHINGYA LETTER NYA
+10D1C         ;  ; Limited_Use #      (𐴜)  HANIFI ROHINGYA LETTER VA
+10D1D         ;  ; Limited_Use #      (𐴝)  HANIFI ROHINGYA VOWEL A
+10D1E         ;  ; Limited_Use #      (𐴞)  HANIFI ROHINGYA VOWEL I
+10D1F         ;  ; Limited_Use #      (𐴟)  HANIFI ROHINGYA VOWEL U
+10D20         ;  ; Limited_Use #      (𐴠)  HANIFI ROHINGYA VOWEL E
+10D21         ;  ; Limited_Use #      (𐴡)  HANIFI ROHINGYA VOWEL O
+10D22         ;  ; Limited_Use #      (𐴢)  HANIFI ROHINGYA MARK SAKIN
+10D23         ;  ; Limited_Use #      (𐴣)  HANIFI ROHINGYA MARK NA KHONNA
+10D24         ;  ; Limited_Use #      (𐴤)  HANIFI ROHINGYA SIGN HARBAHAY
+10D25         ;  ; Limited_Use #      (𐴥)  HANIFI ROHINGYA SIGN TAHALA
+10D26         ;  ; Limited_Use #      (𐴦)  HANIFI ROHINGYA SIGN TANA
+10D27         ;  ; Limited_Use #      (𐴧)  HANIFI ROHINGYA SIGN TASSI
+10D30         ;  ; Limited_Use #      (𐴰)  HANIFI ROHINGYA DIGIT ZERO
+10D31         ;  ; Limited_Use #      (𐴱)  HANIFI ROHINGYA DIGIT ONE
+10D32         ;  ; Limited_Use #      (𐴲)  HANIFI ROHINGYA DIGIT TWO
+10D33         ;  ; Limited_Use #      (𐴳)  HANIFI ROHINGYA DIGIT THREE
+10D34         ;  ; Limited_Use #      (𐴴)  HANIFI ROHINGYA DIGIT FOUR
+10D35         ;  ; Limited_Use #      (𐴵)  HANIFI ROHINGYA DIGIT FIVE
+10D36         ;  ; Limited_Use #      (𐴶)  HANIFI ROHINGYA DIGIT SIX
+10D37         ;  ; Limited_Use #      (𐴷)  HANIFI ROHINGYA DIGIT SEVEN
+10D38         ;  ; Limited_Use #      (𐴸)  HANIFI ROHINGYA DIGIT EIGHT
+10D39         ;  ; Limited_Use #      (𐴹)  HANIFI ROHINGYA DIGIT NINE
 11100         ;  ; Limited_Use #      (𑄀)  CHAKMA SIGN CANDRABINDU
 11101         ;  ; Limited_Use #      (𑄁)  CHAKMA SIGN ANUSVARA
 11102         ;  ; Limited_Use #      (𑄂)  CHAKMA SIGN VISARGA
@@ -15517,6 +15754,9 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 1113D         ;  ; Limited_Use #      (𑄽)  CHAKMA DIGIT SEVEN
 1113E         ;  ; Limited_Use #      (𑄾)  CHAKMA DIGIT EIGHT
 1113F         ;  ; Limited_Use #      (𑄿)  CHAKMA DIGIT NINE
+11144         ;  ; Limited_Use #      (𑅄)  CHAKMA LETTER LHAA
+11145         ;  ; Limited_Use #      (𑅅)  CHAKMA VOWEL SIGN AA
+11146         ;  ; Limited_Use #      (𑅆)  CHAKMA VOWEL SIGN EI
 11400         ;  ; Limited_Use #      (𑐀)  NEWA LETTER A
 11401         ;  ; Limited_Use #      (𑐁)  NEWA LETTER AA
 11402         ;  ; Limited_Use #      (𑐂)  NEWA LETTER I
@@ -15602,6 +15842,70 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 11457         ;  ; Limited_Use #      (𑑗)  NEWA DIGIT SEVEN
 11458         ;  ; Limited_Use #      (𑑘)  NEWA DIGIT EIGHT
 11459         ;  ; Limited_Use #      (𑑙)  NEWA DIGIT NINE
+1145E         ;  ; Limited_Use #      (𑑞)  NEWA SANDHI MARK
+11D60         ;  ; Limited_Use #      (𑵠)  GUNJALA GONDI LETTER A
+11D61         ;  ; Limited_Use #      (𑵡)  GUNJALA GONDI LETTER AA
+11D62         ;  ; Limited_Use #      (𑵢)  GUNJALA GONDI LETTER I
+11D63         ;  ; Limited_Use #      (𑵣)  GUNJALA GONDI LETTER II
+11D64         ;  ; Limited_Use #      (𑵤)  GUNJALA GONDI LETTER U
+11D65         ;  ; Limited_Use #      (𑵥)  GUNJALA GONDI LETTER UU
+11D67         ;  ; Limited_Use #      (𑵧)  GUNJALA GONDI LETTER EE
+11D68         ;  ; Limited_Use #      (𑵨)  GUNJALA GONDI LETTER AI
+11D6A         ;  ; Limited_Use #      (𑵪)  GUNJALA GONDI LETTER OO
+11D6B         ;  ; Limited_Use #      (𑵫)  GUNJALA GONDI LETTER AU
+11D6C         ;  ; Limited_Use #      (𑵬)  GUNJALA GONDI LETTER YA
+11D6D         ;  ; Limited_Use #      (𑵭)  GUNJALA GONDI LETTER VA
+11D6E         ;  ; Limited_Use #      (𑵮)  GUNJALA GONDI LETTER BA
+11D6F         ;  ; Limited_Use #      (𑵯)  GUNJALA GONDI LETTER BHA
+11D70         ;  ; Limited_Use #      (𑵰)  GUNJALA GONDI LETTER MA
+11D71         ;  ; Limited_Use #      (𑵱)  GUNJALA GONDI LETTER KA
+11D72         ;  ; Limited_Use #      (𑵲)  GUNJALA GONDI LETTER KHA
+11D73         ;  ; Limited_Use #      (𑵳)  GUNJALA GONDI LETTER TA
+11D74         ;  ; Limited_Use #      (𑵴)  GUNJALA GONDI LETTER THA
+11D75         ;  ; Limited_Use #      (𑵵)  GUNJALA GONDI LETTER LA
+11D76         ;  ; Limited_Use #      (𑵶)  GUNJALA GONDI LETTER GA
+11D77         ;  ; Limited_Use #      (𑵷)  GUNJALA GONDI LETTER GHA
+11D78         ;  ; Limited_Use #      (𑵸)  GUNJALA GONDI LETTER DA
+11D79         ;  ; Limited_Use #      (𑵹)  GUNJALA GONDI LETTER DHA
+11D7A         ;  ; Limited_Use #      (𑵺)  GUNJALA GONDI LETTER NA
+11D7B         ;  ; Limited_Use #      (𑵻)  GUNJALA GONDI LETTER CA
+11D7C         ;  ; Limited_Use #      (𑵼)  GUNJALA GONDI LETTER CHA
+11D7D         ;  ; Limited_Use #      (𑵽)  GUNJALA GONDI LETTER TTA
+11D7E         ;  ; Limited_Use #      (𑵾)  GUNJALA GONDI LETTER TTHA
+11D7F         ;  ; Limited_Use #      (𑵿)  GUNJALA GONDI LETTER LLA
+11D80         ;  ; Limited_Use #      (𑶀)  GUNJALA GONDI LETTER JA
+11D81         ;  ; Limited_Use #      (𑶁)  GUNJALA GONDI LETTER JHA
+11D82         ;  ; Limited_Use #      (𑶂)  GUNJALA GONDI LETTER DDA
+11D83         ;  ; Limited_Use #      (𑶃)  GUNJALA GONDI LETTER DDHA
+11D84         ;  ; Limited_Use #      (𑶄)  GUNJALA GONDI LETTER NGA
+11D85         ;  ; Limited_Use #      (𑶅)  GUNJALA GONDI LETTER PA
+11D86         ;  ; Limited_Use #      (𑶆)  GUNJALA GONDI LETTER PHA
+11D87         ;  ; Limited_Use #      (𑶇)  GUNJALA GONDI LETTER HA
+11D88         ;  ; Limited_Use #      (𑶈)  GUNJALA GONDI LETTER RA
+11D89         ;  ; Limited_Use #      (𑶉)  GUNJALA GONDI LETTER SA
+11D8A         ;  ; Limited_Use #      (𑶊)  GUNJALA GONDI VOWEL SIGN AA
+11D8B         ;  ; Limited_Use #      (𑶋)  GUNJALA GONDI VOWEL SIGN I
+11D8C         ;  ; Limited_Use #      (𑶌)  GUNJALA GONDI VOWEL SIGN II
+11D8D         ;  ; Limited_Use #      (𑶍)  GUNJALA GONDI VOWEL SIGN U
+11D8E         ;  ; Limited_Use #      (𑶎)  GUNJALA GONDI VOWEL SIGN UU
+11D90         ;  ; Limited_Use #      (𑶐)  GUNJALA GONDI VOWEL SIGN EE
+11D91         ;  ; Limited_Use #      (𑶑)  GUNJALA GONDI VOWEL SIGN AI
+11D93         ;  ; Limited_Use #      (𑶓)  GUNJALA GONDI VOWEL SIGN OO
+11D94         ;  ; Limited_Use #      (𑶔)  GUNJALA GONDI VOWEL SIGN AU
+11D95         ;  ; Limited_Use #      (𑶕)  GUNJALA GONDI SIGN ANUSVARA
+11D96         ;  ; Limited_Use #      (𑶖)  GUNJALA GONDI SIGN VISARGA
+11D97         ;  ; Limited_Use #      (𑶗)  GUNJALA GONDI VIRAMA
+11D98         ;  ; Limited_Use #      (𑶘)  GUNJALA GONDI OM
+11DA0         ;  ; Limited_Use #      (𑶠)  GUNJALA GONDI DIGIT ZERO
+11DA1         ;  ; Limited_Use #      (𑶡)  GUNJALA GONDI DIGIT ONE
+11DA2         ;  ; Limited_Use #      (𑶢)  GUNJALA GONDI DIGIT TWO
+11DA3         ;  ; Limited_Use #      (𑶣)  GUNJALA GONDI DIGIT THREE
+11DA4         ;  ; Limited_Use #      (𑶤)  GUNJALA GONDI DIGIT FOUR
+11DA5         ;  ; Limited_Use #      (𑶥)  GUNJALA GONDI DIGIT FIVE
+11DA6         ;  ; Limited_Use #      (𑶦)  GUNJALA GONDI DIGIT SIX
+11DA7         ;  ; Limited_Use #      (𑶧)  GUNJALA GONDI DIGIT SEVEN
+11DA8         ;  ; Limited_Use #      (𑶨)  GUNJALA GONDI DIGIT EIGHT
+11DA9         ;  ; Limited_Use #      (𑶩)  GUNJALA GONDI DIGIT NINE
 16800         ;  ; Limited_Use #      (𖠀)  BAMUM LETTER PHASE-A NGKUE MFON
 16801         ;  ; Limited_Use #      (𖠁)  BAMUM LETTER PHASE-A GBIEE FON
 16802         ;  ; Limited_Use #      (𖠂)  BAMUM LETTER PHASE-A PON MFON PIPAEMGBIEE
@@ -16357,7 +16661,7 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 1E958         ;  ; Limited_Use #      (𞥘)  ADLAM DIGIT EIGHT
 1E959         ;  ; Limited_Use #      (𞥙)  ADLAM DIGIT NINE
 
-# Total code points: 4896
+# Total code points: 4874
 
 018D          ;  ; Obsolete #      (ƍ)  LATIN SMALL LETTER TURNED DELTA
 01AA          ;  ; Obsolete #      (ƪ)  LATIN LETTER REVERSED ESH LOOP
@@ -16900,6 +17204,8 @@ A8F6          ;  ; Obsolete #      (ꣶ)  DEVANAGARI SIGN CANDRABINDU THREE
 A8F7          ;  ; Obsolete #      (ꣷ)  DEVANAGARI SIGN CANDRABINDU AVAGRAHA
 A8FB          ;  ; Obsolete #      (ꣻ)  DEVANAGARI HEADSTROKE
 A8FD          ;  ; Obsolete #      (ꣽ)  DEVANAGARI JAIN OM
+A8FE          ;  ; Obsolete #      (ꣾ)  DEVANAGARI LETTER AY
+A8FF          ;  ; Obsolete #      (ꣿ)  DEVANAGARI VOWEL SIGN AY
 A960          ;  ; Obsolete #      (ꥠ)  HANGUL CHOSEONG TIKEUT-MIEUM
 A961          ;  ; Obsolete #      (ꥡ)  HANGUL CHOSEONG TIKEUT-PIEUP
 A962          ;  ; Obsolete #      (ꥢ)  HANGUL CHOSEONG TIKEUT-SIOS
@@ -17062,7 +17368,7 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 1B000         ;  ; Obsolete #      (𛀀)  KATAKANA LETTER ARCHAIC E
 1B001         ;  ; Obsolete #      (𛀁)  HIRAGANA LETTER ARCHAIC YE
 
-# Total code points: 1301
+# Total code points: 1303
 
 0180          ;  ; Technical #      (ƀ)  LATIN SMALL LETTER B WITH STROKE
 01C0          ;  ; Technical #      (ǀ)  LATIN LETTER DENTAL CLICK
@@ -17613,6 +17919,7 @@ FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 06ED          ;  ; Uncommon_Use #      (ۭ)  ARABIC SMALL LOW MEEM
 08B3          ;  ; Uncommon_Use #      (ࢳ)  ARABIC LETTER AIN WITH THREE DOTS BELOW
 08B4          ;  ; Uncommon_Use #      (ࢴ)  ARABIC LETTER KAF WITH DOT BELOW
+08D3          ;  ; Uncommon_Use #      (࣓)  ARABIC SMALL LOW WAW
 08D4          ;  ; Uncommon_Use #      (ࣔ)  ARABIC SMALL HIGH WORD AR-RUB
 08D5          ;  ; Uncommon_Use #      (ࣕ)  ARABIC SMALL HIGH SAD
 08D6          ;  ; Uncommon_Use #      (ࣖ)  ARABIC SMALL HIGH AIN
@@ -17671,7 +17978,6 @@ FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 0D62          ;  ; Uncommon_Use #      (ൢ)  MALAYALAM VOWEL SIGN VOCALIC L
 0D63          ;  ; Uncommon_Use #      (ൣ)  MALAYALAM VOWEL SIGN VOCALIC LL
 0F39          ;  ; Uncommon_Use #      (༹)  TIBETAN MARK TSA -PHRU
-18A9          ;  ; Uncommon_Use #      (ᢩ)  MONGOLIAN LETTER ALI GALI DAGALGA
 2054          ;  ; Uncommon_Use #      (⁔)  INVERTED UNDERTIE
 2C67          ;  ; Uncommon_Use #      (Ⱨ)  LATIN CAPITAL LETTER H WITH DESCENDER
 2C68          ;  ; Uncommon_Use #      (ⱨ)  LATIN SMALL LETTER H WITH DESCENDER
@@ -18280,6 +18586,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 052F          ; Allowed ; Recommended #      (ԯ)  CYRILLIC SMALL LETTER EL WITH DESCENDER
 0531..0556    ; Allowed ; Recommended # [38] (Ա..Ֆ)  ARMENIAN CAPITAL LETTER AYB..ARMENIAN CAPITAL LETTER FEH
 0559          ; Allowed ; Recommended #      (ՙ)  ARMENIAN MODIFIER LETTER LEFT HALF RING
+0560          ; Allowed ; Recommended #      (ՠ)  ARMENIAN SMALL LETTER TURNED AYB
 0561          ; Allowed ; Recommended #      (ա)  ARMENIAN SMALL LETTER AYB
 0562          ; Allowed ; Recommended #      (բ)  ARMENIAN SMALL LETTER BEN
 0563          ; Allowed ; Recommended #      (գ)  ARMENIAN SMALL LETTER GIM
@@ -18318,6 +18625,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0584          ; Allowed ; Recommended #      (ք)  ARMENIAN SMALL LETTER KEH
 0585          ; Allowed ; Recommended #      (օ)  ARMENIAN SMALL LETTER OH
 0586          ; Allowed ; Recommended #      (ֆ)  ARMENIAN SMALL LETTER FEH
+0588          ; Allowed ; Recommended #      (ֈ)  ARMENIAN SMALL LETTER YI WITH STROKE
 05B4          ; Allowed ; Recommended #      (ִ)  HEBREW POINT HIRIQ
 05D0          ; Allowed ; Recommended #      (א)  HEBREW LETTER ALEF
 05D1          ; Allowed ; Recommended #      (ב)  HEBREW LETTER BET
@@ -18346,6 +18654,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 05E8          ; Allowed ; Recommended #      (ר)  HEBREW LETTER RESH
 05E9          ; Allowed ; Recommended #      (ש)  HEBREW LETTER SHIN
 05EA          ; Allowed ; Recommended #      (ת)  HEBREW LETTER TAV
+05EF          ; Allowed ; Recommended #      (ׯ)  HEBREW YOD TRIANGLE
 05F0          ; Allowed ; Recommended #      (װ)  HEBREW LIGATURE YIDDISH DOUBLE VAV
 05F1          ; Allowed ; Recommended #      (ױ)  HEBREW LIGATURE YIDDISH VAV YOD
 05F2          ; Allowed ; Recommended #      (ײ)  HEBREW LIGATURE YIDDISH DOUBLE YOD
@@ -18834,6 +19143,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 09F0          ; Allowed ; Recommended #      (ৰ)  BENGALI LETTER RA WITH MIDDLE DIAGONAL
 09F1          ; Allowed ; Recommended #      (ৱ)  BENGALI LETTER RA WITH LOWER DIAGONAL
 09FC          ; Allowed ; Recommended #      (ৼ)  BENGALI LETTER VEDIC ANUSVARA
+09FE          ; Allowed ; Recommended #      (৾)  BENGALI SANDHI MARK
 0A01          ; Allowed ; Recommended #      (ਁ)  GURMUKHI SIGN ADAK BINDI
 0A02          ; Allowed ; Recommended #      (ਂ)  GURMUKHI SIGN BINDI
 0A03          ; Allowed ; Recommended #      (ਃ)  GURMUKHI SIGN VISARGA
@@ -19135,6 +19445,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0C01          ; Allowed ; Recommended #      (ఁ)  TELUGU SIGN CANDRABINDU
 0C02          ; Allowed ; Recommended #      (ం)  TELUGU SIGN ANUSVARA
 0C03          ; Allowed ; Recommended #      (ః)  TELUGU SIGN VISARGA
+0C04          ; Allowed ; Recommended #      (ఄ)  TELUGU SIGN COMBINING ANUSVARA ABOVE
 0C05          ; Allowed ; Recommended #      (అ)  TELUGU LETTER A
 0C06          ; Allowed ; Recommended #      (ఆ)  TELUGU LETTER AA
 0C07          ; Allowed ; Recommended #      (ఇ)  TELUGU LETTER I
@@ -20609,6 +20920,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 312C          ; Allowed ; Recommended #      (ㄬ)  BOPOMOFO LETTER GN
 312D          ; Allowed ; Recommended #      (ㄭ)  BOPOMOFO LETTER IH
 312E          ; Allowed ; Recommended #      (ㄮ)  BOPOMOFO LETTER O WITH DOT ABOVE
+312F          ; Allowed ; Recommended #      (ㄯ)  BOPOMOFO LETTER NN
 31A0          ; Allowed ; Recommended #      (ㆠ)  BOPOMOFO LETTER BU
 31A1          ; Allowed ; Recommended #      (ㆡ)  BOPOMOFO LETTER ZI
 31A2          ; Allowed ; Recommended #      (ㆢ)  BOPOMOFO LETTER JI
@@ -20707,6 +21019,11 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 9FE8          ; Allowed ; Recommended #      (鿨)  CJK UNIFIED IDEOGRAPH-9FE8
 9FE9          ; Allowed ; Recommended #      (鿩)  CJK UNIFIED IDEOGRAPH-9FE9
 9FEA          ; Allowed ; Recommended #      (鿪)  CJK UNIFIED IDEOGRAPH-9FEA
+9FEB          ; Allowed ; Recommended #      (鿫)  CJK UNIFIED IDEOGRAPH-9FEB
+9FEC          ; Allowed ; Recommended #      (鿬)  CJK UNIFIED IDEOGRAPH-9FEC
+9FED          ; Allowed ; Recommended #      (鿭)  CJK UNIFIED IDEOGRAPH-9FED
+9FEE          ; Allowed ; Recommended #      (鿮)  CJK UNIFIED IDEOGRAPH-9FEE
+9FEF          ; Allowed ; Recommended #      (鿯)  CJK UNIFIED IDEOGRAPH-9FEF
 A660          ; Allowed ; Recommended #      (Ꙡ)  CYRILLIC CAPITAL LETTER REVERSED TSE
 A661          ; Allowed ; Recommended #      (ꙡ)  CYRILLIC SMALL LETTER REVERSED TSE
 A674          ; Allowed ; Recommended #      (ꙴ)  COMBINING CYRILLIC LETTER UKRAINIAN IE
@@ -20747,6 +21064,8 @@ A7A8          ; Allowed ; Recommended #      (Ꞩ)  LATIN CAPITAL LETTER S WITH 
 A7A9          ; Allowed ; Recommended #      (ꞩ)  LATIN SMALL LETTER S WITH OBLIQUE STROKE
 A7AA          ; Allowed ; Recommended #      (Ɦ)  LATIN CAPITAL LETTER H WITH HOOK
 A7AE          ; Allowed ; Recommended #      (Ɪ)  LATIN CAPITAL LETTER SMALL CAPITAL I
+A7AF          ; Allowed ; Recommended #      (ꞯ)  LATIN LETTER SMALL CAPITAL Q
+A7B9          ; Allowed ; Recommended #      (ꞹ)  LATIN SMALL LETTER U WITH STROKE
 A7FA          ; Allowed ; Recommended #      (ꟺ)  LATIN LETTER SMALL CAPITAL TURNED M
 A9E7          ; Allowed ; Recommended #      (ꧧ)  MYANMAR LETTER TAI LAING NYA
 A9E8          ; Allowed ; Recommended #      (ꧨ)  MYANMAR LETTER TAI LAING FA
@@ -20819,6 +21138,7 @@ FA24          ; Allowed ; Recommended #      (﨤)  CJK COMPATIBILITY IDEOGRAPH-
 FA27          ; Allowed ; Recommended #      (﨧)  CJK COMPATIBILITY IDEOGRAPH-FA27
 FA28          ; Allowed ; Recommended #      (﨨)  CJK COMPATIBILITY IDEOGRAPH-FA28
 FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-FA29
+1133B         ; Allowed ; Recommended #      (𑌻)  COMBINING BINDU BELOW
 1B002         ; Allowed ; Recommended #      (𛀂)  HENTAIGANA LETTER A-1
 1B003         ; Allowed ; Recommended #      (𛀃)  HENTAIGANA LETTER A-2
 1B004         ; Allowed ; Recommended #      (𛀄)  HENTAIGANA LETTER A-3
@@ -38712,53 +39032,21 @@ FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 2EBDF         ; Allowed ; Recommended #      (𮯟)  CJK UNIFIED IDEOGRAPH-2EBDF
 2EBE0         ; Allowed ; Recommended #      (𮯠)  CJK UNIFIED IDEOGRAPH-2EBE0
 
-# Total code points: 103073
+# Total code points: 103087
 
 005F          ; ~IDNA #      (_)  LOW LINE
 04C0          ; ~IDNA #      (Ӏ)  CYRILLIC LETTER PALOCHKA
-0560          ; ~IDNA #      (ՠ)  ARMENIAN SMALL LETTER TURNED AYB
-0588          ; ~IDNA #      (ֈ)  ARMENIAN SMALL LETTER YI WITH STROKE
-05EF          ; ~IDNA #      (ׯ)  HEBREW YOD TRIANGLE
-07FD          ; ~IDNA #      (߽)  NKO DANTAYALAN
-08D3          ; ~IDNA #      (࣓)  ARABIC SMALL LOW WAW
-09FE          ; ~IDNA #      (৾)  BENGALI SANDHI MARK
-0C04          ; ~IDNA #      (ఄ)  TELUGU SIGN COMBINING ANUSVARA ABOVE
 10A0..10C5    ; ~IDNA # [38] (Ⴀ..Ⴥ)  GEORGIAN CAPITAL LETTER AN..GEORGIAN CAPITAL LETTER HOE
 115F..1160    ; ~IDNA #  [2] (U+115F..U+1160)  HANGUL CHOSEONG FILLER..HANGUL JUNGSEONG FILLER
 17B4..17B5    ; ~IDNA #  [2] (U+17B4..U+17B5)  KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
-1878          ; ~IDNA #      (ᡸ)  MONGOLIAN LETTER CHA WITH TWO DOTS
 1C90..1CBA    ; ~IDNA # [43] (Ა..Ჺ)  GEORGIAN MTAVRULI CAPITAL LETTER AN..GEORGIAN MTAVRULI CAPITAL LETTER AIN
 1CBD..1CBF    ; ~IDNA #  [3] (Ჽ..Ჿ)  GEORGIAN MTAVRULI CAPITAL LETTER AEN..GEORGIAN MTAVRULI CAPITAL LETTER LABIAL SIGN
 2132          ; ~IDNA #      (Ⅎ)  TURNED CAPITAL F
 2183          ; ~IDNA #      (Ↄ)  ROMAN NUMERAL REVERSED ONE HUNDRED
-312F          ; ~IDNA #      (ㄯ)  BOPOMOFO LETTER NN
-9FEB..9FEF    ; ~IDNA #  [5] (鿫..鿯)  CJK UNIFIED IDEOGRAPH-9FEB..CJK UNIFIED IDEOGRAPH-9FEF
-A7AF          ; ~IDNA #      (ꞯ)  LATIN LETTER SMALL CAPITAL Q
-A7B8..A7B9    ; ~IDNA #  [2] (Ꞹ..ꞹ)  LATIN CAPITAL LETTER U WITH STROKE..LATIN SMALL LETTER U WITH STROKE
-A8FE..A8FF    ; ~IDNA #  [2] (ꣾ..ꣿ)  DEVANAGARI LETTER AY..DEVANAGARI VOWEL SIGN AY
-10A34..10A35  ; ~IDNA #  [2] (𐨴..𐨵)  KHAROSHTHI LETTER TTTA..KHAROSHTHI LETTER VHA
-10D00..10D27  ; ~IDNA # [40] (𐴀..𐴧)  HANIFI ROHINGYA LETTER A..HANIFI ROHINGYA SIGN TASSI
-10D30..10D39  ; ~IDNA # [10] (𐴰..𐴹)  HANIFI ROHINGYA DIGIT ZERO..HANIFI ROHINGYA DIGIT NINE
-10F00..10F1C  ; ~IDNA # [29] (𐼀..𐼜)  OLD SOGDIAN LETTER ALEPH..OLD SOGDIAN LETTER FINAL TAW WITH VERTICAL TAIL
-10F27         ; ~IDNA #      (𐼧)  OLD SOGDIAN LIGATURE AYIN-DALETH
-10F30..10F50  ; ~IDNA # [33] (𐼰..𐽐)  SOGDIAN LETTER ALEPH..SOGDIAN COMBINING STROKE BELOW
-11144..11146  ; ~IDNA #  [3] (𑅄..𑅆)  CHAKMA LETTER LHAA..CHAKMA VOWEL SIGN EI
-1133B         ; ~IDNA #      (𑌻)  COMBINING BINDU BELOW
-1145E         ; ~IDNA #      (𑑞)  NEWA SANDHI MARK
-1171A         ; ~IDNA #      (𑜚)  AHOM LETTER ALTERNATE BA
-11800..1183A  ; ~IDNA # [59] (𑠀..𑠺)  DOGRA LETTER A..DOGRA SIGN NUKTA
-11A9D         ; ~IDNA #      (𑪝)  SOYOMBO MARK PLUTA
-11D60..11D65  ; ~IDNA #  [6] (𑵠..𑵥)  GUNJALA GONDI LETTER A..GUNJALA GONDI LETTER UU
-11D67..11D68  ; ~IDNA #  [2] (𑵧..𑵨)  GUNJALA GONDI LETTER EE..GUNJALA GONDI LETTER AI
-11D6A..11D8E  ; ~IDNA # [37] (𑵪..𑶎)  GUNJALA GONDI LETTER OO..GUNJALA GONDI VOWEL SIGN UU
-11D90..11D91  ; ~IDNA #  [2] (𑶐..𑶑)  GUNJALA GONDI VOWEL SIGN EE..GUNJALA GONDI VOWEL SIGN AI
-11D93..11D98  ; ~IDNA #  [6] (𑶓..𑶘)  GUNJALA GONDI VOWEL SIGN OO..GUNJALA GONDI OM
-11DA0..11DA9  ; ~IDNA # [10] (𑶠..𑶩)  GUNJALA GONDI DIGIT ZERO..GUNJALA GONDI DIGIT NINE
-11EE0..11EF6  ; ~IDNA # [23] (𑻠..𑻶)  MAKASAR LETTER KA..MAKASAR VOWEL SIGN O
-16E40..16E7F  ; ~IDNA # [64] (𖹀..𖹿)  MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN SMALL LETTER Y
-187ED..187F1  ; ~IDNA #  [5] (𘟭..𘟱)  TANGUT IDEOGRAPH-187ED..TANGUT IDEOGRAPH-187F1
+A7B8          ; ~IDNA #      (Ꞹ)  LATIN CAPITAL LETTER U WITH STROKE
+16E40..16E5F  ; ~IDNA # [32] (𖹀..𖹟)  MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN CAPITAL LETTER Y
 
-# Total code points: 447
+# Total code points: 125
 
 0000..002F    ; ~Unicode Identifier # [48] (U+0000../)  <control-0000>..SOLIDUS
 003A..0040    ; ~Unicode Identifier #  [7] (:..@)  COLON..COMMERCIAL AT
@@ -39082,7 +39370,7 @@ FFF9..FFFD    ; ~Unicode Identifier #  [5] (U+FFF9..�)  INTERLINEAR ANNOTATION
 11047..1104D  ; ~Unicode Identifier #  [7] (𑁇..𑁍)  BRAHMI DANDA..BRAHMI PUNCTUATION LOTUS
 11052..11065  ; ~Unicode Identifier # [20] (𑁒..𑁥)  BRAHMI NUMBER ONE..BRAHMI NUMBER ONE THOUSAND
 110BB..110C1  ; ~Unicode Identifier #  [7] (𑂻..𑃁)  KAITHI ABBREVIATION SIGN..KAITHI DOUBLE DANDA
-110CD         ; ~Unicode Identifier #      (𑃍)  KAITHI NUMBER SIGN ABOVE
+110CD         ; ~Unicode Identifier #      (U+110CD)  KAITHI NUMBER SIGN ABOVE
 11140..11143  ; ~Unicode Identifier #  [4] (𑅀..𑅃)  CHAKMA SECTION MARK..CHAKMA QUESTION MARK
 11174..11175  ; ~Unicode Identifier #  [2] (𑅴..𑅵)  MAHAJANI ABBREVIATION SIGN..MAHAJANI SECTION MARK
 111C5..111C8  ; ~Unicode Identifier #  [4] (𑇅..𑇈)  SHARADA DANDA..SHARADA SEPARATOR
