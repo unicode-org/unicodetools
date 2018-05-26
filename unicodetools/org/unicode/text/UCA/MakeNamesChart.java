@@ -257,7 +257,7 @@ public class MakeNamesChart {
                                     + "<td class='c'>"
                                     + firstDisplayChar
                                     + "</td><td>"
-                                    + maybeNameStyle(showTextConvertingHex(body, firstChar != '='), firstChar == '=')
+                                    + maybeNameStyle(showTextConvertingHex(body, firstChar != '=' && firstChar != '%'), firstChar == '=')
                                     + "</td></tr>");
                         } else if (line.startsWith(";")) {
                             System.err.println("*** Ignoring:" + line);
