@@ -37,7 +37,9 @@ Bidi_Paired_Bracket 0000    [0000]  null
 
 Property     cp  xml     unicodetools
 Canonical_Combining_Class   0378    [Not_Reordered] null
-... The unicodetools should use Not_Reordered for the missing value.
+Joining_Group   0000    [No_Joining_Group]  null
+Joining_Type    0000    [Non_Joining]   null
+... The unicodetools should use Not_Reordered etc. for the missing value.
 
 Warnings (reported as "empty" differences):
 kAccountingNumeric
@@ -45,7 +47,7 @@ kOtherNumeric
 kPrimaryNumeric
 kCompatibilityVariant
 
-Failing tests:  7
+Failing tests:  9
 Warning tests:  4
      */
     private final static String ucdVersion = Utility.searchPath[0];
