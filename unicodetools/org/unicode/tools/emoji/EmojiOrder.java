@@ -374,10 +374,10 @@ public class EmojiOrder {
 
             outText.append("& [last primary ignorable]<<*");
 
-            for (String m : EmojiData.MODIFIERS) {
+            for (String m : Arrays.asList("🦰", "🦱", "🦳", "🦲")) { // not cp order, so not Emoji.HAIR_STYLES
                 outText.append(m);
             }
-            for (String m : Emoji.HAIR_STYLES) {
+            for (String m : EmojiData.MODIFIERS) {
                 outText.append(m);
             }
             UnicodeSet hairSkin = new UnicodeSet(EmojiData.MODIFIERS).addAll(Emoji.HAIR_STYLES_WITH_JOINERS).freeze();
@@ -467,7 +467,7 @@ public class EmojiOrder {
                     outText.append(" = ").append(quoted);
                     haveSeen.add(withoutTrail);
                 } else if (Emoji.HAIR_EXPLICIT.contains(s)) { // HACK the blond person to make secondary
-                    outText.append("\n<<");
+                    outText.append(" <<");
                     outText.append(s);
                     haveSeen.add(s);
                     needRelation = true;

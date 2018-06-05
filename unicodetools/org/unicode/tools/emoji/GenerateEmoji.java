@@ -3579,7 +3579,7 @@ public class GenerateEmoji {
             out.println(footer); // fix
             writeFooter(out);
         }
-        try (PrintWriter out = FileUtilities.openUTF8Writer(dir + "internal/",
+        try (PrintWriter out = FileUtilities.openUTF8Writer(dir,
                 outFileName.replace(".html", ".txt"))) {
             for (String outputLine : outputPlain) {
                 out.println(outputLine);
