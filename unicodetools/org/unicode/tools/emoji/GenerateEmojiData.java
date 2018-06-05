@@ -99,15 +99,18 @@ public class GenerateEmojiData {
                     + "\\U0001F93A \\U0001F93D \\U0001F93E \\U0001F946]").freeze();
     private static final boolean SHOW = false;
 
+    /**@deprecated Replace by the CountEmoji.Category*/
     public enum ZwjType {
-        roleWithObject, roleWithSign, gestures, activity, family, other, na;
+        roleWithHair, roleWithObject, roleWithSign, gestures, activity, family, other, na;
         public static ZwjType getType(String s) {
             if (!s.contains(Emoji.JOINER_STRING)) {
                 return na;
             }
             int[] cps = CharSequences.codePoints(s);
             ZwjType zwjType = ZwjType.other;
-            if (Emoji.FAMILY_MARKERS.contains(cps[cps.length - 1])) { // last character is in boy..woman
+            if (Emoji.HAIR_PIECES.containsSome(s)) {
+                zwjType = roleWithHair;
+            } else if (Emoji.FAMILY_MARKERS.contains(cps[cps.length - 1])) { // last character is in boy..woman
                 zwjType = family;
             } else if (Emoji.ACTIVITY_MARKER.containsSome(s)) {
                 zwjType = activity;

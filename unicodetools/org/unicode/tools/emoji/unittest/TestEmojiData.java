@@ -126,21 +126,23 @@ public class TestEmojiData extends TestFmwkPlus {
         EmojiOrder.STD_ORDER.appendCollationRules(outText, EmojiData.EMOJI_DATA.getEmojiForSortRules(), EmojiOrder.GENDER_NEUTRALS);
         String rules = outText.toString();
         UnicodeSet modifierBases = EmojiData.EMOJI_DATA.getModifierBases();
-        UnicodeSet modifiers = EmojiData.EMOJI_DATA.getModifiers();
+        UnicodeSet modifiers = new UnicodeSet(EmojiData.EMOJI_DATA.getModifiers()).addAll(Emoji.HAIR_BASE).freeze();
         try {
             ruleBasedCollator = new RuleBasedCollator(rules);
             Set<String> testSet = new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare);
             EmojiData.EMOJI_DATA.getAllEmojiWithDefectives().addAllTo(testSet);
+            String secondToLastItem = "";
             String lastItem = "";
             String highestWithModifierBase = null;
             String lowestWithModifierBase = null;
             for (String item : testSet) {
                 if (ruleBasedCollator.compare(lastItem, item) > 0 
                         && !modifiers.contains(item)) {
-                    errln("Out of order: " + lastItem + ">" + item);
+                    errln("Out of order: " + secondToLastItem + ">" + lastItem + ">" + item);
                 } else {
                     logln(lastItem + "≤" + item);
                 }
+                secondToLastItem = lastItem;
                 lastItem = item;
                 if (modifierBases.containsSome(item)) {
                     if (lowestWithModifierBase == null) {
