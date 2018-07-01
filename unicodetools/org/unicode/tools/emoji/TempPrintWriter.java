@@ -55,4 +55,8 @@ public class TempPrintWriter extends Writer {
     public void println(String line) throws IOException {
         tempPrintWriter.println(line);
     }
+    
+    public void println() throws IOException {
+        tempPrintWriter.println();
+    }
 }

@@ -95,7 +95,7 @@ public class EmojiOrder {
                     EmojiOrder.UCA_COLLATOR,
                     PLAIN_STRING_COMPARATOR);
 
-    //public static final EmojiOrder ALT_ORDER = new EmojiOrder(Emoji.VERSION_BETA, "altOrder.txt");
+    public static final EmojiOrder BETA_ORDER = EmojiOrder.of(Emoji.VERSION_BETA);
     public static final EmojiOrder STD_ORDER = EmojiOrder.of(Emoji.VERSION_TO_GENERATE);
 
     public final MapComparator<String>     mp;
