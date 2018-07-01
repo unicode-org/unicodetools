@@ -86,6 +86,9 @@ public class EmojiImageData {
 	}
 
 	static String getDataUrlFromFilename(Source source, String filename) {
+	    if (source == Source.google && filename.contains("1f468_1f3fb_200d_1f9b0")) {
+	        int debug = 0;
+	    }
 		try {
 			String result = EmojiImageData.IMAGE_CACHE.get(filename);
 			if (result == null) {

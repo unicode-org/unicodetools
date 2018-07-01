@@ -22,6 +22,7 @@ import org.unicode.tools.emoji.EmojiData.VariantFactory;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSortedSet;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.Row.R2;
@@ -30,6 +31,16 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
 import com.ibm.icu.util.ICUUncheckedIOException;
 
+/**
+ * To generate emoji frequency data:
+ * <ul>
+ * <li>Add new data to DATA directory</li>
+ * <li>Run this program, and paste files into spreadsheet.</li>
+ * <li>
+ * </ul>
+ * @author markdavis
+ *
+ */
 public class ListEmojiGroups {
     private static final boolean DEBUG = false;
 
@@ -62,9 +73,9 @@ public class ListEmojiGroups {
         showCounts("facebook.tsv", Facebook.counts, null);
 
         System.out.println("\n\n***INFO***\n");
-        showInfo("emojiInfo.txt");
+        showInfo("emojiInfo.tsv");
 
-        showTextEmoji("emojiText.txt");
+        showTextEmoji("emojiText.tsv");
     }
 
     private static void showTextEmoji(String filename) {
@@ -119,6 +130,7 @@ public class ListEmojiGroups {
     static final Set<String> SORTED;
     static {
         Set<String> SORTED2 = new TreeSet<>(order.codepointCompare);
+        System.out.println(order.codepointCompare.compare("😀", "#️⃣"));
         for (String s : EmojiData.EMOJI_DATA.getAllEmojiWithDefectives()) {
             String norm = normalizeEmoji(s);
             if (!norm.isEmpty()) {
@@ -132,7 +144,10 @@ public class ListEmojiGroups {
             //                }
             //            }
         }
-        SORTED = ImmutableSortedSet.copyOf(SORTED2);
+        SORTED = ImmutableSet.copyOf(SORTED2);
+//        for (String s : SORTED) {
+//            System.out.println(s + "\t" + EmojiData.EMOJI_DATA.getName(s));
+//        }
     }
 
     private static void showInfo(String filename) {
@@ -284,7 +299,7 @@ public class ListEmojiGroups {
             // 8,❤️,"[10084, 65039]",705086,"['0x2764', '0xFE0F']"
             CSVParser csvParser = new CSVParser();
             for (Type type : Type.values()) {
-                for (String id : Arrays.asList("20171031_20171113", "20171115_20171128")) {
+                for (String id : Arrays.asList("20180608_20180621")) { // "20171031_20171113", "20171115_20171128"
                     String filename = type.getFile() + id + ".csv";
                     int offset = 0;
                     for (String line : FileUtilities.in(FREQ_SOURCE + "/emoji_freqs_" + id, filename)) {

@@ -4,42 +4,37 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map.Entry;
 import java.util.Set;
 
 import org.unicode.cldr.util.Counter;
+import org.unicode.cldr.util.Tabber;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.VersionToAge;
 import org.unicode.text.utility.Utility;
-import org.unicode.cldr.util.Tabber;
 import org.unicode.tools.emoji.EmojiData.VariantFactory;
+import org.unicode.tools.emoji.EmojiData.VariantStatus;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 
-import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 
 public class GenerateEmojiKeyboard {
-    private static final VersionInfo V6 = VersionInfo.getInstance(6,0);
-    private static final VersionInfo V61 = VersionInfo.getInstance(6,1);
-    private static final VersionInfo V62 = VersionInfo.getInstance(6,2);
-    private static final VersionInfo V63 = VersionInfo.getInstance(6,3);
-    private static final VersionInfo V7 = VersionInfo.getInstance(7,0);
-    private static final IndexUnicodeProperties IUP7 = IndexUnicodeProperties.make(V7);
+
+    private static final EmojiOrder GEN_ORDER = EmojiOrder.STD_ORDER;
 
     enum Target {csv, propFile, summary}
 
     public static void main(String[] args) throws Exception {
         System.out.println("\t\tSingletons\tCount w/o Skintones\t-Typical Dups\tCount Total\t-Typical Dups");
         if (true) {
-            for (VersionInfo version : Arrays.asList(V6, V61, V7)) {
+            for (VersionInfo version : Arrays.asList(Emoji.VERSION5, Emoji.VERSION11)) {
                 GenerateEmojiKeyboard.getCounts(version, false);
             }
 
@@ -48,8 +43,16 @@ public class GenerateEmojiKeyboard {
             }
         }
         System.out.println();
-        GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, EmojiOrder.STD_ORDER.emojiData.getSortingChars(), Target.propFile, Emoji.DATA_DIR_PRODUCTION);
-        GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, EmojiOrder.STD_ORDER.emojiData.getSortingChars(), Target.csv, Emoji.TR51_INTERNAL_DIR + "keyboard");
+        UnicodeSet sortingChars = GEN_ORDER.emojiData.getSortingChars();
+        if (sortingChars.contains(EmojiData.MODIFIERS.getRangeStart(0))) {
+            System.out.println("has mods");
+        }
+        if (sortingChars.contains(Emoji.HAIR_PIECES.getRangeStart(0))) {
+            System.out.println("has hair");
+        }
+
+        GenerateEmojiKeyboard.showLines(GEN_ORDER, sortingChars, Target.propFile, GenerateEmojiData.OUTPUT_DIR);
+        GenerateEmojiKeyboard.showLines(GEN_ORDER, sortingChars, Target.csv, Emoji.TR51_INTERNAL_DIR + "keyboard");
         //        boolean foo2 = EmojiData.EMOJI_DATA.getChars().contains(EmojiData.SAMPLE_WITHOUT_TRAILING_EVS);
         //        Set<String> foo = EmojiOrder.sort(EmojiOrder.STD_ORDER.codepointCompare, 
         //                EmojiData.EMOJI_DATA.getChars());
@@ -61,13 +64,14 @@ public class GenerateEmojiKeyboard {
         UnicodeSet setToList;
         String date;
         EmojiData emojiData;
+        String versionString = version.getVersionString(2, 2);
         if (!emojiVersion) {
             emojiData = EmojiData.of(Emoji.VERSION2);
             setToList = emojiData.getAllEmojiWithoutDefectives();
             setToList = new UnicodeSet(IndexUnicodeProperties.make(version)
                     .loadEnumSet(UcdProperty.General_Category, UcdPropertyValues.General_Category_Values.Unassigned)).complement()
                     .retainAll(setToList);
-            date = "U" + version.getVersionString(2, 2) + " / " + VersionToAge.ucd.getYear(Age_Values.forName(version.getVersionString(2, 2))) + "";
+            date = "U" + versionString + " / " + VersionToAge.ucd.getYear(Age_Values.forName(versionString)) + "";
             System.out.println("\nUnicode Version Year:\t" + date);
         } else {
             emojiData = EmojiData.of(version);
@@ -75,7 +79,7 @@ public class GenerateEmojiKeyboard {
                 throw new IllegalAccessError();
             }
             setToList = emojiData.getAllEmojiWithoutDefectives();
-            date = "E" + version.getVersionString(2, 2) + " / " + Emoji.EMOJI_TO_DATE.get(version);
+            date = "E" + versionString + " / " + Emoji.EMOJI_TO_DATE.get(version);
             System.out.println("\nEmoji Version Date:\t" + date);
         }
 
@@ -89,7 +93,7 @@ public class GenerateEmojiKeyboard {
                     || emojiData.isTypicallyDuplicateSign(emoji) 
                     || EmojiData.MODIFIERS.contains(emoji);
 
-            MajorGroup majorGroup = EmojiOrder.STD_ORDER.majorGroupings.get(emoji);
+            MajorGroup majorGroup = GEN_ORDER.majorGroupings.get(emoji);
 
             if (isSingleCodePoint(emoji)) {
                 totalSingletons.add(majorGroup, 1);
@@ -174,22 +178,30 @@ public class GenerateEmojiKeyboard {
         Totals totals = new Totals();
 
         int maxField1 = 0;
-        int maxField2 = 10;
         for (String cp : retain) {
             String hcp1 = Utility.hex(cp, " ");
             if (hcp1.length() > maxField1) {
                 maxField1 = hcp1.length();
             }
         }
+        int maxField2 = 0;
+        for (VariantStatus s : VariantStatus.values()) {
+            if (maxField2 < s.name.length()) {
+                maxField2 = s.name.length();
+            }
+        }
         Tabber tabber = new Tabber.MonoTabber()
                 .add(maxField1+1, Tabber.LEFT)
-                .add("non-fully-qualified".length()+3, Tabber.LEFT);
+                .add(maxField2+3, Tabber.LEFT);
         ;
 
+        Counter<VariantStatus> vsCount = new Counter<>();
+        
         for (Entry<String, Set<String>> labelToSet : emojiOrder.orderingToCharacters.keyValuesSet()) {
             final String label = labelToSet.getKey();
             final Set<String> list = labelToSet.getValue();
-            if (list.contains("👮")) {
+            if (list.contains("🏻") 
+                    || list.contains("🦲")) {
                 int debug = 0;
             }
             EmojiOrder.MajorGroup majorGroup = emojiOrder.getMajorGroup(list); // majorGroupings.get(list.iterator().next());
@@ -213,16 +225,19 @@ public class GenerateEmojiKeyboard {
                     } else {
                         out.println(Utility.getBaseDataHeader(filename, 51, "Emoji Keyboard/Display Test Data", Emoji.VERSION_STRING));
                         out.println("# This file provides data for testing which emoji forms should be in keyboards and which should also be displayed/processed.\n"
-                                + "# Format\n"
-                                + "#   Code points; status # emoji name\n"
+                                + "# Format: code points; status # emoji name\n"
+                                + "#     Code points — list of one or more hex code points, separated by spaces\n"
                                 + "#     Status\n"
-                                + "#       fully-qualified — see “Emoji Implementation Notes” in UTS #51\n"
-                                + "#       non-fully-qualified — see “Emoji Implementation Notes” in UTS #51"
+                                + "#       component           — a component of sequences that does not normally appear on keyboards.\n"
+                                + "#       fully-qualified     — in which every character that needs an emoji variant has one.\n"
+                                + "#       partially-qualified — other cases in which the first character has an emoji variant if it needs one.\n"
+                                + "#       non-fully-qualified — other emoji character or sequence"
                                 );
                         out.println("# Notes:\n"
-                                + "#   • This currently omits the 12 keycap bases, the 5 modifier characters, and 26 singleton Regional Indicator characters\n"
+                                + "#   • This includes the emoji components that need emoji presentation (skin tone and hair) when isolated"
+                                + "#     and omits the components that need not have an emoji presentation when isolated.\n"
                                 + "#   • The file is in CLDR order, not codepoint order. This is recommended (but not required!) for keyboard palettes.\n"
-                                + "#   • The groups and subgroups are purely illustrative. See the Emoji Order chart for more information."
+                                + "#   • The groups and subgroups are illustrative. See the Emoji Order chart for more information."
                                 );
                     }
                 }
@@ -245,19 +260,20 @@ public class GenerateEmojiKeyboard {
                 vf.set(cp_raw);
                 for (String cp : vf.getCombinations()) {
                     charactersNotShown.remove(cp);
-                    boolean isFull = vf.getFull().equals(cp);
+                    VariantStatus variantStatus = emojiOrder.emojiData.getVariantStatus(cp);
 
                     switch(target) {
                     case csv:
-                        if (isFull) {
+                        if (variantStatus == VariantStatus.full) {
                             out.println("U+" + Utility.hex(cp,"U+") 
                             + "," + cp 
                             + "," + EmojiData.EMOJI_DATA.getName(cp));
                         }
                         break;
                     case propFile:
-                        out.println(tabber.process(Utility.hex(cp) + "\t; " 
-                                + (isFull ? "fully-qualified" : "non-fully-qualified")
+                        vsCount.add(variantStatus, 1);
+                        out.println(tabber.process(Utility.hex(cp) 
+                                + "\t; " + variantStatus.name
                                 + "\t# " + cp + " " + EmojiData.EMOJI_DATA.getName(cp)));
                         break;
                     }
@@ -277,6 +293,12 @@ public class GenerateEmojiKeyboard {
         }
         if (out != null) {
             totals.show(out, lastMajorGroup);
+            if (vsCount.size() != 0) {
+                out.println("\n# Status Counts");
+                for (VariantStatus vs : VariantStatus.values()) {
+                     out.println("# " + vs.name + " : " + vsCount.get(vs));
+                 }
+             }
             out.println("\n#EOF");
             out.close();
         }

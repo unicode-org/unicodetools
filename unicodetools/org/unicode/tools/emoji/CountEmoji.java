@@ -51,6 +51,7 @@ public class CountEmoji {
         invalid(new Params()),
         verbose(new Params().setHelp("verbose debugging messages")), 
         list(new Params()),
+        major(new Params()),
         ;
 
         // BOILERPLATE TO COPY
@@ -97,8 +98,42 @@ public class CountEmoji {
             listCategories(onlyNew);
             done = true;
         }
+        if (MyOptions.major.option.doesOccur()) {
+            UnicodeSet toDisplay = EmojiData.of(Emoji.VERSION_BETA).getAllEmojiWithoutDefectives();
+            doMajor(toDisplay);
+            done = true;
+
+        }
         if (!done) {
             countNew();
+        }
+    }
+
+    private static void doMajor(UnicodeSet toDisplay) {
+        Counter<MajorGroup> counts = new Counter<>();
+        Counter<String> subgroups = new Counter<>();
+        Set<String> order = new LinkedHashSet<>();
+        UnicodeSet longPress = new UnicodeSet();
+        TreeSet<String> sorted = toDisplay.addAllTo(new TreeSet<String>(EmojiOrder.STD_ORDER.codepointCompare));
+        for (String emoji : sorted) {
+            Category cat = Category.getBucket(emoji);
+            Set<Attribute> attr = cat.getAttributes();
+            if (attr.contains(Attribute.hair) || attr.contains(Attribute.skin)) {
+                longPress.add(emoji);
+                continue;
+            }            
+            String group = EmojiOrder.STD_ORDER.getCategory(emoji);
+            order.add(group);
+            subgroups.add(group, 1);
+            MajorGroup majorGroup = EmojiOrder.STD_ORDER.getMajorGroupFromCategory(group);
+            counts.add(majorGroup, 1);
+        }
+        for (MajorGroup mgroup : MajorGroup.values()) {
+            System.out.println(mgroup.toPlainString() + "\t" + counts.get(mgroup));
+        }
+        for (String subgroup : order) {
+            MajorGroup majorGroup = EmojiOrder.STD_ORDER.getMajorGroupFromCategory(subgroup);
+            System.out.println(majorGroup.toPlainString() + "\t" + subgroup + "\t" + subgroups.get(subgroup));
         }
     }
 
@@ -422,7 +457,7 @@ public class CountEmoji {
                 //                    }
                 //                }
             }
-            if (EmojiData.EMOJI_DATA.isTypicallyDuplicateSign(s)) {
+            if (!s.isEmpty() && EmojiData.EMOJI_DATA.isTypicallyDuplicateSign(s)) {
                 EnumSet<Attribute> attributes2 = EnumSet.of(Attribute.dup);
                 attributes2.addAll(bucket.attributes);
                 bucket = getCategory(attributes2);

@@ -288,7 +288,7 @@ public class EmojiData implements EmojiDataSource {
             }
         }
         modifierSequences.freeze();
-        
+
         if (!oldFormat) {
             // HACK 1F441 200D 1F5E8
             zwjSequencesAll.add(new StringBuilder()
@@ -863,6 +863,45 @@ public class EmojiData implements EmojiDataSource {
 
     private static Pattern EMOJI_VARIANTs = Pattern.compile("[" + Emoji.EMOJI_VARIANT + Emoji.TEXT_VARIANT + "]");
 
+    enum VariantStatus {
+        /** All characters that need them have emoji-variants */
+        full("fully-qualified"), 
+        /** The first character has an emoji-variant, if needed */
+        partial("partially-qualified"),
+        /** Neither full nor partial */
+        other("non-fully-qualified"),
+        /** Neither full nor partial */
+        component("non_keyboard")
+        ;
+        final String name;
+        private VariantStatus(String name) {
+            this.name = name;
+        }
+    }
+    
+    public VariantStatus getVariantStatus(String emoji) {
+        if (getEmojiComponents().contains(emoji)) {
+            if (MODIFIERS.contains(emoji) || Emoji.HAIR_STYLES.contains(emoji)) {
+                return VariantStatus.component;
+            }
+        }
+        if (emoji.equals(addEmojiVariants(emoji))) {
+            return VariantStatus.full;
+        }
+        int first = emoji.codePointAt(0);
+        if (emojiPresentationSet.contains(first)) {
+            return VariantStatus.partial;
+        }
+        int firstCount = Character.charCount(first);
+        if (emoji.length() > firstCount) {
+            int second = emoji.codePointAt(firstCount);
+            if (MODIFIERS.contains(second)) {
+                return VariantStatus.other;
+            }
+        }
+        return VariantStatus.other;
+    }
+
     public class VariantFactory {
         private List<String> parts;
         private String full;
@@ -908,7 +947,7 @@ public class EmojiData implements EmojiDataSource {
                 }
                 result.append(parts.get(item));
                 String itemString = result.toString();
-                if (full == null) {
+                if (full == null) { // the first one has all 1's, ie, all possible cases with emoji variants
                     full = itemString;
                 }
                 combo.add(itemString);
@@ -1177,6 +1216,28 @@ public class EmojiData implements EmojiDataSource {
     }
 
     public static void main(String[] args) {
+
+        {
+            EmojiData e11 = EmojiData.of(Emoji.VERSION11);
+            EmojiData e5 = EmojiData.of(Emoji.VERSION5);
+            UnicodeSet us11 = new UnicodeSet(e11.getAllEmojiWithoutDefectives())
+                    .removeAll(e5.getAllEmojiWithoutDefectives());
+            Set<String> sorted = us11.addAllTo(new TreeSet<>(EmojiOrder.of(Emoji.VERSION11).codepointCompare));
+            int count = 0;
+            for (String s : sorted) {
+                String v = e11.addEmojiVariants(s);
+                System.out.print(v);
+                System.out.println(" " + e11.getName(v));
+                //                if (count++ > 30) {
+                //                    System.out.println();
+                //                    count = 0;
+                //                } else {
+                //                    System.out.print(' ');
+                //                }
+            }
+        }
+        if (true) return;
+
         EmojiData one = EmojiData.of(Emoji.VERSION1);
         UnicodeSet e1 = one.getAllEmojiWithDefectives();
         System.out.println("E1.0: " + e1.toPattern(false));

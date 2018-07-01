@@ -6,6 +6,7 @@ import java.util.Set;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
+import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.UCD.Default;
 
@@ -73,6 +74,15 @@ public class Emoji {
 
     public static void main(String[] args) {
         final IndexUnicodeProperties latest = IndexUnicodeProperties.make(Default.ucdVersion());
+        
+        final UnicodeMap<Binary> emojiComp = latest.loadEnum(UcdProperty.Emoji_Component, Binary.class);
+        final UnicodeMap<String> emojiPres = latest.load(UcdProperty.Emoji_Presentation);
+        for (String s : emojiComp.getSet(Binary.Yes)) {
+            System.out.println(Utility.hex(s) 
+                    + "\t" + "emojiP:" + emojiPres.get(s)
+                    + "\t" + latest.getName(s, " + "));
+        }
+        
         final UnicodeMap<String> generalCategory = latest.load(UcdProperty.General_Category);
         final UnicodeMap<String> age = latest.load(UcdProperty.Age);
         final UnicodeMap<String> name = latest.load(UcdProperty.Name);
@@ -91,5 +101,6 @@ public class Emoji {
                         );
             }
         }
+
     }
 }
