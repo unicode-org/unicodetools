@@ -33,7 +33,7 @@ import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
 public class GenerateEmojiData {
-    public static final String OUTPUT_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "Public/emoji/" + Emoji.VERSION_STRING;
+    public static final String OUTPUT_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "Public/emoji/" + Emoji.VERSION_BETA_STRING;
 
     private static final String ORDERING_NOTE = "#\n"
             + "# Characters and sequences are listed in code point order. Users should be shown a more natural order.\n"
