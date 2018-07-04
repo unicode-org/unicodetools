@@ -867,11 +867,11 @@ public class EmojiData implements EmojiDataSource {
         /** All characters that need them have emoji-variants */
         full("fully-qualified"), 
         /** The first character has an emoji-variant, if needed */
-        partial("partially-qualified"),
+        initial("initially-qualified"),
         /** Neither full nor partial */
         other("non-fully-qualified"),
         /** Neither full nor partial */
-        component("non_keyboard")
+        component("component")
         ;
         final String name;
         private VariantStatus(String name) {
@@ -890,13 +890,13 @@ public class EmojiData implements EmojiDataSource {
         }
         int first = emoji.codePointAt(0);
         if (emojiPresentationSet.contains(first)) {
-            return VariantStatus.partial;
+            return VariantStatus.initial;
         }
         int firstCount = Character.charCount(first);
         if (emoji.length() > firstCount) {
             int second = emoji.codePointAt(firstCount);
             if (MODIFIERS.contains(second)) {
-                return VariantStatus.other;
+                return VariantStatus.initial;
             }
         }
         return VariantStatus.other;

@@ -196,7 +196,7 @@ public class GenerateEmojiKeyboard {
         ;
 
         Counter<VariantStatus> vsCount = new Counter<>();
-        
+
         for (Entry<String, Set<String>> labelToSet : emojiOrder.orderingToCharacters.keyValuesSet()) {
             final String label = labelToSet.getKey();
             final Set<String> list = labelToSet.getValue();
@@ -224,21 +224,26 @@ public class GenerateEmojiKeyboard {
                                 + "#   Hex code points, characters, name");
                     } else {
                         out.println(Utility.getBaseDataHeader(filename, 51, "Emoji Keyboard/Display Test Data", Emoji.VERSION_STRING));
-                        out.println("# This file provides data for testing which emoji forms should be in keyboards and which should also be displayed/processed.\n"
-                                + "# Format: code points; status # emoji name\n"
-                                + "#     Code points — list of one or more hex code points, separated by spaces\n"
-                                + "#     Status\n"
-                                + "#       component           — a component of sequences that does not normally appear on keyboards.\n"
-                                + "#       fully-qualified     — in which every character that needs an emoji variant has one.\n"
-                                + "#       partially-qualified — other cases in which the first character has an emoji variant if it needs one.\n"
-                                + "#       non-fully-qualified — other emoji character or sequence"
-                                );
-                        out.println("# Notes:\n"
-                                + "#   • This includes the emoji components that need emoji presentation (skin tone and hair) when isolated"
-                                + "#     and omits the components that need not have an emoji presentation when isolated.\n"
-                                + "#   • The file is in CLDR order, not codepoint order. This is recommended (but not required!) for keyboard palettes.\n"
-                                + "#   • The groups and subgroups are illustrative. See the Emoji Order chart for more information."
-                                );
+                        out.println(
+                                "# This file provides data for testing which emoji forms should be in keyboards and which should also be displayed/processed.\n"
+                                        + "# Format: code points; status # emoji name\n"
+                                        + "#     Code points — list of one or more hex code points, separated by spaces\n"
+                                        + "#     Status\n"
+                                        + "#       component           — an Emoji that is also an Emoji_Component,\n"
+                                        + "#                             excluding Regional_Indicators.\n"
+                                        + "#       fully-qualified     — a fully-qualified emoji (see ED-18 in UTS #51),\n"
+                                        + "#                             excluding Emoji_Component\n"
+                                        + "#       initially-qualified — an initially-qualified emoji (see ED-18a in UTS #51)\n"
+                                        + "#       non-fully-qualified — a non-fully-qualified emoji (See ED-19 in UTS #51)\n"
+                                        + "# Notes:\n"
+                                        + "#   • This includes the emoji components that need emoji presentation (skin tone and hair)\n"
+                                        + "#     when isolated, but omits the components that need not have an emoji\n"
+                                        + "#     presentation when isolated.\n"
+                                        + "#   • The RGI set is covered by the listed fully-qualified emoji. \n"
+                                        + "#   • The listed initially-qualified and non-fully-qualified cover all cases where an\n"
+                                        + "#     element of the RGI set is missing one or more emoji presentation selectors.\n"
+                                        + "#   • The file is in CLDR order, not codepoint order. This is recommended (but not required!) for keyboard palettes.\n"
+                                        + "#   • The groups and subgroups are illustrative. See the Emoji Order chart for more information.\n");
                     }
                 }
                 if (target == Target.propFile) {
@@ -296,9 +301,9 @@ public class GenerateEmojiKeyboard {
             if (vsCount.size() != 0) {
                 out.println("\n# Status Counts");
                 for (VariantStatus vs : VariantStatus.values()) {
-                     out.println("# " + vs.name + " : " + vsCount.get(vs));
-                 }
-             }
+                    out.println("# " + vs.name + " : " + vsCount.get(vs));
+                }
+            }
             out.println("\n#EOF");
             out.close();
         }

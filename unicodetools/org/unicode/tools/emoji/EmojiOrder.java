@@ -46,7 +46,9 @@ public class EmojiOrder {
     private static final boolean DEBUG = false;
 
     public enum MajorGroup {
-        Smileys_and_People,
+        Smileys,
+        People,
+        Component,
         Animals_and_Nature,
         Food_and_Drink,
         Travel_and_Places,
@@ -55,6 +57,7 @@ public class EmojiOrder {
         Symbols,
         Flags,
         Other;
+        static final MajorGroup Smileys_and_People = Smileys;
         public String toString() {
             throw new ICUException();
             //return name().replace("_and_", " & ").replace('_', ' ');
@@ -64,6 +67,13 @@ public class EmojiOrder {
         };
         public String toHTMLString() {
             return toPlainString().replace("&", "&amp;");
+        }
+        public static MajorGroup fromString(String source) {
+            source = source.trim();
+            if (source.equals("Smileys_and_People")) {
+                return Smileys;
+            }
+            return valueOf(source);
         };
     }
 
@@ -185,9 +195,13 @@ public class EmojiOrder {
 
             if (DEBUG) System.out.println(line);
             if (line.startsWith("@")) {
-                majorGroup = MajorGroup.valueOf(line.substring(1).trim());
+                majorGroup = MajorGroup.fromString(line.substring(1));
                 continue;
             }
+            if (line.contains("hair-style")) {
+                int debug = 0;
+            }
+            
             line = Emoji.getLabelFromLine(lastLabel, line);
             for (String item : lastLabel.value) {
                 if (!_groupOrder.containsKey(item)) {
