@@ -46,8 +46,11 @@ function insert(myField, myValue) {
 <p><a target="help" href="http://cldr.unicode.org/unicode-utilities/bidi"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <p>Shows processing by the UBA (<a target='doc' href='http://unicode.org/reports/tr9/'>Unicode Bidi Algorithm</a>), which is used to display all Unicode Arabic and Hebrew text.
 For more information, see <a target='doc' href='http://cldr.unicode.org/unicode-utilities/bidi'>bidi info</a>.</p>
-<p><b><i>Not yet updated for the changes in 
-<a href="http://unicode-inc.blogspot.ch/2013/09/announcing-unicode-standard-version-63.html">Unicode 6.3</a>!</i></b></p>
+<p><i>This Java implementation supports UBA rules and character properties as of
+  <a href="http://blog.unicode.org/2012/09/announcing-unicode-standard-version-62.html">Unicode 6.2</a>.
+  To test current UBA rules, or intermediate versions from
+  <a href="http://blog.unicode.org/2013/09/announcing-unicode-standard-version-63.html">Unicode 6.3</a>
+  forward, see the <a href="bidic.jsp">C Reference</a> demo.</i></p>
 <form name="myform">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">
     <tr>
