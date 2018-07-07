@@ -8,5 +8,6 @@
    | <a target="breaks" href="breaks.jsp">breaks</a>
    | <a target="transform" href="transform.jsp">transform</a>
    | <a target="bidi" href="bidi.jsp">bidi</a>
+   | <a target="bidic" href="bidic.jsp">bidi-c</a>
    | <a target="idna" href="idna.jsp">idna</a>
    | <a target="languageid" href="languageid.jsp">languageid</a>
