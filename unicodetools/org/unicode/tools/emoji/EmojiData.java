@@ -22,6 +22,7 @@ import org.unicode.cldr.tool.GenerateBirth;
 import org.unicode.cldr.util.Annotations;
 import org.unicode.cldr.util.Annotations.AnnotationSet;
 import org.unicode.cldr.util.CldrUtility;
+import org.unicode.cldr.util.With;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -35,11 +36,14 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.CountEmoji.Category;
 import org.unicode.tools.emoji.Emoji.Qualified;
+import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
+import com.google.common.collect.ImmutableSetMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.SortedSetMultimap;
 import com.google.common.collect.TreeMultimap;
@@ -50,6 +54,9 @@ import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSet.SpanCondition;
+import com.ibm.icu.text.UnicodeSetSpanner;
+import com.ibm.icu.text.UnicodeSetSpanner.CountMethod;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
@@ -104,6 +111,11 @@ public class EmojiData implements EmojiDataSource {
     private final UnicodeSet emojiWithVariants = new UnicodeSet();
     private final UnicodeSet extendedPictographic = new UnicodeSet();
     private final UnicodeSet extendedPictographic1 = new UnicodeSet();
+    private Multimap<String,String> maleToOther;
+    private Multimap<String,String> femaleToOther;
+    private UnicodeSet otherHuman;
+    private UnicodeSet genderBase;
+    private UnicodeMap<String> toNeutral;
 
     public static final Splitter semi = Splitter.onPattern("[;#]").trimResults();
     public static final Splitter semiOnly = Splitter.onPattern(";").trimResults();
@@ -549,6 +561,8 @@ public class EmojiData implements EmojiDataSource {
                 .addAll(MODIFIERS)
                 .freeze();
 
+        fixMaleFemale();
+
         allEmojiWithoutDefectivesOrModifiers = new UnicodeSet();
         for (String s : allEmojiWithoutDefectives) {
             if (MODIFIERS.contains(s) || !MODIFIERS.containsSome(s)) {
@@ -569,6 +583,69 @@ public class EmojiData implements EmojiDataSource {
         extendedPictographic.addAll(singletonsWithDefectives)
         .removeAll(emojiComponents)
         .freeze();
+    }
+
+    private void fixMaleFemale() {
+        maleToOther = TreeMultimap.create();
+        femaleToOther = TreeMultimap.create();
+        otherHuman = new UnicodeSet();
+        //        UnicodeMap<String> fromMan = new UnicodeMap<String>()
+        //        .put(0x2642, UTF16.valueOf(0x2640)) // MALE SIGN→FEMALE SIGN
+        //        .put(0x1F466, UTF16.valueOf(0x1F467)) // boy→girl
+        //        .put(0x1F468, UTF16.valueOf(0x1F469)) // man→woman
+        //        .freeze();
+        //        
+        //        UnicodeMap<String> fromWoman = new UnicodeMap<String>()
+        //        .put(0x2640,UTF16.valueOf(0x2642)) // FEMALE SIGN→MALE SIGN
+        //        .put(0x1F467, UTF16.valueOf(0x1F466)) // girl→boy
+        //        .put(0x1F469, UTF16.valueOf(0x1F468)) // woman→man
+        //        .freeze();
+
+        for (String emoji : allEmojiWithoutDefectives) {
+            if (emoji.contains("\u26F7")) {
+                int debug = 0;
+            }
+            if (Emoji.NEUTRAL.containsSome(emoji)) {
+                otherHuman.add(emoji);
+            }
+            String other = Emoji.MALE_TO_OTHER.transform(emoji);
+            if (!emoji.equals(other)
+                    && allEmojiWithoutDefectives.contains(other)) {
+                maleToOther.put(emoji, other);
+            }
+            other = Emoji.FEMALE_TO_OTHER.transform(emoji);
+            if (!emoji.equals(other)
+                    && allEmojiWithoutDefectives.contains(other)) {
+                femaleToOther.put(emoji, other);
+            }
+        }
+        maleToOther = ImmutableMultimap.copyOf(maleToOther);
+        femaleToOther = ImmutableMultimap.copyOf(femaleToOther);
+        otherHuman.removeAll(maleToOther.keySet()).removeAll(femaleToOther.keySet()).freeze();
+
+        //UnicodeSetSpanner otherHumanSpanner = new UnicodeSetSpanner(otherHuman);
+        this.genderBase = new UnicodeSet();
+        toNeutral = new UnicodeMap<>();
+        for (String emoji : allEmojiWithoutDefectives) {
+            if (Emoji.GENDER_MARKERS.containsSome(emoji)) {
+                int first = emoji.codePointAt(0);
+                if (!Emoji.GENDER_MARKERS.contains(first)) {
+                    genderBase.add(first);
+                }
+            }
+            if (emoji.contains("👮")) {
+                int debug = 0;
+            }
+            String neutered = Emoji.TO_NEUTRAL.transform(emoji)
+                    .replace(Emoji.JOINER + Emoji.FEMALE + Emoji.EMOJI_VARIANT, "")
+                    .replace(Emoji.JOINER + Emoji.MALE + Emoji.EMOJI_VARIANT, "");
+
+            if (!neutered.equals(emoji)) {
+                toNeutral.put(emoji, neutered);
+            }
+        }
+        toNeutral.freeze();
+        genderBase.freeze();
     }
 
     private String typeName(String modSeq) {
@@ -878,7 +955,7 @@ public class EmojiData implements EmojiDataSource {
             this.name = name;
         }
     }
-    
+
     public VariantStatus getVariantStatus(String emoji) {
         if (getEmojiComponents().contains(emoji)) {
             if (MODIFIERS.contains(emoji) || Emoji.HAIR_STYLES.contains(emoji)) {
@@ -1216,7 +1293,63 @@ public class EmojiData implements EmojiDataSource {
     }
 
     public static void main(String[] args) {
+        EmojiData e11a = EmojiData.of(Emoji.VERSION11);
+        for (Entry<String, Collection<String>> entry : e11a.maleToOther.asMap().entrySet()) {
+            System.out.println("M2F\t" + entry.getKey() + "\t" + entry.getValue());
+        }
+        for (Entry<String, Collection<String>> entry : e11a.femaleToOther.asMap().entrySet()) {
+            System.out.println("F2M\t" + entry.getKey() + "\t" + entry.getValue());
+        }
+        System.out.println("otherHuman:\t" + e11a.otherHuman.toPattern(false));
+        System.out.println("otherHuman-mods:\t" + new UnicodeSet(e11a.allEmojiWithoutDefectivesOrModifiers).retainAll(e11a.otherHuman).toPattern(false));
 
+        UnicodeSet explicitGendered = new UnicodeSet()
+                .addAll(e11a.maleToOther.keySet())
+                .addAll(e11a.femaleToOther.keySet())
+                .freeze();
+
+        UnicodeSet gendered = new UnicodeSet()
+                .addAll(e11a.maleToOther.keySet())
+                .addAll(e11a.femaleToOther.keySet())
+                .addAll(e11a.otherHuman)
+                .freeze();
+        UnicodeSet people = new UnicodeSet()
+                .addAll(EmojiOrder.BETA_ORDER.majorGroupings.getSet(MajorGroup.People))
+                .removeAll(EmojiOrder.BETA_ORDER.charactersToOrdering.getSet("body"))
+                .removeAll(EmojiOrder.BETA_ORDER.charactersToOrdering.getSet("emotion"))
+                .removeAll(EmojiOrder.BETA_ORDER.charactersToOrdering.getSet("clothing"))
+                .retainAll(e11a.allEmojiWithoutDefectives)
+                .freeze();
+        diff2("gendered", gendered, "people", people);
+
+        System.out.println("genderBase:\t" + e11a.getGenderBase().size() + "\t" + e11a.getGenderBase().toPattern(false));
+
+        diff2("otherHuman", new UnicodeSet(e11a.otherHuman).removeAll(e11a.otherHuman.strings()), "genderBase", e11a.getGenderBase());
+
+        UnicodeSet explicitNeutral = new UnicodeSet("[👶🧒🧑🧓👼🗣👤👥]").freeze();
+        UnicodeSet group = new UnicodeSet("[👫👬👭💏💑👪]").freeze();
+        UnicodeSet explicitGender = new UnicodeSet(explicitGendered)
+                .removeAll(explicitGendered.strings())
+                .removeAll(group);
+
+        show("genderBase", e11a.getGenderBase());
+        show("explicitGender", explicitGender);
+        show("explicitNeutral", explicitNeutral);
+        show("group", group);
+        show("otherHuman", new UnicodeSet(e11a.otherHuman)
+                .removeAll(e11a.otherHuman.strings())
+                .removeAll(e11a.getGenderBase())
+                .removeAll(group)
+                .removeAll(explicitNeutral)
+                .removeAll(explicitGender)
+                );
+        //diff2("genderBase", e11a.getGenderBase(), "Emoji.GENDER_BASE", Emoji.GENDER_BASE);
+
+        show("neutrals", new UnicodeSet().addAll(e11a.toNeutral.values()));
+
+        if (true) {
+            return;
+        }
         {
             EmojiData e11 = EmojiData.of(Emoji.VERSION11);
             EmojiData e5 = EmojiData.of(Emoji.VERSION5);
@@ -1403,6 +1536,39 @@ public class EmojiData implements EmojiDataSource {
         System.out.println("KeycapE " + betaData.getSortingChars().contains("0" + Emoji.EMOJI_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
         System.out.println("KeycapT " + betaData.getSortingChars().contains("0" + Emoji.TEXT_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
     }
+
+    private static void show(String title, UnicodeSet uset) {
+        for (String emoji : uset.addAllTo(new TreeSet<>(EmojiOrder.BETA_ORDER.codepointCompare))) {
+            String name;
+            try {
+                name = EmojiData.EMOJI_DATA.getName(emoji);
+            } catch (Exception e) {
+                StringBuilder nameBuffer = new StringBuilder();
+                for (int cp : With.codePointArray(emoji)) {
+                    if (!MODIFIERS.contains(cp) && EmojiData.EMOJI_DATA.emojiComponents.contains(cp)) {
+                        continue;
+                    }
+                    if (nameBuffer.length() != 0) {
+                        nameBuffer.append(" & ");
+                    }
+                    nameBuffer.append(EmojiData.EMOJI_DATA.getName(cp));
+                }
+                name = nameBuffer.toString();
+            }
+            System.out.println(title + "\t\\x{" + Utility.hex(emoji,1," ") + "}\t" + emoji + "\t" + name);
+        }
+    }
+
+    private static void diff(String title1, UnicodeSet set1, String title2, UnicodeSet set2) {
+        UnicodeSet uset = new UnicodeSet(set1).removeAll(set2);
+        System.out.println(title1+" - " + title2 + "\t" + uset.size() + "\t" + uset.toPattern(false));
+    }
+
+    private static void diff2(String title1, UnicodeSet set1, String title2, UnicodeSet set2) {
+        diff(title1, set1, title2, set2);
+        diff(title2, set2, title1, set1);
+    }
+
 
     private static void checkYears() {
         UnicodeMap<Integer> yearData = getYears();
@@ -1635,5 +1801,9 @@ public class EmojiData implements EmojiDataSource {
             noMods.add(EMOJI_DATA.addEmojiVariants(s));
         }
         return noMods;
+    }
+
+    public UnicodeSet getGenderBase() {
+        return genderBase;
     }
 }

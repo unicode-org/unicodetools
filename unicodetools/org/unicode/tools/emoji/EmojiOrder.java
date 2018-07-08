@@ -239,7 +239,7 @@ public class EmojiOrder {
                 //                }
 
                 // We have a hack for blond person, and add them explicity.
-                if (Emoji.GENDER_BASE.contains(string) && !string.equals("👱")) {
+                if (emojiData.getGenderBase().contains(string) && !string.equals("👱")) {
                     addVariants(result, sorted, majorGroup, lastLabel, string + "\u200d\u2642"); 
                     addVariants(result, sorted, majorGroup, lastLabel, string + "\u200d\u2640"); 
                 }
