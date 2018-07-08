@@ -29,7 +29,9 @@ import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Multimap;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
@@ -172,8 +174,9 @@ public class Emoji {
     public static final char TEXT_VARIANT = '\uFE0E';
 
     // HACK
-    static final UnicodeSet GENDER_BASE = new UnicodeSet("[👯💂👳👱⛹🏃🏄🏊-🏌👮👷💁💆💇🕵🙅-🙇🙋🙍🙎🚣 🚴-🚶🤹 \\U0001F926\\U0001F937\\U0001F938\\U0001F93C-\\U0001F93E]")
-            .freeze();
+//    static final UnicodeSet GENDER_BASE = new UnicodeSet("[👯💂👳👱⛹🏃🏄🏊-🏌👮👷💁💆💇🕵🙅-🙇🙋🙍🙎🚣 🚴-🚶🤹 \\U0001F926\\U0001F937\\U0001F938\\U0001F93C-\\U0001F93E]")
+//            .freeze();
+
     static final UnicodeSet PROFESSION_OBJECT = new UnicodeSet("[⚕🌾🍳🎓🎤🏫🏭💻💼🔧🔬🎨 🚒 ✈ 🚀 ⚖]")
             .freeze();
     static final UnicodeSet HAIR_STYLES = new UnicodeSet("[\\U0001F9B0-\\U0001F9B3]")
@@ -187,6 +190,58 @@ public class Emoji {
         }
         HAIR_STYLES_WITH_JOINERS.freeze();
     }
+    public static final String FEMALE = "\u2640";
+    public static final String MALE = "\u2642";
+
+    static final UnicodeMap<String> TO_NEUTRAL = new UnicodeMap<String>()
+            .put("👦", "🧒")
+            .put("👧", "🧒")
+            .put("👨", "🧑")
+            .put("👩", "🧑")
+            .put("👴", "🧓")
+            .put("👵", "🧓")
+            .put("🤴", "🧑\u200D👑")
+            .put("👸", "🧑\u200D👑")
+            .put("🎅", "🧑\u200D🎄")
+            .put("🤶", "🧑\u200D🎄")
+            .put("💃", "🧑\u200D🎶")
+            .put("🕺", "🧑\u200D🎶")
+            .put("👫", "🧑\u200D🧑")
+            .put("👬", "🧑\u200D🧑")
+            .put("👭", "🧑\u200D🧑")
+            .freeze();
+
+    static final UnicodeMap<String> MALE_TO_OTHER = new UnicodeMap<String>()
+            .put(UTF16.valueOf(0x2642), UTF16.valueOf(0x2640)) // MALE SIGN→FEMALE SIGN
+            .put(UTF16.valueOf(0x1F466), UTF16.valueOf(0x1F467)) // boy→girl
+            .put(UTF16.valueOf(0x1F468), UTF16.valueOf(0x1F469)) // man→woman
+            .put(UTF16.valueOf(0x1F474), UTF16.valueOf(0x1F475)) // old man→old woman
+            .put(UTF16.valueOf(0x1F385), UTF16.valueOf(0x1F936)) // Santa Claus→Mrs. Claus
+            .put(UTF16.valueOf(0x1F934), UTF16.valueOf(0x1F478)) // prince→princess
+            .put(UTF16.valueOf(0x1F57A), UTF16.valueOf(0x1F483)) // man dancing→woman dancing
+//            .put(UTF16.valueOf(0x1F46C), UTF16.valueOf(0x1F46B)) // two men holding hands→man and woman holding hands
+//            .put(UTF16.valueOf(0x1F46C), UTF16.valueOf(0x1F46D)) // two men holding hands→two women holding hands
+//            .put(UTF16.valueOf(0x1F935), "") // man in tuxedo→<NONE>
+//            .put(UTF16.valueOf(0x1F574), "") // man in suit levitating→<NONE>
+//            .put(UTF16.valueOf(0x1F472), "") // man with Chinese cap→<NONE>
+//            .put(UTF16.valueOf(0x1F9D4), "") // BEARDED PERSON→<NONE>
+            .freeze();
+    static final UnicodeMap<String> FEMALE_TO_OTHER = new UnicodeMap<String>()
+            .put(UTF16.valueOf(0x2640),UTF16.valueOf(0x2642)) // FEMALE SIGN→MALE SIGN
+            .put(UTF16.valueOf(0x1F467), UTF16.valueOf(0x1F466)) // girl→boy
+            .put(UTF16.valueOf(0x1F469), UTF16.valueOf(0x1F468)) // woman→man
+            .put(UTF16.valueOf(0x1F475), UTF16.valueOf(0x1F474)) // old woman→old man
+            .put(UTF16.valueOf(0x1F936), UTF16.valueOf(0x1F385)) // Mrs. Claus→Santa Claus
+            .put(UTF16.valueOf(0x1F478), UTF16.valueOf(0x1F934)) // princess→prince
+            .put(UTF16.valueOf(0x1F483), UTF16.valueOf(0x1F57A)) // woman dancing→man dancing
+//            .put(UTF16.valueOf(0x1F46D), UTF16.valueOf(0x1F46C)) // two women holding hands→two men holding hands
+//            .put(UTF16.valueOf(0x1F46D), UTF16.valueOf(0x1F46B)) // two women holding hands→man and woman holding hands
+//            .put(UTF16.valueOf(0x1F470), "") // bride with veil→<NONE>
+//            .put(UTF16.valueOf(0x1F930), "") // pregnant woman→<NONE>
+//            .put(UTF16.valueOf(0x1F931), "") // breast-feeding→<NONE>
+//            .put(UTF16.valueOf(0x1F9D5), "") // woman with headscarf→<NONE>
+            .freeze();
+    static final UnicodeSet NEUTRAL = new UnicodeSet("[⛷⛹🏂-🏄🏇🏊-🏎👤👥👪-👳👶👷👼💁💂💆💇💏💑🕴🕵🗣🙅-🙇🙋🙍🙎🚣🚴-🚶🛀🛌🤦🤰🤱🤵🤷-🤾🦸🦹🧑-🧟]");
 
     public enum Source {
         // also used for accessing pngs; order is important
@@ -417,8 +472,6 @@ public class Emoji {
             .freeze();
 
     //public static final String PERSON = "\u263F";
-    public static final String FEMALE = "\u2640";
-    public static final String MALE = "\u2642";
 
     public static final int BOY = 0x1F466;
     public static final int GIRL = 0x1F467;
