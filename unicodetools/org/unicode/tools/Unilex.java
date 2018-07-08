@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -23,6 +24,7 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.utility.Utility;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSetMultimap;
@@ -36,6 +38,7 @@ import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Normalizer2;
+import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.ULocale;
@@ -49,9 +52,9 @@ public class Unilex {
     private static final Long ZERO = new Long(0);
     private static final Long ONE = new Long(1);
     private static Normalizer2 NFC = Normalizer2.getNFCInstance();
-    
+
     public static String cleanTerm(String source) {
-        return source.replace("'", "’").replace("‘", "’");
+        return source.replace('\'', '’').replace('‘', '’').replace('´', '’');
     }
 
     // TODO clean IPA də.ˈˈpɥi => dəˈpɥi, etc.
@@ -83,6 +86,8 @@ public class Unilex {
             value2keys = ImmutableSetMultimap.copyOf(inverted);
         }
         public static Frequency create(String locale) {
+            locale = locale.replace("-fonxsamp","");
+
             Map<String,Long> temp = new TreeMap<>();
             processFields(DATADIR + "frequency", locale+".txt", parts -> {
                 if (parts.size() != 2) {
@@ -95,8 +100,11 @@ public class Unilex {
         }
     }
 
+    static final Transliterator XSampa_IPA = Transliterator.getInstance("XSampa-IPA");
+
     public static class Pronunciation {
         private final Map<String,String> data;
+        private final Map<String,String> rawToIpa;
         private final Multimap<String, String> value2keys;
 
         public int size() {
@@ -115,28 +123,49 @@ public class Unilex {
             return (Set<String>) value2keys.get(value);
         }
 
-        private Pronunciation(Map<String,String> data) {
+        private Pronunciation(Map<String,String> data, Map<String,String> rawToIpa) {
             this.data = data;
+            this.rawToIpa = rawToIpa;
+            
             TreeMultimap<String, String> inverted = Multimaps.invertFrom(Multimaps.forMap(data), TreeMultimap.<String,String>create());
             value2keys = ImmutableSetMultimap.copyOf(inverted);
         }
         public static Pronunciation create(String locale) {
             Map<String,String> temp = new TreeMap<>();
+            Map<String,String> _rawToIpa = new TreeMap<>();
+            boolean isXsampa = locale.contains("fonxsamp");
             processFields(DATADIR + "pronunciation", locale+".txt", parts -> {
-                if (parts.size() != 2) {
+                String source = cleanTerm(parts.get(0));
+                switch(parts.size()) {
+                case 2:
+                    String target = parts.get(1);
+                    _rawToIpa.put(source, target);
+                    if (isXsampa) {
+                        target = XSampa_IPA.transform(target
+                                .replace('\'', 'ˈ')
+                                .replace('-', '.')
+                                .replace(',', 'ˌ')
+                                );
+                    }
+                    target = target.replace(".ˈ", "ˈ").replace(".ˌ", "ˌ");
+                    temp.put(source, target);
+                    break;
+                case 0:
+                case 1:
+                    break;
+                default:
                     throw new IllegalArgumentException("Wrong number of items: " + parts);
                 }
-                temp.put(cleanTerm(parts.get(0)), parts.get(1));
             }
                     );
-            return new Pronunciation(ImmutableMap.copyOf(temp));
+            return new Pronunciation(ImmutableMap.copyOf(temp), ImmutableMap.copyOf(_rawToIpa));
         }
     }
 
     private static <T> void processFields(String directory, String file, Consumer<List<String>> processor) {
         boolean firstNonEmpty = true;
         for (String line : FileUtilities.in(directory, file)) {
-            if (line.isEmpty() || line.startsWith("# ")) {
+            if (line.isEmpty() || line.startsWith("#")) {
                 continue;
             }
             if (firstNonEmpty) {
@@ -149,11 +178,49 @@ public class Unilex {
     }
 
     public static void main(String[] args) {
-        getData("de");
+        Pronunciation xsamp = getData("de-fonxsamp");
+        Pronunciation plain = getData("de");
+        
+        Set<String> combined = new LinkedHashSet<>(xsamp.data.keySet());
+        combined.addAll(plain.keySet());
+        Set<String> extra = new LinkedHashSet<>();
+        for (String key : combined) {
+            String xsampValue = xsamp.get(key);
+            String plainValue = plain.get(key);
+            if (Objects.equal(xsampValue, plainValue)) {
+                continue;
+            }
+            String plainValue2 = plainValue == null ? null : plainValue
+            .replace("ɐ̯", "ɐ")
+            .replace("ʊ̯", "ʊ")
+            .replace("ʏ̯", "ʏ")
+            .replace("ɪ̯", "ɪ")
+            //.replace("ʊ̯̯", "ʊ")
+            .replace("t͡s", "ts")
+            .replace("t͡ʃ", "tʃ")
+            .replace("p͡f", "pf")
+            // 
+            ;
+            if (plainValue != null && !plainValue2.contains("ˈ")) {
+                plainValue2 = "ˈ" + plainValue2;
+            }
+            if (Objects.equal(xsampValue, plainValue2)) {
+                continue;
+            }
+            if (plainValue == null) {
+                extra.add(key + "\t" + xsampValue);
+            } else {
+                System.out.println(key + "\t" + xsampValue + "\t" + plainValue2);
+            }
+        }
+        int i = 0;
+        for (String s : extra) {
+            System.out.println(++i + "\t" + s);
+        }
         getData("fr");
     }
 
-    private static void getData(String locale) {
+    private static Pronunciation getData(String locale) {
         Collator collator = Collator.getInstance(ULocale.forLanguageTag(locale));
         Pronunciation dep = Pronunciation.create(locale);
         Frequency def = Frequency.create(locale);
@@ -227,6 +294,7 @@ public class Unilex {
         } catch (IOException e) {
             throw new ICUUncheckedIOException(e);
         }
+        return dep;
     }
 
     private static Set<String> reduceCase(Set<String> set) {
@@ -324,15 +392,15 @@ public class Unilex {
         private transient StringBuilder termCoda = new StringBuilder();
 
         private final Comparator<String> collator;
-        
+
         public GraphemeCount(Comparator collator) {
             this.collator = (Comparator<String>) collator;
         }
 
         void add(Long frequency, String source, boolean toLower, String... samples) {
-//            if (frequency.equals(ZERO)) {
-//                frequency = ONE;
-//            }
+            //            if (frequency.equals(ZERO)) {
+            //                frequency = ONE;
+            //            }
             String sampleString = sampleString(source, samples);
 
             graphemeList.fill(toLower ? UCharacter.toLowerCase(source) : source);
