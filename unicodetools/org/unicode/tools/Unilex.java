@@ -24,6 +24,7 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.utility.Utility;
 
+import com.google.common.base.CharMatcher;
 import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMap;
@@ -40,7 +41,12 @@ import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.BytesTrie.Result;
+import com.ibm.icu.util.CharsTrie;
+import com.ibm.icu.util.CharsTrieBuilder;
 import com.ibm.icu.util.ICUUncheckedIOException;
+import com.ibm.icu.util.StringTrieBuilder;
+import com.ibm.icu.util.StringTrieBuilder.Option;
 import com.ibm.icu.util.ULocale;
 
 public class Unilex {
@@ -254,6 +260,9 @@ public class Unilex {
                     ++i;
                 }
             }
+            
+            out.println("\n#1a. Odd syllable breaks");
+
             pronGraphemes.print(out, 2, "Pronunciation Graphemes");
 
             //termGraphemes.print(out, 3, "Pronunciation Term Graphemes");
@@ -283,6 +292,11 @@ public class Unilex {
                 lines.add(0 + "\t" + fkey + "\t" + p);
                 i++;
             }
+            
+            CharsTrie onsetCharTrie = freqGraphemes.termOnsets.computeStringTrie();
+            CharsTrie codaCharTrie = freqGraphemes.termCodas.computeStringTrie();
+            
+            check("ʃta", onsetCharTrie, codaCharTrie);
 
             freqGraphemes.print(out, 3, "Term Graphemes");
 
@@ -375,7 +389,48 @@ public class Unilex {
                 sampleMap.put(string, sampleString);
             }
         }
+        
+        public CharsTrie computeStringTrie() {
+            CharsTrieBuilder b = new CharsTrieBuilder();
+            int item = 0;
+            for (String key : targetMap.getMap().keySet()) {
+                b.add(key, item++);
+            }
+            return b.build(Option.FAST);
+        }
     }
+    
+    static final Splitter SYLLABLE_SPLITTER = Splitter.on(CharMatcher.anyOf(".")).omitEmptyStrings().trimResults();
+    
+    static boolean check(String source, CharsTrie onset, CharsTrie coda) {
+/*
+Result result=current();
+for(each c in s)
+if(!result.hasNext()) return Result.NO_MATCH;
+result=next(c);
+return result;
+*/
+        for (String part : SYLLABLE_SPLITTER.split(source)) {
+            int sLimit = part.length();
+            Result result = onset.current();
+            int start = 0;
+            for (; start < sLimit; ++start) {
+                if (!result.hasNext()) {
+                    break;
+                }
+                char ch = part.charAt(start);
+                result=onset.next(ch);
+            }
+            System.out.println("onset: " + result + ", " + start);
+            switch (result) {
+            case FINAL_VALUE:
+            case INTERMEDIATE_VALUE:
+                System.out.println("value: " + onset.getValue());
+            }
+        }
+        return true;
+    }
+
 
     static public final class GraphemeCount {
         FrequencyAndSamples source = new FrequencyAndSamples();
@@ -396,7 +451,7 @@ public class Unilex {
         public GraphemeCount(Comparator collator) {
             this.collator = (Comparator<String>) collator;
         }
-
+        
         void add(Long frequency, String source, boolean toLower, String... samples) {
             //            if (frequency.equals(ZERO)) {
             //                frequency = ONE;
@@ -439,7 +494,7 @@ public class Unilex {
                 termRimes.add(clean(termRime), frequency, sampleString);
             }
         }
-
+        
         private String clean(CharSequence source) {
             return source.toString().replace("ˈ","").replace(".","");
         }

@@ -1,14 +1,16 @@
 package org.unicode.tools.emoji;
 
+import java.util.Map.Entry;
+
 import com.ibm.icu.impl.Row.R2;
 
 public class GenerateEmojiFrequency {
     public static void main(String[] args) {
         EmojiOrder order = EmojiOrder.of(Emoji.VERSION_LAST_RELEASED);
 
-        for (R2<Long, String> entry : ListEmojiGroups.EmojiTracker.counts.getEntrySetSortedByCount(false, null)) {
-            long count = entry.get0();
-            String str = entry.get1();
+        for (Entry<String, Long> entry : ListEmojiGroups.EmojiTracker.countInfo.keyToCount.entrySet()) {
+            long count = entry.getValue();
+            String str = entry.getKey();
 
             String category = order.getCategory(str);
 
