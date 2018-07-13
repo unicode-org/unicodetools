@@ -1,5 +1,6 @@
 package org.unicode.text.tools;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
@@ -10,6 +11,7 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import org.unicode.tools.emoji.EmojiData;
@@ -22,10 +24,18 @@ import com.ibm.icu.text.UnicodeSetIterator;
 
 
 public class StringTree {
-    static final Transliterator SHOW = Transliterator.createFromRules("foo", "([[:c:][:z:][:di:]-[\\ \\x0A]]) > &hex($1);", Transliterator.FORWARD);
+    static final Transliterator SHOW = Transliterator.createFromRules("foo", "([[:c:][:z:][:di:][:M:]-[\\ \\x0A]]) > &hex($1);", Transliterator.FORWARD);
 
-    abstract static class CPNode<T extends CPNode<T>> implements Iterable<EntryRange<T>> {
-        static final int NO_VALUE = Integer.MIN_VALUE;
+    public abstract static class CPNode<T extends CPNode<T>> implements Iterable<EntryRange<T>> {
+        public static final int NO_VALUE = Integer.MIN_VALUE;
+        /** Not complete comparator !! **/
+        public static final Comparator<CPNode> DEPTH_FIRST = new Comparator<CPNode>() {
+            @Override
+            public int compare(CPNode o1, CPNode o2) {
+                return o1.depth() - o2.depth();
+            }
+        };
+
         abstract public int getValue();
         public boolean hasValue() {
             return getValue() != NO_VALUE;
@@ -34,7 +44,10 @@ public class StringTree {
         abstract public int childCount();
         abstract public Iterator<EntryRange<T>> iterator();
         abstract public Set<T> values();
-        abstract public UnicodeSet set(T value);
+        abstract public UnicodeSet getSet(T value);
+        abstract public T get(int cp);
+        abstract public int depth();
+
         @Override
         public String toString() {
             StringBuilder result = new StringBuilder();
@@ -62,6 +75,7 @@ public class StringTree {
                 }
             }        
         }
+        public abstract UnicodeSet keySet();
     }
 
     static final Comparator<CPNode> CPNODE_COMPARATOR = new Comparator<CPNode>() {
@@ -71,7 +85,7 @@ public class StringTree {
                 return 0;
             }
             int diff;
-            
+
             if (0 != (diff = o1.getValue() - o2.getValue())) {
                 return diff;
             }
@@ -103,7 +117,7 @@ public class StringTree {
             return 0;
         }
     };
-    
+
     static class CpWrapper {
         final public CPNode item;
         public CpWrapper(CPNode item) {
@@ -113,7 +127,7 @@ public class StringTree {
         public boolean equals(Object obj) {
             return equal(item, ((CpWrapper)obj).item);
         }
-        
+
         @Override
         public int hashCode() {
             return item.childCount() * 37 ^ item.getValue();
@@ -133,19 +147,24 @@ public class StringTree {
             if (childCount1 == 0) {
                 return true;
             }
-            for (Iterator<EntryRange<CPNode>> it1 = o1.iterator(), it2 = o2.iterator();
-                    it1.hasNext();) {
-                EntryRange<CPNode> range1 = it1.next(), range2 = it2.next();
-                if (range1.codepoint != range2.codepoint 
-                        || range2.codepointEnd != range1.codepointEnd 
-                        || !equal(range1.value, range2.value)) {
-                    return false;
+            // slow path for now
+            UnicodeSet set1 = o1.keySet();
+            UnicodeSet set2 = o2.keySet();
+            if (!set1.equals(set2)) {
+                return false;
+            }
+            for (UnicodeSetIterator range1 = new UnicodeSetIterator(set1); range1.next();) {
+                CPNode value1 = o1.get(range1.codepoint);
+                for (int cp = range1.codepoint; cp <= range1.codepointEnd; ++cp) {
+                    if (!equal(value1, o2.get(cp))) {
+                        return false;
+                    }
                 }
             }
             return true;
         }
     }
-    
+
     static class ImmutableCPNode extends CPNode<ImmutableCPNode> {
         static final UnicodeMap<ImmutableCPNode> EMPTY = new UnicodeMap<ImmutableCPNode>().freeze();
         final int stringValue;
@@ -160,7 +179,7 @@ public class StringTree {
         public static ImmutableCPNode copy(CPNodeBuilder source) {
             return copy(source, new HashMap<CpWrapper,ImmutableCPNode>());
         }
-        
+
         public static ImmutableCPNode copy(CPNodeBuilder source, Map<CpWrapper, ImmutableCPNode> cache) {
             // need special map
             CpWrapper wrapped = new CpWrapper(source);
@@ -209,8 +228,32 @@ public class StringTree {
         }
 
         @Override
-        public UnicodeSet set(ImmutableCPNode value) {
+        public UnicodeSet getSet(ImmutableCPNode value) {
             return data.getSet(value);
+        }
+
+        @Override
+        public int depth() {
+            if (childless()) {
+                return 1;
+            }
+            int childMax = 0;
+            for (ImmutableCPNode value : values()) {
+                int curDepth = value.depth();
+                if (childMax < curDepth) {
+                    childMax = curDepth;
+                }
+            }
+            return 1 + childMax;
+        }
+
+        @Override
+        public UnicodeSet keySet() {
+            return data.keySet();
+        }
+        @Override
+        public ImmutableCPNode get(int cp) {
+            return data.get(cp);
         }
 
     }
@@ -283,14 +326,38 @@ public class StringTree {
         }
 
         @Override
-        public UnicodeSet set(CPNodeBuilder value) {
+        public UnicodeSet getSet(CPNodeBuilder value) {
             return data.getSet(value);
+        }
+
+        @Override
+        public int depth() {
+            if (childless()) {
+                return 1;
+            }
+            int childMax = 0;
+            for (CPNodeBuilder value : values()) {
+                int curDepth = value.depth();
+                if (childMax < curDepth) {
+                    childMax = curDepth;
+                }
+            }
+            return 1 + childMax;
+        }
+        @Override
+        public UnicodeSet keySet() {
+            return data.keySet();
+        }
+        @Override
+        public CPNodeBuilder get(int cp) {
+            return data.get(cp);
         }
     }
 
     // TODO reorder to be longest
     static class RegexBuilder {
-        public static String getRegex(CPNode baseNode) {
+
+        public static <T extends CPNode<?>> String getRegex(T baseNode) {
             StringBuilder result = new StringBuilder();
             getRegex(baseNode, result);
             return result.toString();
@@ -298,11 +365,14 @@ public class StringTree {
 
         private static void getRegex(CPNode baseNode, StringBuilder result) {
             // find out what's there
+            // we have to put longer items first, because otherwise regex | won't find them
             int countWithChildren = 0;
             UnicodeSet singles = new UnicodeSet();
-            for (EntryRange<CPNode> entry : (Iterable<EntryRange<CPNode>>) baseNode) {
-                if (entry.value.childless()) {
-                    singles.add(entry.codepoint, entry.codepointEnd);
+            ArrayList<CPNode> sorted = new ArrayList<>(baseNode.values());
+            sorted.sort(CPNode.DEPTH_FIRST);
+            for (CPNode value : sorted) {
+                if (value.childless()) {
+                    singles.addAll(baseNode.getSet(value));
                 } else {
                     ++countWithChildren;
                 }
@@ -312,19 +382,8 @@ public class StringTree {
                 result.append('(');
             }
             boolean needBar = false;
-            if (!singles.isEmpty()) {
-                if (singles.size() == 1) {
-                    int cp = singles.charAt(0);
-                    addCodePoint(result, cp);
-                } else {
-                    addCodePoint(result, singles);
-                }
-                --countWithChildren;
-                needBar = true;
-            }
-            if (countWithChildren >= 0) {
-                for (EntryRange<CPNode> entry : (Iterable<EntryRange<CPNode>>) baseNode) {
-                    CPNode child = entry.value;
+            if (countWithChildren > 0) {
+                for (CPNode child : sorted) {
                     if (child.childless()) {
                         continue;
                     }
@@ -332,23 +391,33 @@ public class StringTree {
                         result.append('|');
                     }
                     needBar = true;
-                    if (entry.codepoint == entry.codepointEnd) {
-                        addCodePoint(result, entry.codepoint);
-                    } else {
-                        result.append('[');
-                        addCodePoint(result, entry.codepoint);
-                        result.append('-');
-                        addCodePoint(result, entry.codepointEnd);
-                        result.append(']');
-                    }
-                    if (child.hasValue()) {
+                    UnicodeSet set = baseNode.getSet(child);
+                    addCodePoint(result, set);
+                    int childValues = child.values().size();
+                    if (childValues > 1 || child.hasValue()) {
                         result.append('(');
                     }
                     getRegex(child, result);
+                    if (childValues > 1 || child.hasValue()) {
+                        result.append(')');
+                    }
                     if (child.hasValue()) {
-                        result.append(")?");
+                        result.append("?+"); // possessive quantifier, no backup
                     }
                 }
+            }
+            // put singles after everything else.
+            if (!singles.isEmpty()) {
+                if (needBar) {
+                    result.append('|');
+                }
+                if (singles.size() == 1) {
+                    int cp = singles.charAt(0);
+                    addCodePoint(result, cp);
+                } else {
+                    addCodePoint(result, singles);
+                }
+                needBar = true;
             }
             if (paren) {
                 result.append(')');
@@ -356,6 +425,10 @@ public class StringTree {
         }
 
         static private void addCodePoint(StringBuilder result, UnicodeSet singles) {
+            if (singles.size() == 1) {
+                addCodePoint(result, singles.charAt(0));
+                return;
+            }
             result.append('[');
             for (UnicodeSetIterator entry = new UnicodeSetIterator(singles); entry.nextRange();) {
                 addCodePoint(result, entry.codepoint);
@@ -369,7 +442,12 @@ public class StringTree {
 
         static private StringBuilder addCodePoint(StringBuilder result, int cp) {
             switch (cp) {
-            case '*' : result.append('\\');
+            case '*' : 
+            case '#' :
+            case '|' :
+            case '\\' : 
+                result.append('\\');
+                break;
             }
             return result.appendCodePoint(cp);
         }
@@ -381,8 +459,12 @@ public class StringTree {
         HashSet<String> tests2 = EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().addAllTo(new HashSet<String>());
         LinkedHashSet<String> tests3 = new LinkedHashSet<>();
         LinkedHashSet<String> tests4 = new LinkedHashSet<>();
+        UnicodeSet starters = new UnicodeSet("[©#⛹]"); // #
+        //UnicodeSet starters = new UnicodeSet("[#*0-9©®‼⁉☝⛹✌-✍🕴⛹🖐👻👽✊-✋🎅🏂]");
         tests2.forEach(s -> {
-            if (s.startsWith("👯")) tests3.add(s); 
+            if (starters.matchesAt(s, 0) >= 0) {
+                tests3.add(s); 
+            }
             tests4.add(EmojiData.EMOJI_DATA.addEmojiVariants(s));
         });
         check(tests3);
@@ -391,11 +473,15 @@ public class StringTree {
 
     private static void check(Collection<String> tests) {
         CPNodeBuilder x = new CPNodeBuilder().addAll(tests, 1);
-        System.out.println(x.toString());
-        CPNode s = new CPNodeBuilder().addAll(tests, 1).build();
+        ImmutableCPNode s = new CPNodeBuilder().addAll(tests, 1).build();
         System.out.println(s.toString());
+        if (!CpWrapper.equal(x, s)) {
+            CpWrapper.equal(x, s);
+            System.out.println("Immutable fails:\t" + SHOW.transform(x.toString()));
+            return;
+        }
         String pattern = RegexBuilder.getRegex(s);
-        System.out.println(pattern);
+        System.out.println("Regex:\t" + SHOW.transform(pattern));
         Pattern p = Pattern.compile(pattern);
         UnicodeSet failures = new UnicodeSet();
         for (String test : tests) {
