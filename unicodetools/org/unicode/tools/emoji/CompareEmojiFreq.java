@@ -18,7 +18,7 @@ import com.ibm.icu.util.ULocale;
 
 public class CompareEmojiFreq {
     private static final int MINIMUM_RAW_COUNT_FOR_LOCALE = 0;
-    private static final int MINIMUM_RAW_COUNT_FOR_EMOJI = 10000;
+    private static final int MINIMUM_RAW_COUNT_FOR_EMOJI = 5000;
     private static final int MAXIMUM_RANK = 30;
     private static final int MINIMUM_RANK_BETTER = 3;
     private static final double MINIMUM_PERCENT_BETTER = 1;
@@ -90,10 +90,11 @@ public class CompareEmojiFreq {
             if (amountBetter >= MINIMUM_PERCENT_BETTER*CountInfo.SCALE/100 && rankBetter >= 1 
                     || rankBetter >= MINIMUM_RANK_BETTER
                     || isWorld) {
-                if (!haveCounts) {
-                    out.println(localeName + "\t" + nf.format(counts.rawTotal));
-                    haveCounts = true;
-                }
+//                if (!haveCounts) {
+//                    out.println(localeName + "\t" + nf.format(counts.rawTotal));
+//                    haveCounts = true;
+//                }
+                haveCounts = true;
                 out.println(
                         localeName 
                         + "\t" + fixLocale(locale)
@@ -102,11 +103,14 @@ public class CompareEmojiFreq {
                         + "\t" + pf.format(localeCount/(double)CountInfo.SCALE)
                         + "\t" + "+" + pf.format(amountBetter/(double)CountInfo.SCALE)
                         + "\t" + "+" + rankBetter
+                        + "\t" + nf.format(counts.rawTotal)
                         );
            }
            if (rank >= MAXIMUM_RANK) break;
         }
-        System.out.println();
+        if (haveCounts) {
+            out.println();
+        }
     }
 
     private static String fixLocale(String locale) {
