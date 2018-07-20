@@ -9,13 +9,19 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.util.XEquivalenceClass;
+import org.unicode.cldr.util.XEquivalenceMap;
 import org.unicode.tools.emoji.EmojiData;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.LinkedHashMultimap;
+import com.google.common.collect.Multimap;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.text.Transliterator;
@@ -24,7 +30,7 @@ import com.ibm.icu.text.UnicodeSetIterator;
 
 
 public class StringTree {
-    static final Transliterator SHOW = Transliterator.createFromRules("foo", "([[:c:][:z:][:di:][:M:]-[\\ \\x0A]]) > &hex($1);", Transliterator.FORWARD);
+    static final Transliterator SHOW = Transliterator.createFromRules("foo", "([[:c:][:z:][:di:][:M:]-[\\ \\x0A]]) > &hex/perl($1);", Transliterator.FORWARD);
 
     public abstract static class CPNode<T extends CPNode<T>> implements Iterable<EntryRange<T>> {
         public static final int NO_VALUE = Integer.MIN_VALUE;
@@ -459,26 +465,28 @@ public class StringTree {
         HashSet<String> tests2 = EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().addAllTo(new HashSet<String>());
         LinkedHashSet<String> tests3 = new LinkedHashSet<>();
         LinkedHashSet<String> tests4 = new LinkedHashSet<>();
-        UnicodeSet starters = new UnicodeSet("[©#⛹]"); // #
+        UnicodeSet starters = new UnicodeSet("[🏴]"); // #
         //UnicodeSet starters = new UnicodeSet("[#*0-9©®‼⁉☝⛹✌-✍🕴⛹🖐👻👽✊-✋🎅🏂]");
         tests2.forEach(s -> {
-            if (starters.matchesAt(s, 0) >= 0) {
-                tests3.add(s); 
+            String fixed = EmojiData.EMOJI_DATA.addEmojiVariants(s);
+            if (starters.matchesAt(fixed, 0) >= 0) {
+                tests3.add(fixed); 
             }
-            tests4.add(EmojiData.EMOJI_DATA.addEmojiVariants(s));
+            tests4.add(fixed);
         });
         check(tests3);
-        check(tests4);
+        ImmutableCPNode full = check(tests4);
+        partition(full);
     }
 
-    private static void check(Collection<String> tests) {
+    private static ImmutableCPNode check(Collection<String> tests) {
         CPNodeBuilder x = new CPNodeBuilder().addAll(tests, 1);
         ImmutableCPNode s = new CPNodeBuilder().addAll(tests, 1).build();
         System.out.println(s.toString());
         if (!CpWrapper.equal(x, s)) {
             CpWrapper.equal(x, s);
             System.out.println("Immutable fails:\t" + SHOW.transform(x.toString()));
-            return;
+            return null;
         }
         String pattern = RegexBuilder.getRegex(s);
         System.out.println("Regex:\t" + SHOW.transform(pattern));
@@ -491,6 +499,68 @@ public class StringTree {
         }
         if (failures.size() > 0) {
             System.out.println("Fails: " + SHOW.transform(failures.toPattern(false)));
+        }
+        return s;
+    }
+
+    static void partition(ImmutableCPNode s) {
+        System.out.println("Partition: ");
+        UnicodeMap<String> ri = new UnicodeMap()
+                .putAll(new UnicodeSet("[:regional_indicator:]"), "RI")
+                .putAll(new UnicodeSet("[:block=tags:]"), "TAG")
+                .freeze();
+        Object fake = new Object();
+        Multimap<Integer, Object> basePartition = LinkedHashMultimap.create();
+        addPartitions(s, ri, fake, basePartition);
+        XEquivalenceMap<Integer, Set<Object>, String> partition = new XEquivalenceMap<>();
+        for ( Entry<Integer, Collection<Object>> entry : basePartition.asMap().entrySet()) {
+            partition.add(entry.getKey(), (Set<Object>) entry.getValue());
+        }
+
+        UnicodeSet key = new UnicodeSet();
+        int count = 0;
+        for (Set<Integer> entry : partition) {
+            key.clear();
+            Set<Object> targets = null;
+            for (Integer item : entry) {
+                if (targets == null) {
+                    targets = partition.getTarget(item);
+                }
+                key.add(item);
+            }
+            Set<String> targetSet = new HashSet<>();
+            for (Object target : targets) {
+                String targetString;
+                if (target instanceof ImmutableCPNode) {
+                    String pattern = RegexBuilder.getRegex((ImmutableCPNode)target);
+                    targetString = SHOW.transform(pattern);
+                } else {
+                    targetString = target.toString();
+                }
+                targetSet.add(targetString);
+            }
+
+            System.out.println(key.size() 
+                    + "\t" + targetSet.size()
+                    + "\t" + SHOW.transform(key.toPattern(false)) 
+                    + "\t" + targetSet
+                    );
+        }
+    }
+
+    private static void addPartitions(ImmutableCPNode s, UnicodeMap<String> ri, Object fake, Multimap<Integer, Object> basePartition) {
+        for (EntryRange<ImmutableCPNode> entry : s) {
+            for (int cp = entry.codepoint; cp <= entry.codepointEnd; ++cp) {
+                String special = ri.get(cp);
+                if (special != null) {
+                    basePartition.put(cp, special);
+                } else if (entry.value.childless()){
+                    basePartition.put(cp, "TERM");
+                } else {
+                    basePartition.put(cp, entry.value);
+                    addPartitions(entry.value, ri, fake, basePartition);
+                }
+            }
         }
     }
 }

@@ -341,7 +341,9 @@ public class ListEmojiGroups {
             // 8,❤️,"[10084, 65039]",705086,"['0x2764', '0xFE0F']"
             CSVParser csvParser = new CSVParser();
             for (Type type : Type.values()) {
-                for (String id : Arrays.asList("20171031_20171113", "20171115_20171128", "20180608_20180621", "20180624_20180707")) { // "20171031_20171113", "20171115_20171128"
+                for (String id : Arrays.asList(
+                        /*"20171031_20171113", "20171115_20171128", */
+                        "20180608_20180621", "20180624_20180707")) { // "20171031_20171113", "20171115_20171128"
                     String filename = type.getFile() + id + ".csv";
                     int offset = 0;
                     for (String line : FileUtilities.in(FREQ_SOURCE + "/emoji_freqs_" + id, filename)) {
