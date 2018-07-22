@@ -112,7 +112,7 @@ function setUbaInput(str) {
     UtfParameters utfParams = new UtfParameters(queryStr);
 
     String ubaPara = utfParams.getParameter("b", "2");
-    String ubaVersion = utfParams.getParameter("u", "100");
+    String ubaVersion = utfParams.getParameter("u", "110");
     String ubaDetail = utfParams.getParameter("d", "2");
     boolean ubaShowVacuous = !"off".equals(utfParams.getParameter("y", "off"));
     String valInputCharSeq = utfParams.getParameter("s", "\u0645\u0627\u0631\u0652\u0643 \u2066\u0031\u2013\u0033%\u2069 mark (\u0366v.2)\u0368!");
@@ -206,8 +206,8 @@ function setUbaInput(str) {
 <%@ include file="subtitle.jsp" %>
 <p><a target="help" href="http://cldr.unicode.org/unicode-utilities/breaks"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <p>Shows processing of a single paragraph of text by the Unicode Bidirectional Algorithm (UBA),
-    Versions <a target="doc" href="http://www.unicode.org/reports/tr9/tr9-27.html">6.2</a> through <a target="doc" href="http://www.unicode.org/reports/tr9/tr9-37.html">10.0</a>, 
-    using the C Reference Implementation, Version <a target="doc" href="http://www.unicode.org/Public/PROGRAMS/BidiReferenceC/10.0.0/">10.0</a>.</p>
+    Versions <a target="doc" href="http://www.unicode.org/reports/tr9/tr9-27.html">6.2</a> through <a target="doc" href="http://www.unicode.org/reports/tr9/tr9-39.html">11.0</a>, 
+    using the C Reference Implementation, Version <a target="doc" href="http://www.unicode.org/Public/PROGRAMS/BidiReferenceC/11.0.0/">11.0</a>.</p>
 
 <h3>Source</h3>
 <form name="naInputForm">
@@ -282,6 +282,7 @@ function setUbaInput(str) {
                     <option value="80" <%= (ubaVersion.equals("80") ? "selected" : "") %>>8.0</option>
                     <option value="90" <%= (ubaVersion.equals("90") ? "selected" : "") %>>9.0</option>
                     <option value="100" <%= (ubaVersion.equals("100") ? "selected" : "") %>>10.0</option>
+                    <option value="110" <%= (ubaVersion.equals("110") ? "selected" : "") %>>11.0</option>
                 </select>
                 &ensp;
                 Detail:
