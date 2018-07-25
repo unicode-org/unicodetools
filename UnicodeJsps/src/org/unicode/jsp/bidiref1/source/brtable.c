@@ -1,7 +1,7 @@
 /*
 **      Unicode Bidirectional Algorithm
 **      Reference Implementation
-**      Copyright 2017, Unicode, Inc. All rights reserved.
+**      Copyright 2018, Unicode, Inc. All rights reserved.
 **      Unpublished rights reserved under U.S. copyright laws.
 */
 
@@ -43,6 +43,11 @@
  *                       Add datapath to br_InitTable.
  * 2016-Oct-05 kenw   Add output of version number to br_InitTable.
  * 2017-Jun-27 kenw   Updates for Unicode 10.0.
+ * 2018-Jul-22 kenw   Updates for Unicode 11.0.
+ *                       Adjust data file loading to allow for
+ *                       relative paths and to allow unversioned
+ *                       file name loading, independent of the
+ *                       path chosen.
  */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -546,9 +551,13 @@ BDPTR tmp;
 /*
  * SECTION: parsePropertyData
  *
- * Parse the UnicodeData.txt file (or any other file using
+ * Load and parse the UnicodeData.txt file (or any other file using
  * the same generic format), branching by status value to specific
  * parse routines for each line.
+ *
+ * If version == UBACUR, use the unversioned file name, otherwise,
+ * attempt to load a specific, versioned file name that matches
+ * the UBA version number.
  */
 
 static int br_parsePropertyData ( int status, int version, char *datapath )
@@ -557,7 +566,7 @@ FILE *fdi;
 int rc;
 int i;
 int usepath;
-char *fileName = "";
+char *fileName;
 char fqfn[512];
 char buffer[512];
 
@@ -588,9 +597,13 @@ char buffer[512];
 
     if ( status == UNICODE_DATA )
     {
-        if ( usepath )
+        if ( version == UBACUR )
         {
             fileName = "UnicodeData.txt";
+        }
+        else if ( version == UBA110 )
+        {
+            fileName = "UnicodeData-11.0.0.txt";
         }
         else if ( version == UBA100 )
         {
@@ -619,9 +632,13 @@ char buffer[512];
     }
     else if ( status == BRACKET_DATA )
     {
-        if ( usepath )
+        if ( version == UBACUR )
         {
             fileName = "BidiBrackets.txt";
+        }
+        else if ( version == UBA110 )
+        {
+            fileName = "BidiBrackets-11.0.0.txt";
         }
         else if ( version == UBA100 )
         {
@@ -654,15 +671,9 @@ char buffer[512];
         strcpy ( fqfn, datapath );
         strcat ( fqfn, fileName );
     }
-    else    // look in a subirectory named "ucd"
+    else
     {
-        strcpy ( fqfn, "ucd" );
-#ifdef _WIN32
-        strcat ( fqfn, "\\" );
-#else
-        strcat ( fqfn, "/" );
-#endif // _WIN32
-        strcat ( fqfn, fileName );
+        strcpy ( fqfn, fileName );
     }
 
     fdi = fopen ( fqfn, "rt" );
@@ -774,7 +785,7 @@ int rc;
 
     if ( Trace ( Trace10 ) )
     {
-        printf ( "Trace: Entering br_InitTable\n" );
+        printf ( "Trace: Entering br_InitTable with version=%d\n", version );
     }
 
     if ( GetFileFormat() == FORMAT_B )
@@ -815,7 +826,7 @@ int rc;
 
     if ( Trace ( Trace0 ) )
     {
-        printf ( "Note:  Initialized bidiref 10.0.0 library for UBA version %s\n", GetUBAVersionStr() );
+        printf ( "Note:  Initialized bidiref 11.0.0 library for UBA version %s\n", GetUBAVersionStr() );
     }
 
     initDone = 1;

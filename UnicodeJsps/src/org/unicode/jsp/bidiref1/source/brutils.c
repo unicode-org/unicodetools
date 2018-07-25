@@ -1,7 +1,7 @@
 /*
 **      Unicode Bidirectional Algorithm
 **      Reference Implementation
-**      Copyright 2017, Unicode, Inc. All rights reserved.
+**      Copyright 2018 Unicode, Inc. All rights reserved.
 **      Unpublished rights reserved under U.S. copyright laws.
 */
 
@@ -41,6 +41,7 @@
  * 2016-Sep-22 kenw   Add cast to suppress strlen warning.
  * 2016-Oct-05 kenw   Add GetUBAVersionStr.
  * 2017-Jun-27 kenw   Updated for Unicode 10.0.
+ * 2018-Jul-22 kenw   Updated for Unicode 11.0.
  */
 
 #include <string.h>
@@ -56,12 +57,12 @@
  * SECTION: Generic version information.
  */
 
-static int ubaVersion = UBA62;    /* Default to UBA62 */
+static int ubaVersion = UBA110;   /* Default to UBA110 */
 static int fileFormat = FORMAT_A; /* Format of input data file */
 
 static char *versionNums[NUMVERSIONS] =
     {
-        "6.2", "6.3", "7.0", "8.0", "9.0", "10.0", "XXX"
+        "X.X", "6.2", "6.3", "7.0", "8.0", "9.0", "10.0", "11.0", "def:11.0"
     };
 
 int GetFileFormat ( void )
@@ -83,6 +84,14 @@ char* GetUBAVersionStr ( void )
 {
     return ( versionNums[ubaVersion] );
 }
+
+/*
+ * SetUBAVersion()
+ *
+ * Set ubaVersion to the version passed in.
+ *
+ * UBACUR (unspecified) will default to latest version.
+ */
 
 void SetUBAVersion ( int version )
 {

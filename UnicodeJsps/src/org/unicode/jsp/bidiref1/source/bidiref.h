@@ -1,7 +1,7 @@
 /*
 **      Unicode Bidirectional Algorithm
 **      Reference Implementation
-**      Copyright 2017, Unicode, Inc. All rights reserved.
+**      Copyright 2018, Unicode, Inc. All rights reserved.
 **      Unpublished rights reserved under U.S. copyright laws.
 */
 
@@ -24,6 +24,7 @@
  * 2016-Oct-05 kenw   Adjust testCaseNumber to 64-bit integer for
  *                      huge test runs.
  * 2017-Jun-26 kenw   Add UBA100.
+ * 2018-Jul-19 kenw   Add UBA110 and UBACUR.
  */
 
 #ifndef __BIDIREF_LOADED
@@ -113,7 +114,7 @@ typedef unsigned long U_Int_32;
 /*
  * TraceAll
  *
- * A convenience macro to turn on all trace flags.
+ * A convenience macro to turn on (or off) all trace flags.
  */
 #define TraceAll (Trace0 | Trace1 | Trace2 | Trace3 | Trace4 | \
                   Trace5 | Trace6 | Trace7 | Trace8 | Trace9 | \
@@ -133,14 +134,17 @@ typedef unsigned long U_Int_32;
  */
 
 typedef enum 
-    { 
+    {
+    UBAXX,  /* Undefined rule set */
   	UBA62,  /* Base version. UBA 6.2.0 rule set */
   	UBA63,  /* UBA 6.3.0 rule set */
   	UBA70,  /* UBA 6.3.0 rule set; Unicode 7.0.0 repertoire */
     UBA80,  /* UBA 8.0.0 rule set */
     UBA90,  /* UBA 8.0.0 rule set; Unicode 9.0.0 repertoire */
     UBA100, /* UBA 8.0.0 rule set; Unicode 10.0.0 repertoire */
-    UBAXX   /* Undefined rule set */
+    UBA110, /* UBA 8.0.0 rule set; Unicode 11.0.0 repertoire */
+    UBACUR  /* Unspecified version: default to current UBA rules and
+               use unversioned file names for data. */ 
     } UBA_Version_Type ;
 
 /*
@@ -245,9 +249,6 @@ extern int br_ProcessOneTestCase ( int64_t testCaseNumber, U_Int_32 *text, int t
  *   BR_ALLOCERR  -3  Error in context construction.
  *   BR_TESTERR   -4  Bad return from UBA processing
  *
- * br_QueryOneTestCase operates in quiet mode, and should produce no
- * console output. It forces all trace flags off, so that
- * no debug output will be displayed.
  */
 
 extern int br_QueryOneTestCase ( U_Int_32 *text, int textLen, 
