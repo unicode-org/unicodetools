@@ -1,7 +1,7 @@
 /*
 **      Unicode Bidirectional Algorithm
 **      Reference Implementation
-**      Copyright 2016, Unicode, Inc. All rights reserved.
+**      Copyright 2018, Unicode, Inc. All rights reserved.
 **      Unpublished rights reserved under U.S. copyright laws.
 */
 
@@ -34,6 +34,11 @@
  * 2015-Dec-04  kenw   Correct off-by-one error in stack full check.
  *                     Also fix bracket limits for output display.
  * 2016-Sep-22  kenw   Suppress security warning on compile.
+ * 2018-Jul-22  kenw   Slight update to br_UBA_ResolveTerminators to
+ *                     prevent overzealous code integrity checkers from
+ *                     complaining about possible read of uninitialized
+ *                     local variable.
+ *                     Adjust output display to account for SMP characters.
  */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -818,7 +823,19 @@ const char *tmp;
 		bdu = ctxt->theText;
 		while ( bdu < endOfText )
 		{
-			printf (" %04X", bdu->c );
+		/*
+		 * Adjust the printing of the code points, so that SMP
+		 * code points don't cause the rest of the display to
+		 * end up column-deregistered.
+		 */
+		    if ( bdu->c > 0xFFFF )
+		    {
+		    	printf ( "%05X", bdu->c );
+		    }
+		    else
+		    {
+				printf ( " %04X", bdu->c );
+		    }
 			bdu++;
 		}
 		printf ( "\n" );
@@ -3370,7 +3387,7 @@ int dirtyBit = 0;
 static int br_UBA_ResolveTerminators ( BIDIRULECTXTPTR brcp )
 {
 BIDIUNITPTR *bupp;
-BIDIUNITPTR *bupp2 = NULL;
+BIDIUNITPTR *bupp2;
 BIDIUNITPTR *buppfirst;
 BIDIUNITPTR *bupplast;
 int dirtyBit = 0;
@@ -3421,18 +3438,17 @@ int dirtyBit = 0;
 						break;
 					}	
 				}
-			}
 		/*
 		 * If we scanned ahead, reset bupp to bupp2, to prevent 
 		 * reprocessing characters
 		 * that have already been checked and/or changed.
-		 * Otherwise just increment bupp and come around.
 		 */
-			if ( bupp < bupplast )
-			{
 				bupp = bupp2;
 			}
 			else
+		/*
+		 * Otherwise just increment bupp and come around.
+		 */
 			{
 				bupp++;
 			}

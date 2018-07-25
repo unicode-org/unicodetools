@@ -1,7 +1,7 @@
 /*
 **      Unicode Bidirectional Algorithm
 **      Reference Implementation
-**      Copyright 2017, Unicode, Inc. All rights reserved.
+**      Copyright 2018, Unicode, Inc. All rights reserved.
 **      Unpublished rights reserved under U.S. copyright laws.
 */
 
@@ -26,6 +26,7 @@
  * 2016-Oct-05 kenw   Add NUMVERSIONS define
  *                       and declaration of GetUBAVersionStr.
  * 2017-Jun-26 kenw   Add CJK Extension F range for UCD 10.0.
+ * 2018-Jul-22 kenw   Update NUMVERSIONS for UBACUR and UBA110.
  */
 
 #ifndef __BIDIREFP_LOADED
@@ -42,7 +43,7 @@ extern "C" {
  * table of strings, for diagnostic output.
  */
 
-#define NUMVERSIONS (7)
+#define NUMVERSIONS (9)
 
 /*
  * Constants defining Unihan ranges.

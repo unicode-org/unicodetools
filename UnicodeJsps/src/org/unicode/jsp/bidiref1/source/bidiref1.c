@@ -15,7 +15,7 @@
 #define INBUFLEN 200
 
 static int ubaParagraphDir = 2;
-static UBA_Version_Type ubaVersion = UBA100;
+static UBA_Version_Type ubaVersion = UBA110;
 static U_Int_32 ubaInputSeq[INBUFLEN];
 static int ubaInputSeqLen = 0;
 
@@ -28,7 +28,7 @@ int ParseArgs ( int argc, char *argv[] )
 
     if ( argc != 6 )
     {
-        printf ( "Usage:\n    bidiref1 -b[0-2] -u[62,63,70,80,90,100] -d[2-4] -y[0-1] \"-s hhhh hhhh...\"\n" );
+        printf ( "Usage:\n    bidiref1 -b[0-2] -u[62,63,70,80,90,100,110] -d[2-4] -y[0-1] \"-s hhhh hhhh...\"\n" );
         return 0;
     }
 
@@ -58,6 +58,7 @@ int ParseArgs ( int argc, char *argv[] )
                     else if ( strncmp ( str, "80", 2 ) == 0 )   { ubaVersion = UBA80; }
                     else if ( strncmp ( str, "90", 2 ) == 0 )   { ubaVersion = UBA90; }
                     else if ( strncmp ( str, "100", 3 ) == 0 )  { ubaVersion = UBA100; }
+                    else if ( strncmp ( str, "110", 3 ) == 0 )  { ubaVersion = UBA110; }
                 }
                 break;
             case 'd':
@@ -114,7 +115,12 @@ int main ( int argc, char *argv[] )
         return 0;
     }
 
-    rc = br_Init ( ubaVersion );
+#ifdef _WIN32
+    rc = br_InitWithPath ( ubaVersion, "ucd\\" );
+#else
+    rc = br_InitWithPath ( ubaVersion, "ucd/" );
+#endif
+
     if ( rc != 1 )
     {
         printf ( "Error in initialization.\n" );

@@ -1,7 +1,7 @@
 /*
 **      Unicode Bidirectional Algorithm
 **      Reference Implementation
-**      Copyright 2016, Unicode, Inc. All rights reserved.
+**      Copyright 2018, Unicode, Inc. All rights reserved.
 **      Unpublished rights reserved under U.S. copyright laws.
 */
 
@@ -33,6 +33,8 @@
  * 2016-Sep-22 kenw   Suppress security warning on compile.
  * 2016-Oct-06 kenw   Update br_ProcessOneTestCase to pass
  *                      64-bit testCaseNumber parameter.
+ * 2018-Jul-18 kenw   Delete TraceAllOff() from
+ *                      br_QueryOneTestCase().
  */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -682,9 +684,6 @@ char localbuf[4];
  * the results in the output parameters for embeddingLevel,
  * levels, and order, and let the client process them.
  *
- * br_QueryOneTestCase forces all trace flags off, so that
- * no debug output will be displayed.
- *
  * Returns BR_TESTOK (=1) if all goes well.
  * Error return values:
  *   BR_OUTPUTERR -1  Error in formatting output parameters.
@@ -710,8 +709,6 @@ UBACTXTPTR ctxt;
     {
         return ( BR_INITERR );
     }
-
-    ////TraceOffAll();
 
     ctxt = br_ConstructContext ( textLen, text, paragraphDirection );
 
