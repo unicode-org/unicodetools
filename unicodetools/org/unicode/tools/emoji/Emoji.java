@@ -254,7 +254,8 @@ public class Emoji {
         fb("FB", "Facebook"), fbm("FBM", "Messenger (Facebook)"), samsung("Sams."), 
         windows("Wind."),
         emojipedia, emojixpress,
-        ref, emojination, adobe, sample, proposed, 
+        ref, emojination, adobe, sample, proposed,
+        plain, 
         // gifs; don't change order!
         gmail("GMail"), sb("SB", "SoftBank"), dcm("DCM", "DoCoMo"), kddi("KDDI", "KDDI"),
         svg;
