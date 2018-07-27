@@ -622,7 +622,7 @@ Keywords=accessibility | blind
 Proposal=L2/18-139
 After=👌 
 U+1F90F
-Name=pinch
+Name=pinching hand
 Keywords=small amount
 Emoji_Modifier_Base
 
@@ -701,7 +701,6 @@ U+1F9BA
 Name=safety vest
 Keywords=safety | emergency | vest
 Comment=Used in a ZWJ sequence for service dog
-UName=service animal vest
 
 Proposal=L2/18-098
 After=🦉
@@ -781,7 +780,6 @@ After=🎯
 U+1FA80
 Name=yo-yo
 Keywords=fluctuate | toy
-UName=YO-YO TOY
 
 Proposal=L2/18-135
 After=🎯
@@ -798,7 +796,7 @@ Keywords=stringed | music
 Proposal=L2/18-092
 After=💉
 U+1FA78
-Name=blood drop
+Name=drop of blood
 Keywords=medicine | blood donation | menstruation
 
 Proposal=L2/18-146
@@ -834,55 +832,67 @@ After= 🔴
 U+1F7E0
 Name=orange circle
 Keywords=orange | circle
+UName=large orange circle
 
 U+1F7E1
 Name=yellow circle
 Keywords=yellow | circle
+UName=large yellow circle
 
 U+1F7E2
 Name=green circle
 Keywords=green | circle
+UName=large green circle
 
 After=🔵
 U+1F7E3
 Name=purple circle
 Keywords=purple | circle
+UName=large purple circle
 
 After=⚪
 U+1F7E4
 Name=brown circle
 Keywords=brown | circle
+UName=large brown circle
 
 
 U+1F7E5
 Name=RED SQUARE
 Keywords=red | square
+UName=large red square
 
 U+1F7E7
 Name=ORANGE SQUARE
 Keywords=orange | square
+UName=large orange square
 
 U+1F7E8
 Name=YELLOW SQUARE
 Keywords=yellow | square
+UName=large yellow square
 
 U+1F7E9
 Name=GREEN SQUARE
 Keywords=green | square
+UName=large green square
 
 U+1F7E6
 Name=BLUE SQUARE
 Keywords=blue | square
+UName=large blue square
 
 U+1F7EA
 Name=PURPLE SQUARE
 Keywords=purple | square
+UName=large purple square
 
 
 After=⬜
 U+1F7EB
 Name=BROWN SQUARE
 Keywords=brown | square
+UName=large purple square
 
 After=👘
 
