@@ -921,6 +921,8 @@ After=🙋
 U+1F9CF
 Name=deaf person
 Keywords=hear | ear
+Emoji_Modifier_Base
+Emoji_Gender_Base
 
 Status=Provisional Candidate
 
