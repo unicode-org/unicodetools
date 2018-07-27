@@ -696,11 +696,11 @@ Name=guide dog
 Keywords=guide | blind
 
 Proposal=L2/18-080
-After= 👘
+After= 🥼
 U+1F9BA
-Name=service animal vest
-Keywords=service | animal | dog
-Comment=Like others, the sample image(s) for this should be improved over time, such as showing the vest on the outline of an animal to indicate intended usage.
+Name=safety vest
+Keywords=safety | emergency | vest
+Comment=Used in a ZWJ sequence for service dog
 UName=service animal vest
 
 Proposal=L2/18-098
@@ -918,13 +918,13 @@ Proposal=L2/18-178
 After=⛏
 U+101300
 Name=carpentry saw
-Keywords=carpenter|saw|lumber
+Keywords=carpenter|saw|lumber|tool
 
 Proposal=L2/18-179
 After=🔧
 U+101301
 Name=screwdriver
-Keywords=screw
+Keywords=screw|tool
 
 Proposal=L2/18-197
 After=🤠
@@ -955,7 +955,7 @@ Proposal=L2/17-420
 After=🐘
 U+101306
 Name=mammoth
-Keywords=large|extinction|tusk|hair
+Keywords=large|extinction|tusk|woolly
 
 Proposal=L2/17-441
 After=🦉
