@@ -61,7 +61,7 @@ import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
 public class EmojiData implements EmojiDataSource {
-
+    public static boolean ALLOW_UNICODE_NAME = System.getProperty("ALLOW_UNICODE_NAME") != null;
     public static final UnicodeSet TAKES_NO_VARIANT = new UnicodeSet(Emoji.EMOJI_VARIANTS_JOINER)
             .addAll(new UnicodeSet("[[:M:][:Variation_Selector:][:Block=Tags:]]")) // TODO fix to use indexed props
             .freeze();
@@ -1124,7 +1124,9 @@ public class EmojiData implements EmojiDataSource {
             // for debugging
             ANNOTATION_SET.getShortName(source, otherNameSource);
             ANNOTATION_SET.getShortName(tToV, otherNameSource);
-            throw new IllegalArgumentException("no name for " + source + " " + Utility.hex(source) + " or " + Utility.hex(tToV));
+            if (!ALLOW_UNICODE_NAME) {
+                throw new IllegalArgumentException("no name for " + source + " " + Utility.hex(source) + " or " + Utility.hex(tToV));
+            }
         }
 
         source = source.replace(Emoji.EMOJI_VARIANT_STRING, "").replace(Emoji.TEXT_VARIANT_STRING, "");

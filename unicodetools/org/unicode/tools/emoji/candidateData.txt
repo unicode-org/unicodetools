@@ -905,3 +905,60 @@ After=💊
 U+1FA7A
 Name=stethoscope
 Keywords=doctor | medicine | heart
+
+Proposal=L2/18-229
+After=🙋
+U+1F9CF
+Name=deaf person
+Keywords=hear | ear
+
+Status=Provisional Candidate
+
+Proposal=L2/18-178
+After=⛏
+U+101300
+Name=carpentry saw
+Keywords=carpenter|saw|lumber
+
+Proposal=L2/18-179
+After=🔧
+U+101301
+Name=screwdriver
+Keywords=screw
+
+Proposal=L2/18-197
+After=🤠
+U+101302
+Name=ninja
+Comment=smiley (feedback welcome on whether to make human-form, which would ‘cost’ 12 emoji)
+Keywords=hidden|stealth|fighter
+
+Proposal=L2/18-199
+After=⛑
+U+101303
+Name=military helmet
+Keywords=soldier|warrior
+
+Proposal=L2/18-200
+After=🦉
+U+101304
+Name=feather
+Keywords=light|plumage|flight
+
+Proposal=L2/18-218
+After=🔮
+U+101305
+Name=magic wand
+Keywords=magic|wizard|witch
+
+Proposal=L2/17-420
+After=🐘
+U+101306
+Name=mammoth
+Keywords=large|extinction|tusk|hair
+
+Proposal=L2/17-441
+After=🦉
+U+101307
+Name=dodo
+Keywords=large|extinction|Mauritius

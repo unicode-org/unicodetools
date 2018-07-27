@@ -22,6 +22,13 @@
 	background-color: yellow;
 }
 </style>
+<!-- 
+There are two approaches for disabling the text autosizer feature:
+1) Use a meta viewport at the top of your page to declare the page as "mobile designed":
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+2) Use the CSS style "text-size-adjust: none;" to disable adjustment of specific parts of the page.
+ -->
 </head>
 
 <body>
@@ -97,38 +104,38 @@
               <th colspan='2'><a name='emoji-available-charts'>Characters and Sequences</a></th>
             </tr>
             <tr>
-              <td nowrap><a target='list' href="emoji-list.html">Emoji
+              <td><a target='list' href="emoji-list.html">Emoji
                 List</a></td>
               <td>Emoji characters and sequences for Emoji v%%VERSION%%, with keywords, but without skin tones.</td>
             </tr>
             <tr>
-              <td nowrap>Full Emoji List<br>
-                <i>Skin Tones: </i><a target='full' href="full-emoji-list.html">Without</a> 
-                • <a target="full-skin" href="full-emoji-modifiers.html">Only</a></td>
+              <td style='min-width: 10em'><span style='white-space: nowrap'>Full Emoji List</span><br>
+                <i>Skin Tones: </i><span style='white-space: nowrap'><a target='full' href="full-emoji-list.html">Without</a> 
+                • <a target="full-skin" href="full-emoji-modifiers.html">Only</a></span></td>
               <td>Emoji characters and sequences for Emoji v%%VERSION%%, with images from major sources and a Browser column. </td>
             </tr>
             <tr>
-              <td nowrap><a target='released' href="emoji-released.html">Emoji
+              <td ><a target='released' href="emoji-released.html">Emoji
                 Recently Added</a></td>
               <td>Emoji recently added to Emoji v%%VERSION%%.</td>
             </tr>
             <tr>
-              <td nowrap>Emoji Candidates<br>                
-                <a target='candidates'
+              <td >Emoji Candidates<br>                
+                <span style='white-space: nowrap'><a target='candidates'
 								href="../future/emoji-provisional.html">Provisional</a> • <a target='candidates'
-								href="../future/emoji-candidates.html">Draft</a></td>
+								href="../future/emoji-candidates.html">Draft</a></span></td>
               <td>Characters accepted by the UTC as <a
 								target='_blank'
 								href='http://unicode.org/emoji/selection.html#timeline'>candidates</a> for a future version of emoji.</td>
             </tr>
             <tr>
-              <td nowrap><a target='zwj' href="emoji-zwj-sequences.html">Emoji
+              <td ><a target='zwj' href="emoji-zwj-sequences.html">Emoji
                 ZWJ Sequences</a></td>
               <td>Recommended <em>emoji zwj sequences</em> for Emoji v%%VERSION%%. </td>
             </tr>
             <!--
 						<tr>
-							<td nowrap><a target='annotate'
+							<td ><a target='annotate'
 								href="emoji-annotations.html">Emoji Annotations</a></td>
 							<td>Shows characters grouped by annotation, based on <a
 								href="http://unicode.org/repos/cldr/trunk/common/annotations/">data
@@ -145,14 +152,14 @@
               <th colspan='2'>Sort Order &amp; Counts</th>
             </tr>
             <tr>
-              <td nowrap><a target='order' href="emoji-ordering.html">Emoji
+              <td ><a target='order' href="emoji-ordering.html">Emoji
                 Ordering</a></td>
               <td>The Emoji v%%VERSION%% characters and sequences in the
                 recommended sort order, which groups like characters together;
                 using <a href='http://cldr.unicode.org/' target='cldr'>CLDR</a> data. </td>
             </tr>
             <tr>
-              <td nowrap><a target='counts' href="emoji-counts.html">Emoji
+              <td ><a target='counts' href="emoji-counts.html">Emoji
                 Counts</a></td>
               <td>Detailed counts of the Emoji v%%VERSION%% characters and sequences.</td>
             </tr>
@@ -160,12 +167,12 @@
               <th colspan='2'>Versions</th>
             </tr>
             <tr>
-              <td nowrap><a target='versions' href="emoji-versions.html">Emoji
+              <td ><a target='versions' href="emoji-versions.html">Emoji
                 Versions</a></td>
               <td>When emoji characters were added to Unicode.</td>
             </tr>
             <tr>
-              <td nowrap><a target='versions-sources'
+              <td ><a target='versions-sources'
 								href="emoji-versions-sources.html">Emoji Versions &amp;
                 Sources</a></td>
               <td>When emoji characters were added to Unicode,
@@ -173,7 +180,7 @@
             </tr>
             <!--
 						<tr>
-							<td nowrap><a target='style' href="emoji-sequences.html">Emoji
+							<td ><a target='style' href="emoji-sequences.html">Emoji
 									Sequences</a></td>
 							<td>Shows emoji character sequences: keycaps, flags, and
 								modifier sequences.</td>
@@ -183,19 +190,19 @@
               <th colspan='2'>Presentation</th>
             </tr>
             <tr>
-              <td nowrap><a target='variants' href="emoji-variants.html">Emoji
+              <td ><a target='variants' href="emoji-variants.html">Emoji
                 Presentation Sequences</a></td>
               <td>The <em>emoji presentation sequences</em> for Emoji v%%VERSION%%. </td>
             </tr>
             <tr>
-              <td nowrap><a target='text-emoji' href="text-style.html">Text
+              <td ><a target='text-emoji' href="text-style.html">Text
                 vs Emoji</a></td>
               <td>A summary view of which Emoji v%%VERSION%% characters have the
                 default text style, and which have the default emoji style.</td>
             </tr>
             <tr>
-              <td nowrap><a target='style' href="emoji-style.html">Emoji
-                Default Style Values (html)</a></td>
+              <td ><a target='style' href="emoji-style.html">Emoji
+                Default Style (html)</a></td>
               <td rowSpan='2'>Shows the default presentation style for
                 each Emoji v%%VERSION%% character. Separate rows show the presentation with and
                 without presentation selectors, where applicable.<br>
@@ -204,8 +211,8 @@
                 images.</em></td>
             </tr>
             <tr>
-              <td nowrap><a target='style' href="emoji-style.txt">Emoji
-                Default Style Values (text)</a></td>
+              <td ><a target='style' href="emoji-style.txt">Emoji
+                Default Style (text)</a></td>
             </tr>
           </table>
         </div>

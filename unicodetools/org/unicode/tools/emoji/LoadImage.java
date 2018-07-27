@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
@@ -38,17 +39,22 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageOutputStream;
@@ -61,6 +67,9 @@ import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Factory;
 import org.unicode.cldr.util.LocaleIDParser;
 import org.unicode.cldr.util.With;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.text.tools.GifSequenceWriter;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -155,10 +164,15 @@ public class LoadImage extends Component {
     static String outputDir = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images/";
 
     public static void main(String[] args) throws IOException {
+        IndexUnicodeProperties iup = IndexUnicodeProperties.make();
+        UnicodeSet extpict = iup.loadEnumSet(UcdProperty.Extended_Pictographic, Binary.Yes);
+        generatePngsFromFonts(outputDir, "plain", "plain",  
+                extpict, 72, false); // "Symbola"
+
+        if (true) return;
         generatePngsFromFont(outputDir, "noto", "noto", "Noto Sans Egyptian Hieroglyphs", 
                 new UnicodeSet("[:Script=Egyptian_Hieroglyphs:]"), 72, false); // "Symbola"
 
-        if (true) return;
 //        doAnimatedGif(false, 72, 50);
         final CandidateData candidateData = CandidateData.getInstance();
         UnicodeSet u9 = candidateData.getCharacters();
@@ -500,14 +514,59 @@ public class LoadImage extends Component {
         return sourceImage;
     }
 
+    public static void generatePngsFromFonts(String outputDir, String dir, 
+            String prefix, UnicodeSet requested, int height, boolean useFonts) throws IOException {
+        GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        System.out.println("\n\tRemaining:\t" + requested.size());
+        Set<String> families = new TreeSet<>(Arrays.asList(e.getAvailableFontFamilyNames()));
+        for (Iterator<String> it = families.iterator(); it.hasNext();) {
+            String font = it.next();
+            if (font.contains("Color")) {
+                it.remove();
+            }
+        }
+        Set<String> orderedFamilies = new LinkedHashSet<>();
+        if (families.contains("Noto Sans Symbols")) {
+            orderedFamilies.add("Noto Sans Symbols");
+        }
+        addIfContains("Dingbats", families, orderedFamilies);
+        addIfContains("Noto Sans Symbols", families, orderedFamilies);
+        addIfContains("Symbol", families, orderedFamilies);
+        addIfContains("Noto", families, orderedFamilies);
+        addIfContains("Unicode", families, orderedFamilies);
+        addIfContains("Menlo", families, orderedFamilies);
+        orderedFamilies.addAll(families);
+        for (String font : orderedFamilies) {
+                Map<String, Image> results = generatePngsFromFont(outputDir, dir, prefix, font, requested, height, useFonts);
+                UnicodeSet found = new UnicodeSet().addAll(results.keySet());
+                System.out.println(font + ":\t" + found.size() + "\t" + found.toPattern(false));
+               if (found.isEmpty()) {
+                    continue;
+                }
+                requested.removeAll(found);
+                System.out.println("\tRemaining:\t" + requested.size());
+                if (requested.isEmpty()) {
+                    break;
+                }
+        }
+        System.out.println("Missing: " + requested.toPattern(false));
+    }
+
+    private static void addIfContains(String string, Set<String> families, Set<String> orderedFamilies) {
+        for (String font : families) {
+            if (font.contains(string)) {
+                orderedFamilies.add(font);
+            }
+        }
+    }
     public static Map<String, Image> generatePngsFromFont(String outputDir, String dir, 
-            String prefix, String font, UnicodeSet unicodeSet, int height, boolean useFonts)
+            String prefix, String font, UnicodeSet requested, int height, boolean useFonts)
                     throws IOException { // 🌰-🌵
         if (dir == null) {
             dir = prefix;
         }
         HashMap<String, Image> result = new LinkedHashMap<>();
-        Set<String> sorted = unicodeSet.addAllTo(new TreeSet<String>());
+        Set<String> sorted = requested.addAllTo(new TreeSet<String>());
         int width = height;
         BufferedImage sourceImage = new BufferedImage(width, height, IMAGE_TYPE);
         Graphics2D graphics = sourceImage.createGraphics();
@@ -523,7 +582,7 @@ public class LoadImage extends Component {
         FontMetrics metrics = font == null ? graphics.getFontMetrics() : setFont(font, height, graphics);
         //UnicodeSet firstChars = new UnicodeSet();
         String fileDirectory = outputDir + "/" + prefix;
-        System.out.println("Writing in: " + fileDirectory);
+        boolean foundOne = false;
         for (final String s : sorted) { //
             if (useFonts) {
                 UnicodeFontData font1 = UnicodeFontData.getFont(s);
@@ -536,8 +595,11 @@ public class LoadImage extends Component {
                 metrics = setFont(font, height, graphics);
             }
             if (graphics.getFont().canDisplayUpTo(s) != -1) {
-                System.out.println("No glyph for U+" + Utility.hex(s) + ", " + s + " in " + graphics.getFont().getName());
                 continue;
+            }
+            if (!foundOne) {
+                System.out.println("Writing from «" + font + "» in: " + fileDirectory);
+                foundOne = true;
             }
             String core = Emoji.buildFileName(s, "_");
             String filename = prefix + "_" + core;
@@ -587,7 +649,7 @@ public class LoadImage extends Component {
             targetImage = TransformGrayToTransparency(targetImage);
             writeImage(targetImage, fileDirectory, filename, "png");
             result.put(s, deepCopy(sourceImage));
-            System.out.println(core + "\t" + s);
+            //System.out.println(core + "\t" + s);
         }
         return result;
     }

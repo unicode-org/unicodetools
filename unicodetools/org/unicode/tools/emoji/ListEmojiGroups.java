@@ -12,6 +12,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -342,7 +343,7 @@ public class ListEmojiGroups {
             CSVParser csvParser = new CSVParser();
             for (Type type : Type.values()) {
                 for (String id : Arrays.asList(
-                        /*"20171031_20171113", "20171115_20171128", */
+                        "20171031_20171113", "20171115_20171128",
                         "20180608_20180621", "20180624_20180707")) { // "20171031_20171113", "20171115_20171128"
                     String filename = type.getFile() + id + ".csv";
                     int offset = 0;
@@ -403,15 +404,6 @@ public class ListEmojiGroups {
             //                counts.add(term + Emoji.EMOJI_VARIANT, toAddAdjusted(term, countWithFe0f, countWithoutFe0f));
             //            }
         }
-        private static Map<String, CountInfo> normalizeLocaleCounts(Map<String, Counter<String>> _counts) {
-            Map<String, CountInfo> counts2 = new LinkedHashMap<>();
-            for (String locale : _counts.keySet()) {
-                Counter<String> c = _counts.get(locale);
-                CountInfo outputCounter = new CountInfo(c);
-                counts2.put(locale, outputCounter);
-            }
-            return counts2;
-        }
         private static String normalizeLocale(String string) {
             ULocale ulocale = new ULocale(string);
             String country = ulocale.getCountry();
@@ -427,6 +419,15 @@ public class ListEmojiGroups {
         }
     }
 
+    private static Map<String, CountInfo> normalizeLocaleCounts(Map<String, Counter<String>> _counts) {
+        Map<String, CountInfo> counts2 = new LinkedHashMap<>();
+        for (String locale : _counts.keySet()) {
+            Counter<String> c = _counts.get(locale);
+            CountInfo outputCounter = new CountInfo(c);
+            counts2.put(locale, outputCounter);
+        }
+        return counts2;
+    }
 
 
     public static String hex(String string) {
@@ -436,7 +437,7 @@ public class ListEmojiGroups {
     private static String hex(String string, int minLen) {
         return "\\x{" + Utility.hex(string, minLen, " ") + "}";
     }
-
+    
     public static class CSVParser {
         enum State {start, quote}
         // ab,cd => -1,2,5 that is, point before each comma
@@ -555,6 +556,8 @@ public class ListEmojiGroups {
     }
 
     static class Facebook {
+        // 😀   emoji_GRINNING-FACE_1f600   1F600   grinning face   1   28  98597505    Smileys & People    face-positive
+        static int hexField = 2, freqField = 6, fieldLen = 9;
         static CountInfo countInfo;
         static {
             Counter<String> _counts = new Counter<>();
@@ -565,10 +568,21 @@ public class ListEmojiGroups {
                     String line = in.readLine();
                     if (line == null) break;
                     ++lineCount;
+                    if (line.startsWith("\uFEFF")) {
+                        line = line.substring(1);
+                    }
+                    if (line.startsWith("#")) {
+                        continue;
+                    }
                     String[] parts = line.split("\t");
-                    String hexCodes = parts[1];
+                    if (parts.length != fieldLen) {
+                        throw new IllegalArgumentException("Wrong number of fields: «" + line + "»");
+                    }
+                    // String hexCodes = parts[1];
+                    String hexCodes = parts[hexField];
                     String codes = normalizeHexEmoji(hexCodes);
-                    long count = Math.round(Double.parseDouble(parts[2].replace(",","")));
+                    //long count = Math.round(Double.parseDouble(parts[2].replace(",","")));
+                    long count = Math.round(Double.parseDouble(parts[freqField]));
                     _counts.add(codes, count);
                 }
             } catch (IOException e) {
