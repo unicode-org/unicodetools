@@ -3299,7 +3299,7 @@ MAGNIFYING GLASS, RIGHT-POINTING	1F50E
 Mahajani	11150
 Mahjong Tiles	1F000
 Mail Symbols	1F4E4
-Makasar	1EE0
+Makasar	11EE0
 Malayalam	0D00
 malayalam chandrakkala	0D4D
 Malayalam Chillu Letters	0D7A
