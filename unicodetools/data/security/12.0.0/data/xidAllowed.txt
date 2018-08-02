@@ -1,0 +1,20 @@
+﻿# xidAllowed.txt
+# Date: 2018-05-25, 00:12:53 GMT
+# © 2018 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
+#
+# Unicode Security Mechanisms for UTS #39
+# Version: 11.0.0
+#
+# For documentation and usage, see http://www.unicode.org/reports/tr39
+#
+# XID characters allowed (no uppercase)
+
+
+# Total code points: 0
+
+# XID characters allowed (uppercase)
+
+
+# Total code points: 0
