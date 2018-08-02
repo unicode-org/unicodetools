@@ -509,6 +509,12 @@ public final class UCD implements UCD_Types {
                 BIDI_AL_SET.add(0x10F30, 0x10F6F);
                 BIDI_AL_SET.add(0x1EC70, 0x1ECBF);
             }
+            if (versionInfo.getMajor() >= 12) {
+                // Unicode 12:
+            	// The Ottoman Siyaq Numbers block defaults to bc=AL, similar to Indic Siyaq.
+                BIDI_R_Delta.remove(0x1ED00, 0x1ED4F);
+                BIDI_AL_SET.add(0x1ED00, 0x1ED4F);
+            }
             BIDI_R_Delta.removeAll(BIDI_R_SET);
             if (SHOW_LOADING) {
                 System.out.println("R: Adding " + BIDI_R_Delta);
@@ -1461,6 +1467,9 @@ public final class UCD implements UCD_Types {
                     return TANGUT_BASE;  // 17000..187EC Tangut Ideograph
                 }
                 if (ch <= 0x187F1 && rCompositeVersion >= 0xb0000) {
+                    return TANGUT_BASE;
+                }
+                if (ch <= 0x187F7 && rCompositeVersion >= 0xc0000) {
                     return TANGUT_BASE;
                 }
             }

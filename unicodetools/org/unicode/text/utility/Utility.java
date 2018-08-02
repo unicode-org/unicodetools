@@ -826,6 +826,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     public static final String[] searchPath = {
             // "EXTRAS" + (FIX_FOR_NEW_VERSION == 0 ? "" : ""),
+            "12.0.0",
             "11.0.0",
             "10.0.0",
             "9.0.0",

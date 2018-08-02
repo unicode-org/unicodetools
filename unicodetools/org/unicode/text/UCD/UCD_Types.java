@@ -21,10 +21,9 @@ public interface UCD_Types {
     public static final char DOTTED_CIRCLE = '\u25CC';
 
     /** Tangut but not Tangut Components, only assigned code points */
-    public static final int TANGUT_BASE = 0x17000, TANGUT_LIMIT = 0x187EC+1;
-    // Unicode 9:
+    public static final int TANGUT_BASE = 0x17000, TANGUT_LIMIT = 0x187F7+1;
     // 17000;<Tangut Ideograph, First>;Lo;0;L;;;;;N;;;;;
-    // 187EC;<Tangut Ideograph, Last>;Lo;0;L;;;;;N;;;;;
+    // 187F7;<Tangut Ideograph, Last>;Lo;0;L;;;;;N;;;;;
     // 18800;TANGUT COMPONENT-001;Lo;0;L;;;;;N;;;;;
     // ...
     // 18AF2;TANGUT COMPONENT-755;Lo;0;L;;;;;N;;;;;
@@ -527,10 +526,12 @@ public interface UCD_Types {
     Newa = 137,
     Osage = 138,
     Tangut = 139,
+    // Unicode 10
     Masaram_Gondi = 140,
     Nushu = 141,
     Soyombo = 142,
     Zanabazar_Square = 143,
+    // Unicode 11
     Dogra = 144,
     Gunjala_Gondi = 145,
     Makasar = 146,
@@ -538,7 +539,12 @@ public interface UCD_Types {
     Hanifi_Rohingya = 148,
     Sogdian = 149,
     Old_Sogdian = 150,
-    LIMIT_SCRIPT = Old_Sogdian + 1;
+    // Unicode 12
+    Elymaic = 151,
+    Nandinagari = 152,
+    Nyiakeng_Puachue_Hmong = 153,
+    Wancho = 154,
+    LIMIT_SCRIPT = Wancho + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte
@@ -570,7 +576,8 @@ public interface UCD_Types {
     AGE90 = 18,
     AGE100 = 19,
     AGE110 = 20,
-    LIMIT_AGE = AGE110 + 1; // + FIX_FOR_NEW_VERSION;
+    AGE120 = 21,
+    LIMIT_AGE = AGE120 + 1; // + FIX_FOR_NEW_VERSION;
 
     static final String[] AGE_VERSIONS = {
             "?",
@@ -594,6 +601,7 @@ public interface UCD_Types {
             "9.0.0",
             "10.0.0",
             "11.0.0",
+            "12.0.0",
     };
 
     public static byte

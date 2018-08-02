@@ -79,8 +79,10 @@ Dingbats	;	Dingbats
 Domino	;	Domino_Tiles
 Duployan	;	Duployan
 Early_Dynastic_Cuneiform	;	Early_Dynastic_Cuneiform
+Egyptian_Hieroglyph_Format_Controls ; Egyptian_Hieroglyph_Format_Controls
 Egyptian_Hieroglyphs	;	Egyptian_Hieroglyphs
 Elbasan	;	Elbasan
+Elymaic ; Elymaic
 Emoticons	;	Emoticons
 Enclosed_Alphanum_Sup	;	Enclosed_Alphanumeric_Supplement
 Enclosed_Alphanum	;	Enclosed_Alphanumerics
@@ -186,12 +188,14 @@ Myanmar	;	Myanmar
 Myanmar_Ext_A	;	Myanmar_Extended_A
 Myanmar_Ext_B	;	Myanmar_Extended_B
 Nabataean	;	Nabataean
+Nandinagari ; Nandinagari
 New_Tai_Lue	;	New_Tai_Lue
 Newa  ; Newa
 NKo	;	NKo
 NB	;	No_Block
 Number_Forms	;	Number_Forms
 Nushu ; Nushu
+Nyiakeng_Puachue_Hmong ; Nyiakeng_Puachue_Hmong
 Ogham	;	Ogham
 Ol_Chiki	;	Ol_Chiki
 Old_Italic	;	Old_Italic
@@ -206,6 +210,7 @@ Oriya	;	Oriya
 Ornamental_Dingbats	;	Ornamental_Dingbats
 Osage	;	Osage
 Osmanya	;	Osmanya
+Ottoman_Siyaq_Numbers ; Ottoman_Siyaq_Numbers
 Pahawh_Hmong	;	Pahawh_Hmong
 Palmyrene	;	Palmyrene
 Pau_Cin_Hau	;	Pau_Cin_Hau
@@ -229,6 +234,7 @@ Siddham	;	Siddham
 Sinhala	;	Sinhala
 Sinhala_Archaic_Numbers	;	Sinhala_Archaic_Numbers
 Small_Forms	;	Small_Form_Variants
+Small_Kana_Ext ; Small_Kana_Extension
 Sora_Sompeng	;	Sora_Sompeng
 Modifier_Letters	;	Spacing_Modifier_Letters
 Soyombo ; Soyombo
@@ -246,6 +252,7 @@ Sup_PUA_A	;	Supplementary_Private_Use_Area_A
 Sup_PUA_B	;	Supplementary_Private_Use_Area_B
 Sutton_SignWriting	;	Sutton_SignWriting
 Syloti_Nagri	;	Syloti_Nagri
+Symbols_And_Pictographs_Ext_A ; Symbols_And_Pictographs_Extended_A
 Syriac	;	Syriac
 Syriac_Sup ; Syriac_Supplement
 Tagalog	;	Tagalog
@@ -257,6 +264,7 @@ Tai_Viet	;	Tai_Viet
 Tai_Xuan_Jing	;	Tai_Xuan_Jing_Symbols
 Takri	;	Takri
 Tamil	;	Tamil
+Tamil_Sup ; Tamil_Supplement
 Tangut	;	Tangut
 Tangut_Components	;	Tangut_Components
 Telugu	;	Telugu
@@ -274,6 +282,7 @@ VS	;	Variation_Selectors
 VS_Sup	;	Variation_Selectors_Supplement
 Vedic_Ext	;	Vedic_Extensions
 Vertical_Forms	;	Vertical_Forms
+Wancho ; Wancho
 Warang_Citi	;	Warang_Citi
 Yi_Radicals	;	Yi_Radicals
 Yi_Syllables	;	Yi_Syllables
