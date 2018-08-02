@@ -25052,7 +25052,7 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 16FE2;OLD CHINESE HOOK MARK;Po;0;ON;;;;;N;;;;;
 16FE3;OLD CHINESE ITERATION MARK;Lm;0;L;;;;;N;;;;;
 17000;<Tangut Ideograph, First>;Lo;0;L;;;;;N;;;;;
-187F1;<Tangut Ideograph, Last>;Lo;0;L;;;;;N;;;;;
+187F7;<Tangut Ideograph, Last>;Lo;0;L;;;;;N;;;;;
 18800;TANGUT COMPONENT-001;Lo;0;L;;;;;N;;;;;
 18801;TANGUT COMPONENT-002;Lo;0;L;;;;;N;;;;;
 18802;TANGUT COMPONENT-003;Lo;0;L;;;;;N;;;;;

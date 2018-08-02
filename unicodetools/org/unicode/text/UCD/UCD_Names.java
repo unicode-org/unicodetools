@@ -380,7 +380,12 @@ public final class UCD_Names implements UCD_Types {
         "Medefaidrin",
         "Hanifi_Rohingya",
         "Sogdian",
-        "Old_Sogdian"
+        "Old_Sogdian",
+        // Unicode 12
+        "Elymaic",
+        "Nandinagari",
+        "Nyiakeng_Puachue_Hmong",
+        "Wancho",
     };
 
     public static final Relation<String,String> EXTRA_SCRIPT =
@@ -544,7 +549,12 @@ public final class UCD_Names implements UCD_Types {
         "Medf",
         "Rohg",
         "Sogd",
-        "Sogo"
+        "Sogo",
+        // Unicode 12
+        "Elym",
+        "Nnag",
+        "Hmnp",
+        "Wcho",
     };
 
     static final String[] SHORT_AGE = {
@@ -569,6 +579,7 @@ public final class UCD_Names implements UCD_Types {
         "9.0",
         "10.0",
         "11.0",
+        "12.0",
     };
 
     static final String[] LONG_AGE = {
@@ -593,6 +604,7 @@ public final class UCD_Names implements UCD_Types {
         "V9_0",
         "V10_0",
         "V11_0",
+        "V12_0",
     };
 
     static final String[] GENERAL_CATEGORY = {

@@ -45,7 +45,9 @@ public class UcdPropertyValues {
         V9_0("9.0"),
         V10_0("10.0"),
         V11_0("11.0"),
+        V12_0("12.0"),
         Unassigned("NA");
+
         private final PropertyNames<Age_Values> names;
         private Age_Values (String shortName, String...otherNames) {
             names = new PropertyNames<Age_Values>(
@@ -210,8 +212,10 @@ public class UcdPropertyValues {
         Domino_Tiles("Domino"),
         Duployan("Duployan"),
         Early_Dynastic_Cuneiform("Early_Dynastic_Cuneiform"),
+        Egyptian_Hieroglyph_Format_Controls("Egyptian_Hieroglyph_Format_Controls"),
         Egyptian_Hieroglyphs("Egyptian_Hieroglyphs"),
         Elbasan("Elbasan"),
+        Elymaic("Elymaic"),
         Emoticons("Emoticons"),
         Enclosed_Alphanumerics("Enclosed_Alphanum"),
         Enclosed_Alphanumeric_Supplement("Enclosed_Alphanum_Sup"),
@@ -325,12 +329,14 @@ public class UcdPropertyValues {
         Myanmar_Extended_A("Myanmar_Ext_A"),
         Myanmar_Extended_B("Myanmar_Ext_B"),
         Nabataean("Nabataean"),
+        Nandinagari("Nandinagari"),
         No_Block("NB"),
         New_Tai_Lue("New_Tai_Lue"),
         Newa("Newa"),
         NKo("NKo"),
         Number_Forms("Number_Forms"),
         Nushu("Nushu"),
+        Nyiakeng_Puachue_Hmong("Nyiakeng_Puachue_Hmong"),
         Optical_Character_Recognition("OCR"),
         Ogham("Ogham"),
         Ol_Chiki("Ol_Chiki"),
@@ -346,6 +352,7 @@ public class UcdPropertyValues {
         Ornamental_Dingbats("Ornamental_Dingbats"),
         Osage("Osage"),
         Osmanya("Osmanya"),
+        Ottoman_Siyaq_Numbers("Ottoman_Siyaq_Numbers"),
         Pahawh_Hmong("Pahawh_Hmong"),
         Palmyrene("Palmyrene"),
         Pau_Cin_Hau("Pau_Cin_Hau"),
@@ -370,6 +377,7 @@ public class UcdPropertyValues {
         Sinhala("Sinhala"),
         Sinhala_Archaic_Numbers("Sinhala_Archaic_Numbers"),
         Small_Form_Variants("Small_Forms"),
+        Small_Kana_Extension("Small_Kana_Ext"),
         Sogdian("Sogdian"),
         Sora_Sompeng("Sora_Sompeng"),
         Soyombo("Soyombo"),
@@ -387,6 +395,7 @@ public class UcdPropertyValues {
         Superscripts_And_Subscripts("Super_And_Sub"),
         Sutton_SignWriting("Sutton_SignWriting"),
         Syloti_Nagri("Syloti_Nagri"),
+        Symbols_And_Pictographs_Extended_A("Symbols_And_Pictographs_Ext_A"),
         Syriac("Syriac"),
         Syriac_Supplement("Syriac_Sup"),
         Tagalog("Tagalog"),
@@ -398,6 +407,7 @@ public class UcdPropertyValues {
         Tai_Xuan_Jing_Symbols("Tai_Xuan_Jing"),
         Takri("Takri"),
         Tamil("Tamil"),
+        Tamil_Supplement("Tamil_Sup"),
         Tangut("Tangut"),
         Tangut_Components("Tangut_Components"),
         Telugu("Telugu"),
@@ -415,11 +425,13 @@ public class UcdPropertyValues {
         Vertical_Forms("Vertical_Forms"),
         Variation_Selectors("VS"),
         Variation_Selectors_Supplement("VS_Sup"),
+        Wancho("Wancho"),
         Warang_Citi("Warang_Citi"),
         Yi_Radicals("Yi_Radicals"),
         Yi_Syllables("Yi_Syllables"),
         Yijing_Hexagram_Symbols("Yijing"),
         Zanabazar_Square("Zanabazar_Square");
+
         private final PropertyNames<Block_Values> names;
         private Block_Values (String shortName, String...otherNames) {
             names = new PropertyNames<Block_Values>(
@@ -1401,6 +1413,7 @@ public class UcdPropertyValues {
         Duployan("Dupl"),
         Egyptian_Hieroglyphs("Egyp"),
         Elbasan("Elba"),
+        Elymaic("Elym"),
         Ethiopic("Ethi"),
         Georgian("Geor"),
         Glagolitic("Glag"),
@@ -1458,9 +1471,11 @@ public class UcdPropertyValues {
         Myanmar("Mymr"),
         Old_North_Arabian("Narb"),
         Nabataean("Nbat"),
+        Nandinagari("Nnag"),
         Newa("Newa"),
         Nko("Nkoo"),
         Nushu("Nshu"),
+        Nyiakeng_Puachue_Hmong("Hmnp"),
         Ogham("Ogam"),
         Ol_Chiki("Olck"),
         Old_Turkic("Orkh"),
@@ -1511,6 +1526,7 @@ public class UcdPropertyValues {
         Tirhuta("Tirh"),
         Ugaritic("Ugar"),
         Vai("Vaii"),
+        Wancho("Wcho"),
         Warang_Citi("Wara"),
         Old_Persian("Xpeo"),
         Cuneiform("Xsux"),
@@ -1526,6 +1542,7 @@ public class UcdPropertyValues {
         Emoji_Symbols("Zsye"),
         Other_Symbols("Zsym"),
         Unwritten("Zxxx");
+
         private final PropertyNames<Script_Values> names;
         private Script_Values (String shortName, String...otherNames) {
             names = new PropertyNames<Script_Values>(

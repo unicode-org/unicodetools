@@ -1,13 +1,12 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 12.0.0
-@@@+	U12M180731.lst
-	Unicode 12.0.0 names list, first delta.
-	Repertoire synched with UnicodeData-12.0.0d2.txt
-	First delta of annotation fixes, plus synch with Amd2 annotation additions.
-	Added subhead to 1CB1.
-	Added notice to 02B0.
-	Added annotation to 145BD.
-	Corrected Romanian entries for 1BC23 and 1BC29.
+@@@+	U12M180802.lst
+	Unicode 12.0.0 names list, second delta.
+	Repertoire synched with UnicodeData-12.0.0d4.txt
+	Second delta of annotation fixes.
+	Added annotation to 229C.
+	Added annotation to A765.
+	Updated end of Tangut ideographs range.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -14348,6 +14347,7 @@
 229B	CIRCLED ASTERISK OPERATOR
 	x (apl functional symbol circle star - 235F)
 229C	CIRCLED EQUALS
+	= NoDerivatives (symbol used for Creative Commons licenses)
 	~ 229C FE00 with equal sign touching the circle
 229D	CIRCLED DASH
 229E	SQUARED PLUS
@@ -24092,6 +24092,9 @@ A762	LATIN CAPITAL LETTER VISIGOTHIC Z
 A763	LATIN SMALL LETTER VISIGOTHIC Z
 A764	LATIN CAPITAL LETTER THORN WITH STROKE
 A765	LATIN SMALL LETTER THORN WITH STROKE
+	* Old Norse, Old English
+	* representative glyph is preferred in Old Norse text
+	* Old English fonts show a more diagonal stroke
 A766	LATIN CAPITAL LETTER THORN WITH STROKE THROUGH DESCENDER
 A767	LATIN SMALL LETTER THORN WITH STROKE THROUGH DESCENDER
 A768	LATIN CAPITAL LETTER VEND
@@ -39615,7 +39618,7 @@ FFFF	<not a character>
 16FE3	OLD CHINESE ITERATION MARK
 	x (ideographic iteration mark - 3005)
 	x (vertical ideographic iteration mark - 303B)
-@@	17000	Tangut	187F1
+@@	17000	Tangut	187F7
 @@	18800	Tangut Components	18AFF
 @+		This is a superset of components used in various Tangut sources. Indexes of components (001..755) used for Tangut ideographs are shown in the Tangut block.
 @		One-stroke components

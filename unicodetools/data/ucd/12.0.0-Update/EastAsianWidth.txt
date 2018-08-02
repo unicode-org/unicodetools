@@ -1,5 +1,5 @@
 # EastAsianWidth-12.0.0.txt
-# Date: 2018-07-31, 17:03:01 GMT [KW, LI]
+# Date: 2018-08-02, 07:46:52 GMT [KW, LI]
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -2199,7 +2199,7 @@ FFFD;A           # So         REPLACEMENT CHARACTER
 16FE0..16FE1;W   # Lm     [2] TANGUT ITERATION MARK..NUSHU ITERATION MARK
 16FE2;W          # Po         OLD CHINESE HOOK MARK
 16FE3;W          # Lm         OLD CHINESE ITERATION MARK
-17000..187F1;W   # Lo  [6130] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F1
+17000..187F7;W   # Lo  [6136] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F7
 18800..18AF2;W   # Lo   [755] TANGUT COMPONENT-001..TANGUT COMPONENT-755
 1B000..1B0FF;W   # Lo   [256] KATAKANA LETTER ARCHAIC E..HENTAIGANA LETTER RE-2
 1B100..1B11E;W   # Lo    [31] HENTAIGANA LETTER RE-3..HENTAIGANA LETTER N-MU-MO-2
