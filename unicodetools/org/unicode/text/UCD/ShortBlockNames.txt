@@ -39,6 +39,7 @@ Chakma	;	Chakma
 Cham	;	Cham
 Cherokee	;	Cherokee
 Cherokee_Sup	;	Cherokee_Supplement
+Chess_Symbols ; Chess_Symbols
 CJK_Compat	;	CJK_Compatibility
 CJK_Compat_Forms	;	CJK_Compatibility_Forms
 CJK_Compat_Ideographs	;	CJK_Compatibility_Ideographs
@@ -57,6 +58,7 @@ Diacriticals	;	Combining_Diacritical_Marks
 Diacriticals_Ext	;	Combining_Diacritical_Marks_Extended
 Diacriticals_For_Symbols	;	Combining_Diacritical_Marks_For_Symbols
 Diacriticals_Sup	;	Combining_Diacritical_Marks_Supplement
+Dogra ; Dogra
 Half_Marks	;	Combining_Half_Marks
 Indic_Number_Forms	;	Common_Indic_Number_Forms
 Control_Pictures	;	Control_Pictures
@@ -96,6 +98,7 @@ Punctuation	;	General_Punctuation
 Geometric_Shapes	;	Geometric_Shapes
 Geometric_Shapes_Ext	;	Geometric_Shapes_Extended
 Georgian	;	Georgian
+Georgian_Ext ; Georgian_Extended
 Georgian_Sup	;	Georgian_Supplement
 Glagolitic	;	Glagolitic
 Glagolitic_Sup	;	Glagolitic_Supplement
@@ -104,6 +107,7 @@ Grantha	;	Grantha
 Greek	;	Greek_And_Coptic
 Greek_Ext	;	Greek_Extended
 Gujarati	;	Gujarati
+Gunjala_Gondi ; Gunjala_Gondi
 Gurmukhi	;	Gurmukhi
 Half_And_Full_Forms	;	Halfwidth_And_Fullwidth_Forms
 Compat_Jamo	;	Hangul_Compatibility_Jamo
@@ -111,6 +115,7 @@ Jamo	;	Hangul_Jamo
 Jamo_Ext_A	;	Hangul_Jamo_Extended_A
 Jamo_Ext_B	;	Hangul_Jamo_Extended_B
 Hangul	;	Hangul_Syllables
+Hanifi_Rohingya ; Hanifi_Rohingya
 Hanunoo	;	Hanunoo
 Hatran	;	Hatran
 Hebrew	;	Hebrew
@@ -120,6 +125,7 @@ Hiragana	;	Hiragana
 IDC	;	Ideographic_Description_Characters
 Ideographic_Symbols	;	Ideographic_Symbols_And_Punctuation
 Imperial_Aramaic	;	Imperial_Aramaic
+Indic_Siyaq_Numbers ; Indic_Siyaq_Numbers
 Inscriptional_Pahlavi	;	Inscriptional_Pahlavi
 Inscriptional_Parthian	;	Inscriptional_Parthian
 IPA_Ext	;	IPA_Extensions
@@ -158,6 +164,7 @@ Lycian	;	Lycian
 Lydian	;	Lydian
 Mahajani	;	Mahajani
 Mahjong	;	Mahjong_Tiles
+Makasar ; Makasar
 Malayalam	;	Malayalam
 Mandaic	;	Mandaic
 Manichaean	;	Manichaean
@@ -165,6 +172,8 @@ Marchen	;	Marchen
 Masaram_Gondi ; Masaram_Gondi
 Math_Alphanum	;	Mathematical_Alphanumeric_Symbols
 Math_Operators	;	Mathematical_Operators
+Mayan_Numerals ; Mayan_Numerals
+Medefaidrin ; Medefaidrin
 Meetei_Mayek	;	Meetei_Mayek
 Meetei_Mayek_Ext	;	Meetei_Mayek_Extensions
 Mende_Kikakui	;	Mende_Kikakui
@@ -203,6 +212,7 @@ Old_Hungarian	;	Old_Hungarian
 Old_North_Arabian	;	Old_North_Arabian
 Old_Permic	;	Old_Permic
 Old_Persian	;	Old_Persian
+Old_Sogdian ; Old_Sogdian
 Old_South_Arabian	;	Old_South_Arabian
 Old_Turkic	;	Old_Turkic
 OCR	;	Optical_Character_Recognition
@@ -235,6 +245,7 @@ Sinhala	;	Sinhala
 Sinhala_Archaic_Numbers	;	Sinhala_Archaic_Numbers
 Small_Forms	;	Small_Form_Variants
 Small_Kana_Ext ; Small_Kana_Extension
+Sogdian ; Sogdian
 Sora_Sompeng	;	Sora_Sompeng
 Modifier_Letters	;	Spacing_Modifier_Letters
 Soyombo ; Soyombo
@@ -288,15 +299,3 @@ Yi_Radicals	;	Yi_Radicals
 Yi_Syllables	;	Yi_Syllables
 Yijing	;	Yijing_Hexagram_Symbols
 Zanabazar_Square ; Zanabazar_Square
-Georgian_Extended ; Georgian_Extended
-Hanifi_Rohingya ; Hanifi_Rohingya
-Old_Sogdian ; Old_Sogdian
-Sogdian ; Sogdian
-Dogra ; Dogra
-Gunjala_Gondi ; Gunjala_Gondi
-Makasar ; Makasar
-Medefaidrin ; Medefaidrin
-Mayan_Numerals ; Mayan_Numerals
-Indic_Siyaq_Numbers ; Indic_Siyaq_Numbers
-Chess_Symbols ; Chess_Symbols
-Georgian_Ext ; Georgian_Extended

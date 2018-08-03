@@ -129,6 +129,8 @@ public class UcdPropertyValues {
         }
     }
 
+    // Sorted alphabetically by short alias ("string" argument)
+    // rather than long alias (name of the constant).
 	public enum Block_Values implements Named {
         Adlam("Adlam"),
         Aegean_Numbers("Aegean_Numbers"),
@@ -1379,7 +1381,8 @@ public class UcdPropertyValues {
         }
     }
 
-		// Numeric_Value
+    // Sorted alphabetically by short alias ("string" argument)
+    // rather than long alias (name of the constant).
 	public enum Script_Values implements Named {
         Adlam("Adlm"),
         Caucasian_Albanian("Aghb"),
@@ -1424,6 +1427,7 @@ public class UcdPropertyValues {
         Greek("Grek"),
         Gujarati("Gujr"),
         Gurmukhi("Guru"),
+        Han_with_Bopomofo("Hanb"),
         Hangul("Hang"),
         Han("Hani"),
         Hanunoo("Hano"),
@@ -1432,16 +1436,19 @@ public class UcdPropertyValues {
         Hiragana("Hira"),
         Anatolian_Hieroglyphs("Hluw"),
         Pahawh_Hmong("Hmng"),
+        Nyiakeng_Puachue_Hmong("Hmnp"),
         Katakana_Or_Hiragana("Hrkt"),
         Old_Hungarian("Hung"),
         Old_Italic("Ital"),
         Javanese("Java"),
+        Japanese("Jpan"),
         Kayah_Li("Kali"),
         Katakana("Kana"),
         Kharoshthi("Khar"),
         Khmer("Khmr"),
         Khojki("Khoj"),
         Kannada("Knda"),
+        Korean("Kore"),
         Kaithi("Kthi"),
         Tai_Tham("Lana"),
         Lao("Laoo"),
@@ -1475,7 +1482,6 @@ public class UcdPropertyValues {
         Newa("Newa"),
         Nko("Nkoo"),
         Nushu("Nshu"),
-        Nyiakeng_Puachue_Hmong("Hmnp"),
         Ogham("Ogam"),
         Ol_Chiki("Olck"),
         Old_Turkic("Orkh"),
@@ -1533,15 +1539,12 @@ public class UcdPropertyValues {
         Yi("Yiii"),
         Zanabazar_Square("Zanb"),
         Inherited("Zinh", "Qaai"),
-        Common("Zyyy"),
-        Unknown("Zzzz"),
-        Japanese("Jpan"),
-        Korean("Kore"),
-        Han_with_Bopomofo("Hanb"),
         Math_Symbols("Zmth"),
         Emoji_Symbols("Zsye"),
         Other_Symbols("Zsym"),
-        Unwritten("Zxxx");
+        Unwritten("Zxxx"),
+        Common("Zyyy"),
+        Unknown("Zzzz");
 
         private final PropertyNames<Script_Values> names;
         private Script_Values (String shortName, String...otherNames) {

@@ -1460,16 +1460,21 @@ public final class UCD implements UCD_Types {
             }
 
             if (rCompositeVersion >= 0x90000) {
+                // Unicode 9 added:
+                // 17000;<Tangut Ideograph, First>;Lo;0;L;;;;;N;;;;;
+                // 187EC;<Tangut Ideograph, Last>;Lo;0;L;;;;;N;;;;;
                 if (ch <= TANGUT_BASE) {
                     return ch;
                 }
-                if (ch < TANGUT_LIMIT) {
+                if (ch <= 0x187EC) {
                     return TANGUT_BASE;  // 17000..187EC Tangut Ideograph
                 }
                 if (ch <= 0x187F1 && rCompositeVersion >= 0xb0000) {
+                    // Unicode 11 added TANGUT IDEOGRAPH-187ED..TANGUT IDEOGRAPH-187F1.
                     return TANGUT_BASE;
                 }
                 if (ch <= 0x187F7 && rCompositeVersion >= 0xc0000) {
+                    // Unicode 12 added TANGUT IDEOGRAPH-187F2..TANGUT IDEOGRAPH-187F7.
                     return TANGUT_BASE;
                 }
             }
