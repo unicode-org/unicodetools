@@ -560,7 +560,8 @@ public class GenerateCaseFolding implements UCD_Types {
             if (!specialNormalizationDiffers(ch)) {
                 continue;
             }
-            if (0x1F110 <= ch && ch <= 0x1F12A || ch == 0x1F12D || ch == 0x1F12E) {
+            // Ignore symbols for which we do not want to generate additional case mappings.
+            if (0x1F100 <= ch && ch <= 0x1F1FF) {  // Enclosed Alphanumeric Supplement
                 continue;
             }
 
