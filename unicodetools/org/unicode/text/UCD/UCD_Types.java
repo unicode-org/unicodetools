@@ -20,13 +20,15 @@ public interface UCD_Types {
 
     public static final char DOTTED_CIRCLE = '\u25CC';
 
-    /** Tangut but not Tangut Components, only assigned code points */
-    public static final int TANGUT_BASE = 0x17000, TANGUT_LIMIT = 0x187F7+1;
+    /**
+     * Tangut but not Tangut Components, only assigned code points.
+     * The end/limit of the range depends on the Unicode version,
+     * see UCD.java mapToRepresentative().
+     */
+    public static final int TANGUT_BASE = 0x17000;
+    // Unicode 9:
     // 17000;<Tangut Ideograph, First>;Lo;0;L;;;;;N;;;;;
-    // 187F7;<Tangut Ideograph, Last>;Lo;0;L;;;;;N;;;;;
-    // 18800;TANGUT COMPONENT-001;Lo;0;L;;;;;N;;;;;
-    // ...
-    // 18AF2;TANGUT COMPONENT-755;Lo;0;L;;;;;N;;;;;
+    // 187EC;<Tangut Ideograph, Last>;Lo;0;L;;;;;N;;;;;
 
     public static final int
     // 4E00;<CJK Ideograph, First>;Lo;0;L;;;;;N;;;;;
