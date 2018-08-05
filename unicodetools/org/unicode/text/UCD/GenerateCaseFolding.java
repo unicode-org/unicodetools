@@ -516,9 +516,9 @@ public class GenerateCaseFolding implements UCD_Types {
         {
             return true; // skip IJ, ij
         }
-        if (ch == 0x1F16A || ch == 0x1F16B)
+        if (0x1F16A <= ch && ch <= 0x1F16C)
         {
-            return true; // skip raised MC/MD signs
+            return true; // skip raised MC/MD/MR signs
         }
         if (ch == 0x037A)
         {
@@ -560,8 +560,7 @@ public class GenerateCaseFolding implements UCD_Types {
             if (!specialNormalizationDiffers(ch)) {
                 continue;
             }
-            // Ignore symbols for which we do not want to generate additional case mappings.
-            if (0x1F100 <= ch && ch <= 0x1F1FF) {  // Enclosed Alphanumeric Supplement
+            if (0x1F110 <= ch && ch <= 0x1F12A || ch == 0x1F12D || ch == 0x1F12E) {
                 continue;
             }
 
