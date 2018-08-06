@@ -28,5 +28,19 @@ public interface EmojiDataSource {
         return getName(UTF16.valueOf(codepoint));
     }
     public UnicodeMap<String> getRawNames();
+    public default UnicodeSet getBasicSequences() {
+        UnicodeSet result = new UnicodeSet();
+        for (String s : getSingletonsWithDefectives()) {
+//            if (Emoji.KEYCAP_BASE.contains(s)) {
+//                continue;
+//            }
+            if (getEmojiPresentationSet().contains(s)) {
+                result.add(s);
+            } else {
+                result.add(s+Emoji.EMOJI_VARIANT);
+            }
+        }
+        return result.freeze();
+    }
 }
 

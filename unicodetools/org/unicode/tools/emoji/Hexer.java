@@ -6,27 +6,38 @@ import org.unicode.cldr.util.With;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
+import com.ibm.icu.text.StringTransform;
 
-public class Hexer {
+public class Hexer implements StringTransform {
     
-    static public String toHex(String string, char prefix, int minLen, IntPredicate noHex) {
+    public String toHex(String string) {
         final StringBuilder result = new StringBuilder();
         boolean inBraces = false;
         for (int cp : With.codePointArray(string)) {
-            if (noHex != null && noHex.test(cp)) {
-                if (inBraces) {
-                    result.append('}');
-                    inBraces = false;
-                }
-                result.appendCodePoint(cp);
-            } else {
+            if (doEscape != null && doEscape.test(cp)) {
                 if (inBraces) {
                     result.append(' ');
+                } if (cp <= 0xFF) { 
+                    result.append('\\').append('x').append(Utility.hex(cp, 2));
+                    continue;
+                } if (cp <= 0xFFFF) { 
+                    result.append('\\').append('u').append(Utility.hex(cp, 4));
+                    continue;
                 } else {
                     result.append('\\').append(prefix).append('{');
                     inBraces = true;
                 }
                 result.append(Utility.hex(cp, minLen));
+                if (inBraces && !multiPoint) {
+                    result.append('}');
+                    inBraces = false;
+                }
+            } else {
+                if (inBraces) {
+                    result.append('}');
+                    inBraces = false;
+                }
+                result.appendCodePoint(cp);
             }
         }
         if (inBraces) {
@@ -39,7 +50,7 @@ public class Hexer {
      * Not optimized...
      * only handles \x{...}, not \\, etc.
      */
-    static public String fromHex(String string, char prefix) {
+    public String fromHex(String string) {
         final StringBuilder result = new StringBuilder();
         final int len = string.length();
         int lastIndex = 0;
@@ -84,27 +95,59 @@ public class Hexer {
     }
 
     public static void main(String[] args) {
-        IntPredicate noHex = cp -> cp < 0x80;
-        String[] tests = {"abc",
+        IntPredicate escapeNonAscii = cp -> cp >= 0x80;
+        String[] tests = {
+                "abc",
                 "👽€£a\t",
                 "ab👽c👽€",
                 "👽ab👽€ab"
                 };
+        Hexer hexer1 = new Hexer('u').setMinLength(1).setDoEscape(null);
+        Hexer hexer2 = new Hexer('u').setMinLength(4).setDoEscape(escapeNonAscii);
         for (String test : tests) {
             System.out.println(test + ":");
-            int minLen = 1;
-            IntPredicate filter = null;
-            for (int i = 0; i < 2; ++i) {
-                String actual = toHex(test, 'u', minLen, filter);
-                String roundtrip = fromHex(actual, 'u');
-                System.out.println("\t«" + actual + "»\t" + (roundtrip.equals(actual) ? "ok" : "\t«" + roundtrip + "»\t"));
-                minLen = 4;
-                filter = noHex;
-            }
-//            String actual = toHex(test, 1, 'u', null);
-//            roundtrip = fromHex(actual, 'u');
-//            System.out.println("\t«" + actual + "»\t" + (roundtrip.equals(actual) ? "ok" : "\t«" + roundtrip + "»\t"));
-                    //+ "\n\t«" + toHex(test, 4, 'u', noHex)
+            checkRoundtrip(hexer1, test);
+            checkRoundtrip(hexer2, test);
         }
+    }
+
+    private static void checkRoundtrip(Hexer hexer, String test) {
+        String actual = hexer.toHex(test);
+        String roundtrip = hexer.fromHex(actual);
+        System.out.println("\t«" + actual + "»\t" + (roundtrip.equals(actual) ? "ok" : "\t«" + roundtrip + "»\t"));
+    }
+
+    private final char prefix;
+    private final int minLen;
+    private final boolean multiPoint;
+    private final IntPredicate doEscape;
+
+    /**
+     * Defaults to: setMinLength = 1, doEscape = null, multiPoint = false;
+     * @param prefix
+     */
+    public Hexer(char prefix) {
+        this(prefix, 1, false, null);
+    }
+    
+    public Hexer setMinLength(int minLen) {
+        return new Hexer(prefix, minLen, multiPoint, doEscape);
+    }
+    
+    public Hexer setDoEscape(IntPredicate doEscape) {
+        return new Hexer(prefix, minLen, multiPoint, doEscape);
+    }
+    
+    private Hexer(char prefix, int minLen, boolean multiPoint, IntPredicate doEscape) {
+        super();
+        this.prefix = prefix;
+        this.minLen = minLen;
+        this.multiPoint = multiPoint;
+        this.doEscape = doEscape;
+    }
+
+    @Override
+    public String transform(String source) {
+        return toHex(source);
     }
 }

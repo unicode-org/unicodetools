@@ -721,7 +721,7 @@ public class GenerateEmoji {
         FileUtilities.copyFile(GenerateEmoji.class, "emoji-list.css", Emoji.TR51_INTERNAL_DIR);
         showOrdering(Style.bestImage, Visibility.internal, CandidateStyle.released);
         showOrdering(Style.svg, Visibility.internal, CandidateStyle.released);
-        EmojiImageData.write(Source.VENDOR_SOURCES);
+        EmojiImageData.write(Source.VENDOR_SOURCES); // missing-emoji...
         printCollationOrder();
         showConstructedNames();
 
