@@ -182,15 +182,18 @@ public class GenerateEmojiData {
             int width = maxLength(type_fields);
             showTypeFieldsMessage(out, type_fields);
 
+            printer.show(out, "Basic_Emoji", null, width, 14, 
+                    EmojiDataSourceCombined.EMOJI_DATA.getBasicSequences(), true, false, true);
             printer.show(out, "Emoji_Keycap_Sequence", null, width, 14, Emoji.KEYCAPS, true, false, true);
             printer.show(out, "Emoji_Flag_Sequence",
                     "This list does not include deprecated or macroregion flags, except for UN and EU.\n"
                             + "# See Annex B of TR51 for more information.",
                             width, 14, EmojiDataSourceCombined.EMOJI_DATA.getFlagSequences(), true, false, true);
             printer.show(out, "Emoji_Tag_Sequence",
-                    "See Annex C of TR51 for more information.",
-                    width, 14, EmojiDataSourceCombined.EMOJI_DATA.getTagSequences(), true, false, true);
-            printer.show(out, "Emoji_Modifier_Sequence", null, width, 14, EmojiDataSourceCombined.EMOJI_DATA.getModifierSequences(),
+                    "See Annex C of TR51 for more information.",  width, 14, 
+                    EmojiDataSourceCombined.EMOJI_DATA.getTagSequences(), true, false, true);
+            printer.show(out, "Emoji_Modifier_Sequence", null, width, 14, 
+                    EmojiDataSourceCombined.EMOJI_DATA.getModifierSequences(),
                     false, false, true);
             out.write("\n#EOF\n");
         }
