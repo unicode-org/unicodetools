@@ -259,19 +259,29 @@ public class EmojiImageData {
                 out.println("\tOthers: " + PRETTY_HEX.format(missing));
                 printed.value = true;
             }
+
             if (printed.value) {
                 out.println();
             }
-
             for (Breakdown breakdown : breakdowns) {
                 UnicodeSet foundItems = getCounts(out, source, breakdown, -1, printed);
                 missing.removeAll(foundItems);
             }
-
             if (!missing.isEmpty()) {
                 out.println("\tOthers: " + PRETTY_HEX.format(missing));
             }
-            
+
+            if (printed.value) {
+                out.println();
+            }
+            for (Breakdown breakdown : breakdowns) {
+                UnicodeSet foundItems = getCounts(out, source, breakdown, -2, printed);
+                missing.removeAll(foundItems);
+            }
+            if (!missing.isEmpty()) {
+                out.println("\tOthers: " + formatFiles(source, missing));
+            }
+
             if (printed.value) {
                 out.println();
                 out.println();
@@ -296,11 +306,29 @@ public class EmojiImageData {
             out.println(source + "\t"
                     + title
                     + "\t" + lastMissingSingletons.size()
-                    + "\t" + (MAX == -1 ? "hex\t" + PRETTY_HEX.format(lastMissingSingletons) : "plain\t" + max(PRETTY_PLAIN.format(lastMissingSingletons), MAX))
+                    + "\t" + (MAX == -1 ? "hex\t" + PRETTY_HEX.format(lastMissingSingletons) 
+                    : MAX == -2 ? "file\t" + formatFiles(source, lastMissingSingletons)
+                    : "plain\t" + max(PRETTY_PLAIN.format(lastMissingSingletons), MAX)
+                            )
                     );
             printed.value = true;
         }
         return breakdown.getSupported(source); // new UnicodeSet(breakdown.uset).retainAll(getSupported(source)).freeze();
+    }
+
+    private static String formatFiles(Source type, UnicodeSet lastMissingSingletons) {
+        StringBuilder result = new StringBuilder();
+        for (String s : lastMissingSingletons) {
+            if (result.length() != 0) {
+                result.append(", ");
+            }
+            String fixed = s.replace(Emoji.EMOJI_VARIANT_STRING,"");
+            String core = Emoji.buildFileName(fixed, "_");
+            String suffix = type.getSuffix();
+            String filename = type.getPrefix() + "_" + core + suffix;
+            result.append(filename);
+        }
+        return result.toString();
     }
 
     private static String max(String pattern, int maxLen) {
