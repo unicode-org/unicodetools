@@ -23,22 +23,24 @@ public class TestPropertyAccess extends TestFmwkPlus {
         UnicodeMap<String> map = iup.load(UcdProperty.Emoji_Component);
         System.out.println(map);
     }
+    
     public void TestLoad() {
         for (ValueCardinality cardinality : ValueCardinality.values()) {
             for (PropertyType propertyType : PropertyType.values()) {
                 if (propertyType != getMainType(propertyType)) {
                     continue;
                 }
-                logln("\n\nCARDINALITY: " + cardinality.toString() + ", PROPERTY_TYPE: " + propertyType.toString() + "\n");
+                System.out.println("\nCARDINALITY: " + cardinality.toString() + ", PROPERTY_TYPE: " + propertyType.toString() + "\n");
 
                 for (UcdProperty prop : iup.getAvailableUcdProperties()) {
                     try {
                         if (prop.getCardinality() != cardinality || getMainType(prop.getType()) != propertyType) {
                             continue;
                         }
+                        System.out.println(prop);
                         switch (propertyType) {
                         case Numeric: {
-                            logln(prop + "\t" + show(iup.loadDouble(prop)));
+                            logShow(prop, iup.loadDouble(prop));
                             break;
                         }
                         case Binary:
@@ -47,13 +49,13 @@ public class TestPropertyAccess extends TestFmwkPlus {
                             switch (cardinality) {
                             case Singleton: {
                                 if (prop == UcdProperty.Canonical_Combining_Class) {
-                                    logln(prop + "\t" + show(iup.loadInt(prop)));
+                                    logShow(prop, iup.loadInt(prop));
                                 }
-                                logln(prop + "\t" + show(iup.loadEnum(prop, prop.getEnumClass())));
+                                logShow(prop, iup.loadEnum(prop, prop.getEnumClass()));
                                 break;
                             }
                             case Unordered: {
-                                logln(prop + "\t" + show(iup.loadEnumSet(prop, prop.getEnumClass())));
+                                logShow(prop, iup.loadEnumSet(prop, prop.getEnumClass()));
                                 break;
                             }
                             case Ordered: {
@@ -66,15 +68,15 @@ public class TestPropertyAccess extends TestFmwkPlus {
                         case String: {
                             switch (cardinality) {
                             case Singleton: {
-                                logln(prop + "\t" + show(iup.load(prop)));
+                                logShow(prop, iup.load(prop));
                                 break;
                             }
                             case Unordered: {
-                                logln(prop + "\t" + show(iup.loadSet(prop)));
+                                logShow(prop, iup.loadSet(prop));
                                 break;
                             }
                             case Ordered: {
-                                logln(prop + "\t" + show(iup.loadList(prop)));
+                                logShow(prop, iup.loadList(prop));
                                 break;
                             }
                             }
@@ -86,6 +88,11 @@ public class TestPropertyAccess extends TestFmwkPlus {
                     }
                 }
             }
+        }
+    }
+    private void logShow(UcdProperty prop, UnicodeMap temp) {
+        if (isVerbose()) {
+            logln(prop + "\t" + show(temp));
         }
     }
 

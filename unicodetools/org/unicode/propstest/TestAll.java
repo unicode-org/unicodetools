@@ -10,6 +10,7 @@ public class TestAll extends TestFmwk.TestGroup {
     public TestAll() {
         super(new String[] {
                 //"TestNames",
+                "TestInvariants",
                 "TestProperties",
                 "TestPropertyAccess",
                 "TestPropNormalization",
@@ -17,7 +18,6 @@ public class TestAll extends TestFmwk.TestGroup {
                 "TestScriptMetadata",
                 "TestXUnicodeSet",
                 "UnicodeRelationTest",
-                "TestInvariants"
         });
     }
 }
