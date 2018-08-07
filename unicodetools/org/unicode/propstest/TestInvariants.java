@@ -37,6 +37,7 @@ public class TestInvariants extends TestFmwkPlus{
     }
 
     private static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
+    private static final UnicodeMap<Script_Values> SCRIPTS = iup.loadEnum(UcdProperty.Script, Script_Values.class);
     private static final IndexUnicodeProperties iupLast = IndexUnicodeProperties.make(Settings.lastVersion);
     private static Map<UcdPropertyValues.Age_Values, IndexUnicodeProperties> IUPS 
     = new EnumMap<>(UcdPropertyValues.Age_Values.class);
@@ -64,35 +65,46 @@ public class TestInvariants extends TestFmwkPlus{
         UnicodeSet missing;
         
         UnicodeSet ideoMinusTangut = new UnicodeSet(ideographic)
-        .removeAll(iup.loadEnum(UcdProperty.Script, Script_Values.class).getSet(Script_Values.Tangut));
+                .removeAll(SCRIPTS.getSet(Script_Values.Tangut))
+                .removeAll(SCRIPTS.getSet(Script_Values.Nushu))
+        ;
         missing = new UnicodeSet(ideoMinusTangut).removeAll(ideographicSet);
 
-        showMissing("In Ideograph (minus Tangut) but not Unified_Ideograph: ", UcdProperty.Unified_Ideograph, missing);
+        showMissing(WARN, "In Ideograph (minus Tangut, Nushu) but not Unified_Ideograph: ", UcdProperty.Unified_Ideograph, missing);
 
         final UnicodeSet rs = radicalStroke.keySet();
         missing = new UnicodeSet(ideographicSet).removeAll(rs);
-        showMissing("In unified_Ideograph but no kRSUnicode value: ", UcdProperty.kRSUnicode, missing);
+        showMissing(WARN, "In unified_Ideograph but no kRSUnicode value: ", UcdProperty.kRSUnicode, missing);
 
         UnicodeSet comparison = new UnicodeSet(rs).removeAll(DECOMPOSABLE);
         missing = new UnicodeSet(comparison).removeAll(totalStrokes.keySet());
-        showMissing("Has kRSUnicode value but no kTotalStrokes value: ", UcdProperty.kTotalStrokes, missing);
+        showMissing(ERR, "Has kRSUnicode value but no kTotalStrokes value: ", UcdProperty.kTotalStrokes, missing);
 
         missing = new UnicodeSet(comparison).removeAll(mandarin.keySet());
-        showMissing("Has kRSUnicode value but no kMandarin value: ", UcdProperty.kMandarin, missing);
+        showMissing(WARN, "Has kRSUnicode value but no kMandarin value: ", UcdProperty.kMandarin, missing);
 
         missing.retainAll(hanyuPinyin.keySet());
-        assertEquals("Could be added from hanyuPinyin", UnicodeSet.EMPTY, missing);
-
+        if (!missing.isEmpty()) {
+            messageln(ERR, "kMandarin value could be added from hanyuPinyin: ", missing);
+        }
     }
 
-    private void showMissing(String title, final UcdProperty prop, UnicodeSet missing) {
-        if (!assertEquals(title, UnicodeSet.EMPTY, missing)) {
-            System.out.println(title + missing.size() + ", " + missing.toPattern(false));
+    private void showMissing(int warnVsError, String title, final UcdProperty prop, UnicodeSet missing) {
+        if (!UnicodeSet.EMPTY.equals(missing)) {
+            messageln(warnVsError, title, missing); 
             if (DECOMPOSABLE.containsSome(missing)) {
                 missing.removeAll(DECOMPOSABLE);
-                System.out.println("After removing decomps, " + title + missing.size() + ", " + missing.toPattern(false));
+                messageln(warnVsError, "After removing decomps: " + title, missing);
             }
         }
+    }
+
+    private void messageln(int warnVsError, String message, UnicodeSet missing) {
+        messageln(warnVsError, message + "count=" + missing.size() + ", values=" + missing.toPattern(false));
+    }
+
+    private void messageln(int warnVsError, String stringToShow) {
+        msg(stringToShow, warnVsError, true, true);
     }
 
     public void TestUniformUnassigned() {
@@ -111,7 +123,9 @@ public class TestInvariants extends TestFmwkPlus{
                 UcdProperty.Changes_When_NFKC_Casefolded,
                 UcdProperty.Default_Ignorable_Code_Point,
                 UcdProperty.Noncharacter_Code_Point,
-                UcdProperty.Pattern_Syntax
+                UcdProperty.Pattern_Syntax,
+                UcdProperty.Vertical_Orientation,
+                UcdProperty.Extended_Pictographic
                 ));
         exceptions.putAll(General_Category_Values.Private_Use, Arrays.asList(
                 UcdProperty.Age,
@@ -148,12 +162,11 @@ public class TestInvariants extends TestFmwkPlus{
                     final int otherCodePoint = mixed.getRangeStart(0);
                     String otherValue = map.get(otherCodePoint);
                     final int msgType = exceptionSet == null || !exceptionSet.contains(prop) ? ERR : LOG;
-                    msg("Mixed values for " 
+                    messageln(msgType, "Mixed values for " 
                             + cat + ":\t" 
                             + prop + ":"
                             + "\t" + Utility.hex(firstCodePoint) + "→«" + firstValue + "»"
-                            + "\t" + Utility.hex(otherCodePoint) + "→«" + otherValue + "»",
-                            msgType, true, true);
+                            + "\t" + Utility.hex(otherCodePoint) + "→«" + otherValue + "»");
                 }
             }
         }
@@ -188,7 +201,7 @@ public class TestInvariants extends TestFmwkPlus{
     }
 
     public void TestStandarizedVariant() {
-        CheckProps(UcdProperty.Standardized_Variant);
+        CheckProps(ERR, UcdProperty.Standardized_Variant);
         //        UnicodeMap<String> currentStatus = iup.load(UcdProperty.Standardized_Variant);
         //        for (Entry<String, String> s : currentStatus.entrySet()) {
         //            System.out.println(s.getKey() + "\t" + Utility.hex(s.getKey()) + "\t" + s.getValue());
@@ -196,22 +209,23 @@ public class TestInvariants extends TestFmwkPlus{
     }
 
     public void TestNameAlias() {
-        CheckProps(UcdProperty.Name_Alias);
+        CheckProps(WARN, UcdProperty.Name_Alias);
     }
 
     public void TestIdna() {
-        CheckProps(UcdProperty.Idn_Status, Idn_Status_Values.disallowed.toString());
+        CheckProps(ERR, UcdProperty.Idn_Status, Idn_Status_Values.disallowed.toString());
     }
 
     public void TestSecurity() {
-        CheckProps(UcdProperty.Identifier_Status, "Restricted", "Allowed");
-        CheckProps(UcdProperty.Identifier_Type, "Not_Character", "Not_XID",  
-                "Not_NFKC", "Default_Ignorable", "Technical", "Obsolete", "Limited_Use",
-                "recommended", "historic" // old values
+        CheckProps(ERR, UcdProperty.Identifier_Status, "Restricted", "Allowed");
+        CheckProps(ERR, UcdProperty.Identifier_Type, "Not_Character",  
+                "Not_XID", "Not_NFKC", "Default_Ignorable", "Technical", "Obsolete",
+                "Limited_Use", "recommended"
+, "historic" // old values
                 );
     }
 
-    public void CheckProps(UcdProperty ucdProperty, String... skip) {
+    public void CheckProps(int warnVsError, UcdProperty ucdProperty, String... skip) {
         UnicodeMap<String> currentStatus = iup.load(ucdProperty);
         UnicodeMap<String> oldStatus = iupLast.load(ucdProperty);
         Set<String> values = new LinkedHashSet<>();
@@ -235,7 +249,7 @@ public class TestInvariants extends TestFmwkPlus{
             //assertRelation(status.toString(), true, newSet, CONTAINS_US, oldSet);
         }
         if (same) {
-            errln("Should be a difference in " + ucdProperty);
+            messageln(warnVsError, "Should have a difference compared to last version: " + ucdProperty);
         } else if (currentStatus.equals(oldStatus)) {
             warnln("Unicode map equals needs fixing");
         }

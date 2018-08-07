@@ -1,4 +1,3 @@
-//Machine generated: GenerateEnums.java
 package org.unicode.props;
 import java.util.EnumSet;
 import java.util.Set;
@@ -33,6 +32,11 @@ import org.unicode.props.UcdPropertyValues.Sentence_Break_Values;
 import org.unicode.props.UcdPropertyValues.Vertical_Orientation_Values;
 import org.unicode.props.UcdPropertyValues.Word_Break_Values;
 
+/**
+    Machine-generated file for properties, produced by GenerateEnums.java
+    from PropertyAliases.txt and ExtraPropertyAliases.txt.
+    The ordering of properties is first by category, then alphabetical (ASCII order).
+*/
 public enum UcdProperty {
 
 		// Numeric

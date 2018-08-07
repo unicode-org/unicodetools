@@ -192,6 +192,13 @@ public class GenerateEnums {
                 + "import org.unicode.props.PropertyNames.NameMatcher;\n"
                 + "import org.unicode.props.PropertyNames.Named;\n"
                 + "\n"
+                + "/**\n"
+                + "    Machine-generated file for property values, produced by GenerateEnums.java\n"
+                + "    from PropertyValueAliases.txt and ExtraPropertyValueAliases.txt.\n"
+                + "    The ordering of property value enums is alphabetical (ASCII),\n"
+                + "    but the order of the values for the enums is based on the order within those two files\n"
+                + "    with the ones in PropertyValueAliases coming first.\n"
+                + "*/\n"
                 + "public class UcdPropertyValues {");
 
         //[Alpha, N, No, F, False]
@@ -332,7 +339,6 @@ public class GenerateEnums {
         final PrintWriter output = FileUtilities.openUTF8Writer("", PROPERTY_FILE_OUTPUT);
 
         output.print(
-                "//Machine generated: GenerateEnums.java\n" +
                         "package org.unicode.props;\n" +
                         "import java.util.EnumSet;\n" +
                         "import java.util.Set;\n"+
@@ -363,7 +369,13 @@ public class GenerateEnums {
             output.println("import org.unicode.props.UcdPropertyValues." + s + "_Values;");
         }
         output.println();
-        output.println("public enum " + "UcdProperty" + " {");
+        
+        output.println("/**\n"
+                + "    Machine-generated file for properties, produced by GenerateEnums.java\n"
+                + "    from PropertyAliases.txt and ExtraPropertyAliases.txt.\n"
+                + "    The ordering of properties is first by category, then alphabetical (ASCII order).\n"
+                + "*/\n"
+                + "public enum " + "UcdProperty" + " {");
         Set<String> missingCardinality = new TreeSet<>();
         Set<String> extraCardinality = new TreeSet<>(NAME2CARD.keySet());
 

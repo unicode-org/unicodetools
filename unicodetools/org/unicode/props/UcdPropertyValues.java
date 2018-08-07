@@ -2,6 +2,13 @@ package org.unicode.props;
 import org.unicode.props.PropertyNames.NameMatcher;
 import org.unicode.props.PropertyNames.Named;
 
+/**
+    Machine-generated file for property values, produced by GenerateEnums.java
+    from PropertyValueAliases.txt and ExtraPropertyValueAliases.txt.
+    The ordering of property value enums is alphabetical (ASCII),
+    but the order of the values for the enums is based on the order within those two files
+    with the ones in PropertyValueAliases coming first.
+*/
 public class UcdPropertyValues {
 
     public enum Binary implements Named {
@@ -47,7 +54,6 @@ public class UcdPropertyValues {
         V11_0("11.0"),
         V12_0("12.0"),
         Unassigned("NA");
-
         private final PropertyNames<Age_Values> names;
         private Age_Values (String shortName, String...otherNames) {
             names = new PropertyNames<Age_Values>(
@@ -129,8 +135,6 @@ public class UcdPropertyValues {
         }
     }
 
-    // Sorted alphabetically by short alias ("string" argument)
-    // rather than long alias (name of the constant).
 	public enum Block_Values implements Named {
         Adlam("Adlam"),
         Aegean_Numbers("Aegean_Numbers"),
@@ -433,7 +437,6 @@ public class UcdPropertyValues {
         Yi_Syllables("Yi_Syllables"),
         Yijing_Hexagram_Symbols("Yijing"),
         Zanabazar_Square("Zanabazar_Square");
-
         private final PropertyNames<Block_Values> names;
         private Block_Values (String shortName, String...otherNames) {
             names = new PropertyNames<Block_Values>(
@@ -1381,8 +1384,7 @@ public class UcdPropertyValues {
         }
     }
 
-    // Sorted alphabetically by short alias ("string" argument)
-    // rather than long alias (name of the constant).
+		// Numeric_Value
 	public enum Script_Values implements Named {
         Adlam("Adlm"),
         Caucasian_Albanian("Aghb"),
@@ -1427,7 +1429,6 @@ public class UcdPropertyValues {
         Greek("Grek"),
         Gujarati("Gujr"),
         Gurmukhi("Guru"),
-        Han_with_Bopomofo("Hanb"),
         Hangul("Hang"),
         Han("Hani"),
         Hanunoo("Hano"),
@@ -1441,14 +1442,12 @@ public class UcdPropertyValues {
         Old_Hungarian("Hung"),
         Old_Italic("Ital"),
         Javanese("Java"),
-        Japanese("Jpan"),
         Kayah_Li("Kali"),
         Katakana("Kana"),
         Kharoshthi("Khar"),
         Khmer("Khmr"),
         Khojki("Khoj"),
         Kannada("Knda"),
-        Korean("Kore"),
         Kaithi("Kthi"),
         Tai_Tham("Lana"),
         Lao("Laoo"),
@@ -1478,9 +1477,9 @@ public class UcdPropertyValues {
         Myanmar("Mymr"),
         Old_North_Arabian("Narb"),
         Nabataean("Nbat"),
-        Nandinagari("Nnag"),
         Newa("Newa"),
         Nko("Nkoo"),
+        Nandinagari("Nnag"),
         Nushu("Nshu"),
         Ogham("Ogam"),
         Ol_Chiki("Olck"),
@@ -1532,20 +1531,22 @@ public class UcdPropertyValues {
         Tirhuta("Tirh"),
         Ugaritic("Ugar"),
         Vai("Vaii"),
-        Wancho("Wcho"),
         Warang_Citi("Wara"),
+        Wancho("Wcho"),
         Old_Persian("Xpeo"),
         Cuneiform("Xsux"),
         Yi("Yiii"),
         Zanabazar_Square("Zanb"),
         Inherited("Zinh", "Qaai"),
+        Common("Zyyy"),
+        Unknown("Zzzz"),
+        Han_with_Bopomofo("Hanb"),
+        Japanese("Jpan"),
+        Korean("Kore"),
         Math_Symbols("Zmth"),
         Emoji_Symbols("Zsye"),
         Other_Symbols("Zsym"),
-        Unwritten("Zxxx"),
-        Common("Zyyy"),
-        Unknown("Zzzz");
-
+        Unwritten("Zxxx");
         private final PropertyNames<Script_Values> names;
         private Script_Values (String shortName, String...otherNames) {
             names = new PropertyNames<Script_Values>(
