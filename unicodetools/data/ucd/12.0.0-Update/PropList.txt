@@ -1,5 +1,5 @@
 # PropList-12.0.0.txt
-# Date: 2018-08-06, 09:30:30 GMT
+# Date: 2018-08-07, 05:04:35 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -884,6 +884,7 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 0DCA          ; Diacritic # Mn       SINHALA SIGN AL-LAKUNA
 0E47..0E4C    ; Diacritic # Mn   [6] THAI CHARACTER MAITAIKHU..THAI CHARACTER THANTHAKHAT
 0E4E          ; Diacritic # Mn       THAI CHARACTER YAMAKKAN
+0EBA          ; Diacritic # Mn       LAO SIGN PALI VIRAMA
 0EC8..0ECC    ; Diacritic # Mn   [5] LAO TONE MAI EK..LAO CANCELLATION MARK
 0F18..0F19    ; Diacritic # Mn   [2] TIBETAN ASTROLOGICAL SIGN -KHYUD PA..TIBETAN ASTROLOGICAL SIGN SDONG TSHUGS
 0F35          ; Diacritic # Mn       TIBETAN MARK NGAS BZUNG NYI ZLA
@@ -1022,7 +1023,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 830
+# Total code points: 831
 
 # ================================================
 
