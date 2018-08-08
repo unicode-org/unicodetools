@@ -924,7 +924,25 @@ Keywords=hear | ear
 Emoji_Modifier_Base
 Emoji_Gender_Base
 
+Proposal=L2/18-256
+After=🐕
+U+1F415 U+200D U+1F9BA
+Name=service dog
+Keywords=assistance | dog | service
+
+Proposal=L2/18-228
+After=👫
+U+1F9CD U+200D U+1F9CD
+Name=couple holding hands
+Keywords=couple | hands
+Comment=Combinations of gender and skin-tone produce 55 more emoji sequences.
+Comment=These are *not* yet accounted for in the table below.
+Emoji_Modifier_Base
+Emoji_Gender_Base
+
+#================================
 Status=Provisional Candidate
+#================================
 
 Proposal=L2/18-178
 After=⛏
