@@ -709,7 +709,7 @@ Name=flamingo
 Keywords=flamboyant | tropical
 
 Proposal=L2/18-123
-After= 🐚
+After= 🦑
 U+1F9AA
 Name=oyster
 Keywords=pearl | diving
