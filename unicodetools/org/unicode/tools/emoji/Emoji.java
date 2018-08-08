@@ -490,9 +490,15 @@ public class Emoji {
     public static final UnicodeSet GENDER_MARKERS = new UnicodeSet().add(FEMALE).add(MALE)
             //    		.add(PERSON)
             .freeze();
-    public static final UnicodeSet ZWJ_GENDER_MARKERS = new UnicodeSet().add(JOINER + FEMALE).add(JOINER + MALE)
+    public static final UnicodeSet ZWJ_GENDER_MARKERS = new UnicodeSet()
+            .add(JOINER + FEMALE)
+            .add(JOINER + MALE)
             .freeze();
-
+    public static final UnicodeSet FULL_ZWJ_GENDER_MARKERS = new UnicodeSet(ZWJ_GENDER_MARKERS)
+            .add(JOINER + FEMALE + EMOJI_VARIANT)
+            .add(JOINER + MALE + EMOJI_VARIANT)
+            .freeze();
+    
     public static final UnicodeSet MAN_OR_WOMAN = new UnicodeSet().add(Emoji.WOMAN).add(Emoji.MAN)
             .freeze();
 

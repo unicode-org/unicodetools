@@ -5,21 +5,22 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
-import org.unicode.cldr.util.LanguageTagParser.Fields;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.MultiComparator;
 import org.unicode.tools.emoji.CountEmoji.Category;
 import org.unicode.tools.emoji.EmojiData.VariantFactory;
 
@@ -27,7 +28,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.ImmutableSortedSet;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.text.UTF16;
@@ -35,7 +35,6 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
 import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.ULocale;
-import com.ibm.icu.util.ULocale.Minimize;
 
 /**
  * To generate emoji frequency data:
@@ -48,6 +47,9 @@ import com.ibm.icu.util.ULocale.Minimize;
  *
  */
 public class ListEmojiGroups {
+    private static final String UNSPECIFIED_GENDER = "⚬";
+    private static final String UNSPECIFIED_SKIN = "⬚";
+
     private static final boolean DEBUG = false;
 
     static final EmojiOrder order = EmojiOrder.of(Emoji.VERSION_LAST_RELEASED);
@@ -82,6 +84,8 @@ public class ListEmojiGroups {
         showInfo("emojiInfo.tsv");
 
         showTextEmoji("emojiText.tsv");
+        
+        System.out.println("\nDups:" + DUPS.toPattern(false));
     }
 
     private static void showTextEmoji(String filename) {
@@ -125,7 +129,7 @@ public class ListEmojiGroups {
             for (String s : sorted) {
                 out.println(hex(s,4) 
                         + "\t" + s
-                        + "\t" + EmojiData.EMOJI_DATA.getName(s)
+                        + "\t" + getName(s)
                         );
             }
         } catch (IOException e) {
@@ -135,7 +139,9 @@ public class ListEmojiGroups {
 
     static final Set<String> SORTED;
     static {
-        Set<String> SORTED2 = new TreeSet<>(order.codepointCompare);
+        Comparator<String> tweaked = new MultiComparator<String>(
+                order.codepointCompare, new UTF16.StringComparator(true, false, 0));
+        Set<String> SORTED2 = new TreeSet<>(tweaked);
         System.out.println(order.codepointCompare.compare("😀", "#️⃣"));
         for (String s : EmojiData.EMOJI_DATA.getAllEmojiWithDefectives()) {
             String norm = normalizeEmoji(s, null, 0);
@@ -150,6 +156,8 @@ public class ListEmojiGroups {
             //                }
             //            }
         }
+        SORTED2.add(UNSPECIFIED_GENDER);
+        SORTED2.add(UNSPECIFIED_SKIN);
         SORTED = ImmutableSet.copyOf(SORTED2);
         //        for (String s : SORTED) {
         //            System.out.println(s + "\t" + EmojiData.EMOJI_DATA.getName(s));
@@ -164,7 +172,13 @@ public class ListEmojiGroups {
         try (PrintWriter out = FileUtilities.openUTF8Writer(OUTDIR, filename)) {
             out.println("Hex\tEmoji\tGroup\tSubgroup\tName (cldr)\tNorm?\tSort Order\tType\tYear");
             for (String s : SORTED) {
-                String subcategory = order.getCategory(s);
+                String dataS = s;
+                if (s.equals(UNSPECIFIED_GENDER)) {
+                    dataS = "♀";
+                } else if (s.equals(UNSPECIFIED_SKIN)) {
+                    dataS = "🏻";
+                }
+                String subcategory = order.getCategory(dataS);
                 if (subcategory == null) {
                     subcategory = order.getCategory(UTF16.valueOf(s.codePointAt(0)));
                     if (subcategory == null) {
@@ -177,16 +191,22 @@ public class ListEmojiGroups {
                         + "\t" + s 
                         + "\t" + order.getMajorGroupFromCategory(subcategory).toPlainString()
                         + "\t" + subcategory.toString()
-                        + "\t" + EmojiData.EMOJI_DATA.getName(s)
+                        + "\t" + getName(s)
                         + "\t" + ep
                         + "\t" + sortOrder++
-                        + "\t" + Category.getBucket(s).toStringPlain()
-                        + "\t" + EmojiData.getYear(s)
+                        + "\t" + Category.getBucket(dataS).toStringPlain()
+                        + "\t" + EmojiData.getYear(dataS)
                         );
             }
         } catch (IOException e) {
             throw new ICUUncheckedIOException(e);
         }
+    }
+
+    private static String getName(String s) {
+        return s.equals(UNSPECIFIED_GENDER) ? "unspecified-gender" 
+                : s.equals(UNSPECIFIED_SKIN) ? "unspecified-skin" 
+                : EmojiData.EMOJI_DATA.getName(s);
     }
 
     static final UnicodeSet HACK_FE0F = new UnicodeSet("[©®™✔]").freeze();
@@ -199,6 +219,7 @@ public class ListEmojiGroups {
                     + (normal ? "\tRank" : "\tGB-Data\tto add to GB-Data")
                     + "\tEmoji");
             int rank = 0;
+            Set<String> missing = new LinkedHashSet<>(SORTED);
             for (Entry<String, Long> entry : x.entrySet()) {
                 String term = entry.getKey();
                 try {
@@ -210,9 +231,17 @@ public class ListEmojiGroups {
                 Long countWithFe0f = normal ? 0 : withFe0f.get(term + Emoji.EMOJI_VARIANT);
                 Long adjusted = GBoardCounts.toAddAdjusted(term, countWithFe0f, count);
                 out.println(hex(term)
-                        + "\t" + count
+                        + "\t" + (count == 0 ? "" : count+"")
                         + "\t" + (normal ? ++rank : countWithFe0f)
                         + (normal ? "" : "\t" + adjusted)
+                        + "\t" + term
+                        );
+                missing.remove(term);
+            }
+            for (String term : missing) {
+                out.println(hex(term)
+                        + "\t" + ""
+                        + "\t" + ""
                         + "\t" + term
                         );
             }
@@ -267,14 +296,19 @@ public class ListEmojiGroups {
         public CountInfo(Counter<String> inputCounter) {
             inputCounter.remove("");
             rawTotal = inputCounter.getTotal();
-            Map<String,Long> _keyToCount = new LinkedHashMap();
-            Map<String,Integer> _keyToRank = new LinkedHashMap();
+            Map<String,Long> _keyToCount = new LinkedHashMap<>();
+            Map<String,Integer> _keyToRank = new LinkedHashMap<>();
 
             double factor = SCALE/rawTotal;
             int rank = 0;
+            UnicodeSet failed = new UnicodeSet();
             for (R2<Long, String> entry : inputCounter.getEntrySetSortedByCount(false, null)) {
                 long count = entry.get0();
                 String codes = entry.get1();
+                if (!SORTED.contains(codes)) {
+                    failed.add(codes);
+                    continue;
+                }
                 //                if (factor < 0) {
                 //                    factor = 1000000000.0/rawTotal;
                 //                }
@@ -283,6 +317,9 @@ public class ListEmojiGroups {
             }
             keyToCount = ImmutableMap.copyOf(_keyToCount);
             keyToRank = ImmutableMap.copyOf(_keyToRank);
+            if (!failed.isEmpty()) {
+                System.out.println("Bogus codes: " + failed);
+            }
             //            for (String s : SORTED) {
             //                if (!outputCounter.containsKey(s)) {
             //
@@ -384,13 +421,15 @@ public class ListEmojiGroups {
                                 + "\t" + nonEmojiSet
                                 );
                         Counter<String> c = _counts.get(locale);
-                        if (c == null) _counts.put(locale, c = new Counter<>());
+                        if (c == null) {
+                            _counts.put(locale, c = new Counter<>());
+                        }
 
                         for (String s : emojiSet) {
-                            c.add(normalizeEmoji(s, c, count), count);
+                            addCount(c, normalizeEmoji(s, c, count), count);
                         }
                         for (String s : nonPresSet) {
-                            c.add(normalizeEmoji(s, c, count), count);
+                            addCount(c, normalizeEmoji(s, c, count), count);
                         }
                     }
                 }
@@ -520,7 +559,7 @@ public class ListEmojiGroups {
                         if (factor == 0) {
                             factor = 1_000_000_000.0/count;
                         }
-                        _counts.add(normalizeEmoji(str, _counts, count), count);
+                        addCount(_counts, normalizeEmoji(str, _counts, count), count);
                         pos = m.end();
                     }
                     lastBuffer = line.substring(pos);
@@ -547,7 +586,7 @@ public class ListEmojiGroups {
                     String rawCodes = parts[0];
                     long count = Long.parseLong(parts[2].replace(",",""));
                     String codes = normalizeEmoji(rawCodes, _counts, count);
-                    _counts.add(codes, count);
+                    addCount(_counts, codes, count);
                 }
             } catch (IOException e) {
                 throw new ICUUncheckedIOException(e);
@@ -584,7 +623,7 @@ public class ListEmojiGroups {
                     //long count = Math.round(Double.parseDouble(parts[2].replace(",","")));
                     long count = Math.round(Double.parseDouble(parts[freqField]));
                     String codes = normalizeHexEmoji(hexCodes, _counts, count);
-                    _counts.add(codes, count);
+                    addCount(_counts, codes, count);
                 }
             } catch (IOException e) {
                 throw new ICUUncheckedIOException("Bad hex at " + lineCount, e);
@@ -592,40 +631,48 @@ public class ListEmojiGroups {
             countInfo = new CountInfo(_counts);
         }
     }
-
+    static UnicodeSet DUPS = new UnicodeSet();
+    
     private static String normalizeEmoji(String rawCodes, Counter<String> stripped, long counts) {
         if (SKIP.containsSome(rawCodes)) {
             return "";
         }
-
         String result = rawCodes;
+        
+        if (result.equals("♀")) {
+            int debug = 0;
+        }
+
         if (stripped != null) {
             Category cat = Category.getBucket(result);
             switch(cat) {
             case typical_dup:
             case typical_dup_skin:
-                stripped.add("⚬", counts);
+                addCount(stripped, UNSPECIFIED_GENDER, counts);
+                DUPS.add(result);
+            }
+            if (EmojiData.EMOJI_DATA.getModifierBases().containsSome(result) && !EmojiData.MODIFIERS.containsSome(result)) {
+                addCount(stripped, UNSPECIFIED_SKIN, counts);
             }
         }
 
         if (true) {
             // remove skin tones
-            String result1 = stripFrom(EmojiData.MODIFIERS, result, true, stripped, counts);
+            if (!EmojiData.MODIFIERS.contains(result)) {
+                result = stripFrom(EmojiData.MODIFIERS, result, true, stripped, counts);
+            }
             // remove gender
-            if (result1.contains("\u2642")) {
+            if (result.contains("\u2642")) {
                 int debug = 0;
             }
-            result = stripFrom(Emoji.ZWJ_GENDER_MARKERS, result1, true, stripped, counts);
-            if (!result.equals(result1)) {
-                int debug = 0;
-            }
+            result = stripFrom(Emoji.FULL_ZWJ_GENDER_MARKERS, result, true, stripped, counts);
             if (result.isEmpty()) {
                 int debug = 0;
             }
         }
         return EmojiData.EMOJI_DATA.addEmojiVariants(result);
     }
-
+    
     public static String stripFrom(UnicodeSet uset, CharSequence source, boolean matches, Counter<String> filtered, long counts) {
         StringBuilder result = new StringBuilder(); // could optimize to only allocate when needed
         SpanCondition toKeep = matches ? SpanCondition.NOT_CONTAINED : SpanCondition.CONTAINED;
@@ -635,7 +682,7 @@ public class ListEmojiGroups {
             result.append(source.subSequence(pos, inside));
             pos = uset.span(source, inside, toSkip); // get next start
             if (pos > inside && filtered != null) {
-                filtered.add(source.subSequence(inside, pos).toString().replace("\u200D", ""), counts);
+                addCount(filtered, source.subSequence(inside, pos).toString().replace("\u200D", ""), counts);
             }
         }
         return result.toString();
@@ -658,5 +705,12 @@ public class ListEmojiGroups {
             int debug = 0;
         }
         return normalizeEmoji(Utility.fromHex(rawCodes, false, 2), _counts, count);
+    }
+
+    private static Counter<String> addCount(Counter<String> c, String nn, long count) {
+        if (nn.equals("♀")) {
+            int debug = 0;
+        }
+       return c.add(nn, count);
     }
 }
