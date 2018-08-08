@@ -3439,9 +3439,10 @@ public class GenerateEmoji {
                     int debug = 0;
                 }
                 String cldrName = EmojiData.EMOJI_DATA.getName(source);
-                if (!EmojiData.MODIFIERS.containsSome(source)
+                boolean noModifiersOrGender = !EmojiData.MODIFIERS.containsSome(source)
                         && !source.contains("\u200D\u2640")
-                        && !source.contains("\u200D\u2642")) {
+                        && !source.contains("\u200D\u2642");
+                if (noModifiersOrGender) {
                     outputPlain.add(++countPlain
                             + "\t" + Emoji.toUHex(source)
                             + "\t" + source
@@ -3489,6 +3490,9 @@ public class GenerateEmoji {
                 //                    oldStatus = status;
                 //                }
                 ce.add(source, candidateData);
+                if (!noModifiersOrGender) {
+                    continue;
+                }
 
                 // if (future != cd.getQuarter(source).isFuture()) {
                 // continue;

@@ -247,11 +247,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                         addAttribute(source, emoji_Component, "∈ component");
                         break;
                     case "Comment":
-                        String oldComment = comments.get(source);
-                        if (oldComment != null) {
-                            rightSide = oldComment + "\n" + rightSide;
-                        }
-                        comments.put(source, rightSide);
+                        addComment(source, rightSide);
                         break;
 
                     default: 
@@ -305,6 +301,14 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         if (!checkData(this)) {
             throw new IllegalArgumentException("Bad Data");
         }
+    }
+
+    private void addComment(String source, String rightSide) {
+            String oldComment = comments.get(source);
+            if (oldComment != null) {
+                rightSide = oldComment + "\n" + rightSide;
+            }
+            comments.put(source, rightSide);
     }
 
     private static boolean checkData(CandidateData instance) {
@@ -374,7 +378,8 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                 addCombo(source, source + mod, "", ": " + EmojiData.EMOJI_DATA.getName(mod));
             }
         }
-        if (emoji_Gender_Base.contains(source)) {
+        boolean isGenderBase = emoji_Gender_Base.contains(source);
+        if (isGenderBase) {
             for (String gen : Emoji.GENDER_MARKERS) {
                 String genSuffix = Emoji.JOINER_STR + gen + Emoji.EMOJI_VARIANT_STRING;
                 String genPrefix = gen.equals(Emoji.MALE) ? "man " : "woman ";
@@ -386,6 +391,15 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                 }
             }
         }
+        if (isGenderBase && isModBase) {
+            addComment(source, "Combinations of gender and skin-tone produce 17 more emoji sequences.");
+        } else if (isGenderBase) {
+            addComment(source, "Combinations of gender and skin-tone produce 2 more emoji sequences.");
+        } else if (isModBase) {
+            addComment(source, "Combinations of gender and skin-tone produce 5 more emoji sequences.");
+        }
+        // Comment=There will be 55 emoji sequences with combinations of gender and skin-tone
+
     }
 
     private void addAttribute(String source, UnicodeSet unicodeSet, String title) {
@@ -586,15 +600,15 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         CandidateData instance = CandidateData.getInstance();
         if (false) return;
 
-        for (Status status : Status.values()) {
-            UnicodeSet items = instance.statuses.getSet(status);
-            System.out.println(status + "\t" + items.size());
-        }
-        generateProposalData(instance);
-        showOrdering(instance);
+//        for (Status status : Status.values()) {
+//            UnicodeSet items = instance.statuses.getSet(status);
+//            System.out.println(status + "\t" + items.size());
+//        }
+//        generateProposalData(instance);
+//        showOrdering(instance);
 
-        // showCandidateData(CandidateData.getInstance(), true);
-        //showCandidateData(CandidateData.getProposalInstance(), true);
+         showCandidateData(CandidateData.getInstance(), true);
+         //showCandidateData(CandidateData.getProposalInstance(), true);
     }
 
     private static void generateProposalData(CandidateData instance) {
