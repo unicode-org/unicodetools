@@ -2,25 +2,21 @@ package org.unicode.tools.emoji;
 
 import java.text.Collator;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CldrUtility;
-import org.unicode.props.UcdPropertyValues.Age_Values;
-import org.unicode.props.UnicodeRelation.SetMaker;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeRelation;
+import org.unicode.props.UnicodeRelation.SetMaker;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.CountEmoji.Bucket;
 import org.unicode.tools.emoji.CountEmoji.Category;
@@ -33,12 +29,9 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.LinkedListMultimap;
-import com.google.common.collect.ListMultimap;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.VersionInfo;
@@ -500,6 +493,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     public String getName(String source) {
         return names.get(source);
     }
+    
     public String getName(int source) {
         return names.get(source);
     }
