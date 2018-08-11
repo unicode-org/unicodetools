@@ -1,5 +1,5 @@
 # PropList-12.0.0.txt
-# Date: 2018-08-07, 05:04:35 GMT
+# Date: 2018-08-09, 00:07:57 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -618,7 +618,6 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 1C24..1C2B    ; Other_Alphabetic # Mc   [8] LEPCHA SUBJOINED LETTER YA..LEPCHA VOWEL SIGN UU
 1C2C..1C33    ; Other_Alphabetic # Mn   [8] LEPCHA VOWEL SIGN E..LEPCHA CONSONANT SIGN T
 1C34..1C35    ; Other_Alphabetic # Mc   [2] LEPCHA CONSONANT SIGN NYIN-DO..LEPCHA CONSONANT SIGN KANG
-1CF2..1CF3    ; Other_Alphabetic # Lo   [2] VEDIC SIGN ARDHAVISARGA..VEDIC SIGN ROTATED ARDHAVISARGA
 1DE7..1DF4    ; Other_Alphabetic # Mn  [14] COMBINING LATIN SMALL LETTER ALPHA..COMBINING LATIN SMALL LETTER U WITH DIAERESIS
 24B6..24E9    ; Other_Alphabetic # So  [52] CIRCLED LATIN CAPITAL LETTER A..CIRCLED LATIN SMALL LETTER Z
 2DE0..2DFF    ; Other_Alphabetic # Mn  [32] COMBINING CYRILLIC LETTER BE..COMBINING CYRILLIC LETTER IOTIFIED BIG YUS
@@ -794,7 +793,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1358
+# Total code points: 1356
 
 # ================================================
 
