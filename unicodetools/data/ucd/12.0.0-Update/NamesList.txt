@@ -1,12 +1,12 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 12.0.0
-@@@+	U12M180802.lst
-	Unicode 12.0.0 names list, second delta.
+@@@+	U12M180810.lst
+	Unicode 12.0.0 names list, third delta.
 	Repertoire synched with UnicodeData-12.0.0d4.txt
-	Second delta of annotation fixes.
-	Added annotation to 229C.
-	Added annotation to A765.
-	Updated end of Tangut ideographs range.
+	Third delta of annotation fixes.
+	Updated alias for 11100.
+	Corrected location of subhead for 1F9AE.
+	Add STV hearder for FF00 block.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -28573,6 +28573,7 @@ FEFF	ZERO WIDTH NO-BREAK SPACE
 	x (zero width space - 200B)
 	x (word joiner - 2060)
 	x (<not a character> - FFFE)
+@~	Standardized Variation Sequences
 @@	FF00	Halfwidth and Fullwidth Forms	FFEF
 @		Fullwidth ASCII variants
 @+		See ASCII 0020-007E
@@ -32549,7 +32550,7 @@ FFFF	<not a character>
 @@	11100	Chakma	1114F
 @		Various signs
 11100	CHAKMA SIGN CANDRABINDU
-	= caanaphupudaa
+	= caanaphudaa
 11101	CHAKMA SIGN ANUSVARA
 	= ekaphudaa
 11102	CHAKMA SIGN VISARGA
@@ -50179,11 +50180,11 @@ FFFF	<not a character>
 1F9A8	SKUNK
 1F9A9	FLAMINGO
 1F9AA	OYSTER
+@		Accessibility symbols
 1F9AE	GUIDE DOG
 1F9AF	PROBING CANE
 @		Emoji components
 @+		The characters in the range 1F9B0-1F9B3 are intended to be used in emoji ZWJ sequences to indicate hair style.
-@		Accessibility symbols
 1F9B0	EMOJI COMPONENT RED HAIR
 1F9B1	EMOJI COMPONENT CURLY HAIR
 1F9B2	EMOJI COMPONENT BALD
