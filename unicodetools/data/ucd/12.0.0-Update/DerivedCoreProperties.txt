@@ -1,5 +1,5 @@
 # DerivedCoreProperties-12.0.0.txt
-# Date: 2018-08-06, 08:41:10 GMT
+# Date: 2018-08-13, 09:31:18 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -9767,7 +9767,8 @@ E0100..E01EF  ; XID_Continue # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTO
 #  + Cf (Format characters)
 #  + Variation_Selector
 #  - White_Space
-#  - FFF9..FFFB (Annotation characters)
+#  - FFF9..FFFB (Interlinear annotation format characters)
+#  - 13430..13438 (Egyptian hieroglyph format characters)
 #  - Prepended_Concatenation_Mark (Exceptional format characters that should be visible)
 
 00AD          ; Default_Ignorable_Code_Point # Cf       SOFT HYPHEN
@@ -9787,7 +9788,6 @@ FE00..FE0F    ; Default_Ignorable_Code_Point # Mn  [16] VARIATION SELECTOR-1..VA
 FEFF          ; Default_Ignorable_Code_Point # Cf       ZERO WIDTH NO-BREAK SPACE
 FFA0          ; Default_Ignorable_Code_Point # Lo       HALFWIDTH HANGUL FILLER
 FFF0..FFF8    ; Default_Ignorable_Code_Point # Cn   [9] <reserved-FFF0>..<reserved-FFF8>
-13430..13438  ; Default_Ignorable_Code_Point # Cf   [9] EGYPTIAN HIEROGLYPH VERTICAL JOINER..EGYPTIAN HIEROGLYPH END SEGMENT
 1BCA0..1BCA3  ; Default_Ignorable_Code_Point # Cf   [4] SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
 1D173..1D17A  ; Default_Ignorable_Code_Point # Cf   [8] MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
 E0000         ; Default_Ignorable_Code_Point # Cn       <reserved-E0000>
@@ -9798,7 +9798,7 @@ E0080..E00FF  ; Default_Ignorable_Code_Point # Cn [128] <reserved-E0080>..<reser
 E0100..E01EF  ; Default_Ignorable_Code_Point # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; Default_Ignorable_Code_Point # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 4182
+# Total code points: 4173
 
 # ================================================
 

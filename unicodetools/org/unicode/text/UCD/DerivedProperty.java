@@ -701,7 +701,8 @@ of characters, the first of which has a non-zero combining class.
                 #  + Cf (Format characters)
                 #  + Variation_Selector
                 #  - White_Space
-                #  - FFF9..FFFB (Annotation characters)
+                #  - FFF9..FFFB (Interlinear annotation format characters)
+                #  - 13430..13438 (Egyptian hieroglyph format characters)
                 #  - Prepended_Concatenation_Mark (Exceptional format characters that should be visible)
              */
             @Override
@@ -717,6 +718,11 @@ of characters, the first of which has a non-zero combining class.
                 }
 
                 if (ucdData.getCompositeVersion() > 0x040000 && cp >= 0xFFF9 && cp <= 0xFFFB) {
+                    return false;
+                }
+
+                // Unicode 12.0: 13430..13438 (Egyptian hieroglyph format characters)
+                if (ucdData.getCompositeVersion() >= 0x0c0000 && cp >= 0x13430 && cp <= 0x13438) {
                     return false;
                 }
 
