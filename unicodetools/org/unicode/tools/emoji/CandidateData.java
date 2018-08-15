@@ -899,4 +899,12 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     public UnicodeSet getTakesSign() {
         return addWithCharFilter(takesSign, null, provisional);
     }
+
+    public UnicodeSet getAllCharacters(Status status) {
+        switch(status) {
+        case Provisional_Candidate: return provisional;
+        case Draft_Candidate : return draft;
+        default: throw new IllegalArgumentException();
+        }
+    }
 }

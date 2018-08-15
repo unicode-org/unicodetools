@@ -251,10 +251,13 @@ public class Emoji {
         apple("Appl"), google("Goog"), 
         twitter("Twtr"),
         emojione("One"),
-        fb("FB", "Facebook"), fbm("FBM", "Messenger (Facebook)"), samsung("Sams."), 
-        windows("Wind."),
-        emojipedia, emojixpress,
-        ref, emojination, adobe, sample, proposed,
+        fb("FB", "Facebook"), fbm("FBM", "Messenger (Facebook)"), samsung("Sams"), 
+        windows("Wind"),
+        emojipedia("EPedia"), 
+        emojixpress,
+        ref, emojination, adobe, 
+        proposed("Prop"),
+        sample, 
         plain, 
         // gifs; don't change order!
         gmail("GMail"), sb("SB", "SoftBank"), dcm("DCM", "DoCoMo"), kddi("KDDI", "KDDI"),
@@ -277,8 +280,9 @@ public class Emoji {
                 .add(Source.emojipedia)
                 .add(Source.emojixpress)
                 .add(Source.emojination)
+                .add(Source.proposed)
                 .add(Source.sample)
-                .add(Source.proposed).build();
+                .build();
 
         private final String shortName;
         private final String longName;
