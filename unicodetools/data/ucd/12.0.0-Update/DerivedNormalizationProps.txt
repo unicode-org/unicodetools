@@ -1,5 +1,5 @@
 # DerivedNormalizationProps-12.0.0.txt
-# Date: 2018-08-02, 09:26:06 GMT
+# Date: 2018-08-13, 09:31:22 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -6915,7 +6915,6 @@ FFF0..FFF8    ; NFKC_CF;                # Cn   [9] <reserved-FFF0>..<reserved-FF
 118BD         ; NFKC_CF; 118DD          # L&       WARANG CITI CAPITAL LETTER SSUU
 118BE         ; NFKC_CF; 118DE          # L&       WARANG CITI CAPITAL LETTER SII
 118BF         ; NFKC_CF; 118DF          # L&       WARANG CITI CAPITAL LETTER VIYO
-13430..13438  ; NFKC_CF;                # Cf   [9] EGYPTIAN HIEROGLYPH VERTICAL JOINER..EGYPTIAN HIEROGLYPH END SEGMENT
 16E40         ; NFKC_CF; 16E60          # L&       MEDEFAIDRIN CAPITAL LETTER M
 16E41         ; NFKC_CF; 16E61          # L&       MEDEFAIDRIN CAPITAL LETTER S
 16E42         ; NFKC_CF; 16E62          # L&       MEDEFAIDRIN CAPITAL LETTER V
@@ -8804,7 +8803,7 @@ E0080..E00FF  ; NFKC_CF;                # Cn [128] <reserved-E0080>..<reserved-E
 E0100..E01EF  ; NFKC_CF;                # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; NFKC_CF;                # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10323
+# Total code points: 10314
 
 # ================================================
 
@@ -9701,7 +9700,6 @@ FFF0..FFF8    ; Changes_When_NFKC_Casefolded # Cn   [9] <reserved-FFF0>..<reserv
 104B0..104D3  ; Changes_When_NFKC_Casefolded # L&  [36] OSAGE CAPITAL LETTER A..OSAGE CAPITAL LETTER ZHA
 10C80..10CB2  ; Changes_When_NFKC_Casefolded # L&  [51] OLD HUNGARIAN CAPITAL LETTER A..OLD HUNGARIAN CAPITAL LETTER US
 118A0..118BF  ; Changes_When_NFKC_Casefolded # L&  [32] WARANG CITI CAPITAL LETTER NGAA..WARANG CITI CAPITAL LETTER VIYO
-13430..13438  ; Changes_When_NFKC_Casefolded # Cf   [9] EGYPTIAN HIEROGLYPH VERTICAL JOINER..EGYPTIAN HIEROGLYPH END SEGMENT
 16E40..16E5F  ; Changes_When_NFKC_Casefolded # L&  [32] MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN CAPITAL LETTER Y
 1BCA0..1BCA3  ; Changes_When_NFKC_Casefolded # Cf   [4] SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
 1D15E..1D164  ; Changes_When_NFKC_Casefolded # So   [7] MUSICAL SYMBOL HALF NOTE..MUSICAL SYMBOL ONE HUNDRED TWENTY-EIGHTH NOTE
@@ -9800,6 +9798,6 @@ E0080..E00FF  ; Changes_When_NFKC_Casefolded # Cn [128] <reserved-E0080>..<reser
 E0100..E01EF  ; Changes_When_NFKC_Casefolded # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; Changes_When_NFKC_Casefolded # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10323
+# Total code points: 10314
 
 # EOF

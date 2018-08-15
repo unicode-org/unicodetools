@@ -1,5 +1,5 @@
 Generate: .
-DeltaVersion: 9
+DeltaVersion: 11
 CopyrightYear: 2018
 
 File: extra/ScriptNfkc
@@ -360,7 +360,8 @@ Property:	Default_Ignorable_Code_Point
 #  + Cf (Format characters)
 #  + Variation_Selector
 #  - White_Space
-#  - FFF9..FFFB (Annotation characters)
+#  - FFF9..FFFB (Interlinear annotation format characters)
+#  - 13430..13438 (Egyptian hieroglyph format characters)
 #  - Prepended_Concatenation_Mark (Exceptional format characters that should be visible)
 
 Property:	Grapheme_Extend
