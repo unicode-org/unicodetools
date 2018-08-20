@@ -552,7 +552,7 @@ public final class UCD_Names implements UCD_Types {
         "Sogo",
         // Unicode 12
         "Elym",
-        "Nnag",
+        "Nand",
         "Hmnp",
         "Wcho",
     };
