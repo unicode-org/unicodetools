@@ -575,11 +575,17 @@ public class Emoji {
 
     public static String getLabelFromLine(Output<Set<String>> newLabel, String original) {
         String line = original.replace(EMOJI_VARIANT_STRING, "").replace(TEXT_VARIANT_STRING, "").trim();
+        if (line.isEmpty()) {
+            return line;
+        }
         int tabPos = line.indexOf('\t');
         //        if (tabPos < 0 && Emoji.EMOJI_CHARS.contains(getEmojiSequence(line, 0))) {
         //            tabPos = line.length();
         //            
         //        }
+        if (tabPos < 0 && ASCII_LETTERS.contains(line.charAt(0))) {
+            tabPos = line.length();
+        }
         if (tabPos >= 0) {
             newLabel.value.clear();
             String[] temp = line.substring(0,tabPos).trim().split(",\\s*");
@@ -590,10 +596,7 @@ public class Emoji {
                     throw new IllegalArgumentException("Bad line format: " + line);
                 }
             }
-            line = line.substring(tabPos + 1);
-        }
-        if (!line.isEmpty() && ASCII_LETTERS.contains(line.charAt(0))) {
-            throw new IllegalArgumentException("Malformed line: " + original);
+            line = line.substring(tabPos).trim();
         }
         return line;
     }

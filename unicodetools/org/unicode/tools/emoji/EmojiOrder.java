@@ -188,25 +188,25 @@ public class EmojiOrder {
         try (PrintWriter reformatted = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "emoji/order/", sourceFile)) {
             for (String line : FileUtilities.in(EmojiOrder.class,
                     sourceFile)) {
-                if (line.isEmpty() || line.startsWith("#")) {
+                if (line.isEmpty() || line.startsWith("#") && !line.startsWith("#⃣") && !line.startsWith("#️⃣")) {
                     continue;
                 }
-                if (line.contains("person-fantasy")) {
-                    int debug = 0;
-                }
-
                 if (DEBUG) System.out.println(line);
-                if (line.contains("hair-style")) {
+
+                line = Emoji.UNESCAPE.transform(line);
+                line = line.replace(Emoji.TEXT_VARIANT_STRING, "").replace(Emoji.EMOJI_VARIANT_STRING, "");
+
+                if (line.contains("keycap")) {
                     int debug = 0;
                 }
 
                 if (line.startsWith("@@")) {
-                    majorGroup = MajorGroup.fromString(line.substring(2));
+                    majorGroup = MajorGroup.fromString(line.substring(2).trim());
                     reformatted.println(line);
                     continue;
                 }
                 if (line.startsWith("@")) {
-                    String item = line.substring(1);
+                    String item = line.substring(1).trim();
                     if (!_groupOrder.containsKey(item)) {
                         _groupOrder.put(item, _groupOrder.size());
                     }
@@ -216,28 +216,28 @@ public class EmojiOrder {
                     } else if (major != majorGroup) {
                         throw new IllegalArgumentException("Conflicting major categories");
                     }
-                    reformatted.println(line);
+                    lastLabel.value.clear();
+                    lastLabel.value.add(item);
+                    reformatted.println("@" + item);
                     continue;
                 }
-                String oldLine = line;
-                line = Emoji.getLabelFromLine(lastLabel, line);
-                for (String item : lastLabel.value) {
-                    if (!_groupOrder.containsKey(item)) {
-                        _groupOrder.put(item, _groupOrder.size());
-                    }
-                    MajorGroup major = _categoryToMajor.get(item);
-                    if (major == null) {
-                        _categoryToMajor.put(item, majorGroup);
-                    } else if (major != majorGroup) {
-                        throw new IllegalArgumentException("Conflicting major categories");
-                    }
-                    // hack for now
-                    if (oldLine.contains("\t")) {
-                        reformatted.println("@" + item);
-                    }
-                }
-                line = Emoji.UNESCAPE.transform(line);
-                line = line.replace(Emoji.TEXT_VARIANT_STRING, "").replace(Emoji.EMOJI_VARIANT_STRING, "");
+//                String oldLine = line;
+//                line = Emoji.getLabelFromLine(lastLabel, line);
+//                for (String item : lastLabel.value) {
+//                    if (!_groupOrder.containsKey(item)) {
+//                        _groupOrder.put(item, _groupOrder.size());
+//                    }
+//                    MajorGroup major = _categoryToMajor.get(item);
+//                    if (major == null) {
+//                        _categoryToMajor.put(item, majorGroup);
+//                    } else if (major != majorGroup) {
+//                        throw new IllegalArgumentException("Conflicting major categories");
+//                    }
+//                    // hack for now
+//                    if (oldLine.contains("\t")) {
+//                        reformatted.println("@" + item);
+//                    }
+//                }
                 if (line.indexOf(Emoji.TAG_TERM) >= 0) {
                     int debug = 0;
                 }
@@ -252,7 +252,7 @@ public class EmojiOrder {
                     } else {
                         reformatted.print(' ');
                     }
-                    reformatted.print(string);
+                    reformatted.print(EmojiData.EMOJI_DATA.addEmojiVariants(string));
                     //System.out.println("Adding: " + Utility.hex(string) + "\t" + string);
                     add(result, sorted, majorGroup, lastLabel, string);
                     addVariants(result, sorted, majorGroup, lastLabel, string); 
