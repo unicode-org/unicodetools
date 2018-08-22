@@ -1,6 +1,7 @@
 package org.unicode.tools.emoji;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public class ListEmojiGroups {
         showInfo("emojiInfo.tsv");
 
         showTextEmoji("emojiText.tsv");
-        
+
         System.out.println("\nDups:" + DUPS.toPattern(false));
     }
 
@@ -206,7 +207,7 @@ public class ListEmojiGroups {
     private static String getName(String s) {
         return s.equals(UNSPECIFIED_GENDER) ? "unspecified-gender" 
                 : s.equals(UNSPECIFIED_SKIN) ? "unspecified-skin" 
-                : EmojiData.EMOJI_DATA.getName(s);
+                        : EmojiData.EMOJI_DATA.getName(s);
     }
 
     static final UnicodeSet HACK_FE0F = new UnicodeSet("[©®™✔]").freeze();
@@ -378,59 +379,71 @@ public class ListEmojiGroups {
             //,text,decimal_code_points,count,hex_code_points
             // 8,❤️,"[10084, 65039]",705086,"['0x2764', '0xFE0F']"
             CSVParser csvParser = new CSVParser();
-            for (Type type : Type.values()) {
-                for (String id : Arrays.asList(
-                        "20171031_20171113", "20171115_20171128",
-                        "20180608_20180621", "20180624_20180707")) { // "20171031_20171113", "20171115_20171128"
-                    String filename = type.getFile() + id + ".csv";
-                    int offset = 0;
-                    for (String line : FileUtilities.in(FREQ_SOURCE + "/emoji_freqs_" + id, filename)) {
-                        if (line.isEmpty() || line.startsWith(",text") || line.startsWith("locale")) {
-                            continue;
-                        } else if (line.startsWith(",locale")) {
-                            offset = 1;
-                            continue;
-                        }
-                        csvParser.set(line);
-                        if (csvParser.size() != Type.size() + offset) {
-                            System.out.println(filename + "\tSkipping short line: " + csvParser);
-                            continue;
-                        }
-                        String emojiString = csvParser.get(type.getEmojiIndex() + offset);
+            File folder = new File(FREQ_SOURCE + "/gboardRaw");
+            for (String filename : folder.list()) {
+                if (!filename.endsWith(".csv")) {
+                    continue;
+                }
+                Type type = filename.contains("by_locale") ? Type.locale : Type.global;
+                System.out.println(filename);
+                //            for (Type type : Type.values()) {
+                //                for (String id : Arrays.asList(
+                //                        "20171031_20171113", "20171115_20171128",
+                //                        "20180608_20180621", "20180624_20180707")) { // "20171031_20171113", "20171115_20171128"
+                //                    String filename = type.getFile() + id + ".csv";
+                int offset = 0;
+                String folderName;
+                try {
+                    folderName = folder.getCanonicalPath();
+                } catch (IOException e) {
+                    throw new ICUUncheckedIOException(e);
+                }
+                for (String line : FileUtilities.in(folderName, filename)) {
+                    if (line.isEmpty() || line.startsWith(",text") || line.startsWith("locale")) {
+                        continue;
+                    } else if (line.startsWith(",locale")) {
+                        offset = 1;
+                        continue;
+                    }
+                    csvParser.set(line);
+                    if (csvParser.size() != Type.size() + offset) {
+                        System.out.println(filename + "\tSkipping short line: " + csvParser);
+                        continue;
+                    }
+                    String emojiString = csvParser.get(type.getEmojiIndex() + offset);
 
-                        String rankString = csvParser.get(type.getRankIndex() + offset);
-                        long rank = type == Type.global ? Long.parseLong(rankString) : -1;
+                    String rankString = csvParser.get(type.getRankIndex() + offset);
+                    long rank = type == Type.global ? Long.parseLong(rankString) : -1;
 
-                        String locale = type == Type.global ? "001" : normalizeLocale(csvParser.get(type.getLocaleIndex() + offset));
-                        if (locale == null) {
-                            continue;
-                        }
-                        String countString = csvParser.get(type.getCountIndex() + offset);
-                        long count = Long.parseLong(countString);
+                    String locale = type == Type.global ? "001" : normalizeLocale(csvParser.get(type.getLocaleIndex() + offset));
+                    if (locale == null) {
+                        continue;
+                    }
+                    String countString = csvParser.get(type.getCountIndex() + offset);
+                    long count = Long.parseLong(countString);
 
-                        emojiSet.clear();
-                        nonEmojiSet.clear();
-                        nonPresSet.clear();
-                        EmojiMatcher.parse(emojiString, emojiSet, nonPresSet, nonEmojiSet);
-                        if (DEBUG) System.out.println(rank
-                                + "\t" + count
-                                + "\t" + emojiString 
-                                + "\t" + hex(emojiString)
-                                + "\t" + emojiSet
-                                + "\t" + nonPresSet
-                                + "\t" + nonEmojiSet
-                                );
-                        Counter<String> c = _counts.get(locale);
-                        if (c == null) {
-                            _counts.put(locale, c = new Counter<>());
-                        }
+                    emojiSet.clear();
+                    nonEmojiSet.clear();
+                    nonPresSet.clear();
+                    EmojiMatcher.parse(emojiString, emojiSet, nonPresSet, nonEmojiSet);
+                    if (DEBUG) System.out.println(rank
+                            + "\t" + count
+                            + "\t" + emojiString 
+                            + "\t" + hex(emojiString)
+                            + "\t" + emojiSet
+                            + "\t" + nonPresSet
+                            + "\t" + nonEmojiSet
+                            );
+                    Counter<String> c = _counts.get(locale);
+                    if (c == null) {
+                        _counts.put(locale, c = new Counter<>());
+                    }
 
-                        for (String s : emojiSet) {
-                            addCount(c, normalizeEmoji(s, c, count), count);
-                        }
-                        for (String s : nonPresSet) {
-                            addCount(c, normalizeEmoji(s, c, count), count);
-                        }
+                    for (String s : emojiSet) {
+                        addCount(c, normalizeEmoji(s, c, count), count);
+                    }
+                    for (String s : nonPresSet) {
+                        addCount(c, normalizeEmoji(s, c, count), count);
                     }
                 }
             }
@@ -632,13 +645,13 @@ public class ListEmojiGroups {
         }
     }
     static UnicodeSet DUPS = new UnicodeSet();
-    
+
     private static String normalizeEmoji(String rawCodes, Counter<String> stripped, long counts) {
         if (SKIP.containsSome(rawCodes)) {
             return "";
         }
         String result = rawCodes;
-        
+
         if (result.equals("♀")) {
             int debug = 0;
         }
@@ -672,7 +685,7 @@ public class ListEmojiGroups {
         }
         return EmojiData.EMOJI_DATA.addEmojiVariants(result);
     }
-    
+
     public static String stripFrom(UnicodeSet uset, CharSequence source, boolean matches, Counter<String> filtered, long counts) {
         StringBuilder result = new StringBuilder(); // could optimize to only allocate when needed
         SpanCondition toKeep = matches ? SpanCondition.NOT_CONTAINED : SpanCondition.CONTAINED;
@@ -711,6 +724,6 @@ public class ListEmojiGroups {
         if (nn.equals("♀")) {
             int debug = 0;
         }
-       return c.add(nn, count);
+        return c.add(nn, count);
     }
 }
