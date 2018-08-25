@@ -1,5 +1,5 @@
 # PropertyValueAliases-12.0.0.txt
-# Date: 2018-08-02, 09:26:13 GMT
+# Date: 2018-08-20, 20:26:20 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1280,11 +1280,11 @@ sc ; Mroo                             ; Mro
 sc ; Mtei                             ; Meetei_Mayek
 sc ; Mult                             ; Multani
 sc ; Mymr                             ; Myanmar
+sc ; Nand                             ; Nandinagari
 sc ; Narb                             ; Old_North_Arabian
 sc ; Nbat                             ; Nabataean
 sc ; Newa                             ; Newa
 sc ; Nkoo                             ; Nko
-sc ; Nnag                             ; Nandinagari
 sc ; Nshu                             ; Nushu
 sc ; Ogam                             ; Ogham
 sc ; Olck                             ; Ol_Chiki
