@@ -425,13 +425,15 @@ Let $IDInclusions = [[:block=/Ideographs/:] [[\U00020000-\U0003FFFF][\U0001F000-
 \p{LB=ID} ⊃ $IDInclusions
 \p{Line_Break=Unknown} = [\p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse} - $IDInclusions - [\u20BF-\u20CF]]
 
-Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288\U00013379\U000145CE\U0001E95E-\U0001E95F]
+Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288\U00013379\U00013437\U000145CE\U0001E95E-\U0001E95F]
 # 7.0 Removed hack  - [\u2308\u230A]
 # 9.0 Added Adlam initial punctuation 1E95E..1E95F
+# 12.0 Added Egyptian control begin segment 13437 (gc=Cf, lb=OP)
 
 \p{LB=OP} = [\p{GC=Ps} $OPInclusions]
 [\p{LB=CL}\p{LB=CP}] ⊃ [\p{GC=Pe} - [\u2309\u230B]]
-\p{LB=CM} = [[\u3035] \p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL} -\p{LB=ZWJ}]
+\p{LB=CM} = [[\u3035] \p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -[\U00013437-\U00013438] -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL} -\p{LB=ZWJ}]
+# Excluded Egyptian controls begin/end segment 13437..13438 (gc=Cf, lb=OP/CL)
 
 Let $NUInclusions = [\u066B\u066C]
 \p{LB=NU} = [\p{GC=Nd} $NUInclusions - \p{EA=F} ]
@@ -516,7 +518,8 @@ Let $Uax31Removals = [\-\u058A\u0F0B\u2010\u30A0\u30FB\u2E2F\u17B4-\u17B5]
 
 # See derivation of Default_Ignorable_Code_Point in DerivedCoreProperties.txt
 Let $Annotations = [\uFFF9-\uFFFB]
-\p{Default_Ignorable_Code_Point} = [\p{Other_Default_Ignorable_Code_Point} \p{GC=Cf} \p{Variation_Selector} - [\p{White_Space} $Annotations \p{PCM}]]
+Let $EgyptianControls = [\U00013430-\U00013438]
+\p{Default_Ignorable_Code_Point} = [\p{Other_Default_Ignorable_Code_Point} \p{GC=Cf} \p{Variation_Selector} - [\p{White_Space} $Annotations $EgyptianControls \p{PCM}]]
 
 \p{Grapheme_Extend} = [\p{Other_Grapheme_Extend} \p{GC=Me} \p{GC=Mn}]
 
