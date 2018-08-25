@@ -9,6 +9,7 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.Block_Values;
+import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Objects;
 import com.ibm.icu.dev.test.TestFmwk;
@@ -29,18 +30,18 @@ import com.ibm.icu.util.VersionInfo;
  */
 
 public class TestImmutableUnicodeMap extends TestFmwk {
-    IndexUnicodeProperties iup = IndexUnicodeProperties.make(VersionInfo.UNICODE_11_0);
-    UnicodeMap<Age_Values> age = iup.loadEnum(UcdProperty.Age, Age_Values.class);
-    UnicodeMap<Binary> whitespace = iup.loadEnum(UcdProperty.White_Space, Binary.class);
-    UnicodeMap<Block_Values> block = iup.loadEnum(UcdProperty.Block, Block_Values.class);
+    static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(VersionInfo.UNICODE_11_0);
+    static final UnicodeMap<Age_Values> AGE_PROP = iup.loadEnum(UcdProperty.Age, Age_Values.class);
+    static final UnicodeMap<Binary> WHITESPACE_PROP = iup.loadEnum(UcdProperty.White_Space, Binary.class);
+    static final UnicodeMap<Block_Values> BLOCK_PROP = iup.loadEnum(UcdProperty.Block, Block_Values.class);
 
     public static void main(String[] args) {
         new TestImmutableUnicodeMap().run(args);
     }
 
     public void testGet() {
-        UnicodeCPMap<Age_Values> cpMap = new UnicodeCPMap<>(age, Type.FAST);
-        for (EntryRange<Age_Values> range : age.entryRanges()) {
+        UnicodeCPMap<Age_Values> cpMap = new UnicodeCPMap<>(AGE_PROP, Type.FAST);
+        for (EntryRange<Age_Values> range : AGE_PROP.entryRanges()) {
             Age_Values expected = range.value;
             if (range.codepoint < 0) {
                 Age_Values actual = cpMap.get(range.string);
@@ -49,6 +50,76 @@ public class TestImmutableUnicodeMap extends TestFmwk {
                 check(cp, expected, (Object) cpMap.get(cp));
             }
         }
+    }
+    
+    public void testGetRange() {
+        checkGetRange(UcdProperty.Age, AGE_PROP, Type.FAST);
+        checkGetRange(UcdProperty.Age, AGE_PROP, Type.SMALL);
+        checkGetRange(UcdProperty.White_Space, WHITESPACE_PROP, Type.FAST);
+        checkGetRange(UcdProperty.White_Space, WHITESPACE_PROP, Type.SMALL);
+    }
+    
+    private <T> void checkGetRange(UcdProperty prop, UnicodeMap<T> umap, Type type) {
+        UnicodeCPMap<T> cpMap = new UnicodeCPMap<>(umap, type);
+        Range cpRange = new Range();
+        for (EntryRange<T> range : umap.entryRanges()) {
+            T expected = range.value;
+            if (range.codepoint >= 0) {
+                boolean actual = cpMap.cpData.getRange(range.codepoint, null, cpRange);
+                assertEqualHex(prop + ", " + type + ", Range Start: ", range.codepoint, cpRange.getStart());
+                assertEqualHex(prop + ", " + type + ", Range End: ", range.codepointEnd, cpRange.getEnd());
+                int cpIntValue = cpRange.getValue();
+                T cpAgeValue = cpIntValue < 0 ? null : cpMap.intToData[cpIntValue];
+                assertEquals(prop + ", " + type + ", Range Value: ", expected, cpAgeValue);
+            }
+        }
+    }
+
+    public void testRanges() {
+        // set up the data
+        LinkedHashMap outputValueMap = new LinkedHashMap<>();
+        MutableCodePointTrie builder = UnicodeCPMap.fromUnicodeMap(AGE_PROP, outputValueMap, null);
+        ValueWidth valueWidth = UnicodeCPMap.getValueWidth(outputValueMap.size()+1); // leave room for -1. Would be nice utility
+        System.out.println("\nSize: " + outputValueMap.size() + ", ValueWidth: " + valueWidth);
+        
+        // create two cpMaps from the same builder
+        CodePointMap cpMapFast = builder.buildImmutable(Type.FAST, valueWidth);
+        CodePointMap cpMapSmall = builder.buildImmutable(Type.SMALL, valueWidth);
+        
+        // now check identity of all three
+        assertCodePointMapEquals("builder vs fast", builder, cpMapFast);
+        assertCodePointMapEquals("builder vs small", builder, cpMapSmall);
+        assertCodePointMapEquals("fast vs slow", cpMapFast, cpMapSmall);
+    }
+    
+    private void assertCodePointMapEquals(String message, CodePointMap cpMap1, CodePointMap cpMap2) {
+        // First by range
+        Range cpMapRange1 = new Range();
+        Range cpMapRange2 = new Range();
+        boolean ok = true;
+        for (int cp = 0; ok && cp <= 0x01FFFF; cp = cpMapRange1.getEnd()+1) {
+            boolean b1 = cpMap1.getRange(cp, null, cpMapRange1);
+            boolean b2 = cpMap2.getRange(cp, null, cpMapRange2);
+            ok &= assertEquals(message + ": Return: ", b1, b2);
+            ok &= assertEqualHex(message + ": Start: ", cpMapRange1.getStart(), cpMapRange2.getStart());
+            ok &= assertEqualHex(message + ": End: ", cpMapRange1.getEnd(), cpMapRange2.getEnd());
+            int v1 = cpMapRange1.getValue();
+            int v2 = cpMapRange2.getValue();
+            ok &= assertEqualHex(message + ": Value: ", v1, v2);
+        }
+        // Then by values
+        for (int cp = 0; ok && cp <= 0x01FFFF; ++cp) {
+            int v1 = cpMap1.get(cp);
+            int v2 = cpMap2.get(cp);
+            ok &= assertEqualHex(message + ": Value(get): ", v1, v2);
+        }
+    }
+
+    private <T> boolean assertEqualHex(String message, int expected, int actual) {
+        if (expected != actual) {
+            errln(message + ": expected: " + Utility.hex(expected) + ", actual: " + Utility.hex(actual));
+        }
+        return expected == actual;
     }
     
     private <T> void check(String source, T expected, T actual) {
@@ -63,12 +134,10 @@ public class TestImmutableUnicodeMap extends TestFmwk {
         }
     }
 
-
-
-    public void testSpeed() {
-        checkTime(UcdProperty.Age, age);
-        checkTime(UcdProperty.White_Space, whitespace);
-        checkTime(UcdProperty.Block, block);
+    public void txestSpeed() {
+        checkTime(UcdProperty.Age, AGE_PROP);
+        checkTime(UcdProperty.White_Space, WHITESPACE_PROP);
+        checkTime(UcdProperty.Block, BLOCK_PROP);
     }
 
     private static <T> void checkTime(Object title, UnicodeMap<T> uMap) {
@@ -153,24 +222,34 @@ public class TestImmutableUnicodeMap extends TestFmwk {
 
         public UnicodeCPMap(UnicodeMap<T> source, Type type) {
             super();
-            Map<T,Integer> valueMap = new LinkedHashMap<>();
+            LinkedHashMap<T,Integer> valueMap = new LinkedHashMap<>();
+            MutableCodePointTrie builder = fromUnicodeMap(source, valueMap, stringData);
+            int itemCount = valueMap.size();
+            valueWidth = getValueWidth(valueMap.size()+1); // leave room for -1!
+            this.cpData = builder.buildImmutable(type, valueWidth);
+            T[] temp = (T[]) new Object[itemCount];
+            this.intToData = valueMap.keySet().toArray(temp);
+        }
+
+        private static ValueWidth getValueWidth(int itemCount) {
+            return itemCount < 0x100 ? ValueWidth.BITS_8 : itemCount < 0x10000 ? ValueWidth.BITS_16 : ValueWidth.BITS_32;
+        }
+
+        private static <T> MutableCodePointTrie fromUnicodeMap(UnicodeMap<T> source, LinkedHashMap<T, Integer> outputValueMap, Map<String, T> outputStringData) {
             MutableCodePointTrie builder = new MutableCodePointTrie(-1, -1);
             for (EntryRange<T> range : source.entryRanges()) {
                 if (range.string != null) {
-                    stringData.put(range.string, range.value);
+                    outputStringData.put(range.string, range.value);
                 } else {
-                    Integer intValue = valueMap.get(range.value);
+                    Integer intValue = outputValueMap.get(range.value);
                     if (intValue == null) {
-                        intValue = valueMap.size();
-                        valueMap.put(range.value, intValue);
+                        intValue = outputValueMap.size();
+                        outputValueMap.put(range.value, intValue);
                     }
                     builder.setRange(range.codepoint, range.codepointEnd, intValue);
                 }
             }
-            valueWidth = valueMap.size() < 0x100 ? ValueWidth.BITS_8 : valueMap.size() < 0x10000 ? ValueWidth.BITS_16 : ValueWidth.BITS_32;
-            this.cpData = builder.buildImmutable(type, valueWidth);
-            T[] temp = (T[]) new Object[valueMap.size()];
-            this.intToData = valueMap.keySet().toArray(temp);
+            return builder;
         }
 
         public T get(int cp) {
