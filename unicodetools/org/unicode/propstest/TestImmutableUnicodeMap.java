@@ -18,6 +18,7 @@ import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.CodePointMap;
 import com.ibm.icu.util.CodePointMap.Range;
+import com.ibm.icu.util.CodePointTrie;
 import com.ibm.icu.util.CodePointTrie.Type;
 import com.ibm.icu.util.CodePointTrie.ValueWidth;
 import com.ibm.icu.util.MutableCodePointTrie;
@@ -134,7 +135,7 @@ public class TestImmutableUnicodeMap extends TestFmwk {
         }
     }
 
-    public void txestSpeed() {
+    public void testSpeed() {
         checkTime(UcdProperty.Age, AGE_PROP);
         checkTime(UcdProperty.White_Space, WHITESPACE_PROP);
         checkTime(UcdProperty.Block, BLOCK_PROP);
@@ -226,7 +227,8 @@ public class TestImmutableUnicodeMap extends TestFmwk {
             MutableCodePointTrie builder = fromUnicodeMap(source, valueMap, stringData);
             int itemCount = valueMap.size();
             valueWidth = getValueWidth(valueMap.size()+1); // leave room for -1!
-            this.cpData = builder.buildImmutable(type, valueWidth);
+            CodePointTrie buildImmutable = builder.buildImmutable(type, valueWidth);
+            this.cpData = buildImmutable;
             T[] temp = (T[]) new Object[itemCount];
             this.intToData = valueMap.keySet().toArray(temp);
         }

@@ -29,6 +29,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import com.ibm.icu.impl.Utility;
@@ -1498,7 +1499,7 @@ public class MessageFormat extends UFormat {
         final MessageFormat other = (MessageFormat) obj;
         return (maxOffset == other.maxOffset
                 && pattern.equals(other.pattern)
-                && Utility.objectEquals(ulocale, other.ulocale) // does null check
+                && Objects.equals(ulocale, other.ulocale) // does null check
                 && Utility.arrayEquals(offsets, other.offsets)
                 && Utility.arrayEquals(argumentNames, other.argumentNames)
                 && Utility.arrayEquals(formats, other.formats)

@@ -869,7 +869,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
                 PropertyParsingInfo.handleMissing(FileType.PropertyValue, null, line);
             }
         }
-        for (final String line : FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyValueAliases", GenerateEnums.ENUM_VERSION, true, false))) {
+        String propValueAliases = Utility.getMostRecentUnicodeDataFile("PropertyValueAliases", GenerateEnums.ENUM_VERSION, true, false);
+        for (final String line : FileUtilities.in("", propValueAliases)) {
             PropertyParsingInfo.handleMissing(FileType.PropertyValue, null, line);
         }
         for (final String line : FileUtilities.in(IndexUnicodeProperties.class, "IndexPropertyRegex.txt")) {
