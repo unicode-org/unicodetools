@@ -185,7 +185,7 @@ public class EmojiOrder {
         MajorGroup majorGroup = null;
         EmojiIterator ei = new EmojiIterator(emojiData, false);
         final String directory = Settings.DATA_DIR + "/emoji/" + version.getVersionString(2, 2) + "/source";
-        try (PrintWriter reformatted = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "emoji/order/", sourceFile)) {
+        try (PrintWriter reformatted = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, sourceFile)) {
             for (String line : FileUtilities.in(EmojiOrder.class,
                     sourceFile)) {
                 if (line.isEmpty() || line.startsWith("#") && !line.startsWith("#⃣") && !line.startsWith("#️⃣")) {

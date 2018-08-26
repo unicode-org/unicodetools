@@ -21,16 +21,16 @@ public class Settings {
 
     public static final boolean SKIP_COPYRIGHT = "skip".equalsIgnoreCase(CldrUtility.getProperty("copyright", "skip"));
 
-    public static final String DATA_DIR = Utility.fixFileName(CldrUtility.getProperty("UCD_DIR", "data/")) + "/";
-    public static final String UCD_DIR = DATA_DIR + "ucd/";
-    public static final String IDN_DIR = DATA_DIR + "IDN/";
-    public static final String DICT_DIR = DATA_DIR + "dict/";
-    
     public static final String UNICODETOOLS_DIRECTORY = SVN_WORKSPACE_DIRECTORY + "unicodetools/";
     public static final String UNICODEJSPS_DIRECTORY = SVN_WORKSPACE_DIRECTORY + "UnicodeJsps/";
     public static final String UNICODE_DRAFT_DIRECTORY = SVN_WORKSPACE_DIRECTORY + "unicode-draft/";
     public static final String UNICODE_DRAFT_PUBLIC = SVN_WORKSPACE_DIRECTORY + "unicode-draft/Public/";
 
+    public static final String DATA_DIR = Utility.fixFileName(CldrUtility.getProperty("UCD_DIR", UNICODETOOLS_DIRECTORY + "data/")) + "/";
+    public static final String UCD_DIR = DATA_DIR + "ucd/";
+    public static final String IDN_DIR = DATA_DIR + "IDN/";
+    public static final String DICT_DIR = DATA_DIR + "dict/";
+    
     public static final String GEN_DIR_OLD = Utility.fixFileName(CldrUtility.getProperty("GEN_DIR", OTHER_WORKSPACE_DIRECTORY+"Generated")) + "/";
     public static final String GEN_DIR = BUILD_FOR_COMPARE ? UNICODE_DRAFT_PUBLIC : GEN_DIR_OLD;
     public static final String BIN_DIR = GEN_DIR_OLD + "BIN/";
