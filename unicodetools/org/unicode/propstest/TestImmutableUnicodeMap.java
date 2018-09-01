@@ -52,14 +52,14 @@ public class TestImmutableUnicodeMap extends TestFmwk {
             }
         }
     }
-    
+
     public void testGetRange() {
         checkGetRange(UcdProperty.Age, AGE_PROP, Type.FAST);
         checkGetRange(UcdProperty.Age, AGE_PROP, Type.SMALL);
         checkGetRange(UcdProperty.White_Space, WHITESPACE_PROP, Type.FAST);
         checkGetRange(UcdProperty.White_Space, WHITESPACE_PROP, Type.SMALL);
     }
-    
+
     private <T> void checkGetRange(UcdProperty prop, UnicodeMap<T> umap, Type type) {
         UnicodeCPMap<T> cpMap = new UnicodeCPMap<>(umap, type);
         Range cpRange = new Range();
@@ -76,23 +76,83 @@ public class TestImmutableUnicodeMap extends TestFmwk {
         }
     }
 
+    public void testEquivalent() {
+        checkEquivalent(Byte.MIN_VALUE, ValueWidth.BITS_8);
+        checkEquivalent(0x0, ValueWidth.BITS_8);
+        checkEquivalent(Byte.MAX_VALUE, ValueWidth.BITS_8);
+        checkEquivalent(-Byte.MIN_VALUE - 1, ValueWidth.BITS_8);
+        checkEquivalent(-Byte.MIN_VALUE, ValueWidth.BITS_8);
+        
+        checkEquivalent(Short.MIN_VALUE, ValueWidth.BITS_16);
+        checkEquivalent(0x0, ValueWidth.BITS_16);
+        checkEquivalent(Short.MAX_VALUE, ValueWidth.BITS_16);
+        checkEquivalent(-Short.MIN_VALUE - 1, ValueWidth.BITS_16);
+        checkEquivalent(-Short.MIN_VALUE, ValueWidth.BITS_16);
+        
+        checkEquivalent(Integer.MIN_VALUE, ValueWidth.BITS_32);
+        checkEquivalent(0x0, ValueWidth.BITS_16);
+        checkEquivalent(Integer.MAX_VALUE, ValueWidth.BITS_32);
+        checkEquivalent(-Integer.MIN_VALUE - 1, ValueWidth.BITS_32);
+        checkEquivalent(-Integer.MIN_VALUE, ValueWidth.BITS_32);
+    }
+
+    private void checkEquivalent(final int expected, final ValueWidth valueWidth) {
+        MutableCodePointTrie builder = new MutableCodePointTrie(-1, -1);
+        int low, high, mask;
+        boolean actualException;
+        // Get the low and high bounds. 
+        // Tweaked, since we don't know whether the result is to be signed or not.
+        switch (valueWidth) { 
+        case BITS_8: 
+            mask = 0xFF;
+            low = Byte.MIN_VALUE; 
+            high = -Byte.MIN_VALUE - 1;
+            break;
+        case BITS_16:
+            mask = 0xFFFF;
+            low = Short.MIN_VALUE; 
+            high = -Short.MIN_VALUE - 1;
+            break;
+        case BITS_32:
+            // always signed
+            low = Integer.MIN_VALUE; 
+            high = Integer.MAX_VALUE; 
+            mask = 0xFFFFFFFF;
+            break;
+        default: 
+            throw new IllegalArgumentException("Should never occur");
+        }
+        boolean expectedException = expected < low || expected > high;
+        builder.set(0, expected);
+        try {
+            CodePointTrie result = builder.buildImmutable(Type.FAST, valueWidth);
+            actualException = false;
+            int actual = result.get(0);
+            assertEquals("MutableCodePointTrie to CodePointTrie", expected & mask, actual & mask);
+        } catch (Exception e) {
+            actualException = true;
+        }
+        assertEquals("Check Exception for " + Utility.hex(expected) + " with " + valueWidth, 
+                expectedException, actualException);
+    }
+
     public void testRanges() {
         // set up the data
         LinkedHashMap outputValueMap = new LinkedHashMap<>();
         MutableCodePointTrie builder = UnicodeCPMap.fromUnicodeMap(AGE_PROP, outputValueMap, null);
         ValueWidth valueWidth = UnicodeCPMap.getValueWidth(outputValueMap.size()+1); // leave room for -1. Would be nice utility
         System.out.println("\nSize: " + outputValueMap.size() + ", ValueWidth: " + valueWidth);
-        
+
         // create two cpMaps from the same builder
         CodePointMap cpMapFast = builder.buildImmutable(Type.FAST, valueWidth);
         CodePointMap cpMapSmall = builder.buildImmutable(Type.SMALL, valueWidth);
-        
+
         // now check identity of all three
         assertCodePointMapEquals("builder vs fast", builder, cpMapFast);
         assertCodePointMapEquals("builder vs small", builder, cpMapSmall);
         assertCodePointMapEquals("fast vs slow", cpMapFast, cpMapSmall);
     }
-    
+
     private void assertCodePointMapEquals(String message, CodePointMap cpMap1, CodePointMap cpMap2) {
         // First by range
         Range cpMapRange1 = new Range();
@@ -122,7 +182,7 @@ public class TestImmutableUnicodeMap extends TestFmwk {
         }
         return expected == actual;
     }
-    
+
     private <T> void check(String source, T expected, T actual) {
         if (!Objects.equal(expected, actual)) {
             errln("String failure: «" + source + "» + expected:" + expected + ", actual: " + actual);
