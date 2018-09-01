@@ -18,8 +18,10 @@ import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.PatternCache;
 import org.unicode.cldr.util.props.ICUPropertyFactory;
 import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.Normalizer;
@@ -76,32 +78,75 @@ public class FrequencyData2 {
     static final int postFrequencyIndex = 2 + 4 + 1;
     static final int preFrequencyIndex = 2 + 4 + 0;
 
+//    public FrequencyData2(String frequencyFile, boolean showProgress, boolean old) throws IOException {
+//        BufferedReader in = GenerateNormalizeForMatch2.openUTF8Reader(frequencyFile);
+//        for (int lineCount = 0;; ++lineCount) {
+//            String line = in.readLine();
+//            if (line == null) break;
+//            int commentPos = line.indexOf("#");
+//            if (commentPos >= 0) {
+//                line = line.substring(0, commentPos);
+//            }
+//            line = line.trim();
+//            if (line.length() == 0) continue;
+//            String[] pieces = line.split("\\s+");
+//            int code = Integer.parseInt(pieces[0], 16);
+//
+//            if (showProgress && lineCount < 100 || (lineCount % 1000000) == 0 || code == 0x03C2) {
+//                System.out.println(lineCount + "\t" + line);
+//            }
+//
+//            if (code < 0x20) code = 0x20;
+//            if (MAP_CASE) {
+//                code = UCharacter.toLowerCase(code);
+//            }
+//            long count = MARKUP
+//                ? Math.max(0, Long.parseLong(pieces[preFrequencyIndex]) - Long.parseLong(pieces[postFrequencyIndex]))
+//                : Long.parseLong(pieces[postFrequencyIndex]);
+//            String lang = pieces[1];
+//            Counter<Integer> langCounter = langData.get(lang);
+//            if (langCounter == null) {
+//                langData.put(lang, langCounter = new Counter<Integer>());
+//            }
+//            langCounter.add(code, count);
+//            // if (NfcNo.contains(code)) {
+//            // langNfcNo.add(lang, count);
+//            // } else if (NfcMaybe.contains(code)) {
+//            // langNfcMaybe.add(lang, count);
+//            // }
+//            // if (UCharacter.isUpperCase(code)) {
+//            // langUpper.add(lang, count);
+//            // }
+//            // langTotal.add(lang, count);
+//            frequencies.add(code, count);
+//        }
+//        in.close();
+//    }
+    
     public FrequencyData2(String frequencyFile, boolean showProgress) throws IOException {
         BufferedReader in = GenerateNormalizeForMatch2.openUTF8Reader(frequencyFile);
         for (int lineCount = 0;; ++lineCount) {
             String line = in.readLine();
             if (line == null) break;
-            int commentPos = line.indexOf("#");
-            if (commentPos >= 0) {
-                line = line.substring(0, commentPos);
-            }
-            line = line.trim();
+//            int commentPos = line.indexOf("#");
+//            if (commentPos >= 0) {
+//                line = line.substring(0, commentPos);
+//            }
+//            line = line.trim();
             if (line.length() == 0) continue;
-            String[] pieces = line.split("\\s+");
-            int code = Integer.parseInt(pieces[0], 16);
+            String[] pieces = line.split("\\t");
+            // -4.470007    n   U+006E  Ll  Latn    LATIN SMALL LETTER N
+
+            double logFreq = Double.parseDouble(pieces[0]);
+            double freq = Math.pow(10, logFreq);
+            int count = (int) Math.round(freq*Long.MAX_VALUE);
+            int code = Utility.fromHex(pieces[2]).codePointAt(0);
 
             if (showProgress && lineCount < 100 || (lineCount % 1000000) == 0 || code == 0x03C2) {
                 System.out.println(lineCount + "\t" + line);
             }
 
-            if (code < 0x20) code = 0x20;
-            if (MAP_CASE) {
-                code = UCharacter.toLowerCase(code);
-            }
-            long count = MARKUP
-                ? Math.max(0, Long.parseLong(pieces[preFrequencyIndex]) - Long.parseLong(pieces[postFrequencyIndex]))
-                : Long.parseLong(pieces[postFrequencyIndex]);
-            String lang = pieces[1];
+            String lang = "mul";
             Counter<Integer> langCounter = langData.get(lang);
             if (langCounter == null) {
                 langData.put(lang, langCounter = new Counter<Integer>());
@@ -323,37 +368,37 @@ public class FrequencyData2 {
     static Pattern IICORE = PatternCache.get("U\\+([A-Z0-9]+)\\s+kIICore\\s+(.*)");
     static UnicodeSet iiCoreSet;
 
-    public static UnicodeSet getIICore() {
-        if (iiCoreSet == null) {
-            try {
-                String unihanFile = CldrUtility.getProperty("unidata") + "/Unihan/Unihan_NormativeProperties.txt";
-                BufferedReader in = new BufferedReader(new FileReader(unihanFile));
-                Matcher iiCore = IICORE.matcher("");
-                iiCoreSet = new UnicodeSet();
-                while (true) {
-                    String line = in.readLine();
-                    if (line == null) break;
-                    if (iiCore.reset(line).matches()) {
-                        int cp = Integer.parseInt(iiCore.group(1), 16);
-                        iiCoreSet.add(cp);
-                    }
-                }
-                in.close();
-                iiCoreSet.freeze();
-            } catch (IOException e) {
-                throw new IllegalArgumentException(e);
-            }
-        }
-        return iiCoreSet;
-    }
+//    public static UnicodeSet getIICore() {
+//        if (iiCoreSet == null) {
+//            try {
+//                String unihanFile = CldrUtility.getProperty("unidata") + "/Unihan/Unihan_NormativeProperties.txt";
+//                BufferedReader in = new BufferedReader(new FileReader(unihanFile));
+//                Matcher iiCore = IICORE.matcher("");
+//                iiCoreSet = new UnicodeSet();
+//                while (true) {
+//                    String line = in.readLine();
+//                    if (line == null) break;
+//                    if (iiCore.reset(line).matches()) {
+//                        int cp = Integer.parseInt(iiCore.group(1), 16);
+//                        iiCoreSet.add(cp);
+//                    }
+//                }
+//                in.close();
+//                iiCoreSet.freeze();
+//            } catch (IOException e) {
+//                throw new IllegalArgumentException(e);
+//            }
+//        }
+//        return iiCoreSet;
+//    }
 
     public static void main(String[] args) throws IOException {
         String frequencyFile = args[0];
-        System.out.println("IICoreSet\t" + getIICore().size() + "\t" + getIICore().toPattern(false));
+//        System.out.println("IICoreSet\t" + getIICore().size() + "\t" + getIICore().toPattern(false));
 
         FrequencyData2 data = new FrequencyData2(frequencyFile, true);
-        showHan(data);
-        writeSummary(data);
+//        showHan(data);
+        writeSummary2(data);
 
         System.out.print("Category" + "\t");
         System.out.print(0.0d + "\t");
@@ -378,26 +423,65 @@ public class FrequencyData2 {
         // }
     }
 
-    private static void showHan(FrequencyData2 data) {
-        UnicodeSet han = new UnicodeSet("\\p{sc=han}").freeze();
-        UnicodeSet tranche = new UnicodeSet();
-        UnicodeSet iiCore2 = new UnicodeSet(getIICore());
-        int bucket = 0;
-        for (int cp : data.frequencies.getKeysetSortedByCount(false)) {
-            if (han.contains(cp)) {
-                tranche.add(cp);
-                if (tranche.size() >= 5000) {
-                    bucket += tranche.size();
-                    UnicodeSet diff;
-                    diff = new UnicodeSet(tranche).removeAll(iiCore2);
-                    System.out.println(bucket + "\tNOT iiCore\t" + diff.size() + "\t" + diff.toPattern(false));
-                    diff = iiCore2.removeAll(tranche);
-                    System.out.println(bucket + "\tiiCore\t" + diff.size() + "\t" + diff.toPattern(false));
-                    tranche.clear();
-                }
-            }
+private static void writeSummary2(FrequencyData2 data) {
+    long buckets[] = new long[4];
+    for ( R2<Long, Integer> entry : data.frequencies.getEntrySetSortedByCount(false, null)) {
+        int codepoint = entry.get1();
+        long freq = entry.get0();
+        int bucket;
+        if (codepoint <= 0x7F) {
+            bucket = 0;
+        } else if (codepoint <= 0x7FF) {
+            bucket = 1;
+        } else if (codepoint <= 0xFFFF) {
+            bucket = 2;
+        } else {
+            bucket = 3;
+        }
+        buckets[bucket] += freq;
+        if (buckets[bucket] < 0) {
+            throw new IllegalArgumentException();
         }
     }
+    long total = 0;
+    long counts[] = new long[]{0x7F, 0x7FF, 0xFFFF, 0x10FFFF};
+
+    for (int i = 0; i < 4; ++i) {
+        total += buckets[i];
+        if (total < 0) {
+            throw new IllegalArgumentException();
+        }
+        if (i > 0) {
+            counts[i] -= counts[i-1];
+        }
+    }
+
+    for (int i = 0; i < 4; ++i) {
+        System.out.println((i+1) + "-byte:\t" 
+                + 100*buckets[i]/(double) total + "%");
+    }
+}
+
+//    private static void showHan(FrequencyData2 data) {
+//        UnicodeSet han = new UnicodeSet("\\p{sc=han}").freeze();
+//        UnicodeSet tranche = new UnicodeSet();
+//        UnicodeSet iiCore2 = new UnicodeSet(getIICore());
+//        int bucket = 0;
+//        for (int cp : data.frequencies.getKeysetSortedByCount(false)) {
+//            if (han.contains(cp)) {
+//                tranche.add(cp);
+//                if (tranche.size() >= 5000) {
+//                    bucket += tranche.size();
+//                    UnicodeSet diff;
+//                    diff = new UnicodeSet(tranche).removeAll(iiCore2);
+//                    System.out.println(bucket + "\tNOT iiCore\t" + diff.size() + "\t" + diff.toPattern(false));
+//                    diff = iiCore2.removeAll(tranche);
+//                    System.out.println(bucket + "\tiiCore\t" + diff.size() + "\t" + diff.toPattern(false));
+//                    tranche.clear();
+//                }
+//            }
+//        }
+//    }
 
     static class CountLang implements Comparable<CountLang> {
         long total;
