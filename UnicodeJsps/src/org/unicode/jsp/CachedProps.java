@@ -44,7 +44,7 @@ public class CachedProps {
     final BiMultimap<String,String> nameToAliases = new BiMultimap<String,String>(null,null);
     final Map<String,BiMultimap<String,String>> nameToValueToAliases = new LinkedHashMap();
 
-    static CachedProps CACHED_PROPS = getInstance(VersionInfo.getInstance(11));
+    static CachedProps CACHED_PROPS = getInstance(VersionInfo.getInstance(12));
 
     static UnicodeProperty NAMES = CachedProps.CACHED_PROPS.getProperty("Name");
 
@@ -250,7 +250,7 @@ public class CachedProps {
     }
 
     public static void main(String[] args) {
-        CachedProps cp = CachedProps.getInstance(VersionInfo.getInstance(10));
+        CachedProps cp = CachedProps.getInstance(VersionInfo.getInstance(12));
         Set<String> available = cp.getAvailable();
         System.out.println(available);
         for (String name : available) {

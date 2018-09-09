@@ -136,9 +136,9 @@ idtype	; rec	; Recommended
 # @missing: 0000..10FFFF; Emoji_Tag_Sequence  	; No
 # @missing: 0000..10FFFF; Emoji_Zwj_Sequence  	; No
 
+sc ; Hanb                             ; Han_with_Bopomofo
 sc ; Jpan                             ; Japanese
 sc ; Kore                             ; Korean
-sc ; Hanb                             ; Han_with_Bopomofo
 sc ; Zmth                             ; Math_Symbols
 sc ; Zsye                             ; Emoji_Symbols
 sc ; Zsym                             ; Other_Symbols
