@@ -89,7 +89,7 @@ public class Emoji {
     public static final VersionInfo VERSION_BETA = VERSION12;
 
     public static Map<VersionInfo, VersionInfo> EMOJI_TO_UNICODE_VERSION = ImmutableMap.<VersionInfo, VersionInfo>builder()
-            .put(VERSION12, UCD11) // TODO fix once U12 is populated
+            .put(VERSION12, UCD12) // TODO fix once U12 is populated
             .put(VERSION11, UCD11)
             .put(VERSION5, UCD10)
             .put(VERSION4, UCD9)

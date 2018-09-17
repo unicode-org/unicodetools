@@ -110,7 +110,7 @@ public class EmojiData implements EmojiDataSource {
     private final UnicodeMap<String> names = new UnicodeMap<>();
     private final UnicodeSet emojiWithVariants = new UnicodeSet();
     private final UnicodeSet extendedPictographic = new UnicodeSet();
-    private final UnicodeSet extendedPictographic1 = new UnicodeSet();
+    //private final UnicodeSet extendedPictographic1 = new UnicodeSet();
     private Multimap<String,String> maleToOther;
     private Multimap<String,String> femaleToOther;
     private UnicodeSet otherHuman;
@@ -165,6 +165,9 @@ public class EmojiData implements EmojiDataSource {
             // U+263A ;    text ;  0 ; face, human, outlined, relaxed, smile, smiley, smiling ;    jw  # V1.1 (☺) white smiling face
             line = line.trim();
             if (line.startsWith("#") || line.isEmpty()) continue;
+            if (line.startsWith("2388")) {
+                int debug = 0;
+            }
             List<String> coreList = hashOnly.splitToList(line);
             List<String> list = semi.splitToList(coreList.get(0));
             String f0 = list.get(0);
@@ -249,8 +252,11 @@ public class EmojiData implements EmojiDataSource {
         for (Entry<String, Set<EmojiProp>> entry : emojiData.entrySet()) {
             final String cp = entry.getKey();
             final Set<EmojiProp> set = entry.getValue();
-            if (set.contains(EmojiProp.Extended_Pictographic) && set.size() == 1) {
-                continue;
+            if (set.contains(EmojiProp.Extended_Pictographic)) {
+                extendedPictographic.add(cp);
+                if (set.size() == 1) {
+                    continue;
+                }
             }
 
             if (!set.contains(EmojiProp.Emoji) 
@@ -276,9 +282,6 @@ public class EmojiData implements EmojiDataSource {
                             : Emoji.ModifierStatus.none;
             putUnicodeSetValue(_modifierClassMap, cp, modClass);
 
-            if (set.contains(EmojiProp.Extended_Pictographic)) {
-                extendedPictographic1.add(cp);
-            }
         }
         singletonsWithDefectives.freeze();
         singletonsWithoutDefectives.freeze();
@@ -944,9 +947,9 @@ public class EmojiData implements EmojiDataSource {
         /** All characters that need them have emoji-variants */
         full("fully-qualified"), 
         /** The first character has an emoji-variant, if needed */
-        initial("initially-qualified"),
+        initial("minimally-qualified"),
         /** Neither full nor partial */
-        other("non-fully-qualified"),
+        other("unqualified"),
         /** Neither full nor partial */
         component("component")
         ;
@@ -1295,7 +1298,8 @@ public class EmojiData implements EmojiDataSource {
     }
 
     public static void main(String[] args) {
-        EmojiData e11a = EmojiData.of(Emoji.VERSION11);
+        
+        EmojiData e11a = EmojiData.of(Emoji.VERSION12);
         for (Entry<String, Collection<String>> entry : e11a.maleToOther.asMap().entrySet()) {
             System.out.println("M2F\t" + entry.getKey() + "\t" + entry.getValue());
         }

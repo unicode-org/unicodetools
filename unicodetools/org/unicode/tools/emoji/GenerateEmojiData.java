@@ -177,7 +177,11 @@ public class GenerateEmojiData {
         try (Writer out = new TempPrintWriter(OUTPUT_DIR, "emoji-sequences.txt")) {
             out.write(Utility.getBaseDataHeader("emoji-sequences", 51, "Emoji Sequence Data", Emoji.VERSION_STRING)
                     + "\n");
-            List<String> type_fields = Arrays.asList("Emoji_Combining_Sequence", "Emoji_Flag_Sequence",
+            List<String> type_fields = Arrays.asList(
+                    "Basic_Emoji", 
+                    "Emoji_Keycap_Sequence", 
+                    "Emoji_Flag_Sequence",
+                    "Emoji_Tag_Sequence",
                     "Emoji_Modifier_Sequence");
             int width = maxLength(type_fields);
             showTypeFieldsMessage(out, type_fields);
@@ -293,10 +297,12 @@ public class GenerateEmojiData {
         out.write("#   code_point(s) ; type_field ; description # comments \n");
         out.write("# Fields:\n");
         out.write("#   code_point(s): one or more code points in hex format, separated by spaces\n");
-        out.write("#   type_field: "
-                + (type_fields.size() != 1 ? "any of {" + CollectionUtilities.join(type_fields, ", ") + "}"
-                        : type_fields.iterator().next())
-                + "\n" + "#     The type_field is a convenience for parsing the emoji sequence files, "
+        out.write("#   type_field"
+                + (type_fields.size() != 1 ? ", one of the following: \n#       " 
+                        + CollectionUtilities.join(type_fields, "\n#       ")
+                        : " :" + type_fields.iterator().next())
+                + "\n"
+                + "#     The type_field is a convenience for parsing the emoji sequence files, "
                 + "and is not intended to be maintained as a property.\n");
         out.write("#   short name: CLDR short name of sequence; characters may be escaped with \\x{hex}.\n");
         out.write(ORDERING_NOTE);
@@ -343,7 +349,7 @@ public class GenerateEmojiData {
                 out.write("\n# ================================================\n\n");
                 int totalCount = 0;
                 if (!showMissingLine) {
-                    out.write("# " + title.replace('_', ' '));
+                    out.write("# " + title);
                     if (comments != null) {
                         out.write(": " + comments);
                     }
@@ -377,6 +383,7 @@ public class GenerateEmojiData {
                     }
 
                     totalCount += rangeCount;
+                    String ageDisplay = getAgeDisplay(range.value);
                     if (flat) {
                         if (range.string != null) {
                             throw new IllegalArgumentException("internal error");
@@ -386,7 +393,7 @@ public class GenerateEmojiData {
                             out.write(
                                     tabber.process(Utility.hex(s) + "\t" + titleField
                                             + (showName ? "\t;" + getName(s) + " " : "")
-                                            + "\t#" + "\t" + Emoji.getShortName(range.value) + "\t" + "\t("
+                                            + "\t#" + "\t" + ageDisplay + "\t" + "\t("
                                             + addEmojiVariant(s, addVariants) + ")"
                                             + (showName ? ""
                                                     : "\t" + getName(s)))
@@ -399,7 +406,7 @@ public class GenerateEmojiData {
                                 + (showName ? "\t; "
                                         + getName(s) + " "
                                         : "")
-                                + "\t#" + "\t" + Emoji.getShortName(range.value) + "\t[1] " + "\t("
+                                + "\t#" + "\t" + ageDisplay + "\t[1] " + "\t("
                                 + addEmojiVariant(s, isException && (addVariants || range.string != null)) + ")"
                                 + (showName ? ""
                                         : "\t" + getName(s)))
@@ -411,7 +418,7 @@ public class GenerateEmojiData {
                         + (showName ? "\t; "
                                 + getName(s) + " "
                                 : "")
-                        + "\t#" + "\t" + Emoji.getShortName(range.value) + "\t["
+                        + "\t#" + "\t" + ageDisplay + "\t["
                         + (range.codepointEnd - range.codepoint + 1) + "] " + "\t("
                         + addEmojiVariant(s, addVariants) + ".." + addEmojiVariant(e, addVariants) + ")"
                         + (showName ? ""
@@ -449,6 +456,10 @@ public class GenerateEmojiData {
             } catch (IOException e) {
                 throw new ICUUncheckedIOException(e);
             }
+        }
+
+        private String getAgeDisplay(Age_Values age) {
+            return Emoji.getShortName(age);
         }
 
         private String getAgeString(VersionInfo value) {
