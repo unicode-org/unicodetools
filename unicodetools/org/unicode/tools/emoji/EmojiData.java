@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.EnumMap;
 import java.util.EnumSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -61,6 +62,10 @@ import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
 public class EmojiData implements EmojiDataSource {
+    static final int HANDSHAKE = 0x1f91d;
+    static final String ZWJ_HANDSHAKE_ZWJ = Emoji.JOINER_STR + "🤝" + Emoji.JOINER_STR;
+    private static final String BAD_HANDSHAKE = "👨🏻‍🤝‍👨🏼";
+    
     public static boolean ALLOW_UNICODE_NAME = System.getProperty("ALLOW_UNICODE_NAME") != null;
     public static final UnicodeSet TAKES_NO_VARIANT = new UnicodeSet(Emoji.EMOJI_VARIANTS_JOINER)
             .addAll(new UnicodeSet("[[:M:][:Variation_Selector:][:Block=Tags:]]")) // TODO fix to use indexed props
@@ -339,19 +344,19 @@ public class EmojiData implements EmojiDataSource {
                     emojiDefectives.addAll(source);
                     int first = source.codePointAt(0);
                     if (zwj) {
-                        zwjSequencesAll.add(source);
-                        zwjSequencesNormal.add(source); 
+                        addToZwjSequencesAll(source);
+                        addToSequencesNormal(source); 
                         for (String modSeq : addModifiers(source)) {
-                            zwjSequencesAll.add(modSeq); 
-                            zwjSequencesNormal.add(modSeq); 
+                            addToZwjSequencesAll(modSeq); 
+                            addToSequencesNormal(modSeq); 
                         }
                         if (zwjSequencesNormal.contains(SAMPLE_WITHOUT_TRAILING_EVS)) {
                             int debug = 0;
                         }
-                        zwjSequencesAll.add(noVariant); // get non-variant
+                        addToZwjSequencesAll(noVariant); // get non-variant
                         final Set<String> noVariantPlusModifiers = addModifiers(noVariant);
                         for (String modSeq : noVariantPlusModifiers) {
-                            zwjSequencesAll.add(modSeq); 
+                            addToZwjSequencesAll(modSeq); 
                             addName(modSeq, list);
                         }
 
@@ -586,6 +591,17 @@ public class EmojiData implements EmojiDataSource {
         extendedPictographic.addAll(singletonsWithDefectives)
         .removeAll(emojiComponents)
         .freeze();
+    }
+
+    private UnicodeSet addToSequencesNormal(String modSeq) {
+        return zwjSequencesNormal.add(modSeq);
+    }
+
+    private UnicodeSet addToZwjSequencesAll(String source) {
+        if (source.equals(BAD_HANDSHAKE)) {
+            int debug = 1;
+        }
+        return zwjSequencesAll.add(source);
     }
 
     private void fixMaleFemale() {
@@ -1123,12 +1139,14 @@ public class EmojiData implements EmojiDataSource {
         //        if (name != null) {
         //            return name.toLowerCase(Locale.ENGLISH); // (toLower ?  : name);
         //        }
-        if (!Emoji.DEFECTIVE.contains(source)) {
+        if (!Emoji.DEFECTIVE.contains(source)) { //  && !Emoji.EXCLUSIONS.contains(source)
             // for debugging
             ANNOTATION_SET.getShortName(source, otherNameSource);
             ANNOTATION_SET.getShortName(tToV, otherNameSource);
             if (!ALLOW_UNICODE_NAME) {
-                throw new IllegalArgumentException("no name for " + source + " " + Utility.hex(source) + " or " + Utility.hex(tToV));
+                name = otherNameSource.transform(source);
+                throw new IllegalArgumentException("no name for " + source + " " + Utility.hex(source)
+                + (source.equals(tToV) ? "" : " or " + Utility.hex(tToV)));
             }
         }
 
@@ -1172,6 +1190,8 @@ public class EmojiData implements EmojiDataSource {
                             title = "Kiss: ";
                         } else if (s.indexOf(0x2764) >= 0) { // HEART
                             title = "Couple with heart: ";
+                        } else if (s.indexOf(EmojiData.HANDSHAKE) >= 0) { // HEART
+                            title = "Couple holding hands: ";
                         } else if (s.indexOf(0x2640) >= 0) {
                             name = nameBuffer.append("FEMALE: ").append(Emoji.NAME.get(s.codePointAt(0))).toString();  
                             break main;
@@ -1186,7 +1206,11 @@ public class EmojiData implements EmojiDataSource {
                         nameBuffer.append(title);
                     }
                     for (int cp : CharSequences.codePoints(s)) {
-                        if (cp == Emoji.JOINER || cp == Emoji.EMOJI_VARIANT || cp == 0x2764 || cp == 0x1F48B) { // heart, kiss
+                        if (cp == Emoji.JOINER 
+                                || cp == Emoji.EMOJI_VARIANT 
+                                || cp == 0x2764 
+                                || cp == 0x1F48B 
+                                || cp == HANDSHAKE) { // heart, kiss
                             continue;
                         }
                         if (sep) {
@@ -1240,10 +1264,68 @@ public class EmojiData implements EmojiDataSource {
         return emojiSequence;
     }
 
-    public String addModifier(String singletonOrSequence, String modifier) {
-        if (singletonOrSequence == null) {
-            return null;
+    //static UnicodeSetSpanner COUPLEPARTS = new UnicodeSetSpanner(new UnicodeSet(Emoji.MAN_STR).add(Emoji.WOMAN_STR).add(HANDSHAKE));
+//    public Set<String> addModifiers(String singletonOrSequence) {
+//        if (!getModifierBases().containsSome(singletonOrSequence)) {
+//            return Collections.emptySet();
+//        }
+//        Builder<String> builder = ImmutableSet.builder();
+//        for (String mod : MODIFIERS) {
+//            final String addedModifier = addModifier(singletonOrSequence, mod);
+//            if (addedModifier == null) {
+//                return Collections.emptySet();
+//            }
+//            builder.add(addedModifier);
+//        }
+//        return builder.build();
+//    }
+
+    public Set<String> addModifiers(String singletonOrSequence) {
+        if (singletonOrSequence == null
+                || getModifiers().containsSome(singletonOrSequence) // skip if has modifiers already
+                || !getModifierBases().containsSome(singletonOrSequence) // skip if has no modifier bases
+                ) {
+            return Collections.emptySet();
         }
+        LinkedHashSet<String> output = new LinkedHashSet<>();
+        int handshakePos = singletonOrSequence.indexOf(ZWJ_HANDSHAKE_ZWJ);
+        if (handshakePos > 0) {
+            // TODO HACK for now. If we add other groupings with skintones, generalize
+            String prefix = singletonOrSequence.substring(0, handshakePos);
+            String postfix = singletonOrSequence.substring(handshakePos + ZWJ_HANDSHAKE_ZWJ.length());
+            boolean sameAffix = prefix.equals(postfix);
+            for (String mod : EmojiData.MODIFIERS) {
+                String prefixMod = addModifierPart(prefix, mod);
+                if (prefixMod == null) {
+                    throw new IllegalArgumentException("internal error");
+                }
+                for (String mod2 : EmojiData.MODIFIERS) {
+                    if (sameAffix && mod.compareTo(mod2) < 0) { // skip if first mod is lighter than second
+                        continue;
+                    }
+                    String postfixMod = addModifierPart(postfix, mod2);
+                    if (prefixMod == null) {
+                        throw new IllegalArgumentException("internal error");
+                    }
+                    String result = prefixMod + ZWJ_HANDSHAKE_ZWJ + postfixMod;
+                    if (result.equals(BAD_HANDSHAKE)) {
+                        int x = 0;
+                    }
+                    output.add(result);
+                }
+            }
+        } else {
+            for (String mod : EmojiData.MODIFIERS) {
+                String result = addModifierPart(singletonOrSequence, mod);
+                if (result != null) {
+                    output.add(result);
+                }
+            } 
+        }
+        return output.isEmpty() ? Collections.emptySet() : ImmutableSet.copyOf(output);
+    }
+
+    private String addModifierPart(String singletonOrSequence, String modifier) {
         StringBuilder b = new StringBuilder();
         int countMod = 0;
         boolean justSetMod = false;
@@ -1268,21 +1350,6 @@ public class EmojiData implements EmojiDataSource {
         return b.toString();
     }
 
-    public Set<String> addModifiers(String singletonOrSequence) {
-        if (!getModifierBases().containsSome(singletonOrSequence)) {
-            return Collections.emptySet();
-        }
-        Builder<String> builder = ImmutableSet.builder();
-        for (String mod : MODIFIERS) {
-            final String addedModifier = addModifier(singletonOrSequence, mod);
-            if (addedModifier == null) {
-                return Collections.emptySet();
-            }
-            builder.add(addedModifier);
-        }
-        return builder.build();
-    }
-
     static final IndexUnicodeProperties latest = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
     static final IndexUnicodeProperties beta = IndexUnicodeProperties.make();
     static boolean SKIP = true;
@@ -1298,7 +1365,7 @@ public class EmojiData implements EmojiDataSource {
     }
 
     public static void main(String[] args) {
-        
+
         EmojiData e11a = EmojiData.of(Emoji.VERSION12);
         for (Entry<String, Collection<String>> entry : e11a.maleToOther.asMap().entrySet()) {
             System.out.println("M2F\t" + entry.getKey() + "\t" + entry.getValue());

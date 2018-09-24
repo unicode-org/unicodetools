@@ -2,6 +2,7 @@ package org.unicode.tools.emoji;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map.Entry;
 
@@ -68,7 +69,7 @@ public class CompareEmojiFreq {
         for (String emoji : worldCounts.keyToCount.keySet()) {
             other_.add(emoji, worldCounts.getRaw(emoji) - counts.getRaw(emoji));
         }
-        CountInfo other = new CountInfo(other_);
+        CountInfo other = new CountInfo(other_, new HashSet<>());
         String localeName = name(locale);
         boolean haveCounts = false;
         boolean isWorld = locale.equals("001");

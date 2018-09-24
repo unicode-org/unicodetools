@@ -40,7 +40,7 @@ public final class EmojiIterator implements Iterable<String>, Iterator<String> {
                 if (Emoji.KEYWORD_CHARS.containsAll(part)) {
                     newLabel.add(part);
                 } else {
-                    throw new IllegalArgumentException("Bad line format: " + line + " — " + new UnicodeSet().addAll(part).removeAll(Emoji.KEYWORD_CHARS));
+                    throw new IllegalArgumentException("Bad label format before tab: " + line + " — " + new UnicodeSet().addAll(part).removeAll(Emoji.KEYWORD_CHARS));
                 }
             }
             line = line.substring(tabPos + 1);

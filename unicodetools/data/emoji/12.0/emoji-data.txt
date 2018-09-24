@@ -712,3 +712,15 @@ E0020..E007F  ; Emoji_Component      #  3.1 [96] (󠀠..󠁿)      tag space..ca
 # Total elements: 3793
 
 #EOF
+
+
+1F91D  ; Emoji_Modifier_Base
+1F46F  ; Emoji_Modifier_Base
+1F93C  ; Emoji_Modifier_Base
+1F46B  ; Emoji_Modifier_Base
+1F46C  ; Emoji_Modifier_Base
+1F46B  ; Emoji_Modifier_Base
+1F48F  ; Emoji_Modifier_Base
+1F491  ; Emoji_Modifier_Base
+1F46A  ; Emoji_Modifier_Base
+

@@ -24,8 +24,8 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.CountEmoji.ZwjType;
 import org.unicode.tools.emoji.Emoji.Source;
-import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableMap;
@@ -47,7 +47,7 @@ public class Emoji {
 
     static final boolean ABBR = CldrUtility.getProperty("emoji-abbr", false);
     //static final boolean EMOJI_BUILD_VERSION = CldrUtility.getProperty("emoji-version", false);
-    
+
     /**
      * Change the following according to whether we are generating the beta version of files, or the new version.
      * We support generating the last version in order to make improvements to the charts.
@@ -107,7 +107,7 @@ public class Emoji {
             .put(VERSION2, "2015-11-12")
             .put(VERSION1, "2015-06-09")
             .build();
-    
+
     public final static Map<Integer,VersionInfo> EMOJI_TO_YEAR_ASCENDING;
     static {
         Map<Integer,VersionInfo> _map = new TreeMap<>();
@@ -119,7 +119,7 @@ public class Emoji {
         }
         EMOJI_TO_YEAR_ASCENDING = ImmutableMap.copyOf(_map);
     }
-    
+
     public static final VersionInfo VERSION_LAST_RELEASED_UNICODE = EMOJI_TO_UNICODE_VERSION.get(VERSION_LAST_RELEASED);
     public static final VersionInfo VERSION_BETA_UNICODE = EMOJI_TO_UNICODE_VERSION.get(VERSION_BETA);
 
@@ -153,7 +153,7 @@ public class Emoji {
     public static final String EMOJI_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/" + (Emoji.ABBR ? "🏴" : "");
     public static final String CHARTS_DIR = EMOJI_DIR + "charts-" + VERSION_STRING  + "/";
     public static final String FUTURE_DIR = EMOJI_DIR + "future" + "/";
-    
+
     public static final String TR51_INTERNAL_DIR = CHARTS_DIR + "internal/";
     public static final String RELEASE_CHARTS_DIR = EMOJI_DIR + "charts-" + VERSION_LAST_RELEASED_STRING + "/";
 
@@ -174,8 +174,8 @@ public class Emoji {
     public static final char TEXT_VARIANT = '\uFE0E';
 
     // HACK
-//    static final UnicodeSet GENDER_BASE = new UnicodeSet("[👯💂👳👱⛹🏃🏄🏊-🏌👮👷💁💆💇🕵🙅-🙇🙋🙍🙎🚣 🚴-🚶🤹 \\U0001F926\\U0001F937\\U0001F938\\U0001F93C-\\U0001F93E]")
-//            .freeze();
+    //    static final UnicodeSet GENDER_BASE = new UnicodeSet("[👯💂👳👱⛹🏃🏄🏊-🏌👮👷💁💆💇🕵🙅-🙇🙋🙍🙎🚣 🚴-🚶🤹 \\U0001F926\\U0001F937\\U0001F938\\U0001F93C-\\U0001F93E]")
+    //            .freeze();
 
     static final UnicodeSet PROFESSION_OBJECT = new UnicodeSet("[⚕🌾🍳🎓🎤🏫🏭💻💼🔧🔬🎨 🚒 ✈ 🚀 ⚖]")
             .freeze();
@@ -219,12 +219,12 @@ public class Emoji {
             .put(UTF16.valueOf(0x1F385), UTF16.valueOf(0x1F936)) // Santa Claus→Mrs. Claus
             .put(UTF16.valueOf(0x1F934), UTF16.valueOf(0x1F478)) // prince→princess
             .put(UTF16.valueOf(0x1F57A), UTF16.valueOf(0x1F483)) // man dancing→woman dancing
-//            .put(UTF16.valueOf(0x1F46C), UTF16.valueOf(0x1F46B)) // two men holding hands→man and woman holding hands
-//            .put(UTF16.valueOf(0x1F46C), UTF16.valueOf(0x1F46D)) // two men holding hands→two women holding hands
-//            .put(UTF16.valueOf(0x1F935), "") // man in tuxedo→<NONE>
-//            .put(UTF16.valueOf(0x1F574), "") // man in suit levitating→<NONE>
-//            .put(UTF16.valueOf(0x1F472), "") // man with Chinese cap→<NONE>
-//            .put(UTF16.valueOf(0x1F9D4), "") // BEARDED PERSON→<NONE>
+            //            .put(UTF16.valueOf(0x1F46C), UTF16.valueOf(0x1F46B)) // two men holding hands→man and woman holding hands
+            //            .put(UTF16.valueOf(0x1F46C), UTF16.valueOf(0x1F46D)) // two men holding hands→two women holding hands
+            //            .put(UTF16.valueOf(0x1F935), "") // man in tuxedo→<NONE>
+            //            .put(UTF16.valueOf(0x1F574), "") // man in suit levitating→<NONE>
+            //            .put(UTF16.valueOf(0x1F472), "") // man with Chinese cap→<NONE>
+            //            .put(UTF16.valueOf(0x1F9D4), "") // BEARDED PERSON→<NONE>
             .freeze();
     static final UnicodeMap<String> FEMALE_TO_OTHER = new UnicodeMap<String>()
             .put(UTF16.valueOf(0x2640),UTF16.valueOf(0x2642)) // FEMALE SIGN→MALE SIGN
@@ -234,12 +234,12 @@ public class Emoji {
             .put(UTF16.valueOf(0x1F936), UTF16.valueOf(0x1F385)) // Mrs. Claus→Santa Claus
             .put(UTF16.valueOf(0x1F478), UTF16.valueOf(0x1F934)) // princess→prince
             .put(UTF16.valueOf(0x1F483), UTF16.valueOf(0x1F57A)) // woman dancing→man dancing
-//            .put(UTF16.valueOf(0x1F46D), UTF16.valueOf(0x1F46C)) // two women holding hands→two men holding hands
-//            .put(UTF16.valueOf(0x1F46D), UTF16.valueOf(0x1F46B)) // two women holding hands→man and woman holding hands
-//            .put(UTF16.valueOf(0x1F470), "") // bride with veil→<NONE>
-//            .put(UTF16.valueOf(0x1F930), "") // pregnant woman→<NONE>
-//            .put(UTF16.valueOf(0x1F931), "") // breast-feeding→<NONE>
-//            .put(UTF16.valueOf(0x1F9D5), "") // woman with headscarf→<NONE>
+            //            .put(UTF16.valueOf(0x1F46D), UTF16.valueOf(0x1F46C)) // two women holding hands→two men holding hands
+            //            .put(UTF16.valueOf(0x1F46D), UTF16.valueOf(0x1F46B)) // two women holding hands→man and woman holding hands
+            //            .put(UTF16.valueOf(0x1F470), "") // bride with veil→<NONE>
+            //            .put(UTF16.valueOf(0x1F930), "") // pregnant woman→<NONE>
+            //            .put(UTF16.valueOf(0x1F931), "") // breast-feeding→<NONE>
+            //            .put(UTF16.valueOf(0x1F9D5), "") // woman with headscarf→<NONE>
             .freeze();
     static final UnicodeSet NEUTRAL = new UnicodeSet("[⛷⛹🏂-🏄🏇🏊-🏎👤👥👪-👳👶👷👼💁💂💆💇💏💑🕴🕵🗣🙅-🙇🙋🙍🙎🚣🚴-🚶🛀🛌🤦🤰🤱🤵🤷-🤾🦸🦹🧑-🧟]");
 
@@ -332,12 +332,12 @@ public class Emoji {
             return this == svg ? "svg/emoji_"
                     : getPrefix() + "/" + getPrefix() + "_";
         }
-        
+
         public String getSuffix() {
             return this == Source.svg ? ".svg" : isGif() ? ".gif" : ".png";
         }
         public String getImageFileName(String cp) {
-                return getFullPrefix() + buildFileName(cp, "_") + getSuffix();
+            return getFullPrefix() + buildFileName(cp, "_") + getSuffix();
         }
         public String getImageDirectory() {
             return this == svg ? Emoji.IMAGES_SOURCE_DIR_SVG : Emoji.IMAGES_OUTPUT_DIR;
@@ -502,7 +502,7 @@ public class Emoji {
             .add(JOINER + FEMALE + EMOJI_VARIANT)
             .add(JOINER + MALE + EMOJI_VARIANT)
             .freeze();
-    
+
     public static final UnicodeSet MAN_OR_WOMAN = new UnicodeSet().add(Emoji.WOMAN).add(Emoji.MAN)
             .freeze();
 
@@ -521,7 +521,12 @@ public class Emoji {
             .addAll(REGIONAL_INDICATORS)
             .addAll(DEFECTIVE_COMPONENTS)
             .freeze();
-    
+    public static final UnicodeSet EXCLUSIONS = new UnicodeSet()
+            .add("👩‍🤝‍👩")
+            .add("👩‍🤝‍👨")
+            .add("👨‍🤝‍👨")
+            .freeze();
+
     public static final UnicodeSet EXCLUDED_FOR_SEGMENTATION = new UnicodeSet("[#*0-9©®™〰〽🇦-🇿]");
 
     //    static final UnicodeSet EXCLUDE = new UnicodeSet(
@@ -644,7 +649,7 @@ public class Emoji {
             Source overrideSource = BEST_OVERRIDE.get(chars);
             if (overrideSource != null) {
                 type = overrideSource;
-            } else if (ZwjType.getType(chars) != ZwjType.family) {
+            } else if (CountEmoji.ZwjType.getType(chars) != CountEmoji.ZwjType.family) {
                 overrideSource = BEST_OVERRIDE.get(UTF16.valueOf(chars.codePointAt(0)));
                 if (overrideSource != null) {
                     type = overrideSource;
@@ -695,7 +700,7 @@ public class Emoji {
 
     static final UnicodeMap<Emoji.Source> BEST_OVERRIDE = new UnicodeMap<>();
     static {
-        
+
         BEST_OVERRIDE.put("🛌", Emoji.Source.google);
         BEST_OVERRIDE.put("🛌🏻", Emoji.Source.google);
         BEST_OVERRIDE.put("🛌🏼", Emoji.Source.google);
@@ -715,7 +720,7 @@ public class Emoji {
                 Source overrideSource = BEST_OVERRIDE.get(s);
                 if (overrideSource != null) {
                     source = overrideSource;
-                } else if (ZwjType.getType(s) != ZwjType.family) {
+                } else if (CountEmoji.ZwjType.getType(s) != CountEmoji.ZwjType.family) {
                     overrideSource = BEST_OVERRIDE.get(s);
                     if (overrideSource != null) {
                         source = overrideSource;
