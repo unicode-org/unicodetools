@@ -126,6 +126,22 @@ public class GenerateEmojiData {
     public static <T> void printData(UnicodeMap<String> extraNames) throws IOException {
 
         PropPrinter printer = new PropPrinter().set(extraNames);
+        
+        try (TempPrintWriter outText2 = new TempPrintWriter(OUTPUT_DIR, "emoji-internal.txt")) {
+            UnicodeSet emojiGenderBase = EmojiDataSourceCombined.EMOJI_DATA.getSingletonsWithDefectives();
+            outText2.println(Utility.getBaseDataHeader("emoji-internal", 51, "Emoji Data Internal", Emoji.VERSION_STRING));
+            
+            
+            int width = maxLength("Emoji_Gender_Base");
+
+            //            outText2.println("# Warning: the format has changed from Version 1.0");
+            outText2.println("# Format: ");
+            outText2.println("# <codepoint(s)> ; <property> # <comments> ");
+            outText2.println("# Note: there is no guarantee as to the structure of whitespace or comments");
+            outText2.println(ORDERING_NOTE);
+            printer.show(outText2, "Emoji_Gender_Base", null, width, 14, emojiGenderBase, true, true, false);
+            outText2.println("\n#EOF");
+        }
 
         try (TempPrintWriter outText2 = new TempPrintWriter(OUTPUT_DIR, "emoji-data.txt")) {
             UnicodeSet emoji = EmojiDataSourceCombined.EMOJI_DATA.getSingletonsWithDefectives();
@@ -277,6 +293,14 @@ public class GenerateEmojiData {
 
         // generate emoji-test
         GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, EmojiOrder.STD_ORDER.emojiData.getSortingChars(), Target.propFile, OUTPUT_DIR);
+    }
+
+    private static int maxLength(String... items) {
+        int result = 0;
+        for (String item : items) {
+            result = Math.max(result, item.length());
+        }
+        return result;
     }
 
     static final UnicodeMap<String> NAMES = IndexUnicodeProperties.make(Settings.latestVersion).load(UcdProperty.Name);

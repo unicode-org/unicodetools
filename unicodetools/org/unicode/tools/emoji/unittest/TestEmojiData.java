@@ -14,12 +14,11 @@ import org.unicode.cldr.util.StandardCodes.LstrType;
 import org.unicode.cldr.util.Validity;
 import org.unicode.cldr.util.Validity.Status;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.CountEmoji;
 import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiAnnotations;
 import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.EmojiOrder;
-import org.unicode.tools.emoji.GenerateEmojiData;
-import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -32,6 +31,13 @@ public class TestEmojiData extends TestFmwkPlus {
     public static void main(String[] args) {
         System.out.println("Version: " + Emoji.VERSION_TO_GENERATE + "; isBeta: " + Emoji.IS_BETA);
         new TestEmojiData().run(args);
+    }
+    
+    public void TestHandshake() {
+        EmojiData beta = EmojiData.of(Emoji.VERSION_BETA);
+        beta.getName("👩"); // warm up
+        assertEquals("👩‍🤝‍👩", "couple holding hands", beta.getName("👩‍🤝‍👩"));
+        assertEquals("👩🏿‍🤝‍👩🏻", "couple holding hands: dark skin tone, light skin tone", beta.getName("👩🏿‍🤝‍👩🏻"));
     }
 
     public void TestDefectives() {
@@ -82,7 +88,7 @@ public class TestEmojiData extends TestFmwkPlus {
     public void TestZwjCategories () {
         UnicodeMap<String> chars = new UnicodeMap<>();
         for (String s : EmojiData.EMOJI_DATA.getZwjSequencesNormal()) {
-            GenerateEmojiData.ZwjType zwjType = ZwjType.getType(s);
+            CountEmoji.ZwjType zwjType = CountEmoji.ZwjType.getType(s);
             String grouping = EmojiOrder.STD_ORDER.charactersToOrdering.get(s);
             chars.put(s, zwjType + "\t" + grouping);
         }
@@ -93,14 +99,14 @@ public class TestEmojiData extends TestFmwkPlus {
         Set<String> testSet = new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare);
         EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().addAllTo(testSet);
 
-        ZwjType oldZwjType = ZwjType.na; 
+        CountEmoji.ZwjType oldZwjType = CountEmoji.ZwjType.na; 
         String last = "";
         for (String s : testSet) {
-            ZwjType zwjType = ZwjType.getType(s);
-            if (zwjType == ZwjType.na) {
+            CountEmoji.ZwjType zwjType = CountEmoji.ZwjType.getType(s);
+            if (zwjType == CountEmoji.ZwjType.na) {
                 continue;
             }
-            if (zwjType.compareTo(oldZwjType) < 0 && oldZwjType != ZwjType.na) {
+            if (zwjType.compareTo(oldZwjType) < 0 && oldZwjType != CountEmoji.ZwjType.na) {
                 errln(zwjType + " < " + oldZwjType 
                         + ", but they should be ascending"
                         + "\n\t" + oldZwjType + "\t" + last 

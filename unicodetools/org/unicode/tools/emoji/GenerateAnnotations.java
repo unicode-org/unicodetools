@@ -10,7 +10,7 @@ import java.util.TreeSet;
 import org.unicode.cldr.util.Annotations;
 import org.unicode.cldr.util.Annotations.AnnotationSet;
 import org.unicode.text.utility.Utility;
-import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
+import org.unicode.tools.emoji.CountEmoji.ZwjType;
 
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
@@ -77,12 +77,12 @@ public class GenerateAnnotations {
 	static private String ADULT = UTF16.valueOf(0x1F9D1);
 	
 	private static void showGenderVariants(EmojiData betaData) {
-		Multimap<ZwjType, String> data = TreeMultimap.create();
+		Multimap<CountEmoji.ZwjType, String> data = TreeMultimap.create();
 		for (String s : betaData.getAllEmojiWithoutDefectivesOrModifiers()) {
 			if (!s.contains(Emoji.JOINER_STR)) {
 				continue;
 			}
-			ZwjType type = ZwjType.getType(s);
+			CountEmoji.ZwjType type = CountEmoji.ZwjType.getType(s);
 			if (s.contains(Emoji.MALE)) {
 				int first = s.codePointAt(0);
 				data.put(type, UTF16.valueOf(first));
@@ -100,15 +100,15 @@ public class GenerateAnnotations {
 		}
 		
 		int count = 0;
-		for (Entry<ZwjType, String> entry : data.entries()) {
-			ZwjType type = entry.getKey();
+		for (Entry<CountEmoji.ZwjType, String> entry : data.entries()) {
+			CountEmoji.ZwjType type = entry.getKey();
 			String sequence = entry.getValue();
 			String shortName = getName(sequence);
 			System.out.println(sequence + "\t" + shortName);
 		}
 		
-		for (Entry<ZwjType, Collection<String>> entry : data.asMap().entrySet()) {
-			ZwjType type = entry.getKey();
+		for (Entry<CountEmoji.ZwjType, Collection<String>> entry : data.asMap().entrySet()) {
+			CountEmoji.ZwjType type = entry.getKey();
 			UnicodeSet sequence = new UnicodeSet().addAll(entry.getValue());
 			System.out.println(type + "\t" + sequence.toPattern(false));
 		}

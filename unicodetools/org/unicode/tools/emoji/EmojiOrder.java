@@ -22,7 +22,6 @@ import org.unicode.cldr.util.MultiComparator;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiData.VariantFactory;
-import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
 import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -221,24 +220,24 @@ public class EmojiOrder {
                     reformatted.println("@" + item);
                     continue;
                 }
-//                String oldLine = line;
-//                line = Emoji.getLabelFromLine(lastLabel, line);
-//                for (String item : lastLabel.value) {
-//                    if (!_groupOrder.containsKey(item)) {
-//                        _groupOrder.put(item, _groupOrder.size());
-//                    }
-//                    MajorGroup major = _categoryToMajor.get(item);
-//                    if (major == null) {
-//                        _categoryToMajor.put(item, majorGroup);
-//                    } else if (major != majorGroup) {
-//                        throw new IllegalArgumentException("Conflicting major categories");
-//                    }
-//                    // hack for now
-//                    if (oldLine.contains("\t")) {
-//                        reformatted.println("@" + item);
-//                    }
-//                }
-                if (line.indexOf(Emoji.TAG_TERM) >= 0) {
+                //                String oldLine = line;
+                //                line = Emoji.getLabelFromLine(lastLabel, line);
+                //                for (String item : lastLabel.value) {
+                //                    if (!_groupOrder.containsKey(item)) {
+                //                        _groupOrder.put(item, _groupOrder.size());
+                //                    }
+                //                    MajorGroup major = _categoryToMajor.get(item);
+                //                    if (major == null) {
+                //                        _categoryToMajor.put(item, majorGroup);
+                //                    } else if (major != majorGroup) {
+                //                        throw new IllegalArgumentException("Conflicting major categories");
+                //                    }
+                //                    // hack for now
+                //                    if (oldLine.contains("\t")) {
+                //                        reformatted.println("@" + item);
+                //                    }
+                //                }
+                if (line.indexOf("🤝") >= 0) {
                     int debug = 0;
                 }
                 boolean isFirst = true;
@@ -317,12 +316,14 @@ public class EmojiOrder {
     }
 
     private void addAllModifiers(Relation<String, String> result, Set<String> sorted, Output<Set<String>> lastLabel, MajorGroup majorGroup, String... strings) {
-        for (String mod : EmojiData.MODIFIERS) {
-            for (String string : strings) {
-                final String addedModifier = emojiData.addModifier(string, mod);
-                if (addedModifier != null) {
-                    add(result, sorted, majorGroup, lastLabel, addedModifier); 
-                }
+        for (String string : strings) {
+            Set<String> results = emojiData.addModifiers(string);
+            if (results.isEmpty()) {
+                continue;
+            }
+            // System.out.println(string + "=>" + results);
+            for (String item : results) {
+                add(result, sorted, majorGroup, lastLabel, item);
             }
         }
     }
@@ -584,8 +585,8 @@ public class EmojiOrder {
     public static final UnicodeSet GENDER_NEUTRALS = new UnicodeSet();
     static {
         for (String s : EmojiData.EMOJI_DATA.getEmojiForSortRules()) {
-            ZwjType type = ZwjType.getType(s);
-            if (type != ZwjType.roleWithObject) {
+            CountEmoji.ZwjType type = CountEmoji.ZwjType.getType(s);
+            if (type != CountEmoji.ZwjType.roleWithObject) {
                 continue;
             }
             GENDER_OBJECTS.add(s.codePointBefore(s.length()));

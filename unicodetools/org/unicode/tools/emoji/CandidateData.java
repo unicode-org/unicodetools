@@ -20,8 +20,8 @@ import org.unicode.props.UnicodeRelation.SetMaker;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.CountEmoji.Bucket;
 import org.unicode.tools.emoji.CountEmoji.Category;
+import org.unicode.tools.emoji.CountEmoji.ZwjType;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
-import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Objects;
@@ -749,7 +749,11 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
             if (temp != null) {
                 break main;
             }
-            switch(ZwjType.getType(source)) {
+            if (source.contains(EmojiData.ZWJ_HANDSHAKE_ZWJ)) {
+                temp = EmojiData.EMOJI_DATA.getFallbackName(source);
+                break main;
+            }
+            switch(CountEmoji.ZwjType.getType(source)) {
             default:
                 break;
             case activity:

@@ -23,8 +23,8 @@ import org.unicode.cldr.util.StandardCodes.LstrType;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.CountEmoji.Category;
+import org.unicode.tools.emoji.CountEmoji.ZwjType;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
-import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -71,9 +71,9 @@ public class CountEmoji {
     }
 
     public static void main(String[] args) {
-        MyOptions.parse(args, true);
+        CountEmoji.MyOptions.parse(args, true);
         boolean done = false;
-        if (MyOptions.countVs.option.doesOccur()) {
+        if (CountEmoji.MyOptions.countVs.option.doesOccur()) {
             countVs();
             done=true;
         }
@@ -81,11 +81,11 @@ public class CountEmoji {
         //            countInvalid();
         //            done=true;
         //        }
-        if (MyOptions.nonincrementalCount.option.doesOccur()) {
+        if (CountEmoji.MyOptions.nonincrementalCount.option.doesOccur()) {
             countNonincremental();
             done=true;
         }
-        if (MyOptions.list.option.doesOccur()) {
+        if (CountEmoji.MyOptions.list.option.doesOccur()) {
             //Category bucket = Category.getBucket("👨‍⚖️");
             UnicodeSet toDisplay = EmojiData.of(Emoji.VERSION_BETA).getAllEmojiWithoutDefectives();
             System.out.println("\nEmoji v11");
@@ -98,7 +98,7 @@ public class CountEmoji {
             listCategories(onlyNew);
             done = true;
         }
-        if (MyOptions.major.option.doesOccur()) {
+        if (CountEmoji.MyOptions.major.option.doesOccur()) {
             UnicodeSet toDisplay = EmojiData.of(Emoji.VERSION_BETA).getAllEmojiWithoutDefectives();
             doMajor(toDisplay);
             done = true;
@@ -479,6 +479,30 @@ public class CountEmoji {
         }
         public Set<Attribute> getAttributes() {
             return attributes;
+        }
+    }
+
+    /**@deprecated Replace by the CountEmoji.Category*/
+    public enum ZwjType {
+        roleWithHair, roleWithObject, roleWithSign, gestures, activity, family, other, na;
+        public static ZwjType getType(String s) {
+            if (!s.contains(Emoji.JOINER_STRING)) {
+                return na;
+            }
+            int[] cps = CharSequences.codePoints(s);
+            ZwjType zwjType = ZwjType.other;
+            if (Emoji.HAIR_PIECES.containsSome(s)) {
+                zwjType = roleWithHair;
+            } else if (Emoji.FAMILY_MARKERS.contains(cps[cps.length - 1])) { // last character is in boy..woman
+                zwjType = family;
+            } else if (Emoji.ACTIVITY_MARKER.containsSome(s)) {
+                zwjType = activity;
+            } else if (Emoji.ROLE_MARKER.containsSome(s)) { //  || Emoji.FAMILY_MARKERS.containsSome(s)
+                zwjType = Emoji.GENDER_MARKERS.containsSome(s) ? roleWithSign : roleWithObject;
+            } else if (Emoji.GENDER_MARKERS.containsSome(s)) {
+                zwjType = gestures;
+            }
+            return zwjType;
         }
     }
 
