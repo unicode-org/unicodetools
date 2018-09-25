@@ -255,6 +255,18 @@ public class EmojiOrder {
                     //System.out.println("Adding: " + Utility.hex(string) + "\t" + string);
                     add(result, sorted, majorGroup, lastLabel, string);
                     addVariants(result, sorted, majorGroup, lastLabel, string); 
+                    
+                    switch (string) {
+                    case "👭": 
+                        addVariants(result, sorted, majorGroup, lastLabel, "👩‍🤝‍👩"); 
+                        break;
+                    case "👫": 
+                        addVariants(result, sorted, majorGroup, lastLabel, "👩‍🤝‍👨"); 
+                        break;
+                    case "👬": 
+                        addVariants(result, sorted, majorGroup, lastLabel, "👨‍🤝‍👨");
+                        break;
+                    }
 
                     //                ImmutableList<String> list = hack.get(string);
                     //                if (list != null) {
