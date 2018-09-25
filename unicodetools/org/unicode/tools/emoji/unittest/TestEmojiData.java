@@ -36,8 +36,10 @@ public class TestEmojiData extends TestFmwkPlus {
     public void TestHandshake() {
         EmojiData beta = EmojiData.of(Emoji.VERSION_BETA);
         beta.getName("👩"); // warm up
-        assertEquals("👩‍🤝‍👩", "couple holding hands", beta.getName("👩‍🤝‍👩"));
-        assertEquals("👩🏿‍🤝‍👩🏻", "couple holding hands: dark skin tone, light skin tone", beta.getName("👩🏿‍🤝‍👩🏻"));
+        assertEquals("👩‍🤝‍👩", "two women holding hands", beta.getName("👩‍🤝‍👩"));
+        assertEquals("👩🏿‍🤝‍👩🏻", "two women holding hands: dark skin tone, light skin tone", beta.getName("👩🏿‍🤝‍👩🏻"));
+        assertEquals("👩🏼‍🤝‍👨🏿", "man and woman holding hands: medium-light skin tone, dark skin tone", beta.getName("👩🏼‍🤝‍👨🏿"));
+        assertEquals("👨🏿‍🤝‍👨🏿", "two men holding hands: dark skin tone", beta.getName("👨🏿‍🤝‍👨🏿"));
     }
 
     public void TestDefectives() {

@@ -224,9 +224,9 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                             if (item.isEmpty()) {
                                 throw new IllegalArgumentException("Empty keyword on " + line);
                             }
-                            if (!item.equals(item.toLowerCase(Locale.ENGLISH))) {
-                                System.err.println("Warning: Cased Keyword on " + line); 
-                            }
+//                            if (!item.equals(item.toLowerCase(Locale.ENGLISH))) {
+//                                System.err.println("Warning: Cased Keyword on " + line); 
+//                            }
                         }
                         annotations.addAll(source, cleanKeywords);
                         break;
