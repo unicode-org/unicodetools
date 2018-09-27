@@ -24,6 +24,7 @@ import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.CollationElementIterator;
 import com.ibm.icu.text.RuleBasedCollator;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class TestEmojiData extends TestFmwkPlus {
@@ -40,6 +41,16 @@ public class TestEmojiData extends TestFmwkPlus {
         assertEquals("👩🏿‍🤝‍👩🏻", "two women holding hands: dark skin tone, light skin tone", beta.getName("👩🏿‍🤝‍👩🏻"));
         assertEquals("👩🏼‍🤝‍👨🏿", "man and woman holding hands: medium-light skin tone, dark skin tone", beta.getName("👩🏼‍🤝‍👨🏿"));
         assertEquals("👨🏿‍🤝‍👨🏿", "two men holding hands: dark skin tone", beta.getName("👨🏿‍🤝‍👨🏿"));
+    }
+    
+    public void TestCompoundNames() {
+        EmojiData beta = EmojiData.of(Emoji.VERSION_BETA);
+        beta.getName("👩"); // warm up
+        assertEquals("🚶🏻‍♂️", "man walking: light skin tone", beta.getName("🚶🏻‍♂️"));
+        assertEquals("🧍", "person standing", beta.getName("🧍"));
+        assertEquals("🧍🏻", "person standing: light skin tone", beta.getName("🧍🏻"));
+        assertEquals("🧍🏻‍♂️", "man standing: light skin tone", beta.getName("🧍🏻‍♂️"));
+        assertEquals("🧍\u200D♂️", "man standing", beta.getName("🧍\u200D♂️"));
     }
 
     public void TestDefectives() {

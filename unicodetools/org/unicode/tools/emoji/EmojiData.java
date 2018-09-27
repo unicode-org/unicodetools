@@ -1756,7 +1756,7 @@ public class EmojiData implements EmojiDataSource {
     }
 
     public static String removeEmojiVariants(String s) {
-        return s.replace(Emoji.EMOJI_VARIANT_STRING, "");
+        return s.replace(Emoji.EMOJI_VARIANT_STRING, "").replace(Emoji.TEXT_VARIANT_STRING, "");
     }
 
     public UnicodeSet getExtendedPictographic() {

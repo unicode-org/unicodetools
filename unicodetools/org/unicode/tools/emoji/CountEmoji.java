@@ -308,7 +308,7 @@ public class CountEmoji {
                 }
                 boolean sEmojiPresentation = EMOJI_DATA_BETA.getEmojiPresentationSet().contains(s.codePointAt(0));
                 int sYear = EmojiData.getYear(s);
-                
+
                 if (!isEmojiPresentation 
                         || isEmojiPresentation == sEmojiPresentation && year > sYear) {
                     best = s;
@@ -358,6 +358,7 @@ public class CountEmoji {
         zwj_seq_role_mod("zwj: "+WO_MAN +"obj" + " & skin", Attribute.zwj, Attribute.role, Attribute.skin), 
         zwj_seq_hair("zwj: hair", Attribute.zwj, Attribute.hair),
         zwj_seq_mod_hair("zwj: skin & hair", Attribute.zwj, Attribute.skin, Attribute.hair),
+        zwj_seq_fam_mod("zwj: "+Emoji.NEUTRAL_FAMILY + " & skin", Attribute.zwj, Attribute.family, Attribute.skin), 
         typical_dup(null, Attribute.dup), 
         typical_dup_skin("typical dup & skin", Attribute.skin, Attribute.dup), 
         component, 
@@ -393,84 +394,99 @@ public class CountEmoji {
             return displayName;
         }
         static public Category getBucket(String s) {
-            String noVariants = EmojiData.removeEmojiVariants(s);
-            Category bucket = null;
-            if (noVariants.isEmpty() || CountEmoji.EMOJI_DATA_BETA.getEmojiComponents().contains(noVariants)) {
-                bucket = component;
-            } else if (CharSequences.getSingleCodePoint(noVariants) < Integer.MAX_VALUE) {
-                bucket = character;
-            } else if (noVariants.contains(Emoji.KEYCAP_MARK_STRING)) {
-                bucket = keycap_seq;
-            } else if (noVariants.contains(Emoji.TAG_TERM)) {
-                bucket = tag_seq;
-            } else if (Emoji.REGIONAL_INDICATORS.containsSome(noVariants)) {
-                bucket = flag_seq;
-            } else {
-                EnumSet<Attribute> attributes = EnumSet.noneOf(Attribute.class);
+            try {
+                String noVariants = EmojiData.removeEmojiVariants(s);
+                Category bucket = null;
+                if (noVariants.startsWith(Emoji.MALE) || noVariants.startsWith(Emoji.FEMALE)) {
+                    int debug = 0;
+                }
+                if (noVariants.isEmpty() 
+                        || CountEmoji.EMOJI_DATA_BETA.getEmojiComponents().contains(noVariants)
+                        || Emoji.GENDER_MARKERS.contains(noVariants)) {
+                    bucket = component;
+                } else if (CharSequences.getSingleCodePoint(noVariants) < Integer.MAX_VALUE) {
+                    bucket = character;
+                } else if (noVariants.contains(Emoji.KEYCAP_MARK_STRING)) {
+                    bucket = keycap_seq;
+                } else if (noVariants.contains(Emoji.TAG_TERM)) {
+                    bucket = tag_seq;
+                } else if (Emoji.REGIONAL_INDICATORS.containsSome(noVariants)) {
+                    bucket = flag_seq;
+                } else {
+                    EnumSet<Attribute> attributes = EnumSet.noneOf(Attribute.class);
 
-                boolean mods = EmojiData.MODIFIERS.containsSome(noVariants);
-                if (mods) {
-                    attributes.add(Attribute.skin);
-                }
-                boolean hair = Emoji.HAIR_PIECES.containsSome(noVariants);
-                if (hair) {
-                    attributes.add(Attribute.hair);
-                }
-                boolean gender = Emoji.GENDER_MARKERS.containsSome(noVariants);
-                if (gender) {
-                    attributes.add(Attribute.gender);
-                }
-                boolean zwj = noVariants.contains(Emoji.JOINER_STR);
-                if (zwj) {
-                    attributes.add(Attribute.zwj);
-                }
+                    boolean mods = EmojiData.MODIFIERS.containsSome(noVariants);
+                    if (mods) {
+                        attributes.add(Attribute.skin);
+                    }
+                    boolean hair = Emoji.HAIR_PIECES.containsSome(noVariants);
+                    if (hair) {
+                        attributes.add(Attribute.hair);
+                    }
+                    boolean gender = Emoji.GENDER_MARKERS.containsSome(noVariants);
+                    if (gender) {
+                        attributes.add(Attribute.gender);
+                    }
+                    boolean zwj = noVariants.contains(Emoji.JOINER_STR);
+                    if (zwj) {
+                        attributes.add(Attribute.zwj);
+                    }
 
-                int first = noVariants.codePointAt(0);
-                String butFirst = noVariants.substring(Character.charCount(first));
-                boolean role = Emoji.MAN_OR_WOMAN.contains(first) 
-                        && Emoji.PROFESSION_OBJECT.containsSome(noVariants);
-                if (role) {
-                    attributes.add(Attribute.role);
+                    int first = noVariants.codePointAt(0);
+                    String butFirst = noVariants.substring(Character.charCount(first));
+                    boolean role = Emoji.MAN_OR_WOMAN.contains(first) 
+                            && Emoji.PROFESSION_OBJECT.containsSome(noVariants);
+                    if (role) {
+                        attributes.add(Attribute.role);
+                    }
+                    boolean family = Emoji.FAMILY_MARKERS.contains(first) && Emoji.FAMILY_MARKERS.containsSome(butFirst);
+                    if (family) {
+                        attributes.add(Attribute.family);
+                    }
+                    bucket = getCategory(attributes);
+                    //                
+                    //
+                    //                if (!zwj) {
+                    //                    if (mods) {
+                    //                        bucket = mod_seq;
+                    //                    } else {
+                    //                        throw new IllegalArgumentException("should never happen");
+                    //                    }
+                    //                } else { // zwj
+                    //                    if (gender) {
+                    //                        bucket = getVariety(mods, hair, zwj_seq_gender, zwj_seq_gender_mod, null, null);
+                    //                    } else if (role) {
+                    //                        bucket = getVariety(mods, hair, zwj_seq_role, zwj_seq_role_mod, null, null);
+                    //                    } else if (family) {
+                    //                        bucket = getVariety(mods, hair, zwj_seq_fam, null, null, null);
+                    //                    } else {
+                    //                        bucket = getVariety(mods, hair, zwj_seq_other, zwj_seq_mod, zwj_seq_hair, zwj_seq_mod_hair);
+                    //                    }
+                    //                }
                 }
-                boolean family = Emoji.FAMILY_MARKERS.contains(first) && Emoji.FAMILY_MARKERS.containsSome(butFirst);
-                if (family) {
-                    attributes.add(Attribute.family);
+                if (!s.isEmpty() && EmojiData.EMOJI_DATA.isTypicallyDuplicateSign(s)) {
+                    EnumSet<Attribute> attributes2 = EnumSet.of(Attribute.dup);
+                    attributes2.addAll(bucket.attributes);
+                    bucket = getCategory(attributes2);
                 }
-                bucket = getCategory(attributes);
-                //                
-                //
-                //                if (!zwj) {
-                //                    if (mods) {
-                //                        bucket = mod_seq;
-                //                    } else {
-                //                        throw new IllegalArgumentException("should never happen");
-                //                    }
-                //                } else { // zwj
-                //                    if (gender) {
-                //                        bucket = getVariety(mods, hair, zwj_seq_gender, zwj_seq_gender_mod, null, null);
-                //                    } else if (role) {
-                //                        bucket = getVariety(mods, hair, zwj_seq_role, zwj_seq_role_mod, null, null);
-                //                    } else if (family) {
-                //                        bucket = getVariety(mods, hair, zwj_seq_fam, null, null, null);
-                //                    } else {
-                //                        bucket = getVariety(mods, hair, zwj_seq_other, zwj_seq_mod, zwj_seq_hair, zwj_seq_mod_hair);
-                //                    }
-                //                }
+                return bucket;
+            } catch (NoCategoryException e) {
+                throw new IllegalArgumentException("for «" + s + "» "+ Utility.hex(s), e);
             }
-            if (!s.isEmpty() && EmojiData.EMOJI_DATA.isTypicallyDuplicateSign(s)) {
-                EnumSet<Attribute> attributes2 = EnumSet.of(Attribute.dup);
-                attributes2.addAll(bucket.attributes);
-                bucket = getCategory(attributes2);
-            }
-            return bucket;
         }
 
         private static Category getCategory(Set<Attribute> attributes) {
             Category result = attributesToCategory.get(attributes);
             if (result == null) {
-                throw new IllegalArgumentException("no category available, add??");
+                throw new NoCategoryException("no category available for: " + attributes);
             }
             return result;
+        }
+
+        public static class NoCategoryException extends RuntimeException {
+            public NoCategoryException(String string) {
+                super(string);
+            }
         }
 
 
@@ -482,7 +498,7 @@ public class CountEmoji {
         }
     }
 
-    /**@deprecated Replace by the CountEmoji.Category*/
+    /**@deprecated Replace by the {@link CountEmoji.Category}*/
     public enum ZwjType {
         roleWithHair, roleWithObject, roleWithSign, gestures, activity, family, other, na;
         public static ZwjType getType(String s) {
