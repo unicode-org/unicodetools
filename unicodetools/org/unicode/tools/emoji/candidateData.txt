@@ -600,7 +600,8 @@ Keywords=lamp | oil | diya
 Proposal=L2/18-091
 After=🚶
 U+1F9CD
-Name=standing person
+Name=person standing
+UName=standing person
 Keywords=stand
 Emoji_Modifier_Base
 Emoji_Gender_Base
@@ -608,7 +609,8 @@ Emoji_Gender_Base
 Proposal=L2/18-091
 After=🚶
 U+1F9CE
-Name=kneeling person
+Name=person kneeling
+UName=kneeling person
 Keywords=kneel
 Emoji_Modifier_Base
 Emoji_Gender_Base

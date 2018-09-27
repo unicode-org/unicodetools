@@ -31,6 +31,9 @@ import com.google.common.collect.ImmutableList.Builder;
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.CharSequences;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
@@ -224,9 +227,9 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                             if (item.isEmpty()) {
                                 throw new IllegalArgumentException("Empty keyword on " + line);
                             }
-//                            if (!item.equals(item.toLowerCase(Locale.ENGLISH))) {
-//                                System.err.println("Warning: Cased Keyword on " + line); 
-//                            }
+                            //                            if (!item.equals(item.toLowerCase(Locale.ENGLISH))) {
+                            //                                System.err.println("Warning: Cased Keyword on " + line); 
+                            //                            }
                         }
                         annotations.addAll(source, cleanKeywords);
                         break;
@@ -278,9 +281,32 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
         }
         UnicodeMap<Age_Values> ages = Emoji.LATEST.loadEnum(UcdProperty.Age, Age_Values.class);
+        Age_Values minAge = Age_Values.forName(Emoji.VERSION_LAST_RELEASED_UNICODE.getVersionString(2, 2));
+        EmojiData releasedData = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
         for (String s : allCharacters) {
+            // if not single code point, we don't care
+            int first = CharSequences.getSingleCodePoint(s);
+            if (first == Integer.MAX_VALUE) {
+                continue; 
+            }
+            // if a character is in the released emoji data, we use its value
+            if (releasedData.getAllEmojiWithDefectives().contains(s)) {
+                if (!releasedData.getEmojiPresentationSet().contains(s)) {
+                    textPresentation.add(s); 
+                }
+                continue;
+            }
+            // if a character is future (private use) we don't care
+            if (UCharacter.getType(first) == UCharacter.PRIVATE_USE) {
+                continue;
+            }
+            // if unassigned, we don't care
             Age_Values age = ages.get(s);
-            if (age != Age_Values.Unassigned) {
+            if (age == Age_Values.Unassigned) {
+                continue;
+            }
+            // otherwise if old, set to textPresentation
+            if (age.compareTo(minAge) <= 0) {
                 textPresentation.add(s);
             }
         }
@@ -297,11 +323,11 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     }
 
     private void addComment(String source, String rightSide) {
-            String oldComment = comments.get(source);
-            if (oldComment != null) {
-                rightSide = oldComment + "\n" + rightSide;
-            }
-            comments.put(source, rightSide);
+        String oldComment = comments.get(source);
+        if (oldComment != null) {
+            rightSide = oldComment + "\n" + rightSide;
+        }
+        comments.put(source, rightSide);
     }
 
     private static boolean checkData(CandidateData instance) {
@@ -493,7 +519,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     public String getName(String source) {
         return names.get(source);
     }
-    
+
     public String getName(int source) {
         return names.get(source);
     }
@@ -594,15 +620,15 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         CandidateData instance = CandidateData.getInstance();
         if (false) return;
 
-//        for (Status status : Status.values()) {
-//            UnicodeSet items = instance.statuses.getSet(status);
-//            System.out.println(status + "\t" + items.size());
-//        }
-//        generateProposalData(instance);
-//        showOrdering(instance);
+        //        for (Status status : Status.values()) {
+        //            UnicodeSet items = instance.statuses.getSet(status);
+        //            System.out.println(status + "\t" + items.size());
+        //        }
+        //        generateProposalData(instance);
+        //        showOrdering(instance);
 
-         showCandidateData(CandidateData.getInstance(), true);
-         //showCandidateData(CandidateData.getProposalInstance(), true);
+        showCandidateData(CandidateData.getInstance(), true);
+        //showCandidateData(CandidateData.getProposalInstance(), true);
     }
 
     private static void generateProposalData(CandidateData instance) {
@@ -753,38 +779,42 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                 temp = EmojiData.EMOJI_DATA.getFallbackName(source);
                 break main;
             }
-            switch(CountEmoji.ZwjType.getType(source)) {
-            default:
+            switch(CountEmoji.Category.getBucket(source)) {
+            case component:
+                temp = UCharacter.getName(EmojiData.removeEmojiVariants(source), "+");
                 break;
-            case activity:
-            case roleWithSign:
-            case gestures:
+            case character:
+            case flag_seq:
+            case keycap_seq:
+            case tag_seq:
+                break;
+            default:
                 String replacement = null;
                 int trailPos = source.lastIndexOf(Emoji.JOINER_STR);
-                if (trailPos < 0) {
-                    break main;
-                }
-                String ending = source.substring(trailPos);
-                switch (ending.replace(Emoji.EMOJI_VARIANT_STRING, "")) {
-                case Emoji.JOINER_STR + Emoji.MALE:
-                    replacement = "MAN";
-                break;
-                case Emoji.JOINER_STR + Emoji.FEMALE:
-                    replacement = "WOMAN";
+                if (trailPos > 0) {
+                    String ending = source.substring(trailPos);
+                    switch (ending.replace(Emoji.EMOJI_VARIANT_STRING, "")) {
+                    case Emoji.JOINER_STR + Emoji.MALE:
+                        replacement = "MAN";
+                    break;
+                    case Emoji.JOINER_STR + Emoji.FEMALE:
+                        replacement = "WOMAN";
 
-                }
-                if (replacement != null) {
-                    temp = getName(source.substring(0, source.length() - ending.length()));
-                }
-                if (temp != null) {
-                    if (temp.contains("PERSON")) {
-                        temp = temp.replaceAll("PERSON", replacement);
-                    } else if (temp.contains("person")) {
-                        temp = temp.replaceAll("person", replacement);
-                    } else {
-                        temp = replacement + " " + temp;
+                    }
+                    if (replacement != null) {
+                        temp = getName(source.substring(0, source.length() - ending.length()));
+                    }
+                    if (temp != null) {
+                        if (temp.contains("PERSON")) {
+                            temp = temp.replaceAll("PERSON", replacement);
+                        } else if (temp.contains("person")) {
+                            temp = temp.replaceAll("person", replacement);
+                        } else {
+                            temp = replacement + " " + temp;
+                        }
                     }
                 }
+                break;
             }
         }
         return temp == null ? temp : temp.toLowerCase(Locale.ROOT);
