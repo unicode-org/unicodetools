@@ -1,11 +1,11 @@
 # emoji-data.txt
-# Date: 2018-02-07, 07:55:18 GMT
+# Date: 2018-09-27, 03:06:00 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Emoji Data for UTS #51
-# Version: 11.0
+# Version: 12.0
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr51
 #
@@ -214,6 +214,7 @@
 1F6CB..1F6CF  ; Emoji                #  7.0  [5] (🛋️..🛏️)    couch and lamp..bed
 1F6D0         ; Emoji                #  8.0  [1] (🛐)       place of worship
 1F6D1..1F6D2  ; Emoji                #  9.0  [2] (🛑..🛒)    stop sign..shopping cart
+1F6D5         ; Emoji                # 12.0  [1] (🛕️)       hindu temple
 1F6E0..1F6E5  ; Emoji                #  7.0  [6] (🛠️..🛥️)    hammer and wrench..motor boat
 1F6E9         ; Emoji                #  7.0  [1] (🛩️)       small airplane
 1F6EB..1F6EC  ; Emoji                #  7.0  [2] (🛫..🛬)    airplane departure..airplane arrival
@@ -222,6 +223,9 @@
 1F6F4..1F6F6  ; Emoji                #  9.0  [3] (🛴..🛶)    kick scooter..canoe
 1F6F7..1F6F8  ; Emoji                # 10.0  [2] (🛷..🛸)    sled..flying saucer
 1F6F9         ; Emoji                # 11.0  [1] (🛹)       skateboard
+1F6FA         ; Emoji                # 12.0  [1] (🛺️)       auto rickshaw
+1F7E0..1F7EB  ; Emoji                # 12.0 [12] (🟠️..🟫️)    orange circle..brown square
+1F90D..1F90F  ; Emoji                # 12.0  [3] (🤍️..🤏️)    white heart..pinching hand
 1F910..1F918  ; Emoji                #  8.0  [9] (🤐..🤘)    zipper-mouth face..sign of the horns
 1F919..1F91E  ; Emoji                #  9.0  [6] (🤙..🤞)    call me hand..crossed fingers
 1F91F         ; Emoji                # 10.0  [1] (🤟)       love-you gesture
@@ -231,6 +235,7 @@
 1F931..1F932  ; Emoji                # 10.0  [2] (🤱..🤲)    breast-feeding..palms up together
 1F933..1F93A  ; Emoji                #  9.0  [8] (🤳..🤺)    selfie..person fencing
 1F93C..1F93E  ; Emoji                #  9.0  [3] (🤼..🤾)    people wrestling..person playing handball
+1F93F         ; Emoji                # 12.0  [1] (🤿️)       diving mask
 1F940..1F945  ; Emoji                #  9.0  [6] (🥀..🥅)    wilted flower..goal net
 1F947..1F94B  ; Emoji                #  9.0  [5] (🥇..🥋)    1st place medal..martial arts uniform
 1F94C         ; Emoji                # 10.0  [1] (🥌)       curling stone
@@ -238,20 +243,31 @@
 1F950..1F95E  ; Emoji                #  9.0 [15] (🥐..🥞)    croissant..pancakes
 1F95F..1F96B  ; Emoji                # 10.0 [13] (🥟..🥫)    dumpling..canned food
 1F96C..1F970  ; Emoji                # 11.0  [5] (🥬..🥰)    leafy green..smiling face with 3 hearts
+1F971         ; Emoji                # 12.0  [1] (🥱️)       yawning face
 1F973..1F976  ; Emoji                # 11.0  [4] (🥳..🥶)    partying face..cold face
 1F97A         ; Emoji                # 11.0  [1] (🥺)       pleading face
-1F97C..1F97F  ; Emoji                # 11.0  [4] (🥼..🥿)    lab coat..woman’s flat shoe
+1F97B         ; Emoji                # 12.0  [1] (🥻️)       sari
+1F97C..1F97F  ; Emoji                # 11.0  [4] (🥼..🥿)    lab coat..flat shoe
 1F980..1F984  ; Emoji                #  8.0  [5] (🦀..🦄)    crab..unicorn face
 1F985..1F991  ; Emoji                #  9.0 [13] (🦅..🦑)    eagle..squid
 1F992..1F997  ; Emoji                # 10.0  [6] (🦒..🦗)    giraffe..cricket
 1F998..1F9A2  ; Emoji                # 11.0 [11] (🦘..🦢)    kangaroo..swan
+1F9A5..1F9AA  ; Emoji                # 12.0  [6] (🦥️..🦪️)    sloth..oyster
+1F9AE..1F9AF  ; Emoji                # 12.0  [2] (🦮️..🦯️)    guide dog..probing cane
 1F9B0..1F9B9  ; Emoji                # 11.0 [10] (🦰..🦹)    red-haired..supervillain
+1F9BA..1F9BF  ; Emoji                # 12.0  [6] (🦺️..🦿️)    safety vest..mechanical leg
 1F9C0         ; Emoji                #  8.0  [1] (🧀)       cheese wedge
 1F9C1..1F9C2  ; Emoji                # 11.0  [2] (🧁..🧂)    cupcake..salt
+1F9C3..1F9CA  ; Emoji                # 12.0  [8] (🧃️..🧊️)    beverage box..ice cube
+1F9CD..1F9CF  ; Emoji                # 12.0  [3] (🧍️..🧏️)    person standing..deaf person
 1F9D0..1F9E6  ; Emoji                # 10.0 [23] (🧐..🧦)    face with monocle..socks
 1F9E7..1F9FF  ; Emoji                # 11.0 [25] (🧧..🧿)    red envelope..nazar amulet
+1FA70..1FA73  ; Emoji                # 12.0  [4] (🩰️..🩳️)    ballet shoes..shorts
+1FA78..1FA7A  ; Emoji                # 12.0  [3] (🩸️..🩺️)    drop of blood..stethoscope
+1FA80..1FA82  ; Emoji                # 12.0  [3] (🪀️..🪂️)    yo-yo..parachute
+1FA90..1FA95  ; Emoji                # 12.0  [6] (🪐️..🪕️)    ringed planet..banjo
 
-# Total elements: 1250
+# Total elements: 1311
 
 # ================================================
 
@@ -357,10 +373,14 @@
 1F6CC         ; Emoji_Presentation   #  7.0  [1] (🛌)       person in bed
 1F6D0         ; Emoji_Presentation   #  8.0  [1] (🛐)       place of worship
 1F6D1..1F6D2  ; Emoji_Presentation   #  9.0  [2] (🛑..🛒)    stop sign..shopping cart
+1F6D5         ; Emoji_Presentation   # 12.0  [1] (🛕️)       hindu temple
 1F6EB..1F6EC  ; Emoji_Presentation   #  7.0  [2] (🛫..🛬)    airplane departure..airplane arrival
 1F6F4..1F6F6  ; Emoji_Presentation   #  9.0  [3] (🛴..🛶)    kick scooter..canoe
 1F6F7..1F6F8  ; Emoji_Presentation   # 10.0  [2] (🛷..🛸)    sled..flying saucer
 1F6F9         ; Emoji_Presentation   # 11.0  [1] (🛹)       skateboard
+1F6FA         ; Emoji_Presentation   # 12.0  [1] (🛺️)       auto rickshaw
+1F7E0..1F7EB  ; Emoji_Presentation   # 12.0 [12] (🟠️..🟫️)    orange circle..brown square
+1F90D..1F90F  ; Emoji_Presentation   # 12.0  [3] (🤍️..🤏️)    white heart..pinching hand
 1F910..1F918  ; Emoji_Presentation   #  8.0  [9] (🤐..🤘)    zipper-mouth face..sign of the horns
 1F919..1F91E  ; Emoji_Presentation   #  9.0  [6] (🤙..🤞)    call me hand..crossed fingers
 1F91F         ; Emoji_Presentation   # 10.0  [1] (🤟)       love-you gesture
@@ -370,6 +390,7 @@
 1F931..1F932  ; Emoji_Presentation   # 10.0  [2] (🤱..🤲)    breast-feeding..palms up together
 1F933..1F93A  ; Emoji_Presentation   #  9.0  [8] (🤳..🤺)    selfie..person fencing
 1F93C..1F93E  ; Emoji_Presentation   #  9.0  [3] (🤼..🤾)    people wrestling..person playing handball
+1F93F         ; Emoji_Presentation   # 12.0  [1] (🤿️)       diving mask
 1F940..1F945  ; Emoji_Presentation   #  9.0  [6] (🥀..🥅)    wilted flower..goal net
 1F947..1F94B  ; Emoji_Presentation   #  9.0  [5] (🥇..🥋)    1st place medal..martial arts uniform
 1F94C         ; Emoji_Presentation   # 10.0  [1] (🥌)       curling stone
@@ -377,20 +398,31 @@
 1F950..1F95E  ; Emoji_Presentation   #  9.0 [15] (🥐..🥞)    croissant..pancakes
 1F95F..1F96B  ; Emoji_Presentation   # 10.0 [13] (🥟..🥫)    dumpling..canned food
 1F96C..1F970  ; Emoji_Presentation   # 11.0  [5] (🥬..🥰)    leafy green..smiling face with 3 hearts
+1F971         ; Emoji_Presentation   # 12.0  [1] (🥱️)       yawning face
 1F973..1F976  ; Emoji_Presentation   # 11.0  [4] (🥳..🥶)    partying face..cold face
 1F97A         ; Emoji_Presentation   # 11.0  [1] (🥺)       pleading face
-1F97C..1F97F  ; Emoji_Presentation   # 11.0  [4] (🥼..🥿)    lab coat..woman’s flat shoe
+1F97B         ; Emoji_Presentation   # 12.0  [1] (🥻️)       sari
+1F97C..1F97F  ; Emoji_Presentation   # 11.0  [4] (🥼..🥿)    lab coat..flat shoe
 1F980..1F984  ; Emoji_Presentation   #  8.0  [5] (🦀..🦄)    crab..unicorn face
 1F985..1F991  ; Emoji_Presentation   #  9.0 [13] (🦅..🦑)    eagle..squid
 1F992..1F997  ; Emoji_Presentation   # 10.0  [6] (🦒..🦗)    giraffe..cricket
 1F998..1F9A2  ; Emoji_Presentation   # 11.0 [11] (🦘..🦢)    kangaroo..swan
+1F9A5..1F9AA  ; Emoji_Presentation   # 12.0  [6] (🦥️..🦪️)    sloth..oyster
+1F9AE..1F9AF  ; Emoji_Presentation   # 12.0  [2] (🦮️..🦯️)    guide dog..probing cane
 1F9B0..1F9B9  ; Emoji_Presentation   # 11.0 [10] (🦰..🦹)    red-haired..supervillain
+1F9BA..1F9BF  ; Emoji_Presentation   # 12.0  [6] (🦺️..🦿️)    safety vest..mechanical leg
 1F9C0         ; Emoji_Presentation   #  8.0  [1] (🧀)       cheese wedge
 1F9C1..1F9C2  ; Emoji_Presentation   # 11.0  [2] (🧁..🧂)    cupcake..salt
+1F9C3..1F9CA  ; Emoji_Presentation   # 12.0  [8] (🧃️..🧊️)    beverage box..ice cube
+1F9CD..1F9CF  ; Emoji_Presentation   # 12.0  [3] (🧍️..🧏️)    person standing..deaf person
 1F9D0..1F9E6  ; Emoji_Presentation   # 10.0 [23] (🧐..🧦)    face with monocle..socks
 1F9E7..1F9FF  ; Emoji_Presentation   # 11.0 [25] (🧧..🧿)    red envelope..nazar amulet
+1FA70..1FA73  ; Emoji_Presentation   # 12.0  [4] (🩰️..🩳️)    ballet shoes..shorts
+1FA78..1FA7A  ; Emoji_Presentation   # 12.0  [3] (🩸️..🩺️)    drop of blood..stethoscope
+1FA80..1FA82  ; Emoji_Presentation   # 12.0  [3] (🪀️..🪂️)    yo-yo..parachute
+1FA90..1FA95  ; Emoji_Presentation   # 12.0  [6] (🪐️..🪕️)    ringed planet..banjo
 
-# Total elements: 1032
+# Total elements: 1093
 
 # ================================================
 
@@ -417,12 +449,13 @@
 1F3CB..1F3CC  ; Emoji_Modifier_Base  #  7.0  [2] (🏋️..🏌️)    person lifting weights..person golfing
 1F442..1F443  ; Emoji_Modifier_Base  #  6.0  [2] (👂..👃)    ear..nose
 1F446..1F450  ; Emoji_Modifier_Base  #  6.0 [11] (👆..👐)    backhand index pointing up..open hands
-1F466..1F469  ; Emoji_Modifier_Base  #  6.0  [4] (👦..👩)    boy..woman
-1F46E         ; Emoji_Modifier_Base  #  6.0  [1] (👮)       police officer
-1F470..1F478  ; Emoji_Modifier_Base  #  6.0  [9] (👰..👸)    bride with veil..princess
+1F466..1F46C  ; Emoji_Modifier_Base  #  6.0  [7] (👦..👬)    boy..two men holding hands
+1F46E..1F478  ; Emoji_Modifier_Base  #  6.0 [11] (👮..👸)    police officer..princess
 1F47C         ; Emoji_Modifier_Base  #  6.0  [1] (👼)       baby angel
 1F481..1F483  ; Emoji_Modifier_Base  #  6.0  [3] (💁..💃)    person tipping hand..woman dancing
 1F485..1F487  ; Emoji_Modifier_Base  #  6.0  [3] (💅..💇)    nail polish..person getting haircut
+1F48F         ; Emoji_Modifier_Base  #  6.0  [1] (💏)       kiss
+1F491         ; Emoji_Modifier_Base  #  6.0  [1] (💑)       couple with heart
 1F4AA         ; Emoji_Modifier_Base  #  6.0  [1] (💪)       flexed biceps
 1F574..1F575  ; Emoji_Modifier_Base  #  7.0  [2] (🕴️..🕵️)    man in suit levitating..detective
 1F57A         ; Emoji_Modifier_Base  #  9.0  [1] (🕺)       man dancing
@@ -434,20 +467,22 @@
 1F6B4..1F6B6  ; Emoji_Modifier_Base  #  6.0  [3] (🚴..🚶)    person biking..person walking
 1F6C0         ; Emoji_Modifier_Base  #  6.0  [1] (🛀)       person taking bath
 1F6CC         ; Emoji_Modifier_Base  #  7.0  [1] (🛌)       person in bed
+1F90F         ; Emoji_Modifier_Base  # 12.0  [1] (🤏️)       pinching hand
 1F918         ; Emoji_Modifier_Base  #  8.0  [1] (🤘)       sign of the horns
-1F919..1F91C  ; Emoji_Modifier_Base  #  9.0  [4] (🤙..🤜)    call me hand..right-facing fist
-1F91E         ; Emoji_Modifier_Base  #  9.0  [1] (🤞)       crossed fingers
+1F919..1F91E  ; Emoji_Modifier_Base  #  9.0  [6] (🤙..🤞)    call me hand..crossed fingers
 1F91F         ; Emoji_Modifier_Base  # 10.0  [1] (🤟)       love-you gesture
 1F926         ; Emoji_Modifier_Base  #  9.0  [1] (🤦)       person facepalming
 1F930         ; Emoji_Modifier_Base  #  9.0  [1] (🤰)       pregnant woman
 1F931..1F932  ; Emoji_Modifier_Base  # 10.0  [2] (🤱..🤲)    breast-feeding..palms up together
 1F933..1F939  ; Emoji_Modifier_Base  #  9.0  [7] (🤳..🤹)    selfie..person juggling
-1F93D..1F93E  ; Emoji_Modifier_Base  #  9.0  [2] (🤽..🤾)    person playing water polo..person playing handball
+1F93C..1F93E  ; Emoji_Modifier_Base  #  9.0  [3] (🤼..🤾)    people wrestling..person playing handball
 1F9B5..1F9B6  ; Emoji_Modifier_Base  # 11.0  [2] (🦵..🦶)    leg..foot
 1F9B8..1F9B9  ; Emoji_Modifier_Base  # 11.0  [2] (🦸..🦹)    superhero..supervillain
-1F9D1..1F9DD  ; Emoji_Modifier_Base  # 10.0 [13] (🧑..🧝)    adult..elf
+1F9BB         ; Emoji_Modifier_Base  # 12.0  [1] (🦻️)       ear with hearing aid
+1F9CD..1F9CF  ; Emoji_Modifier_Base  # 12.0  [3] (🧍️..🧏️)    person standing..deaf person
+1F9D1..1F9DD  ; Emoji_Modifier_Base  # 10.0 [13] (🧑..🧝)    person..elf
 
-# Total elements: 106
+# Total elements: 119
 
 # ================================================
 
@@ -567,7 +602,8 @@ E0020..E007F  ; Emoji_Component      #  3.1 [96] (󠀠..󠁿)      tag space..ca
 1F0F6..1F0FF  ; Extended_Pictographic#   NA [10] (🃶️..🃿️)    <reserved-1F0F6>..<reserved-1F0FF>
 1F10D..1F10F  ; Extended_Pictographic#   NA  [3] (🄍️..🄏️)    <reserved-1F10D>..<reserved-1F10F>
 1F12F         ; Extended_Pictographic# 11.0  [1] (🄯️)       COPYLEFT SYMBOL
-1F16C..1F16F  ; Extended_Pictographic#   NA  [4] (🅬️..🅯️)    <reserved-1F16C>..<reserved-1F16F>
+1F16C         ; Extended_Pictographic# 12.0  [1] (🅬️)       RAISED MR SIGN
+1F16D..1F16F  ; Extended_Pictographic#   NA  [3] (🅭️..🅯️)    <reserved-1F16D>..<reserved-1F16F>
 1F170..1F171  ; Extended_Pictographic#  6.0  [2] (🅰️..🅱️)    A button (blood type)..B button (blood type)
 1F17E         ; Extended_Pictographic#  6.0  [1] (🅾️)       O button (blood type)
 1F17F         ; Extended_Pictographic#  5.2  [1] (🅿️)       P button
@@ -653,23 +689,28 @@ E0020..E007F  ; Emoji_Component      #  3.1 [96] (󠀠..󠁿)      tag space..ca
 1F6D0         ; Extended_Pictographic#  8.0  [1] (🛐)       place of worship
 1F6D1..1F6D2  ; Extended_Pictographic#  9.0  [2] (🛑..🛒)    stop sign..shopping cart
 1F6D3..1F6D4  ; Extended_Pictographic# 10.0  [2] (🛓️..🛔️)    STUPA..PAGODA
-1F6D5..1F6DF  ; Extended_Pictographic#   NA [11] (🛕️..🛟️)    <reserved-1F6D5>..<reserved-1F6DF>
+1F6D5         ; Extended_Pictographic# 12.0  [1] (🛕️)       hindu temple
+1F6D6..1F6DF  ; Extended_Pictographic#   NA [10] (🛖️..🛟️)    <reserved-1F6D6>..<reserved-1F6DF>
 1F6E0..1F6EC  ; Extended_Pictographic#  7.0 [13] (🛠️..🛬)    hammer and wrench..airplane arrival
 1F6ED..1F6EF  ; Extended_Pictographic#   NA  [3] (🛭️..🛯️)    <reserved-1F6ED>..<reserved-1F6EF>
 1F6F0..1F6F3  ; Extended_Pictographic#  7.0  [4] (🛰️..🛳️)    satellite..passenger ship
 1F6F4..1F6F6  ; Extended_Pictographic#  9.0  [3] (🛴..🛶)    kick scooter..canoe
 1F6F7..1F6F8  ; Extended_Pictographic# 10.0  [2] (🛷..🛸)    sled..flying saucer
 1F6F9         ; Extended_Pictographic# 11.0  [1] (🛹)       skateboard
-1F6FA..1F6FF  ; Extended_Pictographic#   NA  [6] (🛺️..🛿️)    <reserved-1F6FA>..<reserved-1F6FF>
+1F6FA         ; Extended_Pictographic# 12.0  [1] (🛺️)       auto rickshaw
+1F6FB..1F6FF  ; Extended_Pictographic#   NA  [5] (🛻️..🛿️)    <reserved-1F6FB>..<reserved-1F6FF>
 1F774..1F77F  ; Extended_Pictographic#   NA [12] (🝴️..🝿️)    <reserved-1F774>..<reserved-1F77F>
 1F7D5..1F7D8  ; Extended_Pictographic# 11.0  [4] (🟕️..🟘️)    CIRCLED TRIANGLE..NEGATIVE CIRCLED SQUARE
-1F7D9..1F7FF  ; Extended_Pictographic#   NA [39] (🟙️..🟿️)    <reserved-1F7D9>..<reserved-1F7FF>
+1F7D9..1F7DF  ; Extended_Pictographic#   NA  [7] (🟙️..🟟️)    <reserved-1F7D9>..<reserved-1F7DF>
+1F7E0..1F7EB  ; Extended_Pictographic# 12.0 [12] (🟠️..🟫️)    orange circle..brown square
+1F7EC..1F7FF  ; Extended_Pictographic#   NA [20] (🟬️..🟿️)    <reserved-1F7EC>..<reserved-1F7FF>
 1F80C..1F80F  ; Extended_Pictographic#   NA  [4] (🠌️..🠏️)    <reserved-1F80C>..<reserved-1F80F>
 1F848..1F84F  ; Extended_Pictographic#   NA  [8] (🡈️..🡏️)    <reserved-1F848>..<reserved-1F84F>
 1F85A..1F85F  ; Extended_Pictographic#   NA  [6] (🡚️..🡟️)    <reserved-1F85A>..<reserved-1F85F>
 1F888..1F88F  ; Extended_Pictographic#   NA  [8] (🢈️..🢏️)    <reserved-1F888>..<reserved-1F88F>
 1F8AE..1F8FF  ; Extended_Pictographic#   NA [82] (🢮️..🣿️)    <reserved-1F8AE>..<reserved-1F8FF>
-1F90C..1F90F  ; Extended_Pictographic#   NA  [4] (🤌️..🤏️)    <reserved-1F90C>..<reserved-1F90F>
+1F90C         ; Extended_Pictographic#   NA  [1] (🤌️)       <reserved-1F90C>
+1F90D..1F90F  ; Extended_Pictographic# 12.0  [3] (🤍️..🤏️)    white heart..pinching hand
 1F910..1F918  ; Extended_Pictographic#  8.0  [9] (🤐..🤘)    zipper-mouth face..sign of the horns
 1F919..1F91E  ; Extended_Pictographic#  9.0  [6] (🤙..🤞)    call me hand..crossed fingers
 1F91F         ; Extended_Pictographic# 10.0  [1] (🤟)       love-you gesture
@@ -679,7 +720,7 @@ E0020..E007F  ; Emoji_Component      #  3.1 [96] (󠀠..󠁿)      tag space..ca
 1F931..1F932  ; Extended_Pictographic# 10.0  [2] (🤱..🤲)    breast-feeding..palms up together
 1F933..1F93A  ; Extended_Pictographic#  9.0  [8] (🤳..🤺)    selfie..person fencing
 1F93C..1F93E  ; Extended_Pictographic#  9.0  [3] (🤼..🤾)    people wrestling..person playing handball
-1F93F         ; Extended_Pictographic#   NA  [1] (🤿️)       <reserved-1F93F>
+1F93F         ; Extended_Pictographic# 12.0  [1] (🤿️)       diving mask
 1F940..1F945  ; Extended_Pictographic#  9.0  [6] (🥀..🥅)    wilted flower..goal net
 1F947..1F94B  ; Extended_Pictographic#  9.0  [5] (🥇..🥋)    1st place medal..martial arts uniform
 1F94C         ; Extended_Pictographic# 10.0  [1] (🥌)       curling stone
@@ -687,40 +728,43 @@ E0020..E007F  ; Emoji_Component      #  3.1 [96] (󠀠..󠁿)      tag space..ca
 1F950..1F95E  ; Extended_Pictographic#  9.0 [15] (🥐..🥞)    croissant..pancakes
 1F95F..1F96B  ; Extended_Pictographic# 10.0 [13] (🥟..🥫)    dumpling..canned food
 1F96C..1F970  ; Extended_Pictographic# 11.0  [5] (🥬..🥰)    leafy green..smiling face with 3 hearts
-1F971..1F972  ; Extended_Pictographic#   NA  [2] (🥱️..🥲️)    <reserved-1F971>..<reserved-1F972>
+1F971         ; Extended_Pictographic# 12.0  [1] (🥱️)       yawning face
+1F972         ; Extended_Pictographic#   NA  [1] (🥲️)       <reserved-1F972>
 1F973..1F976  ; Extended_Pictographic# 11.0  [4] (🥳..🥶)    partying face..cold face
 1F977..1F979  ; Extended_Pictographic#   NA  [3] (🥷️..🥹️)    <reserved-1F977>..<reserved-1F979>
 1F97A         ; Extended_Pictographic# 11.0  [1] (🥺)       pleading face
-1F97B         ; Extended_Pictographic#   NA  [1] (🥻️)       <reserved-1F97B>
-1F97C..1F97F  ; Extended_Pictographic# 11.0  [4] (🥼..🥿)    lab coat..woman’s flat shoe
+1F97B         ; Extended_Pictographic# 12.0  [1] (🥻️)       sari
+1F97C..1F97F  ; Extended_Pictographic# 11.0  [4] (🥼..🥿)    lab coat..flat shoe
 1F980..1F984  ; Extended_Pictographic#  8.0  [5] (🦀..🦄)    crab..unicorn face
 1F985..1F991  ; Extended_Pictographic#  9.0 [13] (🦅..🦑)    eagle..squid
 1F992..1F997  ; Extended_Pictographic# 10.0  [6] (🦒..🦗)    giraffe..cricket
 1F998..1F9A2  ; Extended_Pictographic# 11.0 [11] (🦘..🦢)    kangaroo..swan
-1F9A3..1F9AF  ; Extended_Pictographic#   NA [13] (🦣️..🦯️)    <reserved-1F9A3>..<reserved-1F9AF>
+1F9A3..1F9A4  ; Extended_Pictographic#   NA  [2] (🦣️..🦤️)    <reserved-1F9A3>..<reserved-1F9A4>
+1F9A5..1F9AA  ; Extended_Pictographic# 12.0  [6] (🦥️..🦪️)    sloth..oyster
+1F9AB..1F9AD  ; Extended_Pictographic#   NA  [3] (🦫️..🦭️)    <reserved-1F9AB>..<reserved-1F9AD>
+1F9AE..1F9AF  ; Extended_Pictographic# 12.0  [2] (🦮️..🦯️)    guide dog..probing cane
 1F9B0..1F9B9  ; Extended_Pictographic# 11.0 [10] (🦰..🦹)    red-haired..supervillain
-1F9BA..1F9BF  ; Extended_Pictographic#   NA  [6] (🦺️..🦿️)    <reserved-1F9BA>..<reserved-1F9BF>
+1F9BA..1F9BF  ; Extended_Pictographic# 12.0  [6] (🦺️..🦿️)    safety vest..mechanical leg
 1F9C0         ; Extended_Pictographic#  8.0  [1] (🧀)       cheese wedge
 1F9C1..1F9C2  ; Extended_Pictographic# 11.0  [2] (🧁..🧂)    cupcake..salt
-1F9C3..1F9CF  ; Extended_Pictographic#   NA [13] (🧃️..🧏️)    <reserved-1F9C3>..<reserved-1F9CF>
+1F9C3..1F9CA  ; Extended_Pictographic# 12.0  [8] (🧃️..🧊️)    beverage box..ice cube
+1F9CB..1F9CC  ; Extended_Pictographic#   NA  [2] (🧋️..🧌️)    <reserved-1F9CB>..<reserved-1F9CC>
+1F9CD..1F9CF  ; Extended_Pictographic# 12.0  [3] (🧍️..🧏️)    person standing..deaf person
 1F9D0..1F9E6  ; Extended_Pictographic# 10.0 [23] (🧐..🧦)    face with monocle..socks
 1F9E7..1F9FF  ; Extended_Pictographic# 11.0 [25] (🧧..🧿)    red envelope..nazar amulet
-1FA00..1FA5F  ; Extended_Pictographic#   NA [96] (🨀️..🩟️)    <reserved-1FA00>..<reserved-1FA5F>
+1FA00..1FA53  ; Extended_Pictographic# 12.0 [84] (🨀️..🩓️)    NEUTRAL CHESS KING..BLACK CHESS KNIGHT-BISHOP
+1FA54..1FA5F  ; Extended_Pictographic#   NA [12] (🩔️..🩟️)    <reserved-1FA54>..<reserved-1FA5F>
 1FA60..1FA6D  ; Extended_Pictographic# 11.0 [14] (🩠️..🩭️)    XIANGQI RED GENERAL..XIANGQI BLACK SOLDIER
-1FA6E..1FFFD  ; Extended_Pictographic#   NA[1424] (🩮️..🿽️)   <reserved-1FA6E>..<reserved-1FFFD>
+1FA6E..1FA6F  ; Extended_Pictographic#   NA  [2] (🩮️..🩯️)    <reserved-1FA6E>..<reserved-1FA6F>
+1FA70..1FA73  ; Extended_Pictographic# 12.0  [4] (🩰️..🩳️)    ballet shoes..shorts
+1FA74..1FA77  ; Extended_Pictographic#   NA  [4] (🩴️..🩷️)    <reserved-1FA74>..<reserved-1FA77>
+1FA78..1FA7A  ; Extended_Pictographic# 12.0  [3] (🩸️..🩺️)    drop of blood..stethoscope
+1FA7B..1FA7F  ; Extended_Pictographic#   NA  [5] (🩻️..🩿️)    <reserved-1FA7B>..<reserved-1FA7F>
+1FA80..1FA82  ; Extended_Pictographic# 12.0  [3] (🪀️..🪂️)    yo-yo..parachute
+1FA83..1FA8F  ; Extended_Pictographic#   NA [13] (🪃️..🪏️)    <reserved-1FA83>..<reserved-1FA8F>
+1FA90..1FA95  ; Extended_Pictographic# 12.0  [6] (🪐️..🪕️)    ringed planet..banjo
+1FA96..1FFFD  ; Extended_Pictographic#   NA[1384] (🪖️..🿽️)   <reserved-1FA96>..<reserved-1FFFD>
 
 # Total elements: 3793
 
 #EOF
-
-
-1F91D  ; Emoji_Modifier_Base
-1F46F  ; Emoji_Modifier_Base
-1F93C  ; Emoji_Modifier_Base
-1F46B  ; Emoji_Modifier_Base
-1F46C  ; Emoji_Modifier_Base
-1F46B  ; Emoji_Modifier_Base
-1F48F  ; Emoji_Modifier_Base
-1F491  ; Emoji_Modifier_Base
-1F46A  ; Emoji_Modifier_Base
-
