@@ -1,12 +1,12 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 12.0.0
-@@@+	U12M180810.lst
-	Unicode 12.0.0 names list, third delta.
-	Repertoire synched with UnicodeData-12.0.0d4.txt
+@@@+	U12M180922.lst
+	Unicode 12.0.0 names list, fourth delta.
+	Repertoire synched with UnicodeData-12.0.0d5.txt
 	Third delta of annotation fixes.
-	Updated alias for 11100.
-	Corrected location of subhead for 1F9AE.
-	Add STV hearder for FF00 block.
+	Made annotation at 11FE3 a notice (to prevent misinterpretation of number).
+	Corrected spelling in notice at 1E137.
+	Added subhead and annotation for 1E94B.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -34771,7 +34771,7 @@ FFFF	<not a character>
 11FE2	TAMIL SIGN KUZHI
 	* equals 1 square kol, where 1 kol is approximately 11 feet
 11FE3	TAMIL SIGN VELI
-	* equals 2000 kuzhi
+@+	* equals 2000 kuzhi
 @		Agricultural symbols
 11FE4	TAMIL WET CULTIVATION SIGN
 	= nansey
@@ -45712,7 +45712,7 @@ FFFF	<not a character>
 	= som thwd
 	* RPA -d low-rising tone
 @		Determinatives
-@+		These signs are used as determinative to indicate homophones referring to the corresponding categories.
+@+		These signs are used as determinatives to indicate homophones referring to the corresponding categories.
 1E137	NYIAKENG PUACHUE HMONG SIGN FOR PERSON
 	= oov
 1E138	NYIAKENG PUACHUE HMONG SIGN FOR THING
@@ -46163,6 +46163,9 @@ FFFF	<not a character>
 1E949	ADLAM GEMINATE CONSONANT MODIFIER
 1E94A	ADLAM NUKTA
 	* called hoortobbhere when drawn above and lestobbhere when drawn below the base character
+@		Modifier letter
+1E94B	ADLAM NASALIZATION MARK
+	* indicates prenasalization of succeeding consonant letter
 @		Digits
 1E950	ADLAM DIGIT ZERO
 1E951	ADLAM DIGIT ONE
