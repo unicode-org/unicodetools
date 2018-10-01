@@ -77,12 +77,12 @@ public class TestUnicodeInvariants {
         System.out.println("HTML?\t" + doHtml);
 
         testInvariants(file, doRange);
-        TestCodeInvariants.main(null);
-    }
-
-    private static void testCodeInvariants() {
-        // TODO Auto-generated method stub
-        
+        if (TestCodeInvariants.testScriptExtensions() < 0) {
+            System.out.println("Invariant test for Script_Extensions failed!");
+        }
+        if (TestCodeInvariants.testGcbInDecompositions(false) < 0) {
+            System.out.println("Invariant test for GCB in canonical decompositions failed!");
+        }
     }
 
     static Transliterator toHTML;

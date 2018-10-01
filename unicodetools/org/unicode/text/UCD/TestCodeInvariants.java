@@ -8,10 +8,13 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
+import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
@@ -19,15 +22,29 @@ import com.ibm.icu.text.UnicodeSet.EntryRange;
 public class TestCodeInvariants {
 
     private static final boolean VERBOSE = true;
+    private static final int TEST_PASS = 0;
+    private static final int TEST_FAIL = -1;
 
     static final Set<Script_Values> IMPLICIT = Collections.unmodifiableSet(
             EnumSet.of(Script_Values.Unknown, Script_Values.Common, Script_Values.Inherited));
 
     static final Age_Values SCX_FIRST_DEFINED = Age_Values.V6_0;
 
-    static final UnicodeMap<String> NAME = IndexUnicodeProperties.make(Default.ucdVersion()).load(UcdProperty.Name);
+    static final Normalizer2 NORM2_NFD = Normalizer2.getNFDInstance();
+    static final UCD UCD_LATEST = UCD.makeLatestVersion();
+    static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(Default.ucdVersion());    // Settings.latestVersion
+    static final UnicodeMap<String> NAME = IUP.load(UcdProperty.Name);
+    static final UnicodeMap<Grapheme_Cluster_Break_Values> GCB =
+        IUP.loadEnum(UcdProperty.Grapheme_Cluster_Break, UcdPropertyValues.Grapheme_Cluster_Break_Values.class);
 
     public static void main(String[] args) {
+        testScriptExtensions();
+        testGcbInDecompositions(true);
+    }
+
+    public static int testScriptExtensions() {
+        int testResult = TEST_PASS;
+
         main:
             for (Age_Values age : Age_Values.values()) {
                 if (age == Age_Values.Unassigned 
@@ -51,6 +68,7 @@ public class TestCodeInvariants {
                             if (!extensions.contains(value)) {
                                 System.out.println("FAIL: Script Extensions invariant doesn't work for version " + age
                                         + ": " + showInfo(codePoint, value, extensions));
+                                testResult = TEST_FAIL;
                                 break main;
                             } else if (VERBOSE && extensions.size() != 1){
                                 System.out.println("OK: " + showInfo(codePoint, value, extensions));
@@ -84,24 +102,86 @@ public class TestCodeInvariants {
                         System.out.println("FAIL: characters with implicit script value don't "
                                 + "contain those with that script extensions value " + age
                                 + ": " + showInfo(firstCodePoint, value, extensions));
+                        testResult = TEST_FAIL;
                         continue;
                     } else if (!Collections.disjoint(extensions, IMPLICIT)) { // more than one element, so
                         int firstCodePoint = scriptExtension.getSet(extensions).getRangeStart(0);
                         Script_Values value = script.get(firstCodePoint);
                         System.out.println("FAIL: Script Extensions with >1 element contains implicit value " + age
                                 + ": " + showInfo(firstCodePoint, value, extensions));
+                        testResult = TEST_FAIL;
                     }
                 }
 
-
                 System.out.println("Script Extensions invariant works for version " + age + "\n");
             }
+
+        return testResult;
+    }
+
+    public static int testGcbInDecompositions(boolean showAllNfds) {
+        int testResult = TEST_PASS;
+
+        final String gcbPropShortName = UcdProperty.Grapheme_Cluster_Break.getShortName();
+        int count = 0;
+        for (int cp = 0x0000; cp <= 0x10FFFF; ++cp) {
+
+            if ((0xAC00 <= cp && cp <= 0xD7AF) || (0xF900 <= cp && cp <= 0xFAFF) || (0x2F800 <= cp && cp <= 0x2FA1F)) {
+                continue;
+            }
+
+            final int cat = UCD_LATEST.getCategory(cp);
+            if (cat == UCD_Types.Cn || cat == UCD_Types.Co || cat == UCD_Types.Cs) {
+                continue;
+            }
+
+            final String nfdOrNull = NORM2_NFD.getDecomposition(cp);
+            if (nfdOrNull == null || nfdOrNull.length() <= 1) {
+                continue;
+            }
+
+            int ch;
+            boolean flagged = false;
+            for (int i = 0; i < nfdOrNull.length(); i += Character.charCount(ch)) {
+                ch = UTF16.charAt(nfdOrNull, i);
+                if ((i > 0) && (GCB.get(ch) != UcdPropertyValues.Grapheme_Cluster_Break_Values.Extend)) {
+                    flagged = true;
+                    testResult = TEST_FAIL;
+                }
+            }
+
+            if (showAllNfds || flagged) {
+                System.out.print(Utility.hex(cp));
+                System.out.print(" (" + gcbPropShortName + "=" + GCB.get(cp).getShortName() + ")");
+                System.out.print("  ≡  " + Utility.hex(nfdOrNull) + " ( ");
+    
+                for (int i = 0; i < nfdOrNull.length(); i += Character.charCount(ch)) {
+                    ch = UTF16.charAt(nfdOrNull, i);
+                    System.out.print(gcbPropShortName + "=" + GCB.get(ch).getShortName() + " ");
+                }
+    
+                System.out.print(")");
+                System.out.print("  " + UTF16.valueOf(cp));
+                System.out.print("  \"" + NAME.get(cp) + "\"");
+    
+                if (flagged) {
+                    System.out.print("  ←");
+                    ++count;
+                }
+
+                System.out.println();
+            }
+        }
+
+        System.out.println("Count: " + count
+            + " characters have non-singleton canonical decompositions whose any non-first characters are GCB≠EX (marked with \'←\').");
+
+        return testResult;
     }
 
     private static String showInfo(int codePoint, Script_Values value, Set<Script_Values> extensions) {
         return "sc: " + value
                 + "\tscx: " + extensions
                 + "\t" + Utility.hex(codePoint) + " ( " + UTF16.valueOf(codePoint) + " ) " + NAME.get(codePoint);
-
     }
 }
