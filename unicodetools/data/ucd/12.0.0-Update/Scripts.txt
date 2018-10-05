@@ -1,5 +1,5 @@
 # Scripts-12.0.0.txt
-# Date: 2018-08-02, 23:38:06 GMT
+# Date: 2018-09-29, 05:45:13 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1417,7 +1417,8 @@ AB70..ABBF    ; Cherokee # L&  [80] CHEROKEE SMALL LETTER A..CHEROKEE SMALL LETT
 
 1400          ; Canadian_Aboriginal # Pd       CANADIAN SYLLABICS HYPHEN
 1401..166C    ; Canadian_Aboriginal # Lo [620] CANADIAN SYLLABICS E..CANADIAN SYLLABICS CARRIER TTSA
-166D..166E    ; Canadian_Aboriginal # Po   [2] CANADIAN SYLLABICS CHI SIGN..CANADIAN SYLLABICS FULL STOP
+166D          ; Canadian_Aboriginal # So       CANADIAN SYLLABICS CHI SIGN
+166E          ; Canadian_Aboriginal # Po       CANADIAN SYLLABICS FULL STOP
 166F..167F    ; Canadian_Aboriginal # Lo  [17] CANADIAN SYLLABICS QAI..CANADIAN SYLLABICS BLACKFOOT W
 18B0..18F5    ; Canadian_Aboriginal # Lo  [70] CANADIAN SYLLABICS OY..CANADIAN SYLLABICS CARRIER DENTAL S
 
@@ -2600,10 +2601,11 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 
 1E900..1E943  ; Adlam # L&  [68] ADLAM CAPITAL LETTER ALIF..ADLAM SMALL LETTER SHA
 1E944..1E94A  ; Adlam # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
+1E94B         ; Adlam # Lm       ADLAM NASALIZATION MARK
 1E950..1E959  ; Adlam # Nd  [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 1E95E..1E95F  ; Adlam # Po   [2] ADLAM INITIAL EXCLAMATION MARK..ADLAM INITIAL QUESTION MARK
 
-# Total code points: 87
+# Total code points: 88
 
 # ================================================
 

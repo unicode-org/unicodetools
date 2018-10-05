@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-12.0.0.txt
-# Date: 2018-08-02, 23:37:38 GMT
+# Date: 2018-09-29, 05:44:56 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -561,7 +561,8 @@
 13F8..13FD    ; N # L&   [6] CHEROKEE SMALL LETTER YE..CHEROKEE SMALL LETTER MV
 1400          ; N # Pd       CANADIAN SYLLABICS HYPHEN
 1401..166C    ; N # Lo [620] CANADIAN SYLLABICS E..CANADIAN SYLLABICS CARRIER TTSA
-166D..166E    ; N # Po   [2] CANADIAN SYLLABICS CHI SIGN..CANADIAN SYLLABICS FULL STOP
+166D          ; N # So       CANADIAN SYLLABICS CHI SIGN
+166E          ; N # Po       CANADIAN SYLLABICS FULL STOP
 166F..167F    ; N # Lo  [17] CANADIAN SYLLABICS QAI..CANADIAN SYLLABICS BLACKFOOT W
 1680          ; N # Zs       OGHAM SPACE MARK
 1681..169A    ; N # Lo  [26] OGHAM LETTER BEITH..OGHAM LETTER PEITH
@@ -1798,6 +1799,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 1E8D0..1E8D6  ; N # Mn   [7] MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 1E900..1E943  ; N # L&  [68] ADLAM CAPITAL LETTER ALIF..ADLAM SMALL LETTER SHA
 1E944..1E94A  ; N # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
+1E94B         ; N # Lm       ADLAM NASALIZATION MARK
 1E950..1E959  ; N # Nd  [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 1E95E..1E95F  ; N # Po   [2] ADLAM INITIAL EXCLAMATION MARK..ADLAM INITIAL QUESTION MARK
 1EC71..1ECAB  ; N # No  [59] INDIC SIYAQ NUMBER ONE..INDIC SIYAQ NUMBER PREFIXED NINE
@@ -1889,7 +1891,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 768377 code points not listed here.
+# The above property value applies to 768376 code points not listed here.
 # Total code points: 793254
 
 # ================================================

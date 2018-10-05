@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-12.0.0.txt
-# Date: 2018-08-02, 23:37:38 GMT
+# Date: 2018-09-29, 05:44:56 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -595,7 +595,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1E300..1E7FF  ; Cn # [1280] <reserved-1E300>..<reserved-1E7FF>
 1E8C5..1E8C6  ; Cn #   [2] <reserved-1E8C5>..<reserved-1E8C6>
 1E8D7..1E8FF  ; Cn #  [41] <reserved-1E8D7>..<reserved-1E8FF>
-1E94B..1E94F  ; Cn #   [5] <reserved-1E94B>..<reserved-1E94F>
+1E94C..1E94F  ; Cn #   [4] <reserved-1E94C>..<reserved-1E94F>
 1E95A..1E95D  ; Cn #   [4] <reserved-1E95A>..<reserved-1E95D>
 1E960..1EC70  ; Cn # [785] <reserved-1E960>..<reserved-1EC70>
 1ECB5..1ED00  ; Cn #  [76] <reserved-1ECB5>..<reserved-1ED00>
@@ -683,7 +683,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 836604
+# Total code points: 836603
 
 # ================================================
 
@@ -2057,8 +2057,9 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 16FE0..16FE1  ; Lm #   [2] TANGUT ITERATION MARK..NUSHU ITERATION MARK
 16FE3         ; Lm #       OLD CHINESE ITERATION MARK
 1E137..1E13D  ; Lm #   [7] NYIAKENG PUACHUE HMONG SIGN FOR PERSON..NYIAKENG PUACHUE HMONG SYLLABLE LENGTHENER
+1E94B         ; Lm #       ADLAM NASALIZATION MARK
 
-# Total code points: 258
+# Total code points: 259
 
 # ================================================
 
@@ -3552,7 +3553,7 @@ FF3F          ; Pc #       FULLWIDTH LOW LINE
 104A..104F    ; Po #   [6] MYANMAR SIGN LITTLE SECTION..MYANMAR SYMBOL GENITIVE
 10FB          ; Po #       GEORGIAN PARAGRAPH SEPARATOR
 1360..1368    ; Po #   [9] ETHIOPIC SECTION MARK..ETHIOPIC PARAGRAPH SEPARATOR
-166D..166E    ; Po #   [2] CANADIAN SYLLABICS CHI SIGN..CANADIAN SYLLABICS FULL STOP
+166E          ; Po #       CANADIAN SYLLABICS FULL STOP
 16EB..16ED    ; Po #   [3] RUNIC SINGLE PUNCTUATION..RUNIC CROSS PUNCTUATION
 1735..1736    ; Po #   [2] PHILIPPINE SINGLE PUNCTUATION..PHILIPPINE DOUBLE PUNCTUATION
 17D4..17D6    ; Po #   [3] KHMER SIGN KHAN..KHMER SIGN CAMNUC PII KUUH
@@ -3683,7 +3684,7 @@ FF64..FF65    ; Po #   [2] HALFWIDTH IDEOGRAPHIC COMMA..HALFWIDTH KATAKANA MIDDL
 1DA87..1DA8B  ; Po #   [5] SIGNWRITING COMMA..SIGNWRITING PARENTHESIS
 1E95E..1E95F  ; Po #   [2] ADLAM INITIAL EXCLAMATION MARK..ADLAM INITIAL QUESTION MARK
 
-# Total code points: 588
+# Total code points: 587
 
 # ================================================
 
@@ -3855,6 +3856,7 @@ FFE3          ; Sk #       FULLWIDTH MACRON
 0FD5..0FD8    ; So #   [4] RIGHT-FACING SVASTI SIGN..LEFT-FACING SVASTI SIGN WITH DOTS
 109E..109F    ; So #   [2] MYANMAR SYMBOL SHAN ONE..MYANMAR SYMBOL SHAN EXCLAMATION
 1390..1399    ; So #  [10] ETHIOPIC TONAL MARK YIZET..ETHIOPIC TONAL MARK KURT
+166D          ; So #       CANADIAN SYLLABICS CHI SIGN
 1940          ; So #       LIMBU SIGN LOO
 19DE..19FF    ; So #  [34] NEW TAI LUE SIGN LAE..KHMER SYMBOL DAP-PRAM ROC
 1B61..1B6A    ; So #  [10] BALINESE MUSICAL SYMBOL DONG..BALINESE MUSICAL SYMBOL DANG GEDE
@@ -4004,7 +4006,7 @@ FFFC..FFFD    ; So #   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1FA80..1FA82  ; So #   [3] YO-YO..PARACHUTE
 1FA90..1FA95  ; So #   [6] RINGED PLANET..BANJO
 
-# Total code points: 6158
+# Total code points: 6159
 
 # ================================================
 

@@ -1,5 +1,5 @@
 # DerivedJoiningType-12.0.0.txt
-# Date: 2018-08-02, 09:26:05 GMT
+# Date: 2018-09-29, 05:44:56 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -514,10 +514,11 @@ FFF9..FFFB    ; T # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANNOTATI
 1E2EC..1E2EF  ; T # Mn   [4] WANCHO TONE TUP..WANCHO TONE KOINI
 1E8D0..1E8D6  ; T # Mn   [7] MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 1E944..1E94A  ; T # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
+1E94B         ; T # Lm       ADLAM NASALIZATION MARK
 E0001         ; T # Cf       LANGUAGE TAG
 E0020..E007F  ; T # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; T # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 1983
+# Total code points: 1984
 
 # EOF
