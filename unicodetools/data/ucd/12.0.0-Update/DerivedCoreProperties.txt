@@ -1,5 +1,5 @@
 # DerivedCoreProperties-12.0.0.txt
-# Date: 2018-09-29, 05:44:54 GMT
+# Date: 2018-10-05, 05:14:30 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -9967,6 +9967,7 @@ E01F0..E0FFF  ; Default_Ignorable_Code_Point # Cn [3600] <reserved-E01F0>..<rese
 1ABE          ; Grapheme_Extend # Me       COMBINING PARENTHESES OVERLAY
 1B00..1B03    ; Grapheme_Extend # Mn   [4] BALINESE SIGN ULU RICEM..BALINESE SIGN SURANG
 1B34          ; Grapheme_Extend # Mn       BALINESE SIGN REREKAN
+1B35          ; Grapheme_Extend # Mc       BALINESE VOWEL SIGN TEDUNG
 1B36..1B3A    ; Grapheme_Extend # Mn   [5] BALINESE VOWEL SIGN ULU..BALINESE VOWEL SIGN RA REPA
 1B3C          ; Grapheme_Extend # Mn       BALINESE VOWEL SIGN LA LENGA
 1B42          ; Grapheme_Extend # Mn       BALINESE VOWEL SIGN PEPET
@@ -10161,7 +10162,7 @@ FF9E..FF9F    ; Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK.
 E0020..E007F  ; Grapheme_Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Grapheme_Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 1964
+# Total code points: 1965
 
 # ================================================
 
@@ -10659,7 +10660,6 @@ E0100..E01EF  ; Grapheme_Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELE
 1AA8..1AAD    ; Grapheme_Base # Po   [6] TAI THAM SIGN KAAN..TAI THAM SIGN CAANG
 1B04          ; Grapheme_Base # Mc       BALINESE SIGN BISAH
 1B05..1B33    ; Grapheme_Base # Lo  [47] BALINESE LETTER AKARA..BALINESE LETTER HA
-1B35          ; Grapheme_Base # Mc       BALINESE VOWEL SIGN TEDUNG
 1B3B          ; Grapheme_Base # Mc       BALINESE VOWEL SIGN RA REPA TEDUNG
 1B3D..1B41    ; Grapheme_Base # Mc   [5] BALINESE VOWEL SIGN LA LENGA TEDUNG..BALINESE VOWEL SIGN TALING REPA TEDUNG
 1B43..1B44    ; Grapheme_Base # Mc   [2] BALINESE VOWEL SIGN PEPET TEDUNG..BALINESE ADEG ADEG
@@ -11810,7 +11810,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 2CEB0..2EBE0  ; Grapheme_Base # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2F800..2FA1D  ; Grapheme_Base # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# Total code points: 135898
+# Total code points: 135897
 
 # ================================================
 

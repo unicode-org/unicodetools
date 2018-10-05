@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-12.0.0.txt
-# Date: 2018-08-02, 09:26:08 GMT
+# Date: 2018-10-05, 05:14:35 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -232,6 +232,7 @@ E01F0..E0FFF  ; Control # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 1ABE          ; Extend # Me       COMBINING PARENTHESES OVERLAY
 1B00..1B03    ; Extend # Mn   [4] BALINESE SIGN ULU RICEM..BALINESE SIGN SURANG
 1B34          ; Extend # Mn       BALINESE SIGN REREKAN
+1B35          ; Extend # Mc       BALINESE VOWEL SIGN TEDUNG
 1B36..1B3A    ; Extend # Mn   [5] BALINESE VOWEL SIGN ULU..BALINESE VOWEL SIGN RA REPA
 1B3C          ; Extend # Mn       BALINESE VOWEL SIGN LA LENGA
 1B42          ; Extend # Mn       BALINESE VOWEL SIGN PEPET
@@ -427,7 +428,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 1969
+# Total code points: 1970
 
 # ================================================
 
@@ -496,7 +497,6 @@ E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 1A57          ; SpacingMark # Mc       TAI THAM CONSONANT SIGN LA TANG LAI
 1A6D..1A72    ; SpacingMark # Mc   [6] TAI THAM VOWEL SIGN OY..TAI THAM VOWEL SIGN THAM AI
 1B04          ; SpacingMark # Mc       BALINESE SIGN BISAH
-1B35          ; SpacingMark # Mc       BALINESE VOWEL SIGN TEDUNG
 1B3B          ; SpacingMark # Mc       BALINESE VOWEL SIGN RA REPA TEDUNG
 1B3D..1B41    ; SpacingMark # Mc   [5] BALINESE VOWEL SIGN LA LENGA TEDUNG..BALINESE VOWEL SIGN TALING REPA TEDUNG
 1B43..1B44    ; SpacingMark # Mc   [2] BALINESE VOWEL SIGN PEPET TEDUNG..BALINESE ADEG ADEG
@@ -592,7 +592,7 @@ ABEC          ; SpacingMark # Mc       MEETEI MAYEK LUM IYEK
 1D166         ; SpacingMark # Mc       MUSICAL SYMBOL COMBINING SPRECHGESANG STEM
 1D16D         ; SpacingMark # Mc       MUSICAL SYMBOL COMBINING AUGMENTATION DOT
 
-# Total code points: 376
+# Total code points: 375
 
 # ================================================
 
