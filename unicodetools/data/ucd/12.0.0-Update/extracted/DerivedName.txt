@@ -1,5 +1,5 @@
 # DerivedName-12.0.0.txt
-# Date: 2018-08-02, 23:37:41 GMT
+# Date: 2018-09-29, 05:44:58 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -39717,6 +39717,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1E948         ; ADLAM CONSONANT MODIFIER
 1E949         ; ADLAM GEMINATE CONSONANT MODIFIER
 1E94A         ; ADLAM NUKTA
+1E94B         ; ADLAM NASALIZATION MARK
 1E950         ; ADLAM DIGIT ZERO
 1E951         ; ADLAM DIGIT ONE
 1E952         ; ADLAM DIGIT TWO
@@ -42557,6 +42558,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 137927
+# Total code points: 137928
 
 # EOF

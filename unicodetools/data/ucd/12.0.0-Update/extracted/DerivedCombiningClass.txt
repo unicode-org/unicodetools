@@ -1,5 +1,5 @@
 # DerivedCombiningClass-12.0.0.txt
-# Date: 2018-08-02, 23:37:35 GMT
+# Date: 2018-09-29, 05:44:54 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -520,7 +520,8 @@
 13F8..13FD    ; 0 # L&   [6] CHEROKEE SMALL LETTER YE..CHEROKEE SMALL LETTER MV
 1400          ; 0 # Pd       CANADIAN SYLLABICS HYPHEN
 1401..166C    ; 0 # Lo [620] CANADIAN SYLLABICS E..CANADIAN SYLLABICS CARRIER TTSA
-166D..166E    ; 0 # Po   [2] CANADIAN SYLLABICS CHI SIGN..CANADIAN SYLLABICS FULL STOP
+166D          ; 0 # So       CANADIAN SYLLABICS CHI SIGN
+166E          ; 0 # Po       CANADIAN SYLLABICS FULL STOP
 166F..167F    ; 0 # Lo  [17] CANADIAN SYLLABICS QAI..CANADIAN SYLLABICS BLACKFOOT W
 1680          ; 0 # Zs       OGHAM SPACE MARK
 1681..169A    ; 0 # Lo  [26] OGHAM LETTER BEITH..OGHAM LETTER PEITH
@@ -1793,6 +1794,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1E800..1E8C4  ; 0 # Lo [197] MENDE KIKAKUI SYLLABLE M001 KI..MENDE KIKAKUI SYLLABLE M060 NYON
 1E8C7..1E8CF  ; 0 # No   [9] MENDE KIKAKUI DIGIT ONE..MENDE KIKAKUI DIGIT NINE
 1E900..1E943  ; 0 # L&  [68] ADLAM CAPITAL LETTER ALIF..ADLAM SMALL LETTER SHA
+1E94B         ; 0 # Lm       ADLAM NASALIZATION MARK
 1E950..1E959  ; 0 # Nd  [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 1E95E..1E95F  ; 0 # Po   [2] ADLAM INITIAL EXCLAMATION MARK..ADLAM INITIAL QUESTION MARK
 1EC71..1ECAB  ; 0 # No  [59] INDIC SIYAQ NUMBER ONE..INDIC SIYAQ NUMBER PREFIXED NINE
@@ -1888,7 +1890,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 838652 code points not listed here.
+# The above property value applies to 838651 code points not listed here.
 # Total code points: 1113250
 
 # ================================================
