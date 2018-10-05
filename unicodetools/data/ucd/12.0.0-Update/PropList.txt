@@ -1,5 +1,5 @@
 # PropList-12.0.0.txt
-# Date: 2018-09-29, 05:45:03 GMT
+# Date: 2018-10-05, 05:14:39 GMT
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1132,6 +1132,7 @@ FFFFE..FFFFF  ; Noncharacter_Code_Point # Cn   [2] <noncharacter-FFFFE>..<noncha
 0D57          ; Other_Grapheme_Extend # Mc       MALAYALAM AU LENGTH MARK
 0DCF          ; Other_Grapheme_Extend # Mc       SINHALA VOWEL SIGN AELA-PILLA
 0DDF          ; Other_Grapheme_Extend # Mc       SINHALA VOWEL SIGN GAYANUKITTA
+1B35          ; Other_Grapheme_Extend # Mc       BALINESE VOWEL SIGN TEDUNG
 200C          ; Other_Grapheme_Extend # Cf       ZERO WIDTH NON-JOINER
 302E..302F    ; Other_Grapheme_Extend # Mc   [2] HANGUL SINGLE DOT TONE MARK..HANGUL DOUBLE DOT TONE MARK
 FF9E..FF9F    ; Other_Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAKANA SEMI-VOICED SOUND MARK
@@ -1144,7 +1145,7 @@ FF9E..FF9F    ; Other_Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND
 1D16E..1D172  ; Other_Grapheme_Extend # Mc   [5] MUSICAL SYMBOL COMBINING FLAG-1..MUSICAL SYMBOL COMBINING FLAG-5
 E0020..E007F  ; Other_Grapheme_Extend # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 125
+# Total code points: 126
 
 # ================================================
 
