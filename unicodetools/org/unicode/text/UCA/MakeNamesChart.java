@@ -101,6 +101,7 @@ public class MakeNamesChart {
             final String heading = TransliteratorUtilities.toHTML.transliterate(getHeading(lineParts[2]));
                         
             out.println("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n" +
+                    "<html>\n" +
                     "<head>\n" +
                     "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>\n" +
                     "<title>" + heading + "</title>\n" +
@@ -184,9 +185,10 @@ public class MakeNamesChart {
                             out.println("<td class='cell'>\u00A0</td>");
                         }
                     }
-                    out.println("</tr></table></div>");
                 }
+                out.println("</tr></table></div>");
             }
+            out.println("</body>\n</html>");
             out.close();
             //out = FileUtilities.openUTF8Writer("C:/DATA/GEN/charts/namelist/", namePrefix + fileName);
             out = Utility.openPrintWriter(NAMESLIST_DIR, namePrefix + fileName, Utility.UTF8_WINDOWS);
@@ -203,7 +205,7 @@ public class MakeNamesChart {
             for (int i = 1; i < lines.size(); ++i) {
                 String line = (String)lines.get(i);
                 try {
-                    if (line.startsWith("@")) {
+                    if (line.startsWith("@") && !line.startsWith("@+\t*")) {
                         finishItem(out);
                         //						if (inTable) {
                         //							//out.println("</table>");
@@ -226,6 +228,11 @@ public class MakeNamesChart {
                                     + "</h2></td></tr>");
                         }
                     } else {
+                        boolean convertHex = true;
+                        if (line.startsWith("@+\t*")) {
+                            line = line.substring(2);   // handle like regular informative note
+                            convertHex = false;         // but without converting hex numbers
+                        }
                         if (!inTable) {
                             out.println("<table>");
                             inTable = true;
@@ -257,8 +264,9 @@ public class MakeNamesChart {
                                     + "<td class='c'>"
                                     + firstDisplayChar
                                     + "</td><td>"
-                                    + maybeNameStyle(showTextConvertingHex(body, firstChar != '=' && firstChar != '%'), firstChar == '=')
+                                    + maybeNameStyle(showTextConvertingHex(body, convertHex && firstChar != '=' && firstChar != '%'), firstChar == '=')
                                     + "</td></tr>");
+                            convertHex = true;
                         } else if (line.startsWith(";")) {
                             System.err.println("*** Ignoring:" + line);
                             continue;
@@ -293,7 +301,7 @@ public class MakeNamesChart {
             finishItem(out);
             out.println("</table>\n" +
                     "<p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p>\n" +
-                    "</body>");
+                    "</body>\n</html>");
             out.close();
         }
         blockInfo.in.close();

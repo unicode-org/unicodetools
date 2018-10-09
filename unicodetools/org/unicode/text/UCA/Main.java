@@ -42,6 +42,8 @@ public class Main {
     };
 
     public static void main(String args[]) throws Exception {
+        System.setProperty("line.separator", "\n");
+
         // NOTE: so far, we don't need to build the UCA with anything but the latest versions.
         // A few changes would need to be made to the code to do older versions.
 
