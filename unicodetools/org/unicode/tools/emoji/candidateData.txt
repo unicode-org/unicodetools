@@ -932,15 +932,45 @@ U+1F415 U+200D U+1F9BA
 Name=service dog
 Keywords=assistance | dog | service
 
-Proposal=L2/18-228
+Proposal=L2/18-228, L2/18-307
 After=👫
-U+1F9CD U+200D U+1F9CD
-Name=couple holding hands
-Keywords=couple | hands
-Comment=Combinations of gender and skin-tone produce 55 more emoji sequences.
+U+1F469 U+200D U+1F469
+Name=women holding hands
+Keywords=women | hands
+Comment=Combinations of gender and skin-tone produce 15 other emoji sequences, but this one is suppressed.
 Comment=These are *not* yet accounted for in the table below.
-Emoji_Modifier_Base
-Emoji_Gender_Base
+
+U+1F469 U+200D U+1F468
+Name=woman and man holding hands
+Keywords=woman | man | hands
+Comment=Combinations of gender and skin-tone produce 25 other emoji sequences, but this one is suppressed.
+Comment=These are *not* yet accounted for in the table below.
+
+U+1F468 U+200D U+1F468
+Name=men holding hands
+Keywords=men | hands
+Comment=Combinations of gender and skin-tone produce 15 other emoji sequences, but this one is suppressed.
+Comment=These are *not* yet accounted for in the table below.
+
+Proposal=L2/18-306, L2/18-307
+After=U+1F6B6
+U+1F469 U+200D U+1F9BC
+Name=woman in motorized wheelchair
+
+U+1F468 U+200D U+1F9BC
+Name=man in motorized wheelchair
+
+U+1F469 U+200D U+1F9BD
+Name=woman in manual wheelchair
+
+U+1F468 U+200D U+1F9BD
+Name=man in manual wheelchair
+
+U+1F469 U+200D U+1F9AF
+Name=woman with probing cane
+
+U+1F468 U+200D U+1F9AF
+Name=man with probing cane
 
 #================================
 Status=Provisional Candidate
@@ -994,3 +1024,21 @@ After=🦉
 U+101307
 Name=dodo
 Keywords=large|extinction|Mauritius
+
+Proposal=L2/18-260
+After=🚙
+U+101308
+Name=pickup truck
+Keywords=pickup|pick-up|truck
+
+Proposal=L2/18-266
+After=⚰
+U+101309
+Name=headstone
+Keywords= headstone | grave | tombstone | rip
+
+Proposal=L2/18-277
+After=🌶
+U+10130A
+Name=Bell Pepper
+Keywords= capsicum | bell pepper | pepper | vegetable
