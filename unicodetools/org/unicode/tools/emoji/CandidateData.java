@@ -463,8 +463,11 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                 }
             }
 
-            int catOrder1 = EmojiOrder.STD_ORDER.getGroupOrder(getCategory(o1));
-            int catOrder2 = EmojiOrder.STD_ORDER.getGroupOrder(getCategory(o2));
+            String cat1 = getCategory(o1);
+            int catOrder1 = EmojiOrder.STD_ORDER.getGroupOrder(cat1); 
+            
+            String cat2 = getCategory(o2);
+            int catOrder2 = EmojiOrder.STD_ORDER.getGroupOrder(cat2);
             if (catOrder1 != catOrder2) {
                 return catOrder1 > catOrder2 ? 1 : -1;
             }
