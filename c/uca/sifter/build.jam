@@ -1,0 +1,38 @@
+# © 2018 and later: Unicode, Inc. and others.
+# License & terms of use: http://www.unicode.org/copyright.html
+#
+# sjam makefile to build sifter for all platforms
+#
+# This makefile is used with sjam to automate the build
+# of the Collation Table Sifter
+# for the Unicode Infrastructure Library.
+#
+# Required environment variables:
+#    CALM_PROJECT_ROOT points to the top directory for the UIL source
+#    SSMODE is set to "dev" or "purify" (default is "normal")
+#    SSBUILT is set to the target build directory
+
+SSPart unilib utility sifter ;
+
+SSLocalHdrs unilib src ;
+
+SSSybLibs sifter : unic ;
+
+SSMain sifter :
+    unisift.c
+    unisyms.c
+    unisifex.c
+    ;
+
+SSSybLibs ustbuild : unic ;
+
+SSMain ustbuild :
+    ustbuild.c
+    unisift2.c
+    ustwrite.c
+    ;
+
+
+
+
+
