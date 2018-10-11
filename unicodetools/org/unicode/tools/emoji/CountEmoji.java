@@ -342,7 +342,7 @@ public class CountEmoji {
         singleton, zwj, skin, gender, role, family, hair, dup
     }
 
-    enum Category {
+    public enum Category {
         character("char"), 
         keycap_seq,
         flag_seq,
@@ -392,6 +392,10 @@ public class CountEmoji {
         }
         public String toStringPlain() {
             return displayName;
+        }
+        /** added to make migration easier */
+        static public Category getType(String s) {
+            return getBucket(s);
         }
         static public Category getBucket(String s) {
             try {

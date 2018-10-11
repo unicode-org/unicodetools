@@ -129,10 +129,15 @@ public class GenerateEmojiData {
         
         try (TempPrintWriter outText2 = new TempPrintWriter(OUTPUT_DIR, "internal/emoji-internal.txt")) {
             UnicodeSet emojiGenderBase = EmojiDataSourceCombined.EMOJI_DATA.getGenderBases();
+            UnicodeSet emojiExplicitGender = EmojiDataSourceCombined.EMOJI_DATA.getExplicitGender();
+            UnicodeSet emojiMultiPersonGroupings = EmojiDataSourceCombined.EMOJI_DATA.getMultiPersonGroupings();
             outText2.println(Utility.getBaseDataHeader("emoji-internal", 51, "Emoji Data Internal", Emoji.VERSION_STRING));
             
             
-            int width = maxLength("Emoji_Gender_Base");
+            int width = maxLength("Emoji_Gender_Base", 
+                    "Emoji_Explicit_Gender",
+                    "Multi_Person_Groupings"
+                    );
 
             //            outText2.println("# Warning: the format has changed from Version 1.0");
             outText2.println("# Format: ");
@@ -140,6 +145,8 @@ public class GenerateEmojiData {
             outText2.println("# Note: there is no guarantee as to the structure of whitespace or comments");
             outText2.println(ORDERING_NOTE);
             printer.show(outText2, "Emoji_Gender_Base", null, width, 14, emojiGenderBase, true, true, false);
+            printer.show(outText2, "Emoji_Explicit_Gender", null, width, 14, emojiExplicitGender, true, true, false);
+            printer.show(outText2, "Multi_Person_Groupings", null, width, 14, emojiMultiPersonGroupings, true, true, false);
             outText2.println("\n#EOF");
         }
 

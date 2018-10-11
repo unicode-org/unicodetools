@@ -55,5 +55,7 @@ public interface EmojiDataSource {
     
     public String addEmojiVariants(String s1);
     public String getVersionString();
+    public UnicodeSet getExplicitGender();
+    public UnicodeSet getMultiPersonGroupings();
 }
 

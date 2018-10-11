@@ -16,10 +16,7 @@ import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
-import javax.xml.stream.events.Characters;
-
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.tool.GenerateBirth;
 import org.unicode.cldr.util.Annotations;
 import org.unicode.cldr.util.Annotations.AnnotationSet;
 import org.unicode.cldr.util.CldrUtility;
@@ -43,10 +40,7 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.ImmutableSet.Builder;
-import com.google.common.collect.ImmutableSetMultimap;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.SortedSetMultimap;
 import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
@@ -55,9 +49,6 @@ import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSet.SpanCondition;
-import com.ibm.icu.text.UnicodeSetSpanner;
-import com.ibm.icu.text.UnicodeSetSpanner.CountMethod;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
@@ -121,6 +112,7 @@ public class EmojiData implements EmojiDataSource {
     private UnicodeSet otherHuman;
     private UnicodeSet genderBase;
     private UnicodeMap<String> toNeutral;
+    private UnicodeSet multiPersonGrouping;
 
     public static final Splitter semi = Splitter.onPattern("[;#]").trimResults();
     public static final Splitter semiOnly = Splitter.onPattern(";").trimResults();
@@ -506,11 +498,13 @@ public class EmojiData implements EmojiDataSource {
 
         if (DEBUG) System.out.println("rawHairBases: " + rawHairBases.toPattern(false));
 
-        explicitGender.addAll(new UnicodeSet("[[👦-👩 👴 👵 🤴 👸 👲 🧕 🤵 👰 🤰 🤱 🎅 🤶 💃 🕺 🕴 👫-👭]]"))
+        explicitGender.addAll(new UnicodeSet("[[👦-👩 🧔 👴 👵 🤴 👸 👲 🧕 🤵 👰 🤰 🤱 🎅 🤶 💃 🕺 🕴 👫-👭]]"))
         .freeze();
 
         explicitHair.addAll(new UnicodeSet("[👱]"))
         .freeze();
+        
+        multiPersonGrouping = new UnicodeSet("[👯 🤼 👫-👭 💏 💑 👪 🤝]");
 
         hairBases.addAll(rawHairBases)
         .retainAll(modifierBases)
@@ -915,6 +909,7 @@ public class EmojiData implements EmojiDataSource {
     }
 
     public static final EmojiData EMOJI_DATA = of(Emoji.VERSION_TO_GENERATE);
+    public static final EmojiData EMOJI_DATA_BETA = of(Emoji.VERSION_BETA);
 
     public UnicodeSet getFlagSequences() {
         return flagSequences;
@@ -1387,6 +1382,7 @@ public class EmojiData implements EmojiDataSource {
         UnicodeSet explicitGendered = new UnicodeSet()
                 .addAll(e11a.maleToOther.keySet())
                 .addAll(e11a.femaleToOther.keySet())
+                .add(new UnicodeSet("[🧔]"))
                 .freeze();
 
         UnicodeSet gendered = new UnicodeSet()
@@ -1394,6 +1390,7 @@ public class EmojiData implements EmojiDataSource {
                 .addAll(e11a.femaleToOther.keySet())
                 .addAll(e11a.otherHuman)
                 .freeze();
+        
         UnicodeSet people = new UnicodeSet()
                 .addAll(EmojiOrder.BETA_ORDER.majorGroupings.getSet(MajorGroup.People))
                 .removeAll(EmojiOrder.BETA_ORDER.charactersToOrdering.getSet("body"))
@@ -1401,6 +1398,7 @@ public class EmojiData implements EmojiDataSource {
                 .removeAll(EmojiOrder.BETA_ORDER.charactersToOrdering.getSet("clothing"))
                 .retainAll(e11a.allEmojiWithoutDefectives)
                 .freeze();
+        
         diff2("gendered", gendered, "people", people);
 
         System.out.println("genderBase:\t" + e11a.getGenderBase().size() + "\t" + e11a.getGenderBase().toPattern(false));
@@ -1890,5 +1888,10 @@ public class EmojiData implements EmojiDataSource {
 
     public UnicodeSet getGenderBase() {
         return genderBase;
+    }
+
+    @Override
+    public UnicodeSet getMultiPersonGroupings() {
+        return multiPersonGrouping;
     }
 }
