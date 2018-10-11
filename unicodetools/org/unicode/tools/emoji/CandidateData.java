@@ -1,9 +1,11 @@
 package org.unicode.tools.emoji;
 
+import java.io.File;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -34,9 +36,11 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
+import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
+import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
 public class CandidateData implements Transform<String, String>, EmojiDataSource {
@@ -139,6 +143,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         String proposalItem = null;
         Status status = null;
 
+        date = new File(FileUtilities.getRelativeFileName(CandidateData.class, sourceFile)).lastModified();
         for (String line : FileUtilities.in(CandidateData.class, sourceFile)) {
             line = line.trim();
             try {
@@ -491,6 +496,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
             return EmojiOrder.FULL_COMPARATOR.compare(o1, o2);
         }
     };
+    private long date;
 
     /**
      * @return the characters
@@ -943,5 +949,20 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         case Draft_Candidate : return draft;
         default: throw new IllegalArgumentException();
         }
+    }
+
+    @Override
+    public UnicodeSet getKeycapSequences() {
+        return UnicodeSet.EMPTY;
+    }
+
+    @Override
+    public String addEmojiVariants(String s1) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public String getVersionString() {
+        return "candidates:" + DateFormat.getInstanceForSkeleton("yyyyMMdd", ULocale.ROOT).format(date);
     }
 }

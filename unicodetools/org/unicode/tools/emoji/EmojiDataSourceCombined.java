@@ -120,14 +120,29 @@ public class EmojiDataSourceCombined implements EmojiDataSource {
         return add(emojiData.getRawNames(), candidates.getRawNames());
     }
     
-    public static void main(String[] args) {
-        UnicodeSet allChars = EMOJI_DATA.getAllEmojiWithDefectives();
-        
-    }
-
     @Override
     public UnicodeSet getTakesSign() {
         return add(emojiData.getTakesSign(),
                 candidates.getTakesSign());
     }
+
+    @Override
+    public UnicodeSet getKeycapSequences() {
+        return emojiData.getKeycapSequences();
+    }
+
+    @Override
+    public String addEmojiVariants(String s1) {
+        return emojiData.addEmojiVariants(s1);
+    }
+
+    @Override
+    public String getVersionString() {
+        return emojiData.getVersion() + " + " + candidates.getVersionString();
+    }
+    
+//    public static void main(String[] args) {
+//        UnicodeSet allChars = EMOJI_DATA.getAllEmojiWithDefectives();
+//        
+//    }
 }

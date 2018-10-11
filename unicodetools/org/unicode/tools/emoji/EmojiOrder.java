@@ -115,8 +115,9 @@ public class EmojiOrder {
     public final Comparator<String>        codepointCompareSeparateDefects;
     public final UnicodeMap<MajorGroup>  majorGroupings = new UnicodeMap<>(); 
     public final Map<String, Integer>  groupOrder; 
-    final EmojiData emojiData;
+    public final EmojiData emojiData;
     private final Map<String, MajorGroup> categoryToMajor;
+    private final String reformatted;
 
     /**
      * @return the categoryToMajor
@@ -143,7 +144,9 @@ public class EmojiOrder {
                 ;
         HashMap<String, Integer> _groupOrder = new LinkedHashMap<String,Integer>();
         Map<String, MajorGroup> _categoryToMajor = new LinkedHashMap<>();
-        orderingToCharacters = loadOrdering(version, file, mp, _groupOrder, _categoryToMajor);
+        StringBuilder _reformatted = new StringBuilder();
+        orderingToCharacters = loadOrdering(version, file, mp, _groupOrder, _categoryToMajor, _reformatted);
+        reformatted = _reformatted.toString();
         mp.freeze();
         majorGroupings.freeze();
         groupOrder = Collections.unmodifiableMap(_groupOrder);
@@ -173,10 +176,11 @@ public class EmojiOrder {
         }
     }
 
-    Relation<String, String> loadOrdering(VersionInfo version, String sourceFile, 
+    private Relation<String, String> loadOrdering(VersionInfo version, String sourceFile, 
             MapComparator<String> mapComparator, 
             Map<String, Integer> _groupOrder, 
-            Map<String, MajorGroup> _categoryToMajor) {
+            Map<String, MajorGroup> _categoryToMajor,
+            StringBuilder reformatted) {
         //System.out.println(sourceFile);
         Relation<String, String> result = Relation.of(new LinkedHashMap<String, Set<String>>(), LinkedHashSet.class);
         Set<String> sorted = new LinkedHashSet<>();
@@ -184,147 +188,143 @@ public class EmojiOrder {
         MajorGroup majorGroup = null;
         EmojiIterator ei = new EmojiIterator(emojiData, false);
         final String directory = Settings.DATA_DIR + "/emoji/" + version.getVersionString(2, 2) + "/source";
-        try (PrintWriter reformatted = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, sourceFile)) {
-            for (String line : FileUtilities.in(EmojiOrder.class,
-                    sourceFile)) {
-                if (line.isEmpty() || line.startsWith("#") && !line.startsWith("#⃣") && !line.startsWith("#️⃣")) {
+        for (String line : FileUtilities.in(EmojiOrder.class,
+                sourceFile)) {
+            if (line.isEmpty() || line.startsWith("#") && !line.startsWith("#⃣") && !line.startsWith("#️⃣")) {
+                continue;
+            }
+            if (DEBUG) System.out.println(line);
+
+            line = Emoji.UNESCAPE.transform(line);
+            line = line.replace(Emoji.TEXT_VARIANT_STRING, "").replace(Emoji.EMOJI_VARIANT_STRING, "");
+
+            if (line.contains("keycap")) {
+                int debug = 0;
+            }
+
+            if (line.startsWith("@@")) {
+                majorGroup = MajorGroup.fromString(line.substring(2).trim());
+                reformatted.append(line).append('\n');
+                continue;
+            }
+            if (line.startsWith("@")) {
+                String item = line.substring(1).trim();
+                if (!_groupOrder.containsKey(item)) {
+                    _groupOrder.put(item, _groupOrder.size());
+                }
+                MajorGroup major = _categoryToMajor.get(item);
+                if (major == null) {
+                    _categoryToMajor.put(item, majorGroup);
+                } else if (major != majorGroup) {
+                    throw new IllegalArgumentException("Conflicting major categories");
+                }
+                lastLabel.value.clear();
+                lastLabel.value.add(item);
+                reformatted.append("@" + item).append('\n');
+                continue;
+            }
+            //                String oldLine = line;
+            //                line = Emoji.getLabelFromLine(lastLabel, line);
+            //                for (String item : lastLabel.value) {
+            //                    if (!_groupOrder.containsKey(item)) {
+            //                        _groupOrder.put(item, _groupOrder.size());
+            //                    }
+            //                    MajorGroup major = _categoryToMajor.get(item);
+            //                    if (major == null) {
+            //                        _categoryToMajor.put(item, majorGroup);
+            //                    } else if (major != majorGroup) {
+            //                        throw new IllegalArgumentException("Conflicting major categories");
+            //                    }
+            //                    // hack for now
+            //                    if (oldLine.contains("\t")) {
+            //                        reformatted.println("@" + item);
+            //                    }
+            //                }
+            if (line.indexOf("🤝") >= 0) {
+                int debug = 0;
+            }
+            boolean isFirst = true;
+            for (String string : ei.set(line)) {
+                // NOTE: all emoji variant selectors have been removed at this point
+                if (sorted.contains(string)) {
                     continue;
                 }
-                if (DEBUG) System.out.println(line);
+                if (isFirst) {
+                    isFirst = false;
+                } else {
+                    reformatted.append(' ');
+                }
+                reformatted.append(EmojiData.EMOJI_DATA.addEmojiVariants(string));
+                //System.out.println("Adding: " + Utility.hex(string) + "\t" + string);
+                add(result, sorted, majorGroup, lastLabel, string);
+                addVariants(result, sorted, majorGroup, lastLabel, string); 
 
-                line = Emoji.UNESCAPE.transform(line);
-                line = line.replace(Emoji.TEXT_VARIANT_STRING, "").replace(Emoji.EMOJI_VARIANT_STRING, "");
-
-                if (line.contains("keycap")) {
-                    int debug = 0;
+                switch (string) {
+                case "👭": 
+                    addVariants(result, sorted, majorGroup, lastLabel, "👩‍🤝‍👩"); 
+                    break;
+                case "👫": 
+                    addVariants(result, sorted, majorGroup, lastLabel, "👩‍🤝‍👨"); 
+                    break;
+                case "👬": 
+                    addVariants(result, sorted, majorGroup, lastLabel, "👨‍🤝‍👨");
+                    break;
                 }
 
-                if (line.startsWith("@@")) {
-                    majorGroup = MajorGroup.fromString(line.substring(2).trim());
-                    reformatted.println(line);
-                    continue;
-                }
-                if (line.startsWith("@")) {
-                    String item = line.substring(1).trim();
-                    if (!_groupOrder.containsKey(item)) {
-                        _groupOrder.put(item, _groupOrder.size());
-                    }
-                    MajorGroup major = _categoryToMajor.get(item);
-                    if (major == null) {
-                        _categoryToMajor.put(item, majorGroup);
-                    } else if (major != majorGroup) {
-                        throw new IllegalArgumentException("Conflicting major categories");
-                    }
-                    lastLabel.value.clear();
-                    lastLabel.value.add(item);
-                    reformatted.println("@" + item);
-                    continue;
-                }
-                //                String oldLine = line;
-                //                line = Emoji.getLabelFromLine(lastLabel, line);
-                //                for (String item : lastLabel.value) {
-                //                    if (!_groupOrder.containsKey(item)) {
-                //                        _groupOrder.put(item, _groupOrder.size());
-                //                    }
-                //                    MajorGroup major = _categoryToMajor.get(item);
-                //                    if (major == null) {
-                //                        _categoryToMajor.put(item, majorGroup);
-                //                    } else if (major != majorGroup) {
-                //                        throw new IllegalArgumentException("Conflicting major categories");
-                //                    }
-                //                    // hack for now
-                //                    if (oldLine.contains("\t")) {
-                //                        reformatted.println("@" + item);
+                //                ImmutableList<String> list = hack.get(string);
+                //                if (list != null) {
+                //                    addVariants(result, sorted, majorGroup, lastLabel, string);
+                //                    for (String string2 : list) {
+                //                        //System.err.println("Adding " + show(string2));
+                //                        add(result, sorted, majorGroup, lastLabel, string2); 
+                //                        addVariants(result, sorted, majorGroup, lastLabel, string2);
                 //                    }
                 //                }
-                if (line.indexOf("🤝") >= 0) {
-                    int debug = 0;
-                }
-                boolean isFirst = true;
-                for (String string : ei.set(line)) {
-                    // NOTE: all emoji variant selectors have been removed at this point
-                    if (sorted.contains(string)) {
-                        continue;
-                    }
-                    if (isFirst) {
-                        isFirst = false;
-                    } else {
-                        reformatted.print(' ');
-                    }
-                    reformatted.print(EmojiData.EMOJI_DATA.addEmojiVariants(string));
-                    //System.out.println("Adding: " + Utility.hex(string) + "\t" + string);
-                    add(result, sorted, majorGroup, lastLabel, string);
-                    addVariants(result, sorted, majorGroup, lastLabel, string); 
-                    
-                    switch (string) {
-                    case "👭": 
-                        addVariants(result, sorted, majorGroup, lastLabel, "👩‍🤝‍👩"); 
-                        break;
-                    case "👫": 
-                        addVariants(result, sorted, majorGroup, lastLabel, "👩‍🤝‍👨"); 
-                        break;
-                    case "👬": 
-                        addVariants(result, sorted, majorGroup, lastLabel, "👨‍🤝‍👨");
-                        break;
-                    }
 
-                    //                ImmutableList<String> list = hack.get(string);
-                    //                if (list != null) {
-                    //                    addVariants(result, sorted, majorGroup, lastLabel, string);
-                    //                    for (String string2 : list) {
-                    //                        //System.err.println("Adding " + show(string2));
-                    //                        add(result, sorted, majorGroup, lastLabel, string2); 
-                    //                        addVariants(result, sorted, majorGroup, lastLabel, string2);
-                    //                    }
-                    //                }
-
-                    // We have a hack for blond person, and add them explicity.
-                    if (emojiData.getGenderBase().contains(string) && !string.equals("👱")) {
-                        addVariants(result, sorted, majorGroup, lastLabel, string + "\u200d\u2642"); 
-                        addVariants(result, sorted, majorGroup, lastLabel, string + "\u200d\u2640"); 
-                    }
-                    //                // add/remove all variant strings
-                    //                if (string.contains(Emoji.JOINER_STRING) || emojiData.getKeycapBases().contains(string.charAt(0))) { 
-                    //                    addVariants(result, sorted, majorGroup, lastLabel, string);
-                    //                }
+                // We have a hack for blond person, and add them explicity.
+                if (emojiData.getGenderBase().contains(string) && !string.equals("👱")) {
+                    addVariants(result, sorted, majorGroup, lastLabel, string + "\u200d\u2642"); 
+                    addVariants(result, sorted, majorGroup, lastLabel, string + "\u200d\u2640"); 
                 }
-                if (!isFirst) { // skip empty lines
-                    reformatted.println();
-                }
+                //                // add/remove all variant strings
+                //                if (string.contains(Emoji.JOINER_STRING) || emojiData.getKeycapBases().contains(string.charAt(0))) { 
+                //                    addVariants(result, sorted, majorGroup, lastLabel, string);
+                //                }
             }
-
-            Set<String> missing = new UnicodeSet(emojiData.getSortingChars())
-                    .removeAll(emojiData.getModifierSequences())
-                    .addAllTo(new LinkedHashSet<String>());
-            missing.removeAll(sorted);
-            for (Iterator<String> it = missing.iterator(); it.hasNext();) {
-                String s = it.next();
-                if (s.endsWith(Emoji.EMOJI_VARIANT_STRING)) {
-                    it.remove();
-                }
+            if (!isFirst) { // skip empty lines
+                reformatted.append('\n');
             }
-            if (!missing.isEmpty() && !sourceFile.startsWith("alt")) {
-                result.putAll("other", missing);
-                System.err.println("Missing some orderings: ");
-                for (String s : missing) {
-                    System.err.print(s + " ");
-                }
-                System.err.println();
-
-                for (String s : missing) {
-                    System.err.println("\t" + s + "\t\t" + Emoji.show(s));
-                }
-                System.err.println(directory);
-            }
-            sorted.addAll(missing);
-            mapComparator.add(sorted);
-            //mapComparator.setErrorOnMissing(true);
-            mapComparator.freeze();
-            result.freeze();
-            return result;
-        } catch (IOException e) {
-            throw new ICUUncheckedIOException(e);
         }
+
+        Set<String> missing = new UnicodeSet(emojiData.getSortingChars())
+                .removeAll(emojiData.getModifierSequences())
+                .addAllTo(new LinkedHashSet<String>());
+        missing.removeAll(sorted);
+        for (Iterator<String> it = missing.iterator(); it.hasNext();) {
+            String s = it.next();
+            if (s.endsWith(Emoji.EMOJI_VARIANT_STRING)) {
+                it.remove();
+            }
+        }
+        if (!missing.isEmpty() && !sourceFile.startsWith("alt")) {
+            result.putAll("other", missing);
+            System.err.println("Missing some orderings: ");
+            for (String s : missing) {
+                System.err.print(s + " ");
+            }
+            System.err.println();
+
+            for (String s : missing) {
+                System.err.println("\t" + s + "\t\t" + Emoji.show(s));
+            }
+            System.err.println(directory);
+        }
+        sorted.addAll(missing);
+        mapComparator.add(sorted);
+        //mapComparator.setErrorOnMissing(true);
+        mapComparator.freeze();
+        result.freeze();
+        return result;
     }
 
     private void addAllModifiers(Relation<String, String> result, Set<String> sorted, Output<Set<String>> lastLabel, MajorGroup majorGroup, String... strings) {
@@ -707,5 +707,10 @@ public class EmojiOrder {
                 + "\t" + name
                 + "\t" + info
                 );
+    }
+
+
+    public String getReformatted() {
+        return reformatted;
     }
 }

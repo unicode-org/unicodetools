@@ -127,8 +127,8 @@ public class GenerateEmojiData {
 
         PropPrinter printer = new PropPrinter().set(extraNames);
         
-        try (TempPrintWriter outText2 = new TempPrintWriter(OUTPUT_DIR, "emoji-internal.txt")) {
-            UnicodeSet emojiGenderBase = EmojiDataSourceCombined.EMOJI_DATA.getSingletonsWithDefectives();
+        try (TempPrintWriter outText2 = new TempPrintWriter(OUTPUT_DIR, "internal/emoji-internal.txt")) {
+            UnicodeSet emojiGenderBase = EmojiDataSourceCombined.EMOJI_DATA.getGenderBases();
             outText2.println(Utility.getBaseDataHeader("emoji-internal", 51, "Emoji Data Internal", Emoji.VERSION_STRING));
             
             
@@ -293,6 +293,12 @@ public class GenerateEmojiData {
 
         // generate emoji-test
         GenerateEmojiKeyboard.showLines(EmojiOrder.STD_ORDER, EmojiOrder.STD_ORDER.emojiData.getSortingChars(), Target.propFile, OUTPUT_DIR);
+
+        try (TempPrintWriter reformatted = new TempPrintWriter(OUTPUT_DIR, "internal/emojiOrdering.txt")) {
+            reformatted.write(EmojiOrder.BETA_ORDER.getReformatted());
+        } catch (IOException e) {
+            throw new ICUUncheckedIOException(e);
+        }
     }
 
     private static int maxLength(String... items) {

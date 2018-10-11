@@ -13,6 +13,7 @@ public interface EmojiDataSource {
     public UnicodeSet getExtendedPictographic();
     public UnicodeSet getTagSequences();
     public UnicodeSet getModifierSequences();
+    public UnicodeSet getKeycapSequences();
     public UnicodeSet getFlagSequences();
     public UnicodeSet getZwjSequencesNormal();
     public UnicodeSet getEmojiWithVariants();
@@ -28,6 +29,7 @@ public interface EmojiDataSource {
         return getName(UTF16.valueOf(codepoint));
     }
     public UnicodeMap<String> getRawNames();
+    
     public default UnicodeSet getBasicSequences() {
         UnicodeSet result = new UnicodeSet();
         for (String s : getSingletonsWithDefectives()) {
@@ -42,5 +44,16 @@ public interface EmojiDataSource {
         }
         return result.freeze();
     }
+    
+    public default UnicodeSet getEmojiForSortRules() {
+        return new UnicodeSet()
+                .addAll(getAllEmojiWithoutDefectives())
+                .removeAll(Emoji.DEFECTIVE)
+                .addAll(getZwjSequencesNormal()) 
+                .addAll(getKeycapSequences());
+    }
+    
+    public String addEmojiVariants(String s1);
+    public String getVersionString();
 }
 
