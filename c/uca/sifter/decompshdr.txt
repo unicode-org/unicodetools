@@ -1,0 +1,59 @@
+# Each line contains three fields, separated by a semicolon.
+#
+# Field 0: code point
+#
+# Field 1: decomposition tag
+#
+# Field 2: decomposition
+#
+# Those three fields are then followed by a comment, delimited with "#",
+# showing the name of the character and the names associated with the
+# decomposition sequence, to make it easier to understand the listing
+# without having to look up code points.
+#
+# The decompositions used in the generation of DUCET are loosely based
+# on the normative decomposition mappings defined in UnicodeData.txt
+# in the Unicode Character Database. An examination of this data listing
+# clearly shows the close relationship to the decomposition mappings.
+# However, those decomposition mappings are adjusted as part of the input
+# to the generation of DUCET, in order to produce default weights more
+# appropriate for collation. Those adjusted
+# decompositions fall into several classes:
+#
+# 1. In some cases a decomposition mapping from UnicodeData.txt is
+#    suppressed.
+#
+# 2. In some cases a decomposition mapping from UnicodeData.txt is
+#    modified.
+#
+# 3. In some cases a new decomposition is added for a character which
+#    has no decomposition mapping in UnicodeData.txt. 
+#
+#    In this third case, sometimes no decomposition tag is added
+#    to the new decomposition. In those instances, weighting is done as
+#    if the character had a canonical decomposition in UnicodeData.txt.
+#    In other instances a new decomposition tag "<sort>" is introduced.
+#    That tag results in weighting with a distinct tertiary weight,
+#    as if the character had a <compat> decomposition tag in
+#    UnicodeData.txt.
+#
+# Note that these adjusted decompositions are only defined for the
+# purpose of generating the DUCET table. They are not to be interpreted
+# as having any implications for the Unicode Normalization
+# Algorithm.
+#
+# The decomposition tags in this file are derived from the normative
+# Decomposition_Type values, but differ from them, in part because
+# of the introduction of the "<sort>" tag.
+#
+# It is also important to note that the decompositions documented in
+# this file occasionally make use of private use characters, with private
+# semantics internal to the utility used to generate DUCET. The use
+# of these private use code points is *NOT* to be interpreted as
+# a reservation of those private use code points by the Unicode Consortium
+# or as a designation of any specific meaning or properties for those
+# particular private use code points for the purposes of interchange.
+# The names used in the decomps.txt listing for those private use
+# code points are arbitrarily assigned and internal to the utility.
+# They are in no way endorsed by the Unicode Consortium.
+#
