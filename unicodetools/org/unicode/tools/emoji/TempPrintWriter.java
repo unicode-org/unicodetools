@@ -21,6 +21,7 @@ public class TempPrintWriter extends Writer {
     }
 
     public TempPrintWriter(File file) {
+        super();
         final String parentFile = file.getParent();
         this.filename = file.toString();
         Random rand = new Random();
@@ -37,26 +38,30 @@ public class TempPrintWriter extends Writer {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         tempPrintWriter.close();
-        Utility.replaceDifferentOrDelete(filename, tempName, false);
+        try {
+            Utility.replaceDifferentOrDelete(filename, tempName, false);
+        } catch (IOException e) {
+            throw new ICUUncheckedIOException(e);
+        }
     }
 
     @Override
-    public void write(char[] cbuf, int off, int len) throws IOException {
+    public void write(char[] cbuf, int off, int len) {
         tempPrintWriter.write(cbuf, off, len);
     }
 
     @Override
-    public void flush() throws IOException {
+    public void flush() {
         tempPrintWriter.flush();
     }
 
-    public void println(String line) throws IOException {
+    public void println(String line) {
         tempPrintWriter.println(line);
     }
     
-    public void println() throws IOException {
+    public void println() {
         tempPrintWriter.println();
     }
 }

@@ -778,7 +778,7 @@ public class EmojiData implements EmojiDataSource {
         return modifierSequences;
     }
 
-    public UnicodeSet getModifiers() {
+    public static UnicodeSet getModifiers() {
         return MODIFIERS;
     }
 
@@ -959,7 +959,7 @@ public class EmojiData implements EmojiDataSource {
 
     private static Pattern EMOJI_VARIANTs = Pattern.compile("[" + Emoji.EMOJI_VARIANT + Emoji.TEXT_VARIANT + "]");
 
-    enum VariantStatus {
+    public enum VariantStatus {
         /** All characters that need them have emoji-variants */
         full("fully-qualified"), 
         /** The first character has an emoji-variant, if needed */
@@ -969,9 +969,17 @@ public class EmojiData implements EmojiDataSource {
         /** Neither full nor partial */
         component("component")
         ;
-        final String name;
+        public final String name;
         private VariantStatus(String name) {
             this.name = name;
+        }
+        public static final VariantStatus forString(String name) {
+            for (VariantStatus item : values()) {
+                if (name.equals(item.name)) {
+                    return item;
+                }
+            }
+            return valueOf(name);
         }
     }
 
@@ -1728,6 +1736,10 @@ public class EmojiData implements EmojiDataSource {
 
     public VersionInfo getVersion() {
         return version;
+    }
+    
+    public String getVersionString() {
+        return version.getVersionString(2, 2);
     }
 
     public UnicodeSet getRegionalIndicators() {
