@@ -1,5 +1,5 @@
 # EastAsianWidth-12.0.0.txt
-# Date: 2018-09-22, 17:46:25 GMT [KW, LI]
+# Date: 2018-10-10, 09:50:35 GMT [KW, LI]
 # © 2018 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -2090,7 +2090,9 @@ FFFD;A           # So         REPLACEMENT CHARACTER
 119DA..119DB;N   # Mn     [2] NANDINAGARI VOWEL SIGN E..NANDINAGARI VOWEL SIGN AI
 119DC..119DF;N   # Mc     [4] NANDINAGARI VOWEL SIGN O..NANDINAGARI SIGN VISARGA
 119E0;N          # Mn         NANDINAGARI SIGN VIRAMA
-119E1..119E3;N   # Lo     [3] NANDINAGARI SIGN AVAGRAHA..NANDINAGARI HEADSTROKE
+119E1;N          # Lo         NANDINAGARI SIGN AVAGRAHA
+119E2;N          # Po         NANDINAGARI SIGN SIDDHAM
+119E3;N          # Lo         NANDINAGARI HEADSTROKE
 119E4;N          # Mc         NANDINAGARI VOWEL SIGN PRISHTHAMATRA E
 11A00;N          # Lo         ZANABAZAR SQUARE LETTER A
 11A01..11A0A;N   # Mn    [10] ZANABAZAR SQUARE VOWEL SIGN I..ZANABAZAR SQUARE VOWEL LENGTH MARK
