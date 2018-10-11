@@ -39,6 +39,8 @@ import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSet.SpanCondition;
+import com.ibm.icu.text.UnicodeSetSpanner;
 import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
@@ -150,7 +152,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                 if (line.startsWith("#") || line.isEmpty()) { // comment
                     continue;
                 } else if (line.startsWith("U+")) { // data
-                    fixGenderSkin(source); // old source
+                    fixGenderSkin(source); // fix old source. we do it here so we know the properties
 
                     source = Utility.fromHex(line);
                     if (allCharacters.contains(source)) {
@@ -318,6 +320,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         textPresentation.freeze();
 
         emoji_Modifier_Base.freeze();
+
         emoji_Gender_Base.freeze();
         takesSign.freeze();
         emoji_Component.freeze();
@@ -392,34 +395,52 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         if (source == null) {
             return;
         }
+        if (source.equals("👩‍🦯️")) {
+            int debug = 0;
+        }
+
+
+        boolean hasModifierBase = emoji_Modifier_Base.containsSome(source) 
+                || EmojiData.EMOJI_DATA_BETA.getModifierBases().containsSome(source);
+        if (hasModifierBase) {
+            // find the point where it occurs; not efficient but we don't care
+            UnicodeSet all_Emoji_Modifier_Base = new UnicodeSet(emoji_Modifier_Base)
+                    .addAll(EmojiData.EMOJI_DATA_BETA.getModifierBases())
+                    .freeze();
+
+            int start = all_Emoji_Modifier_Base.span(source, SpanCondition.NOT_CONTAINED);
+            int end = all_Emoji_Modifier_Base.span(source, start, SpanCondition.CONTAINED);
+            
+            String prefix = source.substring(0, end);
+            String postfix = source.substring(end);
+            for (String mod : EmojiData.MODIFIERS) {
+                addCombo(source, prefix + mod + postfix, "", ": " + EmojiData.EMOJI_DATA_BETA.getName(mod));
+            }
+        }
+
         int single = UnicodeSet.getSingleCodePoint(source);
         if (single == Integer.MAX_VALUE) {
             return;
         }
-        boolean isModBase = emoji_Modifier_Base.contains(source);
-        if (isModBase) {
-            for (String mod : EmojiData.MODIFIERS) {
-                addCombo(source, source + mod, "", ": " + EmojiData.EMOJI_DATA.getName(mod));
-            }
-        }
+
         boolean isGenderBase = emoji_Gender_Base.contains(source);
         if (isGenderBase) {
             for (String gen : Emoji.GENDER_MARKERS) {
                 String genSuffix = Emoji.JOINER_STR + gen + Emoji.EMOJI_VARIANT_STRING;
                 String genPrefix = gen.equals(Emoji.MALE) ? "man " : "woman ";
                 addCombo(source, source + genSuffix, genPrefix, "");
-                if (isModBase) {
+                if (hasModifierBase) {
                     for (String mod : EmojiData.MODIFIERS) {
-                        addCombo(source, source + mod + genSuffix, genPrefix, ": " + EmojiData.EMOJI_DATA.getName(mod));
+                        addCombo(source, source + mod + genSuffix, genPrefix, ": " + EmojiData.EMOJI_DATA_BETA.getName(mod));
                     }
                 }
             }
         }
-        if (isGenderBase && isModBase) {
+        if (isGenderBase && hasModifierBase) {
             addComment(source, "Combinations of gender and skin-tone produce 17 more emoji sequences.");
         } else if (isGenderBase) {
             addComment(source, "Combinations of gender and skin-tone produce 2 more emoji sequences.");
-        } else if (isModBase) {
+        } else if (hasModifierBase) {
             addComment(source, "Combinations of gender and skin-tone produce 5 more emoji sequences.");
         }
         // Comment=There will be 55 emoji sequences with combinations of gender and skin-tone
@@ -470,7 +491,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
             String cat1 = getCategory(o1);
             int catOrder1 = EmojiOrder.STD_ORDER.getGroupOrder(cat1); 
-            
+
             String cat2 = getCategory(o2);
             int catOrder2 = EmojiOrder.STD_ORDER.getGroupOrder(cat2);
             if (catOrder1 != catOrder2) {
@@ -785,7 +806,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                 break main;
             }
             if (source.contains(EmojiData.ZWJ_HANDSHAKE_ZWJ)) {
-                temp = EmojiData.EMOJI_DATA.getFallbackName(source);
+                temp = EmojiData.EMOJI_DATA_BETA.getFallbackName(source);
                 break main;
             }
             switch(CountEmoji.Category.getBucket(source)) {
@@ -964,5 +985,17 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     @Override
     public String getVersionString() {
         return "candidates:" + DateFormat.getInstanceForSkeleton("yyyyMMdd", ULocale.ROOT).format(date);
+    }
+
+    /** We don't expect to have any more of these */
+    @Override
+    public UnicodeSet getExplicitGender() {
+        return UnicodeSet.EMPTY;
+    }
+
+    /** We don't expect to have any more of these */
+    @Override
+    public UnicodeSet getMultiPersonGroupings() {
+        return UnicodeSet.EMPTY;
     }
 }

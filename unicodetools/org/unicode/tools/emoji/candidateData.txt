@@ -443,104 +443,107 @@ Proposal=L2/17-082, L2/17-011, L2/16-147, L2/16130, L2/16-008, L2/14-173
 After=👱
 U+1F468 U+200D U+1F9B0 
 Name=man, red haired
-U+1F468 U+1F3FB U+200D U+1F9B0 
-Name=man, red haired: light skin tone
-U+1F468 U+1F3FC U+200D U+1F9B0 
-Name=man, red haired: medium-light skin tone
-U+1F468 U+1F3FD U+200D U+1F9B0 
-Name=man, red haired: medium skin tone
-U+1F468 U+1F3FE U+200D U+1F9B0 
-Name=man, red haired: medium-dark skin tone
-U+1F468 U+1F3FF U+200D U+1F9B0 
-Name=man, red haired: dark skin tone
-U+1F469 U+200D U+1F9B0 
+# U+1F468 U+1F3FB U+200D U+1F9B0 
+# Name=man, red haired: light skin tone
+# U+1F468 U+1F3FC U+200D U+1F9B0 
+# Name=man, red haired: medium-light skin tone
+# U+1F468 U+1F3FD U+200D U+1F9B0 
+# Name=man, red haired: medium skin tone
+# U+1F468 U+1F3FE U+200D U+1F9B0 
+# Name=man, red haired: medium-dark skin tone
+# U+1F468 U+1F3FF U+200D U+1F9B0 
+# Name=man, red haired: dark skin tone
 
+U+1F469 U+200D U+1F9B0 
 Name=woman, red haired
-U+1F469 U+1F3FB U+200D U+1F9B0 
-Name=woman, red haired: light skin tone
-U+1F469 U+1F3FC U+200D U+1F9B0 
-Name=woman, red haired: medium-light skin tone
-U+1F469 U+1F3FD U+200D U+1F9B0 
-Name=woman, red haired: medium skin tone
-U+1F469 U+1F3FE U+200D U+1F9B0 
-Name=woman, red haired: medium-dark skin tone
-U+1F469 U+1F3FF U+200D U+1F9B0 
-Name=woman, red haired: dark skin tone
+# U+1F469 U+1F3FB U+200D U+1F9B0 
+# Name=woman, red haired: light skin tone
+# U+1F469 U+1F3FC U+200D U+1F9B0 
+# Name=woman, red haired: medium-light skin tone
+# U+1F469 U+1F3FD U+200D U+1F9B0 
+# Name=woman, red haired: medium skin tone
+# U+1F469 U+1F3FE U+200D U+1F9B0 
+# Name=woman, red haired: medium-dark skin tone
+# U+1F469 U+1F3FF U+200D U+1F9B0 
+# Name=woman, red haired: dark skin tone
 
 U+1F468 U+200D U+1F9B1 
 Name=man, curly haired
-U+1F468 U+1F3FB U+200D U+1F9B1 
-Name=man, curly haired: light skin tone
-U+1F468 U+1F3FC U+200D U+1F9B1 
-Name=man, curly haired: medium-light skin tone
-U+1F468 U+1F3FD U+200D U+1F9B1 
-Name=man, curly haired: medium skin tone
-U+1F468 U+1F3FE U+200D U+1F9B1 
-Name=man, curly haired: medium-dark skin tone
-U+1F468 U+1F3FF U+200D U+1F9B1 
-Name=man, curly haired: dark skin tone
+# U+1F468 U+1F3FB U+200D U+1F9B1 
+# Name=man, curly haired: light skin tone
+# U+1F468 U+1F3FC U+200D U+1F9B1 
+# Name=man, curly haired: medium-light skin tone
+# U+1F468 U+1F3FD U+200D U+1F9B1 
+# Name=man, curly haired: medium skin tone
+# U+1F468 U+1F3FE U+200D U+1F9B1 
+# Name=man, curly haired: medium-dark skin tone
+# U+1F468 U+1F3FF U+200D U+1F9B1 
+# Name=man, curly haired: dark skin tone
+
 U+1F469 U+200D U+1F9B1 
 Name=woman, curly haired
-U+1F469 U+1F3FB U+200D U+1F9B1 
-Name=woman, curly haired: light skin tone
-U+1F469 U+1F3FC U+200D U+1F9B1 
-Name=woman, curly haired: medium-light skin tone
-U+1F469 U+1F3FD U+200D U+1F9B1 
-Name=woman, curly haired: medium skin tone
-U+1F469 U+1F3FE U+200D U+1F9B1 
-Name=woman, curly haired: medium-dark skin tone
-U+1F469 U+1F3FF U+200D U+1F9B1 
-Name=woman, curly haired: dark skin tone
+# U+1F469 U+1F3FB U+200D U+1F9B1 
+# Name=woman, curly haired: light skin tone
+# U+1F469 U+1F3FC U+200D U+1F9B1 
+# Name=woman, curly haired: medium-light skin tone
+# U+1F469 U+1F3FD U+200D U+1F9B1 
+# Name=woman, curly haired: medium skin tone
+# U+1F469 U+1F3FE U+200D U+1F9B1 
+# Name=woman, curly haired: medium-dark skin tone
+# U+1F469 U+1F3FF U+200D U+1F9B1 
+# Name=woman, curly haired: dark skin tone
 
 U+1F468 U+200D U+1F9B3 
 Name=man, white haired
-U+1F468 U+1F3FB U+200D U+1F9B3 
-Name=man, white haired: light skin tone
-U+1F468 U+1F3FC U+200D U+1F9B3 
-Name=man, white haired: medium-light skin tone
-U+1F468 U+1F3FD U+200D U+1F9B3 
-Name=man, white haired: medium skin tone
-U+1F468 U+1F3FE U+200D U+1F9B3 
-Name=man, white haired: medium-dark skin tone
-U+1F468 U+1F3FF U+200D U+1F9B3 
-Name=man, white haired: dark skin tone
+# U+1F468 U+1F3FB U+200D U+1F9B3 
+# Name=man, white haired: light skin tone
+# U+1F468 U+1F3FC U+200D U+1F9B3 
+# Name=man, white haired: medium-light skin tone
+# U+1F468 U+1F3FD U+200D U+1F9B3 
+# Name=man, white haired: medium skin tone
+# U+1F468 U+1F3FE U+200D U+1F9B3 
+# Name=man, white haired: medium-dark skin tone
+# U+1F468 U+1F3FF U+200D U+1F9B3 
+# Name=man, white haired: dark skin tone
+
 U+1F469 U+200D U+1F9B3 
 Name=woman, white haired
-U+1F469 U+1F3FB U+200D U+1F9B3 
-Name=woman, white haired: light skin tone
-U+1F469 U+1F3FC U+200D U+1F9B3 
-Name=woman, white haired: medium-light skin tone
-U+1F469 U+1F3FD U+200D U+1F9B3 
-Name=woman, white haired: medium skin tone
-U+1F469 U+1F3FE U+200D U+1F9B3 
-Name=woman, white haired: medium-dark skin tone
-U+1F469 U+1F3FF U+200D U+1F9B3 
-Name=woman, white haired: dark skin tone
+# U+1F469 U+1F3FB U+200D U+1F9B3 
+# Name=woman, white haired: light skin tone
+# U+1F469 U+1F3FC U+200D U+1F9B3 
+# Name=woman, white haired: medium-light skin tone
+# U+1F469 U+1F3FD U+200D U+1F9B3 
+# Name=woman, white haired: medium skin tone
+# U+1F469 U+1F3FE U+200D U+1F9B3 
+# Name=woman, white haired: medium-dark skin tone
+# U+1F469 U+1F3FF U+200D U+1F9B3 
+# Name=woman, white haired: dark skin tone
 
 U+1F468 U+200D U+1F9B2 
 Name=man, bald
-U+1F468 U+1F3FB U+200D U+1F9B2 
-Name=man, bald: light skin tone
-U+1F468 U+1F3FC U+200D U+1F9B2 
-Name=man, bald: medium-light skin tone
-U+1F468 U+1F3FD U+200D U+1F9B2 
-Name=man, bald: medium skin tone
-U+1F468 U+1F3FE U+200D U+1F9B2 
-Name=man, bald: medium-dark skin tone
-U+1F468 U+1F3FF U+200D U+1F9B2 
-Name=man, bald: dark skin tone
+# U+1F468 U+1F3FB U+200D U+1F9B2 
+# Name=man, bald: light skin tone
+# U+1F468 U+1F3FC U+200D U+1F9B2 
+# Name=man, bald: medium-light skin tone
+# U+1F468 U+1F3FD U+200D U+1F9B2 
+# Name=man, bald: medium skin tone
+# U+1F468 U+1F3FE U+200D U+1F9B2 
+# Name=man, bald: medium-dark skin tone
+# U+1F468 U+1F3FF U+200D U+1F9B2 
+# Name=man, bald: dark skin tone
+
 U+1F469 U+200D U+1F9B2 
 Name=woman, bald
-U+1F469 U+1F3FB U+200D U+1F9B2 
-Name=woman, bald: light skin tone
-U+1F469 U+1F3FC U+200D U+1F9B2 
-Name=woman, bald: medium-light skin tone
-U+1F469 U+1F3FD U+200D U+1F9B2 
-Name=woman, bald: medium skin tone
-U+1F469 U+1F3FE U+200D U+1F9B2 
-Name=woman, bald: medium-dark skin tone
-U+1F469 U+1F3FF U+200D U+1F9B2 
-Name=woman, bald: dark skin tone
+# U+1F469 U+1F3FB U+200D U+1F9B2 
+# Name=woman, bald: light skin tone
+# U+1F469 U+1F3FC U+200D U+1F9B2 
+# Name=woman, bald: medium-light skin tone
+# U+1F469 U+1F3FD U+200D U+1F9B2 
+# Name=woman, bald: medium skin tone
+# U+1F469 U+1F3FE U+200D U+1F9B2 
+# Name=woman, bald: medium-dark skin tone
+# U+1F469 U+1F3FF U+200D U+1F9B2 
+# Name=woman, bald: dark skin tone
 
 Proposal=L2/18-018
 After= ♣

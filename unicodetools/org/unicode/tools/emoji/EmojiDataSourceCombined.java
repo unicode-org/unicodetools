@@ -140,6 +140,18 @@ public class EmojiDataSourceCombined implements EmojiDataSource {
     public String getVersionString() {
         return emojiData.getVersion() + " + " + candidates.getVersionString();
     }
+
+    @Override
+    public UnicodeSet getExplicitGender() {
+        return add(emojiData.getExplicitGender(),
+                candidates.getExplicitGender());
+    }
+
+    @Override
+    public UnicodeSet getMultiPersonGroupings() {
+        return add(emojiData.getMultiPersonGroupings(),
+                candidates.getMultiPersonGroupings());
+    }
     
 //    public static void main(String[] args) {
 //        UnicodeSet allChars = EMOJI_DATA.getAllEmojiWithDefectives();
