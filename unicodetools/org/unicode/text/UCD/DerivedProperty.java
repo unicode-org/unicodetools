@@ -688,10 +688,18 @@ of characters, the first of which has a non-zero combining class.
                 shortName = "DI";
             }
 
-            // Prepended_Concatenation_Mark characters
-            UnicodeMap<Binary> pcm = iupCurrent.loadEnum(UcdProperty.Prepended_Concatenation_Mark, Binary.class);
             
-            final UnicodeSet removals = new UnicodeSet(pcm.getSet(Binary.Yes)).freeze();
+            UnicodeSet removals;
+            {
+                // Prepended_Concatenation_Mark characters
+                try {
+		    UnicodeMap<Binary> pcm = iupCurrent.loadEnum(UcdProperty.Prepended_Concatenation_Mark, Binary.class);
+		    removals = new UnicodeSet(pcm.getSet(Binary.Yes)).freeze();
+		} catch (Exception e) {
+		    removals = UnicodeSet.EMPTY;
+		}
+            }
+
 
             /**
                 (See MakeUnicodeFiles.txt)

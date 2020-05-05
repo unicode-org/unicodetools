@@ -3,7 +3,6 @@ package org.unicode.text.tools;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -17,10 +16,8 @@ import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.text.utility.Settings;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.ImmutableBiMap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
-import com.google.common.collect.TreeMultiset;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.Pair;
 

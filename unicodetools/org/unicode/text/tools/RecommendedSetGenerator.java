@@ -2,8 +2,8 @@ package org.unicode.text.tools;
 
 import java.util.Set;
 
-import org.unicode.text.UCD.IdentifierInfo.IdentifierStatus;
-import org.unicode.text.UCD.IdentifierInfo.IdentifierType;
+import org.unicode.text.UCD.IdentifierInfo.Identifier_Status;
+import org.unicode.text.UCD.IdentifierInfo.Identifier_Type;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
@@ -19,7 +19,7 @@ public class RecommendedSetGenerator {
   /**
    * Update the directory to use for generating the data:
    */
-  private static final String DIRECTORY = "data/security/11.0.0";
+  private static final String DIRECTORY = "data/security/13.0.0";
 
   public static void main(String[] args) {
     Sets sets = generateSet();
@@ -89,10 +89,10 @@ public class RecommendedSetGenerator {
     // Compute sets based on status
     UnicodeSet allowedS = new UnicodeSet();
     UnicodeSet restrictedS = new UnicodeSet();
-    UnicodeMap<IdentifierStatus> statuses = inst.getStatus();
+    UnicodeMap<Identifier_Status> statuses = inst.getStatus();
     for (String range : statuses) {
-      IdentifierStatus status = statuses.get(range);
-      if (status == IdentifierStatus.allowed) {
+      Identifier_Status status = statuses.get(range);
+      if (status == Identifier_Status.allowed) {
         allowedS.add(range);
       } else {
         restrictedS.add(range);
@@ -105,12 +105,12 @@ public class RecommendedSetGenerator {
     UnicodeSet recommendedT = new UnicodeSet();
     UnicodeSet inclusionT = new UnicodeSet();
     UnicodeSet restrictedT = new UnicodeSet();
-    UnicodeMap<Set<IdentifierType>> typeses = inst.getType();
+    UnicodeMap<Set<Identifier_Type>> typeses = inst.getType();
     for (String range : typeses) {
-      Set<IdentifierType> types = typeses.get(range);
-      if (types.contains(IdentifierType.inclusion)) {
+      Set<Identifier_Type> types = typeses.get(range);
+      if (types.contains(Identifier_Type.inclusion)) {
         inclusionT.add(range);
-      } else if (types.contains(IdentifierType.recommended)) {
+      } else if (types.contains(Identifier_Type.recommended)) {
         recommendedT.add(range);
       } else {
         restrictedT.add(range);

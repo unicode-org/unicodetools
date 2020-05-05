@@ -1,30 +1,36 @@
 package org.unicode.text.utility;
 
+import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.CldrUtility;
 
 public class Settings {
     
     public static final boolean BUILD_FOR_COMPARE = org.unicode.cldr.util.CldrUtility.getProperty("BUILD_FOR_COMPARE", "false").startsWith("t");
+        
+    public static final String SVN_WORKSPACE_DIRECTORY = Utility.fixFileName(
+    		CldrUtility.getProperty("SVN_WORKSPACE", CLDRPaths.SVN_DIRECTORY)) + "/";
+    public static final String OTHER_WORKSPACE_DIRECTORY = Utility.fixFileName(
+            CldrUtility.getProperty("OTHER_WORKSPACE", CLDRPaths.LOCAL_DIRECTORY)) + "/";
 
     public static final String BASE_DIRECTORY = Utility.fixFileName(
-    		CldrUtility.getProperty("BASE_DIRECTORY", "/Users/markdavis")) + "/";
-    public static final String SVN_WORKSPACE_DIRECTORY = Utility.fixFileName(
-    		CldrUtility.getProperty("SVN_WORKSPACE", Settings.BASE_DIRECTORY + "Documents/workspace")) + "/";
-    public static final String OTHER_WORKSPACE_DIRECTORY = Utility.fixFileName(
-            CldrUtility.getProperty("OTHER_WORKSPACE", Settings.BASE_DIRECTORY + "Google Drive/workspace")) + "/";
+		CldrUtility.getProperty("BASE_DIRECTORY", CLDRPaths.SVN_DIRECTORY + "../")) + "/";
 
     /**
      * Used for the default version.
      */
-    public static final String latestVersion = "12.0.0";
-    public static final String lastVersion = "11.0.0"; // last released version
+    public static final String latestVersion = "13.0.0";
+    public static final String lastVersion = "12.1.0"; // last released version
 
     public static final boolean SKIP_COPYRIGHT = "skip".equalsIgnoreCase(CldrUtility.getProperty("copyright", "skip"));
 
-    public static final String UNICODETOOLS_DIRECTORY = SVN_WORKSPACE_DIRECTORY + "unicodetools/";
+    public static final String UNICODETOOLS_DIRECTORY =
+            CldrUtility.getProperty("UNICODETOOLS_DIR",
+                    SVN_WORKSPACE_DIRECTORY + "unicodetools/unicodetools") + '/';
     public static final String UNICODEJSPS_DIRECTORY = SVN_WORKSPACE_DIRECTORY + "UnicodeJsps/";
-    public static final String UNICODE_DRAFT_DIRECTORY = SVN_WORKSPACE_DIRECTORY + "unicode-draft/";
-    public static final String UNICODE_DRAFT_PUBLIC = SVN_WORKSPACE_DIRECTORY + "unicode-draft/Public/";
+    public static final String UNICODE_DRAFT_DIRECTORY =
+            CldrUtility.getProperty("UNICODE_DRAFT_DIR",
+                    SVN_WORKSPACE_DIRECTORY + "unicode-draft") + '/';
+    public static final String UNICODE_DRAFT_PUBLIC = UNICODE_DRAFT_DIRECTORY + "Public/";
 
     public static final String DATA_DIR = Utility.fixFileName(CldrUtility.getProperty("UCD_DIR", UNICODETOOLS_DIRECTORY + "data/")) + "/";
     public static final String UCD_DIR = DATA_DIR + "ucd/";

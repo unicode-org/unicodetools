@@ -14,7 +14,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.xerces.impl.dv.util.Base64;
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.tools.emoji.Emoji.Source;
 import org.unicode.tools.emoji.GenerateEmoji.Style;
 import org.unicode.tools.emoji.GenerateEmoji.Visibility;
@@ -117,13 +116,13 @@ public class EmojiImageData {
     }
 
     public static void write(Set<Source> platforms2) throws IOException {
-        try (PrintWriter outText = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "missing-emoji-list.txt")) {
+        try (PrintWriter outText = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "missing-emoji-list.tsv")) {
             showText(outText, 100);
         }
 
         final String outFileName = "missing-emoji-list.html";
         try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, outFileName)) {
-            GenerateEmoji.writeHeader(outFileName, out, "Missing", null, false, "<p>Missing list of emoji characters.</p>\n", Emoji.DATA_DIR_PRODUCTION, Emoji.TR51_HTML);
+            ChartUtilities.writeHeader(outFileName, out, "Missing", null, false, "<p>Missing list of emoji characters.</p>\n", Emoji.DATA_DIR_PRODUCTION, Emoji.TR51_HTML);
             out.println("<table " + "border='1'" + ">");
             String headerRow = "<tr><th>Type</th>";
             for (Emoji.Source type : platforms2) {
@@ -136,7 +135,7 @@ public class EmojiImageData {
             }
 
             out.println("</table>");
-            GenerateEmoji.writeFooter(out);
+            ChartUtilities.writeFooter(out);
         } catch (java.lang.IllegalArgumentException e) {
             e.printStackTrace();
         }
@@ -156,8 +155,8 @@ public class EmojiImageData {
             }
         }
         // per source
-        String sectionLink = GenerateEmoji.getDoubleLink(breakdown.title);
-        final GenerateEmojiData.PropPrinter propPrinter = new GenerateEmojiData.PropPrinter().set(GenerateEmoji.EXTRA_NAMES);
+        String sectionLink = ChartUtilities.getDoubleLink(breakdown.title);
+        final GenerateEmojiData.PropPrinter propPrinter = new GenerateEmojiData.PropPrinter().set(EmojiDataSourceCombined.EMOJI_DATA);
         String title = breakdown.title;
 
         if (!skipSeparate) {
@@ -202,7 +201,7 @@ public class EmojiImageData {
         static void add(List<Breakdown> result, String title, VersionInfo version, UnicodeSet v3, UnicodeSet v4) {
             final UnicodeSet old = new UnicodeSet(v3).retainAll(v4).freeze();
             title += "\tv" + version.getVersionString(2, 2);
-            if (version.equals(Emoji.VERSION_LAST_RELEASED)) {
+            if (version.equals(Emoji.VERSION_TO_GENERATE_PREVIOUS)) {
                 result.add(new Breakdown(title, old));
             } else {
                 result.add(new Breakdown(title, new UnicodeSet(v4).removeAll(old).freeze()));
@@ -218,11 +217,11 @@ public class EmojiImageData {
     }
 
     private static List<Breakdown> getBreakdown() {
-        EmojiData last = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
-        EmojiData current = EmojiData.of(Emoji.VERSION_BETA);
+        EmojiData last = EmojiData.of(Emoji.VERSION_TO_GENERATE_PREVIOUS);
+        EmojiData current = EmojiData.of(Emoji.VERSION_TO_GENERATE);
 
         List<Breakdown> result = new ArrayList<>();
-        for (VersionInfo version : Arrays.asList(Emoji.VERSION_LAST_RELEASED, Emoji.VERSION_BETA)) {
+        for (VersionInfo version : Arrays.asList(last.getVersion(), current.getVersion())) {
             Breakdown.add(result, "singletons", version, last.getSingletonsWithoutDefectives(), current.getSingletonsWithoutDefectives());
             Breakdown.add(result, "keycaps", version, last.getKeycapSequences(), current.getKeycapSequences());
             Breakdown.add(result, "flags", version, last.getFlagSequences(), current.getFlagSequences());
@@ -241,15 +240,26 @@ public class EmojiImageData {
     }
 
     private static void showText(PrintWriter out, int MAX) {
-        for (Source source : Source.values()) {
+        EmojiData current = EmojiData.of(Emoji.VERSION_TO_GENERATE);
+
+        out.println("TOTALS\n");
+        for (Source source : Source.VENDOR_SOURCES) {
+            final UnicodeSet supported = getSupported(source);
+            UnicodeSet missing = new UnicodeSet(current.getAllEmojiWithoutDefectives()).removeAll(supported);
+            getCounts(out, source, "missing\tv" + current.getVersionString(), missing, MAX);
+            // getCounts(PrintWriter out, Source source, String title, UnicodeSet missing, int MAX) {
+        }
+        out.println();
+        Output<Boolean> printed = new Output<>(false);
+        out.println("DETAILS\n");
+        for (Source source : Source.VENDOR_SOURCES) {
             final UnicodeSet supported = getSupported(source);
             //System.out.println(source + "\t" + supported.size() + "\t" + max(supported.toPattern(false), MAX));
-            if (supported.isEmpty() || !Source.VENDOR_SOURCES.contains(source)) {
+            if (supported.isEmpty()) {
                 continue;
             }
-            EmojiData last = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
             UnicodeSet missing = new UnicodeSet(supported);
-            Output<Boolean> printed = new Output<>(false);
+            printed.value = false;
             List<Breakdown> breakdowns = getBreakdown();
             for (Breakdown breakdown : breakdowns) {
                 UnicodeSet foundItems = getCounts(out, source, breakdown, MAX, printed);
@@ -303,17 +313,21 @@ public class EmojiImageData {
         String title = breakdown.title;
         UnicodeSet lastMissingSingletons = breakdown.getMissing(source); // new UnicodeSet(breakdown.uset).removeAll(getSupported(source));
         if (!lastMissingSingletons.isEmpty()) {
-            out.println(source + "\t"
-                    + title
-                    + "\t" + lastMissingSingletons.size()
-                    + "\t" + (MAX == -1 ? "hex\t" + PRETTY_HEX.format(lastMissingSingletons) 
-                    : MAX == -2 ? "file\t" + formatFiles(source, lastMissingSingletons)
-                    : "plain\t" + max(PRETTY_PLAIN.format(lastMissingSingletons), MAX)
-                            )
-                    );
+            getCounts(out, source, title, lastMissingSingletons, MAX);
             printed.value = true;
         }
         return breakdown.getSupported(source); // new UnicodeSet(breakdown.uset).retainAll(getSupported(source)).freeze();
+    }
+
+    private static void getCounts(PrintWriter out, Source source, String title, UnicodeSet missing, int MAX) {
+        out.println(source + "\t"
+                + title
+                + "\t" + missing.size()
+                + "\t" + (MAX == -1 ? "hex\t" + PRETTY_HEX.format(missing) 
+                : MAX == -2 ? "file\t" + formatFiles(source, missing)
+                : "plain\t" + max(PRETTY_PLAIN.format(missing), MAX)
+                        )
+                );
     }
 
     private static String formatFiles(Source type, UnicodeSet lastMissingSingletons) {

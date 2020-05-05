@@ -1571,6 +1571,29 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 10F4E         ;  ; Exclusion #      (𐽎)  SOGDIAN COMBINING LONG HOOK BELOW
 10F4F         ;  ; Exclusion #      (𐽏)  SOGDIAN COMBINING RESH BELOW
 10F50         ;  ; Exclusion #      (𐽐)  SOGDIAN COMBINING STROKE BELOW
+10FE0         ;  ; Exclusion #      (𐿠)  ELYMAIC LETTER ALEPH
+10FE1         ;  ; Exclusion #      (𐿡)  ELYMAIC LETTER BETH
+10FE2         ;  ; Exclusion #      (𐿢)  ELYMAIC LETTER GIMEL
+10FE3         ;  ; Exclusion #      (𐿣)  ELYMAIC LETTER DALETH
+10FE4         ;  ; Exclusion #      (𐿤)  ELYMAIC LETTER HE
+10FE5         ;  ; Exclusion #      (𐿥)  ELYMAIC LETTER WAW
+10FE6         ;  ; Exclusion #      (𐿦)  ELYMAIC LETTER ZAYIN
+10FE7         ;  ; Exclusion #      (𐿧)  ELYMAIC LETTER HETH
+10FE8         ;  ; Exclusion #      (𐿨)  ELYMAIC LETTER TETH
+10FE9         ;  ; Exclusion #      (𐿩)  ELYMAIC LETTER YODH
+10FEA         ;  ; Exclusion #      (𐿪)  ELYMAIC LETTER KAPH
+10FEB         ;  ; Exclusion #      (𐿫)  ELYMAIC LETTER LAMEDH
+10FEC         ;  ; Exclusion #      (𐿬)  ELYMAIC LETTER MEM
+10FED         ;  ; Exclusion #      (𐿭)  ELYMAIC LETTER NUN
+10FEE         ;  ; Exclusion #      (𐿮)  ELYMAIC LETTER SAMEKH
+10FEF         ;  ; Exclusion #      (𐿯)  ELYMAIC LETTER AYIN
+10FF0         ;  ; Exclusion #      (𐿰)  ELYMAIC LETTER PE
+10FF1         ;  ; Exclusion #      (𐿱)  ELYMAIC LETTER SADHE
+10FF2         ;  ; Exclusion #      (𐿲)  ELYMAIC LETTER QOPH
+10FF3         ;  ; Exclusion #      (𐿳)  ELYMAIC LETTER RESH
+10FF4         ;  ; Exclusion #      (𐿴)  ELYMAIC LETTER SHIN
+10FF5         ;  ; Exclusion #      (𐿵)  ELYMAIC LETTER TAW
+10FF6         ;  ; Exclusion #      (𐿶)  ELYMAIC LIGATURE ZAYIN-YODH
 11000         ;  ; Exclusion #      (𑀀)  BRAHMI SIGN CANDRABINDU
 11001         ;  ; Exclusion #      (𑀁)  BRAHMI SIGN ANUSVARA
 11002         ;  ; Exclusion #      (𑀂)  BRAHMI SIGN VISARGA
@@ -2398,6 +2421,7 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 116B5         ;  ; Exclusion #      (𑚵)  TAKRI VOWEL SIGN AU
 116B6         ;  ; Exclusion #      (𑚶)  TAKRI SIGN VIRAMA
 116B7         ;  ; Exclusion #      (𑚷)  TAKRI SIGN NUKTA
+116B8         ;  ; Exclusion #      (𑚸)  TAKRI LETTER ARCHAIC KHA
 116C0         ;  ; Exclusion #      (𑛀)  TAKRI DIGIT ZERO
 116C1         ;  ; Exclusion #      (𑛁)  TAKRI DIGIT ONE
 116C2         ;  ; Exclusion #      (𑛂)  TAKRI DIGIT TWO
@@ -2563,6 +2587,70 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 118E8         ;  ; Exclusion #      (𑣨)  WARANG CITI DIGIT EIGHT
 118E9         ;  ; Exclusion #      (𑣩)  WARANG CITI DIGIT NINE
 118FF         ;  ; Exclusion #      (𑣿)  WARANG CITI OM
+119A0         ;  ; Exclusion #      (𑦠)  NANDINAGARI LETTER A
+119A1         ;  ; Exclusion #      (𑦡)  NANDINAGARI LETTER AA
+119A2         ;  ; Exclusion #      (𑦢)  NANDINAGARI LETTER I
+119A3         ;  ; Exclusion #      (𑦣)  NANDINAGARI LETTER II
+119A4         ;  ; Exclusion #      (𑦤)  NANDINAGARI LETTER U
+119A5         ;  ; Exclusion #      (𑦥)  NANDINAGARI LETTER UU
+119A6         ;  ; Exclusion #      (𑦦)  NANDINAGARI LETTER VOCALIC R
+119A7         ;  ; Exclusion #      (𑦧)  NANDINAGARI LETTER VOCALIC RR
+119AA         ;  ; Exclusion #      (𑦪)  NANDINAGARI LETTER E
+119AB         ;  ; Exclusion #      (𑦫)  NANDINAGARI LETTER AI
+119AC         ;  ; Exclusion #      (𑦬)  NANDINAGARI LETTER O
+119AD         ;  ; Exclusion #      (𑦭)  NANDINAGARI LETTER AU
+119AE         ;  ; Exclusion #      (𑦮)  NANDINAGARI LETTER KA
+119AF         ;  ; Exclusion #      (𑦯)  NANDINAGARI LETTER KHA
+119B0         ;  ; Exclusion #      (𑦰)  NANDINAGARI LETTER GA
+119B1         ;  ; Exclusion #      (𑦱)  NANDINAGARI LETTER GHA
+119B2         ;  ; Exclusion #      (𑦲)  NANDINAGARI LETTER NGA
+119B3         ;  ; Exclusion #      (𑦳)  NANDINAGARI LETTER CA
+119B4         ;  ; Exclusion #      (𑦴)  NANDINAGARI LETTER CHA
+119B5         ;  ; Exclusion #      (𑦵)  NANDINAGARI LETTER JA
+119B6         ;  ; Exclusion #      (𑦶)  NANDINAGARI LETTER JHA
+119B7         ;  ; Exclusion #      (𑦷)  NANDINAGARI LETTER NYA
+119B8         ;  ; Exclusion #      (𑦸)  NANDINAGARI LETTER TTA
+119B9         ;  ; Exclusion #      (𑦹)  NANDINAGARI LETTER TTHA
+119BA         ;  ; Exclusion #      (𑦺)  NANDINAGARI LETTER DDA
+119BB         ;  ; Exclusion #      (𑦻)  NANDINAGARI LETTER DDHA
+119BC         ;  ; Exclusion #      (𑦼)  NANDINAGARI LETTER NNA
+119BD         ;  ; Exclusion #      (𑦽)  NANDINAGARI LETTER TA
+119BE         ;  ; Exclusion #      (𑦾)  NANDINAGARI LETTER THA
+119BF         ;  ; Exclusion #      (𑦿)  NANDINAGARI LETTER DA
+119C0         ;  ; Exclusion #      (𑧀)  NANDINAGARI LETTER DHA
+119C1         ;  ; Exclusion #      (𑧁)  NANDINAGARI LETTER NA
+119C2         ;  ; Exclusion #      (𑧂)  NANDINAGARI LETTER PA
+119C3         ;  ; Exclusion #      (𑧃)  NANDINAGARI LETTER PHA
+119C4         ;  ; Exclusion #      (𑧄)  NANDINAGARI LETTER BA
+119C5         ;  ; Exclusion #      (𑧅)  NANDINAGARI LETTER BHA
+119C6         ;  ; Exclusion #      (𑧆)  NANDINAGARI LETTER MA
+119C7         ;  ; Exclusion #      (𑧇)  NANDINAGARI LETTER YA
+119C8         ;  ; Exclusion #      (𑧈)  NANDINAGARI LETTER RA
+119C9         ;  ; Exclusion #      (𑧉)  NANDINAGARI LETTER LA
+119CA         ;  ; Exclusion #      (𑧊)  NANDINAGARI LETTER VA
+119CB         ;  ; Exclusion #      (𑧋)  NANDINAGARI LETTER SHA
+119CC         ;  ; Exclusion #      (𑧌)  NANDINAGARI LETTER SSA
+119CD         ;  ; Exclusion #      (𑧍)  NANDINAGARI LETTER SA
+119CE         ;  ; Exclusion #      (𑧎)  NANDINAGARI LETTER HA
+119CF         ;  ; Exclusion #      (𑧏)  NANDINAGARI LETTER LLA
+119D0         ;  ; Exclusion #      (𑧐)  NANDINAGARI LETTER RRA
+119D1         ;  ; Exclusion #      (𑧑)  NANDINAGARI VOWEL SIGN AA
+119D2         ;  ; Exclusion #      (𑧒)  NANDINAGARI VOWEL SIGN I
+119D3         ;  ; Exclusion #      (𑧓)  NANDINAGARI VOWEL SIGN II
+119D4         ;  ; Exclusion #      (𑧔)  NANDINAGARI VOWEL SIGN U
+119D5         ;  ; Exclusion #      (𑧕)  NANDINAGARI VOWEL SIGN UU
+119D6         ;  ; Exclusion #      (𑧖)  NANDINAGARI VOWEL SIGN VOCALIC R
+119D7         ;  ; Exclusion #      (𑧗)  NANDINAGARI VOWEL SIGN VOCALIC RR
+119DA         ;  ; Exclusion #      (𑧚)  NANDINAGARI VOWEL SIGN E
+119DB         ;  ; Exclusion #      (𑧛)  NANDINAGARI VOWEL SIGN AI
+119DC         ;  ; Exclusion #      (𑧜)  NANDINAGARI VOWEL SIGN O
+119DD         ;  ; Exclusion #      (𑧝)  NANDINAGARI VOWEL SIGN AU
+119DE         ;  ; Exclusion #      (𑧞)  NANDINAGARI SIGN ANUSVARA
+119DF         ;  ; Exclusion #      (𑧟)  NANDINAGARI SIGN VISARGA
+119E0         ;  ; Exclusion #      (𑧠)  NANDINAGARI SIGN VIRAMA
+119E1         ;  ; Exclusion #      (𑧡)  NANDINAGARI SIGN AVAGRAHA
+119E3         ;  ; Exclusion #      (𑧣)  NANDINAGARI HEADSTROKE
+119E4         ;  ; Exclusion #      (𑧤)  NANDINAGARI VOWEL SIGN PRISHTHAMATRA E
 11A00         ;  ; Exclusion #      (𑨀)  ZANABAZAR SQUARE LETTER A
 11A01         ;  ; Exclusion #      (𑨁)  ZANABAZAR SQUARE VOWEL SIGN I
 11A02         ;  ; Exclusion #      (𑨂)  ZANABAZAR SQUARE VOWEL SIGN UE
@@ -2679,6 +2767,8 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 11A81         ;  ; Exclusion #      (𑪁)  SOYOMBO LETTER SA
 11A82         ;  ; Exclusion #      (𑪂)  SOYOMBO LETTER HA
 11A83         ;  ; Exclusion #      (𑪃)  SOYOMBO LETTER KSSA
+11A84         ;  ; Exclusion #      (𑪄)  SOYOMBO SIGN JIHVAMULIYA
+11A85         ;  ; Exclusion #      (𑪅)  SOYOMBO SIGN UPADHMANIYA
 11A86         ;  ; Exclusion #      (𑪆)  SOYOMBO CLUSTER-INITIAL LETTER RA
 11A87         ;  ; Exclusion #      (𑪇)  SOYOMBO CLUSTER-INITIAL LETTER LA
 11A88         ;  ; Exclusion #      (𑪈)  SOYOMBO CLUSTER-INITIAL LETTER SHA
@@ -6062,6 +6152,7 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 16B8D         ;  ; Exclusion #      (𖮍)  PAHAWH HMONG CLAN SIGN TSWB
 16B8E         ;  ; Exclusion #      (𖮎)  PAHAWH HMONG CLAN SIGN KWM
 16B8F         ;  ; Exclusion #      (𖮏)  PAHAWH HMONG CLAN SIGN VWJ
+16E40..16E5F  ;  ; Exclusion # [32] (𖹀..𖹟)  MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN CAPITAL LETTER Y
 16E60         ;  ; Exclusion #      (𖹠)  MEDEFAIDRIN SMALL LETTER M
 16E61         ;  ; Exclusion #      (𖹡)  MEDEFAIDRIN SMALL LETTER S
 16E62         ;  ; Exclusion #      (𖹢)  MEDEFAIDRIN SMALL LETTER V
@@ -12226,6 +12317,12 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 187EF         ;  ; Exclusion #      (𘟯)  TANGUT IDEOGRAPH-187EF
 187F0         ;  ; Exclusion #      (𘟰)  TANGUT IDEOGRAPH-187F0
 187F1         ;  ; Exclusion #      (𘟱)  TANGUT IDEOGRAPH-187F1
+187F2         ;  ; Exclusion #      (𘟲)  TANGUT IDEOGRAPH-187F2
+187F3         ;  ; Exclusion #      (𘟳)  TANGUT IDEOGRAPH-187F3
+187F4         ;  ; Exclusion #      (𘟴)  TANGUT IDEOGRAPH-187F4
+187F5         ;  ; Exclusion #      (𘟵)  TANGUT IDEOGRAPH-187F5
+187F6         ;  ; Exclusion #      (𘟶)  TANGUT IDEOGRAPH-187F6
+187F7         ;  ; Exclusion #      (𘟷)  TANGUT IDEOGRAPH-187F7
 18800         ;  ; Exclusion #      (𘠀)  TANGUT COMPONENT-001
 18801         ;  ; Exclusion #      (𘠁)  TANGUT COMPONENT-002
 18802         ;  ; Exclusion #      (𘠂)  TANGUT COMPONENT-003
@@ -13863,7 +13960,7 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 1E8D5         ;  ; Exclusion #      (𞣕)  MENDE KIKAKUI COMBINING NUMBER HUNDRED THOUSANDS
 1E8D6         ;  ; Exclusion #      (𞣖)  MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 14666
+# Total code points: 14794
 
 0710..073F    ;  ; Limited_Use # [48] (ܐ..ܿ)  SYRIAC LETTER ALAPH..SYRIAC RWAHA
 074D..074F    ;  ; Limited_Use #  [3] (ݍ..ݏ)  SYRIAC LETTER SOGDIAN ZHAIN..SYRIAC LETTER SOGDIAN FE
@@ -15843,6 +15940,7 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 11458         ;  ; Limited_Use #      (𑑘)  NEWA DIGIT EIGHT
 11459         ;  ; Limited_Use #      (𑑙)  NEWA DIGIT NINE
 1145E         ;  ; Limited_Use #      (𑑞)  NEWA SANDHI MARK
+1145F         ;  ; Limited_Use #      (𑑟)  NEWA LETTER VEDIC ANUSVARA
 11D60         ;  ; Limited_Use #      (𑵠)  GUNJALA GONDI LETTER A
 11D61         ;  ; Limited_Use #      (𑵡)  GUNJALA GONDI LETTER AA
 11D62         ;  ; Limited_Use #      (𑵢)  GUNJALA GONDI LETTER I
@@ -16544,6 +16642,13 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 16F42         ;  ; Limited_Use #      (𖽂)  MIAO LETTER WA
 16F43         ;  ; Limited_Use #      (𖽃)  MIAO LETTER AH
 16F44         ;  ; Limited_Use #      (𖽄)  MIAO LETTER HHA
+16F45         ;  ; Limited_Use #      (𖽅)  MIAO LETTER BRI
+16F46         ;  ; Limited_Use #      (𖽆)  MIAO LETTER SYI
+16F47         ;  ; Limited_Use #      (𖽇)  MIAO LETTER DZYI
+16F48         ;  ; Limited_Use #      (𖽈)  MIAO LETTER TE
+16F49         ;  ; Limited_Use #      (𖽉)  MIAO LETTER TSE
+16F4A         ;  ; Limited_Use #      (𖽊)  MIAO LETTER RTE
+16F4F         ;  ; Limited_Use #      (𖽏)  MIAO SIGN CONSONANT MODIFIER BAR
 16F50         ;  ; Limited_Use #      (𖽐)  MIAO LETTER NASALIZATION
 16F51         ;  ; Limited_Use #      (𖽑)  MIAO SIGN ASPIRATION
 16F52         ;  ; Limited_Use #      (𖽒)  MIAO SIGN REFORMED VOICING
@@ -16591,6 +16696,15 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 16F7C         ;  ; Limited_Use #      (𖽼)  MIAO VOWEL SIGN OU
 16F7D         ;  ; Limited_Use #      (𖽽)  MIAO VOWEL SIGN N
 16F7E         ;  ; Limited_Use #      (𖽾)  MIAO VOWEL SIGN NG
+16F7F         ;  ; Limited_Use #      (𖽿)  MIAO VOWEL SIGN UOG
+16F80         ;  ; Limited_Use #      (𖾀)  MIAO VOWEL SIGN YUI
+16F81         ;  ; Limited_Use #      (𖾁)  MIAO VOWEL SIGN OG
+16F82         ;  ; Limited_Use #      (𖾂)  MIAO VOWEL SIGN OER
+16F83         ;  ; Limited_Use #      (𖾃)  MIAO VOWEL SIGN VW
+16F84         ;  ; Limited_Use #      (𖾄)  MIAO VOWEL SIGN IG
+16F85         ;  ; Limited_Use #      (𖾅)  MIAO VOWEL SIGN EA
+16F86         ;  ; Limited_Use #      (𖾆)  MIAO VOWEL SIGN IONG
+16F87         ;  ; Limited_Use #      (𖾇)  MIAO VOWEL SIGN UI
 16F8F         ;  ; Limited_Use #      (𖾏)  MIAO TONE RIGHT
 16F90         ;  ; Limited_Use #      (𖾐)  MIAO TONE TOP RIGHT
 16F91         ;  ; Limited_Use #      (𖾑)  MIAO TONE ABOVE
@@ -16608,6 +16722,134 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 16F9D         ;  ; Limited_Use #      (𖾝)  MIAO LETTER REFORMED TONE-5
 16F9E         ;  ; Limited_Use #      (𖾞)  MIAO LETTER REFORMED TONE-6
 16F9F         ;  ; Limited_Use #      (𖾟)  MIAO LETTER REFORMED TONE-8
+1E100         ;  ; Limited_Use #      (𞄀)  NYIAKENG PUACHUE HMONG LETTER MA
+1E101         ;  ; Limited_Use #      (𞄁)  NYIAKENG PUACHUE HMONG LETTER TSA
+1E102         ;  ; Limited_Use #      (𞄂)  NYIAKENG PUACHUE HMONG LETTER NTA
+1E103         ;  ; Limited_Use #      (𞄃)  NYIAKENG PUACHUE HMONG LETTER TA
+1E104         ;  ; Limited_Use #      (𞄄)  NYIAKENG PUACHUE HMONG LETTER HA
+1E105         ;  ; Limited_Use #      (𞄅)  NYIAKENG PUACHUE HMONG LETTER NA
+1E106         ;  ; Limited_Use #      (𞄆)  NYIAKENG PUACHUE HMONG LETTER XA
+1E107         ;  ; Limited_Use #      (𞄇)  NYIAKENG PUACHUE HMONG LETTER NKA
+1E108         ;  ; Limited_Use #      (𞄈)  NYIAKENG PUACHUE HMONG LETTER CA
+1E109         ;  ; Limited_Use #      (𞄉)  NYIAKENG PUACHUE HMONG LETTER LA
+1E10A         ;  ; Limited_Use #      (𞄊)  NYIAKENG PUACHUE HMONG LETTER SA
+1E10B         ;  ; Limited_Use #      (𞄋)  NYIAKENG PUACHUE HMONG LETTER ZA
+1E10C         ;  ; Limited_Use #      (𞄌)  NYIAKENG PUACHUE HMONG LETTER NCA
+1E10D         ;  ; Limited_Use #      (𞄍)  NYIAKENG PUACHUE HMONG LETTER NTSA
+1E10E         ;  ; Limited_Use #      (𞄎)  NYIAKENG PUACHUE HMONG LETTER KA
+1E10F         ;  ; Limited_Use #      (𞄏)  NYIAKENG PUACHUE HMONG LETTER DA
+1E110         ;  ; Limited_Use #      (𞄐)  NYIAKENG PUACHUE HMONG LETTER NYA
+1E111         ;  ; Limited_Use #      (𞄑)  NYIAKENG PUACHUE HMONG LETTER NRA
+1E112         ;  ; Limited_Use #      (𞄒)  NYIAKENG PUACHUE HMONG LETTER VA
+1E113         ;  ; Limited_Use #      (𞄓)  NYIAKENG PUACHUE HMONG LETTER NTXA
+1E114         ;  ; Limited_Use #      (𞄔)  NYIAKENG PUACHUE HMONG LETTER TXA
+1E115         ;  ; Limited_Use #      (𞄕)  NYIAKENG PUACHUE HMONG LETTER FA
+1E116         ;  ; Limited_Use #      (𞄖)  NYIAKENG PUACHUE HMONG LETTER RA
+1E117         ;  ; Limited_Use #      (𞄗)  NYIAKENG PUACHUE HMONG LETTER QA
+1E118         ;  ; Limited_Use #      (𞄘)  NYIAKENG PUACHUE HMONG LETTER YA
+1E119         ;  ; Limited_Use #      (𞄙)  NYIAKENG PUACHUE HMONG LETTER NQA
+1E11A         ;  ; Limited_Use #      (𞄚)  NYIAKENG PUACHUE HMONG LETTER PA
+1E11B         ;  ; Limited_Use #      (𞄛)  NYIAKENG PUACHUE HMONG LETTER XYA
+1E11C         ;  ; Limited_Use #      (𞄜)  NYIAKENG PUACHUE HMONG LETTER NPA
+1E11D         ;  ; Limited_Use #      (𞄝)  NYIAKENG PUACHUE HMONG LETTER DLA
+1E11E         ;  ; Limited_Use #      (𞄞)  NYIAKENG PUACHUE HMONG LETTER NPLA
+1E11F         ;  ; Limited_Use #      (𞄟)  NYIAKENG PUACHUE HMONG LETTER HAH
+1E120         ;  ; Limited_Use #      (𞄠)  NYIAKENG PUACHUE HMONG LETTER MLA
+1E121         ;  ; Limited_Use #      (𞄡)  NYIAKENG PUACHUE HMONG LETTER PLA
+1E122         ;  ; Limited_Use #      (𞄢)  NYIAKENG PUACHUE HMONG LETTER GA
+1E123         ;  ; Limited_Use #      (𞄣)  NYIAKENG PUACHUE HMONG LETTER RRA
+1E124         ;  ; Limited_Use #      (𞄤)  NYIAKENG PUACHUE HMONG LETTER A
+1E125         ;  ; Limited_Use #      (𞄥)  NYIAKENG PUACHUE HMONG LETTER AA
+1E126         ;  ; Limited_Use #      (𞄦)  NYIAKENG PUACHUE HMONG LETTER I
+1E127         ;  ; Limited_Use #      (𞄧)  NYIAKENG PUACHUE HMONG LETTER U
+1E128         ;  ; Limited_Use #      (𞄨)  NYIAKENG PUACHUE HMONG LETTER O
+1E129         ;  ; Limited_Use #      (𞄩)  NYIAKENG PUACHUE HMONG LETTER OO
+1E12A         ;  ; Limited_Use #      (𞄪)  NYIAKENG PUACHUE HMONG LETTER E
+1E12B         ;  ; Limited_Use #      (𞄫)  NYIAKENG PUACHUE HMONG LETTER EE
+1E12C         ;  ; Limited_Use #      (𞄬)  NYIAKENG PUACHUE HMONG LETTER W
+1E130         ;  ; Limited_Use #      (𞄰)  NYIAKENG PUACHUE HMONG TONE-B
+1E131         ;  ; Limited_Use #      (𞄱)  NYIAKENG PUACHUE HMONG TONE-M
+1E132         ;  ; Limited_Use #      (𞄲)  NYIAKENG PUACHUE HMONG TONE-J
+1E133         ;  ; Limited_Use #      (𞄳)  NYIAKENG PUACHUE HMONG TONE-V
+1E134         ;  ; Limited_Use #      (𞄴)  NYIAKENG PUACHUE HMONG TONE-S
+1E135         ;  ; Limited_Use #      (𞄵)  NYIAKENG PUACHUE HMONG TONE-G
+1E136         ;  ; Limited_Use #      (𞄶)  NYIAKENG PUACHUE HMONG TONE-D
+1E137         ;  ; Limited_Use #      (𞄷)  NYIAKENG PUACHUE HMONG SIGN FOR PERSON
+1E138         ;  ; Limited_Use #      (𞄸)  NYIAKENG PUACHUE HMONG SIGN FOR THING
+1E139         ;  ; Limited_Use #      (𞄹)  NYIAKENG PUACHUE HMONG SIGN FOR LOCATION
+1E13A         ;  ; Limited_Use #      (𞄺)  NYIAKENG PUACHUE HMONG SIGN FOR ANIMAL
+1E13B         ;  ; Limited_Use #      (𞄻)  NYIAKENG PUACHUE HMONG SIGN FOR INVERTEBRATE
+1E13C         ;  ; Limited_Use #      (𞄼)  NYIAKENG PUACHUE HMONG SIGN XW XW
+1E13D         ;  ; Limited_Use #      (𞄽)  NYIAKENG PUACHUE HMONG SYLLABLE LENGTHENER
+1E140         ;  ; Limited_Use #      (𞅀)  NYIAKENG PUACHUE HMONG DIGIT ZERO
+1E141         ;  ; Limited_Use #      (𞅁)  NYIAKENG PUACHUE HMONG DIGIT ONE
+1E142         ;  ; Limited_Use #      (𞅂)  NYIAKENG PUACHUE HMONG DIGIT TWO
+1E143         ;  ; Limited_Use #      (𞅃)  NYIAKENG PUACHUE HMONG DIGIT THREE
+1E144         ;  ; Limited_Use #      (𞅄)  NYIAKENG PUACHUE HMONG DIGIT FOUR
+1E145         ;  ; Limited_Use #      (𞅅)  NYIAKENG PUACHUE HMONG DIGIT FIVE
+1E146         ;  ; Limited_Use #      (𞅆)  NYIAKENG PUACHUE HMONG DIGIT SIX
+1E147         ;  ; Limited_Use #      (𞅇)  NYIAKENG PUACHUE HMONG DIGIT SEVEN
+1E148         ;  ; Limited_Use #      (𞅈)  NYIAKENG PUACHUE HMONG DIGIT EIGHT
+1E149         ;  ; Limited_Use #      (𞅉)  NYIAKENG PUACHUE HMONG DIGIT NINE
+1E14E         ;  ; Limited_Use #      (𞅎)  NYIAKENG PUACHUE HMONG LOGOGRAM NYAJ
+1E2C0         ;  ; Limited_Use #      (𞋀)  WANCHO LETTER AA
+1E2C1         ;  ; Limited_Use #      (𞋁)  WANCHO LETTER A
+1E2C2         ;  ; Limited_Use #      (𞋂)  WANCHO LETTER BA
+1E2C3         ;  ; Limited_Use #      (𞋃)  WANCHO LETTER CA
+1E2C4         ;  ; Limited_Use #      (𞋄)  WANCHO LETTER DA
+1E2C5         ;  ; Limited_Use #      (𞋅)  WANCHO LETTER GA
+1E2C6         ;  ; Limited_Use #      (𞋆)  WANCHO LETTER YA
+1E2C7         ;  ; Limited_Use #      (𞋇)  WANCHO LETTER PHA
+1E2C8         ;  ; Limited_Use #      (𞋈)  WANCHO LETTER LA
+1E2C9         ;  ; Limited_Use #      (𞋉)  WANCHO LETTER NA
+1E2CA         ;  ; Limited_Use #      (𞋊)  WANCHO LETTER PA
+1E2CB         ;  ; Limited_Use #      (𞋋)  WANCHO LETTER TA
+1E2CC         ;  ; Limited_Use #      (𞋌)  WANCHO LETTER THA
+1E2CD         ;  ; Limited_Use #      (𞋍)  WANCHO LETTER FA
+1E2CE         ;  ; Limited_Use #      (𞋎)  WANCHO LETTER SA
+1E2CF         ;  ; Limited_Use #      (𞋏)  WANCHO LETTER SHA
+1E2D0         ;  ; Limited_Use #      (𞋐)  WANCHO LETTER JA
+1E2D1         ;  ; Limited_Use #      (𞋑)  WANCHO LETTER ZA
+1E2D2         ;  ; Limited_Use #      (𞋒)  WANCHO LETTER WA
+1E2D3         ;  ; Limited_Use #      (𞋓)  WANCHO LETTER VA
+1E2D4         ;  ; Limited_Use #      (𞋔)  WANCHO LETTER KA
+1E2D5         ;  ; Limited_Use #      (𞋕)  WANCHO LETTER O
+1E2D6         ;  ; Limited_Use #      (𞋖)  WANCHO LETTER AU
+1E2D7         ;  ; Limited_Use #      (𞋗)  WANCHO LETTER RA
+1E2D8         ;  ; Limited_Use #      (𞋘)  WANCHO LETTER MA
+1E2D9         ;  ; Limited_Use #      (𞋙)  WANCHO LETTER KHA
+1E2DA         ;  ; Limited_Use #      (𞋚)  WANCHO LETTER HA
+1E2DB         ;  ; Limited_Use #      (𞋛)  WANCHO LETTER E
+1E2DC         ;  ; Limited_Use #      (𞋜)  WANCHO LETTER I
+1E2DD         ;  ; Limited_Use #      (𞋝)  WANCHO LETTER NGA
+1E2DE         ;  ; Limited_Use #      (𞋞)  WANCHO LETTER U
+1E2DF         ;  ; Limited_Use #      (𞋟)  WANCHO LETTER LLHA
+1E2E0         ;  ; Limited_Use #      (𞋠)  WANCHO LETTER TSA
+1E2E1         ;  ; Limited_Use #      (𞋡)  WANCHO LETTER TRA
+1E2E2         ;  ; Limited_Use #      (𞋢)  WANCHO LETTER ONG
+1E2E3         ;  ; Limited_Use #      (𞋣)  WANCHO LETTER AANG
+1E2E4         ;  ; Limited_Use #      (𞋤)  WANCHO LETTER ANG
+1E2E5         ;  ; Limited_Use #      (𞋥)  WANCHO LETTER ING
+1E2E6         ;  ; Limited_Use #      (𞋦)  WANCHO LETTER ON
+1E2E7         ;  ; Limited_Use #      (𞋧)  WANCHO LETTER EN
+1E2E8         ;  ; Limited_Use #      (𞋨)  WANCHO LETTER AAN
+1E2E9         ;  ; Limited_Use #      (𞋩)  WANCHO LETTER NYA
+1E2EA         ;  ; Limited_Use #      (𞋪)  WANCHO LETTER UEN
+1E2EB         ;  ; Limited_Use #      (𞋫)  WANCHO LETTER YIH
+1E2EC         ;  ; Limited_Use #      (𞋬)  WANCHO TONE TUP
+1E2ED         ;  ; Limited_Use #      (𞋭)  WANCHO TONE TUPNI
+1E2EE         ;  ; Limited_Use #      (𞋮)  WANCHO TONE KOI
+1E2EF         ;  ; Limited_Use #      (𞋯)  WANCHO TONE KOINI
+1E2F0         ;  ; Limited_Use #      (𞋰)  WANCHO DIGIT ZERO
+1E2F1         ;  ; Limited_Use #      (𞋱)  WANCHO DIGIT ONE
+1E2F2         ;  ; Limited_Use #      (𞋲)  WANCHO DIGIT TWO
+1E2F3         ;  ; Limited_Use #      (𞋳)  WANCHO DIGIT THREE
+1E2F4         ;  ; Limited_Use #      (𞋴)  WANCHO DIGIT FOUR
+1E2F5         ;  ; Limited_Use #      (𞋵)  WANCHO DIGIT FIVE
+1E2F6         ;  ; Limited_Use #      (𞋶)  WANCHO DIGIT SIX
+1E2F7         ;  ; Limited_Use #      (𞋷)  WANCHO DIGIT SEVEN
+1E2F8         ;  ; Limited_Use #      (𞋸)  WANCHO DIGIT EIGHT
+1E2F9         ;  ; Limited_Use #      (𞋹)  WANCHO DIGIT NINE
 1E900..1E921  ;  ; Limited_Use # [34] (𞤀..𞤡)  ADLAM CAPITAL LETTER ALIF..ADLAM CAPITAL LETTER SHA
 1E922         ;  ; Limited_Use #      (𞤢)  ADLAM SMALL LETTER ALIF
 1E923         ;  ; Limited_Use #      (𞤣)  ADLAM SMALL LETTER DAALI
@@ -16650,6 +16892,7 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 1E948         ;  ; Limited_Use #      (𞥈)  ADLAM CONSONANT MODIFIER
 1E949         ;  ; Limited_Use #      (𞥉)  ADLAM GEMINATE CONSONANT MODIFIER
 1E94A         ;  ; Limited_Use #      (𞥊)  ADLAM NUKTA
+1E94B         ;  ; Limited_Use #      (𞥋)  ADLAM NASALIZATION MARK
 1E950         ;  ; Limited_Use #      (𞥐)  ADLAM DIGIT ZERO
 1E951         ;  ; Limited_Use #      (𞥑)  ADLAM DIGIT ONE
 1E952         ;  ; Limited_Use #      (𞥒)  ADLAM DIGIT TWO
@@ -16661,7 +16904,7 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 1E958         ;  ; Limited_Use #      (𞥘)  ADLAM DIGIT EIGHT
 1E959         ;  ; Limited_Use #      (𞥙)  ADLAM DIGIT NINE
 
-# Total code points: 4874
+# Total code points: 5020
 
 018D          ;  ; Obsolete #      (ƍ)  LATIN SMALL LETTER TURNED DELTA
 01AA          ;  ; Obsolete #      (ƪ)  LATIN LETTER REVERSED ESH LOOP
@@ -16757,7 +17000,6 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 052D          ;  ; Obsolete #      (ԭ)  CYRILLIC SMALL LETTER DCHE
 05A2          ;  ; Obsolete #      (֢)  HEBREW ACCENT ATNAH HAFUKH
 05C5          ;  ; Obsolete #      (ׅ)  HEBREW MARK LOWER DOT
-05C7          ;  ; Obsolete #      (ׇ)  HEBREW POINT QAMATS QATAN
 0640          ;  ; Obsolete #      (ـ)  ARABIC TATWEEL
 066E          ;  ; Obsolete #      (ٮ)  ARABIC LETTER DOTLESS BEH
 066F          ;  ; Obsolete #      (ٯ)  ARABIC LETTER DOTLESS QAF
@@ -16863,6 +17105,7 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 1CF7          ;  ; Obsolete #      (᳷)  VEDIC SIGN ATIKRAMA
 1CF8          ;  ; Obsolete #      (᳸)  VEDIC TONE RING ABOVE
 1CF9          ;  ; Obsolete #      (᳹)  VEDIC TONE DOUBLE RING ABOVE
+1CFA          ;  ; Obsolete #      (ᳺ)  VEDIC SIGN DOUBLE ANUSVARA ANTARGOMUKHA
 1DC0          ;  ; Obsolete #      (᷀)  COMBINING DOTTED GRAVE ACCENT
 1DC1          ;  ; Obsolete #      (᷁)  COMBINING DOTTED ACUTE ACCENT
 1DC2          ;  ; Obsolete #      (᷂)  COMBINING SNAKE BELOW
@@ -17365,10 +17608,296 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 10330..1034A  ;  ; Obsolete # [27] (𐌰..𐍊)  GOTHIC LETTER AHSA..GOTHIC LETTER NINE HUNDRED
 10400..10425  ;  ; Obsolete # [38] (𐐀..𐐥)  DESERET CAPITAL LETTER LONG I..DESERET CAPITAL LETTER ENG
 10428..1044D  ;  ; Obsolete # [38] (𐐨..𐑍)  DESERET SMALL LETTER LONG I..DESERET SMALL LETTER ENG
+16FE3         ;  ; Obsolete #      (𖿣)  OLD CHINESE ITERATION MARK
 1B000         ;  ; Obsolete #      (𛀀)  KATAKANA LETTER ARCHAIC E
 1B001         ;  ; Obsolete #      (𛀁)  HIRAGANA LETTER ARCHAIC YE
+1B002         ;  ; Obsolete #      (𛀂)  HENTAIGANA LETTER A-1
+1B003         ;  ; Obsolete #      (𛀃)  HENTAIGANA LETTER A-2
+1B004         ;  ; Obsolete #      (𛀄)  HENTAIGANA LETTER A-3
+1B005         ;  ; Obsolete #      (𛀅)  HENTAIGANA LETTER A-WO
+1B006         ;  ; Obsolete #      (𛀆)  HENTAIGANA LETTER I-1
+1B007         ;  ; Obsolete #      (𛀇)  HENTAIGANA LETTER I-2
+1B008         ;  ; Obsolete #      (𛀈)  HENTAIGANA LETTER I-3
+1B009         ;  ; Obsolete #      (𛀉)  HENTAIGANA LETTER I-4
+1B00A         ;  ; Obsolete #      (𛀊)  HENTAIGANA LETTER U-1
+1B00B         ;  ; Obsolete #      (𛀋)  HENTAIGANA LETTER U-2
+1B00C         ;  ; Obsolete #      (𛀌)  HENTAIGANA LETTER U-3
+1B00D         ;  ; Obsolete #      (𛀍)  HENTAIGANA LETTER U-4
+1B00E         ;  ; Obsolete #      (𛀎)  HENTAIGANA LETTER U-5
+1B00F         ;  ; Obsolete #      (𛀏)  HENTAIGANA LETTER E-2
+1B010         ;  ; Obsolete #      (𛀐)  HENTAIGANA LETTER E-3
+1B011         ;  ; Obsolete #      (𛀑)  HENTAIGANA LETTER E-4
+1B012         ;  ; Obsolete #      (𛀒)  HENTAIGANA LETTER E-5
+1B013         ;  ; Obsolete #      (𛀓)  HENTAIGANA LETTER E-6
+1B014         ;  ; Obsolete #      (𛀔)  HENTAIGANA LETTER O-1
+1B015         ;  ; Obsolete #      (𛀕)  HENTAIGANA LETTER O-2
+1B016         ;  ; Obsolete #      (𛀖)  HENTAIGANA LETTER O-3
+1B017         ;  ; Obsolete #      (𛀗)  HENTAIGANA LETTER KA-1
+1B018         ;  ; Obsolete #      (𛀘)  HENTAIGANA LETTER KA-2
+1B019         ;  ; Obsolete #      (𛀙)  HENTAIGANA LETTER KA-3
+1B01A         ;  ; Obsolete #      (𛀚)  HENTAIGANA LETTER KA-4
+1B01B         ;  ; Obsolete #      (𛀛)  HENTAIGANA LETTER KA-5
+1B01C         ;  ; Obsolete #      (𛀜)  HENTAIGANA LETTER KA-6
+1B01D         ;  ; Obsolete #      (𛀝)  HENTAIGANA LETTER KA-7
+1B01E         ;  ; Obsolete #      (𛀞)  HENTAIGANA LETTER KA-8
+1B01F         ;  ; Obsolete #      (𛀟)  HENTAIGANA LETTER KA-9
+1B020         ;  ; Obsolete #      (𛀠)  HENTAIGANA LETTER KA-10
+1B021         ;  ; Obsolete #      (𛀡)  HENTAIGANA LETTER KA-11
+1B022         ;  ; Obsolete #      (𛀢)  HENTAIGANA LETTER KA-KE
+1B023         ;  ; Obsolete #      (𛀣)  HENTAIGANA LETTER KI-1
+1B024         ;  ; Obsolete #      (𛀤)  HENTAIGANA LETTER KI-2
+1B025         ;  ; Obsolete #      (𛀥)  HENTAIGANA LETTER KI-3
+1B026         ;  ; Obsolete #      (𛀦)  HENTAIGANA LETTER KI-4
+1B027         ;  ; Obsolete #      (𛀧)  HENTAIGANA LETTER KI-5
+1B028         ;  ; Obsolete #      (𛀨)  HENTAIGANA LETTER KI-6
+1B029         ;  ; Obsolete #      (𛀩)  HENTAIGANA LETTER KI-7
+1B02A         ;  ; Obsolete #      (𛀪)  HENTAIGANA LETTER KI-8
+1B02B         ;  ; Obsolete #      (𛀫)  HENTAIGANA LETTER KU-1
+1B02C         ;  ; Obsolete #      (𛀬)  HENTAIGANA LETTER KU-2
+1B02D         ;  ; Obsolete #      (𛀭)  HENTAIGANA LETTER KU-3
+1B02E         ;  ; Obsolete #      (𛀮)  HENTAIGANA LETTER KU-4
+1B02F         ;  ; Obsolete #      (𛀯)  HENTAIGANA LETTER KU-5
+1B030         ;  ; Obsolete #      (𛀰)  HENTAIGANA LETTER KU-6
+1B031         ;  ; Obsolete #      (𛀱)  HENTAIGANA LETTER KU-7
+1B032         ;  ; Obsolete #      (𛀲)  HENTAIGANA LETTER KE-1
+1B033         ;  ; Obsolete #      (𛀳)  HENTAIGANA LETTER KE-2
+1B034         ;  ; Obsolete #      (𛀴)  HENTAIGANA LETTER KE-3
+1B035         ;  ; Obsolete #      (𛀵)  HENTAIGANA LETTER KE-4
+1B036         ;  ; Obsolete #      (𛀶)  HENTAIGANA LETTER KE-5
+1B037         ;  ; Obsolete #      (𛀷)  HENTAIGANA LETTER KE-6
+1B038         ;  ; Obsolete #      (𛀸)  HENTAIGANA LETTER KO-1
+1B039         ;  ; Obsolete #      (𛀹)  HENTAIGANA LETTER KO-2
+1B03A         ;  ; Obsolete #      (𛀺)  HENTAIGANA LETTER KO-3
+1B03B         ;  ; Obsolete #      (𛀻)  HENTAIGANA LETTER KO-KI
+1B03C         ;  ; Obsolete #      (𛀼)  HENTAIGANA LETTER SA-1
+1B03D         ;  ; Obsolete #      (𛀽)  HENTAIGANA LETTER SA-2
+1B03E         ;  ; Obsolete #      (𛀾)  HENTAIGANA LETTER SA-3
+1B03F         ;  ; Obsolete #      (𛀿)  HENTAIGANA LETTER SA-4
+1B040         ;  ; Obsolete #      (𛁀)  HENTAIGANA LETTER SA-5
+1B041         ;  ; Obsolete #      (𛁁)  HENTAIGANA LETTER SA-6
+1B042         ;  ; Obsolete #      (𛁂)  HENTAIGANA LETTER SA-7
+1B043         ;  ; Obsolete #      (𛁃)  HENTAIGANA LETTER SA-8
+1B044         ;  ; Obsolete #      (𛁄)  HENTAIGANA LETTER SI-1
+1B045         ;  ; Obsolete #      (𛁅)  HENTAIGANA LETTER SI-2
+1B046         ;  ; Obsolete #      (𛁆)  HENTAIGANA LETTER SI-3
+1B047         ;  ; Obsolete #      (𛁇)  HENTAIGANA LETTER SI-4
+1B048         ;  ; Obsolete #      (𛁈)  HENTAIGANA LETTER SI-5
+1B049         ;  ; Obsolete #      (𛁉)  HENTAIGANA LETTER SI-6
+1B04A         ;  ; Obsolete #      (𛁊)  HENTAIGANA LETTER SU-1
+1B04B         ;  ; Obsolete #      (𛁋)  HENTAIGANA LETTER SU-2
+1B04C         ;  ; Obsolete #      (𛁌)  HENTAIGANA LETTER SU-3
+1B04D         ;  ; Obsolete #      (𛁍)  HENTAIGANA LETTER SU-4
+1B04E         ;  ; Obsolete #      (𛁎)  HENTAIGANA LETTER SU-5
+1B04F         ;  ; Obsolete #      (𛁏)  HENTAIGANA LETTER SU-6
+1B050         ;  ; Obsolete #      (𛁐)  HENTAIGANA LETTER SU-7
+1B051         ;  ; Obsolete #      (𛁑)  HENTAIGANA LETTER SU-8
+1B052         ;  ; Obsolete #      (𛁒)  HENTAIGANA LETTER SE-1
+1B053         ;  ; Obsolete #      (𛁓)  HENTAIGANA LETTER SE-2
+1B054         ;  ; Obsolete #      (𛁔)  HENTAIGANA LETTER SE-3
+1B055         ;  ; Obsolete #      (𛁕)  HENTAIGANA LETTER SE-4
+1B056         ;  ; Obsolete #      (𛁖)  HENTAIGANA LETTER SE-5
+1B057         ;  ; Obsolete #      (𛁗)  HENTAIGANA LETTER SO-1
+1B058         ;  ; Obsolete #      (𛁘)  HENTAIGANA LETTER SO-2
+1B059         ;  ; Obsolete #      (𛁙)  HENTAIGANA LETTER SO-3
+1B05A         ;  ; Obsolete #      (𛁚)  HENTAIGANA LETTER SO-4
+1B05B         ;  ; Obsolete #      (𛁛)  HENTAIGANA LETTER SO-5
+1B05C         ;  ; Obsolete #      (𛁜)  HENTAIGANA LETTER SO-6
+1B05D         ;  ; Obsolete #      (𛁝)  HENTAIGANA LETTER SO-7
+1B05E         ;  ; Obsolete #      (𛁞)  HENTAIGANA LETTER TA-1
+1B05F         ;  ; Obsolete #      (𛁟)  HENTAIGANA LETTER TA-2
+1B060         ;  ; Obsolete #      (𛁠)  HENTAIGANA LETTER TA-3
+1B061         ;  ; Obsolete #      (𛁡)  HENTAIGANA LETTER TA-4
+1B062         ;  ; Obsolete #      (𛁢)  HENTAIGANA LETTER TI-1
+1B063         ;  ; Obsolete #      (𛁣)  HENTAIGANA LETTER TI-2
+1B064         ;  ; Obsolete #      (𛁤)  HENTAIGANA LETTER TI-3
+1B065         ;  ; Obsolete #      (𛁥)  HENTAIGANA LETTER TI-4
+1B066         ;  ; Obsolete #      (𛁦)  HENTAIGANA LETTER TI-5
+1B067         ;  ; Obsolete #      (𛁧)  HENTAIGANA LETTER TI-6
+1B068         ;  ; Obsolete #      (𛁨)  HENTAIGANA LETTER TI-7
+1B069         ;  ; Obsolete #      (𛁩)  HENTAIGANA LETTER TU-1
+1B06A         ;  ; Obsolete #      (𛁪)  HENTAIGANA LETTER TU-2
+1B06B         ;  ; Obsolete #      (𛁫)  HENTAIGANA LETTER TU-3
+1B06C         ;  ; Obsolete #      (𛁬)  HENTAIGANA LETTER TU-4
+1B06D         ;  ; Obsolete #      (𛁭)  HENTAIGANA LETTER TU-TO
+1B06E         ;  ; Obsolete #      (𛁮)  HENTAIGANA LETTER TE-1
+1B06F         ;  ; Obsolete #      (𛁯)  HENTAIGANA LETTER TE-2
+1B070         ;  ; Obsolete #      (𛁰)  HENTAIGANA LETTER TE-3
+1B071         ;  ; Obsolete #      (𛁱)  HENTAIGANA LETTER TE-4
+1B072         ;  ; Obsolete #      (𛁲)  HENTAIGANA LETTER TE-5
+1B073         ;  ; Obsolete #      (𛁳)  HENTAIGANA LETTER TE-6
+1B074         ;  ; Obsolete #      (𛁴)  HENTAIGANA LETTER TE-7
+1B075         ;  ; Obsolete #      (𛁵)  HENTAIGANA LETTER TE-8
+1B076         ;  ; Obsolete #      (𛁶)  HENTAIGANA LETTER TE-9
+1B077         ;  ; Obsolete #      (𛁷)  HENTAIGANA LETTER TO-1
+1B078         ;  ; Obsolete #      (𛁸)  HENTAIGANA LETTER TO-2
+1B079         ;  ; Obsolete #      (𛁹)  HENTAIGANA LETTER TO-3
+1B07A         ;  ; Obsolete #      (𛁺)  HENTAIGANA LETTER TO-4
+1B07B         ;  ; Obsolete #      (𛁻)  HENTAIGANA LETTER TO-5
+1B07C         ;  ; Obsolete #      (𛁼)  HENTAIGANA LETTER TO-6
+1B07D         ;  ; Obsolete #      (𛁽)  HENTAIGANA LETTER TO-RA
+1B07E         ;  ; Obsolete #      (𛁾)  HENTAIGANA LETTER NA-1
+1B07F         ;  ; Obsolete #      (𛁿)  HENTAIGANA LETTER NA-2
+1B080         ;  ; Obsolete #      (𛂀)  HENTAIGANA LETTER NA-3
+1B081         ;  ; Obsolete #      (𛂁)  HENTAIGANA LETTER NA-4
+1B082         ;  ; Obsolete #      (𛂂)  HENTAIGANA LETTER NA-5
+1B083         ;  ; Obsolete #      (𛂃)  HENTAIGANA LETTER NA-6
+1B084         ;  ; Obsolete #      (𛂄)  HENTAIGANA LETTER NA-7
+1B085         ;  ; Obsolete #      (𛂅)  HENTAIGANA LETTER NA-8
+1B086         ;  ; Obsolete #      (𛂆)  HENTAIGANA LETTER NA-9
+1B087         ;  ; Obsolete #      (𛂇)  HENTAIGANA LETTER NI-1
+1B088         ;  ; Obsolete #      (𛂈)  HENTAIGANA LETTER NI-2
+1B089         ;  ; Obsolete #      (𛂉)  HENTAIGANA LETTER NI-3
+1B08A         ;  ; Obsolete #      (𛂊)  HENTAIGANA LETTER NI-4
+1B08B         ;  ; Obsolete #      (𛂋)  HENTAIGANA LETTER NI-5
+1B08C         ;  ; Obsolete #      (𛂌)  HENTAIGANA LETTER NI-6
+1B08D         ;  ; Obsolete #      (𛂍)  HENTAIGANA LETTER NI-7
+1B08E         ;  ; Obsolete #      (𛂎)  HENTAIGANA LETTER NI-TE
+1B08F         ;  ; Obsolete #      (𛂏)  HENTAIGANA LETTER NU-1
+1B090         ;  ; Obsolete #      (𛂐)  HENTAIGANA LETTER NU-2
+1B091         ;  ; Obsolete #      (𛂑)  HENTAIGANA LETTER NU-3
+1B092         ;  ; Obsolete #      (𛂒)  HENTAIGANA LETTER NE-1
+1B093         ;  ; Obsolete #      (𛂓)  HENTAIGANA LETTER NE-2
+1B094         ;  ; Obsolete #      (𛂔)  HENTAIGANA LETTER NE-3
+1B095         ;  ; Obsolete #      (𛂕)  HENTAIGANA LETTER NE-4
+1B096         ;  ; Obsolete #      (𛂖)  HENTAIGANA LETTER NE-5
+1B097         ;  ; Obsolete #      (𛂗)  HENTAIGANA LETTER NE-6
+1B098         ;  ; Obsolete #      (𛂘)  HENTAIGANA LETTER NE-KO
+1B099         ;  ; Obsolete #      (𛂙)  HENTAIGANA LETTER NO-1
+1B09A         ;  ; Obsolete #      (𛂚)  HENTAIGANA LETTER NO-2
+1B09B         ;  ; Obsolete #      (𛂛)  HENTAIGANA LETTER NO-3
+1B09C         ;  ; Obsolete #      (𛂜)  HENTAIGANA LETTER NO-4
+1B09D         ;  ; Obsolete #      (𛂝)  HENTAIGANA LETTER NO-5
+1B09E         ;  ; Obsolete #      (𛂞)  HENTAIGANA LETTER HA-1
+1B09F         ;  ; Obsolete #      (𛂟)  HENTAIGANA LETTER HA-2
+1B0A0         ;  ; Obsolete #      (𛂠)  HENTAIGANA LETTER HA-3
+1B0A1         ;  ; Obsolete #      (𛂡)  HENTAIGANA LETTER HA-4
+1B0A2         ;  ; Obsolete #      (𛂢)  HENTAIGANA LETTER HA-5
+1B0A3         ;  ; Obsolete #      (𛂣)  HENTAIGANA LETTER HA-6
+1B0A4         ;  ; Obsolete #      (𛂤)  HENTAIGANA LETTER HA-7
+1B0A5         ;  ; Obsolete #      (𛂥)  HENTAIGANA LETTER HA-8
+1B0A6         ;  ; Obsolete #      (𛂦)  HENTAIGANA LETTER HA-9
+1B0A7         ;  ; Obsolete #      (𛂧)  HENTAIGANA LETTER HA-10
+1B0A8         ;  ; Obsolete #      (𛂨)  HENTAIGANA LETTER HA-11
+1B0A9         ;  ; Obsolete #      (𛂩)  HENTAIGANA LETTER HI-1
+1B0AA         ;  ; Obsolete #      (𛂪)  HENTAIGANA LETTER HI-2
+1B0AB         ;  ; Obsolete #      (𛂫)  HENTAIGANA LETTER HI-3
+1B0AC         ;  ; Obsolete #      (𛂬)  HENTAIGANA LETTER HI-4
+1B0AD         ;  ; Obsolete #      (𛂭)  HENTAIGANA LETTER HI-5
+1B0AE         ;  ; Obsolete #      (𛂮)  HENTAIGANA LETTER HI-6
+1B0AF         ;  ; Obsolete #      (𛂯)  HENTAIGANA LETTER HI-7
+1B0B0         ;  ; Obsolete #      (𛂰)  HENTAIGANA LETTER HU-1
+1B0B1         ;  ; Obsolete #      (𛂱)  HENTAIGANA LETTER HU-2
+1B0B2         ;  ; Obsolete #      (𛂲)  HENTAIGANA LETTER HU-3
+1B0B3         ;  ; Obsolete #      (𛂳)  HENTAIGANA LETTER HE-1
+1B0B4         ;  ; Obsolete #      (𛂴)  HENTAIGANA LETTER HE-2
+1B0B5         ;  ; Obsolete #      (𛂵)  HENTAIGANA LETTER HE-3
+1B0B6         ;  ; Obsolete #      (𛂶)  HENTAIGANA LETTER HE-4
+1B0B7         ;  ; Obsolete #      (𛂷)  HENTAIGANA LETTER HE-5
+1B0B8         ;  ; Obsolete #      (𛂸)  HENTAIGANA LETTER HE-6
+1B0B9         ;  ; Obsolete #      (𛂹)  HENTAIGANA LETTER HE-7
+1B0BA         ;  ; Obsolete #      (𛂺)  HENTAIGANA LETTER HO-1
+1B0BB         ;  ; Obsolete #      (𛂻)  HENTAIGANA LETTER HO-2
+1B0BC         ;  ; Obsolete #      (𛂼)  HENTAIGANA LETTER HO-3
+1B0BD         ;  ; Obsolete #      (𛂽)  HENTAIGANA LETTER HO-4
+1B0BE         ;  ; Obsolete #      (𛂾)  HENTAIGANA LETTER HO-5
+1B0BF         ;  ; Obsolete #      (𛂿)  HENTAIGANA LETTER HO-6
+1B0C0         ;  ; Obsolete #      (𛃀)  HENTAIGANA LETTER HO-7
+1B0C1         ;  ; Obsolete #      (𛃁)  HENTAIGANA LETTER HO-8
+1B0C2         ;  ; Obsolete #      (𛃂)  HENTAIGANA LETTER MA-1
+1B0C3         ;  ; Obsolete #      (𛃃)  HENTAIGANA LETTER MA-2
+1B0C4         ;  ; Obsolete #      (𛃄)  HENTAIGANA LETTER MA-3
+1B0C5         ;  ; Obsolete #      (𛃅)  HENTAIGANA LETTER MA-4
+1B0C6         ;  ; Obsolete #      (𛃆)  HENTAIGANA LETTER MA-5
+1B0C7         ;  ; Obsolete #      (𛃇)  HENTAIGANA LETTER MA-6
+1B0C8         ;  ; Obsolete #      (𛃈)  HENTAIGANA LETTER MA-7
+1B0C9         ;  ; Obsolete #      (𛃉)  HENTAIGANA LETTER MI-1
+1B0CA         ;  ; Obsolete #      (𛃊)  HENTAIGANA LETTER MI-2
+1B0CB         ;  ; Obsolete #      (𛃋)  HENTAIGANA LETTER MI-3
+1B0CC         ;  ; Obsolete #      (𛃌)  HENTAIGANA LETTER MI-4
+1B0CD         ;  ; Obsolete #      (𛃍)  HENTAIGANA LETTER MI-5
+1B0CE         ;  ; Obsolete #      (𛃎)  HENTAIGANA LETTER MI-6
+1B0CF         ;  ; Obsolete #      (𛃏)  HENTAIGANA LETTER MI-7
+1B0D0         ;  ; Obsolete #      (𛃐)  HENTAIGANA LETTER MU-1
+1B0D1         ;  ; Obsolete #      (𛃑)  HENTAIGANA LETTER MU-2
+1B0D2         ;  ; Obsolete #      (𛃒)  HENTAIGANA LETTER MU-3
+1B0D3         ;  ; Obsolete #      (𛃓)  HENTAIGANA LETTER MU-4
+1B0D4         ;  ; Obsolete #      (𛃔)  HENTAIGANA LETTER ME-1
+1B0D5         ;  ; Obsolete #      (𛃕)  HENTAIGANA LETTER ME-2
+1B0D6         ;  ; Obsolete #      (𛃖)  HENTAIGANA LETTER ME-MA
+1B0D7         ;  ; Obsolete #      (𛃗)  HENTAIGANA LETTER MO-1
+1B0D8         ;  ; Obsolete #      (𛃘)  HENTAIGANA LETTER MO-2
+1B0D9         ;  ; Obsolete #      (𛃙)  HENTAIGANA LETTER MO-3
+1B0DA         ;  ; Obsolete #      (𛃚)  HENTAIGANA LETTER MO-4
+1B0DB         ;  ; Obsolete #      (𛃛)  HENTAIGANA LETTER MO-5
+1B0DC         ;  ; Obsolete #      (𛃜)  HENTAIGANA LETTER MO-6
+1B0DD         ;  ; Obsolete #      (𛃝)  HENTAIGANA LETTER YA-1
+1B0DE         ;  ; Obsolete #      (𛃞)  HENTAIGANA LETTER YA-2
+1B0DF         ;  ; Obsolete #      (𛃟)  HENTAIGANA LETTER YA-3
+1B0E0         ;  ; Obsolete #      (𛃠)  HENTAIGANA LETTER YA-4
+1B0E1         ;  ; Obsolete #      (𛃡)  HENTAIGANA LETTER YA-5
+1B0E2         ;  ; Obsolete #      (𛃢)  HENTAIGANA LETTER YA-YO
+1B0E3         ;  ; Obsolete #      (𛃣)  HENTAIGANA LETTER YU-1
+1B0E4         ;  ; Obsolete #      (𛃤)  HENTAIGANA LETTER YU-2
+1B0E5         ;  ; Obsolete #      (𛃥)  HENTAIGANA LETTER YU-3
+1B0E6         ;  ; Obsolete #      (𛃦)  HENTAIGANA LETTER YU-4
+1B0E7         ;  ; Obsolete #      (𛃧)  HENTAIGANA LETTER YO-1
+1B0E8         ;  ; Obsolete #      (𛃨)  HENTAIGANA LETTER YO-2
+1B0E9         ;  ; Obsolete #      (𛃩)  HENTAIGANA LETTER YO-3
+1B0EA         ;  ; Obsolete #      (𛃪)  HENTAIGANA LETTER YO-4
+1B0EB         ;  ; Obsolete #      (𛃫)  HENTAIGANA LETTER YO-5
+1B0EC         ;  ; Obsolete #      (𛃬)  HENTAIGANA LETTER YO-6
+1B0ED         ;  ; Obsolete #      (𛃭)  HENTAIGANA LETTER RA-1
+1B0EE         ;  ; Obsolete #      (𛃮)  HENTAIGANA LETTER RA-2
+1B0EF         ;  ; Obsolete #      (𛃯)  HENTAIGANA LETTER RA-3
+1B0F0         ;  ; Obsolete #      (𛃰)  HENTAIGANA LETTER RA-4
+1B0F1         ;  ; Obsolete #      (𛃱)  HENTAIGANA LETTER RI-1
+1B0F2         ;  ; Obsolete #      (𛃲)  HENTAIGANA LETTER RI-2
+1B0F3         ;  ; Obsolete #      (𛃳)  HENTAIGANA LETTER RI-3
+1B0F4         ;  ; Obsolete #      (𛃴)  HENTAIGANA LETTER RI-4
+1B0F5         ;  ; Obsolete #      (𛃵)  HENTAIGANA LETTER RI-5
+1B0F6         ;  ; Obsolete #      (𛃶)  HENTAIGANA LETTER RI-6
+1B0F7         ;  ; Obsolete #      (𛃷)  HENTAIGANA LETTER RI-7
+1B0F8         ;  ; Obsolete #      (𛃸)  HENTAIGANA LETTER RU-1
+1B0F9         ;  ; Obsolete #      (𛃹)  HENTAIGANA LETTER RU-2
+1B0FA         ;  ; Obsolete #      (𛃺)  HENTAIGANA LETTER RU-3
+1B0FB         ;  ; Obsolete #      (𛃻)  HENTAIGANA LETTER RU-4
+1B0FC         ;  ; Obsolete #      (𛃼)  HENTAIGANA LETTER RU-5
+1B0FD         ;  ; Obsolete #      (𛃽)  HENTAIGANA LETTER RU-6
+1B0FE         ;  ; Obsolete #      (𛃾)  HENTAIGANA LETTER RE-1
+1B0FF         ;  ; Obsolete #      (𛃿)  HENTAIGANA LETTER RE-2
+1B100         ;  ; Obsolete #      (𛄀)  HENTAIGANA LETTER RE-3
+1B101         ;  ; Obsolete #      (𛄁)  HENTAIGANA LETTER RE-4
+1B102         ;  ; Obsolete #      (𛄂)  HENTAIGANA LETTER RO-1
+1B103         ;  ; Obsolete #      (𛄃)  HENTAIGANA LETTER RO-2
+1B104         ;  ; Obsolete #      (𛄄)  HENTAIGANA LETTER RO-3
+1B105         ;  ; Obsolete #      (𛄅)  HENTAIGANA LETTER RO-4
+1B106         ;  ; Obsolete #      (𛄆)  HENTAIGANA LETTER RO-5
+1B107         ;  ; Obsolete #      (𛄇)  HENTAIGANA LETTER RO-6
+1B108         ;  ; Obsolete #      (𛄈)  HENTAIGANA LETTER WA-1
+1B109         ;  ; Obsolete #      (𛄉)  HENTAIGANA LETTER WA-2
+1B10A         ;  ; Obsolete #      (𛄊)  HENTAIGANA LETTER WA-3
+1B10B         ;  ; Obsolete #      (𛄋)  HENTAIGANA LETTER WA-4
+1B10C         ;  ; Obsolete #      (𛄌)  HENTAIGANA LETTER WA-5
+1B10D         ;  ; Obsolete #      (𛄍)  HENTAIGANA LETTER WI-1
+1B10E         ;  ; Obsolete #      (𛄎)  HENTAIGANA LETTER WI-2
+1B10F         ;  ; Obsolete #      (𛄏)  HENTAIGANA LETTER WI-3
+1B110         ;  ; Obsolete #      (𛄐)  HENTAIGANA LETTER WI-4
+1B111         ;  ; Obsolete #      (𛄑)  HENTAIGANA LETTER WI-5
+1B112         ;  ; Obsolete #      (𛄒)  HENTAIGANA LETTER WE-1
+1B113         ;  ; Obsolete #      (𛄓)  HENTAIGANA LETTER WE-2
+1B114         ;  ; Obsolete #      (𛄔)  HENTAIGANA LETTER WE-3
+1B115         ;  ; Obsolete #      (𛄕)  HENTAIGANA LETTER WE-4
+1B116         ;  ; Obsolete #      (𛄖)  HENTAIGANA LETTER WO-1
+1B117         ;  ; Obsolete #      (𛄗)  HENTAIGANA LETTER WO-2
+1B118         ;  ; Obsolete #      (𛄘)  HENTAIGANA LETTER WO-3
+1B119         ;  ; Obsolete #      (𛄙)  HENTAIGANA LETTER WO-4
+1B11A         ;  ; Obsolete #      (𛄚)  HENTAIGANA LETTER WO-5
+1B11B         ;  ; Obsolete #      (𛄛)  HENTAIGANA LETTER WO-6
+1B11C         ;  ; Obsolete #      (𛄜)  HENTAIGANA LETTER WO-7
+1B11D         ;  ; Obsolete #      (𛄝)  HENTAIGANA LETTER N-MU-MO-1
+1B11E         ;  ; Obsolete #      (𛄞)  HENTAIGANA LETTER N-MU-MO-2
 
-# Total code points: 1303
+# Total code points: 1589
 
 0180          ;  ; Technical #      (ƀ)  LATIN SMALL LETTER B WITH STROKE
 01C0          ;  ; Technical #      (ǀ)  LATIN LETTER DENTAL CLICK
@@ -17525,6 +18054,7 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 0362          ;  ; Technical #      (͢)  COMBINING DOUBLE RIGHTWARDS ARROW BELOW
 03CF          ;  ; Technical #      (Ϗ)  GREEK CAPITAL KAI SYMBOL
 03D7          ;  ; Technical #      (ϗ)  GREEK KAI SYMBOL
+05C7          ;  ; Technical #      (ׇ)  HEBREW POINT QAMATS QATAN
 0740..074A    ;  ; Technical # [11] (݀..݊)  SYRIAC FEMININE DOT..SYRIAC BARREKH
 0953          ;  ; Technical #      (॓)  DEVANAGARI GRAVE ACCENT
 0954          ;  ; Technical #      (॔)  DEVANAGARI ACUTE ACCENT
@@ -17734,7 +18264,7 @@ FB1E          ;  ; Technical #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
 FE20..FE2F    ;  ; Technical # [16] (︠..︯)  COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITLO RIGHT HALF
 FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 
-# Total code points: 390
+# Total code points: 391
 
 0181..0182    ;  ; Uncommon_Use #  [2] (Ɓ..Ƃ)  LATIN CAPITAL LETTER B WITH HOOK..LATIN CAPITAL LETTER B WITH TOPBAR
 0183          ;  ; Uncommon_Use #      (ƃ)  LATIN SMALL LETTER B WITH TOPBAR
@@ -19863,14 +20393,24 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0E81          ; Allowed ; Recommended #      (ກ)  LAO LETTER KO
 0E82          ; Allowed ; Recommended #      (ຂ)  LAO LETTER KHO SUNG
 0E84          ; Allowed ; Recommended #      (ຄ)  LAO LETTER KHO TAM
+0E86          ; Allowed ; Recommended #      (ຆ)  LAO LETTER PALI GHA
 0E87          ; Allowed ; Recommended #      (ງ)  LAO LETTER NGO
 0E88          ; Allowed ; Recommended #      (ຈ)  LAO LETTER CO
+0E89          ; Allowed ; Recommended #      (ຉ)  LAO LETTER PALI CHA
 0E8A          ; Allowed ; Recommended #      (ຊ)  LAO LETTER SO TAM
+0E8C          ; Allowed ; Recommended #      (ຌ)  LAO LETTER PALI JHA
 0E8D          ; Allowed ; Recommended #      (ຍ)  LAO LETTER NYO
+0E8E          ; Allowed ; Recommended #      (ຎ)  LAO LETTER PALI NYA
+0E8F          ; Allowed ; Recommended #      (ຏ)  LAO LETTER PALI TTA
+0E90          ; Allowed ; Recommended #      (ຐ)  LAO LETTER PALI TTHA
+0E91          ; Allowed ; Recommended #      (ຑ)  LAO LETTER PALI DDA
+0E92          ; Allowed ; Recommended #      (ຒ)  LAO LETTER PALI DDHA
+0E93          ; Allowed ; Recommended #      (ຓ)  LAO LETTER PALI NNA
 0E94          ; Allowed ; Recommended #      (ດ)  LAO LETTER DO
 0E95          ; Allowed ; Recommended #      (ຕ)  LAO LETTER TO
 0E96          ; Allowed ; Recommended #      (ຖ)  LAO LETTER THO SUNG
 0E97          ; Allowed ; Recommended #      (ທ)  LAO LETTER THO TAM
+0E98          ; Allowed ; Recommended #      (ຘ)  LAO LETTER PALI DHA
 0E99          ; Allowed ; Recommended #      (ນ)  LAO LETTER NO
 0E9A          ; Allowed ; Recommended #      (ບ)  LAO LETTER BO
 0E9B          ; Allowed ; Recommended #      (ປ)  LAO LETTER PO
@@ -19878,13 +20418,17 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0E9D          ; Allowed ; Recommended #      (ຝ)  LAO LETTER FO TAM
 0E9E          ; Allowed ; Recommended #      (ພ)  LAO LETTER PHO TAM
 0E9F          ; Allowed ; Recommended #      (ຟ)  LAO LETTER FO SUNG
+0EA0          ; Allowed ; Recommended #      (ຠ)  LAO LETTER PALI BHA
 0EA1          ; Allowed ; Recommended #      (ມ)  LAO LETTER MO
 0EA2          ; Allowed ; Recommended #      (ຢ)  LAO LETTER YO
 0EA3          ; Allowed ; Recommended #      (ຣ)  LAO LETTER LO LING
 0EA5          ; Allowed ; Recommended #      (ລ)  LAO LETTER LO LOOT
 0EA7          ; Allowed ; Recommended #      (ວ)  LAO LETTER WO
+0EA8          ; Allowed ; Recommended #      (ຨ)  LAO LETTER SANSKRIT SHA
+0EA9          ; Allowed ; Recommended #      (ຩ)  LAO LETTER SANSKRIT SSA
 0EAA          ; Allowed ; Recommended #      (ສ)  LAO LETTER SO SUNG
 0EAB          ; Allowed ; Recommended #      (ຫ)  LAO LETTER HO SUNG
+0EAC          ; Allowed ; Recommended #      (ຬ)  LAO LETTER PALI LLA
 0EAD          ; Allowed ; Recommended #      (ອ)  LAO LETTER O
 0EAE          ; Allowed ; Recommended #      (ຮ)  LAO LETTER HO TAM
 0EAF          ; Allowed ; Recommended #      (ຯ)  LAO ELLIPSIS
@@ -19897,6 +20441,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0EB7          ; Allowed ; Recommended #      (ື)  LAO VOWEL SIGN YY
 0EB8          ; Allowed ; Recommended #      (ຸ)  LAO VOWEL SIGN U
 0EB9          ; Allowed ; Recommended #      (ູ)  LAO VOWEL SIGN UU
+0EBA          ; Allowed ; Recommended #      (຺)  LAO SIGN PALI VIRAMA
 0EBB          ; Allowed ; Recommended #      (ົ)  LAO VOWEL SIGN MAI KON
 0EBC          ; Allowed ; Recommended #      (ຼ)  LAO SEMIVOWEL SIGN LO
 0EBD          ; Allowed ; Recommended #      (ຽ)  LAO SEMIVOWEL SIGN NYO
@@ -20335,6 +20880,8 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 17E8          ; Allowed ; Recommended #      (៨)  KHMER DIGIT EIGHT
 17E9          ; Allowed ; Recommended #      (៩)  KHMER DIGIT NINE
 1C80..1C88    ; Allowed ; Recommended #  [9] (ᲀ..ᲈ)  CYRILLIC SMALL LETTER ROUNDED VE..CYRILLIC SMALL LETTER UNBLENDED UK
+1C90..1CBA    ; Allowed ; Recommended # [43] (Ა..Ჺ)  GEORGIAN MTAVRULI CAPITAL LETTER AN..GEORGIAN MTAVRULI CAPITAL LETTER AIN
+1CBD..1CBF    ; Allowed ; Recommended #  [3] (Ჽ..Ჿ)  GEORGIAN MTAVRULI CAPITAL LETTER AEN..GEORGIAN MTAVRULI CAPITAL LETTER LABIAL SIGN
 1E00          ; Allowed ; Recommended #      (Ḁ)  LATIN CAPITAL LETTER A WITH RING BELOW
 1E01          ; Allowed ; Recommended #      (ḁ)  LATIN SMALL LETTER A WITH RING BELOW
 1E02          ; Allowed ; Recommended #      (Ḃ)  LATIN CAPITAL LETTER B WITH DOT ABOVE
@@ -21065,7 +21612,17 @@ A7A9          ; Allowed ; Recommended #      (ꞩ)  LATIN SMALL LETTER S WITH OB
 A7AA          ; Allowed ; Recommended #      (Ɦ)  LATIN CAPITAL LETTER H WITH HOOK
 A7AE          ; Allowed ; Recommended #      (Ɪ)  LATIN CAPITAL LETTER SMALL CAPITAL I
 A7AF          ; Allowed ; Recommended #      (ꞯ)  LATIN LETTER SMALL CAPITAL Q
+A7B8          ; Allowed ; Recommended #      (Ꞹ)  LATIN CAPITAL LETTER U WITH STROKE
 A7B9          ; Allowed ; Recommended #      (ꞹ)  LATIN SMALL LETTER U WITH STROKE
+A7BA          ; Allowed ; Recommended #      (Ꞻ)  LATIN CAPITAL LETTER GLOTTAL A
+A7BB          ; Allowed ; Recommended #      (ꞻ)  LATIN SMALL LETTER GLOTTAL A
+A7BC          ; Allowed ; Recommended #      (Ꞽ)  LATIN CAPITAL LETTER GLOTTAL I
+A7BD          ; Allowed ; Recommended #      (ꞽ)  LATIN SMALL LETTER GLOTTAL I
+A7BE          ; Allowed ; Recommended #      (Ꞿ)  LATIN CAPITAL LETTER GLOTTAL U
+A7BF          ; Allowed ; Recommended #      (ꞿ)  LATIN SMALL LETTER GLOTTAL U
+A7C2          ; Allowed ; Recommended #      (Ꟃ)  LATIN CAPITAL LETTER ANGLICANA W
+A7C3          ; Allowed ; Recommended #      (ꟃ)  LATIN SMALL LETTER ANGLICANA W
+A7C4..A7C6    ; Allowed ; Recommended #  [3] (Ꞔ..Ᶎ)  LATIN CAPITAL LETTER C WITH PALATAL HOOK..LATIN CAPITAL LETTER Z WITH PALATAL HOOK
 A7FA          ; Allowed ; Recommended #      (ꟺ)  LATIN LETTER SMALL CAPITAL TURNED M
 A9E7          ; Allowed ; Recommended #      (ꧧ)  MYANMAR LETTER TAI LAING NYA
 A9E8          ; Allowed ; Recommended #      (ꧨ)  MYANMAR LETTER TAI LAING FA
@@ -21125,6 +21682,8 @@ AB09..AB0E    ; Allowed ; Recommended #  [6] (ꬉ..ꬎ)  ETHIOPIC SYLLABLE DDHU.
 AB11..AB16    ; Allowed ; Recommended #  [6] (ꬑ..ꬖ)  ETHIOPIC SYLLABLE DZU..ETHIOPIC SYLLABLE DZO
 AB20..AB26    ; Allowed ; Recommended #  [7] (ꬠ..ꬦ)  ETHIOPIC SYLLABLE CCHHA..ETHIOPIC SYLLABLE CCHHO
 AB28..AB2E    ; Allowed ; Recommended #  [7] (ꬨ..ꬮ)  ETHIOPIC SYLLABLE BBA..ETHIOPIC SYLLABLE BBO
+AB66          ; Allowed ; Recommended #      (ꭦ)  LATIN SMALL LETTER DZ DIGRAPH WITH RETROFLEX HOOK
+AB67          ; Allowed ; Recommended #      (ꭧ)  LATIN SMALL LETTER TS DIGRAPH WITH RETROFLEX HOOK
 AC00..D7A3    ; Allowed ; Recommended # [11172] (가..힣)  HANGUL SYLLABLE GA..HANGUL SYLLABLE HIH
 FA0E          ; Allowed ; Recommended #      (﨎)  CJK COMPATIBILITY IDEOGRAPH-FA0E
 FA0F          ; Allowed ; Recommended #      (﨏)  CJK COMPATIBILITY IDEOGRAPH-FA0F
@@ -21139,291 +21698,13 @@ FA27          ; Allowed ; Recommended #      (﨧)  CJK COMPATIBILITY IDEOGRAPH-
 FA28          ; Allowed ; Recommended #      (﨨)  CJK COMPATIBILITY IDEOGRAPH-FA28
 FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-FA29
 1133B         ; Allowed ; Recommended #      (𑌻)  COMBINING BINDU BELOW
-1B002         ; Allowed ; Recommended #      (𛀂)  HENTAIGANA LETTER A-1
-1B003         ; Allowed ; Recommended #      (𛀃)  HENTAIGANA LETTER A-2
-1B004         ; Allowed ; Recommended #      (𛀄)  HENTAIGANA LETTER A-3
-1B005         ; Allowed ; Recommended #      (𛀅)  HENTAIGANA LETTER A-WO
-1B006         ; Allowed ; Recommended #      (𛀆)  HENTAIGANA LETTER I-1
-1B007         ; Allowed ; Recommended #      (𛀇)  HENTAIGANA LETTER I-2
-1B008         ; Allowed ; Recommended #      (𛀈)  HENTAIGANA LETTER I-3
-1B009         ; Allowed ; Recommended #      (𛀉)  HENTAIGANA LETTER I-4
-1B00A         ; Allowed ; Recommended #      (𛀊)  HENTAIGANA LETTER U-1
-1B00B         ; Allowed ; Recommended #      (𛀋)  HENTAIGANA LETTER U-2
-1B00C         ; Allowed ; Recommended #      (𛀌)  HENTAIGANA LETTER U-3
-1B00D         ; Allowed ; Recommended #      (𛀍)  HENTAIGANA LETTER U-4
-1B00E         ; Allowed ; Recommended #      (𛀎)  HENTAIGANA LETTER U-5
-1B00F         ; Allowed ; Recommended #      (𛀏)  HENTAIGANA LETTER E-2
-1B010         ; Allowed ; Recommended #      (𛀐)  HENTAIGANA LETTER E-3
-1B011         ; Allowed ; Recommended #      (𛀑)  HENTAIGANA LETTER E-4
-1B012         ; Allowed ; Recommended #      (𛀒)  HENTAIGANA LETTER E-5
-1B013         ; Allowed ; Recommended #      (𛀓)  HENTAIGANA LETTER E-6
-1B014         ; Allowed ; Recommended #      (𛀔)  HENTAIGANA LETTER O-1
-1B015         ; Allowed ; Recommended #      (𛀕)  HENTAIGANA LETTER O-2
-1B016         ; Allowed ; Recommended #      (𛀖)  HENTAIGANA LETTER O-3
-1B017         ; Allowed ; Recommended #      (𛀗)  HENTAIGANA LETTER KA-1
-1B018         ; Allowed ; Recommended #      (𛀘)  HENTAIGANA LETTER KA-2
-1B019         ; Allowed ; Recommended #      (𛀙)  HENTAIGANA LETTER KA-3
-1B01A         ; Allowed ; Recommended #      (𛀚)  HENTAIGANA LETTER KA-4
-1B01B         ; Allowed ; Recommended #      (𛀛)  HENTAIGANA LETTER KA-5
-1B01C         ; Allowed ; Recommended #      (𛀜)  HENTAIGANA LETTER KA-6
-1B01D         ; Allowed ; Recommended #      (𛀝)  HENTAIGANA LETTER KA-7
-1B01E         ; Allowed ; Recommended #      (𛀞)  HENTAIGANA LETTER KA-8
-1B01F         ; Allowed ; Recommended #      (𛀟)  HENTAIGANA LETTER KA-9
-1B020         ; Allowed ; Recommended #      (𛀠)  HENTAIGANA LETTER KA-10
-1B021         ; Allowed ; Recommended #      (𛀡)  HENTAIGANA LETTER KA-11
-1B022         ; Allowed ; Recommended #      (𛀢)  HENTAIGANA LETTER KA-KE
-1B023         ; Allowed ; Recommended #      (𛀣)  HENTAIGANA LETTER KI-1
-1B024         ; Allowed ; Recommended #      (𛀤)  HENTAIGANA LETTER KI-2
-1B025         ; Allowed ; Recommended #      (𛀥)  HENTAIGANA LETTER KI-3
-1B026         ; Allowed ; Recommended #      (𛀦)  HENTAIGANA LETTER KI-4
-1B027         ; Allowed ; Recommended #      (𛀧)  HENTAIGANA LETTER KI-5
-1B028         ; Allowed ; Recommended #      (𛀨)  HENTAIGANA LETTER KI-6
-1B029         ; Allowed ; Recommended #      (𛀩)  HENTAIGANA LETTER KI-7
-1B02A         ; Allowed ; Recommended #      (𛀪)  HENTAIGANA LETTER KI-8
-1B02B         ; Allowed ; Recommended #      (𛀫)  HENTAIGANA LETTER KU-1
-1B02C         ; Allowed ; Recommended #      (𛀬)  HENTAIGANA LETTER KU-2
-1B02D         ; Allowed ; Recommended #      (𛀭)  HENTAIGANA LETTER KU-3
-1B02E         ; Allowed ; Recommended #      (𛀮)  HENTAIGANA LETTER KU-4
-1B02F         ; Allowed ; Recommended #      (𛀯)  HENTAIGANA LETTER KU-5
-1B030         ; Allowed ; Recommended #      (𛀰)  HENTAIGANA LETTER KU-6
-1B031         ; Allowed ; Recommended #      (𛀱)  HENTAIGANA LETTER KU-7
-1B032         ; Allowed ; Recommended #      (𛀲)  HENTAIGANA LETTER KE-1
-1B033         ; Allowed ; Recommended #      (𛀳)  HENTAIGANA LETTER KE-2
-1B034         ; Allowed ; Recommended #      (𛀴)  HENTAIGANA LETTER KE-3
-1B035         ; Allowed ; Recommended #      (𛀵)  HENTAIGANA LETTER KE-4
-1B036         ; Allowed ; Recommended #      (𛀶)  HENTAIGANA LETTER KE-5
-1B037         ; Allowed ; Recommended #      (𛀷)  HENTAIGANA LETTER KE-6
-1B038         ; Allowed ; Recommended #      (𛀸)  HENTAIGANA LETTER KO-1
-1B039         ; Allowed ; Recommended #      (𛀹)  HENTAIGANA LETTER KO-2
-1B03A         ; Allowed ; Recommended #      (𛀺)  HENTAIGANA LETTER KO-3
-1B03B         ; Allowed ; Recommended #      (𛀻)  HENTAIGANA LETTER KO-KI
-1B03C         ; Allowed ; Recommended #      (𛀼)  HENTAIGANA LETTER SA-1
-1B03D         ; Allowed ; Recommended #      (𛀽)  HENTAIGANA LETTER SA-2
-1B03E         ; Allowed ; Recommended #      (𛀾)  HENTAIGANA LETTER SA-3
-1B03F         ; Allowed ; Recommended #      (𛀿)  HENTAIGANA LETTER SA-4
-1B040         ; Allowed ; Recommended #      (𛁀)  HENTAIGANA LETTER SA-5
-1B041         ; Allowed ; Recommended #      (𛁁)  HENTAIGANA LETTER SA-6
-1B042         ; Allowed ; Recommended #      (𛁂)  HENTAIGANA LETTER SA-7
-1B043         ; Allowed ; Recommended #      (𛁃)  HENTAIGANA LETTER SA-8
-1B044         ; Allowed ; Recommended #      (𛁄)  HENTAIGANA LETTER SI-1
-1B045         ; Allowed ; Recommended #      (𛁅)  HENTAIGANA LETTER SI-2
-1B046         ; Allowed ; Recommended #      (𛁆)  HENTAIGANA LETTER SI-3
-1B047         ; Allowed ; Recommended #      (𛁇)  HENTAIGANA LETTER SI-4
-1B048         ; Allowed ; Recommended #      (𛁈)  HENTAIGANA LETTER SI-5
-1B049         ; Allowed ; Recommended #      (𛁉)  HENTAIGANA LETTER SI-6
-1B04A         ; Allowed ; Recommended #      (𛁊)  HENTAIGANA LETTER SU-1
-1B04B         ; Allowed ; Recommended #      (𛁋)  HENTAIGANA LETTER SU-2
-1B04C         ; Allowed ; Recommended #      (𛁌)  HENTAIGANA LETTER SU-3
-1B04D         ; Allowed ; Recommended #      (𛁍)  HENTAIGANA LETTER SU-4
-1B04E         ; Allowed ; Recommended #      (𛁎)  HENTAIGANA LETTER SU-5
-1B04F         ; Allowed ; Recommended #      (𛁏)  HENTAIGANA LETTER SU-6
-1B050         ; Allowed ; Recommended #      (𛁐)  HENTAIGANA LETTER SU-7
-1B051         ; Allowed ; Recommended #      (𛁑)  HENTAIGANA LETTER SU-8
-1B052         ; Allowed ; Recommended #      (𛁒)  HENTAIGANA LETTER SE-1
-1B053         ; Allowed ; Recommended #      (𛁓)  HENTAIGANA LETTER SE-2
-1B054         ; Allowed ; Recommended #      (𛁔)  HENTAIGANA LETTER SE-3
-1B055         ; Allowed ; Recommended #      (𛁕)  HENTAIGANA LETTER SE-4
-1B056         ; Allowed ; Recommended #      (𛁖)  HENTAIGANA LETTER SE-5
-1B057         ; Allowed ; Recommended #      (𛁗)  HENTAIGANA LETTER SO-1
-1B058         ; Allowed ; Recommended #      (𛁘)  HENTAIGANA LETTER SO-2
-1B059         ; Allowed ; Recommended #      (𛁙)  HENTAIGANA LETTER SO-3
-1B05A         ; Allowed ; Recommended #      (𛁚)  HENTAIGANA LETTER SO-4
-1B05B         ; Allowed ; Recommended #      (𛁛)  HENTAIGANA LETTER SO-5
-1B05C         ; Allowed ; Recommended #      (𛁜)  HENTAIGANA LETTER SO-6
-1B05D         ; Allowed ; Recommended #      (𛁝)  HENTAIGANA LETTER SO-7
-1B05E         ; Allowed ; Recommended #      (𛁞)  HENTAIGANA LETTER TA-1
-1B05F         ; Allowed ; Recommended #      (𛁟)  HENTAIGANA LETTER TA-2
-1B060         ; Allowed ; Recommended #      (𛁠)  HENTAIGANA LETTER TA-3
-1B061         ; Allowed ; Recommended #      (𛁡)  HENTAIGANA LETTER TA-4
-1B062         ; Allowed ; Recommended #      (𛁢)  HENTAIGANA LETTER TI-1
-1B063         ; Allowed ; Recommended #      (𛁣)  HENTAIGANA LETTER TI-2
-1B064         ; Allowed ; Recommended #      (𛁤)  HENTAIGANA LETTER TI-3
-1B065         ; Allowed ; Recommended #      (𛁥)  HENTAIGANA LETTER TI-4
-1B066         ; Allowed ; Recommended #      (𛁦)  HENTAIGANA LETTER TI-5
-1B067         ; Allowed ; Recommended #      (𛁧)  HENTAIGANA LETTER TI-6
-1B068         ; Allowed ; Recommended #      (𛁨)  HENTAIGANA LETTER TI-7
-1B069         ; Allowed ; Recommended #      (𛁩)  HENTAIGANA LETTER TU-1
-1B06A         ; Allowed ; Recommended #      (𛁪)  HENTAIGANA LETTER TU-2
-1B06B         ; Allowed ; Recommended #      (𛁫)  HENTAIGANA LETTER TU-3
-1B06C         ; Allowed ; Recommended #      (𛁬)  HENTAIGANA LETTER TU-4
-1B06D         ; Allowed ; Recommended #      (𛁭)  HENTAIGANA LETTER TU-TO
-1B06E         ; Allowed ; Recommended #      (𛁮)  HENTAIGANA LETTER TE-1
-1B06F         ; Allowed ; Recommended #      (𛁯)  HENTAIGANA LETTER TE-2
-1B070         ; Allowed ; Recommended #      (𛁰)  HENTAIGANA LETTER TE-3
-1B071         ; Allowed ; Recommended #      (𛁱)  HENTAIGANA LETTER TE-4
-1B072         ; Allowed ; Recommended #      (𛁲)  HENTAIGANA LETTER TE-5
-1B073         ; Allowed ; Recommended #      (𛁳)  HENTAIGANA LETTER TE-6
-1B074         ; Allowed ; Recommended #      (𛁴)  HENTAIGANA LETTER TE-7
-1B075         ; Allowed ; Recommended #      (𛁵)  HENTAIGANA LETTER TE-8
-1B076         ; Allowed ; Recommended #      (𛁶)  HENTAIGANA LETTER TE-9
-1B077         ; Allowed ; Recommended #      (𛁷)  HENTAIGANA LETTER TO-1
-1B078         ; Allowed ; Recommended #      (𛁸)  HENTAIGANA LETTER TO-2
-1B079         ; Allowed ; Recommended #      (𛁹)  HENTAIGANA LETTER TO-3
-1B07A         ; Allowed ; Recommended #      (𛁺)  HENTAIGANA LETTER TO-4
-1B07B         ; Allowed ; Recommended #      (𛁻)  HENTAIGANA LETTER TO-5
-1B07C         ; Allowed ; Recommended #      (𛁼)  HENTAIGANA LETTER TO-6
-1B07D         ; Allowed ; Recommended #      (𛁽)  HENTAIGANA LETTER TO-RA
-1B07E         ; Allowed ; Recommended #      (𛁾)  HENTAIGANA LETTER NA-1
-1B07F         ; Allowed ; Recommended #      (𛁿)  HENTAIGANA LETTER NA-2
-1B080         ; Allowed ; Recommended #      (𛂀)  HENTAIGANA LETTER NA-3
-1B081         ; Allowed ; Recommended #      (𛂁)  HENTAIGANA LETTER NA-4
-1B082         ; Allowed ; Recommended #      (𛂂)  HENTAIGANA LETTER NA-5
-1B083         ; Allowed ; Recommended #      (𛂃)  HENTAIGANA LETTER NA-6
-1B084         ; Allowed ; Recommended #      (𛂄)  HENTAIGANA LETTER NA-7
-1B085         ; Allowed ; Recommended #      (𛂅)  HENTAIGANA LETTER NA-8
-1B086         ; Allowed ; Recommended #      (𛂆)  HENTAIGANA LETTER NA-9
-1B087         ; Allowed ; Recommended #      (𛂇)  HENTAIGANA LETTER NI-1
-1B088         ; Allowed ; Recommended #      (𛂈)  HENTAIGANA LETTER NI-2
-1B089         ; Allowed ; Recommended #      (𛂉)  HENTAIGANA LETTER NI-3
-1B08A         ; Allowed ; Recommended #      (𛂊)  HENTAIGANA LETTER NI-4
-1B08B         ; Allowed ; Recommended #      (𛂋)  HENTAIGANA LETTER NI-5
-1B08C         ; Allowed ; Recommended #      (𛂌)  HENTAIGANA LETTER NI-6
-1B08D         ; Allowed ; Recommended #      (𛂍)  HENTAIGANA LETTER NI-7
-1B08E         ; Allowed ; Recommended #      (𛂎)  HENTAIGANA LETTER NI-TE
-1B08F         ; Allowed ; Recommended #      (𛂏)  HENTAIGANA LETTER NU-1
-1B090         ; Allowed ; Recommended #      (𛂐)  HENTAIGANA LETTER NU-2
-1B091         ; Allowed ; Recommended #      (𛂑)  HENTAIGANA LETTER NU-3
-1B092         ; Allowed ; Recommended #      (𛂒)  HENTAIGANA LETTER NE-1
-1B093         ; Allowed ; Recommended #      (𛂓)  HENTAIGANA LETTER NE-2
-1B094         ; Allowed ; Recommended #      (𛂔)  HENTAIGANA LETTER NE-3
-1B095         ; Allowed ; Recommended #      (𛂕)  HENTAIGANA LETTER NE-4
-1B096         ; Allowed ; Recommended #      (𛂖)  HENTAIGANA LETTER NE-5
-1B097         ; Allowed ; Recommended #      (𛂗)  HENTAIGANA LETTER NE-6
-1B098         ; Allowed ; Recommended #      (𛂘)  HENTAIGANA LETTER NE-KO
-1B099         ; Allowed ; Recommended #      (𛂙)  HENTAIGANA LETTER NO-1
-1B09A         ; Allowed ; Recommended #      (𛂚)  HENTAIGANA LETTER NO-2
-1B09B         ; Allowed ; Recommended #      (𛂛)  HENTAIGANA LETTER NO-3
-1B09C         ; Allowed ; Recommended #      (𛂜)  HENTAIGANA LETTER NO-4
-1B09D         ; Allowed ; Recommended #      (𛂝)  HENTAIGANA LETTER NO-5
-1B09E         ; Allowed ; Recommended #      (𛂞)  HENTAIGANA LETTER HA-1
-1B09F         ; Allowed ; Recommended #      (𛂟)  HENTAIGANA LETTER HA-2
-1B0A0         ; Allowed ; Recommended #      (𛂠)  HENTAIGANA LETTER HA-3
-1B0A1         ; Allowed ; Recommended #      (𛂡)  HENTAIGANA LETTER HA-4
-1B0A2         ; Allowed ; Recommended #      (𛂢)  HENTAIGANA LETTER HA-5
-1B0A3         ; Allowed ; Recommended #      (𛂣)  HENTAIGANA LETTER HA-6
-1B0A4         ; Allowed ; Recommended #      (𛂤)  HENTAIGANA LETTER HA-7
-1B0A5         ; Allowed ; Recommended #      (𛂥)  HENTAIGANA LETTER HA-8
-1B0A6         ; Allowed ; Recommended #      (𛂦)  HENTAIGANA LETTER HA-9
-1B0A7         ; Allowed ; Recommended #      (𛂧)  HENTAIGANA LETTER HA-10
-1B0A8         ; Allowed ; Recommended #      (𛂨)  HENTAIGANA LETTER HA-11
-1B0A9         ; Allowed ; Recommended #      (𛂩)  HENTAIGANA LETTER HI-1
-1B0AA         ; Allowed ; Recommended #      (𛂪)  HENTAIGANA LETTER HI-2
-1B0AB         ; Allowed ; Recommended #      (𛂫)  HENTAIGANA LETTER HI-3
-1B0AC         ; Allowed ; Recommended #      (𛂬)  HENTAIGANA LETTER HI-4
-1B0AD         ; Allowed ; Recommended #      (𛂭)  HENTAIGANA LETTER HI-5
-1B0AE         ; Allowed ; Recommended #      (𛂮)  HENTAIGANA LETTER HI-6
-1B0AF         ; Allowed ; Recommended #      (𛂯)  HENTAIGANA LETTER HI-7
-1B0B0         ; Allowed ; Recommended #      (𛂰)  HENTAIGANA LETTER HU-1
-1B0B1         ; Allowed ; Recommended #      (𛂱)  HENTAIGANA LETTER HU-2
-1B0B2         ; Allowed ; Recommended #      (𛂲)  HENTAIGANA LETTER HU-3
-1B0B3         ; Allowed ; Recommended #      (𛂳)  HENTAIGANA LETTER HE-1
-1B0B4         ; Allowed ; Recommended #      (𛂴)  HENTAIGANA LETTER HE-2
-1B0B5         ; Allowed ; Recommended #      (𛂵)  HENTAIGANA LETTER HE-3
-1B0B6         ; Allowed ; Recommended #      (𛂶)  HENTAIGANA LETTER HE-4
-1B0B7         ; Allowed ; Recommended #      (𛂷)  HENTAIGANA LETTER HE-5
-1B0B8         ; Allowed ; Recommended #      (𛂸)  HENTAIGANA LETTER HE-6
-1B0B9         ; Allowed ; Recommended #      (𛂹)  HENTAIGANA LETTER HE-7
-1B0BA         ; Allowed ; Recommended #      (𛂺)  HENTAIGANA LETTER HO-1
-1B0BB         ; Allowed ; Recommended #      (𛂻)  HENTAIGANA LETTER HO-2
-1B0BC         ; Allowed ; Recommended #      (𛂼)  HENTAIGANA LETTER HO-3
-1B0BD         ; Allowed ; Recommended #      (𛂽)  HENTAIGANA LETTER HO-4
-1B0BE         ; Allowed ; Recommended #      (𛂾)  HENTAIGANA LETTER HO-5
-1B0BF         ; Allowed ; Recommended #      (𛂿)  HENTAIGANA LETTER HO-6
-1B0C0         ; Allowed ; Recommended #      (𛃀)  HENTAIGANA LETTER HO-7
-1B0C1         ; Allowed ; Recommended #      (𛃁)  HENTAIGANA LETTER HO-8
-1B0C2         ; Allowed ; Recommended #      (𛃂)  HENTAIGANA LETTER MA-1
-1B0C3         ; Allowed ; Recommended #      (𛃃)  HENTAIGANA LETTER MA-2
-1B0C4         ; Allowed ; Recommended #      (𛃄)  HENTAIGANA LETTER MA-3
-1B0C5         ; Allowed ; Recommended #      (𛃅)  HENTAIGANA LETTER MA-4
-1B0C6         ; Allowed ; Recommended #      (𛃆)  HENTAIGANA LETTER MA-5
-1B0C7         ; Allowed ; Recommended #      (𛃇)  HENTAIGANA LETTER MA-6
-1B0C8         ; Allowed ; Recommended #      (𛃈)  HENTAIGANA LETTER MA-7
-1B0C9         ; Allowed ; Recommended #      (𛃉)  HENTAIGANA LETTER MI-1
-1B0CA         ; Allowed ; Recommended #      (𛃊)  HENTAIGANA LETTER MI-2
-1B0CB         ; Allowed ; Recommended #      (𛃋)  HENTAIGANA LETTER MI-3
-1B0CC         ; Allowed ; Recommended #      (𛃌)  HENTAIGANA LETTER MI-4
-1B0CD         ; Allowed ; Recommended #      (𛃍)  HENTAIGANA LETTER MI-5
-1B0CE         ; Allowed ; Recommended #      (𛃎)  HENTAIGANA LETTER MI-6
-1B0CF         ; Allowed ; Recommended #      (𛃏)  HENTAIGANA LETTER MI-7
-1B0D0         ; Allowed ; Recommended #      (𛃐)  HENTAIGANA LETTER MU-1
-1B0D1         ; Allowed ; Recommended #      (𛃑)  HENTAIGANA LETTER MU-2
-1B0D2         ; Allowed ; Recommended #      (𛃒)  HENTAIGANA LETTER MU-3
-1B0D3         ; Allowed ; Recommended #      (𛃓)  HENTAIGANA LETTER MU-4
-1B0D4         ; Allowed ; Recommended #      (𛃔)  HENTAIGANA LETTER ME-1
-1B0D5         ; Allowed ; Recommended #      (𛃕)  HENTAIGANA LETTER ME-2
-1B0D6         ; Allowed ; Recommended #      (𛃖)  HENTAIGANA LETTER ME-MA
-1B0D7         ; Allowed ; Recommended #      (𛃗)  HENTAIGANA LETTER MO-1
-1B0D8         ; Allowed ; Recommended #      (𛃘)  HENTAIGANA LETTER MO-2
-1B0D9         ; Allowed ; Recommended #      (𛃙)  HENTAIGANA LETTER MO-3
-1B0DA         ; Allowed ; Recommended #      (𛃚)  HENTAIGANA LETTER MO-4
-1B0DB         ; Allowed ; Recommended #      (𛃛)  HENTAIGANA LETTER MO-5
-1B0DC         ; Allowed ; Recommended #      (𛃜)  HENTAIGANA LETTER MO-6
-1B0DD         ; Allowed ; Recommended #      (𛃝)  HENTAIGANA LETTER YA-1
-1B0DE         ; Allowed ; Recommended #      (𛃞)  HENTAIGANA LETTER YA-2
-1B0DF         ; Allowed ; Recommended #      (𛃟)  HENTAIGANA LETTER YA-3
-1B0E0         ; Allowed ; Recommended #      (𛃠)  HENTAIGANA LETTER YA-4
-1B0E1         ; Allowed ; Recommended #      (𛃡)  HENTAIGANA LETTER YA-5
-1B0E2         ; Allowed ; Recommended #      (𛃢)  HENTAIGANA LETTER YA-YO
-1B0E3         ; Allowed ; Recommended #      (𛃣)  HENTAIGANA LETTER YU-1
-1B0E4         ; Allowed ; Recommended #      (𛃤)  HENTAIGANA LETTER YU-2
-1B0E5         ; Allowed ; Recommended #      (𛃥)  HENTAIGANA LETTER YU-3
-1B0E6         ; Allowed ; Recommended #      (𛃦)  HENTAIGANA LETTER YU-4
-1B0E7         ; Allowed ; Recommended #      (𛃧)  HENTAIGANA LETTER YO-1
-1B0E8         ; Allowed ; Recommended #      (𛃨)  HENTAIGANA LETTER YO-2
-1B0E9         ; Allowed ; Recommended #      (𛃩)  HENTAIGANA LETTER YO-3
-1B0EA         ; Allowed ; Recommended #      (𛃪)  HENTAIGANA LETTER YO-4
-1B0EB         ; Allowed ; Recommended #      (𛃫)  HENTAIGANA LETTER YO-5
-1B0EC         ; Allowed ; Recommended #      (𛃬)  HENTAIGANA LETTER YO-6
-1B0ED         ; Allowed ; Recommended #      (𛃭)  HENTAIGANA LETTER RA-1
-1B0EE         ; Allowed ; Recommended #      (𛃮)  HENTAIGANA LETTER RA-2
-1B0EF         ; Allowed ; Recommended #      (𛃯)  HENTAIGANA LETTER RA-3
-1B0F0         ; Allowed ; Recommended #      (𛃰)  HENTAIGANA LETTER RA-4
-1B0F1         ; Allowed ; Recommended #      (𛃱)  HENTAIGANA LETTER RI-1
-1B0F2         ; Allowed ; Recommended #      (𛃲)  HENTAIGANA LETTER RI-2
-1B0F3         ; Allowed ; Recommended #      (𛃳)  HENTAIGANA LETTER RI-3
-1B0F4         ; Allowed ; Recommended #      (𛃴)  HENTAIGANA LETTER RI-4
-1B0F5         ; Allowed ; Recommended #      (𛃵)  HENTAIGANA LETTER RI-5
-1B0F6         ; Allowed ; Recommended #      (𛃶)  HENTAIGANA LETTER RI-6
-1B0F7         ; Allowed ; Recommended #      (𛃷)  HENTAIGANA LETTER RI-7
-1B0F8         ; Allowed ; Recommended #      (𛃸)  HENTAIGANA LETTER RU-1
-1B0F9         ; Allowed ; Recommended #      (𛃹)  HENTAIGANA LETTER RU-2
-1B0FA         ; Allowed ; Recommended #      (𛃺)  HENTAIGANA LETTER RU-3
-1B0FB         ; Allowed ; Recommended #      (𛃻)  HENTAIGANA LETTER RU-4
-1B0FC         ; Allowed ; Recommended #      (𛃼)  HENTAIGANA LETTER RU-5
-1B0FD         ; Allowed ; Recommended #      (𛃽)  HENTAIGANA LETTER RU-6
-1B0FE         ; Allowed ; Recommended #      (𛃾)  HENTAIGANA LETTER RE-1
-1B0FF         ; Allowed ; Recommended #      (𛃿)  HENTAIGANA LETTER RE-2
-1B100         ; Allowed ; Recommended #      (𛄀)  HENTAIGANA LETTER RE-3
-1B101         ; Allowed ; Recommended #      (𛄁)  HENTAIGANA LETTER RE-4
-1B102         ; Allowed ; Recommended #      (𛄂)  HENTAIGANA LETTER RO-1
-1B103         ; Allowed ; Recommended #      (𛄃)  HENTAIGANA LETTER RO-2
-1B104         ; Allowed ; Recommended #      (𛄄)  HENTAIGANA LETTER RO-3
-1B105         ; Allowed ; Recommended #      (𛄅)  HENTAIGANA LETTER RO-4
-1B106         ; Allowed ; Recommended #      (𛄆)  HENTAIGANA LETTER RO-5
-1B107         ; Allowed ; Recommended #      (𛄇)  HENTAIGANA LETTER RO-6
-1B108         ; Allowed ; Recommended #      (𛄈)  HENTAIGANA LETTER WA-1
-1B109         ; Allowed ; Recommended #      (𛄉)  HENTAIGANA LETTER WA-2
-1B10A         ; Allowed ; Recommended #      (𛄊)  HENTAIGANA LETTER WA-3
-1B10B         ; Allowed ; Recommended #      (𛄋)  HENTAIGANA LETTER WA-4
-1B10C         ; Allowed ; Recommended #      (𛄌)  HENTAIGANA LETTER WA-5
-1B10D         ; Allowed ; Recommended #      (𛄍)  HENTAIGANA LETTER WI-1
-1B10E         ; Allowed ; Recommended #      (𛄎)  HENTAIGANA LETTER WI-2
-1B10F         ; Allowed ; Recommended #      (𛄏)  HENTAIGANA LETTER WI-3
-1B110         ; Allowed ; Recommended #      (𛄐)  HENTAIGANA LETTER WI-4
-1B111         ; Allowed ; Recommended #      (𛄑)  HENTAIGANA LETTER WI-5
-1B112         ; Allowed ; Recommended #      (𛄒)  HENTAIGANA LETTER WE-1
-1B113         ; Allowed ; Recommended #      (𛄓)  HENTAIGANA LETTER WE-2
-1B114         ; Allowed ; Recommended #      (𛄔)  HENTAIGANA LETTER WE-3
-1B115         ; Allowed ; Recommended #      (𛄕)  HENTAIGANA LETTER WE-4
-1B116         ; Allowed ; Recommended #      (𛄖)  HENTAIGANA LETTER WO-1
-1B117         ; Allowed ; Recommended #      (𛄗)  HENTAIGANA LETTER WO-2
-1B118         ; Allowed ; Recommended #      (𛄘)  HENTAIGANA LETTER WO-3
-1B119         ; Allowed ; Recommended #      (𛄙)  HENTAIGANA LETTER WO-4
-1B11A         ; Allowed ; Recommended #      (𛄚)  HENTAIGANA LETTER WO-5
-1B11B         ; Allowed ; Recommended #      (𛄛)  HENTAIGANA LETTER WO-6
-1B11C         ; Allowed ; Recommended #      (𛄜)  HENTAIGANA LETTER WO-7
-1B11D         ; Allowed ; Recommended #      (𛄝)  HENTAIGANA LETTER N-MU-MO-1
-1B11E         ; Allowed ; Recommended #      (𛄞)  HENTAIGANA LETTER N-MU-MO-2
+1B150         ; Allowed ; Recommended #      (𛅐)  HIRAGANA LETTER SMALL WI
+1B151         ; Allowed ; Recommended #      (𛅑)  HIRAGANA LETTER SMALL WE
+1B152         ; Allowed ; Recommended #      (𛅒)  HIRAGANA LETTER SMALL WO
+1B164         ; Allowed ; Recommended #      (𛅤)  KATAKANA LETTER SMALL WI
+1B165         ; Allowed ; Recommended #      (𛅥)  KATAKANA LETTER SMALL WE
+1B166         ; Allowed ; Recommended #      (𛅦)  KATAKANA LETTER SMALL WO
+1B167         ; Allowed ; Recommended #      (𛅧)  KATAKANA LETTER SMALL N
 20000..2A6D6  ; Allowed ; Recommended # [42711] (𠀀..𪛖)  CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6D6
 2A700         ; Allowed ; Recommended #      (𪜀)  CJK UNIFIED IDEOGRAPH-2A700
 2A701         ; Allowed ; Recommended #      (𪜁)  CJK UNIFIED IDEOGRAPH-2A701
@@ -39032,21 +39313,17 @@ FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 2EBDF         ; Allowed ; Recommended #      (𮯟)  CJK UNIFIED IDEOGRAPH-2EBDF
 2EBE0         ; Allowed ; Recommended #      (𮯠)  CJK UNIFIED IDEOGRAPH-2EBE0
 
-# Total code points: 103087
+# Total code points: 102884
 
 005F          ; ~IDNA #      (_)  LOW LINE
 04C0          ; ~IDNA #      (Ӏ)  CYRILLIC LETTER PALOCHKA
 10A0..10C5    ; ~IDNA # [38] (Ⴀ..Ⴥ)  GEORGIAN CAPITAL LETTER AN..GEORGIAN CAPITAL LETTER HOE
 115F..1160    ; ~IDNA #  [2] (U+115F..U+1160)  HANGUL CHOSEONG FILLER..HANGUL JUNGSEONG FILLER
 17B4..17B5    ; ~IDNA #  [2] (U+17B4..U+17B5)  KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
-1C90..1CBA    ; ~IDNA # [43] (Ა..Ჺ)  GEORGIAN MTAVRULI CAPITAL LETTER AN..GEORGIAN MTAVRULI CAPITAL LETTER AIN
-1CBD..1CBF    ; ~IDNA #  [3] (Ჽ..Ჿ)  GEORGIAN MTAVRULI CAPITAL LETTER AEN..GEORGIAN MTAVRULI CAPITAL LETTER LABIAL SIGN
 2132          ; ~IDNA #      (Ⅎ)  TURNED CAPITAL F
 2183          ; ~IDNA #      (Ↄ)  ROMAN NUMERAL REVERSED ONE HUNDRED
-A7B8          ; ~IDNA #      (Ꞹ)  LATIN CAPITAL LETTER U WITH STROKE
-16E40..16E5F  ; ~IDNA # [32] (𖹀..𖹟)  MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN CAPITAL LETTER Y
 
-# Total code points: 125
+# Total code points: 46
 
 0000..002F    ; ~Unicode Identifier # [48] (U+0000../)  <control-0000>..SOLIDUS
 003A..0040    ; ~Unicode Identifier #  [7] (:..@)  COLON..COMMERCIAL AT
@@ -39122,7 +39399,7 @@ A7B8          ; ~IDNA #      (Ꞹ)  LATIN CAPITAL LETTER U WITH STROKE
 0B70          ; ~Unicode Identifier #      (୰)  ORIYA ISSHAR
 0B72..0B77    ; ~Unicode Identifier #  [6] (୲..୷)  ORIYA FRACTION ONE QUARTER..ORIYA FRACTION THREE SIXTEENTHS
 0BF0..0BFA    ; ~Unicode Identifier # [11] (௰..௺)  TAMIL NUMBER TEN..TAMIL NUMBER SIGN
-0C78..0C7F    ; ~Unicode Identifier #  [8] (౸..౿)  TELUGU FRACTION DIGIT ZERO FOR ODD POWERS OF FOUR..TELUGU SIGN TUUMU
+0C77..0C7F    ; ~Unicode Identifier #  [9] (౷..౿)  TELUGU SIGN SIDDHAM..TELUGU SIGN TUUMU
 0C84          ; ~Unicode Identifier #      (಄)  KANNADA SIGN SIDDHAM
 0D4F          ; ~Unicode Identifier #      (൏)  MALAYALAM SIGN PARA
 0D58..0D5E    ; ~Unicode Identifier #  [7] (൘..൞)  MALAYALAM FRACTION ONE ONE-HUNDRED-AND-SIXTIETH..MALAYALAM FRACTION ONE FIFTH
@@ -39237,13 +39514,12 @@ A7B8          ; ~IDNA #      (Ꞹ)  LATIN CAPITAL LETTER U WITH STROKE
 2440..244A    ; ~Unicode Identifier # [11] (⑀..⑊)  OCR HOOK..OCR DOUBLE BACKSLASH
 2460..2B73    ; ~Unicode Identifier # [1812] (①..⭳)  CIRCLED DIGIT ONE..DOWNWARDS TRIANGLE-HEADED ARROW TO BAR
 2B76..2B95    ; ~Unicode Identifier # [32] (⭶..⮕)  NORTH WEST TRIANGLE-HEADED ARROW TO BAR..RIGHTWARDS BLACK ARROW
-2B98..2BC8    ; ~Unicode Identifier # [49] (⮘..⯈)  THREE-D TOP-LIGHTED LEFTWARDS EQUILATERAL ARROWHEAD..BLACK MEDIUM RIGHT-POINTING TRIANGLE CENTRED
-2BCA..2BFE    ; ~Unicode Identifier # [53] (⯊..⯾)  TOP HALF BLACK CIRCLE..REVERSED RIGHT ANGLE
+2B98..2BFF    ; ~Unicode Identifier # [104] (⮘..⯿)  THREE-D TOP-LIGHTED LEFTWARDS EQUILATERAL ARROWHEAD..HELLSCHREIBER PAUSE SYMBOL
 2C7C..2C7D    ; ~Unicode Identifier #  [2] (ⱼ..ⱽ)  LATIN SUBSCRIPT SMALL LETTER J..MODIFIER LETTER CAPITAL V
 2CE5..2CEA    ; ~Unicode Identifier #  [6] (⳥..⳪)  COPTIC SYMBOL MI RO..COPTIC SYMBOL SHIMA SIMA
 2CF9..2CFF    ; ~Unicode Identifier #  [7] (⳹..⳿)  COPTIC OLD NUBIAN FULL STOP..COPTIC MORPHOLOGICAL DIVIDER
 2D6F..2D70    ; ~Unicode Identifier #  [2] (ⵯ..⵰)  TIFINAGH MODIFIER LETTER LABIALIZATION MARK..TIFINAGH SEPARATOR MARK
-2E00..2E4E    ; ~Unicode Identifier # [79] (⸀..⹎)  RIGHT ANGLE SUBSTITUTION MARKER..PUNCTUS ELEVATUS MARK
+2E00..2E4F    ; ~Unicode Identifier # [80] (⸀..⹏)  RIGHT ANGLE SUBSTITUTION MARKER..CORNISH VERSE DIVIDER
 2E80..2E99    ; ~Unicode Identifier # [26] (⺀..⺙)  CJK RADICAL REPEAT..CJK RADICAL RAP
 2E9B..2EF3    ; ~Unicode Identifier # [89] (⺛..⻳)  CJK RADICAL CHOKE..CJK RADICAL C-SIMPLIFIED TURTLE
 2F00..2FD5    ; ~Unicode Identifier # [214] (⼀..⿕)  KANGXI RADICAL ONE..KANGXI RADICAL FLUTE
@@ -39390,6 +39666,7 @@ FFF9..FFFD    ; ~Unicode Identifier #  [5] (U+FFF9..�)  INTERLINEAR ANNOTATION
 1173A..1173F  ; ~Unicode Identifier #  [6] (𑜺..𑜿)  AHOM NUMBER TEN..AHOM SYMBOL VI
 1183B         ; ~Unicode Identifier #      (𑠻)  DOGRA ABBREVIATION SIGN
 118EA..118F2  ; ~Unicode Identifier #  [9] (𑣪..𑣲)  WARANG CITI NUMBER TEN..WARANG CITI NUMBER NINETY
+119E2         ; ~Unicode Identifier #      (𑧢)  NANDINAGARI SIGN SIDDHAM
 11A3F..11A46  ; ~Unicode Identifier #  [8] (𑨿..𑩆)  ZANABAZAR SQUARE INITIAL HEAD MARK..ZANABAZAR SQUARE CLOSING DOUBLE-LINED HEAD MARK
 11A9A..11A9C  ; ~Unicode Identifier #  [3] (𑪚..𑪜)  SOYOMBO MARK TSHEG..SOYOMBO MARK DOUBLE SHAD
 11A9E..11AA2  ; ~Unicode Identifier #  [5] (𑪞..𑪢)  SOYOMBO HEAD MARK WITH MOON AND SUN AND TRIPLE FLAME..SOYOMBO TERMINAL MARK-2
@@ -39397,13 +39674,17 @@ FFF9..FFFD    ; ~Unicode Identifier #  [5] (U+FFF9..�)  INTERLINEAR ANNOTATION
 11C5A..11C6C  ; ~Unicode Identifier # [19] (𑱚..𑱬)  BHAIKSUKI NUMBER ONE..BHAIKSUKI HUNDREDS UNIT MARK
 11C70..11C71  ; ~Unicode Identifier #  [2] (𑱰..𑱱)  MARCHEN HEAD MARK..MARCHEN MARK SHAD
 11EF7..11EF8  ; ~Unicode Identifier #  [2] (𑻷..𑻸)  MAKASAR PASSIMBANG..MAKASAR END OF SECTION
+11FC0..11FF1  ; ~Unicode Identifier # [50] (𑿀..𑿱)  TAMIL FRACTION ONE THREE-HUNDRED-AND-TWENTIETH..TAMIL SIGN VAKAIYARAA
+11FFF         ; ~Unicode Identifier #      (𑿿)  TAMIL PUNCTUATION END OF TEXT
 12470..12474  ; ~Unicode Identifier #  [5] (𒑰..𒑴)  CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD DIVIDER..CUNEIFORM PUNCTUATION SIGN DIAGONAL QUADCOLON
+13430..13438  ; ~Unicode Identifier #  [9] (𓐰..𓐸)  EGYPTIAN HIEROGLYPH VERTICAL JOINER..EGYPTIAN HIEROGLYPH END SEGMENT
 16A6E..16A6F  ; ~Unicode Identifier #  [2] (𖩮..𖩯)  MRO DANDA..MRO DOUBLE DANDA
 16AF5         ; ~Unicode Identifier #      (𖫵)  BASSA VAH FULL STOP
 16B37..16B3F  ; ~Unicode Identifier #  [9] (𖬷..𖬿)  PAHAWH HMONG SIGN VOS THOM..PAHAWH HMONG SIGN XYEEM FAIB
 16B44..16B45  ; ~Unicode Identifier #  [2] (𖭄..𖭅)  PAHAWH HMONG SIGN XAUS..PAHAWH HMONG SIGN CIM TSOV ROG
 16B5B..16B61  ; ~Unicode Identifier #  [7] (𖭛..𖭡)  PAHAWH HMONG NUMBER TENS..PAHAWH HMONG NUMBER TRILLIONS
 16E80..16E9A  ; ~Unicode Identifier # [27] (𖺀..𖺚)  MEDEFAIDRIN DIGIT ZERO..MEDEFAIDRIN EXCLAMATION OH
+16FE2         ; ~Unicode Identifier #      (𖿢)  OLD CHINESE HOOK MARK
 1BC9C         ; ~Unicode Identifier #      (𛲜)  DUPLOYAN SIGN O WITH CROSS
 1BC9F..1BCA3  ; ~Unicode Identifier #  [5] (𛲟..U+1BCA3)  DUPLOYAN PUNCTUATION CHINOOK FULL STOP..SHORTHAND FORMAT UP STEP
 1D000..1D0F5  ; ~Unicode Identifier # [246] (𝀀..𝃵)  BYZANTINE MUSICAL SYMBOL PSILI..BYZANTINE MUSICAL SYMBOL GORGON NEO KATO
@@ -39444,9 +39725,12 @@ FFF9..FFFD    ; ~Unicode Identifier #  [5] (U+FFF9..�)  INTERLINEAR ANNOTATION
 1DA6D..1DA74  ; ~Unicode Identifier #  [8] (𝩭..𝩴)  SIGNWRITING SHOULDER HIP SPINE..SIGNWRITING TORSO-FLOORPLANE TWISTING
 1DA76..1DA83  ; ~Unicode Identifier # [14] (𝩶..𝪃)  SIGNWRITING LIMB COMBINATION..SIGNWRITING LOCATION DEPTH
 1DA85..1DA8B  ; ~Unicode Identifier #  [7] (𝪅..𝪋)  SIGNWRITING LOCATION TORSO..SIGNWRITING PARENTHESIS
+1E14F         ; ~Unicode Identifier #      (𞅏)  NYIAKENG PUACHUE HMONG CIRCLED CA
+1E2FF         ; ~Unicode Identifier #      (𞋿)  WANCHO NGUN SIGN
 1E8C7..1E8CF  ; ~Unicode Identifier #  [9] (𞣇..𞣏)  MENDE KIKAKUI DIGIT ONE..MENDE KIKAKUI DIGIT NINE
 1E95E..1E95F  ; ~Unicode Identifier #  [2] (𞥞..𞥟)  ADLAM INITIAL EXCLAMATION MARK..ADLAM INITIAL QUESTION MARK
 1EC71..1ECB4  ; ~Unicode Identifier # [68] (𞱱..𞲴)  INDIC SIYAQ NUMBER ONE..INDIC SIYAQ ALTERNATE LAKH MARK
+1ED01..1ED3D  ; ~Unicode Identifier # [61] (𞴁..𞴽)  OTTOMAN SIYAQ NUMBER ONE..OTTOMAN SIYAQ FRACTION ONE SIXTH
 1EE00..1EE03  ; ~Unicode Identifier #  [4] (𞸀..𞸃)  ARABIC MATHEMATICAL ALEF..ARABIC MATHEMATICAL DAL
 1EE05..1EE1F  ; ~Unicode Identifier # [27] (𞸅..𞸟)  ARABIC MATHEMATICAL WAW..ARABIC MATHEMATICAL DOTLESS QAF
 1EE21..1EE22  ; ~Unicode Identifier #  [2] (𞸡..𞸢)  ARABIC MATHEMATICAL INITIAL BEH..ARABIC MATHEMATICAL INITIAL JEEM
@@ -39488,35 +39772,38 @@ FFF9..FFFD    ; ~Unicode Identifier #  [5] (U+FFF9..�)  INTERLINEAR ANNOTATION
 1F0C1..1F0CF  ; ~Unicode Identifier # [15] (🃁..🃏)  PLAYING CARD ACE OF DIAMONDS..PLAYING CARD BLACK JOKER
 1F0D1..1F0F5  ; ~Unicode Identifier # [37] (🃑..🃵)  PLAYING CARD ACE OF CLUBS..PLAYING CARD TRUMP-21
 1F100..1F10C  ; ~Unicode Identifier # [13] (🄀..🄌)  DIGIT ZERO FULL STOP..DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ZERO
-1F110..1F16B  ; ~Unicode Identifier # [92] (🄐..🅫)  PARENTHESIZED LATIN CAPITAL LETTER A..RAISED MD SIGN
+1F110..1F16C  ; ~Unicode Identifier # [93] (🄐..🅬)  PARENTHESIZED LATIN CAPITAL LETTER A..RAISED MR SIGN
 1F170..1F1AC  ; ~Unicode Identifier # [61] (🅰..🆬)  NEGATIVE SQUARED LATIN CAPITAL LETTER A..SQUARED VOD
 1F1E6..1F202  ; ~Unicode Identifier # [29] (🇦..🈂)  REGIONAL INDICATOR SYMBOL LETTER A..SQUARED KATAKANA SA
 1F210..1F23B  ; ~Unicode Identifier # [44] (🈐..🈻)  SQUARED CJK UNIFIED IDEOGRAPH-624B..SQUARED CJK UNIFIED IDEOGRAPH-914D
 1F240..1F248  ; ~Unicode Identifier #  [9] (🉀..🉈)  TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-672C..TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-6557
 1F250..1F251  ; ~Unicode Identifier #  [2] (🉐..🉑)  CIRCLED IDEOGRAPH ADVANTAGE..CIRCLED IDEOGRAPH ACCEPT
 1F260..1F265  ; ~Unicode Identifier #  [6] (🉠..🉥)  ROUNDED SYMBOL FOR FU..ROUNDED SYMBOL FOR CAI
-1F300..1F6D4  ; ~Unicode Identifier # [981] (🌀..🛔)  CYCLONE..PAGODA
+1F300..1F6D5  ; ~Unicode Identifier # [982] (🌀..🛕)  CYCLONE..HINDU TEMPLE
 1F6E0..1F6EC  ; ~Unicode Identifier # [13] (🛠..🛬)  HAMMER AND WRENCH..AIRPLANE ARRIVING
-1F6F0..1F6F9  ; ~Unicode Identifier # [10] (🛰..🛹)  SATELLITE..SKATEBOARD
+1F6F0..1F6FA  ; ~Unicode Identifier # [11] (🛰..🛺)  SATELLITE..AUTO RICKSHAW
 1F700..1F773  ; ~Unicode Identifier # [116] (🜀..🝳)  ALCHEMICAL SYMBOL FOR QUINTESSENCE..ALCHEMICAL SYMBOL FOR HALF OUNCE
 1F780..1F7D8  ; ~Unicode Identifier # [89] (🞀..🟘)  BLACK LEFT-POINTING ISOSCELES RIGHT TRIANGLE..NEGATIVE CIRCLED SQUARE
+1F7E0..1F7EB  ; ~Unicode Identifier # [12] (🟠..🟫)  LARGE ORANGE CIRCLE..LARGE BROWN SQUARE
 1F800..1F80B  ; ~Unicode Identifier # [12] (🠀..🠋)  LEFTWARDS ARROW WITH SMALL TRIANGLE ARROWHEAD..DOWNWARDS ARROW WITH LARGE TRIANGLE ARROWHEAD
 1F810..1F847  ; ~Unicode Identifier # [56] (🠐..🡇)  LEFTWARDS ARROW WITH SMALL EQUILATERAL ARROWHEAD..DOWNWARDS HEAVY ARROW
 1F850..1F859  ; ~Unicode Identifier # [10] (🡐..🡙)  LEFTWARDS SANS-SERIF ARROW..UP DOWN SANS-SERIF ARROW
 1F860..1F887  ; ~Unicode Identifier # [40] (🡠..🢇)  WIDE-HEADED LEFTWARDS LIGHT BARB ARROW..WIDE-HEADED SOUTH WEST VERY HEAVY BARB ARROW
 1F890..1F8AD  ; ~Unicode Identifier # [30] (🢐..🢭)  LEFTWARDS TRIANGLE ARROWHEAD..WHITE ARROW SHAFT WIDTH TWO THIRDS
 1F900..1F90B  ; ~Unicode Identifier # [12] (🤀..🤋)  CIRCLED CROSS FORMEE WITH FOUR DOTS..DOWNWARD FACING NOTCHED HOOK WITH DOT
-1F910..1F93E  ; ~Unicode Identifier # [47] (🤐..🤾)  ZIPPER-MOUTH FACE..HANDBALL
-1F940..1F970  ; ~Unicode Identifier # [49] (🥀..🥰)  WILTED FLOWER..SMILING FACE WITH SMILING EYES AND THREE HEARTS
+1F90D..1F971  ; ~Unicode Identifier # [101] (🤍..🥱)  WHITE HEART..YAWNING FACE
 1F973..1F976  ; ~Unicode Identifier #  [4] (🥳..🥶)  FACE WITH PARTY HORN AND PARTY HAT..FREEZING FACE
-1F97A         ; ~Unicode Identifier #      (🥺)  FACE WITH PLEADING EYES
-1F97C..1F9A2  ; ~Unicode Identifier # [39] (🥼..🦢)  LAB COAT..SWAN
-1F9B0..1F9B9  ; ~Unicode Identifier # [10] (🦰..🦹)  EMOJI COMPONENT RED HAIR..SUPERVILLAIN
-1F9C0..1F9C2  ; ~Unicode Identifier #  [3] (🧀..🧂)  CHEESE WEDGE..SALT SHAKER
-1F9D0..1F9FF  ; ~Unicode Identifier # [48] (🧐..🧿)  FACE WITH MONOCLE..NAZAR AMULET
+1F97A..1F9A2  ; ~Unicode Identifier # [41] (🥺..🦢)  FACE WITH PLEADING EYES..SWAN
+1F9A5..1F9AA  ; ~Unicode Identifier #  [6] (🦥..🦪)  SLOTH..OYSTER
+1F9AE..1F9CA  ; ~Unicode Identifier # [29] (🦮..🧊)  GUIDE DOG..ICE CUBE
+1F9CD..1FA53  ; ~Unicode Identifier # [135] (🧍..🩓)  STANDING PERSON..BLACK CHESS KNIGHT-BISHOP
 1FA60..1FA6D  ; ~Unicode Identifier # [14] (🩠..🩭)  XIANGQI RED GENERAL..XIANGQI BLACK SOLDIER
+1FA70..1FA73  ; ~Unicode Identifier #  [4] (🩰..🩳)  BALLET SHOES..SHORTS
+1FA78..1FA7A  ; ~Unicode Identifier #  [3] (🩸..🩺)  DROP OF BLOOD..STETHOSCOPE
+1FA80..1FA82  ; ~Unicode Identifier #  [3] (🪀..🪂)  YO-YO..PARACHUTE
+1FA90..1FA95  ; ~Unicode Identifier #  [6] (🪐..🪕)  RINGED PLANET..BANJO
 2F800..2FA1D  ; ~Unicode Identifier # [542] (丽..𪘀)  CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 E0001         ; ~Unicode Identifier #      (U+E0001)  LANGUAGE TAG
 E0020..E007F  ; ~Unicode Identifier # [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 
-# Total code points: 12446
+# Total code points: 12721

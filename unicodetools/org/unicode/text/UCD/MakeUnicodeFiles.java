@@ -26,15 +26,12 @@ import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.props.BagFormatter;
 import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.cldr.util.props.UnicodeProperty;
-import org.unicode.text.UCD.GenerateBreakTest.GenerateGraphemeBreakTest;
-import org.unicode.text.UCD.GenerateBreakTest.GenerateLineBreakTest;
-import org.unicode.text.UCD.GenerateBreakTest.GenerateSentenceBreakTest;
-import org.unicode.text.UCD.GenerateBreakTest.GenerateWordBreakTest;
 import org.unicode.text.UCD.MakeUnicodeFiles.Format.PrintStyle;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.Segmenter;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
@@ -454,16 +451,24 @@ public class MakeUnicodeFiles {
                 GenerateStandardizedVariants.generate();
                 break;
             case "GraphemeBreakTest":
-                new GenerateGraphemeBreakTest(Default.ucd()).run();
+                new GenerateBreakTest.GenerateGraphemeBreakTest(
+                        Default.ucd(), Segmenter.Target.FOR_UCD).run();
                 break;
             case "WordBreakTest":
-                new GenerateWordBreakTest(Default.ucd()).run();
+                new GenerateBreakTest.GenerateWordBreakTest(
+                        Default.ucd(), Segmenter.Target.FOR_UCD).run();
                 break;
             case "LineBreakTest":
-                new GenerateLineBreakTest(Default.ucd()).run();
+                new GenerateBreakTest.GenerateLineBreakTest(
+                        Default.ucd(), Segmenter.Target.FOR_UCD).run();
                 break;
             case "SentenceBreakTest":
-                new GenerateSentenceBreakTest(Default.ucd()).run();
+                new GenerateBreakTest.GenerateSentenceBreakTest(
+                        Default.ucd(), Segmenter.Target.FOR_UCD).run();
+                break;
+            case "GraphemeBreakTest-cldr":
+                new GenerateBreakTest.GenerateGraphemeBreakTest(
+                        Default.ucd(), Segmenter.Target.FOR_CLDR).run();
                 break;
             case "DerivedName":
             case "DerivedLabel":

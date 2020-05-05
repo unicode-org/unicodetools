@@ -1,6 +1,5 @@
 package org.unicode.tools.emoji;
 
-import com.ibm.icu.text.Collator;
 import com.ibm.icu.util.ULocale;
 
 /**

@@ -213,7 +213,13 @@ public class MakeNamesChart {
                         //						}
                         line = line.substring(1);
                         if (line.equals("@+")) {
-                            // skip
+                         // skip @@+ which is an index tab
+                        } else if (line.startsWith("~") || line.startsWith("@~") || line.startsWith("@@~")) {
+                            // skip @~, @@~, @@@~ which are variation subheaders
+                            if ((i + 1 < lines.size()) && ((String)lines.get(i + 1)).startsWith("@+")) {
+                                // also skip a following @+ notice line that continues the variation subheader
+                                ++i;
+                            }
                         } else if (line.startsWith("+")) {
                             line = line.substring(1).trim();
                             out.println("<tr><td class='comment' colspan='4'>"

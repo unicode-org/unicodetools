@@ -1,8 +1,8 @@
-// © 2018 and later: Unicode, Inc. and others.
+// © 2019 and later: Unicode, Inc. and others.
 // License & terms of use: http://www.unicode.org/copyright.html
 /*
 **      Unilib
-**      Copyright 2018
+**      Copyright 2019
 **      Ken Whistler, All rights reserved.
 */
 
@@ -28,6 +28,10 @@
  *               exceptional number letters (gc=Nl) to the
  *               isAlphabeticException list.
  *   2018-Oct-08 Add 02EC to isAlphabeticException list.
+ *   2018-Oct-11 Updates for Unicode 12.0.
+ *   2018-Oct-16 Update kana handling for Small Kana Extensions block.
+ *               Code warning removals.
+ *   2019-Jan-25 Update copyright year to 2019 for Unicode 12.0.
  */
 
 /*
@@ -152,15 +156,15 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 11.0.0d3, 2018-10-08\n";
+static char versionString[] = "Sifter version 12.0.0d3, 2019-01-25\n";
 
-static char unidatafilename[] = "unidata-11.0.0.txt";
-static char allkeysfilename[] = "allkeys-11.0.0.txt";
-static char decompsfilename[] = "decomps-11.0.0.txt";
+static char unidatafilename[] = "unidata-12.0.0.txt";
+static char allkeysfilename[] = "allkeys-12.0.0.txt";
+static char decompsfilename[] = "decomps-12.0.0.txt";
 
-static char versionstring[] = "@version 11.0.0\n\n";
+static char versionstring[] = "@version 12.0.0\n\n";
 
-#define COPYRIGHTYEAR (2018)
+#define COPYRIGHTYEAR (2019)
 
 #define defaultInfile "unidata.col"
 
@@ -229,7 +233,7 @@ int upperTertiaryWeights[24] =
  * subscript, and square at the same time!
  */
 
-char *tags[] = { "NULL", "FORMAT", "CHAR", "<font>", "<noBreak>",
+const char *tags[] = { "NULL", "FORMAT", "CHAR", "<font>", "<noBreak>",
                  "<initial>", "<medial>", "<final>", "<isolated>",
                  "<circle>", "<super>", "<sub>", "<vertical>",
                  "<wide>", "<narrow>", "<small>", "<square>", "<compat>",
@@ -271,7 +275,7 @@ int digitsInitialized;
  */
 
 #define TANGUT_FIRST      (0x17000)
-#define TANGUT_LAST       (0x187F1)
+#define TANGUT_LAST       (0x187F7)
 #define TANGUT_COMP_FIRST (0x18800)
 #define TANGUT_COMP_LAST  (0x18AF2)
 #define NUSHU_FIRST       (0x1B170)
@@ -1110,7 +1114,7 @@ UShort16 base;
     {
         base = 0xFBC0; /* Other, unassigned characters */
     }
-    *base1 = base + ( i >> 15 ) ;
+    *base1 = base + (UShort16)( i >> 15 ) ;
     *base2 = ( i & 0x7FFF ) | 0x8000;
 }
 
@@ -1318,12 +1322,12 @@ UShort16 base2;
  * assembleKeyExplicitWeights()
  *
  * Wrapper for doing the key assembly with an arbitrary input of
- * four weights. Simplifies the abstraction for the special processing
+ * three weights. Simplifies the abstraction for the special processing
  * required for Catalan l-dots.
  */
-static void assembleKeyExplicitWeights ( char *buf, int lvl1, int lvl2, int lvl3, int lvl4 )
+static void assembleKeyExplicitWeights ( char *buf, int lvl1, int lvl2, int lvl3 )
 {
-    sprintf ( buf, keyTemplate1, lvl1, lvl2, lvl3/*, lvl4 */ );
+    sprintf ( buf, keyTemplate1, lvl1, lvl2, lvl3 );
 }
 
 /***************************************************************************/
@@ -1801,7 +1805,7 @@ int tokenType;
 UInt32 cc;
 UInt32 cc0;
 UInt32 cc1;
-UShort16 temp;
+int temp;
 int i;
 int slen;
 int tlen;
@@ -1811,7 +1815,7 @@ WALNUTPTR t3;
 RAWKEYPTR rkptr;
 UInt32 decompstr[20];
 int numCharTokens;
-int finalNumTokens;
+int finalNumTokens = 0;
 int compatibility;
 char outputbuf[512];
 char localbuf2[256];
@@ -2146,7 +2150,7 @@ RAWKEY rawkeys[20];
  * Assemble the weighted key strings for output to compkeys.txt.
  */
             assembleKeyExplicitWeights ( localbuf2, t2->level1, t2->level2,
-                                         lowerTertiaryWeights[tokenType], t1->uvalue );
+                                         lowerTertiaryWeights[tokenType] );
 /*
  * For these combining mark sequences, inherit the variable flag
  * from the setting for the class of the original character.
@@ -2183,7 +2187,7 @@ RAWKEY rawkeys[20];
             strcat ( outputbuf, localbuf2 );
             tmp = getSiftDataPtr(0xF8F0);
             assembleKeyExplicitWeights ( localbuf2, tmp->level1, tmp->level2,
-                                         tmp->level3, t1->uvalue );
+                                         tmp->level3 );
             finalNumTokens += setRawKeys ( rkptr, tmp );
             rkptr->level4 = t1->uvalue;
             strcat ( outputbuf, localbuf2 );
@@ -2643,7 +2647,7 @@ char localbuf2[30];
     {
         tmp = getSiftDataPtr( 0xF8F0 ); /* virtual secondary weight */
         assembleKeyExplicitWeights ( localbuf2, tmp->level1, tmp->level2,
-                                     tmp->level3, t1->uvalue );
+                                     tmp->level3 );
         strcat ( localbuf, localbuf2 );
         strcat ( UCAweights, localbuf2 );
     }
@@ -2836,7 +2840,7 @@ char savesymbol[64];
     RAWKEY rawkeys[2];
     RAWKEY* rkptr;
     WALNUTPTR tmp;
-    int rc;
+
     
         rkptr = rawkeys;
         rc = setRawKeys ( rkptr, t1 );
@@ -2867,7 +2871,7 @@ char savesymbol[64];
  * combination passed in.
  */
 
-static int processSingleThaiElement ( UInt32 consonant, UInt32 vowel, char* script )
+static int processSingleThaiElement ( UInt32 consonant, UInt32 vowel, const char* script )
 {
 int rc;
 char localbuf[256];
@@ -3383,6 +3387,24 @@ static unichar kanaMap2[] =
     };
 
 /*
+ * Another kana map to deal with the Small Kana Extension block
+ * at U+1B130..U+1B16F. The full range is defined here, even though
+ * most of the characters are still unassigned as of Unicode 12.0,
+ * to simplify the task of filling in the rest once they are added.
+ */
+static unichar kanaMap3[] =
+    {
+      0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, /* 3 */
+      0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+      0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, /* 4 */
+      0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+      0x30F0, 0x30F1, 0x30F2, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, /* 5 */
+      0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+      0x0000, 0x0000, 0x0000, 0x0000, 0x30F0, 0x30F1, 0x30F2, 0x30F3, /* 6 */
+      0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000
+    };
+
+/*
  * tertwtMap
  *
  * This table precalculates the tertiary weight for the Kana value,
@@ -3424,6 +3446,18 @@ static UChar8 tertwtMap[] =
       KATA_N, KATA_N, KATA_N
     };
 
+static UChar8 tertwtMap3[] =
+    {
+           0,      0,      0,      0,      0,      0,      0,      0,
+           0,      0,      0,      0,      0,      0,      0,      0,
+           0,      0,      0,      0,      0,      0,      0,      0,
+           0,      0,      0,      0,      0,      0,      0,      0,
+           HIRA_S, HIRA_S, HIRA_S, 0,      0,      0,      0,      0,
+           0,      0,      0,      0,      0,      0,      0,      0,
+           0,      0,      0,      0, KATA_S, KATA_S, KATA_S, KATA_S,
+           0,      0,      0,      0,      0,      0,      0,      0
+    };
+
 
 /*
  * unisift_GetKatakanaBase()
@@ -3440,7 +3474,7 @@ static UChar8 tertwtMap[] =
  *
  * Special case the archaic kana from the 1B000 block. If a
  * large number of them are added eventually, then a table
- * for them can be constructed. As it stands, these are not
+ * for them can be constructed. As it stands, the hentaigana are not
  * mapped to existing katakana characters, but get their
  * own independent primary weights. They do, however, get
  * initialized with hiragana or katakana tertiary weights.
@@ -3465,6 +3499,12 @@ int lsb;
     {
         *tertwt = KATA_N;
         return ( c );
+    }
+    else if ( ( c >= 0x1B130 ) && ( c <= 0x1B16F ) )
+    {
+        lsb = (int)c & 0x00FF;
+        *tertwt = tertwtMap3 [ lsb - 0x30 ] ;
+        return ( (UInt32)kanaMap3 [ lsb - 0x30 ] );
     }
     else
     {
@@ -3517,7 +3557,8 @@ int tertwt;
  */
     else if ( ( ( cc >= 0x3041 ) && ( cc <= 0x30FA ) ) ||
               ( ( cc >= 0x31F0 ) && ( cc <= 0x31FF ) ) ||
-              ( cc == 0x1B000 ) )
+              ( cc == 0x1B000 ) ||
+              ( ( cc >= 0x1B130 ) && ( cc <= 0x1B16F ) ) )
     {
     WALNUTPTR tt1;
 
@@ -3930,7 +3971,7 @@ int doTrace;
  */
         if ( token3[0] == '<' )
         {
-            p->decompType = getTokenType ( token3 );
+            p->decompType = (short) getTokenType ( token3 );
         }
         else
         {
@@ -3941,11 +3982,8 @@ int doTrace;
     // Turn SIFT_TRACE(p) on for certain characters.
     // For example, doTrace = uvalue == 0xA700;
     // Turn off via doTrace = FALSE;
-    doTrace = uvalue == 0x02B9 || uvalue == 0x02C6 || uvalue == 0x02EC ||
-        uvalue == 0x0374 || uvalue == 0xA717 || uvalue == 0xA788 ||
-        uvalue == 0x3007 || uvalue == 0x3021 || uvalue == 0xA8FF ||
-        uvalue == 0xA802 || uvalue == 0x1C36 || uvalue == 0xA9E5 ||
-        uvalue == 0x16F8F || uvalue == 0xFA0E;
+    doTrace = uvalue == 0x1E13C || uvalue == 0x1E13D ||
+        uvalue == 0x16B42 || uvalue == 0x16B43;
 
 /*
  * Autogenerate primary key weightings for base letters and
@@ -4415,7 +4453,7 @@ char buffer[512];
         if ( rc != 0 )
         {
             printf( "Failure at line %d.\n", lineCount );
-            printf( buffer );
+            printf( "%s", buffer );
             printf( "\n" );
 
             break;
@@ -5059,7 +5097,8 @@ int foundInfile = 0;
  * time this was compiled and used for a particular problem, and
  * are not critical values in any way.
  *
- */ 
+ */
+#ifdef NOTDEF 
 static int debugSift( void )
 {
 int i;
@@ -5072,6 +5111,7 @@ WALNUTPTR p;
     }
     return ( -1 );   /* To stop the program */
 }
+#endif
 
 /***************************************************************************/
 

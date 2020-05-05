@@ -2,18 +2,13 @@ package org.unicode.propstest;
 
 import java.util.Collection;
 import java.util.EnumSet;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.TreeSet;
 
 import org.unicode.cldr.util.Pair;
-import org.unicode.cldr.util.props.UnicodeProperty.Factory;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
-import org.unicode.props.UcdPropertyValues;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 

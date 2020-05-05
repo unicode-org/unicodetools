@@ -8,7 +8,7 @@
 # for the Unicode Infrastructure Library.
 #
 # Required environment variables:
-#    CALM_PROJECT_ROOT points to the top directory for the UIL source
+#    CALM_PROJECT_ROOT points to the top directory for the UIL source 
 #    SSMODE is set to "dev" or "purify" (default is "normal")
 #    SSBUILT is set to the target build directory
 

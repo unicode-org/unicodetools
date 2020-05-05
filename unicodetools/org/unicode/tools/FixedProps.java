@@ -409,7 +409,7 @@ public class FixedProps {
         //        showMap(FixedScriptExceptions.kensRev);
 
         //showOld();
-        //showGrowthTable();
+        showGrowthTable();
     }
 
     private static void showOld() {

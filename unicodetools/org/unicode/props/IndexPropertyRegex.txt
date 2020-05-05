@@ -175,6 +175,10 @@ kKoreanEducationHanja ;       MULTI_VALUED ;                 20[0-9]{2}
 kKoreanName ; 		          MULTI_VALUED ;                 (20[0-9]{2})(:U\+2?[0-9A-F]{4})*
 kTGH ; 		                  MULTI_VALUED ;      			 20[0-9]{2}:[1-9][0-9]{0,3}
 
+
+kIRG_UKSource ;                SINGLE_VALUED ;                V[0-4]-[0-9A-F]{4}
+kIRG_SSource ;                SINGLE_VALUED ;                V[0-4]-[0-9A-F]{4}
+
            
 # =============================
 # Catalog/Enum/Binary Properties

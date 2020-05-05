@@ -34,6 +34,8 @@ import java.util.zip.GZIPOutputStream;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.props.ICUPropertyFactory;
 import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.unused.DataInputCompressor;
 import org.unicode.unused.DataOutputCompressor;
@@ -185,7 +187,8 @@ public class TestUtility {
      */
     private static void testHanProp(int iterations, int total, String pname, String type) throws IOException, ClassNotFoundException {
         System.out.println();
-        final UnicodeMap umap = Default.ucd().getHanValue(pname);
+        IndexUnicodeProperties iup = IndexUnicodeProperties.make(Default.ucd().getVersionInfo());
+        final UnicodeMap<String> umap = iup.load(UcdProperty.forString(pname));
         System.out.println(umap);
         umap.setMissing("na");
         System.out.print("Name:\t" + pname + "\tType:\t" + type);

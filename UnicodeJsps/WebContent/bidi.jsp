@@ -36,6 +36,7 @@ function insert(myField, myValue) {
         UtfParameters utfParameters = new UtfParameters(queryString);
         
         String sample = utfParameters.getParameter("a", "mark 3.1% \u0645\u0627\u0631\u0652\u0643 2.0.");
+        String sampleEscaped = UnicodeUtilities.toHTML(sample);
         boolean hack = !"off".equals(utfParameters.getParameter("hack", "off"));
         String p = utfParameters.getParameter("p", "Auto");
         int p2 = p.equals("LTR") ? 0 : p.equals("RTL") ? 1 : -1;
@@ -66,7 +67,7 @@ For more information, see <a target='doc' href='http://cldr.unicode.org/unicode-
       </th>
     </tr>
     <tr>
-      <td><textarea name="a" rows="8" cols="10" style="width: 100%"><%=sample%></textarea></td>
+      <td><textarea name="a" rows="8" cols="10" style="width: 100%"><%=sampleEscaped%></textarea></td>
     </tr>
 </table>
 <select name="p">

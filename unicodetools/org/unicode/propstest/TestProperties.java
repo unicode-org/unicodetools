@@ -37,7 +37,6 @@ import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
-import com.ibm.icu.util.VersionInfo;
 
 public class TestProperties extends TestFmwk {
 

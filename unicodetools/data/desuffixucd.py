@@ -17,7 +17,7 @@ import sys
 # Get the standard basename from a versioned filename.
 # For example, match "UnicodeData-6.1.0d8.txt"
 # so we can turn it into "UnicodeData.txt".
-_file_version_re = re.compile("([a-zA-Z0-9]+)" +
+_file_version_re = re.compile("([a-zA-Z0-9_-]+)" +
                               "-[0-9]+(?:\\.[0-9]+)*(?:d[0-9]+)?" +
                               "(\\.[a-z]+)$")
 

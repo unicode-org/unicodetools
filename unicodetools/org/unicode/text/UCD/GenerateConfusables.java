@@ -174,6 +174,7 @@ public class GenerateConfusables {
     //    private static final UnicodeSet SPECIAL = new UnicodeSet("[\u01DD\u0259]").freeze();
 
     public static void main(String[] args) throws IOException {
+        System.setProperty("line.separator", "\n");
         //quickTest();
         if (args.length == 0) {
             args = new String[] {"-b", "-c"};
@@ -529,6 +530,7 @@ public class GenerateConfusables {
     private static void generateIDN() throws IOException {
         final IdentifierInfo info = IdentifierInfo.getIdentifierInfo();
         info.printIDNStuff();
+	generateDecompFile();
     }
 
     //    static final String PROHIBITED = "Restricted ; ";
@@ -711,13 +713,6 @@ public class GenerateConfusables {
         nfkcMap.setMissing("");
         nfkcMap.freeze();
         return _skipNFKD;
-    }
-
-    static ScriptInfo IDENTIFIER_INFO = new ScriptInfo(Settings.latestVersion);
-
-    private static boolean isMixedScript(String source) {
-        return IDENTIFIER_INFO.setIdentifier(source).isMultiScript();
-        //return getSingleScript(source) == UCD_Types.UNUSED_SCRIPT;
     }
 
     /**
@@ -1022,7 +1017,7 @@ public class GenerateConfusables {
                         }
                     }
                     if (onlySameScript) {
-                        final boolean isMixed = isMixedScript(combined);
+                        final boolean isMixed = ScriptInfo.isMixedScript(combined);
                         if (isMixed) {
                             continue;
                         }
@@ -1156,7 +1151,7 @@ public class GenerateConfusables {
                 System.out.println(DEFAULT_UCD.getCodeAndName(combined));
             }
             final boolean isLowercase = combined.equals(DEFAULT_UCD.getCase(combined, UCD_Types.FULL, UCD_Types.FOLD));
-            final boolean isMixed = isMixedScript(combined);
+            final boolean isMixed = ScriptInfo.isMixedScript(combined);
             // Here's where we add data, if you need to debug
             raw.add(source,target,type);
             dataMixedAnycase.add(source, target, type);

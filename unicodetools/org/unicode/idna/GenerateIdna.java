@@ -8,8 +8,8 @@ import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.props.BagFormatter;
-import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.cldr.util.props.BagFormatter.NameLabel;
+import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.cldr.util.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.props.IndexUnicodeProperties;
@@ -58,6 +58,7 @@ public class GenerateIdna {
 	static UnicodeSet IDNA2008Valid = GenerateIdnaTest.getIdna2008Valid();
 
 	public static void main(String[] args) throws IOException {
+		System.setProperty("line.separator", "\n");
 
 		switch (args.length){
 		case 0:
@@ -452,11 +453,15 @@ public class GenerateIdna {
 		final String unversionedFileName = "IdnaMappingTable.txt";
 		final PrintWriter writer = FileUtilities.openUTF8Writer(DIR, unversionedFileName);
 
-		writer.println(Utility.getDataHeader(filename));
-		writer.println(
-				"#\n" +
-						"# Unicode IDNA Compatible Preprocessing (UTS #46)\n" +
-				"# For documentation, see http://www.unicode.org/reports/tr46/\n");
+		writer.println(Utility.getBaseDataHeader(
+			unversionedFileName, 
+			46, 
+			"Unicode IDNA Compatible Preprocessing", 
+			Default.ucdVersion()));
+//		writer.println(
+//				"#\n" +
+//						"# Unicode IDNA Compatible Preprocessing (UTS #46)\n" +
+//				"# For documentation, see http://www.unicode.org/reports/tr46/\n");
 
 		final UnicodeProperty ASSIGNED = new UnicodeProperty.SimpleProperty() {
 			@Override
@@ -472,6 +477,7 @@ public class GenerateIdna {
 
 		final NameLabel name = new BagFormatter.NameLabel(properties);
 		final BagFormatter bf = new BagFormatter();
+		bf.setLineSeparator("\n");
 		bf.setLabelSource(age);
 		bf.setRangeBreakSource(ASSIGNED);
 		bf.setShowCount(false);

@@ -1,39 +1,40 @@
 $CR = \p{gcb=cr} ;
 $LF = \p{gcb=lf} ;
 $Control = \p{gcb=control} ;
-$Virama = \p{gcb=Virama} ;
-$LinkingConsonant = \p{gcb=LinkingConsonant} ;
+// $Virama = \p{gcb=Virama} ;
+// $LinkingConsonant = \p{gcb=LinkingConsonant} ;
 $Extend = \p{gcb=Extend} ;
 $ZWJ = \p{gcb=zwj} ;
 $RI = \p{gcb=ri} ;
 $Prepend = \p{gcb=Prepend} ;
-$SpacingMark =  \p{gcb=SpacingMark} ;
 $L =   \p{gcb=l} ;
 $V =   \p{gcb=v} ;
 $T =   \p{gcb=t} ;
 $LV =   \p{gcb=lv} ;
 $LVT =   \p{gcb=lvt} ;
-$E_Base = \p{gcb=e_base} ;
-$E_Modifier = \p{gcb=E_Modifier} ;
 
-cluster = crlf | $Control | precore* core postcore* ;
+$NonControl = [^\p{gcb=control} \p{gcb=cr} \p{gcb=lf}] ;
+$ExtendZwjSpacing = [\p{gcb=Extend} \p{gcb=zwj} \p{gcb=SpacingMark}] ;
+
+$root = crlf | $Control | precore* core postcore* ;
 
 
 crlf = $CR $LF ;
 
 precore =  $Prepend ;
 
-core = (?: hangul-syllable | ri-sequence | xpicto-sequence | virama-sequence | [^$Control $CR $LF] );
+core = ( hangul_syllable | ri_sequence | xpicto_sequence | $NonControl );
 
-postcore = (?: virama-sequence | [$Extend $ZWJ $Virama $SpacingMark] );
+postcore = $ExtendZwjSpacing ;
 
+hangul_syllable = ($L* ($V+ | $LV $V* | $LVT) $T* | $L+ | $T+) ;
 
-hangul-syllable = $L* (?:$V+ | $LV $V* | $LVT) $T* | $L+ | $T+ ;
+ri_sequence = ($RI $RI) ;
 
-ri-sequence = $RI $RI ;
-	  
-skin-sequence = $E_Base $Extend* $E_Modifier ;
+xpicto_sequence = (\p{Extended_Pictographic} ( $Extend* $ZWJ \p{Extended_Pictographic})*) ;
 
-xpicto-sequence = (?: skin-sequence | \p{Extended_Pictographic} ) (?: $Extend* $ZWJ (?: skin-sequence | \p{Extended_Pictographic} ))* ;
-
-virama-sequence = [$Virama $ZWJ] $LinkingConsonant ;
+// core = ( hangul_syllable | ri_sequence | xpicto_sequence | virama_sequence | $NonControl );
+// postcore = ( virama_sequence | [$Extend $ZWJ $Virama $SpacingMark] );
+// skin_sequence = $E_Base $Extend* $E_Modifier ;
+// xpicto_sequence = ( skin_sequence | \p{Extended_Pictographic} ) ( $Extend* $ZWJ ( skin_sequence | \p{Extended_Pictographic} ))* ;
+// virama_sequence = [$Virama $ZWJ] $LinkingConsonant ;

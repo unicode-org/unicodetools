@@ -1,6 +1,6 @@
 # Unicode Collation Algorithm
-# Date: 2018-05-23
-# © 2018 Unicode®, Inc.
+# Date: 2019-02-14
+# © 2019 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #

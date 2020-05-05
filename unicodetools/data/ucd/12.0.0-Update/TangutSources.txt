@@ -1,6 +1,6 @@
 # TangutSources-12.0.0.txt
-# Date: 2018-07-09, 23:31:00 GMT [MS, KW]
-# © 2018 Unicode®, Inc.
+# Date: 2019-01-09, 19:34:00 GMT [MS, KW]
+# © 2019 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -10,8 +10,8 @@
 # This file is a normative contributory data file in the
 # Unicode Character Database.
 #
-#	Data values match those for ISO/IEC 10646:2017 + Amd 1
-#	Original Date: 2017-06-05
+#	Data values match those for ISO/IEC 10646:2017 + Amd 1 + Amd 2
+#	Original Date: 2017-11-21
 #
 #	Format information:
 #
@@ -12313,5 +12313,17 @@ U+187F0	kTGT_MergedSrc	UTN42-004
 U+187F0	kRSTUnicode	308.17
 U+187F1	kTGT_MergedSrc	UTN42-005
 U+187F1	kRSTUnicode	415.11
+U+187F2	kTGT_MergedSrc	UTN42-006
+U+187F2	kRSTUnicode	42.15
+U+187F3	kTGT_MergedSrc	UTN42-007
+U+187F3	kRSTUnicode	185.12
+U+187F4	kTGT_MergedSrc	UTN42-008
+U+187F4	kRSTUnicode	73.11
+U+187F5	kTGT_MergedSrc	UTN42-009
+U+187F5	kRSTUnicode	383.18
+U+187F6	kTGT_MergedSrc	UTN42-010
+U+187F6	kRSTUnicode	79.14
+U+187F7	kTGT_MergedSrc	UTN42-011
+U+187F7	kRSTUnicode	79.19
 
 # EOF

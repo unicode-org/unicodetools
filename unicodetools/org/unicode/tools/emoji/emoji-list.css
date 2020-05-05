@@ -181,7 +181,27 @@ vertical-align: text-bottom;
 	font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji",
 		Times, Symbola, Aegyptus, Code2000, Code2001, Code2002, Musica, serif,
 		LastResort;
+	font-variant-emoji: emoji;
 }
+
+.css_fve_emoji {
+	text-decoration: none;
+	color: #ccc;
+	font-variant-emoji: emoji
+}
+
+.css_fve_text {
+	text-decoration: none;
+	color: #ccc;
+	font-variant-emoji: text
+}
+
+.css_fve_unicode {
+	text-decoration: none;
+	color: #ccc;
+	font-variant-emoji: unicode
+}
+
 
 .chars {
 	vertical-align: text-top;

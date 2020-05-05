@@ -386,6 +386,11 @@ public final class UCD_Names implements UCD_Types {
         "Nandinagari",
         "Nyiakeng_Puachue_Hmong",
         "Wancho",
+        // Unicode 13
+        "Chorasmian",
+        "Dives_Akuru",
+        "Khitan_Small_Script",
+        "Yezidi",
     };
 
     public static final Relation<String,String> EXTRA_SCRIPT =
@@ -555,6 +560,11 @@ public final class UCD_Names implements UCD_Types {
         "Nand",
         "Hmnp",
         "Wcho",
+        // Unicode 13
+        "Chrs",
+        "Diak",
+        "Kits",
+        "Yezi",
     };
 
     static final String[] SHORT_AGE = {
@@ -580,6 +590,8 @@ public final class UCD_Names implements UCD_Types {
         "10.0",
         "11.0",
         "12.0",
+        "12.1",
+        "13.0",
     };
 
     static final String[] LONG_AGE = {
@@ -605,6 +617,8 @@ public final class UCD_Names implements UCD_Types {
         "V10_0",
         "V11_0",
         "V12_0",
+        "V12_1",
+        "V13_0",
     };
 
     static final String[] GENERAL_CATEGORY = {
@@ -842,6 +856,7 @@ public final class UCD_Names implements UCD_Types {
                 switch (index) {
                 case 0: s = style < LONG ? "NR" : "NotReordered"; break;
                 case 1: s = style < LONG ? "OV" :  "Overlay"; break;
+                case 6: s = style < LONG ? "HANR" :  "Han_Reading"; break;
                 case 7: s = style < LONG ? "NK" :  "Nukta"; break;
                 case 8: s = style < LONG ? "KV" :  "KanaVoicing"; break;
                 case 9: s = style < LONG ? "VR" :  "Virama"; break;

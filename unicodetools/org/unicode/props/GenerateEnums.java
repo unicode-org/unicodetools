@@ -2,7 +2,6 @@ package org.unicode.props;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,7 +18,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.ArrayComparator;
 import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -414,7 +412,7 @@ public class GenerateEnums {
                     ("Script_Extensions".equals(pname.longName) ? "Script" : pname.longName) + "_Values.class"; // HACK!
                     break;
                 }
-                writeOtherNames(output, type, classItem, cardinality, pname.longName, pname.shortName);
+                writeOtherNames(output, type, classItem, cardinality, pname.shortName, pname.others);
                 output.print(",\n");
             }
         }
@@ -493,7 +491,8 @@ public class GenerateEnums {
 
 
     public static void writeOtherNames(PrintWriter output, String type, 
-            String classItem, ValueCardinality cardinality, String... otherNames) {
+            String classItem, ValueCardinality cardinality, 
+            String shortName, List<String> otherNames) {
         output.print("(");
         //if (shortName != null) {
         output.print(type);
@@ -502,12 +501,8 @@ public class GenerateEnums {
                     + (cardinality == ValueCardinality.Singleton ? "null" 
                             : "ValueCardinality." + cardinality.toString()));
         }
-        boolean first = true;
+        output.print(", \"" + shortName + "\"");
         for (final String otherName : otherNames) {
-            if (first) {
-                first = false;
-                continue;
-            }
             output.print(", \"" + otherName + "\"");
         }
         output.print(")");

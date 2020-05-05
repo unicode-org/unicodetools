@@ -25,8 +25,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-import org.unicode.draft.CldrUtility.VariableReplacer;
 import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.draft.CldrUtility.VariableReplacer;
 import org.unicode.draft.UnicodeDataInput;
 import org.unicode.draft.UnicodeDataInput.ItemReader;
 import org.unicode.draft.UnicodeDataOutput;
@@ -408,10 +408,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 }
             }
 
-            fileInfo.parseSourceFile(this, fullFilename, fileName);
+            PropertyParsingInfo.parseSourceFile(this, fullFilename, fileName);
             return property2UnicodeMap.get(prop2);
         } catch (Exception e) {
-            throw new ICUException(prop2.toString() + "(" + fullFilename + ")", e);
+            throw new ICUException(prop2.toString() + "( from: " + fullFilename + ")", e);
         }
     }
 

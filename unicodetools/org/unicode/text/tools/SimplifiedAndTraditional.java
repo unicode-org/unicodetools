@@ -12,6 +12,8 @@ import java.util.TreeSet;
 
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.cldr.util.XEquivalenceClass;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
 
@@ -34,15 +36,17 @@ public class SimplifiedAndTraditional {
     }
 
     private UnicodeSet showKeyset(String propertyName, UnicodeSet filter) {
-        final UnicodeMap mand = Default.ucd().getHanValue(propertyName);
+        IndexUnicodeProperties iup = IndexUnicodeProperties.make(Default.ucd().getVersionInfo());
+        final UnicodeMap<String> mand = iup.load(UcdProperty.forString(propertyName));
         final UnicodeSet supplementals = new UnicodeSet(filter).retainAll(mand.keySet());
         System.out.println(propertyName + ":\t" + PRETTY.format(supplementals));
         return supplementals;
     }
 
     private void run3(String[] args) {
-        final Map<String,UnicodeSet> mandarin = new TreeMap();
-        final UnicodeMap mand = Default.ucd().getHanValue("kMandarin");
+        final Map<String,UnicodeSet> mandarin = new TreeMap<>();
+        IndexUnicodeProperties iup = IndexUnicodeProperties.make(Default.ucd().getVersionInfo());
+        final UnicodeMap<String> mand = iup.load(UcdProperty.kMandarin);
         for (final String value : (Collection<String>) mand.getAvailableValues()) {
             final UnicodeSet sources = mand.keySet(value);
             final String[] pieces = value.split("\\s");
@@ -65,13 +69,14 @@ public class SimplifiedAndTraditional {
         System.out.println(PRETTY.format(biggest));
     }
 
-    static     UnicodeSetPrettyPrinter PRETTY = new UnicodeSetPrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
+    static UnicodeSetPrettyPrinter PRETTY =
+            new UnicodeSetPrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).
+            setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
 
     private void showSimpVsTrad(String[] args) {
-
-
-        final UnicodeMap simp2trad = Default.ucd().getHanValue("kTraditionalVariant");
-        final UnicodeMap trad2simp = Default.ucd().getHanValue("kSimplifiedVariant");
+        IndexUnicodeProperties iup = IndexUnicodeProperties.make(Default.ucd().getVersionInfo());
+        final UnicodeMap<String> simp2trad = iup.load(UcdProperty.kTraditionalVariant);
+        final UnicodeMap<String> trad2simp = iup.load(UcdProperty.kSimplifiedVariant);
 
         final UnicodeSet simpOnly = simp2trad.keySet();
         final UnicodeSet tradOnly = trad2simp.keySet();

@@ -1,0 +1,1460 @@
+#Code Point	Chart Glyph	Sample Colored Glyph	Name
+#main data is in /unicodetools/data/emoji/N.M/source/emojiOrdering.txt
+#Warnings:
+# — The Status, Proposal, and After must come before the character/sequence (U+)
+# — Those are "sticky", and don't have to be repeated.
+# — The Name, UName, Keywords,... must come after the character/sequence
+# — Any character must be listed BEFORE any sequence it is in. 
+#   — That includes any emojified character.
+# TODO
+#   Put Proposal, and After also after the characters, but keep them sticky.
+
+#================================
+Status=Final Candidate
+#================================
+
+
+Proposal=L2/17-023
+After=🎑
+
+U+1F9E7
+Name=red envelope
+UName=RED GIFT ENVELOPE
+Keywords= hóngbāo | lai see | gift | money | good luck
+
+Proposal=L2/17-025
+After=🎇
+
+U+1F9E8
+Name=firecracker
+Keywords= dynamite | explosive | fireworks
+
+Proposal=L2/17-024
+After=🍥
+
+U+1F96E
+Name=moon cake
+Keywords= festival | yuèbǐng | autumn
+
+Proposal=L2/17-082, L2/17-011, L2/16-147, L2/16-130, L2/16-008, L2/14-173
+After=👃🏿
+
+U+1F9B0
+Name=red-haired
+UName=EMOJI COMPONENT RED HAIR
+Keywords= ginger | redhead
+Emoji_Component
+Comment=Component for use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences. Isolated images should have dotted borders.
+
+U+1F9B1
+Name=curly-haired
+UName=EMOJI COMPONENT CURLY HAIR
+Keywords= afro | curly | ringlets
+Emoji_Component
+Comment=Component for use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences. Isolated images should have dotted borders.
+
+U+1F9B3
+Name=white-haired
+UName= EMOJI COMPONENT WHITE HAIR
+Keywords= gray | white | hair | old
+Emoji_Component
+Comment=Component for use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences. Isolated images should have dotted borders.
+
+U+1F9B2
+Name=bald
+UName=EMOJI COMPONENT BALD
+Keywords= shaven | hairless | no hair | chemotherapy
+Emoji_Component
+Comment=Component for use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences. Isolated images should have dotted borders.
+
+After=🔮
+Proposal=L2/17-058
+
+U+1F9FF
+Name=nazar amulet
+UName=NAZAR AMULET
+Keywords= nazar | bead | talisman | charm | evil-eye
+
+Proposal=L2/17-113
+After=🕶
+U+1F97C
+Name=lab coat
+Keywords= scientist | doctor | experiment
+
+After=🦂
+U+1F9A0
+Name=microbe
+Keywords= bacteria | virus | amoeba
+
+After=⚗
+
+U+1F9EA
+Name=test tube
+Keywords= chemist | chemistry | science | lab | experiment
+
+U+1F9EB
+Name=petri dish
+Keywords= biologist | biology | bacteria | lab | culture
+
+U+1F9EC
+Name=dna
+UName=DNA DOUBLE HELIX
+Keywords= biologist | life | gene | genetics | evolution
+
+U+1F9ED
+Name=compass
+Keywords= navigation | magnetic | orienteering
+
+U+1F9EE
+Name=abacus
+Keywords= calculation
+
+After=🕶
+U+1F97D
+Name=goggles
+Keywords= eye protection | welding | swimming
+
+Proposal=L2/17-244
+
+After=😘
+U+1F970
+Name=smiling face with 3 hearts
+Keywords= in love | adore | crush
+UName=SMILING FACE WITH SMILING EYES AND THREE HEARTS
+
+After=🤶
+U+1F9B8
+Name=superhero
+UName=SUPERHERO
+Emoji_Modifier_Base
+Emoji_Gender_Base
+Keywords=hero | heroine | good | superpowers
+
+U+1F9B9
+Name=supervillain
+UName=SUPERVILLAIN
+Emoji_Modifier_Base
+Emoji_Gender_Base
+Keywords=villain | criminal | bad | evil | superpowers
+
+After=🤠
+U+1F973
+Name=partying face
+UName=FACE WITH PARTY HORN AND PARTY HAT
+Keywords=party | horn | hat | celebration
+
+U+1F974
+Name=woozy face
+UName=FACE WITH UNEVEN EYES AND WAVY MOUTH
+Keywords=uneven eyes | wavy mouth | intoxicated | tipsy | dizzy
+
+#U+1F977
+#Name= question-mark face
+#UName=FROWNING FACE WITH QUESTION MARKS AS EYES
+#Keywords= frowning | puzzled | surprised | lost | confused
+
+#U+1F978
+#Name= ok face
+#UName=GRINNING FACE WITH LETTERS OK AS EYES
+#Keywords= letters | ok
+
+U+1F97A
+Name=pleading face
+UName=FACE WITH PLEADING EYES
+Keywords= puppy eyes | begging | mercy
+
+
+After=😱 
+U+1F975
+Name=hot face
+UName=OVERHEATED FACE
+Keywords= hot | red-faced | sweating | heat stroke | feverish
+
+U+1F976
+Name=cold face
+UName=FREEZING FACE
+Keywords= cold | blue-faced | freezing | icicles | frostbite
+
+
+#After=💩
+#U+1F979
+#Name=sad pile of poo
+#UName=FROWNING PILE OF POO
+#Keywords= unhappy | annoyed
+#Comment=May change CLDR name of counterpart to <i>happy pile of poo</i>
+
+Proposal=L2/17-259, L2/14-174
+After=💪
+U+1F9B5
+Name=leg
+Emoji_Modifier_Base
+Keywords= limb | kick
+
+Proposal=L2/17-259
+U+1F9B6
+Name=foot
+Emoji_Modifier_Base
+Keywords= kick | stomp
+
+
+
+After=🧠
+Proposal=L2/17-259, L2/17-246
+U+1F9B4
+Name=bone
+Keywords=skeleton
+
+Proposal=L2/17-259
+U+1F9B7
+Name=tooth
+Keywords=dentist
+
+Proposal=L2/17-271
+After=👟
+U+1F97E
+Name=hiking boot
+Keywords=hiking | boot | camping | backpacking
+
+Proposal=L2/17-274
+U+1F97F
+Name=flat shoe
+Keywords=slipper | slip-on | ballet flat
+
+Proposal=L2/17-264
+After=🐼
+U+1F998
+Name=kangaroo
+Keywords=Australia | marsupial | jump | joey
+
+Proposal=L2/17-266
+After=🐫
+U+1F999
+Name=llama
+Keywords=alpaca | vicuña | guanaco | wool
+
+Proposal=L2/17-270
+After=🦉
+U+1F99A
+Name=peacock
+Keywords=peahen | bird | proud | ostentatious
+
+Proposal=L2/17-280, L2/17-281
+U+1F99C
+Name=PARROT
+Keywords=pirate | bird | talk
+
+Proposal=L2/17-263
+After=🦏
+U+1F99B
+Name=hippopotamus
+Keywords=hippo
+
+Proposal=L2/17-278
+After=🦊
+U+1F99D
+Name=raccoon
+Keywords= sly | curious 
+
+Proposal=L2/17-267, L2/17-217, L2/14-174
+After=🦀
+U+1F99E
+Name=lobster
+Keywords= seafood | claws | bisque 
+
+Proposal=L2/17-268, L2/17-295
+After=🦂
+U+1F99F
+Name=mosquito
+Keywords=insect | malaria | fever | disease | virus
+
+Proposal=L2/17-265
+After=🥒
+U+1F96C
+Name=leafy green
+Keywords=bok choy | cabbage | kale | lettuce
+#Comment= Other leafy greens such as arugula, spinach, endive, chard
+
+Proposal=L2/17-272, L2/16-191
+After=🍿
+U+1F9C2
+Name=salt
+UName=salt shaker
+Keywords=condiment | shaker
+
+Proposal=L2/17-203, L2/17-211
+After=🍍
+U+1F96D
+Name=mango
+Keywords=tropical | shaker
+
+Proposal=L2/17-261
+After=🥨
+U+1F96F
+Name=bagel
+Keywords=bakery | schmear
+
+Proposal=L2/17-262, L2/14-174
+After=🍰
+U+1F9C1
+Name=cupcake
+Keywords= sweet | bakery
+
+Proposal=L2/17-277, L2/16-382
+After=🏑
+U+1F94D
+Name=lacrosse
+UName=LACROSSE STICK AND BALL
+Keywords=stick | ball | goal
+
+Proposal=L2/17-277, L2/17-184
+After=⚾
+U+1F94E
+Name=softball
+Keywords=ball | glove | underarm
+
+Proposal=L2/17-277, L2/16-378
+After=🛴
+U+1F6F9
+Name=skateboard
+Keywords=board
+
+Proposal=L2/17-277, L2/17-257
+After=🏉
+U+1F94F
+Name=flying disc
+Keywords=ultimate
+
+Proposal=L2/17-198
+After=🎲
+U+1F9E9
+Name=jigsaw
+UName=JIGSAW PUZZLE PIECE
+Keywords=puzzle | clue | piece | interlocking
+
+Proposal=L2/17-273
+U+1F9F8
+Name=teddy bear
+Keywords=toy | plaything | stuffed | plush
+
+Proposal=L2/17-202
+After=⛓
+U+1F9F0
+Name=toolbox
+Keywords=tool | chest | mechanic
+
+Proposal=L2/17-185
+U+1F9F2
+Name=magnet
+Keywords=horseshoe | attraction | magnetic
+
+Proposal=L2/17-172
+After=🏗
+U+1F9F1
+Name=brick
+Keywords=wall | mortar | clay | bricks
+
+Proposal=L2/17-205
+After=🛎
+U+1F9F3
+Name=luggage
+Keywords=travel | packing
+
+Proposal=L2/17-212
+After=🛁
+U+1F9F4
+Name=lotion bottle
+Keywords=lotion | sunscreen | shampoo | moisturizer
+
+Proposal=L2/17-249
+U+1F9F7
+Name=safety pin
+Keywords=diaper | punk rock
+
+
+
+
+Proposal=L2/17-260
+U+1F9F9
+Name=BROOM
+Keywords=sweeping | cleaning | witch
+
+Proposal=L2/17-260
+U+1F9FA
+Name=BASKET
+Keywords=laundry | picnic | farming
+
+Proposal=L2/17-260
+U+1F9FB
+Name=roll of paper
+Keywords=toilet paper | paper towels
+
+Proposal=L2/17-260
+U+1F9FC
+Name=soap
+UName=BAR OF SOAP
+Keywords= lather | bar | soapdish | bathing | cleaning
+
+Proposal=L2/17-260
+U+1F9FD
+Name=SPONGE
+Keywords= cleaning | porous | absorbing
+
+Proposal=L2/17-113
+U+1F9EF
+Name=fire extinguisher
+Keywords= fire | extinguish | quench
+
+Proposal=L2/17-249
+After=🎨
+U+1F9F5
+Name=thread
+UName=SPOOL OF THREAD
+Keywords=spool | string | sewing | needle
+
+Proposal=L2/17-249
+U+1F9F6
+Name=yarn
+UName=BALL OF YARN
+Keywords=ball | knit | crochet 
+
+Proposal=L2/17-208
+After=💳
+U+1F9FE
+Name=RECEIPT
+Keywords=bookkeeping | accounting | evidence | proof
+
+Proposal=L2/17-403
+After=🦉
+U+1F9A2
+Name=swan
+Keywords= bird | ugly duckling | cygnet
+
+
+Proposal=L2/17-404
+After=🐼
+U+1F9A1
+Name=badger
+Keywords= pester | honey badger
+
+Proposal=L2/17-343
+After=⚕
+U+267E
+Name=infinity
+UName=PERMANENT PAPER SIGN
+Comment=emojification of pre-existing character
+Keywords=universal | forever | unbounded
+
+Proposal=L2/18-059
+After=🏴
+U+1F3F4 U+200D U+2620 U+FE0F
+Name=pirate flag
+Keywords=pirate | treasure | plunder | Jolly Roger
+
+Proposal=L2/17-082, L2/17-011, L2/16-147, L2/16-130, L2/16-008, L2/14-173
+After=👱
+U+1F468 U+200D U+1F9B0 
+Name=man, red haired
+# U+1F468 U+1F3FB U+200D U+1F9B0 
+# Name=man, red haired: light skin tone
+# U+1F468 U+1F3FC U+200D U+1F9B0 
+# Name=man, red haired: medium-light skin tone
+# U+1F468 U+1F3FD U+200D U+1F9B0 
+# Name=man, red haired: medium skin tone
+# U+1F468 U+1F3FE U+200D U+1F9B0 
+# Name=man, red haired: medium-dark skin tone
+# U+1F468 U+1F3FF U+200D U+1F9B0 
+# Name=man, red haired: dark skin tone
+
+U+1F469 U+200D U+1F9B0 
+Name=woman, red haired
+# U+1F469 U+1F3FB U+200D U+1F9B0 
+# Name=woman, red haired: light skin tone
+# U+1F469 U+1F3FC U+200D U+1F9B0 
+# Name=woman, red haired: medium-light skin tone
+# U+1F469 U+1F3FD U+200D U+1F9B0 
+# Name=woman, red haired: medium skin tone
+# U+1F469 U+1F3FE U+200D U+1F9B0 
+# Name=woman, red haired: medium-dark skin tone
+# U+1F469 U+1F3FF U+200D U+1F9B0 
+# Name=woman, red haired: dark skin tone
+
+U+1F468 U+200D U+1F9B1 
+Name=man, curly haired
+# U+1F468 U+1F3FB U+200D U+1F9B1 
+# Name=man, curly haired: light skin tone
+# U+1F468 U+1F3FC U+200D U+1F9B1 
+# Name=man, curly haired: medium-light skin tone
+# U+1F468 U+1F3FD U+200D U+1F9B1 
+# Name=man, curly haired: medium skin tone
+# U+1F468 U+1F3FE U+200D U+1F9B1 
+# Name=man, curly haired: medium-dark skin tone
+# U+1F468 U+1F3FF U+200D U+1F9B1 
+# Name=man, curly haired: dark skin tone
+
+U+1F469 U+200D U+1F9B1 
+Name=woman, curly haired
+# U+1F469 U+1F3FB U+200D U+1F9B1 
+# Name=woman, curly haired: light skin tone
+# U+1F469 U+1F3FC U+200D U+1F9B1 
+# Name=woman, curly haired: medium-light skin tone
+# U+1F469 U+1F3FD U+200D U+1F9B1 
+# Name=woman, curly haired: medium skin tone
+# U+1F469 U+1F3FE U+200D U+1F9B1 
+# Name=woman, curly haired: medium-dark skin tone
+# U+1F469 U+1F3FF U+200D U+1F9B1 
+# Name=woman, curly haired: dark skin tone
+
+U+1F468 U+200D U+1F9B3 
+Name=man, white haired
+# U+1F468 U+1F3FB U+200D U+1F9B3 
+# Name=man, white haired: light skin tone
+# U+1F468 U+1F3FC U+200D U+1F9B3 
+# Name=man, white haired: medium-light skin tone
+# U+1F468 U+1F3FD U+200D U+1F9B3 
+# Name=man, white haired: medium skin tone
+# U+1F468 U+1F3FE U+200D U+1F9B3 
+# Name=man, white haired: medium-dark skin tone
+# U+1F468 U+1F3FF U+200D U+1F9B3 
+# Name=man, white haired: dark skin tone
+
+U+1F469 U+200D U+1F9B3 
+Name=woman, white haired
+# U+1F469 U+1F3FB U+200D U+1F9B3 
+# Name=woman, white haired: light skin tone
+# U+1F469 U+1F3FC U+200D U+1F9B3 
+# Name=woman, white haired: medium-light skin tone
+# U+1F469 U+1F3FD U+200D U+1F9B3 
+# Name=woman, white haired: medium skin tone
+# U+1F469 U+1F3FE U+200D U+1F9B3 
+# Name=woman, white haired: medium-dark skin tone
+# U+1F469 U+1F3FF U+200D U+1F9B3 
+# Name=woman, white haired: dark skin tone
+
+U+1F468 U+200D U+1F9B2 
+Name=man, bald
+# U+1F468 U+1F3FB U+200D U+1F9B2 
+# Name=man, bald: light skin tone
+# U+1F468 U+1F3FC U+200D U+1F9B2 
+# Name=man, bald: medium-light skin tone
+# U+1F468 U+1F3FD U+200D U+1F9B2 
+# Name=man, bald: medium skin tone
+# U+1F468 U+1F3FE U+200D U+1F9B2 
+# Name=man, bald: medium-dark skin tone
+# U+1F468 U+1F3FF U+200D U+1F9B2 
+# Name=man, bald: dark skin tone
+
+U+1F469 U+200D U+1F9B2 
+Name=woman, bald
+# U+1F469 U+1F3FB U+200D U+1F9B2 
+# Name=woman, bald: light skin tone
+# U+1F469 U+1F3FC U+200D U+1F9B2 
+# Name=woman, bald: medium-light skin tone
+# U+1F469 U+1F3FD U+200D U+1F9B2 
+# Name=woman, bald: medium skin tone
+# U+1F469 U+1F3FE U+200D U+1F9B2 
+# Name=woman, bald: medium-dark skin tone
+# U+1F469 U+1F3FF U+200D U+1F9B2 
+# Name=woman, bald: dark skin tone
+
+Proposal=L2/18-018
+After= ♣
+U+265F
+Name=chess pawn
+UName=BLACK CHESS PAWN
+Keywords= chess | dupe | expendable | red shirt
+Comment=emojification of pre-existing character
+
+
+#================================
+#Status=Draft Candidate
+#================================
+
+
+Proposal=L2/17-381
+After=🎣
+U+1F93F
+Name=diving mask
+Keywords= diving | scuba | snorkeling
+
+Proposal=L2/17-298
+After=🕌
+U+1F6D5
+Name=hindu temple
+UName=HINDU TEMPLE
+Keywords= hindu | temple
+
+Proposal=L2/17-431
+After=🛁
+U+1FA92
+Name=razor
+Keywords=sharp | shave | sharp
+
+Proposal=L2/17-432
+After=😫
+U+1F971
+Name=yawning face
+Keywords=tired | bored | yawn
+
+Proposal=L2/18-002
+After=🔨
+U+1FA93
+Name=axe
+Keywords=hatchet | chop | split | wood
+
+Proposal=L2/18-003
+After=🛬
+U+1FA82
+Name=parachute
+Keywords=parachute | skydive | hang-glide | parasail
+
+Proposal=L2/17-356, L2/18-029, L2/18-033
+After=🏮
+U+1FA94
+Name=diya lamp
+Keywords=lamp | oil | diya
+
+
+Proposal=L2/18-091
+After=🚶
+U+1F9CD
+Name=person standing
+UName=standing person
+Keywords=stand
+Emoji_Modifier_Base
+Emoji_Gender_Base
+
+Proposal=L2/18-091
+After=🚶
+U+1F9CE
+Name=person kneeling
+UName=kneeling person
+Keywords=kneel
+Emoji_Modifier_Base
+Emoji_Gender_Base
+
+Proposal=L2/18-080
+After=⚖
+U+1F9AF
+Name=probing cane
+Keywords=accessibility | blind
+
+Proposal=L2/18-139
+After=👌 
+U+1F90F
+Name=pinching hand
+Keywords=small amount
+Emoji_Modifier_Base
+
+
+Proposal=L2/18-080
+After=👂
+U+1F9BB
+Name=ear with hearing aid
+Keywords=accessibility | hard of hearing
+Emoji_Modifier_Base
+
+
+Proposal=L2/18-080
+After=🛵
+U+1F9BD
+Name=manual wheelchair
+Keywords=accessibility
+
+Proposal=L2/18-080
+After=🛵
+U+1F9BC
+Name=motorized wheelchair
+Keywords=accessibility
+
+Proposal=L2/18-080
+After=💪
+U+1F9BE
+Name=mechanical arm
+Keywords=prosthetic | accessibility
+
+Proposal=L2/18-080
+After=💪
+U+1F9BF
+Name=mechanical leg
+Keywords=prosthetic | accessibility
+
+Proposal=L2/18-113
+After=👡 
+U+1FA70
+Name=ballet shoes
+Keywords=ballet | dance
+
+Proposal=L2/18-074
+After=🐼
+U+1F9A5
+Name=sloth 
+Keywords=lazy | slow
+
+Proposal=L2/18-093
+After=🐼
+U+1F9A6
+Name=otter
+Keywords=fishing | playful
+
+Proposal=L2/18-137
+After=🐼
+U+1F9A7
+Name=orangutan
+Keywords=ape
+
+Proposal=L2/18-128
+After=🐼
+U+1F9A8
+Name=skunk
+Keywords=stink
+
+Proposal=L2/18-080
+After=🐕 
+U+1F9AE
+Name=guide dog
+Keywords=guide | blind | accessibility
+
+Proposal=L2/18-256
+After= 🥼
+U+1F9BA
+Name=safety vest
+Keywords=safety | emergency | vest
+Comment=Used in a ZWJ sequence for service dog
+
+Proposal=L2/18-098
+After=🦉
+U+1F9A9
+Name=flamingo
+Keywords=flamboyant | tropical
+
+Proposal=L2/18-123
+After= 🦑
+U+1F9AA
+Name=oyster
+Keywords=pearl | diving
+
+Proposal=L2/18-130
+After=🥤
+U+1F9C3
+Name=beverage box
+Keywords=juice box
+
+Proposal=L2/18-076
+After=🥦
+U+1F9C4
+Name=garlic
+Keywords=flavoring
+
+Proposal=L2/18-077
+After=🥦
+U+1F9C5
+Name=onion
+Keywords=flavoring
+
+Proposal=L2/18-125
+After=🥙
+U+1F9C6
+Name=falafel
+Keywords=chickpea | meatball
+
+Proposal=L2/18-087
+After=🥞
+U+1F9C7
+Name=waffle
+Keywords=indecisive | iron
+
+Proposal=L2/18-112
+After=🍿
+U+1F9C8
+Name=butter
+Keywords=dairy
+
+Proposal=L2/18-122
+After=🥤
+U+1F9C9
+Name=mate
+Keywords=drink
+UName=MATE DRINK
+
+Proposal=L2/18-111
+After=🥤
+U+1F9CA
+Name=ice cube
+Keywords=cold | iceberg
+
+Proposal=L2/18-086
+After=🛵
+U+1F6FA
+Name=auto rickshaw
+Keywords=tuk tuk
+
+Proposal=L2/18-127
+After=🌞
+U+1FA90
+Name=ringed planet
+Keywords=saturn | saturnine
+
+Proposal=L2/18-129
+After=🎯
+U+1FA80
+Name=yo-yo
+Keywords=fluctuate | toy
+
+Proposal=L2/18-135
+After=🎯
+U+1FA81
+Name=kite
+Keywords=fly | soar
+
+Proposal=L2/18-124
+After=🎻
+U+1FA95
+Name=banjo
+Keywords=stringed | music
+
+Proposal=L2/18-092
+After=💉
+U+1FA78
+Name=drop of blood
+Keywords=medicine | blood donation | menstruation
+
+Proposal=L2/18-146
+After=💊
+U+1FA79
+Name=adhesive bandage
+Keywords=bandage
+
+Proposal=L2/18-091
+After=🛋 
+U+1FA91
+Name=chair
+Keywords=seat | sit
+
+Proposal=L2/18-144
+After=👘
+U+1F97B
+Name=sari
+Keywords=clothing | dress
+
+Proposal=L2/18-141
+After=🖤
+U+1F90D
+Name=WHITE HEART
+Keywords=white | heart
+
+
+U+1F90E
+Name=BROWN HEART
+Keywords=brown | heart
+
+Proposal=L2/18-141
+After= 🔴
+U+1F7E0
+Name=orange circle
+Keywords=orange | circle
+UName=large orange circle
+
+U+1F7E1
+Name=yellow circle
+Keywords=yellow | circle
+UName=large yellow circle
+
+U+1F7E2
+Name=green circle
+Keywords=green | circle
+UName=large green circle
+
+After=🔵
+U+1F7E3
+Name=purple circle
+Keywords=purple | circle
+UName=large purple circle
+
+After=⚪
+U+1F7E4
+Name=brown circle
+Keywords=brown | circle
+UName=large brown circle
+
+
+U+1F7E5
+Name=RED SQUARE
+Keywords=red | square
+UName=large red square
+
+U+1F7E7
+Name=ORANGE SQUARE
+Keywords=orange | square
+UName=large orange square
+
+U+1F7E8
+Name=YELLOW SQUARE
+Keywords=yellow | square
+UName=large yellow square
+
+U+1F7E9
+Name=GREEN SQUARE
+Keywords=green | square
+UName=large green square
+
+U+1F7E6
+Name=BLUE SQUARE
+Keywords=blue | square
+UName=large blue square
+
+U+1F7EA
+Name=PURPLE SQUARE
+Keywords=purple | square
+UName=large purple square
+
+
+After=⬜
+U+1F7EB
+Name=BROWN SQUARE
+Keywords=brown | square
+UName=large brown square
+
+Proposal=L2/18-166
+After=👘
+
+U+1FA71
+Name=one-piece swimsuit
+UName=ONE-PIECE SWIMSUIT
+Keywords=swimsuit
+
+Proposal=L2/18-167
+U+1FA72
+Name=briefs
+Keywords=swimsuit
+
+U+1FA73
+Name=shorts
+Keywords=swimsuit
+
+
+Proposal=L2/18-140
+After=💊
+U+1FA7A
+Name=stethoscope
+Keywords=doctor | medicine | heart
+
+Proposal=L2/18-229
+After=🙋
+U+1F9CF
+Name=deaf person
+Keywords=hear | ear | accessibility
+Emoji_Modifier_Base
+Emoji_Gender_Base
+
+Proposal=L2/18-080
+After=🐕
+U+1F415 U+200D U+1F9BA
+Name=service dog
+Keywords=assistance | dog | service | accessibility
+
+Proposal=L2/18-340
+After=👬
+U+1F9D1 U+200D U+1F91D U+200D U+1F9D1
+Name=people holding hands
+Keywords=couple | hand | hold | holding hands | person
+
+Proposal=L2/18-306, L2/18-307
+After=🚶
+U+1F469 U+200D U+1F9BC
+Name=woman in motorized wheelchair
+Keywords=woman|wheelchair | accessibility
+
+U+1F468 U+200D U+1F9BC
+Name=man in motorized wheelchair
+Keywords=man|wheelchair | accessibility
+
+U+1F469 U+200D U+1F9BD
+Name=woman in manual wheelchair
+Keywords=woman|wheelchair | accessibility
+
+U+1F468 U+200D U+1F9BD
+Name=man in manual wheelchair
+Keywords=man|wheelchair | accessibility
+
+U+1F469 U+200D U+1F9AF
+Name=woman with probing cane
+Keywords=woman|blind | accessibility
+
+U+1F468 U+200D U+1F9AF
+Name=man with probing cane
+Keywords=man|blind | accessibility
+
+#================================
+Status=Provisional Candidate
+#================================
+# empty for now
+#================================
+Status=Draft Candidate
+#================================
+
+Proposal=L2/18-178
+After=⛏
+U+101300
+Name=carpentry saw
+Keywords=carpenter|saw|lumber|tool
+
+Proposal=L2/18-179
+After=🔧
+U+101301
+Name=screwdriver
+Keywords=screw|tool
+
+Proposal=L2/18-197
+After=🤠
+U+101302
+Name=ninja
+Comment=smiley (feedback welcome on whether to make human-form, which would ‘cost’ 12 emoji)
+Keywords=hidden|stealth|fighter
+
+Proposal=L2/18-199
+After=⛑
+U+101303
+Name=military helmet
+Keywords=soldier|warrior
+
+Proposal=L2/18-200
+After=🦉
+U+101304
+Name=feather
+Keywords=light|plumage|flight
+
+Proposal=L2/18-218
+After=🔮
+U+101305
+Name=magic wand
+Keywords=magic|wizard|witch
+
+Proposal=L2/17-420
+After=🐘
+U+101306
+Name=mammoth
+Keywords=large|extinction|tusk|woolly
+
+Proposal=L2/17-441
+After=🦉
+U+101307
+Name=dodo
+Keywords=large|extinction|Mauritius
+
+Proposal=L2/18-260
+After=🚙
+U+101308
+Name=pickup truck
+Keywords=pickup|pick-up|truck
+
+Proposal=L2/18-266, L2/17-387
+After=⚰
+U+101309
+Name=headstone
+Keywords= headstone | grave | tombstone | rip
+
+Proposal=L2/18-277
+After=🌶
+U+10130A
+Name=Bell Pepper
+Keywords= capsicum | bell pepper | pepper | vegetable
+
+#================
+Proposal=L2/18-310, L2/17-229
+After=💰
+U+101310
+Name=Coin
+Keywords=gold | silver | metal | money | treasure
+
+Proposal=L2/18-311
+After=🥳
+U+101311
+Name=Disguised Face
+Keywords=face | glasses | nose | disguise | incognito
+
+Proposal=L2/18-317
+After=🦟
+U+101312
+Name=Fly
+Keywords=housefly | horsefly | tsetse | disease | rotting | maggot
+
+Proposal=L2/18-320
+After=🗜
+U+101314
+Name=Ladder
+Keywords=ladder | step | rung | climb 
+
+Proposal=L2/18-328
+After=🍲
+U+101315
+Name=Fondue
+Keywords=pot | cheese | melted | Swiss | chocolate
+
+Proposal=L2/18-329
+After=🚪
+U+101316
+Name=Elevator
+Comment=May also refer to mobility in multi-level buildings
+Keywords=elevator | lift | hoist | accessibility
+
+Proposal=L2/18-331
+After=🔫
+U+101317
+Name=Boomerang
+Keywords=Boomerang | Australia | rebound | repercussion | opposite
+
+Proposal=L2/18-341
+After=🥤
+U+101318
+Name=Bubble Tea
+Keywords= pearl | milk  | bubble | boba | tea
+
+Proposal=L2/18-343
+After=🦟
+U+101319
+Name=Worm
+Keywords= worm | earthworm | annelid | parasite
+
+Proposal=L2/18-261
+After=🌱
+U+10131A
+Name=Potted Plant
+Keywords=house | plant | grow | nurturing | useless | boring
+
+Proposal=L2/18-327
+After=⛓
+U+10131B
+Name=Hook
+Keywords=crook | catch | ensnare | curve | selling point
+
+
+Proposal=L2/18-197
+After=face-hat
+U+1F977
+Name=ninja
+Keywords=fighter | hidden | stealth
+
+Proposal=L2/18-311
+After=face-hat
+U+1F978
+Name=disguised face
+Keywords=disguise | face | glasses | incognito | nose
+
+Proposal=L2/17-420
+After=animal-mammal
+U+1F9A3
+Name=mammoth
+Keywords=extinction | large | tusk | woolly
+
+Proposal=L2/18-200
+After=animal-bird
+U+1FAB6
+Name=feather
+Keywords=flight | light | plumage
+
+Proposal=L2/17-441
+After=animal-bird
+U+1F9A4
+Name=dodo
+Keywords=extinction | large | Mauritius
+
+Proposal=L2/18-317
+After=animal-bug
+U+1FAB0
+Name=fly
+Keywords=disease | horsefly | housefly | maggot | rotting | tsetse
+
+Proposal=L2/18-343
+After=animal-bug
+U+1FAB1
+Name=worm
+Keywords=annelid | earthworm | parasite | worm
+
+Proposal=L2/18-261
+After=plant-other
+U+1FAB4
+Name=potted plant
+Keywords=boring | grow | house | nurturing | plant | useless
+
+Proposal=L2/18-277
+After=food-vegetable
+U+1FAD1
+Name=bell pepper
+Keywords=bell pepper | capsicum | pepper | vegetable
+
+Proposal=L2/18-328
+After=food-prepared
+U+1FAD5
+Name=fondue
+Keywords=cheese | chocolate | melted | pot | Swiss
+
+Proposal=L2/18-341
+After=drink
+U+1F9CB
+Name=bubble tea
+Keywords=boba | bubble | milk | pearl | tea
+
+Proposal=L2/18-260
+After=transport-ground
+U+1F6FB
+Name=pickup truck
+Keywords=pick-up | pickup | truck
+
+Proposal=L2/18-329
+After=hotel
+U+1F6D7
+Name=elevator
+Keywords=accessibility | elevator | hoist | lift➯ May also refer to mobility in multi-level buildings
+
+Proposal=L2/18-331
+After=sport
+U+1FA83
+Name=boomerang
+Keywords=australia | boomerang | opposite | rebound | repercussion
+
+Proposal=L2/18-218
+After=game
+U+1FA84
+Name=magic wand
+Keywords=magic | witch | wizard
+
+Proposal=L2/18-199
+After=clothing
+U+1FA96
+Name=military helmet
+Keywords=soldier | warrior
+
+Proposal=L2/18-310, L2/17-229
+After=money
+U+1FA99
+Name=coin
+Keywords=gold | metal | money | silver | treasure
+
+Proposal=L2/18-178
+After=tool
+U+1FA9A
+Name=carpentry saw
+Keywords=carpenter | lumber | saw | tool
+
+Proposal=L2/18-179
+After=tool
+U+1FA9B
+Name=screwdriver
+Keywords=screw | tool
+
+Proposal=L2/18-320
+After=tool
+U+1FA9C
+Name=ladder
+Keywords=climb | ladder | rung | step
+
+Proposal=L2/18-327
+After=tool
+U+1FA9D
+Name=hook
+Keywords=catch | crook | curve | ensnare | selling point
+
+Proposal=L2/18-266, L2/17-387
+After=other-object
+U+1FAA6
+Name=headstone
+Keywords=grave | headstone | rip | tombstone
+
+Proposal=L2/19-147
+After=face-affection
+U+1F972
+Name=smiling face with tear
+Keywords=relieved | grateful | touched | proud | slightly smiling
+
+Proposal=L2/19-159
+After=hand-fingers-closed
+U+1F90C
+Name=pinched fingers
+Keywords=interrogation | hand gesture | sarcastic | pinched | fingers
+
+Proposal=L2/19-150
+After=body-parts
+U+1FAC0
+Name=heart
+Keywords=heartbeat | pulse | center | organ
+
+Proposal=L2/19-149
+After=body-parts
+U+1FAC1
+Name=lungs
+Keywords=breath | inhalation | exhalation | respiration | organ
+
+Proposal=L2/19-151
+After=person-sport
+U+1F6FC
+Name=roller skate
+Keywords=roller | skate
+
+Proposal=L2/19-109
+After=person-symbol
+U+1FAC2
+Name=people hugging
+Keywords=hug | thank you | hello | goodbye 
+
+Proposal=L2/19-110
+After=animal-mammal
+U+1F9AB
+Name=beaver
+Keywords=beaver | dam
+
+Proposal=L2/19-187
+After=animal-mammal
+U+1F9AC
+Name=bison
+Keywords=bison | buffalo | wisent | herd
+
+Proposal=L2/19-155
+After=animal-marine
+U+1F9AD
+Name=seal
+Keywords=Seal | Sea Lion
+
+Proposal=L2/19-148
+After=animal-bug
+U+1FAB2
+Name=beetle
+Keywords=beetle | insect | bug
+
+Proposal=L2/19-095
+After=animal-bug
+U+1FAB3
+Name=cockroach
+Keywords=cockroach | roach | insect
+
+Proposal=L2/19-097
+After=plant-other
+U+1FAB5
+Name=wood
+Keywords=wood | log | lumber | timber
+
+Proposal=L2/19-157
+After=food-fruit
+U+1FAD0
+Name=blueberries
+Keywords=blueberry | berry | bilberry | blue
+
+Proposal=L2/19-146
+After=food-vegetable
+U+1FAD2
+Name=olive
+Keywords=olive | food
+
+Proposal=L2/19-156
+After=food-prepared
+U+1FAD3
+Name=flatbread
+Keywords=arepa | pupusa | gordita | masa
+
+"Proposal=L2/19-154
+After=food-prepared
+U+1FAD4
+Name=tamale
+Keywords=conkies | hallacas | humitas | mexican | nacatamal | pamonha | pasteles |
+tamal | tamale
+"
+Proposal=L2/19-103
+After=dishware
+U+1FAD6
+Name=teapot
+Keywords=drink | tea | teapot | pot
+
+Proposal=L2/19-102
+After=place-building
+U+1F6D6
+Name=hut
+Keywords=house | roundhouse | rondavel | yurt
+
+Proposal=L2/19-062
+After=game
+U+1FA85
+Name=pinata
+Keywords=piñata | celebration | party
+
+Proposal=L2/19-096
+After=game
+U+1FA86
+Name=nesting dolls
+Keywords=russia | doll | matryoshka
+
+Proposal=L2/19-104
+After=clothing
+U+1FA74
+Name=thong sandal
+Keywords=sandals | thongs | zōri | beach sandals | thong sandals
+
+Proposal=L2/19-087
+After=musical-instrument
+U+1FA97
+Name=accordion
+Keywords=accordian | squeeze box | concertina
+
+Proposal=L2/19-090
+After=musical-instrument
+U+1FA98
+Name=long drum
+Keywords=drum | bongo | conga | rhythm | beat
+
+Proposal=L2/19-098
+After=household
+U+1FA9E
+Name=mirror
+Keywords=reflection | reflector | speculum
+
+Proposal=L2/19-108
+After=household
+U+1FA9F
+Name=window
+Keywords=frame | transparent | view | opening
+
+Proposal=L2/19-158
+After=household
+U+1FAA0
+Name=plunger
+Keywords=plunger | plunge | plumber | force cup | plumber’s helper
+
+Proposal=L2/19-088
+After=household
+U+1FAA1
+Name=sewing needle
+Keywords=sewing | mending | quilting | tailoring | stitches | sutures | embroidery | needle | needle and thread | bodkin | crewel | tatting
+
+Proposal=L2/19-152
+After=household
+U+1FAA2
+Name=knot
+Keywords=tie | rope | twine | twist
+
+Proposal=L2/19-105
+After=household
+U+1FAA3
+Name=bucket
+Keywords=bucket | pail | cask | vat
+
+Proposal=L2/19-144
+After=household
+U+1FAA4
+Name=mouse trap
+Keywords=mousetrap | trap | snare | bait
+
+Proposal=L2/19-153
+After=household
+U+1FAA5
+Name=toothbrush
+Keywords=clean | teeth | dental | bathroom | brush | hygiene | routine
+
+Proposal=L2/19-061
+After=other-object
+U+1FAA7
+Name=placard
+Keywords=placard | protest | sign | picket
+
+Proposal=L2/19-145
+After=other-object
+U+1FAA8
+Name=rock
+Keywords=rock | stone | boulder

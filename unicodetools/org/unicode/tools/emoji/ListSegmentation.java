@@ -71,13 +71,13 @@ public class ListSegmentation {
     }
     
     private static void showList(UnicodeSet rest) {
-        Set<String> sorted = rest.addAllTo(new TreeSet<String>(EmojiOrder.FULL_COMPARATOR));
+        Set<String> sorted = rest.addAllTo(new TreeSet<String>(EmojiOrder.UCA_PLUS_CODEPOINT));
         for (String s : sorted) {
             System.out.println("U+" + Utility.hex(s) + "\t" + UCharacter.getName(s, ", ") + "\t" + s);
         }
     }
     private static String show(UnicodeSet us) {
-        Set<String> sorted = us.addAllTo(new TreeSet<String>(EmojiOrder.FULL_COMPARATOR));
+        Set<String> sorted = us.addAllTo(new TreeSet<String>(EmojiOrder.UCA_PLUS_CODEPOINT));
         return CollectionUtilities.join(sorted, " ");
     }
 }

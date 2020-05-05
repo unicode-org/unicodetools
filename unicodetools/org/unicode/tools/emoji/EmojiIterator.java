@@ -20,7 +20,7 @@ public final class EmojiIterator implements Iterable<String>, Iterator<String> {
     private final boolean stripTrailingStyleVariants;
 
     public EmojiIterator(EmojiData data, boolean stripTrailingStyleVariants) {
-        this.modifierBase = data.getModifierBases();
+        this.modifierBase = data.getModifierBasesRgi();
         this.modifier = data.MODIFIERS;
         this.stripTrailingStyleVariants = stripTrailingStyleVariants;
     }

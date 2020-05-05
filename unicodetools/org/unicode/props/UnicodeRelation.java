@@ -256,6 +256,11 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
         }
         return this;
     }
+    
+    public UnicodeRelation<T> removeAll(UnicodeSet keys) {
+         data.removeAll(keys);
+         return this;
+    }
 
     public UnicodeRelation<T> removeAll(UnicodeSet keys, T... values) {
         return removeAll(keys, values);

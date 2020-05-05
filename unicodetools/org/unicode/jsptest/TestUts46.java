@@ -38,8 +38,6 @@ public class TestUts46 extends TestFmwk{
         showSplit("Old", testcase, labels);
         labels = Regexes.split(Idna.FULL_STOP, testcase);
         showSplit("New", testcase, labels);
-        labels = Regexes.split(Idna.FULL_STOP.matcher(testcase), testcase, true);
-        showSplit("Full", testcase, labels);
     }
 
     private static void showSplit(String title, String testcase, String[] labels) {

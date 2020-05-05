@@ -9,7 +9,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 
-import org.unicode.cldr.tool.GenerateEnums;
 import org.unicode.cldr.util.Counter;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;

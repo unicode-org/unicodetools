@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.MakeUnicodeFiles;
-import org.unicode.text.utility.UnicodeDataFile.FileInfix;
 import org.unicode.text.utility.Utility.RuntimeIOException;
 
 public class UnicodeDataFile {

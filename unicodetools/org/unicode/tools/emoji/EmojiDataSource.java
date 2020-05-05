@@ -1,8 +1,10 @@
 package org.unicode.tools.emoji;
 
+import org.unicode.tools.emoji.Emoji.Qualified;
+
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 
 public interface EmojiDataSource {
 
@@ -33,9 +35,9 @@ public interface EmojiDataSource {
     public default UnicodeSet getBasicSequences() {
         UnicodeSet result = new UnicodeSet();
         for (String s : getSingletonsWithDefectives()) {
-//            if (Emoji.KEYCAP_BASE.contains(s)) {
-//                continue;
-//            }
+            if (Emoji.KEYCAP_BASE.contains(s) || Emoji.REGIONAL_INDICATORS.contains(s)) {
+                continue;
+            }
             if (getEmojiPresentationSet().contains(s)) {
                 result.add(s);
             } else {
@@ -55,7 +57,11 @@ public interface EmojiDataSource {
     
     public String addEmojiVariants(String s1);
     public String getVersionString();
+    public String getPlainVersion();
     public UnicodeSet getExplicitGender();
     public UnicodeSet getMultiPersonGroupings();
+    public UnicodeSet getModifierBasesRgi();
+    public UnicodeSet getAllEmojiWithoutDefectivesOrModifiers();
+    public String addEmojiVariants(String s1, Qualified qualified);
 }
 

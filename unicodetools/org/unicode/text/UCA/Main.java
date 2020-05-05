@@ -29,7 +29,8 @@ public class Main {
         // "short",
         // "WriteRules", "WriteRulesCLDR",  // "WriteRulesXML", "WriteRulesCLDRXML",
         // "writeconformance", "writeConformanceShifted", "writeConformanceCldr", "writeConformanceShiftedCldr",
-        "noCE",  // "short",        "WriteRules", "WriteRulesCLDR",  // "WriteRulesXML", "WriteRulesCLDRXML"
+        "noCE",  // "short",
+        "WriteRules", "WriteRulesCLDR",  // "WriteRulesXML", "WriteRulesCLDRXML"
     };
 
     static final String[] CHART_FILES = {

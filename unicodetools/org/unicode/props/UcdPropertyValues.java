@@ -53,6 +53,8 @@ public class UcdPropertyValues {
         V10_0("10.0"),
         V11_0("11.0"),
         V12_0("12.0"),
+        V12_1("12.1"),
+        V13_0("13.0"),
         Unassigned("NA");
         private final PropertyNames<Age_Values> names;
         private Age_Values (String shortName, String...otherNames) {
@@ -178,6 +180,7 @@ public class UcdPropertyValues {
         Cherokee("Cherokee"),
         Cherokee_Supplement("Cherokee_Sup"),
         Chess_Symbols("Chess_Symbols"),
+        Chorasmian("Chorasmian"),
         CJK_Unified_Ideographs("CJK"),
         CJK_Compatibility("CJK_Compat"),
         CJK_Compatibility_Forms("CJK_Compat_Forms"),
@@ -189,6 +192,7 @@ public class UcdPropertyValues {
         CJK_Unified_Ideographs_Extension_D("CJK_Ext_D"),
         CJK_Unified_Ideographs_Extension_E("CJK_Ext_E"),
         CJK_Unified_Ideographs_Extension_F("CJK_Ext_F"),
+        CJK_Unified_Ideographs_Extension_G("CJK_Ext_G"),
         CJK_Radicals_Supplement("CJK_Radicals_Sup"),
         CJK_Strokes("CJK_Strokes"),
         CJK_Symbols_And_Punctuation("CJK_Symbols"),
@@ -214,6 +218,7 @@ public class UcdPropertyValues {
         Combining_Diacritical_Marks_For_Symbols("Diacriticals_For_Symbols", "Combining_Marks_For_Symbols"),
         Combining_Diacritical_Marks_Supplement("Diacriticals_Sup"),
         Dingbats("Dingbats"),
+        Dives_Akuru("Dives_Akuru"),
         Dogra("Dogra"),
         Domino_Tiles("Domino"),
         Duployan("Duployan"),
@@ -277,6 +282,7 @@ public class UcdPropertyValues {
         Katakana_Phonetic_Extensions("Katakana_Ext"),
         Kayah_Li("Kayah_Li"),
         Kharoshthi("Kharoshthi"),
+        Khitan_Small_Script("Khitan_Small_Script"),
         Khmer("Khmer"),
         Khmer_Symbols("Khmer_Symbols"),
         Khojki("Khojki"),
@@ -296,6 +302,7 @@ public class UcdPropertyValues {
         Linear_B_Ideograms("Linear_B_Ideograms"),
         Linear_B_Syllabary("Linear_B_Syllabary"),
         Lisu("Lisu"),
+        Lisu_Supplement("Lisu_Sup"),
         Low_Surrogates("Low_Surrogates"),
         Lycian("Lycian"),
         Lydian("Lydian"),
@@ -402,6 +409,7 @@ public class UcdPropertyValues {
         Sutton_SignWriting("Sutton_SignWriting"),
         Syloti_Nagri("Syloti_Nagri"),
         Symbols_And_Pictographs_Extended_A("Symbols_And_Pictographs_Ext_A"),
+        Symbols_For_Legacy_Computing("Symbols_For_Legacy_Computing"),
         Syriac("Syriac"),
         Syriac_Supplement("Syriac_Sup"),
         Tagalog("Tagalog"),
@@ -416,6 +424,7 @@ public class UcdPropertyValues {
         Tamil_Supplement("Tamil_Sup"),
         Tangut("Tangut"),
         Tangut_Components("Tangut_Components"),
+        Tangut_Supplement("Tangut_Sup"),
         Telugu("Telugu"),
         Thaana("Thaana"),
         Thai("Thai"),
@@ -433,6 +442,7 @@ public class UcdPropertyValues {
         Variation_Selectors_Supplement("VS_Sup"),
         Wancho("Wancho"),
         Warang_Citi("Warang_Citi"),
+        Yezidi("Yezidi"),
         Yi_Radicals("Yi_Radicals"),
         Yi_Syllables("Yi_Syllables"),
         Yijing_Hexagram_Symbols("Yijing"),
@@ -457,6 +467,7 @@ public class UcdPropertyValues {
 	public enum Canonical_Combining_Class_Values implements Named {
         Not_Reordered("0", "NR"),
         Overlay("1", "OV"),
+        Han_Reading("6", "HANR"),
         Nukta("7", "NK"),
         Kana_Voicing("8", "KV"),
         Virama("9", "VR"),
@@ -826,6 +837,7 @@ public class UcdPropertyValues {
         Right("Right"),
         Top("Top"),
         Top_And_Bottom("Top_And_Bottom"),
+        Top_And_Bottom_And_Left("Top_And_Bottom_And_Left"),
         Top_And_Bottom_And_Right("Top_And_Bottom_And_Right"),
         Top_And_Left("Top_And_Left"),
         Top_And_Left_And_Right("Top_And_Left_And_Right"),
@@ -1159,7 +1171,9 @@ public class UcdPropertyValues {
 		// kIRG_KPSource
 		// kIRG_KSource
 		// kIRG_MSource
+		// kIRG_SSource
 		// kIRG_TSource
+		// kIRG_UKSource
 		// kIRG_USource
 		// kIRG_VSource
 		// kIRGDaeJaweon
@@ -1204,11 +1218,14 @@ public class UcdPropertyValues {
 		// kSemanticVariant
 		// kSimplifiedVariant
 		// kSpecializedSemanticVariant
+		// kSpoofingVariant
 		// kTaiwanTelegraph
 		// kTang
 		// kTGH
+		// kTGHZ2013
 		// kTotalStrokes
 		// kTraditionalVariant
+		// kUnihanCore2020
 		// kVietnamese
 		// kXerox
 		// kXHC1983
@@ -1409,10 +1426,12 @@ public class UcdPropertyValues {
         Carian("Cari"),
         Cham("Cham"),
         Cherokee("Cher"),
+        Chorasmian("Chrs"),
         Coptic("Copt", "Qaac"),
         Cypriot("Cprt"),
         Cyrillic("Cyrl"),
         Devanagari("Deva"),
+        Dives_Akuru("Diak"),
         Dogra("Dogr"),
         Deseret("Dsrt"),
         Duployan("Dupl"),
@@ -1447,6 +1466,7 @@ public class UcdPropertyValues {
         Kharoshthi("Khar"),
         Khmer("Khmr"),
         Khojki("Khoj"),
+        Khitan_Small_Script("Kits"),
         Kannada("Knda"),
         Kaithi("Kthi"),
         Tai_Tham("Lana"),
@@ -1535,6 +1555,7 @@ public class UcdPropertyValues {
         Wancho("Wcho"),
         Old_Persian("Xpeo"),
         Cuneiform("Xsux"),
+        Yezidi("Yezi"),
         Yi("Yiii"),
         Zanabazar_Square("Zanb"),
         Inherited("Zinh", "Qaai"),

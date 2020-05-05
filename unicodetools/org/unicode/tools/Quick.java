@@ -15,7 +15,6 @@ import org.unicode.tools.emoji.EmojiData;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.VersionInfo;
 
 public class Quick {
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);

@@ -31,12 +31,12 @@ import com.ibm.icu.util.VersionInfo;
 
 public class AacOrder {
 
-    private static final VersionInfo VERSION = Emoji.VERSION11;
-    private static final VersionInfo UCD_VERSION = Emoji.UCD10;
+    private static final VersionInfo VERSION = Emoji.VERSION_LAST_RELEASED;
+    private static final VersionInfo UCD_VERSION = Emoji.VERSION12;
 
     private static final CandidateData CANDIDATE_DATA = CandidateData.getInstance();
 
-    private static final EmojiDataSource EMOJI_DATA = new EmojiDataSourceCombined();
+    private static final EmojiDataSource EMOJI_DATA = new EmojiDataSourceCombined(EmojiData.EMOJI_DATA);
     private static final EmojiOrder ORDER = EmojiOrder.of(VERSION);
 
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(UCD_VERSION);

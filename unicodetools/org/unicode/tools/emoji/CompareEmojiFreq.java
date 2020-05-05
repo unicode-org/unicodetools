@@ -8,12 +8,11 @@ import java.util.Map.Entry;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
-import org.unicode.tools.emoji.ListEmojiGroups.CountInfo;
-import org.unicode.tools.emoji.ListEmojiGroups.GBoardCounts;
+import org.unicode.tools.emoji.EmojiFrequency.CountInfo;
+import org.unicode.tools.emoji.EmojiFrequency.GBoardCounts;
 
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
-import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.util.ULocale;
 
@@ -69,7 +68,7 @@ public class CompareEmojiFreq {
         for (String emoji : worldCounts.keyToCount.keySet()) {
             other_.add(emoji, worldCounts.getRaw(emoji) - counts.getRaw(emoji));
         }
-        CountInfo other = new CountInfo(other_, new HashSet<>());
+        CountInfo other = new CountInfo(other_, new HashSet<>(), null);
         String localeName = name(locale);
         boolean haveCounts = false;
         boolean isWorld = locale.equals("001");

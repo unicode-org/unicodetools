@@ -4,7 +4,9 @@
 # PREFIX=${HOME}/icu-inst
 PREFIX=/usr/local/icu
 # ICU_URL=http://download.icu-project.org/files/icu4c/56.1/icu4c-56_1-src.tgz
-ICU_URL=http://download.icu-project.org/files/icu4c/60.2/icu4c-60_2-src.tgz
+# ICU_URL=http://download.icu-project.org/files/icu4c/60.2/icu4c-60_2-src.tgz
+# ICU_URL=http://download.icu-project.org/files/icu4c/62.1/icu4c-62_1-src.tgz
+ICU_URL=http://download.icu-project.org/files/icu4c/64rc2/icu4c-64rc2-src.tgz
 ICU_BASE=`basename $ICU_URL`
 ICU_BUILD=icu_build
 set -x

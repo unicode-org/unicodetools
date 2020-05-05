@@ -186,7 +186,7 @@ emoji_zwj_element :=
     static void parse(String input, List<String> emoji, List<String> noPres, List<String> nonEmoji) {
         int emojiEnd = 0;
         for (int offset = 0; offset < input.length();) {
-            int match = ListEmojiGroups.matches(fixed, input, offset);
+            int match = EmojiFrequency.matches(fixed, input, offset);
             if (match > offset) {
                 if (emojiEnd < offset) {
                     String str = input.substring(emojiEnd, offset);

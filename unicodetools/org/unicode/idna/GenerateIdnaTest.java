@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -13,17 +12,12 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CldrUtility;
-import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.cldr.util.props.UnicodePropertySymbolTable;
 import org.unicode.idna.Idna2008.Idna2008Type;
 import org.unicode.idna.LoadIdnaTest.TestLine;
 import org.unicode.idna.Uts46.Errors;
 import org.unicode.idna.Uts46.IdnaChoice;
-import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.UcdProperty;
-import org.unicode.props.UcdPropertyValues.General_Category_Values;
-import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.ToolUnicodeTransformFactory;
@@ -32,10 +26,8 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeTransform;
 import org.unicode.text.utility.Utility;
 
-import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.locale.XCldrStub.Splitter;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.DateFormat;
@@ -73,6 +65,8 @@ public class GenerateIdnaTest {
     }
 
     public static void main(String[] args) throws IOException {
+        System.setProperty("line.separator", "\n");
+
         final int count = new GenerateIdnaTest().generateTests(1000);
         System.out.println("DONE " + count);
         System.out.println("NOTE: use ICU to test until TestIdna is updated."
@@ -104,8 +98,16 @@ public class GenerateIdnaTest {
 
         FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader.txt").toString().substring(5), "UTF-8", out);
 
+	final String filename = "IdnaMappingTable-" + Default.ucdVersion() + ".txt";
+	final String unversionedFileName = "IdnaMappingTable.txt";
+
         final PrintWriter out2 = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.DIR, NEW_FILE_NAME);
-        out2.println(Utility.getDataHeader(NEW_FILE_NAME));
+//        out2.println(Utility.getDataHeader(NEW_FILE_NAME));
+	out2.println(Utility.getBaseDataHeader(
+		NEW_FILE_NAME, 
+		46, 
+		"Unicode IDNA Compatible Preprocessing", 
+		Default.ucdVersion()));
 
         FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader2.txt").toString().substring(5), "UTF-8", out2);
 

@@ -55,12 +55,12 @@ public class EmojiAnnotations extends Birelation<String,String> {
     }
 
     public EmojiAnnotations(String localeString, Comparator<String> codepointCompare, String... filenames) {
-        super(new TreeMap(EmojiOrder.FULL_COMPARATOR), 
+        super(new TreeMap(EmojiOrder.UCA_PLUS_CODEPOINT), 
                 new HashMap(), 
                 TreeSet.class, 
                 TreeSet.class, 
                 EmojiOrder.UCA_COLLATOR, 
-                EmojiOrder.FULL_COMPARATOR);
+                EmojiOrder.UCA_PLUS_CODEPOINT);
 
         //        for (String s : sorted) {
         //            Set<String> plainAnnotations = CandidateData.getInstance().getAnnotations(s);

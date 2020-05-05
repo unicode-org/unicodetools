@@ -228,6 +228,10 @@ Let $BN_Exceptions = [\u001C-\u001F\u17B4\u17B5]
 
 [\p{Bidi_Class=BN}] = [\p{di}\p{nchar}\p{gc=Cc}-\p{gc=Mc}-\p{gc=Mn}-\p{gc=Me}-\p{Bidi_C}-\p{alpha}-\p{wspace} - $BN_Exceptions]
 
+# Nonspacing and enclosing combining marks are bc=NSM, with a few exceptions (all of which are nonspacing)
+Let $gcMn_bcL = [\u0CBF\u0CC6\U00011A07\U00011A08\U00011C3F]
+\p{bc=NSM} = [\p{gc=Mn} \p{gc=Me} - $gcMn_bcL]
+
 ##########################
 # Case
 ##########################
@@ -322,9 +326,10 @@ In \P{U-1:GC=Cn} ccc=U-1:ccc
 
 # Canonical decompositions (minus exclusions) must be identical across releases (also required by strong normalization stability),
 # except where a character and at lease one character in its decomposition are both new in the release.
-Let $NFC_Exceptions = [\U0001109A\U0001109C\U000110AB[\U0001112E\U0001112F \U0001134B-\U0001134C \U000114BB-\U000114BC \U000114BE \U000115BA-\U000115BB]]
+Let $NFC_Exceptions = [\U0001109A\U0001109C\U000110AB[\U0001112E\U0001112F \U0001134B-\U0001134C \U000114BB-\U000114BC \U000114BE \U000115BA-\U000115BB] \U00011938]
 # 6.1.0 Added CHAKMA VOWEL SIGN O..CHAKMA VOWEL SIGN AU
 # 7.0 Added 1134B..1134C, 114BB..114BC, 114BE, and 115BA..115BB
+# 13.0 Added 11938 DIVES AKURU VOWEL SIGN O
 [\p{Decomposition_Type=Canonical} - \p{Full_Composition_Exclusion} - $NFC_Exceptions] = [\p{U-1:Decomposition_Type=Canonical} - \p{U-1:Full_Composition_Exclusion} - $NFC_Exceptions]
 
 # Stability: All characters other than those with General_Category property values Spacing_Mark (Mc) and Nonspacing_Mark (Mn) have the Canonical_Combining_Class property value 0.
@@ -475,8 +480,9 @@ Let $SAScripts = [\p{script=ahom} \p{script=thai} \p{script=lao} \p{script=myanm
 $SAScripts ⊇ \p{LineBreak=SA}
 
 # And in $SA scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn, plus the NEW TAI LUE THAM DIGIT ONE
-Let $SAScriptExceptions = [\x{1173A}\x{1173B}\x{1173F} \uAA7D \u19DA\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAA7B\uAADE-\uAADF]
+Let $SAScriptExceptions = [\x{1173A}\x{1173B}\x{1173F} \u19DA\u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAADE-\uAADF]
 #7.0 Added AA7D
+#12.0 Removed Myanmar spacing marks which were assigned Other_Alphabetic: 1063..1064, 1069..106D, 1087..108C, 108F, 109A..109B, AA7B, AA7D
 
 [$SAScripts & [\p{Alphabetic} \p{gc=cf} \p{gc=Mn} $SAScriptExceptions]] = [$SAScripts & [\p{LineBreak=SA} \p{LineBreak=CM}]]
 
@@ -549,6 +555,13 @@ Let $EgyptianControls = [\U00013430-\U00013438]
 \p{RI=Y} = [\p{GCB=RI}]
 \p{RI=Y} = [\p{WB=RI}]
 
+# Post-base spacing combining marks of most SE Asian scripts are explicitly excluded from GCB=SpacingMark
+# See http://www.unicode.org/reports/tr29/#SpacingMark
+Let $PostBaseSpacingMarks_All = [[[:lb=SA:]-[:sc=Khmr:]] & [:gc=Mc:] & [:InPC=Right:]]
+Let $PostBaseSpacingMarks_Tweak = [\u103B \u1056 \u1057 \u1A57 \u1A6D]
+Let $PostBaseSpacingMarks_Missed = [\U00011720-\U00011721]
+[$PostBaseSpacingMarks_All - $PostBaseSpacingMarks_Tweak - $PostBaseSpacingMarks_Missed] ⊂ [:GCB=XX:]
+
 ##########################
 # Emoji
 ##########################
@@ -568,7 +581,7 @@ Let $HairComponents = [\U0001F9B0-\U0001F9B3]
 \p{lb=EB} = \p{Emoji_Modifier_Base}
 \p{lb=EM} = \p{Emoji_Modifier}
 # Recent pictographs with default emoji presentation are lb=ID, EB or EM:
-[\p{Emoji_Presentation} & [\p{age=7.0}\p{age=8.0}\p{age=9.0}\p{age=10.0}\p{age=11.0}]] ⊂ [\p{lb=ID} \p{lb=EB} \p{lb=EM}]
+[\p{Emoji_Presentation} & [\p{age=7.0}\p{age=8.0}\p{age=9.0}\p{age=10.0}\p{age=11.0}\p{age=12.0}]] ⊂ [\p{lb=ID} \p{lb=EB} \p{lb=EM}]
 
 [\p{Emoji_Presentation} - \p{RI}] ⊂ \p{ea=W}
 
@@ -673,17 +686,21 @@ Map {\m{Case_Folding}&\p{age=9.0}} = {\m{*Case_Folding}&\p{age=9.0}}
 # are the same as the last version's
 # Once they are checked, reset the exceptions (in [...]) so that no warning is given
 
-Map {\m{kMandarin}-[\u9FEB-\u9FED \U0002C4FC \U0002C62D \U0002C925 \U0002CBCE \U0002CE23]} = {\m{*kMandarin}}
-# 11.0 updated exclusions:
-#    - added 9FEB..9FED, 2C4FC, 2C62D, 2C925, 2CBCE, 2CE23 to the 11.0 exclusions: new kMandarin readings introduced in 11.0 (confirmed)
-#    - removed 224B9 whose reading had changed from 9.0 to 10.0 but stayed the same from 10.0 to 11.0
+Map {\m{kMandarin} - [\u3D0E\u3E06\u44EC\U00020164\U00021B15\U00022741\U0002588F\U000258FA\U00026676\U00026C21\U000282EE\U00028ABF\U0002A7DD\U0002A8FB\U0002A917\U0002AA30\U0002AA36\U0002AA58\U0002B127\U0002B137\U0002B1ED\U0002B363\U0002B36F\U0002B37D\U0002B461\U0002B4EF\U0002B4F6\U0002B4F9\U0002B50D\U0002B536\U0002B5AE\U0002B5AF\U0002B5B3\U0002B61C\U0002B626\U0002B627\U0002B62A\U0002B62C\U0002B696\U0002B6AD\U0002B6ED\U0002B7A9\U0002B7C5\U0002B7E6\U0002B7F7\U0002B7F9\U0002B7FC\U0002B806\U0002B80A\U0002B81C\U0002B8B8\U0002BAC7\U0002BB5F\U0002BB62\U0002BB7C\U0002BB83\U0002BC1B\U0002BD77\U0002BD87\U0002BDF7\U0002BE29\U0002C029\U0002C02A\U0002C0A9\U0002C0CA\U0002C1D5\U0002C1D9\U0002C1F9\U0002C27C\U0002C288\U0002C2A4\U0002C317\U0002C35B\U0002C361\U0002C364\U0002C488\U0002C494\U0002C497\U0002C542\U0002C613\U0002C618\U0002C621\U0002C629\U0002C62B\U0002C62C\U0002C62F\U0002C642\U0002C64A\U0002C64B\U0002C72C\U0002C72F\U0002C79F\U0002C7C1\U0002C7FD\U0002C8D9\U0002C8DE\U0002C8E1\U0002C8F3\U0002C907\U0002C90A\U0002C91D\U0002CA02\U0002CA0E\U0002CA7D\U0002CAA9\U0002CB29\U0002CB2D\U0002CB2E\U0002CB31\U0002CB38\U0002CB39\U0002CB3B\U0002CB3F\U0002CB41\U0002CB4A\U0002CB4E\U0002CB5A\U0002CB5B\U0002CB64\U0002CB69\U0002CB6C\U0002CB6F\U0002CB73\U0002CB76\U0002CB78\U0002CB7C\U0002CBB1\U0002CBBF\U0002CBC0\U0002CC56\U0002CC5F\U0002CCF5\U0002CCF6\U0002CCFD\U0002CCFF\U0002CD02\U0002CD03\U0002CD0A\U0002CD8B\U0002CD8D\U0002CD8F\U0002CD90\U0002CD9F\U0002CDA0\U0002CDA8\U0002CDAD\U0002CDAE\U0002CDD5\U0002CE18\U0002CE1A\U0002CE26\U0002CE2A\U0002CE7C\U0002CE88\U0002CE93] - [\u4B78\u5A47\u5F6F\u60B7\u65FD\u6A0B\u6ADA\u73D6\u77A1\u815C\u816C\u8192\u8491\u8A09\u8BBD\u8BC6\u90D8\u9D24\u9E00\U00025C1F\U000272D5\U0002757A\U00027956\U000280A2\U0002824B\U000284A8\U00028DED\U00028E30\U000293CF\U000295F5\U00029B5D]} = {\m{*kMandarin} - [\u4B78\u5A47\u5F6F\u60B7\u65FD\u6A0B\u6ADA\u73D6\u77A1\u815C\u816C\u8192\u8491\u8A09\u8BBD\u8BC6\u90D8\u9D24\u9E00\U00025C1F\U000272D5\U0002757A\U00027956\U000280A2\U0002824B\U000284A8\U00028DED\U00028E30\U000293CF\U000295F5\U00029B5D] - [\U000208E1\U0002589F\U000258F9\U000287B3\U0002A008]}
+# 13.0 updated exclusions:
+#    - added to the 13.0 exclusions: kMandarin readings added, changed, or removed in 13.0 (confirmed):
+#        - added in 13.0: 3D0E, 3E06, 44EC, etc. (exclude from \m{kMandarin})
+#        - changed in 13.0: 4B78, 5A47, 5F6F, etc. (exclude from both)
+#        - removed in 13.0: 208E1, 2589F, 258F9, etc. (exclude from \m{*kMandarin})
+#    - deleted no exclusions: Unihan was the same in 12.0 and 12.1
 
 # Ideographic invariants
 
 Let $ideohack = [〆 〇 〡-〩]
 
-[\p{ideographic}-\p{sc=tangut}-\p{sc=nushu}-\p{nfkcqc=n}-$ideohack] = \p{Unified_Ideograph}
+[\p{ideographic}-\p{sc=tangut}-\p{sc=nushu}-\p{sc=Khitan_Small_Script}-\p{nfkcqc=n}-$ideohack] = \p{Unified_Ideograph}
 # 10.0 added Nushu
+# 13.0 added Khitan_Small_Script
 
 # Following don't work yet. Tested independently in TestInvariants
 # \p{Unified_Ideograph} ⊇ \P{kRSUnicode=∅}

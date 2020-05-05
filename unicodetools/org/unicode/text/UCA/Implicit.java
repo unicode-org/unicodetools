@@ -48,26 +48,49 @@ public class Implicit {
 
     /**
      * Range of implicit weights for siniform ideographic scripts.
+     * Can be discontiguous.
      * Corresponds to allkeys.txt:
      * <pre>
      * @implicitweights 17000..18AFF; FB00 # Tangut and Tangut Components
+     * @implicitweights 18D00..18D8F; FB00 # Tangut Supplement
+     * </pre>
+     * or
+     * <pre>
+     * @implicitweights 1B170..1B2FF; FB01 # Nushu
      * </pre>
      */
     static final class Range {
         final int leadPrimary;
-        final int startCP;
-        final int endCP;
+        int startCP;
+        int endCP;
         /** First assigned code point in the range. */
-        final int firstCP;
+        int firstCP;
+        /** Last assigned code point in the range. */
+        int lastCP;
         final UnicodeSet set;
 
         private Range(int leadPrimary, int startCP, int endCP, UnicodeSet unassignedSet) {
             this.leadPrimary = leadPrimary;
             this.startCP = startCP;
             this.endCP = endCP;
-            set = new UnicodeSet(startCP, endCP).removeAll(unassignedSet).freeze();
+            set = new UnicodeSet(startCP, endCP).removeAll(unassignedSet);
             assert !set.isEmpty();
             firstCP = set.charAt(0);
+            lastCP = set.charAt(set.size() - 1);
+        }
+
+        private void mergeFrom(Range other) {
+            assert leadPrimary == other.leadPrimary;
+            // Extend boundaries outwards.
+            if (startCP > other.startCP) { startCP = other.startCP; }
+            if (endCP < other.endCP) { endCP = other.endCP; }
+            if (firstCP > other.firstCP) { firstCP = other.firstCP; }
+            if (lastCP < other.lastCP) { lastCP = other.lastCP; }
+            set.addAll(other.set);
+        }
+        
+        public String toString() {
+            return String.format("leadPrimary=%04X %s", leadPrimary, set);
         }
     }
 
@@ -85,16 +108,31 @@ public class Implicit {
 
     /**
      * Adds a range of implicit weights for siniform ideographic scripts.
-     * Corresponds to allkeys.txt:
+     * Corresponds to one line of allkeys.txt like these:
      * <pre>
-     * @return 
      * @implicitweights 17000..18AFF; FB00 # Tangut and Tangut Components
+     * @implicitweights 18D00..18D8F; FB00 # Tangut Supplement
+     * @implicitweights 1B170..1B2FF; FB01 # Nushu
      * </pre>
      */
-    Range addRange(int leadPrimary, int startCP, int endCP) {
-        Range r = new Range(leadPrimary, startCP, endCP, unassignedSet);
+    Range makeRange(int leadPrimary, int startCP, int endCP) {
+        return new Range(leadPrimary, startCP, endCP, unassignedSet);
+    }
+
+    /**
+     * Adds a range of implicit weights created by makeRange().
+     * If there is already a range for the same lead primary,
+     * then this range is merged into the existing one.
+     */
+    void addRange(Range r) {
+        for (Range old : ranges) {
+            if (old.leadPrimary == r.leadPrimary) {
+                old.mergeFrom(r);
+                return;
+            }
+        }
+        // New lead primary.
         ranges.add(r);
-        return r;
     }
 
     /**
