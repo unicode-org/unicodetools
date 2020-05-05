@@ -39,7 +39,7 @@ public class GenerateExtPict {
 
         String filename = "plainVcolor.html";
         try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, filename)) {
-            GenerateEmoji.writeHeader(filename, 
+            ChartUtilities.writeHeader(filename, 
                     out, "Plain vs Color Comparison", null, false, ""
                             + "<p>Available color glyphs vs plain (black &amp; white). "
                             //                    + "Note: the Emoji Style images are those available on some platform, and many go beyond the"

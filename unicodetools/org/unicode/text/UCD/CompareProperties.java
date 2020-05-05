@@ -26,7 +26,6 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.text.utility.Settings;
-import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.UnicodeDataFile.FileInfix;
 import org.unicode.text.utility.Utility;
 

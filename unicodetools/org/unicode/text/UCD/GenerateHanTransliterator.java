@@ -28,6 +28,8 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Pair;
 import org.unicode.text.utility.Settings;
@@ -287,8 +289,9 @@ public final class GenerateHanTransliterator implements UCD_Types {
     static PrintWriter out2;
 
     public static void fixedMandarin() throws IOException {
-        final UnicodeMap kMandarin = Default.ucd().getHanValue("kMandarin");
-        final UnicodeMap kHanyuPinlu = Default.ucd().getHanValue("kHanyuPinlu");
+        IndexUnicodeProperties iup = IndexUnicodeProperties.make(Default.ucd().getVersionInfo());
+        final UnicodeMap kMandarin = iup.load(UcdProperty.kMandarin);
+        final UnicodeMap kHanyuPinlu = iup.load(UcdProperty.kHanyuPinlu);
         final UnicodeSet gotMandarin = kMandarin.keySet(null).complement();
         final UnicodeSet gotHanyu = kHanyuPinlu.keySet(null).complement();
         final UnicodeSet gotAtLeastOne = new UnicodeSet(gotMandarin).addAll(gotHanyu);
@@ -347,8 +350,9 @@ public final class GenerateHanTransliterator implements UCD_Types {
         addField(Settings.DATA_DIR + "dict/", "gcl_icu.txt", 2, 3, gcl);
         addField(Settings.DATA_DIR + "dict/", "gcl_other.txt", 2, 5, gcl);
         final Transliterator icuPinyin = Transliterator.getInstance("han-latin");
-        final UnicodeMap kMandarin = Default.ucd().getHanValue("kMandarin");
-        final UnicodeMap kHanyuPinlu = Default.ucd().getHanValue("kHanyuPinlu");
+        IndexUnicodeProperties iup = IndexUnicodeProperties.make(Default.ucd().getVersionInfo());
+        final UnicodeMap kMandarin = iup.load(UcdProperty.kMandarin);
+        final UnicodeMap kHanyuPinlu = iup.load(UcdProperty.kHanyuPinlu);
         final UnicodeSet gotMandarin = kMandarin.keySet(null).complement();
         final UnicodeSet gotHanyu = kHanyuPinlu.keySet(null).complement();
         final UnicodeSet gotAtLeastOne = new UnicodeSet(gotMandarin).addAll(gotHanyu);

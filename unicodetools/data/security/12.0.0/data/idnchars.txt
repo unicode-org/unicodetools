@@ -1,11 +1,11 @@
 ﻿# idnchars.txt
-# Date: 2018-05-25, 00:12:53 GMT
-# © 2018 Unicode®, Inc.
+# Date: 2019-01-30, 12:52:06 GMT
+# © 2019 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Unicode Security Mechanisms for UTS #39
-# Version: 11.0.0
+# Version: 12.0.0
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39
 #
@@ -378,18 +378,11 @@
 0E50..0E59    ; output # [10] (๐..๙)  THAI DIGIT ZERO..THAI DIGIT NINE
 0E81..0E82    ; output #  [2] (ກ..ຂ)  LAO LETTER KO..LAO LETTER KHO SUNG
 0E84          ; output #      (ຄ)  LAO LETTER KHO TAM
-0E87..0E88    ; output #  [2] (ງ..ຈ)  LAO LETTER NGO..LAO LETTER CO
-0E8A          ; output #      (ຊ)  LAO LETTER SO TAM
-0E8D          ; output #      (ຍ)  LAO LETTER NYO
-0E94..0E97    ; output #  [4] (ດ..ທ)  LAO LETTER DO..LAO LETTER THO TAM
-0E99..0E9F    ; output #  [7] (ນ..ຟ)  LAO LETTER NO..LAO LETTER FO SUNG
-0EA1..0EA3    ; output #  [3] (ມ..ຣ)  LAO LETTER MO..LAO LETTER LO LING
+0E86..0E8A    ; output #  [5] (ຆ..ຊ)  LAO LETTER PALI GHA..LAO LETTER SO TAM
+0E8C..0EA3    ; output # [24] (ຌ..ຣ)  LAO LETTER PALI JHA..LAO LETTER LO LING
 0EA5          ; output #      (ລ)  LAO LETTER LO LOOT
-0EA7          ; output #      (ວ)  LAO LETTER WO
-0EAA..0EAB    ; output #  [2] (ສ..ຫ)  LAO LETTER SO SUNG..LAO LETTER HO SUNG
-0EAD..0EB2    ; output #  [6] (ອ..າ)  LAO LETTER O..LAO VOWEL SIGN AA
-0EB4..0EB9    ; output #  [6] (ິ..ູ)  LAO VOWEL SIGN I..LAO VOWEL SIGN UU
-0EBB..0EBD    ; output #  [3] (ົ..ຽ)  LAO VOWEL SIGN MAI KON..LAO SEMIVOWEL SIGN NYO
+0EA7..0EB2    ; output # [12] (ວ..າ)  LAO LETTER WO..LAO VOWEL SIGN AA
+0EB4..0EBD    ; output # [10] (ິ..ຽ)  LAO VOWEL SIGN I..LAO SEMIVOWEL SIGN NYO
 0EC0..0EC4    ; output #  [5] (ເ..ໄ)  LAO VOWEL SIGN E..LAO VOWEL SIGN AI
 0EC6          ; output #      (ໆ)  LAO KO LA
 0EC8..0ECD    ; output #  [6] (່..ໍ)  LAO TONE MAI EK..LAO NIGGAHITA
@@ -634,6 +627,10 @@ A7A7          ; output #      (ꞧ)  LATIN SMALL LETTER R WITH OBLIQUE STROKE
 A7A9          ; output #      (ꞩ)  LATIN SMALL LETTER S WITH OBLIQUE STROKE
 A7AF          ; output #      (ꞯ)  LATIN LETTER SMALL CAPITAL Q
 A7B9          ; output #      (ꞹ)  LATIN SMALL LETTER U WITH STROKE
+A7BB          ; output #      (ꞻ)  LATIN SMALL LETTER GLOTTAL A
+A7BD          ; output #      (ꞽ)  LATIN SMALL LETTER GLOTTAL I
+A7BF          ; output #      (ꞿ)  LATIN SMALL LETTER GLOTTAL U
+A7C3          ; output #      (ꟃ)  LATIN SMALL LETTER ANGLICANA W
 A7FA          ; output #      (ꟺ)  LATIN LETTER SMALL CAPITAL TURNED M
 A9E7..A9FE    ; output # [24] (ꧧ..ꧾ)  MYANMAR LETTER TAI LAING NYA..MYANMAR LETTER TAI LAING BHA
 AA60..AA76    ; output # [23] (ꩠ..ꩶ)  MYANMAR LETTER KHAMTI GA..MYANMAR LOGOGRAM KHAMTI HM
@@ -643,6 +640,7 @@ AB09..AB0E    ; output #  [6] (ꬉ..ꬎ)  ETHIOPIC SYLLABLE DDHU..ETHIOPIC SYLLA
 AB11..AB16    ; output #  [6] (ꬑ..ꬖ)  ETHIOPIC SYLLABLE DZU..ETHIOPIC SYLLABLE DZO
 AB20..AB26    ; output #  [7] (ꬠ..ꬦ)  ETHIOPIC SYLLABLE CCHHA..ETHIOPIC SYLLABLE CCHHO
 AB28..AB2E    ; output #  [7] (ꬨ..ꬮ)  ETHIOPIC SYLLABLE BBA..ETHIOPIC SYLLABLE BBO
+AB66..AB67    ; output #  [2] (ꭦ..ꭧ)  LATIN SMALL LETTER DZ DIGRAPH WITH RETROFLEX HOOK..LATIN SMALL LETTER TS DIGRAPH WITH RETROFLEX HOOK
 AC00..D7A3    ; output # [11172] (가..힣)  HANGUL SYLLABLE GA..HANGUL SYLLABLE HIH
 FA0E..FA0F    ; output #  [2] (﨎..﨏)  CJK COMPATIBILITY IDEOGRAPH-FA0E..CJK COMPATIBILITY IDEOGRAPH-FA0F
 FA11          ; output #      (﨑)  CJK COMPATIBILITY IDEOGRAPH-FA11
@@ -652,14 +650,15 @@ FA21          ; output #      (﨡)  CJK COMPATIBILITY IDEOGRAPH-FA21
 FA23..FA24    ; output #  [2] (﨣..﨤)  CJK COMPATIBILITY IDEOGRAPH-FA23..CJK COMPATIBILITY IDEOGRAPH-FA24
 FA27..FA29    ; output #  [3] (﨧..﨩)  CJK COMPATIBILITY IDEOGRAPH-FA27..CJK COMPATIBILITY IDEOGRAPH-FA29
 1133B         ; output #      (𑌻)  COMBINING BINDU BELOW
-1B002..1B11E  ; output # [285] (𛀂..𛄞)  HENTAIGANA LETTER A-1..HENTAIGANA LETTER N-MU-MO-2
+1B150..1B152  ; output #  [3] (𛅐..𛅒)  HIRAGANA LETTER SMALL WI..HIRAGANA LETTER SMALL WO
+1B164..1B167  ; output #  [4] (𛅤..𛅧)  KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL N
 20000..2A6D6  ; output # [42711] (𠀀..𪛖)  CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6D6
 2A700..2B734  ; output # [4149] (𪜀..𫜴)  CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B734
 2B740..2B81D  ; output # [222] (𫝀..𫠝)  CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 2B820..2CEA1  ; output # [5762] (𫠠..𬺡)  CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 2CEB0..2EBE0  ; output # [7473] (𬺰..𮯠)  CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 
-# Total code points: 102470
+# Total code points: 102213
 
 # Not allowed at start of identifier
 

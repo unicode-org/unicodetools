@@ -30,6 +30,8 @@
  *   2018-Feb-19 Updated for Unicode 11.0 repertoire additions.
  *   2018-Oct-02 Corrected format type for parameters in printf statements
  *               for Thai and Lao contractions.
+ *   2018-Oct-15 Added 4 secondary weight symbols for Wancho tones.
+ *   2018-Oct-16 Code warning removals.
  */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -110,9 +112,9 @@ extern char *GetUnidataFileName ( void );
  * NUMSECONDSYMS and the following tables needs to be revisited whenever
  * any new NSM is added or reordered.
  */
-#define NUMSECONDSYMS (247)
+#define NUMSECONDSYMS (251)
 
-static char *tertSyms[NUMTERTSYMS] =
+static const char *tertSyms[NUMTERTSYMS] =
                    { "<RES-1>",
                      "<BLK>",
                      "<MIN>",
@@ -151,7 +153,7 @@ static char *tertSyms[NUMTERTSYMS] =
  * NB: Any changes to this array must be matched by changes to
  * the secondSymVals array below.
  */
-static char *secondSyms[NUMSECONDSYMS] = {
+static const char *secondSyms[NUMSECONDSYMS] = {
 
 "<BASE>", /* no accent/aucun accent */
 /* Section 1 of combining marks; adapted to 12199 and Canadian standard */
@@ -639,6 +641,10 @@ static char *secondSyms[NUMSECONDSYMS] = {
 "<D16B34>", /* Pahawh Hmong cim suam */
 "<D16B35>", /* Pahawh Hmong cim hom */
 "<D16B36>", /* Pahawh Hmong cim taum */
+"<D1E2EC>", /* Wancho tone tup */
+"<D1E2ED>", /* Wancho tone tup mang */
+"<D1E2EE>", /* Wancho tone okoi */
+"<D1E2EF>", /* Wancho tone okoi mang */
 
 "<D302A>", /* ideographic level tone mark */
 "<D302B>", /* ideographic rising tone mark*/
@@ -836,6 +842,8 @@ static utf32char secondSymVals[NUMSECONDSYMS] = {
     0x1939, 0x193A, 0x193B,
 /* Pahawh Hmong */
     0x16B30, 0x16B31, 0x16B32, 0x16B33, 0x16B34, 0x16B35, 0x16B36,
+/* Wancho */
+    0x1E2EC, 0x1E2ED, 0x1E2EE, 0x1E2EF,
 /* CJK */
     0x302A, 0x302B, 0x302C, 0x302D, 0x302E, 0x302F,
 /* Symbols */
@@ -856,9 +864,9 @@ static utf32char secondSymVals[NUMSECONDSYMS] = {
  * SECTION: Access to secondary and tertiary symbol arrays.
  */
 
-static char badValue[] = "BADVALUE";
+static const char badValue[] = "BADVALUE";
 
-static char *GetTertSyms (int n)
+static const char *GetTertSyms (int n)
 {
     if ( ( n < 0 ) || ( n >= NUMTERTSYMS ) )
     {
@@ -870,7 +878,7 @@ static char *GetTertSyms (int n)
     }
 }
 
-static char *GetSecondSyms (int n)
+static const char *GetSecondSyms (int n)
 {
 int n2 = n - FIRST_SECONDARY;
 
@@ -891,9 +899,9 @@ int n2 = n - FIRST_SECONDARY;
  * any other syntax processing.
  */
 
-static int symbolCount (char *token )
+static int symbolCount ( const char *token )
 {
-char *s;
+const char *s;
 int count;
 
     count = 0;
@@ -1017,14 +1025,14 @@ char localbuf[120];
     fputs ( "collating-symbol <RFBC0>..<RFBE1> % Symbols for first element of computed weights for unassigned characters and others\n", fd );
     fputs ( "collating-symbol <T8000>..<TFFFF> % Symbols for second element of computed weights for Han, Tangut, Nushu and others\n", fd );
     fputs ( "collating-symbol <S10000>..<S12543> % Alphabetics from SMP\n", fd );
-    fputs ( "collating-symbol <S13000>..<S1342F> % Alphabetics from SMP\n", fd );
+    fputs ( "collating-symbol <S13000>..<S1343F> % Alphabetics from SMP\n", fd );
     fputs ( "collating-symbol <S14400>..<S14646> % Alphabetics from SMP\n", fd );
     fputs ( "collating-symbol <S16800>..<S16FFF> % Alphabetics and symbols from SMP\n", fd );
     fputs ( "collating-symbol <S1B000>..<S1BCAF> % Alphabetics and symbols from SMP\n", fd );
     fputs ( "collating-symbol <S1D000>..<S1D37F> % Symbols from SMP\n", fd );
     fputs ( "collating-symbol <S1D800>..<S1DA8B> % Sutton SignWriting\n", fd );
     fputs ( "collating-symbol <S1E800>..<S1E95F> % Alphabetics from SMP\n", fd );
-    fputs ( "collating-symbol <S1EE00>..<S1EEFF> % Symbols from SMP\n", fd );
+    fputs ( "collating-symbol <S1EC70>..<S1EEFF> % Symbols from SMP\n", fd );
     fputs ( "collating-symbol <S1F000>..<S1FAFF> % Symbols from SMP\n\n", fd );
     fputs ( "collating-symbol <SFFFF> % Guaranteed largest symbol value, used as a special fourth-level collating symbol\n\n", fd );
     fputs ( "% Keep <SFFFF> at the end of this list.\n\n", fd );
@@ -1660,7 +1668,7 @@ int hitimplicitbase;
         {
             if ( ( !rkptr->variable ) && ( rkptr->level2 > 0 ) )
             {
-            char *ss;
+            const char *ss;
             int  n;
 /*
  * At the secondary level, some of the symbols accessed from
@@ -2443,7 +2451,7 @@ int greatestdepth;
         return ( rc );
     }
 
-    rc = unisift_BuildSymWtTreeRange ( 0x12000, 0x1342F, &greatestdepth );
+    rc = unisift_BuildSymWtTreeRange ( 0x12000, 0x1343F, &greatestdepth );
     if ( rc < 0 )
     {
         return ( rc );
@@ -2473,13 +2481,13 @@ int greatestdepth;
         return ( rc );
     }
 
-    rc = unisift_BuildSymWtTreeRange ( 0x1D800, 0x1E02F, &greatestdepth );
+    rc = unisift_BuildSymWtTreeRange ( 0x1D800, 0x1E2FF, &greatestdepth );
     if ( rc < 0 )
     {
         return ( rc );
     }
 
-    rc = unisift_BuildSymWtTreeRange ( 0x1E800, 0x1F9FF, &greatestdepth );
+    rc = unisift_BuildSymWtTreeRange ( 0x1E800, 0x1FAFF, &greatestdepth );
     if ( rc < 0 )
     {
         return ( rc );
@@ -2533,12 +2541,7 @@ void unisift_PrintSymWtTreeP ( PSYMWTTREENODE p, FILE *fd )
         unisift_PrintSymWtTreeP ( p->left, fd );
     }
 
-    if ( p->value < 0 )
-    {
-        printf ( "BOGUS: p->value %d out of range.\n", p->value );
-        fputs ( symwtbuf, fd );
-    }
-    else if ( p->value > 0x1FFFF )
+    if ( p->value > 0x1FFFF )
     {
         printf ( "WARNING: p->value %05X too large.\n", p->value );
     }

@@ -7,7 +7,6 @@ import java.util.Arrays;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
-import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -61,9 +60,8 @@ public final class RadicalStroke {
 
     public RadicalStroke(String unicodeVersion) {
         this.unicodeVersion = unicodeVersion;
-        UCD ucd = UCD.make(unicodeVersion);
-        UnicodeMap<String> rsUnicode = ucd.getHanValue("kRSUnicode");
         IndexUnicodeProperties iup = IndexUnicodeProperties.make(unicodeVersion);
+        UnicodeMap<String> rsUnicode = iup.load(UcdProperty.kRSUnicode);
         getCJKRadicals(iup);
         ToolUnicodePropertySource propSource = ToolUnicodePropertySource.make(unicodeVersion);
         final UnicodeSet hanSet = propSource.getProperty("Unified_Ideograph").getSet("True");
@@ -81,9 +79,12 @@ public final class RadicalStroke {
                 rs = "214'.63";
             }
             // Use only the first radical-stroke value if there are multiple.
-            int delim = rs.indexOf(' ');
+            int delim = rs.indexOf(' ');  // value separator in Unihan data files
             if (delim < 0) {
-                delim = rs.length();
+                delim = rs.indexOf('|');  // The new parser rewrites multi-values with a | separator.
+                if (delim < 0) {
+                    delim = rs.length();
+                }
             }
             int dot = rs.indexOf('.');
             assert 0 <= dot && dot < delim;

@@ -143,7 +143,7 @@ public class VerifyXmlUcd {
     static class MySimpleHandler extends XMLFileReader.SimpleHandler {
         int maxCount = Integer.MAX_VALUE; // ;
         int pathNumber = 0;
-        XPathParts parser = new XPathParts();
+        XPathParts parser;
         UnicodeSet seenSoFar = new UnicodeSet();
         Factory factory = getFactory();
         // test prop
@@ -197,7 +197,7 @@ public class VerifyXmlUcd {
                 if (value.length() != 0) {
                     throw new IllegalArgumentException(String.format("non-empty value: %s, %s", value, path));
                 }
-                parser.set(path);
+                XPathParts.getFrozenInstance(path);
                 final String finalElement = parser.getElement(-1);
 
                 if (codepoints.contains(finalElement)) {

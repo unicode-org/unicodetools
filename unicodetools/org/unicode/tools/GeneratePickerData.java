@@ -36,7 +36,6 @@ import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.Typology;
 import org.unicode.cldr.tool.Option;
 import org.unicode.cldr.tool.Option.Options;
-import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.CLDRTool;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.draft.ScriptCategories2;

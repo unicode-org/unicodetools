@@ -28,6 +28,7 @@ import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.cldr.util.VariableReplacer;
 import org.unicode.cldr.util.XEquivalenceClass;
+import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMapIterator;
@@ -221,7 +222,7 @@ public class IdnaLabelTester2 {
 
     public static XEquivalenceClass<String, String> getConfusables() throws IOException {
         XEquivalenceClass<String, String> result = new XEquivalenceClass<String, String>();
-        BufferedReader in = openFile(CLDRPaths.UCD_DATA_DIRECTORY + "security/" + CLDRPaths.UNICODE_VERSION + "/confusables.txt");
+        BufferedReader in = openFile(CLDRPaths.UCD_DATA_DIRECTORY + "security/" + Settings.latestVersion + "/confusables.txt");
         String original = null;
         try {
             while (true) {

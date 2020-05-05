@@ -21,7 +21,7 @@ public interface UCD_Types {
     public static final char DOTTED_CIRCLE = '\u25CC';
 
     /**
-     * Tangut but not Tangut Components, only assigned code points.
+     * Tangut and Tangut Supplement, but not Tangut Components, only assigned code points.
      * The end/limit of the range depends on the Unicode version,
      * see UCD.java mapToRepresentative().
      */
@@ -29,37 +29,40 @@ public interface UCD_Types {
     // Unicode 9:
     // 17000;<Tangut Ideograph, First>;Lo;0;L;;;;;N;;;;;
     // 187EC;<Tangut Ideograph, Last>;Lo;0;L;;;;;N;;;;;
+    // Unicode 12:
+    // 17000;<Tangut Ideograph, First>;Lo;0;L;;;;;N;;;;;
+    // 187F7;<Tangut Ideograph, Last>;Lo;0;L;;;;;N;;;;;
+    public static final int TANGUT_SUP_BASE = 0x18D00;
+    // Unicode 13:
+    // 18D00;<Tangut Ideograph Supplement, First>;Lo;0;L;;;;;N;;;;;
+    // 18D08;<Tangut Ideograph Supplement, Last>;Lo;0;L;;;;;N;;;;;
 
     public static final int
     // 4E00;<CJK Ideograph, First>;Lo;0;L;;;;;N;;;;;
-    // 9FEA;<CJK Ideograph, Last>;Lo;0;L;;;;;N;;;;;
+    // 9FFC;<CJK Ideograph, Last>;Lo;0;L;;;;;N;;;;;
     CJK_BASE = 0x4E00,
-    CJK_LIMIT = 0x9FEA+1,
+    CJK_LIMIT = 0x9FFC+1, // last changed in Unicode 13
 
     CJK_COMPAT_USED_BASE = 0xFA0E,
     CJK_COMPAT_USED_LIMIT = 0xFA2F+1,
 
     //3400;<CJK Ideograph Extension A, First>;Lo;0;L;;;;;N;;;;;
-    //4DB5;<CJK Ideograph Extension A, Last>;Lo;0;L;;;;;N;;;;;
-
+    //4DBF;<CJK Ideograph Extension A, Last>;Lo;0;L;;;;;N;;;;;
     CJK_A_BASE = 0x3400,
-    CJK_A_LIMIT = 0x4DB5+1,
+    CJK_A_LIMIT = 0x4DBF+1, // last changed in Unicode 13
 
     //20000;<CJK Ideograph Extension B, First>;Lo;0;L;;;;;N;;;;;
-    //2A6D6;<CJK Ideograph Extension B, Last>;Lo;0;L;;;;;N;;;;;
-
+    //2A6DD;<CJK Ideograph Extension B, Last>;Lo;0;L;;;;;N;;;;;
     CJK_B_BASE = 0x20000,
-    CJK_B_LIMIT = 0x2A6D6+1,
+    CJK_B_LIMIT = 0x2A6DD+1, // last changed in Unicode 13
 
     //2A700;<CJK Ideograph Extension C, First>;Lo;0;L;;;;;N;;;;;
     //2B734;<CJK Ideograph Extension C, Last>;Lo;0;L;;;;;N;;;;;
-
     CJK_C_BASE = 0x2A700,
     CJK_C_LIMIT = 0x2B734+1,
 
     //2B740;<CJK Ideograph Extension D, First>;Lo;0;L;;;;;N;;;;;
     //2B81D;<CJK Ideograph Extension D, Last>;Lo;0;L;;;;;N;;;;;
-
     CJK_D_BASE = 0x2B740,
     CJK_D_LIMIT = 0x2B81D+1,
 
@@ -71,7 +74,12 @@ public interface UCD_Types {
     // 2CEB0;<CJK Ideograph Extension F, First>;Lo;0;L;;;;;N;;;;;
     // 2EBE0;<CJK Ideograph Extension F, Last>;Lo;0;L;;;;;N;;;;;
     CJK_F_BASE = 0x2CEB0,
-    CJK_F_LIMIT = 0x2EBE0+1
+    CJK_F_LIMIT = 0x2EBE0+1,
+
+    // 30000;<CJK Ideograph Extension G, First>;Lo;0;L;;;;;N;;;;;
+    // 3134A;<CJK Ideograph Extension G, Last>;Lo;0;L;;;;;N;;;;;
+    CJK_G_BASE = 0x30000,
+    CJK_G_LIMIT = 0x3134A+1
 
     // when adding to this list, look for all occurrences (in project) of CJK_C_BASE and CJK_C_LIMIT to check for code that needs changing.
     ;
@@ -546,7 +554,12 @@ public interface UCD_Types {
     Nandinagari = 152,
     Nyiakeng_Puachue_Hmong = 153,
     Wancho = 154,
-    LIMIT_SCRIPT = Wancho + 1;
+    // Unicode 13
+    Chorasmian = 155,
+    Dives_Akuru = 156,
+    Khitan_Small_Script = 157,
+    Yezidi = 158,
+    LIMIT_SCRIPT = Yezidi + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte
@@ -579,7 +592,9 @@ public interface UCD_Types {
     AGE100 = 19,
     AGE110 = 20,
     AGE120 = 21,
-    LIMIT_AGE = AGE120 + 1; // + FIX_FOR_NEW_VERSION;
+    AGE121 = 22,
+    AGE130 = 23,
+    LIMIT_AGE = AGE130 + 1; // + FIX_FOR_NEW_VERSION;
 
     static final String[] AGE_VERSIONS = {
             "?",
@@ -604,6 +619,8 @@ public interface UCD_Types {
             "10.0.0",
             "11.0.0",
             "12.0.0",
+            "12.1.0",
+            "13.0.0",
     };
 
     public static byte

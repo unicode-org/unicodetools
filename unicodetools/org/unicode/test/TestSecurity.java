@@ -32,9 +32,8 @@ import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.test.CheckWholeScript.Status;
 import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.GenerateConfusables;
-import org.unicode.text.UCD.IdentifierInfo.IdentifierStatus;
-import org.unicode.text.UCD.IdentifierInfo.IdentifierType;
+import org.unicode.text.UCD.IdentifierInfo.Identifier_Status;
+import org.unicode.text.UCD.IdentifierInfo.Identifier_Type;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Names;
 import org.unicode.text.tools.XIDModifications;
@@ -128,12 +127,12 @@ public class TestSecurity extends TestFmwkPlus {
 
     public void TestXidMod() {
         XIDModifications xidModOld = new XIDModifications(SECURITY + Settings.lastVersion);
-        UnicodeMap<IdentifierStatus> newStatus = XIDMOD.getStatus();
-        showDiff("Status", xidModOld.getStatus(), newStatus, new EnumComparator<IdentifierStatus>(), getLogPrintWriter());
-        showDiff("Type", xidModOld.getType(), XIDMOD.getType(), new EnumSetComparator<Set<IdentifierType>>() , getLogPrintWriter());
+        UnicodeMap<Identifier_Status> newStatus = XIDMOD.getStatus();
+        showDiff("Status", xidModOld.getStatus(), newStatus, new EnumComparator<Identifier_Status>(), getLogPrintWriter());
+        showDiff("Type", xidModOld.getType(), XIDMOD.getType(), new EnumSetComparator<Set<Identifier_Type>>() , getLogPrintWriter());
 
-        UnicodeSet newRecommended = newStatus.getSet(IdentifierStatus.allowed);
-        UnicodeSet oldRecommended = xidModOld.getStatus().getSet(IdentifierStatus.allowed);
+        UnicodeSet newRecommended = newStatus.getSet(Identifier_Status.allowed);
+        UnicodeSet oldRecommended = xidModOld.getStatus().getSet(Identifier_Status.allowed);
 
         UnicodeSet itemsToCheck = new UnicodeSet(newRecommended).removeAll(oldRecommended);
         System.out.println(itemsToCheck);
@@ -196,8 +195,8 @@ public class TestSecurity extends TestFmwkPlus {
             if (s.equals("ə")) {
                 logln("ə" + fromCLDR.get('ə'));
             }
-            Set<IdentifierType> itemSet = XIDMOD.getType().get(s);
-            for (IdentifierType item : itemSet) {
+            Set<Identifier_Type> itemSet = XIDMOD.getType().get(s);
+            for (Identifier_Type item : itemSet) {
                 switch (item) {
                 case obsolete:
                 case technical:
@@ -290,11 +289,11 @@ public class TestSecurity extends TestFmwkPlus {
         }
     }
 
-    public class EnumSetComparator<T extends Set<IdentifierType>> implements Comparator<T> {
+    public class EnumSetComparator<T extends Set<Identifier_Type>> implements Comparator<T> {
         @Override
         public int compare(T o1, T o2) {
-            Iterator<IdentifierType> it1 = o1.iterator();
-            Iterator<IdentifierType> it2 = o2.iterator();
+            Iterator<Identifier_Type> it1 = o1.iterator();
+            Iterator<Identifier_Type> it2 = o2.iterator();
             while (it1.hasNext() && it2.hasNext()) {
                 Enum<?> item1 = it1.next();
                 Enum<?> item2 = it2.next();
@@ -473,7 +472,7 @@ public class TestSecurity extends TestFmwkPlus {
                 {"⼒", Status.SAME}, // KANGXI RADICAL POWER
                 {"力", Status.SAME}, // CJK UNIFIED IDEOGRAPH-529B
                 {"!", Status.SAME, Status.OTHER},
-                {"\u0300", Status.SAME, Status.OTHER},
+                {"\u0300", Status.SAME},
                 {"a\u0300", Status.SAME, Status.COMMON, Status.OTHER},
                 {"ä", Status.SAME, Status.COMMON, Status.OTHER},
 
@@ -500,9 +499,11 @@ public class TestSecurity extends TestFmwkPlus {
         CheckWholeScript checker = null;
         Set<Status> expected = EnumSet.noneOf(Status.class);
         final ScriptDetector scriptDetector = new ScriptDetector();
-
         for (Object[] test : tests) {
             String source = (String) test[0];
+            if (source.equals("\u0300")) {
+        	int debug = 0;
+            }
 
             if (source.equals("idSet")) {
                 UnicodeSet op = test[1] == null ? null : new UnicodeSet((String) test[1]);

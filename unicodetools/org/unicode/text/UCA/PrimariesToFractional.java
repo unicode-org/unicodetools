@@ -690,6 +690,8 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.BOPOMOFO_SCRIPT).newByte().twoBytePrimaries();
         // Minor script, avoid lead byte overflow.
         setOptionsForScript(UCD_Types.DESERET_SCRIPT).newByte();
+        // Extinct script, use three-byte primaries for the few characters with variants.
+        setOptionsForScript(UCD_Types.Elymaic).noTwoBytePrimariesIfVariants();
         // Minor script, avoid lead byte overflow.
         setOptionsForScript(UCD_Types.Egyptian_Hieroglyphs).newByte();
         // Register the scripts as aliases.
@@ -939,7 +941,7 @@ public final class PrimariesToFractional {
             if (implicitRange != null) {
                 // We only computed the first fractional primary.
                 // Now compute and store the remaining ones.
-                props.rangePrimaries = new int[implicitRange.endCP - implicitRange.startCP + 1];
+                props.rangePrimaries = new int[implicitRange.lastCP - implicitRange.startCP + 1];
                 props.rangePrimaries[implicitRange.firstCP - implicitRange.startCP] = props.fractionalPrimary;
                 UnicodeSetIterator iter = new UnicodeSetIterator(implicitRange.set);
                 iter.next();  // Skip the first code point.

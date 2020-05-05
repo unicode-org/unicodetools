@@ -18,13 +18,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.BitSet;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
@@ -604,178 +605,49 @@ public final class UCD implements UCD_Types {
         byte numericType;
     }
 
-    static final Map<String,String> unihanProp_file;
-    static {
-        final String[][] file_prop = {
-                {"Unihan_DictionaryIndices",
-                    "kCheungBauerIndex", "kCowles", "kDaeJaweon", "kFennIndex", "kGSR", "kHanYu", "kIRGDaeJaweon", "kIRGDaiKanwaZiten", "kIRGHanyuDaZidian", "kIRGKangXi", "kKangXi", "kKarlgren", "kLau", "kMatthews", "kMeyerWempe", "kMorohashi", "kNelson", "kSBGY"},
-                    {"Unihan_DictionaryLikeData",
-                        "kCangjie", "kCheungBauer", "kCihaiT", "kFenn", "kFourCornerCode", "kFrequency", "kGradeLevel", "kHDZRadBreak", "kHKGlyph", "kPhonetic", "kTotalStrokes"},
-                        {"Unihan_IRGSources",
-                            "kIICore", "kIRG_GSource", "kIRG_HSource", "kIRG_JSource", "kIRG_KPSource", "kIRG_KSource", "kIRG_TSource", "kIRG_USource", "kIRG_VSource", "kIRG_MSource"},
-                            {"Unihan_NumericValues",
-                                "kAccountingNumeric", "kOtherNumeric", "kPrimaryNumeric"},
-                                {"Unihan_OtherMappings",
-                                    "kBigFive", "kCCCII", "kCNS1986", "kCNS1992", "kEACC", "kGB0", "kGB1", "kGB3", "kGB5", "kGB7", "kGB8", "kHKSCS", "kIBMJapan", "kJis0", "kJis1", "kJIS0213", "kKPS0", "kKPS1", "kKSC0", "kKSC1", "kMainlandTelegraph", "kPseudoGB1", "kTaiwanTelegraph", "kXerox"},
-                                    {"Unihan_RadicalStrokeCounts",
-                                        "kRSAdobe_Japan1_6", "kRSJapanese", "kRSKangXi", "kRSKanWa", "kRSKorean", "kRSUnicode"},
-                                        {"Unihan_Readings",
-                                            "kCantonese", "kDefinition", "kHangul", "kHanyuPinlu", "kHanyuPinyin", "kJapaneseKun", "kJapaneseOn", "kKorean", "kMandarin", "kTang", "kVietnamese", "kXHC1983"},
-                                            {"Unihan_Variants",
-                                                "kCompatibilityVariant", "kSemanticVariant", "kSimplifiedVariant", "kSpecializedSemanticVariant", "kTraditionalVariant", "kZVariant"}};
-
-        //
-        final HashMap<String, String> temp = new HashMap<String, String>();
-        for (final String[] row : file_prop) {
-            for (int i = 1; i < row.length; ++i) {
-                temp.put(row[i], row[0]);
+    private void populateHanExceptions(UnicodeMap<String> numeric) {
+        for (UnicodeMap.EntryRange<String> range : numeric.entryRanges()) {
+            if (range.value == null || range.value.equals("NaN")) {
+                continue;
             }
-        }
-        unihanProp_file = Collections.unmodifiableMap(temp);
-    }
-
-    public UnicodeMap<String> getHanValue(String propertyName) {
-        final UnicodeMap<String> result = new UnicodeMap<String>();
-        try {
-            //      dir = Utility.getMostRecentUnicodeDataFile("Unihan", version,
-            //              true, true, String fileType) throws IOException {
-            //
-            String filename = null;
-            if (compositeVersion >= 0x70000) {
-                if (propertyName.equals("kRSUnicode") || propertyName.equals("kCompatibilityVariant")) {
-                    filename = "Unihan_IRGSources";
+            String propertyValue = Utility.replace(range.value, ",", "");
+            final int hack = propertyValue.indexOf(' ');
+            if (hack >= 0) {
+                Utility.fixDot();
+                if (SHOW_LOADING) {
+                    System.out.println("BAD NUMBER: " + range);
                 }
+                propertyValue = propertyValue.substring(0, hack);
             }
-            if (filename == null) {
-                filename = unihanProp_file.get(propertyName);
-            }
-            if (filename == null) {
-                throw new IllegalArgumentException("Missing file for " + propertyName);
-            }
-            final BufferedReader in = Utility.openUnicodeFile(
-                    filename, versionString, true, Utility.UTF8);
-            int lineCounter = 0;
-            while (true) {
-                Utility.dot(++lineCounter);
 
-                String line = in.readLine();
-                if (line == null) {
-                    break;
-                }
-                if (line.length() < 6) {
-                    continue;
-                }
-                if (line.charAt(0) == '#') {
-                    continue;
-                }
-                line = line.trim();
-
-                final int tabPos = line.indexOf('\t');
-                final int tabPos2 = line.indexOf('\t', tabPos+1);
-
-                final String property = line.substring(tabPos+1, tabPos2).trim();
-                if (!property.equalsIgnoreCase(propertyName)) {
-                    continue;
-                }
-
-                final String scode = line.substring(2, tabPos).trim();
-                final int code = Integer.parseInt(scode, 16);
-                final String propertyValue = line.substring(tabPos2+1).trim();
-                result.put(code, propertyValue);
-            }
-            in.close();
-        } catch (final Exception e) {
-            throw new ChainException("Han File Processing Exception", null, e);
-        } finally {
-            Utility.fixDot();
-        }
-        return result;
-    }
-
-
-    void populateHanExceptions() {
-        hanExceptions = new IntMap();
-        BufferedReader in = null;
-        try {
-            String hanNumericName = compositeVersion >= 0x50200 ? "Unihan_NumericValues" : "Unihan";
-            
-            in = Utility.openUnicodeFile(hanNumericName, versionString, true, Utility.UTF8);
-            int lineCounter = 0;
-            while (true) {
-                Utility.dot(++lineCounter);
-
-                String line = in.readLine();
-                if (line == null) {
-                    break;
-                }
-                if (line.length() < 6) {
-                    continue;
-                }
-                if (line.charAt(0) == '#') {
-                    continue;
-                }
-                line = line.trim();
-
-                final int tabPos = line.indexOf('\t');
-                final int tabPos2 = line.indexOf('\t', tabPos+1);
-
-                final String property = line.substring(tabPos+1, tabPos2).trim();
-                if (!property.endsWith("Numeric")) {
-                    continue;
-                }
-
-                String propertyValue = line.substring(tabPos2+1).trim();
-                propertyValue = Utility.replace(propertyValue, ",", "");
-                final int hack = propertyValue.indexOf(' ');
-                if (hack >= 0) {
-                    Utility.fixDot();
-                    if (SHOW_LOADING) {
-                        System.out.println("BAD NUMBER: " + line);
-                    }
-                    propertyValue = propertyValue.substring(0,hack);
-                }
-
-                final String scode = line.substring(2, tabPos).trim();
-                final int code = Integer.parseInt(scode, 16);
-
-                if (code == 0x5793 || code == 0x4EAC)
-                {
+            for (int code = range.codepoint; code <= range.codepointEnd; ++code) {
+                if (code == 0x5793 || code == 0x4EAC) {
                     continue; // two exceptions!!
                 }
-
-                //kAccountingNumeric
-                //kOtherNumeric
-                //kPrimaryNumeric
-
+    
                 HanException except = (HanException) hanExceptions.get(code);
                 if (except != null) {
-                    throw new Exception("Duplicate Numeric Value for " + line);
+                    throw new IllegalArgumentException("Duplicate Numeric Value for U+" +
+                            Utility.hex(code));
                 }
                 except = new HanException();
                 hanExceptions.put(code, except);
                 except.numericValue = Double.parseDouble(propertyValue);
-                except.numericType = property.equals("kAccountingNumeric") ? NUMERIC
-                        : property.equals("kOtherNumeric") ? NUMERIC
-                                : property.equals("kPrimaryNumeric") ? NUMERIC
-                                        : NONE;
-                if (except.numericType == NONE) {
-                    throw new Exception("Unknown Numeric Type for " + line);
-                }
-
-//                if (false) {
-//                    Utility.fixDot();
-//                    System.out.println(line);
-//                    System.out.println(getNumericValue(code));
-//                    System.out.println(getNumericTypeID(code));
-//                }
+                except.numericType = NUMERIC;
             }
+        }
+    }
+
+    private void populateHanExceptions() {
+        IndexUnicodeProperties iup = IndexUnicodeProperties.make(versionInfo);
+        hanExceptions = new IntMap();
+        try {
+            populateHanExceptions(iup.load(UcdProperty.kPrimaryNumeric));
+            populateHanExceptions(iup.load(UcdProperty.kAccountingNumeric));
+            populateHanExceptions(iup.load(UcdProperty.kOtherNumeric));
         } catch (final Exception e) {
             throw new ChainException("Han File Processing Exception", null, e);
         } finally {
-            try {
-                in.close();
-            } catch (IOException ignored) {
-            }
             Utility.fixDot();
             System.out.println("****Size: " + hanExceptions.size());
         }
@@ -1372,8 +1244,11 @@ public final class UCD implements UCD_Types {
             {
                 return ch;
             }
-            if (ch < CJK_A_LIMIT) {
+            if (ch <= 0x4DB5) {
                 return CJK_A_BASE;         // CJK Ideograph Extension A
+            }
+            if (ch <= 0x4DBF && rCompositeVersion >= 0xd0000) {
+                return CJK_A_BASE;
             }
             if (ch < CJK_BASE)
             {
@@ -1401,6 +1276,9 @@ public final class UCD implements UCD_Types {
                 return CJK_BASE;
             }
             if (ch <= 0x9FEF && rCompositeVersion >= 0xb0000) {
+                return CJK_BASE;
+            }
+            if (ch <= 0x9FFC && rCompositeVersion >= 0xd0000) {
                 return CJK_BASE;
             }
             if (ch < 0xAC00) {
@@ -1479,12 +1357,27 @@ public final class UCD implements UCD_Types {
                 }
             }
 
+            if (rCompositeVersion >= 0xd0000) {
+                // Unicode 13 added:
+                // 18D00;<Tangut Ideograph Supplement, First>;Lo;0;L;;;;;N;;;;;
+                // 18D08;<Tangut Ideograph Supplement, Last>;Lo;0;L;;;;;N;;;;;
+                if (ch <= TANGUT_SUP_BASE) {
+                    return ch;
+                }
+                if (ch <= 0x18D08) {
+                    return TANGUT_SUP_BASE;  // 18D00..18D08 Tangut Ideograph Supplement
+                }
+            }
+
             // 20000..2A6DF; CJK Unified Ideographs Extension B
             if (ch <= CJK_B_BASE)
             {
                 return ch;         // Extension B first char
             }
-            if (ch <  CJK_B_LIMIT) {
+            if (ch <= 0x2A6D6) {
+                return CJK_B_BASE;
+            }
+            if (ch <= 0x2A6DD && rCompositeVersion >= 0xd0000) {
                 return CJK_B_BASE;
             }
             // 2A700..2B73F; CJK Unified Ideographs Extension C
@@ -1507,7 +1400,7 @@ public final class UCD implements UCD_Types {
                     return CJK_D_BASE;
                 }
             }
-            // 2B820..2CEA1; CJK Unified Ideographs Extension E
+            // 2B820..2CEAF; CJK Unified Ideographs Extension E
             if (rCompositeVersion >= 0x80000) {
                 if (ch <= CJK_E_BASE)
                 {
@@ -1520,10 +1413,19 @@ public final class UCD implements UCD_Types {
             // 2CEB0..2EBEF; CJK Unified Ideographs Extension F
             if (rCompositeVersion >= 0xa0000) {
                 if (ch <= CJK_F_BASE) {
-                    return ch;
+                    return ch;       // Extension F first char
                 }
                 if (ch < CJK_F_LIMIT) {
                     return CJK_F_BASE;
+                }
+            }
+            // 30000..3134F; CJK Unified Ideographs Extension G
+            if (rCompositeVersion >= 0xd0000) {
+                if (ch <= CJK_G_BASE) {
+                    return ch;       // Extension G first char
+                }
+                if (ch < CJK_G_LIMIT) {
+                    return CJK_G_BASE;
                 }
             }
 
@@ -1678,12 +1580,14 @@ to guarantee identifier closure.
         case 0x2F800: // compat ideos
         case 0x3400: // CJK Ideograph Extension A
         case 0x4E00: // CJK Ideograph
-        case TANGUT_BASE:
+        case TANGUT_BASE: // Tangut Ideograph
+        case TANGUT_SUP_BASE: // Tangut Ideograph Supplement
         case 0x20000: // Extension B
         case 0x2A700: // Extension C
         case 0x2B740: // Extension D
         case 0x2B820: // Extension E
         case 0x2CEB0: // Extension F
+        case 0x30000: // Extension G
         case 0xAC00: // Hangul Syllable
         case 0xE000: // Private Use
         case 0xF0000: // Private Use
@@ -1775,12 +1679,14 @@ to guarantee identifier closure.
         case 0x2B740: // Extension D
         case 0x2B820: // Extension E
         case 0x2CEB0: // Extension F
+        case 0x30000: // Extension G
             if (fixStrings) {
                 constructedName = "CJK UNIFIED IDEOGRAPH-" + Utility.hex(codePoint, 4);
             }
             isRemapped = true;
             break;
         case TANGUT_BASE:
+        case TANGUT_SUP_BASE:
             if (fixStrings) {
                 constructedName = "TANGUT IDEOGRAPH-" + Utility.hex(codePoint, 4);
             }
@@ -1862,15 +1768,15 @@ to guarantee identifier closure.
 
     // Neither Mapped nor Composite CJK: [\u3400-\u4DB5\u4E00-\u9FA5\U00020000-\U0002A6D6]
 
-    public static final boolean isCJK_AB(int bigChar) {
-        return (CJK_A_BASE <= bigChar && bigChar < CJK_A_LIMIT
-                || CJK_B_BASE <= bigChar && bigChar < CJK_B_LIMIT
-                || CJK_C_BASE <= bigChar && bigChar < CJK_C_LIMIT
-                || CJK_D_BASE <= bigChar && bigChar < CJK_D_LIMIT
-                || CJK_E_BASE <= bigChar && bigChar < CJK_E_LIMIT
-                || CJK_F_BASE <= bigChar && bigChar < CJK_F_LIMIT
-                );
-    }
+//    public static final boolean isCJK_AB(int bigChar) {
+//        return (CJK_A_BASE <= bigChar && bigChar < CJK_A_LIMIT
+//                || CJK_B_BASE <= bigChar && bigChar < CJK_B_LIMIT
+//                || CJK_C_BASE <= bigChar && bigChar < CJK_C_LIMIT
+//                || CJK_D_BASE <= bigChar && bigChar < CJK_D_LIMIT
+//                || CJK_E_BASE <= bigChar && bigChar < CJK_E_LIMIT
+//                || CJK_F_BASE <= bigChar && bigChar < CJK_F_LIMIT
+//                );
+//    }
 
     public static boolean isCJK_BASE(int cp) {
         return (CJK_BASE <= cp && cp < CJK_LIMIT

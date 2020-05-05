@@ -11,15 +11,11 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.XEquivalenceClass;
 import org.unicode.cldr.util.XEquivalenceMap;
 import org.unicode.tools.emoji.EmojiData;
 
-import com.google.common.collect.HashMultimap;
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
 import com.ibm.icu.dev.util.UnicodeMap;

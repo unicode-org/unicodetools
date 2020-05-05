@@ -215,19 +215,28 @@ Unihan_DictionaryLikeData ; kGradeLevel
 Unihan_DictionaryLikeData ; kHDZRadBreak
 Unihan_DictionaryLikeData ; kHKGlyph
 Unihan_DictionaryLikeData ; kPhonetic
-Unihan_DictionaryLikeData ; kTotalStrokes
+Unihan_DictionaryLikeData ; kUnihanCore2020
 Unihan_IRGSources ; kIICore
 Unihan_IRGSources ; kIRG_GSource
 Unihan_IRGSources ; kIRG_HSource
 Unihan_IRGSources ; kIRG_JSource
 Unihan_IRGSources ; kIRG_KPSource
 Unihan_IRGSources ; kIRG_KSource
+Unihan_IRGSources ; kIRG_MSource
+Unihan_IRGSources ; kIRG_SSource
 Unihan_IRGSources ; kIRG_TSource
+Unihan_IRGSources ; kIRG_UKSource
 Unihan_IRGSources ; kIRG_USource
 Unihan_IRGSources ; kIRG_VSource
-Unihan_IRGSources ; kIRG_MSource
 Unihan_IRGSources ; kRSUnicode
+Unihan_IRGSources ; kTotalStrokes
 Unihan_IRGSources ; kCompatibilityVariant
+
+# Unicode 13 moves kTotalStrokes to Unihan_IRGSources.txt.
+# The line with the new location (i.e., the line without version number)
+# must occur in this file before the line with the old location.
+Unihan_DictionaryLikeData ; kTotalStrokes ; v12.1
+
 Unihan_NumericValues ; kAccountingNumeric
 Unihan_NumericValues ; kOtherNumeric
 Unihan_NumericValues ; kPrimaryNumeric
@@ -278,12 +287,14 @@ Unihan_Readings ; kJapaneseOn
 Unihan_Readings ; kKorean
 Unihan_Readings ; kMandarin
 Unihan_Readings ; kTang
+Unihan_Readings ; kTGHZ2013
 Unihan_Readings ; kVietnamese
 Unihan_Readings ; kXHC1983
 Unihan_Variants ; kCompatibilityVariant	; v6.3
 Unihan_Variants ; kSemanticVariant
 Unihan_Variants ; kSimplifiedVariant
 Unihan_Variants ; kSpecializedSemanticVariant
+Unihan_Variants ; kSpoofingVariant
 Unihan_Variants ; kTraditionalVariant
 Unihan_Variants ; kZVariant
 
@@ -324,6 +335,7 @@ emoji/*/emoji-data; Emoji_Modifier_Base
 emoji/*/emoji-data; Emoji_Component
 emoji/*/emoji-data; Extended_Pictographic
 
+emoji/*/emoji-sequences; Basic_Emoji 
 emoji/*/emoji-sequences; Emoji_Modifier_Sequence 
 emoji/*/emoji-sequences; Emoji_Flag_Sequence
 emoji/*/emoji-sequences; Emoji_Keycap_Sequence

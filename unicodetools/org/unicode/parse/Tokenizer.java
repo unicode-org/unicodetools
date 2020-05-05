@@ -13,8 +13,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.unicode.cldr.util.InternalCldrException;
-import org.unicode.cldr.util.props.BagFormatter;
-import org.unicode.parse.Tokenizer.Result;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.lang.UCharacter;

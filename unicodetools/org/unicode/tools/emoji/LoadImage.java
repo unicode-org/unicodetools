@@ -53,8 +53,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageOutputStream;
@@ -74,7 +72,6 @@ import org.unicode.text.tools.GifSequenceWriter;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.GmailEmoji.Data;
-import org.unicode.tools.emoji.LoadImage.Resizing;
 
 import com.google.common.base.Objects;
 import com.ibm.icu.impl.Relation;
@@ -164,14 +161,19 @@ public class LoadImage extends Component {
     static String outputDir = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images/";
 
     public static void main(String[] args) throws IOException {
+	
+	doAnimatedGif(false, 72, 50);
+        if (true) return;
+
         IndexUnicodeProperties iup = IndexUnicodeProperties.make();
-        UnicodeSet extpict = iup.loadEnumSet(UcdProperty.Extended_Pictographic, Binary.Yes);
-        generatePngsFromFonts(outputDir, "plain", "plain",  
-                extpict, 72, false); // "Symbola"
+        UnicodeSet extpict = iup.loadEnumSet(UcdProperty.Emoji, Binary.Yes);
+        generatePngsFromFont(outputDir, "plain", "plain", "Apple Color Emoji",
+                extpict, 72, false);
 
         if (true) return;
-        generatePngsFromFont(outputDir, "noto", "noto", "Noto Sans Egyptian Hieroglyphs", 
-                new UnicodeSet("[:Script=Egyptian_Hieroglyphs:]"), 72, false); // "Symbola"
+        UnicodeSet hiero = new UnicodeSet("[:Script=Egyptian_Hieroglyphs:]").freeze();
+	generatePngsFromFont(outputDir, "noto", "noto", "Noto Sans Egyptian Hieroglyphs", 
+                hiero, 72, false);
 
 //        doAnimatedGif(false, 72, 50);
         final CandidateData candidateData = CandidateData.getInstance();
@@ -405,12 +407,17 @@ public class LoadImage extends Component {
         List<BufferedImage> list = new ArrayList<>();
         BufferedImage lastTargetImage = null;
         BufferedImage firstTargetImage = null;
-        for (Entry<String, Set<String>> entry : EmojiOrder.STD_ORDER.orderingToCharacters.keyValuesSet()) {
+        UnicodeSet skipping = new UnicodeSet();
+        for (Entry<String, Collection<String>> entry : EmojiOrder.STD_ORDER.orderingToCharacters.asMap().entrySet()) {
             final String key = entry.getKey();
             System.out.println("\t" + key);
             //if (!key.contains("time")) continue;
             for (String chars : entry.getValue()) {
                 File file = Emoji.getBestFile(chars, ordering);
+                if (file == null) {
+                    skipping.add(chars);
+                    continue;
+                }
                 BufferedImage sourceImage = ImageIO.read(file);
                 System.out.println(chars + "\t" + sourceImage.getWidth() + "\t" + sourceImage.getHeight());
                 if (onlySize) continue;
@@ -434,6 +441,8 @@ public class LoadImage extends Component {
         if (onlySize) return;
         createAnimatedImage(output, list, milliGap, true);
         System.out.println("Image created");
+        System.out.println("Skipped " + skipping.toPattern(false));
+
     }
 
     private static void mix(BufferedImage image, BufferedImage overlay, List<BufferedImage> list) {

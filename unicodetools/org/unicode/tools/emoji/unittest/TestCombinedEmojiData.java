@@ -5,12 +5,22 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
+import org.unicode.tools.emoji.Emoji;
+import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.EmojiDataSourceCombined;
+import org.unicode.tools.emoji.EmojiOrder;
 
+/**
+ * This is a bit of a hack to run TestEmojiData on two sets of data. One is the Beta version of EmojiData, 
+ * and the other is the EmojiDataSourceCombined, which adds in CandidateData. 
+ * The latter is needed where we are first using the CandidateData to generate the emoji-data files.
+ * @author markdavis
+ */
 public class TestCombinedEmojiData extends TestEmojiData {
 
     public TestCombinedEmojiData() {
-        super(new EmojiDataSourceCombined());
+        // super(new EmojiDataSourceCombined(EmojiData.of(Emoji.VERSION_TO_TEST)), EmojiOrder.of(Emoji.VERSION_TO_TEST));
+        super(new EmojiDataSourceCombined(TestAll.DATA_TO_TEST), TestAll.ORDER_TO_TEST);
     }
 
     public static void main(String[] args) {
@@ -40,7 +50,7 @@ public class TestCombinedEmojiData extends TestEmojiData {
                     continue;
                 }
                 if (!errorShown) {
-                    errln("Missing methods from TestEmojiData. Need to add these so hack works:\n");
+                    errln("TestCombinedEmojiData missing methods from TestEmojiData. Need to add these so hack works:\n");
                     errorShown = true;
                 }
                 System.out.println("    @Override\n    public void " + name
@@ -81,8 +91,13 @@ public class TestCombinedEmojiData extends TestEmojiData {
 //    }
 
     @Override
-    public void TestOrderRules() {
-        super.TestOrderRules();
+    public void TestOrderRulesWithoutSkin() {
+        super.TestOrderRulesWithoutSkin();
+    }
+
+    @Override
+    public void TestOrderRulesWithSkin() {
+        super.TestOrderRulesWithSkin();
     }
 
     @Override
@@ -103,6 +118,21 @@ public class TestCombinedEmojiData extends TestEmojiData {
     @Override
     public void TestCombinations() {
         super.TestCombinations();
+    }
+
+    @Override
+    public void TestBuckets() {
+        super.TestBuckets();
+    }
+    
+    @Override
+    public void TestOrderRulesSimple() {
+        super.TestOrderRulesSimple();
+    }
+
+    @Override
+    public void TestOrderVariants() {
+        super.TestOrderVariants();
     }
 
 }

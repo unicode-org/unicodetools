@@ -1,5 +1,4 @@
-# Contains test cases for verifying UTS #46 conformance. For more information,
-# see http://www.unicode.org/reports/tr46/
+# Test cases for verifying UTS #46 conformance.
 #
 # FORMAT:
 #

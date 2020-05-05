@@ -15,8 +15,9 @@ import com.ibm.icu.text.UnicodeSet.EntryRange;
 
 public class RegexBuilder {
     public enum Style {CODEPOINT_REGEX, CHAR_REGEX}
-    public static final UnicodeSet NEEDS_ESCAPE = new UnicodeSet("[[:di:][:Me:][:Mn:][:c:]]").add(0x1F1E6,0x1F1FF).freeze();
-    private static final String U20E0Q = showChar(0x20e0, new StringBuilder()) + "?";
+    public static final UnicodeSet NEEDS_ESCAPE = new UnicodeSet("[[:di:][:Me:][:Mn:][:c:]]")
+//	    .add(0x1F1E6,0x1F1FF)
+	    .freeze();
 
     public static StringBuilder showSet(UnicodeSet us, StringBuilder output) {
         if (us.size() == 1) {
@@ -233,71 +234,5 @@ public class RegexBuilder {
 
     public String toString(boolean showLevel) {
         return dataF.print(0, showLevel, false, new StringBuilder()).toString();
-    }
-
-    public static void main(String[] args) {
-        EmojiData edata = EmojiData.of(Emoji.VERSION_TO_GENERATE);
-        final UnicodeSet fullSet = new UnicodeSet()
-        .addAll(edata.getChars())
-        .addAll(edata.getModifierSequences())
-        .addAll(edata.getZwjSequencesNormal())
-        .freeze();
-        final UnicodeSet flatSet = new UnicodeSet(fullSet).removeAll(fullSet.strings());
-        for (String s : fullSet.strings()) {
-            flatSet.addAll(s);
-        }
-        flatSet.add(0x20E0);
-        flatSet.freeze();
-        for (Style style : Style.values()) {
-            System.out.println("\n" + style);
-            for (int i = 0; i < 2; ++i) {
-                UnicodeSet setToDisplay;
-                if (i == 0) {
-                    System.out.println("\nFlat Set");
-                    setToDisplay = flatSet;
-                } else {
-                    System.out.println("\nValid Set");
-                    setToDisplay = fullSet;
-                }
-                RegexBuilder b = new RegexBuilder(style);
-                b.addAll(setToDisplay);
-                b.finish();
-
-                String result = b.toString(true);
-                if (i == 1) result += U20E0Q;
-                System.out.println(result);
-                // check values
-                if (style != style.CODEPOINT_REGEX) {
-                    continue;
-                }
-                result = b.toString(false);
-                if (i == 1) result += U20E0Q;
-
-                Pattern check = Pattern.compile(result);
-                Matcher checkMatcher = check.matcher("");
-                UnicodeSet others = new UnicodeSet(0,0x10FFFF);
-                for (String s : setToDisplay) {
-                    if (!checkMatcher.reset(s).matches()) {
-                        System.out.println("FAILS: " + s);
-                    }
-                    if (!checkMatcher.reset(s+'\u20E0').matches()) {
-                        System.out.println("FAILS: " + s);
-                    }
-                    others.remove(s);
-                }
-                for (String s : others) {
-                    if (checkMatcher.reset(s).matches()) {
-                        System.out.println("Doesn't FAIL (but should): " + s);
-                    }
-                }
-
-                //        b = new RegexBuilder(RegexBuilder.Style.CHAR_REGEX)
-                //        .addAll(edata.getChars())
-                //        .addAll(edata.getModifierSequences())
-                //        .addAll(edata.getZwjSequencesNormal())
-                //        .finish();
-                //        System.out.println(b.toString(true));
-            }
-        }
     }
 }

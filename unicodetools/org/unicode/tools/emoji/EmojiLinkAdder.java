@@ -20,7 +20,7 @@ public class EmojiLinkAdder {
             for (String line : FileUtilities.in("", file)) {
                 if (m.reset(line).matches()) {
                     String hex = m.group(2);
-                    String mid = "<a href='http://www.unicode.org/emoji/charts/full-emoji-list.html#"
+                    String mid = "<a href='https://www.unicode.org/emoji/charts/full-emoji-list.html#"
                             + hex.toLowerCase(Locale.ROOT)
                             + "'>"
                             + hex

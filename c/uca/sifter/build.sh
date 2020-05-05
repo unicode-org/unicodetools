@@ -26,10 +26,11 @@ LINKFLAGS="-L$ICU_LIB -licuuc -licudata -lpthread -ldl -lm"
 LDFLAGS=-fsanitize=bounds
 
 $CC $CPPFLAGS $CXXFLAGS $LINKFLAGS $LDFLAGS *.c -o $SIFTER_OUT/sifter && \
-LD_LIBRARY_PATH=$ICU_LIB $SIFTER_OUT/sifter -s $UNIDATA
+LD_LIBRARY_PATH=$ICU_LIB $SIFTER_OUT/sifter -s $UNIDATA && \
+LD_LIBRARY_PATH=$ICU_LIB $SIFTER_OUT/sifter -t $UNIDATA
 
 # TODO: add sifter option for output folder
-mv allkeys.txt basekeys.txt compkeys.txt ctrckeys.txt ctt14651.txt $SIFTER_OUT
+mv allkeys.txt decomps.txt basekeys.txt compkeys.txt ctrckeys.txt ctt14651.txt $SIFTER_OUT
 
 # $ sifter -h
 #   To get a synopsis of the command line flags
@@ -50,8 +51,8 @@ mv allkeys.txt basekeys.txt compkeys.txt ctrckeys.txt ctt14651.txt $SIFTER_OUT
 #
 # cd ../../../..
 #
-# meld ~/unidata/uni11/20180609/uca/allkeys.txt allkeys.txt
+# meld ~/unidata/uni12/20190214/uca/allkeys.txt allkeys.txt
 #
-# sed -r -f ~/svn.cldr/trunk/tools/scripts/uca/blankweights.sed ~/unidata/uni11/20180609/uca/allkeys.txt > allkeys-11.txt
-# sed -r -f ~/svn.cldr/trunk/tools/scripts/uca/blankweights.sed allkeys.txt > allkeys-markus-oct10.txt
-# meld allkeys-11.txt allkeys-markus-oct10.txt
+# sed -r -f ~/svn.cldr/trunk/tools/scripts/uca/blankweights.sed ~/unidata/uni12/20190214/uca/allkeys.txt > allkeys-12-feb14.txt
+# sed -r -f ~/svn.cldr/trunk/tools/scripts/uca/blankweights.sed allkeys.txt > allkeys-markus-feb15.txt
+# meld allkeys-12-feb14.txt allkeys-markus-feb15.txt

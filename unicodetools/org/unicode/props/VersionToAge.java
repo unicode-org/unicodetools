@@ -1,14 +1,12 @@
 package org.unicode.props;
 
 import java.util.Date;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
 import org.unicode.props.UcdPropertyValues.Age_Values;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.util.VersionInfo;
 
 public enum VersionToAge {
@@ -44,6 +42,9 @@ public enum VersionToAge {
     //            .build()),
 
     ucd(ImmutableMap.<VersionInfo, Long>builder()
+            .put(VersionInfo.getInstance(13, 1), getDate(2020, 4)) // emoji 6.0
+            .put(VersionInfo.getInstance(12, 1), getDate(2019, 4)) // emoji 6.0
+            .put(VersionInfo.getInstance(12, 0), getDate(2019, 3)) // emoji 6.0
             .put(VersionInfo.getInstance(11, 0), getDate(2018, 6)) // emoji 6.0
             .put(VersionInfo.getInstance(10, 0), getDate(2017, 6)) // emoji 5.0
             .put(VersionInfo.getInstance(9, 0), getDate(2016, 6)) // emoji 4.0
@@ -67,6 +68,8 @@ public enum VersionToAge {
             .build()), 
 
     emoji(ImmutableMap.<VersionInfo, Long>builder()
+            .put(VersionInfo.getInstance(13, 0), getDate(2020, 3))
+            .put(VersionInfo.getInstance(12, 0), getDate(2019, 3))
             .put(VersionInfo.getInstance(11, 0), getDate(2018, 6))
             .put(VersionInfo.getInstance(5, 0), getDate(2017, 5))
             .put(VersionInfo.getInstance(4, 0), getDate(2016, 4))
@@ -79,6 +82,17 @@ public enum VersionToAge {
 
     private VersionToAge (ImmutableMap<VersionInfo, Long> data) {
         versionToDate = data;
+        // verify monotonic
+        Entry<VersionInfo, Long> last = null;
+        for (Entry<VersionInfo, Long> row : data.entrySet()) {
+            if (last != null) {
+        	if (row.getKey().compareTo(last.getKey()) >= 0 
+        		|| row.getValue().compareTo(last.getValue()) >= 0) {
+        	    throw new IllegalArgumentException("Non-monotonic");
+        	}
+            }
+            last = row;
+        }
     }
 
     public static final VersionInfo UNASSIGNED = VersionInfo.getInstance(255);
@@ -88,6 +102,11 @@ public enum VersionToAge {
         return versionToDate.keySet();
     }
 
+    public int maxYear() {
+	Long date = versionToDate.entrySet().iterator().next().getValue();
+	return new Date(date).getYear()+1900;
+    }
+    
     public static Long getDate(int year, int month) {
         return new Date(year-1900, month-1, 1).getTime();
     }

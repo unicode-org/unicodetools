@@ -1,19 +1,16 @@
 package org.unicode.draft;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.PatternCache;
 import org.unicode.cldr.util.props.ICUPropertyFactory;
@@ -124,6 +121,7 @@ public class FrequencyData2 {
 //    }
     
     public FrequencyData2(String frequencyFile, boolean showProgress) throws IOException {
+	if (true) throw new IllegalArgumentException("old code: see CharacterFrequency");
         BufferedReader in = GenerateNormalizeForMatch2.openUTF8Reader(frequencyFile);
         for (int lineCount = 0;; ++lineCount) {
             String line = in.readLine();
@@ -139,7 +137,7 @@ public class FrequencyData2 {
 
             double logFreq = Double.parseDouble(pieces[0]);
             double freq = Math.pow(10, logFreq);
-            int count = (int) Math.round(freq*Long.MAX_VALUE);
+            long count = (int) Math.round(freq*Long.MAX_VALUE);
             int code = Utility.fromHex(pieces[2]).codePointAt(0);
 
             if (showProgress && lineCount < 100 || (lineCount % 1000000) == 0 || code == 0x03C2) {
@@ -394,9 +392,10 @@ public class FrequencyData2 {
 
     public static void main(String[] args) throws IOException {
         String frequencyFile = args[0];
+        FrequencyData2 data = new FrequencyData2(frequencyFile, true);
+
 //        System.out.println("IICoreSet\t" + getIICore().size() + "\t" + getIICore().toPattern(false));
 
-        FrequencyData2 data = new FrequencyData2(frequencyFile, true);
 //        showHan(data);
         writeSummary2(data);
 

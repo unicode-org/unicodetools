@@ -171,7 +171,7 @@ class EmojiStats {
             if (SHOW) System.out.println(entry.getKey() + "\t" + entry.getValue().toPattern(false));
         }
 
-        GenerateEmoji.writeHeader(outFileName, out, "Missing", null, false, "<p>Missing list of emoji characters.</p>\n", Emoji.DATA_DIR_PRODUCTION, Emoji.TR51_HTML);
+        ChartUtilities.writeHeader(outFileName, out, "Missing", null, false, "<p>Missing list of emoji characters.</p>\n", Emoji.DATA_DIR_PRODUCTION, Emoji.TR51_HTML);
         out.println("<table " + "border='1'" + ">");
         String headerRow = "<tr><th>Type</th>";
         for (Emoji.Source type : platforms2) {
@@ -184,7 +184,7 @@ class EmojiStats {
         }
 
         out.println("</table>");
-        GenerateEmoji.writeFooter(out);
+        ChartUtilities.writeFooter(out);
         out.close();
         outText.close();
     }
@@ -206,8 +206,8 @@ class EmojiStats {
         }
 
         // per source
-        String sectionLink = GenerateEmoji.getDoubleLink(title);
-        final GenerateEmojiData.PropPrinter propPrinter = new GenerateEmojiData.PropPrinter().set(GenerateEmoji.EXTRA_NAMES);
+        String sectionLink = ChartUtilities.getDoubleLink(title);
+        final GenerateEmojiData.PropPrinter propPrinter = new GenerateEmojiData.PropPrinter().set(EmojiDataSourceCombined.EMOJI_DATA);
 
         if (!skipSeparate) {
             out.println(headerRow);
@@ -269,7 +269,7 @@ class EmojiStats {
         System.out.println(
                 source.getPrefix() + "_" + Emoji.buildFileName(cp, "_") + ".png"
                 + " ;\t" + cp 
-                + " ;\tv" + EmojiData.getYear(cp)
+                + " ;\tv" + BirthInfo.getYear(cp)
                 + " ;\t" + EmojiData.EMOJI_DATA.getName(cp));
     }
 }

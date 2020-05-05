@@ -5,31 +5,30 @@ import java.util.Collections;
 import java.util.Set;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.text.UCD.IdentifierInfo.IdentifierStatus;
-import org.unicode.text.UCD.IdentifierInfo.IdentifierType;
-import org.unicode.text.utility.Utility;
+import org.unicode.text.UCD.IdentifierInfo.Identifier_Status;
+import org.unicode.text.UCD.IdentifierInfo.Identifier_Type;
 
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.util.VersionInfo;
 
 public class XIDModifications {
-    private UnicodeMap<IdentifierStatus> identifierStatus = new UnicodeMap<>();
-    private UnicodeMap<Set<IdentifierType>> identifierType = new UnicodeMap<>();
+    private UnicodeMap<Identifier_Status> identifierStatus = new UnicodeMap<>();
+    private UnicodeMap<Set<Identifier_Type>> identifierType = new UnicodeMap<>();
 
     public XIDModifications(String directory) {
     	File dir = new File(directory);
     	String finalPart = dir.getName();
     	VersionInfo version = VersionInfo.getInstance(finalPart);
-        identifierStatus.putAll(0,0x10FFFF, IdentifierStatus.restricted);
+        identifierStatus.putAll(0,0x10FFFF, Identifier_Status.restricted);
         if (version.getMajor() == 9) {
             // Version 9 IdentifierType.txt:
         	// Any missing values have the value: IdentifierType={Recommended}
-            identifierType.putAll(0, 0x10FFFF, Collections.singleton(IdentifierType.recommended));
+            identifierType.putAll(0, 0x10FFFF, Collections.singleton(Identifier_Type.recommended));
         } else {
         	// Version 10+ IdentifierType.txt:
         	// Any missing code points have the IdentifierType value Not_Character
-            identifierType.putAll(0, 0x10FFFF, Collections.singleton(IdentifierType.not_characters));
+            identifierType.putAll(0, 0x10FFFF, Collections.singleton(Identifier_Type.not_characters));
         }
         if (version.getMajor() <= 8) {
             new MyReader().process(directory, "xidmodifications.txt");
@@ -41,19 +40,19 @@ public class XIDModifications {
         identifierType.freeze();
     }
 
-    public UnicodeMap<IdentifierStatus> getStatus() {
+    public UnicodeMap<Identifier_Status> getStatus() {
         return identifierStatus;
     }
-    public UnicodeMap<Set<IdentifierType>> getType() {
+    public UnicodeMap<Set<Identifier_Type>> getType() {
         return identifierType;
     }
 
     private class MyReaderType extends FileUtilities.SemiFileReader {
         @Override
         protected boolean handleLine(int lineCount, int start, int end, String[] items) {
-            ImmutableSet.Builder<IdentifierType> b = ImmutableSet.builder();
+            ImmutableSet.Builder<Identifier_Type> b = ImmutableSet.builder();
             for (String s : items[1].split(" ")) {
-                b.add(IdentifierType.fromString(s));
+                b.add(Identifier_Type.fromString(s));
             }
             identifierType.putAll(start, end, b.build());
             return true;
@@ -62,7 +61,7 @@ public class XIDModifications {
     private class MyReaderStatus extends FileUtilities.SemiFileReader {
         @Override
         protected boolean handleLine(int lineCount, int start, int end, String[] items) {
-            identifierStatus.putAll(start, end, IdentifierStatus.fromString(items[1]));
+            identifierStatus.putAll(start, end, Identifier_Status.fromString(items[1]));
             return true;
         }
     }
@@ -70,8 +69,8 @@ public class XIDModifications {
     private class MyReader extends FileUtilities.SemiFileReader {
         @Override
         protected boolean handleLine(int lineCount, int start, int end, String[] items) {
-            identifierStatus.putAll(start, end, IdentifierStatus.fromString(items[1]));
-            identifierType.putAll(start, end, Collections.singleton(IdentifierType.fromString(items[2])));
+            identifierStatus.putAll(start, end, Identifier_Status.fromString(items[1]));
+            identifierType.putAll(start, end, Collections.singleton(Identifier_Type.fromString(items[2])));
             return true;
         }
     }

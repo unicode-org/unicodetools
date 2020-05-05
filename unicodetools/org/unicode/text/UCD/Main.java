@@ -309,7 +309,7 @@ public final class Main implements UCD_Types {
 
                 //
             }
-        } catch (Exception e) {
+        } catch (Throwable e) {
             // Print and rethrow.
             System.err.println(e);
             e.printStackTrace();

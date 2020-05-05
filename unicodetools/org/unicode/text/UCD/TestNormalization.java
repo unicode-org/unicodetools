@@ -270,7 +270,9 @@ public final class TestNormalization {
             final UnicodeSet t = (UnicodeSet) it.next();
             final UnicodeSet l = (UnicodeSet) map.get(t);
             System.out.println("<tr><td>"
-                    + bf.showSetNames(l)                    + "</td><td>"                    + bf.showSetNames(t)
+                    + bf.showSetNames(l)
+                    + "</td><td>"
+                    + bf.showSetNames(t)
                     + "</td></tr>");
         }
     }

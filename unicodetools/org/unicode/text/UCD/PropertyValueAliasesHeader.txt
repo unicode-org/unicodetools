@@ -14,12 +14,15 @@
 # First Field: The first field describes the property for which that
 # property value name is used.
 #
-# Second Field: The second field is an abbreviated name.
+# Second Field: The second field is the short name for the property value.
+# It is typically an abbreviation, but in a number of cases it is simply
+# a duplicate of the "long name" in the third field.
 #
-# Third Field: The third field is a long name.
+# Third Field: The third field is the long name for the property value, 
+# typically the formal name used in documentation about the property value.
 #
-# In the case of ccc, there are 4 fields. The second field is numeric, third
-# is abbreviated, and fourth is long.
+# In the case of Canonical_Combining_Class (ccc), there are 4 fields: 
+# The second field is numeric, the third is the short name, and the fourth is the long name.
 #
 # The above are the preferred aliases. Other aliases may be listed in additional fields.
 #
@@ -43,6 +46,7 @@
 #
 # The combination of property value and property name is, however, unique.
 #
-# For more information, see UTS #18: Unicode Regular Expressions
+# For more information, see UAX #44, Unicode Character Database, and
+# UTS #18, Unicode Regular Expressions.
 # ================================================
 

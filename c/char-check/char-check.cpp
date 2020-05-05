@@ -3,6 +3,8 @@
 #include <unicode/uniset.h>
 #include <unicode/uchar.h>
 
+using namespace icu;
+
 int main(int argc, const char* argv[]) {
   UErrorCode status = U_ZERO_ERROR;
   UnicodeSet validSet(UnicodeString("[^[:c:][:z:][:di:]]",""), status);

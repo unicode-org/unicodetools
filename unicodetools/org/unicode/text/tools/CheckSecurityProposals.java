@@ -1,10 +1,8 @@
 package org.unicode.text.tools;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
@@ -19,7 +17,6 @@ import org.unicode.tools.Confusables;
 import org.unicode.tools.Confusables.Style;
 
 import com.google.common.base.Splitter;
-import com.google.common.collect.HashMultimap;
 import com.google.common.collect.LinkedHashMultimap;
 import com.ibm.icu.dev.util.UnicodeMap;
 

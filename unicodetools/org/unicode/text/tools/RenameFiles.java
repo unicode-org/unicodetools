@@ -12,7 +12,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.RegexUtilities;
-import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.Emoji;
 
@@ -22,10 +21,13 @@ import com.ibm.icu.util.Output;
 
 public class RenameFiles {
 
-    // Set PREVIEW to true.
-    private static final boolean PREVIEW_ONLY = false;
+    // First set the source accordingly.
     private static final Choice choice = Choice.twitter;
 
+    // Then set PREVIEW_ONLY to true to check that the right changes are done,
+    // then to false to do them.
+    private static final boolean PREVIEW_ONLY = false;
+    
     private static final boolean RECURSIVE = true;
 
     // Modify the dir, regex, filter, and output-platform as needed
@@ -52,15 +54,24 @@ public class RenameFiles {
                 "^.*[^s].png$",
                 "samsung_(?<codes>[-_A-Za-z0-9]+)\\.png", 
                 "samsung"),
+        emojione(
+                "/Users/markdavis/Downloads/joypixels_72", 
+                "^.*.png$",
+                "joypixels_(?<codes>[-_A-Za-z0-9]+)\\.png", 
+                "emojione"),
         twitter(
-                "/Users/markdavis/Downloads/72x72", 
+                "/Users/markdavis/Downloads/twitter", //"/Users/markdavis/Downloads/72x72"
                 "^(?!\\.).*.png$",
-                "(?<codes>[-_A-Za-z0-9]+)\\.png", 
+                "(?:twitter[-_])?(?<codes>[-_A-Za-z0-9]+)\\.png", 
                 "twitter"),        
-        androidExtracted("/Users/markdavis/Downloads/ExtractedEmojis", // uni1f1e6_uni1f1e8.png
+        android("/Users/markdavis/Downloads/ExtractedEmojis", // uni1f1e6_uni1f1e8.png
                 "^(?!\\.).*.png$",
-                "(?<codes>(uni[a-z0-9]+)(_uni[a-z0-9]+)*)\\.png", 
+                "(uni|emoji_)?(?<codes>[a-z0-9]+(_[a-z0-9]+)*)\\.png", 
                 "android"),
+        cldr("/Users/markdavis/eclipse-workspace/unicode-draft/reports/tr51/images/cldr", // uni1f1e6_uni1f1e8.png
+                "^(?!\\\\.).*.png$",
+                "(?:proposed[-_])?(?<codes>[-_A-Za-z0-9]+)\\.png", 
+                "emoji"),
         ;
         final String sourceDir;
         final Matcher filter;
@@ -162,7 +173,7 @@ public class RenameFiles {
                 suffix = ".svg";
                 break;
             }
-            case androidExtracted: {
+            case android: {
                 final String oldName = m.group("codes").replaceAll("(_|uni)+", " ").trim();
                 oldHex = Utility.fromHex(oldName, false, 2);
                 // HACK: uni2640_uni200d_uni1f9b8_uni1f3fb.png should be uni1f9b8_uni1f3fb _uni2640_uni200d.png

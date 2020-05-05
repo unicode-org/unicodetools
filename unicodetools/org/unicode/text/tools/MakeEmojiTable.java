@@ -5,9 +5,9 @@ import java.io.PrintWriter;
 import java.util.Locale;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.tools.emoji.ChartUtilities;
 import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiData;
-import org.unicode.tools.emoji.GenerateEmoji;
 
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UTF16;
@@ -16,7 +16,7 @@ public class MakeEmojiTable {
     public static void main(String[] args) throws IOException {
         final String outFileName = "emoji-glyphs.html";
         PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, outFileName);
-        GenerateEmoji.writeHeader(outFileName, out, "recommended glyphs", null, false, "<p>" + "" + "</p>\n", Emoji.DATA_DIR_PRODUCTION, Emoji.TR51_HTML);
+        ChartUtilities.writeHeader(outFileName, out, "recommended glyphs", null, false, "<p>" + "" + "</p>\n", Emoji.DATA_DIR_PRODUCTION, Emoji.TR51_HTML);
         out.println("<table " + "border='1'" + ">");
         boolean first = true;
         boolean firstText = true;
@@ -54,7 +54,7 @@ public class MakeEmojiTable {
             }
         }
         out.println("</table>");
-        GenerateEmoji.writeFooter(out);
+        ChartUtilities.writeFooter(out);
         out.close();
         System.out.println("DONE");
     }

@@ -2,11 +2,9 @@ package org.unicode.unittest;
 
 import java.util.EnumSet;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.unicode.cldr.unittest.TestFmwkPlus;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.idna.GenerateIdna;
 import org.unicode.idna.GenerateIdnaTest;
 import org.unicode.idna.LoadIdnaTest;

@@ -85,7 +85,7 @@ public class TestSegments {
             if (rb != null) {
                 System.out.println("Found: " + testName);
             } else {
-                rb = new Segmenter.Builder(propFactory);
+                rb = new Segmenter.Builder(propFactory, Segmenter.Target.FOR_UCD);
             }
             if (TESTING) {
                 System.out.println();

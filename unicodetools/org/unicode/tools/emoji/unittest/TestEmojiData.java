@@ -1,8 +1,8 @@
 package org.unicode.tools.emoji.unittest;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -18,6 +18,7 @@ import org.unicode.cldr.util.Validity;
 import org.unicode.cldr.util.Validity.Status;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.CountEmoji;
+import org.unicode.tools.emoji.CountEmoji.Category;
 import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiAnnotations;
 import org.unicode.tools.emoji.EmojiData;
@@ -36,119 +37,124 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
 
 public class TestEmojiData extends TestFmwkPlus {
-    final EmojiData released = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
-    final EmojiDataSource beta;
+    private static final boolean SHOW = false;
+    final EmojiData released = EmojiData.of(Emoji.VERSION_TO_TEST_PREVIOUS);
+    final EmojiDataSource emojiDataToTest;
+    final EmojiOrder emojiOrderToTest;
 
     public static void main(String[] args) {
         new TestEmojiData().run(args);
     }
-    
+
     /**
      * We structure the test this way so that we can run it with two different sets of data.
+     * @param emojiOrder 
      */
-    public TestEmojiData(EmojiDataSource beta) {
-        this.beta = beta;
+    public TestEmojiData(EmojiDataSource beta, EmojiOrder emojiOrder) {
+        this.emojiDataToTest = beta;
+        emojiOrderToTest = emojiOrder;
     }
 
     public TestEmojiData() {
-        this(EmojiData.of(Emoji.VERSION_BETA));
+        this(TestAll.DATA_TO_TEST, TestAll.ORDER_TO_TEST);
     }
-    
+
     public void TestA() {
-        System.out.print(" Version: " + beta.getVersionString()
-                + "; class: " + beta.getClass()
+        System.out.print(" Version: " + emojiDataToTest.getVersionString()
+        + "; class: " + emojiDataToTest.getClass()
                 );
     }
 
     public static final Splitter semi = Splitter.onPattern("[;#]").trimResults();
 
     public void TestPublicEmojiTest() {
-        if (beta instanceof EmojiDataSourceCombined) {
+        if (emojiDataToTest instanceof EmojiDataSourceCombined) {
             return; // only test the beta stuff without combining
         }
         UnicodeMap<VariantStatus> tests = new UnicodeMap<>();
         for (String line : FileUtilities.in(GenerateEmojiData.OUTPUT_DIR, "emoji-test.txt")) {
-                int hashPos = line.indexOf('#');
-                if (hashPos >= 0) {
-                    line = line.substring(0, hashPos);
-                }
-                if (line.isEmpty()) continue;
-                List<String> list = semi.splitToList(line);
-                String source = Utility.fromHex(list.get(0));
-                //# subgroup: face-concerned
-                // 2639 FE0F                                  ; fully-qualified     # ☹️ frowning face
-                VariantStatus variantStatus = VariantStatus.forString(list.get(1));
-                tests.put(source, variantStatus);
+            int hashPos = line.indexOf('#');
+            if (hashPos >= 0) {
+                line = line.substring(0, hashPos);
+            }
+            if (line.isEmpty()) continue;
+            List<String> list = semi.splitToList(line);
+            String source = Utility.fromHex(list.get(0));
+            //# subgroup: face-concerned
+            // 2639 FE0F                                  ; fully-qualified     # ☹️ frowning face
+            VariantStatus variantStatus = VariantStatus.forString(list.get(1));
+            tests.put(source, variantStatus);
         }
         tests.freeze();
-        assertEqualsUS(VariantStatus.full.toString(), 
+        assertContains(VariantStatus.full.toString(), 
                 "emoji-test", 
                 tests.getSet(VariantStatus.full), 
                 "EmojiData", 
-                new UnicodeSet(beta.getBasicSequences())
-                .addAll(beta.getKeycapSequences())
-                .addAll(beta.getFlagSequences())
-                .addAll(beta.getTagSequences())
-                .addAll(beta.getModifierSequences())
-                .addAll(beta.getZwjSequencesNormal())
+                new UnicodeSet(emojiDataToTest.getBasicSequences())
+                .addAll(emojiDataToTest.getKeycapSequences())
+                .addAll(emojiDataToTest.getFlagSequences())
+                .addAll(emojiDataToTest.getTagSequences())
+                .addAll(emojiDataToTest.getModifierSequences())
+                .addAll(emojiDataToTest.getZwjSequencesNormal())
                 .removeAll(new UnicodeSet("[🇦-🇿🏻-🏿🦰-🦳{#️}{*️}{0️}{1️}{2️}{3️}{4️}{5️}{6️}{7️}{8️}{9️}]"))
                 );
         assertEqualsUS(VariantStatus.component.toString(), 
                 "emoji-test", 
                 tests.getSet(VariantStatus.component), 
                 "EmojiData", 
-                new UnicodeSet(beta.getEmojiComponents())
+                new UnicodeSet(emojiDataToTest.getEmojiComponents())
                 .removeAll(new UnicodeSet("[#*0-9‍⃣️🇦-🇿󠀠-󠁿]"))
                 );
-//        assertEqualsUS(VariantStatus.other + " = emoji", 
-//                "?", 
-//                new UnicodeSet(tests.getSet(VariantStatus.other)).add(tests.getSet(VariantStatus.initial)), "?", new UnicodeSet(beta.getAllEmojiWithDefectives()).removeAll(beta.getAllEmojiWithoutDefectives()));
+        //        assertEqualsUS(VariantStatus.other + " = emoji", 
+        //                "?", 
+        //                new UnicodeSet(tests.getSet(VariantStatus.other)).add(tests.getSet(VariantStatus.initial)), "?", new UnicodeSet(beta.getAllEmojiWithDefectives()).removeAll(beta.getAllEmojiWithoutDefectives()));
     }
-    
+
     private void assertEqualsUS(String message, String s1Name, UnicodeSet s1, String s2Name, UnicodeSet s2) {
-        if (s1.equals(s2)) {
-            return;
-        }
-        assertContains(message, s1Name, s1, s2Name, s2);
-        assertContains(message, s2Name, s2, s1Name, s1);
+        Asserts.assertEqualsUS(this, message, s1Name, s1, s2Name, s2);
     }
 
     private void assertContains(String message, String s1Name, UnicodeSet s1, String s2Name, UnicodeSet s2) {
-        UnicodeSet s2minuss1 = new UnicodeSet(s2).removeAll(s1);
-        if (!s2minuss1.isEmpty()) {
-            errln(message + ", " + s2Name + " - " + s1Name + " ≠ ∅: " + s2minuss1.toPattern(false));
-        }
+        Asserts.assertContains(this, message, s1Name, s1, s2Name, s2);
+    }
+
+    private void assertContains(String message, String s1Name, UnicodeSet s1, String s2Name, String s2char) {
+        Asserts.assertContains(this, message, s1Name, s1, s2Name, s2char);
     }
 
     public void TestHandshake() {
-        beta.getName("👩"); // warm up
-        assertEquals("👩‍🤝‍👩", "two women holding hands", beta.getName("👩‍🤝‍👩"));
-        assertEquals("👩🏿‍🤝‍👩🏻", "two women holding hands: dark skin tone, light skin tone", beta.getName("👩🏿‍🤝‍👩🏻"));
-        assertEquals("👩🏼‍🤝‍👨🏿", "man and woman holding hands: medium-light skin tone, dark skin tone", beta.getName("👩🏼‍🤝‍👨🏿"));
-        assertEquals("👨🏿‍🤝‍👨🏿", "two men holding hands: dark skin tone", beta.getName("👨🏿‍🤝‍👨🏿"));
+        emojiDataToTest.getName("👩"); // warm up
+        assertEquals("👩‍🤝‍👩", "people holding hands", emojiDataToTest.getName("🧑‍🤝‍🧑"));
+        assertEquals("👩‍🤝‍👩", "people holding hands: dark skin tone, light skin tone", emojiDataToTest.getName("🧑🏿‍🤝‍🧑🏻"));
+        assertEquals("👩‍🤝‍👩", "women holding hands", emojiDataToTest.getName("👩‍🤝‍👩"));
+        assertEquals("👩🏿‍🤝‍👩🏻", "women holding hands: dark skin tone, light skin tone", emojiDataToTest.getName("👩🏿‍🤝‍👩🏻"));
+        assertEquals("👩🏼‍🤝‍👨🏿", "woman and man holding hands: medium-light skin tone, dark skin tone", emojiDataToTest.getName("👩🏼‍🤝‍👨🏿"));
+        assertEquals("👨🏿‍🤝‍👨🏿", "men holding hands: dark skin tone", emojiDataToTest.getName("👨🏿‍🤝‍👨🏿"));
     }
-    
+
     public void TestCompoundNames() {
-        beta.getName("👩"); // warm up
-        assertEquals("🚶🏻‍♂️", "man walking: light skin tone", beta.getName("🚶🏻‍♂️"));
-        assertEquals("🧍", "person standing", beta.getName("🧍"));
-        assertEquals("🧍🏻", "person standing: light skin tone", beta.getName("🧍🏻"));
-        assertEquals("🧍🏻‍♂️", "man standing: light skin tone", beta.getName("🧍🏻‍♂️"));
-        assertEquals("🧍\u200D♂️", "man standing", beta.getName("🧍\u200D♂️"));
+        emojiDataToTest.getName("👩"); // warm up
+        assertEquals("🚶🏻‍♂️", "man walking: light skin tone", emojiDataToTest.getName("🚶🏻‍♂️"));
+        assertEquals("🧍", "person standing", emojiDataToTest.getName("🧍"));
+        assertEquals("🧍🏻", "person standing: light skin tone", emojiDataToTest.getName("🧍🏻"));
+        assertEquals("🧍🏻‍♂️", "man standing: light skin tone", emojiDataToTest.getName("🧍🏻‍♂️"));
+        assertEquals("🧍\u200D♂️", "man standing", emojiDataToTest.getName("🧍\u200D♂️"));
     }
 
     public void TestDefectives() {
         UnicodeSet excluded = new UnicodeSet("[#*0-9🇦-🇿]");
 
-        for (EmojiDataSource ed : Arrays.asList(released, beta)) {
+        for (EmojiDataSource ed : Arrays.asList(released, emojiDataToTest)) {
             if (ed.getAllEmojiWithDefectives().containsSome(Emoji.DEFECTIVE_COMPONENTS)) {
                 errln("getChars contains defectives " 
                         + new UnicodeSet().addAll(ed.getAllEmojiWithoutDefectives()).retainAll(Emoji.DEFECTIVE_COMPONENTS));
             }
         }
-        if (beta.getExtendedPictographic().containsSome(excluded)) {
-            errln("getExtendedPictographic contains defectives " 
-                    + new UnicodeSet().addAll(beta.getExtendedPictographic()).retainAll(excluded));
+        if (emojiDataToTest.getExtendedPictographic().containsSome(excluded)) {
+            UnicodeSet containedDefectives = new UnicodeSet().addAll(emojiDataToTest.getExtendedPictographic()).retainAll(excluded);
+            if (!logKnownIssue("ExtendedPictographic().contains defectives: " + containedDefectives, "dropped for now")) {
+                errln("getExtendedPictographic contains defectives " + containedDefectives);
+            }
         }
     }
 
@@ -175,9 +181,9 @@ public class TestEmojiData extends TestFmwkPlus {
             }
         }
         logln("Should be flags: " + shouldBeFlagEmoji.toPattern(false));
-        assertEquals("Contains all good regions", UnicodeSet.EMPTY, new UnicodeSet(shouldBeFlagEmoji).removeAll(beta.getAllEmojiWithoutDefectives()));
+        assertEquals("Contains all good regions", UnicodeSet.EMPTY, new UnicodeSet(shouldBeFlagEmoji).removeAll(emojiDataToTest.getAllEmojiWithoutDefectives()));
         logln("Should not be flags: " + shouldNOTBeFlagEmoji.toPattern(false));
-        assertEquals("Contains no bad regions", UnicodeSet.EMPTY, new UnicodeSet(shouldNOTBeFlagEmoji).retainAll(beta.getAllEmojiWithoutDefectives()));
+        assertEquals("Contains no bad regions", UnicodeSet.EMPTY, new UnicodeSet(shouldNOTBeFlagEmoji).retainAll(emojiDataToTest.getAllEmojiWithoutDefectives()));
     }
 
     /**
@@ -185,17 +191,17 @@ public class TestEmojiData extends TestFmwkPlus {
      */
     public void T_estZwjCategories () {
         UnicodeMap<String> chars = new UnicodeMap<>();
-        for (String s : beta.getZwjSequencesNormal()) {
+        for (String s : emojiDataToTest.getZwjSequencesNormal()) {
             CountEmoji.Category zwjType = CountEmoji.Category.getType(s);
-            String grouping = EmojiOrder.STD_ORDER.charactersToOrdering.get(s);
+            String grouping = emojiOrderToTest.charactersToOrdering.get(s);
             chars.put(s, zwjType + "\t" + grouping);
         }
         for (String value: chars.values()) {
             final UnicodeSet set = chars.getSet(value);
             System.out.println(value + "\t" + set.size() + "\t" + set.toPattern(false));
         }
-        Set<String> testSet = new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare);
-        beta.getAllEmojiWithoutDefectives().addAllTo(testSet);
+        Set<String> testSet = new TreeSet<>(emojiOrderToTest.codepointCompare);
+        emojiDataToTest.getAllEmojiWithoutDefectives().addAllTo(testSet);
 
         CountEmoji.Category oldZwjType = null; 
         String last = "";
@@ -215,42 +221,84 @@ public class TestEmojiData extends TestFmwkPlus {
         }
     }
 
-    public void TestOrderRules() {
-        int SKIPTO = 400;
+    public void TestOrderRulesSimple() {
         RuleBasedCollator ruleBasedCollator;
         try {
             ruleBasedCollator = new RuleBasedCollator("&a <*🍱🍘🍙🍚🍛🍜🍝🍠🍢🍣🍤🍥🍡");
         } catch (Exception e1) {
             throw new ICUException(e1);
         }
-        //        UnicodeSet ruleSet = new UnicodeSet();
-        //        for (String s : beta.getEmojiForSortRules()) {
-        //            // skip modifiers not in zwj, as hack
-        //            if (true || s.contains(Emoji.JOINER_STR) || EmojiData.MODIFIERS.containsNone(s)) {
-        //                ruleSet.add(s);
-        //            }
-        //        }
+    }
+
+    /**
+     * Verify that the internal order puts variants next to one another, and handles all code point sequences.
+     */
+    public void TestOrderVariants() {
+        Set<String> sorted = emojiOrderToTest.sort(emojiOrderToTest.codepointCompare, emojiDataToTest.getAllEmojiWithDefectives());
+        assertEquals("Sorted handles all different code point sequences: ", 
+                emojiDataToTest.getAllEmojiWithDefectives().size(), sorted.size());
+        // we check that there is no case where variant 1 < non-variant < variant2
+        Map<String,Integer> toIntOrder = new HashMap<>();
+        int intOrder = 0;
+        // add ordering numbers, but use the same for variants
+        for (String item : sorted) {
+            String itemWO = item.replace(Emoji.EMOJI_VARIANT_STRING,"");
+            Integer old = toIntOrder.get(itemWO);
+            toIntOrder.put(item, old == null ? intOrder++ : old);
+        }
+        String lastItem = "";
+        int lastOrder = -1;
+        for (String item : sorted) {
+            int order = toIntOrder.get(item);
+            if (order < lastOrder) {
+                errln("fail: " + showItem(lastItem, null) + " > " + showItem(item, null));
+            }
+            lastItem = item;
+            lastOrder = order;
+        }
+    }
+
+    public void TestOrderRulesWithSkin() {
+        checkOrder(null);
+    }
+
+    public void TestOrderRulesWithoutSkin() {
+        checkOrder(EmojiData.MODIFIERS);
+    }
+
+    private void checkOrder(UnicodeSet filterOutIfContains) {
+        int SKIPTO = 400;
         StringBuilder outText = new StringBuilder();
-        EmojiOrder.STD_ORDER.appendCollationRules(outText, beta.getEmojiForSortRules(), EmojiOrder.GENDER_NEUTRALS);
+        emojiOrderToTest.appendCollationRules(outText, emojiDataToTest.getAllEmojiWithDefectives(), EmojiOrder.GENDER_NEUTRALS);
         String rules = outText.toString();
-        UnicodeSet modifierBases = beta.getModifierBases();
+        UnicodeSet modifierBases = emojiDataToTest.getModifierBases();
         UnicodeSet modifiers = new UnicodeSet(EmojiData.getModifiers()).addAll(Emoji.HAIR_BASE).freeze();
         try {
-            ruleBasedCollator = new RuleBasedCollator(rules);
-            Set<String> testSet = new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare);
-            beta.getAllEmojiWithDefectives().addAllTo(testSet);
-            String secondToLastItem = "";
+            RuleBasedCollator ruleBasedCollator = new RuleBasedCollator(rules);
+            Set<String> testSet = new TreeSet<>(emojiOrderToTest.codepointCompare);
+            emojiDataToTest.getAllEmojiWithDefectives().addAllTo(testSet);
             String lastItem = "";
             String highestWithModifierBase = null;
             String lowestWithModifierBase = null;
             for (String item : testSet) {
+                if (filterOutIfContains != null && filterOutIfContains.containsSome(item)) {
+                    continue;
+                }
                 if (ruleBasedCollator.compare(lastItem, item) > 0 
                         && !modifiers.contains(item)) {
-                    errln("Out of order: " + secondToLastItem + ">" + lastItem + ">" + item);
+                    errln("RBased Out of order: "
+                            //                            + secondToLastItem 
+                            //                            + " (" + Utility.hex(secondToLastItem) + ": " + beta.getName(secondToLastItem) + ") " + ">"
+                            + lastItem 
+                            + " "
+                            + showItem(lastItem, ruleBasedCollator)
+                            + " " + "> "
+                            + item
+                            + " " + showItem(item, ruleBasedCollator) + ") "
+                            );
                 } else {
                     logln(lastItem + "≤" + item);
                 }
-                secondToLastItem = lastItem;
                 lastItem = item;
                 if (modifierBases.containsSome(item)) {
                     if (lowestWithModifierBase == null) {
@@ -259,8 +307,8 @@ public class TestEmojiData extends TestFmwkPlus {
                     highestWithModifierBase = item;
                 }
             }
-            System.out.println("\nlowestWithModifierBase " + lowestWithModifierBase);
-            System.out.println("\nhighestWithModifierBase " + highestWithModifierBase);
+            logln("\nlowestWithModifierBase " + lowestWithModifierBase);
+            logln("\nhighestWithModifierBase " + highestWithModifierBase);
         } catch (Exception e) {
             errln("Can't build rules: analysing problem…");
             // figure out where the problem is
@@ -279,7 +327,7 @@ public class TestEmojiData extends TestFmwkPlus {
                     continue;
                 }
                 try {
-                    ruleBasedCollator = new RuleBasedCollator(rules);
+                    RuleBasedCollator ruleBasedCollator = new RuleBasedCollator(rules);
                 } catch (Exception e2) {
                     errln("Fails when adding line " + line);
                     errln(showSorting(oldRules));
@@ -292,6 +340,30 @@ public class TestEmojiData extends TestFmwkPlus {
         }
         logln(showSorting(rules));
         logln(rules);
+    }
+
+    private String showItem(String lastItem, RuleBasedCollator ruleBasedCollator) {
+        return "(" + Utility.hex(lastItem) 
+        + "; " + emojiDataToTest.getName(lastItem)
+        + (ruleBasedCollator == null ? "" : "; " + showCE(lastItem, ruleBasedCollator))
+        + ")";
+    }
+
+    private String showCE(String item2, RuleBasedCollator ruleBasedCollator) {
+        CollationElementIterator it = ruleBasedCollator.getCollationElementIterator(item2);
+        StringBuilder temp = new StringBuilder();
+        while (true) {
+            int item = it.next();
+            if (item == CollationElementIterator.NULLORDER) {
+                break;
+            }
+            if (temp.length() != 0) {
+                temp.append(' ');
+            }
+            temp.append(Utility.hex(item & 0xFFFFFFFFL,8));
+        }
+        String ce = temp.toString();
+        return ce;
     }
 
     private String showSorting(String oldRules) {
@@ -339,11 +411,11 @@ public class TestEmojiData extends TestFmwkPlus {
     }
 
     private EmojiAnnotations checkAnnotations(final String localeStr, EmojiAnnotations em2) {
-        EmojiAnnotations em = new EmojiAnnotations(localeStr, EmojiOrder.STD_ORDER.codepointCompare);
+        EmojiAnnotations em = new EmojiAnnotations(localeStr, emojiOrderToTest.codepointCompare);
         Set<String> missing = new LinkedHashSet<>();
 
-        TreeSet<String> sorted = beta.getAllEmojiWithoutDefectives()
-                .addAllTo(new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare));
+        TreeSet<String> sorted = emojiDataToTest.getAllEmojiWithoutDefectives()
+                .addAllTo(new TreeSet<>(emojiOrderToTest.codepointCompare));
         int maxLen = 32;
 
         for (String s : sorted) {
@@ -370,7 +442,7 @@ public class TestEmojiData extends TestFmwkPlus {
                 if (false && em2 == null && status != EmojiAnnotations.Status.missing) {
                     String rem = EmojiData.MODIFIERS.stripFrom(s, false);
                     String s1 = EmojiData.MODIFIERS.stripFrom(s, true);
-                    s1 = beta.addEmojiVariants(s1); // modifiers replace EV characters.
+                    s1 = emojiDataToTest.addEmojiVariants(s1); // modifiers replace EV characters.
                     Set<String> strippedKeywords = em.getKeys(s1);
                     String strippedTts = em.getShortName(s1);
                     EmojiAnnotations.Status strippedStatus = em.getStatus(s1);
@@ -389,7 +461,7 @@ public class TestEmojiData extends TestFmwkPlus {
             }
             if (status != EmojiAnnotations.Status.found) {
                 if (em2 == null) {
-                    String oldTts = beta.getName(s);
+                    String oldTts = emojiDataToTest.getName(s);
                     Set<String> oldAnnotations = keywords == null ? new TreeSet<>() : new TreeSet<>(keywords);
                     oldAnnotations.addAll(Arrays.asList(oldTts.split("\\s+")));
                     oldAnnotations = oldAnnotations.isEmpty() ? Collections.singleton("???") : oldAnnotations;
@@ -422,37 +494,67 @@ public class TestEmojiData extends TestFmwkPlus {
             }
         }
         if (!missing.isEmpty()) {
-            errln("Missing: " + missing.size());
+            warnln("Missing: " + missing.size());
             if (em2 != null) {
                 System.out.println("Constructing text for translating missing items.");
                 System.out.println("Chars\tEnglish Name\tEnglish Annotations\tNative Name\tNative Annotations\tName Name (constructed!)\tNative Keywords (constructed!)");
             }
-            for (String s : missing) {
-                System.out.println(s);
+            if (SHOW) {
+                if (!missing.isEmpty()) {
+                    System.out.println("Not an error if CLDR hasn't caught up. Constructing text for translating missing items:");
+                }
+                for (String s : missing) {
+                    System.out.println(s);
+                }
             }
         }
         return em;
     }
-    
+
     public void TestGroupEmoji() {
-        assertContains("", "modifierBases", beta.getModifierBases(), "multipersonGroupings", beta.getMultiPersonGroupings());
-        assertContains("", "👯🤼", beta.getGenderBases(), "multipersonGroupings", new UnicodeSet("[👯🤼]"));
-        for (String s : beta.getExplicitGender()) {
-            System.out.print(s);
-        }
+        EmojiDataSource source = EmojiData.of(Emoji.VERSION_BETA);
+
+        Asserts.assertContains(this, "", "modifierBases", source.getModifierBases(), "multipersonGroupings", source.getMultiPersonGroupings());
+        System.out.print("\n\t(modifierBases: " + Asserts.flat(source.getModifierBases()) + ") ");
+        System.out.print("\n\t(multipersonGroupings: " + Asserts.flat(source.getMultiPersonGroupings()) + ") ");
+        Asserts.assertContains(this, "", "getGenderBases", source.getGenderBases(), "[👯🤼]", new UnicodeSet("[👯🤼]"));
+        System.out.print("\n\t(genderBases: " + Asserts.flat(source.getGenderBases()) + ") ");
     }
-    
+
     public void TestExplicitGender() {
         assertEqualsUS("", 
                 "list from UTS 51", new UnicodeSet("[👦-👨 🧔 👩 👴 👵 🤴 👸 👲 🧕 🤵 👰 🤰 🤱 🎅 🤶 💃 🕺 🕴 👫-👭]"), 
-                "emojiData", beta.getExplicitGender());
+                "emojiData", emojiDataToTest.getExplicitGender());
     }
-    
+
     public void TestCombinations() {
-        assertContains("", "zwj-sequences", beta.getZwjSequencesNormal(), 
-                "woman with probing cane", new UnicodeSet("[{\\x{1F469}\u200D\\x{1F9AF}\uFE0F}]"));
-        assertContains("", "zwj-sequences", beta.getZwjSequencesNormal(), 
-                "woman with probing cane; light skin", new UnicodeSet("[{\\x{1F469}\\x{1F3FB}\u200D\\x{1F9AF}\uFE0F}]"));
-        // 1F469 200D 1F9AF FE0F
+        UnicodeSet all = emojiDataToTest.getAllEmojiWithoutDefectives();
+
+        //        if (beta instanceof EmojiDataSourceCombined) { // debugging
+        //            boolean gotIt = EmojiDataSourceCombined.candidates.getAllEmojiWithoutDefectives().contains("👩‍🦼");
+        //            boolean gotIt2 = all.contains("👩‍🦼");
+        //            System.out.println(gotIt);
+        //        }
+
+        Asserts.assertContains(this, "", "zwj-sequence", all, 
+                "woman in motorized wheelchair", "👩‍🦼");
+        Asserts.assertContains(this, "", "zwj-sequence", all, 
+                "woman in motorized wheelchair: light skin tone", "👩🏻‍🦼");
+//        if (!logKnownIssue("holding hands in zwj sequences", "dropped for now")) {
+//        }
+        Asserts.assertContains(this, "", "zwj-sequence", all, 
+                "women holding hands; medium, dark skin", "👩🏿‍🤝‍👩🏽");
+    }
+
+    public void TestBuckets() {
+        // just check that there is no exception
+        for (String s : emojiDataToTest.getAllEmojiWithDefectives()) {
+            try {
+                Category category = Category.getBucket(s);
+            } catch (Exception e) {
+                throw new ICUException("If you get the message «no category available for: [zwj, skin]»"
+                        + " you may need to update Emoji.PROFESSION_OBJECT", e);
+            }
+        }
     }
 }

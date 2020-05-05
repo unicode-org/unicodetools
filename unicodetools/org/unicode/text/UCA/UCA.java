@@ -1246,7 +1246,7 @@ final public class UCA implements Comparator<String>, UCA_Types {
                 }
 
                 final String line = cleanLine(inputLine); // remove comments, extra whitespace
-                if (line.length() == 0)
+                if (line.isEmpty())
                 {
                     continue;   // skip empty lines
                 }
@@ -1269,10 +1269,9 @@ final public class UCA implements Comparator<String>, UCA_Types {
                             int start = Integer.parseInt(line.substring(offset, dotDot).trim(), 16);
                             int end = Integer.parseInt(line.substring(dotDot + 2, semi).trim(), 16);
                             int leadPrimary = Integer.parseInt(line.substring(semi + 1).trim(), 16);
-                            Implicit.Range r = implicit.addRange(leadPrimary, start, end);
-                            moreSamples.add(r.firstCP);
-                            int lastCP = r.set.charAt(r.set.size() - 1);
-                            moreSamples.add(lastCP);
+                            Implicit.Range r = implicit.makeRange(leadPrimary, start, end);
+                            moreSamples.add(r.firstCP).add(r.lastCP);
+                            implicit.addRange(r);
                             continue;
                         }
                     }

@@ -1,6 +1,6 @@
 # DerivedName-12.0.0.txt
-# Date: 2018-09-29, 05:44:58 GMT
-# © 2018 Unicode®, Inc.
+# Date: 2019-01-22, 08:18:29 GMT
+# © 2019 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -31773,7 +31773,7 @@ FFFD          ; REPLACEMENT CHARACTER
 11FD5         ; TAMIL SIGN NEL
 11FD6         ; TAMIL SIGN CEVITU
 11FD7         ; TAMIL SIGN AAZHAAKKU
-11FD8         ; TAMIL SIGN UZHAAKKU
+11FD8         ; TAMIL SIGN UZHAKKU
 11FD9         ; TAMIL SIGN MUUVUZHAKKU
 11FDA         ; TAMIL SIGN KURUNI
 11FDB         ; TAMIL SIGN PATHAKKU

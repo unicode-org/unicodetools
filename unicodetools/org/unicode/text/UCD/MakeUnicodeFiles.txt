@@ -1,6 +1,6 @@
 Generate: .
-DeltaVersion: 14
-CopyrightYear: 2018
+CopyrightYear: 2019
+DeltaVersion: 13
 
 File: extra/ScriptNfkc
 Property: SPECIAL
@@ -11,7 +11,7 @@ File: extracted/DerivedName
 #
 # This file lists the values of the Name property.
 # This property is specified by the derivation documented in
-# Section 4.8 of the Unicode Standard, Version 12.0,
+# Section 4.8 of the Unicode Standard, Version 13.0,
 # based on the Name field in UnicodeData.txt,
 # the Jamo_Short_Name property in Jamo.txt,
 # and a specified list of pattern strings used to derive names
@@ -99,6 +99,9 @@ File: auxiliary/LineBreakTest
 Property: SPECIAL
 
 File: auxiliary/SentenceBreakTest
+Property: SPECIAL
+
+File: cldr/GraphemeBreakTest-cldr
 Property: SPECIAL
 
 File:	extra/BidiPairedBracketType
@@ -215,6 +218,12 @@ Value:  V11_0
 
 Value:  V12_0
 # Newly assigned in Unicode 12.0.0 (March, 2019)
+
+Value:  V12_1
+# Newly assigned in Unicode 12.1.0 (May, 2019)
+
+Value:  V13_0
+# Newly assigned in Unicode 13.0.0 (March, 2020)
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class

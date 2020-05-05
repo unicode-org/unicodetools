@@ -12,6 +12,7 @@
 		UtfParameters utfParameters = new UtfParameters(queryString);
 		
 		String test = utfParameters.getParameter("a", "paypal");
+		String testEscaped = UnicodeUtilities.toHTML(test);
 		
 		String p = utfParameters.getParameter("r", "None");
         int p2 = p.equals("None") ? 0 
@@ -37,8 +38,8 @@
     </tr>
     <tr>
       <td>
-      <input name="a" type="text" value="<%=test%>" style="width: 100%">
-      <!-- <textarea name="a" rows="8" cols="5" style="width: 100%; height: 100%"><%=test%></textarea> -->
+      <input name="a" type="text" value="<%=testEscaped%>" style="width: 100%">
+      <!-- <textarea name="a" rows="8" cols="5" style="width: 100%; height: 100%"><%=testEscaped%></textarea> -->
       </td>
     </tr>
     <tr>

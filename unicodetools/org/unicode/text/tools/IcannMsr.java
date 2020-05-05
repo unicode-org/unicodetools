@@ -22,8 +22,8 @@ import org.unicode.props.UnicodeRelation;
 import org.unicode.props.UnicodeRelation.SetMaker;
 import org.unicode.test.TestSecurity;
 import org.unicode.text.UCD.IdentifierInfo;
-import org.unicode.text.UCD.IdentifierInfo.IdentifierStatus;
-import org.unicode.text.UCD.IdentifierInfo.IdentifierType;
+import org.unicode.text.UCD.IdentifierInfo.Identifier_Status;
+import org.unicode.text.UCD.IdentifierInfo.Identifier_Type;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -49,13 +49,13 @@ public class IcannMsr {
             return new LinkedHashSet<String>();
         }
     };
-    static final SetMaker<IdentifierType>        ITM       = new SetMaker<IdentifierType>() {
-        public EnumSet<IdentifierType> make() {
-            return EnumSet.noneOf(IdentifierType.class);
+    static final SetMaker<Identifier_Type>        ITM       = new SetMaker<Identifier_Type>() {
+        public EnumSet<Identifier_Type> make() {
+            return EnumSet.noneOf(Identifier_Type.class);
         }
     };
     static final UnicodeRelation<String>         DATA      = new UnicodeRelation<String>(SM);
-    static final UnicodeRelation<IdentifierType> DATA2TYPE = new UnicodeRelation<IdentifierInfo.IdentifierType>(ITM);
+    static final UnicodeRelation<Identifier_Type> DATA2TYPE = new UnicodeRelation<IdentifierInfo.Identifier_Type>(ITM);
     static final UnicodeRelation<String>         REMAP     = new UnicodeRelation<String>(SM);
     static {
         UnicodeSet found = new UnicodeSet();
@@ -73,7 +73,7 @@ public class IcannMsr {
                 }
                 String dataLine = line.substring(2).trim();
                 DATA.add(cp, dataLine);
-                IdentifierType identifierType = getIdentifierType(cp, dataLine);
+                Identifier_Type identifierType = getIdentifierType(cp, dataLine);
                 if (identifierType != null) {
                     DATA2TYPE.add(cp, identifierType);
                 }
@@ -133,16 +133,16 @@ public class IcannMsr {
         if (DATA2TYPE.get(onlyCp) != null) {
             throw new IllegalArgumentException("Duplicate item");
         }
-        DATA2TYPE.add(onlyCp, IdentifierType.recommended);
+        DATA2TYPE.add(onlyCp, Identifier_Type.recommended);
     }
 
-    private static IdentifierType getIdentifierType(int cp, String dataLine) {
+    private static Identifier_Type getIdentifierType(int cp, String dataLine) {
         try {
             int spacePos = dataLine.indexOf(' ');
             String firstWord = spacePos < 0 ? dataLine : dataLine.substring(0, spacePos);
 
             if (firstWord.equalsIgnoreCase("contexto")) {
-                return IdentifierType.inclusion;
+                return Identifier_Type.inclusion;
             } else if (firstWord.equalsIgnoreCase("punctuation")
                     || firstWord.equalsIgnoreCase("symbol")
                     || firstWord.equalsIgnoreCase("deferred")
@@ -152,14 +152,14 @@ public class IcannMsr {
                     || firstWord.equalsIgnoreCase("numeric")
                     || firstWord.equalsIgnoreCase("homoglyph")) {
                 REMAP.add(cp, "technical\t← " + dataLine);
-                return IdentifierType.technical;
+                return Identifier_Type.technical;
             } else if (firstWord.equalsIgnoreCase("limited")) {
-                return IdentifierType.uncommon_use;
+                return Identifier_Type.uncommon_use;
             } else if (firstWord.equalsIgnoreCase("Dagbani")) {
                 REMAP.add(cp, "ignored " + dataLine);
                 return null;
             }
-            IdentifierType identifierType = IdentifierType.fromString(firstWord);
+            Identifier_Type identifierType = Identifier_Type.fromString(firstWord);
             return identifierType;
         } catch (Exception e) {
             throw new IllegalArgumentException(Utility.hex(cp)
@@ -182,23 +182,23 @@ public class IcannMsr {
         showValues("remapped.txt", REMAP, null);
 
         System.out.println("\nValues");
-        showValues("values.txt", DATA2TYPE, IdentifierType.recommended);
+        showValues("values.txt", DATA2TYPE, Identifier_Type.recommended);
 
         XIDModifications xidModOld = new XIDModifications(SECURITY + Settings.latestVersion);
-        UnicodeMap<Set<IdentifierType>> xidMod = xidModOld.getType();
+        UnicodeMap<Set<Identifier_Type>> xidMod = xidModOld.getType();
 
         UnicodeMap<Set<String>> cldrChars = TestSecurity.getCLDRCharacters();
 
-        UnicodeMap<Pair<IdentifierType, IdentifierType>> diff = new UnicodeMap<>();
+        UnicodeMap<Pair<Identifier_Type, Identifier_Type>> diff = new UnicodeMap<>();
         for (EntryRange x : new UnicodeSet("[[:age=6.3:]-[[:nd:][:cn:][:co:][:cs:][:cwcf:]]]").ranges()) {
             for (int i = x.codepoint; i <= x.codepointEnd; ++i) {
-                Set<IdentifierType> unicodeSet = xidMod.get(i);
-                IdentifierType unicode = unicodeSet.iterator().next();
-                IdentifierStatus unicodeStatus = unicode.identifierStatus;
-                Set<IdentifierType> icann = DATA2TYPE.get(i);
-                IdentifierStatus icannStatus = icann == null ? IdentifierStatus.restricted : icann.iterator().next().identifierStatus;
+                Set<Identifier_Type> unicodeSet = xidMod.get(i);
+                Identifier_Type unicode = unicodeSet.iterator().next();
+                Identifier_Status unicodeStatus = unicode.identifierStatus;
+                Set<Identifier_Type> icann = DATA2TYPE.get(i);
+                Identifier_Status icannStatus = icann == null ? Identifier_Status.restricted : icann.iterator().next().identifierStatus;
                 if (unicodeStatus != icannStatus) {
-                    IdentifierType icann1 = icann == null ? null : icann.iterator().next();
+                    Identifier_Type icann1 = icann == null ? null : icann.iterator().next();
                     diff.put(i, Pair.of(unicode, icann1));
                 }
             }
@@ -206,16 +206,16 @@ public class IcannMsr {
         showValues("diff.txt", diff);
     }
 
-    static final Comparator<Pair<IdentifierType, IdentifierType>> IDPAIR = new Comparator<Pair<IdentifierType, IdentifierType>>() {
+    static final Comparator<Pair<Identifier_Type, Identifier_Type>> IDPAIR = new Comparator<Pair<Identifier_Type, Identifier_Type>>() {
 
         @Override
-        public int compare(Pair<IdentifierType, IdentifierType> o1, Pair<IdentifierType, IdentifierType> o2) {
-            IdentifierType o11 = o1.getFirst();
-            IdentifierType o21 = o2.getFirst();
+        public int compare(Pair<Identifier_Type, Identifier_Type> o1, Pair<Identifier_Type, Identifier_Type> o2) {
+            Identifier_Type o11 = o1.getFirst();
+            Identifier_Type o21 = o2.getFirst();
             int diff = o11.compareTo(o21);
             if (diff != 0) return diff;
-            IdentifierType o12 = o1.getSecond();
-            IdentifierType o22 = o2.getSecond();
+            Identifier_Type o12 = o1.getSecond();
+            Identifier_Type o22 = o2.getSecond();
             if (o12 == null) {
                 return o22 == null ? 0 : -1;
             } else if (o22 == null) {
@@ -255,7 +255,7 @@ public class IcannMsr {
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
     static final UnicodeMap<String> Script_Extensions = iup.load(UcdProperty.Script_Extensions);
 
-    private static void showSortedSet(PrintWriter out, UnicodeSet set, IdentifierType _type) {
+    private static void showSortedSet(PrintWriter out, UnicodeSet set, Identifier_Type _type) {
 
         for (String script : Script_Extensions.values()) {
             UnicodeSet ss = Script_Extensions.getSet(script);
@@ -279,7 +279,7 @@ public class IcannMsr {
 
     // 1F54F; uncommon-use # BOWL OF HYGIEIA
     //  0138         ĸ      Ll      Latin       LATIN SMALL LETTER KRA  
-    private static void show(PrintWriter out, IdentifierType _type, int cpStart, int cpEnd) {
+    private static void show(PrintWriter out, Identifier_Type _type, int cpStart, int cpEnd) {
         out.println(Utility.hex(cpStart)
                 + (cpStart == cpEnd ? "\t" : ".." + Utility.hex(cpEnd))
                 + " ; " + (_type == null ? "???" : _type)
@@ -315,15 +315,15 @@ public class IcannMsr {
         return UCharacter.getPropertyValueName(UProperty.GENERAL_CATEGORY, UCharacter.getType(cpStart), UProperty.NameChoice.SHORT);
     }
 
-    private static void showValues(String file, UnicodeMap<Pair<IdentifierType, IdentifierType>> diff) {
+    private static void showValues(String file, UnicodeMap<Pair<Identifier_Type, Identifier_Type>> diff) {
         try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "icann/", file)) {
-            Set<Pair<IdentifierType, IdentifierType>> sorted = new TreeSet<>(IDPAIR);
+            Set<Pair<Identifier_Type, Identifier_Type>> sorted = new TreeSet<>(IDPAIR);
             sorted.addAll(diff.values());
 
-            for (Pair<IdentifierType, IdentifierType> value : sorted) {
+            for (Pair<Identifier_Type, Identifier_Type> value : sorted) {
                 UnicodeSet us = diff.getSet(value);
-                final IdentifierType msrValue = value.getSecond();
-                final IdentifierType uts39Value = value.getFirst();
+                final Identifier_Type msrValue = value.getSecond();
+                final Identifier_Type uts39Value = value.getFirst();
                 out.println("\n#39:" + uts39Value
                         + "\tMSR:" + msrValue
                         + "\tcount:" + us.size()

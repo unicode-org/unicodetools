@@ -1,19 +1,14 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 12.0.0
-@@@+	U12M180922.lst
-	Unicode 12.0.0 names list, fourth delta.
-	Repertoire synched with UnicodeData-12.0.0d5.txt
-	Third delta of annotation fixes.
-	Made annotation at 11FE3 a notice (to prevent misinterpretation of number).
-	Corrected spelling in notice at 1E137.
-	Added subhead and annotation for 1E94B.
+@@@+	U12M190206.lst
+	Unicode 12.0.0 final names list.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
 	for this process are aimed at readability for the human reader,
 	at the expense of some details; therefore, this file should not
 	be parsed for machine-readable information.
-@+		© 2018 Unicode®, Inc.
+@+		© 2019 Unicode®, Inc.
 	For terms of use, see http://www.unicode.org/terms_of_use.html
 @@	0000	C0 Controls and Basic Latin (Basic Latin)	007F
 @@+
@@ -898,7 +893,7 @@
 0128	LATIN CAPITAL LETTER I WITH TILDE
 	: 0049 0303
 0129	LATIN SMALL LETTER I WITH TILDE
-	* Greenlandic (old orthography)
+	* Greenlandic (old orthography), Kikuyu
 	: 0069 0303
 012A	LATIN CAPITAL LETTER I WITH MACRON
 	: 0049 0304
@@ -941,7 +936,7 @@
 	* Latvian
 	: 006B 0327
 0138	LATIN SMALL LETTER KRA
-	* Greenlandic (old orthography)
+	* Greenlandic (old orthography), Labrador Inuttut
 0139	LATIN CAPITAL LETTER L WITH ACUTE
 	: 004C 0301
 013A	LATIN SMALL LETTER L WITH ACUTE
@@ -1078,7 +1073,7 @@
 0168	LATIN CAPITAL LETTER U WITH TILDE
 	: 0055 0303
 0169	LATIN SMALL LETTER U WITH TILDE
-	* Greenlandic (old orthography)
+	* Greenlandic (old orthography), Kikuyu
 	: 0075 0303
 016A	LATIN CAPITAL LETTER U WITH MACRON
 	: 0055 0304
@@ -2770,10 +2765,10 @@
 	x (latin small letter upsilon - 028A)
 	x (latin small letter v with hook - 028B)
 03C6	GREEK SMALL LETTER PHI
-	x (latin small letter phi - 0278)
-	x (greek phi symbol - 03D5)
 	* the ordinary Greek letter, showing considerable glyph variation
 	* in mathematical contexts, the loopy glyph is preferred, to contrast with 03D5
+	x (latin small letter phi - 0278)
+	x (greek phi symbol - 03D5)
 03C7	GREEK SMALL LETTER CHI
 	x (latin small letter chi - AB53)
 03C8	GREEK SMALL LETTER PSI
@@ -4930,6 +4925,7 @@
 	* used also in Vedic texts written in other scripts
 	x (vedic tone kathaka anudatta - 1CDC)
 @		Accent marks
+@+		These accent marks were originally intended for Latin transliteration of Sanskrit, but 0300 and 0301 should be used instead. These two accents should not be used with the Devanagari script; they have no Indic shaping properties.
 0953	DEVANAGARI GRAVE ACCENT
 	x (combining grave accent - 0300)
 0954	DEVANAGARI ACUTE ACCENT
@@ -4981,7 +4977,7 @@
 096D	DEVANAGARI DIGIT SEVEN
 096E	DEVANAGARI DIGIT EIGHT
 096F	DEVANAGARI DIGIT NINE
-@		Abbreviation sign
+@		Additional signs
 0970	DEVANAGARI ABBREVIATION SIGN
 	* intended for Devanagari-specific abbreviations
 0971	DEVANAGARI SIGN HIGH SPACING DOT
@@ -5577,7 +5573,7 @@
 0BA9	TAMIL LETTER NNNA
 0BAA	TAMIL LETTER PA
 	= maa
-	* also denotes the fraction one twentieth
+	x (tamil fraction one twentieth - 11FC8)
 0BAE	TAMIL LETTER MA
 0BAF	TAMIL LETTER YA
 0BB0	TAMIL LETTER RA
@@ -5588,6 +5584,7 @@
 	x (tamil sign mukkuruni - 11FDC)
 0BB4	TAMIL LETTER LLLA
 0BB5	TAMIL LETTER VA
+	x (tamil fraction one quarter - 11FD0)
 0BB6	TAMIL LETTER SHA
 0BB7	TAMIL LETTER SSA
 0BB8	TAMIL LETTER SA
@@ -6937,6 +6934,7 @@
 0FD4	TIBETAN MARK CLOSING BRDA RNYING YIG MGO SGAB MA
 	= da nying yik go kab ma
 @		Religious symbols
+@+		Use of these svasti signs is not limited to the Tibetan script.
 0FD5	RIGHT-FACING SVASTI SIGN
 	= gyung drung nang -khor
 	* symbol of good luck and well-being in India
@@ -13275,6 +13273,7 @@
 	# 0052 0073
 20A9	WON SIGN
 	* Korea
+	* glyph may have one or two crossbars, but the most common form in Korea has only one
 20AA	NEW SHEQEL SIGN
 	* Israel
 20AB	DONG SIGN
@@ -13447,6 +13446,7 @@
 	* simply a mathematical italic h; this character's name results from legacy usage
 	# <font> 0068 latin small letter h
 210F	PLANCK CONSTANT OVER TWO PI
+	= reduced Planck constant, Dirac constant
 	x (cyrillic small letter tshe - 045B)
 	# <font> 0127 latin small letter h with stroke
 2110	SCRIPT CAPITAL I
@@ -15944,7 +15944,8 @@
 262B	FARSI SYMBOL
 	= symbol of iran (1.0)
 262C	ADI SHAKTI
-	= Gurmukhi khanda
+	= khanda
+	* Sikh religious symbol
 262D	HAMMER AND SICKLE
 262E	PEACE SYMBOL
 262F	YIN YANG
@@ -16471,6 +16472,7 @@
 2708	AIRPLANE
 	x (up-pointing airplane - 1F6E7)
 2709	ENVELOPE
+	= sealed envelope
 	x (incoming envelope - 1F4E8)
 	x (back of envelope - 1F582)
 270A	RAISED FIST
@@ -16626,7 +16628,10 @@
 	x (exclamation mark - 0021)
 2763	HEAVY HEART EXCLAMATION MARK ORNAMENT
 2764	HEAVY BLACK HEART
+	* displayed with a red color when used in emoji style
 	x (black heart suit - 2665)
+	x (black heart - 1F5A4)
+	x (white heart - 1F90D)
 2765	ROTATED HEAVY BLACK HEART BULLET
 @		Fleurons
 2766	FLORAL HEART
@@ -18649,6 +18654,7 @@
 2C70	LATIN CAPITAL LETTER TURNED ALPHA
 	* lowercase is 0252
 2C71	LATIN SMALL LETTER V WITH RIGHT HOOK
+	* IPA: voiced labiodental flap
 2C72	LATIN CAPITAL LETTER W WITH HOOK
 2C73	LATIN SMALL LETTER W WITH HOOK
 2C74	LATIN SMALL LETTER V WITH CURL
@@ -18968,7 +18974,7 @@
 2D94	ETHIOPIC SYLLABLE GGWI
 2D95	ETHIOPIC SYLLABLE GGWEE
 2D96	ETHIOPIC SYLLABLE GGWE
-@		Syllables for Sebatbeit
+@		Syllables for Bench
 2DA0	ETHIOPIC SYLLABLE SSA
 2DA1	ETHIOPIC SYLLABLE SSU
 2DA2	ETHIOPIC SYLLABLE SSI
@@ -18997,6 +19003,7 @@
 2DBC	ETHIOPIC SYLLABLE CCHEE
 2DBD	ETHIOPIC SYLLABLE CCHE
 2DBE	ETHIOPIC SYLLABLE CCHO
+@		Syllables for Sebatbeit
 2DC0	ETHIOPIC SYLLABLE QYA
 2DC1	ETHIOPIC SYLLABLE QYU
 2DC2	ETHIOPIC SYLLABLE QYI
@@ -20000,6 +20007,7 @@
 	~ 3001 FE01 centered form
 3002	IDEOGRAPHIC FULL STOP
 	x (full stop - 002E)
+	x (fullwidth full stop - FF0E)
 	x (halfwidth ideographic full stop - FF61)
 	~ 3002 FE00 corner-justified form
 	~ 3002 FE01 centered form
@@ -24300,6 +24308,7 @@ A805	SYLOTI NAGRI LETTER O
 @		Sign
 A806	SYLOTI NAGRI SIGN HASANTA
 	= halant, virama
+	* forms conjuncts
 @		Consonants and consonant signs
 A807	SYLOTI NAGRI LETTER KO
 A808	SYLOTI NAGRI LETTER KHO
@@ -24343,7 +24352,7 @@ A82B	SYLOTI NAGRI POETRY MARK-4
 @@	A830	Common Indic Number Forms	A83F
 @		Number forms
 A830	NORTH INDIC FRACTION ONE QUARTER
-	* this and the following two fractions are also used in Malayalam
+	* this and some of the following fractions are also used in some South Indic scripts, including Kannada and Malayalam
 A831	NORTH INDIC FRACTION ONE HALF
 A832	NORTH INDIC FRACTION THREE QUARTERS
 A833	NORTH INDIC FRACTION ONE SIXTEENTH
@@ -24862,10 +24871,13 @@ A987	JAVANESE LETTER II
 A988	JAVANESE LETTER U
 A989	JAVANESE LETTER PA CEREK
 	= vocalic r
+	* rae in Javanese
 A98A	JAVANESE LETTER NGA LELET
 	= vocalic l
+	* lae in Javanese
 A98B	JAVANESE LETTER NGA LELET RASWADI
 	= vocalic ll
+	* loe in Javanese
 A98C	JAVANESE LETTER E
 A98D	JAVANESE LETTER AI
 A98E	JAVANESE LETTER O
@@ -24945,6 +24957,7 @@ A9BC	JAVANESE VOWEL SIGN PEPET
 @		Dependent consonant signs
 A9BD	JAVANESE CONSONANT SIGN KERET
 	= vocalic r
+	* medial rae in Javanese
 A9BE	JAVANESE CONSONANT SIGN PENGKAL
 	= medial ya
 A9BF	JAVANESE CONSONANT SIGN CAKRA
@@ -31931,7 +31944,7 @@ FFFF	<not a character>
 10C9E	OLD HUNGARIAN CAPITAL LETTER RUDIMENTA OE
 	= Ö
 10C9F	OLD HUNGARIAN CAPITAL LETTER OEE
-	= O with double acute
+	= Ő
 10CA0	OLD HUNGARIAN CAPITAL LETTER EP
 	= P
 10CA1	OLD HUNGARIAN CAPITAL LETTER EMP
@@ -31955,9 +31968,9 @@ FFFF	<not a character>
 10CAC	OLD HUNGARIAN CAPITAL LETTER NIKOLSBURG UE
 	= Ü
 	* also used for Ö
-	* used for U with double acute in Sándor Forrai's orthography
+	* used for Ű in Sándor Forrai's orthography
 10CAD	OLD HUNGARIAN CAPITAL LETTER RUDIMENTA UE
-	= Ü, U with double acute
+	= Ü, Ű
 	* used for Ü in Sándor Forrai's orthography
 10CAE	OLD HUNGARIAN CAPITAL LETTER EV
 	= V
@@ -32023,7 +32036,7 @@ FFFF	<not a character>
 10CDE	OLD HUNGARIAN SMALL LETTER RUDIMENTA OE
 	= ö
 10CDF	OLD HUNGARIAN SMALL LETTER OEE
-	= o with double acute
+	= ő
 10CE0	OLD HUNGARIAN SMALL LETTER EP
 	= p
 10CE1	OLD HUNGARIAN SMALL LETTER EMP
@@ -32047,9 +32060,9 @@ FFFF	<not a character>
 10CEC	OLD HUNGARIAN SMALL LETTER NIKOLSBURG UE
 	= ü
 	* also used for ö
-	* used for u with double acute in Sándor Forrai's orthography
+	* used for ű in Sándor Forrai's orthography
 10CED	OLD HUNGARIAN SMALL LETTER RUDIMENTA UE
-	= ü, u with double acute
+	= ü, ű
 	* used for ü in Sándor Forrai's orthography
 10CEE	OLD HUNGARIAN SMALL LETTER EV
 	= v
@@ -33707,6 +33720,7 @@ FFFF	<not a character>
 116B7	TAKRI SIGN NUKTA
 @		Consonant
 116B8	TAKRI LETTER ARCHAIC KHA
+	* used in earlier writings to denote kha
 @		Digits
 116C0	TAKRI DIGIT ZERO
 116C1	TAKRI DIGIT ONE
@@ -34705,6 +34719,7 @@ FFFF	<not a character>
 	= mukkaal viisam
 11FC8	TAMIL FRACTION ONE TWENTIETH
 	= maa
+	x (tamil letter pa - 0BAA)
 11FC9	TAMIL FRACTION ONE SIXTEENTH-1
 	= viisam/maakaani
 11FCA	TAMIL FRACTION ONE SIXTEENTH-2
@@ -34722,6 +34737,7 @@ FFFF	<not a character>
 	= naangu maa
 11FD0	TAMIL FRACTION ONE QUARTER
 	= kaal
+	x (tamil letter va - 0BB5)
 11FD1	TAMIL FRACTION ONE HALF-1
 	= arai
 11FD2	TAMIL FRACTION ONE HALF-2
@@ -34738,7 +34754,7 @@ FFFF	<not a character>
 	* equals 360 nel
 11FD7	TAMIL SIGN AAZHAAKKU
 	* equals 5 cevitu
-11FD8	TAMIL SIGN UZHAAKKU
+11FD8	TAMIL SIGN UZHAKKU
 	* equals 2 aazhaakku
 	* for the measure uri which equals 2 uzhakku, use the sequence 0B89 0BB0 0BBF
 11FD9	TAMIL SIGN MUUVUZHAKKU
@@ -34769,7 +34785,7 @@ FFFF	<not a character>
 11FE1	TAMIL SIGN PAARAM
 	* approximately equals 500 pounds (227 kg)
 11FE2	TAMIL SIGN KUZHI
-	* equals 1 square kol, where 1 kol is approximately 11 feet
+	* equals 1 square kol, where 1 kol is approximately 11 feet (3.35 m)
 11FE3	TAMIL SIGN VELI
 @+	* equals 2000 kuzhi
 @		Agricultural symbols
@@ -39390,10 +39406,10 @@ FFFF	<not a character>
 @@	16F00	Miao	16F9F
 @		Consonant onsets
 16F00	MIAO LETTER PA
-	* used for ba in Dry Yi
+	* used for ba in Gan Yi
 16F01	MIAO LETTER BA
 16F02	MIAO LETTER YI PA
-	* used for pa in Dry Yi
+	* used for pa in Gan Yi
 16F03	MIAO LETTER PLA
 	* used in Sichuan Hmong
 16F04	MIAO LETTER MA
@@ -39403,14 +39419,14 @@ FFFF	<not a character>
 16F07	MIAO LETTER FA
 16F08	MIAO LETTER VA
 16F09	MIAO LETTER VFA
-	* used in Black Yi
+	* used in Hei Yi
 16F0A	MIAO LETTER TA
-	* used for da in Dry Yi
+	* used for da in Gan Yi
 16F0B	MIAO LETTER DA
 16F0C	MIAO LETTER YI TTA
 	* used in Hei Yi
 16F0D	MIAO LETTER YI TA
-	* used for ta in Dry Yi
+	* used for ta in Gan Yi
 16F0E	MIAO LETTER TTA
 16F0F	MIAO LETTER DDA
 16F10	MIAO LETTER NA
@@ -39423,19 +39439,19 @@ FFFF	<not a character>
 16F15	MIAO LETTER NNHA
 16F16	MIAO LETTER LA
 16F17	MIAO LETTER LYA
-	* used in Black Yi
+	* used in Hei Yi
 16F18	MIAO LETTER LHA
 16F19	MIAO LETTER LHYA
-	* used in Black Yi
+	* used in Hei Yi
 16F1A	MIAO LETTER TLHA
 16F1B	MIAO LETTER DLHA
 16F1C	MIAO LETTER TLHYA
 16F1D	MIAO LETTER DLHYA
 16F1E	MIAO LETTER KA
-	* used for ga in Dry Yi
+	* used for ga in Gan Yi
 16F1F	MIAO LETTER GA
 16F20	MIAO LETTER YI KA
-	* used for ka in Dry Yi
+	* used for ka in Gan Yi
 16F21	MIAO LETTER QA
 16F22	MIAO LETTER QGA
 16F23	MIAO LETTER NGA
@@ -39451,44 +39467,44 @@ FFFF	<not a character>
 16F2B	MIAO LETTER DZZA
 16F2C	MIAO LETTER NYA
 16F2D	MIAO LETTER NYHA
+	* used in Bai Yi
 16F2E	MIAO LETTER TSHA
-	* used for dzha in Dry Yi
 16F2F	MIAO LETTER DZHA
 16F30	MIAO LETTER YI TSHA
-	* used for tsha in Dry Yi
+	* used for tsha in Gan Yi
 16F31	MIAO LETTER YI DZHA
 	* used in Hei Yi
 16F32	MIAO LETTER REFORMED TSHA
-@+	* archaic character used in a post-1949 reformed orthography
+@+	* archaic character used before 1949 reformed orthography
 16F33	MIAO LETTER SHA
 16F34	MIAO LETTER SSA
 16F35	MIAO LETTER ZHA
-	* used in Black Yi
+	* used in Hei Yi
 16F36	MIAO LETTER ZSHA
-	* used in Black Yi
+	* used in Hei Yi
 16F37	MIAO LETTER TSA
-	* used for dza in Dry Yi
+	* used for dza in Gan Yi
 16F38	MIAO LETTER DZA
 16F39	MIAO LETTER YI TSA
-	* used for tsa in Dry Yi
+	* used for tsa in Gan Yi
 16F3A	MIAO LETTER SA
 16F3B	MIAO LETTER ZA
 16F3C	MIAO LETTER ZSA
-	* used in Black Yi
+	* used in Hei Yi
 16F3D	MIAO LETTER ZZA
 16F3E	MIAO LETTER ZZSA
-	* used in Black Yi
+	* used in Hei Yi
 16F3F	MIAO LETTER ARCHAIC ZZA
 	* used in Pollard's early orthography
 16F40	MIAO LETTER ZZYA
-	* used in Black Yi
+	* used in Hei Yi
 16F41	MIAO LETTER ZZSYA
-	* used in Black Yi
+	* used in Hei Yi
 16F42	MIAO LETTER WA
 16F43	MIAO LETTER AH
 	* glottal stop
 16F44	MIAO LETTER HHA
-	* used in Black Yi
+	* used in Hei Yi
 16F45	MIAO LETTER BRI
 	* used in Xiaohua Miao
 16F46	MIAO LETTER SYI
@@ -39504,6 +39520,7 @@ FFFF	<not a character>
 @		Modifiers
 16F4F	MIAO SIGN CONSONANT MODIFIER BAR
 	* used in Gan Yi
+	* functions similarly to Indic nuktas
 16F50	MIAO LETTER NASALIZATION
 16F51	MIAO SIGN ASPIRATION
 16F52	MIAO SIGN REFORMED VOICING
@@ -41714,7 +41731,6 @@ FFFF	<not a character>
 	* Consolidated Duployan affix int-r-
 1BC63	DUPLOYAN LETTER NASAL I
 	* primary orientating; invariant direction downwards
-	* Romanian multiplicative number prefix
 	* Pernin im
 	* Consolidated Duployan affix int-r-
 1BC64	DUPLOYAN LETTER NASAL A
@@ -41723,6 +41739,7 @@ FFFF	<not a character>
 	* Perrault vocalic n - an, en, in, un (with accents)
 	* Pernin on
 	* Romanian în
+	* Romanian multiplicative number prefix
 @		Additional nasal vowels
 1BC65	DUPLOYAN LETTER PERNIN AN
 	* written downwards
@@ -45723,12 +45740,13 @@ FFFF	<not a character>
 	= khuam luas
 1E13B	NYIAKENG PUACHUE HMONG SIGN FOR INVERTEBRATE
 	= poos
-@		Punctuation
+@		Repetition mark
 1E13C	NYIAKENG PUACHUE HMONG SIGN XW XW
-	x (thai character maiyamok - 0E46)
-	x (lao ko la - 0EC6)
 	* indicates repetition of a short word or syllable
 	* indicates repetition of a whole phrase or sentence when preceded by a space
+	x (thai character maiyamok - 0E46)
+	x (lao ko la - 0EC6)
+@		Syllable lengthener
 1E13D	NYIAKENG PUACHUE HMONG SYLLABLE LENGTHENER
 	= khu saim
 @		Digits
@@ -45746,8 +45764,8 @@ FFFF	<not a character>
 1E14E	NYIAKENG PUACHUE HMONG LOGOGRAM NYAJ
 	* used to represent the word for money or currency
 1E14F	NYIAKENG PUACHUE HMONG CIRCLED CA
-	x (nyiakeng puachue hmong letter ca - 1E108)
 	* used to indicate ownership
+	x (nyiakeng puachue hmong letter ca - 1E108)
 @@	1E2C0	Wancho	1E2FF
 @		Letters
 1E2C0	WANCHO LETTER AA
@@ -48743,8 +48761,8 @@ FFFF	<not a character>
 	= cellular phone
 	x (mobile phone - 1F4F1)
 1F582	BACK OF ENVELOPE
+	* contrasts with 2709, which shows a seal
 	x (envelope - 2709)
-	* 2709 shows a seal
 1F583	STAMPED ENVELOPE
 	= mail
 1F584	ENVELOPE WITH LIGHTNING
@@ -49372,6 +49390,7 @@ FFFF	<not a character>
 	x (extraterrestrial alien - 1F47D)
 1F6F9	SKATEBOARD
 1F6FA	AUTO RICKSHAW
+	= tuk-tuk, remorque
 @@	1F700	Alchemical Symbols	1F77F
 @		Symbols for Aristotelian elements
 1F700	ALCHEMICAL SYMBOL FOR QUINTESSENCE
@@ -49960,11 +49979,9 @@ FFFF	<not a character>
 1F909	DOWNWARD FACING NOTCHED HOOK
 1F90A	DOWNWARD FACING HOOK WITH DOT
 1F90B	DOWNWARD FACING NOTCHED HOOK WITH DOT
-@		Heart symbols
+@		Colored heart symbols
+@+		For use with emoji. Constitute a set as follows: 2764, 1F499-1F49C, 1F5A4, 1F90D, 1F90E, and 1F9E1.
 1F90D	WHITE HEART
-	x (blue heart - 1F499)
-	x (black heart - 1F5A4)
-	x (orange heart - 1F9E1)
 1F90E	BROWN HEART
 @		Hand symbol
 1F90F	PINCHING HAND
@@ -50462,7 +50479,7 @@ FFFF	<not a character>
 1FA71	ONE-PIECE SWIMSUIT
 1FA72	BRIEFS
 1FA73	SHORTS
-@		Role symbols
+@		Medical symbols
 1FA78	DROP OF BLOOD
 1FA79	ADHESIVE BANDAGE
 1FA7A	STETHOSCOPE

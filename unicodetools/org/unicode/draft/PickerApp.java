@@ -26,7 +26,6 @@ import javax.swing.event.ListDataListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import org.unicode.cldr.draft.CharacterListCompressor;
 import org.unicode.cldr.draft.CharacterListCompressor.Interval;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.CLDRTool;

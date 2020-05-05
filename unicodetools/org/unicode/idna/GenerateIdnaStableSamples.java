@@ -5,7 +5,6 @@ import org.unicode.cldr.util.props.UnicodePropertySymbolTable;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.ToolUnicodeTransformFactory;
-import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeTransform;
 
 import com.ibm.icu.text.UnicodeSet;

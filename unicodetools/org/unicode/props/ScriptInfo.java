@@ -11,6 +11,7 @@ import java.util.Set;
 
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
+import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
@@ -73,6 +74,8 @@ public class ScriptInfo {
     private final UnicodeSet numerics = new UnicodeSet();
     private final UnicodeSet identifierProfile = new UnicodeSet(0, 0x10FFFF);
     private final IdentifierVersionInfo ivi;
+
+    public static ScriptInfo IDENTIFIER_INFO = new ScriptInfo(Settings.latestVersion);
 
 
     private static final EnumSet<Script_Values> ALL_SCRIPTS = EnumSet.allOf(Script_Values.class);
@@ -176,7 +179,7 @@ public class ScriptInfo {
         explicitScripts.remove(Script_Values.Common);
         explicitScripts.remove(Script_Values.Inherited);
         if (explicitScripts.contains(Script_Values.Unknown)) {
-            throw new UnicodePropertyException();
+            throw new UnicodePropertyException("Bad: " + identifier);
         }
         // Note that the above code doesn't minimize alternatives. That is, it does not collapse
         // [[Arab Syrc Thaa]; [Arab Syrc]] to [[Arab Syrc]]
@@ -297,6 +300,11 @@ public class ScriptInfo {
 
     public UnicodeSet getSetWith(String script) {
         return getUnicodeSetContaining((Script_Values) UcdProperty.Script.getEnum(script));
+    }
+
+    public static boolean isMixedScript(String source) {
+        return IDENTIFIER_INFO.setIdentifier(source).isMultiScript();
+        //return getSingleScript(source) == UCD_Types.UNUSED_SCRIPT;
     }
 
     //    private boolean containsWithAlternates(EnumSet<Script_Values> container, EnumSet<Script_Values> containee) {

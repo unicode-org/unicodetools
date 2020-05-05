@@ -1,7 +1,6 @@
 package org.unicode.tools.emoji;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.unicode.cldr.util.With;
@@ -91,7 +90,7 @@ public class GenerateSpecImage {
     }
 
     static UnicodeSetSpanner MOD_SCAN = new UnicodeSetSpanner(EmojiData.MODIFIERS);
-    static UnicodeSetSpanner MAN_WOMAN_SCAN = new UnicodeSetSpanner(Emoji.MAN_OR_WOMAN);
+    static UnicodeSetSpanner MAN_WOMAN_SCAN = new UnicodeSetSpanner(Emoji.MAN_OR_WOMAN_OR_ADULT);
 
     private static int showItem(String single, int i, String result, Target target) {
         String name = getName(result);

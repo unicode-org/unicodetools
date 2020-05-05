@@ -17,6 +17,8 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.cldr.util.Tabber;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
 
@@ -374,16 +376,17 @@ public class ComparePinyin {
         // kMandarin, space,  [A-Z\x{308}]+[1-5] // 3475=HAN4 JI2 JIE2 ZHA3 ZI2
         // kHanyuPinlu, space, [a-z\x{308}]+[1-5]\([0-9]+\) 4E0A=shang4(12308) shang5(392)
 
-        UnicodeMap<Map<String,EnumSet<PinyinSource>>> unihanPinyin = new UnicodeMap();
-        Map<String,Integer> pinyinToOrder = new HashMap();
+        UnicodeMap<Map<String,EnumSet<PinyinSource>>> unihanPinyin = new UnicodeMap<>();
+        Map<String,Integer> pinyinToOrder = new HashMap<>();
         TreeSet<String> pinyinSet = new TreeSet<String>(pinyinSort);
+        IndexUnicodeProperties iup = IndexUnicodeProperties.make(Default.ucd().getVersionInfo());
 
         {
             final Transform<String,String> pinyinNumeric = Transliterator.getInstance("NumericPinyin-Latin;nfc");
 
             // all kHanyuPinlu readings first; then take all kXHC1983; then kHanyuPinyin.
 
-            final UnicodeMap<String> kHanyuPinlu = Default.ucd().getHanValue("kHanyuPinlu");
+            final UnicodeMap<String> kHanyuPinlu = iup.load(UcdProperty.kHanyuPinlu);
             for (final String s : kHanyuPinlu.keySet()) {
                 final String original = kHanyuPinlu.get(s);
                 String source = original.replaceAll("\\([0-9]+\\)", "");
@@ -393,7 +396,7 @@ public class ComparePinyin {
 
             //kXHC1983
             //^[0-9,.*]+:*[a-zx{FC}x{300}x{301}x{304}x{308}x{30C}]+$
-            final UnicodeMap<String> kXHC1983 = Default.ucd().getHanValue("kXHC1983");
+            final UnicodeMap<String> kXHC1983 = iup.load(UcdProperty.kXHC1983);
             for (final String s : kXHC1983.keySet()) {
                 final String original = kXHC1983.get(s);
                 String source = Normalizer.normalize(original, Normalizer.NFC);
@@ -401,7 +404,7 @@ public class ComparePinyin {
                 addAll(s, original, PinyinSource.x, source.split(" "));
             }
 
-            final UnicodeMap<String> kHanyuPinyin = Default.ucd().getHanValue("kHanyuPinyin");
+            final UnicodeMap<String> kHanyuPinyin = iup.load(UcdProperty.kHanyuPinyin);
             for (final String s : kHanyuPinyin.keySet()) {
                 final String original = kHanyuPinyin.get(s);
                 String source = Normalizer.normalize(original, Normalizer.NFC);
@@ -410,7 +413,7 @@ public class ComparePinyin {
                 addAll(s, original, PinyinSource.p, source.split(","));
             }
 
-            final UnicodeMap<String> kMandarin = Default.ucd().getHanValue("kMandarin");
+            final UnicodeMap<String> kMandarin = iup.load(UcdProperty.kMandarin);
             for (final String s : kMandarin.keySet()) {
                 final String original = kMandarin.get(s);
                 String source = original.toLowerCase();

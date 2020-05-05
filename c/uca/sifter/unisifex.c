@@ -29,19 +29,6 @@ static UBool isSifterNonSpacingCombining(UChar32 c) {
     return 0xF8F0 <= c && c <= 0xF8FF;
 }
 
-// Ken: The following tone marks should be both Alphabetic and Diacritic
-// but some of them only have one of those properties, and some have neither
-// (in UCD 11).
-static UBool isSEAsianToneMark(UChar32 c) {
-    return
-        c == 0x1063 || c == 0x1064 ||  // Sgaw Karen tones
-        (0x1069 <= c && c <= 0x106D) ||  // Western Pwo Karen tones
-        (0x1087 <=c && c <= 0x108D) ||  // Shan tones
-        c == 0x108F ||  // Rumai Palaung tone
-        c == 0x109A || c == 0x109B ||  // Khamti tone
-        (0xAA7B <= c && c <= 0xAA7D);  // Pao Karen and Tai Laing tones
-}
-
 static UBool isSpecialCJKIdeograph(UInt32 c) {
     return 0xFA0E <= c && c <= 0xFA29 &&
       (c <= 0xFA0F || c == 0xFA11 || c == 0xFA13 || c == 0xFA14 || c == 0xFA1F ||
@@ -61,44 +48,9 @@ int unisift_IsAlphabetic ( UInt32 c )
             // ("compatibility" but no decompositions) in sift() before
             // testing Alphabetic.
             !isSpecialCJKIdeograph(c) &&
-            // Ken: U+135F ETHIOPIC COMBINING GEMINATION MARK *could* be Alphabetic,
-            // but diacritic length marks typically aren't.
-            // The related marks U+135D..U+135E are not Alphabetic either.
-            c != 0x135F &&
-            // Ken: 16B30..16B36 are all non-spacing combining diacritical marks.
-            // They should not be Other_Alphabetic, but should be Diacritic.
-            !(0x16B30 <= c && c <= 0x16B36)) ||
-        // Ken: These two seem to be clear errors in UCD.
-        // Both are dependent vowels, and should be Other_Alphabetic.
-        // Note that A802 is also missing its Indic_Syllabic_Category value.
-        // Should be Dependent_Vowel, like A8FF.
-        // Coincidentally, it seems to represent the -ai vowel in Sylheti.
-        c == 0xA8FF || c == 0xA802 ||
-        // Ken: These 4 positional tones are the moral equivalent of tone letters,
-        // which are also encoded for Miao, but we have the problem that
-        // the 4 positional tones in the range 16F8F..16F92 are gc=Mn
-        // (and functional a little like format controls in rendering),
-        // while the tone letters 16F93.. 16F9F (used in two other orthographies) are gc=Lm.
-        // All 3 sets are already +Diacritic in UCD, which is correct.
-        // However, the regular tone letters are +Alphabetic,
-        // while the 4 positional tones are not.
-        // 16F8F..16F92 should be added to Other_Alphabetic.
-        (0x16F8F <= c && c <= 0x16F92) ||
-        // Ken: For collation, LEPCHA SIGN RAN needs to get a fully primary weight,
-        // because Lepcha has a full syllabic collation order.
-        // And the syllables with RAN have their own order where they rank higher than
-        // the final consonants, which Lepcha also has. See L2/05-158.
-        // It should be Other_Alphabetic.
-        c == 0x1C36 ||
-        // Ken: Similar to the Lepcha RAN case.
-        // This appears to be some kind of odd mark of a dependent vowel.
-        // It occurs only in a single formation for a symbol -- possibly an abbreviation --
-        // in Shan, but also occurs more generally in Tai Laing.
-        // The DUCET just slots it in with other Myanmar dependent vowels.
-        // And it already has InSC=Vowel_Dependent.
-        // Should also be Other_Alphabetic.
-        c == 0xA9E5 ||
-        isSEAsianToneMark(c);
+            // Ken: Exceptions for gc=Lm extenders to match his sifter.
+            // TODO: Look to modify this behavior for gc=Lm extenders in the future.
+            !(c == 0x1E13C || c == 0x1E13D || c == 0x16B42 || c == 0x16B43));
 }
 
 int unisift_IsCurrency ( UInt32 c )
@@ -123,13 +75,7 @@ int unisift_IsPunctuation ( UInt32 c )
 
 int unisift_IsDiacritic ( UInt32 c )
 {
-    return
-        u_hasBinaryProperty(c, UCHAR_DIACRITIC) ||
-        // See comment about these in unisift_IsAlphabetic().
-        (0x16B30 <= c && c <= 0x16B36) ||
-        // Ken: The following tone marks should be Diacritic but are not (in UCD 11).
-        (0xA700 <= c && c <= 0xA716) ||  // modifier tone letters for Chinese, gc=Sk
-        isSEAsianToneMark(c);
+    return u_hasBinaryProperty(c, UCHAR_DIACRITIC);
 }
 
 int unisift_IsIdeographic ( UInt32 c )

@@ -1078,7 +1078,7 @@ public class WriteCharts implements UCD_Types {
         //        }
         indexFile.println("</p><hr width='50%'><p style='font-size: 70%; text-align: center;'>");
         indexFile.println("UCD: " + Default.ucd().getVersion() + extra);
-        indexFile.println("<br>" + WriteCollationData.getNormalDate() + " <a href='http://www.macchiato.com/' target='_top'>MED</a>");
+        indexFile.println("<br>" + WriteCollationData.getNormalDate() /*+ " <a href='http://www.macchiato.com/' target='_top'>MED</a>"*/);
         indexFile.println("</p></div></body></html>");
         indexFile.close();
     }

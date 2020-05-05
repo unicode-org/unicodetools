@@ -89,9 +89,9 @@ public class GenerateMissingAnnotations {
         Multimap<String,String> orderWordToCps = HashMultimap.create();
         Counter<String> orderCounter = new Counter<>();
 
-        for (Entry<String, Set<String>> entry : EmojiOrder.STD_ORDER.orderingToCharacters.keyValuesSet()) {
+        for (Entry<String, Collection<String>> entry : EmojiOrder.STD_ORDER.orderingToCharacters.asMap().entrySet()) {
             final String orderWords = entry.getKey();
-            final Set<String> cps = entry.getValue();
+            final Set<String> cps = (Set<String>) entry.getValue();
             //System.out.println(orderWords + "\t" + cps);
             for (String orderWord : orderWords.split("[-\\s]+")) {
                 for (String cp : cps) {
