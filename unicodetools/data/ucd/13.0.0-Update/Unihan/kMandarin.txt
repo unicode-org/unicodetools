@@ -21153,7 +21153,7 @@
 8B9A	zàn
 8B9B	yì
 8B9C	dǎng
-8B9D	zhán
+8B9D	zhān
 8B9E	yàn
 8B9F	dú
 8BA0	yán
@@ -40815,3 +40815,4 @@
 2CE7C	xiè
 2CE88	yǐ
 2CE93	chǔ
+30EDD..30EDE	biáng

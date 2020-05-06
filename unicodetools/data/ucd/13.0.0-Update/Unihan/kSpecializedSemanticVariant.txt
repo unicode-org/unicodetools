@@ -144,6 +144,7 @@
 5C09	U+71A8<kFenn
 5C0D	U+5BF9<kMeyerWempe
 5C3F	U+6EBA<kFenn
+5D0B	U+83EF<kHanYu
 5DE4	U+524C<kFenn U+9B23<kFenn
 5E06	U+62DA<kFenn
 5E1A	U+7B92<kFenn
@@ -355,7 +356,7 @@
 83A9	U+6B8D<kMeyerWempe
 83BF	U+523A<kMeyerWempe
 83CC	U+6EFE<kMeyerWempe
-83EF	U+8550<kFenn
+83EF	U+5D0B<kHanYu U+8550<kFenn
 83F8	U+7159
 8457	U+7740<kFenn U+87AB<kFenn
 851E	U+8938<kMeyerWempe

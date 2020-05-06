@@ -268,7 +268,7 @@ public class EmojiData implements EmojiDataSource {
 		    propValue = Binary.valueOf(list.get(2));
 		}
 		for (int cp = codePoint; cp <= codePointEnd; ++cp) {
-		    if (cp == 0x1F9B0) {
+		    if (cp == 0x1FAD7) {
 			int debug = 0;
 		    }
 		    if (propValue == Binary.No) {

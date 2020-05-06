@@ -58,7 +58,7 @@ public class ProposalData {
     private ProposalData() {}
 
     private static ImmutableMultimap<UnicodeSet, String> getProposalToUnicodeSet(UnicodeMap<Set<String>> source) {
-	Map<String,UnicodeSet> _proposalToUnicodeSet = new TreeMap<>();
+	Map<String,UnicodeSet> _proposalToUnicodeSet = new TreeMap<>(Collections.reverseOrder());
 	for (Entry<String, Set<String>> entry : source.entrySet()) {
 	    String codepoint = entry.getKey();
 	    for (String proposal : entry.getValue()) {

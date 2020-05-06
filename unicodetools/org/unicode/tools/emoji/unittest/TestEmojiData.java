@@ -1,6 +1,7 @@
 package org.unicode.tools.emoji.unittest;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -14,6 +15,7 @@ import java.util.TreeSet;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.unittest.TestFmwkPlus;
 import org.unicode.cldr.util.StandardCodes.LstrType;
+import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.cldr.util.Validity;
 import org.unicode.cldr.util.Validity.Status;
 import org.unicode.text.utility.Utility;
@@ -29,10 +31,14 @@ import org.unicode.tools.emoji.EmojiOrder;
 import org.unicode.tools.emoji.GenerateEmojiData;
 
 import com.google.common.base.Splitter;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.CollationElementIterator;
 import com.ibm.icu.text.RuleBasedCollator;
+import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
 
@@ -556,5 +562,39 @@ public class TestEmojiData extends TestFmwkPlus {
                         + " you may need to update Emoji.PROFESSION_OBJECT", e);
             }
         }
+    }
+    public void TestAlphagram() {
+	    final EmojiData released = EmojiData.of(Emoji.VERSION_BETA);
+	    Multimap<String,String> toRgi = TreeMultimap.create();
+	    UnicodeSet discarded = new UnicodeSet();
+	    for (String item : released.getAllEmojiWithoutDefectives()) {
+		String alphagram = getAlphagram(item, released, discarded);
+		toRgi.put(alphagram, item);
+	    }
+	    int counter = 0;
+	    System.out.println();
+	    for ( Entry<String, Collection<String>> entry : toRgi.asMap().entrySet()) {
+		String key = entry.getKey();
+		Collection<String> val = entry.getValue();
+		if (val.size() > 1) {
+		    System.out.println(++counter + ") " + key + " => " + val);
+		}
+	    }
+	    System.out.println("Discarded: " + discarded);
+    }
+
+    static final UnicodeSet TO_DISCARD = new UnicodeSet("[\u200D\uFE0F]");
+    private String getAlphagram(String item, EmojiData released2, UnicodeSet discarded) {
+	int[] cps = CharSequences.codePoints(item);
+	Arrays.sort(cps);
+	StringBuilder sb = new StringBuilder();
+	for (int cp : cps) {
+	    if (TO_DISCARD.contains(cp)) {
+		discarded.add(cp);
+	    } else {
+		sb.appendCodePoint(cp);
+	    }
+	}
+	return sb.toString();
     }
 }

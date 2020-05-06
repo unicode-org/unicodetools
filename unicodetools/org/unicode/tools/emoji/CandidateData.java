@@ -395,7 +395,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 	    int debug = 0;
 	}
 	if (!checkData(this)) {
-	    throw new IllegalArgumentException("Bad Data");
+	    throw new IllegalArgumentException("Bad Data: Check UName values, etc.");
 	}
     }
 

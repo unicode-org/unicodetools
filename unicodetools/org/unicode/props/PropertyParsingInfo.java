@@ -758,7 +758,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
                 value = "Yes";
             } else {
                 value = line.parts[2];
-                assert !value.isEmpty();
+                // The value should not be an empty string.
+                // Exception: NFKC_Casefold does remove some characters by mapping them to nothing.
+                assert !value.isEmpty() || propInfo.property == UcdProperty.NFKC_Casefold;
                 if (propInfo.property == UcdProperty.kMandarin) {
                     if (indexUnicodeProperties.oldVersion) {
                         value = IndexUnicodeProperties.fromNumericPinyin.

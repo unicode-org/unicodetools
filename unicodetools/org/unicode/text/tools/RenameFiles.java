@@ -22,7 +22,7 @@ import com.ibm.icu.util.Output;
 public class RenameFiles {
 
     // First set the source accordingly.
-    private static final Choice choice = Choice.twitter;
+    private static final Choice choice = Choice.emojione;
 
     // Then set PREVIEW_ONLY to true to check that the right changes are done,
     // then to false to do them.
@@ -55,7 +55,7 @@ public class RenameFiles {
                 "samsung_(?<codes>[-_A-Za-z0-9]+)\\.png", 
                 "samsung"),
         emojione(
-                "/Users/markdavis/Downloads/joypixels_72", 
+                "/Users/markdavis/Downloads/joypixels_72",  ///Users/markdavis/Downloads/png_72
                 "^.*.png$",
                 "joypixels_(?<codes>[-_A-Za-z0-9]+)\\.png", 
                 "emojione"),

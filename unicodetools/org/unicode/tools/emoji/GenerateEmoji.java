@@ -617,8 +617,9 @@ public class GenerateEmoji {
 
 	// fix to make the candidate data always only use the beta version; then
 	// we can update without the beta flag
+	CandidateData candidateData = CandidateData.getInstance();
+
 	if (Emoji.IS_BETA) {
-	    CandidateData candidateData = CandidateData.getInstance();
 	    UnicodeSet candChars = candidateData.getAllCharacters();
 	    System.out.println(candChars.size() + "\t" + candChars);
 	    Predicate<String> predicate = SHOW ? Predicates.alwaysFalse() : s -> s.contains(Emoji.TRANSGENDER);
@@ -637,10 +638,10 @@ public class GenerateEmoji {
 		DebugUtilities.debugStringsWhen("•", chars, predicate);
 	    }
 
-	    showCandidateStyle(CandidateStyle.candidate, "emoji-candidates.html", chars);
-	    showCandidateStyle(CandidateStyle.provisional, "emoji-provisional.html",
-		    candidateData.getAllCharacters(Status.Provisional_Candidate));
 	}
+	showCandidateStyle(CandidateStyle.candidate, "emoji-candidates.html", candidateData.getAllCharacters(Status.Draft_Candidate));
+	showCandidateStyle(CandidateStyle.provisional, "emoji-provisional.html",
+		candidateData.getAllCharacters(Status.Provisional_Candidate));
 
 	UnicodeSet onlyNew = 
 		// Emoji.IS_BETA ? UnicodeSet.EMPTY : 
@@ -1789,8 +1790,8 @@ public class GenerateEmoji {
 	}
 
 	public String getCharSources() {
-//	    final ArrayList list = new ArrayList(setCharSource);
-//	    Collections.reverse(list);
+	    //	    final ArrayList list = new ArrayList(setCharSource);
+	    //	    Collections.reverse(list);
 	    return CollectionUtilities.join(setCharSource, "+");
 	}
     }
@@ -3488,13 +3489,14 @@ public class GenerateEmoji {
 		? "Where the last Sample cell is marked with the symbol "
 		+ NOT_NEW + " it indicates that a previously existing character is included, "
 		+ "and only because it has new gender and/or modifier variants.</p>\n"
+		/*
 		+ "<p><b style='background-color:yellow'>Note that certain CLDR names are to be changed after CLDR v36 ships:<ul>"
-		+ "<li>🤱 → person feeding baby</li>"
 		+ "<li>👰 → person with veil</li>"
 		+ "<li>🤵 → person in tuxedo</li>"
 		+ "<li>👲 → person with skullcap</li>"
 		+ "<li>🕴 → levitating business person</li>"
 		+ "</ul></b></p>\n"
+		*/
 		+ "<p><a target='feedback' href='https://unicode.org/reporting.html'>Feedback</a> on the CLDR Short Name, "
 		+ "Keywords, ordering, and category is welcome.</p>"
 		: "";

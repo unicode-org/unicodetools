@@ -8045,3 +8045,101 @@ L2/19-303	Face with X Eyes Emoji Proposal for Unicode 14.0	ESC / Jennifer Daniel
 L2/19-304	Face With Open Eyes and Hand Over Mouth Emoji Proposal for Unicode 14.0	ESC / Jennifer Daniel	2019-08-13
 L2/19-305	Proposal for SUBMARINE Emoji	Fred Benenson, Nazir Agah	2019-08-20
 L2/19-306	Arabic additions for Quranic orthographies	Roozbeh Pournader, Deborah Anderson	2019-09-03
+L2/19-307	Proposal for Emoji: CROW; RAVEN	Jenny Stinehour	2019-09-10
+L2/19-308	Proposal to add 96 place names used ideographs to UAX #45 (revised)	Wang Xieyang	2019-09-16
+L2/19-309	Regarding Proposed Additions to UAX #45	John H. Jenkins	2019-09-13
+L2/19-310	Mirror Ball Emoji Proposal	Emojination / Gero Simone, Theo Schear	2019-09-17
+L2/19-311	Proposal for Emoji: Bubbles	Jay Peters	2019-09-17
+L2/19-312	Proposal for Emoji: CHAINSAW	Bryan Kappa	2019-09-17
+L2/19-313	Proposal to encode an Arabic qaf with dot below	Marijn van Putten, Roozbeh Pournader	2019-09-29
+L2/19-314	Agenda for meeting on Egyptian Hieroglyphs, September 12-13, 2019 (WG2 N5115)	Deborah Anderson	2019-09-24
+L2/19-315	Meeting report on Egyptian Hieroglyphs (WG2 N5116) 	Michel Suignard	2019-09-24
+L2/19-316	Low Battery Emoji Proposal for Unicode 14.0	Jennifer Daniel	2019-09-26
+L2/19-317	Proposal to update some statements about space characters in UAX #14: Unicode Line Breaking Algorithm	Marcel Schneider	2019-09-27
+L2/19-318	Proposal to encode two Balinese punctuation marks	Ben Yang, Aditya Bayu Perdana	2019-09-27
+L2/19-319	Proposal to encode two more Arabic honorifics	Roozbeh Pournader, Mustafa Jibaly	2019-09-30
+L2/19-320	Proposal to add four new Arabic characters for Balochi language	Qazi Rehan	2019-09-30
+L2/19-321	Unihan kJapaneseKun & kJapaneseOn Error Report (revised)	Michel Mariani	2019-11-01
+L2/19-322	UTC #161 Agenda	Lisa Moore	2019-10-07
+L2/19-323	UTC #161 Minutes	Lisa Moore	2019-11-01
+L2/19-324	Recently Closed Action Items (since 2019-07-18)	Rick McGowan	2019-10-03
+L2/19-325	Comments on Public Review Issues (July 23, 2019 - October 6, 2019)	Rick McGowan	2019-10-06
+L2/19-326	Raised Little Finger Emoji Proposal	Jennifer Daniel	2019-10-01
+L2/19-327	Hand with index finger and thumb crossed Emoji Proposal	Jennifer Daniel	2019-10-01
+L2/19-328	Issues with kSpoofingVariant data	William T. Nelson	2019-10-03
+L2/19-329	Proposal to Adjust Identifier Properties (revised)	Asmus Freytag, et al	2019-10-08
+L2/19-330	Proposal for encoding the Toto script	Deborah Anderson	2019-10-03
+L2/19-331	A note on OpenType implementation of Ancient Egyptian hieroglyphic text	Mark-Jan Nederhof	2019-10-03
+L2/19-332	Proposal to encode the Northern Palaeohispanic script	Joan Ferrer i Jané, et al	2019-10-03
+L2/19-333	Proposal to encode the Southern Palaeohispanic script	Joan Ferrer i Jané, et al	2019-10-03
+L2/19-334	Proposal for Emoji: RIVER	Christian Krenek	2019-10-03
+L2/19-335	Proposal for Emoji: VULTURE	Álvaro Flórez Estrada Public School, et al	2019-10-03
+L2/19-336	Person, Woman, and Man feeding baby emojis for Unicode 13.0 (revised)	Jennifer Daniel	2019-10-22
+L2/19-337	Comments on Tibetan DOUBLE SHAY (response to Error report by D. Corbett)	Andrew West, Peter Lofting	2019-10-04
+L2/19-338	Expanding the "Syriac Supplement" U+0860 Block for historical glyphs and marks	Sebastian Kenoro Kiraz, et al	2019-10-04
+L2/19-339	Proposal to encode Bosnian Arabic characters	Denis Moyogo Jacquerye	2019-10-04
+L2/19-340	Proposal to encode Javanese and Sundanese Arabic characters	Denis Moyogo Jacquerye	2019-10-04
+L2/19-341	Comments on proposed kMandarin changes per 3 UTC actions & documents (revised)	Peter Edberg	2019-10-08
+L2/19-342	Summary of Meeting Report on Egyptian Hieroglyphs by Michel Suignard (L2/19-315) and Additional Comments	Deborah Anderson	2019-10-04
+L2/19-343	Recommendations to UTC #161 October 2019 on Script Proposals	Deborah Anderson, et al	2019-10-06
+L2/19-344	SEI Liaison Report	Deborah Anderson	2019-10-04
+L2/19-345	Alternative encodings for Malayalam "nta" (revised)	Liang Hai	2019-10-10
+L2/19-346	On Encoding Policy of Gongche Notations and Upcoming Para-ideographs (tentative)	Wang Yifan	2019-10-05
+L2/19-347	US/Unicode Activity Report for IRG #53 (IRG N2402R, revised)	Ken Lunde	2019-10-14
+L2/19-348	Response to L2/19-345: Alternative encodings for Malayalam "nta"	Cibu C Johny	2019-10-06
+L2/19-349	Proposed Update UAX #31 Unicode Identifier and Pattern Syntax (HTML version)	Mark Davis	2019-10-07
+L2/19-350	Proposed Update UAX #14, Unicode Line Breaking Algorithm (HTML version)	Andy Heninger	2019-10-07
+L2/19-351	Proposed Update UTS #51, Unicode Emoji (HTML version)	Mark Davis, Peter Edberg	2019-10-07
+L2/19-352	Proposed Update UTS #18, Unicode Regular Expressions (HTML version)	Mark Davis, Andy Heninger	2019-10-07
+L2/19-353	Proposed Update UAX #41, Common References for Unicode Standard Annexes (HTML version)	Laurențiu Iancu, Rick McGowan	2019-10-07
+L2/19-354	Proposed Update UAX #50, Unicode Vertical Text Layout (HTML version)	Koi Ishii, Ken Lunde	2019-10-07
+L2/19-355	Proposed Update UAX #24, Unicode Script Property (HTML version)	Ken Whistler	2019-10-07
+L2/19-356	Proposed Update UAX #38, Unicode Han Database (Unihan) (HTML version)	John H. Jenkins, et al	2019-10-07
+L2/19-357	Proposed Update UAX #45, U-source Ideographs (HTML version, Oct 9 Working Draft for UTC review)	John H. Jenkins	2019-10-07
+L2/19-358	Proposed Update UAX #44, Unicode Character Database (HTML version)	Ken Whistler, Laurențiu Iancu	2019-10-07
+L2/19-359	Proposed Update UAX #29, Unicode Text Segmentation (HTML version)	Mark Davis, Christopher Chapman	2019-10-07
+L2/19-360	Proposed Update UAX #15, Unicode Normalization Forms (HTML version)	Ken Whistler	2019-10-07
+L2/19-361	Comments on L2/19-341 (kMandarin)	Jaemin Chung	2019-10-07
+L2/19-362	Proposal to change some kMandarin values to follow 通用规范汉字表	Jaemin Chung	2019-10-07
+L2/19-363	Emoji Subcommittee Report 2019Q4 UTC (revised)	ESC / Mark Davis	2019-10-09
+L2/19-364	Feedback on Proposed Update UTS #18 (revised)	Markus Scherer	2019-10-09
+L2/19-365	Structuring Tai Tham Unicode	Martin Hosken	2019-10-09
+L2/19-366	Ad Hoc report on Egyptian Hieroglyphs (Oct. 7 2019) (revised)	Deborah Anderson	2019-10-25
+L2/19-367	Core spec changes for 2018 Henri Sivonen  docs	Markus Scherer	2019-10-10
+L2/19-368	Draft technical note: Text representation and shaping specification of the Mongolian script	Liang Hai	2019-10-10
+L2/19-369	Han Character Subset for Maximal Starting Repertoire - MSR-4 (MSR-4-Han) (~10MB)	Asmus Freytag	2019-10-14
+L2/19-370	Recommendations for Emoji ZWJ Sequences for multi-skintoned handshake for Unicode 14.0	ESC / Jennifer Daniel	2019-11-12
+L2/19-371	Lotus Emoji	Elnaz Sarbar, Jennifer Daniel	2019-10-23
+L2/19-372	Names for Composition Exclusion Sequences	Asmus Freytag, et al	2019-10-25
+L2/19-373	IRG Meeting #53 Recommendations and Action Items	IRG	2019-10-25
+L2/19-374	Data file format issues	Mark Davis	2019-10-29
+L2/19-375	Proposal for Emoji: Orchid	Cassidy Moody, Sam Balmer	2019-11-05
+L2/19-376	Chapter 2: Remove Comparison of the Advantages of UTFs	Markus Scherer	2019-11-07
+L2/19-377	Recommendations for Emoji ZWJ Sequences for Unicode 14.0, Phase 1: Multi-skintoned Couples	ESC / Jennifer Daniel	2019-11-12
+L2/19-378	Face with Peeking Eye Proposal for Unicode 14.0	Gretchen McCulloch, et al	2019-12-12
+L2/19-379	Proposal for Emoji: CRUTCH	Christian Scheifl, et al / ESC	2019-11-12
+L2/19-380	Mending Heart Emoji Proposal for Unicode 14.0	Jennifer Daniel	2019-11-19
+L2/19-381	Proposal to Encode Missing Japanese Kana	Abraham Gross	2019-11-21
+L2/19-382	Proposal to Encode a Kana Character for Transcription of Late Middle Japanese	Alexander Zapryagaev	2019-11-22
+L2/19-383	Proposal for Emoji - Man nursing baby	Simon Tyszko	2019-11-26
+L2/19-384	Proposal for Emoji Man Feeding Baby	Rune Fogh, Anna Kim Ly	2019-11-26
+L2/19-385	Unihan: Publish single-property files	Markus Scherer	2019-12-02
+L2/19-386	Proposal to change the code chart font for 21 blocks in Unicode Version 14.0 (WG2 N5125)	Ken Lunde	2019-12-04
+L2/19-387	Issues in "IICore Radical-Stroke Chart" (IICoreRSIndex.pdf)	Michel Mariani	2019-12-02
+L2/19-388	New Unihan Database property: kUnihanCore2020 (stand-alone data file here)	Ken Lunde	2019-12-04
+L2/19-389	Smileys for consideration for Unicode 14.0	Jennifer Daniel, Neil Cohn / ESC	2019-12-09
+L2/19-390	Comparison of Unicode Faces and JVL morphemes	Jennifer Daniel, Neil Cohn / ESC	2019-12-09
+L2/19-391	Person with Beard and Woman with Beard emojis for Unicode 14.0	Jennifer Daniel / ESC	2019-12-04
+L2/19-392	Recommendations for Multi-skintoned Emoji Sequences for Unicode 14.0 (stand-alone data file here)	Jennifer Daniel / ESC	2019-12-18
+L2/19-393	Comments about "Arabic additions for Quranic orthographies" proposition	Azzeddine Lazrek	2019-12-04
+L2/19-394	Proposal for new provisional Unihan Database property: kStrange (stand-alone data file here)	Ken Lunde	2019-12-14
+L2/19-395	Additional RGI emoji sequences for Ninja Emoji for Unicode 13.0	Jennifer Daniel / ESC	2019-12-12
+L2/19-396	Saluting-Face Emoji for Unicode 14.0	Jennifer Daniel, Shiraz Fuman	2019-12-11
+L2/19-397	Draft UTR #54, Unicode Mongolian 12.1 Baseline	Ken Whistler	2019-12-11
+L2/19-398	Emoji Subcommittee Report 2020Q1 UTC	Ken Lunde / ESC	2019-12-18
+L2/19-399	Proposal for Emoji: TROLL	Samantha Sunne, Frederick Mostert	2019-12-17
+L2/19-400	Proposal for Emoji: SALUTING FACE	Jay Peters	2019-12-17
+L2/19-401	Proposal to Encode Telugu Sign Nukta	Vinodh Rajan, et al	2019-12-17
+L2/19-402	Proposal to Encode 6 Characters in the Brahmi Block	Vinodh Rajan, Shriramana Sharma	2019-12-18
+L2/19-403	Additional Tangut Glyph Corrections (WG2 N5126)	Andrew West, Viacheslav Zaytsev	2019-12-23
+L2/19-404	IRG #53 Liaison Report	Stephan Hyeonjun Stiller, et al	2019-12-21

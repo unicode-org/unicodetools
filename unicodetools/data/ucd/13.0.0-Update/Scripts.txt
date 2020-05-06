@@ -1,6 +1,6 @@
 # Scripts-13.0.0.txt
-# Date: 2019-11-27, 03:13:39 GMT
-# © 2019 Unicode®, Inc.
+# Date: 2020-01-22, 00:07:43 GMT
+# © 2020 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -89,7 +89,6 @@
 037E          ; Common # Po       GREEK QUESTION MARK
 0385          ; Common # Sk       GREEK DIALYTIKA TONOS
 0387          ; Common # Po       GREEK ANO TELEIA
-0589          ; Common # Po       ARMENIAN FULL STOP
 0605          ; Common # Cf       ARABIC NUMBER MARK ABOVE
 060C          ; Common # Po       ARABIC COMMA
 061B          ; Common # Po       ARABIC SEMICOLON
@@ -622,7 +621,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 E0001         ; Common # Cf       LANGUAGE TAG
 E0020..E007F  ; Common # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 8088
+# Total code points: 8087
 
 # ================================================
 
@@ -776,12 +775,13 @@ FE2E..FE2F    ; Cyrillic # Mn   [2] COMBINING CYRILLIC TITLO LEFT HALF..COMBININ
 0559          ; Armenian # Lm       ARMENIAN MODIFIER LETTER LEFT HALF RING
 055A..055F    ; Armenian # Po   [6] ARMENIAN APOSTROPHE..ARMENIAN ABBREVIATION MARK
 0560..0588    ; Armenian # L&  [41] ARMENIAN SMALL LETTER TURNED AYB..ARMENIAN SMALL LETTER YI WITH STROKE
+0589          ; Armenian # Po       ARMENIAN FULL STOP
 058A          ; Armenian # Pd       ARMENIAN HYPHEN
 058D..058E    ; Armenian # So   [2] RIGHT-FACING ARMENIAN ETERNITY SIGN..LEFT-FACING ARMENIAN ETERNITY SIGN
 058F          ; Armenian # Sc       ARMENIAN DRAM SIGN
 FB13..FB17    ; Armenian # L&   [5] ARMENIAN SMALL LIGATURE MEN NOW..ARMENIAN SMALL LIGATURE MEN XEH
 
-# Total code points: 95
+# Total code points: 96
 
 # ================================================
 

@@ -6540,6 +6540,7 @@
 50D5	slave, servant, I
 50D6	joy, gladness, delight; surname
 50DA	companion, colleague; officials; bureaucracy; a pretty face
+50DB	tipsy reel
 50DD	to revile; to abuse
 50DE	false, counterfeit, bogus
 50E3	assume, usurp
@@ -7556,6 +7557,7 @@
 55E4	laugh at, ridicule, sneer; snort
 55E5	roar, call out, wail; bark, yelp
 55E6	suck
+55E7	gallon
 55E8	an exclamation
 55E9	flute-like musical instrument
 55EA	character used in translation
@@ -9669,6 +9671,7 @@
 62AC	lift, carry
 62AE	to revolve, rotate
 62AF	(Cant.) to grasp, hold
+62B0	to shake (clothes, etc.)
 62B1	embrace, hold in arms, enfold
 62B3	(Cant.) to crush, mash, grind
 62B5	resist, oppose; deny; off-set
@@ -9904,6 +9907,7 @@
 63EF	(Cant.) tight, distended
 63F0	to push in or poke out; a punch; (Cant.) to collide
 63F2	to sort out the stalks used in divination; to fold
+63F3	wipe; estimate
 63F4	aid, assist; lead; cite
 63F5	carry
 63F6	make fun of, ridicule
@@ -10703,6 +10707,7 @@
 686E	cup, glass, tumbler
 686F	table
 6874	raft; drum stick; ridge pole
+6875	small thorny bushes
 6876	pail, bucket, tub; cask, keg
 6877	rafter; malus toringo
 6879	palm
@@ -10922,6 +10927,7 @@
 69E9	generally, approximately
 69EA	generally
 69ED	maple
+69EE	leafless; fish trap
 69F1	firewood for sacrifice
 69F2	type of oak
 69F3	oar, paddle
@@ -11213,6 +11219,7 @@
 6BDF	to pluck, pick, tear
 6BE1	felt; rug, carpet
 6BE7	fur, hair, down; camel hair
+6BE8	to moult
 6BE9	a leather ball for kicking
 6BEA	serge from Tibet
 6BEB	fine hair; measure of length
@@ -11614,6 +11621,7 @@
 6E44	water's edge, shore, bank
 6E45	boil silk
 6E46	(Cant.) sticky, not smooth, slow
+6E49	gentle flow; tranquil
 6E4A	piece together, assemble
 6E4B	river in Shanxi province
 6E4D	rapid water current, rapids
@@ -11721,6 +11729,7 @@
 6EF8	riverbank, shore
 6EF9	the bank of a steam
 6EFA	flow
+6EFD	strong or thick (liquid)
 6EFE	turn, roll, rotate; boil
 6EFF	fill; full, satisfied
 6F01	to fish; seize; pursue; surname
@@ -11902,6 +11911,7 @@
 702C	swift current; rapids
 7030	overflow
 7032	waves, ripples; overflow
+7038	moisten, soak
 7039	to boil; to wash, to cleanse, to soak
 703A	sound
 703C	river in Henan province; flowing
@@ -12160,6 +12170,7 @@
 7216	fire
 721A	bright; fiery
 721B	rotten, spoiled, decayed
+721D	torch; to light
 721F	fire
 7225	simmer, cook over slow fire
 7228	oven, cooking stove; cook
@@ -12213,6 +12224,7 @@
 7266	tail; hair; yak
 7267	tend cattle, shepherd
 7269	thing, substance, creature
+726E	a prop, beam
 726F	cow; bull; ox
 7272	sacrificial animal; animal
 7274	gore, butt; resist
@@ -12672,6 +12684,7 @@
 7565	approximately, roughly; outline
 7566	sections in vegetable farm
 7567	approximately, roughly; outline
+7568	foreign; to repeat
 756A	to take turns; a turn, a time; to repeat
 756B	delineate, painting, picture, drawing; draw
 756C	reclaimed field
@@ -12695,6 +12708,7 @@
 7587	farmland, arable land; category
 7589..758A	repeat, duplicate; repetitious
 758B	roll, bolt of cloth; foot
+758D	eggs
 758E..758F	neglect; careless, lax
 7590	fall, stumble, falter; hindered
 7591	doubt, question, suspect
@@ -20599,6 +20613,7 @@ FA2D	crane
 266CF	buttocks
 266DA	oily
 26716	to stretch, spread
+26761	the side of the body
 267A3	rank; rancid; fetid
 267CC	muscle
 267E4	viands, delicacies
@@ -20701,6 +20716,7 @@ FA2D	crane
 28373	distant; an open carriage
 283B4	vertical pegs of wood used to keep the axle-tree of a cart in its place
 28452	a disciple
+28812	evil spirits or influences
 288A5	(same as 䤍) rotten paste or soybean sauce; to grow mildewed
 288E6	clear; strained
 289DC	a broad hoe, a mattock
@@ -20733,6 +20749,7 @@ FA2D	crane
 29760	spoiled provisions
 297D4	(Cant., vulg.) to eat
 29811	top, head, summit
+298B2	to drive; hasten; navigate
 298D1	(same as U+978D 鞍) saddle; a saddle-like terrain or thing
 2994B	to gallop wildly; (Cant.) stupid
 299A2	to provide for; anxious; danger
@@ -20763,6 +20780,13 @@ FA2D	crane
 2A632	(Cant.) to grin, smile
 2A65B	(Cant.) decayed teeth; tongue-tied
 2A6A9	(Cant.) sound of shouting
+2A6D7	Gongche character he with downward slash
+2A6D8	Gongche character si with downward slash
+2A6D9	Gongche character yi with downward slash
+2A6DA	Gongche character shang with downward slash
+2A6DB	Gongche character che with downward slash
+2A6DC	Gongche character gong with downward slash
+2A6DD	Gongche character fan with downward slash
 2A79D	an icicle
 2A848	used in transliteration
 2A84F	gruel
@@ -20818,6 +20842,7 @@ FA2D	crane
 2B6E2	(archaic) a wren
 2B6F6	a duck-like bird
 2B6F8	a kind of hawk; cuckoo
+2B825	to retire into obscurity
 2B977	conical; a knob
 2B99F	to cut, stick in
 2BA66	thin, flat, poor
@@ -20839,12 +20864,17 @@ FA2D	crane
 2BB25	ignorant, stupid
 2BB28	a knot in wood
 2BB40	(Cant.) phonetic
+2BBAC	a prop, support
 2BCD7	to trample; a pit
 2BD71	(Cant.) penis
 2BE96	creaking
+2BF1B	to take; to carry away
 2BF38	to raise
 2BF6E	to obstruct; shut out; shelter from; keep off; stop; resist
+2C037	to injure; to wound
+2C19B	to poison
 2C261	sap
+2C41A	a wine-jar
 2C461	to see; to look at; to gaze
 2C494	for something hard or bulging to press against the body and cause it discomfort
 2C4F5	over-ripe, over-cooked, worn out
@@ -20859,6 +20889,9 @@ FA2D	crane
 2C9EF	a pair of balances
 2CABF	a square meter; one hundredth of a 公畝
 2CBCE	to fall in ruins; to collapse
+2CC03	fine rain; drizzle
+2CC9C	to eat much; to distend by eating
+2CCF2	a bare-backed horse
 2CE23	to soar
 2CE33	soap
 2D016	manage, control; thousandth part of tael

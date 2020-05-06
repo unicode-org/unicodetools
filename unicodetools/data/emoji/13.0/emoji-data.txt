@@ -422,6 +422,7 @@
 1F9BB         ; Emoji_Modifier_Base  # E12.1  [1] (🦻)       ear with hearing aid
 1F9CD..1F9CF  ; Emoji_Modifier_Base  # E12.1  [3] (🧍..🧏)    person standing..deaf person
 1F9D1..1F9DD  ; Emoji_Modifier_Base  # E5.0  [13] (🧑..🧝)    person..elf
+1F977 ; Emoji_Modifier_Base # ninja
 
 # Total elements: 121
 
@@ -760,7 +761,8 @@ E0020..E007F  ; Emoji_Component      # E0.0  [96] (󠀠..󠁿)      tag space..c
 1FAC0..1FAC2  ; Extended_Pictographic# E13.0  [3] (🫀..🫂)    anatomical heart..people hugging
 1FAC3..1FACF  ; Extended_Pictographic# E0.0  [13] (🫃..🫏)    <reserved-1FAC3>..<reserved-1FACF>
 1FAD0..1FAD6  ; Extended_Pictographic# E13.0  [7] (🫐..🫖)    blueberries..teapot
-1FAD7..1FFFD  ; Extended_Pictographic# E0.0[1319] (🫗..🿽)    <reserved-1FAD7>..<reserved-1FFFD>
+1FAD7..1FAFF  ; Extended_Pictographic# E0.0[1319] (🫗..?)    <reserved-1FAD7>..?
+1FC00..1FFFD  ; Extended_Pictographic# E0.0[1319] (?..🿽)    ?..<reserved-1FFFD>
 
 # Total elements: 3793
 
