@@ -1,7 +1,7 @@
 XML Representation of Unicode 13.0.0 UCD
 
 
-© 2019 Unicode®, Inc.
+© 2020 Unicode®, Inc.
 For terms of use, see http://www.unicode.org/terms_of_use.html
 
 
@@ -19,9 +19,9 @@ the archive:
 
                     flat         grouped
 
-no Unihan data       912 KB          564 KB
+no Unihan data       936 KB          568 KB
 Unihan data only   6,116 KB        6,124 KB
-complete UCD       7,964 KB        6,648 KB
+complete UCD       8,024 KB        6,652 KB
 
 The flat versions do not use the group mechanism. The grouped versions
 use the group mechanism, with groups corresponding approximately to

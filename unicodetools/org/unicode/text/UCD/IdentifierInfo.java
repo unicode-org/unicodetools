@@ -982,6 +982,18 @@ public class IdentifierInfo {
 		    + "\n#"
 		    + "\n# Any missing code points have the " + propName + " value Not_Character");
 
+            out2.println("#\n"
+                    + "# For the purpose of regular expressions, the property " + propName + " is defined as\n"
+                    + "# mapping each code point to a set of enumerated values.\n"
+                    + "# The short name of " + propName + " is the same as the long name.\n"
+                    + "# The possible values are:\n"
+                    + "#   Not_Character, Deprecated, Default_Ignorable, Not_NFKC, Not_XID,\n"
+                    + "#   Exclusion, Obsolete, Technical, Uncommon_Use, Limited_Use, Inclusion, Recommended\n"
+                    + "# The short name of each value is the same as its long name.\n"
+                    + "# The default property value for all Unicode code points U+0000..U+10FFFF\n"
+                    + "# not mentioned in this data file is Not_Character.\n"
+                    + "# As usual, sets are unordered, with no duplicate values.\n");
+
 	    bf2.setValueSource((new UnicodeProperty.UnicodeMapProperty() {
 	    }).set(tempMap).setMain(propName, "IDT",
 		    UnicodeProperty.EXTENDED_MISC, "1.0"));
@@ -1029,6 +1041,16 @@ public class IdentifierInfo {
 		    + "\n# Field 1: Identifier_Status value (see Table 1 of http://www.unicode.org/reports/tr39)"
 		    + "\n#"
 		    + "\n# Any missing code points have the " + propName + " value Restricted");
+
+	    out2.println("#\n"
+	            + "# For the purpose of regular expressions, the property " + propName + " is defined as\n"
+	            + "# an enumerated property of code points.\n"
+	            + "# The short name of " + propName + " is the same as the long name.\n"
+                    + "# The possible values are:\n"
+                    + "#   Allowed, Restricted\n"
+                    + "# The short name of each value is the same as its long name.\n"
+                    + "# The default property value for all Unicode code points U+0000..U+10FFFF\n"
+                    + "# not mentioned in this data file is Restricted.\n");
 
 	    bf2.setValueSource((new UnicodeProperty.UnicodeMapProperty() {
 	    }).set(tempMap).setMain(propName, "IDS",

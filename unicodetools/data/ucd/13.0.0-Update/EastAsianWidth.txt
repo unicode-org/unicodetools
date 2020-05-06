@@ -1,6 +1,6 @@
 # EastAsianWidth-13.0.0.txt
-# Date: 2019-10-03, 15:58:51 GMT [KW, LI]
-# © 2019 Unicode®, Inc.
+# Date: 2029-01-21, 18:14:00 GMT [KW, LI]
+# © 2020 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -9,7 +9,7 @@
 #
 # East_Asian_Width Property
 #
-# This file is an informative contributory data file in the
+# This file is a normative contributory data file in the
 # Unicode Character Database.
 #
 # The format is two fields separated by a semicolon.

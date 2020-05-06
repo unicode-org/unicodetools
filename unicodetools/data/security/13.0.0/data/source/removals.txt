@@ -746,3 +746,13 @@ A7A0..A7A9 ; Obsolete # obsolete Latvian letters
 
 # Corbett
 1B002..1B11E; Obsolete # hentaigana
+
+# Unicode 13 L2/20-052 Corbett & Pournader
+0D04; Technical Obsolete
+0D81; Technical
+1ABF; Technical
+1AC0; Technical
+A7F5; Obsolete
+A7F6; Obsolete
+AB68; Technical
+

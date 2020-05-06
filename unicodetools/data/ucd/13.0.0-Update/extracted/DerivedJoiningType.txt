@@ -1,6 +1,6 @@
 # DerivedJoiningType-13.0.0.txt
-# Date: 2019-10-21, 14:30:32 GMT
-# © 2019 Unicode®, Inc.
+# Date: 2020-01-21, 07:36:28 GMT
+# © 2020 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -144,6 +144,7 @@ A840..A871    ; D # Lo  [50] PHAGS-PA LETTER KA..PHAGS-PA SUBJOINED LETTER RA
 0846..0847    ; R # Lo   [2] MANDAIC LETTER AZ..MANDAIC LETTER IT
 0849          ; R # Lo       MANDAIC LETTER AKSA
 0854          ; R # Lo       MANDAIC LETTER ASH
+0856..0858    ; R # Lo   [3] MANDAIC LETTER DUSHENNA..MANDAIC LETTER AIN
 0867          ; R # Lo       SYRIAC LETTER MALAYALAM RA
 0869..086A    ; R # Lo   [2] SYRIAC LETTER MALAYALAM LLLA..SYRIAC LETTER MALAYALAM SSA
 08AA..08AC    ; R # Lo   [3] ARABIC LETTER REH WITH LOOP..ARABIC LETTER ROHINGYA YEH
@@ -174,7 +175,7 @@ A840..A871    ; D # Lo  [50] PHAGS-PA LETTER KA..PHAGS-PA SUBJOINED LETTER RA
 10FC2..10FC3  ; R # Lo   [2] CHORASMIAN LETTER RESH..CHORASMIAN LETTER SHIN
 10FC9         ; R # No       CHORASMIAN NUMBER TEN
 
-# Total code points: 127
+# Total code points: 130
 
 # ================================================
 

@@ -881,6 +881,7 @@ E_Base  Emoji characters listed as Emoji_Modifier_Base=Yes in emoji-data.txt
 	}
 
 	if (compositeVersion >= 0x040000) {
+	    // Word_Break - auxiliary/WordBreakProperty.txt
 	    final UnicodeMap<String> unicodeMap = new UnicodeMap<String>();
 	    unicodeMap.setErrorOnReset(true); // disallow multiple values for code point
 
@@ -956,6 +957,14 @@ U+FE13 ( ︓ ) PRESENTATION FORM FOR VERTICAL COLON
 U+FE55 ( ﹕ ) SMALL COLON
 U+FF1A ( ： ) FULLWIDTH COLON
 	     */
+
+	    // From the Unicode 13 UAX #29 update approved at UTC #162 2020-jan.
+	    unicodeMap.putAll(0x02E5, 0x02EB, "ALetter");
+            unicodeMap.put(0x055A, "ALetter");
+            unicodeMap.put(0x058A, "ALetter");
+            unicodeMap.putAll(0xA708, 0xA716, "ALetter");
+	    unicodeMap.put(0x055F, "MidLetter");
+
 	    /*
 	     * 0387 ( · ) GREEK ANO TELEIA FE13 ( ︓ ) PRESENTATION FORM FOR
 	     * VERTICAL COLON FE55 ( ﹕ ) SMALL COLON FF1A ( ： ) FULLWIDTH COLON

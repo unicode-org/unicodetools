@@ -1,6 +1,6 @@
 # ScriptExtensions-13.0.0.txt
-# Date: 2019-12-13, 00:40:00 GMT [RP]
-# © 2019 Unicode®, Inc.
+# Date: 2020-01-22, 00:07:43 GMT
+# © 2020 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -154,14 +154,6 @@ FDFD          ; Arab Thaa # So       ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHE
 
 # ================================================
 
-# Script_Extensions=Armn Geor
-
-0589          ; Armn Geor # Po       ARMENIAN FULL STOP
-
-# Total code points: 1
-
-# ================================================
-
 # Script_Extensions=Beng Deva
 
 1CD5..1CD6    ; Beng Deva # Mn   [2] VEDIC TONE YAJURVEDIC AGGRAVATED INDEPENDENT SVARITA..VEDIC TONE YAJURVEDIC INDEPENDENT SVARITA
@@ -223,6 +215,14 @@ A66F          ; Cyrl Glag # Mn       COMBINING CYRILLIC VZMET
 # Script_Extensions=Cyrl Perm
 
 0483          ; Cyrl Perm # Mn       COMBINING CYRILLIC TITLO
+
+# Total code points: 1
+
+# ================================================
+
+# Script_Extensions=Cyrl Syrc
+
+1DF8          ; Cyrl Syrc # Mn       COMBINING DOT ABOVE LEFT
 
 # Total code points: 1
 

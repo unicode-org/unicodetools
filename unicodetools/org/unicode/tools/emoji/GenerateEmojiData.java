@@ -129,7 +129,7 @@ public class GenerateEmojiData {
 	    return zwjType;
 	}
     }
-    
+
     public static <T> void printData() throws IOException {
 	printData(EmojiDataSourceCombined.EMOJI_DATA);
     }
@@ -240,7 +240,12 @@ public class GenerateEmojiData {
 		    prefix13 + "Emoji_Tag_Sequence",
 		    prefix13 + "Emoji_Modifier_Sequence");
 	    int width = maxLength(type_fields);
-	    showTypeFieldsMessage(out, type_fields);
+	    showTypeFieldsMessage(out, type_fields, "#\n"
+		    + "# For the purpose of regular expressions, the property RGI_Emoji is defined as\n"
+		    + "# a binary property of strings corresponding to ED-27 in UTS #51 Unicode Emoji.\n"
+		    + "# That is, it is the union of the above properties plus RGI_Emoji_ZWJ_Sequence,\n"
+		    + "# whose data is in emoji-zwj-sequences.txt.\n"
+		    + "# The short name of RGI_Emoji is the same as the long name.\n");
 
 	    printer.show(out, "Basic_Emoji", null, width, 14, 
 		    emojiDataSource.getBasicSequences(), true, false, true);
@@ -252,12 +257,12 @@ public class GenerateEmojiData {
 	    printer.show(out, prefix13 + "Emoji_Tag_Sequence",
 		    "See Annex C of TR51 for more information.",  width, 14, 
 		    emojiDataSource.getTagSequences(), true, false, true);
-	    
+
 	    // START separate out nonRGI for L2/19-340
 	    UnicodeSet rawModifierSequences = emojiDataSource.getModifierSequences();
 	    // separate out the sequences
 	    UnicodeSet rgiModifierSequences = new UnicodeSet();
-	    
+
 	    rawModifierSequences.forEach(x -> {
 		if (emojiMultiPersonGroupings.containsSome(x) && !HOLDING_HANDS.containsSome(x)) {
 		    nonRgiSequences.add(x);
@@ -289,7 +294,7 @@ public class GenerateEmojiData {
 	    int width = maxLength(type_fields);
 	    UnicodeSet nonRgiZwjSequences = new UnicodeSet();
 
-	    showTypeFieldsMessage(out, type_fields);
+	    showTypeFieldsMessage(out, type_fields, null);
 	    UnicodeMap<String> types = new UnicodeMap<>();
 	    for (String s : emojiDataSource.getZwjSequencesNormal()) {
 		if (s.contains("👨‍🤝‍👨")) {
@@ -338,7 +343,7 @@ public class GenerateEmojiData {
 		    true);
 	    printer.show(out, REZS, "Other", width, 44, types.getSet("other"), false, false,
 		    true);
-	    
+
 	    printer.show(outNonRgi, REZS, "Non-RGI", width, 44, nonRgiZwjSequences, false, false,
 		    true);
 
@@ -371,7 +376,7 @@ public class GenerateEmojiData {
 		List<String> type_fields = Arrays.asList("Emoji_Flag_Base", "Emoji_Gender_Base", "Emoji_Hair_Base",
 			"Emoji_Direction_Base");
 		int width = maxLength(type_fields);
-		showTypeFieldsMessage(out, type_fields);
+		showTypeFieldsMessage(out, type_fields, null);
 
 		printer.show(out, "Emoji_Flag_Base", null, width, 6, flagBase, false, true, false);
 		printer.show(out, "Emoji_Gender_Base", null, width, 6, genderBase, false, true, false);
@@ -394,7 +399,7 @@ public class GenerateEmojiData {
 	}
 
 	// generate emoji-test
-	
+
 	// HACK Exclude the emojiMultiPersonGroupings
 	UnicodeSet temp = new UnicodeSet();
 	for (String s : EmojiData.EMOJI_DATA.getSortingChars()) {
@@ -409,7 +414,7 @@ public class GenerateEmojiData {
 	    temp.add(s);
 	}
 	temp.freeze();
-	
+
 	System.out.println("Unlike the other data files, the test file doesn't use CandidateData.\n"
 		+ "Instead, it needs to have the other data files built for the version, including the emoji ordering.");
 	GenerateEmojiTestFile.showLines(EmojiOrder.STD_ORDER, temp, Target.propFile, OUTPUT_DIR);
@@ -442,7 +447,7 @@ public class GenerateEmojiData {
 	return "(" + (age == null ? Emoji.VERSION_BETA.getVersionString(2, 2) : age.getShortName()) + ") " + name;
     }
 
-    private static void showTypeFieldsMessage(Writer out, Collection<String> type_fields) throws IOException {
+    private static void showTypeFieldsMessage(Writer out, Collection<String> type_fields, String extraMessage) throws IOException {
 	out.write("# Format:\n");
 	out.write("#   code_point(s) ; type_field ; description # comments \n");
 	out.write("# Fields:\n");
@@ -455,6 +460,17 @@ public class GenerateEmojiData {
 		+ "#     The type_field is a convenience for parsing the emoji sequence files, "
 		+ "and is not intended to be maintained as a property.\n");
 	out.write("#   short name: CLDR short name of sequence; characters may be escaped with \\x{hex}.\n");
+
+	out.write("#\n"
+		+ "# For the purpose of regular expressions, " + 
+		(type_fields.size() != 1 ? "each of the type fields" : "the above type field")
+		+ " defines the name of\n"
+		+ "# a binary property of strings. The short name of "
+		+ (type_fields.size() != 1 ? "each" : "the")
+		+ " property is the same as the long name.\n");
+	if (extraMessage != null) {
+	    out.write(extraMessage);
+	}
 	out.write(ORDERING_NOTE);
 	//		if (type_fields.contains("Emoji_ZWJ_Sequence")) {
 	//			out.write("#\n" + "# In display and processing, sequences should be supported both with and without FE0F."
@@ -647,40 +663,40 @@ public class GenerateEmojiData {
 
     // ##############################3
     enum MyOptions {
-        Version(new Params().setMatch("\\d+(\\.\\d++)")), // .setHelp("version number")
-        show(new Params().setHelp("showExtraInfo")),
-        ;
+	Version(new Params().setMatch("\\d+(\\.\\d++)")), // .setHelp("version number")
+	show(new Params().setHelp("showExtraInfo")),
+	;
 
-        // BOILERPLATE TO COPY
-        final Option option;
+	// BOILERPLATE TO COPY
+	final Option option;
 
-        private MyOptions(Params params) {
-            option = new Option(this, params);
-        }
+	private MyOptions(Params params) {
+	    option = new Option(this, params);
+	}
 
-        private static Options myOptions = new Options();
-        static {
-            for (MyOptions option : MyOptions.values()) {
-                myOptions.add(option, option.option);
-            }
-        }
+	private static Options myOptions = new Options();
+	static {
+	    for (MyOptions option : MyOptions.values()) {
+		myOptions.add(option, option.option);
+	    }
+	}
 
-        private static Set<String> parse(String[] args, boolean showArguments) {
-            return myOptions.parse(MyOptions.values()[0], args, true);
-        }
+	private static Set<String> parse(String[] args, boolean showArguments) {
+	    return myOptions.parse(MyOptions.values()[0], args, true);
+	}
     }
 
     public static void main(String[] args) throws IOException {
-        MyOptions.parse(args, true);
-        if (MyOptions.show.option.doesOccur()) {
-            showExtraInfo();
-            return;
-        }
-        EmojiDataSource emojiDataSource = MyOptions.Version.option.doesOccur() 
-        	? EmojiData.of(VersionInfo.getInstance(MyOptions.Version.option.getValue()))
-        	: EmojiDataSourceCombined.EMOJI_DATA_BETA
-        	;
-	printData(emojiDataSource);
+	MyOptions.parse(args, true);
+	if (MyOptions.show.option.doesOccur()) {
+	    showExtraInfo();
+	    return;
+	}
+	EmojiDataSource emojiDataSource = MyOptions.Version.option.doesOccur() 
+		? EmojiData.of(VersionInfo.getInstance(MyOptions.Version.option.getValue()))
+			: EmojiDataSourceCombined.EMOJI_DATA_BETA
+			;
+		printData(emojiDataSource);
     }
 
     private static void showExtraInfo() {
