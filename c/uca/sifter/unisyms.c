@@ -1,8 +1,8 @@
-// © 2018 and later: Unicode, Inc. and others.
+// © 2019 and later: Unicode, Inc. and others.
 // License & terms of use: http://www.unicode.org/copyright.html
 /*
 **      Unilib
-**      Copyright 2018
+**      Copyright 2019
 **      Ken Whistler, All rights reserved.
 */
 
@@ -32,6 +32,8 @@
  *               for Thai and Lao contractions.
  *   2018-Oct-15 Added 4 secondary weight symbols for Wancho tones.
  *   2018-Oct-16 Code warning removals.
+ *   2019-Oct-04 Added 2 secondary weight symbols for Vietnamese reading marks.
+ *               Other adjustments for UCA 13.0.
  */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -112,7 +114,7 @@ extern char *GetUnidataFileName ( void );
  * NUMSECONDSYMS and the following tables needs to be revisited whenever
  * any new NSM is added or reordered.
  */
-#define NUMSECONDSYMS (251)
+#define NUMSECONDSYMS (253)
 
 static const char *tertSyms[NUMTERTSYMS] =
                    { "<RES-1>",
@@ -652,6 +654,8 @@ static const char *secondSyms[NUMSECONDSYMS] = {
 "<D302D>", /* ideographic centering tone mark*/
 "<D302E>", /* Hangul single dot tone mark */
 "<D302F>", /* Hangul double dot tone mark*/
+"<D16FF0>", /* Vietnamese reading mark ca */
+"<D16FF1>", /* Vietnamese reading mark nhay */
 
 "<D20D0>", /* left harpoon above */
 "<D20D1>", /* right harpoon above */
@@ -845,7 +849,7 @@ static utf32char secondSymVals[NUMSECONDSYMS] = {
 /* Wancho */
     0x1E2EC, 0x1E2ED, 0x1E2EE, 0x1E2EF,
 /* CJK */
-    0x302A, 0x302B, 0x302C, 0x302D, 0x302E, 0x302F,
+    0x302A, 0x302B, 0x302C, 0x302D, 0x302E, 0x302F, 0x16FF0, 0x16FF1,
 /* Symbols */
     0x20D0, 0x20D1, /* 0x20D2,*/ 0x20D3, 0x20D4, 0x20D5, 0x20D6, 0x20D7, 
     /* 0x20D8, 0x20D9, 0x20DA,*/ 0x20DB, 0x20DC, 
@@ -1019,6 +1023,7 @@ char localbuf[120];
     fputs ( "collating-symbol <SD7B0>..<SD7FB> % Hangul Jamo\n", fd );
     fputs ( "collating-symbol <RFB00>          % Symbol for first element of computed weights for Tangut ideographs and components\n", fd );
     fputs ( "collating-symbol <RFB01>          % Symbol for first element of computed weights for Nushu ideographs\n", fd );
+    fputs ( "collating-symbol <RFB02>          % Symbol for first element of computed weights for Khitan Small Script\n", fd );
     fputs ( "collating-symbol <RFB40>..<RFB41> % Symbols for first element of computed weights for core Han unified ideographs\n", fd );
     fputs ( "collating-symbol <RFB80>          % Symbol for first element of computed weights for Han unified ideographs Ext-A\n", fd );
     fputs ( "collating-symbol <RFB84>..<RFB85> % Symbols for first element of computed weights for Han unified ideographs Ext-B, ...\n", fd );
@@ -1031,9 +1036,9 @@ char localbuf[120];
     fputs ( "collating-symbol <S1B000>..<S1BCAF> % Alphabetics and symbols from SMP\n", fd );
     fputs ( "collating-symbol <S1D000>..<S1D37F> % Symbols from SMP\n", fd );
     fputs ( "collating-symbol <S1D800>..<S1DA8B> % Sutton SignWriting\n", fd );
-    fputs ( "collating-symbol <S1E800>..<S1E95F> % Alphabetics from SMP\n", fd );
+    fputs ( "collating-symbol <S1E000>..<S1E95F> % Alphabetics from SMP\n", fd );
     fputs ( "collating-symbol <S1EC70>..<S1EEFF> % Symbols from SMP\n", fd );
-    fputs ( "collating-symbol <S1F000>..<S1FAFF> % Symbols from SMP\n\n", fd );
+    fputs ( "collating-symbol <S1F000>..<S1FBFF> % Symbols from SMP\n\n", fd );
     fputs ( "collating-symbol <SFFFF> % Guaranteed largest symbol value, used as a special fourth-level collating symbol\n\n", fd );
     fputs ( "% Keep <SFFFF> at the end of this list.\n\n", fd );
 #ifdef NOTDEF
@@ -2580,6 +2585,7 @@ void unisift_PrintSymWtTree ( FILE *fd )
     unisift_PrintSymWtTreeP ( symwtTreeRoot, fd );
     fputs ( "<RFB00> % Symbol for first element of computed weights for Tangut ideographs\n", fd );
     fputs ( "<RFB01> % Symbol for first element of computed weights for Nushu ideographs\n", fd );
+    fputs ( "<RFB02> % Symbol for first element of computed weights for Khitan Small Script\n", fd );
     fputs ( "<RFB40>..<RFB41> % Symbols for first element of computed weights for core Han unified ideographs\n", fd );
     fputs ( "<RFB80> % Symbol for first element of computed weights for Han unified ideographs Ext-A\n", fd );
     fputs ( "<RFB84>..<RFB85> % Symbols for first element of computed weights for Han unified ideographs Ext-B, ...\n", fd );

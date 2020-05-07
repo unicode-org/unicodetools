@@ -2,7 +2,7 @@
 // License & terms of use: http://www.unicode.org/copyright.html
 /*
 **      Unilib
-**      Copyright 2019
+**      Copyright 2020
 **      Ken Whistler, All rights reserved.
 */
 
@@ -32,6 +32,10 @@
  *   2018-Oct-16 Update kana handling for Small Kana Extensions block.
  *               Code warning removals.
  *   2019-Jan-25 Update copyright year to 2019 for Unicode 12.0.
+ *   2019-Mar-11 Updates for Unicode 12.1.
+ *   2019-Oct-05 Updates for Unicode 13.0.
+ *   2020-Jan-28 Tweaked isAlphabeticExceiption for 16FF0, 16FF1.
+ *               Updated copyright year to 2020 for Unicode 13.0.
  */
 
 /*
@@ -156,15 +160,15 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 12.0.0d3, 2019-01-25\n";
+static char versionString[] = "Sifter version 13.0.0d2, 2020-01-28\n";
 
-static char unidatafilename[] = "unidata-12.0.0.txt";
-static char allkeysfilename[] = "allkeys-12.0.0.txt";
-static char decompsfilename[] = "decomps-12.0.0.txt";
+static char unidatafilename[] = "unidata-13.0.0.txt";
+static char allkeysfilename[] = "allkeys-13.0.0.txt";
+static char decompsfilename[] = "decomps-13.0.0.txt";
 
-static char versionstring[] = "@version 12.0.0\n\n";
+static char versionstring[] = "@version 13.0.0\n\n";
 
-#define COPYRIGHTYEAR (2019)
+#define COPYRIGHTYEAR (2020)
 
 #define defaultInfile "unidata.col"
 
@@ -256,11 +260,11 @@ int digitsInitialized;
  */
 
 #define CJK_URO_FIRST  (0x4E00)
-#define CJK_URO_LAST   (0x9FEF)
+#define CJK_URO_LAST   (0x9FFC)
 #define CJK_EXTA_FIRST (0x3400)
-#define CJK_EXTA_LAST  (0x4DB5)
+#define CJK_EXTA_LAST  (0x4DBF)
 #define CJK_EXTB_FIRST (0x20000)
-#define CJK_EXTB_LAST  (0x2A6D6)
+#define CJK_EXTB_LAST  (0x2A6DD)
 #define CJK_EXTC_FIRST (0x2A700)
 #define CJK_EXTC_LAST  (0x2B734)
 #define CJK_EXTD_FIRST (0x2B740)
@@ -269,6 +273,8 @@ int digitsInitialized;
 #define CJK_EXTE_LAST  (0x2CEA1)
 #define CJK_EXTF_FIRST (0x2CEB0)
 #define CJK_EXTF_LAST  (0x2EBE0)
+#define CJK_EXTG_FIRST (0x30000)
+#define CJK_EXTG_LAST  (0x3134A)
 
 /*
  * Constants defining other ideographic ranges for implicit weights.
@@ -277,7 +283,11 @@ int digitsInitialized;
 #define TANGUT_FIRST      (0x17000)
 #define TANGUT_LAST       (0x187F7)
 #define TANGUT_COMP_FIRST (0x18800)
-#define TANGUT_COMP_LAST  (0x18AF2)
+#define TANGUT_COMP_LAST  (0x18AFF)
+#define KHITAN_FIRST      (0x18B00)
+#define KHITAN_LAST       (0x18CD5)
+#define TANGUT_SUP_FIRST  (0x18D00)
+#define TANGUT_SUP_LAST   (0x18D08)
 #define NUSHU_FIRST       (0x1B170)
 #define NUSHU_LAST        (0x1B2FB)
 
@@ -443,7 +453,7 @@ WALNUTPTR getSiftDataPtr ( UInt32 i )
         return ( &handata );
     }
     /* 
-     * For now, treat Tangut & Nushu equivalently to Han data
+     * For now, treat Tangut, Khitan & Nushu equivalently to Han data
      * These are not given explicit weights in the table,
      * as for Han, but instead get marked for implicit
      * weighting.
@@ -461,6 +471,22 @@ WALNUTPTR getSiftDataPtr ( UInt32 i )
         return ( &(planes01[i] ) );
     }
     else if ( i <= TANGUT_COMP_LAST )
+    {
+        return ( &handata );
+    }
+    else if ( i < KHITAN_FIRST )
+    {
+        return ( &(planes01[i] ) );
+    }
+    else if ( i <= KHITAN_LAST )
+    {
+        return ( &handata );
+    }
+    else if ( i < TANGUT_SUP_FIRST )
+    {
+        return ( &(planes01[i] ) );
+    }
+    else if ( i <= TANGUT_SUP_LAST )
     {
         return ( &handata );
     }
@@ -499,6 +525,10 @@ WALNUTPTR getSiftDataPtr ( UInt32 i )
     else if ( ( i >= 0x2F800 ) && ( i <= 0x2FFFF ) )
     {
         return ( &(plane2[i - 0x2F800] ) );
+    }
+    else if ( i <= CJK_EXTG_LAST )
+    {
+        return ( &handata );
     }
     else if ( ( i >= 0xE0000 ) && ( i <= 0xE01FF ) )
     {
@@ -558,13 +588,15 @@ char localbuf[10];
              ( ( c >= CJK_EXTC_FIRST ) && ( c <= CJK_EXTC_LAST ) ) ||
              ( ( c >= CJK_EXTD_FIRST ) && ( c <= CJK_EXTD_LAST ) ) ||
              ( ( c >= CJK_EXTE_FIRST ) && ( c <= CJK_EXTE_LAST ) ) ||
-             ( ( c >= CJK_EXTF_FIRST ) && ( c <= CJK_EXTF_LAST ) ) )
+             ( ( c >= CJK_EXTF_FIRST ) && ( c <= CJK_EXTF_LAST ) ) ||
+             ( ( c >= CJK_EXTG_FIRST ) && ( c <= CJK_EXTG_LAST ) ) )
         {
             sprintf ( localbuf, "HAN%04X", c );
             strcpy ( dp, localbuf );
         }
         else if ( ( ( c >= TANGUT_FIRST ) && ( c <= TANGUT_LAST ) ) ||
-                    ( ( c >= TANGUT_COMP_FIRST ) && ( c <= TANGUT_COMP_LAST ) ) )
+                    ( ( c >= TANGUT_COMP_FIRST ) && ( c <= TANGUT_COMP_LAST ) ) ||
+                    ( ( c >= TANGUT_SUP_FIRST ) && ( c <= TANGUT_SUP_LAST ) ) )
         {
             sprintf ( localbuf, "TANGUT%04X", c );
             strcpy ( dp, localbuf );
@@ -572,6 +604,11 @@ char localbuf[10];
         else if ( ( c >= NUSHU_FIRST ) && ( c <= NUSHU_LAST ) )
         {
             sprintf ( localbuf, "NUSHU%04X", c );
+            strcpy ( dp, localbuf );
+        }
+        else if ( ( c >= KHITAN_FIRST ) && ( c <= KHITAN_LAST ) )
+        {
+            sprintf ( localbuf, "KHITAN%04X", c );
             strcpy ( dp, localbuf );
         }
         else
@@ -1097,18 +1134,24 @@ UShort16 base;
               ( ( i >= CJK_EXTC_FIRST ) && ( i <= CJK_EXTC_LAST ) ) ||
               ( ( i >= CJK_EXTD_FIRST ) && ( i <= CJK_EXTD_LAST ) ) ||
               ( ( i >= CJK_EXTE_FIRST ) && ( i <= CJK_EXTE_LAST ) ) ||
-              ( ( i >= CJK_EXTF_FIRST ) && ( i <= CJK_EXTF_LAST ) ) )
+              ( ( i >= CJK_EXTF_FIRST ) && ( i <= CJK_EXTF_LAST ) ) ||
+              ( ( i >= CJK_EXTG_FIRST ) && ( i <= CJK_EXTG_LAST ) ) )
     {
         base = 0xFB80; /* Tangut ideographs and Tangut components */
     }
     else if ( ( ( i >= TANGUT_FIRST ) && ( i <= TANGUT_LAST ) ) ||
-              ( ( i >= TANGUT_COMP_FIRST ) && ( i <= TANGUT_COMP_LAST ) ) )
+              ( ( i >= TANGUT_COMP_FIRST ) && ( i <= TANGUT_COMP_LAST ) ) || 
+              ( ( i >= TANGUT_SUP_FIRST ) && ( i <= TANGUT_SUP_LAST ) ) )
     {
         base = 0xFB00; /* Tangut */
     }
     else if ( ( i >= NUSHU_FIRST ) && ( i <= NUSHU_LAST ) )
     {
         base = 0xFB01; /* Nushu */
+    }
+    else if ( ( i >= KHITAN_FIRST ) && ( i <= KHITAN_LAST ) )
+    {
+        base = 0xFB02; /* Khitan Small Script */
     }
     else
     {
@@ -1595,7 +1638,11 @@ struct tm *temptptr;
     /* UCA 9.0 new syntax: add @implicitweights for each new ideographic range */
     sprintf ( localbuf, "@implicitweights 17000..18AFF; FB00 # Tangut and Tangut Components\n\n" );
     fputs ( localbuf, fd );
+    sprintf ( localbuf, "@implicitweights 18D00..18D8F; FB00 # Tangut Supplement\n\n" );
+    fputs ( localbuf, fd );
     sprintf ( localbuf, "@implicitweights 1B170..1B2FF; FB01 # Nushu\n\n" );
+    fputs ( localbuf, fd );
+    sprintf ( localbuf, "@implicitweights 18B00..18CFF; FB02 # Khitan Small Script\n\n" );
     fputs ( localbuf, fd );
 }
 
@@ -3681,6 +3728,10 @@ int tertwt;
  * U+3007 ideographic zero
  * U+3021..U+3029, U+3038..U+303A Hangzhou numerals
  *
+ * 2020-January 28:
+ * Added exceptions for Vietnamese reading marks, which need
+ * to fall through to get secondary weights.
+ *
  */
 static int isAlphabeticException ( UInt32 c )
 {
@@ -3699,7 +3750,8 @@ static int isAlphabeticException ( UInt32 c )
          ( c == 0xA788 ) ||
          ( ( c >= 0x10140 ) && ( c <= 0x10174 ) ) ||
          ( ( c >= 0x103D1 ) && ( c <= 0x103D5 ) ) ||
-         ( ( c >= 0x12400 ) && ( c <= 0x1246E ) ) )
+         ( ( c >= 0x12400 ) && ( c <= 0x1246E ) ) ||
+         ( ( c >= 0x16FF0 ) && ( c <= 0x16FF1 ) ) )
     {
         return ( 1 );
     }
@@ -3715,13 +3767,15 @@ static int isAlphabeticException ( UInt32 c )
  * as "honorary" non-spacing marks and get secondary
  * weights, instead.
  *
- * U+302E..U+302F  Hangul tone marks
- * U+ABEC          Meetei Mayek
+ * U+302E..U+302F   Hangul tone marks
+ * U+ABEC           Meetei Mayek
+ * U+16FF0..U+16FF1 Vietnamese reading marks
  */
 static int isDiacriticException ( UInt32 c )
 {
     if ( ( c == 0xABEC ) ||
-         ( ( c >= 0x302E ) && ( c <= 0x302F ) ) )
+         ( ( c >= 0x302E ) && ( c <= 0x302F ) ) ||
+         ( ( c >= 0x16FF0 ) && ( c <= 0x16FF1 ) ) )
     {
         return ( 1 );
     }
@@ -3982,8 +4036,7 @@ int doTrace;
     // Turn SIFT_TRACE(p) on for certain characters.
     // For example, doTrace = uvalue == 0xA700;
     // Turn off via doTrace = FALSE;
-    doTrace = uvalue == 0x1E13C || uvalue == 0x1E13D ||
-        uvalue == 0x16B42 || uvalue == 0x16B43;
+    doTrace = uvalue == 0x16FF0;
 
 /*
  * Autogenerate primary key weightings for base letters and
@@ -4149,6 +4202,11 @@ int doTrace;
                 digitsInitialized = 1;
             }
             val = unisift_ToIntValue ( uvalue );
+            if ( ( val < 0 ) || ( val > 9 ) )
+            {
+                printf ( "ERROR: Digit evaluated to %d for %04X\n", val, uvalue );
+                return ( -1 );
+            }
 /*
  * Set the symbolBase value to that of the ASCII digit.
  */
@@ -4385,7 +4443,7 @@ int doTrace;
  * should be caught earlier in the sift.
  */
         {
-            printf("ERROR: exception branch executed for %04X\n", uvalue);
+            printf ( "ERROR: exception branch executed for %04X\n", uvalue );
             p->level4 = 0;
             p->variable = 1;
             numIgnorables++;
@@ -4717,14 +4775,14 @@ int i;
         CrackWalnuts ( i );
     }
 /*
- * Skip the Tangut range, which is treated like CJK.
+ * Skip the Tangut & Khitan ranges (17000..18D8F), which are treated like CJK.
  */
-    for ( i = 0x18B00 ; i <= 0x1B16F; i++ )
+    for ( i = 0x18D90 ; i <= 0x1B16F; i++ )
     {
         CrackWalnuts ( i );
     }
 /*
- * Skip the Nushu range, which is treated like CJK.
+ * Skip the Nushu range (1B170..1B2FF), which is treated like CJK.
  */
     for ( i = 0x1B300 ; i <= 0x1FFFD; i++ )
     {
@@ -5140,7 +5198,7 @@ int rc;
     InitBagOfWalnuts();
 
     /* 
-     * Do special initialization for Han characters (and Tangut and Nushu),
+     * Do special initialization for Han characters (and Tangut and Khitan and Nushu),
      * which are not in the input list. All decompositions
      * involving Han characters will be built algorithmically.
      */
