@@ -1,0 +1,81 @@
+# Wildcards
+*.8
+*.a
+*.ao
+*.d
+*.dSYM
+*.db
+*.dll
+*.dylib
+*.exp
+*.lib
+*.lnk
+*.ncb
+*.o
+*.obj
+*.opendb
+*.opendf
+*.opensdf
+*.opt
+*.out
+*.pc
+*.pdb
+*.plg
+*.pyc
+*.s
+*.sdf
+*.so
+*.suo
+*.tgz
+*.user
+*.vcproj.*.*.user
+*.vcxproj.user
+*.war
+*_debug
+*_release
+cygicudata*
+libicu*
+libicutest*
+libsicu*
+libsicutest*
+output-*.cpp
+perf-*.xml
+test-*.xml
+
+# Directories
+.vs/
+.vscode/
+ARM/
+ARM64/
+Debug/
+Generated[!!-~]Files/
+Release/
+__pycache__/
+arm/
+arm64/
+bin/
+debug/
+doc/
+lib/
+out/
+release/
+tmp/
+x64/
+x86/
+
+# Files
+Makefile
+Makefile.local
+build-local.properties
+icupkg.inc
+ipch
+pkgdata.inc
+pkgdataMakefile
+rules.mk
+
+# Directory specific wildcards
+# (none yet, see ICU .gitignore for examples)
+
+# Specific file names
+# (none yet, see ICU .gitignore for examples)
+
