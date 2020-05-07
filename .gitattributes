@@ -1,0 +1,97 @@
+# https://help.github.com/en/github/using-git/configuring-git-to-handle-line-endings
+# https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes
+# https://adaptivepatchwork.com/2012/03/01/mind-the-end-of-your-line/#the-new-system
+#
+# Man page: http://schacon.github.io/git/gitattributes.html
+#
+# Automatic end-of-line normalization by default for all files.
+# If git decides that the content is text, its line endings are normalized to LF on checkin.
+# This should make the EOL behavior independent of local git config settings.
+* text=auto
+
+# Tell git which extensions are text. Auto detection is not always reliable.
+*.bat text
+*.c text diff=cpp
+*.cc text diff=cpp
+*.classpath text
+*.cmd text eol=crlf
+*.cpp text diff=cpp
+*.css text diff=css
+*.dsp text
+*.dsw text
+*.dtd text
+*.el text
+*.filters text
+*.h text diff=cpp
+*.htm text diff=html
+*.html text diff=html
+*.in text
+*.java text diff=java
+*.jsp text diff=java
+*.launch text
+*.m4 text
+*.mak text
+*.md text
+*.MF text
+*.mk text
+*.pl text diff=perl
+*.pm text diff=perl
+*.project text
+*.properties text
+*.props text
+*.py text diff=python
+*.rc text
+*.sh text eol=lf
+*.sed text eol=lf
+*.sln text
+*.stub text
+*.svg text
+*.targets text
+*.txt text diff
+*.ucm text
+*.vcproj text
+*.vcxproj text
+*.xml text
+*.xsl text
+*.xslt text
+AUTHORS text
+BUILD text
+COPYING text
+Changelog text
+LICENSE text
+Makefile text
+README text
+SConscript text
+SConstruct text
+configure text
+
+# Explicitly set the following file types as binary files.
+# Same as -text -diff (no EOL conversion, no attempt at diffing).
+*.bin binary
+*.brk binary
+*.cnv binary
+*.icu binary
+*.res binary
+*.nrm binary
+*.pdf binary
+*.spp binary
+*.tri2 binary
+*.otf binary
+*.utf16be binary
+
+# ICU puts the following binary file types into Git-LFS,
+# but Unicode Tools just stores binaries in git itself.
+# (Let's not add more than necessary.)
+*.jar binary
+*.dat binary
+*.zip binary
+*.gz binary
+*.bz2 binary
+*.gif binary
+
+# Enable syntax highlighting on GitHub.com
+.cpyskip.txt linguist-language=Ignore-List
+
+# Use JSONC for syntax highlighting on GitHub.com
+*.json linguist-language=jsonc
+
