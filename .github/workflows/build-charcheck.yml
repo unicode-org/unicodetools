@@ -1,0 +1,23 @@
+name: Build charcheck
+
+on:
+    push:
+      branches: [ master ]
+    pull_request:
+      branches: [ master ]
+
+# strategy:
+#   matrix:
+#     compiler: [gcc, clang]
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Fetch ICU
+      run: '(cd c/char-check && sh fetch-icu-bin.sh)'
+    - name: Build
+      run: '(cd c/char-check && clang++ -o char-check -licuuc -licui18n -licuio -licudata -Wl,-rpath -Wl,`pwd`/icu/usr/local/lib char-check.cpp  -L`pwd`/icu/usr/local/lib  -I icu/usr/local/include/ && ./char-check ABCD )'
+    #   run: '(cd c/char-check && make ICUBLD=icu/usr/local/ char-check )'
