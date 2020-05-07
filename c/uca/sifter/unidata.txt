@@ -1,6 +1,6 @@
 # unidata-13.0.0.txt
-# Date: 2019-10-04, 00:00:00 GMT [KW]
-# © 2019 Unicode®, Inc.
+# Date: 2020-01-18, 00:00:00 GMT [KW]
+# © 2020 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Source data for sifter
@@ -9,7 +9,7 @@
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
 #
-# Version 13.0.0 draft 7 (Unicode Version: 13.0.0)
+# Version 13.0.0 draft 9 (Unicode Version: 13.0.0)
 # based on Unicode data file UnicodeData-13.0.0d6.txt
 # Ordering for Unicode 13.0
 #
@@ -1675,9 +1675,9 @@ DEFAULT
 1E136;NYIAKENG PUACHUE HMONG TONE-D;Mn;16B31;;;;;
 
 1E2EC;WANCHO TONE TUP;Mn;;;;;;
-1E2ED;WANCHO TONE TUP MANG;Mn;;;;;;
-1E2EE;WANCHO TONE OKOI;Mn;;;;;;
-1E2EF;WANCHO TONE OKOI MANG;Mn;;;;;;
+1E2ED;WANCHO TONE TUPNI;Mn;;;;;;
+1E2EE;WANCHO TONE KOI;Mn;;;;;;
+1E2EF;WANCHO TONE KOINI;Mn;;;;;;
 
 # East Asian scripts
 
@@ -8293,7 +8293,7 @@ DEFAULT
 1F973;FACE WITH PARTY HORN AND PARTY HAT;So;;;;;;
 1F974;FACE WITH UNEVEN EYES AND WAVY MOUTH;So;;;;;;
 1F975;OVERHEATED FACE;So;;;;;;
-1F976;FREEZINGI FACE;So;;;;;;
+1F976;FREEZING FACE;So;;;;;;
 1F977;NINJA;So;;;;;;
 1F978;DISGUISED FACE;So;;;;;;
 1F97A;FACE WITH PLEADING EYES;So;;;;;;
@@ -8479,7 +8479,7 @@ DEFAULT
 1FAB4;POTTED PLANT;So;;;;;;
 1FAB5;WOOD;So;;;;;;
 1FAB6;FEATHER;So;;;;;;
-1FAC0;HEART;So;;;;;;
+1FAC0;ANATOMICAL HEART;So;;;;;;
 1FAC1;LUNGS;So;;;;;;
 1FAC2;PEOPLE HUGGING;So;;;;;;
 1FAD0;BLUEBERRIES;So;;;;;;
@@ -24270,6 +24270,11 @@ A9B2;JAVANESE LETTER HA;Lo;;;;;;
 # Dependent vowels
 
 A9B4;JAVANESE VOWEL SIGN TARUNG;Mc;;;;;;
+
+# TOLONG is treated as just a tertieary variant of TARUNG.
+
+A9B5;JAVANESE VOWEL SIGN TOLONG;Mc;<sort> A9B4;;;;;
+
 A9BC;JAVANESE VOWEL SIGN PEPET;Mn;;;;;;
 A9B6;JAVANESE VOWEL SIGN WULU;Mn;;;;;;
 A9B7;JAVANESE VOWEL SIGN WULU MELIK;Mn;;;;;;
@@ -24278,7 +24283,6 @@ A9B9;JAVANESE VOWEL SIGN SUKU MENDUT;Mn;;;;;;
 A9BD;JAVANESE CONSONANT SIGN KERET;Mn;;;;;;
 A9BA;JAVANESE VOWEL SIGN TALING;Mc;;;;;;
 A9BB;JAVANESE VOWEL SIGN DIRGA MURE;Mc;;;;;;
-A9B5;JAVANESE VOWEL SIGN TOLONG;Mc;;;;;;
 
 # Virama
 
