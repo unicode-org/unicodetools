@@ -56,7 +56,7 @@ public class TestIdnaTest extends TestFmwkPlus{
         if (TEST_DIR == null) {
             TEST_DIR = Settings.UNICODETOOLS_DIRECTORY + "data/idna/" + Default.ucdVersion();
         } else if (TEST_DIR.equalsIgnoreCase("DRAFT")) {
-            TEST_DIR = GenerateIdna.DIR + GenerateIdnaTest.NEW_FILE_NAME ; // Settings.UNICODE_DRAFT_PUBLIC;
+            TEST_DIR = GenerateIdna.DIR ; // Settings.UNICODE_DRAFT_PUBLIC;
         }
         loadedTests = LoadIdnaTest.load(TEST_DIR);
     }
@@ -138,17 +138,22 @@ public class TestIdnaTest extends TestFmwkPlus{
             }
         }
 
-        if (tl.type == Type.B || tl.type == Type.T) {
             checkAscii(tl, IdnaChoice.transitional, detailedSource);
-        }
-        if (tl.type == Type.B || tl.type == Type.N) {
             checkAscii(tl, IdnaChoice.nontransitional, detailedSource);
-        }
     }
 
     private void checkAscii(TestLine tl, IdnaChoice idnaChoice, String detailedSource) {
         final Set<Errors> toAsciiErrors = EnumSet.noneOf(Errors.class);
         final String toAscii = Uts46.SINGLETON.toASCII(tl.source, idnaChoice, toAsciiErrors);
+        String f;
+        switch(idnaChoice) {
+        case transitional: 
+            f = " toAsciiT(";
+            break;
+        case nontransitional: 
+            f = " toAsciiN(";
+            break;
+        }
         String f = idnaChoice == IdnaChoice.transitional ? " toAsciiT(" : " toAsciiN(";
         if (tl.toAsciiErrors.isEmpty()) {
             if (!assertEquals(f + detailedSource + ")", tl.toAscii, toAscii))  {
