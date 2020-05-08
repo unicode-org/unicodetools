@@ -16,8 +16,10 @@ RUN ant -DCATALINA_HOME=${CATALINA_HOME} war
 
 # ARG TOMCATVERSION=9
 # Was not able to parameterize this
-FROM tomcat:9-jdk${JDKVERSION}-openjdk-slim-buster AS run
+FROM jetty:9-jre11-slim AS run
 # FROM tomcat:9-jdk14-openjdk-slim-buster AS run
-COPY --from=build /home/UnicodeJsps.war /usr/local/tomcat/webapps/
-# TODO PORT! We do not support the PORT variable to control the port.
+ADD port-entrypoint.sh /port-entrypoint.sh
+ENTRYPOINT [ "/port-entrypoint.sh" ]
+COPY --from=build /home/UnicodeJsps.war /var/lib/jetty/webapps/
+# This is the default PORT. Override by setting PORT.
 EXPOSE 8080
