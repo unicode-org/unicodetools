@@ -1,3 +1,5 @@
+name: Build JSP
+
 on:
   push:
     branches: [ master ]
