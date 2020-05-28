@@ -1,21 +1,14 @@
+name: Build JSP
 
 on:
   push:
-    branches-ignore:
-      - '**'
-  # TODO: broken, see below
-  # push:
-  #   branches: [ master ]
-  # pull_request:
-  #   branches: [ master ]
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-java@v1
-      with:
-        java-version: 8 # The JDK version to make available on the path.
-        java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
-        architecture: x64 # (x64 or x86) - defaults to x64
-    - run: cd UnicodeJsps && ant war # TODO: broken: needs CATALINA_HOME setup
+    - run: cd UnicodeJsps && docker build .
+
