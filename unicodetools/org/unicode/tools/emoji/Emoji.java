@@ -62,6 +62,7 @@ public class Emoji {
     /**
      * Constants for versions
      */
+    public static final VersionInfo VERSION14 = VersionInfo.getInstance(13,1);
     public static final VersionInfo VERSION13_1 = VersionInfo.getInstance(13,1);
     public static final VersionInfo VERSION13 = VersionInfo.getInstance(13);
     public static final VersionInfo VERSION12_1 = VersionInfo.getInstance(12,1);
@@ -91,9 +92,9 @@ public class Emoji {
      * Change each following once we release. That is, VERSION_LAST_RELEASED* becomes VERSION_BETA*, and both the latter increment.
      * Also add to EMOJI_TO_UNICODE_VERSION
      */
-    public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION12_1;
-    public static final VersionInfo VERSION_LAST_RELEASED = VERSION13;
-    public static final VersionInfo VERSION_BETA = VERSION13_1;
+    public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION13;
+    public static final VersionInfo VERSION_LAST_RELEASED = VERSION13_1;
+    public static final VersionInfo VERSION_BETA = VERSION14;
 
     public static final VersionInfo VERSION_TO_TEST = VERSION_BETA;
     public static final VersionInfo VERSION_TO_TEST_PREVIOUS = VERSION_LAST_RELEASED;
@@ -171,7 +172,7 @@ public class Emoji {
 
     public static final VersionInfo VERSION_TO_GENERATE_UNICODE = IS_BETA ? VERSION_BETA_UNICODE : VERSION_LAST_RELEASED_UNICODE;
 
-    public static final String TR51_SVN_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/";
+    //public static final String TR51_SVN_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/";
     //public static final String TR51_PREFIX = IS_BETA ? "internal-beta/" : "internal/";
 
     public static final String EMOJI_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/" + (Emoji.ABBR ? "🏴" : "");
@@ -185,7 +186,7 @@ public class Emoji {
     public static final String DATA_DIR_PRODUCTION = DATA_DIR_PRODUCTION_BASE + VERSION_STRING + "/";
 
     public static final String IMAGES_SOURCE_DIR_SVG = Settings.UNICODETOOLS_DIRECTORY + "data/images/";
-    static final String IMAGES_OUTPUT_DIR = TR51_SVN_DIR + "images/";
+    public static final String IMAGES_OUTPUT_DIR = Settings.UNICODETOOLS_DIRECTORY + "../../images/emoji/";
 
     public enum ModifierStatus {
 	none, modifier, modifier_base;

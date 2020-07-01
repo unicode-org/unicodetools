@@ -66,6 +66,7 @@ public class EmojiData implements EmojiDataSource {
     public static final String MAN_WITH_RED_HAIR = "👨‍🦰";
     public static final UnicodeSet HOLDING_HANDS_COMPOSITES = new UnicodeSet().add(0x1F46B).add(0x1F46C).add(0x1F46D)
 	    .freeze();
+    public static final UnicodeSet OTHER_GROUP = new UnicodeSet("[💏 💑]").freeze();
 
     static final String ZWJ_HANDSHAKE_ZWJ = Emoji.JOINER_STR + "🤝" + Emoji.JOINER_STR;
     private static final String BAD_HANDSHAKE = "👨🏻‍🤝‍👨🏼";
@@ -334,37 +335,43 @@ public class EmojiData implements EmojiDataSource {
 		int debug = 0;
 	    }
 	}
-	modifierBasesRgi = new UnicodeSet(modifierBases).removeAll(MULTIPERSON);
-	if (version.compareTo(Emoji.VERSION12) >= 0) {
-	    modifierBasesRgi.addAll(HOLDING_HANDS_COMPOSITES);
-	}
-	if (!modifierBases.contains(0x1F90C)) {
-	    if (version.compareTo(Emoji.VERSION13) >= 0) {
-		int debug = 0;
+	if (oldFormat) {
+	    // Modified this for new format to be driven just from the data files.
+	    modifierBasesRgi = new UnicodeSet(modifierBases).removeAll(MULTIPERSON);
+	    if (version.compareTo(Emoji.VERSION12) >= 0) {
+		modifierBasesRgi.addAll(HOLDING_HANDS_COMPOSITES);
+		if (version.compareTo(Emoji.VERSION13_1) >= 0) {
+		    modifierBasesRgi.addAll(OTHER_GROUP);
+		}
 	    }
-	}
-	modifierBasesRgi.freeze();
-	modifierSequences = new UnicodeSet();
-	for (String base : modifierBasesRgi) {
-	    if (UnicodeSet.getSingleCodePoint(base) == 0x1F46B) {
-		int debug = 0;
+	    if (!modifierBases.contains(0x1F90C)) {
+		if (version.compareTo(Emoji.VERSION13) >= 0) {
+		    int debug = 0;
+		}
 	    }
-	    for (String mod : MODIFIERS) {
-		final String seq = base + mod;
-		modifierSequences.add(seq);
-		// names.put(seq, UCharacter.toTitleFirst(ULocale.ENGLISH, getName(base, true))
-		// + ", " + shortName(mod.codePointAt(0)).toLowerCase(Locale.ENGLISH));
+	    modifierBasesRgi.freeze();
+	    modifierSequences = new UnicodeSet();
+	    for (String base : modifierBasesRgi) {
+		if (UnicodeSet.getSingleCodePoint(base) == 0x1F46B) {
+		    int debug = 0;
+		}
+		for (String mod : MODIFIERS) {
+		    final String seq = base + mod;
+		    modifierSequences.add(seq);
+		    // names.put(seq, UCharacter.toTitleFirst(ULocale.ENGLISH, getName(base, true))
+		    // + ", " + shortName(mod.codePointAt(0)).toLowerCase(Locale.ENGLISH));
+		}
 	    }
-	}
-	modifierSequences.freeze();
-
-	if (!oldFormat) {
+	    modifierSequences.freeze();
+	} else {
+	    modifierBasesRgi = new UnicodeSet();
+	    modifierSequences = new UnicodeSet();
 	    // HACK 1F441 200D 1F5E8
 	    zwjSequencesAll.add(new StringBuilder().appendCodePoint(0x1F441).appendCodePoint(0xFE0F)
 		    .appendCodePoint(0x200D).appendCodePoint(0x1F5E8).appendCodePoint(0xFE0F).toString());
 
 	    // VariantFactory vf = new VariantFactory();
-
+	    UnicodeSet debugSet = new UnicodeSet("[\\x{1F48F}\\x{1F491}]").freeze();
 	    for (String file : Arrays.asList("emoji-sequences.txt", "emoji-zwj-sequences.txt")) {
 		boolean zwj = file.contains("zwj");
 		for (String line : FileUtilities.in(directory, file)) {
@@ -375,7 +382,7 @@ public class EmojiData implements EmojiDataSource {
 		    if (line.isEmpty()) {
 			continue;
 		    }
-		    if (line.contains("1F469 200D 1F91D 200D 1F469")) {
+		    if (line.contains("1F48F")) {
 			int i = 0;
 		    }
 
@@ -386,6 +393,20 @@ public class EmojiData implements EmojiDataSource {
 		    int pos = f0.indexOf("..");
 		    if (pos < 0) {
 			source = Utility.fromHex(f0);
+			int last = -1;
+			for (int cp1 : With.codePointArray(source)) {
+			    if (debugSet.contains(cp1)) {
+				int debug = 0;
+			    }
+			    if (EmojiData.MODIFIERS.contains(cp1)) {
+				if (last < 0) {
+				    throw new IllegalArgumentException("In " + file + ", modifier " + Utility.hex(last) + " " + UTF16.valueOf(cp1) + "not following base ");
+				}
+				modifierBasesRgi.add(last);
+				modifierSequences.add(With.fromCodePoint(last, cp1));
+			    }
+			    last = cp1;
+			}
 		    } else {
 			codePointStart = Integer.parseInt(f0.substring(0, pos), 16);
 			codePointEnd = Integer.parseInt(f0.substring(pos + 2), 16);
@@ -471,6 +492,8 @@ public class EmojiData implements EmojiDataSource {
 		    }
 		}
 	    }
+	    modifierBasesRgi.freeze();
+	    modifierSequences.freeze();
 	}
 
 	if (version.compareTo(Emoji.VERSION4) <= 0) {

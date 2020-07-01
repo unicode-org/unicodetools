@@ -619,7 +619,7 @@ public class GenerateEmoji {
 	// we can update without the beta flag
 	CandidateData candidateData = CandidateData.getInstance();
 
-	if (Emoji.IS_BETA) {
+	if (true || Emoji.IS_BETA) {
 	    UnicodeSet candChars = candidateData.getAllCharacters();
 	    System.out.println(candChars.size() + "\t" + candChars);
 	    Predicate<String> predicate = SHOW ? Predicates.alwaysFalse() : s -> s.contains(Emoji.TRANSGENDER);
@@ -637,7 +637,6 @@ public class GenerateEmoji {
 		DebugUtilities.debugStringsWhen("•", thisVersion, predicate);
 		DebugUtilities.debugStringsWhen("•", chars, predicate);
 	    }
-
 	}
 	showCandidateStyle(CandidateStyle.candidate, "emoji-candidates.html", candidateData.getAllCharacters(Status.Draft_Candidate));
 	showCandidateStyle(CandidateStyle.provisional, "emoji-provisional.html",
