@@ -22,7 +22,7 @@ import com.ibm.icu.util.Output;
 public class RenameFiles {
 
     // First set the source accordingly.
-    private static final Choice choice = Choice.emojione;
+    private static final Choice choice = Choice.android;
 
     // Then set PREVIEW_ONLY to true to check that the right changes are done,
     // then to false to do them.
@@ -66,7 +66,7 @@ public class RenameFiles {
                 "twitter"),        
         android("/Users/markdavis/Downloads/ExtractedEmojis", // uni1f1e6_uni1f1e8.png
                 "^(?!\\.).*.png$",
-                "(uni|emoji_)?(?<codes>[a-z0-9]+(_[a-z0-9]+)*)\\.png", 
+                "(uni|emoji_)?(?<codes>[a-fA-F0-9]+(_[a-fA-F0-9]+)*)\\.png", 
                 "android"),
         cldr("/Users/markdavis/eclipse-workspace/unicode-draft/reports/tr51/images/cldr", // uni1f1e6_uni1f1e8.png
                 "^(?!\\\\.).*.png$",

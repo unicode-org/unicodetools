@@ -32,7 +32,6 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.CharacterListCompressor;
 import org.unicode.cldr.draft.Compacter;
-import org.unicode.cldr.draft.DraftUtils;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.Typology;
 import org.unicode.cldr.tool.Option;
@@ -162,7 +161,7 @@ class GeneratePickerData2 {
     enum MyOptions {
         output(".*", CLDRPaths.BASE_DIRECTORY + "tools/java/org/unicode/cldr/draft/picker/",
             "output data directory"),
-        unicodedata(".*", DraftUtils.UCD_DIRECTORY, "Unicode Data directory"),
+        unicodedata(".*", CLDRPaths.UCD_DATA_DIRECTORY, "Unicode Data directory"),
         verbose(null, null, "verbose debugging messages"),
         korean(null, null, "generate korean hangul defectives instead"), ;
         // boilerplate

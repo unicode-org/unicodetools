@@ -3380,6 +3380,9 @@ public class GenerateEmoji {
 	boolean future = candidateStyle != CandidateStyle.released;
 
 	final Set<Source> platforms = getPlatforms(emoji, candidateStyle == CandidateStyle.released ? 5 : 1);
+	if (platforms.isEmpty() && !emoji.isEmpty()) {
+	    throw new IllegalArgumentException("No images for: " + emoji);
+	}
 	final int colspan = 7 + platforms.size();
 
 	// get the sorted strings, and their variants
@@ -3400,6 +3403,7 @@ public class GenerateEmoji {
 
 	    if (!base.equals(s)) {
 		sortedToVariants.put(base, s);
+		EmojiData.EMOJI_DATA_BETA.getBaseRemovingModsGender(s); // debug
 		if (DEBUG && EmojiData.COUPLES_TO_HANDSHAKE_VERSION.containsKey(base)) {  // DEBUG && 
 		    System.out.println("SortedToVariants:" + base + "\t" + Utility.hex(base)
 		    + "\t" + sortedToVariants.get(base));
@@ -3594,7 +3598,13 @@ public class GenerateEmoji {
 		String cldrName = EmojiDataSourceCombined.EMOJI_DATA.getName(source);
 
 		String category = candidateData.getCategory(source);
+		if (category == null) {
+		    throw new IllegalArgumentException("No category for " + Utility.hex(source));
+		}
 		MajorGroup majorGroup = candidateData.getMajorGroupFromCategory(category);
+		if (majorGroup == null) {
+		    throw new IllegalArgumentException("No majorGroup for " + Utility.hex(source));
+		}
 
 		outputPlain.add(++countPlain
 			+ "\t" + majorGroup
@@ -3654,7 +3664,7 @@ public class GenerateEmoji {
 		    // false, isFound );
 		    String cell2 = getCell(Source.apple, NOT_NEW, ALT_COLUMN, false, null);
 		    emojiImages = getSamples(source, platforms, platforms.size() - 1, !future) + cell2;
-		    if (false) // DEBUG
+		    if (true) // DEBUG
 			System.out.println("\t" + majorGroup.toPlainString() + ";\tcandidate: " + source + ";\t"
 				+ Utility.hex(source));
 		} else {
