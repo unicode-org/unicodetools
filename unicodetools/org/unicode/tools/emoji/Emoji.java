@@ -62,7 +62,10 @@ public class Emoji {
     /**
      * Constants for versions
      */
+<<<<<<< HEAD
     public static final VersionInfo VERSION14 = VersionInfo.getInstance(13,1);
+=======
+>>>>>>> first cut at fixing emoji
     public static final VersionInfo VERSION13_1 = VersionInfo.getInstance(13,1);
     public static final VersionInfo VERSION13 = VersionInfo.getInstance(13);
     public static final VersionInfo VERSION12_1 = VersionInfo.getInstance(12,1);
@@ -92,9 +95,15 @@ public class Emoji {
      * Change each following once we release. That is, VERSION_LAST_RELEASED* becomes VERSION_BETA*, and both the latter increment.
      * Also add to EMOJI_TO_UNICODE_VERSION
      */
+<<<<<<< HEAD
     public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION13;
     public static final VersionInfo VERSION_LAST_RELEASED = VERSION13_1;
     public static final VersionInfo VERSION_BETA = VERSION14;
+=======
+    public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION12_1;
+    public static final VersionInfo VERSION_LAST_RELEASED = VERSION13;
+    public static final VersionInfo VERSION_BETA = VERSION13_1;
+>>>>>>> first cut at fixing emoji
 
     public static final VersionInfo VERSION_TO_TEST = VERSION_BETA;
     public static final VersionInfo VERSION_TO_TEST_PREVIOUS = VERSION_LAST_RELEASED;

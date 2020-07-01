@@ -1,4 +1,4 @@
-#Code Point	Chart Glyph	Sample Colored Glyph	Name
+#Code Point Chart Glyph Sample Colored Glyph    Name
 #main data is in /unicodetools/data/emoji/N.M/source/emojiOrdering.txt
 #Warnings:
 # — The Status, Proposal, and After must come before the character/sequence (U+)
@@ -47,7 +47,7 @@ Proposal=L2/19-265
 After=🖖
 U+101904
 Name=leftwards hand
-Keywords=leftwards | pat | push | reach | hand
+Keywords=leftwards | palm | pat | push | reach | hand
 Emoji_Modifier_Base
 UName=white leftwards hand
 
@@ -55,14 +55,14 @@ Proposal=L2/19-327
 After=✌️
 U+101905
 Name=thumb and index finger crossed
-Keywords=expensive | love | money | finger | thumb | crossed
+Keywords=expensive | love | money | crossed | snap
 Emoji_Modifier_Base
 
 Proposal=L2/19-326
 After=🤘
 U+101906
 Name=raised little finger
-Keywords=finger | raised
+Keywords=finger | pinky
 UName=HAND WITH RAISED LITTLE FINGER
 Emoji_Modifier_Base
 
@@ -94,7 +94,7 @@ Proposal=L2/19-060
 After=🔪
 U+101911
 Name=cooking pot
-Keywords=boil | cook | pot | saucepan
+Keywords=boil | cook | pot | saucepan | kitchen | food
 
 Proposal=L2/19-305
 After=⚓
@@ -124,7 +124,7 @@ Proposal=L2/19-396, L2/19-400
 After=🤔
 U+102000
 Name=saluting face
-Keywords=okay | pride | salute | sunny | troops | yes
+Keywords=okay | pride | respect | salute | troops | yes
 
 Proposal=L2/19-378
 After=🤔
@@ -132,57 +132,23 @@ U+102001
 Name=face with peeking eye
 Keywords=captivated | I can’t look away | peeking | peeping | staring
 
-# Proposal=L2/19-380
-# After=💔
-# U+102002
-# Name=mending heart
-# Keywords=healthy | improving | mend | recovering | recuperating | well
-
 Proposal=L2/19-371
 After=💮
-U+102003
+U+102002
 Name=lotus
 Keywords=bloom | Buddhism | flower | Hinduism | lotus | purity
 
 Proposal=L2/19-375
 After=🌺
-U+102004
+U+102003
 Name=orchid
 Keywords=beauty | bloom | flower | orchid | rare
 
 Proposal=L2/19-379
 After=🩹
-U+102005
+U+102004
 Name=crutch
 Keywords=cane | crutch | disability | mobility aid | walking | walking stick
-
-Proposal=L2/19-370
-After=🤝
-U+1F91D U+1F3FB
-U+101903 U+1F3FB U+200D U+101904 U+1F3FC
-U+101903 U+1F3FB U+200D U+101904 U+1F3FD
-U+101903 U+1F3FB U+200D U+101904 U+1F3FE
-U+101903 U+1F3FB U+200D U+101904 U+1F3FF
-U+101903 U+1F3FC U+200D U+101904 U+1F3FB
-U+1F91D U+1F3FC
-U+101903 U+1F3FC U+200D U+101904 U+1F3FD
-U+101903 U+1F3FC U+200D U+101904 U+1F3FE
-U+101903 U+1F3FC U+200D U+101904 U+1F3FF
-U+101903 U+1F3FD U+200D U+101904 U+1F3FB
-U+101903 U+1F3FD U+200D U+101904 U+1F3FC
-U+1F91D U+1F3FD
-U+101903 U+1F3FD U+200D U+101904 U+1F3FE
-U+101903 U+1F3FD U+200D U+101904 U+1F3FF
-U+101903 U+1F3FE U+200D U+101904 U+1F3FB
-U+101903 U+1F3FE U+200D U+101904 U+1F3FC
-U+101903 U+1F3FE U+200D U+101904 U+1F3FD
-U+1F91D U+1F3FE
-U+101903 U+1F3FE U+200D U+101904 U+1F3FF
-U+101903 U+1F3FF U+200D U+101904 U+1F3FB
-U+101903 U+1F3FF U+200D U+101904 U+1F3FC
-U+101903 U+1F3FF U+200D U+101904 U+1F3FD
-U+101903 U+1F3FF U+200D U+101904 U+1F3FE
-U+1F91D U+1F3FF
 
 #================================
 Status=Draft Candidate
