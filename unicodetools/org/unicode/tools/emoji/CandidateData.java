@@ -800,7 +800,9 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 	for (String arg : args) {
 	    switch (arg) {
 	    case "proposals": 
-		generateProposalData(candidateData); 
+		generateProposalData(candidateData, Status.Provisional_Candidate); 
+		generateProposalData(candidateData, Status.Draft_Candidate); 
+		generateProposalData(candidateData, Status.Final_Candidate); 
 		++count;
 		break;
 	    case "order": 	
@@ -860,15 +862,16 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 	//	    System.out.println("\nCandidates - Ordering\n");
     }
 
-    private static void generateProposalData(CandidateData instance) {
-	System.out.println("\nData for proposalData.txt\n");
+    private static void generateProposalData(CandidateData instance, Status status) {
+	System.out.println("\n#Data for proposalData.txt\n");
 	//1F931;  L2/16-280,L2/16-282r;   BREAST-FEEDING   
 	Set<String> done = new HashSet<>();
 	UnicodeSet missing = new UnicodeSet();
+	System.out.println("# " + status);
 	for (String item : instance.allCharacters) {
-	    if (instance.statuses.get(item) == Status.Provisional_Candidate
-		    || EmojiData.MODIFIERS.containsSome(item)
-		    || Emoji.GENDER_MARKERS.containsSome(item)
+	    if (instance.statuses.get(item) != status
+//		    || EmojiData.MODIFIERS.containsSome(item)
+//		    || Emoji.GENDER_MARKERS.containsSome(item)
 		    ) {
 		continue;
 	    }
@@ -883,7 +886,9 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 	    }
 	    System.out.println(Utility.hex(skeleton)
 		    + "; " + CollectionUtilities.join(proposals, ", ")
-		    + "; " + instance.getName(item));
+		    + "; " + instance.getName(item)
+		    + "; " + proposals
+		    );
 	}
 	if (missing.isEmpty()) {
 	    return;
