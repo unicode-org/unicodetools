@@ -1386,5 +1386,4 @@
 1F9D1 200D 1F384                            ; RGI_Emoji_ZWJ_Sequence  ; mx claus                                                       # E13.0  [1] (🧑‍🎄)
 
 # Total elements: 13
-
 #EOF

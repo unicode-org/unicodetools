@@ -1388,7 +1388,6 @@
 1F9DD 1F3FE   ; RGI_Emoji_Modifier_Sequence  ; elf: medium-dark skin tone                                     # E5.0   [1] (🧝🏾)
 1F9DD 1F3FF   ; RGI_Emoji_Modifier_Sequence  ; elf: dark skin tone                                            # E5.0   [1] (🧝🏿)
 
-
 1F491 1F3FB    ; RGI_Emoji_Modifier_Sequence
 1F491 1F3FC    ; RGI_Emoji_Modifier_Sequence
 1F491 1F3FD    ; RGI_Emoji_Modifier_Sequence

@@ -3666,7 +3666,7 @@ public class GenerateEmoji {
 		    // false, isFound );
 		    String cell2 = getCell(Source.apple, NOT_NEW, ALT_COLUMN, false, null);
 		    emojiImages = getSamples(source, platforms, platforms.size() - 1, !future) + cell2;
-		    if (false) // DEBUG
+		    if (true) // DEBUG
 			System.out.println("\t" + majorGroup.toPlainString() + ";\tcandidate: " + source + ";\t"
 				+ Utility.hex(source));
 		} else {

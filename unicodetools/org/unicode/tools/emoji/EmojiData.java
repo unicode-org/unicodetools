@@ -1925,7 +1925,7 @@ public class EmojiData implements EmojiDataSource {
     public UnicodeSet getHairBases() {
 	return hairBases;
     }
-
+    
     private static final UnicodeSet EXPLICIT_GENDER_13 = new UnicodeSet(
 	    "[[👦-👩 👴 👵 🤴 👸 👲 🧕 🤵 👰 🤰 🤱 🎅 🤶 💃 🕺 🧔 🕴 👫-👭]]")
 	    .freeze();
@@ -1933,6 +1933,14 @@ public class EmojiData implements EmojiDataSource {
     private static final UnicodeSet EXPLICIT_GENDER_13_1 = new UnicodeSet(EXPLICIT_GENDER_13)
 	    .remove("🧔")
 	    .freeze();
+
+//    private static final UnicodeSet EXPLICIT_GENDER_13 = new UnicodeSet(
+//	    "[[👦-👩 👴 👵 🤴 👸 👲 🧕 🤵 👰 🤰 🤱 🎅 🤶 💃 🕺 🧔 🕴 👫-👭]]")
+//	    .freeze();
+//
+//    private static final UnicodeSet EXPLICIT_GENDER_13_1 = new UnicodeSet(EXPLICIT_GENDER_13)
+//	    .remove("🧔")
+//	    .freeze();
 
     public UnicodeSet getExplicitGender() {
 	return version.compareTo(Emoji.VERSION13) <= 0 ? EXPLICIT_GENDER_13 : EXPLICIT_GENDER_13_1;
