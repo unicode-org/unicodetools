@@ -3515,7 +3515,8 @@ public class GenerateEmoji {
 		+ "<h2>Background</h2>\n"
 		+ top3
 		+ "<p>The count of new variants is in the Other Keywords column, such as “➕ 5 variants”. "
-		+ "The abbreviations are documented in " + CountEmoji.EMOJI_COUNT_KEY + ". "
+		+ "The abbreviations and symbols are documented in " + CountEmoji.EMOJI_COUNT_KEY 
+		+ ", and the symbol meanings can be seen by hovering with a mouse."
 		+ top4
 		+ PROPOSAL_CAUTION;
 	String footer = candidateStyle == CandidateStyle.released ? ""

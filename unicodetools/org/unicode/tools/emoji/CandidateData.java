@@ -488,15 +488,16 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 		|| EmojiData.EMOJI_DATA_BETA.getModifierBasesRgi().containsSome(source);
 	UnicodeSet all_Emoji_Modifier_Base = null;
 	String fromNames = names.get(source);
-	if (hasModifierBase) {
-	    // find the point where it occurs; not efficient but we don't care
-	    all_Emoji_Modifier_Base = new UnicodeSet(emoji_Modifier_Base)
-		    .addAll(EmojiData.EMOJI_DATA_BETA.getModifierBases())
-		    .remove("🤝") // special hack to remove skin color
-		    .freeze();
-
-	    addCombos(source, fromNames, "", source, "", ": ", all_Emoji_Modifier_Base, "", "");
-	}
+	// disable this, so that all gender variants come from the file instead of being manufactured.
+//	if (hasModifierBase) {
+//	    // find the point where it occurs; not efficient but we don't care
+//	    all_Emoji_Modifier_Base = new UnicodeSet(emoji_Modifier_Base)
+//		    .addAll(EmojiData.EMOJI_DATA_BETA.getModifierBases())
+//		    .remove("🤝") // special hack to remove skin color
+//		    .freeze();
+//
+//	    addCombos(source, fromNames, "", source, "", ": ", all_Emoji_Modifier_Base, "", "");
+//	}
 
 	int single = UnicodeSet.getSingleCodePoint(source);
 	if (single == Integer.MAX_VALUE) {
