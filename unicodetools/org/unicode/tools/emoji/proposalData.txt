@@ -2,16 +2,10 @@
 # Format: 
 #     <emoji> ; <property> # <comments> 
 # To reduce the number of lines, the strings are transformed to skeletons:
-#  • gender signs to 'woman'
-#  • skin tone to 'dark'
+#  • gender signs to 'woman' (♀)
+#  • skin tone to 'dark' (🏿)
 #  • emoji presentation characters removed
-# (No proposal splits two strings with the same skeleton.)
-# 
-###### GENERATED — Regenerate by running ProposalData.java; look at main() ###### 
-
-# Internal file mapping emoji to proposals.
-# The file is abbreviated by mapping all skintones to 🏿, since all 5 are introduced together.
-# And all gender signs to ♀, since both are introduced together.
+# (This is safe, because no proposal splits two strings with the same skeleton.)
 # Feedback, especially on MISSING ones (at the end), is welcome.
 
 # L2/16-127R2
@@ -349,7 +343,7 @@
 1F4F9..1F4FC; L2/07-257, L2/09-026 # 2010..2010 (📹..📼) video camera..videocassette
 1F503; L2/07-257, L2/09-026 # 2010 (🔃) clockwise vertical arrows
 1F50A..1F514; L2/07-257, L2/09-026 # 2010..2010 (🔊..🔔) speaker high volume..bell
-1F516..1F52B; L2/07-257, L2/09-026 # 2010..2010 (🔖..🔫) bookmark..pistol
+1F516..1F52B; L2/07-257, L2/09-026 # 2010..2010 (🔖..🔫) bookmark..water pistol
 1F52E..1F53D; L2/07-257, L2/09-026 # 2010..2010 (🔮..🔽) crystal ball..downwards button
 1F550..1F55B; L2/07-257, L2/09-026 # 2010..2010 (🕐..🕛) one o’clock..twelve o’clock
 1F5FB..1F5FF; L2/07-257, L2/09-026 # 2010..2010 (🗻..🗿) mount fuji..moai
@@ -1733,5 +1727,24 @@
 # MISSING-2015
 1F441 FE0F 200D 1F5E8 FE0F; MISSING # 2015 (👁️‍🗨️) eye in speech bubble
 002A FE0F 20E3; MISSING # 2015 (*️⃣) keycap: *
+
+2764 200D 1F525; L2/20-128; heart on fire
+2764 200D 1FA79; L2/19-380; mending heart
+1F468 1F3FF 200D 2764 200D 1F468 1F3FF; L2/20-133; null
+1F468 1F3FF 200D 2764 200D 1F48B 200D 1F468 1F3FF; L2/20-133; null
+1F469 1F3FF 200D 2764 200D 1F468 1F3FF; L2/20-133; null
+1F469 1F3FF 200D 2764 200D 1F469 1F3FF; L2/20-133; null
+1F469 1F3FF 200D 2764 200D 1F48B 200D 1F468 1F3FF; L2/20-133; null
+1F469 1F3FF 200D 2764 200D 1F48B 200D 1F469 1F3FF; L2/20-133; null
+1F48F 1F3FF; L2/20-133; null
+1F491 1F3FF; L2/20-133; null
+1F62E 200D 1F4A8; L2/20-066; face exhaling
+1F635 200D 1F4AB; L2/20-131; face with spiral eyes
+1F636 200D 1F32B; L2/19-390, L2/20-130; face in clouds
+1F9D1 1F3FF 200D 2764 200D 1F48B 200D 1F9D1 1F3FF; L2/20-133; null
+1F9D1 1F3FF 200D 2764 200D 1F9D1 1F3FF; L2/20-133; null
+1F9D4 200D 2640; L2/20-133; man with beard
+1F9D4 1F3FF; L2/20-133; woman with beard
+1F9D4 1F3FF 200D 2640; L2/20-133; woman with beard: light skin tone
 
 #EOF

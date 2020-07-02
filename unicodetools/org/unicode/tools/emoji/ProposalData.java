@@ -1,6 +1,7 @@
 package org.unicode.tools.emoji;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -19,7 +20,9 @@ import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.EmojiConstants;
 import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
+import org.unicode.cldr.util.With;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.CandidateData.Status;
 import org.unicode.tools.emoji.DocRegistry.DocRegistryEntry;
 import org.unicode.tools.emoji.Emoji.CharSource;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
@@ -36,7 +39,12 @@ import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
+import com.ibm.icu.util.ICUUncheckedIOException;
 
+/** Constructs proposals from proposalData.txt and the CandidateData for Status=Draft Candidate.
+ * At the end of a release, before the Draft Candidates are retired, run CandidateData.java to get the proposals for those
+ * candidates, and add to the end of proposalData.txt
+ */
 public class ProposalData {
 
     private static final String DEBUG_STRING = EmojiConstants.fromCodePoints(0x1F9AC).toString();
@@ -52,10 +60,16 @@ public class ProposalData {
     static Pattern VALID_PROPOSAL = Pattern.compile("L2/\\d{2}[-‑]\\d{3}(R(\\d)?)?|Unicode\\d\\.\\d\\.\\d*|"
 	    + CollectionUtilities.join(Emoji.CharSource.values(), "|"));
 
-    static final UnicodeMap<Set<String>> proposal = load();
-    static final Multimap<UnicodeSet, String> proposalToUnicodeSet = getProposalToUnicodeSet(proposal);
+    final UnicodeMap<Set<String>> proposal;
+    final Multimap<UnicodeSet, String> proposalToUnicodeSet;
+    final String header;
 
-    private ProposalData() {}
+    private ProposalData() {
+	StringBuffer _header = new StringBuffer();
+	proposal = load(_header);
+	header = _header.toString();
+	proposalToUnicodeSet = getProposalToUnicodeSet(proposal);
+    }
 
     private static ImmutableMultimap<UnicodeSet, String> getProposalToUnicodeSet(UnicodeMap<Set<String>> source) {
 	Map<String,UnicodeSet> _proposalToUnicodeSet = new TreeMap<>(Collections.reverseOrder());
@@ -84,7 +98,7 @@ public class ProposalData {
 	source = getSkeleton(source);
 	String tempDebug = Utility.hex(source);
 	output.addAll(CldrUtility.ifNull(proposal.get(source), Collections.emptySet()));
-	if (output.isEmpty()) {
+	if (output.isEmpty()) { // get provisional candidates
 	    output.addAll(CldrUtility.ifNull(CandidateData.getInstance().getProposal(source), Collections.emptySet()));
 	}
 	if (output.isEmpty()) {
@@ -97,7 +111,7 @@ public class ProposalData {
 		    output.add("L2/14‑173");
 		}
 	    }
-	    if (output.isEmpty()) {
+	    if (output.isEmpty()) { // for debugging
 		Set<String> foo = CandidateData.getInstance().getProposal(source);
 	    }
 	}
@@ -153,13 +167,23 @@ public class ProposalData {
     //    }
 
 
-    static UnicodeMap<Set<String>> load() {
+    static UnicodeMap<Set<String>> load(StringBuffer header) {
 	UnicodeMap<Set<String>> builder = new UnicodeMap<>();
 	Set<String> skinProposals = ImmutableSet.<String>builder().add("L2/14-173").build();
 	Set<String> genProposals = ImmutableSet.<String>builder().add("L2/16‑160").build();
 
+	boolean haveData = false;
 	for (String line : FileUtilities.in(ProposalData.class, "proposalData.txt")) {
-	    if (line.startsWith("#") || line.trim().isEmpty()) continue;
+	    if (line.startsWith("#")) {
+		if (!haveData) {
+		    header.append(line).append('\n');
+		}
+		continue;
+	    }
+	    haveData = true;
+	    if (line.trim().isEmpty()) {
+		continue;
+	    }
 	    List<String> parts = SPLITTER_SEMI_HASH.splitToList(line);
 	    String codeString = parts.get(0);
 	    if (line.contains("1F468 1F3FF 200D 1F91D 200D 1F468 1F3FF")) {
@@ -170,56 +194,68 @@ public class ProposalData {
 		continue;
 	    }
 	    UnicodeSet codes = parseDotDot(codeString);
+		Set<String> proposals = cleanProposalString(proposalString);
 
-	    // validate
-	    Set<String> proposals = cleanProposalString(proposalString);
-	    // TODO clean up later
-	    UnicodeSet cleaned = new UnicodeSet();
-	    UnicodeSet cleanedAndGen = new UnicodeSet();
-	    UnicodeSet cleanedAndSkin = new UnicodeSet();
-	    UnicodeSet cleanedAndGenAndSkin = new UnicodeSet();
-	    for (String code : codes) {
-//		String withoutVariants = EmojiData.removeEmojiVariants(code);
-//		String withVariants = EmojiData.EMOJI_DATA.addEmojiVariants(code);
-//		if (!EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().contains(withoutVariants)
-//			&& !EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().contains(withVariants)) {
-//		    System.out.println("*** Skipping bad: " + code + " on " + line);
-//		    boolean defectives = EmojiData.EMOJI_DATA.getAllEmojiWithDefectives().contains(withoutVariants);
-//		    continue;
-//		}
+	    addCodes(codes, proposals, skinProposals, genProposals, builder);
+	}
+//	final CandidateData candidateData = CandidateData.getInstance();
+//	String debug = With.fromCodePoint(0x1F9D4, 0x200D, 0x2642, 0xFE0F);
+//	for (String candidate : candidateData.getAllCharacters(Status.Draft_Candidate)) {
+//	    System.out.println(Utility.hex(candidate));
+//	    if (candidate.contentEquals(debug)) {
+//		int debug2 = 0;
+//	    }
+//	    final String skeleton = getSkeleton(candidate);
+//	    Set<String> proposalString = candidateData.getProposal(candidate);
+//	    addCodes(new UnicodeSet().add(skeleton), proposalString, skinProposals, genProposals, builder);
+//	}
+	
+//	if (output.isEmpty()) {
+//	    output.addAll(CldrUtility.ifNull(CandidateData.getInstance().getProposal(source), Collections.emptySet()));
+//	}
 
-		String fixedCode = getSkeleton(code);
-		if (fixedCode.contains(SKIN_REPRESENTATIVE)) {
-		    if (fixedCode.contains(GENDER_REPRESENTATIVE)) {
-			cleanedAndGenAndSkin.add(code);
-		    } else {
-			cleanedAndSkin.add(code);
-		    }
-		} else {
-		    if (fixedCode.contains(GENDER_REPRESENTATIVE)) {
-			cleanedAndGen.add(code);
-		    } else {
-			cleaned.add(code);
-		    }
-		}
+	return builder.freeze();
+    }
+
+    public static void addCodes(UnicodeSet codes, Set<String> proposals, Set<String> skinProposals,
+	    Set<String> genProposals, UnicodeMap<Set<String>> builder) {
+	// validate
+	
+	UnicodeSet cleaned = new UnicodeSet();
+	UnicodeSet cleanedAndGen = new UnicodeSet();
+	UnicodeSet cleanedAndSkin = new UnicodeSet();
+	UnicodeSet cleanedAndGenAndSkin = new UnicodeSet();
+	for (String code : codes) {
+	String fixedCode = getSkeleton(code);
+	if (fixedCode.contains(SKIN_REPRESENTATIVE)) {
+	    if (fixedCode.contains(GENDER_REPRESENTATIVE)) {
+		cleanedAndGenAndSkin.add(code);
+	    } else {
+		cleanedAndSkin.add(code);
 	    }
-	    if (!cleaned.isEmpty()) {
-		addAll(builder, cleaned, proposals);
-	    }
-	    if (!cleanedAndSkin.isEmpty()) {
-		proposals = ImmutableSet.<String>builder().addAll(proposals).addAll(skinProposals).build();
-		addAll(builder, cleanedAndSkin, proposals);
-	    }
-	    if (!cleanedAndGen.isEmpty()) {
-		proposals = ImmutableSet.<String>builder().addAll(proposals).addAll(genProposals).build();
-		addAll(builder, cleanedAndGen, proposals);
-	    }
-	    if (!cleanedAndGenAndSkin.isEmpty()) {
-		proposals = ImmutableSet.<String>builder().addAll(proposals).addAll(genProposals).addAll(skinProposals).build();
-		addAll(builder, cleanedAndGenAndSkin, proposals);
+	} else {
+	    if (fixedCode.contains(GENDER_REPRESENTATIVE)) {
+		cleanedAndGen.add(code);
+	    } else {
+		cleaned.add(code);
 	    }
 	}
-	return builder.freeze();
+	}
+	if (!cleaned.isEmpty()) {
+	addAll(builder, cleaned, proposals);
+	}
+	if (!cleanedAndSkin.isEmpty()) {
+	proposals = ImmutableSet.<String>builder().addAll(proposals).addAll(skinProposals).build();
+	addAll(builder, cleanedAndSkin, proposals);
+	}
+	if (!cleanedAndGen.isEmpty()) {
+	proposals = ImmutableSet.<String>builder().addAll(proposals).addAll(genProposals).build();
+	addAll(builder, cleanedAndGen, proposals);
+	}
+	if (!cleanedAndGenAndSkin.isEmpty()) {
+	proposals = ImmutableSet.<String>builder().addAll(proposals).addAll(genProposals).addAll(skinProposals).build();
+	addAll(builder, cleanedAndGenAndSkin, proposals);
+	}
     }
 
     public static void addAll(UnicodeMap<Set<String>> builder, UnicodeSet cleaned, Set<String> proposals) {
@@ -297,12 +333,7 @@ public class ProposalData {
     @Override
     public String toString() {
 	StringBuilder out = new StringBuilder();
-	out.append("# Internal file mapping emoji to proposals.\n"
-		+ "# The file is abbreviated by mapping all skintones to " + SKIN_REPRESENTATIVE + ", since all 5 are introduced together.\n"
-		+ "# And all gender signs to " + GENDER_REPRESENTATIVE + ", since both are introduced together.\n"
-		+ "# Feedback, especially on MISSING ones (at the end), is welcome.\n"
-		+ "\n"
-		);
+	out.append(header).append('\n');
 	showProposals(out, proposal);        
 	UnicodeSet already = new UnicodeSet(proposal.keySet());
 
@@ -346,8 +377,11 @@ public class ProposalData {
 	}
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 	ProposalData instance = getInstance();
+	if (args.length == 0) {
+	    args = new String[] {"data"};
+	}
 	int count = 0;
 	for (String arg : args) {
 	    switch (arg) {
@@ -407,14 +441,22 @@ public class ProposalData {
 	}
     }
 
-    static ProposalData SINGLETON = new ProposalData();
+    private static final class Helper {
+	static ProposalData SINGLETON = new ProposalData();
+    }
 
     public static ProposalData getInstance() {
-	return SINGLETON;
+	return Helper.SINGLETON;
     }
 
     public static void chart(String dir, String filename) {
 	ProposalData instance = getInstance();
+	
+	try (PrintWriter pw = FileUtilities.openUTF8Writer(dir, "emoji-proposals.txt")) {
+	    pw.println(instance);
+	} catch (IOException e2) {
+	    throw new ICUUncheckedIOException(e2);
+	}
 
 	UnicodeMap<Integer> charsToYears = new UnicodeMap<>();
 	for (String s : EmojiData.EMOJI_DATA_BETA.getAllEmojiWithoutDefectives()) {
@@ -438,7 +480,7 @@ public class ProposalData {
 			    + "<p>This file is abbreviated by replacing certain characters that are always included in the same proposal:</p>"
 			    + "<ul><li>skintones (🏻 🏼 🏽 🏾 🏿) by " + SKIN_REPRESENTATIVE + "</li>\n"
 			    + "<li>gender signs (♀️ ♂️) by " + GENDER_REPRESENTATIVE + "</li></ul>\n"
-			    + "<p><b>Caveats:</b> the data is draft, and needs further improvement: "
+			    + "<p><b>Caveats:</b> the proposal data is draft: "
 			    + "suggestions for corrections and other improvements can be submitted at <a target='emoji-proposal-corrections' href='https://docs.google.com/forms/d/e/1FAIpQLSf5RtIkkBP_eUmRFSZfBGm9W6vj2n31_qUzWcv9FXdtyb81kQ/viewform?usp=pp_url&entry.565091389=Add&entry.1700236179=%F0%9F%91%BD&entry.1390707358=L2/99-999'>Emoji Proposal Corrections</a>.</p>", 
 			    Emoji.DATA_DIR_PRODUCTION, Emoji.TR51_HTML);
 	    out.println("<hr><p><b>Contents</b></p>\n"
@@ -450,7 +492,7 @@ public class ProposalData {
 		    );
 	    out.println("<hr><h1>" + ChartUtilities.getDoubleLink("By Proposal") + "</h1>\n");
 	    out.append("<table>\n");
-	    for (Entry<UnicodeSet, Collection<String>> proposalAndUset : proposalToUnicodeSet.asMap().entrySet()) {
+	    for (Entry<UnicodeSet, Collection<String>> proposalAndUset : instance.proposalToUnicodeSet.asMap().entrySet()) {
 		UnicodeSet uset = proposalAndUset.getKey();
 		Collection<String> proposals = proposalAndUset.getValue();
 		boolean first = true;

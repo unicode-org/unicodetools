@@ -3697,7 +3697,7 @@ public class GenerateEmoji {
 			annotationsString += "<div class='uname'>" + uname + "</div>";
 		    }
 		}
-		Set<String> proposals = ProposalData.SINGLETON.getProposals(source);
+		Set<String> proposals = ProposalData.getInstance().getProposals(source);
 		if (!variants.isEmpty()) {
 		    Multimap<Category, String> categoryToItems = TreeMultimap.create();
 		    for (String source2 : variants) {
@@ -3710,7 +3710,7 @@ public class GenerateEmoji {
 			    output = new LinkedHashSet<>();
 			}
 			source1 = ProposalData.getSkeleton(source1);
-			output.addAll(CldrUtility.ifNull(ProposalData.SINGLETON.proposal.get(source1),Collections.emptySet()));
+			output.addAll(CldrUtility.ifNull(ProposalData.getInstance().proposal.get(source1),Collections.emptySet()));
 			output.addAll(CldrUtility.ifNull(CandidateData.getInstance().getProposal(source1),Collections.emptySet()));
 			outputPlain.add("*" + ++countPlain
 				+ "\t" + Emoji.toUHex(source2)
@@ -3739,7 +3739,7 @@ public class GenerateEmoji {
 				+ "</div>";
 		    }
 		}
-		String proposalHtml = ProposalData.SINGLETON.formatProposalsForHtml(proposals);
+		String proposalHtml = ProposalData.getInstance().formatProposalsForHtml(proposals);
 		if (candidateStyle != CandidateStyle.released) {
 		    // String comment = candidateData.getComment(source);
 		    // if (comment != null) {
