@@ -296,6 +296,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 	}
 
 	addCombosWithGenderAndSkin(source); // fix last source. We do it here so we know the properties
+	addHackName("handshake", "\uD83E\uDD1D", "\uDBC6\uDD03", "\u200D\uDBC6\uDD04");
 
 	// allCharacters.addAll(singleCharacters); // just to be sure
 	UnicodeSet duplicates = new UnicodeSet(EmojiData.EMOJI_DATA_RELEASED.getAllEmojiWithDefectives())
@@ -396,6 +397,38 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 	}
     }
 
+    /** 
+     * We need to add special names. Rather than enhance the data-driving algorithm for a one-off, 
+     * it is easier to do in code.
+     * */
+    private void addHackName(String name, String singleton, String prefix, String suffix) {
+	StringBuilder b = new StringBuilder();
+	for (String tone1 : EmojiData.MODIFIERS) {
+	    b.setLength(0); // truncate to before next i
+	    b.append(prefix).append(tone1);
+	    int len = b.length();
+	    String iName = EmojiData.EMOJI_DATA_BETA.getName(tone1);
+	    String iCompoundName = name + ": " + iName;
+	    for (String tone2 : EmojiData.MODIFIERS) {
+		b.setLength(len); // truncate to before next j
+		String sequence;
+		String compoundName = iCompoundName;
+		if (tone1.equals(tone2)) {
+		    // special case single character
+		    sequence = singleton + tone2;
+		    names.put(sequence, compoundName);
+		} else {
+		    b.append(suffix).append(tone2);
+		    String jName = EmojiData.EMOJI_DATA_BETA.getName(tone2);
+		    sequence = b.toString();
+		    compoundName += ", " + jName;
+		}
+		names.put(sequence, compoundName);
+		System.out.println(Utility.hex(sequence) + " => " + compoundName);
+	    }
+	}
+    }
+
     private void addAfter(String source, String afterItem) {
 	String base = EmojiData.EMOJI_DATA_BETA.getBaseRemovingModsGender(source);
 	if (!after.containsKey(base)) {
@@ -489,15 +522,15 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 	UnicodeSet all_Emoji_Modifier_Base = null;
 	String fromNames = names.get(source);
 	// disable this, so that all gender variants come from the file instead of being manufactured.
-//	if (hasModifierBase) {
-//	    // find the point where it occurs; not efficient but we don't care
-//	    all_Emoji_Modifier_Base = new UnicodeSet(emoji_Modifier_Base)
-//		    .addAll(EmojiData.EMOJI_DATA_BETA.getModifierBases())
-//		    .remove("🤝") // special hack to remove skin color
-//		    .freeze();
-//
-//	    addCombos(source, fromNames, "", source, "", ": ", all_Emoji_Modifier_Base, "", "");
-//	}
+	//	if (hasModifierBase) {
+	//	    // find the point where it occurs; not efficient but we don't care
+	//	    all_Emoji_Modifier_Base = new UnicodeSet(emoji_Modifier_Base)
+	//		    .addAll(EmojiData.EMOJI_DATA_BETA.getModifierBases())
+	//		    .remove("🤝") // special hack to remove skin color
+	//		    .freeze();
+	//
+	//	    addCombos(source, fromNames, "", source, "", ": ", all_Emoji_Modifier_Base, "", "");
+	//	}
 
 	int single = UnicodeSet.getSingleCodePoint(source);
 	if (single == Integer.MAX_VALUE) {
@@ -624,14 +657,14 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 	    if (o1 == o2) {
 		return 0;
 	    }
-	    
+
 	    // if both items have "real" collation data, use that.
 	    int r1 = EmojiOrder.STD_ORDER.mapCollator.getOrdering(o1);
 	    int r2 = EmojiOrder.STD_ORDER.mapCollator.getOrdering(o2);
 	    if (r1 >= 0 && r2 >= 0) {
 		return EmojiOrder.STD_ORDER.codepointCompare.compare(o1, o2);
 	    }
-	    
+
 	    // if there are no after values, then neither item is in CandidateData
 	    String after1 = after.get(o1);
 	    String after2 = after.get(o2);
@@ -1245,9 +1278,9 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
     public VersionInfo getNewest(String s) {
 	return BirthInfo.getVersionInfo(s);
-//	Age_Values result = Emoji.getNewest(s);
-//	return result == Age_Values.Unassigned ? Emoji.UCD11 
-//		: VersionInfo.getInstance(result.getShortName());
+	//	Age_Values result = Emoji.getNewest(s);
+	//	return result == Age_Values.Unassigned ? Emoji.UCD11 
+	//		: VersionInfo.getInstance(result.getShortName());
     }
 
     @Override
@@ -1281,7 +1314,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     public String getVersionString() {
 	return getPlainVersion();
     }
-    
+
     @Override
     public String getPlainVersion() {
 	return "candidates:" + DateFormat.getInstanceForSkeleton("yyyyMMdd", ULocale.ROOT).format(date);
