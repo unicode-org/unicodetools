@@ -132,11 +132,11 @@ U+102001
 Name=face with peeking eye
 Keywords=captivated | I can’t look away | peeking | peeping | staring
 
-Proposal=L2/19-380
-After=💔
-U+102002
-Name=mending heart
-Keywords=healthy | improving | mend | recovering | recuperating | well
+# Proposal=L2/19-380
+# After=💔
+# U+102002
+# Name=mending heart
+# Keywords=healthy | improving | mend | recovering | recuperating | well
 
 Proposal=L2/19-371
 After=💮
@@ -155,6 +155,34 @@ After=🩹
 U+102005
 Name=crutch
 Keywords=cane | crutch | disability | mobility aid | walking | walking stick
+
+Proposal=L2/19-398
+After=🤝
+U+1F91D U+1F3FB
+U+101903 U+1F3FB U+200D U+101904 U+1F3FC
+U+101903 U+1F3FB U+200D U+101904 U+1F3FD
+U+101903 U+1F3FB U+200D U+101904 U+1F3FE
+U+101903 U+1F3FB U+200D U+101904 U+1F3FF
+U+101903 U+1F3FC U+200D U+101904 U+1F3FB
+U+1F91D U+1F3FC
+U+101903 U+1F3FC U+200D U+101904 U+1F3FD
+U+101903 U+1F3FC U+200D U+101904 U+1F3FE
+U+101903 U+1F3FC U+200D U+101904 U+1F3FF
+U+101903 U+1F3FD U+200D U+101904 U+1F3FB
+U+101903 U+1F3FD U+200D U+101904 U+1F3FC
+U+1F91D U+1F3FD
+U+101903 U+1F3FD U+200D U+101904 U+1F3FE
+U+101903 U+1F3FD U+200D U+101904 U+1F3FF
+U+101903 U+1F3FE U+200D U+101904 U+1F3FB
+U+101903 U+1F3FE U+200D U+101904 U+1F3FC
+U+101903 U+1F3FE U+200D U+101904 U+1F3FD
+U+1F91D U+1F3FE
+U+101903 U+1F3FE U+200D U+101904 U+1F3FF
+U+101903 U+1F3FF U+200D U+101904 U+1F3FB
+U+101903 U+1F3FF U+200D U+101904 U+1F3FC
+U+101903 U+1F3FF U+200D U+101904 U+1F3FD
+U+101903 U+1F3FF U+200D U+101904 U+1F3FE
+U+1F91D U+1F3FF
 
 #================================
 Status=Draft Candidate
