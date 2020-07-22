@@ -218,7 +218,7 @@ U+1F636 U+200D U+1F32B U+FE0F
 Name=face in clouds
 Keywords=brain fog | confused | delirious | foggy | forgetful | head in clouds
 
-Proposal=L2/20-133
+Proposal=L2/19-391
 After=🧔
 U+1F9D4 1F3FB
 Name=woman with beard
@@ -234,7 +234,7 @@ Name=woman with beard: medium-dark skin tone
 U+1F9D4 1F3FF U+200D U+2640
 Name=woman with beard: dark skin tone
 
-Proposal=L2/20-133
+Proposal=L2/19-391
 After=🧔
 U+1F9D4 U+200D U+2642
 Name=man with beard
@@ -250,7 +250,7 @@ Name=man with beard: medium-dark skin tone
 U+1F9D4 1F3FF U+200D U+2642
 Name=man with beard: dark skin tone
 
-Proposal=L2/20-133
+Proposal=L2/19-377
 After=👨‍❤️‍💋‍👨
 U+1F468 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FB
 U+1F468 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FC
