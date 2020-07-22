@@ -3490,9 +3490,10 @@ public class GenerateEmoji {
 		+ "</ul>\n"
 		: "";
 	String top4 = candidateStyle != CandidateStyle.released
-		? "Where the last Sample cell is marked with the symbol "
-		+ NOT_NEW + " it indicates that a previously existing character is included, "
-		+ "and only because it has new gender and/or modifier variants.</p>\n"
+		? " Where the last Sample cell is marked with the symbol "
+		+ NOT_NEW + ", there is a row for an pre-existing character that has new gender and/or modifier variants. "
+		+ "For example, ➕ 5 Ⓒ ‧ 🏿 means that additional 5 skintone variants on the original character are added,  "
+		+ "and  ➕ 20 Ⓩ ‧ 🏿 means 20 zwj sequences are added, used to compose two other characters with a skintone on each.</p>\n"
 		/*
 		+ "<p><b style='background-color:yellow'>Note that certain CLDR names are to be changed after CLDR v36 ships:<ul>"
 		+ "<li>👰 → person with veil</li>"
@@ -3514,7 +3515,7 @@ public class GenerateEmoji {
 		+ top2
 		+ "<h2>Background</h2>\n"
 		+ top3
-		+ "<p>The count of new variants is in the Other Keywords column, such as “➕ 5 variants”. "
+		+ "<p>The count of new variants is in the Other Keywords column, such as “➕ 5 Ⓒ ‧ 🏿”. "
 		+ "The abbreviations and symbols are documented in " + CountEmoji.EMOJI_COUNT_KEY 
 		+ ", and the symbol meanings can be seen by hovering with a mouse."
 		+ top4
