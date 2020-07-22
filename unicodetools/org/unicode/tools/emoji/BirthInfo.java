@@ -58,13 +58,11 @@ public class BirthInfo implements Comparable<BirthInfo> {
 
     public static BirthInfo getBirthInfo(String s) {
 	UnicodeMap<BirthInfo> years = getBirthInfoMap();
-	BirthInfo result;
-	try {
-	    result = years.get(EmojiData.removeEmojiVariants(s));
-	} catch (Exception e) {
+	final String cleaned = EmojiData.removeEmojiVariants(s);
+	if (cleaned.isEmpty()) {
 	    return BirthInfo.MISSING;
 	}
-	return result;
+	return years.get(cleaned);
     }
 
     public static UnicodeMap<BirthInfo> getBirthInfoMap() {

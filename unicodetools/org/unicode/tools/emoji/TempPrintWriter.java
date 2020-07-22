@@ -18,7 +18,6 @@ public class TempPrintWriter extends Writer {
 
     public TempPrintWriter(String dir, String filename) {
         this(new File(dir, filename));
-	throw new IllegalArgumentException("USE org.unicode.tools.emoji.");
     }
 
     public TempPrintWriter(File file) {

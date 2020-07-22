@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.CodePoints;
-import org.unicode.cldr.draft.DraftUtils;
+import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.PatternCache;
 
@@ -44,7 +44,7 @@ public class RadicalStroke2 {
             Matcher iiCore = IICORE.matcher("");
             radStrokesToRadToRemainingStrokes = new TreeMap<Integer, Map<String, Map<Integer, UnicodeSet>>>();
             remainder = ScriptCategories2.parseUnicodeSet("[:script=Han:]").removeAll(GeneratePickerData2.SKIP);
-            String dataDir = DraftUtils.UCD_DIRECTORY + "/Unihan/";
+            String dataDir = CLDRPaths.UCD_DATA_DIRECTORY + "/Unihan/";
 
             BufferedReader in = new BufferedReader(
                 new FileReader(

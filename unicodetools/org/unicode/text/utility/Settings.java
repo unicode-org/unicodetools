@@ -25,7 +25,7 @@ public class Settings {
 
     public static final String UNICODETOOLS_DIRECTORY =
             CldrUtility.getProperty("UNICODETOOLS_DIR",
-                    SVN_WORKSPACE_DIRECTORY + "unicodetools/unicodetools") + '/';
+        	    CLDRPaths.SVN_DIRECTORY + "unicodetools/unicodetools") + '/';
     public static final String UNICODEJSPS_DIRECTORY = SVN_WORKSPACE_DIRECTORY + "UnicodeJsps/";
     public static final String UNICODE_DRAFT_DIRECTORY =
             CldrUtility.getProperty("UNICODE_DRAFT_DIR",

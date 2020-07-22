@@ -56,8 +56,6 @@ import com.ibm.icu.util.VersionInfo;
 
 public class EmojiData implements EmojiDataSource {
     // should be properties
-    private static final UnicodeSet EXPLICIT_GENDER = new UnicodeSet(
-	    "[[👦-👩 🧔 👴 👵 🤴 👸 👲 🧕 🤵 👰 🤰 🤱 🎅 🤶 💃 🕺 🕴 👫-👭]]").freeze();
     private static final UnicodeSet MULTIPERSON = new UnicodeSet("[👯 🤼 👫-👭 💏 💑 👪 🤝]").freeze();
     private static final UnicodeSet EXPLICIT_HAIR = new UnicodeSet("[👱]").freeze();
 
@@ -370,8 +368,12 @@ public class EmojiData implements EmojiDataSource {
 		    if (hashPos >= 0) {
 			line = line.substring(0, hashPos);
 		    }
-		    if (line.isEmpty())
+		    if (line.isEmpty()) {
 			continue;
+		    }
+		    if (line.contains("1F469 200D 1F91D 200D 1F469")) {
+			int i = 0;
+		    }
 
 		    List<String> list = semi.splitToList(line);
 		    String f0 = list.get(0);
@@ -380,9 +382,6 @@ public class EmojiData implements EmojiDataSource {
 		    int pos = f0.indexOf("..");
 		    if (pos < 0) {
 			source = Utility.fromHex(f0);
-			if (source.contains("👯")) {
-			    int i = 0;
-			}
 		    } else {
 			codePointStart = Integer.parseInt(f0.substring(0, pos), 16);
 			codePointEnd = Integer.parseInt(f0.substring(pos + 2), 16);
@@ -1442,7 +1441,7 @@ public class EmojiData implements EmojiDataSource {
 	for (String s : all) {
 	    BirthInfo bi = BirthInfo.getBirthInfo(s);
 	    if (bi.emojiVersionInfo != v1_0) {
-		throw new IllegalArgumentException();
+		throw new IllegalArgumentException(s + "\t" + bi.emojiVersionInfo);
 	    }
 	}
 
@@ -1488,7 +1487,7 @@ public class EmojiData implements EmojiDataSource {
 	diff2("otherHuman", new UnicodeSet(e11a.otherHuman).removeAll(e11a.otherHuman.strings()), "genderBase",
 		e11a.getGenderBase());
 
-	UnicodeSet explicitNeutral = new UnicodeSet("[👶🧒🧑🧓👼🗣👤👥]").freeze();
+	UnicodeSet explicitNeutral = new UnicodeSet("[👶🧒🧑🧓👼🧔🗣👤👥]").freeze();
 	UnicodeSet group = new UnicodeSet("[👫👬👭💏💑👪]").freeze();
 	UnicodeSet explicitGender = new UnicodeSet(explicitGendered).removeAll(explicitGendered.strings())
 		.removeAll(group);
@@ -1868,9 +1867,17 @@ public class EmojiData implements EmojiDataSource {
     public UnicodeSet getHairBases() {
 	return hairBases;
     }
+    
+    private static final UnicodeSet EXPLICIT_GENDER_13 = new UnicodeSet(
+	    "[[👦-👩 👴 👵 🤴 👸 👲 🧕 🤵 👰 🤰 🤱 🎅 🤶 💃 🕺 🧔 🕴 👫-👭]]")
+	    .freeze();
+
+    private static final UnicodeSet EXPLICIT_GENDER_13_1 = new UnicodeSet(EXPLICIT_GENDER_13)
+	    .remove("🧔")
+	    .freeze();
 
     public UnicodeSet getExplicitGender() {
-	return EXPLICIT_GENDER;
+	return version.compareTo(Emoji.VERSION13) <= 0 ? EXPLICIT_GENDER_13 : EXPLICIT_GENDER_13_1;
     }
 
     public UnicodeSet getExplicitHair() {

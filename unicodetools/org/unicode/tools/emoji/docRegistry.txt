@@ -8143,3 +8143,158 @@ L2/19-401	Proposal to Encode Telugu Sign Nukta	Vinodh Rajan, et al	2019-12-17
 L2/19-402	Proposal to Encode 6 Characters in the Brahmi Block	Vinodh Rajan, Shriramana Sharma	2019-12-18
 L2/19-403	Additional Tangut Glyph Corrections (WG2 N5126)	Andrew West, Viacheslav Zaytsev	2019-12-23
 L2/19-404	IRG #53 Liaison Report	Stephan Hyeonjun Stiller, et al	2019-12-21
+L2/19-405	Additional evidence for the use of Nukta sign in Telugu	Srinidhi A, Sridatta A	2019-12-29
+L2/20-001	Complete UTC Document Register 2019	Rick McGowan	2020-01-03
+L2/20-002	Proposal for changing the Composition-Exclusions of Bangla Characters (Bengali)	Mohammad Mamun Or Rashid	2020-01-03
+L2/20-003	Revised proposal to encode Old Uyghur (replaces L2/19-016)	Anshuman Pandey	2020-02-24
+L2/20-004	Gendered Emoji Update III	Charlotte Buff	2020-01-06
+L2/20-005	Proposal to make material changes to UAX #14	Marcel Schneider	2020-01-06
+L2/20-006	Proposal suggesting formal edits to UAX #14	Marcel Schneider	2020-01-06
+L2/20-007	Proposal to extend support for abbreviations	Marcel Schneider	2020-01-06
+L2/20-008	Proposal to synchronize the Core Specification	Marcel Schneider	2020-01-06
+L2/20-009	Proposal to adapt TUS to extended support for abbreviations	Marcel Schneider	2020-01-06
+L2/20-010	Proposal to make focused changes to the Code Charts text	Marcel Schneider	2020-01-06
+L2/20-011	Proposal to synchronize two glyphs in the Core Specification	Marcel Schneider	2020-01-06
+L2/20-012	Proposal to synchronize seven glyphs in the Code Charts	Marcel Schneider	2020-01-06
+L2/20-013	Proposal to ensure maximum visibility of changes to UAXes	Marcel Schneider	2020-01-06
+L2/20-014	UTC #162 Agenda	Lisa Moore	2020-01-12
+L2/20-015	UTC #162 Minutes	Lisa Moore	2020-01-23
+L2/20-016	Recently Closed Action Items (since 2019-10-03)	Rick McGowan	2020-01-10
+L2/20-017	Comments on Public Review Issues (October 6, 2019 - January 10, 2020)	Rick McGowan	2020-01-10
+L2/20-018	Response to proposal to encode Western Cham in the UCS	Alberto Pérez Pereiro, et al	2020-01-07
+L2/20-019	Proposal to encode COMBINING DOT BELOW LEFT for Syriac	Ben  Yang, et al 	2020-01-08
+L2/20-020	Request for reversion of the glyph for T2-6D4B at U+5DD5	Jaemin Chung	2020-01-09
+L2/20-021	Proposed Update UAX #11, East Asian Width (HTML version)	Ken Lunde	2020-01-09
+L2/20-022	Proposed Update UAX #15, Unicode Normalization Forms (HTML version)	Ken Whistler	2020-01-09
+L2/20-023	Proposed Update UAX #24, Unicode Script Property (HTML version)	Ken Whistler	2020-01-09
+L2/20-024	Proposed Update UAX #29, Unicode Text Segmentation (HTML version)	Mark Davis, Christopher Chapman	2020-01-09
+L2/20-025	Proposed Update UAX #31, Unicode Identifier and Pattern Syntax (HTML version)	Mark Davis	2020-01-09
+L2/20-026	Proposed Update UAX #38, Unicode Han Database (Unihan) (HTML version)	John H. Jenkins, et al	2020-01-09
+L2/20-027	Proposed Update UAX #41, Common References for Unicode Standard Annexes (HTML version)	Laurențiu Iancu, Rick McGowan	2020-01-09
+L2/20-028	Proposed Update UAX #42, Unicode Character Database in XML (HTML version)	Eric Muller	2020-01-09
+L2/20-029	Proposed Update UAX #44, Unicode Character Database (HTML version)	Ken Whistler, Laurențiu Iancu	2020-01-09
+L2/20-030	Proposed Update UAX #45, U-Source Ideographs (HTML version)	John H. Jenkins	2020-01-09
+L2/20-031	Proposed Update UAX #50, Unicode Vertical Text Layout (HTML version)	Ken Lunde, Koji Ishii	2020-01-09
+L2/20-032	Proposed Update UTS #18, Unicode Regular Expressions (HTML version)	Mark Davis, Andy Heninger	2020-01-09
+L2/20-033	Proposed Update UTS #10, Unicode Collation Algorithm (HTML version)	Ken Whistler, Markus Scherer	2020-01-09
+L2/20-034	Proposed Update UTS #39, Unicode Security Mechanisms (HTML version) 	Mark Davis, Michel Suignard	2020-01-09
+L2/20-035	Proposed Update UTS #51, Unicode Emoji (HTML version) 	Mark Davis, Peter Edberg	2020-01-09
+L2/20-036	Proposed Changes to kMandarin Field	John H. Jenkins	2020-01-09
+L2/20-037	Comments on L2/19-402 Proposal to Encode 6 Characters in the Brahmi Block	Andrew Glass	2020-01-09
+L2/20-038	Unicode request for VoQS support	Kirk Miller, Martin Ball	2020-01-09
+L2/20-039	Unicode request for extIPA support	Kirk Miller, Martin Ball	2020-01-09
+L2/20-040	Unicode request: Dania (Danish dialectological) symbols	Kirk Miller, Ruben Schachtenhaufen	2020-01-09
+L2/20-041	Comments on L2/19-306 Arabic additions for Quranic orthographies	Yannis Haralambous	2020-01-09
+L2/20-042	Proposal to encode yet two more Arabic honorifics	Roozbeh Pournader, et al	2020-01-10
+L2/20-043	The Non-Joining U+0856 in the Mandaic Unicode Standard	Ardwan Al-Sabti	2020-01-10
+L2/20-044	The Non-Joining U+0858 in the Mandaic Unicode Standard	Ardwan Al-Sabti	2020-01-10
+L2/20-045	SEI Liaison Report	Deborah Anderson	2020-01-12
+L2/20-046	Recommendations to UTC #162 January 2020 on Script Proposals	Deborah Anderson, et al	2020-01-12
+L2/20-047	Proposal to encode the Northern Palaeohispanic script	Joan Ferrer i Jané, et al	2020-01-10
+L2/20-048	Proposal to encode the Southern Palaeohispanic script	Joan Ferrer i Jané, et al	2020-01-10
+L2/20-049	Mandaic KAD	Ardwan Al-Sabti	2020-01-12
+L2/20-050	Response to feedback on UTS51	Mark Davis, Peter Edberg	2020-01-14
+L2/20-051	Response to feedback on UTS18	Mark Davis	2020-01-15
+L2/20-052	Changes to Identifier_Type of some Unicode 13.0 characters	Roozbeh Pournader	2020-01-16
+L2/20-053	CLDR Liaison Report	Steven Loomis	2020-01-16
+L2/20-054	Proposal to merge three Identifier_Types in UTS #39	Roozbeh Pournader	2020-01-16
+L2/20-055	Proposed sequences for composition exclusions	Roozbeh Pournader	2020-01-16
+L2/20-056	UTS #18 regex ad hoc: \p vs \m for properties of strings	Markus Scherer	2020-01-16
+L2/20-057	Proposal to add Mongolian Free Variation Selector Four	Liang Hai	2020-01-24
+L2/20-058	Proposal to change the code chart font for 21 blocks in Unicode Version 14.0 (replaces L2/19-386)	Ken Lunde	2020-01-22
+L2/20-059	Proposal for new provisional Unihan Database property: kStrange (replaces L2/19-394, stand-alone data file here)	Ken Lunde	2020-01-28
+L2/20-060	Feedback on Gurmukhi Bindi Before Bihari (L2/18-319, L2/19-167, L2/19-283)	Sarabveer Singh	2020-01-28
+L2/20-061	Final Proposal to encode Western Cham (revised; replaces L2/19-217R3)	Martin Hosken	2020-03-25
+L2/20-062	Response to L2/20-018 W. Cham response	Martin Hosken	2020-01-31
+L2/20-063	Response to Western Cham Script Adhoc Comments L2/20-046	Martin Hosken	2020-01-31
+L2/20-064	Face Holding Back Tears Proposal for Unicode 14.0	Neil Cohn, Jennifer Daniel	2020-02-04
+L2/20-065	Pour Emoji Proposal for Unicode 14.0	O'Plérou Grebet, Jennifer Daniel	2020-02-05
+L2/20-066	Breath-Face Proposal for Unicode 14.0	Neil Cohn, Jennifer Daniel	2020-02-05
+L2/20-067	Report on progress with African scripts in Unicode and their implementations	Charles L. Riley	2020-02-05
+L2/20-068	Revised draft for the encoding of an extended Egyptian Hieroglyphs repertoire,
+all Groups (A to Z and AA) (appendix database, as PDF)	Michel Suignard	2020-03-13
+L2/20-069	Proposal to Annotate Brahmi Sign Anusvara	Vinodh Rajan, Shriramana Sharma	2020-02-24
+L2/20-070	Exploratory proposal to encode the Kaktovik numerals	Eduardo Marín Silva	2020-02-25
+L2/20-071	Proposal to encode an Arabic tail character used for abbreviation (revised)	Roozbeh Pournader, Borna Izadpanah	2020-05-01
+L2/20-072	Melting Face Proposal for Unicode 14.0	Neil Cohn, et al	2020-02-26
+L2/20-073	Evidence for four U-source ideographs	William T. Nelson	2020-03-04
+L2/20-074	Proposal to add four characters to the U-source ideographs	William T. Nelson	2020-03-04
+L2/20-075	Updates for 8 values for 4 Nushu characters in UCD	Eiso Chan, Kushim Jiang	2020-03-11
+L2/20-076	Summary of email discussion on Gurmukhi BINDI	Deborah Anderson	2020-03-11
+L2/20-077	Syntax regular expression issues in UAX #38 (Unihan)	Michel Mariani	2020-03-11
+L2/20-078	LS on Unicode symbol numbers representing disasters	3GPP CT WG1	2020-03-11
+L2/20-079	Updates for 13 pieces of code charts information in CJK Compatibility Ideographs Supplement block	Eiso Chan	2020-03-11
+L2/20-080	Proposal to remove the UCS2003 representative glyphs from the Extension B code charts - Redux	Ken Lunde	2020-03-16
+L2/20-081	Proposal to encode an Arabic honorific used in Christian texts	Roozbeh Pournader, Lorna Evans	2020-03-16
+L2/20-082	Proposal to update kHangul and kKoreanName	Jaemin Chung	2020-03-18
+L2/20-083	Proposal to Encode Telugu Reph	Vinodh Rajan, et al	2020-03-18
+L2/20-084	Revised Proposal to Encode Telugu Letter Nakaara Pollu	Vinodh Rajan, et al	2020-03-18
+L2/20-085	Revised Proposal to Encode Telugu Sign Nukta	Vinodh Rajan, et al	2020-03-18
+L2/20-086	Fixing a Superfluous Sequence in the Telugu Section of TUS	Vinodh Rajan	2020-03-18
+L2/20-087	Proposal to fix Hebrew in UAX #14 by ruling out LB21a..b	Marcel Schneider	2020-03-31
+L2/20-088	Proposal to adjust space characters in UAX #14	Marcel Schneider	2020-03-31
+L2/20-089	Proposal to Encode Characters from Indonesian Orthography of Quran	M. Mahali Syarifuddin	2020-04-30
+L2/20-090	Comparison of Quikscript vs. Shavian	Deborah Anderson	2020-04-02
+L2/20-091	Proposal to include Kalasha Language alphabets	Rehmat Aziz Khan Chitrali	2020-04-02
+L2/20-092	Proposal to include four Luri alphabets	Mohammad Mogoei, Lateef Shaikh	2020-04-02
+L2/20-093	Proposal to Add Four UTC-Source Ideographs to UAX #45	Alexander Zapryagaev	2020-04-02
+L2/20-094	⿰魚夲 and ⿰魚本 should be separated	Qi Hankun	2020-04-02
+L2/20-095	Proposal to add Nine Pointed star	Adib Behjat, Joop Kiefte	2020-04-02
+L2/20-096	Proposed Addition to UAX #45	John H. Jenkins	2020-04-06
+L2/20-097	Proposed kMandarin Values	John H. Jenkins	2020-04-06
+L2/20-098	Proposal to De-Unify One Obsolete Simplified Chinese Character (IRGN 2414)	Alexander Zapryagaev	2020-04-08
+L2/20-099	Discussion on IRGN2414 among Woo Chi Chung, William Nelson and John Jenkins on Slack	Eiso Chan	2020-04-08
+L2/20-100	IRGN2414 Feedback From China	TAO Yang	2020-04-08
+L2/20-101	UTC #163 Agenda	Lisa Moore	2020-04-20
+L2/20-102	UTC #163 Minutes	Lisa Moore	2020-05-06
+L2/20-103	Recently Closed Action Items (since 2020-01-10)	Rick McGowan	2020-04-20
+L2/20-104	Comments on Public Review Issues (January 10 - April 20, 2020)	Rick McGowan	2020-04-20
+L2/20-105	Recommendations to UTC #163 April 2020 on Script Proposals	Deborah Anderson	2020-04-21
+L2/20-106	Unihan Ad Hoc Recommendations for UTC #163 Meeting (revised)	Ken Lunde	2020-04-29
+L2/20-107	Editorial Committee Report and Recommendations for UTC #163 Meeting	Ken Whistler	2020-04-21
+L2/20-108	UTC #163 ucd-dev ad hoc feedback & recommendations (revised)	Markus Scherer, et al	2020-04-27
+L2/20-109	UTC #163 regex feedback & recommendations	Markus Scherer, et al	2020-04-21
+L2/20-110	Mozilla Feedback on PRI #408 "QID Emoji"	Henri Sivonen	2020-04-15
+L2/20-111	Proposal of ChinaChina's horizontal extension for technical used characters (WG2 N5129)	Cai Lei, Tao Yang	2020-04-15
+L2/20-112	Proposal to Disunify U+5F50	Alexander Zapryagaev	2020-04-15
+L2/20-113	Unicode request for modification of VoQS character	Kirk Miller, Martin Ball	2020-04-20
+L2/20-114	Multi-skintoned Families for Unicode 14.0: Exploration and Recommendations (revised)	Sean Stewart / ESC	2020-04-23
+L2/20-115	Unicode request for additional phonetic click letters	Kirk Miller, Bonny Sands	2020-04-20
+L2/20-116	Expansion of the extIPA and VoQS	Kirk Miller, Martin Ball	2020-04-20
+L2/20-117	Unicode request for modifier-letter support	Kirk Miller	2020-04-20
+L2/20-118	Proposed mapping of extIPA and modifier phonetic characters	Kirk Miller	2020-04-20
+L2/20-119	Proposal to Encode Two Letters in Telugu	Vinodh Rajan	2020-04-20
+L2/20-120	Representing an Underline Diacritic in Telugu	Vinodh Rajan	2020-04-20
+L2/20-121	Proposal to change the code chart font for Wancho	Zachary Scheuren, Banwang Losu	2020-04-20
+L2/20-122	Comments on L2/20-061R Final Proposal to encode Western Cham	Deborah Anderson	2020-04-20
+L2/20-123	Zoom Meeting on Egyptian Hieroglyphs (April 8, 2020)	Deborah Anderson	2020-04-20
+L2/20-124	Preliminary Proposal to add the Tangsa Script in the SMP	Stephen Morey	2020-04-20
+L2/20-125	Unicode request for a ligature, expected IPA retroflex letters and similar hooks and tails	Kirk Miller	2020-04-20
+L2/20-126	Proposal to Add Two More UTC-Source Ideographs to UAX #45	Alexander Zapryagaev	2020-04-20
+L2/20-127	SEI Liaison Report	Deborah Anderson	2020-04-21
+L2/20-128	Heart on Fire Emoji	Jennifer Daniel	2020-04-21
+L2/20-129	Comments on L2/20-069: Encoding of Tamil Brahmi Virama (U+11070)	Naga Ganesan	2020-06-01
+L2/20-130	Face In Clouds Emoji	Jennifer Daniel	2020-04-21
+L2/20-131	Face with Spiral Eyes (replaces L2/19-303)	Jennifer Daniel	2020-04-21
+L2/20-132	Clarifying Emojification Strategies and Strengthening ESC Processes	Jennifer Daniel / ESC	2020-04-23
+L2/20-133	Recommendations for ZWJ Sequences, Unicode 13.1	Jennifer Daniel / ESC	2020-04-23
+L2/20-134	ESC Report for 2020Q2 UTC	Jennifer Daniel / ESC	2020-04-27
+L2/20-135	Next steps on Book Pahlavi	Roozbeh Pournader, Liang Hai	2020-04-28
+L2/20-136	Comments on and proposed response to SC2 N4710, "LS on Unicode symbol numbers representing disasters"	Peter Constable	2020-04-30
+L2/20-137	Encoding of a character "Sinhala Chandrabindu"	Gihan Dias	2020-05-04
+L2/20-138	Notes on Informal Meeting on Mongolian with Chuck Namujila	Deborah Anderson	2020-05-06
+L2/20-139	Proposal to Add Three UTC-Source Polysyllabic Ideographs to UAX #45	Alexander Zapryagaev	2020-05-06
+L2/20-140	Toward encoding Blissymbolics in Plane 1 (supersedes L2/98-364 and WG2 N1866)	Michael Everson	2020-05-13
+L2/20-141	Response to 'Next steps on Book Pahlavi' (L2/20-135)	Arash Zeini	2020-05-08
+L2/20-142	Proposal to postpone the deadline for IRG Working Set 2020 submissions	Ken Lunde	2020-05-11
+L2/20-143	Uppercase of U+0587 ARMENIAN SMALL LIGATURE ECH YIWN	Deborah Anderson	2020-05-20
+L2/20-144	Proposal to Disunify U+80DC 胜	Cheon Hyeong Sim	2020-05-20
+L2/20-145	Proposal to Add to UAX #45 Three UTC-Source Ideographs for Units of Measurement	Ken Lunde	2020-06-16
+L2/20-146	Proposal for new provisional Unihan Database property: kMojiJoho (stand-alone data file here)	Ken Lunde	2020-06-09
+L2/20-147	Unicode Expert committee - TVA Minutes of the meeting held on 08-May-2020	Gov't of Tamil Nadu	2020-06-05
+L2/20-148	Collection of Un-encoded Chinese Characters from Tsinghua Bamboo Slips	Snow Listener	2020-06-16
+L2/20-149	Proposal to encode the TAKRI SIGN CANDRABINDU	Srinidhi A, Sridatta A	2020-06-22
+L2/20-150	Syllabic category of Balinese Surang, Javanese Layar, and Sundanese Panglayar	Aditya Bayu Perdana, et al	2020-06-23
+L2/20-151	Proposal to encode the KAITHI VOWEL SIGN VOCALIC R	Srinidhi A, Sridatta A	2020-06-24
+L2/20-152	Base Character of HIRAGANA LETTER ARCHAIC WU	Abraham Gross	2020-06-25
+L2/20-153	Proposal to Repurpose the kCantonese Field in the Unihan Database	John H. Jenkins	2020-06-25

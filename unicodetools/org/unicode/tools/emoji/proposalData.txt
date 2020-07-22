@@ -6,11 +6,13 @@
 #  • skin tone to 'dark'
 #  • emoji presentation characters removed
 # (No proposal splits two strings with the same skeleton.)
+# 
+###### GENERATED — Regenerate by running ProposalData.java; look at main() ###### 
+
 # Internal file mapping emoji to proposals.
 # The file is abbreviated by mapping all skintones to 🏿, since all 5 are introduced together.
 # And all gender signs to ♀, since both are introduced together.
 # Feedback, especially on MISSING ones (at the end), is welcome.
-
 
 # L2/16-127R2
 1F6F7; L2/16-127R2 # 2017 (🛷) sled
@@ -287,8 +289,8 @@
 2728; L2/07-257, L2/09-026 # 2010 (✨) sparkles
 274C; L2/07-257, L2/09-026 # 2010 (❌) cross mark
 274E; L2/07-257, L2/09-026 # 2010 (❎) cross mark button
-2753..2755; L2/07-257, L2/09-026 # 2010..2010 (❓..❕) question mark..white exclamation mark
-2757; L2/07-257, L2/09-026 # 2010 (❗) exclamation mark
+2753..2755; L2/07-257, L2/09-026 # 2010..2010 (❓..❕) red question mark..white exclamation mark
+2757; L2/07-257, L2/09-026 # 2010 (❗) red exclamation mark
 2795..2797; L2/07-257, L2/09-026 # 2010..2010 (➕..➗) plus..divide
 27B0; L2/07-257, L2/09-026 # 2010 (➰) curly loop
 27BF; L2/07-257, L2/09-026 # 2015 (➿) double curly loop
@@ -363,7 +365,7 @@
 1F628..1F62B; L2/07-257, L2/09-026 # 2010..2010 (😨..😫) fearful face..tired face
 1F62D; L2/07-257, L2/09-026 # 2010 (😭) loudly crying face
 1F630..1F633; L2/07-257, L2/09-026 # 2010..2010 (😰..😳) anxious face with sweat..flushed face
-1F635; L2/07-257, L2/09-026 # 2010 (😵) dizzy face
+1F635; L2/07-257, L2/09-026 # 2010 (😵) knocked-out face
 1F637..1F640; L2/07-257, L2/09-026 # 2010..2010 (😷..🙀) face with medical mask..weary cat
 1F645..1F64F; L2/07-257, L2/09-026 # 2010..2010 (🙅..🙏) person gesturing NO..folded hands
 1F680; L2/07-257, L2/09-026 # 2010 (🚀) rocket
@@ -824,7 +826,7 @@
 1F996; L2/16-295R, L2/16-072, L2/16-103, L2/14-174 # 2017 (🦖) T-Rex
 
 # L2/16-260, L2/14-174
-1F9D4; L2/16-260, L2/14-174 # 2017 (🧔) man: beard
+1F9D4; L2/16-260, L2/14-174 # 2017 (🧔) person: beard
 
 # L2/16-284, L2/14-174
 1F9D5; L2/16-284, L2/14-174 # 2017 (🧕) woman with headscarf
@@ -1090,74 +1092,74 @@
 1F6B6 1F3FF; L2/07-257, L2/09-026, L2/14-173 # 2015 (🚶🏿) person walking: dark skin tone
 1F6C0 1F3FF; L2/07-257, L2/09-026, L2/14-173 # 2015 (🛀🏿) person taking bath: dark skin tone
 
-# L2/16-181, L2/16-182, L2/16‑160
-26F9 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (⛹️‍♀️) woman bouncing ball
-1F3C3 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🏃‍♀️) woman running
-1F3C4 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🏄‍♀️) woman surfing
-1F3CA 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🏊‍♀️) woman swimming
-1F3CB 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🏋️‍♀️) woman lifting weights
-1F3CC 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🏌️‍♀️) woman golfing
-1F46E 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (👮‍♀️) woman police officer
-1F46F 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (👯‍♀️) women with bunny ears
-1F471 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (👱‍♀️) woman: blond hair
-1F473 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (👳‍♀️) woman wearing turban
-1F477 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (👷‍♀️) woman construction worker
-1F481 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (💁‍♀️) woman tipping hand
-1F482 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (💂‍♀️) woman guard
-1F486 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (💆‍♀️) woman getting massage
-1F487 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (💇‍♀️) woman getting haircut
-1F575 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🕵️‍♀️) woman detective
-1F645 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🙅‍♀️) woman gesturing NO
-1F646 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🙆‍♀️) woman gesturing OK
-1F647 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🙇‍♀️) woman bowing
-1F64B 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🙋‍♀️) woman raising hand
-1F64D 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🙍‍♀️) woman frowning
-1F64E 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🙎‍♀️) woman pouting
-1F6A3 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🚣‍♀️) woman rowing boat
-1F6B4 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🚴‍♀️) woman biking
-1F6B5 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🚵‍♀️) woman mountain biking
-1F6B6 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🚶‍♀️) woman walking
-1F926 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🤦‍♀️) woman facepalming
-1F938 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🤸‍♀️) woman cartwheeling
-1F939 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🤹‍♀️) woman juggling
-1F93C 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🤼‍♀️) women wrestling
-1F93D 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🤽‍♀️) woman playing water polo
-1F93E 200D 2640; L2/16-181, L2/16-182, L2/16‑160 # 2016 (🤾‍♀️) woman playing handball
+# L2/16-181, L2/16-182, L2/16-160, L2/16‑160
+26F9 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (⛹️‍♀️) woman bouncing ball
+1F3C3 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🏃‍♀️) woman running
+1F3C4 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🏄‍♀️) woman surfing
+1F3CA 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🏊‍♀️) woman swimming
+1F3CB 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🏋️‍♀️) woman lifting weights
+1F3CC 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🏌️‍♀️) woman golfing
+1F46E 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (👮‍♀️) woman police officer
+1F46F 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (👯‍♀️) women with bunny ears
+1F471 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (👱‍♀️) woman: blond hair
+1F473 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (👳‍♀️) woman wearing turban
+1F477 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (👷‍♀️) woman construction worker
+1F481 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (💁‍♀️) woman tipping hand
+1F482 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (💂‍♀️) woman guard
+1F486 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (💆‍♀️) woman getting massage
+1F487 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (💇‍♀️) woman getting haircut
+1F575 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🕵️‍♀️) woman detective
+1F645 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🙅‍♀️) woman gesturing NO
+1F646 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🙆‍♀️) woman gesturing OK
+1F647 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🙇‍♀️) woman bowing
+1F64B 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🙋‍♀️) woman raising hand
+1F64D 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🙍‍♀️) woman frowning
+1F64E 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🙎‍♀️) woman pouting
+1F6A3 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🚣‍♀️) woman rowing boat
+1F6B4 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🚴‍♀️) woman biking
+1F6B5 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🚵‍♀️) woman mountain biking
+1F6B6 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🚶‍♀️) woman walking
+1F926 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🤦‍♀️) woman facepalming
+1F938 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🤸‍♀️) woman cartwheeling
+1F939 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🤹‍♀️) woman juggling
+1F93C 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🤼‍♀️) women wrestling
+1F93D 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🤽‍♀️) woman playing water polo
+1F93E 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🤾‍♀️) woman playing handball
 
 # L2/07-259, L2/14-173
 26F9 1F3FF; L2/07-259, L2/14-173 # 2015 (⛹🏿) person bouncing ball: dark skin tone
 
-# L2/16-181, L2/16-182, L2/16‑160, L2/14-173
-26F9 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (⛹🏿‍♀️) woman bouncing ball: dark skin tone
-1F3C3 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🏃🏿‍♀️) woman running: dark skin tone
-1F3C4 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🏄🏿‍♀️) woman surfing: dark skin tone
-1F3CA 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🏊🏿‍♀️) woman swimming: dark skin tone
-1F3CB 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🏋🏿‍♀️) woman lifting weights: dark skin tone
-1F3CC 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🏌🏿‍♀️) woman golfing: dark skin tone
-1F46E 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (👮🏿‍♀️) woman police officer: dark skin tone
-1F471 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (👱🏿‍♀️) woman: dark skin tone, blond hair
-1F473 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (👳🏿‍♀️) woman wearing turban: dark skin tone
-1F477 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (👷🏿‍♀️) woman construction worker: dark skin tone
-1F481 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (💁🏿‍♀️) woman tipping hand: dark skin tone
-1F482 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (💂🏿‍♀️) woman guard: dark skin tone
-1F486 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (💆🏿‍♀️) woman getting massage: dark skin tone
-1F487 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (💇🏿‍♀️) woman getting haircut: dark skin tone
-1F575 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🕵🏿‍♀️) woman detective: dark skin tone
-1F645 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🙅🏿‍♀️) woman gesturing NO: dark skin tone
-1F646 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🙆🏿‍♀️) woman gesturing OK: dark skin tone
-1F647 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🙇🏿‍♀️) woman bowing: dark skin tone
-1F64B 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🙋🏿‍♀️) woman raising hand: dark skin tone
-1F64D 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🙍🏿‍♀️) woman frowning: dark skin tone
-1F64E 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🙎🏿‍♀️) woman pouting: dark skin tone
-1F6A3 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🚣🏿‍♀️) woman rowing boat: dark skin tone
-1F6B4 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🚴🏿‍♀️) woman biking: dark skin tone
-1F6B5 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🚵🏿‍♀️) woman mountain biking: dark skin tone
-1F6B6 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🚶🏿‍♀️) woman walking: dark skin tone
-1F926 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🤦🏿‍♀️) woman facepalming: dark skin tone
-1F938 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🤸🏿‍♀️) woman cartwheeling: dark skin tone
-1F939 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🤹🏿‍♀️) woman juggling: dark skin tone
-1F93D 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🤽🏿‍♀️) woman playing water polo: dark skin tone
-1F93E 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16‑160, L2/14-173 # 2016 (🤾🏿‍♀️) woman playing handball: dark skin tone
+# L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160
+26F9 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (⛹🏿‍♀️) woman bouncing ball: dark skin tone
+1F3C3 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🏃🏿‍♀️) woman running: dark skin tone
+1F3C4 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🏄🏿‍♀️) woman surfing: dark skin tone
+1F3CA 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🏊🏿‍♀️) woman swimming: dark skin tone
+1F3CB 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🏋🏿‍♀️) woman lifting weights: dark skin tone
+1F3CC 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🏌🏿‍♀️) woman golfing: dark skin tone
+1F46E 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (👮🏿‍♀️) woman police officer: dark skin tone
+1F471 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (👱🏿‍♀️) woman: dark skin tone, blond hair
+1F473 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (👳🏿‍♀️) woman wearing turban: dark skin tone
+1F477 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (👷🏿‍♀️) woman construction worker: dark skin tone
+1F481 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (💁🏿‍♀️) woman tipping hand: dark skin tone
+1F482 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (💂🏿‍♀️) woman guard: dark skin tone
+1F486 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (💆🏿‍♀️) woman getting massage: dark skin tone
+1F487 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (💇🏿‍♀️) woman getting haircut: dark skin tone
+1F575 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🕵🏿‍♀️) woman detective: dark skin tone
+1F645 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🙅🏿‍♀️) woman gesturing NO: dark skin tone
+1F646 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🙆🏿‍♀️) woman gesturing OK: dark skin tone
+1F647 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🙇🏿‍♀️) woman bowing: dark skin tone
+1F64B 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🙋🏿‍♀️) woman raising hand: dark skin tone
+1F64D 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🙍🏿‍♀️) woman frowning: dark skin tone
+1F64E 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🙎🏿‍♀️) woman pouting: dark skin tone
+1F6A3 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🚣🏿‍♀️) woman rowing boat: dark skin tone
+1F6B4 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🚴🏿‍♀️) woman biking: dark skin tone
+1F6B5 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🚵🏿‍♀️) woman mountain biking: dark skin tone
+1F6B6 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🚶🏿‍♀️) woman walking: dark skin tone
+1F926 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🤦🏿‍♀️) woman facepalming: dark skin tone
+1F938 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🤸🏿‍♀️) woman cartwheeling: dark skin tone
+1F939 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🤹🏿‍♀️) woman juggling: dark skin tone
+1F93D 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🤽🏿‍♀️) woman playing water polo: dark skin tone
+1F93E 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🤾🏿‍♀️) woman playing handball: dark skin tone
 
 # L2/13-207, L2/14-093, L2/14-173
 270C 1F3FF; L2/13-207, L2/14-093, L2/14-173 # 2015 (✌🏿) victory hand: dark skin tone
@@ -1537,10 +1539,15 @@
 1F469 1F3FF 200D 1F680; L2/16-160, L2/14-173 # 2016 (👩🏿‍🚀) woman astronaut: dark skin tone
 1F469 1F3FF 200D 1F692; L2/16-160, L2/14-173 # 2016 (👩🏿‍🚒) woman firefighter: dark skin tone
 
-# L2/18-307, L2/14-173
-1F468 1F3FF 200D 1F91D 200D 1F468 1F3FE; L2/18-307, L2/14-173 # 2019 (👨🏿‍🤝‍👨🏾) men holding hands: dark skin tone, medium-dark skin tone
-1F469 1F3FF 200D 1F91D 200D 1F468 1F3FE; L2/18-307, L2/14-173 # 2019 (👩🏿‍🤝‍👨🏾) woman and man holding hands: dark skin tone, medium-dark skin tone
-1F469 1F3FF 200D 1F91D 200D 1F469 1F3FE; L2/18-307, L2/14-173 # 2019 (👩🏿‍🤝‍👩🏾) women holding hands: dark skin tone, medium-dark skin tone
+# L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173
+1F468 1F3FF 200D 1F91D 200D 1F468 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # -1 (👨🏿‍🤝‍👨🏿) men holding hands: dark skin tone
+1F468 1F3FF 200D 1F91D 200D 1F469 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # -1 (👨🏿‍🤝‍👩🏿) men holding hands: dark skin tone
+1F469 1F3FF 200D 1F91D 200D 1F468 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # -1 (👩🏿‍🤝‍👨🏿) woman and man holding hands: dark skin tone
+1F469 1F3FF 200D 1F91D 200D 1F469 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # -1 (👩🏿‍🤝‍👩🏿) women holding hands: dark skin tone
+1F46B 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # 2019 (👫🏿) woman and man holding hands: dark skin tone
+1F46C 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # 2019 (👬🏿) men holding hands: dark skin tone
+1F46D 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # 2019 (👭🏿) women holding hands: dark skin tone
+1F9D1 1F3FF 200D 1F91D 200D 1F9D1 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # 2019 (🧑🏿‍🤝‍🧑🏿) people holding hands: dark skin tone
 
 # L2/18-306, L2/18-307, L2/14-173
 1F468 1F3FF 200D 1F9AF; L2/18-306, L2/18-307, L2/14-173 # 2019 (👨🏿‍🦯) man with white cane: dark skin tone
@@ -1560,17 +1567,25 @@
 1F469 1F3FF 200D 1F9B2; L2/17-082, L2/17-011, L2/16-147, L2/16-008, L2/14-173 # 2018 (👩🏿‍🦲) woman: dark skin tone, bald
 1F469 1F3FF 200D 1F9B3; L2/17-082, L2/17-011, L2/16-147, L2/16-008, L2/14-173 # 2018 (👩🏿‍🦳) woman: dark skin tone, white hair
 
-# L2/18-223, L2/14-173
-1F46B 1F3FF; L2/18-223, L2/14-173 # 2019 (👫🏿) woman and man holding hands: dark skin tone
-1F46C 1F3FF; L2/18-223, L2/14-173 # 2019 (👬🏿) men holding hands: dark skin tone
-1F46D 1F3FF; L2/18-223, L2/14-173 # 2019 (👭🏿) women holding hands: dark skin tone
-1F90F 1F3FF; L2/18-223, L2/14-173 # 2019 (🤏🏿) pinching hand: dark skin tone
-1F9CF 1F3FF; L2/18-223, L2/14-173 # 2019 (🧏🏿) deaf person: dark skin tone
+# L2/19-231, L2/17-071, L2/16-160, L2/16‑160
+1F470 200D 2640; L2/19-231, L2/17-071, L2/16-160, L2/16‑160 # 2020 (👰‍♀️) woman with veil
+1F470 200D 2642; L2/19-231, L2/17-071, L2/16-160, L2/16‑160 # 2020 (👰‍♂️) man with veil
+1F935 200D 2640; L2/19-231, L2/17-071, L2/16-160, L2/16‑160 # 2020 (🤵‍♀️) woman in tuxedo
+1F935 200D 2642; L2/19-231, L2/17-071, L2/16-160, L2/16‑160 # 2020 (🤵‍♂️) man in tuxedo
+
+# L2/19-231, L2/17-071, L2/16-160, L2/14-173, L2/16‑160
+1F470 1F3FF 200D 2640; L2/19-231, L2/17-071, L2/16-160, L2/14-173, L2/16‑160 # 2020 (👰🏿‍♀️) woman with veil: dark skin tone
+1F470 1F3FF 200D 2642; L2/19-231, L2/17-071, L2/16-160, L2/14-173, L2/16‑160 # 2020 (👰🏿‍♂️) man with veil: dark skin tone
+1F935 1F3FF 200D 2640; L2/19-231, L2/17-071, L2/16-160, L2/14-173, L2/16‑160 # 2020 (🤵🏿‍♀️) woman in tuxedo: dark skin tone
+1F935 1F3FF 200D 2642; L2/19-231, L2/17-071, L2/16-160, L2/14-173, L2/16‑160 # 2020 (🤵🏿‍♂️) man in tuxedo: dark skin tone
 
 # L2/15-054, L2/14-173
 1F57A 1F3FF; L2/15-054, L2/14-173 # 2016 (🕺🏿) man dancing: dark skin tone
 1F926 1F3FF; L2/15-054, L2/14-173 # 2016 (🤦🏿) person facepalming: dark skin tone
 1F934 1F3FF; L2/15-054, L2/14-173 # 2016 (🤴🏿) prince: dark skin tone
+
+# L2/18-139, L2/14-173
+1F90F 1F3FF; L2/18-139, L2/14-173 # 2019 (🤏🏿) pinching hand: dark skin tone
 
 # L2/16-308, L2/14-173
 1F91F 1F3FF; L2/16-308, L2/14-173 # 2017 (🤟🏿) love-you gesture: dark skin tone
@@ -1584,65 +1599,71 @@
 # L2/16-280, L2/16-282R, L2/14-173
 1F931 1F3FF; L2/16-280, L2/16-282R, L2/14-173 # 2017 (🤱🏿) breast-feeding: dark skin tone
 
-# L2/16-181, L2/16-182, L2/14-174, L2/16‑160
-1F937 200D 2640; L2/16-181, L2/16-182, L2/14-174, L2/16‑160 # 2016 (🤷‍♀️) woman shrugging
+# L2/16-181, L2/16-182, L2/14-174, L2/16-160, L2/16‑160
+1F937 200D 2640; L2/16-181, L2/16-182, L2/14-174, L2/16-160, L2/16‑160 # 2016 (🤷‍♀️) woman shrugging
 
-# L2/16-181, L2/16-182, L2/14-174, L2/16‑160, L2/14-173
-1F937 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/14-174, L2/16‑160, L2/14-173 # 2016 (🤷🏿‍♀️) woman shrugging: dark skin tone
+# L2/16-181, L2/16-182, L2/14-174, L2/16-160, L2/14-173, L2/16‑160
+1F937 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/14-174, L2/16-160, L2/14-173, L2/16‑160 # 2016 (🤷🏿‍♀️) woman shrugging: dark skin tone
 
 # L2/17-259, L2/14-174, L2/14-173
 1F9B5 1F3FF; L2/17-259, L2/14-174, L2/14-173 # 2018 (🦵🏿) leg: dark skin tone
 1F9B6 1F3FF; L2/17-259, L2/14-174, L2/14-173 # 2018 (🦶🏿) foot: dark skin tone
 
-# L2/17-244, L2/16‑160
-1F9B8 200D 2640; L2/17-244, L2/16‑160 # 2018 (🦸‍♀️) woman superhero
-1F9B8 200D 2642 FE0F; L2/17-244, L2/16‑160 # 2018 (🦸‍♂️) man superhero
-1F9B9 200D 2640; L2/17-244, L2/16‑160 # 2018 (🦹‍♀️) woman supervillain
-1F9B9 200D 2640 FE0F; L2/17-244, L2/16‑160 # 2018 (🦹‍♀️) woman supervillain
-1F9B9 200D 2642 FE0F; L2/17-244, L2/16‑160 # 2018 (🦹‍♂️) man supervillain
+# L2/17-244, L2/16-160, L2/16‑160
+1F9B8 200D 2640; L2/17-244, L2/16-160, L2/16‑160 # 2018 (🦸‍♀️) woman superhero
+1F9B8 200D 2642 FE0F; L2/17-244, L2/16-160, L2/16‑160 # 2018 (🦸‍♂️) man superhero
+1F9B9 200D 2640; L2/17-244, L2/16-160, L2/16‑160 # 2018 (🦹‍♀️) woman supervillain
+1F9B9 200D 2640 FE0F; L2/17-244, L2/16-160, L2/16‑160 # 2018 (🦹‍♀️) woman supervillain
+1F9B9 200D 2642 FE0F; L2/17-244, L2/16-160, L2/16‑160 # 2018 (🦹‍♂️) man supervillain
 
 # L2/17-244, L2/14-173
 1F9B8 1F3FF; L2/17-244, L2/14-173 # 2018 (🦸🏿) superhero: dark skin tone
 1F9B9 1F3FF; L2/17-244, L2/14-173 # 2018 (🦹🏿) supervillain: dark skin tone
 
-# L2/17-244, L2/16‑160, L2/14-173
-1F9B8 1F3FF 200D 2640; L2/17-244, L2/16‑160, L2/14-173 # 2018 (🦸🏿‍♀️) woman superhero: dark skin tone
-1F9B8 1F3FF 200D 2640 FE0F; L2/17-244, L2/16‑160, L2/14-173 # 2018 (🦸🏿‍♀️) woman superhero: dark skin tone
-1F9B9 1F3FF 200D 2640; L2/17-244, L2/16‑160, L2/14-173 # 2018 (🦹🏿‍♀️) woman supervillain: dark skin tone
-1F9B9 1F3FF 200D 2640 FE0F; L2/17-244, L2/16‑160, L2/14-173 # 2018 (🦹🏿‍♀️) woman supervillain: dark skin tone
+# L2/17-244, L2/16-160, L2/14-173, L2/16‑160
+1F9B8 1F3FF 200D 2640; L2/17-244, L2/16-160, L2/14-173, L2/16‑160 # 2018 (🦸🏿‍♀️) woman superhero: dark skin tone
+1F9B8 1F3FF 200D 2640 FE0F; L2/17-244, L2/16-160, L2/14-173, L2/16‑160 # 2018 (🦸🏿‍♀️) woman superhero: dark skin tone
+1F9B9 1F3FF 200D 2640; L2/17-244, L2/16-160, L2/14-173, L2/16‑160 # 2018 (🦹🏿‍♀️) woman supervillain: dark skin tone
+1F9B9 1F3FF 200D 2640 FE0F; L2/17-244, L2/16-160, L2/14-173, L2/16‑160 # 2018 (🦹🏿‍♀️) woman supervillain: dark skin tone
 
 # L2/18-080, L2/14-173
 1F9BB 1F3FF; L2/18-080, L2/14-173 # 2019 (🦻🏿) ear with hearing aid: dark skin tone
 
-# L2/18-091, L2/16‑160
-1F9CD 200D 2640; L2/18-091, L2/16‑160 # 2019 (🧍‍♀️) woman standing
-1F9CE 200D 2640; L2/18-091, L2/16‑160 # 2019 (🧎‍♀️) woman kneeling
+# L2/18-091, L2/16-160, L2/16‑160
+1F9CD 200D 2640; L2/18-091, L2/16-160, L2/16‑160 # 2019 (🧍‍♀️) woman standing
+1F9CE 200D 2640; L2/18-091, L2/16-160, L2/16‑160 # 2019 (🧎‍♀️) woman kneeling
 
-# L2/18-223, L2/16‑160
-1F9CD 200D 2640 FE0F; L2/18-223, L2/16‑160 # 2019 (🧍‍♀️) woman standing
-1F9CD 200D 2642 FE0F; L2/18-223, L2/16‑160 # 2019 (🧍‍♂️) man standing
-1F9CE 200D 2640 FE0F; L2/18-223, L2/16‑160 # 2019 (🧎‍♀️) woman kneeling
-1F9CE 200D 2642 FE0F; L2/18-223, L2/16‑160 # 2019 (🧎‍♂️) man kneeling
-1F9CF 200D 2640; L2/18-223, L2/16‑160 # 2019 (🧏‍♀️) deaf woman
-1F9CF 200D 2640 FE0F; L2/18-223, L2/16‑160 # 2019 (🧏‍♀️) deaf woman
-1F9CF 200D 2642 FE0F; L2/18-223, L2/16‑160 # 2019 (🧏‍♂️) deaf man
+# L2/18-223, L2/16-160, L2/16‑160
+1F9CD 200D 2640 FE0F; L2/18-223, L2/16-160, L2/16‑160 # 2019 (🧍‍♀️) woman standing
+1F9CD 200D 2642 FE0F; L2/18-223, L2/16-160, L2/16‑160 # 2019 (🧍‍♂️) man standing
+1F9CE 200D 2640 FE0F; L2/18-223, L2/16-160, L2/16‑160 # 2019 (🧎‍♀️) woman kneeling
+1F9CE 200D 2642 FE0F; L2/18-223, L2/16-160, L2/16‑160 # 2019 (🧎‍♂️) man kneeling
+1F9CF 200D 2640; L2/18-223, L2/16-160, L2/16‑160 # 2019 (🧏‍♀️) deaf woman
+1F9CF 200D 2640 FE0F; L2/18-223, L2/16-160, L2/16‑160 # 2019 (🧏‍♀️) deaf woman
+1F9CF 200D 2642 FE0F; L2/18-223, L2/16-160, L2/16‑160 # 2019 (🧏‍♂️) deaf man
 
 # L2/18-091, L2/14-173
 1F9CD 1F3FF; L2/18-091, L2/14-173 # 2019 (🧍🏿) person standing: dark skin tone
 1F9CE 1F3FF; L2/18-091, L2/14-173 # 2019 (🧎🏿) person kneeling: dark skin tone
 
-# L2/18-091, L2/16‑160, L2/14-173
-1F9CD 1F3FF 200D 2640; L2/18-091, L2/16‑160, L2/14-173 # 2019 (🧍🏿‍♀️) woman standing: dark skin tone
-1F9CE 1F3FF 200D 2640; L2/18-091, L2/16‑160, L2/14-173 # 2019 (🧎🏿‍♀️) woman kneeling: dark skin tone
+# L2/18-091, L2/16-160, L2/14-173, L2/16‑160
+1F9CD 1F3FF 200D 2640; L2/18-091, L2/16-160, L2/14-173, L2/16‑160 # 2019 (🧍🏿‍♀️) woman standing: dark skin tone
+1F9CE 1F3FF 200D 2640; L2/18-091, L2/16-160, L2/14-173, L2/16‑160 # 2019 (🧎🏿‍♀️) woman kneeling: dark skin tone
 
-# L2/18-223, L2/16‑160, L2/14-173
-1F9CD 1F3FF 200D 2640 FE0F; L2/18-223, L2/16‑160, L2/14-173 # 2019 (🧍🏿‍♀️) woman standing: dark skin tone
-1F9CE 1F3FF 200D 2640 FE0F; L2/18-223, L2/16‑160, L2/14-173 # 2019 (🧎🏿‍♀️) woman kneeling: dark skin tone
-1F9CF 1F3FF 200D 2640; L2/18-223, L2/16‑160, L2/14-173 # 2019 (🧏🏿‍♀️) deaf woman: dark skin tone
-1F9CF 1F3FF 200D 2640 FE0F; L2/18-223, L2/16‑160, L2/14-173 # 2019 (🧏🏿‍♀️) deaf woman: dark skin tone
+# L2/18-223, L2/16-160, L2/14-173, L2/16‑160
+1F9CD 1F3FF 200D 2640 FE0F; L2/18-223, L2/16-160, L2/14-173, L2/16‑160 # 2019 (🧍🏿‍♀️) woman standing: dark skin tone
+1F9CE 1F3FF 200D 2640 FE0F; L2/18-223, L2/16-160, L2/14-173, L2/16‑160 # 2019 (🧎🏿‍♀️) woman kneeling: dark skin tone
+1F9CF 1F3FF 200D 2640; L2/18-223, L2/16-160, L2/14-173, L2/16‑160 # 2019 (🧏🏿‍♀️) deaf woman: dark skin tone
+1F9CF 1F3FF 200D 2640 FE0F; L2/18-223, L2/16-160, L2/14-173, L2/16‑160 # 2019 (🧏🏿‍♀️) deaf woman: dark skin tone
+
+# L2/18-229, L2/14-173
+1F9CF 1F3FF; L2/18-229, L2/14-173 # 2019 (🧏🏿) deaf person: dark skin tone
 
 # L2/19-231
 1F9D1 200D 1F384; L2/19-231 # 2020 (🧑‍🎄) mx claus
+
+# L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340
+1F9D1 200D 1F91D 200D 1F9D1; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340 # 2019 (🧑‍🤝‍🧑) people holding hands
 
 # L2/16-317, L2/14-173
 1F9D1 1F3FF; L2/16-317, L2/14-173 # 2017 (🧑🏿) person: dark skin tone
@@ -1650,56 +1671,56 @@
 1F9D3 1F3FF; L2/16-317, L2/14-173 # 2017 (🧓🏿) older person: dark skin tone
 
 # L2/16-260, L2/14-173
-1F9D4 1F3FF; L2/16-260, L2/14-173 # 2017 (🧔🏿) man: dark skin tone, beard
+1F9D4 1F3FF; L2/16-260, L2/14-173 # 2017 (🧔🏿) person: dark skin tone, beard
 
 # L2/16-284, L2/14-173
 1F9D5 1F3FF; L2/16-284, L2/14-173 # 2017 (🧕🏿) woman with headscarf: dark skin tone
 
-# L2/16-197, L2/16‑160
-1F9D6 200D 2640; L2/16-197, L2/16‑160 # 2017 (🧖‍♀️) woman in steamy room
+# L2/16-197, L2/16-160, L2/16‑160
+1F9D6 200D 2640; L2/16-197, L2/16-160, L2/16‑160 # 2017 (🧖‍♀️) woman in steamy room
 
 # L2/16-197, L2/14-173
 1F9D6 1F3FF; L2/16-197, L2/14-173 # 2017 (🧖🏿) person in steamy room: dark skin tone
 
-# L2/16-197, L2/16‑160, L2/14-173
-1F9D6 1F3FF 200D 2640; L2/16-197, L2/16‑160, L2/14-173 # 2017 (🧖🏿‍♀️) woman in steamy room: dark skin tone
+# L2/16-197, L2/16-160, L2/14-173, L2/16‑160
+1F9D6 1F3FF 200D 2640; L2/16-197, L2/16-160, L2/14-173, L2/16‑160 # 2017 (🧖🏿‍♀️) woman in steamy room: dark skin tone
 
-# L2/16-247, L2/16‑160
-1F9D7 200D 2640; L2/16-247, L2/16‑160 # 2017 (🧗‍♀️) woman climbing
+# L2/16-247, L2/16-160, L2/16‑160
+1F9D7 200D 2640; L2/16-247, L2/16-160, L2/16‑160 # 2017 (🧗‍♀️) woman climbing
 
 # L2/16-247, L2/14-173
 1F9D7 1F3FF; L2/16-247, L2/14-173 # 2017 (🧗🏿) person climbing: dark skin tone
 
-# L2/16-247, L2/16‑160, L2/14-173
-1F9D7 1F3FF 200D 2640; L2/16-247, L2/16‑160, L2/14-173 # 2017 (🧗🏿‍♀️) woman climbing: dark skin tone
+# L2/16-247, L2/16-160, L2/14-173, L2/16‑160
+1F9D7 1F3FF 200D 2640; L2/16-247, L2/16-160, L2/14-173, L2/16‑160 # 2017 (🧗🏿‍♀️) woman climbing: dark skin tone
 
-# L2/16-279, L2/16‑160
-1F9D8 200D 2640; L2/16-279, L2/16‑160 # 2017 (🧘‍♀️) woman in lotus position
+# L2/16-279, L2/16-160, L2/16‑160
+1F9D8 200D 2640; L2/16-279, L2/16-160, L2/16‑160 # 2017 (🧘‍♀️) woman in lotus position
 
 # L2/16-279, L2/14-173
 1F9D8 1F3FF; L2/16-279, L2/14-173 # 2017 (🧘🏿) person in lotus position: dark skin tone
 
-# L2/16-279, L2/16‑160, L2/14-173
-1F9D8 1F3FF 200D 2640; L2/16-279, L2/16‑160, L2/14-173 # 2017 (🧘🏿‍♀️) woman in lotus position: dark skin tone
+# L2/16-279, L2/16-160, L2/14-173, L2/16‑160
+1F9D8 1F3FF 200D 2640; L2/16-279, L2/16-160, L2/14-173, L2/16‑160 # 2017 (🧘🏿‍♀️) woman in lotus position: dark skin tone
 
-# L2/16-304, L2/16‑160
-1F9D9 200D 2640; L2/16-304, L2/16‑160 # 2017 (🧙‍♀️) woman mage
-1F9DA 200D 2640; L2/16-304, L2/16‑160 # 2017 (🧚‍♀️) woman fairy
-1F9DB 200D 2640; L2/16-304, L2/16‑160 # 2017 (🧛‍♀️) woman vampire
-1F9DC 200D 2640; L2/16-304, L2/16‑160 # 2017 (🧜‍♀️) mermaid
-1F9DD 200D 2640; L2/16-304, L2/16‑160 # 2017 (🧝‍♀️) woman elf
-1F9DE 200D 2640; L2/16-304, L2/16‑160 # 2017 (🧞‍♀️) woman genie
-1F9DF 200D 2640; L2/16-304, L2/16‑160 # 2017 (🧟‍♀️) woman zombie
+# L2/16-304, L2/16-160, L2/16‑160
+1F9D9 200D 2640; L2/16-304, L2/16-160, L2/16‑160 # 2017 (🧙‍♀️) woman mage
+1F9DA 200D 2640; L2/16-304, L2/16-160, L2/16‑160 # 2017 (🧚‍♀️) woman fairy
+1F9DB 200D 2640; L2/16-304, L2/16-160, L2/16‑160 # 2017 (🧛‍♀️) woman vampire
+1F9DC 200D 2640; L2/16-304, L2/16-160, L2/16‑160 # 2017 (🧜‍♀️) mermaid
+1F9DD 200D 2640; L2/16-304, L2/16-160, L2/16‑160 # 2017 (🧝‍♀️) woman elf
+1F9DE 200D 2640; L2/16-304, L2/16-160, L2/16‑160 # 2017 (🧞‍♀️) woman genie
+1F9DF 200D 2640; L2/16-304, L2/16-160, L2/16‑160 # 2017 (🧟‍♀️) woman zombie
 
 # L2/16-304, L2/14-174, L2/14-173
 1F9D9 1F3FF; L2/16-304, L2/14-174, L2/14-173 # 2017 (🧙🏿) mage: dark skin tone
 
-# L2/16-304, L2/16‑160, L2/14-173
-1F9D9 1F3FF 200D 2640; L2/16-304, L2/16‑160, L2/14-173 # 2017 (🧙🏿‍♀️) woman mage: dark skin tone
-1F9DA 1F3FF 200D 2640; L2/16-304, L2/16‑160, L2/14-173 # 2017 (🧚🏿‍♀️) woman fairy: dark skin tone
-1F9DB 1F3FF 200D 2640; L2/16-304, L2/16‑160, L2/14-173 # 2017 (🧛🏿‍♀️) woman vampire: dark skin tone
-1F9DC 1F3FF 200D 2640; L2/16-304, L2/16‑160, L2/14-173 # 2017 (🧜🏿‍♀️) mermaid: dark skin tone
-1F9DD 1F3FF 200D 2640; L2/16-304, L2/16‑160, L2/14-173 # 2017 (🧝🏿‍♀️) woman elf: dark skin tone
+# L2/16-304, L2/16-160, L2/14-173, L2/16‑160
+1F9D9 1F3FF 200D 2640; L2/16-304, L2/16-160, L2/14-173, L2/16‑160 # 2017 (🧙🏿‍♀️) woman mage: dark skin tone
+1F9DA 1F3FF 200D 2640; L2/16-304, L2/16-160, L2/14-173, L2/16‑160 # 2017 (🧚🏿‍♀️) woman fairy: dark skin tone
+1F9DB 1F3FF 200D 2640; L2/16-304, L2/16-160, L2/14-173, L2/16‑160 # 2017 (🧛🏿‍♀️) woman vampire: dark skin tone
+1F9DC 1F3FF 200D 2640; L2/16-304, L2/16-160, L2/14-173, L2/16‑160 # 2017 (🧜🏿‍♀️) mermaid: dark skin tone
+1F9DD 1F3FF 200D 2640; L2/16-304, L2/16-160, L2/14-173, L2/16‑160 # 2017 (🧝🏿‍♀️) woman elf: dark skin tone
 
 # L2/16-304, L2/14-173
 1F9DA 1F3FF; L2/16-304, L2/14-173 # 2017 (🧚🏿) fairy: dark skin tone
@@ -1712,27 +1733,5 @@
 # MISSING-2015
 1F441 FE0F 200D 1F5E8 FE0F; MISSING # 2015 (👁️‍🗨️) eye in speech bubble
 002A FE0F 20E3; MISSING # 2015 (*️⃣) keycap: *
-
-# MISSING-2019
-1F469 1F3FB 200D 1F91D 200D 1F468 1F3FC; MISSING # 2019 (👩🏻‍🤝‍👨🏼) woman and man holding hands: light skin tone, medium-light skin tone
-1F469 1F3FB 200D 1F91D 200D 1F468 1F3FD; MISSING # 2019 (👩🏻‍🤝‍👨🏽) woman and man holding hands: light skin tone, medium skin tone
-1F469 1F3FB 200D 1F91D 200D 1F468 1F3FE; MISSING # 2019 (👩🏻‍🤝‍👨🏾) woman and man holding hands: light skin tone, medium-dark skin tone
-1F469 1F3FB 200D 1F91D 200D 1F468 1F3FF; MISSING # 2019 (👩🏻‍🤝‍👨🏿) woman and man holding hands: light skin tone, dark skin tone
-1F469 1F3FC 200D 1F91D 200D 1F468 1F3FB; MISSING # 2019 (👩🏼‍🤝‍👨🏻) woman and man holding hands: medium-light skin tone, light skin tone
-1F469 1F3FC 200D 1F91D 200D 1F468 1F3FD; MISSING # 2019 (👩🏼‍🤝‍👨🏽) woman and man holding hands: medium-light skin tone, medium skin tone
-1F469 1F3FC 200D 1F91D 200D 1F468 1F3FE; MISSING # 2019 (👩🏼‍🤝‍👨🏾) woman and man holding hands: medium-light skin tone, medium-dark skin tone
-1F469 1F3FC 200D 1F91D 200D 1F468 1F3FF; MISSING # 2019 (👩🏼‍🤝‍👨🏿) woman and man holding hands: medium-light skin tone, dark skin tone
-1F469 1F3FD 200D 1F91D 200D 1F468 1F3FB; MISSING # 2019 (👩🏽‍🤝‍👨🏻) woman and man holding hands: medium skin tone, light skin tone
-1F469 1F3FD 200D 1F91D 200D 1F468 1F3FC; MISSING # 2019 (👩🏽‍🤝‍👨🏼) woman and man holding hands: medium skin tone, medium-light skin tone
-1F469 1F3FD 200D 1F91D 200D 1F468 1F3FE; MISSING # 2019 (👩🏽‍🤝‍👨🏾) woman and man holding hands: medium skin tone, medium-dark skin tone
-1F469 1F3FD 200D 1F91D 200D 1F468 1F3FF; MISSING # 2019 (👩🏽‍🤝‍👨🏿) woman and man holding hands: medium skin tone, dark skin tone
-1F469 1F3FE 200D 1F91D 200D 1F468 1F3FB; MISSING # 2019 (👩🏾‍🤝‍👨🏻) woman and man holding hands: medium-dark skin tone, light skin tone
-1F469 1F3FE 200D 1F91D 200D 1F468 1F3FC; MISSING # 2019 (👩🏾‍🤝‍👨🏼) woman and man holding hands: medium-dark skin tone, medium-light skin tone
-1F469 1F3FE 200D 1F91D 200D 1F468 1F3FD; MISSING # 2019 (👩🏾‍🤝‍👨🏽) woman and man holding hands: medium-dark skin tone, medium skin tone
-1F469 1F3FE 200D 1F91D 200D 1F468 1F3FF; MISSING # 2019 (👩🏾‍🤝‍👨🏿) woman and man holding hands: medium-dark skin tone, dark skin tone
-1F469 1F3FF 200D 1F91D 200D 1F468 1F3FB; MISSING # 2019 (👩🏿‍🤝‍👨🏻) woman and man holding hands: dark skin tone, light skin tone
-1F469 1F3FF 200D 1F91D 200D 1F468 1F3FC; MISSING # 2019 (👩🏿‍🤝‍👨🏼) woman and man holding hands: dark skin tone, medium-light skin tone
-1F469 1F3FF 200D 1F91D 200D 1F468 1F3FD; MISSING # 2019 (👩🏿‍🤝‍👨🏽) woman and man holding hands: dark skin tone, medium skin tone
-1F469 1F3FF 200D 1F91D 200D 1F468 1F3FE; MISSING # 2019 (👩🏿‍🤝‍👨🏾) woman and man holding hands: dark skin tone, medium-dark skin tone
 
 #EOF

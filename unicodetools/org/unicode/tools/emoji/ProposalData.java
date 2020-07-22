@@ -82,6 +82,7 @@ public class ProposalData {
 	}
 	Set<String> output = new TreeSet<>(Collections.reverseOrder());
 	source = getSkeleton(source);
+	String tempDebug = Utility.hex(source);
 	output.addAll(CldrUtility.ifNull(proposal.get(source), Collections.emptySet()));
 	if (output.isEmpty()) {
 	    output.addAll(CldrUtility.ifNull(CandidateData.getInstance().getProposal(source), Collections.emptySet()));
@@ -161,7 +162,7 @@ public class ProposalData {
 	    if (line.startsWith("#") || line.trim().isEmpty()) continue;
 	    List<String> parts = SPLITTER_SEMI_HASH.splitToList(line);
 	    String codeString = parts.get(0);
-	    if (line.startsWith("1F9AC")) {
+	    if (line.contains("1F468 1F3FF 200D 1F91D 200D 1F468 1F3FF")) {
 		int debug = 0;
 	    }
 	    String proposalString = parts.get(1);
@@ -178,13 +179,14 @@ public class ProposalData {
 	    UnicodeSet cleanedAndSkin = new UnicodeSet();
 	    UnicodeSet cleanedAndGenAndSkin = new UnicodeSet();
 	    for (String code : codes) {
-		String withoutVariants = EmojiData.removeEmojiVariants(code);
-		String withVariants = EmojiData.EMOJI_DATA.addEmojiVariants(code);
-		if (!EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().contains(withoutVariants)
-			&& !EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().contains(withVariants)) {
-		    //System.out.println("*** Skipping bad: " + code + " on " + line);
-		    continue;
-		}
+//		String withoutVariants = EmojiData.removeEmojiVariants(code);
+//		String withVariants = EmojiData.EMOJI_DATA.addEmojiVariants(code);
+//		if (!EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().contains(withoutVariants)
+//			&& !EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().contains(withVariants)) {
+//		    System.out.println("*** Skipping bad: " + code + " on " + line);
+//		    boolean defectives = EmojiData.EMOJI_DATA.getAllEmojiWithDefectives().contains(withoutVariants);
+//		    continue;
+//		}
 
 		String fixedCode = getSkeleton(code);
 		if (fixedCode.contains(SKIN_REPRESENTATIVE)) {
@@ -202,22 +204,32 @@ public class ProposalData {
 		}
 	    }
 	    if (!cleaned.isEmpty()) {
-		builder.putAll(cleaned, proposals);
+		addAll(builder, cleaned, proposals);
 	    }
 	    if (!cleanedAndSkin.isEmpty()) {
 		proposals = ImmutableSet.<String>builder().addAll(proposals).addAll(skinProposals).build();
-		builder.putAll(cleanedAndSkin, proposals);
+		addAll(builder, cleanedAndSkin, proposals);
 	    }
 	    if (!cleanedAndGen.isEmpty()) {
 		proposals = ImmutableSet.<String>builder().addAll(proposals).addAll(genProposals).build();
-		builder.putAll(cleanedAndGen, proposals);
+		addAll(builder, cleanedAndGen, proposals);
 	    }
 	    if (!cleanedAndGenAndSkin.isEmpty()) {
 		proposals = ImmutableSet.<String>builder().addAll(proposals).addAll(genProposals).addAll(skinProposals).build();
-		builder.putAll(cleanedAndGenAndSkin, proposals);
+		addAll(builder, cleanedAndGenAndSkin, proposals);
 	    }
 	}
 	return builder.freeze();
+    }
+
+    public static void addAll(UnicodeMap<Set<String>> builder, UnicodeSet cleaned, Set<String> proposals) {
+	for (String s : cleaned) {
+	    Set<String> old = builder.get(s);
+	    if (old != null) {
+		proposals = ImmutableSet.<String>builder().addAll(proposals).addAll(old).build();
+	    }
+	    builder.putAll(cleaned, proposals);
+	}
     }
 
     public static Set<String> cleanProposalString(String proposalString) {
@@ -310,7 +322,7 @@ public class ProposalData {
 		out.append(showLine(skeleton, MISSING_PROPOSAL)).append('\n'); 
 	    }
 	}
-
+	out.append("\n#EOF\n");
 	return out.toString();
     }
 

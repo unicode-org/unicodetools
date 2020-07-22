@@ -62,7 +62,7 @@ public class Emoji {
     /**
      * Constants for versions
      */
-    public static final VersionInfo VERSION14 = VersionInfo.getInstance(14);
+    public static final VersionInfo VERSION13_1 = VersionInfo.getInstance(13,1);
     public static final VersionInfo VERSION13 = VersionInfo.getInstance(13);
     public static final VersionInfo VERSION12_1 = VersionInfo.getInstance(12,1);
     public static final VersionInfo VERSION12 = VersionInfo.getInstance(12);
@@ -77,6 +77,7 @@ public class Emoji {
     public static final VersionInfo VERSION0_5 = VersionInfo.getInstance(0,5,2);
 
     // ALSO fix VersionToAge.java!
+    public static final VersionInfo UCD13 = VERSION13;
     public static final VersionInfo UCD12_1 = VERSION12_1;
     public static final VersionInfo UCD12 = VERSION12;
     public static final VersionInfo UCD11 = VERSION11;
@@ -92,14 +93,14 @@ public class Emoji {
      */
     public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION12_1;
     public static final VersionInfo VERSION_LAST_RELEASED = VERSION13;
-    public static final VersionInfo VERSION_BETA = VERSION14;
+    public static final VersionInfo VERSION_BETA = VERSION13_1;
 
     public static final VersionInfo VERSION_TO_TEST = VERSION_BETA;
     public static final VersionInfo VERSION_TO_TEST_PREVIOUS = VERSION_LAST_RELEASED;
 
     public static Map<VersionInfo, VersionInfo> EMOJI_TO_UNICODE_VERSION = ImmutableMap.<VersionInfo, VersionInfo>builder()
-	    .put(VERSION14, UCD12_1) // TODO fix once U12 is populated
-	    .put(VERSION13, UCD12_1) // TODO fix once U12 is populated
+	    .put(VERSION13_1, UCD13)
+	    .put(VERSION13, UCD13)
 	    .put(VERSION12_1, UCD12_1)
 	    .put(VERSION12, UCD12)
 	    .put(VERSION11, UCD11)
@@ -113,6 +114,7 @@ public class Emoji {
 	    .build();
 
     public final static Map<VersionInfo, String> EMOJI_TO_DATE = ImmutableMap.<VersionInfo, String>builder()
+	    .put(VERSION13_1, "2020-09-10")
 	    .put(VERSION13, "2020-03-10")
 	    .put(VERSION12_1, "2019-10-29")
 	    .put(VERSION12, "2019-02-04")
