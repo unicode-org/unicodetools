@@ -156,7 +156,7 @@ U+102005
 Name=crutch
 Keywords=cane | crutch | disability | mobility aid | walking | walking stick
 
-Proposal=L2/19-398
+Proposal=L2/19-370
 After=🤝
 U+1F91D U+1F3FB
 U+101903 U+1F3FB U+200D U+101904 U+1F3FC
