@@ -295,6 +295,10 @@ public class EmojiData implements EmojiDataSource {
 	    if (!set.contains(EmojiProp.Emoji) && !set.contains(EmojiProp.Emoji_Component)) {
 		throw new IllegalArgumentException("**\t" + cp + "\t" + set);
 	    }
+	    if (cp.contentEquals("🧑‍❤️‍💋‍🧑")) {
+		int debug = 0;
+	    }
+
 	    if (!Emoji.DEFECTIVE_COMPONENTS.contains(cp)) {
 		singletonsWithDefectives.add(cp);
 	    }
@@ -617,7 +621,9 @@ public class EmojiData implements EmojiDataSource {
 	// if (allEmojiWithoutDefectives.contains("👨🏻‍🤝‍👨🏼")) {
 	// throw new ICUException("??? 👨🏻‍🤝‍👨🏼");
 	// }
-
+	if (allEmojiWithoutDefectives.contains("🧑‍❤️‍💋‍🧑")) {
+	    throw new ICUException("??? 👨🏻‍🤝‍👨🏼");
+	}
 	fixMaleFemale();
 
 	allEmojiWithoutDefectivesOrModifiers = new UnicodeSet();
@@ -1039,6 +1045,9 @@ public class EmojiData implements EmojiDataSource {
 	private String full;
 
 	public VariantFactory set(String source) {
+	    if (source.contains("👨") && source.contains("❤")) {
+		int debug = 0;
+	    }
 	    ImmutableList.Builder<String> _parts = ImmutableList.builder();
 	    StringBuilder result = new StringBuilder();
 	    int[] sequences = CharSequences.codePoints(EMOJI_VARIANTs.matcher(source).replaceAll(""));
@@ -1330,7 +1339,12 @@ public class EmojiData implements EmojiDataSource {
     // return builder.build();
     // }
 
+    static final Set<String> MULTIPLE_SKINS = ImmutableSet.of("👨‍❤‍👨");
+
     public Set<String> addModifiers(String singletonOrSequence, boolean addMultiples) {
+	if (singletonOrSequence.contains("👨‍❤‍👨")) {
+	    int debug = 0;
+	}
 	if (NEUTRAL_HOLDING.equals(singletonOrSequence) && addMultiples) {
 	    int debug = 0;
 	}
@@ -1344,35 +1358,29 @@ public class EmojiData implements EmojiDataSource {
 	boolean didMultiples = false;
 	if (addMultiples) {
 	    int handshakePos = singletonOrSequence.indexOf(ZWJ_HANDSHAKE_ZWJ);
-	    if (handshakePos > 0 && version.compareTo(Emoji.VERSION11) > 0) {
-		boolean afterVersion12 = version.compareTo(Emoji.VERSION12) > 0;
-		didMultiples = true;
-		// TODO HACK for now. If we add other groupings with skintones, generalize
-		String prefix = singletonOrSequence.substring(0, handshakePos);
-		String postfix = singletonOrSequence.substring(handshakePos + ZWJ_HANDSHAKE_ZWJ.length());
-		boolean sameAffix = prefix.equals(postfix);
-		for (String mod : EmojiData.MODIFIERS) {
-		    String prefixMod = addModifierPart(prefix, mod);
-		    if (prefixMod == null) {
-			throw new IllegalArgumentException("internal error");
+	    if (handshakePos > 0) {
+		if (version.compareTo(Emoji.VERSION11) > 0) {
+		    boolean afterVersion12 = version.compareTo(Emoji.VERSION12) > 0;
+		    didMultiples = true;
+		    // TODO HACK for now. If we add other groupings with skintones, generalize
+		    String prefix = singletonOrSequence.substring(0, handshakePos);
+		    String postfix = singletonOrSequence.substring(handshakePos + ZWJ_HANDSHAKE_ZWJ.length());
+		    boolean sameAffix = prefix.equals(postfix);
+		    final boolean skipIfFirstLighterThanSecond = !afterVersion12 && sameAffix;
+		    addMultiples(prefix, ZWJ_HANDSHAKE_ZWJ, postfix, skipIfFirstLighterThanSecond, output);
+		}
+	    } else if (false && MULTIPLE_SKINS.contains(singletonOrSequence)) {
+		if (version.compareTo(Emoji.VERSION13) > 0) {
+		    String infix = "\u200D\u2764\u200D";
+		    int pos = singletonOrSequence.indexOf(infix);
+		    if (pos < 0) {
+			infix = "\u200D\u2764\u200D\uD83D\uDC8B\u200D";
+			pos = singletonOrSequence.indexOf(infix);
 		    }
-		    for (String mod2 : EmojiData.MODIFIERS) {
-			if (!afterVersion12 && sameAffix && mod.compareTo(mod2) < 0) { // skip if first mod is lighter
-			    // than second
-			    continue;
-			}
-			String postfixMod = addModifierPart(postfix, mod2);
-			if (prefixMod == null) {
-			    throw new IllegalArgumentException("internal error");
-			}
-			String result = prefixMod + ZWJ_HANDSHAKE_ZWJ + postfixMod;
-			if (result.equals(BAD_HANDSHAKE)) {
-			    int x = 0;
-			}
-			if (result.contains("👯")) {
-			    int debug = 0;
-			}
-			output.add(result);
+		    if (pos > 0) {
+			String prefix = singletonOrSequence.substring(0,pos);
+			String postfix = singletonOrSequence.substring(pos + infix.length());
+			addMultiples(prefix, ZWJ_HANDSHAKE_ZWJ, postfix, false, output);
 		    }
 		}
 	    }
@@ -1389,6 +1397,33 @@ public class EmojiData implements EmojiDataSource {
 	    }
 	}
 	return output.isEmpty() ? Collections.emptySet() : ImmutableSet.copyOf(output);
+    }
+
+    public void addMultiples(String prefix, String infix, String postfix,
+	    final boolean skipIfFirstLighterThanSecond, LinkedHashSet<String> output) {
+	for (String mod : EmojiData.MODIFIERS) {
+	    String prefixMod = addModifierPart(prefix, mod);
+	    if (prefixMod == null) {
+		throw new IllegalArgumentException("internal error");
+	    }
+	    for (String mod2 : EmojiData.MODIFIERS) {
+		if (skipIfFirstLighterThanSecond && mod.compareTo(mod2) < 0) { // skip if first mod is lighter than second
+		    continue;
+		}
+		String postfixMod = addModifierPart(postfix, mod2);
+		if (prefixMod == null) {
+		    throw new IllegalArgumentException("internal error");
+		}
+		String result = prefixMod + infix + postfixMod;
+		if (result.equals(BAD_HANDSHAKE)) {
+		    int x = 0;
+		}
+		if (result.contains("👯")) {
+		    int debug = 0;
+		}
+		output.add(result);
+	    }
+	}
     }
 
     private String addModifierPart(String singletonOrSequence, String modifier) {
@@ -1867,7 +1902,7 @@ public class EmojiData implements EmojiDataSource {
     public UnicodeSet getHairBases() {
 	return hairBases;
     }
-    
+
     private static final UnicodeSet EXPLICIT_GENDER_13 = new UnicodeSet(
 	    "[[👦-👩 👴 👵 🤴 👸 👲 🧕 🤵 👰 🤰 🤱 🎅 🤶 💃 🕺 🧔 🕴 👫-👭]]")
 	    .freeze();
@@ -1904,8 +1939,16 @@ public class EmojiData implements EmojiDataSource {
 	return MULTIPERSON;
     }
 
-    public static final Map<String, String> MAP_TO_COUPLES = ImmutableMap.of("👨‍🤝‍👨", "👬", "👩‍🤝‍👨", "👫",
-	    "👩‍🤝‍👩", "👭");
+    /**
+     * This contains the mapping to the "shortest form" form for certain combinations.
+     */
+    public static final Map<String, String> MAP_TO_COUPLES = ImmutableMap.of(
+	    "👨‍🤝‍👨", "👬", 
+	    "👩‍🤝‍👨", "👫",
+	    "👩‍🤝‍👩", "👭",
+	    "🧑‍❤️‍💋‍🧑", "💏",
+	    "🧑‍❤️‍🧑", "💑"
+	    );
 
     public static final Map<String, String> COUPLES_TO_HANDSHAKE_VERSION = ImmutableMap.of("👬", "👨‍🤝‍👨", "👫",
 	    "👩‍🤝‍👨", "👭", "👩‍🤝‍👩");

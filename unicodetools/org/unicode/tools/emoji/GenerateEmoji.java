@@ -3381,6 +3381,7 @@ public class GenerateEmoji {
 
 	final Set<Source> platforms = getPlatforms(emoji, candidateStyle == CandidateStyle.released ? 5 : 1);
 	if (platforms.isEmpty() && !emoji.isEmpty()) {
+	    getPlatforms(emoji, candidateStyle == CandidateStyle.released ? 5 : 1); // for debugging
 	    throw new IllegalArgumentException("No images for: " + emoji);
 	}
 	final int colspan = 7 + platforms.size();
@@ -3599,7 +3600,8 @@ public class GenerateEmoji {
 		String cldrName = EmojiDataSourceCombined.EMOJI_DATA.getName(source);
 
 		String category = candidateData.getCategory(source);
-		if (category == null) {
+		if (category == null) {	
+		    // if this fails, it might be that EmojiData.MAP_TO_COUPLES needs updating
 		    throw new IllegalArgumentException("No category for " + Utility.hex(source));
 		}
 		MajorGroup majorGroup = candidateData.getMajorGroupFromCategory(category);

@@ -797,7 +797,20 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     }
     public String getCategory(String source) {
 	String result = EmojiOrder.STD_ORDER.charactersToOrdering.get(source);
-	return result != null ? result : categories.get(source);
+	if (result != null) {
+	    return result;
+	}
+//	final String stripped = EmojiData.removeEmojiVariants(EmojiData.MODIFIERS.stripFrom(source, true));
+//	result = EmojiOrder.STD_ORDER.charactersToOrdering.get(stripped);
+//	if (result != null) {
+//	    return result;
+//	}
+	result = categories.get(source);
+	if (result != null) {
+	    return result;
+	}
+	System.out.println(Utility.hex(source) + "; " + source);
+	return null;
     }
 
     public List<Integer> getOrder() {
