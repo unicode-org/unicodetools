@@ -1,6 +1,6 @@
 # Copyright (c) 2020 and later Unicode, Inc. and others. All Rights Reserved.
 # Use -eJDKVERSION=13 -eTOMCATVERSION=8 for example to change these
-ARG JDKVERSION=14
+ARG JDKVERSION=16
 FROM openjdk:${JDKVERSION}-alpine AS build
 # Need ant, add it. Yes, this pulls in JDK8, but it's an easier
 # way to manage this.
