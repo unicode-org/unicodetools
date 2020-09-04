@@ -19,3 +19,4 @@ jobs:
           image_name: unicode-jsps
           image_tag: ${{ steps.get_tag_name.outputs.GIT_TAG_NAME}}
           dockerfile: ./UnicodeJsps/Dockerfile
+          context: ./UnicodeJsps/
