@@ -19,6 +19,7 @@ RUN ant -DCATALINA_HOME=${CATALINA_HOME} war
 FROM jetty:9-jre11-slim AS run
 # FROM tomcat:9-jdk14-openjdk-slim-buster AS run
 ADD port-entrypoint.sh /port-entrypoint.sh
+ADD ./jetty.d/ROOT /var/lib/jetty/webapps/ROOT/
 ENTRYPOINT [ "/port-entrypoint.sh" ]
 COPY --from=build /home/UnicodeJsps.war /var/lib/jetty/webapps/
 # This is the default PORT. Override by setting PORT.
