@@ -13,3 +13,13 @@ https://sites.google.com/site/unicodetools/home
 The documentation still refers to the previous Subversion repository.
 This GitHub repo reflects the svn repo up to r1566,
 plus a few snapshots up to r1830. (Don’t ask.)
+
+### Licenses
+
+- Data and software is governed by the [Unicode Terms of Use](http://www.unicode.org/copyright.html)
+a copy of which is included as [LICENSE](./LICENSE).
+
+### Copyright
+
+© 1991 and later: Unicode, Inc. and others.
+License & terms of use: <http://www.unicode.org/copyright.html>
