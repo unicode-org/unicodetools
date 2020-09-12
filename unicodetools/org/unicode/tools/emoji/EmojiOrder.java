@@ -350,6 +350,9 @@ public class EmojiOrder {
 				String handshakeVersion = EmojiData.COUPLES_TO_HANDSHAKE_VERSION.get(string);
 				if (handshakeVersion == null) {
 					//Now add the modifier sequences
+					if (string.contains("👨‍❤‍👨")) {
+					    int debug = 0;
+					}
 					addAllModifiers(_orderingToCharacters, sorted, lastLabel, majorGroup, string); // , withEmojiVariant, withoutFinal, noVariant); 
 				} else {
 					//Now add the modifier sequences

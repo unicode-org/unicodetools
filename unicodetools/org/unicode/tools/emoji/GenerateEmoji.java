@@ -619,7 +619,7 @@ public class GenerateEmoji {
 	// we can update without the beta flag
 	CandidateData candidateData = CandidateData.getInstance();
 
-	if (Emoji.IS_BETA) {
+	if (true || Emoji.IS_BETA) {
 	    UnicodeSet candChars = candidateData.getAllCharacters();
 	    System.out.println(candChars.size() + "\t" + candChars);
 	    Predicate<String> predicate = SHOW ? Predicates.alwaysFalse() : s -> s.contains(Emoji.TRANSGENDER);
@@ -637,7 +637,6 @@ public class GenerateEmoji {
 		DebugUtilities.debugStringsWhen("•", thisVersion, predicate);
 		DebugUtilities.debugStringsWhen("•", chars, predicate);
 	    }
-
 	}
 	showCandidateStyle(CandidateStyle.candidate, "emoji-candidates.html", candidateData.getAllCharacters(Status.Draft_Candidate));
 	showCandidateStyle(CandidateStyle.provisional, "emoji-provisional.html",
@@ -3381,6 +3380,7 @@ public class GenerateEmoji {
 
 	final Set<Source> platforms = getPlatforms(emoji, candidateStyle == CandidateStyle.released ? 5 : 1);
 	if (platforms.isEmpty() && !emoji.isEmpty()) {
+	    getPlatforms(emoji, candidateStyle == CandidateStyle.released ? 5 : 1); // for debugging
 	    throw new IllegalArgumentException("No images for: " + emoji);
 	}
 	final int colspan = 7 + platforms.size();
@@ -3490,9 +3490,10 @@ public class GenerateEmoji {
 		+ "</ul>\n"
 		: "";
 	String top4 = candidateStyle != CandidateStyle.released
-		? "Where the last Sample cell is marked with the symbol "
-		+ NOT_NEW + " it indicates that a previously existing character is included, "
-		+ "and only because it has new gender and/or modifier variants.</p>\n"
+		? " Where the last Sample cell is marked with the symbol "
+		+ NOT_NEW + ", there is a row for an pre-existing character that has new gender and/or modifier variants. "
+		+ "For example, ➕ 5 Ⓒ ‧ 🏿 means that additional 5 skintone variants on the original character are added,  "
+		+ "and  ➕ 20 Ⓩ ‧ 🏿 means 20 zwj sequences are added, used to compose two other characters with a skintone on each.</p>\n"
 		/*
 		+ "<p><b style='background-color:yellow'>Note that certain CLDR names are to be changed after CLDR v36 ships:<ul>"
 		+ "<li>👰 → person with veil</li>"
@@ -3514,7 +3515,7 @@ public class GenerateEmoji {
 		+ top2
 		+ "<h2>Background</h2>\n"
 		+ top3
-		+ "<p>The count of new variants is in the Other Keywords column, such as “➕ 5 variants”. "
+		+ "<p>The count of new variants is in the Other Keywords column, such as “➕ 5 Ⓒ ‧ 🏿”. "
 		+ "The abbreviations and symbols are documented in " + CountEmoji.EMOJI_COUNT_KEY 
 		+ ", and the symbol meanings can be seen by hovering with a mouse."
 		+ top4
@@ -3599,7 +3600,8 @@ public class GenerateEmoji {
 		String cldrName = EmojiDataSourceCombined.EMOJI_DATA.getName(source);
 
 		String category = candidateData.getCategory(source);
-		if (category == null) {
+		if (category == null) {	
+		    // if this fails, it might be that EmojiData.MAP_TO_COUPLES needs updating
 		    throw new IllegalArgumentException("No category for " + Utility.hex(source));
 		}
 		MajorGroup majorGroup = candidateData.getMajorGroupFromCategory(category);
@@ -3696,7 +3698,7 @@ public class GenerateEmoji {
 			annotationsString += "<div class='uname'>" + uname + "</div>";
 		    }
 		}
-		Set<String> proposals = ProposalData.SINGLETON.getProposals(source);
+		Set<String> proposals = ProposalData.getInstance().getProposals(source);
 		if (!variants.isEmpty()) {
 		    Multimap<Category, String> categoryToItems = TreeMultimap.create();
 		    for (String source2 : variants) {
@@ -3709,7 +3711,7 @@ public class GenerateEmoji {
 			    output = new LinkedHashSet<>();
 			}
 			source1 = ProposalData.getSkeleton(source1);
-			output.addAll(CldrUtility.ifNull(ProposalData.SINGLETON.proposal.get(source1),Collections.emptySet()));
+			output.addAll(CldrUtility.ifNull(ProposalData.getInstance().proposal.get(source1),Collections.emptySet()));
 			output.addAll(CldrUtility.ifNull(CandidateData.getInstance().getProposal(source1),Collections.emptySet()));
 			outputPlain.add("*" + ++countPlain
 				+ "\t" + Emoji.toUHex(source2)
@@ -3738,7 +3740,7 @@ public class GenerateEmoji {
 				+ "</div>";
 		    }
 		}
-		String proposalHtml = ProposalData.SINGLETON.formatProposalsForHtml(proposals);
+		String proposalHtml = ProposalData.getInstance().formatProposalsForHtml(proposals);
 		if (candidateStyle != CandidateStyle.released) {
 		    // String comment = candidateData.getComment(source);
 		    // if (comment != null) {

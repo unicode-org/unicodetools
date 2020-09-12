@@ -66,6 +66,7 @@ public class EmojiData implements EmojiDataSource {
     public static final String MAN_WITH_RED_HAIR = "👨‍🦰";
     public static final UnicodeSet HOLDING_HANDS_COMPOSITES = new UnicodeSet().add(0x1F46B).add(0x1F46C).add(0x1F46D)
 	    .freeze();
+    public static final UnicodeSet OTHER_GROUP = new UnicodeSet("[💏 💑]").freeze();
 
     static final String ZWJ_HANDSHAKE_ZWJ = Emoji.JOINER_STR + "🤝" + Emoji.JOINER_STR;
     private static final String BAD_HANDSHAKE = "👨🏻‍🤝‍👨🏼";
@@ -295,6 +296,10 @@ public class EmojiData implements EmojiDataSource {
 	    if (!set.contains(EmojiProp.Emoji) && !set.contains(EmojiProp.Emoji_Component)) {
 		throw new IllegalArgumentException("**\t" + cp + "\t" + set);
 	    }
+	    if (cp.contentEquals("🧑‍❤️‍💋‍🧑")) {
+		int debug = 0;
+	    }
+
 	    if (!Emoji.DEFECTIVE_COMPONENTS.contains(cp)) {
 		singletonsWithDefectives.add(cp);
 	    }
@@ -330,37 +335,43 @@ public class EmojiData implements EmojiDataSource {
 		int debug = 0;
 	    }
 	}
-	modifierBasesRgi = new UnicodeSet(modifierBases).removeAll(MULTIPERSON);
-	if (version.compareTo(Emoji.VERSION12) >= 0) {
-	    modifierBasesRgi.addAll(HOLDING_HANDS_COMPOSITES);
-	}
-	if (!modifierBases.contains(0x1F90C)) {
-	    if (version.compareTo(Emoji.VERSION13) >= 0) {
-		int debug = 0;
+	if (oldFormat) {
+	    // Modified this for new format to be driven just from the data files.
+	    modifierBasesRgi = new UnicodeSet(modifierBases).removeAll(MULTIPERSON);
+	    if (version.compareTo(Emoji.VERSION12) >= 0) {
+		modifierBasesRgi.addAll(HOLDING_HANDS_COMPOSITES);
+		if (version.compareTo(Emoji.VERSION13_1) >= 0) {
+		    modifierBasesRgi.addAll(OTHER_GROUP);
+		}
 	    }
-	}
-	modifierBasesRgi.freeze();
-	modifierSequences = new UnicodeSet();
-	for (String base : modifierBasesRgi) {
-	    if (UnicodeSet.getSingleCodePoint(base) == 0x1F46B) {
-		int debug = 0;
+	    if (!modifierBases.contains(0x1F90C)) {
+		if (version.compareTo(Emoji.VERSION13) >= 0) {
+		    int debug = 0;
+		}
 	    }
-	    for (String mod : MODIFIERS) {
-		final String seq = base + mod;
-		modifierSequences.add(seq);
-		// names.put(seq, UCharacter.toTitleFirst(ULocale.ENGLISH, getName(base, true))
-		// + ", " + shortName(mod.codePointAt(0)).toLowerCase(Locale.ENGLISH));
+	    modifierBasesRgi.freeze();
+	    modifierSequences = new UnicodeSet();
+	    for (String base : modifierBasesRgi) {
+		if (UnicodeSet.getSingleCodePoint(base) == 0x1F46B) {
+		    int debug = 0;
+		}
+		for (String mod : MODIFIERS) {
+		    final String seq = base + mod;
+		    modifierSequences.add(seq);
+		    // names.put(seq, UCharacter.toTitleFirst(ULocale.ENGLISH, getName(base, true))
+		    // + ", " + shortName(mod.codePointAt(0)).toLowerCase(Locale.ENGLISH));
+		}
 	    }
-	}
-	modifierSequences.freeze();
-
-	if (!oldFormat) {
+	    modifierSequences.freeze();
+	} else {
+	    modifierBasesRgi = new UnicodeSet();
+	    modifierSequences = new UnicodeSet();
 	    // HACK 1F441 200D 1F5E8
 	    zwjSequencesAll.add(new StringBuilder().appendCodePoint(0x1F441).appendCodePoint(0xFE0F)
 		    .appendCodePoint(0x200D).appendCodePoint(0x1F5E8).appendCodePoint(0xFE0F).toString());
 
 	    // VariantFactory vf = new VariantFactory();
-
+	    UnicodeSet debugSet = new UnicodeSet("[\\x{1F48F}\\x{1F491}]").freeze();
 	    for (String file : Arrays.asList("emoji-sequences.txt", "emoji-zwj-sequences.txt")) {
 		boolean zwj = file.contains("zwj");
 		for (String line : FileUtilities.in(directory, file)) {
@@ -371,7 +382,7 @@ public class EmojiData implements EmojiDataSource {
 		    if (line.isEmpty()) {
 			continue;
 		    }
-		    if (line.contains("1F469 200D 1F91D 200D 1F469")) {
+		    if (line.contains("1F48F")) {
 			int i = 0;
 		    }
 
@@ -382,6 +393,20 @@ public class EmojiData implements EmojiDataSource {
 		    int pos = f0.indexOf("..");
 		    if (pos < 0) {
 			source = Utility.fromHex(f0);
+			int last = -1;
+			for (int cp1 : With.codePointArray(source)) {
+			    if (debugSet.contains(cp1)) {
+				int debug = 0;
+			    }
+			    if (EmojiData.MODIFIERS.contains(cp1)) {
+				if (last < 0) {
+				    throw new IllegalArgumentException("In " + file + ", modifier " + Utility.hex(last) + " " + UTF16.valueOf(cp1) + "not following base ");
+				}
+				modifierBasesRgi.add(last);
+				modifierSequences.add(With.fromCodePoint(last, cp1));
+			    }
+			    last = cp1;
+			}
 		    } else {
 			codePointStart = Integer.parseInt(f0.substring(0, pos), 16);
 			codePointEnd = Integer.parseInt(f0.substring(pos + 2), 16);
@@ -467,6 +492,8 @@ public class EmojiData implements EmojiDataSource {
 		    }
 		}
 	    }
+	    modifierBasesRgi.freeze();
+	    modifierSequences.freeze();
 	}
 
 	if (version.compareTo(Emoji.VERSION4) <= 0) {
@@ -617,7 +644,9 @@ public class EmojiData implements EmojiDataSource {
 	// if (allEmojiWithoutDefectives.contains("👨🏻‍🤝‍👨🏼")) {
 	// throw new ICUException("??? 👨🏻‍🤝‍👨🏼");
 	// }
-
+	if (allEmojiWithoutDefectives.contains("🧑‍❤️‍💋‍🧑")) {
+	    throw new ICUException("??? 👨🏻‍🤝‍👨🏼");
+	}
 	fixMaleFemale();
 
 	allEmojiWithoutDefectivesOrModifiers = new UnicodeSet();
@@ -1039,6 +1068,9 @@ public class EmojiData implements EmojiDataSource {
 	private String full;
 
 	public VariantFactory set(String source) {
+	    if (source.contains("👨") && source.contains("❤")) {
+		int debug = 0;
+	    }
 	    ImmutableList.Builder<String> _parts = ImmutableList.builder();
 	    StringBuilder result = new StringBuilder();
 	    int[] sequences = CharSequences.codePoints(EMOJI_VARIANTs.matcher(source).replaceAll(""));
@@ -1330,7 +1362,12 @@ public class EmojiData implements EmojiDataSource {
     // return builder.build();
     // }
 
+    static final Set<String> MULTIPLE_SKINS = ImmutableSet.of("👨‍❤‍👨");
+
     public Set<String> addModifiers(String singletonOrSequence, boolean addMultiples) {
+	if (singletonOrSequence.contains("👨‍❤‍👨")) {
+	    int debug = 0;
+	}
 	if (NEUTRAL_HOLDING.equals(singletonOrSequence) && addMultiples) {
 	    int debug = 0;
 	}
@@ -1344,35 +1381,29 @@ public class EmojiData implements EmojiDataSource {
 	boolean didMultiples = false;
 	if (addMultiples) {
 	    int handshakePos = singletonOrSequence.indexOf(ZWJ_HANDSHAKE_ZWJ);
-	    if (handshakePos > 0 && version.compareTo(Emoji.VERSION11) > 0) {
-		boolean afterVersion12 = version.compareTo(Emoji.VERSION12) > 0;
-		didMultiples = true;
-		// TODO HACK for now. If we add other groupings with skintones, generalize
-		String prefix = singletonOrSequence.substring(0, handshakePos);
-		String postfix = singletonOrSequence.substring(handshakePos + ZWJ_HANDSHAKE_ZWJ.length());
-		boolean sameAffix = prefix.equals(postfix);
-		for (String mod : EmojiData.MODIFIERS) {
-		    String prefixMod = addModifierPart(prefix, mod);
-		    if (prefixMod == null) {
-			throw new IllegalArgumentException("internal error");
+	    if (handshakePos > 0) {
+		if (version.compareTo(Emoji.VERSION11) > 0) {
+		    boolean afterVersion12 = version.compareTo(Emoji.VERSION12) > 0;
+		    didMultiples = true;
+		    // TODO HACK for now. If we add other groupings with skintones, generalize
+		    String prefix = singletonOrSequence.substring(0, handshakePos);
+		    String postfix = singletonOrSequence.substring(handshakePos + ZWJ_HANDSHAKE_ZWJ.length());
+		    boolean sameAffix = prefix.equals(postfix);
+		    final boolean skipIfFirstLighterThanSecond = !afterVersion12 && sameAffix;
+		    addMultiples(prefix, ZWJ_HANDSHAKE_ZWJ, postfix, skipIfFirstLighterThanSecond, output);
+		}
+	    } else if (false && MULTIPLE_SKINS.contains(singletonOrSequence)) {
+		if (version.compareTo(Emoji.VERSION13) > 0) {
+		    String infix = "\u200D\u2764\u200D";
+		    int pos = singletonOrSequence.indexOf(infix);
+		    if (pos < 0) {
+			infix = "\u200D\u2764\u200D\uD83D\uDC8B\u200D";
+			pos = singletonOrSequence.indexOf(infix);
 		    }
-		    for (String mod2 : EmojiData.MODIFIERS) {
-			if (!afterVersion12 && sameAffix && mod.compareTo(mod2) < 0) { // skip if first mod is lighter
-			    // than second
-			    continue;
-			}
-			String postfixMod = addModifierPart(postfix, mod2);
-			if (prefixMod == null) {
-			    throw new IllegalArgumentException("internal error");
-			}
-			String result = prefixMod + ZWJ_HANDSHAKE_ZWJ + postfixMod;
-			if (result.equals(BAD_HANDSHAKE)) {
-			    int x = 0;
-			}
-			if (result.contains("👯")) {
-			    int debug = 0;
-			}
-			output.add(result);
+		    if (pos > 0) {
+			String prefix = singletonOrSequence.substring(0,pos);
+			String postfix = singletonOrSequence.substring(pos + infix.length());
+			addMultiples(prefix, ZWJ_HANDSHAKE_ZWJ, postfix, false, output);
 		    }
 		}
 	    }
@@ -1389,6 +1420,33 @@ public class EmojiData implements EmojiDataSource {
 	    }
 	}
 	return output.isEmpty() ? Collections.emptySet() : ImmutableSet.copyOf(output);
+    }
+
+    public void addMultiples(String prefix, String infix, String postfix,
+	    final boolean skipIfFirstLighterThanSecond, LinkedHashSet<String> output) {
+	for (String mod : EmojiData.MODIFIERS) {
+	    String prefixMod = addModifierPart(prefix, mod);
+	    if (prefixMod == null) {
+		throw new IllegalArgumentException("internal error");
+	    }
+	    for (String mod2 : EmojiData.MODIFIERS) {
+		if (skipIfFirstLighterThanSecond && mod.compareTo(mod2) < 0) { // skip if first mod is lighter than second
+		    continue;
+		}
+		String postfixMod = addModifierPart(postfix, mod2);
+		if (prefixMod == null) {
+		    throw new IllegalArgumentException("internal error");
+		}
+		String result = prefixMod + infix + postfixMod;
+		if (result.equals(BAD_HANDSHAKE)) {
+		    int x = 0;
+		}
+		if (result.contains("👯")) {
+		    int debug = 0;
+		}
+		output.add(result);
+	    }
+	}
     }
 
     private String addModifierPart(String singletonOrSequence, String modifier) {
@@ -1876,6 +1934,14 @@ public class EmojiData implements EmojiDataSource {
 	    .remove("🧔")
 	    .freeze();
 
+//    private static final UnicodeSet EXPLICIT_GENDER_13 = new UnicodeSet(
+//	    "[[👦-👩 👴 👵 🤴 👸 👲 🧕 🤵 👰 🤰 🤱 🎅 🤶 💃 🕺 🧔 🕴 👫-👭]]")
+//	    .freeze();
+//
+//    private static final UnicodeSet EXPLICIT_GENDER_13_1 = new UnicodeSet(EXPLICIT_GENDER_13)
+//	    .remove("🧔")
+//	    .freeze();
+
     public UnicodeSet getExplicitGender() {
 	return version.compareTo(Emoji.VERSION13) <= 0 ? EXPLICIT_GENDER_13 : EXPLICIT_GENDER_13_1;
     }
@@ -1904,8 +1970,16 @@ public class EmojiData implements EmojiDataSource {
 	return MULTIPERSON;
     }
 
-    public static final Map<String, String> MAP_TO_COUPLES = ImmutableMap.of("👨‍🤝‍👨", "👬", "👩‍🤝‍👨", "👫",
-	    "👩‍🤝‍👩", "👭");
+    /**
+     * This contains the mapping to the "shortest form" form for certain combinations.
+     */
+    public static final Map<String, String> MAP_TO_COUPLES = ImmutableMap.of(
+	    "👨‍🤝‍👨", "👬", 
+	    "👩‍🤝‍👨", "👫",
+	    "👩‍🤝‍👩", "👭",
+	    "🧑‍❤️‍💋‍🧑", "💏",
+	    "🧑‍❤️‍🧑", "💑"
+	    );
 
     public static final Map<String, String> COUPLES_TO_HANDSHAKE_VERSION = ImmutableMap.of("👬", "👨‍🤝‍👨", "👫",
 	    "👩‍🤝‍👨", "👭", "👩‍🤝‍👩");
