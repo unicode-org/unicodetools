@@ -408,14 +408,14 @@ public class GenerateEmojiData {
 	// HACK Exclude the emojiMultiPersonGroupings
 	UnicodeSet temp = new UnicodeSet();
 	for (String s : EmojiData.EMOJI_DATA.getSortingChars()) {
-	    if (emojiMultiPersonGroupings.containsSome(s) 
-		    && EmojiData.MODIFIERS.containsSome(s)
-		    && !HOLDING_HANDS.containsSome(s)
-		    && !s.contains(EmojiData.ZWJ_HANDSHAKE_ZWJ)
-		    ) {
-		// System.out.println("Skipping: " + s);
-		continue;
-	    }
+//	    if (emojiMultiPersonGroupings.containsSome(s) 
+//		    && EmojiData.MODIFIERS.containsSome(s)
+//		    && !HOLDING_HANDS.containsSome(s)
+//		    && !s.contains(EmojiData.ZWJ_HANDSHAKE_ZWJ)
+//		    ) {
+//		System.out.println("Skipping: " + s);
+//		continue;
+//	    }
 	    temp.add(s);
 	}
 	temp.freeze();
