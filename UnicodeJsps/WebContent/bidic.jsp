@@ -107,6 +107,15 @@ function setUbaInput(str) {
 
 <body>
 <%
+    String BINPATH = java.lang.System.getenv("BIDIREF1");
+    if(BINPATH == null || BINPATH.isEmpty()) {
+        BINPATH = "bidiref/bidiref1";
+    }
+    java.io.File f = new java.io.File(BINPATH);
+    if(!f.canRead()) {
+        throw new RuntimeException("bidic binary not found (check $BIDIREF1}): " + BINPATH);
+    }
+
     request.setCharacterEncoding("UTF-8");
     String queryStr = request.getQueryString();
     UtfParameters utfParams = new UtfParameters(queryStr);
@@ -156,7 +165,7 @@ function setUbaInput(str) {
 
     ////Process process = new ProcessBuilder("C:\\Windows\\System32\\cmd.exe", "/C", "cd").start();
     Process process = new ProcessBuilder(
-        "bidiref/bidiref1",
+        BINPATH,
         "-b" + ubaPara, "-u" + ubaVersion, "-d" + ubaDetail, "-y" + (ubaShowVacuous ? "0" : "1"), "-s" + valInputCpSeq)
         .start();
     java.io.InputStream is = process.getInputStream();
