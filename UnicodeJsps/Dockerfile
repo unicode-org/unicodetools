@@ -29,6 +29,10 @@ ADD ./jetty.d/ROOT /var/lib/jetty/webapps/ROOT/
 ENTRYPOINT [ "/port-entrypoint.sh" ]
 # copy the .war
 COPY --from=build /home/UnicodeJsps.war /var/lib/jetty/webapps/
+# copy the UCD for bidiref1
+COPY --from=build /home/src/org/unicode/jsp/bidiref1/ucd/ /usr/local/share/ucd/
+# this is the parent to 'ucd'
+ENV BIDIREFHOME /usr/local/share
 # copy the bidiref1 bin
 ENV BIDIREF1 /usr/local/bin/bidiref1
 COPY --from=cbuild /build/source/bidiref1 /usr/local/bin/

@@ -115,6 +115,11 @@ function setUbaInput(str) {
     if(!f.canRead()) {
         throw new RuntimeException("bidic binary not found (check $BIDIREF1}): " + BINPATH);
     }
+    String BRHOME = java.lang.System.getenv("BIDIREFHOME");
+    java.io.File brHome = new java.io.File(".");
+    if(BRHOME != null && !BRHOME.isEmpty()) {
+        brHome = new java.io.File(BRHOME);
+    }
 
     request.setCharacterEncoding("UTF-8");
     String queryStr = request.getQueryString();
@@ -167,6 +172,7 @@ function setUbaInput(str) {
     Process process = new ProcessBuilder(
         BINPATH,
         "-b" + ubaPara, "-u" + ubaVersion, "-d" + ubaDetail, "-y" + (ubaShowVacuous ? "0" : "1"), "-s" + valInputCpSeq)
+        .directory(brHome)
         .start();
     java.io.InputStream is = process.getInputStream();
     java.io.InputStreamReader isr = new java.io.InputStreamReader(is);
