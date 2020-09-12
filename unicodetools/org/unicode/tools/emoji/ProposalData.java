@@ -41,7 +41,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.ICUUncheckedIOException;
 
-/** Constructs proposals from proposalData.txt and the CandidateData for Status=Draft Candidate.
+/** Constructs proposals from proposalData.txt and the CandidateData.
  * At the end of a release, before the Draft Candidates are retired, run CandidateData.java to get the proposals for those
  * candidates, and add to the end of proposalData.txt
  */
