@@ -132,12 +132,6 @@ U+102001
 Name=face with peeking eye
 Keywords=captivated | I can’t look away | peeking | peeping | staring
 
-# Proposal=L2/19-380
-# After=💔
-# U+102002
-# Name=mending heart
-# Keywords=healthy | improving | mend | recovering | recuperating | well
-
 Proposal=L2/19-371
 After=💮
 U+102003
