@@ -260,6 +260,9 @@ public class ProposalData {
 
     public static void addAll(UnicodeMap<Set<String>> builder, UnicodeSet cleaned, Set<String> proposals) {
 	for (String s : cleaned) {
+	    if (!EmojiData.EMOJI_DATA_BETA.getAllEmojiWithDefectives().contains(s)) {
+		System.err.println(s + " not in EmojiData!! " + Utility.hex(s));
+	    }
 	    Set<String> old = builder.get(s);
 	    if (old != null) {
 		proposals = ImmutableSet.<String>builder().addAll(proposals).addAll(old).build();
@@ -286,6 +289,25 @@ public class ProposalData {
 	return ImmutableSet.copyOf(result);
     }
 
+    static final Map<String, String> SHORTEST_SKELETON = ImmutableMap.<String, String>builder()
+	    .put("🧑🏿‍❤️‍💋‍🧑🏿","💏🏿")
+	    .put("🧑🏿‍❤️‍🧑🏿","💑🏿")
+	    .build();
+//    static {
+//	for (Entry<String, String> entry : SHORTEST_SKELETON.entrySet()) {
+//	    System.out.println(".put(\"" + entry.getKey() + "\",\"" + entry.getValue() + "\")"
+//	    	+ "\t// " + Utility.hex(entry.getKey()) + " => " + Utility.hex(entry.getValue()));
+//	}
+//    }
+    
+    private static String shortestForm(String s) {
+	String result = SHORTEST_SKELETON.get(s);
+	if (result == null) {
+	    return s;
+	}
+	return result;
+    }
+
     /**
      * Normalize to woman, darkskin, no FE0F
      * @param code
@@ -296,10 +318,12 @@ public class ProposalData {
 	if (CharSequences.getSingleCodePoint(code) != Integer.MAX_VALUE) {
 	    return code;
 	}
-	return EmojiData.SKIN_SPANNER.replaceFrom(code
+	String result = EmojiData.SKIN_SPANNER.replaceFrom(code
 		.replace(Emoji.EMOJI_VARIANT_STRING, "")
 		.replace("\u2642", GENDER_REPRESENTATIVE),
 		SKIN_REPRESENTATIVE);
+	String shorter = SHORTEST_SKELETON.get(result);
+	return shorter == null ? result : shorter;
     }
     // parse a .. construction.
     // syntax =  item ("," item)
@@ -541,6 +565,7 @@ public class ProposalData {
 		    if (!s.equals(skeleton)) {
 			continue;
 		    }
+		    // handle special case for multi-skintones
 		    String cat = EmojiOrder.BETA_ORDER.getCategory(s);
 		    MajorGroup major = EmojiOrder.BETA_ORDER.getMajorGroupFromCategory(cat);
 		    if (!major.equals(lastMajor)) {

@@ -1534,10 +1534,10 @@
 1F469 1F3FF 200D 1F692; L2/16-160, L2/14-173 # 2016 (👩🏿‍🚒) woman firefighter: dark skin tone
 
 # L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173
-1F468 1F3FF 200D 1F91D 200D 1F468 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # -1 (👨🏿‍🤝‍👨🏿) men holding hands: dark skin tone
-1F468 1F3FF 200D 1F91D 200D 1F469 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # -1 (👨🏿‍🤝‍👩🏿) men holding hands: dark skin tone
-1F469 1F3FF 200D 1F91D 200D 1F468 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # -1 (👩🏿‍🤝‍👨🏿) woman and man holding hands: dark skin tone
-1F469 1F3FF 200D 1F91D 200D 1F469 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # -1 (👩🏿‍🤝‍👩🏿) women holding hands: dark skin tone
+#1F468 1F3FF 200D 1F91D 200D 1F468 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # -1 (👨🏿‍🤝‍👨🏿) men holding hands: dark skin tone
+#1F468 1F3FF 200D 1F91D 200D 1F469 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # -1 (👨🏿‍🤝‍👩🏿) men holding hands: dark skin tone
+#1F469 1F3FF 200D 1F91D 200D 1F468 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # -1 (👩🏿‍🤝‍👨🏿) woman and man holding hands: dark skin tone
+#1F469 1F3FF 200D 1F91D 200D 1F469 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # -1 (👩🏿‍🤝‍👩🏿) women holding hands: dark skin tone
 1F46B 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # 2019 (👫🏿) woman and man holding hands: dark skin tone
 1F46C 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # 2019 (👬🏿) men holding hands: dark skin tone
 1F46D 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # 2019 (👭🏿) women holding hands: dark skin tone
@@ -1724,9 +1724,6 @@
 # L2/16-304, L2/16-274, L2/14-173
 1F9DC 1F3FF; L2/16-304, L2/16-274, L2/14-173 # 2017 (🧜🏿) merperson: dark skin tone
 
-# MISSING-2015
-1F441 FE0F 200D 1F5E8 FE0F; MISSING # 2015 (👁️‍🗨️) eye in speech bubble
-002A FE0F 20E3; MISSING # 2015 (*️⃣) keycap: *
 
 2764 200D 1F525; L2/20-128; heart on fire
 2764 200D 1FA79; L2/19-380; mending heart
@@ -1741,10 +1738,16 @@
 1F62E 200D 1F4A8; L2/20-066; face exhaling
 1F635 200D 1F4AB; L2/20-131; face with spiral eyes
 1F636 200D 1F32B; L2/19-390, L2/20-130; face in clouds
-1F9D1 1F3FF 200D 2764 200D 1F48B 200D 1F9D1 1F3FF; L2/20-133; null
-1F9D1 1F3FF 200D 2764 200D 1F9D1 1F3FF; L2/20-133; null
+#1F9D1 1F3FF 200D 2764 200D 1F48B 200D 1F9D1 1F3FF; L2/20-133; null
+#1F9D1 1F3FF 200D 2764 200D 1F9D1 1F3FF; L2/20-133; null
 1F9D4 200D 2640; L2/20-133; man with beard
-1F9D4 1F3FF; L2/20-133; woman with beard
-1F9D4 1F3FF 200D 2640; L2/20-133; woman with beard: light skin tone
+1F9D4 200D 2642; L2/20-133; woman with beard
+1F9D4 1F3FF 200D 2642; L2/20-133; woman with beard: light skin tone
+1F9D4 1F3FF 200D 2640; L2/20-133; man with beard
+
+# MISSING-2015
+1F441 FE0F 200D 1F5E8 FE0F; MISSING # 2015 (👁️‍🗨️) eye in speech bubble
+002A FE0F 20E3; MISSING # 2015 (*️⃣) keycap: *
+
 
 #EOF

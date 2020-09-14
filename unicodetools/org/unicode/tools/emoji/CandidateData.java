@@ -431,7 +431,9 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 		    compoundName += ", " + jName;
 		}
 		names.put(sequence, compoundName);
-		System.out.println(Utility.hex(sequence) + " => " + compoundName);
+		if (DEBUG) {
+		    System.out.println(Utility.hex(sequence) + " => " + compoundName);
+		}
 	    }
 	}
     }

@@ -62,7 +62,7 @@ public class Emoji {
     /**
      * Constants for versions
      */
-    public static final VersionInfo VERSION14 = VersionInfo.getInstance(13,1);
+    public static final VersionInfo VERSION14 = VersionInfo.getInstance(14,0);
     public static final VersionInfo VERSION13_1 = VersionInfo.getInstance(13,1);
     public static final VersionInfo VERSION13 = VersionInfo.getInstance(13);
     public static final VersionInfo VERSION12_1 = VersionInfo.getInstance(12,1);
