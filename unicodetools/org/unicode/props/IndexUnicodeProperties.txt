@@ -336,10 +336,10 @@ emoji/*/emoji-data; Emoji_Component
 emoji/*/emoji-data; Extended_Pictographic
 
 emoji/*/emoji-sequences; Basic_Emoji 
-emoji/*/emoji-sequences; Emoji_Modifier_Sequence 
-emoji/*/emoji-sequences; Emoji_Flag_Sequence
-emoji/*/emoji-sequences; Emoji_Keycap_Sequence
-emoji/*/emoji-sequences; Emoji_Tag_Sequence
-emoji/*/emoji-zwj-sequences; Emoji_Zwj_Sequence
+emoji/*/emoji-sequences; RGI_Emoji_Modifier_Sequence 
+emoji/*/emoji-sequences; RGI_Emoji_Flag_Sequence
+emoji/*/emoji-sequences; RGI_Emoji_Keycap_Sequence
+emoji/*/emoji-sequences; RGI_Emoji_Tag_Sequence
+emoji/*/emoji-zwj-sequences; RGI_Emoji_Zwj_Sequence
 
 #emoji/*/emoji-test ; Emoji_Short_Name

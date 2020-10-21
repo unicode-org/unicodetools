@@ -59,7 +59,7 @@ Afak;Afaka
 Aghb;Caucasian Albanian
 Ahom;Ahom
 Arab;Arabic
-Aran;Arabic
+Aran;Nastaliq
 Armi;Imperial Aramaic
 Armn;Armenian
 Avst;Avestan
@@ -123,6 +123,7 @@ Cans;Unified Canadian Aboriginal Syllabics
 Cari;Carian
 Cham;Cham
 Cher;Cherokee
+Chrs;Chorasmian
 Cirt;Cirth
 Copt;Coptic
 Cpmn;Cypro-Minoan
@@ -138,6 +139,7 @@ DM;Dominica
 DO;Dominican Republic
 DZ;Algeria
 Deva;Devanagari
+Diak;Dives Akuru
 Dogr;Dogra
 Dsrt;Deseret
 Dupl;Duployan shorthand
@@ -466,6 +468,7 @@ Thaa;Thaana
 Thai;Thai
 Tibt;Tibetan
 Tirh;Tirhuta
+Toto;Toto
 UA;Ukraine
 UG;Uganda
 UM;U.S. Outlying Islands
@@ -495,6 +498,7 @@ YD;Democratic Yemen
 YE;Yemen
 YT;Mayotte
 YU;Yugoslavia
+Yezi;Yezidi
 Yiii;Yi
 ZA;South Africa
 ZM;Zambia
@@ -583,7 +587,7 @@ acx;Omani Arabic
 acy;Cypriot Arabic
 acz;Acheron
 ada;Adangme
-adb;Adabe
+adb;Atauran
 add;Lidzonka
 ade;Adele
 adf;Dhofari Arabic
@@ -1433,6 +1437,7 @@ boont;Boontling
 bop;Bonkiman
 boq;Bogaya
 bor;Borôro
+bornholm;Bornholmsk
 bot;Bongo
 bou;Bondei
 bov;Tuwuli
@@ -1493,7 +1498,7 @@ bra;Braj
 brb;Lave
 brc;Berbice Creole Dutch
 brd;Baraamu
-brf;Bera
+brf;Bira
 brg;Baure
 brh;Brahui
 bri;Mokpwe
@@ -1800,6 +1805,7 @@ cek;Eastern Khumi Chin
 cel;Celtic (Other)
 cen;Cen
 cet;Centúúm
+cey;Ekai Chin
 cfa;Dijim-Bwilim
 cfd;Cara
 cfg;Como Karim
@@ -1860,6 +1866,7 @@ cka;Khumi Awa Chin
 ckb;Central Kurdish
 ckh;Chak
 ckl;Cibak
+ckm;Chakavian
 ckn;Kaang Chin
 cko;Anufo
 ckq;Kajakse
@@ -1908,6 +1915,7 @@ cni;Asháninka
 cnk;Khumi Chin
 cnl;Lalana Chinantec
 cno;Con
+cnp;Northern Ping Chinese
 cnr;Montenegrin
 cns;Central Asmat
 cnt;Tepetotutla Chinantec
@@ -1998,6 +2006,7 @@ csl;Chinese Sign Language
 csm;Central Sierra Miwok
 csn;Colombian Sign Language
 cso;Sochiapam Chinantec
+csp;Southern Ping Chinese
 csq;Croatia Sign Language
 csr;Costa Rican Sign Language
 css;Southern Ohlone
@@ -2189,7 +2198,7 @@ dip;Northeastern Dinka
 diq;Dimli (individual language)
 dir;Dirim
 dis;Dimasa
-dit;Diyari
+dit;Dirari
 diu;Diriku
 diw;Northwestern Dinka
 dix;Dixon Reef
@@ -2226,6 +2235,7 @@ dmb;Mombo Dogon
 dmc;Gavak
 dmd;Madhi Madhi
 dme;Dugwor
+dmf;Medefaidrin
 dmg;Upper Kinabatangan
 dmk;Domaaki
 dml;Dameli
@@ -2345,6 +2355,7 @@ duz;Duli-Gey
 dv;Divehi
 dva;Duau
 dwa;Diri
+dwk;Dawik Kui
 dwl;Walo Kumbe Dogon
 dwr;Dawro
 dws;Dutton World Speedwords
@@ -2370,6 +2381,7 @@ dzg;Dazaga
 dzl;Dzalakha
 dzn;Dzando
 eaa;Karenggapa
+ebc;Beginci
 ebg;Ebughu
 ebk;Eastern Bontok
 ebo;Teke-Ebo
@@ -2530,6 +2542,7 @@ fgr;Fongoro
 fi;Finnish
 fia;Nobiin
 fie;Fyer
+fif;Faifi
 fil;Filipino
 fip;Fipa
 fir;Firan
@@ -2687,6 +2700,7 @@ gea;Geruma
 geb;Kire
 gec;Gboloo Grebo
 ged;Gade
+gef;Gerai
 geg;Gengle
 geh;Hutterite German
 gei;Gebe
@@ -2785,6 +2799,7 @@ gml;Middle Low German
 gmm;Gbaya-Mbodomo
 gmn;Gimnime
 gmq;North Germanic languages
+gmr;Mirning
 gmu;Gumalu
 gmv;Gamo
 gmw;West Germanic languages
@@ -2922,7 +2937,7 @@ gvs;Gumawana
 gvy;Guyani
 gwa;Mbato
 gwb;Gwa
-gwc;Kalami
+gwc;Gawri
 gwd;Gawwada
 gwe;Gweno
 gwf;Gowro
@@ -3059,6 +3074,7 @@ hmz;Hmong Shua
 hna;Mina (Cameroon)
 hnd;Southern Hindko
 hne;Chhattisgarhi
+hng;Hungu
 hnh;ǁAni
 hni;Hani
 hnj;Hmong Njua
@@ -3754,7 +3770,7 @@ kkm;Kiong
 kkn;Kon Keu
 kko;Karko
 kkp;Gugubera
-kkq;Kaiku
+kkq;Kaeku
 kkr;Kir-Balar
 kks;Giiwo
 kkt;Koi
@@ -3774,7 +3790,7 @@ klf;Kendeje
 klg;Tagakaulo
 klh;Weliki
 kli;Kalumpang
-klj;Turkic Khalaj
+klj;Khalaj
 klk;Kono (Nigeria)
 kll;Kagan Kalagan
 klm;Migum
@@ -4446,11 +4462,13 @@ lsh;Lish
 lsi;Lashi
 lsl;Latvian Sign Language
 lsm;Saamia
+lsn;Tibetan Sign Language
 lso;Laos Sign Language
 lsp;Panamanian Sign Language
 lsr;Aruop
 lss;Lasi
 lst;Trinidad and Tobago Sign Language
+lsv;Sivia Sign Language
 lsy;Mauritian Sign Language
 lt;Lithuanian
 ltc;Late Middle Chinese
@@ -4487,6 +4505,7 @@ luy;Luyia
 luz;Southern Luri
 lv;Latvian
 lva;Maku'a
+lvi;Lavi
 lvk;Lavukaleve
 lvs;Standard Latvian
 lvu;Levuka
@@ -4866,7 +4885,7 @@ mo;Moldavian
 moa;Mwan
 moc;Mocoví
 mod;Mobilian
-moe;Montagnais
+moe;Innu
 mof;Mohegan-Montauk-Narragansett
 mog;Mongondow
 moh;Mohawk
@@ -5032,7 +5051,7 @@ muo;Nyong
 mup;Malvi
 muq;Eastern Xiangxi Miao
 mur;Murle
-mus;Creek
+mus;Muscogee
 mut;Western Muria
 muu;Yaaku
 muv;Muthuvan
@@ -5550,6 +5569,7 @@ nru;Narua
 nrx;Ngurmbur
 nrz;Lala
 nsa;Sangtam Naga
+nsb;Lower Nossob
 nsc;Nshi
 nsd;Southern Nisu
 nse;Nsenga
@@ -5929,6 +5949,7 @@ pdo;Padoe
 pdt;Plautdietsch
 pdu;Kayan
 pea;Peranakan Indonesian
+peano;Latino Sine Flexione
 peb;Eastern Pomo
 ped;Mala (Papua New Guinea)
 pee;Taje
@@ -5950,7 +5971,7 @@ pex;Petats
 pey;Petjo
 pez;Eastern Penan
 pfa;Pááfang
-pfe;Peere
+pfe;Pere
 pfl;Palatine German
 pga;Sudanese Creole Arabic
 pgd;Gāndhārī
@@ -6068,6 +6089,7 @@ pmz;Southern Pame
 pna;Punan Bah-Biau
 pnb;Western Panjabi
 pnc;Pannei
+pnd;Mpinda
 pne;Western Penan
 png;Pongu
 pnh;Penrhyn
@@ -6542,6 +6564,7 @@ sdm;Semandang
 sdn;Gallurese Sardinian
 sdo;Bukar-Sadung Bidayuh
 sdp;Sherdukpen
+sdq;Semandang
 sdr;Oraon Sadri
 sds;Sened
 sdt;Shuadit
@@ -7000,6 +7023,7 @@ szp;Suabo
 szs;Solomon Islands Sign Language
 szv;Isu (Fako Division)
 szw;Sawai
+szy;Sakizaya
 ta;Tamil
 taa;Lower Tanana
 tab;Tabassaran
@@ -7201,10 +7225,12 @@ tiz;Tai Hongjin
 tja;Tajuasohn
 tjg;Tunjung
 tji;Northern Tujia
+tjj;Tjungundji
 tjl;Tai Laing
 tjm;Timucua
 tjn;Tonjon
 tjo;Temacine Tamazight
+tjp;Tjupany
 tjs;Southern Tujia
 tju;Tjurruru
 tjw;Djabwurrung
@@ -7317,6 +7343,7 @@ toi;Tonga (Zambia)
 toj;Tojolabal
 tol;Tolowa
 tom;Tombulu
+tongyong;Tongyong Pinyin romanization
 too;Xicotepec De Juárez Totonac
 top;Papantla Totonac
 toq;Toposa
@@ -7452,6 +7479,7 @@ tuj;Tugutil
 tul;Tula
 tum;Tumbuka
 tun;Tunica
+tunumiit;Tunumiisiut
 tuo;Tucano
 tup;Tupi languages
 tuq;Tedaga
@@ -7475,6 +7503,7 @@ tvs;Taveta
 tvt;Tutsa Naga
 tvu;Tunen
 tvw;Sedoa
+tvx;Taivoan
 tvy;Timor Pidgin
 tw;Twi
 twa;Twana
@@ -7576,12 +7605,14 @@ uk;Ukrainian
 uka;Kaburi
 ukg;Ukuriguma
 ukh;Ukhwejo
+uki;Kui (India)
 ukk;Muak Sa-aak
 ukl;Ukrainian Sign Language
 ukp;Ukpe-Bayobiri
 ukq;Ukwa
 uks;Urubú-Kaapor Sign Language
 uku;Ukue
+ukv;Kuku
 ukw;Ukwuani-Aboh-Ndoni
 uky;Kuuk-Yak
 ula;Fungwa
@@ -7655,9 +7686,11 @@ ush;Ushojo
 usi;Usui
 usk;Usaghade
 usp;Uspanteco
+uss;us-Saare
 usu;Uya
 uta;Otank
 ute;Ute-Southern Paiute
+uth;ut-Hun
 utp;Amba (Solomon Islands)
 utr;Etulo
 utu;Utu
@@ -7874,6 +7907,7 @@ wka;Kw'adza
 wkb;Kumbaran
 wkd;Wakde
 wkl;Kalanadi
+wkr;Keerray-Woorroong
 wku;Kunduvadi
 wkw;Wakawaka
 wky;Wangkayutyuru
@@ -7881,6 +7915,7 @@ wla;Walio
 wlc;Mwali Comorian
 wle;Wolane
 wlg;Kunbarlang
+wlh;Welaun
 wli;Waioli
 wlk;Wailaki
 wll;Wali (Sudan)
@@ -8172,6 +8207,7 @@ xng;Middle Mongolian
 xnh;Kuanhua
 xni;Ngarigu
 xnk;Nganakarti
+xnm;Ngumbarl
 xnn;Northern Kankanay
 xno;Anglo-Norman
 xnr;Kangri
@@ -8192,12 +8228,17 @@ xop;Kopar
 xor;Korubo
 xow;Kowaki
 xpa;Pirriya
+xpb;Northeastern Tasmanian
 xpc;Pecheneg
+xpd;Oyster Bay Tasmanian
 xpe;Liberia Kpelle
+xpf;Southeast Tasmanian
 xpg;Phrygian
+xph;North Midlands Tasmanian
 xpi;Pictish
 xpj;Mpalitjanh
 xpk;Kulina Pano
+xpl;Port Sorell Tasmanian
 xpm;Pumpokol
 xpn;Kapinawá
 xpo;Pochutec
@@ -8207,7 +8248,11 @@ xpr;Parthian
 xps;Pisidian
 xpt;Punthamara
 xpu;Punic
+xpv;Northern Tasmanian
+xpw;Northwestern Tasmanian
+xpx;Southwestern Tasmanian
 xpy;Puyo
+xpz;Bruny Island Tasmanian
 xqa;Karakhanid
 xqt;Qatabanian
 xra;Krahô
@@ -8583,6 +8628,7 @@ zaw;Mitla Zapotec
 zax;Xadani Zapotec
 zay;Zayse-Zergulla
 zaz;Zari
+zba;Balaibalan
 zbc;Central Berawan
 zbe;East Berawan
 zbl;Blissymbols

@@ -21,7 +21,7 @@ Simple_Titlecase_Mapping ;   UCD ;    String ; Case
 Simple_Uppercase_Mapping ;   UCD ;    String ; Case
 Titlecase_Mapping ;  UCD ;    String ; Case
 Uppercase_Mapping ;  UCD ;    String ; Case
-Case_Sensitive ; ICU ;    Binary ; Case
+Case_Sensitive ; X-ICU ;    Binary ; Case
 isUppercase ;    Unicode ;    Binary ; Case
 isTitlecase ;    Unicode ;    Binary ; Case
 isLowercase ;    Unicode ;    Binary ; Case
@@ -93,7 +93,7 @@ Grapheme_Link ;  UCD ;    Binary ; Miscellaneous
 Hyphen ; UCD ;    Binary ; Miscellaneous
 Math ;   UCD ;    Binary ; Miscellaneous
 Quotation_Mark ; UCD ;    Binary ; Miscellaneous
-Sentence_Terminal ;  UCD ;    Binary ; Miscellaneous
+STerm ;  UCD ;    Binary ; Miscellaneous
 Terminal_Punctuation ;   UCD ;    Binary ; Miscellaneous
 ISO_Comment ;    UCD ;    Miscellaneous ;  Miscellaneous
 Unicode_1_Name ; UCD ;    Miscellaneous ;  Miscellaneous
@@ -162,11 +162,16 @@ Emoji_Modifier_Base ; UTS ;    Binary ; Emoji
 Emoji_Presentation ; UTS ;    Binary ; Emoji
 
 Emoji_Component ; UTS ;    Binary ; Emoji
-Emoji_Flag_Sequence ; UTS ;    Binary ; Emoji
-Emoji_Keycap_Sequence ; UTS ;    Binary ; Emoji
-Emoji_Modifier_Sequence ; UTS ;    Binary ; Emoji
-Emoji_Zwj_Sequence ; UTS ;    Binary ; Emoji
-Emoji_Tag_Sequence ; UTS ;    Binary ; Emoji
+
+Basic_Emoji ; UTS ;    Binary ; Emoji
+RGI_Emoji_Modifier_Sequence ; UTS ;    Binary ; Emoji
+RGI_Emoji_Tag_Sequence ; UTS ;    Binary ; Emoji
+RGI_Emoji_Zwj_Sequence ; UTS ;    Binary ; Emoji
+RGI_Emoji_Flag_Sequence ; UTS ;    Binary ; Emoji
+RGI_Emoji_Keycap_Sequence ; UTS ;    Binary ; Emoji
+RGI_Emoji ; UTS ;    Binary ; Emoji
+
+Extended_Pictographic ; UCD ; Binary ; Emoji
 
 toLowercase ;  Unicode ;    String ; Case
 toTitlecase ;  Unicode ;    String ; Case
@@ -176,6 +181,8 @@ toNFM ; ICU ;    String ; Normalization
 
 Indic_Positional_Category ; UCD ; Enumerated ; Miscellaneous
 Indic_Syllabic_Category ; UCD ; Enumerated ; Miscellaneous
+
+Equivalent_Unified_Ideograph	; UCD ; String ; CJK
 
 CJK_Radical	; UCD ; String ; CJK
 Idn_Mapping ; UTS ; String ; IDNA

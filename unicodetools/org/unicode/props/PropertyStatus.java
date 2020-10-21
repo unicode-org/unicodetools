@@ -17,7 +17,7 @@ public enum PropertyStatus {
 
     enum PropertyOrigin {UCD, Nameslist, Unicode, UTS10, UTS18, UTS39, UTS46, UTS51, ICU, Extra, Unknown}
 
-    enum PropertyScope {Bidirectional,
+    public enum PropertyScope {Bidirectional,
         Case,
         CJK,
         Emoji(PropertyOrigin.UTS51),
@@ -498,11 +498,12 @@ public enum PropertyStatus {
         process("Emoji_All","UTS","Emoji","Binary");
         process("Emoji_Component","UTS","Emoji","Binary");
         process("Extended_Pictographic","UTS","Emoji","Binary");
-        process("Emoji_Flag_Sequence","UTS","Emoji","Binary");
-        process("Emoji_Keycap_Sequence","UTS","Emoji","Binary");
-        process("Emoji_Modifier_Sequence","UTS","Emoji","Binary");
-        process("Emoji_Zwj_Sequence","UTS","Emoji","Binary");
-        process("Emoji_Tag_Sequence","UTS","Emoji","Binary");
+        process("Basic_Emoji","UTS","Emoji","Binary");
+        process("RGI_Emoji_Flag_Sequence","UTS","Emoji","Binary");
+        process("RGI_Emoji_Keycap_Sequence","UTS","Emoji","Binary");
+        process("RGI_Emoji_Modifier_Sequence","UTS","Emoji","Binary");
+        process("RGI_Emoji_Zwj_Sequence","UTS","Emoji","Binary");
+        process("RGI_Emoji_Tag_Sequence","UTS","Emoji","Binary");
         process("Idn_2008","UTS","IDNA","Enumerated");
         process("uts46","UTS","IDNA","Enumerated");
         process("idna2008c","UTS","IDNA","Enumerated");

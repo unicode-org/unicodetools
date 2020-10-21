@@ -757,7 +757,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
                 assert propInfo.property.getType() == PropertyType.Binary;
                 value = "Yes";
             } else {
-                value = line.parts[2];
+                value = propInfo.property.getType() == PropertyType.Binary ? "Yes" : line.parts[2];
                 // The value should not be an empty string.
                 // Exception: NFKC_Casefold does remove some characters by mapping them to nothing.
                 assert !value.isEmpty() || propInfo.property == UcdProperty.NFKC_Casefold;

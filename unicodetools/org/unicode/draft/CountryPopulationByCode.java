@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Counter;
+import org.unicode.cldr.util.StandardCodes;
 import org.unicode.cldr.util.SupplementalDataInfo.OfficialStatus;
 import org.unicode.cldr.util.SupplementalDataInfo.PopulationData;
 import org.unicode.jsp.FileUtilities;
@@ -23,6 +24,7 @@ import com.ibm.icu.impl.Row.R5;
 import com.ibm.icu.util.ULocale;
 
 public class CountryPopulationByCode {
+    private static final StandardCodes STANDARD_CODES = StandardCodes.make();
     private static final boolean SHOW_INTERNET = false;
     private static final boolean SHOW_WEIGHTS = true;
     private static final boolean SHOW_SOURCE = false;
@@ -30,14 +32,14 @@ public class CountryPopulationByCode {
     static CLDRConfig testInfo = CLDRConfig.getInstance();
 
     public static void main(String[] args) {
-        final Set<String> territories = testInfo.getStandardCodes().getAvailableCodes("territory");
+        final Set<String> territories = STANDARD_CODES.getAvailableCodes("territory");
         for (final String territory : territories) {
             final String name = testInfo.getEnglish().getName("territory", territory);
             if (name == null) {
                 continue;
             }
             System.out.println(name + "\t" + territory + "\t" + name);
-            final String alt = testInfo.getStandardCodes().getData("territory", territory);
+            final String alt = STANDARD_CODES.getData("territory", territory);
             if (!alt.equals(name)) {
                 System.out.println(alt + "\t" + territory + "\t" + name);
             }
@@ -55,7 +57,7 @@ public class CountryPopulationByCode {
         final Counter<String> language2InternetLatest = new Counter();
         final TreeSet<R5<String, Double, Double, String, Boolean>> rowSet = new TreeSet();
 
-        for (final String territoryCode : testInfo.getStandardCodes().getGoodAvailableCodes("territory")) {
+        for (final String territoryCode : STANDARD_CODES.getGoodAvailableCodes("territory")) {
             Set<String> languages;
             try {
                 languages = testInfo.getSupplementalDataInfo().getLanguagesForTerritoryWithPopulationData(territoryCode);
@@ -213,7 +215,7 @@ public class CountryPopulationByCode {
         public static final Map<String,String> name2code = new HashMap();
         public static final Map<String,String> remapName = new HashMap();
         static {
-            for (final String territory : testInfo.getStandardCodes().getGoodAvailableCodes("territory")) {
+            for (final String territory : STANDARD_CODES.getGoodAvailableCodes("territory")) {
                 name2code.put(testInfo.getEnglish().getName(CLDRFile.TERRITORY_NAME, territory), territory);
             }
             remapName.put("Korea, South", "South Korea");
@@ -276,7 +278,7 @@ public class CountryPopulationByCode {
         }
         @Override
         protected void handleEnd() {
-            final Set<String> missing = new TreeSet(testInfo.getStandardCodes().getGoodAvailableCodes("territory"));
+            final Set<String> missing = new TreeSet(STANDARD_CODES.getGoodAvailableCodes("territory"));
             missing.removeAll(country2internetUsers.keySet());
             for (final String s : missing) {
                 System.out.println("//missing\t" + s + "\t" + testInfo.getEnglish().getName(CLDRFile.TERRITORY_NAME, s));
@@ -287,7 +289,7 @@ public class CountryPopulationByCode {
     private static void countryPopulation() {
         final Set<R4<Double, Double, String, Integer>> byPopulation = new TreeSet<R4<Double, Double, String, Integer>>();
 
-        for (final String code : testInfo.getStandardCodes().getGoodAvailableCodes("territory")) {
+        for (final String code : STANDARD_CODES.getGoodAvailableCodes("territory")) {
             final Set<Integer> numbers = testInfo.getSupplementalDataInfo().numericTerritoryMapping
                     .getAll(code);
             if (numbers == null) {

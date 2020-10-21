@@ -10,6 +10,7 @@ import java.util.Set;
 import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyStatus;
+import org.unicode.props.PropertyStatus.PropertyScope;
 import org.unicode.props.PropertyType;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.ValueCardinality;
@@ -27,7 +28,7 @@ import com.ibm.icu.text.UnicodeSet;
 public class ListProps {
 
     private static final UcdProperty DEBUG_LIST_VALUES = null ; // UcdProperty.Confusable_MA;
-
+    private static String ONLY_PROP = null; // "Emoji";
     static final boolean ONLY_JSP = true;
 
     public static final Set<PropertyStatus> SKIP_JSP_STATUS = ImmutableSet.of(
@@ -61,9 +62,14 @@ public class ListProps {
 //        }
         PropertyType lastType = null;
         Set<String> skipped = new LinkedHashSet<>();
+        Set<String> failures = new LinkedHashSet<>();
+        Set<String> unknownScope = new LinkedHashSet<>();
         main:
             for (UcdProperty item : UcdProperty.values()) {
                 String propName = item.toString();
+                if (ONLY_PROP != null && !propName.contains(ONLY_PROP)) {
+                    continue;
+                }
                 PropertyType type = item.getType();
                 ValueCardinality cardinality = item.getCardinality();
                 if (type != lastType) {
@@ -75,15 +81,19 @@ public class ListProps {
                 UnicodeMap<String> map = latest.load(item);
                 Set<String> values = map.values();
 
+                PropertyScope scope = PropertyStatus.getScope(propName);
                 String itemInfo = item 
                         + "\tType:\t" + type 
                         + "\tStatus:\t"+ CollectionUtilities.join(status, ", ")
                         + "\tCard:\t" + cardinality
                         + "\tDefVal:\t" + IndexUnicodeProperties.getDefaultValue(item)
-                        + "\tScope:\t" + PropertyStatus.getScope(propName)
+                        + "\tScope:\t" + scope
                         + "\tOrigin:\t" + PropertyStatus.getOrigin(propName)
                         + "\tValues:\t" + clip(values)
                         ;
+                if (scope == PropertyScope.Unknown) {
+                    unknownScope.add(propName);
+                }
                 if (item == DEBUG_LIST_VALUES) {
                     for (String value : map.values()) {
                         UnicodeSet uset = map.getSet(value);
@@ -125,6 +135,7 @@ public class ListProps {
                         }
                         if (!enumStrings.equals(flatValues)) {
                             System.out.println("\t" + "≠ VALUES!!!\t" + showDiff("enums", enumStrings, "values", flatValues));
+                            failures.add(propName);
                         }
                         for (String pval : uprop.getAvailableValues()) {
                             uprop.getValueAliases(pval);
@@ -137,6 +148,12 @@ public class ListProps {
             }
         for (String skip : skipped) {
             System.out.println("➖\t" + skip);
+        }
+        if (!failures.isEmpty()) {
+            System.err.println("FAILURES: " + failures);
+        }
+        if (!unknownScope.isEmpty()) {
+            System.err.println("UNKNOWN SCOPE: " + unknownScope);
         }
     }
 
@@ -156,8 +173,8 @@ public class ListProps {
             .putAll("Canonical_Combining_Class", "CCC133, Attached_Below_Left".split(", "))
             .putAll("General_Category", "Other, Letter, Cased_Letter, Mark, Number, Punctuation, Symbol, Separator".split(", "))
             .putAll("Identifier_Type", "Aspirational".split(", "))
-            .putAll("Word_Break", "E_Base_GAZ, Glue_After_Zwj".split(", "))
-            .putAll("Grapheme_Cluster_Break", "E_Base_GAZ, Glue_After_Zwj".split(", "))
+            .putAll("Word_Break", "E_Base_GAZ, Glue_After_Zwj, E_Base, E_Modifier".split(", "))
+            .putAll("Grapheme_Cluster_Break", "E_Base_GAZ, Glue_After_Zwj, E_Base, E_Modifier".split(", "))
             .build();
 
     private static String showDiff(String as, Set<String> a, String bs, Set<String> b) {
