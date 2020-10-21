@@ -136,7 +136,7 @@ public class TestUnicodeSet  extends TestFmwk2 {
     public void TestU60 () {
         logln("ICU Version: " + VersionInfo.ICU_VERSION.toString());
         logln("Unicode Data Version:   " + UCharacter.getUnicodeVersion().toString());
-        logln("Java Version:   " + VersionInfo.javaVersion().toString());
+        logln("Java Version:   " + java.lang.Runtime.version());
         logln("CLDR Data Version:      " + LocaleData.getCLDRVersion().toString());
         logln("Time Zone Data Version: " + TimeZone.getTZDataVersion());
 
