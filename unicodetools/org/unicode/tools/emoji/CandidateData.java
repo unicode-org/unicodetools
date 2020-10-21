@@ -53,6 +53,11 @@ import com.ibm.icu.text.UnicodeSet.SpanCondition;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
+/**
+ * Provides data for candidates, reading the file candidateData.txt.
+ * Note: At the end of a release, before the Draft Candidates are retired, run CandidateData.java to get the proposals for those
+ * candidates, and add to the end of proposalData.txt
+ */
 public class CandidateData implements Transform<String, String>, EmojiDataSource {
     private static final String TEST_STRING = "👩‍🤝‍👩";
     private static final boolean SHOW_COMBOS = false;
@@ -128,6 +133,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     private final UnicodeMap<Status> statuses = new UnicodeMap<>();
     private final UnicodeSet singleCharacters = new UnicodeSet();
     private final UnicodeSet allCharacters = new UnicodeSet();
+    private final UnicodeSet fullDraftForProposals;
     private final UnicodeSet allNonProvisional = new UnicodeSet();
     private final UnicodeSet textPresentation = new UnicodeSet();
     private UnicodeSet provisional = new UnicodeSet();
@@ -305,6 +311,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 	//	allCharacters.removeAll(singleCharacters);
 
 	allCharacters.removeAll(duplicates).freeze();
+	fullDraftForProposals = new UnicodeSet(statuses.getSet(Status.Draft_Candidate)).freeze();
 	statuses.removeAll(duplicates).freeze();
 	comments.freeze();
 	categories.freeze();
@@ -424,7 +431,9 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 		    compoundName += ", " + jName;
 		}
 		names.put(sequence, compoundName);
-		System.out.println(Utility.hex(sequence) + " => " + compoundName);
+		if (DEBUG) {
+		    System.out.println(Utility.hex(sequence) + " => " + compoundName);
+		}
 	    }
 	}
     }
@@ -797,7 +806,20 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     }
     public String getCategory(String source) {
 	String result = EmojiOrder.STD_ORDER.charactersToOrdering.get(source);
-	return result != null ? result : categories.get(source);
+	if (result != null) {
+	    return result;
+	}
+//	final String stripped = EmojiData.removeEmojiVariants(EmojiData.MODIFIERS.stripFrom(source, true));
+//	result = EmojiOrder.STD_ORDER.charactersToOrdering.get(stripped);
+//	if (result != null) {
+//	    return result;
+//	}
+	result = categories.get(source);
+	if (result != null) {
+	    return result;
+	}
+	System.out.println(Utility.hex(source) + "; " + source);
+	return null;
     }
 
     public List<Integer> getOrder() {
@@ -825,7 +847,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 	DEBUG = true;
 	CandidateData candidateData = CandidateData.getInstance();
 	if (args.length == 0) {
-	    throw new IllegalArgumentException();
+	    args = new String[] {"proposals"};
 	}
 	int count = 0;
 	for (String arg : args) {
@@ -896,10 +918,10 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 	//1F931;  L2/16-280,L2/16-282r;   BREAST-FEEDING   
 	Set<String> done = new HashSet<>();
 	UnicodeSet missing = new UnicodeSet();
-	for (String item : instance.allCharacters) {
+	for (String item : instance.fullDraftForProposals) {
 	    if (instance.statuses.get(item) == Status.Provisional_Candidate
-		    || EmojiData.MODIFIERS.containsSome(item)
-		    || Emoji.GENDER_MARKERS.containsSome(item)
+//		    || EmojiData.MODIFIERS.containsSome(item)
+//		    || Emoji.GENDER_MARKERS.containsSome(item)
 		    ) {
 		continue;
 	    }
@@ -909,9 +931,9 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 	    }
 	    done.add(skeleton);
 	    Set<String> proposals = instance.getProposal(item);
-	    if (proposals == null) {
-		missing.add(item);
-	    }
+//	    if (proposals == null) {
+//		missing.add(item);
+//	    }
 	    System.out.println(Utility.hex(skeleton)
 		    + "; " + CollectionUtilities.join(proposals, ", ")
 		    + "; " + instance.getName(item));

@@ -38,8 +38,11 @@ import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
 public class GenerateEmojiData {
+    private static final VersionInfo DATA_VERSION_TO_GENERATE = EmojiData.EMOJI_DATA.getVersion();
+    private static final String VERSION_STRING = DATA_VERSION_TO_GENERATE.getVersionString(2, 2);
+    
     public static final String OUTPUT_DIR_BASE = Settings.UNICODE_DRAFT_DIRECTORY + "Public/emoji/";
-    public static String OUTPUT_DIR = OUTPUT_DIR_BASE + Emoji.VERSION_BETA.getVersionString(2, 2);
+    public static String OUTPUT_DIR = OUTPUT_DIR_BASE + VERSION_STRING;
 
     private static final String ORDERING_NOTE = "#\n"
 	    + "# Characters and sequences are listed in code point order. Users should be shown a more natural order.\n"
@@ -143,7 +146,7 @@ public class GenerateEmojiData {
 	try (TempPrintWriter outText2 = new TempPrintWriter(OUTPUT_DIR, "internal/emoji-internal.txt")) {
 	    UnicodeSet emojiGenderBase = emojiDataSource.getGenderBases();
 	    UnicodeSet emojiExplicitGender = emojiDataSource.getExplicitGender();
-	    outText2.println(Utility.getBaseDataHeader("emoji-internal", 51, "Emoji Data Internal", Emoji.VERSION_STRING));
+	    outText2.println(Utility.getBaseDataHeader("emoji-internal", 51, "Emoji Data Internal", VERSION_STRING));
 
 
 	    int width = maxLength("Emoji_Gender_Base", 
@@ -185,7 +188,7 @@ public class GenerateEmojiData {
 	    if (SHOW) System.out.println(EmojiData.EMOJI_DATA_BETA.getExtendedPictographic().contains("🦰"));
 	    if (SHOW) System.out.println(CandidateData.getInstance().getExtendedPictographic().contains("🦰"));
 	    UnicodeSet emoji_pict = emojiDataSource.getExtendedPictographic();
-	    outText2.println(Utility.getBaseDataHeader("emoji-data", 51, "Emoji Data", Emoji.VERSION_STRING));
+	    outText2.println(Utility.getBaseDataHeader("emoji-data", 51, "Emoji Data", VERSION_STRING));
 	    int width = Math.max("Emoji".length(),
 		    Math.max("Emoji_Presentation".length(),
 			    Math.max("Emoji_Modifier".length(),
@@ -204,7 +207,7 @@ public class GenerateEmojiData {
 	    //			printer.show(outText2, "Emoji_Regional_Indicator", null, width, 14, emoji_regional_indicators, true, true,
 	    //					false);
 	    printer.show(outText2, "Emoji_Component", null, width, 14, emoji_components, true, true, false);
-	    if (Emoji.VERSION5.compareTo(EmojiData.EMOJI_DATA.getVersion()) < 0) {
+	    if (Emoji.VERSION5.compareTo(DATA_VERSION_TO_GENERATE) < 0) {
 		printer.show(outText2, "Extended_Pictographic", null, width, 14, emoji_pict, true, true, false);
 	    }
 	    outText2.println("\n#EOF");
@@ -229,9 +232,9 @@ public class GenerateEmojiData {
 
 	try (Writer out = new TempPrintWriter(OUTPUT_DIR, "emoji-sequences.txt");
 		Writer outNonRgi = new TempPrintWriter(OUTPUT_DIR, "internal/emoji-sequences-nonrgi.txt")) {
-	    out.write(Utility.getBaseDataHeader("emoji-sequences", 51, "Emoji Sequence Data", Emoji.VERSION_STRING)
+	    out.write(Utility.getBaseDataHeader("emoji-sequences", 51, "Emoji Sequence Data", VERSION_STRING)
 		    + "\n");
-	    outNonRgi.write(Utility.getBaseDataHeader("emoji-sequences-nonrgi", 51, "Emoji Sequence Data — Non-RGI", Emoji.VERSION_STRING)
+	    outNonRgi.write(Utility.getBaseDataHeader("emoji-sequences-nonrgi", 51, "Emoji Sequence Data — Non-RGI", VERSION_STRING)
 		    + "\n");
 	    List<String> type_fields = Arrays.asList(
 		    "Basic_Emoji", 
@@ -258,23 +261,25 @@ public class GenerateEmojiData {
 		    "See Annex C of TR51 for more information.",  width, 14, 
 		    emojiDataSource.getTagSequences(), true, false, true);
 
-	    // START separate out nonRGI for L2/19-340
-	    UnicodeSet rawModifierSequences = emojiDataSource.getModifierSequences();
-	    // separate out the sequences
-	    UnicodeSet rgiModifierSequences = new UnicodeSet();
-
-	    rawModifierSequences.forEach(x -> {
-		if (emojiMultiPersonGroupings.containsSome(x) && !HOLDING_HANDS.containsSome(x)) {
-		    nonRgiSequences.add(x);
-		} else {
-		    rgiModifierSequences.add(x);
-		}
-	    });
-	    rgiModifierSequences.freeze();
-	    nonRgiSequences.freeze();
-	    printer.show(outNonRgi, "Emoji_Modifier_Sequence_Non_RGI", null, width, 14, 
-		    nonRgiSequences,
-		    false, false, true);
+//	    // START separate out nonRGI for L2/19-340
+	    // No longer necessary, since building from data directly.
+	    UnicodeSet rgiModifierSequences = emojiDataSource.getModifierSequences();
+//	    // separate out the sequences
+//	    UnicodeSet rgiModifierSequences = new UnicodeSet();
+//
+//	    rawModifierSequences.forEach(x -> {
+//		if (emojiMultiPersonGroupings.containsSome(x) && !HOLDING_HANDS.containsSome(x)) {
+//		    nonRgiSequences.add(x);
+//		} else {
+//		    rgiModifierSequences.add(x);
+//		}
+//	    });
+//	    rgiModifierSequences.freeze();
+//	    nonRgiSequences.freeze();
+//	    
+//	    printer.show(outNonRgi, "Emoji_Modifier_Sequence_Non_RGI", null, width, 14, 
+//		    nonRgiSequences,
+//		    false, false, true);
 	    // END separate out specials for L2/19-340
 
 	    printer.show(out, prefix13 + "Emoji_Modifier_Sequence", null, width, 14, 
@@ -286,9 +291,9 @@ public class GenerateEmojiData {
 	try (Writer out = new TempPrintWriter(OUTPUT_DIR, "emoji-zwj-sequences.txt");
 		Writer outNonRgi = new TempPrintWriter(OUTPUT_DIR, "internal/emoji-zwj-sequences-nonrgi.txt")) {
 	    out.write(Utility.getBaseDataHeader("emoji-zwj-sequences", 51, "Emoji ZWJ Sequences",
-		    Emoji.VERSION_STRING) + "\n");
+		    VERSION_STRING) + "\n");
 	    outNonRgi.write(Utility.getBaseDataHeader("emoji-zwj-sequences-nonrgi", 51, "Emoji ZWJ Sequences — Non-RGI",
-		    Emoji.VERSION_STRING) + "\n");
+		    VERSION_STRING) + "\n");
 	    final String REZS = prefix13 + "Emoji_ZWJ_Sequence";
 	    List<String> type_fields = Arrays.asList(REZS);
 	    int width = maxLength(type_fields);
@@ -350,10 +355,10 @@ public class GenerateEmojiData {
 	    out.write("\n#EOF\n");
 	}
 
-	if (EmojiData.EMOJI_DATA.getVersion().compareTo(Emoji.VERSION5) >= 0) {
+	if (DATA_VERSION_TO_GENERATE.compareTo(Emoji.VERSION5) >= 0) {
 	    try (Writer out = new TempPrintWriter(OUTPUT_DIR, "emoji-variation-sequences.txt")) {
 		out.write(Utility.getBaseDataHeader("emoji-variation-sequences", 51, "Emoji Variation Sequences",
-			Emoji.VERSION_STRING) + "\n");
+			VERSION_STRING) + "\n");
 		final UnicodeSet withVariants = emojiDataSource.getEmojiWithVariants();
 		for (String s : withVariants) {
 		    // 0023 FE0E; text style; # NUMBER SIGN
@@ -372,7 +377,7 @@ public class GenerateEmojiData {
 	    printer.setFlat(true);
 	    try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr52/",
 		    "emoji-tags.txt")) {
-		out.println(Utility.getBaseDataHeader("emoji-tags", 52, "Emoji Data", Emoji.VERSION_STRING));
+		out.println(Utility.getBaseDataHeader("emoji-tags", 52, "Emoji Data", VERSION_STRING));
 		List<String> type_fields = Arrays.asList("Emoji_Flag_Base", "Emoji_Gender_Base", "Emoji_Hair_Base",
 			"Emoji_Direction_Base");
 		int width = maxLength(type_fields);
@@ -403,14 +408,14 @@ public class GenerateEmojiData {
 	// HACK Exclude the emojiMultiPersonGroupings
 	UnicodeSet temp = new UnicodeSet();
 	for (String s : EmojiData.EMOJI_DATA.getSortingChars()) {
-	    if (emojiMultiPersonGroupings.containsSome(s) 
-		    && EmojiData.MODIFIERS.containsSome(s)
-		    && !HOLDING_HANDS.containsSome(s)
-		    && !s.contains(EmojiData.ZWJ_HANDSHAKE_ZWJ)
-		    ) {
-		// System.out.println("Skipping: " + s);
-		continue;
-	    }
+//	    if (emojiMultiPersonGroupings.containsSome(s) 
+//		    && EmojiData.MODIFIERS.containsSome(s)
+//		    && !HOLDING_HANDS.containsSome(s)
+//		    && !s.contains(EmojiData.ZWJ_HANDSHAKE_ZWJ)
+//		    ) {
+//		System.out.println("Skipping: " + s);
+//		continue;
+//	    }
 	    temp.add(s);
 	}
 	temp.freeze();
@@ -444,7 +449,7 @@ public class GenerateEmojiData {
 	if (name == null) {
 	    name = CandidateData.getInstance().getUnicodeName(s);
 	}
-	return "(" + (age == null ? Emoji.VERSION_BETA.getVersionString(2, 2) : age.getShortName()) + ") " + name;
+	return "(" + (age == null ? DATA_VERSION_TO_GENERATE.getVersionString(2, 2) : age.getShortName()) + ") " + name;
     }
 
     private static void showTypeFieldsMessage(Writer out, Collection<String> type_fields, String extraMessage) throws IOException {

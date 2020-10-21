@@ -29,7 +29,7 @@ public class Settings {
     public static final String UNICODEJSPS_DIRECTORY = SVN_WORKSPACE_DIRECTORY + "unicodetools/UnicodeJsps/";
     public static final String UNICODE_DRAFT_DIRECTORY =
             CldrUtility.getProperty("UNICODE_DRAFT_DIR",
-                    SVN_WORKSPACE_DIRECTORY + "unicode-draft") + '/';
+                    SVN_WORKSPACE_DIRECTORY + "emoji/docs") + '/';
     public static final String UNICODE_DRAFT_PUBLIC = UNICODE_DRAFT_DIRECTORY + "Public/";
 
     public static final String DATA_DIR = Utility.fixFileName(CldrUtility.getProperty("UCD_DIR", UNICODETOOLS_DIRECTORY + "data/")) + "/";
