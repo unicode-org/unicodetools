@@ -23,6 +23,7 @@ import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Factory;
 import org.unicode.cldr.util.Level;
 import org.unicode.cldr.util.Organization;
+import org.unicode.cldr.util.StandardCodes;
 import org.unicode.cldr.util.With;
 import org.unicode.cldr.util.XMLSource;
 import org.unicode.cldr.util.XPathParts;
@@ -175,7 +176,7 @@ public class GenerateMissingAnnotations {
 
     private static void generateMissing() throws IOException {
         final CLDRConfig config = CLDRConfig.getInstance();
-        Set<String> locales = config.getStandardCodes().getLocaleCoverageLocales(Organization.google, EnumSet.of(Level.MODERN));
+        Set<String> locales = StandardCodes.make().getLocaleCoverageLocales(Organization.google, EnumSet.of(Level.MODERN));
 
 
         final String emojiDir = Settings.GEN_DIR + "emoji/";

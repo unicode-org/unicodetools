@@ -18,7 +18,7 @@ public class GenerateSubtagNames {
     public static void main(String[] args) {
         CLDRConfig config = CLDRConfig.getInstance();
         SupplementalDataInfo sdi = config.getSupplementalDataInfo();
-        StandardCodes sc = config.getStandardCodes();
+        StandardCodes sc = StandardCodes.make();
         CLDRFile english = config.getEnglish();
         Map<String,String> seen = new TreeMap();
         Set<String> CODE_OK = new HashSet(Arrays.asList("QO", "UK", "ZZ"));
@@ -34,7 +34,7 @@ public class GenerateSubtagNames {
                 break;
             case extlang:
             case redundant:
-            case grandfathered:
+            case legacy:
                 continue;
             }
             

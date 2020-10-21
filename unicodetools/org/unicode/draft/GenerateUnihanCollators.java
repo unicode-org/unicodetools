@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -716,7 +717,7 @@ public class GenerateUnihanCollators {
     // }
 
     private static String getFileAsString(String filename) throws IOException {
-        final InputStreamReader reader = new InputStreamReader(new FileInputStream(filename), FileUtilities.UTF8);
+        final InputStreamReader reader = new InputStreamReader(new FileInputStream(filename), StandardCharsets.UTF_8);
         final BufferedReader in = new BufferedReader(reader, 1024 * 64);
         final StringBuilder builder = new StringBuilder();
         while (true) {

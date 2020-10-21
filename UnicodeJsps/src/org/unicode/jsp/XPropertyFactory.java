@@ -155,6 +155,18 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         for (String prop : cp.getAvailable()) {
             add2(cp.getProperty(prop));
         }
+        UnicodeSet Basic_Emoji = cp.getProperty("Basic_Emoji").getSet("Yes");
+        UnicodeSet RGI_Emoji_Modifier_Sequence = cp.getProperty("RGI_Emoji_Modifier_Sequence").getSet("Yes");
+        UnicodeSet RGI_Emoji_Tag_Sequence = cp.getProperty("RGI_Emoji_Tag_Sequence").getSet("Yes");
+        UnicodeSet RGI_Emoji_Zwj_Sequence = cp.getProperty("RGI_Emoji_Zwj_Sequence").getSet("Yes");
+        UnicodeSet RGI_Emoji = new UnicodeSet()
+        	.add(Basic_Emoji)
+        	.add(RGI_Emoji_Modifier_Sequence)
+        	.add(RGI_Emoji_Tag_Sequence)
+        	.add(RGI_Emoji_Zwj_Sequence)
+        	.freeze();
+        add(new UnicodeSetProperty().set(RGI_Emoji).setMain("RGI_Emoji", "RGI_Emoji", UnicodeProperty.BINARY, "13.0"));
+
     }
 
     private void addCollationProperty() {
