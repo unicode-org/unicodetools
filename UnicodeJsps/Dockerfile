@@ -12,7 +12,7 @@ FROM openjdk:16-alpine AS build
 # way to manage this.
 RUN apk add --update apache-ant
 # Some version of tomcat. Just used for API, does not have to match TOMCATVERSION
-ARG TOMCAT_API=https://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=tomcat/tomcat-9/v9.0.37/bin/apache-tomcat-9.0.37.tar.gz
+ARG TOMCAT_API=https://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=tomcat/tomcat-9/v9.0.39/bin/apache-tomcat-9.0.39.tar.gz
 RUN mkdir -p /usr/local/lib && cd /usr/local/lib/ && wget "${TOMCAT_API}" -O - | tar xfpz - && ln -svf apache-tomcat-* ./tomcat
 
 WORKDIR /home
