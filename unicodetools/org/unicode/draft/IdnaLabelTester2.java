@@ -222,7 +222,7 @@ public class IdnaLabelTester2 {
 
     public static XEquivalenceClass<String, String> getConfusables() throws IOException {
         XEquivalenceClass<String, String> result = new XEquivalenceClass<String, String>();
-        BufferedReader in = openFile(CLDRPaths.UCD_DATA_DIRECTORY + "security/" + Settings.latestVersion + "/confusables.txt");
+        BufferedReader in = openFile(Settings.UCD_DATA_DIRECTORY + "security/" + Settings.latestVersion + "/confusables.txt");
         String original = null;
         try {
             while (true) {
