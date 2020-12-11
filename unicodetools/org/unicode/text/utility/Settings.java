@@ -6,14 +6,21 @@ import org.unicode.cldr.util.CldrUtility;
 public class Settings {
     
     public static final boolean BUILD_FOR_COMPARE = org.unicode.cldr.util.CldrUtility.getProperty("BUILD_FOR_COMPARE", "false").startsWith("t");
-        
+    
+        public static final String SVN_DIRECTORY = CldrUtility.getPath(CldrUtility.getProperty("SVN_DIR", CLDRPaths.BASE_DIRECTORY + "/../"), null);
+    
+        public static final String AUX_DIRECTORY = CldrUtility.getPath(CldrUtility.getProperty("CLDR_TMP_DIR",
+            CldrUtility.getPath(SVN_DIRECTORY, "cldr-aux/")), null);
+    
+        public static final String UCD_DATA_DIRECTORY = CldrUtility.getPath(SVN_DIRECTORY + "unicodetools/unicodetools/data/", null);
+    
     public static final String SVN_WORKSPACE_DIRECTORY = Utility.fixFileName(
-    		CldrUtility.getProperty("SVN_WORKSPACE", CLDRPaths.SVN_DIRECTORY)) + "/";
+    		CldrUtility.getProperty("SVN_WORKSPACE", SVN_DIRECTORY)) + "/";
     public static final String OTHER_WORKSPACE_DIRECTORY = Utility.fixFileName(
             CldrUtility.getProperty("OTHER_WORKSPACE", CLDRPaths.LOCAL_DIRECTORY)) + "/";
 
     public static final String BASE_DIRECTORY = Utility.fixFileName(
-		CldrUtility.getProperty("BASE_DIRECTORY", CLDRPaths.SVN_DIRECTORY + "../")) + "/";
+		CldrUtility.getProperty("BASE_DIRECTORY", SVN_DIRECTORY + "../")) + "/";
 
     /**
      * Used for the default version.
@@ -25,7 +32,7 @@ public class Settings {
 
     public static final String UNICODETOOLS_DIRECTORY =
             CldrUtility.getProperty("UNICODETOOLS_DIR",
-        	    CLDRPaths.SVN_DIRECTORY + "unicodetools/unicodetools") + '/';
+        	    SVN_DIRECTORY + "unicodetools/unicodetools") + '/';
     public static final String UNICODEJSPS_DIRECTORY = SVN_WORKSPACE_DIRECTORY + "unicodetools/UnicodeJsps/";
     public static final String UNICODE_DRAFT_DIRECTORY =
             CldrUtility.getProperty("UNICODE_DRAFT_DIR",

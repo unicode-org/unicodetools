@@ -35,6 +35,10 @@ public class PolaritySet<T> {
     private boolean isPositive;
     private Set<T> source;
 
+    public static <T> PolaritySet<T> of() {
+	return new PolaritySet<T>(Collections.emptySet(), true);
+    }
+
     public static <T> PolaritySet<T> of(PolaritySet<T> left) {
 	return new PolaritySet<T>(left.source, left.isPositive);
     }
