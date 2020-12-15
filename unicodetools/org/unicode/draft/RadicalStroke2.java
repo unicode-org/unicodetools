@@ -13,6 +13,7 @@ import org.unicode.cldr.draft.CodePoints;
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.PatternCache;
+import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
@@ -44,7 +45,7 @@ public class RadicalStroke2 {
             Matcher iiCore = IICORE.matcher("");
             radStrokesToRadToRemainingStrokes = new TreeMap<Integer, Map<String, Map<Integer, UnicodeSet>>>();
             remainder = ScriptCategories2.parseUnicodeSet("[:script=Han:]").removeAll(GeneratePickerData2.SKIP);
-            String dataDir = CLDRPaths.UCD_DATA_DIRECTORY + "/Unihan/";
+            String dataDir = Settings.UCD_DATA_DIRECTORY + "/Unihan/";
 
             BufferedReader in = new BufferedReader(
                 new FileReader(

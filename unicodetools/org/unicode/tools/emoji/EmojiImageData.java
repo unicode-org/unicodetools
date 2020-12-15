@@ -241,17 +241,21 @@ public class EmojiImageData {
 
     private static void showText(PrintWriter out, int MAX) {
         EmojiData current = EmojiData.of(Emoji.VERSION_TO_GENERATE);
-
-        out.println("TOTALS\n");
+        
+        // The EMPTY_COLUMNS is so that we have the same number of tab columns on each line, displaying better in github
+        
+        out.println("TOTALS" + EMPTY_COLUMNS);
+        out.println(EMPTY_COLUMNS);
         for (Source source : Source.VENDOR_SOURCES) {
             final UnicodeSet supported = getSupported(source);
             UnicodeSet missing = new UnicodeSet(current.getAllEmojiWithoutDefectives()).removeAll(supported);
             getCounts(out, source, "missing\tv" + current.getVersionString(), missing, MAX);
             // getCounts(PrintWriter out, Source source, String title, UnicodeSet missing, int MAX) {
         }
-        out.println();
+        out.println(EMPTY_COLUMNS);
         Output<Boolean> printed = new Output<>(false);
-        out.println("DETAILS\n");
+        out.println("DETAILS" + EMPTY_COLUMNS);
+        out.println(EMPTY_COLUMNS);
         for (Source source : Source.VENDOR_SOURCES) {
             final UnicodeSet supported = getSupported(source);
             //System.out.println(source + "\t" + supported.size() + "\t" + max(supported.toPattern(false), MAX));
@@ -266,35 +270,35 @@ public class EmojiImageData {
                 missing.removeAll(foundItems);
             }
             if (!missing.isEmpty()) {
-                out.println("\tOthers: " + PRETTY_HEX.format(missing));
+                out.println("Others" + EMPTY_COLUMNS + PRETTY_HEX.format(missing));
                 printed.value = true;
             }
 
             if (printed.value) {
-                out.println();
+                out.println(EMPTY_COLUMNS);
             }
             for (Breakdown breakdown : breakdowns) {
                 UnicodeSet foundItems = getCounts(out, source, breakdown, -1, printed);
                 missing.removeAll(foundItems);
             }
             if (!missing.isEmpty()) {
-                out.println("\tOthers: " + PRETTY_HEX.format(missing));
+                out.println("Others" + EMPTY_COLUMNS + PRETTY_HEX.format(missing));
             }
 
             if (printed.value) {
-                out.println();
+                out.println(EMPTY_COLUMNS);
             }
             for (Breakdown breakdown : breakdowns) {
                 UnicodeSet foundItems = getCounts(out, source, breakdown, -2, printed);
                 missing.removeAll(foundItems);
             }
             if (!missing.isEmpty()) {
-                out.println("\tOthers: " + formatFiles(source, missing));
+                out.println("Others" + EMPTY_COLUMNS + formatFiles(source, missing));
             }
 
             if (printed.value) {
-                out.println();
-                out.println();
+                out.println(EMPTY_COLUMNS);
+                out.println(EMPTY_COLUMNS);
             }
 
             out.flush();
@@ -319,15 +323,18 @@ public class EmojiImageData {
         return breakdown.getSupported(source); // new UnicodeSet(breakdown.uset).retainAll(getSupported(source)).freeze();
     }
 
+    static final String EMPTY_COLUMNS = "\t\t\t\t\t";
+    
     private static void getCounts(PrintWriter out, Source source, String title, UnicodeSet missing, int MAX) {
-        out.println(source + "\t"
-                + title
+        out.println(source 
+        	+ "\t" + title
                 + "\t" + missing.size()
                 + "\t" + (MAX == -1 ? "hex\t" + PRETTY_HEX.format(missing) 
                 : MAX == -2 ? "file\t" + formatFiles(source, missing)
                 : "plain\t" + max(PRETTY_PLAIN.format(missing), MAX)
                         )
                 );
+        
     }
 
     private static String formatFiles(Source type, UnicodeSet lastMissingSingletons) {
