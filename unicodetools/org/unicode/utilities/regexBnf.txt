@@ -1,0 +1,46 @@
+CHARACTER_CLASS  := '[' NEGATION? SEQUENCE ']'
+#SEQUENCE         := ITEM+	
+ITEM             := (LITERAL ('-' LITERAL)?)*
+                 := CHARACTER_CLASS
+LITERAL          := ESCAPE (SYNTAX_CHAR | SPECIAL_CHAR)
+                 := NON_SYNTAX_CHAR
+                 := HEX
+NEGATION         := '^'
+ESCAPE           := '\'
+SYNTAX_CHAR      := [\-\[\]\}\/\\\^]
+SPECIAL_CHAR     := [trn]
+#NON_SYNTAX_CHAR  := [^SYNTAX_CHAR]
+NON_SYNTAX_CHAR  := [a-k]
+SP               := ' '
+
+HEX              := '\u{' CODEPOINT (SP CODEPOINT)* '}'
+#                 := '\u' HEX_CHAR{4}	
+#HEX_CHAR         := [0-9A-Fa-f]
+HEX_CHAR         := [0-9A-F]
+#CODEPOINT        := '10' HEX_CHAR{4} | HEX_CHAR{1,5}
+CODEPOINT        := [C-F] HEX_CHAR
+
+CHARACTER_CLASS  := '\' [pP] '{' PROP_SPEC '}'
+#                 := '[:' PROP_SPEC ':]'
+PROP_SPEC        := PROP_NAME (RELATION PROP_VALUE)?
+PROP_NAME        := ID_CHAR+
+ID_CHAR          := [A-Za-z0-9\ \-_]
+#RELATION         := ':' | '=' | '≠' | '!='
+RELATION         := '='
+#PROP_VALUE       := LITERAL*
+PROP_VALUE		 := ABC
+
+SEQUENCE         := ITEM (OPERATOR CHARACTER_CLASS | ITEM)*
+OPERATOR         := '||'                  
+                 := '&&' 
+                 := '--'
+                 := '~~'
+
+ITEM             := '\q{' LITERAL* '}'
+
+#LITERAL          := '\N{' ID_CHAR+ '}'
+
+
+#PROP_VALUE       := '/' LITERAL* '/'
+#                 := '@' PROP_NAME '@'
+

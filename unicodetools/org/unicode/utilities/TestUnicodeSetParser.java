@@ -23,6 +23,7 @@ public class TestUnicodeSetParser extends TestFmwk {
 		"[\\p{script=runic}&\\p{gc=Nl}]",
 		"[\\p{script=runic}-\\p{gc=Nl}]",
 		"[[a-b]&[^[^[c-d]]]]",
+		"[{a\\x{31 32}b}]",
 		};
 	for (String test : tests) {
 	    UnicodeSet expected = new UnicodeSet(test);
