@@ -66,7 +66,7 @@ public class Confusables {
         return char2data;
     }
 
-    final private EnumMap<Style, UnicodeMap<String>> style2RawMapToRepresentative;
+    final private Map<Style, UnicodeMap<String>> style2RawMapToRepresentative;
     final private UnicodeSet hasConfusable = new UnicodeSet();
     final private UnicodeMap<EnumMap<Style,String>> char2data = new UnicodeMap<EnumMap<Style,String>>();
 
@@ -287,7 +287,9 @@ public class Confusables {
 
         @Override
         public CodepointToConfusables cloneAsThawed() {
-            throw new UnsupportedOperationException();
+            CodepointToConfusables result = new CodepointToConfusables();
+            result.data.putAll(data);
+            return result;
         }
 
         public UnicodeSet get(int cp) {
