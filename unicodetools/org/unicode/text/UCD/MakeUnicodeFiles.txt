@@ -1,6 +1,6 @@
 Generate: .
-CopyrightYear: 2020
-DeltaVersion: 17
+CopyrightYear: 2021
+DeltaVersion: 1
 
 File: extra/ScriptNfkc
 Property: SPECIAL
@@ -224,6 +224,9 @@ Value:  V12_1
 
 Value:  V13_0
 # Newly assigned in Unicode 13.0.0 (March, 2020)
+
+Value:  V14_0
+# Newly assigned in Unicode 14.0.0 (September, 2021)
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class

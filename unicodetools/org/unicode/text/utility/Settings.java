@@ -27,8 +27,8 @@ public class Settings {
     /**
      * Used for the default version.
      */
-    public static final String latestVersion = "13.0.0";
-    public static final String lastVersion = "12.1.0"; // last released version
+    public static final String latestVersion = "14.0.0";
+    public static final String lastVersion = "13.0.0"; // last released version
 
     public static final boolean SKIP_COPYRIGHT = "skip".equalsIgnoreCase(CldrUtility.getProperty("copyright", "skip"));
 

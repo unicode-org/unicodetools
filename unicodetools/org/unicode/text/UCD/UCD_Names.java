@@ -592,6 +592,7 @@ public final class UCD_Names implements UCD_Types {
         "12.0",
         "12.1",
         "13.0",
+        "14.0",
     };
 
     static final String[] LONG_AGE = {
@@ -619,6 +620,7 @@ public final class UCD_Names implements UCD_Types {
         "V12_0",
         "V12_1",
         "V13_0",
+        "V14_0",
     };
 
     static final String[] GENERAL_CATEGORY = {

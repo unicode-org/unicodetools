@@ -55,6 +55,7 @@ public class UcdPropertyValues {
         V12_0("12.0"),
         V12_1("12.1"),
         V13_0("13.0"),
+        V14_0("14.0"),
         Unassigned("NA");
         private final PropertyNames<Age_Values> names;
         private Age_Values (String shortName, String...otherNames) {
