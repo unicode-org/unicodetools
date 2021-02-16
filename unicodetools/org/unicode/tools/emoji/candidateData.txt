@@ -225,7 +225,7 @@ U+1FAC5 U+1F3FD
 U+1FAC5 U+1F3FE
 U+1FAC5 U+1F3FF
 
-Proposal=L2/19-213
+Proposal=L2/20-213
 After=🖖
 U+1FAF3
 Name=palm down hand
@@ -237,7 +237,7 @@ U+1FAF3 U+1F3FD
 U+1FAF3 U+1F3FE
 U+1FAF3 U+1F3FF
 
-Proposal=L2/19-213
+Proposal=L2/20-213
 After=🖖
 U+1FAF4
 Name=palm up hand
@@ -249,7 +249,7 @@ U+1FAF4 U+1F3FD
 U+1FAF4 U+1F3FE
 U+1FAF4 U+1F3FF
 
-Proposal=L2/19-212
+Proposal=L2/20‑212
 After=☝️
 U+1FAF5
 Name=index pointing at the viewer
@@ -262,7 +262,7 @@ U+1FAF5 U+1F3FD
 U+1FAF5 U+1F3FE
 U+1FAF5 U+1F3FF
 
-Proposal=L2/19-212
+Proposal=L2/20‑211
 After=🙌
 U+1FAF6
 Name=heart hands
