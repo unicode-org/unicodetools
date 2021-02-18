@@ -1650,7 +1650,7 @@ isTitlecase(X) is false.
 	    if (isType(BINARY_MASK)) {
 		return up.hasValue(codepoint) ? "Yes" : "No";
 	    }
-	    throw new IllegalArgumentException("Failed to find value for " + Utility.hex(codepoint));
+	    throw new IllegalArgumentException("Failed to find " + up.getName() + " value for " + Utility.hex(codepoint));
 	}
 
 	public String getAge(int codePoint) {
