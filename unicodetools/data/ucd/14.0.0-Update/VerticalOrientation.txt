@@ -1,6 +1,6 @@
-# VerticalOrientation-13.0.0.txt
-# Date: 2019-10-07, 05:27:01 GMT [EM, KI, LI]
-# © 2019 Unicode®, Inc.
+# VerticalOrientation-14.0.0.txt
+# Date: 2020-04-03, 20:28:00 GMT [EM, KI, LI, KW, MS]
+# © 2020 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -45,7 +45,7 @@
 #         Egyptian Hieroglyphs & Controls:   U+13000..U+1343F
 #         Anatolian Hieroglyphs:             U+14400..U+1467F
 #         Ideographic Symbols & Tangut:      U+16FE0..U+18AFF
-#         Khitan Small Script & Tangut Sup:  U+18B00..U+18D8F
+#         Khitan Small Script & Tangut Sup:  U+18B00..U+18D7F
 #         Kana Extended-A & Small Kana Ext:  U+1B100..U+1B16F
 #         Nushu:                             U+1B170..U+1B2FF
 #         Musical Symbols:                   U+1D000..U+1D1FF
@@ -2072,7 +2072,7 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 18B00..18CD5   ; U  # Lo   [470] KHITAN SMALL SCRIPT CHARACTER-18B00..KHITAN SMALL SCRIPT CHARACTER-18CD5
 18CD6..18CFF   ; U  # Cn    [42] <reserved-18CD6>..<reserved-18CFF>
 18D00..18D08   ; U  # Lo     [9] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D08
-18D09..18D8F   ; U  # Cn   [135] <reserved-18D09>..<reserved-18D8F>
+18D09..18D7F   ; U  # Cn   [119] <reserved-18D09>..<reserved-18D7F>
 1B000..1B0FF   ; U  # Lo   [256] KATAKANA LETTER ARCHAIC E..HENTAIGANA LETTER RE-2
 1B100..1B11E   ; U  # Lo    [31] HENTAIGANA LETTER RE-3..HENTAIGANA LETTER N-MU-MO-2
 1B11F..1B12F   ; U  # Cn    [17] <reserved-1B11F>..<reserved-1B12F>
@@ -2183,6 +2183,8 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1E140..1E149   ; R  # Nd    [10] NYIAKENG PUACHUE HMONG DIGIT ZERO..NYIAKENG PUACHUE HMONG DIGIT NINE
 1E14E          ; R  # Lo         NYIAKENG PUACHUE HMONG LOGOGRAM NYAJ
 1E14F          ; R  # So         NYIAKENG PUACHUE HMONG CIRCLED CA
+1E290..1E2AD   ; R  # Lo    [30] TOTO LETTER PA..TOTO LETTER A
+1E2AE          ; R  # Mn         TOTO SIGN RISING TONE
 1E2C0..1E2EB   ; R  # Lo    [44] WANCHO LETTER AA..WANCHO LETTER YIH
 1E2EC..1E2EF   ; R  # Mn     [4] WANCHO TONE TUP..WANCHO TONE KOINI
 1E2F0..1E2F9   ; R  # Nd    [10] WANCHO DIGIT ZERO..WANCHO DIGIT NINE

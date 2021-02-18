@@ -1,6 +1,6 @@
 # Scripts-14.0.0.txt
-# Date: 2021-02-11, 05:46:06 GMT
-# © 2021 Unicode®, Inc.
+# Date: 2020-04-03, 9:50 PT
+# © 2020 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -2896,5 +2896,10 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 10EB0..10EB1  ; Yezidi # Lo   [2] YEZIDI LETTER LAM WITH DOT ABOVE..YEZIDI LETTER YOT WITH CIRCUMFLEX ABOVE
 
 # Total code points: 47
+
+# Manual additions for Unicode 14 --------
+
+1E290..1E2AD ; Toto # Lo    [30] TOTO LETTER PA..TOTO LETTER A
+1E2AE        ; Toto # Mn         TOTO SIGN RISING TONE
 
 # EOF

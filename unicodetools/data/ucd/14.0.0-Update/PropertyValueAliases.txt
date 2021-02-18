@@ -1,6 +1,6 @@
 # PropertyValueAliases-14.0.0.txt
-# Date: 2021-02-11, 05:46:00 GMT
-# © 2021 Unicode®, Inc.
+# Date: 2020-04-03, 9:55 PT
+# © 2020 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -89,7 +89,6 @@ age; 11.0                             ; V11_0
 age; 12.0                             ; V12_0
 age; 12.1                             ; V12_1
 age; 13.0                             ; V13_0
-age; 14.0                             ; V14_0
 age; NA                               ; Unassigned
 
 # Alphabetic (Alpha)
@@ -443,6 +442,7 @@ blk; Thai                             ; Thai
 blk; Tibetan                          ; Tibetan
 blk; Tifinagh                         ; Tifinagh
 blk; Tirhuta                          ; Tirhuta
+blk; Toto                             ; Toto
 blk; Transport_And_Map                ; Transport_And_Map_Symbols
 blk; UCAS                             ; Unified_Canadian_Aboriginal_Syllabics; Canadian_Syllabics
 blk; UCAS_Ext                         ; Unified_Canadian_Aboriginal_Syllabics_Extended
@@ -1384,6 +1384,7 @@ sc ; Thaa                             ; Thaana
 sc ; Thai                             ; Thai
 sc ; Tibt                             ; Tibetan
 sc ; Tirh                             ; Tirhuta
+sc ; Toto                             ; Toto
 sc ; Ugar                             ; Ugaritic
 sc ; Vaii                             ; Vai
 sc ; Wara                             ; Warang_Citi
