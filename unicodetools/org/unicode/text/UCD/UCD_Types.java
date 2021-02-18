@@ -559,7 +559,9 @@ public interface UCD_Types {
     Dives_Akuru = 156,
     Khitan_Small_Script = 157,
     Yezidi = 158,
-    LIMIT_SCRIPT = Yezidi + 1;
+    // Unicode 14
+    Toto = 159,
+    LIMIT_SCRIPT = Toto + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte

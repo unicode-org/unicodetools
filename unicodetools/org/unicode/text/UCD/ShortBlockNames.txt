@@ -291,6 +291,7 @@ Thai	;	Thai
 Tibetan	;	Tibetan
 Tifinagh	;	Tifinagh
 Tirhuta	;	Tirhuta
+Toto    ;   Toto
 Transport_And_Map	;	Transport_And_Map_Symbols
 Ugaritic	;	Ugaritic
 UCAS	;	Unified_Canadian_Aboriginal_Syllabics
