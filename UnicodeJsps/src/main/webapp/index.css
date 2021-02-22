@@ -1,0 +1,68 @@
+body {font-family: Georgia, "Apple Color Emoji", "Segoe UI Emoji", "Times New Roman", Times, Symbola, Aegyptus, Code2000,  Code2001,  Code2002, Musica, serif}
+td,th,table			{ padding:1px; border:1px solid #F3F3FF; vertical-align:top }
+table		{ border-collapse: collapse }
+th           { background-color: #EEEEFF; text-align:left }
+textarea	{width: 100%; background-color: #EEFFEE; border:1px solid #DDFFDD; }
+li,p           { margin-top: 0.5em; margin-bottom: 0.5em }
+h2 { font-size:120%;  margin-top: 1em; margin-bottom: 0.5em }
+h3 { font-size:100%;  margin-top: 1em; margin-bottom: 0.5em }
+.key { background-color: #FFFF99; font-weight: bold; color: red }
+span.break   { border-right: 1px solid red;}
+.c { text-align:center; }
+.r { text-align:right; }
+.bcell { text-align:center; width: 3em }
+.bxcell { text-align:center; width: 3em; background-color: #CCCCCC; }
+.bccell { text-align:center; font-size: 150%}
+.cn { text-align:center; white-space:nowrap;}
+.x { color: red; font-weight: bold; font-size:120% }
+.q { color: blue;}
+.esc { color: gray;}
+.ltgreen {background-color: #EEFFEE}
+.mono {font-family:monospace} 
+.i46 {background-color: #FFFFDD} 
+h3 {background-color: #EEEEEE} 
+.L4 {background-color: #E8E8E8}
+.L3 {background-color: #DDDDDD}
+.L2 {background-color: #D8D8D8}
+.L1 {background-color: #CCCCCC}
+.L0 {background-color: #C8C8C8} 
+.default           { background-color: #C8C8C8}
+.propTable, .bigTable {
+  margin-left: auto;
+  margin-right: auto;
+}
+.bigChar,.bigCode,.bigName, .allowed, .restricted, .noConfusables {text-align:center; border-width:0}
+.bigChar {font-size:108pt;}
+.bigCode {font-size:150%; font-weight: bold; font-family:monospace}
+.bigTable {
+  width:180pt;
+  margin-bottom: 12pt;
+}
+.bigDiv {text-align:center}
+.smc,.smh,.smn,.smb {text-align:center; border-width:0}
+.smc {font-size:150%; font-family:sans-serif; border:1px solid #EEEEFF; border-bottom-width:0;}
+.smh {font-size:70%; font-family:monospace; border:1px solid #EEEEFF; border-bottom-width:0;border-top-width:0;}
+.smn {font-size:50%; border:1px solid #EEEEFF;border-top-width:0;}
+.smb {background-color: #F8F8F8}
+.chb {background-color: #EEFFEE}
+.ri {float:right; display: inline-block;}
+.error {background-color:#FF6666}
+caption {font-size:150%; font-weight: bold; }
+.allowed {color:green}
+.restricted {color:red}
+.noConfusables {color:orange}
+
+.propCategory, .propDatatype, .propSource, propTitle, propValues {border:1px solid silver;}
+.propTitle {background-color: #EEFFEE; font-weight: bold; }
+
+.char {display:inline; border:1px solid #EEEEFF;}
+.redName {color:#C00}
+.charCell {text-align:center;}
+.cx { 
+    display: inline-block;
+    width: 3em;
+    text-align: center;
+}
+.g-recaptcha {
+	display: none;
+}
