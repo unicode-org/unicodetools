@@ -1,0 +1,1072 @@
+#Codepoint	;	Description
+U+13000	;	seated man
+U+13001	;	seated man with hand to mouth
+U+13002	;	man sitting on heel
+U+13003	;	seated man with hands raised
+U+13004	;	crouching man hiding behind wall
+U+13005	;	seated man hiding behind wall
+U+13006	;	seated man under vase from which water flows
+U+13007	;	seated man reaching for libation stone, under vase from which water flows
+U+13008	;	seated man reaching down, under vase from which water flows
+U+13009	;	fatigued man
+U+1300A	;	man performing  transliteration-rite
+U+1300B	;	seated man with {cup} on head
+U+1300C	;	seated man holding oar
+U+1300D	;	seated man holding {sceptre of authority} and {shepherd's crook}
+U+1300E	;	soldier with bow and quiver
+U+1300F	;	man with arms tied behind his back
+U+13010	;	falling man with blood streaming from his head
+U+13011	;	man whose head is hit with an axe
+U+13012	;	man falling
+U+13013	;	man bowing down
+U+13014	;	child sitting with hand to mouth
+U+13015	;	child sitting with arms hanging down
+U+13016	;	child wearing {red crown}
+U+13017	;	bent man leaning on staff
+U+13018	;	man leaning on forked staff
+U+13019	;	man holding staff with handkerchief
+U+1301A	;	statue of man with staff and {sceptre of authority}
+U+1301B	;	king with staff and {mace with round head vertically}
+U+1301C	;	man striking with both hands
+U+1301D	;	man striking, with left arm hanging behind back
+U+1301E	;	man with one arm pointing forward
+U+1301F	;	hastening man
+U+13020	;	man with hands raised on either side
+U+13021	;	man upside down
+U+13022	;	man with hands raised in front
+U+13023	;	man with hands raised behind him
+U+13024	;	man dancing with arms to the back
+U+13025	;	man dancing with arms to the front
+U+13026	;	man with stick and bundle on shoulder
+U+13027	;	man pounding in a mortar
+U+13028	;	man building wall
+U+13029	;	man kneading into vessel
+U+1302A	;	man in vessel
+U+1302B	;	man holding necks of two emblematic animals with panther heads
+U+1302C	;	man on two giraffes
+U+1302D	;	seated god
+U+1302E	;	seated god with {sceptre}
+U+1302F	;	king with uraeus
+U+13030	;	king with uraeus and {flagellum}
+U+13031	;	king with uraeus and {flagellum} 2
+U+13032	;	king wearing {white crown}
+U+13033	;	king wearing {white crown} with {sceptre}
+U+13034	;	king wearing {white crown} with {flagellum}
+U+13035	;	king wearing {red crown}
+U+13036	;	king wearing {red crown} with {sceptre}
+U+13037	;	king wearing {red crown} with {flagellum}
+U+13038	;	shepherd seated and wrapped in mantle, holding stick
+U+13039	;	beardless man seated and holding knife
+U+1303A	;	seated Syrian holding stick
+U+1303B	;	noble on chair
+U+1303C	;	noble on chair with {flagellum}
+U+1303D	;	noble squatting with {flagellum}
+U+1303E	;	standing mummy
+U+1303F	;	lying mummy
+U+13040	;	mummy on bed
+U+13041	;	seated man holding stick
+U+13042	;	man holding {loaf on mat}
+U+13043	;	man applying hoe to ground
+U+13044	;	man threatening with stick
+U+13045	;	man sowing seeds
+U+13046	;	man looking over his shoulder
+U+13047	;	Asiatic
+U+13048	;	king on throne holding staff
+U+13049	;	man sitting on heels holding forward {cup}
+U+1304A	;	unknown
+U+1304B	;	man holding {sistrum}
+U+1304C	;	dwarf
+U+1304D	;	man holding up knife
+U+1304E	;	seated man with raised right arm and left arm hanging down
+U+1304F	;	seated man with raised arms
+U+13050	;	seated woman
+U+13051	;	pregnant woman
+U+13052	;	woman giving birth
+U+13053	;	combination of {woman giving birth} and {three skins tied together}
+U+13054	;	woman suckling child
+U+13055	;	woman suckling child (simplified)
+U+13056	;	woman on chair with child on lap
+U+13057	;	queen wearing diadem and holding flower
+U+13058	;	woman holding {lotus flower}
+U+13059	;	woman holding {sistrum}
+U+1305A	;	god with {sun with uraeus}
+U+1305B	;	god with head of falcon with sun on head and holding {sandle-strap}
+U+1305C	;	god with head of falcon with sun on head
+U+1305D	;	{god with head of falcon with sun on head} reversed
+U+1305E	;	{god with head of falcon with sun on head and holding {sandle-strap}} reversed
+U+1305F	;	god with head of ibis
+U+13060	;	god with head of ram
+U+13061	;	god with head of ram holding {sandle-strap}
+U+13062	;	god with head of jackal
+U+13063	;	god with head of Seth-animal
+U+13064	;	ithyphallic god with {two plumes}, uplifted arm and {flagellum}
+U+13065	;	goddess with sun and horns
+U+13066	;	goddess with feather on head
+U+13067	;	goddess with feather on head holding {sandle-strap}
+U+13068	;	god with arms supporting (the sky) and {palm branch} on head
+U+13069	;	god with {two plumes} and {sceptre}
+U+1306A	;	{god with {two plumes} and {sceptre}} reversed
+U+1306B	;	god with {two plumes} and {scimitar}
+U+1306C	;	{god with {two plumes} and {scimitar}} reversed
+U+1306D	;	god wearing {red crown} with {sandle-strap}
+U+1306E	;	god with head of falcon and {two plumes}
+U+1306F	;	squatting god
+U+13070	;	mummy-shaped god
+U+13071	;	mummy-shaped god in shrine
+U+13072	;	Bes
+U+13073	;	god with head of falcon and moon disk
+U+13074	;	goddess with head of feline and {sun with uraeus}
+U+13075	;	god wearing {red crown} with {sceptre}
+U+13076	;	head in profile
+U+13077	;	face
+U+13078	;	hair
+U+13079	;	eye
+U+1307A	;	eye touched up with paint
+U+1307B	;	eye with painted upper lid
+U+1307C	;	eye with painted lower lid
+U+1307D	;	eye enclosed in {sandy tract}
+U+1307E	;	eye with painted lower lid enclosed in {sandy tract}
+U+1307F	;	eye with flowing tears
+U+13080	;	transliteration-eye
+U+13081	;	left part of white of {transliteration-eye}
+U+13082	;	pupil of eye
+U+13083	;	eye-brow
+U+13084	;	right part of white of {transliteration-eye}
+U+13085	;	diagonal marking of {transliteration-eye}
+U+13086	;	vertical marking of {transliteration-eye}
+U+13087	;	combination of {vertical marking of {transliteration-eye}} and {diagonal marking of {transliteration-eye}}
+U+13088	;	ear
+U+13089	;	nose, eye and cheek
+U+1308A	;	nose, eye and cheek in semi-cursive form
+U+1308B	;	mouth
+U+1308C	;	mouth with two strokes
+U+1308D	;	mouth with three strokes
+U+1308E	;	upper lip with teeth
+U+1308F	;	lips with teeth
+U+13090	;	liquid issuing from lips
+U+13091	;	small breast
+U+13092	;	large breast
+U+13093	;	arms in  transliteration-posture
+U+13094	;	combination of {arms in  transliteration-posture} and {standard}
+U+13095	;	{arms in  transliteration-posture} with tail
+U+13096	;	combination of {arms embracing} and {club}
+U+13097	;	combination of {arms in  transliteration-posture} and {club}
+U+13098	;	arms embracing
+U+13099	;	arms rowing
+U+1309A	;	arms holding shield and battle-axe
+U+1309B	;	arms holding shield and mace
+U+1309C	;	arms in gesture of negation
+U+1309D	;	forearm
+U+1309E	;	forearm with {conical loaf}
+U+1309F	;	forearm with rounded loaf
+U+130A0	;	forearm with {bowl}
+U+130A1	;	forearm with stick
+U+130A2	;	forearm with palm down and bent upper arm
+U+130A3	;	forearm with palm down and straight upper arm
+U+130A4	;	forearm with {flagellum}
+U+130A5	;	forearm with {sceptre of authority}
+U+130A6	;	arm with  transliteration-wand
+U+130A7	;	hand
+U+130A8	;	liquid falling from hand
+U+130A9	;	hand with palm up
+U+130AA	;	hand without thumb
+U+130AB	;	hand holding an egg
+U+130AC	;	fist
+U+130AD	;	finger vertically
+U+130AE	;	2 fingers vertically
+U+130AF	;	3 fingers vertically
+U+130B0	;	4 fingers vertically
+U+130B1	;	5 fingers stacked vertically
+U+130B2	;	6 fingers stacked vertically
+U+130B3	;	7 fingers stacked vertically
+U+130B4	;	8 fingers stacked vertically
+U+130B5	;	9 fingers stacked vertically
+U+130B6	;	5 fingers vertically
+U+130B7	;	finger horizontally
+U+130B8	;	phallus
+U+130B9	;	combination of {phallus} and {folded cloth}
+U+130BA	;	liquid issuing from phallus
+U+130BB	;	legs walking
+U+130BC	;	hieratic legs walking
+U+130BD	;	legs walking backwards
+U+130BE	;	leg
+U+130BF	;	combination of {leg} and {knife}
+U+130C0	;	foot
+U+130C1	;	combination of {foot} and {forearm}
+U+130C2	;	{foot} under vase from which water flows
+U+130C3	;	three toes oriented leftward
+U+130C4	;	three toes oriented rightward
+U+130C5	;	two toes oriented leftward
+U+130C6	;	hand with palm down
+U+130C7	;	lock of hair
+U+130C8	;	arm with reed pen
+U+130C9	;	dot
+U+130CA	;	2 dots
+U+130CB	;	3 dots
+U+130CC	;	4 dots
+U+130CD	;	5 dots
+U+130CE	;	6 dots
+U+130CF	;	7 dots
+U+130D0	;	8 dots
+U+130D1	;	9 dots
+U+130D2	;	bull
+U+130D3	;	bull charging
+U+130D4	;	calf
+U+130D5	;	sacred  transliteration-cow
+U+130D6	;	cow suckling calf
+U+130D7	;	horse
+U+130D8	;	donkey
+U+130D9	;	kid
+U+130DA	;	kid jumping
+U+130DB	;	newborn bubalis or hartebeest
+U+130DC	;	mature bovine lying down
+U+130DD	;	ram
+U+130DE	;	ram 2
+U+130DF	;	pig
+U+130E0	;	cat
+U+130E1	;	dog (saluki)
+U+130E2	;	lying canine
+U+130E3	;	lying canine on shrine
+U+130E4	;	lying canine on shrine with {flagellum}
+U+130E5	;	jackal
+U+130E6	;	jackal looking back
+U+130E7	;	wolf on {standard} with  transliteration
+U+130E8	;	combination of {combination of RES E19 and RES T3} and {mace with round head vertically}
+U+130E9	;	Seth-animal
+U+130EA	;	combination of {Seth-animal} and {basket}
+U+130EB	;	lying Seth-animal
+U+130EC	;	lion
+U+130ED	;	lying lion
+U+130EE	;	panther
+U+130EF	;	hippopotamus
+U+130F0	;	elephant
+U+130F1	;	giraffe
+U+130F2	;	oryx
+U+130F3	;	combination of {oryx}, {irrigation canal system} and some type of jar
+U+130F4	;	gazelle
+U+130F5	;	ibex
+U+130F6	;	goat with collar
+U+130F7	;	baboon
+U+130F8	;	monkey
+U+130F9	;	hare
+U+130FA	;	hare (low)
+U+130FB	;	baboon 2
+U+130FC	;	combination of {baboon}, {receptacle} and {basket}
+U+130FD	;	long-horned bull
+U+130FE	;	head of ox
+U+130FF	;	head of bovine
+U+13100	;	head of charging ox
+U+13101	;	head of hippopotamus
+U+13102	;	forepart of lion
+U+13103	;	head of bubalis or hartebeest
+U+13104	;	forepart of bubalis or hartebeest
+U+13105	;	head of ram
+U+13106	;	forepart of ram
+U+13107	;	head of leopard
+U+13108	;	head and neck of animal
+U+13109	;	head and neck of animal 2
+U+1310A	;	head and neck of canine
+U+1310B	;	horns
+U+1310C	;	horns (low)
+U+1310D	;	combination of {horns} and {palm branch}
+U+1310E	;	combination of {combination of {horns} and {palm branch}} and {sun}
+U+1310F	;	horn
+U+13110	;	combination of {horn} with vase from which water flows
+U+13111	;	tusk
+U+13112	;	lower jaw-bone of ox
+U+13113	;	tongue
+U+13114	;	ear of bovine
+U+13115	;	hieratic ear of bovine
+U+13116	;	hind-quarters of lion
+U+13117	;	foreleg of ox
+U+13118	;	{foreleg of ox} reversed
+U+13119	;	leg of ox
+U+1311A	;	skin of goat
+U+1311B	;	skin of cow with bent tail
+U+1311C	;	skin of cow with straight tail
+U+1311D	;	cow's skin pierced by arrow
+U+1311E	;	water-skin
+U+1311F	;	three skins tied together
+U+13120	;	three skins tied together (simplified)
+U+13121	;	animal's belly
+U+13122	;	tail
+U+13123	;	heart
+U+13124	;	heart and windpipe
+U+13125	;	lung and windpipe
+U+13126	;	backbone and ribs and spinal cord
+U+13127	;	backbone and ribs
+U+13128	;	backbone and ribs 2
+U+13129	;	backbone and ribs and spinal cord 2
+U+1312A	;	backbone and spinal cord
+U+1312B	;	backbone and spinal cords
+U+1312C	;	vertebrae
+U+1312D	;	rib
+U+1312E	;	ribs
+U+1312F	;	leg-bone with meat
+U+13130	;	uterus
+U+13131	;	uterus (simplified)
+U+13132	;	intestine
+U+13133	;	intestine 2
+U+13134	;	intestine 3
+U+13135	;	intestine 4
+U+13136	;	intestine 5
+U+13137	;	intestine 6
+U+13138	;	combination of {intestine} and {folded cloth}
+U+13139	;	piece of flesh
+U+1313A	;	three pieces of flesh horizontally
+U+1313B	;	three pieces of flesh vertically
+U+1313C	;	{piece of flesh} reversed
+U+1313D	;	excrement
+U+1313E	;	divine rod with {head of ram}
+U+1313F	;	Egyptian vulture
+U+13140	;	two Egyptian vultures
+U+13141	;	combination of {Egyptian vulture} and {sickle}
+U+13142	;	buzzard
+U+13143	;	falcon
+U+13144	;	combination of {falcon} and {flagellum}
+U+13145	;	falcon on {basket}
+U+13146	;	falcon on {standard}
+U+13147	;	falcon in boat
+U+13148	;	falcon in boat 2
+U+13149	;	falcon on {collar of beads}
+U+1314A	;	falcon with {sun} on head
+U+1314B	;	falcon in Sokar barque
+U+1314C	;	image of falcon
+U+1314D	;	image of falcon on {standard}
+U+1314E	;	combination of {image of falcon} and {flagellum}
+U+1314F	;	image of falcon with {two plumes}
+U+13150	;	vulture
+U+13151	;	combination of {vulture} and {flagellum}
+U+13152	;	vulture and cobra each on {basket}
+U+13153	;	owl
+U+13154	;	two owls
+U+13155	;	combination of {owl} and {forearm with {conical loaf}}
+U+13156	;	combination of {owl} and {forearm}
+U+13157	;	combination of {owl} and {mouth}
+U+13158	;	guinea-fowl
+U+13159	;	hoopoe
+U+1315A	;	lawping
+U+1315B	;	lawping with twisted wings
+U+1315C	;	northern bald ibis
+U+1315D	;	sacred ibis on {standard}
+U+1315E	;	sacred ibis
+U+1315F	;	flamingo
+U+13160	;	glossy ibis
+U+13161	;	saddle-billed stork
+U+13162	;	three saddle-billed storks
+U+13163	;	heron
+U+13164	;	heron on perch
+U+13165	;	cattle egret
+U+13166	;	ostrich
+U+13167	;	cormorant
+U+13168	;	swallow
+U+13169	;	swallow (low)
+U+1316A	;	sparrow
+U+1316B	;	sparrow (low)
+U+1316C	;	white-fronted goose
+U+1316D	;	pintail
+U+1316E	;	pintail flying
+U+1316F	;	pintail alighting
+U+13170	;	widgeon
+U+13171	;	quail chick
+U+13172	;	combination of {quail chick} and {flat loaf}
+U+13173	;	two quail chicks
+U+13174	;	combination of {quail chick} and {forearm}
+U+13175	;	combination of {quail chick} and {forearm with {conical loaf}}
+U+13176	;	combination of {quail chick} and {sickle}
+U+13177	;	duckling
+U+13178	;	three ducklings in nest
+U+13179	;	three ducklings in pool
+U+1317A	;	two plovers
+U+1317B	;	bird pecking at fish
+U+1317C	;	goose picking up grain
+U+1317D	;	human-headed bird with {bowl with smoke}
+U+1317E	;	plucked bird
+U+1317F	;	head of pintail
+U+13180	;	head of crested bird
+U+13181	;	head of spoonbill
+U+13182	;	head of vulture
+U+13183	;	wing
+U+13184	;	feather
+U+13185	;	hieratic feather
+U+13186	;	claw
+U+13187	;	egg
+U+13188	;	gecko
+U+13189	;	turtle
+U+1318A	;	crocodile
+U+1318B	;	crocodile on shrine
+U+1318C	;	crocodile with curved tail
+U+1318D	;	image of crocodile
+U+1318E	;	crocodile scales
+U+1318F	;	frog
+U+13190	;	tadpole
+U+13191	;	horned viper
+U+13192	;	horned viper crawling out of enclosure
+U+13193	;	cobra
+U+13194	;	cobra with feather
+U+13195	;	two cobras
+U+13196	;	combination of {cobra}, {flat loaf} and {sandy tract}
+U+13197	;	erect cobra
+U+13198	;	erect cobra on {basket}
+U+13199	;	snake
+U+1319A	;	snake 2
+U+1319B	;	tilapia
+U+1319C	;	barbel
+U+1319D	;	mullet
+U+1319E	;	elephant-snout fish
+U+1319F	;	Petrocephalus bane
+U+131A0	;	fish scale
+U+131A1	;	puffer
+U+131A2	;	catfish
+U+131A3	;	dung beetle
+U+131A4	;	bee
+U+131A5	;	combination of {sedge}, {bee} and two {flat loaf}
+U+131A6	;	fly
+U+131A7	;	locust
+U+131A8	;	centipede
+U+131A9	;	shell
+U+131AA	;	{shell} reversed
+U+131AB	;	scorpion
+U+131AC	;	unknown 2
+U+131AD	;	tree
+U+131AE	;	combination of {tree} and {branch}
+U+131AF	;	combination of {tree} and {horned viper}
+U+131B0	;	plant
+U+131B1	;	branch
+U+131B2	;	combination of {owl} and {branch}
+U+131B3	;	palm branch
+U+131B4	;	combination of {palm branch} and {flat loaf}
+U+131B5	;	combination of {palm branch} and {mouth}
+U+131B6	;	combination of {palm branch} and {stool}
+U+131B7	;	pool with lotus flowers
+U+131B8	;	lotus flower
+U+131B9	;	lotus bud with straight stem
+U+131BA	;	lotus bud with winding stem
+U+131BB	;	flower on long twisted stalk
+U+131BC	;	lotus plant
+U+131BD	;	2 lotus plants
+U+131BE	;	3 lotus plants
+U+131BF	;	4 lotus plants
+U+131C0	;	5 lotus plants
+U+131C1	;	6 lotus plants
+U+131C2	;	7 lotus plants
+U+131C3	;	8 lotus plants
+U+131C4	;	9 lotus plants
+U+131C5	;	papyrus
+U+131C6	;	combination of {papyrus} and {cobra}
+U+131C7	;	clump of papyrus with buds
+U+131C8	;	combination of {clump of papyrus with buds} and {village}
+U+131C9	;	clump of papyrus
+U+131CA	;	combination of {clump of papyrus} and {village}
+U+131CB	;	reed
+U+131CC	;	two reeds
+U+131CD	;	combination of {reed} and {legs walking}
+U+131CE	;	heaped conical cakes between {reed} and {club}
+U+131CF	;	field of reeds
+U+131D0	;	reeds with root
+U+131D1	;	rush
+U+131D2	;	two rushes
+U+131D3	;	sedge
+U+131D4	;	combination of {sedge} and {mouth}
+U+131D5	;	lily
+U+131D6	;	combination of {flowering sedge} and {mouth}
+U+131D7	;	flowering sedge
+U+131D8	;	combination of {flowering sedge} and {forearm}
+U+131D9	;	combination of {flowering sedge} and {hobble}
+U+131DA	;	three lilies on {village}
+U+131DB	;	pod
+U+131DC	;	root
+U+131DD	;	rhizome
+U+131DE	;	{tree} in vase
+U+131DF	;	rhizome 2
+U+131E0	;	3 grains horizontally
+U+131E1	;	3 grains vertically
+U+131E2	;	3 grains in triangular arrangement
+U+131E3	;	ear of emmer
+U+131E4	;	heap of grain
+U+131E5	;	bundle of flax showing bolls
+U+131E6	;	bundle of flax
+U+131E7	;	wide bundle of flax
+U+131E8	;	basket of fruit or grain
+U+131E9	;	bundle of reeds
+U+131EA	;	bundle of reeds 2
+U+131EB	;	piece of wood
+U+131EC	;	flower
+U+131ED	;	vine on trellis
+U+131EE	;	thorn
+U+131EF	;	sky
+U+131F0	;	sky with sceptre
+U+131F1	;	sky with sceptre 2
+U+131F2	;	sky with rain
+U+131F3	;	sun
+U+131F4	;	sun with uraeus
+U+131F5	;	combination of {sun} and {butcher's block}
+U+131F6	;	sunshine
+U+131F7	;	moon with lower half obscured
+U+131F8	;	moon with lower section obscured
+U+131F9	;	crescent moon
+U+131FA	;	crescent moon 2
+U+131FB	;	combination of {crescent moon} and {star}
+U+131FC	;	star
+U+131FD	;	star in circle
+U+131FE	;	land with grains
+U+131FF	;	land
+U+13200	;	sandy tract
+U+13201	;	combination of {sandy tract} and {ripple of water}
+U+13202	;	combination of {roll of bread} and {bolt}
+U+13203	;	two sandy tracts
+U+13204	;	tongue of land
+U+13205	;	short tongue of land
+U+13206	;	broad tongue of land
+U+13207	;	irrigation canal
+U+13208	;	irrigation canal system
+U+13209	;	three hills
+U+1320A	;	three hills (low)
+U+1320B	;	two hills
+U+1320C	;	sun over mountain
+U+1320D	;	rays of sun over hill
+U+1320E	;	slope of hill
+U+1320F	;	mound of earth
+U+13210	;	road with shrubs
+U+13211	;	lump of clay
+U+13212	;	grain
+U+13213	;	three grains
+U+13214	;	ingot of metal
+U+13215	;	ingot of metal 2
+U+13216	;	ripple of water
+U+13217	;	three ripples of water
+U+13218	;	canal
+U+13219	;	pool
+U+1321A	;	pool 2
+U+1321B	;	deep pool
+U+1321C	;	pool with water
+U+1321D	;	combination of {pool} and {legs walking}
+U+1321E	;	well with ripple of water
+U+1321F	;	well with line of water
+U+13220	;	sign of first nome of Lower Egypt
+U+13221	;	sign of second nome of Lower Egypt
+U+13222	;	sign of third nome of Lower Egypt
+U+13223	;	sign of fourth nome of Lower Egypt
+U+13224	;	sign of fifth nome of Lower Egypt
+U+13225	;	sign of fifth nome of Lower Egypt 2
+U+13226	;	sign of sixth nome of Lower Egypt
+U+13227	;	sign of seventh nome of Lower Egypt
+U+13228	;	sign of eighth nome of Lower Egypt
+U+13229	;	sign of ninth nome of Lower Egypt
+U+1322A	;	sign of tenth nome of Lower Egypt
+U+1322B	;	sign of eleventh nome of Lower Egypt
+U+1322C	;	sign of twelfth nome of Lower Egypt
+U+1322D	;	sign of thirteenth nome of Lower Egypt
+U+1322E	;	sign of fourteenth nome of Lower Egypt
+U+1322F	;	sign of fifteenth nome of Lower Egypt
+U+13230	;	sign of sixteenth nome of Lower Egypt
+U+13231	;	sign of seventeenth nome of Lower Egypt
+U+13232	;	sign of seventeenth nome of Lower Egypt 2
+U+13233	;	sign of eighteenth nome of Lower Egypt
+U+13234	;	sign of nineteenth nome of Lower Egypt
+U+13235	;	sign of twentieth nome of Lower Egypt
+U+13236	;	sign of first nome of Upper Egypt
+U+13237	;	sign of second nome of Upper Egypt
+U+13238	;	sign of third nome of Upper Egypt
+U+13239	;	sign of fourth nome of Upper Egypt
+U+1323A	;	sign of fifth nome of Upper Egypt
+U+1323B	;	sign of sixth nome of Upper Egypt
+U+1323C	;	sign of seventh nome of Upper Egypt
+U+1323D	;	sign of eighth nome of Upper Egypt
+U+1323E	;	sign of ninth nome of Upper Egypt
+U+1323F	;	sign of tenth nome of Upper Egypt
+U+13240	;	sign of tenth nome of Upper Egypt 2
+U+13241	;	sign of eleventh nome of Upper Egypt
+U+13242	;	sign of eleventh nome of Upper Egypt 2
+U+13243	;	sign of twelfth nome of Upper Egypt
+U+13244	;	sign of thirteenth nome of Upper Egypt
+U+13245	;	sign of fourteenth nome of Upper Egypt
+U+13246	;	sign of fifteenth nome of Upper Egypt
+U+13247	;	sign of sixteenth nome of Upper Egypt
+U+13248	;	sign of seventeenth nome of Upper Egypt
+U+13249	;	sign of eighteenth nome of Upper Egypt
+U+1324A	;	sign of eighteenth nome of Upper Egypt 2
+U+1324B	;	sign of nineteenth nome of Upper Egypt
+U+1324C	;	sign of twentieth nome of Upper Egypt
+U+1324D	;	sign of twenty-first nome of Upper Egypt
+U+1324E	;	sign of twenty-second nome of Upper Egypt
+U+1324F	;	sign of second nome of Upper Egypt 2
+U+13250	;	house
+U+13251	;	combination of {house} and {sandle-strap}
+U+13252	;	combination of {house} and {mace with round head vertically}
+U+13253	;	combination of {house}, {oar}, {tall loaf}, and {beer jug}
+U+13254	;	shelter
+U+13255	;	winding wall from upper-left corner
+U+13256	;	winding wall from lower-left corner
+U+13257	;	enclosure
+U+13258	;	opening of  transliteration-enclosure
+U+13259	;	opening of  transliteration-enclosure 2
+U+1325A	;	opening of  transliteration-enclosure 3
+U+1325B	;	closing of  transliteration-enclosure
+U+1325C	;	closing of  transliteration-enclosure 2
+U+1325D	;	closing of  transliteration-enclosure 3
+U+1325E	;	combination of {enclosure} and {flat loaf}
+U+1325F	;	combination of {combination of {enclosure} and {flat loaf}} and {horizontal wooden column}
+U+13260	;	combination of {combination of {enclosure} and {flat loaf}} and {basket}
+U+13261	;	combination of {enclosure} and {falcon}
+U+13262	;	combination of {enclosure} and {sandle-strap}
+U+13263	;	combination of {enclosure} and {bee}
+U+13264	;	combination of {shrine in profile} and {face}
+U+13265	;	palace
+U+13266	;	combination of {palace} and {forearm}
+U+13267	;	battlemented enclosure
+U+13268	;	part of battlemented enclosure
+U+13269	;	enclosure with {cup} and {flat loaf}
+U+1326A	;	gateway with serpents
+U+1326B	;	open gateway with serpents
+U+1326C	;	shrine in profile
+U+1326D	;	shrine with fence
+U+1326E	;	shrine
+U+1326F	;	shrine 2
+U+13270	;	shrine 3
+U+13271	;	façade of shrine
+U+13272	;	booth with pole
+U+13273	;	double platform
+U+13274	;	pyramid
+U+13275	;	pedestal of sun temple
+U+13276	;	obelisk
+U+13277	;	obelisk and pedestal of sun temple
+U+13278	;	stela
+U+13279	;	hall of columns
+U+1327A	;	column
+U+1327B	;	horizontal wooden column
+U+1327C	;	vertical wooden column
+U+1327D	;	support
+U+1327E	;	four supports
+U+1327F	;	door
+U+13280	;	gateway
+U+13281	;	façade of palace
+U+13282	;	closing of  transliteration-enclosure 4
+U+13283	;	bolt
+U+13284	;	combination of {bolt} and {legs walking}
+U+13285	;	wall
+U+13286	;	opening of oval fortified wall enclosure
+U+13287	;	closing of oval fortified wall enclosure
+U+13288	;	opening of square fortified wall enclosure
+U+13289	;	closure of square fortified wall enclosure
+U+1328A	;	falling wall
+U+1328B	;	corner of wall
+U+1328C	;	stone
+U+1328D	;	stairway
+U+1328E	;	double stairway
+U+1328F	;	fence
+U+13290	;	low fence
+U+13291	;	emblem of Min
+U+13292	;	domed building
+U+13293	;	domed building 2
+U+13294	;	enclosed mound
+U+13295	;	enclosed mound 2
+U+13296	;	village
+U+13297	;	threshing floor
+U+13298	;	hieratic threshing floor
+U+13299	;	{hieratic threshing floor} reversed
+U+1329A	;	pile of grain
+U+1329B	;	boat
+U+1329C	;	boat upside down
+U+1329D	;	ship under sail
+U+1329E	;	sacred barque
+U+1329F	;	sacred barque without steering oar
+U+132A0	;	boat with net
+U+132A1	;	sail
+U+132A2	;	mast
+U+132A3	;	combination of {mast} and {forearm}
+U+132A4	;	oar
+U+132A5	;	combination of {oar} and {horned viper}
+U+132A6	;	steering oar
+U+132A7	;	mooring post
+U+132A8	;	seat
+U+132A9	;	portable seat
+U+132AA	;	stool
+U+132AB	;	head-rest
+U+132AC	;	chest
+U+132AD	;	coffin
+U+132AE	;	brazier
+U+132AF	;	high table with offerings
+U+132B0	;	table with slices of bread
+U+132B1	;	high table with offerings 2
+U+132B2	;	low table with offerings
+U+132B3	;	low table
+U+132B4	;	low table with offerings (simplified)
+U+132B5	;	loaf on mat
+U+132B6	;	narrow censer
+U+132B7	;	broad censer
+U+132B8	;	bowl with smoke
+U+132B9	;	cloth on pole
+U+132BA	;	combination of {cloth on pole} and {bag}
+U+132BB	;	combination of {cloth on pole}, {butcher's block} and {slope of hill}
+U+132BC	;	combination of {cloth on pole} and {butcher's block}
+U+132BD	;	reed column
+U+132BE	;	standard
+U+132BF	;	falcon and feather on standard
+U+132C0	;	feather on standard
+U+132C1	;	spear emblem
+U+132C2	;	sceptre with feathers and string
+U+132C3	;	sceptre with feathers
+U+132C4	;	wig on pole
+U+132C5	;	combination of {wig on pole} and {irrigation canal system}
+U+132C6	;	{sceptre} with feather
+U+132C7	;	flower with horns
+U+132C8	;	flower with horns 2
+U+132C9	;	two narrow belemnites
+U+132CA	;	two broad belemnites
+U+132CB	;	two bows tied horizontally
+U+132CC	;	two bows tied vertically
+U+132CD	;	combination of {land}, {lung and windpipe}, {lily} and {papyrus}
+U+132CE	;	two arrows crossed over a shield
+U+132CF	;	Bat
+U+132D0	;	niche with serpent
+U+132D1	;	white crown
+U+132D2	;	combination of {white crown} and {basket}
+U+132D3	;	combination of {white crown} and {village}
+U+132D4	;	red crown
+U+132D5	;	combination of {red crown} and {basket}
+U+132D6	;	double crown
+U+132D7	;	combination of {double crown} and {basket}
+U+132D8	;	combination of {red crown} and {village}
+U+132D9	;	blue crown
+U+132DA	;	transliteration-crown
+U+132DB	;	two plumes
+U+132DC	;	headband
+U+132DD	;	broad collar
+U+132DE	;	collar of beads
+U+132DF	;	combination of {collar of beads} and {foot}
+U+132E0	;	combination of {collar of beads} and {mace with round head vertically}
+U+132E1	;	combination of {collar of beads} and {sceptre}
+U+132E2	;	combination of {collar of beads} and {sceptre} 2
+U+132E3	;	pectoral
+U+132E4	;	pectoral 2
+U+132E5	;	pectoral 3
+U+132E6	;	girdle
+U+132E7	;	necklace with counterpoise
+U+132E8	;	necklace with seal from side
+U+132E9	;	necklace with seal from front
+U+132EA	;	ring
+U+132EB	;	shoulder-knot
+U+132EC	;	knotted cloth
+U+132ED	;	girdle knot
+U+132EE	;	garment with ties
+U+132EF	;	apron
+U+132F0	;	apron 2
+U+132F1	;	apron 3
+U+132F2	;	cloth with two strands
+U+132F3	;	cloth with fringe on top and {folded cloth}
+U+132F4	;	folded cloth
+U+132F5	;	combination of {folded cloth} and {horned viper}
+U+132F6	;	combination of {folded cloth} and {sickle}
+U+132F7	;	cloth with fringe on the side
+U+132F8	;	sandle
+U+132F9	;	sandle-strap
+U+132FA	;	sunshade
+U+132FB	;	sunshade 2
+U+132FC	;	sunshade 3
+U+132FD	;	fan
+U+132FE	;	crook
+U+132FF	;	shepherd's crook
+U+13300	;	sceptre
+U+13301	;	sceptre with spiral shaft
+U+13302	;	sceptre of authority
+U+13303	;	walking stick
+U+13304	;	walking stick with {flagellum}
+U+13305	;	flagellum
+U+13306	;	covering for head and neck
+U+13307	;	mace with flat head
+U+13308	;	mace with round head diagonally
+U+13309	;	mace with round head vertically
+U+1330A	;	combination of {mace with round head vertically} and {two hills}
+U+1330B	;	mace with strap
+U+1330C	;	combination of {mace with round head vertically} and {cobra}
+U+1330D	;	combination of {mace with round head vertically} and two {cobra}
+U+1330E	;	axe
+U+1330F	;	axe 2
+U+13310	;	dagger
+U+13311	;	dagger 2
+U+13312	;	bow
+U+13313	;	bow 2
+U+13314	;	composite bow
+U+13315	;	arrow
+U+13316	;	two crossed arrows
+U+13317	;	bow-string
+U+13318	;	joined pieces of wood
+U+13319	;	throw stick vertically
+U+1331A	;	throw stick slanted
+U+1331B	;	scimitar
+U+1331C	;	scimitar 2
+U+1331D	;	chariot
+U+1331E	;	crook with package attached
+U+1331F	;	harpoon head
+U+13320	;	harpoon head 2
+U+13321	;	harpoon
+U+13322	;	arrowhead
+U+13323	;	arrowhead 2
+U+13324	;	fishing-net
+U+13325	;	floats
+U+13326	;	bird-trap
+U+13327	;	bird-trap 2
+U+13328	;	butcher's block
+U+13329	;	combination of {knife} and {butcher's block}
+U+1332A	;	knife
+U+1332B	;	knife-sharpener
+U+1332C	;	combination of {knife-sharpener} and {legs walking}
+U+1332D	;	combination of {knife-sharpener} and {folded cloth}
+U+1332E	;	knife-sharpener of butcher
+U+1332F	;	combination of {knife-sharpener of butcher} and {folded cloth}
+U+13330	;	butcher's knife
+U+13331	;	butcher's knife 2
+U+13332	;	shield
+U+13333	;	sickle
+U+13334	;	sickle (low)
+U+13335	;	combination of {sickle} and {eye}
+U+13336	;	combination of {sickle} and {platform}
+U+13337	;	combination of {sickle (low)} and {platform}
+U+13338	;	diagonal hoe
+U+13339	;	vertical hoe
+U+1333A	;	{vertical hoe} reversed
+U+1333B	;	horizontal hoe
+U+1333C	;	hoe without connecting rope
+U+1333D	;	grain-measure with grain
+U+1333E	;	{grain-measure with grain} beneath {3 grains horizontally}
+U+1333F	;	combination of {crook} and {grain-measure with grain}
+U+13340	;	combination of {finger vertically} and {grain-measure with grain}
+U+13341	;	plough
+U+13342	;	two joined branches
+U+13343	;	sledge
+U+13344	;	sledge with head of jackal
+U+13345	;	pick in ground
+U+13346	;	pick in basin
+U+13347	;	adze
+U+13348	;	adze 2
+U+13349	;	adze on wood
+U+1334A	;	chisel
+U+1334B	;	chisel 2
+U+1334C	;	chisel 3
+U+1334D	;	drill for stone
+U+1334E	;	drill for stone 2
+U+1334F	;	drill for beads
+U+13350	;	drill for beads 2
+U+13351	;	fire-drill
+U+13352	;	fire-drill 2
+U+13353	;	fire-drill with string
+U+13354	;	kiln
+U+13355	;	baker's rake
+U+13356	;	pestle and mortar
+U+13357	;	hieratic pestle and mortar
+U+13358	;	pestle
+U+13359	;	spindle
+U+1335A	;	combination of {spindle} and {horned viper}
+U+1335B	;	club
+U+1335C	;	razor
+U+1335D	;	balance
+U+1335E	;	post of balance
+U+1335F	;	hieratic post of balance
+U+13360	;	plummet
+U+13361	;	pitchfork
+U+13362	;	coil of rope
+U+13363	;	2 coils of rope
+U+13364	;	3 coils of rope
+U+13365	;	4 coils of rope
+U+13366	;	5 coils of rope stacked
+U+13367	;	6 coils of rope
+U+13368	;	7 coils of rope
+U+13369	;	8 coils of rope
+U+1336A	;	9 coils of rope
+U+1336B	;	10 coils of rope
+U+1336C	;	combination of {bolt} and {coil of rope}
+U+1336D	;	hieratic form of {combination of {bolt} and {coil of rope}}
+U+1336E	;	combination of {bolt} and three {coil of rope}
+U+1336F	;	lasso
+U+13370	;	looped rope
+U+13371	;	cord with ends upward
+U+13372	;	cord with ends downward
+U+13373	;	cord with ends downward 2
+U+13374	;	hieratic cord with ends downward
+U+13375	;	cord downward
+U+13376	;	round cartouche
+U+13377	;	oval cartouche
+U+13378	;	end of cartouche
+U+13379	;	opening of cartouche
+U+1337A	;	closing of cartouche
+U+1337B	;	closing of knotless cartouche
+U+1337C	;	string
+U+1337D	;	string 2
+U+1337E	;	string 3
+U+1337F	;	rope
+U+13380	;	rope with tick
+U+13381	;	combination of {rope} and {legs walking}
+U+13382	;	looped cord
+U+13383	;	shelter of papyrus
+U+13384	;	shelter of papyrus 2
+U+13385	;	hobble with cross-bar
+U+13386	;	hobble
+U+13387	;	2 hobbles
+U+13388	;	3 hobbles stacked
+U+13389	;	4 hobbles stacked
+U+1338A	;	5 hobbles stacked
+U+1338B	;	6 hobbles stacked
+U+1338C	;	7 hobbles stacked
+U+1338D	;	8 hobbles stacked
+U+1338E	;	9 hobbles stacked
+U+1338F	;	10 hobbles
+U+13390	;	11 hobbles
+U+13391	;	12 hobbles
+U+13392	;	13 hobbles
+U+13393	;	combination of {hobble} and {cobra}
+U+13394	;	whip
+U+13395	;	whip 2
+U+13396	;	whip 3
+U+13397	;	cord on stick
+U+13398	;	cord on stick with tick
+U+13399	;	netting needle
+U+1339A	;	netting needle 2
+U+1339B	;	wick
+U+1339C	;	combination of {wick} and {forearm}
+U+1339D	;	swab
+U+1339E	;	combination of {swab} and {basket with right handle}
+U+1339F	;	basket
+U+133A0	;	basket (low)
+U+133A1	;	basket with right handle
+U+133A2	;	basket with left handle
+U+133A3	;	frail
+U+133A4	;	bag
+U+133A5	;	bundle
+U+133A6	;	bag 2
+U+133A7	;	bag 3
+U+133A8	;	receptacle
+U+133A9	;	bandage
+U+133AA	;	bandage 2
+U+133AB	;	bandage 3
+U+133AC	;	knot-amulet
+U+133AD	;	hobble on its side
+U+133AE	;	two hobbles on their side
+U+133AF	;	oil jar with ties
+U+133B0	;	oil jar
+U+133B1	;	alabaster basin
+U+133B2	;	alabaster basin (low)
+U+133B3	;	combination of {booth with pole} and {alabaster basin}
+U+133B4	;	combination of {butcher's block} and {alabaster basin}
+U+133B5	;	metal vessel
+U+133B6	;	granite bowl
+U+133B7	;	deformed granite bowl
+U+133B8	;	jug with left handle
+U+133B9	;	jug with right handle
+U+133BA	;	cup
+U+133BB	;	pot with tick
+U+133BC	;	round ring stand
+U+133BD	;	square ring stand
+U+133BE	;	earthenware pot
+U+133BF	;	water jar
+U+133C0	;	combination of {wick}, {water jar} and {bolt}
+U+133C1	;	water jar with water
+U+133C2	;	water jar with water in ring stand
+U+133C3	;	three water jars in rack
+U+133C4	;	three water jars in rack (simplified)
+U+133C5	;	four water jars in rack
+U+133C6	;	four water jars in rack (simplified)
+U+133C7	;	milk jug in net
+U+133C8	;	milk jug with leaf
+U+133C9	;	twin wine jars
+U+133CA	;	beer jug
+U+133CB	;	jar with handles
+U+133CC	;	bowl
+U+133CD	;	three bowls
+U+133CE	;	combination of {bowl} and {legs walking}
+U+133CF	;	flat loaf
+U+133D0	;	tall loaf
+U+133D1	;	tall loaf 2
+U+133D2	;	roll of bread
+U+133D3	;	roll of bread 2
+U+133D4	;	roll of bread 3
+U+133D5	;	hieratic roll of bread
+U+133D6	;	round loaf
+U+133D7	;	round loaf 2
+U+133D8	;	half-loaf
+U+133D9	;	conical loaf
+U+133DA	;	hieratic conical loaf
+U+133DB	;	scroll with ties
+U+133DC	;	vertical scroll with ties
+U+133DD	;	scroll
+U+133DE	;	scribe's outfit with palette on left
+U+133DF	;	scribe's outfit with palette on right
+U+133E0	;	game board
+U+133E1	;	game piece
+U+133E2	;	harp
+U+133E3	;	sistrum
+U+133E4	;	stroke
+U+133E5	;	three {stroke} horizontally
+U+133E6	;	three {stroke} horizontally 2
+U+133E7	;	three {dot} horizontally
+U+133E8	;	three {stroke} in triangular arrangement
+U+133E9	;	three {stroke} in triangular arrangement 2
+U+133EA	;	three {stroke} vertically
+U+133EB	;	three lying {stroke} vertically
+U+133EC	;	three {dot} vertically
+U+133ED	;	two diagonal strokes
+U+133EE	;	two {stroke} horizontally
+U+133EF	;	curved diagonal stroke
+U+133F0	;	diagonal stroke
+U+133F1	;	hieratic substitute for {man with arms tied behind his back} or {falling man with blood streaming from his head}
+U+133F2	;	hieratic quail chick
+U+133F3	;	oval
+U+133F4	;	diagonal cross
+U+133F5	;	wide diagonal cross
+U+133F6	;	cross
+U+133F7	;	hieratic striking man
+U+133F8	;	circle
+U+133F9	;	indeterminable hieratic tick
+U+133FA	;	long vertical stroke
+U+133FB	;	2 long vertical strokes
+U+133FC	;	3 long vertical strokes
+U+133FD	;	4 long vertical strokes stacked
+U+133FE	;	5 long vertical strokes
+U+133FF	;	6 long vertical strokes
+U+13400	;	7 long vertical strokes
+U+13401	;	8 long vertical strokes
+U+13402	;	9 long vertical strokes
+U+13403	;	10 long vertical strokes
+U+13404	;	long horizontal stroke
+U+13405	;	2 long horizontal strokes
+U+13406	;	3 long horizontal strokes
+U+13407	;	4 long vertical strokes
+U+13408	;	5 long horizontal strokes
+U+13409	;	6 long horizontal strokes
+U+1340A	;	7 long horizontal strokes
+U+1340B	;	8 long horizontal strokes
+U+1340C	;	9 long horizontal strokes
+U+1340D	;	basket from above
+U+1340E	;	pustule
+U+1340F	;	pustule with liquid
+U+13410	;	pot with two ticks
+U+13411	;	navigation instrument
+U+13412	;	instrument
+U+13413	;	instrument 2
+U+13414	;	{instrument} reversed
+U+13415	;	later equivalent of {instrument}
+U+13416	;	irrigation canal 2
+U+13417	;	instrument 3
+U+13418	;	unknown 3
+U+13419	;	platform
+U+1341A	;	platform 2
+U+1341B	;	sharp half
+U+1341C	;	bent half
+U+1341D	;	blunt half
+U+1341E	;	short half
+U+1341F	;	lid
+U+13420	;	square lid
+U+13421	;	instrument 4
+U+13422	;	bag 4
+U+13423	;	instrument 5
+U+13424	;	combination of {instrument} and {forearm}
+U+13425	;	high warp between stakes
+U+13426	;	low warp between stakes
+U+13427	;	unknown 4
+U+13428	;	unknown 5
+U+13429	;	spindle 2
+U+1342A	;	level
+U+1342B	;	instrument 6
+U+1342C	;	frieze
+U+1342D	;	frieze 2
+U+1342E	;	archaic bow

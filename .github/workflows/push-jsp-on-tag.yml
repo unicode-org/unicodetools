@@ -7,16 +7,37 @@ jobs:
   build-and-push-to-gcr:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Get the version
-        id: get_tag_name
-        run: echo ::set-output name=GIT_TAG_NAME::${GITHUB_REF/refs\/tags\//}
-      - uses: RafikFarhad/push-to-gcr-github-action@v3
-        with:
-          gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
-          registry: us.gcr.io
-          project_id: dev-infra-273822
-          image_name: unicode-jsps
-          image_tag: ${{ steps.get_tag_name.outputs.GIT_TAG_NAME}}
-          dockerfile: ./UnicodeJsps/Dockerfile
-          context: ./UnicodeJsps/
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Cache local Maven repository
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+    - name: Build with Maven
+      run: >
+        mvn -s .github/workflows/mvn-settings.xml -B compile install package --file UnicodeJsps/pom.xml
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload UnicodeJsps.war
+      uses: actions/upload-artifact@v2
+      with:
+        name: UnicodeJsps
+        path: UnicodeJsps/target/UnicodeJsps.war
+    - name: Get the version
+      id: get_tag_name
+      run: echo ::set-output name=GIT_TAG_NAME::${GITHUB_REF/refs\/tags\//}
+    - uses: RafikFarhad/push-to-gcr-github-action@v3
+      with:
+        gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
+        registry: us.gcr.io
+        project_id: dev-infra-273822
+        image_name: unicode-jsps
+        image_tag: ${{ steps.get_tag_name.outputs.GIT_TAG_NAME}}
+        dockerfile: ./UnicodeJsps/Dockerfile
+        context: ./UnicodeJsps/

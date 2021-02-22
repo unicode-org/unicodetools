@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>UnicodeJsps</artifactId>
+	<packaging>war</packaging>
+	<name>Unicode JSPs</name>
+	<groupId>org.unicode.unicodetools</groupId>
+	<version>0.0.0</version>
+
+	<url>https://unicode.org/</url>
+
+	<scm>
+		<connection>scm:git:https://github.com/unicode-org/unicodetools.git</connection>
+	</scm>
+
+	<properties>
+		<!--
+			For ICU versions, see https://github.com/orgs/unicode-org/packages?repo_name=icu
+			Note that we can't use the general ICU maven packages, because utilities isn't exported (yet).
+		 -->
+		<icu.version>69.1-SNAPSHOT-cldr-2021-02-17</icu.version>
+
+		<!--
+			For CLDR versions, see https://github.com/orgs/unicode-org/packages?repo_name=cldr
+		 -->
+		<cldr.version>0.0.0-SNAPSHOT-87058620ea</cldr.version>
+
+		<servlet.version>3.1.0</servlet.version>
+		<jsp.version>2.3.3</jsp.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<jetty.version>9.4.36.v20210114</jetty.version>
+	</properties>
+
+
+	<dependencies>
+		<!-- icu -->
+		<dependency>
+			<groupId>com.ibm.icu</groupId>
+			<artifactId>icu4j-for-cldr</artifactId>
+			<version>${icu.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ibm.icu</groupId>
+			<artifactId>utilities-for-cldr</artifactId>
+			<version>${icu.version}</version>
+		</dependency>
+		<!-- cldr -->
+		<dependency>
+			<groupId>org.unicode.cldr</groupId>
+			<artifactId>cldr-code</artifactId>
+			<version>${cldr.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlet.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<scope>provided</scope>
+			<version>${jsp.version}</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.6</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>29.0-jre</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>2.12.0</version>
+		</dependency>
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.4.01</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<version>3.2.3</version>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Built-By>${user.name}</Built-By>
+							<Build-Time>${maven.build.timestamp}</Build-Time>
+							<UnicodeTools-Git-Commit>${buildNumber}</UnicodeTools-Git-Commit>
+							<UnicodeTools-Git-Branch>${scmBranch}</UnicodeTools-Git-Branch>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+					<attach>true</attach>
+					<addOutputDirectoryToResources>true</addOutputDirectoryToResources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<id>add-resource</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>add-resource</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>src/main/webapp</directory>
+									<targetPath>${project.build.directory}/${project.build.finalName}</targetPath>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>${jetty.version}</version>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>githubicu</id>
+			<name>GitHub unicode-org/icu Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/unicode-org/icu</url>
+		</repository>
+		<repository>
+			<id>githubcldr</id>
+			<name>GitHub unicode-org/cldr Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/unicode-org/cldr</url>
+		</repository>
+	</repositories>
+</project>
