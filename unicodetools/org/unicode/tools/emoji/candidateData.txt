@@ -4,453 +4,351 @@
 # — The Status, Proposal, and After must come before the character/sequence (U+)
 # — Those are "sticky", and don't have to be repeated.
 # — The Name, UName, Keywords,... must come after the character/sequence
-# — Any character must be listed BEFORE any sequence it is in. 
+# — Any character must be listed BEFORE any sequence it is in.
 #   — That includes any emojified character.
 # TODO
 #   Put Proposal, and After also after the characters, but keep them sticky.
 #
 ### WARNING ###
 # At the end of the release, the Status=Draft Candidates will be changed to Status=Final Candidate
-# Then run ProposalData.java to generate an updated version of proposalData.txt that incorporates all the proposal data from this file. 
-
-#================================
-Status=Provisional Candidate
-#================================
-Proposal=L2/19-304
-After=🤭
-U+101900
-Name=face with hand over mouth
-Keywords=amazed | disbelief | embarrassment | oh no | shook | surprised
-
-# Proposal=L2/19-303
-# After=🥴
-# U+101901
-# Name=face with x eyes
-# Keywords=knocked-out
-# Comment=If this is added, any images of U+1F635 (dizzy face) that show X eyes should be changed to swirly eyes.
-
-Proposal=L2/19-311
-After=💫
-U+101902
-Name=bubbles
-Keywords=bubble | clean | seltzer | soap | underwater
-
-Proposal=L2/19-265
-After=🖖
-U+101903
-Name=rightwards backhand
-Keywords=rightwards | backhand | pat | push | reach | hand
-Emoji_Modifier_Base
-UName=white rightwards backhand
-
-Proposal=L2/19-265
-After=🖖
-U+101904
-Name=leftwards hand
-Keywords=leftwards | pat | push | reach | hand
-Emoji_Modifier_Base
-UName=white leftwards hand
-
-Proposal=L2/19-327
-After=✌️
-U+101905
-Name=thumb and index finger crossed
-Keywords=expensive | love | money | finger | thumb | crossed
-Emoji_Modifier_Base
-
-Proposal=L2/19-326
-After=🤘
-U+101906
-Name=raised little finger
-Keywords=finger | raised
-UName=HAND WITH RAISED LITTLE FINGER
-Emoji_Modifier_Base
-
-Proposal=L2/19-219
-After=👄
-U+101907
-Name=biting lip
-Keywords=anxiety | flirting | insecure | uncomfortable | worried
-
-Proposal=L2/19-232, L2/19-399
-After=🦹
-U+101908
-Name=troll
-Keywords=beast | fairy tale | fantasy | ogre | monster | troll
-
-Proposal=L2/19-335
-After=🦅
-U+101909
-Name=vulture
-Keywords=buzzard | carrion-eater | condor | scavenger
-
-Proposal=L2/19-307
-After=🦉
-U+101910
-Name=crow
-Keywords=bird | black bird | crow | raven
-
-Proposal=L2/19-060
-After=🔪
-U+101911
-Name=cooking pot
-Keywords=boil | cook | pot | saucepan
-
-Proposal=L2/19-305
-After=⚓
-U+101912
-Name=submarine
-Keywords=ocean | sandwich | submarine | under | water
-
-Proposal=L2/19-310
-After=🎊
-U+101913
-Name=mirror ball
-Keywords=dance | disco | mirror | glitter | ball | party
-
-Proposal=L2/19-316
-After=🔋
-U+101914
-Name=low battery
-Keywords=dying | low battery | low energy
-
-Proposal=L2/19-312
-After=🪓
-U+101915
-Name=chainsaw
-Keywords=chainsaw | cut | logging | saw
-
-Proposal=L2/19-396, L2/19-400
-After=🤔
-U+102000
-Name=saluting face
-Keywords=okay | pride | salute | sunny | troops | yes
-
-Proposal=L2/19-378
-After=🤔
-U+102001
-Name=face with peeking eye
-Keywords=captivated | I can’t look away | peeking | peeping | staring
-
-Proposal=L2/19-371
-After=💮
-U+102003
-Name=lotus
-Keywords=bloom | Buddhism | flower | Hinduism | lotus | purity
-
-Proposal=L2/19-375
-After=🌺
-U+102004
-Name=orchid
-Keywords=beauty | bloom | flower | orchid | rare
-
-Proposal=L2/19-379
-After=🩹
-U+102005
-Name=crutch
-Keywords=cane | crutch | disability | mobility aid | walking | walking stick
-
-Proposal=L2/19-370
-After=🤝
-U+1F91D U+1F3FB
-U+101903 U+1F3FB U+200D U+101904 U+1F3FC
-U+101903 U+1F3FB U+200D U+101904 U+1F3FD
-U+101903 U+1F3FB U+200D U+101904 U+1F3FE
-U+101903 U+1F3FB U+200D U+101904 U+1F3FF
-U+101903 U+1F3FC U+200D U+101904 U+1F3FB
-U+1F91D U+1F3FC
-U+101903 U+1F3FC U+200D U+101904 U+1F3FD
-U+101903 U+1F3FC U+200D U+101904 U+1F3FE
-U+101903 U+1F3FC U+200D U+101904 U+1F3FF
-U+101903 U+1F3FD U+200D U+101904 U+1F3FB
-U+101903 U+1F3FD U+200D U+101904 U+1F3FC
-U+1F91D U+1F3FD
-U+101903 U+1F3FD U+200D U+101904 U+1F3FE
-U+101903 U+1F3FD U+200D U+101904 U+1F3FF
-U+101903 U+1F3FE U+200D U+101904 U+1F3FB
-U+101903 U+1F3FE U+200D U+101904 U+1F3FC
-U+101903 U+1F3FE U+200D U+101904 U+1F3FD
-U+1F91D U+1F3FE
-U+101903 U+1F3FE U+200D U+101904 U+1F3FF
-U+101903 U+1F3FF U+200D U+101904 U+1F3FB
-U+101903 U+1F3FF U+200D U+101904 U+1F3FC
-U+101903 U+1F3FF U+200D U+101904 U+1F3FD
-U+101903 U+1F3FF U+200D U+101904 U+1F3FE
-U+1F91D U+1F3FF
+# Then run ProposalData.java to generate an updated version of proposalData.txt that incorporates all the proposal data from this file.
 
 #================================
 Status=Draft Candidate
 #================================
 
-Proposal=L2/20-066
-After=😬
-U+1F62E U+200D U+1F4A8
-Name=face exhaling
-Keywords=exhale | gasp | groan | relief | whisper | whistle
+Proposal=L2/19-304
+After=🤭
+U+1FAE2
+Name=face with open eyes and hand over mouth
+Keywords=embarrassment | death | oh no | trouble | shook | shaken | surprise | disbelief | awe | aghast | amazement
 
-Proposal=L2/20-131
-After=😵
-U+1F635 U+200D U+1F4AB
-Name=face with spiral eyes
-Keywords=dizzy | hypnotized | spiral | trouble | whoa
+Proposal=L2/19-311
+After=🧼
+U+1FAE7
+Name=bubbles
+Keywords=soap | clean | oxygen | underwater | seltzer | burpy | burst | bubbly
 
-Proposal=L2/19-380
-After=💔
-U+2764 U+FE0F U+200D U+1FA79
-Name=mending heart
-Keywords=healthier | improving | mending | recovering | recuperating | well
+Proposal=L2/19-265
+After=🖖
+U+1FAF1
+Name=rightward hand
+UName=RIGHTWARD BACKHAND
+Keywords=reaching | helping hand | feel | push | pat | tap | tag | touching | tag | rightward
+Emoji_Modifier_Base
+U+1FAF1 U+1F3FB
+U+1FAF1 U+1F3FC
+U+1FAF1 U+1F3FD
+U+1FAF1 U+1F3FE
+U+1FAF1 U+1F3FF
 
-Proposal=L2/20-128
-After=💔
-U+2764 U+FE0F U+200D U+1F525
-Name=heart on fire
-Keywords=burn | heart | love | lust | sacred heart
+Proposal=L2/19-265
+After=🖖
+U+1FAF2
+Name=leftward hand
+Keywords=reaching | helping hand | feel | push | pat | tap | tag | touching | tag | leftward
+Emoji_Modifier_Base
+U+1FAF2 U+1F3FB
+U+1FAF2 U+1F3FC
+U+1FAF2 U+1F3FD
+U+1FAF2 U+1F3FE
+U+1FAF2 U+1F3FF
 
-Proposal=L2/19-390, L2/20-130
+Proposal=L2/19-327
+After=🤞
+U+1FAF0
+Name=hand with index finger and thumb crossed
+Keywords=money | coin | pay me | expensive | love | heart | snap
+Emoji_Modifier_Base
+U+1FAF0 U+1F3FB
+U+1FAF0 U+1F3FC
+U+1FAF0 U+1F3FD
+U+1FAF0 U+1F3FE
+U+1FAF0 U+1F3FF
+
+Proposal=L2/19-219
+After=👄
+U+1FAE6
+Name=biting lip
+Keywords=fear | anxiety | uncomfortable | insecure | worried | flirting | desire | nervous
+
+Proposal=L2/19-232, L2/19-399
+After=🧟‍♀️
+U+1F9CC
+Name=troll
+Keywords=fairy tale | fantasy | monster
+
+Proposal=L2/19-310
+After=🪅
+U+1FAA9
+Name=mirror ball
+Keywords=disco | party | dance | glamour | glitter
+
+Proposal=L2/19-316
+After=🔋
+U+1FAAB
+Name=low battery
+Keywords=low energy | dead | dying | computer
+
+Proposal=L2/20-072
+After=🙃
+U+1FAE0
+Name=melting face
+Keywords=melt | awesome | horror | dry up | drop | liquid | soften | dissolve
+
+Proposal=L2/20-064
+After=🥺
+U+1F979
+Name=face holding back tears
+Keywords=proud | tears | angry | sad | resist | hold back | cry
+
+Proposal=L2/19-396, L2/19-400
+After=🤔
+U+1FAE1
+Name=saluting face
+Keywords=salute | yes | ok | troops | sunny
+
+Proposal=L2/19-378
+After=🤭
+U+1FAE3
+Name=face with peeking eye
+Keywords=can’t look away | captivated | staring | peep
+
+Proposal=L2/19-371
+After=💮
+U+1FAB7
+Name=lotus
+Keywords=flower | purity | Buddhism | bloom | Hinduism | India | Vietnam
+
+Proposal=L2/19-379
+After=🩹
+U+1FA7C
+Name=crutch
+Keywords=mobility aid | disability | walking cane | walking stick
+
+Proposal=L2/19-370
+After=🤝
+#U+1F91D
+#Name=handshake
+#Emoji_Modifier_Base
+U+1F91D U+1F3FB
+U+1FAF1 U+1F3FB U+200D U+1FAF2 U+1F3FC
+Name=handshake: light skin tone, medium-light skin tone
+U+1FAF1 U+1F3FB U+200D U+1FAF2 U+1F3FD
+Name=handshake: light skin tone, medium skin tone
+U+1FAF1 U+1F3FB U+200D U+1FAF2 U+1F3FE
+Name=handshake: light skin tone, medium-dark skin tone
+U+1FAF1 U+1F3FB U+200D U+1FAF2 U+1F3FF
+Name=handshake: light skin tone, dark skin tone
+U+1FAF1 U+1F3FC U+200D U+1FAF2 U+1F3FB
+Name=handshake: medium-light skin tone, light skin tone
+U+1F91D U+1F3FC
+U+1FAF1 U+1F3FC U+200D U+1FAF2 U+1F3FD
+Name=handshake: medium-light skin tone, medium skin tone
+U+1FAF1 U+1F3FC U+200D U+1FAF2 U+1F3FE
+Name=handshake: medium-light skin tone, medium-dark skin tone
+U+1FAF1 U+1F3FC U+200D U+1FAF2 U+1F3FF
+Name=handshake: medium-light skin tone, dark skin tone
+U+1FAF1 U+1F3FD U+200D U+1FAF2 U+1F3FB
+Name=handshake: medium skin tone, light skin tone
+U+1FAF1 U+1F3FD U+200D U+1FAF2 U+1F3FC
+Name=handshake: medium skin tone, medium-light skin tone
+U+1F91D U+1F3FD
+U+1FAF1 U+1F3FD U+200D U+1FAF2 U+1F3FE
+Name=handshake: medium skin tone, medium-dark skin tone
+U+1FAF1 U+1F3FD U+200D U+1FAF2 U+1F3FF
+Name=handshake: medium skin tone, dark skin tone
+U+1FAF1 U+1F3FE U+200D U+1FAF2 U+1F3FB
+Name=handshake: medium-dark skin tone, light skin tone
+U+1FAF1 U+1F3FE U+200D U+1FAF2 U+1F3FC
+Name=handshake: medium-dark skin tone, medium-light skin tone
+U+1FAF1 U+1F3FE U+200D U+1FAF2 U+1F3FD
+Name=handshake: medium-dark skin tone, medium skin tone
+U+1F91D U+1F3FE
+U+1FAF1 U+1F3FE U+200D U+1FAF2 U+1F3FF
+Name=handshake: medium-dark skin tone, dark skin tone
+U+1FAF1 U+1F3FF U+200D U+1FAF2 U+1F3FB
+Name=handshake: dark skin tone, light skin tone
+U+1FAF1 U+1F3FF U+200D U+1FAF2 U+1F3FC
+Name=handshake: dark skin tone, medium-light skin tone
+U+1FAF1 U+1F3FF U+200D U+1FAF2 U+1F3FD
+Name=handshake: dark skin tone, medium skin tone
+U+1FAF1 U+1F3FF U+200D U+1FAF2 U+1F3FE
+Name=handshake: dark skin tone, medium-dark skin tone
+U+1F91D U+1F3FF
+
+Proposal=L2/20-219
+After=😕
+U+1FAE4
+Name=face with diagonal mouth
+Keywords=meh | eh | skeptical | huh | indifferent | unsure | disappointed
+
+Proposal=L2/20-223
 After=😶
-U+1F636 U+200D U+1F32B U+FE0F
-Name=face in clouds
-Keywords=brain fog | confused | delirious | foggy | forgetful | head in clouds
+U+1FAE5
+Name=dotted line face
+Keywords=invisible | out of sight | hidden | disappeared | introvert | depression | unimportant
 
-Proposal=L2/19-391
-After=🧔
-U+1F9D4 1F3FB
-Name=woman with beard
-Keywords=fuzz | goatee | stubble | mustache | woman
-U+1F9D4 1F3FB U+200D U+2640
-Name=woman with beard: light skin tone
-U+1F9D4 1F3FC U+200D U+2640
-Name=woman with beard: medium-light skin tone
-U+1F9D4 1F3FD U+200D U+2640
-Name=woman with beard: medium skin tone
-U+1F9D4 1F3FE U+200D U+2640
-Name=woman with beard: medium-dark skin tone
-U+1F9D4 1F3FF U+200D U+2640
-Name=woman with beard: dark skin tone
+Proposal=L2/20-190
+After=🤰
+U+1FAC3
+Name=man with swollen belly
+Keywords=pregnant | hungry | full | food | bloated | belly | swollen
+Emoji_Modifier_Base
+U+1FAC3 U+1F3FB
+U+1FAC3 U+1F3FC
+U+1FAC3 U+1F3FD
+U+1FAC3 U+1F3FE
+U+1FAC3 U+1F3FF
 
-Proposal=L2/19-391
-After=🧔
-U+1F9D4 U+200D U+2642
-Name=man with beard
-Keywords=fuzz | goatee | stubble | mustache | man
-U+1F9D4 1F3FB U+200D U+2642
-Name=man with beard: light skin tone
-U+1F9D4 1F3FC U+200D U+2642
-Name=man with beard: medium-light skin tone
-U+1F9D4 1F3FD U+200D U+2642
-Name=man with beard: medium skin tone
-U+1F9D4 1F3FE U+200D U+2642
-Name=man with beard: medium-dark skin tone
-U+1F9D4 1F3FF U+200D U+2642
-Name=man with beard: dark skin tone
+Proposal=L2/20-190
+After=🤰
+U+1FAC4
+Name=person with swollen belly
+Keywords=pregnant | hungry | full | food | bloated | belly | swollen
+Emoji_Modifier_Base
+U+1FAC4 U+1F3FB
+U+1FAC4 U+1F3FC
+U+1FAC4 U+1F3FD
+U+1FAC4 U+1F3FE
+U+1FAC4 U+1F3FF
 
-Proposal=L2/19-377
-After=👨‍❤️‍💋‍👨
-U+1F468 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FB
-U+1F468 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FC
-U+1F468 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FD
-U+1F468 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FE
-U+1F468 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FF
-U+1F468 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FB
-U+1F468 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FC
-U+1F468 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FD
-U+1F468 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FE
-U+1F468 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FF
-U+1F468 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FB
-U+1F468 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FC
-U+1F468 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FD
-U+1F468 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FE
-U+1F468 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FF
-U+1F468 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FB
-U+1F468 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FC
-U+1F468 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FD
-U+1F468 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FE
-U+1F468 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FF
-U+1F468 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FB
-U+1F468 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FC
-U+1F468 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FD
-U+1F468 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FE
-U+1F468 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FF
-After=👩‍❤️‍💋‍👨
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FB
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FC
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FD
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FE
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FF
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FB
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FC
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FD
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FE
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FF
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FB
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FC
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FD
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FE
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FF
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FB
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FC
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FD
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FE
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FF
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FB
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FC
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FD
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FE
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468 U+1F3FF
-After=👩‍❤️‍💋‍👩
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FB
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FC
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FD
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FE
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FF
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FB
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FC
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FD
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FE
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FF
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FB
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FC
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FD
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FE
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FF
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FB
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FC
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FD
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FE
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FF
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FB
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FC
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FD
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FE
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469 U+1F3FF
-After=💏
-U+1F48F U+1F3FB
-U+1F9D1 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FC
-U+1F9D1 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FD
-U+1F9D1 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FE
-U+1F9D1 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FF
-U+1F9D1 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FB
-U+1F48F U+1F3FC
-U+1F9D1 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FD
-U+1F9D1 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FE
-U+1F9D1 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FF
-U+1F9D1 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FB
-U+1F9D1 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FC
-U+1F48F U+1F3FD
-U+1F9D1 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FE
-U+1F9D1 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FF
-U+1F9D1 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FB
-U+1F9D1 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FC
-U+1F9D1 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FD
-U+1F48F U+1F3FE
-U+1F9D1 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FF
-U+1F9D1 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FB
-U+1F9D1 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FC
-U+1F9D1 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FD
-U+1F9D1 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F9D1 U+1F3FE
-U+1F48F U+1F3FF
+Proposal=L2/20-189
+After=👷‍♀️
+U+1FAC5
+Name=person with crown
+Keywords=royalty | noble | crown | monarch | royal
+Emoji_Modifier_Base
+U+1FAC5 U+1F3FB
+U+1FAC5 U+1F3FC
+U+1FAC5 U+1F3FD
+U+1FAC5 U+1F3FE
+U+1FAC5 U+1F3FF
 
-After=👨‍❤️‍👨
-U+1F468 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FB
-U+1F468 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FC
-U+1F468 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FD
-U+1F468 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FE
-U+1F468 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FF
-U+1F468 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FB
-U+1F468 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FC
-U+1F468 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FD
-U+1F468 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FE
-U+1F468 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FF
-U+1F468 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FB
-U+1F468 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FC
-U+1F468 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FD
-U+1F468 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FE
-U+1F468 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FF
-U+1F468 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FB
-U+1F468 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FC
-U+1F468 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FD
-U+1F468 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FE
-U+1F468 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FF
-U+1F468 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FB
-U+1F468 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FC
-U+1F468 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FD
-U+1F468 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FE
-U+1F468 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FF
-After=👩‍❤️‍👨
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FB
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FC
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FD
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FE
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FF
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FB
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FC
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FD
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FE
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FF
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FB
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FC
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FD
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FE
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FF
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FB
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FC
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FD
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FE
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FF
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FB
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FC
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FD
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FE
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F468 U+1F3FF
-After=👩‍❤️‍👩
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FB
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FC
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FD
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FE
-U+1F469 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FF
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FB
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FC
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FD
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FE
-U+1F469 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FF
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FB
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FC
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FD
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FE
-U+1F469 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FF
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FB
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FC
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FD
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FE
-U+1F469 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FF
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FB
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FC
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FD
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FE
-U+1F469 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F469 U+1F3FF
-After=💑
-U+1F491 U+1F3FB
-U+1F9D1 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FC
-U+1F9D1 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FD
-U+1F9D1 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FE
-U+1F9D1 U+1F3FB U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FF
-U+1F9D1 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FB
-U+1F491 U+1F3FC
-U+1F9D1 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FD
-U+1F9D1 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FE
-U+1F9D1 U+1F3FC U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FF
-U+1F9D1 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FB
-U+1F9D1 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FC
-U+1F491 U+1F3FD
-U+1F9D1 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FE
-U+1F9D1 U+1F3FD U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FF
-U+1F9D1 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FB
-U+1F9D1 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FC
-U+1F9D1 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FD
-U+1F491 U+1F3FE
-U+1F9D1 U+1F3FE U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FF
-U+1F9D1 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FB
-U+1F9D1 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FC
-U+1F9D1 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FD
-U+1F9D1 U+1F3FF U+200D U+2764 U+FE0F U+200D U+1F9D1 U+1F3FE
-U+1F491 U+1F3FF
+Proposal=L2/20-213
+After=🖖
+U+1FAF3
+Name=palm down hand
+Keywords=drop | dismiss | shoo
+Emoji_Modifier_Base
+U+1FAF3 U+1F3FB
+U+1FAF3 U+1F3FC
+U+1FAF3 U+1F3FD
+U+1FAF3 U+1F3FE
+U+1FAF3 U+1F3FF
+
+Proposal=L2/20-213
+After=🖖
+U+1FAF4
+Name=palm up hand
+Keywords=catch | offer | come | beckon
+Emoji_Modifier_Base
+U+1FAF4 U+1F3FB
+U+1FAF4 U+1F3FC
+U+1FAF4 U+1F3FD
+U+1FAF4 U+1F3FE
+U+1FAF4 U+1F3FF
+
+Proposal=L2/20‑212
+After=☝️
+U+1FAF5
+Name=index pointing at the viewer
+UName=INDEX FINGER POINTING AT THE VIEWER
+Keywords=point | you
+Emoji_Modifier_Base
+U+1FAF5 U+1F3FB
+U+1FAF5 U+1F3FC
+U+1FAF5 U+1F3FD
+U+1FAF5 U+1F3FE
+U+1FAF5 U+1F3FF
+
+Proposal=L2/20‑211
+After=🙌
+U+1FAF6
+Name=heart hands
+Keywords=love
+Emoji_Modifier_Base
+U+1FAF6 U+1F3FB
+U+1FAF6 U+1F3FC
+U+1FAF6 U+1F3FD
+U+1FAF6 U+1F3FE
+U+1FAF6 U+1F3FF
+
+Proposal=L2/20-065
+After=🥃
+U+1FAD7
+Name=pouring liquid
+Keywords=libation | pour |spill | empty | sacrifice | overflow | drink | gift | glass
+
+Proposal=L2/20-226
+After=🥜
+U+1FAD8
+Name=beans
+Keywords=seed | legume | pea | soy | head | secret | money | food | kidney
+
+Proposal=L2/20-222
+After=🔪
+U+1FAD9
+Name=jar
+Keywords=container | empty | sauce | spread | condiment | save | storage
+
+Proposal=L2/20-220
+After=🐚
+U+1FAB8
+Name=coral
+Keywords=reef | ocean
+
+Proposal=L2/20-217
+After=🍃
+U+1FAB9
+Name=empty nest
+Keywords=nesting
+
+Proposal=L2/20-217
+#After=🪹
+After=🍃
+U+1FABA
+Name=nest with eggs
+Keywords=nesting
+
+Proposal=L2/20-215
+After=🎠
+U+1F6DD
+Name=playground slide
+Keywords=amusement park
+
+Proposal=L2/20-216
+After=⛽
+U+1F6DE
+Name=wheel
+Keywords=turn | tire | circle
+
+Proposal=L2/20-224
+After=⚓
+U+1F6DF
+Name=ring buoy
+Keywords=safety | life saver | hero | rescue | bail out | float | save | life preserver
+
+Proposal=L2/20-221
+After=🪧
+U+1FAAA
+Name=identification card
+Keywords=ID | credentials | license | security
+
+Proposal=L2/20-218
+After=🧿
+U+1FAAC
+Name=hamsa
+Keywords=protection | amulet | evil | hand | good luck | helping hand | hand of Mary | hand of Miriam | hand of Fatima
+
+Proposal=L2/20-214
+After=🩺
+U+1FA7B
+Name=x-ray
+Keywords=bones | medical | doctor | skeleton
+
+Proposal=L2/20-225
+After=➗
+U+1F7F0
+Name=heavy equals sign
+Keywords=equality | equal rights | even | mathematics

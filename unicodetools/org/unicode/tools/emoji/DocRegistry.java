@@ -117,7 +117,7 @@ public class DocRegistry {
 	DocRegistryEntry item = get(proposalItem);
 	String title = item == null ? "" : " title ='" + TransliteratorUtilities.toHTML.transform(item.title + " 👈 " + item.source) + "'";
 	return "<a target='e-prop' "
-	+ "href='https://www.unicode.org/cgi-bin/GetMatchingDocs.pl?" + proposalItem.replace('\u2011', '-') 
+	+ "href='https://www.unicode.org/cgi-bin/GetDocumentLink?" + proposalItem.replace('\u2011', '-')
 	+ "'" + title + ">"
 	+ proposalItem + "</a>";
     }
