@@ -268,6 +268,10 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             return maxFirstValueAliasWidth;
         return maxValueWidth;
     }
+    
+    public final UnicodeSet getBoolean() {
+        return getSet("Yes", null);
+    }
 
     public final UnicodeSet getSet(String propertyValue) {
         return getSet(propertyValue, null);

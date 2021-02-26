@@ -41,6 +41,7 @@ public class ListProps {
 
     public static void main(String[] args) {
         IndexUnicodeProperties latest = IndexUnicodeProperties.make();
+        System.out.println("UCD: " + latest.getUcdVersion());
 //        if (true) {
 //             Set<Script_Values> sc = EnumSet.copyOf(latest.loadEnum(UcdProperty.Script, Script_Values.class).values());
 //             sc.remove(Script_Values.Inherited);

@@ -17,7 +17,7 @@ public class Settings {
      * Used for the default version.
      */
     public static final String latestVersion = "14.0.0";
-    public static final String lastVersion = "13.0.0"; // last released version
+    public static final String lastVersion = "13.1.0"; // last released version
 
     public static final boolean BUILD_FOR_COMPARE =
             CldrUtility.getProperty("BUILD_FOR_COMPARE", "false").startsWith("t");
