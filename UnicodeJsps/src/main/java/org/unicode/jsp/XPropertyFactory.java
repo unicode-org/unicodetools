@@ -155,12 +155,12 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         for (String prop : cp.getAvailable()) {
             add2(cp.getProperty(prop));
         }
-        UnicodeSet Basic_Emoji = cp.getProperty("Basic_Emoji").getBoolean();
-        UnicodeSet Emoji_Keycap_Sequence = cp.getProperty("RGI_Emoji_Keycap_Sequence").getBoolean();
-        UnicodeSet RGI_Emoji_Modifier_Sequence = cp.getProperty("RGI_Emoji_Modifier_Sequence").getBoolean();
-        UnicodeSet RGI_Emoji_Tag_Sequence = cp.getProperty("RGI_Emoji_Tag_Sequence").getBoolean();
-        UnicodeSet RGI_Emoji_Flag_Sequence = cp.getProperty("RGI_Emoji_Flag_Sequence").getBoolean();
-        UnicodeSet RGI_Emoji_Zwj_Sequence = cp.getProperty("RGI_Emoji_Zwj_Sequence").getBoolean();
+        UnicodeSet Basic_Emoji = cp.getProperty("Basic_Emoji").getTrueSet();
+        UnicodeSet Emoji_Keycap_Sequence = cp.getProperty("RGI_Emoji_Keycap_Sequence").getTrueSet();
+        UnicodeSet RGI_Emoji_Modifier_Sequence = cp.getProperty("RGI_Emoji_Modifier_Sequence").getTrueSet();
+        UnicodeSet RGI_Emoji_Tag_Sequence = cp.getProperty("RGI_Emoji_Tag_Sequence").getTrueSet();
+        UnicodeSet RGI_Emoji_Flag_Sequence = cp.getProperty("RGI_Emoji_Flag_Sequence").getTrueSet();
+        UnicodeSet RGI_Emoji_Zwj_Sequence = cp.getProperty("RGI_Emoji_Zwj_Sequence").getTrueSet();
         UnicodeSet RGI_Emoji = new UnicodeSet()
         	.add(Basic_Emoji)
         	.add(Emoji_Keycap_Sequence)

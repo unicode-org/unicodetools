@@ -269,7 +269,10 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         return maxValueWidth;
     }
     
-    public final UnicodeSet getBoolean() {
+    public final UnicodeSet getTrueSet() {
+	if (!isType(BINARY)) {
+	    throw new IllegalArgumentException("Only applicable to binary (boolean) properties");
+	}
         return getSet("Yes", null);
     }
 
