@@ -318,4 +318,4 @@ Yi_Radicals	;	Yi_Radicals
 Yi_Syllables	;	Yi_Syllables
 Yijing	;	Yijing_Hexagram_Symbols
 Zanabazar_Square	;	Zanabazar_Square
-Znamenny_Musical ; Znamenny_Musical_Notation
+Znamenny_Music ; Znamenny_Musical_Notation
