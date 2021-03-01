@@ -559,7 +559,9 @@ public interface UCD_Types {
     Dives_Akuru = 156,
     Khitan_Small_Script = 157,
     Yezidi = 158,
-    LIMIT_SCRIPT = Yezidi + 1;
+    // Unicode 14
+    Toto = 159,
+    LIMIT_SCRIPT = Toto + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte
@@ -594,7 +596,8 @@ public interface UCD_Types {
     AGE120 = 21,
     AGE121 = 22,
     AGE130 = 23,
-    LIMIT_AGE = AGE130 + 1; // + FIX_FOR_NEW_VERSION;
+    AGE140 = 24,
+    LIMIT_AGE = AGE140 + 1; // + FIX_FOR_NEW_VERSION;
 
     static final String[] AGE_VERSIONS = {
             "?",
@@ -621,6 +624,7 @@ public interface UCD_Types {
             "12.0.0",
             "12.1.0",
             "13.0.0",
+            "14.0.0",
     };
 
     public static byte

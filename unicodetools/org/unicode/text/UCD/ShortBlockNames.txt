@@ -9,6 +9,7 @@ Ancient_Greek_Numbers	;	Ancient_Greek_Numbers
 Ancient_Symbols	;	Ancient_Symbols
 Arabic	;	Arabic
 Arabic_Ext_A	;	Arabic_Extended_A
+Arabic_Ext_B	;	Arabic_Extended_B
 Arabic_Math	;	Arabic_Mathematical_Alphabetic_Symbols
 Arabic_PF_A	;	Arabic_Presentation_Forms_A
 Arabic_PF_B	;	Arabic_Presentation_Forms_B
@@ -70,6 +71,7 @@ Counting_Rod	;	Counting_Rod_Numerals
 Cuneiform	;	Cuneiform
 Cuneiform_Numbers	;	Cuneiform_Numbers_And_Punctuation
 Currency_Symbols	;	Currency_Symbols
+Cypro_Minoan        ;   Cypro_Minoan
 Cypriot_Syllabary	;	Cypriot_Syllabary
 Cyrillic	;	Cyrillic
 Cyrillic_Ext_A	;	Cyrillic_Extended_A
@@ -96,6 +98,7 @@ Enclosed_Ideographic_Sup	;	Enclosed_Ideographic_Supplement
 Ethiopic	;	Ethiopic
 Ethiopic_Ext	;	Ethiopic_Extended
 Ethiopic_Ext_A	;	Ethiopic_Extended_A
+Ethiopic_Ext_B	;	Ethiopic_Extended_B
 Ethiopic_Sup	;	Ethiopic_Supplement
 Punctuation	;	General_Punctuation
 Geometric_Shapes	;	Geometric_Shapes
@@ -135,6 +138,7 @@ IPA_Ext	;	IPA_Extensions
 Javanese	;	Javanese
 Kaithi	;	Kaithi
 Kana_Ext_A	;	Kana_Extended_A
+Kana_Ext_B	;	Kana_Extended_B
 Kana_Sup	;	Kana_Supplement
 Kanbun	;	Kanbun
 Kangxi	;	Kangxi_Radicals
@@ -156,6 +160,8 @@ Latin_Ext_B	;	Latin_Extended_B
 Latin_Ext_C	;	Latin_Extended_C
 Latin_Ext_D	;	Latin_Extended_D
 Latin_Ext_E	;	Latin_Extended_E
+Latin_Ext_F	;	Latin_Extended_F
+Latin_Ext_G	;	Latin_Extended_G
 Lepcha	;	Lepcha
 Letterlike_Symbols	;	Letterlike_Symbols
 Limbu	;	Limbu
@@ -220,6 +226,7 @@ Old_Persian	;	Old_Persian
 Old_Sogdian	;	Old_Sogdian
 Old_South_Arabian	;	Old_South_Arabian
 Old_Turkic	;	Old_Turkic
+Old_Uyghur  ;   Old_Uyghur
 OCR	;	Optical_Character_Recognition
 Oriya	;	Oriya
 Ornamental_Dingbats	;	Ornamental_Dingbats
@@ -279,6 +286,7 @@ Tai_Le	;	Tai_Le
 Tai_Tham	;	Tai_Tham
 Tai_Viet	;	Tai_Viet
 Tai_Xuan_Jing	;	Tai_Xuan_Jing_Symbols
+Tangsa  ;   Tangsa
 Takri	;	Takri
 Tamil	;	Tamil
 Tamil_Sup	;	Tamil_Supplement
@@ -291,15 +299,18 @@ Thai	;	Thai
 Tibetan	;	Tibetan
 Tifinagh	;	Tifinagh
 Tirhuta	;	Tirhuta
+Toto    ;   Toto
 Transport_And_Map	;	Transport_And_Map_Symbols
 Ugaritic	;	Ugaritic
 UCAS	;	Unified_Canadian_Aboriginal_Syllabics
 UCAS_Ext	;	Unified_Canadian_Aboriginal_Syllabics_Extended
+UCAS_Ext_A	;	Unified_Canadian_Aboriginal_Syllabics_Extended_A
 Vai	;	Vai
 VS	;	Variation_Selectors
 VS_Sup	;	Variation_Selectors_Supplement
 Vedic_Ext	;	Vedic_Extensions
 Vertical_Forms	;	Vertical_Forms
+Vithkuqi ; Vithkuqi
 Wancho	;	Wancho
 Warang_Citi	;	Warang_Citi
 Yezidi	;	Yezidi
@@ -307,3 +318,4 @@ Yi_Radicals	;	Yi_Radicals
 Yi_Syllables	;	Yi_Syllables
 Yijing	;	Yijing_Hexagram_Symbols
 Zanabazar_Square	;	Zanabazar_Square
+Znamenny_Music ; Znamenny_Musical_Notation
