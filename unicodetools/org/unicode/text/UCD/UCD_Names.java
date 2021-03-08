@@ -392,7 +392,11 @@ public final class UCD_Names implements UCD_Types {
         "Khitan_Small_Script",
         "Yezidi",
         // Unicode 14
+        "Cypro_Minoan",
+        "Old_Uyghur",
+        "Tangsa",
         "Toto",
+        "Vithkuqi",
     };
 
     public static final Relation<String,String> EXTRA_SCRIPT =
@@ -568,7 +572,11 @@ public final class UCD_Names implements UCD_Types {
         "Kits",
         "Yezi",
         // Unicode 14
+        "Cpmn",
+        "Ougr",
+        "Tnsa",
         "Toto",
+        "Vith",
     };
 
     static final String[] SHORT_AGE = {
