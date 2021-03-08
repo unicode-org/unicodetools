@@ -560,8 +560,12 @@ public interface UCD_Types {
     Khitan_Small_Script = 157,
     Yezidi = 158,
     // Unicode 14
-    Toto = 159,
-    LIMIT_SCRIPT = Toto + 1;
+    Cypro_Minoan = 159,
+    Old_Uyghur = 160,
+    Tangsa = 161,
+    Toto = 162,
+    Vithkuqi = 163,
+    LIMIT_SCRIPT = Vithkuqi + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte
