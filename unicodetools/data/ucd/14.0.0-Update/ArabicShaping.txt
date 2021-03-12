@@ -857,24 +857,24 @@ A873; PHAGS-PA CANDRABINDU; U; No_Joining_Group
 
 # Old Uyghur Characters
 
-10F70; OLD UYGHUR ALEPH; D; No_Joining_Group
-10F71; OLD UYGHUR BETH; D; No_Joining_Group
-10F72; OLD UYGHUR GIMEL-HETH; D; No_Joining_Group
-10F73; OLD UYGHUR WAW; D; No_Joining_Group
-10F74; OLD UYGHUR ZAYIN; D; No_Joining_Group
-10F75; OLD UYGHUR FINAL HETH; R; No_Joining_Group
-10F76; OLD UYGHUR YODH; D; No_Joining_Group
-10F77; OLD UYGHUR KAPH; D; No_Joining_Group
-10F78; OLD UYGHUR LAMEDH; D; No_Joining_Group
-10F79; OLD UYGHUR MEM; D; No_Joining_Group
-10F7A; OLD UYGHUR NUN; D; No_Joining_Group
-10F7B; OLD UYGHUR SAMEKH; D; No_Joining_Group
-10F7C; OLD UYGHUR PE; D; No_Joining_Group
-10F7D; OLD UYGHUR SADHE; D; No_Joining_Group
-10F7E; OLD UYGHUR RESH; D; No_Joining_Group
-10F7F; OLD UYGHUR SHIN; D; No_Joining_Group
-10F80; OLD UYGHUR TAW; D; No_Joining_Group
-10F81; OLD UYGHUR LESH; D; No_Joining_Group
+10F70; OLD UYGHUR ALEPH; D; No_Joining_Group
+10F71; OLD UYGHUR BETH; D; No_Joining_Group
+10F72; OLD UYGHUR GIMEL-HETH; D; No_Joining_Group
+10F73; OLD UYGHUR WAW; D; No_Joining_Group
+10F74; OLD UYGHUR ZAYIN; D; No_Joining_Group
+10F75; OLD UYGHUR FINAL HETH; R; No_Joining_Group
+10F76; OLD UYGHUR YODH; D; No_Joining_Group
+10F77; OLD UYGHUR KAPH; D; No_Joining_Group
+10F78; OLD UYGHUR LAMEDH; D; No_Joining_Group
+10F79; OLD UYGHUR MEM; D; No_Joining_Group
+10F7A; OLD UYGHUR NUN; D; No_Joining_Group
+10F7B; OLD UYGHUR SAMEKH; D; No_Joining_Group
+10F7C; OLD UYGHUR PE; D; No_Joining_Group
+10F7D; OLD UYGHUR SADHE; D; No_Joining_Group
+10F7E; OLD UYGHUR RESH; D; No_Joining_Group
+10F7F; OLD UYGHUR SHIN; D; No_Joining_Group
+10F80; OLD UYGHUR TAW; D; No_Joining_Group
+10F81; OLD UYGHUR LESH; D; No_Joining_Group
 
 # Chorasmian Characters
 

@@ -1094,6 +1094,8 @@ public final class UCD_Names implements UCD_Types {
         // Unicode 11, non-singletons:
         "Hanifi_Rohingya_Pa",
         "Hanifi_Rohingya_Kinna_Ya",
+        // Unicode 14
+        "THIN_YEH"
     };
     static {
         fixArray(JOINING_GROUP);
