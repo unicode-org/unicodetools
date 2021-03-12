@@ -1281,6 +1281,9 @@ public final class UCD implements UCD_Types {
             if (ch <= 0x9FFC && rCompositeVersion >= 0xd0000) {
                 return CJK_BASE;
             }
+            if (ch <= 0x9FFF && rCompositeVersion >= 0xe0000) {
+                return CJK_BASE;
+            }
             if (ch < 0xAC00) {
                 return ch;
             }
@@ -1380,13 +1383,19 @@ public final class UCD implements UCD_Types {
             if (ch <= 0x2A6DD && rCompositeVersion >= 0xd0000) {
                 return CJK_B_BASE;
             }
+            if (ch <= 0x2A6DF && rCompositeVersion >= 0xe0000) {
+                return CJK_B_BASE;
+            }
             // 2A700..2B73F; CJK Unified Ideographs Extension C
             if (rCompositeVersion >= 0x50200) {
                 if (ch <= CJK_C_BASE)
                 {
                     return ch;       // Extension C first char
                 }
-                if (ch <  CJK_C_LIMIT) {
+                if (ch <= 0x2B734) {
+                    return CJK_C_BASE;
+                }
+                if (ch <= 0x2B737 && rCompositeVersion >= 0xe0000) {
                     return CJK_C_BASE;
                 }
             }
