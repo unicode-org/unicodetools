@@ -747,8 +747,10 @@ public interface UCD_Types {
     // Unicode 11, non-singletons:
     Hanifi_Rohingya_Pa = 101,
     Hanifi_Rohingya_Kinna_Ya = 102,
+    // Unicode 14
+    THIN_YEH = 103,
     // limit
-    LIMIT_JOINING_GROUP = Hanifi_Rohingya_Kinna_Ya + 1;
+    LIMIT_JOINING_GROUP = THIN_YEH + 1;
 
     static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;
     public static final int
