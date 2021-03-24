@@ -1,5 +1,5 @@
 # DerivedNormalizationProps-14.0.0.txt
-# Date: 2021-03-08, 19:35:45 GMT
+# Date: 2021-03-12, 21:32:08 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -6939,7 +6939,7 @@ FFF0..FFF8    ; NFKC_CF;                # Cn   [9] <reserved-FFF0>..<reserved-FF
 107A6         ; NFKC_CF; 027A           # Lm       MODIFIER LETTER SMALL TURNED R WITH LONG LEG
 107A7         ; NFKC_CF; 1DF08          # Lm       MODIFIER LETTER SMALL TURNED R WITH LONG LEG AND RETROFLEX HOOK
 107A8         ; NFKC_CF; 027D           # Lm       MODIFIER LETTER SMALL R WITH TAIL
-107A9         ; NFKC_CF; 0029           # Lm       MODIFIER LETTER SMALL R WITH FISHHOOK
+107A9         ; NFKC_CF; 027E           # Lm       MODIFIER LETTER SMALL R WITH FISHHOOK
 107AA         ; NFKC_CF; 0280           # Lm       MODIFIER LETTER SMALL CAPITAL R
 107AB         ; NFKC_CF; 02A8           # Lm       MODIFIER LETTER SMALL TC DIGRAPH WITH CURL
 107AC         ; NFKC_CF; 02A6           # Lm       MODIFIER LETTER SMALL TS DIGRAPH

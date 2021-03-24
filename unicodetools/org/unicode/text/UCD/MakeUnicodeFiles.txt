@@ -1,6 +1,6 @@
 Generate: .
 CopyrightYear: 2021
-DeltaVersion: 10
+DeltaVersion: 12
 
 File: extra/ScriptNfkc
 Property: SPECIAL
