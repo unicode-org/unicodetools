@@ -425,11 +425,12 @@ public class EmojiOrder {
 			if (DEBUG) {
 				System.out.println(string + "=>" + results);
 			}
-			boolean isHandshake = string.contains(EmojiData.ZWJ_HANDSHAKE_ZWJ) && !string.equals(EmojiData.NEUTRAL_HOLDING);
-			UnicodeSet temp = isHandshake ? new UnicodeSet() : null;
+			boolean isHoldingHands = string.contains(EmojiData.ZWJ_HANDSHAKE_ZWJ) && !string.equals(EmojiData.NEUTRAL_HOLDING);
+			boolean isHandshake = EmojiData.EMOJI_DATA_BETA.isHandshake(string);
+			UnicodeSet temp = isHoldingHands || isHandshake ? new UnicodeSet() : null;
 
 			for (String item : results) {
-				if (isHandshake) {
+				if (isHoldingHands || isHandshake) {
 					// substitute the single character IFF the modifiers are the same
 					temp.clear().addAll(item).retainAll(EmojiData.MODIFIERS);
 					String oldItem = item;

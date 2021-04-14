@@ -73,7 +73,7 @@ Name=biting lip
 Keywords=fear | anxiety | uncomfortable | insecure | worried | flirting | desire | nervous
 
 Proposal=L2/19-232, L2/19-399
-After=🧟‍♀️
+After=🧟
 U+1F9CC
 Name=troll
 Keywords=fairy tale | fantasy | monster
