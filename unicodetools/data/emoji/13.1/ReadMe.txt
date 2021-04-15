@@ -3,9 +3,9 @@
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 
-This directory contains data files for Unicode Emoji, Version 13.0
+This directory contains data files for Unicode Emoji, Version 13.1
 
-Public/emoji/13.0/
+Public/emoji/13.1/
 
   emoji-sequences.txt
   emoji-zwj-sequences.txt
