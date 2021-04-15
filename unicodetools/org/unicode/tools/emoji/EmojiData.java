@@ -70,6 +70,9 @@ public class EmojiData implements EmojiDataSource {
 
     static final String ZWJ_HANDSHAKE_ZWJ = Emoji.JOINER_STR + "🤝" + Emoji.JOINER_STR;
     private static final String BAD_HANDSHAKE = "👨🏻‍🤝‍👨🏼";
+    static final String RIGHTWARDS_HAND = UTF16.valueOf(0x1faf1);
+    static final String LEFTWARDS_HAND = UTF16.valueOf(0x1faf2);
+    static final String SHAKING_HANDS = RIGHTWARDS_HAND + Emoji.JOINER_STR + LEFTWARDS_HAND;
 
     public static boolean ALLOW_UNICODE_NAME = System.getProperty("ALLOW_UNICODE_NAME") != null;
     public static final UnicodeSet TAKES_NO_VARIANT = new UnicodeSet(Emoji.EMOJI_VARIANTS_JOINER)
@@ -1392,6 +1395,8 @@ public class EmojiData implements EmojiDataSource {
 		    final boolean skipIfFirstLighterThanSecond = !afterVersion12 && sameAffix;
 		    addMultiples(prefix, ZWJ_HANDSHAKE_ZWJ, postfix, skipIfFirstLighterThanSecond, output);
 		}
+	    } else if (isHandshake(singletonOrSequence)) {
+		    addMultiples(RIGHTWARDS_HAND, Emoji.JOINER_STR, LEFTWARDS_HAND, false, output);
 	    } else if (false && MULTIPLE_SKINS.contains(singletonOrSequence)) {
 		if (version.compareTo(Emoji.VERSION13) > 0) {
 		    String infix = "\u200D\u2764\u200D";
@@ -1973,16 +1978,19 @@ public class EmojiData implements EmojiDataSource {
     /**
      * This contains the mapping to the "shortest form" form for certain combinations.
      */
-    public static final Map<String, String> MAP_TO_COUPLES = ImmutableMap.of(
-	    "👨‍🤝‍👨", "👬", 
-	    "👩‍🤝‍👨", "👫",
-	    "👩‍🤝‍👩", "👭",
-	    "🧑‍❤️‍💋‍🧑", "💏",
-	    "🧑‍❤️‍🧑", "💑"
-	    );
+    public static final Map<String, String> MAP_TO_COUPLES = ImmutableMap.<String, String>builder()
+	    .put("👨‍🤝‍👨", "👬") 
+	    .put("👩‍🤝‍👨", "👫")
+	    .put("👩‍🤝‍👩", "👭")
+	    .put("🧑‍❤️‍💋‍🧑", "💏")
+	    .put("🧑‍❤️‍🧑", "💑")
+	    .build();
 
-    public static final Map<String, String> COUPLES_TO_HANDSHAKE_VERSION = ImmutableMap.of("👬", "👨‍🤝‍👨", "👫",
-	    "👩‍🤝‍👨", "👭", "👩‍🤝‍👩");
+    public static final Map<String, String> COUPLES_TO_HANDSHAKE_VERSION = ImmutableMap.<String, String>builder()
+	    .put("👬", "👨‍🤝‍👨")
+	    .put("👫", "👩‍🤝‍👨")
+	    .put("👭", "👩‍🤝‍👩")
+	    .build();
 
     public static final UnicodeSet COUPLES = new UnicodeSet().addAll(COUPLES_TO_HANDSHAKE_VERSION.keySet()).freeze();
 
@@ -2001,6 +2009,13 @@ public class EmojiData implements EmojiDataSource {
 		System.out.println("couple: " + s + " => " + result);
 	}
 	return result;
+    }
+
+    public boolean isHandshake(String s) {
+	    if (version.compareTo(Emoji.VERSION14) >= 0) {
+		    return getBaseRemovingModsGender(s).equals(EmojiData.SHAKING_HANDS);
+	    }
+	    return false;
     }
 
     private static final Map<Emoji.CharSource, UnicodeSet> charSourcesToUnicodeSet;
