@@ -1,5 +1,5 @@
 # DerivedNormalizationProps-14.0.0.txt
-# Date: 2021-03-12, 21:32:08 GMT
+# Date: 2021-03-24, 22:36:58 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -3440,7 +3440,6 @@ FFE3          ; Expands_On_NFKC # Sk       FULLWIDTH MACRON
 0676          ; NFKC_CF; 0648 0674      # Lo       ARABIC LETTER HIGH HAMZA WAW
 0677          ; NFKC_CF; 06C7 0674      # Lo       ARABIC LETTER U WITH HAMZA ABOVE
 0678          ; NFKC_CF; 064A 0674      # Lo       ARABIC LETTER HIGH HAMZA YEH
-0890..0891    ; NFKC_CF;                # Cf   [2] ARABIC POUND MARK ABOVE..ARABIC PIASTRE MARK ABOVE
 0958          ; NFKC_CF; 0915 093C      # Lo       DEVANAGARI LETTER QA
 0959          ; NFKC_CF; 0916 093C      # Lo       DEVANAGARI LETTER KHHA
 095A          ; NFKC_CF; 0917 093C      # Lo       DEVANAGARI LETTER GHHA
@@ -3535,6 +3534,7 @@ FFE3          ; Expands_On_NFKC # Sk       FULLWIDTH MACRON
 17B4..17B5    ; NFKC_CF;                # Mn   [2] KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
 180B..180D    ; NFKC_CF;                # Mn   [3] MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
 180E          ; NFKC_CF;                # Cf       MONGOLIAN VOWEL SEPARATOR
+180F          ; NFKC_CF;                # Mn       MONGOLIAN FREE VARIATION SELECTOR FOUR
 1C80          ; NFKC_CF; 0432           # L&       CYRILLIC SMALL LETTER ROUNDED VE
 1C81          ; NFKC_CF; 0434           # L&       CYRILLIC SMALL LETTER LONG-LEGGED DE
 1C82          ; NFKC_CF; 043E           # L&       CYRILLIC SMALL LETTER NARROW O
@@ -8938,7 +8938,7 @@ E0080..E00FF  ; NFKC_CF;                # Cn [128] <reserved-E0080>..<reserved-E
 E0100..E01EF  ; NFKC_CF;                # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; NFKC_CF;                # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10435
+# Total code points: 10434
 
 # ================================================
 
@@ -9240,7 +9240,6 @@ E01F0..E0FFF  ; NFKC_CF;                # Cn [3600] <reserved-E01F0>..<reserved-
 0587          ; Changes_When_NFKC_Casefolded # L&       ARMENIAN SMALL LIGATURE ECH YIWN
 061C          ; Changes_When_NFKC_Casefolded # Cf       ARABIC LETTER MARK
 0675..0678    ; Changes_When_NFKC_Casefolded # Lo   [4] ARABIC LETTER HIGH HAMZA ALEF..ARABIC LETTER HIGH HAMZA YEH
-0890..0891    ; Changes_When_NFKC_Casefolded # Cf   [2] ARABIC POUND MARK ABOVE..ARABIC PIASTRE MARK ABOVE
 0958..095F    ; Changes_When_NFKC_Casefolded # Lo   [8] DEVANAGARI LETTER QA..DEVANAGARI LETTER YYA
 09DC..09DD    ; Changes_When_NFKC_Casefolded # Lo   [2] BENGALI LETTER RRA..BENGALI LETTER RHA
 09DF          ; Changes_When_NFKC_Casefolded # Lo       BENGALI LETTER YYA
@@ -9277,6 +9276,7 @@ E01F0..E0FFF  ; NFKC_CF;                # Cn [3600] <reserved-E01F0>..<reserved-
 17B4..17B5    ; Changes_When_NFKC_Casefolded # Mn   [2] KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
 180B..180D    ; Changes_When_NFKC_Casefolded # Mn   [3] MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
 180E          ; Changes_When_NFKC_Casefolded # Cf       MONGOLIAN VOWEL SEPARATOR
+180F          ; Changes_When_NFKC_Casefolded # Mn       MONGOLIAN FREE VARIATION SELECTOR FOUR
 1C80..1C88    ; Changes_When_NFKC_Casefolded # L&   [9] CYRILLIC SMALL LETTER ROUNDED VE..CYRILLIC SMALL LETTER UNBLENDED UK
 1C90..1CBA    ; Changes_When_NFKC_Casefolded # L&  [43] GEORGIAN MTAVRULI CAPITAL LETTER AN..GEORGIAN MTAVRULI CAPITAL LETTER AIN
 1CBD..1CBF    ; Changes_When_NFKC_Casefolded # L&   [3] GEORGIAN MTAVRULI CAPITAL LETTER AEN..GEORGIAN MTAVRULI CAPITAL LETTER LABIAL SIGN
@@ -9950,6 +9950,6 @@ E0080..E00FF  ; Changes_When_NFKC_Casefolded # Cn [128] <reserved-E0080>..<reser
 E0100..E01EF  ; Changes_When_NFKC_Casefolded # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; Changes_When_NFKC_Casefolded # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10435
+# Total code points: 10434
 
 # EOF

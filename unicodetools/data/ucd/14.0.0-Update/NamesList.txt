@@ -1,12 +1,25 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 14.0.0
-@@@+	U14M210205.lst
-	Unicode 14.0.0 names list, seventh delta.
-	Repertoire synched with UnicodeData-14.0.0d4.txt.
-	Corrected header at 1DF00 to Extended-G.
-	Corrected position of subhead for 1FFF7.
-	Adjusted wording of notice at 11070.
-	Changed 7 CJK ideograph xrefs to bare CJK style for consistency.
+@@@+	U14M210503.lst
+	Unicode 14.0.0 names list, ninth delta.
+	Repertoire synched with UnicodeData-14.0.0d9.txt.
+	Corrected typo in subhead at 131A3.
+	Added subhead for Carrier at 15C4.
+	Updated annotation for 02B9.
+	Retargeted annotation for 08FB.
+	Updated annotations for 06C5 and 088E.
+	Added annotation for FDCF.
+	Added xref between 1F7F0 and 3013.
+	Added xref from 1F7F0 to 2716.
+	Adjusted subheads for rotation of 1AC9..1ACE code points.
+	Added annotations for Komi letters 0500..050F, 052A..052D.
+	Adjusted subheads for Gurage Ethiopic at 1380, 2DC0, 1E7E0.
+	Update name of 1FAC4.
+	Added xref between 1F50B and 1FAAB.
+	Added xref between 1F5E2 and 1FAE6.
+	Added aliases for 1FA74, 1FA79, 1FAAA.
+	Added xref between 1F4A7 and 1FA78.
+	Updated end range of CJK Extension C.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -2084,7 +2097,7 @@
 	# <super> 0079
 @		Miscellaneous phonetic modifiers
 02B9	MODIFIER LETTER PRIME
-	* primary stress, emphasis
+	* stress, emphasis
 	* transliteration of mjagkij znak (Cyrillic soft sign: palatalization)
 	* transliteration of Hebrew geresh
 	x (apostrophe - 0027)
@@ -3362,6 +3375,7 @@
 04FF	CYRILLIC SMALL LETTER HA WITH STROKE
 @@	0500	Cyrillic Supplement	052F
 @		Komi letters
+@+		These letters are for the obsolete Molodtsov alphabet, used in the 1920s.
 0500	CYRILLIC CAPITAL LETTER KOMI DE
 0501	CYRILLIC SMALL LETTER KOMI DE
 0502	CYRILLIC CAPITAL LETTER KOMI DJE
@@ -3424,9 +3438,10 @@
 0528	CYRILLIC CAPITAL LETTER EN WITH LEFT HOOK
 0529	CYRILLIC SMALL LETTER EN WITH LEFT HOOK
 @		Komi letters
+@+		These are obsolete letters attested in a 19th century grammar of Komi.
 052A	CYRILLIC CAPITAL LETTER DZZHE
 052B	CYRILLIC SMALL LETTER DZZHE
-	* also used for Ossetian
+	* also used for Ossetian until 1924
 052C	CYRILLIC CAPITAL LETTER DCHE
 052D	CYRILLIC SMALL LETTER DCHE
 @		Khanty letters
@@ -4114,7 +4129,7 @@
 	* Kashmiri
 06C5	ARABIC LETTER KIRGHIZ OE
 	* Kyrgyz
-	* a barred form also occurs
+	* a glyph variant occurs which replaces the looped tail with a horizontal bar through the tail
 06C6	ARABIC LETTER OE
 	* Uyghur, Kurdish, Kazakh, Azerbaijani, Bosnian
 06C7	ARABIC LETTER U
@@ -4317,6 +4332,7 @@
 @		Syriac marks
 0740	SYRIAC FEMININE DOT
 	* feminine marker used with the Taw feminine suffix
+	x (combining dot above left - 1DF8)
 0741	SYRIAC QUSHSHAYA
 	* indicates a plosive pronunciation
 0742	SYRIAC RUKKAKHA
@@ -4748,9 +4764,10 @@
 	* Pegon alternative for 088B
 088D	ARABIC LETTER KEHEH WITH TWO DOTS VERTICALLY BELOW
 	* Sundanese Pegon
-@		Abbreviation letter
+@		Abbreviation mark
 088E	ARABIC VERTICAL TAIL
-	* early Persian movable type printing in Iran; only observed in final form
+	* mark used to indicate abbreviations in early movable type texts from Iran 
+	* only attested in final form
 @		Supertending currency symbols
 0890	ARABIC POUND MARK ABOVE
 	* Egyptian pound
@@ -4915,8 +4932,8 @@
 08F9	ARABIC LEFT ARROWHEAD BELOW
 08FA	ARABIC RIGHT ARROWHEAD BELOW
 08FB	ARABIC DOUBLE RIGHT ARROWHEAD ABOVE
-08FC	ARABIC DOUBLE RIGHT ARROWHEAD ABOVE WITH DOT
 	* also used in Quranic text in African and other orthographies to represent dammatan
+08FC	ARABIC DOUBLE RIGHT ARROWHEAD ABOVE WITH DOT
 08FD	ARABIC RIGHT ARROWHEAD ABOVE WITH DOT
 @		Extended vowel signs
 08FE	ARABIC DAMMA WITH DOT
@@ -8157,7 +8174,7 @@
 137B	ETHIOPIC NUMBER HUNDRED
 137C	ETHIOPIC NUMBER TEN THOUSAND
 @@	1380	Ethiopic Supplement	139F
-@		Syllables for Sebatbeit
+@		Syllables for Gurage
 1380	ETHIOPIC SYLLABLE SEBATBEIT MWA
 1381	ETHIOPIC SYLLABLE MWI
 	x (ethiopic syllable gurage mwi - 1E7ED)
@@ -8860,6 +8877,7 @@
 15C2	CANADIAN SYLLABICS SAYISI HO
 	* Sayisi (HU)
 15C3	CANADIAN SYLLABICS SAYISI HA
+@		Syllables for Carrier
 15C4	CANADIAN SYLLABICS CARRIER GHU
 15C5	CANADIAN SYLLABICS CARRIER GHO
 15C6	CANADIAN SYLLABICS CARRIER GHE
@@ -9217,6 +9235,7 @@
 170B	TAGALOG LETTER MA
 170C	TAGALOG LETTER YA
 170D	TAGALOG LETTER RA
+	* modern adaptation, not found in Old Tagalog
 170E	TAGALOG LETTER LA
 170F	TAGALOG LETTER WA
 1710	TAGALOG LETTER SA
@@ -10325,14 +10344,14 @@
 	x (combining latin small letter w - 1DF1)
 1AC8	COMBINING PLUS SIGN ABOVE
 	x (combining plus sign below - 031F)
+1AC9	COMBINING DOUBLE PLUS SIGN ABOVE
+1ACA	COMBINING DOUBLE PLUS SIGN BELOW
 @		Used in Middle English Ormulum
-1AC9	COMBINING TRIPLE ACUTE ACCENT
-1ACA	COMBINING LATIN SMALL LETTER INSULAR G
-1ACB	COMBINING LATIN SMALL LETTER INSULAR R
-1ACC	COMBINING LATIN SMALL LETTER INSULAR T
-@		Used in extended IPA
-1ACD	COMBINING DOUBLE PLUS SIGN ABOVE
-1ACE	COMBINING DOUBLE PLUS SIGN BELOW
+1ACB	COMBINING TRIPLE ACUTE ACCENT
+	x (combining double acute accent - 030B)
+1ACC	COMBINING LATIN SMALL LETTER INSULAR G
+1ACD	COMBINING LATIN SMALL LETTER INSULAR R
+1ACE	COMBINING LATIN SMALL LETTER INSULAR T
 @@	1B00	Balinese	1B7F
 @		Various signs
 1B00	BALINESE SIGN ULU RICEM
@@ -10343,6 +10362,8 @@
 	= anusvara
 1B03	BALINESE SIGN SURANG
 	= final r
+	* also used for repha in transliteration of Kawi
+	x (javanese sign layar - A982)
 1B04	BALINESE SIGN BISAH
 	= visarga
 @		Independent vowels
@@ -10552,8 +10573,6 @@
 	= anusvara
 1B81	SUNDANESE SIGN PANGLAYAR
 	= final r
-	* also used for repha in transliteration of Kawi
-	x (javanese sign layar - A982)
 1B82	SUNDANESE SIGN PANGWISAD
 	= visarga
 @		Vowels
@@ -11296,6 +11315,7 @@
 	x (latin small letter yogh - 021D)
 	x (latin small letter script g - 0261)
 	x (latin small letter gamma - 0263)
+	x (latin small letter closed insular g - A7D1)
 1D7A	LATIN SMALL LETTER TH WITH STRIKETHROUGH
 	* American dictionary usage
 	x (greek small letter theta - 03B8)
@@ -11530,6 +11550,7 @@
 	* used in Syriac as a disambiguation dot
 	* used in Typicon Cyrillic, where the dot may have a square appearance
 	x (combining dot above right - 0358)
+	x (syriac feminine dot - 0740)
 1DF9	COMBINING WIDE INVERTED BRIDGE BELOW
 	* used as a Typicon mark
 	x (combining inverted bridge below - 033A)
@@ -18901,7 +18922,7 @@
 2DBC	ETHIOPIC SYLLABLE CCHEE
 2DBD	ETHIOPIC SYLLABLE CCHE
 2DBE	ETHIOPIC SYLLABLE CCHO
-@		Syllables for Sebatbeit
+@		Syllables for Gurage
 2DC0	ETHIOPIC SYLLABLE QYA
 2DC1	ETHIOPIC SYLLABLE QYU
 2DC2	ETHIOPIC SYLLABLE QYI
@@ -20019,6 +20040,7 @@
 	* substitute for ideograph not in font
 	* editorial convention to represent ideographic lacuna
 	x (white square - 25A1)
+	x (heavy equals sign - 1F7F0)
 @		CJK brackets
 3014	LEFT TORTOISE SHELL BRACKET
 3015	RIGHT TORTOISE SHELL BRACKET
@@ -24206,6 +24228,7 @@ A7AE	LATIN CAPITAL LETTER SMALL CAPITAL I
 @		Letter for Japanese phonemic transcription
 A7AF	LATIN LETTER SMALL CAPITAL Q
 	* used to represent gemination
+	x (modifier letter capital q - A7F4)
 @		Letters for Americanist orthographies
 A7B0	LATIN CAPITAL LETTER TURNED K
 	* lowercase is 029E
@@ -24226,7 +24249,7 @@ A7B5	LATIN SMALL LETTER BETA
 A7B6	LATIN CAPITAL LETTER OMEGA
 A7B7	LATIN SMALL LETTER OMEGA
 	x (greek small letter omega - 03C9)
-@		Letters for Mazahua (Mexico)
+@		Letters for Mazahua (México)
 A7B8	LATIN CAPITAL LETTER U WITH STROKE
 A7B9	LATIN SMALL LETTER U WITH STROKE
 @		Letters for Ugaritic and Egyptological transliteration
@@ -24240,7 +24263,7 @@ A7BD	LATIN SMALL LETTER GLOTTAL I
 	x (latin small letter egyptological ain - A725)
 A7BE	LATIN CAPITAL LETTER GLOTTAL U
 A7BF	LATIN SMALL LETTER GLOTTAL U
-@		Additional letters
+@		Additional medieval letters
 A7C0	LATIN CAPITAL LETTER OLD POLISH O
 A7C1	LATIN SMALL LETTER OLD POLISH O
 	* used in Old Polish as a nasal vowel
@@ -24265,23 +24288,27 @@ A7CA	LATIN SMALL LETTER S WITH SHORT STROKE OVERLAY
 @		Letters used in the Middle English Ormulum
 A7D0	LATIN CAPITAL LETTER CLOSED INSULAR G
 A7D1	LATIN SMALL LETTER CLOSED INSULAR G
+	x (latin small letter insular g - 1D79)
 A7D3	LATIN SMALL LETTER DOUBLE THORN
+	x (latin small letter thorn - 00FE)
 A7D5	LATIN SMALL LETTER DOUBLE WYNN
+	x (latin letter wynn - 01BF)
 @		Letters used in medieval palaeography
 A7D6	LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D7	LATIN SMALL LETTER MIDDLE SCOTS S
 	* used in Middle Scots for s, ss, ser, sir, is, sis, etc.
+	x (latin small letter sharp s - 00DF)
 A7D8	LATIN CAPITAL LETTER SIGMOID S
 A7D9	LATIN SMALL LETTER SIGMOID S
 	* used in Middle Cornish, Middle English, and Middle Scots
-@		Modifier letters for Chatino
+@		Modifier letters for Chatino (México)
 A7F2	MODIFIER LETTER CAPITAL C
 	# <super> 0043
 A7F3	MODIFIER LETTER CAPITAL F
 	# <super> 0046
-@		Modifier letter
+@		Modifier letter for Japanese phonemic transcription
 A7F4	MODIFIER LETTER CAPITAL Q
-	* used in phonemic transcription of Japanese
+	x (latin letter small capital q - A7AF)
 	# <super> 0051
 @		Ancient Gaulish and Celtic epigraphic letters
 A7F5	LATIN CAPITAL LETTER REVERSED HALF H
@@ -24877,7 +24904,7 @@ A981	JAVANESE SIGN CECAK
 A982	JAVANESE SIGN LAYAR
 	= final r
 	* also used for repha in transliteration of Kawi
-	x (sundanese sign panglayar - 1B81)
+	x (balinese sign surang - 1B03)
 A983	JAVANESE SIGN WIGNYAN
 	= visarga
 @		Letters
@@ -28062,6 +28089,7 @@ FDC7	ARABIC LIGATURE NOON WITH JEEM WITH YEH FINAL FORM
 @		Honorific word ligature
 FDCF	ARABIC LIGATURE SALAAMUHU ALAYNAA
 	* his blessing on us
+	* used in Christian texts
 @		Noncharacters
 @+		These codes are intended for process-internal uses.
 FDD0	<not a character>
@@ -31038,7 +31066,7 @@ FFFF	<not a character>
 107A8	MODIFIER LETTER SMALL R WITH TAIL
 	# <super> 027D
 107A9	MODIFIER LETTER SMALL R WITH FISHHOOK
-	# <super> 207E
+	# <super> 027E
 107AA	MODIFIER LETTER SMALL CAPITAL R
 	# <super> 0280
 107AB	MODIFIER LETTER SMALL TC DIGRAPH WITH CURL
@@ -34072,7 +34100,7 @@ FFFF	<not a character>
 @		Consonant
 116B8	TAKRI LETTER ARCHAIC KHA
 	* used in earlier writings to denote kha
-@		Sign
+@		Punctuation
 116B9	TAKRI ABBREVIATION SIGN
 	x (gurmukhi abbreviation sign - 0A76)
 	x (sharada abbreviation sign - 111C7)
@@ -34152,7 +34180,7 @@ FFFF	<not a character>
 1173D	AHOM SIGN SECTION
 1173E	AHOM SIGN RULAI
 1173F	AHOM SYMBOL VI
-@		Additional consonants for Tai Ahom
+@		Additional consonants
 11740	AHOM LETTER CA
 11741	AHOM LETTER TTA
 11742	AHOM LETTER TTHA
@@ -37142,7 +37170,7 @@ FFFF	<not a character>
 131A0	EGYPTIAN HIEROGLYPH K006
 131A1	EGYPTIAN HIEROGLYPH K007
 131A2	EGYPTIAN HIEROGLYPH K008
-@		L. Invertabrata and lesser animals
+@		L. Invertebrata and lesser animals
 131A3	EGYPTIAN HIEROGLYPH L001
 131A4	EGYPTIAN HIEROGLYPH L002
 131A5	EGYPTIAN HIEROGLYPH L002A
@@ -41621,7 +41649,7 @@ FFFF	<not a character>
 18CD5	KHITAN SMALL SCRIPT CHARACTER-18CD5
 @@	18D00	Tangut Supplement	18D08
 @@	1AFF0	Kana Extended-B	1AFFF
-@+		This block contains tone marks from Mojikyō. There were used in an obsolete system of tone marking, along with furigana (interlinear annotation written in Katakana) for Minnan (Chinese) text in Taiwan.
+@+		This block contains tone marks occasionally used in furigana extensions to annotate Minnan Chinese.
 @		Tone marks
 1AFF0	KATAKANA LETTER MINNAN TONE-2
 	* also used for tone six
@@ -43210,9 +43238,9 @@ FFFF	<not a character>
 1CF3F	ZNAMENNY COMBINING MARK CURVED OMET
 1CF40	ZNAMENNY COMBINING MARK KRYZH
 1CF41	ZNAMENNY COMBINING LOWER TONAL RANGE INDICATOR
-@		Control characters for priznaki
-1CF42	ZNAMENNY PRIZNAK MODIFIER LEVEL 2
-1CF43	ZNAMENNY PRIZNAK MODIFIER LEVEL 3
+@		Modifying marks for priznaki
+1CF42	ZNAMENNY PRIZNAK MODIFIER LEVEL-2
+1CF43	ZNAMENNY PRIZNAK MODIFIER LEVEL-3
 1CF44	ZNAMENNY PRIZNAK MODIFIER DIRECTION FLIP
 1CF45	ZNAMENNY PRIZNAK MODIFIER KRYZH
 1CF46	ZNAMENNY PRIZNAK MODIFIER ROG
@@ -43340,12 +43368,11 @@ FFFF	<not a character>
 1CFBD	ZNAMENNY NEUME STRELA KRYUKOVAYA GROMOKRYZHEVAYA POVODNAYA
 	= strela kryukovaya gromomrachnaya s kryzhem
 1CFBE	ZNAMENNY NEUME STRELA KRYUKOVAYA TRYASKA
-1CFBF	ZNAMENNY NEUME ROZHEK
-1CFC0	ZNAMENNY NEUME STRELA ROZHNAYA
+1CFBF	ZNAMENNY NEUME KUFISMA
+1CFC0	ZNAMENNY NEUME OBLAKO
 1CFC1	ZNAMENNY NEUME DUDA
 1CFC2	ZNAMENNY NEUME NEMKA
 1CFC3	ZNAMENNY NEUME PAUK
-1CFC4	ZNAMENNY NEUME OBLAKO
 @@	1D000	Byzantine Musical Symbols	1D0FF
 @@+
 @		Prosodies (Prosodics)
@@ -47103,8 +47130,8 @@ FFFF	<not a character>
 1DF04	LATIN LETTER SMALL CAPITAL L WITH BELT
 1DF05	LATIN SMALL LETTER LEZH WITH RETROFLEX HOOK
 1DF06	LATIN SMALL LETTER TURNED Y WITH BELT
-@		IPA extensions
 1DF07	LATIN SMALL LETTER REVERSED ENG
+@		IPA extensions
 1DF08	LATIN SMALL LETTER TURNED R WITH LONG LEG AND RETROFLEX HOOK
 1DF09	LATIN SMALL LETTER T WITH HOOK AND RETROFLEX HOOK
 1DF0A	LATIN LETTER RETROFLEX CLICK WITH RETROFLEX HOOK
@@ -47118,18 +47145,18 @@ FFFF	<not a character>
 @		Lateral
 1DF11	LATIN SMALL LETTER L WITH FISHHOOK
 @		Letters with palatal hooks
-1DF12	LATIN SMALL LETTER DEZH WITH PALATAL HOOK
+1DF12	LATIN SMALL LETTER DEZH DIGRAPH WITH PALATAL HOOK
 1DF13	LATIN SMALL LETTER L WITH BELT AND PALATAL HOOK
 1DF14	LATIN SMALL LETTER ENG WITH PALATAL HOOK
 1DF15	LATIN SMALL LETTER TURNED R WITH PALATAL HOOK
 1DF16	LATIN SMALL LETTER R WITH FISHHOOK AND PALATAL HOOK
-1DF17	LATIN SMALL LETTER TESH WITH PALATAL HOOK
+1DF17	LATIN SMALL LETTER TESH DIGRAPH WITH PALATAL HOOK
 1DF18	LATIN SMALL LETTER EZH WITH PALATAL HOOK
 @		Letters with retroflex hooks
-1DF19	LATIN SMALL LETTER DEZH WITH RETROFLEX HOOK
+1DF19	LATIN SMALL LETTER DEZH DIGRAPH WITH RETROFLEX HOOK
 1DF1A	LATIN SMALL LETTER I WITH STROKE AND RETROFLEX HOOK
 1DF1B	LATIN SMALL LETTER O WITH RETROFLEX HOOK
-1DF1C	LATIN SMALL LETTER TESH WITH RETROFLEX HOOK
+1DF1C	LATIN SMALL LETTER TESH DIGRAPH WITH RETROFLEX HOOK
 1DF1D	LATIN SMALL LETTER C WITH RETROFLEX HOOK
 @		IPA extension
 1DF1E	LATIN SMALL LETTER S WITH CURL
@@ -47392,7 +47419,7 @@ FFFF	<not a character>
 	= rupee
 	x (indian rupee sign - 20B9)
 @@	1E7E0	Ethiopic Extended-B	1E7FF
-@		Syllables for modern Gurage
+@		Syllables for Gurage
 1E7E0	ETHIOPIC SYLLABLE HHYA
 	x (ethiopic syllable xya - 2DD0)
 1E7E1	ETHIOPIC SYLLABLE HHYU
@@ -49847,11 +49874,11 @@ FFFF	<not a character>
 1F448	WHITE LEFT POINTING BACKHAND INDEX
 	x (white left pointing index - 261C)
 	x (black left pointing backhand index - 1F59C)
-	x (leftward hand - 1FAF2)
+	x (leftwards hand - 1FAF2)
 1F449	WHITE RIGHT POINTING BACKHAND INDEX
 	x (white right pointing index - 261E)
 	x (black right pointing backhand index - 1F59D)
-	x (rightward backhand - 1FAF1)
+	x (rightwards hand - 1FAF1)
 1F44A	FISTED HAND SIGN
 	= punch
 	x (raised fist - 270A)
@@ -50005,6 +50032,7 @@ FFFF	<not a character>
 1F4A7	DROPLET
 	* represents a drop of sweat or drop of water
 	x (black droplet - 1F322)
+	x (drop of blood - 1FA78)
 1F4A8	DASH SYMBOL
 	= running dash, briffits
 1F4A9	PILE OF POO
@@ -50184,6 +50212,7 @@ FFFF	<not a character>
 1F50A	SPEAKER WITH THREE SOUND WAVES
 	= sound
 1F50B	BATTERY
+	x (low battery - 1FAAB)
 1F50C	ELECTRIC PLUG
 1F50D	LEFT-POINTING MAGNIFYING GLASS
 	= search
@@ -50601,6 +50630,7 @@ FFFF	<not a character>
 	= rated for sex
 	= kiss
 	x (kiss mark - 1F48B)
+	x (biting lip - 1FAE6)
 1F5E3	SPEAKING HEAD IN SILHOUETTE
 	= rated for strong language
 @		Sound symbols
@@ -51440,6 +51470,8 @@ FFFF	<not a character>
 1F7F0	HEAVY EQUALS SIGN
 	* symbol of equality
 	x (equals sign - 003D)
+	x (heavy multiplication x - 2716)
+	x (geta mark - 3013)
 	x (roman sextans sign - 10190)
 @@	1F800	Supplemental Arrows-C	1F8FF
 @		Arrows with triangle arrowheads
@@ -51664,9 +51696,9 @@ FFFF	<not a character>
 1F919	CALL ME HAND
 1F91A	RAISED BACK OF HAND
 1F91B	LEFT-FACING FIST
-	x (leftward hand - 1FAF2)
+	x (leftwards hand - 1FAF2)
 1F91C	RIGHT-FACING FIST
-	x (rightward backhand - 1FAF1)
+	x (rightwards hand - 1FAF1)
 1F91D	HANDSHAKE
 1F91E	HAND WITH INDEX AND MIDDLE FINGERS CROSSED
 	x (hand with index finger and thumb crossed - 1FAF0)
@@ -51694,7 +51726,7 @@ FFFF	<not a character>
 1F92F	SHOCKED FACE WITH EXPLODING HEAD
 @		Portrait and role symbols
 1F930	PREGNANT WOMAN
-	x (person with swollen belly - 1FAC4)
+	x (pregnant person - 1FAC4)
 1F931	BREAST-FEEDING
 1F932	PALMS UP TOGETHER
 	* used for prayer in some cultures
@@ -52163,9 +52195,12 @@ FFFF	<not a character>
 1FA72	BRIEFS
 1FA73	SHORTS
 1FA74	THONG SANDAL
+	= flip flop
 @		Medical symbols
 1FA78	DROP OF BLOOD
+	x (droplet - 1F4A7)
 1FA79	ADHESIVE BANDAGE
+	= band aid
 1FA7A	STETHOSCOPE
 1FA7B	X-RAY
 1FA7C	CRUTCH
@@ -52205,7 +52240,9 @@ FFFF	<not a character>
 1FAA8	ROCK
 1FAA9	MIRROR BALL
 1FAAA	IDENTIFICATION CARD
+	= ID
 1FAAB	LOW BATTERY
+	x (battery - 1F50B)
 1FAAC	HAMSA
 @		Animals and nature
 1FAB0	FLY
@@ -52224,8 +52261,8 @@ FFFF	<not a character>
 1FAC1	LUNGS
 @		People
 1FAC2	PEOPLE HUGGING
-1FAC3	MAN WITH SWOLLEN BELLY
-1FAC4	PERSON WITH SWOLLEN BELLY
+1FAC3	PREGNANT MAN
+1FAC4	PREGNANT PERSON
 	x (pregnant woman - 1F930)
 1FAC5	PERSON WITH CROWN
 	x (princess - 1F478)
@@ -52250,12 +52287,13 @@ FFFF	<not a character>
 1FAE5	DOTTED LINE FACE
 @		Emotion
 1FAE6	BITING LIP
+	x (lips - 1F5E2)
 1FAE7	BUBBLES
 @		Hand symbols
 1FAF0	HAND WITH INDEX FINGER AND THUMB CROSSED
 	x (hand with index and middle fingers crossed - 1F91E)
-1FAF1	RIGHTWARD BACKHAND
-1FAF2	LEFTWARD HAND
+1FAF1	RIGHTWARDS HAND
+1FAF2	LEFTWARDS HAND
 1FAF3	PALM DOWN HAND
 1FAF4	PALM UP HAND
 1FAF5	INDEX POINTING AT THE VIEWER
@@ -52576,7 +52614,7 @@ FFFF	<not a character>
 1FFFE	<not a character>
 1FFFF	<not a character>
 @@	20000	CJK Unified Ideographs Extension B	2A6DF
-@@	2A700	CJK Unified Ideographs Extension C	2B737
+@@	2A700	CJK Unified Ideographs Extension C	2B738
 @@	2B740	CJK Unified Ideographs Extension D	2B81D
 @@	2B820	CJK Unified Ideographs Extension E	2CEA1
 @@	2CEB0	CJK Unified Ideographs Extension F	2EBE0

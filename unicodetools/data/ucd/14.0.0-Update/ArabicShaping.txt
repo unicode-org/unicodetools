@@ -1,5 +1,5 @@
 # ArabicShaping-14.0.0.txt
-# Date: 2021-03-12, 21:46:00 GMT [KW, RP]
+# Date: 2021-04-30, 20:56:00 GMT [KW, RP]
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -465,6 +465,7 @@
 088B; ARABIC LETTER TAH WITH DOT BELOW; D; TAH
 088C; ARABIC LETTER TAH WITH 3 DOTS BELOW; D; TAH
 088D; ARABIC LETTER KEHEH WITH VERTICAL 2 DOTS BELOW; D; GAF
+088E; VERTICAL TAIL; R; VERTICAL TAIL
 
 # Arabic Extended-A Characters
 
@@ -508,7 +509,7 @@
 08C5; HAH WITH DOT BELOW AND 3 DOTS ABOVE; D; HAH
 08C6; HAH WITH DIAMOND 4 DOTS BELOW; D; HAH
 08C7; LAM WITH TAH ABOVE; D; LAM
-08C8; KEHEH WITH DOOHICKEY ABOVE; D; GAF
+08C8; KEHEH WITH ELONGATED HAMZA ABOVE; D; GAF
 08E2; ARABIC DISPUTED END OF AYAH; U; No_Joining_Group
 
 # Mongolian Characters
