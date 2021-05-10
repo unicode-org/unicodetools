@@ -1,5 +1,5 @@
 # DerivedCoreProperties-14.0.0.txt
-# Date: 2021-03-12, 21:32:06 GMT
+# Date: 2021-03-24, 22:36:56 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -672,6 +672,7 @@ FFE9..FFEC    ; Math # Sm   [4] HALFWIDTH LEFTWARDS ARROW..HALFWIDTH DOWNWARDS A
 1A73..1A74    ; Alphabetic # Mn   [2] TAI THAM VOWEL SIGN OA ABOVE..TAI THAM SIGN MAI KANG
 1AA7          ; Alphabetic # Lm       TAI THAM SIGN MAI YAMOK
 1ABF..1AC0    ; Alphabetic # Mn   [2] COMBINING LATIN SMALL LETTER W BELOW..COMBINING LATIN SMALL LETTER TURNED W BELOW
+1ACA..1ACC    ; Alphabetic # Mn   [3] COMBINING LATIN SMALL LETTER INSULAR G..COMBINING LATIN SMALL LETTER INSULAR T
 1B00..1B03    ; Alphabetic # Mn   [4] BALINESE SIGN ULU RICEM..BALINESE SIGN SURANG
 1B04          ; Alphabetic # Mc       BALINESE SIGN BISAH
 1B05..1B33    ; Alphabetic # Lo  [47] BALINESE LETTER AKARA..BALINESE LETTER HA
@@ -1050,12 +1051,14 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 11003..11037  ; Alphabetic # Lo  [53] BRAHMI SIGN JIHVAMULIYA..BRAHMI LETTER OLD TAMIL NNNA
 11038..11045  ; Alphabetic # Mn  [14] BRAHMI VOWEL SIGN AA..BRAHMI VOWEL SIGN AU
 11071..11072  ; Alphabetic # Lo   [2] BRAHMI LETTER OLD TAMIL SHORT E..BRAHMI LETTER OLD TAMIL SHORT O
+11073..11074  ; Alphabetic # Mn   [2] BRAHMI VOWEL SIGN OLD TAMIL SHORT E..BRAHMI VOWEL SIGN OLD TAMIL SHORT O
 11075         ; Alphabetic # Lo       BRAHMI LETTER OLD TAMIL LLA
 11082         ; Alphabetic # Mc       KAITHI SIGN VISARGA
 11083..110AF  ; Alphabetic # Lo  [45] KAITHI LETTER A..KAITHI LETTER HA
 110B0..110B2  ; Alphabetic # Mc   [3] KAITHI VOWEL SIGN AA..KAITHI VOWEL SIGN II
 110B3..110B6  ; Alphabetic # Mn   [4] KAITHI VOWEL SIGN U..KAITHI VOWEL SIGN AI
 110B7..110B8  ; Alphabetic # Mc   [2] KAITHI VOWEL SIGN O..KAITHI VOWEL SIGN AU
+110C2         ; Alphabetic # Mn       KAITHI VOWEL SIGN VOCALIC R
 110D0..110E8  ; Alphabetic # Lo  [25] SORA SOMPENG LETTER SAH..SORA SOMPENG LETTER MAE
 11100..11102  ; Alphabetic # Mn   [3] CHAKMA SIGN CANDRABINDU..CHAKMA SIGN VISARGA
 11103..11126  ; Alphabetic # Lo  [36] CHAKMA LETTER AA..CHAKMA LETTER HAA
@@ -1373,7 +1376,7 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 2F800..2FA1D  ; Alphabetic # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; Alphabetic # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 
-# Total code points: 133391
+# Total code points: 133397
 
 # ================================================
 
@@ -10188,11 +10191,11 @@ E0100..E01EF  ; XID_Continue # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTO
 00AD          ; Default_Ignorable_Code_Point # Cf       SOFT HYPHEN
 034F          ; Default_Ignorable_Code_Point # Mn       COMBINING GRAPHEME JOINER
 061C          ; Default_Ignorable_Code_Point # Cf       ARABIC LETTER MARK
-0890..0891    ; Default_Ignorable_Code_Point # Cf   [2] ARABIC POUND MARK ABOVE..ARABIC PIASTRE MARK ABOVE
 115F..1160    ; Default_Ignorable_Code_Point # Lo   [2] HANGUL CHOSEONG FILLER..HANGUL JUNGSEONG FILLER
 17B4..17B5    ; Default_Ignorable_Code_Point # Mn   [2] KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
 180B..180D    ; Default_Ignorable_Code_Point # Mn   [3] MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
 180E          ; Default_Ignorable_Code_Point # Cf       MONGOLIAN VOWEL SEPARATOR
+180F          ; Default_Ignorable_Code_Point # Mn       MONGOLIAN FREE VARIATION SELECTOR FOUR
 200B..200F    ; Default_Ignorable_Code_Point # Cf   [5] ZERO WIDTH SPACE..RIGHT-TO-LEFT MARK
 202A..202E    ; Default_Ignorable_Code_Point # Cf   [5] LEFT-TO-RIGHT EMBEDDING..RIGHT-TO-LEFT OVERRIDE
 2060..2064    ; Default_Ignorable_Code_Point # Cf   [5] WORD JOINER..INVISIBLE PLUS
@@ -10214,7 +10217,7 @@ E0080..E00FF  ; Default_Ignorable_Code_Point # Cn [128] <reserved-E0080>..<reser
 E0100..E01EF  ; Default_Ignorable_Code_Point # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; Default_Ignorable_Code_Point # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 4180
+# Total code points: 4179
 
 # ================================================
 
