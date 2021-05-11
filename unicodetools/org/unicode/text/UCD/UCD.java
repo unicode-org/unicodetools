@@ -1395,7 +1395,7 @@ public final class UCD implements UCD_Types {
                 if (ch <= 0x2B734) {
                     return CJK_C_BASE;
                 }
-                if (ch <= 0x2B737 && rCompositeVersion >= 0xe0000) {
+                if (ch <= 0x2B738 && rCompositeVersion >= 0xe0000) {
                     return CJK_C_BASE;
                 }
             }
