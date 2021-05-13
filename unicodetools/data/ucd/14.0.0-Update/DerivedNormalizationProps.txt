@@ -1,5 +1,5 @@
 # DerivedNormalizationProps-14.0.0.txt
-# Date: 2021-03-24, 22:36:58 GMT
+# Date: 2021-05-11, 21:19:36 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -7072,7 +7072,6 @@ FFF0..FFF8    ; NFKC_CF;                # Cn   [9] <reserved-FFF0>..<reserved-FF
 16E5E         ; NFKC_CF; 16E7E          # L&       MEDEFAIDRIN CAPITAL LETTER AI
 16E5F         ; NFKC_CF; 16E7F          # L&       MEDEFAIDRIN CAPITAL LETTER Y
 1BCA0..1BCA3  ; NFKC_CF;                # Cf   [4] SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
-1CF42..1CF46  ; NFKC_CF;                # Cf   [5] ZNAMENNY PRIZNAK MODIFIER LEVEL 2..ZNAMENNY PRIZNAK MODIFIER ROG
 1D15E         ; NFKC_CF; 1D157 1D165    # So       MUSICAL SYMBOL HALF NOTE
 1D15F         ; NFKC_CF; 1D158 1D165    # So       MUSICAL SYMBOL QUARTER NOTE
 1D160         ; NFKC_CF; 1D158 1D165 1D16E #So     MUSICAL SYMBOL EIGHTH NOTE
@@ -8938,7 +8937,7 @@ E0080..E00FF  ; NFKC_CF;                # Cn [128] <reserved-E0080>..<reserved-E
 E0100..E01EF  ; NFKC_CF;                # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; NFKC_CF;                # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10434
+# Total code points: 10429
 
 # ================================================
 
@@ -9852,7 +9851,6 @@ FFF0..FFF8    ; Changes_When_NFKC_Casefolded # Cn   [9] <reserved-FFF0>..<reserv
 118A0..118BF  ; Changes_When_NFKC_Casefolded # L&  [32] WARANG CITI CAPITAL LETTER NGAA..WARANG CITI CAPITAL LETTER VIYO
 16E40..16E5F  ; Changes_When_NFKC_Casefolded # L&  [32] MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN CAPITAL LETTER Y
 1BCA0..1BCA3  ; Changes_When_NFKC_Casefolded # Cf   [4] SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
-1CF42..1CF46  ; Changes_When_NFKC_Casefolded # Cf   [5] ZNAMENNY PRIZNAK MODIFIER LEVEL 2..ZNAMENNY PRIZNAK MODIFIER ROG
 1D15E..1D164  ; Changes_When_NFKC_Casefolded # So   [7] MUSICAL SYMBOL HALF NOTE..MUSICAL SYMBOL ONE HUNDRED TWENTY-EIGHTH NOTE
 1D173..1D17A  ; Changes_When_NFKC_Casefolded # Cf   [8] MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
 1D1BB..1D1C0  ; Changes_When_NFKC_Casefolded # So   [6] MUSICAL SYMBOL MINIMA..MUSICAL SYMBOL FUSA BLACK
@@ -9950,6 +9948,6 @@ E0080..E00FF  ; Changes_When_NFKC_Casefolded # Cn [128] <reserved-E0080>..<reser
 E0100..E01EF  ; Changes_When_NFKC_Casefolded # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; Changes_When_NFKC_Casefolded # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10434
+# Total code points: 10429
 
 # EOF

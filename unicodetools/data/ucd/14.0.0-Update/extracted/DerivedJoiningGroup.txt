@@ -1,5 +1,5 @@
 # DerivedJoiningGroup-14.0.0.txt
-# Date: 2021-03-12, 21:32:07 GMT
+# Date: 2021-05-11, 21:19:35 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -733,6 +733,12 @@
 # ================================================
 
 0886          ; Thin_Yeh # Lo       ARABIC LETTER THIN YEH
+
+# Total code points: 1
+
+# ================================================
+
+088E          ; Vertical_Tail # Lo       ARABIC VERTICAL TAIL
 
 # Total code points: 1
 
