@@ -1,5 +1,5 @@
 # PropList-14.0.0.txt
-# Date: 2021-04-17, 15:52:01 GMT [KW manual edit]
+# Date: 2021-05-11, 21:19:38 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1085,7 +1085,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1067
+# Total code points: 1064
 
 # ================================================
 
@@ -1319,7 +1319,7 @@ E0001         ; Deprecated # Cf       LANGUAGE TAG
 1D692..1D693  ; Soft_Dotted # L&   [2] MATHEMATICAL MONOSPACE SMALL I..MATHEMATICAL MONOSPACE SMALL J
 1DF1A         ; Soft_Dotted # L&       LATIN SMALL LETTER I WITH STROKE AND RETROFLEX HOOK
 
-# Total code points: 46
+# Total code points: 47
 
 # ================================================
 
