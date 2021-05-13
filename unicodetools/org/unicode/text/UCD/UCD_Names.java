@@ -1096,7 +1096,7 @@ public final class UCD_Names implements UCD_Types {
         "Hanifi_Rohingya_Kinna_Ya",
         // Unicode 14
         "THIN_YEH",
-        "VERTICAL TAIL"
+        "VERTICAL_TAIL"
     };
     static {
         fixArray(JOINING_GROUP);
