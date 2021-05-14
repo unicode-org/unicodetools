@@ -56,7 +56,7 @@ The input data files for the Unicode Tools are checked into Git since
 This is inside the unicodetools file tree, and the Java code has been updated to
 assume that. Any old Eclipse setup needs its path variables checked.
 
-For details see [Input data setup](../inputdata.md).
+For details see [Input data setup](inputdata.md).
 
 ## Generating new data
 
@@ -82,12 +82,12 @@ If this does not exist, request this be created from
 to fetch the emoji files from <https://www.unicode.org/Public/emoji/13.1>, using
 a previous version if a new one does not exist.
 
-You may need to use the tools from [Input data setup](../inputdata.md) to
+You may need to use the tools from [Input data setup](inputdata.md) to
 desuffix the files (removing the -dN suffixes). Copy these into
 unicodetools/data/emoji/14.0 and unicodetools/data/ucd/14.0.0-Update
 
 to set up the inputs correctly. For some updates you may need to pull in other
-(uca, security, idna, etc) files, see [Input data setup](../inputdata.md) for
+(uca, security, idna, etc) files, see [Input data setup](inputdata.md) for
 more information.
 
 Now, update the following files:
