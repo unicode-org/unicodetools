@@ -4,7 +4,7 @@
 
 ## Data Generation
 
-1.  Get the UCD tools updated (see [Building Unicode Tools](../home/index.md))
+1.  Get the UCD tools updated (see [Building Unicode Tools](../index.md))
 2.  \[If New version\]
     1.  Set **the version as per instructions in** Emoji.java.
     2.  Create a new folder ****{unicode-draft}**/**emoji/**X**.0/

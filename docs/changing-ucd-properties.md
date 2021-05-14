@@ -8,9 +8,9 @@ The properties built directly from files have constants defined in
 UCD_Types/Names. You normally have to add a constant and update a LIMIT value in
 UCD_Types, and then add a long name and a short name in UCD_Names.
 
-**Some of this is outdated**; see also the [New Unicode
-Properties](newunicodeproperties.md) page. Sometimes you have to make changes in
-both the old & new mechanisms.
+**Some of this is outdated**; see also the [New Unicode Properties](newunicodeproperties.md) page.
+Sometimes you have to make changes in both the old & new mechanisms.
+
 Examples:
 
 // line break
