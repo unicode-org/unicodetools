@@ -20,20 +20,20 @@ The UnicodeJsps are actually at the same level as unicodetools, and need to be
 self-contained, only depending on ICU and CLDR (and its needed libraries: guava,
 etc.)
 
-Starting
+## Starting
 
 The easiest way to do this is with Eclipse's refactoring tools.
 
-1.  Make sure all the above are sync'ed to trunk.
+1.  Make sure all the above are sync'ed to the HEADs of their repos.
 2.  Change the build paths so that they use your local projects. (You'll restore
     this afterwards, so be careful not to check in the changed classpath in the
     meantime.)
     1.  See "Refactor ICU4J+CLDR+Unicode Tools" on
         <http://site.icu-project.org/processes/coverage>
 
-Finding code and refactor. \[Details and tips TBD\]
+Finding code and refactor. :construction: **TODO**: Details and tips
 
-Finishing up
+## Finishing up
 
 1.  Sync to trunk.
 2.  Run all the tests, and make sure they pass.

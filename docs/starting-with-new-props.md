@@ -4,56 +4,40 @@ You can start a new release with the /props folder. Here's how.
 
 Copy old folders into new, for any that don't exist, eg.
 
-> unicodetools/data/ucd/10.0.0-Update => 11.0.0-Update
+*   unicodetools/data/ucd/10.0.0-Update => 11.0.0-Update
+*   unicodetools/data/security/10.0.0 => 11.0.0
+*   unicodetools/data/idna/10.0.0 => 11.0.0
+*   unicodetools/data/emoji/10.0.0 => 11.0.0
 
-> unicodetools/data/security/10.0.0 => 11.0.0
-
-> unicodetools/data/idna/10.0.0 => 11.0.0
-
-> unicodetools/data/emoji/10.0.0 => 11.0.0
-
-Update the properties and values to add new aliases. You will always add new Age
-value, and new Blocks.
+Update the properties and values to add new aliases. You will always add a new Age value, and new Blocks.
 
 /unicodetools/data/ucd/11.0.0-Update/PropertyValueAliases.txt
 
-Look at http://www.unicode.org/reports/tr38/proposed.html to see if there are
+Look at https://www.unicode.org/reports/tr38/proposed.html to see if there are
 more properties there. These take modifying a number of files in
 /unicodetools/org/unicode/props/GenerateEnums.java. Here is an example:
+```
+ExtraPropertyAliases.txt
+// add the property with the short(!) value having an additional "cj"
+cjkJinmeiyoKanji ; kJinmeiyoKanji
 
-> ExtraPropertyAliases.txt
+IndexPropertyRegex.txt 
+// look at http://www.unicode.org/reports/tr38/proposed.html#kJinmeiyoKanji
+// if Delimiter is not N/A, use MULTI_VALUED; then copy in the regex as the 3rd field
+kJinmeiyoKanji ;        MULTI_VALUED.  ;                 (20[0-9]{2})(:U\+2?[0-9A-F]{4})?
 
-> // add the property with the short(!) value having an additional "cj"
+IndexUnicodeProperties.txt
+// Use the category in http://www.unicode.org/reports/tr38/proposed.html#kJinmeiyoKanji to get the file.
+Unihan_OtherMappings ;  kJinmeiyoKanji
 
-> cjkJinmeiyoKanji ; kJinmeiyoKanji
-
-> IndexPropertyRegex.txt
-
-> // look at http://www.unicode.org/reports/tr38/proposed.html#kJinmeiyoKanji
-
-> // if Delimiter is not N/A, use MULTI_VALUED; then copy in the regex as the
-> 3rd field
-
-> kJinmeiyoKanji ;                 MULTI_VALUED. ;
-> (20\[0-9\]{2})(:U\\+2?\[0-9A-F\]{4})?
-
-> IndexUnicodeProperties.txt
-
-> // Use the category in
-> http://www.unicode.org/reports/tr38/proposed.html#kJinmeiyoKanji to get the
-> file.
-
-> Unihan_OtherMappings ; kJinmeiyoKanji
-
-> IndexPropertyRegexRevised.txt // skip this, in progress
-
-> Multivalued.txt // skip this, old
+IndexPropertyRegexRevised.txt // skip this, in progress
+Multivalued.txt // skip this, old
+```
 
 Run /unicodetools/org/unicode/props/GenerateEnums.java, which rewrites
 
-> /unicodetools/org/unicode/props/UcdProperty.java
-
-> /unicodetools/org/unicode/props/UcdPropertyValues.java
+*   /unicodetools/org/unicode/props/UcdProperty.java
+*   /unicodetools/org/unicode/props/UcdPropertyValues.java
 
 Check diffs.
 
@@ -85,28 +69,15 @@ Run /unicodetools/org/unicode/propstest/CheckProperties.java to see what changed
 and sanity check.
 
 Fix any failures, such as:
-
-Exception in thread "main" com.ibm.icu.util.ICUException:
-kBigFive(/Users/markdavis/Documents/workspace/unicodetools/data/ucd/11.0.0-Update/Unihan/Unihan_OtherMappings.txt)
-
-at
-org.unicode.props.IndexUnicodeProperties.load(IndexUnicodeProperties.java:411)
-
-at org.unicode.propstest.ListProps.main(ListProps.java:75)
-
-Caused by: java.lang.IllegalArgumentException: \[U+3447, kTGH, 2013:6602\]
-
-at
-org.unicode.props.PropertyParsingInfo.parseSourceFile(PropertyParsingInfo.java:490)
-
-at
-org.unicode.props.IndexUnicodeProperties.load(IndexUnicodeProperties.java:408)
-
-... 1 more
-
+```
+Exception in thread "main" com.ibm.icu.util.ICUException: kBigFive(/Users/markdavis/Documents/workspace/unicodetools/data/ucd/11.0.0-Update/Unihan/Unihan_OtherMappings.txt)
+ at org.unicode.props.IndexUnicodeProperties.load(IndexUnicodeProperties.java:411)
+ at org.unicode.propstest.ListProps.main(ListProps.java:75)
+Caused by: java.lang.IllegalArgumentException: [U+3447, kTGH, 2013:6602]
+ at org.unicode.props.PropertyParsingInfo.parseSourceFile(PropertyParsingInfo.java:490)
+ at org.unicode.props.IndexUnicodeProperties.load(IndexUnicodeProperties.java:408)
+ ... 1 more
 Caused by: java.lang.NullPointerException
-
-at
-org.unicode.props.PropertyParsingInfo.parseSourceFile(PropertyParsingInfo.java:488)
-
-... 2 more
+ at org.unicode.props.PropertyParsingInfo.parseSourceFile(PropertyParsingInfo.java:488)
+ ... 2 more
+```

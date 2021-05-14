@@ -1,13 +1,11 @@
-# UTR#51
-
-[TOC]
+# UTS #51
 
 ## Data Generation
 
 1.  Get the UCD tools updated (see [Building Unicode Tools](../index.md))
 2.  \[If New version\]
     1.  Set **the version as per instructions in** Emoji.java.
-    2.  Create a new folder ****{unicode-draft}**/**emoji/**X**.0/
+    2.  Create a new folder **{unicode-draft}**/emoji/**X**.0/
     3.  Copy in the ReadMe.txt from the last version, but add the word "draft"
         in front of "emoji".
 3.  Run **{unicodetools/org/unicode/text}**/tools/GenerateEmoji.java
@@ -30,29 +28,24 @@
 Eclipse > Debug Configurations > Arguments --> lower box "VM Arguments"
 
 Markus VM arguments for in-progress Unicode 13/emoji 13:
+```
+-ea
+-Demoji-beta=true
+-DUVERSION=13.0.0
+-DSVN_WORKSPACE=/usr/local/google/home/mscherer/svn.unitools/trunk
+-DOTHER_WORKSPACE=/usr/local/google/home/mscherer/svn.unitools
+-DUNICODETOOLS_DIR=/usr/local/google/home/mscherer/svn.unitools/trunk
+-DUNICODE_DRAFT_DIR=/usr/local/google/home/mscherer/svn.unidraft/trunk
+-DUCD_DIR=/usr/local/google/home/mscherer/svn.unitools/trunk/data
+-DCLDR_DIR=/usr/local/google/home/mscherer/cldr/uni/src
+```
 
-> -ea
+## File Locations in the repo
 
-> -Demoji-beta=true
+:construction: **TODO**: Work with Mark on working replacements for "draft" URLs.
 
-> -DUVERSION=13.0.0
-
-> -DSVN_WORKSPACE=/usr/local/google/home/mscherer/svn.unitools/trunk
-
-> -DOTHER_WORKSPACE=/usr/local/google/home/mscherer/svn.unitools
-
-> -DUNICODETOOLS_DIR=/usr/local/google/home/mscherer/svn.unitools/trunk
-
-> -DUNICODE_DRAFT_DIR=/usr/local/google/home/mscherer/svn.unidraft/trunk
-
-> -DUCD_DIR=/usr/local/google/home/mscherer/svn.unitools/trunk/data
-
-> -DCLDR_DIR=/usr/local/google/home/mscherer/cldr/uni/src
-
-## File Locations in SVN
-
-1.  **http://unicode.org/draft/**Public/emoji/**X.0**/\*
-2.  **http://unicode.org/draft**/emoji/charts-**X.0**/\*
+1.  https://www.unicode.org/draft/Public/emoji/X.0/*
+2.  https://www.unicode.org/draft/emoji/charts-X.0/*
 
 ## Posting (Rick)
 
@@ -61,18 +54,18 @@ rollout.
 
 1.  Get the announcement ready on the blog site, and let Peter/Mark know to
     review.
-2.  Post from the ***[File Locations in SVN](index.md)*** to the corresponding
+2.  Post from the *File Locations in the repo* (see above) to the corresponding
     public directories.
-    1.  http://unicode.org/emoji/charts-**X.0**/\*
+    1.  https://www.unicode.org/emoji/charts-X.0/*
         1.  skip internal directories
         2.  you can copy the flag directories to a location for sanity checking.
-    2.  http://unicode.org/Public/emoji/**X.0**/
+    2.  https://www.unicode.org/Public/emoji/X.0/
         1.  ReadMe.txt
         2.  emoji-data.txt
         3.  emoji-sequences.txt
         4.  emoji-zwj-sequences.txt
         5.  **(and others!)**
-    3.  http://unicode.org/reports/tr51/
+    3.  https://www.unicode.org/reports/tr51/
         1.  tr51.html
             1.  Copy up as a specific version, like tr51-13.html
             2.  Also copy and rename to either **proposed.html** or to
@@ -88,12 +81,12 @@ rollout.
     *   we are doing emoji/charts, and Public/emoji early in the year
     *   tr51 sync'ed with the Unicode standard
     *   *That will change in 2019, when it will all be at the same time.*
-*   Modify ****{unicode-draft}**/**emoji/**X**.0/ReadMe.txt to remove the word
+*   Modify **{unicode-draft}**/emoji/**X**.0/ReadMe.txt to remove the word
     'draft' (if not already done).
 *   Check that there is no "β" on the release charts, once posted, eg
     *   http://www.unicode.org/emoji/charts-11.0/
 *   Change redirections. Examples below use 11.0, but it should be whatever is
     current:
-    *   http://unicode.org/emoji/charts/ → http://unicode.org/emoji/charts-11.0/
-    *   http://unicode.org/Public/emoji/latest/ →
-        https://unicode.org/Public/emoji/11.0/
+    *   https://www.unicode.org/emoji/charts/ → https://www.unicode.org/emoji/charts-11.0/
+    *   https://www.unicode.org/Public/emoji/latest/ →
+        https://www.unicode.org/Public/emoji/11.0/

@@ -2,55 +2,53 @@
 
 ## Input Format
 
-[TOC]
-
 Emoji frequency data supplied to the ESC must follow the following format, in a
 plain text file.
 
-    Data lines are of the form: <hex> ; <frequency>
-
-        They do not have to be sorted by either field.
-
-    The hex value is of the form \\x{hex1 … hexN}. You can omit the FE0F values
-    from the hex (see below); the hex will be normalized when processing the
-    data. (This hex format is chosen to be compact yet durable in spreadsheets.)
-
-    The frequency value can be either integer or decimal (eg 57686832 or
+*   **Data lines** are of the form: `<hex> ; <frequency>`
+    *   They do not have to be sorted by either field.
+*   **The hex value** is of the form `\x{hex1 … hexN}`. You can omit the FE0F values
+    from the hex (see below); the hex will be normalized when processing the data.
+    (This hex format is chosen to be compact yet durable in spreadsheets.)
+*   **The frequency value** can be either integer or decimal (eg 57686832 or
     57686831.98). The numbers will be normalized in processing, so that they all
     add up to a particular value (eg 1,000,000,000) for comparison across
     sources.
-
-    Comments. Text after a # are comments; you can put the plain text emoji
+*   **Comments.** Text after a `#` is a comment; you can put the plain text emoji
     and/or name on each line in a comment if that is easier to read/manage, but
     comments are completely optional and ignored.
 
-Examples
+### Examples
 
+```
 # Data from ABC, 2019-03-17
 
-\\x{1F602} ; 57686831    # 😂 face with tears of joy
+\x{1F602}         ; 57686831   # 😂 face with tears of joy
 
-\\x{31 FE0F 20E3} ; 139909 # 1️⃣ keycap: 1
+\x{31 FE0F 20E3}  ; 139909      # 1️⃣ keycap: 1
 
-\\x{1F3CC FE0F} ; 53769 # 🏌️ person golfing
+\x{1F3CC FE0F}    ; 53769       # 🏌️ person golfing
+```
 
-Variation Selectors. Some emoji normally need variation selectors (FE0F) in
-their representation, such as \\x{1F3CC FE0F} (🏌️person golfing). However,
-vendors can override this behavior, and show (for example) \\x{1F3CC} as an
+### Variation Selectors
+
+Some emoji normally need variation selectors (FE0F) in
+their representation, such as `\x{1F3CC FE0F}` (🏌️person golfing). However,
+vendors can override this behavior, and show (for example) `\x{1F3CC}` as an
 emoji. For such cases, the vendor can supply separate frequency information for
 the forms with and without the FE0F.
 
 ## Processing
 
 Copy the data into a TSV (tab-separated values) file in the folder
-DATA/frequency/emoji/==vendor==Raw.tsv, where ==vendor== is one of gboard,
+DATA/frequency/emoji/**vendor**Raw.tsv, where **vendor** is one of gboard,
 facebook, twitter, etc.
 
 Open EmojiFrequency.java and follow the instructions there, then run.
 
 You'll get files named: Generated/emoji/frequency/...
 
-Copy those into the spreadsheet in the appropriate tab, Raw==Vendor==Snapshot
+Copy those into the spreadsheet in the appropriate tab, Raw**Vendor**Snapshot
 
 Example:
 
@@ -87,12 +85,12 @@ failures. Here are the fixes:
         last full row, and copy the computed columns (C.. end) down to the end
         of the file.
     7.  All of the #N/A values in columns C..X should be gone (though may will
-        be blank
+        be blank)
     8.  When you go back to EmojiInfo, the #N/A values should be gone there
         also.
 
 Known problem: the "canonical value for couples" are single characters, but the
-code needs fixing to take care of \\x{1F9D1 200D 2764 FE0F 200D 1F48B 200D
-1F9D1} and \\x{1F9D1 200D 2764 FE0F 200D 1F9D1}; plus the 'unmarked gender'
+code needs fixing to take care of `\x{1F9D1 200D 2764 FE0F 200D 1F48B 200D 1F9D1}`
+and `\x{1F9D1 200D 2764 FE0F 200D 1F9D1}`; plus the 'unmarked gender'
 
 TBD: fixing the PIE chart data
