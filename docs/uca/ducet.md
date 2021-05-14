@@ -6,7 +6,7 @@ The following is a work log from the UCA 10.0 update (2017) done by Ken.
 
 ### Basic properties for new characters
 
-<editorial committee folder>/kenfiles/uca100/uc90to1000add.txt
+\<editorial committee folder\>/kenfiles/uca100/uc90to1000add.txt
 
 ```none
 0860;SYRIAC LETTER MALAYALAM NGA;Lo;;;;;;
@@ -43,7 +43,7 @@ The input file processing starts with the last version I have for UCA 9.0:
 unidata-9.0.0d4.txt. I have just updated the header version/date information and
 posted the starting point for 10.0:
 
-<editorial committee folder>/kenfiles/uca100/unidata-10.0.0d1.txt
+\<editorial committee folder\>/kenfiles/uca100/unidata-10.0.0d1.txt
 
 Don't bother archiving that as a known delta -- I haven't started adding the new
 records to it yet, so the content is still all exactly as it was for 9.0. I'll
@@ -56,9 +56,9 @@ record.
 I've pushed up another increment in the development of the initial values for
 allkeys.txt for 10.0. See:
 
-<editorial committee folder>/kenfiles/uca100/unidata-10.0.0d1.txt
+\<editorial committee folder\>/kenfiles/uca100/unidata-10.0.0d1.txt
 
-<editorial committee folder>/kenfiles/uca100/allkeys-10.0.0d1.txt
+\<editorial committee folder\>/kenfiles/uca100/allkeys-10.0.0d1.txt
 
 Again, these are just unstable, intermediate drafts -- not the eventual d1
 drafts that will get pushed live for the beta.
@@ -125,9 +125,9 @@ with each of those chunks of new stuff separately, and will report as I go.
 I've pushed up another increment. These files just overwrite the previous drop,
 because they are still temporary, interim files:
 
-<editorial committee folder>/kenfiles/uca100/unidata-10.0.0d1.txt
+\<editorial committee folder\>/kenfiles/uca100/unidata-10.0.0d1.txt
 
-<editorial committee folder>/kenfiles/uca100/allkeys-10.0.0d1.txt
+\<editorial committee folder\>/kenfiles/uca100/allkeys-10.0.0d1.txt
 
 For this phase, I took care of all of the punctuation and symbols. Those \*do\*
 impact the primary weight assignments, but don't require any special research
@@ -155,7 +155,7 @@ of which should also be pretty straightforward this time around.
 
 A small increment, with the input and allkeys files posted in the same location:
 
-<editorial committee folder>/kenfiles/uca100/unidata-10.0.0d1.txt
+\<editorial committee folder\>/kenfiles/uca100/unidata-10.0.0d1.txt
 
 ```none
 # unidata-10.0.0.txt
@@ -184,7 +184,7 @@ A small increment, with the input and allkeys files posted in the same location:
 14646;ANATOLIAN HIEROGLYPH A530;Lo;;;;;;
 ```
 
-<editorial committee folder>/kenfiles/uca100/allkeys-10.0.0d1.txt
+\<editorial committee folder\>/kenfiles/uca100/allkeys-10.0.0d1.txt
 
 ```none
 # allkeys-10.0.0.txt
@@ -235,9 +235,9 @@ weights, in order, at the end of the current range of Syriac letters.
 I've gotten back to finishing off the DUCET development for 10.0. Here is
 another delta drop, in the same location:
 
-<editorial committee folder>/kenfiles/uca100/unidata-10.0.0d1.txt
+\<editorial committee folder\>/kenfiles/uca100/unidata-10.0.0d1.txt
 
-<editorial committee folder>/kenfiles/uca100/allkeys-10.0.0d1.txt
+\<editorial committee folder\>/kenfiles/uca100/allkeys-10.0.0d1.txt
 
 This delta takes care of miscellaneous small additions with primary weights,
 plus the Zanabazar Square script. In detail:
@@ -281,7 +281,7 @@ Zanabazar Square also has a bunch of medial consonants -- what Anshuman calls
 collation order in the proposal shows these as following the main consonants
 with a secondary difference. But here I departed in the DUCET handling of them,
 following conventions used in some other scripts for positional variants of
-consonants. I entered them in the input as "<final>" variants of the
+consonants. I entered them in the input as `<final>` variants of the
 corresponding consonants, which ends up giving them tertiary weight
 distinctions, instead of secondary. There are a number of precedents for other
 scripts in this general area.
@@ -331,9 +331,9 @@ Square, and Masaram Gondi, which should be a little easier.
 
 Updated again in the same locations with another delta:
 
-<editorial committee folder>/kenfiles/uca100/unidata-10.0.0d1.txt
+\<editorial committee folder\>/kenfiles/uca100/unidata-10.0.0d1.txt
 
-<editorial committee folder>/kenfiles/uca100/allkeys-10.0.0d1.txt
+\<editorial committee folder\>/kenfiles/uca100/allkeys-10.0.0d1.txt
 
 This delta takes care of Soyombo.
 
@@ -377,7 +377,7 @@ initial candidate staged up:
 The corresponding sifter input data file (not part of the release) has been
 refreshed in my book incoming directory:
 
-<editorial committee folder>/kenfiles/uca100/unidata-10.0.0d1.txt
+\<editorial committee folder\>/kenfiles/uca100/unidata-10.0.0d1.txt
 
 Because I have now posted this draft, which covers all the new additions
 finally, I will now freeze the "d1" draft. Any future drafts, if needed, will

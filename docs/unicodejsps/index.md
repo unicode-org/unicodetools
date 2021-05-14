@@ -1,7 +1,5 @@
 # Building UnicodeJsp
 
-[TOC]
-
 ## Source
 
 <https://github.com/unicode-org/unicodetools>
@@ -10,16 +8,16 @@
 
 ### Command Line
 
-### **Build icu4j jars**
+### Build icu4j jars
 
 *   download/checkout [icu4j](http://site.icu-project.org/download)
 *   from the command line:
     **ant releaseCLDR**
 *   output in: four jars in {$workspace}/icu4j/release_cldr/
 
-**Build [cldr](http://cldr.unicode.org).jar**
+### Build [cldr](http://cldr.unicode.org).jar
 
-*   **from the command line:**
+*   from the command line:
     **ant jar**
 *   output in: {$workspace}/cldr/tools/java/cldr.jar
 
@@ -40,9 +38,9 @@ Do the same as above, except:
 
 Copy the following into {$workspace}/UnicodeJsps/WebContent/WEB-INF/lib/
 
-*   failureaccess-sources.jar
-*   failureaccess.jar
-*   failureaccess.txt
+*   *failureaccess-sources.jar*
+*   *failureaccess.jar*
+*   *failureaccess.txt*
 *   cldr.jar
 *   gson-sources.jar
 *   gson-version.txt
@@ -63,28 +61,28 @@ Into {$workspace}/unicode-jsps/src/org/unicode/jsp
 
 Copy in newest versions of:
 
-{$workspace}/unicodetools/data/security/<VERSION>
+{$workspace}/unicodetools/data/security/\<VERSION\>
 
 *   confusables.txt
 *   IdentifierStatus.txt
 *   IdentifierType.txt
 
-{$workspace}/unicodetools/data/ucd/<VERSION>-Update/
+{$workspace}/unicodetools/data/ucd/\<VERSION\>-Update/
 
 *   NameAliases.txt
 *   NamesList.txt
 *   ScriptExtensions.txt
 *   StandardizedVariants.txt
 
-{$workspace}/unicodetools/data/idna/<VERSION>
+{$workspace}/unicodetools/data/idna/\<VERSION\>
 
 *   IdnaMappingTable.txt
 
-{$workspace}/unicodetools/data/emoji/<VERSION>
+{$workspace}/unicodetools/data/emoji/\<VERSION\>
 
 *   emoji-sequences.txt
 *   emoji-zwj-sequences.txt
-*   <emoji-variants> TODO
+*   *\<emoji-variants\>* :construction: **TODO**
 
 Run \[cldr\] GenerateSubtagNames to generate results on the console; paste the
 results into subtagNames.txt
@@ -92,8 +90,8 @@ results into subtagNames.txt
 Other files:
 
 *   alpha2_3.txt — mapping from 3 letter to 2 letter. No change needed.
-*   fixCodes.txt — dump of language/territory/region alias from CLDR. Fix to use
-    ICU or CLDR directly instead.
+*   fixCodes.txt — *dump of language/territory/region alias from CLDR. Fix to use
+    ICU or CLDR directly instead.*
 
 Files to investigate
 
@@ -104,12 +102,12 @@ Files to investigate
     *   en-IPA.txt
 *   Globe.txt
 *   nameprep.txt
-*   nfm.txt — not sure what this is; investigate and use ICU instead.
+*   nfm.txt — *not sure what this is; investigate and use ICU instead.*
 *   tables.txt
 *   temp.html
 *   test.htm
 
-**TODO Change CopyPropsToUnicodeJsp to copy all the necessary files!**
+**:construction: **TODO**: Change CopyPropsToUnicodeJsp to copy all the necessary files!**
 
 ## Adding/Updating New Properties
 
@@ -150,7 +148,7 @@ Build & Test
 
 1.  Run {$workspace}/unicode-jsps-tst/src/org/unicode/jsptest/TestAll.java.
 
-TODO: These need a lot of work; they mostly print out a lot of gorp that you
+:construction: **TODO**: These need a lot of work; they mostly print out a lot of gorp that you
 need to scan over.
 
 Run the server.
@@ -159,7 +157,7 @@ Look at <http://localhost:8080/UnicodeJsps/properties.jsp>, and make sure that
 there aren't any Z-Other props at the bottom (you'll need to update via Adding
 New Properties if there are).
 
-(TODO: explain how to do a Docker-based build here.)
+(:construction: **TODO**: explain how to do a Docker-based build here.)
 
 ## Running Locally
 
@@ -188,7 +186,8 @@ Unicode Tools.
         the current master.
     3.  Enter a descriptive title (such as "2020-09-15 Release"
     4.  Optionally fill in some content (see image at right). PRs and issues
-        will autocomplete if you want to mention a specific PR or issue.
+        will autocomplete if you want to mention a specific PR or issue.\
+        ![GitHub release page](CLDR-14145-makerelease.png)
     5.  click Publish Release (Green button at the bottom)
 3.  Now, go to the (A) [ Actions tab in GitHub, and click on the (B) "Push to
     GCR Github Action"
@@ -203,7 +202,8 @@ Unicode Tools.
         and "test4" )
 4.  Now, login to https://console.cloud.google.com/ with your unicode.org
     account
-    1.  At the top of the page, switch the project to Unicode Dev Infra
+    1.  At the top of the page, switch the project to Unicode Dev Infra\
+        ![choose a deployment](chooseimage.png)
     2.  From the left nav / hamburger menu, find "Cloud Run".
         Click on the link for the service "**unicode-jsps-staging**". This way
         you can update the staging release before going to production.
@@ -211,7 +211,7 @@ Unicode Tools.
     4.  You will get a page that prompts you to choose a docker image to be
         deployed. See the illustration below.
 
-            ![Google Cloud Run Image Selection Page](CLDR-14145-processb.png)
+        ![Google Cloud Run Image Selection Page](CLDR-14145-processb.png)
 
         2.  Click Select
         3.  expand the "us.gcr.io/dev-infra…/unicode-jsps" images
@@ -229,7 +229,7 @@ Unicode Tools.
     1.  Test the new deployment at
         <https://unicode-jsps-staging-5ocgitonaa-uw.a.run.app>
     2.  To check new characters (for example):
-        <https://unicode-jsps-staging-5ocgitonaa-uw.a.run.app/UnicodeJsps/list-unicodeset.jsp?a=\\p{age=8.0}-\\p{age=7.0}>
+        <https://unicode-jsps-staging-5ocgitonaa-uw.a.run.app/UnicodeJsps/list-unicodeset.jsp?a=\p{age=8.0}-\p{age=7.0}>
     3.  Check at the bottom for the right Unicode and ICU versions.
     4.  Click once on each top link to do simple sanity check.
     5.  Once that's successful then:
@@ -240,7 +240,7 @@ Unicode Tools.
     1.  Go to <http://unicode.org/cldr/utility/> to check that that works, using
         the same steps as #3, that is:
     2.  To check new characters (for example):
-        <http://unicode.org/cldr/utility/list-unicodeset.jsp?a=\\p{age=8.0}-\\p{age=7.0}>
+        <http://unicode.org/cldr/utility/list-unicodeset.jsp?a=\p{age=8.0}-\p{age=7.0}>
     3.  Check at the bottom for the right Unicode and ICU versions.
     4.  Click once on each top link to do simple sanity check.
 8.  Revert?

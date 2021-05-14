@@ -1,17 +1,15 @@
 # Windows Setup
 
-[TOC]
-
 This section provides comprehensive, step-by-step instructions for setting up
 the Unicode Tools on Windows, from installing the prerequisites to building and
 running the Tools.
 
-## **(1) Browse the documentation**
+## (1) Browse the documentation
 
 For a basic idea about the Unicode Tools and the available documentation, begin
 by browsing this site and noting the prerequisites (JDK, Eclipse, etc.).
 
-## **(2) Install the 64-bit JDK**
+## (2) Install the 64-bit JDK
 
 Visit the Java SE Development Kit Downloads site,
 <http://www.oracle.com/technetwork/java/javase/downloads/index.html>. In the
@@ -38,7 +36,7 @@ of OpenJDK called zulu jdk. Can be obtained here:
 . RedHat developer also has a version of OpenJDK for windows, however, it
 requires an account.
 
-## **(3) Install Eclipse**
+## (3) Install Eclipse
 
 Skim through the instructions at
 <http://cldr.unicode.org/development/eclipse-setup>, then go to
@@ -62,7 +60,7 @@ The smaller, non-EE version may work, but the Unicode Tools Eclipse setup page
 
 The processor architecture might have to match the JDK's, hence 64-bit Eclipse.
 
-### ***(3a) Run eclipse.exe and select a workspace folder***
+### (3a) Run eclipse.exe and select a workspace folder
 
 Create a workspace folder (avoiding deep paths on Windows). For example,
 C:\\Work\\svn. Run Eclipse for the first time, and use the workspace location
@@ -77,7 +75,7 @@ See also the simple view at http://www.unicode.org/repos/ {
 http://www.unicode.org/repos/) as well as
 <http://www.unicode.org/utility/trac/browser/> for unicodetools.
 
-### ***(3b) Check that Eclipse is working***
+### (3b) Check that Eclipse is working
 
 Check as follows:
 
@@ -90,7 +88,7 @@ Check as follows:
     the eclipse.exe process is indeed 64-bit, i.e., is not shown with "(32 bit)"
     in the process name.
 
-### ***(3c) Set preferences***
+### (3c) Set preferences
 
 From the Welcome page, click on Review IDE configuration settings and set the
 few preferences shown there. Then change EOL and other settings in Window »
@@ -107,7 +105,7 @@ Window » Preferences › General » Workspace:
 *   Text file encoding = Other: UTF-8
 *   New text file line delimiter = Other: Unix
 
-### ***(3d) Set or update the JRE***
+### (3d) Set or update the JRE
 
 Eclipse should have added the JRE from the JDK installed earlier. To check and
 update, go to Window » Preferences › Java » Installed JREs, and add/replace the
@@ -121,11 +119,11 @@ Checkmark it as default, and it probably does not hurt to keep the other one
 around (C:\\Program Files\\Java\\jre1.8.0_151) if that had already been
 installed before. See <http://stackoverflow.com/a/998643/185799>.
 
-## **(4) Install and configure external tools**
+## (4) Install and configure external tools
 
 Install and configure Ant, Subclipse, and Tomcat.
 
-### ***(4a) Install Ant (binaries only)***
+### (4a) Install Ant (binaries only)
 
 Eclipse comes with Ant – see
 
@@ -154,14 +152,14 @@ The Ant JAR is
     if from Eclipse, or
 *   C:\\Programs\\Java\\apache-ant-1.10.1\\lib\\ant.jar if installed separately.
 
-### ***(4b) Define ANT_LIB***
+### (4b) Define ANT_LIB
 
 Define ANT_LIB. In Eclipse, from the menu, Window » Preferences › Java » Build
 Path » User Libraries › New... › type ANT_LIB and click OK (do not check the
 "System library" checkbox). Select ANT_LIB and click Add External JARs... (not
 Add JARs...) and navigate to the Ant JAR located in step (**4a**). Click OK.
 
-### ***(4c) Install Subclipse***
+### (4c) Install Subclipse
 
 Eclipse does not come with Subclipse, but check in Eclipse Installation Details
 if it did. Do the following to install it. Go to <http://subclipse.tigris.org/>,
@@ -175,7 +173,7 @@ subitems. Click Next, Next, I accept the terms, Finish. Click to see details
 while installing. Click OK on the Security Warning dialog about unsigned
 content. Click Restart Now to restart Eclipse.
 
-### ***(4d) Configure SVNKit***
+### (4d) Configure SVNKit
 
 After restart, on the Eclipse menu, Window » Preferences › Team » SVN. Dismiss
 the dialog that pops up about missing JavaHL libraries. Then on the SVN page,
@@ -183,7 +181,7 @@ SVN interface » Client: pick SVNKit and click Apply. According to
 <http://cldr.unicode.org/development/eclipse-setup/subeclipse-setup>, if you do
 not pick SVNKit, you get an error when checking out files with svn+ssh://.
 
-### ***(4e) Install Tomcat***
+### (4e) Install Tomcat
 
 Go to <http://tomcat.apache.org>, choose a version (e.g., Tomcat 8.5.24
 Released) and click on Download. From the Downloads page, click on zip (e.g.,
@@ -196,13 +194,13 @@ the JDK directory.
 The .zip does not include Javadoc documentation. That needs to be downloaded
 separately.
 
-## **(5) Check out projects from SVN: draft, unicodetools, and cldr**
+## (5) Check out projects from SVN: draft, unicodetools, and cldr
 
 In the steps below, the local project names will be: draft-trunk,
 unicodetools-trunk, cldr-trunk. They will be created in the local workspace
 directory, such as C:\\Work\\svn\\unicodetools-trunk etc.
 
-### ***(5a) Check out draft***
+### (5a) Check out draft
 
 The following steps (**5a**–**c**) illustrate checking out a subset of the tree.
 A unicode.org account is required.
@@ -215,7 +213,7 @@ authentication, check Save information, click OK. In the Subversion
 Authentication dialog, click Yes to save unicode.org server's key fingerprint.
 In the next dialog that pops up, enter password again and check Save.
 
-### ***(5b) Check out the first tree level under draft/trunk/***
+### (5b) Check out the first tree level under draft/trunk/
 
 On the Select Folder page, select trunk, expand it to see what its
 subdirectories (many are not needed), click Next. On the Check Out As page, type
@@ -225,21 +223,16 @@ location: C:\\Work\\svn, etc.), click Finish. In the Java perspective, in
 Package Explorer, see the shallow file hierarchy created under draft-trunk.
 Still in the Java perspective, see in the Console pane the SVN commands issued
 by these actions in the UI, similar to the following:
+```
+checkout svn+ssh://unicode.org/repos/draft/trunk -r HEAD --depth=immediates --force
+    A   C:/Work/svn/draft-trunk/test
+    A   C:/Work/svn/draft-trunk/other
+    . . .
+    A   C:/Work/svn/draft-trunk/.settings
+    Checked out revision 4348.
+```
 
-checkout svn+ssh://unicode.org/repos/draft/trunk -r HEAD --depth=immediates
---force
-
-A C:/Work/svn/draft-trunk/test
-
-A C:/Work/svn/draft-trunk/other
-
-. . .
-
-A C:/Work/svn/draft-trunk/.settings
-
-Checked out revision 4348.
-
-### ***(5c) Select which subdirectories to download and which to exclude***
+### (5c) Select which subdirectories to download and which to exclude
 
 Downloading only the first level under a node is to avoid recursively
 downloading the entire tree, because some parts of the tree contain a lot of
@@ -272,34 +265,23 @@ Typical operations:
     checkmarking Change working copy to specified depth.
 
 For example, a downloaded draft-trunk tree may look like the following:
-
+```
 draft/trunk
+    \ charts (full)
+    \ emoji (full)
+    \ Public (full)
+    \ reports (selective)
+        \ tr10 (full)
+        \ tr14 (full)
+        . . .
+        \ tr51 (selective)
+            \ images (empty)
+        \ tr9 (full)
+        \ reports-v2.css
+        . . .
+```
 
-\\ charts (full)
-
-\\ emoji (full)
-
-\\ Public (full)
-
-\\ reports (selective)
-
-\\ tr10 (full)
-
-\\ tr14 (full)
-
-. . .
-
-\\ tr51 (selective)
-
-\\ images (empty)
-
-\\ tr9 (full)
-
-\\ reports-v2.css
-
-. . .
-
-### ***(5d) Check out unicodetools***
+### (5d) Check out unicodetools
 
 The following steps (**5d**–**e**) illustrate an approach of checking out
 multiple projects at once: first download a fully recursive tree, then import
@@ -331,7 +313,7 @@ Check out as a project in the workspace, Project Name: unicodetools-trunk,
 Depth: Fully recursive » Next » Use default workspace location » Finish. This is
 a big tree, so the download will take some time.
 
-### ***(5e) Create projects from the full local tree just imported***
+### (5e) Create projects from the full local tree just imported
 
 In the Package Explorer pane, right-click on unicodetools-trunk (or the blank
 area after having selected unicodetools-trunk), click Configure » Configure and
@@ -342,24 +324,24 @@ Folder › select the folders › Finish.
 This will add the projects to the list in Package Explorer and configure them as
 Eclipse projects (such as Java projects) rather than general projects.
 
-### ***(5f) Repeat for cldr***
+### (5f) Repeat for cldr
 
 Import svn+ssh://unicode.org/repos/cldr fully recursive, with Project Name:
 cldr-trunk. Then Configure and Detect Nested Projects... with Import source:
 C:\\Work\\svn\\cldr-trunk.
 
-### ***(5g) Optionally repeat for icu4j***
+### (5g) Optionally repeat for icu4j
 
 The project icu4j-trunk-main can also be checked out, but is not strictly needed
 for running the Tools in unicodetools-trunk.
 
-### ***(5h) Sync the files***
+### (5h) Sync the files
 
 Every so often, and before using the Tools, the local files will need to be
 synced. To sync, right-click on a folder in Package Explorer and click Team »
 Update to HEAD.
 
-## **(6) Fix compile errors due to missing dependencies**
+## (6) Fix compile errors due to missing dependencies
 
 After importing the projects, some compile errors will be shown with red markers
 on the icons in Package Explorer. The errors are also shown on the Problems pane
@@ -367,7 +349,7 @@ at the bottom of the Java perspective. Some of those errors are due to missing
 dependencies. To fix those errors, add the necessary dependencies to the
 project.
 
-### ***(6a) The import javax.servlet cannot be resolved***
+### (6a) The import javax.servlet cannot be resolved
 
 This error can show on files under cldr-apps. There are two ways to configure
 the Apache Tomcat server.
@@ -396,12 +378,12 @@ also
 The same error is reported for UnicodeJsps, for instance for the \*.jsp files
 (bidi.jsp etc.). Repeat the step above with project properties.
 
-### ***(6b) Ant errors***
+### (6b) Ant errors
 
 Ant-related errors can be similarly fixed by adding the libraries to the build
 path.
 
-### ***(6c) Resolve other errors shown in Problems***
+### (6c) Resolve other errors shown in Problems
 
 You may see an error of type Build Path Problem: Project 'UnicodeJsps' is
 missing required library:
@@ -413,12 +395,12 @@ Apply.
 
 After a few seconds, the error should disappear from Problems.
 
-## **(7) Configure the build and execution environment**
+## (7) Configure the build and execution environment
 
 Several settings are needed to build and run or debug the Tools: a project named
 Generated and a few macros.
 
-### ***(7a) Create a project named Generated***
+### (7a) Create a project named Generated
 
 The directory for this project will contain generated UCD caches, UCD derived
 files, UCA files, and result files from running the invariant tests. The
@@ -430,13 +412,9 @@ named BIN under Generated.
 
 On the Eclipse menu, File » New » Project... » (New Project window) Wizards:
 General \\ Project › Next »
-
-Project name: Generated
-
-Uncheck Use default location
-
-Location: unicodetools-trunk\\Generated (e.g.,
-C:\\Work\\svn\\unicodetools-trunk\\Generated)
+*   Project name: Generated
+*   Uncheck Use default location
+*   Location: unicodetools-trunk\\Generated (e.g., C:\\Work\\svn\\unicodetools-trunk\\Generated)
 
 » Next
 
@@ -444,7 +422,7 @@ Referenced projects: (none)
 
 » Finish
 
-### ***(7b) Define macros***
+### (7b) Define macros
 
 In Package Explorer, locate the file Main.java in the unicodetools-trunk tree.
 (A fully qualified path may look like
@@ -457,14 +435,12 @@ settings:
 *   On the Arguments tab, set Program arguments: build MakeUnicodeFiles.
 *   On the Arguments tab, set VM arguments with the directories where
     unicodetools-trunk and cldr-trunk were created, e.g.,
-
--DOTHER_WORKSPACE=C:\\Work\\svn\\unicodetools-trunk
-
--DSVN_WORKSPACE=C:\\Work\\svn\\unicodetools-trunk\\unicodetools
-
--DUCD_DIR=C:\\Work\\svn\\unicodetools-trunk\\unicodetools\\data
-
--DCLDR_DIR=C:\\Work\\svn\\cldr-trunk
+    ```
+    -DOTHER_WORKSPACE=C:\Work\svn\unicodetools-trunk
+    -DSVN_WORKSPACE=C:\Work\svn\unicodetools-trunk\unicodetools
+    -DUCD_DIR=C:\Work\svn\unicodetools-trunk\unicodetools\data
+    -DCLDR_DIR=C:\Work\svn\cldr-trunk
+    ```
 
 Apply and close without running yet.
 
@@ -477,11 +453,11 @@ C:\\Work\\svn\\.metadata\\.plugins\\org.eclipse.debug.core\\.launches\\Main.laun
 Save that file for an easier migration when installing the Tools on a different
 machine.
 
-## **(8) Build and run the Tools**
+## (8) Build and run the Tools
 
 A few source changes are necessary to build and run the Tools.
 
-### ***(8a) Make Windows-specific changes to the sources***
+### (8a) Make Windows-specific changes to the sources
 
 Try running with the settings and arguments "build MakeUnicodeFiles" described
 in step (**7b**). Output messages will start flowing in the Console pane,
@@ -494,65 +470,51 @@ file FileUtilities.java by adding the an if-else statement as shown below. In
 Package Explorer, that file is under cldr-tools \\ org.unicode.cldr.draft; on
 the disk, it is
 C:\\Work\\svn\\cldr-trunk\\tools\\java\\org\\unicode\\cldr\\draft\\FileUtilities.java.
-
-public static BufferedReader openFile(String directory, String file, Charset
-charset) {
-
-try {
-
-**if (directory.equals(""))**
-
-**return new BufferedReader(new InputStreamReader(new FileInputStream(new
-File(file)), charset));**
-
-**else**
-
-return new BufferedReader(new InputStreamReader(new FileInputStream(new
-File(directory, file)), charset));
-
-} catch (FileNotFoundException e) {
-
-throw new ICUUncheckedIOException(e); // handle dang'd checked exception
-
+```
+public static BufferedReader openFile(String directory, String file, Charset charset) {
+    try {
+        // *** start insert
+        if (directory.equals(""))
+            return new BufferedReader(new InputStreamReader(new FileInputStream(new File(file)), charset));
+        else
+        // *** end insert
+            return new BufferedReader(new InputStreamReader(new FileInputStream(new File(directory, file)), charset));
+    } catch (FileNotFoundException e) {
+        throw new ICUUncheckedIOException(e); // handle dang'd checked exception
+    }
 }
-
-}
+```
 
 The inserted code is around line 258 as of December 2017.
 
 A similar change is needed for running GenerateEnums.java as part of the process
 to update PropertyValueAliases.txt. Modify the function openWriter() in the same
 file FileUtilities.java around line 65 as follows:
+```
+public static PrintWriter openWriter(String dir, String filename, String encoding) throws IOException {
+    File file;
+    // *** start insert
+    if (dir.equals(""))
+        file = new File(filename);
+    else
+    // *** end insert
+        file = new File(dir, filename);
+    if (SHOW_FILES && log != null) {
+```
 
-public static PrintWriter openWriter(String dir, String filename, String
-encoding) throws IOException {
-
-File file**;**
-
-**if (dir.equals(""))**
-
-**file = new File(filename);**
-
-**else**
-
-**file** = new File(dir, filename);
-
-if (SHOW_FILES && log != null) {
-
-### ***(8b) Run the Tools***
+### (8b) Run the Tools
 
 Run Main.java again with "build MakeUnicodeFiles". The output in the Console
 pane should end with a line that starts with "\*\*\* Done \*\*\*", and a bunch
 of files should be generated in the subdirectories under Generated. Refresh that
 folder in Package Explorer to see them directly in Eclipse. See
-<https://sites.google.com/site/unicodetools/#TOC-Building-Files> for additional
-details.
+“Building Files” on the main docs page for additional details.
 
 Every time the Tools are run to regenerate the derived UCD files for a new
 version, it is essential to delete the UCD caches before running "build
 MakeUnicodeFiles".
 
-### ***(8c) Update PropertyAliases.txt and PropertyValueAliases.txt***
+### (8c) Update PropertyAliases.txt and PropertyValueAliases.txt
 
 When making changes to PropertyAliases.txt and/or PropertyValueAliases.txt, run
 GenerateEnums.java to regenerate two Java source files, UcdProperty.java and
@@ -584,7 +546,7 @@ files. The sequence of steps is as follows:
 *   Compare the generated PropertyAliases.txt and PropertyValueAliases.txt with
     the hand-edited ones
 
-### ***(8d) Run the invariant tests***
+### (8d) Run the invariant tests
 
 In Package Explorer, locate the file TestUnicodeInvariants.java in
 unicodetools\\org\\unicode\\text\\UCD in the unicodetools-trunk tree. (A fully
@@ -612,14 +574,12 @@ and pass it via the -f argument.
 
 *   On the Arguments tab, set VM arguments with the directories where
     unicodetools-trunk and cldr-trunk were created, e.g.,
-
--DOTHER_WORKSPACE=C:\\Work\\svn\\unicodetools-trunk
-
--DSVN_WORKSPACE=C:\\Work\\svn\\unicodetools-trunk\\unicodetools
-
--DUCD_DIR=C:\\Work\\svn\\unicodetools-trunk\\unicodetools\\data
-
--DCLDR_DIR=C:\\Work\\svn\\cldr-trunk
+    ```
+    -DOTHER_WORKSPACE=C:\Work\svn\unicodetools-trunk
+    -DSVN_WORKSPACE=C:\Work\svn\unicodetools-trunk\unicodetools
+    -DUCD_DIR=C:\Work\svn\unicodetools-trunk\unicodetools\data
+    -DCLDR_DIR=C:\Work\svn\cldr-trunk
+    ```
 
 Apply and close without running yet.
 
@@ -637,5 +597,5 @@ Configurations... or Debug configurations..., right-click on Java Application \\
 Main created in step (**7b**), click on Duplicate, and edit its name and Program
 arguments.
 
-See <https://sites.google.com/site/unicodetools/#TOC-Invariant-Checking> for
+See “Invariant Checking” on the main docs page for
 additional details on running the invariant tests.
