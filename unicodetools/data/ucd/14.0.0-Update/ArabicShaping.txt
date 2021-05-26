@@ -1,5 +1,5 @@
 # ArabicShaping-14.0.0.txt
-# Date: 2021-04-30, 20:56:00 GMT [KW, RP]
+# Date: 2021-05-21, 01:54:00 GMT [KW, RP]
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -462,10 +462,12 @@
 0888; ARABIC RAISED ROUND DOT; U; No_Joining_Group
 0889; DOTLESS NOON WITH INVERTED V ABOVE; D; NOON
 088A; HAH WITH INVERTED V BELOW; D; HAH
-088B; ARABIC LETTER TAH WITH DOT BELOW; D; TAH
-088C; ARABIC LETTER TAH WITH 3 DOTS BELOW; D; TAH
-088D; ARABIC LETTER KEHEH WITH VERTICAL 2 DOTS BELOW; D; GAF
+088B; TAH WITH DOT BELOW; D; TAH
+088C; TAH WITH 3 DOTS BELOW; D; TAH
+088D; KEHEH WITH VERTICAL 2 DOTS BELOW; D; GAF
 088E; VERTICAL TAIL; R; VERTICAL TAIL
+0890; ARABIC POUND MARK ABOVE; U; No_Joining_Group
+0891; ARABIC PIASTRE MARK ABOVE; U; No_Joining_Group
 
 # Arabic Extended-A Characters
 
@@ -862,7 +864,7 @@ A873; PHAGS-PA CANDRABINDU; U; No_Joining_Group
 10F71; OLD UYGHUR BETH; D; No_Joining_Group
 10F72; OLD UYGHUR GIMEL-HETH; D; No_Joining_Group
 10F73; OLD UYGHUR WAW; D; No_Joining_Group
-10F74; OLD UYGHUR ZAYIN; D; No_Joining_Group
+10F74; OLD UYGHUR ZAYIN; R; No_Joining_Group
 10F75; OLD UYGHUR FINAL HETH; R; No_Joining_Group
 10F76; OLD UYGHUR YODH; D; No_Joining_Group
 10F77; OLD UYGHUR KAPH; D; No_Joining_Group

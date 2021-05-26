@@ -244,6 +244,7 @@
 69A8	U+9162<kMeyerWempe
 6A9F	U+659D<kMeyerWempe
 6AC2	U+6389<kMeyerWempe
+6AFB	U+8621<kMeyerWempe
 6B2C	U+54B3<kFenn
 6B38	U+5509<kMeyerWempe
 6B79	U+239B5<kHanYu:T U+239B6<kHanYu:T
@@ -363,6 +364,7 @@
 8534	U+9EBB<kMeyerWempe
 8550	U+83EF<kFenn
 8593	U+53C3<kFenn
+8621	U+6AFB<kMeyerWempe:Z
 8655	U+458F<kFenn U+51E6<kFenn
 865C	U+64C4<kFenn
 865F	U+53F7<kFenn
@@ -490,6 +492,7 @@
 239B5..239B6	U+6B79<kHanYu:TZ
 243B1	U+7E82<kFenn
 2456D	U+5C07<kFenn
+279FB	U+8A50<kHanYu:TZ
 27E16	U+8CFA<kFenn
 28329	U+76EA<kFenn U+903F<kFenn
 292E7	U+978B
