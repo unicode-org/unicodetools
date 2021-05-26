@@ -55,6 +55,7 @@
 3AFB	luôn
 3AFC	xế
 3AFE	thửng
+3B3F	thôn
 3B72	góc
 3B88	nậy
 3B94	tròng
@@ -2467,8 +2468,7 @@
 7210	chùa lô
 7219	nháng
 721B	lạn
-722A	trảo
-722B	làm
+722A..722B	trảo
 722C	bò
 722D	tranh
 7230	vươn
@@ -4023,7 +4023,7 @@
 9DB4	hạc
 9DBA	chích
 9DC2	diều
-9DCB	chà
+9DCB	đồ
 9DDF	sạt
 9DEE	keo
 9DF9	ưng
@@ -8220,3 +8220,6 @@ FA24	gặp
 2A6A4	trông
 2A6C5	rùa
 2A6C7	rùa
+2A993	mìn
+2B1FF	thuốc
+2B736	trôn

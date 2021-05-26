@@ -1,5 +1,5 @@
 # LineBreak-14.0.0.txt
-# Date: 2021-04-30, 15:43:35 GMT [KW, LI]
+# Date: 2021-05-24, 15:56:35 GMT [KW, LI]
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -684,7 +684,8 @@
 1715;CM           # Mc         TAGALOG SIGN PAMUDPOD
 171F;AL           # Lo         TAGALOG LETTER ARCHAIC RA
 1720..1731;AL     # Lo    [18] HANUNOO LETTER A..HANUNOO LETTER HA
-1732..1734;CM     # Mn     [3] HANUNOO VOWEL SIGN I..HANUNOO SIGN PAMUDPOD
+1732..1733;CM     # Mn     [2] HANUNOO VOWEL SIGN I..HANUNOO VOWEL SIGN U
+1734;CM           # Mc         HANUNOO SIGN PAMUDPOD
 1735..1736;BA     # Po     [2] PHILIPPINE SINGLE PUNCTUATION..PHILIPPINE DOUBLE PUNCTUATION
 1740..1751;AL     # Lo    [18] BUHID LETTER A..BUHID LETTER HA
 1752..1753;CM     # Mn     [2] BUHID VOWEL SIGN I..BUHID VOWEL SIGN U
