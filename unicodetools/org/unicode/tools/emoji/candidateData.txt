@@ -32,8 +32,7 @@ Keywords=soap | clean | oxygen | underwater | seltzer | burpy | burst | bubbly
 Proposal=L2/19-265
 After=🖖
 U+1FAF1
-Name=rightward hand
-UName=RIGHTWARD BACKHAND
+Name=rightwards hand
 Keywords=reaching | helping hand | feel | push | pat | tap | tag | touching | tag | rightward
 Emoji_Modifier_Base
 U+1FAF1 U+1F3FB
@@ -45,7 +44,7 @@ U+1FAF1 U+1F3FF
 Proposal=L2/19-265
 After=🖖
 U+1FAF2
-Name=leftward hand
+Name=leftwards hand
 Keywords=reaching | helping hand | feel | push | pat | tap | tag | touching | tag | leftward
 Emoji_Modifier_Base
 U+1FAF2 U+1F3FB
@@ -192,7 +191,7 @@ Keywords=invisible | out of sight | hidden | disappeared | introvert | depressio
 Proposal=L2/20-190
 After=🤰
 U+1FAC3
-Name=man with swollen belly
+Name=pregnant man
 Keywords=pregnant | hungry | full | food | bloated | belly | swollen
 Emoji_Modifier_Base
 U+1FAC3 U+1F3FB
@@ -204,7 +203,7 @@ U+1FAC3 U+1F3FF
 Proposal=L2/20-190
 After=🤰
 U+1FAC4
-Name=person with swollen belly
+Name=pregnant person
 Keywords=pregnant | hungry | full | food | bloated | belly | swollen
 Emoji_Modifier_Base
 U+1FAC4 U+1F3FB
@@ -253,7 +252,6 @@ Proposal=L2/20‑212
 After=☝️
 U+1FAF5
 Name=index pointing at the viewer
-UName=INDEX FINGER POINTING AT THE VIEWER
 Keywords=point | you
 Emoji_Modifier_Base
 U+1FAF5 U+1F3FB
