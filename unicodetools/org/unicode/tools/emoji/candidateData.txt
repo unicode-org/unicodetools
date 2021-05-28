@@ -21,20 +21,20 @@ Proposal=L2/19-304
 After=🤭
 U+1FAE2
 Name=face with open eyes and hand over mouth
-Keywords=embarrassment | death | oh no | trouble | shook | shaken | surprise | disbelief | awe | aghast | amazement
+Keywords=amazement | awe | disbelief | embarrass | scared | surprise
 
 Proposal=L2/19-311
 After=🧼
 U+1FAE7
 Name=bubbles
-Keywords=soap | clean | oxygen | underwater | seltzer | burpy | burst | bubbly
+Keywords=clean | soap | underwater | burp
 
 Proposal=L2/19-265
 After=🖖
 U+1FAF1
 Name=rightward hand
 UName=RIGHTWARD BACKHAND
-Keywords=reaching | helping hand | feel | push | pat | tap | tag | touching | tag | rightward
+Keywords=hand | rightward | right
 Emoji_Modifier_Base
 U+1FAF1 U+1F3FB
 U+1FAF1 U+1F3FC
@@ -46,7 +46,7 @@ Proposal=L2/19-265
 After=🖖
 U+1FAF2
 Name=leftward hand
-Keywords=reaching | helping hand | feel | push | pat | tap | tag | touching | tag | leftward
+Keywords=hand | leftward | left
 Emoji_Modifier_Base
 U+1FAF2 U+1F3FB
 U+1FAF2 U+1F3FC
@@ -58,7 +58,7 @@ Proposal=L2/19-327
 After=🤞
 U+1FAF0
 Name=hand with index finger and thumb crossed
-Keywords=money | coin | pay me | expensive | love | heart | snap
+Keywords=expensive | heart | love | money | snap
 Emoji_Modifier_Base
 U+1FAF0 U+1F3FB
 U+1FAF0 U+1F3FC
@@ -70,7 +70,7 @@ Proposal=L2/19-219
 After=👄
 U+1FAE6
 Name=biting lip
-Keywords=fear | anxiety | uncomfortable | insecure | worried | flirting | desire | nervous
+Keywords=anxious | fear | flirting | nervous | uncomfortable | worried
 
 Proposal=L2/19-232, L2/19-399
 After=🧟
@@ -82,25 +82,25 @@ Proposal=L2/19-310
 After=🪅
 U+1FAA9
 Name=mirror ball
-Keywords=disco | party | dance | glamour | glitter
+Keywords=dance | disco | glitter | party
 
 Proposal=L2/19-316
 After=🔋
 U+1FAAB
 Name=low battery
-Keywords=low energy | dead | dying | computer
+Keywords=electronic | low energy
 
 Proposal=L2/20-072
 After=🙃
 U+1FAE0
 Name=melting face
-Keywords=melt | awesome | horror | dry up | drop | liquid | soften | dissolve
+Keywords=melt | disappear | liquid | dissolve
 
 Proposal=L2/20-064
 After=🥺
 U+1F979
 Name=face holding back tears
-Keywords=proud | tears | angry | sad | resist | hold back | cry
+Keywords=angry | cry | proud | resist | sad
 
 Proposal=L2/19-396, L2/19-400
 After=🤔
@@ -112,19 +112,19 @@ Proposal=L2/19-378
 After=🤭
 U+1FAE3
 Name=face with peeking eye
-Keywords=can’t look away | captivated | staring | peep
+Keywords=captivate | peep | stare
 
 Proposal=L2/19-371
 After=💮
 U+1FAB7
 Name=lotus
-Keywords=flower | purity | Buddhism | bloom | Hinduism | India | Vietnam
+Keywords=flower | Buddhism | Hinduism | India | purity | Vietnam
 
 Proposal=L2/19-379
 After=🩹
 U+1FA7C
 Name=crutch
-Keywords=mobility aid | disability | walking cane | walking stick
+Keywords=disability | mobility aid | cane | stick | hurt
 
 Proposal=L2/19-370
 After=🤝
@@ -181,19 +181,19 @@ Proposal=L2/20-219
 After=😕
 U+1FAE4
 Name=face with diagonal mouth
-Keywords=meh | eh | skeptical | huh | indifferent | unsure | disappointed
+Keywords=disappointed | meh | skeptical | unsure
 
 Proposal=L2/20-223
 After=😶
 U+1FAE5
 Name=dotted line face
-Keywords=invisible | out of sight | hidden | disappeared | introvert | depression | unimportant
+Keywords=depressed | disappear | hide | invisible | introvert
 
 Proposal=L2/20-190
 After=🤰
 U+1FAC3
 Name=man with swollen belly
-Keywords=pregnant | hungry | full | food | bloated | belly | swollen
+Keywords=belly | bloated | full | pregnant
 Emoji_Modifier_Base
 U+1FAC3 U+1F3FB
 U+1FAC3 U+1F3FC
@@ -205,7 +205,7 @@ Proposal=L2/20-190
 After=🤰
 U+1FAC4
 Name=person with swollen belly
-Keywords=pregnant | hungry | full | food | bloated | belly | swollen
+Keywords=belly | bloated | full | pregnant
 Emoji_Modifier_Base
 U+1FAC4 U+1F3FB
 U+1FAC4 U+1F3FC
@@ -217,7 +217,7 @@ Proposal=L2/20-189
 After=👷‍♀️
 U+1FAC5
 Name=person with crown
-Keywords=royalty | noble | crown | monarch | royal
+Keywords=monarch | noble | regal | royalty
 Emoji_Modifier_Base
 U+1FAC5 U+1F3FB
 U+1FAC5 U+1F3FC
@@ -278,19 +278,19 @@ Proposal=L2/20-065
 After=🥃
 U+1FAD7
 Name=pouring liquid
-Keywords=libation | pour |spill | empty | sacrifice | overflow | drink | gift | glass
+Keywords=drink | empty | glass | spill
 
 Proposal=L2/20-226
 After=🥜
 U+1FAD8
 Name=beans
-Keywords=seed | legume | pea | soy | head | secret | money | food | kidney
+Keywords=food | legume | kidney
 
 Proposal=L2/20-222
 After=🔪
 U+1FAD9
 Name=jar
-Keywords=container | empty | sauce | spread | condiment | save | storage
+Keywords=condiment | container | empty | sauce | store
 
 Proposal=L2/20-220
 After=🐚
@@ -315,7 +315,7 @@ Proposal=L2/20-215
 After=🎠
 U+1F6DD
 Name=playground slide
-Keywords=amusement park
+Keywords=amusement park | play
 
 Proposal=L2/20-216
 After=⛽
@@ -327,7 +327,7 @@ Proposal=L2/20-224
 After=⚓
 U+1F6DF
 Name=ring buoy
-Keywords=safety | life saver | hero | rescue | bail out | float | save | life preserver
+Keywords=float | life preserver | life saver | rescue | safety
 
 Proposal=L2/20-221
 After=🪧
@@ -339,7 +339,7 @@ Proposal=L2/20-218
 After=🧿
 U+1FAAC
 Name=hamsa
-Keywords=protection | amulet | evil | hand | good luck | helping hand | hand of Mary | hand of Miriam | hand of Fatima
+Keywords=amulet | hand | Fatima | Mary | Miriam | protection
 
 Proposal=L2/20-214
 After=🩺
@@ -351,4 +351,4 @@ Proposal=L2/20-225
 After=➗
 U+1F7F0
 Name=heavy equals sign
-Keywords=equality | equal rights | even | mathematics
+Keywords=equality | math
