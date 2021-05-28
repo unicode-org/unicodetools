@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Map;
+import java.util.MissingResourceException;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -1106,6 +1107,13 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
 
         String propValueAliases = Utility.getMostRecentUnicodeDataFile(
                 "PropertyValueAliases", GenerateEnums.ENUM_VERSION, true, false);
+        if (propValueAliases == null) {
+            throw new MissingResourceException(
+                    "unable to find PropertyValueAliases.txt for version " +
+                    GenerateEnums.ENUM_VERSION +
+                    "; check the paths in class Settings and in your environment variables",
+                    "PropertyParsingInfo", "");
+        }
         parseMissingFromValueAliases(FileUtilities.in("", propValueAliases));
 
         for (final String line : FileUtilities.in(IndexUnicodeProperties.class, "IndexPropertyRegex.txt")) {

@@ -34,14 +34,15 @@ public class Settings {
 
     public static final String UNICODETOOLS_DIRECTORY =
 	    CldrUtility.getProperty("UNICODETOOLS_DIR",
-		    SVN_DIRECTORY + "unicodetools/unicodetools") + '/';
+	    		SVN_WORKSPACE_DIRECTORY + "unicodetools") + '/';
     public static final String UNICODEJSPS_DIRECTORY = SVN_WORKSPACE_DIRECTORY + "unicodetools/UnicodeJsps/";
     public static final String UNICODE_DRAFT_DIRECTORY =
-	    CldrUtility.getProperty("UNICODE_DRAFT_DIR",
-		    SVN_WORKSPACE_DIRECTORY + "emoji/docs") + '/';
+            CldrUtility.getProperty("UNICODE_DRAFT_DIR",
+                    SVN_WORKSPACE_DIRECTORY + "emoji/docs") + '/';
     public static final String UNICODE_DRAFT_PUBLIC = UNICODE_DRAFT_DIRECTORY + "Public/";
 
-    public static final String DATA_DIR = Utility.fixFileName(CldrUtility.getProperty("UCD_DIR", UNICODETOOLS_DIRECTORY + "data/")) + "/";
+    public static final String DATA_DIR =
+    		Utility.fixFileName(CldrUtility.getProperty("UCD_DIR", UNICODETOOLS_DIRECTORY + "data/")) + "/";
     public static final String UCD_DIR = DATA_DIR + "ucd/";
     public static final String IDN_DIR = DATA_DIR + "IDN/";
     public static final String DICT_DIR = DATA_DIR + "dict/";
