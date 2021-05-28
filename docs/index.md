@@ -29,9 +29,16 @@ can be used to:
 
 1.  Set up Eclipse and CLDR, according to instructions:
     http://cldr.unicode.org/development/maven
+    1.  Edit the cldr-code project’s Build Path:
+        Under “Order and Export”, set the check mark next to “Maven Dependencies”
+        so that CLDR makes its dependencies available to the Unicode Tools project.
 2.  Get your github account authorized for https://github.com/unicode-org/unicodetools,
     create a fork under your account, and create a local clone.
-3.  Import the project into Eclipse.
+3.  Import the unicodetools project into Eclipse. (*Not* Maven: General > Existing Projects into Workspace)
+    1.  Edit the unicodetools project’s Build Path:
+        1.  Projects (“Required projects on the build path”): Add... cldr-code
+        2.  Libraries: Aside from the JRE System Library,
+            Add Class Folder: cldr-all/cldr-code/target/test-classes
 4.  Also create the project **and directory** Generated. (Various results are
     deposited there.)
     1.  New... -> Project... -> General/Project
@@ -40,8 +47,24 @@ can be used to:
     4.  Browse or type a folder path like <unitools>/Generated
         1.  Create this folder
         2.  Create a subfolder BIN
-5.  In your Preferences or project settings, set the environment variable
-    GEN_DIR to be {your_workspace}/Generated
+5.  Project > Clean... > Clean all projects is your friend
+6.  For the tools to work, you need to set environment variables according to your workspace layout.
+    1.  You can set these for each single tool in the Run|Debug Configurations... (x)= Arguments tab, in the VM arguments;
+    2.  or you can set the common variables globally in Window > Preferences... > Java > Installed JREs, select the active JRE, Edit... Default VM arguments: `-Dvar1=path1 -Dvar2=path2 ...`
+    3.  Depending on which tool you are running, you may need some or all of the following.
+        Adjust the paths to your workspace.
+        ```
+        -DSVN_WORKSPACE=/usr/local/google/home/mscherer/unitools/mine/src
+        -DOTHER_WORKSPACE=/usr/local/google/home/mscherer/unitools/mine
+        -DUCD_DIR=/usr/local/google/home/mscherer/unitools/mine/src/unicodetools/data
+        -DCLDR_DIR=/usr/local/google/home/mscherer/cldr/uni/src
+        -DUNICODETOOLS_DIR=/usr/local/google/home/mscherer/unitools/mine/src/unicodetools
+        -DUNICODE_DRAFT_DIR=/usr/local/google/home/mscherer/svn.unidraft/trunk/TODO
+        -DGEN_DIR=/usr/local/google/home/mscherer/unitools/mine/Generated
+        -DUVERSION=14.0.0
+        ```
+    4.  Please also use the VM argument `-ea` (enable assertions) in your Preferences
+        or in your Run/Debug configurations, so that failed assertions don’t just slip through.
 
 ### Input data files
 
@@ -58,10 +81,11 @@ For details see [Input data setup](inputdata.md).
 
 ## Generating new data
 
-To generate new data files, you can run the `org.unicode.text.UCD.main` target
+To generate new data files, you can run the `org.unicode.text.UCD.Main` class
+(yes, the `Main` class has a `main()` function)
 with program arguments `build MakeUnicodeFiles`. You may optionally include e.g.
-`version 13.0.0` if you wish to just generate the files for a single version. You
-may need to add `-DGEN_DIR=...` to the VM arguments to point to the generated files.
+`version 14.0.0` if you wish to just generate the files for a single version.
+Make sure you have the `-DGEN_DIR=...` etc. VM arguments set up as described above.
 
 ## Updating to a new Unicode version
 
@@ -273,13 +297,9 @@ If there are new break rules (or changes), see
     *   Select the Arguments tab, and fill in the following
         *   Program arguments: `build MakeUnicodeFiles`
             *   For a specific version, prepend `version 6.3.0 ` or similar.
-        *   VM arguments:
-            ```
-            -DSVN_WORKSPACE=/home/mscherer/svn.unitools/trunk
-            -DOTHER_WORKSPACE=/home/mscherer/svn.unitools
-            -DUCD_DIR=/home/mscherer/svn.unitools/trunk/data
-            -DCLDR_DIR=/home/mscherer/svn.cldr/trunk
-            ```
+        *   VM arguments: CLDR_DIR etc., see the setup instructions near the top of this page;
+            easiest to set them in the global Preferences.
+            Otherwise copy them into each Run/Debug configuration.
     *   Close and Save
 
 #### Run
