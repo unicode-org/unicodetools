@@ -2,9 +2,9 @@ package org.unicode.jsptest;
 
 import java.io.IOException;
 
+import org.unicode.idna.GenerateIdna;
 import org.unicode.idna.Idna2008;
 import org.unicode.idna.Idna2008.Idna2008Type;
-import org.unicode.idna.IdnaTypes;
 import org.unicode.jsp.FileUtilities;
 import org.unicode.text.utility.Utility;
 
@@ -95,7 +95,7 @@ public class TestIdna extends TestFmwk {
     public void TestExtract() throws IOException {
 
         final MyHandler handler = new MyHandler();
-        handler.process(IdnaTypes.class, "IdnaMappingTable.txt");
+        handler.process(GenerateIdna.GEN_IDNA_DIR, "IdnaMappingTable.txt");
 
         logln("sourceNotAllowed: " + handler.sourceNotAllowed.size() + "\t" + handler.sourceNotAllowed);
         logln("targetNotAllowed: " + handler.targetNotAllowed.size() + "\t" + handler.targetNotAllowed);

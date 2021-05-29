@@ -54,11 +54,10 @@ import com.ibm.icu.text.UnicodeSet;
 
 
 public class TestSecurity extends TestFmwkPlus {
-    private static final String SECURITY = Settings.UNICODE_DRAFT_PUBLIC + "security/";
+    private static final String GEN_SECURITY_DIR = Settings.GEN_DIR + "security/" + Settings.latestVersion;
 
-    // private static final String SECURITY_PUBLIC = Settings.UNICODE_DRAFT_PUBLIC + "security/";
-    public static XIDModifications XIDMOD = new XIDModifications(SECURITY + Settings.latestVersion);
-    public static final Confusables CONFUSABLES = new Confusables(SECURITY + Settings.latestVersion);
+    public static XIDModifications XIDMOD = new XIDModifications(GEN_SECURITY_DIR);
+    public static final Confusables CONFUSABLES = new Confusables(GEN_SECURITY_DIR);
 
 
     public static void main(String[] args) {
@@ -121,12 +120,12 @@ public class TestSecurity extends TestFmwkPlus {
     }
 
     public void TestConfusables() {
-        Confusables confusablesOld = new Confusables(SECURITY + Settings.lastVersion);
+        Confusables confusablesOld = new Confusables(GEN_SECURITY_DIR);
         showDiff("Confusable", confusablesOld.getRawMapToRepresentative(Style.MA), CONFUSABLES.getRawMapToRepresentative(Style.MA), new UTF16.StringComparator(), getLogPrintWriter());
     }
 
     public void TestXidMod() {
-        XIDModifications xidModOld = new XIDModifications(SECURITY + Settings.lastVersion);
+        XIDModifications xidModOld = new XIDModifications(GEN_SECURITY_DIR);
         UnicodeMap<Identifier_Status> newStatus = XIDMOD.getStatus();
         showDiff("Status", xidModOld.getStatus(), newStatus, new EnumComparator<Identifier_Status>(), getLogPrintWriter());
         showDiff("Type", xidModOld.getType(), XIDMOD.getType(), new EnumSetComparator<Set<Identifier_Type>>() , getLogPrintWriter());

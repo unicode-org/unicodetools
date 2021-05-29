@@ -39,8 +39,11 @@ can be used to:
         1.  Projects (“Required projects on the build path”): Add... cldr-code
         2.  Libraries: Aside from the JRE System Library,
             Add Class Folder: cldr-all/cldr-code/target/test-classes
-4.  Also create the project **and directory** Generated. (Various results are
-    deposited there.)
+        3.  Order and Export: Make sure cldr-code is *above* unicodetools.
+            See the ucd-dev email thread “Unicode Tools vs. UnicodeProperty.java”.
+            (= issue #66)
+4.  Also create the project **and directory** Generated. Various results are
+    deposited there. You need the directory, but the Eclipse project is optional.
     1.  New... -> Project... -> General/Project
     2.  Project Name=Generated
     3.  Uncheck "Use default location" (so that it's not inside your Eclipse workspace)
