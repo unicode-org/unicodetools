@@ -42,25 +42,12 @@ Then in the spreadsheets, move the "new stuff" line to the end.
 Fix the version string (which will appear inside GenerateConfusables.java) and
 the REVISION (which will match the new directory).
 
-Markus 2019-apr-01 for Unicode 12.1:
+The version/revision strings are shared with other tools; no need to set them separately.
 
-*   The version/revision strings are shared with other tools; no need to set
-    them separately.
-*   I used the same VM arguments as for running UCD.Main (adjust to your
-    system):
-    *   -DSVN_WORKSPACE=/usr/local/google/home/mscherer/svn.unitools/trunk
-    *   -DOTHER_WORKSPACE=/usr/local/google/home/mscherer/svn.unitools
-    *   -DUCD_DIR=/usr/local/google/home/mscherer/svn.unitools/trunk/data
-    *   -DCLDR_DIR=/usr/local/google/home/mscherer/svn.cldr/uni
-*   I had to add two more paths after parameterizing them in Settings.java:
-    *   -DUNICODETOOLS_DIR=/usr/local/google/home/mscherer/svn.unitools/trunk
-    *   -DUNICODE_DRAFT_DIR=/usr/local/google/home/mscherer/svn.unidraft/trunk
-
-Run GenerateConfusables -c -b to generate the files. They will appear in two
-places.
+Run GenerateConfusables -c -b to generate the files. They will appear in two places.
 
 *   *for posting, after review*:
-    *    /workspace/unicode-draft/Public/security/11.0.0/*
+    *    {Generated}/security/11.0.0/*
 *   reformatted source, log
     *   $UNICODETOOLS_DIR/data/security/11.0.0/* *including log.txt*
 
@@ -68,8 +55,7 @@ places.
 
 With the same VM arguments as the generator.
 
-Copy the following from the $UNICODE_DRAFT_DIR to the top level of the revision
-directory
+Copy the following from the output directory to the top level of the revision directory:
 
 *   confusables.txt
 *   confusablesSummary.txt
@@ -89,15 +75,6 @@ Markus 2020-feb-07 for Unicode 13.0:
         IdentifierInfo.
 *   The version/revision strings are shared with other tools; no need to set
     them separately.
-*   I used the same VM arguments as for running GenerateConfusables (adjust to
-    your system):
-    *   -ea
-    *   -DSVN_WORKSPACE=/usr/local/google/home/mscherer/svn.unitools/trunk
-    *   -DUNICODETOOLS_DIR=/usr/local/google/home/mscherer/svn.unitools/trunk
-    *   -DOTHER_WORKSPACE=/usr/local/google/home/mscherer/svn.unitools
-    *   -DUCD_DIR=/usr/local/google/home/mscherer/svn.unitools/trunk/data
-    *   -DUNICODE_DRAFT_DIR=/usr/local/google/home/mscherer/svn.unidraft/trunk
-    *   -DCLDR_DIR=/usr/local/google/home/mscherer/cldr/uni/src
 
 ## Stability
 

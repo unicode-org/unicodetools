@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -51,7 +51,7 @@ public final class FileUtilities {
         public SemiFileReader process(String directory, String fileName) {
             try {
                 final FileInputStream fileStream = new FileInputStream(directory + "/" + fileName);
-                final InputStreamReader reader = new InputStreamReader(fileStream, FileUtilities.UTF8);
+                final InputStreamReader reader = new InputStreamReader(fileStream, StandardCharsets.UTF_8);
                 final BufferedReader bufferedReader = new BufferedReader(reader,1024*64);
                 return process(bufferedReader, fileName);
             } catch (final Exception e) {
@@ -128,7 +128,7 @@ public final class FileUtilities {
             //      boolean x = file1.canRead();
             //      final InputStream resourceAsStream = new FileInputStream(file1);
             final InputStream resourceAsStream = class1.getResourceAsStream(file);
-            final InputStreamReader reader = new InputStreamReader(resourceAsStream, FileUtilities.UTF8);
+            final InputStreamReader reader = new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8);
             final BufferedReader bufferedReader = new BufferedReader(reader,1024*64);
             return bufferedReader;
         } catch (final Exception e) {
@@ -144,8 +144,6 @@ public final class FileUtilities {
             .initCause(e);
         }
     }
-
-    public static final Charset UTF8 = Charset.forName("utf-8");
 
     static String[] splitCommaSeparated(String line) {
         // items are separated by ','

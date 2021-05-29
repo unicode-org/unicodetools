@@ -972,7 +972,7 @@ public class IdentifierInfo {
 
 	final String propName = "Identifier_Type";
 	final String filename = status == Style.byValue ? "IdentifierType.txt" : "IdentifierTypeFlat.txt";
-	try (PrintWriter out2 = GenerateConfusables.openAndWriteHeader(GenerateConfusables.DRAFT_OUT, 
+	try (PrintWriter out2 = GenerateConfusables.openAndWriteHeader(GenerateConfusables.GEN_SECURITY_DIR, 
 		filename, "Security Profile for General Identifiers: "
 			+ propName)) {
 	    out2.println("# Format"
@@ -1033,7 +1033,7 @@ public class IdentifierInfo {
 	bf2.setLabelSource(age);
 
 	final String propName = "Identifier_Status";
-	try (PrintWriter out2 = GenerateConfusables.openAndWriteHeader(GenerateConfusables.DRAFT_OUT, 
+	try (PrintWriter out2 = GenerateConfusables.openAndWriteHeader(GenerateConfusables.GEN_SECURITY_DIR, 
 		"IdentifierStatus.txt", "Security Profile for General Identifiers: " + propName)) {
 	    out2.println("# Format"
 		    + "\n#"

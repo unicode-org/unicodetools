@@ -37,8 +37,7 @@ public class GenerateIdna {
 		// MUST BE FIRST
 		GenerateIdnaTest.setUnicodeVersion();
 	}
-    public static final String DIR = Settings.UNICODE_DRAFT_PUBLIC + "idna/" + Default.ucdVersion() + "/"; 
-    //public static final String DIR_BETA = Settings.UNICODE_DRAFT_PUBLIC + "idna/" + "11.0" + "/"; 
+    public static final String GEN_IDNA_DIR = Settings.GEN_DIR + "idna/" + Default.ucdVersion() + "/";
 
 	// Utility.WORKSPACE_DIRECTORY + "draft/reports/tr46/data";
 	private static final int MAX_STATUS_LENGTH = "disallowed_STD3_mapped".length();
@@ -451,7 +450,7 @@ public class GenerateIdna {
 	private static void writeDataFile(UnicodeMap<String> mappingTable) throws IOException {
 		final String filename = "IdnaMappingTable-" + Default.ucdVersion() + ".txt";
 		final String unversionedFileName = "IdnaMappingTable.txt";
-		final PrintWriter writer = FileUtilities.openUTF8Writer(DIR, unversionedFileName);
+		final PrintWriter writer = FileUtilities.openUTF8Writer(GEN_IDNA_DIR, unversionedFileName);
 
 		writer.println(Utility.getBaseDataHeader(
 			unversionedFileName, 

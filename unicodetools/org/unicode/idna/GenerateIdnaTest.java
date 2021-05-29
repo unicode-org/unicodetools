@@ -93,7 +93,7 @@ public class GenerateIdnaTest {
     public static String NEW_FILE_NAME = "IdnaTestV2.txt";
 
     int generateTests(int lines) throws IOException {
-        final PrintWriter out = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.DIR, internalOldName);
+        final PrintWriter out = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.GEN_IDNA_DIR, internalOldName);
         out.println(Utility.getDataHeader(internalOldName));
 
         FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader.txt").toString().substring(5), "UTF-8", out);
@@ -101,7 +101,7 @@ public class GenerateIdnaTest {
 	final String filename = "IdnaMappingTable-" + Default.ucdVersion() + ".txt";
 	final String unversionedFileName = "IdnaMappingTable.txt";
 
-        final PrintWriter out2 = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.DIR, NEW_FILE_NAME);
+        final PrintWriter out2 = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.GEN_IDNA_DIR, NEW_FILE_NAME);
 //        out2.println(Utility.getDataHeader(NEW_FILE_NAME));
 	out2.println(Utility.getBaseDataHeader(
 		NEW_FILE_NAME, 
@@ -162,10 +162,17 @@ public class GenerateIdnaTest {
         out.println("\n# RANDOMIZED TESTS\n");
         out2.println("\n# RANDOMIZED TESTS\n");
 
-        Set<TestLine> testLines = LoadIdnaTest.load(Settings.UNICODETOOLS_DIRECTORY + "data/idna/9.0.0");
+        int ucdTypesLastVersion = UCD_Types.AGE130;
+        String ucdTypesLastVersionString = UCD_Types.AGE_VERSIONS[ucdTypesLastVersion];
+        if (!ucdTypesLastVersionString.equals(Settings.lastVersion)) {
+            throw new AssertionError(
+                    "update GenerateIdnaTest.ucdTypesLastVersion to match " + Settings.lastVersion);
+        }
+        Set<TestLine> testLines = LoadIdnaTest.load(
+                Settings.UNICODETOOLS_DIRECTORY + "data/idna/" + Settings.lastVersion);
 
         for (TestLine testLine : testLines) {
-            count += generateLine(replaceNewerThan90(testLine.source), out, out2);
+            count += generateLine(replaceNewerThan(testLine.source, ucdTypesLastVersion), out, out2);
         }
 
         //        final RandomString randomString = new RandomString();
@@ -194,11 +201,11 @@ public class GenerateIdnaTest {
         return count;
     }
 
-    private String replaceNewerThan90(String source) {
+    private String replaceNewerThan(String source, int ucdTypesAge) {
         StringBuilder sb = new StringBuilder();
         for (int cp : CharSequences.codePoints(source)) {
             byte age = Default.ucd().getAge(cp);
-            if (age > UCD_Types.AGE90) {
+            if (age > ucdTypesAge) {
                 cp = UNDEFINED;
             }
             sb.appendCodePoint(cp);

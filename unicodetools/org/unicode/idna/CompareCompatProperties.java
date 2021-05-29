@@ -112,7 +112,7 @@ public class CompareCompatProperties {
 
     private static Map<String, List<String>> fleshOut(String fileName) {
         Map<String, List<String>> fleshedOut = new LinkedHashMap<>();
-        for (String line : FileUtilities.in(GenerateIdna.DIR, fileName)) {
+        for (String line : FileUtilities.in(GenerateIdna.GEN_IDNA_DIR, fileName)) {
             if (line.contains("X3")) {
                 int debug = 0;
             }

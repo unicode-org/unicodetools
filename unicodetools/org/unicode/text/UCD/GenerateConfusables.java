@@ -87,7 +87,7 @@ public class GenerateConfusables {
     static final String VERSION_PROP_VALUE = REVISION; // "V7_0";
 
     static final String reformatedInternal = Settings.UNICODETOOLS_DIRECTORY + "data/security/" + REVISION + "/data/";
-    public static final String DRAFT_OUT = Settings.UNICODE_DRAFT_PUBLIC + "security/" + REVISION + "/";
+    public static final String GEN_SECURITY_DIR = Settings.GEN_DIR + "security/" + REVISION + "/";
 
     //    static final XIDModifications REFERENCE_VALUES = new XIDModifications(Settings.UNICODETOOLS_DIRECTORY + "data/security/"
     //            + REFERENCE_VERSION
@@ -203,7 +203,7 @@ public class GenerateConfusables {
         } finally {
             System.out.println("Done");
             System.out.println("!!! Remember to run TestSecurity.java, after refreshing the generated files in Eclipse at "
-                    + DRAFT_OUT
+                    + GEN_SECURITY_DIR
                     + " !!!");
         }
     }
@@ -749,7 +749,7 @@ public class GenerateConfusables {
     private static void generateConfusables() throws IOException {
         log = FileUtilities.openUTF8Writer(reformatedInternal, "log.txt");
         //fixMichel(indir, outdir);
-        generateConfusables(indir, reformatedInternal, DRAFT_OUT);
+        generateConfusables(indir, reformatedInternal, GEN_SECURITY_DIR);
         log.close();
         if (false) {
             for (final Iterator it = gatheredNFKD.keySet().iterator(); it.hasNext();) {

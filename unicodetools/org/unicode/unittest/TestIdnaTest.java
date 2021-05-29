@@ -56,7 +56,7 @@ public class TestIdnaTest extends TestFmwkPlus{
         if (TEST_DIR == null) {
             TEST_DIR = Settings.UNICODETOOLS_DIRECTORY + "data/idna/" + Default.ucdVersion();
         } else if (TEST_DIR.equalsIgnoreCase("DRAFT")) {
-            TEST_DIR = GenerateIdna.DIR ; // Settings.UNICODE_DRAFT_PUBLIC;
+            TEST_DIR = GenerateIdna.GEN_IDNA_DIR;
         }
         loadedTests = LoadIdnaTest.load(TEST_DIR);
     }
