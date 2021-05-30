@@ -1,5 +1,5 @@
 # emoji-data.txt
-# Date: 2021-04-14, 01:11:12 GMT
+# Date: 2021-05-19, 06:19:22 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -411,7 +411,7 @@
 1FAB0..1FAB6  ; Emoji                # E13.0  [7] (🪰..🪶)    fly..feather
 1FAB7..1FABA  ; Emoji                # E14.0  [4] (🪷..🪺)    lotus..nest with eggs
 1FAC0..1FAC2  ; Emoji                # E13.0  [3] (🫀..🫂)    anatomical heart..people hugging
-1FAC3..1FAC5  ; Emoji                # E14.0  [3] (🫃..🫅)    man with swollen belly..person with crown
+1FAC3..1FAC5  ; Emoji                # E14.0  [3] (🫃..🫅)    pregnant man..person with crown
 1FAD0..1FAD6  ; Emoji                # E13.0  [7] (🫐..🫖)    blueberries..teapot
 1FAD7..1FAD9  ; Emoji                # E14.0  [3] (🫗..🫙)    pouring liquid..jar
 1FAE0..1FAE7  ; Emoji                # E14.0  [8] (🫠..🫧)    melting face..bubbles
@@ -691,7 +691,7 @@
 1FAB0..1FAB6  ; Emoji_Presentation   # E13.0  [7] (🪰..🪶)    fly..feather
 1FAB7..1FABA  ; Emoji_Presentation   # E14.0  [4] (🪷..🪺)    lotus..nest with eggs
 1FAC0..1FAC2  ; Emoji_Presentation   # E13.0  [3] (🫀..🫂)    anatomical heart..people hugging
-1FAC3..1FAC5  ; Emoji_Presentation   # E14.0  [3] (🫃..🫅)    man with swollen belly..person with crown
+1FAC3..1FAC5  ; Emoji_Presentation   # E14.0  [3] (🫃..🫅)    pregnant man..person with crown
 1FAD0..1FAD6  ; Emoji_Presentation   # E13.0  [7] (🫐..🫖)    blueberries..teapot
 1FAD7..1FAD9  ; Emoji_Presentation   # E14.0  [3] (🫗..🫙)    pouring liquid..jar
 1FAE0..1FAE7  ; Emoji_Presentation   # E14.0  [8] (🫠..🫧)    melting face..bubbles
@@ -760,7 +760,7 @@
 1F9BB         ; Emoji_Modifier_Base  # E12.0  [1] (🦻)       ear with hearing aid
 1F9CD..1F9CF  ; Emoji_Modifier_Base  # E12.0  [3] (🧍..🧏)    person standing..deaf person
 1F9D1..1F9DD  ; Emoji_Modifier_Base  # E5.0  [13] (🧑..🧝)    person..elf
-1FAC3..1FAC5  ; Emoji_Modifier_Base  # E14.0  [3] (🫃..🫅)    man with swollen belly..person with crown
+1FAC3..1FAC5  ; Emoji_Modifier_Base  # E14.0  [3] (🫃..🫅)    pregnant man..person with crown
 1FAF0..1FAF6  ; Emoji_Modifier_Base  # E14.0  [7] (🫰..🫶)    hand with index finger and thumb crossed..heart hands
 
 # Total elements: 132
@@ -1281,7 +1281,7 @@ E0020..E007F  ; Emoji_Component      # E0.0  [96] (󠀠..󠁿)      tag space..c
 1FAB7..1FABA  ; Extended_Pictographic# E14.0  [4] (🪷..🪺)    lotus..nest with eggs
 1FABB..1FABF  ; Extended_Pictographic# E0.0   [5] (🪻..🪿)    <reserved-1FABB>..<reserved-1FABF>
 1FAC0..1FAC2  ; Extended_Pictographic# E13.0  [3] (🫀..🫂)    anatomical heart..people hugging
-1FAC3..1FAC5  ; Extended_Pictographic# E14.0  [3] (🫃..🫅)    man with swollen belly..person with crown
+1FAC3..1FAC5  ; Extended_Pictographic# E14.0  [3] (🫃..🫅)    pregnant man..person with crown
 1FAC6..1FACF  ; Extended_Pictographic# E0.0  [10] (🫆..🫏)    <reserved-1FAC6>..<reserved-1FACF>
 1FAD0..1FAD6  ; Extended_Pictographic# E13.0  [7] (🫐..🫖)    blueberries..teapot
 1FAD7..1FAD9  ; Extended_Pictographic# E14.0  [3] (🫗..🫙)    pouring liquid..jar

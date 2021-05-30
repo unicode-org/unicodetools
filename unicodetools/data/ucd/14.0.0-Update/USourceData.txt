@@ -1,5 +1,5 @@
 # USourceData-14.0.0.txt
-# Date: 2021-01-28, 00:00:00 GMT [JHJ]
+# Date: 2021-05-19, 00:00:00 GMT [JHJ]
 #
 # © 2021 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -163,7 +163,7 @@ UTC-00117;E;U+2CDD5;196.7;;⿰甫鸟;ABC2;;12;1
 UTC-00118;WS-2017;;62.16;;⿰龍戈;UDR;;20;4
 UTC-00119;X;;169.16;;⿵門龍;UDR;Self-coined by a non-native speaker to represent their surname;;4
 UTC-00120;A;U+4DB9;45.0;;〾屮;DYC 021.310;;3;
-UTC-00121;UTC-01159;U+2F936;102.4;;⿱𡿧田;DYC 041.311;;9;5
+UTC-00121;UTC-01159;;102.4;;⿱𡿧田;DYC 041.311;;9;5
 UTC-00122;U;U+5448;30.4;;⿱口壬;kCihaiT 258.501*DYC 058.330*kHanYu 10589.110;;7;3
 UTC-00123;Comp;U+2F890;24.2;;〾廾;DYC 103.410;;4;1
 UTC-00124;X;;1.6;;⿱一⿶凵⿳人一一;DYC 137.221;;;3
@@ -300,7 +300,7 @@ UTC-00254;X;;119.15;;⿱⿰禾⿸厂果米;kSBGY 310.06;;;3
 UTC-00255;B;U+27A0D;149.7;;⿱伿言;kSBGY 270.03;;14;3
 UTC-00256;X;;27.8;;⿸厂阜;kSBGY 097.50;;;3
 UTC-00257;X;;9.10;;⿰亻⿰𧮫阝;kSBGY 511.20;;;3
-UTC-00258;X;;140.11;;⿳艹大雨;kSBGY 469.01;;;1
+UTC-00258;WS-2021;;140.11;;⿳艹大雨;kSBGY 469.01;;;1
 UTC-00259;X;;18.2;;⿰刁刂;kSBGY 144.29;;;5
 UTC-00260;X;;18.3;;⿰刃刂;kSBGY 175.34;;;5
 UTC-00261;X;;24.9;;⿰十皆;kSBGY 386.31;;;5
@@ -323,7 +323,7 @@ UTC-00277;X;;46.4;;⿱山六;kSBGY 454.30;;;4
 UTC-00278;V;U+20A32;46.2;;⿱山𠂇;kSBGY 280.40;;;1
 UTC-00279;C;U+2AF6B;104.4;;⿸疒爪;kSBGY 162.06;;9;3
 UTC-00280;X;;32.16;;⿰土聮;kSBGY 103.44;;;1
-UTC-00281;X;;94.10;;⿰隺犬;kSBGY 466.33;;;3
+UTC-00281;WS-2021;;94.10;;⿰隺犬;kSBGY 466.33;;;3
 UTC-00282;X;;70.3;;;DYC 308.441;;;3
 UTC-00283;X;;61.6;;⿱屾心;kSBGY 162.20;;;2
 UTC-00284;X;;140.4;;⿱艹尐;kSBGY 162.20;;;2
@@ -370,30 +370,30 @@ UTC-00324;V;U+86D3;142.7;;⿹𢦒虫;DYC 665.230;;;1
 UTC-00325;X;;213.3;;⿰夂龜;DYC 678.410;;;3
 UTC-00326;W;;142.10;;⿱井蛙;UDR;;;1
 UTC-00327;UTC-01126;;178.8;;⿰韦华;kXHC1983 1197.060;;;1
-UTC-00328;X;;30.13;;⿰口隘;kCowles 15*kMeyerWempe 11*kCheungBauerIndex 383.06;;;2
-UTC-00329;X;;64.14;;⿰扌裳;kLau 186a;;;
+UTC-00328;WS-2021;;30.13;;⿰口隘;kCowles 15*kMeyerWempe 11*kCheungBauerIndex 383.06;;;2
+UTC-00329;WS-2021;;64.14;;⿰扌裳;kLau 186a;;;
 UTC-00330;E;U+2BE34;1.9;;⿰弗且;kCheungBauerIndex 338.03;;10;5
 UTC-00331;U;U+4F4A;9.5;;⿰亻皮;kCheungBauerIndex 339.07;;7;
-UTC-00332;X;;30.7;;⿰口⿱力皿;kLau 458a;;;
+UTC-00332;WS-2021;;30.7;;⿰口⿱力皿;kLau 458a;;;
 UTC-00333;E;U+2BF6E;64.10;;⿰扌党;kLau 599b kFennIndex 497.06;;13;
 UTC-00334;V;U+7BA1;87.8;;⿱爫官;kLau 1074a;;;
 UTC-00335;V;U+4E80;5.9;;⿱𠮥⿻日乚;kLau 1028a kCowles 2059*kMeyerWempe 1368*kFennIndex 272.04;;;
 UTC-00336;X;;18.4;;;kLau 1027a;;;
 UTC-00337;UTC-00355;;181.10;;⿰⿱日亚頁;kLau 1177a;;;
 UTC-00338;UTC-01029;U+70B8;86.1;;⿰火乚;kLau 1272b;;;2
-UTC-00339;V;U+9019;162.3;;⿺辶才;kLau 1371a,1372a*kFennIndex 22.11;;;
+UTC-00339;WS-2021;U+9019;162.3;;⿺辶才;kLau 1371a,1372a*kFennIndex 22.11;;;
 UTC-00340;V;U+846C;140.9;;⿱艹㘸;kLau 1560a;;;
 UTC-00341;X;;142.13;;⿱⿱亡口⿲月虫凡;kLau 1956a,1957a;;;
 UTC-00342;V;U+8993;154.4;;⿱不貝;kLau 2136;;;
 UTC-00343;V;U+7B97;118.8;;⿳竹目大;kLau 2923;;;
 UTC-00344;V;U+69AB;24.12;;⿱椎十;kLau 2962a;;;
-UTC-00345;N;;130.8;;⿰月枕;kMeyerWempe 140*kCheungBauerIndex 452.08;;12;1
+UTC-00345;WS-2021;;130.8;;⿰月枕;kMeyerWempe 140*kCheungBauerIndex 452.08;;12;1
 UTC-00346;E;U+2BA8C;30.7;;⿰口沉;kMeyerWempe 142*kCowles 134;;10;4
 UTC-00347;X;;119.11;;⿰米章;kLau 206f;;;
-UTC-00348;E;U+2BB16;30.15;;⿰口賬;kCowles 195*kLau 210;;18;2
+UTC-00348;E;U+2BB16;30.15;;⿰口賬;kCowles 195;;18;2
 UTC-00349;V;U+9F02;205.4;;⿱日黽;kLau 321b;;;
-UTC-00350;E;U+2BB1B;30.14;;⿰口諄;kLau 411*kCowles 381;;18;4
-UTC-00351;E;U+2BAF2;30.15;;⿰口鈍;kLau 411*kCowles 382;;15;3
+UTC-00350;E;U+2BB1B;30.14;;⿰口諄;kCowles 381;;18;4
+UTC-00351;E;U+2BAF2;30.15;;⿰口鈍;kCowles 382;;15;3
 UTC-00352;E;U+2BAC3;30.10;;⿰口挨;kMeyerWempe 439;;13;1
 UTC-00353;V;U+874C;30.9;;⿰口科;kLau 516a;;;
 UTC-00354;U;U+5611;30.11;;⿰口虖;kLau 545d;;14;
@@ -401,20 +401,20 @@ UTC-00355;U;U+9855;181.10;;⿰⿱日亚頁;kMeyerWempe 718;;18;
 UTC-00356;U;U+5637;30.12;;⿰口臯;kLau 740a;;15;
 UTC-00357;F;U+2DBAA;79.6;;⿰吉殳;kLau 766*kCowles 1139;;10;
 UTC-00358;V;U+627B;64.7;;⿰扌坎;kMeyerWempe 772*kCowles 1148*kCheungBauerIndex 410.03;;;
-UTC-00359;W;;30.8;;⿰口炕;kCowles 1184*kMeyerWempe 795*kCheungBauerIndex 362.07;;;3
+UTC-00359;WS-2021;;30.8;;⿰口炕;kCowles 1184*kMeyerWempe 795*kCheungBauerIndex 362.07;;;3
 UTC-00360;E;U+2BA7D;30.7;;⿰口抗;kCowles 1185*kMeyerWempe 795;;10;1
 UTC-00361;E;U+2C502;115.14;;⿱⿰禾京合;kMeyerWempe 837c;;19;4
 UTC-00362;U;U+8692;142.4;;⿰虫丹;kMeyerWempe 878;;10;
 UTC-00363;E;U+2BB40;30.22;;⿰口鑒;kCowles 1462*kMeyerWempe 964;;25;1
 UTC-00364;E;U+2CE33;197.7;;⿰鹵見;kCowles 1469*kMeyerWempe 970;;18;2
-UTC-00365;W;;64.13;;⿰扌經;kCowles 1481*kMeyerWempe 979a;;;3
+UTC-00365;WS-2021;;64.13;;⿰扌經;kCowles 1481*kMeyerWempe 979a;;;3
 UTC-00366;B;U+20F3B;30.11;;⿰口基;kMeyerWempe 1104;;14;
 UTC-00367;U;U+671E;74.8;;⿱其月;kMeyerWempe 1105d;;12;
 UTC-00368;U;U+7941;113.3;;⿰礻阝;kMeyerWempe 1123l;;6;
 UTC-00369;V;U+69EA;75.11;;⿱既木;kMeyerWempe 1212;;;
 UTC-00370;B;U+22B8E;64.8;;⿰扌虎;kMeyerWempe 1414d*kCheungBauerIndex 412.04;;11;
 UTC-00371;V;U+650B;64.16;;⿰扌頼;kMeyerWempe 1425;;;
-UTC-00372;N;;30.16;;⿰口頼;kCowles 2155*kMeyerWempe 1432;;19;1
+UTC-00372;WS-2021;;30.16;;⿰口頼;kCowles 2155*kMeyerWempe 1432;;19;1
 UTC-00373;X;;117.12;;⿰立集;kMeyerWempe 1489*kCheungBauerIndex 449.03,449.04;;;
 UTC-00374;E;U+2BAFF;30.13;;⿰口鈴;kLau 1893*kMeyerWempe 1575*kCowles 2360,2370;;16;3
 UTC-00375;V;U+5C62;63.11;;⿸户婁;kMeyerWempe 1677;;;
@@ -422,32 +422,32 @@ UTC-00376;A;U+3A09;64.9;;⿰扌昬;kMeyerWempe 1784e';;12;
 UTC-00377;E;U+2C9A0;157.2;;⿰𧾷乃;kLau 2241*kCowles 2817*kMeyerWempe 1932*kCheungBauerIndex 461.07;;9;3
 UTC-00378;E;U+2BB24;30.16;;⿰口膩;kCowles 2871*kMeyerWempe 1976*kCheungBauerIndex 391.05,391.06;;19;3
 UTC-00379;E;U+2BAC4;30.10;;⿰口挾;kMeyerWempe 2019*kCowles 3002*kCheungBauerIndex 370.03;;13;1
-UTC-00380;X;;30.12;;⿰口揖;kCheungBauerIndex 380.02,383.05*kCowles 3033*kLau 2339,2340*kMeyerWempe 2044;;;
+UTC-00380;WS-2021;;30.12;;⿰口揖;kCheungBauerIndex 380.02,383.05*kCowles 3033*kLau 2339,2340*kMeyerWempe 2044;;;
 UTC-00381;X;;64.12;;⿰扌寍;kMeyerWempe 2087*kCheungBauerIndex 423.02;;;
 UTC-00382;X;;30.10;;⿰口倿;kMeyerWempe 2090;;;
 UTC-00383;E;U+2C9DF;157.20;;⿰𧾷囊;kMeyerWempe 2117*kCowles 2942;;29;1
 UTC-00384;U;U+77B9;74.13;;⿰目愛;kMeyerWempe 2146b;;18;
-UTC-00385;N;;9.12;;⿰亻⿱忠夂;kMeyerWempe 2146a;;14;2
+UTC-00385;WS-2021;;9.12;;⿰亻⿱忠夂;kMeyerWempe 2146a;;14;2
 UTC-00386;V;U+8334;140.5;;⿱艹囘;kMeyerWempe 2177;;;
 UTC-00387;E;U+2BB18;30.10;;⿰口罷;kMeyerWempe 2197*kCowles 3162;;18;2
 UTC-00388;E;U+2BA7E;30.7;;⿰口扳;kMeyerWempe 2232*kCowles 3186;;10;1
 UTC-00389;V;U+6500;64.15;;⿳⿲木攵木大手;kMeyerWempe 2237;;;
-UTC-00390;N;;30.11;;⿰口桻;kMeyerWempe 2240*kCowles 3194;;14;1
+UTC-00390;WS-2021;;30.11;;⿰口桻;kMeyerWempe 2240*kCowles 3194;;14;1
 UTC-00391;A;U+3BFD;75.14;;⿰木賔;kCowles 3217*kMeyerWempe 2272;;18;
 UTC-00392;V;U+5110;9.14;;⿰亻賔;kMeyerWempe 2279d;;;
 UTC-00393;UTC-00557;;30.10;;⿰口被;kMeyerWempe 2321*kCowles 3266;;;
-UTC-00394;X;;64.15;;⿰扌劈;kMeyerWempe 2339*kCowles 3476;;;
+UTC-00394;WS-2021;;64.15;;⿰扌劈;kMeyerWempe 2339*kCowles 3476;;;
 UTC-00395;V;U+4F75;9.8;;⿰亻並;kMeyerWempe 2376a;;;
 UTC-00396;E;U+2C9EF;158.11;;⿰身票;kCowles 3325*kMeyerWempe 2385*kCheungBauerIndex 466.04;;18;1
 UTC-00397;UTC-01029;;86.1;;⿰火乚;UTC-00338;;;
-UTC-00398;X;;86.13;;⿰火𧛱;kMeyerWempe 2403*kCowles 3326*kCheungBauerIndex 438.02;;;
+UTC-00398;WS-2021;;86.13;;⿰火𧛱;kMeyerWempe 2403*kCowles 3326*kCheungBauerIndex 438.02;;;
 UTC-00399;V;U+6CE1;85.8;;⿰氵抱;kMeyerWempe 2431*kCowles 3523;;;
-UTC-00400;X;;30.8;;⿰口抱;kMeyerWempe 2431*kCowles 3523.5;;;
+UTC-00400;WS-2021;;30.8;;⿰口抱;kMeyerWempe 2431*kCowles 3523.5;;;
 UTC-00401;E;U+2BB07;30.14;;⿰口駁;kMeyerWempe 2447*kCowles 3359;;17;1
-UTC-00402;W;;75.15;;⿲木兵咅;kMeyerWempe 2458*kCowles 3366*kCheungBauerIndex 431.07;;;3
-UTC-00403;W;;30.12;;⿰口焙;kCowles 3383*kMeyerWempe 2480*kCheungBauerIndex 381.02;;;3
+UTC-00402;WS-2021;;75.15;;⿲木兵咅;kMeyerWempe 2458*kCowles 3366*kCheungBauerIndex 431.07;;;3
+UTC-00403;WS-2021;;30.12;;⿰口焙;kCowles 3383*kMeyerWempe 2480*kCheungBauerIndex 381.02;;;3
 UTC-00404;E;U+2BAC8;30.11;;⿰步合;kCowles 3399*kMeyerWempe 2510*kCheungBauerIndex 375.02;;13;3
-UTC-00405;W;;30.8;;⿰皮合;kCowles 3559*kMeyerWempe 2511*kCheungBauerIndex 364.01;kCantonese pap6:kDefinition (Cant.) roaring sound;11;3
+UTC-00405;WS-2021;;30.8;;⿰皮合;kCowles 3559*kMeyerWempe 2511*kCheungBauerIndex 364.01;kCantonese pap6:kDefinition (Cant.) roaring sound;11;3
 UTC-00406;E;U+2C603;120.14;;⿲糹亞糹;kCowles 3566*kMeyerWempe 2524;;20;1
 UTC-00407;E;U+2BB12;30.15;;⿰口撒;kCowles 3583*kMeyerWempe 2538;;18;1
 UTC-00408;E;U+2BA8D;30.7;;⿰口沁;kCowles 3595*kMeyerWempe 2548;;10;4
@@ -458,22 +458,22 @@ UTC-00412;E;U+2BB25;30.16;;⿰口穌;kCowles 3688*kMeyerWempe 2841;;19;3
 UTC-00413;UTC-00343;U+7B97;118.8;;⿳竹目大;kCowles 3708*kMeyerWempe 2859;;;
 UTC-00414;V;U+9193;130.9;;⿰月⿱冘皿;kMeyerWempe 2941a;;;
 UTC-00415;U;U+7FDB;9.11;;翛;kMeyerWempe 2929d;;12;
-UTC-00416;X;;30.15;;⿰口𦂥;kMeyerWempe 3001*kCowles 4088*kCheungBauerIndex 388.05;;;
+UTC-00416;WS-2021;;30.15;;⿰口𦂥;kMeyerWempe 3001*kCowles 4088*kCheungBauerIndex 388.05;;;
 UTC-00417;E;U+2BCD7;40.8;;⿱宀甾;kMeyerWempe 3002,3203e*kCheungBauerIndex 400.05,400.06*kCowles 4089;;11;4
 UTC-00418;G;U+3052B;64.13;;⿰扌頓;kCowles 4331*kMeyerWempe 3012;;;1
 UTC-00419;E;U+2C8BF;149.10;;⿰言荅;kCowles 4334*kMeyerWempe 3021*kCheungBauerIndex 460.10;;16;2
 UTC-00420;X;;30.11;;⿰口兜;kCowles 4114*kMeyerWempe 3029*kCheungBauerIndex 375.08;;;
 UTC-00421;B;U+25FAF;120.4;;⿰糹弔;kMeyerWempe 3127b;;10;
 UTC-00422;E;U+2BB00;30.13;;⿰口躲;kMeyerWempe 3172;;16;3
-UTC-00423;W;;64.15;;⿰扌熨;kLau 3115*kCowles 4434*kMeyerWempe 3216*kCheungBauerIndex 427.03;;;3
+UTC-00423;WS-2021;;64.15;;⿰扌熨;kLau 3115*kCowles 4434*kMeyerWempe 3216*kCheungBauerIndex 427.03;;;3
 UTC-00424;E;U+2BD71;46.2;;⿱山十;kCowles 4723*kMeyerWempe 3289*kCheungBauerIndex 401.06;;5;1
 UTC-00425;X;;72.13;;⿰日嗇;kMeyerWempe 3338f;;;
 UTC-00426;E;U+2B99F;18.17;;⿰韱刂;kCowles 4748*kMeyerWempe 3354*kCheungBauerIndex 345.02;;19;3
-UTC-00427;X;;30.16;;⿰口蕉;kCowles 4582*kMeyerWempe 3397;;;
+UTC-00427;WS-2021;;30.16;;⿰口蕉;kCowles 4582*kMeyerWempe 3397;;;
 UTC-00428;B;U+273AE;142.9;;⿱叉⿰虫虫;kMeyerWempe 3408;;16;
 UTC-00429;F;U+2D291;30.11;;⿰口彩;kCowles 4795*kCheungBauerIndex 375.05*kMeyerWempe 3438;;14;
 UTC-00430;E;U+2B977;18.5;;⿰凸刂;kCowles 4246*kMeyerWempe 3567e kCheungBauerIndex 343.06;;7;2
-UTC-00431;X;;30.9;;⿰口洞;kCowles 4279*kMeyerWempe 3602;;;
+UTC-00431;WS-2021;;30.9;;⿰口洞;kCowles 4279*kMeyerWempe 3602;;;
 UTC-00432;X;;167.11;;⿰金患;kMeyerWempe 3708b;;;
 UTC-00433;E;U+2BE96;61.8;;⿱⿰扌永心;kMeyerWempe 3770c*kCheungBauerIndex 403.07;;12;1
 UTC-00434;A;U+4211;118.9;;⿱竹咼;kCowles 5055*kMeyerWempe 3772;;;1
@@ -483,25 +483,25 @@ UTC-00437;E;U+2C4F5;115.10;;⿰禾翁;kCowles 5280*kMeyerWempe 3957;;15;3
 UTC-00438;X;;61.10;;⿱浟心;kMeyerWempe 3854d;;;
 UTC-00439;W;;140.7;;⿳艹土夂;kMeyerWempe 3857d;;;1
 UTC-00440;E;U+2C261;85.16;;⿰氵蕊;kCowles 5244*kMeyerWempe 3927;;18;2
-UTC-00441;X;;30.10;;⿰口窄;kCowles 78;;;
+UTC-00441;WS-2021;;30.10;;⿰口窄;kCowles 78;;;
 UTC-00442;UTC-00096;;187.21;;⿰馬羼;kFennIndex 014.07;;;
 UTC-00443;N;;74.8;;⿰月枕;kCowles 129;kCantonese zam2*kDefinition callous;12;1
 UTC-00444;E;U+2CDEF;196.11;;⿱淮鳥;kCowles 380;;22;4
-UTC-00445;N;;9.14;;⿰亻⿱⿰先先日;kCowles 456;;16;3
-UTC-00446;X;;30.11;;⿰口笞;kCowles 515*kMeyerWempe 253;;;
+UTC-00445;WS-2021;;9.14;;⿰亻㬱;kCowles 456;;16;3
+UTC-00446;WS-2021;;30.11;;⿰口笞;kCowles 515*kMeyerWempe 253;;;
 UTC-00447;B;U+27039;140.14;;⿱艹遮;kFennIndex 21.13;;19;
 UTC-00448;UTC-01157;;66.8;;⿰育攵;kFennIndex 23.07;;;4
 UTC-00449;E;U+2BB33;30.17;;⿱⿰禾哀合;kCowles 1246;;20;3
-UTC-00450;X;;142.12;;⿰虫琴;kCowles 1915*kMeyerWempe 1026;;;
+UTC-00450;WS-2021;;142.12;;⿰虫琴;kCowles 1915*kMeyerWempe 1026;;;
 UTC-00451;UTC-00097;;184.12;;⿰飠牚;kFennIndex 29.07;;;
 UTC-00452;V;U+56B9;30.19;;⿰口鏬;kCowles 2149;;;
 UTC-00453;V;U+7C15;140.11;;⿱艹勒;kCowles 2220;;;
 UTC-00454;V;U+8534;140.13;;⿱艹痲;kCowles 2560;;;
-UTC-00455;X;;30.11;;⿰口掹;kCowles 2632*kMeyerWempe 1787*kCheungBauerIndex 377.09;;;
-UTC-00456;W;;85.5;;⿰氵𠕄;kCowles 2862;;;1
+UTC-00455;WS-2021;;30.11;;⿰口掹;kCowles 2632*kMeyerWempe 1787*kCheungBauerIndex 377.09;;;
+UTC-00456;WS-2021;;85.5;;⿰氵𠕄;kCowles 2862;;;1
 UTC-00457;W;;7.17;;⿱井⿰作恆;UDR;;;
 UTC-00458;E;U+2BAA2;30.7;;⿰口佞;kCowles 2902*kMeyerWempe 2090;;11;3
-UTC-00459;W;;64.11;;⿰扌𡨴;kCowles 2896,2903*kMeyerWempe 2090*kCheungBauerIndex 421.05,421.06;;;4
+UTC-00459;WS-2021;;64.11;;⿰扌𡨴;kCowles 2896,2903*kMeyerWempe 2090*kCheungBauerIndex 421.05,421.06;;;4
 UTC-00460;F;U+2D4E0;40.4;;⿱宀午;kCowles 2973;;7;
 UTC-00461;B;U+20BD6;30.4;;⿰口戸;kCowles 3131.5;;7;
 UTC-00462;E;U+2BA92;30.8;;⿰口板;kCowles 3189;;11;1
@@ -523,7 +523,7 @@ UTC-00477;X;;14.8;;;kLau 1653;;;
 UTC-00478;E;U+2BB36;30.18;;⿰口擸;kCheungBauerIndex 393.02;;21;1
 UTC-00479;V;U+2B88A;4.2;;;kFennIndex 64.06;;;
 UTC-00480;X;;154.12;;⿸厂⿱倠貝;kLau 2317*kCheungBauerIndex 346.03;;;
-UTC-00481;W;;64.10;;⿰扌晒;kLau 2592*kCheungBauerIndex 418.06;;;2
+UTC-00481;WS-2021;;64.10;;⿰扌晒;kLau 2592*kCheungBauerIndex 418.06;;;2
 UTC-00482;UTC-00122;U+5448;30.4;;⿱口壬;kCihaiT 258.501;;;
 UTC-00483;E;U+2B851;4.5;;⿻亻从;kCihaiT 47.402;;6;2
 UTC-00484;X;;11.12;;⿱入番;kCihaiT 147.402;;;
@@ -533,14 +533,14 @@ UTC-00487;X;;4.2;;;kMeyerWempe 3370;;;
 UTC-00488;W;;104.9;;⿸疒⿰皀阝;kMeyerWempe 3385b;;;3
 UTC-00489;A;U+34FE;18.11;;⿰犀刂;kMeyerWempe 264g;;14;
 UTC-00490;V;U+52E2;19.11;;;kMeyerWempe 2616;;;
-UTC-00491;N;;64.7;;⿰扌⿳巛一夕;kMeyerWempe 2530a;;10;3
+UTC-00491;U;U+62F6;64.7;;⿰扌⿳巛一夕;kMeyerWempe 2530a;;10;3
 UTC-00492;X;;75.7;;;kMeyerWempe 2530a;;;
 UTC-00493;X;;24.13;;⿱半⿰半半;kMeyerWempe 282d;;;
 UTC-00494;X;;149.12;;⿰言⿱罒豆;kMeyerWempe 866a;;;
 UTC-00495;X;;154.6;;⿰貝兆;kMeyerWempe 1827f;;;
 UTC-00496;B;U+2528D;109.11;;⿱執目;kMeyerWempe 2821f;;16;
 UTC-00497;E;U+2B91A;9.9;;⿰光令;kCheungBauerIndex 340.06;;11;4
-UTC-00498;W;;9.11;;⿰亻隆;kCheungBauerIndex 340.11;;;2
+UTC-00498;WS-2021;;9.11;;⿰亻隆;kCheungBauerIndex 340.11;;;2
 UTC-00499;E;U+2B8F9;9.16;;⿰合喬;kCheungBauerIndex 341.01,341.02;;18;1
 UTC-00500;E;U+2B90A;9.18;;⿲畐亻畐;kCheungBauerIndex 341.03;;20;1
 UTC-00501;E;U+2B923;10.16;;⿺堯吉;kCheungBauerIndex 341.04;;18;1
@@ -578,7 +578,7 @@ UTC-00532;E;U+2BAB3;30.9;;⿰口⿱左月;kCheungBauerIndex 366.01;;12;1
 UTC-00533;E;U+2BAB4;30.9;;⿰口泵;kCheungBauerIndex 366.02;;12;1
 UTC-00534;E;U+2BAC1;30.9;;⿰口飛;kCheungBauerIndex 366.04;;12;1
 UTC-00535;E;U+2BAB5;30.9;;⿰口拱;kCheungBauerIndex 367.10;;12;1
-UTC-00536;V;U+203F9;9.17;;⿰亻⿱覀國;kFennIndex 139.03;Traditional form of U+203F9;;
+UTC-00536;WS-2021;U+203F9;9.17;;⿰亻⿱覀國;kFennIndex 139.03;Traditional form of U+203F9;;
 UTC-00537;E;U+2BAB6;30.9;;⿰口挖;kCheungBauerIndex 369.04;;12;1
 UTC-00538;E;U+2BAB7;30.9;;⿰口𢬊;kCheungBauerIndex 368.06;;12;1
 UTC-00539;B;U+26C29;140.8;;⿱艹⿻口夫;kFennIndex 148.07;;11;
@@ -605,10 +605,10 @@ UTC-00559;E;U+2BAE0;30.11;;⿰口宿;kCheungBauerIndex 379.01;;14;4
 UTC-00560;E;U+2BADF;30.11;;⿰口透;kCheungBauerIndex 379.03;;13;2
 UTC-00561;E;U+2BAD5;30.11;;⿲口木𢌜;kCheungBauerIndex 379.04;;13;1
 UTC-00562;UTC-00390;;30.12;;⿰口桻;kCheungBauerIndex 380.04,380.05;;;1
-UTC-00563;W;;30.12;;⿰口絞;kCheungBauerIndex 381.08;;;3
+UTC-00563;WS-2021;;30.12;;⿰口絞;kCheungBauerIndex 381.08;;;3
 UTC-00564;E;U+2BAE9;30.12;;⿰口琼;kCheungBauerIndex 382.04;;15;1
 UTC-00565;E;U+2BAFC;30.13;;⿰口罨;kCheungBauerIndex 383.07;;16;2
-UTC-00566;W;;30.13;;⿰口逼;kCheungBauerIndex 383.08;;;4
+UTC-00566;WS-2021;;30.13;;⿰口逼;kCheungBauerIndex 383.08;;;4
 UTC-00567;V;U+770B;109.5;;;kFennIndex 241.02;;;
 UTC-00568;E;U+2BB02;30.13;;⿰口溜;kCheungBauerIndex 384.08;;16;4
 UTC-00569;E;U+2BAF6;30.13;;⿰口㨨;kCheungBauerIndex 384.09;;16;1
@@ -644,14 +644,14 @@ UTC-00598;E;U+2BB3F;30.21;;⿰口鶯;kCheungBauerIndex 393.07,393.08;;24;3
 UTC-00599;E;U+2BB3E;30.21;;⿰口鐵;kCheungBauerIndex 393.10;;24;3
 UTC-00600;C;U+2A8A7;30.22;;⿰口聽;kCheungBauerIndex 394.02;;24;
 UTC-00601;E;U+2BB41;30.24;;⿰口靂;kCheungBauerIndex 394.04;;27;1
-UTC-00602;W;;30.27;;⿰口鑾;kCheungBauerIndex 394.05;;;3
+UTC-00602;WS-2021;;30.27;;⿰口鑾;kCheungBauerIndex 394.05;;;3
 UTC-00603;E;U+2BB43;31.4;;⿴囗冘;kCheungBauerIndex 394.06;;7;2
 UTC-00604;E;U+2BB49;31.7;;⿴囗含;kCheungBauerIndex 394.08,395.01;;10;3
 UTC-00605;E;U+2BB4A;31.7;;⿴囗宏;kCheungBauerIndex 395.02;;10;4
 UTC-00606;U;U+9FCD;32.7;;⿰土夅;kCheungBauerIndex 395.05;;9;3
 UTC-00607;W;;130.6;;⿰月𠔉;kFennIndex 507.04;;;4
 UTC-00608;V;U+7B49;140.6;;⿱艹寺;kFennIndex 507.05;;;
-UTC-00609;W;;130.5;;⿱左月;kFennIndex 530.05;;;3
+UTC-00609;WS-2021;;130.5;;⿱左月;kFennIndex 530.05;;;3
 UTC-00610;U;U+57D7;32.8;;⿰土歩;kCheungBauerIndex 395.07 396.02;;;2
 UTC-00611;E;U+2BB9A;32.10;;⿰土冧;kCheungBauerIndex 396.06;;13;1
 UTC-00612;E;U+2BBE3;37.6;;⿰夺于;kCheungBauerIndex 397.03;;9;1
@@ -665,22 +665,22 @@ UTC-00619;X;;39.9;;⿰子背;kCheungBauerIndex 399.08;;;
 UTC-00620;V;U+2197C;39.9;;⿰子⿱刀貝;kCheungBauerIndex 399.07;;;
 UTC-00621;B;U+20CF6;30.7;;⿰口秃;kFennIndex 569.09;;10;
 UTC-00622;E;U+2BCAD;39.11;;⿰孑竟;kCheungBauerIndex 400.01;;14;4
-UTC-00623;W;;39.14;;⿰孑蜚;kCheungBauerIndex 400.04;;;1
+UTC-00623;WS-2021;;39.14;;⿰孑蜚;kCheungBauerIndex 400.04;;;1
 UTC-00624;E;U+2BCF4;40.11;;⿱宀𫾶;kCheungBauerIndex 400.07;;14;3
-UTC-00625;W;;41.14;;⿰尋未;kCheungBauerIndex 400.08;;;1
+UTC-00625;WS-2021;;41.14;;⿰尋未;kCheungBauerIndex 400.08;;;1
 UTC-00626;V;U+5C7B;46.4;;⿰山刅;kCheungBauerIndex 401.09;;;
 UTC-00627;V;U+5C7B;46.3;;⿰山刄;kCheungBauerIndex 401.08;;;
 UTC-00628;A;U+379F;44.12;;⿸尸奠;kCheungBauerIndex 401.05;;15;
 UTC-00629;E;U+2BD92;46.11;;⿱山淋;kCheungBauerIndex 402.02;;14;4
-UTC-00630;W;;61.12;;⿱跋心;kCheungBauerIndex 404.03;;;2
-UTC-00631;W;;61.13;;⿰忄盟;kCheungBauerIndex 404.05;;;2
-UTC-00632;W;;61.15;;⿱論心;kCheungBauerIndex 404.07;;;4
-UTC-00633;W;;61.16;;⿱錫心;kCheungBauerIndex 405.01;;;3
+UTC-00630;WS-2021;;61.12;;⿱跋心;kCheungBauerIndex 404.03;;;2
+UTC-00631;WS-2021;;61.13;;⿰忄盟;kCheungBauerIndex 404.05;;;2
+UTC-00632;WS-2021;;61.15;;⿱論心;kCheungBauerIndex 404.07;;;4
+UTC-00633;WS-2021;;61.16;;⿱錫心;kCheungBauerIndex 405.01;;;3
 UTC-00634;A;U+4343;121.4;;⿱肉缶;kFennIndex 617.03;;10;3
 UTC-00635;W;;64.3;;⿰扌小;kCheungBauerIndex 406.01;;;3
-UTC-00636;W;;64.4;;⿱切手;kCheungBauerIndex 406.09;;;1
-UTC-00637;W;;64.5;;⿱弗手;kCheungBauerIndex 407.05;;;5
-UTC-00638;W;;64.5;;⿰扌卉;kCheungBauerIndex 407.06;;;1
+UTC-00636;WS-2021;;64.4;;⿱切手;kCheungBauerIndex 406.09;;;1
+UTC-00637;WS-2021;;64.5;;⿱弗手;kCheungBauerIndex 407.05;;;5
+UTC-00638;WS-2021;;64.5;;⿰扌卉;kCheungBauerIndex 407.06;;;1
 UTC-00639;A;U+34D8;16.8;;;kHanYu 10278.080;;11;q
 UTC-00640;E;U+2BF39;64.7;;⿰扌含;kCheungBauerIndex 409.05;;10;3
 UTC-00641;V;U+8207;55.2;;;kFennIndex 644.07,645.06;;;
@@ -689,31 +689,31 @@ UTC-00643;F;U+2D364;31.7;;⿴囗辛;UCD;;10;4
 UTC-00644;F;U+2D85A;64.8;;⿰扌法;kCheungBauerIndex 412.02;;11;4
 UTC-00645;F;U+2D850;64.8;;⿰扌罔;kCheungBauerIndex 413.04;;;
 UTC-00646;C;U+2ABA1;64.10;;⿰扌朗;kCheungBauerIndex 418.02;;13;
-UTC-00647;W;;64.11;;⿰扌庵;kCheungBauerIndex 419.07;;;4
+UTC-00647;WS-2021;;64.11;;⿰扌庵;kCheungBauerIndex 419.07;;;4
 UTC-00648;U;U+57D3;32.7;;⿰土⿱肉寸;kHanYu 10446.090;;10;
 UTC-00649;D;U+2B77E;64.11;;⿰扌麥;kCheungBauerIndex 421.04;;14;1
 UTC-00650;B;U+22CBC;64.11;;⿰扌窒;kCheungBauerIndex 422.01;;14;
-UTC-00651;W;;64.12;;⿱隊手;kCheungBauerIndex 422.06;;;2
-UTC-00652;W;;64.12;;⿰扌幂;kCheungBauerIndex 423.01;;;3
-UTC-00653;W;;64.13;;⿰扌罨;kCheungBauerIndex 423.04;;;2
+UTC-00651;WS-2021;;64.12;;⿱隊手;kCheungBauerIndex 422.06;;;2
+UTC-00652;WS-2021;;64.12;;⿰扌幂;kCheungBauerIndex 423.01;;;3
+UTC-00653;WS-2021;;64.13;;⿰扌罨;kCheungBauerIndex 423.04;;;2
 UTC-00654;V;U+5160;64.13;;⿰扌兠;kCheungBauerIndex 423.09;;;1
 UTC-00655;F;U+2D8A5;64.13;;⿰扌落;kCheungBauerIndex 424.07;;15;1
-UTC-00656;W;;64.13;;⿱⿸厂⿰肙犬手;kCheungBauerIndex 424.04;;;3
-UTC-00657;W;;64.15;;⿲扌兵咅;kCheungBauerIndex 425.08;;;3
+UTC-00656;WS-2021;;64.13;;⿱⿸厂⿰肙犬手;kCheungBauerIndex 424.04;;;3
+UTC-00657;WS-2021;;64.15;;⿲扌兵咅;kCheungBauerIndex 425.08;;;3
 UTC-00658;B;U+2718C;140.23;;⿱艹齏;kFennIndex 32.10;;27;
-UTC-00659;W;;64.15;;⿰扌厲;kCheungBauerIndex 427.01;;;3
-UTC-00660;W;;64.17;;⿰扌甕;kCheungBauerIndex 427.07;;;4
-UTC-00661;W;;64.17;;⿲扌束員;kCheungBauerIndex 427.08;;;1
-UTC-00662;W;;64.15;;⿱論手;kCheungBauerIndex 427.02;;;4
+UTC-00659;WS-2021;;64.15;;⿰扌厲;kCheungBauerIndex 427.01;;;3
+UTC-00660;WS-2021;;64.17;;⿰扌甕;kCheungBauerIndex 427.07;;;4
+UTC-00661;WS-2021;;64.17;;⿲扌束員;kCheungBauerIndex 427.08;;;1
+UTC-00662;WS-2021;;64.15;;⿱論手;kCheungBauerIndex 427.02;;;4
 UTC-00663;V;U+8861;144.11;;⿴行魚;kFennIndex 153.07;;;
-UTC-00664;W;;67.14;;⿰文盡;kCheungBauerIndex 429.04;;;5
-UTC-00665;W;;70.20;;⿰方罌;kCheungBauerIndex 429.05;;;1
+UTC-00664;WS-2021;;67.14;;⿰文盡;kCheungBauerIndex 429.04;;;5
+UTC-00665;WS-2021;;70.20;;⿰方罌;kCheungBauerIndex 429.05;;;1
 UTC-00666;E;U+2C028;72.4;;⿰日久;kCheungBauerIndex 429.06;;7;3
-UTC-00667;W;;72.12;;⿰日禽;kCheungBauerIndex 429.08;;;3
+UTC-00667;WS-2021;;72.12;;⿰日禽;kCheungBauerIndex 429.08;;;3
 UTC-00668;C;U+2AA27;46.4;;⿱山仑;kXHC1983 0747.020;;7;
 UTC-00669;E;U+2C4FC;115.11;;⿰秃贵;kXHC1983 1168.020;;16;
 UTC-00670;E;U+2C0FF;75.10;;⿱特木;kCheungBauerIndex 430.08;;14;3
-UTC-00671;W;;75.11;;⿰木窒;kCheungBauerIndex 431.01;;;4
+UTC-00671;WS-2021;;75.11;;⿰木窒;kCheungBauerIndex 431.01;;;4
 UTC-00672;W;;75.13;;⿰未曾;kCheungBauerIndex 431.05;;;1
 UTC-00673;E;U+2C18C;77.13;;⿱止靴;kCheungBauerIndex 431.11;;17;1
 UTC-00674;E;U+2CBCE;170.9;;⿰阝贵;kXHC1983 1168.030;;12;
@@ -724,48 +724,48 @@ UTC-00678;C;U+2B5EB;184.9;;⿰饣胡;kXHC1983 0474.060;;12;
 UTC-00679;UTC-01134;U+9A23;187.9;;⿰马㚇;kXHC1983 1540.020;;;
 UTC-00680;E;U+2CE23;196.10;;;kXHC1983 1246.050;;15;
 UTC-00681;UTC-00020;;184.7;;⿰饣甫;UTC-00020;;;
-UTC-00682;W;;82.7;;⿱冷毛;kCheungBauerIndex 432.06;;;4
+UTC-00682;WS-2021;;82.7;;⿱冷毛;kCheungBauerIndex 432.06;;;4
 UTC-00683;E;U+2C095;84.14;;⿰肯氣;kCheungBauerIndex 432.08;;18;2
-UTC-00684;W;;84.19;;⿹气羅;kCheungBauerIndex 432.09;;;2
+UTC-00684;WS-2021;;84.19;;⿹气羅;kCheungBauerIndex 432.09;;;2
 UTC-00685;F;U+2DBFA;85.4;;⿰氵壬;kCheungBauerIndex 433.01;;;3
-UTC-00686;W;;85.7;;⿱泥入;kCheungBauerIndex 433.09;;;3
+UTC-00686;WS-2021;;85.7;;⿱泥入;kCheungBauerIndex 433.09;;;3
 UTC-00687;X;;40.4;;⿱宀互;kHanYu 20920.050;;;
-UTC-00688;N;;85.8;;⿰氵𫝹;kCheungBauerIndex 434.01;;11;3
-UTC-00689;W;;85.9;;⿱削水;kCheungBauerIndex 434.04;;;4
+UTC-00688;U;U+6DF0;85.8;;⿰氵𫝹;kCheungBauerIndex 434.01;;11;3
+UTC-00689;WS-2021;;85.9;;⿱削水;kCheungBauerIndex 434.04;;;4
 UTC-00690;E;U+2BAD0;85.10;;⿱浪口;kCheungBauerIndex 434.07;;13;4
 UTC-00691;B;U+23EF3;85.11;;⿰氵頃;kCheungBauerIndex 434.10;;14;
-UTC-00692;W;;64.15;;⿱潑手;kCheungBauerIndex 435.04;;;4
+UTC-00692;WS-2021;;64.15;;⿱潑手;kCheungBauerIndex 435.04;;;4
 UTC-00693;E;U+2C25F;85.16;;⿱橫水;kCheungBauerIndex 435.05;;19;1
 UTC-00694;E;U+2C283;86.6;;⿰火朿;kCheungBauerIndex 436.03;;10;1
 UTC-00695;E;U+2C2A9;86.9;;⿰火查;kCheungBauerIndex 437.03;;13;1
 UTC-00696;E;U+2C2D0;86.13;;⿱歃灬;kCheungBauerIndex 437.10;;17;3
-UTC-00697;W;;86.14;;⿱辣灬;kCheungBauerIndex 438.01;;;4
+UTC-00697;WS-2021;;86.14;;⿱辣灬;kCheungBauerIndex 438.01;;;4
 UTC-00698;E;U+2C2D9;86.16;;⿰火興;kCheungBauerIndex 438.03;;19;3
-UTC-00699;W;;87.6;;⿺爪圭;kCheungBauerIndex 438.06;;;1
+UTC-00699;WS-2021;;87.6;;⿺爪圭;kCheungBauerIndex 438.06;;;1
 UTC-00700;E;U+2C381;96.10;;⿰王扇;kCheungBauerIndex 439.02,439.03;;14;4
-UTC-00701;W;;97.4;;⿰爿瓜;kCheungBauerIndex 439.04;;;3
+UTC-00701;WS-2021;;97.4;;⿰爿瓜;kCheungBauerIndex 439.04;;;3
 UTC-00702;E;U+2C3ED;104.7;;⿸疒赤;kCheungBauerIndex 439.10;;12;1
-UTC-00703;W;;104.9;;⿸疒背;kCheungBauerIndex 440.06;;;1
-UTC-00704;W;;104.10;;⿸疒烕;kCheungBauerIndex 441.01;;;3
-UTC-00705;W;;104.10;;⿸疒麥;kCheungBauerIndex 441.02;;;1
+UTC-00703;WS-2021;;104.9;;⿸疒背;kCheungBauerIndex 440.06;;;1
+UTC-00704;WS-2021;;104.10;;⿸疒烕;kCheungBauerIndex 441.01;;;3
+UTC-00705;WS-2021;;104.10;;⿸疒麥;kCheungBauerIndex 441.02;;;1
 UTC-00706;E;U+2C3FE;104.13;;⿸疒盟;kCheungBauerIndex 441.05;;18;2
 UTC-00707;E;U+2C401;104.17;;⿸疒闌;kCheungBauerIndex 441.08;;22;2
 UTC-00708;E;U+2C415;107.7;;⿰皮孚;kCheungBauerIndex 442.04;;12;3
-UTC-00709;W;;107.8;;⿰皮奄;kCheungBauerIndex 442.06;;;1
+UTC-00709;WS-2021;;107.8;;⿰皮奄;kCheungBauerIndex 442.06;;;1
 UTC-00710;E;U+2C416;107.9;;⿰皮屋;kCheungBauerIndex 442.07;;14;5
-UTC-00711;W;;107.11;;⿰皮巢;kCheungBauerIndex 442.08;;;3
-UTC-00712;W;;109.2;;⿰目乃;kCheungBauerIndex 443.05;;;3
+UTC-00711;WS-2021;;107.11;;⿰皮巢;kCheungBauerIndex 442.08;;;3
+UTC-00712;WS-2021;;109.2;;⿰目乃;kCheungBauerIndex 443.05;;;3
 UTC-00713;E;U+2C45F;109.10;;⿰目候;kCheungBauerIndex 445.02;;15;3
-UTC-00714;W;;109.13;;⿰目𡕰;kCheungBauerIndex 446.01;;;2
+UTC-00714;WS-2021;;109.13;;⿰目𡕰;kCheungBauerIndex 446.01;;;2
 UTC-00715;E;U+2C494;112.8;;⿰石肯;kCheungBauerIndex 447.04;;13;1
 UTC-00716;E;U+2C4A1;112.12;;⿰石雁;kCheungBauerIndex 447.10;;17;3
-UTC-00717;W;;112.21;;⿰石鶯;kCheungBauerIndex 448.01;;;3
+UTC-00717;WS-2021;;112.21;;⿰石鶯;kCheungBauerIndex 448.01;;;3
 UTC-00718;U;U+79DB;115.5;;⿰禾皮;kCheungBauerIndex 448.03;;10;
 UTC-00719;W;;116.5;;⿱穴弗;kCheungBauerIndex 448.08;;;3
 UTC-00720;B;U+25DBE;118.16;;⿱竹隷;NA;;22;
 UTC-00721;E;U+2C580;118.16;;⿱竹蹄;kCheungBauerIndex 449.10;;22;2
 UTC-00722;E;U+2C5B2;119.10;;⿰米蚩;kCheungBauerIndex 450.01;;16;1
-UTC-00723;W;;120.10;;⿱能糸;kCheungBauerIndex 450.04;;;3
+UTC-00723;WS-2021;;120.10;;⿱能糸;kCheungBauerIndex 450.04;;;3
 UTC-00724;UTC-00788;;120.11;;⿱絇糸;kCheungBauerIndex 540.05;;;3
 UTC-00725;C;U+2B13A;121.7;;⿰缶呈;kCheungBauerIndex 450.08;;13;
 UTC-00726;E;U+2B9BC;19.14;;⿰翟力;kCheungBauerIndex 450.10;;16;5
@@ -777,14 +777,14 @@ UTC-00731;W;;130.9;;⿰月查;kCheungBauerIndex 453.01;;;1
 UTC-00732;C;U+2B736;130.12;;⿰月敦;kCheungBauerIndex 453.10;;16;4
 UTC-00733;V;U+81A5;130.11;;⿰未⿱成肉;kCheungBauerIndex 453.09;;;
 UTC-00734;B;U+26882;130.12;;⿰月菐;kCheungBauerIndex 454.02;;18;
-UTC-00735;N;;130.13;;⿰月亷;kCheungBauerIndex 454.05;;17;4
+UTC-00735;U;U+81C1;130.13;;⿰月亷;kCheungBauerIndex 454.05;;17;4
 UTC-00736;E;U+2C70D;135.11;;⿰舍炭;kCheungBauerIndex 455.02;;17;3
 UTC-00737;E;U+2C710;135.13;;⿰舌僉;kCheungBauerIndex 455.03;;19;3
-UTC-00738;W;;139.12;;⿰𣊔色;kCheungBauerIndex 455.09;;;1
+UTC-00738;WS-2021;;139.12;;⿰𣊔色;kCheungBauerIndex 455.09;;;1
 UTC-00739;E;U+2C771;140.10;;⿰弗英;kCheungBauerIndex 456.04;;13;5
-UTC-00740;W;;140.11;;⿱𫇦音;kCheungBauerIndex 456.07;;;3
+UTC-00740;WS-2021;;140.11;;⿱𫇦音;kCheungBauerIndex 456.07;;;3
 UTC-00741;E;U+2C775;140.11;;⿱艹軟;kCheungBauerIndex 457.01;;14;1
-UTC-00742;W;;141.5;;⿺虎下;kCheungBauerIndex 457.08;;;1
+UTC-00742;WS-2021;;141.5;;⿺虎下;kCheungBauerIndex 457.08;;;1
 UTC-00743;B;U+27252;142.3;;⿱扎虫;kCheungBauerIndex 457.10;;10;
 UTC-00744;E;U+2C810;142.8;;⿰虫岡;kCheungBauerIndex 458.07;;14;2
 UTC-00745;E;U+2C849;145.4;;⿰衤厄;kCheungBauerIndex 459.03;;9;3
@@ -808,11 +808,11 @@ UTC-00762;E;U+2C785;140.10;;⿱艹逛;kCheungBauerIndex 467.05;;13;1
 UTC-00763;U;U+6C97;85.4;;⿵天氺;kHanYu 31557.060;;9;1
 UTC-00764;E;U+2CAF9;167.10;;;kCheungBauerIndex 468.03;;18;3
 UTC-00765;E;U+2CBC7;170.8;;⿰阝𭎊;kCheungBauerIndex 470.04;;11;3
-UTC-00766;W;;86.13;;⿱隆灬;kCheungBauerIndex 470.05;;;1
+UTC-00766;WS-2021;;86.13;;⿱隆灬;kCheungBauerIndex 470.05;;;1
 UTC-00767;E;U+2BAF8;30.13;;⿱靴口;kCheungBauerIndex 471.01;;16;1
-UTC-00768;W;;64.13;;⿱靴手;kCheungBauerIndex 471.02;;;1
+UTC-00768;WS-2021;;64.13;;⿱靴手;kCheungBauerIndex 471.02;;;1
 UTC-00769;E;U+2CC94;184.7;;⿰飠吝;kCheungBauerIndex 472.01;;15;4
-UTC-00770;W;;184.11;;⿰飠庵;kCheungBauerIndex 472.04;;;4
+UTC-00770;WS-2021;;184.11;;⿰飠庵;kCheungBauerIndex 472.04;;;4
 UTC-00771;E;U+2CCDD;186.8;;⿰豖香;kCheungBauerIndex 472.07;;17;1
 UTC-00772;E;U+2CD2F;190.5;;⿱髟廉;kCheungBauerIndex 473.05;;23;4
 UTC-00773;E;U+2CD30;191.8;;⿵鬥岡;kCheungBauerIndex 473.06;;18;2
@@ -820,7 +820,7 @@ UTC-00774;E;U+2CE76;211.6;;⿰齒衣;kCheungBauerIndex 475.01;;21;4
 UTC-00775;E;U+2CDD0;196.6;;⿰鳥衣;kCheungBauerIndex 474.07;;17;4
 UTC-00776;UTC-02577;;203.5;;⿰黑卢;kCheungBauerIndex 474.11;;;1
 UTC-00777;X;;85.10;;⿰氵玆;kHanYu 31707.010;;12;
-UTC-00778;W;;20.7;;⿱勿正;kCheungBauerIndex 345.05;;;3
+UTC-00778;WS-2021;;20.7;;⿱勿正;kCheungBauerIndex 345.05;;;3
 UTC-00779;A;U+3538;22.10;;⿷匚⿸厂虎;kCheungBauerIndex 345.07;;12;
 UTC-00780;A;U+3536;22.24;;⿷匚贛;kCheungBauerIndex 345.08;;26;
 UTC-00781;E;U+2B9F1;25.10;;⿰卡克;kCheungBauerIndex 345.09;;12;1
@@ -829,7 +829,7 @@ UTC-00783;E;U+2B9F3;25.11;;⿰卡或;kCheungBauerIndex 345.11;;13;1
 UTC-00784;B;U+20C32;30.5;;⿰口术;kCheungBauerIndex 351.09;;;1
 UTC-00785;E;U+2BAAC;30.8;;⿰口泠;kCheungBauerIndex 363.03,363.04;;11;4
 UTC-00786;V;U+3A45;64.12;;;kCheungBauerIndex 422.08;;;
-UTC-00787;W;;64.13;;⿰扌鼠;kCheungBauerIndex 425.03;;;3
+UTC-00787;WS-2021;;64.13;;⿰扌鼠;kCheungBauerIndex 425.03;;;3
 UTC-00788;E;U+2C5F8;120.11;;⿱絇糸;kCheungBauerIndex 450.05;;17;3
 UTC-00789;V;U+8503;140.12;;⿱艹强;kCheungBauerIndex 457.06;;;
 UTC-00790;WS-2017;;64.15;;⿰扌履;http://www.kentstaichi.com/abouttaichi.html 2006-08-02;;18;5
@@ -2874,7 +2874,7 @@ UK-02825;G;U+30C9F;141.6;;⿰虎乌;UTCDoc L2/15-260 1513;;12;3
 UK-02826;G;U+3093B;108.7;;⿱串皿;UTCDoc L2/15-260 1514;;12;2
 UK-02827;G;U+30F87;167'.7;;⿰钅吞;UTCDoc L2/15-260 1515;;12;3
 UK-02828;G;U+30F8A;167'.7;;⿰钅囱;UTCDoc L2/15-260 1516;;12;4
-UK-02829;UK-2015;UTC-02828;167.7;;⿰金囱;UTCDoc L2/15-260 1517;;15;4
+UK-02829;B;U+289B1;167.7;;⿰金囱;UTCDoc L2/15-260 1517;;15;4
 UK-02830;B;U+238A7;76.8;;⿰臾欠;UTCDoc L2/15-260 1518;;12;3
 UK-02831;G;U+307B2;86.8;;⿱备灬;UTCDoc L2/15-260 1519;;12;3
 UK-02832;G;U+310A7;181'.6;;⿰米页;UTCDoc L2/15-260 1520;;12;4
@@ -3129,39 +3129,39 @@ UTC-03079;WS-2017;;85.14;;⿰氵⿱甫𠇍;UTCDoc L2/17-062 99;;17;1
 UTC-03080;WS-2017;U+21EAD;46.7;;⿰山贡;UTCDoc L2/17-062 100;kMandarin: hòng;10;1
 UTC-03081;WS-2017;;9.13;;⿰亻裊;UTCDoc L2/17-204;;15;3
 UTC-03082;WS-2017;;9.21;;⿰亻⿹韱心;UTCDoc L2/17-204;;23;3
-UTC-03083;WS-2017;U+525E;18.9;;⿰竒刂;UTCDoc L2/17-204;;11;4
+UTC-03083;U;U+525E;18.9;;⿰竒刂;UTCDoc L2/17-204;;11;4
 UTC-03084;WS-2017;;18.16;;⿰磨刂;UTCDoc L2/17-204;;18;4
 UTC-03085;WS-2017;;32.12;;⿱媠土;UTCDoc L2/17-204;;15;5
 UTC-03086;WS-2017;;37.6;;⿱囟大;UTCDoc L2/17-204;;9;3
 UTC-03087;WS-2017;;58.5;;⿱彐𣱲;UTCDoc L2/17-204;;8;2
 UTC-03088;WS-2017;U+5F58;58.10;;⿱彑⿲匕矢凡;UTCDoc L2/17-204;;13;1
 UTC-03089;WS-2017;;64.7;;⿰扌听;UTCDoc L2/17-204;;10;2
-UTC-03090;WS-2017;;64.12;;⿰扌焭;UTCDoc L2/17-204;;15;4
-UTC-03091;WS-2017;U+9667;75.7;;⿰木圼;UTCDoc L2/17-204;;11;2
+UTC-03090;B;U+22D87;64.12;;⿰扌焭;UTCDoc L2/17-204;;15;4
+UTC-03091;B;U+2348B;75.7;;⿰木圼;UTCDoc L2/17-204;;11;2
 UTC-03092;WS-2017;;75.10;;⿱殺木;UTCDoc L2/17-204;;14;3
 UTC-03093;WS-2017;;77.25;;⿱辟歷;UTCDoc L2/17-204;;29;5
 UTC-03094;WS-2017;;109.8;;⿰目松;UTCDoc L2/17-204;;13;1
 UTC-03095;WS-2017;;109.15;;⿰目廓;UTCDoc L2/17-204;;20 19;4
 UTC-03096;WS-2017;;116.16;;⿱穴縣;UTCDoc L2/17-204;;21;2
 UTC-03097;WS-2017;;140.9;;⿱艹俄;UTCDoc L2/17-204;;13 12;3
-UTC-03098;WS-2017;;140.11;;⿱艹啚;UTCDoc L2/17-204;;15 14;2
+UTC-03098;B;U+26E1C;140.11;;⿱艹啚;UTCDoc L2/17-204;;15 14;2
 UTC-03099;WS-2017;;140.12;;⿳䒤罒寸;UTCDoc L2/17-204;;16 15;2
 UTC-03100;WS-2017;;140.12;;⿱艹逸;UTCDoc L2/17-204;;16 14;3
 UTC-03101;WS-2017;U+9A44;187.9;;⿰馬总;UTCDoc L2/17-204;;19 18;4
 UTC-03102;WS-2017;;190.12;;⿱髟𦲸;UTCDoc L2/17-204;;22 21;1
 UTC-03103;WS-2017;;190.11;;⿱髟逄;UTCDoc L2/17-204;;21 20;3
-UTC-03104;WS-2017;U+4C05;190.9;;⿸髟頁;UTCDoc L2/17-204;;19;1
+UTC-03104;A;U+4C05;190.9;;⿸髟頁;UTCDoc L2/17-204;;19;1
 UTC-03105;WS-2017;U+8F2F;159.9;;⿰車⿳口冖月;UTCDoc L2/17-204;;16;2
-UTC-03106;WS-2017;U+452D;140.12;;⿱艹𡩋;UTCDoc L2/17-204;;16 15;4
+UTC-03106;A;U+452D;140.12;;⿱艹𡩋;UTCDoc L2/17-204;;16 15;4
 UTC-03107;WS-2017;;140.20;;⿱艹躄;UTCDoc L2/17-204;;24 23;5
 UTC-03108;WS-2017;;9.11;;⿰亻産;UTCDoc L2/17-204;;13;4
-UTC-03109;WS-2017;U+29A77;188.7;;⿰骨⿸产𡿨;UTCDoc L2/17-204;;17 16;4
-UTC-03110;WS-2017;U+4BDA;188.6;;⿰骨䏍;UTCDoc L2/17-204;;16 15;5
-UTC-03111;WS-2017;;72.14;;⿰昏荒;UTCDoc L2/17-204;;18 17;3
+UTC-03109;B;U+29A77;188.7;;⿰骨⿸产𡿨;UTCDoc L2/17-204;;17 16;4
+UTC-03110;B;U+29A50;188.6;;⿰骨䏍;UTCDoc L2/17-204;;16 15;5
+UTC-03111;B;U+232EF;72.14;;⿰昏荒;UTCDoc L2/17-204;;18 17;3
 UTC-03112;WS-2017;;86.3;;⿰火千;UTCDoc L2/17-204;;7;3
 UTC-03113;WS-2017;;142.9;;⿱剌虫;UTCDoc L2/17-204;;15;1
 UTC-03114;WS-2017;U+9A42;187.12;;⿰馬叅;UTCDoc L2/17-204;;22 21;5
-UTC-03115;WS-2017;U+69CB;75.8;;⿰木⿱龷冄;UTCDoc L2/17-204;;12;1
+UTC-03115;U;U+69CB;75.8;;⿰木⿱龷冄;UTCDoc L2/17-204;;12;1
 UTC-03116;WS-2017;;196.6;;⿰戎鳥;UTCDoc L2/17-204;;17;1
 UTC-03117;WS-2017;;85.11;;⿰氵盖;UTCDoc L2/17-204;;14;4
 UTC-03118;WS-2017;;85.9;;⿰氵⿱穴文;UTCDoc L2/17-204;;12;4
@@ -3172,19 +3172,19 @@ UTC-03122;WS-2017;;113.7;;⿰礻局;UTCDoc L2/17-204;;12 11;5
 UTC-03123;WS-2017;U+793A;113.0;;⿱一𥘅;UTCDoc L2/17-204;;5;1
 UTC-03124;WS-2017;;208.10;;⿰鼠宴;UTCDoc L2/17-204;;23;4
 UTC-03125;WS-2017;;64.10;;⿰扌⿱百夂;UTCDoc L2/17-204;;13 12;1
-UTC-03126;WS-2017;U+9E01;196.13;;⿳亾口⿲月鳥凡;UTCDoc L2/17-204;;24;3
-UTC-03127;V;U+247DD;94.8;;⿰犭⿳⿱⺊乛七巾;UTCDoc L2/17-204;;11;2
-UTC-03128;WS-2017;;149.7;;⿰言凬;UTCDoc L2/17-204;;14;3
+UTC-03126;U;U+9E01;196.13;;⿳亾口⿲月鳥凡;UTCDoc L2/17-204;;24;3
+UTC-03127;B;U+247DD;94.8;;⿰犭⿳⿱⺊乛七巾;UTCDoc L2/17-204;;11;2
+UTC-03128;B;U+27A60;149.7;;⿰言凬;UTCDoc L2/17-204;;14;3
 UTC-03129;WS-2017;U+9DC3;181.10;;⿰晏頁;UTCDoc L2/17-204;;19;2
 UTC-03130;WS-2017;U+27708;145.11;;⿳亠𣍹𧘇;UTCDoc L2/17-204;;17;3
 UTC-03131;WS-2017;;164.6;;⿰酉旬;UTCDoc L2/17-204;;13;3
 UTC-03132;F;U+2E17D;118.11;;⿱𥫗虗;UTCDoc L2/17-204;;;
 UTC-03133;WS-2017;U+3A9C;66.9;;⿰耑攵;UTCDoc L2/17-204;;13;2
-UTC-03134;WS-2017;;162.9;;⿺辶⿹&P7-03;刀;UTCDoc L2/17-204;;13 12;3
-UTC-03135;WS-2017;;162.4;;⿺辶⿸⿱丿𠄌⿺乀丿;UTCDoc L2/17-204;;8 7;3
-UTC-03136;V;U+284F3;162.9;;⿺辶⿱木目;UTCDoc L2/17-204;;13 12;1
+UTC-03134;B;U+28559;162.9;;⿺辶⿹&P7-03;刀;UTCDoc L2/17-204;;13 12;3
+UTC-03135;F;U+2E785;162.4;;⿺辶⿸⿱丿𠄌⿺乀丿;UTCDoc L2/17-204;;8 7;3
+UTC-03136;B;U+284F3;162.9;;⿺辶⿱木目;UTCDoc L2/17-204;;13 12;1
 UTC-03137;WS-2017;;157.10;;⿰𧾷荖;UTCDoc L2/17-204;;17 16;1
-UTC-03138;WS-2017;;157.4;;⿰𧾷𠬝;UTCDoc L2/17-204;;11;5
+UTC-03138;B;U+27FF8;157.4;;⿰𧾷𠬝;UTCDoc L2/17-204;;11;5
 UTC-03139;WS-2017;;157.10;;⿰𧾷衰;UTCDoc L2/17-204;;17;4
 UTC-03140;WS-2017;;157.13;;⿰𧾷⿱穴佰;UTCDoc L2/17-204;;20;4
 UTC-03141;WS-2017;;188.8;;⿰骨录;UTCDoc L2/17-204;;18 17;5
@@ -3195,7 +3195,7 @@ UTC-03145;WS-2017;;61.13;;⿰忄愁;UTCDoc L2/17-204;;16;3
 UTC-03146;WS-2017;;112.14;;⿰石犖;UTCDoc L2/17-204;;19;4
 UTC-03147;WS-2017;U+6115;61.12;;⿰忄⿱品亏;UTCDoc L2/17-204;;15;2
 UTC-03148;WS-2017;;187.13;;⿰馬義;UTCDoc L2/17-204;;23 22;4
-UTC-03149;WS-2017;;119.9;;⿰𥘈籴;UTCDoc L2/17-204;;15;3
+UTC-03149;B;U+25EF3;119.9;;⿰𥘈籴;UTCDoc L2/17-204;;15;3
 UTC-03150;WS-2017;;31.9;;⿴囗巷;UTCDoc L2/17-204;;12;1
 UTC-03151;WS-2017;U+5523;86.7;;⿰火皂;UTCDoc L2/17-204;;11;3
 UTC-03152;WS-2017;U+2442E;86.12;;⿱辝火;UTCDoc L2/17-204;;16;5
@@ -3213,79 +3213,79 @@ UTC-03163;B;U+2A6DA;1.2;;〾上;UTCDoc L2/17-087;;3;
 UTC-03164;B;U+2A6DB;44.1;;〾尺;UTCDoc L2/17-087;;4;
 UTC-03165;B;U+2A6DC;48.0;;〾工;UTCDoc L2/17-087;;3;
 UTC-03166;B;U+2A6DD;16.1;;〾凡;UTCDoc L2/17-087;;3;
-UTC-03167;N;;142.6;;⿱⿰丬夕虫;UTCDoc L2/18-045;;27;4
+UTC-03167;WS-2021;;142.6;;⿱⿰丬夕虫;UTCDoc L2/18-045;;27;4
 # Unicode 12.0.0 Additions: 37
-UTC-03168;N;;112.5;;⿰石东;UTCDoc L2/18-064 1;;10;1
-UTC-03169;N;;112.9;;⿰石柬;UTCDoc L2/18-064 2;;14;1
-UTC-03170;N;;15.7;;⿰冫更;UTCDoc L2/18-097 1;;9;1
-UTC-03171;N;;61.6;;⿱她心;UTCDoc L2/18-097 2;;10;3
-UTC-03172;N;;112.6;;⿰石安;UTCDoc L2/18-097 3;;11;4
-UTC-03173;N;;113.9;;⿰礻𫨻;UTCDoc L2/18-097 4;;13;2
-UTC-03174;N;;123.8;;⿰羊帛;UTCDoc L2/18-097 5;;14;4
+UTC-03168;WS-2021;;112.5;;⿰石东;UTCDoc L2/18-064 1;;10;1
+UTC-03169;WS-2021;;112.9;;⿰石柬;UTCDoc L2/18-064 2;;14;1
+UTC-03170;WS-2021;;15.7;;⿰冫更;UTCDoc L2/18-097 1;;9;1
+UTC-03171;WS-2021;;61.6;;⿱她心;UTCDoc L2/18-097 2;;10;3
+UTC-03172;WS-2021;;112.6;;⿰石安;UTCDoc L2/18-097 3;;11;4
+UTC-03173;WS-2021;;113.9;;⿰礻𫨻;UTCDoc L2/18-097 4;;13;2
+UTC-03174;WS-2021;;123.8;;⿰羊帛;UTCDoc L2/18-097 5;;14;4
 UTC-03175;W;U+9CF8;196.4;;⿸广𩾏;UTCDoc L2/18-097 6;Misidentification of U+9CF8;;1
-UTC-03176;N;;46.5;;⿰山庂;UTCDoc L2/18-097 7;;8;4
-UTC-03177;N;;96.17;;⿰𤣩賽;UTCDoc L2/18-097 8;;21;4
-UTC-03178;N;;112.7;;⿰石酉;UTCDoc L2/18-097 9;;12;1
-UTC-03179;N;;85.16;;⿰氵⿸廌土;UTCDoc L2/18-288 1;;19;4
-UTC-03180;N;;169.11;;⿵門⿱自夲;UTCDoc L2/18-288 2;;19;4
-UTC-03181;N;;61.11;;⿱⿵𡗗⿱丿罒心;UTCDoc L2/18-288 3;;15;1
-UTC-03182;N;;142.3;;⿰虫千;UTCDoc L2/18-288 4;;9;3
-UTC-03183;N;;153.3;;⿰豸千;UTCDoc L2/18-288 5;;10;3
-UTC-03184;N;;194.5;;⿺鬼戊;UTCDoc L2/18-288 6;;14;1
-UTC-03185;N;;195.9;;⿰魚𪾋;UTCDoc L2/18-288 7;;20;2
-UTC-03186;N;;94.8;;⿰犭𫤘;UTCDoc L2/18-288 8;;11;4
-UTC-03187;N;;149.13;;⿲訁⿳丿罒工殳;UTCDoc L2/18-288 9;;20;3
-UTC-03188;N;;9.8;;⿰亻靣;UTCDoc L2/18-288 10;;10;1
-UTC-03189;N;;195.5;;⿰魚叐;UTCDoc L2/18-288 11;;16;3
-UTC-03190;N;;32.2;;⿱土𰆊;UTCDoc L2/18-288 12;;5;5
-UTC-03191;N;;26.11;;⿱斜㔾;UTCDoc L2/18-288 13;;13;2
-UTC-03192;N;;169.7;;⿵門⿱一曲;UTCDoc L2/18-288 14;;15;1
-UTC-03193;N;;87.10;;⿱爲𰆊;UTCDoc L2/18-288 15;;14;5
-UTC-03194;N;;104.11;;⿸疒粒;UTCDoc L2/18-290 1;Taiwanese: liap;16;1
-UTC-03195;N;;157.7;;⿱⿳亠口冖足;UTCDoc L2/18-290 2;Taiwanese: lō;13;2
-UTC-03196;N;;93.8;;⿰牛周;UTCDoc L2/18-290 3;Taiwanese: tiau;12;3
-UTC-03197;N;;30.5;;⿰口毋;UTCDoc L2/18-290 4;Taiwanese: m̄;8;5
-UTC-03198;N;;140.8;;⿱艹帕;UTCDoc L2/18-290 5;Taiwanese: phè;12;2
-UTC-03199;N;;140.6;;⿰艹吐;UTCDoc L2/18-290 6;Taiwanese: puh;10;2
-UTC-03200;N;;20.15;;⿰勿愛;UTCDoc L2/18-290 7;Taiwanese: mài;17;3
-UTC-03201;N;;85.10;;⿰氵都;UTCDoc L2/18-290 8;Taiwanese: tū;13;1
-UTC-03202;N;;93.4;;⿰牜公;UTCDoc L2/18-290 9;Taiwanese: káng;8;3
-UTC-03203;N;;74.14;;⿰月赫;UTCDoc L2/18-290 10;Taiwanese: ha̍k;18;1
-UTC-03204;N;;135.4;;⿰舌丹;UTCDoc L2/18-290 11;Taiwanese: tâm;10;1
+UTC-03176;WS-2021;;46.5;;⿰山庂;UTCDoc L2/18-097 7;;8;4
+UTC-03177;WS-2021;;96.17;;⿰𤣩賽;UTCDoc L2/18-097 8;;21;4
+UTC-03178;WS-2021;;112.7;;⿰石酉;UTCDoc L2/18-097 9;;12;1
+UTC-03179;WS-2021;;85.16;;⿰氵⿸廌土;UTCDoc L2/18-288 1;;19;4
+UTC-03180;WS-2021;;169.11;;⿵門⿱自夲;UTCDoc L2/18-288 2;;19;4
+UTC-03181;WS-2021;;61.11;;⿱⿵𡗗⿱丿罒心;UTCDoc L2/18-288 3;;15;1
+UTC-03182;WS-2021;;142.3;;⿰虫千;UTCDoc L2/18-288 4;;9;3
+UTC-03183;WS-2021;;153.3;;⿰豸千;UTCDoc L2/18-288 5;;10;3
+UTC-03184;WS-2021;;194.5;;⿺鬼戊;UTCDoc L2/18-288 6;;14;1
+UTC-03185;WS-2021;;195.9;;⿰魚𪾋;UTCDoc L2/18-288 7;;20;2
+UTC-03186;WS-2021;;94.8;;⿰犭𫤘;UTCDoc L2/18-288 8;;11;4
+UTC-03187;WS-2021;;149.13;;⿲訁⿳丿罒工殳;UTCDoc L2/18-288 9;;20;3
+UTC-03188;WS-2021;;9.8;;⿰亻靣;UTCDoc L2/18-288 10;;10;1
+UTC-03189;U;U+9B81;195.5;;⿰魚叐;UTCDoc L2/18-288 11;;16;3
+UTC-03190;WS-2021;;32.2;;⿱土𰆊;UTCDoc L2/18-288 12;;5;5
+UTC-03191;WS-2021;;26.11;;⿱斜㔾;UTCDoc L2/18-288 13;;13;2
+UTC-03192;WS-2021;;169.7;;⿵門⿱一曲;UTCDoc L2/18-288 14;;15;1
+UTC-03193;WS-2021;;87.10;;⿱爲𰆊;UTCDoc L2/18-288 15;;14;5
+UTC-03194;WS-2021;;104.11;;⿸疒粒;UTCDoc L2/18-290 1;Taiwanese: liap;16;1
+UTC-03195;WS-2021;;157.7;;⿱⿳亠口冖足;UTCDoc L2/18-290 2;Taiwanese: lō;13;2
+UTC-03196;WS-2021;;93.8;;⿰牛周;UTCDoc L2/18-290 3;Taiwanese: tiau;12;3
+UTC-03197;WS-2021;;30.5;;⿰口毋;UTCDoc L2/18-290 4;Taiwanese: m̄;8;5
+UTC-03198;WS-2021;;140.8;;⿱艹帕;UTCDoc L2/18-290 5;Taiwanese: phè;12;2
+UTC-03199;WS-2021;;140.6;;⿰艹吐;UTCDoc L2/18-290 6;Taiwanese: puh;10;2
+UTC-03200;WS-2021;;20.15;;⿰勿愛;UTCDoc L2/18-290 7;Taiwanese: mài;17;3
+UTC-03201;WS-2021;;85.10;;⿰氵都;UTCDoc L2/18-290 8;Taiwanese: tū;13;1
+UTC-03202;WS-2021;;93.4;;⿰牜公;UTCDoc L2/18-290 9;Taiwanese: káng;8;3
+UTC-03203;WS-2021;;74.14;;⿰月赫;UTCDoc L2/18-290 10;Taiwanese: ha̍k;18;1
+UTC-03204;WS-2021;;135.4;;⿰舌丹;UTCDoc L2/18-290 11;Taiwanese: tâm;10;1
 # Unicode 13.0.0 Additions: 6
-UTC-03205;N;;8.10;;⿱亠宮;UTCDoc L2/19-089 1;;12;4
-UTC-03206;N;;8.15;;⿱亠徵;UTCDoc L2/19-089 2;;17;3
-UTC-03207;N;;1.2;;⿻丅𠃍;UTCDoc L2/19-089 3;;3;2
-UTC-03208;N;;9.2;;⿰亻丅;UTCDoc L2/19-089 4;;4;1
-UTC-03209;N;;115.8;;⿰禾斉;UTCDoc L2/19-043;kTraditionalVariant 穧;13;4
-UTC-03210;N;;29.9;;⿱叙𰆊;UTCDoc L2/19-011;kHangul 산;11;3
+UTC-03205;WS-2021;;8.10;;⿱亠宮;UTCDoc L2/19-089 1;;12;4
+UTC-03206;WS-2021;;8.15;;⿱亠徵;UTCDoc L2/19-089 2;;17;3
+UTC-03207;WS-2021;;1.2;;⿻丅𠃍;UTCDoc L2/19-089 3;;3;2
+UTC-03208;WS-2021;;9.2;;⿰亻丅;UTCDoc L2/19-089 4;;4;1
+UTC-03209;WS-2021;;115.8;;⿰禾斉;UTCDoc L2/19-043;kTraditionalVariant 穧;13;4
+UTC-03210;WS-2021;;29.9;;⿱叙𰆊;UTCDoc L2/19-011;kHangul 산;11;3
 # Unicode 14.0.0 Additions: 28
-UTC-03211;N;;7.6;;⿱二百;UTCDoc L2/20-074 1;variant of 皕;8;1
-UTC-03212;N;;46.7;;⿰山赤;UTCDoc L2/20-074 2;variant of 𡋽;10;1
-UTC-03213;N;;71.3;;⿱旡夊;UTCDoc L2/20-074 3;variant of 愛;7;3
-UTC-03214;N;;162.36;;⿺辶⿳⿲日日日⿲日日日⿲日日日;UTCDoc L2/20-074 4;天橋立 a place name;39;2
-UTC-03215;N;;30.9;;⿰口剋;UTCDoc L2/20-093 1;kCantonese gwak6:kDefinition (Cant.) to be undesirably hard;12;1
-UTC-03216;N;;30.11;;⿰口梃;UTCDoc L2/20-093 2;kCantonese ting2:kDefinition (Cant.) a kind, type, sort;14;1
-UTC-03217;N;;30.12;;⿰口揼;UTCDoc L2/20-093 3;kCantonese dap6:kDefinition (Cant.) to beat;15;1
-UTC-03218;N;;30.16;;⿰口壁;UTCDoc L2/20-093 4;kCantonese bek6:kDefinition (Cant.) soft and muddy;19;3
-UTC-03219;N;;4.5;;⿸𠂝丶;kFennIndex 110.04;kCantonese zung3:kDefinition multitude, crowd, masses* public:kMandarin zhòng:kSemanticVariant U+4F17 U+773E U+8846<kFennIndex U+2C454<kFennIndex;6;2
+UTC-03211;WS-2021;;7.6;;⿱二百;UTCDoc L2/20-074 1;variant of 皕;8;1
+UTC-03212;WS-2021;;46.7;;⿰山赤;UTCDoc L2/20-074 2;variant of 𡋽;10;1
+UTC-03213;WS-2021;;71.3;;⿱旡夊;UTCDoc L2/20-074 3;variant of 愛;7;3
+UTC-03214;WS-2021;;162.36;;⿺辶⿳⿲日日日⿲日日日⿲日日日;UTCDoc L2/20-074 4;天橋立 a place name;39;2
+UTC-03215;WS-2021;;30.9;;⿰口剋;UTCDoc L2/20-093 1;kCantonese gwak6:kDefinition (Cant.) to be undesirably hard;12;1
+UTC-03216;WS-2021;;30.11;;⿰口梃;UTCDoc L2/20-093 2;kCantonese ting2:kDefinition (Cant.) a kind, type, sort;14;1
+UTC-03217;WS-2021;;30.12;;⿰口揼;UTCDoc L2/20-093 3;kCantonese dap6:kDefinition (Cant.) to beat;15;1
+UTC-03218;WS-2021;;30.16;;⿰口壁;UTCDoc L2/20-093 4;kCantonese bek6:kDefinition (Cant.) soft and muddy;19;3
+UTC-03219;WS-2021;;4.5;;⿸𠂝丶;kFennIndex 110.04;kCantonese zung3:kDefinition multitude, crowd, masses* public:kMandarin zhòng:kSemanticVariant U+4F17 U+773E U+8846<kFennIndex U+2C454<kFennIndex;6;2
 UTC-03220;W;UTC-03214;162.35;;⿺辶⿳⿲日日日⿲日日日⿲日日巾;UTCDoc L2/20-126 1;天橋立 (a place name, misinterpreted and incorrect form of UTC-03214);38;2
-UTC-03221;N;;27.54;;⿸厂⿳⿲有有有⿲有有有⿲有有有;UTCDoc L2/20-126 2;天橋立 (a place name);56;1
-UTC-03222;N;;13.10;;⿵冂書;UTCDoc L2/20-139 1;;12;
-UTC-03223;N;;13.6;;⿻冂合;UTCDoc L2/20-139 2;;8;3
-UTC-03224;N;;66.12;;⿱敕令;UTCDoc L2/20-139 3;ligature form of 敕令;16;
-UTC-03225;N;;1.2;;⿻一𠃏;UTCDoc L2/20-145 1;pound (unit of measurement);3;2
-UTC-03226;N;;85.2;;⿰氵𬼁;UTCDoc L2/20-145 2;fluid dram;5;3
-UTC-03227;N;;85.3;;⿰氵𬼄;UTCDoc L2/20-145 3;fluid ounce;5;3
-UTC-03228;N;;32.15;;⿰土𮧌;UTCDoc L2/20-206 1;Similar to U+58BB U+2BBB0:kJapaneseKun KAKI KUNE;18;1
-UTC-03229;N;;46.8;;⿰山定;UTCDoc L2/20-206 2;kJapaneseKun TAWA;11;4
-UTC-03230;N;;53.9;;⿱𠂊⿸广?;UTCDoc L2/20-206 3;Similar to U+2B756:kJapaneseOn SO;12;3
-UTC-03231;N;;64.6;;⿰扌込;UTCDoc L2/20-206 4;kJapaneseKun NYOU;9;3
-UTC-03232;N;;94.2;;⿰犭又;UTCDoc L2/20-206 5;kJapaneseKun MATA;5;5
-UTC-03233;N;U+9B29;169.7;;⿵門児;UTCDoc L2/20-206 6;Variant of U+9B29:kJapaneseKun HISHIRI;15;2
+UTC-03221;WS-2021;;27.54;;⿸厂⿳⿲有有有⿲有有有⿲有有有;UTCDoc L2/20-126 2;天橋立 (a place name);56;1
+UTC-03222;WS-2021;;13.10;;⿵冂書;UTCDoc L2/20-139 1;;12;
+UTC-03223;WS-2021;;13.6;;⿻冂合;UTCDoc L2/20-139 2;;8;3
+UTC-03224;WS-2021;;66.12;;⿱敕令;UTCDoc L2/20-139 3;ligature form of 敕令;16;
+UTC-03225;WS-2021;;1.2;;⿻一𠃏;UTCDoc L2/20-145 1;pound (unit of measurement);3;2
+UTC-03226;WS-2021;;85.2;;⿰氵𬼁;UTCDoc L2/20-145 2;fluid dram;5;3
+UTC-03227;WS-2021;;85.3;;⿰氵𬼄;UTCDoc L2/20-145 3;fluid ounce;5;3
+UTC-03228;WS-2021;;32.15;;⿰土𮧌;UTCDoc L2/20-206 1;Similar to U+58BB U+2BBB0:kJapaneseKun KAKI KUNE;18;1
+UTC-03229;WS-2021;;46.8;;⿰山定;UTCDoc L2/20-206 2;kJapaneseKun TAWA;11;4
+UTC-03230;WS-2021;;53.9;;⿱𠂊⿸广?;UTCDoc L2/20-206 3;Similar to U+2B756:kJapaneseOn SO;12;3
+UTC-03231;WS-2021;;64.6;;⿰扌込;UTCDoc L2/20-206 4;kJapaneseKun NYOU;9;3
+UTC-03232;WS-2021;;94.2;;⿰犭又;UTCDoc L2/20-206 5;kJapaneseKun MATA;5;5
+UTC-03233;WS-2021;U+9B29;169.7;;⿵門児;UTCDoc L2/20-206 6;Variant of U+9B29:kJapaneseKun HISHIRI;15;2
 UTC-03234;V;U+5B78;39.13;;⿱⿶⿱𦥑冖文子;UTCDoc L2/20-277;;16;3
-UTC-03235;N;;15.3;;⿰冫夕;UTCDoc L2/21-025 1;kSpoofingVariant U+6C50;5;3
-UTC-03236;N;;32.3;;⿰土夕;UTCDoc L2/21-025 2;;6;3
-UTC-03237;N;;86.12;;⿰晶灬;UTCDoc L2/21-025 3;kJapaneseOn SHOU;16;2
-UTC-03238;N;;162.27;;⿺辶𰆂;UTCDoc L2/21-025 4;;31;1
+UTC-03235;WS-2021;;15.3;;⿰冫夕;UTCDoc L2/21-025 1;kSpoofingVariant U+6C50;5;3
+UTC-03236;WS-2021;;32.3;;⿰土夕;UTCDoc L2/21-025 2;;6;3
+UTC-03237;WS-2021;;86.12;;⿰晶灬;UTCDoc L2/21-025 3;kJapaneseOn SHOU;16;2
+UTC-03238;WS-2021;;162.27;;⿺辶𰆂;UTCDoc L2/21-025 4;;31;1
 # EOF
