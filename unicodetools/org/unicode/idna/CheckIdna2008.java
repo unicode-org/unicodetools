@@ -19,7 +19,7 @@ public class CheckIdna2008 {
 
     public static void main(String[] args) {
 
-        for (final String line : FileUtilities.in(Settings.DATA_DIR + "/idna/", "f.txt")) {
+        for (final String line : FileUtilities.in(Settings.UnicodeTools.DATA_DIR + "/idna/", "f.txt")) {
             if (line.startsWith("Codepoints")) {continue;}
             final String[] parts = line.split(";");
             // 0041;DISALLOWED;Y;AB;LATIN CAPITAL LETTER A
@@ -33,7 +33,7 @@ public class CheckIdna2008 {
             patriksData.put(cp, allButFirst(parts));
         }
 
-        for (String line : FileUtilities.in(Settings.DATA_DIR + "/idna/" +
+        for (String line : FileUtilities.in(Settings.UnicodeTools.DATA_DIR + "/idna/" +
                 Settings.latestVersion +
         		"/", "IdnaMappingTable.txt")) {
             final int pos2 = line.indexOf('#');

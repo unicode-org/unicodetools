@@ -24,7 +24,7 @@ public class WordFrequency {
     static long total;
     static {
         Splitter tab = Splitter.on("\t").trimResults();
-        for (String line : FileUtilities.in(Settings.OTHER_WORKSPACE_DIRECTORY + "data/words/", "freq.txt")) {
+        for (String line : FileUtilities.in(Settings.Output.UNICODETOOLS_OUTPUT_DIR + "data/words/", "freq.txt")) {
             List<String> list = tab.splitToList(line);
             long count = Long.parseLong(list.get(1));
             data.put(list.get(0), count);

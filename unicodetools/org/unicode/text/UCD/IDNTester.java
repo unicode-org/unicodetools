@@ -31,7 +31,7 @@ public class IDNTester {
 
     public static void main(String[] args) throws IOException {
         initialize();
-        pw = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "idnCount.html");
+        pw = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "idnCount.html");
         pw.println("<html><body>");
         showSet("IDN InputOnly: ", IDNInputOnly);
         showSet("IDN Output: ", IDNOutput);

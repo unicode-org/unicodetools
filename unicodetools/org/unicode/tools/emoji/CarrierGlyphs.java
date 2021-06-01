@@ -46,7 +46,7 @@ public class CarrierGlyphs {
         carrier.addAll(Emoji_KDDI.keySet());
         carrier.addAll(Emoji_DCM.keySet());
         carrier.addAll(Emoji_SB.keySet());
-        PrintWriter out = FileUtilities.openUTF8Writer(Settings.SVN_WORKSPACE_DIRECTORY
+        PrintWriter out = FileUtilities.openUTF8Writer(Settings.UnicodeTools.UNICODETOOLS_REPO_DIR
                 + "/reports/tr51/", "carrier-emoji.html");
         out.println("<html>\n" +
                 "<head>\n" +
@@ -96,7 +96,7 @@ public class CarrierGlyphs {
         if (code == null) {
             return "";
         }
-        final String dir = Settings.SVN_WORKSPACE_DIRECTORY + "/reports/tr51/";
+        final String dir = Settings.UnicodeTools.UNICODETOOLS_REPO_DIR + "/reports/tr51/";
         final String filename = "images/"
                 + type
                 + "/" 

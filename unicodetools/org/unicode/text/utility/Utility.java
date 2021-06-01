@@ -902,7 +902,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
      */
 
     public static PrintWriter openPrintWriterGenDir(String filename, Encoding options) {
-	return openPrintWriter(Settings.GEN_DIR, filename, options);
+	return openPrintWriter(Settings.Output.GEN_DIR, filename, options);
     }
 
     public static PrintWriter openPrintWriter(String filename, Encoding options) {
@@ -937,7 +937,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     public static String getOutputName(String filename) {
-	return Settings.GEN_DIR + filename;
+	return Settings.Output.GEN_DIR + filename;
     }
 
     public static void print(PrintWriter pw, Collection c, String separator) {
@@ -1336,11 +1336,11 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 			return null;
 		    }
 		}
-		String directoryName = Settings.DATA_DIR + base + "/" + element + "/";
+		String directoryName = Settings.UnicodeTools.DATA_DIR + base + "/" + element + "/";
 		result = directoryName + parts[2] + fileType;
 		break;
 	    }
-	    String directoryName = Settings.UCD_DIR + element + "-Update" + File.separator;
+	    String directoryName = Settings.UnicodeTools.UCD_DIR + element + "-Update" + File.separator;
 	    result = searchDirectory(new File(directoryName), filename, show, fileType);
 	    if (result != null) {
 		break;
@@ -1353,7 +1353,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 	    }
 	}
 	if (show && !tries.isEmpty()) {
-	    System.out.println("\tTried: '" + Settings.UCD_DIR + File.separator + "("
+	    System.out.println("\tTried: '" + Settings.UnicodeTools.UCD_DIR + File.separator + "("
 		    + CollectionUtilities.join(tries, "|") + ")-Update"
 		    + File.separator + filename + "*" + fileType + "'");
 	}

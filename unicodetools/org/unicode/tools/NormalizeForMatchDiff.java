@@ -14,7 +14,7 @@ public class NormalizeForMatchDiff {
         NormalizeForMatch sourceDirectory = NormalizeForMatch.load(
                 null,"XNFKCCF-Curated.txt");
         NormalizeForMatch dir90 = NormalizeForMatch.load(
-                Settings.DATA_DIR + "n4m/9.0.0/", "XNFKCCF-Curated.txt");
+                Settings.UnicodeTools.DATA_DIR + "n4m/9.0.0/", "XNFKCCF-Curated.txt");
         NormalizeForMatch gen = NormalizeForMatch.load(
                 "/Users/markdavis/Google Drive/workspace/Generated/n4m/", "XNFKCCF-Curated.txt");
                 

@@ -713,7 +713,7 @@ public class Ids {
         }
 
         static void listSpecials() throws IOException {
-            try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "ids/", "specials.html");
+            try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "ids/", "specials.html");
                     ) {
                 showHeader(out);
                 out.println("<tr><td>" + "key"
@@ -811,7 +811,7 @@ public class Ids {
 
     private static void showRadicalMissing() throws IOException {
         // Relation<List<CpPart>, String> invert = Relation.of(new HashMap(), HashSet.class);
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "ids/", "radicalMissing.html");
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "ids/", "radicalMissing.html");
                 ) {
             showHeader(out);     
             int count = 0;
@@ -878,7 +878,7 @@ public class Ids {
     }
 
     static void showParseErrors(M3<String, String, String> problems, String fileName) throws IOException {
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "ids/", fileName);
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "ids/", fileName);
                 ) {
             showHeader(out);
             out.println("<tr><th>Count</th><th>Reason for failure</th><th>Source</th><th>IDS</th><th>Source Radical + RS(.0)</th><th>Source RS</th></tr>");
@@ -920,7 +920,7 @@ public class Ids {
 
     private static void showRadicalCompare() throws IOException {
 
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "ids/", "radicalCompare.html");
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "ids/", "radicalCompare.html");
                 ) {
             showHeader(out);
             Map<Double, R2<Set<String>,Set<String>>> sorted = new TreeMap<>();
@@ -984,7 +984,7 @@ public class Ids {
 
     private static void showRadicalCompareTxt() throws IOException {
 
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "ids/", "radicalCompare.txt");
+        try (PrintWriter out = FileUtilities.openUTF8Writer(orgSettings.Output.GEN_DIR + "ids/", "radicalCompare.txt");
                 ) {
             out.println("# Additional Radical Mappings (beyond CJKRadicals.txt)\n"
                     + "#\n"
@@ -1137,7 +1137,7 @@ public class Ids {
                     showFooter(out);
                     out.close();
                 }
-                out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "ids/", "ids" + type + fileCount + ".html");
+                out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "ids/", "ids" + type + fileCount + ".html");
                 oldFileCount = fileCount;
                 showHeader(out);
                 out.println("<tr><th>Count</th><th>Source</th><th>IDS App. Pos.</th><th>IDS</th><th>App. Pos.</th></tr>");
@@ -1150,7 +1150,7 @@ public class Ids {
     }
 
     private static void showConfusables() throws IOException {
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "ids/", "cjkConfusableCandidates.txt");
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "ids/", "cjkConfusableCandidates.txt");
                 ) {
             Relation<String,String> invert = Relation.of(new TreeMap<String,Set<String>>(), TreeSet.class, UNIHAN);
             for (EntryRange<CharacterIds> entry : IDS_RECURSIVE.entryRanges()) {
@@ -1264,7 +1264,7 @@ public class Ids {
         CharacterIds [] biggest = new CharacterIds[50];
         Counter<Integer> counter = new Counter<>();
 
-        for (String line : FileUtilities.in(Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/ids/", SOURCE_IDS)) {
+        for (String line : FileUtilities.in(Settings.Output.UNICODETOOLS_OUTPUT_DIR + "DATA/ids/", SOURCE_IDS)) {
             // U+3FCD 㿍 ⿸疒解
             if (line.startsWith("#") || line.startsWith(";")) {
                 line = line.substring(1).trim();
@@ -1379,7 +1379,7 @@ public class Ids {
     private static Map<String,String> getMacros() {
         Relation<String,String> temp = Relation.of(new HashMap(), HashSet.class);
         // fetch the data
-        for (String line : FileUtilities.in(Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/ids/", SOURCE_IDS)) {
+        for (String line : FileUtilities.in(Settings.Output.UNICODETOOLS_OUTPUT_DIR + "DATA/ids/", SOURCE_IDS)) {
             // CDP-8DA8 &CDP-8DA8;  ⿻廿木 ⿱丗木 ⿱𠀍木
             // U+3022   〢   ⿰丨丨
             // CDP-8DBA    &CDP-8DBA;  &CDP-8DBA;

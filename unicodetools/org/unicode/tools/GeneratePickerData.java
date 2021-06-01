@@ -161,7 +161,7 @@ class GeneratePickerData {
     final static Options myOptions = new Options();
 
     enum MyOptions {
-        output(".*", Settings.GEN_DIR + "picker/", "output data directory"),
+        output(".*", Settings.Output.GEN_DIR + "picker/", "output data directory"),
         unicodedata(".*", DraftUtils.UCD_DIRECTORY, "Unicode Data directory"),
         verbose(null, null, "verbose debugging messages"),
         korean(null, null, "generate korean hangul defectives instead"), ;

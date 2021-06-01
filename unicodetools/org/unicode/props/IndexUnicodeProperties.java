@@ -457,7 +457,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     private UnicodeMap<String> getCachedMap(UcdProperty prop2, String sourceFileName) {
         File cacheFile;
         try {
-            final String cacheFileName = Settings.BIN_DIR + getUcdVersion() + "/" + prop2 + ".bin";
+            final String cacheFileName = Settings.Output.BIN_DIR + getUcdVersion() + "/" + prop2 + ".bin";
             cacheFile = new File(cacheFileName);
             // if the source file is older than the cached, skip
             if (sourceFileName != null) {

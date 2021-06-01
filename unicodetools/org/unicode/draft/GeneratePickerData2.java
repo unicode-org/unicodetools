@@ -162,7 +162,7 @@ class GeneratePickerData2 {
     enum MyOptions {
         output(".*", CLDRPaths.BASE_DIRECTORY + "tools/java/org/unicode/cldr/draft/picker/",
             "output data directory"),
-        unicodedata(".*", Settings.UCD_DATA_DIRECTORY, "Unicode Data directory"),
+        unicodedata(".*", Settings.CLDR.UCD_DATA_DIRECTORY, "Unicode Data directory"),
         verbose(null, null, "verbose debugging messages"),
         korean(null, null, "generate korean hangul defectives instead"), ;
         // boilerplate

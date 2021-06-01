@@ -40,7 +40,7 @@ public class CheckSecurityProposals {
         HashMap<String, String> contributor = new HashMap<>();
 
 
-        for (String line : FileUtilities.in(Settings.UNICODETOOLS_DIRECTORY + "data/security/" + Settings.latestVersion + "/data/source/", "proposals.txt")) {
+        for (String line : FileUtilities.in(Settings.UnicodeTools.UNICODETOOLS_DIR + "data/security/" + Settings.latestVersion + "/data/source/", "proposals.txt")) {
             List<String> parts = TAB_SPLITTER.splitToList(line);
             String sourceRaw = parts.get(1);
             String source = NFD.normalize(Utility.fromHex(sourceRaw, true));

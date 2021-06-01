@@ -469,7 +469,7 @@ public class QuickTest implements UCD_Types {
         //proposed = status.getSet("Px");
         System.out.println(proposed);
         //showStatus(status);
-        final PrintWriter pw = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "bidimirroring_chars.txt");
+        final PrintWriter pw = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "bidimirroring_chars.txt");
         showStatus(pw, status);
         pw.close();
     }

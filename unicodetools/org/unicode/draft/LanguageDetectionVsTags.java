@@ -33,7 +33,7 @@ public class LanguageDetectionVsTags {
     enum LineFormat {L1, http, meta, lang, xmllang, detected, occurrences, documents, navboost, pagerank, lang2, enc, url};
 
     public static void main(String[] args) throws IOException {
-        final BufferedReader in = FileUtilities.openUTF8Reader(Settings.BASE_DIRECTORY + "Documents/Data/", "lang78.txt");
+        final BufferedReader in = FileUtilities.openUTF8Reader(Settings.CLDR.BASE_DIRECTORY + "Documents/Data/", "lang78.txt");
         final Map<String,Counter<String>> detectedToCountAndTag = new TreeMap<String,Counter<String>>();
         final Counter<String> detectedToCount = new Counter<String>();
         final Counter<String> taggedToCount = new Counter<String>();

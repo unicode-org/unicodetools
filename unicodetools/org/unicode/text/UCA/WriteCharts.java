@@ -1132,7 +1132,7 @@ public class WriteCharts implements UCD_Types {
 
         // UnicodeSet latin = new UnicodeSet("[:latin:]");
 
-        final PrintWriter out = Utility.openPrintWriter(Settings.GEN_DIR + "log/", "composition_chart.html", Utility.UTF8_WINDOWS);
+        final PrintWriter out = Utility.openPrintWriter(Settings.Output.GEN_DIR + "log/", "composition_chart.html", Utility.UTF8_WINDOWS);
         try {
             out.println("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n" +
                     UtilityBase.HTML_HEAD);
@@ -1367,7 +1367,7 @@ public class WriteCharts implements UCD_Types {
             Reserved (other)
          */
 
-        final PrintWriter out = Utility.openPrintWriter(Settings.GEN_DIR + "log/", "allocation.html", Utility.UTF8_WINDOWS);
+        final PrintWriter out = Utility.openPrintWriter(Settings.Output.GEN_DIR + "log/", "allocation.html", Utility.UTF8_WINDOWS);
         try {
             out.println("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n" +
                     UtilityBase.HTML_HEAD);

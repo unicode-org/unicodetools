@@ -1964,7 +1964,7 @@ to guarantee identifier closure.
 
     private void fillFromFile2(String version) {
         DataInputStream dataIn = null;
-        final String fileName = Settings.BIN_DIR + "UCD_Data" + version + ".bin";
+        final String fileName = Settings.Output.BIN_DIR + "UCD_Data" + version + ".bin";
         try {
             dataIn = new DataInputStream(
                     new BufferedInputStream(

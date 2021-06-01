@@ -29,7 +29,7 @@ public class GetTypology {
         final Map<String,Set<String>> toOriginals = new TreeMap();
 
         final String filename = "U52M09XXXX.lst";
-        final BufferedReader br = FileUtilities.openUTF8Reader(Settings.UCD_DIR, filename);
+        final BufferedReader br = FileUtilities.openUTF8Reader(Settings.UnicodeTools.UCD_DIR, filename);
         final StringBuilder name = new StringBuilder();
         String nameString = null;
 
@@ -102,7 +102,7 @@ public class GetTypology {
         }
         br.close();
 
-        final PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "/classification", "classification_analysis.txt");
+        final PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "/classification", "classification_analysis.txt");
         out.println("# Source:\t" + filename);
         int count;
         out.println();

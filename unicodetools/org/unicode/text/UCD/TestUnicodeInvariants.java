@@ -115,7 +115,7 @@ public class TestUnicodeInvariants {
 
     public static void testInvariants(String outputFile, boolean doRange) throws IOException {
         boolean showScript = false;
-        try (final PrintWriter out2 = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "UnicodeTestResults." + (doHtml ? "html" : "txt"))) {
+        try (final PrintWriter out2 = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "UnicodeTestResults." + (doHtml ? "html" : "txt"))) {
             final StringWriter writer = new StringWriter();
             try (PrintWriter out3 = new PrintWriter(writer)) {
                 out = out3;

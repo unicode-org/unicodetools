@@ -71,8 +71,8 @@ public class TestTypology extends TestFmwk {
             System.out.println(list);
         }
 
-        final PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "/categories", "CategoryLabels.txt");
-        final PrintWriter html = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "/categories", "CategoryLabels.html");
+        final PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "/categories", "CategoryLabels.txt");
+        final PrintWriter html = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "/categories", "CategoryLabels.html");
         final String fontList = "Georgia, 'Times New Roman', Times, Symbola, Aegyptus, Aegean, Akkadian, Analecta, Musica, Code2000,  Code2001,  Code2002, serif";
         html.println(
                 "<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN'>\n" +

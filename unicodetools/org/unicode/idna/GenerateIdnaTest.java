@@ -169,7 +169,7 @@ public class GenerateIdnaTest {
                     "update GenerateIdnaTest.ucdTypesLastVersion to match " + Settings.lastVersion);
         }
         Set<TestLine> testLines = LoadIdnaTest.load(
-                Settings.UNICODETOOLS_DIRECTORY + "data/idna/" + Settings.lastVersion);
+                Settings.UnicodeTools.UNICODETOOLS_DIR + "data/idna/" + Settings.lastVersion);
 
         for (TestLine testLine : testLines) {
             count += generateLine(replaceNewerThan(testLine.source, ucdTypesLastVersion), out, out2);

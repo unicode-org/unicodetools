@@ -33,7 +33,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
 public final class TestNormalization {
-    static final String DIR = Settings.UCD_DIR + "Update 3.0.1/";
+    static final String DIR = Settings.UnicodeTools.UCD_DIR + "Update 3.0.1/";
     static final boolean SKIP_FILE = true;
 
     static PrintWriter out = null;

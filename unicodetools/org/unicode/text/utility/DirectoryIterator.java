@@ -145,7 +145,7 @@ public class DirectoryIterator {
 
 
     static public void test() {
-        final File testDir = new File(Settings.UCD_DIR);
+        final File testDir = new File(Settings.UnicodeTools.UCD_DIR);
         DirectoryIterator di;
 
         di = new DirectoryIterator(testDir, new RootFileFilter("DerivedBinaryProperties"));

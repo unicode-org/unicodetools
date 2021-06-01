@@ -354,7 +354,7 @@ public class Confusables {
     public static void main(String[] args) throws IOException {
         final String SECURITY_PUBLIC = Settings.UNICODE_DRAFT_PUBLIC + "security/";
         final Confusables CONFUSABLES = new Confusables(SECURITY_PUBLIC + Settings.latestVersion);
-        try (PrintWriter pw = FileUtilities.openUTF8Writer(Settings.GEN_UCD_DIR, "confusablesWholeScript.txt")) {
+        try (PrintWriter pw = FileUtilities.openUTF8Writer(Settings.Output.GEN_UCD_DIR, "confusablesWholeScript.txt")) {
             CONFUSABLES.print(pw);
             pw.flush();
         }

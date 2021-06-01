@@ -1348,7 +1348,7 @@ public class MakeUnicodeFiles {
     //	};
 
     public static void showDiff() throws IOException {
-        final PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "propertyDifference.txt");
+        final PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "propertyDifference.txt");
         try {
             showDifferences(out, "4.0.1", "LB", "GC");
             showDifferences(out, "4.0.1", "East Asian Width", "LB");
@@ -1359,7 +1359,7 @@ public class MakeUnicodeFiles {
     }
 
     public static void showAllDiff() throws IOException {
-        final PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "propertyDifference.txt");
+        final PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "propertyDifference.txt");
         try {
             final UnicodeProperty.Factory fac = ToolUnicodePropertySource.make("4.0.1");
             final List<String> props = fac.getAvailableNames(

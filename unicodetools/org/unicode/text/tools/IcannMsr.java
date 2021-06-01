@@ -37,7 +37,7 @@ import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.util.ULocale;
 
 public class IcannMsr {
-    private static final String ICANN_DIR = Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/icann/";
+    private static final String ICANN_DIR = Settings.Output.UNICODETOOLS_OUTPUT_DIR + "DATA/icann/";
     
     // Change these with new versions
     
@@ -168,7 +168,7 @@ public class IcannMsr {
         }
     }
 
-    private static final String SECURITY = Settings.UNICODETOOLS_DIRECTORY + "data/security/";
+    private static final String SECURITY = Settings.UnicodeTools.UNICODETOOLS_DIR + "data/security/";
 
     public static void main(String[] args) {
         // for (Entry<String, Set<IdentifierType>> x : DATA2TYPE.keyValues()) {
@@ -238,7 +238,7 @@ public class IcannMsr {
     }
 
     private static <T> void showValues(String file, UnicodeRelation<T> remap2, T skipValue) {
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "icann/", file)) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "icann/", file)) {
             TreeSet<T> sorted = new TreeSet<T>(remap2.values());
             for (T value : sorted) {
                 UnicodeSet set = remap2.getKeys(value);
@@ -316,7 +316,7 @@ public class IcannMsr {
     }
 
     private static void showValues(String file, UnicodeMap<Pair<Identifier_Type, Identifier_Type>> diff) {
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "icann/", file)) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "icann/", file)) {
             Set<Pair<Identifier_Type, Identifier_Type>> sorted = new TreeSet<>(IDPAIR);
             sorted.addAll(diff.values());
 

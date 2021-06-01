@@ -24,7 +24,7 @@ import com.ibm.icu.text.UTF16;
 
 
 public class testParser implements XMLParseTypes {
-    public static final String BASE_DIR = Settings.UCD_DIR + "/UNIDATA 3.0.1/";
+    public static final String BASE_DIR = Settings.UnicodeTools.UCD_DIR + "/UNIDATA 3.0.1/";
     public static final boolean VERBOSE = false;
 
     private static final String testFile = BASE_DIR + "UCD-Main.xml"; // "test.xml"; // BASE_DIR + "UCD-Main.xml";

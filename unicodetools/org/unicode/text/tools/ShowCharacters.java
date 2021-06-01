@@ -149,7 +149,7 @@ public class ShowCharacters {
             us.add(ch);
         }
 
-        final PrintWriter log = Utility.openPrintWriter(Settings.GEN_DIR, "showChars.html", Utility.UTF8_WINDOWS);
+        final PrintWriter log = Utility.openPrintWriter(Settings.Output.GEN_DIR, "showChars.html", Utility.UTF8_WINDOWS);
         log.println("<html><body>");
         log.println("<table style='border-collapse:collapse' border='1'>");
         log.println("<tr>"

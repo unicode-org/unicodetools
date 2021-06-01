@@ -37,7 +37,7 @@ public class GenerateIdna {
 		// MUST BE FIRST
 		GenerateIdnaTest.setUnicodeVersion();
 	}
-    public static final String GEN_IDNA_DIR = Settings.GEN_DIR + "idna/" + Default.ucdVersion() + "/";
+    public static final String GEN_IDNA_DIR = Settings.Output.GEN_DIR + "idna/" + Default.ucdVersion() + "/";
 
 	// Utility.WORKSPACE_DIRECTORY + "draft/reports/tr46/data";
 	private static final int MAX_STATUS_LENGTH = "disallowed_STD3_mapped".length();

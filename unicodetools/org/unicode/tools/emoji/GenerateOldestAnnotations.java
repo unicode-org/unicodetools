@@ -44,7 +44,7 @@ public class GenerateOldestAnnotations {
     static final Set<String> SORTED_EMOJI_CHARS_SET
     = EmojiOrder.sort(EmojiOrder.STD_ORDER.codepointCompare, english.map.keySet());
 
-    public static String dir = Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji/annotations/";
+    public static String dir = Settings.Output.UNICODETOOLS_OUTPUT_DIR + "DATA/emoji/annotations/";
 
     public static void main(String[] args) throws IOException {
         if (false) showSimple();
@@ -93,7 +93,7 @@ public class GenerateOldestAnnotations {
     }
 
     private static void printText(OldAnnotationData data) throws IOException {
-        try (PrintWriter outText = FileUtilities.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/emoji/tts/", data.locale + ".tsv")) {
+        try (PrintWriter outText = FileUtilities.openUTF8Writer(Settings.Output.UNICODETOOLS_OUTPUT_DIR + "Generated/emoji/tts/", data.locale + ".tsv")) {
             //#Code Image   TTS English TTS German  Annotations English Annotations German  Comments    INTERNAL
             //U+1F600   =vlookup(A2,Internal!A:B,2,0)   grinning face   Lachender Smiley    face; grin  Lachender Smiley; Gesicht; lustig; lol       
             int line = 1;

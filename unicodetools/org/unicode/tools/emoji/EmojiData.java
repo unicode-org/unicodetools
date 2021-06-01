@@ -170,7 +170,7 @@ public class EmojiData implements EmojiDataSource {
 		Emoji.EMOJI_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING, };
 
 	this.version = version;
-	final String directory = Settings.DATA_DIR + "emoji/" + version.getVersionString(2, 4);
+	final String directory = Settings.UnicodeTools.DATA_DIR + "emoji/" + version.getVersionString(2, 4);
 	UnicodeRelation<EmojiProp> emojiData = new UnicodeRelation<>();
 
 	boolean oldFormat = version.compareTo(Emoji.VERSION2) < 0;

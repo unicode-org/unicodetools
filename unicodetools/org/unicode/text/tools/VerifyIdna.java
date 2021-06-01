@@ -111,7 +111,7 @@ public class VerifyIdna {
     }
 
     private static UnicodeMap getPatriksMapping() throws IOException {
-        final BufferedReader in = FileUtilities.openReader(Settings.DATA_DIR + "/IDN/", "draft-faltstrom-idnabis-tables-05.txt", "ascii");
+        final BufferedReader in = FileUtilities.openReader(Settings.UnicodeTools.DATA_DIR + "/IDN/", "draft-faltstrom-idnabis-tables-05.txt", "ascii");
         boolean inTable = false;
         final UnicodeMap patrik = new UnicodeMap();
         int count = 0;

@@ -57,13 +57,10 @@ can be used to:
     3.  Depending on which tool you are running, you may need some or all of the following.
         Adjust the paths to your workspace.
         ```
-        -DSVN_WORKSPACE=/usr/local/google/home/mscherer/unitools/mine/src
-        -DOTHER_WORKSPACE=/usr/local/google/home/mscherer/unitools/mine
-        -DUCD_DIR=/usr/local/google/home/mscherer/unitools/mine/src/unicodetools/data
         -DCLDR_DIR=/usr/local/google/home/mscherer/cldr/uni/src
-        -DUNICODETOOLS_DIR=/usr/local/google/home/mscherer/unitools/mine/src/unicodetools
+        -DUNICODETOOLS_REPO_DIR=/usr/local/google/home/mscherer/unitools/mine/src
+        -DUNICODETOOLS_OUTPUT_DIR=/usr/local/google/home/mscherer/unitools/mine
         -DUNICODE_DRAFT_DIR=/usr/local/google/home/mscherer/svn.unidraft/trunk/TODO
-        -DGEN_DIR=/usr/local/google/home/mscherer/unitools/mine/Generated
         -DUVERSION=14.0.0
         ```
     4.  Please also use the VM argument `-ea` (enable assertions) in your Preferences

@@ -696,7 +696,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
             }
             data.freeze();
             if (IndexUnicodeProperties.FILE_CACHE) {
-                indexUnicodeProperties.internalStoreCachedMap(Settings.BIN_DIR, propInfo.property, data);
+                indexUnicodeProperties.internalStoreCachedMap(Settings.Output.BIN_DIR, propInfo.property, data);
             }
         }
     }

@@ -92,7 +92,7 @@ public class CaseBitTest extends TestFmwk {
     public UCA getUca() {
         if (uca == null) {
             try {
-                final String file = Utility.searchDirectory(new File(Settings.DATA_DIR + "UCA/" + Default.ucdVersion() + "/"), "allkeys", true, ".txt");
+                final String file = Utility.searchDirectory(new File(Settings.UnicodeTools.DATA_DIR + "UCA/" + Default.ucdVersion() + "/"), "allkeys", true, ".txt");
                 uca = new UCA(file, Default.ucdVersion(), null);
             } catch (final IOException e) {
                 throw new IllegalArgumentException(e);

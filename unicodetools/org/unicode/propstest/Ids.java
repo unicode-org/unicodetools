@@ -20,7 +20,7 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class Ids {
     static final Pattern NCR_PATTERN = Pattern.compile("\\&[^;]+;");
-    static final String BASE = Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/ids-b6bb70e/";
+    static final String BASE = Settings.Output.UNICODETOOLS_OUTPUT_DIR + "DATA/ids-b6bb70e/";
 
     static class NcrToPua {
         int puaCounter = 0xE000;
@@ -56,7 +56,7 @@ public class Ids {
     static final UnicodeSet RADICAL_ID = new UnicodeSet("[:radical:]").addAll(ID).freeze();
 
     static {
-        for (String line : FileUtilities.in(Settings.SVN_WORKSPACE_DIRECTORY + "/unicodetools/data/ucd/8.0.0-Update", "CJKRadicals.txt")) {
+        for (String line : FileUtilities.in(Settings.UnicodeTools.UNICODETOOLS_REPO_DIR + "/unicodetools/data/ucd/8.0.0-Update", "CJKRadicals.txt")) {
             if (line.isEmpty() || line.startsWith("#")) {
                 continue;
             }

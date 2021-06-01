@@ -31,7 +31,7 @@ public class ChineseFrequency {
 
     public static void test() throws IOException{
         final Set freq_char = new TreeSet(new InverseCompareTo());
-        final BufferedReader br = FileUtilities.openUTF8Reader(Settings.DICT_DIR, "kHYPLCDPF.txt");
+        final BufferedReader br = FileUtilities.openUTF8Reader(Settings.UnicodeTools.DICT_DIR, "kHYPLCDPF.txt");
         double grandTotal = 0.0;
         while (true) {
             final String line = br.readLine();
@@ -52,7 +52,7 @@ public class ChineseFrequency {
             freq_char.add(new Pair(new Long(total), new Integer(cp)));
         }
         br.close();
-        final PrintWriter pw = FileUtilities.openUTF8Writer(Settings.DICT_DIR, "kHYPLCDPF_frequency.txt");
+        final PrintWriter pw = FileUtilities.openUTF8Writer(Settings.UnicodeTools.DICT_DIR, "kHYPLCDPF_frequency.txt");
         pw.write("\uFEFF");
         pw.println("No.\tPercentage\tAccummulated\tHex\tChar");
 

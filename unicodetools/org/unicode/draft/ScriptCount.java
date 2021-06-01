@@ -162,7 +162,7 @@ public class ScriptCount {
         //        pf.setMaximumSignificantDigits(3);
         final int counter = 0;
         final double max = langCounter.getTotal();
-        PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(Settings.GEN_DIR + "/frequency-text",
+        PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(Settings.Output.GEN_DIR + "/frequency-text",
                 language
                 + (nfd ? "-nfd" : "")
                 + (filter != null ? "-" + filter : "") +
@@ -186,7 +186,7 @@ public class ScriptCount {
         }
         out.close();
         if (secondary) {
-            out = org.unicode.text.utility.Utility.openPrintWriter(Settings.GEN_DIR + "/frequency-text",
+            out = org.unicode.text.utility.Utility.openPrintWriter(Settings.Output.GEN_DIR + "/frequency-text",
                     language + "-sec"
                             + (nfd ? "-nfd" : "")
                             + (filter != null ? "-" + filter : "") +

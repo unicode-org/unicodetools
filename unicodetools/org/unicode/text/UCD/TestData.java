@@ -611,7 +611,7 @@ public class TestData implements UCD_Types {
     static PrintWriter log;
 
     public static void checkShaping() throws IOException {
-        log = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "checklog.txt");
+        log = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "checklog.txt");
         checkProperty("Joining_Type", "Non_Joining", "Joining_Type", "Transparent");
         checkProperty("Joining_Group", "No_Joining_Group", "Joining_Type", "Transparent");
         checkProperty("Line_Break", "Unknown", "Line_Break", "Combining_Mark");

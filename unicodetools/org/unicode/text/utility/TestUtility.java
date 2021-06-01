@@ -195,7 +195,7 @@ public class TestUtility {
         total = testUnicodeMapSerialization(iterations, total, pname, umap);
     }
 
-    static String outdircore = Settings.GEN_DIR + "UCD_Data/";
+    static String outdircore = Settings.Output.GEN_DIR + "UCD_Data/";
     static String outdir = outdircore + "4.1.0/";
     /**
      * @param pname
