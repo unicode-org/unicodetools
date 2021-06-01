@@ -192,6 +192,7 @@ Keywords=depressed | disappear | hide | invisible | introvert
 Proposal=L2/20-190
 After=🤰
 U+1FAC3
+Name=pregnant man
 Keywords=belly | bloated | full | pregnant
 Emoji_Modifier_Base
 U+1FAC3 U+1F3FB
@@ -203,6 +204,7 @@ U+1FAC3 U+1F3FF
 Proposal=L2/20-190
 After=🤰
 U+1FAC4
+Name=pregnant person
 Keywords=belly | bloated | full | pregnant
 Emoji_Modifier_Base
 U+1FAC4 U+1F3FB
