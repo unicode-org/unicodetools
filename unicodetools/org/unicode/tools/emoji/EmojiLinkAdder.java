@@ -12,7 +12,7 @@ public class EmojiLinkAdder {
 
     public static void main(String[] args) {
         if (args.length == 0) {
-            args = new String[] {Settings.SVN_WORKSPACE_DIRECTORY + "/reports/tr51/pri294-emoji-image-backgroundA.html"};  
+            args = new String[] {Settings.UnicodeTools.UNICODETOOLS_REPO_DIR + "/reports/tr51/pri294-emoji-image-backgroundA.html"};  
         }
         Matcher m = TO_FIX.matcher("");
 

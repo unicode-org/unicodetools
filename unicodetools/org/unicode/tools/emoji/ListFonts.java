@@ -30,7 +30,7 @@ public class ListFonts {
         System.out.print("#fonts:\t" + fonts.length);
         UnicodeRelation<String> fontsForChars = new UnicodeRelation<>();
         UnicodeSet ascii = new UnicodeSet("[:ascii:]").freeze();
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "fonts", "fontContents.txt")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "fonts", "fontContents.txt")) {
             for ( int i = 0; i < fonts.length; i++ ) {
                 Font font = new Font(fonts[i],0,24);
                 UnicodeSet uset = checkCanDisplay(font);
@@ -58,7 +58,7 @@ public class ListFonts {
             }
         }
 
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "fonts", "fontContentsMissing.txt")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "fonts", "fontContentsMissing.txt")) {
             for (String value : missingForScripts.values()) {
                 UnicodeSet us = missingForScripts.getKeys(value);
                 out.println(value + "\t" + us.toPattern(false));
@@ -66,7 +66,7 @@ public class ListFonts {
         }
 
         System.out.println("#Missing:\t" + missing.size());
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "fonts", "fontContentsMissingByChar.txt")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "fonts", "fontContentsMissingByChar.txt")) {
             for (Entry<String, Set<String>> entry : missingForScripts.keyValues()) {
                 String cp = entry.getKey();
                 out.println("U+" + Utility.hex(cp, ", U+") + "\t" + UCharacter.getName(cp,", ") + "\t" + CollectionUtilities.join(entry.getValue(), "; "));
@@ -75,7 +75,7 @@ public class ListFonts {
         
 
         System.out.println("#found:\t" + found.size());
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "fonts", "fontContentsByChar.txt")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "fonts", "fontContentsByChar.txt")) {
             for (Entry<String, Set<String>> entry : fontsForChars.keyValues()) {
                 String cp = entry.getKey();
                 out.println("U+" + Utility.hex(cp, ", U+") + "\t" + UCharacter.getName(cp,", ") + "\t" + CollectionUtilities.join(entry.getValue(), "; "));

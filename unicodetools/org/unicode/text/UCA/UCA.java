@@ -1718,7 +1718,7 @@ final public class UCA implements Comparator<String>, UCA_Types {
         //  } catch (IOException e) {
         //    throw (IllegalArgumentException) new IllegalArgumentException().initCause(e);
         //  }
-        return Settings.BASE_UCA_GEN_DIR + Default.ucdVersion() + "/"; //  + getDataVersion() + "/";
+        return Settings.Output.BASE_UCA_GEN_DIR + Default.ucdVersion() + "/"; //  + getDataVersion() + "/";
     }
 
 
@@ -1735,7 +1735,7 @@ final public class UCA implements Comparator<String>, UCA_Types {
     public static UCA buildCollator(Remap primaryRemap) {
         try {
             if (VERBOSE) System.out.println("Building UCA");
-            final String file = Utility.searchDirectory(new File(Settings.DATA_DIR + "uca/" + Default.ucdVersion() + "/"), "allkeys", true, ".txt");
+            final String file = Utility.searchDirectory(new File(Settings.UnicodeTools.DATA_DIR + "uca/" + Default.ucdVersion() + "/"), "allkeys", true, ".txt");
             final UCA collator = new UCA(file, Default.ucdVersion(), primaryRemap);
             if (VERBOSE) System.out.println("Built version " + collator.getDataVersion() + "/ucd: " + collator.getUCDVersion());
             if (VERBOSE) System.out.println("Building UCD data");

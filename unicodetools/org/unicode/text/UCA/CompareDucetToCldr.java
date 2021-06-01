@@ -30,7 +30,7 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class CompareDucetToCldr {
     private static final Date DATE = new Date();
-    private static final String BASE_DIR = Settings.DATA_DIR + "/UCA/6.1.0/";  // TODO: parameterize
+    private static final String BASE_DIR = Settings.UnicodeTools.DATA_DIR + "/UCA/6.1.0/";  // TODO: parameterize
     static class Birelation<K,V> {
         private final Relation<K,V> keyValues;
         private final Relation<V,K> valueKeys;
@@ -115,7 +115,7 @@ public class CompareDucetToCldr {
     }
 
     public static void writeValues(Birelation<WeightList, String> cldr, String filename, boolean showWeights) throws IOException {
-        final PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "uca_COMP/", filename);
+        final PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "uca_COMP/", filename);
         out.println("#Date: " + DATE);
         for (final Entry<WeightList, Set<String>> kvs : cldr.keyValuesSet()) {
             final WeightList weights = kvs.getKey();

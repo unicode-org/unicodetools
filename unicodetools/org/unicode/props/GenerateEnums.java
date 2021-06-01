@@ -33,8 +33,8 @@ public class GenerateEnums {
     public static final String ENUM_VERSION = Settings.latestVersion;
     public static final VersionInfo ENUM_VERSION_INFO = VersionInfo.getInstance(GenerateEnums.ENUM_VERSION);
 
-    public static final String PROPERTY_FILE_OUTPUT = Settings.UNICODETOOLS_DIRECTORY + "/org/unicode/props/UcdProperty.java";
-    public static final String PROPERTY_VALUE_OUTPUT = Settings.UNICODETOOLS_DIRECTORY + "/org/unicode/props/UcdPropertyValues.java";
+    public static final String PROPERTY_FILE_OUTPUT = Settings.UnicodeTools.UNICODETOOLS_DIR + "/org/unicode/props/UcdProperty.java";
+    public static final String PROPERTY_VALUE_OUTPUT = Settings.UnicodeTools.UNICODETOOLS_DIR + "/org/unicode/props/UcdPropertyValues.java";
 
     //    private static class Locations {
     //        private static Set<String> files = addAll(new HashSet<String>(), new File(SOURCE_DIR));

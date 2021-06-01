@@ -1802,7 +1802,7 @@ E0020-E007F; [TAGGING CHARACTERS]
 
     public static int verifyUTFMap(BitSet mappedOut) throws IOException {
         int errorCount = 0;
-        final BufferedReader input = new BufferedReader(new FileReader(Settings.IDN_DIR + "IDN-Mapping.txt"),32*1024);
+        final BufferedReader input = new BufferedReader(new FileReader(Settings.UnicodeTools.IDN_DIR + "IDN-Mapping.txt"),32*1024);
         String line = "";
         final Map idnFold = new TreeMap();
         final Map idnWhy = new HashMap();
@@ -1890,7 +1890,7 @@ E0020-E007F; [TAGGING CHARACTERS]
     }
 
     static BitSet getIDNList(String file) throws IOException {
-        final BufferedReader input = new BufferedReader(new FileReader(Settings.IDN_DIR + file),32*1024);
+        final BufferedReader input = new BufferedReader(new FileReader(Settings.UnicodeTools.IDN_DIR + file),32*1024);
         final BitSet result = new BitSet();
         String line;
         try {

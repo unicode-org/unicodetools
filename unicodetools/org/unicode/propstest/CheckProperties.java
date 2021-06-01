@@ -46,7 +46,7 @@ import com.ibm.icu.text.UnicodeSet;
 public class CheckProperties {
     private static final boolean VERBOSE = true;
     private static final String LAST_RELEASE = Utility.searchPath[0];;
-    private static final String JUNK = Settings.UCD_DIR; // force load
+    private static final String JUNK = Settings.UnicodeTools.UCD_DIR; // force load
 
     private static final int DEBUG_CODE_POINT = 0x0600;
 
@@ -87,9 +87,9 @@ public class CheckProperties {
             } catch (final Exception e) {}
 
             if (arg.equals("file")) {
-                out = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "CheckProperties.txt");
-                outCJK = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "CheckPropertiesCJK.txt");
-                outLog = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "CheckPropertiesLog.txt");
+                out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "CheckProperties.txt");
+                outCJK = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "CheckPropertiesCJK.txt");
+                outLog = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "CheckPropertiesLog.txt");
                 LIMIT_CHANGES = Integer.MAX_VALUE;
                 NAME_LIMIT = Integer.MAX_VALUE;
                 continue;
@@ -277,7 +277,7 @@ public class CheckProperties {
                         }
 
                         final Set<String> latestFiles = latest.getFileNames();
-                        final File dir = new File(Settings.UCD_DIR);
+                        final File dir = new File(Settings.UnicodeTools.UCD_DIR);
                         final List<File> result = new ArrayList<File>();
                         checkFiles(latestFiles, dir, result);
                         showInfo("Files Not Read", result, outLog);

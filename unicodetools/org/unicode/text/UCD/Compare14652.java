@@ -187,7 +187,7 @@ tolower
                 Utility.showSetDifferences("ID", ID, "Alphabetic+Digit+Pc", alphanumSet, false, Default.ucd());
             }
 
-            final BufferedReader br = Utility.openReadFile(Settings.DATA_DIR + "ISO14652_CTYPE.txt", Utility.LATIN1);
+            final BufferedReader br = Utility.openReadFile(Settings.UnicodeTools.DATA_DIR + "ISO14652_CTYPE.txt", Utility.LATIN1);
             while (true) {
                 String line = br.readLine();
                 if (line == null) {

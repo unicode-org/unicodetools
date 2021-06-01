@@ -21,7 +21,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.MapComparator;
 import org.unicode.cldr.util.MultiComparator;
-//import org.unicode.text.UCA.UCA;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -264,7 +263,7 @@ public class EmojiOrder {
 		Output<Set<String>> lastLabel = new Output<Set<String>>(new TreeSet<String>());
 		MajorGroup majorGroup = null;
 		EmojiIterator ei = new EmojiIterator(emojiData, false);
-		final String directory = Settings.DATA_DIR + "/emoji/" + version.getVersionString(2, 2) + "/source";
+		final String directory = Settings.UnicodeTools.DATA_DIR + "/emoji/" + version.getVersionString(2, 2) + "/source";
 		int lineCounter = 0;
 
 		for (String line : FileUtilities.in(EmojiOrder.class,

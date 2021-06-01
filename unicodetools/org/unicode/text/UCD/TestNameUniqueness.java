@@ -42,8 +42,8 @@ public class TestNameUniqueness implements UCD_Types {
          * @return null when done
          */
         static String[][] files = {
-            {Settings.DATA_DIR + "", "pdam1040630.lst"},
-            {Settings.UCD_DIR + "4.1.0-Update/", "NamedCompositeEntities-4.1.0d2.txt"}
+            {Settings.UnicodeTools.DATA_DIR + "", "pdam1040630.lst"},
+            {Settings.UnicodeTools.UCD_DIR + "4.1.0-Update/", "NamedCompositeEntities-4.1.0d2.txt"}
         };
 
         public String next() {

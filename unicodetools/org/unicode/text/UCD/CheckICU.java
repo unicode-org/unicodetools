@@ -194,7 +194,7 @@ public class CheckICU {
                 leading.add(i);
             }
         }
-        final PrintWriter pw = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "Trailing.txt");
+        final PrintWriter pw = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "Trailing.txt");
         pw.println("+Trailing+Starter");
         bf.showSetNames(pw,  new UnicodeSet(trailing).retainAll(starter));
         pw.println("+Trailing-Starter");

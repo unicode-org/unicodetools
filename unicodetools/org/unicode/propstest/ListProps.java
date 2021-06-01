@@ -141,7 +141,7 @@ public class ListProps {
                             uprop.getValueAliases(pval);
                         }
                     }
-                    latest.internalStoreCachedMap(Settings.GEN_DIR + "/bin-props/", item, map);
+                    latest.internalStoreCachedMap(Settings.Output.GEN_DIR + "/bin-props/", item, map);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

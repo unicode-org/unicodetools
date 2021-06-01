@@ -1237,7 +1237,7 @@ public class Segmenter {
 	for (int i = 0; i < cannedRules.length; ++i) {
 	    String type = cannedRules[i][0];
 	    boolean hadHash = false;
-	    try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "segmentation/", type + "Rules.txt")) {
+	    try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "segmentation/", type + "Rules.txt")) {
 		out.println("# Segmentation rules for " + type);
 		out.println("#");
 		out.println("# Character Classes");
@@ -1260,7 +1260,7 @@ public class Segmenter {
 	    }
 	}
 
-	try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "cldr/segmentation/", "rootAddon.xml")) {
+	try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "cldr/segmentation/", "rootAddon.xml")) {
 	    out.println("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
 		    + "<!DOCTYPE ldml SYSTEM \"../../common/dtd/ldml.dtd\">\n"
 		    + "<!--\n"

@@ -54,7 +54,7 @@ import com.ibm.icu.text.UnicodeSet;
 
 
 public class TestSecurity extends TestFmwkPlus {
-    private static final String GEN_SECURITY_DIR = Settings.GEN_DIR + "security/" + Settings.latestVersion;
+    private static final String GEN_SECURITY_DIR = Settings.Output.GEN_DIR + "security/" + Settings.latestVersion;
 
     public static XIDModifications XIDMOD = new XIDModifications(GEN_SECURITY_DIR);
     public static final Confusables CONFUSABLES = new Confusables(GEN_SECURITY_DIR);

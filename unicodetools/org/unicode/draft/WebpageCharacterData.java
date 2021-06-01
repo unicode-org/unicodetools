@@ -72,7 +72,7 @@ public class WebpageCharacterData {
 
     static public void doData() throws IOException {
         final BufferedReader in = FileUtilities.openUTF8Reader(
-                Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/frequency/", SOURCE_DATA);
+                Settings.Output.UNICODETOOLS_OUTPUT_DIR + "DATA/frequency/", SOURCE_DATA);
         int lineCounter = 0;
         final int zeroCountLines = 0;
         final HashMap<String, String> langSeen = new HashMap<String,String>();
@@ -112,10 +112,10 @@ public class WebpageCharacterData {
         in.close();
         System.out.println("Writing data");
         //System.out.println("zeroCountLines " + zeroCountLines);
-        writeData(lang2chars, Settings.OTHER_WORKSPACE_DIRECTORY +
+        writeData(lang2chars, Settings.Output.UNICODETOOLS_OUTPUT_DIR +
         		"DATA/frequency/languages");
         System.out.println("Writing ranked data");
-        writeData(lang2charsPageRank, Settings.OTHER_WORKSPACE_DIRECTORY +
+        writeData(lang2charsPageRank, Settings.Output.UNICODETOOLS_OUTPUT_DIR +
         		"DATA/frequency/languages-rank");
     }
 

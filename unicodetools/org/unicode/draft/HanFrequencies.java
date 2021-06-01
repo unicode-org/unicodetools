@@ -37,7 +37,7 @@ public class HanFrequencies {
     }
 
     private static void generateReadings() throws IOException {
-        final BufferedReader freq = FileUtilities.openUTF8Reader(Settings.GEN_DIR + "/hanfrequency", "unifiedZh.txt");
+        final BufferedReader freq = FileUtilities.openUTF8Reader(Settings.Output.GEN_DIR + "/hanfrequency", "unifiedZh.txt");
         final UnicodeMap<Integer> rank = new UnicodeMap<Integer>();
         int count = 0;
         while (true) {
@@ -50,7 +50,7 @@ public class HanFrequencies {
             rank.put(parts[0], ++count);
         }
         freq.close();
-        final BufferedReader readings = FileUtilities.openUTF8Reader(Settings.DATA_DIR + "/frequency", "han-reading-diff.txt");
+        final BufferedReader readings = FileUtilities.openUTF8Reader(Settings.UnicodeTools.DATA_DIR + "/frequency", "han-reading-diff.txt");
         final Set<R2<Integer, Map<ReadingRows,String>>> ordered = new TreeSet<R2<Integer,Map<ReadingRows,String>>>();
         while (true) {
             String line = readings.readLine();
@@ -100,7 +100,7 @@ public class HanFrequencies {
         }
         readings.close();
 
-        final PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "/hanfrequency", "han-reading-diff.html");
+        final PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "/hanfrequency", "han-reading-diff.html");
         //PrintStream out = System.out;
         final ReadingRows[] values = ReadingRows.values();
         out.println("<html><body><table>");
@@ -139,7 +139,7 @@ public class HanFrequencies {
     }
 
     private static void showInterleaved() {
-        final PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(Settings.GEN_DIR + "/hanfrequency",
+        final PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(Settings.Output.GEN_DIR + "/hanfrequency",
                 "unifiedZh.txt", org.unicode.text.utility.Utility.UTF8_WINDOWS);
 
         final LinkedHashMap<String, Integer> rank1 = getFilteredList("zh");
@@ -189,7 +189,7 @@ public class HanFrequencies {
 
     private static void show(String locale) {
         System.out.println("Writing:\t" + locale);
-        final PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(Settings.GEN_DIR + "/hanfrequency",
+        final PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(Settings.Output.GEN_DIR + "/hanfrequency",
                 locale + ".txt", org.unicode.text.utility.Utility.UTF8_WINDOWS);
         final Counter<Integer> counter = CharacterFrequency.getCodePointCounter(locale, true);
         long total = 0;

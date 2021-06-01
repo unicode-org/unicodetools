@@ -267,7 +267,7 @@ public final class ConvertUCD implements UCD_Types {
 
         log = new PrintWriter(new BufferedWriter(
                 new OutputStreamWriter(
-                        new FileOutputStream(Settings.GEN_DIR_OLD + "ConvertUCD-log.txt"),
+                        new FileOutputStream(Settings.Output.GEN_DIR_OLD + "ConvertUCD-log.txt"),
                         "UTF8"),
                         32*1024));
         log.write("\uFEFF"); // BOM
@@ -711,7 +711,7 @@ public final class ConvertUCD implements UCD_Types {
         System.out.println("Writing " + dataFilePrefix + version);
         final DataOutputStream dataOut = new DataOutputStream(
                 new BufferedOutputStream(
-                        new FileOutputStream(Settings.BIN_DIR +  dataFilePrefix + version + ".bin"),
+                        new FileOutputStream(Settings.Output.BIN_DIR +  dataFilePrefix + version + ".bin"),
                         128*1024));
 
         // write header

@@ -86,7 +86,7 @@ public class GenerateConfusablesCopy {
     private static final String REVISION = Settings.latestVersion;
     private static final String VERSION_PROP_VALUE = "V7_0";
 
-    private static final String outdir = Settings.UNICODETOOLS_DIRECTORY + "data/security/" + REVISION + "/data/";
+    private static final String outdir = Settings.UnicodeTools.UNICODETOOLS_DIR + "data/security/" + REVISION + "/data/";
     private static final String indir = outdir + "source/";
     private static final UCD DEFAULT_UCD = Default.ucd();
     private static final UnicodeProperty.Factory ups = ToolUnicodePropertySource.make(version); // ICUPropertyFactory.make();

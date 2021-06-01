@@ -74,7 +74,7 @@ public class IANANames implements UCD_Types {
     }
 
     public IANANames() throws IOException {
-        final BufferedReader in = Utility.openReadFile(Settings.DATA_DIR + "IANA/character-sets.txt", Utility.LATIN1);
+        final BufferedReader in = Utility.openReadFile(Settings.UnicodeTools.DATA_DIR + "IANA/character-sets.txt", Utility.LATIN1);
         try {
             boolean atStart = true;
             String lastName = "";

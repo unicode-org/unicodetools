@@ -43,7 +43,7 @@ public class VerifyXmlUcd {
     public static void main(String[] args) throws IOException {
         try {
             //checkRegex();
-            testFile(Settings.UCD_DIR + "/xml/ucd.nounihan.grouped.xml");
+            testFile(Settings.UnicodeTools.UCD_DIR + "/xml/ucd.nounihan.grouped.xml");
             // too many errors to test: testFile("C:/DATA/UCD/xml/ucd.nounihan.grouped.xml");
         } finally {
             System.out.println("DONE");

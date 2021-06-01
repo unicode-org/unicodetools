@@ -11,7 +11,7 @@ public class BidiTestIcu4jConformance {
     static com.ibm.icu.text.Bidi bidi;
 
     public static void main(String[] args) throws Exception {
-        final String file = Settings.BASE_DIRECTORY + "Desktop/BidiConformance.txt";
+        final String file = Settings.CLDR.BASE_DIRECTORY + "Desktop/BidiConformance.txt";
         System.out.println("Reading: " + file);
         String result = "";
         final BufferedReader in = new BufferedReader(new FileReader(file));

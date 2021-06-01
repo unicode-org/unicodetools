@@ -19,7 +19,7 @@ import com.ibm.icu.impl.Row;
 public class LanguageQuadgrams {
 
     public static void main(String[] args) throws IOException {
-        final BufferedReader in = FileUtilities.openUTF8Reader(Settings.BASE_DIRECTORY + "Downloads/", "languageQuadgrams.txt");
+        final BufferedReader in = FileUtilities.openUTF8Reader(Settings.CLDR.BASE_DIRECTORY + "Downloads/", "languageQuadgrams.txt");
         while (true) {
             final String line = in.readLine();
             if (line == null) {

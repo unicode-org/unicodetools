@@ -179,7 +179,7 @@ public class GenerateMissingAnnotations {
         Set<String> locales = StandardCodes.make().getLocaleCoverageLocales(Organization.google, EnumSet.of(Level.MODERN));
 
 
-        final String emojiDir = Settings.GEN_DIR + "emoji/";
+        final String emojiDir = Settings.Output.GEN_DIR + "emoji/";
         final String annotationDir = emojiDir + "annotations-v4.0/";
         try (PrintWriter out = FileUtilities.openUTF8Writer(emojiDir, "images.txt")) {
             for (String s : SORTED_EMOJI) {

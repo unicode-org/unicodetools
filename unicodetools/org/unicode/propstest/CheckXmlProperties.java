@@ -74,7 +74,7 @@ Warning tests:  4
         System.out.println("Loading XML Props");
         timer.start();
         final XMLProperties xmlProps = new XMLProperties(
-                Settings.DATA_DIR + "/ucdxml/" + ucdVersion + "/",
+                Settings.UnicodeTools.DATA_DIR + "/ucdxml/" + ucdVersion + "/",
                 INCLUDE_UNIHAN, MAX_LINE_COUNT);
         timer.stop();
         System.out.println(timer);

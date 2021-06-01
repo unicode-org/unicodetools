@@ -48,7 +48,7 @@ import com.ibm.icu.text.UnicodeSet.EntryRange;
 
 public class GenerateNormalizeForMatch {
 
-    private static final String dir = Settings.BASE_DIRECTORY + "Google Drive/workspace/DATA/frequency/";
+    private static final String dir = Settings.CLDR.BASE_DIRECTORY + "Google Drive/workspace/DATA/frequency/";
     private static final String GOOGLE_FOLDING_TXT = "google_folding.txt";
     private static final Pattern SPACES = Pattern.compile("[,\\s]+");
 
@@ -110,7 +110,7 @@ public class GenerateNormalizeForMatch {
     private static final UnicodeMap<Set<SpecialReason>> REASONS = new UnicodeMap<>();
     private static final UnicodeMap<Set<SpecialReason>> REASONS_BASE = new UnicodeMap<>();
     private static final NormalizeForMatch ADDITIONS_TO_NFKCCF = NormalizeForMatch.load(null, "XNFKCCF-Curated.txt", true);
-    private static final NormalizeForMatch ADDITIONS_TO_NFKC = NormalizeForMatch.load(Settings.UNICODETOOLS_DIRECTORY + "data/cldr/", "NFXC-Curated.txt", true);
+    private static final NormalizeForMatch ADDITIONS_TO_NFKC = NormalizeForMatch.load(Settings.UnicodeTools.UNICODETOOLS_DIR + "data/cldr/", "NFXC-Curated.txt", true);
 
 
     private static final UnicodeSet HANGUL_COMPAT_minus_DI_CN 
@@ -210,7 +210,7 @@ public class GenerateNormalizeForMatch {
         NormalizeForMatch curated = NormalizeForMatch.load(null, "XNFKCCF-Curated.txt", true);
         
         showSimpleData(curated.getSourceToTarget(), curated.getSourceToReason(), "XNFKCCF-Curated.txt", "# Curated file of exceptions", null);
-        NormalizeForMatch newCurated = NormalizeForMatch.load(Settings.DATA_DIR + "n4m/9.0.0/", "XNFKCCF-Curated.txt", true);
+        NormalizeForMatch newCurated = NormalizeForMatch.load(Settings.UnicodeTools.DATA_DIR + "n4m/9.0.0/", "XNFKCCF-Curated.txt", true);
         checkNewCurated(curated, newCurated);
         //    private static final NormalizeForMatch ADDITIONS_TO_NFKCCF = NormalizeForMatch.load("XNFKCCF-Curated.txt");
 
@@ -264,7 +264,7 @@ public class GenerateNormalizeForMatch {
     }
 
     private static void compareTrial(boolean ucaOnly) throws IOException {
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "n4m/", "XNFKCCF" + (ucaOnly ? "-comp-uca" : "-comp")
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "n4m/", "XNFKCCF" + (ucaOnly ? "-comp-uca" : "-comp")
                 + ".txt")) {
             UnicodeSet interest = new UnicodeSet(N4M.keySet())
             .addAll(TRIAL.keySet())
@@ -418,7 +418,7 @@ public class GenerateNormalizeForMatch {
 
     private static <T> void showSimpleData(UnicodeMap<String> mapping, UnicodeMap<T> reasons2, String filename, String header, 
             UnicodeMap<String> skipIfSame) throws IOException {
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "n4m/", filename)) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "n4m/", filename)) {
             out.println(header);
             out.println("# Source; \tTarget; \tOther; \tReason(s); \tComments");
             UnicodeSet trialWithoutReason = new UnicodeSet(mapping.keySet()).removeAll(reasons2.keySet());

@@ -188,8 +188,8 @@ public class Emoji {
     public static final String DATA_DIR_PRODUCTION_BASE = "https://unicode.org/Public/emoji/";
     public static final String DATA_DIR_PRODUCTION = DATA_DIR_PRODUCTION_BASE + VERSION_STRING + "/";
 
-    public static final String IMAGES_SOURCE_DIR_SVG = Settings.UNICODETOOLS_DIRECTORY + "data/images/";
-    public static final String IMAGES_OUTPUT_DIR = Settings.UNICODETOOLS_DIRECTORY + "../../images/emoji/";
+    public static final String IMAGES_SOURCE_DIR_SVG = Settings.UnicodeTools.UNICODETOOLS_DIR + "data/images/";
+    public static final String IMAGES_OUTPUT_DIR = Settings.UnicodeTools.UNICODETOOLS_DIR + "../../images/emoji/";
 
     public enum ModifierStatus {
 	none, modifier, modifier_base;
@@ -837,7 +837,7 @@ public class Emoji {
 		return output;
 	    }
 
-	    static final String INTERNAL_OUTPUT_DIR = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/emoji/" + VERSION_TO_GENERATE + "/";
+	    static final String INTERNAL_OUTPUT_DIR = Settings.Output.UNICODETOOLS_OUTPUT_DIR + "Generated/emoji/" + VERSION_TO_GENERATE + "/";
 	    public static final String HEALTHCARE = "⚕";
 	    public static final String UN = "🇺🇳";
 

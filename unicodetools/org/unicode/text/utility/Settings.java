@@ -5,24 +5,13 @@ import org.unicode.cldr.util.CldrUtility;
 
 public class Settings {
 
-    // TODO Many of these settings are crufty and need revision. https://unicode-org.atlassian.net/browse/CLDR-14335 is for fixing these and CLDR.
-    
-    public static final boolean BUILD_FOR_COMPARE = org.unicode.cldr.util.CldrUtility.getProperty("BUILD_FOR_COMPARE", "false").startsWith("t");
+    // TODO Many of these settings are crufty and need revision.
+    // https://unicode-org.atlassian.net/browse/CLDR-14335 "Rationalize CLDR constants"
+    // is for fixing these and CLDR.
 
-    public static final String SVN_DIRECTORY = CldrUtility.getPath(CldrUtility.getProperty("SVN_DIR", CLDRPaths.BASE_DIRECTORY + "/../"), null);
-
-    public static final String AUX_DIRECTORY = CldrUtility.getPath(CldrUtility.getProperty("CLDR_TMP_DIR",
-	    CldrUtility.getPath(SVN_DIRECTORY, "cldr-aux/")), null);
-
-    public static final String UCD_DATA_DIRECTORY = CldrUtility.getPath(SVN_DIRECTORY + "unicodetools/unicodetools/data/", null);
-
-    public static final String SVN_WORKSPACE_DIRECTORY = Utility.fixFileName(
-	    CldrUtility.getProperty("SVN_WORKSPACE", SVN_DIRECTORY)) + "/";
-    public static final String OTHER_WORKSPACE_DIRECTORY = Utility.fixFileName(
-	    CldrUtility.getProperty("OTHER_WORKSPACE", CLDRPaths.LOCAL_DIRECTORY)) + "/";
-
-    public static final String BASE_DIRECTORY = Utility.fixFileName(
-	    CldrUtility.getProperty("BASE_DIRECTORY", SVN_DIRECTORY + "../")) + "/";
+    // TODO: Why do we sometimes use CldrUtility.getPath() which normalizes paths via java.nio.file.Paths
+    // and sometimes Utility.fixFileName() which normalizes paths via java.io.File?
+    // Are they equivalent for our purposes?
 
     /**
      * Used for the default version.
@@ -30,35 +19,94 @@ public class Settings {
     public static final String latestVersion = "14.0.0";
     public static final String lastVersion = "13.0.0"; // last released version
 
-    public static final boolean SKIP_COPYRIGHT = "skip".equalsIgnoreCase(CldrUtility.getProperty("copyright", "skip"));
+    public static final boolean BUILD_FOR_COMPARE =
+            CldrUtility.getProperty("BUILD_FOR_COMPARE", "false").startsWith("t");
 
-    public static final String UNICODETOOLS_DIRECTORY =
-	    CldrUtility.getProperty("UNICODETOOLS_DIR",
-	    		SVN_WORKSPACE_DIRECTORY + "unicodetools") + '/';
-    public static final String UNICODEJSPS_DIRECTORY = SVN_WORKSPACE_DIRECTORY + "unicodetools/UnicodeJsps/";
+    public static final boolean SKIP_COPYRIGHT =
+            "skip".equalsIgnoreCase(CldrUtility.getProperty("copyright", "skip"));
+
+    private static final String getRequiredPathAndFix(String key) {
+        String path = CldrUtility.getProperty(key);
+        if (path == null) {
+            throw new IllegalArgumentException("Specify the " + key + " environment variable");
+        }
+        return Utility.fixFileName(path) + "/";
+    }
+
+    // Using nested classes for grouping paths,
+    // and to throw an exception when a required path is not specified.
+    // We want a minimal set of environment variables:
+    // One per repo (because we don't want to require
+    // a particular layout of multiple repos relative to each other)
+    // and one for where to write output files.
+
+    // TODO: Is it possible to tell Eclipse that we want to import only Settings,
+    // not Settings.Output etc.?
+    // (Writing Settings.Output is much more understandable at the "call" sites.)
+    // https://bugs.eclipse.org/bugs/show_bug.cgi?id=305205
+    // https://stackoverflow.com/questions/5766489/how-can-i-prevent-eclipse-from-importing-nested-classes
+
+    public static final class CLDR {
+        private static final String CLDR_REPO_DIR = CLDRPaths.BASE_DIRECTORY;
+        // TODO: Make the single-argument getPath() public so that we can remove the null parameter.
+        public static final String SVN_DIRECTORY = CldrUtility.getPath(
+                CldrUtility.getProperty("SVN_DIR", CLDR_REPO_DIR + "/../"),
+                null);
+        public static final String AUX_DIRECTORY = CldrUtility.getPath(
+                CldrUtility.getProperty("CLDR_TMP_DIR",
+                        CldrUtility.getPath(SVN_DIRECTORY, "cldr-aux/")),
+                null);
+        public static final String UCD_DATA_DIRECTORY = CldrUtility.getPath(
+                SVN_DIRECTORY + "unicodetools/unicodetools/data/",
+                null);
+        public static final String BASE_DIRECTORY = Utility.fixFileName(
+                CldrUtility.getProperty("BASE_DIRECTORY", SVN_DIRECTORY + "../")) + "/";
+    }
+
+    public static final class UnicodeTools {
+        /**
+         * The root of the unicodetools repo.
+         * Contains the UnicodeJsps and unicodetools folders etc.
+         */
+        public static final String UNICODETOOLS_REPO_DIR =
+                getRequiredPathAndFix("UNICODETOOLS_REPO_DIR");
+        public static final String UNICODETOOLS_DIR = UNICODETOOLS_REPO_DIR + "unicodetools/";
+        public static final String UNICODEJSPS_DIR = UNICODETOOLS_REPO_DIR + "UnicodeJsps/";
+        public static final String DATA_DIR = UNICODETOOLS_DIR + "data/";
+        public static final String UCD_DIR = DATA_DIR + "ucd/";
+        // TODO: IDN_DIR is used, but there is no .../data/IDN/ folder. Should this be .../data/idna/ ?
+        public static final String IDN_DIR = DATA_DIR + "IDN/";
+        // TODO: DICT_DIR is used, but there is no .../data/dict/ folder. ??
+        public static final String DICT_DIR = DATA_DIR + "dict/";
+    }
+
+    public static final class Output {
+        /** The root of where we write output files. Most go into a "Generated" sub-folder. */
+        public static final String UNICODETOOLS_OUTPUT_DIR =
+                getRequiredPathAndFix("UNICODETOOLS_OUTPUT_DIR");
+        // TODO: It seems confusing to switch GEN_DIR like this.
+        // Can we just always write to the same "Generated" location and
+        // update instructions to review diffs appropriately?
+        public static final String GEN_DIR_OLD = UNICODETOOLS_OUTPUT_DIR + "Generated/";
+        public static final String GEN_DIR =
+                Settings.BUILD_FOR_COMPARE ? Settings.UNICODE_DRAFT_PUBLIC : GEN_DIR_OLD;
+        public static final String BIN_DIR = GEN_DIR_OLD + "BIN/";
+        public static final String GEN_UCD_DIR = GEN_DIR + "ucd/";
+        public static final String BASE_UCA_GEN_DIR = GEN_DIR + "UCA/"; // UCD_Types.GEN_DIR + "collation" + "/";
+    }
+
+    // TODO: Discuss what to do with this one.
+    // There is no longer a "draft" repo.
+    // This used to default to UNICODETOOLS_REPO_DIR + "emoji/docs"
+    // but there is no such sub-folder there.
+    // We probably need to reroute different users of this path to different new places.
     public static final String UNICODE_DRAFT_DIRECTORY =
-            CldrUtility.getProperty("UNICODE_DRAFT_DIR",
-                    SVN_WORKSPACE_DIRECTORY + "emoji/docs") + '/';
+            CldrUtility.getProperty("UNICODE_DRAFT_DIR", "/tmp/emoji/docs") + '/';
     public static final String UNICODE_DRAFT_PUBLIC = UNICODE_DRAFT_DIRECTORY + "Public/";
-
-    public static final String DATA_DIR =
-    		Utility.fixFileName(CldrUtility.getProperty("UCD_DIR", UNICODETOOLS_DIRECTORY + "data/")) + "/";
-    public static final String UCD_DIR = DATA_DIR + "ucd/";
-    public static final String IDN_DIR = DATA_DIR + "IDN/";
-    public static final String DICT_DIR = DATA_DIR + "dict/";
-
-    public static final String GEN_DIR_OLD =
-            Utility.fixFileName(
-                    CldrUtility.getProperty("GEN_DIR", OTHER_WORKSPACE_DIRECTORY + "Generated")) + "/";
-    public static final String GEN_DIR = BUILD_FOR_COMPARE ? UNICODE_DRAFT_PUBLIC : GEN_DIR_OLD;
-    public static final String BIN_DIR = GEN_DIR_OLD + "BIN/";
-    public static final String GEN_UCD_DIR = GEN_DIR + "ucd/";
-    public static final String BASE_UCA_GEN_DIR = GEN_DIR + "UCA/"; // UCD_Types.GEN_DIR + "collation" + "/";
 
     public static final String CHARTS_GEN_DIR = UNICODE_DRAFT_DIRECTORY + "charts/";
 
     public static final String SRC_DIR = Utility.fixFileName("org/unicode/text") + "/";
     public static final String SRC_UCA_DIR = SRC_DIR + "UCA/";
     public static final String SRC_UCD_DIR = SRC_DIR + "UCD/";
-
 }
