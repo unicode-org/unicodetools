@@ -48,17 +48,13 @@ public class Settings {
 
     public static final class CLDR {
         private static final String CLDR_REPO_DIR = CLDRPaths.BASE_DIRECTORY;
-        // TODO: Make the single-argument getPath() public so that we can remove the null parameter.
         public static final String SVN_DIRECTORY = CldrUtility.getPath(
-                CldrUtility.getProperty("SVN_DIR", CLDR_REPO_DIR + "/../"),
-                null);
+                CldrUtility.getProperty("SVN_DIR", CLDR_REPO_DIR + "/../"));
         public static final String AUX_DIRECTORY = CldrUtility.getPath(
                 CldrUtility.getProperty("CLDR_TMP_DIR",
-                        CldrUtility.getPath(SVN_DIRECTORY, "cldr-aux/")),
-                null);
+                        CldrUtility.getPath(SVN_DIRECTORY, "cldr-aux/")));
         public static final String UCD_DATA_DIRECTORY = CldrUtility.getPath(
-                SVN_DIRECTORY + "unicodetools/unicodetools/data/",
-                null);
+                SVN_DIRECTORY + "unicodetools/unicodetools/data/");
         public static final String BASE_DIRECTORY = Utility.fixFileName(
                 CldrUtility.getProperty("BASE_DIRECTORY", SVN_DIRECTORY + "../")) + "/";
     }
@@ -92,7 +88,7 @@ public class Settings {
                 Settings.BUILD_FOR_COMPARE ? Settings.UNICODE_DRAFT_PUBLIC : GEN_DIR_OLD;
         public static final String BIN_DIR = GEN_DIR_OLD + "BIN/";
         public static final String GEN_UCD_DIR = GEN_DIR + "ucd/";
-        public static final String BASE_UCA_GEN_DIR = GEN_DIR + "UCA/"; // UCD_Types.GEN_DIR + "collation" + "/";
+        public static final String GEN_UCA_DIR = GEN_DIR + "UCA/";
     }
 
     // TODO: Discuss what to do with this one.
@@ -103,8 +99,6 @@ public class Settings {
     public static final String UNICODE_DRAFT_DIRECTORY =
             CldrUtility.getProperty("UNICODE_DRAFT_DIR", "/tmp/emoji/docs") + '/';
     public static final String UNICODE_DRAFT_PUBLIC = UNICODE_DRAFT_DIRECTORY + "Public/";
-
-    public static final String CHARTS_GEN_DIR = UNICODE_DRAFT_DIRECTORY + "charts/";
 
     public static final String SRC_DIR = Utility.fixFileName("org/unicode/text") + "/";
     public static final String SRC_UCA_DIR = SRC_DIR + "UCA/";

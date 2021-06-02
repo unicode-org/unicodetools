@@ -48,7 +48,7 @@ public class MakeNamesChart {
 
     static UCD lastUCDVersion;
 
-    static final String NAMESLIST_DIR = Settings.CHARTS_GEN_DIR + "nameslist/";
+    static final String NAMESLIST_DIR = WriteCharts.GEN_CHARTS_DIR + "nameslist/";
 
     public static void main(String[] args) throws Exception {
         //	  checkFile();

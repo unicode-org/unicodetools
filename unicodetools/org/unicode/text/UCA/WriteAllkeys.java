@@ -25,7 +25,7 @@ public class WriteAllkeys {
                 + (collatorType==CollatorType.cldr ? "_CLDR" : "")
                 + ".txt";
 
-        final String directory = UCA.getUCA_GEN_DIR() + File.separator
+        final String directory = UCA.getOutputDir() + File.separator
                 + (collatorType==CollatorType.cldr ? "CollationAuxiliary" : "Ducet");
 
         final PrintWriter log = Utility.openPrintWriter(directory, fullFileName, Utility.UTF8_WINDOWS);

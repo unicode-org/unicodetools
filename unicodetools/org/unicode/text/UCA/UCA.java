@@ -1707,18 +1707,10 @@ final public class UCA implements Comparator<String>, UCA_Types {
         return fileVersion;
     }
     /**
-     * @return Returns the uCA_GEN_DIR.
+     * @return the path (directory) where we write collation output files.
      */
-    public static String getUCA_GEN_DIR() {
-        //  try {
-        //    final File file = new File("org/unicode/data/gen/uca");
-        //	System.out.println(file.getCanonicalPath());
-        //	System.out.println(file.isDirectory());
-        //    if (true) throw new IllegalArgumentException();
-        //  } catch (IOException e) {
-        //    throw (IllegalArgumentException) new IllegalArgumentException().initCause(e);
-        //  }
-        return Settings.Output.BASE_UCA_GEN_DIR + Default.ucdVersion() + "/"; //  + getDataVersion() + "/";
+    public static final String getOutputDir() {
+        return Settings.Output.GEN_UCA_DIR + Default.ucdVersion() + "/";
     }
 
 

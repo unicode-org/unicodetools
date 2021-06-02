@@ -52,7 +52,7 @@ final class Validity {
 
     // Called by UCA.Main.
     static void writeCollationValidityLog() throws IOException {
-        log = Utility.openPrintWriter(UCA.getUCA_GEN_DIR(), "CheckCollationValidity.html", Utility.UTF8_WINDOWS);
+        log = Utility.openPrintWriter(UCA.getOutputDir(), "CheckCollationValidity.html", Utility.UTF8_WINDOWS);
         uca = WriteCollationData.getCollator(CollatorType.ducet);
 
         log.println("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n" +

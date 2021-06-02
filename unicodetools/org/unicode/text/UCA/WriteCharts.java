@@ -47,6 +47,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
 public class WriteCharts implements UCD_Types {
+    static final String GEN_CHARTS_DIR = Settings.Output.GEN_DIR_OLD + "charts/";
 
     static boolean HACK_KANA = false;
 
@@ -107,7 +108,7 @@ public class WriteCharts implements UCD_Types {
         int columnCount = 0;
 
         final String[] replacement = new String[] {"%%%", "Collation Charts", "$initialPage$", "chart_Latin.html"};
-        final String folder = Settings.CHARTS_GEN_DIR + "collation/";
+        final String folder = GEN_CHARTS_DIR + "collation/";
 
         Utility.copyTextFile(Settings.SRC_UCA_DIR + "index.html", Utility.UTF8, folder + "index.html", replacement);
         Utility.copyTextFile(Settings.SRC_UCA_DIR + "charts.css", Utility.LATIN1, folder + "charts.css", null);
@@ -302,7 +303,7 @@ public class WriteCharts implements UCD_Types {
         final int counter = 0;
 
         final String[] replacement = new String[] {"%%%", "Normalization Charts", "$initialPage$", "chart_Latin.html"};
-        final String folder = Settings.CHARTS_GEN_DIR + "normalization/";
+        final String folder = GEN_CHARTS_DIR + "normalization/";
 
         //System.out.println("File: " + new File(".").getCanonicalPath());
 
@@ -421,7 +422,7 @@ public class WriteCharts implements UCD_Types {
 
         final int counter = 0;
         final String[] replacement = new String[] {"%%%", "Case Charts", "$initialPage$", "chart_Latin.html"};
-        final String folder = Settings.CHARTS_GEN_DIR + "case/";
+        final String folder = GEN_CHARTS_DIR + "case/";
 
         Utility.copyTextFile(Settings.SRC_UCA_DIR + "index.html", Utility.UTF8, folder + "index.html", replacement);
         Utility.copyTextFile(Settings.SRC_UCA_DIR + "charts.css", Utility.LATIN1, folder + "charts.css", null);
@@ -542,7 +543,7 @@ public class WriteCharts implements UCD_Types {
 
         final int counter = 0;
         final String[] replacement = new String[] {"%%%", "Script Charts", "$initialPage$", "chart_Latin.html"};
-        final String folder = Settings.CHARTS_GEN_DIR + "script/";
+        final String folder = GEN_CHARTS_DIR + "script/";
 
         Utility.copyTextFile(Settings.SRC_UCA_DIR + "index.html", Utility.UTF8, folder + "index.html", replacement);
         Utility.copyTextFile(Settings.SRC_UCA_DIR + "charts.css", Utility.LATIN1, folder + "charts.css");
@@ -682,7 +683,7 @@ public class WriteCharts implements UCD_Types {
 
         final int counter = 0;
         final String[] replacement = new String[] {"%%%", "Name Index Charts", "$initialPage$", "chart_X.html"};
-        final String folder = Settings.CHARTS_GEN_DIR + "name/";
+        final String folder = GEN_CHARTS_DIR + "name/";
 
         Utility.copyTextFile(Settings.SRC_UCA_DIR + "index.html", Utility.UTF8, folder + "index.html", replacement);
         Utility.copyTextFile(Settings.SRC_UCA_DIR + "charts.css", Utility.LATIN1, folder + "charts.css");

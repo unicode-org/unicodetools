@@ -117,7 +117,7 @@ public class WriteCollationData {
         // new BufferedReader(new FileReader(DIR31 +
         // "CaseFolding-3.d3.alpha.txt"), 64*1024);
         // log = new PrintWriter(new FileOutputStream("CaseFolding_data.js"));
-        log = Utility.openPrintWriter(UCA.getUCA_GEN_DIR(), "CaseFolding_data.js", Utility.UTF8_WINDOWS);
+        log = Utility.openPrintWriter(UCA.getOutputDir(), "CaseFolding_data.js", Utility.UTF8_WINDOWS);
         log.println("var CF = new Object();");
         int count = 0;
         while (true) {
@@ -169,7 +169,7 @@ public class WriteCollationData {
         // Normalizer normKD = new Normalizer(Normalizer.NFKD, UNICODE_VERSION);
         // Normalizer normD = new Normalizer(Normalizer.NFD, UNICODE_VERSION);
         // log = new PrintWriter(new FileOutputStream("Normalization_data.js"));
-        log = Utility.openPrintWriter(UCA.getUCA_GEN_DIR(), "Normalization_data.js", Utility.LATIN1_WINDOWS);
+        log = Utility.openPrintWriter(UCA.getOutputDir(), "Normalization_data.js", Utility.LATIN1_WINDOWS);
 
         int count = 0;
         int datasize = 0;
@@ -299,7 +299,7 @@ public class WriteCollationData {
     // Called by UCA.Main.
     static void writeContractions() throws IOException {
         final String fullFileName = "UCA_Contractions.txt";
-        final PrintWriter diLog = Utility.openPrintWriter(UCA.getUCA_GEN_DIR(), fullFileName, Utility.UTF8_WINDOWS);
+        final PrintWriter diLog = Utility.openPrintWriter(UCA.getOutputDir(), fullFileName, Utility.UTF8_WINDOWS);
 
         diLog.write('\uFEFF');
 
@@ -326,7 +326,7 @@ public class WriteCollationData {
 
     // Called by UCA.Main.
     static void checkDisjointIgnorables() throws IOException {
-        final PrintWriter diLog = Utility.openPrintWriter(UCA.getUCA_GEN_DIR(), "DisjointIgnorables.js", Utility.UTF8_WINDOWS);
+        final PrintWriter diLog = Utility.openPrintWriter(UCA.getOutputDir(), "DisjointIgnorables.js", Utility.UTF8_WINDOWS);
 
         diLog.write('\uFEFF');
 
@@ -579,7 +579,7 @@ public class WriteCollationData {
 
         final Set<String> alreadyDone = new HashSet<String>();
 
-        log2 = Utility.openPrintWriter(UCA.getUCA_GEN_DIR() + File.separator + "log", "UCARules-log.txt", Utility.UTF8_WINDOWS);
+        log2 = Utility.openPrintWriter(UCA.getOutputDir() + File.separator + "log", "UCARules-log.txt", Utility.UTF8_WINDOWS);
 
         while (true) {
             final String s = cc.next();
@@ -733,7 +733,7 @@ public class WriteCollationData {
             filename += ".txt";
         }
 
-        final String directory = UCA.getUCA_GEN_DIR() + File.separator
+        final String directory = UCA.getOutputDir() + File.separator
                 + (collatorType==CollatorType.cldr ? "CollationAuxiliary" : "Ducet");
 
         log = Utility.openPrintWriter(directory, filename, Utility.UTF8_WINDOWS);
@@ -1711,7 +1711,7 @@ public class WriteCollationData {
     }
 
     private static UCA buildCldrCollator(boolean addFFFx) {
-        final PrintWriter fractionalLog = Utility.openPrintWriter(UCA.getUCA_GEN_DIR() + File.separator + "log", "FractionalRemap.txt", Utility.UTF8_WINDOWS);
+        final PrintWriter fractionalLog = Utility.openPrintWriter(UCA.getOutputDir() + File.separator + "log", "FractionalRemap.txt", Utility.UTF8_WINDOWS);
         // hack to reorder elements
         final UCA ducet = getCollator(CollatorType.ducet);
         final CEList ceListForA = ducet.getCEList("a", true);

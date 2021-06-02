@@ -22,7 +22,7 @@ public final class TestCompatibilityCharacters {
 
     static void testCompatibilityCharacters(UCA uca) throws IOException {
         final String fullFileName = "UCA_CompatComparison.txt";
-        final PrintWriter testLog = Utility.openPrintWriter(UCA.getUCA_GEN_DIR() + File.separator + "log", fullFileName, Utility.UTF8_WINDOWS);
+        final PrintWriter testLog = Utility.openPrintWriter(UCA.getOutputDir() + File.separator + "log", fullFileName, Utility.UTF8_WINDOWS);
 
         final int[] kenCes = new int[50];
         final int[] markCes = new int[50];

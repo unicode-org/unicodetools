@@ -541,7 +541,7 @@ public class FractionalUCA {
         Utility.fixDot();
         System.out.println("Writing");
 
-        final String directory = UCA.getUCA_GEN_DIR() + "CollationAuxiliary" + File.separator;
+        final String directory = UCA.getOutputDir() + "CollationAuxiliary" + File.separator;
 
         final boolean shortPrint = true;
         final PrintWriter longLog = Utility.openPrintWriter(directory, filename + ".txt", Utility.UTF8_WINDOWS);
@@ -557,7 +557,7 @@ public class FractionalUCA {
         final PrintWriter summary = Utility.openPrintWriter(directory, summaryFileName, Utility.UTF8_WINDOWS);
 
         final String logFileName = filename + "_log.txt";
-        final PrintWriter log = Utility.openPrintWriter(UCA.getUCA_GEN_DIR() + "log" + File.separator, logFileName, Utility.UTF8_WINDOWS);
+        final PrintWriter log = Utility.openPrintWriter(UCA.getOutputDir() + "log" + File.separator, logFileName, Utility.UTF8_WINDOWS);
         //PrintWriter summary = new PrintWriter(new BufferedWriter(new FileWriter(directory + filename + "_summary.txt"), 32*1024));
 
         summary.println("# Summary of Fractional UCA Table, generated from the UCA DUCET");
