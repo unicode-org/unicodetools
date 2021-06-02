@@ -78,7 +78,7 @@ public class WriteConformanceTest {
                 //+ (appendNfd ? "_NFD" : "")
                 + (shortPrint ? "_SHORT" : "") + ".txt";
 
-        final String directory = UCA.getUCA_GEN_DIR() + File.separator
+        final String directory = UCA.getOutputDir() + File.separator
                 + (collatorType==CollatorType.cldr ? "CollationAuxiliary" : "CollationTest");
 
         final PrintWriter log = Utility.openPrintWriter(directory, fullFileName, Utility.UTF8_WINDOWS);
