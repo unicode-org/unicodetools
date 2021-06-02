@@ -33,9 +33,16 @@ suggestions.
     Markus thinks we decided that there was nothing useful in it,
     and deleted it without saving data. Check with Mark.
 
-If so, assess and add to confusables-source.txt—*if needed.*
+If so, assess and add to unicodetools/data/security/{version}/data/source/confusables-source.txt — *if needed.*
 
 Then in the spreadsheets, move the "new stuff" line to the end.
+
+## Before generating
+
+First, in CLDR, update the script metadata:
+http://cldr.unicode.org/development/updating-codes/updating-script-metadata
+
+The identifier type & status take this data into account.
 
 ## Generating
 
@@ -75,6 +82,16 @@ Markus 2020-feb-07 for Unicode 13.0:
         IdentifierInfo.
 *   The version/revision strings are shared with other tools; no need to set
     them separately.
+
+### Common problems
+
+You may see Identifier_Type=Recommended for characters/scripts/blocks that should not be recommended.
+For example, the initial generation for Unicode 14 "recommended" Znamenny combining marks.
+Add these to unicodetools/data/security/{version}/data/source/removals.txt.
+You can use block properties like
+```
+\p{block=Znamenny_Musical_Notation} ; technical
+```
 
 ## Stability
 
@@ -164,7 +181,7 @@ with reason `[[arabic]] plus [[arabic]→&#x1eef0;, [arabic]]`
 ## Posting
 
 Once you've resolved all the problems, copy certain generated files to
-https://www.unicode.org/Public/security/beta/
+https://www.unicode.org/Public/security/{version}/
 
 *   confusables.txt
 *   confusablesSummary.txt
@@ -173,4 +190,4 @@ https://www.unicode.org/Public/security/beta/
 *   ReadMe.txt
 *   xidmodifications.txt
 
-Check that the files are copied to https://www.unicode.org/Public/security/beta/.
+Check that the files are copied to https://www.unicode.org/Public/security/{version}/.

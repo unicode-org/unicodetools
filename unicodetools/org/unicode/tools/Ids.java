@@ -984,7 +984,7 @@ public class Ids {
 
     private static void showRadicalCompareTxt() throws IOException {
 
-        try (PrintWriter out = FileUtilities.openUTF8Writer(orgSettings.Output.GEN_DIR + "ids/", "radicalCompare.txt");
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "ids/", "radicalCompare.txt");
                 ) {
             out.println("# Additional Radical Mappings (beyond CJKRadicals.txt)\n"
                     + "#\n"

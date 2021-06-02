@@ -692,6 +692,9 @@ AB63; uncommon-use # LATIN SMALL LETTER UO
 \p{block=Ancient_Greek_Musical_Notation} ; obsolete
 \p{block=Phaistos_Disc} ; obsolete
 
+# 14.0
+\p{block=Znamenny_Musical_Notation} ; technical
+
 # Question: should be default for anything new; add exceptions otherwise
 # \p{Age=13} ; uncommon_use
 

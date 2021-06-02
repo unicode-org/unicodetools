@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-14.0.0.txt
-# Date: 2021-05-11, 21:19:37 GMT
+# Date: 2021-05-28, 21:49:10 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -209,7 +209,7 @@ E01F0..E0FFF  ; Control # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 109D          ; Extend # Mn       MYANMAR VOWEL SIGN AITON AI
 135D..135F    ; Extend # Mn   [3] ETHIOPIC COMBINING GEMINATION AND VOWEL LENGTH MARK..ETHIOPIC COMBINING GEMINATION MARK
 1712..1714    ; Extend # Mn   [3] TAGALOG VOWEL SIGN I..TAGALOG SIGN VIRAMA
-1732..1734    ; Extend # Mn   [3] HANUNOO VOWEL SIGN I..HANUNOO SIGN PAMUDPOD
+1732..1733    ; Extend # Mn   [2] HANUNOO VOWEL SIGN I..HANUNOO VOWEL SIGN U
 1752..1753    ; Extend # Mn   [2] BUHID VOWEL SIGN I..BUHID VOWEL SIGN U
 1772..1773    ; Extend # Mn   [2] TAGBANWA VOWEL SIGN I..TAGBANWA VOWEL SIGN U
 17B4..17B5    ; Extend # Mn   [2] KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
@@ -448,7 +448,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2096
+# Total code points: 2095
 
 # ================================================
 
@@ -506,6 +506,7 @@ E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 1056..1057    ; SpacingMark # Mc   [2] MYANMAR VOWEL SIGN VOCALIC R..MYANMAR VOWEL SIGN VOCALIC RR
 1084          ; SpacingMark # Mc       MYANMAR VOWEL SIGN SHAN E
 1715          ; SpacingMark # Mc       TAGALOG SIGN PAMUDPOD
+1734          ; SpacingMark # Mc       HANUNOO SIGN PAMUDPOD
 17B6          ; SpacingMark # Mc       KHMER VOWEL SIGN AA
 17BE..17C5    ; SpacingMark # Mc   [8] KHMER VOWEL SIGN OE..KHMER VOWEL SIGN AU
 17C7..17C8    ; SpacingMark # Mc   [2] KHMER SIGN REAHMUK..KHMER SIGN YUUKALEAPINTU
@@ -619,7 +620,7 @@ ABEC          ; SpacingMark # Mc       MEETEI MAYEK LUM IYEK
 1D166         ; SpacingMark # Mc       MUSICAL SYMBOL COMBINING SPRECHGESANG STEM
 1D16D         ; SpacingMark # Mc       MUSICAL SYMBOL COMBINING AUGMENTATION DOT
 
-# Total code points: 389
+# Total code points: 390
 
 # ================================================
 
