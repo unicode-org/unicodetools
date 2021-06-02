@@ -82,14 +82,14 @@
 082C          ;  ; Exclusion #      (ࠬ)  SAMARITAN VOWEL SIGN SUKUN
 082D          ;  ; Exclusion #      (࠭)  SAMARITAN MARK NEQUDAA
 16EE..16F8    ;  ; Exclusion # [11] (ᛮ..ᛸ)  RUNIC ARLAUG SYMBOL..RUNIC LETTER FRANKS CASKET AESC
-1700..170C    ;  ; Exclusion # [13] (ᜀ..ᜌ)  TAGALOG LETTER A..TAGALOG LETTER YA
-170E..1714    ;  ; Exclusion #  [7] (ᜎ..᜔)  TAGALOG LETTER LA..TAGALOG SIGN VIRAMA
-1720..1734    ;  ; Exclusion # [21] (ᜠ..᜴)  HANUNOO LETTER A..HANUNOO SIGN PAMUDPOD
+1700..1715    ;  ; Exclusion # [22] (ᜀ..᜕)  TAGALOG LETTER A..TAGALOG SIGN PAMUDPOD
+171F..1734    ;  ; Exclusion # [22] (ᜟ..᜴)  TAGALOG LETTER ARCHAIC RA..HANUNOO SIGN PAMUDPOD
 1740..1753    ;  ; Exclusion # [20] (ᝀ..ᝓ)  BUHID LETTER A..BUHID VOWEL SIGN U
 1760..176C    ;  ; Exclusion # [13] (ᝠ..ᝬ)  TAGBANWA LETTER A..TAGBANWA LETTER YA
 176E..1770    ;  ; Exclusion #  [3] (ᝮ..ᝰ)  TAGBANWA LETTER LA..TAGBANWA LETTER SA
 1772..1773    ;  ; Exclusion #  [2] (ᝲ..ᝳ)  TAGBANWA VOWEL SIGN I..TAGBANWA VOWEL SIGN U
 180B..180D    ;  ; Exclusion #  [3] (U+180B..U+180D)  MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
+180F          ;  ; Exclusion #      (᠏)  MONGOLIAN FREE VARIATION SELECTOR FOUR
 1810          ;  ; Exclusion #      (᠐)  MONGOLIAN DIGIT ZERO
 1811          ;  ; Exclusion #      (᠑)  MONGOLIAN DIGIT ONE
 1812          ;  ; Exclusion #      (᠒)  MONGOLIAN DIGIT TWO
@@ -260,8 +260,7 @@
 1A19          ;  ; Exclusion #      (ᨙ)  BUGINESE VOWEL SIGN E
 1A1A          ;  ; Exclusion #      (ᨚ)  BUGINESE VOWEL SIGN O
 1A1B          ;  ; Exclusion #      (ᨛ)  BUGINESE VOWEL SIGN AE
-2C00..2C2E    ;  ; Exclusion # [47] (Ⰰ..Ⱞ)  GLAGOLITIC CAPITAL LETTER AZU..GLAGOLITIC CAPITAL LETTER LATINATE MYSLITE
-2C30..2C5E    ;  ; Exclusion # [47] (ⰰ..ⱞ)  GLAGOLITIC SMALL LETTER AZU..GLAGOLITIC SMALL LETTER LATINATE MYSLITE
+2C00..2C5F    ;  ; Exclusion # [96] (Ⰰ..ⱟ)  GLAGOLITIC CAPITAL LETTER AZU..GLAGOLITIC SMALL LETTER CAUDATE CHRIVI
 2C80..2CB1    ;  ; Exclusion # [50] (Ⲁ..ⲱ)  COPTIC CAPITAL LETTER ALFA..COPTIC SMALL LETTER OOU
 2CE4          ;  ; Exclusion #      (ⳤ)  COPTIC SYMBOL KAI
 2CEB..2CF3    ;  ; Exclusion #  [9] (Ⳬ..ⳳ)  COPTIC CAPITAL LETTER CRYPTOGRAMMIC SHEI..COPTIC SMALL LETTER BOHAIRIC KHEI
@@ -583,6 +582,45 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 10561         ;  ; Exclusion #      (𐕡)  CAUCASIAN ALBANIAN LETTER YAYD
 10562         ;  ; Exclusion #      (𐕢)  CAUCASIAN ALBANIAN LETTER PIWR
 10563         ;  ; Exclusion #      (𐕣)  CAUCASIAN ALBANIAN LETTER KIW
+10570..1057A  ;  ; Exclusion # [11] (𐕰..𐕺)  VITHKUQI CAPITAL LETTER A..VITHKUQI CAPITAL LETTER GA
+1057C..1058A  ;  ; Exclusion # [15] (𐕼..𐖊)  VITHKUQI CAPITAL LETTER HA..VITHKUQI CAPITAL LETTER RE
+1058C..10592  ;  ; Exclusion #  [7] (𐖌..𐖒)  VITHKUQI CAPITAL LETTER SE..VITHKUQI CAPITAL LETTER XE
+10594..10595  ;  ; Exclusion #  [2] (𐖔..𐖕)  VITHKUQI CAPITAL LETTER Y..VITHKUQI CAPITAL LETTER ZE
+10597         ;  ; Exclusion #      (𐖗)  VITHKUQI SMALL LETTER A
+10598         ;  ; Exclusion #      (𐖘)  VITHKUQI SMALL LETTER BBE
+10599         ;  ; Exclusion #      (𐖙)  VITHKUQI SMALL LETTER BE
+1059A         ;  ; Exclusion #      (𐖚)  VITHKUQI SMALL LETTER CE
+1059B         ;  ; Exclusion #      (𐖛)  VITHKUQI SMALL LETTER CHE
+1059C         ;  ; Exclusion #      (𐖜)  VITHKUQI SMALL LETTER DE
+1059D         ;  ; Exclusion #      (𐖝)  VITHKUQI SMALL LETTER DHE
+1059E         ;  ; Exclusion #      (𐖞)  VITHKUQI SMALL LETTER EI
+1059F         ;  ; Exclusion #      (𐖟)  VITHKUQI SMALL LETTER E
+105A0         ;  ; Exclusion #      (𐖠)  VITHKUQI SMALL LETTER FE
+105A1         ;  ; Exclusion #      (𐖡)  VITHKUQI SMALL LETTER GA
+105A3         ;  ; Exclusion #      (𐖣)  VITHKUQI SMALL LETTER HA
+105A4         ;  ; Exclusion #      (𐖤)  VITHKUQI SMALL LETTER HHA
+105A5         ;  ; Exclusion #      (𐖥)  VITHKUQI SMALL LETTER I
+105A6         ;  ; Exclusion #      (𐖦)  VITHKUQI SMALL LETTER IJE
+105A7         ;  ; Exclusion #      (𐖧)  VITHKUQI SMALL LETTER JE
+105A8         ;  ; Exclusion #      (𐖨)  VITHKUQI SMALL LETTER KA
+105A9         ;  ; Exclusion #      (𐖩)  VITHKUQI SMALL LETTER LA
+105AA         ;  ; Exclusion #      (𐖪)  VITHKUQI SMALL LETTER LLA
+105AB         ;  ; Exclusion #      (𐖫)  VITHKUQI SMALL LETTER ME
+105AC         ;  ; Exclusion #      (𐖬)  VITHKUQI SMALL LETTER NE
+105AD         ;  ; Exclusion #      (𐖭)  VITHKUQI SMALL LETTER NJE
+105AE         ;  ; Exclusion #      (𐖮)  VITHKUQI SMALL LETTER O
+105AF         ;  ; Exclusion #      (𐖯)  VITHKUQI SMALL LETTER PE
+105B0         ;  ; Exclusion #      (𐖰)  VITHKUQI SMALL LETTER QA
+105B1         ;  ; Exclusion #      (𐖱)  VITHKUQI SMALL LETTER RE
+105B3         ;  ; Exclusion #      (𐖳)  VITHKUQI SMALL LETTER SE
+105B4         ;  ; Exclusion #      (𐖴)  VITHKUQI SMALL LETTER SHE
+105B5         ;  ; Exclusion #      (𐖵)  VITHKUQI SMALL LETTER TE
+105B6         ;  ; Exclusion #      (𐖶)  VITHKUQI SMALL LETTER THE
+105B7         ;  ; Exclusion #      (𐖷)  VITHKUQI SMALL LETTER U
+105B8         ;  ; Exclusion #      (𐖸)  VITHKUQI SMALL LETTER VE
+105B9         ;  ; Exclusion #      (𐖹)  VITHKUQI SMALL LETTER XE
+105BB         ;  ; Exclusion #      (𐖻)  VITHKUQI SMALL LETTER Y
+105BC         ;  ; Exclusion #      (𐖼)  VITHKUQI SMALL LETTER ZE
 10600         ;  ; Exclusion #      (𐘀)  LINEAR A SIGN AB001
 10601         ;  ; Exclusion #      (𐘁)  LINEAR A SIGN AB002
 10602         ;  ; Exclusion #      (𐘂)  LINEAR A SIGN AB003
@@ -1583,6 +1621,28 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 10F4E         ;  ; Exclusion #      (𐽎)  SOGDIAN COMBINING LONG HOOK BELOW
 10F4F         ;  ; Exclusion #      (𐽏)  SOGDIAN COMBINING RESH BELOW
 10F50         ;  ; Exclusion #      (𐽐)  SOGDIAN COMBINING STROKE BELOW
+10F70         ;  ; Exclusion #      (𐽰)  OLD UYGHUR LETTER ALEPH
+10F71         ;  ; Exclusion #      (𐽱)  OLD UYGHUR LETTER BETH
+10F72         ;  ; Exclusion #      (𐽲)  OLD UYGHUR LETTER GIMEL-HETH
+10F73         ;  ; Exclusion #      (𐽳)  OLD UYGHUR LETTER WAW
+10F74         ;  ; Exclusion #      (𐽴)  OLD UYGHUR LETTER ZAYIN
+10F75         ;  ; Exclusion #      (𐽵)  OLD UYGHUR LETTER FINAL HETH
+10F76         ;  ; Exclusion #      (𐽶)  OLD UYGHUR LETTER YODH
+10F77         ;  ; Exclusion #      (𐽷)  OLD UYGHUR LETTER KAPH
+10F78         ;  ; Exclusion #      (𐽸)  OLD UYGHUR LETTER LAMEDH
+10F79         ;  ; Exclusion #      (𐽹)  OLD UYGHUR LETTER MEM
+10F7A         ;  ; Exclusion #      (𐽺)  OLD UYGHUR LETTER NUN
+10F7B         ;  ; Exclusion #      (𐽻)  OLD UYGHUR LETTER SAMEKH
+10F7C         ;  ; Exclusion #      (𐽼)  OLD UYGHUR LETTER PE
+10F7D         ;  ; Exclusion #      (𐽽)  OLD UYGHUR LETTER SADHE
+10F7E         ;  ; Exclusion #      (𐽾)  OLD UYGHUR LETTER RESH
+10F7F         ;  ; Exclusion #      (𐽿)  OLD UYGHUR LETTER SHIN
+10F80         ;  ; Exclusion #      (𐾀)  OLD UYGHUR LETTER TAW
+10F81         ;  ; Exclusion #      (𐾁)  OLD UYGHUR LETTER LESH
+10F82         ;  ; Exclusion #      (𐾂)  OLD UYGHUR COMBINING DOT ABOVE
+10F83         ;  ; Exclusion #      (𐾃)  OLD UYGHUR COMBINING DOT BELOW
+10F84         ;  ; Exclusion #      (𐾄)  OLD UYGHUR COMBINING TWO DOTS ABOVE
+10F85         ;  ; Exclusion #      (𐾅)  OLD UYGHUR COMBINING TWO DOTS BELOW
 10FB0         ;  ; Exclusion #      (𐾰)  CHORASMIAN LETTER ALEPH
 10FB1         ;  ; Exclusion #      (𐾱)  CHORASMIAN LETTER SMALL ALEPH
 10FB2         ;  ; Exclusion #      (𐾲)  CHORASMIAN LETTER BETH
@@ -1708,6 +1768,12 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 1106D         ;  ; Exclusion #      (𑁭)  BRAHMI DIGIT SEVEN
 1106E         ;  ; Exclusion #      (𑁮)  BRAHMI DIGIT EIGHT
 1106F         ;  ; Exclusion #      (𑁯)  BRAHMI DIGIT NINE
+11070         ;  ; Exclusion #      (𑁰)  BRAHMI SIGN OLD TAMIL VIRAMA
+11071         ;  ; Exclusion #      (𑁱)  BRAHMI LETTER OLD TAMIL SHORT E
+11072         ;  ; Exclusion #      (𑁲)  BRAHMI LETTER OLD TAMIL SHORT O
+11073         ;  ; Exclusion #      (𑁳)  BRAHMI VOWEL SIGN OLD TAMIL SHORT E
+11074         ;  ; Exclusion #      (𑁴)  BRAHMI VOWEL SIGN OLD TAMIL SHORT O
+11075         ;  ; Exclusion #      (𑁵)  BRAHMI LETTER OLD TAMIL LLA
 1107F         ;  ; Exclusion #      (𑁿)  BRAHMI NUMBER JOINER
 11080         ;  ; Exclusion #      (𑂀)  KAITHI SIGN CANDRABINDU
 11081         ;  ; Exclusion #      (𑂁)  KAITHI SIGN ANUSVARA
@@ -1768,6 +1834,7 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 110B8         ;  ; Exclusion #      (𑂸)  KAITHI VOWEL SIGN AU
 110B9         ;  ; Exclusion #      (𑂹)  KAITHI SIGN VIRAMA
 110BA         ;  ; Exclusion #      (𑂺)  KAITHI SIGN NUKTA
+110C2         ;  ; Exclusion #      (𑃂)  KAITHI VOWEL SIGN VOCALIC R
 110D0         ;  ; Exclusion #      (𑃐)  SORA SOMPENG LETTER SAH
 110D1         ;  ; Exclusion #      (𑃑)  SORA SOMPENG LETTER TAH
 110D2         ;  ; Exclusion #      (𑃒)  SORA SOMPENG LETTER BAH
@@ -2516,6 +2583,13 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 11737         ;  ; Exclusion #      (𑜷)  AHOM DIGIT SEVEN
 11738         ;  ; Exclusion #      (𑜸)  AHOM DIGIT EIGHT
 11739         ;  ; Exclusion #      (𑜹)  AHOM DIGIT NINE
+11740         ;  ; Exclusion #      (𑝀)  AHOM LETTER CA
+11741         ;  ; Exclusion #      (𑝁)  AHOM LETTER TTA
+11742         ;  ; Exclusion #      (𑝂)  AHOM LETTER TTHA
+11743         ;  ; Exclusion #      (𑝃)  AHOM LETTER DDA
+11744         ;  ; Exclusion #      (𑝄)  AHOM LETTER DDHA
+11745         ;  ; Exclusion #      (𑝅)  AHOM LETTER NNA
+11746         ;  ; Exclusion #      (𑝆)  AHOM LETTER LLA
 11800         ;  ; Exclusion #      (𑠀)  DOGRA LETTER A
 11801         ;  ; Exclusion #      (𑠁)  DOGRA LETTER AA
 11802         ;  ; Exclusion #      (𑠂)  DOGRA LETTER I
@@ -4414,6 +4488,105 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 12541         ;  ; Exclusion #      (𒕁)  CUNEIFORM SIGN ZA7
 12542         ;  ; Exclusion #      (𒕂)  CUNEIFORM SIGN ZU OVER ZU PLUS SAR
 12543         ;  ; Exclusion #      (𒕃)  CUNEIFORM SIGN ZU5 TIMES THREE DISH TENU
+12F90         ;  ; Exclusion #      (𒾐)  CYPRO-MINOAN SIGN CM001
+12F91         ;  ; Exclusion #      (𒾑)  CYPRO-MINOAN SIGN CM002
+12F92         ;  ; Exclusion #      (𒾒)  CYPRO-MINOAN SIGN CM004
+12F93         ;  ; Exclusion #      (𒾓)  CYPRO-MINOAN SIGN CM005
+12F94         ;  ; Exclusion #      (𒾔)  CYPRO-MINOAN SIGN CM006
+12F95         ;  ; Exclusion #      (𒾕)  CYPRO-MINOAN SIGN CM007
+12F96         ;  ; Exclusion #      (𒾖)  CYPRO-MINOAN SIGN CM008
+12F97         ;  ; Exclusion #      (𒾗)  CYPRO-MINOAN SIGN CM009
+12F98         ;  ; Exclusion #      (𒾘)  CYPRO-MINOAN SIGN CM010
+12F99         ;  ; Exclusion #      (𒾙)  CYPRO-MINOAN SIGN CM011
+12F9A         ;  ; Exclusion #      (𒾚)  CYPRO-MINOAN SIGN CM012
+12F9B         ;  ; Exclusion #      (𒾛)  CYPRO-MINOAN SIGN CM012B
+12F9C         ;  ; Exclusion #      (𒾜)  CYPRO-MINOAN SIGN CM013
+12F9D         ;  ; Exclusion #      (𒾝)  CYPRO-MINOAN SIGN CM015
+12F9E         ;  ; Exclusion #      (𒾞)  CYPRO-MINOAN SIGN CM017
+12F9F         ;  ; Exclusion #      (𒾟)  CYPRO-MINOAN SIGN CM019
+12FA0         ;  ; Exclusion #      (𒾠)  CYPRO-MINOAN SIGN CM021
+12FA1         ;  ; Exclusion #      (𒾡)  CYPRO-MINOAN SIGN CM023
+12FA2         ;  ; Exclusion #      (𒾢)  CYPRO-MINOAN SIGN CM024
+12FA3         ;  ; Exclusion #      (𒾣)  CYPRO-MINOAN SIGN CM025
+12FA4         ;  ; Exclusion #      (𒾤)  CYPRO-MINOAN SIGN CM026
+12FA5         ;  ; Exclusion #      (𒾥)  CYPRO-MINOAN SIGN CM027
+12FA6         ;  ; Exclusion #      (𒾦)  CYPRO-MINOAN SIGN CM028
+12FA7         ;  ; Exclusion #      (𒾧)  CYPRO-MINOAN SIGN CM029
+12FA8         ;  ; Exclusion #      (𒾨)  CYPRO-MINOAN SIGN CM030
+12FA9         ;  ; Exclusion #      (𒾩)  CYPRO-MINOAN SIGN CM033
+12FAA         ;  ; Exclusion #      (𒾪)  CYPRO-MINOAN SIGN CM034
+12FAB         ;  ; Exclusion #      (𒾫)  CYPRO-MINOAN SIGN CM035
+12FAC         ;  ; Exclusion #      (𒾬)  CYPRO-MINOAN SIGN CM036
+12FAD         ;  ; Exclusion #      (𒾭)  CYPRO-MINOAN SIGN CM037
+12FAE         ;  ; Exclusion #      (𒾮)  CYPRO-MINOAN SIGN CM038
+12FAF         ;  ; Exclusion #      (𒾯)  CYPRO-MINOAN SIGN CM039
+12FB0         ;  ; Exclusion #      (𒾰)  CYPRO-MINOAN SIGN CM040
+12FB1         ;  ; Exclusion #      (𒾱)  CYPRO-MINOAN SIGN CM041
+12FB2         ;  ; Exclusion #      (𒾲)  CYPRO-MINOAN SIGN CM044
+12FB3         ;  ; Exclusion #      (𒾳)  CYPRO-MINOAN SIGN CM046
+12FB4         ;  ; Exclusion #      (𒾴)  CYPRO-MINOAN SIGN CM047
+12FB5         ;  ; Exclusion #      (𒾵)  CYPRO-MINOAN SIGN CM049
+12FB6         ;  ; Exclusion #      (𒾶)  CYPRO-MINOAN SIGN CM050
+12FB7         ;  ; Exclusion #      (𒾷)  CYPRO-MINOAN SIGN CM051
+12FB8         ;  ; Exclusion #      (𒾸)  CYPRO-MINOAN SIGN CM052
+12FB9         ;  ; Exclusion #      (𒾹)  CYPRO-MINOAN SIGN CM053
+12FBA         ;  ; Exclusion #      (𒾺)  CYPRO-MINOAN SIGN CM054
+12FBB         ;  ; Exclusion #      (𒾻)  CYPRO-MINOAN SIGN CM055
+12FBC         ;  ; Exclusion #      (𒾼)  CYPRO-MINOAN SIGN CM056
+12FBD         ;  ; Exclusion #      (𒾽)  CYPRO-MINOAN SIGN CM058
+12FBE         ;  ; Exclusion #      (𒾾)  CYPRO-MINOAN SIGN CM059
+12FBF         ;  ; Exclusion #      (𒾿)  CYPRO-MINOAN SIGN CM060
+12FC0         ;  ; Exclusion #      (𒿀)  CYPRO-MINOAN SIGN CM061
+12FC1         ;  ; Exclusion #      (𒿁)  CYPRO-MINOAN SIGN CM062
+12FC2         ;  ; Exclusion #      (𒿂)  CYPRO-MINOAN SIGN CM063
+12FC3         ;  ; Exclusion #      (𒿃)  CYPRO-MINOAN SIGN CM064
+12FC4         ;  ; Exclusion #      (𒿄)  CYPRO-MINOAN SIGN CM066
+12FC5         ;  ; Exclusion #      (𒿅)  CYPRO-MINOAN SIGN CM067
+12FC6         ;  ; Exclusion #      (𒿆)  CYPRO-MINOAN SIGN CM068
+12FC7         ;  ; Exclusion #      (𒿇)  CYPRO-MINOAN SIGN CM069
+12FC8         ;  ; Exclusion #      (𒿈)  CYPRO-MINOAN SIGN CM070
+12FC9         ;  ; Exclusion #      (𒿉)  CYPRO-MINOAN SIGN CM071
+12FCA         ;  ; Exclusion #      (𒿊)  CYPRO-MINOAN SIGN CM072
+12FCB         ;  ; Exclusion #      (𒿋)  CYPRO-MINOAN SIGN CM073
+12FCC         ;  ; Exclusion #      (𒿌)  CYPRO-MINOAN SIGN CM074
+12FCD         ;  ; Exclusion #      (𒿍)  CYPRO-MINOAN SIGN CM075
+12FCE         ;  ; Exclusion #      (𒿎)  CYPRO-MINOAN SIGN CM075B
+12FCF         ;  ; Exclusion #      (𒿏)  CYPRO-MINOAN SIGN CM076
+12FD0         ;  ; Exclusion #      (𒿐)  CYPRO-MINOAN SIGN CM078
+12FD1         ;  ; Exclusion #      (𒿑)  CYPRO-MINOAN SIGN CM079
+12FD2         ;  ; Exclusion #      (𒿒)  CYPRO-MINOAN SIGN CM080
+12FD3         ;  ; Exclusion #      (𒿓)  CYPRO-MINOAN SIGN CM081
+12FD4         ;  ; Exclusion #      (𒿔)  CYPRO-MINOAN SIGN CM082
+12FD5         ;  ; Exclusion #      (𒿕)  CYPRO-MINOAN SIGN CM083
+12FD6         ;  ; Exclusion #      (𒿖)  CYPRO-MINOAN SIGN CM084
+12FD7         ;  ; Exclusion #      (𒿗)  CYPRO-MINOAN SIGN CM085
+12FD8         ;  ; Exclusion #      (𒿘)  CYPRO-MINOAN SIGN CM086
+12FD9         ;  ; Exclusion #      (𒿙)  CYPRO-MINOAN SIGN CM087
+12FDA         ;  ; Exclusion #      (𒿚)  CYPRO-MINOAN SIGN CM088
+12FDB         ;  ; Exclusion #      (𒿛)  CYPRO-MINOAN SIGN CM089
+12FDC         ;  ; Exclusion #      (𒿜)  CYPRO-MINOAN SIGN CM090
+12FDD         ;  ; Exclusion #      (𒿝)  CYPRO-MINOAN SIGN CM091
+12FDE         ;  ; Exclusion #      (𒿞)  CYPRO-MINOAN SIGN CM092
+12FDF         ;  ; Exclusion #      (𒿟)  CYPRO-MINOAN SIGN CM094
+12FE0         ;  ; Exclusion #      (𒿠)  CYPRO-MINOAN SIGN CM095
+12FE1         ;  ; Exclusion #      (𒿡)  CYPRO-MINOAN SIGN CM096
+12FE2         ;  ; Exclusion #      (𒿢)  CYPRO-MINOAN SIGN CM097
+12FE3         ;  ; Exclusion #      (𒿣)  CYPRO-MINOAN SIGN CM098
+12FE4         ;  ; Exclusion #      (𒿤)  CYPRO-MINOAN SIGN CM099
+12FE5         ;  ; Exclusion #      (𒿥)  CYPRO-MINOAN SIGN CM100
+12FE6         ;  ; Exclusion #      (𒿦)  CYPRO-MINOAN SIGN CM101
+12FE7         ;  ; Exclusion #      (𒿧)  CYPRO-MINOAN SIGN CM102
+12FE8         ;  ; Exclusion #      (𒿨)  CYPRO-MINOAN SIGN CM103
+12FE9         ;  ; Exclusion #      (𒿩)  CYPRO-MINOAN SIGN CM104
+12FEA         ;  ; Exclusion #      (𒿪)  CYPRO-MINOAN SIGN CM105
+12FEB         ;  ; Exclusion #      (𒿫)  CYPRO-MINOAN SIGN CM107
+12FEC         ;  ; Exclusion #      (𒿬)  CYPRO-MINOAN SIGN CM108
+12FED         ;  ; Exclusion #      (𒿭)  CYPRO-MINOAN SIGN CM109
+12FEE         ;  ; Exclusion #      (𒿮)  CYPRO-MINOAN SIGN CM110
+12FEF         ;  ; Exclusion #      (𒿯)  CYPRO-MINOAN SIGN CM112
+12FF0         ;  ; Exclusion #      (𒿰)  CYPRO-MINOAN SIGN CM114
+12FF1         ;  ; Exclusion #      (𒿱)  CYPRO-MINOAN SIGN CM301
+12FF2         ;  ; Exclusion #      (𒿲)  CYPRO-MINOAN SIGN CM302
 13000         ;  ; Exclusion #      (𓀀)  EGYPTIAN HIEROGLYPH A001
 13001         ;  ; Exclusion #      (𓀁)  EGYPTIAN HIEROGLYPH A002
 13002         ;  ; Exclusion #      (𓀂)  EGYPTIAN HIEROGLYPH A003
@@ -6109,6 +6282,95 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 16A67         ;  ; Exclusion #      (𖩧)  MRO DIGIT SEVEN
 16A68         ;  ; Exclusion #      (𖩨)  MRO DIGIT EIGHT
 16A69         ;  ; Exclusion #      (𖩩)  MRO DIGIT NINE
+16A70         ;  ; Exclusion #      (𖩰)  TANGSA LETTER OZ
+16A71         ;  ; Exclusion #      (𖩱)  TANGSA LETTER OC
+16A72         ;  ; Exclusion #      (𖩲)  TANGSA LETTER OQ
+16A73         ;  ; Exclusion #      (𖩳)  TANGSA LETTER OX
+16A74         ;  ; Exclusion #      (𖩴)  TANGSA LETTER AZ
+16A75         ;  ; Exclusion #      (𖩵)  TANGSA LETTER AC
+16A76         ;  ; Exclusion #      (𖩶)  TANGSA LETTER AQ
+16A77         ;  ; Exclusion #      (𖩷)  TANGSA LETTER AX
+16A78         ;  ; Exclusion #      (𖩸)  TANGSA LETTER VZ
+16A79         ;  ; Exclusion #      (𖩹)  TANGSA LETTER VC
+16A7A         ;  ; Exclusion #      (𖩺)  TANGSA LETTER VQ
+16A7B         ;  ; Exclusion #      (𖩻)  TANGSA LETTER VX
+16A7C         ;  ; Exclusion #      (𖩼)  TANGSA LETTER EZ
+16A7D         ;  ; Exclusion #      (𖩽)  TANGSA LETTER EC
+16A7E         ;  ; Exclusion #      (𖩾)  TANGSA LETTER EQ
+16A7F         ;  ; Exclusion #      (𖩿)  TANGSA LETTER EX
+16A80         ;  ; Exclusion #      (𖪀)  TANGSA LETTER IZ
+16A81         ;  ; Exclusion #      (𖪁)  TANGSA LETTER IC
+16A82         ;  ; Exclusion #      (𖪂)  TANGSA LETTER IQ
+16A83         ;  ; Exclusion #      (𖪃)  TANGSA LETTER IX
+16A84         ;  ; Exclusion #      (𖪄)  TANGSA LETTER UZ
+16A85         ;  ; Exclusion #      (𖪅)  TANGSA LETTER UC
+16A86         ;  ; Exclusion #      (𖪆)  TANGSA LETTER UQ
+16A87         ;  ; Exclusion #      (𖪇)  TANGSA LETTER UX
+16A88         ;  ; Exclusion #      (𖪈)  TANGSA LETTER AWZ
+16A89         ;  ; Exclusion #      (𖪉)  TANGSA LETTER AWC
+16A8A         ;  ; Exclusion #      (𖪊)  TANGSA LETTER AWQ
+16A8B         ;  ; Exclusion #      (𖪋)  TANGSA LETTER AWX
+16A8C         ;  ; Exclusion #      (𖪌)  TANGSA LETTER UIZ
+16A8D         ;  ; Exclusion #      (𖪍)  TANGSA LETTER UIC
+16A8E         ;  ; Exclusion #      (𖪎)  TANGSA LETTER UIQ
+16A8F         ;  ; Exclusion #      (𖪏)  TANGSA LETTER UIX
+16A90         ;  ; Exclusion #      (𖪐)  TANGSA LETTER FINAL NG
+16A91         ;  ; Exclusion #      (𖪑)  TANGSA LETTER LONG UEX
+16A92         ;  ; Exclusion #      (𖪒)  TANGSA LETTER SHORT UEZ
+16A93         ;  ; Exclusion #      (𖪓)  TANGSA LETTER SHORT AWX
+16A94         ;  ; Exclusion #      (𖪔)  TANGSA LETTER UEC
+16A95         ;  ; Exclusion #      (𖪕)  TANGSA LETTER UEZ
+16A96         ;  ; Exclusion #      (𖪖)  TANGSA LETTER UEQ
+16A97         ;  ; Exclusion #      (𖪗)  TANGSA LETTER UEX
+16A98         ;  ; Exclusion #      (𖪘)  TANGSA LETTER UIUZ
+16A99         ;  ; Exclusion #      (𖪙)  TANGSA LETTER UIUC
+16A9A         ;  ; Exclusion #      (𖪚)  TANGSA LETTER UIUQ
+16A9B         ;  ; Exclusion #      (𖪛)  TANGSA LETTER UIUX
+16A9C         ;  ; Exclusion #      (𖪜)  TANGSA LETTER MZ
+16A9D         ;  ; Exclusion #      (𖪝)  TANGSA LETTER MC
+16A9E         ;  ; Exclusion #      (𖪞)  TANGSA LETTER MQ
+16A9F         ;  ; Exclusion #      (𖪟)  TANGSA LETTER MX
+16AA0         ;  ; Exclusion #      (𖪠)  TANGSA LETTER KA
+16AA1         ;  ; Exclusion #      (𖪡)  TANGSA LETTER KHA
+16AA2         ;  ; Exclusion #      (𖪢)  TANGSA LETTER GA
+16AA3         ;  ; Exclusion #      (𖪣)  TANGSA LETTER NGA
+16AA4         ;  ; Exclusion #      (𖪤)  TANGSA LETTER SA
+16AA5         ;  ; Exclusion #      (𖪥)  TANGSA LETTER YA
+16AA6         ;  ; Exclusion #      (𖪦)  TANGSA LETTER WA
+16AA7         ;  ; Exclusion #      (𖪧)  TANGSA LETTER PA
+16AA8         ;  ; Exclusion #      (𖪨)  TANGSA LETTER NYA
+16AA9         ;  ; Exclusion #      (𖪩)  TANGSA LETTER PHA
+16AAA         ;  ; Exclusion #      (𖪪)  TANGSA LETTER BA
+16AAB         ;  ; Exclusion #      (𖪫)  TANGSA LETTER MA
+16AAC         ;  ; Exclusion #      (𖪬)  TANGSA LETTER NA
+16AAD         ;  ; Exclusion #      (𖪭)  TANGSA LETTER HA
+16AAE         ;  ; Exclusion #      (𖪮)  TANGSA LETTER LA
+16AAF         ;  ; Exclusion #      (𖪯)  TANGSA LETTER HTA
+16AB0         ;  ; Exclusion #      (𖪰)  TANGSA LETTER TA
+16AB1         ;  ; Exclusion #      (𖪱)  TANGSA LETTER DA
+16AB2         ;  ; Exclusion #      (𖪲)  TANGSA LETTER RA
+16AB3         ;  ; Exclusion #      (𖪳)  TANGSA LETTER NHA
+16AB4         ;  ; Exclusion #      (𖪴)  TANGSA LETTER SHA
+16AB5         ;  ; Exclusion #      (𖪵)  TANGSA LETTER CA
+16AB6         ;  ; Exclusion #      (𖪶)  TANGSA LETTER TSA
+16AB7         ;  ; Exclusion #      (𖪷)  TANGSA LETTER GHA
+16AB8         ;  ; Exclusion #      (𖪸)  TANGSA LETTER HTTA
+16AB9         ;  ; Exclusion #      (𖪹)  TANGSA LETTER THA
+16ABA         ;  ; Exclusion #      (𖪺)  TANGSA LETTER XA
+16ABB         ;  ; Exclusion #      (𖪻)  TANGSA LETTER FA
+16ABC         ;  ; Exclusion #      (𖪼)  TANGSA LETTER DHA
+16ABD         ;  ; Exclusion #      (𖪽)  TANGSA LETTER CHA
+16ABE         ;  ; Exclusion #      (𖪾)  TANGSA LETTER ZA
+16AC0         ;  ; Exclusion #      (𖫀)  TANGSA DIGIT ZERO
+16AC1         ;  ; Exclusion #      (𖫁)  TANGSA DIGIT ONE
+16AC2         ;  ; Exclusion #      (𖫂)  TANGSA DIGIT TWO
+16AC3         ;  ; Exclusion #      (𖫃)  TANGSA DIGIT THREE
+16AC4         ;  ; Exclusion #      (𖫄)  TANGSA DIGIT FOUR
+16AC5         ;  ; Exclusion #      (𖫅)  TANGSA DIGIT FIVE
+16AC6         ;  ; Exclusion #      (𖫆)  TANGSA DIGIT SIX
+16AC7         ;  ; Exclusion #      (𖫇)  TANGSA DIGIT SEVEN
+16AC8         ;  ; Exclusion #      (𖫈)  TANGSA DIGIT EIGHT
+16AC9         ;  ; Exclusion #      (𖫉)  TANGSA DIGIT NINE
 16AD0         ;  ; Exclusion #      (𖫐)  BASSA VAH LETTER ENNI
 16AD1         ;  ; Exclusion #      (𖫑)  BASSA VAH LETTER KA
 16AD2         ;  ; Exclusion #      (𖫒)  BASSA VAH LETTER SE
@@ -14341,6 +14603,37 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 1E01B..1E021  ;  ; Exclusion #  [7] (𞀛..𞀡)  COMBINING GLAGOLITIC LETTER SHTA..COMBINING GLAGOLITIC LETTER YATI
 1E023..1E024  ;  ; Exclusion #  [2] (𞀣..𞀤)  COMBINING GLAGOLITIC LETTER YU..COMBINING GLAGOLITIC LETTER SMALL YUS
 1E026..1E02A  ;  ; Exclusion #  [5] (𞀦..𞀪)  COMBINING GLAGOLITIC LETTER YO..COMBINING GLAGOLITIC LETTER FITA
+1E290         ;  ; Exclusion #      (𞊐)  TOTO LETTER PA
+1E291         ;  ; Exclusion #      (𞊑)  TOTO LETTER BA
+1E292         ;  ; Exclusion #      (𞊒)  TOTO LETTER TA
+1E293         ;  ; Exclusion #      (𞊓)  TOTO LETTER DA
+1E294         ;  ; Exclusion #      (𞊔)  TOTO LETTER KA
+1E295         ;  ; Exclusion #      (𞊕)  TOTO LETTER GA
+1E296         ;  ; Exclusion #      (𞊖)  TOTO LETTER MA
+1E297         ;  ; Exclusion #      (𞊗)  TOTO LETTER NA
+1E298         ;  ; Exclusion #      (𞊘)  TOTO LETTER NGA
+1E299         ;  ; Exclusion #      (𞊙)  TOTO LETTER SA
+1E29A         ;  ; Exclusion #      (𞊚)  TOTO LETTER CHA
+1E29B         ;  ; Exclusion #      (𞊛)  TOTO LETTER YA
+1E29C         ;  ; Exclusion #      (𞊜)  TOTO LETTER WA
+1E29D         ;  ; Exclusion #      (𞊝)  TOTO LETTER JA
+1E29E         ;  ; Exclusion #      (𞊞)  TOTO LETTER HA
+1E29F         ;  ; Exclusion #      (𞊟)  TOTO LETTER RA
+1E2A0         ;  ; Exclusion #      (𞊠)  TOTO LETTER LA
+1E2A1         ;  ; Exclusion #      (𞊡)  TOTO LETTER I
+1E2A2         ;  ; Exclusion #      (𞊢)  TOTO LETTER BREATHY I
+1E2A3         ;  ; Exclusion #      (𞊣)  TOTO LETTER IU
+1E2A4         ;  ; Exclusion #      (𞊤)  TOTO LETTER BREATHY IU
+1E2A5         ;  ; Exclusion #      (𞊥)  TOTO LETTER U
+1E2A6         ;  ; Exclusion #      (𞊦)  TOTO LETTER E
+1E2A7         ;  ; Exclusion #      (𞊧)  TOTO LETTER BREATHY E
+1E2A8         ;  ; Exclusion #      (𞊨)  TOTO LETTER EO
+1E2A9         ;  ; Exclusion #      (𞊩)  TOTO LETTER BREATHY EO
+1E2AA         ;  ; Exclusion #      (𞊪)  TOTO LETTER O
+1E2AB         ;  ; Exclusion #      (𞊫)  TOTO LETTER AE
+1E2AC         ;  ; Exclusion #      (𞊬)  TOTO LETTER BREATHY AE
+1E2AD         ;  ; Exclusion #      (𞊭)  TOTO LETTER A
+1E2AE         ;  ; Exclusion #      (𞊮)  TOTO SIGN RISING TONE
 1E800         ;  ; Exclusion #      (𞠀)  MENDE KIKAKUI SYLLABLE M001 KI
 1E801         ;  ; Exclusion #      (𞠁)  MENDE KIKAKUI SYLLABLE M002 KA
 1E802         ;  ; Exclusion #      (𞠂)  MENDE KIKAKUI SYLLABLE M003 KU
@@ -14546,7 +14839,7 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 1E8D5         ;  ; Exclusion #      (𞣕)  MENDE KIKAKUI COMBINING NUMBER HUNDRED THOUSANDS
 1E8D6         ;  ; Exclusion #      (𞣖)  MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 15364
+# Total code points: 15695
 
 0710..073F    ;  ; Limited_Use # [48] (ܐ..ܿ)  SYRIAC LETTER ALAPH..SYRIAC RWAHA
 074D..074F    ;  ; Limited_Use #  [3] (ݍ..ݏ)  SYRIAC LETTER SOGDIAN ZHAIN..SYRIAC LETTER SOGDIAN FE
@@ -15092,6 +15385,7 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 1B49          ;  ; Limited_Use #      (ᭉ)  BALINESE LETTER VE SASAK
 1B4A          ;  ; Limited_Use #      (ᭊ)  BALINESE LETTER ZAL SASAK
 1B4B          ;  ; Limited_Use #      (ᭋ)  BALINESE LETTER ASYURA SASAK
+1B4C          ;  ; Limited_Use #      (ᭌ)  BALINESE LETTER ARCHAIC JNYA
 1B50          ;  ; Limited_Use #      (᭐)  BALINESE DIGIT ZERO
 1B51          ;  ; Limited_Use #      (᭑)  BALINESE DIGIT ONE
 1B52          ;  ; Limited_Use #      (᭒)  BALINESE DIGIT TWO
@@ -16531,6 +16825,7 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 1145F         ;  ; Limited_Use #      (𑑟)  NEWA LETTER VEDIC ANUSVARA
 11460         ;  ; Limited_Use #      (𑑠)  NEWA SIGN JIHVAMULIYA
 11461         ;  ; Limited_Use #      (𑑡)  NEWA SIGN UPADHMANIYA
+11AB0..11ABF  ;  ; Limited_Use # [16] (𑪰..𑪿)  CANADIAN SYLLABICS NATTILIK HI..CANADIAN SYLLABICS SPA
 11D60         ;  ; Limited_Use #      (𑵠)  GUNJALA GONDI LETTER A
 11D61         ;  ; Limited_Use #      (𑵡)  GUNJALA GONDI LETTER AA
 11D62         ;  ; Limited_Use #      (𑵢)  GUNJALA GONDI LETTER I
@@ -17495,7 +17790,7 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 1E958         ;  ; Limited_Use #      (𞥘)  ADLAM DIGIT EIGHT
 1E959         ;  ; Limited_Use #      (𞥙)  ADLAM DIGIT NINE
 
-# Total code points: 5025
+# Total code points: 5042
 
 018D          ;  ; Obsolete #      (ƍ)  LATIN SMALL LETTER TURNED DELTA
 01AA          ;  ; Obsolete #      (ƪ)  LATIN LETTER REVERSED ESH LOOP
@@ -18865,6 +19160,7 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 1DF7          ;  ; Technical #      (᷷)  COMBINING KAVYKA ABOVE LEFT
 1DF8          ;  ; Technical #      (᷸)  COMBINING DOT ABOVE LEFT
 1DF9          ;  ; Technical #      (᷹)  COMBINING WIDE INVERTED BRIDGE BELOW
+1DFA          ;  ; Technical #      (᷺)  COMBINING DOT BELOW LEFT
 1DFB          ;  ; Technical #      (᷻)  COMBINING DELETION MARK
 1DFC          ;  ; Technical #      (᷼)  COMBINING DOUBLE INVERTED BREVE BELOW
 1DFD          ;  ; Technical #      (᷽)  COMBINING ALMOST EQUAL TO BELOW
@@ -18970,13 +19266,82 @@ FB1E          ;  ; Technical #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
 FE00..FE0F    ;  ; Technical # [16] (U+FE00..U+FE0F)  VARIATION SELECTOR-1..VARIATION SELECTOR-16
 FE20..FE2F    ;  ; Technical # [16] (︠..︯)  COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITLO RIGHT HALF
 FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
+1CF00         ;  ; Technical #      (𜼀)  ZNAMENNY COMBINING MARK GORAZDO NIZKO S KRYZHEM ON LEFT
+1CF01         ;  ; Technical #      (𜼁)  ZNAMENNY COMBINING MARK NIZKO S KRYZHEM ON LEFT
+1CF02         ;  ; Technical #      (𜼂)  ZNAMENNY COMBINING MARK TSATA ON LEFT
+1CF03         ;  ; Technical #      (𜼃)  ZNAMENNY COMBINING MARK GORAZDO NIZKO ON LEFT
+1CF04         ;  ; Technical #      (𜼄)  ZNAMENNY COMBINING MARK NIZKO ON LEFT
+1CF05         ;  ; Technical #      (𜼅)  ZNAMENNY COMBINING MARK SREDNE ON LEFT
+1CF06         ;  ; Technical #      (𜼆)  ZNAMENNY COMBINING MARK MALO POVYSHE ON LEFT
+1CF07         ;  ; Technical #      (𜼇)  ZNAMENNY COMBINING MARK POVYSHE ON LEFT
+1CF08         ;  ; Technical #      (𜼈)  ZNAMENNY COMBINING MARK VYSOKO ON LEFT
+1CF09         ;  ; Technical #      (𜼉)  ZNAMENNY COMBINING MARK MALO POVYSHE S KHOKHLOM ON LEFT
+1CF0A         ;  ; Technical #      (𜼊)  ZNAMENNY COMBINING MARK POVYSHE S KHOKHLOM ON LEFT
+1CF0B         ;  ; Technical #      (𜼋)  ZNAMENNY COMBINING MARK VYSOKO S KHOKHLOM ON LEFT
+1CF0C         ;  ; Technical #      (𜼌)  ZNAMENNY COMBINING MARK GORAZDO NIZKO S KRYZHEM ON RIGHT
+1CF0D         ;  ; Technical #      (𜼍)  ZNAMENNY COMBINING MARK NIZKO S KRYZHEM ON RIGHT
+1CF0E         ;  ; Technical #      (𜼎)  ZNAMENNY COMBINING MARK TSATA ON RIGHT
+1CF0F         ;  ; Technical #      (𜼏)  ZNAMENNY COMBINING MARK GORAZDO NIZKO ON RIGHT
+1CF10         ;  ; Technical #      (𜼐)  ZNAMENNY COMBINING MARK NIZKO ON RIGHT
+1CF11         ;  ; Technical #      (𜼑)  ZNAMENNY COMBINING MARK SREDNE ON RIGHT
+1CF12         ;  ; Technical #      (𜼒)  ZNAMENNY COMBINING MARK MALO POVYSHE ON RIGHT
+1CF13         ;  ; Technical #      (𜼓)  ZNAMENNY COMBINING MARK POVYSHE ON RIGHT
+1CF14         ;  ; Technical #      (𜼔)  ZNAMENNY COMBINING MARK VYSOKO ON RIGHT
+1CF15         ;  ; Technical #      (𜼕)  ZNAMENNY COMBINING MARK MALO POVYSHE S KHOKHLOM ON RIGHT
+1CF16         ;  ; Technical #      (𜼖)  ZNAMENNY COMBINING MARK POVYSHE S KHOKHLOM ON RIGHT
+1CF17         ;  ; Technical #      (𜼗)  ZNAMENNY COMBINING MARK VYSOKO S KHOKHLOM ON RIGHT
+1CF18         ;  ; Technical #      (𜼘)  ZNAMENNY COMBINING MARK TSATA S KRYZHEM
+1CF19         ;  ; Technical #      (𜼙)  ZNAMENNY COMBINING MARK MALO POVYSHE S KRYZHEM
+1CF1A         ;  ; Technical #      (𜼚)  ZNAMENNY COMBINING MARK STRANNO MALO POVYSHE
+1CF1B         ;  ; Technical #      (𜼛)  ZNAMENNY COMBINING MARK POVYSHE S KRYZHEM
+1CF1C         ;  ; Technical #      (𜼜)  ZNAMENNY COMBINING MARK POVYSHE STRANNO
+1CF1D         ;  ; Technical #      (𜼝)  ZNAMENNY COMBINING MARK VYSOKO S KRYZHEM
+1CF1E         ;  ; Technical #      (𜼞)  ZNAMENNY COMBINING MARK MALO POVYSHE STRANNO
+1CF1F         ;  ; Technical #      (𜼟)  ZNAMENNY COMBINING MARK GORAZDO VYSOKO
+1CF20         ;  ; Technical #      (𜼠)  ZNAMENNY COMBINING MARK ZELO
+1CF21         ;  ; Technical #      (𜼡)  ZNAMENNY COMBINING MARK ON
+1CF22         ;  ; Technical #      (𜼢)  ZNAMENNY COMBINING MARK RAVNO
+1CF23         ;  ; Technical #      (𜼣)  ZNAMENNY COMBINING MARK TIKHAYA
+1CF24         ;  ; Technical #      (𜼤)  ZNAMENNY COMBINING MARK BORZAYA
+1CF25         ;  ; Technical #      (𜼥)  ZNAMENNY COMBINING MARK UDARKA
+1CF26         ;  ; Technical #      (𜼦)  ZNAMENNY COMBINING MARK PODVERTKA
+1CF27         ;  ; Technical #      (𜼧)  ZNAMENNY COMBINING MARK LOMKA
+1CF28         ;  ; Technical #      (𜼨)  ZNAMENNY COMBINING MARK KUPNAYA
+1CF29         ;  ; Technical #      (𜼩)  ZNAMENNY COMBINING MARK KACHKA
+1CF2A         ;  ; Technical #      (𜼪)  ZNAMENNY COMBINING MARK ZEVOK
+1CF2B         ;  ; Technical #      (𜼫)  ZNAMENNY COMBINING MARK SKOBA
+1CF2C         ;  ; Technical #      (𜼬)  ZNAMENNY COMBINING MARK RAZSEKA
+1CF2D         ;  ; Technical #      (𜼭)  ZNAMENNY COMBINING MARK KRYZH ON LEFT
+1CF30         ;  ; Technical #      (𜼰)  ZNAMENNY COMBINING TONAL RANGE MARK MRACHNO
+1CF31         ;  ; Technical #      (𜼱)  ZNAMENNY COMBINING TONAL RANGE MARK SVETLO
+1CF32         ;  ; Technical #      (𜼲)  ZNAMENNY COMBINING TONAL RANGE MARK TRESVETLO
+1CF33         ;  ; Technical #      (𜼳)  ZNAMENNY COMBINING MARK ZADERZHKA
+1CF34         ;  ; Technical #      (𜼴)  ZNAMENNY COMBINING MARK DEMESTVENNY ZADERZHKA
+1CF35         ;  ; Technical #      (𜼵)  ZNAMENNY COMBINING MARK OTSECHKA
+1CF36         ;  ; Technical #      (𜼶)  ZNAMENNY COMBINING MARK PODCHASHIE
+1CF37         ;  ; Technical #      (𜼷)  ZNAMENNY COMBINING MARK PODCHASHIE WITH VERTICAL STROKE
+1CF38         ;  ; Technical #      (𜼸)  ZNAMENNY COMBINING MARK CHASHKA
+1CF39         ;  ; Technical #      (𜼹)  ZNAMENNY COMBINING MARK CHASHKA POLNAYA
+1CF3A         ;  ; Technical #      (𜼺)  ZNAMENNY COMBINING MARK OBLACHKO
+1CF3B         ;  ; Technical #      (𜼻)  ZNAMENNY COMBINING MARK SOROCHYA NOZHKA
+1CF3C         ;  ; Technical #      (𜼼)  ZNAMENNY COMBINING MARK TOCHKA
+1CF3D         ;  ; Technical #      (𜼽)  ZNAMENNY COMBINING MARK DVOETOCHIE
+1CF3E         ;  ; Technical #      (𜼾)  ZNAMENNY COMBINING ATTACHING VERTICAL OMET
+1CF3F         ;  ; Technical #      (𜼿)  ZNAMENNY COMBINING MARK CURVED OMET
+1CF40         ;  ; Technical #      (𜽀)  ZNAMENNY COMBINING MARK KRYZH
+1CF41         ;  ; Technical #      (𜽁)  ZNAMENNY COMBINING LOWER TONAL RANGE INDICATOR
+1CF42         ;  ; Technical #      (𜽂)  ZNAMENNY PRIZNAK MODIFIER LEVEL-2
+1CF43         ;  ; Technical #      (𜽃)  ZNAMENNY PRIZNAK MODIFIER LEVEL-3
+1CF44         ;  ; Technical #      (𜽄)  ZNAMENNY PRIZNAK MODIFIER DIRECTION FLIP
+1CF45         ;  ; Technical #      (𜽅)  ZNAMENNY PRIZNAK MODIFIER KRYZH
+1CF46         ;  ; Technical #      (𜽆)  ZNAMENNY PRIZNAK MODIFIER ROG
 1D165..1D169  ;  ; Technical #  [5] (𝅥..𝅩)  MUSICAL SYMBOL COMBINING STEM..MUSICAL SYMBOL COMBINING TREMOLO-3
 1D16D..1D172  ;  ; Technical #  [6] (𝅭..𝅲)  MUSICAL SYMBOL COMBINING AUGMENTATION DOT..MUSICAL SYMBOL COMBINING FLAG-5
 1D17B..1D182  ;  ; Technical #  [8] (𝅻..𝆂)  MUSICAL SYMBOL COMBINING ACCENT..MUSICAL SYMBOL COMBINING LOURE
 1D185..1D18B  ;  ; Technical #  [7] (𝆅..𝆋)  MUSICAL SYMBOL COMBINING DOIT..MUSICAL SYMBOL COMBINING TRIPLE TONGUE
 1D1AA..1D1AD  ;  ; Technical #  [4] (𝆪..𝆭)  MUSICAL SYMBOL COMBINING DOWN BOW..MUSICAL SYMBOL COMBINING SNAP PIZZICATO
 
-# Total code points: 498
+# Total code points: 568
 
 0181..0182    ;  ; Uncommon_Use #  [2] (Ɓ..Ƃ)  LATIN CAPITAL LETTER B WITH HOOK..LATIN CAPITAL LETTER B WITH TOPBAR
 0183          ;  ; Uncommon_Use #      (ƃ)  LATIN SMALL LETTER B WITH TOPBAR
@@ -19140,8 +19505,25 @@ FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 06EB          ;  ; Uncommon_Use #      (۫)  ARABIC EMPTY CENTRE HIGH STOP
 06EC          ;  ; Uncommon_Use #      (۬)  ARABIC ROUNDED HIGH STOP WITH FILLED CENTRE
 06ED          ;  ; Uncommon_Use #      (ۭ)  ARABIC SMALL LOW MEEM
+0898          ;  ; Uncommon_Use #      (࢘)  ARABIC SMALL HIGH WORD AL-JUZ
+0899          ;  ; Uncommon_Use #      (࢙)  ARABIC SMALL LOW WORD ISHMAAM
+089A          ;  ; Uncommon_Use #      (࢚)  ARABIC SMALL LOW WORD IMAALA
+089B          ;  ; Uncommon_Use #      (࢛)  ARABIC SMALL LOW WORD TASHEEL
+089C          ;  ; Uncommon_Use #      (࢜)  ARABIC MADDA WAAJIB
+089D          ;  ; Uncommon_Use #      (࢝)  ARABIC SUPERSCRIPT ALEF MOKHASSAS
+089E          ;  ; Uncommon_Use #      (࢞)  ARABIC DOUBLED MADDA
+089F          ;  ; Uncommon_Use #      (࢟)  ARABIC HALF MADDA OVER MADDA
 08B3          ;  ; Uncommon_Use #      (ࢳ)  ARABIC LETTER AIN WITH THREE DOTS BELOW
 08B4          ;  ; Uncommon_Use #      (ࢴ)  ARABIC LETTER KAF WITH DOT BELOW
+08CA          ;  ; Uncommon_Use #      (࣊)  ARABIC SMALL HIGH FARSI YEH
+08CB          ;  ; Uncommon_Use #      (࣋)  ARABIC SMALL HIGH YEH BARREE WITH TWO DOTS BELOW
+08CC          ;  ; Uncommon_Use #      (࣌)  ARABIC SMALL HIGH WORD SAH
+08CD          ;  ; Uncommon_Use #      (࣍)  ARABIC SMALL HIGH ZAH
+08CE          ;  ; Uncommon_Use #      (࣎)  ARABIC LARGE ROUND DOT ABOVE
+08CF          ;  ; Uncommon_Use #      (࣏)  ARABIC LARGE ROUND DOT BELOW
+08D0          ;  ; Uncommon_Use #      (࣐)  ARABIC SUKUN BELOW
+08D1          ;  ; Uncommon_Use #      (࣑)  ARABIC LARGE CIRCLE BELOW
+08D2          ;  ; Uncommon_Use #      (࣒)  ARABIC LARGE ROUND DOT INSIDE CIRCLE BELOW
 08D3          ;  ; Uncommon_Use #      (࣓)  ARABIC SMALL LOW WAW
 08D4          ;  ; Uncommon_Use #      (ࣔ)  ARABIC SMALL HIGH WORD AR-RUB
 08D5          ;  ; Uncommon_Use #      (ࣕ)  ARABIC SMALL HIGH SAD
@@ -19222,7 +19604,7 @@ AB61          ;  ; Uncommon_Use #      (ꭡ)  LATIN SMALL LETTER IOTIFIED E
 AB62          ;  ; Uncommon_Use #      (ꭢ)  LATIN SMALL LETTER OPEN OE
 AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 
-# Total code points: 263
+# Total code points: 280
 
 00B7          ; Allowed ; Inclusion #      (·)  MIDDLE DOT
 
@@ -20135,6 +20517,36 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 07AF          ; Allowed ; Recommended #      (ޯ)  THAANA OABOAFILI
 07B0          ; Allowed ; Recommended #      (ް)  THAANA SUKUN
 07B1          ; Allowed ; Recommended #      (ޱ)  THAANA LETTER NAA
+0870          ; Allowed ; Recommended #      (ࡰ)  ARABIC LETTER ALEF WITH ATTACHED FATHA
+0871          ; Allowed ; Recommended #      (ࡱ)  ARABIC LETTER ALEF WITH ATTACHED TOP RIGHT FATHA
+0872          ; Allowed ; Recommended #      (ࡲ)  ARABIC LETTER ALEF WITH RIGHT MIDDLE STROKE
+0873          ; Allowed ; Recommended #      (ࡳ)  ARABIC LETTER ALEF WITH LEFT MIDDLE STROKE
+0874          ; Allowed ; Recommended #      (ࡴ)  ARABIC LETTER ALEF WITH ATTACHED KASRA
+0875          ; Allowed ; Recommended #      (ࡵ)  ARABIC LETTER ALEF WITH ATTACHED BOTTOM RIGHT KASRA
+0876          ; Allowed ; Recommended #      (ࡶ)  ARABIC LETTER ALEF WITH ATTACHED ROUND DOT ABOVE
+0877          ; Allowed ; Recommended #      (ࡷ)  ARABIC LETTER ALEF WITH ATTACHED RIGHT ROUND DOT
+0878          ; Allowed ; Recommended #      (ࡸ)  ARABIC LETTER ALEF WITH ATTACHED LEFT ROUND DOT
+0879          ; Allowed ; Recommended #      (ࡹ)  ARABIC LETTER ALEF WITH ATTACHED ROUND DOT BELOW
+087A          ; Allowed ; Recommended #      (ࡺ)  ARABIC LETTER ALEF WITH DOT ABOVE
+087B          ; Allowed ; Recommended #      (ࡻ)  ARABIC LETTER ALEF WITH ATTACHED TOP RIGHT FATHA AND DOT ABOVE
+087C          ; Allowed ; Recommended #      (ࡼ)  ARABIC LETTER ALEF WITH RIGHT MIDDLE STROKE AND DOT ABOVE
+087D          ; Allowed ; Recommended #      (ࡽ)  ARABIC LETTER ALEF WITH ATTACHED BOTTOM RIGHT KASRA AND DOT ABOVE
+087E          ; Allowed ; Recommended #      (ࡾ)  ARABIC LETTER ALEF WITH ATTACHED TOP RIGHT FATHA AND LEFT RING
+087F          ; Allowed ; Recommended #      (ࡿ)  ARABIC LETTER ALEF WITH RIGHT MIDDLE STROKE AND LEFT RING
+0880          ; Allowed ; Recommended #      (ࢀ)  ARABIC LETTER ALEF WITH ATTACHED BOTTOM RIGHT KASRA AND LEFT RING
+0881          ; Allowed ; Recommended #      (ࢁ)  ARABIC LETTER ALEF WITH ATTACHED RIGHT HAMZA
+0882          ; Allowed ; Recommended #      (ࢂ)  ARABIC LETTER ALEF WITH ATTACHED LEFT HAMZA
+0883          ; Allowed ; Recommended #      (ࢃ)  ARABIC TATWEEL WITH OVERSTRUCK HAMZA
+0884          ; Allowed ; Recommended #      (ࢄ)  ARABIC TATWEEL WITH OVERSTRUCK WAW
+0885          ; Allowed ; Recommended #      (ࢅ)  ARABIC TATWEEL WITH TWO DOTS BELOW
+0886          ; Allowed ; Recommended #      (ࢆ)  ARABIC LETTER THIN YEH
+0887          ; Allowed ; Recommended #      (ࢇ)  ARABIC BASELINE ROUND DOT
+0889          ; Allowed ; Recommended #      (ࢉ)  ARABIC LETTER NOON WITH INVERTED SMALL V
+088A          ; Allowed ; Recommended #      (ࢊ)  ARABIC LETTER HAH WITH INVERTED SMALL V BELOW
+088B          ; Allowed ; Recommended #      (ࢋ)  ARABIC LETTER TAH WITH DOT BELOW
+088C          ; Allowed ; Recommended #      (ࢌ)  ARABIC LETTER TAH WITH THREE DOTS BELOW
+088D          ; Allowed ; Recommended #      (ࢍ)  ARABIC LETTER KEHEH WITH TWO DOTS VERTICALLY BELOW
+088E          ; Allowed ; Recommended #      (ࢎ)  ARABIC VERTICAL TAIL
 08A0          ; Allowed ; Recommended #      (ࢠ)  ARABIC LETTER BEH WITH SMALL V BELOW
 08A1          ; Allowed ; Recommended #      (ࢡ)  ARABIC LETTER BEH WITH HAMZA ABOVE
 08A2          ; Allowed ; Recommended #      (ࢢ)  ARABIC LETTER JEEM WITH TWO DOTS ABOVE
@@ -20149,6 +20561,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 08AB          ; Allowed ; Recommended #      (ࢫ)  ARABIC LETTER WAW WITH DOT WITHIN
 08AC          ; Allowed ; Recommended #      (ࢬ)  ARABIC LETTER ROHINGYA YEH
 08B2          ; Allowed ; Recommended #      (ࢲ)  ARABIC LETTER ZAIN WITH INVERTED V ABOVE
+08B5          ; Allowed ; Recommended #      (ࢵ)  ARABIC LETTER QAF WITH DOT BELOW AND NO DOTS ABOVE
 08B6          ; Allowed ; Recommended #      (ࢶ)  ARABIC LETTER BEH WITH SMALL MEEM ABOVE
 08B7          ; Allowed ; Recommended #      (ࢷ)  ARABIC LETTER PEH WITH SMALL MEEM ABOVE
 08B8          ; Allowed ; Recommended #      (ࢸ)  ARABIC LETTER TEH WITH SMALL TEH ABOVE
@@ -20167,6 +20580,8 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 08C5          ; Allowed ; Recommended #      (ࣅ)  ARABIC LETTER JEEM WITH THREE DOTS ABOVE
 08C6          ; Allowed ; Recommended #      (ࣆ)  ARABIC LETTER JEEM WITH THREE DOTS BELOW
 08C7          ; Allowed ; Recommended #      (ࣇ)  ARABIC LETTER LAM WITH SMALL ARABIC LETTER TAH ABOVE
+08C8          ; Allowed ; Recommended #      (ࣈ)  ARABIC LETTER GRAF
+08C9          ; Allowed ; Recommended #      (ࣉ)  ARABIC SMALL FARSI YEH
 0901          ; Allowed ; Recommended #      (ँ)  DEVANAGARI SIGN CANDRABINDU
 0902          ; Allowed ; Recommended #      (ं)  DEVANAGARI SIGN ANUSVARA
 0903          ; Allowed ; Recommended #      (ः)  DEVANAGARI SIGN VISARGA
@@ -20708,6 +21123,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0C37          ; Allowed ; Recommended #      (ష)  TELUGU LETTER SSA
 0C38          ; Allowed ; Recommended #      (స)  TELUGU LETTER SA
 0C39          ; Allowed ; Recommended #      (హ)  TELUGU LETTER HA
+0C3C          ; Allowed ; Recommended #      (఼)  TELUGU SIGN NUKTA
 0C3D          ; Allowed ; Recommended #      (ఽ)  TELUGU SIGN AVAGRAHA
 0C3E          ; Allowed ; Recommended #      (ా)  TELUGU VOWEL SIGN AA
 0C3F          ; Allowed ; Recommended #      (ి)  TELUGU VOWEL SIGN I
@@ -20725,6 +21141,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0C4D          ; Allowed ; Recommended #      (్)  TELUGU SIGN VIRAMA
 0C55          ; Allowed ; Recommended #      (ౕ)  TELUGU LENGTH MARK
 0C56          ; Allowed ; Recommended #      (ౖ)  TELUGU AI LENGTH MARK
+0C5D          ; Allowed ; Recommended #      (ౝ)  TELUGU LETTER NAKAARA POLLU
 0C60          ; Allowed ; Recommended #      (ౠ)  TELUGU LETTER VOCALIC RR
 0C61          ; Allowed ; Recommended #      (ౡ)  TELUGU LETTER VOCALIC LL
 0C66          ; Allowed ; Recommended #      (౦)  TELUGU DIGIT ZERO
@@ -20807,6 +21224,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0CCD          ; Allowed ; Recommended #      (್)  KANNADA SIGN VIRAMA
 0CD5          ; Allowed ; Recommended #      (ೕ)  KANNADA LENGTH MARK
 0CD6          ; Allowed ; Recommended #      (ೖ)  KANNADA AI LENGTH MARK
+0CDD          ; Allowed ; Recommended #      (ೝ)  KANNADA LETTER NAKAARA POLLU
 0CE0          ; Allowed ; Recommended #      (ೠ)  KANNADA LETTER VOCALIC RR
 0CE1          ; Allowed ; Recommended #      (ೡ)  KANNADA LETTER VOCALIC LL
 0CE2          ; Allowed ; Recommended #      (ೢ)  KANNADA VOWEL SIGN VOCALIC L
@@ -21560,6 +21978,20 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 17E7          ; Allowed ; Recommended #      (៧)  KHMER DIGIT SEVEN
 17E8          ; Allowed ; Recommended #      (៨)  KHMER DIGIT EIGHT
 17E9          ; Allowed ; Recommended #      (៩)  KHMER DIGIT NINE
+1AC1          ; Allowed ; Recommended #      (᫁)  COMBINING LEFT PARENTHESIS ABOVE LEFT
+1AC2          ; Allowed ; Recommended #      (᫂)  COMBINING RIGHT PARENTHESIS ABOVE RIGHT
+1AC3          ; Allowed ; Recommended #      (᫃)  COMBINING LEFT PARENTHESIS BELOW LEFT
+1AC4          ; Allowed ; Recommended #      (᫄)  COMBINING RIGHT PARENTHESIS BELOW RIGHT
+1AC5          ; Allowed ; Recommended #      (᫅)  COMBINING SQUARE BRACKETS ABOVE
+1AC6          ; Allowed ; Recommended #      (᫆)  COMBINING NUMBER SIGN ABOVE
+1AC7          ; Allowed ; Recommended #      (᫇)  COMBINING INVERTED DOUBLE ARCH ABOVE
+1AC8          ; Allowed ; Recommended #      (᫈)  COMBINING PLUS SIGN ABOVE
+1AC9          ; Allowed ; Recommended #      (᫉)  COMBINING DOUBLE PLUS SIGN ABOVE
+1ACA          ; Allowed ; Recommended #      (᫊)  COMBINING DOUBLE PLUS SIGN BELOW
+1ACB          ; Allowed ; Recommended #      (᫋)  COMBINING TRIPLE ACUTE ACCENT
+1ACC          ; Allowed ; Recommended #      (ᫌ)  COMBINING LATIN SMALL LETTER INSULAR G
+1ACD          ; Allowed ; Recommended #      (ᫍ)  COMBINING LATIN SMALL LETTER INSULAR R
+1ACE          ; Allowed ; Recommended #      (ᫎ)  COMBINING LATIN SMALL LETTER INSULAR T
 1C90..1CBA    ; Allowed ; Recommended # [43] (Ა..Ჺ)  GEORGIAN MTAVRULI CAPITAL LETTER AN..GEORGIAN MTAVRULI CAPITAL LETTER AIN
 1CBD..1CBF    ; Allowed ; Recommended #  [3] (Ჽ..Ჿ)  GEORGIAN MTAVRULI CAPITAL LETTER AEN..GEORGIAN MTAVRULI CAPITAL LETTER LABIAL SIGN
 1E00          ; Allowed ; Recommended #      (Ḁ)  LATIN CAPITAL LETTER A WITH RING BELOW
@@ -22278,6 +22710,9 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 9FFA          ; Allowed ; Recommended #      (鿺)  CJK UNIFIED IDEOGRAPH-9FFA
 9FFB          ; Allowed ; Recommended #      (鿻)  CJK UNIFIED IDEOGRAPH-9FFB
 9FFC          ; Allowed ; Recommended #      (鿼)  CJK UNIFIED IDEOGRAPH-9FFC
+9FFD          ; Allowed ; Recommended #      (鿽)  CJK UNIFIED IDEOGRAPH-9FFD
+9FFE          ; Allowed ; Recommended #      (鿾)  CJK UNIFIED IDEOGRAPH-9FFE
+9FFF          ; Allowed ; Recommended #      (鿿)  CJK UNIFIED IDEOGRAPH-9FFF
 A67F          ; Allowed ; Recommended #      (ꙿ)  CYRILLIC PAYEROK
 A717          ; Allowed ; Recommended #      (ꜗ)  MODIFIER LETTER DOT VERTICAL BAR
 A718          ; Allowed ; Recommended #      (ꜘ)  MODIFIER LETTER DOT SLASH
@@ -22296,12 +22731,22 @@ A7AA          ; Allowed ; Recommended #      (Ɦ)  LATIN CAPITAL LETTER H WITH 
 A7AE          ; Allowed ; Recommended #      (Ɪ)  LATIN CAPITAL LETTER SMALL CAPITAL I
 A7B8          ; Allowed ; Recommended #      (Ꞹ)  LATIN CAPITAL LETTER U WITH STROKE
 A7B9          ; Allowed ; Recommended #      (ꞹ)  LATIN SMALL LETTER U WITH STROKE
+A7C0          ; Allowed ; Recommended #      (Ꟁ)  LATIN CAPITAL LETTER OLD POLISH O
+A7C1          ; Allowed ; Recommended #      (ꟁ)  LATIN SMALL LETTER OLD POLISH O
 A7C2          ; Allowed ; Recommended #      (Ꟃ)  LATIN CAPITAL LETTER ANGLICANA W
 A7C3          ; Allowed ; Recommended #      (ꟃ)  LATIN SMALL LETTER ANGLICANA W
 A7C4..A7C7    ; Allowed ; Recommended #  [4] (Ꞔ..Ꟈ)  LATIN CAPITAL LETTER C WITH PALATAL HOOK..LATIN CAPITAL LETTER D WITH SHORT STROKE OVERLAY
 A7C8          ; Allowed ; Recommended #      (ꟈ)  LATIN SMALL LETTER D WITH SHORT STROKE OVERLAY
 A7C9          ; Allowed ; Recommended #      (Ꟊ)  LATIN CAPITAL LETTER S WITH SHORT STROKE OVERLAY
 A7CA          ; Allowed ; Recommended #      (ꟊ)  LATIN SMALL LETTER S WITH SHORT STROKE OVERLAY
+A7D0          ; Allowed ; Recommended #      (Ꟑ)  LATIN CAPITAL LETTER CLOSED INSULAR G
+A7D1          ; Allowed ; Recommended #      (ꟑ)  LATIN SMALL LETTER CLOSED INSULAR G
+A7D3          ; Allowed ; Recommended #      (ꟓ)  LATIN SMALL LETTER DOUBLE THORN
+A7D5          ; Allowed ; Recommended #      (ꟕ)  LATIN SMALL LETTER DOUBLE WYNN
+A7D6          ; Allowed ; Recommended #      (Ꟗ)  LATIN CAPITAL LETTER MIDDLE SCOTS S
+A7D7          ; Allowed ; Recommended #      (ꟗ)  LATIN SMALL LETTER MIDDLE SCOTS S
+A7D8          ; Allowed ; Recommended #      (Ꟙ)  LATIN CAPITAL LETTER SIGMOID S
+A7D9          ; Allowed ; Recommended #      (ꟙ)  LATIN SMALL LETTER SIGMOID S
 A9E7          ; Allowed ; Recommended #      (ꧧ)  MYANMAR LETTER TAI LAING NYA
 A9E8          ; Allowed ; Recommended #      (ꧨ)  MYANMAR LETTER TAI LAING FA
 A9E9          ; Allowed ; Recommended #      (ꧩ)  MYANMAR LETTER TAI LAING GA
@@ -22375,12 +22820,30 @@ FA24          ; Allowed ; Recommended #      (﨤)  CJK COMPATIBILITY IDEOGRAPH-
 FA27          ; Allowed ; Recommended #      (﨧)  CJK COMPATIBILITY IDEOGRAPH-FA27
 FA28          ; Allowed ; Recommended #      (﨨)  CJK COMPATIBILITY IDEOGRAPH-FA28
 FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-FA29
+10780         ; Allowed ; Recommended #      (𐞀)  MODIFIER LETTER SMALL CAPITAL AA
 11301         ; Allowed ; Recommended #      (𑌁)  GRANTHA SIGN CANDRABINDU
 11303         ; Allowed ; Recommended #      (𑌃)  GRANTHA SIGN VISARGA
 1133B         ; Allowed ; Recommended #      (𑌻)  COMBINING BINDU BELOW
 1133C         ; Allowed ; Recommended #      (𑌼)  GRANTHA SIGN NUKTA
 16FF0         ; Allowed ; Recommended #      (𖿰)  VIETNAMESE ALTERNATE READING MARK CA
 16FF1         ; Allowed ; Recommended #      (𖿱)  VIETNAMESE ALTERNATE READING MARK NHAY
+1AFF0         ; Allowed ; Recommended #      (𚿰)  KATAKANA LETTER MINNAN TONE-2
+1AFF1         ; Allowed ; Recommended #      (𚿱)  KATAKANA LETTER MINNAN TONE-3
+1AFF2         ; Allowed ; Recommended #      (𚿲)  KATAKANA LETTER MINNAN TONE-4
+1AFF3         ; Allowed ; Recommended #      (𚿳)  KATAKANA LETTER MINNAN TONE-5
+1AFF5         ; Allowed ; Recommended #      (𚿵)  KATAKANA LETTER MINNAN TONE-7
+1AFF6         ; Allowed ; Recommended #      (𚿶)  KATAKANA LETTER MINNAN TONE-8
+1AFF7         ; Allowed ; Recommended #      (𚿷)  KATAKANA LETTER MINNAN NASALIZED TONE-1
+1AFF8         ; Allowed ; Recommended #      (𚿸)  KATAKANA LETTER MINNAN NASALIZED TONE-2
+1AFF9         ; Allowed ; Recommended #      (𚿹)  KATAKANA LETTER MINNAN NASALIZED TONE-3
+1AFFA         ; Allowed ; Recommended #      (𚿺)  KATAKANA LETTER MINNAN NASALIZED TONE-4
+1AFFB         ; Allowed ; Recommended #      (𚿻)  KATAKANA LETTER MINNAN NASALIZED TONE-5
+1AFFD         ; Allowed ; Recommended #      (𚿽)  KATAKANA LETTER MINNAN NASALIZED TONE-7
+1AFFE         ; Allowed ; Recommended #      (𚿾)  KATAKANA LETTER MINNAN NASALIZED TONE-8
+1B11F         ; Allowed ; Recommended #      (𛄟)  HIRAGANA LETTER ARCHAIC WU
+1B120         ; Allowed ; Recommended #      (𛄠)  KATAKANA LETTER ARCHAIC YI
+1B121         ; Allowed ; Recommended #      (𛄡)  KATAKANA LETTER ARCHAIC YE
+1B122         ; Allowed ; Recommended #      (𛄢)  KATAKANA LETTER ARCHAIC WU
 1B150         ; Allowed ; Recommended #      (𛅐)  HIRAGANA LETTER SMALL WI
 1B151         ; Allowed ; Recommended #      (𛅑)  HIRAGANA LETTER SMALL WE
 1B152         ; Allowed ; Recommended #      (𛅒)  HIRAGANA LETTER SMALL WO
@@ -22388,6 +22851,41 @@ FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 1B165         ; Allowed ; Recommended #      (𛅥)  KATAKANA LETTER SMALL WE
 1B166         ; Allowed ; Recommended #      (𛅦)  KATAKANA LETTER SMALL WO
 1B167         ; Allowed ; Recommended #      (𛅧)  KATAKANA LETTER SMALL N
+1DF00         ; Allowed ; Recommended #      (𝼀)  LATIN SMALL LETTER FENG DIGRAPH WITH TRILL
+1DF01         ; Allowed ; Recommended #      (𝼁)  LATIN SMALL LETTER REVERSED SCRIPT G
+1DF02         ; Allowed ; Recommended #      (𝼂)  LATIN LETTER SMALL CAPITAL TURNED G
+1DF03         ; Allowed ; Recommended #      (𝼃)  LATIN SMALL LETTER REVERSED K
+1DF04         ; Allowed ; Recommended #      (𝼄)  LATIN LETTER SMALL CAPITAL L WITH BELT
+1DF05         ; Allowed ; Recommended #      (𝼅)  LATIN SMALL LETTER LEZH WITH RETROFLEX HOOK
+1DF06         ; Allowed ; Recommended #      (𝼆)  LATIN SMALL LETTER TURNED Y WITH BELT
+1DF07         ; Allowed ; Recommended #      (𝼇)  LATIN SMALL LETTER REVERSED ENG
+1DF08         ; Allowed ; Recommended #      (𝼈)  LATIN SMALL LETTER TURNED R WITH LONG LEG AND RETROFLEX HOOK
+1DF09         ; Allowed ; Recommended #      (𝼉)  LATIN SMALL LETTER T WITH HOOK AND RETROFLEX HOOK
+1DF0A         ; Allowed ; Recommended #      (𝼊)  LATIN LETTER RETROFLEX CLICK WITH RETROFLEX HOOK
+1DF0B         ; Allowed ; Recommended #      (𝼋)  LATIN SMALL LETTER ESH WITH DOUBLE BAR
+1DF0C         ; Allowed ; Recommended #      (𝼌)  LATIN SMALL LETTER ESH WITH DOUBLE BAR AND CURL
+1DF0D         ; Allowed ; Recommended #      (𝼍)  LATIN SMALL LETTER TURNED T WITH CURL
+1DF0E         ; Allowed ; Recommended #      (𝼎)  LATIN LETTER INVERTED GLOTTAL STOP WITH CURL
+1DF0F         ; Allowed ; Recommended #      (𝼏)  LATIN LETTER STRETCHED C WITH CURL
+1DF10         ; Allowed ; Recommended #      (𝼐)  LATIN LETTER SMALL CAPITAL TURNED K
+1DF11         ; Allowed ; Recommended #      (𝼑)  LATIN SMALL LETTER L WITH FISHHOOK
+1DF12         ; Allowed ; Recommended #      (𝼒)  LATIN SMALL LETTER DEZH DIGRAPH WITH PALATAL HOOK
+1DF13         ; Allowed ; Recommended #      (𝼓)  LATIN SMALL LETTER L WITH BELT AND PALATAL HOOK
+1DF14         ; Allowed ; Recommended #      (𝼔)  LATIN SMALL LETTER ENG WITH PALATAL HOOK
+1DF15         ; Allowed ; Recommended #      (𝼕)  LATIN SMALL LETTER TURNED R WITH PALATAL HOOK
+1DF16         ; Allowed ; Recommended #      (𝼖)  LATIN SMALL LETTER R WITH FISHHOOK AND PALATAL HOOK
+1DF17         ; Allowed ; Recommended #      (𝼗)  LATIN SMALL LETTER TESH DIGRAPH WITH PALATAL HOOK
+1DF18         ; Allowed ; Recommended #      (𝼘)  LATIN SMALL LETTER EZH WITH PALATAL HOOK
+1DF19         ; Allowed ; Recommended #      (𝼙)  LATIN SMALL LETTER DEZH DIGRAPH WITH RETROFLEX HOOK
+1DF1A         ; Allowed ; Recommended #      (𝼚)  LATIN SMALL LETTER I WITH STROKE AND RETROFLEX HOOK
+1DF1B         ; Allowed ; Recommended #      (𝼛)  LATIN SMALL LETTER O WITH RETROFLEX HOOK
+1DF1C         ; Allowed ; Recommended #      (𝼜)  LATIN SMALL LETTER TESH DIGRAPH WITH RETROFLEX HOOK
+1DF1D         ; Allowed ; Recommended #      (𝼝)  LATIN SMALL LETTER C WITH RETROFLEX HOOK
+1DF1E         ; Allowed ; Recommended #      (𝼞)  LATIN SMALL LETTER S WITH CURL
+1E7E0..1E7E6  ; Allowed ; Recommended #  [7] (𞟠..𞟦)  ETHIOPIC SYLLABLE HHYA..ETHIOPIC SYLLABLE HHYO
+1E7E8..1E7EB  ; Allowed ; Recommended #  [4] (𞟨..𞟫)  ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HWE
+1E7ED..1E7EE  ; Allowed ; Recommended #  [2] (𞟭..𞟮)  ETHIOPIC SYLLABLE GURAGE MWI..ETHIOPIC SYLLABLE GURAGE MWEE
+1E7F0..1E7FE  ; Allowed ; Recommended # [15] (𞟰..𞟾)  ETHIOPIC SYLLABLE GURAGE QWI..ETHIOPIC SYLLABLE GURAGE PWEE
 20000..2A6D6  ; Allowed ; Recommended # [42711] (𠀀..𪛖)  CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6D6
 2A6D7         ; Allowed ; Recommended #      (𪛗)  CJK UNIFIED IDEOGRAPH-2A6D7
 2A6D8         ; Allowed ; Recommended #      (𪛘)  CJK UNIFIED IDEOGRAPH-2A6D8
@@ -22396,6 +22894,8 @@ FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 2A6DB         ; Allowed ; Recommended #      (𪛛)  CJK UNIFIED IDEOGRAPH-2A6DB
 2A6DC         ; Allowed ; Recommended #      (𪛜)  CJK UNIFIED IDEOGRAPH-2A6DC
 2A6DD         ; Allowed ; Recommended #      (𪛝)  CJK UNIFIED IDEOGRAPH-2A6DD
+2A6DE         ; Allowed ; Recommended #      (𪛞)  CJK UNIFIED IDEOGRAPH-2A6DE
+2A6DF         ; Allowed ; Recommended #      (𪛟)  CJK UNIFIED IDEOGRAPH-2A6DF
 2A700         ; Allowed ; Recommended #      (𪜀)  CJK UNIFIED IDEOGRAPH-2A700
 2A701         ; Allowed ; Recommended #      (𪜁)  CJK UNIFIED IDEOGRAPH-2A701
 2A702         ; Allowed ; Recommended #      (𪜂)  CJK UNIFIED IDEOGRAPH-2A702
@@ -26545,6 +27045,10 @@ FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 2B732         ; Allowed ; Recommended #      (𫜲)  CJK UNIFIED IDEOGRAPH-2B732
 2B733         ; Allowed ; Recommended #      (𫜳)  CJK UNIFIED IDEOGRAPH-2B733
 2B734         ; Allowed ; Recommended #      (𫜴)  CJK UNIFIED IDEOGRAPH-2B734
+2B735         ; Allowed ; Recommended #      (𫜵)  CJK UNIFIED IDEOGRAPH-2B735
+2B736         ; Allowed ; Recommended #      (𫜶)  CJK UNIFIED IDEOGRAPH-2B736
+2B737         ; Allowed ; Recommended #      (𫜷)  CJK UNIFIED IDEOGRAPH-2B737
+2B738         ; Allowed ; Recommended #      (𫜸)  CJK UNIFIED IDEOGRAPH-2B738
 2B740         ; Allowed ; Recommended #      (𫝀)  CJK UNIFIED IDEOGRAPH-2B740
 2B741         ; Allowed ; Recommended #      (𫝁)  CJK UNIFIED IDEOGRAPH-2B741
 2B742         ; Allowed ; Recommended #      (𫝂)  CJK UNIFIED IDEOGRAPH-2B742
@@ -44943,70 +45447,17 @@ FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 3134A         ; Allowed ; Recommended #      (𱍊)  CJK UNIFIED IDEOGRAPH-3134A
 E0100..E01EF  ; Allowed ; Recommended # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 108055
+# Total code points: 108201
 
 005F          ; ~IDNA #      (_)  LOW LINE
 04C0          ; ~IDNA #      (Ӏ)  CYRILLIC LETTER PALOCHKA
-0870..0887    ; ~IDNA # [24] (ࡰ..ࢇ)  ARABIC LETTER ALEF WITH ATTACHED FATHA..ARABIC BASELINE ROUND DOT
-0889..088E    ; ~IDNA #  [6] (ࢉ..ࢎ)  ARABIC LETTER NOON WITH INVERTED SMALL V..ARABIC VERTICAL TAIL
-0898..089F    ; ~IDNA #  [8] (࢘..࢟)  ARABIC SMALL HIGH WORD AL-JUZ..ARABIC HALF MADDA OVER MADDA
-08B5          ; ~IDNA #      (ࢵ)  ARABIC LETTER QAF WITH DOT BELOW AND NO DOTS ABOVE
-08C8..08D2    ; ~IDNA # [11] (ࣈ..࣒)  ARABIC LETTER GRAF..ARABIC LARGE ROUND DOT INSIDE CIRCLE BELOW
-0C3C          ; ~IDNA #      (఼)  TELUGU SIGN NUKTA
-0C5D          ; ~IDNA #      (ౝ)  TELUGU LETTER NAKAARA POLLU
-0CDD          ; ~IDNA #      (ೝ)  KANNADA LETTER NAKAARA POLLU
 10A0..10C5    ; ~IDNA # [38] (Ⴀ..Ⴥ)  GEORGIAN CAPITAL LETTER AN..GEORGIAN CAPITAL LETTER HOE
 115F..1160    ; ~IDNA #  [2] (U+115F..U+1160)  HANGUL CHOSEONG FILLER..HANGUL JUNGSEONG FILLER
-170D          ; ~IDNA #      (ᜍ)  TAGALOG LETTER RA
-1715          ; ~IDNA #      (᜕)  TAGALOG SIGN PAMUDPOD
-171F          ; ~IDNA #      (ᜟ)  TAGALOG LETTER ARCHAIC RA
 17B4..17B5    ; ~IDNA #  [2] (U+17B4..U+17B5)  KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
-180F          ; ~IDNA #      (᠏)  MONGOLIAN FREE VARIATION SELECTOR FOUR
-1AC1..1ACE    ; ~IDNA # [14] (᫁..ᫎ)  COMBINING LEFT PARENTHESIS ABOVE LEFT..COMBINING LATIN SMALL LETTER INSULAR T
-1B4C          ; ~IDNA #      (ᭌ)  BALINESE LETTER ARCHAIC JNYA
-1DFA          ; ~IDNA #      (᷺)  COMBINING DOT BELOW LEFT
 2132          ; ~IDNA #      (Ⅎ)  TURNED CAPITAL F
 2183          ; ~IDNA #      (Ↄ)  ROMAN NUMERAL REVERSED ONE HUNDRED
-2C2F          ; ~IDNA #      (Ⱟ)  GLAGOLITIC CAPITAL LETTER CAUDATE CHRIVI
-2C5F          ; ~IDNA #      (ⱟ)  GLAGOLITIC SMALL LETTER CAUDATE CHRIVI
-9FFD..9FFF    ; ~IDNA #  [3] (鿽..鿿)  CJK UNIFIED IDEOGRAPH-9FFD..CJK UNIFIED IDEOGRAPH-9FFF
-A7C0..A7C1    ; ~IDNA #  [2] (Ꟁ..ꟁ)  LATIN CAPITAL LETTER OLD POLISH O..LATIN SMALL LETTER OLD POLISH O
-A7D0..A7D1    ; ~IDNA #  [2] (Ꟑ..ꟑ)  LATIN CAPITAL LETTER CLOSED INSULAR G..LATIN SMALL LETTER CLOSED INSULAR G
-A7D3          ; ~IDNA #      (ꟓ)  LATIN SMALL LETTER DOUBLE THORN
-A7D5..A7D9    ; ~IDNA #  [5] (ꟕ..ꟙ)  LATIN SMALL LETTER DOUBLE WYNN..LATIN SMALL LETTER SIGMOID S
-10570..1057A  ; ~IDNA # [11] (𐕰..𐕺)  VITHKUQI CAPITAL LETTER A..VITHKUQI CAPITAL LETTER GA
-1057C..1058A  ; ~IDNA # [15] (𐕼..𐖊)  VITHKUQI CAPITAL LETTER HA..VITHKUQI CAPITAL LETTER RE
-1058C..10592  ; ~IDNA #  [7] (𐖌..𐖒)  VITHKUQI CAPITAL LETTER SE..VITHKUQI CAPITAL LETTER XE
-10594..10595  ; ~IDNA #  [2] (𐖔..𐖕)  VITHKUQI CAPITAL LETTER Y..VITHKUQI CAPITAL LETTER ZE
-10597..105A1  ; ~IDNA # [11] (𐖗..𐖡)  VITHKUQI SMALL LETTER A..VITHKUQI SMALL LETTER GA
-105A3..105B1  ; ~IDNA # [15] (𐖣..𐖱)  VITHKUQI SMALL LETTER HA..VITHKUQI SMALL LETTER RE
-105B3..105B9  ; ~IDNA #  [7] (𐖳..𐖹)  VITHKUQI SMALL LETTER SE..VITHKUQI SMALL LETTER XE
-105BB..105BC  ; ~IDNA #  [2] (𐖻..𐖼)  VITHKUQI SMALL LETTER Y..VITHKUQI SMALL LETTER ZE
-10780         ; ~IDNA #      (𐞀)  MODIFIER LETTER SMALL CAPITAL AA
-10F70..10F85  ; ~IDNA # [22] (𐽰..𐾅)  OLD UYGHUR LETTER ALEPH..OLD UYGHUR COMBINING TWO DOTS BELOW
-11070..11075  ; ~IDNA #  [6] (𑁰..𑁵)  BRAHMI SIGN OLD TAMIL VIRAMA..BRAHMI LETTER OLD TAMIL LLA
-110C2         ; ~IDNA #      (𑃂)  KAITHI VOWEL SIGN VOCALIC R
-11740..11746  ; ~IDNA #  [7] (𑝀..𑝆)  AHOM LETTER CA..AHOM LETTER LLA
-11AB0..11ABF  ; ~IDNA # [16] (𑪰..𑪿)  CANADIAN SYLLABICS NATTILIK HI..CANADIAN SYLLABICS SPA
-12F90..12FF2  ; ~IDNA # [99] (𒾐..𒿲)  CYPRO-MINOAN SIGN CM001..CYPRO-MINOAN SIGN CM302
-16A70..16ABE  ; ~IDNA # [79] (𖩰..𖪾)  TANGSA LETTER OZ..TANGSA LETTER ZA
-16AC0..16AC9  ; ~IDNA # [10] (𖫀..𖫉)  TANGSA DIGIT ZERO..TANGSA DIGIT NINE
-1AFF0..1AFF3  ; ~IDNA #  [4] (𚿰..𚿳)  KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
-1AFF5..1AFFB  ; ~IDNA #  [7] (𚿵..𚿻)  KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
-1AFFD..1AFFE  ; ~IDNA #  [2] (𚿽..𚿾)  KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
-1B11F..1B122  ; ~IDNA #  [4] (𛄟..𛄢)  HIRAGANA LETTER ARCHAIC WU..KATAKANA LETTER ARCHAIC WU
-1CF00..1CF2D  ; ~IDNA # [46] (𜼀..𜼭)  ZNAMENNY COMBINING MARK GORAZDO NIZKO S KRYZHEM ON LEFT..ZNAMENNY COMBINING MARK KRYZH ON LEFT
-1CF30..1CF46  ; ~IDNA # [23] (𜼰..𜽆)  ZNAMENNY COMBINING TONAL RANGE MARK MRACHNO..ZNAMENNY PRIZNAK MODIFIER ROG
-1DF00..1DF1E  ; ~IDNA # [31] (𝼀..𝼞)  LATIN SMALL LETTER FENG DIGRAPH WITH TRILL..LATIN SMALL LETTER S WITH CURL
-1E290..1E2AE  ; ~IDNA # [31] (𞊐..𞊮)  TOTO LETTER PA..TOTO SIGN RISING TONE
-1E7E0..1E7E6  ; ~IDNA #  [7] (𞟠..𞟦)  ETHIOPIC SYLLABLE HHYA..ETHIOPIC SYLLABLE HHYO
-1E7E8..1E7EB  ; ~IDNA #  [4] (𞟨..𞟫)  ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HWE
-1E7ED..1E7EE  ; ~IDNA #  [2] (𞟭..𞟮)  ETHIOPIC SYLLABLE GURAGE MWI..ETHIOPIC SYLLABLE GURAGE MWEE
-1E7F0..1E7FE  ; ~IDNA # [15] (𞟰..𞟾)  ETHIOPIC SYLLABLE GURAGE QWI..ETHIOPIC SYLLABLE GURAGE PWEE
-2A6DE..2A6DF  ; ~IDNA #  [2] (𪛞..𪛟)  CJK UNIFIED IDEOGRAPH-2A6DE..CJK UNIFIED IDEOGRAPH-2A6DF
-2B735..2B738  ; ~IDNA #  [4] (𫜵..𫜸)  CJK UNIFIED IDEOGRAPH-2B735..CJK UNIFIED IDEOGRAPH-2B738
 
-# Total code points: 627
+# Total code points: 46
 
 0000..002F    ; ~Unicode Identifier # [48] (U+0000../)  <control-0000>..SOLIDUS
 003A..0040    ; ~Unicode Identifier #  [7] (:..@)  COLON..COMMERCIAL AT

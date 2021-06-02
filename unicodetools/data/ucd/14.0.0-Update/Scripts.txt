@@ -1,5 +1,5 @@
 # Scripts-14.0.0.txt
-# Date: 2021-05-11, 21:19:45 GMT
+# Date: 2021-05-28, 21:50:18 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1675,7 +1675,8 @@ E0100..E01EF  ; Inherited # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-2
 # ================================================
 
 1720..1731    ; Hanunoo # Lo  [18] HANUNOO LETTER A..HANUNOO LETTER HA
-1732..1734    ; Hanunoo # Mn   [3] HANUNOO VOWEL SIGN I..HANUNOO SIGN PAMUDPOD
+1732..1733    ; Hanunoo # Mn   [2] HANUNOO VOWEL SIGN I..HANUNOO VOWEL SIGN U
+1734          ; Hanunoo # Mc       HANUNOO SIGN PAMUDPOD
 
 # Total code points: 21
 

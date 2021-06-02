@@ -1,5 +1,5 @@
 # DerivedCombiningClass-14.0.0.txt
-# Date: 2021-05-11, 21:19:33 GMT
+# Date: 2021-05-28, 21:49:03 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -2068,7 +2068,7 @@ A9B3          ; 7 # Mn       JAVANESE SIGN CECAK TELU
 1039..103A    ; 9 # Mn   [2] MYANMAR SIGN VIRAMA..MYANMAR SIGN ASAT
 1714          ; 9 # Mn       TAGALOG SIGN VIRAMA
 1715          ; 9 # Mc       TAGALOG SIGN PAMUDPOD
-1734          ; 9 # Mn       HANUNOO SIGN PAMUDPOD
+1734          ; 9 # Mc       HANUNOO SIGN PAMUDPOD
 17D2          ; 9 # Mn       KHMER SIGN COENG
 1A60          ; 9 # Mn       TAI THAM SIGN SAKOT
 1B44          ; 9 # Mc       BALINESE ADEG ADEG

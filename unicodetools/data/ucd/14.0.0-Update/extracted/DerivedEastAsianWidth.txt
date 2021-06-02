@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-14.0.0.txt
-# Date: 2021-05-11, 21:19:35 GMT
+# Date: 2021-05-28, 21:49:05 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -584,7 +584,8 @@
 1712..1714    ; N # Mn   [3] TAGALOG VOWEL SIGN I..TAGALOG SIGN VIRAMA
 1715          ; N # Mc       TAGALOG SIGN PAMUDPOD
 171F..1731    ; N # Lo  [19] TAGALOG LETTER ARCHAIC RA..HANUNOO LETTER HA
-1732..1734    ; N # Mn   [3] HANUNOO VOWEL SIGN I..HANUNOO SIGN PAMUDPOD
+1732..1733    ; N # Mn   [2] HANUNOO VOWEL SIGN I..HANUNOO VOWEL SIGN U
+1734          ; N # Mc       HANUNOO SIGN PAMUDPOD
 1735..1736    ; N # Po   [2] PHILIPPINE SINGLE PUNCTUATION..PHILIPPINE DOUBLE PUNCTUATION
 1740..1751    ; N # Lo  [18] BUHID LETTER A..BUHID LETTER HA
 1752..1753    ; N # Mn   [2] BUHID VOWEL SIGN I..BUHID VOWEL SIGN U

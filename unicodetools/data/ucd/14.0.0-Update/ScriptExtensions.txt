@@ -1,5 +1,5 @@
 # ScriptExtensions-14.0.0.txt
-# Date: 2021-05-21, 01:54:00 GMT
+# Date: 2021-05-28, 21:50:18 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -136,20 +136,20 @@
 
 # ================================================
 
+# Script_Extensions=Arab Rohg
+
+06D4          ; Arab Rohg # Po       ARABIC FULL STOP
+
+# Total code points: 1
+
+# ================================================
+
 # Script_Extensions=Arab Nkoo
 
 FD3E          ; Arab Nkoo # Pe       ORNATE LEFT PARENTHESIS
 FD3F          ; Arab Nkoo # Ps       ORNATE RIGHT PARENTHESIS
 
 # Total code points: 2
-
-# ================================================
-
-# Script_Extensions=Arab Rohg
-
-06D4          ; Arab Rohg # Po       ARABIC FULL STOP
-
-# Total code points: 1
 
 # ================================================
 

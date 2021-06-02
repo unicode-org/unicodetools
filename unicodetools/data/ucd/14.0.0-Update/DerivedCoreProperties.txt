@@ -1,5 +1,5 @@
 # DerivedCoreProperties-14.0.0.txt
-# Date: 2021-05-11, 21:19:34 GMT
+# Date: 2021-05-28, 21:49:04 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -3071,7 +3071,7 @@ FF41..FF5A    ; Cased # L&  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN
 10FC          ; Case_Ignorable # Lm       MODIFIER LETTER GEORGIAN NAR
 135D..135F    ; Case_Ignorable # Mn   [3] ETHIOPIC COMBINING GEMINATION AND VOWEL LENGTH MARK..ETHIOPIC COMBINING GEMINATION MARK
 1712..1714    ; Case_Ignorable # Mn   [3] TAGALOG VOWEL SIGN I..TAGALOG SIGN VIRAMA
-1732..1734    ; Case_Ignorable # Mn   [3] HANUNOO VOWEL SIGN I..HANUNOO SIGN PAMUDPOD
+1732..1733    ; Case_Ignorable # Mn   [2] HANUNOO VOWEL SIGN I..HANUNOO VOWEL SIGN U
 1752..1753    ; Case_Ignorable # Mn   [2] BUHID VOWEL SIGN I..BUHID VOWEL SIGN U
 1772..1773    ; Case_Ignorable # Mn   [2] TAGBANWA VOWEL SIGN I..TAGBANWA VOWEL SIGN U
 17B4..17B5    ; Case_Ignorable # Mn   [2] KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
@@ -3386,7 +3386,7 @@ E0001         ; Case_Ignorable # Cf       LANGUAGE TAG
 E0020..E007F  ; Case_Ignorable # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Case_Ignorable # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2603
+# Total code points: 2602
 
 # ================================================
 
@@ -7218,7 +7218,8 @@ FFDA..FFDC    ; ID_Start # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL
 1712..1714    ; ID_Continue # Mn   [3] TAGALOG VOWEL SIGN I..TAGALOG SIGN VIRAMA
 1715          ; ID_Continue # Mc       TAGALOG SIGN PAMUDPOD
 171F..1731    ; ID_Continue # Lo  [19] TAGALOG LETTER ARCHAIC RA..HANUNOO LETTER HA
-1732..1734    ; ID_Continue # Mn   [3] HANUNOO VOWEL SIGN I..HANUNOO SIGN PAMUDPOD
+1732..1733    ; ID_Continue # Mn   [2] HANUNOO VOWEL SIGN I..HANUNOO VOWEL SIGN U
+1734          ; ID_Continue # Mc       HANUNOO SIGN PAMUDPOD
 1740..1751    ; ID_Continue # Lo  [18] BUHID LETTER A..BUHID LETTER HA
 1752..1753    ; ID_Continue # Mn   [2] BUHID VOWEL SIGN I..BUHID VOWEL SIGN U
 1760..176C    ; ID_Continue # Lo  [13] TAGBANWA LETTER A..TAGBANWA LETTER YA
@@ -9281,7 +9282,8 @@ FFDA..FFDC    ; XID_Start # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGU
 1712..1714    ; XID_Continue # Mn   [3] TAGALOG VOWEL SIGN I..TAGALOG SIGN VIRAMA
 1715          ; XID_Continue # Mc       TAGALOG SIGN PAMUDPOD
 171F..1731    ; XID_Continue # Lo  [19] TAGALOG LETTER ARCHAIC RA..HANUNOO LETTER HA
-1732..1734    ; XID_Continue # Mn   [3] HANUNOO VOWEL SIGN I..HANUNOO SIGN PAMUDPOD
+1732..1733    ; XID_Continue # Mn   [2] HANUNOO VOWEL SIGN I..HANUNOO VOWEL SIGN U
+1734          ; XID_Continue # Mc       HANUNOO SIGN PAMUDPOD
 1740..1751    ; XID_Continue # Lo  [18] BUHID LETTER A..BUHID LETTER HA
 1752..1753    ; XID_Continue # Mn   [2] BUHID VOWEL SIGN I..BUHID VOWEL SIGN U
 1760..176C    ; XID_Continue # Lo  [13] TAGBANWA LETTER A..TAGBANWA LETTER YA
@@ -10365,7 +10367,7 @@ E01F0..E0FFF  ; Default_Ignorable_Code_Point # Cn [3600] <reserved-E01F0>..<rese
 109D          ; Grapheme_Extend # Mn       MYANMAR VOWEL SIGN AITON AI
 135D..135F    ; Grapheme_Extend # Mn   [3] ETHIOPIC COMBINING GEMINATION AND VOWEL LENGTH MARK..ETHIOPIC COMBINING GEMINATION MARK
 1712..1714    ; Grapheme_Extend # Mn   [3] TAGALOG VOWEL SIGN I..TAGALOG SIGN VIRAMA
-1732..1734    ; Grapheme_Extend # Mn   [3] HANUNOO VOWEL SIGN I..HANUNOO SIGN PAMUDPOD
+1732..1733    ; Grapheme_Extend # Mn   [2] HANUNOO VOWEL SIGN I..HANUNOO VOWEL SIGN U
 1752..1753    ; Grapheme_Extend # Mn   [2] BUHID VOWEL SIGN I..BUHID VOWEL SIGN U
 1772..1773    ; Grapheme_Extend # Mn   [2] TAGBANWA VOWEL SIGN I..TAGBANWA VOWEL SIGN U
 17B4..17B5    ; Grapheme_Extend # Mn   [2] KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
@@ -10603,7 +10605,7 @@ FF9E..FF9F    ; Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK.
 E0020..E007F  ; Grapheme_Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Grapheme_Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2091
+# Total code points: 2090
 
 # ================================================
 
@@ -11048,6 +11050,7 @@ E0100..E01EF  ; Grapheme_Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELE
 1700..1711    ; Grapheme_Base # Lo  [18] TAGALOG LETTER A..TAGALOG LETTER HA
 1715          ; Grapheme_Base # Mc       TAGALOG SIGN PAMUDPOD
 171F..1731    ; Grapheme_Base # Lo  [19] TAGALOG LETTER ARCHAIC RA..HANUNOO LETTER HA
+1734          ; Grapheme_Base # Mc       HANUNOO SIGN PAMUDPOD
 1735..1736    ; Grapheme_Base # Po   [2] PHILIPPINE SINGLE PUNCTUATION..PHILIPPINE DOUBLE PUNCTUATION
 1740..1751    ; Grapheme_Base # Lo  [18] BUHID LETTER A..BUHID LETTER HA
 1760..176C    ; Grapheme_Base # Lo  [13] TAGBANWA LETTER A..TAGBANWA LETTER YA
@@ -12332,7 +12335,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 2F800..2FA1D  ; Grapheme_Base # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; Grapheme_Base # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 
-# Total code points: 142538
+# Total code points: 142539
 
 # ================================================
 
@@ -12357,7 +12360,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 1039..103A    ; Grapheme_Link # Mn   [2] MYANMAR SIGN VIRAMA..MYANMAR SIGN ASAT
 1714          ; Grapheme_Link # Mn       TAGALOG SIGN VIRAMA
 1715          ; Grapheme_Link # Mc       TAGALOG SIGN PAMUDPOD
-1734          ; Grapheme_Link # Mn       HANUNOO SIGN PAMUDPOD
+1734          ; Grapheme_Link # Mc       HANUNOO SIGN PAMUDPOD
 17D2          ; Grapheme_Link # Mn       KHMER SIGN COENG
 1A60          ; Grapheme_Link # Mn       TAI THAM SIGN SAKOT
 1B44          ; Grapheme_Link # Mc       BALINESE ADEG ADEG
