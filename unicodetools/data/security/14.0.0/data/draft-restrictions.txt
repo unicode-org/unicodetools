@@ -15396,15 +15396,6 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 1B57          ;  ; Limited_Use #      (᭗)  BALINESE DIGIT SEVEN
 1B58          ;  ; Limited_Use #      (᭘)  BALINESE DIGIT EIGHT
 1B59          ;  ; Limited_Use #      (᭙)  BALINESE DIGIT NINE
-1B6B          ;  ; Limited_Use #      (᭫)  BALINESE MUSICAL SYMBOL COMBINING TEGEH
-1B6C          ;  ; Limited_Use #      (᭬)  BALINESE MUSICAL SYMBOL COMBINING ENDEP
-1B6D          ;  ; Limited_Use #      (᭭)  BALINESE MUSICAL SYMBOL COMBINING KEMPUL
-1B6E          ;  ; Limited_Use #      (᭮)  BALINESE MUSICAL SYMBOL COMBINING KEMPLI
-1B6F          ;  ; Limited_Use #      (᭯)  BALINESE MUSICAL SYMBOL COMBINING JEGOGAN
-1B70          ;  ; Limited_Use #      (᭰)  BALINESE MUSICAL SYMBOL COMBINING KEMPUL WITH JEGOGAN
-1B71          ;  ; Limited_Use #      (᭱)  BALINESE MUSICAL SYMBOL COMBINING KEMPLI WITH JEGOGAN
-1B72          ;  ; Limited_Use #      (᭲)  BALINESE MUSICAL SYMBOL COMBINING BENDE
-1B73          ;  ; Limited_Use #      (᭳)  BALINESE MUSICAL SYMBOL COMBINING GONG
 1B80          ;  ; Limited_Use #      (ᮀ)  SUNDANESE SIGN PANYECEK
 1B81          ;  ; Limited_Use #      (ᮁ)  SUNDANESE SIGN PANGLAYAR
 1B82          ;  ; Limited_Use #      (ᮂ)  SUNDANESE SIGN PANGWISAD
@@ -17790,7 +17781,7 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 1E958         ;  ; Limited_Use #      (𞥘)  ADLAM DIGIT EIGHT
 1E959         ;  ; Limited_Use #      (𞥙)  ADLAM DIGIT NINE
 
-# Total code points: 5042
+# Total code points: 5033
 
 018D          ;  ; Obsolete #      (ƍ)  LATIN SMALL LETTER TURNED DELTA
 01AA          ;  ; Obsolete #      (ƪ)  LATIN LETTER REVERSED ESH LOOP
@@ -18133,6 +18124,22 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 302E          ;  ; Obsolete #      (〮)  HANGUL SINGLE DOT TONE MARK
 302F          ;  ; Obsolete #      (〯)  HANGUL DOUBLE DOT TONE MARK
 312E          ;  ; Obsolete #      (ㄮ)  BOPOMOFO LETTER O WITH DOT ABOVE
+31F0          ;  ; Obsolete #      (ㇰ)  KATAKANA LETTER SMALL KU
+31F1          ;  ; Obsolete #      (ㇱ)  KATAKANA LETTER SMALL SI
+31F2          ;  ; Obsolete #      (ㇲ)  KATAKANA LETTER SMALL SU
+31F3          ;  ; Obsolete #      (ㇳ)  KATAKANA LETTER SMALL TO
+31F4          ;  ; Obsolete #      (ㇴ)  KATAKANA LETTER SMALL NU
+31F5          ;  ; Obsolete #      (ㇵ)  KATAKANA LETTER SMALL HA
+31F6          ;  ; Obsolete #      (ㇶ)  KATAKANA LETTER SMALL HI
+31F7          ;  ; Obsolete #      (ㇷ)  KATAKANA LETTER SMALL HU
+31F8          ;  ; Obsolete #      (ㇸ)  KATAKANA LETTER SMALL HE
+31F9          ;  ; Obsolete #      (ㇹ)  KATAKANA LETTER SMALL HO
+31FA          ;  ; Obsolete #      (ㇺ)  KATAKANA LETTER SMALL MU
+31FB          ;  ; Obsolete #      (ㇻ)  KATAKANA LETTER SMALL RA
+31FC          ;  ; Obsolete #      (ㇼ)  KATAKANA LETTER SMALL RI
+31FD          ;  ; Obsolete #      (ㇽ)  KATAKANA LETTER SMALL RU
+31FE          ;  ; Obsolete #      (ㇾ)  KATAKANA LETTER SMALL RE
+31FF          ;  ; Obsolete #      (ㇿ)  KATAKANA LETTER SMALL RO
 A610          ;  ; Obsolete #      (ꘐ)  VAI SYLLABLE NDOLE FA
 A611          ;  ; Obsolete #      (ꘑ)  VAI SYLLABLE NDOLE KA
 A612          ;  ; Obsolete #      (ꘒ)  VAI SYLLABLE NDOLE SOO
@@ -18837,7 +18844,7 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 1D243         ;  ; Obsolete #      (𝉃)  COMBINING GREEK MUSICAL TETRASEME
 1D244         ;  ; Obsolete #      (𝉄)  COMBINING GREEK MUSICAL PENTASEME
 
-# Total code points: 1651
+# Total code points: 1667
 
 0180          ;  ; Technical #      (ƀ)  LATIN SMALL LETTER B WITH STROKE
 01C0          ;  ; Technical #      (ǀ)  LATIN LETTER DENTAL CLICK
@@ -19035,6 +19042,15 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 17D0          ;  ; Technical #      (័)  KHMER SIGN SAMYOK SANNYA
 1ABF          ;  ; Technical #      (ᪿ)  COMBINING LATIN SMALL LETTER W BELOW
 1AC0          ;  ; Technical #      (ᫀ)  COMBINING LATIN SMALL LETTER TURNED W BELOW
+1B6B          ;  ; Technical #      (᭫)  BALINESE MUSICAL SYMBOL COMBINING TEGEH
+1B6C          ;  ; Technical #      (᭬)  BALINESE MUSICAL SYMBOL COMBINING ENDEP
+1B6D          ;  ; Technical #      (᭭)  BALINESE MUSICAL SYMBOL COMBINING KEMPUL
+1B6E          ;  ; Technical #      (᭮)  BALINESE MUSICAL SYMBOL COMBINING KEMPLI
+1B6F          ;  ; Technical #      (᭯)  BALINESE MUSICAL SYMBOL COMBINING JEGOGAN
+1B70          ;  ; Technical #      (᭰)  BALINESE MUSICAL SYMBOL COMBINING KEMPUL WITH JEGOGAN
+1B71          ;  ; Technical #      (᭱)  BALINESE MUSICAL SYMBOL COMBINING KEMPLI WITH JEGOGAN
+1B72          ;  ; Technical #      (᭲)  BALINESE MUSICAL SYMBOL COMBINING BENDE
+1B73          ;  ; Technical #      (᭳)  BALINESE MUSICAL SYMBOL COMBINING GONG
 1D00          ;  ; Technical #      (ᴀ)  LATIN LETTER SMALL CAPITAL A
 1D01          ;  ; Technical #      (ᴁ)  LATIN LETTER SMALL CAPITAL AE
 1D02          ;  ; Technical #      (ᴂ)  LATIN SMALL LETTER TURNED AE
@@ -19236,22 +19252,6 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 3035          ;  ; Technical #      (〵)  VERTICAL KANA REPEAT MARK LOWER HALF
 303B          ;  ; Technical #      (〻)  VERTICAL IDEOGRAPHIC ITERATION MARK
 303C          ;  ; Technical #      (〼)  MASU MARK
-31F0          ;  ; Technical #      (ㇰ)  KATAKANA LETTER SMALL KU
-31F1          ;  ; Technical #      (ㇱ)  KATAKANA LETTER SMALL SI
-31F2          ;  ; Technical #      (ㇲ)  KATAKANA LETTER SMALL SU
-31F3          ;  ; Technical #      (ㇳ)  KATAKANA LETTER SMALL TO
-31F4          ;  ; Technical #      (ㇴ)  KATAKANA LETTER SMALL NU
-31F5          ;  ; Technical #      (ㇵ)  KATAKANA LETTER SMALL HA
-31F6          ;  ; Technical #      (ㇶ)  KATAKANA LETTER SMALL HI
-31F7          ;  ; Technical #      (ㇷ)  KATAKANA LETTER SMALL HU
-31F8          ;  ; Technical #      (ㇸ)  KATAKANA LETTER SMALL HE
-31F9          ;  ; Technical #      (ㇹ)  KATAKANA LETTER SMALL HO
-31FA          ;  ; Technical #      (ㇺ)  KATAKANA LETTER SMALL MU
-31FB          ;  ; Technical #      (ㇻ)  KATAKANA LETTER SMALL RA
-31FC          ;  ; Technical #      (ㇼ)  KATAKANA LETTER SMALL RI
-31FD          ;  ; Technical #      (ㇽ)  KATAKANA LETTER SMALL RU
-31FE          ;  ; Technical #      (ㇾ)  KATAKANA LETTER SMALL RE
-31FF          ;  ; Technical #      (ㇿ)  KATAKANA LETTER SMALL RO
 A78E          ;  ; Technical #      (ꞎ)  LATIN SMALL LETTER L WITH RETROFLEX HOOK AND BELT
 A7AF          ;  ; Technical #      (ꞯ)  LATIN LETTER SMALL CAPITAL Q
 A7BA          ;  ; Technical #      (Ꞻ)  LATIN CAPITAL LETTER GLOTTAL A
@@ -19341,7 +19341,7 @@ FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 1D185..1D18B  ;  ; Technical #  [7] (𝆅..𝆋)  MUSICAL SYMBOL COMBINING DOIT..MUSICAL SYMBOL COMBINING TRIPLE TONGUE
 1D1AA..1D1AD  ;  ; Technical #  [4] (𝆪..𝆭)  MUSICAL SYMBOL COMBINING DOWN BOW..MUSICAL SYMBOL COMBINING SNAP PIZZICATO
 
-# Total code points: 568
+# Total code points: 561
 
 0181..0182    ;  ; Uncommon_Use #  [2] (Ɓ..Ƃ)  LATIN CAPITAL LETTER B WITH HOOK..LATIN CAPITAL LETTER B WITH TOPBAR
 0183          ;  ; Uncommon_Use #      (ƃ)  LATIN SMALL LETTER B WITH TOPBAR
@@ -19583,6 +19583,20 @@ FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 0D62          ;  ; Uncommon_Use #      (ൢ)  MALAYALAM VOWEL SIGN VOCALIC L
 0D63          ;  ; Uncommon_Use #      (ൣ)  MALAYALAM VOWEL SIGN VOCALIC LL
 0F39          ;  ; Uncommon_Use #      (༹)  TIBETAN MARK TSA -PHRU
+1AC1          ;  ; Uncommon_Use #      (᫁)  COMBINING LEFT PARENTHESIS ABOVE LEFT
+1AC2          ;  ; Uncommon_Use #      (᫂)  COMBINING RIGHT PARENTHESIS ABOVE RIGHT
+1AC3          ;  ; Uncommon_Use #      (᫃)  COMBINING LEFT PARENTHESIS BELOW LEFT
+1AC4          ;  ; Uncommon_Use #      (᫄)  COMBINING RIGHT PARENTHESIS BELOW RIGHT
+1AC5          ;  ; Uncommon_Use #      (᫅)  COMBINING SQUARE BRACKETS ABOVE
+1AC6          ;  ; Uncommon_Use #      (᫆)  COMBINING NUMBER SIGN ABOVE
+1AC7          ;  ; Uncommon_Use #      (᫇)  COMBINING INVERTED DOUBLE ARCH ABOVE
+1AC8          ;  ; Uncommon_Use #      (᫈)  COMBINING PLUS SIGN ABOVE
+1AC9          ;  ; Uncommon_Use #      (᫉)  COMBINING DOUBLE PLUS SIGN ABOVE
+1ACA          ;  ; Uncommon_Use #      (᫊)  COMBINING DOUBLE PLUS SIGN BELOW
+1ACB          ;  ; Uncommon_Use #      (᫋)  COMBINING TRIPLE ACUTE ACCENT
+1ACC          ;  ; Uncommon_Use #      (ᫌ)  COMBINING LATIN SMALL LETTER INSULAR G
+1ACD          ;  ; Uncommon_Use #      (ᫍ)  COMBINING LATIN SMALL LETTER INSULAR R
+1ACE          ;  ; Uncommon_Use #      (ᫎ)  COMBINING LATIN SMALL LETTER INSULAR T
 2054          ;  ; Uncommon_Use #      (⁔)  INVERTED UNDERTIE
 2C68          ;  ; Uncommon_Use #      (ⱨ)  LATIN SMALL LETTER H WITH DESCENDER
 2C69          ;  ; Uncommon_Use #      (Ⱪ)  LATIN CAPITAL LETTER K WITH DESCENDER
@@ -19603,8 +19617,22 @@ AB60          ;  ; Uncommon_Use #      (ꭠ)  LATIN SMALL LETTER SAKHA YAT
 AB61          ;  ; Uncommon_Use #      (ꭡ)  LATIN SMALL LETTER IOTIFIED E
 AB62          ;  ; Uncommon_Use #      (ꭢ)  LATIN SMALL LETTER OPEN OE
 AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
+10780         ;  ; Uncommon_Use #      (𐞀)  MODIFIER LETTER SMALL CAPITAL AA
+1AFF0         ;  ; Uncommon_Use #      (𚿰)  KATAKANA LETTER MINNAN TONE-2
+1AFF1         ;  ; Uncommon_Use #      (𚿱)  KATAKANA LETTER MINNAN TONE-3
+1AFF2         ;  ; Uncommon_Use #      (𚿲)  KATAKANA LETTER MINNAN TONE-4
+1AFF3         ;  ; Uncommon_Use #      (𚿳)  KATAKANA LETTER MINNAN TONE-5
+1AFF5         ;  ; Uncommon_Use #      (𚿵)  KATAKANA LETTER MINNAN TONE-7
+1AFF6         ;  ; Uncommon_Use #      (𚿶)  KATAKANA LETTER MINNAN TONE-8
+1AFF7         ;  ; Uncommon_Use #      (𚿷)  KATAKANA LETTER MINNAN NASALIZED TONE-1
+1AFF8         ;  ; Uncommon_Use #      (𚿸)  KATAKANA LETTER MINNAN NASALIZED TONE-2
+1AFF9         ;  ; Uncommon_Use #      (𚿹)  KATAKANA LETTER MINNAN NASALIZED TONE-3
+1AFFA         ;  ; Uncommon_Use #      (𚿺)  KATAKANA LETTER MINNAN NASALIZED TONE-4
+1AFFB         ;  ; Uncommon_Use #      (𚿻)  KATAKANA LETTER MINNAN NASALIZED TONE-5
+1AFFD         ;  ; Uncommon_Use #      (𚿽)  KATAKANA LETTER MINNAN NASALIZED TONE-7
+1AFFE         ;  ; Uncommon_Use #      (𚿾)  KATAKANA LETTER MINNAN NASALIZED TONE-8
 
-# Total code points: 280
+# Total code points: 308
 
 00B7          ; Allowed ; Inclusion #      (·)  MIDDLE DOT
 
@@ -21978,20 +22006,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 17E7          ; Allowed ; Recommended #      (៧)  KHMER DIGIT SEVEN
 17E8          ; Allowed ; Recommended #      (៨)  KHMER DIGIT EIGHT
 17E9          ; Allowed ; Recommended #      (៩)  KHMER DIGIT NINE
-1AC1          ; Allowed ; Recommended #      (᫁)  COMBINING LEFT PARENTHESIS ABOVE LEFT
-1AC2          ; Allowed ; Recommended #      (᫂)  COMBINING RIGHT PARENTHESIS ABOVE RIGHT
-1AC3          ; Allowed ; Recommended #      (᫃)  COMBINING LEFT PARENTHESIS BELOW LEFT
-1AC4          ; Allowed ; Recommended #      (᫄)  COMBINING RIGHT PARENTHESIS BELOW RIGHT
-1AC5          ; Allowed ; Recommended #      (᫅)  COMBINING SQUARE BRACKETS ABOVE
-1AC6          ; Allowed ; Recommended #      (᫆)  COMBINING NUMBER SIGN ABOVE
-1AC7          ; Allowed ; Recommended #      (᫇)  COMBINING INVERTED DOUBLE ARCH ABOVE
-1AC8          ; Allowed ; Recommended #      (᫈)  COMBINING PLUS SIGN ABOVE
-1AC9          ; Allowed ; Recommended #      (᫉)  COMBINING DOUBLE PLUS SIGN ABOVE
-1ACA          ; Allowed ; Recommended #      (᫊)  COMBINING DOUBLE PLUS SIGN BELOW
-1ACB          ; Allowed ; Recommended #      (᫋)  COMBINING TRIPLE ACUTE ACCENT
-1ACC          ; Allowed ; Recommended #      (ᫌ)  COMBINING LATIN SMALL LETTER INSULAR G
-1ACD          ; Allowed ; Recommended #      (ᫍ)  COMBINING LATIN SMALL LETTER INSULAR R
-1ACE          ; Allowed ; Recommended #      (ᫎ)  COMBINING LATIN SMALL LETTER INSULAR T
 1C90..1CBA    ; Allowed ; Recommended # [43] (Ა..Ჺ)  GEORGIAN MTAVRULI CAPITAL LETTER AN..GEORGIAN MTAVRULI CAPITAL LETTER AIN
 1CBD..1CBF    ; Allowed ; Recommended #  [3] (Ჽ..Ჿ)  GEORGIAN MTAVRULI CAPITAL LETTER AEN..GEORGIAN MTAVRULI CAPITAL LETTER LABIAL SIGN
 1E00          ; Allowed ; Recommended #      (Ḁ)  LATIN CAPITAL LETTER A WITH RING BELOW
@@ -22820,26 +22834,12 @@ FA24          ; Allowed ; Recommended #      (﨤)  CJK COMPATIBILITY IDEOGRAPH-
 FA27          ; Allowed ; Recommended #      (﨧)  CJK COMPATIBILITY IDEOGRAPH-FA27
 FA28          ; Allowed ; Recommended #      (﨨)  CJK COMPATIBILITY IDEOGRAPH-FA28
 FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-FA29
-10780         ; Allowed ; Recommended #      (𐞀)  MODIFIER LETTER SMALL CAPITAL AA
 11301         ; Allowed ; Recommended #      (𑌁)  GRANTHA SIGN CANDRABINDU
 11303         ; Allowed ; Recommended #      (𑌃)  GRANTHA SIGN VISARGA
 1133B         ; Allowed ; Recommended #      (𑌻)  COMBINING BINDU BELOW
 1133C         ; Allowed ; Recommended #      (𑌼)  GRANTHA SIGN NUKTA
 16FF0         ; Allowed ; Recommended #      (𖿰)  VIETNAMESE ALTERNATE READING MARK CA
 16FF1         ; Allowed ; Recommended #      (𖿱)  VIETNAMESE ALTERNATE READING MARK NHAY
-1AFF0         ; Allowed ; Recommended #      (𚿰)  KATAKANA LETTER MINNAN TONE-2
-1AFF1         ; Allowed ; Recommended #      (𚿱)  KATAKANA LETTER MINNAN TONE-3
-1AFF2         ; Allowed ; Recommended #      (𚿲)  KATAKANA LETTER MINNAN TONE-4
-1AFF3         ; Allowed ; Recommended #      (𚿳)  KATAKANA LETTER MINNAN TONE-5
-1AFF5         ; Allowed ; Recommended #      (𚿵)  KATAKANA LETTER MINNAN TONE-7
-1AFF6         ; Allowed ; Recommended #      (𚿶)  KATAKANA LETTER MINNAN TONE-8
-1AFF7         ; Allowed ; Recommended #      (𚿷)  KATAKANA LETTER MINNAN NASALIZED TONE-1
-1AFF8         ; Allowed ; Recommended #      (𚿸)  KATAKANA LETTER MINNAN NASALIZED TONE-2
-1AFF9         ; Allowed ; Recommended #      (𚿹)  KATAKANA LETTER MINNAN NASALIZED TONE-3
-1AFFA         ; Allowed ; Recommended #      (𚿺)  KATAKANA LETTER MINNAN NASALIZED TONE-4
-1AFFB         ; Allowed ; Recommended #      (𚿻)  KATAKANA LETTER MINNAN NASALIZED TONE-5
-1AFFD         ; Allowed ; Recommended #      (𚿽)  KATAKANA LETTER MINNAN NASALIZED TONE-7
-1AFFE         ; Allowed ; Recommended #      (𚿾)  KATAKANA LETTER MINNAN NASALIZED TONE-8
 1B11F         ; Allowed ; Recommended #      (𛄟)  HIRAGANA LETTER ARCHAIC WU
 1B120         ; Allowed ; Recommended #      (𛄠)  KATAKANA LETTER ARCHAIC YI
 1B121         ; Allowed ; Recommended #      (𛄡)  KATAKANA LETTER ARCHAIC YE
@@ -45447,7 +45447,7 @@ FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 3134A         ; Allowed ; Recommended #      (𱍊)  CJK UNIFIED IDEOGRAPH-3134A
 E0100..E01EF  ; Allowed ; Recommended # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 108201
+# Total code points: 108173
 
 005F          ; ~IDNA #      (_)  LOW LINE
 04C0          ; ~IDNA #      (Ӏ)  CYRILLIC LETTER PALOCHKA
