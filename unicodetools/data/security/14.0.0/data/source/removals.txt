@@ -253,7 +253,9 @@ A730..A778; historic # ( ꜰ ) LATIN LETTER SMALL CAPITAL F .. ( ꝸ ) LATIN SMA
 # Phonetic Extensions
 [:block=Phonetic Extensions:] ; technical #...
 [:block=Phonetic Extensions Supplement:] ; technical #...
-[:block=Katakana Phonetic Extensions:] ; technical #...
+
+# 164-A046 Change the Identifier_Type of Ainu Katakana characters 31F0..31FF from Technical to Obsolete, in IdentifierType.txt.
+[:block=Katakana Phonetic Extensions:] ; Obsolete # 31F0..31FF 3.2 [16] KATAKANA LETTER SMALL KU..KATAKANA LETTER SMALL RO
 
 #Phonetic Extensions - Latin superscript modifier letters: 3
 
@@ -694,6 +696,18 @@ AB63; uncommon-use # LATIN SMALL LETTER UO
 
 # 14.0
 \p{block=Znamenny_Musical_Notation} ; technical
+
+10780         ; Uncommon_Use # 14.0       MODIFIER LETTER SMALL CAPITAL AA
+1AC1..1ACE    ; Uncommon_Use # 14.0  [14] COMBINING LEFT PARENTHESIS ABOVE LEFT..COMBINING LATIN SMALL LETTER INSULAR T
+
+# Kana tone notations for Minnan
+1AFF0..1AFF3  ; Uncommon_Use # 14.0   [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
+1AFF5..1AFFB  ; Uncommon_Use # 14.0   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
+1AFFD..1AFFE  ; Uncommon_Use # 14.0   [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
+
+# 165-A047 In security/.../IdentifierType.txt, for U+1B6B..U+1B73 add Identifier_Type=Technical
+# as proposed in L2/20-240 item F6, unless other UTC action items about Identifier_Type classifications contradict this.
+1B6B..1B73    ; Limited_Use Technical # 5.0    [9] BALINESE MUSICAL SYMBOL COMBINING TEGEH..BALINESE MUSICAL SYMBOL COMBINING GONG
 
 # Question: should be default for anything new; add exceptions otherwise
 # \p{Age=13} ; uncommon_use

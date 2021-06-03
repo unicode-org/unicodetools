@@ -4,7 +4,8 @@
 
 *   Run UCA/Main.java (yes, UCA, *not* UCD/Main.java), with the argument `charts`.
     *   The output will be in {Generated}/charts/*
-*   Spot-check, pack all of them into a charts.zip file, and upload somewhere for review and for Rick to post.
+*   Spot-check the files.
+*   Pack the whole *contents* of the charts/ folder (not the charts/ folder itself) into a charts.zip file, and upload that somewhere for review and for Rick to post.
 
 ## Deploying to beta directory
 
