@@ -112,7 +112,7 @@ Proposal=L2/19-378
 After=🤭
 U+1FAE3
 Name=face with peeking eye
-Keywords=captivate | peep | stare
+Keywords=captivated | peep | stare
 
 Proposal=L2/19-371
 After=💮
