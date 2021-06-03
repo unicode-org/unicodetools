@@ -1,5 +1,5 @@
 # unidata-14.0.0.txt
-# Date: 2021-05-11, 00:00:00 GMT [KW]
+# Date: 2021-05-17, 00:00:00 GMT [KW]
 # © 2021 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -9,7 +9,7 @@
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
 #
-# Version 14.0.0 draft 1 (Unicode Version: 14.0.0)
+# Version 14.0.0 draft 4 (Unicode Version: 14.0.0)
 # based on Unicode data file UnicodeData-14.0.0d10.txt
 # Ordering for Unicode 14.0
 #
@@ -17898,6 +17898,24 @@ FB4A;HEBREW LETTER TAV WITH DAGESH;Lo;05EA 05BC;;;;;
 # For the default weighting, it is simply treated as a type of hamza.
 0674;ARABIC LETTER HIGH HAMZA;Lo;<sort> 0621;;;;;
 
+# Digraphs for Kazakh (discouraged from use). 
+# The compatibility decompositions for these
+# are incorrect for the actual usage, which typically uses a sequence
+# with the high hamza first, followed by alef, waw, u, or yeh.
+# Corrected for UCA 14.0 (see L2/20-289 and AI 166-A049) by
+# synthetically swapping the order in the decompositions.
+# This also indirectly picks up FBDD.
+
+# 0675;ARABIC LETTER HIGH HAMZA ALEF;Lo;<compat> 0627 0674;;;;;
+# 0676;ARABIC LETTER HIGH HAMZA WAW;Lo;<compat> 0648 0674;;;;;
+# 0677;ARABIC LETTER U WITH HAMZA ABOVE;Lo;<compat> 06C7 0674;;;;;
+# 0678;ARABIC LETTER HIGH HAMZA YEH;Lo;<compat> 064A 0674;;;;;
+
+0675;ARABIC LETTER HIGH HAMZA ALEF;Lo;<sort> 0674 0627;;;;;
+0676;ARABIC LETTER HIGH HAMZA WAW;Lo;<sort> 0674 0648;;;;;
+0677;ARABIC LETTER U WITH HAMZA ABOVE;Lo;<sort> 0674 06C7;;;;;
+0678;ARABIC LETTER HIGH HAMZA YEH;Lo;<sort> 0674 064A;;;;;
+
 # Weighted as a variant of Hamza with a user-defined diacritic
 
 06FD;ARABIC SIGN SINDHI AMPERSAND;So;<sort> 0621 F8F1;;;;;
@@ -17936,7 +17954,6 @@ DEFAULT
 08AC;ARABIC LETTER ROHINGYA YEH;Lo;;;;;;
 
 0627;ARABIC LETTER ALEF;Lo;;;;;;
-0675;ARABIC LETTER HIGH HAMZA ALEF;Lo;<compat> 0627 0674;;;;;
 # Low alef is actually a marker of vowel height register
 # for a Tatar language orthography written in Arabic script.
 # Dealing with its sorting implications requires complex tailoring.
@@ -18178,13 +18195,11 @@ DEFAULT
 
 0648;ARABIC LETTER WAW;Lo;;;;;;
 06E5;ARABIC SMALL WAW;Lm;<sort> 0648;;;;;
-0676;ARABIC LETTER HIGH HAMZA WAW;Lo;<compat> 0648 0674;;;;;
 
 06C4;ARABIC LETTER WAW WITH RING;Lo;;;;;;
 06C5;ARABIC LETTER KIRGHIZ OE;Lo;;;;;;
 06C6;ARABIC LETTER OE;Lo;;;;;;
 06C7;ARABIC LETTER U;Lo;;;;;;
-0677;ARABIC LETTER U WITH HAMZA ABOVE;Lo;<compat> 06C7 0674;;;;;
 06C8;ARABIC LETTER YU;Lo;;;;;;
 06C9;ARABIC LETTER KIRGHIZ YU;Lo;;;;;;
 06CA;ARABIC LETTER WAW WITH TWO DOTS ABOVE;Lo;;;;;;
@@ -18199,7 +18214,6 @@ DEFAULT
 
 064A;ARABIC LETTER YEH;Lo;;;;;;
 06E6;ARABIC SMALL YEH;Lm;<sort> 064A;;;;;
-0678;ARABIC LETTER HIGH HAMZA YEH;Lo;<compat> 064A 0674;;;;;
 
 06CC;ARABIC LETTER FARSI YEH;Lo;;;;;;
 06CD;ARABIC LETTER YEH WITH TAIL;Lo;;;;;;
