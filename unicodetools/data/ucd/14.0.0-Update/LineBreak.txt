@@ -1,5 +1,5 @@
 # LineBreak-14.0.0.txt
-# Date: 2021-05-24, 15:56:35 GMT [KW, LI]
+# Date: 2021-05-24, 15:56:35 GMT [KW, LI] plus manual changes
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -3518,13 +3518,14 @@ FFFD;AI           # So         REPLACEMENT CHARACTER
 1FAAD..1FAAF;ID   # Cn     [3] <reserved-1FAAD>..<reserved-1FAAF>
 1FAB0..1FABA;ID   # So    [11] FLY..NEST WITH EGGS
 1FABB..1FABF;ID   # Cn     [5] <reserved-1FABB>..<reserved-1FABF>
-1FAC0..1FAC5;ID   # So     [6] ANATOMICAL HEART..PERSON WITH CROWN
+1FAC0..1FAC2;ID   # So     [3] ANATOMICAL HEART..?
+1FAC3..1FAC5;EB   # So     [3] PREGNANT MAN..PERSON WITH CROWN
 1FAC6..1FACF;ID   # Cn    [10] <reserved-1FAC6>..<reserved-1FACF>
 1FAD0..1FAD9;ID   # So    [10] BLUEBERRIES..JAR
 1FADA..1FADF;ID   # Cn     [6] <reserved-1FADA>..<reserved-1FADF>
 1FAE0..1FAE7;ID   # So     [8] MELTING FACE..BUBBLES
 1FAE8..1FAEF;ID   # Cn     [8] <reserved-1FAE8>..<reserved-1FAEF>
-1FAF0..1FAF6;ID   # So     [7] HAND WITH INDEX FINGER AND THUMB CROSSED..HEART HANDS
+1FAF0..1FAF6;EB   # So     [7] HAND WITH INDEX FINGER AND THUMB CROSSED..HEART HANDS
 1FAF7..1FAFF;ID   # Cn     [9] <reserved-1FAF7>..<reserved-1FAFF>
 1FB00..1FB92;AL   # So   [147] BLOCK SEXTANT-1..UPPER HALF INVERSE MEDIUM SHADE AND LOWER HALF BLOCK
 1FB94..1FBCA;AL   # So    [55] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..WHITE UP-POINTING CHEVRON

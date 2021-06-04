@@ -1,5 +1,5 @@
 # PropList-14.0.0.txt
-# Date: 2021-05-11, 21:19:38 GMT
+# Date: 2021-05-11, 21:19:38 GMT plus manual changes
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -54,6 +54,7 @@
 2E1A          ; Dash # Pd       HYPHEN WITH DIAERESIS
 2E3A..2E3B    ; Dash # Pd   [2] TWO-EM DASH..THREE-EM DASH
 2E40          ; Dash # Pd       DOUBLE HYPHEN
+2E5D          ; Dash # Pd       OBLIQUE HYPHEN
 301C          ; Dash # Pd       WAVE DASH
 3030          ; Dash # Pd       WAVY DASH
 30A0          ; Dash # Pd       KATAKANA-HIRAGANA DOUBLE HYPHEN
@@ -63,7 +64,7 @@ FE63          ; Dash # Pd       SMALL HYPHEN-MINUS
 FF0D          ; Dash # Pd       FULLWIDTH HYPHEN-MINUS
 10EAD         ; Dash # Pd       YEZIDI HYPHENATION MARK
 
-# Total code points: 29
+# Total code points: 30
 
 # ================================================
 
