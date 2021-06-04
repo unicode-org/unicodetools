@@ -24,13 +24,14 @@ import com.ibm.icu.text.UnicodeSet.EntryRange;
 public class ListFonts {
     private static final UnicodeSet NON_C = new UnicodeSet("[^[:c:]]");
     private static final GraphicsEnvironment LOCAL_GRAPHICS_ENVIRONMENT = GraphicsEnvironment.getLocalGraphicsEnvironment();
+    private static final String GEN_FONTS_DIR = Settings.Output.GEN_DIR + "fonts";
 
     public static void main(String[] args) throws IOException{
         String fonts[] = LOCAL_GRAPHICS_ENVIRONMENT.getAvailableFontFamilyNames();
         System.out.print("#fonts:\t" + fonts.length);
         UnicodeRelation<String> fontsForChars = new UnicodeRelation<>();
         UnicodeSet ascii = new UnicodeSet("[:ascii:]").freeze();
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "fonts", "fontContents.txt")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(GEN_FONTS_DIR, "fontContents.txt")) {
             for ( int i = 0; i < fonts.length; i++ ) {
                 Font font = new Font(fonts[i],0,24);
                 UnicodeSet uset = checkCanDisplay(font);
@@ -58,7 +59,7 @@ public class ListFonts {
             }
         }
 
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "fonts", "fontContentsMissing.txt")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(GEN_FONTS_DIR, "fontContentsMissing.txt")) {
             for (String value : missingForScripts.values()) {
                 UnicodeSet us = missingForScripts.getKeys(value);
                 out.println(value + "\t" + us.toPattern(false));
@@ -66,7 +67,7 @@ public class ListFonts {
         }
 
         System.out.println("#Missing:\t" + missing.size());
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "fonts", "fontContentsMissingByChar.txt")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(GEN_FONTS_DIR, "fontContentsMissingByChar.txt")) {
             for (Entry<String, Set<String>> entry : missingForScripts.keyValues()) {
                 String cp = entry.getKey();
                 out.println("U+" + Utility.hex(cp, ", U+") + "\t" + UCharacter.getName(cp,", ") + "\t" + CollectionUtilities.join(entry.getValue(), "; "));
@@ -75,7 +76,7 @@ public class ListFonts {
         
 
         System.out.println("#found:\t" + found.size());
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "fonts", "fontContentsByChar.txt")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(GEN_FONTS_DIR, "fontContentsByChar.txt")) {
             for (Entry<String, Set<String>> entry : fontsForChars.keyValues()) {
                 String cp = entry.getKey();
                 out.println("U+" + Utility.hex(cp, ", U+") + "\t" + UCharacter.getName(cp,", ") + "\t" + CollectionUtilities.join(entry.getValue(), "; "));

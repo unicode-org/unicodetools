@@ -27,17 +27,11 @@
 
 Eclipse > Debug Configurations > Arguments --> lower box "VM Arguments"
 
+In addition to the [regular VM arguments](../index.md) —
+
 Markus VM arguments for in-progress Unicode 13/emoji 13:
 ```
--ea
 -Demoji-beta=true
--DUVERSION=13.0.0
--DSVN_WORKSPACE=/usr/local/google/home/mscherer/svn.unitools/trunk
--DOTHER_WORKSPACE=/usr/local/google/home/mscherer/svn.unitools
--DUNICODETOOLS_DIR=/usr/local/google/home/mscherer/svn.unitools/trunk
--DUNICODE_DRAFT_DIR=/usr/local/google/home/mscherer/svn.unidraft/trunk
--DUCD_DIR=/usr/local/google/home/mscherer/svn.unitools/trunk/data
--DCLDR_DIR=/usr/local/google/home/mscherer/cldr/uni/src
 ```
 
 ## File Locations in the repo

@@ -76,29 +76,20 @@ public class Settings {
         public static final String DICT_DIR = DATA_DIR + "dict/";
     }
 
+    public static final class Images {
+        /** The root of the images repo. */
+        public static final String IMAGES_REPO_DIR = getRequiredPathAndFix("IMAGES_REPO_DIR");
+    }
+
     public static final class Output {
         /** The root of where we write output files. Most go into a "Generated" sub-folder. */
         public static final String UNICODETOOLS_OUTPUT_DIR =
                 getRequiredPathAndFix("UNICODETOOLS_OUTPUT_DIR");
-        // TODO: It seems confusing to switch GEN_DIR like this.
-        // Can we just always write to the same "Generated" location and
-        // update instructions to review diffs appropriately?
-        public static final String GEN_DIR_OLD = UNICODETOOLS_OUTPUT_DIR + "Generated/";
-        public static final String GEN_DIR =
-                Settings.BUILD_FOR_COMPARE ? Settings.UNICODE_DRAFT_PUBLIC : GEN_DIR_OLD;
-        public static final String BIN_DIR = GEN_DIR_OLD + "BIN/";
+        public static final String GEN_DIR = UNICODETOOLS_OUTPUT_DIR + "Generated/";
+        public static final String BIN_DIR = GEN_DIR + "BIN/";
         public static final String GEN_UCD_DIR = GEN_DIR + "ucd/";
         public static final String GEN_UCA_DIR = GEN_DIR + "UCA/";
     }
-
-    // TODO: Discuss what to do with this one.
-    // There is no longer a "draft" repo.
-    // This used to default to UNICODETOOLS_REPO_DIR + "emoji/docs"
-    // but there is no such sub-folder there.
-    // We probably need to reroute different users of this path to different new places.
-    public static final String UNICODE_DRAFT_DIRECTORY =
-            CldrUtility.getProperty("UNICODE_DRAFT_DIR", "/tmp/emoji/docs") + '/';
-    public static final String UNICODE_DRAFT_PUBLIC = UNICODE_DRAFT_DIRECTORY + "Public/";
 
     public static final String SRC_DIR = Utility.fixFileName("org/unicode/text") + "/";
     public static final String SRC_UCA_DIR = SRC_DIR + "UCA/";

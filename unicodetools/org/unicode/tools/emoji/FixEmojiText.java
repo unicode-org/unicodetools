@@ -64,7 +64,7 @@ public class FixEmojiText {
             if (!new File(fileName).exists()) {
                 fileName = DATA_SOURCE + "country-flags/ref_" + ID;
                 if (!new File(fileName).exists()) {
-                    fileName = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/images/ref/ref_" + ID;
+                    fileName = Settings.Images.IMAGES_REPO_DIR + "emoji/ref/ref_" + ID;
                 }
             }
             String uHex = "U+" + hex;

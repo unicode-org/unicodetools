@@ -41,17 +41,6 @@ release X.Y.Z, you need to:*
 This generates enums corresponding to the properties and property values. Do
 this whenever the PropertyAliases.txt or PropertyValueAliases.txt files change.
 
-Markus Eclipse VM arguments:
-
-```none
--ea
--DSVN_WORKSPACE=/usr/local/google/home/mscherer/svn.unitools/trunk
--DOTHER_WORKSPACE=/usr/local/google/home/mscherer/svn.unitools
--DUCD_DIR=/usr/local/google/home/mscherer/svn.unitools/trunk/data
--DCLDR_DIR=/usr/local/google/home/mscherer/cldr/uni/src
--DUNICODETOOLS_DIR=/usr/local/google/home/mscherer/svn.unitools/trunk
-```
-
 It will regenerate the following files (see [commit 2ff83c6](https://github.com/unicode-org/unicodetools/commit/2ff83c6a0d0eef7286e98c3b94b3de538b44e404) for examples of changes):
 
 *   [UcdProperty.java](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/org/unicode/props/UcdProperty.java)

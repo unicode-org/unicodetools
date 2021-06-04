@@ -21,11 +21,11 @@ import com.google.common.collect.LinkedHashMultimap;
 import com.ibm.icu.dev.util.UnicodeMap;
 
 public class CheckSecurityProposals {
-    private static final String SECURITY = Settings.UNICODE_DRAFT_PUBLIC + "security/";
+    private static final String SECURITY_DIR = Settings.UnicodeTools.DATA_DIR + "security/";
     private static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(Settings.latestVersion);
     private static final UnicodeMap<Age_Values> AGE = IUP.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
 
-    public static final Confusables CONFUSABLES = new Confusables(SECURITY + Settings.latestVersion);
+    public static final Confusables CONFUSABLES = new Confusables(SECURITY_DIR + Settings.latestVersion);
     public static final UnicodeMap<String> conMap = CONFUSABLES.getRawMapToRepresentative(Style.MA);
 
     public static Splitter TAB_SPLITTER = Splitter.on('\t').trimResults();

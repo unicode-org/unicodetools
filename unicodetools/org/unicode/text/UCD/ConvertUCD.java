@@ -267,7 +267,7 @@ public final class ConvertUCD implements UCD_Types {
 
         log = new PrintWriter(new BufferedWriter(
                 new OutputStreamWriter(
-                        new FileOutputStream(Settings.Output.GEN_DIR_OLD + "ConvertUCD-log.txt"),
+                        new FileOutputStream(Settings.Output.GEN_DIR + "ConvertUCD-log.txt"),
                         "UTF8"),
                         32*1024));
         log.write("\uFEFF"); // BOM
