@@ -1,6 +1,6 @@
 Generate: .
 CopyrightYear: 2021
-DeltaVersion: 16
+DeltaVersion: 17
 
 File: extra/ScriptNfkc
 Property: SPECIAL
@@ -52,10 +52,10 @@ File: ScriptExtensions
 # with more than one script, but with a limited number of scripts.
 # For each code point, there is one or more property values.  Each such value is a Script property value.
 # For more information, see:
-#   UAX #24, Unicode Script Property: http://www.unicode.org/reports/tr24/
+#   UAX #24, Unicode Script Property: https://www.unicode.org/reports/tr24/
 #     Especially the sections:
-#       http://www.unicode.org/reports/tr24/#Assignment_Script_Values
-#       http://www.unicode.org/reports/tr24/#Assignment_ScriptX_Values
+#       https://www.unicode.org/reports/tr24/#Assignment_Script_Values
+#       https://www.unicode.org/reports/tr24/#Assignment_ScriptX_Values
 #
 # Each Script_Extensions value in this file consists of a set
 # of one or more abbreviated Script property values. The ordering of the
@@ -123,7 +123,7 @@ Property: Block
 #         and underbars are ignored.
 #         For example, "Latin Extended-A" and "latin extended a" are equivalent.
 #         For more information on the comparison of property values, 
-#            see UAX #44: http://www.unicode.org/reports/tr44/
+#            see UAX #44: https://www.unicode.org/reports/tr44/
 #
 #  All block ranges start with a value where (cp MOD 16) = 0,
 #  and end with a value where (cp MOD 16) = 15. In other words,
@@ -152,7 +152,7 @@ Property:	Age
 # an expression such as "\p{age=3.0}" matches all of the code points
 # assigned in Version 3.0--that is, all the code points with a value
 # less than or equal to 3.0 for the Age property.
-# For more information, see [http://www.unicode.org/reports/tr18/].
+# For more information, see [https://www.unicode.org/reports/tr18/].
 Format: nameStyle=none noLabel skipValue=Unassigned valueStyle=short
 
 Value:	V1_1
@@ -230,19 +230,19 @@ Value:  V14_0
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class
-# Bidi Class (listing UnicodeData.txt, field 4: see UAX #44: http://www.unicode.org/reports/tr44/)
+# Bidi Class (listing UnicodeData.txt, field 4: see UAX #44: https://www.unicode.org/reports/tr44/)
 # Unlike other properties, unassigned code points in blocks 
 # reserved for right-to-left scripts are given either types R or AL.
 #
 # The unassigned code points that default to AL are in the ranges:
-#     [\u0600-\u07BF \u0860-\u086F \u08A0-\u08FF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF
+#     [\u0600-\u07BF \u0860-\u08FF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF
 #      \U00010D00-\U00010D3F \U00010F30-\U00010F6F
 #      \U0001EC70-\U0001ECBF \U0001ED00-\U0001ED4F \U0001EE00-\U0001EEFF]
 #
 #     This includes code points in the Arabic, Syriac, and Thaana blocks, among others.
 #
 # The unassigned code points that default to R are in the ranges:
-#     [\u0590-\u05FF \u07C0-\u085F \u0870-\u089F \uFB1D-\uFB4F
+#     [\u0590-\u05FF \u07C0-\u085F \uFB1D-\uFB4F
 #      \U00010800-\U00010CFF \U00010D40-\U00010F2F \U00010F70-\U00010FFF
 #      \U0001E800-\U0001EC6F \U0001ECC0-\U0001ECFF \U0001ED50-\U0001EDFF \U0001EF00-\U0001EFFF]
 #
@@ -262,11 +262,11 @@ Format:	valueStyle=short skipUnassigned=Left_To_Right
 
 File:	extracted/DerivedBinaryProperties
 Property:	Bidi_Mirrored
-# Bidi_Mirrored (listing UnicodeData.txt, field 9: see UAX #44: http://www.unicode.org/reports/tr44/)
+# Bidi_Mirrored (listing UnicodeData.txt, field 9: see UAX #44: https://www.unicode.org/reports/tr44/)
 
 File:	extracted/DerivedCombiningClass
 Property:	Canonical_Combining_Class
-# Combining Class (listing UnicodeData.txt, field 3: see UAX #44: http://www.unicode.org/reports/tr44/)
+# Combining Class (listing UnicodeData.txt, field 3: see UAX #44: https://www.unicode.org/reports/tr44/)
 Format: nameStyle=none valueStyle=short skipUnassigned=Not_Reordered
 
 File:	DerivedCoreProperties
@@ -397,7 +397,7 @@ Property:	Grapheme_Link
 File:	extracted/DerivedDecompositionType
 Property:	Decomposition_Type
 Format:	skipValue=None
-# Decomposition_Type (from UnicodeData.txt, field 5: see UAX #44: http://www.unicode.org/reports/tr44/)
+# Decomposition_Type (from UnicodeData.txt, field 5: see UAX #44: https://www.unicode.org/reports/tr44/)
 
 File:	extracted/DerivedEastAsianWidth
 Property:	East_Asian_Width
@@ -493,7 +493,7 @@ Property:   NFKC_Casefold
 #   It is constructed by applying NFKC, CaseFolding, and removal of Default_Ignorable_Code_Points.
 #   The process of applying these transformations is repeated until a stable result is produced.
 #   WARNING: Application to STRINGS must apply NFC after mapping each character, because characters may interact.
-#            For more information, see [http://www.unicode.org/reports/tr44/]
+#            For more information, see [https://www.unicode.org/reports/tr44/]
 # Omitted code points are unchanged by this mapping.
 # @missing: 0000..10FFFF; NFKC_CF; <code point>
 Format: nameStyle=short skipValue=<codepoint>
@@ -721,10 +721,10 @@ Property: SPECIAL
 
 File:	Scripts
 # For more information, see:
-#   UAX #24, Unicode Script Property: http://www.unicode.org/reports/tr24/
+#   UAX #24, Unicode Script Property: https://www.unicode.org/reports/tr24/
 #     Especially the sections:
-#       http://www.unicode.org/reports/tr24/#Assignment_Script_Values
-#       http://www.unicode.org/reports/tr24/#Assignment_ScriptX_Values
+#       https://www.unicode.org/reports/tr24/#Assignment_Script_Values
+#       https://www.unicode.org/reports/tr24/#Assignment_ScriptX_Values
 #
 Property:	Script
 Format:	nameStyle=none skipValue=Unknown

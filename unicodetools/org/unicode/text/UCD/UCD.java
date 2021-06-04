@@ -438,7 +438,7 @@ public final class UCD implements UCD_Types {
             blockData.keySet("Cypriot_Syllabary",BIDI_R_SET);
             blockData.keySet("Kharoshthi",BIDI_R_SET);
 
-            // Update the derived bidi class to reflect the change of U+08A0..U+08FF and U+1EE00..U+1EEFF to "AL". Update
+            // Update the derived bidi class to reflect the change of U+08A0..U+08FF and U+1EE00..U+1EEFF to "AL".
 
             blockData.keySet("Arabic",BIDI_AL_SET);
 
@@ -452,35 +452,6 @@ public final class UCD implements UCD_Types {
             blockData.keySet("Thaana",BIDI_AL_SET);
             blockData.keySet("Arabic_Presentation_Forms_A",BIDI_AL_SET);
             blockData.keySet("Arabic_Presentation_Forms_B",BIDI_AL_SET);
-            /*
-            int blockId = 0;
-            BlockData blockData = new BlockData();
-            UnicodeSet s = blockData.get
-            while (getBlockData(blockId++, blockData)) {
-                if (blockData.name.equals("Hebrew")
-                 || blockData.name.equals("Cypriot_Syllabary")
-                ) {
-                    System.out.println("R:  Adding " + blockData.name + ": "
-                        + Utility.hex(blockData.start)
-                        + ".." + Utility.hex(blockData.end));
-                    BIDI_R_SET.add(blockData.start, blockData.end);
-                } else if (blockData.name.equals("Arabic")
-                 || blockData.name.equals("Syriac")
-                 || blockData.name.equals("Thaana")
-                 || blockData.name.equals("Arabic_Presentation_Forms-A")
-                 || blockData.name.equals("Arabic_Presentation_Forms-B")
-                ) {
-                    System.out.println("AL: Adding " + blockData.name + ": "
-                        + Utility.hex(blockData.start)
-                        + ".." + Utility.hex(blockData.end));
-                    BIDI_AL_SET.add(blockData.start, blockData.end);
-                } else {
-                    if (false) System.out.println("SKIPPING: " + blockData.name + ": "
-                        + Utility.hex(blockData.start)
-                        + ".." + Utility.hex(blockData.end));
-                }
-            }
-             */
 
             if (SHOW_LOADING) {
                 System.out.println("BIDI_R_SET: " + BIDI_R_SET);
@@ -488,35 +459,34 @@ public final class UCD implements UCD_Types {
             }
 
             final UnicodeSet BIDI_R_Delta = new UnicodeSet()
-            .add(0x07C0,0x89F)
-            .add(0xFB1D, 0xFB4F)
-            .add(0x10800, 0x10FFF)
-            ;
+                .add(0x07C0,0x89F)
+                .add(0xFB1D, 0xFB4F)
+                .add(0x10800, 0x10FFF);
             if (compositeVersion >= 0x50200) {
                 BIDI_R_Delta.add(0x1E800, 0x1EFFF);
             }
             if (versionInfo.getMajor() >= 10) {
                 // Unicode 10: Syriac Supplement block R->AL
-                BIDI_R_Delta.remove(0x0860, 0x086F);
                 BIDI_AL_SET.add(0x0860, 0x086F);
             }
             if (versionInfo.getMajor() >= 11) {
                 // Unicode 11: Hanifi Rohingya, Sogdian, Indic Siyaq Numbers blocks R->AL
-            	// Note: Old Sogdian is R
-                BIDI_R_Delta.remove(0x10D00, 0x10D3F);
-                BIDI_R_Delta.remove(0x10F30, 0x10F6F);
-                BIDI_R_Delta.remove(0x1EC70, 0x1ECBF);
+                // Note: Old Sogdian is R
                 BIDI_AL_SET.add(0x10D00, 0x10D3F);
                 BIDI_AL_SET.add(0x10F30, 0x10F6F);
                 BIDI_AL_SET.add(0x1EC70, 0x1ECBF);
             }
             if (versionInfo.getMajor() >= 12) {
                 // Unicode 12:
-            	// The Ottoman Siyaq Numbers block defaults to bc=AL, similar to Indic Siyaq.
-                BIDI_R_Delta.remove(0x1ED00, 0x1ED4F);
+                // The Ottoman Siyaq Numbers block defaults to bc=AL, similar to Indic Siyaq.
                 BIDI_AL_SET.add(0x1ED00, 0x1ED4F);
             }
-            BIDI_R_Delta.removeAll(BIDI_R_SET);
+            if (versionInfo.getMajor() >= 14) {
+                // Unicode 14:
+                // New block 0870..089F "Arabic Extended-B" defaults to bc=AL.
+                blockData.keySet("Arabic_Extended_B", BIDI_AL_SET);
+            }
+            BIDI_R_Delta.removeAll(BIDI_R_SET).removeAll(BIDI_AL_SET);
             if (SHOW_LOADING) {
                 System.out.println("R: Adding " + BIDI_R_Delta);
             }

@@ -367,10 +367,14 @@ If there are new break rules (or changes), see
 2.  Run>Run As... Java Application\
     Will create the following file of results:
     ```
-    ...workspace/Generated/UnicodeTestResults.html
+    {Generated}/UnicodeTestResults.txt
     ```
 
-    And on the console will list whether any problems are found. Thus in the
+    Options:
+    1.  -r Print the failures as a range list.
+    2.  -fxxx Use a different input file, such as -fInvariantTest.txt
+
+    The console output shows whether any problems are found. Thus in the
     following case there was one failure:
     ```
     ParseErrorCount=0
@@ -423,9 +427,9 @@ If there are new break rules (or changes), see
         # Total code points: 12089
         **** END Error Info ****
         ```
-6.  Options:
-    1.  -r Print the failures as a range list.
-    2.  -fxxx Use a different input file, such as -fInvariantTest.txt
+6.  The input file is [unicodetools/org/unicode/text/UCD/UnicodeInvariantTest.txt](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/org/unicode/text/UCD/UnicodeInvariantTest.txt).
+    1.  Some failures are expected for a new Unicode version, or new RTL blocks, etc. Adjust the input file as necessary.
+    1.  For other failures, adjust the character properties.
 
 ### Options
 
