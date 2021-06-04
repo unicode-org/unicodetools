@@ -1,11 +1,11 @@
 ﻿# confusablesSummary.txt
-# Date: 2020-02-13, 01:38:49 GMT
-# © 2020 Unicode®, Inc.
+# Date: 2021-05-29, 22:09:29 GMT
+# © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Unicode Security Mechanisms for UTS #39
-# Version: 13.0.0
+# Version: 14.0.0
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39
 #
@@ -91,7 +91,7 @@
 ←	(‎ ʽ ‎)	02BD	 MODIFIER LETTER REVERSED COMMA	# →‘→
 ←	(‎ ʾ ‎)	02BE	 MODIFIER LETTER RIGHT HALF RING	# →ʼ→→′→
 ←	(‎ ˈ ‎)	02C8	 MODIFIER LETTER VERTICAL LINE
-←	(‎ ˊ ‎)	02CA	 MODIFIER LETTER ACUTE ACCENT	# →΄→→ʹ→
+←	(‎ ˊ ‎)	02CA	 MODIFIER LETTER ACUTE ACCENT	# →ʹ→→′→
 ←	(‎ ˋ ‎)	02CB	 MODIFIER LETTER GRAVE ACCENT	# →｀→→‘→
 ←	(‎ ߴ ‎)	07F4	 NKO HIGH TONE APOSTROPHE	# →’→
 ←	(‎ ߵ ‎)	07F5	 NKO LOW TONE APOSTROPHE	# →‘→
@@ -3438,7 +3438,7 @@
 ←	(‎ ӏ ‎)	04CF	 CYRILLIC SMALL LETTER PALOCHKA	# →ı→
 ←	(‎ Ꭵ ‎)	13A5	 CHEROKEE LETTER V
 ←	(‎ ꙇ ‎)	A647	 CYRILLIC SMALL LETTER IOTA	# →ι→
-←	(‎ ⍳ ‎)	2373	 APL FUNCTIONAL SYMBOL IOTA	# →ɩ→
+←	(‎ ⍳ ‎)	2373	 APL FUNCTIONAL SYMBOL IOTA	# →ι→
 ←	(‎ 𑣃 ‎)	118C3	 WARANG CITI SMALL LETTER YU	# →ι→
 ←	(‎ ꭵ ‎)	AB75	 CHEROKEE SMALL LETTER V
 ←	(‎ ⅰ ‎)	2170	 SMALL ROMAN NUMERAL ONE
@@ -4353,10 +4353,11 @@
 ←	(‎ ◦̈ ‎)	25E6 0308	 WHITE BULLET, COMBINING DIAERESIS	# →∘̈→
 ←	(‎ ⍤ ‎)	2364	 APL FUNCTIONAL SYMBOL JOT DIAERESIS	# →◦̈→→∘̈→
 
-#	°̲	○̲	⍜
+#	°̲	∘̲	○̲	⍜
 	(‎ °̲ ‎)	00B0 0332	 DEGREE SIGN, COMBINING LOW LINE
-←	(‎ ○̲ ‎)	25CB 0332	 WHITE CIRCLE, COMBINING LOW LINE
-←	(‎ ⍜ ‎)	235C	 APL FUNCTIONAL SYMBOL CIRCLE UNDERBAR	# →○̲→
+←	(‎ ∘̲ ‎)	2218 0332	 RING OPERATOR, COMBINING LOW LINE
+←	(‎ ○̲ ‎)	25CB 0332	 WHITE CIRCLE, COMBINING LOW LINE	# →∘̲→
+←	(‎ ⍜ ‎)	235C	 APL FUNCTIONAL SYMBOL CIRCLE UNDERBAR	# →○̲→→∘̲→
 
 #	μ	µ	𝛍	𝜇	𝝁	𝝻	𝞵
 	(‎ µ ‎)	00B5	 MICRO SIGN
@@ -17202,5 +17203,5 @@
 	(‎ 𪘀 ‎)	2A600	 CJK UNIFIED IDEOGRAPH-2A600
 ←	(‎ 𪘀 ‎)	2FA1D	 CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# total : 7247
+# total : 7248
 

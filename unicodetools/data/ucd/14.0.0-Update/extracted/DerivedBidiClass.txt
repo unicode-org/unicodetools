@@ -1,5 +1,5 @@
 # DerivedBidiClass-14.0.0.txt
-# Date: 2021-05-28, 21:49:02 GMT
+# Date: 2021-06-04, 02:19:13 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -9,19 +9,19 @@
 
 # ================================================
 
-# Bidi Class (listing UnicodeData.txt, field 4: see UAX #44: http://www.unicode.org/reports/tr44/)
+# Bidi Class (listing UnicodeData.txt, field 4: see UAX #44: https://www.unicode.org/reports/tr44/)
 # Unlike other properties, unassigned code points in blocks
 # reserved for right-to-left scripts are given either types R or AL.
 #
 # The unassigned code points that default to AL are in the ranges:
-#     [\u0600-\u07BF \u0860-\u086F \u08A0-\u08FF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF
+#     [\u0600-\u07BF \u0860-\u08FF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF
 #      \U00010D00-\U00010D3F \U00010F30-\U00010F6F
 #      \U0001EC70-\U0001ECBF \U0001ED00-\U0001ED4F \U0001EE00-\U0001EEFF]
 #
 #     This includes code points in the Arabic, Syriac, and Thaana blocks, among others.
 #
 # The unassigned code points that default to R are in the ranges:
-#     [\u0590-\u05FF \u07C0-\u085F \u0870-\u089F \uFB1D-\uFB4F
+#     [\u0590-\u05FF \u07C0-\u085F \uFB1D-\uFB4F
 #      \U00010800-\U00010CFF \U00010D40-\U00010F2F \U00010F70-\U00010FFF
 #      \U0001E800-\U0001EC6F \U0001ECC0-\U0001ECFF \U0001ED50-\U0001EDFF \U0001EF00-\U0001EFFF]
 #
@@ -1115,8 +1115,6 @@ F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 085C..085D    ; R # Cn   [2] <reserved-085C>..<reserved-085D>
 085E          ; R # Po       MANDAIC PUNCTUATION
 085F          ; R # Cn       <reserved-085F>
-088F          ; R # Cn       <reserved-088F>
-0892..0897    ; R # Cn   [6] <reserved-0892>..<reserved-0897>
 200F          ; R # Cf       RIGHT-TO-LEFT MARK
 FB1D          ; R # Lo       HEBREW LETTER YOD WITH HIRIQ
 FB1F..FB28    ; R # Lo  [10] HEBREW LIGATURE YIDDISH YOD YOD PATAH..HEBREW LETTER WIDE TAV
@@ -1254,7 +1252,7 @@ FB46..FB4F    ; R # Lo  [10] HEBREW LETTER TSADI WITH DAGESH..HEBREW LIGATURE AL
 1ED50..1EDFF  ; R # Cn [176] <reserved-1ED50>..<reserved-1EDFF>
 1EF00..1EFFF  ; R # Cn [256] <reserved-1EF00>..<reserved-1EFFF>
 
-# Total code points: 3718
+# Total code points: 3711
 
 # ================================================
 
@@ -2343,6 +2341,8 @@ E0100..E01EF  ; NSM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 0870..0887    ; AL # Lo  [24] ARABIC LETTER ALEF WITH ATTACHED FATHA..ARABIC BASELINE ROUND DOT
 0888          ; AL # Sk       ARABIC RAISED ROUND DOT
 0889..088E    ; AL # Lo   [6] ARABIC LETTER NOON WITH INVERTED SMALL V..ARABIC VERTICAL TAIL
+088F          ; AL # Cn       <reserved-088F>
+0892..0897    ; AL # Cn   [6] <reserved-0892>..<reserved-0897>
 08A0..08C8    ; AL # Lo  [41] ARABIC LETTER BEH WITH SMALL V BELOW..ARABIC LETTER GRAF
 08C9          ; AL # Lm       ARABIC SMALL FARSI YEH
 FB50..FBB1    ; AL # Lo  [98] ARABIC LETTER ALEF WASLA ISOLATED FORM..ARABIC LETTER YEH BARREE WITH HAMZA ABOVE FINAL FORM
@@ -2446,7 +2446,7 @@ FEFD..FEFE    ; AL # Cn   [2] <reserved-FEFD>..<reserved-FEFE>
 1EEBC..1EEEF  ; AL # Cn  [52] <reserved-1EEBC>..<reserved-1EEEF>
 1EEF2..1EEFF  ; AL # Cn  [14] <reserved-1EEF2>..<reserved-1EEFF>
 
-# Total code points: 1701
+# Total code points: 1708
 
 # ================================================
 

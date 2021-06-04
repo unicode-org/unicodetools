@@ -1,5 +1,5 @@
 # LineBreak-14.0.0.txt
-# Date: 2021-05-24, 15:56:35 GMT [KW, LI] plus manual changes
+# Date: 2021-06-03, 19:03:00 GMT [KW, LI]
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -3518,7 +3518,7 @@ FFFD;AI           # So         REPLACEMENT CHARACTER
 1FAAD..1FAAF;ID   # Cn     [3] <reserved-1FAAD>..<reserved-1FAAF>
 1FAB0..1FABA;ID   # So    [11] FLY..NEST WITH EGGS
 1FABB..1FABF;ID   # Cn     [5] <reserved-1FABB>..<reserved-1FABF>
-1FAC0..1FAC2;ID   # So     [3] ANATOMICAL HEART..?
+1FAC0..1FAC2;ID   # So     [3] ANATOMICAL HEART..PEOPLE HUGGING
 1FAC3..1FAC5;EB   # So     [3] PREGNANT MAN..PERSON WITH CROWN
 1FAC6..1FACF;ID   # Cn    [10] <reserved-1FAC6>..<reserved-1FACF>
 1FAD0..1FAD9;ID   # So    [10] BLUEBERRIES..JAR

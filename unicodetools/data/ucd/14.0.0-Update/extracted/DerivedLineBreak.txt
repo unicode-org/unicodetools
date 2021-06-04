@@ -1,5 +1,5 @@
 # DerivedLineBreak-14.0.0.txt
-# Date: 2021-05-28, 21:49:07 GMT
+# Date: 2021-06-04, 02:19:19 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1808,13 +1808,12 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 1FAAD..1FAAF  ; ID # Cn   [3] <reserved-1FAAD>..<reserved-1FAAF>
 1FAB0..1FABA  ; ID # So  [11] FLY..NEST WITH EGGS
 1FABB..1FABF  ; ID # Cn   [5] <reserved-1FABB>..<reserved-1FABF>
-1FAC0..1FAC5  ; ID # So   [6] ANATOMICAL HEART..PERSON WITH CROWN
+1FAC0..1FAC2  ; ID # So   [3] ANATOMICAL HEART..PEOPLE HUGGING
 1FAC6..1FACF  ; ID # Cn  [10] <reserved-1FAC6>..<reserved-1FACF>
 1FAD0..1FAD9  ; ID # So  [10] BLUEBERRIES..JAR
 1FADA..1FADF  ; ID # Cn   [6] <reserved-1FADA>..<reserved-1FADF>
 1FAE0..1FAE7  ; ID # So   [8] MELTING FACE..BUBBLES
 1FAE8..1FAEF  ; ID # Cn   [8] <reserved-1FAE8>..<reserved-1FAEF>
-1FAF0..1FAF6  ; ID # So   [7] HAND WITH INDEX FINGER AND THUMB CROSSED..HEART HANDS
 1FAF7..1FAFF  ; ID # Cn   [9] <reserved-1FAF7>..<reserved-1FAFF>
 1FC00..1FFFD  ; ID # Cn [1022] <reserved-1FC00>..<reserved-1FFFD>
 20000..2A6DF  ; ID # Lo [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
@@ -1832,7 +1831,7 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 30000..3134A  ; ID # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 3134B..3FFFD  ; ID # Cn [60595] <reserved-3134B>..<reserved-3FFFD>
 
-# Total code points: 172466
+# Total code points: 172456
 
 # ================================================
 
@@ -3761,8 +3760,10 @@ FF70          ; CJ # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND MARK
 1F9BB         ; EB # So       EAR WITH HEARING AID
 1F9CD..1F9CF  ; EB # So   [3] STANDING PERSON..DEAF PERSON
 1F9D1..1F9DD  ; EB # So  [13] ADULT..ELF
+1FAC3..1FAC5  ; EB # So   [3] PREGNANT MAN..PERSON WITH CROWN
+1FAF0..1FAF6  ; EB # So   [7] HAND WITH INDEX FINGER AND THUMB CROSSED..HEART HANDS
 
-# Total code points: 122
+# Total code points: 132
 
 # ================================================
 

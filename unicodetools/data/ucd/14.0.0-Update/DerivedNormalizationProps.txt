@@ -1,5 +1,5 @@
 # DerivedNormalizationProps-14.0.0.txt
-# Date: 2021-05-11, 21:19:36 GMT
+# Date: 2021-06-04, 02:19:20 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -2900,7 +2900,7 @@ FFE3          ; Expands_On_NFKC # Sk       FULLWIDTH MACRON
 #   It is constructed by applying NFKC, CaseFolding, and removal of Default_Ignorable_Code_Points.
 #   The process of applying these transformations is repeated until a stable result is produced.
 #   WARNING: Application to STRINGS must apply NFC after mapping each character, because characters may interact.
-#            For more information, see [http://www.unicode.org/reports/tr44/]
+#            For more information, see [https://www.unicode.org/reports/tr44/]
 # Omitted code points are unchanged by this mapping.
 # @missing: 0000..10FFFF; NFKC_CF; <code point>
 

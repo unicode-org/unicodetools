@@ -1,5 +1,5 @@
 # DerivedCombiningClass-14.0.0.txt
-# Date: 2021-05-28, 21:49:03 GMT
+# Date: 2021-06-04, 02:19:15 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -9,7 +9,7 @@
 
 # ================================================
 
-# Combining Class (listing UnicodeData.txt, field 3: see UAX #44: http://www.unicode.org/reports/tr44/)
+# Combining Class (listing UnicodeData.txt, field 3: see UAX #44: https://www.unicode.org/reports/tr44/)
 
 #  All code points not explicitly listed for Canonical_Combining_Class
 #  have the value Not_Reordered (0).
