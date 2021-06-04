@@ -1,5 +1,5 @@
 # DerivedAge-14.0.0.txt
-# Date: 2021-05-11, 21:19:32 GMT
+# Date: 2021-06-04, 02:19:11 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -40,7 +40,7 @@
 # an expression such as "\p{age=3.0}" matches all of the code points
 # assigned in Version 3.0--that is, all the code points with a value
 # less than or equal to 3.0 for the Age property.
-# For more information, see [http://www.unicode.org/reports/tr18/].
+# For more information, see [https://www.unicode.org/reports/tr18/].
 
 #  All code points not explicitly listed for Age
 #  have the value Unassigned (NA).

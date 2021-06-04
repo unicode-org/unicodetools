@@ -1,5 +1,5 @@
 # DerivedDecompositionType-14.0.0.txt
-# Date: 2021-03-08, 06:22:29 GMT
+# Date: 2021-06-04, 02:19:17 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -9,7 +9,7 @@
 
 # ================================================
 
-# Decomposition_Type (from UnicodeData.txt, field 5: see UAX #44: http://www.unicode.org/reports/tr44/)
+# Decomposition_Type (from UnicodeData.txt, field 5: see UAX #44: https://www.unicode.org/reports/tr44/)
 
 #  All code points not explicitly listed for Decomposition_Type
 #  have the value None.
