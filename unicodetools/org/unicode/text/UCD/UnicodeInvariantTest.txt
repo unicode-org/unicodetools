@@ -680,25 +680,20 @@ $punct  ⊇ [[\u0021-\u007E] - [0-9 A-Z a-z]]
 
 # Map tests
 
-# Verify that the mappings in Case_Folding for the old characters, 
-# are the same as the previous version's
+# Verify that the mappings in Case_Folding for the old characters
+# are the same as the previous version's.
+# TODO: Update the versions each time.
+# TODO: Make the UnicodeMapParser understand versioned properties (and \P not just \p)
+# so that we can intersect the left side with \P{U-1:gc=Cn}
+# (assigned characters in the previous version) for automatic updates.
+# BUG: It looks like \p{age=13.0} includes only the characters *added new* in 13.0,
+# not also all of the earlier ones.
+# We should be able to use:
+# Map {\m{Case_Folding}&\P{U-1:gc=Cn}} = {\m{*Case_Folding}]}
 
-Map {\m{Case_Folding}&\p{age=9.0}} = {\m{*Case_Folding}&\p{age=9.0}}
+Map {\m{Case_Folding}&[^\p{age=14.0}]} = {\m{*Case_Folding}&[^\p{age=14.0}]}
 
 # The following are 'red flag' tests, just so that we review the changes and make sure they are ok.
-
-# Verify that the mappings in kMandarin
-# are the same as the last version's
-# Once they are checked, reset the exceptions (in [...]) so that no warning is given
-
-Map {\m{kMandarin}} = {\m{*kMandarin}}
-# 14.0: no kMandarin changes
-# 13.0 updated exclusions:
-#    - added to the 13.0 exclusions: kMandarin readings added, changed, or removed in 13.0 (confirmed):
-#        - added in 13.0: 3D0E, 3E06, 44EC, etc. (exclude from \m{kMandarin})
-#        - changed in 13.0: 4B78, 5A47, 5F6F, etc. (exclude from both)
-#        - removed in 13.0: 208E1, 2589F, 258F9, etc. (exclude from \m{*kMandarin})
-#    - deleted no exclusions: Unihan was the same in 12.0 and 12.1
 
 # Ideographic invariants
 
