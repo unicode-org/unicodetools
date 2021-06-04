@@ -352,8 +352,8 @@ public class Confusables {
      * Write out the whole-script confusables data.
      */
     public static void main(String[] args) throws IOException {
-        final String SECURITY_PUBLIC = Settings.UNICODE_DRAFT_PUBLIC + "security/";
-        final Confusables CONFUSABLES = new Confusables(SECURITY_PUBLIC + Settings.latestVersion);
+        final String securityDir = Settings.UnicodeTools.DATA_DIR + "security/";
+        final Confusables CONFUSABLES = new Confusables(securityDir + Settings.latestVersion);
         try (PrintWriter pw = FileUtilities.openUTF8Writer(Settings.Output.GEN_UCD_DIR, "confusablesWholeScript.txt")) {
             CONFUSABLES.print(pw);
             pw.flush();

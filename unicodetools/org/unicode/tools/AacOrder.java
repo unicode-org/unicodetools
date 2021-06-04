@@ -103,7 +103,7 @@ public class AacOrder {
         if (SORTED_ALL_CHARS_SET.size() != ALLOWED.size()) {
             throw new IllegalArgumentException("Bad size");
         }
-        String outputDir = args.length == 1 ? args[0] : Settings.UNICODE_DRAFT_DIRECTORY + "consortium/";
+        String outputDir = args.length == 1 ? args[0] : Settings.Output.GEN_DIR + "consortium/";
         try (PrintWriter outRanges = FileUtilities.openUTF8Writer(outputDir, "aac-order-ranges.txt");
                 PrintWriter outEach = FileUtilities.openUTF8Writer(outputDir, "aac-order.txt")
                 ) {

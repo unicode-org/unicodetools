@@ -47,7 +47,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
 public class WriteCharts implements UCD_Types {
-    static final String GEN_CHARTS_DIR = Settings.Output.GEN_DIR_OLD + "charts/";
+    static final String GEN_CHARTS_DIR = Settings.Output.GEN_DIR + "charts/";
 
     static boolean HACK_KANA = false;
 

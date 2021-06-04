@@ -23,6 +23,7 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class HanFrequencies {
+    private static final String GEN_HANFREQ_DIR = Settings.Output.GEN_DIR + "/hanfrequency";
 
     public static final UnicodeSet HAN = new UnicodeSet("[[:ideographic:][:sc=han:]]");
 
@@ -37,7 +38,7 @@ public class HanFrequencies {
     }
 
     private static void generateReadings() throws IOException {
-        final BufferedReader freq = FileUtilities.openUTF8Reader(Settings.Output.GEN_DIR + "/hanfrequency", "unifiedZh.txt");
+        final BufferedReader freq = FileUtilities.openUTF8Reader(GEN_HANFREQ_DIR, "unifiedZh.txt");
         final UnicodeMap<Integer> rank = new UnicodeMap<Integer>();
         int count = 0;
         while (true) {
@@ -100,7 +101,7 @@ public class HanFrequencies {
         }
         readings.close();
 
-        final PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "/hanfrequency", "han-reading-diff.html");
+        final PrintWriter out = FileUtilities.openUTF8Writer(GEN_HANFREQ_DIR, "han-reading-diff.html");
         //PrintStream out = System.out;
         final ReadingRows[] values = ReadingRows.values();
         out.println("<html><body><table>");
@@ -139,7 +140,7 @@ public class HanFrequencies {
     }
 
     private static void showInterleaved() {
-        final PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(Settings.Output.GEN_DIR + "/hanfrequency",
+        final PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(GEN_HANFREQ_DIR,
                 "unifiedZh.txt", org.unicode.text.utility.Utility.UTF8_WINDOWS);
 
         final LinkedHashMap<String, Integer> rank1 = getFilteredList("zh");
@@ -189,7 +190,7 @@ public class HanFrequencies {
 
     private static void show(String locale) {
         System.out.println("Writing:\t" + locale);
-        final PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(Settings.Output.GEN_DIR + "/hanfrequency",
+        final PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(GEN_HANFREQ_DIR,
                 locale + ".txt", org.unicode.text.utility.Utility.UTF8_WINDOWS);
         final Counter<Integer> counter = CharacterFrequency.getCodePointCounter(locale, true);
         long total = 0;

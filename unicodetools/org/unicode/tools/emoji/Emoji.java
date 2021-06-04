@@ -178,7 +178,7 @@ public class Emoji {
     //public static final String TR51_SVN_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/";
     //public static final String TR51_PREFIX = IS_BETA ? "internal-beta/" : "internal/";
 
-    public static final String EMOJI_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/" + (Emoji.ABBR ? "🏴" : "");
+    public static final String EMOJI_DIR = Settings.Output.GEN_DIR + "emoji/" + (Emoji.ABBR ? "🏴" : "");
     public static final String CHARTS_DIR = EMOJI_DIR + "charts-" + VERSION_STRING  + "/";
     public static final String FUTURE_DIR = EMOJI_DIR + "future" + "/";
 

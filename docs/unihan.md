@@ -16,16 +16,7 @@ provide overrides for bug fixes.
 change the data any more because the Unihan data was updated. Probably do this
 in the tool: Detect that an override does not change the data.
 
-Run org.unicode.draft.GenerateUnihanCollators with VM arguments:
-```
--ea
--DSVN_WORKSPACE=/usr/local/google/home/mscherer/svn.unitools/trunk
--DOTHER_WORKSPACE=/usr/local/google/home/mscherer/svn.unitools
--DUCD_DIR=/usr/local/google/home/mscherer/svn.unitools/trunk/data
--DCLDR_DIR=/usr/local/google/home/mscherer/svn.cldr/uni10
--DUVERSION=10.0.0
-```
-
+Run `org.unicode.draft.GenerateUnihanCollators`.
 This creates various files in $CLDR_DIR/../Generated/cldr/cldr-tmp/dropbox/han
 
 Many of these are log files or showing fixes to properties. The important

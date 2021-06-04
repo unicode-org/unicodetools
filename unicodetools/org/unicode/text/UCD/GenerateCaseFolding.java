@@ -49,7 +49,7 @@ public class GenerateCaseFolding implements UCD_Types {
     public static void makeCaseFold(boolean normalized) throws java.io.IOException {
         PICK_SHORT = NF_CLOSURE = normalized;
 
-        log = Utility.openPrintWriter(Settings.Output.GEN_DIR_OLD + "/log", "CaseFoldingLog" + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".txt", Utility.LATIN1_UNIX);
+        log = Utility.openPrintWriter(Settings.Output.GEN_DIR + "/log", "CaseFoldingLog" + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".txt", Utility.LATIN1_UNIX);
         System.out.println("Writing Log: " + "CaseFoldingLog" + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".txt");
 
         System.out.println("Making Full Data");
@@ -549,7 +549,7 @@ public class GenerateCaseFolding implements UCD_Types {
             suffix2 = "-Normalized";
         }
 
-        final PrintWriter log = Utility.openPrintWriter(Settings.Output.GEN_DIR_OLD, "log/SpecialCasingExceptions"
+        final PrintWriter log = Utility.openPrintWriter(Settings.Output.GEN_DIR, "log/SpecialCasingExceptions"
         + suffix2 + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".txt", Utility.LATIN1_UNIX);
 
         for (int ch = 0; ch <= 0x10FFFF; ++ch) {

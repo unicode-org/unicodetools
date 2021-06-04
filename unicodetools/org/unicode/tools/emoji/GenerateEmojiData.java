@@ -40,8 +40,8 @@ import com.ibm.icu.util.VersionInfo;
 public class GenerateEmojiData {
     private static final VersionInfo DATA_VERSION_TO_GENERATE = EmojiData.EMOJI_DATA.getVersion();
     private static final String VERSION_STRING = DATA_VERSION_TO_GENERATE.getVersionString(2, 2);
-    
-    public static final String OUTPUT_DIR_BASE = Settings.UNICODE_DRAFT_DIRECTORY + "Public/emoji/";
+
+    public static final String OUTPUT_DIR_BASE = Settings.Output.GEN_DIR + "emoji/";
     public static String OUTPUT_DIR = OUTPUT_DIR_BASE + VERSION_STRING;
 
     private static final String ORDERING_NOTE = "#\n"
@@ -373,10 +373,12 @@ public class GenerateEmojiData {
 	    }
 	}
 
-	if (DO_TAGS) {
-	    printer.setFlat(true);
-	    try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr52/",
-		    "emoji-tags.txt")) {
+        if (DO_TAGS) {
+            // TODO: Probably delete this code, since UTR #52 has been withdrawn or suspended.
+            printer.setFlat(true);
+            try (PrintWriter out = FileUtilities.openUTF8Writer(
+                    Settings.Output.GEN_DIR + "used-to-go-into-draft-repo/reports/tr52/",
+                    "emoji-tags.txt")) {
 		out.println(Utility.getBaseDataHeader("emoji-tags", 52, "Emoji Data", VERSION_STRING));
 		List<String> type_fields = Arrays.asList("Emoji_Flag_Base", "Emoji_Gender_Base", "Emoji_Hair_Base",
 			"Emoji_Direction_Base");

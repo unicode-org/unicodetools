@@ -58,9 +58,9 @@ can be used to:
         Adjust the paths to your workspace.
         ```
         -DCLDR_DIR=/usr/local/google/home/mscherer/cldr/uni/src
+        -DIMAGES_REPO_DIR=/usr/local/google/home/mscherer/images/mine/src
         -DUNICODETOOLS_REPO_DIR=/usr/local/google/home/mscherer/unitools/mine/src
         -DUNICODETOOLS_OUTPUT_DIR=/usr/local/google/home/mscherer/unitools/mine
-        -DUNICODE_DRAFT_DIR=/usr/local/google/home/mscherer/svn.unidraft/trunk/TODO
         -DUVERSION=14.0.0
         ```
     4.  Please also use the VM argument `-ea` (enable assertions) in your Preferences
@@ -85,7 +85,7 @@ To generate new data files, you can run the `org.unicode.text.UCD.Main` class
 (yes, the `Main` class has a `main()` function)
 with program arguments `build MakeUnicodeFiles`. You may optionally include e.g.
 `version 14.0.0` if you wish to just generate the files for a single version.
-Make sure you have the `-DGEN_DIR=...` etc. VM arguments set up as described above.
+Make sure you have the VM arguments set up as described above.
 
 ## Updating to a new Unicode version
 

@@ -434,13 +434,8 @@ settings:
 *   On the Main tab, check Stop in main (for debugging).
 *   On the Arguments tab, set Program arguments: build MakeUnicodeFiles.
 *   On the Arguments tab, set VM arguments with the directories where
-    unicodetools-trunk and cldr-trunk were created, e.g.,
-    ```
-    -DOTHER_WORKSPACE=C:\Work\svn\unicodetools-trunk
-    -DSVN_WORKSPACE=C:\Work\svn\unicodetools-trunk\unicodetools
-    -DUCD_DIR=C:\Work\svn\unicodetools-trunk\unicodetools\data
-    -DCLDR_DIR=C:\Work\svn\cldr-trunk
-    ```
+    the unicodetools and cldr repo clones were created;
+    see the [main page](index.md) for VM arguments.
 
 Apply and close without running yet.
 
@@ -531,9 +526,9 @@ files. The sequence of steps is as follows:
     under unicodetools, i.e., on a path such as
     C:\\Work\\svn\\unicodetools-trunk\\unicodetools\\unicodetools\\org\\unicode\\props
     on the disk.
-    *   If you set `-DUNICODETOOLS_DIR=<svn unicodetools root>` then the tool
+    *   The tool
         overwrites the live .java files directly, and you can inspect the
-        changes using `svn diff`.
+        changes using `git diff`.
 *   Take the generated UcdPropertyValues.java, and UcdProperty.java if it has
     any changes, and move them to replace the files with the same names in
     unicodetools\\org\\unicode\\props in-place (to navigate easily from one
@@ -573,13 +568,8 @@ To run a smaller, custom set of tests, create a different test source data file
 and pass it via the -f argument.
 
 *   On the Arguments tab, set VM arguments with the directories where
-    unicodetools-trunk and cldr-trunk were created, e.g.,
-    ```
-    -DOTHER_WORKSPACE=C:\Work\svn\unicodetools-trunk
-    -DSVN_WORKSPACE=C:\Work\svn\unicodetools-trunk\unicodetools
-    -DUCD_DIR=C:\Work\svn\unicodetools-trunk\unicodetools\data
-    -DCLDR_DIR=C:\Work\svn\cldr-trunk
-    ```
+    the unicodetools and cldr repo clones were created;
+    see the [main page](index.md) for VM arguments.
 
 Apply and close without running yet.
 
