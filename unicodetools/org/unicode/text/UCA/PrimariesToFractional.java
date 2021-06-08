@@ -674,9 +674,10 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.TAI_LE).newByte();
         // Limited Use Script, but "extinct" (no native speakers since 2005)
         // according to Wikipedia 2015. Language revitalization with very few speakers.
+        // Use three-byte primaries although it is cased.
         setOptionsForScript(UCD_Types.Osage).noTwoBytePrimariesIfVariants();
-        // Ancient script, avoid lead byte overflow.
-        setOptionsForScript(UCD_Types.RUNIC_SCRIPT).newByte();
+        // Limited Use Script, avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.CANADIAN_ABORIGINAL_SCRIPT).newByte();
         // Limited Use Script, avoid lead byte overflow.
         setOptionsForScript(UCD_Types.Vai).newByte();
         // Hangul uses one lead byte, with two-byte primaries for conjoining Jamo L/V/T.
@@ -690,6 +691,8 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.BOPOMOFO_SCRIPT).newByte().twoBytePrimaries();
         // Minor script, avoid lead byte overflow.
         setOptionsForScript(UCD_Types.DESERET_SCRIPT).newByte();
+        // Extinct script, use three-byte primaries although it is cased.
+        setOptionsForScript(UCD_Types.Vithkuqi).noTwoBytePrimariesIfVariants();
         // Extinct script, use three-byte primaries for the few characters with variants.
         setOptionsForScript(UCD_Types.Elymaic).noTwoBytePrimariesIfVariants();
         // Minor script, avoid lead byte overflow.
