@@ -2,7 +2,7 @@
 // License & terms of use: http://www.unicode.org/copyright.html
 /*
 **      Unilib
-**      Copyright 2020
+**      Copyright 2021
 **      Ken Whistler, All rights reserved.
 */
 
@@ -36,6 +36,11 @@
  *   2019-Oct-05 Updates for Unicode 13.0.
  *   2020-Jan-28 Tweaked isAlphabeticExceiption for 16FF0, 16FF1.
  *               Updated copyright year to 2020 for Unicode 13.0.
+ *   2021-May-11 Updates for Unicode 14.0.
+ *   2021-Jun-07 Added exceptions for Katakana Minnan tone letters
+ *               to the isAlphabeticException list.
+ *               Updates to unisift_GetKatakanaBase to account for
+ *               4 new archaic kana: U+1B11F..U+1B122.
  */
 
 /*
@@ -160,15 +165,15 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 13.0.0d2, 2020-01-28\n";
+static char versionString[] = "Sifter version 14.0.0d3, 2021-06-07\n";
 
-static char unidatafilename[] = "unidata-13.0.0.txt";
-static char allkeysfilename[] = "allkeys-13.0.0.txt";
-static char decompsfilename[] = "decomps-13.0.0.txt";
+static char unidatafilename[] = "unidata-14.0.0.txt";
+static char allkeysfilename[] = "allkeys-14.0.0.txt";
+static char decompsfilename[] = "decomps-14.0.0.txt";
 
-static char versionstring[] = "@version 13.0.0\n\n";
+static char versionstring[] = "@version 14.0.0\n\n";
 
-#define COPYRIGHTYEAR (2020)
+#define COPYRIGHTYEAR (2021)
 
 #define defaultInfile "unidata.col"
 
@@ -260,13 +265,13 @@ int digitsInitialized;
  */
 
 #define CJK_URO_FIRST  (0x4E00)
-#define CJK_URO_LAST   (0x9FFC)
+#define CJK_URO_LAST   (0x9FFF)
 #define CJK_EXTA_FIRST (0x3400)
 #define CJK_EXTA_LAST  (0x4DBF)
 #define CJK_EXTB_FIRST (0x20000)
-#define CJK_EXTB_LAST  (0x2A6DD)
+#define CJK_EXTB_LAST  (0x2A6DF)
 #define CJK_EXTC_FIRST (0x2A700)
-#define CJK_EXTC_LAST  (0x2B734)
+#define CJK_EXTC_LAST  (0x2B738)
 #define CJK_EXTD_FIRST (0x2B740)
 #define CJK_EXTD_LAST  (0x2B81D)
 #define CJK_EXTE_FIRST (0x2B820)
@@ -3519,7 +3524,7 @@ static UChar8 tertwtMap3[] =
  * built for the complete range of Kana, simply because it is
  * easier that way.
  *
- * Special case the archaic kana from the 1B000 block. If a
+ * Special case the archaic kana from the 1B000 and 1B100 blocks. If a
  * large number of them are added eventually, then a table
  * for them can be constructed. As it stands, the hentaigana are not
  * mapped to existing katakana characters, but get their
@@ -3543,6 +3548,16 @@ int lsb;
         return ( (UInt32)kanaMap2 [ lsb - 0xF0 ] );
     }
     else if ( c == 0x1B000 ) /* katakana archaic e */
+    {
+        *tertwt = KATA_N;
+        return ( c );
+    }
+    else if ( c == 0x1B11F ) /* hiragana archaic wu */
+    {
+        *tertwt = HIRA_N;
+        return ( 0x1B122 ); /* maps to katakana archaic wu */
+    }
+    else if ( ( c >= 0x1B120 ) && ( c <= 0x1B122 ) ) /* katakana archaic yi, ye, wu */
     {
         *tertwt = KATA_N;
         return ( c );
@@ -3605,6 +3620,7 @@ int tertwt;
     else if ( ( ( cc >= 0x3041 ) && ( cc <= 0x30FA ) ) ||
               ( ( cc >= 0x31F0 ) && ( cc <= 0x31FF ) ) ||
               ( cc == 0x1B000 ) ||
+              ( ( cc >= 0x1B11F ) && ( cc <= 0x1B122 ) ) ||
               ( ( cc >= 0x1B130 ) && ( cc <= 0x1B16F ) ) )
     {
     WALNUTPTR tt1;
@@ -3732,6 +3748,10 @@ int tertwt;
  * Added exceptions for Vietnamese reading marks, which need
  * to fall through to get secondary weights.
  *
+ * 2021-June-07:
+ * Added exceptions for Katakana Minnan tone marks (gc=Lm),
+ *   in the block 1AFF0..1AFFF.
+ *
  */
 static int isAlphabeticException ( UInt32 c )
 {
@@ -3751,7 +3771,8 @@ static int isAlphabeticException ( UInt32 c )
          ( ( c >= 0x10140 ) && ( c <= 0x10174 ) ) ||
          ( ( c >= 0x103D1 ) && ( c <= 0x103D5 ) ) ||
          ( ( c >= 0x12400 ) && ( c <= 0x1246E ) ) ||
-         ( ( c >= 0x16FF0 ) && ( c <= 0x16FF1 ) ) )
+         ( ( c >= 0x16FF0 ) && ( c <= 0x16FF1 ) ) ||
+         ( ( c >= 0x1AFF0 ) && ( c <= 0x1AFFF ) ) )
     {
         return ( 1 );
     }
@@ -3790,7 +3811,7 @@ static int isDiacriticException ( UInt32 c )
  * across the board, although tagged as ignorables in
  * the weighting.
  *
- * U+0600..U+0605, U+06DD, U+08E2  Arabic prepended concatenation marks.
+ * U+0600..U+0605, U+06DD, U+0890..U+0891, U+08E2  Arabic prepended concatenation marks.
  * U+070F            Syriac abbreviation mark.
  * U+2061..U+2064    Mathematical invisible operators.
  * U+110BD, U+110CD  Kaithi prepended concatenation marks.
@@ -3799,6 +3820,7 @@ static int isIgnorableException ( UInt32 c )
 {
     if ( ( c == 0x06DD ) ||
          ( ( c >= 0x0600 ) && ( c <= 0x0605 ) ) ||
+         ( ( c >= 0x0890 ) && ( c <= 0x0891 ) ) ||
          ( c == 0x070F ) || ( c == 0x08E2 ) || 
          ( ( c >= 0x2061 ) && ( c <= 0x2064 ) ) ||
          ( c == 0x110BD ) || ( c == 0x110CD ) )

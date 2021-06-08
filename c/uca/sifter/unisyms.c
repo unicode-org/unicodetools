@@ -648,12 +648,12 @@ static const char *secondSyms[NUMSECONDSYMS] = {
 "<D1E2EE>", /* Wancho tone okoi */
 "<D1E2EF>", /* Wancho tone okoi mang */
 
-"<D302A>", /* ideographic level tone mark */
-"<D302B>", /* ideographic rising tone mark*/
-"<D302C>", /* ideographic departing tone mark*/
-"<D302D>", /* ideographic centering tone mark*/
-"<D302E>", /* Hangul single dot tone mark */
-"<D302F>", /* Hangul double dot tone mark*/
+"<D302A>",  /* ideographic level tone mark */
+"<D302B>",  /* ideographic rising tone mark*/
+"<D302C>",  /* ideographic departing tone mark*/
+"<D302D>",  /* ideographic centering tone mark*/
+"<D302E>",  /* Hangul single dot tone mark */
+"<D302F>",  /* Hangul double dot tone mark*/
 "<D16FF0>", /* Vietnamese reading mark ca */
 "<D16FF1>", /* Vietnamese reading mark nhay */
 
