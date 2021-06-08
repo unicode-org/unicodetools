@@ -1,5 +1,5 @@
 # Scripts-14.0.0.txt
-# Date: 2021-06-04, 02:19:38 GMT
+# Date: 2021-06-08, 00:31:17 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -2948,7 +2948,8 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 
 # ================================================
 
-12F90..12FF2  ; Cypro_Minoan # Lo  [99] CYPRO-MINOAN SIGN CM001..CYPRO-MINOAN SIGN CM302
+12F90..12FF0  ; Cypro_Minoan # Lo  [97] CYPRO-MINOAN SIGN CM001..CYPRO-MINOAN SIGN CM114
+12FF1..12FF2  ; Cypro_Minoan # Po   [2] CYPRO-MINOAN SIGN CM301..CYPRO-MINOAN SIGN CM302
 
 # Total code points: 99
 
