@@ -4,6 +4,7 @@ import java.util.Set;
 
 import org.unicode.text.UCD.IdentifierInfo.Identifier_Status;
 import org.unicode.text.UCD.IdentifierInfo.Identifier_Type;
+import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
@@ -19,7 +20,7 @@ public class RecommendedSetGenerator {
   /**
    * Update the directory to use for generating the data:
    */
-  private static final String DIRECTORY = "data/security/13.0.0";
+  private static final String DIRECTORY = "data/security/" + Settings.latestVersion;
 
   public static void main(String[] args) {
     Sets sets = generateSet();
