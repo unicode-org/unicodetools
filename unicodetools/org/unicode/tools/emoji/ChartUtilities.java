@@ -3,13 +3,15 @@ package org.unicode.tools.emoji;
 import java.io.IOException;
 import java.util.Locale;
 
+import org.unicode.cldr.draft.FileUtilities;
+
 import org.unicode.text.utility.UtilityBase;
 
 import com.ibm.icu.util.ICUUncheckedIOException;
 
 public class ChartUtilities {
 
-    public static void writeHeader(String outFileName, Appendable out, String title, String styles,
+    public static void writeHeader(String outFileName, Appendable out, String title, String indexRelLink,
             boolean skipVersion, String firstLine, String dataDir, String tr51Url) {
         final String fullTitle = title + (skipVersion ? "" : ", v" + Emoji.VERSION_STRING);
         String headerLine = "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n"
@@ -17,9 +19,9 @@ public class ChartUtilities {
                 + "<link rel='stylesheet' type='text/css' href='emoji-list.css'>\n"
                 + "<title>" + fullTitle
                 + (skipVersion ? "" : Emoji.BETA_TITLE_AFFIX) + "</title>\n"
-                + (styles == null ? "" : "<style type='text/css'>\n" + styles + "\n</style>\n") + "</head>\n"
+                + "</head>\n"
                 + "<body>\n"
-                + ChartUtilities.UNICODE_HEADER + ChartUtilities.getButton() + "\n"
+                + ChartUtilities.getUnicodeHeader(indexRelLink) + ChartUtilities.getButton() + "\n"
                 + "<h1>" + fullTitle
                 + (skipVersion ? "" : Emoji.BETA_HEADER_AFFIX) + "</h1>\n"
                 + (skipVersion ? "" : ChartUtilities.getPointToOther(outFileName, title))
@@ -58,8 +60,12 @@ public class ChartUtilities {
 
     static final String UNICODE_HEADER = "" + "<div class='icon'>"
     + "<a href='https://www.unicode.org/'><img class='logo' alt='[Unicode]' src='https://www.unicode.org/webscripts/logo60s2.gif'></a>"
-    + "<a class='bar' target='text' href='index.html'>Emoji Charts</a>" + "</div>"
+    + "<a class='bar' target='text' href='%%CHARTS_LINK%%'>Emoji Charts</a>" + "</div>"
     + "<div class='gray'>&nbsp;</div>" + "<div class='main'>";
+
+    public static String getUnicodeHeader(String indexRelLink) {
+        return FileUtilities.replace(UNICODE_HEADER, "%%CHARTS_LINK%%", (indexRelLink == null ? "index.html" : indexRelLink));
+    }
 
     public static String getButton() {
         return "\n<div class='aacButton' title='Show your support of Unicode'>"
