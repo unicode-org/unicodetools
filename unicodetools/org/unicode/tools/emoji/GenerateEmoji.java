@@ -1559,7 +1559,7 @@ public class GenerateEmoji {
 	boolean hasExtra = Emoji.VERSION_TO_GENERATE.compareTo(Emoji.VERSION4) >= 0;
 	final String outFileName = "emoji-variants.html";
 	PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, outFileName);
-	ChartUtilities.writeHeader(outFileName, out, "Emoji Presentation Sequences", "", false, ""
+	ChartUtilities.writeHeader(outFileName, out, "Emoji Presentation Sequences", null, false, ""
 		+ "<p>This chart lists the <i>emoji presentation sequences</i> and <i>text presentation sequences</i>, "
 		+ "which are specified in the <i>emoji-variation-sequences.txt</i> data file.\n"
 		+ "Sample glyphs are provided to illustrate the contrast between "
@@ -3582,13 +3582,14 @@ public class GenerateEmoji {
 	// footer = "";
 	// showCandidatesTitle = "Emoji Recently Added";
 	// }
+	String indexRelLink = future ? "../charts/index.html" : null;
 	String dir = future ? Emoji.FUTURE_DIR : Emoji.CHARTS_DIR;
 	String dataDir = future ? null : Emoji.DATA_DIR_PRODUCTION;
 
 	ProposalData proposalData = ProposalData.getInstance();
 
 	try (PrintWriter out = FileUtilities.openUTF8Writer(dir, outFileName);) {
-	    ChartUtilities.writeHeader(outFileName, out, showCandidatesTitle, null, future, topHeader, dataDir,
+	    ChartUtilities.writeHeader(outFileName, out, showCandidatesTitle, indexRelLink, future, topHeader, dataDir,
 		    future ? Emoji.TR51_HTML_BETA : Emoji.TR51_HTML);
 	    boolean showingChars = false;
 	    for (String source : sorted) {
