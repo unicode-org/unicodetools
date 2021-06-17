@@ -42,13 +42,7 @@ for the CLDR/ICU FractionalUCA.txt data.
         development)
     3.  -DAUTHOR (suppresses only the author suffix from the date)
     4.  -DAUTHOR=XYZ (sets the author suffix to " \[XYZ\]")
-6.  ***Only for UCA 6.2 and before:*** If you change any of the CJK constants,
-    **you also need to modify the same constants in ICU's ImplicitCEGenerator.**
-    1.  **If you don't, you'll see a message like:**
-
-        **Exception in thread "main" java.lang.IllegalArgumentException: FA0E: overlap: 9FCC (E2FA6A90) > FA0E(E0AB8800)**
-
-7.  To test whether the UCA files are valid, use the options (*note: you must
+6.  To test whether the UCA files are valid, use the options (*note: you must
     also build the ICU files below, since they test other aspects*).
     ```
     writeCollationValidityLog
@@ -70,9 +64,9 @@ for the CLDR/ICU FractionalUCA.txt data.
         2.  In allkeys, but not in UCD. These should be ***only*** contractions.
             Check them over to make sure they look right also.
 
-### UCA for ICU
+### UCA for CLDR & ICU
 
-To build all the UCA files used by ICU, use the option:
+To build all the UCA files used by CLDR and ICU, use the option:
 ```
 ICU
 ```
@@ -119,19 +113,26 @@ then it may make sense to use two-byte primaries in order to minimize the
 size of the binary ICU data file. (The tool should default to doing this.)
 Judgment call. See Cherokee, Deseret, Osage, Vithkuqi for examples.
 
+After running the tool, diff the main mapping file and look for bad changes
+(for example, more bytes per weight for common characters).
+```
+~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ~/cldr/uni/src/common/uca/FractionalUCA.txt > ../frac-13.0.txt
+~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ../Generated/UCA/14.0.0/CollationAuxiliary/FractionalUCA.txt > ../frac-14.0.txt
+~/unitools/mine/src$ meld ../frac-13.0.txt ../frac-14.0.txt
+```
+
+CLDR root data files are checked into $CLDR_SRC/common/uca/
+```
+cp {Generated}/UCA/{version}/CollationAuxiliary/* $CLDR_SRC/common/uca/
+```
+
+See the [Unihan for CLDR](../unihan.md) page for generating new versions of
+CJK collation tailorings and transliterator (transform) rules.
+
 > :point_right: **Note**: Some of the following is outdated.
 > Markus has been keeping a
 > [log of what he has been doing in the ICU repo](https://github.com/unicode-org/icu/blob/main/icu4c/source/data/unidata/changes.txt).
 > Look there for the latest (top-most) section “collation: CLDR collation root, UCA DUCET”.
-
-Snippet from there, updated for UCA 14:
-```
-  diff the main mapping file, look for bad changes
-  (for example, more bytes per weight for common characters)
-    ~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ~/cldr/uni/src/common/uca/FractionalUCA.txt > ../frac-13.0.txt
-    ~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ../Generated/UCA/14.0.0/CollationAuxiliary/FractionalUCA.txt > ../frac-14.0.txt
-    ~/unitools/mine/src$ meld ../frac-13.0.txt ../frac-14.0.txt
-```
 
 ----
 

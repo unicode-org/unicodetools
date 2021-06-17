@@ -23,7 +23,6 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Differ;
@@ -140,7 +139,6 @@ public class GenerateUnihanCollators {
     private static final UnicodeMap<Integer>          bestStrokesT         = new UnicodeMap<Integer>();
     private static final UnicodeMap<String> kTotalStrokes = IUP.load(UcdProperty.kTotalStrokes);
     private static final Splitter ONBAR = Splitter.on('|').trimResults();
-    private static final Splitter ONSPACE = Splitter.on(' ').trimResults();
     private static final Splitter ONCOMMA = Splitter.on(',').trimResults();
 
     static {
