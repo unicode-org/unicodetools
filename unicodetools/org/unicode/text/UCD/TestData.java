@@ -1157,7 +1157,7 @@ public class TestData implements UCD_Types {
         output.println("#");
         if (headerChoice == HEADER_SCRIPTS) {
             output.println("# For documentation, see UTR #24: Script Names");
-            output.println("#   http://www.unicode.org/unicode/reports/tr24/");
+            output.println("#   https://www.unicode.org/reports/tr24/");
         } else if (headerChoice == HEADER_EXTEND) {
             output.println("# Unicode Character Database: Extended Properties");
             output.println("# For documentation, see PropList.html");
