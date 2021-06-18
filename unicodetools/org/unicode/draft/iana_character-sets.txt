@@ -981,22 +981,22 @@ Alias: None
 
 Name: CESU-8                                                    [Phipps]
 MIBenum: 1016
-Source: <http://www.unicode.org/unicode/reports/tr26>
+Source: <https://www.unicode.org/reports/tr26>
 Alias: csCESU-8
 
 Name: UTF-32                                                     [Davis] 
 MIBenum: 1017
-Source: <http://www.unicode.org/unicode/reports/tr19/>
+Source: <https://www.unicode.org/reports/tr19/>
 Alias: None
 
 Name: UTF-32BE                                                   [Davis]
 MIBenum: 1018
-Source: <http://www.unicode.org/unicode/reports/tr19/>
+Source: <https://www.unicode.org/reports/tr19/>
 Alias: None
 
 Name: UTF-32LE                                                   [Davis]
 MIBenum: 1019
-Source: <http://www.unicode.org/unicode/reports/tr19/>
+Source: <https://www.unicode.org/reports/tr19/>
 Alias: None
 
 Name: BOCU-1                                                   [Scherer]

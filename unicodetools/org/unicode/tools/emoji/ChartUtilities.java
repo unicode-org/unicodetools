@@ -78,7 +78,7 @@ public class ChartUtilities {
         try {
             out.append("\n</div><div class='copyright'>"
                     // + "<hr width='50%'>"
-                    + "<br><a href='https://www.unicode.org/unicode/copyright.html'>"
+                    + "<br><a href='https://www.unicode.org/copyright.html'>"
                     + "<img src='https://www.unicode.org/img/hb_notice.gif' style='border-style: none; width: 216px; height=50px;' alt='Access to Copyright and terms of use'>"
                     + "</a><br><script language='Javascript' type='text/javascript' src='https://www.unicode.org/webscripts/lastModified.js'></script>"
                     + "</div>"

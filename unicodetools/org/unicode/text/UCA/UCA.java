@@ -44,7 +44,7 @@ import com.ibm.icu.text.UnicodeSetIterator;
 
 /**
  * UCA is a working version of the UTS #10 Unicode Collation Algorithm,
- * as described on http://www.unicode.org/unicode/reports/tr10/
+ * as described on https://www.unicode.org/reports/tr10/
  * @author Mark Davis
 
 <p>It is not optimized, although it does use some techniques that are required for

@@ -225,7 +225,7 @@ public class GenerateData implements UCD_Types {
             output.println("#");
         }
         output.println("# For more information, see");
-        output.println("# http://www.unicode.org/unicode/reports/tr15/#Primary Exclusion List Table");
+        output.println("# https://www.unicode.org/reports/tr15/#Primary Exclusion List Table");
         output.println(HORIZONTAL_LINE);
         output.println();
         output.println("# (1) Script Specifics");
