@@ -559,7 +559,7 @@ WALNUTPTR getSiftDataPtr ( UInt32 i )
 static void getName ( char *dp, UInt32 c )
 {
 WALNUTPTR tmp;
-char localbuf[10];
+char localbuf[20];
 
     tmp = getSiftDataPtr ( c );
 
