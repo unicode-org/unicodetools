@@ -24,6 +24,7 @@ CXXFLAGS="-g -W -Wall -pedantic -Wpointer-arith -Wwrite-strings -Wno-long-long -
 CPPFLAGS="-DINTEL -DU_NO_DEFAULT_INCLUDE_UTF_HEADERS=1 -DU_DEBUG=1 -D_REENTRANT -DU_HAVE_ELF_H=1 -DUNISTR_FROM_CHAR_EXPLICIT=explicit -DUNISTR_FROM_STRING_EXPLICIT= -I$ICU_INCLUDE"
 LINKFLAGS="-L$ICU_LIB -licuuc -licudata -lpthread -ldl -lm"
 LDFLAGS=-fsanitize=bounds
+# Do not build with the address sanitizer: The sifter has known memory leaks.
 
 $CC $CPPFLAGS $CXXFLAGS $LINKFLAGS $LDFLAGS *.c -o $SIFTER_OUT/sifter && \
 LD_LIBRARY_PATH=$ICU_LIB $SIFTER_OUT/sifter -s $UNIDATA && \
