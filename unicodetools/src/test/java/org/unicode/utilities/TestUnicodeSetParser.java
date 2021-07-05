@@ -3,20 +3,18 @@ package org.unicode.utilities;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.RegexUtilities;
-
-import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.impl.UnicodeRegex;
 import com.ibm.icu.text.UnicodeSet;
 
-public class TestUnicodeSetParser extends TestFmwk {
-    public static void main(String[] args) {
-	new TestUnicodeSetParser().run(args);
-    }
+import org.junit.jupiter.api.Test;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
-    public void TestSimple() {
+public class TestUnicodeSetParser extends TestFmwkMinusMinus {
+
+
+	@Test
+	public void TestSimple() {
 	UnicodeSetParser parser = new UnicodeSetParser();
-	
+
 	String[] tests = {
 		"[a-b]",
 		"\\p{sc=Runic}",
@@ -26,12 +24,13 @@ public class TestUnicodeSetParser extends TestFmwk {
 		};
 	for (String test : tests) {
 	    UnicodeSet expected = new UnicodeSet(test);
-	    UnicodeSet actual = parser.applyPattern(new UnicodeSet(), test); 
+	    UnicodeSet actual = parser.applyPattern(new UnicodeSet(), test);
 	    assertEquals(test, expected, actual);
 	}
-	
+
     }
-    
+
+	@Test
     public void TestRegex() {
 	String[][] tests = {
 		{"[a-c&&b[d]&&b]", "[[a-c]&[bd]&[ab]]"}

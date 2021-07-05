@@ -2,6 +2,7 @@ package org.unicode.unittest;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.junit.jupiter.api.AfterEach;
@@ -36,8 +37,40 @@ public class TestFmwkMinusMinus {
         logger.info(s);
     }
 
-    boolean assertEquals(String msg, Object a, Object b) {
+    public void warnln(String s) {
+        logger.warning(s);
+    }
+
+    public boolean assertEquals(String msg, Object a, Object b) {
         Assertions.assertEquals(a, b, msg);
         return true;
+    }
+
+    public boolean assertNotEquals(String msg, Object a, Object b) {
+        Assertions.assertNotEquals(a, b, msg);
+        return true;
+    }
+
+    public boolean assertTrue(String msg, boolean a) {
+        Assertions.assertTrue(a, msg);
+        return true;
+    }
+
+    public boolean isVerbose() {
+        return logger.isLoggable(Level.FINE);
+    }
+
+    public static final int LOG = 0;
+    public static final int WARN = 1;
+    public static final int ERR = 2;
+
+    public void msg(String message, int level, boolean incCount, boolean newln) {
+        if (level == ERR) {
+            errln(message);
+        } else if(level == WARN) {
+            warnln(message);
+        } else {
+            logln(message);
+        }
     }
 }

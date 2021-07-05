@@ -3,6 +3,7 @@ package org.unicode.unittest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.junit.jupiter.api.Test;
 import org.unicode.text.tools.RegexBuilder;
 import org.unicode.text.tools.RegexBuilder.Style;
 import org.unicode.tools.emoji.Emoji;
@@ -12,14 +13,12 @@ import org.unicode.tools.emoji.EmojiData.VariantFactory;
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.text.UnicodeSet;
 
-public class TestRegexBuilder extends TestFmwk {
+public class TestRegexBuilder extends TestFmwkMinusMinus {
     private static final char ENCLOSING_CIRCLE_BACKSLASH = '\u20E0'; //  ⃠
     private static final String U20E0Q = RegexBuilder.showChar(0x20e0, new StringBuilder()) + "?";
 
-    public static void main(String[] args) {
-	new TestRegexBuilder().run(args);
-    }
 
+	@Test
     public void TestSimple() {
 	EmojiData edata = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
 	System.out.println("Version: " + Emoji.VERSION_LAST_RELEASED);

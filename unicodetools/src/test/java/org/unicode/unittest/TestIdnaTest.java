@@ -64,7 +64,7 @@ public class TestIdnaTest extends TestFmwkMinusMinus {
     @Test
     public void testLoadedTests() {
         assertNotNull(loadedTests, "make sure loadedTests is OK");
-        assertTrue(new File(TEST_DIR).isDirectory());
+        Assertions.assertTrue(new File(TEST_DIR).isDirectory());
     }
 
     static IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
@@ -87,10 +87,6 @@ public class TestIdnaTest extends TestFmwkMinusMinus {
             assertEquals("mapping" + versionString, idnaMappingLast.get(x), idnaMapping.get(x));
             assertEquals("status" + versionString, idnaStatusLast.get(x), idnaStatus.get(x));
         }
-    }
-    public static boolean assertEquals(String string, Object a, Object b) {
-        Assertions.assertEquals(a, b, string);
-        return true;
     }
 
     public static final Splitter semi = Splitter.on(';').trimResults();

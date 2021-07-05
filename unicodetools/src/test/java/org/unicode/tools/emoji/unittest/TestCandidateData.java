@@ -1,14 +1,14 @@
 package org.unicode.tools.emoji.unittest;
 
-import org.unicode.cldr.unittest.TestFmwkPlus;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.CandidateData;
 import org.unicode.tools.emoji.EmojiDataSource;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
 import com.ibm.icu.text.UnicodeSet;
 
-public class TestCandidateData extends TestFmwkPlus {
+public class TestCandidateData extends TestFmwkMinusMinus {
     public static void main(String[] args) {
 	new TestCandidateData().run(args);
     }
@@ -31,7 +31,7 @@ public class TestCandidateData extends TestFmwkPlus {
      */
     public void TestCandidateCombinations() {
 	UnicodeSet all = CANDIDATES.getAllCharacters();
-	Asserts.assertContains(this, "", "zwj-sequence", all, 
+	Asserts.assertContains(this, "", "zwj-sequence", all,
 		"Mx Claus", new StringBuilder()
 		.appendCodePoint(0x1F9D1)
 		.appendCodePoint(0x200D)

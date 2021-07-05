@@ -2,7 +2,10 @@ package org.unicode.propstest;
 
 import java.util.Objects;
 
-import org.unicode.cldr.unittest.TestFmwkPlus;
+import com.ibm.icu.text.Normalizer2;
+import com.ibm.icu.text.UTF16;
+
+import org.junit.jupiter.api.Test;
 import org.unicode.cldr.util.Timer;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropNormalizationData;
@@ -10,18 +13,13 @@ import org.unicode.props.PropNormalizationData.Type;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.utility.Utility;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
-import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.UTF16;
-
-public class TestPropNormalization extends TestFmwkPlus {
+public class TestPropNormalization extends TestFmwkMinusMinus {
 
     static PropNormalizationData pnd = new PropNormalizationData(IndexUnicodeProperties.make("7.0"));
 
-    public static void main(String[] args) {
-        new TestPropNormalization().run(args);
-    }
-    
+    @Test
     public void TestTime() {
         Normalizer2 n = Normalizer2.getNFKCInstance();
         Timer t = new Timer();
@@ -45,7 +43,7 @@ public class TestPropNormalization extends TestFmwkPlus {
         t.stop();
         logln(t.toString());
     }
-    
+
     public void xTestMain() {
         Normalizer oldNfd = Default.nfd();
         Normalizer oldNfkd = Default.nfkd();
@@ -89,6 +87,6 @@ public class TestPropNormalization extends TestFmwkPlus {
             errln("Failed " + type + "\t" + Utility.hex(i) + "\t" +  Utility.hex(oldNfd0) + "\t" + Utility.hex(newNfd0));
         }
     }
-    
+
 
 }
