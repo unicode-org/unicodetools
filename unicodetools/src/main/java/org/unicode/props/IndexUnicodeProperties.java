@@ -139,7 +139,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     public static final IndexUnicodeProperties make(UcdPropertyValues.Age_Values ucdVersion) {
         return make(VersionInfo.getInstance(ucdVersion.getShortName()));
     }
-    
+
     public static final IndexUnicodeProperties make() {
         final Age_Values[] values = Age_Values.values();
         return make(values[values.length-2]);
@@ -244,8 +244,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     }
 
     public <T extends Enum<T>> UnicodeMap<T> loadEnum(UcdProperty prop2, Class<T> classIn) {
-        if (classIn != prop2.getEnumClass()) {
-            throw new UnicodePropertyException("Mismatch in class data,  expected " 
+        if ((Class)classIn != (Class)prop2.getEnumClass()) {
+            throw new UnicodePropertyException("Mismatch in class data,  expected "
                     + prop2.getEnumClass());
         }
 //        UnicodeMap<T> result = SPECIAL_CACHE.get(prop2);
@@ -262,7 +262,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 //        SPECIAL_CACHE.put(prop2, result.freeze());
         return loadEnum(prop2);
     }
-    
+
     public <T extends Enum<T>> UnicodeMap<T> loadEnum(UcdProperty prop2) {
         UnicodeMap<T> result = SPECIAL_CACHE.get(prop2);
         if (result != null) {
@@ -278,10 +278,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         SPECIAL_CACHE.put(prop2, result.freeze());
         return result;
     }
-    
+
     public UnicodeSet loadEnumSet(UcdProperty prop2, Enum value) {
         if (value.getClass() != prop2.getEnumClass()) {
-            throw new UnicodePropertyException("Mismatch in class data,  expected " 
+            throw new UnicodePropertyException("Mismatch in class data,  expected "
                     + prop2.getEnumClass());
         }
         UnicodeMap map = loadEnum(prop2);
@@ -295,10 +295,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         if (result != null) {
             return result;
         }
-        if (enumClass != prop2.getEnumClass() 
+        if (enumClass != prop2.getEnumClass()
                 || prop2.getCardinality() != ValueCardinality.Unordered) {
-            throw new UnicodePropertyException("Mismatch in class data,  expected " 
-                    + prop2.getEnumClass() 
+            throw new UnicodePropertyException("Mismatch in class data,  expected "
+                    + prop2.getEnumClass()
                     + ", " + prop2.getCardinality());
         }
         if (enumClass != prop2.getEnumClass()) {
@@ -327,7 +327,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
         result = new UnicodeMap<>();
         if (prop2.getCardinality() != ValueCardinality.Unordered) {
-            throw new UnicodePropertyException("Mismatch in class data,  expected " 
+            throw new UnicodePropertyException("Mismatch in class data,  expected "
                     + prop2.getCardinality());
         }
         UnicodeMap<String> m = load(prop2);
@@ -348,7 +348,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
         result = new UnicodeMap<>();
         if (prop2.getCardinality() != ValueCardinality.Ordered) {
-            throw new UnicodePropertyException("Mismatch in class data,  expected " 
+            throw new UnicodePropertyException("Mismatch in class data,  expected "
                     + prop2.getCardinality() + " for " + prop2);
         }
         UnicodeMap<String> m = load(prop2);
@@ -368,7 +368,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
         result = new UnicodeMap<>();
         if (prop2.getCardinality() != ValueCardinality.Ordered) {
-            throw new UnicodePropertyException("Mismatch in class data,  expected " 
+            throw new UnicodePropertyException("Mismatch in class data,  expected "
                     + prop2.getCardinality() + " for " + prop2);
         }
         UnicodeMap<String> m = load(prop2);
@@ -599,7 +599,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     public VersionInfo getUcdVersion() {
         return ucdVersion;
     }
-    
+
 //    public UnicodeProperty getProperty(UcdProperty ucdProperty) {
 //        return (UnicodeProperty) skeletonNames
 //        .get(toSkeleton(propertyAlias));
@@ -610,7 +610,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         private final UcdProperty prop;
         private final Map<String, PropertyNames> stringToNamedEnum;
         private final Set<String> enumValueNames;
-        
+
         IndexUnicodeProperty(UcdProperty item) {
             this.prop = item;
             setName(prop.name());
@@ -655,7 +655,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             if (stringToNamedEnum != null) {
                 result.addAll(enumValueNames);
                 return result;
-            } 
+            }
             return _getUnicodeMap().getAvailableValues(result);
         }
 
@@ -666,7 +666,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 if (valueName != null) {
                     result.addAll(valueName.getAllNames());
                 }
-            } 
+            }
             if (!result.contains(valueAlias)) {
                 if (_getUnicodeMap().containsValue(valueAlias)) {
                     result.add(valueAlias);

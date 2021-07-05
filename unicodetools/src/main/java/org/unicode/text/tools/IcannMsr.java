@@ -20,7 +20,6 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeRelation;
 import org.unicode.props.UnicodeRelation.SetMaker;
-import org.unicode.test.TestSecurity;
 import org.unicode.text.UCD.IdentifierInfo;
 import org.unicode.text.UCD.IdentifierInfo.Identifier_Status;
 import org.unicode.text.UCD.IdentifierInfo.Identifier_Type;

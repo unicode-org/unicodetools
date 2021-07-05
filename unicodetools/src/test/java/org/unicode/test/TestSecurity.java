@@ -41,6 +41,7 @@ import org.unicode.text.utility.Utility;
 import org.unicode.tools.Confusables;
 import org.unicode.tools.Confusables.CodepointToConfusables;
 import org.unicode.tools.Confusables.Style;
+import org.unicode.unittest.TestFmwkMinusMinus;
 import org.unicode.tools.ScriptDetector;
 
 import com.google.common.base.Objects;
@@ -218,14 +219,6 @@ public class TestSecurity extends TestFmwkMinusMinus {
             }
         }
 //        System.out.println("vi: " + vi.toPattern(false));
-    }
-
-    private static UnicodeSet flatten(UnicodeSet result) {
-        UnicodeSet result2 = new UnicodeSet();
-        for (String s : result) { // flatten
-            result2.addAll(s);
-        }
-        return result2;
     }
 
     public class EnumComparator<T extends Enum<?>> implements Comparator<T> {

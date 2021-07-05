@@ -73,7 +73,7 @@ public class EmojiFrequency {
 	//
 	//        System.out.println("\n\n***W/O FE0F***\n");
 	//        showCounts("gboardNoFE0F.tsv", GBoardCounts.countsWithoutFe0f, GBoardCounts.countsRaw);
-	//        
+	//
 	System.out.println("\n\n***CHARS***\n");
 	showCountsSimple("gboardAllChars.tsv", CharFrequency.localeToCountInfo.get("001").keyToCount, null);
 
@@ -113,7 +113,7 @@ public class EmojiFrequency {
 	    }
 	} catch (IOException e) {
 	    throw new ICUUncheckedIOException(e);
-	}        
+	}
     }
 
     private static void showTextEmoji(String filename) {
@@ -155,7 +155,7 @@ public class EmojiFrequency {
 	try (PrintWriter out = FileUtilities.openUTF8Writer(OUTDIR, outputFileName)) {
 	    out.println("Hex\tEmoji\tCLDR Name");
 	    for (String s : sorted) {
-		out.println(hex(s,4) 
+		out.println(hex(s,4)
 			+ "\t" + s
 			+ "\t" + getName(s)
 			);
@@ -216,7 +216,7 @@ public class EmojiFrequency {
 		String ep = EmojiData.EMOJI_DATA.addEmojiVariants(s).equals(s) ? "" : "Defect";
 		out.println(
 			hex(s)
-			+ "\t" + s 
+			+ "\t" + s
 			+ "\t" + order.getMajorGroupFromCategory(subcategory).toPlainString()
 			+ "\t" + subcategory.toString()
 			+ "\t" + getName(s)
@@ -232,8 +232,8 @@ public class EmojiFrequency {
     }
 
     private static String getName(String s) {
-	return s.equals(UNSPECIFIED_GENDER) ? "unspecified-gender" 
-		: s.equals(UNSPECIFIED_SKIN) ? "unspecified-skin" 
+	return s.equals(UNSPECIFIED_GENDER) ? "unspecified-gender"
+		: s.equals(UNSPECIFIED_SKIN) ? "unspecified-skin"
 			: EmojiData.EMOJI_DATA.getName(s);
     }
 
@@ -256,7 +256,7 @@ public class EmojiFrequency {
 		    continue;
 		}
 		Long count = entry.getValue();
-		Long countWithFe0f = normal ? 0 : withFe0f.get(term + Emoji.EMOJI_VARIANT);
+		Long countWithFe0f = normal ? (long)0 : withFe0f.get(term + Emoji.EMOJI_VARIANT);
 		Long adjusted = GBoardCounts.toAddAdjusted(term, countWithFe0f, count);
 		out.println(hex(term)
 			+ "\t" + (count == 0 ? "" : count+"")
@@ -368,7 +368,7 @@ public class EmojiFrequency {
     }
 
     enum Type {
-	global, 
+	global,
 	locale;
 
 	public String getFile() {
@@ -379,7 +379,7 @@ public class EmojiFrequency {
 	    throw new IllegalArgumentException();
 	}
 	static final int rankIndex = 0, emojiIndex=1, decIndex=2, countIndex=3, hexIndex=4, limitIndex=5;
-	//global: 1,    ߘ  ,[128514] ,3354042, ['0x1F602'] 
+	//global: 1,    ߘ  ,[128514] ,3354042, ['0x1F602']
 	//locale: ab_GE,    ߘ£  ,[128547]   ,24, ['0x1F623']
 
 	public int getRankIndex() {
@@ -411,7 +411,7 @@ public class EmojiFrequency {
 	    return HACK_FE0F.contains(term) ? countWithFe0f * 4 : countWithoutFe0f;
 	}
 	// Android API Distribution
-	// from sheet: 
+	// from sheet:
 	final static Map<Integer, Double> yearToWeight = ImmutableMap.<Integer, Double>builder()
 		.put(2010, 0.021255544174738)
 		.put(2011, 0.0212968973735215)
@@ -483,7 +483,7 @@ public class EmojiFrequency {
 		    EmojiMatcher.parse(emojiString, emojiSet, nonPresSet, nonEmojiSet);
 		    if (DEBUG) System.out.println(rank
 			    + "\t" + count
-			    + "\t" + emojiString 
+			    + "\t" + emojiString
 			    + "\t" + hex(emojiString)
 			    + "\t" + emojiSet
 			    + "\t" + nonPresSet
@@ -528,7 +528,7 @@ public class EmojiFrequency {
 	return ULocale.minimizeSubtags(noCountry).toLanguageTag();
     }
 
-    private static Map<String, CountInfo> normalizeLocaleCounts(Map<String, Counter<String>> _counts, 
+    private static Map<String, CountInfo> normalizeLocaleCounts(Map<String, Counter<String>> _counts,
 	    Set<String> keepString, Map<Integer, Double> yeartoweight) {
 	Map<String, CountInfo> counts2 = new LinkedHashMap<>();
 	for (String locale : _counts.keySet()) {
@@ -602,7 +602,7 @@ public class EmojiFrequency {
 
 		    if (DEBUG) System.out.println(rank
 			    + "\t" + count
-			    + "\t" + emojiString 
+			    + "\t" + emojiString
 			    + "\t" + hex(emojiString)
 			    );
 		    Counter<String> c = _counts.get(locale);
@@ -763,8 +763,8 @@ public class EmojiFrequency {
     }
 
     static class Facebook {
-	// File name	Codepoints	UTC Name	Emoji	Emoji Index	Hit Index	Relative Frequency	Group	Subgroup																	
-	// emoji_FACE-WITH-TEARS-OF-JOY_1f602	1F602	face with tears of joy	😂	3	1	1000000000	Smileys & People	face-positive																	
+	// File name	Codepoints	UTC Name	Emoji	Emoji Index	Hit Index	Relative Frequency	Group	Subgroup
+	// emoji_FACE-WITH-TEARS-OF-JOY_1f602	1F602	face with tears of joy	😂	3	1	1000000000	Smileys & People	face-positive
 
 	// old
 	// 😀   emoji_GRINNING-FACE_1f600   1F600   grinning face   1   28  98597505    Smileys & People    face-positive

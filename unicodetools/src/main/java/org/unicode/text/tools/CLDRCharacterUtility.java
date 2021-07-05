@@ -1,9 +1,24 @@
 package org.unicode.text.tools;
 
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.TreeSet;
+
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
+
+import org.unicode.cldr.util.CLDRConfig;
+import org.unicode.cldr.util.CLDRFile;
+import org.unicode.cldr.util.Iso639Data;
+import org.unicode.cldr.util.LanguageTagParser;
+import org.unicode.cldr.util.StandardCodes;
+import org.unicode.cldr.util.CLDRFile.WinningChoice;
+
 class CLDRCharacterUtility {
     public static UnicodeMap<Set<String>> getCLDRCharacters() {
         UnicodeMap<Set<String>> result = new UnicodeMap<>();
-        Factory factory = CLDRConfig.getInstance().getCldrFactory();
+        org.unicode.cldr.util.Factory factory = CLDRConfig.getInstance().getCldrFactory();
         //        File[] paths = { new File(CLDRPaths.MAIN_DIRECTORY)
         //        //, new File(CLDRPaths.SEED_DIRECTORY), new File(CLDRPaths.EXEMPLARS_DIRECTORY)
         //        };
@@ -49,5 +64,13 @@ class CLDRCharacterUtility {
         }
         System.out.println("Skipped non-living languages " + skipped);
         return result;
+    }
+
+    private static UnicodeSet flatten(UnicodeSet result) {
+        UnicodeSet result2 = new UnicodeSet();
+        for (String s : result) { // flatten
+            result2.addAll(s);
+        }
+        return result2;
     }
 }

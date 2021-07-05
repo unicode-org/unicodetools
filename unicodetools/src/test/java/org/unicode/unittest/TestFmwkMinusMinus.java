@@ -1,14 +1,12 @@
 package org.unicode.unittest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 public class TestFmwkMinusMinus {
     public List<String> errLines = new LinkedList<>();
@@ -21,7 +19,7 @@ public class TestFmwkMinusMinus {
 
     @AfterEach
     public void tearDown() {
-        assertEquals(0, errLines.size(), "Expected no errors");
+        Assertions.assertEquals(0, errLines.size(), "Expected no errors");
     }
 
 
@@ -29,12 +27,17 @@ public class TestFmwkMinusMinus {
      * Collect an error and keep going
      * @param s
      */
-    void errln(String s) {
+    public void errln(String s) {
         errLines.add(s);
         logger.severe(s);
     }
 
-    void logln(String s) {
+    public void logln(String s) {
         logger.info(s);
+    }
+
+    boolean assertEquals(String msg, Object a, Object b) {
+        Assertions.assertEquals(a, b, msg);
+        return true;
     }
 }

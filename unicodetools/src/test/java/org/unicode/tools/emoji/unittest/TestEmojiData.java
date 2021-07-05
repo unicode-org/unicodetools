@@ -13,7 +13,6 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.unittest.TestFmwkPlus;
 import org.unicode.cldr.util.StandardCodes.LstrType;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.cldr.util.Validity;
@@ -25,6 +24,7 @@ import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiAnnotations;
 import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.EmojiData.VariantStatus;
+import org.unicode.unittest.TestFmwkMinusMinus;
 import org.unicode.tools.emoji.EmojiDataSource;
 import org.unicode.tools.emoji.EmojiDataSourceCombined;
 import org.unicode.tools.emoji.EmojiOrder;
@@ -42,19 +42,15 @@ import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
 
-public class TestEmojiData extends TestFmwkPlus {
+public class TestEmojiData extends TestFmwkMinusMinus {
     private static final boolean SHOW = false;
     final EmojiData released = EmojiData.of(Emoji.VERSION_TO_TEST_PREVIOUS);
     final EmojiDataSource emojiDataToTest;
     final EmojiOrder emojiOrderToTest;
 
-    public static void main(String[] args) {
-        new TestEmojiData().run(args);
-    }
-
     /**
      * We structure the test this way so that we can run it with two different sets of data.
-     * @param emojiOrder 
+     * @param emojiOrder
      */
     public TestEmojiData(EmojiDataSource beta, EmojiOrder emojiOrder) {
         this.emojiDataToTest = beta;
@@ -92,10 +88,10 @@ public class TestEmojiData extends TestFmwkPlus {
             tests.put(source, variantStatus);
         }
         tests.freeze();
-        assertContains(VariantStatus.full.toString(), 
-                "emoji-test", 
-                tests.getSet(VariantStatus.full), 
-                "EmojiData", 
+        assertContains(VariantStatus.full.toString(),
+                "emoji-test",
+                tests.getSet(VariantStatus.full),
+                "EmojiData",
                 new UnicodeSet(emojiDataToTest.getBasicSequences())
                 .addAll(emojiDataToTest.getKeycapSequences())
                 .addAll(emojiDataToTest.getFlagSequences())
@@ -104,15 +100,15 @@ public class TestEmojiData extends TestFmwkPlus {
                 .addAll(emojiDataToTest.getZwjSequencesNormal())
                 .removeAll(new UnicodeSet("[🇦-🇿🏻-🏿🦰-🦳{#️}{*️}{0️}{1️}{2️}{3️}{4️}{5️}{6️}{7️}{8️}{9️}]"))
                 );
-        assertEqualsUS(VariantStatus.component.toString(), 
-                "emoji-test", 
-                tests.getSet(VariantStatus.component), 
-                "EmojiData", 
+        assertEqualsUS(VariantStatus.component.toString(),
+                "emoji-test",
+                tests.getSet(VariantStatus.component),
+                "EmojiData",
                 new UnicodeSet(emojiDataToTest.getEmojiComponents())
                 .removeAll(new UnicodeSet("[#*0-9‍⃣️🇦-🇿󠀠-󠁿]"))
                 );
-        //        assertEqualsUS(VariantStatus.other + " = emoji", 
-        //                "?", 
+        //        assertEqualsUS(VariantStatus.other + " = emoji",
+        //                "?",
         //                new UnicodeSet(tests.getSet(VariantStatus.other)).add(tests.getSet(VariantStatus.initial)), "?", new UnicodeSet(beta.getAllEmojiWithDefectives()).removeAll(beta.getAllEmojiWithoutDefectives()));
     }
 
@@ -152,7 +148,7 @@ public class TestEmojiData extends TestFmwkPlus {
 
         for (EmojiDataSource ed : Arrays.asList(released, emojiDataToTest)) {
             if (ed.getAllEmojiWithDefectives().containsSome(Emoji.DEFECTIVE_COMPONENTS)) {
-                errln("getChars contains defectives " 
+                errln("getChars contains defectives "
                         + new UnicodeSet().addAll(ed.getAllEmojiWithoutDefectives()).retainAll(Emoji.DEFECTIVE_COMPONENTS));
             }
         }
@@ -170,7 +166,7 @@ public class TestEmojiData extends TestFmwkPlus {
         Map<Status, Set<String>> regionData = validity.getStatusToCodes(LstrType.region);
         for (Entry<Status, Set<String>> e : regionData.entrySet()) {
             switch(e.getKey()) {
-            case regular: 
+            case regular:
                 for (String region : e.getValue()) {
                     String flagEmoji = Emoji.getHexFromFlagCode(region);
                     shouldBeFlagEmoji.add(flagEmoji);
@@ -209,7 +205,7 @@ public class TestEmojiData extends TestFmwkPlus {
         Set<String> testSet = new TreeSet<>(emojiOrderToTest.codepointCompare);
         emojiDataToTest.getAllEmojiWithoutDefectives().addAllTo(testSet);
 
-        CountEmoji.Category oldZwjType = null; 
+        CountEmoji.Category oldZwjType = null;
         String last = "";
         for (String s : testSet) {
             CountEmoji.Category zwjType = CountEmoji.Category.getType(s);
@@ -217,9 +213,9 @@ public class TestEmojiData extends TestFmwkPlus {
                 continue;
             }
             if (oldZwjType != null && zwjType.compareTo(oldZwjType) < 0) {
-                errln(zwjType + " < " + oldZwjType 
+                errln(zwjType + " < " + oldZwjType
                         + ", but they should be ascending"
-                        + "\n\t" + oldZwjType + "\t" + last 
+                        + "\n\t" + oldZwjType + "\t" + last
                         + "\n\t" + zwjType + "\t" + s);
             }
             last = s;
@@ -241,7 +237,7 @@ public class TestEmojiData extends TestFmwkPlus {
      */
     public void TestOrderVariants() {
         Set<String> sorted = emojiOrderToTest.sort(emojiOrderToTest.codepointCompare, emojiDataToTest.getAllEmojiWithDefectives());
-        assertEquals("Sorted handles all different code point sequences: ", 
+        assertEquals("Sorted handles all different code point sequences: ",
                 emojiDataToTest.getAllEmojiWithDefectives().size(), sorted.size());
         // we check that there is no case where variant 1 < non-variant < variant2
         Map<String,Integer> toIntOrder = new HashMap<>();
@@ -290,12 +286,12 @@ public class TestEmojiData extends TestFmwkPlus {
                 if (filterOutIfContains != null && filterOutIfContains.containsSome(item)) {
                     continue;
                 }
-                if (ruleBasedCollator.compare(lastItem, item) > 0 
+                if (ruleBasedCollator.compare(lastItem, item) > 0
                         && !modifiers.contains(item)) {
                     errln("RBased Out of order: "
-                            //                            + secondToLastItem 
+                            //                            + secondToLastItem
                             //                            + " (" + Utility.hex(secondToLastItem) + ": " + beta.getName(secondToLastItem) + ") " + ">"
-                            + lastItem 
+                            + lastItem
                             + " "
                             + showItem(lastItem, ruleBasedCollator)
                             + " " + "> "
@@ -349,7 +345,7 @@ public class TestEmojiData extends TestFmwkPlus {
     }
 
     private String showItem(String lastItem, RuleBasedCollator ruleBasedCollator) {
-        return "(" + Utility.hex(lastItem) 
+        return "(" + Utility.hex(lastItem)
         + "; " + emojiDataToTest.getName(lastItem)
         + (ruleBasedCollator == null ? "" : "; " + showCE(lastItem, ruleBasedCollator))
         + ")";
@@ -398,7 +394,7 @@ public class TestEmojiData extends TestFmwkPlus {
                 tbuffer.append(Utility.hex(tertiary,4));
 
             }
-            buffer.append(s 
+            buffer.append(s
                     + "\t0x" + Utility.hex(s, " 0x")
                     + "\t0x" + pbuffer
                     + "\t0x" + sbuffer
@@ -442,7 +438,7 @@ public class TestEmojiData extends TestFmwkPlus {
                 //                }
                 //                else if (tts.contains(" and ")) {
                 //                    warnln("name:\t" + s + "\t" + tts.length() + "\t" + tts + "\t" + keywords);
-                //                } 
+                //                }
             }
             if (EmojiData.MODIFIERS.containsSome(s)) {
                 if (false && em2 == null && status != EmojiAnnotations.Status.missing) {
@@ -477,11 +473,11 @@ public class TestEmojiData extends TestFmwkPlus {
                     tts = tts == null ? "???" : tts;
                     keywords = keywords == null ? Collections.singleton("???") : keywords;
                     Set<String> keys = em2.getKeys(s);
-                    missing.add(s 
-                            + "\t" + Utility.hex(s.replace(Emoji.EMOJI_VARIANT_STRING, ""), "_").toLowerCase(Locale.ENGLISH) 
-                            + "\t" + em2.getShortName(s) 
+                    missing.add(s
+                            + "\t" + Utility.hex(s.replace(Emoji.EMOJI_VARIANT_STRING, ""), "_").toLowerCase(Locale.ENGLISH)
+                            + "\t" + em2.getShortName(s)
                             + "\t" + (keys == null ? null : CollectionUtilities.join(keys, " | "))
-                            + "\t\t\t" + tts 
+                            + "\t\t\t" + tts
                             + "\t" + CollectionUtilities.join(keywords, " | "));
                 }
             } else {
@@ -528,8 +524,8 @@ public class TestEmojiData extends TestFmwkPlus {
     }
 
     public void TestExplicitGender() {
-        assertEqualsUS("", 
-                "list from UTS 51", new UnicodeSet("[👦-👨 🧔 👩 👴 👵 🤴 👸 👲 🧕 🤵 👰 🤰 🤱 🎅 🤶 💃 🕺 🕴 👫-👭]"), 
+        assertEqualsUS("",
+                "list from UTS 51", new UnicodeSet("[👦-👨 🧔 👩 👴 👵 🤴 👸 👲 🧕 🤵 👰 🤰 🤱 🎅 🤶 💃 🕺 🕴 👫-👭]"),
                 "emojiData", emojiDataToTest.getExplicitGender());
     }
 
@@ -542,13 +538,13 @@ public class TestEmojiData extends TestFmwkPlus {
         //            System.out.println(gotIt);
         //        }
 
-        Asserts.assertContains(this, "", "zwj-sequence", all, 
+        Asserts.assertContains(this, "", "zwj-sequence", all,
                 "woman in motorized wheelchair", "👩‍🦼");
-        Asserts.assertContains(this, "", "zwj-sequence", all, 
+        Asserts.assertContains(this, "", "zwj-sequence", all,
                 "woman in motorized wheelchair: light skin tone", "👩🏻‍🦼");
 //        if (!logKnownIssue("holding hands in zwj sequences", "dropped for now")) {
 //        }
-        Asserts.assertContains(this, "", "zwj-sequence", all, 
+        Asserts.assertContains(this, "", "zwj-sequence", all,
                 "women holding hands; medium, dark skin", "👩🏿‍🤝‍👩🏽");
     }
 
