@@ -107,6 +107,7 @@
 							<UVERSION>13.0.0</UVERSION>
 							<CLDR_ENVIRONMENT>UNITTEST</CLDR_ENVIRONMENT>
 							<java.awt.headless>true</java.awt.headless>
+							<UNICODETOOLS_REPO_DIR>${project.basedir}/..</UNICODETOOLS_REPO_DIR>
 						</systemPropertyVariables>
 						<argLine>-Xmx6g -enableassertions</argLine>
 					</configuration>
@@ -118,4 +119,16 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+	<repositories>
+		<repository>
+			<id>githubicu</id>
+			<name>GitHub unicode-org/icu Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/unicode-org/icu</url>
+		</repository>
+		<repository>
+			<id>githubcldr</id>
+			<name>GitHub unicode-org/cldr Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/unicode-org/cldr</url>
+		</repository>
+	</repositories>
 </project>
