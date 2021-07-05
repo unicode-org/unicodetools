@@ -79,3 +79,4 @@ rules.mk
 # Specific file names
 # (none yet, see ICU .gitignore for examples)
 
+.DS_Store
