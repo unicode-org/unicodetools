@@ -23,7 +23,10 @@ jobs:
           ${{ runner.os }}-maven-
     - name: Build with Maven
       run: >
-        mvn -s .github/workflows/mvn-settings.xml -B compile install package --file UnicodeJsps/pom.xml
+        mvn -s .github/workflows/mvn-settings.xml -B compile install package
+    - name: Test with Maven
+      run: >
+        mvn -s .github/workflows/mvn-settings.xml -B -pl UnicodeJsps install package
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Upload UnicodeJsps.war

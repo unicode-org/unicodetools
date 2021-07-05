@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.unicode.cldr.unittest.TestFmwkPlus;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyStatus;
 import org.unicode.props.UcdProperty;
@@ -23,23 +22,21 @@ import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.text.UnicodeSet;
 
-public class TestInvariants extends TestFmwkPlus{
+public class TestInvariants extends TestFmwkMinusMinus {
     static {
         System.setProperty("DISABLE_PROP_FILE_CACHE", "TRUE");
-    }
-    public static void main(String[] args) {
-        new TestInvariants().run(args);
     }
 
     private static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
     private static final UnicodeMap<Script_Values> SCRIPTS = iup.loadEnum(UcdProperty.Script, Script_Values.class);
     private static final IndexUnicodeProperties iupLast = IndexUnicodeProperties.make(Settings.lastVersion);
-    private static Map<UcdPropertyValues.Age_Values, IndexUnicodeProperties> IUPS 
+    private static Map<UcdPropertyValues.Age_Values, IndexUnicodeProperties> IUPS
     = new EnumMap<>(UcdPropertyValues.Age_Values.class);
     static {
         for (Age_Values age : UcdPropertyValues.Age_Values.values()) {
@@ -49,7 +46,7 @@ public class TestInvariants extends TestFmwkPlus{
             IUPS.put(age, IndexUnicodeProperties.make(age.getShortName()));
         }
     }
-    
+
     static final UnicodeMap<String> totalStrokes = iup.load(UcdProperty.kTotalStrokes);
     static final UnicodeMap<String> mandarin = iup.load(UcdProperty.kMandarin);
     static final UnicodeMap<String> radicalStroke = iup.load(UcdProperty.kRSUnicode);
@@ -61,9 +58,9 @@ public class TestInvariants extends TestFmwkPlus{
     static final UnicodeSet DECOMPOSABLE = haveDecomps.keySet();
 
     public void TestHanCompleteness() {
-        
+
         UnicodeSet missing;
-        
+
         UnicodeSet ideoMinusTangut = new UnicodeSet(ideographic)
                 .removeAll(SCRIPTS.getSet(Script_Values.Tangut))
                 .removeAll(SCRIPTS.getSet(Script_Values.Nushu))
@@ -91,7 +88,7 @@ public class TestInvariants extends TestFmwkPlus{
 
     private void showMissing(int warnVsError, String title, final UcdProperty prop, UnicodeSet missing) {
         if (!UnicodeSet.EMPTY.equals(missing)) {
-            messageln(warnVsError, title, missing); 
+            messageln(warnVsError, title, missing);
             if (DECOMPOSABLE.containsSome(missing)) {
                 missing.removeAll(DECOMPOSABLE);
                 messageln(warnVsError, "After removing decomps: " + title, missing);
@@ -113,7 +110,7 @@ public class TestInvariants extends TestFmwkPlus{
 
         Relation<General_Category_Values, UcdProperty> exceptions = Relation.of(new EnumMap(General_Category_Values.class), HashSet.class);
         exceptions.putAll(General_Category_Values.Unassigned, Arrays.asList(
-                UcdProperty.NFKC_Casefold, 
+                UcdProperty.NFKC_Casefold,
                 UcdProperty.Age,
                 UcdProperty.Block,
                 UcdProperty.Bidi_Class,
@@ -131,7 +128,7 @@ public class TestInvariants extends TestFmwkPlus{
                 UcdProperty.Age,
                 UcdProperty.Block
                 ));
-        exceptions.put(General_Category_Values.Surrogate, 
+        exceptions.put(General_Category_Values.Surrogate,
                 UcdProperty.Block
                 );
 
@@ -139,7 +136,7 @@ public class TestInvariants extends TestFmwkPlus{
         //ordered.add(UcdProperty.Bidi_Class);
         ordered.addAll(Arrays.asList(UcdProperty.values()));
         for (final General_Category_Values cat : EnumSet.of(
-                General_Category_Values.Unassigned, 
+                General_Category_Values.Unassigned,
                 General_Category_Values.Private_Use,
                 General_Category_Values.Surrogate
                 )) {
@@ -162,8 +159,8 @@ public class TestInvariants extends TestFmwkPlus{
                     final int otherCodePoint = mixed.getRangeStart(0);
                     String otherValue = map.get(otherCodePoint);
                     final int msgType = exceptionSet == null || !exceptionSet.contains(prop) ? ERR : LOG;
-                    messageln(msgType, "Mixed values for " 
-                            + cat + ":\t" 
+                    messageln(msgType, "Mixed values for "
+                            + cat + ":\t"
                             + prop + ":"
                             + "\t" + Utility.hex(firstCodePoint) + "→«" + firstValue + "»"
                             + "\t" + Utility.hex(otherCodePoint) + "→«" + otherValue + "»");
@@ -218,7 +215,7 @@ public class TestInvariants extends TestFmwkPlus{
 
     public void TestSecurity() {
         CheckProps(ERR, UcdProperty.Identifier_Status, "Restricted", "Allowed");
-        CheckProps(ERR, UcdProperty.Identifier_Type, "Not_Character",  
+        CheckProps(ERR, UcdProperty.Identifier_Type, "Not_Character",
                 "Not_XID", "Not_NFKC", "Default_Ignorable", "Technical", "Obsolete",
                 "Limited_Use", "recommended"
 , "historic" // old values

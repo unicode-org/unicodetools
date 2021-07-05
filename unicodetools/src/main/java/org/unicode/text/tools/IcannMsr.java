@@ -38,12 +38,12 @@ import com.ibm.icu.util.ULocale;
 
 public class IcannMsr {
     private static final String ICANN_DIR = Settings.Output.UNICODETOOLS_OUTPUT_DIR + "DATA/icann/";
-    
+
     // Change these with new versions
-    
+
     private static final String XML_DATA = "msr-2-wle-rules-13apr15-en.xml";
     private static final String DELTA_LIST = "MSR-2.0v5Delta.lst";
-    
+
     static final SetMaker<String>                SM        = new SetMaker<String>() {
         public Set<String> make() {
             return new LinkedHashSet<String>();
@@ -187,7 +187,7 @@ public class IcannMsr {
         XIDModifications xidModOld = new XIDModifications(SECURITY + Settings.latestVersion);
         UnicodeMap<Set<Identifier_Type>> xidMod = xidModOld.getType();
 
-        UnicodeMap<Set<String>> cldrChars = TestSecurity.getCLDRCharacters();
+        UnicodeMap<Set<String>> cldrChars = CLDRCharacterUtility.getCLDRCharacters();
 
         UnicodeMap<Pair<Identifier_Type, Identifier_Type>> diff = new UnicodeMap<>();
         for (EntryRange x : new UnicodeSet("[[:age=6.3:]-[[:nd:][:cn:][:co:][:cs:][:cwcf:]]]").ranges()) {
@@ -278,7 +278,7 @@ public class IcannMsr {
     }
 
     // 1F54F; uncommon-use # BOWL OF HYGIEIA
-    //  0138         ĸ      Ll      Latin       LATIN SMALL LETTER KRA  
+    //  0138         ĸ      Ll      Latin       LATIN SMALL LETTER KRA
     private static void show(PrintWriter out, Identifier_Type _type, int cpStart, int cpEnd) {
         out.println(Utility.hex(cpStart)
                 + (cpStart == cpEnd ? "\t" : ".." + Utility.hex(cpEnd))
