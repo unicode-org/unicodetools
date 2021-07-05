@@ -3,7 +3,6 @@ package org.unicode.unittest;
 import java.util.EnumSet;
 import java.util.Map;
 
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.impl.ValidIdentifiers;
 import com.ibm.icu.impl.ValidIdentifiers.Datasubtype;
 import com.ibm.icu.impl.ValidIdentifiers.Datatype;

@@ -13,12 +13,13 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.zip.GZIPOutputStream;
 
+import org.junit.jupiter.api.Test;
 import org.unicode.cldr.util.props.ICUPropertyFactory;
 import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.draft.UnicodeDataInput.StringReader;
 import org.unicode.draft.UnicodeDataOutput.StringWriter;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.DecimalFormat;
@@ -26,11 +27,9 @@ import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
-public class TestCompressed extends TestFmwk {
-    public static void main(String[] args) {
-        new TestCompressed().run(args);
-    }
+public class TestCompressed extends TestFmwkMinusMinus {
 
+    @Test
     public void TestAString() throws IOException {
 
         final String[] strings = {
@@ -65,6 +64,7 @@ public class TestCompressed extends TestFmwk {
 
     enum Compressed {compressed, uncompressed}
 
+    @Test
     public void TestSetStreamer () throws IOException {
         final String[] tests = {"[:Ll:]", "[a-c]", "[]", "[a-ce-fq-z]", "[{abc}]", "[a-cmq-z{abc}]"};
         final UnicodeDataOutput unicodeDataOutput = new UnicodeDataOutput();
@@ -126,6 +126,7 @@ public class TestCompressed extends TestFmwk {
     }
 
 
+    @Test
     public void TestMapStreamer () throws IOException {
         final String[] tests = {"[a-c]", "[]", "[a-ce-fq-zA-BD-F]", "[{abc}]", "[a-cmq-z{abc}{huh?}]"};
         final String[] values = {"The", "Quick", "Brown"};
@@ -197,6 +198,7 @@ public class TestCompressed extends TestFmwk {
         }
     }
 
+    @Test
     public void TestXBasic() throws IOException {
         final Object[] tests =
             {
@@ -339,6 +341,7 @@ public class TestCompressed extends TestFmwk {
      * Do this just to isolate the time.
      * @throws IOException
      */
+    @Test
     public void TestUnicodePropAccess () throws IOException {
         final UnicodeProperty.Factory f = ICUPropertyFactory.make();
         for (final String property : (Iterable<String>) f.getAvailableNames()) {
@@ -351,6 +354,7 @@ public class TestCompressed extends TestFmwk {
         }
     }
 
+    @Test
     public void TestUnicodeProperties () throws IOException {
         final StringReader stringReader = new StringReader();
         final StringWriter stringWriter = new StringWriter();

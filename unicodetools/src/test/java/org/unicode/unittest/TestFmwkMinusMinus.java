@@ -20,7 +20,7 @@ public class TestFmwkMinusMinus {
 
     @AfterEach
     public void tearDown() {
-        Assertions.assertEquals(0, errLines.size(), "Expected no errors");
+        Assertions.assertEquals(0, errLines.size(), "errln()");
     }
 
 
@@ -34,7 +34,7 @@ public class TestFmwkMinusMinus {
     }
 
     public void logln(String s) {
-        logger.info(s);
+        logger.fine(s);
     }
 
     public void warnln(String s) {
@@ -48,6 +48,10 @@ public class TestFmwkMinusMinus {
 
     public boolean assertNotEquals(String msg, Object a, Object b) {
         Assertions.assertNotEquals(a, b, msg);
+        return true;
+    }
+    public boolean assertNotNull(String msg, Object a) {
+        Assertions.assertNotNull(a, msg);
         return true;
     }
 

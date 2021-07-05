@@ -1,8 +1,5 @@
 package org.unicode.unittest;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.File;
 import java.util.EnumSet;
 import java.util.LinkedHashSet;
@@ -63,7 +60,7 @@ public class TestIdnaTest extends TestFmwkMinusMinus {
 
     @Test
     public void testLoadedTests() {
-        assertNotNull(loadedTests, "make sure loadedTests is OK");
+        Assertions.assertNotNull(loadedTests, "make sure loadedTests is OK");
         Assertions.assertTrue(new File(TEST_DIR).isDirectory());
     }
 

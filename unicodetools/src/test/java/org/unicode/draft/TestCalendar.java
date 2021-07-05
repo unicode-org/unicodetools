@@ -6,25 +6,20 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.util.ULocale;
 
-public class TestCalendar extends TestFmwk {
+import org.junit.jupiter.api.Test;
+import org.unicode.unittest.TestFmwkMinusMinus;
+
+public class TestCalendar extends TestFmwkMinusMinus {
 
     private static final int INCREMENT = 4*60*59*1000;
-
-    /**
-     * @param args
-     * @throws ParseException
-     */
-    public static void main(String[] args) throws ParseException {
-        new TestCalendar().run(args);
-    }
 
     static final long future = new Date(2015-1900,12-1,1).getTime();
     static final long past = new Date(1000-1900,1-1,1).getTime();
     static final java.util.TimeZone javaGMT = java.util.TimeZone.getTimeZone("GMT");
 
+    @Test
     public void TestDateParsing() throws java.text.ParseException {
         final ULocale locale = new ULocale("en_US");
         final com.ibm.icu.util.TimeZone gmt = com.ibm.icu.util.TimeZone.getTimeZone("GMT");
@@ -61,6 +56,7 @@ public class TestCalendar extends TestFmwk {
         }
     }
 
+    @Test
     public void TestShorterParsing() throws ParseException {
         final String dateString = "1/2/3";
         final Locale usLocale = new Locale("en", "US");
@@ -80,6 +76,7 @@ public class TestCalendar extends TestFmwk {
 
     static final com.ibm.icu.util.TimeZone GMT = com.ibm.icu.util.TimeZone.getTimeZone("GMT");
 
+    @Test
     public void TestLongerParsing() throws ParseException {
         final Locale usLocale = new Locale("en", "US");
         final com.ibm.icu.util.Calendar newCalendar = com.ibm.icu.util.Calendar.getInstance(GMT, usLocale);
@@ -101,6 +98,7 @@ public class TestCalendar extends TestFmwk {
     }
 
 
+    @Test
     public void TestDate() throws ParseException {
         final long[][] tests = {
                 {-62072611200000L, 3, 1, 2},
@@ -129,6 +127,7 @@ public class TestCalendar extends TestFmwk {
                 + ", second: " + date.getSeconds();
     }
 
+    @Test
     public void TestJavaDateRoundtrip() {
 
         int lastYear = 9999;
@@ -164,6 +163,7 @@ public class TestCalendar extends TestFmwk {
         }
     }
 
+    @Test
     public void TestJavaCalendarRoundtrip() {
         final Locale javaLocale = new Locale("en", "US");
         final java.util.Calendar javaCal = java.util.Calendar.getInstance(javaGMT, javaLocale);
@@ -213,6 +213,7 @@ public class TestCalendar extends TestFmwk {
 
     }
 
+    @Test
     public void TestIcuCalenderRoundrip() {
         final ULocale icuLocale = new ULocale("en_US");
         final com.ibm.icu.util.TimeZone icuGMT = com.ibm.icu.util.TimeZone.getTimeZone("GMT");
