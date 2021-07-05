@@ -163,7 +163,7 @@ final public class UCA implements Comparator<String>, UCA_Types {
         }
     }
 
-    private final class PrimaryIterable implements Iterable<UCA.Primary> {
+    public final class PrimaryIterable implements Iterable<UCA.Primary> {
         int start;
 
         PrimaryIterable(int start) {
@@ -1372,7 +1372,7 @@ final public class UCA implements Comparator<String>, UCA_Types {
     }
 
     /**
-     * 
+     *
      */
     private UnicodeSet extractSet(String inputLine) {
         //# Variant secondaries:    0177..017B (5)
