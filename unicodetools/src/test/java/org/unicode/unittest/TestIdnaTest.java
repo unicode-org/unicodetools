@@ -1,15 +1,27 @@
 package org.unicode.unittest;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.File;
 import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import org.unicode.cldr.unittest.TestFmwkPlus;
+import com.google.common.base.Splitter;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.Utility;
+import com.ibm.icu.lang.CharSequences;
+import com.ibm.icu.text.IDNA;
+import com.ibm.icu.text.IDNA.Info;
+import com.ibm.icu.text.UnicodeSet;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.unicode.idna.GenerateIdna;
-import org.unicode.idna.GenerateIdnaTest;
 import org.unicode.idna.LoadIdnaTest;
 import org.unicode.idna.LoadIdnaTest.TestLine;
-import org.unicode.idna.LoadIdnaTest.Type;
 import org.unicode.idna.Uts46;
 import org.unicode.idna.Uts46.Errors;
 import org.unicode.idna.Uts46.IdnaChoice;
@@ -21,18 +33,11 @@ import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Settings;
 
-import com.google.common.base.Splitter;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.Utility;
-import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.text.IDNA;
-import com.ibm.icu.text.IDNA.Info;
-import com.ibm.icu.text.UnicodeSet;
 
-public class TestIdnaTest extends TestFmwkPlus{
-    public String TEST_DIR;
-    public Set<TestLine> loadedTests;
-    
+public class TestIdnaTest extends TestFmwkMinusMinus {
+    public static String TEST_DIR;
+    public static Set<TestLine> loadedTests;
+
     static final IDNA icuUts46T = IDNA.getUTS46Instance(
             IDNA.USE_STD3_RULES
             | IDNA.CHECK_BIDI
@@ -44,15 +49,10 @@ public class TestIdnaTest extends TestFmwkPlus{
             | IDNA.CHECK_CONTEXTJ
             | IDNA.NONTRANSITIONAL_TO_ASCII
             );
-    
-    public static void main(String[] args) {
-        new TestIdnaTest().run(args);
-    }
-    
-    @Override
-    protected void init() throws Exception {
-        super.init();
-        TEST_DIR = getProperty("DIR");
+
+    @BeforeAll
+    public static void init() {
+        TEST_DIR = System.getProperty("DIR");
         if (TEST_DIR == null) {
             TEST_DIR = Settings.UnicodeTools.UNICODETOOLS_DIR + "data/idna/" + Default.ucdVersion();
         } else if (TEST_DIR.equalsIgnoreCase("DRAFT")) {
@@ -61,9 +61,16 @@ public class TestIdnaTest extends TestFmwkPlus{
         loadedTests = LoadIdnaTest.load(TEST_DIR);
     }
 
+    @Test
+    public void testLoadedTests() {
+        assertNotNull(loadedTests, "make sure loadedTests is OK");
+        assertTrue(new File(TEST_DIR).isDirectory());
+    }
+
     static IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
     static UnicodeMap<Bidi_Class_Values> BIDI_CLASS = iup.loadEnum(UcdProperty.Bidi_Class, Bidi_Class_Values.class);
 
+    @Test
     public void testBackwardsCompatibility() {
         UnicodeMap<String> idnaMapping = iup.load(UcdProperty.Idn_Mapping);
         UnicodeMap<Idn_Status_Values> idnaStatus = iup.loadEnum(UcdProperty.Idn_Status, Idn_Status_Values.class);
@@ -81,6 +88,11 @@ public class TestIdnaTest extends TestFmwkPlus{
             assertEquals("status" + versionString, idnaStatusLast.get(x), idnaStatus.get(x));
         }
     }
+    public static boolean assertEquals(String string, Object a, Object b) {
+        Assertions.assertEquals(a, b, string);
+        return true;
+    }
+
     public static final Splitter semi = Splitter.on(';').trimResults();
 
     static final String[] tests = {
@@ -91,6 +103,7 @@ public class TestIdnaTest extends TestFmwkPlus{
             "N;  \u200D。。\u06B9\u200C;   [B1 B3 C1 C2 A4_2]; [B1 B3 C1 C2 A4_2]  #   ..ڹ"
     };
 
+    @Test
     public void testBroken() {
         for (String test : tests) {
             TestLine tl = TestLine.from(test);
@@ -98,6 +111,7 @@ public class TestIdnaTest extends TestFmwkPlus{
         }
     }
 
+    @Test
     public void testBrokenICU() {
         for (String test : tests) {
             TestLine tl = TestLine.from(test);
@@ -115,7 +129,7 @@ public class TestIdnaTest extends TestFmwkPlus{
      */
 
     enum Choice {ICU, GEN}
-    
+
     private void checkTestLine(TestLine tl, Choice choice) {
         String detailedSource = showBidi(tl.source);
         if (tl.source.equals("0à.\u05D0")) {
@@ -126,7 +140,7 @@ public class TestIdnaTest extends TestFmwkPlus{
         Info info = new Info();
         StringBuilder buffer = new StringBuilder();
         icuUts46N.nameToASCII(tl.source, buffer, info);
-        
+
         String lead = "toUnicode(";
         if (tl.toUnicodeErrors.isEmpty()) {
             if (!assertEquals(lead + detailedSource + ")", tl.toUnicode, toUnicode)) {
@@ -147,10 +161,10 @@ public class TestIdnaTest extends TestFmwkPlus{
         final String toAscii = Uts46.SINGLETON.toASCII(tl.source, idnaChoice, toAsciiErrors);
         String f;
         switch(idnaChoice) {
-        case transitional: 
+        case transitional:
             f = " toAsciiT(";
             break;
-        case nontransitional: 
+        case nontransitional:
             f = " toAsciiN(";
             break;
         }
@@ -214,7 +228,8 @@ public class TestIdnaTest extends TestFmwkPlus{
        Bidi property L or EN, followed by zero or more characters with
        Bidi property NSM.
      */
-    
+
+    @Test
     public void testFinalDot() {
         String source = "a.b．c。d｡";
         String expected = "a.b.c.d.";
@@ -222,12 +237,15 @@ public class TestIdnaTest extends TestFmwkPlus{
         final String actual = Uts46.SINGLETON.toUnicode(source, IdnaChoice.nontransitional, toUnicodeErrors);
         assertEquals("toUnicode(" + source + "):", expected, actual);
     }
-    
+
+    @Test
     public void testFile() {
         for (TestLine testLine : loadedTests) {
             checkTestLine(testLine, Choice.GEN);
         }
     }
+
+    @Test
     public void testFileICU() {
         for (TestLine testLine : loadedTests) {
             checkTestLine(testLine, Choice.ICU);

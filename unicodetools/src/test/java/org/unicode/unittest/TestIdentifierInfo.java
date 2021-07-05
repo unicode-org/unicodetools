@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
 import org.unicode.props.IndexUnicodeProperties;
@@ -20,7 +21,7 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.text.UnicodeSet;
 
-public class TestIdentifierInfo extends TestFmwk {
+public class TestIdentifierInfo extends TestFmwkMinusMinus {
     static final IndexUnicodeProperties uip = IndexUnicodeProperties.make("12.0");
     static final UnicodeSet NotCharacter = uip.loadEnumSet(
 	    UcdProperty.General_Category, General_Category_Values.Unassigned);
@@ -32,13 +33,10 @@ public class TestIdentifierInfo extends TestFmwk {
 		    + "\\p{block=Musical_Symbols}"
 		    + "\\p{block=Ancient_Greek_Musical_Notation}"
 		    + "\\p{block=Phaistos_Disc}]");
-    
+
     static final UnicodeSet SpecialExclusions2 = new UnicodeSet("[\\U00011301\\U00011303\\U0001133C]");
 
-    public static void main(String[] args) {
-	new TestIdentifierInfo().run(args);
-    }
-
+	@Test
     public void testUax31Overlap() {
 	UnicodeMap<Identifier_Type_Values> scriptUsage = getScriptUsage();
 	Set<Identifier_Type_Values> inclusion = ImmutableSet.of(Identifier_Type_Values.Inclusion);
@@ -79,7 +77,7 @@ public class TestIdentifierInfo extends TestFmwk {
 	System.out.println();
 	TreeSet<String> sorted = new TreeSet<>(mismatch.values());
 	for (String value : sorted) {
-	    errln(value + ": " + mismatch.getSet(value));
+		errln(value + ": " + mismatch.getSet(value));
 	}
     }
 
@@ -100,7 +98,7 @@ public class TestIdentifierInfo extends TestFmwk {
 	}
 	results.putAll(SpecialExclusions, Identifier_Type_Values.Exclusion);
 	results.putAll(SpecialExclusions2, Identifier_Type_Values.Exclusion);
-	
+
 	return results;
     }
 
@@ -112,14 +110,14 @@ public class TestIdentifierInfo extends TestFmwk {
 	    }
 	    Info info = ScriptMetadata.getInfo(script.getShortName());
 	    switch(info.idUsage) {
-	    case RECOMMENDED: 
+	    case RECOMMENDED:
 		return Identifier_Type_Values.Recommended;
-	    case LIMITED_USE: 
+	    case LIMITED_USE:
 		if (best != Identifier_Type_Values.Limited_Use) {
 		    best = Identifier_Type_Values.Limited_Use;
 		}
 		break;
-	    case EXCLUSION: 
+	    case EXCLUSION:
 		if (best == null) {
 		    best = Identifier_Type_Values.Exclusion;
 		}

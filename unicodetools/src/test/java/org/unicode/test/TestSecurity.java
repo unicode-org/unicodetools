@@ -17,7 +17,6 @@ import java.util.TreeSet;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
-import org.unicode.cldr.unittest.TestFmwkPlus;
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.CLDRFile.WinningChoice;
@@ -53,7 +52,7 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 
-public class TestSecurity extends TestFmwkPlus {
+public class TestSecurity extends TestFmwkMinusMinus {
     private static final String GEN_SECURITY_DIR = Settings.Output.GEN_DIR + "security/" + Settings.latestVersion;
 
     public static XIDModifications XIDMOD = new XIDModifications(GEN_SECURITY_DIR);
@@ -78,9 +77,9 @@ public class TestSecurity extends TestFmwkPlus {
     private Boolean isAllNonspacing(String source, UnicodeMap<General_Category_Values> generalCategory) {
         for (int codepoint : CharSequences.codePoints(source)) {
             switch(generalCategory.get(codepoint)) {
-            case Nonspacing_Mark: case Enclosing_Mark: 
+            case Nonspacing_Mark: case Enclosing_Mark:
                 continue;
-            default: 
+            default:
                 return false;
             }
         }
@@ -188,7 +187,7 @@ public class TestSecurity extends TestFmwkPlus {
 
     public void TestCldrConsistency() {
         System.out.println("\nIgnore TestCldrConsistency for now: Need to fix exemplars.closeOver(UnicodeSet.CASE) before this is useful");
-        UnicodeMap<Set<String>> fromCLDR = getCLDRCharacters();
+        UnicodeMap<Set<String>> fromCLDR = CLDRCharacterUtility.getCLDRCharacters();
         UnicodeSet vi = new UnicodeSet();
         for (String s : fromCLDR) {
             if (s.equals("ə")) {
@@ -204,71 +203,21 @@ public class TestSecurity extends TestFmwkPlus {
                     Set<String> locales = fromCLDR.get(s);
                     warnln("?Overriding with CLDR: "
                             + Utility.hex(s, "+")
-                            + "; " + s 
-                            + "; " + UCharacter.getName(s," ") 
-                            + "; " + item 
+                            + "; " + s
+                            + "; " + UCharacter.getName(s," ")
+                            + "; " + item
                             + " => " + idUsage + "; "
                             + locales);
                     if (locales.contains("vi")) {
                         vi.add(s);
                     }
                     break;
-                default: 
+                default:
                     break;
                 }
             }
         }
 //        System.out.println("vi: " + vi.toPattern(false));
-    }
-
-    public static UnicodeMap<Set<String>> getCLDRCharacters() {
-        UnicodeMap<Set<String>> result = new UnicodeMap<>();
-        Factory factory = CLDRConfig.getInstance().getCldrFactory();
-        //        File[] paths = { new File(CLDRPaths.MAIN_DIRECTORY)
-        //        //, new File(CLDRPaths.SEED_DIRECTORY), new File(CLDRPaths.EXEMPLARS_DIRECTORY) 
-        //        };
-        //        Factory factory = SimpleFactory.make(paths, ".*");
-        Set<String> localeCoverage = StandardCodes.make().getLocaleCoverageLocales("cldr");
-        Set<String> skipped = new LinkedHashSet<>();
-        LanguageTagParser ltp = new LanguageTagParser();
-        for (String localeId : localeCoverage) { //  factory.getAvailableLanguages()
-            ltp.set(localeId);
-            if (!ltp.getRegion().isEmpty()) {
-                continue;
-            }
-            Iso639Data.Type type = Iso639Data.getType(ltp.getLanguage());
-            if (type != Iso639Data.Type.Living) {
-                skipped.add(localeId);
-                continue;
-            }
-            CLDRFile cldrFile;
-            try {
-                cldrFile = factory.make(localeId, false);
-            } catch (Exception e) {
-                if (!localeId.equals("jv")) { // temporary hack
-                    throw e;
-                }
-                System.err.println("Couldn't open: " + localeId);
-                continue;
-            }
-            UnicodeSet exemplars = cldrFile
-                    .getExemplarSet("", WinningChoice.WINNING);
-            if (exemplars != null) {
-                exemplars.closeOver(UnicodeSet.CASE);
-                for (String s : flatten(exemplars)) { // flatten
-                    Set<String> old = result.get(s);
-                    if (old == null) {
-                        result.put(s, Collections.singleton(localeId));
-                    } else {
-                        old = new TreeSet<String>(old);
-                        old.add(localeId);
-                        result.put(s, Collections.unmodifiableSet(old));
-                    }
-                }
-            }
-        }
-        System.out.println("Skipped non-living languages " + skipped);
-        return result;
     }
 
     private static UnicodeSet flatten(UnicodeSet result) {
@@ -278,8 +227,6 @@ public class TestSecurity extends TestFmwkPlus {
         }
         return result2;
     }
-
-
 
     public class EnumComparator<T extends Enum<?>> implements Comparator<T> {
         @Override
@@ -517,12 +464,12 @@ public class TestSecurity extends TestFmwkPlus {
             Set<Status> actual = checker.getConfusables(source, examples);
             if (!assertEquals(
                     (isVerbose() ? "" : "idSet=" + checker.getIncludeOnly() + ",")
-                    + " source= " + source 
-                    + ", scripts= " + scriptDetector.set(source).getAll(), 
+                    + " source= " + source
+                    + ", scripts= " + scriptDetector.set(source).getAll(),
                     expected.toString(), actual.toString())) {
                 errln("\t\texamples= " + examples);
             } else {
-                logln("\t\texamples= " + examples); 
+                logln("\t\texamples= " + examples);
             }
         }
     }

@@ -1,4 +1,4 @@
-package data.picker;
+package org.unicode.picker;
 public class CharData {
 public static String[][] CHARACTERS_TO_NAME = {
 {" ","SPACE"},
@@ -50,8 +50,8 @@ public static String[][] CHARACTERS_TO_NAME = {
 {"–","EN DASH"},
 {"—","EM DASH"},
 {"―","HORIZONTAL BAR"},
-{" ","LINE SEPARATOR"},
-{" ","PARAGRAPH SEPARATOR"},
+{"","LINE SEPARATOR"},
+{"","PARAGRAPH SEPARATOR"},
 {"‪","LEFT-TO-RIGHT EMBEDDING"},
 {"‫","RIGHT-TO-LEFT EMBEDDING"},
 {"‬","POP DIRECTIONAL FORMATTING"},

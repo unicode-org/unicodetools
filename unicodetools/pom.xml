@@ -14,21 +14,24 @@
 	<url>https://unicode.org/cldr</url>
 
 	<properties>
-                <maven.compiler.source>1.8</maven.compiler.source>
-                <maven.compiler.target>1.8</maven.compiler.target>
-                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-                <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-						<!-- <mainClass>org.unicode.cldr.tool.Main</mainClass> -->
-                <!--
-                        For ICU versions, see https://github.com/orgs/unicode-org/packages?repo_name=icu
-                        Note that we can't use the general ICU maven packages, because utilities isn't exported (yet).
-                 -->
-                <icu.version>69.1-SNAPSHOT-cldr-2021-02-17</icu.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+				<!-- <mainClass>org.unicode.cldr.tool.Main</mainClass> -->
+		<!--
+				For ICU versions, see https://github.com/orgs/unicode-org/packages?repo_name=icu
+				Note that we can't use the general ICU maven packages, because utilities isn't exported (yet).
+			-->
+		<icu.version>70.0.1-SNAPSHOT-cldr-2021-06-15</icu.version>
 
-                <!--
-                        For CLDR versions, see https://github.com/orgs/unicode-org/packages?repo_name=cldr
-                 -->
-                <cldr.version>0.0.0-SNAPSHOT-87058620ea</cldr.version>
+		<!--
+				For CLDR versions, see https://github.com/orgs/unicode-org/packages?repo_name=cldr
+			-->
+		<cldr.version>0.0.0-SNAPSHOT-e547a7fb5e</cldr.version>
+		<junit-version>5.7.2</junit-version>
+		<!-- Need to use an updated surefire plugin here. -->
+		<maven-surefire-plugin-version>3.0.0-M5</maven-surefire-plugin-version>
 	</properties>
 
 	<scm>
@@ -59,16 +62,12 @@
 				<version>${cldr.version}</version>
 		</dependency>
 		<!-- test -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
 			<scope>test</scope>
+			<version>${junit-version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<scope>test</scope>
-		</dependency> -->
 
 		<!-- <dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -97,4 +96,39 @@
 
 	</dependencies>
 
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven-surefire-plugin-version}</version>
+					<configuration>
+						<systemPropertyVariables>
+							<UVERSION>13.0.0</UVERSION>
+							<CLDR_ENVIRONMENT>UNITTEST</CLDR_ENVIRONMENT>
+							<java.awt.headless>true</java.awt.headless>
+							<UNICODETOOLS_REPO_DIR>${project.basedir}/..</UNICODETOOLS_REPO_DIR>
+						</systemPropertyVariables>
+						<argLine>-Xmx6g -enableassertions</argLine>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>${maven-surefire-plugin-version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<repositories>
+		<repository>
+			<id>githubicu</id>
+			<name>GitHub unicode-org/icu Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/unicode-org/icu</url>
+		</repository>
+		<repository>
+			<id>githubcldr</id>
+			<name>GitHub unicode-org/cldr Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/unicode-org/cldr</url>
+		</repository>
+	</repositories>
 </project>

@@ -7,7 +7,7 @@ import java.util.Vector;
 import org.unicode.cldr.draft.CharacterListCompressor;
 import org.unicode.cldr.draft.CharacterListCompressor.Interval;
 
-import data.picker.CharData;
+import org.unicode.picker.CharData;
 
 public class PickerData2 {
     /*
