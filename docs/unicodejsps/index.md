@@ -1,91 +1,82 @@
 # Building UnicodeJsp
 
-## Source
+## Compiling
+### Prerequisites
+- Java
+- Maven (download instructions [here](http://cldr.unicode.org/development/maven#TOC-Installing-Maven)
+- GitHub account
+- UnicodeJsp source downloaded
 
-<https://github.com/unicode-org/unicodetools>
+### Maven Environment setup
 
-## Jars
+Setup your maven environment’s `.m2/settings.xml` as per
+[CLDR instructions](http://cldr.unicode.org/development/maven#TOC-Getting-Started---GitHub-token). You don’t
+need to actually need to download or build CLDR itself.
+
+### Building from the command line
+
+Run `mvn package` in the UnicodeJsps directory to build the JSPs.
+
+### Building from Eclipse
+
+UnicodeJsps can be imported into eclipse using the _Import->existing maven project_ menu option.
+If you already have `UnicodeJsps` in eclipse, it might be better to remove it from eclipse before the import.
+
+## Running
 
 ### Command Line
 
-### Build icu4j jars
+```shell
+mvn jetty:run
+```
 
-*   download/checkout [icu4j](http://site.icu-project.org/download)
-*   from the command line:
-    **ant releaseCLDR**
-*   output in: four jars in {$workspace}/icu4j/release_cldr/
+You can now connect to <http://127.0.0.1:8080> as suggested from the command line.
+Use Control-C to stop the server.
 
-### Build [cldr](http://cldr.unicode.org).jar
+### Running from within Eclipse
 
-*   from the command line:
-    **ant jar**
-*   output in: {$workspace}/cldr/tools/java/cldr.jar
+This screenshot shows creating a `jetty:run` maven run configuration.
 
-(Note: These jars are slated to be available via Maven… keep an eye on
-[ICU-21251](https://unicode-org.atlassian.net/browse/ICU-21251) )
+![Running jetty:run from eclipse](eclipse-jetty-run.png)
 
-### Eclipse
+### Debugging from within eclipse
 
-Do the same as above, except:
+Jetty provides instructions [here](https://www.eclipse.org/jetty/documentation/jetty-9/index.html#debugging-with-eclipse) for debugging
+within eclipse.  It is unknown whether this has been attempted with the UnicodeJsps.
 
-1.  Right-click on build.xml in the respective directories
-    1.  {$workspace}/icu4j/build.xml
-    2.  {$workspace}/cldr/tools/java/build.xml
-2.  Select Run As...
-3.  Pick the target as above.
+## Upgrading the UnicodeJsps
 
-### Copy
+### Text Files
 
-Copy the following into {$workspace}/UnicodeJsps/WebContent/WEB-INF/lib/
-
-*   *failureaccess-sources.jar*
-*   *failureaccess.jar*
-*   *failureaccess.txt*
-*   cldr.jar
-*   gson-sources.jar
-*   gson-version.txt
-*   gson.jar
-*   guava-sources.jar
-*   guava-version.txt
-*   guava.jar
-*   icu4j-src.jar
-*   icu4j-version.txt
-*   icu4j.jar
-*   utilities-src.jar
-*   utilities.jar
-*   xercesImpl.jar
-
-## Text Files
-
-Into {$workspace}/unicode-jsps/src/org/unicode/jsp
+Into `{$workspace}/UnicodeJsps/src/main/resources/org/unicode/jsp`
 
 Copy in newest versions of:
 
-{$workspace}/unicodetools/data/security/\<VERSION\>
+`{$workspace}/unicodetools/data/security/\<VERSION\>`
 
 *   confusables.txt
 *   IdentifierStatus.txt
 *   IdentifierType.txt
 
-{$workspace}/unicodetools/data/ucd/\<VERSION\>-Update/
+`{$workspace}/unicodetools/data/ucd/\<VERSION\>-Update/`
 
 *   NameAliases.txt
 *   NamesList.txt
 *   ScriptExtensions.txt
 *   StandardizedVariants.txt
 
-{$workspace}/unicodetools/data/idna/\<VERSION\>
+`{$workspace}/unicodetools/data/idna/\<VERSION\>`
 
 *   IdnaMappingTable.txt
 
-{$workspace}/unicodetools/data/emoji/\<VERSION\>
+`{$workspace}/unicodetools/data/emoji/\<VERSION\>`
 
 *   emoji-sequences.txt
 *   emoji-zwj-sequences.txt
 *   *\<emoji-variants\>* :construction: **TODO**
 
-Run \[cldr\] GenerateSubtagNames to generate results on the console; paste the
-results into subtagNames.txt
+Run \[cldr\] `GenerateSubtagNames` to generate results on the console; paste the
+results into `subtagNames.txt`
 
 Other files:
 
@@ -107,15 +98,13 @@ Files to investigate
 *   temp.html
 *   test.htm
 
-**:construction: **TODO**: Change CopyPropsToUnicodeJsp to copy all the necessary files!**
-
 ## Adding/Updating New Properties
 
-Go to XPropertyFactory.java to add new properties other than the ones in /props/
+Go to `XPropertyFactory.java` to add new properties other than the ones in /props/
 
 ### Adding "/Prop/" Properties
 
-#### UnicodeJsps/org/unicode/jsp/data
+#### UnicodeJsps/src/main/resources/org/unicode/jsp/data
 
 Update the following files by copying from org/unicode/props
 
@@ -127,7 +116,7 @@ Update the following files by copying from unicodetools/data/ucd/XX.0.0-Update
 *   PropertyAliases.txt
 *   PropertyValueAliases.txt
 
-#### UnicodeJsps/org/unicode/jsp/props/
+#### UnicodeJsps/src/main/resources/org/unicode/jsp/props/
 
 Run ListProps. It will copy .bin files into {generated}bin/XX.0.0.0. Examples:
 
@@ -137,7 +126,7 @@ Run ListProps. It will copy .bin files into {generated}bin/XX.0.0.0. Examples:
 *   Bidi_Class.bin
 *   ...
 
-Copy those into /UnicodeJsps/src/org/unicode/jsp/props using
+Copy those into /UnicodeJsps/src/main/resources/org/unicode/jsp/props using
 CopyPropsToUnicodeJsp
 
 ### Using Beta Properties
@@ -146,22 +135,18 @@ Set CachedProps.IS_BETA to true.
 
 Build & Test
 
-1.  Run {$workspace}/unicode-jsps-tst/src/org/unicode/jsptest/TestAll.java.
+1.  Run `mvn test`
 
 :construction: **TODO**: These need a lot of work; they mostly print out a lot of gorp that you
 need to scan over.
 
-Run the server.
+Run the server (see above)
 
 Look at <http://localhost:8080/UnicodeJsps/properties.jsp>, and make sure that
 there aren't any Z-Other props at the bottom (you'll need to update via Adding
 New Properties if there are).
 
 (:construction: **TODO**: explain how to do a Docker-based build here.)
-
-## Running Locally
-
-See <https://github.com/unicode-org/unicodetools/pull/41#issuecomment-783553959>
 
 ## Commit/PR
 

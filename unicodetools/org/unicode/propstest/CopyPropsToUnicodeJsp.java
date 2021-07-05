@@ -23,7 +23,7 @@ public class CopyPropsToUnicodeJsp {
         IndexUnicodeProperties latest = IndexUnicodeProperties.make();
 
         String fromDir = Settings.Output.BIN_DIR + latest.getUcdVersion() + "/";
-        String toDir = Settings.UnicodeTools.UNICODEJSPS_DIR + "src/org/unicode/jsp/props/";
+        String toDir = Settings.UnicodeTools.UNICODEJSPS_DIR + "src/main/resources/org/unicode/jsp/props/";
         //overwrite existing file, if exists
         CopyOption[] options = new CopyOption[] {StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES};
         Set<String> kExceptions = ImmutableSet.of("kAccountingNumeric.bin", "kOtherNumeric.bin", "kPrimaryNumeric.bin", "kSimplifiedVariant.bin", "kTraditionalVariant.bin");
