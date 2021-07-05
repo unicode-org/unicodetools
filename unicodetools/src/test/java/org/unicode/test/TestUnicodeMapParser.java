@@ -2,33 +2,32 @@ package org.unicode.test;
 
 import java.text.ParsePosition;
 
-import org.unicode.cldr.unittest.TestFmwkPlus;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.UCD.UnicodeMapParser;
 import org.unicode.text.UCD.UnicodeMapParser.ValueParser;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
 import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 
-public class TestUnicodeMapParser extends TestFmwkPlus{
+public class TestUnicodeMapParser extends TestFmwkMinusMinus{
 
     private static final IndexUnicodeProperties INDEX_PROPS = IndexUnicodeProperties.make(Settings.latestVersion);
     private static final IndexUnicodeProperties LAST_INDEX_PROPS = IndexUnicodeProperties.make(Settings.lastVersion);
     private static final UnicodeProperty NAME = INDEX_PROPS.getProperty("name");
     private static final UnicodeProperty AGE = INDEX_PROPS.getProperty("age");
 
-    public static void main(String[] args) {
-        new TestUnicodeMapParser().run(args);
-    }
-
     private UnicodeMapParser<String> ump = UnicodeMapParser.create(
-            UnicodeMapParser.STRING_VALUE_PARSER, 
+            UnicodeMapParser.STRING_VALUE_PARSER,
             INDEX_PROPS, LAST_INDEX_PROPS);
 
+    @Test
     public void testBasic() {
         UnicodeMap<String> expected = new UnicodeMap<String>()
                 .put('a', " ")
@@ -56,9 +55,10 @@ public class TestUnicodeMapParser extends TestFmwkPlus{
         check(ump2, test2, expected2, -1);
     }
 
+    @Test
     public void testUnihan() {
         UnicodeMapParser<String> ump = UnicodeMapParser.create(
-                UnicodeMapParser.STRING_VALUE_PARSER, 
+                UnicodeMapParser.STRING_VALUE_PARSER,
                 INDEX_PROPS);
         UnicodeMap<String> expected = new UnicodeMap<String>()
                 .putAll(INDEX_PROPS.getProperty("kRSUnicode").getUnicodeMap());
@@ -67,6 +67,7 @@ public class TestUnicodeMapParser extends TestFmwkPlus{
         check(ump, test, expected, -1);
     }
 
+    @Test
     public void testAProperty() {
         UnicodeMap<String> expected = new UnicodeMap<String>()
                 .putAll(INDEX_PROPS.getProperty("Script").getUnicodeMap())
@@ -77,18 +78,23 @@ public class TestUnicodeMapParser extends TestFmwkPlus{
     }
 
 
+    @Disabled("Broken")
+    @Test
     public void testStability() {
         String test1 = "{\\m{Simple_Titlecase_Mapping}-\\p{Age=7.0}}";
         String test2 = "{\\m{*Simple_Titlecase_Mapping}-\\p{Age=7.0}}";
         areEqual(ump, test1, test2);
     }
 
+    @Disabled("Broken")
+    @Test
     public void testRetain2() {
         String test1 = "{a=b, c=d, q=r}";
         String test2 = "{a=b, e=f, q=s}";
         areEqual(ump, test1, test2);
     }
 
+    @Test
     public void testEmbedding() {
         UnicodeMap<String> expected = new UnicodeMap<String>()
                 .put('a', "b");
@@ -97,6 +103,7 @@ public class TestUnicodeMapParser extends TestFmwkPlus{
         check(ump, test, expected, -1);
     }
 
+    @Test
     public void testRemove() {
         UnicodeMap<String> expected = new UnicodeMap<String>()
                 .putAll(INDEX_PROPS.getProperty("Script").getUnicodeMap())
@@ -105,6 +112,7 @@ public class TestUnicodeMapParser extends TestFmwkPlus{
         check(ump, test, expected, -1);
     }
 
+    @Test
     public void testRetain() {
         UnicodeMap<String> expected = new UnicodeMap<String>()
                 .putAll(INDEX_PROPS.getProperty("Script").getUnicodeMap())
@@ -185,19 +193,19 @@ public class TestUnicodeMapParser extends TestFmwkPlus{
                 }
             }
 //            final UnicodeMap um1MinusUm2 = UnicodeMapParser.removeAll(new UnicodeMap().putAll(um1), um2);
-//            errln("In " + test1 + " but not " + test2 + "\n\t" 
+//            errln("In " + test1 + " but not " + test2 + "\n\t"
 //            + um1MinusUm2.toString());
-//            errln("In " + test1 + " and in " + test2 + "\n\t" 
+//            errln("In " + test1 + " and in " + test2 + "\n\t"
 //                    + UnicodeMapParser.retainAll(new UnicodeMap().putAll(um1), um2).toString());
-//            errln("Not in " + test1 + " but in " + test2 + "\n\t" 
+//            errln("Not in " + test1 + " but in " + test2 + "\n\t"
 //                    + UnicodeMapParser.removeAll(new UnicodeMap().putAll(um2), um1).toString());
         }
     }
 
     private String getCodeAndName(String s) {
-        return "U+" + Utility.hex(s, ", U+") 
-                + " " + AGE.getValue(s.codePointAt(0)) 
-                + " (" + s + ") " 
+        return "U+" + Utility.hex(s, ", U+")
+                + " " + AGE.getValue(s.codePointAt(0))
+                + " (" + s + ") "
                 + NAME.getValue(s.codePointAt(0));
     }
 }

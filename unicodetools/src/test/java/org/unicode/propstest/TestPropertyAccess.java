@@ -2,28 +2,28 @@ package org.unicode.propstest;
 
 import java.util.Collection;
 
-import org.unicode.cldr.unittest.TestFmwkPlus;
+import org.junit.jupiter.api.Test;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyType;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodePropertyException;
 import org.unicode.props.ValueCardinality;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 
-public class TestPropertyAccess extends TestFmwkPlus {
-    public static void main(String[] args) {
-        new TestPropertyAccess().run(args);
-    }
+public class TestPropertyAccess extends TestFmwkMinusMinus {
 
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
 
+    @Test
     public void TestEmoji() {
         UnicodeMap<String> map = iup.load(UcdProperty.Emoji_Component);
         System.out.println(map);
     }
-    
+
+    @Test
     public void TestLoad() {
         for (ValueCardinality cardinality : ValueCardinality.values()) {
             for (PropertyType propertyType : PropertyType.values()) {

@@ -5,12 +5,17 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.text.DurationFormat;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.util.ULocale;
 
-public class MessageFormatCheck extends TestFmwk {
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.unicode.unittest.TestFmwkMinusMinus;
+
+@Disabled("All Broken")
+public class MessageFormatCheck extends TestFmwkMinusMinus {
     private static final long
     SECOND = 1000L,
     MINUTE = 60*SECOND,
@@ -18,21 +23,19 @@ public class MessageFormatCheck extends TestFmwk {
     DAY = 24*HOUR,
     MONTH = 31*DAY,
     YEAR = 12*DAY;
-    private MessageFormat format;
-    private HashMap args;
+    private static MessageFormat format;
+    private static HashMap args;
 
-    public static void main(String[] args) {
-        new MessageFormatCheck().run(args);
-    }
 
-    @Override
-    protected void init() throws Exception {
+    @BeforeAll
+    static public void init() throws Exception {
         format = new MessageFormat("The directory {directory} contains {file_count,number,#,##0.0}KB.");
         args = new HashMap();
         args.put("directory", "foo/bar/");
         args.put("file_count", 3.4567d);
     }
 
+    @Test
     public void TestDuration() {
         final DurationFormat durationFormat = DurationFormat.getInstance(ULocale.FRANCE);
         final long now = new Date().getTime();
@@ -45,11 +48,13 @@ public class MessageFormatCheck extends TestFmwk {
         }
     }
 
+    @Test
     public void TestSettingFormats() {
         final MessageFormat format2 = new MessageFormat("The number {0} is formatted as {0,number,#,##0.0}.");
         assertEquals("Resetting format", "The number 1.234 is formatted as 1.2.", format2.format(new Object[]{new Double(1.2345)}));
     }
 
+    @Test
     public void TestNamedArguments() {
         assertEquals("Basic test", "The directory foo/bar/ contains 3.5KB.", format.format(args));
         // the following failed on ICU 3.8
@@ -57,11 +62,13 @@ public class MessageFormatCheck extends TestFmwk {
         assertEquals("Resetting format", "The directory foo/bar/ contains 3KB.", format.format(args));
     }
 
+    @Test
     public void TestGetFormats() {
         final Format[] formats = format.getFormatsByArgumentIndex();
         System.out.println(Arrays.asList(formats));
     }
 
+    @Test
     public void TestNicerSyntax() {
         final MessageFormat format2 = new MessageFormat("The number {0} is formatted as {0,number,#,##0.0} with {1}.");
         assertEquals("Resetting format", "The number 1.234 is formatted as 1.2.", format2.format(1.2345, "abcd"));

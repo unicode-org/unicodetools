@@ -53,7 +53,7 @@ public class Emoji {
     public static final boolean BETA_IS_OPEN = CldrUtility.getProperty("emoji-beta-open", false);
 
     /**
-     * Set the following to true iff the charts for the release should still point to proposed.html for TR51. 
+     * Set the following to true iff the charts for the release should still point to proposed.html for TR51.
      * The main function is to add pointers between the release and beta charts.
      * Also change the VERSION_LAST_RELEASED2, etc below!!!
      */
@@ -278,22 +278,22 @@ public class Emoji {
 	// if a source is in developer release, add ᵈ to the name, eg "Googᵈ"
 	charOverride,
 	apple("Appl"),
-	google("Goog"), 
-	fb("FB", "Facebook"), 
+	google("Goog"),
+	fb("FB", "Facebook"),
 	windows("Wind"),
-	emojipedia("EPed"), 
+	emojipedia("EPed"),
 	twitter("Twtr"),
 	emojione("Joy", "JoyPixels"),
 	@Deprecated
-	fbm("FBM", "Messenger (Facebook)"), 
-	samsung("Sams"), 
+	fbm("FBM", "Messenger (Facebook)"),
+	samsung("Sams"),
 	emojixpress,
-	ref, 
-	emojination, 
-	adobe, 
+	ref,
+	emojination,
+	adobe,
 	proposed("Sample"),
-	sample("Samp2"), 
-	plain, 
+	sample("Samp2"),
+	plain,
 	// gifs; don't change order!
 	gmail("GMail"), sb("SB", "SoftBank"), dcm("DCM", "DoCoMo"), kddi("KDDI", "KDDI"),
 	svg;
@@ -303,14 +303,14 @@ public class Emoji {
 	static final Set<Source> VENDOR_SOURCES = ImmutableSet.copyOf(
 		EnumSet.of(apple, google, twitter, emojione, samsung, fb, windows)); // do this to get same order as Source
 	static final Set<Emoji.Source> platformsToIncludeNormal = ImmutableSet.copyOf(EnumSet.of(
-		Source.apple, Source.google, Source.windows, Source.twitter, Source.emojione, Source.samsung, 
+		Source.apple, Source.google, Source.windows, Source.twitter, Source.emojione, Source.samsung,
 		Source.fb, // Source.fbm,
 		Source.gmail, Source.dcm, Source.kddi, Source.sb
 		));
 	// Ordering is what will appear with … fallback
 	static final Set<Emoji.Source> PLATFORM_FALLBACK = ImmutableSet.<Emoji.Source>builder()
 		.addAll(EnumSet.of(
-			Source.apple, Source.google, Source.windows, Source.twitter, Source.emojione, Source.samsung, 
+			Source.apple, Source.google, Source.windows, Source.twitter, Source.emojione, Source.samsung,
 			Source.fb))
 		.add(Source.emojipedia)
 		.add(Source.emojixpress)
@@ -487,7 +487,7 @@ public class Emoji {
 
     public static String getHexFromFlagCode(String isoCountries) {
 	String cc = new StringBuilder()
-		.appendCodePoint(isoCountries.charAt(0) + Emoji.FIRST_REGIONAL - 'A') 
+		.appendCodePoint(isoCountries.charAt(0) + Emoji.FIRST_REGIONAL - 'A')
 		.appendCodePoint(isoCountries.charAt(1) + Emoji.FIRST_REGIONAL - 'A')
 		.toString();
 	return cc;
@@ -553,7 +553,7 @@ public class Emoji {
 	    .freeze();
 
     public static final String TRANSFLAG = Utility.toString(0x1F3F3,0xFE0F,0x200D,0x26A7,0xFE0F);
-    
+
     public static final UnicodeSet HAIR_BASE = MAN_OR_WOMAN_OR_ADULT;
     public static final UnicodeSet HAIR_PIECES = HAIR_STYLES;
 
@@ -634,7 +634,7 @@ public class Emoji {
 	int tabPos = line.indexOf('\t');
 	//        if (tabPos < 0 && Emoji.EMOJI_CHARS.contains(getEmojiSequence(line, 0))) {
 	//            tabPos = line.length();
-	//            
+	//
 	//        }
 	if (tabPos < 0 && ASCII_LETTERS.contains(line.charAt(0))) {
 	    tabPos = line.length();
@@ -693,7 +693,7 @@ public class Emoji {
 	//        if (type == Emoji.Source.android && Emoji.SKIP_ANDROID.contains(chars)) { // hack to exclude certain android
 	//            return null;
 	//        }
-	if (type == Source.charOverride) { 
+	if (type == Source.charOverride) {
 	    Source overrideSource = BEST_OVERRIDE.get(chars);
 	    if (overrideSource != null) {
 		type = overrideSource;
@@ -758,11 +758,11 @@ public class Emoji {
 //	BEST_OVERRIDE.put("🛌🏽", Emoji.Source.google);
 //	BEST_OVERRIDE.put("🛌🏾", Emoji.Source.google);
 //	BEST_OVERRIDE.put("🛌🏿", Emoji.Source.google);
-	
+
 	BEST_OVERRIDE.put(0x1F635, Emoji.Source.fb);
-	
+
 //	BEST_OVERRIDE.put(0x1F917, Emoji.Source.emojione);
-	
+
 //	BEST_OVERRIDE.put(0x1FA72, Emoji.Source.proposed);
 //	BEST_OVERRIDE.put(0x1FA78, Emoji.Source.proposed);
 
@@ -776,7 +776,7 @@ public class Emoji {
 	    int debug = 0;
 	}
 	for (Source source : Emoji.orderedEnum(doFirst)) {
-	    if (source == Source.charOverride) { 
+	    if (source == Source.charOverride) {
 		Source overrideSource = BEST_OVERRIDE.get(s);
 		if (overrideSource != null) {
 		    source = overrideSource;
@@ -805,7 +805,7 @@ public class Emoji {
     }
 
     public static final IndexUnicodeProperties    LATEST  = IndexUnicodeProperties.make(VERSION_TO_GENERATE_UNICODE);
-    public static final IndexUnicodeProperties    BETA  = IS_BETA 
+    public static final IndexUnicodeProperties    BETA  = IS_BETA
 	    ? IndexUnicodeProperties.make(VERSION_BETA_UNICODE) : LATEST;
 
 	    static final UnicodeMap<Age_Values>        VERSION_ENUM            = BETA.loadEnum(UcdProperty.Age, Age_Values.class);

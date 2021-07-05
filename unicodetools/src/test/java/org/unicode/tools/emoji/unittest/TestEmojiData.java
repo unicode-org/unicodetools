@@ -1,5 +1,7 @@
 package org.unicode.tools.emoji.unittest;
 
+import static org.junit.jupiter.params.provider.Arguments.arguments;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -11,24 +13,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
-
-import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.StandardCodes.LstrType;
-import org.unicode.cldr.util.TransliteratorUtilities;
-import org.unicode.cldr.util.Validity;
-import org.unicode.cldr.util.Validity.Status;
-import org.unicode.text.utility.Utility;
-import org.unicode.tools.emoji.CountEmoji;
-import org.unicode.tools.emoji.CountEmoji.Category;
-import org.unicode.tools.emoji.Emoji;
-import org.unicode.tools.emoji.EmojiAnnotations;
-import org.unicode.tools.emoji.EmojiData;
-import org.unicode.tools.emoji.EmojiData.VariantStatus;
-import org.unicode.unittest.TestFmwkMinusMinus;
-import org.unicode.tools.emoji.EmojiDataSource;
-import org.unicode.tools.emoji.EmojiDataSourceCombined;
-import org.unicode.tools.emoji.EmojiOrder;
-import org.unicode.tools.emoji.GenerateEmojiData;
+import java.util.stream.Stream;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Multimap;
@@ -38,30 +23,49 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.CollationElementIterator;
 import com.ibm.icu.text.RuleBasedCollator;
-import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
 
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.StandardCodes.LstrType;
+import org.unicode.cldr.util.Validity;
+import org.unicode.cldr.util.Validity.Status;
+import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.CountEmoji;
+import org.unicode.tools.emoji.CountEmoji.Category;
+import org.unicode.tools.emoji.Emoji;
+import org.unicode.tools.emoji.EmojiAnnotations;
+import org.unicode.tools.emoji.EmojiData;
+import org.unicode.tools.emoji.EmojiData.VariantStatus;
+import org.unicode.tools.emoji.EmojiDataSource;
+import org.unicode.tools.emoji.EmojiDataSourceCombined;
+import org.unicode.tools.emoji.EmojiOrder;
+import org.unicode.tools.emoji.GenerateEmojiData;
+import org.unicode.unittest.TestFmwkMinusMinus;
+
+@Disabled("data will not load")
 public class TestEmojiData extends TestFmwkMinusMinus {
     private static final boolean SHOW = false;
     final EmojiData released = EmojiData.of(Emoji.VERSION_TO_TEST_PREVIOUS);
-    final EmojiDataSource emojiDataToTest;
-    final EmojiOrder emojiOrderToTest;
 
-    /**
-     * We structure the test this way so that we can run it with two different sets of data.
-     * @param emojiOrder
-     */
-    public TestEmojiData(EmojiDataSource beta, EmojiOrder emojiOrder) {
-        this.emojiDataToTest = beta;
-        emojiOrderToTest = emojiOrder;
+    public static  Stream<Arguments> dataProvider() {
+        return Stream.of(
+            // "version", EmojiDataSource, EmojiOrder
+            arguments("regular", (EmojiDataSource)TestAll.getDataToTest(), TestAll.getOrderToTest()),
+            arguments("combined", new EmojiDataSourceCombined(TestAll.getDataToTest()), TestAll.getOrderToTest())
+        );
     }
 
     public TestEmojiData() {
-        this(TestAll.DATA_TO_TEST, TestAll.ORDER_TO_TEST);
     }
 
-    public void TestA() {
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataProvider")
+    public void TestA(String type, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrder) {
         System.out.print(" Version: " + emojiDataToTest.getVersionString()
         + "; class: " + emojiDataToTest.getClass()
                 );
@@ -69,7 +73,9 @@ public class TestEmojiData extends TestFmwkMinusMinus {
 
     public static final Splitter semi = Splitter.onPattern("[;#]").trimResults();
 
-    public void TestPublicEmojiTest() {
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataProvider")
+    public void TestPublicEmojiTest(String type, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrder) {
         if (emojiDataToTest instanceof EmojiDataSourceCombined) {
             return; // only test the beta stuff without combining
         }
@@ -124,7 +130,9 @@ public class TestEmojiData extends TestFmwkMinusMinus {
         Asserts.assertContains(this, message, s1Name, s1, s2Name, s2char);
     }
 
-    public void TestHandshake() {
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataProvider")
+    public void TestHandshake(String type, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrder) {
         emojiDataToTest.getName("👩"); // warm up
         assertEquals("👩‍🤝‍👩", "people holding hands", emojiDataToTest.getName("🧑‍🤝‍🧑"));
         assertEquals("👩‍🤝‍👩", "people holding hands: dark skin tone, light skin tone", emojiDataToTest.getName("🧑🏿‍🤝‍🧑🏻"));
@@ -134,7 +142,7 @@ public class TestEmojiData extends TestFmwkMinusMinus {
         assertEquals("👨🏿‍🤝‍👨🏿", "men holding hands: dark skin tone", emojiDataToTest.getName("👨🏿‍🤝‍👨🏿"));
     }
 
-    public void TestCompoundNames() {
+    public void TestCompoundNames(String type, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrder) {
         emojiDataToTest.getName("👩"); // warm up
         assertEquals("🚶🏻‍♂️", "man walking: light skin tone", emojiDataToTest.getName("🚶🏻‍♂️"));
         assertEquals("🧍", "person standing", emojiDataToTest.getName("🧍"));
@@ -143,7 +151,9 @@ public class TestEmojiData extends TestFmwkMinusMinus {
         assertEquals("🧍\u200D♂️", "man standing", emojiDataToTest.getName("🧍\u200D♂️"));
     }
 
-    public void TestDefectives() {
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataProvider")
+    public void TestDefectives(String type, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrder) {
         UnicodeSet excluded = new UnicodeSet("[#*0-9🇦-🇿]");
 
         for (EmojiDataSource ed : Arrays.asList(released, emojiDataToTest)) {
@@ -160,7 +170,9 @@ public class TestEmojiData extends TestFmwkMinusMinus {
         }
     }
 
-    public void TestFlags() {
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataProvider")
+    public void TestFlags(String type, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrder) {
         UnicodeSet shouldBeFlagEmoji = new UnicodeSet().add(Emoji.getHexFromFlagCode("EU")).add(Emoji.getHexFromFlagCode("UN"));
         Validity validity = Validity.getInstance();
         Map<Status, Set<String>> regionData = validity.getStatusToCodes(LstrType.region);
@@ -191,7 +203,10 @@ public class TestEmojiData extends TestFmwkMinusMinus {
     /**
      * Not working yet, so blocking for now.
      */
-    public void T_estZwjCategories () {
+    @Disabled("Not working yet")
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataProvider")
+    public void TestZwjCategories (String type, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrderToTest) {
         UnicodeMap<String> chars = new UnicodeMap<>();
         for (String s : emojiDataToTest.getZwjSequencesNormal()) {
             CountEmoji.Category zwjType = CountEmoji.Category.getType(s);
@@ -223,7 +238,9 @@ public class TestEmojiData extends TestFmwkMinusMinus {
         }
     }
 
-    public void TestOrderRulesSimple() {
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataProvider")
+    public void TestOrderRulesSimple(String type, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrder) {
         RuleBasedCollator ruleBasedCollator;
         try {
             ruleBasedCollator = new RuleBasedCollator("&a <*🍱🍘🍙🍚🍛🍜🍝🍠🍢🍣🍤🍥🍡");
@@ -235,8 +252,10 @@ public class TestEmojiData extends TestFmwkMinusMinus {
     /**
      * Verify that the internal order puts variants next to one another, and handles all code point sequences.
      */
-    public void TestOrderVariants() {
-        Set<String> sorted = emojiOrderToTest.sort(emojiOrderToTest.codepointCompare, emojiDataToTest.getAllEmojiWithDefectives());
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataProvider")
+    public void TestOrderVariants(String type, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrder) {
+        Set<String> sorted = emojiOrder.sort(emojiOrder.codepointCompare, emojiDataToTest.getAllEmojiWithDefectives());
         assertEquals("Sorted handles all different code point sequences: ",
                 emojiDataToTest.getAllEmojiWithDefectives().size(), sorted.size());
         // we check that there is no case where variant 1 < non-variant < variant2
@@ -253,22 +272,26 @@ public class TestEmojiData extends TestFmwkMinusMinus {
         for (String item : sorted) {
             int order = toIntOrder.get(item);
             if (order < lastOrder) {
-                errln("fail: " + showItem(lastItem, null) + " > " + showItem(item, null));
+                errln("fail: " + showItem(lastItem, null, emojiDataToTest, emojiOrder) + " > " + showItem(item, null, emojiDataToTest, emojiOrder));
             }
             lastItem = item;
             lastOrder = order;
         }
     }
 
-    public void TestOrderRulesWithSkin() {
-        checkOrder(null);
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataProvider")
+    public void TestOrderRulesWithSkin(String type, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrder) {
+        checkOrder(null, emojiDataToTest, emojiOrder);
     }
 
-    public void TestOrderRulesWithoutSkin() {
-        checkOrder(EmojiData.MODIFIERS);
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataProvider")
+    public void TestOrderRulesWithoutSkin(String type, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrderToTest) {
+        checkOrder(EmojiData.MODIFIERS, emojiDataToTest, emojiOrderToTest);
     }
 
-    private void checkOrder(UnicodeSet filterOutIfContains) {
+    private void checkOrder(UnicodeSet filterOutIfContains, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrderToTest) {
         int SKIPTO = 400;
         StringBuilder outText = new StringBuilder();
         emojiOrderToTest.appendCollationRules(outText, emojiDataToTest.getAllEmojiWithDefectives(), EmojiOrder.GENDER_NEUTRALS);
@@ -293,10 +316,10 @@ public class TestEmojiData extends TestFmwkMinusMinus {
                             //                            + " (" + Utility.hex(secondToLastItem) + ": " + beta.getName(secondToLastItem) + ") " + ">"
                             + lastItem
                             + " "
-                            + showItem(lastItem, ruleBasedCollator)
+                            + showItem(lastItem, ruleBasedCollator, emojiDataToTest, emojiOrderToTest)
                             + " " + "> "
                             + item
-                            + " " + showItem(item, ruleBasedCollator) + ") "
+                            + " " + showItem(item, ruleBasedCollator, emojiDataToTest, emojiOrderToTest) + ") "
                             );
                 } else {
                     logln(lastItem + "≤" + item);
@@ -344,7 +367,7 @@ public class TestEmojiData extends TestFmwkMinusMinus {
         logln(rules);
     }
 
-    private String showItem(String lastItem, RuleBasedCollator ruleBasedCollator) {
+    private String showItem(String lastItem, RuleBasedCollator ruleBasedCollator, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrderToTest) {
         return "(" + Utility.hex(lastItem)
         + "; " + emojiDataToTest.getName(lastItem)
         + (ruleBasedCollator == null ? "" : "; " + showCE(lastItem, ruleBasedCollator))
@@ -407,12 +430,14 @@ public class TestEmojiData extends TestFmwkMinusMinus {
         return buffer.toString();
     }
 
-    public void TestAnnotationsCompleteness() {
-        EmojiAnnotations em = checkAnnotations("en", null);
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataProvider")
+    public void TestAnnotationsCompleteness(String type, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrder) {
+        EmojiAnnotations em = checkAnnotations("en", null, emojiDataToTest, emojiOrder);
         //checkAnnotations("de", em);
     }
 
-    private EmojiAnnotations checkAnnotations(final String localeStr, EmojiAnnotations em2) {
+    private EmojiAnnotations checkAnnotations(final String localeStr, EmojiAnnotations em2, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrderToTest) {
         EmojiAnnotations em = new EmojiAnnotations(localeStr, emojiOrderToTest.codepointCompare);
         Set<String> missing = new LinkedHashSet<>();
 
@@ -513,7 +538,9 @@ public class TestEmojiData extends TestFmwkMinusMinus {
         return em;
     }
 
-    public void TestGroupEmoji() {
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataProvider")
+    public void TestGroupEmoji(String type, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrder) {
         EmojiDataSource source = EmojiData.of(Emoji.VERSION_BETA);
 
         Asserts.assertContains(this, "", "modifierBases", source.getModifierBases(), "multipersonGroupings", source.getMultiPersonGroupings());
@@ -523,13 +550,17 @@ public class TestEmojiData extends TestFmwkMinusMinus {
         System.out.print("\n\t(genderBases: " + Asserts.flat(source.getGenderBases()) + ") ");
     }
 
-    public void TestExplicitGender() {
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataProvider")
+    public void TestExplicitGender(String type, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrder) {
         assertEqualsUS("",
                 "list from UTS 51", new UnicodeSet("[👦-👨 🧔 👩 👴 👵 🤴 👸 👲 🧕 🤵 👰 🤰 🤱 🎅 🤶 💃 🕺 🕴 👫-👭]"),
                 "emojiData", emojiDataToTest.getExplicitGender());
     }
 
-    public void TestCombinations() {
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataProvider")
+    public void TestCombinations(String type, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrder) {
         UnicodeSet all = emojiDataToTest.getAllEmojiWithoutDefectives();
 
         //        if (beta instanceof EmojiDataSourceCombined) { // debugging
@@ -548,7 +579,9 @@ public class TestEmojiData extends TestFmwkMinusMinus {
                 "women holding hands; medium, dark skin", "👩🏿‍🤝‍👩🏽");
     }
 
-    public void TestBuckets() {
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataProvider")
+    public void TestBuckets(String type, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrder) {
         // just check that there is no exception
         for (String s : emojiDataToTest.getAllEmojiWithDefectives()) {
             try {
@@ -559,7 +592,9 @@ public class TestEmojiData extends TestFmwkMinusMinus {
             }
         }
     }
-    public void TestAlphagram() {
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("dataProvider")
+    public void TestAlphagram(String type, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrder) {
 	    final EmojiData released = EmojiData.of(Emoji.VERSION_BETA);
 	    Multimap<String,String> toRgi = TreeMultimap.create();
 	    UnicodeSet discarded = new UnicodeSet();

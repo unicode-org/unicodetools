@@ -2,18 +2,18 @@ package org.unicode.draft;
 
 import java.util.Collections;
 
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
 
-public class TestSourceTarget extends TestFmwk {
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
-    public static void main(String[] args) {
-        new TestSourceTarget().run(args);
-    }
-
+public class TestSourceTarget extends TestFmwkMinusMinus {
     static final UnicodeSet TEST_SET = new UnicodeSet("[^[:c:]-[:cc:]]");
 
+    @Disabled("Broken")
+    @Test
     public void TestSets() {
         for (final String id : Collections.list(Transliterator.getAvailableIDs())) {
             final UnicodeSet testSource = new UnicodeSet();

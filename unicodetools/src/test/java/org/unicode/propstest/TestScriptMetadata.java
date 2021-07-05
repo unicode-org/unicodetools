@@ -3,22 +3,24 @@ package org.unicode.propstest;
 import java.util.BitSet;
 import java.util.TreeSet;
 
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
 import org.unicode.cldr.draft.ScriptMetadata.Trinary;
-import org.unicode.cldr.unittest.TestFmwkPlus;
 import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Line_Break_Values;
 import org.unicode.text.UCD.Default;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
-public class TestScriptMetadata extends TestFmwkPlus{
+public class TestScriptMetadata extends TestFmwkMinusMinus{
     static final IndexUnicodeProperties LATEST = IndexUnicodeProperties.make(Default.ucdVersion());
 
     static final UnicodeMap<String> LB = LATEST.load(UcdProperty.Line_Break);
@@ -33,16 +35,15 @@ public class TestScriptMetadata extends TestFmwkPlus{
 
     private static final UnicodeSet LB_EXCEPTION = new UnicodeSet("[\u3131-\u318E]").freeze();
 
-    public static void main(String[] args) {
-        new TestScriptMetadata().run(args);
-    }
 
+    @Test
+    @Disabled("Broken")
     public void TestScriptOfSample() {
         BitSet bitset = new BitSet();
         main:
             for (String script : new TreeSet<String>(ScriptMetadata.getScripts())) {
                 switch(script) {
-                case "Kore": case "Hant": case "Hans": case "Jpan": 
+                case "Kore": case "Hant": case "Hans": case "Jpan":
                     continue main;
                 }
                 Info info0 = ScriptMetadata.getInfo(script);

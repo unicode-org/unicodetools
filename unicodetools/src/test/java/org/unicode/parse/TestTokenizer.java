@@ -1,14 +1,12 @@
 package org.unicode.parse;
 
+import org.junit.jupiter.api.Test;
 import org.unicode.parse.Tokenizer.Result;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
-import com.ibm.icu.dev.test.TestFmwk;
+public class TestTokenizer extends TestFmwkMinusMinus {
 
-public class TestTokenizer extends TestFmwk {
-    public static void main(String[] args) {
-        new TestTokenizer().run(args);
-    }
-
+    @Test
     public void TestTokens() {
         String[][] tests ={
                 {"abc'def'*546.10", "IDENTIFIER:«abc» STRING:«def» CODEPOINT:* NUMBER:546 CODEPOINT:. NUMBER:10 DONE"},
@@ -25,7 +23,7 @@ public class TestTokenizer extends TestFmwk {
             while (true) {
                 Result result = tokenizer.next();
                 if (actual.length() != 0) {
-                    actual.append(" ");     
+                    actual.append(" ");
                 }
                 actual.append(tokenizer);
                 if (result == Result.DONE) {

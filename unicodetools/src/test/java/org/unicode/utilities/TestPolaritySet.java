@@ -5,19 +5,19 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.junit.jupiter.api.Test;
+import org.unicode.unittest.TestFmwkMinusMinus;
 import org.unicode.utilities.PolaritySet.Operation;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.test.TestFmwk;
 
-public class TestPolaritySet extends TestFmwk {
+public class TestPolaritySet extends TestFmwkMinusMinus {
     private static final Splitter SPACE_SPLITTER = Splitter.on(' ');
 
-    public static void main(String[] args) {
-	new TestPolaritySet().run(args);
-    }
 
+	@Test
     public void testBasic() {
 	Matcher mainOp = Pattern.compile("[∪∩∖⊕]").matcher("");
 	System.out.println(ImmutableSet.of("a", "b"));
@@ -70,16 +70,16 @@ public class TestPolaritySet extends TestFmwk {
 		result = PolaritySet.of(left);
 		Operation operation = PolaritySet.Operation.fromDisplay(mainOp.group());
 		switch(operation) {
-		case UNION: 
+		case UNION:
 		    result.addAll(right);
 		    break;
-		case INTERSECT: 
+		case INTERSECT:
 		    result.retainAll(right);
 		    break;
-		case SUBTRACT: 
+		case SUBTRACT:
 		    result.removeAll(right);
 		    break;
-		case XOR: 
+		case XOR:
 		    result.retainDifferences(right);
 		    break;
 		}

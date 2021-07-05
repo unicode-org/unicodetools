@@ -1,29 +1,29 @@
 package org.unicode.test;
 
 import java.io.IOException;
-import java.util.Collections;
+import java.io.PrintWriter;
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
+import com.google.common.base.Objects;
+import com.google.common.base.Splitter;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.CharSequences;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+
+import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
-import org.unicode.cldr.util.CLDRConfig;
-import org.unicode.cldr.util.CLDRFile;
-import org.unicode.cldr.util.CLDRFile.WinningChoice;
-import org.unicode.cldr.util.Factory;
-import org.unicode.cldr.util.Iso639Data;
-import org.unicode.cldr.util.LanguageTagParser;
-import org.unicode.cldr.util.StandardCodes;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -35,22 +35,15 @@ import org.unicode.text.UCD.IdentifierInfo.Identifier_Status;
 import org.unicode.text.UCD.IdentifierInfo.Identifier_Type;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Names;
+import org.unicode.text.tools.CLDRCharacterUtility;
 import org.unicode.text.tools.XIDModifications;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Confusables;
 import org.unicode.tools.Confusables.CodepointToConfusables;
 import org.unicode.tools.Confusables.Style;
-import org.unicode.unittest.TestFmwkMinusMinus;
 import org.unicode.tools.ScriptDetector;
-
-import com.google.common.base.Objects;
-import com.google.common.base.Splitter;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
 
 public class TestSecurity extends TestFmwkMinusMinus {
@@ -59,12 +52,7 @@ public class TestSecurity extends TestFmwkMinusMinus {
     public static XIDModifications XIDMOD = new XIDModifications(GEN_SECURITY_DIR);
     public static final Confusables CONFUSABLES = new Confusables(GEN_SECURITY_DIR);
 
-
-    public static void main(String[] args) {
-        new TestSecurity().run(args);
-    }
-
-
+    @Test
     public void TestSpacing() {
         IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
         UnicodeMap<General_Category_Values> generalCategory = iup.loadEnum(
@@ -87,6 +75,7 @@ public class TestSecurity extends TestFmwkMinusMinus {
         return true;
     }
 
+    @Test
     public void TestIdempotence() {
         // Ensure that map(map(code)) = map(code)
         // Also, if map(code) = A+B (multiple characters), then map(map(code)) = map(A)+map(B)
@@ -119,11 +108,13 @@ public class TestSecurity extends TestFmwkMinusMinus {
         }
     }
 
+    @Test
     public void TestConfusables() {
         Confusables confusablesOld = new Confusables(GEN_SECURITY_DIR);
         showDiff("Confusable", confusablesOld.getRawMapToRepresentative(Style.MA), CONFUSABLES.getRawMapToRepresentative(Style.MA), new UTF16.StringComparator(), getLogPrintWriter());
     }
 
+    @Test
     public void TestXidMod() {
         XIDModifications xidModOld = new XIDModifications(GEN_SECURITY_DIR);
         UnicodeMap<Identifier_Status> newStatus = XIDMOD.getStatus();
@@ -186,6 +177,11 @@ public class TestSecurity extends TestFmwkMinusMinus {
         return info.idUsage;
     }
 
+    static final private PrintWriter getLogPrintWriter() {
+        return new PrintWriter(System.out);
+    }
+
+    @Test
     public void TestCldrConsistency() {
         System.out.println("\nIgnore TestCldrConsistency for now: Need to fix exemplars.closeOver(UnicodeSet.CASE) before this is useful");
         UnicodeMap<Set<String>> fromCLDR = CLDRCharacterUtility.getCLDRCharacters();
@@ -315,6 +311,7 @@ public class TestSecurity extends TestFmwkMinusMinus {
     //        return target;
     //    }
 
+    @Test
     public void TestWholeScriptData() {
         System.out.println("\nIgnore TestWholeScriptData for now: Not yet compete");
         for (Script_Values source : Script_Values.values()) {
@@ -336,6 +333,7 @@ public class TestSecurity extends TestFmwkMinusMinus {
         }
     }
 
+    @Test
     public void TestScriptDetection() {
         ScriptDetector sd = new ScriptDetector();
         Set<Set<Script_Values>> expected = new HashSet<>();
@@ -382,6 +380,7 @@ public class TestSecurity extends TestFmwkMinusMinus {
     }
 
 
+    @Test
     public void TestWholeScripts() {
         UnicodeSet withConfusables = CONFUSABLES.getCharsWithConfusables();
         //String list = withConfusables.toPattern(false);

@@ -1,6 +1,7 @@
 package org.unicode.text.utility;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -74,6 +75,14 @@ public class Settings {
         public static final String UNICODETOOLS_REPO_DIR =
                 getRequiredPathAndFix("UNICODETOOLS_REPO_DIR");
         public static final String UNICODETOOLS_DIR = UNICODETOOLS_REPO_DIR + "unicodetools/";
+        /**
+         * Use this for files such as org/unicode/Whatever.java
+         */
+        public static final String UNICODETOOLS_JAVA_DIR = UNICODETOOLS_DIR + "src/main/java/";
+        /**
+         * Use this for package-relative data, such as org/unicode/SomeData.txt
+         */
+        public static final String UNICODETOOLS_RSRC_DIR = UNICODETOOLS_DIR + "src/main/resources/";
         public static final String UNICODEJSPS_DIR = UNICODETOOLS_REPO_DIR + "UnicodeJsps/";
         public static final String DATA_DIR = UNICODETOOLS_DIR + "data/";
         public static final Path DATA_PATH = Paths.get(DATA_DIR);
@@ -82,7 +91,7 @@ public class Settings {
         public static final String IDN_DIR = DATA_DIR + "IDN/";
         // TODO: DICT_DIR is used, but there is no .../data/dict/ folder. ??
         public static final String DICT_DIR = DATA_DIR + "dict/";
-        
+
         /**
          * Constants representing data subdirectories
          */
@@ -91,7 +100,7 @@ public class Settings {
         	UCD,
         	IDNA,
         	EMOJI;
-        	
+
         	/**
         	 * This dir as a Path
         	 * @return
@@ -146,9 +155,32 @@ public class Settings {
         public static final String BIN_DIR = GEN_DIR + "BIN/";
         public static final String GEN_UCD_DIR = GEN_DIR + "ucd/";
         public static final String GEN_UCA_DIR = GEN_DIR + "UCA/";
+        /**
+         * Make sure the output dirs exist
+         */
+        public static void ensureOutputDirs() throws FileNotFoundException {
+                if (!(new File(UNICODETOOLS_OUTPUT_DIR)).isDirectory()) {
+                        throw new FileNotFoundException("Not a directory: UNICODETOOLS_OUTPUT_DIR=" + UNICODETOOLS_OUTPUT_DIR);
+                }
+                ensureOutputDir(GEN_DIR);
+                ensureOutputDir(GEN_UCD_DIR);
+                ensureOutputDir(GEN_UCA_DIR);
+                ensureOutputDir(BIN_DIR);
+        }
+        public static void ensureOutputDir(String dir) {
+                if(new File(dir).mkdirs()) {
+                        System.err.println("# mkdir " + dir);
+                }
+        }
     }
 
-    public static final String SRC_DIR = Utility.fixFileName("org/unicode/text") + "/";
+    public static final String SRC_DIR = Utility.fixFileName(UnicodeTools.UNICODETOOLS_RSRC_DIR+"org/unicode/text") + "/";
+    /**
+     * Used for data files
+     */
     public static final String SRC_UCA_DIR = SRC_DIR + "UCA/";
+    /**
+     * Used for data files
+     */
     public static final String SRC_UCD_DIR = SRC_DIR + "UCD/";
 }

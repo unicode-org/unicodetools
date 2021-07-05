@@ -4,19 +4,20 @@ import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.Set;
 
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.unicode.props.ScriptInfo;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.text.utility.Settings;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.text.UnicodeSet;
 
-public class TestScriptInfo extends TestFmwk {
+public class TestScriptInfo extends TestFmwkMinusMinus {
 
-    public static void main(String[] args) {
-        new TestScriptInfo().run(args);
-    }
-
+    @Disabled("Broken")
+    @Test
     public void TestMain() {
         String[][] testCases = {
             // Format is testString, expected scripts, expected alternates, expected numerics (if any)

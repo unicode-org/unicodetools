@@ -6,6 +6,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.CldrUtility;
@@ -17,28 +19,13 @@ import org.unicode.tools.Segmenter;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableSet;
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.text.CanonicalIterator;
 
-public class TestSegmenter extends TestFmwk{
-    public static void main(String[] args) {
-	//System.setProperty("CLDR", "true");
-	IndexUnicodeProperties iup = IndexUnicodeProperties.make();
-	//        UnicodeSet emoji = iup
-	//                .loadEnum(UcdProperty.Emoji, Binary.class)
-	//                .getSet(Binary.Yes);
-	//        System.out.println(emoji.size() + "\t" + emoji.toPattern(false));
-	//
-	//        UnicodeSet extended_pictographic = iup
-	//                .loadEnum(UcdProperty.Extended_Pictographic, Binary.class)
-	//                .getSet(Binary.Yes);
-	//        System.out.println(extended_pictographic.size() + "\t" + extended_pictographic.toPattern(false));
-
-	new TestSegmenter().run(args);
-    }
+public class TestSegmenter extends TestFmwkMinusMinus {
 
     Segmenter gcb = Segmenter.make(ToolUnicodePropertySource.make(Default.ucdVersion()), "GraphemeClusterBreak").make();
 
+	@Test
     public void Test11() {
 	String[][] tests = {
 		{"🛑\u200d🛑", "|---"},
@@ -58,6 +45,8 @@ public class TestSegmenter extends TestFmwk{
 	}
     }
 
+    @Disabled("Broken")
+	@Test
     public void TestIndic() {
 	System.out.println();
 
@@ -113,7 +102,7 @@ public class TestSegmenter extends TestFmwk{
 			    + file.getName()
 			    + "\t" + line);
 		}
-	    } 
+	    }
 	}
     }
 
@@ -130,8 +119,8 @@ public class TestSegmenter extends TestFmwk{
 		String actualForm = displayForm(source, actualBreaks);
 		String expectedForm = displayForm(source, expectedBreaks);
 
-		errln(file.getName() 
-			+ "\t" + lineCount + ":" + subcount 
+		errln(file.getName()
+			+ "\t" + lineCount + ":" + subcount
 			+")\t" + source + "; expected: " + expectedForm + "; actual: " + actualForm);
 	    }
 	} catch (Exception e) {

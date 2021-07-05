@@ -7,7 +7,7 @@
 
 	<groupId>org.unicode.unicodetools</groupId>
 	<artifactId>unicodetools-parent</artifactId>
-	<version>0.0.0</version>
+	<version>1.0.0</version>
 	<name>Parent of Unicode Tools</name>
 	<packaging>pom</packaging>
 	<licenses>
@@ -16,10 +16,43 @@
 		</license>
 	</licenses>
 	<properties>
-	</properties>
+		<!--
+			For ICU versions, see https://github.com/orgs/unicode-org/packages?repo_name=icu
+			Note that we can't use the general ICU maven packages, because utilities isn't exported (yet).
+		 -->
+		 <icu.version>70.0.1-SNAPSHOT-cldr-2021-09-15</icu.version>
+
+		 <!--
+			 For CLDR versions, see https://github.com/orgs/unicode-org/packages?repo_name=cldr
+		  -->
+		 <cldr.version>0.0.0-SNAPSHOT-bfa39570be</cldr.version>
+	 </properties>
 
 	<modules>
 		<module>unicodetools</module>
 		<module>UnicodeJsps</module>
 	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- icu -->
+			<dependency>
+				<groupId>com.ibm.icu</groupId>
+				<artifactId>icu4j-for-cldr</artifactId>
+				<version>${icu.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.ibm.icu</groupId>
+				<artifactId>utilities-for-cldr</artifactId>
+				<version>${icu.version}</version>
+			</dependency>
+			<!-- cldr -->
+			<dependency>
+				<groupId>org.unicode.cldr</groupId>
+				<artifactId>cldr-code</artifactId>
+				<version>${cldr.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>

@@ -8,7 +8,12 @@
 	<packaging>war</packaging>
 	<name>Unicode JSPs</name>
 	<groupId>org.unicode.unicodetools</groupId>
-	<version>0.0.0</version>
+
+	<parent>
+		<groupId>org.unicode.unicodetools</groupId>
+		<artifactId>unicodetools-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
 
 	<url>https://unicode.org/</url>
 
@@ -17,16 +22,6 @@
 	</scm>
 
 	<properties>
-		<!--
-			For ICU versions, see https://github.com/orgs/unicode-org/packages?repo_name=icu
-			Note that we can't use the general ICU maven packages, because utilities isn't exported (yet).
-		 -->
-		<icu.version>70.0.1-SNAPSHOT-cldr-2021-06-15</icu.version>
-
-		<!--
-			For CLDR versions, see https://github.com/orgs/unicode-org/packages?repo_name=cldr
-		 -->
-		<cldr.version>0.0.0-SNAPSHOT-87058620ea</cldr.version>
 
 		<servlet.version>3.1.0</servlet.version>
 		<jsp.version>2.3.3</jsp.version>
@@ -43,19 +38,16 @@
 		<dependency>
 			<groupId>com.ibm.icu</groupId>
 			<artifactId>icu4j-for-cldr</artifactId>
-			<version>${icu.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.ibm.icu</groupId>
 			<artifactId>utilities-for-cldr</artifactId>
-			<version>${icu.version}</version>
 		</dependency>
 		<!-- cldr -->
 		<dependency>
 			<groupId>org.unicode.cldr</groupId>
 			<artifactId>cldr-code</artifactId>
-			<version>${cldr.version}</version>
 		</dependency>
 
 		<dependency>
