@@ -3,6 +3,7 @@ package org.unicode.propstest;
 import java.util.BitSet;
 import java.util.TreeSet;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
@@ -36,6 +37,7 @@ public class TestScriptMetadata extends TestFmwkMinusMinus{
 
 
     @Test
+    @Disabled("Broken")
     public void TestScriptOfSample() {
         BitSet bitset = new BitSet();
         main:

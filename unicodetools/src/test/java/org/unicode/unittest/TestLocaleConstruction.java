@@ -21,7 +21,10 @@ import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.ULocale;
 
-public class TestLocaleConstruction extends TestFmwk {
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+public class TestLocaleConstruction extends TestFmwkMinusMinus {
     private static final boolean DEBUG = false;
 
     public static final Splitter SEP_SPLITTER = Splitter.on(CharMatcher.anyOf("-_"));
@@ -31,9 +34,7 @@ public class TestLocaleConstruction extends TestFmwk {
     public static final Splitter EQUAL_SPLITTER = Splitter.on('=').trimResults().omitEmptyStrings();
     public static final Joiner SEMI_JOINER = Joiner.on("; ");
 
-    public static void main(String[] args) {
-        new TestLocaleConstruction().run(args);
-    }
+
     static final String[] tests = {
             "title=checkAttr setLanguage=en addUnicodeLocaleAttribute=attr setUnicodeLocaleKeyword=nu,thai",
             "store=plain setLanguageTag=en-u-attr-nu-thai equals=plain",
@@ -78,7 +79,7 @@ public class TestLocaleConstruction extends TestFmwk {
 //            bestSupported = matcher.getBestMatch(desiredLocales, bestDesired);
 //        }
 //        long time = t.stop();
-//        System.out.println("\ntime:" + (time/iterations) + "ns" 
+//        System.out.println("\ntime:" + (time/iterations) + "ns"
 //                + ", setup: " + setup + "ns");
 //    }
 
@@ -104,6 +105,8 @@ public class TestLocaleConstruction extends TestFmwk {
     }
 
 
+    @Disabled("Broken")
+    @Test
     public void TestLocalesJava() {
         CheckLocaleState jLocaleTester = new CheckLocaleState(new JLocaleShim(Locale.class, Locale.Builder.class));
         int lineCount = 0;
@@ -113,6 +116,7 @@ public class TestLocaleConstruction extends TestFmwk {
         //new Locale.Builder().setUnicodeLocaleKeyword("a", "b");
     }
 
+    @Test
     public void TestLocalesICU() {
         CheckLocaleState uLocaleTester = new CheckLocaleState(new JLocaleShim(ULocale.class, ULocale.Builder.class));
         int lineCount = 0;
@@ -135,7 +139,7 @@ public class TestLocaleConstruction extends TestFmwk {
             List<String> commands = SPACE_SPLITTER.splitToList(line);
             for (String commandString : commands) {
                 handleCommand(lineCount, commandString);
-            }            
+            }
         }
 
         String getBuildArgs() {
@@ -164,7 +168,7 @@ public class TestLocaleConstruction extends TestFmwk {
                 }
                 commandArgs.put(operator, parameter);
                 break;
-            case store: 
+            case store:
                 if (!tested) {
                     tested = true;
                     shim.buildLocale(commandArgs);
@@ -245,15 +249,15 @@ public class TestLocaleConstruction extends TestFmwk {
                     try {
                         Constructor<?> method;
                         switch (argList.size()) {
-                        case 1: 
+                        case 1:
                             locale = (L) localeClass.getConstructor(String.class)
                             .newInstance(argList.get(0));
                             break;
-                        case 2: 
+                        case 2:
                             locale = (L) localeClass.getConstructor(String.class, String.class)
                             .newInstance(argList.get(0), argList.get(1));
                             break;
-                        case 3: 
+                        case 3:
                             locale = (L) localeClass.getConstructor(String.class, String.class, String.class)
                             .newInstance(argList.get(0), argList.get(1), argList.get(1));
                             break;
@@ -276,7 +280,7 @@ public class TestLocaleConstruction extends TestFmwk {
                             builderClass.getMethod(key, String.class, String.class)
                             .invoke(builder, keyValue[0], keyValue[1]);
                             break;
-                        default:            
+                        default:
                             builderClass.getMethod(key, String.class)
                             .invoke(builder, argList.get(0));
                         }
@@ -296,7 +300,7 @@ public class TestLocaleConstruction extends TestFmwk {
 //        // example special cases: context and/or reset other fields
 //        //  sgn_BE_NL => vgt // replaces language if regions are BE or NL
 //        //  cnr => sr_ME
-//        //  SU => RU AM AZ BY EE GE KZ KG LV LT MD TJ TM UA UZ // 
+//        //  SU => RU AM AZ BY EE GE KZ KG LV LT MD TJ TM UA UZ //
 //        //  aaland => AX // removes variant, sets region if exists
 //        // special cases
 //        check(validity, "a", false);
@@ -340,7 +344,7 @@ public class TestLocaleConstruction extends TestFmwk {
 ////        for (Entry<Datasubtype, ValiditySet> entry : validityInfo.get(dataType).entrySet()) {
 ////            for (String code : entry.getValue().regularData) {
 ////                String replacement = aliases.getCanonical(
-////                        dataType == Datatype.region || dataType == Datatype.variant? code.toUpperCase(Locale.ROOT) 
+////                        dataType == Datatype.region || dataType == Datatype.variant? code.toUpperCase(Locale.ROOT)
 ////                                : code,
 ////                                exception);
 ////                if (replacement != null) {
@@ -352,7 +356,7 @@ public class TestLocaleConstruction extends TestFmwk {
 ////        }
 ////    }
 //
-//    private void check(LocaleValidityChecker validity, String localeString, 
+//    private void check(LocaleValidityChecker validity, String localeString,
 //            boolean expectedValidity) {
 //        ULocale locale;
 //        try {

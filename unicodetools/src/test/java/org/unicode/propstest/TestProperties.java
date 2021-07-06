@@ -12,6 +12,17 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
+import com.ibm.icu.impl.Utility;
+import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.text.Transform;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
+
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.unicode.cldr.util.Counter;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
@@ -27,23 +38,9 @@ import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.ValueCardinality;
 import org.unicode.tools.emoji.EmojiData;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
-import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
-import com.ibm.icu.impl.Utility;
-import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
-
-public class TestProperties extends TestFmwk {
-
-    public static void main(String[] args) {
-        new TestProperties().run(args);
-    }
-
+public class TestProperties extends TestFmwkMinusMinus {
 
     // TODO generate list of versions, plus 'latest'
 
@@ -55,6 +52,7 @@ public class TestProperties extends TestFmwk {
     private static final UnicodeSet newChars = iup.load(UcdProperty.Age).getSet(UcdPropertyValues.Age_Values.V7_0.name());
     private static final  UnicodeMap<String> nameMap = iup.load(UcdProperty.Name);
 
+    @Test
     public void TestPropertyValuesSetCoverage() {
         EnumSet<General_Category_Values> all = EnumSet.allOf(General_Category_Values.class);
         all.removeAll(PropertyValueSets.CONTROL);
@@ -65,10 +63,10 @@ public class TestProperties extends TestFmwk {
         all.removeAll(PropertyValueSets.SEPARATOR);
         all.removeAll(PropertyValueSets.SYMBOL);
         all.removeAll(EnumSet.of(
-                General_Category_Values.Other, 
-                General_Category_Values.Letter, 
-                General_Category_Values.Cased_Letter, 
-                General_Category_Values.Mark, 
+                General_Category_Values.Other,
+                General_Category_Values.Letter,
+                General_Category_Values.Cased_Letter,
+                General_Category_Values.Mark,
                 General_Category_Values.Number,
                 General_Category_Values.Punctuation,
                 General_Category_Values.Separator,
@@ -76,6 +74,8 @@ public class TestProperties extends TestFmwk {
                 ));
         assertEquals("", Collections.EMPTY_SET, all);
     }
+
+    @Test
     public void TestNames() {
         for (Binary value : Binary.values()) {
             PropertyNames<Binary> propNames = value.getNames();
@@ -90,6 +90,9 @@ public class TestProperties extends TestFmwk {
             }
         }
     }
+
+    @Disabled("Broken")
+    @Test
     public void TestAAEmoji() {
         EmojiData emojiData = EmojiData.EMOJI_DATA;
         {
@@ -97,15 +100,15 @@ public class TestProperties extends TestFmwk {
             assertSameContents("Emoji", emojiData.getSingletonsWithoutDefectives(), emoji.getSet(Binary.Yes));
         }{
             UnicodeMap<Binary> presentation = iup.loadEnum(UcdProperty.Emoji_Presentation, Binary.class);
-            assertSameContents("Emoji_Presentation", emojiData.getEmojiPresentationSet(), 
+            assertSameContents("Emoji_Presentation", emojiData.getEmojiPresentationSet(),
                     presentation.getSet(Binary.Yes));
         }{
             UnicodeMap<Binary> modifiers = iup.loadEnum(UcdProperty.Emoji_Modifier, Binary.class);
-            assertSameContents("Emoji_Modifier", EmojiData.MODIFIERS, 
+            assertSameContents("Emoji_Modifier", EmojiData.MODIFIERS,
                     modifiers.getSet(Binary.Yes));
         }{
             UnicodeMap<Binary> bases = iup.loadEnum(UcdProperty.Emoji_Modifier_Base, Binary.class);
-            assertSameContents("Emoji_Modifier_Base", emojiData.getModifierBases(), 
+            assertSameContents("Emoji_Modifier_Base", emojiData.getModifierBases(),
                     bases.getSet(Binary.Yes));
         }
     }
@@ -141,7 +144,7 @@ public class TestProperties extends TestFmwk {
     //        return CollectionUtilities.compare(x1, x2);
     //    }
 
-    public static class SetComparator<T extends Comparable> 
+    public static class SetComparator<T extends Comparable>
     implements Comparator<Set<T>> {
         public int compare(Set<T> o1, Set<T> o2) {
             return CollectionUtilities.compare((Collection<T>)o1, (Collection<T>)o2);
@@ -149,6 +152,7 @@ public class TestProperties extends TestFmwk {
     };
 
 
+    @Test
     public void TestAAScripts() {
         UnicodeMap<String> scriptInfo = iup.load(UcdProperty.Script);
         UnicodeSet unknownScript = scriptInfo.getSet(
@@ -171,7 +175,7 @@ public class TestProperties extends TestFmwk {
         unknownScript.removeAll(unknownMarks);
         assertEquals("Missing Inherited", UnicodeSet.EMPTY, unknownMarks);
         assertEquals("Missing Common", UnicodeSet.EMPTY, unknownScript);
-        for (UnicodeSetIterator it = new UnicodeSetIterator(unknownScript); 
+        for (UnicodeSetIterator it = new UnicodeSetIterator(unknownScript);
                 it.nextRange();) {
             logln(Utility.hex(it.codepoint) + ".." + Utility.hex(it.codepointEnd)
                     + "; Common # (" + generalCategory.get(it.codepoint) + ".." + generalCategory.get(it.codepointEnd) + ") "
@@ -179,6 +183,7 @@ public class TestProperties extends TestFmwk {
                     );
         }
     }
+    @Test
     public void TestScripts() {
 
         logln("New chars: " + newChars.size());
@@ -208,7 +213,7 @@ public class TestProperties extends TestFmwk {
         }
     }
 
-    public <T extends Enum<T>> void listValues(UcdProperty ucdProperty, Collection<T> values, 
+    public <T extends Enum<T>> void listValues(UcdProperty ucdProperty, Collection<T> values,
             Transform<T, String> transform) {
         UnicodeMap<String> scripts = iup.load(ucdProperty);
         UnicodeMap<String> oldScripts = lastVersion.load(ucdProperty);
@@ -236,7 +241,7 @@ public class TestProperties extends TestFmwk {
         NumberFormat nf = NumberFormat.getInstance();
         for (T c : sorted) {
             logln(
-                    nf.format(oldScriptCounts.get(c)) 
+                    nf.format(oldScriptCounts.get(c))
                     + "\t" + nf.format(newScriptCounts.get(c))
                     + "\t" + transform.transform(c)
                     + "\t" + c);
@@ -286,23 +291,19 @@ public class TestProperties extends TestFmwk {
     }
 
 
+    @Test
     public void TestIdn() {
         show(UcdProperty.Idn_Status);
         show(UcdProperty.Idn_2008);
         show(UcdProperty.Idn_Mapping);
     }
 
+    @Test
     public void TestIdmod() {
         show(UcdProperty.Identifier_Status);
         show(UcdProperty.Identifier_Type);
         show(UcdProperty.Confusable_MA);
     }
-
-
-
-
-
-
 
     static class ExemplarExceptions {
         static final Map<String,ExemplarExceptions> exemplarExceptions = new HashMap<>();
@@ -376,6 +377,7 @@ public class TestProperties extends TestFmwk {
         return propMap;
     }
 
+    @Test
     public void TestValues() {
         for (final UcdProperty prop : UcdProperty.values()) {
             logln(prop + "\t" + prop.getNames() + "\t" + prop.getEnums());
@@ -398,6 +400,7 @@ public class TestProperties extends TestFmwk {
         //        logln(x + " " + z + " " + w);
     }
 
+    @Test
     public void TestNumbers() {
         for (final Age_Values age : Age_Values.values()) {
             if (age == Age_Values.Unassigned) { //  || age.compareTo(Age_Values.V4_0) < 0

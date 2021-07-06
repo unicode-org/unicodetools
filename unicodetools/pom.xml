@@ -108,8 +108,10 @@
 							<CLDR_ENVIRONMENT>UNITTEST</CLDR_ENVIRONMENT>
 							<java.awt.headless>true</java.awt.headless>
 							<UNICODETOOLS_REPO_DIR>${project.basedir}/..</UNICODETOOLS_REPO_DIR>
+							<!-- sibling of unicodetools-->
+							<UNICODETOOLS_OUTPUT_DIR>${project.basedir}/../output</UNICODETOOLS_OUTPUT_DIR>
 						</systemPropertyVariables>
-						<argLine>-Xmx6g -enableassertions</argLine>
+						<argLine>-Xmx10g -enableassertions</argLine>
 					</configuration>
 				</plugin>
 				<plugin>

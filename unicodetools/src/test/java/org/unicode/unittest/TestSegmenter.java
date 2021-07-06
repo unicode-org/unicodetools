@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
@@ -44,6 +45,7 @@ public class TestSegmenter extends TestFmwkMinusMinus {
 	}
     }
 
+    @Disabled("Broken")
 	@Test
     public void TestIndic() {
 	System.out.println();

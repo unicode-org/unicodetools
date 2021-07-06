@@ -70,6 +70,11 @@ public class TestFmwkMinusMinus {
         return true;
     }
 
+    public boolean assertFalse(String msg, boolean a) {
+        Assertions.assertFalse(a, msg);
+        return true;
+    }
+
     public boolean isVerbose() {
         return logger.isLoggable(Level.FINE);
     }

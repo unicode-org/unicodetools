@@ -3,7 +3,6 @@ package org.unicode.propstest;
 import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.annotation.Testable;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyType;

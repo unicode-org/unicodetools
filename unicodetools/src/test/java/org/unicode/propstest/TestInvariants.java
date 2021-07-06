@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyStatus;
 import org.unicode.props.UcdProperty;
@@ -57,6 +59,8 @@ public class TestInvariants extends TestFmwkMinusMinus {
     static final UnicodeSet ideographicSet = unified_Ideograph;
     static final UnicodeSet DECOMPOSABLE = haveDecomps.keySet();
 
+    @Disabled("Broken")
+    @Test
     public void TestHanCompleteness() {
 
         UnicodeSet missing;
@@ -104,6 +108,7 @@ public class TestInvariants extends TestFmwkMinusMinus {
         msg(stringToShow, warnVsError, true, true);
     }
 
+    @Test
     public void TestUniformUnassigned() {
         UnicodeMap<General_Category_Values> gc = iup.loadEnum(UcdProperty.General_Category, UcdPropertyValues.General_Category_Values.class);
         //UnicodeMap<String> map1 = iup.load(UcdProperty.Bidi_Class);
@@ -197,6 +202,7 @@ public class TestInvariants extends TestFmwkMinusMinus {
         logln("ALL\tCount:\t" + total);
     }
 
+    @Test
     public void TestStandarizedVariant() {
         CheckProps(ERR, UcdProperty.Standardized_Variant);
         //        UnicodeMap<String> currentStatus = iup.load(UcdProperty.Standardized_Variant);
@@ -205,14 +211,17 @@ public class TestInvariants extends TestFmwkMinusMinus {
         //        }
     }
 
+    @Test
     public void TestNameAlias() {
         CheckProps(WARN, UcdProperty.Name_Alias);
     }
 
+    @Test
     public void TestIdna() {
         CheckProps(ERR, UcdProperty.Idn_Status, Idn_Status_Values.disallowed.toString());
     }
 
+    @Test
     public void TestSecurity() {
         CheckProps(ERR, UcdProperty.Identifier_Status, "Restricted", "Allowed");
         CheckProps(ERR, UcdProperty.Identifier_Type, "Not_Character",

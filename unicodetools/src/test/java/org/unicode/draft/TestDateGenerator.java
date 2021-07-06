@@ -7,6 +7,8 @@ import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.DateTimePatternGenerator;
 import com.ibm.icu.util.ULocale;
 
+import org.junit.jupiter.api.Test;
+
 
 public class TestDateGenerator {
     enum Foo {

@@ -3,21 +3,20 @@ package org.unicode.unittest;
 import java.util.Locale;
 import java.util.Map.Entry;
 
-import org.unicode.unittest.LocaleCanonicalizer.ErrorChoice;
-
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.util.ULocale;
 
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.unicode.unittest.LocaleCanonicalizer.ErrorChoice;
 
-public class TestLocaleCanonicalization extends TestFmwk {
+
+public class TestLocaleCanonicalization extends TestFmwkMinusMinus {
     private static final boolean DEBUG = false;
     private static final boolean GEN_TEST_FILE = true;
 
-    public static void main(String[] args) {
-	new TestLocaleCanonicalization().run(args);
-    }
-
-    public void TestCanonicalize() {
+    @Disabled("Broken")
+	@Test
+	public void TestCanonicalize() {
 	int line = 0;
 	AliasDataCldr aliasDataSource = new AliasDataCldr();
 	LocaleCanonicalizer lc = new LocaleCanonicalizer(aliasDataSource, ErrorChoice.ignoreErrors);
