@@ -46,6 +46,16 @@ public class TestFmwkMinusMinus {
         return true;
     }
 
+    public boolean assertEquals(String msg, int a, int b) {
+        Assertions.assertEquals(a, b, msg);
+        return true;
+    }
+
+    public boolean assertEquals(String msg, long a, long b) {
+        Assertions.assertEquals(a, b, msg);
+        return true;
+    }
+
     public boolean assertNotEquals(String msg, Object a, Object b) {
         Assertions.assertNotEquals(a, b, msg);
         return true;

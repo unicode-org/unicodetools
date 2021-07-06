@@ -33,8 +33,8 @@ public class GenerateEnums {
     public static final String ENUM_VERSION = Settings.latestVersion;
     public static final VersionInfo ENUM_VERSION_INFO = VersionInfo.getInstance(GenerateEnums.ENUM_VERSION);
 
-    public static final String PROPERTY_FILE_OUTPUT = Settings.UnicodeTools.UNICODETOOLS_DIR + "/org/unicode/props/UcdProperty.java";
-    public static final String PROPERTY_VALUE_OUTPUT = Settings.UnicodeTools.UNICODETOOLS_DIR + "/org/unicode/props/UcdPropertyValues.java";
+    public static final String PROPERTY_FILE_OUTPUT = Settings.UnicodeTools.UNICODETOOLS_JAVA_DIR + "/org/unicode/props/UcdProperty.java";
+    public static final String PROPERTY_VALUE_OUTPUT = Settings.UnicodeTools.UNICODETOOLS_JAVA_DIR + "/org/unicode/props/UcdPropertyValues.java";
 
     //    private static class Locations {
     //        private static Set<String> files = addAll(new HashSet<String>(), new File(SOURCE_DIR));
@@ -200,7 +200,7 @@ public class GenerateEnums {
                 + "public class UcdPropertyValues {");
 
         //[Alpha, N, No, F, False]
-        addPropertyValueAliases(values, FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyValueAliases", ENUM_VERSION, true, true))); 
+        addPropertyValueAliases(values, FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyValueAliases", ENUM_VERSION, true, true)));
         addPropertyValueAliases(values, FileUtilities.in(GenerateEnums.class, "ExtraPropertyValueAliases.txt"));
 
         output.println(
@@ -209,7 +209,7 @@ public class GenerateEnums {
                         "        Yes(\"Y\", \"T\", \"True\")" +
                         getNameStuff2("Binary")
                         //                        ";\n"+
-                        //                        
+                        //
                         //                        "        private final PropertyNames<Binary> names;\n"+
                         //                        "        private Binary (String shortName, String...otherNames) {\n"+
                         //                        "            names = new PropertyNames(Binary.class, this, shortName, otherNames);\n"+
@@ -367,7 +367,7 @@ public class GenerateEnums {
             output.println("import org.unicode.props.UcdPropertyValues." + s + "_Values;");
         }
         output.println();
-        
+
         output.println("/**\n"
                 + "    Machine-generated file for properties, produced by GenerateEnums.java\n"
                 + "    from PropertyAliases.txt and ExtraPropertyAliases.txt.\n"
@@ -408,7 +408,7 @@ public class GenerateEnums {
                     break;
                 case Enumerated:
                 case Catalog:
-                    classItem = // "UcdPropertyValues." + 
+                    classItem = // "UcdPropertyValues." +
                     ("Script_Extensions".equals(pname.longName) ? "Script" : pname.longName) + "_Values.class"; // HACK!
                     break;
                 }
@@ -490,15 +490,15 @@ public class GenerateEnums {
     }
 
 
-    public static void writeOtherNames(PrintWriter output, String type, 
-            String classItem, ValueCardinality cardinality, 
+    public static void writeOtherNames(PrintWriter output, String type,
+            String classItem, ValueCardinality cardinality,
             String shortName, List<String> otherNames) {
         output.print("(");
         //if (shortName != null) {
         output.print(type);
         if (classItem != null || cardinality != ValueCardinality.Singleton) {
             output.print(", " + classItem + ", "
-                    + (cardinality == ValueCardinality.Singleton ? "null" 
+                    + (cardinality == ValueCardinality.Singleton ? "null"
                             : "ValueCardinality." + cardinality.toString()));
         }
         output.print(", \"" + shortName + "\"");
