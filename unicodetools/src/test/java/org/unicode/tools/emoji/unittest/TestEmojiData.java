@@ -12,9 +12,19 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
 
+import com.google.common.base.Splitter;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.TreeMultimap;
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.CharSequences;
+import com.ibm.icu.text.CollationElementIterator;
+import com.ibm.icu.text.RuleBasedCollator;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ICUException;
+
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.StandardCodes.LstrType;
-import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.cldr.util.Validity;
 import org.unicode.cldr.util.Validity.Status;
 import org.unicode.text.utility.Utility;
@@ -24,23 +34,11 @@ import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiAnnotations;
 import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.EmojiData.VariantStatus;
-import org.unicode.unittest.TestFmwkMinusMinus;
 import org.unicode.tools.emoji.EmojiDataSource;
 import org.unicode.tools.emoji.EmojiDataSourceCombined;
 import org.unicode.tools.emoji.EmojiOrder;
 import org.unicode.tools.emoji.GenerateEmojiData;
-
-import com.google.common.base.Splitter;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.TreeMultimap;
-import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.text.CollationElementIterator;
-import com.ibm.icu.text.RuleBasedCollator;
-import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.ICUException;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
 public class TestEmojiData extends TestFmwkMinusMinus {
     private static final boolean SHOW = false;
@@ -57,6 +55,7 @@ public class TestEmojiData extends TestFmwkMinusMinus {
         emojiOrderToTest = emojiOrder;
     }
 
+    @Test
     public TestEmojiData() {
         this(TestAll.DATA_TO_TEST, TestAll.ORDER_TO_TEST);
     }

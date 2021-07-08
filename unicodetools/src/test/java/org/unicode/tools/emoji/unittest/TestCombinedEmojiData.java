@@ -5,28 +5,23 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-import org.unicode.tools.emoji.Emoji;
-import org.unicode.tools.emoji.EmojiData;
+import org.junit.jupiter.api.Test;
 import org.unicode.tools.emoji.EmojiDataSourceCombined;
-import org.unicode.tools.emoji.EmojiOrder;
 
 /**
- * This is a bit of a hack to run TestEmojiData on two sets of data. One is the Beta version of EmojiData, 
- * and the other is the EmojiDataSourceCombined, which adds in CandidateData. 
+ * This is a bit of a hack to run TestEmojiData on two sets of data. One is the Beta version of EmojiData,
+ * and the other is the EmojiDataSourceCombined, which adds in CandidateData.
  * The latter is needed where we are first using the CandidateData to generate the emoji-data files.
+ * TODO: use a @ParameterizedTest instead
  * @author markdavis
  */
 public class TestCombinedEmojiData extends TestEmojiData {
-
     public TestCombinedEmojiData() {
         // super(new EmojiDataSourceCombined(EmojiData.of(Emoji.VERSION_TO_TEST)), EmojiOrder.of(Emoji.VERSION_TO_TEST));
         super(new EmojiDataSourceCombined(TestAll.DATA_TO_TEST), TestAll.ORDER_TO_TEST);
     }
 
-    public static void main(String[] args) {
-        new TestCombinedEmojiData().run(args);
-    }
-
+    @Test
     public void TestA() {
         super.TestA();
         boolean errorShown = false;
@@ -60,26 +55,31 @@ public class TestCombinedEmojiData extends TestEmojiData {
         };
     }
 
+    @Test
     @Override
     public void TestPublicEmojiTest() {
         super.TestPublicEmojiTest();
     }
 
+    @Test
     @Override
     public void TestHandshake() {
         super.TestHandshake();
     }
 
+    @Test
     @Override
     public void TestCompoundNames() {
         super.TestCompoundNames();
     }
 
+    @Test
     @Override
     public void TestDefectives() {
         super.TestDefectives();
     }
 
+    @Test
     @Override
     public void TestFlags() {
         super.TestFlags();
@@ -90,46 +90,55 @@ public class TestCombinedEmojiData extends TestEmojiData {
 //        super.TestZwjCategories();
 //    }
 
+    @Test
     @Override
     public void TestOrderRulesWithoutSkin() {
         super.TestOrderRulesWithoutSkin();
     }
 
+    @Test
     @Override
     public void TestOrderRulesWithSkin() {
         super.TestOrderRulesWithSkin();
     }
 
+    @Test
     @Override
     public void TestAnnotationsCompleteness() {
         super.TestAnnotationsCompleteness();
     }
-    
+
+    @Test
     @Override
     public void TestGroupEmoji() {
         super.TestGroupEmoji();
     }
-    
+
+    @Test
     @Override
     public void TestExplicitGender() {
         super.TestExplicitGender();
     }
 
+    @Test
     @Override
     public void TestCombinations() {
         super.TestCombinations();
     }
 
+    @Test
     @Override
     public void TestBuckets() {
         super.TestBuckets();
     }
-    
+
+    @Test
     @Override
     public void TestOrderRulesSimple() {
         super.TestOrderRulesSimple();
     }
 
+    @Test
     @Override
     public void TestOrderVariants() {
         super.TestOrderVariants();

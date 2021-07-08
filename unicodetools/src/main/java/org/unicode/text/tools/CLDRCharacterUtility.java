@@ -15,7 +15,7 @@ import org.unicode.cldr.util.LanguageTagParser;
 import org.unicode.cldr.util.StandardCodes;
 import org.unicode.cldr.util.CLDRFile.WinningChoice;
 
-class CLDRCharacterUtility {
+public class CLDRCharacterUtility {
     public static UnicodeMap<Set<String>> getCLDRCharacters() {
         UnicodeMap<Set<String>> result = new UnicodeMap<>();
         org.unicode.cldr.util.Factory factory = CLDRConfig.getInstance().getCldrFactory();

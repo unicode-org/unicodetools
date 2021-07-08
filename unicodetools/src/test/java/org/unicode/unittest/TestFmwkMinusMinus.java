@@ -1,5 +1,7 @@
 package org.unicode.unittest;
 
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -90,6 +92,17 @@ public class TestFmwkMinusMinus {
             warnln(message);
         } else {
             logln(message);
+        }
+    }
+
+    static final private boolean LOG_KNOWN_ISSUE = Boolean.parseBoolean(System.getProperty("LOG_KNOWN_ISSUE", "true"));
+
+    protected boolean logKnownIssue(String a, String b) {
+        if (LOG_KNOWN_ISSUE == true) {
+            System.err.println("-DLOG_KNOWN_ISSUE=true (set to false to fail): " + a + ", "+ b);
+            return true;
+        } else {
+            return false;
         }
     }
 }
