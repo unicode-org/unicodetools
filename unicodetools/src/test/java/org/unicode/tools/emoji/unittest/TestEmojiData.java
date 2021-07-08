@@ -47,15 +47,15 @@ import org.unicode.tools.emoji.EmojiOrder;
 import org.unicode.tools.emoji.GenerateEmojiData;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
-@Disabled("TestAll does not initialize")
+@Disabled("data will not load")
 public class TestEmojiData extends TestFmwkMinusMinus {
     private static final boolean SHOW = false;
     final EmojiData released = EmojiData.of(Emoji.VERSION_TO_TEST_PREVIOUS);
 
-    static Stream<Arguments> dataProvider() {
+    public static  Stream<Arguments> dataProvider() {
         return Stream.of(
             // "version", EmojiDataSource, EmojiOrder
-            arguments("regular", TestAll.getDataToTest(), TestAll.getOrderToTest()),
+            arguments("regular", (EmojiDataSource)TestAll.getDataToTest(), TestAll.getOrderToTest()),
             arguments("combined", new EmojiDataSourceCombined(TestAll.getDataToTest()), TestAll.getOrderToTest())
         );
     }

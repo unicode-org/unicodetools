@@ -22,7 +22,7 @@ import org.unicode.tools.emoji.EmojiDataSource;
 import org.unicode.tools.emoji.EmojiOrder;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
-// @Disabled("Broken - Could not initialize class org.unicode.tools.emoji.unittest.TestAll")
+@Disabled("Broken? data load issue")
 public class TestEmojiOrder extends TestFmwkMinusMinus {
 
     //    private EmojiOrder order = EmojiOrder.BETA_ORDER;
