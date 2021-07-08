@@ -29,24 +29,27 @@ import org.unicode.tools.emoji.GenerateEmojiData;
 import org.unicode.tools.emoji.TempPrintWriter;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
-@Disabled("Broken - can’t <init>")
 public class TestEmojiDataConsistency extends TestFmwkMinusMinus {
-    EmojiData DATA_TO_TEST = TestAll.DATA_TO_TEST;
-    EmojiData DATA_TO_TEST_PREVIOUS = TestAll.DATA_TO_TEST_PREVIOUS;
+    EmojiData getDataToTest() {
+        return TestAll.getDataToTest();
+    }
+    EmojiData getDataToTestPrevious() {
+        return TestAll.getDataToTestPrevious();
+    }
 
     public void TestHair() {
-        assertTrue("", DATA_TO_TEST_PREVIOUS.getZwjSequencesNormal().contains(EmojiData.MAN_WITH_RED_HAIR));
-        assertTrue("", DATA_TO_TEST.getZwjSequencesNormal().contains(EmojiData.MAN_WITH_RED_HAIR));
+        assertTrue("", getDataToTestPrevious().getZwjSequencesNormal().contains(EmojiData.MAN_WITH_RED_HAIR));
+        assertTrue("", getDataToTest().getZwjSequencesNormal().contains(EmojiData.MAN_WITH_RED_HAIR));
         assertTrue("", EmojiDataSourceCombined.EMOJI_DATA.getZwjSequencesNormal().contains(EmojiData.MAN_WITH_RED_HAIR));
     }
 
     @Test
     public void TestVersions() {
-        for (String s : DATA_TO_TEST_PREVIOUS.getAllEmojiWithoutDefectives()) {
-            if (DATA_TO_TEST.getAllEmojiWithoutDefectives().contains(s)) {
+        for (String s : getDataToTestPrevious().getAllEmojiWithoutDefectives()) {
+            if (getDataToTest().getAllEmojiWithoutDefectives().contains(s)) {
                 continue;
             }
-            errln("Compatibility failure with\t" + Utility.hex(s) + "; \t" + s + "; \t" + DATA_TO_TEST_PREVIOUS.getName(s));
+            errln("Compatibility failure with\t" + Utility.hex(s) + "; \t" + s + "; \t" + getDataToTestPrevious().getName(s));
         }
     }
 
@@ -200,7 +203,7 @@ OLD
 
     private String getName(int emoji) {
         try {
-            return DATA_TO_TEST.getName(emoji);
+            return getDataToTest().getName(emoji);
         } catch (Exception e) {
             return "<noname " + Utility.hex(emoji) + ">";
         }
@@ -208,7 +211,7 @@ OLD
 
     private String getName(String emoji) {
         try {
-            return DATA_TO_TEST.getName(emoji);
+            return getDataToTest().getName(emoji);
         } catch (Exception e) {
             return "<noname " + Utility.hex(emoji) + ">";
         }

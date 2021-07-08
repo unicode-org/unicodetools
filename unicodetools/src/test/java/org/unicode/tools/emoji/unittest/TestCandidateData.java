@@ -1,5 +1,6 @@
 package org.unicode.tools.emoji.unittest;
 
+import org.junit.jupiter.api.Test;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.CandidateData;
 import org.unicode.tools.emoji.EmojiDataSource;
@@ -9,12 +10,10 @@ import org.unicode.unittest.TestFmwkMinusMinus;
 import com.ibm.icu.text.UnicodeSet;
 
 public class TestCandidateData extends TestFmwkMinusMinus {
-    public static void main(String[] args) {
-	new TestCandidateData().run(args);
-    }
 
     CandidateData CANDIDATES = CandidateData.getInstance();
 
+	@Test
     public void TestA() {
 	System.out.print(" (Version: " + CANDIDATES.getVersionString() + ") ");
     }
@@ -22,6 +21,7 @@ public class TestCandidateData extends TestFmwkMinusMinus {
     /**
      * These need to be changed each release; they may be empty in a release. In that case, logKnownError
      */
+	@Test
     public void TestEmojification() {
 	assertTrue("U+26a7: chess pawn", CANDIDATES.getAllCharacters().contains(0x26a7));
     }
@@ -29,6 +29,7 @@ public class TestCandidateData extends TestFmwkMinusMinus {
     /**
      * These need to be changed each release; they may be empty in a release. In that case, logKnownError
      */
+	@Test
     public void TestCandidateCombinations() {
 	UnicodeSet all = CANDIDATES.getAllCharacters();
 	Asserts.assertContains(this, "", "zwj-sequence", all,
@@ -39,6 +40,7 @@ public class TestCandidateData extends TestFmwkMinusMinus {
 		.toString());
     }
 
+	@Test
     public void TestGroupEmoji() {
 	EmojiDataSource source = CANDIDATES;
 	Asserts.assertContains(this, "", "modifierBases", source.getModifierBases(), "multipersonGroupings", source.getMultiPersonGroupings());
@@ -48,6 +50,7 @@ public class TestCandidateData extends TestFmwkMinusMinus {
 	System.out.print(" (genderBases: " + Asserts.flat(source.getGenderBases()) + ") ");
     }
 
+	@Test
     public void TestMajorMinorGroups() {
 	String cat = CANDIDATES.getCategory("🦯");
 	assertNotNull("1F9AF category", cat);

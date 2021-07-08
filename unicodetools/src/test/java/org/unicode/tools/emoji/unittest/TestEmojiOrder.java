@@ -22,7 +22,7 @@ import org.unicode.tools.emoji.EmojiDataSource;
 import org.unicode.tools.emoji.EmojiOrder;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
-@Disabled("Broken - Could not initialize class org.unicode.tools.emoji.unittest.TestAll")
+// @Disabled("Broken - Could not initialize class org.unicode.tools.emoji.unittest.TestAll")
 public class TestEmojiOrder extends TestFmwkMinusMinus {
 
     //    private EmojiOrder order = EmojiOrder.BETA_ORDER;
@@ -35,8 +35,8 @@ public class TestEmojiOrder extends TestFmwkMinusMinus {
 
 	@Test
     public void TestForMissing() {
-	check("Released", TestAll.ORDER_TO_TEST, TestAll.DATA_TO_TEST_PREVIOUS);
-	check("Candidates", TestAll.ORDER_TO_TEST, CandidateData.getInstance());
+	check("Released", TestAll.getOrderToTest(), TestAll.getDataToTestPrevious());
+	check("Candidates", TestAll.getOrderToTest(), CandidateData.getInstance());
 	check("Beta", EmojiOrder.BETA_ORDER, EmojiData.EMOJI_DATA_BETA);
     }
 
@@ -74,11 +74,11 @@ public class TestEmojiOrder extends TestFmwkMinusMinus {
     }
 
     public void TestRuleBasedCollator() throws Exception {
-	UnicodeSet APPLE_COMBOS = TestAll.DATA_TO_TEST.getZwjSequencesNormal();
-	UnicodeSet APPLE_COMBOS_WITHOUT_VS = TestAll.DATA_TO_TEST.getZwjSequencesAll();
+	UnicodeSet APPLE_COMBOS = TestAll.getDataToTest().getZwjSequencesNormal();
+	UnicodeSet APPLE_COMBOS_WITHOUT_VS = TestAll.getDataToTest().getZwjSequencesAll();
 
-	String rules = TestAll.ORDER_TO_TEST.appendCollationRules(new StringBuilder(),
-		new UnicodeSet(TestAll.DATA_TO_TEST.getChars()).removeAll(Emoji.DEFECTIVE),
+	String rules = TestAll.getOrderToTest().appendCollationRules(new StringBuilder(),
+		new UnicodeSet(TestAll.getDataToTest().getChars()).removeAll(Emoji.DEFECTIVE),
 		APPLE_COMBOS,
 		APPLE_COMBOS_WITHOUT_VS)
 		.toString();
@@ -91,7 +91,7 @@ public class TestEmojiOrder extends TestFmwkMinusMinus {
 	String lastCat = "";
 	Set<String> seen = new LinkedHashSet<>();
 	TreeSet<String> sorted = new TreeSet<>(ruleBasedCollator);
-	TestAll.DATA_TO_TEST.getAllEmojiWithDefectives().addAllTo(sorted);
+	TestAll.getDataToTest().getAllEmojiWithDefectives().addAllTo(sorted);
 	for (String s : sorted) {
 	    String cat = EmojiOrder.BETA_ORDER.getCategory(s);
 	    if (!cat.equals(lastCat)) {
@@ -117,8 +117,8 @@ public class TestEmojiOrder extends TestFmwkMinusMinus {
      * @param filterOutIfContains - don't test strings that this set contains some characters from (ignored if null)
      */
     private void checkOrder(UnicodeSet filterOutIfContains) {
-	EmojiOrder emojiOrderToTest = TestAll.ORDER_TO_TEST;
-	EmojiData emojiDataToTest = TestAll.DATA_TO_TEST;
+	EmojiOrder emojiOrderToTest = TestAll.getOrderToTest();
+	EmojiData emojiDataToTest = TestAll.getDataToTest();
 	int SKIPTO = 400;
 	StringBuilder outText = new StringBuilder();
 	emojiOrderToTest.appendCollationRules(outText, emojiDataToTest.getAllEmojiWithDefectives(), EmojiOrder.GENDER_NEUTRALS);
@@ -196,7 +196,7 @@ public class TestEmojiOrder extends TestFmwkMinusMinus {
 
     private String showItem(String lastItem, RuleBasedCollator ruleBasedCollator) {
 	return "(" + Utility.hex(lastItem)
-	+ "; " + TestAll.DATA_TO_TEST.getName(lastItem)
+	+ "; " + TestAll.getDataToTest().getName(lastItem)
 	+ (ruleBasedCollator == null ? "" : "; " + showCE(lastItem, ruleBasedCollator))
 	+ ")";
     }
