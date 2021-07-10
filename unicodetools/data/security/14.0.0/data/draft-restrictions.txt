@@ -4585,8 +4585,6 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 12FEE         ;  ; Exclusion #      (𒿮)  CYPRO-MINOAN SIGN CM110
 12FEF         ;  ; Exclusion #      (𒿯)  CYPRO-MINOAN SIGN CM112
 12FF0         ;  ; Exclusion #      (𒿰)  CYPRO-MINOAN SIGN CM114
-12FF1         ;  ; Exclusion #      (𒿱)  CYPRO-MINOAN SIGN CM301
-12FF2         ;  ; Exclusion #      (𒿲)  CYPRO-MINOAN SIGN CM302
 13000         ;  ; Exclusion #      (𓀀)  EGYPTIAN HIEROGLYPH A001
 13001         ;  ; Exclusion #      (𓀁)  EGYPTIAN HIEROGLYPH A002
 13002         ;  ; Exclusion #      (𓀂)  EGYPTIAN HIEROGLYPH A003
@@ -14839,7 +14837,7 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 1E8D5         ;  ; Exclusion #      (𞣕)  MENDE KIKAKUI COMBINING NUMBER HUNDRED THOUSANDS
 1E8D6         ;  ; Exclusion #      (𞣖)  MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 15695
+# Total code points: 15693
 
 0710..073F    ;  ; Limited_Use # [48] (ܐ..ܿ)  SYRIAC LETTER ALAPH..SYRIAC RWAHA
 074D..074F    ;  ; Limited_Use #  [3] (ݍ..ݏ)  SYRIAC LETTER SOGDIAN ZHAIN..SYRIAC LETTER SOGDIAN FE
@@ -22883,7 +22881,7 @@ FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 1DF1D         ; Allowed ; Recommended #      (𝼝)  LATIN SMALL LETTER C WITH RETROFLEX HOOK
 1DF1E         ; Allowed ; Recommended #      (𝼞)  LATIN SMALL LETTER S WITH CURL
 1E7E0..1E7E6  ; Allowed ; Recommended #  [7] (𞟠..𞟦)  ETHIOPIC SYLLABLE HHYA..ETHIOPIC SYLLABLE HHYO
-1E7E8..1E7EB  ; Allowed ; Recommended #  [4] (𞟨..𞟫)  ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HWE
+1E7E8..1E7EB  ; Allowed ; Recommended #  [4] (𞟨..𞟫)  ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HHWE
 1E7ED..1E7EE  ; Allowed ; Recommended #  [2] (𞟭..𞟮)  ETHIOPIC SYLLABLE GURAGE MWI..ETHIOPIC SYLLABLE GURAGE MWEE
 1E7F0..1E7FE  ; Allowed ; Recommended # [15] (𞟰..𞟾)  ETHIOPIC SYLLABLE GURAGE QWI..ETHIOPIC SYLLABLE GURAGE PWEE
 20000..2A6D6  ; Allowed ; Recommended # [42711] (𠀀..𪛖)  CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6D6
@@ -45821,6 +45819,7 @@ FFF9..FFFD    ; ~Unicode Identifier #  [5] (U+FFF9..�)  INTERLINEAR ANNOTATION
 11FC0..11FF1  ; ~Unicode Identifier # [50] (𑿀..𑿱)  TAMIL FRACTION ONE THREE-HUNDRED-AND-TWENTIETH..TAMIL SIGN VAKAIYARAA
 11FFF         ; ~Unicode Identifier #      (𑿿)  TAMIL PUNCTUATION END OF TEXT
 12470..12474  ; ~Unicode Identifier #  [5] (𒑰..𒑴)  CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD DIVIDER..CUNEIFORM PUNCTUATION SIGN DIAGONAL QUADCOLON
+12FF1..12FF2  ; ~Unicode Identifier #  [2] (𒿱..𒿲)  CYPRO-MINOAN SIGN CM301..CYPRO-MINOAN SIGN CM302
 13430..13438  ; ~Unicode Identifier #  [9] (U+13430..U+13438)  EGYPTIAN HIEROGLYPH VERTICAL JOINER..EGYPTIAN HIEROGLYPH END SEGMENT
 16A6E..16A6F  ; ~Unicode Identifier #  [2] (𖩮..𖩯)  MRO DANDA..MRO DOUBLE DANDA
 16AF5         ; ~Unicode Identifier #      (𖫵)  BASSA VAH FULL STOP
@@ -45953,4 +45952,4 @@ FFF9..FFFD    ; ~Unicode Identifier #  [5] (U+FFF9..�)  INTERLINEAR ANNOTATION
 E0001         ; ~Unicode Identifier #      (U+E0001)  LANGUAGE TAG
 E0020..E007F  ; ~Unicode Identifier # [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 
-# Total code points: 13275
+# Total code points: 13277

@@ -1,10 +1,10 @@
 # BidiMirroring-14.0.0.txt
-# Date: 2021-03-16, 20:52:00 GMT [KW, LI, RP]
+# Date: 2021-03-30, 23:59:00 GMT [KW, LI, RP]
 # © 2021 Unicode®, Inc.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# For documentation, see http://www.unicode.org/reports/tr44/
+# For documentation, see https://www.unicode.org/reports/tr44/
 #
 # Bidi_Mirroring_Glyph Property
 #

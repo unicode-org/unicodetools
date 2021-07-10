@@ -1,16 +1,16 @@
 # VerticalOrientation-14.0.0.txt
-# Date: 2021-06-08, 05:51:03 GMT [EM, KI, LI, KW, MS]
+# Date: 2021-07-06, 09:58:53 GMT [EM, KI, LI, KW, MS]
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# For documentation, see http://www.unicode.org/reports/tr44/
+# For documentation, see https://www.unicode.org/reports/tr44/
 #
 # Vertical_Orientation (vo) Property
 #
 # This file defines the Vertical_Orientation property. See UAX #50:
-# Unicode Vertical Text Layout, at http://www.unicode.org/reports/tr50/
+# Unicode Vertical Text Layout, at https://www.unicode.org/reports/tr50/
 #
 # The format of the file is two fields separated by a semicolon.
 # Field 0: Unicode code point value or range of code point values in
@@ -2255,7 +2255,7 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1E2F0..1E2F9   ; R  # Nd    [10] WANCHO DIGIT ZERO..WANCHO DIGIT NINE
 1E2FF          ; R  # Sc         WANCHO NGUN SIGN
 1E7E0..1E7E6   ; R  # Lo     [7] ETHIOPIC SYLLABLE HHYA..ETHIOPIC SYLLABLE HHYO
-1E7E8..1E7EB   ; R  # Lo     [4] ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HWE
+1E7E8..1E7EB   ; R  # Lo     [4] ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HHWE
 1E7ED..1E7EE   ; R  # Lo     [2] ETHIOPIC SYLLABLE GURAGE MWI..ETHIOPIC SYLLABLE GURAGE MWEE
 1E7F0..1E7FE   ; R  # Lo    [15] ETHIOPIC SYLLABLE GURAGE QWI..ETHIOPIC SYLLABLE GURAGE PWEE
 1E800..1E8C4   ; R  # Lo   [197] MENDE KIKAKUI SYLLABLE M001 KI..MENDE KIKAKUI SYLLABLE M060 NYON

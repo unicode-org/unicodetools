@@ -1,11 +1,11 @@
 # LineBreak-14.0.0.txt
-# Date: 2021-06-07, 17:06:22 GMT [KW, LI]
+# Date: 2021-07-06, 09:58:55 GMT [KW, LI]
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# For documentation, see http://www.unicode.org/reports/tr44/
+# For documentation, see https://www.unicode.org/reports/tr44/
 #
 # Line_Break Property
 #
@@ -49,7 +49,7 @@
 # with ranges of code points, the code point count in square brackets.
 #
 # For more information, see UAX #14: Unicode Line Breaking Algorithm,
-# at http://www.unicode.org/reports/tr14/
+# at https://www.unicode.org/reports/tr14/
 #
 # @missing: 0000..10FFFF; XX
 0000..0008;CM     # Cc     [9] <control-0000>..<control-0008>
@@ -3288,7 +3288,7 @@ FFFD;AI           # So         REPLACEMENT CHARACTER
 1E2F0..1E2F9;NU   # Nd    [10] WANCHO DIGIT ZERO..WANCHO DIGIT NINE
 1E2FF;PR          # Sc         WANCHO NGUN SIGN
 1E7E0..1E7E6;AL   # Lo     [7] ETHIOPIC SYLLABLE HHYA..ETHIOPIC SYLLABLE HHYO
-1E7E8..1E7EB;AL   # Lo     [4] ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HWE
+1E7E8..1E7EB;AL   # Lo     [4] ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HHWE
 1E7ED..1E7EE;AL   # Lo     [2] ETHIOPIC SYLLABLE GURAGE MWI..ETHIOPIC SYLLABLE GURAGE MWEE
 1E7F0..1E7FE;AL   # Lo    [15] ETHIOPIC SYLLABLE GURAGE QWI..ETHIOPIC SYLLABLE GURAGE PWEE
 1E800..1E8C4;AL   # Lo   [197] MENDE KIKAKUI SYLLABLE M001 KI..MENDE KIKAKUI SYLLABLE M060 NYON
