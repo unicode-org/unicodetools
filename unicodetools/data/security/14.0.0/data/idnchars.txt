@@ -1,5 +1,5 @@
 ﻿# idnchars.txt
-# Date: 2021-06-03, 22:26:02 GMT
+# Date: 2021-07-10, 00:52:53 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -648,7 +648,7 @@ FA27..FA29    ; output #  [3] (﨧..﨩)  CJK COMPATIBILITY IDEOGRAPH-FA27..CJK 
 1B164..1B167  ; output #  [4] (𛅤..𛅧)  KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL N
 1DF00..1DF1E  ; output # [31] (𝼀..𝼞)  LATIN SMALL LETTER FENG DIGRAPH WITH TRILL..LATIN SMALL LETTER S WITH CURL
 1E7E0..1E7E6  ; output #  [7] (𞟠..𞟦)  ETHIOPIC SYLLABLE HHYA..ETHIOPIC SYLLABLE HHYO
-1E7E8..1E7EB  ; output #  [4] (𞟨..𞟫)  ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HWE
+1E7E8..1E7EB  ; output #  [4] (𞟨..𞟫)  ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HHWE
 1E7ED..1E7EE  ; output #  [2] (𞟭..𞟮)  ETHIOPIC SYLLABLE GURAGE MWI..ETHIOPIC SYLLABLE GURAGE MWEE
 1E7F0..1E7FE  ; output # [15] (𞟰..𞟾)  ETHIOPIC SYLLABLE GURAGE QWI..ETHIOPIC SYLLABLE GURAGE PWEE
 20000..2A6DF  ; output # [42720] (𠀀..𪛟)  CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF

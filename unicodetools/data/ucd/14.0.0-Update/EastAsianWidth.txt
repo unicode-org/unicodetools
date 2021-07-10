@@ -1,11 +1,11 @@
 # EastAsianWidth-14.0.0.txt
-# Date: 2021-06-07, 17:05:08 GMT [KW, LI]
+# Date: 2021-07-06, 09:58:53 GMT [KW, LI]
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# For documentation, see http://www.unicode.org/reports/tr44/
+# For documentation, see https://www.unicode.org/reports/tr44/
 #
 # East_Asian_Width Property
 #
@@ -37,7 +37,7 @@
 # with ranges of code points, the code point count in square brackets.
 #
 # For more information, see UAX #11: East Asian Width,
-# at http://www.unicode.org/reports/tr11/
+# at https://www.unicode.org/reports/tr11/
 #
 # @missing: 0000..10FFFF; N
 0000..001F;N     # Cc    [32] <control-0000>..<control-001F>
@@ -2401,7 +2401,7 @@ FFFD;A           # So         REPLACEMENT CHARACTER
 1E2F0..1E2F9;N   # Nd    [10] WANCHO DIGIT ZERO..WANCHO DIGIT NINE
 1E2FF;N          # Sc         WANCHO NGUN SIGN
 1E7E0..1E7E6;N   # Lo     [7] ETHIOPIC SYLLABLE HHYA..ETHIOPIC SYLLABLE HHYO
-1E7E8..1E7EB;N   # Lo     [4] ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HWE
+1E7E8..1E7EB;N   # Lo     [4] ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HHWE
 1E7ED..1E7EE;N   # Lo     [2] ETHIOPIC SYLLABLE GURAGE MWI..ETHIOPIC SYLLABLE GURAGE MWEE
 1E7F0..1E7FE;N   # Lo    [15] ETHIOPIC SYLLABLE GURAGE QWI..ETHIOPIC SYLLABLE GURAGE PWEE
 1E800..1E8C4;N   # Lo   [197] MENDE KIKAKUI SYLLABLE M001 KI..MENDE KIKAKUI SYLLABLE M060 NYON

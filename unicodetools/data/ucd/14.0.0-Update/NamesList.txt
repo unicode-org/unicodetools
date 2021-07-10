@@ -1,25 +1,12 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 14.0.0
-@@@+	U14M210503.lst
-	Unicode 14.0.0 names list, ninth delta.
-	Repertoire synched with UnicodeData-14.0.0d9.txt.
-	Corrected typo in subhead at 131A3.
-	Added subhead for Carrier at 15C4.
-	Updated annotation for 02B9.
-	Retargeted annotation for 08FB.
-	Updated annotations for 06C5 and 088E.
-	Added annotation for FDCF.
-	Added xref between 1F7F0 and 3013.
-	Added xref from 1F7F0 to 2716.
-	Adjusted subheads for rotation of 1AC9..1ACE code points.
-	Added annotations for Komi letters 0500..050F, 052A..052D.
-	Adjusted subheads for Gurage Ethiopic at 1380, 2DC0, 1E7E0.
-	Update name of 1FAC4.
-	Added xref between 1F50B and 1FAAB.
-	Added xref between 1F5E2 and 1FAE6.
-	Added aliases for 1FA74, 1FA79, 1FAAA.
-	Added xref between 1F4A7 and 1FA78.
-	Updated end range of CJK Extension C.
+@@@+	U14M210706.lst
+	Unicode 14.0.0 names list, tenth delta.
+	Repertoire synched with UnicodeData-14.0.0d13.txt.
+	Removed alias for 1FA79.
+	Added xref for 1F7F0.
+	Adjusted text of subhead at 1DF00.
+	Corrected typos in names of 3 Ethiopian Extended-B additions.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -7983,12 +7970,12 @@
 12C0	ETHIOPIC SYLLABLE KXWA
 	x (ethiopic syllable gurage hhwa - 1E7E8)
 12C2	ETHIOPIC SYLLABLE KXWI
-	x (ethiopic syllable hwi - 1E7E9)
+	x (ethiopic syllable hhwi - 1E7E9)
 12C3	ETHIOPIC SYLLABLE KXWAA
 12C4	ETHIOPIC SYLLABLE KXWEE
-	x (ethiopic syllable hwee - 1E7EA)
+	x (ethiopic syllable hhwee - 1E7EA)
 12C5	ETHIOPIC SYLLABLE KXWE
-	x (ethiopic syllable hwe - 1E7EB)
+	x (ethiopic syllable hhwe - 1E7EB)
 12C8	ETHIOPIC SYLLABLE WA
 12C9	ETHIOPIC SYLLABLE WU
 12CA	ETHIOPIC SYLLABLE WI
@@ -47122,7 +47109,7 @@ FFFF	<not a character>
 1DAAE	SIGNWRITING ROTATION MODIFIER-15
 1DAAF	SIGNWRITING ROTATION MODIFIER-16
 @@	1DF00	Latin Extended-G	1DFFF
-@		IPA letters for disordered speech
+@		Extended IPA for disordered speech
 1DF00	LATIN SMALL LETTER FENG DIGRAPH WITH TRILL
 1DF01	LATIN SMALL LETTER REVERSED SCRIPT G
 1DF02	LATIN LETTER SMALL CAPITAL TURNED G
@@ -47436,11 +47423,11 @@ FFFF	<not a character>
 	x (ethiopic syllable xyo - 2DD6)
 1E7E8	ETHIOPIC SYLLABLE GURAGE HHWA
 	x (ethiopic syllable kxwa - 12C0)
-1E7E9	ETHIOPIC SYLLABLE HWI
+1E7E9	ETHIOPIC SYLLABLE HHWI
 	x (ethiopic syllable kxwi - 12C2)
-1E7EA	ETHIOPIC SYLLABLE HWEE
+1E7EA	ETHIOPIC SYLLABLE HHWEE
 	x (ethiopic syllable kxwee - 12C4)
-1E7EB	ETHIOPIC SYLLABLE HWE
+1E7EB	ETHIOPIC SYLLABLE HHWE
 	x (ethiopic syllable kxwe - 12C5)
 1E7ED	ETHIOPIC SYLLABLE GURAGE MWI
 	x (ethiopic syllable mwi - 1381)
@@ -51471,6 +51458,7 @@ FFFF	<not a character>
 	* symbol of equality
 	x (equals sign - 003D)
 	x (heavy multiplication x - 2716)
+	x (heavy plus sign - 2795)
 	x (geta mark - 3013)
 	x (roman sextans sign - 10190)
 @@	1F800	Supplemental Arrows-C	1F8FF
@@ -52200,7 +52188,6 @@ FFFF	<not a character>
 1FA78	DROP OF BLOOD
 	x (droplet - 1F4A7)
 1FA79	ADHESIVE BANDAGE
-	= band aid
 1FA7A	STETHOSCOPE
 1FA7B	X-RAY
 1FA7C	CRUTCH
