@@ -1,5 +1,8 @@
 package org.unicode.text.utility;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.CldrUtility;
 
@@ -97,6 +100,23 @@ public class Settings {
         public static final String BIN_DIR = GEN_DIR + "BIN/";
         public static final String GEN_UCD_DIR = GEN_DIR + "ucd/";
         public static final String GEN_UCA_DIR = GEN_DIR + "UCA/";
+        /**
+         * Make sure the output dirs exist
+         */
+        public static void ensureOutputDirs() throws FileNotFoundException {
+                if (!(new File(UNICODETOOLS_OUTPUT_DIR)).isDirectory()) {
+                        throw new FileNotFoundException("Not a directory: UNICODETOOLS_OUTPUT_DIR=" + UNICODETOOLS_OUTPUT_DIR);
+                }
+                ensureOutputDir(GEN_DIR);
+                ensureOutputDir(GEN_UCD_DIR);
+                ensureOutputDir(GEN_UCA_DIR);
+                ensureOutputDir(BIN_DIR);
+        }
+        public static void ensureOutputDir(String dir) {
+                if(new File(dir).mkdirs()) {
+                        System.err.println("# mkdir " + dir);
+                }
+        }
     }
 
     public static final String SRC_DIR = Utility.fixFileName(UnicodeTools.UNICODETOOLS_RSRC_DIR+"org/unicode/text") + "/";

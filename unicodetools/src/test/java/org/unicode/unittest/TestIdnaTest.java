@@ -58,6 +58,9 @@ public class TestIdnaTest extends TestFmwkMinusMinus {
             TEST_DIR = GenerateIdna.GEN_IDNA_DIR;
         }
         loadedTests = LoadIdnaTest.load(TEST_DIR);
+
+        iup = IndexUnicodeProperties.make(Settings.latestVersion);
+        BIDI_CLASS  = iup.loadEnum(UcdProperty.Bidi_Class, Bidi_Class_Values.class);
     }
 
     @Test
@@ -66,8 +69,8 @@ public class TestIdnaTest extends TestFmwkMinusMinus {
         Assertions.assertTrue(new File(TEST_DIR).isDirectory());
     }
 
-    static IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
-    static UnicodeMap<Bidi_Class_Values> BIDI_CLASS = iup.loadEnum(UcdProperty.Bidi_Class, Bidi_Class_Values.class);
+    static IndexUnicodeProperties iup;
+    static UnicodeMap<Bidi_Class_Values> BIDI_CLASS;
 
     @Test
     public void testBackwardsCompatibility() {

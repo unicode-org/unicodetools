@@ -34,12 +34,26 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     # TODO: move this DOWN after JSPs once it works
-    - name: Run unicodetools tests
+    - name: Generate Unicode data
+      # TODO: hard coded version
+      # TODO: symlink of security here?
       run: >
-        mvn -s .github/workflows/mvn-settings.xml -B test --file=unicodetools/pom.xml -DCLDR_DIR=${CLDR_DIR} -T 1C -Dparallel=classes
+        ln -s $(pwd)/unicodetools/data/security ./output/ ;
+        mvn -s .github/workflows/mvn-settings.xml -B exec:java
+        -Dexec.mainClass="org.unicode.text.UCD.Main" -Dexec.args="version 14.0.0 build MakeUnicodeFiles"
+        --file=unicodetools/pom.xml -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr
+        -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0
+        -DUNICODETOOLS_OUTPUT_DIR=$(pwd)/output
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        CLDR_DIR: ${{ secrets.GITHUB_WORKSPACE }}/cldr
+    - name: Run unicodetools tests
+      run: >
+        mvn -s .github/workflows/mvn-settings.xml -B test --file=unicodetools/pom.xml
+        -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr -T 1C -Dparallel=classes
+         -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0
+        -DUNICODETOOLS_OUTPUT_DIR=$(pwd)/output
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Package JSPs
       run: >
         mvn -s .github/workflows/mvn-settings.xml -B -pl UnicodeJsps install package

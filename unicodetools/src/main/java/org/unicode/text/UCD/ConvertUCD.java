@@ -709,6 +709,7 @@ public final class ConvertUCD implements UCD_Types {
         final Iterator<Integer> it = charData.keySet().iterator();
         final int codePoint = -1;
         System.out.println("Writing " + dataFilePrefix + version);
+        Settings.Output.ensureOutputDirs();
         final DataOutputStream dataOut = new DataOutputStream(
                 new BufferedOutputStream(
                         new FileOutputStream(Settings.Output.BIN_DIR +  dataFilePrefix + version + ".bin"),
