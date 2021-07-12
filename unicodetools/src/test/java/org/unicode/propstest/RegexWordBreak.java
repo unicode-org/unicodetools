@@ -113,8 +113,8 @@ public class RegexWordBreak {
         }
     }
 
-    private static void checkPattern(UcdProperty prop, Enum enumValue, String propName, 
-            Multimap<UcdProperty, String> supported, 
+    private static void checkPattern(UcdProperty prop, Enum enumValue, String propName,
+            Multimap<UcdProperty, String> supported,
             Multimap<UcdProperty, String> unsupported) {
         Pattern pat = getPattern(propName);
         if (pat != null) {
@@ -130,6 +130,7 @@ public class RegexWordBreak {
 
     private static boolean check(UcdProperty prop, Enum enumValue, Pattern pat) {
         Matcher matcher = pat.matcher("");
+        // seems to be a JDK 8 problem on the following.
         UnicodeMap<Enum> map = iup.loadEnum(prop, enumValue.getClass());
         UnicodeSet set = map.keySet(enumValue);
         // verify the same coverage.
@@ -154,7 +155,7 @@ public class RegexWordBreak {
         List<Age_Values> reversedList = new ArrayList<>(Arrays.asList(Age_Values.values()));
         reversedList.remove(Age_Values.Unassigned);
         Collections.reverse(reversedList);
-        for (Age_Values age : reversedList) { // 
+        for (Age_Values age : reversedList) { //
             UnicodeSet codepointsWithAge = ageMap.getSet(age);
             int first = codepointsWithAge.getRangeStart(0);
             if (Character.getType(first) != Character.UNASSIGNED) {
