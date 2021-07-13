@@ -39,7 +39,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         singleton = new XPropertyFactory();
         return singleton;
     }
-    
+
     public final Factory add2(UnicodeProperty sp) {
         UnicodeProperty already = getProperty(sp.getName());
         if (already== null) {
@@ -49,8 +49,8 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             return this;
         }
     }
-    
-    {   
+
+    {
         ICUPropertyFactory base = ICUPropertyFactory.make();
         for (String propertyAlias : (List<String>)base.getInternalAvailablePropertyAliases(new ArrayList())) {
             add(base.getProperty(propertyAlias));
@@ -150,17 +150,17 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         .setMain("Script_Extensions", "scx", UnicodeProperty.ENUMERATED, "1.1")
         .addValueAliases(ScriptTester.getScriptSpecialsAlternates(), false)
                 );
-        
+
         CachedProps cp = CachedProps.CACHED_PROPS;
         for (String prop : cp.getAvailable()) {
             add2(cp.getProperty(prop));
         }
-        UnicodeSet Basic_Emoji = cp.getProperty("Basic_Emoji").getTrueSet();
-        UnicodeSet Emoji_Keycap_Sequence = cp.getProperty("RGI_Emoji_Keycap_Sequence").getTrueSet();
-        UnicodeSet RGI_Emoji_Modifier_Sequence = cp.getProperty("RGI_Emoji_Modifier_Sequence").getTrueSet();
-        UnicodeSet RGI_Emoji_Tag_Sequence = cp.getProperty("RGI_Emoji_Tag_Sequence").getTrueSet();
-        UnicodeSet RGI_Emoji_Flag_Sequence = cp.getProperty("RGI_Emoji_Flag_Sequence").getTrueSet();
-        UnicodeSet RGI_Emoji_Zwj_Sequence = cp.getProperty("RGI_Emoji_Zwj_Sequence").getTrueSet();
+        UnicodeSet Basic_Emoji = cp.getProperty("Basic_Emoji").getSet("Yes", null); // TODO: was .getTrueSet();
+        UnicodeSet Emoji_Keycap_Sequence = cp.getProperty("RGI_Emoji_Keycap_Sequence").getSet("Yes", null); // TODO: was .getTrueSet();
+        UnicodeSet RGI_Emoji_Modifier_Sequence = cp.getProperty("RGI_Emoji_Modifier_Sequence").getSet("Yes", null); // TODO: was .getTrueSet();
+        UnicodeSet RGI_Emoji_Tag_Sequence = cp.getProperty("RGI_Emoji_Tag_Sequence").getSet("Yes", null); // TODO: was .getTrueSet();
+        UnicodeSet RGI_Emoji_Flag_Sequence = cp.getProperty("RGI_Emoji_Flag_Sequence").getSet("Yes", null); // TODO: was .getTrueSet();
+        UnicodeSet RGI_Emoji_Zwj_Sequence = cp.getProperty("RGI_Emoji_Zwj_Sequence").getSet("Yes", null); // TODO: was .getTrueSet();
         UnicodeSet RGI_Emoji = new UnicodeSet()
         	.add(Basic_Emoji)
         	.add(Emoji_Keycap_Sequence)
@@ -264,7 +264,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                 builder.append(' ');
             }
             first = false;
-            builder.append(hex);    
+            builder.append(hex);
         }
     }
 
