@@ -50,9 +50,7 @@ jobs:
     - name: Run unicodetools tests
       run: >
         mvn -s .github/workflows/mvn-settings.xml -B test --file=unicodetools/pom.xml
-        -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr -T 1C -Dparallel=classes
-         -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0
-        -DUNICODETOOLS_OUTPUT_DIR=$(pwd)/output
+        -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr -T 1C -Dparallel=classes -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0 -DUNICODETOOLS_OUTPUT_DIR=$(pwd)/output
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Package JSPs
