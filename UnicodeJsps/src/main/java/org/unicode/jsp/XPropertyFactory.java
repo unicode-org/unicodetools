@@ -30,14 +30,16 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
 
     static final UnicodeSet ALL = new UnicodeSet("[[:^C:][:Cc:][:Cf:][:noncharactercodepoint:]]").freeze();
 
-    private static XPropertyFactory singleton = null;
-
-    public static synchronized XPropertyFactory make() {
-        if (singleton != null) {
-            return singleton;
+    static final class XPropertyFactoryHelper {
+        XPropertyFactory factory = null;
+        XPropertyFactoryHelper() {
+            factory = new XPropertyFactory();
         }
-        singleton = new XPropertyFactory();
-        return singleton;
+        static XPropertyFactoryHelper INSTANCE = new XPropertyFactoryHelper();
+    }
+
+    public static  XPropertyFactory make() {
+        return XPropertyFactoryHelper.INSTANCE.factory;
     }
 
     public final Factory add2(UnicodeProperty sp) {
