@@ -827,6 +827,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     public static final String[] searchPath = {
 	    // "EXTRAS" + (FIX_FOR_NEW_VERSION == 0 ? "" : ""),
 	    "14.0.0",
+	    "13.1.0",
 	    "13.0.0",
 	    "12.1.0",
 	    "12.0.0",
@@ -1329,7 +1330,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 		//                if (base.equals("security")) {
 		//                    // TODO fix versions
 		//                    // element = "6.3.0";//"revision-06";
-		//                } else 
+		//                } else
 		if (base.equals("emoji")) {
 		    element = getEmojiVersion(currentVersion);
 		    if (element == null) {
@@ -1363,13 +1364,13 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     private static String getEmojiVersion(VersionInfo versionInfo) {
 	int major = versionInfo.getMajor();
 	switch(major) {
-	case 10: 
+	case 10:
 	    return "6.0";
-	case 9: 
+	case 9:
 	    return "4.0";
-	case 8: 
+	case 8:
 	    return "3.0";
-	default: 
+	default:
 	    if (major > 10) {
 		return versionInfo.getVersionString(2, 2);
 	    }
@@ -1705,9 +1706,9 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     public static String getDataHeader(String filename) {
-	return "# " + filename 
+	return "# " + filename
 		+ (Settings.BUILD_FOR_COMPARE ? "" : "\n" + generateDateLine())
-		+ "\n# © " + Default.getYear() + " Unicode®, Inc." 
+		+ "\n# © " + Default.getYear() + " Unicode®, Inc."
 		+ "\n# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries."
 		+ "\n# For terms of use, see http://www.unicode.org/terms_of_use.html"
 		;
@@ -1717,7 +1718,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 	if (!filename.endsWith(".txt")) {
 	    filename = filename + ".txt";
 	}
-	return getDataHeader(filename) 
+	return getDataHeader(filename)
 		+ "\n#"
 		+ "\n# " + title + " for UTS #" + trNumber
 		+ "\n# Version: "  + version

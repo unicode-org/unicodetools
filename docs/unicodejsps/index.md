@@ -1,4 +1,4 @@
-# Building UnicodeJsp
+git # Building UnicodeJsp
 
 ## Compiling
 ### Prerequisites
@@ -75,7 +75,7 @@ Copy in newest versions of:
 *   emoji-zwj-sequences.txt
 *   *\<emoji-variants\>* :construction: **TODO**
 
-Run \[cldr\] `GenerateSubtagNames` to generate results on the console; paste the
+Run `org.unicode.text.tools.GenerateSubtagNames` to generate results on the console; paste the
 results into `subtagNames.txt`
 
 Other files:

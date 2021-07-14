@@ -31,7 +31,7 @@ import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.VersionInfo;
 
 public class CachedProps {
-    public static final boolean IS_BETA = false;
+    public static final boolean IS_BETA = true;
 
     public static final Splitter HASH_SPLITTER = Splitter.on('#').trimResults();
     public static final Splitter SEMI_SPLITTER = Splitter.on(';').trimResults();
@@ -44,7 +44,7 @@ public class CachedProps {
     final BiMultimap<String,String> nameToAliases = new BiMultimap<String,String>(null,null);
     final Map<String,BiMultimap<String,String>> nameToValueToAliases = new LinkedHashMap();
 
-    static CachedProps CACHED_PROPS = getInstance(VersionInfo.getInstance(12));
+    static CachedProps CACHED_PROPS = getInstance(VersionInfo.getInstance(14));
 
     static UnicodeProperty NAMES = CachedProps.CACHED_PROPS.getProperty("Name");
 
@@ -144,8 +144,8 @@ public class CachedProps {
         private List<String> nameAliases;
         private Multimap<String,String> valueToAliases;
 
-        public DelayedUnicodeProperty(VersionInfo version, String propName, 
-                Collection<String> nameAliases, 
+        public DelayedUnicodeProperty(VersionInfo version, String propName,
+                Collection<String> nameAliases,
                 BiMultimap<String, String> biMultimap) {
             this.version = version;
             Collection<String> temp;

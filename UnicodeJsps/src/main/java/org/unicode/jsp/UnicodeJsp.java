@@ -350,7 +350,7 @@ public class UnicodeJsp {
     
     static final String VERSIONS = "Version 3.9; "
             + "ICU version: " + VersionInfo.ICU_VERSION.getVersionString(2, 2) + "; "
-            + "Unicode version: " + UCharacter.getUnicodeVersion().getVersionString(2, 2) + "; "
+            + "Unicode/Emoji version: " + UCharacter.getUnicodeVersion().getVersionString(2, 2) + "; "
             + (CachedProps.IS_BETA ? "Unicodeβ version: " + CachedProps.CACHED_PROPS.version.getVersionString(2, 2) + "; " : "");
     
     public static String getVersions() {
