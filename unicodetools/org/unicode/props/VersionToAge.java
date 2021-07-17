@@ -31,7 +31,7 @@ public enum VersionToAge {
     //            .put(Age_Values.V2_0, getDate(1996, 7))
     //            .put(Age_Values.V1_1, getDate(1995, 7))
     //            .put(Age_Values.Unassigned, Long.MAX_VALUE)
-    //            .build()), 
+    //            .build()),
     //
     //    emoji(ImmutableMap.<Age_Values, Long>builder()
     //            .put(Age_Values.V5_0, getDate(2017, 5))
@@ -43,6 +43,7 @@ public enum VersionToAge {
 
     ucd(ImmutableMap.<VersionInfo, Long>builder()
             .put(VersionInfo.getInstance(14, 0), getDate(2021, 9))
+            .put(VersionInfo.getInstance(13, 1), getDate(2020, 9))
             .put(VersionInfo.getInstance(13, 0), getDate(2020, 4))
             .put(VersionInfo.getInstance(12, 1), getDate(2019, 4))
             .put(VersionInfo.getInstance(12, 0), getDate(2019, 3))
@@ -66,7 +67,7 @@ public enum VersionToAge {
             .put(VersionInfo.getInstance(2, 1), getDate(1999, 4))
             .put(VersionInfo.getInstance(2, 0), getDate(1996, 7))
             .put(VersionInfo.getInstance(1, 1), getDate(1995, 7))
-            .build()), 
+            .build()),
 
     emoji(ImmutableMap.<VersionInfo, Long>builder()
             .put(VersionInfo.getInstance(14, 0), getDate(2021, 9))
@@ -89,7 +90,7 @@ public enum VersionToAge {
         Entry<VersionInfo, Long> last = null;
         for (Entry<VersionInfo, Long> row : data.entrySet()) {
             if (last != null) {
-        	if (row.getKey().compareTo(last.getKey()) >= 0 
+        	if (row.getKey().compareTo(last.getKey()) >= 0
         		|| row.getValue().compareTo(last.getValue()) >= 0) {
         	    throw new IllegalArgumentException("Non-monotonic");
         	}
@@ -109,17 +110,17 @@ public enum VersionToAge {
 	Long date = versionToDate.entrySet().iterator().next().getValue();
 	return new Date(date).getYear()+1900;
     }
-    
+
     public static Long getDate(int year, int month) {
         return new Date(year-1900, month-1, 1).getTime();
     }
 
     public static VersionInfo getVersionInfo(Age_Values ageValues) {
-        return ageValues == Age_Values.Unassigned ? UNASSIGNED 
+        return ageValues == Age_Values.Unassigned ? UNASSIGNED
                 : VersionInfo.getInstance(ageValues.getShortName());
     }
     public static Age_Values getAgeValue(VersionInfo versionInfo) {
-        return UNASSIGNED.equals(versionInfo) ? Age_Values.Unassigned 
+        return UNASSIGNED.equals(versionInfo) ? Age_Values.Unassigned
                 : Age_Values.forName(versionInfo.getVersionString(2, 2));
     }
 

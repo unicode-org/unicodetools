@@ -350,13 +350,7 @@ public class UnicodeUtilities {
                 out.append("</td></tr>");
             }
         } else if (codePointShower.abbreviate) {
-            if (codePointShower.doTable) {
-                out.append("<tr><td colSpan='4'>");
-            }
             codePointShower.showAbbreviated(inputSetRaw, out);
-            if (codePointShower.doTable) {
-                out.append("</td></tr>");
-            }
         } else {
             LinkedHashMap<String,UnicodeSet> items = new LinkedHashMap<String, UnicodeSet>();
             String specials = "Unassigned, Private use, or Surrogates";
@@ -392,7 +386,7 @@ public class UnicodeUtilities {
             for (String newBlock : items.keySet()) {
                 UnicodeSet set = items.get(newBlock);
                 if (codePointShower.doTable) {
-                    out.append("<tr><td colSpan='4'>");
+                    out.append("<tr><td colSpan='3'>");
                 }
                 out.append("<h3>" + newBlock + "</b> <div class='ri'>items: " + numberFormat.format(set.size()) + "</div></h3>\n");
                 if (codePointShower.doTable) {
@@ -627,10 +621,15 @@ public class UnicodeUtilities {
         private void showAbbreviated(UnicodeSet a, Appendable out) throws IOException {
             UnicodeUtilities.CodePointShower codePointShower = this;
 
+            boolean haveStrings = false;
             for (UnicodeSetIterator it = new UnicodeSetIterator(a); it.nextRange();) {
                 int s = it.codepoint;
                 if (s == UnicodeSetIterator.IS_STRING) {
-                    out.append(UnicodeUtilities.showCodePoint(it.string)).append("<br>\n");
+                    if (!haveStrings && codePointShower.doTable) {
+                	out.append("<tr><td colSpan='3'>");
+                	haveStrings = true;
+                    }
+                    out.append(UnicodeUtilities.showCodePoint(it.string)).append("\n");
                 } else {        
                     int end = it.codepointEnd;
                     if (end == s) {
@@ -654,6 +653,9 @@ public class UnicodeUtilities {
                         }
                     }
                 }
+            }
+            if (haveStrings && codePointShower.doTable) {
+        	out.append("</td></tr>");
             }
         }
 

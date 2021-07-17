@@ -69,7 +69,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     .add(SAMPLE_PRIVATE_USE_AREA_A)
     .add(SAMPLE_PRIVATE_USE_AREA_B)
     .freeze();
-    
+
     public static final UnicodeSet STUFF_TO_TEST_WITH_UNASSIGNED = new UnicodeSet(STUFF_TO_TEST).addAll(UNASSIGNED).freeze();
 
     public static boolean DEBUG = false;
@@ -90,7 +90,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
     /*
      * Name: Unicode_1_Name Name: ISO_Comment Name: Name Name: Unicode_1_Name
-     * 
+     *
      */
 
     public static final int UNKNOWN = 0, BINARY = 2, EXTENDED_BINARY = 3,
@@ -269,6 +269,14 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         return maxValueWidth;
     }
 
+    public final UnicodeSet getTrueSet() {
+	if (!isType(BINARY)) {
+	    throw new IllegalArgumentException("Only applicable to binary (boolean) properties, not " + getName() +
+            " which is of type " + getTypeName());
+	}
+        return getSet("Yes", null);
+    }
+
     public final UnicodeSet getSet(String propertyValue) {
         return getSet(propertyValue, null);
     }
@@ -324,7 +332,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     /*
      * public UnicodeSet getMatchSet(UnicodeSet result) { if (result == null)
      * result = new UnicodeSet(); addAll(matchIterator, result); return result; }
-     * 
+     *
      * public void setMatchSet(UnicodeSet set) { matchIterator = new
      * UnicodeSetIterator(set); }
      */
@@ -453,7 +461,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     }
 
     UnicodeSet sameValueRanges = null;
-    
+
     private UnicodeSet getSameValueRanges(boolean uniformUnassigned) {
         if (sameValueRanges == null) {
             sameValueRanges = new UnicodeSet();
@@ -508,7 +516,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
     /**
      * Utility for managing property & non-string value aliases
-     * 
+     *
      */
     // TODO optimize
     public static boolean equalNames(String a, String b) {
@@ -642,7 +650,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     /**
      * Utility function for comparing codepoint to string without generating new
      * string.
-     * 
+     *
      * @param codepoint
      * @param other
      * @return true if the codepoint equals the string
@@ -670,7 +678,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
     /**
      * Utility that should be on UnicodeSet
-     * 
+     *
      * @param source
      * @param result
      */
@@ -1140,7 +1148,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         private static final String[] YES_VALUES = {"Yes", "Y", "T", "True"};
 
         /**
-         * 
+         *
          */
         private static final String[][] YES_NO_ALIASES = new String[][] {YES_VALUES, NO_VALUES};
 
@@ -1344,7 +1352,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             unicodeMap = map.freeze();
             return this;
         }
-        
+
         @Override
         protected UnicodeMap _getUnicodeMap() {
             return unicodeMap;
@@ -1400,7 +1408,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         if (uniformUnassigned && result.contains(UnicodeProperty.SAMPLE_UNASSIGNED)) {
             result.addAll(UnicodeProperty.UNASSIGNED);
         }
-        
+
         if (result.contains(UnicodeProperty.SAMPLE_HIGH_SURROGATE)) {
             result.addAll(UnicodeProperty.HIGH_SURROGATES);
         }
@@ -1410,7 +1418,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         if (result.contains(UnicodeProperty.SAMPLE_LOW_SURROGATE)) {
             result.addAll(UnicodeProperty.LOW_SURROGATES);
         }
-        
+
         if (result.contains(UnicodeProperty.SAMPLE_PRIVATE_USE_AREA)) {
             result.addAll(UnicodeProperty.PRIVATE_USE_AREA);
         }
@@ -1458,7 +1466,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             return equals(cp, value);
         }
         String defaultValue = getValue(SAMPLE_UNASSIGNED);
-        return defaultValue == null ? value == null : defaultValue.equals(value);   
+        return defaultValue == null ? value == null : defaultValue.equals(value);
     }
 
     public boolean hasUniformUnassigned() {
