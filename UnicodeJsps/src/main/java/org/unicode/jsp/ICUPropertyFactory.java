@@ -58,6 +58,7 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
               || propEnum == UProperty.EMOJI_MODIFIER
               || propEnum == UProperty.EMOJI_MODIFIER_BASE
               || propEnum == UProperty.EMOJI_PRESENTATION
+              || propEnum == UProperty.EXTENDED_PICTOGRAPHIC
               ) {
         setUniformUnassigned(false);
       }
@@ -144,7 +145,7 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
         valueEnum = fixedGetPropertyValueEnum(propId,valueAlias);
       }
       // because these are defined badly, there may be no normal (long) name.
-      // if there is 
+      // if there is
       String result = fixedGetPropertyValueName(propId, valueEnum, nameChoice);
       if (result != null) return result;
       // HACK try other namechoice
@@ -158,7 +159,7 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
     }
 
     public boolean isCombiningClassProperty() {
-      return (propEnum == UProperty.CANONICAL_COMBINING_CLASS 
+      return (propEnum == UProperty.CANONICAL_COMBINING_CLASS
               || propEnum == UProperty.LEAD_CANONICAL_COMBINING_CLASS
               || propEnum == UProperty.TRAIL_CANONICAL_COMBINING_CLASS
       );
@@ -188,7 +189,7 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
         newValue = regularize(newValue, true);
         if (propEnum == UProperty.BLOCK && newValue.equals("Sutton_Sign_Writing")) {
             newValue = "Sutton_SignWriting";
-        } 
+        }
         fixSkeleton.put(value, newValue);
       }
       return newValue;
@@ -197,7 +198,7 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
     public List _getNameAliases(List result) {
       if (result == null) result = new ArrayList();
 //      String alias = String_Extras.get(propEnum);
-//      if (alias == null) 
+//      if (alias == null)
       String alias = Binary_Extras.get(propEnum);
       if (alias != null) {
         addUnique(alias, result);
@@ -232,7 +233,7 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
         }
       }
     }
-    
+
     public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
       result = super.getSet(matcher, result);
       if (propEnum == UProperty.GENERAL_CATEGORY) {
@@ -246,7 +247,7 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
       return result;
     }
 
-    
+
     static Map<String,R2<String,UnicodeSet>> SPECIAL_GC = new LinkedHashMap<String,R2<String,UnicodeSet>>();
     static {
       String[][] extras = {
@@ -263,7 +264,7 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
         SPECIAL_GC.put(extra[0], (R2<String, UnicodeSet>) Row.of(extra[1], new UnicodeSet(extra[2]).freeze()).freeze());
       }
     }
-    
+
     public List _getAvailableValues(List result) {
       if (result == null) result = new ArrayList();
       if (propEnum == UProperty.AGE) {
@@ -364,23 +365,23 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
      */
     private int internalGetPropertyType(int prop) {
       switch(prop) {
-      case UProperty.AGE: 
-      case UProperty.BLOCK: 
-      case UProperty.SCRIPT: 
+      case UProperty.AGE:
+      case UProperty.BLOCK:
+      case UProperty.SCRIPT:
         return UnicodeProperty.CATALOG;
       case UProperty.ISO_COMMENT:
       case UProperty.NAME:
-      case UProperty.UNICODE_1_NAME: 
+      case UProperty.UNICODE_1_NAME:
         return UnicodeProperty.MISC;
       case UProperty.BIDI_MIRRORING_GLYPH:
       case UProperty.CASE_FOLDING:
       case UProperty.LOWERCASE_MAPPING:
-      case UProperty.SIMPLE_CASE_FOLDING: 
+      case UProperty.SIMPLE_CASE_FOLDING:
       case UProperty.SIMPLE_LOWERCASE_MAPPING:
-      case UProperty.SIMPLE_TITLECASE_MAPPING: 
+      case UProperty.SIMPLE_TITLECASE_MAPPING:
       case UProperty.SIMPLE_UPPERCASE_MAPPING:
-      case UProperty.TITLECASE_MAPPING: 
-      case UProperty.UPPERCASE_MAPPING: 
+      case UProperty.TITLECASE_MAPPING:
+      case UProperty.UPPERCASE_MAPPING:
         return UnicodeProperty.EXTENDED_STRING;
       }
       if (prop < UProperty.BINARY_START) return UnicodeProperty.UNKNOWN;
@@ -518,7 +519,7 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
   /* (non-Javadoc)
    * @see com.ibm.icu.dev.util.UnicodePropertySource#getProperty(java.lang.String)
    */
-  // TODO file bug on getPropertyValueName for Canonical_Combining_Class  
+  // TODO file bug on getPropertyValueName for Canonical_Combining_Class
 
   public static class Names {
     private String[] names;
