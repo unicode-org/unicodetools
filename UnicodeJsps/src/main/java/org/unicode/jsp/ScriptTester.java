@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
@@ -81,7 +80,7 @@ public class ScriptTester {
       if (extendedScriptCode >= LIMIT) {
         return EXTENDED_NAME[extendedScriptCode - LIMIT][choice];
       } else {
-        for (Entry<String, Integer> e : extraScripts.entrySet()) {
+        for (Map.Entry<String, Integer> e : extraScripts.entrySet()) {
           if(e.getValue() == extendedScriptCode) {
             if(choice == 0) {
               return e.getKey();

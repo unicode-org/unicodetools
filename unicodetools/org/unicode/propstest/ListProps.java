@@ -29,7 +29,7 @@ import com.ibm.icu.text.UnicodeSet;
 public class ListProps {
 
     private static final String BIN_PROPS = Settings.Output.BIN_DIR;
-	private static final UcdProperty DEBUG_LIST_VALUES = null ; // UcdProperty.Confusable_MA;
+    private static final UcdProperty DEBUG_LIST_VALUES = null ; // UcdProperty.Confusable_MA;
     private static String ONLY_PROP = null; // "Emoji";
     static final boolean ONLY_JSP = true;
 

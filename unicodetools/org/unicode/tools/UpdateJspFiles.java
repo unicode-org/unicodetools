@@ -47,7 +47,7 @@ public class UpdateJspFiles {
         System.out.println("Sublaunching ListProps..");
         ListProps.main(args);
 
-        // Sublaunch listProps
+        // Sublaunch CopyPropsToUnicodeJsp
         System.out.println("Sublaunching CopyPropsToUnicodeJsp");
         CopyPropsToUnicodeJsp.main(args);
 
@@ -56,18 +56,18 @@ public class UpdateJspFiles {
 
 	private static void copyTextFiles(VersionInfo fromVersion) throws IOException {
 		System.out.println("1. Copying text files from " + fromVersion);
-		copyTextFiles(fromVersion, Settings.UnicodeTools.DataDir.security,
+		copyTextFiles(fromVersion, Settings.UnicodeTools.DataDir.SECURITY,
 				"confusables.txt",
 				"IdentifierStatus.txt",
 				"IdentifierType.txt");
-		copyTextFiles(fromVersion, Settings.UnicodeTools.DataDir.ucd,
+		copyTextFiles(fromVersion, Settings.UnicodeTools.DataDir.UCD,
 				"NameAliases.txt",
 				"NamesList.txt",
 				"ScriptExtensions.txt",
 				"StandardizedVariants.txt");
-		copyTextFiles(fromVersion, Settings.UnicodeTools.DataDir.idna,
+		copyTextFiles(fromVersion, Settings.UnicodeTools.DataDir.IDNA,
 				"IdnaMappingTable.txt");
-		copyTextFiles(fromVersion, Settings.UnicodeTools.DataDir.emoji,
+		copyTextFiles(fromVersion, Settings.UnicodeTools.DataDir.EMOJI,
 				"emoji-sequences.txt",
 				"emoji-zwj-sequences.txt");
 		System.err.println("TODO: <emoji-variants>");
@@ -134,7 +134,7 @@ public class UpdateJspFiles {
 				"ExtraPropertyValueAliases.txt");
 
 		// Nota Bene! These aren't in the earlier list, becaause they are in the /data and not /ucd dir
-		copyTextFiles(JSP_RESOURCE_DATA.resolve("data"), fromVersion, Settings.UnicodeTools.DataDir.ucd,
+		copyTextFiles(JSP_RESOURCE_DATA.resolve("data"), fromVersion, Settings.UnicodeTools.DataDir.UCD,
 				"PropertyAliases.txt",
 				"PropertyValueAliases.txt");
 

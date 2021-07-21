@@ -76,25 +76,28 @@ public class Settings {
         public static final String UNICODETOOLS_DIR = UNICODETOOLS_REPO_DIR + "unicodetools/";
         public static final String UNICODEJSPS_DIR = UNICODETOOLS_REPO_DIR + "UnicodeJsps/";
         public static final String DATA_DIR = UNICODETOOLS_DIR + "data/";
-        public static final Path DATA_FILE = Paths.get(DATA_DIR);
+        public static final Path DATA_PATH = Paths.get(DATA_DIR);
         public static final String UCD_DIR = DATA_DIR + "ucd/";
         // TODO: IDN_DIR is used, but there is no .../data/IDN/ folder. Should this be .../data/idna/ ?
         public static final String IDN_DIR = DATA_DIR + "IDN/";
         // TODO: DICT_DIR is used, but there is no .../data/dict/ folder. ??
         public static final String DICT_DIR = DATA_DIR + "dict/";
         
+        /**
+         * Constants representing data subdirectories
+         */
         public enum DataDir {
-        	security,
-        	ucd,
-        	idna,
-        	emoji;
+        	SECURITY,
+        	UCD,
+        	IDNA,
+        	EMOJI;
         	
         	/**
         	 * This dir as a Path
         	 * @return
         	 */
         	public Path asPath() {
-        		return  DATA_FILE.resolve(name());
+        		return  DATA_PATH.resolve(name().toLowerCase());
         	}
         	/**
         	 * This dir as a Path to the version subdir
@@ -103,7 +106,7 @@ public class Settings {
         	 */
         	public Path asPath(VersionInfo forVersion) {
         		String versionString = versionToString(forVersion);
-				if (this == ucd) {
+				if (this == UCD) {
         			// For some reason, these have -Update
         			return asPath().resolve(versionString + "-Update");
         		} else {
@@ -120,10 +123,10 @@ public class Settings {
         		sb.append(version.getMajor())
         		  .append(".")
         		  .append(version.getMinor());
-	    		if (this != emoji) {
+	    		if (this != EMOJI) {
 	    			// 13.1, 14.0
 	    			sb.append(".")
-	    			  .append(version.getMicro());
+	    			  .append(version.getMilli());
 	    		} // else: 14.0.0
 	    		return sb.toString();
         	}

@@ -1,4 +1,4 @@
-git # Building UnicodeJsp
+# Building UnicodeJsp
 
 ## Compiling
 ### Prerequisites
@@ -50,6 +50,7 @@ within eclipse.  It is unknown whether this has been attempted with the UnicodeJ
 
 This will copy a number of files from the unicodetools to the Jsp directory.
 The items it doesn't cover are discussed below.
+
 ### Other
 
 `{$workspace}/unicodetools/data/emoji/\<VERSION\>`

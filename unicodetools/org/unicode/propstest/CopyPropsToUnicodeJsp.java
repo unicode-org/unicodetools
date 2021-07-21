@@ -24,7 +24,7 @@ public class CopyPropsToUnicodeJsp {
         IndexUnicodeProperties latest = IndexUnicodeProperties.make();
         VersionInfo ucdVersion = latest.getUcdVersion();
         System.out.println("Copying Props for " + ucdVersion + " into  JSP");
-		String fromDir = Settings.Output.BIN_DIR + ucdVersion + "/";
+        String fromDir = Settings.Output.BIN_DIR + ucdVersion + "/";
         String toDir = Settings.UnicodeTools.UNICODEJSPS_DIR + "src/main/resources/org/unicode/jsp/props/";
         //overwrite existing file, if exists
         CopyOption[] options = new CopyOption[] {StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES};
