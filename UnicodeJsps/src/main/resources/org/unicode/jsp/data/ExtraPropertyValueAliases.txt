@@ -67,12 +67,12 @@
 # @missing: 0000..10FFFF; Prepended_Concatenation_Mark  ; No
 # @missing: 0000..10FFFF; Regional_Indicator  ;  No
 
-# @missing: 0000..10FFFF; Emoji_Flag_Sequence  ; No
-# @missing: 0000..10FFFF; Emoji_Keycap_Sequence  ;  No
-# @missing: 0000..10FFFF; Emoji_Modifier_Sequence  ;  No
 # @missing: 0000..10FFFF; Basic_Emoji  ;  No
-# @missing: 0000..10FFFF; Emoji_Tag_Sequence  ;  No
-# @missing: 0000..10FFFF; Emoji_Zwj_Sequence  ;  No
+# @missing: 0000..10FFFF; RGI_Emoji_Flag_Sequence  ; No
+# @missing: 0000..10FFFF; RGI_Emoji_Keycap_Sequence  ;  No
+# @missing: 0000..10FFFF; RGI_Emoji_Modifier_Sequence  ;  No
+# @missing: 0000..10FFFF; RGI_Emoji_Tag_Sequence  ;  No
+# @missing: 0000..10FFFF; RGI_Emoji_Zwj_Sequence  ;  No
 
 # Overrides for bugs
 
@@ -132,11 +132,11 @@ idtype	; rec	; Recommended
 # @missing: 0000..10FFFF; Extended_Pictographic  	; No
 
 # @missing: 0000..10FFFF; Basic_Emoji  	; No
-# @missing: 0000..10FFFF; Emoji_Modifier_Sequence  	; No
-# @missing: 0000..10FFFF; Emoji_Flag_Sequence  	; No
-# @missing: 0000..10FFFF; Emoji_Keycap_Sequence  	; No
-# @missing: 0000..10FFFF; Emoji_Tag_Sequence  	; No
-# @missing: 0000..10FFFF; Emoji_Zwj_Sequence  	; No
+# @missing: 0000..10FFFF; RGI_Emoji_Modifier_Sequence  	; No
+# @missing: 0000..10FFFF; RGI_Emoji_Flag_Sequence  	; No
+# @missing: 0000..10FFFF; RGI_Emoji_Keycap_Sequence  	; No
+# @missing: 0000..10FFFF; RGI_Emoji_Tag_Sequence  	; No
+# @missing: 0000..10FFFF; RGI_Emoji_Zwj_Sequence  	; No
 
 sc ; Hanb                             ; Han_with_Bopomofo
 sc ; Jpan                             ; Japanese
@@ -145,3 +145,6 @@ sc ; Zmth                             ; Math_Symbols
 sc ; Zsye                             ; Emoji_Symbols
 sc ; Zsym                             ; Other_Symbols
 sc ; Zxxx                             ; Unwritten
+
+# TODO: there is no Unicode 13.1, see https://github.com/unicode-org/unicodetools/issues/100
+age; 13.1                             ; V13_1

@@ -1,5 +1,5 @@
 # GenerateSubtagNames
-001;World
+001;world
 002;Africa
 003;North America
 005;South America
@@ -352,6 +352,7 @@ Orkh;Orkhon
 Orya;Odia
 Osge;Osage
 Osma;Osmanya
+Ougr;Old Uyghur
 PA;Panama
 PE;Peru
 PF;French Polynesia
@@ -388,7 +389,7 @@ RS;Serbia
 RU;Russia
 RW;Rwanda
 Rjng;Rejang
-Rohg;Hanifi Rohingya
+Rohg;Hanifi
 Roro;Rongorongo
 Runr;Runic
 SA;Saudi Arabia
@@ -468,6 +469,7 @@ Thaa;Thaana
 Thai;Thai
 Tibt;Tibetan
 Tirh;Tirhuta
+Tnsa;Tangsa
 Toto;Toto
 UA;Ukraine
 UG;Uganda
@@ -486,6 +488,7 @@ VN;Vietnam
 VU;Vanuatu
 Vaii;Vai
 Visp;Visible Speech
+Vith;Vithkuqi
 WF;Wallis & Futuna
 WS;Samoa
 Wara;Varang Kshiti
@@ -888,6 +891,7 @@ arh;Arhuaco
 ari;Arikara
 arj;Arapaso
 ark;Arikapú
+arkaika;Arcaicam Esperantom
 arl;Arabela
 arn;Mapuche
 aro;Araona
@@ -3418,7 +3422,7 @@ ji;Yiddish
 jia;Jina
 jib;Jibu
 jic;Tol
-jid;Bu
+jid;Bu (Kaduna State)
 jie;Jilbe
 jig;Jingulu
 jih;sTodsde
@@ -3472,7 +3476,7 @@ jqr;Jaqaru
 jra;Jarai
 jrb;Judeo-Arabic
 jrr;Jiru
-jrt;Jorto
+jrt;Jakattoe
 jru;Japrería
 jsl;Japanese Sign Language
 jua;Júma
@@ -3865,7 +3869,7 @@ koa;Konomala
 koc;Kpati
 kociewie;The Kociewie dialect of Polish
 kod;Kodi
-koe;Kacipo-Balesi
+koe;Kacipo-Bale Suri
 kof;Kubi
 kog;Cogui
 koh;Koyo
@@ -4728,7 +4732,7 @@ mhw;Mbukushu
 mhx;Maru
 mhy;Ma'anyan
 mhz;Mor (Mor Islands)
-mi;Maori
+mi;Māori
 mia;Miami
 mib;Atatláhuca Mixtec
 mic;Mi'kmaq
@@ -6091,7 +6095,7 @@ pnb;Western Panjabi
 pnc;Pannei
 pnd;Mpinda
 pne;Western Penan
-png;Pongu
+png;Pangu
 pnh;Penrhyn
 pni;Aoheng
 pnj;Pinjarup
@@ -6938,7 +6942,7 @@ suj;Shubi
 suk;Sukuma
 sul;Surigaonon
 sum;Sumo-Mayangna
-suq;Suri
+suq;Tirmaga-Chai Suri
 sur;Mwaghavul
 surmiran;Surmiran idiom of Romansh
 sursilv;Sursilvan idiom of Romansh
@@ -7730,6 +7734,7 @@ vbb;Southeast Babar
 vbk;Southwestern Bontok
 ve;Venda
 vec;Venetian
+vecdruka;Latvian orthography used before 1920s ("vecā druka")
 ved;Veddah
 vel;Veluws
 vem;Vemgo-Mabas
@@ -7806,7 +7811,7 @@ wa;Walloon
 waa;Walla Walla
 wab;Wab
 wac;Wasco-Wishram
-wad;Wandamen
+wad;Wamesa
 wadegile;Wade-Giles romanization
 wae;Walser
 waf;Wakoná

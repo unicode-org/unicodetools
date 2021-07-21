@@ -1,5 +1,6 @@
 package org.unicode.propstest;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -27,6 +28,7 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class ListProps {
 
+    private static final String BIN_PROPS = Settings.Output.BIN_DIR;
     private static final UcdProperty DEBUG_LIST_VALUES = null ; // UcdProperty.Confusable_MA;
     private static String ONLY_PROP = null; // "Emoji";
     static final boolean ONLY_JSP = true;
@@ -42,6 +44,7 @@ public class ListProps {
     public static void main(String[] args) {
         IndexUnicodeProperties latest = IndexUnicodeProperties.make();
         System.out.println(ListProps.class.getName() + ": UCD: " + latest.getUcdVersion());
+        new File(BIN_PROPS).mkdirs();
 //        if (true) {
 //             Set<Script_Values> sc = EnumSet.copyOf(latest.loadEnum(UcdProperty.Script, Script_Values.class).values());
 //             sc.remove(Script_Values.Inherited);
@@ -142,7 +145,7 @@ public class ListProps {
                             uprop.getValueAliases(pval);
                         }
                     }
-                    latest.internalStoreCachedMap(Settings.Output.GEN_DIR + "/bin-props/", item, map);
+                    latest.internalStoreCachedMap(BIN_PROPS, item, map);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

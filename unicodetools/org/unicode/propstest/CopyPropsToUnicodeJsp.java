@@ -17,12 +17,14 @@ import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Settings;
 
 import com.google.common.collect.ImmutableSet;
+import com.ibm.icu.util.VersionInfo;
 
 public class CopyPropsToUnicodeJsp {
     public static void main(String[] args) throws IOException {
         IndexUnicodeProperties latest = IndexUnicodeProperties.make();
-
-        String fromDir = Settings.Output.BIN_DIR + latest.getUcdVersion() + "/";
+        VersionInfo ucdVersion = latest.getUcdVersion();
+        System.out.println("Copying Props for " + ucdVersion + " into  JSP");
+        String fromDir = Settings.Output.BIN_DIR + ucdVersion + "/";
         String toDir = Settings.UnicodeTools.UNICODEJSPS_DIR + "src/main/resources/org/unicode/jsp/props/";
         //overwrite existing file, if exists
         CopyOption[] options = new CopyOption[] {StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES};

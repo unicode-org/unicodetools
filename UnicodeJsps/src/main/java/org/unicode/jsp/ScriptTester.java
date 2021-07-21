@@ -9,6 +9,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
@@ -24,25 +27,70 @@ import com.ibm.icu.text.UnicodeSet;
  * @author markdavis
  */
 public class ScriptTester {
+  static Logger logger = Logger.getLogger(ScriptTester.class.getName());
   private final UnicodeMap<BitSet> character_compatibleScripts;
 
 
   public enum CompatibilityLevel {Highly_Restrictive, Moderately_Restrictive}
   public enum ScriptSpecials {on, off}
 
+
+  /**
+   * Space reserved for script codes not in ICU
+   */
+  public static final int EXTRA_COUNT = 16; // should be enough, hard working as UTC is!
+  public static final Map<String,Integer> extraScripts = new ConcurrentHashMap<>(EXTRA_COUNT);
   /**
    * Extended scripts; note that they do not have stable numbers, and should not be persisted.
    */
-  public static final int 
+  public static final int
   //HANT = UScript.CODE_LIMIT,
   //HANS = HANT + 1,
-  LIMIT = UScript.CODE_LIMIT; // HANS + 1;
+  LIMIT = UScript.CODE_LIMIT + EXTRA_COUNT; // HANS + 1;
 
-  private static String[][] EXTENDED_NAME = {{"Hant", "Han Traditional"}, {"Hans", "Han Simplified"}};
+  private static String[][] EXTENDED_NAME = {
+    // Scripts without stable numbers
+    {"Hant", "Han Traditional"}, {"Hans", "Han Simplified"},
+  };
+
+  static AtomicInteger scriptCounter = new AtomicInteger(UScript.CODE_LIMIT);
+
+  static int getScriptCode(String script) {
+    try {
+      // If ICU has it, great
+      return UCharacter.getPropertyValueEnum(UProperty.SCRIPT, script);
+    } catch (com.ibm.icu.impl.IllegalIcuArgumentException iiae) {
+      // Make something up
+      int newCode = extraScripts.computeIfAbsent(script, script2 -> {
+        int i = scriptCounter.getAndIncrement();
+        logger.warning("Synthesized scriptCode " + i + " for unrecognized script extension '"+script+"'");
+        return i;
+      });
+      // Verify we didn't run over
+      if (newCode >= LIMIT) {
+        throw new RuntimeException("computed script code of " + newCode + " for '"+script+"' overflows: have " + extraScripts.size() +
+          " scripts but EXTRA_COUNT=" + EXTRA_COUNT);
+      }
+      return newCode;
+    }
+  }
 
   public static String getScriptName(int extendedScriptCode, int choice) {
     if (extendedScriptCode >= UScript.CODE_LIMIT) {
-      return EXTENDED_NAME[extendedScriptCode - UScript.CODE_LIMIT][choice];
+      if (extendedScriptCode >= LIMIT) {
+        return EXTENDED_NAME[extendedScriptCode - LIMIT][choice];
+      } else {
+        for (Map.Entry<String, Integer> e : extraScripts.entrySet()) {
+          if(e.getValue() == extendedScriptCode) {
+            if(choice == 0) {
+              return e.getKey();
+            } else {
+              return "New Script '"+ e.getKey() + "'";
+            }
+          }
+        }
+        throw new IllegalArgumentException("Unknown extended script code " + extendedScriptCode);
+      }
     }
     return UCharacter.getPropertyValueName(UProperty.SCRIPT, extendedScriptCode, choice);
   }
@@ -128,12 +176,12 @@ public class ScriptTester {
     // check numbers
     return true;
   }
-  
-  
+
+
 
   // TODO, cache results
   private BitSet getActualScripts(int cp) {
-    BitSet actualScripts = scriptSpecials.get(cp);
+    BitSet actualScripts = getScriptSpecials().get(cp);
     if (actualScripts == null) {
       actualScripts = new BitSet(LIMIT);
       int script = UCharacter.getIntPropertyValue(cp, UProperty.SCRIPT);
@@ -143,7 +191,7 @@ public class ScriptTester {
   }
 
   public boolean filterTable(List<Set<String>> table) {
-    
+
     // We make one pass forward and one backward, finding if each characters scripts
     // are compatible with the ones before.
     // We then make a second pass for the ones after.
@@ -248,7 +296,7 @@ public class ScriptTester {
   }
 
   public static class ScriptExtensions {
-    
+
     public static final Comparator<BitSet> COMPARATOR = new Comparator<BitSet>() {
 
       public int compare(BitSet o1, BitSet o2) {
@@ -260,13 +308,13 @@ public class ScriptTester {
         return n1.compareToIgnoreCase(n2);
       }
     };
-    
+
     private UnicodeMap<BitSet> scriptSpecials;
-    
+
     public Collection<BitSet> getAvailableValues() {
       return scriptSpecials.getAvailableValues();
     }
-    
+
     public UnicodeSet getSet(BitSet value) {
       return scriptSpecials.getSet(value);
     }
@@ -279,21 +327,21 @@ public class ScriptTester {
       public boolean handleLine(int start, int end, String[] items) {
         BitSet bitSet = new BitSet(LIMIT);
         for (String script : SPACES.split(items[1])) {
-          int scriptCode = UCharacter.getPropertyValueEnum(UProperty.SCRIPT, script);
+          int scriptCode = getScriptCode(script);
           bitSet.set(scriptCode);
         }
         map.putAll(start, end, bitSet);
         return true;
       }
     }
-    
+
     public static ScriptExtensions make(String directory, String filename) {
       ScriptExtensions result = new ScriptExtensions();
       result.scriptSpecials = ((MyHandler) new MyHandler()
       .process(directory, filename)).map.freeze();
       return result;
     }
-    
+
     public static ScriptExtensions make(Class aClass, String filename) {
       ScriptExtensions result = new ScriptExtensions();
       result.scriptSpecials = ((MyHandler) new MyHandler()
@@ -312,7 +360,7 @@ public class ScriptTester {
     public static String getNames(BitSet value, int choice, String separator) {
       return getNames(value, choice, separator, new TreeSet<String>());
     }
-    
+
     public static String getNames(BitSet value, int choice, String separator, Set<String> names) {
       names.clear();
       for (int i = value.nextSetBit(0); i >= 0; i = value.nextSetBit(i+1)) {
@@ -321,12 +369,24 @@ public class ScriptTester {
       return CollectionUtilities.join(names, separator).toString();
     }
   }
-  
-  static ScriptExtensions scriptSpecials = ScriptExtensions.make(ScriptExtensions.class, "ScriptExtensions.txt");
+
+  static final class ScriptExtensionsHelper {
+    ScriptExtensions scriptSpecials;
+
+    ScriptExtensionsHelper() {
+      scriptSpecials = ScriptExtensions.make(ScriptExtensions.class, "ScriptExtensions.txt");
+    }
+
+    static ScriptExtensionsHelper INSTANCE = new ScriptExtensionsHelper();
+  }
+
+  static final ScriptExtensions getScriptSpecials() {
+    return ScriptExtensionsHelper.INSTANCE.scriptSpecials;
+  }
 
   public static BitSet getScriptSpecials(int codepoint) {
     BitSet output = new BitSet(LIMIT);
-    BitSet actualScripts = scriptSpecials.get(codepoint);
+    BitSet actualScripts = getScriptSpecials().get(codepoint);
     if (actualScripts != null) {
       output.or(actualScripts);
     } else {
@@ -340,14 +400,14 @@ public class ScriptTester {
     UnicodeMap<String> result = new UnicodeMap<String>();
     Set<String> names = new TreeSet<String>(); // to alphabetize
 
-    for (BitSet value : scriptSpecials.getAvailableValues()) {
-      result.putAll(scriptSpecials.getSet(value), ScriptExtensions.getNames(value, UProperty.NameChoice.LONG, ",", names));
+    for (BitSet value : getScriptSpecials().getAvailableValues()) {
+      result.putAll(getScriptSpecials().getSet(value), ScriptExtensions.getNames(value, UProperty.NameChoice.LONG, ",", names));
     }
     return result;
   }
-  
+
   public static String[][] getScriptSpecialsAlternates() {
-    Collection<BitSet> availableValues = scriptSpecials.getAvailableValues();
+    Collection<BitSet> availableValues = getScriptSpecials().getAvailableValues();
     String[][] result = new String[availableValues.size()][];
     Set<String> names = new TreeSet<String>(); // to alphabetize
 
@@ -387,7 +447,7 @@ public class ScriptTester {
           addCompatible(UScript.LATIN, i);
         }
         // FALL THRU!
-      case Highly_Restrictive: 
+      case Highly_Restrictive:
         addCompatible(UScript.LATIN, UScript.HAN, UScript.HIRAGANA, UScript.KATAKANA);
         //addCompatible(UScript.LATIN, HANT, UScript.HIRAGANA, UScript.KATAKANA);
         //addCompatible(UScript.LATIN, HANS, UScript.HIRAGANA, UScript.KATAKANA);
@@ -413,7 +473,7 @@ public class ScriptTester {
       // fix the char2scripts mapping
 
       if (specials == ScriptSpecials.on){
-        scriptSpecials.putAllInto(char2scripts);
+        getScriptSpecials().putAllInto(char2scripts);
       }
     }
 

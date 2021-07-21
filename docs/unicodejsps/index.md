@@ -46,37 +46,16 @@ within eclipse.  It is unknown whether this has been attempted with the UnicodeJ
 
 ## Upgrading the UnicodeJsps
 
-### Text Files
+### Run `org.unicode.tools.UpdateJspFiles`
 
-Into `{$workspace}/UnicodeJsps/src/main/resources/org/unicode/jsp`
+This will copy a number of files from the unicodetools to the Jsp directory.
+The items it doesn't cover are discussed below.
 
-Copy in newest versions of:
-
-`{$workspace}/unicodetools/data/security/\<VERSION\>`
-
-*   confusables.txt
-*   IdentifierStatus.txt
-*   IdentifierType.txt
-
-`{$workspace}/unicodetools/data/ucd/\<VERSION\>-Update/`
-
-*   NameAliases.txt
-*   NamesList.txt
-*   ScriptExtensions.txt
-*   StandardizedVariants.txt
-
-`{$workspace}/unicodetools/data/idna/\<VERSION\>`
-
-*   IdnaMappingTable.txt
+### Other
 
 `{$workspace}/unicodetools/data/emoji/\<VERSION\>`
 
-*   emoji-sequences.txt
-*   emoji-zwj-sequences.txt
 *   *\<emoji-variants\>* :construction: **TODO**
-
-Run \[cldr\] `GenerateSubtagNames` to generate results on the console; paste the
-results into `subtagNames.txt`
 
 Other files:
 
@@ -101,34 +80,6 @@ Files to investigate
 ## Adding/Updating New Properties
 
 Go to `XPropertyFactory.java` to add new properties other than the ones in /props/
-
-### Adding "/Prop/" Properties
-
-#### UnicodeJsps/src/main/resources/org/unicode/jsp/data
-
-Update the following files by copying from org/unicode/props
-
-*   ExtraPropertyAliases.txt
-*   ExtraPropertyValueAliases.txt
-
-Update the following files by copying from unicodetools/data/ucd/XX.0.0-Update
-
-*   PropertyAliases.txt
-*   PropertyValueAliases.txt
-
-#### UnicodeJsps/src/main/resources/org/unicode/jsp/props/
-
-Run ListProps. It will copy .bin files into {generated}bin/XX.0.0.0. Examples:
-
-*   Age.bin
-*   Alphabetic.bin
-*   ASCII_Hex_Digit.bin
-*   Bidi_Class.bin
-*   ...
-
-Copy those into /UnicodeJsps/src/main/resources/org/unicode/jsp/props using
-CopyPropsToUnicodeJsp
-
 ### Using Beta Properties
 
 Set CachedProps.IS_BETA to true.
