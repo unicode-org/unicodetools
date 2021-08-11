@@ -447,6 +447,7 @@
 3639	(non-classical form of 垐) to spread soil on the road, pave the road with soil, (ancient form of 堲) sickness; illness; disease
 363A	cultivated land; to till lands, a clod of earth
 363B	to stop up; to close against; to restrain, to dam a stream and change its direction, to conceal a mound
+363D	to cultivate, plant; to care for plants
 363F	(same as 涅) to fill up, as a hole, black mud; slime, to stop up; to block; to cork
 3640	a vegetable-plot, to plough; to till lands, among dikes and fields
 3641	dust; dirt; a smear, (same as 牧) name of a place in old times
@@ -1237,6 +1238,7 @@
 39AF	(same as 或) a certain; some, perhaps; probably; maybe, or
 39B0	to break off (relations); to sever, to exterminate; to annihilate; to wipe out, to pierce; to stab; to irritate; to hurt, to hold weapons, agricultural implements; far tools, sharp will; eager intention; determination
 39B2	(non-classical form of 哉) a particle expressing surprise, admiration, or grief, an expletive
+39B3	to cultivate, plant; to care for plants
 39B4	to arrest; to catch; to seize, to brawl; a hand-to-hand fight; to struggle for; to fight for, to beat; to strike; to attack
 39B5	to kill; to put to death; to slaughter; to execute, to punish, to weed out; to exterminate, a kind of weapon
 39B6	repeatedly; frequently; to alternate, common; ordinary; normal, sharp, name of a state in ancient China, bold; brave; fierce; violent; severe; strict; stringent
@@ -1605,11 +1607,11 @@
 3B4A	(non-classical of 析) to split, to rip or break apart, to divide, to separate; to interpret, to explain, to analyze
 3B4B	(same as 棒) a club; a stick, to hit with a club, good; strong; wonderful
 3B4C	(same as 桙) a basin; a bathtub, a kind of tool or utensil, (interchangeable 模) form or shape of a thing; style; pattern; appearance; look, a sample
-3B4D	(a variant 七) capital form of seven
+3B4D	a variant of 七 (U+4E03)
 3B4E	(simplified form of 棡) a tall tree; a large tree, (interchangeable 扛) to carry on the shoulders of two of more men
 3B4F	(simplified form of 椲) a kind of wood (used as a kind of material to make basin and bowl, etc.); (same as 楎) a peg for hanging things on, a clothes-horse
 3B51	a kind of tree
-3B52	(same as non-classical form 耜) a farming instrument; a spade; a shovel
+3B52	variant of U+801C 耜: a farming instrument; a spade; a shovel
 3B53	a pillar arch
 3B54	a kind of tree
 3B55	a board (on the back of a donkey) for carrying things; saddle
@@ -1963,7 +1965,7 @@
 3CD6	name of a river
 3CD7	bank of a river, (same as 汊) a branching stream
 3CD8	a fountain or spring flows downwards, sound of the flowing water
-3CD9	(non-classical form of 涓) a brook, the smallest drop of water, to expel evil influences; to eliminate; rid off, to clean up, to select, a tributary (or a river), the flowing of a spring, (interchangeable 泫) to glisten; to sparkle, to weep
+3CD9	(non-classical form of U+6D93 涓) a brook, the smallest drop of water, to expel evil influences; to eliminate; rid off, to clean up, to select, a tributary (or a river), the flowing of a spring, (interchangeable with U+6CEB 泫) to glisten; to sparkle, to weep
 3CDA	flowing of the water
 3CDB	dirty; filthy, corrupt, soap, black, to unravel silk threads
 3CDC	the flowing water
@@ -9181,6 +9183,7 @@
 5FF5	think of, recall, study
 5FF7	variant of 恟 U+605F, scared, nervous
 5FF8	blush, be bashful, be ashamed
+5FFA	happy
 5FFB	delightful, joyful, pleasant
 5FFC	ardent; generous, magnanimous
 5FFD	suddenly, abruptly; neglect
@@ -9226,7 +9229,7 @@
 6033	wild, mad; flurried
 6035	fear, be afraid; shy, timid
 6036	(Cant.) to have no zeal at all
-6038	cns 2-2A40 is different
+6038	to be familiar with; a kind of medicine
 6039	a polite version of he
 603A	to endure
 603B	collect; overall, altogether
@@ -10332,7 +10335,7 @@
 6630	variant of 'to be'; summer; name
 6631	bright light, sunlight; dazzling
 6633	the declining sun in the west
-6634	one of the 28 constellations
+6634	eighteenth of the twenty-eight lunar mansions (宿)
 6635	intimate, close; approach
 6636	a long day. bright. extended. clear
 6637	to feed a prisoner
@@ -10574,14 +10577,14 @@
 67AA	spear, lance; gun, rifle
 67AB	maple tree
 67AC	an even-grained, yellowish, fine wood used for furniture; cedar
-67AD	owl thus, something evil
+67AD	an owl ; ill-omen
 67AF	dried out, withered, decayed
 67B0	smooth board; chessboard; chess
 67B1	a table, desk
 67B2	male nettle-hemp
 67B3	trifoliate orange; hedge thorn; (Cant.) a plug
 67B4	cane
-67B5	hollo stump of a tree; empty, thin
+67B5	hollow stump of a tree; empty, thin
 67B6	rack, stand, prop; prop up
 67B7	cangue scaffold
 67B8	kind of aspen found in Sichuan
@@ -10634,6 +10637,7 @@
 67FE	straight grain
 67FF	persimmon
 6800	gardenia
+6801	willow
 6802	a kind of evergreen tree
 6803	type of oak; stable
 6804	glory, honor; flourish, prosper
@@ -10715,7 +10719,7 @@
 686D	eaves; space between two pillars
 686E	cup, glass, tumbler
 686F	table
-6874	raft; drum stick; ridge pole
+6874	raft; drumstick; ridge pole
 6875	small thorny bushes
 6876	pail, bucket, tub; cask, keg
 6877	rafter; malus toringo
@@ -10733,7 +10737,7 @@
 688E	sickle handle, branch
 688F	handcuffs, manacles, fetters
 6890	fence
-6893	catalpa ovata
+6893	Chinese catalpa, Catalpa ovata
 6894	gardenia
 6896	a palm-tree
 6897	stem of flower, branch of plant
@@ -10761,6 +10765,7 @@
 68B9	the areca-nut; the betel-nut
 68BB	a tree whose branches are placed on Buddhist graves
 68BC	block of wood; blockhead; stupid
+68BD	place name in Hunan
 68C0	check; examine
 68C1	joist; cane
 68C2	carved or patterned window sills
@@ -10785,7 +10790,7 @@
 68DF	the main beams supporting a house
 68E0	crab apple tree; wild plums
 68E2	the felloe or rim of a wheel
-68E3	kerria japonica plant, cherry
+68E3	Kerria japonica, Japanese rose
 68E5	a railing; a fence an enclosed place
 68E7	warehouse; tavern, inn
 68E8	tally or wooden pass
@@ -10802,8 +10807,8 @@
 68F8	surname
 68F9	oar; boat
 68FA	coffin
-68FB	kind of wood from which perfume
-68FC	beams in the roof of a house confused, disordered
+68FB	kind of wood from which perfume is made
+68FC	beams in the roof of a house; confused, disordered
 6900	bowl; cup; dish
 6901	outer-coffin; vault
 6904	to graft
@@ -10855,7 +10860,7 @@
 695D	Melia japonica
 695E	used for Ceylon in Buddhist texts
 695F	tree
-6960	name of tree, machilus nanmu
+6960	name of tree, Machilus nanmu
 6961	elm tree
 6962	tinder
 6963	crossbeam above or under gate
@@ -10872,14 +10877,14 @@
 6973	plums; prunes; surname
 6975	extreme, utmost, furthest, final
 6977	model style of Chinese writing
-6978	mallotus japonicus, deciduous tre
+6978	Mallotus japonicus, East Asian mallotus, (J) akamegashiwa
 6979	column, pillar; numerary adjunct
 697C	building of two or more stories
 697D	happy, glad; enjoyable; music
 6982	generally, approximately
 6983	raised path between fields
 6984	olive
-6985	pillar, cryptomeria
+6985	pillar; Cryptomeria
 6986	elm tree
 6987	coffin; tung tree
 6988	palm
@@ -10904,7 +10909,7 @@
 69AD	kiosk, pavilion
 69AE	glory, honor; flourish, prosper
 69B1	rafter
-69B2	pillar, cryptomeria
+69B2	pillar; Cryptomeria
 69B4	pomegranate
 69B7	footbridge; toll, levy; monopoly
 69BB	cot, couch, bed
@@ -10921,6 +10926,7 @@
 69CD	spear, lance; gun, rifle
 69CE	raft; time, occasion; to hew
 69D0	locust tree
+69D1	plums, prunes
 69D3	lever, pole, crowbar; sharpen; (Cant.) a wardrobe, trunk
 69D6	a sack; a stamping sound
 69D8	shape, form, pattern, style
@@ -11031,7 +11037,7 @@
 6A90	eaves of house; brim, rim
 6A94	shelf; frame, crosspiece
 6A96	wild pear tree
-6A97	tree
+6A97	a cork tree
 6A9B	a switch, whip
 6A9C	Chinese cypress, Chinese juniper
 6A9D	oar
@@ -11106,6 +11112,7 @@
 6B28	to blow or breathe upon; to smile
 6B2C	cough; sound of laughter
 6B2E	to hiccough; to dig out to expand
+6B31	to drink
 6B32	desire, want, long for; intend
 6B35	to treat well; to detain
 6B36	to suck in
@@ -11273,14 +11280,15 @@
 6C22	ammonia; hydrogen nitride
 6C23	air, gas, steam, vapor; spirit
 6C24	hanging fog, misty
-6C25	xenon
+6C25	xenon (obsolete; 氙 U+6C19 now in use instead)
 6C26	helium
 6C27	oxygen
 6C28	ammonia; hydrogen nitride
-6C29	argonium
+6C29	argon
 6C2A	krypton
 6C2B	hydrogen
-6C2C	argonium
+6C2C	argon
+6C2D	radon (obsolete; 氡 U+6C21 now in use instead)
 6C2E	nitrogen
 6C2F	chlorine
 6C30	cyanogen; ethane dinitrile
@@ -11313,7 +11321,7 @@
 6C5C	a stream which leaves the main branch then later returns
 6C5D	you
 6C5E	element mercury
-6C5F	large river; yangzi; surname
+6C5F	large river; the Yangzi; surname
 6C60	pool, pond; moat; cistern
 6C61	filthy, dirty, impure, polluted
 6C64	hot water; soup, gravy, broth
@@ -11420,7 +11428,7 @@
 6CF1	great, expansive; agitated
 6CF2	kind of white wine; rivers in Hebei and Shandong
 6CF3	dive; swim
-6CF5	pump
+6CF5	pump (English loan word)
 6CF7	raining; wet; soaked; a river in Guangdong
 6CF8	river in Jiangxi province
 6CFA	river in Shandong province
@@ -11446,11 +11454,12 @@
 6D23	Mi river in Hunan, tributary of Xiangjiang
 6D24	a fountain or spring
 6D25	ferry; saliva; ford
-6D27	name of a river in honan
+6D27	name of a river in Honan
 6D28	river in Hebei province
 6D29	leak, drip; vent or release
 6D2A	vast, immense; flood, deluge
 6D2B	to ditch; a moat
+6D2D	river in Guangdong
 6D2E	cleanse; river in Gansu province
 6D31	a lake in Yunnan
 6D32	continent; island; islet
@@ -11485,6 +11494,7 @@
 6D56	(Cant.) intensifier
 6D59	Zhejiang province; river
 6D5A	dredge
+6D5B	place in Yingde, Guangdong province
 6D5C	creek, stream; beach, sea coast
 6D5E	to soak, to steep in water
 6D61	burst forth; rise; vigorous
@@ -11546,7 +11556,7 @@
 6DBF	drip, dribble, trickle
 6DC0	shallow water, swamp; swampy
 6DC4	river in Shandong province
-6DC5	water used wash rice; to wash ric
+6DC5	water used wash rice; to wash rice
 6DC6	confused, in disarray, mixed up
 6DC7	river in Henan province
 6DCB	drip, soak, drench; perfectly
@@ -11554,13 +11564,14 @@
 6DD1	good, pure, virtuous, charming
 6DD2	bitter cold, miserable, dreary
 6DD6	slush; mud
-6DD8	wash in sieve; weed out
+6DD8	wash in a sieve; weed out
 6DD9	gurgling sound of water
 6DDA	tears; weep, cry
 6DDC	roar of dashing waves
 6DDD	name of an affluent of the Poyang Lake
 6DDE	name of a river in Jiangsu
 6DDF	turbid; muddy
+6DE0	name of a river in Anhui
 6DE1	weak, watery; insipid, tasteless
 6DE2	ditch
 6DE4	mud, sediment; clog up, silt up
@@ -14984,7 +14995,7 @@
 82AC	fragrance, aroma; perfume
 82AD	plantain or banana palm; fragrant
 82AE	tiny, small; water's edge
-82AF	pith from rush (juncus effusus)
+82AF	pith from rush (Juncus effusus)
 82B0	water caltrop
 82B1	flower; blossoms
 82B3	fragrant; virtuous; beautiful
@@ -15057,7 +15068,7 @@
 8311	the convolvulus; parasitic plants such as mistletoe; Ribes ambiguum
 8314	grave, tomb, cemetery
 8315	alone; without friends or relativ
-8316	allium victorialis
+8316	Allium victorialis, Alpine leek
 8317	tea; tea plant
 8318	a scallion, small onion
 831A	an organic compound
@@ -21152,4 +21163,5 @@ FA2D	crane
 30528	(Cant.) to put down
 3053A	(Cant.) to poke
 30EDD..30EDE	biangbiang noodles
+31076	swing
 31317	steam

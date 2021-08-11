@@ -1,4 +1,4 @@
-#!/usr/bin/python -B
+#!/usr/bin/python3 -B
 # -*- coding: utf-8 -*-
 # © 2019 and later: Unicode, Inc. and others.
 # License & terms of use: http://www.unicode.org/copyright.html
@@ -30,7 +30,7 @@ def ParseFile(in_file, root_path):
     cp_str = cp_str[2:]  # Strip off the "U+" prefix.
     cp = int(cp_str, 16)
     if prop not in _prop_data:
-      print "new file for " + prop
+      print("new file for " + prop)
       out_path = os.path.join(root_path, prop + ".txt")
       out_file = open(out_path, "w")
       _prop_data[prop] = [out_file, cp_str, cp_str, cp, value]
@@ -58,7 +58,7 @@ def main():
   pattern = os.path.join(root_path, "Unihan*.txt")
   paths = glob.glob(pattern)
   for path in paths:
-    print path
+    print(path)
     with open(path, "r") as in_file:
       ParseFile(in_file, root_path)
   # Emit the last range for each file.
