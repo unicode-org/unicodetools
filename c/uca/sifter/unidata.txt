@@ -1,5 +1,5 @@
 # unidata-14.0.0.txt
-# Date: 2021-06-07, 00:00:00 GMT [KW]
+# Date: 2021-07-10, 00:00:00 GMT [KW]
 # © 2021 Unicode®, Inc.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -10,7 +10,7 @@
 # the Unicode Collation Algorithm.
 #
 # Version 14.0.0 draft 12 (Unicode Version: 14.0.0)
-# based on Unicode data file UnicodeData-14.0.0d12.txt
+# based on Unicode data file UnicodeData-14.0.0d13.txt
 # Ordering for Unicode 14.0
 #
 # Fields:
@@ -19893,12 +19893,12 @@ AB06;ETHIOPIC SYLLABLE TTHO;Lo;;;;;;
 
 1E7E8;ETHIOPIC SYLLABLE GURAGE HHWA;Lo;;;;;;
 12C0;ETHIOPIC SYLLABLE KXWA;Lo;;;;;;
-1E7E9;ETHIOPIC SYLLABLE HWI;Lo;;;;;;
+1E7E9;ETHIOPIC SYLLABLE HHWI;Lo;;;;;;
 12C2;ETHIOPIC SYLLABLE KXWI;Lo;;;;;;
 12C3;ETHIOPIC SYLLABLE KXWAA;Lo;;;;;;
-1E7EA;ETHIOPIC SYLLABLE HWEE;Lo;;;;;;
+1E7EA;ETHIOPIC SYLLABLE HHWEE;Lo;;;;;;
 12C4;ETHIOPIC SYLLABLE KXWEE;Lo;;;;;;
-1E7EB;ETHIOPIC SYLLABLE HWE;Lo;;;;;;
+1E7EB;ETHIOPIC SYLLABLE HHWE;Lo;;;;;;
 12C5;ETHIOPIC SYLLABLE KXWE;Lo;;;;;;
 
 12C8;ETHIOPIC SYLLABLE WA;Lo;;;;;;

@@ -2,7 +2,7 @@
 // License & terms of use: http://www.unicode.org/copyright.html
 /*
 **      Unilib
-**      Copyright 2019
+**      Copyright 2021
 **      Ken Whistler, All rights reserved.
 */
 
@@ -34,6 +34,8 @@
  *   2018-Oct-16 Code warning removals.
  *   2019-Oct-04 Added 2 secondary weight symbols for Vietnamese reading marks.
  *               Other adjustments for UCA 13.0.
+ *   2021-Jul-12 Added test and free of outputstring in unisift_DropSymTreeP
+ *               to fix memory leak.
  */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -2185,6 +2187,10 @@ PSTRLISTNODE temp2;
         while ( temp1 != NULL )
         {
             temp2 = temp1->next;
+            if ( temp1->outputstring != NULL )
+            {
+                free ( temp1->outputstring );
+            }
             free ( temp1 );
             temp1 = temp2;
         }
@@ -2195,6 +2201,10 @@ PSTRLISTNODE temp2;
         while ( temp1 != NULL )
         {
             temp2 = temp1->next;
+            if ( temp1->outputstring != NULL )
+            {
+                free ( temp1->outputstring );
+            }
             free ( temp1 );
             temp1 = temp2;
         }
