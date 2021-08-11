@@ -30,6 +30,7 @@
 35D6	U+5556<kMatthews U+5649<kMatthews U+5557<kMatthews
 35F3	U+55D2<kLau
 3605	U+929C<kMeyerWempe U+5563<kFenn
+363D	U+683D<kHanYu:TZ
 366E	U+5854<kMeyerWempe
 3673	U+8F57<kMeyerWempe
 369D	U+595E<kMatthews U+594E<kMatthews
@@ -73,6 +74,7 @@
 3B05	U+66FC<kMatthews
 3B31	U+6701<kMatthews
 3B39	U+8E2D<kMeyerWempe
+3B52	U+801C
 3B68	U+6930<kLau,kMatthews,kMeyerWempe
 3BA3	U+69E9<kMatthews U+69EA<kMatthews
 3BC3	U+6F06<kMatthews U+687C<kMatthews
@@ -187,6 +189,9 @@
 4E5A	U+96B1<kMatthews
 4E5D	U+7396<kLau,kMatthews,kMeyerWempe
 4E71	U+4E82<kMatthews,kMeyerWempe
+4E79	U+4E7E<kMorohashi:TZ
+4E7E	U+4E79<kMorohashi:T U+4E81<kMorohashi:T
+4E81	U+4E7E<kMorohashi:TZ
 4E82	U+4E71<kMatthews,kMeyerWempe
 4E88	U+4F59<kFenn
 4E89	U+722D<kMatthews
@@ -1260,18 +1265,21 @@
 67DC	U+6AC3<kHKGlyph
 67E5	U+67FB<kMatthews
 67F0	U+5948<kLau,kMatthews,kMeyerWempe
-67F3	U+6A89<kMatthews
+67F3	U+6801 U+6A89<kMatthews
 67F9	U+67BE<kMatthews
 67FB	U+67E5<kMatthews
+6801	U+67F3
 6807	U+6A81<kMatthews
 6812	U+7C28<kMatthews,kMeyerWempe
 6816	U+68F2<kMatthews,kMeyerWempe
 681B	U+8354<kMatthews
 6822	U+67CF<kMatthews,kMeyerWempe
 6830	U+7B4F<kMatthews
+683D	U+363D<kHanYu:T
 684C	U+68F9<kMatthews
 687C	U+3BC3<kMatthews U+6F06<kMatthews
 6881	U+6A11<kMatthews,kMeyerWempe
+6885	U+69D1
 689D	U+6761<kMeyerWempe U+7CF6<kLau
 689F	U+9D1E<kFenn
 68A6	U+5922<kLau,kMeyerWempe
@@ -1315,6 +1323,7 @@
 69CA	U+9399<kMeyerWempe
 69CC	U+68F0<kLau U+690E<kMatthews
 69CE	U+6942<kMatthews
+69D1	U+6885
 69D3	U+6760<kFenn U+7BE2<kMeyerWempe
 69D6	U+6A50<kMeyerWempe
 69E8	U+6901<kMatthews,kMeyerWempe
@@ -1405,9 +1414,13 @@
 6C08	U+6BE1<kMatthews,kMeyerWempe U+6C0A<kMatthews
 6C0A	U+6C08<kMatthews
 6C13	U+753F<kMatthews,kMeyerWempe
+6C19	U+6C25<kHanYu:T
 6C1C	U+967D<kMatthews U+9633<kFenn
+6C21	U+6C2D<kHanYu:T
 6C23	U+7081<kLau,kMatthews
 6C24	U+7D6A<kMeyerWempe
+6C25	U+6C19<kHanYu:TZ
+6C2D	U+6C21<kHanYu:TZ
 6C2F	U+7DA0<kMatthews
 6C34	U+6C35<kMatthews
 6C35	U+6C34<kMatthews
@@ -2085,6 +2098,7 @@
 8017	U+79CF<kMatthews
 8018	U+79D0<kMatthews,kMeyerWempe
 8019	U+9200<kMatthews
+801C	U+3B52
 8024	U+85C9<kMatthews
 8028	U+9392<kMatthews
 8030	U+6ACC<kMatthews

@@ -1,5 +1,5 @@
 # DerivedName-14.0.0.txt
-# Date: 2021-05-11, 21:19:36 GMT
+# Date: 2021-07-10, 00:35:09 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -40410,9 +40410,9 @@ FFFD          ; REPLACEMENT CHARACTER
 1E7E5         ; ETHIOPIC SYLLABLE HHYE
 1E7E6         ; ETHIOPIC SYLLABLE HHYO
 1E7E8         ; ETHIOPIC SYLLABLE GURAGE HHWA
-1E7E9         ; ETHIOPIC SYLLABLE HWI
-1E7EA         ; ETHIOPIC SYLLABLE HWEE
-1E7EB         ; ETHIOPIC SYLLABLE HWE
+1E7E9         ; ETHIOPIC SYLLABLE HHWI
+1E7EA         ; ETHIOPIC SYLLABLE HHWEE
+1E7EB         ; ETHIOPIC SYLLABLE HHWE
 1E7ED         ; ETHIOPIC SYLLABLE GURAGE MWI
 1E7EE         ; ETHIOPIC SYLLABLE GURAGE MWEE
 1E7F0         ; ETHIOPIC SYLLABLE GURAGE QWI

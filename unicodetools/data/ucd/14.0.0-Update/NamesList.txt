@@ -1,12 +1,12 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 14.0.0
-@@@+	U14M210706.lst
-	Unicode 14.0.0 names list, tenth delta.
+@@@+	U14M210804.lst
+	Unicode 14.0.0 names list, eleventh delta.
 	Repertoire synched with UnicodeData-14.0.0d13.txt.
-	Removed alias for 1FA79.
-	Added xref for 1F7F0.
-	Adjusted text of subhead at 1DF00.
-	Corrected typos in names of 3 Ethiopian Extended-B additions.
+	Resynched Egyptian annotations with latest updates from Michel.
+	Added xrefs for 2264, 2265, 22C7.
+	Removed annotations about "tone six" for 1AFF0 and 1AFF8.
+	Extensive revision of annotations for ASCII and Latin-1 characters.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -104,6 +104,9 @@
 	x (zero width space - 200B)
 	x (narrow no-break space - 202F)
 	x (word joiner - 2060)
+	x (symbol for space - 2420)
+	x (blank symbol - 2422)
+	x (open box - 2423)
 	x (ideographic space - 3000)
 	x (zero width no-break space - FEFF)
 0021	EXCLAMATION MARK
@@ -113,27 +116,42 @@
 	x (latin letter retroflex click - 01C3)
 	x (double exclamation mark - 203C)
 	x (interrobang - 203D)
+	x (warning sign - 26A0)
+	x (heavy exclamation mark symbol - 2757)
 	x (heavy exclamation mark ornament - 2762)
+	x (medieval exclamation mark - 2E53)
+	x (modifier letter raised exclamation mark - A71D)
 0022	QUOTATION MARK
+	= double quote
 	* neutral (vertical), used as opening or closing quotation mark
 	* preferred characters in English for paired quotation marks are 201C & 201D
 	* 05F4 is preferred for gershayim when writing Hebrew
 	x (modifier letter double prime - 02BA)
+	x (double acute accent - 02DD)
+	x (modifier letter double apostrophe - 02EE)
 	x (combining double acute accent - 030B)
 	x (combining double vertical line above - 030E)
 	x (hebrew punctuation gershayim - 05F4)
+	x (left double quotation mark - 201C)
+	x (right double quotation mark - 201D)
 	x (double prime - 2033)
 	x (ditto mark - 3003)
 0023	NUMBER SIGN
-	= pound sign, hash, crosshatch, octothorpe
+	= pound sign (weight)
+	= hashtag, hash
+	= crosshatch, octothorpe
+	* for denoting musical sharp 266F is preferred
 	x (l b bar symbol - 2114)
+	x (numero sign - 2116)
 	x (viewdata square - 2317)
 	x (music sharp sign - 266F)
+	x (equals sign and slanted parallel - 29E3)
 0024	DOLLAR SIGN
 	= milréis, escudo
 	* used for many peso currencies in Latin America and elsewhere
 	* glyph may have one or two vertical bars
 	* other currency symbol characters start at 20A0
+	x (cent sign - 00A2)
 	x (currency sign - 00A4)
 	x (peso sign - 20B1)
 	x (heavy dollar sign - 1F4B2)
@@ -143,11 +161,14 @@
 	x (per ten thousand sign - 2031)
 	x (commercial minus sign - 2052)
 0026	AMPERSAND
+	= and
+	* originally derived from a ligature of 'e' and 't'
 	x (tironian sign et - 204A)
 	x (turned ampersand - 214B)
 	x (heavy ampersand ornament - 1F674)
 0027	APOSTROPHE
 	= apostrophe-quote (1.0)
+	= single quote
 	= APL quote
 	* neutral (vertical) glyph with mixed usage
 	* 2019 is preferred for apostrophe
@@ -157,7 +178,10 @@
 	x (modifier letter apostrophe - 02BC)
 	x (modifier letter vertical line - 02C8)
 	x (combining acute accent - 0301)
+	x (combining vertical line above - 030D)
 	x (hebrew punctuation geresh - 05F3)
+	x (left single quotation mark - 2018)
+	x (right single quotation mark - 2019)
 	x (prime - 2032)
 	x (latin small letter saltillo - A78C)
 0028	LEFT PARENTHESIS
@@ -166,43 +190,65 @@
 	= closing parenthesis (1.0)
 	* see discussion on semantics of paired bracketing characters
 002A	ASTERISK
-	= star (on phone keypads)
+	= star
+	* can have five or six spokes
 	x (arabic five pointed star - 066D)
+	x (asterism - 2042)
 	x (low asterisk - 204E)
+	x (two asterisks aligned vertically - 2051)
+	x (combining asterisk above - 20F0)
 	x (asterisk operator - 2217)
 	x (sextile - 26B9)
 	x (heavy asterisk - 2731)
+	x (slavonic asterisk - A673)
+	x (medium six spoked asterisk - 1F7B6)
+@		ASCII math operator
 002B	PLUS SIGN
+	x (modifier letter plus sign - 02D6)
+	x (minus sign - 2212)
 	x (heavy plus sign - 2795)
+	x (hebrew letter alternative plus sign - FB29)
+	x (light greek cross - 1F7A2)
+@		ASCII punctuation
 002C	COMMA
 	= decimal separator
 	x (arabic comma - 060C)
+	x (arabic decimal separator - 066B)
 	x (single low-9 quotation mark - 201A)
 	x (reversed comma - 2E41)
 	x (medieval comma - 2E4C)
 	x (ideographic comma - 3001)
 002D	HYPHEN-MINUS
-	= hyphen or minus sign
-	* used for either hyphen or minus sign
+	= hyphen, dash
+	= minus sign
+	* used generically for hyphen, minus sign or en dash, all of which have dedicated alternatives
+	x (soft hyphen - 00AD)
+	x (modifier letter minus sign - 02D7)
 	x (hyphen - 2010)
 	x (non-breaking hyphen - 2011)
 	x (figure dash - 2012)
 	x (en dash - 2013)
+	x (hyphenation point - 2027)
 	x (hyphen bullet - 2043)
 	x (minus sign - 2212)
 	x (roman uncia sign - 10191)
 002E	FULL STOP
 	= period, dot, decimal point
+	* the use as decimal point is locale dependent
 	* may be rendered as a raised decimal point in old style numbers
 	x (arabic full stop - 06D4)
+	x (one dot leader - 2024)
+	x (horizontal ellipsis - 2026)
+	x (raised dot - 2E33)
 	x (stenographic full stop - 2E3C)
 	x (ideographic full stop - 3002)
 002F	SOLIDUS
-	= slash, virgule
-	x (latin letter dental click - 01C0)
+	= slash,forward slash, virgule
 	x (combining long solidus overlay - 0338)
 	x (fraction slash - 2044)
 	x (division slash - 2215)
+	x (mathematical rising diagonal - 27CB)
+	x (big solidus - 29F8)
 	x (dotted solidus - 2E4A)
 @		ASCII digits
 0030	DIGIT ZERO
@@ -216,42 +262,65 @@
 0037	DIGIT SEVEN
 0038	DIGIT EIGHT
 0039	DIGIT NINE
-@		ASCII punctuation and symbols
+@		ASCII punctuation
 003A	COLON
 	* also used to denote division or scale; for that mathematical use 2236 is preferred
+	* in Finnish and Swedish, also used as intra-word punctation (abbreviation mark)
+	x (modifier letter triangular colon - 02D0)
+	x (modifier letter raised colon - 02F8)
 	x (armenian full stop - 0589)
 	x (hebrew punctuation sof pasuq - 05C3)
+	x (ethiopic wordspace - 1361)
+	x (ethiopic colon - 1365)
+	x (two dot punctuation - 205A)
+	x (tricolon - 205D)
 	x (ratio - 2236)
 	x (modifier letter colon - A789)
+	x (presentation form for vertical two dot leader - FE30)
 003B	SEMICOLON
 	* this, and not 037E, is the preferred character for 'Greek question mark'
 	x (greek question mark - 037E)
 	x (arabic semicolon - 061B)
 	x (reversed semicolon - 204F)
+	x (turned semicolon - 2E35)
+@		ASCII mathematical operators
+@+		Other mathematical operators start at 2200.
 003C	LESS-THAN SIGN
+	* paired with 003E for ASCII-based angle bracket markup conventions
+	x (modifier letter left arrowhead - 02C2)
 	x (single left-pointing angle quotation mark - 2039)
 	x (left-pointing angle bracket - 2329)
 	x (mathematical left angle bracket - 27E8)
 	x (left angle bracket - 3008)
 003D	EQUALS SIGN
 	* other related characters: 2241-2263
+	x (canadian syllabics hyphen - 1400)
+	x (almost equal to - 2248)
 	x (not equal to - 2260)
 	x (identical to - 2261)
+	x (double hyphen - 2E40)
+	x (katakana-hiragana double hyphen - 30A0)
 	x (modifier letter short equals sign - A78A)
 	x (roman sextans sign - 10190)
 	x (heavy equals sign - 1F7F0)
 003E	GREATER-THAN SIGN
+	x (modifier letter right arrowhead - 02C3)
 	x (single right-pointing angle quotation mark - 203A)
 	x (right-pointing angle bracket - 232A)
 	x (mathematical right angle bracket - 27E9)
 	x (right angle bracket - 3009)
+@		ASCII punctuation
 003F	QUESTION MARK
 	x (inverted question mark - 00BF)
 	x (greek question mark - 037E)
 	x (arabic question mark - 061F)
 	x (interrobang - 203D)
-	x (question exclamation mark - 2048)
-	x (exclamation question mark - 2049)
+	x (double question mark - 2047)
+	x (black question mark ornament - 2753)
+	x (uncertainty sign - 2BD1)
+	x (reversed question mark - 2E2E)
+	x (medieval question mark - 2E54)
+	x (replacement character - FFFD)
 0040	COMMERCIAL AT
 	= at sign
 @		Uppercase Latin alphabet
@@ -260,12 +329,16 @@
 	x (script capital b - 212C)
 0043	LATIN CAPITAL LETTER C
 	x (double-struck capital c - 2102)
+	x (degree celsius - 2103)
 	x (black-letter capital c - 212D)
+	x (roman numeral one hundred - 216D)
 0044	LATIN CAPITAL LETTER D
+	x (roman numeral five hundred - 216E)
 0045	LATIN CAPITAL LETTER E
 	x (euler constant - 2107)
 	x (script capital e - 2130)
 0046	LATIN CAPITAL LETTER F
+	x (degree fahrenheit - 2109)
 	x (script capital f - 2131)
 	x (turned capital f - 2132)
 0047	LATIN CAPITAL LETTER G
@@ -276,8 +349,6 @@
 0049	LATIN CAPITAL LETTER I
 	* Turkish and Azerbaijani use 0131 for lowercase
 	x (latin capital letter i with dot above - 0130)
-	x (cyrillic capital letter byelorussian-ukrainian i - 0406)
-	x (cyrillic letter palochka - 04C0)
 	x (script capital i - 2110)
 	x (black-letter capital i - 2111)
 	x (roman numeral one - 2160)
@@ -288,13 +359,16 @@
 	x (script capital l - 2112)
 004D	LATIN CAPITAL LETTER M
 	x (script capital m - 2133)
+	x (roman numeral one thousand - 216F)
 004E	LATIN CAPITAL LETTER N
 	x (double-struck capital n - 2115)
 004F	LATIN CAPITAL LETTER O
 0050	LATIN CAPITAL LETTER P
+	x (script capital p - 2118)
 	x (double-struck capital p - 2119)
 0051	LATIN CAPITAL LETTER Q
 	x (double-struck capital q - 211A)
+	x (rotated capital q - 213A)
 0052	LATIN CAPITAL LETTER R
 	x (script capital r - 211B)
 	x (black-letter capital r - 211C)
@@ -306,6 +380,7 @@
 	x (roman numeral five - 2164)
 0057	LATIN CAPITAL LETTER W
 0058	LATIN CAPITAL LETTER X
+	x (roman numeral ten - 2169)
 0059	LATIN CAPITAL LETTER Y
 005A	LATIN CAPITAL LETTER Z
 	x (double-struck capital z - 2124)
@@ -318,10 +393,13 @@
 	= backslash
 	x (combining reverse solidus overlay - 20E5)
 	x (set minus - 2216)
+	x (mathematical falling diagonal - 27CD)
+	x (big reverse solidus - 29F9)
 005D	RIGHT SQUARE BRACKET
 	= closing square bracket (1.0)
 005E	CIRCUMFLEX ACCENT
 	* this is a spacing character
+	* used in ASCII-based representation of exponentiation
 	x (modifier letter up arrowhead - 02C4)
 	x (modifier letter circumflex accent - 02C6)
 	x (combining circumflex accent - 0302)
@@ -330,10 +408,12 @@
 005F	LOW LINE
 	= spacing underscore (1.0)
 	* this is a spacing character
+	* joins with adjacent instances of itself
 	x (modifier letter low macron - 02CD)
 	x (combining macron below - 0331)
 	x (combining low line - 0332)
 	x (double low line - 2017)
+	x (combining conjoining macron below - FE2D)
 0060	GRAVE ACCENT
 	* this is a spacing character
 	x (modifier letter grave accent - 02CB)
@@ -347,6 +427,7 @@
 0065	LATIN SMALL LETTER E
 	x (estimated symbol - 212E)
 	x (script small e - 212F)
+	x (latin small letter blackletter e - AB32)
 0066	LATIN SMALL LETTER F
 0067	LATIN SMALL LETTER G
 	x (latin small letter script g - 0261)
@@ -357,6 +438,7 @@
 0069	LATIN SMALL LETTER I
 	* Turkish and Azerbaijani use 0130 for uppercase
 	x (latin small letter dotless i - 0131)
+	x (superscript latin small letter i - 2071)
 	x (mathematical italic small dotless i - 1D6A4)
 006A	LATIN SMALL LETTER J
 	x (latin small letter dotless j - 0237)
@@ -370,15 +452,18 @@
 	x (superscript latin small letter n - 207F)
 006F	LATIN SMALL LETTER O
 	x (script small o - 2134)
+	x (latin small letter blackletter o - AB3D)
 0070	LATIN SMALL LETTER P
 0071	LATIN SMALL LETTER Q
 0072	LATIN SMALL LETTER R
 0073	LATIN SMALL LETTER S
+	x (latin small letter long s - 017F)
 0074	LATIN SMALL LETTER T
 0075	LATIN SMALL LETTER U
 0076	LATIN SMALL LETTER V
 0077	LATIN SMALL LETTER W
 0078	LATIN SMALL LETTER X
+	x (multiplication sign - 00D7)
 0079	LATIN SMALL LETTER Y
 007A	LATIN SMALL LETTER Z
 	x (latin small letter z with stroke - 01B6)
@@ -387,10 +472,14 @@
 	= opening curly bracket (1.0)
 	= left brace
 007C	VERTICAL LINE
-	= vertical bar
+	= vertical bar, pipe
 	* used in pairs to indicate absolute value
+	* also used as an unpaired separator or as a fence
+	x (broken bar - 00A6)
 	x (latin letter dental click - 01C0)
 	x (hebrew punctuation paseq - 05C0)
+	x (devanagari danda - 0964)
+	x (combining long vertical line overlay - 20D2)
 	x (divides - 2223)
 	x (light vertical bar - 2758)
 007D	RIGHT CURLY BRACKET
@@ -400,8 +489,12 @@
 	* this is a spacing character
 	x (small tilde - 02DC)
 	x (combining tilde - 0303)
+	x (combining tilde overlay - 0334)
 	x (swung dash - 2053)
 	x (tilde operator - 223C)
+	x (tilde with ring above - 2E1B)
+	x (vertical tilde - 2E2F)
+	x (wave dash - 301C)
 	x (fullwidth tilde - FF5E)
 @		Control character
 007F	<control>
@@ -481,31 +574,42 @@
 	x (figure space - 2007)
 	x (narrow no-break space - 202F)
 	x (word joiner - 2060)
+	x (shouldered open box - 237D)
 	x (zero width no-break space - FEFF)
 	# <noBreak> 0020
 00A1	INVERTED EXCLAMATION MARK
 	* Spanish, Asturian, Galician
 	* used in extended IPA to represent sublaminal lower alveolar percussive
 	x (exclamation mark - 0021)
+	x (modifier letter raised inverted exclamation mark - A71E)
 00A2	CENT SIGN
+	x (latin small letter c with stroke - 023C)
+	x (mill sign - 20A5)
+	x (cedi sign - 20B5)
+	x (musical symbol cut time - 1D135)
 00A3	POUND SIGN
-	= pound sterling, Irish punt, Italian lira, Turkish lira, etc.
+	= pound sterling, Irish punt, lira, etc.
+	* glyph may have one or two crossbars, in distinction from 20A4
 	x (lira sign - 20A4)
 	x (turkish lira sign - 20BA)
 	x (roman semuncia sign - 10192)
 00A4	CURRENCY SIGN
-	* other currency symbol characters: 20A0-20BF
+	* generic or unknown currency
+	* other currency symbol characters start at 20A0
 	x (dollar sign - 0024)
 00A5	YEN SIGN
-	= yuan sign
+	= yuan sign (renminbi)
 	* glyph may have one or two crossbars, but the official symbol in Japan and China has two
+	* in native context, specific ideographs may be used for units of these currencies
 	x 5143
 	x 5186
 00A6	BROKEN BAR
 	= broken vertical bar (1.0)
 	= parted rule (in typography)
+	x (vertical line - 007C)
 00A7	SECTION SIGN
-	* paragraph sign in some European usage
+	* used in referencing numbered sections or paragraphs
+	x (top half section sign - 2E39)
 00A8	DIAERESIS
 	* this is a spacing character
 	x (combining diaeresis - 0308)
@@ -517,6 +621,7 @@
 	x (mask work symbol - 1F1AD)
 00AA	FEMININE ORDINAL INDICATOR
 	* Spanish
+	x (modifier letter small a - 1D43)
 	# <super> 0061
 00AB	LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
 	= left guillemet
@@ -527,26 +632,37 @@
 00AC	NOT SIGN
 	= angled dash (in typography)
 	x (reversed not sign - 2310)
+	x (turned not sign - 2319)
 00AD	SOFT HYPHEN
 	= discretionary hyphen
 	* commonly abbreviated as SHY
+	* an invisible format character indicating a possible hyphenation location
 00AE	REGISTERED SIGN
 	= registered trade mark sign (1.0)
+	x (trade mark sign - 2122)
 	x (circled latin capital letter r - 24C7)
+	x (raised md sign - 1F16B)
+	x (raised mr sign - 1F16C)
 00AF	MACRON
 	= overline, APL overbar
 	* this is a spacing character
+	* unlike 203E, adjacent instances of this character do not join
 	x (modifier letter macron - 02C9)
 	x (combining macron - 0304)
 	x (combining overline - 0305)
+	x (overline - 203E)
+	x (combining conjoining macron - FE26)
 	# 0020 0304
 00B0	DEGREE SIGN
 	* this is a spacing character
 	x (ring above - 02DA)
 	x (combining ring above - 030A)
 	x (superscript zero - 2070)
+	x (degree celsius - 2103)
+	x (degree fahrenheit - 2109)
 	x (ring operator - 2218)
 00B1	PLUS-MINUS SIGN
+	= biquintile (astrological aspect: 144°)
 	x (minus-or-plus sign - 2213)
 00B2	SUPERSCRIPT TWO
 	= squared
@@ -562,6 +678,8 @@
 	x (modifier letter prime - 02B9)
 	x (modifier letter acute accent - 02CA)
 	x (combining acute accent - 0301)
+	x (greek tonos - 0384)
+	x (greek oxia - 1FFD)
 	x (prime - 2032)
 	# 0020 0301
 00B5	MICRO SIGN
@@ -577,6 +695,8 @@
 	= Georgian comma
 	= Greek middle dot (ano teleia)
 	* also used as a raised decimal point or to denote multiplication; for multiplication 22C5 is preferred
+	x (full stop - 002E)
+	x (dot above - 02D9)
 	x (greek ano teleia - 0387)
 	x (runic single punctuation - 16EB)
 	x (bullet - 2022)
@@ -596,9 +716,12 @@
 00B9	SUPERSCRIPT ONE
 	x (superscript two - 00B2)
 	x (superscript three - 00B3)
+	x (superscript zero - 2070)
 	# <super> 0031
 00BA	MASCULINE ORDINAL INDICATOR
 	* Spanish
+	x (modifier letter small o - 1D52)
+	x (numero sign - 2116)
 	# <super> 006F
 00BB	RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
 	= right guillemet
@@ -657,6 +780,7 @@
 	* lowercase is 00F0
 	x (latin capital letter d with stroke - 0110)
 	x (latin capital letter african d - 0189)
+	x (latin capital letter d with short stroke overlay - A7C7)
 00D1	LATIN CAPITAL LETTER N WITH TILDE
 	: 004E 0303
 00D2	LATIN CAPITAL LETTER O WITH GRAVE
@@ -672,9 +796,14 @@
 @		Mathematical operator
 00D7	MULTIPLICATION SIGN
 	= z notation Cartesian product
+	x (latin small letter x - 0078)
+	x (saltire - 2613)
 	x (multiplication x - 2715)
+	x (heavy ballot x - 2718)
 	x (cross mark - 274C)
 	x (vector or cross product - 2A2F)
+	x (cancellation x - 1F5D9)
+	x (light saltire - 1F7A9)
 @		Letters
 00D8	LATIN CAPITAL LETTER O WITH STROKE
 	= o slash
@@ -694,9 +823,12 @@
 	= Eszett
 	* German
 	* not used in Swiss High German
-	* uppercase is "SS" or 1E9E
+	* uppercase is "SS" (standard case mapping), alternatively 1E9E
 	* typographically the glyph for this character can be based on a ligature of 017F with either 0073 or with an old-style glyph for 007A (the latter similar in appearance to 0292). Both forms exist interchangeably today.
+	x (latin small letter long s - 017F)
+	x (latin small letter ezh - 0292)
 	x (greek small letter beta - 03B2)
+	x (latin capital letter sharp s - 1E9E)
 00E0	LATIN SMALL LETTER A WITH GRAVE
 	: 0061 0300
 00E1	LATIN SMALL LETTER A WITH ACUTE
@@ -739,6 +871,7 @@
 00F0	LATIN SMALL LETTER ETH
 	* Icelandic, Faroese, Old English, IPA
 	* uppercase is 00D0
+	x (latin small letter d with stroke - 0111)
 	x (greek small letter delta - 03B4)
 	x (partial differential - 2202)
 00F1	LATIN SMALL LETTER N WITH TILDE
@@ -757,7 +890,7 @@
 @		Mathematical operator
 00F7	DIVISION SIGN
 	= obelus
-	* occasionally used as an alternate, more visually distinct version of 2212 or 2011 in some contexts
+	* occasionally used as an alternate, more visually distinct shape for a hyphen in some contexts
 	* historically used as a punctuation mark to denote questionable passages in manuscripts
 	x (syriac harklean obelus - 070B)
 	x (commercial minus sign - 2052)
@@ -766,6 +899,8 @@
 	x (divides - 2223)
 	x (ratio - 2236)
 	x (heavy division sign - 2797)
+	x (long division - 27CC)
+	x (dotted obelos - 2E13)
 @		Letters
 00F8	LATIN SMALL LETTER O WITH STROKE
 	= o slash
@@ -14091,7 +14226,9 @@
 	: 2261 0338
 2263	STRICTLY EQUIVALENT TO
 2264	LESS-THAN OR EQUAL TO
+	x (less-than sign - 003C)
 2265	GREATER-THAN OR EQUAL TO
+	x (greater-than sign - 003E)
 2266	LESS-THAN OVER EQUAL TO
 2267	GREATER-THAN OVER EQUAL TO
 2268	LESS-THAN BUT NOT EQUAL TO
@@ -14311,6 +14448,9 @@
 	x (black star - 2605)
 	x (white medium star - 2B50)
 22C7	DIVISION TIMES
+	x (multiplication sign - 00D7)
+	x (division sign - 00F7)
+	x (multiplication x - 2715)
 @		Relation
 22C8	BOWTIE
 	x (ocr bow tie - 2445)
@@ -36784,7 +36924,9 @@ FFFF	<not a character>
 1305B	EGYPTIAN HIEROGLYPH C002
 1305C	EGYPTIAN HIEROGLYPH C002A
 1305D	EGYPTIAN HIEROGLYPH C002B
+	* mirrored version of 1305C
 1305E	EGYPTIAN HIEROGLYPH C002C
+	* mirrored version of 1305B
 1305F	EGYPTIAN HIEROGLYPH C003
 13060	EGYPTIAN HIEROGLYPH C004
 13061	EGYPTIAN HIEROGLYPH C005
@@ -36798,8 +36940,10 @@ FFFF	<not a character>
 	* 1,000,000
 13069	EGYPTIAN HIEROGLYPH C012
 1306A	EGYPTIAN HIEROGLYPH C013
+	* mirrored version of 13069
 1306B	EGYPTIAN HIEROGLYPH C014
 1306C	EGYPTIAN HIEROGLYPH C015
+	* mirrored version of 1306B
 1306D	EGYPTIAN HIEROGLYPH C016
 1306E	EGYPTIAN HIEROGLYPH C017
 1306F	EGYPTIAN HIEROGLYPH C018
@@ -36824,6 +36968,8 @@ FFFF	<not a character>
 13081	EGYPTIAN HIEROGLYPH D011
 	* 1/2
 13082	EGYPTIAN HIEROGLYPH D012
+	* pupil of the eye
+	* not to be confused with 131F3 or 133F8
 	* 1/4
 13083	EGYPTIAN HIEROGLYPH D013
 	* 1/8
@@ -36838,6 +36984,8 @@ FFFF	<not a character>
 13089	EGYPTIAN HIEROGLYPH D019
 1308A	EGYPTIAN HIEROGLYPH D020
 1308B	EGYPTIAN HIEROGLYPH D021
+	* mouth
+	* not to be confused with 133AB
 	* transliterated as r
 1308C	EGYPTIAN HIEROGLYPH D022
 1308D	EGYPTIAN HIEROGLYPH D023
@@ -36877,6 +37025,8 @@ FFFF	<not a character>
 130AB	EGYPTIAN HIEROGLYPH D048A
 130AC	EGYPTIAN HIEROGLYPH D049
 130AD	EGYPTIAN HIEROGLYPH D050
+	* classifier 'accurate, finger'
+	* not to be confused with 130B7
 	* 10,000
 130AE	EGYPTIAN HIEROGLYPH D050A
 	* 20,000
@@ -36897,12 +37047,16 @@ FFFF	<not a character>
 130B6	EGYPTIAN HIEROGLYPH D050I
 	* 50,000
 130B7	EGYPTIAN HIEROGLYPH D051
+	* classifier 'measure, nail, scratching, taking'
+	* not to be confused with 130AD
 130B8	EGYPTIAN HIEROGLYPH D052
 130B9	EGYPTIAN HIEROGLYPH D052A
 130BA	EGYPTIAN HIEROGLYPH D053
 130BB	EGYPTIAN HIEROGLYPH D054
+	* (forward) motion
 130BC	EGYPTIAN HIEROGLYPH D054A
 130BD	EGYPTIAN HIEROGLYPH D055
+	* backward motion
 130BE	EGYPTIAN HIEROGLYPH D056
 130BF	EGYPTIAN HIEROGLYPH D057
 130C0	EGYPTIAN HIEROGLYPH D058
@@ -36917,6 +37071,7 @@ FFFF	<not a character>
 130C8	EGYPTIAN HIEROGLYPH D066
 130C9	EGYPTIAN HIEROGLYPH D067
 	* 1 heqat measure
+	* not to be confused with 13212
 130CA	EGYPTIAN HIEROGLYPH D067A
 	* 2 heqat measures
 130CB	EGYPTIAN HIEROGLYPH D067B
@@ -36935,7 +37090,10 @@ FFFF	<not a character>
 	* 9 heqat measures
 @		E. Mammals
 130D2	EGYPTIAN HIEROGLYPH E001
+	* bull, classifier 'cattle'
+	* not to be confused with 130FD
 130D3	EGYPTIAN HIEROGLYPH E002
+	* aggressive bull
 130D4	EGYPTIAN HIEROGLYPH E003
 130D5	EGYPTIAN HIEROGLYPH E004
 130D6	EGYPTIAN HIEROGLYPH E005
@@ -36975,9 +37133,12 @@ FFFF	<not a character>
 130F8	EGYPTIAN HIEROGLYPH E033
 130F9	EGYPTIAN HIEROGLYPH E034
 130FA	EGYPTIAN HIEROGLYPH E034A
+	* stylistic variant, use of 130F9 is preferred
 130FB	EGYPTIAN HIEROGLYPH E036
 130FC	EGYPTIAN HIEROGLYPH E037
 130FD	EGYPTIAN HIEROGLYPH E038
+	* cow
+	* not to be confused with 130D2
 @		F. Parts of mammals
 130FE	EGYPTIAN HIEROGLYPH F001
 130FF	EGYPTIAN HIEROGLYPH F001A
@@ -36994,6 +37155,7 @@ FFFF	<not a character>
 1310A	EGYPTIAN HIEROGLYPH F012
 1310B	EGYPTIAN HIEROGLYPH F013
 1310C	EGYPTIAN HIEROGLYPH F013A
+	* stylistic variant, use of 1310B is preferred
 1310D	EGYPTIAN HIEROGLYPH F014
 1310E	EGYPTIAN HIEROGLYPH F015
 1310F	EGYPTIAN HIEROGLYPH F016
@@ -37003,9 +37165,11 @@ FFFF	<not a character>
 13113	EGYPTIAN HIEROGLYPH F020
 13114	EGYPTIAN HIEROGLYPH F021
 13115	EGYPTIAN HIEROGLYPH F021A
+	* from hieratic
 13116	EGYPTIAN HIEROGLYPH F022
 13117	EGYPTIAN HIEROGLYPH F023
 13118	EGYPTIAN HIEROGLYPH F024
+	* mirrored version of 13117
 13119	EGYPTIAN HIEROGLYPH F025
 1311A	EGYPTIAN HIEROGLYPH F026
 1311B	EGYPTIAN HIEROGLYPH F027
@@ -37014,6 +37178,7 @@ FFFF	<not a character>
 1311E	EGYPTIAN HIEROGLYPH F030
 1311F	EGYPTIAN HIEROGLYPH F031
 13120	EGYPTIAN HIEROGLYPH F031A
+	* cursive variant of 1311F
 13121	EGYPTIAN HIEROGLYPH F032
 	* transliterated as 1E96
 13122	EGYPTIAN HIEROGLYPH F033
@@ -37034,25 +37199,35 @@ FFFF	<not a character>
 13131	EGYPTIAN HIEROGLYPH F045A
 13132	EGYPTIAN HIEROGLYPH F046
 13133	EGYPTIAN HIEROGLYPH F046A
+	* rotated version of 13132
 13134	EGYPTIAN HIEROGLYPH F047
+	* mirrored version of 13132
 13135	EGYPTIAN HIEROGLYPH F047A
+	* mirrored version of 13133
 13136	EGYPTIAN HIEROGLYPH F048
 13137	EGYPTIAN HIEROGLYPH F049
+	* mirrored version of 13136
 13138	EGYPTIAN HIEROGLYPH F050
 13139	EGYPTIAN HIEROGLYPH F051
 1313A	EGYPTIAN HIEROGLYPH F051A
 1313B	EGYPTIAN HIEROGLYPH F051B
+	* variant of 1313A
 1313C	EGYPTIAN HIEROGLYPH F051C
+	* rotated version of 13139
 1313D	EGYPTIAN HIEROGLYPH F052
 1313E	EGYPTIAN HIEROGLYPH F053
 @		G. Birds
 1313F	EGYPTIAN HIEROGLYPH G001
+	* Egyptian vulture, Egyptological alef
+	* not to be confused with 13142
 	* transliterated as A723
 	x (hebrew letter alef - 05D0)
 	x (arabic letter alef with hamza above - 0623)
 13140	EGYPTIAN HIEROGLYPH G002
 13141	EGYPTIAN HIEROGLYPH G003
 13142	EGYPTIAN HIEROGLYPH G004
+	* phonogram 'tw'
+	* not to be confused with 1313F
 13143	EGYPTIAN HIEROGLYPH G005
 13144	EGYPTIAN HIEROGLYPH G006
 13145	EGYPTIAN HIEROGLYPH G006A
@@ -37093,10 +37268,14 @@ FFFF	<not a character>
 13167	EGYPTIAN HIEROGLYPH G035
 13168	EGYPTIAN HIEROGLYPH G036
 13169	EGYPTIAN HIEROGLYPH G036A
+	* stylistic variant, use of 13168 is preferred
 1316A	EGYPTIAN HIEROGLYPH G037
 1316B	EGYPTIAN HIEROGLYPH G037A
+	* stylistic variant, use of 1316A is preferred
 1316C	EGYPTIAN HIEROGLYPH G038
+	* goose
 1316D	EGYPTIAN HIEROGLYPH G039
+	* duck
 1316E	EGYPTIAN HIEROGLYPH G040
 1316F	EGYPTIAN HIEROGLYPH G041
 13170	EGYPTIAN HIEROGLYPH G042
@@ -37123,6 +37302,7 @@ FFFF	<not a character>
 13183	EGYPTIAN HIEROGLYPH H005
 13184	EGYPTIAN HIEROGLYPH H006
 13185	EGYPTIAN HIEROGLYPH H006A
+	* from hieratic
 13186	EGYPTIAN HIEROGLYPH H007
 13187	EGYPTIAN HIEROGLYPH H008
 @		I. Amphibious animals, reptiles, etc.
@@ -37166,6 +37346,7 @@ FFFF	<not a character>
 131A8	EGYPTIAN HIEROGLYPH L005
 131A9	EGYPTIAN HIEROGLYPH L006
 131AA	EGYPTIAN HIEROGLYPH L006A
+	* mirrored version of 131A9
 131AB	EGYPTIAN HIEROGLYPH L007
 131AC	EGYPTIAN HIEROGLYPH L008
 @		M. Trees and plants
@@ -37209,18 +37390,21 @@ FFFF	<not a character>
 131C9	EGYPTIAN HIEROGLYPH M016
 131CA	EGYPTIAN HIEROGLYPH M016A
 131CB	EGYPTIAN HIEROGLYPH M017
-	* yod
+	* egyptological yod
+	* transliterated as A7BD
 	x (hebrew letter yod - 05D9)
 	x (arabic letter yeh - 064A)
 131CC	EGYPTIAN HIEROGLYPH M017A
-	* transliterated as y
+	* phonogram 'y'
 	x (egyptian hieroglyph z004 - 133ED)
 131CD	EGYPTIAN HIEROGLYPH M018
 131CE	EGYPTIAN HIEROGLYPH M019
 131CF	EGYPTIAN HIEROGLYPH M020
 131D0	EGYPTIAN HIEROGLYPH M021
 131D1	EGYPTIAN HIEROGLYPH M022
+	* classifier 'bud, lotus bud'
 131D2	EGYPTIAN HIEROGLYPH M022A
+	*phonogram 'nn'
 131D3	EGYPTIAN HIEROGLYPH M023
 131D4	EGYPTIAN HIEROGLYPH M024
 131D5	EGYPTIAN HIEROGLYPH M024A
@@ -37236,30 +37420,42 @@ FFFF	<not a character>
 131DF	EGYPTIAN HIEROGLYPH M032
 131E0	EGYPTIAN HIEROGLYPH M033
 131E1	EGYPTIAN HIEROGLYPH M033A
+	* variant of 131E0
 131E2	EGYPTIAN HIEROGLYPH M033B
+	* variant of 131E0
 131E3	EGYPTIAN HIEROGLYPH M034
 131E4	EGYPTIAN HIEROGLYPH M035
 131E5	EGYPTIAN HIEROGLYPH M036
 131E6	EGYPTIAN HIEROGLYPH M037
+	* older variant of 131E5
 131E7	EGYPTIAN HIEROGLYPH M038
 131E8	EGYPTIAN HIEROGLYPH M039
 131E9	EGYPTIAN HIEROGLYPH M040
+	* phonogram 'js'
+	* not to be confused with 132A7 or 1342A
 131EA	EGYPTIAN HIEROGLYPH M040A
 131EB	EGYPTIAN HIEROGLYPH M041
 131EC	EGYPTIAN HIEROGLYPH M042
 131ED	EGYPTIAN HIEROGLYPH M043
 131EE	EGYPTIAN HIEROGLYPH M044
+	* thorn
+	* not to be confused with 133DA
 @		N. Sky, earth, water
 131EF	EGYPTIAN HIEROGLYPH N001
 131F0	EGYPTIAN HIEROGLYPH N002
 131F1	EGYPTIAN HIEROGLYPH N003
+	* older variant of 131F0
 131F2	EGYPTIAN HIEROGLYPH N004
 131F3	EGYPTIAN HIEROGLYPH N005
+	* sun
+	* not to be confused with 13082 or 133F8
 131F4	EGYPTIAN HIEROGLYPH N006
 131F5	EGYPTIAN HIEROGLYPH N007
 131F6	EGYPTIAN HIEROGLYPH N008
 131F7	EGYPTIAN HIEROGLYPH N009
+	* variant of 131F8
 131F8	EGYPTIAN HIEROGLYPH N010
+	* variant of 131F7
 131F9	EGYPTIAN HIEROGLYPH N011
 131FA	EGYPTIAN HIEROGLYPH N012
 131FB	EGYPTIAN HIEROGLYPH N013
@@ -37267,10 +37463,15 @@ FFFF	<not a character>
 131FD	EGYPTIAN HIEROGLYPH N015
 131FE	EGYPTIAN HIEROGLYPH N016
 131FF	EGYPTIAN HIEROGLYPH N017
+	* land
+	* variant of 131FE
 13200	EGYPTIAN HIEROGLYPH N018
+	* island
+	* not to be confused with 132F0, 133D4, or 133F3
 13201	EGYPTIAN HIEROGLYPH N018A
 13202	EGYPTIAN HIEROGLYPH N018B
 13203	EGYPTIAN HIEROGLYPH N019
+	* logogram 'akhti'
 13204	EGYPTIAN HIEROGLYPH N020
 13205	EGYPTIAN HIEROGLYPH N021
 13206	EGYPTIAN HIEROGLYPH N022
@@ -37278,10 +37479,13 @@ FFFF	<not a character>
 13208	EGYPTIAN HIEROGLYPH N024
 13209	EGYPTIAN HIEROGLYPH N025
 1320A	EGYPTIAN HIEROGLYPH N025A
+	* stylistic variant, use of 13209 is preferred
 1320B	EGYPTIAN HIEROGLYPH N026
 1320C	EGYPTIAN HIEROGLYPH N027
 1320D	EGYPTIAN HIEROGLYPH N028
 1320E	EGYPTIAN HIEROGLYPH N029
+	* hill
+	* not to be confused with 133D8
 	* transliterated as q or as 1E33
 	x (hebrew letter qof - 05E7)
 	x (arabic letter qaf - 0642)
@@ -37289,21 +37493,33 @@ FFFF	<not a character>
 13210	EGYPTIAN HIEROGLYPH N031
 13211	EGYPTIAN HIEROGLYPH N032
 13212	EGYPTIAN HIEROGLYPH N033
+	* classifier 'granule, grain'
+	* not to be confused with 130C9
 13213	EGYPTIAN HIEROGLYPH N033A
+	* classifier 'granules, grains'
+	* not to be confused with 133E7
 13214	EGYPTIAN HIEROGLYPH N034
 13215	EGYPTIAN HIEROGLYPH N034A
+	* stylistic variant, use of 13214 is preferred
 13216	EGYPTIAN HIEROGLYPH N035
 	* transliterated as n
 13217	EGYPTIAN HIEROGLYPH N035A
+	* classifier 'liquid'
 13218	EGYPTIAN HIEROGLYPH N036
 13219	EGYPTIAN HIEROGLYPH N037
+	* lake
 	* transliterated as 0161
+	* not to be confused with 1328C
 1321A	EGYPTIAN HIEROGLYPH N037A
+	* variant of 13219
 1321B	EGYPTIAN HIEROGLYPH N038
+	* variant of 13219
 1321C	EGYPTIAN HIEROGLYPH N039
+	* variant of 13219
 1321D	EGYPTIAN HIEROGLYPH N040
 1321E	EGYPTIAN HIEROGLYPH N041
 1321F	EGYPTIAN HIEROGLYPH N042
+	* variant of 1321E
 @		NL. Nomes of Lower Egypt
 13220	EGYPTIAN HIEROGLYPH NL001
 13221	EGYPTIAN HIEROGLYPH NL002
@@ -37365,6 +37581,7 @@ FFFF	<not a character>
 	x (arabic letter heh - 0647)
 13255	EGYPTIAN HIEROGLYPH O005
 13256	EGYPTIAN HIEROGLYPH O005A
+	* mirrored version of 13255
 13257	EGYPTIAN HIEROGLYPH O006
 13258	EGYPTIAN HIEROGLYPH O006A
 	* beginning of hwt or serekh enclosure
@@ -37410,11 +37627,15 @@ FFFF	<not a character>
 1327A	EGYPTIAN HIEROGLYPH O028
 1327B	EGYPTIAN HIEROGLYPH O029
 1327C	EGYPTIAN HIEROGLYPH O029A
+	* rotated variant of 1327B
 1327D	EGYPTIAN HIEROGLYPH O030
+	* supporting pole
+	* not to be confused with 13361
 1327E	EGYPTIAN HIEROGLYPH O030A
 1327F	EGYPTIAN HIEROGLYPH O031
 13280	EGYPTIAN HIEROGLYPH O032
 13281	EGYPTIAN HIEROGLYPH O033
+	* classifier 'serekh'
 13282	EGYPTIAN HIEROGLYPH O033A
 	* end of serekh enclosure
 	x (egyptian hieroglyph o006a - 13258)
@@ -37434,10 +37655,13 @@ FFFF	<not a character>
 1328A	EGYPTIAN HIEROGLYPH O037
 1328B	EGYPTIAN HIEROGLYPH O038
 1328C	EGYPTIAN HIEROGLYPH O039
+	* stone, brick
+	* not to be confused with 13219
 1328D	EGYPTIAN HIEROGLYPH O040
 1328E	EGYPTIAN HIEROGLYPH O041
 1328F	EGYPTIAN HIEROGLYPH O042
 13290	EGYPTIAN HIEROGLYPH O043
+	* older variant of 1328F
 13291	EGYPTIAN HIEROGLYPH O044
 13292	EGYPTIAN HIEROGLYPH O045
 13293	EGYPTIAN HIEROGLYPH O046
@@ -37447,13 +37671,18 @@ FFFF	<not a character>
 13297	EGYPTIAN HIEROGLYPH O050
 13298	EGYPTIAN HIEROGLYPH O050A
 13299	EGYPTIAN HIEROGLYPH O050B
+	* mirrored version of 13298
 1329A	EGYPTIAN HIEROGLYPH O051
 @		P. Ships and parts of ships
 1329B	EGYPTIAN HIEROGLYPH P001
+	* classifier 'ship, travel'
 1329C	EGYPTIAN HIEROGLYPH P001A
+	* classifier 'upset, overturn'
 1329D	EGYPTIAN HIEROGLYPH P002
 1329E	EGYPTIAN HIEROGLYPH P003
+	* sacred ship
 1329F	EGYPTIAN HIEROGLYPH P003A
+	* mirrored variant of 1329E
 132A0	EGYPTIAN HIEROGLYPH P004
 132A1	EGYPTIAN HIEROGLYPH P005
 132A2	EGYPTIAN HIEROGLYPH P006
@@ -37462,6 +37691,8 @@ FFFF	<not a character>
 132A5	EGYPTIAN HIEROGLYPH P009
 132A6	EGYPTIAN HIEROGLYPH P010
 132A7	EGYPTIAN HIEROGLYPH P011
+	* mooring post
+	* not to be confused with 131E9 or 1342A
 @		Q. Domestic and funerary furniture
 132A8	EGYPTIAN HIEROGLYPH Q001
 132A9	EGYPTIAN HIEROGLYPH Q002
@@ -37539,6 +37770,8 @@ FFFF	<not a character>
 132EE	EGYPTIAN HIEROGLYPH S025
 132EF	EGYPTIAN HIEROGLYPH S026
 132F0	EGYPTIAN HIEROGLYPH S026A
+	* loin-cloth
+	* not to be confused with 13200, 133D4, or 133F3
 132F1	EGYPTIAN HIEROGLYPH S026B
 132F2	EGYPTIAN HIEROGLYPH S027
 132F3	EGYPTIAN HIEROGLYPH S028
@@ -37552,12 +37785,16 @@ FFFF	<not a character>
 132F9	EGYPTIAN HIEROGLYPH S034
 132FA	EGYPTIAN HIEROGLYPH S035
 132FB	EGYPTIAN HIEROGLYPH S035A
+	* variant of 132FA
 132FC	EGYPTIAN HIEROGLYPH S036
+	* older variant of 132FA
 132FD	EGYPTIAN HIEROGLYPH S037
 132FE	EGYPTIAN HIEROGLYPH S038
 132FF	EGYPTIAN HIEROGLYPH S039
 13300	EGYPTIAN HIEROGLYPH S040
+	* phonogram 'wꜣs'
 13301	EGYPTIAN HIEROGLYPH S041
+	* phonogram 'ḏꜣm'
 13302	EGYPTIAN HIEROGLYPH S042
 13303	EGYPTIAN HIEROGLYPH S043
 13304	EGYPTIAN HIEROGLYPH S044
@@ -37566,7 +37803,9 @@ FFFF	<not a character>
 @		T. Warfare, hunting, butchery
 13307	EGYPTIAN HIEROGLYPH T001
 13308	EGYPTIAN HIEROGLYPH T002
+	* classifier 'striking, hitting'
 13309	EGYPTIAN HIEROGLYPH T003
+	* classifier 'mace'
 1330A	EGYPTIAN HIEROGLYPH T003A
 1330B	EGYPTIAN HIEROGLYPH T004
 1330C	EGYPTIAN HIEROGLYPH T005
@@ -37574,9 +37813,11 @@ FFFF	<not a character>
 1330E	EGYPTIAN HIEROGLYPH T007
 1330F	EGYPTIAN HIEROGLYPH T007A
 13310	EGYPTIAN HIEROGLYPH T008
+	* older variant of 13311
 13311	EGYPTIAN HIEROGLYPH T008A
 13312	EGYPTIAN HIEROGLYPH T009
 13313	EGYPTIAN HIEROGLYPH T009A
+	* older variant of 13312
 13314	EGYPTIAN HIEROGLYPH T010
 13315	EGYPTIAN HIEROGLYPH T011
 13316	EGYPTIAN HIEROGLYPH T011A
@@ -37584,41 +37825,55 @@ FFFF	<not a character>
 13318	EGYPTIAN HIEROGLYPH T013
 13319	EGYPTIAN HIEROGLYPH T014
 1331A	EGYPTIAN HIEROGLYPH T015
+	* older variant of 13319
 1331B	EGYPTIAN HIEROGLYPH T016
 1331C	EGYPTIAN HIEROGLYPH T016A
 1331D	EGYPTIAN HIEROGLYPH T017
 1331E	EGYPTIAN HIEROGLYPH T018
 1331F	EGYPTIAN HIEROGLYPH T019
 13320	EGYPTIAN HIEROGLYPH T020
+	* older variant of 1331F
 13321	EGYPTIAN HIEROGLYPH T021
 13322	EGYPTIAN HIEROGLYPH T022
 13323	EGYPTIAN HIEROGLYPH T023
+	* more recent variant of 13322
 13324	EGYPTIAN HIEROGLYPH T024
 13325	EGYPTIAN HIEROGLYPH T025
 13326	EGYPTIAN HIEROGLYPH T026
 13327	EGYPTIAN HIEROGLYPH T027
+	* older variant of 13326
 13328	EGYPTIAN HIEROGLYPH T028
 13329	EGYPTIAN HIEROGLYPH T029
 1332A	EGYPTIAN HIEROGLYPH T030
+	* classifier 'knife, cutting'
 1332B	EGYPTIAN HIEROGLYPH T031
+	* phonogram 'sšm'
 1332C	EGYPTIAN HIEROGLYPH T032
 1332D	EGYPTIAN HIEROGLYPH T032A
 1332E	EGYPTIAN HIEROGLYPH T033
+	* older variant of 13326
 1332F	EGYPTIAN HIEROGLYPH T033A
 13330	EGYPTIAN HIEROGLYPH T034
 13331	EGYPTIAN HIEROGLYPH T035
+	* variant of 13330
 13332	EGYPTIAN HIEROGLYPH T036
 @		U. Agriculture, crafts, and professions
 13333	EGYPTIAN HIEROGLYPH U001
 13334	EGYPTIAN HIEROGLYPH U002
+	* stylistic variant of 13333
 13335	EGYPTIAN HIEROGLYPH U003
 13336	EGYPTIAN HIEROGLYPH U004
 13337	EGYPTIAN HIEROGLYPH U005
+	* stylistic variant of 13336
 13338	EGYPTIAN HIEROGLYPH U006
 13339	EGYPTIAN HIEROGLYPH U006A
+	* stylistic variant of 13338
 1333A	EGYPTIAN HIEROGLYPH U006B
+	* mirrored version of 13339
 1333B	EGYPTIAN HIEROGLYPH U007
+	* variant of 13338
 1333C	EGYPTIAN HIEROGLYPH U008
+	* variant of 1333B
 1333D	EGYPTIAN HIEROGLYPH U009
 1333E	EGYPTIAN HIEROGLYPH U010
 1333F	EGYPTIAN HIEROGLYPH U011
@@ -37629,18 +37884,24 @@ FFFF	<not a character>
 13344	EGYPTIAN HIEROGLYPH U016
 13345	EGYPTIAN HIEROGLYPH U017
 13346	EGYPTIAN HIEROGLYPH U018
+	* variant of 13345
 13347	EGYPTIAN HIEROGLYPH U019
 13348	EGYPTIAN HIEROGLYPH U020
+	* older variant of 13347
 13349	EGYPTIAN HIEROGLYPH U021
 1334A	EGYPTIAN HIEROGLYPH U022
 1334B	EGYPTIAN HIEROGLYPH U023
 1334C	EGYPTIAN HIEROGLYPH U023A
+	* stylistic variant of 1334B
 1334D	EGYPTIAN HIEROGLYPH U024
 1334E	EGYPTIAN HIEROGLYPH U025
+	* older variant of 1334D
 1334F	EGYPTIAN HIEROGLYPH U026
 13350	EGYPTIAN HIEROGLYPH U027
+	* older variant of 1334F
 13351	EGYPTIAN HIEROGLYPH U028
 13352	EGYPTIAN HIEROGLYPH U029
+	* older variant of 13351
 13353	EGYPTIAN HIEROGLYPH U029A
 13354	EGYPTIAN HIEROGLYPH U030
 13355	EGYPTIAN HIEROGLYPH U031
@@ -37654,11 +37915,16 @@ FFFF	<not a character>
 1335D	EGYPTIAN HIEROGLYPH U038
 1335E	EGYPTIAN HIEROGLYPH U039
 1335F	EGYPTIAN HIEROGLYPH U040
+	* cursive variant of 1335E
 13360	EGYPTIAN HIEROGLYPH U041
 13361	EGYPTIAN HIEROGLYPH U042
+	* pitchfork
+	* not to be confused with 1327D
 @		V. Rope, fiber, baskets, bags, etc.
 13362	EGYPTIAN HIEROGLYPH V001
 	* 100
+	* classifier 'cord, rope'
+	* not to be confused with 133F2
 13363	EGYPTIAN HIEROGLYPH V001A
 	* 200
 13364	EGYPTIAN HIEROGLYPH V001B
@@ -37683,13 +37949,17 @@ FFFF	<not a character>
 1336F	EGYPTIAN HIEROGLYPH V004
 13370	EGYPTIAN HIEROGLYPH V005
 13371	EGYPTIAN HIEROGLYPH V006
+	* phonogram 'šs'
 13372	EGYPTIAN HIEROGLYPH V007
+	* phonogram 'šn'
 13373	EGYPTIAN HIEROGLYPH V007A
 13374	EGYPTIAN HIEROGLYPH V007B
 13375	EGYPTIAN HIEROGLYPH V008
 13376	EGYPTIAN HIEROGLYPH V009
 13377	EGYPTIAN HIEROGLYPH V010
+	* logogram 'name'
 13378	EGYPTIAN HIEROGLYPH V011
+	* classifier 'restrain, split'
 13379	EGYPTIAN HIEROGLYPH V011A
 	* beginning of cartouche
 1337A	EGYPTIAN HIEROGLYPH V011B
@@ -37702,15 +37972,19 @@ FFFF	<not a character>
 1337F	EGYPTIAN HIEROGLYPH V013
 	* transliterated as 1E6F
 13380	EGYPTIAN HIEROGLYPH V014
+	* variant of 1337F
 13381	EGYPTIAN HIEROGLYPH V015
 13382	EGYPTIAN HIEROGLYPH V016
 13383	EGYPTIAN HIEROGLYPH V017
 13384	EGYPTIAN HIEROGLYPH V018
+	* older variant of 13383
 13385	EGYPTIAN HIEROGLYPH V019
 13386	EGYPTIAN HIEROGLYPH V020
 	* 10
+	* not to be confused with 133AD
 13387	EGYPTIAN HIEROGLYPH V020A
 	* 20
+	* not to be confused with 133AE
 13388	EGYPTIAN HIEROGLYPH V020B
 	* 30
 13389	EGYPTIAN HIEROGLYPH V020C
@@ -37727,20 +38001,27 @@ FFFF	<not a character>
 	* 90
 1338F	EGYPTIAN HIEROGLYPH V020I
 	* 20
+	* variant of 13387
 13390	EGYPTIAN HIEROGLYPH V020J
 	* 30
+	* variant of 13388
 13391	EGYPTIAN HIEROGLYPH V020K
 	* 40
+	* variant of 13389
 13392	EGYPTIAN HIEROGLYPH V020L
 	* 50
+	* variant of 1338A
 13393	EGYPTIAN HIEROGLYPH V021
 13394	EGYPTIAN HIEROGLYPH V022
 13395	EGYPTIAN HIEROGLYPH V023
+	* older variant of 13394
 13396	EGYPTIAN HIEROGLYPH V023A
 13397	EGYPTIAN HIEROGLYPH V024
 13398	EGYPTIAN HIEROGLYPH V025
+	* more recent variant of 13397
 13399	EGYPTIAN HIEROGLYPH V026
 1339A	EGYPTIAN HIEROGLYPH V027
+	* older variant of 13399
 1339B	EGYPTIAN HIEROGLYPH V028
 	* transliterated as 1E25
 	x (arabic letter hah - 062D)
@@ -37749,30 +38030,38 @@ FFFF	<not a character>
 1339E	EGYPTIAN HIEROGLYPH V029A
 1339F	EGYPTIAN HIEROGLYPH V030
 133A0	EGYPTIAN HIEROGLYPH V030A
+	* stylistic variant, use of 1339F is preferred
 133A1	EGYPTIAN HIEROGLYPH V031
 	* transliterated as k
 	x (hebrew letter kaf - 05DB)
 	x (arabic letter kaf - 0643)
 133A2	EGYPTIAN HIEROGLYPH V031A
+	* from hieratic
 133A3	EGYPTIAN HIEROGLYPH V032
 133A4	EGYPTIAN HIEROGLYPH V033
 133A5	EGYPTIAN HIEROGLYPH V033A
 133A6	EGYPTIAN HIEROGLYPH V034
+	* more recent variant of 133A4
 133A7	EGYPTIAN HIEROGLYPH V035
 133A8	EGYPTIAN HIEROGLYPH V036
 133A9	EGYPTIAN HIEROGLYPH V037
 133AA	EGYPTIAN HIEROGLYPH V037A
 133AB	EGYPTIAN HIEROGLYPH V038
+	* bandage
+	* not to be confused with 1308B
 133AC	EGYPTIAN HIEROGLYPH V039
 133AD	EGYPTIAN HIEROGLYPH V040
 	* 10 in dates
+	* not to be confused with 13386
 133AE	EGYPTIAN HIEROGLYPH V040A
 	* 20 in dates
+	* not to be confused with 13387
 @		W. Vessels of stone and earthenware
 133AF	EGYPTIAN HIEROGLYPH W001
 133B0	EGYPTIAN HIEROGLYPH W002
 133B1	EGYPTIAN HIEROGLYPH W003
 133B2	EGYPTIAN HIEROGLYPH W003A
+	* stylistic variant, use of 133B1 is preferred
 133B3	EGYPTIAN HIEROGLYPH W004
 133B4	EGYPTIAN HIEROGLYPH W005
 133B5	EGYPTIAN HIEROGLYPH W006
@@ -37780,11 +38069,13 @@ FFFF	<not a character>
 133B7	EGYPTIAN HIEROGLYPH W008
 133B8	EGYPTIAN HIEROGLYPH W009
 133B9	EGYPTIAN HIEROGLYPH W009A
+	* mirrored version of 133B8
 133BA	EGYPTIAN HIEROGLYPH W010
 133BB	EGYPTIAN HIEROGLYPH W010A
 133BC	EGYPTIAN HIEROGLYPH W011
 	* transliterated as g
 133BD	EGYPTIAN HIEROGLYPH W012
+	* older variant of 133BC
 133BE	EGYPTIAN HIEROGLYPH W013
 133BF	EGYPTIAN HIEROGLYPH W014
 133C0	EGYPTIAN HIEROGLYPH W014A
@@ -37792,81 +38083,122 @@ FFFF	<not a character>
 133C2	EGYPTIAN HIEROGLYPH W016
 133C3	EGYPTIAN HIEROGLYPH W017
 133C4	EGYPTIAN HIEROGLYPH W017A
+	* cursive variant of 133C3
 133C5	EGYPTIAN HIEROGLYPH W018
+	* older variant of 133C3
 133C6	EGYPTIAN HIEROGLYPH W018A
+	* cursive variant of 133C5
 133C7	EGYPTIAN HIEROGLYPH W019
 133C8	EGYPTIAN HIEROGLYPH W020
 133C9	EGYPTIAN HIEROGLYPH W021
 133CA	EGYPTIAN HIEROGLYPH W022
 133CB	EGYPTIAN HIEROGLYPH W023
 133CC	EGYPTIAN HIEROGLYPH W024
+	* phonogramm 'nw'
 133CD	EGYPTIAN HIEROGLYPH W024A
+	* monogramm 'nw(n)' or 'nww'
 133CE	EGYPTIAN HIEROGLYPH W025
 @		X. Loaves and cakes
 133CF	EGYPTIAN HIEROGLYPH X001
 	* transliterated as t
 133D0	EGYPTIAN HIEROGLYPH X002
 133D1	EGYPTIAN HIEROGLYPH X003
+	* variant of 133D0
 133D2	EGYPTIAN HIEROGLYPH X004
 133D3	EGYPTIAN HIEROGLYPH X004A
+	* variant of 133D2
 133D4	EGYPTIAN HIEROGLYPH X004B
+	* cake
+	* variant of 133D2
+	* not to be confused with 13200, 132F0, or 133F3
 133D5	EGYPTIAN HIEROGLYPH X005
+	* hieratic
+	* variant of 133D4
 133D6	EGYPTIAN HIEROGLYPH X006
 133D7	EGYPTIAN HIEROGLYPH X006A
 133D8	EGYPTIAN HIEROGLYPH X007
+	* classifier 'food'
+	* not to be confused with 1320E
 133D9	EGYPTIAN HIEROGLYPH X008
 133DA	EGYPTIAN HIEROGLYPH X008A
+	* bread
+	* variant of 133D9
+	* not to be confused with 131EE
 @		Y. Writings, games, music
 133DB	EGYPTIAN HIEROGLYPH Y001
 133DC	EGYPTIAN HIEROGLYPH Y001A
+	* rotated variant of 133DB
 133DD	EGYPTIAN HIEROGLYPH Y002
+	* older variant of 133DB
 133DE	EGYPTIAN HIEROGLYPH Y003
 133DF	EGYPTIAN HIEROGLYPH Y004
+	* mirrored version of 133DE
 133E0	EGYPTIAN HIEROGLYPH Y005
 133E1	EGYPTIAN HIEROGLYPH Y006
 133E2	EGYPTIAN HIEROGLYPH Y007
 133E3	EGYPTIAN HIEROGLYPH Y008
 @		Z. Strokes, signs derived from Hieratic, geometrical figures
 133E4	EGYPTIAN HIEROGLYPH Z001
-	x (egyptian hieroglyph z015 - 133FA)
+	* semogram index
+	* classifier 'single'
+	* not to be confuse with 133FA
 133E5	EGYPTIAN HIEROGLYPH Z002
-	* plurality
-	x (egyptian hieroglyph z015b - 133FC)
+	* classifier 'plural'
+	* not to be confused with 133FC
 133E6	EGYPTIAN HIEROGLYPH Z002A
+	* stylistic variant of 133E5
 133E7	EGYPTIAN HIEROGLYPH Z002B
+	* classifier 'plural'
+	* not to be confused with 13213
 133E8	EGYPTIAN HIEROGLYPH Z002C
+	* variant of 133E6
 133E9	EGYPTIAN HIEROGLYPH Z002D
+	* variant of 133E8
 133EA	EGYPTIAN HIEROGLYPH Z003
+	* variant of 133E5
 133EB	EGYPTIAN HIEROGLYPH Z003A
+	* variant of 133EA
 133EC	EGYPTIAN HIEROGLYPH Z003B
-	* 3
+	* variant of 133E7
 133ED	EGYPTIAN HIEROGLYPH Z004
-	* duality
+	* classifier 'dual'
 	* transliterated as y
 	x (egyptian hieroglyph m017a - 131CC)
 133EE	EGYPTIAN HIEROGLYPH Z004A
-	* duality
-	x (egyptian hieroglyph z015a - 133FB)
+	* variant of 133ED
+	* classifier 'dual'
+	* transliterated as y
+	* not to be confused with 133FB
 133EF	EGYPTIAN HIEROGLYPH Z005
 133F0	EGYPTIAN HIEROGLYPH Z005A
+	* variant of 133EF
 133F1	EGYPTIAN HIEROGLYPH Z006
 133F2	EGYPTIAN HIEROGLYPH Z007
+	* phonogram 'w'
+	* not to be confused with 13362
 133F3	EGYPTIAN HIEROGLYPH Z008
+	* oval
+	* not to be confused with 13200, 132F0, or 133D4
 133F4	EGYPTIAN HIEROGLYPH Z009
 133F5	EGYPTIAN HIEROGLYPH Z010
+	* older variant of 133F4
 133F6	EGYPTIAN HIEROGLYPH Z011
 133F7	EGYPTIAN HIEROGLYPH Z012
+	* hieratic
 133F8	EGYPTIAN HIEROGLYPH Z013
+	* circle, unmarked round sign
+	* not to be confused with 13082 or 131F3
 133F9	EGYPTIAN HIEROGLYPH Z014
+	* hieratic
 133FA	EGYPTIAN HIEROGLYPH Z015
 	* 1
-	x (egyptian hieroglyph z001 - 133E4)
+	* not to be confused with 133E4
 133FB	EGYPTIAN HIEROGLYPH Z015A
 	* 2
-	x (egyptian hieroglyph z004a - 133EE)
+	* not to be confused with 133EE
 133FC	EGYPTIAN HIEROGLYPH Z015B
 	* 3
-	x (egyptian hieroglyph z002 - 133E5)
+	* not to be confused with 133E5
 	x (egyptian hieroglyph z003 - 133EA)
 133FD	EGYPTIAN HIEROGLYPH Z015C
 	* 4
@@ -37911,31 +38243,41 @@ FFFF	<not a character>
 13412	EGYPTIAN HIEROGLYPH AA006
 13413	EGYPTIAN HIEROGLYPH AA007
 13414	EGYPTIAN HIEROGLYPH AA007A
+	* mirrored version of 13413
 13415	EGYPTIAN HIEROGLYPH AA007B
 13416	EGYPTIAN HIEROGLYPH AA008
 13417	EGYPTIAN HIEROGLYPH AA009
 13418	EGYPTIAN HIEROGLYPH AA010
 13419	EGYPTIAN HIEROGLYPH AA011
 1341A	EGYPTIAN HIEROGLYPH AA012
+	* older variant of 13419
 1341B	EGYPTIAN HIEROGLYPH AA013
 1341C	EGYPTIAN HIEROGLYPH AA014
+	* older variant of 1341B
 1341D	EGYPTIAN HIEROGLYPH AA015
 1341E	EGYPTIAN HIEROGLYPH AA016
+	* variant of 1341D
 1341F	EGYPTIAN HIEROGLYPH AA017
 13420	EGYPTIAN HIEROGLYPH AA018
+	* more recent variant of 1341F
 13421	EGYPTIAN HIEROGLYPH AA019
 13422	EGYPTIAN HIEROGLYPH AA020
 13423	EGYPTIAN HIEROGLYPH AA021
 13424	EGYPTIAN HIEROGLYPH AA022
 13425	EGYPTIAN HIEROGLYPH AA023
 13426	EGYPTIAN HIEROGLYPH AA024
+	* older variant of 13425
 13427	EGYPTIAN HIEROGLYPH AA025
 13428	EGYPTIAN HIEROGLYPH AA026
 13429	EGYPTIAN HIEROGLYPH AA027
 1342A	EGYPTIAN HIEROGLYPH AA028
+	* phonogram 'qd'
+	* not to be confused with 131E9 and 132A7
 1342B	EGYPTIAN HIEROGLYPH AA029
+	* older variant of 1342A
 1342C	EGYPTIAN HIEROGLYPH AA030
 1342D	EGYPTIAN HIEROGLYPH AA031
+	* older variant of 1342C
 1342E	EGYPTIAN HIEROGLYPH AA032
 @@	13430	Egyptian Hieroglyph Format Controls	1343F
 @+		These format controls are used to render Egyptian hieroglyphic quadrats.
@@ -41639,7 +41981,6 @@ FFFF	<not a character>
 @+		This block contains tone marks occasionally used in furigana extensions to annotate Minnan Chinese.
 @		Tone marks
 1AFF0	KATAKANA LETTER MINNAN TONE-2
-	* also used for tone six
 1AFF1	KATAKANA LETTER MINNAN TONE-3
 1AFF2	KATAKANA LETTER MINNAN TONE-4
 1AFF3	KATAKANA LETTER MINNAN TONE-5
@@ -41648,7 +41989,6 @@ FFFF	<not a character>
 @		Nasalized tone marks
 1AFF7	KATAKANA LETTER MINNAN NASALIZED TONE-1
 1AFF8	KATAKANA LETTER MINNAN NASALIZED TONE-2
-	* also used for tone six
 1AFF9	KATAKANA LETTER MINNAN NASALIZED TONE-3
 1AFFA	KATAKANA LETTER MINNAN NASALIZED TONE-4
 1AFFB	KATAKANA LETTER MINNAN NASALIZED TONE-5
