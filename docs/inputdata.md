@@ -66,7 +66,7 @@ On other platforms, you can use a script like this Python script:
 `desuffixucd.py`
 
 ```python
-#!/usr/bin/python
+#!/usr/bin/python3
 #
 # desuffixucd.py
 #
@@ -91,7 +91,7 @@ _file_version_re = re.compile("([a-zA-Z0-9_-]+)" +
 
 def main():
   if len(sys.argv) < 2:
-    print ("Usage: %s  path/to/UCD/root" % sys.argv[0])
+    print("Usage: %s  path/to/UCD/root" % sys.argv[0])
     return
   ucd_root = sys.argv[1]
   source_files = []
@@ -104,7 +104,7 @@ def main():
     if match:
       new_basename = match.group(1) + match.group(2)
       if new_basename != basename:
-        print "Removing version suffix from " + source_file
+        print("Removing version suffix from " + source_file)
         # ... so that we can easily compare UCD files.
         new_source_file = os.path.join(folder, new_basename)
         shutil.move(source_file, new_source_file)

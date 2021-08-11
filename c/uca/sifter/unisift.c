@@ -1,5 +1,5 @@
 // © 2019 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html
+// License & terms of use: https://www.unicode.org/copyright.html
 /*
 **      Unilib
 **      Copyright 2021
@@ -41,6 +41,8 @@
  *               to the isAlphabeticException list.
  *               Updates to unisift_GetKatakanaBase to account for
  *               4 new archaic kana: U+1B11F..U+1B122.
+ *   2021-Jul-06 Fix for 3 local array overflows for sprintf in getName().
+ *   2021-Jul-12 Bump version number for memory leak fix in unisyms.c.
  */
 
 /*
@@ -165,7 +167,7 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 14.0.0d3, 2021-06-07\n";
+static char versionString[] = "Sifter version 14.0.0d5, 2021-07-12\n";
 
 static char unidatafilename[] = "unidata-14.0.0.txt";
 static char allkeysfilename[] = "allkeys-14.0.0.txt";
