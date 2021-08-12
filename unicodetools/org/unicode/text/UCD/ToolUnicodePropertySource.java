@@ -810,14 +810,27 @@ extend -and not GCB = Virama
 	    //            unicodeMap.put(0, "Prepend");
 	    //            unicodeMap.setErrorOnReset(true);
 
-	    unicodeMap.putAll(
-		    cat.getSet("Spacing_Mark")
-		    //.addAll(new UnicodeSet("[\u0E30 \u0E32 \u0E33 \u0E45 \u0EB0 \u0EB2 \u0EB3]"))
-		    .addAll(new UnicodeSet("[\u0E33 \u0EB3]"))
-		    .removeAll(new UnicodeSet("[\u102B\u102C\u1038\u1062-\u1064\u1067-\u106D\u1083\u1087-\u108C\u108F\u109A-\u109C\u19B0-\u19B4\u19B8\u19B9\u19BB-\u19C0\u19C8\u19C9\u1A61\u1A63\u1A64\uAA7B]"))
-		    .removeAll(unicodeMap.keySet("Extend"))
-		    .remove(0xAA7D)
-		    , "SpacingMark");
+            // https://www.unicode.org/reports/tr29/#SpacingMark
+            UnicodeSet gcbSpacingMarkSet =
+                    cat.getSet("Spacing_Mark")
+                    // any of the following (which have General_Category = Other_Letter):
+                    .addAll(new UnicodeSet("[\u0E33 \u0EB3]"))
+                    // Exceptions: The following
+                    // (which have General_Category = Spacing_Mark and would otherwise be included)
+                    // are specifically excluded:
+                    .removeAll(new UnicodeSet(
+                            "[\u102B\u102C\u1038\u1062-\u1064\u1067-\u106D" + // Myanmar
+                            "\u1083\u1087-\u108C\u108F\u109A-\u109C" + // Myanmar
+                            // Note 2021-aug: These U+19xx are gc=Lo so removing them is a no-op.
+                            // They may have been gc=Spacing_Mark in an earlier version.
+                            "\u19B0-\u19B4\u19B8\u19B9\u19BB-\u19C0\u19C8\u19C9" + // New Tai Lue
+                            "\u1A61\u1A63\u1A64" + // Tai Tham
+                            "\uAA7B\uAA7D]")) // Myanmar
+                    .removeAll(unicodeMap.keySet("Extend"));
+            if (compositeVersion >= (14 << 16)) {
+                gcbSpacingMarkSet.remove(0x11720).remove(0x11721); // AHOM VOWEL SIGN A & AA
+            }
+            unicodeMap.putAll(gcbSpacingMarkSet, "SpacingMark");
 
 	    final UnicodeProperty hangul = getProperty("Hangul_Syllable_Type");
 	    unicodeMap.putAll(hangul.getSet("L"), "L");

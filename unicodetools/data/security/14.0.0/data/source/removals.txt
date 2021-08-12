@@ -727,8 +727,9 @@ AB63; uncommon-use # LATIN SMALL LETTER UO
 0289	;	uncommon_use Technical
 0292	;	uncommon_use
 068E	;	Obsolete
-17CB..17CD	;	Technical
-17D0	;	Technical
+# 168-A11 Change U+17CB, U+17CC, U+17CD, U+17D0 to Identifier_Type=Recommended
+17CB..17CD	;	Recommended
+17D0	;	Recommended
 
 # Corbett Thu May 9 14:28:21 CDT 2019, etc.
 

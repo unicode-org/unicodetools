@@ -561,10 +561,10 @@ Let $EgyptianControls = [\U00013430-\U00013438]
 \p{RI=Y} = [\p{WB=RI}]
 
 # Post-base spacing combining marks of most SE Asian scripts are explicitly excluded from GCB=SpacingMark
-# See http://www.unicode.org/reports/tr29/#SpacingMark
+# See https://www.unicode.org/reports/tr29/#SpacingMark
 Let $PostBaseSpacingMarks_All = [[[:lb=SA:]-[:sc=Khmr:]] & [:gc=Mc:] & [:InPC=Right:]]
 Let $PostBaseSpacingMarks_Tweak = [\u103B \u1056 \u1057 \u1A57 \u1A6D]
-Let $PostBaseSpacingMarks_Missed = [\U00011720-\U00011721]
+Let $PostBaseSpacingMarks_Missed = []
 [$PostBaseSpacingMarks_All - $PostBaseSpacingMarks_Tweak - $PostBaseSpacingMarks_Missed] ⊂ [:GCB=XX:]
 
 ##########################
