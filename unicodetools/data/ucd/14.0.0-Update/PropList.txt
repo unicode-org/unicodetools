@@ -1149,7 +1149,16 @@ A770          ; Other_Lowercase # Lm       MODIFIER LETTER US
 A7F8..A7F9    ; Other_Lowercase # Lm   [2] MODIFIER LETTER CAPITAL H WITH STROKE..MODIFIER LETTER SMALL LIGATURE OE
 AB5C..AB5F    ; Other_Lowercase # Lm   [4] MODIFIER LETTER SMALL HENG..MODIFIER LETTER SMALL U WITH LEFT HOOK
 
-# Total code points: 189
+# 168-A2 Assign Other_Lowercase to the modifier letters in Latin Extended-F listed in L2/21-126 item β2
+# Assign Other_Lowercase to the modifier letters in Latin Extended-F recommended by Charlotte: 10780, 10783..10785, 10787..107B0, 107B2..107B5, 107BA; and also to 107B6..107B9
+10780 ; Other_Lowercase
+10783..10785 ; Other_Lowercase
+10787..107B0 ; Other_Lowercase
+107B2..107B5 ; Other_Lowercase
+107BA ; Other_Lowercase
+107B6..107B9 ; Other_Lowercase
+
+# Total code points: ?
 
 # ================================================
 
