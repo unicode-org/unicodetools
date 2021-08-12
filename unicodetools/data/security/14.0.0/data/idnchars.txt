@@ -1,5 +1,5 @@
 ﻿# idnchars.txt
-# Date: 2021-07-10, 00:52:53 GMT
+# Date: 2021-08-12, 01:13:35 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
