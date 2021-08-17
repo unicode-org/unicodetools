@@ -176,9 +176,10 @@ In \P{U-1:GC=Cn} name=U-1:name
 
 # Red Flag: cased and case_ignorable should be disjoint
 
-Let $caseOverlap = [\u02B0-\u02B8\u02C0\u02C1\u02E0-\u02E4\u0345\u037A\u1D2C-\u1D61\u1D78\u1D9B-\u1DBF\u2090-\u2094\u2C7D\uA770[\u1D62-\u1D6A\u2071\u207F\u2095-\u209C\u2C7C\uA7F8\uA7F9 \uA69C-\uA69D\uAB5C-\uAB5F]]
+Let $caseOverlap = [\u02B0-\u02B8\u02C0\u02C1\u02E0-\u02E4\u0345\u037A\u1D2C-\u1D61\u1D78\u1D9B-\u1DBF\u2090-\u2094\u2C7D\uA770[\u1D62-\u1D6A\u2071\u207F\u2095-\u209C\u2C7C\uA7F8\uA7F9 \uA69C-\uA69D\uAB5C-\uAB5F]\U00010780\U00010783-\U00010785\U00010787-\U000107B0\U000107B2-\U000107BA]
 # 6.1.0, added 22 overlap characters
 # 7.0 added \uA69C-\uA69D\uAB5C-\uAB5F
+# 14.0 new modifier letters in Latin Extended-F are Lowercase (U+107xx)
 \p{cased} ∥ [\p{caseignorable} - $caseOverlap]
 
 ##########################
