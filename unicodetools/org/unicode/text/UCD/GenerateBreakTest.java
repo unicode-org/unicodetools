@@ -1288,7 +1288,9 @@ abstract public class GenerateBreakTest implements UCD_Types {
 	                    ToolUnicodePropertySource.make(ucd.getVersion()),
 	                    "LineBreak", target),
 	            "aa", "Line",
+	            // extraSamples
 		    new String[]{}, 
+		    // extraSingleSamples
 		    new String[]{
 			    "\u000Bぁ",     //4.0
 			    "\rぁ",     //5.02
@@ -1545,6 +1547,23 @@ abstract public class GenerateBreakTest implements UCD_Types {
 			    "\uD83C\uDDF7\uD83C\uDDFA\u200B\uD83C\uDDF8\uD83C\uDDEA",
 			    "\u05D0-\u05D0",
 	    });
+
+            // Additions for Unicode 14 LB30b   [\p{Extended_Pictographic}&\p{Cn}] × EM
+            ToolUnicodePropertySource propSource = ToolUnicodePropertySource.make(ucd.getVersion());
+            UnicodeSet unassigned = propSource.getSet("gc=Cn");
+            UnicodeSet extPict = propSource.getSet("ExtPict=yes");
+            // [\p{Extended_Pictographic}&\p{Cn}] 
+            UnicodeSet extPictUnassigned = extPict.cloneAsThawed().retainAll(unassigned);
+            String firstExtPictUnassigned = UTF16.valueOf(extPictUnassigned.charAt(0));
+            // [\p{Extended_Pictographic}&\p{Cn}] × EM
+            extraSingleSamples.add(firstExtPictUnassigned + sampleEMod);
+
+            UnicodeSet lb_EBase = propSource.getSet("lb=EB");
+            // [\p{Extended_Pictographic}-\p{Cn}-\p{lb=EB}]
+            UnicodeSet extPictAssigned = extPict.cloneAsThawed().removeAll(unassigned).removeAll(lb_EBase);
+            String firstExtPictAssigned = UTF16.valueOf(extPictAssigned.charAt(0));
+            // [\p{Extended_Pictographic}-\p{Cn}-\p{lb=EB}] ÷ EM
+            extraSingleSamples.add(firstExtPictAssigned + sampleEMod);
 	}
 	@Override
 	public boolean isBreak(String source, int offset) {

@@ -156,12 +156,7 @@ public final class UCD implements UCD_Types {
      * Get the character name.
      */
     public String getName(int codePoint) {
-        String name = getName(codePoint, NORMAL);
-        // make sure labels are unique.
-    	if (name.equals("<control>")) {
-    		name = "<control-" + Utility.hex(codePoint) + ">";
-    	}
-    	return name;
+        return getName(codePoint, NORMAL);
     }
 
     /**
@@ -175,10 +170,20 @@ public final class UCD implements UCD_Types {
      * Get the character name.
      */
     public String getName(int codePoint, byte style) {
+        String name;
         if (style == SHORT) {
-            return get(codePoint, true).shortName;
+            name = get(codePoint, true).shortName;
+        } else {
+            name = get(codePoint, true).name;
         }
-        return get(codePoint, true).name;
+        if (name == null) {
+            return "<reserved-" + Utility.hex(codePoint) + ">";
+        }
+        // Make sure labels are unique.
+        if (name.equals("<control>")) {
+            name = "<control-" + Utility.hex(codePoint) + ">";
+        }
+        return name;
     }
 
     /**
