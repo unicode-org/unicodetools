@@ -105,6 +105,8 @@ $ZWJ=\p{Line_Break=ZWJ}
 $CP30=[$CP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
 $OP30=[$OP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
 
+$ExtPictUnassigned=[\p{Extended_Pictographic}&\p{Cn}]
+
 # SPECIAL EXTENSIONS
 
 $CM=[$CM1 $ZWJ]
@@ -273,9 +275,8 @@ $AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
 26.02) $JV | $H2 × $JV | $JT
 26.03) $JT | $H3 × $JT
 # LB 27 Treat a Korean Syllable Block the same as ID.
-27.01) $JL | $JV | $JT | $H2 | $H3 × $IN
-27.02) $JL | $JV | $JT | $H2 | $H3  × $PO
-27.03) $PR × $JL | $JV | $JT | $H2 | $H3
+27.01) $JL | $JV | $JT | $H2 | $H3  × $PO
+27.02) $PR × $JL | $JV | $JT | $H2 | $H3
 # LB 28  Do not break between alphabetics (\"at\").
 28) ($AL | $HL) × ($AL | $HL)
 # LB 29  Do not break between numeric punctuation and alphabetics (\"e.g.\").
@@ -287,7 +288,9 @@ $AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
 30.11) ^ ($RI $RI)* $RI × $RI
 30.12) [^$RI] ($RI $RI)* $RI × $RI
 30.13) $RI ÷ $RI
-30.2) $EB × $EM
+# LB 30b Do not break between an emoji base (or potential emoji) and an emoji modifier.
+30.21) $EB × $EM
+30.22) $ExtPictUnassigned × $EM
 
 @SentenceBreak
 
