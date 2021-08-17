@@ -1,5 +1,5 @@
 ﻿# IdentifierType.txt
-# Date: 2021-07-10, 00:52:52 GMT
+# Date: 2021-08-12, 01:13:33 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -437,7 +437,8 @@
 1780..17A2    ; Recommended                    # 3.0   [35] KHMER LETTER KA..KHMER LETTER QA
 17A5..17A7    ; Recommended                    # 3.0    [3] KHMER INDEPENDENT VOWEL QI..KHMER INDEPENDENT VOWEL QU
 17A9..17B3    ; Recommended                    # 3.0   [11] KHMER INDEPENDENT VOWEL QUU..KHMER INDEPENDENT VOWEL QAU
-17B6..17CA    ; Recommended                    # 3.0   [21] KHMER VOWEL SIGN AA..KHMER SIGN TRIISAP
+17B6..17CD    ; Recommended                    # 3.0   [24] KHMER VOWEL SIGN AA..KHMER SIGN TOANDAKHIAT
+17D0          ; Recommended                    # 3.0        KHMER SIGN SAMYOK SANNYA
 17D2          ; Recommended                    # 3.0        KHMER SIGN COENG
 17D7          ; Recommended                    # 3.0        KHMER SIGN LEK TOO
 17DC          ; Recommended                    # 3.0        KHMER SIGN AVAKRAHASANYA
@@ -570,7 +571,7 @@ FA27..FA29    ; Recommended                    # 1.1    [3] CJK COMPATIBILITY ID
 2CEB0..2EBE0  ; Recommended                    # 10.0 [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 30000..3134A  ; Recommended                    # 13.0 [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 
-# Total code points: 107934
+# Total code points: 107938
 
 #	Identifier_Type:	Inclusion
 
@@ -962,7 +963,7 @@ A8FC          ; Uncommon_Use Obsolete Not_XID  # 8.0        DEVANAGARI SIGN SIDD
 0953..0954    ; Technical                      # 1.1    [2] DEVANAGARI GRAVE ACCENT..DEVANAGARI ACUTE ACCENT
 0D81          ; Technical                      # 13.0       SINHALA SIGN CANDRABINDU
 0F18..0F19    ; Technical                      # 2.0    [2] TIBETAN ASTROLOGICAL SIGN -KHYUD PA..TIBETAN ASTROLOGICAL SIGN SDONG TSHUGS
-17CB..17D0    ; Technical                      # 3.0    [6] KHMER SIGN BANTOC..KHMER SIGN SAMYOK SANNYA
+17CE..17CF    ; Technical                      # 3.0    [2] KHMER SIGN KAKABAT..KHMER SIGN AHSDA
 1ABF..1AC0    ; Technical                      # 13.0   [2] COMBINING LATIN SMALL LETTER W BELOW..COMBINING LATIN SMALL LETTER TURNED W BELOW
 1D00..1D2B    ; Technical                      # 4.0   [44] LATIN LETTER SMALL CAPITAL A..CYRILLIC LETTER SMALL CAPITAL EL
 1D2F          ; Technical                      # 4.0        MODIFIER LETTER CAPITAL BARRED B
@@ -1015,7 +1016,7 @@ FE73          ; Technical                      # 3.2        ARABIC TAIL FRAGMENT
 1D185..1D18B  ; Technical                      # 3.1    [7] MUSICAL SYMBOL COMBINING DOIT..MUSICAL SYMBOL COMBINING TRIPLE TONGUE
 1D1AA..1D1AD  ; Technical                      # 3.1    [4] MUSICAL SYMBOL COMBINING DOWN BOW..MUSICAL SYMBOL COMBINING SNAP PIZZICATO
 
-# Total code points: 504
+# Total code points: 500
 
 #	Identifier_Type:	Technical Exclusion
 
