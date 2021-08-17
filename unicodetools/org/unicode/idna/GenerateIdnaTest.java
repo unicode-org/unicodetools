@@ -162,14 +162,21 @@ public class GenerateIdnaTest {
         out.println("\n# RANDOMIZED TESTS\n");
         out2.println("\n# RANDOMIZED TESTS\n");
 
+        String lastVersion = Settings.lastVersion;
+        if (lastVersion.equals("13.1.0")) {
+            // HACK to work around the artificial Unicode version 13.1
+            // which was hacked in for producing emoji 13.1 data files.
+            // See https://github.com/unicode-org/unicodetools/issues/100 "Whither 13.1.0?"
+            lastVersion = "13.0.0";
+        }
         int ucdTypesLastVersion = UCD_Types.AGE130;
         String ucdTypesLastVersionString = UCD_Types.AGE_VERSIONS[ucdTypesLastVersion];
-        if (!ucdTypesLastVersionString.equals(Settings.lastVersion)) {
+        if (!ucdTypesLastVersionString.equals(lastVersion)) {
             throw new AssertionError(
-                    "update GenerateIdnaTest.ucdTypesLastVersion to match " + Settings.lastVersion);
+                    "update GenerateIdnaTest.ucdTypesLastVersion to match " + lastVersion);
         }
         Set<TestLine> testLines = LoadIdnaTest.load(
-                Settings.UnicodeTools.UNICODETOOLS_DIR + "data/idna/" + Settings.lastVersion);
+                Settings.UnicodeTools.UNICODETOOLS_DIR + "data/idna/" + lastVersion);
 
         for (TestLine testLine : testLines) {
             count += generateLine(replaceNewerThan(testLine.source, ucdTypesLastVersion), out, out2);
