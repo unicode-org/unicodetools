@@ -380,8 +380,13 @@ public class Segmenter {
                             return true;
                         }
 		    }
-                    System.out.println("Segmenter.MyXSymbolTable: Unknown property " + propertyName);
-                    return false;
+                    // If we cannot handle the property name, then we need to really fail.
+                    // If we were to just print something and return false, then the UnicodeSet code
+                    // would just evaluate this itself, and may succeed but give wrong results.
+                    // For example, as long as we require "gc=Cn" and don't handle "Cn" here,
+                    // falling back to built-in ICU data means that we get gc=Cn ranges from ICU
+                    // rather than from the current Unicode beta.
+                    throw new IllegalArgumentException("Segmenter.MyXSymbolTable: Unknown property " + propertyName);
 		}
 		// Binary properties:
 		// \p{Extended_Pictographic} is equivalent with \p{Extended_Pictographic=Yes}
