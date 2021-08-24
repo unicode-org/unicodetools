@@ -71,6 +71,42 @@ characters between scripts with different directions, like French with Arabic or
  */
 
 final public class UCA implements Comparator<String>, UCA_Types {
+    // Utility function copied from
+    // icu4j/main/tests/translit/src/com/ibm/icu/dev/test/translit/RoundTripTest.java
+    /**
+     * If abbreviated=true, returns a set which only a sampling of the original code points.
+     * density is the approximate total number of code points to returned for the entire set.
+     */
+    private static UnicodeSet abbreviateSet(UnicodeSet set, boolean abbreviated, int density) {
+        if (!abbreviated) {
+            return set;
+        }
+        int rangeCount = set.getRangeCount();
+        int perRange = rangeCount;
+        if (perRange != 0) {
+            perRange = density / perRange;
+        }
+        boolean unchanged = true;
+        for (int i = 0; i < rangeCount; ++i) {
+            int start = set.getRangeStart(i);
+            int end = set.getRangeEnd(i);
+            int newEnd = start + perRange;
+            if (end > newEnd) {
+                if (unchanged) {
+                    set = set.cloneAsThawed();
+                    unchanged = false;
+                }
+                set.remove(newEnd + 1, end);
+            }
+        }
+        return set;
+    }
+
+    private static UnicodeSet abbreviateSet(UnicodeSet set, boolean abbreviated) {
+        return abbreviateSet(set, abbreviated, 100);
+    }
+
+    //--------------------------------------------------------------------
 
     public enum CollatorType {ducet, cldr, cldrWithoutFFFx}
 
@@ -1032,15 +1068,14 @@ final public class UCA implements Comparator<String>, UCA_Types {
         private int endOfRange = startOfRange;
         private int itemInRange = startOfRange;
         private boolean doSamples = false;
-        private final AbbreviatedUnicodeSetIterator usi = new AbbreviatedUnicodeSetIterator();
+        private final UnicodeSetIterator usi = new UnicodeSetIterator();
         private final UnicodeSetIterator moreSampleIterator = new UnicodeSetIterator(moreSamples);
 
         UCAContents(Normalizer skipDecomps, String unicodeVersion) {
             nfkd = new Normalizer(UCD_Types.NFKD, unicodeVersion);
             this.skipDecomps = skipDecomps;
             currentRange = 0;
-            usi.reset(getStatistics().unspecified, true);
-            //usi.setAbbreviated(true);
+            usi.reset(abbreviateSet(getStatistics().unspecified, true));
 
             // FIX SAMPLES
             if (SAMPLE_RANGES[0][0] == 0) {
@@ -1109,8 +1144,7 @@ final public class UCA implements Comparator<String>, UCA_Types {
                     }
                 }
                 getStatistics().unspecified = temp;
-                usi.reset(getStatistics().unspecified, true);
-                //usi.setAbbreviated(true);
+                usi.reset(abbreviateSet(getStatistics().unspecified, true));
                 if (DEBUG) {
                     System.out.println("Unspecified = " + getStatistics().unspecified.toPattern(true));
                 }
