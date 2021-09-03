@@ -3,7 +3,7 @@
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 
-This directory contains DRAFT data files for Unicode Emoji, Version 14.0
+This directory contains final data files for Unicode Emoji, Version 14.0
 
 Public/emoji/14.0/
 
