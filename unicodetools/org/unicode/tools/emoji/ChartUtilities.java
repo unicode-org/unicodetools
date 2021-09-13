@@ -14,7 +14,9 @@ public class ChartUtilities {
     public static void writeHeader(String outFileName, Appendable out, String title, String indexRelLink,
             boolean skipVersion, String firstLine, String dataDir, String tr51Url) {
         final String fullTitle = title + (skipVersion ? "" : ", v" + Emoji.VERSION_STRING);
-        String headerLine = "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n"
+        String headerLine =
+                "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" "
+                + "\"http://www.w3.org/TR/html4/loose.dtd\">\n"
                 + UtilityBase.HTML_HEAD
                 + "<link rel='stylesheet' type='text/css' href='emoji-list.css'>\n"
                 + "<title>" + fullTitle
@@ -35,10 +37,13 @@ public class ChartUtilities {
                 + (dataDir == null ? "" : ""
                         + "<p>While these charts use a particular version of the <a target='emoji-data' href='"
                         + dataDir
-                        + "'>Unicode Emoji data files</a>, the images and format may be updated at any time."
+                        + "'>Unicode Emoji data files</a>, "
+                        + "the images and format may be updated at any time."
                         + " For any production usage, consult those data files. "
-                        + " For information about the contents of each column, such as the <b>CLDR Short Name</b>, click on the column header."
-                        + " For further information, see <a target='text' href='index.html'>Index &amp; Help</a>.</p>\n");
+                        + " For information about the contents of each column, "
+                        + "such as the <b>CLDR Short Name</b>, click on the column header."
+                        + " For further information, see "
+                        + "<a target='text' href='index.html'>Index &amp; Help</a>.</p>\n");
         try {
             out.append(headerLine);
         } catch (IOException e) {
@@ -59,12 +64,15 @@ public class ChartUtilities {
     }
 
     static final String UNICODE_HEADER = "" + "<div class='icon'>"
-    + "<a href='https://www.unicode.org/'><img class='logo' alt='[Unicode]' src='https://www.unicode.org/webscripts/logo60s2.gif'></a>"
-    + "<a class='bar' target='text' href='%%CHARTS_LINK%%'>Emoji Charts</a>" + "</div>"
-    + "<div class='gray'>&nbsp;</div>" + "<div class='main'>";
+            + "<a href='https://www.unicode.org/'>"
+            + "<img class='logo' alt='[Unicode]' src='https://www.unicode.org/webscripts/logo60s2.gif'></a>"
+            + "<a class='bar' target='text' href='%%CHARTS_LINK%%'>Emoji Charts</a>" + "</div>"
+            + "<div class='gray'>&nbsp;</div>" + "<div class='main'>";
 
     public static String getUnicodeHeader(String indexRelLink) {
-        return FileUtilities.replace(UNICODE_HEADER, "%%CHARTS_LINK%%", (indexRelLink == null ? "index.html" : indexRelLink));
+        return FileUtilities.replace(
+                UNICODE_HEADER, "%%CHARTS_LINK%%",
+                (indexRelLink == null ? "index.html" : indexRelLink));
     }
 
     public static String getButton() {
@@ -79,8 +87,10 @@ public class ChartUtilities {
             out.append("\n</div><div class='copyright'>"
                     // + "<hr width='50%'>"
                     + "<br><a href='https://www.unicode.org/copyright.html'>"
-                    + "<img src='https://www.unicode.org/img/hb_notice.gif' style='border-style: none; width: 216px; height=50px;' alt='Access to Copyright and terms of use'>"
-                    + "</a><br><script language='Javascript' type='text/javascript' src='https://www.unicode.org/webscripts/lastModified.js'></script>"
+                    + "<img src='https://www.unicode.org/img/hb_notice.gif' "
+                    + "style='border-style: none; width: 216px; height=50px;' "
+                    + "alt='Access to Copyright and terms of use'>"
+                    + "</a>"
                     + "</div>"
                     + "</body></html>\n");
         } catch (IOException e) {
@@ -99,12 +109,12 @@ public class ChartUtilities {
 
     public static String getLink(String href, String anchorText, String target) {
         href = fixAnchor(href);
-        return "<a" + " href='#" + href + "'" + (target == null ? "" : " target='" + target + "'") + ">" + anchorText
+        return "<a" + " href='#" + href + "'"
+                + (target == null ? "" : " target='" + target + "'") + ">" + anchorText
                 + "</a>";
     }
 
     public static String getDoubleLink(String anchor) {
         return getDoubleLink(anchor, anchor);
     }
-
 }
