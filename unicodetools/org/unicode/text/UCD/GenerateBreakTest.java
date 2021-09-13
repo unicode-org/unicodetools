@@ -485,11 +485,10 @@ abstract public class GenerateBreakTest implements UCD_Types {
 		"<table cellspacing='0' cellpadding='0' border='0'>\n" +
 		"<tr>\n" +
 		"<td><a href='https://www.unicode.org/copyright.html'>\n" +
-		"<img src='http://www.unicode.org/img/hb_notice.gif' border='0' alt='Access to Copyright and terms of use' width='216' height='50'></a></td>\n" +
+		"<img src='https://www.unicode.org/img/hb_notice.gif' border='0' " +
+		"alt='Access to Copyright and terms of use' width='216' height='50'></a></td>\n" +
 		"</tr>\n" +
 		"</table>\n" +
-		"<script language='Javascript' type='text/javascript' src='http://www.unicode.org/webscripts/lastModified.js'>\n" +
-		"</script>\n" +
 		"</center>\n" +
 		"</div>");
 	for (int i = 0; i < 50; ++i) {
