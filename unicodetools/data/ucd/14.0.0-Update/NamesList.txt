@@ -1,12 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 14.0.0
 @@@+	U14M210804.lst
-	Unicode 14.0.0 names list, eleventh delta.
-	Repertoire synched with UnicodeData-14.0.0d13.txt.
-	Resynched Egyptian annotations with latest updates from Michel.
-	Added xrefs for 2264, 2265, 22C7.
-	Removed annotations about "tone six" for 1AFF0 and 1AFF8.
-	Extensive revision of annotations for ASCII and Latin-1 characters.
+	Unicode 14.0.0 final names list.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
