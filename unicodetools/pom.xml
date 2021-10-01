@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>unicodetools</artifactId>
@@ -17,30 +15,6 @@
 		<version>1.0.0</version>
 	</parent>
 
-
-	<url>https://unicode.org/cldr</url>
-
-	<properties>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<!-- <mainClass>org.unicode.cldr.tool.Main</mainClass> -->
-		<junit-version>5.7.2</junit-version>
-		<!-- Need to use an updated surefire plugin here. -->
-		<maven-surefire-plugin-version>3.0.0-M5</maven-surefire-plugin-version>
-	</properties>
-
-	<scm>
-		<connection>scm:git:https://github.com/unicode-org/unicodetools.git</connection>
-	</scm>
-
-	<!-- <parent>
-		<groupId></groupId>
-		<artifactId></artifactId>
-		<version></version>
-	</parent>
- -->
 	<dependencies>
 		<dependency>
 			<groupId>com.ibm.icu</groupId>
@@ -60,71 +34,6 @@
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
-			<version>${junit-version}</version>
 		</dependency>
-
-		<!-- <dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-		</dependency> -->
-
-		<!-- <dependency>
-			<groupId>org.apache.ant</groupId>
-			<artifactId>ant</artifactId>
-			<scope>compile</scope>
-		</dependency>
- -->
-		<!-- <dependency>
-			<groupId>xml-apis</groupId>
-			<artifactId>xml-apis</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>xerces</groupId>
-			<artifactId>xercesImpl</artifactId>
-		</dependency> -->
-
 	</dependencies>
-
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>${maven-surefire-plugin-version}</version>
-					<configuration>
-						<systemPropertyVariables>
-							<UVERSION>13.0.0</UVERSION>
-							<CLDR_ENVIRONMENT>UNITTEST</CLDR_ENVIRONMENT>
-							<java.awt.headless>true</java.awt.headless>
-							<UNICODETOOLS_REPO_DIR>${project.basedir}/..</UNICODETOOLS_REPO_DIR>
-							<!-- sibling of unicodetools-->
-							<UNICODETOOLS_OUTPUT_DIR>${project.basedir}/../output</UNICODETOOLS_OUTPUT_DIR>
-						</systemPropertyVariables>
-						<argLine>-Xmx10g -enableassertions</argLine>
-					</configuration>
-				</plugin>
-				<plugin>
-					<artifactId>maven-failsafe-plugin</artifactId>
-					<version>${maven-surefire-plugin-version}</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
-	<repositories>
-		<repository>
-			<id>githubicu</id>
-			<name>GitHub unicode-org/icu Apache Maven Packages</name>
-			<url>https://maven.pkg.github.com/unicode-org/icu</url>
-		</repository>
-		<repository>
-			<id>githubcldr</id>
-			<name>GitHub unicode-org/cldr Apache Maven Packages</name>
-			<url>https://maven.pkg.github.com/unicode-org/cldr</url>
-		</repository>
-	</repositories>
 </project>
