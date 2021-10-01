@@ -80,3 +80,4 @@ rules.mk
 # (none yet, see ICU .gitignore for examples)
 
 .DS_Store
+/output
