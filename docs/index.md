@@ -42,6 +42,7 @@ git clone https://github.com/unicode-org/cldr.git
     1. (Eclipse users can do this graphically by following the corresponding step in the Eclipse section below)
     1. At the command-line: `cd <unitools>; mkdir -p Generated/BIN`
 5. The tools and commands are parameterized such that important configuration values are set as Java System properties at runtime as JVM arguments. Here is a list of property names and example values:
+
 | Property                | Example Value                                     |
 |-------------------------|---------------------------------------------------|
 | CLDR_DIR                | /usr/local/google/home/mscherer/cldr/uni/src      |
