@@ -108,11 +108,11 @@ Common tasks for Unicode Tools are listed below with example CLI commands with e
 
 - Make Unicode Files:
 ```
-MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass= "org.unicode.text.UCD.Main"  -Dexec.args= "version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR= $(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR= $(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR= $(pwd)  -DUVERSION=14.0.0
+MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
 ```
 - Build and Test:
 ```
-MAVEN_OPTS="-ea" mvn package -DCLDR_DIR= $(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR= $(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR= $(pwd)  -DUVERSION=14.0.0
+MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
 ```
 
 
