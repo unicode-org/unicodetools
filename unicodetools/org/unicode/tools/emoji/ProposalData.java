@@ -322,7 +322,7 @@ public class ProposalData {
 		.replace(Emoji.EMOJI_VARIANT_STRING, "")
 		.replace("\u2642", GENDER_REPRESENTATIVE),
 		SKIN_REPRESENTATIVE);
-	String shorter = SHORTEST_SKELETON.get(result);
+	String shorter = shortestForm(result);
 	return shorter == null ? result : shorter;
     }
     // parse a .. construction.

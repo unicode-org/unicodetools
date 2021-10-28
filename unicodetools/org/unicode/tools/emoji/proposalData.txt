@@ -1159,6 +1159,12 @@
 270C 1F3FF; L2/13-207, L2/14-093, L2/14-173 # 2015 (✌🏿) victory hand: dark skin tone
 270D 1F3FF; L2/13-207, L2/14-093, L2/14-173 # 2015 (✍🏿) writing hand: dark skin tone
 
+# L2/20-128
+2764 200D 1F525; L2/20-128 # 2020 (❤️‍🔥) heart on fire
+
+# L2/19-380
+2764 200D 1FA79; L2/19-380 # 2020 (❤️‍🩹) mending heart
+
 # L2/09-379
 1F1E6 1F1E8; L2/09-379 # 2015 (🇦🇨) flag: Ascension Island
 1F1E6 1F1E9; L2/09-379 # 2015 (🇦🇩) flag: Andorra
@@ -1534,14 +1540,20 @@
 1F469 1F3FF 200D 1F692; L2/16-160, L2/14-173 # 2016 (👩🏿‍🚒) woman firefighter: dark skin tone
 
 # L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173
-#1F468 1F3FF 200D 1F91D 200D 1F468 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # -1 (👨🏿‍🤝‍👨🏿) men holding hands: dark skin tone
-#1F468 1F3FF 200D 1F91D 200D 1F469 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # -1 (👨🏿‍🤝‍👩🏿) men holding hands: dark skin tone
-#1F469 1F3FF 200D 1F91D 200D 1F468 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # -1 (👩🏿‍🤝‍👨🏿) woman and man holding hands: dark skin tone
-#1F469 1F3FF 200D 1F91D 200D 1F469 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # -1 (👩🏿‍🤝‍👩🏿) women holding hands: dark skin tone
 1F46B 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # 2019 (👫🏿) woman and man holding hands: dark skin tone
 1F46C 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # 2019 (👬🏿) men holding hands: dark skin tone
 1F46D 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # 2019 (👭🏿) women holding hands: dark skin tone
 1F9D1 1F3FF 200D 1F91D 200D 1F9D1 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340, L2/14-173 # 2019 (🧑🏿‍🤝‍🧑🏿) people holding hands: dark skin tone
+
+# L2/20-133, L2/14-173
+1F468 1F3FF 200D 2764 200D 1F468 1F3FF; L2/20-133, L2/14-173 # 2020 (👨🏿‍❤️‍👨🏿) couple with heart: man, man, dark skin tone
+1F468 1F3FF 200D 2764 200D 1F48B 200D 1F468 1F3FF; L2/20-133, L2/14-173 # 2020 (👨🏿‍❤️‍💋‍👨🏿) kiss: man, man, dark skin tone
+1F469 1F3FF 200D 2764 200D 1F468 1F3FF; L2/20-133, L2/14-173 # 2020 (👩🏿‍❤️‍👨🏿) couple with heart: woman, man, dark skin tone
+1F469 1F3FF 200D 2764 200D 1F469 1F3FF; L2/20-133, L2/14-173 # 2020 (👩🏿‍❤️‍👩🏿) couple with heart: woman, woman, dark skin tone
+1F469 1F3FF 200D 2764 200D 1F48B 200D 1F468 1F3FF; L2/20-133, L2/14-173 # 2020 (👩🏿‍❤️‍💋‍👨🏿) kiss: woman, man, dark skin tone
+1F469 1F3FF 200D 2764 200D 1F48B 200D 1F469 1F3FF; L2/20-133, L2/14-173 # 2020 (👩🏿‍❤️‍💋‍👩🏿) kiss: woman, woman, dark skin tone
+1F48F 1F3FF; L2/20-133, L2/14-173 # 2020 (💏🏿) kiss: dark skin tone
+1F491 1F3FF; L2/20-133, L2/14-173 # 2020 (💑🏿) couple with heart: dark skin tone
 
 # L2/18-306, L2/18-307, L2/14-173
 1F468 1F3FF 200D 1F9AF; L2/18-306, L2/18-307, L2/14-173 # 2019 (👨🏿‍🦯) man with white cane: dark skin tone
@@ -1561,6 +1573,13 @@
 1F469 1F3FF 200D 1F9B2; L2/17-082, L2/17-011, L2/16-147, L2/16-008, L2/14-173 # 2018 (👩🏿‍🦲) woman: dark skin tone, bald
 1F469 1F3FF 200D 1F9B3; L2/17-082, L2/17-011, L2/16-147, L2/16-008, L2/14-173 # 2018 (👩🏿‍🦳) woman: dark skin tone, white hair
 
+# L2/19-265, L2/19-370
+1FAF1; L2/19-265, L2/19-370; rightwards hand
+1FAF2; L2/19-265, L2/19-370; leftwards hand
+1FAF1 1F3FF; L2/19-265, L2/19-370; rightwards hand: dark skin tone
+1FAF2 1F3FF; L2/19-265, L2/19-370; leftwards hand: dark skin tone
+1F91D 1F3FF; L2/19-265, L2/19-370; handshake: dark skin tone
+
 # L2/19-231, L2/17-071, L2/16-160, L2/16‑160
 1F470 200D 2640; L2/19-231, L2/17-071, L2/16-160, L2/16‑160 # 2020 (👰‍♀️) woman with veil
 1F470 200D 2642; L2/19-231, L2/17-071, L2/16-160, L2/16‑160 # 2020 (👰‍♂️) man with veil
@@ -1577,6 +1596,15 @@
 1F57A 1F3FF; L2/15-054, L2/14-173 # 2016 (🕺🏿) man dancing: dark skin tone
 1F926 1F3FF; L2/15-054, L2/14-173 # 2016 (🤦🏿) person facepalming: dark skin tone
 1F934 1F3FF; L2/15-054, L2/14-173 # 2016 (🤴🏿) prince: dark skin tone
+
+# L2/20-066
+1F62E 200D 1F4A8; L2/20-066 # 2020 (😮‍💨) face exhaling
+
+# L2/20-131
+1F635 200D 1F4AB; L2/20-131 # 2020 (😵‍💫) face with spiral eyes
+
+# L2/19-390, L2/20-130
+1F636 200D 1F32B; L2/19-390, L2/20-130 # 2020 (😶‍🌫️) face in clouds
 
 # L2/18-139, L2/14-173
 1F90F 1F3FF; L2/18-139, L2/14-173 # 2019 (🤏🏿) pinching hand: dark skin tone
@@ -1664,8 +1692,16 @@
 1F9D2 1F3FF; L2/16-317, L2/14-173 # 2017 (🧒🏿) child: dark skin tone
 1F9D3 1F3FF; L2/16-317, L2/14-173 # 2017 (🧓🏿) older person: dark skin tone
 
+# L2/20-133, L2/16-160, L2/16‑160
+1F9D4 200D 2640; L2/20-133, L2/16-160, L2/16‑160 # 2020 (🧔‍♀️) woman: beard
+1F9D4 200D 2642; L2/20-133, L2/16-160, L2/16‑160 # 2020 (🧔‍♂️) man: beard
+
 # L2/16-260, L2/14-173
 1F9D4 1F3FF; L2/16-260, L2/14-173 # 2017 (🧔🏿) person: dark skin tone, beard
+
+# L2/20-133, L2/16-160, L2/14-173, L2/16‑160
+1F9D4 1F3FF 200D 2640; L2/20-133, L2/16-160, L2/14-173, L2/16‑160 # 2020 (🧔🏿‍♀️) woman: dark skin tone, beard
+1F9D4 1F3FF 200D 2642; L2/20-133, L2/16-160, L2/14-173, L2/16‑160 # 2020 (🧔🏿‍♂️) man: dark skin tone, beard
 
 # L2/16-284, L2/14-173
 1F9D5 1F3FF; L2/16-284, L2/14-173 # 2017 (🧕🏿) woman with headscarf: dark skin tone
@@ -1725,25 +1761,49 @@
 1F9DC 1F3FF; L2/16-304, L2/16-274, L2/14-173 # 2017 (🧜🏿) merperson: dark skin tone
 
 
-2764 200D 1F525; L2/20-128; heart on fire
-2764 200D 1FA79; L2/19-380; mending heart
-1F468 1F3FF 200D 2764 200D 1F468 1F3FF; L2/20-133; null
-1F468 1F3FF 200D 2764 200D 1F48B 200D 1F468 1F3FF; L2/20-133; null
-1F469 1F3FF 200D 2764 200D 1F468 1F3FF; L2/20-133; null
-1F469 1F3FF 200D 2764 200D 1F469 1F3FF; L2/20-133; null
-1F469 1F3FF 200D 2764 200D 1F48B 200D 1F468 1F3FF; L2/20-133; null
-1F469 1F3FF 200D 2764 200D 1F48B 200D 1F469 1F3FF; L2/20-133; null
-1F48F 1F3FF; L2/20-133; null
-1F491 1F3FF; L2/20-133; null
-1F62E 200D 1F4A8; L2/20-066; face exhaling
-1F635 200D 1F4AB; L2/20-131; face with spiral eyes
-1F636 200D 1F32B; L2/19-390, L2/20-130; face in clouds
-#1F9D1 1F3FF 200D 2764 200D 1F48B 200D 1F9D1 1F3FF; L2/20-133; null
-#1F9D1 1F3FF 200D 2764 200D 1F9D1 1F3FF; L2/20-133; null
-1F9D4 200D 2640; L2/20-133; man with beard
-1F9D4 200D 2642; L2/20-133; woman with beard
-1F9D4 1F3FF 200D 2642; L2/20-133; woman with beard: light skin tone
-1F9D4 1F3FF 200D 2640; L2/20-133; man with beard
+1F6DD; L2/20-215; playground slide
+1F6DE; L2/20-216; wheel
+1F6DF; L2/20-224; ring buoy
+1F7F0; L2/20-225; heavy equals sign
+1F979; L2/20-064; face holding back tears
+1F9CC; L2/19-232, L2/19-399; troll
+1FA7B; L2/20-214; x-ray
+1FA7C; L2/19-379; crutch
+1FAA9; L2/19-310; mirror ball
+1FAAA; L2/20-221; identification card
+1FAAB; L2/19-316; low battery
+1FAAC; L2/20-218; hamsa
+1FAB7; L2/19-371; lotus
+1FAB8; L2/20-220; coral
+1FAB9; L2/20-217; empty nest
+1FABA; L2/20-217; nest with eggs
+1FAC3; L2/20-190; pregnant man
+1FAC4; L2/20-190; pregnant person
+1FAC5; L2/20-189; person with crown
+1FAD7; L2/20-065; pouring liquid
+1FAD8; L2/20-226; beans
+1FAD9; L2/20-222; jar
+1FAE0; L2/20-072; melting face
+1FAE1; L2/19-396, L2/19-400; saluting face
+1FAE2; L2/19-304; face with open eyes and hand over mouth
+1FAE3; L2/19-378; face with peeking eye
+1FAE4; L2/20-219; face with diagonal mouth
+1FAE5; L2/20-223; dotted line face
+1FAE6; L2/19-219; biting lip
+1FAE7; L2/19-311; bubbles
+1FAF0; L2/19-327; hand with index finger and thumb crossed
+1FAF3; L2/20-213; palm down hand
+1FAF4; L2/20-213; palm up hand
+1FAF5; L2/20-212; index pointing at the viewer
+1FAF6; L2/20-211; heart hands
+1FAC3 1F3FF; L2/20-190; null
+1FAC4 1F3FF; L2/20-190; null
+1FAC5 1F3FF; L2/20-189; null
+1FAF0 1F3FF; L2/19-327; null
+1FAF3 1F3FF; L2/20-213; null
+1FAF4 1F3FF; L2/20-213; null
+1FAF5 1F3FF; L2/20-212; null
+1FAF6 1F3FF; L2/20-211; null
 
 # MISSING-2015
 1F441 FE0F 200D 1F5E8 FE0F; MISSING # 2015 (👁️‍🗨️) eye in speech bubble
