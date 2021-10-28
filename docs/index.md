@@ -28,26 +28,19 @@ can be used to:
 ## Instructions
 
 1.  Set up Eclipse and CLDR, according to instructions:
-    http://cldr.unicode.org/development/maven
+    <http://cldr.unicode.org/development/maven>
     1.  Edit the cldr-code project’s Build Path:
         Under “Order and Export”, set the check mark next to “Maven Dependencies”
         so that CLDR makes its dependencies available to the Unicode Tools project.
-2.  Get your github account authorized for https://github.com/unicode-org/unicodetools,
+2.  Get your github account authorized for <https://github.com/unicode-org/unicodetools>,
     create a fork under your account, and create a local clone.
-3.  Import the unicodetools project into Eclipse. (*Not* Maven: General > Existing Projects into Workspace)
-    1.  Edit the unicodetools project’s Build Path:
-        1.  Projects (“Required projects on the build path”): Add... cldr-code
-        2.  Libraries: Aside from the JRE System Library,
-            Add Class Folder: cldr-all/cldr-code/target/test-classes
-        3.  Order and Export: Make sure cldr-code is *above* unicodetools.
-            See the ucd-dev email thread “Unicode Tools vs. UnicodeProperty.java”.
-            (= issue #66)
+3.  Import the unicodetools project into Eclipse. (Using Maven: General > Existing Projects into Workspace)
 4.  Also create the project **and directory** Generated. Various results are
     deposited there. You need the directory, but the Eclipse project is optional.
     1.  New... -> Project... -> General/Project
     2.  Project Name=Generated
     3.  Uncheck "Use default location" (so that it's not inside your Eclipse workspace)
-    4.  Browse or type a folder path like <unitools>/Generated
+    4.  Browse or type a folder path like `<unitools>/Generated`
         1.  Create this folder
         2.  Create a subfolder BIN
 5.  Project > Clean... > Clean all projects is your friend
@@ -66,6 +59,47 @@ can be used to:
     4.  Please also use the VM argument `-ea` (enable assertions) in your Preferences
         or in your Run/Debug configurations, so that failed assertions don’t just slip through.
 
+### Command Line Instructions
+
+1. Set up Maven per <http://cldr.unicode.org/development/maven> (You will need CLDR checked out to run tools)
+
+2. Here are some example maven command lines:
+
+```shell
+# assuming CLDR is ../cldr and output dir is ../Generated
+
+
+# MakeUnicodeFiles
+mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main" -Dexec.args="version 14.0.0 build MakeUnicodeFiles" -pl unicodetools  -DCLDR_DIR=$(cd ../cldr;pwd) -DUNICODETOOLS_OUTPUT_DIR=$(cd ..;pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0
+# build and test
+mvn package -DCLDR_DIR=$(cd ../cldr;pwd) -DUNICODETOOLS_OUTPUT_DIR=$(cd ..;pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0
+```
+
+### Updating CLDR and ICU versions
+
+> :point_right: Note: This is a mess. See <https://unicode-org.atlassian.net/browse/ICU-21757>
+
+See the top level `pom.xml` under `<properties>`.
+
+#### ICU
+
+- Every time an ICU release/prerelease (not tag) is created on GitHub, a new package is created.
+- Go to <https://github.com/orgs/unicode-org/packages?repo_name=icu> to see what versions of ICU special packages are available.
+- Update `icu.version` in the top level `pom.xml` to the version string, such as `70.0.1-SNAPSHOT-cldr-2021-09-15`
+#### CLDR
+
+- Every time a CLDR release/prerelease (not tag) is created on GitHub, a new package is created.
+- Go to <https://github.com/orgs/unicode-org/packages?repo_name=cldr> to see what versions of CLDR packages are available.
+- Update `cldr.version` in the top level `pom.xml` to this version string, which has 0.0.0 and a git hash in it, such as `0.0.0-SNAPSHOT-bfa39570be`
+
+#### Using custom versions of CLDR
+
+- Look at your version of CLDR's top level `pom.xml`
+- It will have a version such as `40.0-SNAPSHOT`
+- Change `cldr.version` to `40.0-SNAPSHOT` and this version will be used.
+- If you are using Eclipse, make sure CLDR and UnicodeTools are in the same workspace,
+  and Eclipse should do the right thing.
+- I'm not sure how to do the same with ICU.
 ### Input data files
 
 The input data files for the Unicode Tools are checked into the repo since

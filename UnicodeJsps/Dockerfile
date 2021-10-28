@@ -1,6 +1,6 @@
 # Copyright (c) 2020 and later Unicode, Inc. and others. All Rights Reserved.
 FROM alpine as cbuild
-ARG CVERSION=13.0.0
+ARG CVERSION=14.0.0
 ARG CPATH=https://www.unicode.org/Public/PROGRAMS/BidiReferenceC/
 WORKDIR /build
 RUN apk add --update -q wget make gcc musl-dev

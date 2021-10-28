@@ -1,61 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>UnicodeJsps</artifactId>
 	<packaging>war</packaging>
 	<name>Unicode JSPs</name>
 	<groupId>org.unicode.unicodetools</groupId>
-	<version>0.0.0</version>
 
-	<url>https://unicode.org/</url>
-
-	<scm>
-		<connection>scm:git:https://github.com/unicode-org/unicodetools.git</connection>
-	</scm>
+	<parent>
+		<groupId>org.unicode.unicodetools</groupId>
+		<artifactId>unicodetools-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
 
 	<properties>
-		<!--
-			For ICU versions, see https://github.com/orgs/unicode-org/packages?repo_name=icu
-			Note that we can't use the general ICU maven packages, because utilities isn't exported (yet).
-		 -->
-		<icu.version>70.0.1-SNAPSHOT-cldr-2021-06-15</icu.version>
-
-		<!--
-			For CLDR versions, see https://github.com/orgs/unicode-org/packages?repo_name=cldr
-		 -->
-		<cldr.version>0.0.0-SNAPSHOT-87058620ea</cldr.version>
-
 		<servlet.version>3.1.0</servlet.version>
 		<jsp.version>2.3.3</jsp.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<jetty.version>9.4.36.v20210114</jetty.version>
 	</properties>
-
 
 	<dependencies>
 		<!-- icu -->
 		<dependency>
 			<groupId>com.ibm.icu</groupId>
 			<artifactId>icu4j-for-cldr</artifactId>
-			<version>${icu.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.ibm.icu</groupId>
 			<artifactId>utilities-for-cldr</artifactId>
-			<version>${icu.version}</version>
 		</dependency>
 		<!-- cldr -->
 		<dependency>
 			<groupId>org.unicode.cldr</groupId>
 			<artifactId>cldr-code</artifactId>
-			<version>${cldr.version}</version>
 		</dependency>
 
 		<dependency>
@@ -161,17 +140,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<repositories>
-		<repository>
-			<id>githubicu</id>
-			<name>GitHub unicode-org/icu Apache Maven Packages</name>
-			<url>https://maven.pkg.github.com/unicode-org/icu</url>
-		</repository>
-		<repository>
-			<id>githubcldr</id>
-			<name>GitHub unicode-org/cldr Apache Maven Packages</name>
-			<url>https://maven.pkg.github.com/unicode-org/cldr</url>
-		</repository>
-	</repositories>
 </project>
