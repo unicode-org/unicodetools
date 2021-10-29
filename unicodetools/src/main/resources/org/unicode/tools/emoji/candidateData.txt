@@ -10,344 +10,147 @@
 #   Put Proposal, and After also after the characters, but keep them sticky.
 #
 ### WARNING ###
-# At the end of the release, the Status=Draft Candidates will be changed to Status=Final Candidate
+# At the end of the release, the Status=Draft Candidate will be changed to Status=Final Candidate
 # Then run ProposalData.java to generate an updated version of proposalData.txt that incorporates all the proposal data from this file.
 
 #================================
-Status=Draft Candidate
+Status=Provisional Candidate
 #================================
 
-Proposal=L2/19-304
-After=🤭
-U+1FAE2
-Name=face with open eyes and hand over mouth
-Keywords=amazement | awe | disbelief | embarrass | scared | surprise
+Proposal=L2/21-214
+After=🤥
+U+101A00
+Name=shaking face
+Keywords=shock | shaking | face | earthquake | vibrate
 
-Proposal=L2/19-311
-After=🧼
-U+1FAE7
-Name=bubbles
-Keywords=clean | soap | underwater | burp
+Proposal=L2/21-202, L2/21-075
+After=💜
+U+101A01
+Name=light blue heart
+Keywords=cyan | teal | light blue | heart
 
-Proposal=L2/19-265
-After=🖖
-U+1FAF1
-Name=rightwards hand
-Keywords=hand | rightward | right
+Proposal=L2/21-201, L2/21-075
+After=💜
+U+101A02
+Name=gray heart
+Keywords=gray | silver | slate | heart
+
+Proposal=L2/21-203, L2/21-075
+After=💜
+U+101A03
+Name=pink heart
+Keywords=pink | like | cute | love | heart
+
+Proposal=L2/21-216
+After=🙏
+U+101A04
+Name=rightwards pushing hand
+Keywords=push | refuse | decline | rightward | stop | wait | high five
 Emoji_Modifier_Base
-U+1FAF1 U+1F3FB
-U+1FAF1 U+1F3FC
-U+1FAF1 U+1F3FD
-U+1FAF1 U+1F3FE
-U+1FAF1 U+1F3FF
+U+101A04 U+1F3FB
+U+101A04 U+1F3FC
+U+101A04 U+1F3FD
+U+101A04 U+1F3FE
+U+101A04 U+1F3FF
 
-Proposal=L2/19-265
-After=🖖
-U+1FAF2
-Name=leftwards hand
-Keywords=hand | leftward | left
-
+Proposal=L2/21-216
+After=🙏
+U+101A05
+Name=leftwards pushing hand
+Keywords=push | refuse | decline | leftward | stop | wait | high five
 Emoji_Modifier_Base
-U+1FAF2 U+1F3FB
-U+1FAF2 U+1F3FC
-U+1FAF2 U+1F3FD
-U+1FAF2 U+1F3FE
-U+1FAF2 U+1F3FF
+U+101A05 U+1F3FB
+U+101A05 U+1F3FC
+U+101A05 U+1F3FD
+U+101A05 U+1F3FE
+U+101A05 U+1F3FF
 
-Proposal=L2/19-327
-After=🤞
-U+1FAF0
-Name=hand with index finger and thumb crossed
-Keywords=expensive | heart | love | money | snap
-Emoji_Modifier_Base
-U+1FAF0 U+1F3FB
-U+1FAF0 U+1F3FC
-U+1FAF0 U+1F3FD
-U+1FAF0 U+1F3FE
-U+1FAF0 U+1F3FF
+Proposal=L2/21-197
+After=🐴
+U+101A06
+Name=moose face
+Keywords=antlers | mammal | animal | elk
 
-Proposal=L2/19-219
-After=👄
-U+1FAE6
-Name=biting lip
-Keywords=anxious | fear | flirting | nervous | uncomfortable | worried
+Proposal=L2/21-196
+After=🐴
+U+101A07
+Name=donkey
+Keywords=mule | burro | ass | stubborn | mammal | animal
 
-Proposal=L2/19-232, L2/19-399
-After=🧟
-U+1F9CC
-Name=troll
-Keywords=fairy tale | fantasy | monster
+Proposal=L2/21-198
+After=🦜
+U+101A08
+Name=wing
+Keywords=flying | angelic | aviation | bird | mythology
 
-Proposal=L2/19-310
-After=🪅
-U+1FAA9
-Name=mirror ball
-Keywords=dance | disco | glitter | party
+Proposal=L2/19-307
+After=🦜
+U+101A09
+Name=black bird
+Keywords=bird | crow | raven | rook | black
 
-Proposal=L2/19-316
-After=🔋
-U+1FAAB
-Name=low battery
-Keywords=electronic | low energy
+Proposal=L2/21-219
+After=🦜
+U+101A0A
+Name=goose
+Keywords=bird | honk | fowl | silly
 
-Proposal=L2/20-072
-After=🙃
-U+1FAE0
-Name=melting face
-Keywords=melt | disappear | liquid | dissolve
+Proposal=L2/21-217
+After=🪸
+U+101A0B
+Name=jellyfish
+Keywords=marine | invertebrate | jelly | stinger | burn | ouch
 
-Proposal=L2/20-064
-After=🥺
-U+1F979
-Name=face holding back tears
-Keywords=angry | cry | proud | resist | sad
+Proposal=L2/21-215
+After=🌷
+U+101A0C
+Name=hyacinth
+Keywords=flower | Nowruz | purple | lavender | bluebonnet | lupine | snapdragon
 
-Proposal=L2/19-396, L2/19-400
-After=🤔
-U+1FAE1
-Name=saluting face
-Keywords=salute | yes | ok | troops | sunny
+Proposal=L2/21-200
+After=🌰
+U+101A0D
+Name=ginger
+Keywords=spice | root | beer
 
-Proposal=L2/19-378
-After=🤭
-U+1FAE3
-Name=face with peeking eye
-Keywords=captivated | peep | stare
+Proposal=L2/21-199
+After=🌰
+U+101A0E
+Name=pea pod
+Keywords=edamame | pod | beans | vegetable | legume | pea
 
-Proposal=L2/19-371
-After=💮
-U+1FAB7
-Name=lotus
-Keywords=flower | Buddhism | Hinduism | India | purity | Vietnam
+Proposal=L2/21-192
+After=👚
+U+101A0F
+Name=folding hand fan
+Keywords=fan | cooling | hot | heat | shy | coy | spread | flutter | dance
 
-Proposal=L2/19-379
-After=🩹
-U+1FA7C
-Name=crutch
-Keywords=disability | mobility aid | cane | stick | hurt
+Proposal=L2/21-218
+After=👚
+U+101A10
+Name=hair pick
+Keywords=Afro | hair | pick | comb
 
-Proposal=L2/19-370
-After=🤝
-#U+1F91D
-#Name=handshake
-#Emoji_Modifier_Base
-U+1F91D U+1F3FB
-U+1FAF1 U+1F3FB U+200D U+1FAF2 U+1F3FC
-Name=handshake: light skin tone, medium-light skin tone
-U+1FAF1 U+1F3FB U+200D U+1FAF2 U+1F3FD
-Name=handshake: light skin tone, medium skin tone
-U+1FAF1 U+1F3FB U+200D U+1FAF2 U+1F3FE
-Name=handshake: light skin tone, medium-dark skin tone
-U+1FAF1 U+1F3FB U+200D U+1FAF2 U+1F3FF
-Name=handshake: light skin tone, dark skin tone
-U+1FAF1 U+1F3FC U+200D U+1FAF2 U+1F3FB
-Name=handshake: medium-light skin tone, light skin tone
-U+1F91D U+1F3FC
-U+1FAF1 U+1F3FC U+200D U+1FAF2 U+1F3FD
-Name=handshake: medium-light skin tone, medium skin tone
-U+1FAF1 U+1F3FC U+200D U+1FAF2 U+1F3FE
-Name=handshake: medium-light skin tone, medium-dark skin tone
-U+1FAF1 U+1F3FC U+200D U+1FAF2 U+1F3FF
-Name=handshake: medium-light skin tone, dark skin tone
-U+1FAF1 U+1F3FD U+200D U+1FAF2 U+1F3FB
-Name=handshake: medium skin tone, light skin tone
-U+1FAF1 U+1F3FD U+200D U+1FAF2 U+1F3FC
-Name=handshake: medium skin tone, medium-light skin tone
-U+1F91D U+1F3FD
-U+1FAF1 U+1F3FD U+200D U+1FAF2 U+1F3FE
-Name=handshake: medium skin tone, medium-dark skin tone
-U+1FAF1 U+1F3FD U+200D U+1FAF2 U+1F3FF
-Name=handshake: medium skin tone, dark skin tone
-U+1FAF1 U+1F3FE U+200D U+1FAF2 U+1F3FB
-Name=handshake: medium-dark skin tone, light skin tone
-U+1FAF1 U+1F3FE U+200D U+1FAF2 U+1F3FC
-Name=handshake: medium-dark skin tone, medium-light skin tone
-U+1FAF1 U+1F3FE U+200D U+1FAF2 U+1F3FD
-Name=handshake: medium-dark skin tone, medium skin tone
-U+1F91D U+1F3FE
-U+1FAF1 U+1F3FE U+200D U+1FAF2 U+1F3FF
-Name=handshake: medium-dark skin tone, dark skin tone
-U+1FAF1 U+1F3FF U+200D U+1FAF2 U+1F3FB
-Name=handshake: dark skin tone, light skin tone
-U+1FAF1 U+1F3FF U+200D U+1FAF2 U+1F3FC
-Name=handshake: dark skin tone, medium-light skin tone
-U+1FAF1 U+1F3FF U+200D U+1FAF2 U+1F3FD
-Name=handshake: dark skin tone, medium skin tone
-U+1FAF1 U+1F3FF U+200D U+1FAF2 U+1F3FE
-Name=handshake: dark skin tone, medium-dark skin tone
-U+1F91D U+1F3FF
+Proposal=L2/21-194
+After=🪘
+U+101A11
+Name=maracas
+Keywords=music | noise | celebrate | shake | instrument | rattle | rhythm | percussion
 
-Proposal=L2/20-219
-After=😕
-U+1FAE4
-Name=face with diagonal mouth
-Keywords=disappointed | meh | skeptical | unsure
+Proposal=L2/21-193
+After=🪘
+U+101A12
+Name=flute
+Keywords=toot | flautist | recorder | music | woodwind | bamboo | pipe | fife
 
-Proposal=L2/20-223
-After=😶
-U+1FAE5
-Name=dotted line face
-Keywords=depressed | disappear | hide | invisible | introvert
+Proposal=L2/21-223
+After=🔯
+U+101A13
+Name=khanda
+Keywords=Sikh | religion
 
-Proposal=L2/20-190
-After=🤰
-U+1FAC3
-Name=pregnant man
-Keywords=belly | bloated | full | pregnant
-Emoji_Modifier_Base
-U+1FAC3 U+1F3FB
-U+1FAC3 U+1F3FC
-U+1FAC3 U+1F3FD
-U+1FAC3 U+1F3FE
-U+1FAC3 U+1F3FF
-
-Proposal=L2/20-190
-After=🤰
-U+1FAC4
-Name=pregnant person
-Keywords=belly | bloated | full | pregnant
-Emoji_Modifier_Base
-U+1FAC4 U+1F3FB
-U+1FAC4 U+1F3FC
-U+1FAC4 U+1F3FD
-U+1FAC4 U+1F3FE
-U+1FAC4 U+1F3FF
-
-Proposal=L2/20-189
-After=👷‍♀️
-U+1FAC5
-Name=person with crown
-Keywords=monarch | noble | regal | royalty
-Emoji_Modifier_Base
-U+1FAC5 U+1F3FB
-U+1FAC5 U+1F3FC
-U+1FAC5 U+1F3FD
-U+1FAC5 U+1F3FE
-U+1FAC5 U+1F3FF
-
-Proposal=L2/20-213
-After=🖖
-U+1FAF3
-Name=palm down hand
-Keywords=drop | dismiss | shoo
-Emoji_Modifier_Base
-U+1FAF3 U+1F3FB
-U+1FAF3 U+1F3FC
-U+1FAF3 U+1F3FD
-U+1FAF3 U+1F3FE
-U+1FAF3 U+1F3FF
-
-Proposal=L2/20-213
-After=🖖
-U+1FAF4
-Name=palm up hand
-Keywords=catch | offer | come | beckon
-Emoji_Modifier_Base
-U+1FAF4 U+1F3FB
-U+1FAF4 U+1F3FC
-U+1FAF4 U+1F3FD
-U+1FAF4 U+1F3FE
-U+1FAF4 U+1F3FF
-
-Proposal=L2/20‑212
-After=☝️
-U+1FAF5
-Name=index pointing at the viewer
-Keywords=point | you
-Emoji_Modifier_Base
-U+1FAF5 U+1F3FB
-U+1FAF5 U+1F3FC
-U+1FAF5 U+1F3FD
-U+1FAF5 U+1F3FE
-U+1FAF5 U+1F3FF
-
-Proposal=L2/20‑211
-After=🙌
-U+1FAF6
-Name=heart hands
-Keywords=love
-Emoji_Modifier_Base
-U+1FAF6 U+1F3FB
-U+1FAF6 U+1F3FC
-U+1FAF6 U+1F3FD
-U+1FAF6 U+1F3FE
-U+1FAF6 U+1F3FF
-
-Proposal=L2/20-065
-After=🥃
-U+1FAD7
-Name=pouring liquid
-Keywords=drink | empty | glass | spill
-
-Proposal=L2/20-226
-After=🥜
-U+1FAD8
-Name=beans
-Keywords=food | legume | kidney
-
-Proposal=L2/20-222
-After=🔪
-U+1FAD9
-Name=jar
-Keywords=condiment | container | empty | sauce | store
-
-Proposal=L2/20-220
-After=🐚
-U+1FAB8
-Name=coral
-Keywords=reef | ocean
-
-Proposal=L2/20-217
-After=🍃
-U+1FAB9
-Name=empty nest
-Keywords=nesting
-
-Proposal=L2/20-217
-#After=🪹
-After=🍃
-U+1FABA
-Name=nest with eggs
-Keywords=nesting
-
-Proposal=L2/20-215
-After=🎠
-U+1F6DD
-Name=playground slide
-Keywords=amusement park | play
-
-Proposal=L2/20-216
-After=⛽
-U+1F6DE
-Name=wheel
-Keywords=turn | tire | circle
-
-Proposal=L2/20-224
-After=⚓
-U+1F6DF
-Name=ring buoy
-Keywords=float | life preserver | life saver | rescue | safety
-
-Proposal=L2/20-221
-After=🪧
-U+1FAAA
-Name=identification card
-Keywords=ID | credentials | license | security
-
-Proposal=L2/20-218
-After=🧿
-U+1FAAC
-Name=hamsa
-Keywords=amulet | hand | Fatima | Mary | Miriam | protection
-
-Proposal=L2/20-214
-After=🩺
-U+1FA7B
-Name=x-ray
-Keywords=bones | medical | doctor | skeleton
-
-Proposal=L2/20-225
-After=➗
-U+1F7F0
-Name=heavy equals sign
-Keywords=equality | math
+Proposal=L2/21-191
+After=📴
+U+101A14
+Name=wireless
+Keywords=internet | computer | network

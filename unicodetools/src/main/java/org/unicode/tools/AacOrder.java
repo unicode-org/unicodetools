@@ -31,8 +31,8 @@ import com.ibm.icu.util.VersionInfo;
 
 public class AacOrder {
 
-    private static final VersionInfo VERSION = Emoji.VERSION_LAST_RELEASED;
-    private static final VersionInfo UCD_VERSION = Emoji.VERSION12;
+    private static final VersionInfo VERSION = Emoji.VERSION14;
+    private static final VersionInfo UCD_VERSION = Emoji.VERSION14;
 
     private static final CandidateData CANDIDATE_DATA = CandidateData.getInstance();
 
