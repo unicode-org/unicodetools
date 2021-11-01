@@ -38,10 +38,12 @@ can be used to:
 git clone https://github.com/unicode-org/unicodetools.git
 git clone https://github.com/unicode-org/cldr.git
 ```
-4.  In the root of the `unicodetools` local working copy, create the `Generated` folder 
+4.  As a sibling folder of the `unicodetools` local working copy, create the `Generated/BIN` folder structure
     1. (Eclipse users can do this graphically by following the corresponding step in the Eclipse section below)
-    1. At the command-line: `cd <unitools>; mkdir -p Generated/BIN`
-5. The tools and commands are parameterized such that important configuration values are set as Java System properties at runtime as JVM arguments. Here is a list of property names and example values:
+    1. At the command-line: `mkdir -p Generated/BIN`
+5. Switch into the root of the `unicodetools` local working copy for executing Maven commands: `cd unicodetools`
+
+#### Java System properties used in Unicodetools
 
 | Property                | Example Value                                     |
 |-------------------------|---------------------------------------------------|
@@ -64,7 +66,7 @@ git clone https://github.com/unicode-org/cldr.git
     1.  New... -> Project... -> General/Project
     2.  Project Name=Generated
     3.  Uncheck "Use default location" (so that it's not inside your Eclipse workspace)
-    4.  Browse or type a folder path like `<unitools>/Generated`
+    4.  Browse or type a folder path like `Generated` that is a sibling to the top-level `unicodetools` directory
         1.  Create this folder
         2.  Create a subfolder BIN
 5.  Project > Clean... > Clean all projects is your friend
@@ -74,21 +76,14 @@ git clone https://github.com/unicode-org/cldr.git
 #### Setting system properties
 
 For the tools to work, you need to set the JVM system properties according to your workspace layout.
+Depending on which tool you are running, you may need some or all of the properties listed above in General Setup for Maven.
 
 For command-line users:
 - System properties are specified in this fashion for Maven (same as it is for the JVM CLI): `-Dvar1=path1 -Dvar2=path2 ...`
-- Depending on which tool you are running, you may need some or all of the properties listed above in General Setup for Maven. Adjust the path values to point to your workspace directory locations. Ex:
-```
--DCLDR_DIR=/usr/local/google/home/mscherer/cldr/uni/src
--DIMAGES_REPO_DIR=/usr/local/google/home/mscherer/images/mine/src
--DUNICODETOOLS_REPO_DIR=/usr/local/google/home/mscherer/unitools/mine/src
--DUNICODETOOLS_OUTPUT_DIR=/usr/local/google/home/mscherer/unitools/mine
--DUVERSION=14.0.0
-```
 
 For Eclipse users:
 - You can set these for each single tool in the Run|Debug Configurations... (x)= Arguments tab, in the VM arguments
-- or you can set the common variables globally in Window > Preferences... > Java > Installed JREs, select the active JRE, Edit... Default VM arguments: `-Dvar1=path1 -Dvar2=path2 ...`. For this alternative, see the example above for command-line users.
+- or you can set the common variables globally in Window > Preferences... > Java > Installed JREs, select the active JRE, Edit... Default VM arguments: `-Dvar1=path1 -Dvar2=path2 ...`.
 
 #### Enabling assertions
 
