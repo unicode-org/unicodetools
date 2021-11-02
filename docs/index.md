@@ -40,7 +40,7 @@ Some of the tasks within the Unicode Tools generate output files that can also b
 For this purpose, we create a folder named `Generated` to store these files.
 This folder can be a subfolder inside the local working copy root (called an "In-source build" workspace layout), or this folder can be outside (ex: a sibling folder) the local working-copy root (called an "Out-of-source build" workspace layout). Both workspace styles are described below.
 
-Out-of-source builds keep a separation between source files of the repository and their generated output files, which are no tracked in the repository. Out-of-source builds allow developers to maintain a clean view of changes to tracked source files, without mixing generated output files. (Out-of-source builds are also useful for C++ repositories in which multiple configurations can be invoked to generate independent sets of makefiles that result in corresponding different output compiled binary files.
+Out-of-source builds keep a separation between source files of the repository and their generated output files, which are not tracked in the repository. Out-of-source builds allow developers to maintain a clean view of changes to tracked source files, without mixing generated output files. (Out-of-source builds are also useful for C++ repositories in which multiple configurations can be invoked to generate independent sets of makefiles that result in corresponding different output compiled binary files.)
 
 ##### Setup for an out-of-source build workspace
 
