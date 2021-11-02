@@ -57,7 +57,7 @@ git clone https://github.com/unicode-org/cldr.git cldr/mine/src
 3. Create the `Generated` folder structure as a sibling to the local working copy root:
 ```
 mkdir -p unicodetools/mine/output/Generated/BIN
-ln -s unicodetools/mine/src/data/security unicodetools/mine/output/Generated/security
+ln -s ../../src/unicodetools/data/security unicodetools/mine/output/Generated/security
 ```
 
 ##### Setup for an in-source build workspace
@@ -129,13 +129,27 @@ Eclipse users:
 
 ### Commands for Unicode Tools Tasks
 
+All commands must be run in the root of the `unicodetools` repository local working copy directory.
+
+#### Initialization command
+
+The following command must be run first before all other commands. This command initializes ____ (?).
+
+```
+mvn -s .github/workflows/mvn-settings.xml -B compile
+```
+
+#### All other commands
+
 Common tasks for Unicode Tools are listed below with example CLI commands with example argument values that they need:
 
 - Make Unicode Files:
+  * Out-of-source build: `mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd ../output ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
   * In-source build:
     `MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd output ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
 
 - Build and Test:
+  * Out-of-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd ../output ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
   * In-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd output ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
 
 ### Updating CLDR and ICU versions
