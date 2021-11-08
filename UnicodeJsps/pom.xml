@@ -21,6 +21,12 @@
 	</properties>
 
 	<dependencies>
+		<!-- JSP depends on unicodetools -->
+		<dependency>
+			<groupId>org.unicode.unicodetools</groupId>
+			<artifactId>unicodetools</artifactId>
+		</dependency>
+
 		<!-- icu -->
 		<dependency>
 			<groupId>com.ibm.icu</groupId>
