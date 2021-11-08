@@ -56,8 +56,8 @@ git clone https://github.com/unicode-org/cldr.git cldr/mine/src
 ```
 3. Create the `Generated` folder structure as a sibling to the local working copy root:
 ```
-mkdir -p unicodetools/mine/output/Generated/BIN
-ln -s ../../src/unicodetools/data/security unicodetools/mine/output/Generated/security
+mkdir -p unicodetools/mine/Generated/BIN
+ln -s ../../src/unicodetools/data/security unicodetools/mine/Generated/security
 ```
 
 ##### Setup for an in-source build workspace
@@ -80,7 +80,7 @@ git clone https://github.com/unicode-org/cldr.git
 | CLDR_DIR                | /usr/local/google/home/mscherer/cldr/mine/src        |
 | IMAGES_REPO_DIR         | /usr/local/google/home/mscherer/images/mine/src      |
 | UNICODETOOLS_REPO_DIR   | /usr/local/google/home/mscherer/unitools/mine/src    |
-| UNICODETOOLS_OUTPUT_DIR | /usr/local/google/home/mscherer/unitools/mine/output |
+| UNICODETOOLS_OUTPUT_DIR | /usr/local/google/home/mscherer/unitools/mine        |
 | UVERSION                | 14.0.0                                               |
 
 
@@ -144,13 +144,12 @@ mvn -s .github/workflows/mvn-settings.xml -B compile
 Common tasks for Unicode Tools are listed below with example CLI commands with example argument values that they need:
 
 - Make Unicode Files:
-  * Out-of-source build: `mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd ../output ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
-  * In-source build:
-    `MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd output ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
+  * Out-of-source build: `mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
+  * In-source build: `MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
 
 - Build and Test:
-  * Out-of-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd ../output ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
-  * In-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd output ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
+  * Out-of-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
+  * In-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
 
 ### Updating CLDR and ICU versions
 
