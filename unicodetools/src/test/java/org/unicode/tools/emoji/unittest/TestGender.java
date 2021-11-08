@@ -3,21 +3,20 @@ package org.unicode.tools.emoji.unittest;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.junit.jupiter.api.Test;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.CountEmoji;
 import org.unicode.tools.emoji.CountEmoji.Category;
+import org.unicode.unittest.TestFmwkMinusMinus;
 import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.EmojiOrder;
 
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.text.AlphabeticIndex.Bucket;
 
-public class TestGender extends TestFmwk{
-    public static void main(String[] args) {
-	new TestGender().run(args);
-    }
+public class TestGender extends TestFmwkMinusMinus {
 
+	@Test
     public void testGender() {
 	Set<String> sorted = new TreeSet(EmojiOrder.STD_ORDER.BETA_ORDER.codepointCompare);
 	EmojiData.EMOJI_DATA_BETA.getAllEmojiWithoutDefectivesOrModifiers().addAllTo(sorted);

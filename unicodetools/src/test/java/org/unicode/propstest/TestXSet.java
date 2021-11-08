@@ -10,15 +10,15 @@ import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
-public class TestXSet extends TestFmwk {
+import org.junit.jupiter.api.Test;
+import org.unicode.unittest.TestFmwkMinusMinus;
+
+public class TestXSet extends TestFmwkMinusMinus {
     private static final boolean SKIP_VALUES = false;
 
     public enum Operation {containsAll, containsNone, addAll, retainAll, removeAll}
 
-    public static void main(String[] args) {
-	new TestXSet().run(args);
-    } 
-
+	@Test
     public void TestCombos() {
 
 	String[] tests = {
