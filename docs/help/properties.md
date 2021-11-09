@@ -9,5 +9,5 @@ properties. It also lets you see the values of a given property.
 *   Clicking Show Values will show the values (or a selection, if there are too
     many).
 *   Clicking on a value will show the
-    [unicode-set](http://unicode.org/cldr/utility/list-unicodeset.jsp) of
+    [unicode-set](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp) of
     characters with that value.
