@@ -57,7 +57,6 @@ git clone https://github.com/unicode-org/cldr.git cldr/mine/src
 3. Create the `Generated` folder structure as a sibling to the local working copy root:
 ```
 mkdir -p unicodetools/mine/Generated/BIN
-ln -s ../../src/unicodetools/data/security unicodetools/mine/Generated/security
 ```
 
 ##### Setup for an in-source build workspace
@@ -69,7 +68,24 @@ git clone https://github.com/unicode-org/cldr.git
 ```
 2.  In the root folder of the `unicodetools` local working copy, create the `Generated/BIN` folder structure
     1. (Eclipse users can do this graphically by following the corresponding step in the Eclipse section below)
-    1. At the command-line: `cd unicodetools; mkdir -p output/Generated/BIN; ln -s unicodetools/data/security output/Generated/security`
+    1. At the command-line: `cd unicodetools; mkdir -p output/Generated/BIN`
+
+##### Notes for both out-of-source and in-source build workspaces
+
+Currently, some tests run on the generated output files of a tool (ex: in order to test the validity of the output files). However, after converting these tests into standard JUnit tests, these unit tests are then run in isolation by default. Until we amend the code for such tests, those tests will fail by default. These tests are picked up and run by `mvn test`, and thus, by any other subsequent Maven target in the Maven lifecycle (ex: `package`, `install`).
+
+For people who need `mvn test` or other subsequent Maven targets to succeed, a temporary workaround would be the following (which points the generated files directory to find the test input files from the repository sources):
+
+For out-of-source builds:
+```
+ln -s ../../src/unicodetools/data/security unicodetools/mine/Generated/security
+```
+For in-source builds:
+```
+cd <unicodetools-repo-root>; ln -s unicodetools/data/security output/Generated/security
+```
+
+This step to create a symbolic link on the file system is not necessary to run individual tools in Unicode Tools, nor is it intended to last long-term as we refactor code to establish stronger invariants and tests.
 
 #### Java System properties used in Unicode Tools
 
