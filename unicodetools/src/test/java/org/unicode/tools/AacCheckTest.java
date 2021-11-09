@@ -1,15 +1,15 @@
 package org.unicode.tools;
 
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
 
-public class AacCheckTest extends TestFmwk {
-    public static void main(String[] args) {
-        new AacCheckTest().run(args);
-    }
+import org.junit.jupiter.api.Test;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
+public class AacCheckTest extends TestFmwkMinusMinus {
+
+    @Test
     public void testBasic() {
         Output<String> message = new Output<>();
         Object[][] tests = {
@@ -47,6 +47,8 @@ public class AacCheckTest extends TestFmwk {
             }
         }
     }
+
+    @Test
     public void testAllSuccess() {
         Output<String> message = new Output<>();
         for (String allowed : AacCheck.ALLOWED) {
@@ -55,6 +57,8 @@ public class AacCheckTest extends TestFmwk {
             assertEquals(message.value, 0, result);
         }
     }
+
+    @Test
     public void testAllSingleFailures() {
         Output<String> message = new Output<>();
         for (String allowed : new UnicodeSet(0,0x10FFFF).removeAll(AacCheck.ALLOWED)) {

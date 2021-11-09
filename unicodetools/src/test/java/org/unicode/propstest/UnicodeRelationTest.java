@@ -10,16 +10,14 @@ import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
 
+import org.junit.jupiter.api.Test;
 import org.unicode.props.UnicodeRelation;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.text.UnicodeSet;
 
-public class UnicodeRelationTest extends TestFmwk{
-    public static void main(String[] args) {
-        new UnicodeRelationTest().run(args);
-    }
+public class UnicodeRelationTest extends TestFmwkMinusMinus {
 
     enum Foo {aa, bb, cc, dd, ee}
 
@@ -30,6 +28,7 @@ public class UnicodeRelationTest extends TestFmwk{
         }
     };
 
+    @Test
     public void TestBasic() {
         UnicodeRelation<Foo> ur = new UnicodeRelation<>(FOOSETMAKER);
         ur.addAll("a", Arrays.asList(Foo.aa, Foo.bb, Foo.cc));
@@ -56,6 +55,7 @@ public class UnicodeRelationTest extends TestFmwk{
     final UnicodeSet ukeys = new UnicodeSet().addAll(keys).freeze();
     final List<Foo> values = Arrays.asList(Foo.values());
 
+    @Test
     public void TestMonkey() {
         UnicodeRelation<Foo> ur = new UnicodeRelation<>(FOOSETMAKER);
         Relation<String,Foo> rr = Relation.of(new HashMap<String,Set<Foo>>(), HashSet.class);
@@ -64,16 +64,16 @@ public class UnicodeRelationTest extends TestFmwk{
             int choice = random.nextInt(6);
             Foo value;
             switch(choice) {
-            case 0: 
+            case 0:
                 value = random(values);
                 ur.add(key, value);
                 rr.put(key, value);
                 break;
-            case 1: 
+            case 1:
                 ur.remove(key);
                 rr.removeAll(key);
                 break;
-            case 2: 
+            case 2:
                 Set<Foo> values2 = ur.get(key);
                 value = values2 == null ? null : getNth(values2, random.nextInt(values2.size()));
                 ur.remove(key, value);

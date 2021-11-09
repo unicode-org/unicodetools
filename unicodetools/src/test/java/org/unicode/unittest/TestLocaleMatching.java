@@ -14,14 +14,13 @@ import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.ULocale.Builder;
 import com.ibm.icu.util.ULocale.Minimize;
 
-public class TestLocaleMatching  extends TestFmwk{
+import org.junit.jupiter.api.Test;
 
-    public static void main(String[] args) {
-        new TestLocaleMatching().run(args);
-    }
+public class TestLocaleMatching  extends TestFmwkMinusMinus {
 
     static final Splitter COMMA_SPACE_SPLITTER = Splitter.on(Pattern.compile(",\\s*|\\s+"));
 
+    @Test
     public void TestBasic() {
         String[][] tests = {
                 //                //{"preferred locales", "supported locales", "best supported (ui)", "best preferred", "best services"},                {"de-CH-u-, sv-u-co-reformed", "sv, de", "sv", "sv-u-co-reformed", "="},
