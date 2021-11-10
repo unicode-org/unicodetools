@@ -27,53 +27,145 @@ can be used to:
 
 ## Instructions
 
-1.  Set up Eclipse and CLDR, according to instructions:
+### General Setup for Maven
+
+1.  Configure Maven settings (including Github tokens) according to these instructions:
     <http://cldr.unicode.org/development/maven>
+2.  Get your github account authorized for <https://github.com/unicode-org/unicodetools>,
+    create a fork under your account, and create a local clone.
+
+#### In-source / Out-of-source build setup
+
+Some of the tasks within the Unicode Tools generate output files that can also be input files into other steps.
+For this purpose, we create a folder named `Generated` to store these files.
+This folder can be a subfolder inside the local working copy root (called an "In-source build" workspace layout), or this folder can be outside (ex: a sibling folder) the local working-copy root (called an "Out-of-source build" workspace layout). Both workspace styles are described below.
+
+Out-of-source builds keep a separation between source files of the repository and their generated output files, which are not tracked in the repository. Out-of-source builds allow developers to maintain a clean view of changes to tracked source files, without mixing generated output files. (Out-of-source builds are also useful for C++ repositories in which multiple configurations can be invoked to generate independent sets of makefiles that result in corresponding different output compiled binary files.)
+
+##### Setup for an out-of-source build workspace
+
+1. Create directories for cloning the Unicode Tools and CLDR repositories:
+```
+mkdir -p unicodetools/mine/src
+mkdir -p cldr/mine/src
+```
+2. Clone the repositories' contents into their respective source directories:
+```
+git clone https://github.com/unicode-org/unicodetools.git unicodetools/mine/src
+git clone https://github.com/unicode-org/cldr.git cldr/mine/src
+```
+3. Create the `Generated` folder structure as a sibling to the local working copy root:
+```
+mkdir -p unicodetools/mine/Generated/BIN
+```
+
+##### Setup for an in-source build workspace
+
+1.  Clone both the [Unicode Tools](https://github.com/unicode-org/unicodetools) and [CLDR](https://github.com/unicode-org/cldr) repositories:
+```
+git clone https://github.com/unicode-org/unicodetools.git
+git clone https://github.com/unicode-org/cldr.git
+```
+2.  In the root folder of the `unicodetools` local working copy, create the `Generated/BIN` folder structure
+    1. (Eclipse users can do this graphically by following the corresponding step in the Eclipse section below)
+    1. At the command-line: `cd unicodetools; mkdir -p output/Generated/BIN`
+
+##### Notes for both out-of-source and in-source build workspaces
+
+Currently, some tests run on the generated output files of a tool (ex: in order to test the validity of the output files). However, after converting these tests into standard JUnit tests, these unit tests are then run in isolation by default. Until we amend the code for such tests, those tests will fail by default. These tests are picked up and run by `mvn test`, and thus, by any other subsequent Maven target in the Maven lifecycle (ex: `package`, `install`).
+
+For people who need `mvn test` or other subsequent Maven targets to succeed, a temporary workaround would be the following (which points the generated files directory to find the test input files from the repository sources):
+
+For out-of-source builds:
+```
+ln -s ../../src/unicodetools/data/security unicodetools/mine/Generated/security
+```
+For in-source builds:
+```
+cd <unicodetools-repo-root>; ln -s unicodetools/data/security output/Generated/security
+```
+
+This step to create a symbolic link on the file system is not necessary to run individual tools in Unicode Tools, nor is it intended to last long-term as we refactor code to establish stronger invariants and tests.
+
+#### Java System properties used in Unicode Tools
+
+(Note: The following example values for Java system properties are paths to local working copies that are organized using the out-of-source build workspace layout, as described above.)
+
+| Property                | Example Value                                        |
+|-------------------------|------------------------------------------------------|
+| CLDR_DIR                | /usr/local/google/home/mscherer/cldr/mine/src        |
+| IMAGES_REPO_DIR         | /usr/local/google/home/mscherer/images/mine/src      |
+| UNICODETOOLS_REPO_DIR   | /usr/local/google/home/mscherer/unitools/mine/src    |
+| UNICODETOOLS_OUTPUT_DIR | /usr/local/google/home/mscherer/unitools/mine        |
+| UVERSION                | 14.0.0                                               |
+
+
+### Eclipse-specific Additional Setup
+
+1. Follow the Eclipse-specific settings at <http://cldr.unicode.org/development/maven>
     1.  Edit the cldr-code project’s Build Path:
         Under “Order and Export”, set the check mark next to “Maven Dependencies”
         so that CLDR makes its dependencies available to the Unicode Tools project.
-2.  Get your github account authorized for <https://github.com/unicode-org/unicodetools>,
-    create a fork under your account, and create a local clone.
 3.  Import the unicodetools project into Eclipse. (Using Maven: General > Existing Projects into Workspace)
 4.  Also create the project **and directory** Generated. Various results are
     deposited there. You need the directory, but the Eclipse project is optional.
     1.  New... -> Project... -> General/Project
     2.  Project Name=Generated
     3.  Uncheck "Use default location" (so that it's not inside your Eclipse workspace)
-    4.  Browse or type a folder path like `<unitools>/Generated`
+    4.  Browse or type a folder path like `Generated` that is a sibling to the top-level `unicodetools` directory
         1.  Create this folder
         2.  Create a subfolder BIN
 5.  Project > Clean... > Clean all projects is your friend
-6.  For the tools to work, you need to set environment variables according to your workspace layout.
-    1.  You can set these for each single tool in the Run|Debug Configurations... (x)= Arguments tab, in the VM arguments;
-    2.  or you can set the common variables globally in Window > Preferences... > Java > Installed JREs, select the active JRE, Edit... Default VM arguments: `-Dvar1=path1 -Dvar2=path2 ...`
-    3.  Depending on which tool you are running, you may need some or all of the following.
-        Adjust the paths to your workspace.
-        ```
-        -DCLDR_DIR=/usr/local/google/home/mscherer/cldr/uni/src
-        -DIMAGES_REPO_DIR=/usr/local/google/home/mscherer/images/mine/src
-        -DUNICODETOOLS_REPO_DIR=/usr/local/google/home/mscherer/unitools/mine/src
-        -DUNICODETOOLS_OUTPUT_DIR=/usr/local/google/home/mscherer/unitools/mine
-        -DUVERSION=14.0.0
-        ```
-    4.  Please also use the VM argument `-ea` (enable assertions) in your Preferences
-        or in your Run/Debug configurations, so that failed assertions don’t just slip through.
 
-### Command Line Instructions
+### Running commands for Unicode Tools tasks
 
-1. Set up Maven per <http://cldr.unicode.org/development/maven> (You will need CLDR checked out to run tools)
+#### Setting system properties
 
-2. Here are some example maven command lines:
+For the tools to work, you need to set the JVM system properties according to your workspace layout.
+Depending on which tool you are running, you may need some or all of the properties listed above in General Setup for Maven.
 
-```shell
-# assuming CLDR is ../cldr and output dir is ../Generated
+For command-line users:
+- System properties are specified in this fashion for Maven (same as it is for the JVM CLI): `-Dvar1=path1 -Dvar2=path2 ...`
 
+For Eclipse users:
+- You can set these for each single tool in the Run|Debug Configurations... (x)= Arguments tab, in the VM arguments
+- or you can set the common variables globally in Window > Preferences... > Java > Installed JREs, select the active JRE, Edit... Default VM arguments: `-Dvar1=path1 -Dvar2=path2 ...`.
 
-# MakeUnicodeFiles
-mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main" -Dexec.args="version 14.0.0 build MakeUnicodeFiles" -pl unicodetools  -DCLDR_DIR=$(cd ../cldr;pwd) -DUNICODETOOLS_OUTPUT_DIR=$(cd ..;pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0
-# build and test
-mvn package -DCLDR_DIR=$(cd ../cldr;pwd) -DUNICODETOOLS_OUTPUT_DIR=$(cd ..;pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0
+#### Enabling assertions
+
+Please also enable assertions when running commands so that failed assertions don’t just slip through.
+
+Command-line users:
+- Set the `MAVEN_OPTS` environment variable to include the `-ea` JVM option in its string value
+  * Ex: `export MAVEN_OPTS="-ea"; mvn exec:java -Dexec.mainClass=...`
+  * Ex: `MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass=...`
+
+Eclipse users:
+- Use the VM argument `-ea` (enable assertions) in your Preferences or in your Run/Debug configurations
+
+### Commands for Unicode Tools Tasks
+
+All commands must be run in the root of the `unicodetools` repository local working copy directory.
+
+#### Initialization command
+
+The following command must be run first before all other commands. This command initializes ____ (?).
+
 ```
+mvn -s .github/workflows/mvn-settings.xml -B compile
+```
+
+#### All other commands
+
+Common tasks for Unicode Tools are listed below with example CLI commands with example argument values that they need:
+
+- Make Unicode Files:
+  * Out-of-source build: `mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
+  * In-source build: `MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
+
+- Build and Test:
+  * Out-of-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
+  * In-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
 
 ### Updating CLDR and ICU versions
 
