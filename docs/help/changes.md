@@ -7,7 +7,7 @@ To get the beta version of the property, insert β *after* the property name.
 Examples:
 
 | `\p{Word_Break=ALetter}` | Released version of Unicode |
-| `p{Word_Breakβ=ALetter}` | Beta version of Unicode     |
+| `\p{Word_Breakβ=ALetter}` | Beta version of Unicode     |
 
 
 For example, to see additions to that property value in the beta version, use:
@@ -24,7 +24,7 @@ For example, to see additions to that property value in the beta version, use:
 The support is not complete done, and there are some known problems.
 
 1.  Some properties are not supported in beta versions. See
-    <https://util.unicode.org/UnicodeJsps/character.jsp>
+    <https://util.unicode.org/UnicodeJsps/properties.jsp>
     for the list.
 2.  When characters are listed, the new blocks and subheads don't show up.
 3.  If you use a property that has a β version but no ICU version, you get no
