@@ -11,3 +11,5 @@ properties. It also lets you see the values of a given property.
 *   Clicking on a value will show the
     [unicode-set](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp) of
     characters with that value.
+
+[Back to Unicode Utilities Help Home](index)

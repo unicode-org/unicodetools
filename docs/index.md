@@ -1,3 +1,9 @@
+# Unicode Utilities Help Pages
+
+The Unicode Utilities web application is located at <https://util.unicode.org>. It allows users to interactively query and inspect Unicode property information for characters using the latest versions of Unicode.
+
+The help pages for Unicode Utilities are located [here](./help).
+
 # Building Unicode Tools
 
 This file provides instructions for building and running the UnicodeTools, which
@@ -128,8 +134,8 @@ For command-line users:
 - System properties are specified in this fashion for Maven (same as it is for the JVM CLI): `-Dvar1=path1 -Dvar2=path2 ...`
 
 For Eclipse users:
-- You can set these for each single tool in the Run|Debug Configurations... (x)= Arguments tab, in the VM arguments
-- or you can set the common variables globally in Window > Preferences... > Java > Installed JREs, select the active JRE, Edit... Default VM arguments: `-Dvar1=path1 -Dvar2=path2 ...`.
+- You can set these for each single tool in the Run > Debug Configurations... > (x)= Arguments tab > VM arguments
+- Or you can set the common variables globally in Window > Preferences... > Java > Installed JREs > select the active JRE >  Edit... > Default VM arguments: `-Dvar1=path1 -Dvar2=path2 ...`.
 
 #### Enabling assertions
 
