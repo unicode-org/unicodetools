@@ -10,3 +10,5 @@ rule (like "W5") will take you to the rule in the UBA spec.
 If you turn on "ASCII Hack", then ASCII characters in the sample will be
 interpreted as if they were Arabic, Hebrew, etc. for the purpose of
 illustration.
+
+[Back to Unicode Utilities Help Home](index)
