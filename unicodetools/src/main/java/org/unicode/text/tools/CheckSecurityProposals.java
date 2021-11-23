@@ -21,11 +21,11 @@ import com.google.common.collect.LinkedHashMultimap;
 import com.ibm.icu.dev.util.UnicodeMap;
 
 public class CheckSecurityProposals {
-    private static final String SECURITY_DIR = Settings.UnicodeTools.DATA_DIR + "security/";
+    private static final String SECURITY_DIR = Settings.UnicodeTools.getDataPathStringForLatestVersion("security");
     private static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(Settings.latestVersion);
     private static final UnicodeMap<Age_Values> AGE = IUP.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
 
-    public static final Confusables CONFUSABLES = new Confusables(SECURITY_DIR + Settings.latestVersion);
+    public static final Confusables CONFUSABLES = new Confusables(SECURITY_DIR);
     public static final UnicodeMap<String> conMap = CONFUSABLES.getRawMapToRepresentative(Style.MA);
 
     public static Splitter TAB_SPLITTER = Splitter.on('\t').trimResults();
@@ -39,8 +39,10 @@ public class CheckSecurityProposals {
         LinkedHashMultimap<String, String> nonconfusable = LinkedHashMultimap.create();
         HashMap<String, String> contributor = new HashMap<>();
 
-
-        for (String line : FileUtilities.in(Settings.UnicodeTools.UNICODETOOLS_DIR + "data/security/" + Settings.latestVersion + "/data/source/", "proposals.txt")) {
+        String path =
+                Settings.UnicodeTools.getDataPathStringForLatestVersion("security") +
+                "/data/source/";
+        for (String line : FileUtilities.in(path, "proposals.txt")) {
             List<String> parts = TAB_SPLITTER.splitToList(line);
             String sourceRaw = parts.get(1);
             String source = NFD.normalize(Utility.fromHex(sourceRaw, true));

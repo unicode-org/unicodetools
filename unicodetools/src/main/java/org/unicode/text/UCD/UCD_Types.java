@@ -601,7 +601,8 @@ public interface UCD_Types {
     AGE121 = 22,
     AGE130 = 23,
     AGE140 = 24,
-    LIMIT_AGE = AGE140 + 1; // + FIX_FOR_NEW_VERSION;
+    AGE150 = 25,
+    LIMIT_AGE = AGE150 + 1; // + FIX_FOR_NEW_VERSION;
 
     static final String[] AGE_VERSIONS = {
             "?",
@@ -629,6 +630,7 @@ public interface UCD_Types {
             "12.1.0",
             "13.0.0",
             "14.0.0",
+            "15.0.0",
     };
 
     public static byte

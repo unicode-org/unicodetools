@@ -12,6 +12,6 @@ public class DraftUtils {
     /**
      * This actually refers into the unicodetools project.
      */
-    public static final String UCD_DIRECTORY = Settings.UnicodeTools.UCD_DIR + "/" + Settings.latestVersion + "-Update";
+    public static final String UCD_DIRECTORY = Settings.UnicodeTools.getDataPathStringForLatestVersion("ucd");
 
 }

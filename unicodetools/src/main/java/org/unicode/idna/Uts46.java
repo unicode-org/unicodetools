@@ -21,7 +21,8 @@ public class Uts46 extends Idna {
     public static Uts46 SINGLETON = new Uts46();
 
     private Uts46() {
-        new MyHandler().process(Settings.UnicodeTools.DATA_DIR + "idna/" + Settings.latestVersion, "IdnaMappingTable.txt");
+        String path = Settings.UnicodeTools.getDataPathStringForLatestVersion("idna");
+        new MyHandler().process(path, "IdnaMappingTable.txt");
         types.freeze();
         mappings.freeze();
         mappings_display.freeze();

@@ -192,6 +192,7 @@ See the top level `pom.xml` under `<properties>`.
 - If you are using Eclipse, make sure CLDR and UnicodeTools are in the same workspace,
   and Eclipse should do the right thing.
 - I'm not sure how to do the same with ICU.
+
 ### Input data files
 
 The input data files for the Unicode Tools are checked into the repo since
@@ -215,12 +216,35 @@ Make sure you have the VM arguments set up as described above.
 
 ## Updating to a new Unicode version
 
-All of the following have "version 14.0.0" (or whatever the latest version is)
+### Unicode 15+ workflow
+
+Starting with Unicode 15, we are developing most of the Unicode data files
+in this Unicode Tools project, and publish them to the Public folder
+only for alpha/beta/final releases.
+That is, we are reversing the flow of files.
+(See [issue #144](https://github.com/unicode-org/unicodetools/issues/144).)
+
+We are also no longer generating and posting files with version suffixes.
+
+Except: Some files, such as Unihan and ucdxml data files, are developed elsewhere,
+and we continue to ingest them as before.
+
+###
+
+All of the following have `version 15.0.0` (or whatever the latest version is)
 in the options given to Java.
+
+Example changes for adding Unicode 15 version numbers:
+See the second commit of https://github.com/unicode-org/unicodetools/pull/156
 
 Example changes for adding properties:
 <https://github.com/unicode-org/unicodetools/pull/40>. Throughout these steps we
-will walk through updating unicodetools to support Unicode 14.
+will walk through updating unicodetools to support Unicode 15 or 14.
+
+Starting with Unicode 15, we keep the latest versions of data files in
+unversioned "dev" folders in this repo.
+
+Unicode 14:
 
 Firstly, fetch the latest data files for this version from
 <https://www.unicode.org/Public/14.0.0/ucd/>, matching your new version number.
@@ -235,6 +259,14 @@ desuffix the files (removing the -dN suffixes). Copy these into
 
 to set up the inputs correctly. For some updates you may need to pull in other
 (uca, security, idna, etc) files, see [Input data setup](inputdata.md) for more information.
+
+Unicode 15:
+
+We no longer generate files with version suffixes, but for now we still
+generate files into an output folder with the DeltaVersion that is set in MakeUnicodeFiles.txt.
+We might revisit this.
+
+Unicode 14:
 
 Now, update the following files:
 
@@ -324,6 +356,12 @@ to generate new files). For all the new ones:
 
 Make a pull request to incorporate these updates, and upload the generated files
 in a way that can be shared with ucd-dev.
+
+Unicode 15 TODO:
+We plan to
+- make a commit for changes in input data files
+- copy the output files back into the input folders, review, and commit again
+... instead of posting draft files elsewhere and re-ingesting them later.
 
 Ideally, diff the files to check for any discrepancies. The script will do this
 automatically, you can search the output for lines that say "Found difference in
@@ -477,6 +515,8 @@ If there are new break rules (or changes), see
 4.  On Windows you can run these BATs to compare files: TODO??
 
 ### Upload for Ken Whistler & editorial committee
+
+Unicode 15 TODO: See above; commit new input data, run tools, review output, copy back to input, commit, pull request...
 
 1.  Check diffs for problems
 2.  First drop for a version: Upload **all** files

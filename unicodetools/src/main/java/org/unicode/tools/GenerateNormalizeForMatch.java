@@ -110,7 +110,8 @@ public class GenerateNormalizeForMatch {
     private static final UnicodeMap<Set<SpecialReason>> REASONS = new UnicodeMap<>();
     private static final UnicodeMap<Set<SpecialReason>> REASONS_BASE = new UnicodeMap<>();
     private static final NormalizeForMatch ADDITIONS_TO_NFKCCF = NormalizeForMatch.load(null, "XNFKCCF-Curated.txt", true);
-    private static final NormalizeForMatch ADDITIONS_TO_NFKC = NormalizeForMatch.load(Settings.UnicodeTools.UNICODETOOLS_DIR + "data/cldr/", "NFXC-Curated.txt", true);
+    private static final NormalizeForMatch ADDITIONS_TO_NFKC =
+            NormalizeForMatch.load(Settings.UnicodeTools.DATA_DIR + "cldr/", "NFXC-Curated.txt", true);
 
 
     private static final UnicodeSet HANGUL_COMPAT_minus_DI_CN 

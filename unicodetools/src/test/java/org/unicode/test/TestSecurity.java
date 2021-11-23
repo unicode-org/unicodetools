@@ -2,6 +2,9 @@ package org.unicode.test;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.EnumSet;
@@ -47,17 +50,49 @@ import org.unicode.unittest.TestFmwkMinusMinus;
 
 
 public class TestSecurity extends TestFmwkMinusMinus {
-    private static final String GEN_SECURITY_DIR = Settings.Output.GEN_DIR + "security/" + Settings.latestVersion;
+    private static final class SecurityDir {
+        // Returns the location of the Unicode security data files in the Generated folder,
+        // where GenerateConfusables wrote them, to check the new data files.
+        // If GenerateConfusables was not run, then this returns the location of the
+        // *input* data files.
+        // This is most useful when running the unit test suite, as in continuous integration testing.
+        static Path getPath() {
+            String generatedDir = Settings.Output.GEN_DIR + "security/" + Settings.latestVersion;
+            Path path = Paths.get(generatedDir);
+            if (Files.exists(path)) {
+                return path;
+            }
+            path = Settings.UnicodeTools.getDataPathForLatestVersion("security");
+            return path;
+        }
+        static final String STRING = getPath().toString();
+    }
 
-    public static XIDModifications XIDMOD = new XIDModifications(GEN_SECURITY_DIR);
-    public static final Confusables CONFUSABLES = new Confusables(GEN_SECURITY_DIR);
+    private static final class XIDMod {
+        static final XIDModifications INSTANCE = new XIDModifications(SecurityDir.STRING);
+    }
+
+    // Visible for CheckWholeScript.
+    static final class Confusables_ {
+        static final Confusables INSTANCE = new Confusables(SecurityDir.STRING);
+    }
+
+    @Test
+    public void dataSource() {
+        String path = SecurityDir.STRING;
+        if (path.startsWith(Settings.Output.GEN_DIR)) {
+            logln("Reading generated security data: " + path);
+        } else {
+            warnln("Reading *input* security data: " + path);
+        }
+    }
 
     @Test
     public void TestSpacing() {
         IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
         UnicodeMap<General_Category_Values> generalCategory = iup.loadEnum(
                 UcdProperty.General_Category, General_Category_Values.class);
-        for (Entry<String, EnumMap<Style, String>> data : CONFUSABLES.getChar2data().entrySet()) {
+        for (Entry<String, EnumMap<Style, String>> data : Confusables_.INSTANCE.getChar2data().entrySet()) {
             String source = data.getKey();
             String target = data.getValue().get(Style.MA);
             assertEquals("( " + source + " ) ? ( " + target + " )", isAllNonspacing(source, generalCategory), isAllNonspacing(target, generalCategory));
@@ -80,7 +115,7 @@ public class TestSecurity extends TestFmwkMinusMinus {
         // Ensure that map(map(code)) = map(code)
         // Also, if map(code) = A+B (multiple characters), then map(map(code)) = map(A)+map(B)
 
-        UnicodeMap<String> transformMap = CONFUSABLES.getRawMapToRepresentative(Style.MA);
+        UnicodeMap<String> transformMap = Confusables_.INSTANCE.getRawMapToRepresentative(Style.MA);
         for (Entry<String, String> entry : transformMap.entrySet()) {
             String source = entry.getKey();
             String value = entry.getValue();
@@ -110,16 +145,26 @@ public class TestSecurity extends TestFmwkMinusMinus {
 
     @Test
     public void TestConfusables() {
-        Confusables confusablesOld = new Confusables(GEN_SECURITY_DIR);
-        showDiff("Confusable", confusablesOld.getRawMapToRepresentative(Style.MA), CONFUSABLES.getRawMapToRepresentative(Style.MA), new UTF16.StringComparator(), getLogPrintWriter());
+        // TODO: Should this load the data for Settings.lastVersion?
+        Confusables confusablesOld = new Confusables(SecurityDir.STRING);
+        showDiff("Confusable",
+                confusablesOld.getRawMapToRepresentative(Style.MA),
+                Confusables_.INSTANCE.getRawMapToRepresentative(Style.MA),
+                new UTF16.StringComparator(),
+                getLogPrintWriter());
     }
 
     @Test
     public void TestXidMod() {
-        XIDModifications xidModOld = new XIDModifications(GEN_SECURITY_DIR);
-        UnicodeMap<Identifier_Status> newStatus = XIDMOD.getStatus();
+        // TODO: Should this load the data for Settings.lastVersion?
+        XIDModifications xidModOld = new XIDModifications(SecurityDir.STRING);
+        UnicodeMap<Identifier_Status> newStatus = XIDMod.INSTANCE.getStatus();
         showDiff("Status", xidModOld.getStatus(), newStatus, new EnumComparator<Identifier_Status>(), getLogPrintWriter());
-        showDiff("Type", xidModOld.getType(), XIDMOD.getType(), new EnumSetComparator<Set<Identifier_Type>>() , getLogPrintWriter());
+        showDiff("Type",
+                xidModOld.getType(),
+                XIDMod.INSTANCE.getType(),
+                new EnumSetComparator<Set<Identifier_Type>>(),
+                getLogPrintWriter());
 
         UnicodeSet newRecommended = newStatus.getSet(Identifier_Status.allowed);
         UnicodeSet oldRecommended = xidModOld.getStatus().getSet(Identifier_Status.allowed);
@@ -190,7 +235,7 @@ public class TestSecurity extends TestFmwkMinusMinus {
             if (s.equals("ə")) {
                 logln("ə" + fromCLDR.get('ə'));
             }
-            Set<Identifier_Type> itemSet = XIDMOD.getType().get(s);
+            Set<Identifier_Type> itemSet = XIDMod.INSTANCE.getType().get(s);
             for (Identifier_Type item : itemSet) {
                 switch (item) {
                 case obsolete:
@@ -316,7 +361,8 @@ public class TestSecurity extends TestFmwkMinusMinus {
         System.out.println("\nIgnore TestWholeScriptData for now: Not yet compete");
         for (Script_Values source : Script_Values.values()) {
             for (Script_Values target : Script_Values.values()) {
-                CodepointToConfusables cpToConfusables = CONFUSABLES.getCharsToConfusables(source, target);
+                CodepointToConfusables cpToConfusables =
+                        Confusables_.INSTANCE.getCharsToConfusables(source, target);
                 if (cpToConfusables == null) {
                     continue;
                 }
@@ -382,7 +428,7 @@ public class TestSecurity extends TestFmwkMinusMinus {
 
     @Test
     public void TestWholeScripts() {
-        UnicodeSet withConfusables = CONFUSABLES.getCharsWithConfusables();
+        UnicodeSet withConfusables = Confusables_.INSTANCE.getCharsWithConfusables();
         //String list = withConfusables.toPattern(false);
         final String commonUnconfusable = getUnconfusable(withConfusables, ScriptDetector.COMMON_SET);
         final String latinUnconfusable = getUnconfusable(withConfusables, EnumSet.of(Script_Values.Latin));

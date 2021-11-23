@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Path;
 import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.Comparator;
@@ -1761,7 +1762,8 @@ final public class UCA implements Comparator<String>, UCA_Types {
     public static UCA buildCollator(Remap primaryRemap) {
         try {
             if (VERBOSE) System.out.println("Building UCA");
-            final String file = Utility.searchDirectory(new File(Settings.UnicodeTools.DATA_DIR + "uca/" + Default.ucdVersion() + "/"), "allkeys", true, ".txt");
+            final Path dataPath = Settings.UnicodeTools.getDataPathForLatestVersion("uca");
+            final String file = Utility.searchDirectory(dataPath.toFile(), "allkeys", true, ".txt");
             final UCA collator = new UCA(file, Default.ucdVersion(), primaryRemap);
             if (VERBOSE) System.out.println("Built version " + collator.getDataVersion() + "/ucd: " + collator.getUCDVersion());
             if (VERBOSE) System.out.println("Building UCD data");

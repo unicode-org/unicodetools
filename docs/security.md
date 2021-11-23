@@ -61,6 +61,8 @@ Run GenerateConfusables -c -b to generate the files. They will appear in two pla
 **Run TestSecurity to verify that the confusable mappings are idempotent!**
 
 With the same VM arguments as the generator.
+Starting in 2021q3, TestSecurity needs to be run as a JUnit test.
+It is also now part of the unit test suite and run on GitHub CI.
 
 Copy the following from the output directory to the top level of the revision directory:
 

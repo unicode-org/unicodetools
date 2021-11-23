@@ -163,7 +163,8 @@ V2
 
     public static void main(String[] args) {
         Set<Idna2008Status> seen = EnumSet.noneOf(Idna2008Status.class);
-        for (TestLine testLine : load(Settings.UnicodeTools.UNICODETOOLS_DIR + "data/idna/13.0.0")) {
+        // TODO: latestVersion? lastVersion?
+        for (TestLine testLine : load(Settings.UnicodeTools.DATA_DIR + "idna/13.0.0")) {
             System.out.println(testLine);
         }
     }

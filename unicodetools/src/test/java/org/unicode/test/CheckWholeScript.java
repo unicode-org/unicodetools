@@ -24,9 +24,9 @@ public class CheckWholeScript {
     private static final Normalizer NFD = Default.nfd();
     private static final UnicodeSet ALL_CODEPOINTS = new UnicodeSet("[:any:]").freeze(); 
 
-    static final Map<Script_Values, Map<Script_Values, CodepointToConfusables>> SCRIPT_SCRIPT_UNICODESET2 
-    = TestSecurity.CONFUSABLES.getScriptToScriptToCodepointToUnicodeSet(); 
-    
+    static final Map<Script_Values, Map<Script_Values, CodepointToConfusables>> SCRIPT_SCRIPT_UNICODESET2 =
+            TestSecurity.Confusables_.INSTANCE.getScriptToScriptToCodepointToUnicodeSet();
+
     static final CodepointToConfusables COMMON_COMMON_UNICODESET2 
     = SCRIPT_SCRIPT_UNICODESET2.get(Script_Values.Common).get(Script_Values.Common);
     

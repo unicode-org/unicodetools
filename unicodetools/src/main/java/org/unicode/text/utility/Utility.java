@@ -22,6 +22,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -825,38 +828,39 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 }
 
     public static final String[] searchPath = {
-	    // "EXTRAS" + (FIX_FOR_NEW_VERSION == 0 ? "" : ""),
-	    "14.0.0",
-	    "13.1.0", // TODO: there is no Unicode 13.1, see https://github.com/unicode-org/unicodetools/issues/100
-	    "13.0.0",
-	    "12.1.0",
-	    "12.0.0",
-	    "11.0.0",
-	    "10.0.0",
-	    "9.0.0",
-	    "8.0.0",
-	    "7.0.0",
-	    "6.3.0",
-	    "6.2.0",
-	    "6.1.0",
-	    "6.0.0",
-	    "5.2.0",
-	    "5.1.0",
-	    "5.0.0",
-	    "4.1.0",
-	    "4.0.1",
-	    "4.0.0",
-	    "3.2.0",
-	    "3.1.1",
-	    "3.1.0",
-	    "3.0.1",
-	    "3.0.0",
-	    "2.1.9",
-	    "2.1.8",
-	    "2.1.5",
-	    "2.1.2",
-	    "2.0.0",
-	    "1.1.0",
+            // "EXTRAS" + (FIX_FOR_NEW_VERSION == 0 ? "" : ""),
+            "15.0.0",
+            "14.0.0",
+            "13.1.0", // TODO: there is no Unicode 13.1, see https://github.com/unicode-org/unicodetools/issues/100
+            "13.0.0",
+            "12.1.0",
+            "12.0.0",
+            "11.0.0",
+            "10.0.0",
+            "9.0.0",
+            "8.0.0",
+            "7.0.0",
+            "6.3.0",
+            "6.2.0",
+            "6.1.0",
+            "6.0.0",
+            "5.2.0",
+            "5.1.0",
+            "5.0.0",
+            "4.1.0",
+            "4.0.1",
+            "4.0.0",
+            "3.2.0",
+            "3.1.1",
+            "3.1.0",
+            "3.0.1",
+            "3.0.0",
+            "2.1.9",
+            "2.1.8",
+            "2.1.5",
+            "2.1.2",
+            "2.0.0",
+            "1.1.0",
     };
 
     /*public static PrintWriter openPrintWriter(String filename) throws IOException {
@@ -1337,15 +1341,21 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 			return null;
 		    }
 		}
-		String directoryName = Settings.UnicodeTools.DATA_DIR + base + "/" + element + "/";
-		result = directoryName + parts[2] + fileType;
-		break;
+                Path path = Settings.UnicodeTools.getDataPath(base, element);
+                if (path != null) {
+                    result = path.resolve(parts[2] + fileType).toString();
+                    break;
+                }
+                continue;
 	    }
-	    String directoryName = Settings.UnicodeTools.UCD_DIR + element + "-Update" + File.separator;
-	    result = searchDirectory(new File(directoryName), filename, show, fileType);
-	    if (result != null) {
-		break;
-	    }
+            Path path = Settings.UnicodeTools.getDataPath("ucd", element);
+            if (path != null) {
+                // TODO: Consider generally switching from using File to using the newer Path.
+                result = searchDirectory(path.toFile(), filename, show, fileType);
+                if (result != null) {
+                    break;
+                }
+            }
 	    if (versionString.startsWith("2.0") && filename.startsWith("Prop")) {
 		break; // skip bogus forms of Prop* files
 	    }
@@ -1354,8 +1364,8 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 	    }
 	}
 	if (show && !tries.isEmpty()) {
-	    System.out.println("\tTried: '" + Settings.UnicodeTools.UCD_DIR + File.separator + "("
-		    + CollectionUtilities.join(tries, "|") + ")-Update"
+	    System.out.println("\tTried: '" + "("
+		    + CollectionUtilities.join(tries, "|") + ")"
 		    + File.separator + filename + "*" + fileType + "'");
 	}
 	return result;
@@ -1379,7 +1389,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 	return null;
     }
 
-    public static Set getDirectoryContentsLastFirst(File directory) {
+    public static Set<String> getDirectoryContentsLastFirst(File directory) {
 	if (!directory.exists()) {
 	    return null;
 	}
@@ -1390,10 +1400,10 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 		throw new IllegalArgumentException(e);
 	    }
 	}
-	final Set result = new TreeSet(new Comparator() {
+	final Set<String> result = new TreeSet<>(new Comparator<String>() {
 	    @Override
-	    public int compare(Object a, Object b) {
-		return ((Comparable) b).compareTo(a);
+	    public int compare(String a, String b) {
+		return b.compareTo(a);
 	    }
 	});
 	result.addAll(java.util.Arrays.asList(directory.list()));
@@ -1405,6 +1415,18 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     public static String searchDirectory(File directory, String filename, boolean show, String fileType) {
+        // Before looking for the file, does the directory even exist?
+        Path dirPath = directory.toPath();
+        if (!Files.exists(dirPath)) {
+            return null;
+        }
+        // This quick check for the exact file name avoids enumerating the directory contents.
+        Path filePath = dirPath.resolve(filename + fileType);
+        if (Files.exists(filePath)) {
+            return canonicalPathTo(filePath.toFile(), show);
+        }
+        // Enumerate the directory contents and see if the file exists in a nested folder,
+        // and/or with a version suffix.
 	Set<String> directoryContentsLastFirst = getDirectoryContentsLastFirst(directory);
 	if (directoryContentsLastFirst == null) {
 	    return null;
@@ -1417,6 +1439,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 		if (attempt != null) {
 		    return attempt;
 		}
+                continue;
 	    }
 	    if (fn.endsWith(fileType) && fn.startsWith(filename)) {
 		// must be filename ([-] .*)? fileType
@@ -1425,19 +1448,25 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 		} else if (fn.charAt(filename.length()) != '-') {
 		    continue;
 		}
-		String canonicalPath;
-		try {
-		    canonicalPath = foo.getCanonicalPath();
-		} catch (final IOException e) {
-		    throw new IllegalArgumentException(e);
-		}
-		if (show) {
-		    System.out.println("\tFound: '" + canonicalPath + "'");
-		}
-		return canonicalPath;
+                return canonicalPathTo(foo, show);
 	    }
 	}
 	return null;
+    }
+
+    private static final String canonicalPathTo(File file, boolean show) {
+        String canonicalPath;
+        try {
+            canonicalPath = file.getCanonicalPath();
+            // TODO: Should we modernize to using Path instead of File, and return
+            // path.toRealPath().toString()?
+        } catch (final IOException e) {
+            throw new IllegalArgumentException(e);
+        }
+        if (show) {
+            System.out.println("\tFound: '" + canonicalPath + "'");
+        }
+        return canonicalPath;
     }
 
     public static void writeHtmlHeader(PrintWriter log, String title) {

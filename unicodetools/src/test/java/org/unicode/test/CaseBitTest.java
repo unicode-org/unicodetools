@@ -2,6 +2,7 @@ package org.unicode.test;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
@@ -95,7 +96,8 @@ public class CaseBitTest extends TestFmwkMinusMinus {
     public UCA getUca() {
         if (uca == null) {
             try {
-                final String file = Utility.searchDirectory(new File(Settings.UnicodeTools.DATA_DIR + "UCA/" + Default.ucdVersion() + "/"), "allkeys", true, ".txt");
+                final Path path = Settings.UnicodeTools.getDataPathForLatestVersion("uca");
+                final String file = Utility.searchDirectory(path.toFile(), "allkeys", true, ".txt");
                 uca = new UCA(file, Default.ucdVersion(), null);
             } catch (final IOException e) {
                 throw new IllegalArgumentException(e);

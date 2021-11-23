@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledIf;
 import org.unicode.idna.GenerateIdna;
 import org.unicode.idna.LoadIdnaTest;
 import org.unicode.idna.LoadIdnaTest.TestLine;
@@ -29,7 +28,6 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Bidi_Class_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
-import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Settings;
 
 
@@ -53,7 +51,7 @@ public class TestIdnaTest extends TestFmwkMinusMinus {
     public static void init() {
         TEST_DIR = System.getProperty("DIR");
         if (TEST_DIR == null) {
-            TEST_DIR = Settings.UnicodeTools.UNICODETOOLS_DIR + "data/idna/" + Default.ucdVersion();
+            TEST_DIR = Settings.UnicodeTools.getDataPathStringForLatestVersion("idna");
         } else if (TEST_DIR.equalsIgnoreCase("DRAFT")) {
             TEST_DIR = GenerateIdna.GEN_IDNA_DIR;
         }

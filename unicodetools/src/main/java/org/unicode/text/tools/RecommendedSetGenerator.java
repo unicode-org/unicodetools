@@ -17,11 +17,6 @@ import com.ibm.icu.text.UnicodeSet;
  * @see com.ibm.icu.text.SpoofChecker
  */
 public class RecommendedSetGenerator {
-  /**
-   * Update the directory to use for generating the data:
-   */
-  private static final String DIRECTORY = "data/security/" + Settings.latestVersion;
-
   public static void main(String[] args) {
     Sets sets = generateSet();
     System.out.println("# inclusion: \n" + sets.inclusion.toString());
@@ -85,7 +80,8 @@ public class RecommendedSetGenerator {
   }
 
   public static Sets generateSet() {
-    XIDModifications inst = new XIDModifications(DIRECTORY);
+    String path = Settings.UnicodeTools.getDataPathStringForLatestVersion("security");
+    XIDModifications inst = new XIDModifications(path);
 
     // Compute sets based on status
     UnicodeSet allowedS = new UnicodeSet();

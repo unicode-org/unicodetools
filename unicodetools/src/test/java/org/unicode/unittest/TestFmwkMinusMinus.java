@@ -22,7 +22,7 @@ public class TestFmwkMinusMinus {
 
     @AfterEach
     public void tearDown() {
-        Assertions.assertEquals(0, errLines.size(), "errln()");
+        Assertions.assertEquals(0, errLines.size(), "errln()\n" + String.join("\n", errLines));
     }
 
 

@@ -188,7 +188,8 @@ public class Emoji {
     public static final String DATA_DIR_PRODUCTION_BASE = "https://unicode.org/Public/emoji/";
     public static final String DATA_DIR_PRODUCTION = DATA_DIR_PRODUCTION_BASE + VERSION_STRING + "/";
 
-    public static final String IMAGES_SOURCE_DIR_SVG = Settings.UnicodeTools.UNICODETOOLS_DIR + "data/images/";
+    public static final String IMAGES_SOURCE_DIR_SVG = Settings.UnicodeTools.DATA_DIR + "images/";
+    // TODO: This should be relative to GEN_DIR, not using "../../" to maybe get out of the repo source.
     public static final String IMAGES_OUTPUT_DIR = Settings.UnicodeTools.UNICODETOOLS_DIR + "../../images/emoji/";
 
     public enum ModifierStatus {
