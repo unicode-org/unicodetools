@@ -31,7 +31,7 @@ public class UcdPropertyValues {
         }
     }
 
-	public enum Age_Values implements Named {
+    public enum Age_Values implements Named {
         V1_1("1.1"),
         V2_0("2.0"),
         V2_1("2.1"),
@@ -57,6 +57,7 @@ public class UcdPropertyValues {
         V13_0("13.0"),
         V13_1("13.1"), // TODO: there is no Unicode 13.1, see https://github.com/unicode-org/unicodetools/issues/100
         V14_0("14.0"),
+        V15_0("15.0"),
         Unassigned("NA");
         private final PropertyNames<Age_Values> names;
         private Age_Values (String shortName, String...otherNames) {

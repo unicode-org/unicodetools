@@ -36,8 +36,8 @@ public class TestUnicodeBnf {
         Pattern gcbRegex = Pattern.compile(fixed);
         int lineCount = 0;
         // test
-        for (String line : FileUtilities.in(Settings.UnicodeTools.UNICODETOOLS_DIR, 
-                "data/ucd/11.0.0-Update/auxiliary/GraphemeBreakTest.txt")) {
+        for (String line : FileUtilities.in(Settings.UnicodeTools.DATA_DIR,
+                "ucd/11.0.0-Update/auxiliary/GraphemeBreakTest.txt")) {
             ++lineCount;
             BreakTest breakTest = BreakTest.forLine(line);
             if (breakTest == null) {

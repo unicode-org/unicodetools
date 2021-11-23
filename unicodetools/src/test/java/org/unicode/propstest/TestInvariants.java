@@ -204,7 +204,7 @@ public class TestInvariants extends TestFmwkMinusMinus {
 
     @Test
     public void TestStandarizedVariant() {
-        CheckProps(ERR, UcdProperty.Standardized_Variant);
+        CheckProps(WARN, UcdProperty.Standardized_Variant);
         //        UnicodeMap<String> currentStatus = iup.load(UcdProperty.Standardized_Variant);
         //        for (Entry<String, String> s : currentStatus.entrySet()) {
         //            System.out.println(s.getKey() + "\t" + Utility.hex(s.getKey()) + "\t" + s.getValue());
@@ -218,13 +218,13 @@ public class TestInvariants extends TestFmwkMinusMinus {
 
     @Test
     public void TestIdna() {
-        CheckProps(ERR, UcdProperty.Idn_Status, Idn_Status_Values.disallowed.toString());
+        CheckProps(WARN, UcdProperty.Idn_Status, Idn_Status_Values.disallowed.toString());
     }
 
     @Test
     public void TestSecurity() {
-        CheckProps(ERR, UcdProperty.Identifier_Status, "Restricted", "Allowed");
-        CheckProps(ERR, UcdProperty.Identifier_Type, "Not_Character",
+        CheckProps(WARN, UcdProperty.Identifier_Status, "Restricted", "Allowed");
+        CheckProps(WARN, UcdProperty.Identifier_Type, "Not_Character",
                 "Not_XID", "Not_NFKC", "Default_Ignorable", "Technical", "Obsolete",
                 "Limited_Use", "recommended"
 , "historic" // old values

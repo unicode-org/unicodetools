@@ -25,19 +25,34 @@ public class UnicodeDataFile {
         return new UnicodeDataFile(directory, filename, true);
     }
 
-    private UnicodeDataFile (String directory, String filename, boolean isHTML) throws IOException {
+    private UnicodeDataFile(String directory, String filename, boolean isHTML) throws IOException {
         fileType = isHTML ? ".html" : ".txt";
-        final String newSuffix = FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + fileType;
-        newFile = directory + filename + newSuffix;
+        // When we still generated files with version infixes, the following line was:
+        // newSuffix = FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileSuffix(fileType);
+        // newFile = directory + filename + newSuffix;
+        newFile = directory + filename + fileType;
         out = Utility.openPrintWriterGenDir(newFile, Utility.UTF8_UNIX);
-        mostRecent = Utility.getMostRecentUnicodeDataFile(
+        // getMostRecentUnicodeDataFile() is very expensive for output files that do not also
+        // exist somewhere in the input data folder:
+        // It will look through all versioned folders and their subfolders,
+        // and eventually fail to find such a file.
+        // We skip this when we won't look at what we find, or when we know that we won't find anything.
+        // For known pure output files, we could use a different constructor, or add a parameter.
+        boolean skipRecentFile =
+                // close() will not even look at mostRecent.
+                Settings.BUILD_FOR_COMPARE ||
+                // These folders exist only in the tools output, not in the tools input.
+                directory.endsWith("/cldr/") ||
+                directory.endsWith("/extra/");
+        mostRecent = skipRecentFile ? null :
+            Utility.getMostRecentUnicodeDataFile(
                 UnicodeDataFile.fixFile(filename), Default.ucd().getVersion(), true, true, fileType);
         this.filename = filename;
 
         if (!isHTML) {
-            out.println(Utility.getDataHeader(filename + FileInfix.plain.getFileInfix() + ".txt"));
+            out.println(Utility.getDataHeader(filename + FileInfix.plain.getFileSuffix(".txt")));
             out.println("#\n# Unicode Character Database"
-                    + "\n#   For documentation, see http://www.unicode.org/reports/tr44/");
+                    + "\n#   For documentation, see https://www.unicode.org/reports/tr44/");
         }
         try {
             Utility.appendFile(Settings.SRC_UCD_DIR + filename + "Header" + fileType, Utility.UTF8_UNIX, out);
@@ -76,12 +91,22 @@ public class UnicodeDataFile {
         none, 
         plain, 
         d;
+        // TODO: Switch call sites to getFileSuffix(): Faster for none because it avoids concatenation.
         public String getFileInfix() {
-            return this == FileInfix.none ? ""
-                    : "-" + Default.ucd().getVersion()
-                    + ((this == FileInfix.d && MakeUnicodeFiles.dVersion >= 0) 
-                            ? ("d" + MakeUnicodeFiles.dVersion) 
-                                    : "");
+            if (this == none) {
+                return "";
+            }
+            String infix = "-" + Default.ucd().getVersion();
+            if (this == d && MakeUnicodeFiles.dVersion >= 0) {
+                infix = infix + "d" + MakeUnicodeFiles.dVersion;
+            }
+            return infix;
+        }
+        public String getFileSuffix(String fileType) {
+            if (this == none) {
+                return fileType;  // avoid string concatenation
+            }
+            return getFileInfix() + fileType;
         }
         public static FileInfix fromFlags(boolean suppress, boolean withDVersion) {
             return suppress ? FileInfix.none : !withDVersion ? FileInfix.plain : FileInfix.d;

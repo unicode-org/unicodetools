@@ -33,9 +33,8 @@ public class CheckIdna2008 {
             patriksData.put(cp, allButFirst(parts));
         }
 
-        for (String line : FileUtilities.in(Settings.UnicodeTools.DATA_DIR + "/idna/" +
-                Settings.latestVersion +
-        		"/", "IdnaMappingTable.txt")) {
+        String idnaDir = Settings.UnicodeTools.getDataPathStringForLatestVersion("idna");
+        for (String line : FileUtilities.in(idnaDir + "/", "IdnaMappingTable.txt")) {
             final int pos2 = line.indexOf('#');
             if (pos2 >= 0) {
                 line = line.substring(0,pos2);

@@ -33,6 +33,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
 public final class TestNormalization {
+    // TODO: There is no such Update folder. Is this class obsolete?
     static final String DIR = Settings.UnicodeTools.UCD_DIR + "Update 3.0.1/";
     static final boolean SKIP_FILE = true;
 

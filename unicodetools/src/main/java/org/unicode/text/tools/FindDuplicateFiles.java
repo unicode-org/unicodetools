@@ -26,7 +26,7 @@ public class FindDuplicateFiles {
     private static Map<String,String> DIRS = new LinkedHashMap<>();
     static {
         String[] dirs = {
-                Settings.UnicodeTools.UNICODETOOLS_DIR,
+                Settings.UnicodeTools.UNICODETOOLS_REPO_DIR,
                 CLDRPaths.BASE_DIRECTORY
         };
         for (String dir : dirs) {

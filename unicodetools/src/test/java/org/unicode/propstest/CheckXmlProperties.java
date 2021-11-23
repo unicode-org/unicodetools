@@ -50,7 +50,6 @@ kCompatibilityVariant
 Failing tests:  9
 Warning tests:  4
      */
-    private final static String ucdVersion = Utility.searchPath[0];
     static final boolean LONG_TEST = true;
     private static final boolean INCLUDE_UNIHAN = true && LONG_TEST;
     private static final int MAX_LINE_COUNT = Integer.MAX_VALUE; // 4000; // Integer.MAX_VALUE;
@@ -67,15 +66,14 @@ Warning tests:  4
 
         System.out.println("Loading Index Props");
         timer.start();
-        final IndexUnicodeProperties iup = IndexUnicodeProperties.make(ucdVersion);
+        final IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
         timer.stop();
         System.out.println(timer);
 
         System.out.println("Loading XML Props");
         timer.start();
-        final XMLProperties xmlProps = new XMLProperties(
-                Settings.UnicodeTools.DATA_DIR + "/ucdxml/" + ucdVersion + "/",
-                INCLUDE_UNIHAN, MAX_LINE_COUNT);
+        final String folder = Settings.UnicodeTools.getDataPathStringForLatestVersion("ucdxml");
+        final XMLProperties xmlProps = new XMLProperties(folder, INCLUDE_UNIHAN, MAX_LINE_COUNT);
         timer.stop();
         System.out.println(timer);
         int failedTests = 0;

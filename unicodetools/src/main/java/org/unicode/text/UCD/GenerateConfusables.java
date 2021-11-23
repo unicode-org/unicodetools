@@ -86,7 +86,8 @@ public class GenerateConfusables {
     private static final String REVISION = Settings.latestVersion;
     static final String VERSION_PROP_VALUE = REVISION; // "V7_0";
 
-    static final String reformatedInternal = Settings.UnicodeTools.UNICODETOOLS_DIR + "data/security/" + REVISION + "/data/";
+    static final String reformatedInternal =
+            Settings.UnicodeTools.getDataPathString("security", REVISION) + "/data/";
     public static final String GEN_SECURITY_DIR = Settings.Output.GEN_DIR + "security/" + REVISION + "/";
 
     //    static final XIDModifications REFERENCE_VALUES = new XIDModifications(Settings.UNICODETOOLS_DIRECTORY + "data/security/"
@@ -99,8 +100,8 @@ public class GenerateConfusables {
     static final boolean DEBUG = false;
 
     static {
-        Confusables REFERENCE_VALUES = new Confusables(Settings.UnicodeTools.UNICODETOOLS_DIR + "data/security/"
-            + REFERENCE_VERSION);
+        String path = Settings.UnicodeTools.getDataPathString("security", REFERENCE_VERSION);
+        Confusables REFERENCE_VALUES = new Confusables(path);
         for (EntryRange<String> entry : REFERENCE_VALUES.getRawMapToRepresentative(Confusables.Style.MA).entryRanges()) {
             if (entry.string != null) {
                 LAST_COUNT.add(entry.value, 1);

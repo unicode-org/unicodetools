@@ -1,5 +1,18 @@
 # Input data setup
 
+## Unicode 15+ workflow
+
+Starting with Unicode 15, we are developing most of the Unicode data files
+in this Unicode Tools project, and publish them to the Public folder
+only for alpha/beta/final releases.
+That is, we are reversing the flow of files.
+(See [issue #144](https://github.com/unicode-org/unicodetools/issues/144).)
+
+We are also no longer generating and posting files with version suffixes.
+
+Except: Some files, such as Unihan and ucdxml data files, are developed elsewhere,
+and we continue to ingest them as before.
+
 ## Source Files
 
 The source files that you will need for a release such as 8.0.0 are in:
@@ -54,6 +67,7 @@ files have the version suffix.
 
 ### Removing Suffixes
 
+Only for Unicode 14 and earlier:
 For the ucd and uca files, you will have to remove the suffixes.
 
 Tip: On Linux, you can remove version suffixes on the command line like this:
@@ -122,7 +136,7 @@ $ ../../desuffixucd.py .
 
 ### Unihan
 
-You may need to manually change "Unihan-8.0.0d2 Folder" to "Unihan".
+You may need to manually change the "Unihan-8.0.0d2 Folder" to "Unihan".
 
 Unzip the Unihan.zip file into a "Unihan" subfolder.
 

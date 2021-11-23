@@ -7,6 +7,7 @@ import java.util.Set;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.UCD.IdentifierInfo.Identifier_Status;
 import org.unicode.text.UCD.IdentifierInfo.Identifier_Type;
+import org.unicode.text.utility.Settings;
 
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -18,7 +19,10 @@ public class XIDModifications {
 
     public XIDModifications(String directory) {
     	File dir = new File(directory);
-    	String finalPart = dir.getName();
+        String finalPart = dir.getName();
+        if (finalPart.equals(Settings.NEXT_VERSION_FOLDER_NAME)) {
+            finalPart = Settings.latestVersion;
+        }
     	VersionInfo version = VersionInfo.getInstance(finalPart);
         identifierStatus.putAll(0,0x10FFFF, Identifier_Status.restricted);
         if (version.getMajor() == 9) {

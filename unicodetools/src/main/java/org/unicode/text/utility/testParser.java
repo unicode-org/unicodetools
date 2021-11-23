@@ -24,6 +24,7 @@ import com.ibm.icu.text.UTF16;
 
 
 public class testParser implements XMLParseTypes {
+    // TODO: There is no such UNIDATA folder. Is this class obsolete?
     public static final String BASE_DIR = Settings.UnicodeTools.UCD_DIR + "/UNIDATA 3.0.1/";
     public static final boolean VERBOSE = false;
 

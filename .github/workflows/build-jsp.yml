@@ -39,7 +39,6 @@ jobs:
       # TODO: symlink of security here?
       run: >
         mkdir -pv $(pwd)/output/Generated/ &&
-        ln -s $(pwd)/unicodetools/data/security ./output/Generated/ &&
         mvn -s .github/workflows/mvn-settings.xml -B exec:java
         -Dexec.mainClass="org.unicode.text.UCD.Main" -Dexec.args="version 14.0.0 build MakeUnicodeFiles"
         -pl unicodetools -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr

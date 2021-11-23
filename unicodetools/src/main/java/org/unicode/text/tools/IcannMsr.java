@@ -167,8 +167,6 @@ public class IcannMsr {
         }
     }
 
-    private static final String SECURITY = Settings.UnicodeTools.UNICODETOOLS_DIR + "data/security/";
-
     public static void main(String[] args) {
         // for (Entry<String, Set<IdentifierType>> x : DATA2TYPE.keyValues()) {
         // String s = x.getKey();
@@ -183,7 +181,8 @@ public class IcannMsr {
         System.out.println("\nValues");
         showValues("values.txt", DATA2TYPE, Identifier_Type.recommended);
 
-        XIDModifications xidModOld = new XIDModifications(SECURITY + Settings.latestVersion);
+        String path = Settings.UnicodeTools.getDataPathStringForLatestVersion("security");
+        XIDModifications xidModOld = new XIDModifications(path);
         UnicodeMap<Set<Identifier_Type>> xidMod = xidModOld.getType();
 
         UnicodeMap<Set<String>> cldrChars = CLDRCharacterUtility.getCLDRCharacters();
