@@ -128,13 +128,16 @@ public final class GenerateStandardizedVariants implements UCD_Types {
 
         // now write out the results
 
-        final UnicodeDataFile outfile = UnicodeDataFile.openHTMLAndWriteHeader(MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY, "StandardizedVariants")
+        final UCD ucd = Default.ucd();
+        final String version = ucd.getVersion();
+        final UnicodeDataFile outfile =
+                UnicodeDataFile.openHTMLAndWriteHeader(
+                        "UCD/" + version + '/',
+                        "StandardizedVariants")
                 .setSkipCopyright(Settings.SKIP_COPYRIGHT);
 
         final PrintWriter out = outfile.out;
 
-        final UCD ucd = Default.ucd();
-        final String version = Default.ucd().getVersion();
         final String lastVersion = Utility.getPreviousUcdVersion(version);
         final int lastDot = version.lastIndexOf('.');
         String updateDirectory;

@@ -753,7 +753,8 @@ public class GenerateData implements UCD_Types {
         final UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(directory, fileName).setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter log = fc.out;
 
-        final String newFile = directory + fileName + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".txt";
+        //final String suffix = FileInfix.getDefault().getFileSuffix(".txt");
+        //final String newFile = directory + fileName + suffix;
         //PrintWriter log = Utility.openPrintWriter(newFile, Utility.UTF8_UNIX);
         //String[] batName = {""};
         //String mostRecent = org.unicode.cldr.util.Utility.generateBat(directory, fileName, UnicodeDataFile.getFileSuffix(true), batName);

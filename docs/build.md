@@ -262,9 +262,8 @@ to set up the inputs correctly. For some updates you may need to pull in other
 
 Unicode 15:
 
-We no longer generate files with version suffixes, but for now we still
-generate files into an output folder with the DeltaVersion that is set in MakeUnicodeFiles.txt.
-We might revisit this.
+We no longer generate files with version suffixes.
+We now generate files into an output folder with the Unicode version number.
 
 Unicode 14:
 
@@ -274,7 +273,6 @@ Now, update the following files:
 
 ```
 Generate: .*
-DeltaVersion: 1 (this will generate files suffixed with -d1, figure out what the latest delta is)
 CopyrightYear: 2021 (or whatever)
 ....
 File: DerivedAge
@@ -448,7 +446,6 @@ If there are new break rules (or changes), see
             modify at some times:
             ```
             Generate: .*script.* // this is a regular expression. Use .* for all files
-            DeltaVersion: 10     // This gets appended to the file name. Pick 1+ the highest value in Public
             CopyrightYear: 2010  // Pick the current year
             ```
 3.  Open in Package Explorer

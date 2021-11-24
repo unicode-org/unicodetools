@@ -49,8 +49,12 @@ public class GenerateCaseFolding implements UCD_Types {
     public static void makeCaseFold(boolean normalized) throws java.io.IOException {
         PICK_SHORT = NF_CLOSURE = normalized;
 
-        log = Utility.openPrintWriter(Settings.Output.GEN_DIR + "/log", "CaseFoldingLog" + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".txt", Utility.LATIN1_UNIX);
-        System.out.println("Writing Log: " + "CaseFoldingLog" + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".txt");
+        String suffix = FileInfix.getDefault().getFileSuffix(".txt");
+        log = Utility.openPrintWriter(
+                Settings.Output.GEN_DIR + "/log",
+                "CaseFoldingLog" + suffix,
+                Utility.LATIN1_UNIX);
+        System.out.println("Writing Log: " + "CaseFoldingLog" + suffix);
 
         System.out.println("Making Full Data");
         final Map<String, String> fullData = getCaseFolding(true, NF_CLOSURE, "");
@@ -74,8 +78,9 @@ public class GenerateCaseFolding implements UCD_Types {
         if (normalized) {
             filename += "-Normalized";
         }
-        final String directory = MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY;
-        final UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(directory, filename)
+        final String directory = "UCD/" + Default.ucd().getVersion() + '/';
+        final UnicodeDataFile fc =
+                UnicodeDataFile.openAndWriteHeader(directory, filename)
                 .setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter out = fc.out;
 
@@ -548,9 +553,12 @@ public class GenerateCaseFolding implements UCD_Types {
         if (normalize) {
             suffix2 = "-Normalized";
         }
-
-        final PrintWriter log = Utility.openPrintWriter(Settings.Output.GEN_DIR, "log/SpecialCasingExceptions"
-        + suffix2 + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".txt", Utility.LATIN1_UNIX);
+        String suffix = FileInfix.getDefault().getFileSuffix(".txt");
+        final PrintWriter log =
+                Utility.openPrintWriter(
+                        Settings.Output.GEN_DIR,
+                        "log/SpecialCasingExceptions" + suffix2 + suffix,
+                        Utility.LATIN1_UNIX);
 
         for (int ch = 0; ch <= 0x10FFFF; ++ch) {
             Utility.dot(ch);
@@ -687,7 +695,11 @@ public class GenerateCaseFolding implements UCD_Types {
         //String newFile = "DerivedData/SpecialCasing" + suffix2 + UnicodeDataFile.getFileSuffix(true);
         //PrintWriter out = Utility.openPrintWriter(newFile, Utility.LATIN1_UNIX);
 
-        final UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY, "SpecialCasing" + suffix2).setSkipCopyright(Settings.SKIP_COPYRIGHT);
+        final UnicodeDataFile udf =
+                UnicodeDataFile.openAndWriteHeader(
+                        "UCD/" + Default.ucd().getVersion() + '/',
+                        "SpecialCasing" + suffix2).
+                setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter out = udf.out;
 
         /*       String[] batName = {""};

@@ -263,7 +263,7 @@ public class Settings {
                 getRequiredPathAndFix("UNICODETOOLS_OUTPUT_DIR");
         public static final String GEN_DIR = UNICODETOOLS_OUTPUT_DIR + "Generated/";
         public static final String BIN_DIR = GEN_DIR + "BIN/";
-        public static final String GEN_UCD_DIR = GEN_DIR + "ucd/";
+        public static final String GEN_UCD_DIR = GEN_DIR + "UCD/";
         public static final String GEN_UCA_DIR = GEN_DIR + "UCA/";
         /**
          * Make sure the output dirs exist

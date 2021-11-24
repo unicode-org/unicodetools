@@ -111,8 +111,7 @@ public final class GenerateNamedSequences implements UCD_Types {
 
         // now write out the results
 
-        final String directory = MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY + "extra/";
-        final String filename = directory + filename2 + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".html";
+        final String directory = "UCD/" + Default.ucd().getVersion() + "/extra/";
         final UnicodeDataFile outfile = UnicodeDataFile.openHTMLAndWriteHeader(directory, filename2)
                 .setSkipCopyright(Settings.SKIP_COPYRIGHT);
 
