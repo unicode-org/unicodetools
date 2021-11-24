@@ -82,34 +82,26 @@ public class UnicodeDataFile {
     }
 
     /**
-     * There are three cases:<br>
-     * no version (ArabicShaping.txt)<br>
-     * plain version (ArabicShaping-11.0.0.txt)<br>
-     * d version (ArabicShaping-11.0.0-d31.txt)<br>
+     * There are two cases:<br>
+     * no infix (ArabicShaping.txt)<br>
+     * plain version infix (ArabicShaping-11.0.0.txt)<br>
      */
     public enum FileInfix {
-        none, 
-        plain, 
-        d;
-        // TODO: Switch call sites to getFileSuffix(): Faster for none because it avoids concatenation.
-        public String getFileInfix() {
-            if (this == none) {
-                return "";
-            }
-            String infix = "-" + Default.ucd().getVersion();
-            if (this == d && MakeUnicodeFiles.dVersion >= 0) {
-                infix = infix + "d" + MakeUnicodeFiles.dVersion;
-            }
-            return infix;
-        }
+        none, plain;
+
         public String getFileSuffix(String fileType) {
             if (this == none) {
                 return fileType;  // avoid string concatenation
             }
-            return getFileInfix() + fileType;
+            return "-" + Default.ucd().getVersion() + fileType;
         }
-        public static FileInfix fromFlags(boolean suppress, boolean withDVersion) {
-            return suppress ? FileInfix.none : !withDVersion ? FileInfix.plain : FileInfix.d;
+
+        public static FileInfix getDefault() {
+            return suppressVersion(Settings.BUILD_FOR_COMPARE);
+        }
+
+        private static FileInfix suppressVersion(boolean suppress) {
+            return suppress ? FileInfix.none : FileInfix.plain;
         }
     }
 

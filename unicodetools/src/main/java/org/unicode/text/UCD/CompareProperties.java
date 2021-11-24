@@ -246,7 +246,7 @@ public class CompareProperties implements UCD_Types {
     public void printPartition() throws IOException {
         System.out.println("Set Size: " + map.size());
         final PrintWriter output = Utility.openPrintWriterGenDir("Partition"
-                + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".txt", Utility.LATIN1_WINDOWS);
+                + FileInfix.getDefault().getFileSuffix(".txt"), Utility.LATIN1_WINDOWS);
 
         final Iterator it = map.keySet().iterator();
         while (it.hasNext()) {
@@ -272,7 +272,7 @@ public class CompareProperties implements UCD_Types {
     public void printStatistics() throws IOException {
         System.out.println("Set Size: " + map.size());
         final PrintWriter output = Utility.openPrintWriterGenDir("Statistics"
-                + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".txt", Utility.LATIN1_WINDOWS);
+                + FileInfix.getDefault().getFileSuffix(".txt"), Utility.LATIN1_WINDOWS);
 
         System.out.println("Finding disjoints/contains");
         for (int i = 0; i < count; ++i) {
@@ -433,7 +433,10 @@ public class CompareProperties implements UCD_Types {
 
     public static void listDifferences() throws IOException {
 
-        final PrintWriter output = Utility.openPrintWriterGenDir("PropertyDifferences" + FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileInfix() + ".txt", Utility.LATIN1_UNIX);
+        final PrintWriter output =
+                Utility.openPrintWriterGenDir(
+                        "PropertyDifferences" + FileInfix.getDefault().getFileSuffix(".txt"),
+                        Utility.LATIN1_UNIX);
         output.println("# Listing of relationships among properties, suitable for analysis by spreadsheet");
         output.println("# Generated for " + Default.ucd().getVersion());
         output.println(Utility.generateDateLine());

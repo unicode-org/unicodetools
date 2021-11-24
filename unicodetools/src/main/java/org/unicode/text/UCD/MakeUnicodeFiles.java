@@ -43,10 +43,6 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
 public class MakeUnicodeFiles {
-    public static String MAIN_OUTPUT_DIRECTORY = "UCD/";
-
-    public static int dVersion = -1; // change to fix the generated file D version. If less than zero, no "d"
-
     static boolean DEBUG = false;
 
     public static void main(String[] args) throws IOException {
@@ -294,9 +290,6 @@ public class MakeUnicodeFiles {
                                     || (filesToDo.length == 1 && filesToDo[0].length() == 0)) {
                                 filesToDo = new String[] {".*"};
                             }
-                        } else if (line.startsWith("DeltaVersion:")) {
-                            dVersion = Integer.parseInt(lineValue);
-                            MAIN_OUTPUT_DIRECTORY = "UCD/" + (Settings.BUILD_FOR_COMPARE ? "" : "d" + dVersion + "/");
                         } else if (line.startsWith("CopyrightYear:")) {
                             Default.setYear(lineValue);
                         } else if (line.startsWith("File:")) {
@@ -420,6 +413,7 @@ public class MakeUnicodeFiles {
     }
 
     public static void generateFile(String filename) throws IOException {
+        String outputDir = "UCD/" + Default.ucdVersion() + '/';
         if (filename.endsWith("Aliases")) {
             if (filename.endsWith("ValueAliases")) {
                 generateValueAliasFile(filename);
@@ -433,10 +427,10 @@ public class MakeUnicodeFiles {
         } else {
             switch(filename) {
             case "unihan":
-                writeUnihan(MAIN_OUTPUT_DIRECTORY + "unihan/");
+                writeUnihan(outputDir + "unihan/");
                 break;
             case "NormalizationTest":
-                GenerateData.writeNormalizerTestSuite(MAIN_OUTPUT_DIRECTORY, "NormalizationTest");
+                GenerateData.writeNormalizerTestSuite(outputDir, "NormalizationTest");
                 break;
             case "BidiTest":
                 doBidiTest(filename);
@@ -484,7 +478,10 @@ public class MakeUnicodeFiles {
     private static void generateDerivedName(String filename) throws IOException {
         boolean isLabel = filename.contains("Label");
         final String dir = Format.theFormat.fileToDirectory.get(filename);
-        final UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY + dir, filename);
+        final UnicodeDataFile udf =
+                UnicodeDataFile.openAndWriteHeader(
+                        "UCD/" + Default.ucdVersion() + '/' + dir,
+                        filename);
         final PrintWriter pw = udf.out;
         Format.theFormat.printFileComments(pw, filename);
         final UCD ucd = Default.ucd();
@@ -530,7 +527,9 @@ public class MakeUnicodeFiles {
     private static void generateScriptNfkc(String filename) throws IOException {
         final String dir = Format.theFormat.fileToDirectory.get(filename);
         final UnicodeDataFile udf =
-                UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY + dir, filename);
+                UnicodeDataFile.openAndWriteHeader(
+                        "UCD/" + Default.ucdVersion() + '/' + dir,
+                        filename);
         final PrintWriter pw = udf.out;
         Format.theFormat.printFileComments(pw, filename);
         final UCD ucd = Default.ucd();
@@ -568,7 +567,9 @@ public class MakeUnicodeFiles {
 
     private static void doBidiTest(String filename) throws IOException {
         final UnicodeDataFile udf =
-                UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY, filename);
+                UnicodeDataFile.openAndWriteHeader(
+                        "UCD/" + Default.ucdVersion() + '/',
+                        filename);
         final PrintWriter pw = udf.out;
         Format.theFormat.printFileComments(pw, filename);
         org.unicode.bidi.BidiConformanceTestBuilder.write(pw);
@@ -662,7 +663,11 @@ public class MakeUnicodeFiles {
     static final String SEPARATOR = "# ================================================";
 
     public static void generateAliasFile(String filename) throws IOException {
-        final UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY, filename).setSkipCopyright(Settings.SKIP_COPYRIGHT);
+        final UnicodeDataFile udf =
+                UnicodeDataFile.openAndWriteHeader(
+                        "UCD/" + Default.ucdVersion() + '/',
+                        filename).
+                setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter pw = udf.out;
         final UnicodeProperty.Factory ups
         = ToolUnicodePropertySource.make(Default.ucdVersion());
@@ -769,8 +774,9 @@ public class MakeUnicodeFiles {
     }
 
     public static void generateValueAliasFile(String filename) throws IOException {
-        final UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY, filename).setSkipCopyright(Settings.SKIP_COPYRIGHT);
-        final UnicodeDataFile diff = UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY + "extra/", "diff");
+        String outputDir = "UCD/" + Default.ucdVersion() + '/';
+        final UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(outputDir, filename).setSkipCopyright(Settings.SKIP_COPYRIGHT);
+        final UnicodeDataFile diff = UnicodeDataFile.openAndWriteHeader(outputDir + "extra/", "diff");
         final PrintWriter pw = udf.out;
         final PrintWriter diffOut = diff.out;
         Format.theFormat.printFileComments(pw, filename);
@@ -976,7 +982,10 @@ public class MakeUnicodeFiles {
             dir = "";
         }
         final UnicodeDataFile udf =
-                UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY + dir, filename).setSkipCopyright(Settings.SKIP_COPYRIGHT);
+                UnicodeDataFile.openAndWriteHeader(
+                        "UCD/" + Default.ucdVersion() + '/' + dir,
+                        filename).
+                setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter pwFile = udf.out;
         // bf2.openUTF8Writer(UCD_Types.GEN_DIR, "Test" + filename + ".txt");
         Format.theFormat.printFileComments(pwFile, filename);

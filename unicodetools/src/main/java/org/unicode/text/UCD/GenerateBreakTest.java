@@ -390,8 +390,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
 	//printLine(out, samples[LB_ZW], " ", samples[LB_CL]);
 
         boolean forCLDR = seg.target == Segmenter.Target.FOR_CLDR;
-        String path = MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY +
-	        (forCLDR ? "cldr/" : "auxiliary/");
+        String path = "UCD/" + ucd.getVersion() + '/' + (forCLDR ? "cldr/" : "auxiliary/");
 	String outFilename = fileName + "BreakTest";
 	if (forCLDR) {
 	    outFilename = outFilename + "-cldr";
