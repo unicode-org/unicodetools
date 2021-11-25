@@ -503,7 +503,7 @@ public class MakeUnicodeFiles {
             String hex = Utility.hex(i);
             name = name.replace(hex, "*");
             names.put(i, name);
-        }		
+        }
         names.freeze();
         UnicodeLabel nameProp = new UnicodeProperty.UnicodeMapProperty()
                 .set(names)
@@ -1349,12 +1349,12 @@ public class MakeUnicodeFiles {
         }
     }
 
-    //	static Comparator<String> CASELESS_COMPARATOR = new Comparator<String>() {
-    //		@Override
-    //		public int compare(String s, String t) {
-    //			return s.compareToIgnoreCase(t);
-    //		}
-    //	};
+    //    static Comparator<String> CASELESS_COMPARATOR = new Comparator<String>() {
+    //        @Override
+    //        public int compare(String s, String t) {
+    //            return s.compareToIgnoreCase(t);
+    //        }
+    //    };
 
     public static void showDiff() throws IOException {
         final PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "propertyDifference.txt");

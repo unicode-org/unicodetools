@@ -39,13 +39,13 @@ import org.unicode.props.UcdPropertyValues.Word_Break_Values;
 */
 public enum UcdProperty {
 
-		// Numeric
+        // Numeric
     Numeric_Value(PropertyType.Numeric, "nv"),
     kAccountingNumeric(PropertyType.Numeric, "cjkAccountingNumeric"),
     kOtherNumeric(PropertyType.Numeric, "cjkOtherNumeric"),
     kPrimaryNumeric(PropertyType.Numeric, "cjkPrimaryNumeric"),
 
-		// String
+        // String
     Bidi_Mirroring_Glyph(PropertyType.String, "bmg"),
     Bidi_Paired_Bracket(PropertyType.String, "bpb"),
     Case_Folding(PropertyType.String, "cf"),
@@ -68,7 +68,7 @@ public enum UcdProperty {
     kSimplifiedVariant(PropertyType.String, null, ValueCardinality.Unordered, "cjkSimplifiedVariant"),
     kTraditionalVariant(PropertyType.String, null, ValueCardinality.Unordered, "cjkTraditionalVariant"),
 
-		// Miscellaneous
+        // Miscellaneous
     CJK_Radical(PropertyType.Miscellaneous, null, ValueCardinality.Ordered, "CJKR"),
     Emoji_DCM(PropertyType.Miscellaneous, "EDCM"),
     Emoji_KDDI(PropertyType.Miscellaneous, "EKDDI"),
@@ -178,13 +178,13 @@ public enum UcdProperty {
     kXerox(PropertyType.Miscellaneous, "cjkXerox"),
     kZVariant(PropertyType.Miscellaneous, "cjkZVariant"),
 
-		// Catalog
+        // Catalog
     Age(PropertyType.Catalog, Age_Values.class, null, "age"),
     Block(PropertyType.Catalog, Block_Values.class, null, "blk"),
     Script(PropertyType.Catalog, Script_Values.class, null, "sc"),
     Script_Extensions(PropertyType.Catalog, Script_Values.class, ValueCardinality.Unordered, "scx"),
 
-		// Enumerated
+        // Enumerated
     Bidi_Class(PropertyType.Enumerated, Bidi_Class_Values.class, null, "bc"),
     Bidi_Paired_Bracket_Type(PropertyType.Enumerated, Bidi_Paired_Bracket_Type_Values.class, null, "bpt"),
     Canonical_Combining_Class(PropertyType.Enumerated, Canonical_Combining_Class_Values.class, null, "ccc"),
@@ -211,7 +211,7 @@ public enum UcdProperty {
     Vertical_Orientation(PropertyType.Enumerated, Vertical_Orientation_Values.class, null, "vo"),
     Word_Break(PropertyType.Enumerated, Word_Break_Values.class, null, "WB"),
 
-		// Binary
+        // Binary
     ASCII_Hex_Digit(PropertyType.Binary, Binary.class, null, "AHex"),
     Alphabetic(PropertyType.Binary, Binary.class, null, "Alpha"),
     Basic_Emoji(PropertyType.Binary, Binary.class, null, "BE"),
@@ -286,67 +286,67 @@ public enum UcdProperty {
     XID_Continue(PropertyType.Binary, Binary.class, null, "XIDC"),
     XID_Start(PropertyType.Binary, Binary.class, null, "XIDS"),
 
-		// Unknown
-		;
+        // Unknown
+        ;
 
 private final PropertyType type;
-	private final PropertyNames<UcdProperty> names;
-	// for enums
-	private final NameMatcher name2enum;
-	private final EnumSet enums;
-	private final Class enumClass;
-	private final ValueCardinality cardinality;
-	
-	private UcdProperty(PropertyType type, String shortName, String...otherNames) {
-		this.type = type;
-		names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);
-		name2enum = null;
-		enums = null;
-		enumClass = null;
-		cardinality = ValueCardinality.Singleton;
-	}
-	private UcdProperty(PropertyType type, Class classItem, ValueCardinality _cardinality, String shortName, String...otherNames) {
-		this.type = type;
-		names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);
-		cardinality = _cardinality == null ? ValueCardinality.Singleton : _cardinality;
-		if (classItem == null) {
-			name2enum = null;
-			enums = null;
-			enumClass = null;
-		} else {
-			enums = EnumSet.allOf(classItem);
-			name2enum = PropertyNames.getNameToEnums(classItem);
-			enumClass = classItem;
-		}
-	}
-	
-	public ValueCardinality getCardinality() {
-		return cardinality;
-	}
-	public Class<Enum> getEnumClass() {
-		return enumClass;
-	}
-	public PropertyType getType() {
-		return type;
-	}
-	public PropertyNames<UcdProperty> getNames() {
-		return names;
-	}
-	public String getShortName() {
-		return names.getShortName();
-	}
-	public static UcdProperty forString(String name) {
-		return Numeric_Value.names.forString(name);
-	}
-	public Enum getEnum(String name) {
-		return name2enum == null ? null : name2enum.get(name);
-	}
-	public PropertyNames getEnumNames() {
-		return name2enum == null ? null : name2enum.getNames();
-	}
-	public Set<Enum> getEnums() {
-		return enums;
-	}
+    private final PropertyNames<UcdProperty> names;
+    // for enums
+    private final NameMatcher name2enum;
+    private final EnumSet enums;
+    private final Class enumClass;
+    private final ValueCardinality cardinality;
+    
+    private UcdProperty(PropertyType type, String shortName, String...otherNames) {
+        this.type = type;
+        names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);
+        name2enum = null;
+        enums = null;
+        enumClass = null;
+        cardinality = ValueCardinality.Singleton;
+    }
+    private UcdProperty(PropertyType type, Class classItem, ValueCardinality _cardinality, String shortName, String...otherNames) {
+        this.type = type;
+        names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);
+        cardinality = _cardinality == null ? ValueCardinality.Singleton : _cardinality;
+        if (classItem == null) {
+            name2enum = null;
+            enums = null;
+            enumClass = null;
+        } else {
+            enums = EnumSet.allOf(classItem);
+            name2enum = PropertyNames.getNameToEnums(classItem);
+            enumClass = classItem;
+        }
+    }
+    
+    public ValueCardinality getCardinality() {
+        return cardinality;
+    }
+    public Class<Enum> getEnumClass() {
+        return enumClass;
+    }
+    public PropertyType getType() {
+        return type;
+    }
+    public PropertyNames<UcdProperty> getNames() {
+        return names;
+    }
+    public String getShortName() {
+        return names.getShortName();
+    }
+    public static UcdProperty forString(String name) {
+        return Numeric_Value.names.forString(name);
+    }
+    public Enum getEnum(String name) {
+        return name2enum == null ? null : name2enum.get(name);
+    }
+    public PropertyNames getEnumNames() {
+        return name2enum == null ? null : name2enum.getNames();
+    }
+    public Set<Enum> getEnums() {
+        return enums;
+    }
 
 
 }

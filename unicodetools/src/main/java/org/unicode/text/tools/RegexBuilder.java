@@ -16,8 +16,8 @@ import com.ibm.icu.text.UnicodeSet.EntryRange;
 public class RegexBuilder {
     public enum Style {CODEPOINT_REGEX, CHAR_REGEX}
     public static final UnicodeSet NEEDS_ESCAPE = new UnicodeSet("[[:di:][:Me:][:Mn:][:c:]]")
-//	    .add(0x1F1E6,0x1F1FF)
-	    .freeze();
+//          .add(0x1F1E6,0x1F1FF)
+            .freeze();
 
     public static StringBuilder showSet(UnicodeSet us, StringBuilder output) {
         if (us.size() == 1) {

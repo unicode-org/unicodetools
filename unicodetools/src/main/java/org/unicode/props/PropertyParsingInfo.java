@@ -128,7 +128,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
 
         String last = propertyInfo[propertyInfo.length-1];
         if (VERSION.matcher(last).matches()) {
-        	propertyInfo[propertyInfo.length-1] = "";
+            propertyInfo[propertyInfo.length-1] = "";
             PropertyParsingInfo result = property2PropertyInfo.get(_property);
             result.oldFile = _file;
             result.maxOldVersion = VersionInfo.getInstance(last.substring(1));

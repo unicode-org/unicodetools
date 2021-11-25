@@ -98,16 +98,16 @@ public class GenerateIdnaTest {
 
         FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader.txt").toString().substring(5), "UTF-8", out);
 
-	final String filename = "IdnaMappingTable-" + Default.ucdVersion() + ".txt";
-	final String unversionedFileName = "IdnaMappingTable.txt";
+        final String filename = "IdnaMappingTable-" + Default.ucdVersion() + ".txt";
+        final String unversionedFileName = "IdnaMappingTable.txt";
 
         final PrintWriter out2 = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.GEN_IDNA_DIR, NEW_FILE_NAME);
 //        out2.println(Utility.getDataHeader(NEW_FILE_NAME));
-	out2.println(Utility.getBaseDataHeader(
-		NEW_FILE_NAME, 
-		46, 
-		"Unicode IDNA Compatible Preprocessing", 
-		Default.ucdVersion()));
+        out2.println(Utility.getBaseDataHeader(
+                NEW_FILE_NAME, 
+                46, 
+                "Unicode IDNA Compatible Preprocessing", 
+                Default.ucdVersion()));
 
         FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader2.txt").toString().substring(5), "UTF-8", out2);
 

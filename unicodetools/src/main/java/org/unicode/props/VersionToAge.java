@@ -90,10 +90,10 @@ public enum VersionToAge {
         Entry<VersionInfo, Long> last = null;
         for (Entry<VersionInfo, Long> row : data.entrySet()) {
             if (last != null) {
-        	if (row.getKey().compareTo(last.getKey()) >= 0
-        		|| row.getValue().compareTo(last.getValue()) >= 0) {
-        	    throw new IllegalArgumentException("Non-monotonic");
-        	}
+                if (row.getKey().compareTo(last.getKey()) >= 0
+                        || row.getValue().compareTo(last.getValue()) >= 0) {
+                    throw new IllegalArgumentException("Non-monotonic");
+                }
             }
             last = row;
         }
@@ -107,8 +107,8 @@ public enum VersionToAge {
     }
 
     public int maxYear() {
-	Long date = versionToDate.entrySet().iterator().next().getValue();
-	return new Date(date).getYear()+1900;
+        Long date = versionToDate.entrySet().iterator().next().getValue();
+        return new Date(date).getYear()+1900;
     }
 
     public static Long getDate(int year, int month) {
