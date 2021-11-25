@@ -10,8 +10,6 @@ import java.nio.file.StandardCopyOption;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.propstest.CopyPropsToUnicodeJsp;
-import org.unicode.propstest.ListProps;
 import org.unicode.text.tools.GenerateSubtagNames;
 import org.unicode.text.utility.Settings;
 

@@ -1,4 +1,4 @@
-package org.unicode.propstest;
+package org.unicode.tools;
 
 import java.io.File;
 import java.io.IOException;

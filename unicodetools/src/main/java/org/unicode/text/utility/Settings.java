@@ -206,7 +206,6 @@ public class Settings {
 
         /**
          * Constants representing data subdirectories
-         * TODO: unused; delete?
          */
         public enum DataDir {
             SECURITY,
