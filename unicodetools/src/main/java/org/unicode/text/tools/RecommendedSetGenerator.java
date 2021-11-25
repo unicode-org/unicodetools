@@ -55,10 +55,10 @@ public class RecommendedSetGenerator {
             // The escape sequence is completely on this line.
           } else {
             // Truncate before double escape.
-        	if (i < j && str.charAt(j - 1) == '\\') {
-        	  --j;
-        	}
-        	// Do not truncate to nothing.
+            if (i < j && str.charAt(j - 1) == '\\') {
+              --j;
+            }
+            // Do not truncate to nothing.
             if (i < j) {
               end = j;
             }

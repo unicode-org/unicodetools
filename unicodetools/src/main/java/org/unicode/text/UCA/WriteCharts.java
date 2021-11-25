@@ -553,12 +553,12 @@ public class WriteCharts implements UCD_Types {
         Utility.appendFile(Settings.SRC_UCA_DIR + "script_index_header.html", Utility.UTF8, indexFile, replacement);
 
         /*
-			indexFile.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
-			indexFile.println("<title>UCA Default Collation Table</title>");
-			indexFile.println("<base target='main'>");
-			indexFile.println("<style type='text/css'><!-- p { font-size: 90% } --></style>");
-			indexFile.println("</head><body><h2 align='center'>UCA Default Collation Table</h2>");
-			indexFile.println("<p align='center'><a href = 'help.html'>Help</a>");
+            indexFile.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
+            indexFile.println("<title>UCA Default Collation Table</title>");
+            indexFile.println("<base target='main'>");
+            indexFile.println("<style type='text/css'><!-- p { font-size: 90% } --></style>");
+            indexFile.println("</head><body><h2 align='center'>UCA Default Collation Table</h2>");
+            indexFile.println("<p align='center'><a href = 'help.html'>Help</a>");
          */
 
         int columnCount = 0;

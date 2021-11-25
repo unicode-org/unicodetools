@@ -93,19 +93,19 @@ V2
             
             // type = Type.valueOf(parts.get(0));
             try {
-		source = fromHex.transform(parts.get(col++));
-		
-		toUnicode = getWithFallback(fromHex.transform(parts.get(col++)), source);
-		toUnicodeErrors = parseEnumSet(parts.get(col++));
-		            
-		toAsciiN = getWithFallback(fromHex.transform(parts.get(col++)), toUnicode);
-		toAsciiNErrors = parseEnumSet(parts.get(col++));
-		
-		toAsciiT = getWithFallback(fromHex.transform(parts.get(col++)), toUnicode);
-		toAsciiTErrors = parseEnumSet(parts.get(col++));
-	    } catch (Exception e) {
-		throw e; // pause for debugging
-	    }
+                source = fromHex.transform(parts.get(col++));
+                
+                toUnicode = getWithFallback(fromHex.transform(parts.get(col++)), source);
+                toUnicodeErrors = parseEnumSet(parts.get(col++));
+                            
+                toAsciiN = getWithFallback(fromHex.transform(parts.get(col++)), toUnicode);
+                toAsciiNErrors = parseEnumSet(parts.get(col++));
+                
+                toAsciiT = getWithFallback(fromHex.transform(parts.get(col++)), toUnicode);
+                toAsciiTErrors = parseEnumSet(parts.get(col++));
+            } catch (Exception e) {
+                throw e; // pause for debugging
+            }
 
         }
 
@@ -114,10 +114,10 @@ V2
                 Set<Errors> toUnicodeErrorsRaw = EnumSet.noneOf(Errors.class);
                 for (String item : SPACE_SPLITTER.split(toUnicodeRaw.substring(1, toUnicodeRaw.length()-1))) {
                     try {
-			toUnicodeErrorsRaw.add(Errors.valueOf(item));
-		    } catch (Exception e) {
-			throw e; // pause for debugging
-		    }
+                        toUnicodeErrorsRaw.add(Errors.valueOf(item));
+                    } catch (Exception e) {
+                        throw e; // pause for debugging
+                    }
                 }
                 return ImmutableSet.copyOf(toUnicodeErrorsRaw);
             }

@@ -221,7 +221,7 @@ public final class Main implements UCD_Types {
 
                 } else if (arg.equalsIgnoreCase("backwardsCompat")) {
                     GenerateData.backwardsCompat("DerivedData/extracted/", "Compatibility_ID_START",
-            			new int[] {ID_Start, ID_Continue_NO_Cf, Mod_ID_Start, Mod_ID_Continue_NO_Cf});
+                        new int[] {ID_Start, ID_Continue_NO_Cf, Mod_ID_Start, Mod_ID_Continue_NO_Cf});
 
                 } else if (arg.equalsIgnoreCase("DerivedCoreProperties")) {
                     GenerateData.generateDerived(DERIVED_CORE, true, GenerateData.HEADER_DERIVED, "DerivedData/", "DerivedCoreProperties");
@@ -260,11 +260,11 @@ public final class Main implements UCD_Types {
                 } else if (arg.equalsIgnoreCase("listDifferences")) {
                     CompareProperties.listDifferences();
 
-    			} else if (arg.equalsIgnoreCase("partition")) {
-    				CompareProperties.partition();
+                } else if (arg.equalsIgnoreCase("partition")) {
+                    CompareProperties.partition();
 
-    			} else if (arg.equalsIgnoreCase("propertyStatistics")) {
-    				CompareProperties.statistics();
+                } else if (arg.equalsIgnoreCase("propertyStatistics")) {
+                    CompareProperties.statistics();
 
                 } else if (arg.equalsIgnoreCase("listAccents")) {
                     GenerateData.listCombiningAccents();

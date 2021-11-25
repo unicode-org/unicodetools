@@ -1044,70 +1044,70 @@ public class GenerateData implements UCD_Types {
         UnicodeSet cummulative = new UnicodeSet();
 
         try {
-        	for (int i = 0; i < list.length; ++i) {
-        		int prop = list[i];
-            	log.println();
-            	log.println(HORIZONTAL_LINE);
-        		log.println("###### " + DerivedProperty.make(prop, Default.ucd()).getName());
-            	//log.println();
-            	//log.println(HORIZONTAL_LINE);
-            	//new DiffPropertyLister("3.2.0", "1.1.0", log, prop).print();
-            	log.println();
-            	log.println(HORIZONTAL_LINE);
+            for (int i = 0; i < list.length; ++i) {
+                int prop = list[i];
+                log.println();
+                log.println(HORIZONTAL_LINE);
+                log.println("###### " + DerivedProperty.make(prop, Default.ucd()).getName());
+                //log.println();
+                //log.println(HORIZONTAL_LINE);
+                //new DiffPropertyLister("3.2.0", "1.1.0", log, prop).print();
+                log.println();
+                log.println(HORIZONTAL_LINE);
 
-            	log.println();
-            	dpl = new DiffPropertyLister("3.2.0", "2.0.0", log, prop);
-            	dpl.print();
-            	cummulative.addAll(dpl.getSet());
-            	log.println(HORIZONTAL_LINE);
+                log.println();
+                dpl = new DiffPropertyLister("3.2.0", "2.0.0", log, prop);
+                dpl.print();
+                cummulative.addAll(dpl.getSet());
+                log.println(HORIZONTAL_LINE);
 
-            	log.println();
-            	dpl = new DiffPropertyLister("3.2.0", "2.1.2", log, prop);
-            	dpl.print();
-            	cummulative.addAll(dpl.getSet());
-            	log.println(HORIZONTAL_LINE);
+                log.println();
+                dpl = new DiffPropertyLister("3.2.0", "2.1.2", log, prop);
+                dpl.print();
+                cummulative.addAll(dpl.getSet());
+                log.println(HORIZONTAL_LINE);
 
-            	log.println();
-            	dpl = new DiffPropertyLister("3.2.0", "2.1.5", log, prop);
-            	dpl.print();
-            	cummulative.addAll(dpl.getSet());
-            	log.println(HORIZONTAL_LINE);
+                log.println();
+                dpl = new DiffPropertyLister("3.2.0", "2.1.5", log, prop);
+                dpl.print();
+                cummulative.addAll(dpl.getSet());
+                log.println(HORIZONTAL_LINE);
 
-            	log.println();
-            	dpl = new DiffPropertyLister("3.2.0", "2.1.8", log, prop);
-            	dpl.print();
-            	cummulative.addAll(dpl.getSet());
-            	log.println(HORIZONTAL_LINE);
+                log.println();
+                dpl = new DiffPropertyLister("3.2.0", "2.1.8", log, prop);
+                dpl.print();
+                cummulative.addAll(dpl.getSet());
+                log.println(HORIZONTAL_LINE);
 
-            	log.println();
-            	dpl = new DiffPropertyLister("3.2.0", "3.0.0", log, prop);
-            	dpl.print();
-            	cummulative.addAll(dpl.getSet());
-            	log.println(HORIZONTAL_LINE);
+                log.println();
+                dpl = new DiffPropertyLister("3.2.0", "3.0.0", log, prop);
+                dpl.print();
+                cummulative.addAll(dpl.getSet());
+                log.println(HORIZONTAL_LINE);
 
-            	log.println();
-            	dpl = new DiffPropertyLister("3.2.0", "3.0.1", log, prop);
-            	dpl.print();
-            	cummulative.addAll(dpl.getSet());
-            	log.println(HORIZONTAL_LINE);
+                log.println();
+                dpl = new DiffPropertyLister("3.2.0", "3.0.1", log, prop);
+                dpl.print();
+                cummulative.addAll(dpl.getSet());
+                log.println(HORIZONTAL_LINE);
 
-            	log.println();
-            	dpl = new DiffPropertyLister("3.2.0", "3.1.0", log, prop);
-            	dpl.print();
-            	cummulative.addAll(dpl.getSet());
-            	log.println(HORIZONTAL_LINE);
+                log.println();
+                dpl = new DiffPropertyLister("3.2.0", "3.1.0", log, prop);
+                dpl.print();
+                cummulative.addAll(dpl.getSet());
+                log.println(HORIZONTAL_LINE);
 
-            	log.println();
-            	dpl = new DiffPropertyLister("3.2.0", "3.1.1", log, prop);
-            	dpl.print();
-            	cummulative.addAll(dpl.getSet());
-            	log.println(HORIZONTAL_LINE);
+                log.println();
+                dpl = new DiffPropertyLister("3.2.0", "3.1.1", log, prop);
+                dpl.print();
+                cummulative.addAll(dpl.getSet());
+                log.println(HORIZONTAL_LINE);
 
-            	log.println();
-            	log.println("Cummulative differences");
-            	UCDProperty up = DerivedProperty.make(prop, Default.ucd());
-            	UnicodeSet newProp = up.getSet();
-            	Utility.showSetNames(log, "", cummulative.removeAll(newProp), false, false, Default.ucd());
+                log.println();
+                log.println("Cummulative differences");
+                UCDProperty up = DerivedProperty.make(prop, Default.ucd());
+                UnicodeSet newProp = up.getSet();
+                Utility.showSetNames(log, "", cummulative.removeAll(newProp), false, false, Default.ucd());
             }
         } finally {
             if (log != null) {
@@ -1168,11 +1168,11 @@ public class GenerateData implements UCD_Types {
             new DiffPropertyLister("3.2.0", "4.0.0", log).print();
 
             printDiff("110", "200");
-	        UnicodeSet u11 = fromFile(BASE_DIR + "UnicodeData\\Versions\\UnicodeData-1.1.txt", false);
-	        UnicodeSet u20 = fromFile(BASE_DIR + "UnicodeData\\Versions\\UnicodeData-2.0.txt", false);
-	        UnicodeSet u21 = fromFile(BASE_DIR + "UnicodeData\\Versions\\UnicodeData-2.1.txt", false);
-	        UnicodeSet u30 = fromFile(BASE_DIR + "UnicodeData\\Versions\\UnicodeData-3.0.txt", false);
-	        UnicodeSet u31 = fromFile(BASE_DIR + "UnicodeData\\Versions\\UnicodeData-3.1.txt", false);
+            UnicodeSet u11 = fromFile(BASE_DIR + "UnicodeData\\Versions\\UnicodeData-1.1.txt", false);
+            UnicodeSet u20 = fromFile(BASE_DIR + "UnicodeData\\Versions\\UnicodeData-2.0.txt", false);
+            UnicodeSet u21 = fromFile(BASE_DIR + "UnicodeData\\Versions\\UnicodeData-2.1.txt", false);
+            UnicodeSet u30 = fromFile(BASE_DIR + "UnicodeData\\Versions\\UnicodeData-3.0.txt", false);
+            UnicodeSet u31 = fromFile(BASE_DIR + "UnicodeData\\Versions\\UnicodeData-3.1.txt", false);
 
             log.println();
             log.println("# Code points assigned in Unicode 1.1 (minus Hangul Syllables): "

@@ -1347,7 +1347,7 @@ final public class UCA implements Comparator<String>, UCA_Types {
                 // for recording information
                 boolean record = true;
                 /* if (multiChars.length() > 0) record = false;
-			    else */
+                   else */
                 if (!toD.isNormalized(value)) {
                     record = false;
                 }

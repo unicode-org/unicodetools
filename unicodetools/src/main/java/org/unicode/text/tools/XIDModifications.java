@@ -18,20 +18,20 @@ public class XIDModifications {
     private UnicodeMap<Set<Identifier_Type>> identifierType = new UnicodeMap<>();
 
     public XIDModifications(String directory) {
-    	File dir = new File(directory);
+        File dir = new File(directory);
         String finalPart = dir.getName();
         if (finalPart.equals(Settings.NEXT_VERSION_FOLDER_NAME)) {
             finalPart = Settings.latestVersion;
         }
-    	VersionInfo version = VersionInfo.getInstance(finalPart);
+        VersionInfo version = VersionInfo.getInstance(finalPart);
         identifierStatus.putAll(0,0x10FFFF, Identifier_Status.restricted);
         if (version.getMajor() == 9) {
             // Version 9 IdentifierType.txt:
-        	// Any missing values have the value: IdentifierType={Recommended}
+            // Any missing values have the value: IdentifierType={Recommended}
             identifierType.putAll(0, 0x10FFFF, Collections.singleton(Identifier_Type.recommended));
         } else {
-        	// Version 10+ IdentifierType.txt:
-        	// Any missing code points have the IdentifierType value Not_Character
+            // Version 10+ IdentifierType.txt:
+            // Any missing code points have the IdentifierType value Not_Character
             identifierType.putAll(0, 0x10FFFF, Collections.singleton(Identifier_Type.not_characters));
         }
         if (version.getMajor() <= 8) {
