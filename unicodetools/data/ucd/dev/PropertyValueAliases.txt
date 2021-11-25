@@ -1,11 +1,11 @@
-# PropertyValueAliases-14.0.0.txt
-# Date: 2021-05-10, 21:08:53 GMT
+# PropertyValueAliases-15.0.0.txt
+# Date: 2021-11-24, 21:43:44 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-#   For documentation, see http://www.unicode.org/reports/tr44/
+#   For documentation, see https://www.unicode.org/reports/tr44/
 #
 # This file contains aliases for property values used in the UCD.
 # These names can be used for XML formats of UCD data, for regular-expression
@@ -90,6 +90,7 @@ age; 12.0                             ; V12_0
 age; 12.1                             ; V12_1
 age; 13.0                             ; V13_0
 age; 14.0                             ; V14_0
+age; 15.0                             ; V15_0
 age; NA                               ; Unassigned
 
 # Alphabetic (Alpha)
