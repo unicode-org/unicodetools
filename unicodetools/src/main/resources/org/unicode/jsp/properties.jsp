@@ -12,12 +12,12 @@ th           { text-align: left }
 <body>
 
 <h1>Unicode Utilities: Character Property Index</h1>
-<p><a target="help" href="http://cldr.unicode.org/unicode-utilities/properties"><b>help</b></a> | <%@ include file="others.jsp" %></p>
+<p><a target="help" href="https://unicode-org.github.io/unicodetools/help/properties"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <%
         request.setCharacterEncoding("UTF-8");
         String queryString = request.getQueryString();
         UtfParameters utfParameters = new UtfParameters(queryString);
-        
+
         String propForValues = utfParameters.getParameter("a");
 		UnicodeJsp.showPropsTable(out, propForValues, "properties.jsp");
 %>
@@ -28,7 +28,7 @@ X-Encoding, X-IDNA, X-Regex, and X-Security.</p>
 <p>The Sources are:
 <ul>
 <li>UCD - <a target='_blank' href='http://www.unicode.org/reports/tr44/'>Unicode Character Database</a></li>
-<li>Unicode - The Unicode Standard. For example, <a target='_blank' href='http://www.unicode.org/versions/Unicode5.2.0/ch03.pdf#G47728'>isLowercase</a> 
+<li>Unicode - The Unicode Standard. For example, <a target='_blank' href='http://www.unicode.org/versions/Unicode5.2.0/ch03.pdf#G47728'>isLowercase</a>
 or <a target='_blank' href='http://www.unicode.org/reports/tr15/#Notation'>toNFC</a></li>
 <li>UTS - a Unicode Technical Standard. For example, identifier-restriction is from UTS #39, and alnum from UTS #18.</li>
 <li>X-ICU - from <a target='_blank' href='http://site.icu-project.org/'>ICU</a>:

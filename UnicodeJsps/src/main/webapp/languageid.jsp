@@ -9,28 +9,28 @@
         request.setCharacterEncoding("UTF-8");
         //response.setContentType("text/html;charset=UTF-8"); //this is redundant
         String queryString = request.getQueryString();
-        
+
         UtfParameters utfParameters = new UtfParameters(queryString);
-        
+
         String test = utfParameters.getParameter("b");
         if (test == null) {
           test = "The 35 quick brown fox jumped over 1.234 lazy dogs: 1:234.";
         }
         String testPattern = test;
-            
+
         String languageCode = utfParameters.getParameter("a");
         if (languageCode == null) {
             languageCode = "fr-CA, gsw-Arab-AQ, eng-Latn-840";
         }
-        
+
         String choice = request.getParameter("l");
         if (choice == null) choice = "en";
-        
+
         String options;
         String table;
         try {
-            options = UnicodeJsp.getLanguageOptions(choice); 
-            table = UnicodeJsp.validateLanguageID(languageCode, choice); 
+            options = UnicodeJsp.getLanguageOptions(choice);
+            table = UnicodeJsp.validateLanguageID(languageCode, choice);
         } catch (Exception e) {
             options = "???";
             table = UnicodeJsp.getTrace(e);
@@ -38,7 +38,7 @@
 %>
 <h1>Unicode Utilities: Unicode Language Identifers and BCP47</h1>
 <%@ include file="subtitle.jsp" %>
-<p><a target="help" href="http://cldr.unicode.org/unicode-utilities/languageid"><b>help</b></a> | <%@ include file="others.jsp" %></p>
+<p><a target="help" href="https://unicode-org.github.io/unicodetools/help/languageid"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <form name="myform">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">
     <tr>
@@ -48,9 +48,9 @@
       <td><input type="text" name="a" rows="8" cols="10" style="width: 100%" value="<%=languageCode%>"/></td>
     </tr>
   </table>
-  
+
   <input id='main' type="submit" value="Show Status" onClick="window.location.href='languageid.jsp?a='+document.getElementById('main').value"/>
-  
+
   &nbsp;&nbsp;Localization:
   <select size="1" name="l" onchange="document.myform.submit();">
       <%=options%>
@@ -76,7 +76,7 @@ sl-Cyrl-YU-rozaj-solba-1994-b-1234-a-Foobar-x-b-1234-a-Foobar</a></li>
        but <a href='http://www.unicode.org/reports/tr35/#Unicode_Language_and_Locale_Identifiers' target="uts35">differ in a few ways</a>.</li>
      <li>The names are localized with <a href='http://cldr.unicode.org/'>Unicode CLDR data</a>: names with '*' are fallbacks to English;
        names with '**' are fallbacks to the <a href='http://tools.ietf.org/html/draft-ietf-ltru-4645bis' target="bcp47bis">latest draft registry</a> names.</li>
-     <li>Replacements are for invalid subtags (zho &rarr; zh, 248 &rarr; AX), or preferred replacements (iw &rarr; he), or 
+     <li>Replacements are for invalid subtags (zho &rarr; zh, 248 &rarr; AX), or preferred replacements (iw &rarr; he), or
      <a href='http://cldr.unicode.org/development/design-proposals/languages-to-show-for-translation#TOC-Macrolanguage-Table' target='cldr'>predominant languages</a> (arb &rarr; ar).</li>
    </ul>
 <%@ include file="footer.jsp" %>

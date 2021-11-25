@@ -8,24 +8,24 @@
 		request.setCharacterEncoding("UTF-8");
 		//response.setContentType("text/html;charset=UTF-8"); //this is redundant
 		String queryString = request.getQueryString();
-		
+
 		UtfParameters utfParameters = new UtfParameters(queryString);
-		
+
 		String setA = utfParameters.getParameter("a", "[:ASCII:]");
 		String group = utfParameters.getParameter("g", "");
 		boolean abbreviate = request.getParameter("abb") != null;
         boolean ucdFormat = request.getParameter("ucd") != null;
         boolean escape = request.getParameter("esc") != null;
-		
+
 		UnicodeSet a = new UnicodeSet();
 		String a_out = UnicodeJsp.getSimpleSet(setA, a, abbreviate, escape);
-		
+
 		NumberFormat nf = NumberFormat.getIntegerInstance();
 		String sizeStr = nf.format(a.size());
 		//   action="http://unicode.org/cldr/utility/list-unicodeset.jsp" method="POST"
 %>
 <h1>Unicode Utilities: UnicodeSet </h1>
-<p><a target="help" href="http://cldr.unicode.org/unicode-utilities/list-unicodeset"><b>help</b></a> | <%@ include file="others.jsp" %></p>
+<p><a target="help" href="https://unicode-org.github.io/unicodetools/help/list-unicodeset"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <form name="myform">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">
     <tr>

@@ -223,7 +223,7 @@ public class UnicodeJsp {
                 confusables.setNormalizationCheck(Normalizer.NFC);
                 confusables.setScriptCheck(Confusables.ScriptCheck.same);
                 break;
-            }      
+            }
             return getConfusablesCore(test, confusables);
         } catch (Exception e) {
             return returnStackTrace(e);
@@ -316,7 +316,7 @@ public class UnicodeJsp {
             return result.toString();
         }
 
-        result.append("<h3>Confusable Results</h3>");   
+        result.append("<h3>Confusable Results</h3>");
         int count = 0;
         result.append("<div style='border: 1px solid blue'>");
         for (String item : confusables) {
@@ -347,22 +347,22 @@ public class UnicodeJsp {
     public static String getIdentifier(String script) {
         return UnicodeUtilities.getIdentifier(script);
     }
-    
+
     static final String VERSIONS = "Version 3.9; "
             + "ICU version: " + VersionInfo.ICU_VERSION.getVersionString(2, 2) + "; "
             + "Unicode/Emoji version: " + UCharacter.getUnicodeVersion().getVersionString(2, 2) + "; "
             + (CachedProps.IS_BETA ? "Unicodeβ version: " + CachedProps.CACHED_PROPS.version.getVersionString(2, 2) + "; " : "");
-    
+
     public static String getVersions() {
         return VERSIONS;
     }
-    
+
     static final String SUBHEAD = !CachedProps.IS_BETA ? ""
             : "<p style='border: 1pt solid red;'>Properties use ICU for Unicode V" + UCharacter.getUnicodeVersion().getVersionString(2, 2)
             + "; the beta properties support Unicode V" + CachedProps.CACHED_PROPS.version.getVersionString(2, 2) + "&beta;. "
-            + "For more information, see <a target='help' href='http://cldr.unicode.org/unicode-utilities/changes'>Unicode Utilities Beta</a>.</p>"
+            + "For more information, see <a target='help' href='https://unicode-org.github.io/unicodetools/help/changes'>Unicode Utilities Beta</a>.</p>"
             ;
-    
+
     public static String getSubtitle() {
         return SUBHEAD;
     }

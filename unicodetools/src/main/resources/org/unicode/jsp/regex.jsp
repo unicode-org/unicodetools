@@ -9,31 +9,31 @@
         request.setCharacterEncoding("UTF-8");
         //response.setContentType("text/html;charset=UTF-8"); //this is redundant
         String queryString = request.getQueryString();
-        
+
         UtfParameters utfParameters = new UtfParameters(queryString);
-        
+
         String test = utfParameters.getParameter("b");
         if (test == null) {
           test = "The 35 quick brown fox jumped over 1.234 lazy dogs: 1:234.";
         }
         String testPattern = test;
-            
+
         String regex = utfParameters.getParameter("a");
         if (regex == null) {
             regex = "\\p{Nd}+([[:WB=MB:][:WB=MN:]]\\p{Nd}+)?";
         }
-        
+
         String fixedRegex;
-        try {       
+        try {
             fixedRegex = org.unicode.jsp.UnicodeRegex.fix(regex);
             org.unicode.jsp.UnicodeRegex.compile(regex); // just to get the error message
-            testPattern = UnicodeJsp.showRegexFind(fixedRegex, test);        
+            testPattern = UnicodeJsp.showRegexFind(fixedRegex, test);
         } catch (Exception e) {
             fixedRegex = e.getMessage();
         }
 %>
 <h1>Unicode Utilities: Regex</h1>
-<p><a target="help" href="http://cldr.unicode.org/unicode-utilities/regex"><b>help</b></a> | <%@ include file="others.jsp" %></p>
+<p><a target="help" href="https://unicode-org.github.io/unicodetools/help/regex"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <form name="myform">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">
     <tr>
