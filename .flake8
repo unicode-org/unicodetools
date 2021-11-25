@@ -3,7 +3,7 @@ count = True
 show-source = True
 statistics = True
 indent-size = 2
-max-line-length = 128
+max-line-length = 100
 max-complexity = 10
 ignore = E302, # expected 2 blank lines, found 1
          E701, # multiple statements on one line
