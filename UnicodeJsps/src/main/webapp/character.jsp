@@ -14,13 +14,13 @@ th           { text-align: left }
 
 <h1>Unicode Utilities: Character Properties</h1>
 <%@ include file="subtitle.jsp" %>
-<p><a target="help" href="http://cldr.unicode.org/unicode-utilities/character"><b>help</b></a> | <%@ include file="others.jsp" %></p>
+<p><a target="help" href="https://unicode-org.github.io/unicodetools/help/character"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <div style='text-align:center'>
 <form name="myform" action="character.jsp" method="get">
   <%
 		request.setCharacterEncoding("UTF-8");
         String queryString = request.getQueryString();
-        
+
         UtfParameters utfParameters = new UtfParameters(queryString);
 		String text = utfParameters.getParameter("a", "\u2615", "\u2615");
 
@@ -37,7 +37,7 @@ th           { text-align: left }
   </p>
 </form>
 <%
-	UnicodeJsp.showProperties(cp, out); 
+	UnicodeJsp.showProperties(cp, out);
 %>
 </div>
 <p>The list includes both Unicode Character Properties and some additions (like idna2003 or subhead)</p>

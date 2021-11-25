@@ -8,16 +8,16 @@
 		request.setCharacterEncoding("UTF-8");
 		//response.setContentType("text/html;charset=UTF-8"); //this is redundant
 		String queryString = request.getQueryString();
-		
+
 		UtfParameters utfParameters = new UtfParameters(queryString);
-		
+
 		String test = utfParameters.getParameter("a", "Latin");
-		
+
 		String a_out = UnicodeJsp.getIdentifier(test);
-		
+
 %>
 <h1>Unicode Utilities: Identifier</h1>
-<p><a target="help" href="http://cldr.unicode.org/unicode-utilities/identifier"><b>help</b></a> | <%@ include file="others.jsp" %></p>
+<p><a target="help" href="https://unicode-org.github.io/unicodetools/help/identifier"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <form name="myform">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">
     <tr>

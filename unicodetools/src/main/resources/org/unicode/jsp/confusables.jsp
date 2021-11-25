@@ -8,23 +8,23 @@
 		request.setCharacterEncoding("UTF-8");
 		//response.setContentType("text/html;charset=UTF-8"); //this is redundant
 		String queryString = request.getQueryString();
-		
+
 		UtfParameters utfParameters = new UtfParameters(queryString);
-		
+
 		String test = utfParameters.getParameter("a", "paypal");
-		
+
 		String p = utfParameters.getParameter("r", "None");
-        int p2 = p.equals("None") ? 0 
+        int p2 = p.equals("None") ? 0
             : p.equals("IDNA2003") ? 1
             : p.equals("IDNA2008") ? 2
             : 3;
-		
+
 		UnicodeSet a = new UnicodeSet();
 		String a_out = UnicodeJsp.getConfusables(test, p2);
-		
+
 %>
 <h1>Unicode Utilities: Confusables</h1>
-<p><a target="help" href="http://cldr.unicode.org/unicode-utilities/confusables"><b>help</b></a> | <%@ include file="others.jsp" %></p>
+<p><a target="help" href="https://unicode-org.github.io/unicodetools/help/confusables"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <form name="myform">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">
     <tr>
@@ -68,9 +68,9 @@
 <ul>
 <li>The confusables data is in the <a href='http://www.unicode.org/Public/security/revision-03/confusablesSummary.txt' target="_blank">confusablesSummary</a> file.</li>
 <li>The restricted ID data is the <a href='http://www.unicode.org/Public/security/revision-03/xidmodifications.txt' target="_blank">xidmodifications</a> file.</li>
-<li>The "UTS46+UTS39" test checks mixed scripts according to the levels in 
+<li>The "UTS46+UTS39" test checks mixed scripts according to the levels in
 <a href='http://www.unicode.org/reports/tr36/tr36-8.html#Security_Levels_and_Alerts' target="_blank">Unicode Security Considerations (proposed update)</a>,
-such as "a&#x3B1;", "a&#x660;b", or "&#x13A0;a1". 
+such as "a&#x3B1;", "a&#x660;b", or "&#x13A0;a1".
 It also checks for Hans vs Hant (&#x4E07;&#x4E1F;); for different number systems(1&#x666;, &#x666;&#x6F6;); and for duplicate non-spacing marks (&#xE4;&#x0308;).
 
 </ul>
@@ -79,7 +79,7 @@ see proposed updates <a href='http://www.unicode.org/reports/tr39/tr39-3.html' t
 <a href='http://www.unicode.org/reports/tr36/tr36-8.html' target="_blank">Unicode Security Considerations</a>.
 </p>
 <p>The restrictions are purely on a character level. For a more detailed view, see <a target="idna" href="idna.jsp">idna</a>.
-<h2>Caveats</h2> 
+<h2>Caveats</h2>
 <p>The Unicode data is designed for testing, not enumerating, so not all combinations are generated in this demo;
 In particular, where a character is confusable with a sequence, not all combinations are generated.
 </p>

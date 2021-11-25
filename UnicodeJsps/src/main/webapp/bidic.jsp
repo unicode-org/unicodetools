@@ -219,9 +219,9 @@ function setUbaInput(str) {
 
 <h1>Unicode Utilities: BIDI (UBA) C Reference</h1>
 <%@ include file="subtitle.jsp" %>
-<p><a target="help" href="http://cldr.unicode.org/unicode-utilities/breaks"><b>help</b></a> | <%@ include file="others.jsp" %></p>
+<p><a target="help" href="https://unicode-org.github.io/unicodetools/help/breaks"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <p>Shows processing of a single paragraph of text by the Unicode Bidirectional Algorithm (UBA),
-    Versions <a target="doc" href="http://www.unicode.org/reports/tr9/tr9-27.html">6.2</a> through <a target="doc" href="http://www.unicode.org/reports/tr9/tr9-39.html">11.0</a>, 
+    Versions <a target="doc" href="http://www.unicode.org/reports/tr9/tr9-27.html">6.2</a> through <a target="doc" href="http://www.unicode.org/reports/tr9/tr9-39.html">11.0</a>,
     using the C Reference Implementation, Version <a target="doc" href="http://www.unicode.org/Public/PROGRAMS/BidiReferenceC/11.0.0/">11.0</a>.</p>
 
 <h3>Source</h3>

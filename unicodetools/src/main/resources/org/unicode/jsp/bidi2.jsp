@@ -32,19 +32,19 @@ function insert(myField, myValue) {
 <%
         request.setCharacterEncoding("UTF-8");
         String queryString = request.getQueryString();
-        
+
         UtfParameters utfParameters = new UtfParameters(queryString);
-        
+
         String sample = utfParameters.getParameter("a", "mark 3.1% \u0645\u0627\u0631\u0652\u0643 2.0.");
         boolean hack = !"off".equals(utfParameters.getParameter("hack", "off"));
         String p = utfParameters.getParameter("p", "Auto");
         int p2 = p.equals("LTR") ? 0 : p.equals("RTL") ? 1 : -1;
-        // 
+        //
 %>
 <h1>UBA Demo</h1>
-<p><a target="help" href="http://cldr.unicode.org/unicode-utilities/"><b>help</b></a> | <%@ include file="others.jsp" %></p>
+<p><a target="help" href="https://unicode-org.github.io/unicodetools/help/"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <p>Shows processing by the UBA (<a target='doc' href='http://unicode.org/reports/tr9/'>Unicode Bidi Algorithm</a>), which is used to display all Unicode Arabic and Hebrew text.
-For more information, see <a target='doc' href='http://cldr.unicode.org/unicode-utilities/bidi'>bidi info</a>.</p>
+For more information, see <a target='doc' href='https://unicode-org.github.io/unicodetools/help/bidi'>bidi info</a>.</p>
 <form name="myform">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">
     <tr>

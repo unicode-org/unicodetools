@@ -8,16 +8,16 @@
         request.setCharacterEncoding("UTF-8");
         //response.setContentType("text/html;charset=UTF-8"); //this is redundant
         String queryString = request.getQueryString();
-        
+
         UtfParameters utfParameters = new UtfParameters(queryString);
-        
+
         String transform = utfParameters.getParameter("a", "Latin");
         String sample = utfParameters.getParameter("b", "\u03B4\u03B9\u03B1\u03C6\u03BF\u03C1\u03B5\u03C4\u03B9\u03BA\u03BF\u03CD\u03C2");
         boolean show = !"off".equals(utfParameters.getParameter("show", "off"));
 %>
 <h1>Unicode Utilities: Transforms</h1>
 <%@ include file="subtitle.jsp" %>
-<p><a target="help" href="http://cldr.unicode.org/unicode-utilities/transform"><b>help</b></a> | <%@ include file="others.jsp" %></p>
+<p><a target="help" href="https://unicode-org.github.io/unicodetools/help/transform"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <form name="myform">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">
     <tr>
