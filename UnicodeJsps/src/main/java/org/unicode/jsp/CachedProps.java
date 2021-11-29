@@ -31,7 +31,7 @@ import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.VersionInfo;
 
 public class CachedProps {
-    public static final boolean IS_BETA = true;
+    public static final boolean IS_BETA = false;
 
     public static final Splitter HASH_SPLITTER = Splitter.on('#').trimResults();
     public static final Splitter SEMI_SPLITTER = Splitter.on(';').trimResults();
