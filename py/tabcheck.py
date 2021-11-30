@@ -30,7 +30,7 @@ def main() -> bool:
         return False
 
     error_count = 0
-    for p in Path(root).rglob("*.java"):
+    for p in root.rglob("*.java"):
         with open(p, 'r') as f:
             s = f.read()
             if '\t' in s:
