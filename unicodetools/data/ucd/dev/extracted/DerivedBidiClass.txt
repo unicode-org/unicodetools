@@ -1,5 +1,5 @@
 # DerivedBidiClass-15.0.0.txt
-# Date: 2021-12-02, 18:34:59 GMT
+# Date: 2021-12-02, 19:37:32 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1096,12 +1096,11 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 2CEB0..2EBE0  ; L # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2F800..2FA1D  ; L # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; L # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
-31350         ; L # Lo       <CJK Ideograph Extension H, First>
-323AF         ; L # Lo       <CJK Ideograph Extension H, Last>
+31350..323AF  ; L # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 825319 code points not listed here.
+# The above property value applies to 821129 code points not listed here.
 # Total code points: 1096275
 
 # ================================================

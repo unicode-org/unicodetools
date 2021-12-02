@@ -1,5 +1,5 @@
 # DerivedCoreProperties-15.0.0.txt
-# Date: 2021-12-02, 18:35:02 GMT
+# Date: 2021-12-02, 19:37:34 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1387,10 +1387,9 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 2CEB0..2EBE0  ; Alphabetic # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2F800..2FA1D  ; Alphabetic # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; Alphabetic # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
-31350         ; Alphabetic # Lo       <CJK Ideograph Extension H, First>
-323AF         ; Alphabetic # Lo       <CJK Ideograph Extension H, Last>
+31350..323AF  ; Alphabetic # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 133545
+# Total code points: 137735
 
 # ================================================
 
@@ -6832,10 +6831,9 @@ FFDA..FFDC    ; ID_Start # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL
 2CEB0..2EBE0  ; ID_Start # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2F800..2FA1D  ; ID_Start # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; ID_Start # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
-31350         ; ID_Start # Lo       <CJK Ideograph Extension H, First>
-323AF         ; ID_Start # Lo       <CJK Ideograph Extension H, Last>
+31350..323AF  ; ID_Start # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 132146
+# Total code points: 136336
 
 # ================================================
 
@@ -8183,11 +8181,10 @@ FFDA..FFDC    ; ID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 2CEB0..2EBE0  ; ID_Continue # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2F800..2FA1D  ; ID_Continue # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; ID_Continue # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
-31350         ; ID_Continue # Lo       <CJK Ideograph Extension H, First>
-323AF         ; ID_Continue # Lo       <CJK Ideograph Extension H, Last>
+31350..323AF  ; ID_Continue # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 E0100..E01EF  ; ID_Continue # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 135266
+# Total code points: 139456
 
 # ================================================
 
@@ -8938,10 +8935,9 @@ FFDA..FFDC    ; XID_Start # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGU
 2CEB0..2EBE0  ; XID_Start # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2F800..2FA1D  ; XID_Start # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; XID_Start # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
-31350         ; XID_Start # Lo       <CJK Ideograph Extension H, First>
-323AF         ; XID_Start # Lo       <CJK Ideograph Extension H, Last>
+31350..323AF  ; XID_Start # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 132123
+# Total code points: 136313
 
 # ================================================
 
@@ -10290,11 +10286,10 @@ FFDA..FFDC    ; XID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HA
 2CEB0..2EBE0  ; XID_Continue # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2F800..2FA1D  ; XID_Continue # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; XID_Continue # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
-31350         ; XID_Continue # Lo       <CJK Ideograph Extension H, First>
-323AF         ; XID_Continue # Lo       <CJK Ideograph Extension H, Last>
+31350..323AF  ; XID_Continue # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 E0100..E01EF  ; XID_Continue # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 135247
+# Total code points: 139437
 
 # ================================================
 
@@ -12466,10 +12461,9 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 2CEB0..2EBE0  ; Grapheme_Base # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2F800..2FA1D  ; Grapheme_Base # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; Grapheme_Base # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
-31350         ; Grapheme_Base # Lo       <CJK Ideograph Extension H, First>
-323AF         ; Grapheme_Base # Lo       <CJK Ideograph Extension H, Last>
+31350..323AF  ; Grapheme_Base # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 142780
+# Total code points: 146970
 
 # ================================================
 

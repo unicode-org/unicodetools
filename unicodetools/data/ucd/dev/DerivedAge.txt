@@ -1,5 +1,5 @@
 # DerivedAge-15.0.0.txt
-# Date: 2021-12-02, 18:34:57 GMT
+# Date: 2021-12-02, 19:37:30 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1979,9 +1979,8 @@ FDFE..FDFF    ; 14.0 #   [2] ARABIC LIGATURE SUBHAANAHU WA TAAALAA..ARABIC LIGAT
 1FADA..1FADB  ; 15.0 #   [2] GINGER..PEAPOD
 1FAE8         ; 15.0 #       SHAKING FACE
 1FAF7..1FAF8  ; 15.0 #   [2] LEFTWARDS PUSHING HAND..RIGHTWARDS PUSHING HAND
-31350         ; 15.0 #       <CJK Ideograph Extension H, First>
-323AF         ; 15.0 #       <CJK Ideograph Extension H, Last>
+31350..323AF  ; 15.0 # [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 259
+# Total code points: 4449
 
 # EOF

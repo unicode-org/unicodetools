@@ -298,7 +298,8 @@ Update `searchPath` in `org.unicode.text.utility.Utility.java`.
 If there are new CJK characters
 (if there are changes to entries in UnicodeData.txt that are for `<CJK Ideograph ..., First>` etc.),
 `UCD.java` and `UCD_Types.java` need to be updated to handle these ranges.
-See [PR #47](https://github.com/unicode-org/unicodetools/pull/47) for an example.
+See [PR #171](https://github.com/unicode-org/unicodetools/pull/171) 
+and [PR #47](https://github.com/unicode-org/unicodetools/pull/47) for examples.
 
 For CJK, you'll first need to compute the composite version, as `(major << 16) | (minor << 8) |` update.
 E.g. Unicode 14 is 0xe0000.

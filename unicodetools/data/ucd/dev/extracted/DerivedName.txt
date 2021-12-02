@@ -1,5 +1,5 @@
 # DerivedName-15.0.0.txt
-# Date: 2021-12-02, 18:35:06 GMT
+# Date: 2021-12-02, 19:37:39 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -43792,6 +43792,7 @@ FFFD          ; REPLACEMENT CHARACTER
 2CEB0..2EBE0  ; CJK UNIFIED IDEOGRAPH-*
 2F800..2FA1D  ; CJK COMPATIBILITY IDEOGRAPH-*
 30000..3134A  ; CJK UNIFIED IDEOGRAPH-*
+31350..323AF  ; CJK UNIFIED IDEOGRAPH-*
 E0001         ; LANGUAGE TAG
 E0020         ; TAG SPACE
 E0021         ; TAG EXCLAMATION MARK
@@ -44130,6 +44131,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 144954
+# Total code points: 149146
 
 # EOF
