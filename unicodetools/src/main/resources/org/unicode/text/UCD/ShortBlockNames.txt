@@ -10,6 +10,7 @@ Ancient_Symbols	;	Ancient_Symbols
 Arabic	;	Arabic
 Arabic_Ext_A	;	Arabic_Extended_A
 Arabic_Ext_B	;	Arabic_Extended_B
+Arabic_Ext_C	;	Arabic_Extended_C
 Arabic_Math	;	Arabic_Mathematical_Alphabetic_Symbols
 Arabic_PF_A	;	Arabic_Presentation_Forms_A
 Arabic_PF_B	;	Arabic_Presentation_Forms_B
@@ -57,6 +58,7 @@ CJK_Ext_D	;	CJK_Unified_Ideographs_Extension_D
 CJK_Ext_E	;	CJK_Unified_Ideographs_Extension_E
 CJK_Ext_F	;	CJK_Unified_Ideographs_Extension_F
 CJK_Ext_G	;	CJK_Unified_Ideographs_Extension_G
+CJK_Ext_H	;	CJK_Unified_Ideographs_Extension_H
 Diacriticals	;	Combining_Diacritical_Marks
 Diacriticals_Ext	;	Combining_Diacritical_Marks_Extended
 Diacriticals_For_Symbols	;	Combining_Diacritical_Marks_For_Symbols
@@ -77,10 +79,12 @@ Cyrillic	;	Cyrillic
 Cyrillic_Ext_A	;	Cyrillic_Extended_A
 Cyrillic_Ext_B	;	Cyrillic_Extended_B
 Cyrillic_Ext_C	;	Cyrillic_Extended_C
+Cyrillic_Ext_D	;	Cyrillic_Extended_D
 Cyrillic_Sup	;	Cyrillic_Supplement
 Deseret	;	Deseret
 Devanagari	;	Devanagari
 Devanagari_Ext	;	Devanagari_Extended
+Devanagari_Ext_A;	Devanagari_Extended_A
 Dingbats	;	Dingbats
 Dives_Akuru	;	Dives_Akuru
 Domino	;	Domino_Tiles
@@ -137,6 +141,7 @@ Inscriptional_Parthian	;	Inscriptional_Parthian
 IPA_Ext	;	IPA_Extensions
 Javanese	;	Javanese
 Kaithi	;	Kaithi
+Kaktovik_Numerals	;	Kaktovik_Numerals
 Kana_Ext_A	;	Kana_Extended_A
 Kana_Ext_B	;	Kana_Extended_B
 Kana_Sup	;	Kana_Supplement
@@ -145,6 +150,7 @@ Kangxi	;	Kangxi_Radicals
 Kannada	;	Kannada
 Katakana	;	Katakana
 Katakana_Ext	;	Katakana_Phonetic_Extensions
+Kawi	;	Kawi
 Kayah_Li	;	Kayah_Li
 Kharoshthi	;	Kharoshthi
 Khitan_Small_Script	;	Khitan_Small_Script
@@ -208,6 +214,7 @@ Myanmar	;	Myanmar
 Myanmar_Ext_A	;	Myanmar_Extended_A
 Myanmar_Ext_B	;	Myanmar_Extended_B
 Nabataean	;	Nabataean
+Nag_Mundari	;	Nag_Mundari
 Nandinagari	;	Nandinagari
 New_Tai_Lue	;	New_Tai_Lue
 Newa 	;	Newa
