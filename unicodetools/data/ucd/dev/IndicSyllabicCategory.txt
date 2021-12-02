@@ -1,5 +1,5 @@
 # IndicSyllabicCategory-15.0.0.txt
-# Date: 2021-12-02, 17:05:00 GMT [KW, RP]
+# Date: 2021-12-02, 20:43:00 GMT [KW, RP]
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -707,7 +707,6 @@ ABE9..ABEA    ; Vowel_Dependent # Mc   [2] MEETEI MAYEK VOWEL SIGN CHEINAP..MEET
 11EF5..11EF6  ; Vowel_Dependent # Mc   [2] MAKASAR VOWEL SIGN E..MAKASAR VOWEL SIGN O
 11F34..11F35  ; Vowel_Dependent # Mc   [2] KAWI VOWEL SIGN AA..KAWI VOWEL SIGN ALTERNATE AA
 11F36..11F3A  ; Vowel_Dependent # Mn   [5] KAWI VOWEL SIGN I..KAWI VOWEL SIGN VOCALIC R
-11F3C         ; Vowel_Dependent # Mn       KAWI VOWEL SIGN VOCALIC L
 11F3E..11F3F  ; Vowel_Dependent # Mc   [2] KAWI VOWEL SIGN E..KAWI VOWEL SIGN AI
 11F40         ; Vowel_Dependent # Mn       KAWI VOWEL SIGN EU
 

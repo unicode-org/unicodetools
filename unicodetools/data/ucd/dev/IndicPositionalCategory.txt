@@ -1,5 +1,5 @@
 # IndicPositionalCategory-15.0.0.txt
-# Date: 2021-12-02, 16:55:00 GMT [KW, RP]
+# Date: 2021-12-02, 20:42:00 GMT [KW, RP]
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -737,7 +737,6 @@ ABED          ; Bottom # Mn       MEETEI MAYEK APUN IYEK
 11D47         ; Bottom # Mn       MASARAM GONDI RA-KARA
 11EF4         ; Bottom # Mn       MAKASAR VOWEL SIGN U
 11FE8..11F3A  ; Bottom # Mn   [3] KAWI VOWEL SIGN U..KAWI VOWEL SIGN VOCALIC R
-11F3C         ; Bottom # Mn       KAWI VOWEL SIGN VOCALIC L
 
 # Indic_Positional_Category=Top_And_Bottom
 
