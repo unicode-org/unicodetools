@@ -1607,55 +1607,55 @@ isTitlecase(X) is false.
             switch (propMask >> 8) {
             case UCD_Types.CATEGORY >> 8:
                 temp = (UCD.getCategoryID_fromIndex(ucd.getCategory(codepoint), style));
-            break;
+                break;
             case UCD_Types.COMBINING_CLASS >> 8:
                 temp = (UCD.getCombiningClassID_fromIndex(ucd.getCombiningClass(codepoint), style));
-            // if (temp.startsWith("Fixed_")) temp = temp.substring(6);
-            break;
+                // if (temp.startsWith("Fixed_")) temp = temp.substring(6);
+                break;
             case UCD_Types.BIDI_CLASS >> 8:
                 temp = (UCD.getBidiClassID_fromIndex(ucd.getBidiClass(codepoint), style));
-            break;
+                break;
             case UCD_Types.DECOMPOSITION_TYPE >> 8:
                 temp = (UCD.getDecompositionTypeID_fromIndex(ucd.getDecompositionType(codepoint), style));
-            if (temp == null || temp.length() == 0) {
-                temp = "none";
-            }
-            break;
+                if (temp == null || temp.length() == 0) {
+                    temp = "none";
+                }
+                break;
             case UCD_Types.NUMERIC_TYPE >> 8:
                 temp = (UCD.getNumericTypeID_fromIndex(ucd.getNumericType(codepoint), style));
-            titlecase = true;
-            if (temp == null || temp.length() == 0) {
-                temp = "None";
-            }
-            break;
+                titlecase = true;
+                if (temp == null || temp.length() == 0) {
+                    temp = "None";
+                }
+                break;
             case UCD_Types.EAST_ASIAN_WIDTH >> 8:
                 temp = (UCD.getEastAsianWidthID_fromIndex(ucd.getEastAsianWidth(codepoint), style));
-            break;
+                break;
             case UCD_Types.LINE_BREAK >> 8:
                 temp = (UCD.getLineBreakID_fromIndex(ucd.getLineBreak(codepoint), style));
-            break;
+                break;
             case UCD_Types.JOINING_TYPE >> 8:
                 temp = (UCD.getJoiningTypeID_fromIndex(ucd.getJoiningType(codepoint), style));
-            if (temp == null || temp.length() == 0) {
-                temp = "Non_Joining";
-            }
-            break;
+                if (temp == null || temp.length() == 0) {
+                    temp = "Non_Joining";
+                }
+                break;
             case UCD_Types.JOINING_GROUP >> 8:
                 temp = (UCD.getJoiningGroupID_fromIndex(ucd.getJoiningGroup(codepoint), style));
-            break;
+                break;
             case UCD_Types.SCRIPT >> 8:
                 temp = (UCD.getScriptID_fromIndex(ucd.getScript(codepoint), style));
-            if (temp != null) {
-                temp = UCharacter.toTitleCase(Locale.ENGLISH, temp, null);
-            }
-            titlecase = true;
-            break;
+                if (temp != null) {
+                    temp = UCharacter.toTitleCase(Locale.ENGLISH, temp, null);
+                }
+                titlecase = true;
+                break;
             case UCD_Types.AGE >> 8:
                 temp = getAge(codepoint);
-            break;
+                break;
             case UCD_Types.HANGUL_SYLLABLE_TYPE >> 8:
                 temp = (UCD.getHangulSyllableTypeID_fromIndex(ucd.getHangulSyllableType(codepoint), style));
-            break;
+                break;
             }
             if (temp != null) {
                 return Utility.getUnskeleton(temp, titlecase);
@@ -1667,9 +1667,6 @@ isTitlecase(X) is false.
         }
 
         public String getAge(int codePoint) {
-            //            if (codePoint == 0x1FFFE) {
-            //                System.out.println("debug point");
-            //            }
             if (needAgeCache) {
                 for (int i = UCD_Types.AGE11; i < UCD_Types.LIMIT_AGE; ++i) {
                     final String versionString = UCD_Types.AGE_VERSIONS[i];

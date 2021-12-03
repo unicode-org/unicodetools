@@ -114,7 +114,7 @@ public class GenerateEnums {
         }
         @Override
         public String toString() {
-            return "{" + propertyType + ",\t" + longName + ",\t" + shortName + ",\t" + others + "}";
+            return "{" + propertyType + ",    " + longName + ",    " + shortName + ",    " + others + "}";
         }
         @Override
         public int compareTo(PropName arg0) {
@@ -222,16 +222,16 @@ public class GenerateEnums {
 
         for (final Entry<PropName, Set<String[]>> value : values.entrySet()) {
             final PropName propName = value.getKey();
-            System.out.println("Writing:\t" + propName.longName);
+            System.out.println("Writing:    " + propName.longName);
             if (propName.propertyType == PropertyType.Binary) {
                 continue;
             }
             final Set<String[]> partList = value.getValue();
             if (partList.size() == 0) {
-                output.println("\t\t// " + propName.longName);
+                output.println("        // " + propName.longName);
                 continue;
             }
-            output.println("\tpublic enum " + (propName.longName + "_Values") + " implements Named {");
+            output.println("    public enum " + (propName.longName + "_Values") + " implements Named {");
             final StringBuilder constants = new StringBuilder();
             boolean first = true;
             for (final String[] parts : partList) {
@@ -379,7 +379,7 @@ public class GenerateEnums {
 
         for (final PropertyType pt : PropertyType.values()) {
             final int count = 0;
-            output.println("\n\t\t// " + pt);
+            output.println("\n        // " + pt);
             for (final Entry<String, PropName> i : lookupMain.entrySet()) {
                 if (i.getValue().propertyType != pt) {
                     continue;
@@ -411,6 +411,8 @@ public class GenerateEnums {
                     classItem = // "UcdPropertyValues." +
                     ("Script_Extensions".equals(pname.longName) ? "Script" : pname.longName) + "_Values.class"; // HACK!
                     break;
+                default:
+                    break;  // leave classItem = null
                 }
                 writeOtherNames(output, type, classItem, cardinality, pname.shortName, pname.others);
                 output.print(",\n");
@@ -422,67 +424,66 @@ public class GenerateEnums {
         if (!missingCardinality.isEmpty()) {
             System.err.println("Extra Cardinality for " + extraCardinality);
         }
-        output.println("\t\t;");
-        final boolean first = true;
+        output.println("        ;");
         output.println("\n" +
                 "private final PropertyType type;\n"+
-                "\tprivate final PropertyNames<UcdProperty> names;\n"+
-                "\t// for enums\n"+
-                "\tprivate final NameMatcher name2enum;\n"+
-                "\tprivate final EnumSet enums;\n"+
-                "\tprivate final Class enumClass;\n"+
-                "\tprivate final ValueCardinality cardinality;\n"+
-                "\t\n"+
-                "\tprivate UcdProperty(PropertyType type, String shortName, String...otherNames) {\n"+
-                "\t\tthis.type = type;\n"+
-                "\t\tnames = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);\n"+
-                "\t\tname2enum = null;\n"+
-                "\t\tenums = null;\n"+
-                "\t\tenumClass = null;\n"+
-                "\t\tcardinality = ValueCardinality.Singleton;\n"+
-                "\t}\n"+
-                "\tprivate UcdProperty(PropertyType type, Class classItem, ValueCardinality _cardinality, String shortName, String...otherNames) {\n"+
-                "\t\tthis.type = type;\n"+
-                "\t\tnames = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);\n"+
-                "\t\tcardinality = _cardinality == null ? ValueCardinality.Singleton : _cardinality;\n"+
-                "\t\tif (classItem == null) {\n" +
-                "\t\t\tname2enum = null;\n"+
-                "\t\t\tenums = null;\n"+
-                "\t\t\tenumClass = null;\n"+
-                "\t\t} else {\n" +
-                "\t\t\tenums = EnumSet.allOf(classItem);\n"+
-                "\t\t\tname2enum = PropertyNames.getNameToEnums(classItem);\n"+
-                "\t\t\tenumClass = classItem;\n"+
-                "\t\t}\n" +
-                "\t}\n"+
-                "\t\n"+
-                "\tpublic ValueCardinality getCardinality() {\n"+
-                "\t\treturn cardinality;\n"+
-                "\t}\n"+
-                "\tpublic Class<Enum> getEnumClass() {\n"+
-                "\t\treturn enumClass;\n"+
-                "\t}\n"+
-                "\tpublic PropertyType getType() {\n"+
-                "\t\treturn type;\n"+
-                "\t}\n"+
-                "\tpublic PropertyNames<UcdProperty> getNames() {\n"+
-                "\t\treturn names;\n"+
-                "\t}\n"+
-                "\tpublic String getShortName() {\n" +
-                "\t\treturn names.getShortName();\n" +
-                "\t}\n" +
-                "\tpublic static UcdProperty forString(String name) {\n"+
-                "\t\treturn Numeric_Value.names.forString(name);\n"+
-                "\t}\n"+
-                "\tpublic Enum getEnum(String name) {\n"+
-                "\t\treturn name2enum == null ? null : name2enum.get(name);\n"+
-                "\t}\n"+
-                "\tpublic PropertyNames getEnumNames() {\n"+
-                "\t\treturn name2enum == null ? null : name2enum.getNames();\n"+
-                "\t}\n"    +
-                "\tpublic Set<Enum> getEnums() {\n"+
-                "\t\treturn enums;\n"+
-                "\t}\n"
+                "    private final PropertyNames<UcdProperty> names;\n"+
+                "    // for enums\n"+
+                "    private final NameMatcher name2enum;\n"+
+                "    private final EnumSet enums;\n"+
+                "    private final Class enumClass;\n"+
+                "    private final ValueCardinality cardinality;\n"+
+                "    \n"+
+                "    private UcdProperty(PropertyType type, String shortName, String...otherNames) {\n"+
+                "        this.type = type;\n"+
+                "        names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);\n"+
+                "        name2enum = null;\n"+
+                "        enums = null;\n"+
+                "        enumClass = null;\n"+
+                "        cardinality = ValueCardinality.Singleton;\n"+
+                "    }\n"+
+                "    private UcdProperty(PropertyType type, Class classItem, ValueCardinality _cardinality, String shortName, String...otherNames) {\n"+
+                "        this.type = type;\n"+
+                "        names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);\n"+
+                "        cardinality = _cardinality == null ? ValueCardinality.Singleton : _cardinality;\n"+
+                "        if (classItem == null) {\n" +
+                "            name2enum = null;\n"+
+                "            enums = null;\n"+
+                "            enumClass = null;\n"+
+                "        } else {\n" +
+                "            enums = EnumSet.allOf(classItem);\n"+
+                "            name2enum = PropertyNames.getNameToEnums(classItem);\n"+
+                "            enumClass = classItem;\n"+
+                "        }\n" +
+                "    }\n"+
+                "    \n"+
+                "    public ValueCardinality getCardinality() {\n"+
+                "        return cardinality;\n"+
+                "    }\n"+
+                "    public Class<Enum> getEnumClass() {\n"+
+                "        return enumClass;\n"+
+                "    }\n"+
+                "    public PropertyType getType() {\n"+
+                "        return type;\n"+
+                "    }\n"+
+                "    public PropertyNames<UcdProperty> getNames() {\n"+
+                "        return names;\n"+
+                "    }\n"+
+                "    public String getShortName() {\n" +
+                "        return names.getShortName();\n" +
+                "    }\n" +
+                "    public static UcdProperty forString(String name) {\n"+
+                "        return Numeric_Value.names.forString(name);\n"+
+                "    }\n"+
+                "    public Enum getEnum(String name) {\n"+
+                "        return name2enum == null ? null : name2enum.get(name);\n"+
+                "    }\n"+
+                "    public PropertyNames getEnumNames() {\n"+
+                "        return name2enum == null ? null : name2enum.getNames();\n"+
+                "    }\n"    +
+                "    public Set<Enum> getEnums() {\n"+
+                "        return enums;\n"+
+                "    }\n"
                 );
 
         output.println("\n}");
@@ -521,7 +522,7 @@ public class GenerateEnums {
             }
             final Set<String[]> set = values.get(propName);
             set.add(parts);
-            //System.out.println(propName.longName + "\t" + Arrays.asList(parts));
+            //System.out.println(propName.longName + "    " + Arrays.asList(parts));
         }
     }
 

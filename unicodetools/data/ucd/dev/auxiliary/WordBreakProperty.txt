@@ -1,5 +1,5 @@
 # WordBreakProperty-15.0.0.txt
-# Date: 2021-12-02, 19:38:01 GMT
+# Date: 2021-12-03, 19:32:06 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -653,9 +653,10 @@ FF71..FF9D    ; Katakana # Lo  [45] HALFWIDTH KATAKANA LETTER A..HALFWIDTH KATAK
 1AFFD..1AFFE  ; Katakana # Lm   [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
 1B000         ; Katakana # Lo       KATAKANA LETTER ARCHAIC E
 1B120..1B122  ; Katakana # Lo   [3] KATAKANA LETTER ARCHAIC YI..KATAKANA LETTER ARCHAIC WU
+1B155         ; Katakana # Lo       KATAKANA LETTER SMALL KO
 1B164..1B167  ; Katakana # Lo   [4] KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL N
 
-# Total code points: 330
+# Total code points: 331
 
 # ================================================
 
@@ -1221,8 +1222,6 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 16F93..16F9F  ; ALetter # Lm  [13] MIAO LETTER TONE-2..MIAO LETTER REFORMED TONE-8
 16FE0..16FE1  ; ALetter # Lm   [2] TANGUT ITERATION MARK..NUSHU ITERATION MARK
 16FE3         ; ALetter # Lm       OLD CHINESE ITERATION MARK
-1B132         ; ALetter # Lo       HIRAGANA LETTER SMALL KO
-1B155         ; ALetter # Lo       KATAKANA LETTER SMALL KO
 1BC00..1BC6A  ; ALetter # Lo [107] DUPLOYAN LETTER H..DUPLOYAN LETTER VOCALIC M
 1BC70..1BC7C  ; ALetter # Lo  [13] DUPLOYAN AFFIX LEFT HORIZONTAL SECANT..DUPLOYAN AFFIX ATTACHED TANGENT HOOK
 1BC80..1BC88  ; ALetter # Lo   [9] DUPLOYAN AFFIX HIGH ACUTE..DUPLOYAN AFFIX HIGH VERTICAL
@@ -1314,7 +1313,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1F170..1F189  ; ALetter # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 31350..323AF  ; ALetter # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 33627
+# Total code points: 33625
 
 # ================================================
 

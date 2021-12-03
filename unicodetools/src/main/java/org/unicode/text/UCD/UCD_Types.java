@@ -570,7 +570,10 @@ public interface UCD_Types {
     Tangsa = 161,
     Toto = 162,
     Vithkuqi = 163,
-    LIMIT_SCRIPT = Vithkuqi + 1;
+    // Unicode 15
+    Kawi = 164,
+    Nag_Mundari = 165,
+    LIMIT_SCRIPT = Nag_Mundari + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte

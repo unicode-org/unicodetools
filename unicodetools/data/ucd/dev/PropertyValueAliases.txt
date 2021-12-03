@@ -1321,6 +1321,7 @@ sc ; Ital                             ; Old_Italic
 sc ; Java                             ; Javanese
 sc ; Kali                             ; Kayah_Li
 sc ; Kana                             ; Katakana
+sc ; Kawi                             ; Kawi
 sc ; Khar                             ; Kharoshthi
 sc ; Khmr                             ; Khmer
 sc ; Khoj                             ; Khojki
@@ -1353,6 +1354,7 @@ sc ; Mroo                             ; Mro
 sc ; Mtei                             ; Meetei_Mayek
 sc ; Mult                             ; Multani
 sc ; Mymr                             ; Myanmar
+sc ; Nagm                             ; Nag_Mundari
 sc ; Nand                             ; Nandinagari
 sc ; Narb                             ; Old_North_Arabian
 sc ; Nbat                             ; Nabataean
