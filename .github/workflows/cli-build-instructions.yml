@@ -39,17 +39,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run command - Make Unicode Files
-        run: MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
+        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run command - Build and Test
-        run: MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
+        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Test hack for `mvn package`
         run: |
           ln -s ../../unicodetools/data/security/ output/Generated/security
-          MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main" -Dexec.args="version 14.0.0 build MakeUnicodeFiles" -pl unicodetools -DCLDR_DIR=$(cd ../cldr ; pwd) -DUNICODETOOLS_OUTPUT_DIR=$(pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0
+          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main" -Dexec.args="version 14.0.0 build MakeUnicodeFiles" -pl unicodetools -DCLDR_DIR=$(cd ../cldr ; pwd) -DUNICODETOOLS_OUTPUT_DIR=$(pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -92,13 +92,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run command - Build and Test
-        run: MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
+        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Test hack for `mvn package`
         run: |
           ln -s ../../src/unicodetools/data/security unicodetools/mine/Generated/security
-          MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd) -DUNICODETOOLS_OUTPUT_DIR=$(cd ../output ; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0
+          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd) -DUNICODETOOLS_OUTPUT_DIR=$(cd ../output ; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
