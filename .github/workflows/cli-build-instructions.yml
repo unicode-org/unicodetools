@@ -54,7 +54,7 @@ jobs:
       - name: Checkout Unicode Tools
         uses: actions/checkout@v2
         with:
-          repository: unicode-org/cldr
+          repository: unicode-org/unicodetools
           path: unicodetools/mine/src
       - name: Checkout CLDR
         uses: actions/checkout@v2
@@ -76,7 +76,7 @@ jobs:
         run: |
           mkdir -p unicodetools/mine/output/Generated/BIN
       - name: Change directory to Unicode Tools dir
-        run: cd unicodetools
+        run: cd unicodetools/mine/src
       - name: Initialize Maven settings for all Maven commands
         run: mvn -s .github/workflows/mvn-settings.xml -B compile -DskipTests=true
         env:
