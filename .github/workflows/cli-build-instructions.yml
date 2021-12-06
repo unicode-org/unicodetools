@@ -1,0 +1,88 @@
+name: Test CLI steps in build.md
+
+on:
+  push:
+    branches:
+    - '*'
+  pull_request:
+    branches:
+    - '*'
+
+jobs:
+  in-source-build:
+    name: In-source Build Instructions Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Unicode Tools
+        uses: actions/checkout@v2
+      - name: Check out CLDR
+        uses: actions/checkout@v2
+        with:
+          repository: unicode-org/cldr
+          path: cldr
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Set up in-source output dir
+        run: |
+          mkdir -p output/Generated/BIN
+      - name: Initialize Maven settings for all Maven commands
+        run: mvn -s .github/workflows/mvn-settings.xml -B compile
+      - name: Run command - Make Unicode Files
+        run: MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
+      - name: Run command - Build and Test
+        run: MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
+      - name: Test hack for `mvn package`
+        run: |
+          ln -s ../../unicodetools/data/security/ output/Generated/security
+          MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main" -Dexec.args="version 14.0.0 build MakeUnicodeFiles" -pl unicodetools -DCLDR_DIR=$(cd ../cldr ; pwd) -DUNICODETOOLS_OUTPUT_DIR=$(pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0
+
+  out-of-source-build:
+    name: Out-of-source Build Instructions Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Unicode Tools
+        uses: actions/checkout@v2
+        with:
+          repository: unicode-org/cldr
+          path: unicodetools/mine/src
+      - name: Checkout CLDR
+        uses: actions/checkout@v2
+        with:
+          repository: unicode-org/cldr
+          path: cldr/mine/src
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Set up out-of-source output dir
+        run: |
+          mkdir -p unicodetools/mine/output/Generated/BIN
+      - name: Change directory to Unicode Tools dir
+        run: cd unicodetools
+      - name: Initialize Maven settings for all Maven commands
+        run: mvn -s .github/workflows/mvn-settings.xml -B compile
+      - name: Run command - Make Unicode Files
+        run: mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
+      - name: Run command - Build and Test
+        run: MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
+      - name: Test hack for `mvn package`
+        run: |
+          ln -s ../../src/unicodetools/data/security unicodetools/mine/Generated/security
+          MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd) -DUNICODETOOLS_OUTPUT_DIR=$(cd ../output ; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0
+
