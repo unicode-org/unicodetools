@@ -1,4 +1,4 @@
-name: Test CLI steps in build.md
+name: build.md
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   in-source-build:
-    name: In-source Build Instructions Test
+    name: In-source Instructions
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
@@ -46,7 +46,7 @@ jobs:
           MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main" -Dexec.args="version 14.0.0 build MakeUnicodeFiles" -pl unicodetools -DCLDR_DIR=$(cd ../cldr ; pwd) -DUNICODETOOLS_OUTPUT_DIR=$(pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0
 
   out-of-source-build:
-    name: Out-of-source Build Instructions Test
+    name: Out-of-source Instructions
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
