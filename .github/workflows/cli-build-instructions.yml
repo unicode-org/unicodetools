@@ -35,7 +35,9 @@ jobs:
         run: |
           mkdir -p output/Generated/BIN
       - name: Initialize Maven settings for all Maven commands
-        run: mvn -s .github/workflows/mvn-settings.xml -B compile
+        run: mvn -s .github/workflows/mvn-settings.xml -B compile -DskipTests=true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run command - Make Unicode Files
         run: MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
       - name: Run command - Build and Test
@@ -76,7 +78,9 @@ jobs:
       - name: Change directory to Unicode Tools dir
         run: cd unicodetools
       - name: Initialize Maven settings for all Maven commands
-        run: mvn -s .github/workflows/mvn-settings.xml -B compile
+        run: mvn -s .github/workflows/mvn-settings.xml -B compile -DskipTests=true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run command - Make Unicode Files
         run: mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
       - name: Run command - Build and Test
