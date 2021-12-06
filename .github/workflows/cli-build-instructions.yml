@@ -57,13 +57,6 @@ jobs:
     name: Out-of-source Instructions
     runs-on: ubuntu-latest
     steps:
-      - name: Debug pwd
-        run: |
-          echo "pwd"
-          pwd
-          echo "ls -l"
-          ls -l
-        continue-on-error: true
       - name: Checkout Unicode Tools
         uses: actions/checkout@v2
         with:
@@ -74,13 +67,6 @@ jobs:
         with:
           repository: unicode-org/cldr
           path: cldr/mine/src
-      - name: Debug pwd
-        run: |
-          echo "pwd"
-          pwd
-          echo "ls -l"
-          ls -l
-        continue-on-error: true
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
@@ -95,49 +81,27 @@ jobs:
       - name: Set up out-of-source output dir
         run: |
           mkdir -p unicodetools/mine/output/Generated/BIN
-      - name: Debug pwd
-        run: |
-          echo "pwd"
-          pwd
-          echo "ls -l"
-          ls -l
-        continue-on-error: true
-      - name: Change directory to Unicode Tools dir
-        run: cd unicodetools/mine/src
-      - name: Debug pwd
-        run: |
-          echo "pwd"
-          pwd
-          echo "ls -l"
-          ls -l
-          echo "ls .github/workflows"
-          ls .github/workflows
-        continue-on-error: true
       - name: Initialize Maven settings for all Maven commands
         run: |
           cd unicodetools/mine/src
           mvn -s .github/workflows/mvn-settings.xml -B compile install -DskipTests=true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Debug pwd
-        run: |
-          echo "pwd"
-          pwd
-          echo "ls -l"
-          ls -l
-          echo "ls .github/workflows"
-          ls .github/workflows
-        continue-on-error: true
       - name: Run command - Make Unicode Files
-        run: mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
+        run: |
+          cd unicodetools/mine/src
+          mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run command - Build and Test
-        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
+        run: |
+          cd unicodetools/mine/src
+          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Test hack for `mvn package`
         run: |
+          cd unicodetools/mine/src
           ln -s ../../src/unicodetools/data/security unicodetools/mine/Generated/security
           MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd) -DUNICODETOOLS_OUTPUT_DIR=$(cd ../output ; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0
         env:
