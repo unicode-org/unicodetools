@@ -33,7 +33,17 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: unicode-org/cldr
-          path: ../cldr
+          path: cldr
+      - name: Debug
+        run: |
+          echo "pwd"
+          pwd
+          echo "ls -l"
+          ls -l
+        continue-on-error: true
+      - name: Move CLDR working copy to be sibling of Unicode Tools
+        run: |
+          mv cldr ..
       - name: Debug
         run: |
           echo "pwd"
