@@ -35,7 +35,7 @@ jobs:
         run: |
           mkdir -p output/Generated/BIN
       - name: Initialize Maven settings for all Maven commands
-        run: mvn -s .github/workflows/mvn-settings.xml -B compile -DskipTests=true
+        run: mvn -s .github/workflows/mvn-settings.xml -B compile install -DskipTests=true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run command - Make Unicode Files
@@ -84,7 +84,7 @@ jobs:
       - name: Change directory to Unicode Tools dir
         run: cd unicodetools/mine/src
       - name: Initialize Maven settings for all Maven commands
-        run: mvn -s .github/workflows/mvn-settings.xml -B compile -DskipTests=true
+        run: mvn -s .github/workflows/mvn-settings.xml -B compile install -DskipTests=true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run command - Make Unicode Files
