@@ -78,11 +78,11 @@ For people who need `mvn test` or other subsequent Maven targets to succeed, a t
 
 For out-of-source builds:
 ```
-ln -s ../../src/unicodetools/data/security unicodetools/mine/Generated/security
+cd <unicodetools-repo-root>; ln -s $(pwd)/unicodetools/data/security ./output/Generated/
 ```
 For in-source builds:
 ```
-cd <unicodetools-repo-root>; ln -s unicodetools/data/security output/Generated/security
+cd <parent-dir-containing-unicodetools-repo>; ln -s $(pwd)/unicodetools/mine/src/unicodetools/data/security unicodetools/mine/output/Generated/
 ```
 
 This step to create a symbolic link on the file system is not necessary to run individual tools in Unicode Tools, nor is it intended to last long-term as we refactor code to establish stronger invariants and tests.

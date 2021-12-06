@@ -46,9 +46,9 @@ jobs:
         run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd output; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Test hack for `mvn package`
+      - name: Test hack for `mvn test`
         run: |
-          ln -s ../../unicodetools/data/security/ output/Generated/security
+          ln -s $(pwd)/unicodetools/data/security ./output/Generated/
           MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main" -Dexec.args="version 14.0.0 build MakeUnicodeFiles" -pl unicodetools -DCLDR_DIR=$(cd ../cldr ; pwd) -DUNICODETOOLS_OUTPUT_DIR=$(pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -99,10 +99,9 @@ jobs:
           MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd ../output ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Test hack for `mvn package`
+      - name: Test hack for `mvn test`
         run: |
-          cd unicodetools/mine/src
-          ln -s ../../src/unicodetools/data/security unicodetools/mine/Generated/security
+          ln -s $(pwd)/unicodetools/mine/src/unicodetools/data/security unicodetools/mine/output/Generated/
           MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd) -DUNICODETOOLS_OUTPUT_DIR=$(cd ../output ; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
