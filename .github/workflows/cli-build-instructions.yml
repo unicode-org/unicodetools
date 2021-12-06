@@ -102,6 +102,7 @@ jobs:
       - name: Test hack for `mvn test`
         run: |
           ln -s $(pwd)/unicodetools/mine/src/unicodetools/data/security unicodetools/mine/output/Generated/
+          cd unicodetools/mine/src
           MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd) -DUNICODETOOLS_OUTPUT_DIR=$(cd ../output ; pwd) -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=14.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
