@@ -112,10 +112,22 @@ jobs:
           ls -l
           echo "ls .github/workflows"
           ls .github/workflows
+        continue-on-error: true
       - name: Initialize Maven settings for all Maven commands
-        run: mvn -s .github/workflows/mvn-settings.xml -B compile install -DskipTests=true
+        run: |
+          cd unicodetools/mine/src
+          mvn -s .github/workflows/mvn-settings.xml -B compile install -DskipTests=true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Debug pwd
+        run: |
+          echo "pwd"
+          pwd
+          echo "ls -l"
+          ls -l
+          echo "ls .github/workflows"
+          ls .github/workflows
+        continue-on-error: true
       - name: Run command - Make Unicode Files
         run: mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0
         env:
