@@ -102,7 +102,7 @@
 							<java.awt.headless>true</java.awt.headless>
 							<UNICODETOOLS_REPO_DIR>${project.basedir}/..</UNICODETOOLS_REPO_DIR>
 							<!-- sibling of unicodetools-->
-							<UNICODETOOLS_GEN_DIR>${project.basedir}/../output/Generated</UNICODETOOLS_GEN_DIR>
+							<UNICODETOOLS_GEN_DIR>${project.basedir}/../Generated</UNICODETOOLS_GEN_DIR>
 						</systemPropertyVariables>
 						<argLine>-Xmx10g -enableassertions</argLine>
 					</configuration>
