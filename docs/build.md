@@ -72,20 +72,7 @@ git clone https://github.com/unicode-org/cldr.git
 
 ##### Notes for both out-of-source and in-source build workspaces
 
-Currently, some tests run on the generated output files of a tool (ex: in order to test the validity of the output files). However, after converting these tests into standard JUnit tests, these unit tests are then run in isolation by default. Until we amend the code for such tests, those tests will fail by default. These tests are picked up and run by `mvn test`, and thus, by any other subsequent Maven target in the Maven lifecycle (ex: `package`, `install`).
-
-For people who need `mvn test` or other subsequent Maven targets to succeed, a temporary workaround would be the following (which points the generated files directory to find the test input files from the repository sources):
-
-For out-of-source builds:
-```
-cd <unicodetools-repo-root>; ln -s $(pwd)/unicodetools/data/security ./output/Generated/
-```
-For in-source builds:
-```
-cd <parent-dir-containing-unicodetools-repo>; ln -s $(pwd)/unicodetools/mine/src/unicodetools/data/security unicodetools/mine/output/Generated/
-```
-
-This step to create a symbolic link on the file system is not necessary to run individual tools in Unicode Tools, nor is it intended to last long-term as we refactor code to establish stronger invariants and tests.
+Currently, some tests run on the generated output files of a tool (ex: in order to test the validity of the output files). After converting these tests into standard JUnit tests, these unit tests are then run in isolation by default. Our code has been updated to support this behavior because it [now checks](https://github.com/unicode-org/unicodetools/commit/aa6d11c57fe8bbd20484d3a36123c8948e363262) for generated files in the `Generated` directory, and falls back to the repository's checked-in version when a command does not invoke the generation of a new version.
 
 #### Java System properties used in Unicode Tools
 
