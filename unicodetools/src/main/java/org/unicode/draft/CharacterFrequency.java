@@ -19,10 +19,10 @@ import org.unicode.text.utility.Settings;
  * For a program that uses this, see ScriptPopulation
  */
 public class CharacterFrequency {
-    public static final String DATA_DIR = Settings.Output.UNICODETOOLS_OUTPUT_DIR +
-    		"DATA/frequency/languages/";
-    private static final String DATA_DIR_RANK = Settings.Output.UNICODETOOLS_OUTPUT_DIR +
-    		"DATA/frequency/languages-rank/";
+    public static final String DATA_DIR = Settings.Output.DATA_DIR +
+    		"frequency/languages/";
+    private static final String DATA_DIR_RANK = Settings.Output.DATA_DIR +
+    		"frequency/languages-rank/";
     public static final boolean DEBUG = false;
     //	static final int MAX_LINE_COUNT = Integer.MAX_VALUE; // 10000;
     //	static final int MAX_SEQUENCE_CHARS = 15;

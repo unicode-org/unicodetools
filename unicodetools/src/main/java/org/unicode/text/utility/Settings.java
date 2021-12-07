@@ -264,17 +264,19 @@ public class Settings {
         public static final String BIN_DIR = GEN_DIR + "BIN/";
         public static final String GEN_UCD_DIR = GEN_DIR + "UCD/";
         public static final String GEN_UCA_DIR = GEN_DIR + "UCA/";
+        public static final String DATA_DIR = GEN_DIR + "DATA/";
         /**
          * Make sure the output dirs exist
          */
         public static void ensureOutputDirs() throws FileNotFoundException {
-                if (!(new File(UNICODETOOLS_OUTPUT_DIR)).isDirectory()) {
-                        throw new FileNotFoundException("Not a directory: UNICODETOOLS_OUTPUT_DIR=" + UNICODETOOLS_OUTPUT_DIR);
+                if (!(new File(GEN_DIR)).isDirectory()) {
+                        throw new FileNotFoundException("Not a directory: UNICODETOOLS_GEN_DIR=" + GEN_DIR);
                 }
                 ensureOutputDir(GEN_DIR);
                 ensureOutputDir(GEN_UCD_DIR);
                 ensureOutputDir(GEN_UCA_DIR);
                 ensureOutputDir(BIN_DIR);
+                ensureOutputDir(DATA_DIR);
         }
         public static void ensureOutputDir(String dir) {
                 if(new File(dir).mkdirs()) {

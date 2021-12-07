@@ -13,7 +13,7 @@ import com.ibm.icu.text.Transform;
 
 public class EmojiRename {
     static final boolean NO_ACTION = false;
-    static final File DIR = new File(Settings.Output.UNICODETOOLS_OUTPUT_DIR + "DATA/emoji_images_source");
+    static final File DIR = new File(Settings.Output.DATA_DIR + "emoji_images_source");
     static final Splitter DOT = Splitter.on('.');
     static final Splitter UNDERBAR = Splitter.on('_');
     static final Splitter DASH = Splitter.on('-');

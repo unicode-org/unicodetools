@@ -20,7 +20,7 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class Ids {
     static final Pattern NCR_PATTERN = Pattern.compile("\\&[^;]+;");
-    static final String BASE = Settings.Output.UNICODETOOLS_OUTPUT_DIR + "DATA/ids-b6bb70e/";
+    static final String BASE = Settings.Output.DATA_DIR + "ids-b6bb70e/";
 
     static class NcrToPua {
         int puaCounter = 0xE000;

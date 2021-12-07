@@ -27,7 +27,7 @@ public class EmojiFrequencyOld {
     static long total;
     static {
         Matcher m = Pattern.compile("id=\"score-(\\p{XDigit}+)(-\\p{XDigit}+)?\">(\\d+)</span>").matcher("");
-        for (String line : FileUtilities.in(Settings.Output.UNICODETOOLS_OUTPUT_DIR + "data/frequency/emoji/", "emoji-tracker.txt")) {
+        for (String line : FileUtilities.in(Settings.Output.DATA_DIR + "frequency/emoji/", "emoji-tracker.txt")) {
             if (line.startsWith("<section")) {
                 continue;
             }
