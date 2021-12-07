@@ -258,9 +258,8 @@ public class Settings {
 
     public static final class Output {
         /** The root of where we write output files. Most go into a "Generated" sub-folder. */
-        public static final String UNICODETOOLS_OUTPUT_DIR =
-                getRequiredPathAndFix("UNICODETOOLS_OUTPUT_DIR");
-        public static final String GEN_DIR = UNICODETOOLS_OUTPUT_DIR + "Generated/";
+        public static final String GEN_DIR =
+                getRequiredPathAndFix("UNICODETOOLS_GEN_DIR");
         public static final String BIN_DIR = GEN_DIR + "BIN/";
         public static final String GEN_UCD_DIR = GEN_DIR + "UCD/";
         public static final String GEN_UCA_DIR = GEN_DIR + "UCA/";
