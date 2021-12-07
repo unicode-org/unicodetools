@@ -235,7 +235,7 @@ All of the following have `version 15.0.0` (or whatever the latest version is)
 in the options given to Java.
 
 Example changes for adding Unicode 15 version numbers:
-See the second commit of https://github.com/unicode-org/unicodetools/pull/156
+See the second commit of [https://github.com/unicode-org/unicodetools/pull/156](https://github.com/unicode-org/unicodetools/pull/156/commits/71ed1d4f2a7e2ff1e9ae0063ec10d5289c37ecf0). Also, you must update the version number in the CI build scripts in `.github/workflows/`.
 
 Example changes for adding properties:
 <https://github.com/unicode-org/unicodetools/pull/40>. Throughout these steps we
