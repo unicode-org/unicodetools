@@ -263,7 +263,7 @@ public class Settings {
         public static final String BIN_DIR = GEN_DIR + "BIN/";
         public static final String GEN_UCD_DIR = GEN_DIR + "UCD/";
         public static final String GEN_UCA_DIR = GEN_DIR + "UCA/";
-        public static final String DATA_DIR = GEN_DIR + "DATA/";
+
         /**
          * Make sure the output dirs exist
          */
@@ -275,7 +275,6 @@ public class Settings {
                 ensureOutputDir(GEN_UCD_DIR);
                 ensureOutputDir(GEN_UCA_DIR);
                 ensureOutputDir(BIN_DIR);
-                ensureOutputDir(DATA_DIR);
         }
         public static void ensureOutputDir(String dir) {
                 if(new File(dir).mkdirs()) {

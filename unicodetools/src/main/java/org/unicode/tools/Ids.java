@@ -1264,7 +1264,7 @@ public class Ids {
         CharacterIds [] biggest = new CharacterIds[50];
         Counter<Integer> counter = new Counter<>();
 
-        for (String line : FileUtilities.in(Settings.Output.DATA_DIR + "ids/", SOURCE_IDS)) {
+        for (String line : FileUtilities.in(Settings.Output.GEN_DIR + "ids/", SOURCE_IDS)) {
             // U+3FCD 㿍 ⿸疒解
             if (line.startsWith("#") || line.startsWith(";")) {
                 line = line.substring(1).trim();
@@ -1379,7 +1379,7 @@ public class Ids {
     private static Map<String,String> getMacros() {
         Relation<String,String> temp = Relation.of(new HashMap(), HashSet.class);
         // fetch the data
-        for (String line : FileUtilities.in(Settings.Output.DATA_DIR + "ids/", SOURCE_IDS)) {
+        for (String line : FileUtilities.in(Settings.Output.GEN_DIR + "ids/", SOURCE_IDS)) {
             // CDP-8DA8 &CDP-8DA8;  ⿻廿木 ⿱丗木 ⿱𠀍木
             // U+3022   〢   ⿰丨丨
             // CDP-8DBA    &CDP-8DBA;  &CDP-8DBA;

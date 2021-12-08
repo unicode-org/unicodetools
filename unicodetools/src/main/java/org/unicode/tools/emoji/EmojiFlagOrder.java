@@ -281,7 +281,7 @@ public class EmojiFlagOrder {
 
     public static String getFile(String s) {
         String core = Emoji.buildFileName(s,"_");
-        return Settings.Output.DATA_DIR + "emoji_images/country-flags/ref_" +
+        return Settings.Output.GEN_DIR + "emoji_images/country-flags/ref_" +
         core +
         ".png";
     }

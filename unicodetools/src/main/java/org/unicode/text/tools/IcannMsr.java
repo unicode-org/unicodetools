@@ -36,7 +36,7 @@ import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.util.ULocale;
 
 public class IcannMsr {
-    private static final String ICANN_DIR = Settings.Output.DATA_DIR + "icann/";
+    private static final String ICANN_DIR = Settings.Output.GEN_DIR + "icann/";
 
     // Change these with new versions
 

@@ -172,7 +172,7 @@ U+2711 => U+2712
         final Splitter semi = Splitter.on("\t").trimResults();
         Data google = null;
         Data crab = null;
-        for (String line : FileUtilities.in(Settings.Output.DATA_DIR + "/emoji_images", "gmail_emoji.txt")) {
+        for (String line : FileUtilities.in(Settings.Output.GEN_DIR + "/emoji_images", "gmail_emoji.txt")) {
             if (line.startsWith("#")) continue;
             List<String> list = semi.splitToList(line);
             Data data = new Data(list);

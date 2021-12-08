@@ -19,9 +19,9 @@ import org.unicode.text.utility.Settings;
  * For a program that uses this, see ScriptPopulation
  */
 public class CharacterFrequency {
-    public static final String DATA_DIR = Settings.Output.DATA_DIR +
+    public static final String DATA_DIR = Settings.Output.GEN_DIR +
     		"frequency/languages/";
-    private static final String DATA_DIR_RANK = Settings.Output.DATA_DIR +
+    private static final String DATA_DIR_RANK = Settings.Output.GEN_DIR +
     		"frequency/languages-rank/";
     public static final boolean DEBUG = false;
     //	static final int MAX_LINE_COUNT = Integer.MAX_VALUE; // 10000;

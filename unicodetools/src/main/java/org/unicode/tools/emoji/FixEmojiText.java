@@ -54,7 +54,7 @@ public class FixEmojiText {
         }
     }
 
-    static final String DATA_SOURCE = Settings.Output.DATA_DIR + "emoji_images/";
+    static final String DATA_SOURCE = Settings.Output.GEN_DIR + "emoji_images/";
 
     private static void process2(String cp, StringBuilder result) {
         if (EmojiData.EMOJI_DATA.getChars().contains(cp)) {

@@ -44,7 +44,7 @@ public class GenerateOldestAnnotations {
     static final Set<String> SORTED_EMOJI_CHARS_SET
     = EmojiOrder.sort(EmojiOrder.STD_ORDER.codepointCompare, english.map.keySet());
 
-    public static String dir = Settings.Output.DATA_DIR + "emoji/annotations/";
+    public static String dir = Settings.Output.GEN_DIR + "emoji/annotations/";
 
     public static void main(String[] args) throws IOException {
         if (false) showSimple();
