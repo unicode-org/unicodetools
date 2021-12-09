@@ -1,5 +1,5 @@
-# USourceData-14.0.0.txt
-# Date: 2021-05-19, 00:00:00 GMT [JHJ]
+# USourceData-15.0.0.txt
+# Date: 2021-09-13, 00:00:00 GMT [JHJ]
 #
 # © 2021 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -25,6 +25,7 @@
 #      V: Variant of an encoded character
 #      W: Not suitable for encoding as a CJK Unified Ideograph
 #      WS-2017: Submitted by the UTC for IRG Working Set 2017
+#      WS-2021: Submitted by the UTC for IRG Working Set 2021
 #      X: No action taken
 #      (UTC-\d{5})|(UCI-\d{5}): Duplicate entries deprecated in favor of other entries; the status value is the identifier of the non-deprecated character
 # Field 2: A Unicode code point
@@ -3288,4 +3289,14 @@ UTC-03235;WS-2021;;15.3;;⿰冫夕;UTCDoc L2/21-025 1;kSpoofingVariant U+6C50;5;
 UTC-03236;WS-2021;;32.3;;⿰土夕;UTCDoc L2/21-025 2;;6;3
 UTC-03237;WS-2021;;86.12;;⿰晶灬;UTCDoc L2/21-025 3;kJapaneseOn SHOU;16;2
 UTC-03238;WS-2021;;162.27;;⿺辶𰆂;UTCDoc L2/21-025 4;;31;1
+# Unicode 15.0.0 Additions: 9
+UTC-03239;N;U+2BB71;75.7;;⿰木𮕜;UTCDoc L2/21-101 1;JTI code ≠ M!;11;1
+UTC-03240;N;U+7F3B;98.6;;⿺瓦缶;UTCDoc L2/21-101 2;JTI code P;11;3
+UTC-03241;N;U+2E99B;173.10;;⿱雨流;UTCDoc L2/21-101 3;JTI code V;18;4
+UTC-03242;N;U+4FDD;113.7;;⿰礻呆;UTCDoc L2/21-101 4;JTI code Y;11;2
+UTC-03243;N;U+973A;173.13;;⿱雨𪫕;UTCDoc L2/21-101 5;JTI code c;21;3
+UTC-03244;N;U+5E79 U+2D16A;37.11;;⿰𠦝夸;UTCDoc L2/21-101 6;JTI code o;14;1
+UTC-03245;N;U+7E20;120.9;;⿰⿳士冖糸殳;UTCDoc L2/21-101 7;JTI code q;15;1
+UTC-03246;N;U+7E3F;120.13;;⿰糸𭆤;UTCDoc L2/21-101 8;JTI code も;19;5
+UTC-03247;N;U+84AD;140.6;;⿳艹彐彐;UTCDoc L2/21-101 9;JTI code を;10;5
 # EOF

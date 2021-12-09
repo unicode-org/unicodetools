@@ -228,7 +228,7 @@ Value:  V14_0
 # Newly assigned in Unicode 14.0.0 (September, 2021)
 
 Value:  V15_0
-# Newly assigned in Unicode 14.0.0 (September, 2022)
+# Newly assigned in Unicode 15.0.0 (September, 2022)
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class

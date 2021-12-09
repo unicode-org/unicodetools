@@ -79,7 +79,12 @@ public interface UCD_Types {
     // 30000;<CJK Ideograph Extension G, First>;Lo;0;L;;;;;N;;;;;
     // 3134A;<CJK Ideograph Extension G, Last>;Lo;0;L;;;;;N;;;;;
     CJK_G_BASE = 0x30000,
-    CJK_G_LIMIT = 0x3134A+1
+    CJK_G_LIMIT = 0x3134A+1,
+
+    // 31350;<CJK Ideograph Extension H, First>;Lo;0;L;;;;;N;;;;;
+    // 323AF;<CJK Ideograph Extension H, Last>;Lo;0;L;;;;;N;;;;;
+    CJK_H_BASE = 0x31350,
+    CJK_H_LIMIT = 0x323AF+1
 
     // when adding to this list, look for all occurrences (in project) of CJK_C_BASE and CJK_C_LIMIT to check for code that needs changing.
     ;
@@ -565,7 +570,10 @@ public interface UCD_Types {
     Tangsa = 161,
     Toto = 162,
     Vithkuqi = 163,
-    LIMIT_SCRIPT = Vithkuqi + 1;
+    // Unicode 15
+    Kawi = 164,
+    Nag_Mundari = 165,
+    LIMIT_SCRIPT = Nag_Mundari + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte

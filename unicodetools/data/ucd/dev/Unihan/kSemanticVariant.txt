@@ -112,6 +112,7 @@
 418B	U+79CB<kMatthews
 4194	U+7AC9<kMeyerWempe
 41AB	U+7A93<kMeyerWempe U+7A97<kMeyerWempe
+41BC	U+7AA0
 4207	U+7F69<kLau,kMatthews
 4275	U+994C<kMatthews U+7C51<kMatthews
 429C	U+7CF0<kFenn
@@ -1883,6 +1884,7 @@
 7A93	U+41AB<kMeyerWempe U+7255<kLau,kMatthews U+7A97<kLau,kMatthews,kMeyerWempe U+7ABB<kFenn
 7A96	U+7A8C<kMatthews
 7A97	U+41AB<kMeyerWempe U+7255<kFenn U+7A93<kLau,kMatthews,kMeyerWempe U+7ABB<kFenn
+7AA0	U+41BC
 7AAE	U+7AC6<kLau,kMatthews,kMeyerWempe
 7AAF	U+7AB0<kMatthews,kMeyerWempe
 7AB0	U+7AAF<kMatthews,kMeyerWempe
@@ -2020,15 +2022,17 @@
 7DE4	U+7D32<kMeyerWempe
 7DE5	U+8913<kMatthews
 7DEA	U+7D5A<kMatthews U+7E06<kMatthews
+7DEB	U+7E3D<sSoengmou2003:TZ
 7DF2	U+7707<kMeyerWempe
 7E01	U+7DE3<kMatthews
+7E02	U+7E3D<sSoengmou2003:TZ
 7E06	U+7D5A<kMatthews U+7DEA<kMatthews
 7E10	U+76BA<kLau
 7E1A	U+7D5B<kMatthews
 7E1F	U+6EBD<kLau
 7E2D	U+8935<kMeyerWempe
 7E2F	U+4325<kFenn
-7E3D	U+6403<kFenn U+6460<kFenn
+7E3D	U+6403<kFenn U+6460<kFenn U+7DEB<sSoengmou2003 U+7E02<sSoengmou2003
 7E43	U+7DB3<kLau,kMatthews
 7E45	U+7E70<kMatthews
 7E48	U+7E66<kMatthews U+8941<kMatthews,kMeyerWempe
@@ -2116,6 +2120,7 @@
 8086	U+56DB<kLau
 8087	U+8088<kLau,kMatthews
 8088	U+8087<kLau,kMatthews
+808E	U+80AF<sSoengmou2003:TZ
 8090	U+80F3<kMatthews U+29A18<kFenn
 8095	U+97CC<kLau
 80A1	U+26676<kLau,kMeyerWempe
@@ -2123,6 +2128,7 @@
 80A7	U+80DA<kMatthews,kMeyerWempe
 80A8	U+80EE<kMatthews
 80AC	U+75A3<kMatthews
+80AF	U+808E<sSoengmou2003:T
 80B1	U+53B7<kMatthews,kMeyerWempe
 80B2	U+6BD3<kMatthews
 80B3	U+543B<kMatthews,kMeyerWempe
@@ -2150,6 +2156,7 @@
 8123	U+5507<kHKGlyph,kLau,kMatthews,kMeyerWempe
 812A	U+3F99<kMatthews
 8139	U+75EE<kMatthews
+813A	U+81B5<sSoengmou2003:TZ
 814A	U+81C8<kLau,kMatthews U+81D8<kLau,kMatthews
 8155	U+26675<kFenn
 8162	U+9AC3<kMatthews
@@ -2158,24 +2165,33 @@
 816D	U+9F76<kLau,kMatthews
 816E	U+984B<kLau,kMatthews,kMeyerWempe
 8173	U+811A<kLau,kMatthews,kMeyerWempe
+8178	U+8193<sSoengmou2003:T
 817F	U+9ABD<kMatthews
 8186	U+55C9<kMatthews
 818B	U+81AB<kMatthews,kMeyerWempe
+8193	U+8178<sSoengmou2003:TZ
+8198	U+81D5<sSoengmou2003:T
 81AB	U+818B<kMatthews,kMeyerWempe
 81B3	U+994D<kLau,kMatthews
+81B5	U+813A<sSoengmou2003:T
 81BD	U+80C6<kLau,kMatthews,kMeyerWempe
 81BE	U+9C60<kMatthews
 81C7	U+243B1<kFenn
 81C8	U+814A<kLau,kMatthews U+81D8<kLau,kMatthews
 81CA	U+267A3<kHanYu:T
 81CF	U+9AD5<kMatthews,kMeyerWempe
+81D5	U+8198<sSoengmou2003:TZ
 81D8	U+814A<kLau,kMatthews U+81C8<kLau,kMatthews
 81D9	U+80ED<kLau,kMatthews
+81DD	U+88F8<sSoengmou2003:TZ
 81DE	U+766F<kMeyerWempe
 81E5	U+5367<kHKGlyph
 81EF	U+768B<kMatthews
 81FA	U+53F0<kHKGlyph,kLau
+81FF	U+9364<sSoengmou2003:TZ
 8200	U+628C<kMatthews
+8203	U+8204<sSoengmou2003:T
+8204	U+8203<sSoengmou2003:TZ
 8207	U+4E0E<kMatthews,kMeyerWempe
 8208	U+34B7<kLau,kMatthews
 8209	U+3AAF<kFenn U+64E7<kHKGlyph
@@ -2200,7 +2216,8 @@
 8294	U+5349<kMatthews
 829F	U+206B9<kMeyerWempe
 82A6	U+8606<kFenn
-82B1	U+8624<kLau
+82B1	U+82B2<sSoengmou2003:T U+8624<kLau
+82B2	U+82B1<sSoengmou2003:TZ
 82BB	U+84AD<kMatthews,kMeyerWempe U+26DDD
 82D5	U+4492<kMatthews
 82DF	U+830D<kMatthews
@@ -2404,7 +2421,7 @@
 88D9	U+5E2C<kMatthews U+88E0<kFenn
 88E0	U+88D9<kFenn
 88E1	U+88CF<kHKGlyph,kLau,kMatthews
-88F8	U+8EB6<kLau,kMatthews
+88F8	U+81DD<sSoengmou2003:T U+8EB6<kLau,kMatthews
 8903	U+88C9<kFenn
 890E	U+890F<kMatthews
 890F	U+890E<kMatthews
@@ -2744,6 +2761,7 @@
 9349	U+5319<kMatthews
 935B	U+7145<kLau,kMatthews
 935C	U+7146<kMeyerWempe
+9364	U+81FF<sSoengmou2003:T
 936B	U+936C<kMeyerWempe
 936C	U+936B<kMeyerWempe
 9370	U+9436<kMatthews

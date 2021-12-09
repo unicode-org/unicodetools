@@ -1,5 +1,5 @@
-# IndicSyllabicCategory-14.0.0.txt
-# Date: 2021-05-22, 01:01:00 GMT [KW, RP]
+# IndicSyllabicCategory-15.0.0.txt
+# Date: 2021-12-02, 20:43:00 GMT [KW, RP]
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -37,7 +37,7 @@
 #
 # Ahom, Balinese, Batak, Bengali, Bhaiksuki, Brahmi, Buginese, Buhid,
 # Chakma, Cham, Devanagari, Dives Akuru, Dogra, Grantha, Gujarati,
-# Gunjala Gondi, Gurmukhi, Hanunoo, Javanese, Kaithi, Kannada,
+# Gunjala Gondi, Gurmukhi, Hanunoo, Javanese, Kaithi, Kannada, Kawi,
 # Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Lao, Lepcha, Limbu,
 # Mahajani, Makasar, Malayalam, Marchen, Masaram Gondi, Meetei Mayek,
 # Modi, Multani, Myanmar, Nandinagari, Newa, New Tai Lue, Oriya,
@@ -133,6 +133,7 @@ A980..A981    ; Bindu # Mn   [2] JAVANESE SIGN PANYANGGA..JAVANESE SIGN CECAK
 11CB5..11CB6  ; Bindu # Mn   [2] MARCHEN SIGN ANUSVARA..MARCHEN SIGN CANDRABINDU
 11D40         ; Bindu # Mn       MASARAM GONDI SIGN ANUSVARA
 11D95         ; Bindu # Mn       GUNJALA GONDI SIGN ANUSVARA
+11F00..11F01  ; Bindu # Mn   [2] KAWI SIGN CANDRABINDU..KAWI SIGN ANUSVARA
 
 # ================================================
 
@@ -179,6 +180,7 @@ AAF5          ; Visarga # Mc       MEETEI MAYEK VOWEL SIGN VISARGA
 11C3E         ; Visarga # Mc       BHAIKSUKI SIGN VISARGA
 11D41         ; Visarga # Mn       MASARAM GONDI SIGN VISARGA
 11D96         ; Visarga # Mc       GUNJALA GONDI SIGN VISARGA
+11F03         ; Visarga # Mc       KAWI SIGN VISARGA
 
 # ================================================
 
@@ -320,6 +322,7 @@ ABED          ; Pure_Killer # Mn       MEETEI MAYEK APUN IYEK
 1193D         ; Pure_Killer # Mc       DIVES AKURU SIGN HALANTA
 11A34         ; Pure_Killer # Mn       ZANABAZAR SQUARE SIGN VIRAMA
 11D44         ; Pure_Killer # Mn       MASARAM GONDI SIGN HALANTA
+11F41         ; Pure_Killer # Mc       KAWI SIGN KILLER
 
 # ================================================
 
@@ -346,6 +349,7 @@ AAF6          ; Invisible_Stacker # Mn       MEETEI MAYEK VIRAMA
 11A99         ; Invisible_Stacker # Mn       SOYOMBO SUBJOINER
 11D45         ; Invisible_Stacker # Mn       MASARAM GONDI VIRAMA
 11D97         ; Invisible_Stacker # Mn       GUNJALA GONDI VIRAMA
+11F42         ; Invisible_Stacker # Mn       KAWI CONJOINER
 
 # ================================================
 
@@ -443,6 +447,7 @@ ABD1          ; Vowel_Independent # Lo       MEETEI MAYEK LETTER ATIYA
 11D60..11D65  ; Vowel_Independent # Lo   [6] GUNJALA GONDI LETTER A..GUNJALA GONDI LETTER UU
 11D67..11D68  ; Vowel_Independent # Lo   [2] GUNJALA GONDI LETTER EE..GUNJALA GONDI LETTER AI
 11D6A..11D6B  ; Vowel_Independent # Lo   [2] GUNJALA GONDI LETTER OO..GUNJALA GONDI LETTER AU
+11F04..11F10  ; Vowel_Independent # Lo  [13] KAWI LETTER A..KAWI LETTER O
 
 # ================================================
 
@@ -700,6 +705,10 @@ ABE9..ABEA    ; Vowel_Dependent # Mc   [2] MEETEI MAYEK VOWEL SIGN CHEINAP..MEET
 11D93..11D94  ; Vowel_Dependent # Mc   [2] GUNJALA GONDI VOWEL SIGN OO..GUNJALA GONDI VOWEL SIGN AU
 11EF3..11EF4  ; Vowel_Dependent # Mn   [2] MAKASAR VOWEL SIGN I..MAKASAR VOWEL SIGN U
 11EF5..11EF6  ; Vowel_Dependent # Mc   [2] MAKASAR VOWEL SIGN E..MAKASAR VOWEL SIGN O
+11F34..11F35  ; Vowel_Dependent # Mc   [2] KAWI VOWEL SIGN AA..KAWI VOWEL SIGN ALTERNATE AA
+11F36..11F3A  ; Vowel_Dependent # Mn   [5] KAWI VOWEL SIGN I..KAWI VOWEL SIGN VOCALIC R
+11F3E..11F3F  ; Vowel_Dependent # Mc   [2] KAWI VOWEL SIGN E..KAWI VOWEL SIGN AI
+11F40         ; Vowel_Dependent # Mn       KAWI VOWEL SIGN EU
 
 # ================================================
 
@@ -908,6 +917,7 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 11D0C..11D30  ; Consonant # Lo  [37] MASARAM GONDI LETTER KA..MASARAM GONDI LETTER TRA
 11D6C..11D89  ; Consonant # Lo  [30] GUNJALA GONDI LETTER YA..GUNJALA GONDI LETTER SA
 11EE0..11EF1  ; Consonant # Lo  [18] MAKASAR LETTER KA..MAKASAR LETTER A
+11F12..11F33  ; Consonant # Lo  [35] KAWI LETTER KA..KAWI LETTER JNYA
 
 # ================================================
 
@@ -963,6 +973,7 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 0D4E          ; Consonant_Preceding_Repha # Lo       MALAYALAM LETTER DOT REPH
 11941         ; Consonant_Preceding_Repha # Lo       DIVES AKURU INITIAL RA
 11D46         ; Consonant_Preceding_Repha # Lo       MASARAM GONDI REPHA
+11F02         ; Consonant_Preceding_Repha # Lo       KAWI SIGN REPHA
 
 # ================================================
 
@@ -1304,6 +1315,7 @@ ABF0..ABF9    ; Number # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NI
 11C5A..11C6C  ; Number # No  [19] BHAIKSUKI NUMBER ONE..BHAIKSUKI HUNDREDS UNIT MARK
 11D50..11D59  ; Number # Nd  [10] MASARAM GONDI DIGIT ZERO..MASARAM GONDI DIGIT NINE
 11DA0..11DA9  ; Number # Nd  [10] GUNJALA GONDI DIGIT ZERO..GUNJALA GONDI DIGIT NINE
+11F50..11F59  ; Number # Nd  [10] KAWI DIGIT ZERO..KAWI DIGIT NINE
 
 # ================================================
 
