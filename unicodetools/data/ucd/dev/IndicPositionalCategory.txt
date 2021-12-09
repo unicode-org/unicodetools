@@ -1,11 +1,11 @@
 # IndicPositionalCategory-15.0.0.txt
-# Date: 2021-12-02, 20:42:00 GMT [KW, RP]
+# Date: 2021-12-07, 20:42:00 GMT [KW, RP]
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # For documentation, see UAX #44: Unicode Character Database,
-# at http://www.unicode.org/reports/tr44/
+# at https://www.unicode.org/reports/tr44/
 #
 # This file defines the following property:
 #
@@ -392,7 +392,7 @@ AABB..AABC    ; Visual_Order_Left # Lo   [2] TAI VIET VOWEL AUE..TAI VIET VOWEL 
 093A          ; Top # Mn       DEVANAGARI VOWEL SIGN OE
 0945..0948    ; Top # Mn   [4] DEVANAGARI VOWEL SIGN CANDRA E..DEVANAGARI VOWEL SIGN AI
 0951          ; Top # Mn       DEVANAGARI STRESS SIGN UDATTA
-0953..0955    ; Top # Mn   [3] DEVANAGARI GRAVE ACCENT..DEVANAGARI VOWEL SIGN CANDRA LONG E
+0955          ; Top # Mn       DEVANAGARI VOWEL SIGN CANDRA LONG E
 0981          ; Top # Mn       BENGALI SIGN CANDRABINDU
 09FE          ; Top # Mn       BENGALI SANDHI MARK
 0A01..0A02    ; Top # Mn   [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
