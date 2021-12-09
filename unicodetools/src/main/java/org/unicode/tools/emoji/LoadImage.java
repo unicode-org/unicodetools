@@ -161,8 +161,8 @@ public class LoadImage extends Component {
     static String outputDir = Settings.Output.GEN_DIR+ "images/";
 
     public static void main(String[] args) throws IOException {
-	
-	doAnimatedGif(false, 72, 50);
+        
+        doAnimatedGif(false, 72, 50);
         if (true) return;
 
         IndexUnicodeProperties iup = IndexUnicodeProperties.make();
@@ -172,7 +172,7 @@ public class LoadImage extends Component {
 
         if (true) return;
         UnicodeSet hiero = new UnicodeSet("[:Script=Egyptian_Hieroglyphs:]").freeze();
-	generatePngsFromFont(outputDir, "noto", "noto", "Noto Sans Egyptian Hieroglyphs", 
+        generatePngsFromFont(outputDir, "noto", "noto", "Noto Sans Egyptian Hieroglyphs", 
                 hiero, 72, false);
 
 //        doAnimatedGif(false, 72, 50);

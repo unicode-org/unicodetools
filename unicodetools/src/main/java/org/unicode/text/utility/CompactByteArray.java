@@ -104,7 +104,7 @@ public final class CompactByteArray implements Serializable {
         output.println("public final class GeneralCategory {");
 
         output.println("    public static byte getCategory (char ch) {");
-        output.println("	    return compactArray.elementAt(ch);");
+        output.println("        return compactArray.elementAt(ch);");
         output.println("    }");
 
         output.println("    static CompactByteArray compactArray;");
@@ -127,7 +127,7 @@ public final class CompactByteArray implements Serializable {
             output.print("(byte)" + (values[i] & 0xFF) + ", ");
         }
         output.println(" };");
-        output.println("	    compactArray = new CompactByteArray(index, data);");
+        output.println("        compactArray = new CompactByteArray(index, data);");
         output.println("    }");
         output.println("}");
         output.close();

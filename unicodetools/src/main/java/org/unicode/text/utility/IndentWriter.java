@@ -62,7 +62,7 @@ public class IndentWriter extends Writer {
         } else {
             buffer.append(separator);
         }
-	    buffer.append(cbuf, off, len);
+        buffer.append(cbuf, off, len);
     }
     public void write(String string) throws IOException {
         write(string,0,string.length());

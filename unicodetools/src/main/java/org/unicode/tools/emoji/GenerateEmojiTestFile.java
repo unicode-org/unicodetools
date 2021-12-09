@@ -116,8 +116,8 @@ public class GenerateEmojiTestFile {
             System.out.println(group.toPlainString() 
                     + "\t" + date
                     + "\t" + totalSingletons.get(group)
-                    //					+ "\t" + totalsWithoutModifiers.get(group) 
-                    //					+ "\t" + totalDuplicatesWithoutModifiers.get(group)
+                    //                    + "\t" + totalsWithoutModifiers.get(group) 
+                    //                    + "\t" + totalDuplicatesWithoutModifiers.get(group)
                     + "\t" + totals.get(group) 
                     + "\t" + totalDuplicates.get(group)
                     + "\t" + (totals.get(group)+totalDuplicates.get(group))
@@ -271,7 +271,7 @@ public class GenerateEmojiTestFile {
                 for (String cp : vf.getCombinations()) {
                     charactersNotShown.remove(cp);
                     VariantStatus variantStatus = emojiOrder.emojiData.getVariantStatus(cp);
-		    String ageDisplay = "E" + BirthInfo.getVersionInfo(cp).getVersionString(2, 2);
+            String ageDisplay = "E" + BirthInfo.getVersionInfo(cp).getVersionString(2, 2);
 
                     switch(target) {
                     case csv:
@@ -320,38 +320,38 @@ public class GenerateEmojiTestFile {
         }
     }
 
-    //	static Splitter vsSplitter = Splitter.on(Emoji.EMOJI_VARIANT);
+    //    static Splitter vsSplitter = Splitter.on(Emoji.EMOJI_VARIANT);
 
     /** Show all of the combinations with VS, except for all VS characters.
      */
-    //	private static void showWithoutVS(TempPrintWriter out, Tabber tabber, String cp, UnicodeSet charactersNotShown) throws IOException {
-    //		if (!cp.contains(Emoji.JOINER_STRING)) {
-    //			return;
-    //		}
-    //		int pos = cp.indexOf(Emoji.EMOJI_VARIANT);
-    //		if (pos < 0) {
-    //			return;
-    //		}
-    //		String name = EmojiData.EMOJI_DATA.getName(cp, false, CandidateData.getInstance());
+    //    private static void showWithoutVS(TempPrintWriter out, Tabber tabber, String cp, UnicodeSet charactersNotShown) throws IOException {
+    //        if (!cp.contains(Emoji.JOINER_STRING)) {
+    //            return;
+    //        }
+    //        int pos = cp.indexOf(Emoji.EMOJI_VARIANT);
+    //        if (pos < 0) {
+    //            return;
+    //        }
+    //        String name = EmojiData.EMOJI_DATA.getName(cp, false, CandidateData.getInstance());
     //
-    //		final List<String> parts = vsSplitter.splitToList(cp);
-    //		final int size = parts.size();
-    //		if (size > 2) {
-    //			int debug = 0;
-    //		}
-    //		int count = (1 << (size-1)) - 1; // 3 parts => 100 => 11
-    //		for (int bitmap = 0; bitmap < count; ++bitmap) {
-    //			String temp = parts.get(0);
-    //			for (int rest = 0; rest < size - 1; ++rest) {
-    //				if ((bitmap & (1<<rest)) != 0) {
-    //					temp += Emoji.EMOJI_VARIANT_STRING;
-    //				}
-    //				temp += parts.get(rest+1);
-    //			}
-    //			out.println(tabber.process(Utility.hex(temp) + "\t; " 
-    //					+ "non-fully-qualified"
-    //					+ "\t# " + temp + " " + name));
-    //			charactersNotShown.remove(temp);
-    //		}
-    //	}
+    //        final List<String> parts = vsSplitter.splitToList(cp);
+    //        final int size = parts.size();
+    //        if (size > 2) {
+    //            int debug = 0;
+    //        }
+    //        int count = (1 << (size-1)) - 1; // 3 parts => 100 => 11
+    //        for (int bitmap = 0; bitmap < count; ++bitmap) {
+    //            String temp = parts.get(0);
+    //            for (int rest = 0; rest < size - 1; ++rest) {
+    //                if ((bitmap & (1<<rest)) != 0) {
+    //                    temp += Emoji.EMOJI_VARIANT_STRING;
+    //                }
+    //                temp += parts.get(rest+1);
+    //            }
+    //            out.println(tabber.process(Utility.hex(temp) + "\t; " 
+    //                    + "non-fully-qualified"
+    //                    + "\t# " + temp + " " + name));
+    //            charactersNotShown.remove(temp);
+    //        }
+    //    }
 }

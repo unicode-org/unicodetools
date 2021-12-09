@@ -594,13 +594,13 @@ of characters, the first of which has a non-zero combining class.
                 return false;
             }
             /*public String getListingValue(int cp) {
-    		    return "Comp_Ex";
-    	    }*/
+                        return "Comp_Ex";
+                }*/
             /*
-			public String getListingValue(int cp) {
-        		if (getValueType() != BINARY) return getValue(cp, SHORT);
-        		return getProperty(SHORT);
-			}
+                        public String getListingValue(int cp) {
+                        if (getValueType() != BINARY) return getValue(cp, SHORT);
+                        return getProperty(SHORT);
+                        }
              */
         };
 
@@ -693,11 +693,11 @@ of characters, the first of which has a non-zero combining class.
             {
                 // Prepended_Concatenation_Mark characters
                 try {
-		    UnicodeMap<Binary> pcm = iupCurrent.loadEnum(UcdProperty.Prepended_Concatenation_Mark, Binary.class);
-		    removals = new UnicodeSet(pcm.getSet(Binary.Yes)).freeze();
-		} catch (Exception e) {
-		    removals = UnicodeSet.EMPTY;
-		}
+                    UnicodeMap<Binary> pcm = iupCurrent.loadEnum(UcdProperty.Prepended_Concatenation_Mark, Binary.class);
+                    removals = new UnicodeSet(pcm.getSet(Binary.Yes)).freeze();
+                } catch (Exception e) {
+                    removals = UnicodeSet.EMPTY;
+                }
             }
 
 

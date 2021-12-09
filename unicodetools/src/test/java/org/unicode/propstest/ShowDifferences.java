@@ -74,7 +74,7 @@ public class ShowDifferences {
         final UnicodeMap<String> empty = new UnicodeMap<String>().freeze();
         for (UcdProperty prop : UcdProperty.values()) {
             if (!prop.name().startsWith("k")) {
-        	continue;
+                continue;
             }
             UnicodeMap<String> lastMap = empty;
             UnicodeMap<String> latestMap = empty;

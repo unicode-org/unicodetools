@@ -227,44 +227,44 @@ public final class UCD_Names implements UCD_Types {
     };
 
     public static final String[] LONG_SCRIPT = {
-        "COMMON", // 	COMMON -- NOT A LETTER: NO EXACT CORRESPONDENCE IN 15924
-        "LATIN", // 	LATIN
-        "GREEK", // 	GREEK
-        "CYRILLIC", // 	CYRILLIC
-        "ARMENIAN", // 	ARMENIAN
-        "HEBREW", // 	HEBREW
-        "ARABIC", // 	ARABIC
-        "SYRIAC", // 	SYRIAC
-        "THAANA", // 	THAANA
-        "DEVANAGARI", // 	DEVANAGARI
-        "BENGALI", // 	BENGALI
-        "GURMUKHI", // 	GURMUKHI
-        "GUJARATI", // 	GUJARATI
-        "ORIYA", // 	ORIYA
-        "TAMIL", // 	TAMIL
-        "TELUGU", // 	TELUGU
-        "KANNADA", // 	KANNADA
-        "MALAYALAM", // 	MALAYALAM
-        "SINHALA", // 	SINHALA
-        "THAI", // 	THAI
-        "LAO", // 	LAO
-        "TIBETAN", // 	TIBETAN
-        "MYANMAR", // 	MYANMAR
-        "GEORGIAN", // 	GEORGIAN
-        UnicodeProperty.UNUSED, // 	JAMO -- NOT SEPARATED FROM HANGUL IN 15924
-        "HANGUL", // 	HANGUL
-        "ETHIOPIC", // 	ETHIOPIC
-        "CHEROKEE", // 	CHEROKEE
-        "CANADIAN-ABORIGINAL", // 	ABORIGINAL
-        "OGHAM", // 	OGHAM
-        "RUNIC", // 	RUNIC
-        "KHMER", // 	KHMER
-        "MONGOLIAN", // 	MONGOLIAN
-        "HIRAGANA", // 	HIRAGANA
-        "KATAKANA", // 	KATAKANA
-        "BOPOMOFO", // 	BOPOMOFO
-        "HAN", // 	HAN
-        "YI", // 	YI
+        "COMMON", //     COMMON -- NOT A LETTER: NO EXACT CORRESPONDENCE IN 15924
+        "LATIN", //     LATIN
+        "GREEK", //     GREEK
+        "CYRILLIC", //     CYRILLIC
+        "ARMENIAN", //     ARMENIAN
+        "HEBREW", //     HEBREW
+        "ARABIC", //     ARABIC
+        "SYRIAC", //     SYRIAC
+        "THAANA", //     THAANA
+        "DEVANAGARI", //     DEVANAGARI
+        "BENGALI", //     BENGALI
+        "GURMUKHI", //     GURMUKHI
+        "GUJARATI", //     GUJARATI
+        "ORIYA", //     ORIYA
+        "TAMIL", //     TAMIL
+        "TELUGU", //     TELUGU
+        "KANNADA", //     KANNADA
+        "MALAYALAM", //     MALAYALAM
+        "SINHALA", //     SINHALA
+        "THAI", //     THAI
+        "LAO", //     LAO
+        "TIBETAN", //     TIBETAN
+        "MYANMAR", //     MYANMAR
+        "GEORGIAN", //     GEORGIAN
+        UnicodeProperty.UNUSED, //     JAMO -- NOT SEPARATED FROM HANGUL IN 15924
+        "HANGUL", //     HANGUL
+        "ETHIOPIC", //     ETHIOPIC
+        "CHEROKEE", //     CHEROKEE
+        "CANADIAN-ABORIGINAL", //     ABORIGINAL
+        "OGHAM", //     OGHAM
+        "RUNIC", //     RUNIC
+        "KHMER", //     KHMER
+        "MONGOLIAN", //     MONGOLIAN
+        "HIRAGANA", //     HIRAGANA
+        "KATAKANA", //     KATAKANA
+        "BOPOMOFO", //     BOPOMOFO
+        "HAN", //     HAN
+        "YI", //     YI
         "OLD_ITALIC",
         "GOTHIC",
         "DESERET",
@@ -410,44 +410,44 @@ public final class UCD_Names implements UCD_Types {
     }
 
     public static final String[] SCRIPT = {
-        "Zyyy", // 	COMMON -- NOT A LETTER: NO EXACT CORRESPONDENCE IN 15924
-        "Latn", // 	LATIN
-        "Grek", // 	GREEK
-        "Cyrl", // 	CYRILLIC
-        "Armn", // 	ARMENIAN
-        "Hebr", // 	HEBREW
-        "Arab", // 	ARABIC
-        "Syrc", // 	SYRIAC
-        "Thaa", // 	THAANA
-        "Deva", // 	DEVANAGARI
-        "Beng", // 	BENGALI
-        "Guru", // 	GURMUKHI
-        "Gujr", // 	GUJARATI
-        "Orya", // 	ORIYA
-        "Taml", // 	TAMIL
-        "Telu", // 	TELUGU
-        "Knda", // 	KANNADA
-        "Mlym", // 	MALAYALAM
-        "Sinh", // 	SINHALA
-        "Thai", // 	THAI
-        "Laoo", // 	LAO
-        "Tibt", // 	TIBETAN
-        "Mymr", // 	MYANMAR
-        "Geor", // 	GEORGIAN
-        UnicodeProperty.UNUSED, // 	JAMO -- NOT SEPARATED FROM HANGUL IN 15924
-        "Hang", // 	HANGUL
-        "Ethi", // 	ETHIOPIC
-        "Cher", // 	CHEROKEE
-        "Cans", // 	ABORIGINAL
-        "Ogam", // 	OGHAM
-        "Runr", // 	RUNIC
-        "Khmr", // 	KHMER
-        "Mong", // 	MONGOLIAN
-        "Hira", // 	HIRAGANA
-        "Kana", // 	KATAKANA
-        "Bopo", // 	BOPOMOFO
-        "Hani", // 	HAN
-        "Yiii", // 	YI
+        "Zyyy", //     COMMON -- NOT A LETTER: NO EXACT CORRESPONDENCE IN 15924
+        "Latn", //     LATIN
+        "Grek", //     GREEK
+        "Cyrl", //     CYRILLIC
+        "Armn", //     ARMENIAN
+        "Hebr", //     HEBREW
+        "Arab", //     ARABIC
+        "Syrc", //     SYRIAC
+        "Thaa", //     THAANA
+        "Deva", //     DEVANAGARI
+        "Beng", //     BENGALI
+        "Guru", //     GURMUKHI
+        "Gujr", //     GUJARATI
+        "Orya", //     ORIYA
+        "Taml", //     TAMIL
+        "Telu", //     TELUGU
+        "Knda", //     KANNADA
+        "Mlym", //     MALAYALAM
+        "Sinh", //     SINHALA
+        "Thai", //     THAI
+        "Laoo", //     LAO
+        "Tibt", //     TIBETAN
+        "Mymr", //     MYANMAR
+        "Geor", //     GEORGIAN
+        UnicodeProperty.UNUSED, //     JAMO -- NOT SEPARATED FROM HANGUL IN 15924
+        "Hang", //     HANGUL
+        "Ethi", //     ETHIOPIC
+        "Cher", //     CHEROKEE
+        "Cans", //     ABORIGINAL
+        "Ogam", //     OGHAM
+        "Runr", //     RUNIC
+        "Khmr", //     KHMER
+        "Mong", //     MONGOLIAN
+        "Hira", //     HIRAGANA
+        "Kana", //     KATAKANA
+        "Bopo", //     BOPOMOFO
+        "Hani", //     HAN
+        "Yiii", //     YI
         "Ital",
         "Goth",
         "Dsrt",
@@ -750,33 +750,33 @@ public final class UCD_Names implements UCD_Types {
 
 
     static final String[] BIDI_CLASS = {
-        "L", //	Left-Right; Most alphabetic, syllabic, and logographic characters (e.g., CJK ideographs)
-        "R", //	Right-Left; Arabic, Hebrew, and punctuation specific to those scripts
-        "EN", //	European Number
-        "ES", //	European Number Separator
-        "ET", //	European Number Terminator
-        "AN", //	Arabic Number
-        "CS", //	Common Number Separator
-        "B", //	Paragraph Separator
-        "S", //	Segment Separator
-        "WS", //	Whitespace
-        "ON", //	Other Neutrals ; All other characters: punctuation, symbols
+        "L", //    Left-Right; Most alphabetic, syllabic, and logographic characters (e.g., CJK ideographs)
+        "R", //    Right-Left; Arabic, Hebrew, and punctuation specific to those scripts
+        "EN", //    European Number
+        "ES", //    European Number Separator
+        "ET", //    European Number Terminator
+        "AN", //    Arabic Number
+        "CS", //    Common Number Separator
+        "B", //    Paragraph Separator
+        "S", //    Segment Separator
+        "WS", //    Whitespace
+        "ON", //    Other Neutrals ; All other characters: punctuation, symbols
         UnicodeProperty.UNUSED, "BN", "NSM", "AL", "LRO", "RLO", "LRE", "RLE", "PDF",
         "LRI", "RLI", "FSI", "PDI",
     };
 
     static String[] LONG_BIDI_CLASS = {
-        "LeftToRight", //	Left-Right; Most alphabetic, syllabic, and logographic characters (e.g., CJK ideographs)
-        "RightToLeft", //	Right-Left; Arabic, Hebrew, and punctuation specific to those scripts
-        "EuropeanNumber", //	European Number
-        "EuropeanSeparator", //	European Number Separator
-        "EuropeanTerminator", //	European Number Terminator
-        "ArabicNumber", //	Arabic Number
-        "CommonSeparator", //	Common Number Separator
-        "ParagraphSeparator", //	Paragraph Separator
-        "SegmentSeparator", //	Segment Separator
-        "WhiteSpace", //	Whitespace
-        "OtherNeutral", //	Other Neutrals ; All other characters: punctuation, symbols
+        "LeftToRight", //    Left-Right; Most alphabetic, syllabic, and logographic characters (e.g., CJK ideographs)
+        "RightToLeft", //    Right-Left; Arabic, Hebrew, and punctuation specific to those scripts
+        "EuropeanNumber", //    European Number
+        "EuropeanSeparator", //    European Number Separator
+        "EuropeanTerminator", //    European Number Terminator
+        "ArabicNumber", //    Arabic Number
+        "CommonSeparator", //    Common Number Separator
+        "ParagraphSeparator", //    Paragraph Separator
+        "SegmentSeparator", //    Segment Separator
+        "WhiteSpace", //    Whitespace
+        "OtherNeutral", //    Other Neutrals ; All other characters: punctuation, symbols
         UnicodeProperty.UNUSED,
         "BoundaryNeutral", "NonspacingMark", "ArabicLetter",
         "LeftToRightOverride",
@@ -792,42 +792,42 @@ public final class UCD_Names implements UCD_Types {
     static String[] LONG_DECOMPOSITION_TYPE = {
         "none", // NONE
         "canonical", // CANONICAL
-        "compat",	// Otherwise unspecified compatibility character.
-        "font",		// A font variant (e.g. a blackletter form).
-        "noBreak",	// A no-break version of a space or hyphen.
-        "initial",	// // An initial presentation form (Arabic).
-        "medial",	// // A medial presentation form (Arabic).
-        "final",	// // 	A final presentation form (Arabic).
-        "isolated",	// An isolated presentation form (Arabic).
-        "circle",	// An encircled form.
-        "super",	// 	A superscript form.
-        "sub",	// 	A subscript form.
-        "vertical",	// A vertical layout presentation form.
-        "wide",	// 	A wide (or zenkaku) compatibility character.
-        "narrow",	// A narrow (or hankaku) compatibility character.
-        "small",	// 	A small variant form (CNS compatibility).
-        "square",	// A CJK squared font variant.
-        "fraction",	// A vulgar fraction form.
+        "compat",    // Otherwise unspecified compatibility character.
+        "font",        // A font variant (e.g. a blackletter form).
+        "noBreak",    // A no-break version of a space or hyphen.
+        "initial",    // // An initial presentation form (Arabic).
+        "medial",    // // A medial presentation form (Arabic).
+        "final",    // //     A final presentation form (Arabic).
+        "isolated",    // An isolated presentation form (Arabic).
+        "circle",    // An encircled form.
+        "super",    //     A superscript form.
+        "sub",    //     A subscript form.
+        "vertical",    // A vertical layout presentation form.
+        "wide",    //     A wide (or zenkaku) compatibility character.
+        "narrow",    // A narrow (or hankaku) compatibility character.
+        "small",    //     A small variant form (CNS compatibility).
+        "square",    // A CJK squared font variant.
+        "fraction",    // A vulgar fraction form.
     };
     static String[] DECOMPOSITION_TYPE = {
         "none", // NONE
         "can", // CANONICAL
-        "com",	// Otherwise unspecified compatibility character.
-        "font",		// A font variant (e.g. a blackletter form).
-        "nb",	// A no-break version of a space or hyphen.
-        "init",	// // An initial presentation form (Arabic).
-        "med",	// // A medial presentation form (Arabic).
-        "fin",	// // 	A final presentation form (Arabic).
-        "iso",	// An isolated presentation form (Arabic).
-        "enc",	// An encircled form.
-        "sup",	// 	A superscript form.
-        "sub",	// 	A subscript form.
-        "vert",	// A vertical layout presentation form.
-        "wide",	// 	A wide (or zenkaku) compatibility character.
-        "nar",	// A narrow (or hankaku) compatibility character.
-        "sml",	// 	A small variant form (CNS compatibility).
-        "sqr",	// A CJK squared font variant.
-        "fra",	// A vulgar fraction form.
+        "com",    // Otherwise unspecified compatibility character.
+        "font",        // A font variant (e.g. a blackletter form).
+        "nb",    // A no-break version of a space or hyphen.
+        "init",    // // An initial presentation form (Arabic).
+        "med",    // // A medial presentation form (Arabic).
+        "fin",    // //     A final presentation form (Arabic).
+        "iso",    // An isolated presentation form (Arabic).
+        "enc",    // An encircled form.
+        "sup",    //     A superscript form.
+        "sub",    //     A subscript form.
+        "vert",    // A vertical layout presentation form.
+        "wide",    //     A wide (or zenkaku) compatibility character.
+        "nar",    // A narrow (or hankaku) compatibility character.
+        "sml",    //     A small variant form (CNS compatibility).
+        "sqr",    // A CJK squared font variant.
+        "fra",    // A vulgar fraction form.
     };
     static {
         fixArray(LONG_DECOMPOSITION_TYPE);
@@ -885,10 +885,10 @@ public final class UCD_Names implements UCD_Types {
                 case 200: s = style < LONG ? "ATBL" :  "AttachedBelowLeft"; break;
                 case 202: s = style < LONG ? "ATB" :  "AttachedBelow"; break;
                 /*
-		            case 204: s = style < LONG ? "ATBR" :  "AttachedBelowRight"; break;
-		            case 208: s = style < LONG ? "ATL" :  "AttachedLeft"; break;
-		            case 210: s = style < LONG ? "ATR" :  "AttachedRight"; break;
-		            case 212: s = style < LONG ? "ATAL" :  "AttachedAboveLeft"; break;
+                    case 204: s = style < LONG ? "ATBR" :  "AttachedBelowRight"; break;
+                    case 208: s = style < LONG ? "ATL" :  "AttachedLeft"; break;
+                    case 210: s = style < LONG ? "ATR" :  "AttachedRight"; break;
+                    case 212: s = style < LONG ? "ATAL" :  "AttachedAboveLeft"; break;
                  */
                 case 214: s = style < LONG ? "ATA" :  "AttachedAbove"; break;
                 case 216: s = style < LONG ? "ATAR" :   "AttachedAboveRight"; break;

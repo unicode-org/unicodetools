@@ -89,8 +89,8 @@ public class PickerApp implements ListSelectionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(512, 342);
 
-        //				JLabel l = new JLabel("s+rl");
-        //				j.getContentPane().add(l);
+        //                JLabel l = new JLabel("s+rl");
+        //                j.getContentPane().add(l);
         frame.setLayout(new GridLayout(3, 1));
         ListModel<String> model = new ListModel<String>() {
             final List<String> categories = PickerData2.CATEGORIES;

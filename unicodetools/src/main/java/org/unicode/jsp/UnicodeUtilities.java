@@ -579,7 +579,7 @@ public class UnicodeUtilities {
                 out.append(UnicodeUtilities.getHex(string, separator, ucdFormat) + "</td><td class='charCell'>\u00A0" + literal + "\u00A0</td><td" + (restricted ? " class='redName'" : "") +
                         ">" + name);
             } else {
-                out.append(UnicodeUtilities.getHex(string, separator, ucdFormat) + " " + (ucdFormat ? 	"\t;" : "(\u00A0" + literal + "\u00A0) ") + name);
+                out.append(UnicodeUtilities.getHex(string, separator, ucdFormat) + " " + (ucdFormat ? "\t;" : "(\u00A0" + literal + "\u00A0) ") + name);
             }
             if (identifierInfo) {
                 final int cp = string.codePointAt(0);

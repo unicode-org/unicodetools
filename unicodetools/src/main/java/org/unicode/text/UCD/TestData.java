@@ -868,17 +868,17 @@ public class TestData implements UCD_Types {
         }
 
         /**
-		// add a secondary weight
-		// assume we don't care about more than too many leads/trails
-		leadZeros += 2; // make non-negative; might have padded by 2, for 0
-		trailZeros += 2; // make non-negative; might have padded by 1
-		if (leadZeros > 7) leadZeros = 7;
-		if (trailZeros > 7) trailZeros = 7;
-		int secondary = (removedNegative ? 0 : 0x80) // only for zero
-						| (leadZeros << 4)
-						| (removedDecimal ? 0 : 0x08)
-						| (trailZeros);
-		result += ";" + hexByte(secondary);
+        // add a secondary weight
+        // assume we don't care about more than too many leads/trails
+        leadZeros += 2; // make non-negative; might have padded by 2, for 0
+        trailZeros += 2; // make non-negative; might have padded by 1
+        if (leadZeros > 7) leadZeros = 7;
+        if (trailZeros > 7) trailZeros = 7;
+        int secondary = (removedNegative ? 0 : 0x80) // only for zero
+                        | (leadZeros << 4)
+                        | (removedDecimal ? 0 : 0x08)
+                        | (trailZeros);
+        result += ";" + hexByte(secondary);
          */
 
         return result;
@@ -1327,10 +1327,10 @@ public class TestData implements UCD_Types {
                 new FileOutputStream(GEN_DIR + fileName),
                 "UTF8"),
             32*1024));
-	    formC = new Normalizer(Normalizer.NFC);
-	    formD = new Normalizer(Normalizer.NFD);
-	    formKC = new Normalizer(Normalizer.NFKC);
-	    formKD = new Normalizer(Normalizer.NFKD);
+        formC = new Normalizer(Normalizer.NFC);
+        formD = new Normalizer(Normalizer.NFD);
+        formKC = new Normalizer(Normalizer.NFKC);
+        formKD = new Normalizer(Normalizer.NFKD);
 
         log.println("# " + fixFile(fileName));
         log.println("#");

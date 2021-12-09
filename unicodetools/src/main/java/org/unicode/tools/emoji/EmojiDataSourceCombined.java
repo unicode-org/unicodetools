@@ -30,7 +30,7 @@ public class EmojiDataSourceCombined implements EmojiDataSource {
     }
 
     public EmojiDataSourceCombined(EmojiData emojiData) {
-	this(emojiData, CandidateData.getInstance());
+        this(emojiData, CandidateData.getInstance());
     }
 
     public EmojiDataSourceCombined() {

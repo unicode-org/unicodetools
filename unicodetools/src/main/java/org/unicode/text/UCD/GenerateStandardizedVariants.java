@@ -49,8 +49,8 @@ public final class GenerateStandardizedVariants implements UCD_Types {
 #   Field 0: the variation sequence
 #   Field 1: the description of the desired appearance
 #   Field 2: where the appearance is only different in in particular shaping environments
-#	this field lists them. The possible values are: isolated, initial, medial, final.
-#	If more than one is present, there are spaces between them.
+#    this field lists them. The possible values are: isolated, initial, medial, final.
+#    If more than one is present, there are spaces between them.
      */
     static public void generate() throws IOException {
         if (Default.ucdVersionInfo().compareTo(VersionInfo.getInstance(9)) >= 0) {

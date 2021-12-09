@@ -104,7 +104,7 @@ public class ChartUtilities {
     }
 
     public static String fixAnchor(String href) {
-	return href.replace(' ', '_').toLowerCase(Locale.ENGLISH);
+        return href.replace(' ', '_').toLowerCase(Locale.ENGLISH);
     }
 
     public static String getLink(String href, String anchorText, String target) {

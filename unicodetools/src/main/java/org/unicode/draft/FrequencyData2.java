@@ -121,7 +121,7 @@ public class FrequencyData2 {
 //    }
     
     public FrequencyData2(String frequencyFile, boolean showProgress) throws IOException {
-	if (true) throw new IllegalArgumentException("old code: see CharacterFrequency");
+    if (true) throw new IllegalArgumentException("old code: see CharacterFrequency");
         BufferedReader in = GenerateNormalizeForMatch2.openUTF8Reader(frequencyFile);
         for (int lineCount = 0;; ++lineCount) {
             String line = in.readLine();

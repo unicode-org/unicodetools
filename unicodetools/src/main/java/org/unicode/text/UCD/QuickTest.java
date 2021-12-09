@@ -220,7 +220,7 @@ public class QuickTest implements UCD_Types {
         System.out.println("Non-Starter, Non-CWP: " + "\n" + bf.showSetNames(nonStarterNonTrailing));
         System.out.println("Disallowed: " + "\n" + bf.showSetNames(disallowed));
 
-        //		System.out.println(bf.showSetDifferences("NFC CWP", leadingC, "NFC Trailing", trailingC));
+        //        System.out.println(bf.showSetDifferences("NFC CWP", leadingC, "NFC Trailing", trailingC));
     }
 
     private static void checkCaseChanges() {
@@ -454,13 +454,13 @@ public class QuickTest implements UCD_Types {
                 }
             }
 
-            //		temp = new UnicodeMap();
-            //		UnicodeSet special = new UnicodeSet("[<>]");
-            //		for (UnicodeSetIterator it = new UnicodeSetIterator(mathSet); it.next();) {
-            //			String s = Default.nfkd().normalize(it.codepoint);
-            //			if (special.containsSome(s)) temp.put(it.codepoint, "*special*");
-            //		}
-            //		status.composeWith(temp, MyComposer);
+            //        temp = new UnicodeMap();
+            //        UnicodeSet special = new UnicodeSet("[<>]");
+            //        for (UnicodeSetIterator it = new UnicodeSetIterator(mathSet); it.next();) {
+            //            String s = Default.nfkd().normalize(it.codepoint);
+            //            if (special.containsSome(s)) temp.put(it.codepoint, "*special*");
+            //        }
+            //        status.composeWith(temp, MyComposer);
 
             //showStatus(status);
             // close under nfd
@@ -612,7 +612,7 @@ public class QuickTest implements UCD_Types {
                 final String s = st.nextToken();
                 System.out.println(s);
             }
-        } catch (final Exception e) {		}
+        } catch (final Exception e) {        }
         final StringReader r = new StringReader(test2);
         final StreamTokenizer s = new StreamTokenizer(r);
         try {
@@ -623,7 +623,7 @@ public class QuickTest implements UCD_Types {
                 }
                 System.out.println(s.sval);
             }
-        } catch (final Exception e) {		}
+        } catch (final Exception e) {        }
 
         final String testString = "en-Arab-200-gaulish-a-abcd-def-x-abcd1234-12345678";
         for (int i = testString.length() + 1; i > 0; --i) {
@@ -1043,17 +1043,17 @@ public class QuickTest implements UCD_Types {
                 "Uppercase_Letter", UppercaseCategory);
 
 
-        //		UnicodeMap compare = new UnicodeMap();
-        //		compare.putAll(isLower,"isLowercase&isCased");
+        //        UnicodeMap compare = new UnicodeMap();
+        //        compare.putAll(isLower,"isLowercase&isCased");
         //
-        //		compare.composeWith(new UnicodeMap().putAll(LowercaseProperty,"Lowercase"), new MyComposer());
-        //		compare.composeWith(new UnicodeMap().putAll(LowercaseProperty,"Lowercase_Letter"), new MyComposer());
-        //		for (Iterator it = compare.getAvailableValues().iterator(); it.hasNext();) {
-        //			String value = (String) it.next();
-        //			UnicodeSet chars = compare.getSet(value);
-        //			System.out.println(value + ", size: " + chars.size());
-        //			System.out.println(com.ibm.icu.impl.Utility.escape(pp.toPattern(chars)));
-        //		}
+        //        compare.composeWith(new UnicodeMap().putAll(LowercaseProperty,"Lowercase"), new MyComposer());
+        //        compare.composeWith(new UnicodeMap().putAll(LowercaseProperty,"Lowercase_Letter"), new MyComposer());
+        //        for (Iterator it = compare.getAvailableValues().iterator(); it.hasNext();) {
+        //            String value = (String) it.next();
+        //            UnicodeSet chars = compare.getSet(value);
+        //            System.out.println(value + ", size: " + chars.size());
+        //            System.out.println(com.ibm.icu.impl.Utility.escape(pp.toPattern(chars)));
+        //        }
     }
 
     private static void showDifferences(UnicodeSetPrettyPrinter pp,

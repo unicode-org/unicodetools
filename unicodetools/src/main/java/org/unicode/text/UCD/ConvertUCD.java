@@ -597,9 +597,9 @@ public final class ConvertUCD implements UCD_Types {
                                     }
                                 } else {
                                     /*if (key.equals("sn")) { // SKIP UNDEFINED!!
-					                    UData data = getEntryIfExists(cps);
-					                    if (data == null || data.generalCategory == Cn) continue;
-					                }
+                                        UData data = getEntryIfExists(cps);
+                                        if (data == null || data.generalCategory == Cn) continue;
+                                    }
                                      */
                                     addCharData(cps, key, val);
                                 }
@@ -927,11 +927,11 @@ public final class ConvertUCD implements UCD_Types {
             } else if (fieldName.equals("gc")) {
                 uData.generalCategory = Utility.lookup(fieldValue, UCD_Names.GENERAL_CATEGORY, true);
                 //                if (major >= 5 && uData.script == Unknown_Script
-                //                		&& uData.generalCategory != Cn
-                //                		&& uData.generalCategory != Cs
-                //                		&& uData.generalCategory != Co) {
-                //                	uData.script = COMMON_SCRIPT;
-                //                	System.out.println("Resetting to Common Script: " + Utility.hex(uData.codePoint));
+                //                        && uData.generalCategory != Cn
+                //                        && uData.generalCategory != Cs
+                //                        && uData.generalCategory != Co) {
+                //                    uData.script = COMMON_SCRIPT;
+                //                    System.out.println("Resetting to Common Script: " + Utility.hex(uData.codePoint));
                 //                }
             } else if (fieldName.equals("bc")) {
                 uData.bidiClass = Utility.lookup(fieldValue, UCD_Names.BIDI_CLASS, true);
