@@ -25,7 +25,7 @@ public class IdsFileData {
     public static final UnicodeMap<List<Integer>> TOTAL_STROKES = new UnicodeMap<>();
 
     static {
-        for (String line : FileUtilities.in(Settings.Output.UNICODETOOLS_OUTPUT_DIR, "/DATA/ids/ucs-strokes.txt")) {
+        for (String line : FileUtilities.in(Settings.Output.GEN_DIR, "/ids/ucs-strokes.txt")) {
             if (line.isEmpty()) {
                 continue;
             }

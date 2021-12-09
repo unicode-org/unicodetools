@@ -838,7 +838,7 @@ public class Emoji {
 		return output;
 	    }
 
-	    static final String INTERNAL_OUTPUT_DIR = Settings.Output.UNICODETOOLS_OUTPUT_DIR + "Generated/emoji/" + VERSION_TO_GENERATE + "/";
+	    static final String INTERNAL_OUTPUT_DIR = Settings.Output.GEN_DIR + "emoji/" + VERSION_TO_GENERATE + "/";
 	    public static final String HEALTHCARE = "⚕";
 	    public static final String UN = "🇺🇳";
 

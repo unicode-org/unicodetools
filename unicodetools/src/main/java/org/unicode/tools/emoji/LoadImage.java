@@ -157,8 +157,8 @@ public class LoadImage extends Component {
     static final UnicodeSet OLD_TWITTER_CHARS = new UnicodeSet(
             "[©®‼⁉™ℹ↔-↙↩↪⌚⌛⏩-⏬⏰⏳Ⓜ▪▫▶◀◻-◾☀☁☎☑☔☕☝☺♈-♓♠♣♥♦♨♻♿⚓⚠⚡⚪⚫⚽⚾⛄⛅⛎⛔⛪⛲⛳⛵⛺⛽✂✅✈-✌✏✒✔✖✨✳✴❄❇❌❎❓-❕❗❤➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆑-🆚🇦-🇿🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌠🌰-🌵🌷-🍼🎀-🎓🎠-🏄🏆-🏊🏠-🏰🐀-🐾👀👂-📷📹-📼🔀-🔽🕐-🕧🗻-🙀🙅-🙏🚀-🛅{#⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}{🇨🇳}{🇩🇪}{🇪🇸}{🇫🇷}{🇬🇧}{🇮🇹}{🇯🇵}{🇰🇷}{🇷🇺}{🇺🇸}]");
 
-    static String inputDir = Settings.Output.UNICODETOOLS_OUTPUT_DIR + "DATA/emoji_images/";
-    static String outputDir = Settings.Output.UNICODETOOLS_OUTPUT_DIR + "Generated/images/";
+    static String inputDir = Settings.Output.GEN_DIR + "emoji_images/";
+    static String outputDir = Settings.Output.GEN_DIR+ "images/";
 
     public static void main(String[] args) throws IOException {
 	
@@ -723,7 +723,7 @@ public class LoadImage extends Component {
 
     public static void doTwitter(String inputDir, String outputDir)
             throws IOException {
-        String inputDirectory = Settings.Output.UNICODETOOLS_OUTPUT_DIR + "Generated/twemoji/72x72/";
+        String inputDirectory = Settings.Output.GEN_DIR + "twemoji/72x72/";
         UnicodeSet twitterChars = new UnicodeSet();
         for (File file : new File(inputDirectory).listFiles()) {
             if (file.isDirectory()) {
@@ -1198,7 +1198,7 @@ public class LoadImage extends Component {
             return null;
         }
         public static void makeTest() throws IOException {
-            PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.UNICODETOOLS_OUTPUT_DIR + "temp/", "tarot.html");
+            PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "temp/", "tarot.html");
             out.println("<html><body><table>");
             for (TarotSuits x : values()) {
                 int counter = x.start;

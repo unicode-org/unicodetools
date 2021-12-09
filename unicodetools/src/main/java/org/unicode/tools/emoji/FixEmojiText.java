@@ -31,7 +31,7 @@ public class FixEmojiText {
 
     private static void process(String arg) {
         try (
-                PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.UNICODETOOLS_OUTPUT_DIR, "Generated/images/listing.html")
+                PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "images/listing.html")
                 ) {
             out.println("<html><body><p>");
             StringBuilder result = new StringBuilder();
@@ -54,7 +54,7 @@ public class FixEmojiText {
         }
     }
 
-    static final String DATA_SOURCE = Settings.Output.UNICODETOOLS_OUTPUT_DIR + "DATA/emoji_images/";
+    static final String DATA_SOURCE = Settings.Output.GEN_DIR + "emoji_images/";
 
     private static void process2(String cp, StringBuilder result) {
         if (EmojiData.EMOJI_DATA.getChars().contains(cp)) {

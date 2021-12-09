@@ -72,32 +72,19 @@ git clone https://github.com/unicode-org/cldr.git
 
 ##### Notes for both out-of-source and in-source build workspaces
 
-Currently, some tests run on the generated output files of a tool (ex: in order to test the validity of the output files). However, after converting these tests into standard JUnit tests, these unit tests are then run in isolation by default. Until we amend the code for such tests, those tests will fail by default. These tests are picked up and run by `mvn test`, and thus, by any other subsequent Maven target in the Maven lifecycle (ex: `package`, `install`).
-
-For people who need `mvn test` or other subsequent Maven targets to succeed, a temporary workaround would be the following (which points the generated files directory to find the test input files from the repository sources):
-
-For out-of-source builds:
-```
-ln -s ../../src/unicodetools/data/security unicodetools/mine/Generated/security
-```
-For in-source builds:
-```
-cd <unicodetools-repo-root>; ln -s unicodetools/data/security output/Generated/security
-```
-
-This step to create a symbolic link on the file system is not necessary to run individual tools in Unicode Tools, nor is it intended to last long-term as we refactor code to establish stronger invariants and tests.
+Currently, some tests run on the generated output files of a tool (ex: in order to test the validity of the output files). After converting these tests into standard JUnit tests, these unit tests are then run in isolation by default. Our code has been updated to support this behavior because it [now checks](https://github.com/unicode-org/unicodetools/commit/aa6d11c57fe8bbd20484d3a36123c8948e363262) for generated files in the `Generated` directory, and falls back to the repository's checked-in version when a command does not invoke the generation of a new version.
 
 #### Java System properties used in Unicode Tools
 
 (Note: The following example values for Java system properties are paths to local working copies that are organized using the out-of-source build workspace layout, as described above.)
 
-| Property                | Example Value                                        |
-|-------------------------|------------------------------------------------------|
-| CLDR_DIR                | /usr/local/google/home/mscherer/cldr/mine/src        |
-| IMAGES_REPO_DIR         | /usr/local/google/home/mscherer/images/mine/src      |
-| UNICODETOOLS_REPO_DIR   | /usr/local/google/home/mscherer/unitools/mine/src    |
-| UNICODETOOLS_OUTPUT_DIR | /usr/local/google/home/mscherer/unitools/mine        |
-| UVERSION                | 14.0.0                                               |
+| Property                | Example Value                                                  |
+|-------------------------|----------------------------------------------------------------|
+| CLDR_DIR                | /usr/local/google/home/mscherer/cldr/mine/src                  |
+| IMAGES_REPO_DIR         | /usr/local/google/home/mscherer/images/mine/src                |
+| UNICODETOOLS_REPO_DIR   | /usr/local/google/home/mscherer/unitools/mine/src              |
+| UNICODETOOLS_GEN_DIR    | /usr/local/google/home/mscherer/unitools/mine/Generated        |
+| UVERSION                | 14.0.0                                                         |
 
 
 ### Eclipse-specific Additional Setup
@@ -160,12 +147,12 @@ mvn -s .github/workflows/mvn-settings.xml -B compile
 Common tasks for Unicode Tools are listed below with example CLI commands with example argument values that they need:
 
 - Make Unicode Files:
-  * Out-of-source build: `mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
-  * In-source build: `MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
+  * Out-of-source build: `mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
+  * In-source build: `MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd output/Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
 
 - Build and Test:
-  * Out-of-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(cd .. ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
-  * In-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_OUTPUT_DIR=$(pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
+  * Out-of-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
+  * In-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd output/Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
 
 ### Updating CLDR and ICU versions
 
