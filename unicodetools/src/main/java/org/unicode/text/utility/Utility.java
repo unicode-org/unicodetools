@@ -1531,7 +1531,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     public static String getUnicodeImage(int cp) {
         final String code = hex(cp, 4);
-        return "<img alt='U+" + code + "' src='http://www.unicode.org/cgi-bin/refglyph?24-" + code + "' style='vertical-align:middle'>";
+        return "<img alt='U+" + code + "' src='https://www.unicode.org/cgi-bin/refglyph?24-" + code + "' style='vertical-align:middle'>";
     }
 
     static PrintWriter showSetNamesPw;
@@ -1739,7 +1739,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                 + (Settings.BUILD_FOR_COMPARE ? "" : "\n" + generateDateLine())
                 + "\n# © " + Default.getYear() + " Unicode®, Inc."
                 + "\n# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries."
-                + "\n# For terms of use, see http://www.unicode.org/terms_of_use.html"
+                + "\n# For terms of use, see https://www.unicode.org/terms_of_use.html"
                 ;
     }
 
@@ -1752,7 +1752,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                 + "\n# " + title + " for UTS #" + trNumber
                 + "\n# Version: "  + version
                 + "\n#"
-                + "\n# For documentation and usage, see http://www.unicode.org/reports/tr" + trNumber
+                + "\n# For documentation and usage, see https://www.unicode.org/reports/tr" + trNumber
                 + "\n#";
     }
 
