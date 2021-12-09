@@ -491,6 +491,11 @@ public final class UCD implements UCD_Types {
                 // New block 0870..089F "Arabic Extended-B" defaults to bc=AL.
                 blockData.keySet("Arabic_Extended_B", BIDI_AL_SET);
             }
+            if (versionInfo.getMajor() >= 15) {
+                // Unicode 15:
+                // New block 10EC0..10EFF "Arabic Extended-C" defaults to bc=AL.
+                blockData.keySet("Arabic_Extended_C", BIDI_AL_SET);
+            }
             BIDI_R_Delta.removeAll(BIDI_R_SET).removeAll(BIDI_AL_SET);
             if (SHOW_LOADING) {
                 System.out.println("R: Adding " + BIDI_R_Delta);
