@@ -213,7 +213,11 @@ public class TestInvariants extends TestFmwkMinusMinus {
 
     @Test
     public void TestNameAlias() {
-        CheckProps(WARN, UcdProperty.Name_Alias);
+        // CheckProps() does not work well for characters with multiple aliases.
+        // The UnicodeMap stores multiple values as a string with list, and when a new value is added,
+        // then the list is longer but looks to the function like a different value.
+        // As a result, it fails with what looks like an instability.
+        CheckProps(WARN, UcdProperty.Name_Alias, "END OF MEDIUM; EOM");
     }
 
     @Test
