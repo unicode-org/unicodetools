@@ -1,5 +1,5 @@
 # IndicPositionalCategory-15.0.0.txt
-# Date: 2021-12-09, 23:42:00 GMT [KW, RP]
+# Date: 2021-12-10, 23:49:00 GMT [KW, RP]
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -297,9 +297,9 @@ ABEC          ; Right # Mc       MEETEI MAYEK LUM IYEK
 11D93..11D94  ; Right # Mc   [2] GUNJALA GONDI VOWEL SIGN OO..GUNJALA GONDI VOWEL SIGN AU
 11D96         ; Right # Mc       GUNJALA GONDI SIGN VISARGA
 11EF6         ; Right # Mc       MAKASAR VOWEL SIGN O
-11F03         ; Right # Mn       KAWI SIGN VISARGA
+11F03         ; Right # Mc       KAWI SIGN VISARGA
 11F34..11F35  ; Right # Mc   [2] KAWI VOWEL SIGN AA..KAWI VOWEL SIGN ALTERNATE AA
-11F41         ; Right # Mn       KAWI SIGN KILLER
+11F41         ; Right # Mc       KAWI SIGN KILLER
 
 # Indic_Positional_Category=Left
 
