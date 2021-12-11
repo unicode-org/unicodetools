@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-15.0.0.txt
-# Date: 2021-12-09, 17:39:42 GMT
+# Date: 2021-12-11, 03:22:55 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -623,16 +623,13 @@ ABEC          ; SpacingMark # Mc       MEETEI MAYEK LUM IYEK
 11D93..11D94  ; SpacingMark # Mc   [2] GUNJALA GONDI VOWEL SIGN OO..GUNJALA GONDI VOWEL SIGN AU
 11D96         ; SpacingMark # Mc       GUNJALA GONDI SIGN VISARGA
 11EF5..11EF6  ; SpacingMark # Mc   [2] MAKASAR VOWEL SIGN E..MAKASAR VOWEL SIGN O
-11F03         ; SpacingMark # Mc       KAWI SIGN VISARGA
-11F34..11F35  ; SpacingMark # Mc   [2] KAWI VOWEL SIGN AA..KAWI VOWEL SIGN ALTERNATE AA
 11F3E..11F3F  ; SpacingMark # Mc   [2] KAWI VOWEL SIGN E..KAWI VOWEL SIGN AI
-11F41         ; SpacingMark # Mc       KAWI SIGN KILLER
 16F51..16F87  ; SpacingMark # Mc  [55] MIAO SIGN ASPIRATION..MIAO VOWEL SIGN UI
 16FF0..16FF1  ; SpacingMark # Mc   [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 1D166         ; SpacingMark # Mc       MUSICAL SYMBOL COMBINING SPRECHGESANG STEM
 1D16D         ; SpacingMark # Mc       MUSICAL SYMBOL COMBINING AUGMENTATION DOT
 
-# Total code points: 395
+# Total code points: 391
 
 # ================================================
 

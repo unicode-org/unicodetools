@@ -176,10 +176,11 @@ In \P{U-1:GC=Cn} name=U-1:name
 
 # Red Flag: cased and case_ignorable should be disjoint
 
-Let $caseOverlap = [\u02B0-\u02B8\u02C0\u02C1\u02E0-\u02E4\u0345\u037A\u1D2C-\u1D61\u1D78\u1D9B-\u1DBF\u2090-\u2094\u2C7D\uA770[\u1D62-\u1D6A\u2071\u207F\u2095-\u209C\u2C7C\uA7F8\uA7F9 \uA69C-\uA69D\uAB5C-\uAB5F]\U00010780\U00010783-\U00010785\U00010787-\U000107B0\U000107B2-\U000107BA]
+Let $caseOverlap = [\u02B0-\u02B8\u02C0\u02C1\u02E0-\u02E4\u0345\u037A\u1D2C-\u1D61\u1D78\u1D9B-\u1DBF\u2090-\u2094\u2C7D\uA770[\u1D62-\u1D6A\u2071\u207F\u2095-\u209C\u2C7C\uA7F8\uA7F9 \uA69C-\uA69D\uAB5C-\uAB5F]\U00010780\U00010783-\U00010785\U00010787-\U000107B0\U000107B2-\U000107BA\U0001E030-\U0001E06C]
 # 6.1.0, added 22 overlap characters
 # 7.0 added \uA69C-\uA69D\uAB5C-\uAB5F
 # 14.0 new modifier letters in Latin Extended-F are Lowercase (U+107xx)
+# 15.0 new modifier letters in Cyrillic Extended-D are Lowercase (U+1E030..1E06C)
 \p{cased} ∥ [\p{caseignorable} - $caseOverlap]
 
 ##########################
@@ -479,13 +480,14 @@ Let $QUInclusions = [\u275F-\u2760 \U0001F676-\U0001F678 \u0022 \u0027 \u275B-\u
 # covered by adding them to the exception set $SAScriptExceptions for the test.
 
 # SA are limited to certain scripts:
-Let $SAScripts = [\p{script=ahom} \p{script=thai} \p{script=lao} \p{script=myanmar} \p{script=khmer} \p{script=Tai_Le} \p{script=New_Tai_Lue} \p{script=Tai_Tham} \p{script=Tai_Viet}]
+Let $SAScripts = [\p{script=ahom} \p{script=thai} \p{script=lao} \p{script=myanmar} \p{script=khmer} \p{script=Tai_Le} \p{script=New_Tai_Lue} \p{script=Tai_Tham} \p{script=Tai_Viet} \p{script=Kawi}]
 $SAScripts ⊇ \p{LineBreak=SA}
 
 # And in $SA scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn, plus the NEW TAI LUE THAM DIGIT ONE
-Let $SAScriptExceptions = [\x{1173A}\x{1173B}\x{1173F} \u19DA\u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAADE-\uAADF]
-#7.0 Added AA7D
-#12.0 Removed Myanmar spacing marks which were assigned Other_Alphabetic: 1063..1064, 1069..106D, 1087..108C, 108F, 109A..109B, AA7B, AA7D
+Let $SAScriptExceptions = [\x{1173A}\x{1173B}\x{1173F} \u19DA\u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAADE-\uAADF \U00011F41]
+# 7.0 Added AA7D
+# 12.0 Removed Myanmar spacing marks which were assigned Other_Alphabetic: 1063..1064, 1069..106D, 1087..108C, 108F, 109A..109B, AA7B, AA7D
+# 14.0 Add U+11F41 KAWI SIGN KILLER (gc=Mc, lb=SA)
 
 [$SAScripts & [\p{Alphabetic} \p{gc=cf} \p{gc=Mn} $SAScriptExceptions]] = [$SAScripts & [\p{LineBreak=SA} \p{LineBreak=CM}]]
 
@@ -563,6 +565,11 @@ Let $EgyptianControls = [\U00013430-\U00013438]
 
 # Post-base spacing combining marks of most SE Asian scripts are explicitly excluded from GCB=SpacingMark
 # See https://www.unicode.org/reports/tr29/#SpacingMark
+# Ken: The *postbase* gc=Mc, InPC=Right characters (for these scripts with lb=SA)
+# should be excluded from the set GCB=SpacingMark, and instead should fall through to GCB=XX.
+# That is, when this test case fails, then
+# - change ToolUnicodePropertySource.java to remove the offending characters from the gcbSpacingMarkSet
+# - add them to the exceptions list in UAX #29
 Let $PostBaseSpacingMarks_All = [[[:lb=SA:]-[:sc=Khmr:]] & [:gc=Mc:] & [:InPC=Right:]]
 Let $PostBaseSpacingMarks_Tweak = [\u103B \u1056 \u1057 \u1A57 \u1A6D]
 Let $PostBaseSpacingMarks_Missed = []

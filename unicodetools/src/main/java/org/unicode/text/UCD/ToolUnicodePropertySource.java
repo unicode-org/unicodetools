@@ -811,6 +811,9 @@ extend -and not GCB = Virama
             //            unicodeMap.setErrorOnReset(true);
 
             // https://www.unicode.org/reports/tr29/#SpacingMark
+            // Ken: The *postbase* gc=Mc, InPC=Right characters (for these scripts with lb=SA)
+            // should be excluded from the set GCB=SpacingMark, and instead should fall through to GCB=XX.
+            // Keep these exceptions in sync with the table in UAX #29.
             UnicodeSet gcbSpacingMarkSet =
                     cat.getSet("Spacing_Mark")
                     // any of the following (which have General_Category = Other_Letter):
@@ -825,7 +828,8 @@ extend -and not GCB = Virama
                             // They may have been gc=Spacing_Mark in an earlier version.
                             "\u19B0-\u19B4\u19B8\u19B9\u19BB-\u19C0\u19C8\u19C9" + // New Tai Lue
                             "\u1A61\u1A63\u1A64" + // Tai Tham
-                            "\uAA7B\uAA7D]")) // Myanmar
+                            "\uAA7B\uAA7D" + // Myanmar
+                            "\\U00011F03\\U00011F34\\U00011F35\\U00011F41]")) // Kawi Unicode 15
                     .removeAll(unicodeMap.keySet("Extend"));
             if (compositeVersion >= (14 << 16)) {
                 gcbSpacingMarkSet.remove(0x11720).remove(0x11721); // AHOM VOWEL SIGN A & AA
