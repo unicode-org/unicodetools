@@ -6,8 +6,14 @@ import com.ibm.icu.text.Bidi;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
 
+/**
+ * Utility for checking source code lines for spoofing. Initially focusing on reordering (BIDI). 
+ */
 public class SourceLineChecker {
 
+	/**
+	 * Error codes
+	 */
 	enum SourceError {
 		OK, 
 		/** At the indicated position, there is a character that needs to be escaped */
@@ -22,20 +28,16 @@ public class SourceLineChecker {
 	private int errorLimit;
 	private Tokenizer tokenizer;
 
-	public int getErrorStart() {
-		return errorStart;
-	}
-
-	public int getErrorLimit() {
-		return errorLimit;
+	/**
+	 * Create from a tokenizer, which needs to be tuned to the particular source, 
+	 * such as a programming language.
+	 */
+	public SourceLineChecker(Tokenizer tokenizer) {
+		this.tokenizer = tokenizer;
 	}
 
 	public Tokenizer getTokenizer() {
 		return tokenizer;
-	}
-
-	public SourceLineChecker(Tokenizer tokenizer) {
-		this.tokenizer = tokenizer;
 	}
 
 	public SourceError checkLine(String line) {
@@ -88,6 +90,15 @@ public class SourceLineChecker {
 		errorLimit = 0;
 		return SourceError.OK;
 	}
+
+	public int getErrorStart() {
+		return errorStart;
+	}
+
+	public int getErrorLimit() {
+		return errorLimit;
+	}
+
 
 	private SourceError inconsistentDirection(int[] visualToLogical, int start, int limit) {
 		int lastPosition = visualToLogical[start];
@@ -157,9 +168,10 @@ public class SourceLineChecker {
 				+ "\\p{deprecated}" // deprecated characters
 				+ "\\p{c}" // controls, format, unassigned, private use, surrogates. Includes \\u202A-\\u202E\\u2066-\\u2069 — stateful bidi characters
 				+ "[\\u115F\\u1160\\u3164\\uFFA0]" // hangul fillers (should be Cf)
-				+ "-[\\x{20}\\t\\n\\r]" // allow program whitespace
+				+ "-[\\t\\n\\r]" // allow common whitespace controls
+				+ "-[\\x{20}]" // allow space
 				+ "-\\p{emoji_component}" // allow emoji components
-				+ "-[\\u200b-\\u200f\\u2060\\u061C]" // allow ZWS, ZWNBSP, ZWNJ, ZWJ, BIDI marks
+				+ "-[\\u200b-\\u200d\\u2060]" // allow ZWS, WJ, ZWNJ, ZWJ
 				+ "]").freeze();
 
 
@@ -185,29 +197,41 @@ public class SourceLineChecker {
 
 		int[] map = bidi.getVisualMap();
 
-		System.out.print("memory: \t");
+		System.out.print("\t\t\tmemory: \t");
 		for (int i = 0; i < map.length; ++i) {
 			System.out.print(line.substring(i,i+1) + "\u200E\t\u200E");
 		}
 		System.out.println();
+		
+		System.out.print("\t\t\tindex: \t");
+		for (int i = 0; i < map.length; ++i) {
+			System.out.print(i + "\t");
+		}
+		System.out.println();
+		
+		System.out.print("\t\t\ttoken#: \t");
+		for (int i = 0; i < map.length; ++i) {
+			System.out.print(tokenizer.getTokenIndex(i) + "\t");
+		}
+		System.out.println();
 
-		System.out.print("visible:\t");
+
+		System.out.print("\t\t\tvisual:\t");
 		for (int i = 0; i < map.length; ++i) {
 			System.out.print(line.substring(map[i],map[i]+1) + "\u200E\t\u200E");
 		}
 		System.out.println();
 
-		System.out.print("cp#:    \t");
+		System.out.print("\t\t\tindex:    \t");
 		for (int i = 0; i < map.length; ++i) {
 			System.out.print(map[i] + "\t");
 		}
 		System.out.println();
 
-		System.out.print("token#: \t");
+		System.out.print("\t\t\ttoken#: \t");
 		for (int i = 0; i < map.length; ++i) {
 			System.out.print(tokenizer.getTokenIndex(map[i]) + "\t");
 		}
-
 		System.out.println();
 
 		for (int i = 0; i < tokenizer.getTokenCount(); ++i) {

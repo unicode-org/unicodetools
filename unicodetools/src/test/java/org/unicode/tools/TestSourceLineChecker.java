@@ -30,8 +30,8 @@ public class TestSourceLineChecker {
 				"s = 100-" + hebrewWord + ";",
 				"s = \"abc\" + \"" + hebrewWord + "\";",
 				"s = \"" + hebrewWord + "\" + \"100\";",
-				"return \"" + hebrewWord + "\";  //  \"100\";",
-				"s = " + hebrewWord + " /* hebrewWord2 */;",
+				"return \"" + hebrewWord + "\"; // \"100\";",
+				"s = " + hebrewWord + " /* " + hebrewWord2 + "*/;",
 				"s = " + hebrewWord + "; // " + hebrewWord2
 				);
 
