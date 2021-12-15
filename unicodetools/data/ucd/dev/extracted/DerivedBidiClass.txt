@@ -1,5 +1,5 @@
 # DerivedBidiClass-15.0.0.txt
-# Date: 2021-12-09, 22:21:24 GMT
+# Date: 2021-12-11, 03:22:45 GMT
 # © 2021 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -219,6 +219,7 @@
 0CE0..0CE1    ; L # Lo   [2] KANNADA LETTER VOCALIC RR..KANNADA LETTER VOCALIC LL
 0CE6..0CEF    ; L # Nd  [10] KANNADA DIGIT ZERO..KANNADA DIGIT NINE
 0CF1..0CF2    ; L # Lo   [2] KANNADA SIGN JIHVAMULIYA..KANNADA SIGN UPADHMANIYA
+0CF3          ; L # Mc       KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT
 0D02..0D03    ; L # Mc   [2] MALAYALAM SIGN ANUSVARA..MALAYALAM SIGN VISARGA
 0D04..0D0C    ; L # Lo   [9] MALAYALAM LETTER VEDIC ANUSVARA..MALAYALAM LETTER VOCALIC L
 0D0E..0D10    ; L # Lo   [3] MALAYALAM LETTER E..MALAYALAM LETTER AI
@@ -1101,7 +1102,7 @@ F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
 # The above property value applies to 821129 code points not listed here.
-# Total code points: 1096275
+# Total code points: 1096276
 
 # ================================================
 
@@ -2057,7 +2058,6 @@ FFFFE..FFFFF  ; BN # Cn   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 0CBC          ; NSM # Mn       KANNADA SIGN NUKTA
 0CCC..0CCD    ; NSM # Mn   [2] KANNADA VOWEL SIGN AU..KANNADA SIGN VIRAMA
 0CE2..0CE3    ; NSM # Mn   [2] KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
-0CF3          ; NSM # Mc       KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT
 0D00..0D01    ; NSM # Mn   [2] MALAYALAM SIGN COMBINING ANUSVARA ABOVE..MALAYALAM SIGN CANDRABINDU
 0D3B..0D3C    ; NSM # Mn   [2] MALAYALAM SIGN VERTICAL BAR VIRAMA..MALAYALAM SIGN CIRCULAR VIRAMA
 0D41..0D44    ; NSM # Mn   [4] MALAYALAM VOWEL SIGN U..MALAYALAM VOWEL SIGN VOCALIC RR
@@ -2328,7 +2328,7 @@ FE20..FE2F    ; NSM # Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC 
 1E944..1E94A  ; NSM # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; NSM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 1977
+# Total code points: 1976
 
 # ================================================
 
