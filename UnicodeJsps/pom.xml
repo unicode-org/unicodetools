@@ -80,6 +80,13 @@
 			<version>1.4.01</version>
 			<scope>compile</scope>
 		</dependency>
+
+		<!-- test -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>
