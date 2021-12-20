@@ -1,7 +1,9 @@
 <html>
 
 <head>
-<%@ include file="header.jsp" %>
+<%@ include file="header.jsp"  %>
+<%@ page import="org.unicode.jsp.UBAVersion" %>
+<%@ page import="org.unicode.props.UcdPropertyValues.Age_Values" %>
 <title>Unicode Utilities: BIDI (UBA) C Reference</title>
 <script type="text/javascript">
 function detectIE() {
@@ -126,7 +128,7 @@ function setUbaInput(str) {
     UtfParameters utfParams = new UtfParameters(queryStr);
 
     String ubaPara = utfParams.getParameter("b", "2");
-    String ubaVersion = utfParams.getParameter("u", "110");
+    String ubaVersion = utfParams.getParameter("u", UBAVersion.toSelect(UBAVersion.getCurrent()));
     String ubaDetail = utfParams.getParameter("d", "2");
     boolean ubaShowVacuous = !"off".equals(utfParams.getParameter("y", "off"));
     String valInputCharSeq = utfParams.getParameter("s", "\u0645\u0627\u0631\u0652\u0643 \u2066\u0031\u2013\u0033%\u2069 mark (\u0366v.2)\u0368!");
@@ -295,13 +297,12 @@ function setUbaInput(str) {
                 &ensp;
                 UBA Version:
                 <select name="u" size="1">
-                    <option value="62" <%= (ubaVersion.equals("62") ? "selected" : "") %>>6.2</option>
-                    <option value="63" <%= (ubaVersion.equals("63") ? "selected" : "") %>>6.3</option>
-                    <option value="70" <%= (ubaVersion.equals("70") ? "selected" : "") %>>7.0</option>
-                    <option value="80" <%= (ubaVersion.equals("80") ? "selected" : "") %>>8.0</option>
-                    <option value="90" <%= (ubaVersion.equals("90") ? "selected" : "") %>>9.0</option>
-                    <option value="100" <%= (ubaVersion.equals("100") ? "selected" : "") %>>10.0</option>
-                    <option value="110" <%= (ubaVersion.equals("110") ? "selected" : "") %>>11.0</option>
+                    <% for (final Age_Values v : UBAVersion.getVersions()) {
+                        final String value = UBAVersion.toSelect(v); // "140"
+                        final String name = v.getShortName();  // "14.0"
+                    %>
+                        <option value="<%= value %>" <%= (ubaVersion.equals(value) ? "selected" : "") %>><%= name %></option>
+                    <% } %>
                 </select>
                 &ensp;
                 Detail:
