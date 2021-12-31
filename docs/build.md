@@ -143,7 +143,7 @@ All commands must be run in the root of the `unicodetools` repository local work
 
 #### Initialization command
 
-Run the "Build and Test" command below to compile all of the source files. Some commands only execute a single Java class, but the Java .class file can only be found after Maven has compiled it from source.s
+Run the "Build and Test" command below to compile all of the source files. Some commands only execute a single Java class, but the Java .class file can only be found after Maven has compiled it from source.
 
 #### All other commands
 
