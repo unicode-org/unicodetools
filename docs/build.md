@@ -93,16 +93,23 @@ Currently, some tests run on the generated output files of a tool (ex: in order 
     1.  Edit the cldr-code project’s Build Path:
         Under “Order and Export”, set the check mark next to “Maven Dependencies”
         so that CLDR makes its dependencies available to the Unicode Tools project.
-3.  Import the unicodetools project into Eclipse. (Using Maven: General > Existing Projects into Workspace)
-4.  Also create the project **and directory** Generated. Various results are
-    deposited there. You need the directory, but the Eclipse project is optional.
-    1.  New... -> Project... -> General/Project
-    2.  Project Name=Generated
-    3.  Uncheck "Use default location" (so that it's not inside your Eclipse workspace)
-    4.  Browse or type a folder path like `Generated` that is a sibling to the top-level `unicodetools` directory
-        1.  Create this folder
-        2.  Create a subfolder BIN
-5.  Project > Clean... > Clean all projects is your friend
+3.  Import the unicodetools project into Eclipse as a Maven project. 
+    1. If your installation of Eclipse does not already include Maven project support, install the [M2Eclipse plugin for Maven support in Eclipse](https://www.eclipse.org/m2e/).
+        1. You can check if the M2Eclipse plugin is installed by looking for the Eclipse "m2" icon in the help box at Help > About (or Eclipse > About Eclipse on macOS).
+        2. If M2Eclipse is not installed, click [here for installation tips](https://www.vogella.com/tutorials/EclipseMaven/article.html#installation-and-configuration-of-maven-for-eclipse).
+    1. Import the Unicode Tools working copy directory as an Eclipse Maven project via
+        1. File > Import ... > Maven > Existing Maven Projects.  Note: if `Maven` and `Existing Maven Projects` don't appear as a top-level category and sub-option in the initial Import screen of the wizard, then the Eclipse plugin for Maven support has not been installed yet, and see above.
+        2. Click Next. In the Root Directory field find the location of the working copy directory. Each pom.xml should be detected and selected in the Projects tree selection widget below. Click Finish to finish importing the Eclipse project.
+4.  Set up a run configuration for building and testing of the entire project using Maven
+    1. Run > Run Configurations ... > Maven Build, then click the New Launch Configuration icon above
+    2. Name: `Build and Test`
+    3. Main > Base Directory > Workspace > unicodetools-parent > OK.  The text field should be auto-populated with `${workspace_loc:/unicodetools-parent}`
+    4. Main > Goals: `package`
+    5. JRE > VM Arugments..., then set any VM arguments described below. (Example: `-ea`)
+    6. Environment > Add... .  For each environment variable needed for the command, add an entry. However, make sure to use absolute paths for the values of Java system properties representing directory locations. (Example: name = `CLDR_DIR`, value = `/Users/echeran/oss/cldr`; name = `UNICODETOOLS_GEN_DIR`, value = `/Users/echeran/oss/unicodetools/output/Generated`; name = `UNICODETOOLS_REPO_DIR`, value = `/Users/echeran/oss/unicodetools`; name = `UVERSION`, value = `15.0.0`)
+    7. Apply
+    8. Run
+6.  Project > Clean... > Clean all projects is your friend
 
 ### Running commands for Unicode Tools tasks
 
@@ -136,11 +143,7 @@ All commands must be run in the root of the `unicodetools` repository local work
 
 #### Initialization command
 
-The following command must be run first before all other commands. This command initializes ____ (?).
-
-```
-mvn -s .github/workflows/mvn-settings.xml -B compile
-```
+Run the "Build and Test" command below to compile all of the source files. Some commands only execute a single Java class, but the Java .class file can only be found after Maven has compiled it from source.s
 
 #### All other commands
 
@@ -153,6 +156,25 @@ Common tasks for Unicode Tools are listed below with example CLI commands with e
 - Build and Test:
   * Out-of-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
   * In-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
+
+#### Running commands in Eclipse
+
+For each individual command in Unicode Tools described above, you can configure a Launch Configuration in one of two ways.
+
+1.  Just like the Build and Test run config described above, which uses Maven, with the following command and extra changes:
+    1. From Run > Run Configurations ..., select the previous "Build and Test" configuration. Then select the "Duplicate" button above to create a new duplicate run config. Now make the following changes.
+    2. Name: [command name goes here]  (ex: `UCD Make Unicode Files`)
+    3. Main > Goals: `-pl unicodetools compile exec:java` (the argument for the subproject list flag `-pl` assumes that the class with the main method is in the subdirectory `unicodetools/src/main/java`)
+    4. In the environment variables section, also set the class containing the main method and the command's CLI args (ex: name = `exec.mainClass`, value = `"org.unicode.text.UCD.Main"`; name = `exec.args`, value = `"version 15.0.0 build MakeUnicodeFiles"`)
+2. Create a typical Eclipse run configuration for running a Java class with a main file
+    1. Run > Run Configurations ... > Java Application, then click the New Launch Configuration icon above
+    2. Name: [command name goes here]  (ex: `UCD Make Unicode Files`)
+    3. Project: `unicodetools`
+    4. Main class:  [main class path]  (ex: `org.unicode.text.UCD.Main`)
+    5. Arguments > Program arguments: `version 15.0.0 build MakeUnicodeFiles`
+    6. Arguments > VM arguments: [any VM arguments] (ex: `-ea`)
+    7. Environment > Add... . For each environment variable, add an entry, similar as above for the Build and Test run config. (Example: name = `CLDR_DIR`, value = `/Users/echeran/oss/cldr`; name = `UNICODETOOLS_GEN_DIR`, value = `/Users/echeran/oss/unicodetools/output/Generated`; name = `UNICODETOOLS_REPO_DIR`, value = `/Users/echeran/oss/unicodetools`; name = `UVERSION`, value = `15.0.0`)
+    8. Keep in mind that in this approach, you may need to run the Build and Test run config to ensure the latest source code has been compiled by Maven before executing it. For example, if running the run config  produces an error like `Error: Could not find or load main class org.unicode.text.UCD.Main  Caused by: java.lang.ClassNotFoundException ...`, then you must run the Build and Test run config for Maven to build the yet-uncompiled Java classes into `./unicodetools/target/classes`
 
 ### Updating CLDR and ICU versions
 
