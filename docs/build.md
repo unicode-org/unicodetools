@@ -171,7 +171,7 @@ For each individual command in Unicode Tools described above, you can configure 
     2. Name: [command name goes here]  (ex: `UCD Make Unicode Files`)
     3. Project: `unicodetools`
     4. Main class:  [main class path]  (ex: `org.unicode.text.UCD.Main`)
-    5. Arguments > Program arguments: `version 15.0.0 build MakeUnicodeFiles`
+    5. Arguments > Program arguments: [main class args] (ex: `version 15.0.0 build MakeUnicodeFiles`)
     6. Arguments > VM arguments: [any VM arguments] (ex: `-ea`)
     7. Environment > Add... . For each environment variable, add an entry, similar as above for the Build and Test run config. (Example: name = `CLDR_DIR`, value = `/Users/echeran/oss/cldr`; name = `UNICODETOOLS_GEN_DIR`, value = `/Users/echeran/oss/unicodetools/Generated`; name = `UNICODETOOLS_REPO_DIR`, value = `/Users/echeran/oss/unicodetools`; name = `UVERSION`, value = `15.0.0`)
     8. Keep in mind that in this approach, you may need to run the Build and Test run config to ensure the latest source code has been compiled by Maven before executing it. For example, if running the run config  produces an error like `Error: Could not find or load main class org.unicode.text.UCD.Main  Caused by: java.lang.ClassNotFoundException ...`, then you must run the Build and Test run config for Maven to build the yet-uncompiled Java classes into `./unicodetools/target/classes`
