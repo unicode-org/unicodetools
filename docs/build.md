@@ -106,12 +106,10 @@ Currently, some tests run on the generated output files of a tool (ex: in order 
     3. Main > Base Directory > Workspace > unicodetools-parent > OK.  The text field should be auto-populated with `${workspace_loc:/unicodetools-parent}`
     4. Main > Goals: `package`
     5. JRE > VM Arugments..., then set any VM arguments described below. (Example: `-ea`)
-    6. Environment > Add... .  For each environment variable needed for the command, add an entry. However, make sure to use absolute paths for the values of Java system properties representing directory locations. (Example: name = `CLDR_DIR`, value = `/Users/echeran/oss/cldr`; name = `UNICODETOOLS_GEN_DIR`, value = `/Users/echeran/oss/unicodetools/Generated`; name = `UNICODETOOLS_REPO_DIR`, value = `/Users/echeran/oss/unicodetools`; name = `UVERSION`, value = `15.0.0`)
+    6. Ensure that the system properties are set (see section below, "Setting system properties").
     7. Apply
     8. Run
 6.  Project > Clean... > Clean all projects is your friend
-
-### Running commands for Unicode Tools tasks
 
 #### Setting system properties
 
@@ -122,8 +120,9 @@ For command-line users:
 - System properties are specified in this fashion for Maven (same as it is for the JVM CLI): `-Dvar1=path1 -Dvar2=path2 ...`
 
 For Eclipse users:
-- You can set these for each single tool in the Run > Debug Configurations... > (x)= Arguments tab > VM arguments
-- Or you can set the common variables globally in Window > Preferences... > Java > Installed JREs > select the active JRE >  Edit... > Default VM arguments: `-Dvar1=path1 -Dvar2=path2 ...`.
+- Set the common variables globally in Window > Preferences... > Java > Installed JREs > select the active JRE >  Edit... > Default VM arguments: `-Dvar1=path1 -Dvar2=path2 ...`.
+  * This approach is recommended to avoid repeating setting the variables for each command. Examples of run configurations below will assume this approach and omit these globally shared variables.
+- Alternatively, you can set these for each single command/tool that you configure in the Run > Debug Configurations... > (x)= Arguments tab > VM arguments
 
 #### Enabling assertions
 
@@ -173,8 +172,7 @@ For each individual command in Unicode Tools described above, you can configure 
     4. Main class:  [main class path]  (ex: `org.unicode.text.UCD.Main`)
     5. Arguments > Program arguments: [main class args] (ex: `version 15.0.0 build MakeUnicodeFiles`)
     6. Arguments > VM arguments: [any VM arguments] (ex: `-ea`)
-    7. Environment > Add... . For each environment variable, add an entry, similar as above for the Build and Test run config. (Example: name = `CLDR_DIR`, value = `/Users/echeran/oss/cldr`; name = `UNICODETOOLS_GEN_DIR`, value = `/Users/echeran/oss/unicodetools/Generated`; name = `UNICODETOOLS_REPO_DIR`, value = `/Users/echeran/oss/unicodetools`; name = `UVERSION`, value = `15.0.0`)
-    8. Keep in mind that in this approach, you may need to run the Build and Test run config to ensure the latest source code has been compiled by Maven before executing it. For example, if running the run config  produces an error like `Error: Could not find or load main class org.unicode.text.UCD.Main  Caused by: java.lang.ClassNotFoundException ...`, then you must run the Build and Test run config for Maven to build the yet-uncompiled Java classes into `./unicodetools/target/classes`
+    7. Keep in mind that in this approach, you may need to run the Build and Test run config to ensure the latest source code has been compiled by Maven before executing it. For example, if running the run config  produces an error like `Error: Could not find or load main class org.unicode.text.UCD.Main  Caused by: java.lang.ClassNotFoundException ...`, then you must run the Build and Test run config for Maven to build the yet-uncompiled Java classes into `./unicodetools/target/classes`
 
 ### Updating CLDR and ICU versions
 
