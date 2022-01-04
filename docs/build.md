@@ -105,7 +105,7 @@ Currently, some tests run on the generated output files of a tool (ex: in order 
     2. Name: `Build and Test`
     3. Main > Base Directory > Workspace > unicodetools-parent > OK.  The text field should be auto-populated with `${workspace_loc:/unicodetools-parent}`
     4. Main > Goals: `package`
-    5. JRE > VM Arugments..., then set any VM arguments described below. (Example: `-ea`)
+    5. JRE > VM Arguments..., then set any VM arguments described below. (Example: `-ea`)
     6. Ensure that the system properties are set (see section below, "Setting system properties").
     7. Apply
     8. Run
