@@ -271,7 +271,7 @@ public class GenerateEmojiTestFile {
                 for (String cp : vf.getCombinations()) {
                     charactersNotShown.remove(cp);
                     VariantStatus variantStatus = emojiOrder.emojiData.getVariantStatus(cp);
-            String ageDisplay = "E" + BirthInfo.getVersionInfo(cp).getVersionString(2, 2);
+                    String ageDisplay = "E" + BirthInfo.getVersionInfo(cp).getVersionString(2, 2);
 
                     switch(target) {
                     case csv:

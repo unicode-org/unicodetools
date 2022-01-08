@@ -595,37 +595,37 @@ public class TestEmojiData extends TestFmwkMinusMinus {
     @ParameterizedTest(name = "{0}")
     @MethodSource("dataProvider")
     public void TestAlphagram(String type, EmojiDataSource emojiDataToTest, EmojiOrder emojiOrder) {
-        final EmojiData released = EmojiData.of(Emoji.VERSION_BETA);
-        Multimap<String,String> toRgi = TreeMultimap.create();
-        UnicodeSet discarded = new UnicodeSet();
-        for (String item : released.getAllEmojiWithoutDefectives()) {
-        String alphagram = getAlphagram(item, released, discarded);
-        toRgi.put(alphagram, item);
-        }
-        int counter = 0;
-        System.out.println();
-        for ( Entry<String, Collection<String>> entry : toRgi.asMap().entrySet()) {
-        String key = entry.getKey();
-        Collection<String> val = entry.getValue();
-        if (val.size() > 1) {
-            System.out.println(++counter + ") " + key + " => " + val);
-        }
-        }
-        System.out.println("Discarded: " + discarded);
+            final EmojiData released = EmojiData.of(Emoji.VERSION_BETA);
+            Multimap<String,String> toRgi = TreeMultimap.create();
+            UnicodeSet discarded = new UnicodeSet();
+            for (String item : released.getAllEmojiWithoutDefectives()) {
+                String alphagram = getAlphagram(item, released, discarded);
+                toRgi.put(alphagram, item);
+            }
+            int counter = 0;
+            System.out.println();
+            for ( Entry<String, Collection<String>> entry : toRgi.asMap().entrySet()) {
+                String key = entry.getKey();
+                Collection<String> val = entry.getValue();
+                if (val.size() > 1) {
+                    System.out.println(++counter + ") " + key + " => " + val);
+                }
+            }
+            System.out.println("Discarded: " + discarded);
     }
 
     static final UnicodeSet TO_DISCARD = new UnicodeSet("[\u200D\uFE0F]");
     private String getAlphagram(String item, EmojiData released2, UnicodeSet discarded) {
-    int[] cps = CharSequences.codePoints(item);
-    Arrays.sort(cps);
-    StringBuilder sb = new StringBuilder();
-    for (int cp : cps) {
-        if (TO_DISCARD.contains(cp)) {
-        discarded.add(cp);
-        } else {
-        sb.appendCodePoint(cp);
+        int[] cps = CharSequences.codePoints(item);
+        Arrays.sort(cps);
+        StringBuilder sb = new StringBuilder();
+        for (int cp : cps) {
+            if (TO_DISCARD.contains(cp)) {
+                discarded.add(cp);
+            } else {
+                sb.appendCodePoint(cp);
+            }
         }
-    }
-    return sb.toString();
+        return sb.toString();
     }
 }
