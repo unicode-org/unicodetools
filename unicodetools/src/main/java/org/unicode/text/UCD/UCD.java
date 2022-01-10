@@ -1779,7 +1779,7 @@ to guarantee identifier closure.
 
     public static boolean isCJK_BASE(int cp) {
         return (CJK_BASE <= cp && cp < CJK_LIMIT
-                || cp == 0xFA0E	// compat characters that don't decompose.
+                || cp == 0xFA0E    // compat characters that don't decompose.
                 || cp == 0xFA0F
                 || cp == 0xFA11
                 || cp == 0xFA13

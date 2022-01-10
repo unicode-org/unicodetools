@@ -55,14 +55,14 @@ public class CldrUtility {
 
     /**
      * Very simple class, used to replace variables in a string. For example<p>
-	<pre>static VariableReplacer langTag = new VariableReplacer()
-			.add("$alpha", "[a-zA-Z]")
-			.add("$digit", "[0-9]")
-			.add("$alphanum", "[a-zA-Z0-9]")
-			.add("$x", "[xX]");
-			...
-			String langTagPattern = langTag.replace(...);
-	</pre>
+    <pre>static VariableReplacer langTag = new VariableReplacer()
+            .add("$alpha", "[a-zA-Z]")
+            .add("$digit", "[0-9]")
+            .add("$alphanum", "[a-zA-Z0-9]")
+            .add("$x", "[xX]");
+            ...
+            String langTagPattern = langTag.replace(...);
+    </pre>
      */
     public static class VariableReplacer {
         // simple implementation for now
@@ -118,7 +118,7 @@ public class CldrUtility {
     /** default working directory for Eclipse is . = ${workspace_loc:cldr}, which is <CLDR>/tools/java/ */
     // set the base directory with -Dcldrdata=<value>
     // if the main is different, use -Dcldrmain=<value>
-    public static final String BASE_DIRECTORY = getPath(CldrUtility.getProperty("CLDR_DIR", null)); // new File(Utility.getProperty("CLDR_DIR", null)).getPath();	// get up to <CLDR>
+    public static final String BASE_DIRECTORY = getPath(CldrUtility.getProperty("CLDR_DIR", null)); // new File(Utility.getProperty("CLDR_DIR", null)).getPath();    // get up to <CLDR>
     public static final String UTIL_DATA_DIR = getPath(BASE_DIRECTORY, "tools/java/org/unicode/cldr/util/data/");        // "C:/ICU4C/locale/tools/java/org/unicode/cldr/util/";
     public static final String UTIL_CLASS_DIR = "org.unicode.cldr.util";
     public static final String COMMON_DIRECTORY = getPath(BASE_DIRECTORY , "common/");
@@ -978,9 +978,9 @@ public class CldrUtility {
         }
 
         /*String test = "\u049A\u0430\u0437\u0430\u049B";
-			System.out.println(t.transliterate(test));
-			t = Transliterator.getInstance(id);
-			System.out.println(t.transliterate(test));
+            System.out.println(t.transliterate(test));
+            t = Transliterator.getInstance(id);
+            System.out.println(t.transliterate(test));
          */
 
         if (direction == Transliterator.REVERSE) {

@@ -486,7 +486,7 @@ public class TestSecurity extends TestFmwkMinusMinus {
         for (Object[] test : tests) {
             String source = (String) test[0];
             if (source.equals("\u0300")) {
-        	int debug = 0;
+                int debug = 0;
             }
 
             if (source.equals("idSet")) {

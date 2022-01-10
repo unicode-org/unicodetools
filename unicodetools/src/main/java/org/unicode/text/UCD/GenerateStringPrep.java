@@ -138,20 +138,20 @@ class GenerateStringPrep implements UCD_Types {
         Utility.appendFile("./org/unicode/text/UCD/idn-charsHeader.html", Utility.UTF8_WINDOWS, htmlOut,
                 new String[] {"%date%", Default.getDate()});
         /*
-		out
-				.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
-		out.println("<title>IDN Characters</title><style>");
-		out.println("<!--");
-		out.println(".script       { font-size: 150%; background-color: #CCCCCC }");
-		out.println(".Atomic       { background-color: #CCCCFF }");
-		out.println(".Atomic-no-uppercase       { background-color: #CCFFCC }");
-		out.println(".Non-XID       { background-color: #FFCCCC }");
-		out.println(".Decomposable       { background-color: #FFFFCC }");
-		out.println(".Pattern_Syntax       { background-color: #FFCCFF }");
+        out
+                .println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
+        out.println("<title>IDN Characters</title><style>");
+        out.println("<!--");
+        out.println(".script       { font-size: 150%; background-color: #CCCCCC }");
+        out.println(".Atomic       { background-color: #CCCCFF }");
+        out.println(".Atomic-no-uppercase       { background-color: #CCFFCC }");
+        out.println(".Non-XID       { background-color: #FFCCCC }");
+        out.println(".Decomposable       { background-color: #FFFFCC }");
+        out.println(".Pattern_Syntax       { background-color: #FFCCFF }");
 
-		out.println("th           { text-align: left }");
-		out.println("-->");
-		out.println("</style></head><body><table>");
+        out.println("th           { text-align: left }");
+        out.println("-->");
+        out.println("</style></head><body><table>");
          */
         htmlOut.println("<table border='1' cellpadding='2' cellspacing='0'>");
         htmlOut2.println("<html><body><table border='1' cellpadding='2' cellspacing='0'>");

@@ -43,8 +43,8 @@ public class ShowPropertyMetadata {
     ////                Informative(PropertyStatus.Informative),
     ////                Provisional(PropertyStatus.pro),
     ////                Contributory(PropertyStatus.CONTRIBUTORY_PROPERTY);
-    ////        //		Stabilized(),
-    ////        //		Obsolete();
+    ////        //        Stabilized(),
+    ////        //        Obsolete();
     //
     //        EnumSet<UcdProperty> set;
     //

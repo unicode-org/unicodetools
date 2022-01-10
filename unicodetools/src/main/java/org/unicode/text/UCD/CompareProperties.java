@@ -310,7 +310,7 @@ public class CompareProperties implements UCD_Types {
                         tempContains[i].andNot(contains[j]);
                     }
                 }
-                b = disjoints[i];	// don't worry
+                b = disjoints[i];    // don't worry
                 for (int j = 0; j < b.size(); ++j) {
                     if (b.get(j)) {
                         b.andNot(contains[j]);
@@ -390,25 +390,25 @@ public class CompareProperties implements UCD_Types {
     }
 
     /*
-			UnicodeSet a_b = new UnicodeSet();
-			UnicodeSet ab = new UnicodeSet();
-			UnicodeSet _ab = new UnicodeSet();
+            UnicodeSet a_b = new UnicodeSet();
+            UnicodeSet ab = new UnicodeSet();
+            UnicodeSet _ab = new UnicodeSet();
      */
     /*
-	a_b.set(sets[i]).removeAll(sets[j]);
-	ab.set(sets[i]).retainAll(sets[j]);
-	_ab.set(sets[j]).removeAll(sets[i]);
-	// we are interested in cases where a contains b or is contained by b
-	// contain = _ab = 0
-	// is contained == a_b = 0
-	// is disjoint == ab == 0
-	// is equal == contains & iscontained
-	double total = a_b.size() + ab.size() + _ab.size();
-	double limit = total*0.03;
-	boolean gotName = showDiff(output, "C", j, a_b, total, limit, false);
-	gotName = showDiff(output, "D", j, ab, total, limit, gotName);
-	gotName = showDiff(output, "S", j, _ab, total, limit, gotName);
-	if (gotName) output.println();
+    a_b.set(sets[i]).removeAll(sets[j]);
+    ab.set(sets[i]).retainAll(sets[j]);
+    _ab.set(sets[j]).removeAll(sets[i]);
+    // we are interested in cases where a contains b or is contained by b
+    // contain = _ab = 0
+    // is contained == a_b = 0
+    // is disjoint == ab == 0
+    // is equal == contains & iscontained
+    double total = a_b.size() + ab.size() + _ab.size();
+    double limit = total*0.03;
+    boolean gotName = showDiff(output, "C", j, a_b, total, limit, false);
+    gotName = showDiff(output, "D", j, ab, total, limit, gotName);
+    gotName = showDiff(output, "S", j, _ab, total, limit, gotName);
+    if (gotName) output.println();
      */
 
     private boolean showDiff(PrintWriter output, String title, int propIndex, UnicodeSet a_b,
@@ -440,7 +440,7 @@ public class CompareProperties implements UCD_Types {
         output.println("# Listing of relationships among properties, suitable for analysis by spreadsheet");
         output.println("# Generated for " + Default.ucd().getVersion());
         output.println(Utility.generateDateLine());
-        output.println("# P1	P2	R(P1,P2)	C(P1&P2)	C(P1-P2)	C(P2-P1)");
+        output.println("# P1\tP2\tR(P1,P2)\tC(P1&P2)\tC(P1-P2)\tC(P2-P1)");
 
 
         for (int i = 1; i < UCD_Types.LIMIT_ENUM; ++i) {

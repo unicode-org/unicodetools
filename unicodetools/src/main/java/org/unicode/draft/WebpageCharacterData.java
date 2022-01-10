@@ -43,7 +43,7 @@ public class WebpageCharacterData {
     private static final String SOURCE_DATA = "Apr.11.2015.tsv"; // "unicode-count75.txt"; // "unicode-count-2012-July-21.txt";
 
     enum Columns {
-        // 000009	ht	954857442	0	0	0	953577889	0	0	0	11182029595621	0	0	0	804363	56255	139	22	http://www.palmbeachschools.org/	71269	55048	139	22	http://www.palmbeachschools.org/jobs/	50871	54366	139	22	http://rtghaiti.com/
+        // 000009    ht    954857442    0    0    0    953577889    0    0    0    11182029595621    0    0    0    804363    56255    139    22    http://www.palmbeachschools.org/    71269    55048    139    22    http://www.palmbeachschools.org/jobs/    50871    54366    139    22    http://rtghaiti.com/
         codePoint,
         language,
         preHtmlCount1, postHtmlCount1, documentCount1, utf8DocumentCount1,
@@ -113,10 +113,10 @@ public class WebpageCharacterData {
         System.out.println("Writing data");
         //System.out.println("zeroCountLines " + zeroCountLines);
         writeData(lang2chars, Settings.Output.GEN_DIR +
-        		"frequency/languages");
+                "frequency/languages");
         System.out.println("Writing ranked data");
         writeData(lang2charsPageRank, Settings.Output.GEN_DIR +
-        		"frequency/languages-rank");
+                "frequency/languages-rank");
     }
 
     public static void writeData(Map<String, Counter<Integer>> map, String directory) throws IOException {

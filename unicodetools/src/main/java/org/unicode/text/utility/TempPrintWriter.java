@@ -17,7 +17,7 @@ public class TempPrintWriter extends PrintWriter {
     public TempPrintWriter (String dir, String filename, String encoding) throws IOException {
         super(getBuffer(dir, filename, encoding));
         this.filename = filename;
-	throw new IllegalArgumentException("USE org.unicode.tools.emoji.");
+        throw new IllegalArgumentException("USE org.unicode.tools.emoji.");
     }
 
     private static BufferedWriter getBuffer(String dirString, String filename, String encoding) throws IOException {

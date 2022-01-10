@@ -60,7 +60,7 @@ public class TestEmojiDataConsistency extends TestFmwkMinusMinus {
     @Disabled("Broken? data load issue")
     @Test
     public void TestFiles() {
-	checkFiles(TestAll.VERSION_TO_TEST_PREVIOUS_STRING, TestAll.VERSION_TO_TEST_STRING);
+        checkFiles(TestAll.VERSION_TO_TEST_PREVIOUS_STRING, TestAll.VERSION_TO_TEST_STRING);
     }
 
     public void checkFiles(String oldVersion, String newVersion) {
@@ -77,8 +77,8 @@ public class TestEmojiDataConsistency extends TestFmwkMinusMinus {
         Map<String, String> newPropToFile = new TreeMap<>();
         for (String oldFileName : oldDir.list()) {
             if (oldFileName.startsWith("ReadMe")
-        	    || oldFileName.startsWith(".DS_Store")
-        	    || new File(oldDir, oldFileName).isDirectory()) {
+                    || oldFileName.startsWith(".DS_Store")
+                    || new File(oldDir, oldFileName).isDirectory()) {
                 continue;
             }
             logln("adding " + oldDir + "/" + oldFileName);

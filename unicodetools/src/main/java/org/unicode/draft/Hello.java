@@ -168,16 +168,16 @@ public class Hello {
     ULocale foo2;
     Calendar foo3;
 
-    //	public final static DateFormat getPatternInstance(String pattern)
-    //	{return null;}
-    //	public final static DateFormat getPatternInstance(String pattern, Locale locale)
-    //	{return null;}
-    //	public final static DateFormat getPatternInstance(String pattern, ULocale locale)
-    //	{return null;}
-    //	public final static DateFormat getPatternInstance(Calendar calendar, String pattern, Locale locale)
-    //	{return null;}
-    //	public final static DateFormat getPatternInstance(Calendar calendar, pattern, ULocale locale)
-    //	{return null;}
+    //    public final static DateFormat getPatternInstance(String pattern)
+    //    {return null;}
+    //    public final static DateFormat getPatternInstance(String pattern, Locale locale)
+    //    {return null;}
+    //    public final static DateFormat getPatternInstance(String pattern, ULocale locale)
+    //    {return null;}
+    //    public final static DateFormat getPatternInstance(Calendar calendar, String pattern, Locale locale)
+    //    {return null;}
+    //    public final static DateFormat getPatternInstance(Calendar calendar, pattern, ULocale locale)
+    //    {return null;}
 
     public static final String
     MINUTE_SECOND = "m:ss",

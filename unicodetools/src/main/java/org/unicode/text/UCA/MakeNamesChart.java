@@ -51,8 +51,8 @@ public class MakeNamesChart {
     static final String NAMESLIST_DIR = WriteCharts.GEN_CHARTS_DIR + "nameslist/";
 
     public static void main(String[] args) throws Exception {
-        //	  checkFile();
-        //	  if (true) return;
+        //      checkFile();
+        //      if (true) return;
         //ConvertUCD.main(new String[]{"5.0.0"});
         final BlockInfo blockInfo = new BlockInfo(Default.ucdVersion(), "NamesList");
 
@@ -207,10 +207,10 @@ public class MakeNamesChart {
                 try {
                     if (line.startsWith("@") && !line.startsWith("@+\t*")) {
                         finishItem(out);
-                        //						if (inTable) {
-                        //							//out.println("</table>");
-                        //							inTable = false;
-                        //						}
+                        //                        if (inTable) {
+                        //                            //out.println("</table>");
+                        //                            inTable = false;
+                        //                        }
                         line = line.substring(1);
                         if (line.equals("@+")) {
                          // skip @@+ which is an index tab
@@ -314,9 +314,9 @@ public class MakeNamesChart {
         // PrintWriter out = FileUtilities.openUTF8Writer("C:/DATA/GEN/charts/namelist/", "mainList.html");
         final PrintWriter out = Utility.openPrintWriter(NAMESLIST_DIR, "mainList.html", Utility.UTF8_WINDOWS);
         FileUtilities.appendFile(WriteCharts.class, "nameslist_chart_header.html", out);
-        //		out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>" +
-        //				"<title>Main List</title><link rel='stylesheet' type='text/css' href='nameslist.css'>" +
-        //				"<base target='chart'></head><body><table>");
+        //        out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>" +
+        //                "<title>Main List</title><link rel='stylesheet' type='text/css' href='nameslist.css'>" +
+        //                "<base target='chart'></head><body><table>");
         for (int i = 0; i < nameList.size(); ++i) {
             final String line = (String) nameList.get(i);
             final String[] lineParts = line.split("\t");
@@ -337,9 +337,9 @@ public class MakeNamesChart {
         showNameDifferences(hasNameCan, hasNoNameCan);
         System.out.println("Name differences: Compatibility");
         showNameDifferences(hasNameComp, hasNoNameComp);
-        //		System.out.println("Characters with names in decomps: " + hasName.toPattern(true));
-        //		System.out.println("Characters without names in decomps: " + hasNoName.toPattern(true));
-        //		System.out.println("Characters sometimes with, sometimes without names in decomps: " + both.toPattern(true));
+        //        System.out.println("Characters with names in decomps: " + hasName.toPattern(true));
+        //        System.out.println("Characters without names in decomps: " + hasNoName.toPattern(true));
+        //        System.out.println("Characters sometimes with, sometimes without names in decomps: " + both.toPattern(true));
         System.out.println("Done");
     }
 
@@ -388,15 +388,15 @@ public class MakeNamesChart {
         System.out.println("Count: " + both.size());
     }
 
-    //	static TestIdentifiers ti;
-    //	static {
-    //		try {
-    //			ti = new TestIdentifiers("L");
-    //		} catch (IOException e) {
-    //			// TODO Auto-generated catch block
-    //			e.printStackTrace();
-    //		}
-    //	}
+    //    static TestIdentifiers ti;
+    //    static {
+    //        try {
+    //            ti = new TestIdentifiers("L");
+    //        } catch (IOException e) {
+    //            // TODO Auto-generated catch block
+    //            e.printStackTrace();
+    //        }
+    //    }
 
     private static void finishItem(PrintWriter out) {
         if (lastCodePoint < 0) {
@@ -416,26 +416,26 @@ public class MakeNamesChart {
         //String nfc = showForm(out, dc, null, Default.nfc().normalize(lastCodePoint), "\u21DB");
         final String nfkd = showForm(out, dc, str, nfd, Default.nfkd().normalize(lastCodePoint), "\u21DD");
 
-        //		if (nfkd.equals(str)) {
-        //			Set s = ti.getConfusables(lastCodePoint, "MA");
-        //			if (s.size() > 1) {
-        //				sortedSet.clear();
-        //				for (Iterator it = s.iterator(); it.hasNext();) {
-        //					sortedSet.add(Default.nfkd().normalize((String)it.next()));
-        //				}
-        //				sortedSet.remove(nfkd); // remove me
-        //				for (Iterator it = sortedSet.iterator(); it.hasNext();) {
-        //					String other = (String)it.next();
-        //					if (nfkd.equals(Default.nfkd().normalize(other))) continue;
-        //					out.println("<tr><td>\u00A0</td><td>\u00A0</td><td class='conf'>\u279F\u00A0"
-        //							+ showTextConvertingHex(Utility.hex(other, 4, " + "), true)
-        //							+ " "
-        //							+ Default.ucd().getName(other, UCD.NORMAL, " + ").toLowerCase()
-        //							// maybeNameStyle(showTextConvertingHex(upper, firstChar != '='), firstChar == '=')
-        //							+ "</td></tr>");
-        //				}
-        //			}
-        //		}
+        //        if (nfkd.equals(str)) {
+        //            Set s = ti.getConfusables(lastCodePoint, "MA");
+        //            if (s.size() > 1) {
+        //                sortedSet.clear();
+        //                for (Iterator it = s.iterator(); it.hasNext();) {
+        //                    sortedSet.add(Default.nfkd().normalize((String)it.next()));
+        //                }
+        //                sortedSet.remove(nfkd); // remove me
+        //                for (Iterator it = sortedSet.iterator(); it.hasNext();) {
+        //                    String other = (String)it.next();
+        //                    if (nfkd.equals(Default.nfkd().normalize(other))) continue;
+        //                    out.println("<tr><td>\u00A0</td><td>\u00A0</td><td class='conf'>\u279F\u00A0"
+        //                            + showTextConvertingHex(Utility.hex(other, 4, " + "), true)
+        //                            + " "
+        //                            + Default.ucd().getName(other, UCD.NORMAL, " + ").toLowerCase()
+        //                            // maybeNameStyle(showTextConvertingHex(upper, firstChar != '='), firstChar == '=')
+        //                            + "</td></tr>");
+        //                }
+        //            }
+        //        }
         lastCodePoint = -1;
     }
 
@@ -543,7 +543,7 @@ CROSS_REF:  TAB "x" SP CHAR SP LCNAME LF
     static Matcher findHex = Pattern.compile("[0-9A-F]+").matcher("");
 
     private static String getOther(String body) {
-        // of form: 	x (hyphenation point - 2027)
+        // of form:     x (hyphenation point - 2027)
         // => arrow 2027 X hyphenation point
         int cp;
         String name = null;

@@ -1359,52 +1359,52 @@ public final class GenerateHanTransliterator implements UCD_Types {
     }
 
     /*
-    U+347C	·	liù	#lyuè
-U+3500	·	lüè	#lvè
-U+3527	·	liù	#lyù
-U+3729	·	ào	#àu
-U+380E	·	jí	#jjí
-U+3825	·	l·	#lv·
-U+3A3C	·	lüè	#luè
-U+3B5A	·	li·	#ly· *** lü?
-U+3CB6	·	l·	#lv·
-U+3D56	·	niù	#nyù *** nü?
-U+3D88	·	li·ng	#li·ng
-U+3EF2	·	li·	#ly·*** lü?
-U+3F94	·	li·	#ly·*** lü?
-U+4071	·	ào	#àu
-U+40AE	·	liù	#lyuè *** lüe?
-U+430E	·	liù	#lyuè *** lüe?
-U+451E	·	liù	#lyù *** lü?
-U+4588	·	nüè	#nuè
-U+458B	·	nüè	#nuè
-U+45A1	·	niù	#nyù *** nü?
-U+4610	·	niù	#nyù *** nü?
-U+46BC	·	niù	#nyù *** nü?
-U+46DA	·	liù	#lyuè *** lüe?
-U+4896	·	liù	#lyù *** lü?
-U+4923	·	liù	#lyuè *** lüe?
-U+4968	·	liù	#lyù *** lü?
-U+4A0B	·	niù	#nyuè *** nüe?
-U+4AC4	·	chuò	#chuà
-U+4D08	·	·o	#·u
-U+4D8A	·	niù	#nyù *** nü?
-U+51CA	·	qíng	#qýng
-U+51D6	·	zhu·n	#zhu·n *** this is probably zh·n
-U+5481	·	gàn	#gèm
-U+5838	·	féng	#fúng
-U+639F	·	lü·	#lu· *** this pronunciation surprises me, but I don't know...
-U+66D5	·	yàn	#yiàn
-U+6B3B	·	chu·	#chu· *** chua _is_ ok after all, my table missed an entry
-U+6B56	·	chu·	#chu· *** chua
-U+6C7C	·	ni·	#ni·u
-U+6E6D	·	qiú	#qióu
-U+6F71	·	y·	#yi·
-U+7493	·	xiù	#xiòu
-U+7607	·	zh·ng	#zh·ng *** I suspect zh·ng
-U+7674	·	luán	#lüán
-U+7867	·	y·ng	#i·ng
-U+7878	·	nüè	#nuè
+    U+347C    ·    liù    #lyuè
+    U+3500    ·    lüè    #lvè
+    U+3527    ·    liù    #lyù
+    U+3729    ·    ào    #àu
+    U+380E    ·    jí    #jjí
+    U+3825    ·    l·    #lv·
+    U+3A3C    ·    lüè    #luè
+    U+3B5A    ·    li·    #ly· *** lü?
+    U+3CB6    ·    l·    #lv·
+    U+3D56    ·    niù    #nyù *** nü?
+    U+3D88    ·    li·ng    #li·ng
+    U+3EF2    ·    li·    #ly·*** lü?
+    U+3F94    ·    li·    #ly·*** lü?
+    U+4071    ·    ào    #àu
+    U+40AE    ·    liù    #lyuè *** lüe?
+    U+430E    ·    liù    #lyuè *** lüe?
+    U+451E    ·    liù    #lyù *** lü?
+    U+4588    ·    nüè    #nuè
+    U+458B    ·    nüè    #nuè
+    U+45A1    ·    niù    #nyù *** nü?
+    U+4610    ·    niù    #nyù *** nü?
+    U+46BC    ·    niù    #nyù *** nü?
+    U+46DA    ·    liù    #lyuè *** lüe?
+    U+4896    ·    liù    #lyù *** lü?
+    U+4923    ·    liù    #lyuè *** lüe?
+    U+4968    ·    liù    #lyù *** lü?
+    U+4A0B    ·    niù    #nyuè *** nüe?
+    U+4AC4    ·    chuò    #chuà
+    U+4D08    ·    ·o    #·u
+    U+4D8A    ·    niù    #nyù *** nü?
+    U+51CA    ·    qíng    #qýng
+    U+51D6    ·    zhu·n    #zhu·n *** this is probably zh·n
+    U+5481    ·    gàn    #gèm
+    U+5838    ·    féng    #fúng
+    U+639F    ·    lü·    #lu· *** this pronunciation surprises me, but I don't know...
+    U+66D5    ·    yàn    #yiàn
+    U+6B3B    ·    chu·    #chu· *** chua _is_ ok after all, my table missed an entry
+    U+6B56    ·    chu·    #chu· *** chua
+    U+6C7C    ·    ni·    #ni·u
+    U+6E6D    ·    qiú    #qióu
+    U+6F71    ·    y·    #yi·
+    U+7493    ·    xiù    #xiòu
+    U+7607    ·    zh·ng    #zh·ng *** I suspect zh·ng
+    U+7674    ·    luán    #lüán
+    U+7867    ·    y·ng    #i·ng
+    U+7878    ·    nüè    #nuè
      */
 
     static Transliterator fixTypos = Transliterator.createFromRules("fix_typos",
@@ -1467,7 +1467,7 @@ U+7878	·	nüè	#nuè
         try {
 
             // chinese_frequency.txt
-            // 1	çš„	1588561	1588561	3.5008%
+            // 1    çš„    1588561    1588561    3.5008%
             // japanese_frequency.txt
             // 1 ? 17176
 
@@ -1802,8 +1802,8 @@ U+7878	·	nüè	#nuè
     /*
     @Unihan Data
 
-Bad pinyin data: \u4E7F	?	LE
-\u7684	?	de, de, dí, dì
+Bad pinyin data: \u4E7F    ?    LE
+\u7684    ?    de, de, dí, dì
      */
 
     static void fixChineseOverrides() throws IOException {

@@ -134,7 +134,7 @@ public class GmailEmoji {
             String uName = UCharacter.getName(unicode, " + ");
             return new StringBuilder("<tr><td>")
             .append("<img src='" +
-            		URL_PREFIX + url2 + "'>")
+                    URL_PREFIX + url2 + "'>")
             .append("</td><td>")
             //.append(data.unicode)
             .append("&#x" + Utility.hex(unicode, ";&#x") + ";")
@@ -197,11 +197,11 @@ U+2711 => U+2712
     public static void main(String[] args) throws IOException {
         PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "gmail-emoji.html");
         out.println("<html><head>\n" +
-        		"<style>\n" +
-        		"table, th, td {border: 1px solid silver;}</style>\n"
-        		+"</head><body>\n" +
-        		"<h1>Unmapped</h1>\n" +
-        		"<table style='border-collapse: collapse; border: 1px solid silver;'>");
+                "<style>\n" +
+                "table, th, td {border: 1px solid silver;}</style>\n"
+                +"</head><body>\n" +
+                "<h1>Unmapped</h1>\n" +
+                "<table style='border-collapse: collapse; border: 1px solid silver;'>");
         for (Data data : pua2data) {
             if (!data.unicode.equals(Data.UNKNOWN)) {
                 continue;

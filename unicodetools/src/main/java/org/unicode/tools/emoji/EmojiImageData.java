@@ -327,7 +327,7 @@ public class EmojiImageData {
     
     private static void getCounts(PrintWriter out, Source source, String title, UnicodeSet missing, int MAX) {
         out.println(source 
-        	+ "\t" + title
+                + "\t" + title
                 + "\t" + missing.size()
                 + "\t" + (MAX == -1 ? "hex\t" + PRETTY_HEX.format(missing) 
                 : MAX == -2 ? "file\t" + formatFiles(source, missing)

@@ -48,19 +48,19 @@ import com.ibm.icu.text.UnicodeSetIterator;
 
 public class TestUtility {
     /*
-	 static public class MyEnum extends EnumBase {
-	 public static MyEnum
-	 ZEROED = (MyEnum) makeNext(myEnum.getClass()),
-	 SHIFTED = (MyEnum) makeNext(),
-	 NON_IGNORABLE = (MyEnum) makeNext(),
+         static public class MyEnum extends EnumBase {
+         public static MyEnum
+         ZEROED = (MyEnum) makeNext(myEnum.getClass()),
+         SHIFTED = (MyEnum) makeNext(),
+         NON_IGNORABLE = (MyEnum) makeNext(),
 
-	 FIRST_ENUM = ZEROED,
-	 LAST_ENUM = NON_IGNORABLE;
-	 public MyEnum next(int value) {
-	 return (MyEnum) internalNext(value);
-	 }
-	 protected MyEnum() {}
-	 }
+         FIRST_ENUM = ZEROED,
+         LAST_ENUM = NON_IGNORABLE;
+         public MyEnum next(int value) {
+         return (MyEnum) internalNext(value);
+         }
+         protected MyEnum() {}
+         }
      */
     static final boolean USE_FILE = true;
     static final boolean DEBUG = false;
@@ -216,14 +216,14 @@ public class TestUtility {
         final ObjectOutputStream oos = new ObjectOutputStream(out);
         //Random rand = new Random();
 
-        /*		if (false) {
-			oos.writeObject(umap);
-			oos.close();
-			buffer = baout.toByteArray();
-			in = new ByteArrayInputStream(buffer, 0, baout.size());
-			ois = new ObjectInputStream(in);
-			reverseMap = (UnicodeMap) ois.readObject();
-		}
+        /*                if (false) {
+                        oos.writeObject(umap);
+                        oos.close();
+                        buffer = baout.toByteArray();
+                        in = new ByteArrayInputStream(buffer, 0, baout.size());
+                        ois = new ObjectInputStream(in);
+                        reverseMap = (UnicodeMap) ois.readObject();
+                }
          */
         //      UnicodeMap.StreamCompressor sc = new UnicodeMap.StreamCompressor();
         //      int test = (int)Math.abs(rand.nextGaussian()*100000);

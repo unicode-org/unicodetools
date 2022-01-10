@@ -30,8 +30,8 @@ public class CopyImagesToCldr {
             .build();
 
     public static void main(String[] args) {
-	System.out.println("Warning: make sure that the images repo is updated to the latest images,\n"
-		+ "and that you are using the environment variable for the version of Emoji");
+        System.out.println("Warning: make sure that the images repo is updated to the latest images,\n"
+                + "and that you are using the environment variable for the version of Emoji");
         String targetDir = CLDRPaths.BASE_DIRECTORY + "tools/cldr-apps/src/main/webapp/images/emoji/";
         for (String emoji : EmojiData.EMOJI_DATA_BETA.getAllEmojiWithoutDefectives()) {
             Category bucket = Category.getBucket(emoji);

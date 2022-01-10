@@ -92,7 +92,7 @@ public final class EmojiIterator implements Iterable<String>, Iterator<String> {
                 current = line[pos++];
             }
             if (lastTag != -1 && lastTag != Emoji.TAG_TERM_CHAR) {
-            	throw new IllegalArgumentException("Bad emoji tag sequence " + result);
+                throw new IllegalArgumentException("Bad emoji tag sequence " + result);
             }
 
             // add any combining marks
