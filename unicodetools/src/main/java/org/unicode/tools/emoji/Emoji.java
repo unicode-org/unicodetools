@@ -101,51 +101,51 @@ public class Emoji {
     public static final VersionInfo VERSION_TO_TEST_PREVIOUS = VERSION_LAST_RELEASED;
 
     public static Map<VersionInfo, VersionInfo> EMOJI_TO_UNICODE_VERSION = ImmutableMap.<VersionInfo, VersionInfo>builder()
-        .put(VERSION14, UCD14)
-        .put(VERSION13_1, UCD13)
-        .put(VERSION13, UCD13)
-        .put(VERSION12_1, UCD12_1)
-        .put(VERSION12, UCD12)
-        .put(VERSION11, UCD11)
-        .put(VERSION5, UCD10)
-        .put(VERSION4, UCD9)
-        .put(VERSION3, UCD9)
-        .put(VERSION2, UCD8)
-        .put(VERSION1, UCD8)
-//        .put(VERSION0_7, UCD7)
-//        .put(VERSION0_6, UCD6)
-        .build();
+            .put(VERSION14, UCD14)
+            .put(VERSION13_1, UCD13)
+            .put(VERSION13, UCD13)
+            .put(VERSION12_1, UCD12_1)
+            .put(VERSION12, UCD12)
+            .put(VERSION11, UCD11)
+            .put(VERSION5, UCD10)
+            .put(VERSION4, UCD9)
+            .put(VERSION3, UCD9)
+            .put(VERSION2, UCD8)
+            .put(VERSION1, UCD8)
+//            .put(VERSION0_7, UCD7)
+//            .put(VERSION0_6, UCD6)
+            .build();
 
     public final static Map<VersionInfo, String> EMOJI_TO_DATE = ImmutableMap.<VersionInfo, String>builder()
-        .put(VERSION14, "2021-09-10")
-        .put(VERSION13_1, "2020-09-10")
-        .put(VERSION13, "2020-03-10")
-        .put(VERSION12_1, "2019-10-29")
-        .put(VERSION12, "2019-02-04")
-        .put(VERSION11, "2018-02-07")
-        .put(VERSION5, "2017-03-27")
-        .put(VERSION4, "2016-11-22")
-        .put(VERSION3, "2016-06-03")
-        .put(VERSION2, "2015-11-12")
-        .put(VERSION1, "2015-06-09")
-//        .put(VERSION0_7, "2014-06-16")
-//        .put(VERSION0_6, "2010-06-09")
-        .build();
+            .put(VERSION14, "2021-09-10")
+            .put(VERSION13_1, "2020-09-10")
+            .put(VERSION13, "2020-03-10")
+            .put(VERSION12_1, "2019-10-29")
+            .put(VERSION12, "2019-02-04")
+            .put(VERSION11, "2018-02-07")
+            .put(VERSION5, "2017-03-27")
+            .put(VERSION4, "2016-11-22")
+            .put(VERSION3, "2016-06-03")
+            .put(VERSION2, "2015-11-12")
+            .put(VERSION1, "2015-06-09")
+//            .put(VERSION0_7, "2014-06-16")
+//            .put(VERSION0_6, "2010-06-09")
+            .build();
 
     public final static Map<Integer,VersionInfo> YEAR_TO_EMOJI_VERSION_ASCENDING;
     public final static Map<VersionInfo,Integer> EMOJI_VERSION_TO_YEAR;
     static {
-    Map<Integer,VersionInfo> _map = new TreeMap<>();
-    Map<VersionInfo,Integer> _mapEmojiToYear = new TreeMap<>();
-    for (Entry<VersionInfo, String> entry : EMOJI_TO_DATE.entrySet()) {
-        int year = Integer.parseInt(entry.getValue().substring(0, 4));
-        _mapEmojiToYear.put(entry.getKey(), year);
-        if (!_map.containsKey(year)) {
-        _map.put(year, entry.getKey());
+        Map<Integer,VersionInfo> _map = new TreeMap<>();
+        Map<VersionInfo,Integer> _mapEmojiToYear = new TreeMap<>();
+        for (Entry<VersionInfo, String> entry : EMOJI_TO_DATE.entrySet()) {
+            int year = Integer.parseInt(entry.getValue().substring(0, 4));
+            _mapEmojiToYear.put(entry.getKey(), year);
+            if (!_map.containsKey(year)) {
+                _map.put(year, entry.getKey());
+            }
         }
-    }
-    YEAR_TO_EMOJI_VERSION_ASCENDING = ImmutableMap.copyOf(_map);
-    EMOJI_VERSION_TO_YEAR = ImmutableMap.copyOf(_mapEmojiToYear);
+        YEAR_TO_EMOJI_VERSION_ASCENDING = ImmutableMap.copyOf(_map);
+        EMOJI_VERSION_TO_YEAR = ImmutableMap.copyOf(_mapEmojiToYear);
     }
 
     public static final VersionInfo VERSION_LAST_RELEASED_UNICODE = EMOJI_TO_UNICODE_VERSION.get(VERSION_LAST_RELEASED);
@@ -193,7 +193,7 @@ public class Emoji {
     public static final String IMAGES_OUTPUT_DIR = Settings.UnicodeTools.UNICODETOOLS_DIR + "../../images/emoji/";
 
     public enum ModifierStatus {
-    none, modifier, modifier_base;
+        none, modifier, modifier_base;
     }
 
     public static final char JOINER = '\u200D';
@@ -207,17 +207,17 @@ public class Emoji {
     //            .freeze();
 
     static final UnicodeSet PROFESSION_OBJECT = new UnicodeSet("[⚕🌾🍳🎓🎤🏫🏭💻💼🔧🔬🎨 🚒 ✈ 🚀 ⚖ \\U0001F37C \\U0001F9AF \\U0001F9BC \\U0001F9BD]")
-        .freeze();
+            .freeze();
     static final UnicodeSet HAIR_STYLES = new UnicodeSet("[\\U0001F9B0-\\U0001F9B3]")
-        .freeze();
+            .freeze();
     static final UnicodeSet HAIR_EXPLICIT = new UnicodeSet("[🧔 👱]").freeze();
 
     static final UnicodeSet HAIR_STYLES_WITH_JOINERS = new UnicodeSet();
     static {
-    for (String s : HAIR_STYLES) {
-        HAIR_STYLES_WITH_JOINERS.add(JOINER_STR + s);
-    }
-    HAIR_STYLES_WITH_JOINERS.freeze();
+        for (String s : HAIR_STYLES) {
+            HAIR_STYLES_WITH_JOINERS.add(JOINER_STR + s);
+        }
+        HAIR_STYLES_WITH_JOINERS.freeze();
     }
     public static final String FEMALE = "\u2640";
     public static final String MALE = "\u2642";
@@ -225,179 +225,179 @@ public class Emoji {
     public static final char TRANSGENDER_CP = '\u26A7';
 
     static final UnicodeMap<String> TO_NEUTRAL = new UnicodeMap<String>()
-        .put("👦", "🧒")
-        .put("👧", "🧒")
-        .put("👨", "🧑")
-        .put("👩", "🧑")
-        .put("👴", "🧓")
-        .put("👵", "🧓")
-        .put("🤴", "🧑\u200D👑")
-        .put("👸", "🧑\u200D👑")
-        .put("🎅", "🧑\u200D🎄")
-        .put("🤶", "🧑\u200D🎄")
-        .put("💃", "🧑\u200D🎶")
-        .put("🕺", "🧑\u200D🎶")
-        .put("👫", "🧑" + EmojiData.ZWJ_HANDSHAKE_ZWJ + "🧑")
-        .put("👬", "🧑" + EmojiData.ZWJ_HANDSHAKE_ZWJ + "🧑")
-        .put("👭", "🧑" + EmojiData.ZWJ_HANDSHAKE_ZWJ + "🧑")
-        .freeze();
+            .put("👦", "🧒")
+            .put("👧", "🧒")
+            .put("👨", "🧑")
+            .put("👩", "🧑")
+            .put("👴", "🧓")
+            .put("👵", "🧓")
+            .put("🤴", "🧑\u200D👑")
+            .put("👸", "🧑\u200D👑")
+            .put("🎅", "🧑\u200D🎄")
+            .put("🤶", "🧑\u200D🎄")
+            .put("💃", "🧑\u200D🎶")
+            .put("🕺", "🧑\u200D🎶")
+            .put("👫", "🧑" + EmojiData.ZWJ_HANDSHAKE_ZWJ + "🧑")
+            .put("👬", "🧑" + EmojiData.ZWJ_HANDSHAKE_ZWJ + "🧑")
+            .put("👭", "🧑" + EmojiData.ZWJ_HANDSHAKE_ZWJ + "🧑")
+            .freeze();
 
     static final UnicodeMap<String> MALE_TO_OTHER = new UnicodeMap<String>()
-        .put(UTF16.valueOf(0x2642), UTF16.valueOf(0x2640)) // MALE SIGN→FEMALE SIGN
-        .put(UTF16.valueOf(0x1F466), UTF16.valueOf(0x1F467)) // boy→girl
-        .put(UTF16.valueOf(0x1F468), UTF16.valueOf(0x1F469)) // man→woman
-        .put(UTF16.valueOf(0x1F474), UTF16.valueOf(0x1F475)) // old man→old woman
-        .put(UTF16.valueOf(0x1F385), UTF16.valueOf(0x1F936)) // Santa Claus→Mrs. Claus
-        .put(UTF16.valueOf(0x1F934), UTF16.valueOf(0x1F478)) // prince→princess
-        .put(UTF16.valueOf(0x1F57A), UTF16.valueOf(0x1F483)) // man dancing→woman dancing
-        //            .put(UTF16.valueOf(0x1F46C), UTF16.valueOf(0x1F46B)) // two men holding hands→man and woman holding hands
-        //            .put(UTF16.valueOf(0x1F46C), UTF16.valueOf(0x1F46D)) // two men holding hands→two women holding hands
-        //            .put(UTF16.valueOf(0x1F935), "") // man in tuxedo→<NONE>
-        //            .put(UTF16.valueOf(0x1F574), "") // man in suit levitating→<NONE>
-        //            .put(UTF16.valueOf(0x1F472), "") // man with Chinese cap→<NONE>
-        //            .put(UTF16.valueOf(0x1F9D4), "") // BEARDED PERSON→<NONE>
-        .freeze();
+            .put(UTF16.valueOf(0x2642), UTF16.valueOf(0x2640)) // MALE SIGN→FEMALE SIGN
+            .put(UTF16.valueOf(0x1F466), UTF16.valueOf(0x1F467)) // boy→girl
+            .put(UTF16.valueOf(0x1F468), UTF16.valueOf(0x1F469)) // man→woman
+            .put(UTF16.valueOf(0x1F474), UTF16.valueOf(0x1F475)) // old man→old woman
+            .put(UTF16.valueOf(0x1F385), UTF16.valueOf(0x1F936)) // Santa Claus→Mrs. Claus
+            .put(UTF16.valueOf(0x1F934), UTF16.valueOf(0x1F478)) // prince→princess
+            .put(UTF16.valueOf(0x1F57A), UTF16.valueOf(0x1F483)) // man dancing→woman dancing
+            //            .put(UTF16.valueOf(0x1F46C), UTF16.valueOf(0x1F46B)) // two men holding hands→man and woman holding hands
+            //            .put(UTF16.valueOf(0x1F46C), UTF16.valueOf(0x1F46D)) // two men holding hands→two women holding hands
+            //            .put(UTF16.valueOf(0x1F935), "") // man in tuxedo→<NONE>
+            //            .put(UTF16.valueOf(0x1F574), "") // man in suit levitating→<NONE>
+            //            .put(UTF16.valueOf(0x1F472), "") // man with Chinese cap→<NONE>
+            //            .put(UTF16.valueOf(0x1F9D4), "") // BEARDED PERSON→<NONE>
+            .freeze();
     static final UnicodeMap<String> FEMALE_TO_OTHER = new UnicodeMap<String>()
-        .put(UTF16.valueOf(0x2640),UTF16.valueOf(0x2642)) // FEMALE SIGN→MALE SIGN
-        .put(UTF16.valueOf(0x1F467), UTF16.valueOf(0x1F466)) // girl→boy
-        .put(UTF16.valueOf(0x1F469), UTF16.valueOf(0x1F468)) // woman→man
-        .put(UTF16.valueOf(0x1F475), UTF16.valueOf(0x1F474)) // old woman→old man
-        .put(UTF16.valueOf(0x1F936), UTF16.valueOf(0x1F385)) // Mrs. Claus→Santa Claus
-        .put(UTF16.valueOf(0x1F478), UTF16.valueOf(0x1F934)) // princess→prince
-        .put(UTF16.valueOf(0x1F483), UTF16.valueOf(0x1F57A)) // woman dancing→man dancing
-        //            .put(UTF16.valueOf(0x1F46D), UTF16.valueOf(0x1F46C)) // two women holding hands→two men holding hands
-        //            .put(UTF16.valueOf(0x1F46D), UTF16.valueOf(0x1F46B)) // two women holding hands→man and woman holding hands
-        //            .put(UTF16.valueOf(0x1F470), "") // bride with veil→<NONE>
-        //            .put(UTF16.valueOf(0x1F930), "") // pregnant woman→<NONE>
-        //            .put(UTF16.valueOf(0x1F931), "") // breast-feeding→<NONE>
-        //            .put(UTF16.valueOf(0x1F9D5), "") // woman with headscarf→<NONE>
-        .freeze();
+            .put(UTF16.valueOf(0x2640),UTF16.valueOf(0x2642)) // FEMALE SIGN→MALE SIGN
+            .put(UTF16.valueOf(0x1F467), UTF16.valueOf(0x1F466)) // girl→boy
+            .put(UTF16.valueOf(0x1F469), UTF16.valueOf(0x1F468)) // woman→man
+            .put(UTF16.valueOf(0x1F475), UTF16.valueOf(0x1F474)) // old woman→old man
+            .put(UTF16.valueOf(0x1F936), UTF16.valueOf(0x1F385)) // Mrs. Claus→Santa Claus
+            .put(UTF16.valueOf(0x1F478), UTF16.valueOf(0x1F934)) // princess→prince
+            .put(UTF16.valueOf(0x1F483), UTF16.valueOf(0x1F57A)) // woman dancing→man dancing
+            //            .put(UTF16.valueOf(0x1F46D), UTF16.valueOf(0x1F46C)) // two women holding hands→two men holding hands
+            //            .put(UTF16.valueOf(0x1F46D), UTF16.valueOf(0x1F46B)) // two women holding hands→man and woman holding hands
+            //            .put(UTF16.valueOf(0x1F470), "") // bride with veil→<NONE>
+            //            .put(UTF16.valueOf(0x1F930), "") // pregnant woman→<NONE>
+            //            .put(UTF16.valueOf(0x1F931), "") // breast-feeding→<NONE>
+            //            .put(UTF16.valueOf(0x1F9D5), "") // woman with headscarf→<NONE>
+            .freeze();
     static final UnicodeSet NEUTRAL = new UnicodeSet("[⛷⛹🏂-🏄🏇🏊-🏎👤👥👪-👳👶👷👼💁💂💆💇💏💑🕴🕵🗣🙅-🙇🙋🙍🙎🚣🚴-🚶🛀🛌🤦🤰🤱🤵🤷-🤾🦸🦹🧑-🧟]");
 
     public enum Source {
-    // also used for accessing pngs; order is important
-    // if a source is in developer release, add ᵈ to the name, eg "Googᵈ"
-    charOverride,
-    apple("Appl"),
-    google("Goog"),
-    fb("FB", "Facebook"),
-    windows("Wind"),
-    emojipedia("EPed"),
-    twitter("Twtr"),
-    emojione("Joy", "JoyPixels"),
-    @Deprecated
-    fbm("FBM", "Messenger (Facebook)"),
-    samsung("Sams"),
-    emojixpress,
-    ref,
-    emojination,
-    adobe,
-    proposed("Sample"),
-    sample("Samp2"),
-    plain,
-    // gifs; don't change order!
-    gmail("GMail"), sb("SB", "SoftBank"), dcm("DCM", "DoCoMo"), kddi("KDDI", "KDDI"),
-    svg;
+        // also used for accessing pngs; order is important
+        // if a source is in developer release, add ᵈ to the name, eg "Googᵈ"
+        charOverride,
+        apple("Appl"),
+        google("Goog"),
+        fb("FB", "Facebook"),
+        windows("Wind"),
+        emojipedia("EPed"),
+        twitter("Twtr"),
+        emojione("Joy", "JoyPixels"),
+        @Deprecated
+        fbm("FBM", "Messenger (Facebook)"),
+        samsung("Sams"),
+        emojixpress,
+        ref,
+        emojination,
+        adobe,
+        proposed("Sample"),
+        sample("Samp2"),
+        plain,
+        // gifs; don't change order!
+        gmail("GMail"), sb("SB", "SoftBank"), dcm("DCM", "DoCoMo"), kddi("KDDI", "KDDI"),
+        svg;
 
-    static final Set<Source> OLD_SOURCES = ImmutableSet.copyOf(
-        EnumSet.of(gmail, sb, dcm, kddi)); // do this to get same order as Source
-    static final Set<Source> VENDOR_SOURCES = ImmutableSet.copyOf(
-        EnumSet.of(apple, google, twitter, emojione, samsung, fb, windows)); // do this to get same order as Source
-    static final Set<Emoji.Source> platformsToIncludeNormal = ImmutableSet.copyOf(EnumSet.of(
-        Source.apple, Source.google, Source.windows, Source.twitter, Source.emojione, Source.samsung,
-        Source.fb, // Source.fbm,
-        Source.gmail, Source.dcm, Source.kddi, Source.sb
-        ));
-    // Ordering is what will appear with … fallback
-    static final Set<Emoji.Source> PLATFORM_FALLBACK = ImmutableSet.<Emoji.Source>builder()
-        .addAll(EnumSet.of(
-            Source.apple, Source.google, Source.windows, Source.twitter, Source.emojione, Source.samsung,
-            Source.fb))
-        .add(Source.emojipedia)
-        .add(Source.emojixpress)
-        .add(Source.emojination)
-        .add(Source.proposed)
-        .add(Source.sample)
-        .build();
+        static final Set<Source> OLD_SOURCES = ImmutableSet.copyOf(
+                EnumSet.of(gmail, sb, dcm, kddi)); // do this to get same order as Source
+        static final Set<Source> VENDOR_SOURCES = ImmutableSet.copyOf(
+                EnumSet.of(apple, google, twitter, emojione, samsung, fb, windows)); // do this to get same order as Source
+        static final Set<Emoji.Source> platformsToIncludeNormal = ImmutableSet.copyOf(EnumSet.of(
+                Source.apple, Source.google, Source.windows, Source.twitter, Source.emojione, Source.samsung,
+                Source.fb, // Source.fbm,
+                Source.gmail, Source.dcm, Source.kddi, Source.sb
+                ));
+        // Ordering is what will appear with … fallback
+        static final Set<Emoji.Source> PLATFORM_FALLBACK = ImmutableSet.<Emoji.Source>builder()
+                .addAll(EnumSet.of(
+                        Source.apple, Source.google, Source.windows, Source.twitter, Source.emojione, Source.samsung,
+                        Source.fb))
+                .add(Source.emojipedia)
+                .add(Source.emojixpress)
+                .add(Source.emojination)
+                .add(Source.proposed)
+                .add(Source.sample)
+                .build();
 
-    private final String shortName;
-    private final String longName;
+        private final String shortName;
+        private final String longName;
 
-    private Source() {
-        this(null, null);
-    }
-    private Source(String shortName) {
-        this(shortName, null);
-    }
-    private Source(String shortName, String longName) {
-        this.shortName = shortName != null ? shortName : UCharacter.toTitleCase(name(), null);
-        this.longName = longName != null ? longName : UCharacter.toTitleCase(name(), null);
-    }
-
-    boolean isGif() {
-        return compareTo(Source.gmail) >= 0;
-    }
-
-    String getClassAttribute(String chars) {
-        if (this == Source.svg) {
-        return "imga";
+        private Source() {
+            this(null, null);
         }
-        if (isGif()) {
-        return "imgs";
+        private Source(String shortName) {
+            this(shortName, null);
         }
-        String className = "imga";
-        if (this == Source.ref && Emoji.getFlagCode(chars) != null) {
-        className = "imgf";
+        private Source(String shortName, String longName) {
+            this.shortName = shortName != null ? shortName : UCharacter.toTitleCase(name(), null);
+            this.longName = longName != null ? longName : UCharacter.toTitleCase(name(), null);
         }
-        return className;
-    }
 
-    public String getPrefix() {
-        return this == google ? "android" : name();
-    }
+        boolean isGif() {
+            return compareTo(Source.gmail) >= 0;
+        }
 
-    public String shortName() {
-        return shortName;
-    }
+        String getClassAttribute(String chars) {
+            if (this == Source.svg) {
+                return "imga";
+            }
+            if (isGif()) {
+                return "imgs";
+            }
+            String className = "imga";
+            if (this == Source.ref && Emoji.getFlagCode(chars) != null) {
+                className = "imgf";
+            }
+            return className;
+        }
 
-    @Override
-    public String toString() {
-        return longName;
-    }
-    public String getFullPrefix() {
-        return this == svg ? "svg/emoji_"
-            : getPrefix() + "/" + getPrefix() + "_";
-    }
+        public String getPrefix() {
+            return this == google ? "android" : name();
+        }
 
-    public String getSuffix() {
-        return this == Source.svg ? ".svg" : isGif() ? ".gif" : ".png";
-    }
-    public String getImageFileName(String cp) {
-        return getFullPrefix() + buildFileName(cp, "_") + getSuffix();
-    }
-    public String getImageDirectory() {
-        return this == svg ? Emoji.IMAGES_SOURCE_DIR_SVG : Emoji.IMAGES_OUTPUT_DIR;
-    }
+        public String shortName() {
+            return shortName;
+        }
+
+        @Override
+        public String toString() {
+            return longName;
+        }
+        public String getFullPrefix() {
+            return this == svg ? "svg/emoji_"
+                    : getPrefix() + "/" + getPrefix() + "_";
+        }
+
+        public String getSuffix() {
+            return this == Source.svg ? ".svg" : isGif() ? ".gif" : ".png";
+        }
+        public String getImageFileName(String cp) {
+            return getFullPrefix() + buildFileName(cp, "_") + getSuffix();
+        }
+        public String getImageDirectory() {
+            return this == svg ? Emoji.IMAGES_SOURCE_DIR_SVG : Emoji.IMAGES_OUTPUT_DIR;
+        }
     }
 
     static final Splitter SPLITTER_COMMA = Splitter.on(',').trimResults();
 
     public enum CharSource {
-    JCarrier("ʲ", "j", "L2/08-081, L2/08-080"),
-    WDings("ʷ", "w", "L2/11-052"),
-    ARIB("ª", "a", "L2/07-259"),
-    ZDings("ᶻ", "z", "Unicode1.0.0"),
-    Other("ˣ", "x", "n/a")
-    ;
-    final String superscript;
-    final String letter;
-    final Set<String> proposals;
+        JCarrier("ʲ", "j", "L2/08-081, L2/08-080"),
+        WDings("ʷ", "w", "L2/11-052"),
+        ARIB("ª", "a", "L2/07-259"),
+        ZDings("ᶻ", "z", "Unicode1.0.0"),
+        Other("ˣ", "x", "n/a")
+        ;
+        final String superscript;
+        final String letter;
+        final Set<String> proposals;
 
-    private CharSource(String shortString, String letter, String proposals) {
-        this.superscript = shortString;
-        this.letter = letter;
-        this.proposals = ImmutableSet.copyOf(SPLITTER_COMMA.splitToList(proposals));
-    }
+        private CharSource(String shortString, String letter, String proposals) {
+            this.superscript = shortString;
+            this.letter = letter;
+            this.proposals = ImmutableSet.copyOf(SPLITTER_COMMA.splitToList(proposals));
+        }
     }
 
 
@@ -437,76 +437,76 @@ public class Emoji {
     static final UnicodeSet ASCII_LETTER_HYPHEN = new UnicodeSet('-', '-', 'A', 'Z', 'a', 'z', '’', '’').freeze();
     static final UnicodeSet LATIN1_LETTER = new UnicodeSet("[[:L:]&[\\x{0}-\\x{FF}}]]").freeze();
     static final UnicodeSet KEYWORD_CHARS = new UnicodeSet(Emoji.ASCII_LETTER_HYPHEN)
-        .add('0','9')
-        .addAll(" +:.&")
-        .addAll(LATIN1_LETTER)
-        .freeze();
+            .add('0','9')
+            .addAll(" +:.&")
+            .addAll(LATIN1_LETTER)
+            .freeze();
     static final UnicodeSet KEYCAPS = new UnicodeSet("[{#⃣}{*⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}]").freeze();
     static final UnicodeSet KEYCAP_BASE = new UnicodeSet("[0-9#*]").freeze();
 
     //public static final UnicodeSet SKIP_ANDROID = new UnicodeSet("[♨ ⚠ ▶ ◀ ✉ ✏ ✒ ✂ ⬆ ↗ ➡ ↘ ⬇ ↙ ⬅ ↖ ↕ ↔ ↩ ↪ ⤴ ⤵ ♻ ☑ ✔ ✖ 〽 ✳ ✴ ❇ ▪ ▫ ◻ ◼ ‼ ⁉ 〰 © ® 🅰 🅱 ℹ Ⓜ 🅾 🅿 ™ 🈂 🈷 ㊗ ㊙]").freeze();
 
     static public String buildFileName(String chars, String separator) {
-    StringBuilder result = new StringBuilder();
-    boolean first = true;
-    for (int cp : With.codePointArray(chars)) {
-        if (cp == Emoji.EMOJI_VARIANT) {
-        continue;
+        StringBuilder result = new StringBuilder();
+        boolean first = true;
+        for (int cp : With.codePointArray(chars)) {
+            if (cp == Emoji.EMOJI_VARIANT) {
+                continue;
+            }
+            if (first) {
+                first = false;
+            } else {
+                result.append(separator);
+            }
+            result.append(Utility.hex(cp).toLowerCase(Locale.ENGLISH));
         }
-        if (first) {
-        first = false;
-        } else {
-        result.append(separator);
-        }
-        result.append(Utility.hex(cp).toLowerCase(Locale.ENGLISH));
-    }
-    return result.toString();
+        return result.toString();
     }
 
     static Pattern DASH_OR_UNDERBAR = Pattern.compile("[-_]");
 
     static public String parseFileName(boolean hasPrefix, String chars) {
-    StringBuilder result = new StringBuilder();
-    int dotPos = chars.lastIndexOf('.');
-    if (dotPos >= 0) {
-        chars = chars.substring(0,dotPos);
-    }
-    String[] parts = DASH_OR_UNDERBAR.split(chars); //chars.split(separator);
-    boolean first = true;
-    for (String part : parts) {
-        if (part.startsWith("x")) {
-        continue;
+        StringBuilder result = new StringBuilder();
+        int dotPos = chars.lastIndexOf('.');
+        if (dotPos >= 0) {
+            chars = chars.substring(0,dotPos);
         }
-        if (hasPrefix && first) {
-        first = false;
-        continue;
+        String[] parts = DASH_OR_UNDERBAR.split(chars); //chars.split(separator);
+        boolean first = true;
+        for (String part : parts) {
+            if (part.startsWith("x")) {
+                continue;
+            }
+            if (hasPrefix && first) {
+                first = false;
+                continue;
+            }
+            result.appendCodePoint(Integer.parseInt(part,16));
         }
-        result.appendCodePoint(Integer.parseInt(part,16));
-    }
-    return  result.toString();
+        return  result.toString();
     }
 
     public static String getHexFromFlagCode(String isoCountries) {
-    String cc = new StringBuilder()
-        .appendCodePoint(isoCountries.charAt(0) + Emoji.FIRST_REGIONAL - 'A')
-        .appendCodePoint(isoCountries.charAt(1) + Emoji.FIRST_REGIONAL - 'A')
-        .toString();
-    return cc;
+        String cc = new StringBuilder()
+                .appendCodePoint(isoCountries.charAt(0) + Emoji.FIRST_REGIONAL - 'A')
+                .appendCodePoint(isoCountries.charAt(1) + Emoji.FIRST_REGIONAL - 'A')
+                .toString();
+        return cc;
     }
 
     static String getEmojiFromRegionCode(String chars) {
-    return new StringBuilder()
-        .appendCodePoint(chars.codePointAt(0) + FIRST_REGIONAL - 'A')
-        .appendCodePoint(chars.codePointAt(1) + FIRST_REGIONAL - 'A')
-        .toString();
+        return new StringBuilder()
+                .appendCodePoint(chars.codePointAt(0) + FIRST_REGIONAL - 'A')
+                .appendCodePoint(chars.codePointAt(1) + FIRST_REGIONAL - 'A')
+                .toString();
     }
 
     static String getRegionCodeFromEmoji(String chars) {
-    int first = chars.codePointAt(0);
-    return new StringBuilder()
-        .appendCodePoint(first - FIRST_REGIONAL + 'A')
-        .appendCodePoint(chars.codePointAt(Character.charCount(first)) - FIRST_REGIONAL + 'A')
-        .toString();
+        int first = chars.codePointAt(0);
+        return new StringBuilder()
+                .appendCodePoint(first - FIRST_REGIONAL + 'A')
+                .appendCodePoint(chars.codePointAt(Character.charCount(first)) - FIRST_REGIONAL + 'A')
+                .toString();
     }
 
     public static final UnicodeSet FACES = new UnicodeSet("[☺ ☹ 🙁 🙂 😀-😆 😉-😷 😇 😈 👿 🙃 🙄 🤐-🤕 🤗]").freeze();
@@ -514,8 +514,8 @@ public class Emoji {
     public static final UnicodeSet EMOJI_VARIANTS = new UnicodeSet().add(EMOJI_VARIANT).add(TEXT_VARIANT).freeze();
 
     public static final UnicodeSet EMOJI_VARIANTS_JOINER = new UnicodeSet(EMOJI_VARIANTS)
-        .add(JOINER)
-        .freeze();
+            .add(JOINER)
+            .freeze();
 
     //public static final String PERSON = "\u263F";
 
@@ -532,26 +532,26 @@ public class Emoji {
     public static final UnicodeSet FAMILY_MARKERS = new UnicodeSet().add(BOY, WOMAN).freeze(); // includes girl, man
     public static final UnicodeSet ACTIVITY_MARKER = new UnicodeSet("[🤱 🧖 🧗 🧘🤰 💆 💇 🚶 🏃 💃 🕺 👯 🕴 🗣 👤 👥 🏌 🏄 🚣 🏊 ⛹ 🏋 🚴 🚵 🤸 🤼-🤾 🤹]").freeze();
     public static final UnicodeSet GENDER_MARKERS = new UnicodeSet()
-        .add(FEMALE)
-        .add(MALE)
-        //.add(TRANSGENDER)
-        .freeze();
+            .add(FEMALE)
+            .add(MALE)
+            //.add(TRANSGENDER)
+            .freeze();
     public static final UnicodeSet FULL_GENDER_MARKERS = new UnicodeSet(GENDER_MARKERS)
-        .add(TRANSGENDER)
-        .freeze();
+            .add(TRANSGENDER)
+            .freeze();
     public static final UnicodeSet ZWJ_GENDER_MARKERS = new UnicodeSet()
-        .add(JOINER + FEMALE)
-        .add(JOINER + MALE)
-        //.add(JOINER + TRANSGENDER)
-        .freeze();
+            .add(JOINER + FEMALE)
+            .add(JOINER + MALE)
+            //.add(JOINER + TRANSGENDER)
+            .freeze();
     public static final UnicodeSet FULL_ZWJ_GENDER_MARKERS = new UnicodeSet(ZWJ_GENDER_MARKERS)
-        .add(JOINER + FEMALE + EMOJI_VARIANT)
-        .add(JOINER + MALE + EMOJI_VARIANT)
-       // .add(JOINER + TRANSGENDER + EMOJI_VARIANT)
-        .freeze();
+            .add(JOINER + FEMALE + EMOJI_VARIANT)
+            .add(JOINER + MALE + EMOJI_VARIANT)
+           // .add(JOINER + TRANSGENDER + EMOJI_VARIANT)
+            .freeze();
 
     public static final UnicodeSet MAN_OR_WOMAN_OR_ADULT = new UnicodeSet().add(Emoji.WOMAN).add(Emoji.MAN).add(Emoji.ADULT)
-        .freeze();
+            .freeze();
 
     public static final String TRANSFLAG = Utility.toString(0x1F3F3,0xFE0F,0x200D,0x26A7,0xFE0F);
 
@@ -567,14 +567,14 @@ public class Emoji {
 
     public static final UnicodeSet REGIONAL_INDICATORS = new UnicodeSet(FIRST_REGIONAL,LAST_REGIONAL).freeze();
     public static final UnicodeSet DEFECTIVE = new UnicodeSet("[0123456789*#]")
-        .addAll(REGIONAL_INDICATORS)
-        .addAll(DEFECTIVE_COMPONENTS)
-        .freeze();
+            .addAll(REGIONAL_INDICATORS)
+            .addAll(DEFECTIVE_COMPONENTS)
+            .freeze();
     public static final UnicodeSet EXCLUSIONS = new UnicodeSet()
-        .add("👩‍🤝‍👩")
-        .add("👩‍🤝‍👨")
-        .add("👨‍🤝‍👨")
-        .freeze();
+            .add("👩‍🤝‍👩")
+            .add("👩‍🤝‍👨")
+            .add("👨‍🤝‍👨")
+            .freeze();
 
     public static final UnicodeSet EXCLUDED_FOR_SEGMENTATION = new UnicodeSet("[#*0-9©®™〰〽🇦-🇿]");
 
@@ -610,15 +610,15 @@ public class Emoji {
     //    }
 
     public static boolean isRegionalIndicator(int firstCodepoint) {
-    return FIRST_REGIONAL <= firstCodepoint && firstCodepoint <= Emoji.LAST_REGIONAL;
+        return FIRST_REGIONAL <= firstCodepoint && firstCodepoint <= Emoji.LAST_REGIONAL;
     }
 
     public static final char ENCLOSING_KEYCAP = '\u20E3';
     static final Comparator<String> CODEPOINT_LENGTH = new Comparator<String>() {
-    @Override
-    public int compare(String o1, String o2) {
-        return o1.codePointCount(0, o1.length()) - o2.codePointCount(0, o2.length());
-    }
+        @Override
+        public int compare(String o1, String o2) {
+            return o1.codePointCount(0, o1.length()) - o2.codePointCount(0, o2.length());
+        }
     };
 
 
@@ -628,31 +628,31 @@ public class Emoji {
     public static final String JOINER_STRING = String.valueOf(JOINER);
 
     public static String getLabelFromLine(Output<Set<String>> newLabel, String original) {
-    String line = original.replace(EMOJI_VARIANT_STRING, "").replace(TEXT_VARIANT_STRING, "").trim();
-    if (line.isEmpty()) {
+        String line = original.replace(EMOJI_VARIANT_STRING, "").replace(TEXT_VARIANT_STRING, "").trim();
+        if (line.isEmpty()) {
+            return line;
+        }
+        int tabPos = line.indexOf('\t');
+        //        if (tabPos < 0 && Emoji.EMOJI_CHARS.contains(getEmojiSequence(line, 0))) {
+        //            tabPos = line.length();
+        //
+        //        }
+        if (tabPos < 0 && ASCII_LETTERS.contains(line.charAt(0))) {
+            tabPos = line.length();
+        }
+        if (tabPos >= 0) {
+            newLabel.value.clear();
+            String[] temp = line.substring(0,tabPos).trim().split(",\\s*");
+            for (String part : temp) {
+                if (KEYWORD_CHARS.containsAll(part)) {
+                    newLabel.value.add(part);
+                } else {
+                    throw new IllegalArgumentException("Bad line format: " + line);
+                }
+            }
+            line = line.substring(tabPos).trim();
+        }
         return line;
-    }
-    int tabPos = line.indexOf('\t');
-    //        if (tabPos < 0 && Emoji.EMOJI_CHARS.contains(getEmojiSequence(line, 0))) {
-    //            tabPos = line.length();
-    //
-    //        }
-    if (tabPos < 0 && ASCII_LETTERS.contains(line.charAt(0))) {
-        tabPos = line.length();
-    }
-    if (tabPos >= 0) {
-        newLabel.value.clear();
-        String[] temp = line.substring(0,tabPos).trim().split(",\\s*");
-        for (String part : temp) {
-        if (KEYWORD_CHARS.containsAll(part)) {
-            newLabel.value.add(part);
-        } else {
-            throw new IllegalArgumentException("Bad line format: " + line);
-        }
-        }
-        line = line.substring(tabPos).trim();
-    }
-    return line;
     }
     //    private static final Transform<String,String> WINDOWS_URL = new Transform<String,String>() {
     //        public String transform(String s) {
@@ -664,25 +664,25 @@ public class Emoji {
     //    };
 
     public static String getEmojiSequence(String line, int i) {
-    // take the first character.
-    int firstCodepoint = line.codePointAt(i);
-    int firstLen = Character.charCount(firstCodepoint);
-    if (i + firstLen == line.length()) {
+        // take the first character.
+        int firstCodepoint = line.codePointAt(i);
+        int firstLen = Character.charCount(firstCodepoint);
+        if (i + firstLen == line.length()) {
+            return line.substring(i, i+firstLen);
+        }
+        int secondCodepoint = line.codePointAt(i+firstLen);
+        int secondLen = Character.charCount(secondCodepoint);
+        if (secondCodepoint == ENCLOSING_KEYCAP
+                || (isRegionalIndicator(firstCodepoint) && isRegionalIndicator(secondCodepoint))) {
+            return line.substring(i, i+firstLen+secondLen);
+        }
+        if (i+firstLen+secondLen == line.length()) {
+            return line.substring(i, i+firstLen);
+        }
+        if (secondCodepoint == Emoji.JOINER) {
+            return line.substring(i, i+firstLen+secondLen) + getEmojiSequence(line, i+firstLen+secondLen);
+        }
         return line.substring(i, i+firstLen);
-    }
-    int secondCodepoint = line.codePointAt(i+firstLen);
-    int secondLen = Character.charCount(secondCodepoint);
-    if (secondCodepoint == ENCLOSING_KEYCAP
-        || (isRegionalIndicator(firstCodepoint) && isRegionalIndicator(secondCodepoint))) {
-        return line.substring(i, i+firstLen+secondLen);
-    }
-    if (i+firstLen+secondLen == line.length()) {
-        return line.substring(i, i+firstLen);
-    }
-    if (secondCodepoint == Emoji.JOINER) {
-        return line.substring(i, i+firstLen+secondLen) + getEmojiSequence(line, i+firstLen+secondLen);
-    }
-    return line.substring(i, i+firstLen);
     }
 
     static final UnicodeSet U80 = new UnicodeSet("[🌭🌮🌯🍾🍿🏏🏐🏑🏒🏓🏸🏹🏺🏻🏼🏽🏾🏿📿🕋🕌🕍🕎🙃🙄🛐🤀🤐🤑🤒🤓🤔🤕🤖🤗🤘🦀🦁🦂🦃🦄🧀]").freeze();
@@ -690,296 +690,296 @@ public class Emoji {
     public static final Transliterator UNESCAPE = Transliterator.getInstance("hex-any/Perl");
 
     static String getImageFilenameFromChars(Emoji.Source type, String chars) {
-    chars = chars.replace(Emoji.EMOJI_VARIANT_STRING,"");
-    //        if (type == Emoji.Source.android && Emoji.SKIP_ANDROID.contains(chars)) { // hack to exclude certain android
-    //            return null;
-    //        }
-    if (type == Source.charOverride) {
-        Source overrideSource = BEST_OVERRIDE.get(chars);
-        if (overrideSource != null) {
-        type = overrideSource;
-        } else if (CountEmoji.ZwjType.getType(chars) != CountEmoji.ZwjType.family) {
-        overrideSource = BEST_OVERRIDE.get(UTF16.valueOf(chars.codePointAt(0)));
-        if (overrideSource != null) {
-            type = overrideSource;
+        chars = chars.replace(Emoji.EMOJI_VARIANT_STRING,"");
+        //        if (type == Emoji.Source.android && Emoji.SKIP_ANDROID.contains(chars)) { // hack to exclude certain android
+        //            return null;
+        //        }
+        if (type == Source.charOverride) {
+            Source overrideSource = BEST_OVERRIDE.get(chars);
+            if (overrideSource != null) {
+                type = overrideSource;
+            } else if (CountEmoji.ZwjType.getType(chars) != CountEmoji.ZwjType.family) {
+                overrideSource = BEST_OVERRIDE.get(UTF16.valueOf(chars.codePointAt(0)));
+                if (overrideSource != null) {
+                    type = overrideSource;
+                }
+            }
         }
-        }
-    }
 
-    String core = buildFileName(chars, "_");
-    String suffix = type.getSuffix();
-    return type.getFullPrefix() + core + suffix;
+        String core = buildFileName(chars, "_");
+        String suffix = type.getSuffix();
+        return type.getFullPrefix() + core + suffix;
     }
 
     static String getFlagCode(String chars) {
-    int firstCodepoint = chars.codePointAt(0);
-    if (!isRegionalIndicator(firstCodepoint)) {
-        return null;
-    }
-    int firstLen = Character.charCount(firstCodepoint);
-    int secondCodepoint = firstLen >= chars.length() ? 0 : chars.codePointAt(firstLen);
-    if (!isRegionalIndicator(secondCodepoint)) {
-        return null;
-    }
-    secondCodepoint = chars.codePointAt(2);
-    String cc = (char) (firstCodepoint - FIRST_REGIONAL + 'A')
-        + ""
-        + (char) (secondCodepoint - FIRST_REGIONAL + 'A');
-    // String remapped = REMAP_FLAGS.get(cc);
-    // if (remapped != null) {
-    // cc = remapped;
-    // }
-    // if (REPLACEMENT_CHARACTER.equals(cc)) {
-    // return null;
-    // }
-    return cc;
+        int firstCodepoint = chars.codePointAt(0);
+        if (!isRegionalIndicator(firstCodepoint)) {
+            return null;
+        }
+        int firstLen = Character.charCount(firstCodepoint);
+        int secondCodepoint = firstLen >= chars.length() ? 0 : chars.codePointAt(firstLen);
+        if (!isRegionalIndicator(secondCodepoint)) {
+            return null;
+        }
+        secondCodepoint = chars.codePointAt(2);
+        String cc = (char) (firstCodepoint - FIRST_REGIONAL + 'A')
+                + ""
+                + (char) (secondCodepoint - FIRST_REGIONAL + 'A');
+        // String remapped = REMAP_FLAGS.get(cc);
+        // if (remapped != null) {
+        // cc = remapped;
+        // }
+        // if (REPLACEMENT_CHARACTER.equals(cc)) {
+        // return null;
+        // }
+        return cc;
     }
 
     static public File getImageFile(Source type, String chars) {
-    chars = chars.replace(Emoji.EMOJI_VARIANT_STRING,"");
-    String filename = getImageFilenameFromChars(type, chars);
-    if (filename != null) {
-        File file = new File(IMAGES_OUTPUT_DIR, filename);
-        if (file.exists()) {
-        return file;
+        chars = chars.replace(Emoji.EMOJI_VARIANT_STRING,"");
+        String filename = getImageFilenameFromChars(type, chars);
+        if (filename != null) {
+            File file = new File(IMAGES_OUTPUT_DIR, filename);
+            if (file.exists()) {
+                return file;
+            }
         }
-    }
-    return null;
+        return null;
     }
 
     static final UnicodeMap<Emoji.Source> BEST_OVERRIDE = new UnicodeMap<>();
     static {
 
-    BEST_OVERRIDE.put(0x1F935, Emoji.Source.google);
-    BEST_OVERRIDE.put(0x1F470, Emoji.Source.google);
+        BEST_OVERRIDE.put(0x1F935, Emoji.Source.google);
+        BEST_OVERRIDE.put(0x1F470, Emoji.Source.google);
 
-//    BEST_OVERRIDE.put("🛌", Emoji.Source.google);
-//    BEST_OVERRIDE.put("🛌🏻", Emoji.Source.google);
-//    BEST_OVERRIDE.put("🛌🏼", Emoji.Source.google);
-//    BEST_OVERRIDE.put("🛌🏽", Emoji.Source.google);
-//    BEST_OVERRIDE.put("🛌🏾", Emoji.Source.google);
-//    BEST_OVERRIDE.put("🛌🏿", Emoji.Source.google);
+//        BEST_OVERRIDE.put("🛌", Emoji.Source.google);
+//        BEST_OVERRIDE.put("🛌🏻", Emoji.Source.google);
+//        BEST_OVERRIDE.put("🛌🏼", Emoji.Source.google);
+//        BEST_OVERRIDE.put("🛌🏽", Emoji.Source.google);
+//        BEST_OVERRIDE.put("🛌🏾", Emoji.Source.google);
+//        BEST_OVERRIDE.put("🛌🏿", Emoji.Source.google);
 
-    BEST_OVERRIDE.put(0x1F635, Emoji.Source.fb);
+        BEST_OVERRIDE.put(0x1F635, Emoji.Source.fb);
 
-//    BEST_OVERRIDE.put(0x1F917, Emoji.Source.emojione);
+//        BEST_OVERRIDE.put(0x1F917, Emoji.Source.emojione);
 
-//    BEST_OVERRIDE.put(0x1FA72, Emoji.Source.proposed);
-//    BEST_OVERRIDE.put(0x1FA78, Emoji.Source.proposed);
+//        BEST_OVERRIDE.put(0x1FA72, Emoji.Source.proposed);
+//        BEST_OVERRIDE.put(0x1FA78, Emoji.Source.proposed);
 
 
-    // BEST_OVERRIDE.putAll(new UnicodeSet("[⛹🏃🏄🏊-🏌👨👩👮👯👱👳👷💁💂💆💇🕵🙅-🙇🙋🙍🙎🚣🚴-🚶🤦🤷-🤹🤼-🤾]"), Emoji.Source.google);
-    BEST_OVERRIDE.freeze();
+        // BEST_OVERRIDE.putAll(new UnicodeSet("[⛹🏃🏄🏊-🏌👨👩👮👯👱👳👷💁💂💆💇🕵🙅-🙇🙋🙍🙎🚣🚴-🚶🤦🤷-🤹🤼-🤾]"), Emoji.Source.google);
+        BEST_OVERRIDE.freeze();
     }
 
     public static File getBestFile(String s, Source... doFirst) {
-    if (UnicodeSet.getSingleCodePoint(s) == 0x1FA72) {
-        int debug = 0;
-    }
-    for (Source source : Emoji.orderedEnum(doFirst)) {
-        if (source == Source.charOverride) {
-        Source overrideSource = BEST_OVERRIDE.get(s);
-        if (overrideSource != null) {
-            source = overrideSource;
-        } else if (CountEmoji.ZwjType.getType(s) != CountEmoji.ZwjType.family) {
-            overrideSource = BEST_OVERRIDE.get(s);
-            if (overrideSource != null) {
-            source = overrideSource;
+        if (UnicodeSet.getSingleCodePoint(s) == 0x1FA72) {
+            int debug = 0;
+        }
+        for (Source source : Emoji.orderedEnum(doFirst)) {
+            if (source == Source.charOverride) {
+                Source overrideSource = BEST_OVERRIDE.get(s);
+                if (overrideSource != null) {
+                    source = overrideSource;
+                } else if (CountEmoji.ZwjType.getType(s) != CountEmoji.ZwjType.family) {
+                    overrideSource = BEST_OVERRIDE.get(s);
+                    if (overrideSource != null) {
+                        source = overrideSource;
+                    }
+                }
+            }
+            File file = getImageFile(source, s);
+            if (file != null) {
+                return file;
             }
         }
-        }
-        File file = getImageFile(source, s);
-        if (file != null) {
-        return file;
-        }
-    }
-    return null;
+        return null;
     }
 
     public static Iterable<Source> orderedEnum(Source... doFirst) {
-    if (doFirst.length == 0) {
-        return Arrays.asList(Source.values());
-    }
-    LinkedHashSet<Source> ordered = new LinkedHashSet<>(Arrays.asList(doFirst));
-    ordered.addAll(Arrays.asList(Source.values()));
-    return ordered;
+        if (doFirst.length == 0) {
+            return Arrays.asList(Source.values());
+        }
+        LinkedHashSet<Source> ordered = new LinkedHashSet<>(Arrays.asList(doFirst));
+        ordered.addAll(Arrays.asList(Source.values()));
+        return ordered;
     }
 
     public static final IndexUnicodeProperties    LATEST  = IndexUnicodeProperties.make(VERSION_TO_GENERATE_UNICODE);
     public static final IndexUnicodeProperties    BETA  = IS_BETA
-        ? IndexUnicodeProperties.make(VERSION_BETA_UNICODE) : LATEST;
+            ? IndexUnicodeProperties.make(VERSION_BETA_UNICODE) : LATEST;
 
-        static final UnicodeMap<Age_Values>        VERSION_ENUM            = BETA.loadEnum(UcdProperty.Age, Age_Values.class);
+            static final UnicodeMap<Age_Values>        VERSION_ENUM            = BETA.loadEnum(UcdProperty.Age, Age_Values.class);
 
-        // Certain resources we always load from latest.
+            // Certain resources we always load from latest.
 
-        static final UnicodeMap<String>        NAME                        = BETA.load(UcdProperty.Name);
+            static final UnicodeMap<String>        NAME                        = BETA.load(UcdProperty.Name);
 
-        public static final LocaleDisplayNames        LOCALE_DISPLAY              = LocaleDisplayNames.getInstance(ULocale.ENGLISH);
+            public static final LocaleDisplayNames        LOCALE_DISPLAY              = LocaleDisplayNames.getInstance(ULocale.ENGLISH);
 
-        static final transient Collection<Age_Values> output = new TreeSet(Collections.reverseOrder());
+            static final transient Collection<Age_Values> output = new TreeSet(Collections.reverseOrder());
 
-//        static Age_Values getNewest(String s) {
-//        synchronized (Emoji.output) {
-//            Emoji.getValues(s, VERSION_ENUM, Emoji.output);
-//            return Emoji.output.iterator().next();
-//        }
-//        }
+//            static Age_Values getNewest(String s) {
+//                synchronized (Emoji.output) {
+//                    Emoji.getValues(s, VERSION_ENUM, Emoji.output);
+//                    return Emoji.output.iterator().next();
+//                }
+//            }
 
-        // should be method on UnicodeMap
-        static final <T, C extends Collection<T>> C getValues(String source, UnicodeMap<T> data, C output) {
-        output.clear();
-        for (int cp : CharSequences.codePoints(source)) {
-            T datum = data.get(cp);
-            if (datum != null) {
-            output.add(datum);
+            // should be method on UnicodeMap
+            static final <T, C extends Collection<T>> C getValues(String source, UnicodeMap<T> data, C output) {
+                output.clear();
+                for (int cp : CharSequences.codePoints(source)) {
+                    T datum = data.get(cp);
+                    if (datum != null) {
+                        output.add(datum);
+                    }
+                }
+                return output;
             }
-        }
-        return output;
-        }
 
-        static final String INTERNAL_OUTPUT_DIR = Settings.Output.GEN_DIR + "emoji/" + VERSION_TO_GENERATE + "/";
-        public static final String HEALTHCARE = "⚕";
-        public static final String UN = "🇺🇳";
+            static final String INTERNAL_OUTPUT_DIR = Settings.Output.GEN_DIR + "emoji/" + VERSION_TO_GENERATE + "/";
+            public static final String HEALTHCARE = "⚕";
+            public static final String UN = "🇺🇳";
 
-        public static String toUHex(String s) {
-        return "U+" + Utility.hex(s, " U+");
-        }
-
-        public static String getFlagRegionName(String s) {
-        String result = Emoji.getFlagCode(s);
-        if (result != null) {
-            result = Emoji.LOCALE_DISPLAY.regionDisplayName(result);
-            if (result.endsWith(" SAR China")) {
-            result = result.substring(0, result.length() - " SAR China".length());
-            } else if (result.contains("(")) {
-            result = result.substring(0, result.indexOf('(')) + result.substring(result.lastIndexOf(')') + 1);
+            public static String toUHex(String s) {
+                return "U+" + Utility.hex(s, " U+");
             }
-            result = result.replaceAll("\\s\\s+", " ").trim();
-        }
-        return result;
-        }
 
-        //    public static void main(String[] args) {
-        //        if (!EMOJI_CHARS.containsAll(Unicode8Emoji)) {
-        //            throw new IllegalArgumentException();
-        //        }
-        //        if (!EMOJI_CHARS.contains("🗨")) {
-        //            throw new IllegalArgumentException();
-        //        }
-        //        System.out.println(Source.fbm + " " + Source.fbm.shortName());
-        //        System.out.println("Singletons:\n" + EMOJI_SINGLETONS.toPattern(false));
-        //        System.out.println("Without flags:\n" + EMOJI_CHARS_WITHOUT_FLAGS.toPattern(false));
-        //        System.out.println("Flags:\n" + FLAGS.toPattern(false));
-        //        System.out.println("With flags:\n" + EMOJI_CHARS.toPattern(false));
-        //        System.out.println("FLAT:\n" + EMOJI_CHARS_FLAT.toPattern(false));
-        //        System.out.println("FLAT:\n" + EMOJI_CHARS_FLAT.toPattern(true));
-        //    }
-
-        public static String show(String key) {
-        StringBuilder b = new StringBuilder();
-        for (int cp : CharSequences.codePoints(key)) {
-            if (b.length() != 0) {
-            b.append(' ');
+            public static String getFlagRegionName(String s) {
+                String result = Emoji.getFlagCode(s);
+                if (result != null) {
+                    result = Emoji.LOCALE_DISPLAY.regionDisplayName(result);
+                    if (result.endsWith(" SAR China")) {
+                        result = result.substring(0, result.length() - " SAR China".length());
+                    } else if (result.contains("(")) {
+                        result = result.substring(0, result.indexOf('(')) + result.substring(result.lastIndexOf(')') + 1);
+                    }
+                    result = result.replaceAll("\\s\\s+", " ").trim();
+                }
+                return result;
             }
-            b.append("U+" + Utility.hex(cp) + " " + UTF16.valueOf(cp));
-        }
-        return b.toString();
-        }
 
-        public static final String TR51_HTML_BETA = "../../reports/tr51/proposed.html";
-        public static final String TR51_HTML = IS_BETA || USE_PROPOSED ? TR51_HTML_BETA : "https://unicode.org/reports/tr51/tr51.html";
+            //    public static void main(String[] args) {
+            //        if (!EMOJI_CHARS.containsAll(Unicode8Emoji)) {
+            //            throw new IllegalArgumentException();
+            //        }
+            //        if (!EMOJI_CHARS.contains("🗨")) {
+            //            throw new IllegalArgumentException();
+            //        }
+            //        System.out.println(Source.fbm + " " + Source.fbm.shortName());
+            //        System.out.println("Singletons:\n" + EMOJI_SINGLETONS.toPattern(false));
+            //        System.out.println("Without flags:\n" + EMOJI_CHARS_WITHOUT_FLAGS.toPattern(false));
+            //        System.out.println("Flags:\n" + FLAGS.toPattern(false));
+            //        System.out.println("With flags:\n" + EMOJI_CHARS.toPattern(false));
+            //        System.out.println("FLAT:\n" + EMOJI_CHARS_FLAT.toPattern(false));
+            //        System.out.println("FLAT:\n" + EMOJI_CHARS_FLAT.toPattern(true));
+            //    }
 
-
-        public static String getHexFromSubdivision(String string) {
-        string = string.toLowerCase(Locale.ROOT).replace("-","");
-        StringBuilder result = new StringBuilder().appendCodePoint(0x1F3F4);
-        for (int cp : CharSequences.codePoints(string)) {
-            result.appendCodePoint(TAG_BASE + cp);
-        }
-        return result.appendCodePoint(TAG_TERM_CHAR).toString();
-        }
-
-        public static String getShortName(VersionInfo versionInfo) {
-        return versionInfo.getVersionString(2, 2);
-        }
-
-        public static String getShortName(Age_Values versionInfo) {
-        return versionInfo.getShortName();
-        }
-
-        public static boolean isSingleCodePoint(String nvs) {
-        int cp = nvs.codePointAt(0);
-        return Character.charCount(cp) == nvs.length();
-        }
-
-        public static final UnicodeSet ARIB = new UnicodeSet(
-            "[²³¼-¾࿖‼⁉ℓ№℡℻⅐-⅛Ⅰ-Ⅻ↉ ①-⑿⒈-⒓ⒹⓈ⓫⓬▶◀☀-☃☎☓☔☖☗♠ ♣♥♦♨♬⚓⚞⚟⚡⚾⚿⛄-⛿✈❶-❿➡⟐⨀ ⬅-⬇⬛⬤⬮⬯〒〖〗〶㈪-㈳㈶㈷㈹㉄-㉏㉑-㉛ ㊋㊙�㍱㍻-㍾㎏㎐㎝㎞㎠-㎢㎤㎥㏊円年日月 🄀-🄊🄐-🄭🄱🄽🄿🅂🅆🅊-🅏🅗🅟🅹🅻🅼🅿🆊-🆍 🈀🈐-🈰🉀-🉈]")
-            .freeze();
-
-        public static final UnicodeSet DINGBATS = new UnicodeSet(
-            "[\u2194\u2195\u260E\u261B\u261E\u2660\u2663\u2665\u2666\u2701-\u2704\u2706-\u2709\u270C-\u2712\u2714-\u2718\u2733\u2734\u2744\u2747\u2762-\u2767\u27A1]")
-            .freeze();
-
-        public static final UnicodeMap<Integer> DING_MAP = new UnicodeMap<>();
-        static {
-        for (String line : FileUtilities.in(GenerateEmoji.class, "dings.txt")) {
-            line = line.trim();
-            if (line.isEmpty() || line.startsWith("#")) {
-            continue;
+            public static String show(String key) {
+                StringBuilder b = new StringBuilder();
+                for (int cp : CharSequences.codePoints(key)) {
+                    if (b.length() != 0) {
+                        b.append(' ');
+                    }
+                    b.append("U+" + Utility.hex(cp) + " " + UTF16.valueOf(cp));
+                }
+                return b.toString();
             }
-            String[] parts = line.split("\\s*;\\s*");
-            DING_MAP.put(Integer.parseInt(parts[0], 16), Integer.parseInt(parts[1], 16));
-        }
-        DING_MAP.freeze();
-        }
 
-        static final UnicodeMap<String> WHITESPACE = Emoji.LATEST.load(UcdProperty.White_Space);
+            public static final String TR51_HTML_BETA = "../../reports/tr51/proposed.html";
+            public static final String TR51_HTML = IS_BETA || USE_PROPOSED ? TR51_HTML_BETA : "https://unicode.org/reports/tr51/tr51.html";
 
-        public static final UnicodeSet JSOURCES = new UnicodeSet();
-        private static final boolean DEBUG = false;
-        static {
-        UnicodeMap<String> dcmProp = Emoji.LATEST.load(UcdProperty.Emoji_DCM);
-        UnicodeMap<String> kddiProp = Emoji.LATEST.load(UcdProperty.Emoji_KDDI);
-        UnicodeMap<String> sbProp = Emoji.LATEST.load(UcdProperty.Emoji_SB);
-        checkDuplicates(dcmProp, kddiProp, sbProp);
-        JSOURCES.addAll(dcmProp.keySet())
-        .addAll(kddiProp.keySet())
-        .addAll(sbProp.keySet())
-        .removeAll(WHITESPACE.getSet(UcdPropertyValues.Binary.Yes.toString()))
-        // HACK
-        .addAll(new UnicodeSet(
-            "[{0️⃣} {1️⃣} {2️⃣} {3️⃣} {4️⃣} {5️⃣} {6️⃣} {7️⃣} {8️⃣} {9️⃣} {#️⃣} {🇨🇳} {🇩🇪} {🇪🇸} {🇫🇷} {🇬🇧} {🇮🇹} {🇯🇵} {🇰🇷} {🇷🇺} {🇺🇸}]"))
-        .freeze();
-        // if (true)
-        // System.out.println("Core:\t" + JSOURCES.size() + "\t" + JSOURCES);
-        }
 
-        private static void checkDuplicates(UnicodeMap<String> dcmProp, UnicodeMap<String> kddiProp,
-            UnicodeMap<String> sbProp) {
-        Relation<String, String> carrierToUnicode = Relation.of(new TreeMap(), TreeSet.class);
-        for (Entry<String, String> unicodeToCarrier : dcmProp.entrySet()) {
-            carrierToUnicode.put(unicodeToCarrier.getValue(), unicodeToCarrier.getKey());
-        }
-        for (Entry<String, String> unicodeToCarrier : kddiProp.entrySet()) {
-            carrierToUnicode.put(unicodeToCarrier.getValue(), unicodeToCarrier.getKey());
-        }
-        for (Entry<String, String> unicodeToCarrier : sbProp.entrySet()) {
-            carrierToUnicode.put(unicodeToCarrier.getValue(), unicodeToCarrier.getKey());
-        }
-        int count = 0;
-        for (Entry<String, Set<String>> carrierAndUnicodes : carrierToUnicode.keyValuesSet()) {
-            Set<String> unicodes = carrierAndUnicodes.getValue();
-            if (unicodes.size() > 1) {
-            if (DEBUG)
-                System.out.println(++count);
-            for (String s : unicodes) {
-                if (DEBUG)
-                System.out.println(carrierAndUnicodes.getKey() + "\tU+" + Utility.hex(s, " U+") + "\t"
-                    + UCharacter.getName(s, " + "));
+            public static String getHexFromSubdivision(String string) {
+                string = string.toLowerCase(Locale.ROOT).replace("-","");
+                StringBuilder result = new StringBuilder().appendCodePoint(0x1F3F4);
+                for (int cp : CharSequences.codePoints(string)) {
+                    result.appendCodePoint(TAG_BASE + cp);
+                }
+                return result.appendCodePoint(TAG_TERM_CHAR).toString();
             }
+
+            public static String getShortName(VersionInfo versionInfo) {
+                return versionInfo.getVersionString(2, 2);
             }
-        }
-        }
+
+            public static String getShortName(Age_Values versionInfo) {
+                return versionInfo.getShortName();
+            }
+
+            public static boolean isSingleCodePoint(String nvs) {
+                int cp = nvs.codePointAt(0);
+                return Character.charCount(cp) == nvs.length();
+            }
+
+            public static final UnicodeSet ARIB = new UnicodeSet(
+                    "[²³¼-¾࿖‼⁉ℓ№℡℻⅐-⅛Ⅰ-Ⅻ↉ ①-⑿⒈-⒓ⒹⓈ⓫⓬▶◀☀-☃☎☓☔☖☗♠ ♣♥♦♨♬⚓⚞⚟⚡⚾⚿⛄-⛿✈❶-❿➡⟐⨀ ⬅-⬇⬛⬤⬮⬯〒〖〗〶㈪-㈳㈶㈷㈹㉄-㉏㉑-㉛ ㊋㊙�㍱㍻-㍾㎏㎐㎝㎞㎠-㎢㎤㎥㏊円年日月 🄀-🄊🄐-🄭🄱🄽🄿🅂🅆🅊-🅏🅗🅟🅹🅻🅼🅿🆊-🆍 🈀🈐-🈰🉀-🉈]")
+                    .freeze();
+
+            public static final UnicodeSet DINGBATS = new UnicodeSet(
+                    "[\u2194\u2195\u260E\u261B\u261E\u2660\u2663\u2665\u2666\u2701-\u2704\u2706-\u2709\u270C-\u2712\u2714-\u2718\u2733\u2734\u2744\u2747\u2762-\u2767\u27A1]")
+                    .freeze();
+
+            public static final UnicodeMap<Integer> DING_MAP = new UnicodeMap<>();
+            static {
+                for (String line : FileUtilities.in(GenerateEmoji.class, "dings.txt")) {
+                    line = line.trim();
+                    if (line.isEmpty() || line.startsWith("#")) {
+                        continue;
+                    }
+                    String[] parts = line.split("\\s*;\\s*");
+                    DING_MAP.put(Integer.parseInt(parts[0], 16), Integer.parseInt(parts[1], 16));
+                }
+                DING_MAP.freeze();
+            }
+
+            static final UnicodeMap<String> WHITESPACE = Emoji.LATEST.load(UcdProperty.White_Space);
+
+            public static final UnicodeSet JSOURCES = new UnicodeSet();
+            private static final boolean DEBUG = false;
+            static {
+                UnicodeMap<String> dcmProp = Emoji.LATEST.load(UcdProperty.Emoji_DCM);
+                UnicodeMap<String> kddiProp = Emoji.LATEST.load(UcdProperty.Emoji_KDDI);
+                UnicodeMap<String> sbProp = Emoji.LATEST.load(UcdProperty.Emoji_SB);
+                checkDuplicates(dcmProp, kddiProp, sbProp);
+                JSOURCES.addAll(dcmProp.keySet())
+                .addAll(kddiProp.keySet())
+                .addAll(sbProp.keySet())
+                .removeAll(WHITESPACE.getSet(UcdPropertyValues.Binary.Yes.toString()))
+                // HACK
+                .addAll(new UnicodeSet(
+                        "[{0️⃣} {1️⃣} {2️⃣} {3️⃣} {4️⃣} {5️⃣} {6️⃣} {7️⃣} {8️⃣} {9️⃣} {#️⃣} {🇨🇳} {🇩🇪} {🇪🇸} {🇫🇷} {🇬🇧} {🇮🇹} {🇯🇵} {🇰🇷} {🇷🇺} {🇺🇸}]"))
+                .freeze();
+                // if (true)
+                // System.out.println("Core:\t" + JSOURCES.size() + "\t" + JSOURCES);
+            }
+
+            private static void checkDuplicates(UnicodeMap<String> dcmProp, UnicodeMap<String> kddiProp,
+                    UnicodeMap<String> sbProp) {
+                Relation<String, String> carrierToUnicode = Relation.of(new TreeMap(), TreeSet.class);
+                for (Entry<String, String> unicodeToCarrier : dcmProp.entrySet()) {
+                    carrierToUnicode.put(unicodeToCarrier.getValue(), unicodeToCarrier.getKey());
+                }
+                for (Entry<String, String> unicodeToCarrier : kddiProp.entrySet()) {
+                    carrierToUnicode.put(unicodeToCarrier.getValue(), unicodeToCarrier.getKey());
+                }
+                for (Entry<String, String> unicodeToCarrier : sbProp.entrySet()) {
+                    carrierToUnicode.put(unicodeToCarrier.getValue(), unicodeToCarrier.getKey());
+                }
+                int count = 0;
+                for (Entry<String, Set<String>> carrierAndUnicodes : carrierToUnicode.keyValuesSet()) {
+                    Set<String> unicodes = carrierAndUnicodes.getValue();
+                    if (unicodes.size() > 1) {
+                        if (DEBUG)
+                            System.out.println(++count);
+                        for (String s : unicodes) {
+                            if (DEBUG)
+                                System.out.println(carrierAndUnicodes.getKey() + "\tU+" + Utility.hex(s, " U+") + "\t"
+                                        + UCharacter.getName(s, " + "));
+                        }
+                    }
+                }
+            }
 
 }
