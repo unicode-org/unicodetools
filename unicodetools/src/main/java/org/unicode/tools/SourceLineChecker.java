@@ -11,6 +11,8 @@ import com.ibm.icu.text.UnicodeSet.SpanCondition;
  */
 public class SourceLineChecker {
 
+	public static final String LRM = "\u200E";
+
 	/**
 	 * Error codes
 	 */
@@ -132,6 +134,9 @@ public class SourceLineChecker {
 			/** String, of the form "..." */
 			STRING,
 			
+			/** Raw String, of the form R"(...)" */
+			RSTRNG,
+			
 			/** Code point (character), of the form '...' */
 			CPOINT,
 			
@@ -199,7 +204,8 @@ public class SourceLineChecker {
 
 		System.out.print("\t\t\tmemory: \t");
 		for (int i = 0; i < map.length; ++i) {
-			System.out.print(line.substring(i,i+1) + "\u200E\t\u200E");
+			System.out.print(line.substring(i,i+1) + LRM
+					+ "\t\u200E");
 		}
 		System.out.println();
 		
