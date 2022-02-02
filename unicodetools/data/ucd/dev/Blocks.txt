@@ -1,6 +1,6 @@
 # Blocks-15.0.0.txt
-# Date: 2021-12-07, 23:59:00 GMT [KW]
-# © 2021 Unicode®, Inc.
+# Date: 2022-01-28, 20:58:00 GMT [KW]
+# © 2022 Unicode®, Inc.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
@@ -287,7 +287,7 @@ FFF0..FFFF; Specials
 12480..1254F; Early Dynastic Cuneiform
 12F90..12FFF; Cypro-Minoan
 13000..1342F; Egyptian Hieroglyphs
-13430..1343F; Egyptian Hieroglyph Format Controls
+13430..1345F; Egyptian Hieroglyph Format Controls
 14400..1467F; Anatolian Hieroglyphs
 16800..16A3F; Bamum Supplement
 16A40..16A6F; Mro
