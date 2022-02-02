@@ -1,5 +1,5 @@
 Generate: .
-CopyrightYear: 2021
+CopyrightYear: 2022
 
 File: extra/ScriptNfkc
 Property: SPECIAL
