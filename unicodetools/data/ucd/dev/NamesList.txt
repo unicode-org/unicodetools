@@ -1,9 +1,9 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 15.0.0
-@@@+	U15M220131.lst
-	Unicode 15.0.0 names list, second delta.
+@@@+	U15M220202.lst
+	Unicode 15.0.0 names list, third delta.
 	Repertoire synched with UnicodeData-15.0.0d4.txt.
-	Adding all new repertoire as of UTC #170.
+	Updated annotations for Kazakh digraphs, 0675..0678.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -4071,14 +4071,18 @@
 	* Kazakh, Jawi
 	* forms digraphs
 @		Digraphic letters for Kazakh
-@+		Use of these characters is discouraged. They were encoded for Kazakh digraphs, but their decompositions do not reflect the preferred order of representation.
+@+		Use of these characters is discouraged. They were encoded for Kazakh digraphs, but their decompositions do not reflect the preferred order of representation. Accordingly, the representation of these Kazakh digraphs should instead use the preferred two-character spellings with the correct order of elements.
 0675	ARABIC LETTER HIGH HAMZA ALEF
+	* preferred spelling is 0674 0627
 	# 0627 0674
 0676	ARABIC LETTER HIGH HAMZA WAW
+	* preferred spelling is 0674 0648
 	# 0648 0674
 0677	ARABIC LETTER U WITH HAMZA ABOVE
+	* preferred spelling is 0674 06C7
 	# 06C7 0674
 0678	ARABIC LETTER HIGH HAMZA YEH
+	* preferred spelling is 0674 0649
 	# 064A 0674
 @		Extended Arabic letters
 0679	ARABIC LETTER TTEH
