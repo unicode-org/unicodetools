@@ -34,6 +34,8 @@ jobs:
       with:
         name: UnicodeJsps
         path: UnicodeJsps/target/UnicodeJsps.war
+    - name: setup ucd txt
+      run: cd UnicodeJsps && bash update-bidic-ucd.sh
     - name: Get the version
       id: get_tag_name
       run: echo ::set-output name=GIT_TAG_NAME::${GITHUB_REF/refs\/tags\//}

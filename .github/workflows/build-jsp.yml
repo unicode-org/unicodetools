@@ -63,5 +63,5 @@ jobs:
         name: UnicodeJsps
         path: UnicodeJsps/target/UnicodeJsps.war
     - name: build docker image
-      run: cd UnicodeJsps && docker build .
+      run: cd UnicodeJsps && bash update-bidic-ucd.sh && docker build .
 
