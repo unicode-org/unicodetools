@@ -18,7 +18,7 @@ import org.unicode.cldr.util.CLDRFile.WinningChoice;
 public class CLDRCharacterUtility {
     public static UnicodeMap<Set<String>> getCLDRCharacters() {
         UnicodeMap<Set<String>> result = new UnicodeMap<>();
-        org.unicode.cldr.util.Factory factory = CLDRConfig.getInstance().getCldrFactory();
+        org.unicode.cldr.util.Factory factory = CLDRConfig.getInstance().getFullCldrFactory();
         //        File[] paths = { new File(CLDRPaths.MAIN_DIRECTORY)
         //        //, new File(CLDRPaths.SEED_DIRECTORY), new File(CLDRPaths.EXEMPLARS_DIRECTORY)
         //        };
