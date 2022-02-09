@@ -8,6 +8,11 @@ bidiref1 executable have been merged into the C Reference itself, the
 copies have been deleted.  They can be obtained from the C Reference
 under http://www.unicode.org/Public/PROGRAMS/BidiReferenceC/
 
+If you want to copy the .txt files in locally, run this script:
+
+$ cd UnicodeJsps
+$ sh update-bidic-ucd.sh
+
 For example, for Version 11.0, the file tree would be as follows:
 
 unicodetools-trunk/UnicodeJsps/src/org/unicode/jsp/bidiref1
