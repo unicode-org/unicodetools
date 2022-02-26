@@ -1,6 +1,6 @@
 # DerivedDecompositionType-15.0.0.txt
-# Date: 2021-12-09, 17:39:37 GMT
-# © 2021 Unicode®, Inc.
+# Date: 2022-02-26, 00:38:31 GMT
+# © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -869,10 +869,10 @@ AB69          ; Super # Lm       MODIFIER LETTER SMALL TURNED W
 10787..107B0  ; Super # Lm  [42] MODIFIER LETTER SMALL DZ DIGRAPH..MODIFIER LETTER SMALL V WITH RIGHT HOOK
 107B2..107BA  ; Super # Lm   [9] MODIFIER LETTER SMALL CAPITAL Y..MODIFIER LETTER SMALL S WITH CURL
 1E030..1E050  ; Super # Lm  [33] MODIFIER LETTER CYRILLIC SMALL A..MODIFIER LETTER CYRILLIC SMALL PALOCHKA
-1E06B..1E06C  ; Super # Lm   [2] MODIFIER LETTER CYRILLIC SMALL ES WITH DESCENDER..MODIFIER LETTER CYRILLIC SMALL YERU WITH BACK YER
+1E06B..1E06D  ; Super # Lm   [3] MODIFIER LETTER CYRILLIC SMALL ES WITH DESCENDER..MODIFIER LETTER CYRILLIC SMALL STRAIGHT U WITH STROKE
 1F16A..1F16C  ; Super # So   [3] RAISED MC SIGN..RAISED MR SIGN
 
-# Total code points: 248
+# Total code points: 249
 
 # ================================================
 
