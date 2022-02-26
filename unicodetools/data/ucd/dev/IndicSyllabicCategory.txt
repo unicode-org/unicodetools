@@ -1,11 +1,11 @@
 # IndicSyllabicCategory-15.0.0.txt
-# Date: 2021-12-09, 23:43:00 GMT [KW, RP]
-# © 2021 Unicode®, Inc.
+# Date: 2022-02-22, 22:30:00 GMT [KW, RP]
+# © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # For documentation, see UAX #44: Unicode Character Database,
-# at http://www.unicode.org/reports/tr44/
+# at https://www.unicode.org/reports/tr44/
 #
 # This file defines the following property:
 #
@@ -421,6 +421,7 @@ ABD1          ; Vowel_Independent # Lo       MEETEI MAYEK LETTER ATIYA
 11103..11106  ; Vowel_Independent # Lo   [4] CHAKMA LETTER AA..CHAKMA LETTER E
 11183..11190  ; Vowel_Independent # Lo  [14] SHARADA LETTER A..SHARADA LETTER AU
 11200..11207  ; Vowel_Independent # Lo   [8] KHOJKI LETTER A..KHOJKI LETTER AU
+11240         ; Vowel_Independent # Lo       KHOJKI LETTER SHORT I
 11280..11283  ; Vowel_Independent # Lo   [4] MULTANI LETTER A..MULTANI LETTER E
 112B0..112B9  ; Vowel_Independent # Lo  [10] KHUDAWADI LETTER A..KHUDAWADI LETTER AU
 11305..1130C  ; Vowel_Independent # Lo   [8] GRANTHA LETTER A..GRANTHA LETTER VOCALIC L
@@ -644,6 +645,7 @@ ABE9..ABEA    ; Vowel_Dependent # Mc   [2] MEETEI MAYEK VOWEL SIGN CHEINAP..MEET
 1122C..1122E  ; Vowel_Dependent # Mc   [3] KHOJKI VOWEL SIGN AA..KHOJKI VOWEL SIGN II
 1122F..11231  ; Vowel_Dependent # Mn   [3] KHOJKI VOWEL SIGN U..KHOJKI VOWEL SIGN AI
 11232..11233  ; Vowel_Dependent # Mc   [2] KHOJKI VOWEL SIGN O..KHOJKI VOWEL SIGN AU
+11241         ; Vowel_Dependent # Mn       KHOJKI VOWEL SIGN VOCALIC R
 112E0..112E2  ; Vowel_Dependent # Mc   [3] KHUDAWADI VOWEL SIGN AA..KHUDAWADI VOWEL SIGN II
 112E3..112E8  ; Vowel_Dependent # Mn   [6] KHUDAWADI VOWEL SIGN U..KHUDAWADI VOWEL SIGN AU
 1133E..1133F  ; Vowel_Dependent # Mc   [2] GRANTHA VOWEL SIGN AA..GRANTHA VOWEL SIGN I
@@ -888,6 +890,7 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 11191..111B2  ; Consonant # Lo  [34] SHARADA LETTER KA..SHARADA LETTER HA
 11208..11211  ; Consonant # Lo  [10] KHOJKI LETTER KA..KHOJKI LETTER JJA
 11213..1122B  ; Consonant # Lo  [25] KHOJKI LETTER NYA..KHOJKI LETTER LLA
+1123F         ; Consonant # Lo       KHOJKI LETTER QA
 11284..11286  ; Consonant # Lo   [3] MULTANI LETTER KA..MULTANI LETTER GA
 11288         ; Consonant # Lo       MULTANI LETTER GHA
 1128A..1128D  ; Consonant # Lo   [4] MULTANI LETTER CA..MULTANI LETTER JJA
@@ -918,7 +921,7 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 11D0C..11D30  ; Consonant # Lo  [37] MASARAM GONDI LETTER KA..MASARAM GONDI LETTER TRA
 11D6C..11D89  ; Consonant # Lo  [30] GUNJALA GONDI LETTER YA..GUNJALA GONDI LETTER SA
 11EE0..11EF1  ; Consonant # Lo  [18] MAKASAR LETTER KA..MAKASAR LETTER A
-11F12..11F33  ; Consonant # Lo  [35] KAWI LETTER KA..KAWI LETTER JNYA
+11F12..11F33  ; Consonant # Lo  [34] KAWI LETTER KA..KAWI LETTER JNYA
 
 # ================================================
 
@@ -1144,10 +1147,14 @@ ABEC          ; Tone_Mark # Mc       MEETEI MAYEK LUM IYEK
 # Indic_Syllabic_Category=Gemination_Mark
 
 # Gemination Mark (doubling of the preceding or following consonant)
+#
+# U+0A71 GURMUKHI ADDAK precedes the consonant it geminates, while the
+# others follow the consonant they geminate.
 
 # [Not derivable]
 
 0A71          ; Gemination_Mark # Mn       GURMUKHI ADDAK
+0AFB          ; Gemination_Mark # Mn       GUJARATI SIGN SHADDA
 11237         ; Gemination_Mark # Mn       KHOJKI SIGN SHADDA
 11A98         ; Gemination_Mark # Mn       SOYOMBO GEMINATION MARK
 
@@ -1161,7 +1168,8 @@ ABEC          ; Tone_Mark # Mc       MEETEI MAYEK LUM IYEK
 
 0951..0952    ; Cantillation_Mark # Mn   [2] DEVANAGARI STRESS SIGN UDATTA..DEVANAGARI STRESS SIGN ANUDATTA
 0A51          ; Cantillation_Mark # Mn       GURMUKHI SIGN UDAAT
-0AFA..0AFC    ; Cantillation_Mark # Mn   [3] GUJARATI SIGN SUKUN..GUJARATI SIGN MADDAH
+0AFA          ; Cantillation_Mark # Mn       GUJARATI SIGN SUKUN
+0AFC          ; Cantillation_Mark # Mn       GUJARATI SIGN MADDAH
 1CD0..1CD2    ; Cantillation_Mark # Mn   [3] VEDIC TONE KARSHANA..VEDIC TONE PRENKHA
 1CD4..1CE0    ; Cantillation_Mark # Mn  [13] VEDIC SIGN YAJURVEDIC MIDLINE SVARITA..VEDIC TONE RIGVEDIC KASHMIRI INDEPENDENT SVARITA
 1CE1          ; Cantillation_Mark # Mc       VEDIC TONE ATHARVAVEDIC INDEPENDENT SVARITA
@@ -1189,12 +1197,13 @@ A8E0..A8F1    ; Cantillation_Mark # Mn  [18] COMBINING DEVANAGARI DIGIT ZERO..CO
 # Indic_Syllabic_Category=Syllable_Modifier
 
 # Syllable Modifier (miscellaneous combining characters that modify
-# something in the orthographic syllable they succeed)
+# something in the orthographic syllable they succeed or appear in)
 
 # [Not derivable]
 
 00B2..00B3    ; Syllable_Modifier # No   [2] SUPERSCRIPT TWO..SUPERSCRIPT THREE
 09FE          ; Syllable_Modifier # Mn       BENGALI SANDHI MARK
+0ECE          ; Syllable_Modifier # Mn       LAO YAMAKKAN
 0F35          ; Syllable_Modifier # Mn       TIBETAN MARK NGAS BZUNG NYI ZLA
 0F37          ; Syllable_Modifier # Mn       TIBETAN MARK NGAS BZUNG SGOR RTAGS
 0FC6          ; Syllable_Modifier # Mn       TIBETAN SYMBOL PADMA GDAN

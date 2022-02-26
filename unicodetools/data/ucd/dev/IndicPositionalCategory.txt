@@ -1,6 +1,6 @@
 # IndicPositionalCategory-15.0.0.txt
-# Date: 2021-12-10, 23:49:00 GMT [KW, RP]
-# © 2021 Unicode®, Inc.
+# Date: 2022-02-14, 18:50:00 GMT [KW, RP]
+# © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -433,7 +433,7 @@ AABB..AABC    ; Visual_Order_Left # Lo   [2] TAI VIET VOWEL AUE..TAI VIET VOWEL 
 0EB1          ; Top # Mn       LAO VOWEL SIGN MAI KAN
 0EB4..0EB7    ; Top # Mn   [4] LAO VOWEL SIGN I..LAO VOWEL SIGN YY
 0EBB          ; Top # Mn       LAO VOWEL SIGN MAI KON
-0EC8..0ECD    ; Top # Mn   [6] LAO TONE MAI EK..LAO NIGGAHITA
+0EC8..0ECE    ; Top # Mn   [7] LAO TONE MAI EK..LAO YAMAKKAN
 0F39          ; Top # Mn       TIBETAN MARK TSA -PHRU
 0F72          ; Top # Mn       TIBETAN VOWEL SIGN I
 0F7A..0F7E    ; Top # Mn   [5] TIBETAN VOWEL SIGN E..TIBETAN SIGN RJES SU NGA RO
@@ -697,6 +697,7 @@ ABED          ; Bottom # Mn       MEETEI MAYEK APUN IYEK
 111C9..111CA  ; Bottom # Mn   [2] SHARADA SANDHI MARK..SHARADA SIGN NUKTA
 111CC         ; Bottom # Mn       SHARADA EXTRA SHORT VOWEL MARK
 1122F         ; Bottom # Mn       KHOJKI VOWEL SIGN U
+11241         ; Bottom # Mn       KHOJKI VOWEL SIGN VOCALIC R
 112E3..112E4  ; Bottom # Mn   [2] KHUDAWADI VOWEL SIGN U..KHUDAWADI VOWEL SIGN UU
 112E9..112EA  ; Bottom # Mn   [2] KHUDAWADI SIGN NUKTA..KHUDAWADI SIGN VIRAMA
 1133B..1133C  ; Bottom # Mn   [2] COMBINING BINDU BELOW..GRANTHA SIGN NUKTA
@@ -737,7 +738,7 @@ ABED          ; Bottom # Mn       MEETEI MAYEK APUN IYEK
 11D44         ; Bottom # Mn       MASARAM GONDI SIGN HALANTA
 11D47         ; Bottom # Mn       MASARAM GONDI RA-KARA
 11EF4         ; Bottom # Mn       MAKASAR VOWEL SIGN U
-11FE8..11F3A  ; Bottom # Mn   [3] KAWI VOWEL SIGN U..KAWI VOWEL SIGN VOCALIC R
+11F38..11F3A  ; Bottom # Mn   [3] KAWI VOWEL SIGN U..KAWI VOWEL SIGN VOCALIC R
 
 # Indic_Positional_Category=Top_And_Bottom
 
