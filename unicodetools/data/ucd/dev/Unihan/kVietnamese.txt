@@ -124,6 +124,7 @@
 4CC2	sếu
 4CF1	vọ
 4D0C	mòng
+4DB6	đè
 4E00	nhất
 4E01	đinh
 4E03	thất
@@ -8222,4 +8223,5 @@ FA24	gặp
 2A6C7	rùa
 2A993	mìn
 2B1FF	thuốc
+2B735	làm
 2B736	trôn
