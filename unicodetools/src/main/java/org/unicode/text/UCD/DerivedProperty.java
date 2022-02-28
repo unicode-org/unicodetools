@@ -710,7 +710,7 @@ of characters, the first of which has a non-zero combining class.
                 #  + Variation_Selector
                 #  - White_Space
                 #  - FFF9..FFFB (Interlinear annotation format characters)
-                #  - 13430..13438 (Egyptian hieroglyph format characters)
+                #  - 13430..13440 (Egyptian hieroglyph format characters)
                 #  - Prepended_Concatenation_Mark (Exceptional format characters that should be visible)
              */
             @Override
@@ -731,6 +731,10 @@ of characters, the first of which has a non-zero combining class.
 
                 // Unicode 12.0: 13430..13438 (Egyptian hieroglyph format characters)
                 if (ucdData.getCompositeVersion() >= 0x0c0000 && cp >= 0x13430 && cp <= 0x13438) {
+                    return false;
+                }
+                // Unicode 15.0: 13439..13440 (Egyptian hieroglyph format characters)
+                if (ucdData.getCompositeVersion() >= 0x0f0000 && cp >= 0x13439 && cp <= 0x13440) {
                     return false;
                 }
 

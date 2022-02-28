@@ -1,5 +1,5 @@
 # DerivedLineBreak-15.0.0.txt
-# Date: 2022-02-26, 00:38:33 GMT
+# Date: 2022-02-28, 00:01:40 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2484,6 +2484,7 @@ ABEB          ; BA # Po       MEETEI MAYEK CHEIKHEI
 11A9A..11A9C  ; BA # Po   [3] SOYOMBO MARK TSHEG..SOYOMBO MARK DOUBLE SHAD
 11AA1..11AA2  ; BA # Po   [2] SOYOMBO TERMINAL MARK-1..SOYOMBO TERMINAL MARK-2
 11C41..11C45  ; BA # Po   [5] BHAIKSUKI DANDA..BHAIKSUKI GAP FILLER-2
+11F43..11F4F  ; BA # Po  [13] KAWI DANDA..KAWI PUNCTUATION CLOSING SPIRAL
 11FFF         ; BA # Po       TAMIL PUNCTUATION END OF TEXT
 12470..12474  ; BA # Po   [5] CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD DIVIDER..CUNEIFORM PUNCTUATION SIGN DIAGONAL QUADCOLON
 16A6E..16A6F  ; BA # Po   [2] MRO DANDA..MRO DOUBLE DANDA
@@ -2494,7 +2495,7 @@ ABEB          ; BA # Po       MEETEI MAYEK CHEIKHEI
 1BC9F         ; BA # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA87..1DA8A  ; BA # Po   [4] SIGNWRITING COMMA..SIGNWRITING COLON
 
-# Total code points: 247
+# Total code points: 260
 
 # ================================================
 
@@ -2674,9 +2675,8 @@ AADE..AADF    ; SA # Po   [2] TAI VIET SYMBOL HO HOI..TAI VIET SYMBOL KOI KOI
 11F40         ; SA # Mn       KAWI VOWEL SIGN EU
 11F41         ; SA # Mc       KAWI SIGN KILLER
 11F42         ; SA # Mn       KAWI CONJOINER
-11F43..11F4F  ; SA # Po  [13] KAWI DANDA..KAWI PUNCTUATION CLOSING SPIRAL
 
-# Total code points: 834
+# Total code points: 821
 
 # ================================================
 
