@@ -375,7 +375,7 @@ Property:	Default_Ignorable_Code_Point
 #  + Variation_Selector
 #  - White_Space
 #  - FFF9..FFFB (Interlinear annotation format characters)
-#  - 13430..13438 (Egyptian hieroglyph format characters)
+#  - 13430..13440 (Egyptian hieroglyph format characters)
 #  - Prepended_Concatenation_Mark (Exceptional format characters that should be visible)
 
 Property:	Grapheme_Extend
