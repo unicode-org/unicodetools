@@ -533,7 +533,7 @@ Let $Uax31Removals = [\-\u058A\u0F0B\u2010\u30A0\u30FB\u2E2F\u17B4-\u17B5]
 
 # See derivation of Default_Ignorable_Code_Point in DerivedCoreProperties.txt
 Let $Annotations = [\uFFF9-\uFFFB]
-Let $EgyptianControls = [\U00013430-\U00013438]
+Let $EgyptianControls = [\U00013430-\U00013440]
 \p{Default_Ignorable_Code_Point} = [\p{Other_Default_Ignorable_Code_Point} \p{GC=Cf} \p{Variation_Selector} - [\p{White_Space} $Annotations $EgyptianControls \p{PCM}]]
 
 \p{Grapheme_Extend} = [\p{Other_Grapheme_Extend} \p{GC=Me} \p{GC=Mn}]
