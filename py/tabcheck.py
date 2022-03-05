@@ -34,7 +34,7 @@ def main() -> bool:
         with open(p, 'r') as f:
             s = f.read()
             if '\t' in s:
-                print(f"tabs found in {p.relative_to(root)}")
+                print(f"tabs found in {p.relative_to(root)}", flush=True)
                 error_count += 1
 
     return args.exit_zero or not(bool(error_count))
