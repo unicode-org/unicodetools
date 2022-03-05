@@ -32,4 +32,4 @@ jobs:
         flake8
     - name: Check .java files for tabs
       run: |
-        python py/tabcheck.py --exit-zero
+        python py/tabcheck.py
