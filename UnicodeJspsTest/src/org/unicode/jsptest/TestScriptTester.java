@@ -85,7 +85,7 @@ public class TestScriptTester extends TestFmwk {
     TreeSet<String> items = Builder.with(new TreeSet<String>()).addAll(confusables).get();
     if (expected != null) {
       assertEquals("Confusables for '" + string +
-      		"'", expected, items);
+                      "'", expected, items);
     }
     
     Confusables confusables2 = new Confusables(string)
@@ -99,6 +99,6 @@ public class TestScriptTester extends TestFmwk {
       }
     }
     assertEquals("Confusables for '" + string +
-    		"'", items, filteredDifferently);
+                    "'", items, filteredDifferently);
   }
 }

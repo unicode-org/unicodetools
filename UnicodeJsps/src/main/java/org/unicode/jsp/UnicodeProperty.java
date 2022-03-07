@@ -270,10 +270,10 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     }
 
     public final UnicodeSet getTrueSet() {
-	if (!isType(BINARY)) {
-	    throw new IllegalArgumentException("Only applicable to binary (boolean) properties, not " + getName() +
+        if (!isType(BINARY)) {
+            throw new IllegalArgumentException("Only applicable to binary (boolean) properties, not " + getName() +
             " which is of type " + getTypeName());
-	}
+        }
         return getSet("Yes", null);
     }
 
@@ -1481,4 +1481,3 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         return !isType(STRING_OR_MISC_MASK);
     }
 }
-

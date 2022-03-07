@@ -91,10 +91,10 @@ public class Globe {
     "Cochin (COK) - centering",
     "Moscow, ID"
   };
-  // Melbourne, Australia	37	47 S	144	58 E
+  // Melbourne, Australia 37 47 S 144 58 E
   // Caen — 49° 10' 59" N 00° 22' 10" W
   // sundance latitude 44.406 and longitude -104.376
-  // San Diego, Calif.	32	42	117	10	9:00 a.m.
+  // San Diego, Calif. 32 42 117 10 9:00 a.m.
   // Moscow, ID Latitude: 46.73 N, Longitude: 117.00 W
 
   static double[][] origins = { // lat, long
@@ -425,7 +425,7 @@ Latitude : 10° 9’ 7” N (?)
    * @see #filterRGBPixels
    * /
         public int filterRGB(int x, int y, int rgb) {
-        	int a = (rgb >>> 24) & 0xFF;
+            int a = (rgb >>> 24) & 0xFF;
             int r = (rgb >> 16) & 0xFF;
             int g = (rgb >> 8) & 0xFF;
             int b = rgb & 0xFF;
@@ -957,7 +957,7 @@ Latitude : 10° 9’ 7” N (?)
         if (debugTemp) {
           System.out.println("newGuess: " + guess);
         }
-      }	
+      }
     }
   }
 
@@ -1792,7 +1792,7 @@ Latitude : 10° 9’ 7” N (?)
       }
     }
 
-    void add(Transform trans, double longitude, double latitude, String s) {    		
+    void add(Transform trans, double longitude, double latitude, String s) {
       double xx = trans.srcW_long.back(longitude);
       double yy = trans.srcH_lat.back(latitude);
       trans.transform(xx, yy, drawLineP1);
@@ -1894,8 +1894,8 @@ Latitude : 10° 9’ 7” N (?)
     /*
         if (label == null) return;
         if (label != null) {
-        	Line2D.Double line2 = new Line2D.Double(drawLineP1.x, drawLineP1.y, drawLineP1.x + 5, drawLineP1.y + 5);
-        	graphics2D.draw(line2);
+            Line2D.Double line2 = new Line2D.Double(drawLineP1.x, drawLineP1.y, drawLineP1.x + 5, drawLineP1.y + 5);
+            graphics2D.draw(line2);
         }
 
         if (label != null) graphics2D.drawString(label, (int)drawLineP1.x + 5, (int)drawLineP1.y + 5);
@@ -1955,7 +1955,7 @@ Latitude : 10° 9’ 7” N (?)
         } else {           
             drawLine2(graphics2D, trans, x1, y1, x2, y2);
         }
-	}
+    }
 
     private static void drawLine2(Graphics2D graphics2D, Transform trans, double x, double y, double x2, double y2) {
         trans.transform(x, y, drawLineP1);
