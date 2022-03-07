@@ -149,16 +149,16 @@ Run the "Build and Test" command below to compile all of the source files. Some 
 Common tasks for Unicode Tools are listed below with example CLI commands with example argument values that they need:
 
 - Make Unicode Files:
-  * Out-of-source build: `mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
-  * In-source build: `MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
+  * <details><summary>Out-of-source build:</summary> <br/> `mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`</details>
+  * <details><summary>In-source build:</summary> <br/> `MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`</details>
 
 - AAC Order:
-  * Out-of-source build: `mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.tools.AacOrder" -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
-  * In-source build: `MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.tools.AacOrder" -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
+  * <details><summary>Out-of-source build:</summary> <br/>  `mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.tools.AacOrder" -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`</details>
+  * <details><summary>In-source build:</summary> <br/>  `MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.tools.AacOrder" -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`</details>
 
 - Build and Test:
-  * Out-of-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
-  * In-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
+  * <details><summary>Out-of-source build:</summary> <br/> `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`</details>
+  * <details><summary>In-source build:</summary> <br/> `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`</details>
 
 #### Running commands in Eclipse
 
