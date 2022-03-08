@@ -11,13 +11,13 @@ import com.ibm.icu.lang.UProperty.NameChoice;
 
 public class TestIcuProperties extends TestFmwk2 {
     public static void main(String[] args) {
-    	new TestIcuProperties().run(args);
+        new TestIcuProperties().run(args);
     }
     public void testProps() {
-    	ICUPropertyFactory factory = ICUPropertyFactory.make();
-    	String sample = "🤩";
-    	
-    	int nameChoice = NameChoice.LONG;
+        ICUPropertyFactory factory = ICUPropertyFactory.make();
+        String sample = "🤩";
+        
+        int nameChoice = NameChoice.LONG;
         List<Integer> propRanges = Arrays.asList(
                 UProperty.BINARY_START, UProperty.BINARY_LIMIT, 
                 UProperty.INT_START, UProperty.INT_LIMIT, 
@@ -28,10 +28,10 @@ public class TestIcuProperties extends TestFmwk2 {
             final int rangeLimit = propRanges.get(range+1);
             for (int property = rangeStart; property < rangeLimit; ++property) {
                 String name = UCharacter.getPropertyName(property, nameChoice);
-        		UnicodeProperty prop = factory.getInternalProperty(name);
-        		String value = prop.getValue(sample.codePointAt(0));
-        		assertTrue("property exists", prop != null);
-        		
+                UnicodeProperty prop = factory.getInternalProperty(name);
+                String value = prop.getValue(sample.codePointAt(0));
+                assertTrue("property exists", prop != null);
+                
                 System.out.println(property + "\t" + name + "\tvalue('" + sample + "'): " + value);
                 if (rangeStart == UProperty.INT_START) {
                     String gap = "\t ";

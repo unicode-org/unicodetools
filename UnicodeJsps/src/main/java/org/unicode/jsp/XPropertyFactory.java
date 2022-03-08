@@ -164,13 +164,13 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         UnicodeSet RGI_Emoji_Flag_Sequence = cp.getProperty("RGI_Emoji_Flag_Sequence").getSet("Yes", null); // TODO: was .getTrueSet();
         UnicodeSet RGI_Emoji_Zwj_Sequence = cp.getProperty("RGI_Emoji_Zwj_Sequence").getSet("Yes", null); // TODO: was .getTrueSet();
         UnicodeSet RGI_Emoji = new UnicodeSet()
-        	.add(Basic_Emoji)
-        	.add(Emoji_Keycap_Sequence)
-        	.add(RGI_Emoji_Modifier_Sequence)
-        	.add(RGI_Emoji_Flag_Sequence)
-        	.add(RGI_Emoji_Tag_Sequence)
-        	.add(RGI_Emoji_Zwj_Sequence)
-        	.freeze();
+            .add(Basic_Emoji)
+            .add(Emoji_Keycap_Sequence)
+            .add(RGI_Emoji_Modifier_Sequence)
+            .add(RGI_Emoji_Flag_Sequence)
+            .add(RGI_Emoji_Tag_Sequence)
+            .add(RGI_Emoji_Zwj_Sequence)
+            .freeze();
         add(new UnicodeSetProperty().set(RGI_Emoji).setMain("RGI_Emoji", "RGI_Emoji", UnicodeProperty.BINARY, "13.0"));
     }
 

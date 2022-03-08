@@ -53,7 +53,7 @@ public class UnicodeUtilities {
 
 
     private static final Collator COLLATOR = Collator.getInstance(new ULocale("en-u-co-emoji"));
-	static final UnicodeSet OFF_LIMITS = new UnicodeSet(UnicodeProperty.UNASSIGNED).addAll(UnicodeProperty.PRIVATE_USE).addAll(UnicodeProperty.SURROGATE).freeze();
+    static final UnicodeSet OFF_LIMITS = new UnicodeSet(UnicodeProperty.UNASSIGNED).addAll(UnicodeProperty.PRIVATE_USE).addAll(UnicodeProperty.SURROGATE).freeze();
     static final UnicodeSet NONCHAR = new UnicodeSet(OFF_LIMITS).addAll(new UnicodeSet("[:Cc:]")).removeAll(new UnicodeSet("[:whitespace:]")).freeze();
 
     static {
@@ -603,9 +603,9 @@ public class UnicodeUtilities {
             String[] propNames = input.split("[;,\\s]\\s*");
             boolean getShortest = false;
             for (String s : propNames) {
-            	if (s.isEmpty()) {
-            		continue;
-            	}
+                if (s.isEmpty()) {
+                    continue;
+                }
                 try {
                     UnicodeProperty property = getFactory().getProperty(s);
                     String name = property.getName();
@@ -628,8 +628,8 @@ public class UnicodeUtilities {
                 int s = it.codepoint;
                 if (s == UnicodeSetIterator.IS_STRING) {
                     if (!haveStrings && codePointShower.doTable) {
-                	out.append("<tr><td colSpan='3'>");
-                	haveStrings = true;
+                        out.append("<tr><td colSpan='3'>");
+                        haveStrings = true;
                     }
                     out.append(UnicodeUtilities.showCodePoint(it.string)).append("\n");
                 } else {
@@ -657,7 +657,7 @@ public class UnicodeUtilities {
                 }
             }
             if (haveStrings && codePointShower.doTable) {
-        	out.append("</td></tr>");
+                out.append("</td></tr>");
             }
         }
 
@@ -983,7 +983,7 @@ public class UnicodeUtilities {
     public static String getPrettySet(UnicodeSet a, boolean abbreviate, boolean escape) {
         String a_out;
         if (a.size() < 10000 && !abbreviate) {
-        	UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter().setOrdering(UnicodeSetUtilities.MAIN_COLLATOR)
+            UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter().setOrdering(UnicodeSetUtilities.MAIN_COLLATOR)
                     .setSpaceComparator(COLLATOR.setStrength2(RuleBasedCollator.PRIMARY));
 
             if (escape) {
