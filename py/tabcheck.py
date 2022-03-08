@@ -29,15 +29,15 @@ def main() -> bool:
         print(f'{root.absolute()}: directory not found; aborting.')
         return False
 
-    error_count = 0
+    errors_found = False
     for p in root.rglob("*.java"):
         with open(p, 'r') as f:
             s = f.read()
             if '\t' in s:
                 print(f"tabs found in {p.relative_to(root)}", flush=True)
-                error_count += 1
+                errors_found = True
 
-    return args.exit_zero or not(bool(error_count))
+    return args.exit_zero or not errors_found
 
 
 if __name__ == '__main__':
