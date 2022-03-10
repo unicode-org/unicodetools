@@ -85,6 +85,12 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
+		<!-- Pull this in only for tests -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.unicode.unicodetools</groupId>
+			<artifactId>unicodetools-testutils</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
