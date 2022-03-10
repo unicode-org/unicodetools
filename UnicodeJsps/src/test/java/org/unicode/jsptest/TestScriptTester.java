@@ -10,6 +10,7 @@ import java.util.TreeSet;
 import com.ibm.icu.text.Normalizer;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIf;
 import org.unicode.jsp.Builder;
 import org.unicode.jsp.Confusables;
 import org.unicode.jsp.Confusables.ScriptCheck;
@@ -19,6 +20,7 @@ import org.unicode.unittest.TestFmwkMinusMinus;
 
 public class TestScriptTester extends TestFmwkMinusMinus {
 
+  @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
   @Test
   public void TestBasic() {
     ScriptTester scriptTester = ScriptTester.start().get();
@@ -66,6 +68,7 @@ public class TestScriptTester extends TestFmwkMinusMinus {
     assertEquals("filterTable", before, after);
   }
 
+  @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
   @Test
   public void TestConfusables() {
     TreeSet<String> expected = Builder.with(new TreeSet<String>()).addAll("google", "goog1e", "googIe").get();

@@ -1,25 +1,16 @@
 package org.unicode.jsptest;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Locale;
-import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
-import java.util.TreeSet;
+
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.util.ULocale;
 
 import org.junit.jupiter.api.Test;
-import org.unicode.jsp.CachedProps;
+import org.junit.jupiter.api.condition.EnabledIf;
 import org.unicode.jsp.PropertyMetadata;
 import org.unicode.jsp.PropertyMetadata.PropertyMetaDatum;
 import org.unicode.jsp.UnicodeProperty;
 import org.unicode.jsp.XPropertyFactory;
-
-import com.ibm.icu.impl.Row.R4;
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.util.ULocale;
-import com.ibm.icu.util.VersionInfo;
 
 public class TestBasicProperties extends TestFmwk2 {
 
@@ -27,6 +18,7 @@ public class TestBasicProperties extends TestFmwk2 {
     static Collator col = Collator.getInstance(ULocale.ROOT);
     static String sample = "क";
 
+    @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
     @Test
     public void TestListing() {
         for (Entry<String, PropertyMetaDatum> propInfo : PropertyMetadata.getPropertyToData().entrySet()) {

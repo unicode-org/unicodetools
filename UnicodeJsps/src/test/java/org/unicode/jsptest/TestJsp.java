@@ -16,6 +16,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIf;
 import org.unicode.cldr.util.BNF;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Quoter;
@@ -81,6 +82,7 @@ public class TestJsp  extends TestFmwkMinusMinus {
         assertContains(fii, "draft-ietf-ltru-4646bis");
     }
 
+    @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
     @Test
     public void TestJoiner() {
 
@@ -315,6 +317,7 @@ public class TestJsp  extends TestFmwkMinusMinus {
 
 
 
+    @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
     @Test
     public void TestIdnaProps() {
         String map = Idna2003.SINGLETON.mappings.get(0x200c);

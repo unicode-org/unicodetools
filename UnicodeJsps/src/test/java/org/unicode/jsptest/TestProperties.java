@@ -15,6 +15,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIf;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.jsp.Builder;
 import org.unicode.jsp.NFM;
@@ -331,6 +332,7 @@ public class TestProperties extends TestFmwk2 {
         }
     }
 
+    @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
     @Test
     public void TestAllProperties() {
         UnicodeProperty foo;

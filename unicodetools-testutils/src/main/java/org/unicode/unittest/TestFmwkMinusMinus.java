@@ -200,19 +200,37 @@ public class TestFmwkMinusMinus {
 
     private final static Integer inclusion = Integer.parseInt(System.getProperty("UNICODETOOLS_INCLUSION", "5"));
     private final static Boolean verbose = Boolean.parseBoolean(System.getProperty("UNICODETOOLS_VERBOSE", "false"));
+    private final static Boolean runBroken = Boolean.parseBoolean(System.getProperty("UNICODETOOLS_RUN_BROKEN_TEST", "false"));
     static {
         System.err.println("UNICODETOOLS_INCLUSION=" + inclusion);
         System.err.println("UNICODETOOLS_VERBOSE=" + verbose);
+        System.err.println("UNICODETOOLS_RUN_BROKEN_TEST=" + runBroken);
     }
     /**
-     * 0 = fewest tests, 5 is normal build, 10 is most tests
+     * set property: UNICODETOOLS_INCLUSION
+     * 0 = fewest tests, 5 is normal build (default), 10 is most tests
      */
-    public int getInclusion() {
+    public static int getInclusion() {
         return inclusion;
     }
 
+    /**
+     * Set property: UNICODETOOLS_VERBOSE
+     * Defalt false
+     */
     public boolean getVerbose() {
         return verbose;
+    }
+
+    /**
+     * Set property: UNICODETOOLS_RUN_BROKEN_TEST
+     * Default false
+     * Set true to run known-broken tests
+     * To use: add this annotation:
+     *      @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
+     */
+    public static boolean getRunBroken() {
+        return runBroken;
     }
 
 }

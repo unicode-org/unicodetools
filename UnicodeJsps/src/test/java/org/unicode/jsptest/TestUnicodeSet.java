@@ -2,16 +2,23 @@ package org.unicode.jsptest;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeSet;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIf;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.unicode.jsp.CharEncoder;
 import org.unicode.jsp.Common;
 import org.unicode.jsp.UnicodeJsp;
@@ -33,6 +40,11 @@ import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
+
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
+
 
 public class TestUnicodeSet  extends TestFmwk2 {
 
@@ -85,6 +97,8 @@ public class TestUnicodeSet  extends TestFmwk2 {
         }
     }
 
+
+    @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
     @Test
     public void TestPretty() {
         String[] tests = {
@@ -135,6 +149,7 @@ public class TestUnicodeSet  extends TestFmwk2 {
     //        checkProperties("[:isEncEUCKR:]", "[\\u00B0]", "[\u0350]");
     //    }
 
+    @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
     @Test
     public void TestU60 () {
         logln("ICU Version: " + VersionInfo.ICU_VERSION.toString());
@@ -175,6 +190,7 @@ public class TestUnicodeSet  extends TestFmwk2 {
         }
     }
 
+    @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
     @Test
     public void TestICUEnums() {
         UnicodeSet nonchars = UnicodeSetUtilities.parseUnicodeSet("\\p{noncharactercodepoint}");
@@ -321,47 +337,51 @@ public class TestUnicodeSet  extends TestFmwk2 {
     //        assertNotEquals("Latin1", 0, set.size());
     //    }
 
-    @Test
-    public void TestPerMill() {
-        SortedMap<String, Charset> charsets = Charset.availableCharsets();
+    public static Stream<Arguments> charsetProvider() {
+        final SortedMap<String, Charset> charsets = Charset.availableCharsets();
+        final List<Arguments> args = new ArrayList<Arguments>(charsets.size());
+        int count = (int)(5 + charsets.size()*getInclusion()/10.0);
+        for (final Map.Entry<String, Charset> e : Charset.availableCharsets().entrySet()) {
+            if (--count < 0) break;
+            args.add(arguments(e.getKey(), e.getValue()));
+        }
+        return args.stream();
+    }
+
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("charsetProvider")
+    public void TestPerMill(final String name, final Charset charset) {
         byte[] dest = new byte[50];
         UnicodeSet values = new UnicodeSet();
-        Set<String> charsetSet = charsets.keySet();
-        int count = (int)(5 + charsetSet.size()*getInclusion()/10.0);
-        for (String s : charsetSet) {
-            if (--count < 0) break;
-            Charset charset = charsets.get(s);
-            CharEncoder encoder;
-            try {
-                encoder = new CharEncoder(charset, false, false);
-            } catch (Exception e) {
-                e.printStackTrace();
-                continue;
-            }
+        CharEncoder encoder;
+        try {
+            encoder = new CharEncoder(charset, false, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+            assumeTrue(e == null, "Caught exception " + e);
+            return; /*NOTREACHED*/
+        }
 
-            // first check that we are an ASCII-based encoding, and skip if not
-            int len = encoder.getValue(0x61, dest, 0);
-            if (len != 1 || dest[0] != 0x61) {
-                continue;
-            }
+        // first check that we are an ASCII-based encoding, and skip if not
+        int len = encoder.getValue(0x61, dest, 0);
+        assumeFalse(len != 1 || dest[0] != 0x61, "not ASCII based");
 
-            values.clear();
-            byte checkByte = (byte) 0x89;
-            for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-                len = encoder.getValue(cp, dest, 0);
-                if (len > 0) {
-                    for (int j = 0; j < len; ++j) {
-                        if (dest[j] == checkByte) {
-                            values.add(cp);
-                            break;
-                        }
+        values.clear();
+        byte checkByte = (byte) 0x89;
+        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+            len = encoder.getValue(cp, dest, 0);
+            if (len > 0) {
+                for (int j = 0; j < len; ++j) {
+                    if (dest[j] == checkByte) {
+                        values.add(cp);
+                        break;
                     }
                 }
             }
-            values.remove(0x2030);
-            if (values.size() != 0) {
-                logln(s + "\tvalues:\t" + values + "\taliases:\t" + charset.aliases());
-            }
+        }
+        values.remove(0x2030);
+        if (values.size() != 0) {
+            logln(name + "\tvalues:\t" + values + "\taliases:\t" + charset.aliases());
         }
     }
 
@@ -424,6 +444,7 @@ gc ; Z         ; Separator                        # Zl | Zp | Zs
     }
 
 
+    @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
     @Test
     public void TestSets() {
 
@@ -493,6 +514,7 @@ gc ; Z         ; Separator                        # Zl | Zp | Zs
         }
     }
 
+    @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
     @Test
     public void TestSetSyntax() {
         //System.out.println("Script for A6E6: " + script + ", " + UScript.getName(script) + ", " + script2);

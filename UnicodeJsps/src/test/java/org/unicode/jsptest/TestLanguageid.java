@@ -17,6 +17,6 @@ public class TestLanguageid extends TestFmwkMinusMinus {
         }
 
         results = LanguageCode.validate("$, eng-840, fr-fr",new ULocale("en"));
-        assertTrue("", results.contains("target='languageid'>fr-FR</b>"));
+        assertContains(results, "target='languageid'>fr-FR</a></b>");
     }
 }

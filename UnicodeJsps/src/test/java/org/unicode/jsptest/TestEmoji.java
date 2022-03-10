@@ -3,6 +3,8 @@ package org.unicode.jsptest;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIf;
+import org.junit.jupiter.api.condition.EnabledIf;
 import org.unicode.jsp.UnicodeJsp;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.XPropertyFactory;
@@ -12,6 +14,7 @@ import com.ibm.icu.text.UnicodeSet;
 public class TestEmoji extends TestFmwk2 {
     static XPropertyFactory factory = XPropertyFactory.make();
 
+    @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
     @Test
     public void TestBasic() throws IOException {
         String[] message = {""};
