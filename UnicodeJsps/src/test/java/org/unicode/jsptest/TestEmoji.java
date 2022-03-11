@@ -2,14 +2,13 @@ package org.unicode.jsptest;
 
 import java.io.IOException;
 
+import com.ibm.icu.text.UnicodeSet;
+
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledIf;
 import org.junit.jupiter.api.condition.EnabledIf;
 import org.unicode.jsp.UnicodeJsp;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.XPropertyFactory;
-
-import com.ibm.icu.text.UnicodeSet;
 
 public class TestEmoji extends TestFmwk2 {
     static XPropertyFactory factory = XPropertyFactory.make();
