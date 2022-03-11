@@ -174,7 +174,7 @@ public class TestFmwkMinusMinus {
      * Copied from TestFmwk. Low level assertion.
      */
     public boolean handleAssert(boolean result, String message,
-    Object expected, Object actual, String relation, boolean flip) {
+            Object expected, Object actual, String relation, boolean flip) {
         if (!result || isVerbose()) {
             if (message == null) {
                 message = "";
