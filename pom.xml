@@ -49,6 +49,7 @@
 	</properties>
 
 	<modules>
+		<module>unicodetools-testutils</module>
 		<module>unicodetools</module>
 		<module>UnicodeJsps</module>
 	</modules>
@@ -85,6 +86,12 @@
 				<groupId>org.junit.jupiter</groupId>
 				<artifactId>junit-jupiter</artifactId>
 				<version>${junit-version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.unicode.unicodetools</groupId>
+				<artifactId>unicodetools-testutils</artifactId>
+				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

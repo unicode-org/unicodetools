@@ -208,19 +208,4 @@ public class CaseBitTest extends TestFmwkMinusMinus {
             status.put(s, Row.of(unicodeCasing, composedUcaCasing));
         }
     }
-
-    public void assertEquals(String message, UnicodeSet expected, UnicodeSet actual) {
-        if (expected.equals(actual)) {
-            logln(message + expected.toPattern(false) + "==" + actual.toPattern(false));
-        } else {
-            final UnicodeSet missing = new UnicodeSet(expected).removeAll(actual);
-            if (missing.size() != 0) {
-                errln(message + " missing: " + missing.toPattern(false));
-            }
-            final UnicodeSet unexpected = new UnicodeSet(actual).removeAll(expected);
-            if (unexpected.size() != 0) {
-                errln(message + " unexpected: " + unexpected.toPattern(false));
-            }
-        }
-    }
 }
