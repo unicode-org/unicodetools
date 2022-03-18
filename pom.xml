@@ -35,8 +35,8 @@
 
 
 		<!-- these two set the JDK version for source and target -->
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
 
 		<!-- Good hygiene. This is Unicode after all! -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
