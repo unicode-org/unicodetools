@@ -1,7 +1,7 @@
 package org.unicode.idna;
 
 import org.unicode.props.UnicodeProperty;
-import org.unicode.cldr.util.props.UnicodePropertySymbolTable;
+import org.unicode.props.UnicodePropertySymbolTable;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.ToolUnicodeTransformFactory;

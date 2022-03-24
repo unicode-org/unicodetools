@@ -36,7 +36,7 @@ import org.unicode.cldr.util.CaseIterator;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
-import org.unicode.cldr.util.props.BagFormatter;
+import org.unicode.props.BagFormatter;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.text.utility.Settings;
 

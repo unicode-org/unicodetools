@@ -13,7 +13,7 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.PatternCache;
-import org.unicode.cldr.util.props.ICUPropertyFactory;
+import org.unicode.jsp.ICUPropertyFactory;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Utility;
 

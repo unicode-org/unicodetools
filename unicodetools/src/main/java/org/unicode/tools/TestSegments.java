@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Log;
-import org.unicode.cldr.util.props.RandomStringGenerator;
+import org.unicode.props.RandomStringGenerator;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.tools.Segmenter.Rule.Breaks;
 

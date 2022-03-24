@@ -15,7 +15,7 @@ import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.util.ULocale;
 
-public class LanguageCode { 
+public class LanguageCode {
 
     static public final Pattern languageID = Pattern.compile(
             "      (?: ( [a-z A-Z]{2,8} | [a-z A-Z]{2,3} [-_] [a-z A-Z]{3} )"
@@ -32,12 +32,12 @@ public class LanguageCode {
             .split("\\s+")));
 
     enum Subtag {
-        language, 
-        script, 
-        region, 
+        language,
+        script,
+        region,
         variants,
-        extensions, 
-        privateUse, 
+        extensions,
+        privateUse,
         privateUse2;
         String get(Matcher m) {
             return m.group(ordinal()+1);
@@ -88,8 +88,8 @@ public class LanguageCode {
                         posAfter = input.length();
                     }
                     prefix = "<p><i><b>Ill-Formed Language Identifier: </b></i>" + input.substring(0, posBefore)
-                            + "<span class='x'>" + input.substring(posBefore, i) 
-                            + "×" 
+                            + "<span class='x'>" + input.substring(posBefore, i)
+                            + "×"
                             + input.substring(i, posAfter)
                             + "</span>" + input.substring(posAfter, input.length())
                             + "<br><i>Couldn't parse past the point marked with <span class='x'>×</span>.</i></p>\n";
@@ -130,7 +130,7 @@ public class LanguageCode {
                 }
                 fixed = fixCodes.get(languageCode);
             } else { // must be 2
-                // cases are the following. For the replacement, we use fix(extlang) if valid, otherwise fix(lang) if valid, otherwise fix(extlang) 
+                // cases are the following. For the replacement, we use fix(extlang) if valid, otherwise fix(lang) if valid, otherwise fix(extlang)
                 // zh-cmn - valid => cmn
                 // en-cmn - valid => cmn // but shouldn't be; by canonicalization en-cmn = cmn
                 // eng-cmn - invalid => cmn
@@ -367,17 +367,17 @@ public class LanguageCode {
         switch(code.length()) {
         case 2:
         case 3:
-            icuName = code.compareTo("a") < 0 
+            icuName = code.compareTo("a") < 0
             ? ULocale.getDisplayCountry("und-" + code, ulocale)
                     : ULocale.getDisplayLanguage(code, ulocale);
             break;
-        case 4: 
+        case 4:
             if (code.compareTo("A") >= 0) {
-                icuName = ULocale.getDisplayScript("und-" + code, ulocale); 
+                icuName = ULocale.getDisplayScript("und-" + code, ulocale);
                 break;
             } // otherwise fall through!
-        default: 
-            icuName = ULocale.getDisplayVariant("und-Latn-AQ-" + code, ulocale).toLowerCase(); 
+        default:
+            icuName = ULocale.getDisplayVariant("und-Latn-AQ-" + code, ulocale).toLowerCase();
             break;
         }
         return icuName;

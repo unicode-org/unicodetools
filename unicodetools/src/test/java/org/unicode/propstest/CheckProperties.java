@@ -19,7 +19,7 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.Timer;
 import org.unicode.cldr.util.With;
-import org.unicode.cldr.util.props.ICUPropertyFactory;
+import org.unicode.jsp.ICUPropertyFactory;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.draft.UnicodeDataOutput;
 import org.unicode.draft.UnicodeDataOutput.ItemWriter;

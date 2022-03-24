@@ -32,7 +32,7 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 import org.unicode.cldr.util.Counter;
-import org.unicode.cldr.util.props.ICUPropertyFactory;
+import org.unicode.jsp.ICUPropertyFactory;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;

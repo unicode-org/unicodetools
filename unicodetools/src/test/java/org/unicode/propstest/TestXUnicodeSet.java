@@ -7,6 +7,8 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.UCD.Default;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
+import org.unicode.jsp.MySymbolTable;
+
 import com.ibm.icu.text.UnicodeSet;
 
 public class TestXUnicodeSet extends TestFmwkMinusMinus {
@@ -28,7 +30,7 @@ public class TestXUnicodeSet extends TestFmwkMinusMinus {
     @Test
     public void TestAge() {
         try {
-            org.unicode.jsp.MySymbolTable.setDefaultXSymbolTable(IUP);
+            MySymbolTable.setDefaultXSymbolTable(IUP);
 
             UnicodeSet v70 = new UnicodeSet("[:age=7.0:]").complement().complement();
             UnicodeSet v63 = new UnicodeSet("[:age=6.3:]").complement().complement();
@@ -42,7 +44,7 @@ public class TestXUnicodeSet extends TestFmwkMinusMinus {
             //            System.out.println(Utility.hex(s) + "\t" + age.getValue(s.codePointAt(0)) + "\t" + name.getValue(s.codePointAt(0)));
             //        }
         } finally {
-            org.unicode.jsp.MySymbolTable.setDefaultXSymbolTable(null);
+            MySymbolTable.setDefaultXSymbolTable(null);
         }
     }
 }

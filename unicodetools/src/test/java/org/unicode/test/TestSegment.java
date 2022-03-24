@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.BNF;
 import org.unicode.cldr.util.MapComparator;
-import org.unicode.cldr.util.props.UnicodePropertySymbolTable;
+import org.unicode.props.UnicodePropertySymbolTable;
 import org.unicode.jsp.UnicodeRegex;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;

@@ -42,7 +42,7 @@ import org.unicode.cldr.util.Pair;
 import org.unicode.cldr.util.With;
 import org.unicode.cldr.util.XEquivalenceClass;
 import org.unicode.cldr.util.XEquivalenceClass.Linkage;
-import org.unicode.cldr.util.props.BagFormatter;
+import org.unicode.props.BagFormatter;
 import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.idna.Idna.IdnaType;

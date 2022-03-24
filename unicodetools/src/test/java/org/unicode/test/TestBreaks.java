@@ -1,7 +1,7 @@
 package org.unicode.test;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.props.UnicodePropertySymbolTable;
+import org.unicode.props.UnicodePropertySymbolTable;
 import org.unicode.parse.EBNF;
 import org.unicode.parse.EBNF.Position;
 import org.unicode.props.IndexUnicodeProperties;

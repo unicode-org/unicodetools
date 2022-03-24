@@ -9,8 +9,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.props.BagFormatter;
-import org.unicode.cldr.util.props.ICUPropertyFactory;
+import org.unicode.props.BagFormatter;
+import org.unicode.jsp.ICUPropertyFactory;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;

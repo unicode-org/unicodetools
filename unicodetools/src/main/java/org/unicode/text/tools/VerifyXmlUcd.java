@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.XMLFileReader;
 import org.unicode.cldr.util.XPathParts;
-import org.unicode.cldr.util.props.ICUPropertyFactory;
+import org.unicode.jsp.ICUPropertyFactory;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.Factory;
 import org.unicode.text.UCD.Default;

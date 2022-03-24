@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Locale;
 
 import org.unicode.jsp.Idna.IdnaType;
-import org.unicode.jsp.UnicodeProperty.BaseProperty;
-import org.unicode.jsp.UnicodeProperty.Factory;
-import org.unicode.jsp.UnicodeProperty.SimpleProperty;
+import org.unicode.props.UnicodeProperty.BaseProperty;
+import org.unicode.props.UnicodeProperty.Factory;
+import org.unicode.props.UnicodeProperty.SimpleProperty;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;

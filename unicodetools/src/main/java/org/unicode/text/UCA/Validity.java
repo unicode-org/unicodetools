@@ -16,7 +16,7 @@ import java.util.TreeSet;
 
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.cldr.util.With;
-import org.unicode.cldr.util.props.BagFormatter;
+import org.unicode.props.BagFormatter;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCA.UCA.AppendToCe;
 import org.unicode.text.UCA.UCA.CollatorType;

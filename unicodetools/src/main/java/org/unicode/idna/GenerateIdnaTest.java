@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.props.UnicodeProperty;
-import org.unicode.cldr.util.props.UnicodePropertySymbolTable;
+import org.unicode.props.UnicodePropertySymbolTable;
 import org.unicode.idna.Idna2008.Idna2008Type;
 import org.unicode.idna.LoadIdnaTest.TestLine;
 import org.unicode.idna.Uts46.Errors;

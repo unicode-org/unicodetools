@@ -36,6 +36,9 @@ public class XIDModifications {
     public static UnicodeMap<String> getTypes() {
         return reasons;
     }
+    public static UnicodeMap<String> getReasons() {
+        return reasons;
+    }
     public static UnicodeMap<String> getStatus() {
         return allowed;
     }
