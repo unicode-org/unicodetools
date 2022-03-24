@@ -62,6 +62,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     private static UnicodeSet STUFF_TO_TEST;
     private static UnicodeSet STUFF_TO_TEST_WITH_UNASSIGNED;
 
+
     public static synchronized UnicodeSet getUNASSIGNED() {
         if (UNASSIGNED == null) {
             UNASSIGNED = new UnicodeSet("[:gc=unassigned:]").freeze();
@@ -1558,5 +1559,10 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     //            return transform.transform(codepoint);
     //        }
     //    }
+
+    // from the jsp version
+    public boolean isTrimable() {
+        return !isType(STRING_OR_MISC_MASK);
+    }
 }
 
