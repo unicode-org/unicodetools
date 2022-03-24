@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.unicode.idna;
 
@@ -10,7 +10,7 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.jsp.FileUtilities;
 

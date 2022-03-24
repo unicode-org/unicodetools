@@ -30,7 +30,7 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
@@ -773,7 +773,7 @@ public class WriteCharts implements UCD_Types {
             }
         }
 
-        final String outline = "<td" 
+        final String outline = "<td"
                 + (classType.isEmpty() ? " " : " class='" + classType + "'")
                 + (skipName ? "" : " title='" + Utility.quoteXML(name, true) + "'")
                 + extra + ">"
@@ -785,7 +785,7 @@ public class WriteCharts implements UCD_Types {
 
         output.println(outline);
     }
-    
+
     private static String showCell2(
             String sortKey,
             String s,
@@ -810,7 +810,7 @@ public class WriteCharts implements UCD_Types {
             classname = "new";
             indexHasNew = true;
         }
-        
+
         // TODO: merge with showCell
 
         final String outline = "<td class='" + classname + "'"
@@ -924,7 +924,7 @@ public class WriteCharts implements UCD_Types {
     static String indexAnchorText;
     static String indexAttributes;
     static boolean indexHasNew = false;
-    
+
     static PrintWriter openFile(int count, String directory, int script) throws IOException {
         final String scriptName = getChunkName(script, LONG);
         final String shortScriptName = getChunkName(script, SHORT);
@@ -995,8 +995,8 @@ public class WriteCharts implements UCD_Types {
     // categories in here
     NO_CASE_MAPPING = CAT_OFFSET+50,
     SCRIPT_LIMIT = NO_CASE_MAPPING + 5 - NULL_ORDER;
-  
-    
+
+
     static {
         if (CJK <= UCD_Names.SCRIPT.length) {
             throw new IllegalArgumentException("Adjust CAT_OFFSET to be safe");

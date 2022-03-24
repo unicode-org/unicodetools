@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
@@ -65,7 +65,7 @@ public final class GenerateStandardizedVariants implements UCD_Types {
         final String[] splits = new String[4];
         final String[] codes = new String[2];
         final String[] shapes = new String[4];
-        
+
         ToolUnicodePropertySource tups = ToolUnicodePropertySource.make(Default.ucdVersion());
         final UnicodeProperty ui = tups.getProperty("Unified_Ideograph");
         UnicodeSet uiSet = ui.getSet("Yes");

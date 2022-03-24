@@ -2,7 +2,7 @@ package org.unicode.propstest;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.UCD.Default;
 import org.unicode.unittest.TestFmwkMinusMinus;

@@ -9,8 +9,8 @@ import java.util.TreeSet;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.props.BagFormatter;
 import org.unicode.cldr.util.props.BagFormatter.NameLabel;
-import org.unicode.cldr.util.props.UnicodeProperty;
-import org.unicode.cldr.util.props.UnicodeProperty.UnicodeMapProperty;
+import org.unicode.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -181,7 +181,7 @@ public class GenerateIdna {
                 UnicodeSet ageSet = AGE.getSet(age);
                 missing += ageSet.size();
             }
-        }    
+        }
 
         System.out.println("Missing IDNA2008 Official Values: " + missing);
     }
@@ -193,7 +193,7 @@ public class GenerateIdna {
         for (Age_Values age : AGE.values()) {
             UnicodeSet ageSet = AGE.getSet(age);
             System.out.println(age + "\t" + ageSet.size());
-        }    
+        }
     }
 
     private static void showSet(String title, UnicodeSet validSet, UnicodeSet iDNA2008Valid2) {
@@ -349,7 +349,7 @@ public class GenerateIdna {
             }
             if (deviationSet.contains(cp)) {
                 result = Row.of(IdnaType.deviation, baseMappingValue);
-            } else if (baseExclusionSet.contains(cp) 
+            } else if (baseExclusionSet.contains(cp)
                     || false && bidiControls.contains(cp)) { // Step 5.
                 result = disallowedResult;
             } else if (!labelSeparator.contains(cp) && !baseValidSet.containsAll(baseMappingValue)) {
@@ -453,9 +453,9 @@ public class GenerateIdna {
         final PrintWriter writer = FileUtilities.openUTF8Writer(GEN_IDNA_DIR, unversionedFileName);
 
         writer.println(Utility.getBaseDataHeader(
-            unversionedFileName, 
-            46, 
-            "Unicode IDNA Compatible Preprocessing", 
+            unversionedFileName,
+            46,
+            "Unicode IDNA Compatible Preprocessing",
             Default.ucdVersion()));
 //        writer.println(
 //                "#\n" +

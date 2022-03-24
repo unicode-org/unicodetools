@@ -16,11 +16,11 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.props.UnicodeProperty;
-import org.unicode.cldr.util.props.UnicodeProperty.AliasAddAction;
-import org.unicode.cldr.util.props.UnicodeProperty.BaseProperty;
-import org.unicode.cldr.util.props.UnicodeProperty.SimpleProperty;
-import org.unicode.cldr.util.props.UnicodeProperty.UnicodeMapProperty;
+import org.unicode.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty.AliasAddAction;
+import org.unicode.props.UnicodeProperty.BaseProperty;
+import org.unicode.props.UnicodeProperty.SimpleProperty;
+import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
@@ -47,9 +47,9 @@ import com.ibm.icu.util.VersionInfo;
  * Class that provides all of the properties for formatting in the Unicode
  * standard data files. Note that many of these are generated directly from UCD,
  * and many from {@link DerivedProperty}. So fixes to some will go there.
- * 
+ *
  * @author markdavis
- * 
+ *
  */
 public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
 
@@ -107,7 +107,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         UnicodeSet tags = new UnicodeSet(0xE0020,0xE007f).freeze();
         VersionInfo versionInfo = VersionInfo.getInstance(version);
 
-        
+
         IndexUnicodeProperties iup = IndexUnicodeProperties.make(versionInfo);
         final UnicodeSet E_Modifier = iup.loadEnum(UcdProperty.Emoji_Modifier, Binary.class).getSet(Binary.Yes);
 
@@ -775,12 +775,12 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
 
             /*
 Virama  = Indic_Syllabic_Category = Virama, or
-Indic_Syllabic_Category = Invisible_Stacker 
-and not General_Category = Spacing_Mark 
+Indic_Syllabic_Category = Invisible_Stacker
+and not General_Category = Spacing_Mark
 
 LinkingConsonant    = Indic_Syllabic_Category = Consonant
 
-extend -and not GCB = Virama 
+extend -and not GCB = Virama
              */
             //IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
 
@@ -854,12 +854,12 @@ extend -and not GCB = Virama
             //            unicodeMap.putAll(E_Modifier, "E_Modifier");
             /*
 Virama  = Indic_Syllabic_Category = Virama, or
-Indic_Syllabic_Category = Invisible_Stacker 
-and not General_Category = Spacing_Mark 
+Indic_Syllabic_Category = Invisible_Stacker
+and not General_Category = Spacing_Mark
 
 LinkingConsonant    = Indic_Syllabic_Category = Consonant
 
-extend -and not GCB = Virama 
+extend -and not GCB = Virama
 Glue_After_Zwj empty
 E_Base_GAZ empty
 E_Base  Emoji characters listed as Emoji_Modifier_Base=Yes in emoji-data.txt
@@ -990,7 +990,7 @@ U+FF1A ( ： ) FULLWIDTH COLON
                     .add(0xFF0C).add(0xFF1B).remove(0x002E).remove(0x003A).remove(0xFE13), "MidNum");
             /*
              * 066C ( ٬ ) ARABIC THOUSANDS SEPARATOR
-             * 
+             *
              * FE50 ( ﹐ ) SMALL COMMA FE54 ( ﹔ ) SMALL SEMICOLON FF0C ( ， )
              * FULLWIDTH COMMA FF1B ( ； ) FULLWIDTH SEMICOLON
              */
@@ -1258,12 +1258,12 @@ isTitlecase(X) is false.
                 return "";
             }
         };
-        if (unicodePropertyType == UnicodeProperty.BINARY) { 
-            item.addValueAliases(               
+        if (unicodePropertyType == UnicodeProperty.BINARY) {
+            item.addValueAliases(
                     new String[][] {
                         { "No", "N" },
                         { "Yes", "Y" },
-                    }, 
+                    },
                     AliasAddAction.IGNORE_IF_MISSING);
         } else {
             item.setValues(defaultValue);
@@ -1394,7 +1394,7 @@ isTitlecase(X) is false.
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see
      * com.ibm.icu.dev.test.util.UnicodePropertySource#getPropertyAliases(java
      * .util.Collection)
@@ -1695,7 +1695,7 @@ isTitlecase(X) is false.
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see com.ibm.icu.dev.test.util.UnicodePropertySource#getPropertyType()
          */
         private int getPropertyTypeInternal() {
@@ -1781,22 +1781,22 @@ isTitlecase(X) is false.
     /*
      * static class DerivedPropertyWrapper extends UnicodeProperty { UCDProperty
      * derivedProperty; UCD ucd;
-     * 
+     *
      * DerivedPropertyWrapper(int derivedPropertyID, UCD ucd) { this.ucd = ucd;
      * derivedProperty = DerivedProperty.make(derivedPropertyID, ucd); } protected
      * String _getVersion() { return ucd.getVersion(); }
-     * 
+     *
      * protected String _getValue(int codepoint) { return
      * derivedProperty.getValue(codepoint, UCD_Types.LONG); } protected List
      * _getNameAliases(List result) { if (result != null) result = new
      * ArrayList(1); addUnique(derivedProperty.getName(UCD_Types.SHORT), result);
      * addUnique(derivedProperty.getName(UCD_Types.LONG), result); return null; }
-     * 
+     *
      * protected List _getValueAliases(String valueAlias, List result) { // TODO
      * Auto-generated method stub return null; } protected List
      * _getAvailableValues(List result) { // TODO Auto-generated method stub
      * return null; }
-     * 
+     *
      * }
      */
 

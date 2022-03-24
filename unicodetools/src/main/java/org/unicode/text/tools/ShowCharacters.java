@@ -10,8 +10,8 @@ import java.util.TreeMap;
 
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.With;
-import org.unicode.cldr.util.props.UnicodeProperty;
-import org.unicode.cldr.util.props.UnicodeProperty.RegexMatcher;
+import org.unicode.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty.RegexMatcher;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
@@ -37,7 +37,7 @@ public class ShowCharacters {
     static UnicodeMap<String> names = iup.load(UcdProperty.Name);
     static UnicodeMap<Age_Values> ages = iup.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
     static CandidateData CD = CandidateData.getInstance();
-    
+
     public static void main(String[] args) {
         show("New", CD.keySet());
         System.out.println();
@@ -48,7 +48,7 @@ public class ShowCharacters {
         show("Emoji_Gender_Base", GenerateEmojiData.genderBase);
         show("Emoji_Hair_Base", GenerateEmojiData.hairBase);
         show("Emoji_Direction_Base", GenerateEmojiData.directionBase);
-        
+
         UnicodeSet mods = EmojiData.EMOJI_DATA.getModifierBases();
         UnicodeSet modsWithVS = new UnicodeSet(mods).retainAll(EmojiData.EMOJI_DATA.getEmojiWithVariants());
         UnicodeSet modsWithVSAndDefaultEmoji = new UnicodeSet(modsWithVS)
@@ -59,14 +59,14 @@ public class ShowCharacters {
         .retainAll(EmojiData.EMOJI_DATA.getTextPresentationSet());
         show("basesWithVSAndDefaultText", modsWithVSAndDefaultText);
     }
-    
+
     private static void show(String prop, UnicodeSet unicodeSet) {
         System.out.println("# All omitted code points have " + prop + "=No\n"
                 + "# @missing: 0000..10FFFF  ; " + prop + " ; No\n");
         for (String s : unicodeSet) {
-            System.out.println(Utility.hex(s) + " ;\t" + prop 
+            System.out.println(Utility.hex(s) + " ;\t" + prop
                     + "\t# " + getAge(s)
-                    + " (" + s + ") " 
+                    + " (" + s + ") "
                     + getName(s));
         }
         System.out.println("# total:\t" + unicodeSet.size() + "\n# uset: \t" + unicodeSet.toPattern(false) + "\n");
@@ -80,7 +80,7 @@ public class ShowCharacters {
     private static String getName(String s) {
         return CldrUtility.ifNull(CD.getName(s),names.get(s));
     }
-    
+
     public void test(String[] args) {
         final ToolUnicodePropertySource pSource = ToolUnicodePropertySource.make(null);
         final Map<R5<String, String, String, String, String>,UnicodeSet> data = new TreeMap();

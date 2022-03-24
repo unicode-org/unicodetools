@@ -3,7 +3,7 @@ package org.unicode.props;
 import java.util.BitSet;
 import java.util.HashMap;
 
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UcdPropertyValues.Canonical_Combining_Class_Values;
 import org.unicode.text.UCD.NormalizationData;
 import org.unicode.text.utility.Utility;
@@ -43,7 +43,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
             System.out.println("Nulls: " + nullValues);
         }
         canonical.freeze();
-        
+
         UnicodeProperty dtp = properties.getProperty("dt");
         UnicodeProperty dmp = properties.getProperty("dm");
         UnicodeProperty ce = properties.getProperty("composition_exclusion");
@@ -72,10 +72,10 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
                         um2 = new HashMap<>();
                         pairwiseComposition.put(first, um2);
                     }
-                    um2.put(second, cp);        
+                    um2.put(second, cp);
                 }
             }
-            
+
             buffer.setLength(0);
             getRecursiveDecomposition2(cp, false, dtp, dmp, buffer);
             String nfdstr = buffer.toString();
@@ -91,7 +91,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
         nfkd.freeze();
         pairwiseComposition.freeze(); // later do deep freeze
     }
-    
+
     public short getCcc(int cp) {
         return canonical.get(cp);
     }
@@ -169,35 +169,35 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
         // TODO Auto-generated method stub
         return false;
     }
-    
+
     public enum Type {nfd, nfc, nfkd, nfkc}
 
     public String normalize(CharSequence source, Type type) {
         StringBuilder target = new StringBuilder();
         switch (type) {
-        case nfd: 
+        case nfd:
             internalDecompose(source, target, false);
         break;
-        case nfkd: 
+        case nfkd:
             internalDecompose(source, target, true);
         break;
-        case nfc: 
+        case nfc:
             internalDecompose(source, target, false);
             internalCompose(target);
         break;
-        case nfkc: 
+        case nfkc:
             internalDecompose(source, target, true);
             internalCompose(target);
         break;
         }
         return target.toString();
     }
-    
+
     public String normalize(int source, Type type) {
         StringBuilder target = new StringBuilder();
-        
-        String buffer = type == Type.nfkd || type == Type.nfkc 
-                ? nfkd.get(source) 
+
+        String buffer = type == Type.nfkd || type == Type.nfkc
+                ? nfkd.get(source)
                         : nfd.get(source);
         if (buffer == null) {
             target.append(source);
@@ -206,10 +206,10 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
         }
 
         switch (type) {
-        case nfc: 
+        case nfc:
             internalCompose(target);
         break;
-        case nfkc: 
+        case nfkc:
             internalCompose(target);
         break;
         }
@@ -297,7 +297,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
             if (um2 != null) {
                 Integer temp = um2.get(ch);
                 if (temp != null) {
-                  composite = temp;  
+                  composite = temp;
                 }
             }
             if (composite != NormalizationData.NOT_COMPOSITE

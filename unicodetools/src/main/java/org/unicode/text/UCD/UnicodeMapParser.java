@@ -5,8 +5,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.InternalCldrException;
-import org.unicode.cldr.util.props.UnicodeProperty;
-import org.unicode.cldr.util.props.UnicodeProperty.Factory;
+import org.unicode.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty.Factory;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
@@ -260,7 +260,7 @@ public class UnicodeMapParser<V> {
         }
         boolean oldVersion = source.charAt(current+3) == '*';
         UnicodeProperty prop = (oldVersion ?
-                oldUnicodePropertyFactory.getProperty(source.substring(current+4, term)) : 
+                oldUnicodePropertyFactory.getProperty(source.substring(current+4, term)) :
                     unicodePropertyFactory.getProperty(source.substring(current+3, term)));
         if (prop == null) {
             pos.setErrorIndex(current+4);
@@ -290,12 +290,12 @@ public class UnicodeMapParser<V> {
 
     public void addUnicodeMap(Operation op, UnicodeMap<V> um, UnicodeMap<V> result) {
         switch(op) {
-        case REMOVE_KEYS: 
-            result.putAll(um.keySet(), null); 
+        case REMOVE_KEYS:
+            result.putAll(um.keySet(), null);
             break;
-        case RETAIN_KEYS: 
+        case RETAIN_KEYS:
             UnicodeSet toRemove = new UnicodeSet(result.keySet()).removeAll(um.keySet());
-            result.putAll(toRemove, null); 
+            result.putAll(toRemove, null);
             break;
         case ADD: throw new InternalCldrException("Should never happen");
         }
@@ -440,8 +440,8 @@ public class UnicodeMapParser<V> {
     //     */
     //    public static <V> int getContainmentRelation(UnicodeMap<V> a, UnicodeMap<V> b) {
     //        if (a.size() == 0) {
-    //            return (b.size() == 0) 
-    //                    ? CollectionUtilities.ALL_EMPTY 
+    //            return (b.size() == 0)
+    //                    ? CollectionUtilities.ALL_EMPTY
     //                            : CollectionUtilities.NOT_A_SUPERSET_B;
     //        } else if (b.size() == 0) {
     //            return CollectionUtilities.NOT_A_SUBSET_B;
@@ -457,13 +457,13 @@ public class UnicodeMapParser<V> {
     //        }
     //        for (EntryRange ae : a.entryRanges()) {
     //            if (ae.string != null) {
-    //                result |= (Objects.equals(ae.value, b.get(ae.string))) 
-    //                        ? CollectionUtilities.NOT_A_DISJOINT_B 
+    //                result |= (Objects.equals(ae.value, b.get(ae.string)))
+    //                        ? CollectionUtilities.NOT_A_DISJOINT_B
     //                                : CollectionUtilities.NOT_A_SUBSET_B;
     //            } else {
     //                for (int i = ae.codepoint; i <= ae.codepointEnd; ++i) {
-    //                    result |= (Objects.equals(ae.value, b.get(i))) 
-    //                            ? CollectionUtilities.NOT_A_DISJOINT_B 
+    //                    result |= (Objects.equals(ae.value, b.get(i)))
+    //                            ? CollectionUtilities.NOT_A_DISJOINT_B
     //                                    : CollectionUtilities.NOT_A_SUBSET_B;
     //                }
     //            }

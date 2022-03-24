@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CldrUtility;
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.cldr.util.props.UnicodePropertySymbolTable;
 import org.unicode.idna.Idna2008.Idna2008Type;
 import org.unicode.idna.LoadIdnaTest.TestLine;
@@ -51,7 +51,7 @@ public class GenerateIdnaTest {
     private static final boolean NEW_FORMAT = true;
     private static final int UNDEFINED;
 
-    
+
     static {
         // find a character that is likely to remain undefined, and is if possible in the BMP.
         // so we take the highest BMP if possible, then the highest smp
@@ -104,9 +104,9 @@ public class GenerateIdnaTest {
         final PrintWriter out2 = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.GEN_IDNA_DIR, NEW_FILE_NAME);
 //        out2.println(Utility.getDataHeader(NEW_FILE_NAME));
         out2.println(Utility.getBaseDataHeader(
-                NEW_FILE_NAME, 
-                46, 
-                "Unicode IDNA Compatible Preprocessing", 
+                NEW_FILE_NAME,
+                46,
+                "Unicode IDNA Compatible Preprocessing",
                 Default.ucdVersion()));
 
         FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader2.txt").toString().substring(5), "UTF-8", out2);
@@ -260,9 +260,9 @@ public class GenerateIdnaTest {
 //            toUnicodeErrors2 = EnumSet.copyOf(toUnicodeErrors2);
 //            toUnicodeErrors2.add(Errors.NV8);
 //        }
-//        
+//
 //        // Hack to check whether problems were introduced. Needs to be deeper check in processMap
-//        
+//
 //        final Set<Errors> throwAway = EnumSet.noneOf(Errors.class);
 //        Set<Errors> nonTransitionalErrors2 = nonTransitionalErrors;
 //        final String nontransitional2 = Uts46.SINGLETON.toASCII(unicode, IdnaChoice.nontransitional, throwAway);
@@ -278,7 +278,7 @@ public class GenerateIdnaTest {
 //            nonTransitionalErrors2.add(Errors.NV8);
 //        }
 
-        out2.println(source 
+        out2.println(source
                 + "; " + CldrUtility.ifEqual(unicode, source, "")
                 + "; " + CldrUtility.ifEqual(toUnicodeErrors, Collections.EMPTY_SET, "")
                 + "; " + CldrUtility.ifEqual(nontransitional, unicode, "")
@@ -393,7 +393,7 @@ public class GenerateIdnaTest {
                 + (hasUnicodeErrors ? showErrors(toUnicodeErrors) : unicode.equals(source) ? "" : unicodeReveal)
                 + ";\t"
                 + (hasAsciiErrors ? showErrors(asciiErrors) : unicode.equals(ascii) ? "" : hexForTest.transform(ascii))
-                + (Idna2008.GRANDFATHERED_VALID.containsSome(unicode) ? ";\tXV8" 
+                + (Idna2008.GRANDFATHERED_VALID.containsSome(unicode) ? ";\tXV8"
                         : hasUnicodeErrors || validIdna2008 ? "" :  ";\tNV8") // checking
                 + (!NEW_FORMAT ? "" : ""
                         + (unicodeReveal.equals(unicode) ? "" : "\t#\t" + removeInvisible.transform(unicode)))

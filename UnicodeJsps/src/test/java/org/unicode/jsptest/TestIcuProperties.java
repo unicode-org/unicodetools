@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.unicode.cldr.util.props.ICUPropertyFactory;
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
