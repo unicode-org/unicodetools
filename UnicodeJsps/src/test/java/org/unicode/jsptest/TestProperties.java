@@ -21,7 +21,7 @@ import org.unicode.jsp.Builder;
 import org.unicode.jsp.NFM;
 import org.unicode.jsp.PropertyMetadata;
 import org.unicode.jsp.UnicodeJsp;
-import org.unicode.jsp.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.XPropertyFactory;

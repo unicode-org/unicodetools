@@ -28,7 +28,7 @@ import org.unicode.unittest.TestFmwkMinusMinus;
 import org.unicode.jsp.Idna2003;
 import org.unicode.jsp.Idna2008;
 import org.unicode.jsp.UnicodeJsp;
-import org.unicode.jsp.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.jsp.UnicodeRegex;
 import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.UnicodeUtilities;

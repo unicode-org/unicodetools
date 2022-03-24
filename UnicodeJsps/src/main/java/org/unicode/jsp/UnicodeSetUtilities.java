@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.MultiComparator;
-import org.unicode.jsp.UnicodeProperty.PatternMatcher;
+import org.unicode.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty.PatternMatcher;
 import org.unicode.jsp.UnicodeSetUtilities.ComparisonMatcher.Relation;
 
 import com.ibm.icu.lang.CharSequences;
@@ -26,7 +27,7 @@ public class UnicodeSetUtilities {
 
     public static final UnicodeSet SINGLETONS = new UnicodeSet("[©®‼⁉™ℹ↔-↙↩↪⌚⌛⌨⏏⏩-⏳⏸-⏺Ⓜ▪▫▶◀◻-◾☀-☄☎☑☔☕☘☝☠☢☣☦☪☮☯☸-☺♈-♓♠♣♥♦♨♻♿⚒-⚔⚖⚗⚙⚛⚜⚠⚡"
             + "⚪⚫⚰⚱⚽⚾⛄⛅⛈⛎⛏⛑⛓⛔⛩⛪⛰-⛵⛷-⛺⛽✂✅✈-✍✏✒✔✖✝✡✨✳✴❄❇❌❎❓-❕❗❣❤➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆑-🆚🈁🈂🈚🈯🈲-🈺"
-            + "🉐🉑🌀-🌡🌤-🎓🎖🎗🎙-🎛🎞-🏰🏳-🏵🏷-📽📿-🔽🕉-🕎🕐-🕧🕯🕰🕳-🕹🖇🖊-🖍🖐🖕🖖🖥🖨🖱🖲🖼🗂-🗄🗑-🗓🗜-🗞🗡🗣🗯🗳🗺-🙏🚀-🛅🛋-🛐🛠-🛥🛩🛫🛬🛰🛳🤐-🤘🦀-🦄🧀]").freeze();    
+            + "🉐🉑🌀-🌡🌤-🎓🎖🎗🎙-🎛🎞-🏰🏳-🏵🏷-📽📿-🔽🕉-🕎🕐-🕧🕯🕰🕳-🕹🖇🖊-🖍🖐🖕🖖🖥🖨🖱🖲🖼🗂-🗄🗑-🗓🗜-🗞🗡🗣🗯🗳🗺-🙏🚀-🛅🛋-🛐🛠-🛥🛩🛫🛬🛰🛳🤐-🤘🦀-🦄🧀]").freeze();
     public static final UnicodeSet KEYCAPS = new UnicodeSet("[{#⃣}{*⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}]").freeze();
     public static final UnicodeSet FLAGS = new UnicodeSet("[{🇦🇨}"
             + "{🇦🇩}{🇦🇪}{🇦🇫}{🇦🇬}{🇦🇮}{🇦🇱}{🇦🇲}{🇦🇴}{🇦🇶}{🇦🇷}{🇦🇸}{🇦🇹}{🇦🇺}{🇦🇼}{🇦🇽}{🇦🇿}{🇧🇦}{🇧🇧}{🇧🇩}{🇧🇪}{🇧🇫}{🇧🇬}{🇧🇭}{🇧🇮}{🇧🇯}{🇧🇱}{🇧🇲}{🇧🇳}{🇧🇴}{🇧🇶}{🇧🇷}{🇧🇸}"
@@ -69,7 +70,7 @@ public class UnicodeSetUtilities {
         }
         return b.toString();
     }
-    
+
     private static UnicodeSet OK_AT_END = new UnicodeSet("[ \\]\t]").freeze();
     private static Pattern UPLUS = Pattern.compile("U\\+(1?[A-Za-z0-9]{3,5})");
     private static Pattern DOTDOT = Pattern.compile("\\.\\.");
@@ -88,8 +89,8 @@ public class UnicodeSetUtilities {
         int parseEnd = parsePosition.getIndex();
         if (parseEnd != parseInput.length() && !UnicodeSetUtilities.OK_AT_END.containsAll(parseInput.substring(parseEnd))) {
             parseEnd--; // get input offset
-            throw new IllegalArgumentException("Additional characters past the end of the set, at " 
-                    + parseEnd + ", ..." 
+            throw new IllegalArgumentException("Additional characters past the end of the set, at "
+                    + parseEnd + ", ..."
                     + input.substring(Math.max(0, parseEnd - 10), parseEnd)
                     + "|"
                     + input.substring(parseEnd, Math.min(input.length(), parseEnd + 10))
@@ -120,7 +121,7 @@ public class UnicodeSetUtilities {
         //      String[] propertyNames = propertyName.split("[*]");
         //      for (int i = propertyNames.length - 1; i >= 0; ++i) {
         //        String pname = propertyNames[i];
-        //        
+        //
         //      }
         //      return null;
         //    }
@@ -140,7 +141,7 @@ public class UnicodeSetUtilities {
                 if (posNotEqual < 0) posNotEqual = propertyName.length();
                 if (posColon < 0) posColon = propertyName.length();
                 int opPos = posNotEqual < posColon ? posNotEqual : posColon;
-                propertyValue = propertyValue.length() == 0 ? propertyName.substring(opPos+1) 
+                propertyValue = propertyValue.length() == 0 ? propertyName.substring(opPos+1)
                         : propertyName.substring(opPos+1) + "=" + propertyValue;
                 propertyName = propertyName.substring(0,opPos);
                 if (posNotEqual < posColon) {
@@ -182,7 +183,7 @@ public class UnicodeSetUtilities {
             return status;
         }
 
-        private boolean applyPropertyAlias0(UnicodeProperty prop, 
+        private boolean applyPropertyAlias0(UnicodeProperty prop,
                 String propertyValue, UnicodeSet result, boolean invert) {
             result.clear();
             String propertyName = prop.getName();
