@@ -41,18 +41,24 @@ jobs:
         run: mvn -s .github/workflows/mvn-settings.xml -B compile install -DskipTests=true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Run command - Build and Test
         run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Run command - Make Unicode Files
         run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 15.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/emoji/aac.md#aacorderjava
       - name: Run command - AAC Order
         run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.tools.AacOrder" -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/uca/index.md#tools--tests
       # Note: Not running desuffixucd.py in UCA jobs because no version numbers detected in data file names
       - name: Run command - UCA - collation validity log
         run: |
@@ -104,24 +110,30 @@ jobs:
           mvn -s .github/workflows/mvn-settings.xml -B compile install -DskipTests=true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Run command - Build and Test
         run: |
           cd unicodetools/mine/src
           MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Run command - Make Unicode Files
         run: |
           cd unicodetools/mine/src
           mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 15.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/emoji/aac.md#aacorderjava
       - name: Run command - AAC Order
         run: |
           cd unicodetools/mine/src
           mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.tools.AacOrder"  -Dexec.args="version 15.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/uca/index.md#tools--tests
       # Note: Not running desuffixucd.py in UCA jobs because no version numbers detected in data file names
       - name: Run command - UCA - collation validity log
         run: |
