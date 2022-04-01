@@ -53,6 +53,22 @@ jobs:
         run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.tools.AacOrder" -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Note: Not running desuffixucd.py in UCA jobs because no version numbers detected in data file names
+      - name: Run command - UCA - collation validity log
+        run: |
+          # invoke main() in class ...UCA.Main
+          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCA.Main"  -Dexec.args="writeCollationValidityLog"  -DUVERSION=15.0.0  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)
+          # check for output file
+          compgen -G "Generated/UCA/*/CheckCollationValidity.html"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # TODO: file issue to uncomment, debug errors, and fix?
+      # - name: Run command - UCA - for CLDR & ICU
+      #   run: |
+      #     # invoke main() in class ...UCA.Main
+      #     MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCA.Main"  -Dexec.args="ICU"  -DUVERSION=15.0.0  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   out-of-source-build:
     name: Out-of-source Instructions
@@ -106,3 +122,21 @@ jobs:
           mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.tools.AacOrder"  -Dexec.args="version 15.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Note: Not running desuffixucd.py in UCA jobs because no version numbers detected in data file names
+      - name: Run command - UCA - collation validity log
+        run: |
+          cd unicodetools/mine/src
+          # invoke main() in class ...UCA.Main
+          mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCA.Main"  -Dexec.args="writeCollationValidityLog"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
+          # check for output file
+          compgen -G "../Generated/UCA/*/CheckCollationValidity.html"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # TODO: file issue to uncomment, debug errors, and fix?
+      # - name: Run command - UCA - for CLDR & ICU
+      #   run: |
+      #     cd unicodetools/mine/src
+      #     # invoke main() in class ...UCA.Main
+      #     mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCA.Main"  -Dexec.args="ICU"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
