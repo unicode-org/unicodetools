@@ -43,6 +43,7 @@ perf-*.xml
 test-*.xml
 
 # Directories
+.settings/
 .vs/
 .vscode/
 ARM/
