@@ -19,13 +19,12 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.props.UnicodeLabel;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.CollectionUtilities.InverseMatcher;
-import com.ibm.icu.dev.util.CollectionUtilities.ObjectMatcher;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.SymbolTable;
@@ -307,7 +306,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             for (UnicodeSetIterator usi = getStuffToTest(uniformUnassigned); usi.next();) { // int i = 0; i <= 0x10FFFF; ++i
                 int i = usi.codepoint;
                 String value = getValue(i);
-                if (value != null && matcher.matches(value)) {
+                if (value != null && matcher.test(value)) {
                     result.add(i);
                 }
             }
@@ -323,8 +322,8 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             while (it2.hasNext()) {
                 String value2 = (String) it2.next();
                 // System.out.println("Values:" + value2);
-                if (matcher.matches(value2)
-                        || matcher.matches(toSkeleton(value2))) {
+                if (matcher.test(value2)
+                        || matcher.test(toSkeleton(value2))) {
                     um.keySet(value, result);
                     continue main;
                 }
@@ -1087,12 +1086,11 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         }
     }
 
-    public interface PatternMatcher extends ObjectMatcher {
+    public interface PatternMatcher extends Predicate<String> {
         public PatternMatcher set(String pattern);
     }
 
-    public static class InversePatternMatcher extends InverseMatcher implements
-    PatternMatcher {
+    public static class InversePatternMatcher implements PatternMatcher {
         PatternMatcher other;
 
         public PatternMatcher set(PatternMatcher toInverse) {
@@ -1100,8 +1098,8 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             return this;
         }
 
-        public boolean matches(Object value) {
-            return !other.matches(value);
+        public boolean test(String value) {
+            return !other.test(value);
         }
 
         public PatternMatcher set(String pattern) {
@@ -1120,7 +1118,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             this.pattern = pattern;
         }
 
-        public boolean matches(Object value) {
+        public boolean test(String value) {
             if (comparator == null)
                 return pattern.equals(value);
             return comparator.compare(pattern, value) == 0;
@@ -1140,7 +1138,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             return this;
         }
         UFormat foo;
-        public boolean matches(Object value) {
+        public boolean test(String value) {
             matcher.reset(value.toString());
             return matcher.find();
         }

@@ -960,7 +960,7 @@ public class TestUnicodeInvariants {
 
     static final UnicodeProperty.PatternMatcher NULL_MATCHER = new UnicodeProperty.PatternMatcher() {
         @Override
-        public boolean matches(Object o) {
+        public boolean test(String o) {
             return o == null || "".equals(o);
         }
         @Override

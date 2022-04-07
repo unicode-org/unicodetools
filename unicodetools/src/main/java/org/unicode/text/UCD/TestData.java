@@ -687,7 +687,7 @@ public class TestData implements UCD_Types {
             return this;
         }
         @Override
-        public boolean matches(Object value) {
+        public boolean test(String value) {
             matcher.reset((String)value);
             return matcher.matches();
         }
