@@ -68,11 +68,10 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
      * @return A processed Java regex pattern, suitable for input to
      *         Pattern.compile().
      */
-    @Override
     public String transform(String regex) {
-        final StringBuilder result = new StringBuilder();
-        final UnicodeSet temp = new UnicodeSet();
-        final ParsePosition pos = new ParsePosition(0);
+        StringBuilder result = new StringBuilder();
+        UnicodeSet temp = new UnicodeSet();
+        ParsePosition pos = new ParsePosition(0);
         int state = 0; // 1 = after \
 
         // We add each character unmodified to the output, unless we have a
@@ -81,7 +80,7 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
 
         for (int i = 0; i < regex.length(); ++i) {
             // look for UnicodeSets, allowing for quoting with \ and \Q
-            final char ch = regex.charAt(i);
+            char ch = regex.charAt(i);
             switch (state) {
             case 0: // we only care about \, and '['.
                 if (ch == '\\') {
@@ -172,7 +171,7 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
      * </pre>
      * <p>
      * Caveats: at this point the parsing is simple; for example, # cannot be
-     * quoted (use \\u0023); you can set it to null to disable.
+     * quoted (use \\u0023); you can set it to null to disable. 
      * The equality sign and a few others can be reset with
      * setBnfX().
      * 
@@ -184,26 +183,26 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
      * @return Pattern
      */
     public String compileBnf(List<String> lines) {
-        final Map<String, String> variables = getVariables(lines);
-        final Set<String> unused = new LinkedHashSet<String>(variables.keySet());
+        Map<String, String> variables = getVariables(lines);
+        Set<String> unused = new LinkedHashSet<String>(variables.keySet());
         // brute force replacement; do twice to allow for different order
         // later on can optimize
         for (int i = 0; i < 2; ++i) {
-            for (final String variable : variables.keySet()) {
-                final String definition = variables.get(variable);
-                for (final String variable2 : variables.keySet()) {
+            for (String variable : variables.keySet()) {
+                String definition = variables.get(variable);
+                for (String variable2 : variables.keySet()) {
                     if (variable.equals(variable2)) {
                         continue;
                     }
-                    final String definition2 = variables.get(variable2);
-                    final String altered2 = definition2.replace(variable, definition);
+                    String definition2 = variables.get(variable2);
+                    String altered2 = definition2.replace(variable, definition);
                     if (!altered2.equals(definition2)) {
                         unused.remove(variable);
                         variables.put(variable2, altered2);
                         if (log != null) {
                             try {
                                 log.append(variable2 + "=" + altered2 + ";");
-                            } catch (final IOException e) {
+                            } catch (IOException e) {
                                 throw (IllegalArgumentException) new IllegalArgumentException().initCause(e);
                             }
                         }
@@ -260,9 +259,9 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
      * @throws IOException
      */
     public static List<String> loadFile(String file, List<String> result) throws IOException {
-        final BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+        BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
         while (true) {
-            final String line = in.readLine();
+            String line = in.readLine();
             if (line == null) {
                 break;
             }
@@ -275,12 +274,11 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
     /* (non-Javadoc)
      * @see com.ibm.icu.util.Freezable#cloneAsThawed()
      */
-    @Override
     public Object cloneAsThawed() {
         // TODO Auto-generated method stub
         try {
             return clone();
-        } catch (final CloneNotSupportedException e) {
+        } catch (CloneNotSupportedException e) {
             throw new IllegalArgumentException(); // should never happen
         }
     }
@@ -288,7 +286,6 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
     /* (non-Javadoc)
      * @see com.ibm.icu.util.Freezable#freeze()
      */
-    @Override
     public Object freeze() {
         // no action needed now.
         return this;
@@ -297,7 +294,6 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
     /* (non-Javadoc)
      * @see com.ibm.icu.util.Freezable#isFrozen()
      */
-    @Override
     public boolean isFrozen() {
         // at this point, always true
         return true;
@@ -308,12 +304,12 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
     private int processSet(String regex, int i, StringBuilder result, UnicodeSet temp, ParsePosition pos) {
         try {
             pos.setIndex(i);
-            final UnicodeSet x = temp.clear().applyPattern(regex, pos, symbolTable, 0);
+            UnicodeSet x = temp.clear().applyPattern(regex, pos, symbolTable, 0);
             x.complement().complement(); // hack to fix toPattern
             result.append(x.toPattern(false));
             i = pos.getIndex() - 1; // allow for the loop increment
             return i;
-        } catch (final Exception e) {
+        } catch (Exception e) {
             throw (IllegalArgumentException) new IllegalArgumentException("Error in " + regex).initCause(e);
         }
     }
@@ -322,13 +318,12 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
     private String bnfCommentString = "#";
     private String bnfVariableInfix = "=";
     private String bnfLineSeparator = "\n";
-    private final Appendable log = null;
+    private Appendable log = null;
 
-    private final Comparator<String> LongestFirst = new Comparator<String> () {
-        @Override
+    private Comparator<String> LongestFirst = new Comparator<String> () {
         public int compare(String arg0, String arg1) {
-            final int len0 = arg0.length();
-            final int len1 = arg1.length();
+            int len0 = arg0.length();
+            int len1 = arg1.length();
             if (len0 != len1) {
                 return len1 - len0;
             }
@@ -338,9 +333,9 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
 
 
     private Map<String,String> getVariables(List<String> lines) {
-        final Map<String,String> variables = new TreeMap<String, String>(LongestFirst);
+        Map<String,String> variables = new TreeMap<String, String>(LongestFirst);
         String variable = null;
-        final StringBuffer definition = new StringBuffer();
+        StringBuffer definition = new StringBuffer();
         int count = 0;
         for (String line : lines) {
             ++count;
@@ -353,12 +348,12 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
             }
 
             if (bnfCommentString != null) {
-                final int hashPos = line.indexOf(bnfCommentString);
+                int hashPos = line.indexOf(bnfCommentString);
                 if (hashPos >= 0) {
                     line = line.substring(0, hashPos);
                 }
             }
-            final String trimline = line.trim();
+            String trimline = line.trim();
             if (trimline.length() == 0) {
                 continue;
             }
@@ -368,11 +363,11 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
             if (linePart.trim().length() == 0) {
                 continue;
             }
-            final boolean terminated = trimline.endsWith(";");
+            boolean terminated = trimline.endsWith(";");
             if (terminated) {
                 linePart = linePart.substring(0,linePart.lastIndexOf(';'));
             }
-            final int equalsPos = linePart.indexOf(bnfVariableInfix);
+            int equalsPos = linePart.indexOf(bnfVariableInfix);
             if (equalsPos >= 0) {
                 if (variable != null) {
                     throw new IllegalArgumentException("Missing ';' before " + count + ") " + line);

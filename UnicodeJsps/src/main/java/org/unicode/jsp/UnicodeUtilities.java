@@ -27,7 +27,8 @@ import org.unicode.cldr.util.Predicate;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.jsp.Idna2008.Idna2008Type;
-import org.unicode.jsp.UnicodeProperty.UnicodeMapProperty;
+import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
+import org.unicode.props.UnicodeProperty;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row.R4;
@@ -53,7 +54,7 @@ public class UnicodeUtilities {
 
 
     private static final Collator COLLATOR = Collator.getInstance(new ULocale("en-u-co-emoji"));
-    static final UnicodeSet OFF_LIMITS = new UnicodeSet(UnicodeProperty.UNASSIGNED).addAll(UnicodeProperty.PRIVATE_USE).addAll(UnicodeProperty.SURROGATE).freeze();
+    static final UnicodeSet OFF_LIMITS = new UnicodeSet(UnicodeProperty.getUNASSIGNED()).addAll(UnicodeProperty.PRIVATE_USE).addAll(UnicodeProperty.SURROGATE).freeze();
     static final UnicodeSet NONCHAR = new UnicodeSet(OFF_LIMITS).addAll(new UnicodeSet("[:Cc:]")).removeAll(new UnicodeSet("[:whitespace:]")).freeze();
 
     static {
@@ -357,8 +358,8 @@ public class UnicodeUtilities {
             LinkedHashMap<String,UnicodeSet> items = new LinkedHashMap<String, UnicodeSet>();
             String specials = "Unassigned, Private use, or Surrogates";
 
-            UnicodeSet specialSet = new UnicodeSet(inputSetRaw).retainAll(UnicodeProperty.SPECIALS);
-            UnicodeSet inputSet = specialSet.size() == 0 ? inputSetRaw : new UnicodeSet(inputSetRaw).removeAll(UnicodeProperty.SPECIALS);
+            UnicodeSet specialSet = new UnicodeSet(inputSetRaw).retainAll(UnicodeProperty.getSPECIALS());
+            UnicodeSet inputSet = specialSet.size() == 0 ? inputSetRaw : new UnicodeSet(inputSetRaw).removeAll(UnicodeProperty.getSPECIALS());
             if (specialSet.size() != 0) {
                 items.put(specials, specialSet);
             }

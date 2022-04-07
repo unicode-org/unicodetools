@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIf;
 import org.unicode.jsp.PropertyMetadata;
 import org.unicode.jsp.PropertyMetadata.PropertyMetaDatum;
-import org.unicode.jsp.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.jsp.XPropertyFactory;
 
 public class TestBasicProperties extends TestFmwk2 {

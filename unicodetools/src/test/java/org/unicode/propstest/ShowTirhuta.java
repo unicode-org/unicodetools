@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.UCD.Default;
 
@@ -18,12 +18,12 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class ShowTirhuta {
     public static void main(String[] args) {
-        
+
         Transform<String,String> t = Transliterator.createFromRules("id", "([:di:]) > &hex($1);", Transliterator.FORWARD);
         String source = "abc\u00ADd\u034Fe";
         String formatted = t.transform(source);
         System.out.println(source + " => " + formatted);
-        
+
         UnicodeSet us =  new UnicodeSet("[:di:]").freeze();
         UnicodeSet x = new UnicodeSet().addAll(source).retainAll(us);
         StringBuilder b = new StringBuilder();
@@ -38,9 +38,9 @@ public class ShowTirhuta {
         }
         System.out.println(b);
         // abc­d => abc\u00ADd
-        
-        
-        
+
+
+
         if (true) return;
         IndexUnicodeProperties latest = IndexUnicodeProperties.make(Default.ucdVersion());
         UnicodeProperty scriptProp = latest.getProperty("sc");

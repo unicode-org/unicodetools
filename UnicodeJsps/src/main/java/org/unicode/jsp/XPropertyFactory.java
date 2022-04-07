@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.Locale;
 
 import org.unicode.jsp.Idna.IdnaType;
-import org.unicode.jsp.UnicodeProperty.BaseProperty;
-import org.unicode.jsp.UnicodeProperty.Factory;
-import org.unicode.jsp.UnicodeProperty.SimpleProperty;
+import org.unicode.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty.AliasAddAction;
+import org.unicode.props.UnicodeProperty.BaseProperty;
+import org.unicode.props.UnicodeProperty.Factory;
+import org.unicode.props.UnicodeProperty.SimpleProperty;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
@@ -150,7 +152,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(new UnicodeProperty.UnicodeMapProperty()
         .set(specialMap)
         .setMain("Script_Extensions", "scx", UnicodeProperty.ENUMERATED, "1.1")
-        .addValueAliases(ScriptTester.getScriptSpecialsAlternates(), false)
+        .addValueAliases(ScriptTester.getScriptSpecialsAlternates(), AliasAddAction.IGNORE_IF_MISSING)
                 );
 
         CachedProps cp = CachedProps.CACHED_PROPS;
@@ -579,7 +581,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         private static final String[] YESNO_ARRAY = new String[]{"Yes", "No"};
         private static final List YESNO = Arrays.asList(YESNO_ARRAY);
 
-        public UnicodeSetProperty set(UnicodeSet set) {
+        public XPropertyFactory.UnicodeSetProperty set(UnicodeSet set) {
             unicodeSet = set;
             return this;
         }
@@ -591,7 +593,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             return result;
         }
 
-        public UnicodeSetProperty set(String string) {
+        public XPropertyFactory.UnicodeSetProperty set(String string) {
             // TODO Auto-generated method stub
             return set(new UnicodeSet(string).freeze());
         }

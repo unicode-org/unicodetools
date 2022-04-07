@@ -1,7 +1,7 @@
 package org.unicode.test;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.props.UnicodePropertySymbolTable;
+import org.unicode.props.UnicodePropertySymbolTable;
 import org.unicode.parse.EBNF;
 import org.unicode.parse.EBNF.Position;
 import org.unicode.props.IndexUnicodeProperties;
@@ -12,13 +12,13 @@ import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 
 public class TestBreaks {
     static final boolean DEBUG = true;
-    
+
     static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(Settings.latestVersion);
     static final XSymbolTable toolUPS = new UnicodePropertySymbolTable(IUP);
     static {
         UnicodeSet.setDefaultXSymbolTable(toolUPS);
     }
-    
+
     public static void main(String[] args) {
         EBNF bnf = new EBNF();
 
@@ -74,7 +74,7 @@ public class TestBreaks {
                     System.out.println(p);
                     bnfValue = bnf.match(line, 0, p.clear());
                 }
-            } 
+            }
         }
     }
 }

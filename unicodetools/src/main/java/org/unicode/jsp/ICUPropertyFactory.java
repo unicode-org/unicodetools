@@ -29,6 +29,8 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 
+import org.unicode.props.UnicodeProperty;
+
 
 /**
  * Provides a general interface for Unicode Properties, and

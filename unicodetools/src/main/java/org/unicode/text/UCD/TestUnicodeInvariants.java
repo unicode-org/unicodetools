@@ -16,12 +16,12 @@ import java.util.TreeMap;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.Tabber.HTMLTabber;
-import org.unicode.cldr.util.props.BagFormatter;
-import org.unicode.cldr.util.props.ICUPropertyFactory;
+import org.unicode.props.BagFormatter;
+import org.unicode.jsp.ICUPropertyFactory;
 import org.unicode.cldr.util.props.UnicodeLabel;
-import org.unicode.cldr.util.props.UnicodeProperty;
-import org.unicode.cldr.util.props.UnicodeProperty.Factory;
-import org.unicode.cldr.util.props.UnicodeProperty.PatternMatcher;
+import org.unicode.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty.Factory;
+import org.unicode.props.UnicodeProperty.PatternMatcher;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.utility.Settings;
 
@@ -546,13 +546,13 @@ public class TestUnicodeInvariants {
     private static void checkExpected(Expected expected, UnicodeSet segment, String rightStatus, String rightSide,
             String leftStatus, String leftSide) {
         switch (expected) {
-        case empty: 
+        case empty:
             if (segment.size() == 0) {
                 return;
             } else {
                 break;
             }
-        case not_empty: 
+        case not_empty:
             if (segment.size() != 0) {
                 return;
             } else {
@@ -572,10 +572,10 @@ public class TestUnicodeInvariants {
         println();
     }
 
-    static UnicodeMapParser<String> UMP = UnicodeMapParser.create(UnicodeMapParser.STRING_VALUE_PARSER, 
+    static UnicodeMapParser<String> UMP = UnicodeMapParser.create(UnicodeMapParser.STRING_VALUE_PARSER,
             new UnicodeMapParser.ChainedFactory(
-                    getProperties(Settings.latestVersion), 
-                    IndexUnicodeProperties.make(Settings.latestVersion)), 
+                    getProperties(Settings.latestVersion),
+                    IndexUnicodeProperties.make(Settings.latestVersion)),
                     new UnicodeMapParser.ChainedFactory(
                             getProperties(Settings.lastVersion), IndexUnicodeProperties.make(Settings.lastVersion)));
 
@@ -643,13 +643,13 @@ public class TestUnicodeInvariants {
     private static void checkExpected(Expected expected, UnicodeMap<String> segment, String rightStatus, String rightSide,
             String leftStatus, String leftSide) {
         switch (expected) {
-        case empty: 
+        case empty:
             if (segment.size() == 0) {
                 return;
             } else {
                 break;
             }
-        case not_empty: 
+        case not_empty:
             if (segment.size() != 0) {
                 return;
             } else {
@@ -817,7 +817,7 @@ public class TestUnicodeInvariants {
                 ? ICUPropertyFactory.make()
                         : ToolUnicodePropertySource.make(version);
     }
-    
+
     private static Factory getIndexedProperties(String version2) {
         return IndexUnicodeProperties.make(version2);
     }
@@ -931,7 +931,7 @@ public class TestUnicodeInvariants {
             }
             return this;
         }
-        
+
         public UnicodeSet getSet(String propertyValue) {
             UnicodeSet set;
             if (propertyValue.length() == 0) {
@@ -957,7 +957,7 @@ public class TestUnicodeInvariants {
             return set;
         }
     }
-    
+
     static final UnicodeProperty.PatternMatcher NULL_MATCHER = new UnicodeProperty.PatternMatcher() {
         @Override
         public boolean matches(Object o) {

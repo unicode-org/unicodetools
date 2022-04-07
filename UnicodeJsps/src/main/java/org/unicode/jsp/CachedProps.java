@@ -30,6 +30,8 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.VersionInfo;
 
+import org.unicode.props.UnicodeProperty;
+
 public class CachedProps {
     public static final boolean IS_BETA = false;
 

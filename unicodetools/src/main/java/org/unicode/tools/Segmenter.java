@@ -27,7 +27,7 @@ import java.util.regex.PatternSyntaxException;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Settings;
@@ -815,7 +815,7 @@ public class Segmenter {
                 "9.3) $LinkingConsonant $ExtCccZwj* $Virama $ExtCccZwj*  \u00D7 $LinkingConsonant",
                 "# Do not break within emoji modifier sequences or emoji zwj sequences.",
                 //"10) $E_Base $Extend* × $E_Modifier",
-                "11) $ExtPict $Extend* $ZWJ × $ExtPict", 
+                "11) $ExtPict $Extend* $ZWJ × $ExtPict",
                 "# Do not break within emoji flag sequences. That is, do not break between regional indicator (RI) symbols if there is an odd number of RI characters before the break point.",
                 "12) ^ ($RI $RI)* $RI × $RI",
                 "13) [^$RI] ($RI $RI)* $RI × $RI",

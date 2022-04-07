@@ -11,10 +11,10 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.props.BagFormatter;
-import org.unicode.cldr.util.props.ICUPropertyFactory;
+import org.unicode.props.BagFormatter;
 import org.unicode.cldr.util.props.UnicodeLabel;
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.jsp.ICUPropertyFactory;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -93,7 +93,7 @@ public class CheckICU {
     }
 
     /**
-     * 
+     *
      */
     private static void checkAvailable() {
         //generateFile("4.0.0", "DerivedCombiningClass");
@@ -124,7 +124,7 @@ public class CheckICU {
     }
 
     /**
-     * 
+     *
      */
     private static void showCollationVariants(ULocale locale) {
         final String[] keywords = Collator.getKeywords();

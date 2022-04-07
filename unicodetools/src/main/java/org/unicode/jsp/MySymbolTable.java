@@ -3,7 +3,7 @@ package org.unicode.jsp;
 import java.util.Comparator;
 import java.util.List;
 
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -26,7 +26,7 @@ public class MySymbolTable extends UnicodeSet.XSymbolTable {
     //      String[] propertyNames = propertyName.split("[*]");
     //      for (int i = propertyNames.length - 1; i >= 0; ++i) {
     //        String pname = propertyNames[i];
-    //        
+    //
     //      }
     //      return null;
     //    }
@@ -41,7 +41,7 @@ public class MySymbolTable extends UnicodeSet.XSymbolTable {
             if (posNotEqual < 0) posNotEqual = propertyName.length();
             if (posColon < 0) posColon = propertyName.length();
             int opPos = posNotEqual < posColon ? posNotEqual : posColon;
-            propertyValue = propertyValue.length() == 0 ? propertyName.substring(opPos+1) 
+            propertyValue = propertyValue.length() == 0 ? propertyName.substring(opPos+1)
                     : propertyName.substring(opPos+1) + "=" + propertyValue;
             propertyName = propertyName.substring(0,opPos);
             if (posNotEqual < posColon) {
@@ -170,6 +170,7 @@ public class MySymbolTable extends UnicodeSet.XSymbolTable {
             this.pattern = pattern;
         }
 
+        @Override
         public boolean matches(Object value) {
             int comp = comparator.compare(pattern, value.toString());
             switch (relation) {

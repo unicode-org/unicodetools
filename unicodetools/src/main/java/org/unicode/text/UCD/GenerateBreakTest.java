@@ -28,7 +28,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Settings;
@@ -579,7 +579,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
         Set<Double> numbers = getMissing(fileName, rulesFound);
         if (!numbers.isEmpty()) {
             //throw new IllegalArgumentException
-            System.err.println("***Rules missing from TESTS for " + fileName + ": " + numbers 
+            System.err.println("***Rules missing from TESTS for " + fileName + ": " + numbers
                     + "You will need to add samples that trigger those rules. "
                     + "See https://sites.google.com/site/unicodetools/home/changing-ucd-properties#TOC-Adding-Segmentation-Sample-Strings");
         }
@@ -1205,7 +1205,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
                     return s;
                 }
             }
-            throw new IllegalArgumentException(prop.getName() + ":" + value 
+            throw new IllegalArgumentException(prop.getName() + ":" + value
                     + " doesn't have " + count + " values");
         }
     }
@@ -1213,10 +1213,10 @@ abstract public class GenerateBreakTest implements UCD_Types {
     static class GenerateGraphemeBreakTest extends XGenerateBreakTest {
 
         public GenerateGraphemeBreakTest(UCD ucd, Segmenter.Target target) {
-            super(ucd, 
+            super(ucd,
                     Segmenter.make(
                             ToolUnicodePropertySource.make(ucd.getVersion()),
-                            "GraphemeClusterBreak", target), 
+                            "GraphemeClusterBreak", target),
                     "aa",
                     "Grapheme",
                     new String[]{unicodePropertySource.getSet("GC=Cn").iterator().next()},
@@ -1287,7 +1287,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
                             "LineBreak", target),
                     "aa", "Line",
                     // extraSamples
-                    new String[]{}, 
+                    new String[]{},
                     // extraSingleSamples
                     new String[]{
                             "\u000Bぁ",     //4.0
@@ -1321,7 +1321,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
                             "☝🏻",      //30.2
                             "final",        //999.0
 
-                            "can't", 
+                            "can't",
                             "can\u2019t",
                             "'can' not",
                             "can 'not'",
@@ -1550,7 +1550,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
             ToolUnicodePropertySource propSource = ToolUnicodePropertySource.make(ucd.getVersion());
             UnicodeSet unassigned = propSource.getSet("gc=Cn");
             UnicodeSet extPict = propSource.getSet("ExtPict=yes");
-            // [\p{Extended_Pictographic}&\p{Cn}] 
+            // [\p{Extended_Pictographic}&\p{Cn}]
             UnicodeSet extPictUnassigned = extPict.cloneAsThawed().retainAll(unassigned);
             String firstExtPictUnassigned = UTF16.valueOf(extPictUnassigned.charAt(0));
             // [\p{Extended_Pictographic}&\p{Cn}] × EM
@@ -1633,11 +1633,11 @@ abstract public class GenerateBreakTest implements UCD_Types {
 
     static class GenerateWordBreakTest extends XGenerateBreakTest {
         public GenerateWordBreakTest(UCD ucd, Segmenter.Target target) {
-            super(ucd, 
+            super(ucd,
                     Segmenter.make(
                             ToolUnicodePropertySource.make(ucd.getVersion()),
-                            "WordBreak", target), 
-                    "aa", 
+                            "WordBreak", target),
+                    "aa",
                     "Word",
                     new String[] {
                             /*"\uFF70", "\uFF65", "\u30FD", */ "a\u2060",
@@ -1664,8 +1664,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
                     WB.get("Numeric") + WB.get("MidNum") + WB.get("Numeric"),
                     WB.get("Numeric") + WB.get("MidNum") + WB.get("MidNum") + WB.get("Numeric"),
                     WB.get("Katakana") + WB.get("Katakana"),
-                    WB.get("ALetter") + WB.get("ExtendNumLet") 
-                    + WB.get("Numeric") + WB.get("ExtendNumLet") 
+                    WB.get("ALetter") + WB.get("ExtendNumLet")
+                    + WB.get("Numeric") + WB.get("ExtendNumLet")
                     + WB.get("Katakana") + WB.get("ExtendNumLet"),
                     WB.get("ALetter") + WB.get("ExtendNumLet") + WB.get("ExtendNumLet") + WB.get("ALetter"),
                     WB.get("RI") + WB.get("RI",2) + WB.get("RI",3) + "b",
@@ -1698,9 +1698,9 @@ abstract public class GenerateBreakTest implements UCD_Types {
                 for (String mid : Arrays.asList(":", ".", ",")) {
                     for (String mid2 : Arrays.asList(":", ".", ",")) {
                         for (String numLet2 : Arrays.asList("1", "a")) {
-                            extraTestSamples.add(numLet + mid + mid2 + numLet2); 
+                            extraTestSamples.add(numLet + mid + mid2 + numLet2);
                             for (String numLet3 : Arrays.asList("1", "a")) {
-                                extraTestSamples.add(numLet + "_" + numLet3 + mid + mid2 + numLet2); 
+                                extraTestSamples.add(numLet + "_" + numLet3 + mid + mid2 + numLet2);
                             }
                         }
                     }
@@ -1710,10 +1710,10 @@ abstract public class GenerateBreakTest implements UCD_Types {
         static String[] getExtraSamples(UCD ucd, Segmenter.Target target) {
             final GenerateBreakTest grapheme = new GenerateGraphemeBreakTest(ucd, target);
             final String [] temp = {
-                    "can't", 
-                    "can\u2019t", 
-                    "ab\u00ADby", 
-                    "a$-34,567.14%b", 
+                    "can't",
+                    "can\u2019t",
+                    "ab\u00ADby",
+                    "a$-34,567.14%b",
                     "3a",
                     "c.d",
                     "C.d",
@@ -2812,7 +2812,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
         }
     }
     /*
-     * 
+     *
      *         if (false) {
 
             PrintWriter log = Utility.openPrintWriter("Diff.txt", Utility.UTF8_WINDOWS);

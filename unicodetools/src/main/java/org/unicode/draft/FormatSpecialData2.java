@@ -16,7 +16,7 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.CldrUtility.CollectionComparator;
 import org.unicode.cldr.util.FileReaders;
-import org.unicode.cldr.util.props.BagFormatter;
+import org.unicode.props.BagFormatter;
 import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.draft.ScriptCategories2.RemapType;
 

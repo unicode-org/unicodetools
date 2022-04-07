@@ -22,7 +22,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.unicode.jsp.CharEncoder;
 import org.unicode.jsp.Common;
 import org.unicode.jsp.UnicodeJsp;
-import org.unicode.jsp.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.XPropertyFactory;

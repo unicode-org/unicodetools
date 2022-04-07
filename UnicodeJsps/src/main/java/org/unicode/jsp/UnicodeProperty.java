@@ -35,6 +35,10 @@ import com.ibm.icu.text.UnicodeMatcher;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
+/**
+ * @Deprecated use org.unicode.props.UnicodeProperty
+ */
+@Deprecated( forRemoval = true )
 public abstract class UnicodeProperty extends UnicodeLabel {
 
     public static final UnicodeSet UNASSIGNED = new UnicodeSet("[:gc=unassigned:]").freeze();

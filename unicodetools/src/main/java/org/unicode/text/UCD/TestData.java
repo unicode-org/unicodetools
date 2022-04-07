@@ -32,9 +32,9 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Pair;
-import org.unicode.cldr.util.props.BagFormatter;
-import org.unicode.cldr.util.props.ICUPropertyFactory;
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.BagFormatter;
+import org.unicode.jsp.ICUPropertyFactory;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
@@ -59,9 +59,9 @@ public class TestData implements UCD_Types {
 
     public static void main (String[] args) throws IOException {
         final UCD ucd = Default.ucd();
-        
+
         String s = ucd.getBidiClassID(0x1F5DF);
-        
+
 
         final Counter<Integer> scriptCount = new Counter<Integer>();
 

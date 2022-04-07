@@ -8,7 +8,7 @@ import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyStatus;
 import org.unicode.props.PropertyStatus.PropertyScope;
@@ -34,7 +34,7 @@ public class ListProps {
     static final boolean ONLY_JSP = true;
 
     public static final Set<PropertyStatus> SKIP_JSP_STATUS = ImmutableSet.of(
-            PropertyStatus.Deprecated, 
+            PropertyStatus.Deprecated,
             PropertyStatus.Obsolete,
             PropertyStatus.Stabilized,
             PropertyStatus.Contributory,
@@ -59,7 +59,7 @@ public class ListProps {
 //            UnicodeSet combined = new UnicodeSet(ep).addAll(em).freeze();
 //            PropertyLister pl = new PropertyLister(latest);
 //            System.out.println(
-//                    pl.listSet(combined, 
+//                    pl.listSet(combined,
 //                            UcdProperty.Extended_Pictographic.toString(),
 //                            new StringBuilder()));
 //            return;
@@ -86,8 +86,8 @@ public class ListProps {
                 Set<String> values = map.values();
 
                 PropertyScope scope = PropertyStatus.getScope(propName);
-                String itemInfo = item 
-                        + "\tType:\t" + type 
+                String itemInfo = item
+                        + "\tType:\t" + type
                         + "\tStatus:\t"+ CollectionUtilities.join(status, ", ")
                         + "\tCard:\t" + cardinality
                         + "\tDefVal:\t" + IndexUnicodeProperties.getDefaultValue(item)
@@ -113,8 +113,8 @@ public class ListProps {
                     if (propName.startsWith("k")) {
                         switch (type) {
                         case Miscellaneous:
-                        case String: 
-                            if (item == UcdProperty.kSimplifiedVariant 
+                        case String:
+                            if (item == UcdProperty.kSimplifiedVariant
                             || item == UcdProperty.kTraditionalVariant) {
                                 break;
                             }

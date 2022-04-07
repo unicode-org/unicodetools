@@ -4,7 +4,7 @@
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
-package org.unicode.cldr.util.props;
+package org.unicode.props;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -32,6 +32,9 @@ import com.ibm.icu.text.UnicodeMatcher;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
+import org.unicode.props.BagFormatter;
+import org.unicode.cldr.util.props.UnicodeLabel;
+
 public abstract class UnicodeProperty extends UnicodeLabel {
 
     public static final UnicodeSet NONCHARACTERS = new UnicodeSet("[:noncharactercodepoint:]").freeze();
@@ -58,6 +61,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     private static UnicodeSet SPECIALS;
     private static UnicodeSet STUFF_TO_TEST;
     private static UnicodeSet STUFF_TO_TEST_WITH_UNASSIGNED;
+
 
     public static synchronized UnicodeSet getUNASSIGNED() {
         if (UNASSIGNED == null) {
@@ -141,7 +145,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
     /*
      * Name: Unicode_1_Name Name: ISO_Comment Name: Name Name: Unicode_1_Name
-     * 
+     *
      */
 
     public static final int UNKNOWN = 0, BINARY = 2, EXTENDED_BINARY = 3,
@@ -376,7 +380,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     /*
      * public UnicodeSet getMatchSet(UnicodeSet result) { if (result == null)
      * result = new UnicodeSet(); addAll(matchIterator, result); return result; }
-     * 
+     *
      * public void setMatchSet(UnicodeSet set) { matchIterator = new
      * UnicodeSetIterator(set); }
      */
@@ -528,7 +532,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
     /**
      * Utility for managing property & non-string value aliases
-     * 
+     *
      */
     // TODO optimize
     public static boolean equalNames(String a, String b) {
@@ -662,7 +666,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     /**
      * Utility function for comparing codepoint to string without generating new
      * string.
-     * 
+     *
      * @param codepoint
      * @param other
      * @return true if the codepoint equals the string
@@ -690,7 +694,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
     /**
      * Utility that should be on UnicodeSet
-     * 
+     *
      * @param source
      * @param result
      */
@@ -1165,7 +1169,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         private static final String[] YES_VALUES = {"Yes", "Y", "T", "True"};
 
         /**
-         * 
+         *
          */
         private static final String[][] YES_NO_ALIASES = new String[][] {YES_VALUES, NO_VALUES};
 
@@ -1217,7 +1221,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                 switch(aliasAddAction) {
                 case IGNORE_IF_MISSING: return;
                 case REQUIRE_MAIN_ALIAS: throw new IllegalArgumentException("Can't add alias for mising value: " + value);
-                case ADD_MAIN_ALIAS: 
+                case ADD_MAIN_ALIAS:
                     toValueAliases.put(value, result = new ArrayList(0));
                     break;
                 }
@@ -1497,7 +1501,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             return equals(cp, value);
         }
         String defaultValue = getValue(getSAMPLE_UNASSIGNED());
-        return defaultValue == null ? value == null : defaultValue.equals(value);   
+        return defaultValue == null ? value == null : defaultValue.equals(value);
     }
 
     public boolean hasUniformUnassigned() {
@@ -1555,5 +1559,10 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     //            return transform.transform(codepoint);
     //        }
     //    }
+
+    // from the jsp version
+    public boolean isTrimable() {
+        return !isType(STRING_OR_MISC_MASK);
+    }
 }
 

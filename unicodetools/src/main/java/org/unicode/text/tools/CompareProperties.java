@@ -3,7 +3,7 @@ package org.unicode.text.tools;
 import java.util.HashMap;
 import java.util.List;
 
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 
 import com.ibm.icu.dev.util.UnicodeMap;

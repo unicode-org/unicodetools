@@ -19,8 +19,8 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.Timer;
 import org.unicode.cldr.util.With;
-import org.unicode.cldr.util.props.ICUPropertyFactory;
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.jsp.ICUPropertyFactory;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.draft.UnicodeDataOutput;
 import org.unicode.draft.UnicodeDataOutput.ItemWriter;
 import org.unicode.props.IndexUnicodeProperties;
@@ -550,7 +550,7 @@ public class CheckProperties {
         return result;
     }
 
-    private static void compare(UcdProperty prop, IndexUnicodeProperties last, IndexUnicodeProperties latest, 
+    private static void compare(UcdProperty prop, IndexUnicodeProperties last, IndexUnicodeProperties latest,
             UnicodeSet retain, Set<String> summary) {
         UnicodeMap<String> lastMap;
         UnicodeMap<String> latestMap;
@@ -619,7 +619,7 @@ public class CheckProperties {
                             + "\t" + getHexAndName(chars.iterator().next()));
                     continue;
                 }
-                currentOut.print(prop 
+                currentOut.print(prop
                         + "\t" + value
                         //+ "\t" + FIX_INVISIBLES.transform(chars.toPattern(false))
                         + "\t" + chars.size()
@@ -638,11 +638,11 @@ public class CheckProperties {
             }
             if (others.size() != 0) {
                 //indent = "\t\t\t\t\t\t#\t";
-                currentOut.println(prop 
+                currentOut.println(prop
                         + "\t" + "OTHERS\t\t"
                         //+ "\t" + FIX_INVISIBLES.transform(chars.toPattern(false))
                         + "\t" + others.size()
-                        + "\t" + abbreviate(others, 200, false) // others.toPattern(false) // 
+                        + "\t" + abbreviate(others, 200, false) // others.toPattern(false) //
                         );
             }
         }

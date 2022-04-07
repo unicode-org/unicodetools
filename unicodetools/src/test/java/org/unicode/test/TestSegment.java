@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.BNF;
 import org.unicode.cldr.util.MapComparator;
-import org.unicode.cldr.util.props.UnicodePropertySymbolTable;
+import org.unicode.props.UnicodePropertySymbolTable;
 import org.unicode.jsp.UnicodeRegex;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -47,8 +47,8 @@ public class TestSegment {
 
     TestSegment(String testBnf) {
         BNF foo;
-        
-        
+
+
         StringBuilder generationRules = new StringBuilder();
         for (String line : FileUtilities.in(TestSegment.class, testBnf)) {
             if (line.startsWith("#")) {
@@ -120,7 +120,7 @@ public class TestSegment {
                 end = matcher.end();
             } else {
                 end = Character.offsetByCodePoints(charSequence, end, 1);
-            } 
+            }
             results.add(end);
             if (end == length) {
                 break;
@@ -171,19 +171,19 @@ public class TestSegment {
         IndexUnicodeProperties iup = IUP;
 
         UnicodeMap<String> mainMap = new UnicodeMap<>(iup.load(firstProp));
-        
+
         UnicodeMap<String> partition = getPartition(extras);
         UnicodeMap<String> check = new UnicodeMap<String>(mainMap).composeWith(partition, PROP_COMPOSER);
         // now pick single values
         Set<String> rawValues = mainMap.values();
         UnicodeMap<Enum> result = new UnicodeMap<>();
-        
-        for (String value : rawValues) { 
+
+        for (String value : rawValues) {
             Enum propValue2 = firstProp.getEnum(value);
             UnicodeSet uset = mainMap.getSet(value);
             for (String partitionValue : partition.values()) {
                 UnicodeSet oSet = partition.getSet(partitionValue);
-                if (oSet.containsSome(uset) 
+                if (oSet.containsSome(uset)
                         && !oSet.containsAll(uset)) {
                     String positive = getBestExemplar(new UnicodeSet(uset).retainAll(oSet));
                     String negative = getBestExemplar(new UnicodeSet(uset).removeAll(oSet));
@@ -195,7 +195,7 @@ public class TestSegment {
                     result.put(positive, propValue2);
                 }
             }
-            
+
 //            // now process partitions that made a difference
 //            if (value.equals("Control__No")) {
 //                int debug = 0;
@@ -208,7 +208,7 @@ public class TestSegment {
 
     private static UnicodeMap<String> getPartition(Map<String, UnicodeSet> nameToSet) {
         UnicodeMap<String> result = null;
-        
+
         for (Entry<String, UnicodeSet> entry : nameToSet.entrySet()) {
             String name = entry.getKey();
             UnicodeSet uset = entry.getValue();
@@ -226,7 +226,7 @@ public class TestSegment {
     }
 
     static Splitter D_BAR = Splitter.on(Pattern.compile("__"));
-    
+
     private static String getBestExemplar(UnicodeSet uset) {
         Set<String> set = uset.addAllTo(new TreeSet<String>(BestExemplarLess));
         return set.iterator().next();
@@ -250,7 +250,7 @@ public class TestSegment {
         }
 
         private int bestGc(int cp, General_Category_Values gc) {
-            return gc == General_Category_Values.Control && !WHITESPACE.contains(cp) 
+            return gc == General_Category_Values.Control && !WHITESPACE.contains(cp)
                     ? gcMap.getNumericOrder(General_Category_Values.Unassigned)
                             : gcMap.getNumericOrder(gc);
 
@@ -302,7 +302,7 @@ public class TestSegment {
         @Override
         public String compose(int codePoint, String string, String a, String b) {
             return a == null ? (b == null ? null : "__" + b)
-                    : b == null ? a + "__" 
+                    : b == null ? a + "__"
                             : a + "__" + b;
         }
     };
@@ -331,27 +331,27 @@ public class TestSegment {
         UnicodeSet.setDefaultXSymbolTable(toolUPS);
 
         TestSegment gc = new TestSegment("SegmentBnf" + "Ccs" + ".txt");
-        gc.test("Ccs", Arrays.asList("÷ 0020 ÷ 0020 ÷", 
-                "÷ 0020 0308 ÷", 
-                "÷ 0020 0308 ÷ 0061 ÷", 
-                "÷ 0020 0301 0301 ÷ 0061 ÷", 
+        gc.test("Ccs", Arrays.asList("÷ 0020 ÷ 0020 ÷",
+                "÷ 0020 0308 ÷",
+                "÷ 0020 0308 ÷ 0061 ÷",
+                "÷ 0020 0301 0301 ÷ 0061 ÷",
                 "÷ 0061 ÷ 0062 ÷"));
 
         TestSegment gc2 = new TestSegment("SegmentBnf" + "GraphemeBreakSimple" + ".txt");
-        gc2.test("GBS", Arrays.asList("÷ 0020 ÷ 0020 ÷", 
-                "÷ 0020 0308 ÷", 
-                "÷ 0020 0308 ÷ 0061 ÷", 
-                "÷ 0020 0301 0301 ÷ 0061 ÷", 
+        gc2.test("GBS", Arrays.asList("÷ 0020 ÷ 0020 ÷",
+                "÷ 0020 0308 ÷",
+                "÷ 0020 0308 ÷ 0061 ÷",
+                "÷ 0020 0301 0301 ÷ 0061 ÷",
                 "÷ 0061 ÷ 0062 ÷",
                 "÷ 000D 000A ÷",
-                "÷ 1F1E6 1F1E7 ÷", 
-                "÷ 1F1E6 1F1E7 ÷ 1F1E8 ÷", 
+                "÷ 1F1E6 1F1E7 ÷",
+                "÷ 1F1E6 1F1E7 ÷ 1F1E8 ÷",
                 "÷ 1F1E6 1F1E7 ÷ 1F1E8 1F1E9 ÷"));
 
         TestSegment gc3 = new TestSegment("SegmentBnf" + "GraphemeBreak" + ".txt");
         gc3.test("Gb", "/Users/markdavis/Documents/workspace/unicode-draft/Public/UCD/auxiliary/","GraphemeBreak");
-        gc3.test("GB+", Arrays.asList("÷ 1F1E6 1F1E7 ÷", 
-                "÷ 1F1E6 1F1E7 ÷ 1F1E8 ÷", 
+        gc3.test("GB+", Arrays.asList("÷ 1F1E6 1F1E7 ÷",
+                "÷ 1F1E6 1F1E7 ÷ 1F1E8 ÷",
                 "÷ 1F1E6 1F1E7 ÷ 1F1E8 1F1E9 ÷"));
 
         //        TestSegment gc4 = new TestSegment("SegmentBnf" + "WordBreak" + ".txt");
@@ -368,7 +368,7 @@ public class TestSegment {
                 makesDifference);
         show(exemplars);
         show(makesDifference);
-        
+
         Builder segmenter = Segmenter.make(ToolUnicodePropertySource.make(Default.ucd().getVersion()),"GraphemeClusterBreak");
 
         getExemplarStrings(exemplars, segmenter);
@@ -379,7 +379,7 @@ public class TestSegment {
         for (Entry<Double, Rule> entry : srules.entrySet()) {
             System.out.println(entry.getKey() + "\t\t" + entry.getValue());
         }
-        
+
     }
 
 }

@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
