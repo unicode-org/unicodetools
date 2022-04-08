@@ -62,6 +62,7 @@ public class Emoji {
     /**
      * Constants for versions
      */
+    public static final VersionInfo VERSION15 = VersionInfo.getInstance(15,0);
     public static final VersionInfo VERSION14 = VersionInfo.getInstance(14,0);
     public static final VersionInfo VERSION13_1 = VersionInfo.getInstance(13,1);
     public static final VersionInfo VERSION13 = VersionInfo.getInstance(13);
@@ -78,6 +79,7 @@ public class Emoji {
     public static final VersionInfo VERSION0_5 = VersionInfo.getInstance(0,5,2);
 
     // ALSO fix VersionToAge.java!
+    public static final VersionInfo UCD15 = VERSION15;
     public static final VersionInfo UCD14 = VERSION14;
     public static final VersionInfo UCD13 = VERSION13;
     public static final VersionInfo UCD12_1 = VERSION12_1;
@@ -95,12 +97,13 @@ public class Emoji {
      */
     public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION13_1;
     public static final VersionInfo VERSION_LAST_RELEASED = VERSION14;
-    public static final VersionInfo VERSION_BETA = VERSION14;
+    public static final VersionInfo VERSION_BETA = VERSION15;
 
     public static final VersionInfo VERSION_TO_TEST = VERSION_BETA;
     public static final VersionInfo VERSION_TO_TEST_PREVIOUS = VERSION_LAST_RELEASED;
 
     public static Map<VersionInfo, VersionInfo> EMOJI_TO_UNICODE_VERSION = ImmutableMap.<VersionInfo, VersionInfo>builder()
+            .put(VERSION15, UCD15)
             .put(VERSION14, UCD14)
             .put(VERSION13_1, UCD13)
             .put(VERSION13, UCD13)
@@ -117,6 +120,7 @@ public class Emoji {
             .build();
 
     public final static Map<VersionInfo, String> EMOJI_TO_DATE = ImmutableMap.<VersionInfo, String>builder()
+            .put(VERSION15, "2022-09-10")
             .put(VERSION14, "2021-09-10")
             .put(VERSION13_1, "2020-09-10")
             .put(VERSION13, "2020-03-10")

@@ -14,7 +14,7 @@
 # Then run ProposalData.java to generate an updated version of proposalData.txt that incorporates all the proposal data from this file.
 
 #================================
-Status=Provisional Candidate
+Status=Draft Candidate
 #================================
 
 Proposal=L2/21-214
