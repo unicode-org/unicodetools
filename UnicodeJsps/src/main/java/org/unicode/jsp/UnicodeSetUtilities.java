@@ -156,7 +156,7 @@ public class UnicodeSetUtilities {
             if (propertyValue.length() != 0) {
                 if (prop == null) {
                     propertyValue = propertyValue.trim();
-                } else if (prop.isTrimable()) {
+                } else if (prop.isTrimmable()) {
                     propertyValue = propertyValue.trim();
                 } else {
                     int debug = 0;
