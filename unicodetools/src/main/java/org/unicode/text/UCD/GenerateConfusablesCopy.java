@@ -34,6 +34,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -2253,12 +2254,11 @@ public class GenerateConfusablesCopy {
         //            }
         //        }
 
-        private static class MyCollectionFilter implements CollectionUtilities.ObjectMatcher {
+        private static class MyCollectionFilter implements Predicate<String> {
             UnicodeSet outputAllowed;
             int minLength;
             @Override
-            public boolean matches(Object o) {
-                final String item = (String)o;
+            public boolean test(String item) {
                 if (!outputAllowed.containsAll(item)) {
                     return false;
                 }
@@ -2308,7 +2308,7 @@ public class GenerateConfusablesCopy {
                 itemsSeen.addAll(equivalents);
                 if (outputOnly) { // remove non-output
                     myFilter.minLength = 1000;
-                    CollectionUtilities.retainAll(equivalents, myFilter);
+                    GenerateConfusables.retainAll(equivalents, myFilter);
                     if (equivalents.size() <= 1) {
                         continue;
                     }

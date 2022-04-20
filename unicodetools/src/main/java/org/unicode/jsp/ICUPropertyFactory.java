@@ -241,7 +241,7 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
       if (propEnum == UProperty.GENERAL_CATEGORY) {
         for (String multiprop : SPECIAL_GC.keySet()) {
           R2<String, UnicodeSet> value = SPECIAL_GC.get(multiprop);
-          if (matcher.matches(multiprop) || matcher.matches(value.get0())) {
+          if (matcher.test(multiprop) || matcher.test(value.get0())) {
             result.addAll(value.get1());
           }
         }

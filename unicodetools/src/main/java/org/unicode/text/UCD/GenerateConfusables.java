@@ -32,6 +32,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -1576,12 +1577,11 @@ public class GenerateConfusables {
         //            }
         //        }
 
-        private static class MyCollectionFilter implements CollectionUtilities.ObjectMatcher {
+        private static class MyCollectionFilter implements Predicate<String> {
             UnicodeSet outputAllowed;
             int minLength;
             @Override
-            public boolean matches(Object o) {
-                final String item = (String)o;
+            public boolean test(String item) {
                 if (!outputAllowed.containsAll(item)) {
                     return false;
                 }
@@ -1631,7 +1631,7 @@ public class GenerateConfusables {
                 itemsSeen.addAll(equivalents);
                 if (outputOnly) { // remove non-output
                     myFilter.minLength = 1000;
-                    CollectionUtilities.retainAll(equivalents, myFilter);
+                    retainAll(equivalents, myFilter);
                     if (equivalents.size() <= 1) {
                         continue;
                     }
@@ -2493,4 +2493,20 @@ public class GenerateConfusables {
 
     };
 
+    // Copied from ICU CollectionUtilities.
+    /**
+     * Retain matching items
+     * @param <T>
+     * @param <U>
+     * @param c
+     * @param f
+     * @return
+     */
+    static <T, U extends Collection<T>> U retainAll(U c, Predicate<T> f) {
+        for (Iterator<T> it = c.iterator(); it.hasNext();) {
+            T item = it.next();
+            if (!f.test(item)) it.remove();
+        }
+        return c;
+    }
 }
