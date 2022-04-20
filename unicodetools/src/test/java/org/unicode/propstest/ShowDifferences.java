@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -37,9 +37,9 @@ public class ShowDifferences {
         }
         @Override
         public boolean equals(Object obj) {
-            return obj != null 
-                    && obj.getClass() == DPair.class 
-                    && Objects.equal(first, ((DPair<T,U>) obj).first) 
+            return obj != null
+                    && obj.getClass() == DPair.class
+                    && Objects.equal(first, ((DPair<T,U>) obj).first)
                     && Objects.equal(second, ((DPair<T,U>) obj).second);
         }
         @Override
@@ -49,14 +49,14 @@ public class ShowDifferences {
     }
 
     /**
-     * Computes differences between two versions. The args should either be [old] [new] or empty 
+     * Computes differences between two versions. The args should either be [old] [new] or empty
      * (for the most recent two versions).
      * @param args
      */
     public static void main(String[] args) {
         final String OLD_VERSION = args.length > 0 ? args[0] : Settings.lastVersion;
         final String NEW_VERSION = args.length > 1 ? args[1] : Settings.latestVersion;
-        
+
         final IndexUnicodeProperties latestVersion = IndexUnicodeProperties.make(NEW_VERSION);
         final IndexUnicodeProperties lastVersion = IndexUnicodeProperties.make(OLD_VERSION);
 
@@ -84,7 +84,7 @@ public class ShowDifferences {
             try {
                 latestMap = latestVersion.load(prop);
             } catch (Exception e) {}
-            
+
             UnicodeMap<DPair<String,String>> diff = new UnicodeMap<>();
             UnicodeMap<DPair<String,String>> newDiff = new UnicodeMap<>();
 
@@ -186,8 +186,8 @@ public class ShowDifferences {
 //
 //        UnicodeMap<String> propUmOld = oldProp.getUnicodeMap();
 //        UnicodeMap<String> propUmNew = prop.getUnicodeMap();
-//        String message = UnicodeProperty.getTypeName(prop.getType()) 
-//                + "\t" + CollectionUtilities.join(prop.getNameAliases(), ", ") 
+//        String message = UnicodeProperty.getTypeName(prop.getType())
+//                + "\t" + CollectionUtilities.join(prop.getNameAliases(), ", ")
 //                + "\tvalues: " + availableValues.size();
 //        if (propUmOld.equals(propUmNew)) {
 //            System.out.println(message);
@@ -198,7 +198,7 @@ public class ShowDifferences {
 //        if (CHECK_DIFFS) {
 //            UnicodeSet diffs2 = findDifferences2(propUmOld, propUmNew);
 //            if (!diffs.equals(diffs2)) {
-//                throw new IllegalArgumentException(); 
+//                throw new IllegalArgumentException();
 //            }
 //        }
 //        showDiffs(propUmOld, propUmNew, diffs);
@@ -213,17 +213,17 @@ public class ShowDifferences {
 //                String oldValue2 = propUmOld.get(i);
 //                String newValue2 = propUmNew.get(i);
 //                if (!UnicodeMap.areEqual(oldValue, oldValue2) || !UnicodeMap.areEqual(newValue, newValue2)) {
-//                    logCharValues(start, i-1, oldValue, newValue);                 
+//                    logCharValues(start, i-1, oldValue, newValue);
 //                    start = i;
 //                    oldValue = oldValue2;
 //                    newValue = newValue2;
 //                }
 //            }
-//            logCharValues(start, it.codepointEnd, oldValue, newValue);   
+//            logCharValues(start, it.codepointEnd, oldValue, newValue);
 //
 //            //            UnicodeSet newSet = prop.getSet(value);
 //            //            UnicodeSet oldSet = oldProp.getSet(value);
-//            //            //                System.out.println("\t" + value + "\t" 
+//            //            //                System.out.println("\t" + value + "\t"
 //            //            //                        + CollectionUtilities.join(prop.getValueAliases(value), ", "));
 //            //            if (!newSet.equals(oldSet)) {
 //            //                System.out.println("\t\t" + value
@@ -270,7 +270,7 @@ public class ShowDifferences {
 //        while (true) {
 //            if (er1.string != null || er2.string != null) {
 //                throw new UnsupportedOperationException(); // don't handle yet
-//            } else if (er1.codepoint == er2.codepoint 
+//            } else if (er1.codepoint == er2.codepoint
 //                    && er1.codepointEnd == er2.codepointEnd) { // fast path for equals
 //                if (!CollectionUtilities.equals(er1.value, er2.value)) {
 //                    result.add(er1.codepoint, er1.codepointEnd);
@@ -305,7 +305,7 @@ public class ShowDifferences {
 //                int maxOverlap = Math.min(er1.codepointEnd, er2.codepointEnd);
 //                int max = Math.min(er1.codepointEnd, er2.codepointEnd);
 //                // add the bits
-//                if (min < minOverlap 
+//                if (min < minOverlap
 //                        && (er1.codepoint == min && er1.value != null
 //                        || er2.codepoint == min && er2.value != null)) {
 //                    result.add(min, minOverlap-1);
@@ -330,10 +330,10 @@ public class ShowDifferences {
 //                        result.add(er1.codepoint, er1.codepointEnd); // shortened bit
 //                        break; // add remainders there
 //                    }
-//                } 
+//                }
 //            }
 //        }
-//        // now add the remainders. 
+//        // now add the remainders.
 //        Iterator<EntryRange<T>> remainder = it2.hasNext() ? it2 : it1;
 //        while (remainder.hasNext()) {
 //            EntryRange<T> er = remainder.next();

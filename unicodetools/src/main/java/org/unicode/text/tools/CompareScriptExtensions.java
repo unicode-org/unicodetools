@@ -2,7 +2,7 @@ package org.unicode.text.tools;
 
 import java.util.TreeSet;
 
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Utility;

@@ -29,40 +29,39 @@ for the CLDR/ICU FractionalUCA.txt data.
 ## Tools & tests
 
 1.  Note: This will only work after building the UCD files for this version.
-2.  Download UCA files (mostly allkeys.txt) from
-    `https://www.unicode.org/Public/UCA/{beta version}/`
-3.  Run `desuffixucd.py` (see the inputdata subpage)
-4.  Update the input files for the UCA tools, at
-    {this repo}/unicodetools/data/uca/{version} e.g.
-    <https://github.com/unicode-org/unicodetools/tree/main/unicodetools/data/uca/14.0.0>
-5.  You will use `org.unicode.text.UCA.Main` as your main class, creating along
-    the same lines as above.
+    Starting with Unicode 15, those files should always be in
+    https://github.com/unicode-org/unicodetools/tree/main/unicodetools/data/ucd/dev
+2.  We also need the UCA/DUCET files in
+    https://github.com/unicode-org/unicodetools/tree/main/unicodetools/data/uca/dev
+    When they become first available for a new version, or when they are updated:
+    1.  Download UCA files (mostly allkeys.txt) from
+        `https://www.unicode.org/Public/UCA/{beta version}/`
+    2.  Run `desuffixucd.py` (see the [inputdata](../inputdata.md) page)
+    3.  Update the input files for the UCA tools, at
+        {this repo}/unicodetools/data/uca/dev
+3.  You will use `org.unicode.text.UCA.Main` as your main class.
+    Normally use the command-line options `writeCollationValidityLog ICU`
     1.  Possible additional options (VM arguments):
     2.  -DNODATE (suppresses date output, to avoid gratuitous diffs during
         development)
     3.  -DAUTHOR (suppresses only the author suffix from the date)
     4.  -DAUTHOR=XYZ (sets the author suffix to " \[XYZ\]")
-6.  To test whether the UCA files are valid, use the options (*note: you must
-    also build the ICU files below, since they test other aspects*).
-    ```
-    writeCollationValidityLog
-    ```
 
-    It will create a file:
-    ```
-    {Generated}/UCA/{version}/CheckCollationValidity.html
-    ```
-    1.  Review this file. It will list errors. Some of those are actually
-        warnings, and indicate possible problems (this is indicated in the text,
-        such as by: "These are not necessarily errors, but should be examined
-        for *possible* errors"). In those cases, the items should be reviewed to
-        make sure that there are no inadvertent problems.
-    2.  If it is not so marked, it is a true error, and must be fixed.
-    3.  At the end, there is section **11. Coverage**. There are two sections:
-        1.  In UCDxxx, but not in allkeys. Check this over to make sure that
-            these are all the characters that should get ***implicit*** weights.
-        2.  In allkeys, but not in UCD. These should be ***only*** contractions.
-            Check them over to make sure they look right also.
+Using the `writeCollationValidityLog` option tests whether the UCA files are valid.
+It will create a file: `{Generated}/UCA/{version}/CheckCollationValidity.html`
+1.  Review this file. It will list errors. Some of those are actually
+    warnings, and indicate possible problems (this is indicated in the text,
+    such as by: "These are not necessarily errors, but should be examined
+    for *possible* errors"). In those cases, the items should be reviewed to
+    make sure that there are no inadvertent problems.
+2.  If it is not so marked, it is a true error, and must be fixed.
+3.  At the end, there is section **11. Coverage**. There are two sections:
+    1.  In UCDxxx, but not in allkeys. Check this over to make sure that
+        these are all the characters that should get ***implicit*** weights.
+    2.  In allkeys, but not in UCD. These should be ***only*** contractions.
+        Check them over to make sure they look right also.
+
+(The `ICU` option also builds the files needed by CLDR & ICU, and tests additional aspects.)
 
 ### UCA for CLDR & ICU
 

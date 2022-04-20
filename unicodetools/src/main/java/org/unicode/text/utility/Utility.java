@@ -36,7 +36,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;

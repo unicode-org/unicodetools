@@ -25,7 +25,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-import org.unicode.cldr.util.props.UnicodeProperty;
 import org.unicode.draft.CldrUtility.VariableReplacer;
 import org.unicode.draft.UnicodeDataInput;
 import org.unicode.draft.UnicodeDataInput.ItemReader;

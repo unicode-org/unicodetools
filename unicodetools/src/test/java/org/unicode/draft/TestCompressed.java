@@ -14,8 +14,8 @@ import java.util.Map.Entry;
 import java.util.zip.GZIPOutputStream;
 
 import org.junit.jupiter.api.Test;
-import org.unicode.cldr.util.props.ICUPropertyFactory;
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.jsp.ICUPropertyFactory;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.draft.UnicodeDataInput.StringReader;
 import org.unicode.draft.UnicodeDataOutput.StringWriter;
 import org.unicode.unittest.TestFmwkMinusMinus;

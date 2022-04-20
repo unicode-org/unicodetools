@@ -36,8 +36,8 @@ import org.unicode.cldr.util.CaseIterator;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
-import org.unicode.cldr.util.props.BagFormatter;
-import org.unicode.cldr.util.props.UnicodeProperty.UnicodeMapProperty;
+import org.unicode.props.BagFormatter;
+import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -537,7 +537,7 @@ public class QuickTest implements UCD_Types {
 
     static final int skip = (1<<UCD.UNASSIGNED) | (1<<UCD.PRIVATE_USE) | (1<<UCD.SURROGATE);
     /**
-     * 
+     *
      */
     private static void getLengths(String title, Normalizer normalizer) throws IOException {
         System.out.println();

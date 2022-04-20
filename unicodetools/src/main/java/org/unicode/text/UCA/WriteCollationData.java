@@ -35,7 +35,7 @@ import java.util.TreeSet;
 import java.util.Vector;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCA.UCA.Remap;
 import org.unicode.text.UCD.Default;
@@ -270,7 +270,7 @@ public class WriteCollationData {
         System.out.println("WARNING -- COMPOSITIONS UNFINISHED!!");
 
         /*
-         * 
+         *
          * IntHashtable.IntEnumeration enum = Default.nfkd.getComposition();
          * while (enum.hasNext()) { int key = enum.next(); char val = (char)
          * enum.value(); if (0xAC00 <= val && val <= 0xD7A3) continue; ++count;
@@ -465,12 +465,12 @@ public class WriteCollationData {
 
         /*
          * diLog.println(); diLog.println("OVERLAPS"); diLog.println();
-         * 
+         *
          * for (int i = 0; i < secondariesZP.length; ++i) { if (secondariesZP[i]
          * != 0 && secondariesNZP[i] != 0) { diLog.println("Overlap at " +
          * Utility.hex(i) + ": " + secondariesZP[i] + " with zero primaries" +
          * ", " + secondariesNZP[i] + " with non-zero primaries" );
-         * 
+         *
          * showSampleOverlap(" ZP:  ", secondariesZPsample[i], ces);
          * showSampleOverlap(" NZP: ", secondariesNZPsample[i], ces);
          * diLog.println(); } }
@@ -671,10 +671,10 @@ public class WriteCollationData {
 
         /*
          * 2E80..2EFF; CJK Radicals Supplement 2F00..2FDF; Kangxi Radicals
-         * 
+         *
          * 3400..4DBF; CJK Unified Ideographs Extension A 4E00..9FFF; CJK
          * Unified Ideographs F900..FAFF; CJK Compatibility Ideographs
-         * 
+         *
          * 20000..2A6DF; CJK Unified Ideographs Extension B 2F800..2FA1F; CJK
          * Compatibility Ideographs Supplement
          */

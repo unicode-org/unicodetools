@@ -11,7 +11,7 @@ import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
-import org.unicode.cldr.util.props.BagFormatter;
+import org.unicode.props.BagFormatter;
 import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.text.UCD.TestData.RegexMatcher;
 import org.unicode.text.utility.Settings;
@@ -202,7 +202,7 @@ class GenerateStringPrep implements UCD_Types {
     }
 
     /**
-     * 
+     *
      */
     private void showScriptToBlock() {
         final UnicodeMap scripts = ToolUnicodePropertySource.make("").getProperty("script").getUnicodeMap();
@@ -297,7 +297,7 @@ class GenerateStringPrep implements UCD_Types {
     }
     static final int OK = 0, DELETED = 1, ILLEGAL = 2, REMAPPED = 3, IDNA_TYPE_LIMIT = 4;
     /**
-     * 
+     *
      */
     static public int getIDNAType(int cp) {
         inbuffer.setLength(0);
@@ -436,7 +436,7 @@ class GenerateStringPrep implements UCD_Types {
 
     /**
      * @throws IOException
-     * 
+     *
      */
     private UnicodeMap getPositions() throws IOException {
         final UnicodeMap result = new UnicodeMap();
@@ -471,7 +471,7 @@ class GenerateStringPrep implements UCD_Types {
     };
 
     /**
-     * 
+     *
      */
     private UnicodeSet extract(UnicodeSet other, UnicodeSet core) {
         final UnicodeSet decomp = new UnicodeSet(core).retainAll(other);

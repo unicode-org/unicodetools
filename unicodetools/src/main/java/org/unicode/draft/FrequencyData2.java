@@ -13,8 +13,8 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.PatternCache;
-import org.unicode.cldr.util.props.ICUPropertyFactory;
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.jsp.ICUPropertyFactory;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -54,21 +54,21 @@ public class FrequencyData2 {
 
     /**
      * The 1st column is the code point.
-     * 
+     *
      * 2nd is detected language
-     * 
+     *
      * Then there are 3 groups of 4 columns, where each group is:
-     * 
+     *
      * pre-HTML code point count post-HTML code point count, document count, UTF-8 document count
-     * 
+     *
      * The 1st group includes "bad" docs (error during input conversion or
      * contains unassigned or high private use), 2nd group excludes "bad"
      * docs, 3rd group is multiplied by pagerank (and excludes "bad" docs).
-     * 
+     *
      * Then there are up to 3 groups, where each group is:
-     * 
+     *
      * navboost, pagerank, language, encoding, url
-     * 
+     *
      * @param frequencyFile
      * @throws IOException
      */
@@ -119,7 +119,7 @@ public class FrequencyData2 {
 //        }
 //        in.close();
 //    }
-    
+
     public FrequencyData2(String frequencyFile, boolean showProgress) throws IOException {
     if (true) throw new IllegalArgumentException("old code: see CharacterFrequency");
         BufferedReader in = GenerateNormalizeForMatch2.openUTF8Reader(frequencyFile);
@@ -456,7 +456,7 @@ private static void writeSummary2(FrequencyData2 data) {
     }
 
     for (int i = 0; i < 4; ++i) {
-        System.out.println((i+1) + "-byte:\t" 
+        System.out.println((i+1) + "-byte:\t"
                 + 100*buckets[i]/(double) total + "%");
     }
 }

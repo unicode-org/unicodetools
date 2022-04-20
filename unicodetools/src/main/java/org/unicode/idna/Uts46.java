@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import org.unicode.jsp.FileUtilities;
 import org.unicode.text.utility.Settings;
 
 import com.google.common.base.Splitter;
@@ -13,6 +12,8 @@ import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
+
+import org.unicode.jsp.FileUtilities;
 
 public class Uts46 extends Idna {
 
@@ -134,29 +135,29 @@ public class Uts46 extends Idna {
      * http://datatracker.ietf.org/doc/draft-ietf-idnabis-bidi/, version 07 An
      * RTL label is a label that contains at least one character of type R, AL
      * or AN.
-     * 
+     *
      * An LTR label is any label that is not an RTL label.
-     * 
+     *
      * A "BIDI domain name" is a domain name that contains at least one RTL
      * label.
-     * 
+     *
      * 1. The first character must be a character with BIDI property L, R or AL.
      * If it has the R or AL property, it is an RTL label; if it has the L
      * property, it is an LTR label.
-     * 
+     *
      * 2. In an RTL label, only characters with the BIDI properties R, AL, AN,
      * EN, ES, CS, ET, ON, BN and NSM are allowed.
-     * 
+     *
      * 3. In an RTL label, the end of the label must be a character with BIDI
      * property R, AL, EN or AN, followed by zero or more characters with BIDI
      * property NSM.
-     * 
+     *
      * 4. In an RTL label, if an EN is present, no AN may be present, and vice
      * versa.
-     * 
+     *
      * 5. In an LTR label, only characters with the BIDI properties L, EN, ES,
      * CS. ET, ON, BN and NSM are allowed.
-     * 
+     *
      * 6. In an LTR label, the end of the label must be a character with BIDI
      * property L or EN, followed by zero or more characters with BIDI property
      * NSM.
@@ -175,7 +176,7 @@ public class Uts46 extends Idna {
     static final UnicodeSet NSM                           = new UnicodeSet("[[:bc=NSM:]]").freeze();
     /**
      * Checks a string for IDNA2008 bidi errors. label must not be empty
-     * 
+     *
      * @param domainName
      *            the string to be tested
      * @param errors
@@ -191,7 +192,7 @@ public class Uts46 extends Idna {
         final int firstChar = label.codePointAt(0);
 
         // 1. The first character must be a character with BIDI property L,
-        // R or AL. 
+        // R or AL.
         // If it has the R or AL property, it is an RTL label;
         // if it has the L property, it is an LTR label.
 
@@ -229,7 +230,7 @@ public class Uts46 extends Idna {
         if (RTL && EN.containsSome(label) && AN.containsSome(label)) {
             errors.add(Errors.B4);
         }
-        
+
         // 5. In an LTR label, only characters with the BIDI properties L,
         // EN, ES, CS. ET, ON, BN and NSM are allowed.
         if (LTR && !L_EN_ES_CS_ET_ON_BN_NSM.containsAll(label)) {
@@ -348,7 +349,7 @@ public class Uts46 extends Idna {
 
     /**
      * Input must start with xn--
-     * 
+     *
      * @param label
      * @param errors
      * @return
@@ -410,15 +411,15 @@ public class Uts46 extends Idna {
         A3(UIDNA_ERROR_PUNYCODE),
         A4_1(UIDNA_ERROR_DOMAIN_NAME_TOO_LONG),
         A4_2(UIDNA_ERROR_EMPTY_LABEL | UIDNA_ERROR_LABEL_TOO_LONG),
-        NV8(UIDNA_NOT_IDNA2008), 
-        X3(UIDNA_ERROR_EMPTY_LABEL), 
+        NV8(UIDNA_NOT_IDNA2008),
+        X3(UIDNA_ERROR_EMPTY_LABEL),
         X4_2(UIDNA_ERROR_EMPTY_LABEL),
         ;
         static final Set<Errors> TO_ASCII_ERRORS = ImmutableSortedSet.of(A3, A4_1, A4_2);
         static final Set<Errors> BOTH_X_A4_2 = ImmutableSortedSet.of(A4_2, X4_2);
-        
+
         int errorNum;
-        
+
         Errors(int errorNum) {
             this.errorNum = errorNum;
         }
@@ -473,7 +474,7 @@ public class Uts46 extends Idna {
         }
         return errors.size() - oldErrorLength;
     }
-    
+
     private String processMap(String domainName, IdnaChoice idnaChoice, Set<Errors> errors) {
         final StringBuilder buffer = new StringBuilder();
         int cp;

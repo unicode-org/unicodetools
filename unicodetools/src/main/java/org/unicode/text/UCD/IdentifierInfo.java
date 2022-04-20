@@ -19,9 +19,9 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
-import org.unicode.cldr.util.props.BagFormatter;
-import org.unicode.cldr.util.props.UnicodeProperty;
-import org.unicode.cldr.util.props.UnicodeProperty.Factory;
+import org.unicode.props.BagFormatter;
+import org.unicode.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty.Factory;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.ScriptInfo;
 import org.unicode.props.UcdProperty;
@@ -375,7 +375,7 @@ public class IdentifierInfo {
         }
     }
     /**
-     * 
+     *
      */
     private void loadFileData() throws IOException {
         BufferedReader br;
@@ -449,12 +449,12 @@ public class IdentifierInfo {
 
                         addToRemovalSets(s, reasons);
 
-                        if (oldReason == Identifier_Type.inclusion 
+                        if (oldReason == Identifier_Type.inclusion
                                 || oldReason == reasons) {
                             continue; // always ok
                         }
-                        if (override 
-                                || oldReason == null 
+                        if (override
+                                || oldReason == null
                                 || oldReason.compareTo(reasons) < 0
                                 || reasons == Identifier_Type.inclusion) {
                             removals.put(s, reasons);
@@ -502,8 +502,8 @@ public class IdentifierInfo {
         for (final String script : scripts) {
             String shortName = UcdPropertyValues.Script_Values.forName(script).getShortName();
             Info scriptInfo = ScriptMetadata.getInfo(shortName);
-            final IdUsage idUsage = scriptInfo != null 
-                    ? scriptInfo.idUsage 
+            final IdUsage idUsage = scriptInfo != null
+                    ? scriptInfo.idUsage
                             : IdUsage.EXCLUSION;
             IdentifierInfo.Identifier_Type status;
             switch(idUsage) {
@@ -547,10 +547,10 @@ public class IdentifierInfo {
             if (DEBUG) System.out.println("*Removal Collision\t" + value + "\n\t" + removalCollision.getSet(value).toPattern(false));
         }
         removals.freeze();
-        
+
         // pick up all the explict inclusions
         UnicodeSet inclusions = identifierTypesMap.getSet(SINGLETON_INCLUSION);
-        
+
         // Clean up values by setting to singletons. ORDER is important!!
         identifierTypesMap.putAll(NOT_NFKC, Collections.singleton(Identifier_Type.not_nfkc));
         identifierTypesMap.putAll(DEFAULT_IGNORABLE, Collections.singleton(Identifier_Type.default_ignorable));
@@ -568,7 +568,7 @@ public class IdentifierInfo {
         identifierTypesMap.putAll(inclusions, SINGLETON_INCLUSION);
 
         identifierTypesMap.putAll(identifierTypesMap.getSet(null), Collections.singleton(Identifier_Type.recommended));
-        
+
         // make immutable
         // special hack for Exclusion + Obsolete!!
         for (Set<Identifier_Type> value : identifierTypesMap.getAvailableValues()) {
@@ -642,7 +642,7 @@ public class IdentifierInfo {
     }
 
     /**
-     * 
+     *
      */
     private void writeIDReviewInternal() throws IOException {
         final BagFormatter bf = GenerateConfusables.makeFormatter()
@@ -698,7 +698,7 @@ public class IdentifierInfo {
     }
 
     /**
-     * 
+     *
      */
     private void writeIDCharsInternal() throws IOException {
         final BagFormatter bf = GenerateConfusables.makeFormatter();
@@ -749,7 +749,7 @@ public class IdentifierInfo {
 
 
     /**
-     * 
+     *
      */
     private void showExtras(BagFormatter bf, UnicodeSet source, UnicodeSet letters) {
         final UnicodeSet extra = new UnicodeSet(source).removeAll(letters);
@@ -923,8 +923,8 @@ public class IdentifierInfo {
                     UnicodeSet newRecommended = new UnicodeSet(keySet).retainAll(current);
                     for (String s : newRecommended) {
                         // [:script=Phag:] ; historic # UAX31 T4 #     Phags Pa
-                        if (DEBUG) System.out.println(Utility.hex(s) 
-                                + "\t;\thistoric\t#\t" 
+                        if (DEBUG) System.out.println(Utility.hex(s)
+                                + "\t;\thistoric\t#\t"
                                 + DEFAULT_UCD.getName(s));
                     }
                 }
@@ -970,7 +970,7 @@ public class IdentifierInfo {
 
         final String propName = "Identifier_Type";
         final String filename = status == Style.byValue ? "IdentifierType.txt" : "IdentifierTypeFlat.txt";
-        try (PrintWriter out2 = GenerateConfusables.openAndWriteHeader(GenerateConfusables.GEN_SECURITY_DIR, 
+        try (PrintWriter out2 = GenerateConfusables.openAndWriteHeader(GenerateConfusables.GEN_SECURITY_DIR,
                 filename, "Security Profile for General Identifiers: "
                         + propName)) {
             out2.println("# Format"
@@ -1005,11 +1005,11 @@ public class IdentifierInfo {
                             + propName
                             + ":\t" + value);
                     out2.println("");
-                    bf2.showSetNames(out2, tempMap.getSet(value));                
+                    bf2.showSetNames(out2, tempMap.getSet(value));
                 }
             } else {
                 out2.println("");
-                bf2.showSetNames(out2, tempMap.keySet());                
+                bf2.showSetNames(out2, tempMap.keySet());
             }
         }
     }
@@ -1031,7 +1031,7 @@ public class IdentifierInfo {
         bf2.setLabelSource(age);
 
         final String propName = "Identifier_Status";
-        try (PrintWriter out2 = GenerateConfusables.openAndWriteHeader(GenerateConfusables.GEN_SECURITY_DIR, 
+        try (PrintWriter out2 = GenerateConfusables.openAndWriteHeader(GenerateConfusables.GEN_SECURITY_DIR,
                 "IdentifierStatus.txt", "Security Profile for General Identifiers: " + propName)) {
             out2.println("# Format"
                     + "\n#"

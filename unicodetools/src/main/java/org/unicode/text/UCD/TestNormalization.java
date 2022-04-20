@@ -22,7 +22,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.unicode.cldr.util.props.BagFormatter;
+import org.unicode.props.BagFormatter;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;

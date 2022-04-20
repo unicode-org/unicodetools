@@ -32,8 +32,8 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 import org.unicode.cldr.util.Counter;
-import org.unicode.cldr.util.props.ICUPropertyFactory;
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.jsp.ICUPropertyFactory;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.UCD.Default;
@@ -166,7 +166,7 @@ public class TestUtility {
     }
 
     /**
-     * 
+     *
      */
     private static boolean equals(int i, String value) {
         final int len = value.length();
@@ -183,7 +183,7 @@ public class TestUtility {
     }
 
     /**
-     * 
+     *
      */
     private static void testHanProp(int iterations, int total, String pname, String type) throws IOException, ClassNotFoundException {
         System.out.println();
@@ -199,7 +199,7 @@ public class TestUtility {
     static String outdir = outdircore + "4.1.0/";
     /**
      * @param pname
-     * 
+     *
      */
     private static int testUnicodeMapSerialization(int iterations, int total, String pname, UnicodeMap umap) throws IOException, ClassNotFoundException {
         System.out.print("\tValue Count:\t" + umap.getAvailableValues().size());
@@ -315,7 +315,7 @@ public class TestUtility {
     }
 
     /**
-     * 
+     *
      */
     private static String showBuffer(byte[] buffer, long size) {
         final StringBuffer result = new StringBuffer();
@@ -329,7 +329,7 @@ public class TestUtility {
     }
 
     /**
-     * 
+     *
      */
     private static void testStreamCompressor() throws IOException {
         final Object[] tests = {
@@ -385,7 +385,7 @@ public class TestUtility {
     }
 
     /**
-     * 
+     *
      */
     private static void showBytes(byte[] buffer, int len) {
         for (int i = 0; i < len; ++i) {
@@ -394,7 +394,7 @@ public class TestUtility {
     }
 
     /**
-     * 
+     *
      */
     private static UnicodeMap fixNameMap(BreakIterator bk, UnicodeMap umap) {
         final UnicodeMap temp = new UnicodeMap();
@@ -446,7 +446,7 @@ public class TestUtility {
     }
 
     /**
-     * 
+     *
      */
     private static void tryFileUnicodeProperty() {
         final UnicodeProperty.Factory factory = FileUnicodeProperty.Factory.make("4.1.0");
@@ -508,7 +508,7 @@ public class TestUtility {
         }
 
         /**
-         * 
+         *
          */
         private void make() {
             try {

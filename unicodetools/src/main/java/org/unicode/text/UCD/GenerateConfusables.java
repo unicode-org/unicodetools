@@ -32,6 +32,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,9 +43,9 @@ import org.unicode.cldr.util.Pair;
 import org.unicode.cldr.util.With;
 import org.unicode.cldr.util.XEquivalenceClass;
 import org.unicode.cldr.util.XEquivalenceClass.Linkage;
-import org.unicode.cldr.util.props.BagFormatter;
+import org.unicode.props.BagFormatter;
 import org.unicode.cldr.util.props.UnicodeLabel;
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Uts46;
 import org.unicode.props.IndexUnicodeProperties;
@@ -157,7 +158,7 @@ public class GenerateConfusables {
     private static final UnicodeProperty SCRIPT_PROPERTY = ups.getProperty("sc");
     static final UnicodeProperty AGE = ups.getProperty("age");
 
-    private static final String EXCAPE_FUNNY_RULE = 
+    private static final String EXCAPE_FUNNY_RULE =
             ":: [[:C:]-[:cn:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]] hex/unicode ; ";
 
     static final Transliterator EXCAPE_FUNNY = Transliterator.createFromRules(
@@ -381,7 +382,7 @@ public class GenerateConfusables {
     //    }
 
     /**
-     * 
+     *
      */
     //  private static UnicodeSet _Non_IICore;
     //
@@ -478,7 +479,7 @@ public class GenerateConfusables {
 
     private static Comparator codepointComparator = new UTF16.StringComparator(true,false,0);
     static Comparator UCAComparator = new org.unicode.cldr.util.MultiComparator(new Comparator[] {
-            Collator.getInstance(ULocale.ROOT), 
+            Collator.getInstance(ULocale.ROOT),
             //UCA.buildCollator(null),
             codepointComparator});
 
@@ -526,7 +527,7 @@ public class GenerateConfusables {
 
     /**
      * @throws IOException
-     * 
+     *
      */
     private static void generateIDN() throws IOException {
         final IdentifierInfo info = IdentifierInfo.getIdentifierInfo();
@@ -538,12 +539,12 @@ public class GenerateConfusables {
     //    static final String UNPROHIBITED = "Allowed ; ";
     private static final boolean suppress_NFKC = true;
     /**
-     * 
+     *
      */
 
 
     /**
-     * 
+     *
      */
     static void generateDecompFile() throws IOException {
         final PrintWriter out = FileUtilities.openUTF8Writer(reformatedInternal, "decomps.txt");
@@ -592,7 +593,7 @@ public class GenerateConfusables {
     }
 
     /**
-     * 
+     *
      */
     //    private static void showRemapped(PrintWriter out, String title, UnicodeMap remap) {
     //        out.println("");
@@ -607,7 +608,7 @@ public class GenerateConfusables {
     //        out.println("# Total code points: " + count);
     //    }
     /**
-     * 
+     *
      */
     static UnicodeSet IDNOutputSet;
     static UnicodeSet IDNInputSet;
@@ -745,7 +746,7 @@ public class GenerateConfusables {
     }
 
     /**
-     * 
+     *
      */
     private static void generateConfusables() throws IOException {
         log = FileUtilities.openUTF8Writer(reformatedInternal, "log.txt");
@@ -793,7 +794,7 @@ public class GenerateConfusables {
 
     /**
      * @param relation TODO
-     * 
+     *
      */
     private static void writeSourceTargetLine(PrintWriter out, String source, String tag, String target, String reason, String relation) {
         out.print(
@@ -865,7 +866,7 @@ public class GenerateConfusables {
         }
 
         /**
-         * 
+         *
          */
         private boolean checkForBad(String a, String b, String reason) {
             final Set equivalences = getEquivalences(b);
@@ -958,7 +959,7 @@ public class GenerateConfusables {
         }
 
         /**
-         * 
+         *
          */
         private String mapString(String item, StringBuffer reasons, boolean onlyLowercase, boolean onlySameScript) {
             if (DEBUG && item.startsWith("\u03D2")) {
@@ -1044,8 +1045,8 @@ public class GenerateConfusables {
                     filteredSet.add(other);
                 }
             //            }
-            return CollectionUtilities.getBest(filteredSet, 
-                    // onlyLowercase || onlySameScript ? betterTargetIsLessFavorNeutral : 
+            return CollectionUtilities.getBest(filteredSet,
+                    // onlyLowercase || onlySameScript ? betterTargetIsLessFavorNeutral :
                         betterTargetIsLess, -1);
         }
 
@@ -1055,7 +1056,7 @@ public class GenerateConfusables {
             return cloneForSafety;
         }
         /**
-         * 
+         *
          */
         //        public void writeSource(PrintWriter out) {
         //            final Set items = getOrderedExplicitItems();
@@ -1175,7 +1176,7 @@ public class GenerateConfusables {
 
         /*        *//**
          * @param errorLine TODO
-         * 
+         *
          *//*
         private DataSet add(Data newData, String errorLine) {
             if (controls.containsSome(newData.source) || controls.containsSome(newData.target)) {
@@ -1316,16 +1317,16 @@ public class GenerateConfusables {
                 Utility.appendFile(Settings.SRC_UCD_DIR + "confusablesHeader.txt",
                         Utility.UTF8_WINDOWS, out, replacements);
             }
-            Relation<Pair<String,String>, String> confusableMap 
-            = Relation.of(new TreeMap(MyPairComparator), TreeSet.class); 
+            Relation<Pair<String,String>, String> confusableMap
+            = Relation.of(new TreeMap(MyPairComparator), TreeSet.class);
             if (true) {
-                //                writeSourceOrder(out, dataMixedAnycase, "SL", "Single-Script, Lowercase Confusables", skipNFKEquivs, 
+                //                writeSourceOrder(out, dataMixedAnycase, "SL", "Single-Script, Lowercase Confusables", skipNFKEquivs,
                 //                        true, true, confusableMap);
-                //                writeSourceOrder(out, dataMixedAnycase, "SA", "Single-Script, Anycase Confusables", skipNFKEquivs, 
+                //                writeSourceOrder(out, dataMixedAnycase, "SA", "Single-Script, Anycase Confusables", skipNFKEquivs,
                 //                        false, true, confusableMap);
-                //                writeSourceOrder(out, dataMixedAnycase, "ML", "Mixed-Script, Lowercase Confusables", skipNFKEquivs, 
+                //                writeSourceOrder(out, dataMixedAnycase, "ML", "Mixed-Script, Lowercase Confusables", skipNFKEquivs,
                 //                        true, false, confusableMap);
-                writeSourceOrder(out, dataMixedAnycase, "MA", "Mixed-Script, Anycase Confusables", skipNFKEquivs, 
+                writeSourceOrder(out, dataMixedAnycase, "MA", "Mixed-Script, Anycase Confusables", skipNFKEquivs,
                         false, false, confusableMap);
                 Counter<Set<String>> counter = new Counter();
                 Map<Set<String>, Pair<String, String>> examples = new HashMap<Set<String>, Pair<String, String>>();
@@ -1358,11 +1359,11 @@ public class GenerateConfusables {
          * @param skipNFKEquivs TODO
          * @param onlyLowercase TODO
          * @param onlySingleScript TODO
-         * @param confusableMap 
-         * 
+         * @param confusableMap
+         *
          */
         private void writeSourceOrder(PrintWriter out, MyEquivalenceClass data, String tag, String title,
-                boolean skipNFKEquivs, boolean onlyLowercase, boolean onlySingleScript, 
+                boolean skipNFKEquivs, boolean onlyLowercase, boolean onlySingleScript,
                 Relation<Pair<String, String>, String> confusableMap) {
             // first get all the sets. Then get the best paradigm from each. Then sort.
             //            Set setOfSets = data.getEquivalenceSets();
@@ -1427,7 +1428,7 @@ public class GenerateConfusables {
         }
 
         /**
-         * 
+         *
          */
         //        private String fixReason(List reasons) {
         //            final List first = (List)reasons.get(0);
@@ -1470,7 +1471,7 @@ public class GenerateConfusables {
             return dataMixedAnycase.getEquivalences(string);
         }
         /*        *//**
-         * 
+         *
          *//*
         public DataSet clean() {
             // remove all skips
@@ -1542,7 +1543,7 @@ public class GenerateConfusables {
             return s;
         }
           *//**
-          * 
+          *
           *//*
         private void remove(Data already) {
             String[] key = {already.source, already.target};
@@ -1550,7 +1551,7 @@ public class GenerateConfusables {
             dataSet.remove(already);
         }*/
         /**
-         * 
+         *
          */
         public void close(String reason) {
             dataMixedAnycase.close(reason);
@@ -1559,7 +1560,7 @@ public class GenerateConfusables {
             //            dataSingleLowercase.close(reason);
         }
         /**
-         * 
+         *
          */
         public void addUnicodeMap(UnicodeMap decompMap, String type, String errorLine) {
             int count = 0;
@@ -1576,12 +1577,11 @@ public class GenerateConfusables {
         //            }
         //        }
 
-        private static class MyCollectionFilter implements CollectionUtilities.ObjectMatcher {
+        private static class MyCollectionFilter implements Predicate<String> {
             UnicodeSet outputAllowed;
             int minLength;
             @Override
-            public boolean matches(Object o) {
-                final String item = (String)o;
+            public boolean test(String item) {
                 if (!outputAllowed.containsAll(item)) {
                     return false;
                 }
@@ -1595,7 +1595,7 @@ public class GenerateConfusables {
         /**
          * @param script TODO
          * @throws IOException
-         * 
+         *
          */
         public void writeSummary(String outdir, String filename, boolean outputOnly, UnicodeSet script) throws IOException {
             final PrintWriter out = openAndWriteHeader(outdir, filename, "Summary: Recommended confusable mapping for IDN");
@@ -1631,7 +1631,7 @@ public class GenerateConfusables {
                 itemsSeen.addAll(equivalents);
                 if (outputOnly) { // remove non-output
                     myFilter.minLength = 1000;
-                    CollectionUtilities.retainAll(equivalents, myFilter);
+                    retainAll(equivalents, myFilter);
                     if (equivalents.size() <= 1) {
                         continue;
                     }
@@ -1763,7 +1763,7 @@ public class GenerateConfusables {
             out.close();
         }
         /**
-         * 
+         *
          */
         //        private String getStatus(String source) {
         //            // TODO Auto-generated method stub
@@ -1931,9 +1931,9 @@ public class GenerateConfusables {
                         }
                     }
 
-                    final String sname = UCD.getScriptID_fromIndex(j, UCD_Types.SHORT) + "; " 
+                    final String sname = UCD.getScriptID_fromIndex(j, UCD_Types.SHORT) + "; "
                             + UCD.getScriptID_fromIndex(k, UCD_Types.SHORT) + "; " + label;
-                    final String name = getScriptIndexName(j, UCD_Types.LONG) 
+                    final String name = getScriptIndexName(j, UCD_Types.LONG)
                             + "; " + getScriptIndexName(k, UCD_Types.LONG);
                     StringWriter b = new StringWriter();
                     PrintWriter out2 = new PrintWriter(b);
@@ -1959,7 +1959,7 @@ public class GenerateConfusables {
 
     /**
      * @throws IOException
-     * 
+     *
      */
     //    private static void fixMichel(String indir, String outdir) throws IOException {
     //        final BufferedReader in = FileUtilities.openUTF8Reader(indir + "michel/", "tr36comments-annex.txt");
@@ -1983,7 +1983,7 @@ public class GenerateConfusables {
     //        out.close();
     //    }
     /**
-     * 
+     *
      */
 
     private static void generateSource() throws IOException {
@@ -2236,7 +2236,7 @@ public class GenerateConfusables {
         if (DEBUG) System.out.println("Done");
     }
     /**
-     * 
+     *
      */
     //    private static String formatLine(String source, String target, int count) {
     //        return Utility.hex(source) + " ; " + Utility.hex(target," ")
@@ -2247,7 +2247,7 @@ public class GenerateConfusables {
     //                + " " + ARROW + " " + DEFAULT_UCD.getName(target);
     //    }
     /**
-     * 
+     *
      */
     /*    private static void add(Map m, String source, String target, int count) {
         if (source.length() == 0 || target.length() == 0) return;
@@ -2276,7 +2276,7 @@ public class GenerateConfusables {
     private static boolean isXid(String x) {
         return  XID.containsAll(x);
     }
-    
+
     private static class _BetterTargetIsLess implements Comparator<String> {
         IdentifierInfo info = IdentifierInfo.getIdentifierInfo();
         private boolean favorNeutral;
@@ -2297,9 +2297,9 @@ public class GenerateConfusables {
             if (ca != cb)  {
                 return ca > cb ? -1 : 1;
             }
-            
+
             // favor item with higher old last value, if there is one.
-            
+
             long lasta = LAST_COUNT.get(a);
             long lastb = LAST_COUNT.get(b);
             long ldiff = lasta - lastb;
@@ -2493,4 +2493,20 @@ public class GenerateConfusables {
 
     };
 
+    // Copied from ICU CollectionUtilities.
+    /**
+     * Retain matching items
+     * @param <T>
+     * @param <U>
+     * @param c
+     * @param f
+     * @return
+     */
+    static <T, U extends Collection<T>> U retainAll(U c, Predicate<T> f) {
+        for (Iterator<T> it = c.iterator(); it.hasNext();) {
+            T item = it.next();
+            if (!f.test(item)) it.remove();
+        }
+        return c;
+    }
 }

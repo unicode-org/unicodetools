@@ -4,7 +4,7 @@ import java.text.ParsePosition;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.UCD.UnicodeMapParser;
 import org.unicode.text.UCD.UnicodeMapParser.ValueParser;

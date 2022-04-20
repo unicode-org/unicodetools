@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>unicodetools-testutils</artifactId>
+	<groupId>org.unicode.unicodetools</groupId>
+	<name>Unicode Test Utilities</name>
+
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+
+
+	<parent>
+		<groupId>org.unicode.unicodetools</groupId>
+		<artifactId>unicodetools-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.ibm.icu</groupId>
+			<artifactId>icu4j-for-cldr</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.icu</groupId>
+			<artifactId>utilities-for-cldr</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.unicode.cldr</groupId>
+			<artifactId>cldr-code</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<!-- scope is not 'test' here, this is a test library -->
+		</dependency>
+	</dependencies>
+</project>

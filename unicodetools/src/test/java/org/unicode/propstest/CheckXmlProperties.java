@@ -1,7 +1,7 @@
 package org.unicode.propstest;
 
 import org.unicode.cldr.util.Timer;
-import org.unicode.cldr.util.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.ValueCardinality;
@@ -13,7 +13,7 @@ import com.ibm.icu.dev.util.UnicodeMap;
 public class CheckXmlProperties {
     /**
      * TODO Known problems
-     * 
+     *
 Property  cp  xml     unicodetools
 Numeric_Value   109F7   [2/12]  [1/6]
 ... Formatting issue with rationals
@@ -111,12 +111,12 @@ Warning tests:  4
                             System.out.println("\nProperty\t cp\t xml\t unicodetools");
                         }
                         if (++errors < 11) {
-                            System.out.println(prop 
-                                    + "\t" + Utility.hex(i) 
-                                    + "\t" + XMLProperties.show(xval) 
+                            System.out.println(prop
+                                    + "\t" + Utility.hex(i)
+                                    + "\t" + XMLProperties.show(xval)
                                     + "\t" + XMLProperties.show(ival));
                         }
-                        errorMap.put(i, XMLProperties.show(xval) 
+                        errorMap.put(i, XMLProperties.show(xval)
                                     + "\t" + XMLProperties.show(ival));
                     }
                 }

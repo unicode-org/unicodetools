@@ -1,7 +1,7 @@
 package org.unicode.idna;
 
-import org.unicode.cldr.util.props.UnicodeProperty;
-import org.unicode.cldr.util.props.UnicodePropertySymbolTable;
+import org.unicode.props.UnicodeProperty;
+import org.unicode.props.UnicodePropertySymbolTable;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.ToolUnicodeTransformFactory;
@@ -12,7 +12,7 @@ import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 
 public class GenerateIdnaStableSamples {
     public static void main(String[] args) {
-        
+
         Default.setUCD("9.0.0");
         UnicodeTransform.setFactory(new ToolUnicodeTransformFactory());
         final ToolUnicodePropertySource toolUPS1 = ToolUnicodePropertySource.make(Default.ucdVersion());
@@ -28,26 +28,26 @@ public class GenerateIdnaStableSamples {
                 "[[:bc=EN:]-[:Cn:]]",
                 "[[:bc=AN:]-[:Cn:]]",
                 "[[:bc=NSM:]-[:Cn:]]",
-                "// contextj",// 
+                "// contextj",//
                 "[\u200C\u200D]",
                 "[[:ccc=virama:]-[:Cn:]]",
                 "[[:jt=T:]-[:Cn:]]",
                 "[[:jt=L:][:jt=D:]-[:Cn:]]",
                 "[[:jt=R:][:jt=D:]-[:Cn:]]",
-                "// syntax",// 
+                "// syntax",//
                 "[-]",
-                "// changed mapping from 2003",// 
+                "// changed mapping from 2003",//
                 "[[\u04C0 \u10A0-\u10C5 \u2132 \u2183 \u2F868 \u2F874 \u2F91F \u2F95F \u2F9BF \u3164 \uFFA0 \u115F \u1160 \u17B4 \u17B5 \u1806]-[:Cn:]]",
                 "// disallowed in 2003",// disallowed in 2003
                 "[[\u200E-\u200F \u202A-\u202E \u2061-\u2063 \uFFFC \uFFFD \u1D173-\u1D17A \u206A-\u206F \uE0001 \uE0020-\uE007F]-[:Cn:]]",
-                "// Step 7",// 
+                "// Step 7",//
                 "[[\u2260 \u226E \u226F \uFE12 \u2488]-[:Cn:]]",
-                "// disallowed", 
+                "// disallowed",
                 "[[:S:][:P:][:C:]-[:Cn:][:noncharactercodepoint:][\\U000D0000\\U000E0000\\U000F0000\\U00100000]]",
-                "// deviations", // 
+                "// deviations", //
                 "[[\\u200C\\u200D\\u00DF\\u03C2]-[:Cn:]]",
         };
-        
+
         for (int i = 0; i < samples.length; ++i) {
             String sample = samples[i];
             if (sample.contains("[")) {

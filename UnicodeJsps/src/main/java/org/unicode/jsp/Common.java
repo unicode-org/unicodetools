@@ -46,9 +46,9 @@ public class Common {
     };
 
     static List<String> XPROPERTY_NAMES = Arrays.asList(new String[] { "toNFC", "toNFD", "toNFKC", "toNFKD", 
-    		"toCasefold", "toLowercase", "toUppercase",
+            "toCasefold", "toLowercase", "toUppercase",
             "toTitlecase",
-    		"subhead" });
+            "subhead" });
     static final int    XSTRING_START   = UProperty.STRING_LIMIT;
 
     public static String getXStringPropertyValue(int propertyEnum, int codepoint, int nameChoice) {
