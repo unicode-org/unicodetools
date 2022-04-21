@@ -9,8 +9,13 @@ on:
     - '*'
 
 jobs:
+
+  # Only run 1 or 2 commands for in-source build instructions, just to demonstrate
+  # what translating between an out-of-source build and an in-source build would
+  # look like. Rely on out-of-source build steps as the canonical way to
+  # execute tools in CI and write corresponding documentation.
   in-source-build:
-    name: In-source Instructions
+    name: In-source Instructions (Examples)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
@@ -41,12 +46,14 @@ jobs:
         run: mvn -s .github/workflows/mvn-settings.xml -B compile install -DskipTests=true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Run command - Make Unicode Files
-        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 15.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Run command - Build and Test
         run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run command - Make Unicode Files
+        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 15.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -84,12 +91,7 @@ jobs:
           mvn -s .github/workflows/mvn-settings.xml -B compile install -DskipTests=true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Run command - Make Unicode Files
-        run: |
-          cd unicodetools/mine/src
-          mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 15.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Run command - Build and Test
         run: |
           cd unicodetools/mine/src
@@ -97,3 +99,50 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Run command - Make Unicode Files
+        run: |
+          cd unicodetools/mine/src
+          mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 15.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/emoji/aac.md#aacorderjava
+      - name: Run command - AAC Order
+        run: |
+          cd unicodetools/mine/src
+          mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.tools.AacOrder"  -Dexec.args="version 15.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/uca/index.md#tools--tests
+      # Note: Not running desuffixucd.py in UCA jobs because no version numbers detected in data file names
+      - name: Run command - UCA - collation validity log
+        run: |
+          cd unicodetools/mine/src
+          # invoke main() in class ...UCA.Main
+          mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCA.Main"  -Dexec.args="writeCollationValidityLog"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
+          # check for output file
+          compgen -G "../Generated/UCA/*/CheckCollationValidity.html"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # TODO: file issue to uncomment, debug errors, and fix?
+      # - name: Run command - UCA - for CLDR & ICU
+      #   run: |
+      #     cd unicodetools/mine/src
+      #     # invoke main() in class ...UCA.Main
+      #     mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCA.Main"  -Dexec.args="ICU"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/idna.md
+      - name: Run command - IDNA
+        run: |
+          cd unicodetools/mine/src
+          # Confirm that the directory for the bin files exists
+          compgen -G "../Generated/BIN"
+          # "Delete all the bin files" as per instructions
+          rm -rf ../Generated/BIN/*
+          # run GenerateIdna
+          mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.idna.GenerateIdna"  -Dexec.args=""  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

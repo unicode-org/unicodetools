@@ -4,7 +4,7 @@
     1.  Make sure Settings.latestVersion is set right. (If you've already done
         this for the UCD, no problem).
     2.  Delete all the bin files to make sure that the unicode tools get the
-        release versions of the data. (See [Building Unicode Tools](index.md))
+        release versions of the data. (See [Building Unicode Tools](build.md))
 2.  Run GenerateIdna.java
     *   It will generate
         {Generated}/idna/{version}/**IdnaMappingTable.txt**
