@@ -149,22 +149,14 @@ Run the "Build and Test" command below to compile all of the source files. Some 
 Common tasks for Unicode Tools are listed below with example CLI commands with example argument values that they need:
 
 - Make Unicode Files:
-  * <details><summary>Out-of-source build:</summary>
+  * Out-of-source build: `mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
 
-```mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0```</details>
-
-  * <details><summary>In-source build:</summary> 
-
-```MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0```</details>
+  * In-source build: `MAVEN_OPTS="-ea" mvn exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version 14.0.0 build MakeUnicodeFiles"  -pl unicodetools  -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
 
 - Build and Test:
-  * <details><summary>Out-of-source build:</summary> 
+  * Out-of-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
 
-```MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0```</details>
-
-  * <details><summary>In-source build:</summary> 
-
-```MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0```</details>
+  * In-source build: `MAVEN_OPTS="-ea" mvn package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=14.0.0`
 
 See the corresponding Github Actions Continuous Integration [workflow file](https://github.com/unicode-org/unicodetools/blob/main/.github/workflows/cli-build-instructions.yml) to see other commonly used tools and specifics on how to invoke them at the command line.
 
