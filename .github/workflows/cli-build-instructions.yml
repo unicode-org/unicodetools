@@ -146,3 +146,17 @@ jobs:
           mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.idna.GenerateIdna"  -Dexec.args=""  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/idna.md
+      - name: Run command - Generate IDNA Test
+        run: |
+          cd unicodetools/mine/src
+          # Confirm that the directory for the bin files exists
+          compgen -G "../Generated/BIN"
+          # "Delete all the bin files" as per instructions
+          rm -rf ../Generated/BIN/*
+          # run GenerateIdnaTest
+          mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.idna.GenerateIdnaTest"  -Dexec.args=""  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
