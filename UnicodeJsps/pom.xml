@@ -6,7 +6,6 @@
 	<artifactId>UnicodeJsps</artifactId>
 	<packaging>war</packaging>
 	<name>Unicode JSPs</name>
-	<groupId>org.unicode.unicodetools</groupId>
 
 	<parent>
 		<groupId>org.unicode.unicodetools</groupId>
