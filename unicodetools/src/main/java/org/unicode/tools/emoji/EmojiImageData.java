@@ -6,13 +6,13 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.xerces.impl.dv.util.Base64;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.tools.emoji.Emoji.Source;
 import org.unicode.tools.emoji.GenerateEmoji.Style;
@@ -98,14 +98,14 @@ public class EmojiImageData {
                 if (!file.exists()) {
                     result = "";
                 } else if (!GenerateEmoji.DATAURL) {
-                    result = "data:image/gif;base64,R0lGODlhAQABAPAAABEA3v///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="; 
+                    result = "data:image/gif;base64,R0lGODlhAQABAPAAABEA3v///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==";
                     // "../images/" + filename;
                 } else if (source == Source.svg) {
                     result = CollectionUtilities.join(Files.readAllLines(file.toPath()), "\n");
                 } else {
                     byte[] bytes = GenerateEmoji.RESIZE_IMAGE <= 0 ? Files.readAllBytes(file.toPath())
                             : LoadImage.resizeImage(file, GenerateEmoji.RESIZE_IMAGE, GenerateEmoji.RESIZE_IMAGE);
-                    result = "data:image/png;base64," + Base64.encode(bytes);
+                    result = "data:image/png;base64," + Base64.getEncoder().encode(bytes);
                 }
                 EmojiImageData.IMAGE_CACHE.put(filename, result);
             }
@@ -241,9 +241,9 @@ public class EmojiImageData {
 
     private static void showText(PrintWriter out, int MAX) {
         EmojiData current = EmojiData.of(Emoji.VERSION_TO_GENERATE);
-        
+
         // The EMPTY_COLUMNS is so that we have the same number of tab columns on each line, displaying better in github
-        
+
         out.println("TOTALS" + EMPTY_COLUMNS);
         out.println(EMPTY_COLUMNS);
         for (Source source : Source.VENDOR_SOURCES) {
@@ -324,17 +324,17 @@ public class EmojiImageData {
     }
 
     static final String EMPTY_COLUMNS = "\t\t\t\t\t";
-    
+
     private static void getCounts(PrintWriter out, Source source, String title, UnicodeSet missing, int MAX) {
-        out.println(source 
+        out.println(source
                 + "\t" + title
                 + "\t" + missing.size()
-                + "\t" + (MAX == -1 ? "hex\t" + PRETTY_HEX.format(missing) 
+                + "\t" + (MAX == -1 ? "hex\t" + PRETTY_HEX.format(missing)
                 : MAX == -2 ? "file\t" + formatFiles(source, missing)
                 : "plain\t" + max(PRETTY_PLAIN.format(missing), MAX)
                         )
                 );
-        
+
     }
 
     private static String formatFiles(Source type, UnicodeSet lastMissingSingletons) {
