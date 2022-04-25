@@ -4,10 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>unicodetools</artifactId>
-	<groupId>org.unicode.unicodetools</groupId>
 	<name>Unicode Tools</name>
 
-	<version>1.0.0</version>
 
 	<packaging>jar</packaging>
 
