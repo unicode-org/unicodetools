@@ -1,5 +1,5 @@
 # VerticalOrientation-15.0.0.txt
-# Date: 2022-02-06, 19:43:39 GMT [EM, KI, LI, KW, MS]
+# Date: 2022-04-26, 23:05:00 GMT [EM, KI, LI, KW, MS]
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2416,8 +2416,8 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1FBF0..1FBF9   ; R  # Nd    [10] SEGMENTED DIGIT ZERO..SEGMENTED DIGIT NINE
 20000..2A6DF   ; U  # Lo [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
 2A6E0..2A6FF   ; U  # Cn    [32] <reserved-2A6E0>..<reserved-2A6FF>
-2A700..2B738   ; U  # Lo  [4153] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B738
-2B739..2B73F   ; U  # Cn     [7] <reserved-2B739>..<reserved-2B73F>
+2A700..2B739   ; U  # Lo  [4154] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B739
+2B73A..2B73F   ; U  # Cn     [6] <reserved-2B73A>..<reserved-2B73F>
 2B740..2B81D   ; U  # Lo   [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 2B81E..2B81F   ; U  # Cn     [2] <reserved-2B81E>..<reserved-2B81F>
 2B820..2CEA1   ; U  # Lo  [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1

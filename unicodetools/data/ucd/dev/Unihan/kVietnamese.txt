@@ -1255,7 +1255,7 @@
 5F3C	bặt
 5F48	đàn
 5F4A	cương
-5F50	kệ
+5F50	kí mự
 5F62	hình
 5F69	thái
 5F6B	điêu
@@ -8225,3 +8225,4 @@ FA24	gặp
 2B1FF	thuốc
 2B735	làm
 2B736	trôn
+2B739	kẹ kệ
