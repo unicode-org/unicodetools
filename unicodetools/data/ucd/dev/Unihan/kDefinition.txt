@@ -5040,7 +5040,7 @@
 49DE	to increase; to profit; to augment, artful; clever; skillful, chips (in gambling, etc.), a number (for identification), abundant; rich; exuberant; flourishing; prosperous
 49DF	(same as 陷) to skin, to involve; to beguile, to betray
 49E0	(same as 鄟) name of a place (the Epoch of Spring and Autumn) in what is today's Shandong Province
-49E1	(same as 墉) a fortified wall, a wall
+49E1	a fortified wall, a wall
 49E2	a rough road, a rugged; steep mountain uneasy
 49E3	(same as 鄄 堙) to stop up; to gag; blocked
 49E4	(same as 濮) name of a river in Shandong Province, name of an ancient tribe in Hubei Province
@@ -5177,7 +5177,7 @@
 4A6C	an ornamental item on a scabbard, leather shoes, weapons; arms (interchangeable 鞛)
 4A6D	(same as 羈) halter; to restrain
 4A6E	a quiver
-4A6F	(interchangeable 革) urgent; anxious, hard, solid and durable leather, a leather whip
+4A6F	(interchangeable with U+9769 革) urgent; anxious; durable leather; a leather whip
 4A70	(corrupted form of 鞙) a scabbard, reins or traces
 4A71	a scabbard; a sheath, remaining; overplus; surplus, sin; evil, the front of a cutting strip of cloth
 4A72	a tool used to cut leather, an ox to tow, drag or pull a boat
@@ -5226,7 +5226,7 @@
 4A9D	leather thong wound around the handle of a sword
 4A9E	bad; evil; wicked; vice, last name written in the seal type
 4AA0	(same as U+97F2 齏) pulverized; powdered; crumbs; bits
-4AA1	(same as 齏) to fall down; to sink
+4AA1	finely chopped herbs or medicines
 4AA2	smashed; pickled vegetable
 4AA3	(same as 䪢) smashed; pickled vegetable
 4AA4	garlic
@@ -5269,7 +5269,7 @@
 4ACC	bowed one's head
 4ACD	(corrupted form of 頫) (interchangeable 俯) to bow one's head; chin down, to wash oneself, to view; to watch
 4ACE	short
-4ACF	(same as 魌) ugly, physical or moral deformity, the mask worn by one who is driving away spirits
+4ACF	ugly; physical or moral deformity; the mask worn by an exorcist
 4AD0	to bend (or lower) one's head; to bow (usually refer to submission or admission of a wrong doing)
 4AD1	good; nice; fine; (same as U+4ACF 䫏; standard form of U+9B4C 魌) ugly, physical or moral deformity, the mask wearing by one who is driven away spirits
 4AD2	disease, in a coma; apoplexy; unconscious; stupor
@@ -5536,7 +5536,7 @@
 4BDE	bone (the lowest pieces of bone of the spinal column and sides of the abdominal region)
 4BDF	bone, stupid; dull
 4BE0	the five lowest pieces of bone of the spinal column
-4BE2	partial paralysis; hemiplegia -- paralysis of half of one's body, very small; diminutive; minute
+4BE2	partial paralysis, hemiplegia; very small, diminutive, minute
 4BE3	the kneecap; patella, the cranium
 4BE4	boneware used to comb the hair, to bind the hair, (same as 鬠) hair tied in a knot for the mourning rites
 4BE5	with a high skull, dried meat strips
@@ -5595,7 +5595,7 @@
 4C1B	(same as 鬲) a large earthen pot, a large iron cauldron
 4C1C	(ancient form of 鬲) a large earthen pot, a large iron cauldron
 4C1D	a large earthen pot for cooking, a large iron cauldron used to cook in old times
-4C1E	(same as U+7151 煮) to cook; to boil; to stew
+4C1E	to cook; to boil; to stew
 4C1F	(same as 魂) the soul, the spiritual part of man that ascends to heaven, the wits; the spiritual faculties
 4C20	god; spirit; immortal, mountain deity
 4C21	a fierce ghost; a malicious spirit; evil spirits
@@ -5676,7 +5676,7 @@
 4C72	a kind of fish
 4C73	(same as 鱣) a kind of sturgeon; Acipenser mikadoi, (interchangeable 鱔) eels
 4C74	(same as 䱭) tuna
-4C75	a kind of fish; live in the ocean
+4C75	stocky hawkfish (Cirrhitus pinnulatus)
 4C76	a male crab, cod oil
 4C77	(same as 魚 漁) to fish, to seize
 4C78	a family name, (same as 緧) a crupper
@@ -5689,7 +5689,7 @@
 4C7F..4C80	a kind of fish
 4C81	general term of a kind of fish, a snake-like fish
 4C82	a kind of fish
-4C83	a carp-like fish with chicken feet, spawn or roe
+4C83	a carp-like fish with fins resembling chicken feet
 4C84	(same as 鮸) an ocean fish with long flat body, big mouth, sharp teeth (a cod, same as 鰵)
 4C85	the globefish; blowfish; puffer
 4C89	a kind of fish; tuna
@@ -5713,8 +5713,8 @@
 4C9C	lots of fish
 4C9D	(same as U+9BE7 鯧) the pomfret
 4C9E	a general name for perch, etc.
-4C9F	(simplified form of 鮣) a kind of fish, live in the ocean, dark brown color with two white vertical marks; flat shaped head
-4CA0	(simplified form 鰆) a kind of fish; long and flat; silver-gray with dark color dots and cross-grained strips
+4C9F	live sharksucker (Echeneis naucrates)
+4CA0	Chinese mackerel, Chinese seerfish (Scomberomorus sinensis)
 4CA1..4CA2	loach
 4CA3	(simplified form) to fish; to seize
 4CA4	a kind of clam
@@ -5767,7 +5767,7 @@
 4CD5	the pigeon, the turtle dove
 4CD6	flying birds, a kind of bird
 4CD7	(ancient form of 鵝) goose; gander
-4CD8	(same as 䳗,鵝) goose; gander
+4CD8	goose
 4CD9	an egret-like bird, a kind of water bird
 4CDA	a sort of nightingale which is said to sing for the dawn; also the name for a large bat with awing-spread of two feet, a sort of pheasant
 4CDB	(same as 鷃) a small brown speckled bird like the quail
@@ -5830,8 +5830,8 @@
 4D15	a woodpecker
 4D16	a kind of water bird
 4D17	a shrike
-4D18	a kind of bird
-4D19	a kind of bird resembling the duck; much smaller
+4D18	grebe
+4D19	little grebe, dabchick (Tachybaptus ruficollis)
 4D1A	saltpond; salty marshes
 4D1B	to make decoction of salt
 4D1C	salt
@@ -5861,7 +5861,7 @@
 4D35	(same as 餅) cakes; biscuits; pastry
 4D36	(same as 麷) to boil or stew wheat, to simmer ferment for brewing
 4D37	use the whole piece of barley to ferment for brewing
-4D38	(non-classical form of 麩) bran; refuse
+4D38	bran; refuse
 4D39	cakes; biscuits; pastry, distiller's grains or yeast, (interchangeable 稞) grains ready for grinding; healthy grains, flour, (same as 䴷) use the whole piece of barley to ferment for brewing
 4D3A	cakes; cookies; biscuits; pastries; dumplings
 4D3B	dry food
@@ -5882,7 +5882,7 @@
 4D4A	(same as 䵍) yellow, used in person's name
 4D4B	yellow, greenish yellow
 4D4C	reddish yellow
-4D4D	yellow, used in person's name
+4D4D	yellow; used in personal names
 4D4E	dark yellow, yellow, bright; well-illuminated
 4D4F	yellow; straw colored
 4D50	yellow, (dialect) yellowish black; dark yellow
@@ -5943,7 +5943,7 @@
 4D87	a rat
 4D88	a kind of rat, known together as the kangaroo
 4D89	guinea pig; a kind of big rat; living in the bamboo grove
-4D8A	(corrupted form) (interchangeable with 衄) to bleed at the nose, a check in battle, to damp ardour, to shrink from; to treat harshly, to be damped; to suffer defeat
+4D8A	nosebleed; to be defeated
 4D8B	sound; sound of the breath
 4D8C	(same as 皰) a pustule or pimple
 4D8D	(same as 嚏) to sneeze
@@ -5972,13 +5972,13 @@
 4DA4	sound of chewing bones
 4DA5	(same as 齟) unevenly-fitting teeth, irregular teeth, resplendent with variegated coloration; bright and colorful
 4DA6	upper and lower teeth in order and corresponding each other, to gnaw; to bite
-4DA7	(same as U+9F69 咬) to gnaw; to bite
+4DA7	to gnaw; to bite
 4DA8	in the manner a toothless person chewing food
 4DA9	to gnaw; to bite, well-arranged teeth
 4DAA	sharp teeth; to break something hard like a knife, sand (in food), ugly
 4DAB	fine teeth, irregular teeth
 4DAC	hard fins on the back of a dragon
-4DAE	(simplified form) clever; wise; superior, a person's name (in Earlier Five Dynasties, South Han, meaning flying dragon over the sky)
+4DAE	used in personal names
 4DAF	used in girl's name
 4DB0	feather ornaments
 4DB1	a kind of turtle
@@ -8986,6 +8986,7 @@
 5ED1	a hut; careful
 5ED2	a granary
 5ED3	broad, wide, open, empty; to expand
+5ED4	building of two or more stories
 5ED5	shade; protect, shade, cover
 5ED6	surname; name of an ancient state
 5EDA	kitchen; closet; cupboard
@@ -11395,7 +11396,7 @@
 6CB0	to let drop
 6CB1	rivers, streams, waterways; flow
 6CB2	float
-6CB3	river; stream; yellow river
+6CB3	river; stream; the Yellow River
 6CB4	foul and poisonous in confusion; out of harmony
 6CB7	to remove evil; to cleanse; to wash away
 6CB8	boil, bubble up, gush
@@ -11666,6 +11667,7 @@
 6E49	gentle flow; tranquil
 6E4A	piece together, assemble
 6E4B	river in Shanxi province
+6E4C	to eat
 6E4D	rapid water current, rapids
 6E4E	flushed with drink, drunk
 6E4F	wash face; erroneously borrowed for DKW 43352 'necessary, must'
@@ -13063,7 +13065,7 @@
 76EA	to toss about; to swing; to rock
 76EC	salt pit; leisure; pot; drink
 76ED	cruel
-76EE	eye; look, see; division, topic
+76EE	eye; look, see; division, topic; Kangxi radical 109
 76EF	rivet gaze upon, keep eyes on
 76F1	wide open eyes; to gaze in astonishment
 76F2	blind; unperceptive, shortsighted
@@ -13225,7 +13227,7 @@
 77EF	correct, rectify, straighten out
 77F0	arrow with attached silk cord
 77F1	measure, standard, criterion
-77F3	stone, rock, mineral; rad. 112
+77F3	stone, rock, mineral; Kangxi radical 112
 77F4	anchor; (Cant.) a place
 77F6	jetty; submerged rock; eddy
 77F8	a rock or cliff
@@ -13418,7 +13420,7 @@
 7934	fill, extend
 7935	name of an island in Fujian province
 7936	a jug, a pitcher, a jar, a pot
-793A	show, manifest; demonstrate; Kanxi radical 113
+793A	show, manifest; demonstrate; Kangxi radical 113
 793B	cult; radical number 113
 793C	social custom; manners; courtesy; rites
 793D	blessings, happiness
@@ -14026,7 +14028,7 @@
 7CD6	sugar; candy; sweets
 7CD7	parched wheat or rice; broken grain
 7CD9	coarse, harsh, rough, unpolished rice
-7CDC	rice gruel, congee; mashed
+7CDC	rice gruel, congee; mashed rice
 7CDD	scattered (grains of rice); mixed
 7CDE	manure, dung, night soil
 7CDF	sediment, dregs; pickle
@@ -17254,7 +17256,7 @@
 8F1F	stop, suspend, halt
 8F20	grease pot hung under axle of cart
 8F21	same as 轗 U+8F57, to fail; a difficulty, misfortune
-8F24	a pall to cover the hearse
+8F24	a pall to cover a hearse
 8F25	turn round, revolve; roller
 8F26	a handcart; capital city
 8F27	curtained carriage used by women
@@ -18608,7 +18610,7 @@
 967A	narrow pass, strategic point
 967B	small hill, mound; bury; dam
 967C	islet
-967D	'male' principle; light; sun
+967D	the active, male principle in Chinese philosophy (yang); light; sun
 967E	in file
 967F	narrow
 9682	shady, secret, dark; mysterious; cold; the negative of female principle in nature
@@ -18646,12 +18648,12 @@
 96B1	hide, conceal; hidden, secret
 96B2	stallion; promote
 96B3	to destroy; to overthrow
-96B4	mountain located between Shanxi
+96B4	short name for Gansu Province; a mountain on the border of Gansu and Shaanxi (Mount Long)
 96B6	subservient; servant; Kangxi radical 171
 96B7..96B8	be subservient to; servant
-96B9	bird; Kangxi radical 172
+96B9	short-tailed bird; Kangxi radical 172
 96BA	a bird flying high ambition
-96BB	single, one of pair, lone
+96BB	single, one of pair, lone; measure word
 96BC	aquiline (nose); a falcon
 96BD	superior, outstanding, talented
 96BE	difficult, arduous, hard; unable
@@ -18736,7 +18738,7 @@
 9736	downpouring of rain
 9738	rule by might rather than right
 9739	thunder, crashing thunder
-973D	to clear up after rain; to cease be angry
+973D	to clear up after rain; to cease to be angry
 973E	misty, foggy; dust storm
 9740	drizzling, fine rain; mist
 9741	thick, strong
@@ -18745,8 +18747,7 @@
 9746	cloudy sky; not clear; dark
 9748	spirit, soul; spiritual world
 9749	cloudy sky; dark, obscure
-9751	blue
-9752	blue, green, black; young
+9751..9752	blue, green; young; Kangxi radical 174
 9753	make up face; ornament; quiet
 9756	pacify; appease; calm, peaceful
 9759	quiet, still, motionless; gentle
@@ -18754,15 +18755,15 @@
 975B	indigo; any blue dye
 975C	quiet, still, motionless; gentle
 975D	(in taoism) the heaven
-975E	not, negative, non-; oppose
+975E	not, negative, non-; oppose; Kangxi radical 175
 9760	lean on, trust, depend on; near
 9761	divide, disperse, scatter
-9762	face; surface; plane; side, dimension
+9762	face; surface; plane; side, dimension; Kangxi radical 176
 9765	dimples
 9766	timid, shy, bashful
 9767	wash face
 9768	dimples
-9769	leather, animal hides; rad. 177
+9769	leather, animal hides; Kangxi radical 177
 976A	to cobble, to patch
 976B	strong and pliable, resilient
 976D	strong and pliable, resilient
@@ -18775,32 +18776,35 @@
 9777	the leather belt that connects a horse with a cart
 9778	a child's shoes; slippers
 977A	stocking; the Tungusic tribe
-977C	tartars
+977C	Tatars
+977D	leather strap on the back of a horse
 977F	the leg of a boot
 9780	drum
+9781	tack (of a horse)
 9783	board
 9784	to work hides; leather bag
 9785	leather strap over horse's neck
 9786	an archer's arm-protector
 9789	drum
 978B	shoes, footwear in general
-978C	to try or decide a legal case
-978D	saddle; any saddle-shaped object
+978C..978D	saddle; any saddle-shaped object
 978F	bind; firm, secure, strong
-9791	tatars
+9791	the Tatars
 9792	mud shoe, sledge for the feet
+9793	leather belt
 9794	sides or uppers of shoes to stretch a skin on a frame for a drum; (Cant.) to cover
 9797	reins
 9798	scabbard, sheath
 9799	scabbard; traces, reins
 979A	bridle
 979C	shoes, boots
-979D	the piece of leather used for soles on Chinese shoes. a patch
+979D	the piece of leather used for soles; a patch
 979E	sheath
 979F	skin; leather
 97A0	bow, bend; rear, raise, nourish
 97A1	leg warmer
-97A3	tan, soften
+97A3	tan; soften
+97A5	reins
 97A6	leather stap; swing
 97A7	a leather strap
 97A8	tribe
@@ -18820,8 +18824,8 @@
 97BE	boots
 97C0	a saddle fastener
 97C1	reins, halter; bridle
-97C2	a saddle-flap. trappings
-97C3	tatars
+97C2	a saddle-flap; trappings
+97C3	the Tatars
 97C5	harness
 97C6	swing
 97C8	socks, stockings
@@ -18838,6 +18842,7 @@
 97D6	tan, soften
 97D8	archer's thumb ring
 97D9	right; proper; propriety
+97DB	bellows
 97DC	sheath, scabbard, bow case
 97DD	leather arm band
 97DE	an orange color; hide, conceal
@@ -18857,7 +18862,7 @@
 97EF	wild onions or leeks
 97F1	wild onions or leeks
 97F2	break or smash into pieces, pulverize
-97F3	sound, tone, pitch, pronunciation
+97F3	sound, tone, pitch, pronunciation; Kangxi radical 180
 97F5	rhyme; vowel
 97F6	music of the emperor Shun; beautiful
 97F9	music of bell and drum
@@ -18865,7 +18870,7 @@
 97FB	rhyme; vowel
 97FF	make sound, make noise; sound
 9800	music
-9801	page, sheet, leaf; rad. no. 181
+9801	page, sheet, leaf; Kangxi radical 181
 9802	top, peak; carry on head; very
 9803	a moment; a measure of area equal to 100 mu or 6.7 hectares; to lean
 9804	cheekbone
@@ -18942,7 +18947,7 @@
 986B	shiver, tremble; trembling
 986C	the temporal bone
 986F	manifest, display; evident, clear
-9870	frown, knit brows; with knitted
+9870	frown, knit brows
 9871	skull
 9873	the temporal bone
 9874	cheek bones
@@ -18996,11 +19001,11 @@
 98A5	the temporal bone
 98A6	frown, knit brows; with knitted
 98A7	cheek bones
-98A8	wind; air; manners, atmosphere
+98A8	wind; air; manners, atmosphere; Kangxi radical 182
 98AA	(Japanese) wind blowing down from the mountains
 98AB	a storm
 98AD	sway in wind
-98AE	storm whirlwind
+98AE	storm; whirlwind
 98AF	the sound of the wind; bleak; melancholy
 98B1	typhoon
 98B3	to blow
@@ -19032,7 +19037,7 @@
 98D8	whirlwind, cyclone; floating
 98D9	whirlwind, stormy gale
 98DA	whirlwind
-98DB	fly; go quickly; dart; high
+98DB	fly; go quickly; dart; high; Kangxi radical 183
 98DC	flip over, upset, capsize
 98DE	fly; go quickly; dart; high
 98DF	eat; meal; food; Kangxi radical 184
@@ -19059,10 +19064,12 @@
 98FC	raise animals; feed; nourish
 98FD	eat heartily; eat one's fill
 98FE	decorate, ornament, adorn; to deceive
+98FF	(餶飿) glutinous rice
 9900	tainted food
 9901	cooked food; cook until well done
 9902	to obtain by hook
 9903	stuffed dumplings
+9904	(餄餎) buckwheat noodles
 9905	rice-cakes, biscuits
 9907	food
 9908	rice cake
@@ -19070,6 +19077,7 @@
 990A	raise, rear, bring up; support
 990C	bait; bait, entice; dumplings
 990D	be satiated, eat one's full
+990E	(餄餎) buckwheat noodles
 9910	eat, dine; meal; food
 9911	ferrule; cakes, biscuits
 9912	hungry, starving, famished
@@ -19101,6 +19109,7 @@
 9932	spoiled, sour, moldy
 9933	sugar, syrup; malt sugar; sticky
 9935	to feed, to raise
+9936	(餶飿) glutinous rice
 9937	stir and cook
 9938	(Cant.) a side dish of food prepared to accompany rice
 9939	sugar; sugared; candy; crystallized sweetmeats
@@ -19152,6 +19161,7 @@
 9970	decorate, ornament, adorn
 9971	eat heartily; eat one's fill
 9972	raise animals; feed; nourish
+9973	(馉饳) glutinous rice
 9974	sweet-meats; sweet-cakes; syrup
 9975	bait; bait, entice; dumplings
 9976	bountiful, abundant, plentiful
@@ -19182,10 +19192,10 @@
 9993	fried round cakes of wheat flour
 9994	to feed, support, provide for; food
 9995	bread (Persian naan)
-9996	head; first; leader, chief; a poem
+9996	head; first; leader, chief; a poem; Kangxi radical 185
 9997	cheekbone; path, road; intersection
 9998	cut off left ear; tally dead enemy
-9999	fragrant, sweet-smelling; incense
+9999	fragrant, sweet-smelling; incense; Kangxi radical 186
 999A	aromatic, perfumed
 999B	fragrance, fragrant
 999D	fragrance
@@ -19241,7 +19251,7 @@
 99FD	grey
 99FE	run away
 99FF	excellent horse, noble steed
-9A01	gallop horse; hasten, hurry
+9A01	gallop; hasten, hurry
 9A02	red, brown, bay; neat, harmonious
 9A03	stupid; foolish
 9A04	name of a legendary swift horse
@@ -19250,7 +19260,7 @@
 9A09	fine horse
 9A0B	tall (7 chi) horse
 9A0C	a horse's mane; bristles
-9A0D	mother horse
+9A0D	mare
 9A0E	ride horseback; mount; cavalry
 9A0F	piebald horse; excellent horse
 9A10	to verity, to fulfil; to examine, to hold an inquest
@@ -19262,6 +19272,7 @@
 9A17	to swindle; to cheat
 9A18	a piebald horse
 9A19	swindle, cheat out of, defraud
+9A1E	the sound of a knife cracking or breaking something; suddenly
 9A20	a horse, mule
 9A22	bay
 9A23	mane
@@ -19294,7 +19305,7 @@
 9A4A	an excellent horse
 9A4C	name of a famous horse
 9A4D	excellent horse; brave, valiant
-9A4F	horse without saddle
+9A4F	unsaddled horse
 9A52	dappled
 9A54	black horse
 9A55	spirited horse; haughty
@@ -19372,9 +19383,10 @@
 9AA5	thoroughbred horse; refined and
 9AA6	horse
 9AA7	gallop about with head uplifted
-9AA8	bone; skeleton; frame, framework
+9AA8	bone; skeleton; frame, framework; Kangxi radical 188
 9AA9	muscles, flesh
 9AAA	crooked bones
+9AAB	bent, crooked
 9AAD	shin bone
 9AAF	dirty
 9AB0	die, dice
@@ -19408,14 +19420,14 @@
 9AD5	kneecap
 9AD6	hipbone; hip
 9AD7	the skull; the forehead
-9AD8	high, tall; lofty, elevated
-9AD9	variant of 高 U+9AD8, high, tall; lofty, elevated
+9AD8	high, tall; lofty, elevated; Kangxi radical 189
+9AD9	high, tall; lofty, elevated
 9ADE	high, imposing, eminent
 9ADF	hair; Kangxi radical 190
-9AE0	shave head as punishment; prune
-9AE1	to shear tree; ancient punishment
+9AE0..9AE1	to shave the head as a punishment; to prune
 9AE2	wig
 9AE3	similar to, like
+9AE4	red lacquer; to lacquer
 9AE5	beard; mustache
 9AE6	flowing hair of young child
 9AE7	long hair; (Cant.) to hang down, droop
@@ -19437,15 +19449,15 @@
 9AFD	to dress the hair
 9AFE	tail of a comet; long hair
 9B00	to shave
-9B01	favus
+9B01	favus, tinea favosa; fungal infection of the scalp
 9B02	the hair on the temples
 9B03	mane; neck bristles
 9B05	unkempt hair; loose; flowing hair; (Cant.) 鬅鬠, to be slovenly dressed
 9B06	lax, loose; loosen, relax
-9B08	fine growth of hair curly hair
+9B08	fine growth of hair; curly hair
 9B0B	forelock, bangs
 9B0C	tufts of hair left on the heads of children after shaving
-9B0D	beard, mustache, whiskers
+9B0D	beard; mustache; whiskers
 9B0E	favus, scabies
 9B0F	a coiffure on top of the head
 9B10	horse's mane; fins
@@ -19460,24 +19472,27 @@
 9B1C	to go bald
 9B1F	dress hair in coiled knot; maid
 9B20	to make a top knot; (Cant.) 鬅鬠, to be slovenly dressed
-9B22	hair on temples
+9B22	hair on the temples
 9B23	horse's mane; fin; human whiskers
-9B25..9B26	struggle, fight, compete, contend
+9B25	struggle, fight, compete, contend; Kangxi radical 191
+9B26	struggle, fight, compete, contend
 9B27	quarrel; dispute hotly
 9B28	boisterous; clamor, noise
 9B29	feud, fight, quarrel
 9B2A	struggle, fight, compete, contend
+9B2B	glance, peep; roar, growl
 9B2C	struggle
 9B2D	struggle, fight, compete, contend; (Cant.) woodwork, carpentry
 9B2E	lots (to be drawn); draw lots
-9B2F	sacrificial wine; unhindered
+9B2F	sacrificial wine; unhindered; Kangxi radical 192
 9B30..9B31	luxuriant; dense, thick; moody
 9B32	type of caldron with three hollow legs; name of a state; Kangxi radical 193
 9B34	pot
 9B35	big iron pot, caldron
 9B37	pot
 9B3B	sell; child, childish; nourish
-9B3C	ghost; spirit of dead; devil
+9B3C	ghost; spirit of dead; devil; Kangxi radical 194
+9B3D	kind of forest demon, elf
 9B41	chief; leader; best; monstrous
 9B42	soul, spirit
 9B43	drought demon
@@ -19487,7 +19502,7 @@
 9B47	nightmare, bad dreams
 9B48	mischievous, one footed spirit that dwells in the mountains
 9B49	a kind of monster
-9B4A	a mythical creature said hurl san
+9B4A	a mythical, toad-like monster
 9B4B	bear
 9B4D	demons, mountain spirits
 9B4E	a kind of monster
@@ -19519,6 +19534,9 @@
 9B84	gurnard
 9B86	fish
 9B89	bream
+9B8A	common bleak (Alburnus alburnus); various other freshwater fish
+9B8C	a legendary giant fish
+9B8D	Spanish mackerel
 9B8E	sheatfish, Parasilurus asotus
 9B90	blowfish, globefish, tetraodon
 9B91	abalone; dried fish; surname
@@ -19529,6 +19547,7 @@
 9B9E	roe
 9B9F	anglerfish
 9BA0	a kind of shad with a head like a sturgeon
+9BA3	live sharksucker (Echeneis naucrates)
 9BA6	snakefish
 9BA7	the sheatfish
 9BA8	seasoned rice mixed with fish or vegetables
@@ -19539,13 +19558,14 @@
 9BB0	a small sturgeon found in the Yangzi; catfish
 9BB8	Sciaena albiflora; Otolithoides miiuy
 9BB9	an octopus, devilfish
+9BBA	minced and salted fish; a place in Sichuan
 9BBB	dace; Canton dace
 9BBF	dried fish
-9BC0	giant fish; father of the emperor Yu
+9BC0	a legendary giant fish; father of the emperor Yu
 9BC1	fish bones; honest, upright
 9BC6	the skate or ray
-9BC7	carp
-9BC8	fish
+9BC7	grass carp (Ctenopharyngodon idella)
+9BC8	freshwater minnow
 9BC9	carp
 9BCA..9BCB	shark
 9BCF	dialect name for a (bad tasting) blood clam
@@ -19570,15 +19590,16 @@
 9BF0	sheat
 9BF1	mythical dolphin-like fish
 9BF4	cat fish
+9BF6	grass carp (Ctenopharyngodon idella)
 9BF7	anchovy
 9BF8	blowfish
 9BFA	blowfish
 9BFD	Carassius auratus, crucian carp
 9BFF	bream
-9C01	name of fish
+9C01	a kind of carp
 9C02	cuttlefish
 9C03	name of fish
-9C06	Scomberomorus sinensis
+9C06	Chinese mackerel, Chinese seerfish (Scomberomorus sinensis)
 9C08	flatfish; flounder; sole
 9C09	sturgeon
 9C0A	a herring
@@ -19593,8 +19614,9 @@
 9C1B	sardine
 9C1C	big-mouthed flounder
 9C1E	squid
+9C1F	several species of small carp
 9C20	carp
-9C23	reeves' shad; hilsa herring
+9C23	Reeves' shad (Tenualosa reevesii); ilish, hilsa shad (Tenualosa ilisha)
 9C24	a yellowtail (fish)
 9C25	huge fish; widower; bachelor
 9C27	loach
@@ -19631,7 +19653,7 @@
 9C58	sturgeon
 9C5B	fish name
 9C5D	fish
-9C5F	king crab
+9C5F	horseshoe crab
 9C60	minced fish; hash
 9C61	the cuttle-fish
 9C63	sturgeon
@@ -19672,6 +19694,7 @@
 9C9A	anchovy
 9C9B	shark
 9C9C	fresh; delicious; attractive
+9C9D	minced and salted fish; a place in Sichuan
 9C9E	dried fish
 9C9F	sturgeon
 9CA0	fish bones; honest, upright
@@ -19751,7 +19774,7 @@
 9CF6	kite; Milvus species (various)
 9CF7	jay (Garrulus lidthi)
 9CFB	the wild pigeon
-9CFE	general term for a group of small birds
+9CFE	nuthatch
 9D01	a legendary bird
 9D02	the tailor-bird; the working bird
 9D03	shrike; butcherbird
@@ -19769,7 +19792,7 @@
 9D1E	owl
 9D1F	kite, horned owl; wine cups
 9D20	a kind of nightingale
-9D23	species of Taiwan pigeon
+9D23	Arborophila species (various)
 9D25	swoop
 9D26	female mandarin duck (Aix galericulata)
 9D28	duck; Anas species (various)
@@ -19779,6 +19802,7 @@
 9D2F	swallow
 9D30	the crow
 9D33	quail
+9D34	plover
 9D37	a woodpecker
 9D3A	the pelican
 9D3B	species of wild swan; vast
@@ -19787,11 +19811,12 @@
 9D3F	pigeon, dove; Columba species (various)
 9D40	hoopoe
 9D41	the fishing cormorant
-9D42	horned owl, scops chinensis; bird of ill omen
+9D42	owl; bird of ill omen
+9D43	ancient name for a bird with black featers and a short tail
 9D44	variant of 鴟 U+9D1F, kite, horned owl; wine cups
 9D51	cuckoo
 9D52	mynah bird; Acridotheres tristis
-9D53	species of pigeon
+9D53	wood pigeon
 9D59	shrike; Lanius species (various)
 9D5A	moulting, bald
 9D5C	pelican
@@ -19807,7 +19832,8 @@
 9D6F	Pycnonotus species (various)
 9D70	eagle, vulture; Aquila species (various)
 9D72	magpie; Pica species (various)
-9D77	co-worker
+9D76	crow, raven; Corvus species (various)
+9D77	a legendary bird similar to the phoenix, firebird
 9D7B	pigeon; turtle-dove; a hawk
 9D7C	a fabulous night-bird, grotesque monster
 9D7E	a bird resembling the crane
@@ -19826,6 +19852,7 @@
 9D9A	osprey, fishhawk; Pandion haliaetus
 9DA1	crossbill, species of nightingale
 9DA2	a bird which frequents the sea-shore
+9DA5	babbler, Timaliidae species (various); thrush
 9DA6	pelican
 9DA9	duck
 9DAA	a shrike
@@ -19833,6 +19860,7 @@
 9DAC	oriole
 9DAF	oriole, green finch; Sylvia species (various)
 9DB1	to soar
+9DB2	flycatcher
 9DB4	crane; Grus species (various)
 9DB5	chick, fledging; infant, toddler
 9DB8	light yellowish-green
@@ -19850,6 +19878,7 @@
 9DC6	bird name
 9DC7	chicks, fledglings
 9DC8	a kind of bird
+9DC9	grebe
 9DCA	pheasant
 9DCF	Caprimulgus indicus
 9DD3	partridge
@@ -19869,6 +19898,7 @@
 9DEB	turquoise kingfisher
 9DEE	long-tailed pheasant
 9DEF	wren
+9DF0	swallow (bird)
 9DF2	condor, vulture
 9DF3	the silver pheasant, Lophura nycthemera
 9DF4	silver pheasant badge worn by civil officials of the 5th grade; Lophura species (various)
@@ -19877,13 +19907,13 @@
 9DFA	heron, egret; Ardea species (various)
 9DFD	oriental bullfinch, weaver bird; Pyrrhula species (various)
 9DFE	swallow
-9DFF	a kind of bird resembling the duck; much smaller
+9DFF	little grebe, dabchick (Tachybaptus ruficollis)
 9E02	Mandarin duck, Aix galericulata
 9E07	hawk; Butastur indicus
-9E0A	Podiceps ruficollis (a kind of duck)
+9E0A	little grebe, dabchick (Tachybaptus ruficollis)
 9E0B	(archaic) a wren
 9E0E	the mango-bird; the Chinese oriole
-9E11	a large, duck-like waterfowl with red eyes; a young phoenix
+9E11	a legendary waterfowl; a young phoenix
 9E12	eastern jackdaw; Corvus monedula
 9E15	cormorant
 9E18	eagle
@@ -19891,7 +19921,7 @@
 9E1B	crane, Grus japonensis; stork; Ciconia species (various)
 9E1C	a species of mynah
 9E1D	Chinese oriole; Oriolus oriolus
-9E1E	fabulous bird
+9E1E	mythical bird related to the phoenix
 9E1F	bird; Kangxi radical 196
 9E20	pigeon; collect, assemble
 9E21	chicken
@@ -19903,7 +19933,7 @@
 9E27	oriole
 9E28	bustard; procuress; Otis species (various)
 9E29	a bird resembling the secretary falcon
-9E2A	species of Taiwan pigeon
+9E2A	Arborophila species (various)
 9E2B	thrush; Turdus species (various)
 9E2C	cormorant
 9E2D	duck; Anas species (various)
@@ -19970,39 +20000,39 @@
 9E70	falcon; Accipiter species (various)
 9E73	crane, Grus japonensis; stork; Ciconia species (various)
 9E74	eagle
-9E75	saline soil; natural salt, rock
+9E75	saline soil; natural salt, rock salt; Kangxi radical 197
 9E76	salty and bitter; pitiful
 9E78	alkaline, alkali, lye, salt
 9E79	salty, briny; salted; pickled
 9E7A	salty; salt
-9E7B	impure carbonate of sodium of natron
+9E7B	impure sodium carbonate
 9E7C	alkaline, alkali, lye, salt
-9E7D	(same as of U+5869 塩) salt
+9E7D	salt
 9E7E	salty; salt
 9E7F	deer; surname; Kangxi radical 198
-9E80	female deer; roe, doe
+9E80	female deer, doe
 9E81	rough, thick, course; rude
-9E82	species of deer
+9E82	muntjac, barking deer; Muntiacus species (various)
 9E83	till, plow
 9E84	coarse, rough, rude
 9E85	a small spotted deer found in north China
-9E87	general name for the hornless deer; to collect to band together
-9E88	species of deer
-9E8B	elk; surname
+9E87	general name for hornless deer; to collect, to band together
+9E88	legendary species of deer
+9E8B	Père David's deer, milu, elaphure (Elaphurus davidianus); surname
 9E8C	stag; herd
 9E90	female of Chinese unicorn
 9E91	fawn, young deer
 9E92	legendary auspicious animal
-9E93	foot of hill; foothill
+9E93	foothill
 9E95	muntjac deer, hornless river deer
 9E97	beautiful, magnificent, elegant
 9E98	scent
 9E9B	fawn
 9E9D	musk deer
-9E9E	roebuck, Moschus chinloo
+9E9E	water deer (Hydropotes inermis)
 9E9F	female of Chinese unicorn
 9EA0	a large deer
-9EA4	rough, coarse, big, rough
+9EA4	rough, coarse
 9EA5	wheat, barley, oats; Kangxi radical 199
 9EA6	wheat, barley, oats; simplified form of Kangxi radical 199
 9EA9	bran
@@ -20018,11 +20048,13 @@
 9EB8	bran
 9EB9	yeast, leaven; surname
 9EBA	flour, dough, noodles
-9EBB	hemp, jute, flax; sesame
+9EBB	hemp, jute, flax; sesame; Kangxi radical 200
 9EBC..9EBD	interrogative final particle; insignificant, small, tiny
 9EBE	a pennant, flag, banner; to signal to
 9EBF	I, personal name marker
-9EC3..9EC4	yellow; surname
+9EC3	yellow; surname; Kangxi radical 201
+9EC4	yellow; surname
+9EC7	fallow deer (Dama dama)
 9EC8	yellow; augment, increase
 9EC9	school
 9ECC	school
@@ -20030,7 +20062,7 @@
 9ECE	surname; numerous, many; black
 9ECF	stick to; glutinous, sticky; glue
 9ED0	to stick; sticky
-9ED1	black; dark; evil, sinister
+9ED1	black; dark; evil, sinister; Kangxi radical 203
 9ED2	black; dark; evil
 9ED3	black
 9ED4	black; Guizhou
@@ -20046,7 +20078,7 @@
 9EE2	black
 9EE4	blue-black
 9EE5	to tattoo; to brand the face of criminals
-9EE7	a dark, sallow colour
+9EE7	a dark, yellowish colour
 9EE8	political party, gang, faction
 9EE9	to dishonor, defile, corrupt; soiled
 9EEA	grey black
@@ -20058,10 +20090,11 @@
 9EF4	mold, mildew; bacteria, fungi
 9EF6	mole, scar, blemish
 9EF7	to dishonor, defile, corrupt; soiled
-9EF9	embroidery, needlework; radical
+9EF9	embroidery, needlework; Kangxi radical 204
 9EFB	special pattern of embroidery
 9EFC	embroidered official or sacrificial robe
-9EFD..9EFE	to strive; to endeavor
+9EFD	to strive; to endeavor; Kangxi radical 205
+9EFE	to strive; to endeavor
 9EFF	large turtle, sea turtle
 9F02	a kind of sea turtle; surname
 9F03	the edible water-frog
@@ -20069,14 +20102,14 @@
 9F05	spider
 9F07	huge sea turtle
 9F08	a fresh-water turtle, Trionyx sinensis
-9F09	large reptile, water lizard
+9F09	Chinese allegator (Alligator sinensis)
 9F0B	large turtle, sea turtle
 9F0D	large reptile, water lizard
-9F0E	large, three-legged bronze caldron
+9F0E	large, three-legged bronze caldron; Kangxi radical 206
 9F0F	cover of tripod caldron
 9F10	incense tripod
 9F12	large tripod caldron with small mouth
-9F13	drum; beat, top, strike
+9F13	drum; beat, top, strike; Kangxi radical 207
 9F14	a drum; to drum, from whence comes: to rouse; to swell; to bulge
 9F15	rattle of drums
 9F16	drum
@@ -20087,14 +20120,16 @@
 9F20	rat, mouse; Kangxi radical 208
 9F21	rat, mouse
 9F22	a variety of mole
+9F25	groundhog, woodchuck
 9F27	the marmot
+9F29	shrew
 9F2A	weasel
 9F2B	marmot; squirrel
 9F2C	weasel, Mustela itatsi
 9F2F	flying squirrel
-9F34	a kind of insectivorous rodent
+9F34	mole; Talpidae species (various)
 9F37	a mouse
-9F39	a kind of insectivorous rodent
+9F39	mole; Talpidae species (various)
 9F3B	nose; first; Kangxi radical 209
 9F3C	(Cant.) curving upwards
 9F3D	clogged nose
@@ -20105,8 +20140,8 @@
 9F46	stuffed nose
 9F47	a pimple or red splotch on the nose
 9F48	cold in the head; catarrh of the nose; mucus from the nose
-9F49	stoppage of the nose to speak with a nasal twang
-9F4A	even, uniform, of equal length
+9F49	stoppage of the nose; to speak with a nasal twang
+9F4A	even, uniform, of equal length; Kangxi radical 210
 9F4B	vegetarian diet; study; to fast, abstain
 9F4C	steam
 9F4E	take in both hands and offer to
@@ -20154,10 +20189,10 @@
 9F8A	narrow, small; dirty
 9F8B	tooth decay
 9F8C	narrow, small; dirty
-9F8D	dragon; symbolic of emperor
+9F8D	dragon; Kangxi radical 212
 9F8E	disorderly, messy; huge, big
 9F90	disorderly, messy; huge, big
-9F91	high and bright
+9F91	used in personal names
 9F92	dragon
 9F93	a halter
 9F94	give, present; reverential
@@ -20167,11 +20202,11 @@
 9F99	dragon; symbolic of emperor
 9F9A	give, present; reverential
 9F9B	niche, shrine
-9F9C	turtle or tortoise; cuckold
+9F9C	turtle or tortoise; cuckold; Kangxi radical 213
 9F9D	autumn, fall; year
 9F9E	turtle
 9F9F	turtle or tortoise; cuckold
-9FA0	flute; pipe, ancient measure
+9FA0	flute; pipe, ancient measure; Kangxi radical 214
 9FA1	to blow, exhale
 9FA2	in harmony; calm, peaceful
 9FA4	to harmonize; to accord with; to agree
@@ -21375,6 +21410,7 @@ FA2D	crane
 2A269	variant of 塩 U+5869, salt
 2A378	young wheat
 2A388	crumbs of barley; bran; chaff
+2A3AD	millet
 2A3D9	a yolk
 2A400	(Cant.) relationship; together
 2A445	light black
@@ -21963,6 +21999,7 @@ FA2D	crane
 2CB7C	lens
 2CBA2	boisterous; clamor, noise
 2CBA3	the frame of a door or window fixed in a wall
+2CBA4	small side door; chamber
 2CBA5	crowd; transliteration of Sanskrit 'kso', e.g. 'aksobhya'
 2CBA8	sound of a door; to open
 2CBAD	flash; flashing; steal look
@@ -21981,6 +22018,7 @@ FA2D	crane
 2CC59	Zhou dynasty school; disperse; fall apart
 2CC5F	quiet
 2CC63	ugly, to bend (or lower) of one's head
+2CC66	ugly; physical or moral deformity; the mask worn by an exorcist
 2CC6C	to shake one's head
 2CC6E	sunken eyes, a hollow
 2CC6F	the eldest son, to give birth to the first child
@@ -22015,6 +22053,7 @@ FA2D	crane
 2CCFD	crowd
 2CD01	white from forehead to lips of a horse, reddish (of a horse head), horse head
 2CD02	horse; run
+2CD03	the sound of a knife cracking or breaking something; suddenly
 2CD05	loud, noisy, boisterous; fight
 2CD0B	black (horse)
 2CD10	happy, pleased, glad; joy; to enjoy
@@ -22034,7 +22073,7 @@ FA2D	crane
 2CE05	chick, fledging; infant, toddler
 2CE0A	hoopoe
 2CE15	the mango-bird; the Chinese oriole
-2CE1A	a large, duck-like waterfowl with red eyes; a young phoenix
+2CE1A	a legendary waterfowl; a young phoenix
 2CE20	a goose
 2CE23	to soar
 2CE26	phoenix
@@ -22117,7 +22156,7 @@ FA2D	crane
 2EB1F	a kind of fish; small fish; fry, a large amphibious creature, something like the newt but very much larger
 2EB20	a kind of fish
 2EB21	a kind of fish; a flashing fly-fish in legend
-2EB22	a kind of fish; live in the ocean
+2EB22	stocky hawkfish (Cirrhitus pinnulatus)
 2EB23	a kind of fish; with long and flat body; small mouth and pointed lips
 2EB61	a kind of bird
 2EB62	a legendary bird
@@ -22498,7 +22537,7 @@ FA2D	crane
 311ED	to confer; to bestow on an inferior; to reward
 311EF	an octopus, devilfish
 311F0	salted fish, globefish; blowfish; puffer
-311F1	fish
+311F1	freshwater minnow
 311F2	globefish; blowfish; puffer
 311F3	dace; Canton dace
 311F7	shark

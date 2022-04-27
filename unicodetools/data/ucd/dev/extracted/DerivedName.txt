@@ -1,5 +1,5 @@
 # DerivedName-15.0.0.txt
-# Date: 2022-02-26, 00:38:34 GMT
+# Date: 2022-04-26, 23:14:36 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -43825,7 +43825,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1FBF8         ; SEGMENTED DIGIT EIGHT
 1FBF9         ; SEGMENTED DIGIT NINE
 20000..2A6DF  ; CJK UNIFIED IDEOGRAPH-*
-2A700..2B738  ; CJK UNIFIED IDEOGRAPH-*
+2A700..2B739  ; CJK UNIFIED IDEOGRAPH-*
 2B740..2B81D  ; CJK UNIFIED IDEOGRAPH-*
 2B820..2CEA1  ; CJK UNIFIED IDEOGRAPH-*
 2CEB0..2EBE0  ; CJK UNIFIED IDEOGRAPH-*
@@ -44170,6 +44170,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 149185
+# Total code points: 149186
 
 # EOF

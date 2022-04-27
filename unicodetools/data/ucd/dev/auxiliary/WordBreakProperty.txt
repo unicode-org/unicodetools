@@ -1,5 +1,5 @@
 # WordBreakProperty-15.0.0.txt
-# Date: 2022-02-26, 00:39:00 GMT
+# Date: 2022-04-26, 23:15:03 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -563,6 +563,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 11F40         ; Extend # Mn       KAWI VOWEL SIGN EU
 11F41         ; Extend # Mc       KAWI SIGN KILLER
 11F42         ; Extend # Mn       KAWI CONJOINER
+13440         ; Extend # Mn       EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY
 13447..13455  ; Extend # Mn  [15] EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP START..EGYPTIAN HIEROGLYPH MODIFIER DAMAGED
 16AF0..16AF4  ; Extend # Mn   [5] BASSA VAH COMBINING HIGH TONE..BASSA VAH COMBINING HIGH-LOW TONE
 16B30..16B36  ; Extend # Mn   [7] PAHAWH HMONG MARK CIM TUB..PAHAWH HMONG MARK CIM TAUM
@@ -603,7 +604,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2553
+# Total code points: 2554
 
 # ================================================
 
@@ -629,12 +630,12 @@ FEFF          ; Format # Cf       ZERO WIDTH NO-BREAK SPACE
 FFF9..FFFB    ; Format # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANNOTATION TERMINATOR
 110BD         ; Format # Cf       KAITHI NUMBER SIGN
 110CD         ; Format # Cf       KAITHI NUMBER SIGN ABOVE
-13430..13440  ; Format # Cf  [17] EGYPTIAN HIEROGLYPH VERTICAL JOINER..EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY
+13430..1343F  ; Format # Cf  [16] EGYPTIAN HIEROGLYPH VERTICAL JOINER..EGYPTIAN HIEROGLYPH END WALLED ENCLOSURE
 1BCA0..1BCA3  ; Format # Cf   [4] SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
 1D173..1D17A  ; Format # Cf   [8] MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
 E0001         ; Format # Cf       LANGUAGE TAG
 
-# Total code points: 72
+# Total code points: 71
 
 # ================================================
 
