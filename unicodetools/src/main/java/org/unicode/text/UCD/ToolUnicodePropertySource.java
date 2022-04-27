@@ -810,10 +810,12 @@ extend -and not GCB = Virama
             //            unicodeMap.put(0, "Prepend");
             //            unicodeMap.setErrorOnReset(true);
 
-            // https://www.unicode.org/reports/tr29/#SpacingMark
-            // Ken: The *postbase* gc=Mc, InPC=Right characters (for these scripts with lb=SA)
-            // should be excluded from the set GCB=SpacingMark, and instead should fall through to GCB=XX.
+            // Post-base spacing combining marks (gc=Mc, InPC=Right) of certain SE Asian scripts
+            // are explicitly excluded from GCB=SpacingMark, and instead should fall through to GCB=XX.
+            // This allows to position cursors inside clusters.
+            // See https://www.unicode.org/reports/tr29/#SpacingMark
             // Keep these exceptions in sync with the table in UAX #29.
+            // See also UnicodeInvariantTest.txt.
             UnicodeSet gcbSpacingMarkSet =
                     cat.getSet("Spacing_Mark")
                     // any of the following (which have General_Category = Other_Letter):

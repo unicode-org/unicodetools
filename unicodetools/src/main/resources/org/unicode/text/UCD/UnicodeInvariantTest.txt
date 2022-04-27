@@ -462,10 +462,23 @@ Let $QUInclusions = [\u275F-\u2760 \U0001F676-\U0001F678 \u0022 \u0027 \u275B-\u
 \p{LB=ZWJ} = [\u200D]
 \p{LB=RI} = \p{RI=Y}
 
-# For the scripts (mostly of SE Asia) which have been identified as normally not
-# using spaces in their typography and which have therefore had their letters
-# all given Line_Break=SA (complex context dependent), test the following
-# invariant:
+
+# Some scripts, mostly in East and South-East Asia, normally do not use spaces between words.
+# Among the SE Asian scripts, there are two groups:
+# - Scripts like Thai, Lao, Khmer, and Myanmar
+#   allow line breaks only at word boundaries and therefore
+#   require dictionary-based algorithms for proper line breaking.
+#   (These scripts use spaces to separate phrases.)
+#   Their characters are given lb=SA (Line_Break=SA: complex context dependent)
+#   as an escape out of the rule-based algorithm in UAX #14.
+# - Scripts like Balinese, Batak, Grantha, and Javanese
+#   allow line breaks at the boundaries of orthographic syllables and can therefore
+#   use an extension of the rule-based algorithm.
+#   Until such boundaries are part of UAX #14, they may
+#   either use lb=SA or use the Western line breaking style with other lb values.
+# (See also https://www.unicode.org/L2/L2022/22080r-line-break-ortho-bnd.pdf .)
+#
+# For the scripts in the first group, test the following invariant:
 # 
 # Add all characters that have an explicit Script property value from among the
 # set of scripts known to use Line_Break=SA values to the set $SAScripts. Then
@@ -481,14 +494,13 @@ Let $QUInclusions = [\u275F-\u2760 \U0001F676-\U0001F678 \u0022 \u0027 \u275B-\u
 # covered by adding them to the exception set $SAScriptExceptions for the test.
 
 # SA are limited to certain scripts:
-Let $SAScripts = [\p{script=ahom} \p{script=thai} \p{script=lao} \p{script=myanmar} \p{script=khmer} \p{script=Tai_Le} \p{script=New_Tai_Lue} \p{script=Tai_Tham} \p{script=Tai_Viet} \p{script=Kawi}]
+Let $SAScripts = [\p{script=ahom} \p{script=thai} \p{script=lao} \p{script=myanmar} \p{script=khmer} \p{script=Tai_Le} \p{script=New_Tai_Lue} \p{script=Tai_Tham} \p{script=Tai_Viet}]
 $SAScripts ⊇ \p{LineBreak=SA}
 
 # And in $SA scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn, plus the NEW TAI LUE THAM DIGIT ONE
-Let $SAScriptExceptions = [\x{1173A}\x{1173B}\x{1173F} \u19DA\u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAADE-\uAADF \U00011F41]
+Let $SAScriptExceptions = [\x{1173A}\x{1173B}\x{1173F} \u19DA\u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAADE-\uAADF]
 # 7.0 Added AA7D
 # 12.0 Removed Myanmar spacing marks which were assigned Other_Alphabetic: 1063..1064, 1069..106D, 1087..108C, 108F, 109A..109B, AA7B, AA7D
-# 14.0 Add U+11F41 KAWI SIGN KILLER (gc=Mc, lb=SA)
 
 [$SAScripts & [\p{Alphabetic} \p{gc=cf} \p{gc=Mn} $SAScriptExceptions]] = [$SAScripts & [\p{LineBreak=SA} \p{LineBreak=CM}]]
 
@@ -564,14 +576,15 @@ Let $EgyptianControls = [\U00013430-\U00013440]
 \p{RI=Y} = [\p{GCB=RI}]
 \p{RI=Y} = [\p{WB=RI}]
 
-# Post-base spacing combining marks of most SE Asian scripts are explicitly excluded from GCB=SpacingMark
+# Post-base spacing combining marks (gc=Mc, InPC=Right) of certain SE Asian scripts
+# are explicitly excluded from GCB=SpacingMark, and instead should fall through to GCB=XX.
+# This allows to position cursors inside clusters.
 # See https://www.unicode.org/reports/tr29/#SpacingMark
-# Ken: The *postbase* gc=Mc, InPC=Right characters (for these scripts with lb=SA)
-# should be excluded from the set GCB=SpacingMark, and instead should fall through to GCB=XX.
-# That is, when this test case fails, then
+# When this test case fails, then
+# either adjust the set of scripts, or
 # - change ToolUnicodePropertySource.java to remove the offending characters from the gcbSpacingMarkSet
 # - add them to the exceptions list in UAX #29
-Let $PostBaseSpacingMarks_All = [[[:lb=SA:]-[:sc=Khmr:]] & [:gc=Mc:] & [:InPC=Right:]]
+Let $PostBaseSpacingMarks_All = [[:sc=Myanmar:][:sc=Tai_Tham:][:sc=Ahom:] & [:gc=Mc:] & [:InPC=Right:]]
 Let $PostBaseSpacingMarks_Tweak = [\u103B \u1056 \u1057 \u1A57 \u1A6D]
 Let $PostBaseSpacingMarks_Missed = []
 [$PostBaseSpacingMarks_All - $PostBaseSpacingMarks_Tweak - $PostBaseSpacingMarks_Missed] ⊂ [:GCB=XX:]
