@@ -463,22 +463,14 @@ Let $QUInclusions = [\u275F-\u2760 \U0001F676-\U0001F678 \u0022 \u0027 \u275B-\u
 \p{LB=RI} = \p{RI=Y}
 
 
-# Some scripts, mostly in East and South-East Asia, normally do not use spaces between words.
-# Among the SE Asian scripts, there are two groups:
-# - Scripts like Thai, Lao, Khmer, and Myanmar
-#   allow line breaks only at word boundaries and therefore
-#   require dictionary-based algorithms for proper line breaking.
-#   (These scripts use spaces to separate phrases.)
-#   Their characters are given lb=SA (Line_Break=SA: complex context dependent)
-#   as an escape out of the rule-based algorithm in UAX #14.
-# - Scripts like Balinese, Batak, Grantha, and Javanese
-#   allow line breaks at the boundaries of orthographic syllables and can therefore
-#   use an extension of the rule-based algorithm.
-#   Until such boundaries are part of UAX #14, they may
-#   either use lb=SA or use the Western line breaking style with other lb values.
-# (See also https://www.unicode.org/L2/L2022/22080r-line-break-ortho-bnd.pdf .)
+# A few southeast Asian scripts allow line breaks only at word boundaries,
+# but do not mark word boundaries in any way, so that the
+# determination of line break opportunities requires language dependent text analysis.
+# In terms of UAX #14, these scripts need the “South East Asian” style of context analysis for
+# line breaking, and their characters are given lb=SA (Line_Break=SA: complex context dependent)
+# as an escape out of the rule-based algorithm in UAX #14.
 #
-# For the scripts in the first group, test the following invariant:
+# For these scripts, test the following invariant:
 # 
 # Add all characters that have an explicit Script property value from among the
 # set of scripts known to use Line_Break=SA values to the set $SAScripts. Then
