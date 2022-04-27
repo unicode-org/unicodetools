@@ -828,8 +828,7 @@ extend -and not GCB = Virama
                             // They may have been gc=Spacing_Mark in an earlier version.
                             "\u19B0-\u19B4\u19B8\u19B9\u19BB-\u19C0\u19C8\u19C9" + // New Tai Lue
                             "\u1A61\u1A63\u1A64" + // Tai Tham
-                            "\uAA7B\uAA7D" + // Myanmar
-                            "\\U00011F03\\U00011F34\\U00011F35\\U00011F41]")) // Kawi Unicode 15
+                            "\uAA7B\uAA7D]")) // Myanmar
                     .removeAll(unicodeMap.keySet("Extend"));
             if (compositeVersion >= (14 << 16)) {
                 gcbSpacingMarkSet.remove(0x11720).remove(0x11721); // AHOM VOWEL SIGN A & AA
