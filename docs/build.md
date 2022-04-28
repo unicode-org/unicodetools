@@ -602,7 +602,7 @@ Unicode 15 TODO: See above; commit new input data, run tools, review output, cop
         # Total code points: 12089
         **** END Error Info ****
         ```
-6.  The input file is [unicodetools/org/unicode/text/UCD/UnicodeInvariantTest.txt](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/org/unicode/text/UCD/UnicodeInvariantTest.txt).
+6.  The input file is [unicodetools/src/main/resources/org/unicode/text/UCD/UnicodeInvariantTest.txt](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/src/main/resources/org/unicode/text/UCD/UnicodeInvariantTest.txt).
     1.  Some failures are expected for a new Unicode version, or new RTL blocks, etc. Adjust the input file as necessary.
     1.  For other failures, adjust the character properties.
 
