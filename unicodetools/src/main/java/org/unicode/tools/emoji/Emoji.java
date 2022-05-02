@@ -40,8 +40,49 @@ import com.ibm.icu.util.Output;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
+/**
+ * You need a command line variable to generate either the beta version (not yet released) or the abbreviated version (see below).
+ * <p>Example: -Demoji-beta
+ * <p>With each new version, set
+ * <ul><li> VERSION_LAST_RELEASED2 = VERSIONxx;</li>
+ * <li>VERSION_LAST_RELEASED = VERSIONyy;</li>
+ * <li>VERSION_BETA = VERSIONzz;</li></ul>
+ * You also need to add 2 new constants, such as:
+ *  <ul><li> VERSION15;</li>
+ *  <li>UCD15;</li></ul>
+ * And add dates to the following:
+ *  <ul><li> EMOJI_TO_UNICODE_VERSION</li>
+ *  <li>EMOJI_TO_DATE</li></ul>
+ *  <p>And add the images to the images repository.
+ *  <p>Charts will be generated in folders that depend on Settings.Output.GEN_DIR, such as:
+ *<pre>…Generated/unicodetools/emoji/
+future/
+	emoji-candidates.html
+	emoji-candidates.txt
+	emoji-list.css
+	emoji-provisional.html
+	emoji-provisional.txt
+	index.html
+charts-15.0/
+	emoji-counts-details.tsv
+	emoji-counts.html
+	emoji-counts.tsv
+	emoji-list.css
+	emoji-list.html
+	emoji-list.txt
+	…
+	internal/ # used for cross checking
+		missing-emoji-list.html # check that available vendor images are present (tsv version also)
+	…
+</pre>
+*/
 public class Emoji {
 
+	/**
+	 * The following is used to generate an abbreviated version of the charts, where only a few rows are produced,
+	 * and all images are replaced by a colored square (small data size).
+	 * This version can be used to do link-checks.
+	 */
     static final boolean ABBR = CldrUtility.getProperty("emoji-abbr", false);
     //static final boolean EMOJI_BUILD_VERSION = CldrUtility.getProperty("emoji-version", false);
 
@@ -62,6 +103,7 @@ public class Emoji {
     /**
      * Constants for versions
      */
+    public static final VersionInfo VERSION15 = VersionInfo.getInstance(15,0);
     public static final VersionInfo VERSION14 = VersionInfo.getInstance(14,0);
     public static final VersionInfo VERSION13_1 = VersionInfo.getInstance(13,1);
     public static final VersionInfo VERSION13 = VersionInfo.getInstance(13);
@@ -78,6 +120,7 @@ public class Emoji {
     public static final VersionInfo VERSION0_5 = VersionInfo.getInstance(0,5,2);
 
     // ALSO fix VersionToAge.java!
+    public static final VersionInfo UCD15 = VERSION15;
     public static final VersionInfo UCD14 = VERSION14;
     public static final VersionInfo UCD13 = VERSION13;
     public static final VersionInfo UCD12_1 = VERSION12_1;
@@ -95,12 +138,13 @@ public class Emoji {
      */
     public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION13_1;
     public static final VersionInfo VERSION_LAST_RELEASED = VERSION14;
-    public static final VersionInfo VERSION_BETA = VERSION14;
+    public static final VersionInfo VERSION_BETA = VERSION15;
 
     public static final VersionInfo VERSION_TO_TEST = VERSION_BETA;
     public static final VersionInfo VERSION_TO_TEST_PREVIOUS = VERSION_LAST_RELEASED;
 
     public static Map<VersionInfo, VersionInfo> EMOJI_TO_UNICODE_VERSION = ImmutableMap.<VersionInfo, VersionInfo>builder()
+            .put(VERSION15, UCD15)
             .put(VERSION14, UCD14)
             .put(VERSION13_1, UCD13)
             .put(VERSION13, UCD13)
@@ -117,6 +161,7 @@ public class Emoji {
             .build();
 
     public final static Map<VersionInfo, String> EMOJI_TO_DATE = ImmutableMap.<VersionInfo, String>builder()
+            .put(VERSION15, "2022-09-10")
             .put(VERSION14, "2021-09-10")
             .put(VERSION13_1, "2020-09-10")
             .put(VERSION13, "2020-03-10")
