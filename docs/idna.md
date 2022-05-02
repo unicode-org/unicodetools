@@ -28,7 +28,7 @@
     1.  Fix the copyright date
     2.  Add or remove "draft" in front of "data files", according to the status
         of the data.
-5.  Run TestIdna.java. It should show “ALL TESTS PASSED”.
+5.  Run TestIdna.java as a JUnit test.
 
 To push to production
 

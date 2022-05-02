@@ -1,6 +1,7 @@
 package org.unicode.jsptest;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 import org.unicode.jsp.FileUtilities;
@@ -9,11 +10,10 @@ import org.unicode.jsp.Idna2008.Idna2008Type;
 import org.unicode.unittest.TestFmwkMinusMinus;
 import org.unicode.jsp.IdnaTypes;
 
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.Normalizer;
+import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
@@ -27,6 +27,8 @@ public class TestIdna extends TestFmwkMinusMinus {
     UnicodeSet targetNotAllowed = new UnicodeSet();
     UnicodeSet equalsIdnabis = new UnicodeSet();
     UnicodeMap<String> diffIdnaBis = new UnicodeMap<String>();
+    Normalizer2 nfc = Normalizer2.getNFCInstance();
+    Normalizer2 nfkc = Normalizer2.getNFKCInstance();
 
     public boolean handleLine(int start, int end, String[] items) {
       String type = items[1];
@@ -70,21 +72,21 @@ public class TestIdna extends TestFmwkMinusMinus {
 
     private String getIdnabisMapping(int source) {
       String idnabisMapping;
-      idnabisMapping = UCharacter.toLowerCase(UTF16.valueOf(source));
+      idnabisMapping = UCharacter.toLowerCase(Locale.ROOT, UTF16.valueOf(source));
       if (wideNarrow.containsSome(idnabisMapping)) {
         StringBuilder temp = new StringBuilder();
         int cp;
         for (int i = 0; i < idnabisMapping.length(); i += Character.charCount(cp)) {
           cp = idnabisMapping.codePointAt(i);
           if (wideNarrow.contains(cp)) {
-            temp.append(Normalizer.normalize(cp, Normalizer.NFKC));
+            temp.append(nfkc.getDecomposition(cp));
           } else {
             temp.appendCodePoint(cp);
           }
         }
         idnabisMapping = temp.toString();
       }
-      idnabisMapping = Normalizer.normalize(idnabisMapping, Normalizer.NFC);
+      idnabisMapping = nfc.normalize(idnabisMapping);
       return idnabisMapping;
     }
   }

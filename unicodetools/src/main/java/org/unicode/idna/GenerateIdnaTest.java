@@ -98,9 +98,6 @@ public class GenerateIdnaTest {
 
         FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader.txt").toString().substring(5), "UTF-8", out);
 
-        final String filename = "IdnaMappingTable-" + Default.ucdVersion() + ".txt";
-        final String unversionedFileName = "IdnaMappingTable.txt";
-
         final PrintWriter out2 = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.GEN_IDNA_DIR, NEW_FILE_NAME);
 //        out2.println(Utility.getDataHeader(NEW_FILE_NAME));
         out2.println(Utility.getBaseDataHeader(
@@ -169,7 +166,7 @@ public class GenerateIdnaTest {
             // See https://github.com/unicode-org/unicodetools/issues/100 "Whither 13.1.0?"
             lastVersion = "13.0.0";
         }
-        int ucdTypesLastVersion = UCD_Types.AGE130;
+        int ucdTypesLastVersion = UCD_Types.AGE140;
         String ucdTypesLastVersionString = UCD_Types.AGE_VERSIONS[ucdTypesLastVersion];
         if (!ucdTypesLastVersionString.equals(lastVersion)) {
             throw new AssertionError(
@@ -223,9 +220,6 @@ public class GenerateIdnaTest {
     int generateLine(String source, PrintWriter out, PrintWriter out2) {
         if (alreadyDone(source)) {
             return 0;
-        }
-        if (source.equals("\u200d")) {
-            int debug = 0;
         }
         int result = 0;
         final Set<Errors> toUnicodeErrors = EnumSet.noneOf(Errors.class);
