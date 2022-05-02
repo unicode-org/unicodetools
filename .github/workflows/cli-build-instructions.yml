@@ -160,3 +160,35 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/newunicodeproperties.md#run-generateenumsjava
+      - name: Run command - Generate Enums Test
+        run: |
+          cd unicodetools/mine/src
+          # run GenerateEnums
+          mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.props.GenerateEnums"  -Dexec.args=""  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
+          # TODO(#100) Get rid of need for fake version 13.1 of Unicode enum val
+          # Fail if we haven't committed changes from Generate Enums, but make exception for fake Unicode version hack (#100)
+          echo "Check if GenerateEnums output has been committed to repo"
+          git diff --compact-summary --exit-code
+          if [ $? -eq 0 ]; then
+            echo "Success: Any output from GenerateEnums has already been committed."
+            echo "exit 0"
+          else
+            names=`git diff --name-only`
+            if [[ "$names" == "unicodetools/src/main/java/org/unicode/props/UcdPropertyValues.java" ]]; then
+              gitdiffstat=`git diff --stat | tail -n 1`
+              if [[ "$gitdiffstat" = "1 file changed, 1 insertion(+), 1 deletion(-)" ]]; then
+                git diff | grep 'V13_1("13.1")'
+                if [ $? -eq 0 ]; then
+                  echo "Inferred: Only non-committed change after GenerateEnums is temporary V13_1 hack (issue #100)"
+                  echo "Check passed."
+                  echo "exit 0"
+                fi
+              fi
+            fi
+            echo "Failure: GenerateEnums has changed that need to be committed."
+            echo "exit 1"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
