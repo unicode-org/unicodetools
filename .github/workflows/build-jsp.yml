@@ -54,7 +54,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Package JSPs
       run: >
-        mvn -s .github/workflows/mvn-settings.xml -B -pl UnicodeJsps install package
+        mvn -s .github/workflows/mvn-settings.xml -B -pl UnicodeJsps install package -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Upload UnicodeJsps.war
