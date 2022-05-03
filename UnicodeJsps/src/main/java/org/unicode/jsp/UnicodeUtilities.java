@@ -25,8 +25,12 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.Predicate;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
-import org.unicode.jsp.Idna.IdnaType;
-import org.unicode.jsp.Idna2008.Idna2008Type;
+import org.unicode.idna.Idna.IdnaType;
+import org.unicode.idna.Idna2003;
+import org.unicode.idna.Idna2008;
+import org.unicode.idna.Idna2008.Idna2008Type;
+import org.unicode.idna.IdnaTypes;
+import org.unicode.idna.Punycode;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.props.UnicodeProperty;
 

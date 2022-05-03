@@ -6,7 +6,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import org.unicode.jsp.Idna.IdnaType;
+import org.unicode.idna.Idna;
+import org.unicode.idna.Idna.IdnaType;
+import org.unicode.idna.Idna2003;
+import org.unicode.idna.Idna2008;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.AliasAddAction;
 import org.unicode.props.UnicodeProperty.BaseProperty;
@@ -72,7 +75,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(new HanType());
         add(new UnicodeProperty.UnicodeMapProperty().set(Idna2003.SINGLETON.mappings).setMain("toIdna2003", "toIdna2003", UnicodeProperty.STRING, "1.1"));
         add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings).setMain("toUts46t", "toUts46t", UnicodeProperty.STRING, "1.1"));
-        add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings_display).setMain("toUts46n", "toUts46n", UnicodeProperty.STRING, "1.1"));
+        add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.getMappingsDisplay()).setMain("toUts46n", "toUts46n", UnicodeProperty.STRING, "1.1"));
 
         add(new StringTransformProperty(Common.NFKC_CF, false).setMain("NFKC_Casefold", "NFKC_CF", UnicodeProperty.STRING, "1.1").addName("toNFKC_CF"));
 

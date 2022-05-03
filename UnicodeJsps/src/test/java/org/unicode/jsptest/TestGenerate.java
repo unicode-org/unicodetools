@@ -6,9 +6,9 @@ import java.util.TreeSet;
 
 import org.unicode.cldr.util.props.BagFormatter;
 import org.unicode.cldr.util.props.UnicodeLabel;
-import org.unicode.jsp.Idna;
-import org.unicode.jsp.Idna.IdnaType;
-import org.unicode.jsp.Idna2003;
+import org.unicode.idna.Idna;
+import org.unicode.idna.Idna.IdnaType;
+import org.unicode.idna.Idna2003;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.Uts46;
 
