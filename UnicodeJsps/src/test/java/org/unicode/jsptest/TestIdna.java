@@ -6,8 +6,8 @@ import java.util.Locale;
 import org.junit.jupiter.api.Test;
 import org.unicode.idna.Idna2008;
 import org.unicode.idna.Idna2008.Idna2008Type;
-import org.unicode.idna.IdnaTypes;
 import org.unicode.jsp.FileUtilities;
+import org.unicode.text.utility.Settings;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -93,9 +93,9 @@ public class TestIdna extends TestFmwkMinusMinus {
 
   @Test
   public void TestExtract() throws IOException {
-
+    String path = Settings.UnicodeTools.getDataPathStringForLatestVersion("idna");
     MyHandler handler = new MyHandler();
-    handler.process(IdnaTypes.class, "IdnaMappingTable.txt");
+    handler.process(path, "IdnaMappingTable.txt");
 
     logln("sourceNotAllowed: " + handler.sourceNotAllowed.size() + "\t" + handler.sourceNotAllowed);
     logln("targetNotAllowed: " + handler.targetNotAllowed.size() + "\t" + handler.targetNotAllowed);
