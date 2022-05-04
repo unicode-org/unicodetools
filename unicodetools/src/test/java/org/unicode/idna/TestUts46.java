@@ -1,4 +1,4 @@
-package org.unicode.jsptest;
+package org.unicode.idna;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,13 +23,10 @@ import com.ibm.icu.util.ULocale;
 
 import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.idna.Uts46;
 import org.unicode.idna.Uts46.Errors;
 import org.unicode.idna.Uts46.IdnaChoice;
-import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
-// TODO: Move this and jsp.UnicodeUtilities from UnicodeJsps to unicodetools.
 public class TestUts46 extends TestFmwkMinusMinus{
 
     public static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss 'GMT'", ULocale.US);
@@ -342,7 +339,7 @@ public class TestUts46 extends TestFmwkMinusMinus{
   }
 
   Transliterator hexForTest = Transliterator.getInstance("[[:c:][:z:][:m:][:di:][:bc=R:][:bc=AL:][:bc=AN:]] any-hex");
-  static UnicodeSet IDNA2008Valid = new UnicodeSet(UnicodeUtilities.getIdna2008Valid()).add('.').freeze();
+  static UnicodeSet IDNA2008Valid = new UnicodeSet(Idna2008.getIdna2008Valid()).add('.').freeze();
 
   /**
    * Draws line

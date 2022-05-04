@@ -28,7 +28,6 @@ import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Idna2003;
 import org.unicode.idna.Idna2008;
-import org.unicode.idna.Idna2008.Idna2008Type;
 import org.unicode.idna.IdnaTypes;
 import org.unicode.idna.Punycode;
 import org.unicode.idna.Uts46;
@@ -55,9 +54,7 @@ import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
-// TODO: Move this and jsptest.TestUts46 from UnicodeJsps to unicodetools.
-// Or maybe move just those utility functions that TestUts46 needs.
-// For dependency management, it might anyway be useful to split this omnibus class into
+// For dependency management, it might be useful to split this omnibus class into
 // pieces by topic, such as collation utilities vs. IDNA utilities etc.
 public class UnicodeUtilities {
 
@@ -113,7 +110,7 @@ public class UnicodeUtilities {
 
     public static UnicodeMap<String> getIdnaDifferences(UnicodeSet remapped, UnicodeSet overallAllowed) {
         UnicodeMap<String> result = new UnicodeMap<String>();
-        UnicodeSet valid2008 = getIdna2008Valid();
+        UnicodeSet valid2008 = Idna2008.getIdna2008Valid();
 
         for (int i = 0; i <= 0x10FFFF; ++i) {
             if ((i & 0xFFF) == 0) System.out.println(Utility.hex(i));
@@ -139,17 +136,6 @@ public class UnicodeUtilities {
             result.put(i, iClass);
         }
         return result.freeze();
-    }
-
-    public static UnicodeSet getIdna2008Valid() {
-        //    IdnaLabelTester tester = getIdna2008Tester();
-        //    UnicodeSet valid2008 = UnicodeSetUtilities.parseUnicodeSet(tester.getVariable("$Valid"), TableStyle.simple);
-        //    return valid2008;
-        UnicodeMap<Idna2008Type> typeMapping = Idna2008.getTypeMapping();
-        return new UnicodeSet(typeMapping.getSet(Idna2008Type.PVALID))
-        .addAll(typeMapping.getSet(Idna2008Type.CONTEXTJ))
-        .addAll(typeMapping.getSet(Idna2008Type.CONTEXTO))
-        ;
     }
 
     static String getShortName(IdnaType tr46) {
