@@ -6,10 +6,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import org.unicode.idna.Idna;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Idna2003;
 import org.unicode.idna.Idna2008;
+import org.unicode.idna.Uts46;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.AliasAddAction;
 import org.unicode.props.UnicodeProperty.BaseProperty;

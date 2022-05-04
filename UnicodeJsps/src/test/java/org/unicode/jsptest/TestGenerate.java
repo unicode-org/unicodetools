@@ -9,8 +9,8 @@ import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.idna.Idna;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Idna2003;
+import org.unicode.idna.Uts46;
 import org.unicode.jsp.UnicodeUtilities;
-import org.unicode.jsp.Uts46;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.util.UnicodeMap;

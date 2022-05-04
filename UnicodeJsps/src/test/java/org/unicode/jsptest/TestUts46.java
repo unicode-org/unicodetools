@@ -23,12 +23,13 @@ import com.ibm.icu.util.ULocale;
 
 import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.idna.Uts46;
+import org.unicode.idna.Uts46.Errors;
+import org.unicode.idna.Uts46.IdnaChoice;
 import org.unicode.jsp.UnicodeUtilities;
-import org.unicode.jsp.Uts46;
-import org.unicode.jsp.Uts46.Errors;
-import org.unicode.jsp.Uts46.IdnaChoice;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
+// TODO: Move this and jsp.UnicodeUtilities from UnicodeJsps to unicodetools.
 public class TestUts46 extends TestFmwkMinusMinus{
 
     public static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss 'GMT'", ULocale.US);
@@ -37,13 +38,6 @@ public class TestUts46 extends TestFmwkMinusMinus{
     }
 
   boolean generate;
-
-
-  @Test
-  void TestMain() throws IOException {
-    checkSplit(".a..b.");
-    checkSplit(".");
-  }
 
   public static void main(String args[]) throws IOException {
     TestUts46 testUts46 = new TestUts46();
@@ -54,19 +48,6 @@ public class TestUts46 extends TestFmwkMinusMinus{
     }
     throw new RuntimeException("Call with argument 'generate' to run the generator, otherwise run as a JUnit test");
   }
-
-  private static void checkSplit(String testcase) {
-    String[] labels = Uts46.nonbrokenSplit(Uts46.FULL_STOP, testcase);
-    System.out.print("Splitting: \"" + testcase + "\"\t=>\t");
-    boolean first = true;
-    for (String label : labels) {
-      if (first) first = false;
-      else System.out.print(", ");
-      System.out.print("\"" + label + "\"");
-    }
-    System.out.println("");
-  }
-
 
   //  1.  The first character must be a character with BIDI property L, R
   //  or AL.  If it has the R or AL property, it is an RTL label; if it

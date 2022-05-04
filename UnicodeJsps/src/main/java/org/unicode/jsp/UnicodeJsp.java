@@ -14,6 +14,7 @@ import org.unicode.cldr.util.BNF;
 import org.unicode.cldr.util.Quoter;
 import org.unicode.idna.Idna2003;
 import org.unicode.idna.Idna2008;
+import org.unicode.idna.Uts46;
 import org.unicode.jsp.UnicodeUtilities.CodePointShower;
 
 import com.ibm.icu.lang.UCharacter;

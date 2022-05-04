@@ -31,6 +31,7 @@ import org.unicode.idna.Idna2008;
 import org.unicode.idna.Idna2008.Idna2008Type;
 import org.unicode.idna.IdnaTypes;
 import org.unicode.idna.Punycode;
+import org.unicode.idna.Uts46;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.props.UnicodeProperty;
 
@@ -54,6 +55,10 @@ import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
+// TODO: Move this and jsptest.TestUts46 from UnicodeJsps to unicodetools.
+// Or maybe move just those utility functions that TestUts46 needs.
+// For dependency management, it might anyway be useful to split this omnibus class into
+// pieces by topic, such as collation utilities vs. IDNA utilities etc.
 public class UnicodeUtilities {
 
 
