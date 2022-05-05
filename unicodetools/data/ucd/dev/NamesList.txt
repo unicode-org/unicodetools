@@ -1,9 +1,23 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 15.0.0
-@@@+	U15M220202.lst
-	Unicode 15.0.0 names list, third delta.
+@@@+	U15M220504.lst
+	Unicode 15.0.0 names list, fourth delta.
 	Repertoire synched with UnicodeData-15.0.0d4.txt.
-	Updated annotations for Kazakh digraphs, 0675..0678.
+	Rollup of alpha review fixes.
+	Adjusted alias and added xref for 1F728.
+	Added annotations for 1F772, 1F773.
+	Fixed typos in annotations for 1342F and 13430.
+	Added cross-references to 20E6.
+	Added cross-references between 1FAAF and 262C.
+	Updated annotation for 26A5.
+	Added annotation for 33D7.
+	Added annotation for 11F52.
+	Added cross-references between 10EFD and 08DD.
+	Added cross-references for 11B00 and 11B09.
+	Added name alias of type correction for 1BBD.
+	Added annotation and cross-reference for 2E95.
+	Extended the range for CJK Unified Ideographs Extension C to 2B739.
+	Added some annotations for Old Hungarian.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -5015,6 +5029,7 @@
 08DB	ARABIC SMALL HIGH WORD AS-SAJDA
 08DC	ARABIC SMALL HIGH WORD AN-NISF
 08DD	ARABIC SMALL HIGH WORD SAKTA
+	x (arabic small low word sakta - 10EFD)
 08DE	ARABIC SMALL HIGH WORD QIF
 08DF	ARABIC SMALL HIGH WORD WAQFA
 08E0	ARABIC SMALL HIGH FOOTNOTE MARKER
@@ -10791,6 +10806,8 @@
 1BBC	SUNDANESE LETTER LEU
 	* vocalic l
 1BBD	SUNDANESE LETTER BHA
+	% SUNDANESE LETTER ARCHAIC I
+	* character was originally misidentified, so its name is a misnomer
 1BBE	SUNDANESE LETTER FINAL K
 1BBF	SUNDANESE LETTER FINAL M
 	* used in a 21st century document
@@ -13373,6 +13390,9 @@
 20E6	COMBINING DOUBLE VERTICAL STROKE OVERLAY
 	= z notation finite function diacritic
 	x (double vertical line - 2016)
+	x (rightwards arrow with double vertical stroke - 21FB)
+	x (rightwards two-headed arrow with double vertical stroke - 2901)
+	x (rightwards arrow with tail with double vertical stroke - 2915)
 20E7	COMBINING ANNUITY SYMBOL
 	= actuarial bend
 	x (right ceiling - 2309)
@@ -15981,6 +16001,7 @@
 262C	ADI SHAKTI
 	= khanda
 	* Sikh religious symbol
+	x (khanda - 1FAAF)
 262D	HAMMER AND SICKLE
 262E	PEACE SYMBOL
 262F	YIN YANG
@@ -16259,7 +16280,7 @@
 	= heterosexuality
 26A5	MALE AND FEMALE SIGN
 	= intersex, androgynous
-	= hermaphrodite (in entomology)
+	= hermaphroditic (in botany)
 26A6	MALE WITH STROKE SIGN
 	= transgender
 	= alchemical symbol for iron or crocus of iron
@@ -19433,7 +19454,9 @@
 2E94	CJK RADICAL SNOUT ONE
 	x 5F51
 2E95	CJK RADICAL SNOUT TWO
+	* actually a form of the radical for hand, despite its resemblance in shape to the radical for snout
 	x 5F50
+	x 2B739
 2E96	CJK RADICAL HEART ONE
 	* form used on left side
 	x 5FC4
@@ -22086,6 +22109,7 @@
 33D6	SQUARE MOL
 	# <square> 006D 006F 006C
 33D7	SQUARE PH
+	* casing inconsistency in the compatibility decomposition is a known anomaly dating from glyph presentations in very early versions of the standard
 	# <square> 0050 0048
 33D8	SQUARE PM
 	# <square> 0070 002E 006D 002E
@@ -32321,6 +32345,7 @@ FFFF	<not a character>
 10C47	OLD TURKIC LETTER ORKHON OT
 10C48	OLD TURKIC LETTER ORKHON BASH
 @@	10C80	Old Hungarian	10CFF
+@+		This script has contemporary usage in Hungary, where users often prefer the name Szekely-Hungarian Rovas.
 @		Uppercase letters
 @+		The use of uppercase letters is a modern innovation.
 10C80	OLD HUNGARIAN CAPITAL LETTER A
@@ -32508,6 +32533,7 @@ FFFF	<not a character>
 	* in earlier literature called "tprus" (later recognized as an abbreviation for "temperius")
 10CF2	OLD HUNGARIAN SMALL LETTER US
 @		Numbers
+@+		The numbers for one, five, and ten have a clear relationship to Roman numerals.
 10CFA	OLD HUNGARIAN NUMBER ONE
 10CFB	OLD HUNGARIAN NUMBER FIVE
 10CFC	OLD HUNGARIAN NUMBER TEN
@@ -32676,6 +32702,7 @@ FFFF	<not a character>
 @@	10EC0	Arabic Extended-C	10EFF
 @		Quranic marks used in Turkey
 10EFD	ARABIC SMALL LOW WORD SAKTA
+	x (arabic small high word sakta - 08DD)
 10EFE	ARABIC SMALL LOW WORD QASR
 10EFF	ARABIC SMALL LOW WORD MADDA
 @@	10F00	Old Sogdian	10F2F
@@ -34991,6 +35018,7 @@ FFFF	<not a character>
 @@	11B00	Devanagari Extended-A	11B5F
 @		Head marks
 11B00	DEVANAGARI HEAD MARK
+	x (devanagari double danda - 0965)
 11B01	DEVANAGARI HEAD MARK WITH HEADSTROKE
 @		Auspicious signs
 @+		These are used for representing bhale mīndu signs.
@@ -35002,6 +35030,7 @@ FFFF	<not a character>
 11B07	DEVANAGARI SIGN WESTERN NINE-LIKE BHALE
 11B08	DEVANAGARI SIGN REVERSED NINE-LIKE BHALE
 11B09	DEVANAGARI SIGN MINDU
+	x (devanagari digit zero - 0966)	
 @@	11C00	Bhaiksuki	11C6F
 @		Independent vowels
 11C00	BHAIKSUKI LETTER A
@@ -35468,6 +35497,7 @@ FFFF	<not a character>
 11F50	KAWI DIGIT ZERO
 11F51	KAWI DIGIT ONE
 11F52	KAWI DIGIT TWO
+	* also used as letter ro
 11F53	KAWI DIGIT THREE
 11F54	KAWI DIGIT FOUR
 11F55	KAWI DIGIT FIVE
@@ -38515,13 +38545,13 @@ FFFF	<not a character>
 1342E	EGYPTIAN HIEROGLYPH AA032
 	~ 1342E FE02 rotated 270 degrees
 @		Addition to group V
-@+		This is part of the cartouche set: 13379, 1337A, 1337B, and 1342F
+@+		This is part of the cartouche set: 13379, 1337A, 1337B, and 1342F.
 1342F	EGYPTIAN HIEROGLYPH V011D
 	* knotted beginning of cartouche
 	* not to be confused with 13378
 @~	!
 @@	13430	Egyptian Hieroglyph Format Controls	1345F
-@+		These format controls are used to render Egyptian hieroglyphic spatial arrangments, including quadrats, overlays, insertions, and blank, lost or damaged sections.
+@+		These format controls are used to render Egyptian hieroglyphic spatial arrangements, including quadrats, overlays, insertions, and blank, lost or damaged sections.
 @		Joiners
 13430	EGYPTIAN HIEROGLYPH VERTICAL JOINER
 	= sign separator: subordination (Manuel de Codage)
@@ -38559,7 +38589,7 @@ FFFF	<not a character>
 	~ 13445 FE00 expanded 
 13446	EGYPTIAN HIEROGLYPH WIDE LOST SIGN
 	~ 13446 FE00 expanded 
-@		Damaga modifiers
+@		Damage modifiers
 13447	EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP START
 13448	EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT BOTTOM START
 13449	EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT START
@@ -47907,7 +47937,7 @@ FFFF	<not a character>
 1E04D	MODIFIER LETTER CYRILLIC SMALL JE
 	# <super> 0458
 1E04E	MODIFIER LETTER CYRILLIC SMALL BARRED O
-	# <super> 04D9
+	# <super> 04E9
 1E04F	MODIFIER LETTER CYRILLIC SMALL STRAIGHT U
 	# <super> 04AF
 1E050	MODIFIER LETTER CYRILLIC SMALL PALOCHKA
@@ -51981,8 +52011,9 @@ FFFF	<not a character>
 	x (alchemical symbol for sal-ammoniac - 1F739)
 1F728	ALCHEMICAL SYMBOL FOR VERDIGRIS
 	= aes viride, copper subacetate
-	= early astronomical symbol for earth
+	= astronomical symbol for earth
 	x (circled plus - 2295)
+	x (earth - 2641)
 @		Symbols for tin and lead ore
 1F729	ALCHEMICAL SYMBOL FOR TIN ORE
 	x (jupiter - 2643)
@@ -52121,9 +52152,11 @@ FFFF	<not a character>
 @		Measures
 1F772	ALCHEMICAL SYMBOL FOR HALF DRAM
 	= drachma semis
+	* handwritten ligature of 0292 + 00DF, typically spelled out as ʒss
 	x (latin small letter ezh - 0292)
 1F773	ALCHEMICAL SYMBOL FOR HALF OUNCE
 	= uncia semis
+	* handwritten ligature of 2125 + 00DF, typically spelled out as 2125 ss
 	x (ounce sign - 2125)
 @		Other symbol
 1F774	LOT OF FORTUNE
@@ -53102,6 +53135,7 @@ FFFF	<not a character>
 1FAAE	HAIR PICK
 @		Religious symbol
 1FAAF	KHANDA
+	x (adi shakti - 262C)
 @		Animals and nature
 1FAB0	FLY
 1FAB1	WORM
@@ -53485,7 +53519,7 @@ FFFF	<not a character>
 1FFFE	<not a character>
 1FFFF	<not a character>
 @@	20000	CJK Unified Ideographs Extension B	2A6DF
-@@	2A700	CJK Unified Ideographs Extension C	2B738
+@@	2A700	CJK Unified Ideographs Extension C	2B739
 @@	2B740	CJK Unified Ideographs Extension D	2B81D
 @@	2B820	CJK Unified Ideographs Extension E	2CEA1
 @@	2CEB0	CJK Unified Ideographs Extension F	2EBE0
