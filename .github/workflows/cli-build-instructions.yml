@@ -174,7 +174,7 @@ jobs:
             echo "Success: Any output from GenerateEnums has already been committed."
             echo "exit 0"
           else
-            names=`git diff --name-only`
+            names=`git diff --name-status | awk '{print $2;}'`
             if [[ "$names" == "unicodetools/src/main/java/org/unicode/props/UcdPropertyValues.java" ]]; then
               gitdiffstat=`git diff --stat | tail -n 1`
               if [[ "$gitdiffstat" = "1 file changed, 1 insertion(+), 1 deletion(-)" ]]; then
@@ -189,6 +189,9 @@ jobs:
             echo "Failure: GenerateEnums has changed that need to be committed."
             echo "exit 1"
           fi
+          # TODO(#100): Note: when running locally on a clean checkout, this command
+          # leaves a change in UcdPropertyValues.java by not preserving the comment 
+          # about the fake Unicode version 13.1.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
