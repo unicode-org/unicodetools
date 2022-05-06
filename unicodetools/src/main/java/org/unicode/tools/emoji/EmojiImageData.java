@@ -105,7 +105,7 @@ public class EmojiImageData {
                 } else {
                     byte[] bytes = GenerateEmoji.RESIZE_IMAGE <= 0 ? Files.readAllBytes(file.toPath())
                             : LoadImage.resizeImage(file, GenerateEmoji.RESIZE_IMAGE, GenerateEmoji.RESIZE_IMAGE);
-                    result = "data:image/png;base64," + Base64.getEncoder().encode(bytes);
+                    result = "data:image/png;base64," + Base64.getEncoder().encodeToString(bytes);
                 }
                 EmojiImageData.IMAGE_CACHE.put(filename, result);
             }

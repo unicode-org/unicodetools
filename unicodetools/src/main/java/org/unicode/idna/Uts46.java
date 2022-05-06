@@ -389,7 +389,7 @@ public class Uts46 extends Idna {
     public static final int UIDNA_ERROR_LEADING_COMBINING_MARK = 1024;
     public static final int UIDNA_ERROR_BIDI                   = 2048;
     public static final int UIDNA_ERROR_LABEL_HAS_DOT          = 4096;
-    public static final int UIDNA_NOT_IDNA2008                 = 4096*2;
+    public static final int UIDNA_NOT_IDNA2008                 = 8192;
 
     public enum Errors {
         B1(UIDNA_ERROR_BIDI),

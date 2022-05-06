@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-15.0.0.txt
-# Date: 2022-02-26, 00:38:37 GMT
+# Date: 2022-04-27, 17:07:38 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -68,7 +68,7 @@
 FEFF          ; Control # Cf       ZERO WIDTH NO-BREAK SPACE
 FFF0..FFF8    ; Control # Cn   [9] <reserved-FFF0>..<reserved-FFF8>
 FFF9..FFFB    ; Control # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANNOTATION TERMINATOR
-13430..13440  ; Control # Cf  [17] EGYPTIAN HIEROGLYPH VERTICAL JOINER..EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY
+13430..1343F  ; Control # Cf  [16] EGYPTIAN HIEROGLYPH VERTICAL JOINER..EGYPTIAN HIEROGLYPH END WALLED ENCLOSURE
 1BCA0..1BCA3  ; Control # Cf   [4] SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
 1D173..1D17A  ; Control # Cf   [8] MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
 E0000         ; Control # Cn       <reserved-E0000>
@@ -77,7 +77,7 @@ E0002..E001F  ; Control # Cn  [30] <reserved-E0002>..<reserved-E001F>
 E0080..E00FF  ; Control # Cn [128] <reserved-E0080>..<reserved-E00FF>
 E01F0..E0FFF  ; Control # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 3894
+# Total code points: 3893
 
 # ================================================
 
@@ -420,6 +420,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 11F36..11F3A  ; Extend # Mn   [5] KAWI VOWEL SIGN I..KAWI VOWEL SIGN VOCALIC R
 11F40         ; Extend # Mn       KAWI VOWEL SIGN EU
 11F42         ; Extend # Mn       KAWI CONJOINER
+13440         ; Extend # Mn       EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY
 13447..13455  ; Extend # Mn  [15] EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP START..EGYPTIAN HIEROGLYPH MODIFIER DAMAGED
 16AF0..16AF4  ; Extend # Mn   [5] BASSA VAH COMBINING HIGH TONE..BASSA VAH COMBINING HIGH-LOW TONE
 16B30..16B36  ; Extend # Mn   [7] PAHAWH HMONG MARK CIM TUB..PAHAWH HMONG MARK CIM TAUM
@@ -458,7 +459,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2129
+# Total code points: 2130
 
 # ================================================
 
@@ -625,13 +626,16 @@ ABEC          ; SpacingMark # Mc       MEETEI MAYEK LUM IYEK
 11D93..11D94  ; SpacingMark # Mc   [2] GUNJALA GONDI VOWEL SIGN OO..GUNJALA GONDI VOWEL SIGN AU
 11D96         ; SpacingMark # Mc       GUNJALA GONDI SIGN VISARGA
 11EF5..11EF6  ; SpacingMark # Mc   [2] MAKASAR VOWEL SIGN E..MAKASAR VOWEL SIGN O
+11F03         ; SpacingMark # Mc       KAWI SIGN VISARGA
+11F34..11F35  ; SpacingMark # Mc   [2] KAWI VOWEL SIGN AA..KAWI VOWEL SIGN ALTERNATE AA
 11F3E..11F3F  ; SpacingMark # Mc   [2] KAWI VOWEL SIGN E..KAWI VOWEL SIGN AI
+11F41         ; SpacingMark # Mc       KAWI SIGN KILLER
 16F51..16F87  ; SpacingMark # Mc  [55] MIAO SIGN ASPIRATION..MIAO VOWEL SIGN UI
 16FF0..16FF1  ; SpacingMark # Mc   [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 1D166         ; SpacingMark # Mc       MUSICAL SYMBOL COMBINING SPRECHGESANG STEM
 1D16D         ; SpacingMark # Mc       MUSICAL SYMBOL COMBINING AUGMENTATION DOT
 
-# Total code points: 391
+# Total code points: 395
 
 # ================================================
 

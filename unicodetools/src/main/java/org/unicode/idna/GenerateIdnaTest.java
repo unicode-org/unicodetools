@@ -98,9 +98,6 @@ public class GenerateIdnaTest {
 
         FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader.txt").toString().substring(5), "UTF-8", out);
 
-        final String filename = "IdnaMappingTable-" + Default.ucdVersion() + ".txt";
-        final String unversionedFileName = "IdnaMappingTable.txt";
-
         final PrintWriter out2 = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.GEN_IDNA_DIR, NEW_FILE_NAME);
 //        out2.println(Utility.getDataHeader(NEW_FILE_NAME));
         out2.println(Utility.getBaseDataHeader(
@@ -223,9 +220,6 @@ public class GenerateIdnaTest {
     int generateLine(String source, PrintWriter out, PrintWriter out2) {
         if (alreadyDone(source)) {
             return 0;
-        }
-        if (source.equals("\u200d")) {
-            int debug = 0;
         }
         int result = 0;
         final Set<Errors> toUnicodeErrors = EnumSet.noneOf(Errors.class);

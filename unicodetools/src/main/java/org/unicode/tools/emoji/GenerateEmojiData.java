@@ -134,7 +134,7 @@ public class GenerateEmojiData {
     }
 
     public static <T> void printData() throws IOException {
-        printData(EmojiDataSourceCombined.EMOJI_DATA);
+        printData(EmojiDataSourceCombined.EMOJI_DATA_BETA);
     }
 
     public static <T> void printData(EmojiDataSource emojiDataSource) throws IOException {

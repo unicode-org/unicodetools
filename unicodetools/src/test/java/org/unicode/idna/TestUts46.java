@@ -1,4 +1,4 @@
-package org.unicode.jsptest;
+package org.unicode.idna;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,10 +23,8 @@ import com.ibm.icu.util.ULocale;
 
 import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.jsp.UnicodeUtilities;
-import org.unicode.jsp.Uts46;
-import org.unicode.jsp.Uts46.Errors;
-import org.unicode.jsp.Uts46.IdnaChoice;
+import org.unicode.idna.Uts46.Errors;
+import org.unicode.idna.Uts46.IdnaChoice;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
 public class TestUts46 extends TestFmwkMinusMinus{
@@ -38,13 +36,6 @@ public class TestUts46 extends TestFmwkMinusMinus{
 
   boolean generate;
 
-
-  @Test
-  void TestMain() throws IOException {
-    checkSplit(".a..b.");
-    checkSplit(".");
-  }
-
   public static void main(String args[]) throws IOException {
     TestUts46 testUts46 = new TestUts46();
     if (Arrays.asList(args).contains("generate")) {
@@ -54,19 +45,6 @@ public class TestUts46 extends TestFmwkMinusMinus{
     }
     throw new RuntimeException("Call with argument 'generate' to run the generator, otherwise run as a JUnit test");
   }
-
-  private static void checkSplit(String testcase) {
-    String[] labels = Uts46.nonbrokenSplit(Uts46.FULL_STOP, testcase);
-    System.out.print("Splitting: \"" + testcase + "\"\t=>\t");
-    boolean first = true;
-    for (String label : labels) {
-      if (first) first = false;
-      else System.out.print(", ");
-      System.out.print("\"" + label + "\"");
-    }
-    System.out.println("");
-  }
-
 
   //  1.  The first character must be a character with BIDI property L, R
   //  or AL.  If it has the R or AL property, it is an RTL label; if it
@@ -361,7 +339,7 @@ public class TestUts46 extends TestFmwkMinusMinus{
   }
 
   Transliterator hexForTest = Transliterator.getInstance("[[:c:][:z:][:m:][:di:][:bc=R:][:bc=AL:][:bc=AN:]] any-hex");
-  static UnicodeSet IDNA2008Valid = new UnicodeSet(UnicodeUtilities.getIdna2008Valid()).add('.').freeze();
+  static UnicodeSet IDNA2008Valid = new UnicodeSet(Idna2008.getIdna2008Valid()).add('.').freeze();
 
   /**
    * Draws line

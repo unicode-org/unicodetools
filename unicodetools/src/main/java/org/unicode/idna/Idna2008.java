@@ -155,4 +155,14 @@ public class Idna2008 extends Idna {
     public static UnicodeMap<Idna2008Type> getTypeMapping() {
         return IDNA2008Computed;
     }
+
+    public static UnicodeSet getIdna2008Valid() {
+        //    IdnaLabelTester tester = getIdna2008Tester();
+        //    UnicodeSet valid2008 = UnicodeSetUtilities.parseUnicodeSet(tester.getVariable("$Valid"), TableStyle.simple);
+        //    return valid2008;
+        UnicodeMap<Idna2008Type> typeMapping = Idna2008.getTypeMapping();
+        return new UnicodeSet(typeMapping.getSet(Idna2008Type.PVALID))
+                .addAll(typeMapping.getSet(Idna2008Type.CONTEXTJ))
+                .addAll(typeMapping.getSet(Idna2008Type.CONTEXTO));
+    }
 }
