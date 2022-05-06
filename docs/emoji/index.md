@@ -30,14 +30,43 @@
         2.  **{unicode-draft}**/emoji/**charts-NEXT.0**/\*
 5.  Special small versions of the charts are in corresponding directories like:
     1.  **{unicode-draft}**/emoji/🏴charts-11.0/emoji-list.html
-6.  Sanity-check them, diff against old files, and create PR.
+6.  Sanity-check data files, diffing against old files.
     1. Old data files will be in unicodetools/unicodetools/data/emoji/**CURRENT**.0/
-    2. New data files will go into unicodetools/unicodetools/data/emoji/**NEXT**.0/
-    3. New charts will go into https://github.com/unicode-org/emoji/tree/main/docs/emoji
+    2. New data files in **{unicode-draft}**
+    3. If all looks good, copy the new data files into will go into unicodetools/unicodetools/data/emoji/**NEXT**.0/
+7. If you are not doing this the first time:
+    1. Sanity check the new charts (Don't use Eclipse diff for the big chart files: they are too big for it.)
+    2. Copy them into  https://github.com/unicode-org/emoji/tree/main/docs/emoji
       1. /**NEXT**.0/
       2. /future/
-    3. Don't use Eclipse diff for the big chart files: they are too big for it.
-    4. NOTE: the emoji-test file can't be built correctly until the other emoji files are created. Best to do that in a separate PR
+
+
+ \[If New version\]
+Some things will not be fixed yet, so you have to take a second pass.
+
+1. Update emojiOrdering.txt
+Diff unicodetools/src/main/resources/org/unicode/tools/emoji/emojiOrdering.txt with the new 
+unicodetools/data/emoji/**NEXT**/internal/emojiOrdering.txt
+Copy in the new characters from internal/emojiOrdering.txt to emoji/emojiOrdering.txt. 
+**Don't** remove the sets of ZWJ sequences like 👱‍♀ 👱‍♀️ 👱‍♂ 👱‍♂️ 👱🏻‍♀ 👱🏻‍♀️ 👱🏻‍♂ 👱🏻‍♂️ 👱🏼‍♀ 👱🏼‍♀️ 👱🏼‍♂ 👱🏼‍♂️ 👱🏽‍♀ 👱🏽‍♀️ ; those are still needed.
+
+2. Run GenerateEmoji.java again.
+If you missed one of the new characters you will probably get an error in building the EmojiOrder. 
+This will update the generated files to have **NEXT** instead of E0.0. Example:
+``
+1F6DC         ; Emoji                # E0.0   [1] (🛜)       wireless
+becomes
+``
+1F6DC         ; Emoji                # E15.0  [1] (🛜)       wireless
+``
+It will also add the new characters to emoji-test.txt (they will be missing in the first pass.)
+
+3. Copy over the data files again
+From: **{unicode-draft}**/Public/emoji/**NEXT.0**/\*
+To: unicodetools/unicodetools/data/emoji/**NEXT**.0/
+
+1. Go to step 7 above to copy the charts.
+2. 
 
 ### CLDR
 CLDR uses some files once the correct emoji-test.txt file is built. For details, see https://cldr.unicode.org/development/generate-emoji-paths
