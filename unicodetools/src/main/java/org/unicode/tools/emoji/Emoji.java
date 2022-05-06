@@ -53,36 +53,14 @@ import com.ibm.icu.util.VersionInfo;
  * And add dates to the following:
  *  <ul><li> EMOJI_TO_UNICODE_VERSION</li>
  *  <li>EMOJI_TO_DATE</li></ul>
- *  <p>And add the images to the images repository.
- *  <p>Charts will be generated in folders that depend on Settings.Output.GEN_DIR, such as:
- *<pre>…Generated/unicodetools/emoji/
-future/
-	emoji-candidates.html
-	emoji-candidates.txt
-	emoji-list.css
-	emoji-provisional.html
-	emoji-provisional.txt
-	index.html
-charts-15.0/
-	emoji-counts-details.tsv
-	emoji-counts.html
-	emoji-counts.tsv
-	emoji-list.css
-	emoji-list.html
-	emoji-list.txt
-	…
-	internal/ # used for cross checking
-		missing-emoji-list.html # check that available vendor images are present (tsv version also)
-	…
-</pre>
 */
 public class Emoji {
 
-	/**
-	 * The following is used to generate an abbreviated version of the charts, where only a few rows are produced,
-	 * and all images are replaced by a colored square (small data size).
-	 * This version can be used to do link-checks.
-	 */
+    /**
+     * The following is used to generate an abbreviated version of the charts, where only a few rows are produced,
+     * and all images are replaced by a colored square (small data size).
+     * This version can be used to do link-checks.
+     */
     static final boolean ABBR = CldrUtility.getProperty("emoji-abbr", false);
     //static final boolean EMOJI_BUILD_VERSION = CldrUtility.getProperty("emoji-version", false);
 
