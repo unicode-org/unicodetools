@@ -14,7 +14,7 @@
 # Then run ProposalData.java to generate an updated version of proposalData.txt that incorporates all the proposal data from this file.
 
 #================================
-Status=Provisional Candidate
+Status=Draft Candidate
 #================================
 
 Proposal=L2/21-214
@@ -45,7 +45,7 @@ Proposal=L2/21-216
 After=🙏
 U+1FAF7
 Name=leftwards pushing hand
-Keywords=push | refuse | decline | leftward | stop | wait | high five
+Keywords=push | refuse | leftward | stop | wait | high five
 Emoji_Modifier_Base
 U+1FAF7 U+1F3FB
 U+1FAF7 U+1F3FC
@@ -55,7 +55,7 @@ U+1FAF7 U+1F3FF
 
 U+1FAF8
 Name=rightwards pushing hand
-Keywords=push | refuse | decline | rightward | stop | wait | high five
+Keywords=push | refuse | rightward | stop | wait | high five
 Emoji_Modifier_Base
 U+1FAF8 U+1F3FB
 U+1FAF8 U+1F3FC
@@ -103,7 +103,7 @@ Proposal=L2/21-215
 After=🌷
 U+1FABB
 Name=hyacinth
-Keywords=flower | Nowruz | purple | lavender | bluebonnet | lupine | snapdragon
+Keywords=flower | lavender | bluebonnet | lupine | snapdragon
 
 Proposal=L2/21-200
 After=🌰
@@ -121,7 +121,7 @@ Proposal=L2/21-192
 After=👚
 U+1FAAD
 Name=folding hand fan
-Keywords=fan | cooling | hot | heat | shy | coy | spread | flutter | dance
+Keywords=fan | cooling | hot | shy | flutter | dance
 
 Proposal=L2/21-218
 After=👚
@@ -133,13 +133,13 @@ Proposal=L2/21-194
 After=🪘
 U+1FA87
 Name=maracas
-Keywords=music | noise | celebrate | shake | instrument | rattle | rhythm | percussion
+Keywords=music | shake | instrument | rattle | percussion
 
 Proposal=L2/21-193
 After=🪘
 U+1FA88
 Name=flute
-Keywords=toot | flautist | recorder | music | woodwind | bamboo | pipe | fife
+Keywords=recorder | music | woodwind | pipe | fife
 
 Proposal=L2/21-223
 After=🔯
