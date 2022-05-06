@@ -199,7 +199,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                     check(allCharacters, after);
 
                     proposal.put(source.replace(Emoji.EMOJI_VARIANT_STRING,""), ProposalData.cleanProposalString(proposalItem));
-                    String afterString = "> " + afterItem;
+                    String afterString = "&gt; " + afterItem;
                     Age_Values age = Emoji.VERSION_ENUM.get(afterItem.codePointAt(0));
                     if (age.compareTo(Age_Values.V10_0) >= 0) {
                         afterString += " (" + Utility.hex(afterItem) + ")";
