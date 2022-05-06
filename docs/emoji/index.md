@@ -33,13 +33,14 @@
 6.  Sanity-check them, diff against old files, and create PR.
     1. Old data files will be in unicodetools/unicodetools/data/emoji/**CURRENT**.0/
     2. New data files will go into unicodetools/unicodetools/data/emoji/**NEXT**.0/
+    3. New charts will go into https://github.com/unicode-org/emoji/tree/main/docs/emoji
+      1. /**NEXT**.0/
+      2. /future/
     3. Don't use Eclipse diff for the big chart files: they are too big for it.
     4. NOTE: the emoji-test file can't be built correctly until the other emoji files are created. Best to do that in a separate PR
 
 ### CLDR
 CLDR uses some files once the correct emoji-test.txt file is built. For details, see https://cldr.unicode.org/development/generate-emoji-paths
-	
-**TODO: Get the location for the new charts.**
 
 ### GenerateEmoji: VM Arguments
 
