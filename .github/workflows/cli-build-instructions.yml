@@ -169,25 +169,26 @@ jobs:
           # TODO(#100) Get rid of need for fake version 13.1 of Unicode enum val
           # Fail if we haven't committed changes from Generate Enums, but make exception for fake Unicode version hack (#100)
           echo "Check if GenerateEnums output has been committed to repo"
-          git diff --compact-summary --exit-code
-          if [ $? -eq 0 ]; then
+          echo "git diff --compact-summary"
+          if git diff --compact-summary --exit-code; then
             echo "Success: Any output from GenerateEnums has already been committed."
             echo "exit 0"
           else
+            echo "git diff --name-status | awk '{print $2;}'"
             names=`git diff --name-status | awk '{print $2;}'`
             if [[ "$names" == "unicodetools/src/main/java/org/unicode/props/UcdPropertyValues.java" ]]; then
               gitdiffstat=`git diff --stat | tail -n 1`
-              if [[ "$gitdiffstat" = "1 file changed, 1 insertion(+), 1 deletion(-)" ]]; then
+              if [[ "$gitdiffstat" = " 1 file changed, 1 insertion(+), 1 deletion(-)" ]]; then
                 git diff | grep 'V13_1("13.1")'
                 if [ $? -eq 0 ]; then
                   echo "Inferred: Only non-committed change after GenerateEnums is temporary V13_1 hack (issue #100)"
                   echo "Check passed."
-                  echo "exit 0"
+                  exit 0
                 fi
               fi
             fi
-            echo "Failure: GenerateEnums has changed that need to be committed."
-            echo "exit 1"
+            echo "Failure: GenerateEnums has changes that need to be committed."
+            exit 1
           fi
           # TODO(#100): Note: when running locally on a clean checkout, this command
           # leaves a change in UcdPropertyValues.java by not preserving the comment 
