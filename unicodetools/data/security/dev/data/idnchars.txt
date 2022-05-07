@@ -1,13 +1,13 @@
 ﻿# idnchars.txt
-# Date: 2021-08-12, 01:13:35 GMT
-# © 2021 Unicode®, Inc.
+# Date: 2022-05-07, 01:30:00 GMT
+# © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Security Mechanisms for UTS #39
-# Version: 14.0.0
+# Version: 15.0.0
 #
-# For documentation and usage, see http://www.unicode.org/reports/tr39
+# For documentation and usage, see https://www.unicode.org/reports/tr39
 #
 # Allowed as output characters
 
@@ -342,7 +342,7 @@
 0CDD          ; output #      (ೝ)  KANNADA LETTER NAKAARA POLLU
 0CE0..0CE3    ; output #  [4] (ೠ..ೣ)  KANNADA LETTER VOCALIC RR..KANNADA VOWEL SIGN VOCALIC LL
 0CE6..0CEF    ; output # [10] (೦..೯)  KANNADA DIGIT ZERO..KANNADA DIGIT NINE
-0CF1..0CF2    ; output #  [2] (ೱ..ೲ)  KANNADA SIGN JIHVAMULIYA..KANNADA SIGN UPADHMANIYA
+0CF1..0CF3    ; output #  [3] (ೱ..ೳ)  KANNADA SIGN JIHVAMULIYA..KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT
 0D00          ; output #      (ഀ)  MALAYALAM SIGN COMBINING ANUSVARA ABOVE
 0D02..0D03    ; output #  [2] (ം..ഃ)  MALAYALAM SIGN ANUSVARA..MALAYALAM SIGN VISARGA
 0D05..0D0C    ; output #  [8] (അ..ഌ)  MALAYALAM LETTER A..MALAYALAM LETTER VOCALIC L
@@ -381,7 +381,7 @@
 0EB4..0EBD    ; output # [10] (ິ..ຽ)  LAO VOWEL SIGN I..LAO SEMIVOWEL SIGN NYO
 0EC0..0EC4    ; output #  [5] (ເ..ໄ)  LAO VOWEL SIGN E..LAO VOWEL SIGN AI
 0EC6          ; output #      (ໆ)  LAO KO LA
-0EC8..0ECD    ; output #  [6] (່..ໍ)  LAO TONE MAI EK..LAO NIGGAHITA
+0EC8..0ECE    ; output #  [7] (່..໎)  LAO TONE MAI EK..LAO YAMAKKAN
 0ED0..0ED9    ; output # [10] (໐..໙)  LAO DIGIT ZERO..LAO DIGIT NINE
 0EDE..0EDF    ; output #  [2] (ໞ..ໟ)  LAO LETTER KHMU GO..LAO LETTER KHMU NYO
 0F00          ; output #      (ༀ)  TIBETAN SYLLABLE OM
@@ -644,21 +644,26 @@ FA27..FA29    ; output #  [3] (﨧..﨩)  CJK COMPATIBILITY IDEOGRAPH-FA27..CJK 
 1133B..1133C  ; output #  [2] (𑌻..𑌼)  COMBINING BINDU BELOW..GRANTHA SIGN NUKTA
 16FF0..16FF1  ; output #  [2] (𖿰..𖿱)  VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 1B11F..1B122  ; output #  [4] (𛄟..𛄢)  HIRAGANA LETTER ARCHAIC WU..KATAKANA LETTER ARCHAIC WU
+1B132         ; output #      (𛄲)  HIRAGANA LETTER SMALL KO
 1B150..1B152  ; output #  [3] (𛅐..𛅒)  HIRAGANA LETTER SMALL WI..HIRAGANA LETTER SMALL WO
+1B155         ; output #      (𛅕)  KATAKANA LETTER SMALL KO
 1B164..1B167  ; output #  [4] (𛅤..𛅧)  KATAKANA LETTER SMALL WI..KATAKANA LETTER SMALL N
 1DF00..1DF1E  ; output # [31] (𝼀..𝼞)  LATIN SMALL LETTER FENG DIGRAPH WITH TRILL..LATIN SMALL LETTER S WITH CURL
+1DF25..1DF2A  ; output #  [6] (𝼥..𝼪)  LATIN SMALL LETTER D WITH MID-HEIGHT LEFT HOOK..LATIN SMALL LETTER T WITH MID-HEIGHT LEFT HOOK
+1E08F         ; output #      (𞂏)  COMBINING CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I
 1E7E0..1E7E6  ; output #  [7] (𞟠..𞟦)  ETHIOPIC SYLLABLE HHYA..ETHIOPIC SYLLABLE HHYO
 1E7E8..1E7EB  ; output #  [4] (𞟨..𞟫)  ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HHWE
 1E7ED..1E7EE  ; output #  [2] (𞟭..𞟮)  ETHIOPIC SYLLABLE GURAGE MWI..ETHIOPIC SYLLABLE GURAGE MWEE
 1E7F0..1E7FE  ; output # [15] (𞟰..𞟾)  ETHIOPIC SYLLABLE GURAGE QWI..ETHIOPIC SYLLABLE GURAGE PWEE
 20000..2A6DF  ; output # [42720] (𠀀..𪛟)  CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
-2A700..2B738  ; output # [4153] (𪜀..𫜸)  CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B738
+2A700..2B739  ; output # [4154] (𪜀..𫜹)  CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B739
 2B740..2B81D  ; output # [222] (𫝀..𫠝)  CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 2B820..2CEA1  ; output # [5762] (𫠠..𬺡)  CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 2CEB0..2EBE0  ; output # [7473] (𬺰..𮯠)  CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 30000..3134A  ; output # [4939] (𰀀..𱍊)  CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
+31350..323AF  ; output # [4192] (𱍐..𲎯)  CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 107282
+# Total code points: 111486
 
 # Not allowed at start of identifier
 
@@ -717,6 +722,7 @@ FA27..FA29    ; output #  [3] (﨧..﨩)  CJK COMPATIBILITY IDEOGRAPH-FA27..CJK 
 0BCA..0BCD    ; nonstarting #  [4] (ொ..்)  TAMIL VOWEL SIGN O..TAMIL SIGN VIRAMA
 0BD7          ; nonstarting #      (ௗ)  TAMIL AU LENGTH MARK
 0C01..0C04    ; nonstarting #  [4] (ఁ..ఄ)  TELUGU SIGN CANDRABINDU..TELUGU SIGN COMBINING ANUSVARA ABOVE
+0C3C          ; nonstarting #      (఼)  TELUGU SIGN NUKTA
 0C3E..0C44    ; nonstarting #  [7] (ా..ౄ)  TELUGU VOWEL SIGN AA..TELUGU VOWEL SIGN VOCALIC RR
 0C46..0C48    ; nonstarting #  [3] (ె..ై)  TELUGU VOWEL SIGN E..TELUGU VOWEL SIGN AI
 0C4A..0C4D    ; nonstarting #  [4] (ొ..్)  TELUGU VOWEL SIGN O..TELUGU SIGN VIRAMA
@@ -778,4 +784,4 @@ AA7B..AA7D    ; nonstarting #  [3] (ꩻ..ꩽ)  MYANMAR SIGN PAO KAREN TONE..MYAN
 1133B..1133C  ; nonstarting #  [2] (𑌻..𑌼)  COMBINING BINDU BELOW..GRANTHA SIGN NUKTA
 16FF0..16FF1  ; nonstarting #  [2] (𖿰..𖿱)  VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 
-# Total code points: 449
+# Total code points: 450

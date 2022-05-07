@@ -1,13 +1,13 @@
 ﻿# formatted-winFonts.txt
-# Date: 2021-08-12, 01:13:31 GMT
-# © 2021 Unicode®, Inc.
+# Date: 2022-05-07, 01:29:57 GMT
+# © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Security Mechanisms for UTS #39
-# Version: 14.0.0
+# Version: 15.0.0
 #
-# For documentation and usage, see http://www.unicode.org/reports/tr39
+# For documentation and usage, see https://www.unicode.org/reports/tr39
 #
 0021 ;	01C3	#* ( ! ~ ǃ ) EXCLAMATION MARK ~ LATIN LETTER RETROFLEX CLICK
 
