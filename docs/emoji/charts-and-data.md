@@ -1,32 +1,44 @@
-# Emoji Charts and Data
+# Posting Emoji Charts and Data
 
-## Emoji beta charts
+The following use 15.0 as the example version. Change that to whatever the version is.
 
-always check and post the files that have changed in:
+## Posting Emoji beta charts
 
-<https://www.unicode.org/draft/emoji/>
+Check and post the chart files that have changed in:
 
-*   \*.html
-*   charts-BBBB/\* (except /internal/) - where BBBB is the beta release version
-    — in this case 12.0
-*   [future/](https://www.unicode.org/draft/emoji/future/)\* (except /internal/)
-*   [images/](https://www.unicode.org/draft/emoji/images/)\*
+https://github.com/unicode-org/emoji/tree/main/docs/emoji/
 
-In this case you should also post the following (just regenerated) since there
-are new images, and some changes in layout.
+That is:
 
-*   charts-RRRR/\* (except /internal/) - where RRRR is the current release
-    version — in this case 11.0
-
-(linking checking to be done with the "flag" versions. please let me know of any
-problems (though if there are no visible artifacts it isn't a showstopper))
+*   First sanity-check the charts.
+    *   You can do a link check on the "flagged" charts, since they are built to be small.
+    *   Visually inspect them also; 
+        *   make sure that the new characters are in, 
+        *   version numbers are right,
+        *   and images are present (at least one per row)
+*   https://github.com/unicode-org/emoji/tree/main/docs/emoji/charts-15.0
+    *   All files with .html
+    *   Skip other files, and /internal/
+*   https://github.com/unicode-org/emoji/tree/main/docs/emoji/future
+    *   All files with .html
 
 First time posting a new set of beta charts, make sure that charts-beta is a
 newly created symlink to charts-BBBB.
 
-## Emoji beta data
+## Posting Emoji beta data
 
-Copy all files under draft/Public/emoji/NN.N files to live Public/emoji/NN.NN
-*   don't copy anything under the "internal" directory.
-
-Check the readme file if it exists, which should say draft.
+Copy all files under https://github.com/unicode-org/unicodetools/tree/main/unicodetools/data/emoji/15.0 files to Public
+*   First sanity-check the files.
+    *   The Readme.txt should say "draft" in the contents, and have the version 15.0.
+    *   The other files should have the new 15.0 characters and sequences.
+    *   The previous characters should be unchanged, except that the CLDR names may change.
+*   Don't copy anything under the /internal/ directory.
+*   Copy the following to https://unicode.org/Public/emoji/15.0/
+    *   ReadMe.txt
+    *   emoji-sequences.txt
+    *   emoji-test.txt
+    *   emoji-zwj-sequences.txt 
+*   Copy the following to https://unicode.org/Public/15.0.0/ucd/emoji/
+    *  ReadMe-ucd-emoji.txt // and change the name to drop the "-ucd-emoji"	 
+    *  emoji-data.txt
+    *  emoji-variation-sequences.txt
