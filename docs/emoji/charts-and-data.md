@@ -22,6 +22,13 @@ That is:
 *   https://github.com/unicode-org/emoji/tree/main/docs/emoji/future
     *   All files with .html
 
+NOTE: make sure that all the emoji images are in a proper directory with proper names:
+*  **not** proposed/proposed_...png, but rather
+*  sample/sample_...png, or
+*  android/androic_...png, or
+*  ...
+
+[Not sure this comment is still relevant]
 First time posting a new set of beta charts, make sure that charts-beta is a
 newly created symlink to charts-BBBB.
 
