@@ -118,14 +118,14 @@ public class TestUnicodeInvariants {
 
     /**
      *
-     * @param outputFile file to output, defaults to DEFAULT_FILE
+     * @param inputFile file to input, defaults to DEFAULT_FILE
      * @param doRange normally true
      * @return number of failures (0 is better)
      * @throws IOException
      */
-    public static int testInvariants(String outputFile, boolean doRange) throws IOException {
-        if (outputFile == null) {
-            outputFile = DEFAULT_FILE;
+    public static int testInvariants(String inputFile, boolean doRange) throws IOException {
+        if (inputFile == null) {
+            inputFile = DEFAULT_FILE;
         }
         parseErrorCount = 0;
         testFailureCount = 0;
@@ -149,7 +149,7 @@ public class TestUnicodeInvariants {
                 } else {
                     out3.write('\uFEFF'); // BOM
                 }
-                try (final BufferedReader in = FileUtilities.openUTF8Reader(Settings.SRC_UCD_DIR, outputFile)) {
+                try (final BufferedReader in = FileUtilities.openUTF8Reader(Settings.SRC_UCD_DIR, inputFile)) {
                     final HTMLTabber tabber = new Tabber.HTMLTabber();
 
                     errorLister = new BagFormatter()
