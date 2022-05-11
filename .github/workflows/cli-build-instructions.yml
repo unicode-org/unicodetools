@@ -9,7 +9,7 @@ on:
     - '*'
 
 env:
-  CURRENT_UVERSION=15.0.0
+  CURRENT_UVERSION: 15.0.0
 
 jobs:
 
