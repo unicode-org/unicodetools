@@ -172,7 +172,7 @@ jobs:
           echo "git diff --compact-summary"
           if git diff --compact-summary --exit-code; then
             echo "Success: Any output from GenerateEnums has already been committed."
-            echo "exit 0"
+            exit 0
           else
             echo "git diff --name-status | awk '{print $2;}'"
             names=`git diff --name-status | awk '{print $2;}'`
