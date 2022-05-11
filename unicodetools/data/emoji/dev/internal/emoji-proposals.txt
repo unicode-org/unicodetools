@@ -368,7 +368,7 @@
 1F628..1F62B; L2/07-257, L2/09-026 # 2010..2010 (😨..😫) fearful face..tired face
 1F62D; L2/07-257, L2/09-026 # 2010 (😭) loudly crying face
 1F630..1F633; L2/07-257, L2/09-026 # 2010..2010 (😰..😳) anxious face with sweat..flushed face
-1F635; L2/07-257, L2/09-026 # 2010 (😵) knocked-out face
+1F635; L2/07-257, L2/09-026 # 2010 (😵) face with crossed-out eyes
 1F637..1F640; L2/07-257, L2/09-026 # 2010..2010 (😷..🙀) face with medical mask..weary cat
 1F645..1F64F; L2/07-257, L2/09-026 # 2010..2010 (🙅..🙏) person gesturing NO..folded hands
 1F680; L2/07-257, L2/09-026 # 2010 (🚀) rocket
@@ -1040,6 +1040,105 @@
 1F9D1 200D 1F9BC; L2/19-189 # 2019 (🧑‍🦼) person in motorized wheelchair
 1F9D1 200D 1F9BD; L2/19-189 # 2019 (🧑‍🦽) person in manual wheelchair
 
+# L2/19-265, L2/19-370
+1FAF1..1FAF2; L2/19-265, L2/19-370 # 2021..2021 (🫱..🫲) rightwards hand..leftwards hand
+
+# L2/20-215
+1F6DD; L2/20-215 # 2021 (🛝) playground slide
+
+# L2/20-216
+1F6DE; L2/20-216 # 2021 (🛞) wheel
+
+# L2/20-224
+1F6DF; L2/20-224 # 2021 (🛟) ring buoy
+
+# L2/20-225
+1F7F0; L2/20-225 # 2021 (🟰) heavy equals sign
+
+# L2/20-064
+1F979; L2/20-064 # 2021 (🥹) face holding back tears
+
+# L2/19-232, L2/19-399
+1F9CC; L2/19-232, L2/19-399 # 2021 (🧌) troll
+
+# L2/20-214
+1FA7B; L2/20-214 # 2021 (🩻) x-ray
+
+# L2/19-379
+1FA7C; L2/19-379 # 2021 (🩼) crutch
+
+# L2/19-310
+1FAA9; L2/19-310 # 2021 (🪩) mirror ball
+
+# L2/20-221
+1FAAA; L2/20-221 # 2021 (🪪) identification card
+
+# L2/19-316
+1FAAB; L2/19-316 # 2021 (🪫) low battery
+
+# L2/20-218
+1FAAC; L2/20-218 # 2021 (🪬) hamsa
+
+# L2/19-371
+1FAB7; L2/19-371 # 2021 (🪷) lotus
+
+# L2/20-220
+1FAB8; L2/20-220 # 2021 (🪸) coral
+
+# L2/20-217
+1FAB9..1FABA; L2/20-217 # 2021..2021 (🪹..🪺) empty nest..nest with eggs
+
+# L2/20-190
+1FAC3..1FAC4; L2/20-190 # 2021..2021 (🫃..🫄) pregnant man..pregnant person
+
+# L2/20-189
+1FAC5; L2/20-189 # 2021 (🫅) person with crown
+
+# L2/20-065
+1FAD7; L2/20-065 # 2021 (🫗) pouring liquid
+
+# L2/20-226
+1FAD8; L2/20-226 # 2021 (🫘) beans
+
+# L2/20-222
+1FAD9; L2/20-222 # 2021 (🫙) jar
+
+# L2/20-072
+1FAE0; L2/20-072 # 2021 (🫠) melting face
+
+# L2/19-396, L2/19-400
+1FAE1; L2/19-396, L2/19-400 # 2021 (🫡) saluting face
+
+# L2/19-304
+1FAE2; L2/19-304 # 2021 (🫢) face with open eyes and hand over mouth
+
+# L2/19-378
+1FAE3; L2/19-378 # 2021 (🫣) face with peeking eye
+
+# L2/20-219
+1FAE4; L2/20-219 # 2021 (🫤) face with diagonal mouth
+
+# L2/20-223
+1FAE5; L2/20-223 # 2021 (🫥) dotted line face
+
+# L2/19-219
+1FAE6; L2/19-219 # 2021 (🫦) biting lip
+
+# L2/19-311
+1FAE7; L2/19-311 # 2021 (🫧) bubbles
+
+# L2/19-327
+1FAF0; L2/19-327 # 2021 (🫰) hand with index finger and thumb crossed
+
+# L2/20-213
+1FAF3..1FAF4; L2/20-213 # 2021..2021 (🫳..🫴) palm down hand..palm up hand
+
+# L2/20-212
+1FAF5; L2/20-212 # 2021 (🫵) index pointing at the viewer
+
+# L2/20-211
+1FAF6; L2/20-211 # 2021 (🫶) heart hands
+
 # L2/07-257, L2/09-026, L2/14-173
 261D 1F3FF; L2/07-257, L2/09-026, L2/14-173 # 2015 (☝🏿) index pointing up: dark skin tone
 270A 1F3FF; L2/07-257, L2/09-026, L2/14-173 # 2015 (✊🏿) raised fist: dark skin tone
@@ -1611,6 +1710,11 @@
 # L2/18-139, L2/14-173
 1F90F 1F3FF; L2/18-139, L2/14-173 # 2019 (🤏🏿) pinching hand: dark skin tone
 
+# L2/19-265, L2/19-370, L2/14-173
+1F91D 1F3FF; L2/19-265, L2/19-370, L2/14-173 # 2016 (🤝🏿) handshake: dark skin tone
+1FAF1 1F3FF; L2/19-265, L2/19-370, L2/14-173 # 2021 (🫱🏿) rightwards hand: dark skin tone
+1FAF2 1F3FF; L2/19-265, L2/19-370, L2/14-173 # 2021 (🫲🏿) leftwards hand: dark skin tone
+
 # L2/16-308, L2/14-173
 1F91F 1F3FF; L2/16-308, L2/14-173 # 2017 (🤟🏿) love-you gesture: dark skin tone
 1F932 1F3FF; L2/16-308, L2/14-173 # 2017 (🤲🏿) palms up together: dark skin tone
@@ -1761,6 +1865,26 @@
 
 # L2/16-304, L2/16-274, L2/14-173
 1F9DC 1F3FF; L2/16-304, L2/16-274, L2/14-173 # 2017 (🧜🏿) merperson: dark skin tone
+
+# L2/20-190, L2/14-173
+1FAC3 1F3FF; L2/20-190, L2/14-173 # 2021 (🫃🏿) pregnant man: dark skin tone
+1FAC4 1F3FF; L2/20-190, L2/14-173 # 2021 (🫄🏿) pregnant person: dark skin tone
+
+# L2/20-189, L2/14-173
+1FAC5 1F3FF; L2/20-189, L2/14-173 # 2021 (🫅🏿) person with crown: dark skin tone
+
+# L2/19-327, L2/14-173
+1FAF0 1F3FF; L2/19-327, L2/14-173 # 2021 (🫰🏿) hand with index finger and thumb crossed: dark skin tone
+
+# L2/20-213, L2/14-173
+1FAF3 1F3FF; L2/20-213, L2/14-173 # 2021 (🫳🏿) palm down hand: dark skin tone
+1FAF4 1F3FF; L2/20-213, L2/14-173 # 2021 (🫴🏿) palm up hand: dark skin tone
+
+# L2/20-212, L2/14-173
+1FAF5 1F3FF; L2/20-212, L2/14-173 # 2021 (🫵🏿) index pointing at the viewer: dark skin tone
+
+# L2/20-211, L2/14-173
+1FAF6 1F3FF; L2/20-211, L2/14-173 # 2021 (🫶🏿) heart hands: dark skin tone
 
 # MISSING-2015
 1F441 FE0F 200D 1F5E8 FE0F; MISSING # 2015 (👁️‍🗨️) eye in speech bubble
