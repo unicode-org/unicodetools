@@ -1,13 +1,13 @@
 # emoji-internal.txt
-# Date: 2021-04-08, 18:35:20 GMT
-# © 2021 Unicode®, Inc.
+# Date: 2022-05-02, 03:44:53 GMT
+# © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Emoji Data Internal for UTS #51
-# Version: 14.0
+# Version: 15.0
 #
-# For documentation and usage, see http://www.unicode.org/reports/tr51
+# For documentation and usage, see https://www.unicode.org/reports/tr51
 #
 # Format: 
 # <codepoint(s)> ; <property> # <comments> 
