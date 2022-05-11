@@ -597,10 +597,18 @@ Let $HairComponents = [\U0001F9B0-\U0001F9B3]
 \p{Extended_Pictographic} ⊃ [\p{Emoji} - \p{Emoji_Component}]
 \p{Extended_Pictographic} ⊃ [\p{Emoji_Presentation} - \p{Emoji_Component}]
 
+# lb=EB:
+# https://www.unicode.org/reports/tr14/#EB
+# "This class directly corresponds to the Emoji_Modifier_Base property"
 \p{lb=EB} = \p{Emoji_Modifier_Base}
+
+# lb=EM:
+# https://www.unicode.org/reports/tr14/#EM
+# "This class directly corresponds to the Emoji_Modifier property"
 \p{lb=EM} = \p{Emoji_Modifier}
+
 # Recent pictographs with default emoji presentation are lb=ID, EB or EM:
-[\p{Emoji_Presentation} & [\p{age=7.0}\p{age=8.0}\p{age=9.0}\p{age=10.0}\p{age=11.0}\p{age=12.0}]] ⊂ [\p{lb=ID} \p{lb=EB} \p{lb=EM}]
+[\p{Emoji_Presentation} & [\p{age=7.0}\p{age=8.0}\p{age=9.0}\p{age=10.0}\p{age=11.0}\p{age=12.0}\p{age=13.0}\p{age=14.0}\p{age=15.0}]] ⊂ [\p{lb=ID} \p{lb=EB} \p{lb=EM}]
 
 [\p{Emoji_Presentation} - \p{RI}] ⊂ \p{ea=W}
 
