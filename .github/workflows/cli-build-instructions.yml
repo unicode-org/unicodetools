@@ -203,7 +203,7 @@ jobs:
           # run GenerateConfusables
           mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.GenerateConfusables"  -Dexec.args="-c -b"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
           # run Build & Test command again to rerun TestSecurity test to verify output is okay
-          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
+          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -pl unicodetools -Dtest=TestSecurity -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=15.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
