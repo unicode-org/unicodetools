@@ -13,18 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.Tabber;
-import org.unicode.cldr.util.Tabber.HTMLTabber;
-import org.unicode.props.BagFormatter;
-import org.unicode.jsp.ICUPropertyFactory;
-import org.unicode.cldr.util.props.UnicodeLabel;
-import org.unicode.props.UnicodeProperty;
-import org.unicode.props.UnicodeProperty.Factory;
-import org.unicode.props.UnicodeProperty.PatternMatcher;
-import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.text.utility.Settings;
-
 import com.ibm.icu.dev.tool.UOption;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
@@ -33,6 +21,18 @@ import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+
+import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.Tabber;
+import org.unicode.cldr.util.Tabber.HTMLTabber;
+import org.unicode.cldr.util.props.UnicodeLabel;
+import org.unicode.jsp.ICUPropertyFactory;
+import org.unicode.props.BagFormatter;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty.Factory;
+import org.unicode.props.UnicodeProperty.PatternMatcher;
+import org.unicode.text.utility.Settings;
 
 public class TestUnicodeInvariants {
     private static final boolean DEBUG = false;
@@ -117,6 +117,21 @@ public class TestUnicodeInvariants {
     private static PrintWriter out;
 
     /**
+     * Fetch a reader for our input data.
+     * @param inputFile if null, read DEFAULT_FILE from classpath
+     * @return BufferedReader
+     * @throws IOException
+     */
+    private static BufferedReader getInputReader(String inputFile) throws IOException {
+        if (inputFile != null) {
+            return FileUtilities.openUTF8Reader(Settings.SRC_UCD_DIR, inputFile);
+        }
+
+        // null: read it from resource data
+        return FileUtilities.openFile(TestUnicodeInvariants.class, DEFAULT_FILE);
+    }
+
+    /**
      *
      * @param inputFile file to input, defaults to DEFAULT_FILE
      * @param doRange normally true
@@ -124,9 +139,6 @@ public class TestUnicodeInvariants {
      * @throws IOException
      */
     public static int testInvariants(String inputFile, boolean doRange) throws IOException {
-        if (inputFile == null) {
-            inputFile = DEFAULT_FILE;
-        }
         parseErrorCount = 0;
         testFailureCount = 0;
         boolean showScript = false;
@@ -149,7 +161,7 @@ public class TestUnicodeInvariants {
                 } else {
                     out3.write('\uFEFF'); // BOM
                 }
-                try (final BufferedReader in = FileUtilities.openUTF8Reader(Settings.SRC_UCD_DIR, inputFile)) {
+                try (final BufferedReader in = getInputReader(inputFile)) {
                     final HTMLTabber tabber = new Tabber.HTMLTabber();
 
                     errorLister = new BagFormatter()
