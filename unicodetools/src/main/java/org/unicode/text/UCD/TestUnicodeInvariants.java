@@ -45,6 +45,7 @@ public class TestUnicodeInvariants {
     private static final boolean SHOW_LOOKUP = false;
     private static int showRangeLimit = 20;
     static boolean doHtml = true;
+    public static final String DEFAULT_FILE = "UnicodeInvariantTest.txt";
 
     private static final int
     //HELP1 = 0,
@@ -64,7 +65,7 @@ public class TestUnicodeInvariants {
     public static void main(String[] args) throws IOException {
         UOption.parseArgs(args, options);
 
-        String file = "UnicodeInvariantTest.txt";
+        String file = DEFAULT_FILE;
         if (options[FILE].doesOccur) {
             file = options[FILE].value;
         }
@@ -77,6 +78,8 @@ public class TestUnicodeInvariants {
         System.out.println("HTML?\t" + doHtml);
 
         testInvariants(file, doRange);
+
+        // For the following, see: org.unicode.text.UCD.TestTestCodeInvariants
         if (TestCodeInvariants.testScriptExtensions() < 0) {
             System.out.println("Invariant test for Script_Extensions failed!");
         }
@@ -113,7 +116,19 @@ public class TestUnicodeInvariants {
 
     private static PrintWriter out;
 
-    public static void testInvariants(String outputFile, boolean doRange) throws IOException {
+    /**
+     *
+     * @param outputFile file to output, defaults to DEFAULT_FILE
+     * @param doRange normally true
+     * @return number of failures (0 is better)
+     * @throws IOException
+     */
+    public static int testInvariants(String outputFile, boolean doRange) throws IOException {
+        if (outputFile == null) {
+            outputFile = DEFAULT_FILE;
+        }
+        parseErrorCount = 0;
+        testFailureCount = 0;
         boolean showScript = false;
         try (final PrintWriter out2 = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "UnicodeTestResults." + (doHtml ? "html" : "txt"))) {
             final StringWriter writer = new StringWriter();
@@ -167,8 +182,6 @@ public class TestUnicodeInvariants {
                     //      new ChainedSymbolTable(new SymbolTable[] {
                     //            ToolUnicodePropertySource.make(UCD.lastVersion).getSymbolTable("\u00D7"),
                     //            ToolUnicodePropertySource.make(Default.ucdVersion()).getSymbolTable("")});
-                    parseErrorCount = 0;
-                    testFailureCount = 0;
                     while (true) {
                         String line = in.readLine();
                         if (line == null) {
@@ -226,6 +239,7 @@ public class TestUnicodeInvariants {
             }
             out = null;
         }
+        return parseErrorCount + testFailureCount;
     }
 
     static class PropertyComparison {
