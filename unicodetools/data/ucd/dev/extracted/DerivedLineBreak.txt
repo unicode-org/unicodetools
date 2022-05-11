@@ -1,5 +1,5 @@
 # DerivedLineBreak-15.0.0.txt
-# Date: 2022-04-27, 02:41:00 GMT
+# Date: 2022-05-11, 21:35:15 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1832,7 +1832,6 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 1FADC..1FADF  ; ID # Cn   [4] <reserved-1FADC>..<reserved-1FADF>
 1FAE0..1FAE8  ; ID # So   [9] MELTING FACE..SHAKING FACE
 1FAE9..1FAEF  ; ID # Cn   [7] <reserved-1FAE9>..<reserved-1FAEF>
-1FAF7..1FAF8  ; ID # So   [2] LEFTWARDS PUSHING HAND..RIGHTWARDS PUSHING HAND
 1FAF9..1FAFF  ; ID # Cn   [7] <reserved-1FAF9>..<reserved-1FAFF>
 1FC00..1FFFD  ; ID # Cn [1022] <reserved-1FC00>..<reserved-1FFFD>
 20000..2A6DF  ; ID # Lo [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
@@ -1852,7 +1851,7 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 31350..323AF  ; ID # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 323B0..3FFFD  ; ID # Cn [56398] <reserved-323B0>..<reserved-3FFFD>
 
-# Total code points: 172467
+# Total code points: 172465
 
 # ================================================
 
@@ -3800,9 +3799,9 @@ FF70          ; CJ # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND MARK
 1F9CD..1F9CF  ; EB # So   [3] STANDING PERSON..DEAF PERSON
 1F9D1..1F9DD  ; EB # So  [13] ADULT..ELF
 1FAC3..1FAC5  ; EB # So   [3] PREGNANT MAN..PERSON WITH CROWN
-1FAF0..1FAF6  ; EB # So   [7] HAND WITH INDEX FINGER AND THUMB CROSSED..HEART HANDS
+1FAF0..1FAF8  ; EB # So   [9] HAND WITH INDEX FINGER AND THUMB CROSSED..RIGHTWARDS PUSHING HAND
 
-# Total code points: 132
+# Total code points: 134
 
 # ================================================
 
