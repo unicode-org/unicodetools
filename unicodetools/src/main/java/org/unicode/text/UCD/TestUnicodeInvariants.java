@@ -78,8 +78,6 @@ public class TestUnicodeInvariants {
         System.out.println("HTML?\t" + doHtml);
 
         testInvariants(file, doRange);
-
-        System.out.println("Note: TestCodeInvariants is now a separate JUnit test");
     }
 
     static Transliterator toHTML;

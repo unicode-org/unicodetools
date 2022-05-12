@@ -7,6 +7,8 @@ import java.util.EnumSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestTemplate;
+import org.unicode.cldr.util.Rational.FormatStyle;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
@@ -23,7 +25,7 @@ import com.ibm.icu.text.UnicodeSet.EntryRange;
 
 public class TestCodeInvariants {
 
-    private static final boolean VERBOSE = true;
+    private static final boolean VERBOSE = false;
     private static final int TEST_PASS = 0;
     private static final int TEST_FAIL = -1;
 
@@ -39,24 +41,8 @@ public class TestCodeInvariants {
     static final UnicodeMap<Grapheme_Cluster_Break_Values> GCB =
         IUP.loadEnum(UcdProperty.Grapheme_Cluster_Break, UcdPropertyValues.Grapheme_Cluster_Break_Values.class);
 
-    public static void main(String[] args) {
-        testScriptExtensions();
-        testGcbInDecompositions(true);
-    }
-
     @Test
-    void scriptExtensionsTest() {
-        int rc = TestCodeInvariants.testScriptExtensions();
-        assertEquals(0, rc, "Invariant test for Script_Extensions failed!");
-    }
-
-    @Test
-    void testGcbInDecompositions() {
-        int rc = TestCodeInvariants.testScriptExtensions();
-        assertEquals(0, rc, "Invariant test for GCB in canonical decompositions failed!");
-    }
-
-    public static int testScriptExtensions() {
+    public void testScriptExtensions() {
         int testResult = TEST_PASS;
 
         main:
@@ -130,10 +116,10 @@ public class TestCodeInvariants {
                 System.out.println("Script Extensions invariant works for version " + age + "\n");
             }
 
-        return testResult;
+        assertEquals(TEST_PASS, testResult, "Invariant test for Script_Extensions failed!");
     }
 
-    public static int testGcbInDecompositions(boolean showAllNfds) {
+    public void testGcbInDecompositions() {
         int testResult = TEST_PASS;
 
         final String gcbPropShortName = UcdProperty.Grapheme_Cluster_Break.getShortName();
@@ -164,7 +150,7 @@ public class TestCodeInvariants {
                 }
             }
 
-            if (showAllNfds || flagged) {
+            if (VERBOSE || flagged) {
                 System.out.print(Utility.hex(cp));
                 System.out.print(" (" + gcbPropShortName + "=" + GCB.get(cp).getShortName() + ")");
                 System.out.print("  ≡  " + Utility.hex(nfdOrNull) + " ( ");
@@ -190,7 +176,7 @@ public class TestCodeInvariants {
         System.out.println("Count: " + count
             + " characters have non-singleton canonical decompositions whose any non-first characters are GCB≠EX (marked with \'←\').");
 
-        return testResult;
+        assertEquals(TEST_PASS, testResult, "Invariant test for GCB in canonical decompositions failed!");
     }
 
     private static String showInfo(int codePoint, Script_Values value, Set<Script_Values> extensions) {
