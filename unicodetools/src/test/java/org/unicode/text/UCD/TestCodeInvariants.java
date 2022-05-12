@@ -1,9 +1,14 @@
 package org.unicode.text.UCD;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Set;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestTemplate;
+import org.unicode.cldr.util.Rational.FormatStyle;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
@@ -20,7 +25,7 @@ import com.ibm.icu.text.UnicodeSet.EntryRange;
 
 public class TestCodeInvariants {
 
-    private static final boolean VERBOSE = true;
+    private static final boolean VERBOSE = false;
     private static final int TEST_PASS = 0;
     private static final int TEST_FAIL = -1;
 
@@ -36,17 +41,13 @@ public class TestCodeInvariants {
     static final UnicodeMap<Grapheme_Cluster_Break_Values> GCB =
         IUP.loadEnum(UcdProperty.Grapheme_Cluster_Break, UcdPropertyValues.Grapheme_Cluster_Break_Values.class);
 
-    public static void main(String[] args) {
-        testScriptExtensions();
-        testGcbInDecompositions(true);
-    }
-
-    public static int testScriptExtensions() {
+    @Test
+    public void testScriptExtensions() {
         int testResult = TEST_PASS;
 
         main:
             for (Age_Values age : Age_Values.values()) {
-                if (age == Age_Values.Unassigned 
+                if (age == Age_Values.Unassigned
                         || age.compareTo(SCX_FIRST_DEFINED) < 0) { // skip irrelevants
                     continue;
                 }
@@ -77,8 +78,8 @@ public class TestCodeInvariants {
                     }
                 }
 
-                // We also have the invariants for implicit values, though not captured on the stability_policy page, that 
-                // 1. BAD: scx={Common} and sc=Arabic. 
+                // We also have the invariants for implicit values, though not captured on the stability_policy page, that
+                // 1. BAD: scx={Common} and sc=Arabic.
                 //    If a character has a script extensions value with 1 implicit element, then it must be the script value for the character
                 // 2. BAD: scx={Common, Arabic}
                 //    NO script extensions value set with more than one element can contain an implicit value
@@ -115,10 +116,11 @@ public class TestCodeInvariants {
                 System.out.println("Script Extensions invariant works for version " + age + "\n");
             }
 
-        return testResult;
+        assertEquals(TEST_PASS, testResult, "Invariant test for Script_Extensions failed!");
     }
 
-    public static int testGcbInDecompositions(boolean showAllNfds) {
+    @Test
+    public void testGcbInDecompositions() {
         int testResult = TEST_PASS;
 
         final String gcbPropShortName = UcdProperty.Grapheme_Cluster_Break.getShortName();
@@ -149,20 +151,20 @@ public class TestCodeInvariants {
                 }
             }
 
-            if (showAllNfds || flagged) {
+            if (VERBOSE || flagged) {
                 System.out.print(Utility.hex(cp));
                 System.out.print(" (" + gcbPropShortName + "=" + GCB.get(cp).getShortName() + ")");
                 System.out.print("  ≡  " + Utility.hex(nfdOrNull) + " ( ");
-    
+
                 for (int i = 0; i < nfdOrNull.length(); i += Character.charCount(ch)) {
                     ch = UTF16.charAt(nfdOrNull, i);
                     System.out.print(gcbPropShortName + "=" + GCB.get(ch).getShortName() + " ");
                 }
-    
+
                 System.out.print(")");
                 System.out.print("  " + UTF16.valueOf(cp));
                 System.out.print("  \"" + NAME.get(cp) + "\"");
-    
+
                 if (flagged) {
                     System.out.print("  ←");
                     ++count;
@@ -175,7 +177,7 @@ public class TestCodeInvariants {
         System.out.println("Count: " + count
             + " characters have non-singleton canonical decompositions whose any non-first characters are GCB≠EX (marked with \'←\').");
 
-        return testResult;
+        assertEquals(TEST_PASS, testResult, "Invariant test for GCB in canonical decompositions failed!");
     }
 
     private static String showInfo(int codePoint, Script_Values value, Set<Script_Values> extensions) {

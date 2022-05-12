@@ -13,18 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.Tabber;
-import org.unicode.cldr.util.Tabber.HTMLTabber;
-import org.unicode.props.BagFormatter;
-import org.unicode.jsp.ICUPropertyFactory;
-import org.unicode.cldr.util.props.UnicodeLabel;
-import org.unicode.props.UnicodeProperty;
-import org.unicode.props.UnicodeProperty.Factory;
-import org.unicode.props.UnicodeProperty.PatternMatcher;
-import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.text.utility.Settings;
-
 import com.ibm.icu.dev.tool.UOption;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
@@ -33,6 +21,18 @@ import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+
+import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.Tabber;
+import org.unicode.cldr.util.Tabber.HTMLTabber;
+import org.unicode.cldr.util.props.UnicodeLabel;
+import org.unicode.jsp.ICUPropertyFactory;
+import org.unicode.props.BagFormatter;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty.Factory;
+import org.unicode.props.UnicodeProperty.PatternMatcher;
+import org.unicode.text.utility.Settings;
 
 public class TestUnicodeInvariants {
     private static final boolean DEBUG = false;
@@ -45,6 +45,7 @@ public class TestUnicodeInvariants {
     private static final boolean SHOW_LOOKUP = false;
     private static int showRangeLimit = 20;
     static boolean doHtml = true;
+    public static final String DEFAULT_FILE = "UnicodeInvariantTest.txt";
 
     private static final int
     //HELP1 = 0,
@@ -64,7 +65,7 @@ public class TestUnicodeInvariants {
     public static void main(String[] args) throws IOException {
         UOption.parseArgs(args, options);
 
-        String file = "UnicodeInvariantTest.txt";
+        String file = DEFAULT_FILE;
         if (options[FILE].doesOccur) {
             file = options[FILE].value;
         }
@@ -77,12 +78,6 @@ public class TestUnicodeInvariants {
         System.out.println("HTML?\t" + doHtml);
 
         testInvariants(file, doRange);
-        if (TestCodeInvariants.testScriptExtensions() < 0) {
-            System.out.println("Invariant test for Script_Extensions failed!");
-        }
-        if (TestCodeInvariants.testGcbInDecompositions(false) < 0) {
-            System.out.println("Invariant test for GCB in canonical decompositions failed!");
-        }
     }
 
     static Transliterator toHTML;
@@ -113,7 +108,31 @@ public class TestUnicodeInvariants {
 
     private static PrintWriter out;
 
-    public static void testInvariants(String outputFile, boolean doRange) throws IOException {
+    /**
+     * Fetch a reader for our input data.
+     * @param inputFile if null, read DEFAULT_FILE from classpath
+     * @return BufferedReader
+     * @throws IOException
+     */
+    private static BufferedReader getInputReader(String inputFile) throws IOException {
+        if (inputFile != null) {
+            return FileUtilities.openUTF8Reader(Settings.SRC_UCD_DIR, inputFile);
+        }
+
+        // null: read it from resource data
+        return FileUtilities.openFile(TestUnicodeInvariants.class, DEFAULT_FILE);
+    }
+
+    /**
+     *
+     * @param inputFile file to input, defaults to DEFAULT_FILE
+     * @param doRange normally true
+     * @return number of failures (0 is better)
+     * @throws IOException
+     */
+    public static int testInvariants(String inputFile, boolean doRange) throws IOException {
+        parseErrorCount = 0;
+        testFailureCount = 0;
         boolean showScript = false;
         try (final PrintWriter out2 = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "UnicodeTestResults." + (doHtml ? "html" : "txt"))) {
             final StringWriter writer = new StringWriter();
@@ -134,7 +153,7 @@ public class TestUnicodeInvariants {
                 } else {
                     out3.write('\uFEFF'); // BOM
                 }
-                try (final BufferedReader in = FileUtilities.openUTF8Reader(Settings.SRC_UCD_DIR, outputFile)) {
+                try (final BufferedReader in = getInputReader(inputFile)) {
                     final HTMLTabber tabber = new Tabber.HTMLTabber();
 
                     errorLister = new BagFormatter()
@@ -167,8 +186,6 @@ public class TestUnicodeInvariants {
                     //      new ChainedSymbolTable(new SymbolTable[] {
                     //            ToolUnicodePropertySource.make(UCD.lastVersion).getSymbolTable("\u00D7"),
                     //            ToolUnicodePropertySource.make(Default.ucdVersion()).getSymbolTable("")});
-                    parseErrorCount = 0;
-                    testFailureCount = 0;
                     while (true) {
                         String line = in.readLine();
                         if (line == null) {
@@ -226,6 +243,7 @@ public class TestUnicodeInvariants {
             }
             out = null;
         }
+        return parseErrorCount + testFailureCount;
     }
 
     static class PropertyComparison {

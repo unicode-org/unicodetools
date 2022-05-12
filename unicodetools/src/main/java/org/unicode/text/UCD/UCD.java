@@ -529,7 +529,7 @@ public final class UCD implements UCD_Types {
                 }
                 BIDI_BN_SET.addAll(DefaultIg);
             }
-            
+
             if (SHOW_LOADING) {
                 System.out.println("BIDI_R_SET: " + BIDI_R_SET);
                 System.out.println("BIDI_AL_SET: " + BIDI_AL_SET);
@@ -604,7 +604,7 @@ public final class UCD implements UCD_Types {
                 if (code == 0x5793 || code == 0x4EAC) {
                     continue; // two exceptions!!
                 }
-    
+
                 HanException except = (HanException) hanExceptions.get(code);
                 if (except != null) {
                     throw new IllegalArgumentException("Duplicate Numeric Value for U+" +
@@ -1949,7 +1949,7 @@ to guarantee identifier closure.
             try {
                 ConvertUCD.main(new String[]{version});
             } catch (final Exception e2) {
-                throw new ChainException("Can't build data file for {0}", new Object[]{version}, e2);
+                throw new ChainException("Can't build data file for " + version + " ({0})", new Object[]{version}, e2);
             }
             fillFromFile2(version);
         }
