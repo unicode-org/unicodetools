@@ -79,13 +79,7 @@ public class TestUnicodeInvariants {
 
         testInvariants(file, doRange);
 
-        // For the following, see: org.unicode.text.UCD.TestTestCodeInvariants
-        if (TestCodeInvariants.testScriptExtensions() < 0) {
-            System.out.println("Invariant test for Script_Extensions failed!");
-        }
-        if (TestCodeInvariants.testGcbInDecompositions(false) < 0) {
-            System.out.println("Invariant test for GCB in canonical decompositions failed!");
-        }
+        System.out.println("Note: TestCodeInvariants is now a separate JUnit test");
     }
 
     static Transliterator toHTML;

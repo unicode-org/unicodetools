@@ -1,9 +1,12 @@
 package org.unicode.text.UCD;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Set;
 
+import org.junit.jupiter.api.Test;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
@@ -41,12 +44,24 @@ public class TestCodeInvariants {
         testGcbInDecompositions(true);
     }
 
+    @Test
+    void scriptExtensionsTest() {
+        int rc = TestCodeInvariants.testScriptExtensions();
+        assertEquals(0, rc, "Invariant test for Script_Extensions failed!");
+    }
+
+    @Test
+    void testGcbInDecompositions() {
+        int rc = TestCodeInvariants.testScriptExtensions();
+        assertEquals(0, rc, "Invariant test for GCB in canonical decompositions failed!");
+    }
+
     public static int testScriptExtensions() {
         int testResult = TEST_PASS;
 
         main:
             for (Age_Values age : Age_Values.values()) {
-                if (age == Age_Values.Unassigned 
+                if (age == Age_Values.Unassigned
                         || age.compareTo(SCX_FIRST_DEFINED) < 0) { // skip irrelevants
                     continue;
                 }
@@ -77,8 +92,8 @@ public class TestCodeInvariants {
                     }
                 }
 
-                // We also have the invariants for implicit values, though not captured on the stability_policy page, that 
-                // 1. BAD: scx={Common} and sc=Arabic. 
+                // We also have the invariants for implicit values, though not captured on the stability_policy page, that
+                // 1. BAD: scx={Common} and sc=Arabic.
                 //    If a character has a script extensions value with 1 implicit element, then it must be the script value for the character
                 // 2. BAD: scx={Common, Arabic}
                 //    NO script extensions value set with more than one element can contain an implicit value
@@ -153,16 +168,16 @@ public class TestCodeInvariants {
                 System.out.print(Utility.hex(cp));
                 System.out.print(" (" + gcbPropShortName + "=" + GCB.get(cp).getShortName() + ")");
                 System.out.print("  ≡  " + Utility.hex(nfdOrNull) + " ( ");
-    
+
                 for (int i = 0; i < nfdOrNull.length(); i += Character.charCount(ch)) {
                     ch = UTF16.charAt(nfdOrNull, i);
                     System.out.print(gcbPropShortName + "=" + GCB.get(ch).getShortName() + " ");
                 }
-    
+
                 System.out.print(")");
                 System.out.print("  " + UTF16.valueOf(cp));
                 System.out.print("  \"" + NAME.get(cp) + "\"");
-    
+
                 if (flagged) {
                     System.out.print("  ←");
                     ++count;
