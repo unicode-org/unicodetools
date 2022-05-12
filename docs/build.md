@@ -539,7 +539,7 @@ Unicode 15 TODO: See above; commit new input data, run tools, review output, cop
 1.  Open in Package Explorer
     *   org.unicode.text.UCD
         *   TestUnicodeInvariants.java
-2.  Run>Run As... Java Application\
+1.  Run>Run As... Java Application\
     Will create the following file of results:
     ```
     {Generated}/UnicodeTestResults.txt
@@ -555,9 +555,12 @@ Unicode 15 TODO: See above; commit new input data, run tools, review output, cop
     ParseErrorCount=0
     TestFailureCount=1
     ```
-3.  The header of the result file explains the syntax of the tests.
-4.  Open that file and search for `**** START Test Failure`.
-5.  Each such point provides a dump of comparison information.
+1.  Note that since 2022-May (Unicode 15) we have a `TestTestUnicodeInvariants` JUnit wrapper
+    that runs `TestUnicodeInvariants` with default options,
+    and which is one of our CI build bot tests.
+1.  The header of the result file explains the syntax of the tests.
+1.  Open that file and search for `**** START Test Failure`.
+1.  Each such point provides a dump of comparison information.
     1.  Failures print a list of differences between two sets being
         compared. So if A and B are being compared, it prints all the items
         in A-B, then in B-A, then in A&B.
@@ -602,9 +605,14 @@ Unicode 15 TODO: See above; commit new input data, run tools, review output, cop
         # Total code points: 12089
         **** END Error Info ****
         ```
-6.  The input file is [unicodetools/src/main/resources/org/unicode/text/UCD/UnicodeInvariantTest.txt](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/src/main/resources/org/unicode/text/UCD/UnicodeInvariantTest.txt).
+1.  The input file is [unicodetools/src/main/resources/org/unicode/text/UCD/UnicodeInvariantTest.txt](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/src/main/resources/org/unicode/text/UCD/UnicodeInvariantTest.txt).
     1.  Some failures are expected for a new Unicode version, or new RTL blocks, etc. Adjust the input file as necessary.
     1.  For other failures, adjust the character properties.
+    1.  The comments before a test case should explain why we expect the “invariant” to hold,
+        ideally with a link to a stability policy or UAX section etc.,
+        and what are likely remedies
+        (changing properties, adding to an exceptions list, changing the test case).
+        Improve these comments as needed.
 
 ### Options
 
