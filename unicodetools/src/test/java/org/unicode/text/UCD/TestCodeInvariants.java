@@ -119,6 +119,7 @@ public class TestCodeInvariants {
         assertEquals(TEST_PASS, testResult, "Invariant test for Script_Extensions failed!");
     }
 
+    @Test
     public void testGcbInDecompositions() {
         int testResult = TEST_PASS;
 
