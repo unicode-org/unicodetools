@@ -139,6 +139,7 @@ public class GenerateEmojiData {
 
     public static <T> void printData(EmojiDataSource emojiDataSource) throws IOException {
         OUTPUT_DIR = OUTPUT_DIR_BASE + emojiDataSource.getPlainVersion();
+        String versionTextForUCD = "Used with Emoji Version " + Emoji.VERSION_UNICODE_STRING + " and subsequent minor revisions (if any)";
         UnicodeSet emojiMultiPersonGroupings = emojiDataSource.getMultiPersonGroupings();
 
         PropPrinter printer = new PropPrinter().set(emojiDataSource);
@@ -188,7 +189,7 @@ public class GenerateEmojiData {
             if (SHOW) System.out.println(EmojiData.EMOJI_DATA_BETA.getExtendedPictographic().contains("🦰"));
             if (SHOW) System.out.println(CandidateData.getInstance().getExtendedPictographic().contains("🦰"));
             UnicodeSet emoji_pict = emojiDataSource.getExtendedPictographic();
-            outText2.println(Utility.getBaseDataHeader("emoji-data", 51, "Emoji Data", VERSION_STRING));
+            outText2.println(Utility.getBaseDataHeaderWithVersionText("emoji-data", 51, "Emoji Data", versionTextForUCD));
             int width = Math.max("Emoji".length(),
                     Math.max("Emoji_Presentation".length(),
                             Math.max("Emoji_Modifier".length(),
@@ -357,8 +358,8 @@ public class GenerateEmojiData {
 
         if (DATA_VERSION_TO_GENERATE.compareTo(Emoji.VERSION5) >= 0) {
             try (Writer out = new TempPrintWriter(OUTPUT_DIR, "emoji-variation-sequences.txt")) {
-                out.write(Utility.getBaseDataHeader("emoji-variation-sequences", 51, "Emoji Variation Sequences",
-                        VERSION_STRING) + "\n");
+                out.write(Utility.getBaseDataHeaderWithVersionText("emoji-variation-sequences", 51, "Emoji Variation Sequences",
+                        versionTextForUCD) + "\n");
                 final UnicodeSet withVariants = emojiDataSource.getEmojiWithVariants();
                 for (String s : withVariants) {
                     // 0023 FE0E; text style; # NUMBER SIGN
