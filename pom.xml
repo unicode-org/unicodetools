@@ -46,6 +46,8 @@
 		<junit-version>5.7.2</junit-version>
 		<!-- Need to use an updated surefire plugin here. -->
 		<maven-surefire-plugin-version>3.0.0-M5</maven-surefire-plugin-version>
+
+		<spotless.version>2.22.5</spotless.version>
 	</properties>
 
 	<modules>
@@ -118,6 +120,32 @@
 					<artifactId>maven-failsafe-plugin</artifactId>
 					<version>${maven-surefire-plugin-version}</version>
 				</plugin>
+				<!-- 
+					Spotless info:
+					  - How to preview what `mvn spotless:apply` will do: https://github.com/diffplug/spotless/tree/main/plugin-maven#how-do-i-preview-what-mvn-spotlessapply-will-do
+					  - Apply Spotless to specific files: https://github.com/diffplug/spotless/tree/main/plugin-maven#can-i-apply-spotless-to-specific-files
+				-->
+				<plugin>
+					<groupId>com.diffplug.spotless</groupId>
+					<artifactId>spotless-maven-plugin</artifactId>
+					<version>${spotless.version}</version>
+					<configuration>
+					  <!-- optional: limit format enforcement to just the files changed by this feature branch -->
+					  <!-- You can explicitly disable ratchet functionality by providing the value 'NONE': -->
+					  <ratchetFrom>origin/main</ratchetFrom>
+					  <!-- define a language-specific format -->
+					  <java>
+						<!-- no need to specify files, inferred automatically, but you can if you want -->
+				  
+						<!-- apply a specific flavor of google-java-format and reflow long strings -->
+						<googleJavaFormat>
+						  <version>1.8</version>
+						  <style>AOSP</style>
+						  <reflowLongStrings>false</reflowLongStrings>
+						</googleJavaFormat>
+					  </java>
+					</configuration>
+				  </plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
