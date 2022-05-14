@@ -10,6 +10,7 @@ on:
 
 env:
   CURRENT_UVERSION: 15.0.0
+  PREVIOUS_UVERSION: 14.0.0
 
 jobs:
 
@@ -203,6 +204,27 @@ jobs:
           mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCD.GenerateConfusables"  -Dexec.args="-c -b"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
           # run Build & Test command again to rerun TestSecurity test to verify output is okay
           MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -pl unicodetools -Dtest=TestSecurity -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/unihan.md#run-generateunihancollators
+      - name: Run command - Generate Unihan Collators
+        run: |
+          cd unicodetools/mine/src
+          # run GenerateUnihanCollators
+          mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.draft.GenerateUnihanCollators"  -Dexec.args=""  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/newunicodeproperties.md#checking-other-properties
+      - name: Run command - Checking Other Properties
+        run: |
+          cd unicodetools/mine/src
+          # run CheckProperties
+          # Note: the test-compile phase/target needs to precede exec:java because
+          # the source code is in src/test/java, not src/main/java, and we need the
+          # code to compile before it is executed.
+          mvn -s .github/workflows/mvn-settings.xml -Dexec.mainClass="org.unicode.propstest.CheckProperties" -Dexec.classpathScope=test test-compile  -Dexec.args="COMPARE ALL $PREVIOUS_UVERSION" exec:java  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
