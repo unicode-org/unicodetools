@@ -1743,17 +1743,21 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                 ;
     }
 
-    public static String getBaseDataHeader(String filename, int trNumber, String title, String version) {
+    public static String getBaseDataHeaderWithVersionText(String filename, int trNumber, String title, String versionText) {
         if (!filename.endsWith(".txt")) {
             filename = filename + ".txt";
         }
         return getDataHeader(filename)
                 + "\n#"
                 + "\n# " + title + " for UTS #" + trNumber
-                + "\n# Version: "  + version
+                + "\n# " + versionText
                 + "\n#"
                 + "\n# For documentation and usage, see https://www.unicode.org/reports/tr" + trNumber
                 + "\n#";
+    }
+    public static String getBaseDataHeader(String filename, int trNumber, String title, String version) {
+        String versionText = "Version: " + version;
+        return getBaseDataHeaderWithVersionText(filename, trNumber, title, versionText);
     }
 
     public static String toString(int... cps) {

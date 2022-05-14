@@ -197,6 +197,7 @@ public class Emoji {
     public static final String VERSION_STRING = VERSION_TO_GENERATE.getVersionString(2, 4);
 
     public static final VersionInfo VERSION_TO_GENERATE_UNICODE = IS_BETA ? VERSION_BETA_UNICODE : VERSION_LAST_RELEASED_UNICODE;
+    public static final String VERSION_UNICODE_STRING = VERSION_TO_GENERATE_UNICODE.getVersionString(2, 4);
 
     //public static final String TR51_SVN_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/";
     //public static final String TR51_PREFIX = IS_BETA ? "internal-beta/" : "internal/";
