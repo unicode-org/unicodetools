@@ -11,17 +11,17 @@ sent to the ucd-dev mailing list.
 Markus has been taking the incremental file changes, and the notes, into this repo.
 
 See the history of commits that changed decomps.txt and allkeys.txt.
-
-For UCA 14 see https://github.com/unicode-org/unicodetools/pull/71
-
-For the collection of notes for UCA 10 see ducet.md.
+(We lost some of that history in the Unicode server crash of 2020.)
+-   For UCA 15 see https://github.com/unicode-org/unicodetools/pull/246
+-   For UCA 14 see https://github.com/unicode-org/unicodetools/pull/71
+-   For the collection of notes for UCA 10 see ducet.md.
 
 ## Before generating
 
 (Same prerequisite as for [security data](../security.md).)
 
 First, in CLDR, update the script metadata:
-http://cldr.unicode.org/development/updating-codes/updating-script-metadata
+https://cldr.unicode.org/development/updating-codes/updating-script-metadata
 
 We need the script “ID Usage” (e.g., Limited_Use) and script sample characters
 for the CLDR/ICU FractionalUCA.txt data.
@@ -34,18 +34,21 @@ for the CLDR/ICU FractionalUCA.txt data.
 2.  We also need the UCA/DUCET files in
     https://github.com/unicode-org/unicodetools/tree/main/unicodetools/data/uca/dev
     When they become first available for a new version, or when they are updated:
+    1.  Note that the following steps are probably no longer necessary.
+        Instead, we get the updated files from Ken, or we run the sifter tool, and
+        update the files in .../data/uca/dev.
     1.  Download UCA files (mostly allkeys.txt) from
         `https://www.unicode.org/Public/UCA/{beta version}/`
-    2.  Run `desuffixucd.py` (see the [inputdata](../inputdata.md) page)
-    3.  Update the input files for the UCA tools, at
+    1.  Run `desuffixucd.py` (see the [inputdata](../inputdata.md) page)
+    1.  Update the input files for the UCA tools, at
         {this repo}/unicodetools/data/uca/dev
 3.  You will use `org.unicode.text.UCA.Main` as your main class.
-    Normally use the command-line options `writeCollationValidityLog ICU`
-    1.  Possible additional options (VM arguments):
-    2.  -DNODATE (suppresses date output, to avoid gratuitous diffs during
+    Normally use the command-line options `writeCollationValidityLog ICU`.
+    Possible additional options (VM arguments):
+    -   -DNODATE (suppresses date output, to avoid gratuitous diffs during
         development)
-    3.  -DAUTHOR (suppresses only the author suffix from the date)
-    4.  -DAUTHOR=XYZ (sets the author suffix to " \[XYZ\]")
+    -   -DAUTHOR (suppresses only the author suffix from the date)
+    -   -DAUTHOR=XYZ (sets the author suffix to " \[XYZ\]")
 
 Using the `writeCollationValidityLog` option tests whether the UCA files are valid.
 It will create a file: `{Generated}/UCA/{version}/CheckCollationValidity.html`
