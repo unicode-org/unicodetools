@@ -14,12 +14,31 @@ env:
 
 jobs:
 
+  # Using the Java style formatter google-java-style provided by the Spotless
+  # plugin configured in the root pom.xml using 4-space indents (AOSP style).
+  # Spotless is configured to run only on files in this branch (PR) that differ
+  # from origin/main
+  formatter:
+    name: Formatter + Style checker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Unicode Tools
+        uses: actions/checkout@v2
+      # Should we use "upstream" instead of "origin" in Spotless configuration
+      # for the git remote name for unicode-org/unicodetools?
+      - name: Fetch git branches for unicode-org/unicodetools
+        run: |
+          git fetch origin
+      - name: Check Java style
+        run: mvn spotless:check || (echo "Style checker failed. Formatting changes can be applied by 'mvn spotless:apply'" && exit 1)
+
   # Only run 1 or 2 commands for in-source build instructions, just to demonstrate
   # what translating between an out-of-source build and an in-source build would
   # look like. Rely on out-of-source build steps as the canonical way to
   # execute tools in CI and write corresponding documentation.
   in-source-build:
     name: In-source Instructions (Examples)
+    needs: [ formatter ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
@@ -63,6 +82,7 @@ jobs:
 
   out-of-source-build:
     name: Out-of-source Instructions
+    needs: [ formatter ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
