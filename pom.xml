@@ -130,23 +130,22 @@
 					<artifactId>spotless-maven-plugin</artifactId>
 					<version>${spotless.version}</version>
 					<configuration>
-					  <!-- optional: limit format enforcement to just the files changed by this feature branch -->
-					  <!-- You can explicitly disable ratchet functionality by providing the value 'NONE': -->
-					  <ratchetFrom>origin/main</ratchetFrom>
-					  <!-- define a language-specific format -->
-					  <java>
-						<!-- no need to specify files, inferred automatically, but you can if you want -->
-				  
-						<!-- apply a specific flavor of google-java-format and reflow long strings -->
-						<googleJavaFormat>
-						  <!-- version of google-java-style -->
-						  <version>1.15.0</version>
-						  <style>AOSP</style>
-						  <reflowLongStrings>false</reflowLongStrings>
-						</googleJavaFormat>
-					  </java>
+						<!-- optional: limit format enforcement to just the files changed by this feature branch -->
+						<!-- You can explicitly disable ratchet functionality by providing the value 'NONE': -->
+						<ratchetFrom>origin/main</ratchetFrom>
+						<!-- define a language-specific format -->
+						<java>
+							<!-- no need to specify files, inferred automatically, but you can if you want -->
+							<!-- apply a specific flavor of google-java-format and reflow long strings -->
+							<googleJavaFormat>
+								<!-- version of google-java-style -->
+								<version>1.15.0</version>
+								<style>AOSP</style>
+								<reflowLongStrings>false</reflowLongStrings>
+							</googleJavaFormat>
+						</java>
 					</configuration>
-				  </plugin>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
