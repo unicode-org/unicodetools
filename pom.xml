@@ -139,7 +139,8 @@
 				  
 						<!-- apply a specific flavor of google-java-format and reflow long strings -->
 						<googleJavaFormat>
-						  <version>1.8</version>
+						  <!-- version of google-java-style -->
+						  <version>1.15.0</version>
 						  <style>AOSP</style>
 						  <reflowLongStrings>false</reflowLongStrings>
 						</googleJavaFormat>
