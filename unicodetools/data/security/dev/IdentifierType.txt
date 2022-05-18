@@ -1,5 +1,5 @@
 ﻿# IdentifierType.txt
-# Date: 2022-05-10, 17:59:54 GMT
+# Date: 2022-05-18, 21:51:56 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -592,14 +592,13 @@ FA27..FA29    ; Recommended                    # 1.1    [3] CJK COMPATIBILITY ID
 05F3..05F4    ; Inclusion                      # 1.1    [2] HEBREW PUNCTUATION GERESH..HEBREW PUNCTUATION GERSHAYIM
 06FD..06FE    ; Inclusion                      # 3.0    [2] ARABIC SIGN SINDHI AMPERSAND..ARABIC SIGN SINDHI POSTPOSITION MEN
 0F0B          ; Inclusion                      # 2.0        TIBETAN MARK INTERSYLLABIC TSHEG
-200C..200D    ; Inclusion                      # 1.1    [2] ZERO WIDTH NON-JOINER..ZERO WIDTH JOINER
 2010          ; Inclusion                      # 1.1        HYPHEN
 2019          ; Inclusion                      # 1.1        RIGHT SINGLE QUOTATION MARK
 2027          ; Inclusion                      # 1.1        HYPHENATION POINT
 30A0          ; Inclusion                      # 3.2        KATAKANA-HIRAGANA DOUBLE HYPHEN
 30FB          ; Inclusion                      # 1.1        KATAKANA MIDDLE DOT
 
-# Total code points: 19
+# Total code points: 17
 
 #	Identifier_Type:	Limited_Use
 
@@ -1322,7 +1321,7 @@ A930..A953    ; Exclusion                      # 5.1   [36] REJANG LETTER KA..RE
 12F90..12FF0  ; Exclusion                      # 14.0  [97] CYPRO-MINOAN SIGN CM001..CYPRO-MINOAN SIGN CM114
 13000..1342E  ; Exclusion                      # 5.2 [1071] EGYPTIAN HIEROGLYPH A001..EGYPTIAN HIEROGLYPH AA032
 1342F         ; Exclusion                      # 15.0       EGYPTIAN HIEROGLYPH V011D
-13441..13455  ; Exclusion                      # 15.0  [21] EGYPTIAN HIEROGLYPH FULL BLANK..EGYPTIAN HIEROGLYPH MODIFIER DAMAGED
+13440..13455  ; Exclusion                      # 15.0  [22] EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY..EGYPTIAN HIEROGLYPH MODIFIER DAMAGED
 14400..14646  ; Exclusion                      # 8.0  [583] ANATOLIAN HIEROGLYPH A001..ANATOLIAN HIEROGLYPH A530
 16A70..16ABE  ; Exclusion                      # 14.0  [79] TANGSA LETTER OZ..TANGSA LETTER ZA
 16AC0..16AC9  ; Exclusion                      # 14.0  [10] TANGSA DIGIT ZERO..TANGSA DIGIT NINE
@@ -1365,7 +1364,7 @@ A930..A953    ; Exclusion                      # 5.1   [36] REJANG LETTER KA..RE
 1E800..1E8C4  ; Exclusion                      # 7.0  [197] MENDE KIKAKUI SYLLABLE M001 KI..MENDE KIKAKUI SYLLABLE M060 NYON
 1E8D0..1E8D6  ; Exclusion                      # 7.0    [7] MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 16070
+# Total code points: 16071
 
 #	Identifier_Type:	Exclusion Not_XID
 
@@ -1451,7 +1450,7 @@ A95F          ; Exclusion Not_XID              # 5.1        REJANG SECTION MARK
 12474         ; Exclusion Not_XID              # 7.0        CUNEIFORM PUNCTUATION SIGN DIAGONAL QUADCOLON
 12FF1..12FF2  ; Exclusion Not_XID              # 14.0   [2] CYPRO-MINOAN SIGN CM301..CYPRO-MINOAN SIGN CM302
 13430..13438  ; Exclusion Not_XID              # 12.0   [9] EGYPTIAN HIEROGLYPH VERTICAL JOINER..EGYPTIAN HIEROGLYPH END SEGMENT
-13439..13440  ; Exclusion Not_XID              # 15.0   [8] EGYPTIAN HIEROGLYPH INSERT AT MIDDLE..EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY
+13439..1343F  ; Exclusion Not_XID              # 15.0   [7] EGYPTIAN HIEROGLYPH INSERT AT MIDDLE..EGYPTIAN HIEROGLYPH END WALLED ENCLOSURE
 16A6E..16A6F  ; Exclusion Not_XID              # 7.0    [2] MRO DANDA..MRO DOUBLE DANDA
 16AF5         ; Exclusion Not_XID              # 7.0        BASSA VAH FULL STOP
 16B37..16B3F  ; Exclusion Not_XID              # 7.0    [9] PAHAWH HMONG SIGN VOS THOM..PAHAWH HMONG SIGN XYEEM FAIB
@@ -1467,7 +1466,7 @@ A95F          ; Exclusion Not_XID              # 5.1        REJANG SECTION MARK
 1DA85..1DA8B  ; Exclusion Not_XID              # 8.0    [7] SIGNWRITING LOCATION TORSO..SIGNWRITING PARENTHESIS
 1E8C7..1E8CF  ; Exclusion Not_XID              # 7.0    [9] MENDE KIKAKUI DIGIT ONE..MENDE KIKAKUI DIGIT NINE
 
-# Total code points: 1126
+# Total code points: 1125
 
 #	Identifier_Type:	Obsolete
 
@@ -2460,8 +2459,7 @@ FFE8..FFEE    ; Not_NFKC                       # 1.1    [7] HALFWIDTH FORMS LIGH
 180B..180D    ; Default_Ignorable              # 3.0    [3] MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
 180E          ; Default_Ignorable              # 3.0        MONGOLIAN VOWEL SEPARATOR
 180F          ; Default_Ignorable              # 14.0       MONGOLIAN FREE VARIATION SELECTOR FOUR
-200B          ; Default_Ignorable              # 1.1        ZERO WIDTH SPACE
-200E..200F    ; Default_Ignorable              # 1.1    [2] LEFT-TO-RIGHT MARK..RIGHT-TO-LEFT MARK
+200B..200F    ; Default_Ignorable              # 1.1    [5] ZERO WIDTH SPACE..RIGHT-TO-LEFT MARK
 202A..202E    ; Default_Ignorable              # 1.1    [5] LEFT-TO-RIGHT EMBEDDING..RIGHT-TO-LEFT OVERRIDE
 2060..2063    ; Default_Ignorable              # 3.2    [4] WORD JOINER..INVISIBLE SEPARATOR
 2064          ; Default_Ignorable              # 5.1        INVISIBLE PLUS
@@ -2475,7 +2473,7 @@ FFA0          ; Default_Ignorable              # 1.1        HALFWIDTH HANGUL FIL
 E0020..E007F  ; Default_Ignorable              # 3.1   [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Default_Ignorable              # 4.0  [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 396
+# Total code points: 398
 
 #	Identifier_Type:	Deprecated
 
