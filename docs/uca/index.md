@@ -118,9 +118,9 @@ Judgment call. See Cherokee, Deseret, Osage, Vithkuqi for examples.
 After running the tool, diff the main mapping file and look for bad changes
 (for example, more bytes per weight for common characters).
 ```
-~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ~/cldr/uni/src/common/uca/FractionalUCA.txt > ../frac-13.0.txt
-~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ../Generated/UCA/14.0.0/CollationAuxiliary/FractionalUCA.txt > ../frac-14.0.txt
-~/unitools/mine/src$ meld ../frac-13.0.txt ../frac-14.0.txt
+~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ~/cldr/uni/src/common/uca/FractionalUCA.txt > ../frac-14.0.txt
+~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ../Generated/UCA/15.0.0/CollationAuxiliary/FractionalUCA.txt > ../frac-15.0.txt
+~/unitools/mine/src$ meld ../frac-14.0.txt ../frac-15.0.txt
 ```
 
 CLDR root data files are checked into $CLDR_SRC/common/uca/
@@ -164,8 +164,8 @@ Review the generated data; compare files, use
 [blankweights.sed](https://github.com/unicode-org/cldr/blob/master/tools/scripts/uca/blankweights.sed)
 or similar:
 ```
-~/svn.unitools/Generated$ sed -r -f ~/svn.cldr/trunk/tools/scripts/uca/blankweights.sed ~/svn.cldr/trunk/common/uca/FractionalUCA.txt > ../frac-9.txt
-~/svn.unitools/Generated$ sed -r -f ~/svn.cldr/trunk/tools/scripts/uca/blankweights.sed uca/10.0.0/CollationAuxiliary/FractionalUCA.txt > ../frac-10.txt && meld ../frac-9.txt ../frac-10.txt
+~/unitools/mine/Generated$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ~/cldr/uni/src/common/uca/FractionalUCA.txt > ../frac-9.txt
+~/unitools/mine/Generated$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed uca/10.0.0/CollationAuxiliary/FractionalUCA.txt > ../frac-10.txt && meld ../frac-9.txt ../frac-10.txt
 ```
 
 Copy all generated files to unicode.org for review & staging by Ken & editors.
@@ -176,7 +176,7 @@ Once the files look good:
 *   Create a branch for it.
 *   Copy the generated `CollationAuxiliary/*` files to the CLDR branch at `common/uca/` and commit for review.
     ```
-    ~/svn.unitools$ cp Generated/uca/8.0.0/CollationAuxiliary/* ~/svn.cldr/trunk/common/uca/
+    ~/unitools/mine$ cp Generated/uca/15.0.0/CollationAuxiliary/* ~/cldr/uni/src/common/uca/
     ```
     Ignore files that were copied but are not version-controlled, that is,
     `git status` shows a question mark status for them.

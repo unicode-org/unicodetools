@@ -7,7 +7,7 @@ going from Unicode/UCA to CLDR to ICU. See the section "Unihan collators" in
 [icu4c/source/data/unidata/changes.txt](https://github.com/unicode-org/icu/blob/main/icu4c/source/data/unidata/changes.txt)
 
 Unicode Unihan tools code location:
-[unicodetools/org/unicode/draft/GenerateUnihanCollators.java](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/org/unicode/draft/GenerateUnihanCollators.java)
+[org/unicode/draft/GenerateUnihanCollators.java](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/src/main/java/org/unicode/draft/GenerateUnihanCollators.java)
 
 There are text files in the same folder, for example patchPinyin.txt, that
 provide overrides for bug fixes.
@@ -31,7 +31,7 @@ results are
 ## Run GenerateUnihanCollatorFiles
 
 Code location:
-[unicodetools/org/unicode/draft/GenerateUnihanCollatorFiles.java](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/org/unicode/draft/GenerateUnihanCollatorFiles.java)
+[org/unicode/draft/GenerateUnihanCollatorFiles.java](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/src/main/java/org/unicode/draft/GenerateUnihanCollatorFiles.java)
 
 Run `org.unicode.draft.GenerateUnihanCollatorFiles`.
 
