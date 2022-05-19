@@ -2,7 +2,7 @@
 // License & terms of use: http://www.unicode.org/copyright.html
 /*
 **      Unilib
-**      Copyright 2021
+**      Copyright 2022
 **      Ken Whistler, All rights reserved.
 */
 
@@ -36,6 +36,7 @@
  *               Other adjustments for UCA 13.0.
  *   2021-Jul-12 Added test and free of outputstring in unisift_DropSymTreeP
  *               to fix memory leak.
+ *   2022-May-18 Add secondary ranges for UCA 15.0. Tweak some other ranges.
  */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -116,7 +117,7 @@ extern char *GetUnidataFileName ( void );
  * NUMSECONDSYMS and the following tables needs to be revisited whenever
  * any new NSM is added or reordered.
  */
-#define NUMSECONDSYMS (253)
+#define NUMSECONDSYMS (257)
 
 static const char *tertSyms[NUMTERTSYMS] =
                    { "<RES-1>",
@@ -585,6 +586,7 @@ static const char *secondSyms[NUMSECONDSYMS] = {
 "<D0E4B>", /* Thai character mai chattawa */
 "<D0E4C>", /* Thai character thanthakhat */
 "<D0E4D>", /* Thai character nikhahit */
+"<D0ECE>", /* Lao yamakkan */
 "<D0EC8>", /* Lao tone mai ek */
 "<D0EC9>", /* Lao tone mai tho */
 "<D0ECA>", /* Lao tone mai ti */
@@ -649,6 +651,10 @@ static const char *secondSyms[NUMSECONDSYMS] = {
 "<D1E2ED>", /* Wancho tone tup mang */
 "<D1E2EE>", /* Wancho tone okoi */
 "<D1E2EF>", /* Wancho tone okoi mang */
+"<D1E4EC>", /* Nag Mundari sign muhor */
+"<D1E4ED>", /* Nag Mundari sign toyor */
+"<D1E4EE>", /* Nag Mundari sign ikir */
+"<D1E4EF>", /* Nag Mundari sign sutuh */
 
 "<D302A>",  /* ideographic level tone mark */
 "<D302B>",  /* ideographic rising tone mark*/
@@ -702,7 +708,6 @@ static const char *secondSyms[NUMSECONDSYMS] = {
 "<D20EF>", /* right arrow below */
 "<D20F0>", /* asterisk above */
 #endif
-"<D101FD>", /* Phaistos disc combining oblique stroke */
 /*
  * Secondary weights for variant marks created by hack using user-defined
  * characters.
@@ -825,9 +830,9 @@ static utf32char secondSymVals[NUMSECONDSYMS] = {
     /* 0x116AB, 0x116AC, 0x116B7, */
 /* Soyombo */
     0x11A98,
-/* Thai, Lao, Tai View */
+/* Thai, Lao, Tai Viet */
     0x0E4E, 0x0E47, 0x0E48, 0x0E49, 0x0E4A, 0x0E4B, 0x0E4C, 0x0E4D, 
-    0x0EC8, 0x0EC9, 0x0ECA, 0x0ECB, 0x0ECC, 0x0ECD,
+    0x0ECE, 0x0EC8, 0x0EC9, 0x0ECA, 0x0ECB, 0x0ECC, 0x0ECD,
     0xAABF, 0xAAC1,
 /* Tibetan */
     0x0F39, /* 0x0F7E, 0x0F7F, */
@@ -850,6 +855,8 @@ static utf32char secondSymVals[NUMSECONDSYMS] = {
     0x16B30, 0x16B31, 0x16B32, 0x16B33, 0x16B34, 0x16B35, 0x16B36,
 /* Wancho */
     0x1E2EC, 0x1E2ED, 0x1E2EE, 0x1E2EF,
+/* Nag Mundari */
+    0x1E4EC, 0x1E4ED, 0x1E4EE, 0x1E4EF,
 /* CJK */
     0x302A, 0x302B, 0x302C, 0x302D, 0x302E, 0x302F, 0x16FF0, 0x16FF1,
 /* Symbols */
@@ -858,8 +865,6 @@ static utf32char secondSymVals[NUMSECONDSYMS] = {
     /* 0x20DD, 0x20DE, 0x20DF, 0x20E0,*/ 0x20E1,
     /* 0x20E2, 0x20E3, 0x20E4, 0x20E5,*/ 0x20E6, 0x20E7, 0x20E8, 0x20E9, 
     /* 0x20EA, 0x20EB, 0x20EC, 0x20ED, 0x20EE, 0x20EF, 0x20F0,*/
-/* Phaistos Disc symbol */
-    0x101FD,
 /* User-defined characters used to hack in variants for secondary weights. */
     0xF8F0, 0xF8F1, 0xF8F2, 0xF8F3, 0xF8F4
 };
@@ -2460,13 +2465,13 @@ int greatestdepth;
         return ( rc );
     }
 
-    rc = unisift_BuildSymWtTreeRange ( 0xFB00, 0x11CBF, &greatestdepth );
+    rc = unisift_BuildSymWtTreeRange ( 0xFB00, 0x11FFF, &greatestdepth );
     if ( rc < 0 )
     {
         return ( rc );
     }
 
-    rc = unisift_BuildSymWtTreeRange ( 0x12000, 0x1343F, &greatestdepth );
+    rc = unisift_BuildSymWtTreeRange ( 0x12000, 0x1345F, &greatestdepth );
     if ( rc < 0 )
     {
         return ( rc );
@@ -2484,25 +2489,25 @@ int greatestdepth;
         return ( rc );
     }
 
-    rc = unisift_BuildSymWtTreeRange ( 0x1B000, 0x1BCAF, &greatestdepth );
+    rc = unisift_BuildSymWtTreeRange ( 0x1AFF0, 0x1BCAF, &greatestdepth );
     if ( rc < 0 )
     {
         return ( rc );
     }
 
-    rc = unisift_BuildSymWtTreeRange ( 0x1D000, 0x1D37F, &greatestdepth );
+    rc = unisift_BuildSymWtTreeRange ( 0x1CF00, 0x1D37F, &greatestdepth );
     if ( rc < 0 )
     {
         return ( rc );
     }
 
-    rc = unisift_BuildSymWtTreeRange ( 0x1D800, 0x1E2FF, &greatestdepth );
+    rc = unisift_BuildSymWtTreeRange ( 0x1D800, 0x1E4FF, &greatestdepth );
     if ( rc < 0 )
     {
         return ( rc );
     }
 
-    rc = unisift_BuildSymWtTreeRange ( 0x1E800, 0x1FAFF, &greatestdepth );
+    rc = unisift_BuildSymWtTreeRange ( 0x1E7E0, 0x1FBFF, &greatestdepth );
     if ( rc < 0 )
     {
         return ( rc );
