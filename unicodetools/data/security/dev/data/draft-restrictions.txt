@@ -1,6 +1,4 @@
 # Characters restricted in domain names
-# $Revision: 1.32 $
-# $Date: 2010-06-19 00:29:21 $
 #
 # This file contains a draft list of characters for use in
 #     UTR #36: Unicode Security Considerations
@@ -25,8 +23,6 @@
 # - Characters listed as ~IICore are restricted because they are Ideographic,
 #   but not part of the IICore set defined by the IRG as the minimal set
 #   of required ideographs for East Asian use.
-# - The files in this directory are 'live', and may change at any time.
-#   Please include the above Revision number in your feedback.
 
 0673          ;  ; Deprecated #      (ٳ)  ARABIC LETTER ALEF WITH WAVY HAMZA BELOW
 17A3          ;  ; Deprecated #      (ឣ)  KHMER INDEPENDENT VOWEL QAQ
@@ -5733,6 +5729,7 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 1342D         ;  ; Exclusion #      (𓐭)  EGYPTIAN HIEROGLYPH AA031
 1342E         ;  ; Exclusion #      (𓐮)  EGYPTIAN HIEROGLYPH AA032
 1342F         ;  ; Exclusion #      (𓐯)  EGYPTIAN HIEROGLYPH V011D
+13440         ;  ; Exclusion #      (𓑀)  EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY
 13441         ;  ; Exclusion #      (𓑁)  EGYPTIAN HIEROGLYPH FULL BLANK
 13442         ;  ; Exclusion #      (𓑂)  EGYPTIAN HIEROGLYPH HALF BLANK
 13443         ;  ; Exclusion #      (𓑃)  EGYPTIAN HIEROGLYPH LOST SIGN
@@ -14977,7 +14974,7 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 1E8D5         ;  ; Exclusion #      (𞣕)  MENDE KIKAKUI COMBINING NUMBER HUNDRED THOUSANDS
 1E8D6         ;  ; Exclusion #      (𞣖)  MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 15833
+# Total code points: 15834
 
 0710..073F    ;  ; Limited_Use # [48] (ܐ..ܿ)  SYRIAC LETTER ALAPH..SYRIAC RWAHA
 074D..074F    ;  ; Limited_Use #  [3] (ݍ..ݏ)  SYRIAC LETTER SOGDIAN ZHAIN..SYRIAC LETTER SOGDIAN FE
@@ -50169,7 +50166,7 @@ FFF9..FFFD    ; ~Unicode Identifier #  [5] (U+FFF9..�)  INTERLINEAR ANNOTATION
 11FFF         ; ~Unicode Identifier #      (𑿿)  TAMIL PUNCTUATION END OF TEXT
 12470..12474  ; ~Unicode Identifier #  [5] (𒑰..𒑴)  CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD DIVIDER..CUNEIFORM PUNCTUATION SIGN DIAGONAL QUADCOLON
 12FF1..12FF2  ; ~Unicode Identifier #  [2] (𒿱..𒿲)  CYPRO-MINOAN SIGN CM301..CYPRO-MINOAN SIGN CM302
-13430..13440  ; ~Unicode Identifier # [17] (U+13430..𓑀)  EGYPTIAN HIEROGLYPH VERTICAL JOINER..EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY
+13430..1343F  ; ~Unicode Identifier # [16] (U+13430..𓐿)  EGYPTIAN HIEROGLYPH VERTICAL JOINER..EGYPTIAN HIEROGLYPH END WALLED ENCLOSURE
 16A6E..16A6F  ; ~Unicode Identifier #  [2] (𖩮..𖩯)  MRO DANDA..MRO DOUBLE DANDA
 16AF5         ; ~Unicode Identifier #      (𖫵)  BASSA VAH FULL STOP
 16B37..16B3F  ; ~Unicode Identifier #  [9] (𖬷..𖬿)  PAHAWH HMONG SIGN VOS THOM..PAHAWH HMONG SIGN XYEEM FAIB
@@ -50301,4 +50298,4 @@ FFF9..FFFD    ; ~Unicode Identifier #  [5] (U+FFF9..�)  INTERLINEAR ANNOTATION
 E0001         ; ~Unicode Identifier #      (U+E0001)  LANGUAGE TAG
 E0020..E007F  ; ~Unicode Identifier # [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 
-# Total code points: 13419
+# Total code points: 13418

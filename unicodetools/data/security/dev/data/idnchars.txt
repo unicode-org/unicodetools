@@ -1,5 +1,5 @@
 ﻿# idnchars.txt
-# Date: 2022-05-10, 17:59:55 GMT
+# Date: 2022-05-18, 21:51:57 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -583,7 +583,6 @@
 1FE0..1FE2    ; output #  [3] (ῠ..ῢ)  GREEK SMALL LETTER UPSILON WITH VRACHY..GREEK SMALL LETTER UPSILON WITH DIALYTIKA AND VARIA
 1FE4..1FE7    ; output #  [4] (ῤ..ῧ)  GREEK SMALL LETTER RHO WITH PSILI..GREEK SMALL LETTER UPSILON WITH DIALYTIKA AND PERISPOMENI
 1FF6          ; output #      (ῶ)  GREEK SMALL LETTER OMEGA WITH PERISPOMENI
-200C..200D    ; output #  [2] (U+200C..U+200D)  ZERO WIDTH NON-JOINER..ZERO WIDTH JOINER
 2010          ; output #      (‐)  HYPHEN
 2019          ; output #      (’)  RIGHT SINGLE QUOTATION MARK
 2027          ; output #      (‧)  HYPHENATION POINT
@@ -663,7 +662,7 @@ FA27..FA29    ; output #  [3] (﨧..﨩)  CJK COMPATIBILITY IDEOGRAPH-FA27..CJK 
 30000..3134A  ; output # [4939] (𰀀..𱍊)  CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; output # [4192] (𱍐..𲎯)  CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 111486
+# Total code points: 111484
 
 # Not allowed at start of identifier
 

@@ -1,5 +1,5 @@
 ﻿# confusablesSummary.txt
-# Date: 2022-05-10, 17:59:53 GMT
+# Date: 2022-05-18, 21:51:56 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -4353,10 +4353,11 @@
 ←	(‎ ◦̈ ‎)	25E6 0308	 WHITE BULLET, COMBINING DIAERESIS	# →∘̈→
 ←	(‎ ⍤ ‎)	2364	 APL FUNCTIONAL SYMBOL JOT DIAERESIS	# →◦̈→→∘̈→
 
-#	°̲	○̲	⍜
+#	°̲	∘̲	○̲	⍜
 	(‎ °̲ ‎)	00B0 0332	 DEGREE SIGN, COMBINING LOW LINE
-←	(‎ ○̲ ‎)	25CB 0332	 WHITE CIRCLE, COMBINING LOW LINE
-←	(‎ ⍜ ‎)	235C	 APL FUNCTIONAL SYMBOL CIRCLE UNDERBAR	# →○̲→
+←	(‎ ∘̲ ‎)	2218 0332	 RING OPERATOR, COMBINING LOW LINE
+←	(‎ ○̲ ‎)	25CB 0332	 WHITE CIRCLE, COMBINING LOW LINE	# →∘̲→
+←	(‎ ⍜ ‎)	235C	 APL FUNCTIONAL SYMBOL CIRCLE UNDERBAR	# →○̲→→∘̲→
 
 #	μ	µ	𝛍	𝜇	𝝁	𝝻	𝞵
 	(‎ µ ‎)	00B5	 MICRO SIGN
@@ -17202,5 +17203,5 @@
 	(‎ 𪘀 ‎)	2A600	 CJK UNIFIED IDEOGRAPH-2A600
 ←	(‎ 𪘀 ‎)	2FA1D	 CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# total : 7247
+# total : 7248
 
