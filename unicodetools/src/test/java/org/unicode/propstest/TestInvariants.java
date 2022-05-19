@@ -249,12 +249,23 @@ public class TestInvariants extends TestFmwkMinusMinus {
             same &= oldSet.equals(newSet);
             if (!newSet.containsAll(oldSet)) {
                 UnicodeSet missing = new UnicodeSet(oldSet).removeAll(newSet);
-                msg(ucdProperty + " new «" + value + "» does’t contain " + missing.toPattern(false),
-                        skips.contains(value) ? LOG : ERR, true, true);
+                int level = skips.contains(value) ? LOG : ERR;
+                if (ucdProperty == UcdProperty.Identifier_Type && value.equals("Inclusion") &&
+                        Settings.latestVersion.equals("15.0.0") &&
+                        missing.size() == 2 && missing.containsAll("\u200C\u200D")) {
+                    // Intentional removal of characters from Identifier_Type=Inclusion:
+                    // UTC AI 171-A128: ... remove the Joiner_Control characters ZWJ and ZWNJ
+                    // from Identifier_Type=Inclusion and Identifier_Status=Allowed.
+                    level = LOG;
+                }
+                msg("Unicode " + Settings.latestVersion + " [:" +
+                        ucdProperty + "=" + value + ":] does’t contain " + missing.toPattern(true),
+                        level, true, true);
             }
             if (!oldSet.containsAll(newSet)) {
                 UnicodeSet newOnes = new UnicodeSet(newSet).removeAll(oldSet);
-                logln(ucdProperty + " old «" + value + "» doesn't contain " + newOnes.toPattern(false));
+                logln("Unicode " + Settings.lastVersion + " [:" +
+                        ucdProperty + "=" + value + ":] does’t contain " + newOnes.toPattern(true));
             }
             //assertRelation(status.toString(), true, newSet, CONTAINS_US, oldSet);
         }
