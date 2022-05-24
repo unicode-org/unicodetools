@@ -38,7 +38,6 @@ jobs:
   # execute tools in CI and write corresponding documentation.
   in-source-build:
     name: In-source Instructions (Examples)
-    needs: [ formatter ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
@@ -82,7 +81,6 @@ jobs:
 
   out-of-source-build:
     name: Out-of-source Instructions
-    needs: [ formatter ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
