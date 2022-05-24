@@ -326,6 +326,9 @@ public class CountEmoji {
                     year = sYear;
                 }
             }
+
+            // Normalize any skin tones to EMOJI MODIFIER FITZPATRICK TYPE-6.
+            best = EmojiData.MODS_SPANNER.replaceFrom(best, "🏿");
         }
         return EMOJI_DATA_BETA.addEmojiVariants(best);
     }
