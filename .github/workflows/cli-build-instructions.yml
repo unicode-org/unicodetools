@@ -23,12 +23,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
-        uses: actions/checkout@v2
-      # Should we use "upstream" instead of "origin" in Spotless configuration
-      # for the git remote name for unicode-org/unicodetools?
-      - name: Fetch git branches for unicode-org/unicodetools
-        run: |
-          git fetch origin
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # fetch all branches so that Spotless can resolve `origin/main`
       - name: Check Java style
         run: mvn spotless:check || (echo "Style checker failed. Formatting changes can be applied by 'mvn spotless:apply'" && exit 1)
 
