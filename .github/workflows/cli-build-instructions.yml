@@ -38,9 +38,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Check out CLDR
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: unicode-org/cldr
           path: cldr
@@ -81,12 +81,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: unicode-org/unicodetools
           path: unicodetools/mine/src
       - name: Checkout CLDR
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: unicode-org/cldr
           path: cldr/mine/src
