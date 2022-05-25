@@ -52,8 +52,8 @@ mv allkeys.txt decomps.txt basekeys.txt compkeys.txt ctrckeys.txt ctt14651.txt $
 #
 # cd ../../../..
 #
-# meld ~/unidata/uni12/20190214/uca/allkeys.txt allkeys.txt
+# meld src/unicodetools/data/uca/dev/allkeys.txt allkeys.txt
 #
-# sed -r -f ~/svn.cldr/trunk/tools/scripts/uca/blankweights.sed ~/unidata/uni12/20190214/uca/allkeys.txt > allkeys-12-feb14.txt
-# sed -r -f ~/svn.cldr/trunk/tools/scripts/uca/blankweights.sed allkeys.txt > allkeys-markus-feb15.txt
-# meld allkeys-12-feb14.txt allkeys-markus-feb15.txt
+# sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed src/unicodetools/data/uca/dev/allkeys.txt > allkeys-blanked-ken.txt
+# sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed allkeys.txt > allkeys-blanked-markus.txt
+# meld allkeys-blanked-ken.txt allkeys-blanked-markus.txt
