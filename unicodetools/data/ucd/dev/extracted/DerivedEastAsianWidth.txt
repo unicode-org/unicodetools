@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-15.0.0.txt
-# Date: 2022-04-26, 23:14:34 GMT
+# Date: 2022-05-25, 20:14:07 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2021,8 +2021,8 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 766288 code points not listed here.
-# Total code points: 792622
+# The above property value applies to 766289 code points not listed here.
+# Total code points: 792623
 
 # ================================================
 
@@ -2480,7 +2480,6 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 1FA70..1FA7C  ; W # So  [13] BALLET SHOES..CRUTCH
 1FA80..1FA88  ; W # So   [9] YO-YO..FLUTE
 1FA90..1FABD  ; W # So  [46] RINGED PLANET..WING
-1FABE         ; W # Cn       <reserved-1FABE>
 1FABF..1FAC5  ; W # So   [7] GOOSE..PERSON WITH CROWN
 1FACE..1FADB  ; W # So  [14] MOOSE..PEA POD
 1FAE0..1FAE8  ; W # So   [9] MELTING FACE..SHAKING FACE
@@ -2502,7 +2501,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 31350..323AF  ; W # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 323B0..3FFFD  ; W # Cn [56398] <reserved-323B0>..<reserved-3FFFD>
 
-# Total code points: 182413
+# Total code points: 182412
 
 # ================================================
 
