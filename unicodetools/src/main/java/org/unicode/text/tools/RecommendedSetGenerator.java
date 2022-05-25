@@ -33,9 +33,9 @@ public class RecommendedSetGenerator {
     String str = uniset.toString().replace("\\", "\\\\");
     StringBuilder result = new StringBuilder();
     if (isJava) {
-      result.append("public static final UnicodeSet " + varName + " = new UnicodeSet(");
+      result.append("    public static final UnicodeSet " + varName + " = new UnicodeSet(");
     } else {
-      result.append("static const char16_t *" + varName + " =");
+      result.append("    static const char16_t *" + varName + " =");
     }
     for (int i = 0; i < str.length();) {
       // split into short lines
@@ -69,13 +69,13 @@ public class RecommendedSetGenerator {
       }
       String line = str.substring(i, end);
       if (isJava) {
-        result.append("\n    " + (i == 0 ? "\"" : "+ \"") + line + '"');
+        result.append("\n            " + (i == 0 ? "\"" : "+ \"") + line + '"');
       } else {
-        result.append("\n    u\"" + line + '"');
+        result.append("\n        u\"" + line + '"');
       }
       i = end;
     }
-    result.append(isJava ? "\n).freeze();\n" : ";\n");
+    result.append(isJava ? "\n    ).freeze();\n" : ";\n");
     return result.toString();
   }
 
