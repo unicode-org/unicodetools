@@ -1,5 +1,5 @@
 # IndicPositionalCategory-15.0.0.txt
-# Date: 2022-02-14, 18:50:00 GMT [KW, RP]
+# Date: 2022-05-26, 02:18:00 GMT [KW, RP]
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -69,12 +69,12 @@
 # Ahom, Balinese, Batak, Bengali, Bhaiksuki, Brahmi, Buginese, Buhid,
 # Chakma, Cham, Devanagari, Dives Akuru, Dogra, Grantha, Gujarati,
 # Gunjala Gondi, Gurmukhi, Hanunoo, Javanese, Kaithi, Kannada, Kawi,
-# Kharoshthi, Khmer, Khojki, Khudawadi, Lao, Lepcha, Limbu, Makasar,
-# Malayalam, Marchen, Masaram Gondi, Meetei Mayek, Modi, Myanmar,
-# Nandinagari, Newa, New Tai Lue, Oriya, Rejang, Saurashtra, Sharada,
-# Siddham, Sinhala, Soyombo, Sundanese, Syloti Nagri, Tagalog,
-# Tagbanwa, Tai Tham, Tai Viet, Takri, Tamil, Telugu, Thai, Tibetan,
-# Tirhuta, and Zanabazar Square.
+# Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Lao, Lepcha, Limbu,
+# Makasar, Malayalam, Marchen, Masaram Gondi, Meetei Mayek, Modi,
+# Myanmar, Nandinagari, Newa, New Tai Lue, Oriya, Rejang, Saurashtra,
+# Sharada, Siddham, Sinhala, Soyombo, Sundanese, Syloti Nagri,
+# Tagalog, Tagbanwa, Tai Tham, Tai Viet, Takri, Tamil, Telugu, Thai,
+# Tibetan, Tirhuta, and Zanabazar Square.
 #
 # All characters for all other scripts not in that list
 # take the default value for this property.
@@ -493,6 +493,7 @@ A826          ; Top # Mn       SYLOTI NAGRI VOWEL SIGN E
 A8C5          ; Top # Mn       SAURASHTRA SIGN CANDRABINDU
 A8E0..A8F1    ; Top # Mn  [18] COMBINING DEVANAGARI DIGIT ZERO..COMBINING DEVANAGARI SIGN AVAGRAHA
 A8FF          ; Top # Mn       DEVANAGARI VOWEL SIGN AY
+A926..A92A    ; Top # Mn   [5] KAYAH LI VOWEL UE..KAYAH LI VOWEL O
 A94A          ; Top # Mn       REJANG VOWEL SIGN AI
 A94F..A951    ; Top # Mn   [3] REJANG CONSONANT SIGN NG..REJANG CONSONANT SIGN R
 A980..A982    ; Top # Mn   [3] JAVANESE SIGN PANYANGGA..JAVANESE SIGN LAYAR
