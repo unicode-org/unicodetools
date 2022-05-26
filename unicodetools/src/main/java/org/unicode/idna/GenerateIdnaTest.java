@@ -272,12 +272,12 @@ public class GenerateIdnaTest {
 //            nonTransitionalErrors2.add(Errors.NV8);
 //        }
 
-        out2.println(source
-                + "; " + CldrUtility.ifEqual(unicode, source, "")
+        out2.println(hexForTest.transform(source)
+                + "; " + escapeIfDifferentElseEmpty(unicode, source)
                 + "; " + CldrUtility.ifEqual(toUnicodeErrors, Collections.EMPTY_SET, "")
-                + "; " + CldrUtility.ifEqual(nontransitional, unicode, "")
+                + "; " + escapeIfDifferentElseEmpty(nontransitional, unicode)
                 + "; " + CldrUtility.ifEqual(nonTransitionalErrors, toUnicodeErrors, "")
-                + "; " + CldrUtility.ifEqual(transitional, nontransitional, "")
+                + "; " + escapeIfDifferentElseEmpty(transitional, nontransitional)
                 + "; " + CldrUtility.ifEqual(transitionalErrors, nonTransitionalErrors, "")
                 + " # " + removeInvisible.transform(unicode)
                 );
@@ -314,6 +314,14 @@ public class GenerateIdnaTest {
             result += generateLine(unicode, out, out2);
         }
         return result;
+    }
+
+    private String escapeIfDifferentElseEmpty(String target, String source) {
+        if (target.equals(source)) {
+            return "";
+        } else {
+            return hexForTest.transform(target);
+        }
     }
 
     private void replace(final Set<Errors> transitionalErrors, Errors toReplace, Errors replacement) {
