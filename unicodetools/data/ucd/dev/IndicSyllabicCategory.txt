@@ -1,5 +1,5 @@
 # IndicSyllabicCategory-15.0.0.txt
-# Date: 2022-02-22, 22:30:00 GMT [KW, RP]
+# Date: 2022-05-26, 02:18:00 GMT [KW, RP]
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1331,9 +1331,14 @@ ABF0..ABF9    ; Number # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NI
 
 # Indic_Syllabic_Category=Brahmi_Joining_Number
 
-# Brahmi Joining Number (similar to Number in that in can be used as
-# vowel-holders like Consonant_Placeholder, but may also be joined by
-# a Number_Joiner of the same script, e.g. in Brahmi)
+# Brahmi Joining Number (may be joined by a Number_Joiner of the same
+# script, e.g. in Brahmi)
+#
+# Note: These are different from Numbers, in the way that there is no known
+# evidence of Brahmi Joining Numbers taking vowels or subjoined consonants. 
+# Until such evidence is found, implementations may assume that Brahmi
+# Joining Numbers only participate in shaping with other Brahmi Joining
+# Numbers.
 
 # [Not derivable]
 
