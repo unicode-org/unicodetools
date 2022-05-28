@@ -1124,6 +1124,14 @@ public class MakeUnicodeFiles {
         if (DEBUG) {
             System.out.println("SPOT-CHECK: " + prop.getValue(0xE000));
         }
+
+        UnicodeMap<Bidi_Class_Values> defaultBidiValues = null;
+        if (prop.getName().equals("Bidi_Class")) {
+            VersionInfo versionInfo = Default.ucdVersionInfo();
+            defaultBidiValues = DefaultValues.BidiClass.forVersion(
+                    versionInfo, DefaultValues.BidiClass.Option.OMIT_BN);
+        }
+
         final String missing = ps.skipUnassigned != null ? ps.skipUnassigned : ps.skipValue;
         if (missing != null && !missing.equals(UCD_Names.NO)) {
             pw.println();
@@ -1133,11 +1141,7 @@ public class MakeUnicodeFiles {
             //pw.println("# @missing: 0000..10FFFF; " + propName + missing);
             printDefaultValueComment(pw, propName, prop, propName != null && propName.length() != 0, missing);
             if (prop.getName().equals("Bidi_Class")) {
-                VersionInfo versionInfo = Default.ucdVersionInfo();
                 Bidi_Class_Values overallDefault = Bidi_Class_Values.forName(missing);
-                UnicodeMap<Bidi_Class_Values> defaultBidiValues =
-                        DefaultValues.BidiClass.forVersion(
-                                versionInfo, DefaultValues.BidiClass.Option.OMIT_BN);
                 writeEnumeratedMissingValues(pw, overallDefault, defaultBidiValues);
             }
         }
@@ -1170,12 +1174,21 @@ public class MakeUnicodeFiles {
                 continue;
             }
 
+            bf.setFullTotal(totalSize);
             if (UnicodeProperty.compareNames(value, ps.skipUnassigned) == 0) {
-                bf.setFullTotal(s.size());
                 if (DEBUG) {
                     System.out.println("Removing Unassigneds: " + value);
                 }
                 s.removeAll(unassigned);
+            } else if (defaultBidiValues != null) {
+                Bidi_Class_Values bidiValue = Bidi_Class_Values.forName(value);
+                if (defaultBidiValues.containsValue(bidiValue)) {
+                    // We assume that unassigned code points that have this value
+                    // according to the props data also have this value according to the defaults.
+                    // Otherwise we would need to intersect defaultBidiValues.keySet(bidiValue)
+                    // with the unassigned set before removing from s.
+                    s.removeAll(unassigned);
+                }
             }
 
             //if (s.size() == 0) continue;
