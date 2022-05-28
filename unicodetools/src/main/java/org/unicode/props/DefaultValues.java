@@ -19,6 +19,8 @@ public final class DefaultValues {
         private static final Bidi_Class_Values BN = Bidi_Class_Values.Boundary_Neutral;
         private static final Bidi_Class_Values ET = Bidi_Class_Values.European_Terminator;
 
+        public static enum Option { ALL, OMIT_BN };
+
         private static final class Builder {
             int compositeVersion;
             IndexUnicodeProperties props;
@@ -32,7 +34,7 @@ public final class DefaultValues {
                 blocks = props.loadEnum(UcdProperty.Block);
             }
 
-            UnicodeMap<Bidi_Class_Values> build() {
+            UnicodeMap<Bidi_Class_Values> build(Option option) {
                 // Overall default
                 bidi.setMissing(L);
 
@@ -73,7 +75,9 @@ public final class DefaultValues {
 
                 // Unicode 4.0.1 changed all noncharacter code points and
                 // default ignorables to default bc=BN.
-                if (compositeVersion >= 0x40001) {
+                // Since many of these ranges are not aligned with block boundaries,
+                // we may omit them when presenting defaults.
+                if (compositeVersion >= 0x40001 && option != Option.OMIT_BN) {
                     UnicodeSet nonchars = props.loadBinary(UcdProperty.Noncharacter_Code_Point);
                     bidi.putAll(nonchars, BN);
                     UnicodeSet defaultIgnorable =
@@ -117,8 +121,8 @@ public final class DefaultValues {
         }
 
         public static UnicodeMap<Bidi_Class_Values> forVersion(
-                VersionInfo version) {
-            return new Builder(version).build();
+                VersionInfo version, Option option) {
+            return new Builder(version).build(option);
         }
     }
 }

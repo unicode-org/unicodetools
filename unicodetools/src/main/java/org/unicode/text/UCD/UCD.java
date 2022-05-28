@@ -458,7 +458,8 @@ public final class UCD implements UCD_Types {
         }
 
         if (defaultBidiValues == null) {
-            defaultBidiValues = DefaultValues.BidiClass.forVersion(versionInfo);
+            defaultBidiValues = DefaultValues.BidiClass.forVersion(
+                    versionInfo, DefaultValues.BidiClass.Option.ALL);
         }
 
         Bidi_Class_Values bidi = defaultBidiValues.get(codePoint);

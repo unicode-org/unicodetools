@@ -1,5 +1,5 @@
 # DerivedBidiClass-15.0.0.txt
-# Date: 2022-04-26, 23:14:28 GMT
+# Date: 2022-05-28, 20:32:55 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -11,26 +11,9 @@
 
 # Bidi Class (listing UnicodeData.txt, field 4: see UAX #44: https://www.unicode.org/reports/tr44/)
 # Unlike other properties, unassigned code points in blocks
-# reserved for right-to-left scripts are given either types R or AL.
-#
-# The unassigned code points that default to AL are in the ranges:
-#     [\u0600-\u07BF \u0860-\u08FF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF
-#      \U00010D00-\U00010D3F \U00010EC0-\U00010EFF \U00010F30-\U00010F6F
-#      \U0001EC70-\U0001ECBF \U0001ED00-\U0001ED4F \U0001EE00-\U0001EEFF]
-#
-#     This includes code points in the Arabic, Syriac, and Thaana blocks, among others.
-#
-# The unassigned code points that default to R are in the ranges:
-#     [\u0590-\u05FF \u07C0-\u085F \uFB1D-\uFB4F
-#      \U00010800-\U00010CFF \U00010D40-\U00010EBF \U00010F00-\U00010F2F \U00010F70-\U00010FFF
-#      \U0001E800-\U0001EC6F \U0001ECC0-\U0001ECFF \U0001ED50-\U0001EDFF \U0001EF00-\U0001EFFF]
-#
-#     This includes code points in the Hebrew, NKo, and Phoenician blocks, among others.
-#
-# The unassigned code points that default to ET are in the range:
-#     [\u20A0-\u20CF]
-#
-#     This consists of code points in the Currency Symbols block.
+# reserved for right-to-left scripts are given either values R or AL,
+# and unassigned code points in the Currency Symbols block are given the value ET.
+# For details see the @missing lines below.
 #
 # The unassigned code points that default to BN have one of the following properties:
 #     Default_Ignorable_Code_Point
@@ -42,6 +25,101 @@
 #  have the value Left_To_Right (L).
 
 # @missing: 0000..10FFFF; Left_To_Right
+
+# 0590..05FF Hebrew
+# @missing: 0590..05FF; Right_To_Left
+
+# 0600..06FF Arabic
+# 0700..074F Syriac
+# 0750..077F Arabic_Supplement
+# 0780..07BF Thaana
+# @missing: 0600..07BF; Arabic_Letter
+
+# 07C0..07FF NKo
+# 0800..083F Samaritan
+# 0840..085F Mandaic
+# @missing: 07C0..085F; Right_To_Left
+
+# 0860..086F Syriac_Supplement
+# 0870..089F Arabic_Extended_B
+# 08A0..08FF Arabic_Extended_A
+# @missing: 0860..08FF; Arabic_Letter
+
+# 20A0..20CF Currency_Symbols
+# @missing: 20A0..20CF; European_Terminator
+
+# FB00..FB4F Alphabetic_Presentation_Forms (partial)
+# @missing: FB1D..FB4F; Right_To_Left
+
+# FB50..FDFF Arabic_Presentation_Forms_A (partial)
+# @missing: FB50..FDCF; Arabic_Letter
+
+# FB50..FDFF Arabic_Presentation_Forms_A (partial)
+# @missing: FDF0..FDFF; Arabic_Letter
+
+# FE70..FEFF Arabic_Presentation_Forms_B
+# @missing: FE70..FEFF; Arabic_Letter
+
+# 10800..1083F Cypriot_Syllabary
+# 10840..1085F Imperial_Aramaic
+# 10860..1087F Palmyrene
+# 10880..108AF Nabataean
+# 108E0..108FF Hatran
+# 10900..1091F Phoenician
+# 10920..1093F Lydian
+# 10980..1099F Meroitic_Hieroglyphs
+# 109A0..109FF Meroitic_Cursive
+# 10A00..10A5F Kharoshthi
+# 10A60..10A7F Old_South_Arabian
+# 10A80..10A9F Old_North_Arabian
+# 10AC0..10AFF Manichaean
+# 10B00..10B3F Avestan
+# 10B40..10B5F Inscriptional_Parthian
+# 10B60..10B7F Inscriptional_Pahlavi
+# 10B80..10BAF Psalter_Pahlavi
+# 10C00..10C4F Old_Turkic
+# 10C80..10CFF Old_Hungarian
+# @missing: 10800..10CFF; Right_To_Left
+
+# 10D00..10D3F Hanifi_Rohingya
+# @missing: 10D00..10D3F; Arabic_Letter
+
+# 10E60..10E7F Rumi_Numeral_Symbols
+# 10E80..10EBF Yezidi
+# @missing: 10D40..10EBF; Right_To_Left
+
+# 10EC0..10EFF Arabic_Extended_C
+# @missing: 10EC0..10EFF; Arabic_Letter
+
+# 10F00..10F2F Old_Sogdian
+# @missing: 10F00..10F2F; Right_To_Left
+
+# 10F30..10F6F Sogdian
+# @missing: 10F30..10F6F; Arabic_Letter
+
+# 10F70..10FAF Old_Uyghur
+# 10FB0..10FDF Chorasmian
+# 10FE0..10FFF Elymaic
+# @missing: 10F70..10FFF; Right_To_Left
+
+# 1E800..1E8DF Mende_Kikakui
+# 1E900..1E95F Adlam
+# @missing: 1E800..1EC6F; Right_To_Left
+
+# 1EC70..1ECBF Indic_Siyaq_Numbers
+# @missing: 1EC70..1ECBF; Arabic_Letter
+
+# @missing: 1ECC0..1ECFF; Right_To_Left
+
+# 1ED00..1ED4F Ottoman_Siyaq_Numbers
+# @missing: 1ED00..1ED4F; Arabic_Letter
+
+# @missing: 1ED50..1EDFF; Right_To_Left
+
+# 1EE00..1EEFF Arabic_Mathematical_Alphabetic_Symbols
+# @missing: 1EE00..1EEFF; Arabic_Letter
+
+# @missing: 1EF00..1EFFF; Right_To_Left
 
 # ================================================
 
