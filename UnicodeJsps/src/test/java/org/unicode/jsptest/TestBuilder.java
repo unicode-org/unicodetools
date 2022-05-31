@@ -15,18 +15,16 @@ import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.junit.jupiter.api.Test;
 import org.unicode.jsp.Builder;
 import org.unicode.jsp.Builder.EqualAction;
-
-import com.ibm.icu.dev.test.TestFmwk;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
 /**
- * "Not really a test, move"
+ * "No, really, a test!"
+ * Tests org.unicode.jsp.Builder
  */
-public class TestBuilder extends TestFmwk {
-  public static void main(String[] args) {
-    new TestBuilder().run(args);
-  }
+public class TestBuilder extends TestFmwkMinusMinus {
 
   enum Foo {foo1, foo2};
   Dummy one = new Dummy(1);
@@ -34,6 +32,7 @@ public class TestBuilder extends TestFmwk {
   Dummy two2 = new Dummy(2);
   Dummy three = new Dummy(3);
 
+  @Test
   public void TestCollection() {
     SortedSet<Integer> x = Builder.with(new TreeSet<Integer>()).addAll(1, 2, 3).freeze();
     assertTrue("1,2,3", x.size()==3);
@@ -59,6 +58,7 @@ public class TestBuilder extends TestFmwk {
    * x      x      x    addAll(B)
  * </pre>
    */
+  @Test
   public void TestCombos() {
     Set<Dummy> dummyNone = Collections.emptySet();
     Set<Dummy> dummy1 = Builder.with(new TreeSet<Dummy>()).addAll(one).freeze();
@@ -77,6 +77,7 @@ public class TestBuilder extends TestFmwk {
     assertEquals("addAll", dummy123, Builder.with(new TreeSet<Dummy>(dummy12)).addAll(dummy23).get());
   }
 
+  @Test
   public void TestMapCombos() {
     Map<Dummy, Integer> dummyNone = Collections.emptyMap();
     Map<Dummy, Integer> dummy1 = Builder.with(new TreeMap<Dummy, Integer>()).put(one,2).freeze();
@@ -95,6 +96,7 @@ public class TestBuilder extends TestFmwk {
     assertEquals("addAll", dummy123, Builder.with(new TreeMap<Dummy,Integer>()).putAll(dummy12).putAll(dummy23).get());
   }
 
+  @Test
   public void TestMap() {
     Map<Integer,String> x = Builder.with(new TreeMap<Integer,String>()).put(1, "a").put(2,"b").put(3,"c").freeze();
     assertTrue("1,2,3", x.size()==3);
@@ -113,6 +115,7 @@ public class TestBuilder extends TestFmwk {
   }
 
 
+  @Test
   public void TestOptions() throws InstantiationException, IllegalAccessException {
     checkOptions(TreeSet.class);
     checkOptions(HashSet.class);
