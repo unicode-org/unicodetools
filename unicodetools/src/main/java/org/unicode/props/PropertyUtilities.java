@@ -6,6 +6,7 @@ import java.util.Map;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
 
 public class PropertyUtilities {
 
@@ -36,9 +37,11 @@ public class PropertyUtilities {
         return map;
     }
 
-    static final <V> UnicodeMap<V> putNew(UnicodeMap<V> map, int key, V value, Merge<V> merger) {
+    static final <V> UnicodeMap<V> putNew(
+            UnicodeMap<V> map, UnicodeSet missingSet,
+            int key, V value, Merge<V> merger) {
         final V oldValue = map.get(key);
-        if (oldValue != null) {
+        if (oldValue != null && (missingSet == null || !missingSet.contains(key))) {
             if (merger == null) {
                 throw new UnicodePropertyException("Key already present in UnicodeMap: " + Utility.hex(key) + ",\told: " + oldValue + ",\tnew: " + value);
             }

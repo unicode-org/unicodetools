@@ -218,36 +218,46 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
         return ucdVersionRequested.compareTo(maxOldVersion) <= 0;
     }
 
-    public void put(UnicodeMap<String> data, IntRange intRange, String string, Merge<String> merger) {
-        put(data, intRange, string, merger, false);
-    }
-
     public static final Normalizer2 NFD = Normalizer2.getNFDInstance();
     public static final Normalizer2 NFC = Normalizer2.getNFCInstance();
 
-    public void put(UnicodeMap<String> data, IntRange intRange, String string, Merge<String> merger, boolean hackHangul) {
-        if (string != null && string.isEmpty() && property != UcdProperty.NFKC_Casefold) {
-            string = null;
+    public void put(UnicodeMap<String> data, IntRange intRange, String string) {
+        put(data, intRange, string, null);
+    }
+
+    public void put(UnicodeMap<String> data, IntRange intRange, String string, Merge<String> merger) {
+        put(data, null, intRange, string, merger, false);
+    }
+
+    public void put(
+            UnicodeMap<String> data, UnicodeSet missingSet,
+            IntRange intRange, String value,
+            Merge<String> merger, boolean hackHangul) {
+        if (value != null && value.isEmpty() && property != UcdProperty.NFKC_Casefold) {
+            value = null;
         }
-        string = normalizeAndVerify(string);
+        value = normalizeAndVerify(value);
         if (intRange.string != null) {
-            PropertyUtilities.putNew(data, intRange.string, string, merger);
+            PropertyUtilities.putNew(data, intRange.string, value, merger);
         } else {
             for (int codepoint = intRange.start; codepoint <= intRange.end; ++codepoint) {
                 try {
                     if (hackHangul) {
-                        String fullDecomp = NFD.getDecomposition(codepoint); // use ICU for Hangul decomposition
+                        // Use ICU for Hangul decomposition.
+                        String fullDecomp = NFD.getDecomposition(codepoint);
                         if (fullDecomp.length() > 2) {
                             fullDecomp = NFC.normalize(fullDecomp.substring(0,2)) + fullDecomp.substring(2);
                         }
-                        PropertyUtilities.putNew(data, codepoint, fullDecomp, merger);
-                    } else if (string == CONSTRUCTED_NAME) {
-                        PropertyUtilities.putNew(data, codepoint, UCharacter.getName(codepoint), merger); // use ICU for Hangul Name construction, constant
+                        PropertyUtilities.putNew(data, missingSet, codepoint, fullDecomp, merger);
+                    } else if (value == CONSTRUCTED_NAME) {
+                        // Use ICU for Hangul Name construction, constant.
+                        PropertyUtilities.putNew(
+                                data, missingSet, codepoint, UCharacter.getName(codepoint), merger);
                     } else {
-                        PropertyUtilities.putNew(data, codepoint, string, merger);
+                        PropertyUtilities.putNew(data, missingSet, codepoint, value, merger);
                     }
                 } catch (final Exception e) {
-                    String msg = String.format("%s: %04X..%04X  %s", property, intRange.start, intRange.end, string);
+                    String msg = String.format("%s: %04X..%04X  %s", property, intRange.start, intRange.end, value);
                     throw new UnicodePropertyException(msg, e);
                 }
             }
@@ -368,9 +378,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
             }
         }
     }
-    public void put(UnicodeMap<String> data, IntRange intRange, String string) {
-        put(data, intRange, string, null);
-    }
+
     public String getDefaultValue() {
         return defaultValue;
     }
@@ -428,6 +436,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
         private final boolean withRange;
         private final boolean withMissing;
         private final Iterator<String> rawLines;
+        /**
+         * Code points covered by @missing lines for less than all of Unicode.
+         */
+        private final UnicodeSet missingSet = new UnicodeSet();
         private State state = State.LOOK;
         String line;  // original line for logging and error messages
         String line2;  // modified line for parsing
@@ -465,7 +477,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
                         if (line2.contains("# EOF")) {
                             stats.containsEOF = true;
                         } else {
-                            if (line2.contains("@missing")) {  // quick test
+                            if (line2.contains("@missing:")) {  // quick test
                                 // # @missing: 0000..10FFFF; cjkIRG_KPSource; <none>
                                 if (!withMissing) {
                                     throw new IllegalArgumentException(
@@ -502,9 +514,16 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
                     } catch (Exception e) {
                         throw new IllegalArgumentException("line: " + line, e);
                     }
-                    if (contents != Contents.DATA &&
-                            (intRange.start != 0 || intRange.end != 0x10FFFF)) {
-                        System.err.println("Unexpected range: " + line);
+                    if (contents != Contents.DATA) {
+                        if (intRange.start != 0 || intRange.end != 0x10FFFF) {
+                            if (contents == Contents.MISSING) {
+                                // @missing line for less than all of Unicode
+                                missingSet.add(intRange.start, intRange.end);
+                                contents = Contents.DATA;
+                            } else {
+                                System.err.println("Unexpected range: " + line);
+                            }
+                        }
                     }
                 }
                 state = State.HAVE_NEXT;
@@ -932,7 +951,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
                 }
                 String value = propInfo.fieldNumber >= parts.length ? "" 
                         : parts[propInfo.fieldNumber];
-                propInfo.put(data, line.intRange, value, merger,
+                propInfo.put(data, line.missingSet, line.intRange, value, merger,
                         hackHangul && propInfo.property == UcdProperty.Decomposition_Mapping);
             }
         } else {
@@ -950,7 +969,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
             PropertyParsingInfo propInfo, UnicodeMap<String> data) {
         for (UcdLine line : parser) {
             if (line.contents == UcdLine.Contents.DATA) {
-                propInfo.put(data, line.intRange, line.parts[1], null, false);
+                propInfo.put(data, line.missingSet, line.intRange, line.parts[1], null, false);
             } else {
                 setPropDefault(
                         propInfo.property, line.parts[1], line.line,
