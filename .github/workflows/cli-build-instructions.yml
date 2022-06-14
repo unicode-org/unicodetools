@@ -187,7 +187,7 @@ jobs:
             names=`git diff --name-status | awk '{print $2;}'`
             if [[ "$names" == "unicodetools/src/main/java/org/unicode/props/UcdPropertyValues.java" ]]; then
               gitdiffstat=`git diff --stat | tail -n 1`
-              if [[ "$gitdiffstat" = " 1 file changed, 1 insertion(+), 1 deletion(-)" ]]; then
+              if [[ "$gitdiffstat" = " 1 file changed, 1 insertion(+), 2 deletions(-)" ]]; then
                 git diff | grep 'V13_1("13.1")'
                 if [ $? -eq 0 ]; then
                   echo "Inferred: Only non-committed change after GenerateEnums is temporary V13_1 hack (issue #100)"
