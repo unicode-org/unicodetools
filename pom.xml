@@ -15,7 +15,7 @@
     </licenses>
 
 
-    <url>https://unicode.org/cldr</url>
+    <url>https://unicode-org.github.io/unicodetools/</url>
 
     <scm>
         <connection>scm:git:https://github.com/unicode-org/unicodetools.git</connection>
