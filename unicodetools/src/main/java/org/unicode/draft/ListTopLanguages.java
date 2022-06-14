@@ -1,9 +1,14 @@
 package org.unicode.draft;
+
+import com.google.common.collect.ImmutableSet;
+import com.ibm.icu.impl.Row;
+import com.ibm.icu.impl.Row.R2;
+import com.ibm.icu.impl.Row.R3;
+import com.ibm.icu.text.NumberFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.Counter;
@@ -13,34 +18,36 @@ import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.cldr.util.SupplementalDataInfo.OfficialStatus;
 import org.unicode.cldr.util.SupplementalDataInfo.PopulationData;
 
-import com.google.common.collect.ImmutableSet;
-import com.ibm.icu.impl.Row;
-import com.ibm.icu.impl.Row.R2;
-import com.ibm.icu.impl.Row.R3;
-import com.ibm.icu.text.NumberFormat;
-
 public class ListTopLanguages {
-    static SupplementalDataInfo sdata = SupplementalDataInfo.getInstance(CLDRPaths.SUPPLEMENTAL_DIRECTORY);
-    static Map<String, Map<String, R2<List<String>, String>>> localeAliasInfo = sdata.getLocaleAliasInfo();
+    static SupplementalDataInfo sdata =
+            SupplementalDataInfo.getInstance(CLDRPaths.SUPPLEMENTAL_DIRECTORY);
+    static Map<String, Map<String, R2<List<String>, String>>> localeAliasInfo =
+            sdata.getLocaleAliasInfo();
     static Map<String, String> likelySubtags = sdata.getLikelySubtags();
     static Factory cldrFactory = Factory.make(CLDRPaths.MAIN_DIRECTORY, ".*");
     static CLDRFile english = cldrFactory.make("en", true);
 
-    static Set<String> SCHEDULED = ImmutableSet.of("hi", "mr", "bn", "ta", "te", "gu", "ur", "kn", "ml", "pa", "or", "as", "mai", "sat", "ks", "ne", "kok", "sd", "doi", "mni", "brx", "sa");
+    static Set<String> SCHEDULED =
+            ImmutableSet.of(
+                    "hi", "mr", "bn", "ta", "te", "gu", "ur", "kn", "ml", "pa", "or", "as", "mai",
+                    "sat", "ks", "ne", "kok", "sd", "doi", "mni", "brx", "sa");
 
     public static void main(String[] args) {
-        final Counter<R3<OfficialStatus, String, String>> gathered = new Counter<R3<OfficialStatus, String, String>>();
+        final Counter<R3<OfficialStatus, String, String>> gathered =
+                new Counter<R3<OfficialStatus, String, String>>();
         Counter<String> scheduledLitPop = new Counter<>();
         Counter2<String> scheduledGDP = new Counter2<>();
-        
+
         for (final String territory : sdata.getTerritoriesWithPopulationData()) {
             PopulationData terrData = sdata.getPopulationDataForTerritory(territory);
             double terrGdpPerLitCapita = terrData.getGdp() / terrData.getLiteratePopulation();
-            for (final String language : sdata.getLanguagesForTerritoryWithPopulationData(territory)) {
+            for (final String language :
+                    sdata.getLanguagesForTerritoryWithPopulationData(territory)) {
                 if (language.equals("und")) {
                     continue;
                 }
-                final PopulationData data = sdata.getLanguageAndTerritoryPopulationData(language, territory);
+                final PopulationData data =
+                        sdata.getLanguageAndTerritoryPopulationData(language, territory);
                 final long pop = (long) data.getPopulation();
                 if (!territory.equals("IN") && SCHEDULED.contains(language)) {
                     double literatePopulation = data.getLiteratePopulation();
@@ -68,15 +75,29 @@ public class ListTopLanguages {
             }
         }
         for (String sched : SCHEDULED) {
-            System.out.println(sched + "\tlitPop%:\t" + scheduledLitPop.get(sched) + "\tgdp%:\t" + scheduledGDP.getCount(sched));
+            System.out.println(
+                    sched
+                            + "\tlitPop%:\t"
+                            + scheduledLitPop.get(sched)
+                            + "\tgdp%:\t"
+                            + scheduledGDP.getCount(sched));
         }
         int rank = 0;
         final NumberFormat format = NumberFormat.getInstance();
         format.setGroupingUsed(true);
-        for (final R3<OfficialStatus, String, String> row : gathered.getKeysetSortedByCount(false)) {
+        for (final R3<OfficialStatus, String, String> row :
+                gathered.getKeysetSortedByCount(false)) {
             final long pop = gathered.get(row);
             final OfficialStatus status = row.get0();
-            System.out.println(++rank + "\t" + format.format(pop) + "\t" + row.get1() + "\t" + row.get2() + (status == OfficialStatus.unknown ? "" : "\t" + status));
+            System.out.println(
+                    ++rank
+                            + "\t"
+                            + format.format(pop)
+                            + "\t"
+                            + row.get1()
+                            + "\t"
+                            + row.get2()
+                            + (status == OfficialStatus.unknown ? "" : "\t" + status));
         }
     }
 
@@ -93,7 +114,8 @@ public class ListTopLanguages {
                 System.out.println("Unknown tag: " + tag);
             }
         }
-        final Set<R3<String,String,String>> alternates = new TreeSet<R3<String,String,String>>();
+        final Set<R3<String, String, String>> alternates =
+                new TreeSet<R3<String, String, String>>();
         for (final String language2 : languages) {
             for (final String territory2 : territories) {
                 final R3<String, String, String> row = Row.of(language2, script, territory2);
@@ -113,7 +135,10 @@ public class ListTopLanguages {
         return result;
     }
 
-    private static void addAlternates(String language, Map<String, R2<List<String>, String>> replacements, Set<String> languages) {
+    private static void addAlternates(
+            String language,
+            Map<String, R2<List<String>, String>> replacements,
+            Set<String> languages) {
         languages.add(language);
         for (final String source : replacements.keySet()) {
             final List<String> set = replacements.get(source).get0();

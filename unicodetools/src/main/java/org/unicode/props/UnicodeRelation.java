@@ -1,4 +1,9 @@
 package org.unicode.props;
+
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.Freezable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -7,11 +12,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
-
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.Freezable;
 
 public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
 
@@ -22,25 +22,28 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
         Set<T> make();
     }
 
-    public static SetMaker TREESET_MAKER = new SetMaker<Comparable>() {
-        @Override
-        public Set<Comparable> make() {
-            return new TreeSet<Comparable>();
-        }
-    };
+    public static SetMaker TREESET_MAKER =
+            new SetMaker<Comparable>() {
+                @Override
+                public Set<Comparable> make() {
+                    return new TreeSet<Comparable>();
+                }
+            };
 
-    public static SetMaker HASHSET_MAKER = new SetMaker<Object>() {
-        @Override
-        public Set<Object> make() {
-            return new HashSet<Object>();
-        }
-    };
+    public static SetMaker HASHSET_MAKER =
+            new SetMaker<Object>() {
+                @Override
+                public Set<Object> make() {
+                    return new HashSet<Object>();
+                }
+            };
 
-    public static final SetMaker LINKED_HASHSET_MAKER = new SetMaker<Object>() {
-        public Set<Object> make() {
-            return new LinkedHashSet<Object>();
-        }
-    };
+    public static final SetMaker LINKED_HASHSET_MAKER =
+            new SetMaker<Object>() {
+                public Set<Object> make() {
+                    return new LinkedHashSet<Object>();
+                }
+            };
 
     public UnicodeRelation(SetMaker<T> maker) {
         this.maker = maker;
@@ -80,7 +83,7 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
     }
 
     public Set<T> get(String key) {
-        return data.get((String)key);
+        return data.get((String) key);
     }
 
     public UnicodeSet getKeys(T value) {
@@ -116,8 +119,8 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
         }
         return this;
     }
-    
-    public UnicodeRelation<T>  addAll(int key, Collection<T> values) {
+
+    public UnicodeRelation<T> addAll(int key, Collection<T> values) {
         Set<T> newValues = addValues(data.get(key), values);
         if (newValues != null) {
             data.put(key, newValues);
@@ -150,13 +153,12 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
         return this;
     }
 
-
     private Set<T> addValue(Set<T> oldValues, T value) {
         if (oldValues == null) {
             return Collections.singleton(value);
         } else if (oldValues.contains(value)) {
             return null;
-        } else {  
+        } else {
             Set<T> newValues = make(oldValues);
             newValues.add(value);
             return Collections.unmodifiableSet(newValues);
@@ -174,11 +176,11 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
             if (values.size() == 1) {
                 return Collections.singleton(values.iterator().next());
             } else {
-                return Collections.unmodifiableSet(make(values));  
+                return Collections.unmodifiableSet(make(values));
             }
         } else if (oldValues.containsAll(values)) {
             return null;
-        } else {  
+        } else {
             Set<T> newValues = make(oldValues);
             newValues.addAll(values);
             return Collections.unmodifiableSet(newValues);
@@ -188,12 +190,14 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
     private Set<T> removeValues(Set<T> oldValues, Collection<T> values) {
         if (oldValues == null) {
             return null;
-        } else if (Collections.disjoint(oldValues,values)) {
+        } else if (Collections.disjoint(oldValues, values)) {
             return null;
-        } else {  
+        } else {
             Set<T> newValues = make(oldValues);
             newValues.removeAll(values);
-            return newValues.size() == 0 ? Collections.EMPTY_SET : Collections.unmodifiableSet(newValues);
+            return newValues.size() == 0
+                    ? Collections.EMPTY_SET
+                    : Collections.unmodifiableSet(newValues);
         }
     }
 
@@ -256,10 +260,10 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
         }
         return this;
     }
-    
+
     public UnicodeRelation<T> removeAll(UnicodeSet keys) {
-         data.removeAll(keys);
-         return this;
+        data.removeAll(keys);
+        return this;
     }
 
     public UnicodeRelation<T> removeAll(UnicodeSet keys, T... values) {
@@ -273,14 +277,13 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
         return this;
     }
 
-
     private void removeExisting(int key, T value, Set<T> values) {
         if (values.size() == 1) {
             data.remove(key);
         } else {
             Set<T> newValues = make(values);
             newValues.remove(value);
-            data.put(key, Collections.unmodifiableSet(newValues)); 
+            data.put(key, Collections.unmodifiableSet(newValues));
         }
     }
 
@@ -290,7 +293,7 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
         } else {
             Set<T> newValues = make(values);
             newValues.remove(value);
-            data.put(key, Collections.unmodifiableSet(newValues)); 
+            data.put(key, Collections.unmodifiableSet(newValues));
         }
     }
 
@@ -326,7 +329,7 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof UnicodeRelation && data.equals(((UnicodeRelation)obj).data);
+        return obj instanceof UnicodeRelation && data.equals(((UnicodeRelation) obj).data);
     }
 
     @Override
@@ -341,14 +344,14 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
     }
 
     @Override
-    public UnicodeRelation<T>  cloneAsThawed() {
+    public UnicodeRelation<T> cloneAsThawed() {
         throw new UnsupportedOperationException();
     }
 
     public Iterable<Entry<String, Set<T>>> entrySet() {
         return data.entrySet();
     }
-    
+
     public Iterable<EntryRange<Set<T>>> entryRanges() {
         return data.entryRanges();
     }

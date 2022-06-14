@@ -5,12 +5,18 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class FastUnicodeSetTest {
 
-    static final UnicodeSet[] testList = {new UnicodeSet("[:whitespace:]"), new UnicodeSet("[a-f]"), new UnicodeSet("[:alphabetic:]"), new UnicodeSet("[[:alphabetic:][\\uFFFD]]"), new UnicodeSet("[:cn:]")};
+    static final UnicodeSet[] testList = {
+        new UnicodeSet("[:whitespace:]"),
+        new UnicodeSet("[a-f]"),
+        new UnicodeSet("[:alphabetic:]"),
+        new UnicodeSet("[[:alphabetic:][\\uFFFD]]"),
+        new UnicodeSet("[:cn:]")
+    };
 
     public static void main(String[] args) {
         new FastUnicodeSetTest().TestContains();
         // [[:alphabetic:][\uFFFD]]  containsAll [:cn:]
-        UnicodeSet lastSet = testList[testList.length-1];
+        UnicodeSet lastSet = testList[testList.length - 1];
 
         if (System.getProperty("DO_QUICK") != null) {
             for (final UnicodeSet set : testList) {
@@ -24,11 +30,17 @@ public class FastUnicodeSetTest {
             }
         }
 
-        lastSet = testList[testList.length-1];
+        lastSet = testList[testList.length - 1];
         FastUnicodeSet lastAlt = new FastUnicodeSet(lastSet);
         for (final UnicodeSet set : testList) {
             System.out.println();
-            System.out.println("Set:\t" + set + "\tsize:\t" + set.size() + "\tranges:\t" + set.getRangeCount());
+            System.out.println(
+                    "Set:\t"
+                            + set
+                            + "\tsize:\t"
+                            + set.size()
+                            + "\tranges:\t"
+                            + set.getRangeCount());
             final FastUnicodeSet alt = new FastUnicodeSet(set);
             verify(set, lastSet, alt, lastAlt);
             verify(set, set, alt, alt);
@@ -64,28 +76,26 @@ public class FastUnicodeSetTest {
                 final boolean equals = i == j;
                 if (containsNone != x.containsNone(y)) {
                     x.containsNone(y); // repeat for debugging
-                    errln("FAILED: " + x +  " containsSome " + y);
+                    errln("FAILED: " + x + " containsSome " + y);
                 }
                 if (containsAll != x.containsAll(y)) {
                     x.containsAll(y); // repeat for debugging
-                    errln("FAILED: " + x +  " containsAll " + y);
+                    errln("FAILED: " + x + " containsAll " + y);
                 }
                 if (equals != x.equals(y)) {
                     x.equals(y); // repeat for debugging
-                    errln("FAILED: " + x +  " equals " + y);
+                    errln("FAILED: " + x + " equals " + y);
                 }
             }
         }
     }
 
-    /**
-     * Convert a bitmask to a UnicodeSet.
-     */
+    /** Convert a bitmask to a UnicodeSet. */
     FastUnicodeSet bitsToSet(int a) {
         final UnicodeSet result = new UnicodeSet();
         for (int i = 0; i < 32; ++i) {
-            if ((a & (1<<i)) != 0) {
-                result.add((char)i,(char)i);
+            if ((a & (1 << i)) != 0) {
+                result.add((char) i, (char) i);
             }
         }
         return new FastUnicodeSet(result);
@@ -99,7 +109,8 @@ public class FastUnicodeSetTest {
         System.out.println("Log: " + string);
     }
 
-    private static void verify(UnicodeSet set, UnicodeSet set2, FastUnicodeSet alt, FastUnicodeSet alt2) {
+    private static void verify(
+            UnicodeSet set, UnicodeSet set2, FastUnicodeSet alt, FastUnicodeSet alt2) {
         verifyEquals(set, alt);
         verifyEquals(set2, alt2);
 
@@ -119,7 +130,6 @@ public class FastUnicodeSetTest {
             alt2.containsNone(alt);
             throw new IllegalArgumentException("Failure at: " + set2 + " containsNone " + set);
         }
-
     }
 
     private static void verifyEquals(UnicodeSet set, FastUnicodeSet alt) {
@@ -163,11 +173,13 @@ public class FastUnicodeSetTest {
             start = System.currentTimeMillis();
             return true;
         }
+
         public long iterations() {
             return iterations;
         }
+
         public double getDelta() {
-            return delta/(double)iterations;
+            return delta / (double) iterations;
         }
     }
 
@@ -176,7 +188,7 @@ public class FastUnicodeSetTest {
     private static boolean timeContains(UnicodeSet set, FastUnicodeSet alt, int iterations) {
         boolean result = false;
 
-        for (timer.reset(); timer.insufficient();) {
+        for (timer.reset(); timer.insufficient(); ) {
             for (long i = timer.iterations(); i >= 0; --i) {
                 for (int j = 0; j < 0x10FFFF; ++j) {
                     result ^= set.contains(j);
@@ -185,7 +197,7 @@ public class FastUnicodeSetTest {
         }
         final double lastDelta = timer.getDelta();
 
-        for (timer.reset(); timer.insufficient();) {
+        for (timer.reset(); timer.insufficient(); ) {
             for (long i = timer.iterations(); i >= 0; --i) {
                 for (int j = 0; j < 0x10FFFF; ++j) {
                     result ^= alt.contains(j);
@@ -198,29 +210,54 @@ public class FastUnicodeSetTest {
         return result;
     }
 
-    private static void show(String set, String relation, String x, String value, double lastDelta, double delta) {
-        System.out.println(set + "\t" + relation + "\t" + x + "\t" + value + "\told:\t" + lastDelta + "\tnew:\t" + delta + "\t" + percent.format(delta/lastDelta));
+    private static void show(
+            String set, String relation, String x, String value, double lastDelta, double delta) {
+        System.out.println(
+                set
+                        + "\t"
+                        + relation
+                        + "\t"
+                        + x
+                        + "\t"
+                        + value
+                        + "\told:\t"
+                        + lastDelta
+                        + "\tnew:\t"
+                        + delta
+                        + "\t"
+                        + percent.format(delta / lastDelta));
     }
 
     private static final NumberFormat percent = NumberFormat.getPercentInstance();
 
-    private static boolean timeContainsAll(UnicodeSet set, UnicodeSet set2, FastUnicodeSet alt, FastUnicodeSet alt2, int iterations) {
+    private static boolean timeContainsAll(
+            UnicodeSet set,
+            UnicodeSet set2,
+            FastUnicodeSet alt,
+            FastUnicodeSet alt2,
+            int iterations) {
         boolean result = false;
 
-        for (timer.reset(); timer.insufficient();) {
+        for (timer.reset(); timer.insufficient(); ) {
             for (long i = timer.iterations(); i >= 0; --i) {
                 result ^= set.containsAll(set2);
             }
         }
         final double lastDelta = timer.getDelta();
 
-        for (timer.reset(); timer.insufficient();) {
+        for (timer.reset(); timer.insufficient(); ) {
             for (long i = timer.iterations(); i >= 0; --i) {
                 result ^= alt.containsAll(alt2);
             }
         }
         final double delta = timer.getDelta();
-        show(set.toString(), "containsAll", set2.toString(), String.valueOf(set.containsAll(set2)), lastDelta, delta);
+        show(
+                set.toString(),
+                "containsAll",
+                set2.toString(),
+                String.valueOf(set.containsAll(set2)),
+                lastDelta,
+                delta);
         return result;
     }
 
@@ -240,7 +277,8 @@ public class FastUnicodeSetTest {
         //      }
         //    }
         //    double delta = timer.getDelta();
-        //    show(set.toString(), "containsAll", set2.toString(), String.valueOf(set.containsAll(set2)), lastDelta, delta);
+        //    show(set.toString(), "containsAll", set2.toString(),
+        // String.valueOf(set.containsAll(set2)), lastDelta, delta);
         return result;
     }
 
@@ -260,48 +298,70 @@ public class FastUnicodeSetTest {
         //      }
         //    }
         //    double delta = timer.getDelta();
-        //    show(set.toString(), "containsNone", set2.toString(), String.valueOf(set.containsNone(set2)), lastDelta, delta);
+        //    show(set.toString(), "containsNone", set2.toString(),
+        // String.valueOf(set.containsNone(set2)), lastDelta, delta);
         return result;
     }
 
-
-    private static boolean timeContainsNone(UnicodeSet set, UnicodeSet set2, FastUnicodeSet alt, FastUnicodeSet alt2, int iterations) {
+    private static boolean timeContainsNone(
+            UnicodeSet set,
+            UnicodeSet set2,
+            FastUnicodeSet alt,
+            FastUnicodeSet alt2,
+            int iterations) {
         boolean result = false;
 
-        for (timer.reset(); timer.insufficient();) {
+        for (timer.reset(); timer.insufficient(); ) {
             for (long i = timer.iterations(); i >= 0; --i) {
                 result ^= set.containsNone(set2);
             }
         }
         final double lastDelta = timer.getDelta();
 
-        for (timer.reset(); timer.insufficient();) {
+        for (timer.reset(); timer.insufficient(); ) {
             for (long i = timer.iterations(); i >= 0; --i) {
                 result ^= alt.containsNone(alt2);
             }
         }
         final double delta = timer.getDelta();
-        show(set.toString(), "containsNone", set2.toString(), String.valueOf(set.containsNone(set2)), lastDelta, delta);
+        show(
+                set.toString(),
+                "containsNone",
+                set2.toString(),
+                String.valueOf(set.containsNone(set2)),
+                lastDelta,
+                delta);
         return result;
     }
 
-    private static boolean timeEquals(UnicodeSet set, UnicodeSet set2, FastUnicodeSet alt, FastUnicodeSet alt2, int iterations) {
+    private static boolean timeEquals(
+            UnicodeSet set,
+            UnicodeSet set2,
+            FastUnicodeSet alt,
+            FastUnicodeSet alt2,
+            int iterations) {
         boolean result = false;
 
-        for (timer.reset(); timer.insufficient();) {
+        for (timer.reset(); timer.insufficient(); ) {
             for (long i = timer.iterations(); i >= 0; --i) {
                 result ^= set.equals(set2);
             }
         }
         final double lastDelta = timer.getDelta();
 
-        for (timer.reset(); timer.insufficient();) {
+        for (timer.reset(); timer.insufficient(); ) {
             for (long i = timer.iterations(); i >= 0; --i) {
                 result ^= alt.equals(alt2);
             }
         }
         final double delta = timer.getDelta();
-        show(set.toString(), "equals", set2.toString(), String.valueOf(set.equals(set2)), lastDelta, delta);
+        show(
+                set.toString(),
+                "equals",
+                set2.toString(),
+                String.valueOf(set.equals(set2)),
+                lastDelta,
+                delta);
         return result;
     }
 }

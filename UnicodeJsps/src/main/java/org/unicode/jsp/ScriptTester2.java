@@ -1,23 +1,7 @@
 package org.unicode.jsp;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.SortedMap;
-import java.util.TreeMap;
-import java.util.TreeSet;
-
 import com.google.common.base.Splitter;
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.ImmutableSortedMap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -27,6 +11,17 @@ import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class ScriptTester2 {
     private final UnicodeMap<UnicodeSet> toEquivalents;
@@ -36,7 +31,13 @@ public class ScriptTester2 {
     private final UnicodeMap<String> confusables;
     private final SortedMap<String, Integer> multipleToSingleConfusable;
 
-    private ScriptTester2(Set<String> all, UnicodeMap<String> confusables, SortedMap<String, Integer> multipleToSingleConfusable, UnicodeMap<Set<String>> scripts, UnicodeMap<UnicodeSet> equiv2, UnicodeSet allowed) {
+    private ScriptTester2(
+            Set<String> all,
+            UnicodeMap<String> confusables,
+            SortedMap<String, Integer> multipleToSingleConfusable,
+            UnicodeMap<Set<String>> scripts,
+            UnicodeMap<UnicodeSet> equiv2,
+            UnicodeSet allowed) {
         this.allScripts = all;
         this.confusables = confusables;
         toEquivalents = equiv2;
@@ -48,10 +49,11 @@ public class ScriptTester2 {
     public static ScriptTester2 getInstance(VersionInfo version, UnicodeSet allowed) {
         allowed = allowed.isFrozen() ? allowed : new UnicodeSet(allowed).freeze();
         CachedProps props = CachedProps.getInstance(version);
-        //System.out.println(new TreeSet(props.getAvailable()));
+        // System.out.println(new TreeSet(props.getAvailable()));
         UnicodeMap<String> confusables = props.getProperty("Confusable_MA").getUnicodeMap();
         UnicodeMap<UnicodeSet> equiv = new UnicodeMap();
-        SortedMap<String,Integer> multipleToSingle = new TreeMap<String,Integer>(new UTF16.StringComparator(true,false,0));
+        SortedMap<String, Integer> multipleToSingle =
+                new TreeMap<String, Integer>(new UTF16.StringComparator(true, false, 0));
         for (String value : confusables.values()) {
             UnicodeSet us = new UnicodeSet(confusables.getSet(value)).add(value).retainAll(allowed);
             if (us.isEmpty()) {
@@ -102,7 +104,13 @@ public class ScriptTester2 {
             toScripts.putAll(us, ImmutableSet.copyOf(scriptSet));
         }
 
-        return new ScriptTester2(all, confusables, Collections.unmodifiableSortedMap(multipleToSingle), toScripts, equiv, allowed);
+        return new ScriptTester2(
+                all,
+                confusables,
+                Collections.unmodifiableSortedMap(multipleToSingle),
+                toScripts,
+                equiv,
+                allowed);
     }
 
     public static UnicodeSet getAllowedStatus(VersionInfo version) {
@@ -131,12 +139,17 @@ public class ScriptTester2 {
         return intersection;
     }
 
-    public enum ScriptRestriction {any, wholeScript}
+    public enum ScriptRestriction {
+        any,
+        wholeScript
+    }
 
-    public List<Multimap<String, String>> getData(CharSequence value, ScriptRestriction scriptRestriction) {
+    public List<Multimap<String, String>> getData(
+            CharSequence value, ScriptRestriction scriptRestriction) {
         value = getSkeleton(value);
         List<Multimap<String, String>> result = new ArrayList();
-        HashSet<String> foundScripts = scriptRestriction == ScriptRestriction.any ? null : new HashSet<String>();
+        HashSet<String> foundScripts =
+                scriptRestriction == ScriptRestriction.any ? null : new HashSet<String>();
         for (int cp : CharSequences.codePoints(value)) {
             UnicodeSet current = toEquivalents.get(cp);
             if (current == null) {
@@ -170,7 +183,7 @@ public class ScriptTester2 {
     }
 
     private Multimap<String, String> getScriptsToChars(UnicodeSet current) {
-        Multimap<String,String> result = TreeMultimap.create();
+        Multimap<String, String> result = TreeMultimap.create();
         for (String s : current) {
             Set<String> scriptSet = toScripts.get(s);
             if (scriptSet.equals(allScripts)) {
@@ -217,7 +230,7 @@ public class ScriptTester2 {
             }
         }
         for (Entry<String, Integer> entry : multipleToSingleConfusable.entrySet()) {
-            //System.out.println(entry.getKey() + "\t" + UTF16.valueOf(entry.getValue()));
+            // System.out.println(entry.getKey() + "\t" + UTF16.valueOf(entry.getValue()));
             // check for overlaps
             String source = entry.getKey();
             String partial = source;
@@ -232,20 +245,31 @@ public class ScriptTester2 {
         VersionInfo version = VersionInfo.getInstance(10);
         UnicodeSet allowedStatus = ScriptTester2.getAllowedStatus(version);
         UnicodeSet nfkd_Quick_CheckNo = ScriptTester2.getNFKD_Quick_CheckNo(version);
-        ScriptTester2 tester = ScriptTester2.getInstance(version, 
-                new UnicodeSet(0,0x10ffff)
-                //                .removeAll(nfkd_Quick_CheckNo)
-                //                .removeAll(new UnicodeSet("[^[:scx=cyrl:][:scx=latn:][:scx=common:][:scx=inherited:]]"))
-//                .retainAll(allowedStatus)
-                );
-        
-        
+        ScriptTester2 tester =
+                ScriptTester2.getInstance(
+                        version, new UnicodeSet(0, 0x10ffff)
+                        //                .removeAll(nfkd_Quick_CheckNo)
+                        //                .removeAll(new
+                        // UnicodeSet("[^[:scx=cyrl:][:scx=latn:][:scx=common:][:scx=inherited:]]"))
+                        //                .retainAll(allowedStatus)
+                        );
+
         tester.checkData();
-        
-        for (String s : Arrays.asList("came", "apple", "scope", "Circle", "СігсӀе", "Сirсlе", "Circ1e", "C𝗂𝗋𝖼𝗅𝖾", "〆切", "ねガ", 
-                "abcdefghijklmnopqrstuvwxyz",
-                "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                )) {
+
+        for (String s :
+                Arrays.asList(
+                        "came",
+                        "apple",
+                        "scope",
+                        "Circle",
+                        "СігсӀе",
+                        "Сirсlе",
+                        "Circ1e",
+                        "C𝗂𝗋𝖼𝗅𝖾",
+                        "〆切",
+                        "ねガ",
+                        "abcdefghijklmnopqrstuvwxyz",
+                        "ABCDEFGHIJKLMNOPQRSTUVWXYZ")) {
             System.out.println(s + "\t" + tester.getScripts(s));
             for (Multimap<String, String> data : tester.getData(s, ScriptRestriction.any)) {
                 System.out.println("\t" + data);
@@ -254,7 +278,7 @@ public class ScriptTester2 {
         //        for (Set<String> s : tester.scripts.values()) {
         //            String sample = tester.scripts.getSet(s).iterator().next();
         //            UnicodeSet equivs = tester.equivalents.get(sample);
-        //            System.out.println(sample 
+        //            System.out.println(sample
         //                    + "\n\t" + (equivs == null ? "?" : equivs.toPattern(false))
         //                    + "\n\t" + tester.scripts.get(sample));
         //        }

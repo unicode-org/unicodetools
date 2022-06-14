@@ -1,23 +1,20 @@
 package org.unicode.tools.emoji;
 
-import java.awt.ItemSelectable;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.TreeSet;
-
-import org.unicode.cldr.util.Annotations;
-import org.unicode.cldr.util.Annotations.AnnotationSet;
-import org.unicode.text.utility.Utility;
-
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeSet;
+import org.unicode.cldr.util.Annotations;
+import org.unicode.cldr.util.Annotations.AnnotationSet;
+import org.unicode.text.utility.Utility;
 
 public class GenerateAnnotations {
     static AnnotationSet english = Annotations.getDataSet("en");
@@ -27,25 +24,27 @@ public class GenerateAnnotations {
     public static void main(String[] args) {
         System.err.println("OLD, use GenerateCldrData");
         System.exit(-1);
-        
+
         EmojiDataSourceCombined betaData = new EmojiDataSourceCombined();
 
-        //showGenderVariants(betaData);
-        //if (true) return;
+        // showGenderVariants(betaData);
+        // if (true) return;
 
-        //showStats(Emoji.VERSION3, Emoji.VERSION4, Emoji.VERSION5);
+        // showStats(Emoji.VERSION3, Emoji.VERSION4, Emoji.VERSION5);
 
         EmojiData lastData = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
-        UnicodeSet set = new UnicodeSet()
-                .addAll(betaData.getAllEmojiWithoutDefectivesOrModifiers())
-                .removeAll(lastData.getAllEmojiWithoutDefectivesOrModifiers())
-                .removeAll(betaData.getTagSequences())
-                .freeze();
+        UnicodeSet set =
+                new UnicodeSet()
+                        .addAll(betaData.getAllEmojiWithoutDefectivesOrModifiers())
+                        .removeAll(lastData.getAllEmojiWithoutDefectivesOrModifiers())
+                        .removeAll(betaData.getTagSequences())
+                        .freeze();
 
-        UnicodeSet full = new UnicodeSet()
-                .addAll(betaData.getAllEmojiWithoutDefectives())
-                .removeAll(lastData.getAllEmojiWithoutDefectives())
-                .freeze();
+        UnicodeSet full =
+                new UnicodeSet()
+                        .addAll(betaData.getAllEmojiWithoutDefectives())
+                        .removeAll(lastData.getAllEmojiWithoutDefectives())
+                        .freeze();
 
         TreeSet<String> sorted = set.addAllTo(new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare));
         UnicodeSet found = new UnicodeSet();
@@ -79,26 +78,31 @@ public class GenerateAnnotations {
             //                                name = candidateData.getShorterName(source);
             //                                annotations = candidateData.getAnnotations(source);
             //                        }
-            System.out.println("<annotation cp=\"" + source + "\">" + CollectionUtilities.join(annotations, " | ")
-            + "</annotation>");
-            System.out.println("<annotation cp=\"" + source + "\" type=\"tts\">" + (name == null ? "???" : name)
-                    + "</annotation>");
+            System.out.println(
+                    "<annotation cp=\""
+                            + source
+                            + "\">"
+                            + CollectionUtilities.join(annotations, " | ")
+                            + "</annotation>");
+            System.out.println(
+                    "<annotation cp=\""
+                            + source
+                            + "\" type=\"tts\">"
+                            + (name == null ? "???" : name)
+                            + "</annotation>");
             System.out.println();
             found.add(source);
         }
-        System.out.println("Add to emoji list (" 
-                + found.size()
-                + "): " + found.toPattern(false));
+        System.out.println("Add to emoji list (" + found.size() + "): " + found.toPattern(false));
 
         for (String s : missed) {
-            System.out.println("**** Fetching from candidateData, not CLDR: " + s + "\t" + Utility.hex(s));
-
+            System.out.println(
+                    "**** Fetching from candidateData, not CLDR: " + s + "\t" + Utility.hex(s));
         }
-
     }
 
-    static private String MAN = UTF16.valueOf(0x1F468);
-    static private String ADULT = UTF16.valueOf(0x1F9D1);
+    private static String MAN = UTF16.valueOf(0x1F468);
+    private static String ADULT = UTF16.valueOf(0x1F9D1);
 
     private static void showGenderVariants(EmojiData betaData) {
         Multimap<CountEmoji.ZwjType, String> data = TreeMultimap.create();
@@ -111,14 +115,14 @@ public class GenerateAnnotations {
                 int first = s.codePointAt(0);
                 data.put(type, UTF16.valueOf(first));
             } else {
-                switch(type) {
-                case family: break;
-                default:
-                    if (s.startsWith(MAN)) {
-                        String sequence = ADULT + s.substring(MAN.length());
-                        data.put(type, sequence);
-
-                    }
+                switch (type) {
+                    case family:
+                        break;
+                    default:
+                        if (s.startsWith(MAN)) {
+                            String sequence = ADULT + s.substring(MAN.length());
+                            data.put(type, sequence);
+                        }
                 }
             }
         }
@@ -136,10 +140,9 @@ public class GenerateAnnotations {
             UnicodeSet sequence = new UnicodeSet().addAll(entry.getValue());
             System.out.println(type + "\t" + sequence.toPattern(false));
         }
-
     }
 
-    static private int ADULT_CP = ADULT.codePointAt(0);
+    private static int ADULT_CP = ADULT.codePointAt(0);
 
     private static String getName(String source) {
         String name = getShortName(source);
@@ -149,7 +152,7 @@ public class GenerateAnnotations {
                 String seq = MAN + source.substring(ADULT.length());
                 name = getShortName(seq);
                 if (name != null) {
-                    name =  name.startsWith("man ") ? name.substring(4) : "??"+name;
+                    name = name.startsWith("man ") ? name.substring(4) : "??" + name;
                 }
             }
         }

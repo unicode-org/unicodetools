@@ -1,5 +1,11 @@
 package org.unicode.text.tools;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.Normalizer;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.text.ParsePosition;
@@ -7,38 +13,36 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.props.BagFormatter;
 import org.unicode.jsp.ICUPropertyFactory;
+import org.unicode.props.BagFormatter;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Settings;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.Normalizer;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
-
 public class VerifyIdna {
 
     static final boolean USE_ICU = true;
 
     // 011B ; PVALID # LATIN SMALL LETTER E WITH CARON
-    static final Matcher DATALINE = Pattern.compile(
-            "([0-9a-fA-F]{4,6})" +
-                    "(?:\\.\\.([0-9a-fA-F]{4,6}))?" +
-                    "\\s*;\\s*" +
-                    "(PVALID|DISALLOWED|UNASSIGNED|CONTEXTJ|CONTEXTO)" +
-                    "\\s*#\\s*" +
-            "(.*)").matcher("");
+    static final Matcher DATALINE =
+            Pattern.compile(
+                            "([0-9a-fA-F]{4,6})"
+                                    + "(?:\\.\\.([0-9a-fA-F]{4,6}))?"
+                                    + "\\s*;\\s*"
+                                    + "(PVALID|DISALLOWED|UNASSIGNED|CONTEXTJ|CONTEXTO)"
+                                    + "\\s*#\\s*"
+                                    + "(.*)")
+                    .matcher("");
 
     public enum IdnaType {
-        PVALID, DISALLOWED, UNASSIGNED, CONTEXTJ, CONTEXTO
+        PVALID,
+        DISALLOWED,
+        UNASSIGNED,
+        CONTEXTJ,
+        CONTEXTO
     }
 
     public static void main(String[] args) throws IOException {
@@ -65,13 +69,13 @@ public class VerifyIdna {
                     System.out.println("\tequal");
                 } else {
                     System.out.println("Difference in Contents");
-                    //System.out.println(bf.showSetDifferences("pat", patItems, "alt", altItems));
+                    // System.out.println(bf.showSetDifferences("pat", patItems, "alt", altItems));
                     final UnicodeSet patDiffAlt = new UnicodeSet(patItems).removeAll(altItems);
                     System.out.println("\tpat-alt:\n" + bf.showSetNames(patDiffAlt));
                     final UnicodeSet altDiffPat = new UnicodeSet(altItems).removeAll(patItems);
-                    System.out.println("\talt-pat:\n"  + bf.showSetNames(altDiffPat));
-                    //System.out.println("\tpat:\t" + patItems);
-                    //System.out.println("\talt:\t" + altItems);
+                    System.out.println("\talt-pat:\n" + bf.showSetNames(altDiffPat));
+                    // System.out.println("\tpat:\t" + patItems);
+                    // System.out.println("\talt:\t" + altItems);
                 }
                 System.out.println();
             }
@@ -84,34 +88,62 @@ public class VerifyIdna {
         final UnicodeMap result = new UnicodeMap();
         final UnicodeSet foo = parseUnicodeSet("[[:gc=cn:]-[:NChar:]]");
 
-        System.out.println("A\t" + parseUnicodeSet("[" +
-                "[[:gc=Ll:][:gc=Lt:][:gc=Lu:][:gc=Lo:][:gc=Lm:][:gc=Mn:][:gc=Mc:][:gc=Nd:]]" + // A - restrict to only letters, marks, numbers
-                "]").complement().complement());
+        System.out.println(
+                "A\t"
+                        + parseUnicodeSet(
+                                        "["
+                                                + "[[:gc=Ll:][:gc=Lt:][:gc=Lu:][:gc=Lo:][:gc=Lm:][:gc=Mn:][:gc=Mc:][:gc=Nd:]]"
+                                                + // A - restrict to only letters, marks, numbers
+                                                "]")
+                                .complement()
+                                .complement());
 
-        result.putAll(parseUnicodeSet("[\\u0000-\\U0010FFFF]"), IdnaType.DISALLOWED); // Assume disallowed unless we set otherwise
-        result.putAll(parseUnicodeSet("[[:gc=cn:]-[:NChar:]]"), IdnaType.UNASSIGNED); // J - unassigned code points // -[:NChar:]
-        //parseUnicodeSet("[[:gc=cn:]]");
-        result.putAll(parseUnicodeSet("[" +
-                "[[:gc=Ll:][:gc=Lt:][:gc=Lu:][:gc=Lo:][:gc=Lm:][:gc=Mn:][:gc=Mc:][:gc=Nd:]]" + // A - restrict to only letters, marks, numbers
-                "-[[:^isCaseFolded:]]" + // B - minus characters unstable under NFKC & casefolding
-                "-[:di:]" + // C - minus default-ignorables
-                "-[[:block=Combining_Diacritical_Marks_for_Symbols:]" + // D minus exceptional block exclusions
-                "[:block=Musical_Symbols:]" +
-                "[:block=Ancient_Greek_Musical_Notation:]" +
-                "[:block=Phaistos_Disc:]]" + // x
-                "[\\u3007]" + // x
-                "]"), IdnaType.PVALID);
-        result.putAll(parseUnicodeSet("[" +
-                "[\u002D\u00B7\u02B9\u0375\u0483\u05F3\u05F4\u3005\u303B\u30FB]" + // F.2 - exceptional contextual characters
-                "[:gc=cf:]" + // I - other Cf characters (should be omitted)
-                "]"), IdnaType.CONTEXTO);
-        result.putAll(parseUnicodeSet("[:join_control:]"), IdnaType.CONTEXTJ);  // H - join controls
+        result.putAll(
+                parseUnicodeSet("[\\u0000-\\U0010FFFF]"),
+                IdnaType.DISALLOWED); // Assume disallowed unless we set otherwise
+        result.putAll(
+                parseUnicodeSet("[[:gc=cn:]-[:NChar:]]"),
+                IdnaType.UNASSIGNED); // J - unassigned code points // -[:NChar:]
+        // parseUnicodeSet("[[:gc=cn:]]");
+        result.putAll(
+                parseUnicodeSet(
+                        "["
+                                + "[[:gc=Ll:][:gc=Lt:][:gc=Lu:][:gc=Lo:][:gc=Lm:][:gc=Mn:][:gc=Mc:][:gc=Nd:]]"
+                                + // A - restrict to only letters, marks, numbers
+                                "-[[:^isCaseFolded:]]"
+                                + // B - minus characters unstable under NFKC & casefolding
+                                "-[:di:]"
+                                + // C - minus default-ignorables
+                                "-[[:block=Combining_Diacritical_Marks_for_Symbols:]"
+                                + // D minus exceptional block exclusions
+                                "[:block=Musical_Symbols:]"
+                                + "[:block=Ancient_Greek_Musical_Notation:]"
+                                + "[:block=Phaistos_Disc:]]"
+                                + // x
+                                "[\\u3007]"
+                                + // x
+                                "]"),
+                IdnaType.PVALID);
+        result.putAll(
+                parseUnicodeSet(
+                        "["
+                                + "[\u002D\u00B7\u02B9\u0375\u0483\u05F3\u05F4\u3005\u303B\u30FB]"
+                                + // F.2 - exceptional contextual characters
+                                "[:gc=cf:]"
+                                + // I - other Cf characters (should be omitted)
+                                "]"),
+                IdnaType.CONTEXTO);
+        result.putAll(parseUnicodeSet("[:join_control:]"), IdnaType.CONTEXTJ); // H - join controls
         result.freeze();
         return result;
     }
 
     private static UnicodeMap getPatriksMapping() throws IOException {
-        final BufferedReader in = FileUtilities.openReader(Settings.UnicodeTools.DATA_DIR + "/IDN/", "draft-faltstrom-idnabis-tables-05.txt", "ascii");
+        final BufferedReader in =
+                FileUtilities.openReader(
+                        Settings.UnicodeTools.DATA_DIR + "/IDN/",
+                        "draft-faltstrom-idnabis-tables-05.txt",
+                        "ascii");
         boolean inTable = false;
         final UnicodeMap patrik = new UnicodeMap();
         int count = 0;
@@ -134,7 +166,9 @@ public class VerifyIdna {
                 continue;
             }
             line = line.trim();
-            if (line.length() == 0 || line.startsWith("Faltstrom") || line.startsWith("Internet-Draft")) {
+            if (line.length() == 0
+                    || line.startsWith("Faltstrom")
+                    || line.startsWith("Internet-Draft")) {
                 continue;
             }
             // we now have real data
@@ -143,8 +177,8 @@ public class VerifyIdna {
                 continue;
             }
             final int startChar = Integer.parseInt(DATALINE.group(1), 16);
-            final int endChar = DATALINE.group(2) == null ? startChar : Integer.parseInt(DATALINE
-                    .group(2), 16);
+            final int endChar =
+                    DATALINE.group(2) == null ? startChar : Integer.parseInt(DATALINE.group(2), 16);
             final IdnaType idnaType = IdnaType.valueOf(DATALINE.group(3));
             patrik.putAll(startChar, endChar, idnaType);
         }
@@ -161,16 +195,19 @@ public class VerifyIdna {
             this.unicodePropertyFactory = unicodePropertyFactory;
             final UnicodeProperty gc = unicodePropertyFactory.getProperty("gc");
             final UnicodeProperty ideo = unicodePropertyFactory.getProperty("ideographic");
-            final UnicodeSet invariant = new UnicodeSet()
-            .addAll(gc.getSet("cc"))
-            .addAll(gc.getSet("cn"))
-            .addAll(gc.getSet("co"))
-            .addAll(gc.getSet("cs"))
-            //.addAll(ideo.getSet("t"))
-            ;
+            final UnicodeSet invariant =
+                    new UnicodeSet()
+                            .addAll(gc.getSet("cc"))
+                            .addAll(gc.getSet("cn"))
+                            .addAll(gc.getSet("co"))
+                            .addAll(gc.getSet("cs"))
+                    // .addAll(ideo.getSet("t"))
+                    ;
             isCaseFolded = new UnicodeSet(invariant);
 
-            for (final UnicodeSetIterator it = new UnicodeSetIterator(new UnicodeSet(invariant).complement()); it.nextRange();) {
+            for (final UnicodeSetIterator it =
+                            new UnicodeSetIterator(new UnicodeSet(invariant).complement());
+                    it.nextRange(); ) {
                 for (int cp = it.codepoint; cp <= it.codepointEnd; ++cp) {
                     final String s = UTF16.valueOf(cp);
                     if (getNormalizedCaseFolded(getNormalizedCaseFolded(s)).equals(s)) {
@@ -182,15 +219,17 @@ public class VerifyIdna {
 
         private String getNormalizedCaseFolded(String s) {
             if (USE_ICU) {
-                return Normalizer.normalize(UCharacter.foldCase(s,true), Normalizer.COMPOSE_COMPAT);
+                return Normalizer.normalize(
+                        UCharacter.foldCase(s, true), Normalizer.COMPOSE_COMPAT);
             } else {
-                return Default.nfkc().normalize(Default.ucd().getCase(s, UCD_Types.FULL, UCD_Types.FOLD));
+                return Default.nfkc()
+                        .normalize(Default.ucd().getCase(s, UCD_Types.FULL, UCD_Types.FOLD));
             }
         }
 
         @Override
-        public boolean applyPropertyAlias(String propertyName,
-                String propertyValue, UnicodeSet result) {
+        public boolean applyPropertyAlias(
+                String propertyName, String propertyValue, UnicodeSet result) {
             //    String trimmedPropertyValue = propertyValue.trim();
             //    if (trimmedPropertyValue.startsWith("/") && trimmedPropertyValue.endsWith("/")) {
             //    Matcher matcher = Pattern.compile(
@@ -230,7 +269,8 @@ public class VerifyIdna {
         private UnicodeSet getSet(String propertyName, String propertyValue) {
             return unicodePropertyFactory.getSet(propertyName + "=" + propertyValue);
         }
-    };
+    }
+    ;
 
     static PropertySymbolTable myXSymbolTable = null;
 
@@ -246,14 +286,18 @@ public class VerifyIdna {
         final ParsePosition parsePosition = new ParsePosition(0);
         final UnicodeSet result = new UnicodeSet(input, parsePosition, myXSymbolTable);
         if (parsePosition.getIndex() != input.length()) {
-            throw new IllegalArgumentException("Additional characters past the end of the set, at "
-                    + parsePosition.getIndex() + ", ..."
-                    + input.substring(Math.max(0, parsePosition.getIndex() - 10), parsePosition.getIndex())
-                    + "|"
-                    + input.substring(parsePosition.getIndex(), Math.min(input.length(), parsePosition.getIndex() + 10))
-                    );
+            throw new IllegalArgumentException(
+                    "Additional characters past the end of the set, at "
+                            + parsePosition.getIndex()
+                            + ", ..."
+                            + input.substring(
+                                    Math.max(0, parsePosition.getIndex() - 10),
+                                    parsePosition.getIndex())
+                            + "|"
+                            + input.substring(
+                                    parsePosition.getIndex(),
+                                    Math.min(input.length(), parsePosition.getIndex() + 10)));
         }
         return result;
     }
-
 }

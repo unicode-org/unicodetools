@@ -1,5 +1,7 @@
 package org.unicode.draft;
 
+import com.ibm.icu.impl.Relation;
+import com.ibm.icu.impl.Row;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -8,25 +10,22 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.utility.Settings;
-
-import com.ibm.icu.impl.Relation;
-import com.ibm.icu.impl.Row;
-
 
 public class LanguageQuadgrams {
 
     public static void main(String[] args) throws IOException {
-        final BufferedReader in = FileUtilities.openUTF8Reader(Settings.CLDR.BASE_DIRECTORY + "Downloads/", "languageQuadgrams.txt");
+        final BufferedReader in =
+                FileUtilities.openUTF8Reader(
+                        Settings.CLDR.BASE_DIRECTORY + "Downloads/", "languageQuadgrams.txt");
         while (true) {
             final String line = in.readLine();
             if (line == null) {
                 break;
             }
             final String[] parts = line.split("\\s+");
-            add(parts[0], Integer.parseInt(parts[1],16), Byte.parseByte(parts[2]));
+            add(parts[0], Integer.parseInt(parts[1], 16), Byte.parseByte(parts[2]));
         }
         in.close();
 
@@ -36,14 +35,14 @@ public class LanguageQuadgrams {
             final Map<Integer, Blur> x = languageToLanguageInfo.get(lang);
 
             // get the sum
-            Blur sum = new Blur(0,0);
+            Blur sum = new Blur(0, 0);
             for (final Integer quad : x.keySet()) {
                 sum = sum.add(x.get(quad));
             }
             System.out.println(lang + "\t" + sum);
 
             // add the zero value
-            add(lang, 0, (byte)0);
+            add(lang, 0, (byte) 0);
 
             // normalize to 1.0
             for (final Integer quad : x.keySet()) {
@@ -56,7 +55,8 @@ public class LanguageQuadgrams {
             //      System.out.println("\t" + lang + "\t" + sum);
         }
 
-        final Relation<Blur, Row.R3<String,String,String>> distanceToPair = new Relation(new TreeMap(), TreeSet.class);
+        final Relation<Blur, Row.R3<String, String, String>> distanceToPair =
+                new Relation(new TreeMap(), TreeSet.class);
 
         // compare languages
         final Set<String> languagesDone = new HashSet<String>();
@@ -87,27 +87,39 @@ public class LanguageQuadgrams {
                 final Blur distanceCommon = getDistance(common, quad1, quad2, show);
                 final Blur distance2 = getDistance(x2only, quad1, quad2, show);
 
-                final String message = "\tcommon:\6" + common.size() + "\t;\t" + distanceCommon
-                        + "\tunique1:\t" + x1only.size()  + "\t;\t" + distance1
-                        + "\tunique2:\t" + x2only.size() + "\t;\t" + distance2;
-                //message = ""; // remove for now.
+                final String message =
+                        "\tcommon:\6"
+                                + common.size()
+                                + "\t;\t"
+                                + distanceCommon
+                                + "\tunique1:\t"
+                                + x1only.size()
+                                + "\t;\t"
+                                + distance1
+                                + "\tunique2:\t"
+                                + x2only.size()
+                                + "\t;\t"
+                                + distance2;
+                // message = ""; // remove for now.
 
                 final Blur distance = distanceCommon.add(distance1).add(distance2).divideBy(2);
-                distanceToPair.put(distance, new Row.R3<String,String,String>(lang,lang2,message));
+                distanceToPair.put(
+                        distance, new Row.R3<String, String, String>(lang, lang2, message));
             }
             languagesDone.add(lang);
         }
 
         for (final Blur distance : distanceToPair.keySet()) {
             for (final Row.R3<String, String, String> value : distanceToPair.getAll(distance)) {
-                System.out.println(distance + "\t" + value.get0() + "-" + value.get1() + "\t" + value.get2());
+                System.out.println(
+                        distance + "\t" + value.get0() + "-" + value.get1() + "\t" + value.get2());
             }
         }
     }
 
-    private static Blur getDistance(Set<Integer> quads, Map<Integer, Blur> quad1,
-            Map<Integer, Blur> quad2, boolean show) {
-        Blur distance = new Blur(0,0);
+    private static Blur getDistance(
+            Set<Integer> quads, Map<Integer, Blur> quad1, Map<Integer, Blur> quad2, boolean show) {
+        Blur distance = new Blur(0, 0);
         final Blur aZero = quad1.get(0);
         final Blur bZero = quad2.get(0);
         for (final Integer quad : quads) {
@@ -116,37 +128,43 @@ public class LanguageQuadgrams {
         return distance;
     }
 
-    static Map<String, Map<Integer, Blur>> languageToLanguageInfo = new TreeMap<String, Map<Integer, Blur>>();
+    static Map<String, Map<Integer, Blur>> languageToLanguageInfo =
+            new TreeMap<String, Map<Integer, Blur>>();
 
-    //static Blur one = Math.pow(2,12);
+    // static Blur one = Math.pow(2,12);
 
     private static void add(String string, int quad, byte parseByte) {
         Map<Integer, Blur> x = languageToLanguageInfo.get(string);
         if (x == null) {
             languageToLanguageInfo.put(string, x = new HashMap<Integer, Blur>());
         }
-        x.put(quad, new Blur(Math.pow(2,parseByte-0.5), Math.pow(2,parseByte+0.5)));
+        x.put(quad, new Blur(Math.pow(2, parseByte - 0.5), Math.pow(2, parseByte + 0.5)));
     }
 
     public static class Blur implements Comparable<Blur> {
-        public static Blur ZERO = new Blur(0,0);
+        public static Blur ZERO = new Blur(0, 0);
         private final double max;
         private final double min;
-        public Blur (double min, double max) {
+
+        public Blur(double min, double max) {
             this.min = min;
             this.max = max;
         }
+
         public Blur add(Blur other) {
             return new Blur(min + other.min, max + other.max);
         }
+
         public Blur divideBy(Blur other) {
             // TODO fix for negatives
-            return new Blur(min/other.max, max/other.min);
+            return new Blur(min / other.max, max / other.min);
         }
+
         public Blur divideBy(double other) {
             // TODO fix for negatives
-            return new Blur(min/other, max/other);
+            return new Blur(min / other, max / other);
         }
+
         public Blur addDelta(Blur a, Blur b, Blur aZero, Blur bZero, boolean show) {
             if (a == null) {
                 a = aZero;
@@ -186,6 +204,7 @@ public class LanguageQuadgrams {
         public String toString() {
             return min + "\t" + max;
         }
+
         @Override
         public int compareTo(Blur o) {
             if (min < o.min) {
@@ -202,9 +221,11 @@ public class LanguageQuadgrams {
             }
             return 0;
         }
+
         protected double getMax() {
             return max;
         }
+
         protected double getMin() {
             return min;
         }

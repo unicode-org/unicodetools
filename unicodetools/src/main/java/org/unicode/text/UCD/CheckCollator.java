@@ -1,12 +1,11 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/CheckCollator.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/CheckCollator.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
 
 // http://java.sun.com/j2se/1.3/docs/guide/intl/encoding.doc.html
@@ -21,18 +20,19 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
-
 import org.unicode.text.utility.Utility;
 
 /**
- * This is a quick and dirty program to get some idea of collation performance, comparing old Java to new stuff.
+ * This is a quick and dirty program to get some idea of collation performance, comparing old Java
+ * to new stuff.
  */
-abstract public class CheckCollator {
+public abstract class CheckCollator {
     static final String PREFIX = "C:\\ICUInternal\\icu4c\\collation-perf-data\\TestNames_";
     static final boolean DO_RAW = false;
 
     static final NumberFormat nf = NumberFormat.getInstance();
     static final NumberFormat percent = NumberFormat.getPercentInstance();
+
     static {
         nf.setMaximumFractionDigits(2);
     }
@@ -41,8 +41,9 @@ abstract public class CheckCollator {
 
         // later, drive off of args
 
-        // choices are: Asian, Chinese, Japanese, Japanese_h, Japanese_k, Korean, Latin, Russian, Thai
-        //test(Locale.KOREAN, "Korean");
+        // choices are: Asian, Chinese, Japanese, Japanese_h, Japanese_k, Korean, Latin, Russian,
+        // Thai
+        // test(Locale.KOREAN, "Korean");
         test(Locale.ENGLISH, "Latin");
         test(Locale.FRENCH, "Latin");
         test(Locale.JAPANESE, "Japanese");
@@ -60,7 +61,7 @@ abstract public class CheckCollator {
 
         final FileInputStream fis = new FileInputStream(fileName);
         final InputStreamReader isr = new InputStreamReader(fis, "UnicodeLittle");
-        final BufferedReader br = new BufferedReader(isr, 32*1024);
+        final BufferedReader br = new BufferedReader(isr, 32 * 1024);
 
         int counter = 0;
 
@@ -87,7 +88,6 @@ abstract public class CheckCollator {
 
         int size = list.size();
 
-
         // later, adjust these so we always get a reasonble number of tries
 
         int extraIterations = 200;
@@ -95,7 +95,7 @@ abstract public class CheckCollator {
             size = limit;
         }
 
-        final String[] tests = new String [size];
+        final String[] tests = new String[size];
 
         for (int i = 0; i < size; ++i) {
             tests[i] = (String) list.get(i);
@@ -106,11 +106,9 @@ abstract public class CheckCollator {
         final com.ibm.icu.text.Collator newCol = com.ibm.icu.text.Collator.getInstance(loc);
         final java.text.Collator oldCol = java.text.Collator.getInstance(loc);
 
-
         double startTime, endTime;
         double delta, oldDelta;
         String probe;
-
 
         // load classes at least once before starting
 
@@ -129,14 +127,18 @@ abstract public class CheckCollator {
             final byte[] oldKey = oldCol.getCollationKey(tests[i]).toByteArray();
             oldSize += oldKey.length;
         }
-        delta = stringSize/(size + 0.0);
+        delta = stringSize / (size + 0.0);
         System.out.println("string size: " + nf.format(delta) + " bytes per key");
         System.out.println();
 
-        delta = oldDelta = (oldSize/(size + 0.0));
+        delta = oldDelta = (oldSize / (size + 0.0));
         System.out.println("old sortkey size: " + nf.format(delta) + " bytes per key ");
-        delta = (newSize/(size + 0.0));
-        System.out.println("new sortkey size: " + nf.format(delta) + " bytes per key " + percent.format(delta/oldDelta));
+        delta = (newSize / (size + 0.0));
+        System.out.println(
+                "new sortkey size: "
+                        + nf.format(delta)
+                        + " bytes per key "
+                        + percent.format(delta / oldDelta));
         System.out.println();
 
         // ================================================
@@ -152,7 +154,7 @@ abstract public class CheckCollator {
             }
         }
         endTime = System.currentTimeMillis();
-        double overhead = (1000*(endTime - startTime) / counter);
+        double overhead = (1000 * (endTime - startTime) / counter);
         System.out.println("overhead: " + nf.format((endTime - startTime) / counter) + " micros");
 
         counter = 0;
@@ -166,9 +168,9 @@ abstract public class CheckCollator {
             }
         }
         endTime = System.currentTimeMillis();
-        oldDelta = delta = (1000*(endTime - startTime) / counter) - overhead;
-        System.out.println("Old sort key time: " + nf.format(delta)
-                + " micros (" + counter + " iterations)");
+        oldDelta = delta = (1000 * (endTime - startTime) / counter) - overhead;
+        System.out.println(
+                "Old sort key time: " + nf.format(delta) + " micros (" + counter + " iterations)");
 
         // Sort Key: new time
 
@@ -183,9 +185,14 @@ abstract public class CheckCollator {
             }
         }
         endTime = System.currentTimeMillis();
-        delta = (1000*(endTime - startTime) / counter) - overhead;
-        System.out.println("New sort key time: " + nf.format(delta)
-                + " micros (" + counter + " iterations) " + percent.format(delta/oldDelta));
+        delta = (1000 * (endTime - startTime) / counter) - overhead;
+        System.out.println(
+                "New sort key time: "
+                        + nf.format(delta)
+                        + " micros ("
+                        + counter
+                        + " iterations) "
+                        + percent.format(delta / oldDelta));
         System.out.println();
 
         // ================================================
@@ -205,8 +212,9 @@ abstract public class CheckCollator {
                 }
             }
             endTime = System.currentTimeMillis();
-            overhead = (1000*(endTime - startTime) / counter);
-            System.out.println("overhead: " + nf.format((endTime - startTime) / counter) + " micros");
+            overhead = (1000 * (endTime - startTime) / counter);
+            System.out.println(
+                    "overhead: " + nf.format((endTime - startTime) / counter) + " micros");
 
             // Raw Compare: old time
 
@@ -221,9 +229,13 @@ abstract public class CheckCollator {
                 }
             }
             endTime = System.currentTimeMillis();
-            oldDelta = delta = (1000*(endTime - startTime) / counter) - overhead;
-            System.out.println("Old raw compare time: " + nf.format(delta)
-                    + " micros (" + counter + " iterations)");
+            oldDelta = delta = (1000 * (endTime - startTime) / counter) - overhead;
+            System.out.println(
+                    "Old raw compare time: "
+                            + nf.format(delta)
+                            + " micros ("
+                            + counter
+                            + " iterations)");
 
             // Raw Compare: new time
 
@@ -238,9 +250,14 @@ abstract public class CheckCollator {
                 }
             }
             endTime = System.currentTimeMillis();
-            delta = (1000*(endTime - startTime) / counter) - overhead;
-            System.out.println("New raw compare time: " + nf.format(delta)
-                    + " micros (" + counter + " iterations) " + percent.format(delta/oldDelta));
+            delta = (1000 * (endTime - startTime) / counter) - overhead;
+            System.out.println(
+                    "New raw compare time: "
+                            + nf.format(delta)
+                            + " micros ("
+                            + counter
+                            + " iterations) "
+                            + percent.format(delta / oldDelta));
             System.out.println();
         }
 
@@ -263,9 +280,9 @@ abstract public class CheckCollator {
             }
         }
         endTime = System.currentTimeMillis();
-        overhead = delta = (1000*(endTime - startTime) / iterations);
-        System.out.println("Overhead: " + nf.format(delta)
-                + " micros (" + iterations + " iterations)");
+        overhead = delta = (1000 * (endTime - startTime) / iterations);
+        System.out.println(
+                "Overhead: " + nf.format(delta) + " micros (" + iterations + " iterations)");
 
         // old time
 
@@ -279,10 +296,13 @@ abstract public class CheckCollator {
             }
         }
         endTime = System.currentTimeMillis();
-        oldDelta = delta = (1000*(endTime - startTime) / iterations) - overhead;
-        System.out.println("Old binary search time: " + nf.format(delta)
-                + " micros (" + iterations + " iterations)");
-
+        oldDelta = delta = (1000 * (endTime - startTime) / iterations) - overhead;
+        System.out.println(
+                "Old binary search time: "
+                        + nf.format(delta)
+                        + " micros ("
+                        + iterations
+                        + " iterations)");
 
         // new time
 
@@ -297,9 +317,14 @@ abstract public class CheckCollator {
             }
         }
         endTime = System.currentTimeMillis();
-        delta = (1000*(endTime - startTime) / iterations) - overhead;
-        System.out.println("New binary search time: " + nf.format(delta)
-                + " micros (" + iterations + " iterations) " + percent.format(delta/oldDelta));
+        delta = (1000 * (endTime - startTime) / iterations) - overhead;
+        System.out.println(
+                "New binary search time: "
+                        + nf.format(delta)
+                        + " micros ("
+                        + iterations
+                        + " iterations) "
+                        + percent.format(delta / oldDelta));
         System.out.println();
 
         // ================================================
@@ -320,9 +345,9 @@ abstract public class CheckCollator {
             }
         }
         endTime = System.currentTimeMillis();
-        overhead = delta = (1000*(endTime - startTime) / iterations);
-        System.out.println("overhead: " + nf.format(delta)
-                + " micros (" + iterations + " iterations)");
+        overhead = delta = (1000 * (endTime - startTime) / iterations);
+        System.out.println(
+                "overhead: " + nf.format(delta) + " micros (" + iterations + " iterations)");
 
         // old time
 
@@ -335,9 +360,9 @@ abstract public class CheckCollator {
             }
         }
         endTime = System.currentTimeMillis();
-        oldDelta = delta = (1000*(endTime - startTime) / iterations) - overhead;
-        System.out.println("Old sort time: " + nf.format(delta)
-                + " micros (" + iterations + " iterations)");
+        oldDelta = delta = (1000 * (endTime - startTime) / iterations) - overhead;
+        System.out.println(
+                "Old sort time: " + nf.format(delta) + " micros (" + iterations + " iterations)");
 
         // new time
 
@@ -350,9 +375,13 @@ abstract public class CheckCollator {
             }
         }
         endTime = System.currentTimeMillis();
-        delta = (1000*(endTime - startTime) / iterations) - overhead;
-        System.out.println("New sort time: " + nf.format(delta)
-                + " micros (" + iterations + " iterations) " + percent.format(delta/oldDelta));
-
+        delta = (1000 * (endTime - startTime) / iterations) - overhead;
+        System.out.println(
+                "New sort time: "
+                        + nf.format(delta)
+                        + " micros ("
+                        + iterations
+                        + " iterations) "
+                        + percent.format(delta / oldDelta));
     }
 }

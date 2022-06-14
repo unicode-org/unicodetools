@@ -6,12 +6,10 @@
  */
 package org.unicode.temp;
 
-import java.util.List;
-
-import org.unicode.props.UnicodeProperty;
-
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
+import java.util.List;
+import org.unicode.props.UnicodeProperty;
 
 public abstract class UnicodePropertyX<T> extends UnicodeProperty {
 
@@ -249,4 +247,3 @@ public abstract class UnicodePropertyX<T> extends UnicodeProperty {
         return super.equals(obj);
     }
 }
-

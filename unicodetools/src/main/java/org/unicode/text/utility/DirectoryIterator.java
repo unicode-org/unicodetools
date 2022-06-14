@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
-
 public class DirectoryIterator {
 
     private File baseDirectory;
@@ -18,13 +17,13 @@ public class DirectoryIterator {
     private DirectoryIterator subdirectory = null;
     private FileFilter filter = null;
 
-    static private Comparator reverseComparator =
+    private static Comparator reverseComparator =
             new Comparator() {
-        @Override
-        public int compare(Object a, Object b) {
-            return ((Comparable) b).compareTo(a);
-        }
-    };
+                @Override
+                public int compare(Object a, Object b) {
+                    return ((Comparable) b).compareTo(a);
+                }
+            };
 
     public DirectoryIterator(File directory, FileFilter filter) {
         setDirectory(directory);
@@ -70,8 +69,7 @@ public class DirectoryIterator {
         return filter;
     }
 
-    /** Returns null when done
-     */
+    /** Returns null when done */
     public File next() {
         File file = null;
         while (true) {
@@ -85,7 +83,7 @@ public class DirectoryIterator {
             if (!fileList.hasNext()) {
                 return null;
             }
-            final String filestr = (String)fileList.next();
+            final String filestr = (String) fileList.next();
             file = new File(baseDirectory, filestr);
             if (file.isDirectory()) {
                 subdirectory = new DirectoryIterator(file, filter);
@@ -100,10 +98,8 @@ public class DirectoryIterator {
         }
     }
 
-    /**
-     * Returns the part before any '.' or '-' in the file name, without directory
-     */
-    static public String getRoot(File f) {
+    /** Returns the part before any '.' or '-' in the file name, without directory */
+    public static String getRoot(File f) {
         final String s = f.getName();
         int dotPos = s.indexOf('.');
         if (dotPos < 0) {
@@ -116,35 +112,41 @@ public class DirectoryIterator {
         if (dotPos < dashPos) {
             dashPos = dotPos;
         }
-        return s.substring(0,dashPos);
+        return s.substring(0, dashPos);
     }
 
     public static class RootFileFilter implements FileFilter {
         String root;
+
         public RootFileFilter(String root) {
             setRoot(root);
         }
+
         public void setRoot(String root) {
             this.root = root;
         }
+
         public String getRoot() {
             return root;
         }
+
         @Override
         public boolean accept(File f) {
             return DirectoryIterator.getRoot(f).equals("DerivedCoreProperties");
         }
+
         public String getDescription() {
             return "Root is '" + root + "'";
         }
+
         @Override
         public String toString() {
             return getDescription();
         }
-    };
+    }
+    ;
 
-
-    static public void test() {
+    public static void test() {
         final File testDir = new File(Settings.UnicodeTools.UCD_DIR);
         DirectoryIterator di;
 
@@ -172,9 +174,10 @@ public class DirectoryIterator {
         }
     }
 
-    static public boolean isAlmostIdentical(File file1, File file2, boolean show) throws IOException {
-        final BufferedReader br1 = new BufferedReader(new FileReader(file1), 32*1024);
-        final BufferedReader br2 = new BufferedReader(new FileReader(file2), 32*1024);
+    public static boolean isAlmostIdentical(File file1, File file2, boolean show)
+            throws IOException {
+        final BufferedReader br1 = new BufferedReader(new FileReader(file1), 32 * 1024);
+        final BufferedReader br2 = new BufferedReader(new FileReader(file2), 32 * 1024);
         try {
             for (int lineCount = 0; ; ++lineCount) {
                 final String line1 = br1.readLine();
@@ -215,5 +218,4 @@ public class DirectoryIterator {
             br2.close();
         }
     }
-
 }

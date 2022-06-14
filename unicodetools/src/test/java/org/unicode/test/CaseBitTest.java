@@ -1,20 +1,17 @@
 package org.unicode.test;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
-
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.unicode.text.UCA.CEList;
@@ -30,7 +27,8 @@ import org.unicode.unused.CaseBit.Casing;
 import org.unicode.unused.CaseBit.CasingList;
 
 public class CaseBitTest extends TestFmwkMinusMinus {
-    static ToolUnicodePropertySource propertySource = ToolUnicodePropertySource.make(Default.ucdVersion());
+    static ToolUnicodePropertySource propertySource =
+            ToolUnicodePropertySource.make(Default.ucdVersion());
 
     //    public void TestKana() {
     //        UnicodeSet kata = propertySource.getSet("script=kana");
@@ -54,7 +52,8 @@ public class CaseBitTest extends TestFmwkMinusMinus {
     //        //            if (largeNames.size() != 1) {
     //        //                System.out.println("Bad name match" + s);
     //        //            } else {
-    //        //                System.out.println("{\"" + largeNames.iterator().next() + "\", \"" + s + "\"},");
+    //        //                System.out.println("{\"" + largeNames.iterator().next() + "\", \"" +
+    // s + "\"},");
     //        //            }
     //        //        }
     //    }
@@ -74,11 +73,11 @@ public class CaseBitTest extends TestFmwkMinusMinus {
         final UnicodeSet normal = new UnicodeSet("[:^C:]");
         final UCA uca = getUca();
         final UnicodeMap<Row.R2<Casing, Casing>> status = new UnicodeMap<Row.R2<Casing, Casing>>();
-        //checkString("ǅ", uca, status);
+        // checkString("ǅ", uca, status);
         checkString("ᴭ", uca, status);
         checkString("㌀", uca, status);
         checkString("⅍", uca, status);
-        //checkString("ぁ", uca, status);
+        // checkString("ぁ", uca, status);
         checkString("㌁", uca, status);
         checkString("ᾈ", uca, status);
         checkString("ￇ", uca, status);
@@ -113,10 +112,11 @@ public class CaseBitTest extends TestFmwkMinusMinus {
         // get sorted list
         // we don't care for this purpose if there are duplicates
         final UCA uca = getUca();
-        final Relation<CEList, String> sorted = Relation.of(
-                new TreeMap<CEList,Set<String>>(),
-                TreeSet.class,
-                new UTF16.StringComparator(true,false,0));
+        final Relation<CEList, String> sorted =
+                Relation.of(
+                        new TreeMap<CEList, Set<String>>(),
+                        TreeSet.class,
+                        new UTF16.StringComparator(true, false, 0));
         int regular = 0;
         int contractions = 0;
         for (int cp = 0; cp < 0x10FFFF; ++cp) {
@@ -159,10 +159,12 @@ public class CaseBitTest extends TestFmwkMinusMinus {
                     final CasingList casingOld = CaseBit.getPropertyCasing(stringOld, true);
                     final CasingList casing = CaseBit.getPropertyCasing(string, true);
                     if (casing.compareTo(casingOld) < 0) {
-                        errln("Unordered"
-                                + "\told:\t" + showInfo(stringOld, ceListOld, casingOld)
-                                + "\tnew:\t" + showInfo(string, ceList, casing)
-                                );
+                        errln(
+                                "Unordered"
+                                        + "\told:\t"
+                                        + showInfo(stringOld, ceListOld, casingOld)
+                                        + "\tnew:\t"
+                                        + showInfo(string, ceList, casing));
                         unordered.add(string);
                     }
                 } finally {
@@ -174,9 +176,17 @@ public class CaseBitTest extends TestFmwkMinusMinus {
     }
 
     public String showInfo(String stringOld, CEList ceListOld, CasingList casingOld) {
-        return (stringOld + "\t'" + Utility.hex(stringOld) + "\t" + Default.ucd().getName(stringOld)
-                + "\t" + ceListOld + "\t" + casingOld);
+        return (stringOld
+                + "\t'"
+                + Utility.hex(stringOld)
+                + "\t"
+                + Default.ucd().getName(stringOld)
+                + "\t"
+                + ceListOld
+                + "\t"
+                + casingOld);
     }
+
     static final UnicodeSet LOWERCASE = propertySource.getSet("Lowercase=true");
 
     public void checkString(String s, UCA uca, UnicodeMap<R2<Casing, Casing>> status) {
@@ -204,7 +214,7 @@ public class CaseBitTest extends TestFmwkMinusMinus {
         }
 
         if (unicodeCasing != composedUcaCasing) {
-            //assertEquals(s, unicodeCasing, composedUcaCasing);
+            // assertEquals(s, unicodeCasing, composedUcaCasing);
             status.put(s, Row.of(unicodeCasing, composedUcaCasing));
         }
     }

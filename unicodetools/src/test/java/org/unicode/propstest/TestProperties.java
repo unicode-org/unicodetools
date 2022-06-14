@@ -1,5 +1,13 @@
 package org.unicode.propstest;
 
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
+import com.ibm.icu.impl.Utility;
+import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.text.Transform;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -11,16 +19,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-
-import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
-import com.ibm.icu.impl.Utility;
-import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
-
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.unicode.cldr.util.Counter;
@@ -44,13 +42,16 @@ public class TestProperties extends TestFmwkMinusMinus {
 
     // TODO generate list of versions, plus 'latest'
 
-    private static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
+    private static final IndexUnicodeProperties iup =
+            IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
     private static final UnicodeMap<String> newName = iup.load(UcdProperty.Name);
     private static final UnicodeMap<String> blocks = iup.load(UcdProperty.Block);
     private static final IndexUnicodeProperties lastVersion = IndexUnicodeProperties.make("6.3");
-    private static final UnicodeMap<String> generalCategory = iup.load(UcdProperty.General_Category);
-    private static final UnicodeSet newChars = iup.load(UcdProperty.Age).getSet(UcdPropertyValues.Age_Values.V7_0.name());
-    private static final  UnicodeMap<String> nameMap = iup.load(UcdProperty.Name);
+    private static final UnicodeMap<String> generalCategory =
+            iup.load(UcdProperty.General_Category);
+    private static final UnicodeSet newChars =
+            iup.load(UcdProperty.Age).getSet(UcdPropertyValues.Age_Values.V7_0.name());
+    private static final UnicodeMap<String> nameMap = iup.load(UcdProperty.Name);
 
     @Test
     public void TestPropertyValuesSetCoverage() {
@@ -62,16 +63,16 @@ public class TestProperties extends TestFmwkMinusMinus {
         all.removeAll(PropertyValueSets.PUNCTUATION);
         all.removeAll(PropertyValueSets.SEPARATOR);
         all.removeAll(PropertyValueSets.SYMBOL);
-        all.removeAll(EnumSet.of(
-                General_Category_Values.Other,
-                General_Category_Values.Letter,
-                General_Category_Values.Cased_Letter,
-                General_Category_Values.Mark,
-                General_Category_Values.Number,
-                General_Category_Values.Punctuation,
-                General_Category_Values.Separator,
-                General_Category_Values.Symbol
-                ));
+        all.removeAll(
+                EnumSet.of(
+                        General_Category_Values.Other,
+                        General_Category_Values.Letter,
+                        General_Category_Values.Cased_Letter,
+                        General_Category_Values.Mark,
+                        General_Category_Values.Number,
+                        General_Category_Values.Punctuation,
+                        General_Category_Values.Separator,
+                        General_Category_Values.Symbol));
         assertEquals("", Collections.EMPTY_SET, all);
     }
 
@@ -97,40 +98,52 @@ public class TestProperties extends TestFmwkMinusMinus {
         EmojiData emojiData = EmojiData.EMOJI_DATA;
         {
             UnicodeMap<Binary> emoji = iup.loadEnum(UcdProperty.Emoji, Binary.class);
-            assertSameContents("Emoji", emojiData.getSingletonsWithoutDefectives(), emoji.getSet(Binary.Yes));
-        }{
-            UnicodeMap<Binary> presentation = iup.loadEnum(UcdProperty.Emoji_Presentation, Binary.class);
-            assertSameContents("Emoji_Presentation", emojiData.getEmojiPresentationSet(),
+            assertSameContents(
+                    "Emoji", emojiData.getSingletonsWithoutDefectives(), emoji.getSet(Binary.Yes));
+        }
+        {
+            UnicodeMap<Binary> presentation =
+                    iup.loadEnum(UcdProperty.Emoji_Presentation, Binary.class);
+            assertSameContents(
+                    "Emoji_Presentation",
+                    emojiData.getEmojiPresentationSet(),
                     presentation.getSet(Binary.Yes));
-        }{
+        }
+        {
             UnicodeMap<Binary> modifiers = iup.loadEnum(UcdProperty.Emoji_Modifier, Binary.class);
-            assertSameContents("Emoji_Modifier", EmojiData.MODIFIERS,
-                    modifiers.getSet(Binary.Yes));
-        }{
+            assertSameContents("Emoji_Modifier", EmojiData.MODIFIERS, modifiers.getSet(Binary.Yes));
+        }
+        {
             UnicodeMap<Binary> bases = iup.loadEnum(UcdProperty.Emoji_Modifier_Base, Binary.class);
-            assertSameContents("Emoji_Modifier_Base", emojiData.getModifierBases(),
-                    bases.getSet(Binary.Yes));
+            assertSameContents(
+                    "Emoji_Modifier_Base", emojiData.getModifierBases(), bases.getSet(Binary.Yes));
         }
     }
 
     private void assertSameContents(String string, UnicodeSet a, UnicodeSet b) {
         if (!a.equals(b)) {
-            assertEquals(string + " (missing)", "[]", new UnicodeSet(a).removeAll(b).toPattern(false));
-            assertEquals(string + " (extra)", "[]", new UnicodeSet(b).removeAll(a).toPattern(false));
+            assertEquals(
+                    string + " (missing)", "[]", new UnicodeSet(a).removeAll(b).toPattern(false));
+            assertEquals(
+                    string + " (extra)", "[]", new UnicodeSet(b).removeAll(a).toPattern(false));
         } else {
             logln(string + " OK:\t" + a.toPattern(false));
         }
     }
 
-    private <T> void showByValue(UcdProperty prop, UnicodeMap<T> emojiStyle, ValueCardinality cardinality) {
-        TreeSet<T> sorted = cardinality == ValueCardinality.Singleton ? new TreeSet<T>() : new TreeSet<T>(new SetComparator());
+    private <T> void showByValue(
+            UcdProperty prop, UnicodeMap<T> emojiStyle, ValueCardinality cardinality) {
+        TreeSet<T> sorted =
+                cardinality == ValueCardinality.Singleton
+                        ? new TreeSet<T>()
+                        : new TreeSet<T>(new SetComparator());
         sorted.addAll(emojiStyle.values());
         for (T value : sorted) {
             if (value == Binary.No) {
                 continue;
             }
             UnicodeSet us = emojiStyle.getSet(value);
-            logln("\t" + value + ":\t" + us.size() + "\t" +  us.toPattern(false));
+            logln("\t" + value + ":\t" + us.size() + "\t" + us.toPattern(false));
         }
     }
 
@@ -144,77 +157,96 @@ public class TestProperties extends TestFmwkMinusMinus {
     //        return CollectionUtilities.compare(x1, x2);
     //    }
 
-    public static class SetComparator<T extends Comparable>
-    implements Comparator<Set<T>> {
+    public static class SetComparator<T extends Comparable> implements Comparator<Set<T>> {
         public int compare(Set<T> o1, Set<T> o2) {
-            return CollectionUtilities.compare((Collection<T>)o1, (Collection<T>)o2);
+            return CollectionUtilities.compare((Collection<T>) o1, (Collection<T>) o2);
         }
-    };
-
+    }
+    ;
 
     @Test
     public void TestAAScripts() {
         UnicodeMap<String> scriptInfo = iup.load(UcdProperty.Script);
-        UnicodeSet unknownScript = scriptInfo.getSet(
-                UcdPropertyValues.Script_Values.Unknown.toString());
-        unknownScript.removeAll(generalCategory.getSet(
-                UcdPropertyValues.General_Category_Values.Unassigned.toString()))
-                .removeAll(generalCategory.getSet(
-                        UcdPropertyValues.General_Category_Values.Private_Use.toString()))
-                        .removeAll(generalCategory.getSet(
-                                UcdPropertyValues.General_Category_Values.Surrogate.toString()))
-                                ;
-        UnicodeSet unknownMarks = new UnicodeSet(generalCategory.getSet(
-                UcdPropertyValues.General_Category_Values.Nonspacing_Mark.toString()))
-        .addAll(generalCategory.getSet(
-                UcdPropertyValues.General_Category_Values.Enclosing_Mark.toString()))
-                .addAll(generalCategory.getSet(
-                        UcdPropertyValues.General_Category_Values.Spacing_Mark.toString()))
-                        .retainAll(unknownScript)
-                        ;
+        UnicodeSet unknownScript =
+                scriptInfo.getSet(UcdPropertyValues.Script_Values.Unknown.toString());
+        unknownScript
+                .removeAll(
+                        generalCategory.getSet(
+                                UcdPropertyValues.General_Category_Values.Unassigned.toString()))
+                .removeAll(
+                        generalCategory.getSet(
+                                UcdPropertyValues.General_Category_Values.Private_Use.toString()))
+                .removeAll(
+                        generalCategory.getSet(
+                                UcdPropertyValues.General_Category_Values.Surrogate.toString()));
+        UnicodeSet unknownMarks =
+                new UnicodeSet(
+                                generalCategory.getSet(
+                                        UcdPropertyValues.General_Category_Values.Nonspacing_Mark
+                                                .toString()))
+                        .addAll(
+                                generalCategory.getSet(
+                                        UcdPropertyValues.General_Category_Values.Enclosing_Mark
+                                                .toString()))
+                        .addAll(
+                                generalCategory.getSet(
+                                        UcdPropertyValues.General_Category_Values.Spacing_Mark
+                                                .toString()))
+                        .retainAll(unknownScript);
         unknownScript.removeAll(unknownMarks);
         assertEquals("Missing Inherited", UnicodeSet.EMPTY, unknownMarks);
         assertEquals("Missing Common", UnicodeSet.EMPTY, unknownScript);
-        for (UnicodeSetIterator it = new UnicodeSetIterator(unknownScript);
-                it.nextRange();) {
-            logln(Utility.hex(it.codepoint) + ".." + Utility.hex(it.codepointEnd)
-                    + "; Common # (" + generalCategory.get(it.codepoint) + ".." + generalCategory.get(it.codepointEnd) + ") "
-                    + nameMap.get(it.codepoint) + ".." + nameMap.get(it.codepointEnd)
-                    );
+        for (UnicodeSetIterator it = new UnicodeSetIterator(unknownScript); it.nextRange(); ) {
+            logln(
+                    Utility.hex(it.codepoint)
+                            + ".."
+                            + Utility.hex(it.codepointEnd)
+                            + "; Common # ("
+                            + generalCategory.get(it.codepoint)
+                            + ".."
+                            + generalCategory.get(it.codepointEnd)
+                            + ") "
+                            + nameMap.get(it.codepoint)
+                            + ".."
+                            + nameMap.get(it.codepointEnd));
         }
     }
+
     @Test
     public void TestScripts() {
 
         logln("New chars: " + newChars.size());
         {
-            LinkedHashSet values = new LinkedHashSet(
-                    Arrays.asList(Script_Values.values()));
+            LinkedHashSet values = new LinkedHashSet(Arrays.asList(Script_Values.values()));
             values.remove(Script_Values.Unknown);
             values.remove(Script_Values.Katakana_Or_Hiragana);
-            listValues(UcdProperty.Script, values,
+            listValues(
+                    UcdProperty.Script,
+                    values,
                     new Transform<Script_Values, String>() {
-                @Override
-                public String transform(Script_Values source) {
-                    return source.getShortName();
-                }
-            });
+                        @Override
+                        public String transform(Script_Values source) {
+                            return source.getShortName();
+                        }
+                    });
         }
         {
-            LinkedHashSet values = new LinkedHashSet(
-                    Arrays.asList(General_Category_Values.values()));
-            listValues(UcdProperty.General_Category, values,
+            LinkedHashSet values =
+                    new LinkedHashSet(Arrays.asList(General_Category_Values.values()));
+            listValues(
+                    UcdProperty.General_Category,
+                    values,
                     new Transform<General_Category_Values, String>() {
-                @Override
-                public String transform(General_Category_Values source) {
-                    return source.getShortName();
-                }
-            });
+                        @Override
+                        public String transform(General_Category_Values source) {
+                            return source.getShortName();
+                        }
+                    });
         }
     }
 
-    public <T extends Enum<T>> void listValues(UcdProperty ucdProperty, Collection<T> values,
-            Transform<T, String> transform) {
+    public <T extends Enum<T>> void listValues(
+            UcdProperty ucdProperty, Collection<T> values, Transform<T, String> transform) {
         UnicodeMap<String> scripts = iup.load(ucdProperty);
         UnicodeMap<String> oldScripts = lastVersion.load(ucdProperty);
 
@@ -242,34 +274,39 @@ public class TestProperties extends TestFmwkMinusMinus {
         for (T c : sorted) {
             logln(
                     nf.format(oldScriptCounts.get(c))
-                    + "\t" + nf.format(newScriptCounts.get(c))
-                    + "\t" + transform.transform(c)
-                    + "\t" + c);
+                            + "\t"
+                            + nf.format(newScriptCounts.get(c))
+                            + "\t"
+                            + transform.transform(c)
+                            + "\t"
+                            + c);
         }
     }
 
-    public HashMap<String, String> getSkeletonMap(Collection<String> collection, boolean skeletonToNormal) {
+    public HashMap<String, String> getSkeletonMap(
+            Collection<String> collection, boolean skeletonToNormal) {
         HashMap<String, String> capNewScripts = new HashMap<String, String>();
         for (String normal : collection) {
-            String skeleton = normal.toUpperCase(Locale.ENGLISH).replace("_","");
+            String skeleton = normal.toUpperCase(Locale.ENGLISH).replace("_", "");
             if (skeletonToNormal) {
                 capNewScripts.put(skeleton, normal);
             } else {
-                capNewScripts.put(normal,skeleton);
+                capNewScripts.put(normal, skeleton);
             }
         }
         return capNewScripts;
     }
 
     private void showValues(UnicodeSet us) {
-        for (UnicodeSetIterator it = new UnicodeSetIterator(us); it.nextRange();) {
+        for (UnicodeSetIterator it = new UnicodeSetIterator(us); it.nextRange(); ) {
             int start = it.codepoint;
             int end = it.codepointEnd;
-            logln(Utility.hex(start)
-                    + (start == end ? "" : ".." + Utility.hex(end))
-                    + "\t#\t" + newName.get(start)
-                    + (start == end ? "" : ".." + newName.get(end))
-                    );
+            logln(
+                    Utility.hex(start)
+                            + (start == end ? "" : ".." + Utility.hex(end))
+                            + "\t#\t"
+                            + newName.get(start)
+                            + (start == end ? "" : ".." + newName.get(end)));
         }
     }
 
@@ -281,15 +318,16 @@ public class TestProperties extends TestFmwkMinusMinus {
             }
             int start = it.codepoint;
             int end = it.codepointEnd;
-            logln(Utility.hex(start)
-                    + (start == end ? "" : ".." + Utility.hex(end))
-                    + " ;\t" + it.value
-                    + "\t#\t" + newName.get(start)
-                    + (start == end ? "" : ".." + newName.get(end))
-                    );
+            logln(
+                    Utility.hex(start)
+                            + (start == end ? "" : ".." + Utility.hex(end))
+                            + " ;\t"
+                            + it.value
+                            + "\t#\t"
+                            + newName.get(start)
+                            + (start == end ? "" : ".." + newName.get(end)));
         }
     }
-
 
     @Test
     public void TestIdn() {
@@ -306,21 +344,24 @@ public class TestProperties extends TestFmwkMinusMinus {
     }
 
     static class ExemplarExceptions {
-        static final Map<String,ExemplarExceptions> exemplarExceptions = new HashMap<>();
+        static final Map<String, ExemplarExceptions> exemplarExceptions = new HashMap<>();
         UnicodeSet additions = new UnicodeSet();
         UnicodeSet subtractions = new UnicodeSet();
+
         ExemplarExceptions add(String additions) {
-            if (additions!= null) {
+            if (additions != null) {
                 this.additions.addAll(new UnicodeSet(additions));
             }
             return this;
         }
+
         ExemplarExceptions remove(String subtractions) {
             if (subtractions != null) {
                 this.subtractions.addAll(subtractions);
             }
             return this;
         }
+
         static ExemplarExceptions get(String locale) {
             ExemplarExceptions ee = exemplarExceptions.get(locale);
             if (ee == null) {
@@ -328,9 +369,11 @@ public class TestProperties extends TestFmwkMinusMinus {
             }
             return ee;
         }
+
         public static void add(String locale, String chars) {
             ExemplarExceptions.get(locale).add(chars);
         }
+
         public static void remove(String locale, String chars) {
             ExemplarExceptions.get(locale).remove(chars);
         }
@@ -357,8 +400,6 @@ public class TestProperties extends TestFmwkMinusMinus {
         }
     }
 
-
-
     public String getCodeAndName(String cp) {
         return Utility.hex(cp) + " (" + cp + ") " + nameMap.get(cp);
     }
@@ -384,13 +425,15 @@ public class TestProperties extends TestFmwkMinusMinus {
             //            Collection<Enum> values = PropertyValues.valuesOf(prop);
             //            logln("values: " + values);
         }
-        for (final UcdPropertyValues.General_Category_Values prop : UcdPropertyValues.General_Category_Values.values()) {
+        for (final UcdPropertyValues.General_Category_Values prop :
+                UcdPropertyValues.General_Category_Values.values()) {
             logln(prop + "\t" + prop.getNames());
             //            Collection<Enum> values = PropertyValues.valuesOf(prop);
             //            logln("values: " + values);
         }
 
-        final UcdPropertyValues.General_Category_Values q = UcdPropertyValues.General_Category_Values.Unassigned;
+        final UcdPropertyValues.General_Category_Values q =
+                UcdPropertyValues.General_Category_Values.Unassigned;
         logln(q.getNames().toString());
 
         //        Enum x = PropertyValues.forValueName(UcdProperty.General_Category, "Cc");
@@ -407,28 +450,25 @@ public class TestProperties extends TestFmwkMinusMinus {
                 continue;
             }
             final PropertyNames<Age_Values> names = age.getNames();
-            //logln(names.getShortName());
+            // logln(names.getShortName());
             final IndexUnicodeProperties props = IndexUnicodeProperties.make(names.getShortName());
             final UnicodeMap<String> gc = props.load(UcdProperty.General_Category);
             final UnicodeMap<String> nt = props.load(UcdProperty.Numeric_Type);
-            final UnicodeSet gcNum = new UnicodeSet()
-            .addAll(gc.getSet(General_Category_Values.Decimal_Number.toString()))
-            .addAll(gc.getSet(General_Category_Values.Letter_Number.toString()))
-            .addAll(gc.getSet(General_Category_Values.Other_Number.toString()))
-            ;
-            final UnicodeSet ntNum = new UnicodeSet()
-            .addAll(nt.getSet(Numeric_Type_Values.Decimal.toString()))
-            .addAll(nt.getSet(Numeric_Type_Values.Digit.toString()))
-            .addAll(nt.getSet(Numeric_Type_Values.Numeric.toString()))
-            ;
+            final UnicodeSet gcNum =
+                    new UnicodeSet()
+                            .addAll(gc.getSet(General_Category_Values.Decimal_Number.toString()))
+                            .addAll(gc.getSet(General_Category_Values.Letter_Number.toString()))
+                            .addAll(gc.getSet(General_Category_Values.Other_Number.toString()));
+            final UnicodeSet ntNum =
+                    new UnicodeSet()
+                            .addAll(nt.getSet(Numeric_Type_Values.Decimal.toString()))
+                            .addAll(nt.getSet(Numeric_Type_Values.Digit.toString()))
+                            .addAll(nt.getSet(Numeric_Type_Values.Numeric.toString()));
             UnicodeSet diff;
             //            diff = new UnicodeSet(ntNum).removeAll(gcNum);
             //            logln(age + ", nt-gc:N" + diff);
             diff = new UnicodeSet(gcNum).removeAll(ntNum);
             logln(age + ", gc:N-nt" + diff);
         }
-
     }
-
-
 }

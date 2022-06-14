@@ -1,5 +1,7 @@
 package org.unicode.text.UCA;
 
+import com.ibm.icu.text.CanonicalIterator;
+import com.ibm.icu.text.UTF16;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -7,14 +9,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
-
 import org.unicode.text.UCA.UCA.AppendToCe;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.text.CanonicalIterator;
-import com.ibm.icu.text.UTF16;
 
 /**
  * Prepares the UCA mappings for generation of FractionalUCA.txt.
@@ -26,28 +24,22 @@ public final class MappingsForFractionalUCA {
     private final UCA uca;
 
     /**
-     * UCA collation mapping data.
-     * Comparison is by sort key first, then by the string.
-     * CEs do not contain completely ignorable CEs.
+     * UCA collation mapping data. Comparison is by sort key first, then by the string. CEs do not
+     * contain completely ignorable CEs.
      */
     /* package */ static class MappingWithSortKey implements Comparable<MappingWithSortKey> {
-        /**
-         * Optional prefix (context) string. null if none.
-         */
+        /** Optional prefix (context) string. null if none. */
         private final String prefix;
+
         private final String s;
-        /**
-         * Only non-zero collation elements, enforced by the constructors.
-         */
+        /** Only non-zero collation elements, enforced by the constructors. */
         private final CEList ces;
         /**
-         * Modified CEs, if any.
-         * If not null, then these are the CEs to be transformed into fractional CEs.
+         * Modified CEs, if any. If not null, then these are the CEs to be transformed into
+         * fractional CEs.
          */
         private CEList modifiedCEs;
-        /**
-         * Standard 3-level UCA sort key "string" corresponding to ces.
-         */
+        /** Standard 3-level UCA sort key "string" corresponding to ces. */
         private final String sortKey;
 
         private MappingWithSortKey(UCA uca, String s) {
@@ -73,9 +65,7 @@ public final class MappingsForFractionalUCA {
             return prefix != null;
         }
 
-        /**
-         * Returns the optional prefix (context) string. null if none.
-         */
+        /** Returns the optional prefix (context) string. null if none. */
         public String getPrefix() {
             return prefix;
         }
@@ -90,6 +80,7 @@ public final class MappingsForFractionalUCA {
 
         /**
          * Returns the modified CEs, if set, or else the original CEs.
+         *
          * @see #setModifiedCEs(CEList)
          */
         public CEList getCEs() {
@@ -144,9 +135,8 @@ public final class MappingsForFractionalUCA {
     }
 
     /**
-     * Returns the mappings for FractionalUCA.txt.
-     * The mappings are sorted by UCA sort keys, canonically closed,
-     * and modified for improved collation performance.
+     * Returns the mappings for FractionalUCA.txt. The mappings are sorted by UCA sort keys,
+     * canonically closed, and modified for improved collation performance.
      */
     /* package */ SortedSet<MappingWithSortKey> getMappings() {
         final SortedSet<MappingWithSortKey> ordered = getSortedUCAMappings();
@@ -157,8 +147,7 @@ public final class MappingsForFractionalUCA {
     /**
      * Returns a set of UCA mappings, sorted by their nearly-UCA-type sort key strings.
      *
-     * <p>This method also adds canonical equivalents (canonical closure),
-     * if any are missing.
+     * <p>This method also adds canonical equivalents (canonical closure), if any are missing.
      */
     private SortedSet<MappingWithSortKey> getSortedUCAMappings() {
         final String highCompat = UTF16.valueOf(0x2F805);
@@ -175,9 +164,13 @@ public final class MappingsForFractionalUCA {
                 break;
             }
             if (s.equals("\uFFFF") || s.equals("\uFFFE")) {
-                continue; // Suppress the FFFF and FFFE, since we are adding them artificially later.
+                continue; // Suppress the FFFF and FFFE, since we are adding them artificially
+                // later.
             }
-            if (s.equals("\uFA36") || s.equals("\uF900") || s.equals("\u2ADC") || s.equals(highCompat)) {
+            if (s.equals("\uFA36")
+                    || s.equals("\uF900")
+                    || s.equals("\u2ADC")
+                    || s.equals(highCompat)) {
                 System.out.println(" * " + Default.ucd().getCodeAndName(s));
             }
             contentsForCanonicalIteration.add(s);
@@ -251,7 +244,6 @@ public final class MappingsForFractionalUCA {
                     continue;
                 }
 
-
                 // Skip anything that is not FCD.
                 if (!Default.nfd().isFCD(s)) {
                     continue;
@@ -260,8 +252,10 @@ public final class MappingsForFractionalUCA {
                 // We ONLY add if the sort key would be different
                 // Than what we would get if we didn't decompose!!
                 final CEList ces = uca.getCEList(s, true);
-                final String sortKey = uca.getSortKey(ces, UCA_Types.NON_IGNORABLE, AppendToCe.none);
-                final String nonDecompSortKey = uca.getSortKey(s, UCA_Types.NON_IGNORABLE, false, AppendToCe.none);
+                final String sortKey =
+                        uca.getSortKey(ces, UCA_Types.NON_IGNORABLE, AppendToCe.none);
+                final String nonDecompSortKey =
+                        uca.getSortKey(s, UCA_Types.NON_IGNORABLE, false, AppendToCe.none);
                 if (sortKey.equals(nonDecompSortKey)) {
                     continue;
                 }
@@ -281,31 +275,32 @@ public final class MappingsForFractionalUCA {
         System.out.println("Done Adding canonical Equivalents -- added " + canCount);
         /*
 
-            for (int ch = 0; ch < 0x10FFFF; ++ch) {
-                Utility.dot(ch);
-                byte type = collator.getCEType(ch);
-                if (type >= UCA.FIXED_CE && !nfd.hasDecomposition(ch))
-                    continue;
-                }
-                String s = org.unicode.text.UTF16.valueOf(ch);
-                ordered.put(collator.getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + s, s);
-            }
+           for (int ch = 0; ch < 0x10FFFF; ++ch) {
+               Utility.dot(ch);
+               byte type = collator.getCEType(ch);
+               if (type >= UCA.FIXED_CE && !nfd.hasDecomposition(ch))
+                   continue;
+               }
+               String s = org.unicode.text.UTF16.valueOf(ch);
+               ordered.put(collator.getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + s, s);
+           }
 
-            Hashtable multiTable = collator.getContracting();
-            Enumeration enum = multiTable.keys();
-            int ecount = 0;
-            while (enum.hasMoreElements()) {
-                Utility.dot(ecount++);
-                String s = (String)enum.nextElement();
-                ordered.put(collator.getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + s, s);
-            }
-         */
+           Hashtable multiTable = collator.getContracting();
+           Enumeration enum = multiTable.keys();
+           int ecount = 0;
+           while (enum.hasMoreElements()) {
+               Utility.dot(ecount++);
+               String s = (String)enum.nextElement();
+               ordered.put(collator.getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + s, s);
+           }
+        */
         // JUST FOR TESTING
         final boolean TESTING = false;
         if (TESTING) {
-            final String sample = "\u3400\u3401\u4DB4\u4DB5\u4E00\u4E01\u9FA4\u9FA5\uAC00\uAC01\uD7A2\uD7A3";
+            final String sample =
+                    "\u3400\u3401\u4DB4\u4DB5\u4E00\u4E01\u9FA4\u9FA5\uAC00\uAC01\uD7A2\uD7A3";
             for (int i = 0; i < sample.length(); ++i) {
-                final String s = sample.substring(i, i+1);
+                final String s = sample.substring(i, i + 1);
                 ordered.add(new MappingWithSortKey(uca, s));
             }
         }
@@ -315,12 +310,12 @@ public final class MappingsForFractionalUCA {
 
     /**
      * Modifies some of the UCA mappings before they are converted to fractional CEs.
+     *
      * <ul>
-     * <li>Turns L+middle dot contractions into prefix rules.
-     * <li>Merges artificial secondary CEs into the preceding primary ones.
-     *     DUCET primary CEs only use the "common" secondary weight.
-     *     All secondary distinctions are made via additional secondary CEs.
-     *     In FractionalUCA we change that, to reduce the number of expansions.
+     *   <li>Turns L+middle dot contractions into prefix rules.
+     *   <li>Merges artificial secondary CEs into the preceding primary ones. DUCET primary CEs only
+     *       use the "common" secondary weight. All secondary distinctions are made via additional
+     *       secondary CEs. In FractionalUCA we change that, to reduce the number of expansions.
      * </ul>
      */
     private void modifyMappings(SortedSet<MappingWithSortKey> ordered) {
@@ -358,9 +353,13 @@ public final class MappingsForFractionalUCA {
             // does not get merged into the L's primary CE.
             // (That would prevent it from turning into a prefix mapping.)
             String s = mapping.s;
-            if (s.length() == 2 && ces.length() == 2 && mapping.prefix == null
-                    && (s.equals("l\u00B7") || s.equals("L\u00B7")
-                            || s.equals("l\u0387") || s.equals("L\u0387"))) {
+            if (s.length() == 2
+                    && ces.length() == 2
+                    && mapping.prefix == null
+                    && (s.equals("l\u00B7")
+                            || s.equals("L\u00B7")
+                            || s.equals("l\u0387")
+                            || s.equals("L\u0387"))) {
                 it.remove();
                 // Move the l/L to the prefix.
                 final String prefix = s.substring(0, 1);
@@ -386,8 +385,9 @@ public final class MappingsForFractionalUCA {
                 for (int i = 1; i < ces.length(); ++i) {
                     if (CEList.getPrimary(ces.at(i)) != 0) {
                         throw new IllegalArgumentException(
-                                "UCA Mapping " + mapping +
-                                "contains a primary CE after the initial ignorable CE");
+                                "UCA Mapping "
+                                        + mapping
+                                        + "contains a primary CE after the initial ignorable CE");
                     }
                 }
             } else {
@@ -397,12 +397,14 @@ public final class MappingsForFractionalUCA {
                     if (CEList.getPrimary(ce) != 0) {
                         if (sec != UCA_Types.NEUTRAL_SECONDARY && sec != 0) {
                             throw new IllegalArgumentException(
-                                    "UCA Mapping " + mapping +
-                                    "contains a primary CE with a non-common secondary weight");
+                                    "UCA Mapping "
+                                            + mapping
+                                            + "contains a primary CE with a non-common secondary weight");
                         }
                     } else if (sec > maxNormalSecondary) {
-                        if (ces.length() == 2 && sec == lMiddleDotSec &&
-                                CEList.getPrimary(firstCE) == lMiddleDotPri) {
+                        if (ces.length() == 2
+                                && sec == lMiddleDotSec
+                                && CEList.getPrimary(firstCE) == lMiddleDotPri) {
                             break;
                         }
                         if ((i + 1) < ces.length()) {
@@ -411,8 +413,9 @@ public final class MappingsForFractionalUCA {
                             final int nextSec = CEList.getSecondary(nextCE);
                             if (nextPri == 0 && nextSec > maxNormalSecondary) {
                                 throw new IllegalArgumentException(
-                                        "UCA Mapping " + mapping +
-                                        "contains two artificial secondary CEs in a row");
+                                        "UCA Mapping "
+                                                + mapping
+                                                + "contains two artificial secondary CEs in a row");
                             }
                         }
                         // Check that the previous CE is a primary CE.
@@ -441,7 +444,8 @@ public final class MappingsForFractionalUCA {
                         // Reduce the secondary weight to just after the common weight.
                         sec = UCA_Types.NEUTRAL_SECONDARY + sec - maxNormalSecondary;
                         // TODO: This is broken!
-                        // Map secondaries of primary CEs vs. ignorable CEs to separate ranges of fractional secondaries.
+                        // Map secondaries of primary CEs vs. ignorable CEs to separate ranges of
+                        // fractional secondaries.
                         final int previousTer = CEList.getTertiary(previousCE);
                         newCEs[previous] = UCA.makeKey(previousPri, sec, previousTer);
                         while (++previous < i) {
@@ -454,7 +458,8 @@ public final class MappingsForFractionalUCA {
                         }
                         // Store the modified CEs and continue with looking at the next CE.
                         // We do not replace the whole mapping because the modified CEs
-                        // are not well-formed (secondary weights of primary vs. ignorable CEs overlap now)
+                        // are not well-formed (secondary weights of primary vs. ignorable CEs
+                        // overlap now)
                         // and therefore we should not use them to create a sort key.
                         mapping.modifiedCEs = ces = new CEList(newCEs);
                         --i;
@@ -465,7 +470,7 @@ public final class MappingsForFractionalUCA {
         }
         ordered.addAll(newMappings);
         System.out.println(
-                "Number of artificial secondary CEs merged into the preceding primary CEs: " +
-                        numSecondariesMerged);
+                "Number of artificial secondary CEs merged into the preceding primary CEs: "
+                        + numSecondariesMerged);
     }
 }

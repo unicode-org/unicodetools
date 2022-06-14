@@ -1,19 +1,17 @@
 package org.unicode.text.tools;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
-
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UnicodeSet;
-
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
+import org.unicode.cldr.util.CLDRFile.WinningChoice;
 import org.unicode.cldr.util.Iso639Data;
 import org.unicode.cldr.util.LanguageTagParser;
 import org.unicode.cldr.util.StandardCodes;
-import org.unicode.cldr.util.CLDRFile.WinningChoice;
 
 public class CLDRCharacterUtility {
     public static UnicodeMap<Set<String>> getCLDRCharacters() {
@@ -46,8 +44,7 @@ public class CLDRCharacterUtility {
                 System.err.println("Couldn't open: " + localeId);
                 continue;
             }
-            UnicodeSet exemplars = cldrFile
-                    .getExemplarSet("", WinningChoice.WINNING);
+            UnicodeSet exemplars = cldrFile.getExemplarSet("", WinningChoice.WINNING);
             if (exemplars != null) {
                 exemplars.closeOver(UnicodeSet.CASE);
                 for (String s : flatten(exemplars)) { // flatten

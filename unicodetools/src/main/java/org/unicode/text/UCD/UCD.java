@@ -1,16 +1,19 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -23,7 +26,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.unicode.props.DefaultValues;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -33,27 +35,17 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.VersionInfo;
-
 public final class UCD implements UCD_Types {
 
     static final boolean DEBUG = false;
     static final boolean SHOW_LOADING = false;
 
-    /**
-     * Create singleton instance for default (latest) version
-     */
+    /** Create singleton instance for default (latest) version */
     public static UCD makeLatestVersion() {
         return make(Settings.latestVersion);
     }
 
-    /**
-     * Create singleton instance for the specific version
-     */
+    /** Create singleton instance for the specific version */
     public static UCD make(String version) {
         if (version == null || version.length() == 0) {
             throw new IllegalArgumentException("use UCD.makeLatestVersion()");
@@ -63,7 +55,7 @@ public final class UCD implements UCD_Types {
         }
         UCD result = versionCache.get(version);
         if (result == null) {
-            //System.out.println(Utility.getStack());
+            // System.out.println(Utility.getStack());
             result = new UCD();
             result.fillFromFile(version);
             versionCache.put(version, result);
@@ -71,30 +63,22 @@ public final class UCD implements UCD_Types {
         return result;
     }
 
-    /**
-     * Get the version of the UCD as a dotted-decimal string.
-     */
+    /** Get the version of the UCD as a dotted-decimal string. */
     public String getVersion() {
         return versionString;
     }
 
-    /**
-     * Get the version of the UCD.
-     */
+    /** Get the version of the UCD. */
     public VersionInfo getVersionInfo() {
         return versionInfo;
     }
 
-    /**
-     * Get the date that the data was parsed
-     */
+    /** Get the date that the data was parsed */
     public long getDate() {
         return date;
     }
 
-    /**
-     * Is the code point allocated?
-     */
+    /** Is the code point allocated? */
     public boolean isAllocated(int codePoint) {
         if (getCategory(codePoint) != Cn) {
             return true;
@@ -118,16 +102,12 @@ public final class UCD implements UCD_Types {
         return false;
     }
 
-    /**
-     * Is the code point assigned to a character (or surrogate)
-     */
+    /** Is the code point assigned to a character (or surrogate) */
     public boolean isAssigned(int codePoint) {
         return getCategory(codePoint) != Cn;
     }
 
-    /**
-     * Is the code point a PUA character (fast check)
-     */
+    /** Is the code point a PUA character (fast check) */
     public boolean isPUA(int codePoint) {
         if (codePoint >= 0xE000 && codePoint < 0xF900) {
             return true;
@@ -140,37 +120,29 @@ public final class UCD implements UCD_Types {
     }
 
     /**
-     * Many ranges are elided in the UCD. All but the first are not actually
-     * represented in the data internally. This detects such cases.
+     * Many ranges are elided in the UCD. All but the first are not actually represented in the data
+     * internally. This detects such cases.
      */
     public boolean isRepresented(int codePoint) {
         return getRaw(codePoint) != null;
     }
 
-    /**
-     * Return XML version of the data associated with the code point.
-     */
+    /** Return XML version of the data associated with the code point. */
     public String toString(int codePoint) {
-        return get(codePoint, true).toString(this,FULL);
+        return get(codePoint, true).toString(this, FULL);
     }
 
-    /**
-     * Get the character name.
-     */
+    /** Get the character name. */
     public String getName(int codePoint) {
         return getName(codePoint, NORMAL);
     }
 
-    /**
-     * Get the character name.
-     */
+    /** Get the character name. */
     public String getName(String s) {
         return getName(s, NORMAL);
     }
 
-    /**
-     * Get the character name.
-     */
+    /** Get the character name. */
     public String getName(int codePoint, byte style) {
         String name;
         if (style == SHORT) {
@@ -188,9 +160,7 @@ public final class UCD implements UCD_Types {
         return name;
     }
 
-    /**
-     * Get the character names for the code points in a string, separated by ", "
-     */
+    /** Get the character names for the code points in a string, separated by ", " */
     public String getName(String s, byte style) {
         return getName(s, style, ", ");
     }
@@ -211,19 +181,14 @@ public final class UCD implements UCD_Types {
         return result.toString();
     }
 
-    /**
-     * Get the code in U+ notation
-     */
+    /** Get the code in U+ notation */
     public static String getCode(int codePoint) {
         return "U+" + Utility.hex(codePoint);
     }
 
-    /**
-     * Get the code in U+ notation
-     */
+    /** Get the code in U+ notation */
     public static String getCode(String s) {
-        if (s.length() == 1)
-        {
+        if (s.length() == 1) {
             return getCode(s.charAt(0)); // fast path
         }
         final StringBuffer result = new StringBuffer();
@@ -238,33 +203,29 @@ public final class UCD implements UCD_Types {
         return result.toString();
     }
 
-    /**
-     * Get the name and number (U+xxxx NAME) for a code point
-     */
+    /** Get the name and number (U+xxxx NAME) for a code point */
     public String getCodeAndName(int codePoint, byte type) {
         return getCodeAndName(codePoint, type, null);
     }
 
     public String getCodeAndName(int codePoint, byte type, Transliterator charTrans) {
         return getCode(codePoint)
-                + (charTrans == null ? " " : " ( " + charTrans.transliterate(UTF16.valueOf(codePoint)) + " ) ")
+                + (charTrans == null
+                        ? " "
+                        : " ( " + charTrans.transliterate(UTF16.valueOf(codePoint)) + " ) ")
                 + getName(codePoint, type);
     }
 
-    /**
-     * Get the name and number (U+xxxx NAME) for the code points in a string,
-     * separated by ", "
-     */
+    /** Get the name and number (U+xxxx NAME) for the code points in a string, separated by ", " */
     public String getCodeAndName(String s, byte type) {
-        return getCodeAndName(s,type,null);
+        return getCodeAndName(s, type, null);
     }
 
     public String getCodeAndName(String s, byte type, Transliterator charTrans) {
         if (s == null || s.length() == 0) {
             return "NULL";
         }
-        if (s.length() == 1)
-        {
+        if (s.length() == 1) {
             return getCodeAndName(s.charAt(0), type, charTrans); // fast path
         }
         final StringBuffer result = new StringBuffer();
@@ -279,23 +240,17 @@ public final class UCD implements UCD_Types {
         return result.toString();
     }
 
-    /**
-     * Get the name and number (U+xxxx NAME) for a code point
-     */
+    /** Get the name and number (U+xxxx NAME) for a code point */
     public String getCodeAndName(int codePoint) {
         return getCodeAndName(codePoint, NORMAL);
     }
 
-    /**
-     * Get the name and number (U+xxxx NAME) for a code point
-     */
+    /** Get the name and number (U+xxxx NAME) for a code point */
     public String getCodeAndName(String s) {
         return getCodeAndName(s, NORMAL);
     }
 
-    /**
-     * Get the general category
-     */
+    /** Get the general category */
     public byte getCategory(int codePoint) {
         return get(codePoint, false).generalCategory;
     }
@@ -313,57 +268,121 @@ public final class UCD implements UCD_Types {
         byte cat = getCategory(cp);
         if (cat == UNASSIGNED && isNoncharacter(cp)) {
             cat = FAKENC;
-        } else if (((1<<cat) & collapseBits) != 0) {
+        } else if (((1 << cat) & collapseBits) != 0) {
             switch (cat) {
-            case UNASSIGNED: cat = FAKE_OTHER; break;
-            case FAKENC: cat = FAKE_OTHER; break;
+                case UNASSIGNED:
+                    cat = FAKE_OTHER;
+                    break;
+                case FAKENC:
+                    cat = FAKE_OTHER;
+                    break;
 
-            case UPPERCASE_LETTER: cat = FAKE_LETTER; break;
-            case LOWERCASE_LETTER: cat = FAKE_LETTER; break;
-            case TITLECASE_LETTER: cat = FAKE_LETTER; break;
-            case MODIFIER_LETTER: cat = FAKE_LETTER; break;
-            case OTHER_LETTER: cat = FAKE_LETTER; break;
+                case UPPERCASE_LETTER:
+                    cat = FAKE_LETTER;
+                    break;
+                case LOWERCASE_LETTER:
+                    cat = FAKE_LETTER;
+                    break;
+                case TITLECASE_LETTER:
+                    cat = FAKE_LETTER;
+                    break;
+                case MODIFIER_LETTER:
+                    cat = FAKE_LETTER;
+                    break;
+                case OTHER_LETTER:
+                    cat = FAKE_LETTER;
+                    break;
 
-            case NON_SPACING_MARK: cat = FAKE_MARK; break;
-            case ENCLOSING_MARK: cat = FAKE_MARK; break;
-            case COMBINING_SPACING_MARK: cat = FAKE_MARK; break;
+                case NON_SPACING_MARK:
+                    cat = FAKE_MARK;
+                    break;
+                case ENCLOSING_MARK:
+                    cat = FAKE_MARK;
+                    break;
+                case COMBINING_SPACING_MARK:
+                    cat = FAKE_MARK;
+                    break;
 
-            case DECIMAL_DIGIT_NUMBER: cat = FAKE_NUMBER; break;
-            case LETTER_NUMBER: cat = FAKE_NUMBER; break;
-            case OTHER_NUMBER: cat = FAKE_NUMBER; break;
+                case DECIMAL_DIGIT_NUMBER:
+                    cat = FAKE_NUMBER;
+                    break;
+                case LETTER_NUMBER:
+                    cat = FAKE_NUMBER;
+                    break;
+                case OTHER_NUMBER:
+                    cat = FAKE_NUMBER;
+                    break;
 
-            case SPACE_SEPARATOR: cat = FAKE_SEPERATOR; break;
-            case LINE_SEPARATOR: cat = FAKE_SEPERATOR; break;
-            case PARAGRAPH_SEPARATOR: cat = FAKE_SEPERATOR; break;
+                case SPACE_SEPARATOR:
+                    cat = FAKE_SEPERATOR;
+                    break;
+                case LINE_SEPARATOR:
+                    cat = FAKE_SEPERATOR;
+                    break;
+                case PARAGRAPH_SEPARATOR:
+                    cat = FAKE_SEPERATOR;
+                    break;
 
-            case CONTROL: cat = FAKE_OTHER; break;
-            case FORMAT: cat = FAKE_OTHER; break;
-            case UNUSED_CATEGORY: cat = FAKE_OTHER; break;
-            case PRIVATE_USE: cat = FAKE_OTHER; break;
-            case SURROGATE: cat = FAKE_OTHER; break;
+                case CONTROL:
+                    cat = FAKE_OTHER;
+                    break;
+                case FORMAT:
+                    cat = FAKE_OTHER;
+                    break;
+                case UNUSED_CATEGORY:
+                    cat = FAKE_OTHER;
+                    break;
+                case PRIVATE_USE:
+                    cat = FAKE_OTHER;
+                    break;
+                case SURROGATE:
+                    cat = FAKE_OTHER;
+                    break;
 
-            case DASH_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
-            case START_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
-            case END_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
-            case CONNECTOR_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
-            case OTHER_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
-            case INITIAL_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
-            case FINAL_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
+                case DASH_PUNCTUATION:
+                    cat = FAKE_PUNCTUATION;
+                    break;
+                case START_PUNCTUATION:
+                    cat = FAKE_PUNCTUATION;
+                    break;
+                case END_PUNCTUATION:
+                    cat = FAKE_PUNCTUATION;
+                    break;
+                case CONNECTOR_PUNCTUATION:
+                    cat = FAKE_PUNCTUATION;
+                    break;
+                case OTHER_PUNCTUATION:
+                    cat = FAKE_PUNCTUATION;
+                    break;
+                case INITIAL_PUNCTUATION:
+                    cat = FAKE_PUNCTUATION;
+                    break;
+                case FINAL_PUNCTUATION:
+                    cat = FAKE_PUNCTUATION;
+                    break;
 
-            case MATH_SYMBOL: cat = FAKE_SYMBOL; break;
-            case CURRENCY_SYMBOL: cat = FAKE_SYMBOL; break;
-            case MODIFIER_SYMBOL: cat = FAKE_SYMBOL; break;
-            case OTHER_SYMBOL: cat = FAKE_SYMBOL; break;
+                case MATH_SYMBOL:
+                    cat = FAKE_SYMBOL;
+                    break;
+                case CURRENCY_SYMBOL:
+                    cat = FAKE_SYMBOL;
+                    break;
+                case MODIFIER_SYMBOL:
+                    cat = FAKE_SYMBOL;
+                    break;
+                case OTHER_SYMBOL:
+                    cat = FAKE_SYMBOL;
+                    break;
             }
             if (collapseBits == -1) {
                 switch (cat) {
-                case FAKE_MARK:
-                case FAKE_NUMBER:
-                case FAKE_SEPERATOR:
-                case FAKE_PUNCTUATION:
-                case FAKE_SYMBOL:
-                    cat = FAKE_LETTER;
-                    break;
+                    case FAKE_MARK:
+                    case FAKE_NUMBER:
+                    case FAKE_SEPERATOR:
+                    case FAKE_PUNCTUATION:
+                    case FAKE_SYMBOL:
+                        cat = FAKE_LETTER;
+                        break;
                 }
             }
         }
@@ -372,46 +391,80 @@ public final class UCD implements UCD_Types {
 
     public String getModCatID_fromIndex(byte cat) {
         switch (cat) {
-        case FAKE_SYMBOL: return "S&";
-        case FAKE_PUNCTUATION: return "P&";
-        case FAKE_SEPERATOR: return "Z&";
-        case FAKE_NUMBER: return "N&";
-        case FAKE_MARK: return "M&";
-        case FAKE_LETTER: return "L&";
-        case FAKE_OTHER: return "C&";
-        case FAKENC: return "NC";
+            case FAKE_SYMBOL:
+                return "S&";
+            case FAKE_PUNCTUATION:
+                return "P&";
+            case FAKE_SEPERATOR:
+                return "Z&";
+            case FAKE_NUMBER:
+                return "N&";
+            case FAKE_MARK:
+                return "M&";
+            case FAKE_LETTER:
+                return "L&";
+            case FAKE_OTHER:
+                return "C&";
+            case FAKENC:
+                return "NC";
         }
         return getCategoryID_fromIndex(cat);
     }
 
-    /**
-     * Get the main category, as a mask
-     */
+    /** Get the main category, as a mask */
     public static int mainCategoryMask(byte cat) {
         switch (cat) {
-        case Lu: case Ll: case Lt: case Lm: case Lo: return LETTER_MASK;
-        case Mn: case Me: case Mc: return MARK_MASK;
-        case Nd: case Nl: case No: return NUMBER_MASK;
-        case Zs: case Zl: case Zp: return SEPARATOR_MASK;
-        case Cc: case Cf: case Cs: case Co: return CONTROL_MASK;
-        case Pc: case Pd: case Ps: case Pe: case Po: case Pi: case Pf: return PUNCTUATION_MASK;
-        case Sm: case Sc: case Sk: case So: return SYMBOL_MASK;
-        case Cn: return UNASSIGNED_MASK;
+            case Lu:
+            case Ll:
+            case Lt:
+            case Lm:
+            case Lo:
+                return LETTER_MASK;
+            case Mn:
+            case Me:
+            case Mc:
+                return MARK_MASK;
+            case Nd:
+            case Nl:
+            case No:
+                return NUMBER_MASK;
+            case Zs:
+            case Zl:
+            case Zp:
+                return SEPARATOR_MASK;
+            case Cc:
+            case Cf:
+            case Cs:
+            case Co:
+                return CONTROL_MASK;
+            case Pc:
+            case Pd:
+            case Ps:
+            case Pe:
+            case Po:
+            case Pi:
+            case Pf:
+                return PUNCTUATION_MASK;
+            case Sm:
+            case Sc:
+            case Sk:
+            case So:
+                return SYMBOL_MASK;
+            case Cn:
+                return UNASSIGNED_MASK;
         }
-        throw new IllegalArgumentException ("Illegal General Category " + cat);
+        throw new IllegalArgumentException("Illegal General Category " + cat);
     }
 
     /**
-     * Get the combining class, a number between zero and 255. Returned
-     * as a short to avoid the signed-byte problem in Java
+     * Get the combining class, a number between zero and 255. Returned as a short to avoid the
+     * signed-byte problem in Java
      */
     public short getCombiningClass(int codePoint) {
-        return (short)(get(codePoint, false).combiningClass & 0xFF);
+        return (short) (get(codePoint, false).combiningClass & 0xFF);
     }
 
-    /**
-     * Does this combining class actually occur in this version of the data.
-     */
+    /** Does this combining class actually occur in this version of the data. */
     public boolean isCombiningClassUsed(byte value) {
         return combiningClassSet.get(0xFF & value);
     }
@@ -420,69 +473,42 @@ public final class UCD implements UCD_Types {
     private static UnicodeMap<Bidi_Class_Values> defaultBidiValues;
 
     private static final byte[] BIDI_INTS = {
-            BIDI_AL,
-            BIDI_AN,
-            BIDI_B,
-            BIDI_BN,
-            BIDI_CS,
-            BIDI_EN,
-            BIDI_ES,
-            BIDI_ET,
-            BIDI_FSI,
-            BIDI_L,
-            BIDI_LRE,
-            BIDI_LRI,
-            BIDI_LRO,
-            BIDI_NSM,
-            BIDI_ON,
-            BIDI_PDF,
-            BIDI_PDI,
-            BIDI_R,
-            BIDI_RLE,
-            BIDI_RLI,
-            BIDI_RLO,
-            BIDI_S,
-            BIDI_WS
+        BIDI_AL, BIDI_AN, BIDI_B, BIDI_BN, BIDI_CS, BIDI_EN, BIDI_ES, BIDI_ET, BIDI_FSI, BIDI_L,
+        BIDI_LRE, BIDI_LRI, BIDI_LRO, BIDI_NSM, BIDI_ON, BIDI_PDF, BIDI_PDI, BIDI_R, BIDI_RLE,
+        BIDI_RLI, BIDI_RLO, BIDI_S, BIDI_WS
     };
 
     private static byte bidiIntForUcdPropertyValue(Bidi_Class_Values bc) {
         return BIDI_INTS[bc.ordinal()];
     }
 
-    /**
-     * Get the bidi class
-     */
+    /** Get the bidi class */
     public byte getBidiClass(int codePoint) {
         if (getCategory(codePoint) != Cn) {
             return get(codePoint, false).bidiClass;
         }
 
         if (defaultBidiValues == null) {
-            defaultBidiValues = DefaultValues.BidiClass.forVersion(
-                    versionInfo, DefaultValues.BidiClass.Option.ALL);
+            defaultBidiValues =
+                    DefaultValues.BidiClass.forVersion(
+                            versionInfo, DefaultValues.BidiClass.Option.ALL);
         }
 
         Bidi_Class_Values bidi = defaultBidiValues.get(codePoint);
         return bidiIntForUcdPropertyValue(bidi);
     }
 
-    /**
-     * Get the RAW decomposition mapping. Must be used recursively for the full mapping!
-     */
+    /** Get the RAW decomposition mapping. Must be used recursively for the full mapping! */
     public String getDecompositionMapping(int codePoint) {
         return get(codePoint, true).decompositionMapping;
     }
 
-    /**
-     * Get BIDI mirroring character, if there is one.
-     */
+    /** Get BIDI mirroring character, if there is one. */
     public String getBidiMirror(int codePoint) {
         return get(codePoint, true).bidiMirror;
     }
 
-    /**
-     * Get the RAW decomposition type: the <...> field in the UCD data.
-     */
+    /** Get the RAW decomposition type: the <...> field in the UCD data. */
     public byte getDecompositionType(int codePoint) {
         return get(codePoint, false).decompositionType;
     }
@@ -516,8 +542,8 @@ public final class UCD implements UCD_Types {
 
                 HanException except = (HanException) hanExceptions.get(code);
                 if (except != null) {
-                    throw new IllegalArgumentException("Duplicate Numeric Value for U+" +
-                            Utility.hex(code));
+                    throw new IllegalArgumentException(
+                            "Duplicate Numeric Value for U+" + Utility.hex(code));
                 }
                 except = new HanException();
                 hanExceptions.put(code, except);
@@ -548,7 +574,7 @@ public final class UCD implements UCD_Types {
         }
         final Object except = hanExceptions.get(codePoint);
         if (except != null) {
-            return ((HanException)except).numericValue;
+            return ((HanException) except).numericValue;
         }
         return get(codePoint, false).numericValue;
     }
@@ -559,7 +585,7 @@ public final class UCD implements UCD_Types {
         }
         final Object except = hanExceptions.get(codePoint);
         if (except != null) {
-            return ((HanException)except).numericType;
+            return ((HanException) except).numericType;
         }
         return get(codePoint, false).numericType;
     }
@@ -574,20 +600,20 @@ public final class UCD implements UCD_Types {
 
     public String getCase(int codePoint, byte simpleVsFull, byte caseType, String condition) {
         final UData udata = get(codePoint, true);
-        if (caseType < LOWER || caseType > FOLD
+        if (caseType < LOWER
+                || caseType > FOLD
                 || (simpleVsFull != SIMPLE && simpleVsFull != FULL)) {
             throw new IllegalArgumentException("simpleVsFull or caseType out of bounds");
         }
         if (caseType < FOLD) {
             if (simpleVsFull == FULL && udata.specialCasing.length() != 0) {
-                if (condition.length() == 0
-                        || udata.specialCasing.indexOf(condition) < 0) {
+                if (condition.length() == 0 || udata.specialCasing.indexOf(condition) < 0) {
                     simpleVsFull = SIMPLE;
                 }
             }
         } else {
             // special case. For these characters alone, use "I" as option meaning collapse to "i"
-            //if (codePoint == 0x0131 || codePoint == 0x0130) { // special case turkish i
+            // if (codePoint == 0x0131 || codePoint == 0x0130) { // special case turkish i
             if (getBinaryProperty(codePoint, CaseFoldTurkishI)) {
                 if (!udata.specialCasing.equals("I")) {
                     simpleVsFull = SIMPLE;
@@ -598,14 +624,22 @@ public final class UCD implements UCD_Types {
         }
 
         switch (caseType + simpleVsFull) {
-        case SIMPLE + UPPER: return udata.simpleUppercase;
-        case SIMPLE + LOWER: return udata.simpleLowercase;
-        case SIMPLE + TITLE: return udata.simpleTitlecase;
-        case SIMPLE + FOLD: return udata.simpleCaseFolding;
-        case FULL + UPPER: return udata.fullUppercase;
-        case FULL + LOWER: return udata.fullLowercase;
-        case FULL + TITLE: return udata.fullTitlecase;
-        case FULL + FOLD: return udata.fullCaseFolding;
+            case SIMPLE + UPPER:
+                return udata.simpleUppercase;
+            case SIMPLE + LOWER:
+                return udata.simpleLowercase;
+            case SIMPLE + TITLE:
+                return udata.simpleTitlecase;
+            case SIMPLE + FOLD:
+                return udata.simpleCaseFolding;
+            case FULL + UPPER:
+                return udata.fullUppercase;
+            case FULL + LOWER:
+                return udata.fullLowercase;
+            case FULL + TITLE:
+                return udata.fullTitlecase;
+            case FULL + FOLD:
+                return udata.fullCaseFolding;
         }
         throw new IllegalArgumentException("getCase: " + caseType + ", " + simpleVsFull);
     }
@@ -627,7 +661,7 @@ public final class UCD implements UCD_Types {
             cp = UTF16.charAt(s, i);
             final String mappedVersion = getCase(cp, simpleVsFull, currentCaseType, condition);
             result.append(mappedVersion);
-            if (caseType == TITLE) {    // set the case type for the next character
+            if (caseType == TITLE) { // set the case type for the next character
 
                 // certain characters are ignored
                 if (cp == SHY || cp == '\'' || cp == APOSTROPHE) {
@@ -637,8 +671,7 @@ public final class UCD implements UCD_Types {
                 if (cat == Mn || cat == Me || cat == Cf || cat == Lm) {
                     continue;
                 }
-                if (defaultIgnorable.hasValue(cp))
-                {
+                if (defaultIgnorable.hasValue(cp)) {
                     continue;
                     // if DefaultIgnorable is not supported, then
                     // check for (Cf + Cc + Cs) - White_Space
@@ -646,10 +679,12 @@ public final class UCD implements UCD_Types {
                 }
 
                 // if letter is cased, change next to lowercase, otherwise revert to TITLE
-                if (cat == Lu || cat == Ll || cat == Lt
+                if (cat == Lu
+                        || cat == Ll
+                        || cat == Lt
                         || getBinaryProperty(cp, Other_Lowercase) // skip if not supported
                         || getBinaryProperty(cp, Other_Uppercase) // skip if not supported
-                        ) {
+                ) {
                     currentCaseType = LOWER;
                 } else {
                     currentCaseType = TITLE;
@@ -781,7 +816,6 @@ public final class UCD implements UCD_Types {
         return get(codePoint, false).script;
     }
 
-
     public short getScript(String s) {
         short result = COMMON_SCRIPT;
         if (s == null || s.length() == 0) {
@@ -828,51 +862,50 @@ public final class UCD implements UCD_Types {
     }
 
     public boolean getBinaryProperty(int codePoint, int bit) {
-        return (get(codePoint, false).binaryProperties & (1L<<bit)) != 0;
+        return (get(codePoint, false).binaryProperties & (1L << bit)) != 0;
     }
 
     // ENUM Mask Utilties
 
     public int getCategoryMask(int codePoint) {
-        return 1<<get(codePoint, false).generalCategory;
+        return 1 << get(codePoint, false).generalCategory;
     }
 
     public int getBidiClassMask(int codePoint) {
-        return 1<<get(codePoint, false).bidiClass;
+        return 1 << get(codePoint, false).bidiClass;
     }
 
     public int getNumericTypeMask(int codePoint) {
-        return 1<<getNumericType(codePoint);
+        return 1 << getNumericType(codePoint);
     }
 
     public int getDecompositionTypeMask(int codePoint) {
-        return 1<<get(codePoint, false).decompositionType;
+        return 1 << get(codePoint, false).decompositionType;
     }
 
     public int getEastAsianWidthMask(int codePoint) {
-        return 1<<get(codePoint, false).eastAsianWidth;
+        return 1 << get(codePoint, false).eastAsianWidth;
     }
 
     public int getLineBreakMask(int codePoint) {
-        return 1<<get(codePoint, false).lineBreak;
+        return 1 << get(codePoint, false).lineBreak;
     }
 
     public int getScriptMask(int codePoint) {
-        return 1<<get(codePoint, false).script;
+        return 1 << get(codePoint, false).script;
     }
 
     public int getAgeMask(int codePoint) {
-        return 1<<get(codePoint, false).age;
+        return 1 << get(codePoint, false).age;
     }
 
     public int getJoiningTypeMask(int codePoint) {
-        return 1<<get(codePoint, false).joiningType;
+        return 1 << get(codePoint, false).joiningType;
     }
 
     public int getJoiningGroupMask(int codePoint) {
-        return 1<<get(codePoint, false).joiningGroup;
+        return 1 << get(codePoint, false).joiningGroup;
     }
-
 
     // VERSIONS WITH NAMES
 
@@ -889,12 +922,14 @@ public final class UCD implements UCD_Types {
     }
 
     public static String getCategoryID_fromIndex(short prop, byte style) {
-        return prop < 0 || prop >= UCD_Names.GENERAL_CATEGORY.length ? null
-                : (style == EXTRA_ALIAS && prop == DECIMAL_DIGIT_NUMBER) ? "digit"
-                        : (style != LONG) ? UCD_Names.GENERAL_CATEGORY[prop]
+        return prop < 0 || prop >= UCD_Names.GENERAL_CATEGORY.length
+                ? null
+                : (style == EXTRA_ALIAS && prop == DECIMAL_DIGIT_NUMBER)
+                        ? "digit"
+                        : (style != LONG)
+                                ? UCD_Names.GENERAL_CATEGORY[prop]
                                 : UCD_Names.LONG_GENERAL_CATEGORY[prop];
     }
-
 
     public String getCombiningClassID(int codePoint) {
         return getCombiningClassID(codePoint, NORMAL);
@@ -908,14 +943,13 @@ public final class UCD implements UCD_Types {
         return getCombiningClassID_fromIndex(cc, NORMAL);
     }
 
-    static String getCombiningClassID_fromIndex (short index, byte style) {
-        return index < 0
-                || index >= UCD_Names.COMBINING_CLASS.length
+    static String getCombiningClassID_fromIndex(short index, byte style) {
+        return index < 0 || index >= UCD_Names.COMBINING_CLASS.length
                 ? null
-                        : style == SHORT
+                : style == SHORT
                         ? UCD_Names.COMBINING_CLASS[index]
-                                : UCD_Names.LONG_COMBINING_CLASS[index];
-                        /*
+                        : UCD_Names.LONG_COMBINING_CLASS[index];
+        /*
         if (index > 255) return null;
         index &= 0xFF;
         if (style == NORMAL || style == NUMBER) return String.valueOf(index);
@@ -951,7 +985,6 @@ public final class UCD implements UCD_Types {
                          */
     }
 
-
     public String getBidiClassID(int codePoint) {
         return getBidiClassID_fromIndex(getBidiClass(codePoint));
     }
@@ -961,12 +994,9 @@ public final class UCD implements UCD_Types {
     }
 
     public static String getBidiClassID_fromIndex(short prop, byte style) {
-        return prop < 0
-                || prop >= UCD_Names.BIDI_CLASS.length
+        return prop < 0 || prop >= UCD_Names.BIDI_CLASS.length
                 ? null
-                        : style == SHORT
-                        ? UCD_Names.BIDI_CLASS[prop]
-                                : UCD_Names.LONG_BIDI_CLASS[prop];
+                : style == SHORT ? UCD_Names.BIDI_CLASS[prop] : UCD_Names.LONG_BIDI_CLASS[prop];
     }
 
     public String getDecompositionTypeID(int codePoint) {
@@ -976,9 +1006,13 @@ public final class UCD implements UCD_Types {
     public static String getDecompositionTypeID_fromIndex(short prop) {
         return getDecompositionTypeID_fromIndex(prop, NORMAL);
     }
+
     public static String getDecompositionTypeID_fromIndex(short prop, byte style) {
-        return prop < 0 || prop >= UCD_Names.LONG_DECOMPOSITION_TYPE.length ? null
-                : style == SHORT ? UCD_Names.DECOMPOSITION_TYPE[prop] : UCD_Names.LONG_DECOMPOSITION_TYPE[prop];
+        return prop < 0 || prop >= UCD_Names.LONG_DECOMPOSITION_TYPE.length
+                ? null
+                : style == SHORT
+                        ? UCD_Names.DECOMPOSITION_TYPE[prop]
+                        : UCD_Names.LONG_DECOMPOSITION_TYPE[prop];
     }
 
     public String getNumericTypeID(int codePoint) {
@@ -990,7 +1024,8 @@ public final class UCD implements UCD_Types {
     }
 
     public static String getNumericTypeID_fromIndex(short prop, byte style) {
-        return prop < 0 || prop >= UCD_Names.LONG_NUMERIC_TYPE.length ? null
+        return prop < 0 || prop >= UCD_Names.LONG_NUMERIC_TYPE.length
+                ? null
                 : style == SHORT ? UCD_Names.NUMERIC_TYPE[prop] : UCD_Names.LONG_NUMERIC_TYPE[prop];
     }
 
@@ -1003,8 +1038,11 @@ public final class UCD implements UCD_Types {
     }
 
     public static String getEastAsianWidthID_fromIndex(short prop, byte style) {
-        return prop < 0 || prop >= UCD_Names.LONG_EAST_ASIAN_WIDTH.length ? null
-                : style != LONG ? UCD_Names.EAST_ASIAN_WIDTH[prop] : UCD_Names.LONG_EAST_ASIAN_WIDTH[prop];
+        return prop < 0 || prop >= UCD_Names.LONG_EAST_ASIAN_WIDTH.length
+                ? null
+                : style != LONG
+                        ? UCD_Names.EAST_ASIAN_WIDTH[prop]
+                        : UCD_Names.LONG_EAST_ASIAN_WIDTH[prop];
     }
 
     public String getLineBreakID(int codePoint) {
@@ -1016,7 +1054,8 @@ public final class UCD implements UCD_Types {
     }
 
     public static String getLineBreakID_fromIndex(short prop, byte style) {
-        return prop < 0 || prop >= UCD_Names.LINE_BREAK.length ? null
+        return prop < 0 || prop >= UCD_Names.LINE_BREAK.length
+                ? null
                 : style != LONG ? UCD_Names.LINE_BREAK[prop] : UCD_Names.LONG_LINE_BREAK[prop];
     }
 
@@ -1029,7 +1068,8 @@ public final class UCD implements UCD_Types {
     }
 
     public static String getJoiningTypeID_fromIndex(short prop, byte style) {
-        return prop < 0 || prop >= UCD_Names.JOINING_TYPE.length ? null
+        return prop < 0 || prop >= UCD_Names.JOINING_TYPE.length
+                ? null
                 : style != LONG ? UCD_Names.JOINING_TYPE[prop] : UCD_Names.LONG_JOINING_TYPE[prop];
     }
 
@@ -1043,7 +1083,8 @@ public final class UCD implements UCD_Types {
 
     public static String getJoiningGroupID_fromIndex(short prop, byte style) {
         // short version = long version
-        return prop < 0 || prop >= UCD_Names.JOINING_GROUP.length ? null
+        return prop < 0 || prop >= UCD_Names.JOINING_GROUP.length
+                ? null
                 : UCD_Names.JOINING_GROUP[prop];
     }
 
@@ -1060,10 +1101,15 @@ public final class UCD implements UCD_Types {
     }
 
     public static String getScriptID_fromIndex(short prop, byte length) {
-        return prop < 0 || prop >= UCD_Names.SCRIPT.length ? null
-                : (length == EXTRA_ALIAS && prop == COPTIC) ? "Qaac"
-                        : (length == EXTRA_ALIAS && prop == INHERITED_SCRIPT) ? "Qaai"
-                                : (length == SHORT) ? UCD_Names.SCRIPT[prop] : UCD_Names.LONG_SCRIPT[prop];
+        return prop < 0 || prop >= UCD_Names.SCRIPT.length
+                ? null
+                : (length == EXTRA_ALIAS && prop == COPTIC)
+                        ? "Qaac"
+                        : (length == EXTRA_ALIAS && prop == INHERITED_SCRIPT)
+                                ? "Qaai"
+                                : (length == SHORT)
+                                        ? UCD_Names.SCRIPT[prop]
+                                        : UCD_Names.LONG_SCRIPT[prop];
     }
 
     public String getBidi_Paired_Bracket_TypeID(int codePoint) {
@@ -1071,7 +1117,8 @@ public final class UCD implements UCD_Types {
     }
 
     public String getBidi_Paired_Bracket_TypeID(int codePoint, byte length) {
-        return getBidi_Paired_Bracket_TypeID_fromIndex(getBidi_Paired_Bracket_Type(codePoint), length);
+        return getBidi_Paired_Bracket_TypeID_fromIndex(
+                getBidi_Paired_Bracket_Type(codePoint), length);
     }
 
     public static String getBidi_Paired_Bracket_TypeID_fromIndex(short prop) {
@@ -1079,8 +1126,11 @@ public final class UCD implements UCD_Types {
     }
 
     public static String getBidi_Paired_Bracket_TypeID_fromIndex(short prop, byte length) {
-        return prop < 0 || prop >= UCD_Names.Bidi_Paired_Bracket_Type.length ? null
-                : (length == SHORT) ? UCD_Names.Bidi_Paired_Bracket_Type_SHORT[prop] : UCD_Names.Bidi_Paired_Bracket_Type[prop];
+        return prop < 0 || prop >= UCD_Names.Bidi_Paired_Bracket_Type.length
+                ? null
+                : (length == SHORT)
+                        ? UCD_Names.Bidi_Paired_Bracket_Type_SHORT[prop]
+                        : UCD_Names.Bidi_Paired_Bracket_Type[prop];
     }
 
     public String getVertical_OrientationID(int codePoint) {
@@ -1096,8 +1146,11 @@ public final class UCD implements UCD_Types {
     }
 
     public static String getVertical_OrientationID_fromIndex(short prop, byte length) {
-        return prop < 0 || prop >= UCD_Names.Vertical_Orientation.length ? null
-                : (length == SHORT) ? UCD_Names.Vertical_Orientation_SHORT[prop] : UCD_Names.Vertical_Orientation[prop];
+        return prop < 0 || prop >= UCD_Names.Vertical_Orientation.length
+                ? null
+                : (length == SHORT)
+                        ? UCD_Names.Vertical_Orientation_SHORT[prop]
+                        : UCD_Names.Vertical_Orientation[prop];
     }
 
     public String getAgeID(int codePoint) {
@@ -1110,7 +1163,8 @@ public final class UCD implements UCD_Types {
 
     public static String getAgeID_fromIndex(short prop, byte style) {
         // no short for
-        return prop < 0 || prop >= UCD_Names.SHORT_AGE.length ? null
+        return prop < 0 || prop >= UCD_Names.SHORT_AGE.length
+                ? null
                 : style == SHORT ? UCD_Names.SHORT_AGE[prop] : UCD_Names.LONG_AGE[prop];
     }
 
@@ -1123,28 +1177,27 @@ public final class UCD implements UCD_Types {
     }
 
     public static String getBinaryPropertiesID_fromIndex(byte bit, byte style) {
-        return bit < 0 || bit >= UCD_Names.BP.length ? null
+        return bit < 0 || bit >= UCD_Names.BP.length
+                ? null
                 : style == SHORT ? UCD_Names.SHORT_BP[bit] : UCD_Names.BP[bit];
     }
 
     public static int mapToRepresentative(int ch, int rCompositeVersion) {
         if (ch <= 0xFFFD) {
-            if (ch < CJK_A_BASE)
-            {
+            if (ch < CJK_A_BASE) {
                 return ch;
             }
             if (ch <= 0x4DB5) {
-                return CJK_A_BASE;         // CJK Ideograph Extension A
+                return CJK_A_BASE; // CJK Ideograph Extension A
             }
             if (ch <= 0x4DBF && rCompositeVersion >= 0xd0000) {
                 return CJK_A_BASE;
             }
-            if (ch < CJK_BASE)
-            {
+            if (ch < CJK_BASE) {
                 return ch;
             }
             if (ch <= 0x9FA5) {
-                return CJK_BASE;         // CJK Ideograph
+                return CJK_BASE; // CJK Ideograph
             }
             if (ch <= 0x9FBB && rCompositeVersion >= 0x40100) {
                 return CJK_BASE;
@@ -1177,56 +1230,49 @@ public final class UCD implements UCD_Types {
                 return ch;
             }
             if (ch <= 0xD7A3) {
-                return 0xAC00;         // Hangul Syllable
+                return 0xAC00; // Hangul Syllable
             }
-            if (ch <= 0xD800)
-            {
-                return ch;         // Non Private Use High Surrogate
+            if (ch <= 0xD800) {
+                return ch; // Non Private Use High Surrogate
             }
             if (ch <= 0xDB7F) {
                 return 0xD800;
             }
-            if (ch <= 0xDB80)
-            {
-                return ch;         // Private Use High Surrogate
+            if (ch <= 0xDB80) {
+                return ch; // Private Use High Surrogate
             }
             if (ch <= 0xDBFF) {
                 return 0xDB80;
             }
-            if (ch <= 0xDC00)
-            {
-                return ch;         // Low Surrogate
+            if (ch <= 0xDC00) {
+                return ch; // Low Surrogate
             }
             if (ch <= 0xDFFF) {
                 return 0xDC00;
             }
-            if (ch <= 0xE000)
-            {
-                return ch;         // Private Use
+            if (ch <= 0xE000) {
+                return ch; // Private Use
             }
             if (ch <= 0xF8FF) {
                 return 0xE000;
             }
             if (rCompositeVersion < 0x20105) {
-                if (ch <= 0xF900)
-                {
-                    return ch;         // CJK Compatibility Ideograph
+                if (ch <= 0xF900) {
+                    return ch; // CJK Compatibility Ideograph
                 }
                 if (ch <= 0xFA2D) {
                     return 0xF900;
                 }
             }
-            if (ch <  0xFDD0)
-            {
+            if (ch < 0xFDD0) {
                 return ch;
             }
             if (ch <= 0xFDEF && rCompositeVersion >= 0x30100) {
-                return 0xFFFF;         // Noncharacter
+                return 0xFFFF; // Noncharacter
             }
         } else {
-            if ((ch & 0xFFFE) == 0xFFFE)
-            {
-                return 0xFFFF;         // Noncharacter
+            if ((ch & 0xFFFE) == 0xFFFE) {
+                return 0xFFFF; // Noncharacter
             }
 
             if (rCompositeVersion >= 0x90000) {
@@ -1237,7 +1283,7 @@ public final class UCD implements UCD_Types {
                     return ch;
                 }
                 if (ch <= 0x187EC) {
-                    return TANGUT_BASE;  // 17000..187EC Tangut Ideograph
+                    return TANGUT_BASE; // 17000..187EC Tangut Ideograph
                 }
                 if (ch <= 0x187F1 && rCompositeVersion >= 0xb0000) {
                     // Unicode 11 added TANGUT IDEOGRAPH-187ED..TANGUT IDEOGRAPH-187F1.
@@ -1257,14 +1303,13 @@ public final class UCD implements UCD_Types {
                     return ch;
                 }
                 if (ch <= 0x18D08) {
-                    return TANGUT_SUP_BASE;  // 18D00..18D08 Tangut Ideograph Supplement
+                    return TANGUT_SUP_BASE; // 18D00..18D08 Tangut Ideograph Supplement
                 }
             }
 
             // 20000..2A6DF; CJK Unified Ideographs Extension B
-            if (ch <= CJK_B_BASE)
-            {
-                return ch;         // Extension B first char
+            if (ch <= CJK_B_BASE) {
+                return ch; // Extension B first char
             }
             if (ch <= 0x2A6D6) {
                 return CJK_B_BASE;
@@ -1277,9 +1322,8 @@ public final class UCD implements UCD_Types {
             }
             // 2A700..2B73F; CJK Unified Ideographs Extension C
             if (rCompositeVersion >= 0x50200) {
-                if (ch <= CJK_C_BASE)
-                {
-                    return ch;       // Extension C first char
+                if (ch <= CJK_C_BASE) {
+                    return ch; // Extension C first char
                 }
                 if (ch <= 0x2B734) {
                     return CJK_C_BASE;
@@ -1293,9 +1337,8 @@ public final class UCD implements UCD_Types {
             }
             // 2B740..2B81F; CJK Unified Ideographs Extension D
             if (rCompositeVersion >= 0x60000) {
-                if (ch <= CJK_D_BASE)
-                {
-                    return ch;       // Extension D first char
+                if (ch <= CJK_D_BASE) {
+                    return ch; // Extension D first char
                 }
                 if (ch < CJK_D_LIMIT) {
                     return CJK_D_BASE;
@@ -1303,9 +1346,8 @@ public final class UCD implements UCD_Types {
             }
             // 2B820..2CEAF; CJK Unified Ideographs Extension E
             if (rCompositeVersion >= 0x80000) {
-                if (ch <= CJK_E_BASE)
-                {
-                    return ch;       // Extension E first char
+                if (ch <= CJK_E_BASE) {
+                    return ch; // Extension E first char
                 }
                 if (ch < CJK_E_LIMIT) {
                     return CJK_E_BASE;
@@ -1314,7 +1356,7 @@ public final class UCD implements UCD_Types {
             // 2CEB0..2EBEF; CJK Unified Ideographs Extension F
             if (rCompositeVersion >= 0xa0000) {
                 if (ch <= CJK_F_BASE) {
-                    return ch;       // Extension F first char
+                    return ch; // Extension F first char
                 }
                 if (ch < CJK_F_LIMIT) {
                     return CJK_F_BASE;
@@ -1323,7 +1365,7 @@ public final class UCD implements UCD_Types {
             // 30000..3134F; CJK Unified Ideographs Extension G
             if (rCompositeVersion >= 0xd0000) {
                 if (ch <= CJK_G_BASE) {
-                    return ch;       // Extension G first char
+                    return ch; // Extension G first char
                 }
                 if (ch < CJK_G_LIMIT) {
                     return CJK_G_BASE;
@@ -1332,19 +1374,18 @@ public final class UCD implements UCD_Types {
             // 31350..323AF; CJK Unified Ideographs Extension H
             if (rCompositeVersion >= 0xf0000) {
                 if (ch <= CJK_H_BASE) {
-                    return ch;       // Extension H first char
+                    return ch; // Extension H first char
                 }
                 if (ch < CJK_H_LIMIT) {
                     return CJK_H_BASE;
                 }
             }
 
-            if (ch < 0xF0000)
-            {
+            if (ch < 0xF0000) {
                 return ch;
             }
             if (rCompositeVersion >= 0x20000) {
-                return 0xE000;       // Plane 15/16 Private Use
+                return 0xE000; // Plane 15/16 Private Use
             }
         }
         return ch;
@@ -1398,8 +1439,7 @@ public final class UCD implements UCD_Types {
     }
 
     public boolean isIdentifier(String s) {
-        if (s.length() == 0)
-        {
+        if (s.length() == 0) {
             return false; // at least one!
         }
         int cp;
@@ -1418,20 +1458,20 @@ public final class UCD implements UCD_Types {
         return true;
     }
     /*
-Middle Dot. Because most Catalan legacy data will be encoded in Latin-1, U+00B7 MIDDLE DOT needs to be
-allowed in <identifier_extend>.
+    Middle Dot. Because most Catalan legacy data will be encoded in Latin-1, U+00B7 MIDDLE DOT needs to be
+    allowed in <identifier_extend>.
 
-In particular, the following four characters should be in <identifier_extend> and not <identifier_start>:
-0E33 THAI CHARACTER SARA AM
-0EB3 LAO VOWEL SIGN AM
-FF9E HALFWIDTH KATAKANA VOICED SOUND MARK
-FF9F HALFWIDTH KATAKANA SEMI-VOICED SOUND MARK
-Irregularly decomposing characters. U+037A GREEK YPOGEGRAMMENI and certain Arabic presentation
-forms have irregular compatibility decompositions, and need to be excluded from both <identifier_start>
-and <identifier_extend>. It is recommended that all Arabic presentation forms be excluded from identifiers
-in any event, although only a few of them are required to be excluded for normalization
-to guarantee identifier closure.
-     */
+    In particular, the following four characters should be in <identifier_extend> and not <identifier_start>:
+    0E33 THAI CHARACTER SARA AM
+    0EB3 LAO VOWEL SIGN AM
+    FF9E HALFWIDTH KATAKANA VOICED SOUND MARK
+    FF9F HALFWIDTH KATAKANA SEMI-VOICED SOUND MARK
+    Irregularly decomposing characters. U+037A GREEK YPOGEGRAMMENI and certain Arabic presentation
+    forms have irregular compatibility decompositions, and need to be excluded from both <identifier_start>
+    and <identifier_extend>. It is recommended that all Arabic presentation forms be excluded from identifiers
+    in any event, although only a few of them are required to be excluded for normalization
+    to guarantee identifier closure.
+         */
 
     // *******************
     // PRIVATES
@@ -1444,7 +1484,7 @@ to guarantee identifier closure.
     private static final UData[] ALL_NULLS = new UData[1024];
 
     // main data
-    private final UData[][] data = new UData[LIMIT_CODE_POINT>>10][];
+    private final UData[][] data = new UData[LIMIT_CODE_POINT >> 10][];
 
     // extras
     private final BitSet combiningClassSet = new BitSet(256);
@@ -1462,7 +1502,7 @@ to guarantee identifier closure.
     }
 
     private void add(UData uData) {
-        final int high = uData.codePoint>>10;
+        final int high = uData.codePoint >> 10;
         if (data[high] == ALL_NULLS) {
             final UData[] temp = new UData[1024];
             data[high] = temp;
@@ -1483,35 +1523,35 @@ to guarantee identifier closure.
 
         final int rangeStart = mapToRepresentative(codePoint, compositeVersion);
         switch (rangeStart) {
-        default:
-            return getRaw(codePoint) == null;
-        case 0x2800: // braille
-        case 0xF900: // compat ideos
-        case 0x2F800: // compat ideos
-        case 0x3400: // CJK Ideograph Extension A
-        case 0x4E00: // CJK Ideograph
-        case TANGUT_BASE: // Tangut Ideograph
-        case TANGUT_SUP_BASE: // Tangut Ideograph Supplement
-        case 0x20000: // Extension B
-        case 0x2A700: // Extension C
-        case 0x2B740: // Extension D
-        case 0x2B820: // Extension E
-        case 0x2CEB0: // Extension F
-        case 0x30000: // Extension G
-        case 0xAC00: // Hangul Syllable
-        case 0xE000: // Private Use
-        case 0xF0000: // Private Use
-        case 0x100000: // Private Use
-        case 0xD800: // Surrogate
-        case 0xDB80: // Private Use
-        case 0xDC00: // Private Use
-        case 0xFFFF: // Noncharacter
-            return true;
+            default:
+                return getRaw(codePoint) == null;
+            case 0x2800: // braille
+            case 0xF900: // compat ideos
+            case 0x2F800: // compat ideos
+            case 0x3400: // CJK Ideograph Extension A
+            case 0x4E00: // CJK Ideograph
+            case TANGUT_BASE: // Tangut Ideograph
+            case TANGUT_SUP_BASE: // Tangut Ideograph Supplement
+            case 0x20000: // Extension B
+            case 0x2A700: // Extension C
+            case 0x2B740: // Extension D
+            case 0x2B820: // Extension E
+            case 0x2CEB0: // Extension F
+            case 0x30000: // Extension G
+            case 0xAC00: // Hangul Syllable
+            case 0xE000: // Private Use
+            case 0xF0000: // Private Use
+            case 0x100000: // Private Use
+            case 0xD800: // Surrogate
+            case 0xDB80: // Private Use
+            case 0xDC00: // Private Use
+            case 0xFFFF: // Noncharacter
+                return true;
         }
     }
 
     private UData getRaw(int codePoint) {
-        return data[codePoint>>10][codePoint & 0x3FF];
+        return data[codePoint >> 10][codePoint & 0x3FF];
     }
 
     // access data for codepoint
@@ -1524,7 +1564,7 @@ to guarantee identifier closure.
         if (codePoint < 0 || codePoint > 0x10FFFF) {
             throw new IllegalArgumentException("Illegal Code Point: " + Utility.hex(codePoint));
         }
-        //if (codePoint == lastCode && fixStrings <= lastCodeFixed) return lastResult;
+        // if (codePoint == lastCode && fixStrings <= lastCodeFixed) return lastResult;
         /*
         // we play some funny tricks for performance
         // if cp is not represented, it is either in a elided block or missing.
@@ -1550,88 +1590,89 @@ to guarantee identifier closure.
         boolean isHangul = false;
         boolean isRemapped = false;
         switch (rangeStart) {
-        case 0xF900:
-            if (compositeVersion < 0x020105) {
-                if (fixStrings) {
-                    constructedName = "CJK COMPATIBILITY IDEOGRAPH-" + Utility.hex(codePoint, 4);
+            case 0xF900:
+                if (compositeVersion < 0x020105) {
+                    if (fixStrings) {
+                        constructedName =
+                                "CJK COMPATIBILITY IDEOGRAPH-" + Utility.hex(codePoint, 4);
+                    }
+                    break;
                 }
+                // isRemapped = true;
                 break;
-            }
-            //isRemapped = true;
-            break;
-            // FALL THROUGH!!!!
-            //default:
-            /*
-            result = getRaw(codePoint);
-            if (result == null) {
-                result = UData.UNASSIGNED;
-                result.name = null; // clean this up, since we reuse UNASSIGNED
-                result.shortName = null;
+                // FALL THROUGH!!!!
+                // default:
+                /*
+                result = getRaw(codePoint);
+                if (result == null) {
+                    result = UData.UNASSIGNED;
+                    result.name = null; // clean this up, since we reuse UNASSIGNED
+                    result.shortName = null;
+                    if (fixStrings) {
+                        result.name = "<unassigned-" + Utility.hex(codePoint, 4) + ">";
+                    }
+                }
                 if (fixStrings) {
-                    result.name = "<unassigned-" + Utility.hex(codePoint, 4) + ">";
+                    if (result.name == null) {
+                        result.name = "<unassigned-" + Utility.hex(codePoint, 4) + ">";
+                        // System.out.println("Warning: fixing name for " + result.name);
+                    }
+                    if (result.shortName == null) {
+                        result.shortName = Utility.replace(result.name, UCD_Names.NAME_ABBREVIATIONS);
+                    }
                 }
-            }
-            if (fixStrings) {
-                if (result.name == null) {
-                    result.name = "<unassigned-" + Utility.hex(codePoint, 4) + ">";
-                    // System.out.println("Warning: fixing name for " + result.name);
+                 */
+                // break;
+            case CJK_A_BASE: // CJK Ideograph Extension A
+            case CJK_BASE: // CJK Ideograph
+            case CJK_B_BASE: // Extension B
+            case CJK_C_BASE: // Extension C
+            case CJK_D_BASE: // Extension D
+            case CJK_E_BASE: // Extension E
+            case CJK_F_BASE: // Extension F
+            case CJK_G_BASE: // Extension G
+            case CJK_H_BASE:
+                if (fixStrings) {
+                    constructedName = "CJK UNIFIED IDEOGRAPH-" + Utility.hex(codePoint, 4);
                 }
-                if (result.shortName == null) {
-                    result.shortName = Utility.replace(result.name, UCD_Names.NAME_ABBREVIATIONS);
+                isRemapped = true;
+                break;
+            case TANGUT_BASE:
+            case TANGUT_SUP_BASE:
+                if (fixStrings) {
+                    constructedName = "TANGUT IDEOGRAPH-" + Utility.hex(codePoint, 4);
                 }
-            }
-             */
-            //break;
-        case CJK_A_BASE: // CJK Ideograph Extension A
-        case CJK_BASE:   // CJK Ideograph
-        case CJK_B_BASE: // Extension B
-        case CJK_C_BASE: // Extension C
-        case CJK_D_BASE: // Extension D
-        case CJK_E_BASE: // Extension E
-        case CJK_F_BASE: // Extension F
-        case CJK_G_BASE: // Extension G
-        case CJK_H_BASE:
-            if (fixStrings) {
-                constructedName = "CJK UNIFIED IDEOGRAPH-" + Utility.hex(codePoint, 4);
-            }
-            isRemapped = true;
-            break;
-        case TANGUT_BASE:
-        case TANGUT_SUP_BASE:
-            if (fixStrings) {
-                constructedName = "TANGUT IDEOGRAPH-" + Utility.hex(codePoint, 4);
-            }
-            isRemapped = true;
-            break;
-        case 0xAC00: // Hangul Syllable
-            isHangul = true;
-            if (fixStrings) {
-                constructedName = "HANGUL SYLLABLE " + getHangulName(codePoint);
-            }
-            isRemapped = true;
-            break;
-        case   0xE000: // Private Use
-        case  0xF0000: // Private Use
-        case 0x100000: // Private Use
-            if (fixStrings) {
-                constructedName = "<private-use-" + Utility.hex(codePoint, 4) + ">";
-            }
-            isRemapped = true;
-            break;
-        case 0xD800: // Surrogate
-        case 0xDB80: // Private Use
-        case 0xDC00: // Private Use
-            if (fixStrings) {
-                constructedName = "<surrogate-" + Utility.hex(codePoint, 4) + ">";
-            }
-            isRemapped = true;
-            break;
-        case 0xFFFF: // Noncharacter
-            if (fixStrings) {
-                constructedName = "<noncharacter-" + Utility.hex(codePoint, 4) + ">";
-            }
-            isRemapped = true;
-            break;
+                isRemapped = true;
+                break;
+            case 0xAC00: // Hangul Syllable
+                isHangul = true;
+                if (fixStrings) {
+                    constructedName = "HANGUL SYLLABLE " + getHangulName(codePoint);
+                }
+                isRemapped = true;
+                break;
+            case 0xE000: // Private Use
+            case 0xF0000: // Private Use
+            case 0x100000: // Private Use
+                if (fixStrings) {
+                    constructedName = "<private-use-" + Utility.hex(codePoint, 4) + ">";
+                }
+                isRemapped = true;
+                break;
+            case 0xD800: // Surrogate
+            case 0xDB80: // Private Use
+            case 0xDC00: // Private Use
+                if (fixStrings) {
+                    constructedName = "<surrogate-" + Utility.hex(codePoint, 4) + ">";
+                }
+                isRemapped = true;
+                break;
+            case 0xFFFF: // Noncharacter
+                if (fixStrings) {
+                    constructedName = "<noncharacter-" + Utility.hex(codePoint, 4) + ">";
+                }
+                isRemapped = true;
+                break;
         }
         result = getRaw(rangeStart);
         if (result == null) {
@@ -1643,9 +1684,9 @@ to guarantee identifier closure.
             result.lineBreak = LB_XX;
             if (fixStrings) {
                 constructedName = "<reserved-" + Utility.hex(codePoint, 4) + ">";
-                //result.shortName = Utility.replace(result.name, UCD_Names.NAME_ABBREVIATIONS);
+                // result.shortName = Utility.replace(result.name, UCD_Names.NAME_ABBREVIATIONS);
             }
-            //return result;
+            // return result;
         }
 
         result.codePoint = codePoint;
@@ -1657,10 +1698,19 @@ to guarantee identifier closure.
                 result.shortName = Utility.replace(result.name, UCD_Names.NAME_ABBREVIATIONS);
             }
             if (isRemapped) {
-                result.decompositionMapping = result.bidiMirror
-                        = result.simpleLowercase = result.simpleUppercase = result.simpleTitlecase = result.simpleCaseFolding
-                        = result.fullLowercase = result.fullUppercase = result.fullTitlecase = result.fullCaseFolding
-                        = UTF32.valueOf32(codePoint);
+                result.decompositionMapping =
+                        result.bidiMirror =
+                                result.simpleLowercase =
+                                        result.simpleUppercase =
+                                                result.simpleTitlecase =
+                                                        result.simpleCaseFolding =
+                                                                result.fullLowercase =
+                                                                        result.fullUppercase =
+                                                                                result.fullTitlecase =
+                                                                                        result.fullCaseFolding =
+                                                                                                UTF32
+                                                                                                        .valueOf32(
+                                                                                                                codePoint);
             }
         }
         if (isHangul) {
@@ -1679,19 +1729,19 @@ to guarantee identifier closure.
 
     // Neither Mapped nor Composite CJK: [\u3400-\u4DB5\u4E00-\u9FA5\U00020000-\U0002A6D6]
 
-//    public static final boolean isCJK_AB(int bigChar) {
-//        return (CJK_A_BASE <= bigChar && bigChar < CJK_A_LIMIT
-//                || CJK_B_BASE <= bigChar && bigChar < CJK_B_LIMIT
-//                || CJK_C_BASE <= bigChar && bigChar < CJK_C_LIMIT
-//                || CJK_D_BASE <= bigChar && bigChar < CJK_D_LIMIT
-//                || CJK_E_BASE <= bigChar && bigChar < CJK_E_LIMIT
-//                || CJK_F_BASE <= bigChar && bigChar < CJK_F_LIMIT
-//                );
-//    }
+    //    public static final boolean isCJK_AB(int bigChar) {
+    //        return (CJK_A_BASE <= bigChar && bigChar < CJK_A_LIMIT
+    //                || CJK_B_BASE <= bigChar && bigChar < CJK_B_LIMIT
+    //                || CJK_C_BASE <= bigChar && bigChar < CJK_C_LIMIT
+    //                || CJK_D_BASE <= bigChar && bigChar < CJK_D_LIMIT
+    //                || CJK_E_BASE <= bigChar && bigChar < CJK_E_LIMIT
+    //                || CJK_F_BASE <= bigChar && bigChar < CJK_F_LIMIT
+    //                );
+    //    }
 
     public static boolean isCJK_BASE(int cp) {
         return (CJK_BASE <= cp && cp < CJK_LIMIT
-                || cp == 0xFA0E    // compat characters that don't decompose.
+                || cp == 0xFA0E // compat characters that don't decompose.
                 || cp == 0xFA0F
                 || cp == 0xFA11
                 || cp == 0xFA13
@@ -1703,23 +1753,28 @@ to guarantee identifier closure.
                 || cp == 0xFA27
                 || cp == 0xFA28
                 || cp == 0xFA29
-                //            || cp == 0xFA2E
-                //            || cp == 0xFA2F
-                );
+        //            || cp == 0xFA2E
+        //            || cp == 0xFA2F
+        );
     }
 
     // Hangul constants
 
-    public static final int
-    SBase = 0xAC00, LBase = 0x1100, VBase = 0x1161, TBase = 0x11A7, TBase2 = 0x11A8,
-    LCount = 19, VCount = 21, TCount = 28,
-    NCount = VCount * TCount,   // 588
-    SCount = LCount * NCount,   // 11172
-    LLimit = LBase + LCount,    // 1113
-    VLimit = VBase + VCount,    // 1176
-    TLimit = TBase + TCount,    // 11C3
-    TLimitFull = 0x1200,
-    SLimit = SBase + SCount;    // D7A4
+    public static final int SBase = 0xAC00,
+            LBase = 0x1100,
+            VBase = 0x1161,
+            TBase = 0x11A7,
+            TBase2 = 0x11A8,
+            LCount = 19,
+            VCount = 21,
+            TCount = 28,
+            NCount = VCount * TCount, // 588
+            SCount = LCount * NCount, // 11172
+            LLimit = LBase + LCount, // 1113
+            VLimit = VBase + VCount, // 1176
+            TLimit = TBase + TCount, // 11C3
+            TLimitFull = 0x1200,
+            SLimit = SBase + SCount; // D7A4
 
     private static String getHangulName(int s) {
         final int SIndex = s - SBase;
@@ -1730,7 +1785,9 @@ to guarantee identifier closure.
         final int VIndex = (SIndex % NCount) / TCount;
         final int TIndex = SIndex % TCount;
         // if (true) return "?";
-        return UCD_Names.JAMO_L_TABLE[LIndex] + UCD_Names.JAMO_V_TABLE[VIndex] + UCD_Names.JAMO_T_TABLE[TIndex];
+        return UCD_Names.JAMO_L_TABLE[LIndex]
+                + UCD_Names.JAMO_V_TABLE[VIndex]
+                + UCD_Names.JAMO_T_TABLE[TIndex];
     }
 
     private static final char[] pair = new char[2];
@@ -1750,11 +1807,11 @@ to guarantee identifier closure.
         }
         final int TIndex = SIndex % TCount;
         if (TIndex != 0) { // triple
-            pair[0] = (char)(SBase + SIndex - TIndex);
-            pair[1] = (char)(TBase + TIndex);
+            pair[0] = (char) (SBase + SIndex - TIndex);
+            pair[1] = (char) (TBase + TIndex);
         } else {
-            pair[0] = (char)(LBase + SIndex / NCount);
-            pair[1] = (char)(VBase + (SIndex % NCount) / TCount);
+            pair[0] = (char) (LBase + SIndex / NCount);
+            pair[1] = (char) (VBase + (SIndex % NCount) / TCount);
         }
         return String.valueOf(pair);
     }
@@ -1769,14 +1826,17 @@ to guarantee identifier closure.
         if (LBase <= char1 && char1 < LLimit && VBase <= char2 && char2 < VLimit) {
             return (SBase + ((char1 - LBase) * VCount + (char2 - VBase)) * TCount);
         }
-        if (SBase <= char1 && char1 < SLimit && TBase2 <= char2 && char2 < TLimit
+        if (SBase <= char1
+                && char1 < SLimit
+                && TBase2 <= char2
+                && char2 < TLimit
                 && ((char1 - SBase) % TCount) == 0) {
             return char1 + (char2 - TBase);
         }
         return 0xFFFF; // no composition
     }
 
-    static public boolean isHangulSyllable(int char1) {
+    public static boolean isHangulSyllable(int char1) {
         return SBase <= char1 && char1 < SLimit;
     }
 
@@ -1809,7 +1869,7 @@ to guarantee identifier closure.
             return NA;
         }
         if (LBase <= cp && cp < TLimitFull) {
-            if (cp < VBase-1) {
+            if (cp < VBase - 1) {
                 return L;
             }
             if (cp < TBase2) {
@@ -1819,16 +1879,13 @@ to guarantee identifier closure.
         }
 
         // don't need to check the version, because we already check Assigned
-        if (0xA960 <= cp && cp <= 0xA97C)
-        {
+        if (0xA960 <= cp && cp <= 0xA97C) {
             return L; // A960..A97C ; L
         }
-        if (0xD7B0 <= cp && cp <= 0xD7C6)
-        {
+        if (0xD7B0 <= cp && cp <= 0xD7C6) {
             return V; // D7B0..D7C6 ; V
         }
-        if (0xD7CB <= cp && cp <= 0xD7FB)
-        {
+        if (0xD7CB <= cp && cp <= 0xD7FB) {
             return T; // D7CB..D7FB ; T
         }
 
@@ -1842,13 +1899,15 @@ to guarantee identifier closure.
     }
 
     static String getHangulSyllableTypeID_fromIndex(short prop, byte style) {
-        return prop < 0 || prop >= UCD_Names.HANGUL_SYLLABLE_TYPE.length ? null
-                : (style == LONG) ? UCD_Names.LONG_HANGUL_SYLLABLE_TYPE[prop]
+        return prop < 0 || prop >= UCD_Names.HANGUL_SYLLABLE_TYPE.length
+                ? null
+                : (style == LONG)
+                        ? UCD_Names.LONG_HANGUL_SYLLABLE_TYPE[prop]
                         : UCD_Names.HANGUL_SYLLABLE_TYPE[prop];
     }
 
     String getHangulSyllableTypeID(int char1, byte style) {
-        return getHangulSyllableTypeID_fromIndex(getHangulSyllableType(char1),style);
+        return getHangulSyllableTypeID_fromIndex(getHangulSyllableType(char1), style);
     }
 
     private void fillFromFile(String version) {
@@ -1856,9 +1915,12 @@ to guarantee identifier closure.
             fillFromFile2(version);
         } catch (final ChainException e) {
             try {
-                ConvertUCD.main(new String[]{version});
+                ConvertUCD.main(new String[] {version});
             } catch (final Exception e2) {
-                throw new ChainException("Can't build data file for " + version + " ({0})", new Object[]{version}, e2);
+                throw new ChainException(
+                        "Can't build data file for " + version + " ({0})",
+                        new Object[] {version},
+                        e2);
             }
             fillFromFile2(version);
         }
@@ -1868,10 +1930,9 @@ to guarantee identifier closure.
         DataInputStream dataIn = null;
         final String fileName = Settings.Output.BIN_DIR + "UCD_Data" + version + ".bin";
         try {
-            dataIn = new DataInputStream(
-                    new BufferedInputStream(
-                            new FileInputStream(fileName),
-                            128*1024));
+            dataIn =
+                    new DataInputStream(
+                            new BufferedInputStream(new FileInputStream(fileName), 128 * 1024));
             // header
             format = dataIn.readByte();
             final byte major = dataIn.readByte();
@@ -1882,8 +1943,9 @@ to guarantee identifier closure.
 
             final String foundVersion = major + "." + minor + "." + update;
             if (format != BINARY_FORMAT || !version.equals(foundVersion)) {
-                throw new ChainException("Illegal data file format for {0}: {1}, {2}",
-                        new Object[]{version, new Byte(format), foundVersion});
+                throw new ChainException(
+                        "Illegal data file format for {0}: {1}, {2}",
+                        new Object[] {version, new Byte(format), foundVersion});
             }
             date = dataIn.readLong();
             int uDataFileCount = dataIn.readInt();
@@ -1893,13 +1955,12 @@ to guarantee identifier closure.
                 System.out.println("Loading UCD " + foundVersion);
             }
 
-
             // records
             for (int i = 0; i < uDataFileCount; ++i) {
                 final UData uData = new UData();
                 uData.readBytes(dataIn);
 
-                //T = Mc + (Cf - ZWNJ - ZWJ)
+                // T = Mc + (Cf - ZWNJ - ZWJ)
                 final int cp = uData.codePoint;
                 final byte old = uData.joiningType;
                 final byte cat = uData.generalCategory;
@@ -1908,9 +1969,9 @@ to guarantee identifier closure.
                         uData.joiningType = JT_T;
                     }
                 }
-                //if (cp == 0x200D) {
+                // if (cp == 0x200D) {
                 //  uData.joiningType = JT_C;
-                //} else
+                // } else
                 /*
                 if (cp != 0x200D && cp != 0x200C && (cat == Mn || cat == Cf)) {
                     uData.joiningType = JT_T;
@@ -1918,9 +1979,15 @@ to guarantee identifier closure.
                  */
                 if (!didJoiningHack && uData.joiningType != old) {
                     if (SHOW_LOADING) {
-                        System.out.println("HACK " + foundVersion + ": Setting "
-                                + UCD_Names.LONG_JOINING_TYPE[uData.joiningType]
-                                        + ": " + Utility.hex(cp) + " " + uData.name);
+                        System.out.println(
+                                "HACK "
+                                        + foundVersion
+                                        + ": Setting "
+                                        + UCD_Names.LONG_JOINING_TYPE[uData.joiningType]
+                                        + ": "
+                                        + Utility.hex(cp)
+                                        + " "
+                                        + uData.name);
                     }
                     didJoiningHack = true;
                 }
@@ -1946,12 +2013,13 @@ to guarantee identifier closure.
             // everything is ok!
             this.versionString = version;
         } catch (final IOException e) {
-            throw new ChainException("Can't read data file for {0}", new Object[]{version}, e);
+            throw new ChainException("Can't read data file for {0}", new Object[] {version}, e);
         } finally {
             if (dataIn != null) {
                 try {
                     dataIn.close();
-                } catch (final IOException e) {}
+                } catch (final IOException e) {
+                }
             }
         }
     }
@@ -1969,6 +2037,7 @@ to guarantee identifier closure.
     public List<String> getBlockNames() {
         return getBlockNames(null);
     }
+
     public List<String> getBlockNames(List<String> result) {
         if (result == null) {
             result = new ArrayList<String>();
@@ -1995,8 +2064,10 @@ to guarantee identifier closure.
             final String longName = blockNames.get(i);
             final String shortName = longToShortBlockNames.get(longName);
             if (shortName == null) {
-                throw new IllegalArgumentException("Missing short block name for " + longName
-                        + " -- update ShortBlockNames.txt");
+                throw new IllegalArgumentException(
+                        "Missing short block name for "
+                                + longName
+                                + " -- update ShortBlockNames.txt");
             }
             result[0][i] = longName;
             result[1][i] = shortName;
@@ -2012,13 +2083,15 @@ to guarantee identifier closure.
         return blockData.keySet(blockName, result);
     }
 
-    static final Matcher blockPattern = Pattern.compile("([0-9A-F]+)\\s*(?:[.][.]|[;])\\s*([0-9A-F]+)\\s*[;](.*)").matcher("");
+    static final Matcher blockPattern =
+            Pattern.compile("([0-9A-F]+)\\s*(?:[.][.]|[;])\\s*([0-9A-F]+)\\s*[;](.*)").matcher("");
+
     private void loadBlocks() {
         blockData = new UnicodeMap<String>();
 
         try {
-            final BufferedReader in = Utility.openUnicodeFile(
-                    "Blocks", versionString, true, Utility.LATIN1);
+            final BufferedReader in =
+                    Utility.openUnicodeFile("Blocks", versionString, true, Utility.LATIN1);
             try {
                 for (int i = 1; ; ++i) {
                     // 0000..007F; Basic Latin
@@ -2035,13 +2108,13 @@ to guarantee identifier closure.
                     //                    int pos1 = line.indexOf(';');
                     //                    int pos2 = line.indexOf(';', pos1+1);
 
-                    //lastBlock = new BlockData();
+                    // lastBlock = new BlockData();
                     try {
                         final int start = Integer.parseInt(blockPattern.group(1), 16);
                         final int end = Integer.parseInt(blockPattern.group(2), 16);
                         final String groupName = blockPattern.group(3).trim();
                         final String name = Utility.getUnskeleton(groupName, true);
-                        blockData.putAll(start,end, name);
+                        blockData.putAll(start, end, name);
                     } catch (final RuntimeException e) {
                         System.err.println("Failed on line " + i + "\t" + line);
                         throw e;
@@ -2054,7 +2127,8 @@ to guarantee identifier closure.
                 }
                 blockData.freeze();
             }
-            for (final String line : org.unicode.cldr.draft.FileUtilities.in(UCD.class, "ShortBlockNames.txt")) {
+            for (final String line :
+                    org.unicode.cldr.draft.FileUtilities.in(UCD.class, "ShortBlockNames.txt")) {
                 final String[] parts = line.trim().split("\\s*;\\s*");
                 if (parts.length != 2) {
                     throw new IOException("ShortBlockNames.txt must have pairs: " + line);
@@ -2145,8 +2219,7 @@ to guarantee identifier closure.
     }
      */
     /**
-     * @return The UCD version packed into one int.
-     *         For example, 2.1.5 = 0x20105.
+     * @return The UCD version packed into one int. For example, 2.1.5 = 0x20105.
      */
     public int getCompositeVersion() {
         return compositeVersion;
@@ -2195,5 +2268,4 @@ to guarantee identifier closure.
         }
         return false;
     }
-
 }

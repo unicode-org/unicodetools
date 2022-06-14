@@ -4,7 +4,7 @@ import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
 
 public class GeneratePickerData2 {
-    
+
     enum Patterns {
         all,
         category_list,
@@ -17,7 +17,7 @@ public class GeneratePickerData2 {
         scripts,
         strokes,
     }
-    
+
     enum Categories {
         // general
         limited_use,
@@ -50,7 +50,7 @@ public class GeneratePickerData2 {
         ideographic_desc_characters,
         consonantal_jamo,
         vocalic_jamo,
-        
+
         variant_forms,
         small_form_variant,
         full_width_form_variant,
@@ -124,6 +124,7 @@ public class GeneratePickerData2 {
         travel_places,
         weather,
     }
+
     public static void main(String[] args) {
         for (String scriptName : ScriptMetadata.getScripts()) {
             Info info = ScriptMetadata.getInfo(scriptName);

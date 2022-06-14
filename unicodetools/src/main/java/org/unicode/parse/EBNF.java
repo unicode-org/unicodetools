@@ -1,5 +1,6 @@
 package org.unicode.parse;
 
+import com.ibm.icu.text.UnicodeSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -7,10 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import org.unicode.parse.Tokenizer.Result;
-
-import com.ibm.icu.text.UnicodeSet;
 
 public class EBNF {
     boolean DEBUG = true;
@@ -25,7 +23,7 @@ public class EBNF {
     }
 
     /*
-    + "rule = string '=' alternation;"; 
+    + "rule = string '=' alternation;";
     + "alternation = sequence (weight? ('|' sequence weight?)+)?;"
     + "sequence = (core quantifier*)+;"
     + "core = string | unicodeSet | '(' alternation ')';"
@@ -42,21 +40,20 @@ public class EBNF {
     ?      Match 1 or 0 times
     {n}    Match exactly n times
     {n,}   Match at least n times
-    {n,m}  Match at least n but not more than m times  
+    {n,m}  Match at least n but not more than m times
 
      */
 
     public EBNF addRules(String rules) {
-        t.setSource(rules);        
-        while (addRule()) {
-        }
+        t.setSource(rules);
+        while (addRule()) {}
         return this; // for chaining
     }
 
     public EBNF build() {
         // check that the rules match the variables, except for $root in rules
         Set<String> ruleSet = map.keySet();
-        // add also 
+        // add also
         variables.add("$root");
         variables.addAll(t.getLookedUpItems());
         if (!ruleSet.equals(variables)) {
@@ -66,10 +63,10 @@ public class EBNF {
             if (temp.length() != 0) temp = "Warning: Defined but not used: " + temp;
             if (msg.length() == 0) msg = temp;
             else if (temp.length() != 0) {
-                msg = msg + "; " + temp;           
+                msg = msg + "; " + temp;
             }
-            error(msg);           
-        } 
+            error(msg);
+        }
 
         if (!ruleSet.equals(variables)) {
             String msg = showDiff(variables, ruleSet);
@@ -78,19 +75,19 @@ public class EBNF {
             if (temp.length() != 0) temp = "Defined but not used: " + temp;
             if (msg.length() == 0) msg = temp;
             else if (temp.length() != 0) {
-                msg = msg + "; " + temp;           
+                msg = msg + "; " + temp;
             }
-            error(msg);           
-        } 
+            error(msg);
+        }
 
         // replace variables by definitions
         Iterator<String> it = ruleSet.iterator();
         while (it.hasNext()) {
             String key = (String) it.next();
             Pick expression = (Pick) map.get(key);
-            Iterator<String> it2 = ruleSet.iterator();  
+            Iterator<String> it2 = ruleSet.iterator();
             if (DEBUG && key.equals("$crlf")) {
-                System.out.println("debug") ;
+                System.out.println("debug");
             }
             while (it2.hasNext()) {
                 Object key2 = it2.next();
@@ -169,8 +166,7 @@ public class EBNF {
     }
 
     void error(String msg) {
-        throw new IllegalArgumentException(msg
-                + "\r\n" + t.toString());
+        throw new IllegalArgumentException(msg + "\r\n" + t.toString());
     }
 
     private boolean addRule() {
@@ -193,11 +189,10 @@ public class EBNF {
         }
         t.addSymbol(s, t.getSource(), startBody, t.index);
         if (t.nextCodePoint() != ';') {
-            error("missing ;");       
+            error("missing ;");
         }
         return addPick(s, rule.setName(s));
     }
-
 
     protected boolean addPick(String s, Pick rule) {
         Pick temp = map.get(s);
@@ -214,7 +209,7 @@ public class EBNF {
     public EBNF addSet(String variable, UnicodeSet set) {
         if (set != null) {
             String body = set.toString();
-            t.addSymbol(variable, body, 0, body.length());        
+            t.addSymbol(variable, body, 0, body.length());
             addPick(variable, Pick.codePoint(set));
         }
         return this;
@@ -223,30 +218,30 @@ public class EBNF {
     Pick qualify(Pick item) {
         Result result = t.next();
         if (result == Result.CODEPOINT) {
-            switch(t.getCodePoint()) {
-            case '?': 
-                return Pick.repeat(0, 1, item);
-            case '*': 
-                return Pick.repeat(0, Integer.MAX_VALUE, item);
-            case '+': 
-                return Pick.repeat(1, Integer.MAX_VALUE, item);
-            case '{':
-                if (t.next() != Result.NUMBER) error("missing number");
-                int start = (int) t.getNumber();
-                int end = start;
-                result = t.next();
-                if (t.getCodePoint() == ',') {
-                    end = Integer.MAX_VALUE;
+            switch (t.getCodePoint()) {
+                case '?':
+                    return Pick.repeat(0, 1, item);
+                case '*':
+                    return Pick.repeat(0, Integer.MAX_VALUE, item);
+                case '+':
+                    return Pick.repeat(1, Integer.MAX_VALUE, item);
+                case '{':
+                    if (t.next() != Result.NUMBER) error("missing number");
+                    int start = (int) t.getNumber();
+                    int end = start;
                     result = t.next();
-                    if (result == Result.NUMBER) {
-                        end = (int) t.getNumber();
+                    if (t.getCodePoint() == ',') {
+                        end = Integer.MAX_VALUE;
                         result = t.next();
+                        if (result == Result.NUMBER) {
+                            end = (int) t.getNumber();
+                            result = t.next();
+                        }
                     }
-                }
-                if (t.getCodePoint() != '}') {
-                    error("missing }");
-                }
-                return Pick.repeat(start, end, item);
+                    if (t.getCodePoint() != '}') {
+                        error("missing }");
+                    }
+                    return Pick.repeat(start, end, item);
             }
         }
         t.backup();
@@ -265,7 +260,7 @@ public class EBNF {
             return Pick.string(s);
         }
         if (token == Result.UNICODESET) {
-            return Pick.codePoint(t.getUnicodeSet());            
+            return Pick.codePoint(t.getUnicodeSet());
         }
         if (t.getCodePoint() != '(') {
             t.backup();
@@ -274,9 +269,9 @@ public class EBNF {
         Pick temp = getAlternation();
         token = t.next();
         if (t.getCodePoint() != ')') {
-            error("missing )");    
+            error("missing )");
         }
-        return temp;    
+        return temp;
     }
 
     Pick getSequence() {
@@ -299,7 +294,7 @@ public class EBNF {
             if (last == null) {
                 last = item;
             } else {
-                if (result == null) result = Pick.makeSequence().and2(last);            
+                if (result == null) result = Pick.makeSequence().and2(last);
                 result = result.and2(item);
             }
         }
@@ -320,7 +315,7 @@ public class EBNF {
                 if (result == null) {
                     result = Pick.makeAlternation().or2(last);
                 }
-                result = result.or2(temp);   
+                result = result.or2(temp);
             }
             t.next();
             if (t.getCodePoint() != '|') {
@@ -328,6 +323,6 @@ public class EBNF {
                 if (result != null) return result;
                 if (last != null) return last;
             }
-        }        
+        }
     }
 }

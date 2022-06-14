@@ -1,35 +1,26 @@
-
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/FastBinarySearch.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/utility/FastBinarySearch.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.utility;
 
+import com.ibm.icu.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Random;
 
-import com.ibm.icu.text.NumberFormat;
-
 /**
- * Quick & Dirty test program for fast (unrolled) binary search
- * Should use new PerfTest once that is done, although since there is no object
- * creation the numbers should be fairly reliable.
+ * Quick & Dirty test program for fast (unrolled) binary search Should use new PerfTest once that is
+ * done, although since there is no object creation the numbers should be fairly reliable.
  */
+public final class FastBinarySearch {
 
-final public class FastBinarySearch {
-
-    /**
-     * Testing
-     */
-
-    static public void test() {
+    /** Testing */
+    public static void test() {
         perfTest(100, 100); // warmup
 
         // try different combinations of data size and iterations
@@ -63,7 +54,7 @@ final public class FastBinarySearch {
         fbs.setData(myData, myData.length);
 
         // produce probe data
-        final int[] probe = new int[myData.length*2];
+        final int[] probe = new int[myData.length * 2];
         for (int i = 0; i < probe.length; ++i) {
             probe[i] = (int) (random.nextDouble() * myData.length * 3);
         }
@@ -82,7 +73,7 @@ final public class FastBinarySearch {
             }
         }
         endTime = System.currentTimeMillis();
-        baseTime = time = (endTime - startTime)*1000/totalIterations;
+        baseTime = time = (endTime - startTime) * 1000 / totalIterations;
         System.out.println("Basic; time=" + time + " microsecs/call");
 
         startTime = System.currentTimeMillis();
@@ -92,8 +83,9 @@ final public class FastBinarySearch {
             }
         }
         endTime = System.currentTimeMillis();
-        time = (endTime - startTime)*1000/totalIterations;
-        System.out.println("Fast; time=" + time + " microsecs/call\t" + percent.format(time/baseTime-1));
+        time = (endTime - startTime) * 1000 / totalIterations;
+        System.out.println(
+                "Fast; time=" + time + " microsecs/call\t" + percent.format(time / baseTime - 1));
 
         startTime = System.currentTimeMillis();
         for (int testCount = 0; testCount < iterations; ++testCount) {
@@ -102,10 +94,13 @@ final public class FastBinarySearch {
             }
         }
         endTime = System.currentTimeMillis();
-        time = (endTime - startTime)*1000/totalIterations;
-        System.out.println("Compact; time=" + time + " microsecs/call\t" + percent.format(time/baseTime-1));
+        time = (endTime - startTime) * 1000 / totalIterations;
+        System.out.println(
+                "Compact; time="
+                        + time
+                        + " microsecs/call\t"
+                        + percent.format(time / baseTime - 1));
     }
-
 
     static void validityTest() {
         final Random random = new Random(123456789L);
@@ -116,11 +111,11 @@ final public class FastBinarySearch {
 
             // produce test case
             double ran = random.nextDouble();
-            //System.out.println(ran);
-            final int myCount = 2+ (int) (ran * (myData.length - 2));
+            // System.out.println(ran);
+            final int myCount = 2 + (int) (ran * (myData.length - 2));
             for (int i = 0; i < myCount; ++i) {
                 ran = random.nextDouble();
-                //System.out.println(ran);
+                // System.out.println(ran);
                 myData[i] = (int) (ran * myData.length * 3);
             }
             System.out.println("Trial " + testCount + ", len: " + myCount);
@@ -137,7 +132,7 @@ final public class FastBinarySearch {
                         System.out.println(fbs);
                     }
                     System.out.println("Error: probe=" + i + ", brute=" + brute + ", fast=" + fast);
-                    fast = fbs.highestIndexLEQ(i);  // do again with debugger
+                    fast = fbs.highestIndexLEQ(i); // do again with debugger
                     ok = false;
                 }
             }
@@ -147,10 +142,7 @@ final public class FastBinarySearch {
         }
     }
 
-    /**
-     * Set the data to be scanned. It must be in sorted order.
-     */
-
+    /** Set the data to be scanned. It must be in sorted order. */
     public void setData(int data[], int count) {
 
         this.data = data.clone(); // clone for safety
@@ -158,10 +150,7 @@ final public class FastBinarySearch {
         this.count = count;
     }
 
-    /**
-     * Basic binary search
-     */
-
+    /** Basic binary search */
     private final int findCodePoint(int c) {
         // Return the smallest i such that c < list[i].  Assume
         // list[len - 1] == HIGH and that c is legal (0..HIGH-1).
@@ -172,7 +161,7 @@ final public class FastBinarySearch {
         int hi = count - 1;
         // invariant: c >= list[lo]
         // invariant: c < list[hi]
-        for (;;) {
+        for (; ; ) {
             final int i = (lo + hi) >>> 1;
             if (i == lo) {
                 return hi;
@@ -186,10 +175,9 @@ final public class FastBinarySearch {
     }
 
     /**
-     * @return greatest index whose value is less than or equal to the searchValue.
-     * If there is no such index, then -1 is returned
+     * @return greatest index whose value is less than or equal to the searchValue. If there is no
+     *     such index, then -1 is returned
      */
-
     public int bruteForce(int searchValue) {
         int i = count;
         while (--i >= 0 && data[i] > searchValue) {}
@@ -197,10 +185,9 @@ final public class FastBinarySearch {
     }
 
     /**
-     * @return greatest index such that data[index] <= searchValue
-     * If there is no such index (e.g. searchValue < data[0]), then -1 is returned
+     * @return greatest index such that data[index] <= searchValue If there is no such index (e.g.
+     *     searchValue < data[0]), then -1 is returned
      */
-
     public int highestIndexLEQ(int searchValue) {
 
         if (!isValid) {
@@ -223,114 +210,145 @@ final public class FastBinarySearch {
         // The invariant AFTER each line is that data[low] < searchValue <= data[high]
 
         switch (power) {
-        //case 31: if (searchValue < data[temp = high-0x40000000]) high = temp; // no unsigned int in Java
-        case 30: if (searchValue < data[temp = high-0x20000000]) {
-            high = temp;
-        }
-        case 29: if (searchValue < data[temp = high-0x10000000]) {
-            high = temp;
-        }
+                // case 31: if (searchValue < data[temp = high-0x40000000]) high = temp; // no
+                // unsigned int in Java
+            case 30:
+                if (searchValue < data[temp = high - 0x20000000]) {
+                    high = temp;
+                }
+            case 29:
+                if (searchValue < data[temp = high - 0x10000000]) {
+                    high = temp;
+                }
 
-        case 28: if (searchValue < data[temp = high- 0x8000000]) {
-            high = temp;
-        }
-        case 27: if (searchValue < data[temp = high- 0x4000000]) {
-            high = temp;
-        }
-        case 26: if (searchValue < data[temp = high- 0x2000000]) {
-            high = temp;
-        }
-        case 25: if (searchValue < data[temp = high- 0x1000000]) {
-            high = temp;
-        }
+            case 28:
+                if (searchValue < data[temp = high - 0x8000000]) {
+                    high = temp;
+                }
+            case 27:
+                if (searchValue < data[temp = high - 0x4000000]) {
+                    high = temp;
+                }
+            case 26:
+                if (searchValue < data[temp = high - 0x2000000]) {
+                    high = temp;
+                }
+            case 25:
+                if (searchValue < data[temp = high - 0x1000000]) {
+                    high = temp;
+                }
 
-        case 24: if (searchValue < data[temp = high-  0x800000]) {
-            high = temp;
-        }
-        case 23: if (searchValue < data[temp = high-  0x400000]) {
-            high = temp;
-        }
-        case 22: if (searchValue < data[temp = high-  0x200000]) {
-            high = temp;
-        }
-        case 21: if (searchValue < data[temp = high-  0x100000]) {
-            high = temp;
-        }
+            case 24:
+                if (searchValue < data[temp = high - 0x800000]) {
+                    high = temp;
+                }
+            case 23:
+                if (searchValue < data[temp = high - 0x400000]) {
+                    high = temp;
+                }
+            case 22:
+                if (searchValue < data[temp = high - 0x200000]) {
+                    high = temp;
+                }
+            case 21:
+                if (searchValue < data[temp = high - 0x100000]) {
+                    high = temp;
+                }
 
-        case 20: if (searchValue < data[temp = high-   0x80000]) {
-            high = temp;
-        }
-        case 19: if (searchValue < data[temp = high-   0x40000]) {
-            high = temp;
-        }
-        case 18: if (searchValue < data[temp = high-   0x20000]) {
-            high = temp;
-        }
-        case 17: if (searchValue < data[temp = high-   0x10000]) {
-            high = temp;
-        }
+            case 20:
+                if (searchValue < data[temp = high - 0x80000]) {
+                    high = temp;
+                }
+            case 19:
+                if (searchValue < data[temp = high - 0x40000]) {
+                    high = temp;
+                }
+            case 18:
+                if (searchValue < data[temp = high - 0x20000]) {
+                    high = temp;
+                }
+            case 17:
+                if (searchValue < data[temp = high - 0x10000]) {
+                    high = temp;
+                }
 
-        case 16: if (searchValue < data[temp = high-    0x8000]) {
-            high = temp;
-        }
-        case 15: if (searchValue < data[temp = high-    0x4000]) {
-            high = temp;
-        }
-        case 14: if (searchValue < data[temp = high-    0x2000]) {
-            high = temp;
-        }
-        case 13: if (searchValue < data[temp = high-    0x1000]) {
-            high = temp;
-        }
+            case 16:
+                if (searchValue < data[temp = high - 0x8000]) {
+                    high = temp;
+                }
+            case 15:
+                if (searchValue < data[temp = high - 0x4000]) {
+                    high = temp;
+                }
+            case 14:
+                if (searchValue < data[temp = high - 0x2000]) {
+                    high = temp;
+                }
+            case 13:
+                if (searchValue < data[temp = high - 0x1000]) {
+                    high = temp;
+                }
 
-        case 12: if (searchValue < data[temp = high-     0x800]) {
-            high = temp;
-        }
-        case 11: if (searchValue < data[temp = high-     0x400]) {
-            high = temp;
-        }
-        case 10: if (searchValue < data[temp = high-     0x200]) {
-            high = temp;
-        }
-        case  9: if (searchValue < data[temp = high-     0x100]) {
-            high = temp;
-        }
+            case 12:
+                if (searchValue < data[temp = high - 0x800]) {
+                    high = temp;
+                }
+            case 11:
+                if (searchValue < data[temp = high - 0x400]) {
+                    high = temp;
+                }
+            case 10:
+                if (searchValue < data[temp = high - 0x200]) {
+                    high = temp;
+                }
+            case 9:
+                if (searchValue < data[temp = high - 0x100]) {
+                    high = temp;
+                }
 
-        case  8: if (searchValue < data[temp = high-      0x80]) {
-            high = temp;
-        }
-        case  7: if (searchValue < data[temp = high-      0x40]) {
-            high = temp;
-        }
-        case  6: if (searchValue < data[temp = high-      0x20]) {
-            high = temp;
-        }
-        case  5: if (searchValue < data[temp = high-      0x10]) {
-            high = temp;
-        }
+            case 8:
+                if (searchValue < data[temp = high - 0x80]) {
+                    high = temp;
+                }
+            case 7:
+                if (searchValue < data[temp = high - 0x40]) {
+                    high = temp;
+                }
+            case 6:
+                if (searchValue < data[temp = high - 0x20]) {
+                    high = temp;
+                }
+            case 5:
+                if (searchValue < data[temp = high - 0x10]) {
+                    high = temp;
+                }
 
-        case  4: if (searchValue < data[temp = high-       0x8]) {
-            high = temp;
-        }
-        case  3: if (searchValue < data[temp = high-       0x4]) {
-            high = temp;
-        }
-        case  2: if (searchValue < data[temp = high-       0x2]) {
-            high = temp;
-        }
-        case  1: if (searchValue < data[temp = high-       0x1]) {
-            high = temp;
-        }
+            case 4:
+                if (searchValue < data[temp = high - 0x8]) {
+                    high = temp;
+                }
+            case 3:
+                if (searchValue < data[temp = high - 0x4]) {
+                    high = temp;
+                }
+            case 2:
+                if (searchValue < data[temp = high - 0x2]) {
+                    high = temp;
+                }
+            case 1:
+                if (searchValue < data[temp = high - 0x1]) {
+                    high = temp;
+                }
         }
         if (high == topOfHigh && searchValue >= data[high]) {
             return high;
         }
-        return high-1;
+        return high - 1;
     }
 
-
     // NOTE: on some machines the above may not be optimal, if the size of the function
-    // forces code out of the cache. For that case, it would be better for program in a loop, like the following
+    // forces code out of the cache. For that case, it would be better for program in a loop, like
+    // the following
 
     public int highestIndexLEQ2(int searchValue) {
 
@@ -340,19 +358,17 @@ final public class FastBinarySearch {
         int temp;
         int high = searchValue < data[topOfLow] ? topOfLow : topOfHigh;
         for (int delta = deltaStart; delta != 0; delta >>= 1) {
-            if (searchValue < data[temp = high-delta]) {
+            if (searchValue < data[temp = high - delta]) {
                 high = temp;
             }
         }
         if (high == topOfHigh && searchValue >= data[high]) {
             return high;
         }
-        return high-1;
+        return high - 1;
     }
 
-    /**
-     * For debugging
-     */
+    /** For debugging */
     @Override
     public String toString() {
         String result = "[";
@@ -369,7 +385,6 @@ final public class FastBinarySearch {
         return result;
     }
 
-
     // ================ Privates ================
 
     // data
@@ -385,12 +400,12 @@ final public class FastBinarySearch {
         }
 
         // find greatest power of 2 less than or equal to count
-        for (power = exp2.length-1; power > 0 && exp2[power] > count; power--) {}
+        for (power = exp2.length - 1; power > 0 && exp2[power] > count; power--) {}
 
         // determine the starting points
         topOfLow = exp2[power] - 1;
         topOfHigh = count - 1;
-        deltaStart = exp2[power-1];
+        deltaStart = exp2[power - 1];
         isValid = true;
     }
 

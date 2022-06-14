@@ -1,10 +1,9 @@
 package org.unicode.jsp;
 
-import java.io.DataInput;
-import java.io.IOException;
-
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
+import java.io.DataInput;
+import java.io.IOException;
 
 public class UnicodeDataInput {
 
@@ -22,6 +21,7 @@ public class UnicodeDataInput {
 
     /**
      * Reads a UnicodeSet in the format of writeUnicodeSet.
+     *
      * @param input
      * @return set read
      * @throws IOException
@@ -43,7 +43,7 @@ public class UnicodeDataInput {
         return result;
     }
 
-    public static abstract class ItemReader<T> {
+    public abstract static class ItemReader<T> {
         public abstract T read(DataInput in) throws IOException;
 
         public T[] readArray(DataInput input) throws IOException {
@@ -74,14 +74,15 @@ public class UnicodeDataInput {
         return readUnicodeMap(reader, input);
     }
 
-    public static <T> UnicodeMap<T> readUnicodeMap(ItemReader<T> reader, DataInput dataInput) throws IOException {
+    public static <T> UnicodeMap<T> readUnicodeMap(ItemReader<T> reader, DataInput dataInput)
+            throws IOException {
         final UnicodeMap<T> result = new UnicodeMap<T>();
 
         // values
         final T[] values = reader.readArray(dataInput);
         // transitions
         final int transitionCount = dataInput.readInt();
-        final int[] transitions = new int[transitionCount+1];
+        final int[] transitions = new int[transitionCount + 1];
         int last = 0;
         for (int i = 0; i < transitionCount; ++i) {
             transitions[i] = last = dataInput.readInt() + last;
@@ -90,12 +91,11 @@ public class UnicodeDataInput {
         // values
         for (int i = 0; i < transitionCount; ++i) {
             final int valueIndex = dataInput.readInt();
-            if (valueIndex < 0)
-            {
+            if (valueIndex < 0) {
                 continue; // no value
             }
             final T value = values[valueIndex];
-            result.putAll(transitions[i], transitions[i+1]-1, value);
+            result.putAll(transitions[i], transitions[i + 1] - 1, value);
         }
         // strings
         final int stringCount = dataInput.readInt();
@@ -107,5 +107,4 @@ public class UnicodeDataInput {
         }
         return result;
     }
-
 }

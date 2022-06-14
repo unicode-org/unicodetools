@@ -1,16 +1,13 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/OldEquivalenceClass.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/utility/OldEquivalenceClass.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.utility;
-
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -24,22 +21,23 @@ import java.util.TreeSet;
 public class OldEquivalenceClass {
     static final boolean DEBUG = false;
     /**
-     * Takes a many:many relation between source and value.
-     * Produces equivalence class.
-     * Two sources are in the same equivalence class any time they share the same value.
+     * Takes a many:many relation between source and value. Produces equivalence class. Two sources
+     * are in the same equivalence class any time they share the same value.
      */
     // associated with each value, we keep a set of sources.
     // whenever we add a <source, value> pair, we see if any sets collide.
-    // associated with each set of sources, we keep a representative Whenever we add to the set, if we
+    // associated with each set of sources, we keep a representative Whenever we add to the set, if
+    // we
     //
     Map sourceToEquiv = new TreeMap();
+
     Map valueToRepresentativeSource = new HashMap();
     Map forcedMerge = new HashMap();
     /**
      * @return true if made a difference
      */
-
     String itemSeparator;
+
     int places;
     boolean hex;
 
@@ -56,16 +54,15 @@ public class OldEquivalenceClass {
     public boolean add(Object source, Object value) {
         boolean result = false;
         Object repSource = valueToRepresentativeSource.get(value);
-        Set equivSet = (Set)sourceToEquiv.get(source);
-        Set fm = (Set)forcedMerge.get(source);
+        Set equivSet = (Set) sourceToEquiv.get(source);
+        Set fm = (Set) forcedMerge.get(source);
         if (fm == null) {
             fm = new TreeSet();
             forcedMerge.put(source, fm);
         }
 
         if (DEBUG) {
-            System.out.println("+Source " + source
-                    + ", value: " + value);
+            System.out.println("+Source " + source + ", value: " + value);
         }
         if (repSource == null && equivSet == null) {
             equivSet = new TreeSet();
@@ -87,8 +84,15 @@ public class OldEquivalenceClass {
 
                 result = true;
                 if (DEBUG) {
-                    System.out.println("Merging (" + repSource + ") " + toString(repEquiv)
-                            + " + (" + source + ") " + toString(equivSet));
+                    System.out.println(
+                            "Merging ("
+                                    + repSource
+                                    + ") "
+                                    + toString(repEquiv)
+                                    + " + ("
+                                    + source
+                                    + ") "
+                                    + toString(equivSet));
                 }
                 // merge!!
                 // put all items from equivSet into repEquiv
@@ -98,7 +102,7 @@ public class OldEquivalenceClass {
                 Iterator it = repEquiv.iterator();
                 while (it.hasNext()) {
                     final Object n = it.next();
-                    fm = (Set)forcedMerge.get(n);
+                    fm = (Set) forcedMerge.get(n);
                     fm.add(value);
                 }
 
@@ -116,25 +120,24 @@ public class OldEquivalenceClass {
                 it = toReplace.iterator();
                 while (it.hasNext()) {
                     final Object otherSource = it.next();
-                    sourceToEquiv.put(otherSource,repEquiv);
+                    sourceToEquiv.put(otherSource, repEquiv);
                 }
                 equivSet = repEquiv; // for debugging
             }
         }
         if (DEBUG) {
-            System.out.println("--- repSource: " + repSource
-                    + ", equivSet: " + equivSet);
+            System.out.println("--- repSource: " + repSource + ", equivSet: " + equivSet);
         }
         return result;
     }
 
     @Override
-    public String toString () {
+    public String toString() {
         final StringBuffer result = new StringBuffer();
         // make a set to skip duplicates
         final Iterator it = new HashSet(sourceToEquiv.values()).iterator();
         while (it.hasNext()) {
-            toString((Set)it.next(), result, forcedMerge);
+            toString((Set) it.next(), result, forcedMerge);
         }
         return result.toString();
     }
@@ -146,17 +149,19 @@ public class OldEquivalenceClass {
         public boolean hasNext() {
             return it.hasNext();
         }
+
         @Override
         public Object next() {
             return sourceToEquiv.get(it.next());
         }
+
         @Override
         public void remove() {
             throw new IllegalArgumentException("can't remove");
         }
     }
 
-    public Iterator getSetIterator () {
+    public Iterator getSetIterator() {
         return new MyIterator();
     }
 
@@ -166,7 +171,7 @@ public class OldEquivalenceClass {
         }
         if (s instanceof Collection) {
             final StringBuffer sb = new StringBuffer();
-            toString((Collection)s, sb, null);
+            toString((Collection) s, sb, null);
             return sb.toString();
         }
         if (hex && s instanceof Number) {
@@ -199,5 +204,4 @@ public class OldEquivalenceClass {
         }
         sb.append('}');
     }
-
 }

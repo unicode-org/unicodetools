@@ -1,16 +1,16 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/CompareProperties.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/CompareProperties.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.NumberFormat;
@@ -24,13 +24,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
-import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile.FileInfix;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
 
 public class CompareProperties implements UCD_Types {
 
@@ -77,16 +72,18 @@ public class CompareProperties implements UCD_Types {
     }
 
     /*
-     * 
+     *
      * @author Davis
      *
      * Reverses the order of a comparison, for getting a list in reverse order
      */
     public static class InverseComparator implements Comparator {
         private final Comparator other;
+
         public InverseComparator(Comparator other) {
             this.other = other;
         }
+
         @Override
         public int compare(Object a, Object b) {
             return other.compare(b, a);
@@ -94,7 +91,7 @@ public class CompareProperties implements UCD_Types {
     }
 
     /*
-     * 
+     *
      * @author Davis
      *
      * Reverses the order of a comparison, for getting a list in reverse order
@@ -102,47 +99,42 @@ public class CompareProperties implements UCD_Types {
     public static class MethodComparator implements Comparator {
         @Override
         public int compare(Object a, Object b) {
-            return ((Comparable)a).compareTo(b);
+            return ((Comparable) a).compareTo(b);
         }
     }
 
-    public final static class UnicodeSetComparator implements Comparator {
+    public static final class UnicodeSetComparator implements Comparator {
         /**
-         * Compares two UnicodeSets, producing a transitive ordering.
-         * The ordering is based on the first codepoint that differs between them.
-         * @return -1 if first set contains the first different code point
-         * 1 if the second set does.
-         * 0 if there is no difference.
-         * If compareTo were added to UnicodeSet, this can be optimized to use list[i].
-         * @author Davis
+         * Compares two UnicodeSets, producing a transitive ordering. The ordering is based on the
+         * first codepoint that differs between them.
          *
+         * @return -1 if first set contains the first different code point 1 if the second set does.
+         *     0 if there is no difference. If compareTo were added to UnicodeSet, this can be
+         *     optimized to use list[i].
+         * @author Davis
          */
         @Override
         public int compare(Object o1, Object o2) {
             final UnicodeSetIterator it1 = new UnicodeSetIterator((UnicodeSet) o1);
             final UnicodeSetIterator it2 = new UnicodeSetIterator((UnicodeSet) o2);
             while (it1.nextRange()) {
-                if (!it2.nextRange())
-                {
+                if (!it2.nextRange()) {
                     return -1; // first has range while second exhausted
                 }
-                if (it1.codepoint < it2.codepoint)
-                {
+                if (it1.codepoint < it2.codepoint) {
                     return -1; // first has code point not in second
                 }
                 if (it1.codepoint > it2.codepoint) {
                     return 1;
                 }
-                if (it1.codepointEnd < it2.codepointEnd)
-                {
+                if (it1.codepointEnd < it2.codepointEnd) {
                     return 1; // second has codepoint not in first
                 }
                 if (it1.codepointEnd > it2.codepointEnd) {
                     return -1;
                 }
             }
-            if (it2.nextRange())
-            {
+            if (it2.nextRange()) {
                 return 1; // second has range while first is exhausted
             }
             return 0; // otherwise we ran out in both of them, so equal
@@ -195,7 +187,8 @@ public class CompareProperties implements UCD_Types {
                 value = new UnicodeSet();
                 map.put(probe.clone(), value);
                 // Utility.fixDot();
-                // System.out.println("Set Size: " + map.size() + ", total: " + total + ", " + Default.ucd.getCodeAndName(cp));
+                // System.out.println("Set Size: " + map.size() + ", total: " + total + ", " +
+                // Default.ucd.getCodeAndName(cp));
             }
             value.add(cp);
         }
@@ -230,7 +223,8 @@ public class CompareProperties implements UCD_Types {
                 System.out.println("\tSkipping " + getPropName(up) + "; default value");
                 continue;
             }
-            // System.out.println(Utility.hex(i) + " " + up.getName(LONG) + "(" + up.getName(SHORT) + ")");
+            // System.out.println(Utility.hex(i) + " " + up.getName(LONG) + "(" + up.getName(SHORT)
+            // + ")");
             // System.out.println("\t" + up.getValue(LONG) + "(" + up.getValue(SHORT) + ")");
             sets[count] = new UnicodeSet();
             disjoints[count] = new BitSet();
@@ -245,8 +239,10 @@ public class CompareProperties implements UCD_Types {
 
     public void printPartition() throws IOException {
         System.out.println("Set Size: " + map.size());
-        final PrintWriter output = Utility.openPrintWriterGenDir("Partition"
-                + FileInfix.getDefault().getFileSuffix(".txt"), Utility.LATIN1_WINDOWS);
+        final PrintWriter output =
+                Utility.openPrintWriterGenDir(
+                        "Partition" + FileInfix.getDefault().getFileSuffix(".txt"),
+                        Utility.LATIN1_WINDOWS);
 
         final Iterator it = map.keySet().iterator();
         while (it.hasNext()) {
@@ -271,8 +267,10 @@ public class CompareProperties implements UCD_Types {
 
     public void printStatistics() throws IOException {
         System.out.println("Set Size: " + map.size());
-        final PrintWriter output = Utility.openPrintWriterGenDir("Statistics"
-                + FileInfix.getDefault().getFileSuffix(".txt"), Utility.LATIN1_WINDOWS);
+        final PrintWriter output =
+                Utility.openPrintWriterGenDir(
+                        "Statistics" + FileInfix.getDefault().getFileSuffix(".txt"),
+                        Utility.LATIN1_WINDOWS);
 
         System.out.println("Finding disjoints/contains");
         for (int i = 0; i < count; ++i) {
@@ -310,7 +308,7 @@ public class CompareProperties implements UCD_Types {
                         tempContains[i].andNot(contains[j]);
                     }
                 }
-                b = disjoints[i];    // don't worry
+                b = disjoints[i]; // don't worry
                 for (int j = 0; j < b.size(); ++j) {
                     if (b.get(j)) {
                         b.andNot(contains[j]);
@@ -333,7 +331,7 @@ public class CompareProperties implements UCD_Types {
         Iterator it = m.keySet().iterator();
         while (it.hasNext()) {
             final Object key = it.next();
-            final int index = ((Integer)m.get(key)).intValue();
+            final int index = ((Integer) m.get(key)).intValue();
             boolean haveName = printBitSet(output, index, "EQUALS: ", equals[index], false);
             haveName = printBitSet(output, index, "CONTAINS: ", contains[index], haveName);
             haveName = printBitSet(output, index, "IS CONTAINED IN: ", isin[index], haveName);
@@ -360,7 +358,8 @@ public class CompareProperties implements UCD_Types {
         output.close();
     }
 
-    private boolean printBitSet(PrintWriter output, int index, String title, BitSet b, boolean haveName) {
+    private boolean printBitSet(
+            PrintWriter output, int index, String title, BitSet b, boolean haveName) {
         if (!b.isEmpty()) {
             if (!haveName) {
                 output.println();
@@ -390,10 +389,10 @@ public class CompareProperties implements UCD_Types {
     }
 
     /*
-            UnicodeSet a_b = new UnicodeSet();
-            UnicodeSet ab = new UnicodeSet();
-            UnicodeSet _ab = new UnicodeSet();
-     */
+           UnicodeSet a_b = new UnicodeSet();
+           UnicodeSet ab = new UnicodeSet();
+           UnicodeSet _ab = new UnicodeSet();
+    */
     /*
     a_b.set(sets[i]).removeAll(sets[j]);
     ab.set(sets[i]).retainAll(sets[j]);
@@ -411,14 +410,20 @@ public class CompareProperties implements UCD_Types {
     if (gotName) output.println();
      */
 
-    private boolean showDiff(PrintWriter output, String title, int propIndex, UnicodeSet a_b,
-            double total, double limit, boolean gotName) {
+    private boolean showDiff(
+            PrintWriter output,
+            String title,
+            int propIndex,
+            UnicodeSet a_b,
+            double total,
+            double limit,
+            boolean gotName) {
         if (0 < a_b.size() && a_b.size() < limit) {
             if (!gotName) {
                 gotName = true;
                 output.print("\t" + getPropName(propIndex));
             }
-            output.print("\t" + title + percent.format(a_b.size()/total));
+            output.print("\t" + title + percent.format(a_b.size() / total));
         }
         return gotName;
     }
@@ -437,15 +442,18 @@ public class CompareProperties implements UCD_Types {
                 Utility.openPrintWriterGenDir(
                         "PropertyDifferences" + FileInfix.getDefault().getFileSuffix(".txt"),
                         Utility.LATIN1_UNIX);
-        output.println("# Listing of relationships among properties, suitable for analysis by spreadsheet");
+        output.println(
+                "# Listing of relationships among properties, suitable for analysis by spreadsheet");
         output.println("# Generated for " + Default.ucd().getVersion());
         output.println(Utility.generateDateLine());
         output.println("# P1\tP2\tR(P1,P2)\tC(P1&P2)\tC(P1-P2)\tC(P2-P1)");
 
-
         for (int i = 1; i < UCD_Types.LIMIT_ENUM; ++i) {
             final int iType = i & 0xFF00;
-            if (iType == UCD_Types.JOINING_GROUP || iType == UCD_Types.AGE || iType == UCD_Types.COMBINING_CLASS || iType == UCD_Types.SCRIPT) {
+            if (iType == UCD_Types.JOINING_GROUP
+                    || iType == UCD_Types.AGE
+                    || iType == UCD_Types.COMBINING_CLASS
+                    || iType == UCD_Types.SCRIPT) {
                 continue;
             }
             final UCDProperty upi = UnifiedBinaryProperty.make(i, Default.ucd());
@@ -470,9 +478,12 @@ public class CompareProperties implements UCD_Types {
             output.println("#" + iNameLong);
 
             int last = -1;
-            for (int j = i+1; j < UCD_Types.LIMIT_ENUM; ++j) {
+            for (int j = i + 1; j < UCD_Types.LIMIT_ENUM; ++j) {
                 final int jType = j & 0xFF00;
-                if (jType == UCD_Types.JOINING_GROUP || jType == UCD_Types.AGE || jType == UCD_Types.COMBINING_CLASS || jType == UCD_Types.SCRIPT
+                if (jType == UCD_Types.JOINING_GROUP
+                        || jType == UCD_Types.AGE
+                        || jType == UCD_Types.COMBINING_CLASS
+                        || jType == UCD_Types.SCRIPT
                         || (jType == iType && jType != UCD_Types.BINARY_PROPERTIES)) {
                     continue;
                 }
@@ -487,13 +498,12 @@ public class CompareProperties implements UCD_Types {
                     continue;
                 }
 
-
                 if ((j >> 8) != last) {
                     last = j >> 8;
-            System.out.println();
-            System.out.print("\t" + UCD_Names.SHORT_UNIFIED_PROPERTIES[last]);
-            output.flush();
-            output.println("#\t" + UCD_Names.SHORT_UNIFIED_PROPERTIES[last]);
+                    System.out.println();
+                    System.out.print("\t" + UCD_Names.SHORT_UNIFIED_PROPERTIES[last]);
+                    output.flush();
+                    output.println("#\t" + UCD_Names.SHORT_UNIFIED_PROPERTIES[last]);
                 } else {
                     System.out.print('.');
                 }
@@ -503,7 +513,9 @@ public class CompareProperties implements UCD_Types {
 
                 for (int cp = 0; cp <= 0x10FFFF; ++cp) {
                     final int cat = Default.ucd().getCategory(cp);
-                    if (cat == UCD_Types.UNASSIGNED || cat == UCD_Types.PRIVATE_USE || cat == UCD_Types.SURROGATE) {
+                    if (cat == UCD_Types.UNASSIGNED
+                            || cat == UCD_Types.PRIVATE_USE
+                            || cat == UCD_Types.SURROGATE) {
                         continue;
                     }
                     if (!Default.ucd().isAllocated(cp)) {
@@ -532,21 +544,44 @@ public class CompareProperties implements UCD_Types {
                 }
 
                 final String jNameShort = upj.getFullName(UCD_Types.SHORT);
-                //String jNameLong = ubp.getFullID(j, LONG);
+                // String jNameLong = ubp.getFullID(j, LONG);
 
-                final String rel = bothCount == 0 ? "DISJOINT"
-                        : i_jPropCount == 0 && j_iPropCount == 0 ? "EQUALS"
-                                : i_jPropCount == 0 ? "CONTAINS" // depends on reverse output
-                                        : j_iPropCount == 0 ? "CONTAINS"
-                                                : "OVERLAPS";
+                final String rel =
+                        bothCount == 0
+                                ? "DISJOINT"
+                                : i_jPropCount == 0 && j_iPropCount == 0
+                                        ? "EQUALS"
+                                        : i_jPropCount == 0
+                                                ? "CONTAINS" // depends on reverse output
+                                                : j_iPropCount == 0 ? "CONTAINS" : "OVERLAPS";
 
                 if (j_iPropCount > i_jPropCount) {
                     // reverse output
-                    output.println(jNameShort + "\t" + iNameShort + "\t" + rel
-                            + "\t" + bothCount + "\t" + j_iPropCount + "\t" + i_jPropCount);
+                    output.println(
+                            jNameShort
+                                    + "\t"
+                                    + iNameShort
+                                    + "\t"
+                                    + rel
+                                    + "\t"
+                                    + bothCount
+                                    + "\t"
+                                    + j_iPropCount
+                                    + "\t"
+                                    + i_jPropCount);
                 } else {
-                    output.println(iNameShort + "\t" + jNameShort + "\t" + rel
-                            + "\t" + bothCount + "\t" + i_jPropCount + "\t" + j_iPropCount);
+                    output.println(
+                            iNameShort
+                                    + "\t"
+                                    + jNameShort
+                                    + "\t"
+                                    + rel
+                                    + "\t"
+                                    + bothCount
+                                    + "\t"
+                                    + i_jPropCount
+                                    + "\t"
+                                    + j_iPropCount);
                 }
             }
         }

@@ -1,5 +1,23 @@
 package org.unicode.tools.emoji;
 
+import com.google.common.base.Joiner;
+import com.google.common.base.Objects;
+import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableList.Builder;
+import com.google.common.collect.LinkedHashMultimap;
+import com.google.common.collect.Multimap;
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.locale.XCldrStub.ImmutableMap;
+import com.ibm.icu.lang.CharSequences;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.DateFormat;
+import com.ibm.icu.text.Transform;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSet.SpanCondition;
+import com.ibm.icu.util.ULocale;
+import com.ibm.icu.util.VersionInfo;
 import java.io.File;
 import java.text.Collator;
 import java.util.ArrayList;
@@ -16,9 +34,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.function.Function;
 import java.util.function.Predicate;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.props.IndexUnicodeProperties;
@@ -33,29 +49,9 @@ import org.unicode.tools.emoji.CountEmoji.Bucket;
 import org.unicode.tools.emoji.CountEmoji.Category;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 
-import com.google.common.base.Joiner;
-import com.google.common.base.Objects;
-import com.google.common.base.Splitter;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableList.Builder;
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.LinkedHashMultimap;
-import com.google.common.collect.Multimap;
-import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.locale.XCldrStub.ImmutableMap;
-import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.DateFormat;
-import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSet.SpanCondition;
-import com.ibm.icu.util.ULocale;
-import com.ibm.icu.util.VersionInfo;
-
 /**
- * Provides data for candidates, reading the file candidateData.txt.
- * Note: At the end of a release, before the Draft Candidates are retired, run CandidateData.java to get the proposals for those
+ * Provides data for candidates, reading the file candidateData.txt. Note: At the end of a release,
+ * before the Draft Candidates are retired, run CandidateData.java to get the proposals for those
  * candidates, and add to the end of proposalData.txt
  */
 public class CandidateData implements Transform<String, String>, EmojiDataSource {
@@ -64,8 +60,9 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     private static boolean DEBUG = CldrUtility.getProperty("CandidateData:DEBUG", false);
 
     // TODO Replace after values by using emojiOrdering.
-    private static final UnicodeSet ZWJ_SET = new UnicodeSet(Emoji.JOINER,Emoji.JOINER);
-    private static final Splitter SPLITTER_COMMA = Splitter.on(',').trimResults().omitEmptyStrings();
+    private static final UnicodeSet ZWJ_SET = new UnicodeSet(Emoji.JOINER, Emoji.JOINER);
+    private static final Splitter SPLITTER_COMMA =
+            Splitter.on(',').trimResults().omitEmptyStrings();
     private static final Joiner JOIN_COMMA = Joiner.on(", ");
     static final Splitter barSplit = Splitter.on('|').trimResults().omitEmptyStrings();
     static final Splitter equalSplit = Splitter.on('=').trimResults();
@@ -74,16 +71,27 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
     public enum Quarter {
         _RELEASED,
-        _2015Q1, _2015Q2, _2015Q3, _2015Q4,
-        _2016Q1, _2016Q2, _2016Q3, _2016Q4,
-        _2017Q1, _2017Q2, _2017Q3, _2017Q4
-        ;
+        _2015Q1,
+        _2015Q2,
+        _2015Q3,
+        _2015Q4,
+        _2016Q1,
+        _2016Q2,
+        _2016Q3,
+        _2016Q4,
+        _2017Q1,
+        _2017Q2,
+        _2017Q3,
+        _2017Q4;
+
         public boolean isFuture() {
             return compareTo(_2016Q1) >= 0;
         }
+
         static Quarter fromString(String item) {
-            return valueOf('_'+item);
+            return valueOf('_' + item);
         }
+
         public String toString() {
             return name().substring(1);
         }
@@ -92,14 +100,17 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     public enum Status {
         Final_Candidate("Code points are final."), // final code points
         Draft_Candidate("Code points are draft."), // draft code points
-        Provisional_Candidate("Temporary IDs are assigned, not code points.");  // no code points
+        Provisional_Candidate("Temporary IDs are assigned, not code points."); // no code points
         public final String comment;
+
         private Status(String _comment) {
-            comment= _comment;
+            comment = _comment;
         }
+
         public static Status fromString(String string) {
             return valueOf(string.replace(' ', '_'));
         }
+
         public String toString() {
             return name().replace('_', ' ');
         }
@@ -114,12 +125,13 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     //        boolean Emoji_Gender_Base;
     //    }
 
-    public static SetMaker SORTED_TREESET_MAKER = new SetMaker<Comparable>() {
-        @Override
-        public Set<Comparable> make() {
-            return new TreeSet<Comparable>(Collator.getInstance(Locale.ENGLISH));
-        }
-    };
+    public static SetMaker SORTED_TREESET_MAKER =
+            new SetMaker<Comparable>() {
+                @Override
+                public Set<Comparable> make() {
+                    return new TreeSet<Comparable>(Collator.getInstance(Locale.ENGLISH));
+                }
+            };
 
     // TODO change to have a CandidateDatum object with this information, instead of separate maps
     private final List<Integer> order;
@@ -149,7 +161,8 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
     private Map<String, Set<String>> existingToDraftCandidatesAfter = new HashMap<>();
 
-    static final UnicodeSet SEQUENCE_MAKER = new UnicodeSet().add(Emoji.JOINER).add(EmojiData.MODIFIERS).freeze();
+    static final UnicodeSet SEQUENCE_MAKER =
+            new UnicodeSet().add(Emoji.JOINER).add(EmojiData.MODIFIERS).freeze();
 
     static final CandidateData SINGLE = new CandidateData("candidateData.txt");
 
@@ -164,7 +177,9 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         String proposalItem = null;
         Status status = null;
 
-        date = new File(FileUtilities.getRelativeFileName(CandidateData.class, sourceFile)).lastModified();
+        date =
+                new File(FileUtilities.getRelativeFileName(CandidateData.class, sourceFile))
+                        .lastModified();
         for (String line : FileUtilities.in(CandidateData.class, sourceFile)) {
             line = line.trim();
             try {
@@ -178,7 +193,8 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                     if (TEST_STRING.equals(source)) {
                         int debug = 0;
                     }
-                    addCombosWithGenderAndSkin(source); // fix old source. we do it here so we know the properties
+                    addCombosWithGenderAndSkin(
+                            source); // fix old source. we do it here so we know the properties
 
                     source = Utility.fromHex(line);
 
@@ -198,7 +214,9 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                     addAfter(source, afterItem);
                     check(allCharacters, after);
 
-                    proposal.put(source.replace(Emoji.EMOJI_VARIANT_STRING,""), ProposalData.cleanProposalString(proposalItem));
+                    proposal.put(
+                            source.replace(Emoji.EMOJI_VARIANT_STRING, ""),
+                            ProposalData.cleanProposalString(proposalItem));
                     String afterString = "&gt; " + afterItem;
                     Age_Values age = Emoji.VERSION_ENUM.get(afterItem.codePointAt(0));
                     if (age.compareTo(Age_Values.V10_0) >= 0) {
@@ -220,80 +238,84 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
                 } else { // must be category
                     int equalPos = line.indexOf('=');
-                    String leftSide = equalPos < 0 ? line : line.substring(0,equalPos).trim();
-                    String rightSide = equalPos < 0 ? null : line.substring(equalPos+1).trim();
-                    switch(leftSide) {
+                    String leftSide = equalPos < 0 ? line : line.substring(0, equalPos).trim();
+                    String rightSide = equalPos < 0 ? null : line.substring(equalPos + 1).trim();
+                    switch (leftSide) {
 
-                    // go before character
-                    case "Status": 
-                        status = CandidateData.Status.fromString(rightSide);
-                        break;
-                    case "Quarter": 
-                        quarter = CandidateData.Quarter.fromString(rightSide);
-                        break;
-                    case "After": 
-                        afterItem = rightSide;
-                        if (afterItem.equals("🧑‍🦰")) {
-                            int debug = 0;
-                        }
-                        category = EmojiOrder.STD_ORDER.getCategory(afterItem);
-                        break;
-                    case "Proposal": 
-                        proposalItem = rightSide;
-                        break;
-
-                        // go after character
-                    case "Name": 
-                        final String name = rightSide;
-                        if (name.contains("|")) {
-                            throw new IllegalArgumentException("Name with | on " + line);
-                        }
-                        names.put(source, name.toLowerCase(Locale.ENGLISH));
-                        names.put(source.replaceAll(Emoji.EMOJI_VARIANT_STRING, ""), name.toLowerCase(Locale.ENGLISH));
-                        break;
-                    case "UName":
-                        String oldName = names.get(source);
-                        if (!oldName.equalsIgnoreCase(rightSide)) {
-                            final String uname = rightSide.toUpperCase(Locale.ROOT);
-                            if (uname.contains("|")) {
-                                throw new IllegalArgumentException("UName with | on " + line);
+                            // go before character
+                        case "Status":
+                            status = CandidateData.Status.fromString(rightSide);
+                            break;
+                        case "Quarter":
+                            quarter = CandidateData.Quarter.fromString(rightSide);
+                            break;
+                        case "After":
+                            afterItem = rightSide;
+                            if (afterItem.equals("🧑‍🦰")) {
+                                int debug = 0;
                             }
-                            unames.put(source, uname);
-                        }
-                        break;
-                    case "Keywords": 
-                        if (rightSide.contains("dengue")) {
-                            int debug = 0;
-                        }
-                        if (rightSide.contains(",")) {
-                            System.err.println("Keywords contain: " + rightSide);
-                        }
-                        List<String> cleanKeywords = barSplit.splitToList(rightSide);
-                        for (String item : cleanKeywords) {
-                            if (item.isEmpty()) {
-                                throw new IllegalArgumentException("Empty keyword on " + line);
-                            }
-                            //                            if (!item.equals(item.toLowerCase(Locale.ENGLISH))) {
-                            //                                System.err.println("Warning: Cased Keyword on " + line); 
-                            //                            }
-                        }
-                        annotations.addAll(source, cleanKeywords);
-                        break;
-                    case "Emoji_Modifier_Base": 
-                        addAttribute(source, emoji_Modifier_Base, "∈ modifier_base");
-                        break;
-                    case "Emoji_Gender_Base": 
-                        addAttribute(source, emoji_Gender_Base, "∈ gender_base");
-                        break;
-                    case "Emoji_Component": 
-                        addAttribute(source, emoji_Component, "∈ component");
-                        break;
-                    case "Comment":
-                        addComment(source, rightSide);
-                        break;
+                            category = EmojiOrder.STD_ORDER.getCategory(afterItem);
+                            break;
+                        case "Proposal":
+                            proposalItem = rightSide;
+                            break;
 
-                    default: 
-                        throw new IllegalArgumentException(line);
+                            // go after character
+                        case "Name":
+                            final String name = rightSide;
+                            if (name.contains("|")) {
+                                throw new IllegalArgumentException("Name with | on " + line);
+                            }
+                            names.put(source, name.toLowerCase(Locale.ENGLISH));
+                            names.put(
+                                    source.replaceAll(Emoji.EMOJI_VARIANT_STRING, ""),
+                                    name.toLowerCase(Locale.ENGLISH));
+                            break;
+                        case "UName":
+                            String oldName = names.get(source);
+                            if (!oldName.equalsIgnoreCase(rightSide)) {
+                                final String uname = rightSide.toUpperCase(Locale.ROOT);
+                                if (uname.contains("|")) {
+                                    throw new IllegalArgumentException("UName with | on " + line);
+                                }
+                                unames.put(source, uname);
+                            }
+                            break;
+                        case "Keywords":
+                            if (rightSide.contains("dengue")) {
+                                int debug = 0;
+                            }
+                            if (rightSide.contains(",")) {
+                                System.err.println("Keywords contain: " + rightSide);
+                            }
+                            List<String> cleanKeywords = barSplit.splitToList(rightSide);
+                            for (String item : cleanKeywords) {
+                                if (item.isEmpty()) {
+                                    throw new IllegalArgumentException("Empty keyword on " + line);
+                                }
+                                //                            if
+                                // (!item.equals(item.toLowerCase(Locale.ENGLISH))) {
+                                //                                System.err.println("Warning: Cased
+                                // Keyword on " + line);
+                                //                            }
+                            }
+                            annotations.addAll(source, cleanKeywords);
+                            break;
+                        case "Emoji_Modifier_Base":
+                            addAttribute(source, emoji_Modifier_Base, "∈ modifier_base");
+                            break;
+                        case "Emoji_Gender_Base":
+                            addAttribute(source, emoji_Gender_Base, "∈ gender_base");
+                            break;
+                        case "Emoji_Component":
+                            addAttribute(source, emoji_Component, "∈ component");
+                            break;
+                        case "Comment":
+                            addComment(source, rightSide);
+                            break;
+
+                        default:
+                            throw new IllegalArgumentException(line);
                     }
                 }
             } catch (Exception e) {
@@ -301,13 +323,15 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
             }
         }
 
-        addCombosWithGenderAndSkin(source); // fix last source. We do it here so we know the properties
+        addCombosWithGenderAndSkin(
+                source); // fix last source. We do it here so we know the properties
         addHackName("handshake", "\uD83E\uDD1D", "\uDBC6\uDD03", "\u200D\uDBC6\uDD04");
 
         // allCharacters.addAll(singleCharacters); // just to be sure
-        UnicodeSet duplicates = new UnicodeSet(EmojiData.EMOJI_DATA_RELEASED.getAllEmojiWithDefectives())
-                .retainAll(allCharacters)
-                .addAll(Emoji.EXCLUSIONS);
+        UnicodeSet duplicates =
+                new UnicodeSet(EmojiData.EMOJI_DATA_RELEASED.getAllEmojiWithDefectives())
+                        .retainAll(allCharacters)
+                        .addAll(Emoji.EXCLUSIONS);
         //        allCharacters.removeAll(singleCharacters);
 
         allCharacters.removeAll(duplicates).freeze();
@@ -331,14 +355,15 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
         singleCharacters.addAll(allCharacters).removeAllStrings().freeze();
 
-        Multimap<String,String> _existingToDraftCandidatesAfter = LinkedHashMultimap.create();
+        Multimap<String, String> _existingToDraftCandidatesAfter = LinkedHashMultimap.create();
         for (Entry<String, String> entry : after.entrySet()) {
             if (statuses.getValue(entry.getKey()) == Status.Draft_Candidate) {
                 _existingToDraftCandidatesAfter.put(entry.getValue(), entry.getKey());
             }
         }
         // ImmutableMultimaps have values as lists, so rework
-        for (Entry<String, Collection<String>> entry : _existingToDraftCandidatesAfter.asMap().entrySet()) {
+        for (Entry<String, Collection<String>> entry :
+                _existingToDraftCandidatesAfter.asMap().entrySet()) {
             existingToDraftCandidatesAfter.put(entry.getKey(), (Set<String>) entry.getValue());
         }
         existingToDraftCandidatesAfter = ImmutableMap.copyOf(existingToDraftCandidatesAfter);
@@ -352,24 +377,32 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
             if (!provisional.contains(s)) {
                 allNonProvisional.add(s);
             }
-            if (s.contains(Emoji.JOINER_STR + Emoji.FEMALE + Emoji.EMOJI_VARIANT_STRING) || s.contains(Emoji.JOINER_STR + Emoji.MALE + Emoji.EMOJI_VARIANT_STRING)) {
-                takesSign.add(s.substring(0, s.length()-(Emoji.JOINER_STR + Emoji.FEMALE + Emoji.EMOJI_VARIANT_STRING).length()));
+            if (s.contains(Emoji.JOINER_STR + Emoji.FEMALE + Emoji.EMOJI_VARIANT_STRING)
+                    || s.contains(Emoji.JOINER_STR + Emoji.MALE + Emoji.EMOJI_VARIANT_STRING)) {
+                takesSign.add(
+                        s.substring(
+                                0,
+                                s.length()
+                                        - (Emoji.JOINER_STR
+                                                        + Emoji.FEMALE
+                                                        + Emoji.EMOJI_VARIANT_STRING)
+                                                .length()));
             }
-
         }
         UnicodeMap<Age_Values> ages = Emoji.LATEST.loadEnum(UcdProperty.Age, Age_Values.class);
-        Age_Values minAge = Age_Values.forName(Emoji.VERSION_LAST_RELEASED_UNICODE.getVersionString(2, 2));
+        Age_Values minAge =
+                Age_Values.forName(Emoji.VERSION_LAST_RELEASED_UNICODE.getVersionString(2, 2));
         EmojiData releasedData = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
         for (String s : allCharacters) {
             // if not single code point, we don't care
             int first = CharSequences.getSingleCodePoint(s);
             if (first == Integer.MAX_VALUE) {
-                continue; 
+                continue;
             }
             // if a character is in the released emoji data, we use its value
             if (releasedData.getAllEmojiWithDefectives().contains(s)) {
                 if (!releasedData.getEmojiPresentationSet().contains(s)) {
-                    textPresentation.add(s); 
+                    textPresentation.add(s);
                 }
                 continue;
             }
@@ -404,10 +437,10 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         }
     }
 
-    /** 
-     * We need to add special names. Rather than enhance the data-driving algorithm for a one-off, 
+    /**
+     * We need to add special names. Rather than enhance the data-driving algorithm for a one-off,
      * it is easier to do in code.
-     * */
+     */
     private void addHackName(String name, String singleton, String prefix, String suffix) {
         StringBuilder b = new StringBuilder();
         for (String tone1 : EmojiData.MODIFIERS) {
@@ -475,7 +508,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
             // check that old emoji have emoji VS
             // TODO
 
-            if (Emoji.GENDER_MARKERS.containsSome(item) 
+            if (Emoji.GENDER_MARKERS.containsSome(item)
                     || EmojiData.MODIFIERS.containsSome(item)
                     || Emoji.MAN_OR_WOMAN_OR_ADULT.containsSome(item)) {
                 continue;
@@ -484,11 +517,11 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
             String name = instance.getName(item);
             Set<String> keywords = instance.getAnnotations(item);
             if (keywords.size() > 6) {
-                System.err.println("Too many keywords? (" + keywords.size()
-                + "): " + name + ": " + keywords);
+                System.err.println(
+                        "Too many keywords? (" + keywords.size() + "): " + name + ": " + keywords);
             } else if (keywords.size() < 1) {
-                System.err.println("Too few keywords? (" + keywords.size()
-                + "): " + name + ": " + keywords); 
+                System.err.println(
+                        "Too few keywords? (" + keywords.size() + "): " + name + ": " + keywords);
             }
             if (item.contains(Emoji.JOINER_STR)) {
                 continue;
@@ -501,9 +534,10 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
             if (cname == null) {
                 cname = name.toUpperCase(Locale.ROOT);
             }
-            String uname = iup.getName(item," + ");
+            String uname = iup.getName(item, " + ");
             if (!uname.equals(cname)) {
-                System.err.println(Utility.hex(item) + " — Names differ UCD: " + uname + "\t≠\tCLDR:" + cname);
+                System.err.println(
+                        Utility.hex(item) + " — Names differ UCD: " + uname + "\t≠\tCLDR:" + cname);
                 result = false;
             }
         }
@@ -526,11 +560,13 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
             int debug = 0;
         }
 
-        boolean hasModifierBase = emoji_Modifier_Base.containsSome(source) 
-                || EmojiData.EMOJI_DATA_BETA.getModifierBasesRgi().containsSome(source);
+        boolean hasModifierBase =
+                emoji_Modifier_Base.containsSome(source)
+                        || EmojiData.EMOJI_DATA_BETA.getModifierBasesRgi().containsSome(source);
         UnicodeSet all_Emoji_Modifier_Base = null;
         String fromNames = names.get(source);
-        // disable this, so that all gender variants come from the file instead of being manufactured.
+        // disable this, so that all gender variants come from the file instead of being
+        // manufactured.
         //        if (hasModifierBase) {
         //            // find the point where it occurs; not efficient but we don't care
         //            all_Emoji_Modifier_Base = new UnicodeSet(emoji_Modifier_Base)
@@ -538,7 +574,8 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         //                    .remove("🤝") // special hack to remove skin color
         //                    .freeze();
         //
-        //            addCombos(source, fromNames, "", source, "", ": ", all_Emoji_Modifier_Base, "", "");
+        //            addCombos(source, fromNames, "", source, "", ": ", all_Emoji_Modifier_Base,
+        // "", "");
         //        }
 
         int single = UnicodeSet.getSingleCodePoint(source);
@@ -548,7 +585,8 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
         boolean isGenderBase = emoji_Gender_Base.contains(source);
         if (isGenderBase) {
-            boolean isMultiPerson = EmojiData.EMOJI_DATA_BETA.getMultiPersonGroupings().contains(source);
+            boolean isMultiPerson =
+                    EmojiData.EMOJI_DATA_BETA.getMultiPersonGroupings().contains(source);
 
             for (String gen : Emoji.GENDER_MARKERS) {
                 String genSuffix = Emoji.JOINER_STR + gen + Emoji.EMOJI_VARIANT_STRING;
@@ -569,37 +607,64 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                 String newSource = source + genSuffix;
                 addCombo(source, sourceName, newSource, "");
                 if (hasModifierBase) {
-                    addCombos(newSource, sourceName, "", newSource, "", ": ", all_Emoji_Modifier_Base, "", "");
+                    addCombos(
+                            newSource,
+                            sourceName,
+                            "",
+                            newSource,
+                            "",
+                            ": ",
+                            all_Emoji_Modifier_Base,
+                            "",
+                            "");
                     //
                     //                    for (String mod : EmojiData.MODIFIERS) {
-                    //                        addCombo(source, sourceName, source + mod + genSuffix, ": " + EmojiData.EMOJI_DATA_BETA.getName(mod));
+                    //                        addCombo(source, sourceName, source + mod + genSuffix,
+                    // ": " + EmojiData.EMOJI_DATA_BETA.getName(mod));
                     //                    }
                 }
             }
         }
         //        if (isGenderBase && hasModifierBase) {
-        //            addComment(source, "Combinations of gender and skin-tone produce 17 more emoji sequences.");
+        //            addComment(source, "Combinations of gender and skin-tone produce 17 more emoji
+        // sequences.");
         //        } else if (isGenderBase) {
-        //            addComment(source, "Combinations of gender and skin-tone produce 2 more emoji sequences.");
+        //            addComment(source, "Combinations of gender and skin-tone produce 2 more emoji
+        // sequences.");
         //        } else if (hasModifierBase) {
-        //            addComment(source, "Combinations of gender and skin-tone produce 5 more emoji sequences.");
+        //            addComment(source, "Combinations of gender and skin-tone produce 5 more emoji
+        // sequences.");
         //        }
         // Comment=There will be 55 emoji sequences with combinations of gender and skin-tone
 
     }
 
-    private void addCombos(String source, String sourceName, String combined, String remainder, String nameSuffix, 
-            String separator, UnicodeSet forSplitting, String lastBase, String lastMod) {
-        if (SHOW_COMBOS) System.out.println(
-                "source: " + source
-                + ", combined: " + combined
-                + ", remainder: " + remainder
-                + ", nameSuffix: " + nameSuffix
-                + ", separator: " + separator
-                );
+    private void addCombos(
+            String source,
+            String sourceName,
+            String combined,
+            String remainder,
+            String nameSuffix,
+            String separator,
+            UnicodeSet forSplitting,
+            String lastBase,
+            String lastMod) {
+        if (SHOW_COMBOS)
+            System.out.println(
+                    "source: "
+                            + source
+                            + ", combined: "
+                            + combined
+                            + ", remainder: "
+                            + remainder
+                            + ", nameSuffix: "
+                            + nameSuffix
+                            + ", separator: "
+                            + separator);
         int start = forSplitting.span(remainder, SpanCondition.NOT_CONTAINED);
         if (start == remainder.length()) {
-            //          addCombo(source, source + mod + genSuffix, genPrefix, ": " + EmojiData.EMOJI_DATA_BETA.getName(mod));
+            //          addCombo(source, source + mod + genSuffix, genPrefix, ": " +
+            // EmojiData.EMOJI_DATA_BETA.getName(mod));
             addCombo(source, sourceName, combined + remainder, nameSuffix);
             return;
         }
@@ -614,8 +679,16 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
             if (base.equals(lastBase) && mod.compareTo(lastMod) == 0) {
                 continue;
             }
-            addCombos(source, sourceName, combined + remainder.substring(0, end) + mod, 
-                    remainder.substring(end), nameSuffix + separator + EmojiData.EMOJI_DATA_BETA.getName(mod), ", ", forSplitting, base, mod);
+            addCombos(
+                    source,
+                    sourceName,
+                    combined + remainder.substring(0, end) + mod,
+                    remainder.substring(end),
+                    nameSuffix + separator + EmojiData.EMOJI_DATA_BETA.getName(mod),
+                    ", ",
+                    forSplitting,
+                    base,
+                    mod);
         }
     }
 
@@ -628,12 +701,16 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
     private void addCombo(String source, String sourceName, String combo, String nameSuffix) {
         String newName = sourceName + nameSuffix;
-        if (SHOW_COMBOS) System.out.println("*addCombo: "
-                + "cp: " + source
-                + ", combo: " + combo
-                + ", newName: " + newName
-                );
-        //System.out.println("Adding: " + newName);
+        if (SHOW_COMBOS)
+            System.out.println(
+                    "*addCombo: "
+                            + "cp: "
+                            + source
+                            + ", combo: "
+                            + combo
+                            + ", newName: "
+                            + newName);
+        // System.out.println("Adding: " + newName);
         allCharacters.add(combo);
         names.put(combo, newName);
         Status status = statuses.get(source);
@@ -650,70 +727,73 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         setCategoryAndSuborder(combo, categories.get(source));
 
         //        if (Emoji.HAIR_PIECES.containsSome(cp)) { // HACK
-        //            names.put(combo, 
-        //                    EmojiData.EMOJI_DATA.getName(UTF16.valueOf(Character.codePointAt(combo, 0)))
+        //            names.put(combo,
+        //
+        // EmojiData.EMOJI_DATA.getName(UTF16.valueOf(Character.codePointAt(combo, 0)))
         //                    + ": " +
         //                    getName(Character.codePointBefore(combo, combo.length())));
         //        }
     }
 
-    public final Comparator<String> comparator = new Comparator<String>() {
-        @Override
-        public int compare(String o1, String o2) {
-            if ("🛼".equals(o1) || "🛼".equals(o1)) {
-                int debug = 0;
-            }
-            if (o1 == o2) {
-                return 0;
-            }
+    public final Comparator<String> comparator =
+            new Comparator<String>() {
+                @Override
+                public int compare(String o1, String o2) {
+                    if ("🛼".equals(o1) || "🛼".equals(o1)) {
+                        int debug = 0;
+                    }
+                    if (o1 == o2) {
+                        return 0;
+                    }
 
-            // if both items have "real" collation data, use that.
-            int r1 = EmojiOrder.STD_ORDER.mapCollator.getOrdering(o1);
-            int r2 = EmojiOrder.STD_ORDER.mapCollator.getOrdering(o2);
-            if (r1 >= 0 && r2 >= 0) {
-                return EmojiOrder.STD_ORDER.codepointCompare.compare(o1, o2);
-            }
+                    // if both items have "real" collation data, use that.
+                    int r1 = EmojiOrder.STD_ORDER.mapCollator.getOrdering(o1);
+                    int r2 = EmojiOrder.STD_ORDER.mapCollator.getOrdering(o2);
+                    if (r1 >= 0 && r2 >= 0) {
+                        return EmojiOrder.STD_ORDER.codepointCompare.compare(o1, o2);
+                    }
 
-            // if there are no after values, then neither item is in CandidateData
-            String after1 = after.get(o1);
-            String after2 = after.get(o2);
-            if (after1 == null && after1 == null) {
-                return EmojiOrder.STD_ORDER.codepointCompare.compare(o1, o2);
-            }
+                    // if there are no after values, then neither item is in CandidateData
+                    String after1 = after.get(o1);
+                    String after2 = after.get(o2);
+                    if (after1 == null && after1 == null) {
+                        return EmojiOrder.STD_ORDER.codepointCompare.compare(o1, o2);
+                    }
 
-            //            // this getCategory falls back to the full emojit set.
-            //            String cat1 = getCategory(o1);
-            //            int catOrder1 = EmojiOrder.STD_ORDER.getGroupOrder(cat1); 
-            //
-            //            String cat2 = getCategory(o2);
-            //            int catOrder2 = EmojiOrder.STD_ORDER.getGroupOrder(cat2);
-            //            if (catOrder1 != catOrder2) {
-            //                return catOrder1 > catOrder2 ? 1 : -1;
-            //            }
+                    //            // this getCategory falls back to the full emojit set.
+                    //            String cat1 = getCategory(o1);
+                    //            int catOrder1 = EmojiOrder.STD_ORDER.getGroupOrder(cat1);
+                    //
+                    //            String cat2 = getCategory(o2);
+                    //            int catOrder2 = EmojiOrder.STD_ORDER.getGroupOrder(cat2);
+                    //            if (catOrder1 != catOrder2) {
+                    //                return catOrder1 > catOrder2 ? 1 : -1;
+                    //            }
 
-            // if the after values are different, return them
-            // either either is null, then the character is outside of 
+                    // if the after values are different, return them
+                    // either either is null, then the character is outside of
 
-            if (after1 == null) {
-                after1 = o1;
-            }
-            if (after2 == null) {
-                after2 = o2;
-            }
-            if (!after1.equals(after2)) {
-                return EmojiOrder.STD_ORDER.codepointCompare.compare(after1, after2);
-            }
+                    if (after1 == null) {
+                        after1 = o1;
+                    }
+                    if (after2 == null) {
+                        after2 = o2;
+                    }
+                    if (!after1.equals(after2)) {
+                        return EmojiOrder.STD_ORDER.codepointCompare.compare(after1, after2);
+                    }
 
-            // The after values are identical, so get the suborders
-            // If one is missing (they both can't be simultaneously missing), use -1 to get before
-            Integer so1 = suborder.get(o1);
-            int so1i = so1 == null ? -1 : so1;
-            Integer so2 = suborder.get(o2);
-            int so2i = so2 == null ? -1 : so2;
+                    // The after values are identical, so get the suborders
+                    // If one is missing (they both can't be simultaneously missing), use -1 to get
+                    // before
+                    Integer so1 = suborder.get(o1);
+                    int so1i = so1 == null ? -1 : so1;
+                    Integer so2 = suborder.get(o2);
+                    int so2i = so2 == null ? -1 : so2;
 
-            return so1i-so2i;
-        }
-    };
+                    return so1i - so2i;
+                }
+            };
     private long date;
 
     /**
@@ -754,6 +834,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     public String getUName(String source) {
         return unames.get(source);
     }
+
     public String getUName(int source) {
         return unames.get(source);
     }
@@ -766,6 +847,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         Set<String> list = annotations.get(source);
         return list == null ? Collections.<String>emptySet() : new TreeSet<>(list);
     }
+
     public Set<String> getAnnotations(int source) {
         return CldrUtility.ifNull(annotations.get(source), Collections.<String>emptySet());
     }
@@ -782,6 +864,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     public CandidateData.Quarter getQuarter(String source) {
         return quarters.get(source);
     }
+
     public CandidateData.Quarter getQuarter(int source) {
         return quarters.get(source);
     }
@@ -789,6 +872,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     public Status getStatus(String source) {
         return statuses.get(source);
     }
+
     public Status getStatus(int source) {
         return statuses.get(source);
     }
@@ -796,6 +880,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     public String getComment(String source) {
         return comments.get(source);
     }
+
     public String getComment(int source) {
         return comments.get(source);
     }
@@ -804,16 +889,18 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         String result = EmojiOrder.STD_ORDER.charactersToOrdering.get(source);
         return result != null ? result : categories.get(source);
     }
+
     public String getCategory(String source) {
         String result = EmojiOrder.STD_ORDER.charactersToOrdering.get(source);
         if (result != null) {
             return result;
         }
-//        final String stripped = EmojiData.removeEmojiVariants(EmojiData.MODIFIERS.stripFrom(source, true));
-//        result = EmojiOrder.STD_ORDER.charactersToOrdering.get(stripped);
-//        if (result != null) {
-//            return result;
-//        }
+        //        final String stripped =
+        // EmojiData.removeEmojiVariants(EmojiData.MODIFIERS.stripFrom(source, true));
+        //        result = EmojiOrder.STD_ORDER.charactersToOrdering.get(stripped);
+        //        if (result != null) {
+        //            return result;
+        //        }
         result = categories.get(source);
         if (result != null) {
             return result;
@@ -831,12 +918,16 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
      */
     public MajorGroup getMajorGroup(String s) {
         MajorGroup result = EmojiOrder.STD_ORDER.majorGroupings.get(s);
-        return result != null ? result : EmojiOrder.STD_ORDER.getMajorGroupFromCategory(getCategory(s));
+        return result != null
+                ? result
+                : EmojiOrder.STD_ORDER.getMajorGroupFromCategory(getCategory(s));
     }
 
     public MajorGroup getMajorGroup(int s) {
         MajorGroup result = EmojiOrder.STD_ORDER.majorGroupings.get(s);
-        return result != null ? result :EmojiOrder.STD_ORDER.getMajorGroupFromCategory(getCategory(s));
+        return result != null
+                ? result
+                : EmojiOrder.STD_ORDER.getMajorGroupFromCategory(getCategory(s));
     }
 
     public MajorGroup getMajorGroupFromCategory(String category) {
@@ -852,27 +943,31 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         int count = 0;
         for (String arg : args) {
             switch (arg) {
-            case "proposals": 
-                generateProposalData(candidateData); 
-                ++count;
-                break;
-            case "order":         
-                IndexUnicodeProperties iup = IndexUnicodeProperties.make(Emoji.VERSION_BETA);
-                UnicodeMap<General_Category_Values> gc = iup.loadEnum(UcdProperty.General_Category, UcdPropertyValues.General_Category_Values.class);
-                UnicodeSet unassigned = gc.getSet(UcdPropertyValues.General_Category_Values.Unassigned);
-                showOrdering(candidateData, unassigned);
-                ++count;
-                break;
-            default:             
-                throw new IllegalArgumentException("Bad argument: " + arg);
-
+                case "proposals":
+                    generateProposalData(candidateData);
+                    ++count;
+                    break;
+                case "order":
+                    IndexUnicodeProperties iup = IndexUnicodeProperties.make(Emoji.VERSION_BETA);
+                    UnicodeMap<General_Category_Values> gc =
+                            iup.loadEnum(
+                                    UcdProperty.General_Category,
+                                    UcdPropertyValues.General_Category_Values.class);
+                    UnicodeSet unassigned =
+                            gc.getSet(UcdPropertyValues.General_Category_Values.Unassigned);
+                    showOrdering(candidateData, unassigned);
+                    ++count;
+                    break;
+                default:
+                    throw new IllegalArgumentException("Bad argument: " + arg);
             }
         }
         if (count == 0) {
             throw new IllegalArgumentException("No arguments found");
         }
 
-        //        try (BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out))) {
+        //        try (BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out)))
+        // {
         //            new EmojiDataSourceCombined().showOrderingInterleaved(MAX_PER_LINE, out);
         //        } catch (IOException e) {
         //            throw new ICUUncheckedIOException(e);
@@ -898,10 +993,12 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         //
         //            UnicodeSet candChars = candidateData.getAllCharacters();
         //            System.out.println(candChars.size() + "\t" + candChars);
-        //            System.out.println("all\t" + DebugUtilities.composeStringsWhen("•", candChars, s -> s.contains(Emoji.TRANSGENDER)));
+        //            System.out.println("all\t" + DebugUtilities.composeStringsWhen("•", candChars,
+        // s -> s.contains(Emoji.TRANSGENDER)));
         //            UnicodeSet withoutDefectives = candidateData.getAllEmojiWithoutDefectives();
         //            System.out.println(withoutDefectives.size() + "\t" + withoutDefectives);
-        //            System.out.println("wd\t" + DebugUtilities.composeStringsWhen("•", withoutDefectives, s -> s.contains(Emoji.TRANSGENDER)));
+        //            System.out.println("wd\t" + DebugUtilities.composeStringsWhen("•",
+        // withoutDefectives, s -> s.contains(Emoji.TRANSGENDER)));
         //
         //            String added = EmojiData.EMOJI_DATA_BETA.addEmojiVariants(Emoji.TRANSGENDER);
         //            System.out.println(Utility.hex(Emoji.TRANSFLAG));
@@ -915,14 +1012,14 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
     private static void generateProposalData(CandidateData instance) {
         System.out.println("\nData for proposalData.txt\n");
-        //1F931;  L2/16-280,L2/16-282r;   BREAST-FEEDING   
+        // 1F931;  L2/16-280,L2/16-282r;   BREAST-FEEDING
         Set<String> done = new HashSet<>();
         UnicodeSet missing = new UnicodeSet();
         for (String item : instance.fullDraftForProposals) {
             if (instance.statuses.get(item) == Status.Provisional_Candidate
-//                    || EmojiData.MODIFIERS.containsSome(item)
-//                    || Emoji.GENDER_MARKERS.containsSome(item)
-                    ) {
+            //                    || EmojiData.MODIFIERS.containsSome(item)
+            //                    || Emoji.GENDER_MARKERS.containsSome(item)
+            ) {
                 continue;
             }
             String skeleton = ProposalData.getSkeleton(item);
@@ -931,20 +1028,21 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
             }
             done.add(skeleton);
             Set<String> proposals = instance.getProposal(item);
-//            if (proposals == null) {
-//                missing.add(item);
-//            }
-            System.out.println(Utility.hex(skeleton)
-                    + "; " + CollectionUtilities.join(proposals, ", ")
-                    + "; " + instance.getName(item));
+            //            if (proposals == null) {
+            //                missing.add(item);
+            //            }
+            System.out.println(
+                    Utility.hex(skeleton)
+                            + "; "
+                            + CollectionUtilities.join(proposals, ", ")
+                            + "; "
+                            + instance.getName(item));
         }
         if (missing.isEmpty()) {
             return;
         }
         for (String item : missing) {
-            System.out.println(Utility.hex(item)
-                    + "; " + "XXX"
-                    + "; " + instance.getName(item));
+            System.out.println(Utility.hex(item) + "; " + "XXX" + "; " + instance.getName(item));
         }
     }
 
@@ -957,9 +1055,10 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         if (DEBUG) System.out.println("\nOrdering Data\n");
 
         CountEmoji cm = new CountEmoji();
-        Set<String> sorted = instance.getAllCharacters().addAllTo(
-                new TreeSet<>(instance.comparator));
-        //        Map<String,List<String>> baseToList = new TreeMap<>(EmojiOrder.STD_ORDER.codepointCompare);
+        Set<String> sorted =
+                instance.getAllCharacters().addAllTo(new TreeSet<>(instance.comparator));
+        //        Map<String,List<String>> baseToList = new
+        // TreeMap<>(EmojiOrder.STD_ORDER.codepointCompare);
         //        baseToList.
         //        for (String item : instance.suborder) {
         //            //            if (EmojiData.MODIFIERS.containsSome(item)) {
@@ -976,16 +1075,23 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
             if (discard.containsSome(subItem)) {
                 continue;
             }
-            if (DEBUG) System.out.println(
-                    instance.after.get(subItem) 
-                    + "\t" + subItem 
-                    + "\t" + Utility.hex(subItem) 
-                    + "\t" + instance.categories.get(subItem) 
-                    + "\t" + instance.suborder.get(subItem) 
-                    + "\t" + instance.getName(subItem)
-                    + "\tkw:" + instance.getAnnotations(subItem)
-                    + "\tucd:" + instance.getUName(subItem)
-                    );
+            if (DEBUG)
+                System.out.println(
+                        instance.after.get(subItem)
+                                + "\t"
+                                + subItem
+                                + "\t"
+                                + Utility.hex(subItem)
+                                + "\t"
+                                + instance.categories.get(subItem)
+                                + "\t"
+                                + instance.suborder.get(subItem)
+                                + "\t"
+                                + instance.getName(subItem)
+                                + "\tkw:"
+                                + instance.getAnnotations(subItem)
+                                + "\tucd:"
+                                + instance.getUName(subItem));
             if (instance.getAfter(subItem) == null) {
                 throw new IllegalArgumentException();
             }
@@ -1000,7 +1106,8 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         //        for (String s : instance.allCharacters) {
         //            System.out.println(s + "\t" + ordering.getCategory(s));
         //        }
-        //        for (String s : new UnicodeSet("[{👨‍🦰️}{👨‍🦱️}{👨‍🦲️}{👨‍🦳️}{👨🏻‍🦰️}{👨🏻‍🦱️}{👨🏻‍🦲️}{👨🏻‍🦳️}{👨🏼‍🦰️}{👨🏼‍🦱️}{👨🏼‍🦲️}{👨🏼‍🦳️}{👨🏽‍🦰️}{👨🏽‍🦱️}{👨🏽‍🦲️}{👨🏽‍🦳️}{👨🏾‍🦰️}{👨🏾‍🦱️}{👨🏾‍🦲️}{👨🏾‍🦳️}{👨🏿‍🦰️}{👨🏿‍🦱️}{👨🏿‍🦲️}{👨🏿‍🦳️}{👩‍🦰️}{👩‍🦱️}{👩‍🦲️}{👩‍🦳️}{👩🏻‍🦰️}{👩🏻‍🦱️}{👩🏻‍🦲️}{👩🏻‍🦳️}{👩🏼‍🦰️}{👩🏼‍🦱️}{👩🏼‍🦲️}{👩🏼‍🦳️}{👩🏽‍🦰️}{👩🏽‍🦱️}{👩🏽‍🦲️}{👩🏽‍🦳️}{👩🏾‍🦰️}{👩🏾‍🦱️}{👩🏾‍🦲️}{👩🏾‍🦳️}{👩🏿‍🦰️}{👩🏿‍🦱️}{👩🏿‍🦲️}{👩🏿‍🦳️}{🦸️‍♀️}{🦸️‍♂️}{🦹️‍♀️}{🦹️‍♂️}]")) {
+        //        for (String s : new
+        // UnicodeSet("[{👨‍🦰️}{👨‍🦱️}{👨‍🦲️}{👨‍🦳️}{👨🏻‍🦰️}{👨🏻‍🦱️}{👨🏻‍🦲️}{👨🏻‍🦳️}{👨🏼‍🦰️}{👨🏼‍🦱️}{👨🏼‍🦲️}{👨🏼‍🦳️}{👨🏽‍🦰️}{👨🏽‍🦱️}{👨🏽‍🦲️}{👨🏽‍🦳️}{👨🏾‍🦰️}{👨🏾‍🦱️}{👨🏾‍🦲️}{👨🏾‍🦳️}{👨🏿‍🦰️}{👨🏿‍🦱️}{👨🏿‍🦲️}{👨🏿‍🦳️}{👩‍🦰️}{👩‍🦱️}{👩‍🦲️}{👩‍🦳️}{👩🏻‍🦰️}{👩🏻‍🦱️}{👩🏻‍🦲️}{👩🏻‍🦳️}{👩🏼‍🦰️}{👩🏼‍🦱️}{👩🏼‍🦲️}{👩🏼‍🦳️}{👩🏽‍🦰️}{👩🏽‍🦱️}{👩🏽‍🦲️}{👩🏽‍🦳️}{👩🏾‍🦰️}{👩🏾‍🦱️}{👩🏾‍🦲️}{👩🏾‍🦳️}{👩🏿‍🦰️}{👩🏿‍🦱️}{👩🏿‍🦲️}{👩🏿‍🦳️}{🦸️‍♀️}{🦸️‍♂️}{🦹️‍♀️}{🦹️‍♂️}]")) {
         //            if (DEBUG) System.out.println(s + "\t" + ordering.getCategory(s));
         //        }
         if (DEBUG) System.out.println("\n\nSO\tType\tCategory\tHex\tCldr Name\tUcd Name");
@@ -1013,18 +1120,24 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                 UnicodeSet uset = bucket.sets.getSet(maj);
                 if (uset.isEmpty()) continue;
                 Set<String> items = uset.addAllTo(new TreeSet<>(instance.comparator));
-                // if (DEBUG) System.out.println(evalue.toStringPlain() + "\t" + maj.toPlainString() + "\t" + items.size());
+                // if (DEBUG) System.out.println(evalue.toStringPlain() + "\t" + maj.toPlainString()
+                // + "\t" + items.size());
                 for (String subItem : items) {
                     String uName = instance.getUName(subItem);
-                    if (DEBUG) System.out.println(
-                            instance.getAfter(subItem) 
-                            + "\t" + ++sortOrder
-                            + "\t" + evalue.toStringPlain() 
-                            + "\t" + maj.toPlainString() 
-                            + "\tU+" + Utility.hex(subItem, ", U+")
-                            + "\t" + instance.getName(subItem) 
-                            + (uName != null ? "\t" + uName : "")
-                            );
+                    if (DEBUG)
+                        System.out.println(
+                                instance.getAfter(subItem)
+                                        + "\t"
+                                        + ++sortOrder
+                                        + "\t"
+                                        + evalue.toStringPlain()
+                                        + "\t"
+                                        + maj.toPlainString()
+                                        + "\tU+"
+                                        + Utility.hex(subItem, ", U+")
+                                        + "\t"
+                                        + instance.getName(subItem)
+                                        + (uName != null ? "\t" + uName : ""));
                     if (lastSubitem != null) {
                         if (instance.comparator.compare(lastSubitem, subItem) >= 0) {
                             int debug = 0;
@@ -1037,8 +1150,6 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         }
     }
 
-
-
     public Set<String> getCandidatesAfter(String s) {
         return (Set<String>) existingToDraftCandidatesAfter.get(s);
     }
@@ -1047,27 +1158,44 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         return after.get(s);
     }
 
-    private static void showCandidateData(CandidateData cd, boolean sortWithCandidateComparator, boolean retainOnlyNew) {
+    private static void showCandidateData(
+            CandidateData cd, boolean sortWithCandidateComparator, boolean retainOnlyNew) {
         cd.comparator.compare(Utility.fromHex("1F9B5"), Utility.fromHex("1F9B6 1F3FF"));
 
         if (DEBUG) System.out.println("Code Point\tChart\tGlyph\tSample\tColored Glyph\tName");
         UnicodeSet chars2 = cd.getAllEmojiWithoutDefectives();
         if (retainOnlyNew) {
-            chars2 = new UnicodeSet(chars2).removeAll(EmojiData.EMOJI_DATA_BETA.getAllEmojiWithoutDefectives()).freeze();
+            chars2 =
+                    new UnicodeSet(chars2)
+                            .removeAll(EmojiData.EMOJI_DATA_BETA.getAllEmojiWithoutDefectives())
+                            .freeze();
         }
-        List<String> sorted = new ArrayList<>(chars2.addAllTo(new TreeSet<String>(
-                sortWithCandidateComparator 
-                ? cd.comparator 
-                        : EmojiOrder.STD_ORDER.codepointCompare)));
+        List<String> sorted =
+                new ArrayList<>(
+                        chars2.addAllTo(
+                                new TreeSet<String>(
+                                        sortWithCandidateComparator
+                                                ? cd.comparator
+                                                : EmojiOrder.STD_ORDER.codepointCompare)));
         String lastCategory = null;
         MajorGroup lastMajorGroup = null;
         List<String> lastCategoryList = new ArrayList<String>();
 
         if (DEBUG) {
-            System.out.println("chars2: " + chars2.size()+ "\n" + DebugUtilities.composeStringsWhen("•", chars2, s1 -> s1.contains(Emoji.TRANSGENDER)));
-            System.out.println("sorted: " + sorted.size()+ "\n" + DebugUtilities.composeStringsWhen("•", sorted, s2 -> s2.contains(Emoji.TRANSGENDER)));
+            System.out.println(
+                    "chars2: "
+                            + chars2.size()
+                            + "\n"
+                            + DebugUtilities.composeStringsWhen(
+                                    "•", chars2, s1 -> s1.contains(Emoji.TRANSGENDER)));
+            System.out.println(
+                    "sorted: "
+                            + sorted.size()
+                            + "\n"
+                            + DebugUtilities.composeStringsWhen(
+                                    "•", sorted, s2 -> s2.contains(Emoji.TRANSGENDER)));
         }
-        Map<String,String> errors = new LinkedHashMap<>();
+        Map<String, String> errors = new LinkedHashMap<>();
         for (String s : sorted) {
             if (s.contains(Emoji.TRANSGENDER)) {
                 int debug = 0;
@@ -1075,53 +1203,74 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
             String category = cd.getCategory(s);
             MajorGroup majorGroup = cd.getMajorGroup(s);
             if (majorGroup == null) {
-                cd.getMajorGroup(s);  
+                cd.getMajorGroup(s);
             }
             if (majorGroup != lastMajorGroup) {
                 if (DEBUG) System.out.println("\n@ " + majorGroup.name());
-                lastMajorGroup = majorGroup; 
+                lastMajorGroup = majorGroup;
             }
-            if (!Objects.equal(category,lastCategory)) {
+            if (!Objects.equal(category, lastCategory)) {
                 if (lastCategory != null) {
-                    if (DEBUG) System.out.println("# lastCategory: " + lastCategory + " = \t" + CollectionUtilities.join(lastCategoryList, " "));
+                    if (DEBUG)
+                        System.out.println(
+                                "# lastCategory: "
+                                        + lastCategory
+                                        + " = \t"
+                                        + CollectionUtilities.join(lastCategoryList, " "));
                 }
                 if (DEBUG) System.out.println(category);
-                lastCategory = category; 
+                lastCategory = category;
                 lastCategoryList.clear();
             }
             lastCategoryList.add(s);
             if (cd.getProposal(s) == null) {
                 errors.put(s, "No proposal value for: ");
             }
-            if (DEBUG) System.out.println(Utility.hex(s) 
-                    + "\t" + s 
-                    //                    + "\t" + cd.getQuarter(s) 
-                    + "\t" + cd.getName(s)
-                    + "\t" + cd.getProposal(s) 
-                    + "\t" + CollectionUtilities.join(cd.getAnnotations(s), " | ")
-                    );
+            if (DEBUG)
+                System.out.println(
+                        Utility.hex(s)
+                                + "\t"
+                                + s
+                                //                    + "\t" + cd.getQuarter(s)
+                                + "\t"
+                                + cd.getName(s)
+                                + "\t"
+                                + cd.getProposal(s)
+                                + "\t"
+                                + CollectionUtilities.join(cd.getAnnotations(s), " | "));
             //            for (String annotation :  cd.getAnnotations(s)) {
             //                if (DEBUG) System.out.println("• " + annotation);
             //            }
         }
-        if (DEBUG) System.out.println("# list: " + lastCategory + " = \t" + CollectionUtilities.join(lastCategoryList, " "));
+        if (DEBUG)
+            System.out.println(
+                    "# list: "
+                            + lastCategory
+                            + " = \t"
+                            + CollectionUtilities.join(lastCategoryList, " "));
         if (errors.isEmpty()) {
-            errors.forEach((String key, String value) -> System.out.println(Utility.hex(key) + "\t" + value));
+            errors.forEach(
+                    (String key, String value) ->
+                            System.out.println(Utility.hex(key) + "\t" + value));
             throw new IllegalArgumentException("Failed");
         }
     }
 
     private static void showLast(UnicodeSet last) {
         if (DEBUG) System.out.println("# Total: " + last.size());
-        if (DEBUG) System.out.println("# USet: " + CollectionUtilities.join(
-                last.addAllTo(new LinkedHashSet<>())," ") + "\n");
+        if (DEBUG)
+            System.out.println(
+                    "# USet: "
+                            + CollectionUtilities.join(last.addAllTo(new LinkedHashSet<>()), " ")
+                            + "\n");
         last.clear();
     }
 
     @Override
     public String transform(String source) {
         String temp = getName(source);
-        main: {
+        main:
+        {
             if ("I LOVE YOU HAND SIGN".equals(temp)) {
                 temp = "LOVE-YOU HAND";
                 break main;
@@ -1133,48 +1282,50 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                 temp = EmojiData.EMOJI_DATA_BETA.getFallbackName(source);
                 break main;
             }
-            switch(CountEmoji.Category.getBucket(source)) {
-            case component:
-                temp = UCharacter.getName(EmojiData.removeEmojiVariants(source), "+");
-                break;
-            case character:
-            case flag_seq:
-            case keycap_seq:
-            case tag_seq:
-                break;
-            default:
-                String replacement = null;
-                int trailPos = source.lastIndexOf(Emoji.JOINER_STR);
-                if (trailPos > 0) {
-                    String ending = source.substring(trailPos);
-                    switch (ending.replace(Emoji.EMOJI_VARIANT_STRING, "")) {
-                    case Emoji.JOINER_STR + Emoji.MALE:
-                        replacement = "MAN";
+            switch (CountEmoji.Category.getBucket(source)) {
+                case component:
+                    temp = UCharacter.getName(EmojiData.removeEmojiVariants(source), "+");
                     break;
-                    case Emoji.JOINER_STR + Emoji.FEMALE:
-                        replacement = "WOMAN";
-
-                    }
-                    if (replacement != null) {
-                        temp = getName(source.substring(0, source.length() - ending.length()));
-                    }
-                    if (temp != null) {
-                        if (temp.contains("PERSON")) {
-                            temp = temp.replaceAll("PERSON", replacement);
-                        } else if (temp.contains("person")) {
-                            temp = temp.replaceAll("person", replacement);
-                        } else {
-                            temp = replacement + " " + temp;
+                case character:
+                case flag_seq:
+                case keycap_seq:
+                case tag_seq:
+                    break;
+                default:
+                    String replacement = null;
+                    int trailPos = source.lastIndexOf(Emoji.JOINER_STR);
+                    if (trailPos > 0) {
+                        String ending = source.substring(trailPos);
+                        switch (ending.replace(Emoji.EMOJI_VARIANT_STRING, "")) {
+                            case Emoji.JOINER_STR + Emoji.MALE:
+                                replacement = "MAN";
+                                break;
+                            case Emoji.JOINER_STR + Emoji.FEMALE:
+                                replacement = "WOMAN";
+                        }
+                        if (replacement != null) {
+                            temp = getName(source.substring(0, source.length() - ending.length()));
+                        }
+                        if (temp != null) {
+                            if (temp.contains("PERSON")) {
+                                temp = temp.replaceAll("PERSON", replacement);
+                            } else if (temp.contains("person")) {
+                                temp = temp.replaceAll("person", replacement);
+                            } else {
+                                temp = replacement + " " + temp;
+                            }
                         }
                     }
-                }
-                break;
+                    break;
             }
         }
         return temp == null ? temp : temp.toLowerCase(Locale.ROOT);
     }
 
-    enum MatchInclusion {includeFilterMatches, excludeFilterMatches}
+    enum MatchInclusion {
+        includeFilterMatches,
+        excludeFilterMatches
+    }
 
     private UnicodeSet addWithCharFilter(UnicodeSet source, Predicate<String> filter) {
         UnicodeSet result = new UnicodeSet();
@@ -1190,7 +1341,6 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         return new UnicodeSet(source).retainAll(filter).freeze();
     }
 
-
     @Override
     public UnicodeSet getEmojiComponents() {
         return addWithCharFilter(emoji_Component, draft);
@@ -1203,8 +1353,9 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
     @Override
     public UnicodeSet getEmojiPresentationSet() {
-        return addWithCharFilter(singleCharacters, s -> draft.contains(s)
-                && !getTextPresentationSet().containsSome(s));
+        return addWithCharFilter(
+                singleCharacters,
+                s -> draft.contains(s) && !getTextPresentationSet().containsSome(s));
     }
 
     @Override
@@ -1224,8 +1375,8 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
     @Override
     public UnicodeSet getModifierSequences() {
-        return addWithCharFilter(draft, s -> EmojiData.MODIFIERS.containsSome(s)
-                && !ZWJ_SET.containsSome(s));
+        return addWithCharFilter(
+                draft, s -> EmojiData.MODIFIERS.containsSome(s) && !ZWJ_SET.containsSome(s));
     }
 
     @Override
@@ -1258,7 +1409,8 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
     @Override
     public UnicodeSet getAllEmojiWithoutDefectives() {
-        return addWithCharFilter(draft, 
+        return addWithCharFilter(
+                draft,
                 x -> {
                     if (x.contains(Emoji.TRANSGENDER)) {
                         int debug = 0;
@@ -1284,8 +1436,8 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
     @Override
     public UnicodeSet getSingletonsWithoutDefectives() {
-        return addWithCharFilter(singleCharacters, s -> draft.contains(s)
-                && !getEmojiComponents().containsSome(s));
+        return addWithCharFilter(
+                singleCharacters, s -> draft.contains(s) && !getEmojiComponents().containsSome(s));
     }
 
     @Override
@@ -1301,7 +1453,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     public VersionInfo getNewest(String s) {
         return BirthInfo.getVersionInfo(s);
         //        Age_Values result = Emoji.getNewest(s);
-        //        return result == Age_Values.Unassigned ? Emoji.UCD11 
+        //        return result == Age_Values.Unassigned ? Emoji.UCD11
         //                : VersionInfo.getInstance(result.getShortName());
     }
 
@@ -1311,10 +1463,13 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     }
 
     public UnicodeSet getAllCharacters(Status status) {
-        switch(status) {
-        case Provisional_Candidate: return provisional;
-        case Draft_Candidate : return draft;
-        default: throw new IllegalArgumentException();
+        switch (status) {
+            case Provisional_Candidate:
+                return provisional;
+            case Draft_Candidate:
+                return draft;
+            default:
+                throw new IllegalArgumentException();
         }
     }
 
@@ -1339,7 +1494,8 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
 
     @Override
     public String getPlainVersion() {
-        return "candidates:" + DateFormat.getInstanceForSkeleton("yyyyMMdd", ULocale.ROOT).format(date);
+        return "candidates:"
+                + DateFormat.getInstanceForSkeleton("yyyyMMdd", ULocale.ROOT).format(date);
     }
 
     /** We don't expect to have any more of these */
@@ -1363,5 +1519,4 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     public UnicodeSet getAllEmojiWithoutDefectivesOrModifiers() {
         return addWithCharFilter(draft, s -> EmojiData.MODIFIERS.containsNone(s));
     }
-
 }

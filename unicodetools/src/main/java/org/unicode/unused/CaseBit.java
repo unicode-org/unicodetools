@@ -1,21 +1,23 @@
 // Obsolete code. Moved here from org.unicode.text.UCA on 2014-apr-23 after svn r642.
 package org.unicode.unused;
 
+import com.ibm.icu.text.UnicodeSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD_Types;
 
-import com.ibm.icu.text.UnicodeSet;
-
 public class CaseBit {
     public enum Casing {
-        UNCASED (0), LOWER(0), MIXED(0x40), UPPER(0x80);
+        UNCASED(0),
+        LOWER(0),
+        MIXED(0x40),
+        UPPER(0x80);
+
         public Casing composeCasing(Casing other) {
             if (this == other) {
                 return this;
@@ -27,7 +29,9 @@ public class CaseBit {
                 return Casing.MIXED;
             }
         }
+
         final int bits;
+
         Casing(int bits) {
             this.bits = bits;
         }
@@ -39,9 +43,11 @@ public class CaseBit {
 
     public static class CasingList implements Comparable<CasingList> {
         private final Casing[] data;
+
         CasingList(List<Casing> source) {
             data = source.toArray(new Casing[source.size()]);
         }
+
         @Override
         public int compareTo(CasingList other) {
             for (int i = 0; i < data.length && i < other.data.length; ++i) {
@@ -52,6 +58,7 @@ public class CaseBit {
             }
             return data.length - other.data.length;
         }
+
         @Override
         public String toString() {
             return Arrays.asList(data).toString();
@@ -59,6 +66,7 @@ public class CaseBit {
     }
 
     static final Casing[] isUpperTertiary = new Casing[32];
+
     static {
         isUpperTertiary[0x8] = Casing.UPPER;
         isUpperTertiary[0x9] = Casing.UPPER;
@@ -78,9 +86,16 @@ public class CaseBit {
         return isUpperTertiary[x] != null ? isUpperTertiary[x] : Casing.UNCASED;
     }
 
-    static ToolUnicodePropertySource propertySource = ToolUnicodePropertySource.make(Default.ucdVersion());
-    static UnicodeSet UPPER_EXCEPTIONS = new UnicodeSet("[ᴯᴻ℘℺⅁-⅄あいうえお-ぢつ-もやゆ よ-ろわ-ゔゝゞアイウエオ-ヂツ-モヤユヨ-ロ ワ-ヴヷ-ヺヽヾ𛀀𛀁🅐-🅩🅰-🆏🆑-🆚]").freeze();
-    static UnicodeSet LOWER_EXCEPTIONS = new UnicodeSet("[\u0363-\u036F\u1DCA\u1DD3-\u1DDA\u1DDC\u1DDD\u1DE0\u1DE3-\u1DE6 ℩ぁぃぅぇぉっゃゅょゎゕゖァィゥェォッ ャュョヮヵヶㇰ-ㇿ]").freeze();
+    static ToolUnicodePropertySource propertySource =
+            ToolUnicodePropertySource.make(Default.ucdVersion());
+    static UnicodeSet UPPER_EXCEPTIONS =
+            new UnicodeSet(
+                            "[ᴯᴻ℘℺⅁-⅄あいうえお-ぢつ-もやゆ よ-ろわ-ゔゝゞアイウエオ-ヂツ-モヤユヨ-ロ ワ-ヴヷ-ヺヽヾ𛀀𛀁🅐-🅩🅰-🆏🆑-🆚]")
+                    .freeze();
+    static UnicodeSet LOWER_EXCEPTIONS =
+            new UnicodeSet(
+                            "[\u0363-\u036F\u1DCA\u1DD3-\u1DDA\u1DDC\u1DDD\u1DE0\u1DE3-\u1DE6 ℩ぁぃぅぇぉっゃゅょゎゕゖァィゥェォッ ャュョヮヵヶㇰ-ㇿ]")
+                    .freeze();
 
     // not multithreaded!!
     static List<Casing> data = new ArrayList<Casing>();
@@ -124,18 +139,19 @@ public class CaseBit {
         return propertyCasing;
     }
 
-    static UnicodeSet EXTRA_UPPER = new UnicodeSet("[\\U0001F150-\\U0001F18F\\U0001F191-\\U0001F19A]");
+    static UnicodeSet EXTRA_UPPER =
+            new UnicodeSet("[\\U0001F150-\\U0001F18F\\U0001F191-\\U0001F19A]");
 
     public static Casing getPropertyCasingNfd(int cp) {
         final byte cat = Default.ucd().getCategory(cp);
         // Check the category
-        switch(cat) {
-        case UCD_Types.Lu:
-            return Casing.UPPER;
-        case UCD_Types.Ll:
-            return Casing.LOWER;
-        case UCD_Types.Lt:
-            return Casing.MIXED;
+        switch (cat) {
+            case UCD_Types.Lu:
+                return Casing.UPPER;
+            case UCD_Types.Ll:
+                return Casing.LOWER;
+            case UCD_Types.Lt:
+                return Casing.MIXED;
         }
 
         // Check the extended properties
@@ -172,59 +188,60 @@ public class CaseBit {
                 && lower.length() == Character.charCount(cp);
     }
 
-    static Map<Character,Character> bigToSmallKana = new HashMap();
-    static Map<Character,Character> smallToBigKana = new HashMap();
+    static Map<Character, Character> bigToSmallKana = new HashMap();
+    static Map<Character, Character> smallToBigKana = new HashMap();
+
     static {
         final String[][] bigToSmall = {
-                {"あ", "ぁ"},
-                {"い", "ぃ"},
-                {"う", "ぅ"},
-                {"え", "ぇ"},
-                {"お", "ぉ"},
-                {"つ", "っ"},
-                {"や", "ゃ"},
-                {"ゆ", "ゅ"},
-                {"よ", "ょ"},
-                {"わ", "ゎ"},
-                {"か", "ゕ"},
-                {"け", "ゖ"},
-                {"ア", "ァ"},
-                {"イ", "ィ"},
-                {"ウ", "ゥ"},
-                {"エ", "ェ"},
-                {"オ", "ォ"},
-                {"ツ", "ッ"},
-                {"ヤ", "ャ"},
-                {"ユ", "ュ"},
-                {"ヨ", "ョ"},
-                {"ワ", "ヮ"},
-                {"カ", "ヵ"},
-                {"ケ", "ヶ"},
-                {"ク", "ㇰ"},
-                {"シ", "ㇱ"},
-                {"ス", "ㇲ"},
-                {"ト", "ㇳ"},
-                {"ヌ", "ㇴ"},
-                {"ハ", "ㇵ"},
-                {"ヒ", "ㇶ"},
-                {"フ", "ㇷ"},
-                {"ヘ", "ㇸ"},
-                {"ホ", "ㇹ"},
-                {"ム", "ㇺ"},
-                {"ラ", "ㇻ"},
-                {"リ", "ㇼ"},
-                {"ル", "ㇽ"},
-                {"レ", "ㇾ"},
-                {"ロ", "ㇿ"},
-                {"ｱ", "ｧ"},
-                {"ｲ", "ｨ"},
-                {"ｳ", "ｩ"},
-                {"ｴ", "ｪ"},
-                {"ｵ", "ｫ"},
-                {"ﾔ", "ｬ"},
-                {"ﾕ", "ｭ"},
-                {"ﾖ", "ｮ"},
-                {"ﾂ", "ｯ"},
+            {"あ", "ぁ"},
+            {"い", "ぃ"},
+            {"う", "ぅ"},
+            {"え", "ぇ"},
+            {"お", "ぉ"},
+            {"つ", "っ"},
+            {"や", "ゃ"},
+            {"ゆ", "ゅ"},
+            {"よ", "ょ"},
+            {"わ", "ゎ"},
+            {"か", "ゕ"},
+            {"け", "ゖ"},
+            {"ア", "ァ"},
+            {"イ", "ィ"},
+            {"ウ", "ゥ"},
+            {"エ", "ェ"},
+            {"オ", "ォ"},
+            {"ツ", "ッ"},
+            {"ヤ", "ャ"},
+            {"ユ", "ュ"},
+            {"ヨ", "ョ"},
+            {"ワ", "ヮ"},
+            {"カ", "ヵ"},
+            {"ケ", "ヶ"},
+            {"ク", "ㇰ"},
+            {"シ", "ㇱ"},
+            {"ス", "ㇲ"},
+            {"ト", "ㇳ"},
+            {"ヌ", "ㇴ"},
+            {"ハ", "ㇵ"},
+            {"ヒ", "ㇶ"},
+            {"フ", "ㇷ"},
+            {"ヘ", "ㇸ"},
+            {"ホ", "ㇹ"},
+            {"ム", "ㇺ"},
+            {"ラ", "ㇻ"},
+            {"リ", "ㇼ"},
+            {"ル", "ㇽ"},
+            {"レ", "ㇾ"},
+            {"ロ", "ㇿ"},
+            {"ｱ", "ｧ"},
+            {"ｲ", "ｨ"},
+            {"ｳ", "ｩ"},
+            {"ｴ", "ｪ"},
+            {"ｵ", "ｫ"},
+            {"ﾔ", "ｬ"},
+            {"ﾕ", "ｭ"},
+            {"ﾖ", "ｮ"},
+            {"ﾂ", "ｯ"},
         };
         for (final String[] pair : bigToSmall) {
             if (pair[0].length() > 1 || pair[1].length() > 1) {
@@ -279,8 +296,10 @@ public class CaseBit {
     //            char c = s.charAt(i);
     //            if ('\u3042' <= c && c <= '\u30EF') {
     //                switch(c - 0x3000) {
-    //                case 0x42: case 0x44: case 0x46: case 0x48: case 0x4A: case 0x64: case 0x84: case 0x86: case 0x8F:
-    //                case 0xA2: case 0xA4: case 0xA6: case 0xA8: case 0xAA: case 0xC4: case 0xE4: case 0xE6: case 0xEF:
+    //                case 0x42: case 0x44: case 0x46: case 0x48: case 0x4A: case 0x64: case 0x84:
+    // case 0x86: case 0x8F:
+    //                case 0xA2: case 0xA4: case 0xA6: case 0xA8: case 0xAA: case 0xC4: case 0xE4:
+    // case 0xE6: case 0xEF:
     //                    --c; // maps to previous char
     //                    gotOne = true;
     //                    break;

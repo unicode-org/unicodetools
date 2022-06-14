@@ -1,22 +1,5 @@
 package org.unicode.draft;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.regex.Pattern;
-
-import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.CLDRPaths;
-import org.unicode.cldr.util.Counter;
-import org.unicode.cldr.util.PatternCache;
-import org.unicode.jsp.ICUPropertyFactory;
-import org.unicode.props.UnicodeProperty;
-import org.unicode.text.utility.Utility;
-
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.UCharacter;
@@ -28,19 +11,36 @@ import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.regex.Pattern;
+import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.CLDRPaths;
+import org.unicode.cldr.util.Counter;
+import org.unicode.cldr.util.PatternCache;
+import org.unicode.jsp.ICUPropertyFactory;
+import org.unicode.props.UnicodeProperty;
+import org.unicode.text.utility.Utility;
 
 public class FrequencyData2 {
 
     private static final boolean MARKUP = false;
     private static final boolean MAP_CASE = true;
 
-    private static final UnicodeSet NO_SCRIPT = new UnicodeSet(
-        "[[:script=common:][:script=inherited:][:script=unknown:]]");
+    private static final UnicodeSet NO_SCRIPT =
+            new UnicodeSet("[[:script=common:][:script=inherited:][:script=unknown:]]");
     static final UnicodeSet NfcNo = new UnicodeSet("[:nfcqc=no:]").freeze();
     static final UnicodeSet NfcMaybe = new UnicodeSet("[:nfcqc=maybe:]").freeze();
-    static final Transliterator fixOutput = Transliterator.createFromRules("fix", "" +
-        "([[:di:][:whitespace:][:co:]\"'']) > &any-hex/unicode($1) ;" +
-        "", Transliterator.FORWARD);
+    static final Transliterator fixOutput =
+            Transliterator.createFromRules(
+                    "fix",
+                    "" + "([[:di:][:whitespace:][:co:]\"'']) > &any-hex/unicode($1) ;" + "",
+                    Transliterator.FORWARD);
 
     // private Counter<String> langNfcNo = new Counter<String>();
     // private Counter<String> langNfcMaybe = new Counter<String>();
@@ -48,6 +48,7 @@ public class FrequencyData2 {
     // private Counter<String> langUpper = new Counter<String>();
     private Map<String, Counter<Integer>> langData = new HashMap<String, Counter<Integer>>();
     private Counter<Integer> frequencies = new Counter<Integer>();
+
     {
         langData.put("mul", frequencies);
     }
@@ -55,89 +56,93 @@ public class FrequencyData2 {
     /**
      * The 1st column is the code point.
      *
-     * 2nd is detected language
+     * <p>2nd is detected language
      *
-     * Then there are 3 groups of 4 columns, where each group is:
+     * <p>Then there are 3 groups of 4 columns, where each group is:
      *
-     * pre-HTML code point count post-HTML code point count, document count, UTF-8 document count
+     * <p>pre-HTML code point count post-HTML code point count, document count, UTF-8 document count
      *
-     * The 1st group includes "bad" docs (error during input conversion or
-     * contains unassigned or high private use), 2nd group excludes "bad"
-     * docs, 3rd group is multiplied by pagerank (and excludes "bad" docs).
+     * <p>The 1st group includes "bad" docs (error during input conversion or contains unassigned or
+     * high private use), 2nd group excludes "bad" docs, 3rd group is multiplied by pagerank (and
+     * excludes "bad" docs).
      *
-     * Then there are up to 3 groups, where each group is:
+     * <p>Then there are up to 3 groups, where each group is:
      *
-     * navboost, pagerank, language, encoding, url
+     * <p>navboost, pagerank, language, encoding, url
      *
      * @param frequencyFile
      * @throws IOException
      */
     static final int postFrequencyIndex = 2 + 4 + 1;
+
     static final int preFrequencyIndex = 2 + 4 + 0;
 
-//    public FrequencyData2(String frequencyFile, boolean showProgress, boolean old) throws IOException {
-//        BufferedReader in = GenerateNormalizeForMatch2.openUTF8Reader(frequencyFile);
-//        for (int lineCount = 0;; ++lineCount) {
-//            String line = in.readLine();
-//            if (line == null) break;
-//            int commentPos = line.indexOf("#");
-//            if (commentPos >= 0) {
-//                line = line.substring(0, commentPos);
-//            }
-//            line = line.trim();
-//            if (line.length() == 0) continue;
-//            String[] pieces = line.split("\\s+");
-//            int code = Integer.parseInt(pieces[0], 16);
-//
-//            if (showProgress && lineCount < 100 || (lineCount % 1000000) == 0 || code == 0x03C2) {
-//                System.out.println(lineCount + "\t" + line);
-//            }
-//
-//            if (code < 0x20) code = 0x20;
-//            if (MAP_CASE) {
-//                code = UCharacter.toLowerCase(code);
-//            }
-//            long count = MARKUP
-//                ? Math.max(0, Long.parseLong(pieces[preFrequencyIndex]) - Long.parseLong(pieces[postFrequencyIndex]))
-//                : Long.parseLong(pieces[postFrequencyIndex]);
-//            String lang = pieces[1];
-//            Counter<Integer> langCounter = langData.get(lang);
-//            if (langCounter == null) {
-//                langData.put(lang, langCounter = new Counter<Integer>());
-//            }
-//            langCounter.add(code, count);
-//            // if (NfcNo.contains(code)) {
-//            // langNfcNo.add(lang, count);
-//            // } else if (NfcMaybe.contains(code)) {
-//            // langNfcMaybe.add(lang, count);
-//            // }
-//            // if (UCharacter.isUpperCase(code)) {
-//            // langUpper.add(lang, count);
-//            // }
-//            // langTotal.add(lang, count);
-//            frequencies.add(code, count);
-//        }
-//        in.close();
-//    }
+    //    public FrequencyData2(String frequencyFile, boolean showProgress, boolean old) throws
+    // IOException {
+    //        BufferedReader in = GenerateNormalizeForMatch2.openUTF8Reader(frequencyFile);
+    //        for (int lineCount = 0;; ++lineCount) {
+    //            String line = in.readLine();
+    //            if (line == null) break;
+    //            int commentPos = line.indexOf("#");
+    //            if (commentPos >= 0) {
+    //                line = line.substring(0, commentPos);
+    //            }
+    //            line = line.trim();
+    //            if (line.length() == 0) continue;
+    //            String[] pieces = line.split("\\s+");
+    //            int code = Integer.parseInt(pieces[0], 16);
+    //
+    //            if (showProgress && lineCount < 100 || (lineCount % 1000000) == 0 || code ==
+    // 0x03C2) {
+    //                System.out.println(lineCount + "\t" + line);
+    //            }
+    //
+    //            if (code < 0x20) code = 0x20;
+    //            if (MAP_CASE) {
+    //                code = UCharacter.toLowerCase(code);
+    //            }
+    //            long count = MARKUP
+    //                ? Math.max(0, Long.parseLong(pieces[preFrequencyIndex]) -
+    // Long.parseLong(pieces[postFrequencyIndex]))
+    //                : Long.parseLong(pieces[postFrequencyIndex]);
+    //            String lang = pieces[1];
+    //            Counter<Integer> langCounter = langData.get(lang);
+    //            if (langCounter == null) {
+    //                langData.put(lang, langCounter = new Counter<Integer>());
+    //            }
+    //            langCounter.add(code, count);
+    //            // if (NfcNo.contains(code)) {
+    //            // langNfcNo.add(lang, count);
+    //            // } else if (NfcMaybe.contains(code)) {
+    //            // langNfcMaybe.add(lang, count);
+    //            // }
+    //            // if (UCharacter.isUpperCase(code)) {
+    //            // langUpper.add(lang, count);
+    //            // }
+    //            // langTotal.add(lang, count);
+    //            frequencies.add(code, count);
+    //        }
+    //        in.close();
+    //    }
 
     public FrequencyData2(String frequencyFile, boolean showProgress) throws IOException {
-    if (true) throw new IllegalArgumentException("old code: see CharacterFrequency");
+        if (true) throw new IllegalArgumentException("old code: see CharacterFrequency");
         BufferedReader in = GenerateNormalizeForMatch2.openUTF8Reader(frequencyFile);
-        for (int lineCount = 0;; ++lineCount) {
+        for (int lineCount = 0; ; ++lineCount) {
             String line = in.readLine();
             if (line == null) break;
-//            int commentPos = line.indexOf("#");
-//            if (commentPos >= 0) {
-//                line = line.substring(0, commentPos);
-//            }
-//            line = line.trim();
+            //            int commentPos = line.indexOf("#");
+            //            if (commentPos >= 0) {
+            //                line = line.substring(0, commentPos);
+            //            }
+            //            line = line.trim();
             if (line.length() == 0) continue;
             String[] pieces = line.split("\\t");
             // -4.470007    n   U+006E  Ll  Latn    LATIN SMALL LETTER N
 
             double logFreq = Double.parseDouble(pieces[0]);
             double freq = Math.pow(10, logFreq);
-            long count = (int) Math.round(freq*Long.MAX_VALUE);
+            long count = (int) Math.round(freq * Long.MAX_VALUE);
             int code = Utility.fromHex(pieces[2]).codePointAt(0);
 
             if (showProgress && lineCount < 100 || (lineCount % 1000000) == 0 || code == 0x03C2) {
@@ -211,7 +216,7 @@ public class FrequencyData2 {
 
         private RelativeFrequency(UnicodeSet withinSet, Mode compose) {
             Counter<Integer> counter = new Counter<Integer>();
-            for (UnicodeSetIterator it = new UnicodeSetIterator(withinSet); it.next();) {
+            for (UnicodeSetIterator it = new UnicodeSetIterator(withinSet); it.next(); ) {
                 final long frequency = getCount(it.codepoint);
                 if (frequency == 0) continue;
                 if (compose == null) {
@@ -275,30 +280,39 @@ public class FrequencyData2 {
     }
 
     static NumberFormat nf = NumberFormat.getInstance();
+
     static {
         nf.setGroupingUsed(true);
     }
 
     private void showData(String category, int propEnum, UnicodeSet exclusions) {
-        for (int i = UCharacter.getIntPropertyMinValue(propEnum); i <= UCharacter.getIntPropertyMaxValue(propEnum); ++i) {
-            String valueAlias = UCharacter.getPropertyValueName(propEnum, i, UProperty.NameChoice.LONG);
-            String shortValueAlias = UCharacter.getPropertyValueName(propEnum, i, UProperty.NameChoice.SHORT);
-            // if (valueAlias.equalsIgnoreCase("common") || valueAlias.equalsIgnoreCase("inherited")) continue;
+        for (int i = UCharacter.getIntPropertyMinValue(propEnum);
+                i <= UCharacter.getIntPropertyMaxValue(propEnum);
+                ++i) {
+            String valueAlias =
+                    UCharacter.getPropertyValueName(propEnum, i, UProperty.NameChoice.LONG);
+            String shortValueAlias =
+                    UCharacter.getPropertyValueName(propEnum, i, UProperty.NameChoice.SHORT);
+            // if (valueAlias.equalsIgnoreCase("common") ||
+            // valueAlias.equalsIgnoreCase("inherited")) continue;
             UnicodeSet valueChars = new UnicodeSet();
 
-            valueChars.applyPropertyAlias(UCharacter.getPropertyName(propEnum, UProperty.NameChoice.SHORT),
-                shortValueAlias);
+            valueChars.applyPropertyAlias(
+                    UCharacter.getPropertyName(propEnum, UProperty.NameChoice.SHORT),
+                    shortValueAlias);
             valueChars.removeAll(exclusions);
             if (valueChars.size() == 0) continue;
             showData(category, shortValueAlias + " - " + valueAlias, valueChars);
         }
     }
 
-    private void showData2(String category, UnicodeProperty prop, UnicodeSet exclusions, boolean differences) {
+    private void showData2(
+            String category, UnicodeProperty prop, UnicodeSet exclusions, boolean differences) {
         UnicodeSet last = new UnicodeSet();
         for (Object value : prop.getAvailableValues()) {
             String valueAlias = (String) value;
-            // if (valueAlias.equalsIgnoreCase("common") || valueAlias.equalsIgnoreCase("inherited")) continue;
+            // if (valueAlias.equalsIgnoreCase("common") ||
+            // valueAlias.equalsIgnoreCase("inherited")) continue;
             UnicodeSet valueChars = new UnicodeSet();
 
             valueChars.applyPropertyAlias(prop.getName(), valueAlias);
@@ -322,7 +336,8 @@ public class FrequencyData2 {
             sds.put(cp, sd);
             if (sd == standardDeviation.length) break;
             // boolean isNFKC = Normalizer.isNormalized(cp, Normalizer.COMPOSE_COMPAT, 0);
-            // System.out.println(new StringBuilder().appendCodePoint(cp) + "\t" + (totalFrequency*100) + "%\t" + sd +
+            // System.out.println(new StringBuilder().appendCodePoint(cp) + "\t" +
+            // (totalFrequency*100) + "%\t" + sd +
             // "\t" + (isNFKC ? "" : "K"));
         }
 
@@ -366,37 +381,39 @@ public class FrequencyData2 {
     static Pattern IICORE = PatternCache.get("U\\+([A-Z0-9]+)\\s+kIICore\\s+(.*)");
     static UnicodeSet iiCoreSet;
 
-//    public static UnicodeSet getIICore() {
-//        if (iiCoreSet == null) {
-//            try {
-//                String unihanFile = CldrUtility.getProperty("unidata") + "/Unihan/Unihan_NormativeProperties.txt";
-//                BufferedReader in = new BufferedReader(new FileReader(unihanFile));
-//                Matcher iiCore = IICORE.matcher("");
-//                iiCoreSet = new UnicodeSet();
-//                while (true) {
-//                    String line = in.readLine();
-//                    if (line == null) break;
-//                    if (iiCore.reset(line).matches()) {
-//                        int cp = Integer.parseInt(iiCore.group(1), 16);
-//                        iiCoreSet.add(cp);
-//                    }
-//                }
-//                in.close();
-//                iiCoreSet.freeze();
-//            } catch (IOException e) {
-//                throw new IllegalArgumentException(e);
-//            }
-//        }
-//        return iiCoreSet;
-//    }
+    //    public static UnicodeSet getIICore() {
+    //        if (iiCoreSet == null) {
+    //            try {
+    //                String unihanFile = CldrUtility.getProperty("unidata") +
+    // "/Unihan/Unihan_NormativeProperties.txt";
+    //                BufferedReader in = new BufferedReader(new FileReader(unihanFile));
+    //                Matcher iiCore = IICORE.matcher("");
+    //                iiCoreSet = new UnicodeSet();
+    //                while (true) {
+    //                    String line = in.readLine();
+    //                    if (line == null) break;
+    //                    if (iiCore.reset(line).matches()) {
+    //                        int cp = Integer.parseInt(iiCore.group(1), 16);
+    //                        iiCoreSet.add(cp);
+    //                    }
+    //                }
+    //                in.close();
+    //                iiCoreSet.freeze();
+    //            } catch (IOException e) {
+    //                throw new IllegalArgumentException(e);
+    //            }
+    //        }
+    //        return iiCoreSet;
+    //    }
 
     public static void main(String[] args) throws IOException {
         String frequencyFile = args[0];
         FrequencyData2 data = new FrequencyData2(frequencyFile, true);
 
-//        System.out.println("IICoreSet\t" + getIICore().size() + "\t" + getIICore().toPattern(false));
+        //        System.out.println("IICoreSet\t" + getIICore().size() + "\t" +
+        // getIICore().toPattern(false));
 
-//        showHan(data);
+        //        showHan(data);
         writeSummary2(data);
 
         System.out.print("Category" + "\t");
@@ -407,12 +424,20 @@ public class FrequencyData2 {
         System.out.print(1.0d + "\t");
         System.out.println("Total");
 
-        data.showData2("Age", ICUPropertyFactory.make().getProperty("age"), new UnicodeSet("[[:cn:][:co:]]"), true);
+        data.showData2(
+                "Age",
+                ICUPropertyFactory.make().getProperty("age"),
+                new UnicodeSet("[[:cn:][:co:]]"),
+                true);
         data.showData("Script/Cat", UCharacter.getPropertyEnum("script"), NO_SCRIPT);
-        data.showData("Script/Cat", UCharacter.getPropertyEnum("gc"), new UnicodeSet(NO_SCRIPT).complement());
+        data.showData(
+                "Script/Cat",
+                UCharacter.getPropertyEnum("gc"),
+                new UnicodeSet(NO_SCRIPT).complement());
 
         // data.showData("Private Use", PRIVATE_USE);
-        // RelativeFrequency relative = data.getRelativeFrequency(new UnicodeSet("[:script=unknown:]"),
+        // RelativeFrequency relative = data.getRelativeFrequency(new
+        // UnicodeSet("[:script=unknown:]"),
         // Normalizer.NFKC);
         // System.out.println(relative.getTotalRelative());
         // for (int i = 0; i < 10; ++i) {
@@ -422,65 +447,66 @@ public class FrequencyData2 {
         // }
     }
 
-private static void writeSummary2(FrequencyData2 data) {
-    long buckets[] = new long[4];
-    for ( R2<Long, Integer> entry : data.frequencies.getEntrySetSortedByCount(false, null)) {
-        int codepoint = entry.get1();
-        long freq = entry.get0();
-        int bucket;
-        if (codepoint <= 0x7F) {
-            bucket = 0;
-        } else if (codepoint <= 0x7FF) {
-            bucket = 1;
-        } else if (codepoint <= 0xFFFF) {
-            bucket = 2;
-        } else {
-            bucket = 3;
+    private static void writeSummary2(FrequencyData2 data) {
+        long buckets[] = new long[4];
+        for (R2<Long, Integer> entry : data.frequencies.getEntrySetSortedByCount(false, null)) {
+            int codepoint = entry.get1();
+            long freq = entry.get0();
+            int bucket;
+            if (codepoint <= 0x7F) {
+                bucket = 0;
+            } else if (codepoint <= 0x7FF) {
+                bucket = 1;
+            } else if (codepoint <= 0xFFFF) {
+                bucket = 2;
+            } else {
+                bucket = 3;
+            }
+            buckets[bucket] += freq;
+            if (buckets[bucket] < 0) {
+                throw new IllegalArgumentException();
+            }
         }
-        buckets[bucket] += freq;
-        if (buckets[bucket] < 0) {
-            throw new IllegalArgumentException();
+        long total = 0;
+        long counts[] = new long[] {0x7F, 0x7FF, 0xFFFF, 0x10FFFF};
+
+        for (int i = 0; i < 4; ++i) {
+            total += buckets[i];
+            if (total < 0) {
+                throw new IllegalArgumentException();
+            }
+            if (i > 0) {
+                counts[i] -= counts[i - 1];
+            }
+        }
+
+        for (int i = 0; i < 4; ++i) {
+            System.out.println((i + 1) + "-byte:\t" + 100 * buckets[i] / (double) total + "%");
         }
     }
-    long total = 0;
-    long counts[] = new long[]{0x7F, 0x7FF, 0xFFFF, 0x10FFFF};
 
-    for (int i = 0; i < 4; ++i) {
-        total += buckets[i];
-        if (total < 0) {
-            throw new IllegalArgumentException();
-        }
-        if (i > 0) {
-            counts[i] -= counts[i-1];
-        }
-    }
-
-    for (int i = 0; i < 4; ++i) {
-        System.out.println((i+1) + "-byte:\t"
-                + 100*buckets[i]/(double) total + "%");
-    }
-}
-
-//    private static void showHan(FrequencyData2 data) {
-//        UnicodeSet han = new UnicodeSet("\\p{sc=han}").freeze();
-//        UnicodeSet tranche = new UnicodeSet();
-//        UnicodeSet iiCore2 = new UnicodeSet(getIICore());
-//        int bucket = 0;
-//        for (int cp : data.frequencies.getKeysetSortedByCount(false)) {
-//            if (han.contains(cp)) {
-//                tranche.add(cp);
-//                if (tranche.size() >= 5000) {
-//                    bucket += tranche.size();
-//                    UnicodeSet diff;
-//                    diff = new UnicodeSet(tranche).removeAll(iiCore2);
-//                    System.out.println(bucket + "\tNOT iiCore\t" + diff.size() + "\t" + diff.toPattern(false));
-//                    diff = iiCore2.removeAll(tranche);
-//                    System.out.println(bucket + "\tiiCore\t" + diff.size() + "\t" + diff.toPattern(false));
-//                    tranche.clear();
-//                }
-//            }
-//        }
-//    }
+    //    private static void showHan(FrequencyData2 data) {
+    //        UnicodeSet han = new UnicodeSet("\\p{sc=han}").freeze();
+    //        UnicodeSet tranche = new UnicodeSet();
+    //        UnicodeSet iiCore2 = new UnicodeSet(getIICore());
+    //        int bucket = 0;
+    //        for (int cp : data.frequencies.getKeysetSortedByCount(false)) {
+    //            if (han.contains(cp)) {
+    //                tranche.add(cp);
+    //                if (tranche.size() >= 5000) {
+    //                    bucket += tranche.size();
+    //                    UnicodeSet diff;
+    //                    diff = new UnicodeSet(tranche).removeAll(iiCore2);
+    //                    System.out.println(bucket + "\tNOT iiCore\t" + diff.size() + "\t" +
+    // diff.toPattern(false));
+    //                    diff = iiCore2.removeAll(tranche);
+    //                    System.out.println(bucket + "\tiiCore\t" + diff.size() + "\t" +
+    // diff.toPattern(false));
+    //                    tranche.clear();
+    //                }
+    //            }
+    //        }
+    //    }
 
     static class CountLang implements Comparable<CountLang> {
         long total;
@@ -519,8 +545,10 @@ private static void writeSummary2(FrequencyData2 data) {
             long runningTotal = 0;
             double threshold = standardDeviation[4] * total;
 
-            PrintWriter out = FileUtilities.openUTF8Writer(CLDRPaths.GEN_DIRECTORY, "/char_frequencies/" + lang
-                + (MARKUP ? "_markup" : "") + ".txt");
+            PrintWriter out =
+                    FileUtilities.openUTF8Writer(
+                            CLDRPaths.GEN_DIRECTORY,
+                            "/char_frequencies/" + lang + (MARKUP ? "_markup" : "") + ".txt");
             out.println("lang\trank\tcount\tlangPPB\tNFC\tcat\tscript\tcodepoint\tchar\tname");
 
             writeLine(out, lang, 0, total, total, 0, null);
@@ -543,13 +571,21 @@ private static void writeSummary2(FrequencyData2 data) {
                 // nfcMaybeCount += langCount;
                 // }
                 rank++;
-
             }
             out.close();
             for (String s : normCounter.getKeysetSortedByKey()) {
                 final long count2 = normCounter.getCount(s);
-                System.out.println("NFC:\t" + lang + "\t" + s + "\t" + count2 + "\t" + total + "\t"
-                    + (count / (double) total));
+                System.out.println(
+                        "NFC:\t"
+                                + lang
+                                + "\t"
+                                + s
+                                + "\t"
+                                + count2
+                                + "\t"
+                                + total
+                                + "\t"
+                                + (count / (double) total));
             }
             log.flush();
             // System.out.println(s + "\t" + new ULocale(s).getDisplayName()
@@ -561,59 +597,95 @@ private static void writeSummary2(FrequencyData2 data) {
             // + "\t" + data.langUpper.getCount(s)
             // + "\t" + data.langTotal.getCount(s));
         }
-
     }
 
-    private static void writeLine(PrintWriter out, String lang, int code, long langCount, long total2, int rank,
-        Counter<String> normCounter) {
+    private static void writeLine(
+            PrintWriter out,
+            String lang,
+            int code,
+            long langCount,
+            long total2,
+            int rank,
+            Counter<String> normCounter) {
         if (code == 0) {
-            out.println(lang
-                + "\t" + 0
-                + "\t" + langCount
-                + "\t" + 1000000000 * langCount / total2
-                + "\t" + "Total");
+            out.println(
+                    lang
+                            + "\t"
+                            + 0
+                            + "\t"
+                            + langCount
+                            + "\t"
+                            + 1000000000 * langCount / total2
+                            + "\t"
+                            + "Total");
         } else {
             final String normalizationType = getNormalizationType(code);
             if (normCounter != null) {
                 normCounter.add(normalizationType, langCount);
             }
-            out.println(lang
-                + "\t" + rank
-                + "\t" + langCount
-                + "\t" + 1000000000 * langCount / total2
-                + "\t" + normalizationType
-                + "\t" + getValueAlias(code, UProperty.GENERAL_CATEGORY, UProperty.NameChoice.SHORT).charAt(0)
-                + "\t" + getValueAlias(code, UProperty.SCRIPT, UProperty.NameChoice.SHORT)
-                + "\t" + "U+" + com.ibm.icu.impl.Utility.hex(code, 4)
-                + "\t" + toChar(code)
-                + "\t" + UCharacter.getExtendedName(code));
+            out.println(
+                    lang
+                            + "\t"
+                            + rank
+                            + "\t"
+                            + langCount
+                            + "\t"
+                            + 1000000000 * langCount / total2
+                            + "\t"
+                            + normalizationType
+                            + "\t"
+                            + getValueAlias(
+                                            code,
+                                            UProperty.GENERAL_CATEGORY,
+                                            UProperty.NameChoice.SHORT)
+                                    .charAt(0)
+                            + "\t"
+                            + getValueAlias(code, UProperty.SCRIPT, UProperty.NameChoice.SHORT)
+                            + "\t"
+                            + "U+"
+                            + com.ibm.icu.impl.Utility.hex(code, 4)
+                            + "\t"
+                            + toChar(code)
+                            + "\t"
+                            + UCharacter.getExtendedName(code));
         }
-
     }
 
     private static String getValueAlias(int code, int propEnum, int nameChoice) {
         if (propEnum == UProperty.SCRIPT && code < 0x80) {
             return "ASCII";
         }
-        return UCharacter.getPropertyValueName(propEnum, UCharacter.getIntPropertyValue(code, propEnum), nameChoice);
+        return UCharacter.getPropertyValueName(
+                propEnum, UCharacter.getIntPropertyValue(code, propEnum), nameChoice);
     }
 
     private static String getNormalizationType(Integer code) {
-        String nfd = UCharacter.getPropertyValueName(UProperty.NFD_QUICK_CHECK,
-            UCharacter.getIntPropertyValue(code, UProperty.NFD_QUICK_CHECK), UProperty.NameChoice.SHORT);
-        String nfc = UCharacter.getPropertyValueName(UProperty.NFC_QUICK_CHECK,
-            UCharacter.getIntPropertyValue(code, UProperty.NFC_QUICK_CHECK), UProperty.NameChoice.SHORT);
-        String nfkd = UCharacter.getPropertyValueName(UProperty.NFKD_QUICK_CHECK,
-            UCharacter.getIntPropertyValue(code, UProperty.NFKD_QUICK_CHECK), UProperty.NameChoice.SHORT);
-        String nfkc = UCharacter.getPropertyValueName(UProperty.NFKC_QUICK_CHECK,
-            UCharacter.getIntPropertyValue(code, UProperty.NFKC_QUICK_CHECK), UProperty.NameChoice.SHORT);
+        String nfd =
+                UCharacter.getPropertyValueName(
+                        UProperty.NFD_QUICK_CHECK,
+                        UCharacter.getIntPropertyValue(code, UProperty.NFD_QUICK_CHECK),
+                        UProperty.NameChoice.SHORT);
+        String nfc =
+                UCharacter.getPropertyValueName(
+                        UProperty.NFC_QUICK_CHECK,
+                        UCharacter.getIntPropertyValue(code, UProperty.NFC_QUICK_CHECK),
+                        UProperty.NameChoice.SHORT);
+        String nfkd =
+                UCharacter.getPropertyValueName(
+                        UProperty.NFKD_QUICK_CHECK,
+                        UCharacter.getIntPropertyValue(code, UProperty.NFKD_QUICK_CHECK),
+                        UProperty.NameChoice.SHORT);
+        String nfkc =
+                UCharacter.getPropertyValueName(
+                        UProperty.NFKC_QUICK_CHECK,
+                        UCharacter.getIntPropertyValue(code, UProperty.NFKC_QUICK_CHECK),
+                        UProperty.NameChoice.SHORT);
         String result = nfc + nfd + nfkc + nfkd;
         result = result.replace("Y", "+").replace("N", "-").replace("M", "?");
-        if (result.equals("++++"))
-            result = "+";
-        else if (result.equals("----"))
-            result = "-";
-        else if (result.substring(0, 2).equals(result.substring(2, 4))) result = result.substring(0, 2);
+        if (result.equals("++++")) result = "+";
+        else if (result.equals("----")) result = "-";
+        else if (result.substring(0, 2).equals(result.substring(2, 4)))
+            result = result.substring(0, 2);
         return "'" + result;
     }
 

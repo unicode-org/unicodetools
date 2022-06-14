@@ -1,35 +1,33 @@
 package org.unicode.idna;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-
-import org.unicode.cldr.draft.FileUtilities;
-
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import org.unicode.cldr.draft.FileUtilities;
 
 public class CompareCompatProperties {
     /*
-# Column 1: source -          The source string to be tested
-# Column 2: toUnicode -       The result of applying toUnicode to the source, with Transitional_Processing=false.
-#                             A blank value means the same as the source value.
-# Column 3: toUnicodeStatus - A set of status codes, each corresponding to a particular test.
-#                             A blank value means [] (no errors).
-# Column 4: toAsciiN -        The result of applying toASCII to the source, with Transitional_Processing=false.
-#                             A blank value means the same as the toUnicode value.
-# Column 5: toAsciiNStatus -  A set of status codes, each corresponding to a particular test.
-#                             A blank value means the same as the toUnicodeStatus value. An explicit [] means no errors.
-# Column 6: toAsciiT -        The result of applying toASCII to the source, with Transitional_Processing=true.
-#                             A blank value means the same as the toAsciiN value.
-# Column 7: toAsciiTStatus -  A set of status codes, each corresponding to a particular test.
-#                             A blank value means the same as the toAsciiNStatus value. An explicit [] means no errors.
-     */
+    # Column 1: source -          The source string to be tested
+    # Column 2: toUnicode -       The result of applying toUnicode to the source, with Transitional_Processing=false.
+    #                             A blank value means the same as the source value.
+    # Column 3: toUnicodeStatus - A set of status codes, each corresponding to a particular test.
+    #                             A blank value means [] (no errors).
+    # Column 4: toAsciiN -        The result of applying toASCII to the source, with Transitional_Processing=false.
+    #                             A blank value means the same as the toUnicode value.
+    # Column 5: toAsciiNStatus -  A set of status codes, each corresponding to a particular test.
+    #                             A blank value means the same as the toUnicodeStatus value. An explicit [] means no errors.
+    # Column 6: toAsciiT -        The result of applying toASCII to the source, with Transitional_Processing=true.
+    #                             A blank value means the same as the toAsciiN value.
+    # Column 7: toAsciiTStatus -  A set of status codes, each corresponding to a particular test.
+    #                             A blank value means the same as the toAsciiNStatus value. An explicit [] means no errors.
+         */
 
     enum Column {
         source,
@@ -46,23 +44,27 @@ public class CompareCompatProperties {
         private Column() {
             this(null);
         }
+
         private Column(Column getFrom) {
             this.getFrom = getFrom;
         }
+
         public Column next() {
-            return values()[ordinal()+1];
+            return values()[ordinal() + 1];
         }
+
         public Column addFixedAndNext(String item, List<String> lineParts) {
             if (item.isEmpty()) {
                 if (getFrom != null) {
                     item = lineParts.get(getFrom.ordinal());
                 } else if (this == toUnicodeStatus) {
-                    item ="[]";
+                    item = "[]";
                 }
             }
             lineParts.add(item);
             return next();
         }
+
         static boolean equalsIgnoringErrorDiffs(List<String> a, List<String> b) {
             if (a == b) {
                 return true;
@@ -76,13 +78,13 @@ public class CompareCompatProperties {
                 String itemA = a.get(col.ordinal());
                 String itemB = b.get(col.ordinal());
                 if (!itemA.equals(itemB)) {
-                    switch(col) {
-                    case toUnicodeStatus:
-                    case toAsciiNStatus:
-                    case toAsciiTStatus:
-                        return a.equals("[]") == b.equals("[]");
-                    default: 
-                        return false;
+                    switch (col) {
+                        case toUnicodeStatus:
+                        case toAsciiNStatus:
+                        case toAsciiTStatus:
+                            return a.equals("[]") == b.equals("[]");
+                        default:
+                            return false;
                     }
                 }
             }
@@ -91,7 +93,7 @@ public class CompareCompatProperties {
     }
 
     static final Splitter semiSplitter = Splitter.on(';').trimResults(CharMatcher.anyOf(" \t"));
-    
+
     public static void main(String[] args) {
         Map<String, List<String>> oldFile = fleshOut("internal-IdnaTestV2-fixed.txt");
         Map<String, List<String>> newFile = fleshOut("IdnaTestV2.txt");

@@ -1,16 +1,12 @@
 package org.unicode.props;
 
-import org.unicode.props.UcdPropertyValues.Bidi_Class_Values;
-import org.unicode.props.UcdPropertyValues.Block_Values;
-
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
+import org.unicode.props.UcdPropertyValues.Bidi_Class_Values;
+import org.unicode.props.UcdPropertyValues.Block_Values;
 
-/**
- * Default property values for some properties and certain ranges
- * other than all of Unicode.
- */
+/** Default property values for some properties and certain ranges other than all of Unicode. */
 public final class DefaultValues {
     public static final class BidiClass {
         private static final Bidi_Class_Values L = Bidi_Class_Values.Left_To_Right;
@@ -19,7 +15,10 @@ public final class DefaultValues {
         private static final Bidi_Class_Values BN = Bidi_Class_Values.Boundary_Neutral;
         private static final Bidi_Class_Values ET = Bidi_Class_Values.European_Terminator;
 
-        public static enum Option { ALL, OMIT_BN };
+        public static enum Option {
+            ALL,
+            OMIT_BN
+        };
 
         private static final class Builder {
             int compositeVersion;
@@ -120,8 +119,7 @@ public final class DefaultValues {
             }
         }
 
-        public static UnicodeMap<Bidi_Class_Values> forVersion(
-                VersionInfo version, Option option) {
+        public static UnicodeMap<Bidi_Class_Values> forVersion(VersionInfo version, Option option) {
             return new Builder(version).build(option);
         }
     }

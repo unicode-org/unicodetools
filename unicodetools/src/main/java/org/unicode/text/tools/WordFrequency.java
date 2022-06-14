@@ -1,5 +1,9 @@
 package org.unicode.text.tools;
 
+import com.google.common.base.Splitter;
+import com.ibm.icu.impl.Row.R2;
+import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.text.UnicodeSet;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -8,20 +12,15 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.utility.Settings;
 import org.unicode.tools.emoji.EmojiAnnotations;
 
-import com.google.common.base.Splitter;
-import com.ibm.icu.impl.Row.R2;
-import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.UnicodeSet;
-
 public class WordFrequency {
-    static Map<String,Long> data = new HashMap<>();
+    static Map<String, Long> data = new HashMap<>();
     static long total;
+
     static {
         Splitter tab = Splitter.on("\t").trimResults();
         for (String line : FileUtilities.in(Settings.Output.GEN_DIR + "words/", "freq.txt")) {
@@ -35,9 +34,11 @@ public class WordFrequency {
         }
         data = Collections.unmodifiableMap(data);
     }
+
     public static Long getFrequency(String word) {
         return data.get(word);
     }
+
     public static void main(String[] args) {
         if (args.length == 0) {
             args = new String[] {"animal", "food", "sport"};
@@ -51,8 +52,14 @@ public class WordFrequency {
             for (R2<Long, String> entry : info.fileData.getEntrySetSortedByCount(false, null)) {
                 final String item = entry.get1();
                 UnicodeSet us = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getUnicodeSet(item);
-                System.out.println(arg + "\t" + item + "\t" + nf.format(entry.get0() / info.total)
-                        + "\t" + (us == null || us.size() == 0 ? "" : us.toPattern(false)));
+                System.out.println(
+                        arg
+                                + "\t"
+                                + item
+                                + "\t"
+                                + nf.format(entry.get0() / info.total)
+                                + "\t"
+                                + (us == null || us.size() == 0 ? "" : us.toPattern(false)));
             }
         }
     }
@@ -62,31 +69,115 @@ public class WordFrequency {
         double total = 0;
 
         void addFile(String fileName) {
-            for (String line2 : FileUtilities.in(WordFrequency.class, "words/" + fileName + ".txt")) {
+            for (String line2 :
+                    FileUtilities.in(WordFrequency.class, "words/" + fileName + ".txt")) {
                 add(line2);
             }
         }
 
-        static final Set<String> SKIP = new HashSet<>(Arrays.asList("love",
-                "open", "water", "baby", "print", "heart", "face",
-                "oh", "nature", "eye", "feet", "lady", "object", "peace",
-                "mouth", "shell", "smile", "romance",
-                "kiss", "joy", "flying", "sad", "cry", "nose", "tropical",
-                "surprised", "tears", "smiling",
-                "tear", "creature", "spiral", "smiley", "grin", "hump",
-                "ironic", "weary", "hatching", "flipper",
-                "grinning", "extraterrestrial", "wry", "spouting", "pouting",
-                "hot", "travel", "red", "green", "box", "cup", "human", "bar",
-                "french", "glass", "japanese", "square", "birthday", "sweet",
-                "ball", "plant", "soft", "delicious", "stick", "celebration",
-                "shaved", "yum", "um", "fried", "cooked", "slice", "roasted",
-                "sliced", "swirl", "frying", "steaming", "savouring",
-                "clinking",
-                "not", "no", "game", "car", "american", "entertainment",
-                "person", "weight", "shirt", "vehicle", "ice", "flag", "pool",
-                "mountain", "hole", "eight", "prohibited", "prize", "pole",
-                "forbidden", "hoop", "sash", "checkered"));
-        
+        static final Set<String> SKIP =
+                new HashSet<>(
+                        Arrays.asList(
+                                "love",
+                                "open",
+                                "water",
+                                "baby",
+                                "print",
+                                "heart",
+                                "face",
+                                "oh",
+                                "nature",
+                                "eye",
+                                "feet",
+                                "lady",
+                                "object",
+                                "peace",
+                                "mouth",
+                                "shell",
+                                "smile",
+                                "romance",
+                                "kiss",
+                                "joy",
+                                "flying",
+                                "sad",
+                                "cry",
+                                "nose",
+                                "tropical",
+                                "surprised",
+                                "tears",
+                                "smiling",
+                                "tear",
+                                "creature",
+                                "spiral",
+                                "smiley",
+                                "grin",
+                                "hump",
+                                "ironic",
+                                "weary",
+                                "hatching",
+                                "flipper",
+                                "grinning",
+                                "extraterrestrial",
+                                "wry",
+                                "spouting",
+                                "pouting",
+                                "hot",
+                                "travel",
+                                "red",
+                                "green",
+                                "box",
+                                "cup",
+                                "human",
+                                "bar",
+                                "french",
+                                "glass",
+                                "japanese",
+                                "square",
+                                "birthday",
+                                "sweet",
+                                "ball",
+                                "plant",
+                                "soft",
+                                "delicious",
+                                "stick",
+                                "celebration",
+                                "shaved",
+                                "yum",
+                                "um",
+                                "fried",
+                                "cooked",
+                                "slice",
+                                "roasted",
+                                "sliced",
+                                "swirl",
+                                "frying",
+                                "steaming",
+                                "savouring",
+                                "clinking",
+                                "not",
+                                "no",
+                                "game",
+                                "car",
+                                "american",
+                                "entertainment",
+                                "person",
+                                "weight",
+                                "shirt",
+                                "vehicle",
+                                "ice",
+                                "flag",
+                                "pool",
+                                "mountain",
+                                "hole",
+                                "eight",
+                                "prohibited",
+                                "prize",
+                                "pole",
+                                "forbidden",
+                                "hoop",
+                                "sash",
+                                "checkered"));
+
         public void addCharAnnotations(String arg) {
             UnicodeSet chars = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getUnicodeSet(arg);
             for (String cp : chars) {
@@ -105,9 +196,9 @@ public class WordFrequency {
             }
             Long count = getFrequency(line);
             if (count != null) {
-                fileData.add(line,count);
+                fileData.add(line, count);
                 total += count;
-                //System.out.println(line + ", " + count);
+                // System.out.println(line + ", " + count);
             }
         }
     }

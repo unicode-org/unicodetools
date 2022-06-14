@@ -1,13 +1,10 @@
 package org.unicode.draft;
 
+import com.ibm.icu.util.ULocale;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-
 import org.unicode.cldr.draft.FileUtilities;
-
-import com.ibm.icu.util.ULocale;
-
 
 public class GetNames {
     public static void main(String[] args) throws IOException {

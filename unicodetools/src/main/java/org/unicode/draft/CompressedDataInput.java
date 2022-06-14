@@ -1,6 +1,4 @@
-/**
- * 
- */
+/** */
 package org.unicode.draft;
 
 import java.io.DataInput;
@@ -16,7 +14,8 @@ final class CompressedDataInput implements DataInput {
     }
 
     /**
-     * Read long using readUnsignedLong. The bottom bit is the sign. If the number was negative, the value is inverted (~).
+     * Read long using readUnsignedLong. The bottom bit is the sign. If the number was negative, the
+     * value is inverted (~).
      */
     @Override
     public long readLong() throws IOException {
@@ -32,7 +31,7 @@ final class CompressedDataInput implements DataInput {
 
     /**
      * Read a long as a series of 7-bits, with the last one having the top bit on.
-     * 
+     *
      * @throws IOException
      */
     public long readUnsignedLong() throws IOException {
@@ -41,11 +40,11 @@ final class CompressedDataInput implements DataInput {
         while (true) {
             int byteValue = in.readByte();
             if ((byte) byteValue >= 0) {
-                result |= ((long)byteValue << shift);
+                result |= ((long) byteValue << shift);
                 shift += 7;
             } else {
                 byteValue &= 0x7F;
-                result |= ((long)byteValue << shift);
+                result |= ((long) byteValue << shift);
                 return result;
             }
         }

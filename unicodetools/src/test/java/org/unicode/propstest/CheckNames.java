@@ -1,5 +1,9 @@
 package org.unicode.propstest;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -8,31 +12,28 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-
 public class CheckNames {
-    static final IndexUnicodeProperties latest = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
+    static final IndexUnicodeProperties latest =
+            IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
     static final UnicodeMap<String> names = latest.load(UcdProperty.Name);
     static final UnicodeMap<String> nameAliases = latest.load(UcdProperty.Name_Alias);
     static final UnicodeMap<String> namedSequences = latest.load(UcdProperty.Named_Sequences);
 
-    static HashMap<String,Data> skeletonToCodepoint = new HashMap();
+    static HashMap<String, Data> skeletonToCodepoint = new HashMap();
 
     static class Data {
         public Data(String name, String codepoints2) {
             names.add(name);
             codePoints.add(codepoints2);
         }
+
         Set<String> names = new LinkedHashSet();
         UnicodeSet codePoints = new UnicodeSet();
+
         @Override
         public String toString() {
             // TODO Auto-generated method stub
@@ -82,7 +83,7 @@ public class CheckNames {
     }
 
     static HashSet<String> HYPHENS = new HashSet();
-    
+
     private static void add(String codepoints, String name) {
         if (name.contains("-") && !HYPHENS.contains(codepoints)) {
             System.out.println(codepoints + "\t" + name);
@@ -98,14 +99,15 @@ public class CheckNames {
         }
     }
 
-    static Matcher TO_REMOVE = Pattern.compile(
-            "\\s" // and space character
-            // + "|-"  // any  hyphen
-            + "|(?<=[a-zA-Z0-9])-(?=[a-zA-Z0-9])" // any medial hyphen
-            + "|CHARACTER" // any one of these sequences of letters
-            + "|LETTER"
-            + "|DIGIT")
-            .matcher("");
+    static Matcher TO_REMOVE =
+            Pattern.compile(
+                            "\\s" // and space character
+                                    // + "|-"  // any  hyphen
+                                    + "|(?<=[a-zA-Z0-9])-(?=[a-zA-Z0-9])" // any medial hyphen
+                                    + "|CHARACTER" // any one of these sequences of letters
+                                    + "|LETTER"
+                                    + "|DIGIT")
+                    .matcher("");
 
     public static synchronized String getSkeleton(String name) {
         // Ignore (i.e., fold away) any casing distinctions

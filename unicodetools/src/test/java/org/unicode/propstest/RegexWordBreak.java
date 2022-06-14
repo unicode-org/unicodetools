@@ -1,5 +1,12 @@
 package org.unicode.propstest;
 
+import com.google.common.base.Objects;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Multimaps;
+import com.google.common.collect.TreeMultimap;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -11,24 +18,16 @@ import java.util.NavigableMap;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyNames.Named;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Binary;
 
-import com.google.common.base.Objects;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.Multimaps;
-import com.google.common.collect.TreeMultimap;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UnicodeSet;
-
 public class RegexWordBreak {
     static final IndexUnicodeProperties iupLatest = IndexUnicodeProperties.make();
-    static final UnicodeMap<Age_Values> ageMap = iupLatest.loadEnum(UcdProperty.Age, Age_Values.class);
+    static final UnicodeMap<Age_Values> ageMap =
+            iupLatest.loadEnum(UcdProperty.Age, Age_Values.class);
     static IndexUnicodeProperties iup;
 
     public static void main(String[] args) {
@@ -41,8 +40,8 @@ public class RegexWordBreak {
 
         // [^\p{IsAlphabetic}\p{Mark}\p{Decimal_Number}\p{Join_Control}]
 
-        Multimap<UcdProperty,String> supported = TreeMultimap.create();
-        Multimap<UcdProperty,String> unsupported = TreeMultimap.create();
+        Multimap<UcdProperty, String> supported = TreeMultimap.create();
+        Multimap<UcdProperty, String> unsupported = TreeMultimap.create();
 
         for (UcdProperty prop : iup.getAvailableUcdProperties()) {
             String propName = prop.name();
@@ -54,29 +53,31 @@ public class RegexWordBreak {
             //            \p{Lu}  An uppercase letter (category)
             //            \p{IsAlphabetic}    An alphabetic character (binary property)
             switch (prop) {
-            case Script:
-                checkEnumNames(prop, "Is", enums, supported, unsupported);
-                break;
-            case Block:
-                checkEnumNames(prop, "In", enums, supported, unsupported);
-                break;
-            case General_Category:
-                checkEnumNames(prop, "", enums, supported, unsupported);
-                break;
-            default:
-                boolean isbinary = Objects.equal(enums, binary);
-                if (isbinary) {
-                    checkPattern(prop, Binary.Yes, "Is" + propName, supported, unsupported);
-                    checkPattern(prop, Binary.Yes, "Is" + shortPropName, supported, unsupported);
-                } else {
-                    unsupported.put(prop, "ALL");
-                }
-                break;
+                case Script:
+                    checkEnumNames(prop, "Is", enums, supported, unsupported);
+                    break;
+                case Block:
+                    checkEnumNames(prop, "In", enums, supported, unsupported);
+                    break;
+                case General_Category:
+                    checkEnumNames(prop, "", enums, supported, unsupported);
+                    break;
+                default:
+                    boolean isbinary = Objects.equal(enums, binary);
+                    if (isbinary) {
+                        checkPattern(prop, Binary.Yes, "Is" + propName, supported, unsupported);
+                        checkPattern(
+                                prop, Binary.Yes, "Is" + shortPropName, supported, unsupported);
+                    } else {
+                        unsupported.put(prop, "ALL");
+                    }
+                    break;
             }
         }
         Map<UcdProperty, Collection<String>> supportedMap = supported.asMap();
         Map<UcdProperty, Collection<String>> unsupportedMap = unsupported.asMap();
-        NavigableMap<String, Collection<UcdProperty>> reversed = Multimaps.invertFrom(supported, TreeMultimap.<String,UcdProperty>create()).asMap();
+        NavigableMap<String, Collection<UcdProperty>> reversed =
+                Multimaps.invertFrom(supported, TreeMultimap.<String, UcdProperty>create()).asMap();
 
         System.out.println("SUPPORTED: " + supportedMap.size());
         for (Entry<UcdProperty, Collection<String>> entry : supportedMap.entrySet()) {
@@ -104,16 +105,23 @@ public class RegexWordBreak {
         }
     }
 
-    private static void checkEnumNames(UcdProperty prop, String prefix, Set<Enum> enums,
-            Multimap<UcdProperty, String> supported, Multimap<UcdProperty, String> unsupported) {
+    private static void checkEnumNames(
+            UcdProperty prop,
+            String prefix,
+            Set<Enum> enums,
+            Multimap<UcdProperty, String> supported,
+            Multimap<UcdProperty, String> unsupported) {
         for (Enum enumValue : enums) {
-            String shortEnumName = ((Named)enumValue).getShortName();
+            String shortEnumName = ((Named) enumValue).getShortName();
             checkPattern(prop, enumValue, prefix + enumValue.name(), supported, unsupported);
             checkPattern(prop, enumValue, prefix + shortEnumName, supported, unsupported);
         }
     }
 
-    private static void checkPattern(UcdProperty prop, Enum enumValue, String propName,
+    private static void checkPattern(
+            UcdProperty prop,
+            Enum enumValue,
+            String propName,
             Multimap<UcdProperty, String> supported,
             Multimap<UcdProperty, String> unsupported) {
         Pattern pat = getPattern(propName);
@@ -151,7 +159,7 @@ public class RegexWordBreak {
         }
     }
 
-    public static Age_Values getJavaAge () {
+    public static Age_Values getJavaAge() {
         List<Age_Values> reversedList = new ArrayList<>(Arrays.asList(Age_Values.values()));
         reversedList.remove(Age_Values.Unassigned);
         Collections.reverse(reversedList);

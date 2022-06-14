@@ -1,13 +1,16 @@
 package org.unicode.propstest;
 
+import com.google.common.collect.Multimap;
+import com.google.common.collect.TreeMultimap;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.cldr.util.Counter;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyStatus;
@@ -16,12 +19,6 @@ import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.VersionToAge;
-
-import com.google.common.collect.Multimap;
-import com.google.common.collect.TreeMultimap;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.VersionInfo;
 
 public class PropertyGrowth {
     public static void main(String[] args) {
@@ -38,16 +35,16 @@ public class PropertyGrowth {
             }
             IndexUnicodeProperties iup = IndexUnicodeProperties.make(age);
             main:
-                for (UcdProperty prop : iup.getAvailableUcdProperties()) {
-                    switch (prop) {
+            for (UcdProperty prop : iup.getAvailableUcdProperties()) {
+                switch (prop) {
                     case Name:
                         continue main;
-                    }
-                    if (prop.toString().startsWith("k")) {
-                        continue; // skip unihan
-                    }
-                    PropertyStatus status = PropertyStatus.getPropertyStatus(prop);
-                    switch (status) {
+                }
+                if (prop.toString().startsWith("k")) {
+                    continue; // skip unihan
+                }
+                PropertyStatus status = PropertyStatus.getPropertyStatus(prop);
+                switch (status) {
                     case Immutable:
                     case Informative:
                     case Normative:
@@ -55,46 +52,58 @@ public class PropertyGrowth {
                         break;
                     default:
                         continue;
+                }
+                UnicodeMap<String> map;
+                try {
+                    map = iup.load(prop);
+                    // skip properties that are empty or include everything
+                    if (map == null || map.size() < 1) continue;
+                    if (map.getRangeCount() == 1 && map.getNonRangeStrings().isEmpty()) {
+                        int start = map.getRangeStart(0);
+                        int end = map.getRangeEnd(0);
+                        if (start == 0 && end == 0x10FFFF) continue;
                     }
-                    UnicodeMap<String> map;
-                    try {
-                        map = iup.load(prop);
-                        // skip properties that are empty or include everything
-                        if (map == null || map.size() < 1) continue;
-                        if (map.getRangeCount() == 1 && map.getNonRangeStrings().isEmpty()) {
-                            int start = map.getRangeStart(0);
-                            int end = map.getRangeEnd(0);
-                            if (start == 0 && end == 0x10FFFF) continue;
-                        }
-                    } catch (Exception e) {
-                        continue;
-                    }
+                } catch (Exception e) {
+                    continue;
+                }
 
-                    Set<String> values = map.values();
-                    Set<String> delta = new TreeSet<>(values);
-                    switch(prop) {
+                Set<String> values = map.values();
+                Set<String> delta = new TreeSet<>(values);
+                switch (prop) {
                     case Script_Extensions:
                         UnicodeMap<String> plain = iup.load(UcdProperty.Script);
                         delta.removeAll(plain.values());
                         break;
-                    }
-
-                    Collection<String> old = cumul.asMap().get(prop);
-                    if (old != null) {
-                        delta.removeAll(old);
-                    }
-                    if (delta.isEmpty()) {
-                        continue;
-                    }
-                    cumul.putAll(prop, delta);
-
-                    System.out.println(year + "\t" + age.getVersionString(2, 2) + "\t" + prop + "\t" + prop.getType() + "\t" + delta.size() + "\t" + trim(delta));
                 }
+
+                Collection<String> old = cumul.asMap().get(prop);
+                if (old != null) {
+                    delta.removeAll(old);
+                }
+                if (delta.isEmpty()) {
+                    continue;
+                }
+                cumul.putAll(prop, delta);
+
+                System.out.println(
+                        year
+                                + "\t"
+                                + age.getVersionString(2, 2)
+                                + "\t"
+                                + prop
+                                + "\t"
+                                + prop.getType()
+                                + "\t"
+                                + delta.size()
+                                + "\t"
+                                + trim(delta));
+            }
         }
     }
 
     private static void showScriptGrowth() {
-        Map<Integer,Counter<UcdPropertyValues.Script_Values>> yearToScriptToCount = new TreeMap<>(); 
+        Map<Integer, Counter<UcdPropertyValues.Script_Values>> yearToScriptToCount =
+                new TreeMap<>();
 
         IndexUnicodeProperties iup = IndexUnicodeProperties.make();
         UnicodeMap<UcdPropertyValues.Script_Values> plain2 = iup.loadEnum(UcdProperty.Script);
@@ -116,12 +125,12 @@ public class PropertyGrowth {
 
             for (String s : uset) {
                 Script_Values value = plain2.get(s);
-                switch(value) {
-                case Unknown:
-                    continue;
-                case Inherited:
-                    value = Script_Values.Common;
-                    break;
+                switch (value) {
+                    case Unknown:
+                        continue;
+                    case Inherited:
+                        value = Script_Values.Common;
+                        break;
                 }
                 counter.add(value, 1);
             }

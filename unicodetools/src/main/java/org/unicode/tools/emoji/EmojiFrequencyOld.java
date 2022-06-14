@@ -1,33 +1,36 @@
 package org.unicode.tools.emoji;
 
-import java.util.Locale;
-import java.util.Map.Entry;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.Counter;
-import org.unicode.text.utility.Settings;
-import org.unicode.text.utility.Utility;
-
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import java.util.Locale;
+import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.Counter;
+import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.Utility;
 
 public class EmojiFrequencyOld {
-    /* <a href="/details/2665" title="BLACK HEART SUIT" data-id="2665"> 
-    <li class="emoji_char" id="2665" data-title="BLACK HEART SUIT"> 
-    <span class="char emojifont"><span class="emoji emoji-2665"></span></span> 
+    /* <a href="/details/2665" title="BLACK HEART SUIT" data-id="2665">
+    <li class="emoji_char" id="2665" data-title="BLACK HEART SUIT">
+    <span class="char emojifont"><span class="emoji emoji-2665"></span></span>
     <span class="score" id="score-2665">375235298</span> </li> </a>
      */
     static UnicodeMap<Long> data = new UnicodeMap<>();
     static long total;
+
     static {
-        Matcher m = Pattern.compile("id=\"score-(\\p{XDigit}+)(-\\p{XDigit}+)?\">(\\d+)</span>").matcher("");
-        for (String line : FileUtilities.in(Settings.Output.GEN_DIR + "frequency/emoji/", "emoji-tracker.txt")) {
+        Matcher m =
+                Pattern.compile("id=\"score-(\\p{XDigit}+)(-\\p{XDigit}+)?\">(\\d+)</span>")
+                        .matcher("");
+        for (String line :
+                FileUtilities.in(
+                        Settings.Output.GEN_DIR + "frequency/emoji/", "emoji-tracker.txt")) {
             if (line.startsWith("<section")) {
                 continue;
             }
@@ -41,9 +44,10 @@ public class EmojiFrequencyOld {
                     int cp2 = Integer.parseInt(m.group(2).substring(1), 16);
                     cp += UTF16.valueOf(cp2);
                 }
-                
+
                 if (!EmojiData.EMOJI_DATA.getChars().contains(cp)) {
-                    throw new IllegalArgumentException(Utility.hex(cp) + UCharacter.getName(cp, ", "));
+                    throw new IllegalArgumentException(
+                            Utility.hex(cp) + UCharacter.getName(cp, ", "));
                 }
                 long score = Long.parseLong(scoreString);
 
@@ -58,24 +62,28 @@ public class EmojiFrequencyOld {
         }
         data.freeze();
     }
+
     public static Long getFrequency(String word) {
         return data.get(word);
     }
-    
+
     static final EmojiData EMOJIDATA = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
-    
+
     public static void main(String[] args) {
         System.out.println("Emoji\tTw. Count\tName\tAnnotations");
         NumberFormat nf = NumberFormat.getInstance(Locale.ENGLISH);
         for (Entry<String, Long> entry : data.entrySet()) {
             final String cp = entry.getKey();
-            System.out.println(cp
-                    + "\t" + nf.format(entry.getValue())
-                    + "\t" + UCharacter.getName(cp, ", ")
-                    + "\t" + EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(cp)
-                    );
+            System.out.println(
+                    cp
+                            + "\t"
+                            + nf.format(entry.getValue())
+                            + "\t"
+                            + UCharacter.getName(cp, ", ")
+                            + "\t"
+                            + EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(cp));
         }
-        
+
         System.out.println("\n\n\n");
         System.out.println("Annotation\tTw. Count\tTw. Count Ave.\tSet");
         Counter<String> annotationToFrequency = new Counter<String>();
@@ -94,10 +102,12 @@ public class EmojiFrequencyOld {
             final Long count = entry.get0();
             System.out.println(
                     annotation
-                    + "\t" + nf.format(count)
-                    + "\t" + nf.format(count/annotationToCount.get(annotation))
-                    + "\t" + us.toPattern(false)
-                    );
+                            + "\t"
+                            + nf.format(count)
+                            + "\t"
+                            + nf.format(count / annotationToCount.get(annotation))
+                            + "\t"
+                            + us.toPattern(false));
         }
     }
 }

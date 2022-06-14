@@ -1,16 +1,15 @@
 package org.unicode.draft;
-import java.util.Iterator;
-
-import org.unicode.cldr.util.Timer;
 
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.util.ULocale;
-
+import java.util.Iterator;
+import org.unicode.cldr.util.Timer;
 
 public class CodePoint implements Iterator<Integer>, Iterable<Integer> {
     private static final int SUPPLEMENTAL_OFFSET =
-            (Character.MIN_HIGH_SURROGATE << 10) + Character.MIN_LOW_SURROGATE
-            - Character.MIN_SUPPLEMENTARY_CODE_POINT;
+            (Character.MIN_HIGH_SURROGATE << 10)
+                    + Character.MIN_LOW_SURROGATE
+                    - Character.MIN_SUPPLEMENTARY_CODE_POINT;
     private final CharSequence charSequence;
     private int position;
     private StringBuilder builder;
@@ -42,22 +41,22 @@ public class CodePoint implements Iterator<Integer>, Iterable<Integer> {
         return this;
     }
 
-    static CodePoint with (CharSequence s) {
+    static CodePoint with(CharSequence s) {
         return new CodePoint(s);
     }
 
-    static int[] full (CharSequence s) {
+    static int[] full(CharSequence s) {
         final int len = s.length();
         int[] result = new int[len];
         int pos = 0;
-        for (int i = 0; i < len;) {
+        for (int i = 0; i < len; ) {
             int cp = s.charAt(i++);
             // The key to performance is that surrogate pairs are very rare.
             // Test for a trail (low) surrogate.
             if (cp >= Character.MIN_LOW_SURROGATE && cp < Character.MAX_LOW_SURROGATE && pos > 0) {
                 // If we get a trail, and if the last code point was a lead (high) surrogate,
                 // we need to backup and set the correct value
-                final int last = result[pos-1];
+                final int last = result[pos - 1];
                 if (last >= Character.MIN_HIGH_SURROGATE && last <= Character.MAX_HIGH_SURROGATE) {
                     --pos;
                     cp += (last << 10) - SUPPLEMENTAL_OFFSET;
@@ -95,7 +94,9 @@ public class CodePoint implements Iterator<Integer>, Iterable<Integer> {
                 return false;
             }
             int cp = buffer.charAt(position++);
-            if (cp >= Character.MIN_HIGH_SURROGATE && cp <= Character.MAX_HIGH_SURROGATE && position < length) {
+            if (cp >= Character.MIN_HIGH_SURROGATE
+                    && cp <= Character.MAX_HIGH_SURROGATE
+                    && position < length) {
                 final int trail = buffer.charAt(position);
                 if (trail >= Character.MIN_LOW_SURROGATE && trail <= Character.MAX_LOW_SURROGATE) {
                     cp = (cp << 10) + trail - SUPPLEMENTAL_OFFSET;
@@ -111,16 +112,18 @@ public class CodePoint implements Iterator<Integer>, Iterable<Integer> {
         System.out.print("Warmup\t");
         timeMethods("a\uD800\uDC00", 100001); // warmup
 
-        final String[] tests = {"In a hole in the ground there lived a hobbit.",
-                "In a hole in the ground there lived a hobbit.\uD800\uDC00",
-                "In a hole in the ground there lived a hobbit.\uD800",
-        "\uDC00In a hole in the ground there lived a hobbit."};
+        final String[] tests = {
+            "In a hole in the ground there lived a hobbit.",
+            "In a hole in the ground there lived a hobbit.\uD800\uDC00",
+            "In a hole in the ground there lived a hobbit.\uD800",
+            "\uDC00In a hole in the ground there lived a hobbit."
+        };
         for (final String test : tests) {
             timeMethods(test, 10000001);
         }
     }
 
-    private static  NumberFormat nf = NumberFormat.getNumberInstance(ULocale.ENGLISH);
+    private static NumberFormat nf = NumberFormat.getNumberInstance(ULocale.ENGLISH);
 
     private static void timeMethods(CharSequence s, int ITERATIONS) {
         System.out.println("Testing <" + s + "> for " + nf.format(ITERATIONS) + " iterations");
@@ -156,11 +159,14 @@ public class CodePoint implements Iterator<Integer>, Iterable<Integer> {
         timer.start();
         for (int iteration = ITERATIONS; iteration > 0; --iteration) {
             final int len = s.length();
-            for (int i = 0; i < len;) {
+            for (int i = 0; i < len; ) {
                 int cp = s.charAt(i++);
-                if (cp >= Character.MIN_HIGH_SURROGATE && cp <= Character.MAX_HIGH_SURROGATE && i < len) {
+                if (cp >= Character.MIN_HIGH_SURROGATE
+                        && cp <= Character.MAX_HIGH_SURROGATE
+                        && i < len) {
                     final int trail = s.charAt(i);
-                    if (trail >= Character.MIN_LOW_SURROGATE && trail < Character.MAX_LOW_SURROGATE) {
+                    if (trail >= Character.MIN_LOW_SURROGATE
+                            && trail < Character.MAX_LOW_SURROGATE) {
                         cp = (cp << 10) + trail - SUPPLEMENTAL_OFFSET;
                         ++i;
                     }
@@ -178,7 +184,7 @@ public class CodePoint implements Iterator<Integer>, Iterable<Integer> {
         doSomethingWith2 = 0;
         timer.start();
         for (int iteration = ITERATIONS; iteration > 0; --iteration) {
-            for (final CodePointIterator it = new CodePointIterator(s); it.next();) {
+            for (final CodePointIterator it = new CodePointIterator(s); it.next(); ) {
                 doSomethingWith2 ^= it.codePoint;
             }
         }

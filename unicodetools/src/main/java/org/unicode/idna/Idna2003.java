@@ -1,6 +1,5 @@
 package org.unicode.idna;
 
-
 public class Idna2003 extends Idna {
 
     private Idna2003(boolean STD3) {
@@ -12,7 +11,7 @@ public class Idna2003 extends Idna {
     public static Idna2003 SINGLETON = new Idna2003(true);
     public static Idna2003 SINGLETON_NSTD3 = new Idna2003(false);
 
-    static public IdnaType getIDNA2003Type(int cp) {
+    public static IdnaType getIDNA2003Type(int cp) {
         return SINGLETON.getType(cp);
     }
 
@@ -72,13 +71,15 @@ public class Idna2003 extends Idna {
     //
     //  private static void convertWithHack() throws StringPrepParseException {
     //    try {
-    //      Idna2003.intermediate = IDNA.convertToASCII(Idna2003.inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
+    //      Idna2003.intermediate = IDNA.convertToASCII(Idna2003.inbuffer, IDNA.USE_STD3_RULES); //
+    // USE_STD3_RULES,
     //    } catch (StringPrepParseException e) {
     //      if (!e.getMessage().contains("BIDI")) {
     //        throw e;
     //      }
     //      inbuffer.append("\\u05D9");
-    //      Idna2003.intermediate = IDNA.convertToASCII(Idna2003.inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
+    //      Idna2003.intermediate = IDNA.convertToASCII(Idna2003.inbuffer, IDNA.USE_STD3_RULES); //
+    // USE_STD3_RULES,
     //    }
     //  }
     //
@@ -89,12 +90,14 @@ public class Idna2003 extends Idna {
     //  //    UnicodeUtilities.inbuffer.setLength(0);
     //  //    UTF16.append(UnicodeUtilities.inbuffer, cp);
     //  //    try {
-    //  //      UnicodeUtilities.intermediate = IDNA.convertToASCII(UnicodeUtilities.inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
+    //  //      UnicodeUtilities.intermediate = IDNA.convertToASCII(UnicodeUtilities.inbuffer,
+    // IDNA.USE_STD3_RULES); // USE_STD3_RULES,
     //  //      // DEFAULT
     //  //      if (UnicodeUtilities.intermediate.length() == 0) {
     //  //        return "";
     //  //      }
-    //  //      UnicodeUtilities.outbuffer = IDNA.convertToUnicode(UnicodeUtilities.intermediate, IDNA.USE_STD3_RULES);
+    //  //      UnicodeUtilities.outbuffer = IDNA.convertToUnicode(UnicodeUtilities.intermediate,
+    // IDNA.USE_STD3_RULES);
     //  //    } catch (StringPrepParseException e) {
     //  //      if (e.getMessage().startsWith("Found zero length")) {
     //  //        return "";
@@ -125,7 +128,8 @@ public class Idna2003 extends Idna {
     //          throw new IllegalArgumentException();
     //        }
     //        idna2003.append(UnicodeUtilities.toHTML.transform(Idna2003.intermediate.toString()));
-    //        idna2003back.append(IDNA.convertToUnicode(Idna2003.intermediate, IDNA.USE_STD3_RULES).toString());
+    //        idna2003back.append(IDNA.convertToUnicode(Idna2003.intermediate,
+    // IDNA.USE_STD3_RULES).toString());
     //      } catch (Exception e) {
     //        idna2003.append('\uFFFD');
     //        idna2003back.append('\uFFFD');

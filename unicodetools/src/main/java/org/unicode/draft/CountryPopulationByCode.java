@@ -1,4 +1,10 @@
 package org.unicode.draft;
+
+import com.ibm.icu.impl.Row;
+import com.ibm.icu.impl.Row.R2;
+import com.ibm.icu.impl.Row.R4;
+import com.ibm.icu.impl.Row.R5;
+import com.ibm.icu.util.ULocale;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -7,7 +13,6 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
-
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Counter;
@@ -16,12 +21,6 @@ import org.unicode.cldr.util.SupplementalDataInfo.OfficialStatus;
 import org.unicode.cldr.util.SupplementalDataInfo.PopulationData;
 import org.unicode.jsp.FileUtilities;
 import org.unicode.jsp.FileUtilities.SemiFileReader;
-
-import com.ibm.icu.impl.Row;
-import com.ibm.icu.impl.Row.R2;
-import com.ibm.icu.impl.Row.R4;
-import com.ibm.icu.impl.Row.R5;
-import com.ibm.icu.util.ULocale;
 
 public class CountryPopulationByCode {
     private static final StandardCodes STANDARD_CODES = StandardCodes.make();
@@ -44,14 +43,16 @@ public class CountryPopulationByCode {
                 System.out.println(alt + "\t" + territory + "\t" + name);
             }
         }
-        //countryPopulation();
+        // countryPopulation();
         countryLanguagePopulation();
     }
 
     private static void countryLanguagePopulation() {
         final Map<String, Row.R2<Integer, Integer>> country2internetUsers = new TreeMap();
 
-        final SemiFileReader handler = new SequenceHandler(country2internetUsers).process(CountryPopulationByCode.class, "internetUsers.txt");
+        final SemiFileReader handler =
+                new SequenceHandler(country2internetUsers)
+                        .process(CountryPopulationByCode.class, "internetUsers.txt");
 
         final Counter<String> gdp = new Counter();
         final Counter<String> language2InternetLatest = new Counter();
@@ -60,7 +61,9 @@ public class CountryPopulationByCode {
         for (final String territoryCode : STANDARD_CODES.getGoodAvailableCodes("territory")) {
             Set<String> languages;
             try {
-                languages = testInfo.getSupplementalDataInfo().getLanguagesForTerritoryWithPopulationData(territoryCode);
+                languages =
+                        testInfo.getSupplementalDataInfo()
+                                .getLanguagesForTerritoryWithPopulationData(territoryCode);
                 if (languages == null) {
                     continue;
                 }
@@ -74,34 +77,50 @@ public class CountryPopulationByCode {
             double totalWeighted = 0;
             double total = 0;
 
-            final PopulationData territoryData = testInfo.getSupplementalDataInfo().getPopulationDataForTerritory(territoryCode);
+            final PopulationData territoryData =
+                    testInfo.getSupplementalDataInfo().getPopulationDataForTerritory(territoryCode);
             final double territoryGdp = territoryData.getGdp();
 
             double maxLiteratePopulation = 0;
             if (SHOW_SOURCE || territoryCode.equals("CN")) {
                 System.out.println(
-                        territoryCode + "\t"
-                                + testInfo.getEnglish().getName(CLDRFile.TERRITORY_NAME,territoryCode)
+                        territoryCode
+                                + "\t"
+                                + testInfo.getEnglish()
+                                        .getName(CLDRFile.TERRITORY_NAME, territoryCode)
                                 + "\t"
                                 + "\t"
-                                + "\t" + territoryData.getPopulation()
-                                + "\t" + territoryData.getLiteratePopulation() // getWeightedLiteratePopulation(data)
-                                + "\t" + territoryData.getOfficialStatus()
-                                + "\t" + territoryData.getGdp()
-                        );
-
+                                + "\t"
+                                + territoryData.getPopulation()
+                                + "\t"
+                                + territoryData
+                                        .getLiteratePopulation() // getWeightedLiteratePopulation(data)
+                                + "\t"
+                                + territoryData.getOfficialStatus()
+                                + "\t"
+                                + territoryData.getGdp());
             }
             for (final String languageCode : languages) {
-                final PopulationData data = testInfo.getSupplementalDataInfo().getLanguageAndTerritoryPopulationData(languageCode, territoryCode);
+                final PopulationData data =
+                        testInfo.getSupplementalDataInfo()
+                                .getLanguageAndTerritoryPopulationData(languageCode, territoryCode);
                 if (SHOW_SOURCE || territoryCode.equals("CN")) {
                     System.out.println(
-                            territoryCode + "\t"
-                                    + testInfo.getEnglish().getName(CLDRFile.TERRITORY_NAME,territoryCode)
-                                    + "\t" + languageCode
-                                    + "\t" + getBaseName(languageCode)
-                                    + "\t" + data.getPopulation()
-                                    + "\t" + data.getLiteratePopulation() // getWeightedLiteratePopulation(data)
-                                    + "\t" + data.getOfficialStatus());
+                            territoryCode
+                                    + "\t"
+                                    + testInfo.getEnglish()
+                                            .getName(CLDRFile.TERRITORY_NAME, territoryCode)
+                                    + "\t"
+                                    + languageCode
+                                    + "\t"
+                                    + getBaseName(languageCode)
+                                    + "\t"
+                                    + data.getPopulation()
+                                    + "\t"
+                                    + data
+                                            .getLiteratePopulation() // getWeightedLiteratePopulation(data)
+                                    + "\t"
+                                    + data.getOfficialStatus());
                 }
                 totalWeighted += getWeightedLiteratePopulation(data, languageCode);
                 final double literatePopulation = data.getLiteratePopulation();
@@ -111,37 +130,73 @@ public class CountryPopulationByCode {
                 total += literatePopulation;
             }
             final double literatePopulationInTerritory = territoryData.getLiteratePopulation();
-            addRow(rowSet, territoryCode, "und", 1-total/literatePopulationInTerritory, 1-total/literatePopulationInTerritory, OfficialStatus.unknown);
-            addRow(rowSet, territoryCode, "mul", 1-maxLiteratePopulation/literatePopulationInTerritory, 1-maxLiteratePopulation/literatePopulationInTerritory, OfficialStatus.unknown);
+            addRow(
+                    rowSet,
+                    territoryCode,
+                    "und",
+                    1 - total / literatePopulationInTerritory,
+                    1 - total / literatePopulationInTerritory,
+                    OfficialStatus.unknown);
+            addRow(
+                    rowSet,
+                    territoryCode,
+                    "mul",
+                    1 - maxLiteratePopulation / literatePopulationInTerritory,
+                    1 - maxLiteratePopulation / literatePopulationInTerritory,
+                    OfficialStatus.unknown);
 
             for (final String languageCode : languages) {
-                final PopulationData data = testInfo.getSupplementalDataInfo().getLanguageAndTerritoryPopulationData(languageCode, territoryCode);
+                final PopulationData data =
+                        testInfo.getSupplementalDataInfo()
+                                .getLanguageAndTerritoryPopulationData(languageCode, territoryCode);
 
                 final String languageName = getBaseName(languageCode);
                 if (territoryCode.equals("IL")) {
-                    System.out.println("$$\t" + data.getLiteratePopulation() + "\t" + testInfo.getEnglish().getName(languageCode));
+                    System.out.println(
+                            "$$\t"
+                                    + data.getLiteratePopulation()
+                                    + "\t"
+                                    + testInfo.getEnglish().getName(languageCode));
                 }
-                final double ratioWeighted = getWeightedLiteratePopulation(data, languageCode)/totalWeighted;
-                final double ratio = data.getLiteratePopulation()/literatePopulationInTerritory;
+                final double ratioWeighted =
+                        getWeightedLiteratePopulation(data, languageCode) / totalWeighted;
+                final double ratio = data.getLiteratePopulation() / literatePopulationInTerritory;
 
-                addRow(rowSet, territoryCode, languageCode, ratioWeighted, ratio, data.getOfficialStatus());
+                addRow(
+                        rowSet,
+                        territoryCode,
+                        languageCode,
+                        ratioWeighted,
+                        ratio,
+                        data.getOfficialStatus());
 
-                gdp.add(languageName, (int)(ratioWeighted * territoryGdp));
-                language2InternetLatest.add(languageName, (int)(ratioWeighted * internetData.get1()));
+                gdp.add(languageName, (int) (ratioWeighted * territoryGdp));
+                language2InternetLatest.add(
+                        languageName, (int) (ratioWeighted * internetData.get1()));
             }
         }
         if (SHOW_WEIGHTS) {
             System.out.println("*** Factors");
-            System.out.println("und = 1-total/literatePopulationInTerritory, 1-total/literatePopulationInTerritory");
-            System.out.println("mul = 1-maxLiteratePopulation/literatePopulationInTerritory, 1-maxLiteratePopulation/literatePopulationInTerritory");
-            System.out.println("region" + "\t" + "code"
-                    //+ "\t" + "rank"
-                    + "\t" + "ratio"
-                    + "\t" + "weighted-ratio"
-                    + "\t" + "language"
-                    + "\t" + "code"
-                    + "\t" + "status"
-                    //+ "\t" + "K-if-Key"
+            System.out.println(
+                    "und = 1-total/literatePopulationInTerritory, 1-total/literatePopulationInTerritory");
+            System.out.println(
+                    "mul = 1-maxLiteratePopulation/literatePopulationInTerritory, 1-maxLiteratePopulation/literatePopulationInTerritory");
+            System.out.println(
+                    "region"
+                            + "\t"
+                            + "code"
+                            // + "\t" + "rank"
+                            + "\t"
+                            + "ratio"
+                            + "\t"
+                            + "weighted-ratio"
+                            + "\t"
+                            + "language"
+                            + "\t"
+                            + "code"
+                            + "\t"
+                            + "status"
+                    // + "\t" + "K-if-Key"
                     );
 
             Object oldRegion = "";
@@ -151,19 +206,23 @@ public class CountryPopulationByCode {
                 final double ratio = -row.get1();
                 final double weightedRatio = -row.get2();
                 final String languageCodeStatus = row.get3();
-                if (FILTER && (
-                        weightedRatio < 0.01
-                        || languageCodeStatus.contains("\tund\t")
-                        || languageCodeStatus.contains("\tmul\t"))) {
+                if (FILTER
+                        && (weightedRatio < 0.01
+                                || languageCodeStatus.contains("\tund\t")
+                                || languageCodeStatus.contains("\tmul\t"))) {
                     continue;
                 }
                 counter = region.equals(oldRegion) ? counter + 1 : 1;
-                System.out.println(region
-                        //+ "\t" + counter
-                        + "\t" + ratio
-                        + "\t" + weightedRatio
-                        + "\t" + languageCodeStatus
-                        //+ "\t" + (row.get4() ? "K" : "")
+                System.out.println(
+                        region
+                                // + "\t" + counter
+                                + "\t"
+                                + ratio
+                                + "\t"
+                                + weightedRatio
+                                + "\t"
+                                + languageCodeStatus
+                        // + "\t" + (row.get4() ? "K" : "")
                         );
                 oldRegion = region;
             }
@@ -171,39 +230,68 @@ public class CountryPopulationByCode {
 
         if (SHOW_INTERNET) {
             //        for (String languageName : language2Internet2000.keySet()) {
-            //            System.out.println(languageName + "\t2000\t" + language2Internet2000.get(languageName));
+            //            System.out.println(languageName + "\t2000\t" +
+            // language2Internet2000.get(languageName));
             //        }
             System.out.println("*** internet/gdp");
             for (final String languageName : gdp.getKeysetSortedByCount(false)) {
-                System.out.println(languageName + "\t" + language2InternetLatest.get(languageName) + "\t" + gdp.get(languageName));
+                System.out.println(
+                        languageName
+                                + "\t"
+                                + language2InternetLatest.get(languageName)
+                                + "\t"
+                                + gdp.get(languageName));
             }
         }
     }
 
-    private static void addRow(TreeSet<R5<String, Double, Double, String, Boolean>> rowSet, String territoryCode, String languageCode, double ratioWeighted, double ratio, OfficialStatus officialStatus) {
-        final R5<String, Double, Double, String, Boolean> row = Row.of(
-                testInfo.getEnglish().getName("territory", territoryCode) + "\t" + territoryCode,
-                -ratio,
-                -ratioWeighted,
-                testInfo.getEnglish().getName(languageCode) + "\t" + languageCode + "\t" + (officialStatus == OfficialStatus.unknown ? "" : officialStatus.toString()),
-                KEY_LANGUAGES.contains(languageCode));
+    private static void addRow(
+            TreeSet<R5<String, Double, Double, String, Boolean>> rowSet,
+            String territoryCode,
+            String languageCode,
+            double ratioWeighted,
+            double ratio,
+            OfficialStatus officialStatus) {
+        final R5<String, Double, Double, String, Boolean> row =
+                Row.of(
+                        testInfo.getEnglish().getName("territory", territoryCode)
+                                + "\t"
+                                + territoryCode,
+                        -ratio,
+                        -ratioWeighted,
+                        testInfo.getEnglish().getName(languageCode)
+                                + "\t"
+                                + languageCode
+                                + "\t"
+                                + (officialStatus == OfficialStatus.unknown
+                                        ? ""
+                                        : officialStatus.toString()),
+                        KEY_LANGUAGES.contains(languageCode));
         rowSet.add(row);
     }
 
-    static final         Set<String> KEY_LANGUAGES = new LinkedHashSet(Arrays.asList(
-            "en", "es", "de", "fr", "ja", "it", "tr", "pt", "zh", "nl",
-            "pl", "ar", "ru", "zh_Hant", "ko", "th", "sv", "fi", "da",
-            "he", "nb", "el", "hr", "bg", "sk", "lt", "vi", "lv", "sr",
-            "pt_PT", "ro", "hu", "cs", "id", "sl", "fil", "fa", "uk",
-            "ca", "hi", "et", "eu", "is", "sw", "ms", "bn", "am", "ta",
-            "te", "mr", "ur", "ml", "kn", "gu", "or"));
+    static final Set<String> KEY_LANGUAGES =
+            new LinkedHashSet(
+                    Arrays.asList(
+                            "en", "es", "de", "fr", "ja", "it", "tr", "pt", "zh", "nl", "pl", "ar",
+                            "ru", "zh_Hant", "ko", "th", "sv", "fi", "da", "he", "nb", "el", "hr",
+                            "bg", "sk", "lt", "vi", "lv", "sr", "pt_PT", "ro", "hu", "cs", "id",
+                            "sl", "fil", "fa", "uk", "ca", "hi", "et", "eu", "is", "sw", "ms", "bn",
+                            "am", "ta", "te", "mr", "ur", "ml", "kn", "gu", "or"));
 
     private static double getWeightedLiteratePopulation(PopulationData data, String languageCode) {
-        return data.getLiteratePopulation() * (languageCode.equals("nn") ? OfficialStatus.official_minority : data.getOfficialStatus()).getWeight();
+        return data.getLiteratePopulation()
+                * (languageCode.equals("nn")
+                                ? OfficialStatus.official_minority
+                                : data.getOfficialStatus())
+                        .getWeight();
     }
 
     private static String getBaseName(String languageCode) {
-        final String baseLanguage = languageCode.contains("Hant") ? languageCode : new ULocale(languageCode).getLanguage();
+        final String baseLanguage =
+                languageCode.contains("Hant")
+                        ? languageCode
+                        : new ULocale(languageCode).getLanguage();
 
         final String languageName = testInfo.getEnglish().getName(baseLanguage);
         return languageName;
@@ -211,12 +299,15 @@ public class CountryPopulationByCode {
 
     static class SequenceHandler extends FileUtilities.SemiFileReader {
         Map<String, Row.R2<Integer, Integer>> country2internetUsers = new TreeMap();
-        public final static Pattern TABS = Pattern.compile("\\t+");
-        public static final Map<String,String> name2code = new HashMap();
-        public static final Map<String,String> remapName = new HashMap();
+        public static final Pattern TABS = Pattern.compile("\\t+");
+        public static final Map<String, String> name2code = new HashMap();
+        public static final Map<String, String> remapName = new HashMap();
+
         static {
             for (final String territory : STANDARD_CODES.getGoodAvailableCodes("territory")) {
-                name2code.put(testInfo.getEnglish().getName(CLDRFile.TERRITORY_NAME, territory), territory);
+                name2code.put(
+                        testInfo.getEnglish().getName(CLDRFile.TERRITORY_NAME, territory),
+                        territory);
             }
             remapName.put("Korea, South", "South Korea");
             remapName.put("Hong Kong�*", "Hong Kong SAR China");
@@ -261,6 +352,7 @@ public class CountryPopulationByCode {
         protected boolean isCodePoint() {
             return false;
         }
+
         @Override
         protected boolean handleLine(int start, int end, String[] items) {
             String code = name2code.get(items[0]);
@@ -269,52 +361,67 @@ public class CountryPopulationByCode {
                 code = name2code.get(rename);
             }
             if (code == null) {
-                //System.out.println("remapName.put(\"" + items[0] + "\", \"XX\");");
+                // System.out.println("remapName.put(\"" + items[0] + "\", \"XX\");");
                 code = items[0];
             }
-            country2internetUsers.put(code,
-                    Row.of(Integer.parseInt(items[1].replace(",","")), Integer.parseInt(items[2].replace(",",""))));
+            country2internetUsers.put(
+                    code,
+                    Row.of(
+                            Integer.parseInt(items[1].replace(",", "")),
+                            Integer.parseInt(items[2].replace(",", ""))));
             return true;
         }
+
         @Override
         protected void handleEnd() {
-            final Set<String> missing = new TreeSet(STANDARD_CODES.getGoodAvailableCodes("territory"));
+            final Set<String> missing =
+                    new TreeSet(STANDARD_CODES.getGoodAvailableCodes("territory"));
             missing.removeAll(country2internetUsers.keySet());
             for (final String s : missing) {
-                System.out.println("//missing\t" + s + "\t" + testInfo.getEnglish().getName(CLDRFile.TERRITORY_NAME, s));
+                System.out.println(
+                        "//missing\t"
+                                + s
+                                + "\t"
+                                + testInfo.getEnglish().getName(CLDRFile.TERRITORY_NAME, s));
             }
         }
     }
 
     private static void countryPopulation() {
-        final Set<R4<Double, Double, String, Integer>> byPopulation = new TreeSet<R4<Double, Double, String, Integer>>();
+        final Set<R4<Double, Double, String, Integer>> byPopulation =
+                new TreeSet<R4<Double, Double, String, Integer>>();
 
         for (final String code : STANDARD_CODES.getGoodAvailableCodes("territory")) {
-            final Set<Integer> numbers = testInfo.getSupplementalDataInfo().numericTerritoryMapping
-                    .getAll(code);
+            final Set<Integer> numbers =
+                    testInfo.getSupplementalDataInfo().numericTerritoryMapping.getAll(code);
             if (numbers == null) {
-                //System.out.println("Skipping " + code);
+                // System.out.println("Skipping " + code);
                 continue;
             }
             for (final Integer regionNumber : numbers) {
-                final PopulationData population = testInfo.getSupplementalDataInfo()
-                        .getPopulationDataForTerritory(code);
+                final PopulationData population =
+                        testInfo.getSupplementalDataInfo().getPopulationDataForTerritory(code);
                 if (population == null) {
                     System.out.println("Skipping " + code + ", " + regionNumber);
                     continue;
                 }
-                final R4<Double, Double, String, Integer> items = Row
-                        .of(population.getPopulation(), population.getGdp(), code, regionNumber);
+                final R4<Double, Double, String, Integer> items =
+                        Row.of(population.getPopulation(), population.getGdp(), code, regionNumber);
                 byPopulation.add(items);
             }
         }
         for (final R4<Double, Double, String, Integer> row : byPopulation) {
             final String name = row.get2();
-            System.out.println(testInfo.getEnglish().getName(CLDRFile.TERRITORY_NAME, name)
-                    + "\t" + row.get0()
-                    + "\t" + row.get1()
-                    + "\t" + name
-                    + "\t" + row.get3());
+            System.out.println(
+                    testInfo.getEnglish().getName(CLDRFile.TERRITORY_NAME, name)
+                            + "\t"
+                            + row.get0()
+                            + "\t"
+                            + row.get1()
+                            + "\t"
+                            + name
+                            + "\t"
+                            + row.get3());
         }
     }
 }

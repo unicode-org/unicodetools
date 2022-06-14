@@ -1,20 +1,19 @@
 package org.unicode.text.UCD;
 
+import com.ibm.icu.text.UTF16;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Map.Entry;
-
 import org.unicode.text.utility.ChainException;
-
-import com.ibm.icu.text.UTF16;
 
 class NormalizationDataStandard implements NormalizationData {
     private final UCD ucd;
-    private final HashMap<Long,Integer> compTable = new HashMap<Long,Integer>();
+    private final HashMap<Long, Integer> compTable = new HashMap<Long, Integer>();
     private final BitSet isSecond = new BitSet();
     private final BitSet isFirst = new BitSet();
     private final BitSet canonicalRecompose = new BitSet();
     private final BitSet compatibilityRecompose = new BitSet();
+
     NormalizationDataStandard(String version) {
         ucd = UCD.make(version);
         for (int i = 0; i < 0x10FFFF; ++i) {
@@ -40,8 +39,9 @@ class NormalizationDataStandard implements NormalizationData {
                     final int len = UTF16.countCodePoint(s);
                     if (len != 2) {
                         if (len > 2) {
-                            if (ucd.getCompositeVersion() >= 0x30000) {  // version >= 3.0.0
-                                throw new IllegalArgumentException("BAD LENGTH: " + len + ucd.toString(i));
+                            if (ucd.getCompositeVersion() >= 0x30000) { // version >= 3.0.0
+                                throw new IllegalArgumentException(
+                                        "BAD LENGTH: " + len + ucd.toString(i));
                             }
                         }
                         continue;
@@ -66,16 +66,16 @@ class NormalizationDataStandard implements NormalizationData {
                         compatibilityRecompose.set(i);
                     }
 
-                    final long key = (((long)a)<<32) | b;
+                    final long key = (((long) a) << 32) | b;
 
                     /*if (i == '\u1E0A' || key == 0x004400000307) {
-                            System.out.println(Utility.hex(s));
-                            System.out.println(Utility.hex(i));
-                            System.out.println(Utility.hex(key));
-                        }*/
+                        System.out.println(Utility.hex(s));
+                        System.out.println(Utility.hex(i));
+                        System.out.println(Utility.hex(key));
+                    }*/
                     compTable.put(new Long(key), new Integer(i));
                 } catch (final Exception e) {
-                    throw new ChainException("Error: {0}", new Object[]{ucd.toString(i)}, e);
+                    throw new ChainException("Error: {0}", new Object[] {ucd.toString(i)}, e);
                 }
             }
         }
@@ -169,7 +169,7 @@ class NormalizationDataStandard implements NormalizationData {
         if (hangulPoss != 0xFFFF) {
             return hangulPoss;
         }
-        final Integer obj = compTable.get(new Long((((long)starterCh)<<32) | ch));
+        final Integer obj = compTable.get(new Long((((long) starterCh) << 32) | ch));
         if (obj == null) {
             return 0xFFFF;
         }
@@ -204,33 +204,29 @@ class NormalizationDataStandard implements NormalizationData {
             final Integer result = entry.getValue();
             final long keyLong = key.longValue();
             if (leading != null) {
-                leading.set((int)(keyLong >>> 32));
+                leading.set((int) (keyLong >>> 32));
             }
             if (trailing != null) {
-                trailing.set((int)keyLong);
+                trailing.set((int) keyLong);
             }
             if (resulting != null) {
                 resulting.set(result.intValue());
             }
         }
         for (int i = UCD.LBase; i < UCD.TLimit; ++i) {
-            if (leading != null && UCD.isLeadingJamo(i))
-            {
+            if (leading != null && UCD.isLeadingJamo(i)) {
                 leading.set(i); // set all initial Jamo (that form syllables)
             }
-            if (trailing != null && UCD.isNonLeadJamo(i))
-            {
+            if (trailing != null && UCD.isNonLeadJamo(i)) {
                 trailing.set(i); // set all final Jamo (that form syllables)
             }
         }
         if (leading != null) {
             for (int i = UCD.SBase; i < UCD.SLimit; ++i) {
-                if (UCD.isDoubleHangul(i))
-                {
+                if (UCD.isDoubleHangul(i)) {
                     leading.set(i); // set all two-Jamo syllables
                 }
             }
         }
     }
-
 }

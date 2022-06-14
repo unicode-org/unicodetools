@@ -1,14 +1,12 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/TestNameUniqueness.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/TestNameUniqueness.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
 import java.io.BufferedReader;
@@ -16,7 +14,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
@@ -54,10 +51,13 @@ public class TestNameUniqueness implements UCD_Types {
                     }
                     if (line == null) {
                         fileCount++;
-                        br = FileUtilities.openReader(files[fileCount][0], files[fileCount][1], "ISO-8859-1");
+                        br =
+                                FileUtilities.openReader(
+                                        files[fileCount][0], files[fileCount][1], "ISO-8859-1");
                         line = br.readLine();
                     }
-                } catch (final IOException e) {}
+                } catch (final IOException e) {
+                }
                 if (line == null) {
                     return null;
                 }
@@ -70,15 +70,15 @@ public class TestNameUniqueness implements UCD_Types {
                     if (!(('0' <= c && c <= '9') || ('A' <= c && c <= 'F'))) {
                         continue;
                     }
-                    Utility.split(line,'\t',pieces,true);
-                    Utility.split(pieces[1],'(',pieces,true);
-                    Utility.split(pieces[0],'*',pieces,true);
+                    Utility.split(line, '\t', pieces, true);
+                    Utility.split(pieces[1], '(', pieces, true);
+                    Utility.split(pieces[0], '*', pieces, true);
                     return pieces[0];
                 } else {
-                    Utility.split(line,';',pieces,true);
+                    Utility.split(line, ';', pieces, true);
                     return pieces[1];
                 }
-                //throw new IllegalArgumentException("Illegal file type");
+                // throw new IllegalArgumentException("Illegal file type");
             }
         }
     }
@@ -108,7 +108,7 @@ public class TestNameUniqueness implements UCD_Types {
                 System.out.println("*!*!*!* Collision at " + key + " between: ");
                 System.out.println("\t" + value);
                 System.out.println("\t" + nameIterator.line);
-                //throw new IllegalArgumentException();
+                // throw new IllegalArgumentException();
             }
             map.put(key, nameIterator.line);
             if (nameIterator.line.startsWith("116C")
@@ -123,7 +123,8 @@ public class TestNameUniqueness implements UCD_Types {
     }
 
     void checkNames() throws IOException {
-        final PrintWriter out = Utility.openPrintWriterGenDir("log/name_uniqueness.txt", Utility.LATIN1_WINDOWS);
+        final PrintWriter out =
+                Utility.openPrintWriterGenDir("log/name_uniqueness.txt", Utility.LATIN1_WINDOWS);
         try {
             out.println("Collisions");
             out.println();
@@ -144,9 +145,11 @@ public class TestNameUniqueness implements UCD_Types {
                 final String processedName = processName(cp, name);
                 final Integer existing = (Integer) names.get(processedName);
                 if (existing != null) {
-                    out.println("Collision between: "
-                            + Default.ucd().getCodeAndName(existing.intValue())
-                            + ", " + Default.ucd().getCodeAndName(cp));
+                    out.println(
+                            "Collision between: "
+                                    + Default.ucd().getCodeAndName(existing.intValue())
+                                    + ", "
+                                    + Default.ucd().getCodeAndName(cp));
                 } else {
                     names.put(processedName, new Integer(cp));
                 }
@@ -160,9 +163,14 @@ public class TestNameUniqueness implements UCD_Types {
                     continue;
                 }
                 final String sampleName = Default.ucd().getCodeAndName(samples[i]);
-                out.println(count + "\t'" + ((char)i)
-                        + "'\t" + Default.ucd().getCodeAndName(samples[i])
-                        + "\t=>\t" + processName(samples[i], Default.ucd().getName(samples[i])));
+                out.println(
+                        count
+                                + "\t'"
+                                + ((char) i)
+                                + "'\t"
+                                + Default.ucd().getCodeAndName(samples[i])
+                                + "\t=>\t"
+                                + processName(samples[i], Default.ucd().getName(samples[i])));
             }
             out.println();
             out.println("Name Samples");
@@ -172,8 +180,10 @@ public class TestNameUniqueness implements UCD_Types {
                 if (cat == Cc) {
                     continue;
                 }
-                out.println(Default.ucd().getCodeAndName(i)
-                        + "\t=>\t" + processName(i, Default.ucd().getName(i)));
+                out.println(
+                        Default.ucd().getCodeAndName(i)
+                                + "\t=>\t"
+                                + processName(i, Default.ucd().getName(i)));
             }
         } finally {
             out.close();
@@ -181,12 +191,12 @@ public class TestNameUniqueness implements UCD_Types {
     }
 
     static final String[][] replacements = {
-        //{"SMALL LETTER", ""},
+        // {"SMALL LETTER", ""},
         {"LETTER", ""},
         {"CHARACTER", ""},
         {"DIGIT", ""},
         {"SIGN", ""},
-        //{"WITH", ""},
+        // {"WITH", ""},
     };
 
     StringBuffer processNamesBuffer = new StringBuffer();
@@ -200,11 +210,9 @@ public class TestNameUniqueness implements UCD_Types {
             if (samples[c] == 0) {
                 samples[c] = codePoint;
             }
-            if ('A' <= c && c <= 'Z'
-                    || '0' <= c && c <= '9') {
+            if ('A' <= c && c <= 'Z' || '0' <= c && c <= '9') {
                 processNamesBuffer.append(c);
             }
-
         }
         if (processNamesBuffer.length() == name.length()) {
             return name;
@@ -212,4 +220,3 @@ public class TestNameUniqueness implements UCD_Types {
         return processNamesBuffer.toString();
     }
 }
-

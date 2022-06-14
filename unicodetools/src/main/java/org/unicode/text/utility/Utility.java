@@ -1,16 +1,23 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Utility.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Utility.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.utility;
 
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.Replaceable;
+import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeMatcher;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,7 +31,6 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -35,23 +41,12 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 
-import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.Replaceable;
-import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeMatcher;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.VersionInfo;
-
-public final class Utility implements UCD_Types {    // COMMON UTILITIES
+public final class Utility implements UCD_Types { // COMMON UTILITIES
 
     private static final boolean SHOW_SEARCH_PATH = false;
 
@@ -107,7 +102,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             start = end;
             end = temp;
         }
-        long bmstart = (1L << (start+1)) - 1;
+        long bmstart = (1L << (start + 1)) - 1;
         final long bmend = (1L << end) - 1;
         bmstart &= ~bmend;
         return source |= bmstart;
@@ -123,7 +118,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             start = end;
             end = temp;
         }
-        int bmstart = (1 << (start+1)) - 1;
+        int bmstart = (1 << (start + 1)) - 1;
         final int bmend = (1 << end) - 1;
         bmstart &= ~bmend;
         return source &= ~bmstart;
@@ -148,8 +143,8 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     // These routines use the Java functions, because they only need to act on ASCII.
 
     /**
-     * Removes space, _, and lowercases.
-     * Calls ICU UnicodeProperty.toSkeleton() and may add Unicode tool specific overrides.
+     * Removes space, _, and lowercases. Calls ICU UnicodeProperty.toSkeleton() and may add Unicode
+     * tool specific overrides.
      */
     public static String getSkeleton(String source) {
         return UnicodeProperty.toSkeleton(source);
@@ -179,16 +174,16 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     // private static StringBuffer skeletonBuffer = new StringBuffer();
 
-    /**
-     * Sutton SignWriting really does want to be in CamelCase without underscore.
-     */
+    /** Sutton SignWriting really does want to be in CamelCase without underscore. */
     private static final String Signwriting = "Signwriting";
-    /** @see Signwriting */
+    /**
+     * @see Signwriting
+     */
     private static final String Sign_Writing = "Sign_Writing";
 
     /**
-     * Changes space, - into _, inserts _ between lower and UPPER.
-     * Calls ICU UnicodeProperty.regularize() and adds Unicode tool specific overrides.
+     * Changes space, - into _, inserts _ between lower and UPPER. Calls ICU
+     * UnicodeProperty.regularize() and adds Unicode tool specific overrides.
      */
     public static String getUnskeleton(String source, boolean titlecaseStart) {
         String result = UnicodeProperty.regularize(source, titlecaseStart);
@@ -229,37 +224,40 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
          */
     }
 
-    public static int lookup(String value, String[] values, String[] altValues, boolean skeletonize, int maxValue) {
-        if ((values.length - 1) > maxValue || (altValues != null && (altValues.length - 1) > maxValue)) {
-            throw new IllegalArgumentException("values or altValues too long for maxValue " + maxValue);
+    public static int lookup(
+            String value, String[] values, String[] altValues, boolean skeletonize, int maxValue) {
+        if ((values.length - 1) > maxValue
+                || (altValues != null && (altValues.length - 1) > maxValue)) {
+            throw new IllegalArgumentException(
+                    "values or altValues too long for maxValue " + maxValue);
         }
         int result = Utility.find(value, values, skeletonize);
         if (result < 0 && altValues != null) {
             result = Utility.find(value, altValues, skeletonize);
         }
         if (result < 0) {
-            throw new ChainException("Could not find \"{0}\" in table [{1}] nor in [{2}]",
-                    new Object [] { value, Arrays.asList(values), Arrays.asList(altValues) });
+            throw new ChainException(
+                    "Could not find \"{0}\" in table [{1}] nor in [{2}]",
+                    new Object[] {value, Arrays.asList(values), Arrays.asList(altValues)});
         }
         return result;
     }
 
     public static byte lookup(String source, String[] target, boolean skeletonize) {
-        return (byte)lookup(source, target, null, skeletonize, Byte.MAX_VALUE);
+        return (byte) lookup(source, target, null, skeletonize, Byte.MAX_VALUE);
     }
 
     public static short lookupShort(String source, String[] target, boolean skeletonize) {
-        return (short)lookup(source, target, null, skeletonize, Short.MAX_VALUE);
+        return (short) lookup(source, target, null, skeletonize, Short.MAX_VALUE);
     }
 
-    public static short lookupShort(String source, String[] target, String[] altValues, boolean skeletonize) {
-        return (short)lookup(source, target, altValues, skeletonize, Short.MAX_VALUE);
+    public static short lookupShort(
+            String source, String[] target, String[] altValues, boolean skeletonize) {
+        return (short) lookup(source, target, altValues, skeletonize, Short.MAX_VALUE);
     }
 
-    /**
-     * Supplies a zero-padded hex representation of an integer (without 0x)
-     */
-    static public String hex(long i, int places) {
+    /** Supplies a zero-padded hex representation of an integer (without 0x) */
+    public static String hex(long i, int places) {
         if (i == Long.MIN_VALUE) {
             return "-8000000000000000";
         }
@@ -269,7 +267,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         }
         String result = Long.toString(i, 16).toUpperCase();
         if (result.length() < places) {
-            result = "0000000000000000".substring(result.length(),places) + result;
+            result = "0000000000000000".substring(result.length(), places) + result;
         }
         if (negative) {
             return '-' + result;
@@ -278,15 +276,15 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     public static String hex(long ch) {
-        return hex(ch,4);
+        return hex(ch, 4);
     }
 
     public static String hex(byte ch) {
-        return hex(ch & 0xFF,2);
+        return hex(ch & 0xFF, 2);
     }
 
     public static String hex(char ch) {
-        return hex(ch & 0xFFFF,4);
+        return hex(ch & 0xFFFF, 4);
     }
 
     public static String hex(Object s) {
@@ -306,7 +304,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             return "";
         }
         if (o instanceof Number) {
-            return hex(((Number)o).longValue(), places);
+            return hex(((Number) o).longValue(), places);
         }
 
         final String s = o.toString();
@@ -324,7 +322,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     public static String hex(byte[] o, int start, int end, String separator) {
         final StringBuffer result = new StringBuffer();
-        //int ch;
+        // int ch;
         for (int i = start; i < end; ++i) {
             if (i != 0) {
                 result.append(separator);
@@ -345,10 +343,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         return result.toString();
     }
 
-    /**
-     * Returns a string containing count copies of s.
-     * If count <= 0, returns "".
-     */
+    /** Returns a string containing count copies of s. If count <= 0, returns "". */
     public static String repeat(String s, int count) {
         if (count <= 0) {
             return "";
@@ -356,7 +351,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         if (count == 1) {
             return s;
         }
-        final StringBuffer result = new StringBuffer(count*s.length());
+        final StringBuffer result = new StringBuffer(count * s.length());
         for (int i = 0; i < count; ++i) {
             result.append(s);
         }
@@ -385,17 +380,17 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         if (fract == -1) {
             return Float.valueOf(p).floatValue();
         }
-        final String q = p.substring(0,fract);
+        final String q = p.substring(0, fract);
         float num = 0;
         if (q.length() != 0) {
             num = Integer.parseInt(q);
         }
-        p = p.substring(fract+1,p.length());
+        p = p.substring(fract + 1, p.length());
         float den = 0;
         if (p.length() != 0) {
             den = Integer.parseInt(p);
         }
-        return num/den;
+        return num / den;
     }
 
     public static double doubleFrom(String p) {
@@ -406,17 +401,17 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         if (fract == -1) {
             return Double.valueOf(p).doubleValue();
         }
-        final String q = p.substring(0,fract);
+        final String q = p.substring(0, fract);
         double num = 0;
         if (q.length() != 0) {
             num = Integer.parseInt(q);
         }
-        p = p.substring(fract+1,p.length());
+        p = p.substring(fract + 1, p.length());
         double den = 0;
         if (p.length() != 0) {
             den = Integer.parseInt(p);
         }
-        return num/den;
+        return num / den;
     }
 
     public static int codePointFromHex(String p) {
@@ -432,7 +427,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     public static String fromHex(String p, boolean acceptChars) {
-        return fromHex(p,acceptChars,4);
+        return fromHex(p, acceptChars, 4);
     }
 
     public static String fromHex(String p, boolean acceptChars, int minHex) {
@@ -440,18 +435,36 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         int value = 0;
         int count = 0;
         main:
-            for (int i = 0; i < p.length(); ++i) {
-                final char ch = p.charAt(i);
-                int digit = 0;
-                switch (ch) {
-                case 'a': case 'b': case 'c': case 'd': case 'e': case 'f':
+        for (int i = 0; i < p.length(); ++i) {
+            final char ch = p.charAt(i);
+            int digit = 0;
+            switch (ch) {
+                case 'a':
+                case 'b':
+                case 'c':
+                case 'd':
+                case 'e':
+                case 'f':
                     digit = ch - 'a' + 10;
                     break;
-                case 'A': case 'B': case 'C': case 'D': case 'E': case 'F':
+                case 'A':
+                case 'B':
+                case 'C':
+                case 'D':
+                case 'E':
+                case 'F':
                     digit = ch - 'A' + 10;
                     break;
-                case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7':
-                case '8': case '9':
+                case '0':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
                     digit = ch - '0';
                     break;
                 default:
@@ -461,26 +474,34 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                             if (count >= minHex && count <= 6) {
                                 output.appendCodePoint(value);
                             } else if (count != 0) {
-                                output.append(p.substring(i-count, i)); // TODO fix supplementary characters
+                                output.append(
+                                        p.substring(
+                                                i - count, i)); // TODO fix supplementary characters
                             }
                             count = 0;
                             value = 0;
                             output.appendCodePoint((int) ch);
                             continue main;
                         }
-                        throw new ChainException("bad hex value: ‘{0}’ at position {1} in \"{2}\"",
+                        throw new ChainException(
+                                "bad hex value: ‘{0}’ at position {1} in \"{2}\"",
                                 new Object[] {String.valueOf(ch), new Integer(i), p});
                     }
                     // fall through!!
-                case 'U': case 'u': case '+': // for the U+ case
+                case 'U':
+                case 'u':
+                case '+': // for the U+ case
 
-                case ' ': case ',': case ';': // do SPACE here, just for speed
+                case ' ':
+                case ',':
+                case ';': // do SPACE here, just for speed
                     if (count != 0) {
                         if (count < minHex || count > 6) {
                             if (acceptChars) {
-                                output.append(p.substring(i-count, i));
+                                output.append(p.substring(i - count, i));
                             } else {
-                                throw new ChainException("bad hex value: '{0}' at position {1} in \"{2}\"",
+                                throw new ChainException(
+                                        "bad hex value: '{0}' at position {1} in \"{2}\"",
                                         new Object[] {String.valueOf(ch), new Integer(i), p});
                             }
                         } else {
@@ -490,21 +511,23 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                     count = 0;
                     value = 0;
                     continue main;
-                }
-                value <<= 4;
-                value += digit;
-                if (value > 0x10FFFF) {
-                    throw new ChainException("Character code too large: '{0}' at position {1} in \"{2}\"",
-                            new Object[] {String.valueOf(ch), new Integer(i), p});
-                }
-                count++;
             }
+            value <<= 4;
+            value += digit;
+            if (value > 0x10FFFF) {
+                throw new ChainException(
+                        "Character code too large: '{0}' at position {1} in \"{2}\"",
+                        new Object[] {String.valueOf(ch), new Integer(i), p});
+            }
+            count++;
+        }
         if (count != 0) {
             if (count < minHex || count > 6) {
                 if (acceptChars) {
                     return p;
                 } else {
-                    throw new ChainException("bad hex value: '{0}' at position {1} in \"{2}\"",
+                    throw new ChainException(
+                            "bad hex value: '{0}' at position {1} in \"{2}\"",
                             new Object[] {"EOS", new Integer(p.length()), p});
                 }
             } else {
@@ -516,21 +539,21 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         return output.toString();
     }
 
-
     public static final class Position {
         public int start, limit;
     }
 
     /**
      * Finds the next position in the text that matches.
+     *
      * @param divider A UnicodeMatcher, such as a UnicodeSet.
      * @text obvious
      * @offset starting offset
      * @output start and limit of the piece found. If the return is false, then start,limit = length
      * @return true iff match found
      */
-    public static boolean next(UnicodeMatcher matcher, Replaceable text, int offset,
-            Position output) {
+    public static boolean next(
+            UnicodeMatcher matcher, Replaceable text, int offset, Position output) {
         final int[] io = new int[1]; // TODO replace later; extra object creation
         final int limit = text.length();
         // don't worry about surrogates; matcher will handle
@@ -549,14 +572,15 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     /**
      * Finds the next position in the text that matches.
+     *
      * @param divider A UnicodeMatcher, such as a UnicodeSet.
      * @text obvious
      * @offset starting offset
      * @output start and limit of the piece found. If the return is false, then start,limit = 0
      * @return true iff match found
      */
-    public static boolean previous(UnicodeMatcher matcher, Replaceable text, int offset,
-            Position output) {
+    public static boolean previous(
+            UnicodeMatcher matcher, Replaceable text, int offset, Position output) {
         final int[] io = new int[1]; // TODO replace later; extra object creation
         final int limit = 0;
         // don't worry about surrogates; matcher will handle
@@ -574,11 +598,11 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     /**
-     * Splits a string containing divider into pieces, storing in output
-     * and returns the number of pieces. The string does not have to be terminated:
-     * the segment after the last divider is returned in the last output element.
-     * Thus if the string has no dividers, then the whole string is returned in output[0]
-     * with a return value of 1.
+     * Splits a string containing divider into pieces, storing in output and returns the number of
+     * pieces. The string does not have to be terminated: the segment after the last divider is
+     * returned in the last output element. Thus if the string has no dividers, then the whole
+     * string is returned in output[0] with a return value of 1.
+     *
      * @param divider A UnicodeMatcher, such as a UnicodeSet.
      * @param s the text to be divided
      * @param output where the resulting pieces go
@@ -586,7 +610,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
      */
     public static int split(UnicodeMatcher divider, Replaceable text, Position[] output) {
         int index = 0;
-        for (int offset = 0;; offset = output[index-1].limit) {
+        for (int offset = 0; ; offset = output[index - 1].limit) {
             if (output[index] == null) {
                 output[index] = new Position();
             }
@@ -598,8 +622,8 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     /**
-     * Splits a string containing divider into pieces, storing in output
-     * and returns the number of pieces.
+     * Splits a string containing divider into pieces, storing in output and returns the number of
+     * pieces.
      */
     public static int split(String s, char divider, String[] output, boolean trim) {
         try {
@@ -608,15 +632,15 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             int i;
             for (i = 0; i < s.length(); ++i) {
                 if (s.charAt(i) == divider) {
-                    String temp = s.substring(last,i);
+                    String temp = s.substring(last, i);
                     if (trim) {
                         temp = temp.trim();
                     }
                     output[current++] = temp;
-                    last = i+1;
+                    last = i + 1;
                 }
             }
-            String temp = s.substring(last,i);
+            String temp = s.substring(last, i);
             if (trim) {
                 temp = temp.trim();
             }
@@ -632,10 +656,11 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     public static String[] split(String s, char divider) {
-        return split(s,divider,false);
+        return split(s, divider, false);
     }
+
     public static int split(String s, char divider, String[] output) {
-        return split(s,divider,output,false);
+        return split(s, divider, output, false);
     }
 
     public static String[] split(String s, char divider, boolean trim) {
@@ -645,20 +670,20 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     public static String[] extract(String[] source, int start, int limit) {
-        final String[] result = new String[limit-start];
+        final String[] result = new String[limit - start];
         System.arraycopy(source, start, result, 0, limit - start);
         return result;
     }
 
     /*
-        public static String quoteJava(String s) {
-            StringBuffer result = new StringBuffer();
-            for (int i = 0; i < s.length(); ++i) {
-                result.append(quoteJava(s.charAt(i)));
-            }
-            return result.toString();
-        }
-     */
+       public static String quoteJava(String s) {
+           StringBuffer result = new StringBuffer();
+           for (int i = 0; i < s.length(); ++i) {
+               result.append(quoteJava(s.charAt(i)));
+           }
+           return result.toString();
+       }
+    */
     public static String quoteJavaString(String s) {
         if (s == null) {
             return "null";
@@ -674,54 +699,90 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     public static String quoteJava(int c) {
         switch (c) {
-        case '\\':
-            return "\\\\";
-        case '"':
-            return "\\\"";
-        case '\r':
-            return "\\r";
-        case '\n':
-            return "\\n";
-        default:
-            if (c >= 0x20 && c <= 0x7E) {
-                return String.valueOf((char)c);
-            } else if (Character.isSupplementaryCodePoint(c)) {
-                return "\\u" + hex(Character.highSurrogate(c),4) + "\\u" + hex(Character.lowSurrogate(c),4);
-            } else {
-                return "\\u" + hex((char)c,4);
-            }
+            case '\\':
+                return "\\\\";
+            case '"':
+                return "\\\"";
+            case '\r':
+                return "\\r";
+            case '\n':
+                return "\\n";
+            default:
+                if (c >= 0x20 && c <= 0x7E) {
+                    return String.valueOf((char) c);
+                } else if (Character.isSupplementaryCodePoint(c)) {
+                    return "\\u"
+                            + hex(Character.highSurrogate(c), 4)
+                            + "\\u"
+                            + hex(Character.lowSurrogate(c), 4);
+                } else {
+                    return "\\u" + hex((char) c, 4);
+                }
         }
     }
 
     public static String quoteXML(int c, boolean HTML) {
         switch (c) {
-        case '<': return "&lt;";
-        case '>': return "&gt;";
-        case '&': return "&amp;";
-        case '\'': if (!HTML) {
-            return "&apos;";
-        }
-        break;
-        case '"': return "&quot;";
+            case '<':
+                return "&lt;";
+            case '>':
+                return "&gt;";
+            case '&':
+                return "&amp;";
+            case '\'':
+                if (!HTML) {
+                    return "&apos;";
+                }
+                break;
+            case '"':
+                return "&quot;";
 
-        // fix controls, since XML can't handle
+                // fix controls, since XML can't handle
 
-        // also do this for 09, 0A, and 0D, so we can see them.
-        case 0x00: case 0x01: case 0x02: case 0x03: case 0x04: case 0x05: case 0x06: case 0x07:
-        case 0x08: case 0x09: case 0x0A: case 0x0B: case 0x0C: case 0x0D: case 0x0E: case 0x0F:
-        case 0x10: case 0x11: case 0x12: case 0x13: case 0x14: case 0x15: case 0x16: case 0x17:
-        case 0x18: case 0x19: case 0x1A: case 0x1B: case 0x1C: case 0x1D: case 0x1E: case 0x1F:
-        case 0x7F:
+                // also do this for 09, 0A, and 0D, so we can see them.
+            case 0x00:
+            case 0x01:
+            case 0x02:
+            case 0x03:
+            case 0x04:
+            case 0x05:
+            case 0x06:
+            case 0x07:
+            case 0x08:
+            case 0x09:
+            case 0x0A:
+            case 0x0B:
+            case 0x0C:
+            case 0x0D:
+            case 0x0E:
+            case 0x0F:
+            case 0x10:
+            case 0x11:
+            case 0x12:
+            case 0x13:
+            case 0x14:
+            case 0x15:
+            case 0x16:
+            case 0x17:
+            case 0x18:
+            case 0x19:
+            case 0x1A:
+            case 0x1B:
+            case 0x1C:
+            case 0x1D:
+            case 0x1E:
+            case 0x1F:
+            case 0x7F:
 
-            // fix noncharacters, since XML can't handle
-        case 0xFFFE: case 0xFFFF:
-
-            return HTML ? '#' + hex(c,4) : "<codepoint hex=\"" + hex(c,1) + "\"/>";
+                // fix noncharacters, since XML can't handle
+            case 0xFFFE:
+            case 0xFFFF:
+                return HTML ? '#' + hex(c, 4) : "<codepoint hex=\"" + hex(c, 1) + "\"/>";
         }
 
         // fix surrogates, since XML can't handle
         if (UTF32.isSurrogate(c)) {
-            return HTML ? '#' + hex(c,4) : "<codepoint hex=\"" + hex(c,1) + "\"/>";
+            return HTML ? '#' + hex(c, 4) : "<codepoint hex=\"" + hex(c, 1) + "\"/>";
         }
 
         if (c <= 0x7E) {
@@ -734,7 +795,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         }
          */
 
-        return "&#x" + hex(c,1) + ";";
+        return "&#x" + hex(c, 1) + ";";
     }
 
     public static String quoteXML(String source, boolean HTML) {
@@ -780,7 +841,8 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         return (aEnd - aStart) - (bEnd - bStart);
     }
 
-    public static int compareUnsigned(byte[] a, int aStart, int aEnd, byte[] b, int bStart, int bEnd) {
+    public static int compareUnsigned(
+            byte[] a, int aStart, int aEnd, byte[] b, int bStart, int bEnd) {
         while (aStart < aEnd && bStart < bEnd) {
             final int diff = (a[aStart++] & 0xFF) - (b[bStart++] & 0xFF);
             if (diff != 0) {
@@ -793,8 +855,8 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     public static final class NumericComparator implements Comparator<String> {
         public static final NumericComparator INSTANCE = new NumericComparator();
         // kn turns on numeric ordering: "10" > "9"
-        private final Collator coll = Collator.getInstance(
-                Locale.forLanguageTag("und-u-kn")).freeze();
+        private final Collator coll =
+                Collator.getInstance(Locale.forLanguageTag("und-u-kn")).freeze();
 
         @Override
         public int compare(String s1, String s2) {
@@ -802,9 +864,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         }
     }
 
-    /**
-     * Joins an array together, using divider between the pieces
-     */
+    /** Joins an array together, using divider between the pieces */
     public static String join(int[] array, String divider) {
         String result = "{";
         for (int i = 0; i < array.length; ++i) {
@@ -814,7 +874,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             result += array[i];
         }
         return result + "}";
-}
+    }
 
     public static String join(long[] array, String divider) {
         String result = "{";
@@ -825,42 +885,43 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             result += array[i];
         }
         return result + "}";
-}
+    }
 
     public static final String[] searchPath = {
-            // "EXTRAS" + (FIX_FOR_NEW_VERSION == 0 ? "" : ""),
-            "15.0.0",
-            "14.0.0",
-            "13.1.0", // TODO: there is no Unicode 13.1, see https://github.com/unicode-org/unicodetools/issues/100
-            "13.0.0",
-            "12.1.0",
-            "12.0.0",
-            "11.0.0",
-            "10.0.0",
-            "9.0.0",
-            "8.0.0",
-            "7.0.0",
-            "6.3.0",
-            "6.2.0",
-            "6.1.0",
-            "6.0.0",
-            "5.2.0",
-            "5.1.0",
-            "5.0.0",
-            "4.1.0",
-            "4.0.1",
-            "4.0.0",
-            "3.2.0",
-            "3.1.1",
-            "3.1.0",
-            "3.0.1",
-            "3.0.0",
-            "2.1.9",
-            "2.1.8",
-            "2.1.5",
-            "2.1.2",
-            "2.0.0",
-            "1.1.0",
+        // "EXTRAS" + (FIX_FOR_NEW_VERSION == 0 ? "" : ""),
+        "15.0.0",
+        "14.0.0",
+        "13.1.0", // TODO: there is no Unicode 13.1, see
+        // https://github.com/unicode-org/unicodetools/issues/100
+        "13.0.0",
+        "12.1.0",
+        "12.0.0",
+        "11.0.0",
+        "10.0.0",
+        "9.0.0",
+        "8.0.0",
+        "7.0.0",
+        "6.3.0",
+        "6.2.0",
+        "6.1.0",
+        "6.0.0",
+        "5.2.0",
+        "5.1.0",
+        "5.0.0",
+        "4.1.0",
+        "4.0.1",
+        "4.0.0",
+        "3.2.0",
+        "3.1.1",
+        "3.1.0",
+        "3.0.1",
+        "3.0.0",
+        "2.1.9",
+        "2.1.8",
+        "2.1.5",
+        "2.1.2",
+        "2.0.0",
+        "1.1.0",
     };
 
     /*public static PrintWriter openPrintWriter(String filename) throws IOException {
@@ -872,31 +933,46 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         private static PoorMansEnum.EnumStore store = new PoorMansEnum.EnumStore();
 
         /* Boilerplate */
-        public Encoding next() { return (Encoding) next; }
-        public void getAliases(Collection output) { store.getAliases(this, output); }
-        public static Encoding get(String s) { return (Encoding) store.get(s); }
-        public static Encoding get(int v) { return (Encoding) store.get(v); }
-        public static int getMax() { return store.getMax(); }
+        public Encoding next() {
+            return (Encoding) next;
+        }
+
+        public void getAliases(Collection output) {
+            store.getAliases(this, output);
+        }
+
+        public static Encoding get(String s) {
+            return (Encoding) store.get(s);
+        }
+
+        public static Encoding get(int v) {
+            return (Encoding) store.get(v);
+        }
+
+        public static int getMax() {
+            return store.getMax();
+        }
 
         private Encoding() {}
-        private static Encoding add(String name) { return (Encoding) store.add(new Encoding(), name);}
+
+        private static Encoding add(String name) {
+            return (Encoding) store.add(new Encoding(), name);
+        }
     }
 
-    public static final Encoding
-    LATIN1_UNIX = Encoding.add("LATIN1_UNIX"),
-    LATIN1_WINDOWS = Encoding.add("LATIN1_WINDOWS"),
-    UTF8_UNIX = Encoding.add("UTF8_UNIX"),
-    UTF8_WINDOWS = Encoding.add("UTF8_WINDOWS"),
+    public static final Encoding LATIN1_UNIX = Encoding.add("LATIN1_UNIX"),
+            LATIN1_WINDOWS = Encoding.add("LATIN1_WINDOWS"),
+            UTF8_UNIX = Encoding.add("UTF8_UNIX"),
+            UTF8_WINDOWS = Encoding.add("UTF8_WINDOWS"),
 
-    //UTF8 = Encoding.add("UTF8"), // for read-only
-    //LATIN1 = Encoding.add("LATIN1"), // for read-only
+            // UTF8 = Encoding.add("UTF8"), // for read-only
+            // LATIN1 = Encoding.add("LATIN1"), // for read-only
 
-    // read-only (platform doesn't matter, since it is only line-end)
+            // read-only (platform doesn't matter, since it is only line-end)
 
-    UTF8 = UTF8_WINDOWS,
-    LATIN1 = LATIN1_WINDOWS,
-
-    FIRST = LATIN1_UNIX;
+            UTF8 = UTF8_WINDOWS,
+            LATIN1 = LATIN1_WINDOWS,
+            FIRST = LATIN1_UNIX;
 
     /*
     public static final Encoding
@@ -917,23 +993,21 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     // Normally use false, false.
     // But for UCD files use true, true
     // Or if they are UTF8, use true, false
-    public static PrintWriter openPrintWriter(String directory, String filename, Encoding options)  {
+    public static PrintWriter openPrintWriter(String directory, String filename, Encoding options) {
 
         try {
-        final File file;
-        if (directory.equals(""))
-            file = new File(filename);
-        else
-            file = new File(directory, filename);
-        Utility.fixDot();
+            final File file;
+            if (directory.equals("")) file = new File(filename);
+            else file = new File(directory, filename);
+            Utility.fixDot();
             System.out.println("\nCreating File: " + file.getCanonicalPath());
             final File parent = new File(file.getParent());
-            //System.out.println("Creating File: "+ parent);
+            // System.out.println("Creating File: "+ parent);
             parent.mkdirs();
             return new PrintWriter(
                     new UTF8StreamWriter(
                             new FileOutputStream(file),
-                            32*1024,
+                            32 * 1024,
                             options == LATIN1_UNIX || options == UTF8_UNIX,
                             options == LATIN1_UNIX || options == LATIN1_WINDOWS));
         } catch (final IOException e) {
@@ -951,10 +1025,16 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     public interface Breaker {
         public String get(Object current, Object old);
+
         public boolean filter(Object current); // true is keep
     }
 
-    public static void printMapOfCollection(PrintWriter pw, Map c, String mainSeparator, String itemSeparator, String subseparator) {
+    public static void printMapOfCollection(
+            PrintWriter pw,
+            Map c,
+            String mainSeparator,
+            String itemSeparator,
+            String subseparator) {
         final Iterator it = c.keySet().iterator();
         boolean first = true;
         final Object last = null;
@@ -998,7 +1078,8 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         return count;
     }
 
-    public static void print(PrintWriter pw, Map c, String pairSeparator, String separator, Breaker b) {
+    public static void print(
+            PrintWriter pw, Map c, String pairSeparator, String separator, Breaker b) {
         final Iterator it = c.keySet().iterator();
         boolean first = true;
         Object last = null;
@@ -1024,9 +1105,11 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     public static class RuntimeIOException extends RuntimeException {
         private static final long serialVersionUID = 2982482977979580522L;
+
         public RuntimeIOException() {
             super();
         }
+
         public RuntimeIOException(Exception e) {
             super(e);
         }
@@ -1049,7 +1132,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         } else {
             isr = new InputStreamReader(fis);
         }
-        final BufferedReader br = new BufferedReader(isr, 32*1024);
+        final BufferedReader br = new BufferedReader(isr, 32 * 1024);
         return br;
     }
 
@@ -1062,7 +1145,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         m.put(key, new Integer(oldCount.intValue() + count));
     }
 
-    public static <K,V> void addToSet(Map<K,Set<V>> m, K key, V value) {
+    public static <K, V> void addToSet(Map<K, Set<V>> m, K key, V value) {
         Set<V> set = m.get(key);
         if (set == null) {
             set = new TreeSet<V>();
@@ -1107,16 +1190,20 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             }
             line = line.trim();
         } catch (final Exception e) {
-            throw new ChainException("Line \"{0}\",  \"{1}\"", new String[] {originalLine, line}, e);
+            throw new ChainException(
+                    "Line \"{0}\",  \"{1}\"", new String[] {originalLine, line}, e);
         }
         return line;
     }
 
-    public static void appendFile(String filename, Encoding encoding, PrintWriter output) throws IOException {
+    public static void appendFile(String filename, Encoding encoding, PrintWriter output)
+            throws IOException {
         appendFile(filename, encoding, output, null);
     }
 
-    public static void appendFile(String filename, Encoding encoding, PrintWriter output, String[] replacementList) throws IOException {
+    public static void appendFile(
+            String filename, Encoding encoding, PrintWriter output, String[] replacementList)
+            throws IOException {
         final BufferedReader br = openReadFile(filename, encoding);
         /*
         FileInputStream fis = new FileInputStream(filename);
@@ -1130,15 +1217,19 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             }
             if (replacementList != null) {
                 for (int i = 0; i < replacementList.length; i += 2) {
-                    line = replace(line, replacementList[i], replacementList[i+1]);
+                    line = replace(line, replacementList[i], replacementList[i + 1]);
                 }
             }
             output.println(line);
         }
     }
 
-    /** If contents(newFile) ≠ contents(oldFile), rename newFile to old. Otherwise delete newfile. Return true if replaced. **/
-    public static boolean replaceDifferentOrDelete(String oldFile, String newFile, boolean skipCopyright) throws IOException {
+    /**
+     * If contents(newFile) ≠ contents(oldFile), rename newFile to old. Otherwise delete newfile.
+     * Return true if replaced. *
+     */
+    public static boolean replaceDifferentOrDelete(
+            String oldFile, String newFile, boolean skipCopyright) throws IOException {
         final File oldFile2 = new File(oldFile);
         if (oldFile2.exists()) {
             final String lines[] = new String[2];
@@ -1149,14 +1240,25 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             }
             System.out.println("Found difference in : " + oldFile + ", " + newFile);
             final int diff = compare(lines[0], lines[1]);
-            System.out.println(" File1: '" + lines[0].substring(0,diff) + "', '" + lines[0].substring(diff) + "'");
-            System.out.println(" File2: '" + lines[1].substring(0,diff) + "', '" + lines[1].substring(diff) + "'");
+            System.out.println(
+                    " File1: '"
+                            + lines[0].substring(0, diff)
+                            + "', '"
+                            + lines[0].substring(diff)
+                            + "'");
+            System.out.println(
+                    " File2: '"
+                            + lines[1].substring(0, diff)
+                            + "', '"
+                            + lines[1].substring(diff)
+                            + "'");
         }
         new File(newFile).renameTo(oldFile2);
         return true;
     }
 
-    public static boolean renameIdentical(String file1, String file2, String batFile, boolean skipCopyright) throws IOException {
+    public static boolean renameIdentical(
+            String file1, String file2, String batFile, boolean skipCopyright) throws IOException {
         if (file1 == null) {
             System.out.println("Null file");
             return false;
@@ -1173,20 +1275,31 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             fixDot();
             System.out.println("Found difference in : " + file1 + ", " + file2);
             final int diff = compare(lines[0], lines[1]);
-            System.out.println(" File1: '" + lines[0].substring(0,diff) + "', '" + lines[0].substring(diff) + "'");
-            System.out.println(" File2: '" + lines[1].substring(0,diff) + "', '" + lines[1].substring(diff) + "'");
+            System.out.println(
+                    " File1: '"
+                            + lines[0].substring(0, diff)
+                            + "', '"
+                            + lines[0].substring(diff)
+                            + "'");
+            System.out.println(
+                    " File2: '"
+                            + lines[1].substring(0, diff)
+                            + "', '"
+                            + lines[1].substring(diff)
+                            + "'");
             return false;
         }
     }
 
-    public static boolean filesAreIdentical(String file1, String file2, boolean skipCopyright, String[] lines) throws IOException {
+    public static boolean filesAreIdentical(
+            String file1, String file2, boolean skipCopyright, String[] lines) throws IOException {
         if (file1 == null) {
             lines[0] = null;
             lines[1] = null;
             return false;
         }
-        final BufferedReader br1 = new BufferedReader(new FileReader(file1), 32*1024);
-        final BufferedReader br2 = new BufferedReader(new FileReader(file2), 32*1024);
+        final BufferedReader br1 = new BufferedReader(new FileReader(file1), 32 * 1024);
+        final BufferedReader br2 = new BufferedReader(new FileReader(file2), 32 * 1024);
         String line1 = "";
         String line2 = "";
         try {
@@ -1232,7 +1345,8 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         }
     }
 
-    static String getLineWithoutFluff(BufferedReader br1, boolean first, boolean skipCopyright) throws IOException {
+    static String getLineWithoutFluff(BufferedReader br1, boolean first, boolean skipCopyright)
+            throws IOException {
         while (true) {
             String line1 = br1.readLine();
             if (line1 == null) {
@@ -1272,8 +1386,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         }
     }
 
-    /** Returns -1 if strings are equal; otherwise the position they are different at
-     */
+    /** Returns -1 if strings are equal; otherwise the position they are different at */
     public static int compare(String a, String b) {
         int len = a.length();
         if (len > b.length()) {
@@ -1290,17 +1403,21 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         return -1;
     }
 
-    public static void copyTextFile(String filename, Encoding encoding, String newName, String[] replacementList) throws IOException {
+    public static void copyTextFile(
+            String filename, Encoding encoding, String newName, String[] replacementList)
+            throws IOException {
         final PrintWriter out = Utility.openPrintWriter(newName, UTF8_WINDOWS);
         appendFile(filename, encoding, out, replacementList);
         out.close();
     }
 
-    public static void copyTextFile(String filename, Encoding encoding, String newName) throws IOException {
+    public static void copyTextFile(String filename, Encoding encoding, String newName)
+            throws IOException {
         copyTextFile(filename, encoding, newName, null);
     }
 
-    public static BufferedReader openUnicodeFile(String filename, String version, boolean show, Encoding encoding) {
+    public static BufferedReader openUnicodeFile(
+            String filename, String version, boolean show, Encoding encoding) {
         final String name = getMostRecentUnicodeDataFile(filename, version, true, show);
         if (name == null) {
             return null;
@@ -1308,16 +1425,20 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         return openReadFile(name, encoding); // new BufferedReader(new FileReader(name),32*1024);
     }
 
-    public static String getMostRecentUnicodeDataFile(String filename, String version,
-            boolean acceptLatest, boolean show) {
+    public static String getMostRecentUnicodeDataFile(
+            String filename, String version, boolean acceptLatest, boolean show) {
         return getMostRecentUnicodeDataFile(filename, version, acceptLatest, show, ".txt");
     }
 
-    public static String getMostRecentUnicodeDataFile(String filename, String versionString,
-            boolean acceptLatest, boolean show, String fileType) {
+    public static String getMostRecentUnicodeDataFile(
+            String filename,
+            String versionString,
+            boolean acceptLatest,
+            boolean show,
+            String fileType) {
         // get all the files in the directory
-        VersionInfo version = versionString.isEmpty() ?
-                null : VersionInfo.getInstance(versionString);
+        VersionInfo version =
+                versionString.isEmpty() ? null : VersionInfo.getInstance(versionString);
         final int compValue = acceptLatest ? 0 : 1;
         Set<String> tries = show ? new LinkedHashSet<String>() : null;
         String result = null;
@@ -1364,27 +1485,34 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             }
         }
         if (show && !tries.isEmpty()) {
-            System.out.println("\tTried: '" + "("
-                    + CollectionUtilities.join(tries, "|") + ")"
-                    + File.separator + filename + "*" + fileType + "'");
+            System.out.println(
+                    "\tTried: '"
+                            + "("
+                            + CollectionUtilities.join(tries, "|")
+                            + ")"
+                            + File.separator
+                            + filename
+                            + "*"
+                            + fileType
+                            + "'");
         }
         return result;
     }
 
     private static String getEmojiVersion(VersionInfo versionInfo) {
         int major = versionInfo.getMajor();
-        switch(major) {
-        case 10:
-            return "6.0";
-        case 9:
-            return "4.0";
-        case 8:
-            return "3.0";
-        default:
-            if (major > 10) {
-                return versionInfo.getVersionString(2, 2);
-            }
-            break;
+        switch (major) {
+            case 10:
+                return "6.0";
+            case 9:
+                return "4.0";
+            case 8:
+                return "3.0";
+            default:
+                if (major > 10) {
+                    return versionInfo.getVersionString(2, 2);
+                }
+                break;
         }
         return null;
     }
@@ -1400,21 +1528,25 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                 throw new IllegalArgumentException(e);
             }
         }
-        final Set<String> result = new TreeSet<>(new Comparator<String>() {
-            @Override
-            public int compare(String a, String b) {
-                return b.compareTo(a);
-            }
-        });
+        final Set<String> result =
+                new TreeSet<>(
+                        new Comparator<String>() {
+                            @Override
+                            public int compare(String a, String b) {
+                                return b.compareTo(a);
+                            }
+                        });
         result.addAll(java.util.Arrays.asList(directory.list()));
         return result;
     }
 
-    public static String searchDirectory(File directory, String filename, boolean show) throws IOException {
+    public static String searchDirectory(File directory, String filename, boolean show)
+            throws IOException {
         return searchDirectory(directory, filename, show, ".txt");
     }
 
-    public static String searchDirectory(File directory, String filename, boolean show, String fileType) {
+    public static String searchDirectory(
+            File directory, String filename, boolean show, String fileType) {
         // Before looking for the file, does the directory even exist?
         Path dirPath = directory.toPath();
         if (!Files.exists(dirPath)) {
@@ -1481,9 +1613,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         log.println("</head><body>");
     }
 
-    /**
-     * Replaces all occurrences of piece with replacement, and returns new String
-     */
+    /** Replaces all occurrences of piece with replacement, and returns new String */
     public static String replace(String source, String piece, String replacement) {
         if (source == null || source.length() < piece.length()) {
             return source;
@@ -1494,7 +1624,8 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             if (pos < 0) {
                 return source;
             }
-            source = source.substring(0,pos) + replacement + source.substring(pos + piece.length());
+            source =
+                    source.substring(0, pos) + replacement + source.substring(pos + piece.length());
             pos += replacement.length();
         }
     }
@@ -1531,52 +1662,84 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     public static String getUnicodeImage(int cp) {
         final String code = hex(cp, 4);
-        return "<img alt='U+" + code + "' src='https://www.unicode.org/cgi-bin/refglyph?24-" + code + "' style='vertical-align:middle'>";
+        return "<img alt='U+"
+                + code
+                + "' src='https://www.unicode.org/cgi-bin/refglyph?24-"
+                + code
+                + "' style='vertical-align:middle'>";
     }
 
     static PrintWriter showSetNamesPw;
 
-    public static void showSetDifferences(String name1, UnicodeSet set1, String name2, UnicodeSet set2, boolean separateLines, UCD ucd) {
+    public static void showSetDifferences(
+            String name1,
+            UnicodeSet set1,
+            String name2,
+            UnicodeSet set2,
+            boolean separateLines,
+            UCD ucd) {
         if (showSetNamesPw == null) {
             showSetNamesPw = new PrintWriter(System.out);
         }
-        showSetDifferences(showSetNamesPw, name1, set1, name2, set2, separateLines, false, null, ucd);
+        showSetDifferences(
+                showSetNamesPw, name1, set1, name2, set2, separateLines, false, null, ucd);
     }
 
-    public static void showSetDifferences(PrintWriter pw, String name1, UnicodeSet set1, String name2, UnicodeSet set2,
-            boolean separateLines, boolean withChar, UnicodeMap names, UCD ucd) {
+    public static void showSetDifferences(
+            PrintWriter pw,
+            String name1,
+            UnicodeSet set1,
+            String name2,
+            UnicodeSet set2,
+            boolean separateLines,
+            boolean withChar,
+            UnicodeMap names,
+            UCD ucd) {
 
         UnicodeSet temp = new UnicodeSet(set1).removeAll(set2);
         pw.println();
         pw.println("In " + name1 + ", but not in " + name2 + ": ");
-        showSetNames(pw, "\t",  temp,  separateLines,  false,  withChar, names, ucd);
+        showSetNames(pw, "\t", temp, separateLines, false, withChar, names, ucd);
 
         temp = new UnicodeSet(set2).removeAll(set1);
         pw.println();
         pw.println("Not in " + name1 + ", but in " + name2 + ": ");
-        showSetNames(pw, "\t",  temp,  separateLines,  false,  withChar, names, ucd);
+        showSetNames(pw, "\t", temp, separateLines, false, withChar, names, ucd);
 
         temp = new UnicodeSet(set2).retainAll(set1);
         pw.println();
         pw.println("In both " + name1 + " and " + name2 + ": ");
-        pw.println(temp.size() == 0 ? "<none>" : ""+ temp);
+        pw.println(temp.size() == 0 ? "<none>" : "" + temp);
         pw.flush();
         // showSetNames(pw, "\t",  temp,  false,  false,  withChar, names, ucd);
     }
 
     public static void showSetNames(String prefix, UnicodeSet set, boolean separateLines, UCD ucd) {
-        showSetNames(prefix,  set,  separateLines,  false,  false, ucd);
+        showSetNames(prefix, set, separateLines, false, false, ucd);
     }
 
-    public static void showSetNames(String prefix, UnicodeSet set, boolean separateLines, boolean IDN, UCD ucd) {
-        showSetNames(prefix,  set,  separateLines,  IDN,  false, ucd);
+    public static void showSetNames(
+            String prefix, UnicodeSet set, boolean separateLines, boolean IDN, UCD ucd) {
+        showSetNames(prefix, set, separateLines, IDN, false, ucd);
     }
 
-    public static void showSetNames(PrintWriter pw, String prefix, UnicodeSet set, boolean separateLines, boolean IDN, UCD ucd) {
-        showSetNames( pw,  prefix,  set,  separateLines,  IDN,  false, null, ucd);
+    public static void showSetNames(
+            PrintWriter pw,
+            String prefix,
+            UnicodeSet set,
+            boolean separateLines,
+            boolean IDN,
+            UCD ucd) {
+        showSetNames(pw, prefix, set, separateLines, IDN, false, null, ucd);
     }
 
-    public static void showSetNames(String prefix, UnicodeSet set, boolean separateLines, boolean IDN, boolean withChar, UCD ucd) {
+    public static void showSetNames(
+            String prefix,
+            UnicodeSet set,
+            boolean separateLines,
+            boolean IDN,
+            boolean withChar,
+            UCD ucd) {
         if (showSetNamesPw == null) {
             showSetNamesPw = new PrintWriter(System.out);
         }
@@ -1585,8 +1748,15 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     static java.text.NumberFormat nf = java.text.NumberFormat.getInstance();
 
-    public static void showSetNames(PrintWriter pw, String prefix, UnicodeSet set, boolean separateLines, boolean IDN,
-            boolean withChar, UnicodeMap names, UCD ucd) {
+    public static void showSetNames(
+            PrintWriter pw,
+            String prefix,
+            UnicodeSet set,
+            boolean separateLines,
+            boolean IDN,
+            boolean withChar,
+            UnicodeMap names,
+            UCD ucd) {
         if (set.size() == 0) {
             pw.println(prefix + "<none>");
             pw.flush();
@@ -1597,39 +1767,54 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         for (int i = 0; i < count; ++i) {
             final int start = set.getRangeStart(i);
             final int end = set.getRangeEnd(i);
-            if (separateLines || (IDN && isSeparateLineIDN(start,end,ucd))) {
+            if (separateLines || (IDN && isSeparateLineIDN(start, end, ucd))) {
                 for (int cp = start; cp <= end; ++cp) {
                     if (!IDN) {
-                        pw.println(prefix + UCD.getCode(cp)
-                        + "\t# "
-                        + (useHTML ? "(" + getUnicodeImage(cp) + ") " : "")
-                        + (withChar && (cp >= 0x20) ? "(" + UTF16.valueOf(cp) + ") " : "")
-                        + (names != null ? names.getValue(cp) + " " : "")
-                        + ucd.getName(cp)
-                        + (useHTML ? "<br>" : ""));
+                        pw.println(
+                                prefix
+                                        + UCD.getCode(cp)
+                                        + "\t# "
+                                        + (useHTML ? "(" + getUnicodeImage(cp) + ") " : "")
+                                        + (withChar && (cp >= 0x20)
+                                                ? "(" + UTF16.valueOf(cp) + ") "
+                                                : "")
+                                        + (names != null ? names.getValue(cp) + " " : "")
+                                        + ucd.getName(cp)
+                                        + (useHTML ? "<br>" : ""));
                     } else {
-                        pw.println(prefix + Utility.hex(cp,4) + "; " + ucd.getName(cp));
+                        pw.println(prefix + Utility.hex(cp, 4) + "; " + ucd.getName(cp));
                     }
                 }
             } else {
                 if (!IDN) {
-                    pw.println(prefix + UCD.getCode(start)
-                    + ((start != end) ? (".." + UCD.getCode(end)) : "")
-                    + "\t# "
-                    + (withChar && (start >= 0x20) ? " (" + UTF16.valueOf(start)
-                    + ((start != end) ? (".." + UTF16.valueOf(end)) : "") + ") " : "")
-                    + ucd.getName(start) + ((start != end) ? (".." + ucd.getName(end)) : "")
-                            );
+                    pw.println(
+                            prefix
+                                    + UCD.getCode(start)
+                                    + ((start != end) ? (".." + UCD.getCode(end)) : "")
+                                    + "\t# "
+                                    + (withChar && (start >= 0x20)
+                                            ? " ("
+                                                    + UTF16.valueOf(start)
+                                                    + ((start != end)
+                                                            ? (".." + UTF16.valueOf(end))
+                                                            : "")
+                                                    + ") "
+                                            : "")
+                                    + ucd.getName(start)
+                                    + ((start != end) ? (".." + ucd.getName(end)) : ""));
                 } else {
 
-                    pw.println(prefix + Utility.hex(start,4)
-                    + ((start != end) ? ("-" + Utility.hex(end,4)) : "")
-                    + (ucd.isAssigned(start)
-                            ? "; " + ucd.getName(start) + ((start != end)
-                                    ? ("-" + ucd.getName(end))
-                                            : "")
-                                    : "")
-                            );
+                    pw.println(
+                            prefix
+                                    + Utility.hex(start, 4)
+                                    + ((start != end) ? ("-" + Utility.hex(end, 4)) : "")
+                                    + (ucd.isAssigned(start)
+                                            ? "; "
+                                                    + ucd.getName(start)
+                                                    + ((start != end)
+                                                            ? ("-" + ucd.getName(end))
+                                                            : "")
+                                            : ""));
                 }
             }
         }
@@ -1645,7 +1830,8 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         if (cat == UCD_Types.Cn) {
             return false;
         }
-        if (ucd.getCategory(cp) == UCD_Types.Cc && !ucd.getBinaryProperty(cp, UCD_Types.White_space)) {
+        if (ucd.getCategory(cp) == UCD_Types.Cc
+                && !ucd.getBinaryProperty(cp, UCD_Types.White_space)) {
             return false;
         }
         return true;
@@ -1655,7 +1841,8 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         return (isSeparateLineIDN(start, ucd) || isSeparateLineIDN(end, ucd));
     }
 
-    public static Transliterator createFromFile(String fileName, int direction, Transliterator pretrans) throws IOException {
+    public static Transliterator createFromFile(
+            String fileName, int direction, Transliterator pretrans) throws IOException {
         final StringBuffer buffer = new StringBuffer();
         final FileLineIterator fli = new FileLineIterator();
         fli.open(fileName, Utility.UTF8);
@@ -1700,7 +1887,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         if (pos >= 0) {
             id = id.substring(0, pos);
         }
-        //System.out.println(buffer);
+        // System.out.println(buffer);
         return Transliterator.createFromRules(id, buffer.toString(), direction);
     }
 
@@ -1735,27 +1922,37 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     public static String getDataHeader(String filename) {
-        return "# " + filename
+        return "# "
+                + filename
                 + (Settings.BUILD_FOR_COMPARE ? "" : "\n" + generateDateLine())
-                + "\n# © " + Default.getYear() + " Unicode®, Inc."
+                + "\n# © "
+                + Default.getYear()
+                + " Unicode®, Inc."
                 + "\n# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries."
-                + "\n# For terms of use, see https://www.unicode.org/terms_of_use.html"
-                ;
+                + "\n# For terms of use, see https://www.unicode.org/terms_of_use.html";
     }
 
-    public static String getBaseDataHeaderWithVersionText(String filename, int trNumber, String title, String versionText) {
+    public static String getBaseDataHeaderWithVersionText(
+            String filename, int trNumber, String title, String versionText) {
         if (!filename.endsWith(".txt")) {
             filename = filename + ".txt";
         }
         return getDataHeader(filename)
                 + "\n#"
-                + "\n# " + title + " for UTS #" + trNumber
-                + "\n# " + versionText
+                + "\n# "
+                + title
+                + " for UTS #"
+                + trNumber
+                + "\n# "
+                + versionText
                 + "\n#"
-                + "\n# For documentation and usage, see https://www.unicode.org/reports/tr" + trNumber
+                + "\n# For documentation and usage, see https://www.unicode.org/reports/tr"
+                + trNumber
                 + "\n#";
     }
-    public static String getBaseDataHeader(String filename, int trNumber, String title, String version) {
+
+    public static String getBaseDataHeader(
+            String filename, int trNumber, String title, String version) {
         String versionText = "Version: " + version;
         return getBaseDataHeaderWithVersionText(filename, trNumber, title, versionText);
     }

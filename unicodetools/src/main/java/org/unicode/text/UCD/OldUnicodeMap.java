@@ -1,21 +1,17 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/OldUnicodeMap.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/OldUnicodeMap.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
 import com.ibm.icu.text.UnicodeSet;
 
-/**
- * Class that maps from codepoints to an index, and optionally a label.
- */
+/** Class that maps from codepoints to an index, and optionally a label. */
 public class OldUnicodeMap {
     UnicodeSet[] sets = new UnicodeSet[50];
     String[] labels = new String[50];
@@ -27,9 +23,10 @@ public class OldUnicodeMap {
 
     /**
      * Add set
-     *@param removeOld true: remove any collisions from sets already in the map
-     * if false, remove any collisions from this set
-     *@param signal: print a warning when collisions occur
+     *
+     * @param removeOld true: remove any collisions from sets already in the map if false, remove
+     *     any collisions from this set
+     * @param signal: print a warning when collisions occur
      */
     public int add(String label, UnicodeSet set, boolean removeOld, boolean signal) {
         // remove from any preceding!!
@@ -48,13 +45,12 @@ public class OldUnicodeMap {
         }
         sets[count] = set;
         labels[count++] = label;
-        return (short)(count - 1);
+        return (short) (count - 1);
     }
 
     public void showOverlap(String label, UnicodeSet set, int i) {
         final UnicodeSet delta = new UnicodeSet(set).retainAll(sets[i]);
-        System.out.println("Warning! Overlap with " + label + " and " + labels[i]
-                + ": " + delta);
+        System.out.println("Warning! Overlap with " + label + " and " + labels[i] + ": " + delta);
     }
 
     public int getIndex(int codepoint) {
@@ -112,5 +108,4 @@ public class OldUnicodeMap {
         sets[index].add(codepoint);
         return index;
     }
-
 }

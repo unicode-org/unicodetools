@@ -1,19 +1,21 @@
 package org.unicode.propstest;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UnicodeSet;
-
 public class CompareSegmentationProperties {
     public static void main(String[] args) {
         IndexUnicodeProperties V8 = IndexUnicodeProperties.make(Age_Values.V8_0);
-        //UnicodeSet UNASSIGNED8 = V8.loadEnumSet(UcdProperty.General_Category, General_Category_Values.Unassigned);
+        // UnicodeSet UNASSIGNED8 = V8.loadEnumSet(UcdProperty.General_Category,
+        // General_Category_Values.Unassigned);
         IndexUnicodeProperties V10 = IndexUnicodeProperties.make(Age_Values.V10_0);
         UnicodeMap<Enum> temp = new UnicodeMap<>();
-        UcdProperty[] querySet = {UcdProperty.Grapheme_Cluster_Break, UcdProperty.Word_Break, UcdProperty.Line_Break};
+        UcdProperty[] querySet = {
+            UcdProperty.Grapheme_Cluster_Break, UcdProperty.Word_Break, UcdProperty.Line_Break
+        };
         // UcdProperty.values();
         for (UcdProperty prop : querySet) {
             UnicodeMap<Enum> property8 = V8.loadEnum(prop);
@@ -30,10 +32,16 @@ public class CompareSegmentationProperties {
                     temp.put(item, property8.get(item));
                 }
                 for (Enum value10 : temp.values()) {
-                    System.out.println("||" + prop 
-                            + "||" + value8 
-                            + "||" + value10 
-                            + "||" + temp.getSet(value10).toPattern(false) + "||");
+                    System.out.println(
+                            "||"
+                                    + prop
+                                    + "||"
+                                    + value8
+                                    + "||"
+                                    + value10
+                                    + "||"
+                                    + temp.getSet(value10).toPattern(false)
+                                    + "||");
                 }
             }
         }

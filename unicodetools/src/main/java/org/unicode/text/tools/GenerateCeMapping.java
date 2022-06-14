@@ -1,5 +1,10 @@
 package org.unicode.text.tools;
 
+import com.ibm.icu.text.CollationElementIterator;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.RuleBasedCollator;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -8,18 +13,11 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import com.ibm.icu.text.CollationElementIterator;
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.RuleBasedCollator;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
-
 public class GenerateCeMapping {
 
-    static Map<Integer,Set<String>> ceToCharsContaining = new TreeMap<Integer,Set<String>>();
-    static Map<String,CeList> charsToCeList = new TreeMap<String,CeList>();
-    static Map<Integer,Set<String>> ceToCharsStartingWith = new TreeMap<Integer,Set<String>>();
-
+    static Map<Integer, Set<String>> ceToCharsContaining = new TreeMap<Integer, Set<String>>();
+    static Map<String, CeList> charsToCeList = new TreeMap<String, CeList>();
+    static Map<Integer, Set<String>> ceToCharsStartingWith = new TreeMap<Integer, Set<String>>();
 
     public static void main(String[] args) throws Exception {
 
@@ -29,17 +27,18 @@ public class GenerateCeMapping {
         final UnicodeSet contractions = new UnicodeSet();
         final UnicodeSet expansions = new UnicodeSet();
         rbc.getContractionsAndExpansions(contractions, expansions, true);
-        final UnicodeSet charsToTest = new UnicodeSet("[[:assigned:]-[:ideographic:]-[:hangul:]-[:c:]]")
-        .addAll(contractions)
-        .addAll(expansions)
-        .addAll(rbc.getTailoredSet());
+        final UnicodeSet charsToTest =
+                new UnicodeSet("[[:assigned:]-[:ideographic:]-[:hangul:]-[:c:]]")
+                        .addAll(contractions)
+                        .addAll(expansions)
+                        .addAll(rbc.getTailoredSet());
 
         final CollationElementIterator cei = rbc.getCollationElementIterator("");
 
         System.out.println("Items to check: " + charsToTest.size());
         // not the most efficient way, but for testing...
 
-        for (final UnicodeSetIterator it = new UnicodeSetIterator(charsToTest); it.next();) {
+        for (final UnicodeSetIterator it = new UnicodeSetIterator(charsToTest); it.next(); ) {
             final String item = it.getString();
             cei.setText(item);
             final CeList ceList = new CeList(cei, item);
@@ -57,7 +56,7 @@ public class GenerateCeMapping {
 
         System.out.println("Removing Singletons");
 
-        for (final Iterator<Integer> it = ceToCharsContaining.keySet().iterator(); it.hasNext();) {
+        for (final Iterator<Integer> it = ceToCharsContaining.keySet().iterator(); it.hasNext(); ) {
             final Integer item = it.next();
             final Set<String> set = ceToCharsContaining.get(item);
             int maxSize = 0;
@@ -81,7 +80,7 @@ public class GenerateCeMapping {
         if (true) {
             for (final int item : ceToCharsContaining.keySet()) {
                 final Set<String> set = ceToCharsContaining.get(item);
-                System.out.println(Integer.toString(item,16));
+                System.out.println(Integer.toString(item, 16));
                 for (final String string : set) {
                     System.out.println("\t" + string + "\t" + charsToCeList.get(string));
                 }
@@ -99,12 +98,14 @@ public class GenerateCeMapping {
             }
         }
         // very quick and dirty
-        // for each character that could match in the string, figure out the shortest distance to the end of the string.
+        // for each character that could match in the string, figure out the shortest distance to
+        // the end of the string.
 
     }
 
     /**
      * return the minimum distance in chars to the end of the string. For now, dumb algorithm
+     *
      * @param ceList
      * @param offset
      */
@@ -136,8 +137,8 @@ public class GenerateCeMapping {
         return totalStringLength;
     }
 
-    private static void addCeToString(final int ce, Map<Integer, Set<String>> ceToCharsStartingWith,
-            final String item) {
+    private static void addCeToString(
+            final int ce, Map<Integer, Set<String>> ceToCharsStartingWith, final String item) {
         Set<String> possibleStrings = ceToCharsStartingWith.get(ce);
         if (possibleStrings == null) {
             ceToCharsStartingWith.put(ce, possibleStrings = new TreeSet<String>());
@@ -165,6 +166,7 @@ public class GenerateCeMapping {
 
         /**
          * This contains the other starting at offset
+         *
          * @param offset
          * @param ceList2
          * @return

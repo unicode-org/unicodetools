@@ -1,29 +1,30 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/UTF8StreamWriter.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/utility/UTF8StreamWriter.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.utility;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Writer;
 
 /**
  * Utility class that writes UTF8.<br>
- * Main purpose is to supplant OutputStreamWriter(x, "UTF8"), since that has serious errors.
- * <br>
+ * Main purpose is to supplant OutputStreamWriter(x, "UTF8"), since that has serious errors. <br>
  * Example of Usage:
+ *
  * <pre>
  * PrintWriter log = new PrintWriter(
  *   new UTF8StreamWriter(new FileOutputStream(fileName), 32*1024));
  * </pre>
- * NB: unsynchronized for simplicity and speed. The same object must NOT be used in multiple threads.
+ *
+ * NB: unsynchronized for simplicity and speed. The same object must NOT be used in multiple
+ * threads.
  */
 // TODO: Fix case of surrogate pair crossing input buffer boundary
 
@@ -54,14 +55,10 @@ public final class UTF8StreamWriter extends Writer {
         Latin1 = latin1;
     }
 
-    private static final int
-    NEED_2_BYTES = 1<<7,
-    NEED_3_BYTES = 1<<(2*5 + 1),
-    NEED_4_BYTES = 1<<(3*5 + 1);
-
-    private static final int
-    TRAILING_BOTTOM_MASK = 0x3F,
-    TRAILING_TOP = 0x80;
+    private static final int NEED_2_BYTES = 1 << 7,
+            NEED_3_BYTES = 1 << (2 * 5 + 1),
+            NEED_4_BYTES = 1 << (3 * 5 + 1);
+    private static final int TRAILING_BOTTOM_MASK = 0x3F, TRAILING_TOP = 0x80;
 
     private static final int MAGIC = 0x10000 + ((0 - 0xD800) << 10) + (0 - 0xDC00);
 
@@ -81,16 +78,15 @@ public final class UTF8StreamWriter extends Writer {
 
             final int utf32 = buffer[cStart++];
 
-            if (utf32 == 0x0D && removeCR)
-            {
+            if (utf32 == 0x0D && removeCR) {
                 continue; // skip write
             }
 
             if (Latin1) {
                 if (utf32 > 0xFF) {
-                    bBuffer[bIndex++] = (byte)'?';
+                    bBuffer[bIndex++] = (byte) '?';
                 } else {
-                    bBuffer[bIndex++] = (byte)utf32;
+                    bBuffer[bIndex++] = (byte) utf32;
                 }
                 continue;
             }
@@ -123,14 +119,14 @@ public final class UTF8StreamWriter extends Writer {
         // convert to bytes
 
         if (utf32 < NEED_2_BYTES) {
-            bBuffer[bIndex++] = (byte)utf32;
+            bBuffer[bIndex++] = (byte) utf32;
             return;
         }
 
         // Find out how many bytes we need to write
         // At this point, it is at least 2.
 
-        //int count;
+        // int count;
         int backIndex;
         int firstByteMark;
         if (utf32 < NEED_3_BYTES) {
@@ -139,19 +135,20 @@ public final class UTF8StreamWriter extends Writer {
         } else if (utf32 < NEED_4_BYTES) {
             backIndex = bIndex += 3;
             firstByteMark = 0xE0;
-            bBuffer[--backIndex] = (byte)(TRAILING_TOP | (utf32 & TRAILING_BOTTOM_MASK));
+            bBuffer[--backIndex] = (byte) (TRAILING_TOP | (utf32 & TRAILING_BOTTOM_MASK));
             utf32 >>= 6;
         } else {
             backIndex = bIndex += 4;
             firstByteMark = 0xF0;
-            bBuffer[--backIndex] = (byte)(TRAILING_TOP | (utf32 & TRAILING_BOTTOM_MASK));
+            bBuffer[--backIndex] = (byte) (TRAILING_TOP | (utf32 & TRAILING_BOTTOM_MASK));
             utf32 >>= 6;
-        bBuffer[--backIndex] = (byte)(TRAILING_TOP | (utf32 & TRAILING_BOTTOM_MASK));
+            bBuffer[--backIndex] = (byte) (TRAILING_TOP | (utf32 & TRAILING_BOTTOM_MASK));
+            utf32 >>= 6;
+        }
+        ;
+        bBuffer[--backIndex] = (byte) (TRAILING_TOP | (utf32 & TRAILING_BOTTOM_MASK));
         utf32 >>= 6;
-        };
-        bBuffer[--backIndex] = (byte)(TRAILING_TOP | (utf32 & TRAILING_BOTTOM_MASK));
-        utf32 >>= 6;
-                    bBuffer[--backIndex] = (byte)(firstByteMark | utf32);
+        bBuffer[--backIndex] = (byte) (firstByteMark | utf32);
     }
 
     private void internalFlush() throws IOException {

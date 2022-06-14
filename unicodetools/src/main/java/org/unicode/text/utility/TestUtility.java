@@ -1,16 +1,19 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/TestUtility.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/utility/TestUtility.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.utility;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMapIterator;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -30,57 +33,50 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
-
 import org.unicode.cldr.util.Counter;
 import org.unicode.jsp.ICUPropertyFactory;
-import org.unicode.props.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.unused.DataInputCompressor;
 import org.unicode.unused.DataOutputCompressor;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMapIterator;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
-
 public class TestUtility {
     /*
-         static public class MyEnum extends EnumBase {
-         public static MyEnum
-         ZEROED = (MyEnum) makeNext(myEnum.getClass()),
-         SHIFTED = (MyEnum) makeNext(),
-         NON_IGNORABLE = (MyEnum) makeNext(),
+        static public class MyEnum extends EnumBase {
+        public static MyEnum
+        ZEROED = (MyEnum) makeNext(myEnum.getClass()),
+        SHIFTED = (MyEnum) makeNext(),
+        NON_IGNORABLE = (MyEnum) makeNext(),
 
-         FIRST_ENUM = ZEROED,
-         LAST_ENUM = NON_IGNORABLE;
-         public MyEnum next(int value) {
-         return (MyEnum) internalNext(value);
-         }
-         protected MyEnum() {}
-         }
-     */
+        FIRST_ENUM = ZEROED,
+        LAST_ENUM = NON_IGNORABLE;
+        public MyEnum next(int value) {
+        return (MyEnum) internalNext(value);
+        }
+        protected MyEnum() {}
+        }
+    */
     static final boolean USE_FILE = true;
     static final boolean DEBUG = false;
 
-    static public void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
         tryFileUnicodeProperty();
         check();
         final int iterations = 1;
-        //testStreamCompressor();
+        // testStreamCompressor();
         UnicodeMap umap = new UnicodeMap();
-        umap.put(0,"abcdefg");
+        umap.put(0, "abcdefg");
         if (false) {
             for (int i = 0; i < 256; ++i) {
-                umap.put(i, String.valueOf(i&0xF0));
+                umap.put(i, String.valueOf(i & 0xF0));
             }
         }
         int total = testUnicodeMapSerialization(1, iterations, "dummy", umap);
 
-        //if (true) return;
-        //UnicodeLabel ul;
+        // if (true) return;
+        // UnicodeLabel ul;
 
         final ICUPropertyFactory p = ICUPropertyFactory.make();
         total = 0;
@@ -88,14 +84,16 @@ public class TestUtility {
         final Matcher nameMatch = Pattern.compile("Name").matcher("");
 
         final UnicodeProperty gc = p.getProperty("General_Category");
-        final UnicodeSet checkSet = gc.getSet("Cn").addAll(gc.getSet("Co")).addAll(gc.getSet("Cs")).complement();
+        final UnicodeSet checkSet =
+                gc.getSet("Cn").addAll(gc.getSet("Co")).addAll(gc.getSet("Cs")).complement();
         final UnicodeSetIterator checkSetIterator = new UnicodeSetIterator(checkSet);
         final UnicodeProperty hangulSyllableType = p.getProperty("Hangul_Syllable_Type");
-        final UnicodeSet hangulSyllable = hangulSyllableType.getSet("LVT_Syllable").addAll(hangulSyllableType.getSet("LV_Syllable"));
+        final UnicodeSet hangulSyllable =
+                hangulSyllableType
+                        .getSet("LVT_Syllable")
+                        .addAll(hangulSyllableType.getSet("LV_Syllable"));
 
-
-        for (final Iterator pnames = p.getAvailableNames().iterator(); pnames
-                .hasNext();) {
+        for (final Iterator pnames = p.getAvailableNames().iterator(); pnames.hasNext(); ) {
             final String pname = (String) pnames.next();
             if (!nameMatch.reset(pname).matches()) {
                 continue;
@@ -118,7 +116,7 @@ public class TestUtility {
                         continue;
                     }
                     umap.put(i, value);
-                    //System.out.println("Adding " + Utility.hex(i) + ", " + Utility.hex(value));
+                    // System.out.println("Adding " + Utility.hex(i) + ", " + Utility.hex(value));
                 }
             } else {
                 final UnicodeProperty sampleProp = p.getProperty(pname);
@@ -142,10 +140,9 @@ public class TestUtility {
         System.out.println("Done");
     }
 
-
     static void check() throws IOException, ClassNotFoundException {
         final UnicodeMap m = new UnicodeMap();
-        m.put(1,"abc");
+        m.put(1, "abc");
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         final ObjectOutputStream oos = new ObjectOutputStream(out);
         oos.writeBoolean(true);
@@ -165,9 +162,7 @@ public class TestUtility {
         ois.close();
     }
 
-    /**
-     *
-     */
+    /** */
     private static boolean equals(int i, String value) {
         final int len = value.length();
         if (len < 0 || len > 2) {
@@ -179,13 +174,12 @@ public class TestUtility {
         if (i <= 0xFFFF) {
             return false;
         }
-        return i == UTF16.charAt(value,0);
+        return i == UTF16.charAt(value, 0);
     }
 
-    /**
-     *
-     */
-    private static void testHanProp(int iterations, int total, String pname, String type) throws IOException, ClassNotFoundException {
+    /** */
+    private static void testHanProp(int iterations, int total, String pname, String type)
+            throws IOException, ClassNotFoundException {
         System.out.println();
         IndexUnicodeProperties iup = IndexUnicodeProperties.make(Default.ucd().getVersionInfo());
         final UnicodeMap<String> umap = iup.load(UcdProperty.forString(pname));
@@ -199,9 +193,10 @@ public class TestUtility {
     static String outdir = outdircore + "4.1.0/";
     /**
      * @param pname
-     *
      */
-    private static int testUnicodeMapSerialization(int iterations, int total, String pname, UnicodeMap umap) throws IOException, ClassNotFoundException {
+    private static int testUnicodeMapSerialization(
+            int iterations, int total, String pname, UnicodeMap umap)
+            throws IOException, ClassNotFoundException {
         System.out.print("\tValue Count:\t" + umap.getAvailableValues().size());
 
         final String filename = outdir + pname + ".bin";
@@ -214,27 +209,26 @@ public class TestUtility {
         }
         out = new GZIPOutputStream(out);
         final ObjectOutputStream oos = new ObjectOutputStream(out);
-        //Random rand = new Random();
+        // Random rand = new Random();
 
         /*                if (false) {
-                        oos.writeObject(umap);
-                        oos.close();
-                        buffer = baout.toByteArray();
-                        in = new ByteArrayInputStream(buffer, 0, baout.size());
-                        ois = new ObjectInputStream(in);
-                        reverseMap = (UnicodeMap) ois.readObject();
-                }
-         */
+                       oos.writeObject(umap);
+                       oos.close();
+                       buffer = baout.toByteArray();
+                       in = new ByteArrayInputStream(buffer, 0, baout.size());
+                       ois = new ObjectInputStream(in);
+                       reverseMap = (UnicodeMap) ois.readObject();
+               }
+        */
         //      UnicodeMap.StreamCompressor sc = new UnicodeMap.StreamCompressor();
         //      int test = (int)Math.abs(rand.nextGaussian()*100000);
         //      System.out.print(Integer.toString(test, 16).toUpperCase());
         //      sc.writeInt(out, test);
         //      out.close();
-        //oos.writeBoolean(true);
-        //oos.writeUTF("abcdefg");
+        // oos.writeBoolean(true);
+        // oos.writeUTF("abcdefg");
         oos.writeObject(umap);
         oos.close();
-
 
         long size;
         byte[] buffer;
@@ -247,8 +241,7 @@ public class TestUtility {
                 System.out.println(showBuffer(buffer, size));
             }
         }
-        System.out.print("\t"+"Size:\t" + size);
-
+        System.out.print("\t" + "Size:\t" + size);
 
         // only measure read time
         UnicodeMap reverseMap = null;
@@ -258,15 +251,15 @@ public class TestUtility {
             if (USE_FILE) {
                 in = new FileInputStream(filename);
             } else {
-                in = new ByteArrayInputStream(buffer, 0, (int)size);
+                in = new ByteArrayInputStream(buffer, 0, (int) size);
             }
             in = new GZIPInputStream(in);
             //            int x = sc.readInt(in);
             //            if (x != test) System.out.println("Failure");
             //            System.out.println("\t=> " + Integer.toString(x, 16).toUpperCase());
             final ObjectInputStream ois = new ObjectInputStream(in);
-            //System.out.println(ois.readBoolean());
-            //System.out.println(ois.readUTF());
+            // System.out.println(ois.readBoolean());
+            // System.out.println(ois.readUTF());
 
             try {
                 reverseMap = (UnicodeMap) ois.readObject();
@@ -287,14 +280,17 @@ public class TestUtility {
                 if (UnicodeMap.areEqual(main, rev)) {
                     continue;
                 }
-                System.out.println(Utility.hex(i) + "\t'" + main + "',\t'"
-                        + rev + "'");
+                System.out.println(Utility.hex(i) + "\t'" + main + "',\t'" + rev + "'");
             }
         }
-        //out.toByteArray();
+        // out.toByteArray();
         total += size;
-        System.out.print("\tTime:\t" + (end - start) / (iterations * 1.0)
-                + "\tmsecs (raw:\t" + ((end - start) / 1000.0) + "\tsecs)");
+        System.out.print(
+                "\tTime:\t"
+                        + (end - start) / (iterations * 1.0)
+                        + "\tmsecs (raw:\t"
+                        + ((end - start) / 1000.0)
+                        + "\tsecs)");
         /* with Vanilla Serialization
          * Size: 24131
          * Time: 1.9488 msecs (raw: 9.744 secs)
@@ -314,30 +310,33 @@ public class TestUtility {
         return total;
     }
 
-    /**
-     *
-     */
+    /** */
     private static String showBuffer(byte[] buffer, long size) {
         final StringBuffer result = new StringBuffer();
         for (int j = 0; j < size; ++j) {
             if (j != 0) {
                 result.append(' ');
             }
-            result.append(Utility.hex(buffer[j]&0xFF,2));
+            result.append(Utility.hex(buffer[j] & 0xFF, 2));
         }
         return result.toString();
     }
 
-    /**
-     *
-     */
+    /** */
     private static void testStreamCompressor() throws IOException {
         final Object[] tests = {
-                UTF16.valueOf(0x10FFFF),"\u1234", "abc",
-                new Long(-3), new Long(12345),
-                new Short(Short.MAX_VALUE), new Short(Short.MIN_VALUE),
-                new Integer(Integer.MAX_VALUE), new Integer(Integer.MIN_VALUE),
-                new Long(Long.MIN_VALUE), new Long(Long.MAX_VALUE)};
+            UTF16.valueOf(0x10FFFF),
+            "\u1234",
+            "abc",
+            new Long(-3),
+            new Long(12345),
+            new Short(Short.MAX_VALUE),
+            new Short(Short.MIN_VALUE),
+            new Integer(Integer.MAX_VALUE),
+            new Integer(Integer.MIN_VALUE),
+            new Long(Long.MIN_VALUE),
+            new Long(Long.MAX_VALUE)
+        };
 
         for (int i = 0; i < tests.length; ++i) {
             final Object source = tests[i];
@@ -349,9 +348,9 @@ public class TestUtility {
             final DataOutputCompressor sc = new DataOutputCompressor(out2);
             long y = 0;
             if (source instanceof String) {
-                sc.writeUTF((String)source);
+                sc.writeUTF((String) source);
             } else {
-                y = ((Number)source).longValue();
+                y = ((Number) source).longValue();
                 sc.writeLong(y);
             }
             out2.close();
@@ -367,35 +366,40 @@ public class TestUtility {
             long x = 0;
             if (isString) {
                 result = isc.readUTF();
-                System.out.println(i + "\t" + source
-                        + "\t" + result
-                        + (source.equals(result) ? "\tSuccess" : "\tBitter Failure"));
+                System.out.println(
+                        i
+                                + "\t"
+                                + source
+                                + "\t"
+                                + result
+                                + (source.equals(result) ? "\tSuccess" : "\tBitter Failure"));
             } else {
                 x = isc.readLong();
                 result = new Long(x);
-                System.out.println(i + "\t" + y
-                        + x
-                        + "\t" + Utility.hex(y)
-                        + "\t" + Utility.hex(x)
-                        + (x == y ? "\tSuccess" : "\tBitter Failure"));
+                System.out.println(
+                        i
+                                + "\t"
+                                + y
+                                + x
+                                + "\t"
+                                + Utility.hex(y)
+                                + "\t"
+                                + Utility.hex(x)
+                                + (x == y ? "\tSuccess" : "\tBitter Failure"));
             }
 
             in2.close();
         }
     }
 
-    /**
-     *
-     */
+    /** */
     private static void showBytes(byte[] buffer, int len) {
         for (int i = 0; i < len; ++i) {
-            System.out.print(Utility.hex(buffer[i]&0xFF,2) + " ");
+            System.out.print(Utility.hex(buffer[i] & 0xFF, 2) + " ");
         }
     }
 
-    /**
-     *
-     */
+    /** */
     private static UnicodeMap fixNameMap(BreakIterator bk, UnicodeMap umap) {
         final UnicodeMap temp = new UnicodeMap();
         final Counter<String> counter = new Counter<String>();
@@ -431,23 +435,22 @@ public class TestUtility {
             for (final String key : counter) {
                 final long c = counter.getCount(key);
                 running += c;
-                System.out.println(count++ + "\t" + c + "\t" + running
-                        + "\t" + key);
+                System.out.println(count++ + "\t" + c + "\t" + running + "\t" + key);
             }
-            for (final UnicodeMapIterator it2 = new UnicodeMapIterator(
-                    temp); it2.nextRange();) {
-                System.out.println(Utility.hex(it2.codepoint) + "\t"
-                        + Utility.hex(it2.codepointEnd) + "\t"
-                        + it2.value);
+            for (final UnicodeMapIterator it2 = new UnicodeMapIterator(temp); it2.nextRange(); ) {
+                System.out.println(
+                        Utility.hex(it2.codepoint)
+                                + "\t"
+                                + Utility.hex(it2.codepointEnd)
+                                + "\t"
+                                + it2.value);
             }
         }
         umap = temp;
         return umap;
     }
 
-    /**
-     *
-     */
+    /** */
     private static void tryFileUnicodeProperty() {
         final UnicodeProperty.Factory factory = FileUnicodeProperty.Factory.make("4.1.0");
         System.out.println(factory.getAvailableNames());
@@ -467,11 +470,12 @@ public class TestUtility {
             this.file = file;
             this.version = version;
             final String base = file.getName();
-            setName(base.substring(0, base.length()-4)); // subtract .bin
+            setName(base.substring(0, base.length() - 4)); // subtract .bin
         }
 
         public static class Factory extends UnicodeProperty.Factory {
             private Factory() {}
+
             public static Factory make(String version) {
                 final Factory result = new Factory();
                 final File f = new File(outdircore + version + "/");
@@ -504,12 +508,10 @@ public class TestUtility {
             if (map == null) {
                 make();
             }
-            return (String)map.getValue(codepoint);
+            return (String) map.getValue(codepoint);
         }
 
-        /**
-         *
-         */
+        /** */
         private void make() {
             try {
                 final InputStream in = new FileInputStream(file.getCanonicalPath());
@@ -517,7 +519,7 @@ public class TestUtility {
                 map = (UnicodeMap) ois.readObject();
                 ois.close();
             } catch (final Exception e) {
-                throw (InternalError)new InternalError("Can't create property").initCause(e);
+                throw (InternalError) new InternalError("Can't create property").initCause(e);
             }
         }
 

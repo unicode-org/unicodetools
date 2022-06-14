@@ -1,16 +1,15 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateCaseFolding.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateCaseFolding.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
+import com.ibm.icu.text.UTF16;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.BitSet;
@@ -19,23 +18,21 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.UnicodeDataFile.FileInfix;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.text.UTF16;
-
 public class GenerateCaseFolding implements UCD_Types {
     public static boolean DEBUG = false;
     public static boolean COMMENT_DIFFS = false; // ON if we want a comment on mappings != lowercase
-    public static boolean PICK_SHORT = false; // picks short value for SIMPLE if in FULL, changes weighting
-    public static boolean NF_CLOSURE = false; // picks short value for SIMPLE if in FULL, changes weighting
+    public static boolean PICK_SHORT =
+            false; // picks short value for SIMPLE if in FULL, changes weighting
+    public static boolean NF_CLOSURE =
+            false; // picks short value for SIMPLE if in FULL, changes weighting
     static final int CHECK_CHAR = 0x130; // for debugging, change to actual character, otherwise -1
 
     // PICK_SHORT & NF_CLOSURE = false for old style
-
 
     /*public static void main(String[] args) throws java.io.IOException {
         makeCaseFold(arg[0]);
@@ -45,15 +42,15 @@ public class GenerateCaseFolding implements UCD_Types {
 
     static PrintWriter log;
 
-
     public static void makeCaseFold(boolean normalized) throws java.io.IOException {
         PICK_SHORT = NF_CLOSURE = normalized;
 
         String suffix = FileInfix.getDefault().getFileSuffix(".txt");
-        log = Utility.openPrintWriter(
-                Settings.Output.GEN_DIR + "/log",
-                "CaseFoldingLog" + suffix,
-                Utility.LATIN1_UNIX);
+        log =
+                Utility.openPrintWriter(
+                        Settings.Output.GEN_DIR + "/log",
+                        "CaseFoldingLog" + suffix,
+                        Utility.LATIN1_UNIX);
         System.out.println("Writing Log: " + "CaseFoldingLog" + suffix);
 
         System.out.println("Making Full Data");
@@ -81,7 +78,7 @@ public class GenerateCaseFolding implements UCD_Types {
         final String directory = "UCD/" + Default.ucd().getVersion() + '/';
         final UnicodeDataFile fc =
                 UnicodeDataFile.openAndWriteHeader(directory, filename)
-                .setSkipCopyright(Settings.SKIP_COPYRIGHT);
+                        .setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter out = fc.out;
 
         /*
@@ -104,7 +101,10 @@ public class GenerateCaseFolding implements UCD_Types {
             final String rSimple = simpleData.get(UTF16.valueOf(ch));
             final String rFullTurkish = fullDataTurkish.get(UTF16.valueOf(ch));
             final String rSimpleTurkish = simpleDataTurkish.get(UTF16.valueOf(ch));
-            if (rFull == null && rSimple == null && rFullTurkish == null && rSimpleTurkish == null) {
+            if (rFull == null
+                    && rSimple == null
+                    && rFullTurkish == null
+                    && rSimpleTurkish == null) {
                 continue;
             }
 
@@ -119,7 +119,7 @@ public class GenerateCaseFolding implements UCD_Types {
                     drawLine(out, ch, "T", "i");
                 } else if (ch == 0x131) {
                     // do nothing
-                    //drawLine(out, ch, "I", "i");
+                    // drawLine(out, ch, "I", "i");
                 } else {
                     drawLine(out, ch, type, rFull);
                 }
@@ -146,12 +146,12 @@ public class GenerateCaseFolding implements UCD_Types {
 
     /* Goal is following (with no entries for 0131 or 0069)
 
-0049; C; 0069; # LATIN CAPITAL LETTER I
-0049; T; 0131; # LATIN CAPITAL LETTER I
+    0049; C; 0069; # LATIN CAPITAL LETTER I
+    0049; T; 0131; # LATIN CAPITAL LETTER I
 
-0130; F; 0069 0307; # LATIN CAPITAL LETTER I WITH DOT ABOVE
-0130; T; 0069; # LATIN CAPITAL LETTER I WITH DOT ABOVE
-     */
+    0130; F; 0069 0307; # LATIN CAPITAL LETTER I WITH DOT ABOVE
+    0130; T; 0069; # LATIN CAPITAL LETTER I WITH DOT ABOVE
+         */
 
     static void drawLine(PrintWriter out, int ch, String type, String result) {
         String comment = "";
@@ -164,21 +164,32 @@ public class GenerateCaseFolding implements UCD_Types {
                 } else {
                     Utility.fixDot();
                     System.out.println("PROBLEM WITH: " + Default.ucd().getCodeAndName(ch));
-                    comment = "[DIFF " + Utility.hex(lower, " ") + ", " + Utility.hex(lower2, " ") + "] ";
+                    comment =
+                            "[DIFF "
+                                    + Utility.hex(lower, " ")
+                                    + ", "
+                                    + Utility.hex(lower2, " ")
+                                    + "] ";
                 }
             }
         }
 
-        out.println(Utility.hex(ch)
-                + "; " + type
-                + "; " + Utility.hex(result, " ")
-                + "; # " + comment + Default.ucd().getName(ch));
+        out.println(
+                Utility.hex(ch)
+                        + "; "
+                        + type
+                        + "; "
+                        + Utility.hex(result, " ")
+                        + "; # "
+                        + comment
+                        + Default.ucd().getName(ch));
     }
 
     static int probeCh = 0x01f0;
     static String shower = UTF16.valueOf(probeCh);
 
-    static Map<String, String> getCaseFolding(boolean full, boolean nfClose, String condition) throws java.io.IOException {
+    static Map<String, String> getCaseFolding(boolean full, boolean nfClose, String condition)
+            throws java.io.IOException {
         final Map<String, Set<String>> data = new TreeMap<String, Set<String>>();
         final Map<String, String> repChar = new TreeMap<String, String>();
 
@@ -186,7 +197,7 @@ public class GenerateCaseFolding implements UCD_Types {
 
         for (int ch = 0; ch <= 0x10FFFF; ++ch) {
             Utility.dot(ch);
-            //if ((ch & 0x3FF) == 0) System.out.println(Utility.hex(ch));
+            // if ((ch & 0x3FF) == 0) System.out.println(Utility.hex(ch));
             if (!Default.ucd().isRepresented(ch)) {
                 continue;
             }
@@ -232,7 +243,7 @@ public class GenerateCaseFolding implements UCD_Types {
                 Utility.fixDot();
                 log.println("Non-Optimal Representative " + message);
                 log.println(" Rep:\t" + Default.ucd().getCodeAndName(rep));
-                log.println(" Set:\t" + toString(set,true, true));
+                log.println(" Set:\t" + toString(set, true, true));
             }
 
             log.println();
@@ -268,7 +279,7 @@ public class GenerateCaseFolding implements UCD_Types {
         if (s == null) {
             return 0;
         }
-        int result = 32-s.length();
+        int result = 32 - s.length();
         if (!PICK_SHORT) {
             result = s.length();
         }
@@ -278,7 +289,7 @@ public class GenerateCaseFolding implements UCD_Types {
         // Cherokee case-folds to uppercase letters which were encoded first.
         // It became bicameral in Unicode 8 with the addition of lowercase letters.
         int first = s.codePointAt(0);
-        boolean isCherokee = 0x13A0 <= first && first <= 0x13FF;  // original Cherokee block
+        boolean isCherokee = 0x13A0 <= first && first <= 0x13FF; // original Cherokee block
         final String low;
         if (isCherokee) {
             low = upper(lower(s, full, condition), full, condition);
@@ -302,7 +313,6 @@ public class GenerateCaseFolding implements UCD_Types {
         return result;
     }
 
-
     /*
     static HashSet temp = new HashSet();
     static void normalize(HashSet set) {
@@ -325,34 +335,39 @@ public class GenerateCaseFolding implements UCD_Types {
      */
 
     /*
-            String
-            String lower1 = Default.ucd.getLowercase(ch);
-            String lower2 = Default.ucd.toLowercase(ch,option);
+           String
+           String lower1 = Default.ucd.getLowercase(ch);
+           String lower2 = Default.ucd.toLowercase(ch,option);
 
-            char ch2 = Default.ucd.getLowercase(Default.ucd.getUppercase(ch).charAt(0)).charAt(0);
-            //String lower1 = String.valueOf(Default.ucd.getLowercase(ch));
-            //String lower = Default.ucd.toLowercase(ch2,option);
-            String upper = Default.ucd.toUppercase(ch2,option);
-            String lowerUpper = Default.ucd.toLowercase(upper,option);
-            //String title = Default.ucd.toTitlecase(ch2,option);
-            //String lowerTitle = Default.ucd.toLowercase(upper,option);
+           char ch2 = Default.ucd.getLowercase(Default.ucd.getUppercase(ch).charAt(0)).charAt(0);
+           //String lower1 = String.valueOf(Default.ucd.getLowercase(ch));
+           //String lower = Default.ucd.toLowercase(ch2,option);
+           String upper = Default.ucd.toUppercase(ch2,option);
+           String lowerUpper = Default.ucd.toLowercase(upper,option);
+           //String title = Default.ucd.toTitlecase(ch2,option);
+           //String lowerTitle = Default.ucd.toLowercase(upper,option);
 
-            if (ch != ch2 || lowerUpper.length() != 1 || ch != lowerUpper.charAt(0)) { //
-                output.println(Utility.hex(ch)
-                    + "; " + (lowerUpper.equals(lower1) ? "L" : lowerUpper.equals(lower2) ? "S" : "E")
-                    + "; " + Utility.hex(lowerUpper," ")
-                    + ";\t#" + Default.ucd.getName(ch)
-                    );
-                //if (!lowerUpper.equals(lower)) {
-                //    output.println("Warning1: " + Utility.hex(lower) + " " + Default.ucd.getName(lower));
-                //}
-                //if (!lowerUpper.equals(lowerTitle)) {
-                //    output.println("Warning2: " + Utility.hex(lowerTitle) + " " + Default.ucd.getName(lowerTitle));
-                //}
-            }
-     */
+           if (ch != ch2 || lowerUpper.length() != 1 || ch != lowerUpper.charAt(0)) { //
+               output.println(Utility.hex(ch)
+                   + "; " + (lowerUpper.equals(lower1) ? "L" : lowerUpper.equals(lower2) ? "S" : "E")
+                   + "; " + Utility.hex(lowerUpper," ")
+                   + ";\t#" + Default.ucd.getName(ch)
+                   );
+               //if (!lowerUpper.equals(lower)) {
+               //    output.println("Warning1: " + Utility.hex(lower) + " " + Default.ucd.getName(lower));
+               //}
+               //if (!lowerUpper.equals(lowerTitle)) {
+               //    output.println("Warning2: " + Utility.hex(lowerTitle) + " " + Default.ucd.getName(lowerTitle));
+               //}
+           }
+    */
 
-    static void getClosure(int ch, Map<String, Set<String>> data, boolean full, boolean nfClose, String condition) {
+    static void getClosure(
+            int ch,
+            Map<String, Set<String>> data,
+            boolean full,
+            boolean nfClose,
+            String condition) {
         if (ch == '\u023F') {
             System.out.println("???");
         }
@@ -378,45 +393,46 @@ public class GenerateCaseFolding implements UCD_Types {
 
         // close it
         main:
-            while (true) {
-                final Iterator<String> it = set.iterator();
-                while (it.hasNext()) {
-                    final String s = it.next();
-                    // do funny stuff since we can't modify set while iterating
-                    // We don't do this because if the source is not normalized, we don't want to normalize
-                    if (nfClose) {
-                        if (add(set, Default.nfd().normalize(s), data)) {
-                            continue main;
-                        }
-                        if (add(set, Default.nfc().normalize(s), data)) {
-                            continue main;
-                        }
-                        if (add(set, Default.nfkd().normalize(s), data)) {
-                            continue main;
-                        }
-                        if (add(set, Default.nfkc().normalize(s), data)) {
-                            continue main;
-                        }
-                    }
-                    if (add(set, lower(s, full, condition), data)) {
+        while (true) {
+            final Iterator<String> it = set.iterator();
+            while (it.hasNext()) {
+                final String s = it.next();
+                // do funny stuff since we can't modify set while iterating
+                // We don't do this because if the source is not normalized, we don't want to
+                // normalize
+                if (nfClose) {
+                    if (add(set, Default.nfd().normalize(s), data)) {
                         continue main;
                     }
-                    if (add(set, title(s, full, condition), data)) {
+                    if (add(set, Default.nfc().normalize(s), data)) {
                         continue main;
                     }
-                    if (add(set, upper(s, full, condition), data)) {
+                    if (add(set, Default.nfkd().normalize(s), data)) {
+                        continue main;
+                    }
+                    if (add(set, Default.nfkc().normalize(s), data)) {
                         continue main;
                     }
                 }
-                break;
+                if (add(set, lower(s, full, condition), data)) {
+                    continue main;
+                }
+                if (add(set, title(s, full, condition), data)) {
+                    continue main;
+                }
+                if (add(set, upper(s, full, condition), data)) {
+                    continue main;
+                }
             }
+            break;
+        }
         if (set.size() > 1) {
             data.put(charStr, set);
         }
     }
 
     static String lower(String s, boolean full, String condition) {
-        final String result = lower2(s,full, condition);
+        final String result = lower2(s, full, condition);
         return result.replace('\u03C2', '\u03C3'); // HACK for lower
     }
 
@@ -501,9 +517,8 @@ public class GenerateCaseFolding implements UCD_Types {
     }
 
     static boolean specialNormalizationDiffers(int ch) {
-        if (ch == 0x00DF)
-        {
-            return true;                  // es-zed
+        if (ch == 0x00DF) {
+            return true; // es-zed
         }
         return !Default.nfkd().isNormalized(ch);
     }
@@ -516,25 +531,21 @@ public class GenerateCaseFolding implements UCD_Types {
     }
 
     static boolean isExcluded(int ch) {
-        // if (ch == 0x130) return true;                  // skip LATIN CAPITAL LETTER I WITH DOT ABOVE
-        if (ch == 0x0132 || ch == 0x0133)
-        {
+        // if (ch == 0x130) return true;                  // skip LATIN CAPITAL LETTER I WITH DOT
+        // ABOVE
+        if (ch == 0x0132 || ch == 0x0133) {
             return true; // skip IJ, ij
         }
-        if (0x1F16A <= ch && ch <= 0x1F16C)
-        {
+        if (0x1F16A <= ch && ch <= 0x1F16C) {
             return true; // skip raised MC/MD/MR signs
         }
-        if (ch == 0x037A)
-        {
-            return true;                 // skip GREEK YPOGEGRAMMENI
+        if (ch == 0x037A) {
+            return true; // skip GREEK YPOGEGRAMMENI
         }
-        if (0x249C <= ch && ch <= 0x24B5)
-        {
+        if (0x249C <= ch && ch <= 0x24B5) {
             return true; // skip PARENTHESIZED LATIN SMALL LETTER A..
         }
-        if (0x20A8 <= ch && ch <= 0x217B)
-        {
+        if (0x20A8 <= ch && ch <= 0x217B) {
             return true; // skip Rupee..
         }
 
@@ -542,7 +553,7 @@ public class GenerateCaseFolding implements UCD_Types {
         if (type == COMPAT_SQUARE) {
             return true;
         }
-        //if (type == COMPAT_UNSPECIFIED) return true;
+        // if (type == COMPAT_UNSPECIFIED) return true;
         return false;
     }
 
@@ -613,12 +624,15 @@ public class GenerateCaseFolding implements UCD_Types {
                 System.out.println("BUpper: " + Default.ucd().getCodeAndName(bupper));
             }
 
-            // presumably if there is a single code point, it would already be in the simple mappings
+            // presumably if there is a single code point, it would already be in the simple
+            // mappings
 
-            if (UTF16.countCodePoint(flower) == 1 && UTF16.countCodePoint(fupper) == 1
+            if (UTF16.countCodePoint(flower) == 1
+                    && UTF16.countCodePoint(fupper) == 1
                     && UTF16.countCodePoint(title) == 1) {
                 if (ch == CHECK_CHAR) {
-                    System.out.println("Skipping single code point: " + Default.ucd().getCodeAndName(ch));
+                    System.out.println(
+                            "Skipping single code point: " + Default.ucd().getCodeAndName(ch));
                 }
                 continue;
             }
@@ -633,7 +647,8 @@ public class GenerateCaseFolding implements UCD_Types {
             }
 
             // fix special cases
-            // if (flower.equals(blower) && fupper.equals(bupper) && ftitle.equals(btitle)) continue;
+            // if (flower.equals(blower) && fupper.equals(bupper) && ftitle.equals(btitle))
+            // continue;
             if (flower.equals(blower)) {
                 flower = lower;
             }
@@ -655,51 +670,80 @@ public class GenerateCaseFolding implements UCD_Types {
 
             final String name = Default.ucd().getName(ch);
 
-            final int order = name.equals("LATIN SMALL LETTER SHARP S") ? 1
-                    : ch == 0x130 ? 2
-                            : name.indexOf("ARMENIAN SMALL LIGATURE") >= 0 ? 4
-                                    : name.indexOf("LIGATURE") >= 0 ? 3
-                                            : name.indexOf("GEGRAMMENI") < 0 ? 5
-                                                    : UTF16.countCodePoint(ftitle) == 1 ? 6
-                                                            : UTF16.countCodePoint(fupper) == 2 ? 7
-                                                                    : 8;
+            final int order =
+                    name.equals("LATIN SMALL LETTER SHARP S")
+                            ? 1
+                            : ch == 0x130
+                                    ? 2
+                                    : name.indexOf("ARMENIAN SMALL LIGATURE") >= 0
+                                            ? 4
+                                            : name.indexOf("LIGATURE") >= 0
+                                                    ? 3
+                                                    : name.indexOf("GEGRAMMENI") < 0
+                                                            ? 5
+                                                            : UTF16.countCodePoint(ftitle) == 1
+                                                                    ? 6
+                                                                    : UTF16.countCodePoint(fupper)
+                                                                                    == 2
+                                                                            ? 7
+                                                                            : 8;
 
-                                    if (ch == CHECK_CHAR) {
-                                        System.out.println("Order: " + order + " for " + Default.ucd().getCodeAndName(ch));
-                                    }
+            if (ch == CHECK_CHAR) {
+                System.out.println("Order: " + order + " for " + Default.ucd().getCodeAndName(ch));
+            }
 
-                                    // HACK
-                                    final boolean denormalize = !normalize && order != 6 && order != 7;
+            // HACK
+            final boolean denormalize = !normalize && order != 6 && order != 7;
 
-                                    final String mapping = Utility.hex(ch)
-                                            + "; " + Utility.hex(flower.equals(base) ? chstr : denormalize ? Default.nfd().normalize(flower) : flower)
-                                            + "; " + Utility.hex(ftitle.equals(base) ? chstr : denormalize ? Default.nfd().normalize(ftitle) : ftitle)
-                                            + "; " + Utility.hex(fupper.equals(base) ? chstr : denormalize ? Default.nfd().normalize(fupper) : fupper)
-                                            + "; # " + Default.ucd().getName(ch);
+            final String mapping =
+                    Utility.hex(ch)
+                            + "; "
+                            + Utility.hex(
+                                    flower.equals(base)
+                                            ? chstr
+                                            : denormalize
+                                                    ? Default.nfd().normalize(flower)
+                                                    : flower)
+                            + "; "
+                            + Utility.hex(
+                                    ftitle.equals(base)
+                                            ? chstr
+                                            : denormalize
+                                                    ? Default.nfd().normalize(ftitle)
+                                                    : ftitle)
+                            + "; "
+                            + Utility.hex(
+                                    fupper.equals(base)
+                                            ? chstr
+                                            : denormalize
+                                                    ? Default.nfd().normalize(fupper)
+                                                    : fupper)
+                            + "; # "
+                            + Default.ucd().getName(ch);
 
-                                    // special exclusions
-                                    if (isExcluded(ch)) {
-                                        log.println("# " + mapping);
-                                    } else {
-                                        int x = ch;
-                                        if (ch == 0x01F0)
-                                        {
-                                            x = 0x03B1; // HACK to reorder the same
-                                        }
-                                        sorted.put(new Integer((order << 24) | x), mapping);
-                                    }
+            // special exclusions
+            if (isExcluded(ch)) {
+                log.println("# " + mapping);
+            } else {
+                int x = ch;
+                if (ch == 0x01F0) {
+                    x = 0x03B1; // HACK to reorder the same
+                }
+                sorted.put(new Integer((order << 24) | x), mapping);
+            }
         }
         log.close();
 
         System.out.println("Writing");
-        //String newFile = "DerivedData/SpecialCasing" + suffix2 + UnicodeDataFile.getFileSuffix(true);
-        //PrintWriter out = Utility.openPrintWriter(newFile, Utility.LATIN1_UNIX);
+        // String newFile = "DerivedData/SpecialCasing" + suffix2 +
+        // UnicodeDataFile.getFileSuffix(true);
+        // PrintWriter out = Utility.openPrintWriter(newFile, Utility.LATIN1_UNIX);
 
         final UnicodeDataFile udf =
                 UnicodeDataFile.openAndWriteHeader(
-                        "UCD/" + Default.ucd().getVersion() + '/',
-                        "SpecialCasing" + suffix2).
-                setSkipCopyright(Settings.SKIP_COPYRIGHT);
+                                "UCD/" + Default.ucd().getVersion() + '/',
+                                "SpecialCasing" + suffix2)
+                        .setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter out = udf.out;
 
         /*       String[] batName = {""};
@@ -708,7 +752,7 @@ public class GenerateCaseFolding implements UCD_Types {
         out.println(UnicodeDataFile.generateDateLine());
         out.println("#");
          */
-        //Utility.appendFile("org/unicode/text/UCD/SpecialCasingHeader.txt", Utility.UTF8, out);
+        // Utility.appendFile("org/unicode/text/UCD/SpecialCasingHeader.txt", Utility.UTF8, out);
 
         final Iterator<Integer> it = sorted.keySet().iterator();
         int lastOrder = -1;
@@ -716,33 +760,49 @@ public class GenerateCaseFolding implements UCD_Types {
             final Integer key = it.next();
             final String line = sorted.get(key);
             final int order = key.intValue() >> 24;
-                                        if (order != lastOrder) {
-                                            lastOrder = order;
-                                            out.println();
-                                            boolean skipLine = false;
-                                            switch(order) {
-                                            case 1:
-                                                out.println("# The German es-zed is special--the normal mapping is to SS.");
-                                                out.println("# Note: the titlecase should never occur in practice. It is equal to titlecase(uppercase(<es-zed>))");
-                                                break;
-                                            case 2:
-                                                out.println("# Preserve canonical equivalence for I with dot. Turkic is handled below.");
-                                                break;
-                                            case 3: out.println("# Ligatures"); break;
-                                            case 4: skipLine = true; break;
-                                            case 5: out.println("# No corresponding uppercase precomposed character"); break;
-                                            case 6: Utility.appendFile(Settings.SRC_UCD_DIR + "SpecialCasingIota.txt", Utility.UTF8, out); break;
-                                            case 7: out.println("# Some characters with YPOGEGRAMMENI also have no corresponding titlecases"); break;
-                                            case 8: skipLine = true; break;
-                                            }
-                                            if (!skipLine) {
-                                                out.println();
-                                            }
-                                        }
-                                        out.println(line);
+            if (order != lastOrder) {
+                lastOrder = order;
+                out.println();
+                boolean skipLine = false;
+                switch (order) {
+                    case 1:
+                        out.println("# The German es-zed is special--the normal mapping is to SS.");
+                        out.println(
+                                "# Note: the titlecase should never occur in practice. It is equal to titlecase(uppercase(<es-zed>))");
+                        break;
+                    case 2:
+                        out.println(
+                                "# Preserve canonical equivalence for I with dot. Turkic is handled below.");
+                        break;
+                    case 3:
+                        out.println("# Ligatures");
+                        break;
+                    case 4:
+                        skipLine = true;
+                        break;
+                    case 5:
+                        out.println("# No corresponding uppercase precomposed character");
+                        break;
+                    case 6:
+                        Utility.appendFile(
+                                Settings.SRC_UCD_DIR + "SpecialCasingIota.txt", Utility.UTF8, out);
+                        break;
+                    case 7:
+                        out.println(
+                                "# Some characters with YPOGEGRAMMENI also have no corresponding titlecases");
+                        break;
+                    case 8:
+                        skipLine = true;
+                        break;
+                }
+                if (!skipLine) {
+                    out.println();
+                }
+            }
+            out.println(line);
         }
         Utility.appendFile(Settings.SRC_UCD_DIR + "SpecialCasingFooter.txt", Utility.UTF8, out);
         udf.close();
-        //Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
+        // Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
     }
 }

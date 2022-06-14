@@ -1,8 +1,7 @@
 package org.unicode.idna;
 
-import java.util.regex.Pattern;
-
 import com.ibm.icu.text.UnicodeSet;
+import java.util.regex.Pattern;
 
 public class IdnaTypes {
 

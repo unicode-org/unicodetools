@@ -1,4 +1,5 @@
 package org.unicode.text.UCD;
+
 public class ListNFComplete {
 
     // find all the characters that are
@@ -11,8 +12,8 @@ public class ListNFComplete {
     //    Example: a-breve might satisfy a-d, but if you
     //    add an ogonek it changes to a-ogonek + breve
 
-    public static void main (String[] args) {
-        //Normalizer nfd = new Normalizer(Normalizer.NFD);
+    public static void main(String[] args) {
+        // Normalizer nfd = new Normalizer(Normalizer.NFD);
 
     }
 }

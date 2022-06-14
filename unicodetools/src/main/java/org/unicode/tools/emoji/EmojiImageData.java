@@ -1,5 +1,10 @@
 package org.unicode.tools.emoji;
 
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.Output;
+import com.ibm.icu.util.VersionInfo;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,18 +17,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.tools.emoji.Emoji.Source;
 import org.unicode.tools.emoji.GenerateEmoji.Style;
 import org.unicode.tools.emoji.GenerateEmoji.Visibility;
 import org.unicode.utilities.UnicodeSetFormatter;
-
-import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.Output;
-import com.ibm.icu.util.VersionInfo;
 
 public class EmojiImageData {
     static final Map<Emoji.Source, UnicodeMap<EmojiImageData>> DATA = new ConcurrentHashMap<>();
@@ -98,13 +96,19 @@ public class EmojiImageData {
                 if (!file.exists()) {
                     result = "";
                 } else if (!GenerateEmoji.DATAURL) {
-                    result = "data:image/gif;base64,R0lGODlhAQABAPAAABEA3v///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==";
+                    result =
+                            "data:image/gif;base64,R0lGODlhAQABAPAAABEA3v///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==";
                     // "../images/" + filename;
                 } else if (source == Source.svg) {
                     result = CollectionUtilities.join(Files.readAllLines(file.toPath()), "\n");
                 } else {
-                    byte[] bytes = GenerateEmoji.RESIZE_IMAGE <= 0 ? Files.readAllBytes(file.toPath())
-                            : LoadImage.resizeImage(file, GenerateEmoji.RESIZE_IMAGE, GenerateEmoji.RESIZE_IMAGE);
+                    byte[] bytes =
+                            GenerateEmoji.RESIZE_IMAGE <= 0
+                                    ? Files.readAllBytes(file.toPath())
+                                    : LoadImage.resizeImage(
+                                            file,
+                                            GenerateEmoji.RESIZE_IMAGE,
+                                            GenerateEmoji.RESIZE_IMAGE);
                     result = "data:image/png;base64," + Base64.getEncoder().encodeToString(bytes);
                 }
                 EmojiImageData.IMAGE_CACHE.put(filename, result);
@@ -116,17 +120,31 @@ public class EmojiImageData {
     }
 
     public static void write(Set<Source> platforms2) throws IOException {
-        try (PrintWriter outText = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "missing-emoji-list.tsv")) {
+        try (PrintWriter outText =
+                FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "missing-emoji-list.tsv")) {
             showText(outText, 100);
         }
 
         final String outFileName = "missing-emoji-list.html";
         try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, outFileName)) {
-            ChartUtilities.writeHeader(outFileName, out, "Missing", null, false, "<p>Missing list of emoji characters.</p>\n", Emoji.DATA_DIR_PRODUCTION, Emoji.TR51_HTML);
+            ChartUtilities.writeHeader(
+                    outFileName,
+                    out,
+                    "Missing",
+                    null,
+                    false,
+                    "<p>Missing list of emoji characters.</p>\n",
+                    Emoji.DATA_DIR_PRODUCTION,
+                    Emoji.TR51_HTML);
             out.println("<table " + "border='1'" + ">");
             String headerRow = "<tr><th>Type</th>";
             for (Emoji.Source type : platforms2) {
-                headerRow += "<th class='centerTop' width='" + (90.0 / platforms2.size()) + "%'>" + type + " missing</th>";
+                headerRow +=
+                        "<th class='centerTop' width='"
+                                + (90.0 / platforms2.size())
+                                + "%'>"
+                                + type
+                                + " missing</th>";
             }
             headerRow += "</tr>";
 
@@ -141,7 +159,8 @@ public class EmojiImageData {
         }
     }
 
-    private static void showDiff(PrintWriter out, String headerRow, Set<Source> platforms2, Breakdown breakdown) {
+    private static void showDiff(
+            PrintWriter out, String headerRow, Set<Source> platforms2, Breakdown breakdown) {
         // find common
         UnicodeSet common = null;
         boolean skipSeparate = true;
@@ -156,7 +175,8 @@ public class EmojiImageData {
         }
         // per source
         String sectionLink = ChartUtilities.getDoubleLink(breakdown.title);
-        final GenerateEmojiData.PropPrinter propPrinter = new GenerateEmojiData.PropPrinter().set(EmojiDataSourceCombined.EMOJI_DATA);
+        final GenerateEmojiData.PropPrinter propPrinter =
+                new GenerateEmojiData.PropPrinter().set(EmojiDataSourceCombined.EMOJI_DATA);
         String title = breakdown.title;
 
         if (!skipSeparate) {
@@ -171,20 +191,49 @@ public class EmojiImageData {
             for (Emoji.Source source : platforms2) {
                 final UnicodeSet us = breakdown.getMissing(source);
                 final UnicodeSet missing = new UnicodeSet(us).removeAll(common);
-                GenerateEmoji.displayUnicodeSet(out, missing.addAllTo(new TreeSet<String>(GenerateEmoji.EMOJI_COMPARATOR)), Style.bestImage, 0, 1, 1, "../../emoji/charts/full-emoji-list.html", "", "lchars", Visibility.external);
+                GenerateEmoji.displayUnicodeSet(
+                        out,
+                        missing.addAllTo(new TreeSet<String>(GenerateEmoji.EMOJI_COMPARATOR)),
+                        Style.bestImage,
+                        0,
+                        1,
+                        1,
+                        "../../emoji/charts/full-emoji-list.html",
+                        "",
+                        "lchars",
+                        Visibility.external);
             }
             out.print("</tr>");
         }
         // common
         if (common.size() != 0) {
-            out.println("<tr><th>Common</th>"
-                    + "<th class='cchars' colSpan='" + platforms2.size() + "'>"
-                    + "common missing</th></tr>");
-            out.println("<tr><th>" + sectionLink + " count</th>"
-                    + "<td class='cchars' colSpan='" + platforms2.size() + "'>"
-                    + common.size() + "</td></tr>");
+            out.println(
+                    "<tr><th>Common</th>"
+                            + "<th class='cchars' colSpan='"
+                            + platforms2.size()
+                            + "'>"
+                            + "common missing</th></tr>");
+            out.println(
+                    "<tr><th>"
+                            + sectionLink
+                            + " count</th>"
+                            + "<td class='cchars' colSpan='"
+                            + platforms2.size()
+                            + "'>"
+                            + common.size()
+                            + "</td></tr>");
             out.println("<tr><th>" + title + "</th>");
-            GenerateEmoji.displayUnicodeSet(out, common.addAllTo(new TreeSet<String>(GenerateEmoji.EMOJI_COMPARATOR)), Style.bestImage, 0, platforms2.size(), 1, null, "", "lchars", Visibility.external);
+            GenerateEmoji.displayUnicodeSet(
+                    out,
+                    common.addAllTo(new TreeSet<String>(GenerateEmoji.EMOJI_COMPARATOR)),
+                    Style.bestImage,
+                    0,
+                    platforms2.size(),
+                    1,
+                    null,
+                    "",
+                    "lchars",
+                    Visibility.external);
             out.println("</td></tr>");
         }
     }
@@ -198,7 +247,12 @@ public class EmojiImageData {
             this.uset = uset;
         }
 
-        static void add(List<Breakdown> result, String title, VersionInfo version, UnicodeSet v3, UnicodeSet v4) {
+        static void add(
+                List<Breakdown> result,
+                String title,
+                VersionInfo version,
+                UnicodeSet v3,
+                UnicodeSet v4) {
             final UnicodeSet old = new UnicodeSet(v3).retainAll(v4).freeze();
             title += "\tv" + version.getVersionString(2, 2);
             if (version.equals(Emoji.VERSION_TO_GENERATE_PREVIOUS)) {
@@ -211,6 +265,7 @@ public class EmojiImageData {
         public UnicodeSet getSupported(Source source) {
             return new UnicodeSet(uset).retainAll(EmojiImageData.getSupported(source)).freeze();
         }
+
         public UnicodeSet getMissing(Source source) {
             return new UnicodeSet(uset).removeAll(EmojiImageData.getSupported(source)).freeze();
         }
@@ -222,12 +277,34 @@ public class EmojiImageData {
 
         List<Breakdown> result = new ArrayList<>();
         for (VersionInfo version : Arrays.asList(last.getVersion(), current.getVersion())) {
-            Breakdown.add(result, "singletons", version, last.getSingletonsWithoutDefectives(), current.getSingletonsWithoutDefectives());
-            Breakdown.add(result, "keycaps", version, last.getKeycapSequences(), current.getKeycapSequences());
-            Breakdown.add(result, "flags", version, last.getFlagSequences(), current.getFlagSequences());
-            Breakdown.add(result, "tags", version, last.getTagSequences(), current.getTagSequences());
-            Breakdown.add(result, "modifiers", version, last.getModifierSequences(), current.getModifierSequences());
-            Breakdown.add(result, "zwj", version, last.getZwjSequencesNormal(), current.getZwjSequencesNormal());
+            Breakdown.add(
+                    result,
+                    "singletons",
+                    version,
+                    last.getSingletonsWithoutDefectives(),
+                    current.getSingletonsWithoutDefectives());
+            Breakdown.add(
+                    result,
+                    "keycaps",
+                    version,
+                    last.getKeycapSequences(),
+                    current.getKeycapSequences());
+            Breakdown.add(
+                    result, "flags", version, last.getFlagSequences(), current.getFlagSequences());
+            Breakdown.add(
+                    result, "tags", version, last.getTagSequences(), current.getTagSequences());
+            Breakdown.add(
+                    result,
+                    "modifiers",
+                    version,
+                    last.getModifierSequences(),
+                    current.getModifierSequences());
+            Breakdown.add(
+                    result,
+                    "zwj",
+                    version,
+                    last.getZwjSequencesNormal(),
+                    current.getZwjSequencesNormal());
         }
         return result;
     }
@@ -242,15 +319,18 @@ public class EmojiImageData {
     private static void showText(PrintWriter out, int MAX) {
         EmojiData current = EmojiData.of(Emoji.VERSION_TO_GENERATE);
 
-        // The EMPTY_COLUMNS is so that we have the same number of tab columns on each line, displaying better in github
+        // The EMPTY_COLUMNS is so that we have the same number of tab columns on each line,
+        // displaying better in github
 
         out.println("TOTALS" + EMPTY_COLUMNS);
         out.println(EMPTY_COLUMNS);
         for (Source source : Source.VENDOR_SOURCES) {
             final UnicodeSet supported = getSupported(source);
-            UnicodeSet missing = new UnicodeSet(current.getAllEmojiWithoutDefectives()).removeAll(supported);
+            UnicodeSet missing =
+                    new UnicodeSet(current.getAllEmojiWithoutDefectives()).removeAll(supported);
             getCounts(out, source, "missing\tv" + current.getVersionString(), missing, MAX);
-            // getCounts(PrintWriter out, Source source, String title, UnicodeSet missing, int MAX) {
+            // getCounts(PrintWriter out, Source source, String title, UnicodeSet missing, int MAX)
+            // {
         }
         out.println(EMPTY_COLUMNS);
         Output<Boolean> printed = new Output<>(false);
@@ -258,7 +338,8 @@ public class EmojiImageData {
         out.println(EMPTY_COLUMNS);
         for (Source source : Source.VENDOR_SOURCES) {
             final UnicodeSet supported = getSupported(source);
-            //System.out.println(source + "\t" + supported.size() + "\t" + max(supported.toPattern(false), MAX));
+            // System.out.println(source + "\t" + supported.size() + "\t" +
+            // max(supported.toPattern(false), MAX));
             if (supported.isEmpty()) {
                 continue;
             }
@@ -305,36 +386,46 @@ public class EmojiImageData {
         }
     }
 
-    static final UnicodeSetFormatter PRETTY_HEX = new UnicodeSetFormatter()
-            .setRawToQuote(UnicodeSet.ALL_CODE_POINTS)
-            .setQuoter(new Hexer('x').setDoEscape(x -> UnicodeSet.ALL_CODE_POINTS.contains(x)));
+    static final UnicodeSetFormatter PRETTY_HEX =
+            new UnicodeSetFormatter()
+                    .setRawToQuote(UnicodeSet.ALL_CODE_POINTS)
+                    .setQuoter(
+                            new Hexer('x')
+                                    .setDoEscape(x -> UnicodeSet.ALL_CODE_POINTS.contains(x)));
 
-    static final UnicodeSetFormatter PRETTY_PLAIN = new UnicodeSetFormatter()
-            .setRawToQuote(UnicodeSet.EMPTY)
-            .setQuoter(new Hexer('x'));
+    static final UnicodeSetFormatter PRETTY_PLAIN =
+            new UnicodeSetFormatter().setRawToQuote(UnicodeSet.EMPTY).setQuoter(new Hexer('x'));
 
-    private static UnicodeSet getCounts(PrintWriter out, Source source, Breakdown breakdown, int MAX, Output<Boolean> printed) {
+    private static UnicodeSet getCounts(
+            PrintWriter out, Source source, Breakdown breakdown, int MAX, Output<Boolean> printed) {
         String title = breakdown.title;
-        UnicodeSet lastMissingSingletons = breakdown.getMissing(source); // new UnicodeSet(breakdown.uset).removeAll(getSupported(source));
+        UnicodeSet lastMissingSingletons =
+                breakdown.getMissing(
+                        source); // new UnicodeSet(breakdown.uset).removeAll(getSupported(source));
         if (!lastMissingSingletons.isEmpty()) {
             getCounts(out, source, title, lastMissingSingletons, MAX);
             printed.value = true;
         }
-        return breakdown.getSupported(source); // new UnicodeSet(breakdown.uset).retainAll(getSupported(source)).freeze();
+        return breakdown.getSupported(
+                source); // new UnicodeSet(breakdown.uset).retainAll(getSupported(source)).freeze();
     }
 
     static final String EMPTY_COLUMNS = "\t\t\t\t\t";
 
-    private static void getCounts(PrintWriter out, Source source, String title, UnicodeSet missing, int MAX) {
-        out.println(source
-                + "\t" + title
-                + "\t" + missing.size()
-                + "\t" + (MAX == -1 ? "hex\t" + PRETTY_HEX.format(missing)
-                : MAX == -2 ? "file\t" + formatFiles(source, missing)
-                : "plain\t" + max(PRETTY_PLAIN.format(missing), MAX)
-                        )
-                );
-
+    private static void getCounts(
+            PrintWriter out, Source source, String title, UnicodeSet missing, int MAX) {
+        out.println(
+                source
+                        + "\t"
+                        + title
+                        + "\t"
+                        + missing.size()
+                        + "\t"
+                        + (MAX == -1
+                                ? "hex\t" + PRETTY_HEX.format(missing)
+                                : MAX == -2
+                                        ? "file\t" + formatFiles(source, missing)
+                                        : "plain\t" + max(PRETTY_PLAIN.format(missing), MAX)));
     }
 
     private static String formatFiles(Source type, UnicodeSet lastMissingSingletons) {
@@ -343,7 +434,7 @@ public class EmojiImageData {
             if (result.length() != 0) {
                 result.append(", ");
             }
-            String fixed = s.replace(Emoji.EMOJI_VARIANT_STRING,"");
+            String fixed = s.replace(Emoji.EMOJI_VARIANT_STRING, "");
             String core = Emoji.buildFileName(fixed, "_");
             String suffix = type.getSuffix();
             String filename = type.getPrefix() + "_" + core + suffix;
@@ -357,6 +448,6 @@ public class EmojiImageData {
             return pattern;
         }
         int maxOffset = pattern.offsetByCodePoints(0, maxLen);
-        return pattern.substring(0,maxOffset) + "…";
+        return pattern.substring(0, maxOffset) + "…";
     }
 }

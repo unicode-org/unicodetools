@@ -1,5 +1,8 @@
 package org.unicode.jsp;
 
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.util.ULocale;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -11,25 +14,26 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.util.ULocale;
-
 public class LanguageCode {
 
-    static public final Pattern languageID = Pattern.compile(
-            "      (?: ( [a-z A-Z]{2,8} | [a-z A-Z]{2,3} [-_] [a-z A-Z]{3} )"
-                    + "      (?: [-_] ( [a-z A-Z]{4} ) )? "
-                    + "      (?: [-_] ( [a-z A-Z]{2} | [0-9]{3} ) )?"
-                    + "      (?: [-_] ( (?: [0-9 a-z A-Z]{5,8} | [0-9] [0-9 a-z A-Z]{3} ) (?: [-_] (?: [0-9 a-z A-Z]{5,8} | [0-9] [0-9 a-z A-Z]{3} ) )* ) )?"
-                    + "      (?: [-_] ( [a-w y-z A-W Y-Z] (?: [-_] [0-9 a-z A-Z]{2,8} )+ (?: [-_] [a-w y-z A-W Y-Z] (?: [-_] [0-9 a-z A-Z]{2,8} )+ )* ) )?"
-                    + "      (?: [-_] ( [xX] (?: [-_] [0-9 a-z A-Z]{1,8} )+ ) )? ) "
-                    + "    | ( [xX] (?: [-_] [0-9 a-z A-Z]{1,8} )+ )",
+    public static final Pattern languageID =
+            Pattern.compile(
+                    "      (?: ( [a-z A-Z]{2,8} | [a-z A-Z]{2,3} [-_] [a-z A-Z]{3} )"
+                            + "      (?: [-_] ( [a-z A-Z]{4} ) )? "
+                            + "      (?: [-_] ( [a-z A-Z]{2} | [0-9]{3} ) )?"
+                            + "      (?: [-_] ( (?: [0-9 a-z A-Z]{5,8} | [0-9] [0-9 a-z A-Z]{3} ) (?: [-_] (?: [0-9 a-z A-Z]{5,8} | [0-9] [0-9 a-z A-Z]{3} ) )* ) )?"
+                            + "      (?: [-_] ( [a-w y-z A-W Y-Z] (?: [-_] [0-9 a-z A-Z]{2,8} )+ (?: [-_] [a-w y-z A-W Y-Z] (?: [-_] [0-9 a-z A-Z]{2,8} )+ )* ) )?"
+                            + "      (?: [-_] ( [xX] (?: [-_] [0-9 a-z A-Z]{1,8} )+ ) )? ) "
+                            + "    | ( [xX] (?: [-_] [0-9 a-z A-Z]{1,8} )+ )",
                     Pattern.COMMENTS);
 
-    static final Pattern extensionID = Pattern.compile("[a-w y-z A-W Y-Z]([-_][0-9 a-z A-Z]{2,8})*");
-    static final Collection<String> QUALITY_EXCLUSIONS = new HashSet<String>(Arrays.asList("ti fo so kok ps cy sw ur pa pa_Guru uz_Latn ii haw az_Cyrl bo as zu ha ha_Latn uz_Arab om pa_Arab kw kl kk kk_Cyrl gv si uz uz_Cyrl"
-            .split("\\s+")));
+    static final Pattern extensionID =
+            Pattern.compile("[a-w y-z A-W Y-Z]([-_][0-9 a-z A-Z]{2,8})*");
+    static final Collection<String> QUALITY_EXCLUSIONS =
+            new HashSet<String>(
+                    Arrays.asList(
+                            "ti fo so kok ps cy sw ur pa pa_Guru uz_Latn ii haw az_Cyrl bo as zu ha ha_Latn uz_Arab om pa_Arab kw kl kk kk_Cyrl gv si uz uz_Cyrl"
+                                    .split("\\s+")));
 
     enum Subtag {
         language,
@@ -39,25 +43,31 @@ public class LanguageCode {
         extensions,
         privateUse,
         privateUse2;
+
         String get(Matcher m) {
-            return m.group(ordinal()+1);
+            return m.group(ordinal() + 1);
         }
     }
 
     static class MyHandler extends FileUtilities.SemiFileReader {
-        TreeMap<String,String> map = new TreeMap<String,String>();
+        TreeMap<String, String> map = new TreeMap<String, String>();
+
         protected boolean isCodePoint() {
             return false;
         }
+
         public boolean handleLine(int start, int end, String[] items) {
             map.put(items[0], items[1]);
             return true;
         }
     }
 
-    static final Map<String,String> names = ((MyHandler) new MyHandler().process(LanguageCode.class, "subtagNames.txt")).map;
-    static final Map<String,String> toAlpha3 = ((MyHandler) new MyHandler().process(LanguageCode.class, "alpha2_3.txt")).map;
-    static final Map<String,String> fixCodes = ((MyHandler)new MyHandler().process(LanguageCode.class, "fixCodes.txt")).map;
+    static final Map<String, String> names =
+            ((MyHandler) new MyHandler().process(LanguageCode.class, "subtagNames.txt")).map;
+    static final Map<String, String> toAlpha3 =
+            ((MyHandler) new MyHandler().process(LanguageCode.class, "alpha2_3.txt")).map;
+    static final Map<String, String> fixCodes =
+            ((MyHandler) new MyHandler().process(LanguageCode.class, "fixCodes.txt")).map;
 
     public static String validate(String input, ULocale ulocale) {
         StringBuilder builder = new StringBuilder();
@@ -79,25 +89,29 @@ public class LanguageCode {
         if (!m.matches()) {
             int i = input.length();
             for (; ; --i) {
-                final String fragment = input.substring(0,i);
+                final String fragment = input.substring(0, i);
                 m.reset(fragment).matches();
-                if(i == 0 || m.hitEnd()) {
-                    int posBefore = input.lastIndexOf('-', i-1) + 1;
+                if (i == 0 || m.hitEnd()) {
+                    int posBefore = input.lastIndexOf('-', i - 1) + 1;
                     int posAfter = input.indexOf('-', i);
                     if (posAfter < 0) {
                         posAfter = input.length();
                     }
-                    prefix = "<p><i><b>Ill-Formed Language Identifier: </b></i>" + input.substring(0, posBefore)
-                            + "<span class='x'>" + input.substring(posBefore, i)
-                            + "×"
-                            + input.substring(i, posAfter)
-                            + "</span>" + input.substring(posAfter, input.length())
-                            + "<br><i>Couldn't parse past the point marked with <span class='x'>×</span>.</i></p>\n";
+                    prefix =
+                            "<p><i><b>Ill-Formed Language Identifier: </b></i>"
+                                    + input.substring(0, posBefore)
+                                    + "<span class='x'>"
+                                    + input.substring(posBefore, i)
+                                    + "×"
+                                    + input.substring(i, posAfter)
+                                    + "</span>"
+                                    + input.substring(posAfter, input.length())
+                                    + "<br><i>Couldn't parse past the point marked with <span class='x'>×</span>.</i></p>\n";
                     if (posBefore <= 0) {
                         builder.append(prefix);
                         return;
                     }
-                    input = input.substring(0, posBefore-1);
+                    input = input.substring(0, posBefore - 1);
                     m.reset(input);
                     if (!m.matches()) {
                         builder.append(prefix);
@@ -108,7 +122,8 @@ public class LanguageCode {
             }
         }
         int start = builder.length();
-        builder.append("<table>\n").append(getLine("th", "Type", "2.1", "Code", "Name", "Replacement"));
+        builder.append("<table>\n")
+                .append(getLine("th", "Type", "2.1", "Code", "Name", "Replacement"));
 
         String languageCode = Subtag.language.get(m);
         if (languageCode != null) {
@@ -130,7 +145,8 @@ public class LanguageCode {
                 }
                 fixed = fixCodes.get(languageCode);
             } else { // must be 2
-                // cases are the following. For the replacement, we use fix(extlang) if valid, otherwise fix(lang) if valid, otherwise fix(extlang)
+                // cases are the following. For the replacement, we use fix(extlang) if valid,
+                // otherwise fix(lang) if valid, otherwise fix(extlang)
                 // zh-cmn - valid => cmn
                 // en-cmn - valid => cmn // but shouldn't be; by canonicalization en-cmn = cmn
                 // eng-cmn - invalid => cmn
@@ -148,13 +164,15 @@ public class LanguageCode {
                     if (extLangName == null) {
                         languageName = "<i>invalid base and extlang codes</i>";
                     } else {
-                        languageName = "<i>invalid base and extlang code - extlang would be valid base-lang code</i>";
+                        languageName =
+                                "<i>invalid base and extlang code - extlang would be valid base-lang code</i>";
                     }
                 } else if (invalidExtlang) {
                     if (extLangName == null) {
                         languageName = "<i>invalid extlang code</i>";
                     } else {
-                        languageName = "<i>invalid extlang code - would be valid base-lang code</i>";
+                        languageName =
+                                "<i>invalid extlang code - would be valid base-lang code</i>";
                     }
                 } else if (invalidLanguageCode) {
                     languageName = "<i>invalid base-lang code</i>";
@@ -164,13 +182,20 @@ public class LanguageCode {
                     if (languageName.startsWith("@")) {
                         languageName = languageName.substring(1);
                     }
-                    //languageAndLink = getLanguageAndLink(extlang);
+                    // languageAndLink = getLanguageAndLink(extlang);
                     languageCode = extlang;
                 }
                 fixed = fixCodes.get(languageCode);
                 languageAndLink = originalCode;
             }
-            builder.append(getLine("td", "Language", "2.2.1", languageAndLink, languageName, getCodeAndLink(Subtag.language, fixed, ulocale)));
+            builder.append(
+                    getLine(
+                            "td",
+                            "Language",
+                            "2.2.1",
+                            languageAndLink,
+                            languageName,
+                            getCodeAndLink(Subtag.language, fixed, ulocale)));
             addFixed(canonical, languageCode, fixed);
         }
 
@@ -185,7 +210,14 @@ public class LanguageCode {
                 script = getCodeAndLink(Subtag.script, script, ulocale);
             }
             final String fixed = fixCodes.get(scriptCode);
-            builder.append(getLine("td", "Script", "2.2.3", script, scriptName, getCodeAndLink(Subtag.script, fixed, ulocale)));
+            builder.append(
+                    getLine(
+                            "td",
+                            "Script",
+                            "2.2.3",
+                            script,
+                            scriptName,
+                            getCodeAndLink(Subtag.script, fixed, ulocale)));
             addFixed(canonical, scriptCode, fixed);
         }
 
@@ -200,7 +232,14 @@ public class LanguageCode {
                 region = getCodeAndLink(Subtag.region, region, ulocale);
             }
             final String fixed = fixCodes.get(regionCode);
-            builder.append(getLine("td", "Region", "2.2.4", region, regionName, getCodeAndLink(Subtag.region, fixed, ulocale)));
+            builder.append(
+                    getLine(
+                            "td",
+                            "Region",
+                            "2.2.4",
+                            region,
+                            regionName,
+                            getCodeAndLink(Subtag.region, fixed, ulocale)));
             addFixed(canonical, regionCode, fixed);
         }
 
@@ -215,7 +254,10 @@ public class LanguageCode {
                     variantName = "<i>invalid Code</i>";
                 } else {
                     variantName = getSubtagName(variant, ulocale, true);
-                    variant = "<a href='http://tools.ietf.org/html/draft-ietf-ltru-4645bis' target='iso'>" + variant + "</a>";
+                    variant =
+                            "<a href='http://tools.ietf.org/html/draft-ietf-ltru-4645bis' target='iso'>"
+                                    + variant
+                                    + "</a>";
                 }
                 final String fixed = fixCodes.get(variantCode);
                 builder.append(getLine("td", "Variant", "2.2.5", variant, variantName, fixed));
@@ -251,13 +293,24 @@ public class LanguageCode {
         String canonicalString = canonical.toString();
         String insert = "";
         if (!canonicalString.equals(oldInput)) {
-            insert = "<p>Canonical Form: <b><a href='languageid.jsp?a=" + canonical + "' target='languageid'>" + canonical + "</a></b></p>\n";
+            insert =
+                    "<p>Canonical Form: <b><a href='languageid.jsp?a="
+                            + canonical
+                            + "' target='languageid'>"
+                            + canonical
+                            + "</a></b></p>\n";
         }
         ULocale minimized = ULocale.minimizeSubtags(new ULocale(canonicalString));
         if (minimized != null) {
             String minimizedCode = minimized.toLanguageTag();
             if (!minimizedCode.equals(canonicalString)) {
-                insert += "<p>Minimal Form: <b><a href='languageid.jsp?a=" + minimizedCode + "' target='languageid'>" + minimizedCode + "</a></b></p>\n";;
+                insert +=
+                        "<p>Minimal Form: <b><a href='languageid.jsp?a="
+                                + minimizedCode
+                                + "' target='languageid'>"
+                                + minimizedCode
+                                + "</a></b></p>\n";
+                ;
             }
         }
         if (insert != null) {
@@ -306,30 +359,56 @@ public class LanguageCode {
             name = "";
         }
         switch (subtag) {
-        case region: {
-            if (code.compareTo("A") < 0) {
-                code = "<a href='http://unstats.un.org/unsd/methods/m49/m49regin.htm' target='iso'" + name + ">" + code + "</a>";
-            } else {
-                code = "<a href='http://www.iso.org/iso/country_codes/iso_3166_code_lists/english_country_names_and_code_elements.htm' target='iso'" + name + ">" + code + "</a>";
-            }
-            return code;
-        }
-        case script: {
-            code = "<a href='http://unicode.org/iso15924/iso15924-en.html' target='iso'" + name + ">" + code + "</a>";
-            return code;
-        }
-        case language: {
-            String alpha3 = code;
-            if (code.length() == 2) {
-                alpha3 = toAlpha3.get(code);
-                if (alpha3 == null) {
-                    alpha3 = code;
+            case region:
+                {
+                    if (code.compareTo("A") < 0) {
+                        code =
+                                "<a href='http://unstats.un.org/unsd/methods/m49/m49regin.htm' target='iso'"
+                                        + name
+                                        + ">"
+                                        + code
+                                        + "</a>";
+                    } else {
+                        code =
+                                "<a href='http://www.iso.org/iso/country_codes/iso_3166_code_lists/english_country_names_and_code_elements.htm' target='iso'"
+                                        + name
+                                        + ">"
+                                        + code
+                                        + "</a>";
+                    }
+                    return code;
                 }
-            }
-            code = "<a href='http://www.sil.org/iso639-3/documentation.asp?id=" + alpha3 + "' target='iso'" + name + ">" + code + "</a>";
-            return code;
-        }
-        default: throw new IllegalArgumentException();
+            case script:
+                {
+                    code =
+                            "<a href='http://unicode.org/iso15924/iso15924-en.html' target='iso'"
+                                    + name
+                                    + ">"
+                                    + code
+                                    + "</a>";
+                    return code;
+                }
+            case language:
+                {
+                    String alpha3 = code;
+                    if (code.length() == 2) {
+                        alpha3 = toAlpha3.get(code);
+                        if (alpha3 == null) {
+                            alpha3 = code;
+                        }
+                    }
+                    code =
+                            "<a href='http://www.sil.org/iso639-3/documentation.asp?id="
+                                    + alpha3
+                                    + "' target='iso'"
+                                    + name
+                                    + ">"
+                                    + code
+                                    + "</a>";
+                    return code;
+                }
+            default:
+                throw new IllegalArgumentException();
         }
     }
 
@@ -364,26 +443,33 @@ public class LanguageCode {
 
     private static String getIcuName(String code, ULocale ulocale) {
         String icuName = code;
-        switch(code.length()) {
-        case 2:
-        case 3:
-            icuName = code.compareTo("a") < 0
-            ? ULocale.getDisplayCountry("und-" + code, ulocale)
-                    : ULocale.getDisplayLanguage(code, ulocale);
-            break;
-        case 4:
-            if (code.compareTo("A") >= 0) {
-                icuName = ULocale.getDisplayScript("und-" + code, ulocale);
+        switch (code.length()) {
+            case 2:
+            case 3:
+                icuName =
+                        code.compareTo("a") < 0
+                                ? ULocale.getDisplayCountry("und-" + code, ulocale)
+                                : ULocale.getDisplayLanguage(code, ulocale);
                 break;
-            } // otherwise fall through!
-        default:
-            icuName = ULocale.getDisplayVariant("und-Latn-AQ-" + code, ulocale).toLowerCase();
-            break;
+            case 4:
+                if (code.compareTo("A") >= 0) {
+                    icuName = ULocale.getDisplayScript("und-" + code, ulocale);
+                    break;
+                } // otherwise fall through!
+            default:
+                icuName = ULocale.getDisplayVariant("und-Latn-AQ-" + code, ulocale).toLowerCase();
+                break;
         }
         return icuName;
     }
 
-    private static String getLine(String element, String type, String specSection, String subtag, String name, String replacement) {
+    private static String getLine(
+            String element,
+            String type,
+            String specSection,
+            String subtag,
+            String name,
+            String replacement) {
         if (name == null) {
             name = "<i>invalid</i>";
         }
@@ -392,9 +478,35 @@ public class LanguageCode {
         } else {
             replacement = "";
         }
-        final String typeAndLink = specSection == null ? type : "<a href='http://tools.ietf.org/html/draft-ietf-ltru-4646bis#section-" + specSection + "' target='bcp47bis'>" + type + "</a>";
-        return "<tr><" + element + ">" + typeAndLink + "</" + element + "><" + element + ">" + subtag + "</" + element
-                + "><" + element + ">" + name + "</" + element + ">" + replacement + "</tr>\n";
+        final String typeAndLink =
+                specSection == null
+                        ? type
+                        : "<a href='http://tools.ietf.org/html/draft-ietf-ltru-4646bis#section-"
+                                + specSection
+                                + "' target='bcp47bis'>"
+                                + type
+                                + "</a>";
+        return "<tr><"
+                + element
+                + ">"
+                + typeAndLink
+                + "</"
+                + element
+                + "><"
+                + element
+                + ">"
+                + subtag
+                + "</"
+                + element
+                + "><"
+                + element
+                + ">"
+                + name
+                + "</"
+                + element
+                + ">"
+                + replacement
+                + "</tr>\n";
     }
 
     public static String getLanguageOptions(ULocale toLocalizeInto) {
@@ -403,7 +515,8 @@ public class LanguageCode {
             toLocalizeInto = ULocale.ENGLISH;
         }
         ULocale[] list = ULocale.getAvailableLocales();
-        Map<String, String> sorted = new TreeMap<String, String>(Collator.getInstance(toLocalizeInto));
+        Map<String, String> sorted =
+                new TreeMap<String, String>(Collator.getInstance(toLocalizeInto));
         for (ULocale ulocale : list) {
             String country = ulocale.getCountry();
             if (country.length() != 0) {
@@ -423,17 +536,17 @@ public class LanguageCode {
         }
         return result.toString();
         /*
-    <option value='en' <%= (choice.equals("en") ? "selected" : "")%>>English</option>
-    <option value='de' <%= (choice.equals("de") ? "selected" : "")%>>German</option>
-    <option <%= (choice.equals("fr") ? "selected" : "")%>>fr</option>
-    <option <%= (choice.equals("it") ? "selected" : "")%>>it</option>
-    <option <%= (choice.equals("es") ? "selected" : "")%>>es</option>
-    <option value='gsw' <%= (choice.equals("gsw") ? "selected" : "")%>>Swiss German</option>
-    <option <%= (choice.equals("pt") ? "selected" : "")%>>pt</option>
-    <option <%= (choice.equals("zh") ? "selected" : "")%>>zh</option>
-    <option <%= (choice.equals("ja") ? "selected" : "")%>>ja</option>
-    <option <%= (choice.equals("hi") ? "selected" : "")%>>hi</option>
-         */
+        <option value='en' <%= (choice.equals("en") ? "selected" : "")%>>English</option>
+        <option value='de' <%= (choice.equals("de") ? "selected" : "")%>>German</option>
+        <option <%= (choice.equals("fr") ? "selected" : "")%>>fr</option>
+        <option <%= (choice.equals("it") ? "selected" : "")%>>it</option>
+        <option <%= (choice.equals("es") ? "selected" : "")%>>es</option>
+        <option value='gsw' <%= (choice.equals("gsw") ? "selected" : "")%>>Swiss German</option>
+        <option <%= (choice.equals("pt") ? "selected" : "")%>>pt</option>
+        <option <%= (choice.equals("zh") ? "selected" : "")%>>zh</option>
+        <option <%= (choice.equals("ja") ? "selected" : "")%>>ja</option>
+        <option <%= (choice.equals("hi") ? "selected" : "")%>>hi</option>
+             */
     }
 
     public static String getLocaleName(ULocale toBeLocalized, ULocale toLocalizeInto) {

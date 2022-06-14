@@ -3,9 +3,7 @@ package org.unicode.text.utility;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.MakeUnicodeFiles;
 import org.unicode.text.utility.Utility.RuntimeIOException;
 
 public class UnicodeDataFile {
@@ -13,22 +11,28 @@ public class UnicodeDataFile {
     private String newFile;
     private String mostRecent;
     private String filename;
-    private UnicodeDataFile(){};
+
+    private UnicodeDataFile() {}
+    ;
+
     private String fileType = ".txt";
     private boolean skipCopyright = true;
 
-    public static UnicodeDataFile openAndWriteHeader(String directory, String filename) throws IOException {
+    public static UnicodeDataFile openAndWriteHeader(String directory, String filename)
+            throws IOException {
         return new UnicodeDataFile(directory, filename, false);
     }
 
-    public static UnicodeDataFile openHTMLAndWriteHeader(String directory, String filename) throws IOException {
+    public static UnicodeDataFile openHTMLAndWriteHeader(String directory, String filename)
+            throws IOException {
         return new UnicodeDataFile(directory, filename, true);
     }
 
     private UnicodeDataFile(String directory, String filename, boolean isHTML) throws IOException {
         fileType = isHTML ? ".html" : ".txt";
         // When we still generated files with version infixes, the following line was:
-        // newSuffix = FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE, true).getFileSuffix(fileType);
+        // newSuffix = FileInfix.fromFlags(Settings.BUILD_FOR_COMPARE,
+        // true).getFileSuffix(fileType);
         // newFile = directory + filename + newSuffix;
         newFile = directory + filename + fileType;
         out = Utility.openPrintWriterGenDir(newFile, Utility.UTF8_UNIX);
@@ -36,26 +40,36 @@ public class UnicodeDataFile {
         // exist somewhere in the input data folder:
         // It will look through all versioned folders and their subfolders,
         // and eventually fail to find such a file.
-        // We skip this when we won't look at what we find, or when we know that we won't find anything.
+        // We skip this when we won't look at what we find, or when we know that we won't find
+        // anything.
         // For known pure output files, we could use a different constructor, or add a parameter.
         boolean skipRecentFile =
                 // close() will not even look at mostRecent.
-                Settings.BUILD_FOR_COMPARE ||
-                // These folders exist only in the tools output, not in the tools input.
-                directory.endsWith("/cldr/") ||
-                directory.endsWith("/extra/");
-        mostRecent = skipRecentFile ? null :
-            Utility.getMostRecentUnicodeDataFile(
-                UnicodeDataFile.fixFile(filename), Default.ucd().getVersion(), true, true, fileType);
+                Settings.BUILD_FOR_COMPARE
+                        ||
+                        // These folders exist only in the tools output, not in the tools input.
+                        directory.endsWith("/cldr/")
+                        || directory.endsWith("/extra/");
+        mostRecent =
+                skipRecentFile
+                        ? null
+                        : Utility.getMostRecentUnicodeDataFile(
+                                UnicodeDataFile.fixFile(filename),
+                                Default.ucd().getVersion(),
+                                true,
+                                true,
+                                fileType);
         this.filename = filename;
 
         if (!isHTML) {
             out.println(Utility.getDataHeader(filename + FileInfix.plain.getFileSuffix(".txt")));
-            out.println("#\n# Unicode Character Database"
-                    + "\n#   For documentation, see https://www.unicode.org/reports/tr44/");
+            out.println(
+                    "#\n# Unicode Character Database"
+                            + "\n#   For documentation, see https://www.unicode.org/reports/tr44/");
         }
         try {
-            Utility.appendFile(Settings.SRC_UCD_DIR + filename + "Header" + fileType, Utility.UTF8_UNIX, out);
+            Utility.appendFile(
+                    Settings.SRC_UCD_DIR + filename + "Header" + fileType, Utility.UTF8_UNIX, out);
         } catch (final RuntimeIOException e) {
             if (!(e.getCause() instanceof FileNotFoundException)) {
                 throw e;
@@ -77,7 +91,8 @@ public class UnicodeDataFile {
         }
         out.close();
         if (!Settings.BUILD_FOR_COMPARE) {
-            Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), null, skipCopyright);
+            Utility.renameIdentical(
+                    mostRecent, Utility.getOutputName(newFile), null, skipCopyright);
         }
     }
 
@@ -87,11 +102,12 @@ public class UnicodeDataFile {
      * plain version infix (ArabicShaping-11.0.0.txt)<br>
      */
     public enum FileInfix {
-        none, plain;
+        none,
+        plain;
 
         public String getFileSuffix(String fileType) {
             if (this == none) {
-                return fileType;  // avoid string concatenation
+                return fileType; // avoid string concatenation
             }
             return "-" + Default.ucd().getVersion() + fileType;
         }
@@ -105,22 +121,21 @@ public class UnicodeDataFile {
         }
     }
 
-
-    //Remove "d1" from DerivedJoiningGroup-3.1.0d1.txt type names
+    // Remove "d1" from DerivedJoiningGroup-3.1.0d1.txt type names
 
     public static String fixFile(String s) {
         final int len = s.length();
         if (!s.endsWith(".txt")) {
             return s;
         }
-        if (s.charAt(len-6) != 'd') {
+        if (s.charAt(len - 6) != 'd') {
             return s;
         }
-        final char c = s.charAt(len-5);
+        final char c = s.charAt(len - 5);
         if (c != 'X' && (c < '0' || '9' < c)) {
             return s;
         }
-        s = s.substring(0,len-6) + s.substring(len-4);
+        s = s.substring(0, len - 6) + s.substring(len - 4);
         System.out.println("Fixing File Name: " + s);
         return s;
     }
@@ -134,4 +149,3 @@ public class UnicodeDataFile {
         return this;
     }
 }
-

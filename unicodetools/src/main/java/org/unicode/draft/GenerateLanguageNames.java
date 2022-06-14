@@ -1,14 +1,12 @@
 package org.unicode.draft;
 
+import com.ibm.icu.util.ULocale;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.cldr.util.StandardCodes;
-
-import com.ibm.icu.util.ULocale;
 
 public class GenerateLanguageNames {
 
@@ -16,7 +14,7 @@ public class GenerateLanguageNames {
         getNames();
     }
 
-    static String[][] langList =  {
+    static String[][] langList = {
         {"Chinese (Traditional)", "Chinese (Traditional Han)"},
         {"Bhojpuri", "Bihari"},
         {"Divehi", "Dhivehi"},
@@ -27,7 +25,6 @@ public class GenerateLanguageNames {
         {"Scottish Gaelic", "Scots Gaelic"},
         {"Sinhala", "Sinhalese"},
         {"Western Frisian", "Frisian"},
-
         {"English", "English"},
         {"Chinese", "Chinese (Simplified)"},
         {"Spanish", "Spanish"},
@@ -141,9 +138,10 @@ public class GenerateLanguageNames {
         {"Laothian", "Lao"},
         {"Luxembourgish", "lb"},
     };
+
     static void getNames() {
-        final Map<String,String> nameToLocale = new TreeMap();
-        final Map<String,String> localeToName = new TreeMap();
+        final Map<String, String> nameToLocale = new TreeMap();
+        final Map<String, String> localeToName = new TreeMap();
         final StandardCodes sc = StandardCodes.make();
         for (final String lang : sc.getAvailableCodes("language")) {
             final String[] names = sc.getData("language", lang).split("▪");
@@ -166,7 +164,13 @@ public class GenerateLanguageNames {
             nameToLocale.put(name, lang);
             localeToName.put(lang, name);
         }
-        final Set<String> locales = new TreeSet<String>(Arrays.asList("ak", "ba", "bh", "bs", "ha", "haw", "ia", "ig", "iw", "lg", "ln", "mfe", "mg", "mo", "nn", "no", "om", "pt-BR", "pt-PT", "rm", "rn", "rw", "sh", "sn", "so", "sr-ME", "st", "ti", "tk", "tl", "tn", "tw", "xh", "yi", "zh-CN", "zh-TW", "zu"));
+        final Set<String> locales =
+                new TreeSet<String>(
+                        Arrays.asList(
+                                "ak", "ba", "bh", "bs", "ha", "haw", "ia", "ig", "iw", "lg", "ln",
+                                "mfe", "mg", "mo", "nn", "no", "om", "pt-BR", "pt-PT", "rm", "rn",
+                                "rw", "sh", "sn", "so", "sr-ME", "st", "ti", "tk", "tl", "tn", "tw",
+                                "xh", "yi", "zh-CN", "zh-TW", "zu"));
         final Set<String> missing = new TreeSet<String>();
         for (final String[] pair : langList) {
             String locale = nameToLocale.get(pair[0]);

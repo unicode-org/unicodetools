@@ -1,16 +1,16 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA_Data.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA_Data.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCA;
 
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -20,15 +20,11 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.text.UCA.UCA.Remap;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.IntStack;
 import org.unicode.text.utility.UTF16Plus;
-
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
 
 public class UCA_Data {
     static final boolean DEBUG = false;
@@ -62,35 +58,33 @@ public class UCA_Data {
     private final Map<String, CEList> cesMap = new HashMap<String, CEList>();
 
     /**
-     * Maps single-character strings to one of the longest mappings
-     * (single-character or contractions) starting with those characters.
-     * (null for no mappings)
+     * Maps single-character strings to one of the longest mappings (single-character or
+     * contractions) starting with those characters. (null for no mappings)
      */
     private final Map<String, String> longestMap = new HashMap<String, String>();
 
     /**
-     * Set of single-character strings that start contractions
-     * which end with a non-zero combining class.
+     * Set of single-character strings that start contractions which end with a non-zero combining
+     * class.
      */
     private final Set<String> hasDiscontiguousContractions = new HashSet<String>();
 
     /**
-     * Set of all contraction strings.
-     * Same as all multi-character strings in cesMap, except in code point order.
-     * Used only for API that accesses this set.
+     * Set of all contraction strings. Same as all multi-character strings in cesMap, except in code
+     * point order. Used only for API that accesses this set.
      */
-    private final Set<String> contractions = new TreeSet<String>(
-            new UTF16.StringComparator(true, false, UTF16.StringComparator.FOLD_CASE_DEFAULT));
+    private final Set<String> contractions =
+            new TreeSet<String>(
+                    new UTF16.StringComparator(
+                            true, false, UTF16.StringComparator.FOLD_CASE_DEFAULT));
 
     {
         checkConsistency();
     }
 
-    /**
-     * Returns true if there is an explicit mapping for ch, or one that starts with ch.
-     */
+    /** Returns true if there is an explicit mapping for ch, or one that starts with ch. */
     public boolean codePointHasExplicitMappings(int ch) {
-        final String s = Character.toString((char)ch);
+        final String s = Character.toString((char) ch);
         final String longest = longestMap.get(s);
         return longest != null;
     }
@@ -152,7 +146,8 @@ public class UCA_Data {
                 } else {
                     StringBuilder reps = statistics.representativePrimarySeconds.get(key1);
                     if (reps == null) {
-                        statistics.representativePrimarySeconds.put(key1, reps = new StringBuilder());
+                        statistics.representativePrimarySeconds.put(
+                                key1, reps = new StringBuilder());
                     }
                     reps.appendCodePoint(firstCodePoint);
                 }
@@ -187,28 +182,28 @@ public class UCA_Data {
             }
             // gather some statistics
             if (key1 != 0 && key1 < statistics.MIN1) {
-                statistics.MIN1 = (char)key1;
+                statistics.MIN1 = (char) key1;
             }
             if (key2 != 0 && key2 < statistics.MIN2) {
-                statistics.MIN2 = (char)key2;
+                statistics.MIN2 = (char) key2;
             }
             if (key3 != 0 && key3 < statistics.MIN3) {
-                statistics.MIN3 = (char)key3;
+                statistics.MIN3 = (char) key3;
             }
             if (key1 > statistics.MAX1) {
-                statistics.MAX1 = (char)key1;
+                statistics.MAX1 = (char) key1;
             }
             if (key2 > statistics.MAX2) {
-                statistics.MAX2 = (char)key2;
+                statistics.MAX2 = (char) key2;
             }
             if (key3 > statistics.MAX3) {
-                statistics.MAX3 = (char)key3;
+                statistics.MAX3 = (char) key3;
             }
         }
 
-
         if (DEBUG_SHOW_ADD) {
-            System.out.println("Adding: " + ucd.getCodeAndName(sourceString) + CEList.toString(ces));
+            System.out.println(
+                    "Adding: " + ucd.getCodeAndName(sourceString) + CEList.toString(ces));
         }
 
         cesMap.put(sourceString, new CEList(ces));
@@ -229,16 +224,16 @@ public class UCA_Data {
                 hasDiscontiguousContractions.add(firstChar);
             }
         }
-        //if (DEBUG) checkConsistency();
+        // if (DEBUG) checkConsistency();
     }
 
     /**
-     * Returns the CEs for the longest matching buffer substring starting at i
-     * and moves the index to just after that substring.
-     * Discontiguously matched combining marks are removed from the buffer.
+     * Returns the CEs for the longest matching buffer substring starting at i and moves the index
+     * to just after that substring. Discontiguously matched combining marks are removed from the
+     * buffer.
      *
-     * <p>If there is no mapping for any character or substring at i,
-     * then the index is unchanged and null is returned.
+     * <p>If there is no mapping for any character or substring at i, then the index is unchanged
+     * and null is returned.
      */
     public CEList fetchCEs(StringBuffer buffer, int[] index) {
         final int i = index[0];
@@ -265,7 +260,7 @@ public class UCA_Data {
             }
             j = next;
         }
-        j = i + s.length();  // Limit of the longest contiguous match.
+        j = i + s.length(); // Limit of the longest contiguous match.
 
         // Discontiguous-contraction matching.
         if (maybeDiscontiguous && s.length() < longest.length() && j < buffer.length()) {
@@ -280,17 +275,18 @@ public class UCA_Data {
                 while (k < buffer.length()) {
                     nextCodePoint = buffer.codePointAt(k);
                     cc = toD.getCanonicalClass(nextCodePoint);
-                    if (cc == 0) {  // stop with any zero (non-accent)
+                    if (cc == 0) { // stop with any zero (non-accent)
                         break;
                     }
                     final int next = k + Character.charCount(nextCodePoint);
-                    if (cc == prevCC) {  // blocked if same class as last
+                    if (cc == prevCC) { // blocked if same class as last
                         k = next;
                         continue;
                     }
-                    prevCC = cc;  // remember for next time
+                    prevCC = cc; // remember for next time
                     // nextString = s + nextCodePoint
-                    final String nextString = new StringBuilder(s).appendCodePoint(nextCodePoint).toString();
+                    final String nextString =
+                            new StringBuilder(s).appendCodePoint(nextCodePoint).toString();
                     final CEList nextCEs = cesMap.get(nextString);
                     if (nextCEs == null) {
                         k = next;
@@ -313,12 +309,16 @@ public class UCA_Data {
         return ces;
     }
 
-    private static final UnicodeSet ILLEGAL_CODE_POINTS = new UnicodeSet("[:cs:]").freeze(); // doesn't depend on version
+    private static final UnicodeSet ILLEGAL_CODE_POINTS =
+            new UnicodeSet("[:cs:]").freeze(); // doesn't depend on version
 
     private void checkForIllegal(String string) {
-        if(ILLEGAL_CODE_POINTS.containsSome(string)) {
-            throw new IllegalArgumentException("String contains illegal characters: <"
-                    + string + "> " + new UnicodeSet().addAll(string).retainAll(ILLEGAL_CODE_POINTS));
+        if (ILLEGAL_CODE_POINTS.containsSome(string)) {
+            throw new IllegalArgumentException(
+                    "String contains illegal characters: <"
+                            + string
+                            + "> "
+                            + new UnicodeSet().addAll(string).retainAll(ILLEGAL_CODE_POINTS));
         }
     }
 
@@ -329,6 +329,7 @@ public class UCA_Data {
     private class MappingComparator implements Comparator<String> {
         private final UTF16.StringComparator cmp =
                 new UTF16.StringComparator(true, false, UTF16.StringComparator.FOLD_CASE_DEFAULT);
+
         @Override
         public int compare(String left, String right) {
             // Note: add() enforces that mapping strings are not empty strings.
@@ -343,11 +344,10 @@ public class UCA_Data {
         }
     }
 
-    /**
-     * Returns an immutable Map of sorted strings (characters &amp; contractions) to CEs.
-     */
+    /** Returns an immutable Map of sorted strings (characters &amp; contractions) to CEs. */
     SortedMap<String, CEList> getSortedMappings() {
-        final SortedMap<String, CEList> sorted = new TreeMap<String, CEList>(new MappingComparator());
+        final SortedMap<String, CEList> sorted =
+                new TreeMap<String, CEList>(new MappingComparator());
         sorted.putAll(cesMap);
         return Collections.unmodifiableSortedMap(sorted);
     }

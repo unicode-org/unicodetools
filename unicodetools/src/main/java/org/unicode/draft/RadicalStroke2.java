@@ -1,5 +1,7 @@
 package org.unicode.draft;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,15 +10,10 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.unicode.cldr.draft.CodePoints;
-import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.PatternCache;
 import org.unicode.text.utility.Settings;
-
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UnicodeSet;
 
 public class RadicalStroke2 {
     // U+3433 kRSUnicode 9.3
@@ -43,14 +40,18 @@ public class RadicalStroke2 {
             Matcher radStrokeMatcher = RAD_STROKE.matcher("");
             Matcher radDataMatcher = RAD_DATA.matcher("");
             Matcher iiCore = IICORE.matcher("");
-            radStrokesToRadToRemainingStrokes = new TreeMap<Integer, Map<String, Map<Integer, UnicodeSet>>>();
-            remainder = ScriptCategories2.parseUnicodeSet("[:script=Han:]").removeAll(GeneratePickerData2.SKIP);
+            radStrokesToRadToRemainingStrokes =
+                    new TreeMap<Integer, Map<String, Map<Integer, UnicodeSet>>>();
+            remainder =
+                    ScriptCategories2.parseUnicodeSet("[:script=Han:]")
+                            .removeAll(GeneratePickerData2.SKIP);
             String dataDir = Settings.CLDR.UCD_DATA_DIRECTORY + "/Unihan/";
 
-            BufferedReader in = new BufferedReader(
-                new FileReader(
-                    Subheader2.getFileNameFromPattern(
-                        dataDir, "Unihan_RadicalStrokeCounts.*\\.txt")));
+            BufferedReader in =
+                    new BufferedReader(
+                            new FileReader(
+                                    Subheader2.getFileNameFromPattern(
+                                            dataDir, "Unihan_RadicalStrokeCounts.*\\.txt")));
 
             while (true) {
                 String line = in.readLine();
@@ -70,10 +71,12 @@ public class RadicalStroke2 {
                         Integer radicalChar = ScriptCategories2.RADICAL_NUM2CHAR.get(radical);
                         if (radicalChar == null) {
                             in.close();
-                            throw new IllegalArgumentException("No radical value for <" + radical + ">");
+                            throw new IllegalArgumentException(
+                                    "No radical value for <" + radical + ">");
                         }
                         charToRadical.put(cp, radicalChar);
-                        int radicalStrokes = ScriptCategories2.RADICAL_CHAR2STROKES.get(radicalChar);
+                        int radicalStrokes =
+                                ScriptCategories2.RADICAL_CHAR2STROKES.get(radicalChar);
                         int remainingStrokes = Integer.parseInt(radDataMatcher.group(2));
                         charToTotalStrokes.put(cp, radicalStrokes + remainingStrokes);
                         charToRemainingStrokes.put(cp, remainingStrokes);
@@ -81,10 +84,15 @@ public class RadicalStroke2 {
                         // if (radical.startsWith("211")) {
                         // System.out.println(line);
                         // }
-                        // String baseRadical = radical.endsWith("'") ? radical.substring(0, radical.length()-1) :
+                        // String baseRadical = radical.endsWith("'") ? radical.substring(0,
+                        // radical.length()-1) :
                         // radical;
-                        RadicalStroke2.mapToUnicodeSetAdd(radStrokesToRadToRemainingStrokes, radicalStrokes, radical,
-                            remainingStrokes, cp);
+                        RadicalStroke2.mapToUnicodeSetAdd(
+                                radStrokesToRadToRemainingStrokes,
+                                radicalStrokes,
+                                radical,
+                                remainingStrokes,
+                                cp);
                         remainder.remove(cp);
                         // if (radDataMatcher.group(2).equals("0") && radical.endsWith("'")) {
                         // String radicalString = Normalizer.normalize(cp, Normalizer.NFKC);
@@ -92,7 +100,8 @@ public class RadicalStroke2 {
                         // if (old == null) {
                         // radicalToChar.put(radical, radicalString);
                         // } else if (!radicalString.equals(old)) {
-                        // System.out.println("Duplicate radical: " + line + " with " + radicalString + " and " + old);
+                        // System.out.println("Duplicate radical: " + line + " with " +
+                        // radicalString + " and " + old);
                         // }
                         // }
                     }
@@ -108,7 +117,8 @@ public class RadicalStroke2 {
             charToRemainingStrokes.freeze();
             charToRadical.freeze();
 
-            radStrokesToRadToRemainingStrokes = CldrUtility.protectCollection(radStrokesToRadToRemainingStrokes);
+            radStrokesToRadToRemainingStrokes =
+                    CldrUtility.protectCollection(radStrokesToRadToRemainingStrokes);
 
             // UnicodeSet temp = new UnicodeSet();
             // for (UnicodeSetIterator it = new
@@ -116,24 +126,33 @@ public class RadicalStroke2 {
             // temp.add(it.codepoint);
             // if (temp.size() >= 800) {
             // int code = temp.charAt(0);
-            // CATEGORYTABLE.add("Han (CJK)", false, UTF16.valueOf(code) + " Han " + toHex(code, false), false, temp);
+            // CATEGORYTABLE.add("Han (CJK)", false, UTF16.valueOf(code) + " Han " + toHex(code,
+            // false), false, temp);
             // temp.clear();
             // }
             // }
             // if (temp.size() > 0) {
             // int code = temp.charAt(0);
-            // CATEGORYTABLE.add("Han (CJK)", false, UTF16.valueOf(code) + " Han " + toHex(code, false), false, temp);
+            // CATEGORYTABLE.add("Han (CJK)", false, UTF16.valueOf(code) + " Han " + toHex(code,
+            // false), false, temp);
             // }
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
         }
     }
 
-    static <T> void mapToUnicodeSetAdd(Map<Integer, Map<String, Map<Integer, UnicodeSet>>> index,
-        int radicalStrokes, String radicalChar, int remainingStrokes, int cp) {
+    static <T> void mapToUnicodeSetAdd(
+            Map<Integer, Map<String, Map<Integer, UnicodeSet>>> index,
+            int radicalStrokes,
+            String radicalChar,
+            int remainingStrokes,
+            int cp) {
         Map<String, Map<Integer, UnicodeSet>> subIndex = index.get(radicalStrokes);
         if (subIndex == null) {
-            index.put(radicalStrokes, subIndex = new TreeMap<String, Map<Integer, UnicodeSet>>(GeneratePickerData2.UCA));
+            index.put(
+                    radicalStrokes,
+                    subIndex =
+                            new TreeMap<String, Map<Integer, UnicodeSet>>(GeneratePickerData2.UCA));
         }
         Map<Integer, UnicodeSet> uset = subIndex.get(radicalChar);
         if (uset == null) {
@@ -146,43 +165,43 @@ public class RadicalStroke2 {
         uset2.add(cp);
     }
 
-    static Comparator<CharSequence> RadicalStrokeComparator = new Comparator<CharSequence>() {
-        CodePoints cps1 = new CodePoints("");
-        CodePoints cps2 = new CodePoints("");
+    static Comparator<CharSequence> RadicalStrokeComparator =
+            new Comparator<CharSequence>() {
+                CodePoints cps1 = new CodePoints("");
+                CodePoints cps2 = new CodePoints("");
 
-        public int compare(CharSequence o1, CharSequence o2) {
-            cps1.reset(o1);
-            cps2.reset(o2);
-            boolean n1 = cps1.next();
-            boolean n2 = cps2.next();
-            // shorter strings are less
-            if (!n1) {
-                return n2 ? -1 : 0;
-            } else if (!n2) {
-                return 1;
-            }
-            int cp1 = cps1.getCodePoint();
-            int cp2 = cps2.getCodePoint();
+                public int compare(CharSequence o1, CharSequence o2) {
+                    cps1.reset(o1);
+                    cps2.reset(o2);
+                    boolean n1 = cps1.next();
+                    boolean n2 = cps2.next();
+                    // shorter strings are less
+                    if (!n1) {
+                        return n2 ? -1 : 0;
+                    } else if (!n2) {
+                        return 1;
+                    }
+                    int cp1 = cps1.getCodePoint();
+                    int cp2 = cps2.getCodePoint();
 
-            // lower stroke counts are less (null counts as zero)
-            Integer s1 = SINGLETON.charToTotalStrokes.get(cp1);
-            Integer s2 = SINGLETON.charToTotalStrokes.get(cp2);
-            if (s1 == null && s2 == null) {
-                // no info, return codepoint order
-                return cp1 - cp2;
-            }
-            int ss1 = s1 == null ? 0 : s1;
-            int ss2 = s2 == null ? 0 : s2;
-            if (ss1 < ss2) return -1;
-            if (ss1 > ss2) return 1;
+                    // lower stroke counts are less (null counts as zero)
+                    Integer s1 = SINGLETON.charToTotalStrokes.get(cp1);
+                    Integer s2 = SINGLETON.charToTotalStrokes.get(cp2);
+                    if (s1 == null && s2 == null) {
+                        // no info, return codepoint order
+                        return cp1 - cp2;
+                    }
+                    int ss1 = s1 == null ? 0 : s1;
+                    int ss2 = s2 == null ? 0 : s2;
+                    if (ss1 < ss2) return -1;
+                    if (ss1 > ss2) return 1;
 
-            Integer r1 = SINGLETON.charToRadical.get(cp1);
-            Integer r2 = SINGLETON.charToRadical.get(cp2);
-            if (r1 < r2) return -1;
-            if (r1 > r2) return 1;
-            // no other diff, return codepoint order
-            return cp1 - cp2;
-        }
-    };
-
+                    Integer r1 = SINGLETON.charToRadical.get(cp1);
+                    Integer r2 = SINGLETON.charToRadical.get(cp2);
+                    if (r1 < r2) return -1;
+                    if (r1 > r2) return 1;
+                    // no other diff, return codepoint order
+                    return cp1 - cp2;
+                }
+            };
 }

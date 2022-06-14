@@ -241,22 +241,25 @@ public enum RadicalEnum {
     R213,
     R213a,
     R214;
+
     @Override
     public String toString() {
         String result = name();
         if (result.endsWith("a")) {
-            return result.substring(1, result.length()-1) + "'";
+            return result.substring(1, result.length() - 1) + "'";
         } else {
             return result.substring(1, result.length());
         }
     }
+
     public static RadicalEnum fromString(String source) {
         if (source.endsWith("'")) {
-            return valueOf("R" + source.substring(0, source.length()-1) + "a");
+            return valueOf("R" + source.substring(0, source.length() - 1) + "a");
         } else {
             return valueOf("R" + source);
         }
     }
+
     public static RadicalEnum fromInt(int source) {
         return valueOf("R" + source);
     }

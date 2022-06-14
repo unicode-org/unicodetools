@@ -1,11 +1,10 @@
 package org.unicode.propstest;
 
+import com.ibm.icu.text.Normalizer2;
+import com.ibm.icu.text.UnicodeSet;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.UnicodeSet;
 
 public class ShowEmojiDecomps {
     public static void main(String[] args) {

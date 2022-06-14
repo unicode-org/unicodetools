@@ -1,6 +1,4 @@
-/**
- * 
- */
+/** */
 package org.unicode.jsp;
 
 import java.nio.BufferUnderflowException;
@@ -28,7 +26,6 @@ public class CharEncoder {
     private final CharBuffer returnCharBuffer = CharBuffer.wrap(returnChars);
 
     /**
-     * 
      * @param charset
      * @param verifyRoundtrip
      * @param justCheck
@@ -36,12 +33,14 @@ public class CharEncoder {
     public CharEncoder(Charset charset, boolean verifyRoundtrip, boolean justCheck) {
         this.verifyRoundtrip = verifyRoundtrip;
         this.justCheck = justCheck;
-        encoder = charset.newEncoder()
-                .onMalformedInput(CodingErrorAction.REPORT)
-                .onUnmappableCharacter(CodingErrorAction.REPORT);
-        decoder = charset.newDecoder()
-                .onMalformedInput(CodingErrorAction.REPORT)
-                .onUnmappableCharacter(CodingErrorAction.REPORT);
+        encoder =
+                charset.newEncoder()
+                        .onMalformedInput(CodingErrorAction.REPORT)
+                        .onUnmappableCharacter(CodingErrorAction.REPORT);
+        decoder =
+                charset.newDecoder()
+                        .onMalformedInput(CodingErrorAction.REPORT)
+                        .onUnmappableCharacter(CodingErrorAction.REPORT);
     }
 
     public boolean isVerifyRoundtrip() {
@@ -49,8 +48,10 @@ public class CharEncoder {
     }
 
     /**
-     * Convert the code point. Return -1 if fails. If justCheck, then return 1 if success. Otherwise return length of the bytes
-     * converted, and fill in the destination. In either case, if isVerifyRoundtrip() then check that the roundtrip works.
+     * Convert the code point. Return -1 if fails. If justCheck, then return 1 if success. Otherwise
+     * return length of the bytes converted, and fill in the destination. In either case, if
+     * isVerifyRoundtrip() then check that the roundtrip works.
+     *
      * @param codepoint
      * @param destination
      * @param offset

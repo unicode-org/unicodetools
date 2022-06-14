@@ -14,12 +14,14 @@ import java.util.regex.Pattern;
 
 public final class FileUtilities {
 
-    public static abstract class SemiFileReader {
-        public final static Pattern SPLIT = Pattern.compile("\\s*;\\s*");
+    public abstract static class SemiFileReader {
+        public static final Pattern SPLIT = Pattern.compile("\\s*;\\s*");
         private int lineCount;
 
         protected void handleStart() {}
+
         protected abstract boolean handleLine(int start, int end, String[] items);
+
         protected void handleEnd() {}
 
         public int getLineCount() {
@@ -39,23 +41,28 @@ public final class FileUtilities {
             try {
                 in = FileUtilities.openFile(classLocation, fileName);
             } catch (final Exception e) {
-                throw (RuntimeException) new IllegalArgumentException(classLocation.getName() + ", " + fileName).initCause(e);
+                throw (RuntimeException)
+                        new IllegalArgumentException(classLocation.getName() + ", " + fileName)
+                                .initCause(e);
             }
             try {
                 return process(in, fileName);
             } catch (final Exception e) {
-                throw (RuntimeException) new IllegalArgumentException(lineCount + ":\t" + 0).initCause(e);
+                throw (RuntimeException)
+                        new IllegalArgumentException(lineCount + ":\t" + 0).initCause(e);
             }
         }
 
         public SemiFileReader process(String directory, String fileName) {
             try {
                 final FileInputStream fileStream = new FileInputStream(directory + "/" + fileName);
-                final InputStreamReader reader = new InputStreamReader(fileStream, StandardCharsets.UTF_8);
-                final BufferedReader bufferedReader = new BufferedReader(reader,1024*64);
+                final InputStreamReader reader =
+                        new InputStreamReader(fileStream, StandardCharsets.UTF_8);
+                final BufferedReader bufferedReader = new BufferedReader(reader, 1024 * 64);
                 return process(bufferedReader, fileName);
             } catch (final Exception e) {
-                throw (RuntimeException) new IllegalArgumentException(lineCount + ":\t" + 0).initCause(e);
+                throw (RuntimeException)
+                        new IllegalArgumentException(lineCount + ":\t" + 0).initCause(e);
             }
         }
 
@@ -72,7 +79,7 @@ public final class FileUtilities {
                     final int comment = line.indexOf("#");
                     if (comment >= 0) {
                         processComment(line, comment);
-                        line = line.substring(0,comment);
+                        line = line.substring(0, comment);
                     }
                     if (line.startsWith("\uFEFF")) {
                         line = line.substring(1);
@@ -87,8 +94,8 @@ public final class FileUtilities {
                         final String source = parts[0];
                         final int range = source.indexOf("..");
                         if (range >= 0) {
-                            start = Integer.parseInt(source.substring(0,range),16);
-                            end = Integer.parseInt(source.substring(range+2),16);
+                            start = Integer.parseInt(source.substring(0, range), 16);
+                            end = Integer.parseInt(source.substring(range + 2), 16);
                         } else {
                             start = end = Integer.parseInt(source, 16);
                         }
@@ -102,21 +109,23 @@ public final class FileUtilities {
                 in.close();
                 handleEnd();
             } catch (final Exception e) {
-                throw (RuntimeException) new IllegalArgumentException(lineCount + ":\t" + line).initCause(e);
+                throw (RuntimeException)
+                        new IllegalArgumentException(lineCount + ":\t" + line).initCause(e);
             }
             return this;
         }
-        protected void processComment(String line, int comment) {
-        }
+
+        protected void processComment(String line, int comment) {}
     }
     //
-    //  public static SemiFileReader fillMapFromSemi(Class classLocation, String fileName, SemiFileReader handler) {
+    //  public static SemiFileReader fillMapFromSemi(Class classLocation, String fileName,
+    // SemiFileReader handler) {
     //    return handler.process(classLocation, fileName);
     //  }
 
     public static BufferedReader openFile(Class class1, String file) throws IOException {
-        //URL path = null;
-        //String externalForm = null;
+        // URL path = null;
+        // String externalForm = null;
         try {
             //      //System.out.println("Reading:\t" + file1.getCanonicalPath());
             //      path = class1.getResource(file);
@@ -128,20 +137,27 @@ public final class FileUtilities {
             //      boolean x = file1.canRead();
             //      final InputStream resourceAsStream = new FileInputStream(file1);
             final InputStream resourceAsStream = class1.getResourceAsStream(file);
-            final InputStreamReader reader = new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8);
-            final BufferedReader bufferedReader = new BufferedReader(reader,1024*64);
+            final InputStreamReader reader =
+                    new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8);
+            final BufferedReader bufferedReader = new BufferedReader(reader, 1024 * 64);
             return bufferedReader;
         } catch (final Exception e) {
             final File file1 = new File(file);
             final String foo = class1.getResource(".").toString();
 
-            throw (RuntimeException) new IllegalArgumentException("Bad file name: "
-                    //              + path + "\t" + externalForm + "\t" +
-                    + file1.getCanonicalPath()
-                    + "\n" + foo
-                    + "\n" + new File(".").getCanonicalFile() + " => " + Arrays.asList(new File(".").getCanonicalFile().list())
-                    )
-            .initCause(e);
+            throw (RuntimeException)
+                    new IllegalArgumentException(
+                                    "Bad file name: "
+                                            //              + path + "\t" + externalForm + "\t" +
+                                            + file1.getCanonicalPath()
+                                            + "\n"
+                                            + foo
+                                            + "\n"
+                                            + new File(".").getCanonicalFile()
+                                            + " => "
+                                            + Arrays.asList(
+                                                    new File(".").getCanonicalFile().list()))
+                            .initCause(e);
         }
     }
 
@@ -155,27 +171,28 @@ public final class FileUtilities {
         boolean inQuote = false;
         for (int i = 0; i < line.length(); ++i) {
             final char ch = line.charAt(i); // don't worry about supplementaries
-            switch(ch) {
-            case '"':
-                inQuote = !inQuote;
-                // at start or end, that's enough
-                // if get a quote when we are not in a quote, and not at start, then add it and return to inQuote
-                if (inQuote && item.length() != 0) {
-                    item.append('"');
-                    inQuote = true;
-                }
-                break;
-            case ',':
-                if (!inQuote) {
-                    result.add(item.toString());
-                    item.setLength(0);
-                } else {
+            switch (ch) {
+                case '"':
+                    inQuote = !inQuote;
+                    // at start or end, that's enough
+                    // if get a quote when we are not in a quote, and not at start, then add it and
+                    // return to inQuote
+                    if (inQuote && item.length() != 0) {
+                        item.append('"');
+                        inQuote = true;
+                    }
+                    break;
+                case ',':
+                    if (!inQuote) {
+                        result.add(item.toString());
+                        item.setLength(0);
+                    } else {
+                        item.append(ch);
+                    }
+                    break;
+                default:
                     item.append(ch);
-                }
-                break;
-            default:
-                item.append(ch);
-                break;
+                    break;
             }
         }
         result.add(item.toString());

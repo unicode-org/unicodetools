@@ -7,8 +7,9 @@ import java.util.regex.Pattern;
 public class Regexes {
 
     /**
-     * Split a string correctly. That is, empty values between matches are always returned, wherever they are.
-     * Splitting "..A..B.." with [.] returns ["", "", "A", "B", "", ""].
+     * Split a string correctly. That is, empty values between matches are always returned, wherever
+     * they are. Splitting "..A..B.." with [.] returns ["", "", "A", "B", "", ""].
+     *
      * @param pattern
      * @param input
      * @return split array.
@@ -32,8 +33,8 @@ public class Regexes {
      * @param destArray Destination array for reuse if possible. Can be null.
      * @return array of String values between matching delimiters
      */
-    public static String[] split(Matcher m, String input,
-            ArrayList<String> matchList, String[] destArray) {
+    public static String[] split(
+            Matcher m, String input, ArrayList<String> matchList, String[] destArray) {
         int lastPos = 0;
         while (true) {
             final boolean found = m.find();
@@ -49,5 +50,4 @@ public class Regexes {
         }
         return matchList.toArray(destArray);
     }
-
 }

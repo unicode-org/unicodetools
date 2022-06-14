@@ -1,16 +1,17 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/TestNormalization.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/TestNormalization.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
@@ -21,16 +22,11 @@ import java.util.BitSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
-
 import org.unicode.props.BagFormatter;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
 
 public final class TestNormalization {
     // TODO: There is no such Update folder. Is this class obsolete?
@@ -46,9 +42,8 @@ public final class TestNormalization {
     static String originalLine = "";
     static String lastLine = "";
 
-    public static void main(String[] args)  throws java.io.IOException {
+    public static void main(String[] args) throws java.io.IOException {
         System.out.println("Creating Normalizers");
-
 
         final String[] testSet = {"a\u0304\u0328", "a\u0328\u0304"};
         for (final String s : testSet) {
@@ -56,24 +51,20 @@ public final class TestNormalization {
             System.out.println(test + ": " + Default.ucd().getCodeAndName(s));
         }
 
-
         final String x = UTF32.valueOf32(0x10000);
         check("NFC", Default.nfc(), x);
         check("NFD", Default.nfd(), x);
         check("NFKC", Default.nfkc(), x);
         check("NFKD", Default.nfkd(), x);
 
+        out =
+                new PrintWriter(
+                        new BufferedWriter(
+                                new OutputStreamWriter(
+                                        new FileOutputStream("NormalizationTestLog.txt"), "UTF8"),
+                                32 * 1024));
 
-        out = new PrintWriter(
-                new BufferedWriter(
-                        new OutputStreamWriter(
-                                new FileOutputStream("NormalizationTestLog.txt"),
-                                "UTF8"),
-                                32*1024));
-
-        in = new BufferedReader (
-                new FileReader (DIR + "NormalizationTest.txt"),
-                32*1024);
+        in = new BufferedReader(new FileReader(DIR + "NormalizationTest.txt"), 32 * 1024);
 
         try {
             final String[] parts = new String[10];
@@ -93,13 +84,12 @@ public final class TestNormalization {
                 originalLine = line;
                 final int pos = line.indexOf('#');
                 if (pos >= 0) {
-                    line = line.substring(0,pos);
+                    line = line.substring(0, pos);
                 }
                 line = line.trim();
                 if (line.length() == 0) {
                     continue;
                 }
-
 
                 final int splitCount = Utility.split(line, ';', parts);
                 // FIX check splitCount
@@ -146,14 +136,14 @@ public final class TestNormalization {
                 errorCount += check("NFKDd", Default.nfkd(), parts[4], parts[3]);
                 errorCount += check("NFKDe", Default.nfkd(), parts[4], parts[4]);
             }
-            System.out.println("Total errors in file: " + errorCount
-                    + ", lines: " + lineErrorCount);
+            System.out.println(
+                    "Total errors in file: " + errorCount + ", lines: " + lineErrorCount);
             errorCount = lineErrorCount = 0;
 
             System.out.println("Checking Missing");
             checkMissing();
-            System.out.println("Total errors in unlisted items: " + errorCount
-                    + ", lines: " + lineErrorCount);
+            System.out.println(
+                    "Total errors in unlisted items: " + errorCount + ", lines: " + lineErrorCount);
 
         } finally {
             if (in != null) {
@@ -184,19 +174,32 @@ public final class TestNormalization {
                 if (!base.equals(other)) {
                     otherList = "(" + Default.ucd().getCodeAndName(other) + ")";
                 }
-                out.println("DIFF " + type + ": "
-                        + Default.ucd().getCodeAndName(base) + " != "
-                        + type
-                        + otherList
-                        + " == " + Default.ucd().getCodeAndName(trans)
-                        + temp
-                        );
+                out.println(
+                        "DIFF "
+                                + type
+                                + ": "
+                                + Default.ucd().getCodeAndName(base)
+                                + " != "
+                                + type
+                                + otherList
+                                + " == "
+                                + Default.ucd().getCodeAndName(trans)
+                                + temp);
                 return 1;
             }
         } catch (final Exception e) {
-            throw new ChainException("DIFF " + type + ": "
-                    + Default.ucd().getCodeAndName(base) + " != "
-                    + type + "(" + Default.ucd().getCodeAndName(other) + ")", new Object[]{}, e);
+            throw new ChainException(
+                    "DIFF "
+                            + type
+                            + ": "
+                            + Default.ucd().getCodeAndName(base)
+                            + " != "
+                            + type
+                            + "("
+                            + Default.ucd().getCodeAndName(other)
+                            + ")",
+                    new Object[] {},
+                    e);
         }
         return 0;
     }
@@ -221,7 +224,7 @@ public final class TestNormalization {
         }
     }
 
-    public static void checkStarters () {
+    public static void checkStarters() {
         System.out.println("Checking Starters");
         final UnicodeSet leading = new UnicodeSet();
         final UnicodeSet trailing = new UnicodeSet();
@@ -253,8 +256,8 @@ public final class TestNormalization {
             if (followers.size() == 0) {
                 continue;
             }
-            System.out.println(Default.ucd().getCode(lead.codepoint)
-                    + "\t" + followers.toPattern(true));
+            System.out.println(
+                    Default.ucd().getCode(lead.codepoint) + "\t" + followers.toPattern(true));
             UnicodeSet possLead = (UnicodeSet) map.get(followers);
             if (possLead == null) {
                 possLead = new UnicodeSet();
@@ -270,11 +273,12 @@ public final class TestNormalization {
         while (it.hasNext()) {
             final UnicodeSet t = (UnicodeSet) it.next();
             final UnicodeSet l = (UnicodeSet) map.get(t);
-            System.out.println("<tr><td>"
-                    + bf.showSetNames(l)
-                    + "</td><td>"
-                    + bf.showSetNames(t)
-                    + "</td></tr>");
+            System.out.println(
+                    "<tr><td>"
+                            + bf.showSetNames(l)
+                            + "</td><td>"
+                            + bf.showSetNames(t)
+                            + "</td></tr>");
         }
     }
 }

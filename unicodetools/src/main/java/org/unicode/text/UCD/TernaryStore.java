@@ -1,4 +1,6 @@
 package org.unicode.text.UCD;
+
+import com.ibm.icu.lang.UCharacter;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.util.HashSet;
@@ -7,12 +9,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.text.utility.Pair;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.lang.UCharacter;
 
 // Enumerated properties will be IntCodePointProperty.
 // The string values they return will be the property value names.
@@ -21,24 +20,36 @@ import com.ibm.icu.lang.UCharacter;
 public final class TernaryStore {
 
     static final int DONE = Integer.MIN_VALUE;
-    static final int NOT_FOUND = Integer.MIN_VALUE+1;
+    static final int NOT_FOUND = Integer.MIN_VALUE + 1;
 
     // for testing
     static DepthPrinter dp;
 
     static void test() throws java.io.IOException {
 
-
-        final PrintWriter pw = Utility.openPrintWriterGenDir("log/TestTernary.txt", Utility.LATIN1_WINDOWS);
+        final PrintWriter pw =
+                Utility.openPrintWriterGenDir("log/TestTernary.txt", Utility.LATIN1_WINDOWS);
         try {
             dp = new DepthPrinter(pw);
 
-            String[] tests = {"the", "quick", "fish", "fisherman", "fishes",
-                    "brown", "brow", "bracket", "bright", "brat",
-                    "brough", "dogs", "upper", "zebra",
-            "fisher"};
+            String[] tests = {
+                "the",
+                "quick",
+                "fish",
+                "fisherman",
+                "fishes",
+                "brown",
+                "brow",
+                "bracket",
+                "bright",
+                "brat",
+                "brough",
+                "dogs",
+                "upper",
+                "zebra",
+                "fisher"
+            };
             test("Simple: ", tests, tests.length);
-
 
             tests = new String[300000];
             int counter = 0;
@@ -56,9 +67,11 @@ public final class TernaryStore {
             System.out.println("max-cp: " + Utility.hex(i));
             test("Unicode Names: ", tests, counter);
 
-            //if (true) return;
+            // if (true) return;
 
-            final BufferedReader br = Utility.openReadFile(Settings.UnicodeTools.DATA_DIR + "dict/DiploFreq.txt", Utility.LATIN1);
+            final BufferedReader br =
+                    Utility.openReadFile(
+                            Settings.UnicodeTools.DATA_DIR + "dict/DiploFreq.txt", Utility.LATIN1);
             String line;
             counter = 0;
             while (counter < tests.length) {
@@ -75,7 +88,7 @@ public final class TernaryStore {
                     System.out.println("???" + line);
                     continue;
                 }
-                tests[counter++] = line.substring(tabPos+1);
+                tests[counter++] = line.substring(tabPos + 1);
             }
             test("French: ", tests, counter);
         } finally {
@@ -129,9 +142,11 @@ public final class TernaryStore {
             }
             return stringStore.get(stringCode);
         }
+
         void setString(String s) {
             tempString = s;
         }
+
         String tempString;
         int stringCode = -1;
         Node less;
@@ -149,7 +164,7 @@ public final class TernaryStore {
     Node base;
     StringStore stringStore = new StringStore();
 
-    final static class Matcher {
+    static final class Matcher {
         TernaryStore store;
         String s;
         int position;
@@ -212,7 +227,7 @@ public final class TernaryStore {
 
     public void showNodes2(Node n, String path, int depth) {
         if (n.less != null) {
-            showNodes2(n.less, path+"-", depth);
+            showNodes2(n.less, path + "-", depth);
         }
         dp.print("", depth);
         if (false) {
@@ -224,10 +239,10 @@ public final class TernaryStore {
         }
         dp.println();
         if (n.next != null) {
-            showNodes2(n.next, path+".", depth+n.getString(stringStore).length());
+            showNodes2(n.next, path + ".", depth + n.getString(stringStore).length());
         }
         if (n.greater != null) {
-            showNodes2(n.greater, path+"+", depth);
+            showNodes2(n.greater, path + "+", depth);
         }
     }
 
@@ -276,7 +291,7 @@ public final class TernaryStore {
         }
     }
 
-    final static class DepthPrinter {
+    static final class DepthPrinter {
         private final PrintWriter pw;
         private int currentDepth = 0;
         private final String leader = ".";
@@ -319,7 +334,7 @@ public final class TernaryStore {
         }
     }
 
-    final static class StringStore {
+    static final class StringStore {
         // initially, there is a simple strategy
 
         private String buffer = "";
@@ -338,7 +353,7 @@ public final class TernaryStore {
             final Iterator it = strings.iterator();
             final Set additions = new HashSet();
             while (it.hasNext()) {
-                final String s = (String)it.next();
+                final String s = (String) it.next();
                 final int len = Utility.split(s, ' ', pieces);
                 for (int i = 0; i < len; ++i) {
                     additions.add(pieces[i]);
@@ -355,14 +370,14 @@ public final class TernaryStore {
             final Set ordered = new TreeSet();
             Iterator it = stuff.iterator();
             while (it.hasNext()) {
-                final String s = (String)it.next();
+                final String s = (String) it.next();
                 ordered.add(new Pair(new Integer(-s.length()), s));
             }
             System.out.println("Storing");
             // add them
             it = ordered.iterator();
             while (it.hasNext()) {
-                final String s = (String)(((Pair)it.next()).second);
+                final String s = (String) (((Pair) it.next()).second);
                 get(s);
             }
         }
@@ -379,14 +394,14 @@ public final class TernaryStore {
             final StringBuffer itemCodes = new StringBuffer();
             for (int i = 0; i < len; ++i) {
                 final String piece = pieces[i];
-                itemCodes.append((char)addNoSplit(piece));
+                itemCodes.append((char) addNoSplit(piece));
                 /*for (int j = 0; j < piece.length(); j += PIECE_LENGTH) {
                     int maxLen = j + PIECE_LENGTH;
                     if (maxLen > piece.length()) maxLen = piece.length();
                     itemCodes.append((char)addNoSplit(piece.substring(j, maxLen)));
                 }*/
             }
-            index = 0x8000 | addNoSplit(itemCodes.toString());   // mark it as composite
+            index = 0x8000 | addNoSplit(itemCodes.toString()); // mark it as composite
             System.out.println("\tReturning: " + index);
             return index;
         }
@@ -433,10 +448,9 @@ public final class TernaryStore {
         public String toString() {
             return buffer;
         }
-
     }
 
-    final static class Builder {
+    static final class Builder {
         Map map = new TreeMap();
         String[] names;
         TernaryStore store;
@@ -454,7 +468,7 @@ public final class TernaryStore {
             while (it.hasNext()) {
                 names[count++] = (String) it.next();
                 if (false) {
-                    dp.print((count-1) + " " + names[count-1]);
+                    dp.print((count - 1) + " " + names[count - 1]);
                     dp.println();
                 }
             }
@@ -471,11 +485,11 @@ public final class TernaryStore {
             compactStore(store.base);
             store.stringStore.compact();
 
-            //compactStrings(store);
-            //set.clear();    // free more storage
+            // compactStrings(store);
+            // set.clear();    // free more storage
 
             replaceStrings(store.base);
-            //map.clear();    // free storage
+            // map.clear();    // free storage
 
             // free storage
             final TernaryStore result = store;
@@ -526,7 +540,9 @@ public final class TernaryStore {
             if (false) {
                 dp.println(n.toString());
             }
-            while (n.result == NOT_FOUND && nextNode != null && nextNode.greater == null
+            while (n.result == NOT_FOUND
+                    && nextNode != null
+                    && nextNode.greater == null
                     && nextNode.less == null) {
                 n.setString(n.getString(store.stringStore) + nextNode.getString(store.stringStore));
                 n.result = nextNode.result;
@@ -551,11 +567,11 @@ public final class TernaryStore {
                 return;
             }
             final int mid = (start + limit) / 2;
-            //System.out.println("start: " + start + ", mid: " + mid + ", limit: " + limit);
-            //System.out.println("adding: " + names[mid]);
-            addNode(names[mid], ((Integer)map.get(names[mid])).intValue());
+            // System.out.println("start: " + start + ", mid: " + mid + ", limit: " + limit);
+            // System.out.println("adding: " + names[mid]);
+            addNode(names[mid], ((Integer) map.get(names[mid])).intValue());
             addNode(start, mid);
-            addNode(mid+1, limit);
+            addNode(mid + 1, limit);
         }
 
         private void addNode(String s, int result) {
@@ -572,7 +588,7 @@ public final class TernaryStore {
                     final char first = n.getString(store.stringStore).charAt(0);
                     if (ch == first) {
                         if (n.next == null) {
-                            n.next = addRest(s, i+1, result);
+                            n.next = addRest(s, i + 1, result);
                             return;
                         }
                         lastNode = n;
@@ -602,7 +618,7 @@ public final class TernaryStore {
             Node lastNode = null;
             for (int i = s.length() - 1; i >= position; --i) {
                 final Node n = new Node();
-                n.setString(s.substring(i, i+1)); // + "" to force a new string
+                n.setString(s.substring(i, i + 1)); // + "" to force a new string
                 if (lastNode == null) {
                     n.result = result;
                 }
@@ -613,4 +629,3 @@ public final class TernaryStore {
         }
     }
 }
-

@@ -1,30 +1,24 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/PropertyLister.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/PropertyLister.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
+import com.ibm.icu.text.UnicodeSet;
 import java.io.PrintWriter;
 import java.text.NumberFormat;
-
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.text.UnicodeSet;
-
-
-abstract public class PropertyLister implements UCD_Types {
+public abstract class PropertyLister implements UCD_Types {
 
     static final boolean COMPRESS_NAMES = false;
     static final boolean DROP_INDICATORS = true;
-
 
     protected UCD ucdData;
     protected PrintWriter output;
@@ -43,7 +37,7 @@ abstract public class PropertyLister implements UCD_Types {
     /**
      * @return status. Also have access to firstRealCp, lastRealCp
      */
-    abstract public byte status(int cp);
+    public abstract byte status(int cp);
 
     public String headerString() {
         return "";
@@ -97,17 +91,27 @@ abstract public class PropertyLister implements UCD_Types {
 
             final String startName = getKenName(startCp);
             String line;
-            final String pgap = Utility.repeat(" ", minPropertyWidth() - prop.length() - opt.length());
+            final String pgap =
+                    Utility.repeat(" ", minPropertyWidth() - prop.length() - opt.length());
             if (startCp != endCp) {
                 final String endName = getKenName(endCp);
                 final int bridge = endCp - startCp + 1 - realCount;
                 final String count = (bridge == 0) ? "" + realCount : realCount + "/" + bridge;
-                final String countStr = Utility.repeat(" ", 3-count.length()) + "[" + count + "] ";
+                final String countStr =
+                        Utility.repeat(" ", 3 - count.length()) + "[" + count + "] ";
                 final String gap = Utility.repeat(" ", 12 - width(startCp) - width(endCp));
 
-                line = Utility.hex(startCp,4) + ".." + Utility.hex(endCp,4) + gap
-                        + prop + opt + pgap + commentSep + optCom
-                        + countStr;
+                line =
+                        Utility.hex(startCp, 4)
+                                + ".."
+                                + Utility.hex(endCp, 4)
+                                + gap
+                                + prop
+                                + opt
+                                + pgap
+                                + commentSep
+                                + optCom
+                                + countStr;
                 if (startName.length() != 0 || endName.length() != 0) {
                     int com = 0;
                     if (COMPRESS_NAMES) {
@@ -116,19 +120,30 @@ abstract public class PropertyLister implements UCD_Types {
                     if (com == 0) {
                         line += startName + ".." + endName;
                     } else {
-                        line += startName.substring(0,com)
-                                + "(" + startName.substring(com) + ".." + endName.substring(com) + ")";
+                        line +=
+                                startName.substring(0, com)
+                                        + "("
+                                        + startName.substring(com)
+                                        + ".."
+                                        + endName.substring(com)
+                                        + ")";
                     }
                 }
             } else {
-                final String gap = alwaysBreaks
-                        ? Utility.repeat(" ", 6 - width(startCp))
+                final String gap =
+                        alwaysBreaks
+                                ? Utility.repeat(" ", 6 - width(startCp))
                                 : Utility.repeat(" ", 14 - width(startCp));
-                        final String gap2 = alwaysBreaks
-                                ? " "
-                                        : "      ";
-                        line = Utility.hex(startCp,4) + gap
-                                + prop + opt + pgap + commentSep + optCom + gap2
+                final String gap2 = alwaysBreaks ? " " : "      ";
+                line =
+                        Utility.hex(startCp, 4)
+                                + gap
+                                + prop
+                                + opt
+                                + pgap
+                                + commentSep
+                                + optCom
+                                + gap2
                                 + startName;
             }
             if (commentOut) {
@@ -139,15 +154,14 @@ abstract public class PropertyLister implements UCD_Types {
                 System.out.println(line);
             }
         } catch (final Exception e) {
-            throw new ChainException("Format error {0}, {1}",
-                    new Object[]{new Integer(startCp), new Integer(endCp)}, e);
+            throw new ChainException(
+                    "Format error {0}, {1}",
+                    new Object[] {new Integer(startCp), new Integer(endCp)}, e);
         }
     }
 
     int width(int cp) {
-        return cp <= 0xFFFF ? 4
-                : cp <= 0xFFFFF ? 5
-                        : 6;
+        return cp <= 0xFFFF ? 4 : cp <= 0xFFFFF ? 5 : 6;
     }
 
     String getKenName(int cp) {
@@ -172,7 +186,6 @@ abstract public class PropertyLister implements UCD_Types {
         return result;
     }
 
-
     /**
      * @return common initial substring length ending with SPACE or HYPHEN-MINUS. 0 if there is none
      */
@@ -193,7 +206,9 @@ abstract public class PropertyLister implements UCD_Types {
                 lastSpace = i + 1;
             }
         }
-        if (b.length() == a.length() || b.charAt(a.length()) == ' ' || b.charAt(a.length()) == '-') {
+        if (b.length() == a.length()
+                || b.charAt(a.length()) == ' '
+                || b.charAt(a.length()) == '-') {
             lastSpace = a.length();
         }
         return lastSpace;
@@ -218,35 +233,35 @@ abstract public class PropertyLister implements UCD_Types {
                 }
             }
 
-            switch(s) {
-            case CONTINUE:
-                break; // do nothing
-            case INCLUDE:
-                if (firstRealCp == -1) {
-                    firstRealCp = cp;
+            switch (s) {
+                case CONTINUE:
+                    break; // do nothing
+                case INCLUDE:
+                    if (firstRealCp == -1) {
+                        firstRealCp = cp;
+                        firstRealCpCat = getModCat(firstRealCp);
+                    }
+                    lastRealCp = cp;
+                    count++;
+                    realRangeCount++;
+                    break;
+                case BREAK:
+                    if (firstRealCp != -1) {
+                        format(firstRealCp, lastRealCp, realRangeCount);
+                    }
+                    lastRealCp = firstRealCp = cp;
                     firstRealCpCat = getModCat(firstRealCp);
-                }
-                lastRealCp = cp;
-                count++;
-                realRangeCount++;
-                break;
-            case BREAK:
-                if (firstRealCp != -1) {
-                    format(firstRealCp, lastRealCp, realRangeCount);
-                }
-                lastRealCp = firstRealCp = cp;
-                firstRealCpCat = getModCat(firstRealCp);
 
-                realRangeCount = 1;
-                count++;
-                break;
-            case EXCLUDE:
-                if (firstRealCp != -1) {
-                    format(firstRealCp, lastRealCp, realRangeCount);
-                    firstRealCp = -1;
-                    realRangeCount = 0;
-                }
-                break;
+                    realRangeCount = 1;
+                    count++;
+                    break;
+                case EXCLUDE:
+                    if (firstRealCp != -1) {
+                        format(firstRealCp, lastRealCp, realRangeCount);
+                        firstRealCp = -1;
+                        realRangeCount = 0;
+                    }
+                    break;
             }
         }
         if (firstRealCp != -1) {
@@ -263,9 +278,8 @@ abstract public class PropertyLister implements UCD_Types {
         output.println();
         output.println("# Total code points: " + nf.format(count));
         output.println();
-        //System.out.println(headerString());
-        //System.out.println(set.toPattern(true));
+        // System.out.println(headerString());
+        // System.out.println(set.toPattern(true));
         return count;
     }
-
 }

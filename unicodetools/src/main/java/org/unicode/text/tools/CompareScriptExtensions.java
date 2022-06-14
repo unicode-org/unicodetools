@@ -1,18 +1,17 @@
 package org.unicode.text.tools;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.UScript;
+import com.ibm.icu.text.UnicodeSet;
 import java.util.TreeSet;
-
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.lang.UScript;
-import com.ibm.icu.text.UnicodeSet;
-
 public class CompareScriptExtensions {
-    static final ToolUnicodePropertySource tups = ToolUnicodePropertySource.make(Default.ucdVersion());
+    static final ToolUnicodePropertySource tups =
+            ToolUnicodePropertySource.make(Default.ucdVersion());
     static final UnicodeProperty scriptProp = tups.getProperty("sc");
     static final UnicodeProperty scriptXProp = tups.getProperty("scx");
 
@@ -34,7 +33,8 @@ public class CompareScriptExtensions {
             UnicodeSet set = diffs.getSet(value);
             System.out.println(value + "\t" + set.toPattern(true));
             for (String c : set) {
-                System.out.println("U+" + Utility.hex(c) + " (" + c + ") " + Default.ucd().getName(c));
+                System.out.println(
+                        "U+" + Utility.hex(c) + " (" + c + ") " + Default.ucd().getName(c));
             }
             System.out.println();
         }

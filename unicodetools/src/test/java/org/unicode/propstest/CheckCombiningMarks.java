@@ -1,5 +1,10 @@
 package org.unicode.propstest;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ULocale;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.cldr.util.With;
 import org.unicode.props.GenerateEnums;
@@ -8,23 +13,23 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.ULocale;
-
 public class CheckCombiningMarks {
-    
-    static final UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT))
-            .setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY))
-            .setCompressRanges(true);
-    
+
+    static final UnicodeSetPrettyPrinter pp =
+            new UnicodeSetPrettyPrinter()
+                    .setOrdering(Collator.getInstance(ULocale.ROOT))
+                    .setSpaceComparator(
+                            Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY))
+                    .setCompressRanges(true);
+
     public static void main(String[] args) {
         IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
         UnicodeMap<String> rawDecomp = iup.load(UcdProperty.Decomposition_Mapping);
-        UnicodeMap<General_Category_Values> gc = iup.loadEnum(UcdProperty.General_Category, UcdPropertyValues.General_Category_Values.class);
-        
+        UnicodeMap<General_Category_Values> gc =
+                iup.loadEnum(
+                        UcdProperty.General_Category,
+                        UcdPropertyValues.General_Category_Values.class);
+
         UnicodeMap<String> decomp = new UnicodeMap<>();
 
         for (EntryRange<String> entry : rawDecomp.entryRanges()) {
@@ -63,12 +68,15 @@ public class CheckCombiningMarks {
         }
         show("Leading characters in decomps: ", leading);
         show("Trailing characters in decomps: ", trailing);
-        UnicodeSet marks = new UnicodeSet()
-//        .addAll(gc.getSet(General_Category_Values.Enclosing_Mark))
-        .addAll(gc.getSet(General_Category_Values.Nonspacing_Mark))
-//        .addAll(gc.getSet(General_Category_Values.Spacing_Mark))
-        .freeze();
-        show("not in Non-Spacing Marks, but in Trailing: ", new UnicodeSet(trailing).removeAll(marks));
+        UnicodeSet marks =
+                new UnicodeSet()
+                        //        .addAll(gc.getSet(General_Category_Values.Enclosing_Mark))
+                        .addAll(gc.getSet(General_Category_Values.Nonspacing_Mark))
+                        //        .addAll(gc.getSet(General_Category_Values.Spacing_Mark))
+                        .freeze();
+        show(
+                "not in Non-Spacing Marks, but in Trailing: ",
+                new UnicodeSet(trailing).removeAll(marks));
         show("in Non-Spacing Marks, and in Trailing: ", new UnicodeSet(marks).retainAll(trailing));
         show("in Non-Spacing Marks, not in Trailing: ", new UnicodeSet(marks).removeAll(trailing));
     }

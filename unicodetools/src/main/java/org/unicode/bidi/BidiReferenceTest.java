@@ -13,15 +13,13 @@ import java.io.PrintWriter;
 
 /**
  * A simple command-line interface to the BidiReference class.
- * <p>
- * This prompts the user for an ASCII string, runs the reference
- * algorithm on the string, and displays the results to the terminal.
- * An empty return to the prompt exits the program.
- * <p>
- * ASCII characters are preassigned various bidi direction types.
- * These types can be displayed by the user for reference by
- * typing <code>-display</code> at the prompt.  More help can be
- * obtained by typing <code>-help</code> at the prompt.
+ *
+ * <p>This prompts the user for an ASCII string, runs the reference algorithm on the string, and
+ * displays the results to the terminal. An empty return to the prompt exits the program.
+ *
+ * <p>ASCII characters are preassigned various bidi direction types. These types can be displayed by
+ * the user for reference by typing <code>-display</code> at the prompt. More help can be obtained
+ * by typing <code>-help</code> at the prompt.
  */
 public class BidiReferenceTest {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -29,9 +27,7 @@ public class BidiReferenceTest {
     BidiReferenceTestCharmap charmap = BidiReferenceTestCharmap.TEST_ARABIC;
     byte baseDirection = -1;
 
-    /**
-     * Run the interactive test.
-     */
+    /** Run the interactive test. */
     public static void main(String args[]) {
         new BidiReferenceTest().run();
     }
@@ -45,8 +41,7 @@ public class BidiReferenceTest {
             String input;
             try {
                 input = reader.readLine();
-            }
-            catch (final Exception e) {
+            } catch (final Exception e) {
                 writer.println(e);
                 continue;
             }
@@ -92,39 +87,45 @@ public class BidiReferenceTest {
         }
     }
 
-    /**
-     * Display instructions to the user.
-     */
+    /** Display instructions to the user. */
     void printHelp() {
         writer.println("Bidi Reference Interactive Test");
         writer.println();
-        writer.println("To exit the program, hit return or enter at the prompt without typing any text");
+        writer.println(
+                "To exit the program, hit return or enter at the prompt without typing any text");
         writer.println("To run the bidi algorithm, just enter some text (without a leading '-')");
         writer.println();
         writer.println("To see the current mapping of characters to Bidi types, enter '-display'");
         writer.println("To switch the mapping to english, enter '-english'");
         writer.println("To switch the mapping to hebrew for upper case, enter '-hebrew'");
-        writer.println("To switch the mapping to arabic for upper case and numbers, enter '-arabic'");
-        writer.println("To switch the mapping to mixed hebrew and arabic for upper case and numbers, enter '-mixed'");
+        writer.println(
+                "To switch the mapping to arabic for upper case and numbers, enter '-arabic'");
+        writer.println(
+                "To switch the mapping to mixed hebrew and arabic for upper case and numbers, enter '-mixed'");
         writer.println();
         writer.println("To force an LTR base direction, enter '-baseLTR'");
         writer.println("To force an RTL base direction, enter '-baseRTL'");
-        writer.println("To compute the default base direction using the algorithm, enter '-baseDefault'");
+        writer.println(
+                "To compute the default base direction using the algorithm, enter '-baseDefault'");
         writer.println();
         writer.println("To display this help message, enter '-help'");
     }
 
     /**
-     * Run the BidiReference algorithm over the string using the current character to direction code mapping.
+     * Run the BidiReference algorithm over the string using the current character to direction code
+     * mapping.
      */
     void runSample(String str) {
         try {
             final byte[] codes = charmap.getCodes(str);
 
             final BidiReference bidi = new BidiReference(codes, baseDirection);
-            final int[] reorder = bidi.getReordering(new int[] { codes.length });
+            final int[] reorder = bidi.getReordering(new int[] {codes.length});
 
-            writer.println("base level: " + bidi.getBaseLevel() + (baseDirection != -1 ? " (forced)" : ""));
+            writer.println(
+                    "base level: "
+                            + bidi.getBaseLevel()
+                            + (baseDirection != -1 ? " (forced)" : ""));
 
             // output original text
             for (int i = 0; i < str.length(); ++i) {
@@ -137,8 +138,7 @@ public class BidiReferenceTest {
                 displayChar(str.charAt(reorder[i]));
             }
             writer.println();
-        }
-        catch (final Exception e) {
+        } catch (final Exception e) {
             writer.println(e);
         }
         writer.println();
@@ -154,4 +154,3 @@ public class BidiReferenceTest {
         }
     }
 }
-

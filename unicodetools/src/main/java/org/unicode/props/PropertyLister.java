@@ -1,9 +1,5 @@
 package org.unicode.props;
 
-import java.io.IOException;
-
-import org.unicode.cldr.util.Tabber;
-
 import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
@@ -11,6 +7,8 @@ import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUUncheckedIOException;
+import java.io.IOException;
+import org.unicode.cldr.util.Tabber;
 
 public class PropertyLister {
     final IndexUnicodeProperties iup;
@@ -47,10 +45,7 @@ public class PropertyLister {
                 trail = iup.getName(entry.codepoint) + ".." + iup.getName(entry.codepointEnd);
             }
             try {
-                out.append(t.process(lead
-                        + "; \t" + entry.value
-                        + " # " + trail
-                        + "\n"));
+                out.append(t.process(lead + "; \t" + entry.value + " # " + trail + "\n"));
             } catch (IOException e) {
                 throw new ICUUncheckedIOException(e);
             }
@@ -72,19 +67,29 @@ public class PropertyLister {
                 }
             }
         }
-        t.add(String.valueOf(maxCount).length()+7, Tabber.RIGHT);
+        t.add(String.valueOf(maxCount).length() + 7, Tabber.RIGHT);
         int count = 0;
         try {
             for (UnicodeSet.EntryRange entry : unicodeSet.ranges()) {
                 String lead, trail;
                 if (entry.codepoint == entry.codepointEnd) {
                     lead = Utility.hex(entry.codepoint);
-                    trail = "(" + UTF16.valueOf(entry.codepoint) + ") " 
-                            + iup.getName(entry.codepoint);
+                    trail =
+                            "("
+                                    + UTF16.valueOf(entry.codepoint)
+                                    + ") "
+                                    + iup.getName(entry.codepoint);
                 } else {
                     lead = Utility.hex(entry.codepoint) + ".." + Utility.hex(entry.codepointEnd);
-                    trail = "(" + UTF16.valueOf(entry.codepoint)  + ".." + UTF16.valueOf(entry.codepointEnd) + ") "
-                            + iup.getName(entry.codepoint) + ".." + iup.getName(entry.codepointEnd);
+                    trail =
+                            "("
+                                    + UTF16.valueOf(entry.codepoint)
+                                    + ".."
+                                    + UTF16.valueOf(entry.codepointEnd)
+                                    + ") "
+                                    + iup.getName(entry.codepoint)
+                                    + ".."
+                                    + iup.getName(entry.codepointEnd);
                 }
                 int subcount = entry.codepointEnd - entry.codepoint + 1;
                 out.append(process(t, valueString, lead, trail, subcount));
@@ -93,8 +98,7 @@ public class PropertyLister {
             for (String entry : unicodeSet.strings()) {
                 String lead, trail;
                 lead = Utility.hex(entry);
-                trail = "(" + entry + ") " 
-                        + iup.getName(entry, " + ");
+                trail = "(" + entry + ") " + iup.getName(entry, " + ");
                 out.append(process(t, valueString, lead, trail, 1));
                 ++count;
             }
@@ -109,9 +113,6 @@ public class PropertyLister {
     }
 
     private String process(Tabber t, String valueString, String lead, String trail, int subcount) {
-        return t.process(lead
-                + "\t; " + valueString
-                + " #\t [" + subcount + "]\t " + trail
-                + "\n");
+        return t.process(lead + "\t; " + valueString + " #\t [" + subcount + "]\t " + trail + "\n");
     }
 }

@@ -1,21 +1,5 @@
 package org.unicode.jsp;
 
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-
-import org.unicode.idna.Idna.IdnaType;
-import org.unicode.idna.Idna2003;
-import org.unicode.idna.Idna2008;
-import org.unicode.idna.Uts46;
-import org.unicode.props.UnicodeProperty;
-import org.unicode.props.UnicodeProperty.AliasAddAction;
-import org.unicode.props.UnicodeProperty.BaseProperty;
-import org.unicode.props.UnicodeProperty.Factory;
-import org.unicode.props.UnicodeProperty.SimpleProperty;
-
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
@@ -30,26 +14,43 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+import org.unicode.idna.Idna.IdnaType;
+import org.unicode.idna.Idna2003;
+import org.unicode.idna.Idna2008;
+import org.unicode.idna.Uts46;
+import org.unicode.props.UnicodeProperty;
+import org.unicode.props.UnicodeProperty.AliasAddAction;
+import org.unicode.props.UnicodeProperty.BaseProperty;
+import org.unicode.props.UnicodeProperty.Factory;
+import org.unicode.props.UnicodeProperty.SimpleProperty;
 
 public class XPropertyFactory extends UnicodeProperty.Factory {
 
-    static final UnicodeSet ALL = new UnicodeSet("[[:^C:][:Cc:][:Cf:][:noncharactercodepoint:]]").freeze();
+    static final UnicodeSet ALL =
+            new UnicodeSet("[[:^C:][:Cc:][:Cf:][:noncharactercodepoint:]]").freeze();
 
     static final class XPropertyFactoryHelper {
         XPropertyFactory factory = null;
+
         XPropertyFactoryHelper() {
             factory = new XPropertyFactory();
         }
+
         static XPropertyFactoryHelper INSTANCE = new XPropertyFactoryHelper();
     }
 
-    public static  XPropertyFactory make() {
+    public static XPropertyFactory make() {
         return XPropertyFactoryHelper.INSTANCE.factory;
     }
 
     public final Factory add2(UnicodeProperty sp) {
         UnicodeProperty already = getProperty(sp.getName());
-        if (already== null) {
+        if (already == null) {
             return add(sp);
         } else {
             System.err.println("Duplicate property:" + sp.getName());
@@ -59,7 +60,8 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
 
     {
         ICUPropertyFactory base = ICUPropertyFactory.make();
-        for (String propertyAlias : (List<String>)base.getInternalAvailablePropertyAliases(new ArrayList())) {
+        for (String propertyAlias :
+                (List<String>) base.getInternalAvailablePropertyAliases(new ArrayList())) {
             add(base.getProperty(propertyAlias));
         }
         for (int i = Common.XSTRING_START; i < Common.XSTRING_LIMIT; ++i) {
@@ -71,79 +73,170 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(new UTS46());
         add(new IDNA2008());
         add(new IDNA2008c());
-        //add(new Usage());
+        // add(new Usage());
         add(new HanType());
-        add(new UnicodeProperty.UnicodeMapProperty().set(Idna2003.SINGLETON.mappings).setMain("toIdna2003", "toIdna2003", UnicodeProperty.STRING, "1.1"));
-        add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings).setMain("toUts46t", "toUts46t", UnicodeProperty.STRING, "1.1"));
-        add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.getMappingsDisplay()).setMain("toUts46n", "toUts46n", UnicodeProperty.STRING, "1.1"));
+        add(
+                new UnicodeProperty.UnicodeMapProperty()
+                        .set(Idna2003.SINGLETON.mappings)
+                        .setMain("toIdna2003", "toIdna2003", UnicodeProperty.STRING, "1.1"));
+        add(
+                new UnicodeProperty.UnicodeMapProperty()
+                        .set(Uts46.SINGLETON.mappings)
+                        .setMain("toUts46t", "toUts46t", UnicodeProperty.STRING, "1.1"));
+        add(
+                new UnicodeProperty.UnicodeMapProperty()
+                        .set(Uts46.SINGLETON.getMappingsDisplay())
+                        .setMain("toUts46n", "toUts46n", UnicodeProperty.STRING, "1.1"));
 
-        add(new StringTransformProperty(Common.NFKC_CF, false).setMain("NFKC_Casefold", "NFKC_CF", UnicodeProperty.STRING, "1.1").addName("toNFKC_CF"));
+        add(
+                new StringTransformProperty(Common.NFKC_CF, false)
+                        .setMain("NFKC_Casefold", "NFKC_CF", UnicodeProperty.STRING, "1.1")
+                        .addName("toNFKC_CF"));
 
-        add(new CodepointTransformProperty(new Transform<Integer,String>() {
-            public String transform(Integer source) {
-                return Normalizer.normalize(source, Normalizer.NFC);
-            }}, false).setMain("toNFC", "toNFC", UnicodeProperty.STRING, "1.1"));
-        add(new CodepointTransformProperty(new Transform<Integer,String>() {
-            public String transform(Integer source) {
-                return Normalizer.normalize(source, Normalizer.NFD);
-            }}, false).setMain("toNFD", "toNFD", UnicodeProperty.STRING, "1.1"));
-        add(new CodepointTransformProperty(new Transform<Integer,String>() {
-            public String transform(Integer source) {
-                return Normalizer.normalize(source, Normalizer.NFKC);
-            }}, false).setMain("toNFKC", "toNFKC", UnicodeProperty.STRING, "1.1"));
-        add(new CodepointTransformProperty(new Transform<Integer,String>() {
-            public String transform(Integer source) {
-                return Normalizer.normalize(source, Normalizer.NFKD);
-            }}, false).setMain("toNFKD", "toNFKD", UnicodeProperty.STRING, "1.1"));
+        add(
+                new CodepointTransformProperty(
+                                new Transform<Integer, String>() {
+                                    public String transform(Integer source) {
+                                        return Normalizer.normalize(source, Normalizer.NFC);
+                                    }
+                                },
+                                false)
+                        .setMain("toNFC", "toNFC", UnicodeProperty.STRING, "1.1"));
+        add(
+                new CodepointTransformProperty(
+                                new Transform<Integer, String>() {
+                                    public String transform(Integer source) {
+                                        return Normalizer.normalize(source, Normalizer.NFD);
+                                    }
+                                },
+                                false)
+                        .setMain("toNFD", "toNFD", UnicodeProperty.STRING, "1.1"));
+        add(
+                new CodepointTransformProperty(
+                                new Transform<Integer, String>() {
+                                    public String transform(Integer source) {
+                                        return Normalizer.normalize(source, Normalizer.NFKC);
+                                    }
+                                },
+                                false)
+                        .setMain("toNFKC", "toNFKC", UnicodeProperty.STRING, "1.1"));
+        add(
+                new CodepointTransformProperty(
+                                new Transform<Integer, String>() {
+                                    public String transform(Integer source) {
+                                        return Normalizer.normalize(source, Normalizer.NFKD);
+                                    }
+                                },
+                                false)
+                        .setMain("toNFKD", "toNFKD", UnicodeProperty.STRING, "1.1"));
 
-        add(new StringTransformProperty(new StringTransform() {
-            public String transform(String source) {
-                return UCharacter.foldCase(source, true);
-            }}, false).setMain("toCasefold", "toCF", UnicodeProperty.STRING, "1.1"));
-        add(new StringTransformProperty(new StringTransform() {
-            public String transform(String source) {
-                return UCharacter.toLowerCase(ULocale.ROOT, source);
-            }}, false).setMain("toLowercase", "toLC", UnicodeProperty.STRING, "1.1"));
-        add(new StringTransformProperty(new StringTransform() {
-            public String transform(String source) {
-                return UCharacter.toUpperCase(ULocale.ROOT, source);
-            }}, false).setMain("toUppercase", "toUC", UnicodeProperty.STRING, "1.1"));
-        add(new StringTransformProperty(new StringTransform() {
-            public String transform(String source) {
-                return UCharacter.toTitleCase(ULocale.ROOT, source, null);
-            }}, false).setMain("toTitlecase", "toTC", UnicodeProperty.STRING, "1.1"));
+        add(
+                new StringTransformProperty(
+                                new StringTransform() {
+                                    public String transform(String source) {
+                                        return UCharacter.foldCase(source, true);
+                                    }
+                                },
+                                false)
+                        .setMain("toCasefold", "toCF", UnicodeProperty.STRING, "1.1"));
+        add(
+                new StringTransformProperty(
+                                new StringTransform() {
+                                    public String transform(String source) {
+                                        return UCharacter.toLowerCase(ULocale.ROOT, source);
+                                    }
+                                },
+                                false)
+                        .setMain("toLowercase", "toLC", UnicodeProperty.STRING, "1.1"));
+        add(
+                new StringTransformProperty(
+                                new StringTransform() {
+                                    public String transform(String source) {
+                                        return UCharacter.toUpperCase(ULocale.ROOT, source);
+                                    }
+                                },
+                                false)
+                        .setMain("toUppercase", "toUC", UnicodeProperty.STRING, "1.1"));
+        add(
+                new StringTransformProperty(
+                                new StringTransform() {
+                                    public String transform(String source) {
+                                        return UCharacter.toTitleCase(ULocale.ROOT, source, null);
+                                    }
+                                },
+                                false)
+                        .setMain("toTitlecase", "toTC", UnicodeProperty.STRING, "1.1"));
 
-        add(new StringTransformProperty(new StringTransform() {
-            public String transform(String source) {
-                StringBuilder b = new StringBuilder();
-                for (int cp : CharSequences.codePoints(source)) {
-                    b.appendCodePoint(UCharacter.getBidiPairedBracket(cp));
-                }
-                return b.toString();
-            }}, false).setMain("Bidi_Paired_Bracket", "bpb", UnicodeProperty.STRING, "7.0"));
+        add(
+                new StringTransformProperty(
+                                new StringTransform() {
+                                    public String transform(String source) {
+                                        StringBuilder b = new StringBuilder();
+                                        for (int cp : CharSequences.codePoints(source)) {
+                                            b.appendCodePoint(UCharacter.getBidiPairedBracket(cp));
+                                        }
+                                        return b.toString();
+                                    }
+                                },
+                                false)
+                        .setMain("Bidi_Paired_Bracket", "bpb", UnicodeProperty.STRING, "7.0"));
 
-        add(new StringTransformProperty(new StringTransform() {
-            public String transform(String source) {
-                String result = NFM.nfm.get(source);
-                return result == null ? source : result;
-            }}, false).setMain("toNFM", "toNFM", UnicodeProperty.STRING, "1.1"));
-        //add(new UnicodeProperty.UnicodeMapProperty().set(NFM.nfm).setMain("toNFM", "toNFM", UnicodeProperty.STRING, "1.1"));
-        add(new UnicodeSetProperty().set(NFM.nfm.getSet(null)).setMain("isNFM", "isNFM", UnicodeProperty.BINARY, "1.1"));
+        add(
+                new StringTransformProperty(
+                                new StringTransform() {
+                                    public String transform(String source) {
+                                        String result = NFM.nfm.get(source);
+                                        return result == null ? source : result;
+                                    }
+                                },
+                                false)
+                        .setMain("toNFM", "toNFM", UnicodeProperty.STRING, "1.1"));
+        // add(new UnicodeProperty.UnicodeMapProperty().set(NFM.nfm).setMain("toNFM", "toNFM",
+        // UnicodeProperty.STRING, "1.1"));
+        add(
+                new UnicodeSetProperty()
+                        .set(NFM.nfm.getSet(null))
+                        .setMain("isNFM", "isNFM", UnicodeProperty.BINARY, "1.1"));
 
-        add(new CodepointTransformProperty(new Transform<Integer,String>() {
-            public String transform(Integer source) {
-                return UnicodeUtilities.getSubheader().getSubheader(source);
-            }}, false).setMain("subhead", "subhead", UnicodeProperty.STRING, "1.1"));
+        add(
+                new CodepointTransformProperty(
+                                new Transform<Integer, String>() {
+                                    public String transform(Integer source) {
+                                        return UnicodeUtilities.getSubheader().getSubheader(source);
+                                    }
+                                },
+                                false)
+                        .setMain("subhead", "subhead", UnicodeProperty.STRING, "1.1"));
 
-        add(new UnicodeSetProperty().set("[:^nfcqc=n:]").setMain("isNFC", "isNFC", UnicodeProperty.BINARY, "1.1"));
-        add(new UnicodeSetProperty().set("[:^nfdqc=n:]").setMain("isNFD", "isNFD", UnicodeProperty.BINARY, "1.1"));
-        add(new UnicodeSetProperty().set("[:^nfkcqc=n:]").setMain("isNFKC", "isNFKC", UnicodeProperty.BINARY, "1.1"));
-        add(new UnicodeSetProperty().set("[:^nfkdqc=n:]").setMain("isNFKD", "isNFKD", UnicodeProperty.BINARY, "1.1"));
-        add(new UnicodeSetProperty().set("[\\u0000-\\u007F]").setMain("ASCII", "ASCII", UnicodeProperty.BINARY, "1.1"));
-        add(new UnicodeSetProperty().set("[\\u0000-\\U0010FFFF]").setMain("ANY", "ANY", UnicodeProperty.BINARY, "1.1"));
+        add(
+                new UnicodeSetProperty()
+                        .set("[:^nfcqc=n:]")
+                        .setMain("isNFC", "isNFC", UnicodeProperty.BINARY, "1.1"));
+        add(
+                new UnicodeSetProperty()
+                        .set("[:^nfdqc=n:]")
+                        .setMain("isNFD", "isNFD", UnicodeProperty.BINARY, "1.1"));
+        add(
+                new UnicodeSetProperty()
+                        .set("[:^nfkcqc=n:]")
+                        .setMain("isNFKC", "isNFKC", UnicodeProperty.BINARY, "1.1"));
+        add(
+                new UnicodeSetProperty()
+                        .set("[:^nfkdqc=n:]")
+                        .setMain("isNFKD", "isNFKD", UnicodeProperty.BINARY, "1.1"));
+        add(
+                new UnicodeSetProperty()
+                        .set("[\\u0000-\\u007F]")
+                        .setMain("ASCII", "ASCII", UnicodeProperty.BINARY, "1.1"));
+        add(
+                new UnicodeSetProperty()
+                        .set("[\\u0000-\\U0010FFFF]")
+                        .setMain("ANY", "ANY", UnicodeProperty.BINARY, "1.1"));
 
-        add(new UnicodeSetProperty().set(new UnicodeSet("[\\u0000-\\uFFFF]"))
-                .setMain("bmp", "bmp", UnicodeProperty.BINARY, "6.0"));
+        add(
+                new UnicodeSetProperty()
+                        .set(new UnicodeSet("[\\u0000-\\uFFFF]"))
+                        .setMain("bmp", "bmp", UnicodeProperty.BINARY, "6.0"));
 
         addCollationProperty();
 
@@ -152,44 +245,63 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         UnicodeMap<String> specialMap = new UnicodeMap<String>();
         specialMap.putAll(scriptProp.getUnicodeMap());
         specialMap.putAll(ScriptTester.getScriptSpecialsNames());
-        add(new UnicodeProperty.UnicodeMapProperty()
-        .set(specialMap)
-        .setMain("Script_Extensions", "scx", UnicodeProperty.ENUMERATED, "1.1")
-        .addValueAliases(ScriptTester.getScriptSpecialsAlternates(), AliasAddAction.IGNORE_IF_MISSING)
-                );
+        add(
+                new UnicodeProperty.UnicodeMapProperty()
+                        .set(specialMap)
+                        .setMain("Script_Extensions", "scx", UnicodeProperty.ENUMERATED, "1.1")
+                        .addValueAliases(
+                                ScriptTester.getScriptSpecialsAlternates(),
+                                AliasAddAction.IGNORE_IF_MISSING));
 
         CachedProps cp = CachedProps.CACHED_PROPS;
         for (String prop : cp.getAvailable()) {
             add2(cp.getProperty(prop));
         }
-        UnicodeSet Basic_Emoji = cp.getProperty("Basic_Emoji").getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet Emoji_Keycap_Sequence = cp.getProperty("RGI_Emoji_Keycap_Sequence").getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Modifier_Sequence = cp.getProperty("RGI_Emoji_Modifier_Sequence").getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Tag_Sequence = cp.getProperty("RGI_Emoji_Tag_Sequence").getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Flag_Sequence = cp.getProperty("RGI_Emoji_Flag_Sequence").getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Zwj_Sequence = cp.getProperty("RGI_Emoji_Zwj_Sequence").getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji = new UnicodeSet()
-            .add(Basic_Emoji)
-            .add(Emoji_Keycap_Sequence)
-            .add(RGI_Emoji_Modifier_Sequence)
-            .add(RGI_Emoji_Flag_Sequence)
-            .add(RGI_Emoji_Tag_Sequence)
-            .add(RGI_Emoji_Zwj_Sequence)
-            .freeze();
-        add(new UnicodeSetProperty().set(RGI_Emoji).setMain("RGI_Emoji", "RGI_Emoji", UnicodeProperty.BINARY, "13.0"));
+        UnicodeSet Basic_Emoji =
+                cp.getProperty("Basic_Emoji").getSet("Yes", null); // TODO: was .getTrueSet();
+        UnicodeSet Emoji_Keycap_Sequence =
+                cp.getProperty("RGI_Emoji_Keycap_Sequence")
+                        .getSet("Yes", null); // TODO: was .getTrueSet();
+        UnicodeSet RGI_Emoji_Modifier_Sequence =
+                cp.getProperty("RGI_Emoji_Modifier_Sequence")
+                        .getSet("Yes", null); // TODO: was .getTrueSet();
+        UnicodeSet RGI_Emoji_Tag_Sequence =
+                cp.getProperty("RGI_Emoji_Tag_Sequence")
+                        .getSet("Yes", null); // TODO: was .getTrueSet();
+        UnicodeSet RGI_Emoji_Flag_Sequence =
+                cp.getProperty("RGI_Emoji_Flag_Sequence")
+                        .getSet("Yes", null); // TODO: was .getTrueSet();
+        UnicodeSet RGI_Emoji_Zwj_Sequence =
+                cp.getProperty("RGI_Emoji_Zwj_Sequence")
+                        .getSet("Yes", null); // TODO: was .getTrueSet();
+        UnicodeSet RGI_Emoji =
+                new UnicodeSet()
+                        .add(Basic_Emoji)
+                        .add(Emoji_Keycap_Sequence)
+                        .add(RGI_Emoji_Modifier_Sequence)
+                        .add(RGI_Emoji_Flag_Sequence)
+                        .add(RGI_Emoji_Tag_Sequence)
+                        .add(RGI_Emoji_Zwj_Sequence)
+                        .freeze();
+        add(
+                new UnicodeSetProperty()
+                        .set(RGI_Emoji)
+                        .setMain("RGI_Emoji", "RGI_Emoji", UnicodeProperty.BINARY, "13.0"));
     }
 
     private void addCollationProperty() {
         RuleBasedCollator c = UnicodeSetUtilities.RAW_COLLATOR;
-        //(RuleBasedCollator) Collator.getInstance(ULocale.ROOT);
-        //c.setCaseLevel(true);
+        // (RuleBasedCollator) Collator.getInstance(ULocale.ROOT);
+        // c.setCaseLevel(true);
 
         UnicodeMap<String> collationMap0 = new UnicodeMap<String>();
         UnicodeMap<String> collationMap1 = new UnicodeMap<String>();
         UnicodeMap<String> collationMap2 = new UnicodeMap<String>();
         UnicodeMap<String> collationMap3 = new UnicodeMap<String>();
         RawCollationKey key = new RawCollationKey();
-        StringBuilder[] builder = {new StringBuilder(), new StringBuilder(), new StringBuilder(), new StringBuilder()};
+        StringBuilder[] builder = {
+            new StringBuilder(), new StringBuilder(), new StringBuilder(), new StringBuilder()
+        };
         UnicodeSet contractions = new UnicodeSet();
         UnicodeSet expansions = new UnicodeSet();
         try {
@@ -197,9 +309,13 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         } catch (Exception e) {
             throw new IllegalArgumentException(e);
         }
-        UnicodeSet stuff = new UnicodeSet(ALL).addAll(contractions).addAll(expansions).removeAll(new UnicodeSet("[:unified_ideograph:]"));
+        UnicodeSet stuff =
+                new UnicodeSet(ALL)
+                        .addAll(contractions)
+                        .addAll(expansions)
+                        .removeAll(new UnicodeSet("[:unified_ideograph:]"));
         for (String s : stuff) {
-            //c.getRawCollationKey(s, key);
+            // c.getRawCollationKey(s, key);
             builder[0].setLength(0);
             builder[1].setLength(0);
             builder[2].setLength(0);
@@ -228,12 +344,14 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                 tertiary ^= caseLevel;
                 caseLevel |= 1; // fake 1 bit
 
-                while (nextCe != CollationElementIterator.NULLORDER && (nextCe & 0xC0) == 0xC0) { // Continuation!!
+                while (nextCe != CollationElementIterator.NULLORDER
+                        && (nextCe & 0xC0) == 0xC0) { // Continuation!!
                     ce = nextCe;
                     nextCe = it.next();
                     primary = (primary << 16) | CollationElementIterator.primaryOrder(ce);
                     secondary = (secondary << 8) | CollationElementIterator.secondaryOrder(ce);
-                    tertiary = (tertiary << 8) | (CollationElementIterator.tertiaryOrder(ce) & 0x3F);
+                    tertiary =
+                            (tertiary << 8) | (CollationElementIterator.tertiaryOrder(ce) & 0x3F);
                 }
                 addBytes(builder[0], primary);
                 addBytes(builder[1], secondary);
@@ -249,14 +367,22 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         //        System.out.println(collationMap1.values().size());
         //        System.out.println(collationMap2.values().size());
         //        System.out.println(collationMap3.values().size());
-        add(new UnicodeProperty.UnicodeMapProperty()
-        .set(collationMap0).setMain("uca", "uca1", UnicodeProperty.ENUMERATED, "1.1"));
-        add(new UnicodeProperty.UnicodeMapProperty()
-        .set(collationMap1).setMain("uca2", "uca2", UnicodeProperty.ENUMERATED, "1.1"));
-        add(new UnicodeProperty.UnicodeMapProperty()
-        .set(collationMap2).setMain("uca2.5", "uca2.5", UnicodeProperty.ENUMERATED, "1.1"));
-        add(new UnicodeProperty.UnicodeMapProperty()
-        .set(collationMap3).setMain("uca3", "uca3", UnicodeProperty.ENUMERATED, "1.1"));
+        add(
+                new UnicodeProperty.UnicodeMapProperty()
+                        .set(collationMap0)
+                        .setMain("uca", "uca1", UnicodeProperty.ENUMERATED, "1.1"));
+        add(
+                new UnicodeProperty.UnicodeMapProperty()
+                        .set(collationMap1)
+                        .setMain("uca2", "uca2", UnicodeProperty.ENUMERATED, "1.1"));
+        add(
+                new UnicodeProperty.UnicodeMapProperty()
+                        .set(collationMap2)
+                        .setMain("uca2.5", "uca2.5", UnicodeProperty.ENUMERATED, "1.1"));
+        add(
+                new UnicodeProperty.UnicodeMapProperty()
+                        .set(collationMap3)
+                        .setMain("uca3", "uca3", UnicodeProperty.ENUMERATED, "1.1"));
     }
 
     private void addBytes(StringBuilder builder, int bytes) {
@@ -325,10 +451,9 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         protected String _getVersion() {
             return VersionInfo.ICU_VERSION.toString();
         }
-
     }
 
-    private static abstract class XEnumUnicodeProperty extends UnicodeProperty {
+    private abstract static class XEnumUnicodeProperty extends UnicodeProperty {
         List<String> values = new ArrayList();
 
         public XEnumUnicodeProperty(String name, Object[] values) {
@@ -363,7 +488,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         protected String _getVersion() {
             return VersionInfo.ICU_VERSION.toString();
         }
-
     }
 
     private static class IDNA2003 extends XEnumUnicodeProperty {
@@ -375,6 +499,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         protected String _getValue(int codepoint) {
             return Idna2003.SINGLETON.getType(codepoint).toString();
         }
+
         @Override
         protected List _getNameAliases(List result) {
             super._getNameAliases(result);
@@ -418,14 +543,19 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
 
     private static class IcuEnumProperty extends XEnumUnicodeProperty {
         final int propNum;
+
         public IcuEnumProperty(int propNum) {
-            super(UCharacter.getPropertyName(propNum, NameChoice.LONG), getValues(propNum).toArray());
+            super(
+                    UCharacter.getPropertyName(propNum, NameChoice.LONG),
+                    getValues(propNum).toArray());
             this.propNum = propNum;
         }
 
         private static List<String> getValues(int propNum) {
             List<String> valueList = new ArrayList<String>();
-            for (int i = UCharacter.getIntPropertyMinValue(propNum); i <= UCharacter.getIntPropertyMaxValue(propNum); ++i) {
+            for (int i = UCharacter.getIntPropertyMinValue(propNum);
+                    i <= UCharacter.getIntPropertyMaxValue(propNum);
+                    ++i) {
                 valueList.add(UCharacter.getPropertyValueName(propNum, i, NameChoice.LONG));
             }
             return valueList;
@@ -445,12 +575,14 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     //    private static class IcuBidiPairedBracket extends SimpleProperty {
     //        final int propNum;
     //        public IcuBidiPairedBracket() {
-    //            setName(UCharacter.getPropertyName(UProperty.BIDI_PAIRED_BRACKET, NameChoice.LONG));
+    //            setName(UCharacter.getPropertyName(UProperty.BIDI_PAIRED_BRACKET,
+    // NameChoice.LONG));
     //            this.propNum = UProperty.BIDI_PAIRED_BRACKET;
     //        }
     //        @Override
     //        public List _getNameAliases(List result) {
-    //            return Arrays.asList(UCharacter.getPropertyName(propNum, NameChoice.LONG), UCharacter.getPropertyName(propNum, NameChoice.SHORT));
+    //            return Arrays.asList(UCharacter.getPropertyName(propNum, NameChoice.LONG),
+    // UCharacter.getPropertyName(propNum, NameChoice.SHORT));
     //        }
     //
     //        @Override
@@ -465,7 +597,8 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     //    }
 
     //    private static class Usage extends XEnumUnicodeProperty {
-    //        enum UsageValues {common, historic, deprecated, liturgical, limited, symbol, punctuation, na;
+    //        enum UsageValues {common, historic, deprecated, liturgical, limited, symbol,
+    // punctuation, na;
     //        public static UsageValues getValue(int codepoint) {
     //            if (UnicodeProperty.SPECIALS.contains(codepoint)) return na;
     //            if (UnicodeUtilities.DEPRECATED.contains(codepoint)) return deprecated;
@@ -492,7 +625,13 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     //    }
 
     static class HanType extends XEnumUnicodeProperty {
-        enum HanTypeValues {na, Hans, Hant, Han}
+        enum HanTypeValues {
+            na,
+            Hans,
+            Hant,
+            Han
+        }
+
         public HanType() {
             super("HanType", HanTypeValues.values());
             setType(UnicodeProperty.EXTENDED_ENUMERATED);
@@ -505,24 +644,28 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     }
 
     private static class StringTransformProperty extends SimpleProperty {
-        Transform<String,String> transform;
+        Transform<String, String> transform;
 
-        public StringTransformProperty(Transform<String,String> transform, boolean hasUniformUnassigned) {
+        public StringTransformProperty(
+                Transform<String, String> transform, boolean hasUniformUnassigned) {
             this.transform = transform;
             setUniformUnassigned(hasUniformUnassigned);
         }
+
         protected String _getValue(int codepoint) {
             return transform.transform(UTF16.valueOf(codepoint));
         }
     }
 
     private static class CodepointTransformProperty extends SimpleProperty {
-        Transform<Integer,String> transform;
+        Transform<Integer, String> transform;
 
-        public CodepointTransformProperty(Transform<Integer,String> transform, boolean hasUniformUnassigned) {
+        public CodepointTransformProperty(
+                Transform<Integer, String> transform, boolean hasUniformUnassigned) {
             this.transform = transform;
             setUniformUnassigned(hasUniformUnassigned);
         }
+
         protected String _getValue(int codepoint) {
             return transform.transform(codepoint);
         }
@@ -560,7 +703,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         }
 
         private Object hex(byte b) {
-            String result = Integer.toHexString(0xFF&b).toUpperCase(Locale.ENGLISH);
+            String result = Integer.toHexString(0xFF & b).toUpperCase(Locale.ENGLISH);
             return result.length() == 2 ? result : "0" + result;
         }
     }
@@ -578,10 +721,9 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         }
     }
 
-
     public static class UnicodeSetProperty extends BaseProperty {
         protected UnicodeSet unicodeSet;
-        private static final String[] YESNO_ARRAY = new String[]{"Yes", "No"};
+        private static final String[] YESNO_ARRAY = new String[] {"Yes", "No"};
         private static final List YESNO = Arrays.asList(YESNO_ARRAY);
 
         public XPropertyFactory.UnicodeSetProperty set(UnicodeSet set) {
@@ -609,5 +751,4 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             return YESNO;
         }
     }
-
 }

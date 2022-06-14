@@ -1,14 +1,12 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/MLStreamWriter.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/MLStreamWriter.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
 import java.io.PrintWriter;
@@ -19,39 +17,40 @@ public class MLStreamWriter extends Writer {
     public static final String copyright =
             "Copyright (C) 2000, IBM Corp. and others. All Rights Reserved.";
 
-    public MLStreamWriter (PrintWriter output, boolean HTML) {
+    public MLStreamWriter(PrintWriter output, boolean HTML) {
         out = output;
         isHTML = HTML;
     }
 
-    public MLStreamWriter (PrintWriter output) {
-        this(output,true);
+    public MLStreamWriter(PrintWriter output) {
+        this(output, true);
     }
 
     public MLStreamWriter el(String elementName) {
         closeIfOpen();
         print('<', AFTER);
-        print(elementName, elementName.equals("!--") ? AFTER+FORCE : AFTER);
+        print(elementName, elementName.equals("!--") ? AFTER + FORCE : AFTER);
         stack.add(elementName);
         inElement = true;
         return this;
     }
 
     private MLStreamWriter closeIfOpen() {
-        if (inElement && !"!--".equals(stack.get(stack.size()-1))) {
-            print('>',BEFORE+FORCE);
+        if (inElement && !"!--".equals(stack.get(stack.size() - 1))) {
+            print('>', BEFORE + FORCE);
         }
         inElement = false;
         return this;
     }
 
-    final public MLStreamWriter cel(String elementName) {
+    public final MLStreamWriter cel(String elementName) {
         return cl().tx(elementName);
     }
 
     public MLStreamWriter at(String attributeName, String attributeValue) {
         if (!inElement) {
-            throw new IllegalArgumentException("attribute \"" + attributeName + "\" not in element");
+            throw new IllegalArgumentException(
+                    "attribute \"" + attributeName + "\" not in element");
         }
         print(' ', BOTH);
         print(attributeName, AFTER);
@@ -91,49 +90,53 @@ public class MLStreamWriter extends Writer {
         return this;
     }
 
-    final public MLStreamWriter tx(char text) {
+    public final MLStreamWriter tx(char text) {
         return tx(String.valueOf(text));
     }
 
-    final public MLStreamWriter tx(int text) {
+    public final MLStreamWriter tx(int text) {
         return tx(String.valueOf(text));
     }
 
-    final public MLStreamWriter tx16(String text) {
+    public final MLStreamWriter tx16(String text) {
         return tx(hex(text));
     }
 
-    final public MLStreamWriter tx16(char text) {
+    public final MLStreamWriter tx16(char text) {
         return tx(hex(text));
     }
 
-    final public MLStreamWriter tx16(int text) {
+    public final MLStreamWriter tx16(int text) {
         return tx(hex(text));
     }
 
     public MLStreamWriter cl(String closingElement) {
         closeIfOpen();
-        final String lastElement = (String)stack.remove(stack.size()-1);
+        final String lastElement = (String) stack.remove(stack.size() - 1);
         if (closingElement != null && !closingElement.equals(lastElement)) {
-            throw new IllegalArgumentException("mismatch when closing \"" + closingElement
-                    + "\", current active element is \"" + lastElement + "\"");
+            throw new IllegalArgumentException(
+                    "mismatch when closing \""
+                            + closingElement
+                            + "\", current active element is \""
+                            + lastElement
+                            + "\"");
         }
-        if (lastElement.equals("!--")) {// hack for XML/HTML
-            print("-->",BEFORE+FORCE);
+        if (lastElement.equals("!--")) { // hack for XML/HTML
+            print("-->", BEFORE + FORCE);
         } else {
             print("</");
             print(lastElement);
-            print('>',BEFORE);
+            print('>', BEFORE);
         }
         return this;
     }
 
-    final public MLStreamWriter cl() {
+    public final MLStreamWriter cl() {
         return cl(null);
     }
 
     public MLStreamWriter closeAllElements() {
-        for (int i = stack.size()-1; i >= 0; --i) {
+        for (int i = stack.size() - 1; i >= 0; --i) {
             cl(null);
         }
         return this;
@@ -161,7 +164,7 @@ public class MLStreamWriter extends Writer {
 
     // Utility methods
 
-    final public MLStreamWriter cell(String ch, String type, String codepoint, String cat) {
+    public final MLStreamWriter cell(String ch, String type, String codepoint, String cat) {
         if (codepoint == null) {
             codepoint = ch;
         }
@@ -169,8 +172,8 @@ public class MLStreamWriter extends Writer {
         if (dotpos == -1) {
             el(type);
         } else {
-            el(type.substring(0,dotpos));
-            at("class",type.substring(dotpos+1));
+            el(type.substring(0, dotpos));
+            at("class", type.substring(dotpos + 1));
         }
         /*
         if (color == -1) {
@@ -190,42 +193,39 @@ public class MLStreamWriter extends Writer {
         return this;
     }
 
-    final public MLStreamWriter cell(String ch) {
-        return cell(ch,"td",null,null);
+    public final MLStreamWriter cell(String ch) {
+        return cell(ch, "td", null, null);
     }
 
-    final public MLStreamWriter cell(String ch, String type) {
-        return cell(ch,type,null,null);
+    public final MLStreamWriter cell(String ch, String type) {
+        return cell(ch, type, null, null);
     }
 
-    final public MLStreamWriter cell(String ch, String type, String codepoint) {
-        return cell(ch,type,codepoint,null);
+    public final MLStreamWriter cell(String ch, String type, String codepoint) {
+        return cell(ch, type, codepoint, null);
     }
 
-    static public String hex(int i, int width) {
+    public static String hex(int i, int width) {
         final String result = Long.toString(i & 0xFFFFFFFFL, 16).toUpperCase();
-        return "00000000".substring(result.length(),width) + result;
+        return "00000000".substring(result.length(), width) + result;
     }
 
-    /**
-     * Supplies a zero-padded hex representation of an integer (without 0x)
-     */
-    static public String hex(int i) {
-        return hex(i,8);
+    /** Supplies a zero-padded hex representation of an integer (without 0x) */
+    public static String hex(int i) {
+        return hex(i, 8);
     }
 
-    /**
-     * Supplies a zero-padded hex representation of a Unicode character (without 0x, \\u)
-     */
-    static public String hex(char i) {
-        return hex(i,4);
+    /** Supplies a zero-padded hex representation of a Unicode character (without 0x, \\u) */
+    public static String hex(char i) {
+        return hex(i, 4);
     }
 
     /**
      * Supplies a zero-padded hex representation of a Unicode String (without 0x, \\u)
-     *@param sep can be used to give a sequence, e.g. hex("ab", ",") gives "0061,0062"
+     *
+     * @param sep can be used to give a sequence, e.g. hex("ab", ",") gives "0061,0062"
      */
-    static public String hex(String s, String sep) {
+    public static String hex(String s, String sep) {
         final StringBuffer result = new StringBuffer();
         for (int i = 0; i < s.length(); ++i) {
             if (i != 0) {
@@ -236,13 +236,20 @@ public class MLStreamWriter extends Writer {
         return result.toString();
     }
 
-    static public String hex(String s) {
-        return hex(s," ");
+    public static String hex(String s) {
+        return hex(s, " ");
     }
 
-
     public void author(String name, String url) {
-        el("font").at("size","-3").tx("[").el("a").at("href",url).tx(name).cl("a").el("script").el("!--");
+        el("font")
+                .at("size", "-3")
+                .tx("[")
+                .el("a")
+                .at("href", url)
+                .tx(name)
+                .cl("a")
+                .el("script")
+                .el("!--");
         tx("document.write(', ', document.lastModified);");
         cl("!--").cl("script").tx("]").cl("font");
     }
@@ -258,14 +265,14 @@ public class MLStreamWriter extends Writer {
     int maxLineLength = 60;
     // later, add better line end management, indenting
 
-    static final int NONE=0, BEFORE=1, AFTER=2, BOTH=3, FORCE = 4; // chosen for bits!!
+    static final int NONE = 0, BEFORE = 1, AFTER = 2, BOTH = 3, FORCE = 4; // chosen for bits!!
 
     final void print(String s) {
-        print(s,NONE);
+        print(s, NONE);
     }
 
     final void print(char c) {
-        print(c,NONE);
+        print(c, NONE);
     }
 
     final void print(String s, int doesBreak) {
@@ -305,41 +312,43 @@ public class MLStreamWriter extends Writer {
         final StringBuffer result = new StringBuffer();
         for (int i = 0; i < source.length(); ++i) {
             final char ch = source.charAt(i);
-            switch(ch) {
-            case '\'':
-                if (!isHTML) {
-                    result.append("&apos;");
-                } else {
+            switch (ch) {
+                case '\'':
+                    if (!isHTML) {
+                        result.append("&apos;");
+                    } else {
+                        result.append(ch);
+                    }
+                    break;
+                case '\"':
+                    result.append("&quot;");
+                    break;
+                case '<':
+                    result.append("&lt;");
+                    break;
+                case '&':
+                    result.append("&amp;");
+                    break;
+                case '>':
+                    result.append("&gt;");
+                    break;
+                case '\n':
+                case '\r':
+                case '\t':
                     result.append(ch);
-                }
-                break;
-            case '\"':
-                result.append("&quot;");
-                break;
-            case '<':
-                result.append("&lt;");
-                break;
-            case '&':
-                result.append("&amp;");
-                break;
-            case '>':
-                result.append("&gt;");
-                break;
-            case '\n': case '\r': case '\t':
-                result.append(ch);
-                break;
-            default: if (ch < ' ' // do surrogates later
-                    || ch >= '\u007F' && ch <= '\u009F'
-                    || ch >= '\uD800' && ch <= '\uDFFF'
-                    || ch >= '\uFFFE') {
-                result.append('\uFFFD');
-            } else {
-                result.append(ch);
-            }
-            break;
+                    break;
+                default:
+                    if (ch < ' ' // do surrogates later
+                            || ch >= '\u007F' && ch <= '\u009F'
+                            || ch >= '\uD800' && ch <= '\uDFFF'
+                            || ch >= '\uFFFE') {
+                        result.append('\uFFFD');
+                    } else {
+                        result.append(ch);
+                    }
+                    break;
             }
         }
         return result.toString();
     }
-
 }

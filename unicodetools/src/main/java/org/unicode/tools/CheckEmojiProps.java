@@ -1,5 +1,9 @@
 package org.unicode.tools;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.CharSequences;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSet.EntryRange;
 import org.unicode.cldr.util.Counter;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
@@ -8,35 +12,31 @@ import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiData;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSet.EntryRange;
-
 public class CheckEmojiProps {
-    static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
+    static final IndexUnicodeProperties iup =
+            IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
     static final UnicodeMap<String> General_Category = iup.load(UcdProperty.General_Category);
     static final UnicodeMap<String> Name = iup.load(UcdProperty.Name);
-    static final UnicodeMap<String> Grapheme_Cluster_Break = iup.load(UcdProperty.Grapheme_Cluster_Break);
+    static final UnicodeMap<String> Grapheme_Cluster_Break =
+            iup.load(UcdProperty.Grapheme_Cluster_Break);
     static final UnicodeMap<String> Word_Break = iup.load(UcdProperty.Word_Break);
     static final UnicodeMap<String> Line_Break = iup.load(UcdProperty.Line_Break);
     static final EmojiData data = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
 
     public static void main(String[] args) {
-        
-        final UnicodeSet specials = new UnicodeSet("[[:block=tags:]-[:cn:]-[:deprecated:]]")
-        .add(0x200D)
-        .add(0x20E3)
-        .add(0x20E0)
-        .add(0xFE0E)
-        .add(0xFE0F)
-        ;
+
+        final UnicodeSet specials =
+                new UnicodeSet("[[:block=tags:]-[:cn:]-[:deprecated:]]")
+                        .add(0x200D)
+                        .add(0x20E3)
+                        .add(0x20E0)
+                        .add(0xFE0E)
+                        .add(0xFE0F);
 
         showSet("Specials", specials);
-        
+
         final UnicodeSet flags = new UnicodeSet(0x1F1E6, 0x1F1FF);
         showSet("Flags", flags);
-
 
         final UnicodeSet zwjs = new UnicodeSet();
         for (String s : data.getZwjSequencesAll()) {
@@ -54,14 +54,14 @@ public class CheckEmojiProps {
         showSet("Modifiers", data.MODIFIERS);
         showSet("Modifier_Bases", data.getModifierBases());
         showSet("After_Joiners", zwjs);
-        
-        final UnicodeSet others = new UnicodeSet(data.getSingletonsWithDefectives())
-        .removeAll(specials)
-        .removeAll(flags)
-        .removeAll(data.MODIFIERS)
-        .removeAll(data.getModifierBases())
-        .removeAll(zwjs)
-        ;
+
+        final UnicodeSet others =
+                new UnicodeSet(data.getSingletonsWithDefectives())
+                        .removeAll(specials)
+                        .removeAll(flags)
+                        .removeAll(data.MODIFIERS)
+                        .removeAll(data.getModifierBases())
+                        .removeAll(zwjs);
 
         showSet("Others", others);
     }
@@ -70,9 +70,14 @@ public class CheckEmojiProps {
         System.out.println("\n" + string);
         UnicodeMap<String> m = new UnicodeMap<String>();
         for (String s : all) {
-            m.put(s, "GCB=" + Grapheme_Cluster_Break.get(s) 
-                    + "; WB=" + Word_Break.get(s) 
-                    + "; LB=" + Line_Break.get(s));
+            m.put(
+                    s,
+                    "GCB="
+                            + Grapheme_Cluster_Break.get(s)
+                            + "; WB="
+                            + Word_Break.get(s)
+                            + "; LB="
+                            + Line_Break.get(s));
         }
         Counter<String> c = new Counter<String>();
         for (String item : m.getAvailableValues()) {
@@ -93,17 +98,19 @@ public class CheckEmojiProps {
                         System.out.print(", ");
                     }
                     System.out.print(Utility.hex(s.codepoint));
-                    if (s.codepoint!=s.codepointEnd) {
+                    if (s.codepoint != s.codepointEnd) {
                         System.out.print(".." + Utility.hex(s.codepointEnd));
                     }
                     continue;
                 }
                 boolean single = s.codepointEnd == s.codepoint;
-                System.out.println("\t" + Utility.hex(s.codepoint) 
-                        + (single ? "" : ".." + Utility.hex(s.codepointEnd))
-                        + "\t" + Name.get(s.codepoint) 
-                        + (single ? "" : ".." + Name.get(s.codepointEnd))
-                        );
+                System.out.println(
+                        "\t"
+                                + Utility.hex(s.codepoint)
+                                + (single ? "" : ".." + Utility.hex(s.codepointEnd))
+                                + "\t"
+                                + Name.get(s.codepoint)
+                                + (single ? "" : ".." + Name.get(s.codepointEnd)));
             }
             if (!firstMax) {
                 System.out.println();
@@ -124,7 +131,7 @@ public class CheckEmojiProps {
             result.append(", ");
         }
         result.append(Utility.hex(range.codepoint));
-        if (range.codepoint!=range.codepointEnd) {
+        if (range.codepoint != range.codepointEnd) {
             result.append(".." + Utility.hex(range.codepointEnd));
         }
     }

@@ -1,7 +1,6 @@
 // Obsolete code. Moved here from org.unicode.text.UCA on 2014-apr-23 after svn r642.
 package org.unicode.unused;
 
-
 public class Range {
     private int minimum = Integer.MAX_VALUE;
     private int maximum = Integer.MIN_VALUE;
@@ -36,6 +35,14 @@ public class Range {
 
     @Override
     public String toString() {
-        return "[" + minimum + "(" + Integer.toHexString(minimum) + ").." + maximum + "(" + Integer.toHexString(maximum) + ")]";
+        return "["
+                + minimum
+                + "("
+                + Integer.toHexString(minimum)
+                + ").."
+                + maximum
+                + "("
+                + Integer.toHexString(maximum)
+                + ")]";
     }
 }

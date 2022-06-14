@@ -1,15 +1,12 @@
 package org.unicode.idna;
 
-
-import java.util.regex.Pattern;
-
-import org.unicode.text.utility.UnicodeTransform;
-import org.unicode.text.utility.UnicodeTransform.Type;
-
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.UnicodeSet;
+import java.util.regex.Pattern;
+import org.unicode.text.utility.UnicodeTransform;
+import org.unicode.text.utility.UnicodeTransform.Type;
 
 public class Idna implements StringTransform {
 
@@ -17,12 +14,18 @@ public class Idna implements StringTransform {
     public static final UnicodeTransform NFD = UnicodeTransform.getInstance(Type.NFD);
     public static final UnicodeTransform NFKC = UnicodeTransform.getInstance(Type.NFKC);
     public static final UnicodeTransform NFKD = UnicodeTransform.getInstance(Type.NFKD);
-    public static final UnicodeTransform NFKC_3_2 = new FilteredUnicodeTransform(NFKC, new UnicodeSet("[:age=3.2:]"));
-    public static final UnicodeTransform CASEFOLD = UnicodeTransform.getInstance(UnicodeTransform.Type.CASEFOLD);
+    public static final UnicodeTransform NFKC_3_2 =
+            new FilteredUnicodeTransform(NFKC, new UnicodeSet("[:age=3.2:]"));
+    public static final UnicodeTransform CASEFOLD =
+            UnicodeTransform.getInstance(UnicodeTransform.Type.CASEFOLD);
     public static final Pattern FULL_STOP = Pattern.compile("\\.");
 
     public enum IdnaType {
-        valid, ignored, mapped, deviation, disallowed;
+        valid,
+        ignored,
+        mapped,
+        deviation,
+        disallowed;
     }
 
     public UnicodeMap<IdnaType> types = new UnicodeMap<IdnaType>();
@@ -32,11 +35,12 @@ public class Idna implements StringTransform {
     public UnicodeSet validSet_transitional = new UnicodeSet();
     protected boolean checkPunycodeValidity = false;
     private final String name;
-    //static final Normalizer2    nfc       = Normalizer2.getInstance(null, "nfc", Normalizer2.Mode.COMPOSE);
+    // static final Normalizer2    nfc       = Normalizer2.getInstance(null, "nfc",
+    // Normalizer2.Mode.COMPOSE);
 
     protected Idna() {
         final String[] names = this.getClass().getName().split("[.]");
-        name = names[names.length-1];
+        name = names[names.length - 1];
     }
 
     public IdnaType getType(int i) {
@@ -122,27 +126,26 @@ public class Idna implements StringTransform {
 
     public int isValidLabel(String string, boolean display) {
         /*
-The label must contain at least one code point.
-The label must not contain a U+002D HYPHEN-MINUS character in both the third position and fourth positions.
-The label must neither begin nor end with a U+002D HYPHEN-MINUS character.
-The label must be in Unicode Normalization Form NFC.
-The label must not contain a U+002E ( . ) FULL STOP.
-Each code point in the label must only have certain status values according to Section 5, IDNA Mapping Table:
-For Transitional Processing, each value must be valid.
-For Nontransitional Processing, each value must be either valid or deviation.
-The label must not begin with a combining mark, that is: General_Category=Mark.
-         */
+        The label must contain at least one code point.
+        The label must not contain a U+002D HYPHEN-MINUS character in both the third position and fourth positions.
+        The label must neither begin nor end with a U+002D HYPHEN-MINUS character.
+        The label must be in Unicode Normalization Form NFC.
+        The label must not contain a U+002E ( . ) FULL STOP.
+        Each code point in the label must only have certain status values according to Section 5, IDNA Mapping Table:
+        For Transitional Processing, each value must be valid.
+        For Nontransitional Processing, each value must be either valid or deviation.
+        The label must not begin with a combining mark, that is: General_Category=Mark.
+                 */
         if (string.length() == 0) {
             return 1;
         }
-        if (string.length() > 3 && string.charAt(2) == '-' && string.charAt(3) == '-')
-        {
+        if (string.length() > 3 && string.charAt(2) == '-' && string.charAt(3) == '-') {
             return 2; // fix to use code points
         }
         if (string.startsWith("-") || string.endsWith("-")) {
             return 3;
         }
-        if (!NFC.isTransformed(string)) { //Normalizer.isNormalized(string, Normalizer.NFC, 0))
+        if (!NFC.isTransformed(string)) { // Normalizer.isNormalized(string, Normalizer.NFC, 0))
             return 4;
         }
         if (string.contains(".")) {
@@ -159,7 +162,7 @@ The label must not begin with a combining mark, that is: General_Category=Mark.
 
     public boolean isValid(String string) {
         final String trans = transform(string);
-        return NFC.isTransformed(trans) && validSet.containsAll(trans); // Normalizer.isNormalized(trans, Normalizer.NFC, 0)
+        return NFC.isTransformed(trans)
+                && validSet.containsAll(trans); // Normalizer.isNormalized(trans, Normalizer.NFC, 0)
     }
 }
-

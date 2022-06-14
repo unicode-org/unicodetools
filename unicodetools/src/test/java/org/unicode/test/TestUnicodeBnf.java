@@ -1,22 +1,20 @@
 package org.unicode.test;
 
+import com.ibm.icu.impl.UnicodeRegex;
+import com.ibm.icu.text.UnicodeSet;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.parse.EBNF;
 import org.unicode.parse.EBNF.Position;
 import org.unicode.text.utility.Settings;
 
-import com.ibm.icu.impl.UnicodeRegex;
-import com.ibm.icu.text.UnicodeSet;
-
 public class TestUnicodeBnf {
     static final boolean DEBUG = true;
-    
+
     static void checkRegexBnf() {
         List<String> lines = new ArrayList<>();
         for (String line : FileUtilities.in(TestUnicodeBnf.class, "SegmentBnfGraphemeBreak.txt")) {
@@ -32,12 +30,14 @@ public class TestUnicodeBnf {
         System.out.println(pattern);
         String fixed = regexMaker.transform(pattern.replace(" ", ""));
         fixed = BreakTest.fixControls(fixed);
-        //System.out.println(fixed);
+        // System.out.println(fixed);
         Pattern gcbRegex = Pattern.compile(fixed);
         int lineCount = 0;
         // test
-        for (String line : FileUtilities.in(Settings.UnicodeTools.DATA_DIR,
-                "ucd/11.0.0-Update/auxiliary/GraphemeBreakTest.txt")) {
+        for (String line :
+                FileUtilities.in(
+                        Settings.UnicodeTools.DATA_DIR,
+                        "ucd/11.0.0-Update/auxiliary/GraphemeBreakTest.txt")) {
             ++lineCount;
             BreakTest breakTest = BreakTest.forLine(line);
             if (breakTest == null) {
@@ -47,32 +47,45 @@ public class TestUnicodeBnf {
             BitSet breaksActual = BreakTest.breaksFrom(gcbRegex, source);
             if (!breakTest.expectedBreaks.equals(breaksActual)) {
                 BitSet breaksActual2 = BreakTest.breaksFrom(gcbRegex, source);
-                System.out.println(lineCount + " Fails «" + BreakTest.fixControls(breakTest.source) 
-                + "» expected: " + breakTest.expectedBreaks 
-                + " ≠ actual: " + breaksActual
-                + "# " + breakTest.comment);
+                System.out.println(
+                        lineCount
+                                + " Fails «"
+                                + BreakTest.fixControls(breakTest.source)
+                                + "» expected: "
+                                + breakTest.expectedBreaks
+                                + " ≠ actual: "
+                                + breaksActual
+                                + "# "
+                                + breakTest.comment);
             }
         }
     }
-    
+
     // ÷ 0020 ÷ 0020 ÷  #  ÷ [0.2] SPACE (Other) ÷ [999.0] SPACE (Other) ÷ [0.3]
-    // ÷ 0020 × 0308 ÷ 0020 ÷   #  ÷ [0.2] SPACE (Other) × [9.0] COMBINING DIAERESIS (Extend_ExtCccZwj) ÷ [999.0] SPACE (Other) ÷ [0.3]
+    // ÷ 0020 × 0308 ÷ 0020 ÷   #  ÷ [0.2] SPACE (Other) × [9.0] COMBINING DIAERESIS
+    // (Extend_ExtCccZwj) ÷ [999.0] SPACE (Other) ÷ [0.3]
 
     static class BreakTest {
         final String source;
         final String comment;
         final BitSet expectedBreaks = new BitSet(); // wish we had immutable bitset
-        
+
         @Override
         public String toString() {
-            return "{source=" + source + ";expectedBreaks=" + expectedBreaks + ";comment=" + comment + "}";
+            return "{source="
+                    + source
+                    + ";expectedBreaks="
+                    + expectedBreaks
+                    + ";comment="
+                    + comment
+                    + "}";
         }
 
         public static BreakTest forLine(String line) {
             int hashPos = line.indexOf('#');
             String comment = "";
             if (hashPos >= 0) {
-                comment = line.substring(hashPos+1).trim();
+                comment = line.substring(hashPos + 1).trim();
                 line = line.substring(0, hashPos);
             }
             line = line.trim();
@@ -81,25 +94,26 @@ public class TestUnicodeBnf {
             }
             return new BreakTest(line, comment);
         }
-        
+
         private BreakTest(String source, String comment) {
             this.comment = comment;
             String[] items = source.split(" ");
             StringBuilder result = new StringBuilder();
             for (String item : items) {
                 switch (item) {
-                case "×": 
-                    break;
-                case "÷": 
-                    expectedBreaks.set(result.length()); 
-                    break;
-                default: 
-                    result.appendCodePoint(Integer.parseInt(item, 16));
-                    break;
+                    case "×":
+                        break;
+                    case "÷":
+                        expectedBreaks.set(result.length());
+                        break;
+                    default:
+                        result.appendCodePoint(Integer.parseInt(item, 16));
+                        break;
                 }
             }
             this.source = result.toString();
         }
+
         public static BitSet breaksFrom(Pattern regex, String source) {
             BitSet result = new BitSet();
             int len = source.length();
@@ -120,7 +134,7 @@ public class TestUnicodeBnf {
             }
             return result;
         }
-        
+
         private static String fixControls(String fixed) {
             StringBuilder result = new StringBuilder();
             for (int i = 0; i < fixed.length(); ++i) { // can do charAt because only controls...
@@ -134,10 +148,10 @@ public class TestUnicodeBnf {
             return result.toString();
         }
     }
-    
+
     public static void main(String[] args) {
         checkRegexBnf();
-        //checkBnf();
+        // checkBnf();
     }
 
     private static void checkBnf() {
@@ -152,7 +166,7 @@ public class TestUnicodeBnf {
         bnf.build();
 
         System.out.println(bnf.getInternal());
-        
+
         String status = "";
         Position p = new Position();
 
@@ -190,7 +204,7 @@ public class TestUnicodeBnf {
                 }
                 if (usException != null) {
                     System.out.println("usException: " + usException.getMessage());
-                    //usException.printStackTrace();
+                    // usException.printStackTrace();
                 }
 
                 System.out.println(lineCount + ") Mismatch: " + line + "\t" + status);
@@ -198,7 +212,7 @@ public class TestUnicodeBnf {
                     System.out.println(p);
                     bnfValue = bnf.match(line, 0, p.clear());
                 }
-            } 
+            }
         }
     }
 }

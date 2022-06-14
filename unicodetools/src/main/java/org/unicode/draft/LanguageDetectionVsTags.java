@@ -1,4 +1,9 @@
 package org.unicode.draft;
+
+import com.ibm.icu.impl.Row;
+import com.ibm.icu.impl.Row.R3;
+import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.util.ULocale;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,7 +15,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.tool.ConvertLanguageData.InverseComparator;
 import org.unicode.cldr.tool.LikelySubtags;
@@ -20,21 +24,33 @@ import org.unicode.cldr.util.LanguageTagParser;
 import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.text.utility.Settings;
 
-import com.ibm.icu.impl.Row;
-import com.ibm.icu.impl.Row.R3;
-import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.util.ULocale;
-
-
 public class LanguageDetectionVsTags {
-    private static final EnumSet<LineFormat> tag_range = EnumSet.range(LineFormat.http, LineFormat.xmllang);
+    private static final EnumSet<LineFormat> tag_range =
+            EnumSet.range(LineFormat.http, LineFormat.xmllang);
 
     //  http  meta  html-lang xml-lang  detected  count navboost  pagerang  lang  encod
-    enum LineFormat {L1, http, meta, lang, xmllang, detected, occurrences, documents, navboost, pagerank, lang2, enc, url};
+    enum LineFormat {
+        L1,
+        http,
+        meta,
+        lang,
+        xmllang,
+        detected,
+        occurrences,
+        documents,
+        navboost,
+        pagerank,
+        lang2,
+        enc,
+        url
+    };
 
     public static void main(String[] args) throws IOException {
-        final BufferedReader in = FileUtilities.openUTF8Reader(Settings.CLDR.BASE_DIRECTORY + "Documents/Data/", "lang78.txt");
-        final Map<String,Counter<String>> detectedToCountAndTag = new TreeMap<String,Counter<String>>();
+        final BufferedReader in =
+                FileUtilities.openUTF8Reader(
+                        Settings.CLDR.BASE_DIRECTORY + "Documents/Data/", "lang78.txt");
+        final Map<String, Counter<String>> detectedToCountAndTag =
+                new TreeMap<String, Counter<String>>();
         final Counter<String> detectedToCount = new Counter<String>();
         final Counter<String> taggedToCount = new Counter<String>();
         final Set<String> tagSet = new HashSet<String>();
@@ -46,7 +62,9 @@ public class LanguageDetectionVsTags {
             }
             final String[] parts = line.split("\t");
             // L1 html lang detected occurrences documents navboost pagerank lang enc url
-            // L1 html  en  en  110977145 110867809 48729828  60774 0 22  http://www.facebook.com/  27961428  60188 0 0 http://www.mapquest.com/  10651203  58229 0 22  http://free.grisoft.com/
+            // L1 html  en  en  110977145 110867809 48729828  60774 0 22  http://www.facebook.com/
+            // 27961428  60188 0 0 http://www.mapquest.com/  10651203  58229 0 22
+            // http://free.grisoft.com/
             try {
                 final String googleID = fixID(parts[LineFormat.detected.ordinal()]);
                 final long count = Long.parseLong(parts[LineFormat.occurrences.ordinal()]);
@@ -86,22 +104,27 @@ public class LanguageDetectionVsTags {
             System.out.println(i + "\t" + tagCount2.getCount(i));
         }
         for (final String detected : detectedToCount.getKeysetSortedByCount(false)) {
-            System.out.println(getLanguageName(detected)
-                    + "\t" + detectedToCount.getCount(detected)
-                    + "\t" + taggedToCount.getCount(detected));
+            System.out.println(
+                    getLanguageName(detected)
+                            + "\t"
+                            + detectedToCount.getCount(detected)
+                            + "\t"
+                            + taggedToCount.getCount(detected));
         }
         if (true) {
             return;
         }
 
-        final InverseComparator<Row.R3<Long, String, Counter<Type>>> inverseComparator = new InverseComparator<Row.R3<Long, String, Counter<Type>>>();
-        final TreeSet<R3<Long, String, Counter<Type>>> countLangTypes = new TreeSet<Row.R3<Long, String, Counter<Type>>>(inverseComparator);
+        final InverseComparator<Row.R3<Long, String, Counter<Type>>> inverseComparator =
+                new InverseComparator<Row.R3<Long, String, Counter<Type>>>();
+        final TreeSet<R3<Long, String, Counter<Type>>> countLangTypes =
+                new TreeSet<Row.R3<Long, String, Counter<Type>>>(inverseComparator);
         for (final String lang : detectedToCountAndTag.keySet()) {
             final Counter<String> counter = detectedToCountAndTag.get(lang);
             final long total = counter.getTotal();
             final Counter<Type> typeCount = new Counter<Type>();
             for (final String x : counter.keySet()) {
-                typeCount.add(getType(lang,x), counter.getCount(x));
+                typeCount.add(getType(lang, x), counter.getCount(x));
             }
             countLangTypes.add(new Row.R3<Long, String, Counter<Type>>(total, lang, typeCount));
         }
@@ -118,7 +141,8 @@ public class LanguageDetectionVsTags {
             final Counter<Type> typeCount = countAndLang.get2();
             System.out.print(getLanguageName(lang));
             for (final Type type : Type.values()) {
-                System.out.print("\t" + ((double)typeCount.getCount(type)/typeCount.getTotal() - 0.0001));
+                System.out.print(
+                        "\t" + ((double) typeCount.getCount(type) / typeCount.getTotal() - 0.0001));
             }
             System.out.println();
         }
@@ -137,7 +161,7 @@ public class LanguageDetectionVsTags {
                 tags.add(tagged);
                 counts.add(tagCount);
                 remaining -= tagCount;
-                if (count++ > 3 && remaining*1000 < total) {
+                if (count++ > 3 && remaining * 1000 < total) {
                     break;
                 }
             }
@@ -161,15 +185,23 @@ public class LanguageDetectionVsTags {
                     if (name.equals(tag)) {
                         name = "??";
                     }
-                    System.out.println("\t" + getName(tag) + "\t" + name + "\t" + counts.get(i)
-                            + "\t" + getType(lang, tag));
+                    System.out.println(
+                            "\t"
+                                    + getName(tag)
+                                    + "\t"
+                                    + name
+                                    + "\t"
+                                    + counts.get(i)
+                                    + "\t"
+                                    + getType(lang, tag));
                 }
             }
         }
     }
 
     static LanguageTagParser langTagParser = new LanguageTagParser();
-    static SupplementalDataInfo supplementalData = SupplementalDataInfo.getInstance(CLDRPaths.SUPPLEMENTAL_DIRECTORY);
+    static SupplementalDataInfo supplementalData =
+            SupplementalDataInfo.getInstance(CLDRPaths.SUPPLEMENTAL_DIRECTORY);
     static Map<String, String> likelySubtags = supplementalData.getLikelySubtags();
 
     private static String fixID(String string) {
@@ -193,7 +225,11 @@ public class LanguageDetectionVsTags {
         }
     }
 
-    enum Type {missing, mismatch, match};
+    enum Type {
+        missing,
+        mismatch,
+        match
+    };
 
     static Type getType(String detected, String tagged) {
         if (tagged.equals("---")) {
@@ -229,12 +265,13 @@ public class LanguageDetectionVsTags {
             return "other";
         }
         if (tag.length() > 12) {
-            tag = tag.substring(0,12) + "…";
+            tag = tag.substring(0, 12) + "…";
         }
         return '"' + tag + '"';
     }
 
-    static Map<String,String> remapping = new HashMap();
+    static Map<String, String> remapping = new HashMap();
+
     static {
         remapping.put("zh-CN", "Chinese (S)");
         remapping.put("zh-TW", "Chinese (T)");

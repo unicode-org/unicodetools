@@ -1,5 +1,15 @@
 package org.unicode.draft;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.IterableComparator;
+import com.ibm.icu.impl.Relation;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.Normalizer;
+import com.ibm.icu.text.Transform;
+import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ULocale;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -15,24 +25,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.cldr.util.Tabber;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.IterableComparator;
-import com.ibm.icu.impl.Relation;
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.Normalizer;
-import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.ULocale;
-
 
 public class ComparePinyin {
 
@@ -40,19 +37,21 @@ public class ComparePinyin {
     static Collator pinyinSort = Collator.getInstance(new ULocale("zh@collator=pinyin"));
     static Collator radicalStrokeSort = Collator.getInstance(new ULocale("zh@collator=unihan"));
     static Transliterator toPinyin = Transliterator.getInstance("Han-Latin;nfc");
-    static final Comparator<String> codepointComparator = new UTF16.StringComparator(true, false,0);
-
+    static final Comparator<String> codepointComparator =
+            new UTF16.StringComparator(true, false, 0);
 
     public static void main(String[] args) throws IOException {
-
 
         showElements("", toPinyin);
         final UnihanPinyin unihanPinyin = new UnihanPinyin();
 
+        final Relation<String, String> notUnihan =
+                new Relation(new TreeMap(pinyinSort), TreeSet.class);
 
-        final Relation<String, String> notUnihan = new Relation(new TreeMap(pinyinSort), TreeSet.class);
-
-        for (final String s : new UnicodeSet(HAN).removeAll(unihanPinyin.keySet()).removeAll(new UnicodeSet("[:nfkcqc=n:]"))) {
+        for (final String s :
+                new UnicodeSet(HAN)
+                        .removeAll(unihanPinyin.keySet())
+                        .removeAll(new UnicodeSet("[:nfkcqc=n:]"))) {
             final String pinyin = toPinyin.transform(s);
             if (!s.equals(pinyin)) {
                 notUnihan.put(pinyin, s);
@@ -65,12 +64,14 @@ public class ComparePinyin {
             System.out.println(pinyin + "\t" + showSet(s));
         }
 
-
         final ArrayList<String> foo;
         final IterableComparator<Object> arrayComp = new IterableComparator<Object>(pinyinSort);
-        final Relation<Collection<String>, String> notFirst = new Relation(new TreeMap(arrayComp), TreeSet.class);
-        final Relation<Collection<String>, String> notIn = new Relation(new TreeMap(arrayComp), TreeSet.class);
-        final Relation<Collection<String>, String> noTranslit = new Relation(new TreeMap(arrayComp), TreeSet.class);
+        final Relation<Collection<String>, String> notFirst =
+                new Relation(new TreeMap(arrayComp), TreeSet.class);
+        final Relation<Collection<String>, String> notIn =
+                new Relation(new TreeMap(arrayComp), TreeSet.class);
+        final Relation<Collection<String>, String> noTranslit =
+                new Relation(new TreeMap(arrayComp), TreeSet.class);
         for (final String s : unihanPinyin.keySet()) {
             final String pinyin = toPinyin.transform(s);
             final Set<String> unihanPinyinSet = unihanPinyin.getPinyinSet(s);
@@ -79,12 +80,12 @@ public class ComparePinyin {
                     final ArrayList val = new ArrayList();
                     val.add(pinyin);
                     val.addAll(unihanPinyinSet);
-                    notIn.put(val,s);
+                    notIn.put(val, s);
                 } else if (!pinyin.equals(unihanPinyinSet.iterator().next())) {
                     final ArrayList val = new ArrayList();
                     val.add(pinyin);
                     val.add(unihanPinyinSet.iterator().next());
-                    notFirst.put(val,s);
+                    notFirst.put(val, s);
                 }
                 continue;
             }
@@ -97,7 +98,8 @@ public class ComparePinyin {
             System.out.println(unihanPinyinSet + "\t" + showSet(s));
         }
 
-        System.out.println("Characters with Unihan Pinyin and CLDR, but CLDR not in Unihan: " + notIn.size());
+        System.out.println(
+                "Characters with Unihan Pinyin and CLDR, but CLDR not in Unihan: " + notIn.size());
         for (final Collection<String> unihanPinyinSet : notIn.keySet()) {
             final Set<String> s = notIn.getAll(unihanPinyinSet);
             final ArrayList<String> val = new ArrayList<String>(unihanPinyinSet);
@@ -106,7 +108,9 @@ public class ComparePinyin {
             System.out.println(pinyin + "\t" + val + "\t" + showSet(s));
         }
 
-        System.out.println("Characters with Unihan Pinyin and CLDR, but CLDR not first in Unihan: " + notFirst.size());
+        System.out.println(
+                "Characters with Unihan Pinyin and CLDR, but CLDR not first in Unihan: "
+                        + notFirst.size());
         for (final Collection<String> unihanPinyinSet : notFirst.keySet()) {
             final Set<String> s = notFirst.getAll(unihanPinyinSet);
             final ArrayList<String> val = new ArrayList<String>(unihanPinyinSet);
@@ -121,11 +125,22 @@ public class ComparePinyin {
         final int bad = 0;
         final UnicodeSet tailored = pinyinSort.getTailoredSet().retainAll(UNIHAN);
 
-        final UnicodeSet inSortNotUnihan = new UnicodeSet(tailored).removeAll(unihanPinyin.keySet());
-        final UnicodeSet inUnihanNotSort = new UnicodeSet(unihanPinyin.keySet()).removeAll(tailored);
-        final UnicodeSet inUnihanAndSort = new UnicodeSet(unihanPinyin.keySet()).retainAll(tailored);
-        System.out.println("Extras in pinyinSort - Unihan: " + inSortNotUnihan.size() + "\t" + inSortNotUnihan.toPattern(false));
-        System.out.println("Extras in Unihan - pinyinSort: " + inUnihanNotSort.size() + "\t" + inUnihanNotSort.toPattern(false));
+        final UnicodeSet inSortNotUnihan =
+                new UnicodeSet(tailored).removeAll(unihanPinyin.keySet());
+        final UnicodeSet inUnihanNotSort =
+                new UnicodeSet(unihanPinyin.keySet()).removeAll(tailored);
+        final UnicodeSet inUnihanAndSort =
+                new UnicodeSet(unihanPinyin.keySet()).retainAll(tailored);
+        System.out.println(
+                "Extras in pinyinSort - Unihan: "
+                        + inSortNotUnihan.size()
+                        + "\t"
+                        + inSortNotUnihan.toPattern(false));
+        System.out.println(
+                "Extras in Unihan - pinyinSort: "
+                        + inUnihanNotSort.size()
+                        + "\t"
+                        + inUnihanNotSort.toPattern(false));
         System.out.println("In both Unihan and pinyinSort: " + inUnihanAndSort.size());
 
         final Set<String> sorted1 = new TreeSet<String>(pinyinSort);
@@ -161,35 +176,40 @@ public class ComparePinyin {
 
         printItems(buckets, unihanPinyin);
 
-        final Relation<String,String> sorted = new Relation(new TreeMap(pinyinSort), TreeSet.class, radicalStrokeSort);
+        final Relation<String, String> sorted =
+                new Relation(new TreeMap(pinyinSort), TreeSet.class, radicalStrokeSort);
         for (final String han : unihanPinyin.keySet()) {
             sorted.put(unihanPinyin.getPinyin(han), han);
         }
-        final Relation<String,String> sorted2 = new Relation(new TreeMap(), TreeSet.class, radicalStrokeSort);
+        final Relation<String, String> sorted2 =
+                new Relation(new TreeMap(), TreeSet.class, radicalStrokeSort);
 
         final Tabber tabber = new Tabber.HTMLTabber();
 
         final PrintWriter out = Utility.openPrintWriterGenDir("pinyinTable.html", null);
-        final PrintWriter pinyinCollation = Utility.openPrintWriterGenDir("pinyinCollation.txt", null);
-        pinyinCollation.println("\uFEFF# Unihan Pinyin Collation\n" +
-                "&[last regular]");
+        final PrintWriter pinyinCollation =
+                Utility.openPrintWriterGenDir("pinyinCollation.txt", null);
+        pinyinCollation.println("\uFEFF# Unihan Pinyin Collation\n" + "&[last regular]");
 
-        final PrintWriter pinyinCollationInterleaved = Utility.openPrintWriterGenDir("pinyinCollationInterleaved.txt", null);
-        pinyinCollationInterleaved.println("\uFEFF# Unihan Pinyin Interleaved Collation\n" +
-                "&[last regular]");
+        final PrintWriter pinyinCollationInterleaved =
+                Utility.openPrintWriterGenDir("pinyinCollationInterleaved.txt", null);
+        pinyinCollationInterleaved.println(
+                "\uFEFF# Unihan Pinyin Interleaved Collation\n" + "&[last regular]");
 
-        out.println("<html>\n" +
-                "<head>\n" +
-                "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>\n" +
-                "</head>\n" +
-                "<body>\n" +
-                "<table border='1' style='border-collapse:collapse'>");
+        out.println(
+                "<html>\n"
+                        + "<head>\n"
+                        + "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>\n"
+                        + "</head>\n"
+                        + "<body>\n"
+                        + "<table border='1' style='border-collapse:collapse'>");
         for (final String pinyin : sorted.keySet()) {
             final Set<String> hanSet = sorted.getAll(pinyin);
             pinyinCollationInterleaved.print("<" + pinyin + "\t");
             sorted2.clear();
             for (final String han : hanSet) {
-                final Map<String, EnumSet<PinyinSource>> pinyinToSource = unihanPinyin.getPinyinMap(han);
+                final Map<String, EnumSet<PinyinSource>> pinyinToSource =
+                        unihanPinyin.getPinyinMap(han);
                 sorted2.put("" + showPinyinToSource(pinyinToSource), han);
                 pinyinCollation.print("<" + han);
                 pinyinCollationInterleaved.print("<" + han);
@@ -199,7 +219,7 @@ public class ComparePinyin {
             for (final String line : sorted2.keySet()) {
                 final Set<String> set = sorted2.getAll(line);
                 String setStr = set.toString().replace(",", "");
-                setStr = setStr.substring(1,setStr.length()-1);
+                setStr = setStr.substring(1, setStr.length() - 1);
                 out.println(tabber.process(pinyin + "\t" + setStr + "\t" + line));
             }
         }
@@ -228,13 +248,21 @@ public class ComparePinyin {
     }
 
     private static void showElements(String indent, Transliterator toPinyin2) {
-        System.out.println(indent + toPinyin2.getID() + "\t" + toPinyin2.getClass().getName() + "\tFilter: " + toPinyin2.getFilter() + "\tSource: " + toPinyin2.getSourceSet().toPattern(false));
+        System.out.println(
+                indent
+                        + toPinyin2.getID()
+                        + "\t"
+                        + toPinyin2.getClass().getName()
+                        + "\tFilter: "
+                        + toPinyin2.getFilter()
+                        + "\tSource: "
+                        + toPinyin2.getSourceSet().toPattern(false));
         final Transliterator[] elements = toPinyin2.getElements();
         for (final Transliterator element : elements) {
             if (element == toPinyin2) {
                 continue;
             }
-            showElements(indent+"\t", element);
+            showElements(indent + "\t", element);
         }
     }
 
@@ -249,7 +277,6 @@ public class ComparePinyin {
         }
         return target;
     }
-
 
     private static void excludeItems2(List<HanInfo> buckets, int threshold) {
         for (int i = 0; i < buckets.size(); ++i) {
@@ -276,9 +303,13 @@ public class ComparePinyin {
             } else {
                 final int before = findNonexcludedRank(buckets, i, -1);
                 final int after = findNonexcludedRank(buckets, i, 1);
-                if (before >= 0 && buckets.get(before).rank > row.rank && getLocalDistance(buckets, before) <= localDistance) {
+                if (before >= 0
+                        && buckets.get(before).rank > row.rank
+                        && getLocalDistance(buckets, before) <= localDistance) {
                     ok = false;
-                } else if (after >= 0 && buckets.get(after).rank < row.rank && getLocalDistance(buckets, after) <= localDistance) {
+                } else if (after >= 0
+                        && buckets.get(after).rank < row.rank
+                        && getLocalDistance(buckets, after) <= localDistance) {
                     ok = false;
                 }
             }
@@ -289,14 +320,20 @@ public class ComparePinyin {
             if (!ok) {
                 ++bad;
             }
-            System.out.println(status + "\t" + localDistance + "\t" + (ok? "": "[" + bestPinyin + "]") + row);
-            if (!ok && row.hanList.size() > 1){
+            System.out.println(
+                    status
+                            + "\t"
+                            + localDistance
+                            + "\t"
+                            + (ok ? "" : "[" + bestPinyin + "]")
+                            + row);
+            if (!ok && row.hanList.size() > 1) {
                 for (final String han : row.hanList) {
                     System.out.println("\t--\t" + han + "\t" + unihanPinyin.getPinyinMap(han));
                 }
             }
             for (final String han : row.hanList) {
-                unihanPinyin.addAll(han,"?", PinyinSource.s, bestPinyin);
+                unihanPinyin.addAll(han, "?", PinyinSource.s, bestPinyin);
             }
         }
         System.out.println("Bad:\t" + bad);
@@ -321,6 +358,7 @@ public class ComparePinyin {
         int rank;
         String pinyin;
         List<String> hanList = new ArrayList<String>();
+
         @Override
         public String toString() {
             return pinyin + " (" + rank + ")\t" + showSet(hanList); // (exclude ? "*" : "") + "\t" +
@@ -332,7 +370,7 @@ public class ComparePinyin {
         final int core = myBucket.rank;
         double distance = 0;
         int count = 0;
-        for (int j = i-1; j >= 0 && count < 10; --j) {
+        for (int j = i - 1; j >= 0 && count < 10; --j) {
             final HanInfo bucket = buckets.get(j);
             if (bucket.exclude) {
                 continue;
@@ -342,7 +380,7 @@ public class ComparePinyin {
         }
 
         int count2 = 0;
-        for (int j = i+1; j < buckets.size() && count2 < 10; ++j) {
+        for (int j = i + 1; j < buckets.size() && count2 < 10; ++j) {
             final HanInfo bucket = buckets.get(j);
             if (bucket.exclude) {
                 continue;
@@ -369,20 +407,29 @@ public class ComparePinyin {
 
     private static final UnicodeSet HAN = new UnicodeSet("[:script=han:]");
 
-    enum PinyinSource {l, x, p, m, t, s};
+    enum PinyinSource {
+        l,
+        x,
+        p,
+        m,
+        t,
+        s
+    };
 
     static class UnihanPinyin {
-        // kHanyuPinyin, space, 10297.260: qÄ«n,qÃ¬n,qÇ�n, [a-z\x{FC}\x{300}-\x{302}\x{304}\x{308}\x{30C}]+(,[a-z\x{FC}\x{300}-\x{302}\x{304}\x{308}\x{30C}]
+        // kHanyuPinyin, space, 10297.260: qÄ«n,qÃ¬n,qÇ�n,
+        // [a-z\x{FC}\x{300}-\x{302}\x{304}\x{308}\x{30C}]+(,[a-z\x{FC}\x{300}-\x{302}\x{304}\x{308}\x{30C}]
         // kMandarin, space,  [A-Z\x{308}]+[1-5] // 3475=HAN4 JI2 JIE2 ZHA3 ZI2
         // kHanyuPinlu, space, [a-z\x{308}]+[1-5]\([0-9]+\) 4E0A=shang4(12308) shang5(392)
 
-        UnicodeMap<Map<String,EnumSet<PinyinSource>>> unihanPinyin = new UnicodeMap<>();
-        Map<String,Integer> pinyinToOrder = new HashMap<>();
+        UnicodeMap<Map<String, EnumSet<PinyinSource>>> unihanPinyin = new UnicodeMap<>();
+        Map<String, Integer> pinyinToOrder = new HashMap<>();
         TreeSet<String> pinyinSet = new TreeSet<String>(pinyinSort);
         IndexUnicodeProperties iup = IndexUnicodeProperties.make(Default.ucd().getVersionInfo());
 
         {
-            final Transform<String,String> pinyinNumeric = Transliterator.getInstance("NumericPinyin-Latin;nfc");
+            final Transform<String, String> pinyinNumeric =
+                    Transliterator.getInstance("NumericPinyin-Latin;nfc");
 
             // all kHanyuPinlu readings first; then take all kXHC1983; then kHanyuPinyin.
 
@@ -394,8 +441,8 @@ public class ComparePinyin {
                 addAll(s, original, PinyinSource.l, source.split(" "));
             }
 
-            //kXHC1983
-            //^[0-9,.*]+:*[a-zx{FC}x{300}x{301}x{304}x{308}x{30C}]+$
+            // kXHC1983
+            // ^[0-9,.*]+:*[a-zx{FC}x{300}x{301}x{304}x{308}x{30C}]+$
             final UnicodeMap<String> kXHC1983 = iup.load(UcdProperty.kXHC1983);
             for (final String s : kXHC1983.keySet()) {
                 final String original = kXHC1983.get(s);
@@ -408,7 +455,10 @@ public class ComparePinyin {
             for (final String s : kHanyuPinyin.keySet()) {
                 final String original = kHanyuPinyin.get(s);
                 String source = Normalizer.normalize(original, Normalizer.NFC);
-                source = source.replaceAll("^\\s*(\\d{5}\\.\\d{2}0,)*\\d{5}\\.\\d{2}0:", ""); // , only for medial
+                source =
+                        source.replaceAll(
+                                "^\\s*(\\d{5}\\.\\d{2}0,)*\\d{5}\\.\\d{2}0:",
+                                ""); // , only for medial
                 source = source.replaceAll("\\s*(\\d{5}\\.\\d{2}0,)*\\d{5}\\.\\d{2}0:", ",");
                 addAll(s, original, PinyinSource.p, source.split(","));
             }
@@ -432,7 +482,7 @@ public class ComparePinyin {
 
             int i = 0;
             for (final String s : pinyinSet) {
-                pinyinToOrder.put(s,i++);
+                pinyinToOrder.put(s, i++);
             }
             pinyinToOrder.put("#", i + 1000);
             pinyinSet = null;
@@ -452,7 +502,7 @@ public class ComparePinyin {
         private void collectPinyin() {
             final PrintWriter out = Utility.openPrintWriterGenDir("pinyin/pinyins.txt", null);
             final String[] line = {"", "", "", "", "", "", "", ""};
-            final Map<String,Integer> groupToIndex = new HashMap();
+            final Map<String, Integer> groupToIndex = new HashMap();
             int k = 3;
             for (final String item : "zuÅ� zuÃ³ zuÇ’ zuÃ² zuo".split("\\s+")) {
                 groupToIndex.put(accents.transform(item), k++);
@@ -473,7 +523,7 @@ public class ComparePinyin {
                     }
                     line[0] = oldBase = base;
                     final int initialEnd = INITIALS.findIn(base, 0, true);
-                    final String initialSegment = base.substring(0,initialEnd);
+                    final String initialSegment = base.substring(0, initialEnd);
                     final String finalSegment = base.substring(initialEnd);
                     line[1] = initialSegment;
                     initials.add(initialSegment);
@@ -487,7 +537,7 @@ public class ComparePinyin {
 
                 try {
                     final int groupIndex = groupToIndex.get(group);
-                    collectedAccents.set(groupIndex-3);
+                    collectedAccents.set(groupIndex - 3);
                     if (line[groupIndex].length() != 0) {
                         System.out.println("***Multiple pinyins: " + s + "\t" + line[groupIndex]);
                     }
@@ -504,8 +554,14 @@ public class ComparePinyin {
         }
 
         private String showPinyinLine(String[] line, BitSet collectedAccents) {
-            return Arrays.asList(line).toString().replaceAll(",\\s*","\t").replaceAll("\\[|\\]", "")
-                    + "\t" + collectedAccents.cardinality() + "\t" + collectedAccents;
+            return Arrays.asList(line)
+                            .toString()
+                            .replaceAll(",\\s*", "\t")
+                            .replaceAll("\\[|\\]", "")
+                    + "\t"
+                    + collectedAccents.cardinality()
+                    + "\t"
+                    + collectedAccents;
         }
 
         public Integer getPinyinOrder(String pinyin) {
@@ -516,11 +572,17 @@ public class ComparePinyin {
             return result;
         }
 
-        static Transform<String,String> noaccents = Transliterator.getInstance("nfkd; [[:m:]-[\u0308]] remove; nfc");
-        static Transform<String,String> accents = Transliterator.getInstance("nfkd; [^[:m:]-[\u0308]] remove; nfc");
+        static Transform<String, String> noaccents =
+                Transliterator.getInstance("nfkd; [[:m:]-[\u0308]] remove; nfc");
+        static Transform<String, String> accents =
+                Transliterator.getInstance("nfkd; [^[:m:]-[\u0308]] remove; nfc");
 
-        static UnicodeSet INITIALS = new UnicodeSet("[b c {ch} d f g h j k l m n p q r s {sh} t w x y z {zh}]").freeze();
-        static UnicodeSet FINALS = new UnicodeSet("[a {ai} {an} {ang} {ao} e {ei} {en} {eng} {er} i {ia} {ian} {iang} {iao} {ie} {in} {ing} {iong} {iu} o {ong} {ou} u {ua} {uai} {uan} {uang} {ue} {ui} {un} {uo} Ã¼ {Ã¼e}]").freeze();
+        static UnicodeSet INITIALS =
+                new UnicodeSet("[b c {ch} d f g h j k l m n p q r s {sh} t w x y z {zh}]").freeze();
+        static UnicodeSet FINALS =
+                new UnicodeSet(
+                                "[a {ai} {an} {ang} {ao} e {ei} {en} {eng} {er} i {ia} {ian} {iang} {iao} {ie} {in} {ing} {iong} {iu} o {ong} {ou} u {ua} {uai} {uan} {uang} {ue} {ui} {un} {uo} Ã¼ {Ã¼e}]")
+                        .freeze();
 
         boolean validPinyin(String pinyin) {
             final String base = noaccents.transform(pinyin);
@@ -529,7 +591,8 @@ public class ComparePinyin {
                 return false;
             }
             final String finalSegment = base.substring(initialEnd);
-            final boolean result = finalSegment.length() == 0 ? true : FINALS.contains(finalSegment);
+            final boolean result =
+                    finalSegment.length() == 0 ? true : FINALS.contains(finalSegment);
             return result;
         }
 
@@ -538,13 +601,24 @@ public class ComparePinyin {
             if (pinyinList.length == 0) {
                 throw new IllegalArgumentException();
             }
-            final Map<String, EnumSet<PinyinSource>> pinyinToSources = getPinyinToSources(han, true);
+            final Map<String, EnumSet<PinyinSource>> pinyinToSources =
+                    getPinyinToSources(han, true);
             for (final String source : pinyinList) {
                 if (source.length() == 0) {
                     throw new IllegalArgumentException();
                 }
                 if (!validPinyin(source)) {
-                    System.out.println("***Invalid Pinyin: " + han + "\t" + pinyin + "\t" + source + "\t" + Utility.hex(han) + "\t" + original);
+                    System.out.println(
+                            "***Invalid Pinyin: "
+                                    + han
+                                    + "\t"
+                                    + pinyin
+                                    + "\t"
+                                    + source
+                                    + "\t"
+                                    + Utility.hex(han)
+                                    + "\t"
+                                    + original);
                 }
                 if (pinyinSet != null) {
                     pinyinSet.add(source);
@@ -559,7 +633,11 @@ public class ComparePinyin {
                 throw new IllegalArgumentException();
             }
         }
-        private EnumSet<PinyinSource> getEnumSet(Map<String, EnumSet<PinyinSource>> pinyinToSources, String pinyin, boolean createSet) {
+
+        private EnumSet<PinyinSource> getEnumSet(
+                Map<String, EnumSet<PinyinSource>> pinyinToSources,
+                String pinyin,
+                boolean createSet) {
             EnumSet<PinyinSource> set = pinyinToSources.get(pinyin);
             if (createSet && set == null) {
                 set = EnumSet.noneOf(PinyinSource.class);
@@ -568,10 +646,11 @@ public class ComparePinyin {
             return set;
         }
 
-        private Map<String,EnumSet<PinyinSource>> getPinyinToSources(String han, boolean createSet) {
-            Map<String,EnumSet<PinyinSource>> set = unihanPinyin.get(han);
+        private Map<String, EnumSet<PinyinSource>> getPinyinToSources(
+                String han, boolean createSet) {
+            Map<String, EnumSet<PinyinSource>> set = unihanPinyin.get(han);
             if (createSet && set == null) {
-                set = new LinkedHashMap<String,EnumSet<PinyinSource>>();
+                set = new LinkedHashMap<String, EnumSet<PinyinSource>>();
                 unihanPinyin.put(han, set);
             }
             return set;
@@ -600,8 +679,5 @@ public class ComparePinyin {
             }
             return set.iterator().next();
         }
-
     }
-
-
 }

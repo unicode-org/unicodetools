@@ -1,11 +1,9 @@
 package org.unicode.bidi;
 
+import com.ibm.icu.lang.UCharacterEnums.ECharacterDirection;
 import java.io.BufferedReader;
 import java.io.FileReader;
-
 import org.unicode.text.utility.Settings;
-
-import com.ibm.icu.lang.UCharacterEnums.ECharacterDirection;
 
 public class BidiTestIcu4jConformance {
     static com.ibm.icu.text.Bidi bidi;

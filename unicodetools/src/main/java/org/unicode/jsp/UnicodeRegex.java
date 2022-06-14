@@ -1,4 +1,4 @@
-//##header
+// ##header
 /*
  *******************************************************************************
  * Copyright (C) 2009, Google, International Business Machines Corporation and *
@@ -7,6 +7,10 @@
  */
 package org.unicode.jsp;
 
+import com.ibm.icu.text.StringTransform;
+import com.ibm.icu.text.SymbolTable;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.Freezable;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -21,15 +25,9 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
-import com.ibm.icu.text.StringTransform;
-import com.ibm.icu.text.SymbolTable;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.Freezable;
-
 /**
- * Contains utilities to supplement the JDK Regex, since it doesn't handle
- * Unicode well.
- * 
+ * Contains utilities to supplement the JDK Regex, since it doesn't handle Unicode well.
+ *
  * @author markdavis
  */
 public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
@@ -49,24 +47,22 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
     }
 
     /**
-     * Adds full Unicode property support, with the latest version of Unicode,
-     * to Java Regex, bringing it up to Level 1 (see
-     * http://www.unicode.org/reports/tr18/). It does this by preprocessing the
-     * regex pattern string and interpreting the character classes (\p{...},
-     * \P{...}, [...]) according to their syntax and meaning in UnicodeSet. With
-     * this utility, Java regex expressions can be updated to work with the
-     * latest version of Unicode, and with all Unicode properties. Note that the
-     * UnicodeSet syntax has not yet, however, been updated to be completely
-     * consistent with Java regex, so be careful of the differences.
+     * Adds full Unicode property support, with the latest version of Unicode, to Java Regex,
+     * bringing it up to Level 1 (see http://www.unicode.org/reports/tr18/). It does this by
+     * preprocessing the regex pattern string and interpreting the character classes (\p{...},
+     * \P{...}, [...]) according to their syntax and meaning in UnicodeSet. With this utility, Java
+     * regex expressions can be updated to work with the latest version of Unicode, and with all
+     * Unicode properties. Note that the UnicodeSet syntax has not yet, however, been updated to be
+     * completely consistent with Java regex, so be careful of the differences.
+     *
      * <p>Not thread-safe; create a separate copy for different threads.
+     *
      * <p>In the future, we may extend this to support other regex packages.
-     * 
-     * @regex A modified Java regex pattern, as in the input to
-     *        Pattern.compile(), except that all "character classes" are
-     *        processed as if they were UnicodeSet patterns. Example:
-     *        "abc[:bc=N:]. See UnicodeSet for the differences in syntax.
-     * @return A processed Java regex pattern, suitable for input to
-     *         Pattern.compile().
+     *
+     * @regex A modified Java regex pattern, as in the input to Pattern.compile(), except that all
+     *     "character classes" are processed as if they were UnicodeSet patterns. Example:
+     *     "abc[:bc=N:]. See UnicodeSet for the differences in syntax.
+     * @return A processed Java regex pattern, suitable for input to Pattern.compile().
      */
     public String transform(String regex) {
         StringBuilder result = new StringBuilder();
@@ -82,43 +78,43 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
             // look for UnicodeSets, allowing for quoting with \ and \Q
             char ch = regex.charAt(i);
             switch (state) {
-            case 0: // we only care about \, and '['.
-                if (ch == '\\') {
-                    if (UnicodeSet.resemblesPattern(regex, i)) {
-                        // should only happen with \p
-                        i = processSet(regex, i, result, temp, pos);
-                        continue;
+                case 0: // we only care about \, and '['.
+                    if (ch == '\\') {
+                        if (UnicodeSet.resemblesPattern(regex, i)) {
+                            // should only happen with \p
+                            i = processSet(regex, i, result, temp, pos);
+                            continue;
+                        }
+                        state = 1;
+                    } else if (ch == '[') {
+                        // if we have what looks like a UnicodeSet
+                        if (UnicodeSet.resemblesPattern(regex, i)) {
+                            i = processSet(regex, i, result, temp, pos);
+                            continue;
+                        }
                     }
-                    state = 1;
-                } else if (ch == '[') {
-                    // if we have what looks like a UnicodeSet
-                    if (UnicodeSet.resemblesPattern(regex, i)) {
-                        i = processSet(regex, i, result, temp, pos);
-                        continue;
+                    break;
+
+                case 1: // we are after a \
+                    if (ch == 'Q') {
+                        state = 1;
+                    } else {
+                        state = 0;
                     }
-                }
-                break;
+                    break;
 
-            case 1: // we are after a \
-                if (ch == 'Q') {
-                    state = 1;
-                } else {
-                    state = 0;
-                }
-                break;
+                case 2: // we are in a \Q...
+                    if (ch == '\\') {
+                        state = 3;
+                    }
+                    break;
 
-            case 2: // we are in a \Q...
-                if (ch == '\\') {
-                    state = 3;
-                }
-                break;
-
-            case 3: // we are in at \Q...\
-                if (ch == 'E') {
-                    state = 0;
-                }
-                state = 2;
-                break;
+                case 3: // we are in at \Q...\
+                    if (ch == 'E') {
+                        state = 0;
+                    }
+                    state = 2;
+                    break;
             }
             result.append(ch);
         }
@@ -127,6 +123,7 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
 
     /**
      * Convenience static function, using standard parameters.
+     *
      * @param regex as in process()
      * @return processed regex pattern, as in process()
      */
@@ -136,9 +133,8 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
 
     /**
      * Compile a regex string, after processing by fix(...).
-     * 
-     * @param regex
-     *            Raw regex pattern, as in fix(...).
+     *
+     * @param regex Raw regex pattern, as in fix(...).
      * @return Pattern
      */
     public static Pattern compile(String regex) {
@@ -147,7 +143,7 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
 
     /**
      * Compile a composed string from a set of BNF lines; see the List version for more information.
-     * 
+     *
      * @param bnfLines Series of BNF lines.
      * @return Pattern
      */
@@ -156,11 +152,12 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
     }
 
     /**
-     * Compile a composed string from a set of BNF lines, such as for composing a regex
-     * expression. The lines can be in any order, but there must not be any
-     * cycles. The result can be used as input for fix().
-     * <p>
-     * Example:
+     * Compile a composed string from a set of BNF lines, such as for composing a regex expression.
+     * The lines can be in any order, but there must not be any cycles. The result can be used as
+     * input for fix().
+     *
+     * <p>Example:
+     *
      * <pre>
      * uri = (?: (scheme) \\:)? (host) (?: \\? (query))? (?: \\u0023 (fragment))?;
      * scheme = reserved+;
@@ -169,17 +166,14 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
      * fragment = reserved+;
      * reserved = [[:ascii:][:alphabetic:]];
      * </pre>
-     * <p>
-     * Caveats: at this point the parsing is simple; for example, # cannot be
-     * quoted (use \\u0023); you can set it to null to disable. 
-     * The equality sign and a few others can be reset with
-     * setBnfX().
-     * 
-     * @param bnfLines
-     *          Series of lines that represent a BNF expression. The lines contain
-     *          a series of statements that of the form x=y;. A statement can take
-     *          multiple lines, but there can't be multiple statements on a line.
-     *          A hash quotes to the end of the line.
+     *
+     * <p>Caveats: at this point the parsing is simple; for example, # cannot be quoted (use
+     * \\u0023); you can set it to null to disable. The equality sign and a few others can be reset
+     * with setBnfX().
+     *
+     * @param bnfLines Series of lines that represent a BNF expression. The lines contain a series
+     *     of statements that of the form x=y;. A statement can take multiple lines, but there can't
+     *     be multiple statements on a line. A hash quotes to the end of the line.
      * @return Pattern
      */
     public String compileBnf(List<String> lines) {
@@ -203,7 +197,8 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
                             try {
                                 log.append(variable2 + "=" + altered2 + ";");
                             } catch (IOException e) {
-                                throw (IllegalArgumentException) new IllegalArgumentException().initCause(e);
+                                throw (IllegalArgumentException)
+                                        new IllegalArgumentException().initCause(e);
                             }
                         }
                     }
@@ -218,9 +213,8 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
 
     /**
      * Compile a regex string, after processing by fix(...).
-     * 
-     * @param regex
-     *            Raw regex pattern, as in fix(...).
+     *
+     * @param regex Raw regex pattern, as in fix(...).
      * @return Pattern
      */
     public static Pattern compile(String regex, int options) {
@@ -253,13 +247,15 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
 
     /**
      * Utility for loading lines from a UTF8 file.
+     *
      * @param file
      * @param result
      * @return
      * @throws IOException
      */
     public static List<String> loadFile(String file, List<String> result) throws IOException {
-        BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+        BufferedReader in =
+                new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
         while (true) {
             String line = in.readLine();
             if (line == null) {
@@ -269,7 +265,6 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
         }
         return result;
     }
-
 
     /* (non-Javadoc)
      * @see com.ibm.icu.util.Freezable#cloneAsThawed()
@@ -301,7 +296,8 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
 
     // ===== PRIVATES =====
 
-    private int processSet(String regex, int i, StringBuilder result, UnicodeSet temp, ParsePosition pos) {
+    private int processSet(
+            String regex, int i, StringBuilder result, UnicodeSet temp, ParsePosition pos) {
         try {
             pos.setIndex(i);
             UnicodeSet x = temp.clear().applyPattern(regex, pos, symbolTable, 0);
@@ -310,7 +306,8 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
             i = pos.getIndex() - 1; // allow for the loop increment
             return i;
         } catch (Exception e) {
-            throw (IllegalArgumentException) new IllegalArgumentException("Error in " + regex).initCause(e);
+            throw (IllegalArgumentException)
+                    new IllegalArgumentException("Error in " + regex).initCause(e);
         }
     }
 
@@ -320,20 +317,20 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
     private String bnfLineSeparator = "\n";
     private Appendable log = null;
 
-    private Comparator<String> LongestFirst = new Comparator<String> () {
-        public int compare(String arg0, String arg1) {
-            int len0 = arg0.length();
-            int len1 = arg1.length();
-            if (len0 != len1) {
-                return len1 - len0;
-            }
-            return arg0.compareTo(arg1);
-        }
-    };
+    private Comparator<String> LongestFirst =
+            new Comparator<String>() {
+                public int compare(String arg0, String arg1) {
+                    int len0 = arg0.length();
+                    int len1 = arg1.length();
+                    if (len0 != len1) {
+                        return len1 - len0;
+                    }
+                    return arg0.compareTo(arg1);
+                }
+            };
 
-
-    private Map<String,String> getVariables(List<String> lines) {
-        Map<String,String> variables = new TreeMap<String, String>(LongestFirst);
+    private Map<String, String> getVariables(List<String> lines) {
+        Map<String, String> variables = new TreeMap<String, String>(LongestFirst);
         String variable = null;
         StringBuffer definition = new StringBuffer();
         int count = 0;
@@ -365,18 +362,18 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
             }
             boolean terminated = trimline.endsWith(";");
             if (terminated) {
-                linePart = linePart.substring(0,linePart.lastIndexOf(';'));
+                linePart = linePart.substring(0, linePart.lastIndexOf(';'));
             }
             int equalsPos = linePart.indexOf(bnfVariableInfix);
             if (equalsPos >= 0) {
                 if (variable != null) {
                     throw new IllegalArgumentException("Missing ';' before " + count + ") " + line);
                 }
-                variable = linePart.substring(0,equalsPos).trim();
+                variable = linePart.substring(0, equalsPos).trim();
                 if (variables.containsKey(variable)) {
                     throw new IllegalArgumentException("Duplicate variable definition in " + line);
                 }
-                definition.append(linePart.substring(equalsPos+1).trim());
+                definition.append(linePart.substring(equalsPos + 1).trim());
             } else { // no equals, so
                 if (variable == null) {
                     throw new IllegalArgumentException("Missing '=' at " + count + ") " + line);
@@ -395,5 +392,4 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
         }
         return variables;
     }
-
 }

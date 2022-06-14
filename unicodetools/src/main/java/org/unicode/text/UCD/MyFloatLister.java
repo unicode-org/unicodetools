@@ -1,15 +1,14 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/MyFloatLister.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/MyFloatLister.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
+
 import java.io.PrintWriter;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -39,7 +38,7 @@ class MyFloatLister extends PropertyLister {
 
     @Override
     public byte status(int cp) {
-        //if ((cp & 0xFFF) == 0) System.out.println("# " + Utility.hex(cp));
+        // if ((cp & 0xFFF) == 0) System.out.println("# " + Utility.hex(cp));
         if (false && !ucdData.isRepresented(cp)) {
             if (UCD.mapToRepresentative(cp, ucdData.getCompositeVersion()) != cp) {
                 return PropertyLister.CONTINUE;
@@ -52,4 +51,3 @@ class MyFloatLister extends PropertyLister {
         return ucdData.getNumericValue(cp) == propMask ? INCLUDE : EXCLUDE;
     }
 }
-

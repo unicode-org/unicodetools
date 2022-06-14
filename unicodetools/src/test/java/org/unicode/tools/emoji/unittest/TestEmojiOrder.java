@@ -1,17 +1,15 @@
 package org.unicode.tools.emoji.unittest;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.LinkedHashSet;
-import java.util.Set;
-import java.util.TreeSet;
-
 import com.ibm.icu.text.CollationElementIterator;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
-
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.TreeSet;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.unicode.text.utility.Utility;
@@ -29,11 +27,12 @@ public class TestEmojiOrder extends TestFmwkMinusMinus {
     //    private CandidateData CANDIDATES = CandidateData.getInstance();
     //
     //    public void TestInclusion() {
-    //        Asserts.assertContains(this, "", "charactersToOrdering.keySet", order.charactersToOrdering.keySet(),
+    //        Asserts.assertContains(this, "", "charactersToOrdering.keySet",
+    // order.charactersToOrdering.keySet(),
     //                "candidates", CANDIDATES.getAllEmojiWithDefectives());
     //    }
 
-        @Test
+    @Test
     public void TestForMissing() {
         check("Released", TestAll.getOrderToTest(), TestAll.getDataToTestPrevious());
         check("Candidates", TestAll.getOrderToTest(), CandidateData.getInstance());
@@ -43,33 +42,53 @@ public class TestEmojiOrder extends TestFmwkMinusMinus {
     private void check(String message, EmojiOrder stdOrder, EmojiDataSource emojiDataReleased) {
         UnicodeSet orderSet = stdOrder.charactersToOrdering.keySet();
         UnicodeSet dataSet = emojiDataReleased.getAllEmojiWithDefectives();
-        Asserts.assertContains(this, message, "emojiOrderChars", orderSet, "emojiDataChars", dataSet);
+        Asserts.assertContains(
+                this, message, "emojiOrderChars", orderSet, "emojiDataChars", dataSet);
     }
 
     @Test
     public void TestVariant() {
         final String testWV = "⛹️‍♀️";
-        final String testNV = "⛹️‍♀️".replace(Emoji.EMOJI_VARIANT_STRING,"");
+        final String testNV = "⛹️‍♀️".replace(Emoji.EMOJI_VARIANT_STRING, "");
         final String testBase = "\u26F9";
 
-        assertTrue("emojiData.getGenderBase().contains " + testBase + " " + Utility.hex(testBase), EmojiData.EMOJI_DATA_BETA.getGenderBase().contains(testBase));
+        assertTrue(
+                "emojiData.getGenderBase().contains " + testBase + " " + Utility.hex(testBase),
+                EmojiData.EMOJI_DATA_BETA.getGenderBase().contains(testBase));
 
-        Set<String> variantsBase = EmojiData.EMOJI_DATA_BETA.new VariantFactory().set(testBase).getCombinations();
-        Set<String> variantsWV = EmojiData.EMOJI_DATA_BETA.new VariantFactory().set(testWV).getCombinations();
-        Set<String> variantsNV = EmojiData.EMOJI_DATA_BETA.new VariantFactory().set(testNV).getCombinations();
+        Set<String> variantsBase =
+                EmojiData.EMOJI_DATA_BETA.new VariantFactory().set(testBase).getCombinations();
+        Set<String> variantsWV =
+                EmojiData.EMOJI_DATA_BETA.new VariantFactory().set(testWV).getCombinations();
+        Set<String> variantsNV =
+                EmojiData.EMOJI_DATA_BETA.new VariantFactory().set(testNV).getCombinations();
 
-        assertTrue("Variants " + testBase + " " + Utility.hex(testBase) + " contains " + testBase + " " + Utility.hex(testBase),
+        assertTrue(
+                "Variants "
+                        + testBase
+                        + " "
+                        + Utility.hex(testBase)
+                        + " contains "
+                        + testBase
+                        + " "
+                        + Utility.hex(testBase),
                 variantsBase.contains(testBase));
 
         for (String test : Arrays.asList(testWV, testNV)) {
 
-            assertNotNull("Ordering to category? " + test + " " + Utility.hex(test), EmojiOrder.BETA_ORDER.getCategory(test));
+            assertNotNull(
+                    "Ordering to category? " + test + " " + Utility.hex(test),
+                    EmojiOrder.BETA_ORDER.getCategory(test));
 
             String containsX = " contains " + test + " " + Utility.hex(test);
 
-            assertTrue("Variants " + testWV + " " + Utility.hex(testWV) + containsX, variantsWV.contains(test));
+            assertTrue(
+                    "Variants " + testWV + " " + Utility.hex(testWV) + containsX,
+                    variantsWV.contains(test));
 
-            assertTrue("Variants " + testNV + " " + Utility.hex(testNV) + containsX, variantsNV.contains(test));
+            assertTrue(
+                    "Variants " + testNV + " " + Utility.hex(testNV) + containsX,
+                    variantsNV.contains(test));
         }
     }
 
@@ -77,16 +96,20 @@ public class TestEmojiOrder extends TestFmwkMinusMinus {
         UnicodeSet APPLE_COMBOS = TestAll.getDataToTest().getZwjSequencesNormal();
         UnicodeSet APPLE_COMBOS_WITHOUT_VS = TestAll.getDataToTest().getZwjSequencesAll();
 
-        String rules = TestAll.getOrderToTest().appendCollationRules(new StringBuilder(),
-                new UnicodeSet(TestAll.getDataToTest().getChars()).removeAll(Emoji.DEFECTIVE),
-                APPLE_COMBOS,
-                APPLE_COMBOS_WITHOUT_VS)
-                .toString();
+        String rules =
+                TestAll.getOrderToTest()
+                        .appendCollationRules(
+                                new StringBuilder(),
+                                new UnicodeSet(TestAll.getDataToTest().getChars())
+                                        .removeAll(Emoji.DEFECTIVE),
+                                APPLE_COMBOS,
+                                APPLE_COMBOS_WITHOUT_VS)
+                        .toString();
         final RuleBasedCollator ruleBasedCollator = new RuleBasedCollator(rules);
         ruleBasedCollator.setStrength(Collator.IDENTICAL);
         ruleBasedCollator.freeze();
         Comparator<String> EMOJI_COMPARATOR = (Comparator<String>) (Comparator) ruleBasedCollator;
-        int x = EMOJI_COMPARATOR.compare("#️⃣","☺️");
+        int x = EMOJI_COMPARATOR.compare("#️⃣", "☺️");
 
         String lastCat = "";
         Set<String> seen = new LinkedHashSet<>();
@@ -114,17 +137,21 @@ public class TestEmojiOrder extends TestFmwkMinusMinus {
 
     /**
      * Compares the EmojiOrder with the rules it generates
-     * @param filterOutIfContains - don't test strings that this set contains some characters from (ignored if null)
+     *
+     * @param filterOutIfContains - don't test strings that this set contains some characters from
+     *     (ignored if null)
      */
     private void checkOrder(UnicodeSet filterOutIfContains) {
         EmojiOrder emojiOrderToTest = TestAll.getOrderToTest();
         EmojiData emojiDataToTest = TestAll.getDataToTest();
         int SKIPTO = 400;
         StringBuilder outText = new StringBuilder();
-        emojiOrderToTest.appendCollationRules(outText, emojiDataToTest.getAllEmojiWithDefectives(), EmojiOrder.GENDER_NEUTRALS);
+        emojiOrderToTest.appendCollationRules(
+                outText, emojiDataToTest.getAllEmojiWithDefectives(), EmojiOrder.GENDER_NEUTRALS);
         String rules = outText.toString();
         UnicodeSet modifierBases = emojiDataToTest.getModifierBases();
-        UnicodeSet modifiers = new UnicodeSet(EmojiData.getModifiers()).addAll(Emoji.HAIR_BASE).freeze();
+        UnicodeSet modifiers =
+                new UnicodeSet(EmojiData.getModifiers()).addAll(Emoji.HAIR_BASE).freeze();
         try {
             RuleBasedCollator ruleBasedCollator = new RuleBasedCollator(rules);
             Set<String> testSet = new TreeSet<>(emojiOrderToTest.codepointCompare);
@@ -136,18 +163,22 @@ public class TestEmojiOrder extends TestFmwkMinusMinus {
                 if (filterOutIfContains != null && filterOutIfContains.containsSome(item)) {
                     continue;
                 }
-                if (ruleBasedCollator.compare(lastItem, item) > 0
-                        && !modifiers.contains(item)) {
-                    errln("RBased Out of order: "
-                            //                            + secondToLastItem
-                            //                            + " (" + Utility.hex(secondToLastItem) + ": " + beta.getName(secondToLastItem) + ") " + ">"
-                            + lastItem
-                            + " "
-                            + showItem(lastItem, ruleBasedCollator)
-                            + " " + "> "
-                            + item
-                            + " " + showItem(item, ruleBasedCollator) + ") "
-                            );
+                if (ruleBasedCollator.compare(lastItem, item) > 0 && !modifiers.contains(item)) {
+                    errln(
+                            "RBased Out of order: "
+                                    //                            + secondToLastItem
+                                    //                            + " (" +
+                                    // Utility.hex(secondToLastItem) + ": " +
+                                    // beta.getName(secondToLastItem) + ") " + ">"
+                                    + lastItem
+                                    + " "
+                                    + showItem(lastItem, ruleBasedCollator)
+                                    + " "
+                                    + "> "
+                                    + item
+                                    + " "
+                                    + showItem(item, ruleBasedCollator)
+                                    + ") ");
                 } else {
                     logln(lastItem + "≤" + item);
                 }
@@ -195,10 +226,12 @@ public class TestEmojiOrder extends TestFmwkMinusMinus {
     }
 
     private String showItem(String lastItem, RuleBasedCollator ruleBasedCollator) {
-        return "(" + Utility.hex(lastItem)
-        + "; " + TestAll.getDataToTest().getName(lastItem)
-        + (ruleBasedCollator == null ? "" : "; " + showCE(lastItem, ruleBasedCollator))
-        + ")";
+        return "("
+                + Utility.hex(lastItem)
+                + "; "
+                + TestAll.getDataToTest().getName(lastItem)
+                + (ruleBasedCollator == null ? "" : "; " + showCE(lastItem, ruleBasedCollator))
+                + ")";
     }
 
     private String showCE(String item2, RuleBasedCollator ruleBasedCollator) {
@@ -212,7 +245,7 @@ public class TestEmojiOrder extends TestFmwkMinusMinus {
             if (temp.length() != 0) {
                 temp.append(' ');
             }
-            temp.append(Utility.hex(item & 0xFFFFFFFFL,8));
+            temp.append(Utility.hex(item & 0xFFFFFFFFL, 8));
         }
         String ce = temp.toString();
         return ce;
@@ -232,29 +265,34 @@ public class TestEmojiOrder extends TestFmwkMinusMinus {
         StringBuilder tbuffer = new StringBuilder();
         for (String s : chars) {
             CollationElementIterator it = ruleBasedCollator.getCollationElementIterator(s);
-            for (int element = it.next(); element != CollationElementIterator.NULLORDER; element = it.next()) {
+            for (int element = it.next();
+                    element != CollationElementIterator.NULLORDER;
+                    element = it.next()) {
                 if (element == CollationElementIterator.IGNORABLE) {
                     continue;
                 }
                 int primary = CollationElementIterator.primaryOrder(element);
-                pbuffer.append(Utility.hex(primary,4));
+                pbuffer.append(Utility.hex(primary, 4));
                 int secondary = CollationElementIterator.secondaryOrder(element);
-                sbuffer.append(Utility.hex(secondary,4));
+                sbuffer.append(Utility.hex(secondary, 4));
                 int tertiary = CollationElementIterator.tertiaryOrder(element);
-                tbuffer.append(Utility.hex(tertiary,4));
-
+                tbuffer.append(Utility.hex(tertiary, 4));
             }
-            buffer.append(s
-                    + "\t0x" + Utility.hex(s, " 0x")
-                    + "\t0x" + pbuffer
-                    + "\t0x" + sbuffer
-                    + "\t0x" + tbuffer
-                    + "\n");
+            buffer.append(
+                    s
+                            + "\t0x"
+                            + Utility.hex(s, " 0x")
+                            + "\t0x"
+                            + pbuffer
+                            + "\t0x"
+                            + sbuffer
+                            + "\t0x"
+                            + tbuffer
+                            + "\n");
             pbuffer.setLength(0);
             sbuffer.setLength(0);
             tbuffer.setLength(0);
         }
         return buffer.toString();
     }
-
 }

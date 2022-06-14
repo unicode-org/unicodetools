@@ -1,5 +1,11 @@
 package org.unicode.text.tools;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.ULocale;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -9,20 +15,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.cldr.util.XEquivalenceClass;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
-import com.ibm.icu.util.ULocale;
 
 public class SimplifiedAndTraditional {
     public static void main(String[] args) {
@@ -44,7 +42,7 @@ public class SimplifiedAndTraditional {
     }
 
     private void run3(String[] args) {
-        final Map<String,UnicodeSet> mandarin = new TreeMap<>();
+        final Map<String, UnicodeSet> mandarin = new TreeMap<>();
         IndexUnicodeProperties iup = IndexUnicodeProperties.make(Default.ucd().getVersionInfo());
         final UnicodeMap<String> mand = iup.load(UcdProperty.kMandarin);
         for (final String value : (Collection<String>) mand.getAvailableValues()) {
@@ -70,8 +68,10 @@ public class SimplifiedAndTraditional {
     }
 
     static UnicodeSetPrettyPrinter PRETTY =
-            new UnicodeSetPrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).
-            setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
+            new UnicodeSetPrettyPrinter()
+                    .setOrdering(Collator.getInstance(ULocale.ROOT))
+                    .setSpaceComparator(
+                            Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
 
     private void showSimpVsTrad(String[] args) {
         IndexUnicodeProperties iup = IndexUnicodeProperties.make(Default.ucd().getVersionInfo());
@@ -83,39 +83,49 @@ public class SimplifiedAndTraditional {
         final UnicodeSet overlap = new UnicodeSet(simpOnly).retainAll(tradOnly);
         simpOnly.removeAll(overlap);
         tradOnly.removeAll(overlap);
-        System.out.println("UnicodeSet simpOnly = new UnicodeSet(\"" + simpOnly.toPattern(false) + "\");");
-        System.out.println("UnicodeSet tradOnly = new UnicodeSet(\"" + tradOnly.toPattern(false) + "\");");
+        System.out.println(
+                "UnicodeSet simpOnly = new UnicodeSet(\"" + simpOnly.toPattern(false) + "\");");
+        System.out.println(
+                "UnicodeSet tradOnly = new UnicodeSet(\"" + tradOnly.toPattern(false) + "\");");
 
         final XEquivalenceClass equivalences = new XEquivalenceClass("?");
 
         System.out.println("*** Data Problems ***");
         System.out.println();
 
-        for (final UnicodeSetIterator it = new UnicodeSetIterator(simp2trad.keySet()); it.next();) {
+        for (final UnicodeSetIterator it = new UnicodeSetIterator(simp2trad.keySet());
+                it.next(); ) {
             final String source = it.getString();
             final String targetOptions = getVariant(simp2trad, it.codepoint);
             int cp;
             for (int i = 0; i < targetOptions.length(); i += UTF16.getCharCount(cp)) {
-                String target = new StringBuilder().appendCodePoint(cp = UTF16.charAt(targetOptions,i)).toString();
+                String target =
+                        new StringBuilder()
+                                .appendCodePoint(cp = UTF16.charAt(targetOptions, i))
+                                .toString();
                 if (source.equals(target)) {
                     target = target + "*";
                 }
                 equivalences.add(source, target, "→T", "T←");
             }
         }
-        for (final UnicodeSetIterator it = new UnicodeSetIterator(trad2simp.keySet()); it.next();) {
+        for (final UnicodeSetIterator it = new UnicodeSetIterator(trad2simp.keySet());
+                it.next(); ) {
             final String source = it.getString();
             final String targetOptions = getVariant(trad2simp, it.codepoint);
             int cp;
             for (int i = 0; i < targetOptions.length(); i += UTF16.getCharCount(cp)) {
-                final String target = new StringBuilder().appendCodePoint(cp = UTF16.charAt(targetOptions,i)).toString();
+                final String target =
+                        new StringBuilder()
+                                .appendCodePoint(cp = UTF16.charAt(targetOptions, i))
+                                .toString();
                 String source2 = source;
                 if (source.equals(target)) {
                     source2 = source2 + "*";
                 }
                 equivalences.add(source2, target, "→S", "S←");
             }
-            //equivalences.add(it.getString(), getVariant(trad2simp, it.codepoint), "→S", "S←");
+            // equivalences.add(it.getString(), getVariant(trad2simp, it.codepoint), "→S", "S←");
         }
 
         System.out.println("*** Simple Pairs ***");
@@ -129,7 +139,8 @@ public class SimplifiedAndTraditional {
                 continue;
             }
             final ArrayList<String> list = new ArrayList(equivSet);
-            final String reasonString = equivalences.getReasons(list.get(0), list.get(1)).toString();
+            final String reasonString =
+                    equivalences.getReasons(list.get(0), list.get(1)).toString();
             // S↔T
             if (reasonString.equals("[[[S←, →T]]]")) {
                 System.out.println(list.get(0) + "\tS↔T\t" + list.get(1));
@@ -172,9 +183,9 @@ public class SimplifiedAndTraditional {
                         continue;
                     }
                     String reasonString = reason.toString();
-                    reasonString = reasonString.substring(1,reasonString.length()-1);
+                    reasonString = reasonString.substring(1, reasonString.length() - 1);
                     if (item2.endsWith("*")) {
-                        item2 = item2.substring(0,item2.length()-1);
+                        item2 = item2.substring(0, item2.length() - 1);
                     }
                     String line;
                     if (reasonString.equals("S←, →T")) {
@@ -214,17 +225,18 @@ public class SimplifiedAndTraditional {
         final UnicodeSet simpAndTrad = new UnicodeSet(simp).retainAll(trad);
         System.out.println("Characters that are both Simp & Trad: " + PRETTY.format(simpAndTrad));
         System.out.println();
-        System.out.println("Characters that are both Simp & Trad - Dual: " + PRETTY.format(simpAndTrad.removeAll(dual)));
+        System.out.println(
+                "Characters that are both Simp & Trad - Dual: "
+                        + PRETTY.format(simpAndTrad.removeAll(dual)));
 
-        if (true)
-        {
+        if (true) {
             return;
             // ==============================
         }
 
         System.out.println("x →T y & x →S z");
         final UnicodeSet both = new UnicodeSet(simp2trad.keySet()).retainAll(trad2simp.keySet());
-        for (final UnicodeSetIterator it = new UnicodeSetIterator(both); it.next();) {
+        for (final UnicodeSetIterator it = new UnicodeSetIterator(both); it.next(); ) {
             System.out.println(it.getString() + "\t→T\t" + getVariant(simp2trad, it.codepoint));
             System.out.println(it.getString() + "\t→S\t" + getVariant(trad2simp, it.codepoint));
             System.out.println();
@@ -276,7 +288,8 @@ public class SimplifiedAndTraditional {
         return result;
     }
 
-    private String showLine(String item, String relation, String item2, UnicodeSet simp, UnicodeSet trad) {
+    private String showLine(
+            String item, String relation, String item2, UnicodeSet simp, UnicodeSet trad) {
         String line;
         line = (item + relation + item2);
         simp.addAll(item);
@@ -284,9 +297,15 @@ public class SimplifiedAndTraditional {
         return line;
     }
 
-    private void addItems(UnicodeMap simp2trad, UnicodeMap trad2simp, List<String> output,
-            Set<String> seen, boolean isTrad2Simp, Set<String> buffered) {
-        for (final UnicodeSetIterator it = new UnicodeSetIterator(simp2trad.keySet()); it.next();) {
+    private void addItems(
+            UnicodeMap simp2trad,
+            UnicodeMap trad2simp,
+            List<String> output,
+            Set<String> seen,
+            boolean isTrad2Simp,
+            Set<String> buffered) {
+        for (final UnicodeSetIterator it = new UnicodeSetIterator(simp2trad.keySet());
+                it.next(); ) {
             final String string = it.getString();
             if (seen.contains(string)) {
                 continue;

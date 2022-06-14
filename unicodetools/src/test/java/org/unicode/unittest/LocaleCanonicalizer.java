@@ -1,21 +1,5 @@
 package org.unicode.unittest;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.regex.Pattern;
-import java.util.Objects;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
-
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
@@ -32,14 +16,28 @@ import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.Output;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.ULocale.Builder;
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.regex.Pattern;
 
 public class LocaleCanonicalizer {
     private static final boolean DEBUG = false;
 
     public enum ErrorChoice {
-        ignoreErrors, 
-        throwErrors}
+        ignoreErrors,
+        throwErrors
+    }
 
     public static final Splitter SEP_SPLITTER = Splitter.on(CharMatcher.anyOf("-_"));
     public static final UnicodeSet SEP = new UnicodeSet("[-_]");
@@ -140,16 +138,17 @@ public class LocaleCanonicalizer {
             localeExtension2 = canonicalizeKeyValues(localeExtension.tKeyValues);
         }
 
-        if (result.equals(source) && Objects.equals(localeExtension, localeExtension2)
-                ) {
+        if (result.equals(source) && Objects.equals(localeExtension, localeExtension2)) {
             return locale; // original, with extensions, etc.
         } else {
-            builder = new ULocale.Builder()
-                    .setLocale(locale) // picks up extensions, etc
-                    .setLanguage(result.language)
-                    .setScript(result.script)
-                    .setRegion(result.region)
-                    .setVariant(result.variants == null ? "" : SEP_JOIN.join(result.variants));
+            builder =
+                    new ULocale.Builder()
+                            .setLocale(locale) // picks up extensions, etc
+                            .setLanguage(result.language)
+                            .setScript(result.script)
+                            .setRegion(result.region)
+                            .setVariant(
+                                    result.variants == null ? "" : SEP_JOIN.join(result.variants));
             if (localeExtension2 != null) {
                 localeExtension2.set(builder);
             }
@@ -167,17 +166,20 @@ public class LocaleCanonicalizer {
             Output<Boolean> isSpecialType = new Output<>();
             Output<Boolean> isKnownKey = new Output<>();
             String entryValue = entry.getValue();
-            String newValue = KeyTypeData.toBcpType(entry.getKey(), entryValue, isKnownKey, isSpecialType);
+            String newValue =
+                    KeyTypeData.toBcpType(entry.getKey(), entryValue, isKnownKey, isSpecialType);
             String replacementValue = null;
             if (newValue != null) {
                 if ("true".equals(newValue)) {
                     newValue = "";
                 }
                 replacementValue = newValue;
-            } else if (SEP.containsSome(entryValue)){
+            } else if (SEP.containsSome(entryValue)) {
                 for (String tValue : SEP_SPLITTER.splitToList(entryValue)) {
                     // TODO fix toBcpType to canonicalize even if isSpecialType is null
-                    newValue = KeyTypeData.toBcpType(entry.getKey(), tValue, isKnownKey, isSpecialType);
+                    newValue =
+                            KeyTypeData.toBcpType(
+                                    entry.getKey(), tValue, isKnownKey, isSpecialType);
                     newValue = newValue == null ? tValue : newValue;
                     if ("true".equals(newValue)) {
                         newValue = "";
@@ -191,7 +193,7 @@ public class LocaleCanonicalizer {
         return LocaleExtensions.create(result);
     }
 
-    // can optimize by using same logic as canonicalize, 
+    // can optimize by using same logic as canonicalize,
     // but testing and returning false immediately instead of making change
     public boolean isCanonicalized(ULocale locale) {
         return locale.equals(canonicalize(locale));
@@ -215,10 +217,14 @@ public class LocaleCanonicalizer {
             result.script = locale.getScript();
             result.region = locale.getCountry();
             String variantString = locale.getVariant();
-            result.variants = variantString.isEmpty() ? new TreeSet<>() 
-                    : new TreeSet<>(TestLocaleConstruction.SEP_SPLITTER.splitToList(variantString));
+            result.variants =
+                    variantString.isEmpty()
+                            ? new TreeSet<>()
+                            : new TreeSet<>(
+                                    TestLocaleConstruction.SEP_SPLITTER.splitToList(variantString));
             return result;
         }
+
         public static LSRV from(LSRV locale) {
             LSRV result = new LSRV();
             result.language = locale.language;
@@ -227,6 +233,7 @@ public class LocaleCanonicalizer {
             result.variants = new TreeSet<>(locale.variants);
             return result;
         }
+
         @Override
         public boolean equals(Object obj) {
             LSRV other = (LSRV) obj; // private class, don't worry about exception
@@ -235,10 +242,12 @@ public class LocaleCanonicalizer {
                     && region.equals(other.region)
                     && variants.equals(other.variants);
         }
+
         @Override
         public int hashCode() {
             return Objects.hash(language, script, region, variants);
         }
+
         @Override
         public String toString() {
             return Arrays.asList(language, script, region, variants).toString();
@@ -265,6 +274,7 @@ public class LocaleCanonicalizer {
         final String tRegion;
         final String tVariant;
         final String reason;
+
         public ExceptionInfo(Datatype datatype, ULocale context, ULocale aliasTo, String reason) {
             this.reason = reason;
             if (context == null) {
@@ -274,26 +284,26 @@ public class LocaleCanonicalizer {
                 String _cRegion = context.getCountry();
                 String _cVariant = context.getVariant();
 
-                cLang = datatype == Datatype.language || _cLang.isEmpty() || _cLang.equals("und") ? null 
-                        : _cLang;
-                cRegion = datatype == Datatype.region || _cRegion.isEmpty() ? null 
-                        : _cRegion;
-                cVariant = datatype == Datatype.variant || _cVariant.isEmpty() ? null 
-                        : _cVariant;
+                cLang =
+                        datatype == Datatype.language || _cLang.isEmpty() || _cLang.equals("und")
+                                ? null
+                                : _cLang;
+                cRegion = datatype == Datatype.region || _cRegion.isEmpty() ? null : _cRegion;
+                cVariant = datatype == Datatype.variant || _cVariant.isEmpty() ? null : _cVariant;
             }
             String _tLang = aliasTo.getLanguage();
             String _tRegion = aliasTo.getCountry();
             String _tVariant = aliasTo.getVariant();
 
-            tLang = datatype == Datatype.language ? _tLang 
-                    : _tLang.isEmpty() || _tLang.equals("und") ? null 
-                            : _tLang;
-            tRegion = datatype == Datatype.region ? _tRegion 
-                    : _tRegion.isEmpty() ? null 
-                            : _tRegion;
-            tVariant = datatype == Datatype.variant ? _tVariant 
-                    : _tVariant.isEmpty() ? null 
-                            : _tVariant;
+            tLang =
+                    datatype == Datatype.language
+                            ? _tLang
+                            : _tLang.isEmpty() || _tLang.equals("und") ? null : _tLang;
+            tRegion = datatype == Datatype.region ? _tRegion : _tRegion.isEmpty() ? null : _tRegion;
+            tVariant =
+                    datatype == Datatype.variant
+                            ? _tVariant
+                            : _tVariant.isEmpty() ? null : _tVariant;
         }
         /* Set the other fields of the result, and return the new datatype value */
         public void setTarget(Datatype datatype, LocaleCanonicalizer.LSRV result) {
@@ -307,15 +317,21 @@ public class LocaleCanonicalizer {
                 result.variants.add(tVariant);
             }
         }
+
         public boolean matches(Datatype datatype, LocaleCanonicalizer.LSRV source) {
-            return 
-                    (datatype == Datatype.language || cLang == null || cLang.equals(source.language))
-                    && (datatype == Datatype.region || cRegion == null || cRegion.equals(source.region))
-                    && (datatype == Datatype.variant || cVariant == null || source.variants.contains(cVariant))
-                    ;
+            return (datatype == Datatype.language || cLang == null || cLang.equals(source.language))
+                    && (datatype == Datatype.region
+                            || cRegion == null
+                            || cRegion.equals(source.region))
+                    && (datatype == Datatype.variant
+                            || cVariant == null
+                            || source.variants.contains(cVariant));
         }
 
-        public boolean resetTargetIfMatches(Datatype datatype, LocaleCanonicalizer.LSRV source, LocaleCanonicalizer.LSRV result) {
+        public boolean resetTargetIfMatches(
+                Datatype datatype,
+                LocaleCanonicalizer.LSRV source,
+                LocaleCanonicalizer.LSRV result) {
             if (matches(datatype, source)) {
                 setTarget(datatype, result);
                 return true;
@@ -324,11 +340,9 @@ public class LocaleCanonicalizer {
             }
         }
 
-
         @Override
         public String toString() {
-            return 
-                    "["
+            return "["
                     + (cLang == null ? "" : "cLang=" + cLang)
                     + (cRegion == null ? "" : " cRegion=" + cRegion)
                     + (cVariant == null ? "" : " cVariant=" + cVariant)
@@ -337,6 +351,7 @@ public class LocaleCanonicalizer {
                     + (tVariant == null ? "" : " tVariant=" + tVariant)
                     + " ]";
         }
+
         public String toXml(Datatype datatype) {
             StringBuilder result = new StringBuilder();
             if (cLang != null) {
@@ -349,38 +364,45 @@ public class LocaleCanonicalizer {
                 result.append(" cVariant=\"").append(cVariant).append('"');
             }
             if (tLang != null) {
-                result.append(datatype==Datatype.language ? " replacement=\"" : " rLang=\"").append(tLang).append('"');
+                result.append(datatype == Datatype.language ? " replacement=\"" : " rLang=\"")
+                        .append(tLang)
+                        .append('"');
             }
             if (tRegion != null) {
-                result.append(datatype==Datatype.region ? " replacement=\"" : " rRegion=\"").append(tRegion).append('"');
+                result.append(datatype == Datatype.region ? " replacement=\"" : " rRegion=\"")
+                        .append(tRegion)
+                        .append('"');
             }
             if (tVariant != null) {
-                result.append(datatype==Datatype.variant ? " replacement=\"" : " rVariant=\"").append(tVariant).append('"');
+                result.append(datatype == Datatype.variant ? " replacement=\"" : " rVariant=\"")
+                        .append(tVariant)
+                        .append('"');
             }
             return result.toString();
         }
     }
+
     public static final class AliasesFull {
         public final Map<String, String> fullMap;
         public final Map<String, String> reasons;
         public final Multimap<String, ExceptionInfo> exceptions;
         private final Datatype datatype; // null is extensions, for now
 
-
         // TODO change to read file once
         /**
-         * Build a set of alias data. It is processed to make runtime computation easier for complex results:
-         * where the field(s) affected are not just the source field, such as when
-         * a variant changes the language.
-         * @param aliasDataSource 
+         * Build a set of alias data. It is processed to make runtime computation easier for complex
+         * results: where the field(s) affected are not just the source field, such as when a
+         * variant changes the language.
+         *
+         * @param aliasDataSource
          */
-
         public AliasesFull(Datatype datatype, AliasDataSource aliasDataSource) {
             this.datatype = datatype;
             Map<String, String> _fullMap = new TreeMap<>();
             Map<String, String> _reasons = new TreeMap<>();
             Multimap<String, ExceptionInfo> _exceptions = LinkedHashMultimap.create();
-            Multimap<String, Row.R3<ULocale,ULocale,String>> exceptionsStored = LinkedHashMultimap.create();
+            Multimap<String, Row.R3<ULocale, ULocale, String>> exceptionsStored =
+                    LinkedHashMultimap.create();
 
             List<AliasData> rawData = aliasDataSource.getData(datatype);
 
@@ -388,12 +410,14 @@ public class LocaleCanonicalizer {
                 processData(datum, _fullMap, _reasons, _exceptions, exceptionsStored);
             }
 
-            for (Entry<String, Collection<Row.R3<ULocale,ULocale,String>>> entry : exceptionsStored.asMap().entrySet()) {
+            for (Entry<String, Collection<Row.R3<ULocale, ULocale, String>>> entry :
+                    exceptionsStored.asMap().entrySet()) {
                 String code = entry.getKey();
                 String oldTo = _fullMap.get(code);
                 String oldReason = _reasons.get(code);
-                Collection<Row.R3<ULocale,ULocale,String>> infos = (Set<Row.R3<ULocale,ULocale,String>>) entry.getValue();
-                for (Row.R3<ULocale,ULocale,String> info : infos) {
+                Collection<Row.R3<ULocale, ULocale, String>> infos =
+                        (Set<Row.R3<ULocale, ULocale, String>>) entry.getValue();
+                for (Row.R3<ULocale, ULocale, String> info : infos) {
                     ULocale context = info.get0();
                     ULocale aliasTo = info.get1();
                     String reason = info.get2();
@@ -402,7 +426,10 @@ public class LocaleCanonicalizer {
                 }
                 if (oldTo != null) {
                     String prefix = datatype == Datatype.language ? "" : "und-";
-                    _exceptions.put(code, new ExceptionInfo(datatype, null, new ULocale(prefix + oldTo), oldReason)); 
+                    _exceptions.put(
+                            code,
+                            new ExceptionInfo(
+                                    datatype, null, new ULocale(prefix + oldTo), oldReason));
                 }
                 _fullMap.put(code, "");
             }
@@ -416,13 +443,12 @@ public class LocaleCanonicalizer {
             }
         }
 
-
-
-        void processData(AliasData datum, Map<String, String> _fullMap, 
-                Map<String, String> _reasons, 
-                Multimap<String, ExceptionInfo> _exceptions, 
-                Multimap<String, 
-                R3<ULocale, ULocale, String>> exceptionsStored) {
+        void processData(
+                AliasData datum,
+                Map<String, String> _fullMap,
+                Map<String, String> _reasons,
+                Multimap<String, ExceptionInfo> _exceptions,
+                Multimap<String, R3<ULocale, ULocale, String>> exceptionsStored) {
 
             String aliasFrom = datum.aliasFrom;
             String reason = datum.reason;
@@ -433,43 +459,54 @@ public class LocaleCanonicalizer {
             String aliasTo = datum.aliasTo;
             if (DEBUG && (aliasFrom.contains("-") || aliasTo.contains("-"))) {
                 System.out.println(
-                        "aliasFrom: " + aliasFrom
-                        + " aliasTo: " + aliasTo
-                        + " reason: " + reason
-                        );
+                        "aliasFrom: " + aliasFrom + " aliasTo: " + aliasTo + " reason: " + reason);
             }
 
-            switch(datatype) {
-            case language:
-                // FIX
-                String sLang = SEP_SPLITTER.split(aliasFrom).iterator().next();
-                String tLang = SEP_SPLITTER.split(aliasTo).iterator().next();
-                if (sLang.equals(tLang)) {
-                    ULocale source = new ULocale(aliasFrom);
-                    ULocale target = new ULocale(aliasTo);
-                    if (ULocale.addLikelySubtags(source).equals(ULocale.addLikelySubtags(target))) {
-                        //"* SKIP equivalent mappings " + source + " ==> " + target + " (" + reason + ")"
-                        if (DEBUG) System.out.println(showKeyValueReason(new StringBuilder("<!-- "), 
-                                source.toString(), 
-                                target.toString(), reason).append(" — skip equivalent -->").toString());
+            switch (datatype) {
+                case language:
+                    // FIX
+                    String sLang = SEP_SPLITTER.split(aliasFrom).iterator().next();
+                    String tLang = SEP_SPLITTER.split(aliasTo).iterator().next();
+                    if (sLang.equals(tLang)) {
+                        ULocale source = new ULocale(aliasFrom);
+                        ULocale target = new ULocale(aliasTo);
+                        if (ULocale.addLikelySubtags(source)
+                                .equals(ULocale.addLikelySubtags(target))) {
+                            // "* SKIP equivalent mappings " + source + " ==> " + target + " (" +
+                            // reason + ")"
+                            if (DEBUG)
+                                System.out.println(
+                                        showKeyValueReason(
+                                                        new StringBuilder("<!-- "),
+                                                        source.toString(),
+                                                        target.toString(),
+                                                        reason)
+                                                .append(" — skip equivalent -->")
+                                                .toString());
+                            return;
+                        }
+                    }
+                    break;
+                case region:
+                    // skip overlong region 3-letter?
+                    if ("overlong".equals(reason)
+                            && aliasFrom.length() == 3
+                            && aliasFrom.charAt(0) >= 'A') {
+                        if (DEBUG)
+                            System.out.println(
+                                    showKeyValueReason(
+                                                    new StringBuilder("<!-- "),
+                                                    aliasFrom,
+                                                    aliasTo,
+                                                    reason + "-notUbli")
+                                            .toString());
                         return;
                     }
-                }
-                break;
-            case region: 
-                // skip overlong region 3-letter?
-                if ("overlong".equals(reason) && aliasFrom.length() == 3
-                && aliasFrom.charAt(0) >= 'A') {
-                    if (DEBUG) System.out.println(showKeyValueReason(new StringBuilder("<!-- "), 
-                            aliasFrom, 
-                            aliasTo, reason+"-notUbli").toString());
-                    return;
-                }
-                break;
-            case variant:
-                aliasFrom = aliasFrom.toLowerCase(Locale.ROOT);
-                aliasTo = aliasTo.toLowerCase(Locale.ROOT);
-                break;
+                    break;
+                case variant:
+                    aliasFrom = aliasFrom.toLowerCase(Locale.ROOT);
+                    aliasTo = aliasTo.toLowerCase(Locale.ROOT);
+                    break;
             }
 
             ULocale context = null;
@@ -481,7 +518,10 @@ public class LocaleCanonicalizer {
             if (multipleTargets && datatype != Datatype.region) {
                 throw new ICUException();
             }
-            if (fromLocale || toLocale || multipleTargets || datatype == Datatype.variant && aliasTo.length() < 5) {
+            if (fromLocale
+                    || toLocale
+                    || multipleTargets
+                    || datatype == Datatype.variant && aliasTo.length() < 5) {
                 if (fromLocale) {
                     context = new ULocale(aliasFrom);
                     aliasFrom = context.getLanguage();
@@ -498,27 +538,63 @@ public class LocaleCanonicalizer {
                         String maxLang = max.getLanguage();
                         if (!maxLang.equals("und")) {
                             if (firstLang == null) {
-                                if (DEBUG) System.out.println("* STORE DEFAULT region context: " + aliasFrom + ", " + maxLang + " ==> " + target);
+                                if (DEBUG)
+                                    System.out.println(
+                                            "* STORE DEFAULT region context: "
+                                                    + aliasFrom
+                                                    + ", "
+                                                    + maxLang
+                                                    + " ==> "
+                                                    + target);
                                 firstLang = maxLang;
                                 firstRegion = target;
                                 continue;
                             } else if (firstLang.equals(maxLang)) {
-                                if (DEBUG) System.out.println("* SKIP region context: " + aliasFrom + ", " + maxLang + " ==> " + targetLocale);
+                                if (DEBUG)
+                                    System.out.println(
+                                            "* SKIP region context: "
+                                                    + aliasFrom
+                                                    + ", "
+                                                    + maxLang
+                                                    + " ==> "
+                                                    + targetLocale);
                                 continue;
                             }
                             context = new ULocale(maxLang);
-                            //targetLocale = new ULocale.Builder().setLocale(targetLocale).setLanguage(maxLang).build();
-                            if (DEBUG) System.out.println("* SET region context: " + aliasFrom + ", " + maxLang + " ==> " + targetLocale);
+                            // targetLocale = new
+                            // ULocale.Builder().setLocale(targetLocale).setLanguage(maxLang).build();
+                            if (DEBUG)
+                                System.out.println(
+                                        "* SET region context: "
+                                                + aliasFrom
+                                                + ", "
+                                                + maxLang
+                                                + " ==> "
+                                                + targetLocale);
                         }
                         if (contextsSoFar.contains(context)) {
-                            if (DEBUG) System.out.println("* SKIP2 region context: " + aliasFrom + ", " + maxLang + " ==> " + targetLocale);
+                            if (DEBUG)
+                                System.out.println(
+                                        "* SKIP2 region context: "
+                                                + aliasFrom
+                                                + ", "
+                                                + maxLang
+                                                + " ==> "
+                                                + targetLocale);
                             continue;
                         }
                         contextsSoFar.add(context);
                         exceptionsStored.put(aliasFrom, Row.of(context, targetLocale, reason));
                     }
                     if (firstLang != null) {
-                        if (DEBUG) System.out.println("* SET DEFAULT region context: " + aliasFrom + " (" + firstLang + ") ==> " + firstRegion);
+                        if (DEBUG)
+                            System.out.println(
+                                    "* SET DEFAULT region context: "
+                                            + aliasFrom
+                                            + " ("
+                                            + firstLang
+                                            + ") ==> "
+                                            + firstRegion);
                         _fullMap.put(aliasFrom, firstRegion);
                         _reasons.put(aliasFrom, reason);
                     }
@@ -536,6 +612,7 @@ public class LocaleCanonicalizer {
         public String toString() {
             return toString(true, true);
         }
+
         public String toString(boolean simple, boolean complex) {
             StringBuilder result = new StringBuilder();
             for (Entry<String, String> entry : fullMap.entrySet()) {
@@ -543,23 +620,21 @@ public class LocaleCanonicalizer {
                 String value = entry.getValue();
                 if (!value.isEmpty()) {
                     if (simple) {
-                        result.append(key)
-                        .append("\tresult: ").append(value)
-                        .append('\n');
+                        result.append(key).append("\tresult: ").append(value).append('\n');
                     }
                 } else if (complex) {
                     Collection<ExceptionInfo> exceptionList = exceptions.get(key);
                     for (ExceptionInfo exception : exceptionList) {
-                        result.append(key)
-                        .append("\t").append(exception)
-                        .append('\n');
-                    } 
+                        result.append(key).append("\t").append(exception).append('\n');
+                    }
                 }
             }
             return result.toString();
         }
+
         public String toXML() {
-            //             <languageAlias type="art_lojban" replacement="jbo" reason="deprecated"/> <!-- Lojban -->
+            //             <languageAlias type="art_lojban" replacement="jbo" reason="deprecated"/>
+            // <!-- Lojban -->
 
             StringBuilder result = new StringBuilder();
             for (Entry<String, ExceptionInfo> entry : exceptions.entries()) {
@@ -567,10 +642,14 @@ public class LocaleCanonicalizer {
                 ExceptionInfo exception = entry.getValue();
                 String reason = exception.reason;
                 result.append("<" + datatype + "Alias")
-                .append(" type=\"").append(key).append('"')
-                .append(exception.toXml(datatype))
-                .append(" reason=\"").append(reason).append('"')
-                .append(">\n");
+                        .append(" type=\"")
+                        .append(key)
+                        .append('"')
+                        .append(exception.toXml(datatype))
+                        .append(" reason=\"")
+                        .append(reason)
+                        .append('"')
+                        .append(">\n");
             }
             result.append('\n');
             for (Entry<String, String> entry : fullMap.entrySet()) {
@@ -585,17 +664,24 @@ public class LocaleCanonicalizer {
             return result.toString();
         }
 
-        private StringBuilder showKeyValueReason(StringBuilder result, String key, String value, String reason) {
+        private StringBuilder showKeyValueReason(
+                StringBuilder result, String key, String value, String reason) {
             result.append("<" + datatype + "Alias")
-            .append(" type=\"").append(key).append('"')
-            .append(" replacement=\"").append(value).append('"')
-            .append(" reason=\"").append(reason).append("\"/>")
-            ;
+                    .append(" type=\"")
+                    .append(key)
+                    .append('"')
+                    .append(" replacement=\"")
+                    .append(value)
+                    .append('"')
+                    .append(" reason=\"")
+                    .append(reason)
+                    .append("\"/>");
             return result;
         }
 
         /**
          * Returns null if there is no replacement, or if there is an exception;
+         *
          * @param code
          * @param exception
          * @return
@@ -604,7 +690,7 @@ public class LocaleCanonicalizer {
             String result = fullMap.get(code);
             if (result == null) {
                 exception.value = null;
-            } else if (!result.isEmpty()){
+            } else if (!result.isEmpty()) {
                 exception.value = null;
             } else {
                 exception.value = exceptions.get(code);

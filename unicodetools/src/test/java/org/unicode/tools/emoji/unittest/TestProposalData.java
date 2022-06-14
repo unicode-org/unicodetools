@@ -1,29 +1,21 @@
 package org.unicode.tools.emoji.unittest;
 
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 import java.util.Set;
-
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.Emoji;
-import org.unicode.tools.emoji.Emoji.CharSource;
-import org.unicode.unittest.TestFmwkMinusMinus;
 import org.unicode.tools.emoji.EmojiData;
-import org.unicode.tools.emoji.EmojiDataSource;
-import org.unicode.tools.emoji.EmojiDataSourceCombined;
-import org.unicode.tools.emoji.GenerateEmoji;
 import org.unicode.tools.emoji.ProposalData;
-
-import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.VersionInfo;
+import org.unicode.unittest.TestFmwkMinusMinus;
 
 public class TestProposalData extends TestFmwkMinusMinus {
     private static final ProposalData proposalData = ProposalData.getInstance();
-
 
     @Disabled("Broken")
     @Test
@@ -83,14 +75,17 @@ public class TestProposalData extends TestFmwkMinusMinus {
     }
 
     private void checkVersionCompleteness2(int logOrErr, VersionInfo newer, VersionInfo older) {
-        checkVersionCompleteness(logOrErr,
+        checkVersionCompleteness(
+                logOrErr,
                 newer,
                 EmojiData.of(newer).getAllEmojiWithoutDefectives(),
-                older == null ? UnicodeSet.EMPTY : EmojiData.of(older).getAllEmojiWithoutDefectives());
+                older == null
+                        ? UnicodeSet.EMPTY
+                        : EmojiData.of(older).getAllEmojiWithoutDefectives());
     }
 
-
-    private void checkVersionCompleteness(int logOrError, VersionInfo versionInfo, UnicodeSet newerData, UnicodeSet currentData) {
+    private void checkVersionCompleteness(
+            int logOrError, VersionInfo versionInfo, UnicodeSet newerData, UnicodeSet currentData) {
         UnicodeSet missing = new UnicodeSet();
         UnicodeMap<String> found = new UnicodeMap<>();
         checkVersions(currentData, newerData, found, missing);
@@ -104,10 +99,17 @@ public class TestProposalData extends TestFmwkMinusMinus {
                     logln(ProposalData.showLine(entry.codepoint, entry.codepointEnd, entry.value));
                 }
             }
-
         }
         if (!missing.isEmpty()) {
-            msg("\n" + versionInfo + " Missing Proposals: " + missing.size() + " (use -v to see)\n", logOrError, true, true);
+            msg(
+                    "\n"
+                            + versionInfo
+                            + " Missing Proposals: "
+                            + missing.size()
+                            + " (use -v to see)\n",
+                    logOrError,
+                    true,
+                    true);
             if (isVerbose()) {
                 for (String emoji : missing) {
                     String bestGuess = getBestGuess(emoji);
@@ -138,7 +140,7 @@ public class TestProposalData extends TestFmwkMinusMinus {
         //        if (Emoji.ARIB.contains(emoji)) {
         //            return Emoji.CharSource.ARIB;
         //        }
-        String trial = EmojiData.SKIN_SPANNER.replaceFrom(emoji,"");
+        String trial = EmojiData.SKIN_SPANNER.replaceFrom(emoji, "");
         if (!trial.isEmpty()) {
             Set<String> proposals = proposalData.getProposals(trial);
             if (!proposals.isEmpty()) {
@@ -148,7 +150,11 @@ public class TestProposalData extends TestFmwkMinusMinus {
         return null;
     }
 
-    private void checkVersions(UnicodeSet oldEmoji, UnicodeSet newEmoji, UnicodeMap<String> found, UnicodeSet missing) {
+    private void checkVersions(
+            UnicodeSet oldEmoji,
+            UnicodeSet newEmoji,
+            UnicodeMap<String> found,
+            UnicodeSet missing) {
         for (String emoji : newEmoji) {
             if (oldEmoji.contains(emoji)) {
                 continue;

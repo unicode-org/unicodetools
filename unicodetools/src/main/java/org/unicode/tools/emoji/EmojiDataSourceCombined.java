@@ -1,29 +1,28 @@
 package org.unicode.tools.emoji;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ICUException;
+import com.ibm.icu.util.ICUUncheckedIOException;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.Set;
-
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
-
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.ICUException;
-import com.ibm.icu.util.ICUUncheckedIOException;
 
 public class EmojiDataSourceCombined implements EmojiDataSource {
 
     public static final EmojiDataSource EMOJI_DATA = new EmojiDataSourceCombined();
-    public static final EmojiDataSource EMOJI_DATA_BETA = new EmojiDataSourceCombined(EmojiData.EMOJI_DATA_BETA);
+    public static final EmojiDataSource EMOJI_DATA_BETA =
+            new EmojiDataSourceCombined(EmojiData.EMOJI_DATA_BETA);
 
     private static final boolean DEBUG = false;
 
     private final EmojiData emojiData;
     private final CandidateData candidates;
-    
+
     public EmojiDataSourceCombined(EmojiData emojiData, CandidateData candidates) {
         this.emojiData = emojiData;
         this.candidates = candidates;
@@ -38,116 +37,106 @@ public class EmojiDataSourceCombined implements EmojiDataSource {
     }
 
     static final UnicodeSet add(UnicodeSet base, UnicodeSet candidates) {
-        return candidates.isEmpty() ? base 
-                : base.isEmpty() ? candidates
-                : new UnicodeSet(candidates).addAll(base).freeze();
+        return candidates.isEmpty()
+                ? base
+                : base.isEmpty() ? candidates : new UnicodeSet(candidates).addAll(base).freeze();
     }
 
     static final <T> UnicodeMap<T> add(UnicodeMap<T> base, UnicodeMap<T> candidates) {
-        return !Emoji.IS_BETA || candidates.isEmpty() ? base 
+        return !Emoji.IS_BETA || candidates.isEmpty()
+                ? base
                 : new UnicodeMap(candidates).putAll(base).freeze();
     }
 
     @Override
     public UnicodeSet getEmojiComponents() {
-        return add(emojiData.getEmojiComponents(),
-                candidates.getEmojiComponents());
+        return add(emojiData.getEmojiComponents(), candidates.getEmojiComponents());
     }
 
     @Override
     public UnicodeSet getSingletonsWithDefectives() {
-        return add(emojiData.getSingletonsWithDefectives(),
-                candidates.getSingletonsWithDefectives());
+        return add(
+                emojiData.getSingletonsWithDefectives(), candidates.getSingletonsWithDefectives());
     }
 
     @Override
     public UnicodeSet getEmojiPresentationSet() {
-        return add(emojiData.getEmojiPresentationSet(),
-                candidates.getEmojiPresentationSet());
+        return add(emojiData.getEmojiPresentationSet(), candidates.getEmojiPresentationSet());
     }
 
     @Override
     public UnicodeSet getModifierBases() {
-        return add(emojiData.getModifierBases(),
-                candidates.getModifierBases());
+        return add(emojiData.getModifierBases(), candidates.getModifierBases());
     }
 
     @Override
     public UnicodeSet getModifierBasesRgi() {
-        return add(emojiData.getModifierBasesRgi(),
-                candidates.getModifierBasesRgi());
+        return add(emojiData.getModifierBasesRgi(), candidates.getModifierBasesRgi());
     }
 
     @Override
     public UnicodeSet getExtendedPictographic() {
-        return add(emojiData.getExtendedPictographic(),
-                candidates.getExtendedPictographic());
+        return add(emojiData.getExtendedPictographic(), candidates.getExtendedPictographic());
     }
 
     @Override
     public UnicodeSet getTagSequences() {
-        return add(emojiData.getTagSequences(),
-                candidates.getTagSequences());
+        return add(emojiData.getTagSequences(), candidates.getTagSequences());
     }
 
     @Override
     public UnicodeSet getModifierSequences() {
-        return add(emojiData.getModifierSequences(),
-                candidates.getModifierSequences());
+        return add(emojiData.getModifierSequences(), candidates.getModifierSequences());
     }
 
     @Override
     public UnicodeSet getFlagSequences() {
-        return add(emojiData.getFlagSequences(),
-                candidates.getFlagSequences());
+        return add(emojiData.getFlagSequences(), candidates.getFlagSequences());
     }
 
     @Override
     public UnicodeSet getZwjSequencesNormal() {
-        return add(emojiData.getZwjSequencesNormal(),
-                candidates.getZwjSequencesNormal());
+        return add(emojiData.getZwjSequencesNormal(), candidates.getZwjSequencesNormal());
     }
 
     @Override
     public UnicodeSet getEmojiWithVariants() {
-        return add(emojiData.getEmojiWithVariants(),
-                candidates.getEmojiWithVariants());
+        return add(emojiData.getEmojiWithVariants(), candidates.getEmojiWithVariants());
     }
 
     @Override
     public UnicodeSet getAllEmojiWithoutDefectives() {
-        return add(emojiData.getAllEmojiWithoutDefectives(),
+        return add(
+                emojiData.getAllEmojiWithoutDefectives(),
                 candidates.getAllEmojiWithoutDefectives());
     }
 
     @Override
     public UnicodeSet getAllEmojiWithoutDefectivesOrModifiers() {
-        return add(emojiData.getAllEmojiWithoutDefectivesOrModifiers(),
+        return add(
+                emojiData.getAllEmojiWithoutDefectivesOrModifiers(),
                 candidates.getAllEmojiWithoutDefectivesOrModifiers());
     }
 
-
     @Override
     public UnicodeSet getTextPresentationSet() {
-        return add(emojiData.getTextPresentationSet(),
-                candidates.getTextPresentationSet());
+        return add(emojiData.getTextPresentationSet(), candidates.getTextPresentationSet());
     }
 
     @Override
     public UnicodeSet getAllEmojiWithDefectives() {
-        return add(emojiData.getAllEmojiWithDefectives(),
-                candidates.getAllEmojiWithDefectives());
+        return add(emojiData.getAllEmojiWithDefectives(), candidates.getAllEmojiWithDefectives());
     }
 
     @Override
     public UnicodeSet getGenderBases() {
-        return add(emojiData.getGenderBases(),
-                candidates.getGenderBases());
+        return add(emojiData.getGenderBases(), candidates.getGenderBases());
     }
 
     @Override
     public UnicodeSet getSingletonsWithoutDefectives() {
-        return add(emojiData.getSingletonsWithoutDefectives(),
+        return add(
+                emojiData.getSingletonsWithoutDefectives(),
                 candidates.getSingletonsWithoutDefectives());
     }
 
@@ -164,11 +153,10 @@ public class EmojiDataSourceCombined implements EmojiDataSource {
     public UnicodeMap<String> getRawNames() {
         return add(emojiData.getRawNames(), candidates.getRawNames());
     }
-    
+
     @Override
     public UnicodeSet getTakesSign() {
-        return add(emojiData.getTakesSign(),
-                candidates.getTakesSign());
+        return add(emojiData.getTakesSign(), candidates.getTakesSign());
     }
 
     @Override
@@ -190,7 +178,7 @@ public class EmojiDataSourceCombined implements EmojiDataSource {
     public String getVersionString() {
         return getPlainVersion() + " + " + candidates.getVersionString();
     }
-    
+
     @Override
     public String getPlainVersion() {
         return emojiData.getVersionString();
@@ -198,22 +186,21 @@ public class EmojiDataSourceCombined implements EmojiDataSource {
 
     @Override
     public UnicodeSet getExplicitGender() {
-        return add(emojiData.getExplicitGender(),
-                candidates.getExplicitGender());
+        return add(emojiData.getExplicitGender(), candidates.getExplicitGender());
     }
 
     @Override
     public UnicodeSet getMultiPersonGroupings() {
-        return add(emojiData.getMultiPersonGroupings(),
-                candidates.getMultiPersonGroupings());
+        return add(emojiData.getMultiPersonGroupings(), candidates.getMultiPersonGroupings());
     }
-    
-//    public static void main(String[] args) {
-//        UnicodeSet allChars = EMOJI_DATA.getAllEmojiWithDefectives();
-//        
-//    }
+
+    //    public static void main(String[] args) {
+    //        UnicodeSet allChars = EMOJI_DATA.getAllEmojiWithDefectives();
+    //
+    //    }
     /**
      * Created a copy of the input emojiOrdering.txt file but merging in the candidate data
+     *
      * @param reformatted
      */
     public void showOrderingInterleaved(TempPrintWriter reformatted) {
@@ -227,7 +214,8 @@ public class EmojiDataSourceCombined implements EmojiDataSource {
             String lastSubgroup = null;
             MajorGroup lastMajor = null;
             int countOnLine = 0;
-            final Set<Entry<String, Collection<String>>> keyValuesSet = EmojiOrder.STD_ORDER.orderingToCharacters.asMap().entrySet();
+            final Set<Entry<String, Collection<String>>> keyValuesSet =
+                    EmojiOrder.STD_ORDER.orderingToCharacters.asMap().entrySet();
 
             Set<String> seen = new HashSet<>();
 
@@ -241,11 +229,20 @@ public class EmojiDataSourceCombined implements EmojiDataSource {
                     if (subgroup == null) {
                         subgroup = candidates.getCategory(s);
                         if (subgroup == null) {
-                            throw new ICUException("Can't get subgroup for «" + orig + "» " + Utility.hex(orig));
+                            throw new ICUException(
+                                    "Can't get subgroup for «" + orig + "» " + Utility.hex(orig));
                         }
                     }
                     if (!subgroup.equals(lastSubgroup)) {
-                        if (DEBUG) System.out.println(lastSubgroup + ";\t" + Utility.hex(lastSubgroup) + ";\t«" + orig + "»\t" + Utility.hex(orig));
+                        if (DEBUG)
+                            System.out.println(
+                                    lastSubgroup
+                                            + ";\t"
+                                            + Utility.hex(lastSubgroup)
+                                            + ";\t«"
+                                            + orig
+                                            + "»\t"
+                                            + Utility.hex(orig));
                         if (countOnLine != 0) {
                             out.append('\n');
                             countOnLine = 0;
@@ -291,7 +288,7 @@ public class EmojiDataSourceCombined implements EmojiDataSource {
                             out.append(s2);
                             seen.add(s2);
                             ++countOnLine;
-                        }                
+                        }
                     }
                 }
             }
@@ -310,5 +307,4 @@ public class EmojiDataSourceCombined implements EmojiDataSource {
         String result = EmojiData.EMOJI_DATA_BETA.getBaseRemovingModsGender(s);
         return result;
     }
-
 }

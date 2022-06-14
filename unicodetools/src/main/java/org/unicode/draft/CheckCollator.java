@@ -1,11 +1,10 @@
 package org.unicode.draft;
-import java.util.Arrays;
-import java.util.Set;
-import java.util.TreeSet;
 
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.util.ULocale;
-
+import java.util.Arrays;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class CheckCollator {
     public static void main(String[] args) {
@@ -19,15 +18,20 @@ public class CheckCollator {
             }
         }
 
-        final String functionalLocale = Collator.getFunctionalEquivalent("collation", collator.getLocale(ULocale.ACTUAL_LOCALE)).toString();
+        final String functionalLocale =
+                Collator.getFunctionalEquivalent(
+                                "collation", collator.getLocale(ULocale.ACTUAL_LOCALE))
+                        .toString();
         System.out.println(functionalLocale);
 
         final String[] values = Collator.getKeywordValues("collation");
-        //System.out.println("collation" + ":\t" + Arrays.asList(values));
+        // System.out.println("collation" + ":\t" + Arrays.asList(values));
         final ULocale[] locales = Collator.getAvailableULocales();
         for (final ULocale locale : locales) {
-            final String[] localeValues = Collator.getKeywordValuesForLocale("collation", locale, true);
-            //System.out.println(locale + "\t" + "collation" + ":\t" + Arrays.asList(localeValues));
+            final String[] localeValues =
+                    Collator.getKeywordValuesForLocale("collation", locale, true);
+            // System.out.println(locale + "\t" + "collation" + ":\t" +
+            // Arrays.asList(localeValues));
             final ULocale functionalLocale2 = Collator.getFunctionalEquivalent("collation", locale);
             if (!functionalLocale2.equals(locale)) {
                 System.out.println(locale + "\t=>\t" + functionalLocale2);

@@ -6,6 +6,8 @@
  */
 package org.unicode.unused;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UTF16;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.io.ObjectOutput;
@@ -15,11 +17,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.SortedSet;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UTF16;
-
 /**
- * Simple data output compressor. Nothing fancy, but much smaller footprint for ints and many strings.
+ * Simple data output compressor. Nothing fancy, but much smaller footprint for ints and many
+ * strings.
  */
 public final class DataOutputCompressor implements ObjectOutput {
     static final boolean SHOW = false;
@@ -73,12 +73,15 @@ public final class DataOutputCompressor implements ObjectOutput {
     public void close() throws IOException {
         dataOutput.close();
     }
+
     public void flush() throws IOException {
         dataOutput.flush();
     }
+
     public String toString() {
         return dataOutput.toString();
     }
+
     public void writeObject(Object obj) throws IOException {
         dataOutput.writeObject(obj);
     }
@@ -146,9 +149,7 @@ public final class DataOutputCompressor implements ObjectOutput {
         }
     }
 
-    /**
-     * 
-     */
+    /** */
     public void writeStringSet(SortedSet c, Map object_index) throws IOException {
         if (SHOW) System.out.println("writeStringSet");
         writeUInt(c.size());
@@ -156,7 +157,7 @@ public final class DataOutputCompressor implements ObjectOutput {
         object_index.put(null, new Integer(i++));
         WritePool trailingPool = new WritePool();
         String lastString = "";
-        for (Iterator it = c.iterator(); it.hasNext();) {
+        for (Iterator it = c.iterator(); it.hasNext(); ) {
             String s = (String) it.next();
             object_index.put(s, new Integer(i++));
             int common = UnicodeMap.findCommonPrefix(lastString, s); // runlength encode
@@ -177,15 +178,17 @@ public final class DataOutputCompressor implements ObjectOutput {
             if (SHOW) System.out.println("\t\t" + lastString);
         }
     }
-    
+
     public static class WritePool {
         private Map trailingPool = new HashMap();
         private int poolCount = 0;
+
         public int getIndex(Object o) {
             Integer inPool = (Integer) trailingPool.get(o);
             if (inPool == null) return -1;
             return inPool.intValue();
         }
+
         public void put(Object o) {
             trailingPool.put(o, new Integer(poolCount++));
         }
@@ -193,13 +196,12 @@ public final class DataOutputCompressor implements ObjectOutput {
 
     /**
      * @throws IOException
-     * 
      */
     public void writeCollection(Collection c, Map object_index) throws IOException {
         writeUInt(c.size());
         int i = 0;
         object_index.put(null, new Integer(i++));
-        for (Iterator it = c.iterator(); it.hasNext();) {
+        for (Iterator it = c.iterator(); it.hasNext(); ) {
             Object s = it.next();
             dataOutput.writeObject(s);
             if (object_index != null) object_index.put(s, new Integer(i++));

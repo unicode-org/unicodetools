@@ -2,7 +2,6 @@ package org.unicode.text.tools;
 
 import java.util.Map;
 import java.util.TreeMap;
-
 import org.unicode.cldr.util.Counter;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
@@ -12,9 +11,10 @@ import org.unicode.text.UCD.UCD_Types;
 
 public class CharsByAgeAndCategory {
     public static void main(String[] args) {
-        final ToolUnicodePropertySource source = ToolUnicodePropertySource.make(Default.ucd().getVersion());
+        final ToolUnicodePropertySource source =
+                ToolUnicodePropertySource.make(Default.ucd().getVersion());
         final UnicodeProperty ageProp = source.getProperty("age");
-        final Map<String,Counter<Integer>> data = new TreeMap();
+        final Map<String, Counter<Integer>> data = new TreeMap();
         for (int i = 0; i <= 0x10FFFF; ++i) {
             String age = ageProp.getValue(i);
             if (age.equals("unassigned")) {
@@ -38,10 +38,20 @@ public class CharsByAgeAndCategory {
             for (final int item : counter.getKeysetSortedByKey()) {
                 final boolean bmp = (item & 0x10000) == 0;
                 Default.ucd();
-                final String cat = UCD.getCategoryID_fromIndex((byte)((item >>> 8)&0xFF),UCD_Types.SHORT);
+                final String cat =
+                        UCD.getCategoryID_fromIndex((byte) ((item >>> 8) & 0xFF), UCD_Types.SHORT);
                 Default.ucd();
-                final String script = UCD.getScriptID_fromIndex((byte)(item),UCD_Types.SHORT);
-                System.out.println(age + "\t" + (bmp ? "B" : "S") + "\t" + cat + "\t" + script + "\t" + counter.get(item));
+                final String script = UCD.getScriptID_fromIndex((byte) (item), UCD_Types.SHORT);
+                System.out.println(
+                        age
+                                + "\t"
+                                + (bmp ? "B" : "S")
+                                + "\t"
+                                + cat
+                                + "\t"
+                                + script
+                                + "\t"
+                                + counter.get(item));
             }
         }
     }

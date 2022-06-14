@@ -1,17 +1,13 @@
 package org.unicode.unittest;
 
-import static org.junit.jupiter.api.Assumptions.assumeFalse;
-
+import com.ibm.icu.text.UnicodeSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-
-import com.ibm.icu.text.UnicodeSet;
 
 public class TestFmwkMinusMinus {
     public List<String> errLines = new LinkedList<>();
@@ -27,9 +23,9 @@ public class TestFmwkMinusMinus {
         Assertions.assertEquals(0, errLines.size(), "errln()\n" + String.join("\n", errLines));
     }
 
-
     /**
      * Collect an error and keep going
+     *
      * @param s
      */
     public void errln(String s) {
@@ -64,6 +60,7 @@ public class TestFmwkMinusMinus {
         Assertions.assertNotEquals(a, b, msg);
         return true;
     }
+
     public boolean assertNotNull(String msg, Object a) {
         Assertions.assertNotNull(a, msg);
         return true;
@@ -90,18 +87,19 @@ public class TestFmwkMinusMinus {
     public void msg(String message, int level, boolean incCount, boolean newln) {
         if (level == ERR) {
             errln(message);
-        } else if(level == WARN) {
+        } else if (level == WARN) {
             warnln(message);
         } else {
             logln(message);
         }
     }
 
-    static final private boolean LOG_KNOWN_ISSUE = Boolean.parseBoolean(System.getProperty("LOG_KNOWN_ISSUE", "true"));
+    private static final boolean LOG_KNOWN_ISSUE =
+            Boolean.parseBoolean(System.getProperty("LOG_KNOWN_ISSUE", "true"));
 
     protected boolean logKnownIssue(String a, String b) {
         if (LOG_KNOWN_ISSUE == true) {
-            System.err.println("-DLOG_KNOWN_ISSUE=true (set to false to fail): " + a + ", "+ b);
+            System.err.println("-DLOG_KNOWN_ISSUE=true (set to false to fail): " + a + ", " + b);
             return true;
         } else {
             return false;
@@ -120,7 +118,12 @@ public class TestFmwkMinusMinus {
         if (!actual.containsAll(expectedSubset)) {
             UnicodeSet inExpected = new UnicodeSet(expectedSubset).removeAll(actual);
             UnicodeSet has = new UnicodeSet(actual).removeAll(expectedSubset);
-            errln(test + " missing: " + toPattern("?", inExpected) + ", has: " + toPattern("*", has));
+            errln(
+                    test
+                            + " missing: "
+                            + toPattern("?", inExpected)
+                            + ", has: "
+                            + toPattern("*", has));
             return false;
         } else {
             logln("OK\t\t" + test);
@@ -170,11 +173,14 @@ public class TestFmwkMinusMinus {
         return primary == null ? title : primary.toPattern(false);
     }
 
-    /**
-     * Copied from TestFmwk. Low level assertion.
-     */
-    public boolean handleAssert(boolean result, String message,
-            Object expected, Object actual, String relation, boolean flip) {
+    /** Copied from TestFmwk. Low level assertion. */
+    public boolean handleAssert(
+            boolean result,
+            String message,
+            Object expected,
+            Object actual,
+            String relation,
+            boolean flip) {
         if (!result || isVerbose()) {
             if (message == null) {
                 message = "";
@@ -184,53 +190,55 @@ public class TestFmwkMinusMinus {
             }
             relation = relation == null ? ", got " : " " + relation + " ";
             if (result) {
-                logln("OK " + message + ": "
-                        + (flip ? expected + relation + actual : expected));
+                logln("OK " + message + ": " + (flip ? expected + relation + actual : expected));
             } else {
                 // assert must assume errors are true errors and not just warnings
                 // so cannot warnln here
-                errln(  message
-                        + ": expected"
-                        + (flip ? relation + expected : " " + expected
-                                + (actual != null ? relation + actual : "")));
+                errln(
+                        message
+                                + ": expected"
+                                + (flip
+                                        ? relation + expected
+                                        : " "
+                                                + expected
+                                                + (actual != null ? relation + actual : "")));
             }
         }
         return result;
     }
 
-    private final static Integer inclusion = Integer.parseInt(System.getProperty("UNICODETOOLS_INCLUSION", "5"));
-    private final static Boolean verbose = Boolean.parseBoolean(System.getProperty("UNICODETOOLS_VERBOSE", "false"));
-    private final static Boolean runBroken = Boolean.parseBoolean(System.getProperty("UNICODETOOLS_RUN_BROKEN_TEST", "false"));
+    private static final Integer inclusion =
+            Integer.parseInt(System.getProperty("UNICODETOOLS_INCLUSION", "5"));
+    private static final Boolean verbose =
+            Boolean.parseBoolean(System.getProperty("UNICODETOOLS_VERBOSE", "false"));
+    private static final Boolean runBroken =
+            Boolean.parseBoolean(System.getProperty("UNICODETOOLS_RUN_BROKEN_TEST", "false"));
+
     static {
         System.err.println("UNICODETOOLS_INCLUSION=" + inclusion);
         System.err.println("UNICODETOOLS_VERBOSE=" + verbose);
         System.err.println("UNICODETOOLS_RUN_BROKEN_TEST=" + runBroken);
     }
     /**
-     * set property: UNICODETOOLS_INCLUSION
-     * 0 = fewest tests, 5 is normal build (default), 10 is most tests
+     * set property: UNICODETOOLS_INCLUSION 0 = fewest tests, 5 is normal build (default), 10 is
+     * most tests
      */
     public static int getInclusion() {
         return inclusion;
     }
 
-    /**
-     * Set property: UNICODETOOLS_VERBOSE
-     * Defalt false
-     */
+    /** Set property: UNICODETOOLS_VERBOSE Defalt false */
     public boolean getVerbose() {
         return verbose;
     }
 
     /**
-     * Set property: UNICODETOOLS_RUN_BROKEN_TEST
-     * Default false
-     * Set true to run known-broken tests
-     * To use: add this annotation:
-     *      @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
+     * Set property: UNICODETOOLS_RUN_BROKEN_TEST Default false Set true to run known-broken tests
+     * To use: add this annotation: @EnabledIf(value =
+     * "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless
+     * UNICODETOOLS_RUN_BROKEN_TEST=true")
      */
     public static boolean getRunBroken() {
         return runBroken;
     }
-
 }

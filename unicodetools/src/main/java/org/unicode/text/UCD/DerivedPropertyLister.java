@@ -1,30 +1,29 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/DerivedPropertyLister.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/DerivedPropertyLister.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
+
 import java.io.PrintWriter;
 
 final class DerivedPropertyLister extends PropertyLister {
     static final boolean BRIDGE = false;
 
-    //static int enum = 0;
+    // static int enum = 0;
 
-    //private int propMask;
-    //private DerivedProperty dprop;
+    // private int propMask;
+    // private DerivedProperty dprop;
     private final UCDProperty uprop;
     int width;
     boolean varies;
 
     public DerivedPropertyLister(UCD ucd, int propMask, PrintWriter output) {
-        //this.propMask = propMask;
+        // this.propMask = propMask;
         this.output = output;
         ucdData = ucd;
         // this.dprop = new DerivedProperty(ucd);
@@ -33,16 +32,20 @@ final class DerivedPropertyLister extends PropertyLister {
 
         width = super.minPropertyWidth();
         switch (propMask) {
-        case UCD_Types.GenNFD: case UCD_Types.GenNFC: case UCD_Types.GenNFKD: case UCD_Types.GenNFKC:
-            alwaysBreaks = true;
-            break;
-        case UCD_Types.FC_NFKC_Closure:
-            alwaysBreaks = true;
-            width = 21;
-            break;
-        case UCD_Types.QuickNFC: case UCD_Types.QuickNFKC:
-            width = 11;
-            break;
+            case UCD_Types.GenNFD:
+            case UCD_Types.GenNFC:
+            case UCD_Types.GenNFKD:
+            case UCD_Types.GenNFKC:
+                alwaysBreaks = true;
+                break;
+            case UCD_Types.FC_NFKC_Closure:
+                alwaysBreaks = true;
+                width = 21;
+                break;
+            case UCD_Types.QuickNFC:
+            case UCD_Types.QuickNFKC:
+                width = 11;
+                break;
         }
     }
 
@@ -51,16 +54,14 @@ final class DerivedPropertyLister extends PropertyLister {
         return uprop.getListingValue(cp);
     }
 
-    //public String optionalComment(int cp) {
+    // public String optionalComment(int cp) {
     //    return super.optionalComment(cp) + " [" + ucdData.getCodeAndName(computedValue) + "]";
-    //}
-
+    // }
 
     @Override
     public int minPropertyWidth() {
         return width;
     }
-
 
     /*
     public String optionalComment(int cp) {
@@ -115,4 +116,3 @@ final class DerivedPropertyLister extends PropertyLister {
 
      */
 }
-

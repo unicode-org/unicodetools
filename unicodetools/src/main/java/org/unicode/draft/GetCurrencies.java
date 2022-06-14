@@ -1,4 +1,7 @@
 package org.unicode.draft;
+
+import com.ibm.icu.util.Currency;
+import com.ibm.icu.util.ULocale;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
@@ -8,34 +11,38 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import com.ibm.icu.util.Currency;
-import com.ibm.icu.util.ULocale;
-
-
 public class GetCurrencies {
 
-    enum Type {IN_COUNTRY, ALL}
+    enum Type {
+        IN_COUNTRY,
+        ALL
+    }
 
     public static void main(String[] args) {
         final Date today = new Date();
         final CurrenciesLocalizations localizations = new CurrenciesLocalizations();
         final Set<String> modernCurrencies = new TreeSet<String>();
         for (final ULocale locale : ULocale.getAvailableLocales()) {
-            final String[] availableCurrencyCodes = Currency.getAvailableCurrencyCodes(locale, today);
+            final String[] availableCurrencyCodes =
+                    Currency.getAvailableCurrencyCodes(locale, today);
             if (availableCurrencyCodes == null) {
-                //System.out.println(locale + "\t" + "none");
+                // System.out.println(locale + "\t" + "none");
                 continue;
             }
             final List<String> currencies = Arrays.asList(availableCurrencyCodes);
-            //System.out.println(locale + "\t" + currencies);
+            // System.out.println(locale + "\t" + currencies);
             for (final String currency : availableCurrencyCodes) {
-                localizations.add(currency, Currency.getInstance(currency).getSymbol(locale), Type.IN_COUNTRY);
+                localizations.add(
+                        currency,
+                        Currency.getInstance(currency).getSymbol(locale),
+                        Type.IN_COUNTRY);
             }
             modernCurrencies.addAll(currencies);
         }
         for (final ULocale locale : ULocale.getAvailableLocales()) {
             for (final String currency : modernCurrencies) {
-                localizations.add(currency, Currency.getInstance(currency).getSymbol(locale), Type.ALL);
+                localizations.add(
+                        currency, Currency.getInstance(currency).getSymbol(locale), Type.ALL);
             }
         }
 
@@ -44,26 +51,40 @@ public class GetCurrencies {
         for (final String currency : modernCurrencies) {
             final Set<String> inCountry = localizations.getSymbols(currency, Type.IN_COUNTRY);
             final Set<String> other = localizations.getSymbols(currency, Type.ALL);
-            showLine(currency, Currency.getInstance(currency).getSymbol(ULocale.ROOT),
-                    inCountry.toString(), ""+inCountry.size(),
-                    other.toString(), ""+other.size());
+            showLine(
+                    currency,
+                    Currency.getInstance(currency).getSymbol(ULocale.ROOT),
+                    inCountry.toString(),
+                    "" + inCountry.size(),
+                    other.toString(),
+                    "" + other.size());
         }
     }
 
-    private static void showLine(String currency, String symbolInRoot, String symbolInCountry, String count,
-            String symbolInOther, String countOther) {
+    private static void showLine(
+            String currency,
+            String symbolInRoot,
+            String symbolInCountry,
+            String count,
+            String symbolInOther,
+            String countOther) {
         System.out.println(
                 currency
-                + "\t" + symbolInRoot
-                + "\t" + symbolInCountry
-                + "\t" + count
-                + "\t" + symbolInOther
-                + "\t" + countOther
-                );
+                        + "\t"
+                        + symbolInRoot
+                        + "\t"
+                        + symbolInCountry
+                        + "\t"
+                        + count
+                        + "\t"
+                        + symbolInOther
+                        + "\t"
+                        + countOther);
     }
 
     static class CurrenciesLocalizations {
-        Map<String,CurrencyLocalizations> currencyToData = new TreeMap<String,CurrencyLocalizations>();
+        Map<String, CurrencyLocalizations> currencyToData =
+                new TreeMap<String, CurrencyLocalizations>();
 
         public void add(String currency, String symbol, Type type) {
             if (currency.equals(symbol)) {

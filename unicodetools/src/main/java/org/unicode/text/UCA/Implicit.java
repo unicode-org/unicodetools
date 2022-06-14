@@ -1,49 +1,40 @@
 package org.unicode.text.UCA;
 
+import com.ibm.icu.text.UnicodeSet;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.text.UnicodeSet;
-
 /**
- * Code points that do not have explicit mappings in the DUCET
- * are mapped to collation elements with implicit primary weights
- * that sort between regular explicit weights and trailing weights.
- * See http://www.unicode.org/reports/tr10/#Implicit_Weights
+ * Code points that do not have explicit mappings in the DUCET are mapped to collation elements with
+ * implicit primary weights that sort between regular explicit weights and trailing weights. See
+ * http://www.unicode.org/reports/tr10/#Implicit_Weights
  */
 public class Implicit {
-    /**
-     * Start of implicit primaries.
-     */
+    /** Start of implicit primaries. */
     static final int START = 0xFB00;
     /**
-     * First primary weight available for ranges.
-     * Intended for siniform ideographic scripts, starting with Tangut in UCA 9.
+     * First primary weight available for ranges. Intended for siniform ideographic scripts,
+     * starting with Tangut in UCA 9.
      */
     static final int RANGES_BASE = 0xFB00;
     /**
-     * Base primary weight for the original CJK Unihan block &
-     * non-decomposable CJK compatibility characters.
+     * Base primary weight for the original CJK Unihan block & non-decomposable CJK compatibility
+     * characters.
      */
     static final int CJK_BASE = 0xFB40;
-    /**
-     * Base primary weight for CJK extensions blocks.
-     */
+    /** Base primary weight for CJK extensions blocks. */
     static final int CJK_EXTENSIONS_BASE = 0xFB80;
     /**
-     * Base primary weight for unassigned code points.
-     * Formally, this is used for characters that have neither explicit DUCET mappings
-     * nor implicit mappings according to any other rule.
+     * Base primary weight for unassigned code points. Formally, this is used for characters that
+     * have neither explicit DUCET mappings nor implicit mappings according to any other rule.
      */
     static final int UNASSIGNED_BASE = 0xFBC0;
+
     static final int UNASSIGNED_LIMIT = 0xFC00;
-    /**
-     * End of implicit primaries, start of trailing ones.
-     */
+    /** End of implicit primaries, start of trailing ones. */
     static final int LIMIT = 0xFC00;
 
     /**
@@ -67,6 +58,7 @@ public class Implicit {
         int firstCP;
         /** Last assigned code point in the range. */
         int lastCP;
+
         final UnicodeSet set;
 
         private Range(int leadPrimary, int startCP, int endCP, UnicodeSet unassignedSet) {
@@ -82,13 +74,21 @@ public class Implicit {
         private void mergeFrom(Range other) {
             assert leadPrimary == other.leadPrimary;
             // Extend boundaries outwards.
-            if (startCP > other.startCP) { startCP = other.startCP; }
-            if (endCP < other.endCP) { endCP = other.endCP; }
-            if (firstCP > other.firstCP) { firstCP = other.firstCP; }
-            if (lastCP < other.lastCP) { lastCP = other.lastCP; }
+            if (startCP > other.startCP) {
+                startCP = other.startCP;
+            }
+            if (endCP < other.endCP) {
+                endCP = other.endCP;
+            }
+            if (firstCP > other.firstCP) {
+                firstCP = other.firstCP;
+            }
+            if (lastCP < other.lastCP) {
+                lastCP = other.lastCP;
+            }
             set.addAll(other.set);
         }
-        
+
         public String toString() {
             return String.format("leadPrimary=%04X %s", leadPrimary, set);
         }
@@ -120,9 +120,8 @@ public class Implicit {
     }
 
     /**
-     * Adds a range of implicit weights created by makeRange().
-     * If there is already a range for the same lead primary,
-     * then this range is merged into the existing one.
+     * Adds a range of implicit weights created by makeRange(). If there is already a range for the
+     * same lead primary, then this range is merged into the existing one.
      */
     void addRange(Range r) {
         for (Range old : ranges) {
@@ -136,17 +135,16 @@ public class Implicit {
     }
 
     /**
-     * @return true if primary is in the range of implicit lead primaries,
-     *         although it may not actually be used as one
+     * @return true if primary is in the range of implicit lead primaries, although it may not
+     *     actually be used as one
      */
     static boolean isImplicitLeadPrimary(int primary) {
         return START <= primary && primary < LIMIT;
     }
 
     /**
-     * Returns a pair of implicit primary weights for c.
-     * The lead primary is in bits 31..16 (use the >>> operator),
-     * the trail primary in bits 15..0.
+     * Returns a pair of implicit primary weights for c. The lead primary is in bits 31..16 (use the
+     * >>> operator), the trail primary in bits 15..0.
      */
     int primaryPairForCodePoint(int c) {
         assert 0 <= c && c <= 0x10FFFF;
@@ -181,7 +179,7 @@ public class Implicit {
                     if (r.set.contains(c)) {
                         return c;
                     }
-                    break;  // invalid
+                    break; // invalid
                 }
             }
         } else if (lead < UNASSIGNED_LIMIT) {
@@ -193,7 +191,10 @@ public class Implicit {
                 }
             }
         }
-        throw new IllegalArgumentException("invalid pair of implicit primaries: " +
-                Utility.hex(lead) + ", " + Utility.hex(trail));
+        throw new IllegalArgumentException(
+                "invalid pair of implicit primaries: "
+                        + Utility.hex(lead)
+                        + ", "
+                        + Utility.hex(trail));
     }
 }

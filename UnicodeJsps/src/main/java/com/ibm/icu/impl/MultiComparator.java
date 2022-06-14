@@ -11,13 +11,13 @@ import java.util.Comparator;
 public class MultiComparator<T> implements Comparator<T> {
     private Comparator<T>[] comparators;
 
-    @SuppressWarnings("unchecked")  // See ticket #11395, this is safe.
-    public MultiComparator (Comparator<T>... comparators) {
+    @SuppressWarnings("unchecked") // See ticket #11395, this is safe.
+    public MultiComparator(Comparator<T>... comparators) {
         this.comparators = comparators;
     }
 
     /* Lexigraphic compare. Returns the first difference
-     * @return zero if equal. Otherwise +/- (i+1) 
+     * @return zero if equal. Otherwise +/- (i+1)
      * where i is the index of the first comparator finding a difference
      * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
      */

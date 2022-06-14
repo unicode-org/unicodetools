@@ -1,19 +1,17 @@
 package org.unicode.text.UCD;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
-import org.unicode.text.utility.Settings;
-import org.unicode.text.utility.Utility;
-
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
+import java.io.IOException;
+import java.io.PrintWriter;
+import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
+import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.Utility;
 
 public class IDNTester {
     static StringBuffer inbuffer = new StringBuffer();
@@ -26,7 +24,11 @@ public class IDNTester {
     static UnicodeSet IDOutput32 = new UnicodeSet();
     static UnicodeSet IDInputOnly50 = new UnicodeSet();
     static UnicodeSet IDOutput50 = new UnicodeSet();
-    static UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
+    static UnicodeSetPrettyPrinter pp =
+            new UnicodeSetPrettyPrinter()
+                    .setOrdering(Collator.getInstance(ULocale.ROOT))
+                    .setSpaceComparator(
+                            Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
     static PrintWriter pw;
 
     public static void main(String[] args) throws IOException {
@@ -74,13 +76,13 @@ public class IDNTester {
         final UnicodeSet oddballs = new UnicodeSet("[\u034F \u180B-\u180D \uFE00-\uFE0F _]");
         final UCD U32 = UCD.make("3.2.0");
         final Normalizer nfkc32 = new Normalizer(UCD_Types.NFKC, "3.2.0");
-        final UCDProperty xid32 = DerivedProperty.make(UCD_Types.Mod_ID_Continue_NO_Cf,U32);
+        final UCDProperty xid32 = DerivedProperty.make(UCD_Types.Mod_ID_Continue_NO_Cf, U32);
         final UnicodeSet IDInput32 = xid32.getSet();
         IDInput32.add('-').removeAll(oddballs);
 
         final UCD U50 = UCD.make("5.0.0");
         final Normalizer nfkc50 = new Normalizer(UCD_Types.NFKC, "5.0.0");
-        final UCDProperty xid50 = DerivedProperty.make(UCD_Types.Mod_ID_Continue_NO_Cf,U50);
+        final UCDProperty xid50 = DerivedProperty.make(UCD_Types.Mod_ID_Continue_NO_Cf, U50);
         final UnicodeSet IDInput50 = xid50.getSet();
         IDInput50.add('-').removeAll(oddballs);
 
@@ -105,7 +107,8 @@ public class IDNTester {
         initialized = true;
     }
 
-    private static void splitSet(UnicodeSet inputOnlySet, UnicodeSet outputSet, UCD ucd, Normalizer nfkc, int i) {
+    private static void splitSet(
+            UnicodeSet inputOnlySet, UnicodeSet outputSet, UCD ucd, Normalizer nfkc, int i) {
         if (i < 0x7F) {
             outputSet.add(i);
             return;
@@ -125,20 +128,18 @@ public class IDNTester {
         inputOnlySet.add(i);
     }
 
-    static public int getIDNAType(int cp) {
+    public static int getIDNAType(int cp) {
         if (cp == '-') {
             return OK;
         }
         inbuffer.setLength(0);
         UTF16.append(inbuffer, cp);
         try {
-            intermediate = IDNA.convertToASCII(inbuffer,
-                    IDNA.DEFAULT); // USE_STD3_RULES
+            intermediate = IDNA.convertToASCII(inbuffer, IDNA.DEFAULT); // USE_STD3_RULES
             if (intermediate.length() == 0) {
                 return DELETED;
             }
-            outbuffer = IDNA.convertToUnicode(intermediate,
-                    IDNA.USE_STD3_RULES);
+            outbuffer = IDNA.convertToUnicode(intermediate, IDNA.USE_STD3_RULES);
         } catch (final StringPrepParseException e) {
             return ILLEGAL;
         } catch (final Exception e) {
@@ -150,5 +151,4 @@ public class IDNTester {
         }
         return OK;
     }
-
 }

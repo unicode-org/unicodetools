@@ -6,20 +6,18 @@
  */
 package org.unicode.parse;
 
-import java.text.ParsePosition;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
-import org.unicode.cldr.util.InternalCldrException;
-import org.unicode.text.utility.Utility;
-
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.SymbolTable;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeMatcher;
 import com.ibm.icu.text.UnicodeSet;
+import java.text.ParsePosition;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import org.unicode.cldr.util.InternalCldrException;
+import org.unicode.text.utility.Utility;
 
 public class Tokenizer {
     static final boolean DEBUG = true;
@@ -37,31 +35,29 @@ public class Tokenizer {
     Result lastValue = Result.BACKEDUP_TOO_FAR;
     TokenSymbolTable symbolTable = new TokenSymbolTable();
 
-    private static final char
-    QUOTE = '\'',
-    BSLASH = '\\';
+    private static final char QUOTE = '\'', BSLASH = '\\';
 
-    private static final UnicodeSet QUOTERS = new UnicodeSet().add(QUOTE).add(BSLASH)
-            .freeze();
-    private static final UnicodeSet WHITESPACE = new UnicodeSet("[" +
-            "\\u0009-\\u000D\\u0020\\u0085\\u200E\\u200F\\u2028\\u2029" +
-            "]")
-            .freeze();
-    private static final UnicodeSet SYNTAX = new UnicodeSet("[" +
-            "\\u0021-\\u002F\\u003A-\\u0040\\u005B-\\u0060\\u007B-\\u007E" +
-            "\\u00A1-\\u00A7\\u00A9\\u00AB-\\u00AC\\u00AE" +
-            "\\u00B0-\\u00B1\\u00B6\\u00B7\\u00BB\\u00BF\\u00D7\\u00F7" +
-            "\\u2010-\\u2027\\u2030-\\u205E\\u2190-\\u2BFF" +
-            "\\u3001\\u3003\\u3008-\\u3020\\u3030" +
-            "\\uFD3E\\uFD3F\\uFE45\\uFE46" +
-            "]").removeAll(QUOTERS).remove('$')
-            .freeze();
-    private static final UnicodeSet NEWLINE = new UnicodeSet("[\\u000A\\u000D\\u0085\\u2028\\u2029]")
-            .freeze();
-    //private static final UnicodeSet DECIMAL = new UnicodeSet("[:Nd:]");
-    private static final UnicodeSet NON_STRING = new UnicodeSet()
-            .addAll(WHITESPACE)
-            .addAll(SYNTAX);
+    private static final UnicodeSet QUOTERS = new UnicodeSet().add(QUOTE).add(BSLASH).freeze();
+    private static final UnicodeSet WHITESPACE =
+            new UnicodeSet("[" + "\\u0009-\\u000D\\u0020\\u0085\\u200E\\u200F\\u2028\\u2029" + "]")
+                    .freeze();
+    private static final UnicodeSet SYNTAX =
+            new UnicodeSet(
+                            "["
+                                    + "\\u0021-\\u002F\\u003A-\\u0040\\u005B-\\u0060\\u007B-\\u007E"
+                                    + "\\u00A1-\\u00A7\\u00A9\\u00AB-\\u00AC\\u00AE"
+                                    + "\\u00B0-\\u00B1\\u00B6\\u00B7\\u00BB\\u00BF\\u00D7\\u00F7"
+                                    + "\\u2010-\\u2027\\u2030-\\u205E\\u2190-\\u2BFF"
+                                    + "\\u3001\\u3003\\u3008-\\u3020\\u3030"
+                                    + "\\uFD3E\\uFD3F\\uFE45\\uFE46"
+                                    + "]")
+                    .removeAll(QUOTERS)
+                    .remove('$')
+                    .freeze();
+    private static final UnicodeSet NEWLINE =
+            new UnicodeSet("[\\u000A\\u000D\\u0085\\u2028\\u2029]").freeze();
+    // private static final UnicodeSet DECIMAL = new UnicodeSet("[:Nd:]");
+    private static final UnicodeSet NON_STRING = new UnicodeSet().addAll(WHITESPACE).addAll(SYNTAX);
 
     protected UnicodeSet whiteSpace = WHITESPACE;
     protected UnicodeSet syntax = SYNTAX;
@@ -69,16 +65,13 @@ public class Tokenizer {
 
     private void fixSets() {
         if (syntax.containsSome(QUOTERS) || syntax.containsSome(whiteSpace)) {
-            syntax = ((UnicodeSet)syntax.clone()).removeAll(QUOTERS).removeAll(whiteSpace)
-                    .freeze();
+            syntax =
+                    ((UnicodeSet) syntax.clone()).removeAll(QUOTERS).removeAll(whiteSpace).freeze();
         }
         if (whiteSpace.containsSome(QUOTERS)) {
-            whiteSpace = ((UnicodeSet)whiteSpace.clone()).removeAll(QUOTERS)
-                    .freeze();
+            whiteSpace = ((UnicodeSet) whiteSpace.clone()).removeAll(QUOTERS).freeze();
         }
-        non_string = new UnicodeSet(syntax)
-                .addAll(whiteSpace)
-                .freeze();
+        non_string = new UnicodeSet(syntax).addAll(whiteSpace).freeze();
     }
 
     public Tokenizer setSource(String source) {
@@ -93,20 +86,20 @@ public class Tokenizer {
     }
 
     public enum Result {
-        CODEPOINT, 
+        CODEPOINT,
         IDENTIFIER,
-        NUMBER, 
-        STRING, 
-        UNICODESET, 
-        DONE, 
-        UNTERMINATED_QUOTE, 
+        NUMBER,
+        STRING,
+        UNICODESET,
+        DONE,
+        UNTERMINATED_QUOTE,
         BACKEDUP_TOO_FAR,
         ILLEGAL_CHARACTER,
-        INCOMPLETE_BACKSLASH, 
+        INCOMPLETE_BACKSLASH,
     }
 
     public String toStringFull() {
-        StringBuilder result = new StringBuilder(source.substring(0,index)).append("$$$");
+        StringBuilder result = new StringBuilder(source.substring(0, index)).append("$$$");
         return toString(result).append(source.substring(index)).toString();
     }
 
@@ -116,25 +109,25 @@ public class Tokenizer {
 
     private StringBuilder toString(StringBuilder result) {
         result.append(lastValue);
-        switch(lastValue) {
-        case STRING:
-        case IDENTIFIER:
-            result.append(":«").append(getString()).append('»');
-            break;
-        case NUMBER:
-            result.append(':').append(getNumber());
-            break;
-        case UNICODESET:
-            result.append(':').append(getUnicodeSet().toPattern(false));
-            break;
-        case CODEPOINT:
-            result.append(':').appendCodePoint(getCodePoint());
-            break;
-        case ILLEGAL_CHARACTER:
-            result.append("\\x{").append(Utility.hex(getCodePoint())).append("}");
-            break;
-        default: 
-            break;
+        switch (lastValue) {
+            case STRING:
+            case IDENTIFIER:
+                result.append(":«").append(getString()).append('»');
+                break;
+            case NUMBER:
+                result.append(':').append(getNumber());
+                break;
+            case UNICODESET:
+                result.append(':').append(getUnicodeSet().toPattern(false));
+                break;
+            case CODEPOINT:
+                result.append(':').appendCodePoint(getCodePoint());
+                break;
+            case ILLEGAL_CHARACTER:
+                result.append("\\x{").append(Utility.hex(getCodePoint())).append("}");
+                break;
+            default:
+                break;
         }
         return result.append(backedup ? "@" : "");
     }
@@ -154,7 +147,7 @@ public class Tokenizer {
         int result = next();
         System.out.println(toString(result, backedupBefore));
         return result;
-    }    
+    }
      */
 
     public Result next() {
@@ -192,8 +185,8 @@ public class Tokenizer {
         lastIndex = index;
 
         if (cp == '[' || cp == '\\') {
-            ParsePosition pos = new ParsePosition(index-1);
-            unicodeSet = new UnicodeSet(source,pos,symbolTable);
+            ParsePosition pos = new ParsePosition(index - 1);
+            unicodeSet = new UnicodeSet(source, pos, symbolTable);
             if (unicodeSet == null) {
                 throw new NullPointerException();
             }
@@ -226,10 +219,10 @@ public class Tokenizer {
                 number *= 10;
                 number += UCharacter.getNumericValue(cp);
             }
-            lastValue =  Result.NUMBER;
+            lastValue = Result.NUMBER;
             if (DEBUG) {
                 System.out.println("Tokenizer: " + this);
-            } 
+            }
             return lastValue;
         }
         buffer.setLength(0);
@@ -238,37 +231,44 @@ public class Tokenizer {
             while (index < source.length()) {
                 cp = nextChar();
                 switch (result) {
-                case UNTERMINATED_QUOTE:
-                    if (cp == QUOTE) {
-                        lastValue = Result.STRING;
-                        if (DEBUG) {
-                            System.out.println("Tokenizer: " + this);
-                        } 
-                        return lastValue;
-                    } else if (cp == BSLASH) {
-                        result = Result.INCOMPLETE_BACKSLASH;
-                    } else {
-                        UTF16.append(buffer,cp);
-                    }
-                    break;
-                case INCOMPLETE_BACKSLASH:
-                    switch(cp) {
-                    case 'n': cp = '\n'; break;
-                    case 'r': cp = '\r'; break;
-                    case 't': cp = '\t'; break;
-                    default: break;
-                    }
-                    UTF16.append(buffer,cp);
-                    result = Result.UNTERMINATED_QUOTE;
-                    break;
-                default: 
-                    throw new InternalCldrException("Internal error");
+                    case UNTERMINATED_QUOTE:
+                        if (cp == QUOTE) {
+                            lastValue = Result.STRING;
+                            if (DEBUG) {
+                                System.out.println("Tokenizer: " + this);
+                            }
+                            return lastValue;
+                        } else if (cp == BSLASH) {
+                            result = Result.INCOMPLETE_BACKSLASH;
+                        } else {
+                            UTF16.append(buffer, cp);
+                        }
+                        break;
+                    case INCOMPLETE_BACKSLASH:
+                        switch (cp) {
+                            case 'n':
+                                cp = '\n';
+                                break;
+                            case 'r':
+                                cp = '\r';
+                                break;
+                            case 't':
+                                cp = '\t';
+                                break;
+                            default:
+                                break;
+                        }
+                        UTF16.append(buffer, cp);
+                        result = Result.UNTERMINATED_QUOTE;
+                        break;
+                    default:
+                        throw new InternalCldrException("Internal error");
                 }
             }
             lastValue = result;
             if (DEBUG) {
                 System.out.println("Tokenizer: " + this);
-            } 
+            }
             return lastValue;
         }
 
@@ -286,19 +286,21 @@ public class Tokenizer {
             lastValue = Result.IDENTIFIER;
             if (DEBUG) {
                 System.out.println("Tokenizer: " + this);
-            } 
+            }
             return lastValue;
         }
         codePoint = cp;
         lastValue = Result.ILLEGAL_CHARACTER;
         if (DEBUG) {
             System.out.println("Tokenizer: " + this);
-        } 
+        }
         return lastValue;
     }
 
     public String getString() {
-        return lastValue != Result.STRING && lastValue != Result.IDENTIFIER ? null : buffer.toString();
+        return lastValue != Result.STRING && lastValue != Result.IDENTIFIER
+                ? null
+                : buffer.toString();
     }
 
     public long getNumber() {
@@ -310,7 +312,9 @@ public class Tokenizer {
     }
 
     public int getCodePoint() {
-        return lastValue != Result.CODEPOINT && lastValue != Result.ILLEGAL_CHARACTER ? -1 : codePoint;
+        return lastValue != Result.CODEPOINT && lastValue != Result.ILLEGAL_CHARACTER
+                ? -1
+                : codePoint;
     }
 
     public int nextCodePoint() {
@@ -319,26 +323,32 @@ public class Tokenizer {
     }
 
     private int nextChar() {
-        int cp = UTF16.charAt(source,index);
+        int cp = UTF16.charAt(source, index);
         index += UTF16.getCharCount(cp);
         return cp;
     }
+
     public int getIndex() {
         return index;
     }
+
     public String getSource() {
         return source;
     }
+
     public UnicodeSet getSyntax() {
         return syntax;
     }
+
     public UnicodeSet getWhiteSpace() {
         return whiteSpace;
     }
+
     public void setSyntax(UnicodeSet set) {
         syntax = set;
         fixSets();
     }
+
     public void setWhiteSpace(UnicodeSet set) {
         whiteSpace = set;
         fixSets();
@@ -370,7 +380,7 @@ public class Tokenizer {
          */
         public char[] lookup(String s) {
             itemsLookedUp.add('$' + s);
-            return (char[])contents.get(s);
+            return (char[]) contents.get(s);
         }
 
         /* (non-Javadoc)
@@ -395,9 +405,7 @@ public class Tokenizer {
                 }
             }
             pos.setIndex(i);
-            return text.substring(start,i);
+            return text.substring(start, i);
         }
-
     }
-
 }

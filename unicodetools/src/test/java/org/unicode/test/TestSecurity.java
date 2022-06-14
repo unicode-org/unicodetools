@@ -1,5 +1,12 @@
 package org.unicode.test;
 
+import com.google.common.base.Objects;
+import com.google.common.base.Splitter;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.CharSequences;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
@@ -14,15 +21,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
-
-import com.google.common.base.Objects;
-import com.google.common.base.Splitter;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-
 import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
@@ -48,14 +46,14 @@ import org.unicode.tools.Confusables.Style;
 import org.unicode.tools.ScriptDetector;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
-
 public class TestSecurity extends TestFmwkMinusMinus {
     private static final class SecurityDir {
         // Returns the location of the Unicode security data files in the Generated folder,
         // where GenerateConfusables wrote them, to check the new data files.
         // If GenerateConfusables was not run, then this returns the location of the
         // *input* data files.
-        // This is most useful when running the unit test suite, as in continuous integration testing.
+        // This is most useful when running the unit test suite, as in continuous integration
+        // testing.
         static Path getPath() {
             String generatedDir = Settings.Output.GEN_DIR + "security/" + Settings.latestVersion;
             Path path = Paths.get(generatedDir);
@@ -65,6 +63,7 @@ public class TestSecurity extends TestFmwkMinusMinus {
             path = Settings.UnicodeTools.getDataPathForLatestVersion("security");
             return path;
         }
+
         static final String STRING = getPath().toString();
     }
 
@@ -90,21 +89,28 @@ public class TestSecurity extends TestFmwkMinusMinus {
     @Test
     public void TestSpacing() {
         IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
-        UnicodeMap<General_Category_Values> generalCategory = iup.loadEnum(
-                UcdProperty.General_Category, General_Category_Values.class);
-        for (Entry<String, EnumMap<Style, String>> data : Confusables_.INSTANCE.getChar2data().entrySet()) {
+        UnicodeMap<General_Category_Values> generalCategory =
+                iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
+        for (Entry<String, EnumMap<Style, String>> data :
+                Confusables_.INSTANCE.getChar2data().entrySet()) {
             String source = data.getKey();
             String target = data.getValue().get(Style.MA);
-            assertEquals("( " + source + " ) ? ( " + target + " )", isAllNonspacing(source, generalCategory), isAllNonspacing(target, generalCategory));
+            assertEquals(
+                    "( " + source + " ) ? ( " + target + " )",
+                    isAllNonspacing(source, generalCategory),
+                    isAllNonspacing(target, generalCategory));
         }
     }
-    private Boolean isAllNonspacing(String source, UnicodeMap<General_Category_Values> generalCategory) {
+
+    private Boolean isAllNonspacing(
+            String source, UnicodeMap<General_Category_Values> generalCategory) {
         for (int codepoint : CharSequences.codePoints(source)) {
-            switch(generalCategory.get(codepoint)) {
-            case Nonspacing_Mark: case Enclosing_Mark:
-                continue;
-            default:
-                return false;
+            switch (generalCategory.get(codepoint)) {
+                case Nonspacing_Mark:
+                case Enclosing_Mark:
+                    continue;
+                default:
+                    return false;
             }
         }
         return true;
@@ -120,7 +126,14 @@ public class TestSecurity extends TestFmwkMinusMinus {
             String source = entry.getKey();
             String value = entry.getValue();
             if (source.equals(value)) {
-                warnln("Not an error, but data not minimal: " + "U+" + Utility.hex(source)+ " ( " + source + " ) "  + Default.ucd().getName(source));
+                warnln(
+                        "Not an error, but data not minimal: "
+                                + "U+"
+                                + Utility.hex(source)
+                                + " ( "
+                                + source
+                                + " ) "
+                                + Default.ucd().getName(source));
             }
             checkTransform(transformMap, source, value);
             if (value.codePointCount(0, value.length()) > 1) {
@@ -131,15 +144,33 @@ public class TestSecurity extends TestFmwkMinusMinus {
             }
         }
     }
+
     private void checkTransform(UnicodeMap<String> transformMap, String source, String value) {
         String map_map = transformMap.get(value);
         if (map_map == null) {
             map_map = value;
         }
         if (!value.equals(map_map)) {
-            errln("U+" + Utility.hex(source)+ " ( " + source + " ) "  + Default.ucd().getName(source)
-                    + "\t\tmap(source):\tU+" + Utility.hex(value, "U+") + " ( " + value + " ) " + Default.ucd().getName(value)
-                    + "\t\tmap(map(source)):\tU+" + Utility.hex(map_map, "U+") + " ( " + map_map + " ) " + " " + Default.ucd().getName(map_map));
+            errln(
+                    "U+"
+                            + Utility.hex(source)
+                            + " ( "
+                            + source
+                            + " ) "
+                            + Default.ucd().getName(source)
+                            + "\t\tmap(source):\tU+"
+                            + Utility.hex(value, "U+")
+                            + " ( "
+                            + value
+                            + " ) "
+                            + Default.ucd().getName(value)
+                            + "\t\tmap(map(source)):\tU+"
+                            + Utility.hex(map_map, "U+")
+                            + " ( "
+                            + map_map
+                            + " ) "
+                            + " "
+                            + Default.ucd().getName(map_map));
         }
     }
 
@@ -147,7 +178,8 @@ public class TestSecurity extends TestFmwkMinusMinus {
     public void TestConfusables() {
         // TODO: Should this load the data for Settings.lastVersion?
         Confusables confusablesOld = new Confusables(SecurityDir.STRING);
-        showDiff("Confusable",
+        showDiff(
+                "Confusable",
                 confusablesOld.getRawMapToRepresentative(Style.MA),
                 Confusables_.INSTANCE.getRawMapToRepresentative(Style.MA),
                 new UTF16.StringComparator(),
@@ -159,8 +191,14 @@ public class TestSecurity extends TestFmwkMinusMinus {
         // TODO: Should this load the data for Settings.lastVersion?
         XIDModifications xidModOld = new XIDModifications(SecurityDir.STRING);
         UnicodeMap<Identifier_Status> newStatus = XIDMod.INSTANCE.getStatus();
-        showDiff("Status", xidModOld.getStatus(), newStatus, new EnumComparator<Identifier_Status>(), getLogPrintWriter());
-        showDiff("Type",
+        showDiff(
+                "Status",
+                xidModOld.getStatus(),
+                newStatus,
+                new EnumComparator<Identifier_Status>(),
+                getLogPrintWriter());
+        showDiff(
+                "Type",
                 xidModOld.getType(),
                 XIDMod.INSTANCE.getType(),
                 new EnumSetComparator<Set<Identifier_Type>>(),
@@ -178,7 +216,12 @@ public class TestSecurity extends TestFmwkMinusMinus {
         System.out.println(ucd.getVersion());
 
         for (String s : ScriptMetadata.getScripts()) {
-            if (s.equals("Jpan") || s.equals("Kore") || s.equals("Hans") || s.equals("Hant") || s.equals("Hanb") || s.equals("Jamo")) {
+            if (s.equals("Jpan")
+                    || s.equals("Kore")
+                    || s.equals("Hans")
+                    || s.equals("Hant")
+                    || s.equals("Hanb")
+                    || s.equals("Jamo")) {
                 continue;
             }
             Info info = ScriptMetadata.getInfo(s);
@@ -222,13 +265,14 @@ public class TestSecurity extends TestFmwkMinusMinus {
         return info.idUsage;
     }
 
-    static final private PrintWriter getLogPrintWriter() {
+    private static final PrintWriter getLogPrintWriter() {
         return new PrintWriter(System.out);
     }
 
     @Test
     public void TestCldrConsistency() {
-        System.out.println("\nIgnore TestCldrConsistency for now: Need to fix exemplars.closeOver(UnicodeSet.CASE) before this is useful");
+        System.out.println(
+                "\nIgnore TestCldrConsistency for now: Need to fix exemplars.closeOver(UnicodeSet.CASE) before this is useful");
         UnicodeMap<Set<String>> fromCLDR = CLDRCharacterUtility.getCLDRCharacters();
         UnicodeSet vi = new UnicodeSet();
         for (String s : fromCLDR) {
@@ -238,28 +282,34 @@ public class TestSecurity extends TestFmwkMinusMinus {
             Set<Identifier_Type> itemSet = XIDMod.INSTANCE.getType().get(s);
             for (Identifier_Type item : itemSet) {
                 switch (item) {
-                case obsolete:
-                case technical:
-                case uncommon_use:
-                    IdUsage idUsage = getScriptUsage(s.codePointAt(0));
-                    Set<String> locales = fromCLDR.get(s);
-                    warnln("?Overriding with CLDR: "
-                            + Utility.hex(s, "+")
-                            + "; " + s
-                            + "; " + UCharacter.getName(s," ")
-                            + "; " + item
-                            + " => " + idUsage + "; "
-                            + locales);
-                    if (locales.contains("vi")) {
-                        vi.add(s);
-                    }
-                    break;
-                default:
-                    break;
+                    case obsolete:
+                    case technical:
+                    case uncommon_use:
+                        IdUsage idUsage = getScriptUsage(s.codePointAt(0));
+                        Set<String> locales = fromCLDR.get(s);
+                        warnln(
+                                "?Overriding with CLDR: "
+                                        + Utility.hex(s, "+")
+                                        + "; "
+                                        + s
+                                        + "; "
+                                        + UCharacter.getName(s, " ")
+                                        + "; "
+                                        + item
+                                        + " => "
+                                        + idUsage
+                                        + "; "
+                                        + locales);
+                        if (locales.contains("vi")) {
+                            vi.add(s);
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }
         }
-//        System.out.println("vi: " + vi.toPattern(false));
+        //        System.out.println("vi: " + vi.toPattern(false));
     }
 
     public class EnumComparator<T extends Enum<?>> implements Comparator<T> {
@@ -288,18 +338,23 @@ public class TestSecurity extends TestFmwkMinusMinus {
         }
     }
 
-    private <T> void showDiff(String title, UnicodeMap<T> mapOld, UnicodeMap<T> mapNew, Comparator<T> comparator, Appendable output) {
+    private <T> void showDiff(
+            String title,
+            UnicodeMap<T> mapOld,
+            UnicodeMap<T> mapNew,
+            Comparator<T> comparator,
+            Appendable output) {
         int diffCount;
         try {
             diffCount = 0;
-            TreeMap<T, Map<T, UnicodeSet>> diff = new TreeMap<T,Map<T,UnicodeSet>>(comparator);
+            TreeMap<T, Map<T, UnicodeSet>> diff = new TreeMap<T, Map<T, UnicodeSet>>(comparator);
             for (int i = 0; i <= 0x10FFFF; ++i) {
                 T vOld = mapOld.get(i);
                 T vNew = mapNew.get(i);
                 if (!Objects.equal(vOld, vNew)) {
                     Map<T, UnicodeSet> submap = diff.get(vOld);
                     if (submap == null) {
-                        diff.put(vOld, submap = new TreeMap<T,UnicodeSet>(comparator));
+                        diff.put(vOld, submap = new TreeMap<T, UnicodeSet>(comparator));
                     }
                     UnicodeSet us = submap.get(vNew);
                     if (us == null) {
@@ -314,7 +369,17 @@ public class TestSecurity extends TestFmwkMinusMinus {
                 for (Entry<T, UnicodeSet> value2 : value1.getValue().entrySet()) {
                     T vNew = value2.getKey();
                     UnicodeSet intersection = value2.getValue();
-                    output.append(title + "\t«" + vOld + "» => «" + vNew + "»:\t" + intersection.size() + "\t" + intersection.toPattern(false) + "\n");
+                    output.append(
+                            title
+                                    + "\t«"
+                                    + vOld
+                                    + "» => «"
+                                    + vNew
+                                    + "»:\t"
+                                    + intersection.size()
+                                    + "\t"
+                                    + intersection.toPattern(false)
+                                    + "\n");
                 }
             }
         } catch (IOException e) {
@@ -331,9 +396,11 @@ public class TestSecurity extends TestFmwkMinusMinus {
         //                UnicodeSet oldChars = mapOld.getSet(oldValue);
         //                UnicodeSet newChars = mapNew.getSet(newValue);
         //                if (oldChars.containsSome(newChars)) {
-        //                    UnicodeSet intersection = new UnicodeSet(oldChars).retainAll(newChars);
+        //                    UnicodeSet intersection = new
+        // UnicodeSet(oldChars).retainAll(newChars);
         //                    diffCount += intersection.size();
-        //                    System.out.println(title + "\t«" + oldValue + "» => «" + newValue + "»:\t" + intersection.size() + "\t" + intersection.toPattern(false));
+        //                    System.out.println(title + "\t«" + oldValue + "» => «" + newValue +
+        // "»:\t" + intersection.size() + "\t" + intersection.toPattern(false));
         //                }
         //            }
         //        }
@@ -349,7 +416,8 @@ public class TestSecurity extends TestFmwkMinusMinus {
         //        }
     }
 
-    //    private <K, V, U extends Collection<Row.R2<K,V>>> U addAllTo(Iterable<Entry<K,V>> source, U target) {
+    //    private <K, V, U extends Collection<Row.R2<K,V>>> U addAllTo(Iterable<Entry<K,V>> source,
+    // U target) {
     //        for (Entry<K,V> t : source) {
     //            target.add(Row.of(t.getKey(), t.getValue()));
     //        }
@@ -384,18 +452,18 @@ public class TestSecurity extends TestFmwkMinusMinus {
         ScriptDetector sd = new ScriptDetector();
         Set<Set<Script_Values>> expected = new HashSet<>();
         String[][] tests = {
-                {"℮", "Common"},
-                {"ցօօց1℮", "Armenian"},
-                {"ցօօց1℮ー", "Armenian; Japanese"},
-                {"ー", "Japanese"},
-                {"カー", "Japanese"},
-                {"\u303C", "Han, Korean, Japanese"},
-                {"\u303Cー", "Japanese"},
-                {"\u303CA", "Latin; Han, Korean, Japanese"},
-                {"\u0300", "Common"},
-                {"\u0300.", "Common"},
-                {"a\u0300", "Latin"},
-                {"ä", "Latin"},
+            {"℮", "Common"},
+            {"ցօօց1℮", "Armenian"},
+            {"ցօօց1℮ー", "Armenian; Japanese"},
+            {"ー", "Japanese"},
+            {"カー", "Japanese"},
+            {"\u303C", "Han, Korean, Japanese"},
+            {"\u303Cー", "Japanese"},
+            {"\u303CA", "Latin; Han, Korean, Japanese"},
+            {"\u0300", "Common"},
+            {"\u0300.", "Common"},
+            {"a\u0300", "Latin"},
+            {"ä", "Latin"},
         };
         for (String[] test : tests) {
             String source = test[0];
@@ -425,59 +493,57 @@ public class TestSecurity extends TestFmwkMinusMinus {
         return result;
     }
 
-
     @Test
     public void TestWholeScripts() {
         UnicodeSet withConfusables = Confusables_.INSTANCE.getCharsWithConfusables();
-        //String list = withConfusables.toPattern(false);
-        final String commonUnconfusable = getUnconfusable(withConfusables, ScriptDetector.COMMON_SET);
-        final String latinUnconfusable = getUnconfusable(withConfusables, EnumSet.of(Script_Values.Latin));
+        // String list = withConfusables.toPattern(false);
+        final String commonUnconfusable =
+                getUnconfusable(withConfusables, ScriptDetector.COMMON_SET);
+        final String latinUnconfusable =
+                getUnconfusable(withConfusables, EnumSet.of(Script_Values.Latin));
         Object[][] tests = {
-                {"idSet", null}, // anything goes
+            {"idSet", null}, // anything goes
+            {""},
+            {commonUnconfusable}, // check that item with no confusables gets nothing
+            {latinUnconfusable}, // check that item with no confusables gets nothing
+            {"google", Status.SAME, Status.COMMON, Status.OTHER},
+            {"ցօօց1℮", Status.COMMON, Status.OTHER},
+            {"sex", Status.SAME, Status.COMMON, Status.OTHER},
+            {"ѕех", Status.SAME, Status.COMMON, Status.OTHER}, // Cyrillic
+            {"scope", Status.SAME, Status.COMMON, Status.OTHER},
+            {"1", Status.SAME, Status.OTHER},
+            {"NOT", Status.SAME, Status.COMMON, Status.OTHER},
+            {"ー", Status.SAME, Status.COMMON, Status.OTHER}, // length mark // should be different
+            {"—", Status.SAME, Status.OTHER}, // em dash
+            {"コー", Status.SAME},
+            {"〳ー", Status.SAME, Status.COMMON, Status.OTHER}, // should be different
+            {"乙一", Status.SAME}, // Hani
+            {"㇠ー", Status.SAME, Status.OTHER}, // Hiragana
+            {"Aー", Status.SAME},
+            {"カ", Status.SAME, Status.OTHER}, // KATAKANA LETTER KA // should be confusable with ⼒
+            {"⼒", Status.SAME}, // KANGXI RADICAL POWER
+            {"力", Status.SAME}, // CJK UNIFIED IDEOGRAPH-529B
+            {"!", Status.SAME, Status.OTHER},
+            {"\u0300", Status.SAME},
+            {"a\u0300", Status.SAME, Status.COMMON, Status.OTHER},
+            {"ä", Status.SAME, Status.COMMON, Status.OTHER},
+            {"idSet", "[[:L:][:M:][:N:]-[:nfkcqc=n:]]"}, // a typical identifier set
+            {"google", Status.SAME},
+            {"ցօօց1℮", Status.OTHER},
+            {"sex", Status.SAME, Status.OTHER},
+            {"scope", Status.SAME, Status.OTHER},
+            {"sef", Status.SAME},
+            {"1", Status.OTHER},
+            {"NO", Status.SAME, Status.OTHER},
+            {"ー", Status.SAME, Status.OTHER},
+            {"コー", Status.SAME},
+            {"〳ー", Status.SAME, Status.OTHER},
+            {"乙ー", Status.SAME, Status.OTHER},
+            {"Aー", Status.SAME},
 
-                {""},
-                {commonUnconfusable}, // check that item with no confusables gets nothing
-                {latinUnconfusable}, // check that item with no confusables gets nothing
-                {"google", Status.SAME, Status.COMMON, Status.OTHER},
-                {"ցօօց1℮", Status.COMMON, Status.OTHER},
-                {"sex", Status.SAME, Status.COMMON, Status.OTHER},
-                {"ѕех", Status.SAME, Status.COMMON, Status.OTHER}, // Cyrillic
-                {"scope", Status.SAME, Status.COMMON, Status.OTHER},
-                {"1", Status.SAME, Status.OTHER},
-                {"NOT", Status.SAME, Status.COMMON, Status.OTHER},
-                {"ー", Status.SAME, Status.COMMON, Status.OTHER}, // length mark // should be different
-                {"—", Status.SAME, Status.OTHER}, // em dash
-                {"コー", Status.SAME},
-                {"〳ー", Status.SAME, Status.COMMON, Status.OTHER}, // should be different
-                {"乙一", Status.SAME}, // Hani
-                {"㇠ー", Status.SAME, Status.OTHER}, // Hiragana
-                {"Aー", Status.SAME},
-                {"カ", Status.SAME, Status.OTHER}, // KATAKANA LETTER KA // should be confusable with ⼒
-                {"⼒", Status.SAME}, // KANGXI RADICAL POWER
-                {"力", Status.SAME}, // CJK UNIFIED IDEOGRAPH-529B
-                {"!", Status.SAME, Status.OTHER},
-                {"\u0300", Status.SAME},
-                {"a\u0300", Status.SAME, Status.COMMON, Status.OTHER},
-                {"ä", Status.SAME, Status.COMMON, Status.OTHER},
-
-                {"idSet", "[[:L:][:M:][:N:]-[:nfkcqc=n:]]"}, // a typical identifier set
-
-                {"google", Status.SAME},
-                {"ցօօց1℮", Status.OTHER},
-                {"sex", Status.SAME, Status.OTHER},
-                {"scope", Status.SAME, Status.OTHER},
-                {"sef", Status.SAME},
-                {"1", Status.OTHER},
-                {"NO", Status.SAME, Status.OTHER},
-                {"ー", Status.SAME, Status.OTHER},
-                {"コー", Status.SAME},
-                {"〳ー", Status.SAME, Status.OTHER},
-                {"乙ー", Status.SAME, Status.OTHER},
-                {"Aー", Status.SAME},
-
-                // special cases
-                {"idSet", "[rn]"}, // the identifier set, to check that the identifier matching flattens
-                {"m", Status.SAME},
+            // special cases
+            {"idSet", "[rn]"}, // the identifier set, to check that the identifier matching flattens
+            {"m", Status.SAME},
         };
         EnumMap<Script_Values, String> examples = new EnumMap<>(Script_Values.class);
         CheckWholeScript checker = null;
@@ -502,21 +568,25 @@ public class TestSecurity extends TestFmwkMinusMinus {
             Set<Status> actual = checker.getConfusables(source, examples);
             if (!assertEquals(
                     (isVerbose() ? "" : "idSet=" + checker.getIncludeOnly() + ",")
-                    + " source= " + source
-                    + ", scripts= " + scriptDetector.set(source).getAll(),
-                    expected.toString(), actual.toString())) {
+                            + " source= "
+                            + source
+                            + ", scripts= "
+                            + scriptDetector.set(source).getAll(),
+                    expected.toString(),
+                    actual.toString())) {
                 errln("\t\texamples= " + examples);
             } else {
                 logln("\t\texamples= " + examples);
             }
         }
     }
+
     private String getUnconfusable(UnicodeSet withConfusables, Set<Script_Values> scriptSet) {
-        UnicodeSet commonChars = new UnicodeSet(ScriptDetector.getCharactersForScriptExtensions(scriptSet))
-        .removeAll(withConfusables)
-        .removeAll(new UnicodeSet("[[:Z:][:c:]]"));
+        UnicodeSet commonChars =
+                new UnicodeSet(ScriptDetector.getCharactersForScriptExtensions(scriptSet))
+                        .removeAll(withConfusables)
+                        .removeAll(new UnicodeSet("[[:Z:][:c:]]"));
         final String commonUnconfusable = commonChars.iterator().next();
         return commonUnconfusable;
     }
 }
-

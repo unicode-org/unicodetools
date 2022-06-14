@@ -1,4 +1,5 @@
 package org.unicode.draft;
+
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
@@ -6,23 +7,19 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-
 import org.unicode.cldr.util.Counter;
 import org.unicode.jsp.FileUtilities;
 import org.unicode.jsp.FileUtilities.SemiFileReader;
 import org.unicode.text.utility.Settings;
 
-
 /**
- * Run WebpageCharacterData first.
- * Note that the data is post-html conversion, and whitespace is thus not represented.
- * For a program that uses this, see ScriptPopulation
+ * Run WebpageCharacterData first. Note that the data is post-html conversion, and whitespace is
+ * thus not represented. For a program that uses this, see ScriptPopulation
  */
 public class CharacterFrequency {
-    public static final String DATA_DIR = Settings.Output.GEN_DIR +
-            "frequency/languages/";
-    private static final String DATA_DIR_RANK = Settings.Output.GEN_DIR +
-            "frequency/languages-rank/";
+    public static final String DATA_DIR = Settings.Output.GEN_DIR + "frequency/languages/";
+    private static final String DATA_DIR_RANK =
+            Settings.Output.GEN_DIR + "frequency/languages-rank/";
     public static final boolean DEBUG = false;
     //    static final int MAX_LINE_COUNT = Integer.MAX_VALUE; // 10000;
     //    static final int MAX_SEQUENCE_CHARS = 15;
@@ -31,11 +28,13 @@ public class CharacterFrequency {
     //    private static Map<String,Double> languageToPopulation = new HashMap<String,Double>();
     //    private static Map<String,String> languagesFound = new TreeMap<String,String>();
     ////    private static Map<String,String> languageNameToTag = new HashMap<String,String>();
-    //    private static Map<String, Counter<String>> languageToCharsCounter = new TreeMap<String, Counter<String>>();
-    private static Map<String, Counter<Integer>> languageToCodePointCounter = new TreeMap<String, Counter<Integer>>();
+    //    private static Map<String, Counter<String>> languageToCharsCounter = new TreeMap<String,
+    // Counter<String>>();
+    private static Map<String, Counter<Integer>> languageToCodePointCounter =
+            new TreeMap<String, Counter<Integer>>();
 
-
-    //    public static SupplementalDataInfo supplementalInfo = SupplementalDataInfo.getInstance(CldrUtility.SUPPLEMENTAL_DIRECTORY);
+    //    public static SupplementalDataInfo supplementalInfo =
+    // SupplementalDataInfo.getInstance(CldrUtility.SUPPLEMENTAL_DIRECTORY);
     //
     //    static {
     //        languageToPopulation.put("eo", 100000d);
@@ -50,7 +49,8 @@ public class CharacterFrequency {
     ////                .and(transform, ULocale.getISOLanguages())
     ////                .and(ULocale.getAvailableLocales())) {
     ////            if (!locale.getCountry().isEmpty()) continue;
-    ////            String name = locale.getDisplayName(ULocale.ENGLISH).toUpperCase(Locale.ENGLISH);
+    ////            String name =
+    // locale.getDisplayName(ULocale.ENGLISH).toUpperCase(Locale.ENGLISH);
     ////            String languageTag = locale.toLanguageTag();
     ////            languageNameToTag.put(name, languageTag);
     ////        }
@@ -66,17 +66,22 @@ public class CharacterFrequency {
     ////        languageNameToTag.put("BIHARI", "bho");
     ////        languageNameToTag.put("UNKNOWN", "und");
     //
-    //        Map<String, Counter<String>> rawLanguageToSequencesCounter = new TreeMap<String, Counter<String>>();
-    //        //Map<String, Counter<String>> rawLanguageToCharsCounter = new TreeMap<String, Counter<String>>();
+    //        Map<String, Counter<String>> rawLanguageToSequencesCounter = new TreeMap<String,
+    // Counter<String>>();
+    //        //Map<String, Counter<String>> rawLanguageToCharsCounter = new TreeMap<String,
+    // Counter<String>>();
     //
     //        //      System.out.println("loading stats.characters.txt");
-    //        //      SemiFileReader handler = new SequenceHandler(rawLanguageToCharsCounter).process(Utility.DATA_DIRECTORY + "/frequency/", "stats.short_sequences.txt");
+    //        //      SemiFileReader handler = new
+    // SequenceHandler(rawLanguageToCharsCounter).process(Utility.DATA_DIRECTORY + "/frequency/",
+    // "stats.short_sequences.txt");
     //        //      System.out.println("read lines:\t" + handler.getLineCount());
     //
     //        Counter<String> mulValue = new Counter<String>();
     //
     //        System.out.println("loading stats.lang_sequences.txt");
-    //        SemiFileReader handler = new SequenceHandler(rawLanguageToSequencesCounter).process(DATA_DIR,
+    //        SemiFileReader handler = new
+    // SequenceHandler(rawLanguageToSequencesCounter).process(DATA_DIR,
     //                "mul.txt");
     //        System.out.println("read lines:\t" + handler.getLineCount());
     //
@@ -116,7 +121,8 @@ public class CharacterFrequency {
     //            //            String cpStr = UTF16.valueOf(cp);
     //            //            long charCount = charCounter.get(cpStr);
     //            //            if (sequenceCount > charCount) { // debug
-    //            //              System.out.println(language + "\tsequence:\t" + sequenceCount + "\tchar:\t" + charCount);
+    //            //              System.out.println(language + "\tsequence:\t" + sequenceCount +
+    // "\tchar:\t" + charCount);
     //            //            }
     //            //            charCounter.add(cpStr, -sequenceCount);
     //            //          }
@@ -126,14 +132,17 @@ public class CharacterFrequency {
     //            // put all of the normalized marks into a combined list
     //
     //            for (String sequence : sequenceCounter.keySet()) {
-    //                addNormalizedCount(sequence, sequenceCounter.get(sequence), locale, combinedCounter);
+    //                addNormalizedCount(sequence, sequenceCounter.get(sequence), locale,
+    // combinedCounter);
     //            }
     //            //        for (String sequence : charCounter.keySet()) {
-    //            //          addNormalizedCount(sequence, charCounter.get(sequence), locale, combinedCounter);
+    //            //          addNormalizedCount(sequence, charCounter.get(sequence), locale,
+    // combinedCounter);
     //            //        }
     //
     //
-    //            // at this point, the chars contain all the NFC'd characters, and the sequences contain all the sequences
+    //            // at this point, the chars contain all the NFC'd characters, and the sequences
+    // contain all the sequences
     //            // sequenceCounter.freeze();
     //            // charCounter.freeze();
     //
@@ -154,7 +163,8 @@ public class CharacterFrequency {
     //        languageToPopulation.put("qsu", 7000000000d * 0.82d);
     //    }
 
-    //    private static void addNormalizedCount(String sequence, long countValue, ULocale locale, Counter<String> combinedCounter) {
+    //    private static void addNormalizedCount(String sequence, long countValue, ULocale locale,
+    // Counter<String> combinedCounter) {
     //        String nfcSequence = ExemplarInfo.specialNormalize(sequence, locale);
     //        int cp;
     //        for (int i = 0; i < nfcSequence.length(); i+=Character.charCount(cp)) {
@@ -162,8 +172,6 @@ public class CharacterFrequency {
     //            combinedCounter.add(UTF16.valueOf(cp), countValue);
     //        }
     //    }
-
-
 
     //    public static String getLanguageCode(String string) {
     //        String result = LanguageCodeConverter.getCodeForName(string);
@@ -187,14 +195,17 @@ public class CharacterFrequency {
     //            }
     //            double pop2;
     //            String cldrLanguage = ExemplarInfo.getCldrLanguage(language);
-    //            PopulationData popData = CharacterFrequency.supplementalInfo.getLanguagePopulationData(cldrLanguage);
+    //            PopulationData popData =
+    // CharacterFrequency.supplementalInfo.getLanguagePopulationData(cldrLanguage);
     //            if (popData != null) {
     //                pop2 = popData.getLiteratePopulation();
     //            } else {
     //                pop2 = 0;
-    //                for (String child : CharacterFrequency.supplementalInfo.getLanguagesForTerritoriesPopulationData()) {
+    //                for (String child :
+    // CharacterFrequency.supplementalInfo.getLanguagesForTerritoriesPopulationData()) {
     //                    if (child.startsWith(cldrLanguage + "_")) {
-    //                        popData = CharacterFrequency.supplementalInfo.getLanguagePopulationData(child);
+    //                        popData =
+    // CharacterFrequency.supplementalInfo.getLanguagePopulationData(child);
     //                        if (popData != null) {
     //                            pop2 += popData.getLiteratePopulation();
     //                        }
@@ -236,7 +247,9 @@ public class CharacterFrequency {
         Counter<Integer> result = languageToCodePointCounter.get(language);
         if (result == null) {
             result = new Counter<Integer>();
-            final SemiFileReader handler = new SequenceHandler(result).process(ranked ? DATA_DIR_RANK : DATA_DIR, language + ".txt");
+            final SemiFileReader handler =
+                    new SequenceHandler(result)
+                            .process(ranked ? DATA_DIR_RANK : DATA_DIR, language + ".txt");
             languageToCodePointCounter.put(language, result);
         }
         return result;
@@ -249,20 +262,22 @@ public class CharacterFrequency {
         public SequenceHandler(Counter<Integer> counter) {
             this.counter = counter;
         }
+
         @Override
         public boolean handleLine(int start, int end, String[] items) {
             //            if (getLineCount() > CharacterFrequency.MAX_LINE_COUNT) {
             //                return false;
             //            }
             if (DEBUG && ((++lineCounter % 1000) == 0 || lineCounter < 100)) {
-                System.out.println(lineCounter + "\t" + Arrays.asList(items) + "\t" + counter.getItemCount());
+                System.out.println(
+                        lineCounter + "\t" + Arrays.asList(items) + "\t" + counter.getItemCount());
             }
 
             if (items.length != 2) {
                 throw new IllegalArgumentException(Arrays.asList(items).toString());
             }
 
-            final int cp = Integer.parseInt(items[0],16);
+            final int cp = Integer.parseInt(items[0], 16);
             final long count = Long.parseLong(items[1]);
             //            if (count < CharacterFrequency.MIN_COUNT) {
             //                return true;
@@ -273,6 +288,7 @@ public class CharacterFrequency {
     }
 
     static final Set<String> LANGUAGES;
+
     static {
         final HashSet<String> result = new HashSet<String>();
         final File dir = new File(DATA_DIR);
@@ -280,7 +296,7 @@ public class CharacterFrequency {
             if (!file.endsWith(".txt")) {
                 continue;
             }
-            result.add(file.substring(0,file.length()-4));
+            result.add(file.substring(0, file.length() - 4));
         }
         LANGUAGES = Collections.unmodifiableSet(result);
     }

@@ -1,8 +1,9 @@
 package org.unicode.propstest;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -13,20 +14,14 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyType;
 import org.unicode.props.UcdProperty;
-import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.ValueCardinality;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.EmojiOrder;
-
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.VersionInfo;
 
 public class CompareVersionedProps {
 
@@ -59,15 +54,15 @@ public class CompareVersionedProps {
             }
         }
 
-
         EmojiOrder order = EmojiOrder.of(Emoji.VERSION_BETA);
 
         if (propFilter == null || versionToIups.size() < 2) {
-            throw new IllegalArgumentException("Command line: <property name regex filter> versionA, versionB, ...");
+            throw new IllegalArgumentException(
+                    "Command line: <property name regex filter> versionA, versionB, ...");
         }
 
         List<VersionInfo> versionList = new ArrayList<>(versionToIups.keySet());
-        VersionInfo mostRecent = versionList.get(versionList.size()-1);
+        VersionInfo mostRecent = versionList.get(versionList.size() - 1);
 
         for (UcdProperty prop : UcdProperty.values()) {
             boolean gotMatch = false;
@@ -82,7 +77,8 @@ public class CompareVersionedProps {
 
             Map<VersionInfo, UnicodeMap<String>> maps = new LinkedHashMap<>();
             Set<String> values = new TreeSet<>();
-            for (Entry<VersionInfo, IndexUnicodeProperties> versionAndIups : versionToIups.entrySet()) {
+            for (Entry<VersionInfo, IndexUnicodeProperties> versionAndIups :
+                    versionToIups.entrySet()) {
                 UnicodeMap<String> map = versionAndIups.getValue().load(prop);
                 maps.put(versionAndIups.getKey(), map);
                 values.addAll(map.getAvailableValues());
@@ -138,24 +134,49 @@ public class CompareVersionedProps {
         }
     }
 
-    private static String show(VersionInfo version, VersionInfo mostRecent, UcdProperty prop, PropertyType type, String item,
+    private static String show(
+            VersionInfo version,
+            VersionInfo mostRecent,
+            UcdProperty prop,
+            PropertyType type,
+            String item,
             String value) {
         String prefix = version.equals(mostRecent) ? "➕" : "➖";
         String reduced = EmojiData.removeEmojiVariants(item);
         if (type == PropertyType.Binary) {
             if (value.contentEquals("Yes")) {
-                System.out.println(prefix
-                        + "\t" + Utility.hex(item) 
-                        + " ;\t" + "vendor_" + Utility.hex(reduced, "_").toLowerCase(Locale.ROOT) + ".png"
-                        + " ;\t" + prop 
-                        + "\t# " + version.getVersionString(2, 2) + " " + item + " " + EmojiData.EMOJI_DATA_BETA.getName(item));
+                System.out.println(
+                        prefix
+                                + "\t"
+                                + Utility.hex(item)
+                                + " ;\t"
+                                + "vendor_"
+                                + Utility.hex(reduced, "_").toLowerCase(Locale.ROOT)
+                                + ".png"
+                                + " ;\t"
+                                + prop
+                                + "\t# "
+                                + version.getVersionString(2, 2)
+                                + " "
+                                + item
+                                + " "
+                                + EmojiData.EMOJI_DATA_BETA.getName(item));
             }
         } else {
-            System.out.println(prefix
-                    + "\t" + Utility.hex(item) 
-                    + " ;\t" + prop 
-                    + " ;\t" + value
-                    + "\t# " + version.getVersionString(2, 2) + " " + item + " " + EmojiData.EMOJI_DATA_BETA.getName(item));
+            System.out.println(
+                    prefix
+                            + "\t"
+                            + Utility.hex(item)
+                            + " ;\t"
+                            + prop
+                            + " ;\t"
+                            + value
+                            + "\t# "
+                            + version.getVersionString(2, 2)
+                            + " "
+                            + item
+                            + " "
+                            + EmojiData.EMOJI_DATA_BETA.getName(item));
         }
         return prefix;
     }

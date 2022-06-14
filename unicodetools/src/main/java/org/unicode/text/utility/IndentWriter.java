@@ -1,14 +1,12 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/IndentWriter.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/utility/IndentWriter.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.utility;
 
 import java.io.IOException;
@@ -25,31 +23,38 @@ public class IndentWriter extends Writer {
         width = 30000;
         separator = " ";
     }
-    public IndentWriter(OutputStream writer, String encoding)
-            throws UnsupportedEncodingException{
+
+    public IndentWriter(OutputStream writer, String encoding) throws UnsupportedEncodingException {
         this.writer = new OutputStreamWriter(writer, encoding);
         width = 30000;
         separator = " ";
     }
+
     public void setSeparator(String separator) {
         this.separator = separator;
     }
+
     public String getSeparator() {
         return separator;
     }
+
     public void setWidth(int width) {
         this.width = width;
     }
+
     public int getWidth() {
         return width;
     }
+
     public void indentBy(int indentDelta) throws IOException {
         indent += indentDelta;
         flush();
     }
+
     public void setIndent(int indent) {
         this.indent = indent;
     }
+
     public int getIndent() {
         return indent;
     }
@@ -70,16 +75,19 @@ public class IndentWriter extends Writer {
      */
     public void write(int indent, String string) throws IOException {
         setIndent(indent);
-        write(string,0,string.length());
+        write(string, 0, string.length());
     }
+
     public void writeln(int indent, String string) throws IOException {
         write(indent, string);
         flushLine();
     }
+
     public void writeln(String string) throws IOException {
         write(string);
         flushLine();
     }
+
     public void writeln() throws IOException {
         flushLine();
     }
@@ -98,7 +106,7 @@ public class IndentWriter extends Writer {
 
     public void flushLine() throws IOException {
         if (buffer.length() != 0) { // indent
-            writer.write("                                       ",0,bufferIndent);
+            writer.write("                                       ", 0, bufferIndent);
             writer.write(buffer.toString());
             writer.write(EOL);
             buffer.setLength(0);
@@ -116,6 +124,7 @@ public class IndentWriter extends Writer {
         flush();
         writer.close();
     }
+
     private final Writer writer;
     private final StringBuffer buffer = new StringBuffer(200);
     private int width;
@@ -123,6 +132,7 @@ public class IndentWriter extends Writer {
     private int bufferIndent;
     private String separator;
     private static String EOL;
+
     static { // gets platform-specific eol
         final StringWriter foo = new StringWriter();
         final PrintWriter fii = new PrintWriter(foo);

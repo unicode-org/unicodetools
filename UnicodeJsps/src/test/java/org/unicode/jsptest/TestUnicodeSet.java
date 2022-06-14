@@ -1,31 +1,8 @@
 package org.unicode.jsptest;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.SortedMap;
-import java.util.TreeSet;
-import java.util.stream.Stream;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledIf;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.unicode.jsp.CharEncoder;
-import org.unicode.jsp.Common;
-import org.unicode.jsp.UnicodeJsp;
-import org.unicode.props.UnicodeProperty;
-import org.unicode.jsp.UnicodeSetUtilities;
-import org.unicode.jsp.UnicodeUtilities;
-import org.unicode.jsp.XPropertyFactory;
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import com.google.common.base.Objects;
 import com.ibm.icu.impl.Row.R2;
@@ -40,21 +17,40 @@ import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeSet;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIf;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.unicode.jsp.CharEncoder;
+import org.unicode.jsp.Common;
+import org.unicode.jsp.UnicodeJsp;
+import org.unicode.jsp.UnicodeSetUtilities;
+import org.unicode.jsp.UnicodeUtilities;
+import org.unicode.jsp.XPropertyFactory;
+import org.unicode.props.UnicodeProperty;
 
-import static org.junit.jupiter.api.Assumptions.assumeFalse;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
-import static org.junit.jupiter.params.provider.Arguments.arguments;
-
-
-public class TestUnicodeSet  extends TestFmwk2 {
+public class TestUnicodeSet extends TestFmwk2 {
 
     @Test
     public void TestInput() {
         String[][] tests = {
-                // loose, strict
-                {"U+00A0", "[\u00A0]"},
-                {"U+10FFFE..U+10FFFF", "[\\U0010FFFE\\U0010FFFF]"},
-                {"a..z", "[a-z]"},
+            // loose, strict
+            {"U+00A0", "[\u00A0]"},
+            {"U+10FFFE..U+10FFFF", "[\\U0010FFFE\\U0010FFFF]"},
+            {"a..z", "[a-z]"},
         };
         for (String[] test : tests) {
             UnicodeSet source = UnicodeSetUtilities.parseUnicodeSet(test[0]);
@@ -65,10 +61,10 @@ public class TestUnicodeSet  extends TestFmwk2 {
     @Test
     public void TestOutput() {
         String[][] tests = {
-                // loose, strict
-                {"[\u00A0]", "[\\u00A0]", "abb", "esc"},
-                {"[{👨\u200D👨\u200D👦}]", "[{👨‍👨‍👦}]"},
-                {"[{👨\u200D❤\uFE0F\u200D👨}]", "[{👨‍❤️‍👨}]"},
+            // loose, strict
+            {"[\u00A0]", "[\\u00A0]", "abb", "esc"},
+            {"[{👨\u200D👨\u200D👦}]", "[{👨‍👨‍👦}]"},
+            {"[{👨\u200D❤\uFE0F\u200D👨}]", "[{👨‍❤️‍👨}]"},
         };
         assertFalse("", UnicodeUtilities.WHITESPACE_IGNORABLES_C.contains(UnicodeUtilities.JOINER));
 
@@ -80,12 +76,15 @@ public class TestUnicodeSet  extends TestFmwk2 {
             if (test.length > 3) {
                 abbreviate = test[2].startsWith("abb");
             }
-            String a_out = UnicodeUtilities.getPrettySet(new UnicodeSet(test[0]), abbreviate, escape);
+            String a_out =
+                    UnicodeUtilities.getPrettySet(new UnicodeSet(test[0]), abbreviate, escape);
 
-            assertEquals("input unicode set " + test[0] + ", " + abbreviate + ", " + escape, test[1], a_out);
+            assertEquals(
+                    "input unicode set " + test[0] + ", " + abbreviate + ", " + escape,
+                    test[1],
+                    a_out);
         }
     }
-
 
     @Test
     public void TestEmoji() throws IOException {
@@ -97,21 +96,24 @@ public class TestUnicodeSet  extends TestFmwk2 {
         }
     }
 
-
-    @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
+    @EnabledIf(
+            value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken",
+            disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
     @Test
     public void TestPretty() {
         String[] tests = {
-                "00A0",
-                "0000",
+            "00A0", "0000",
         };
         for (String test : tests) {
             UnicodeSet source = UnicodeSetUtilities.parseUnicodeSet("[\\u" + test + "]");
-            for (boolean abbreviate : new boolean[]{false}) {
-                for (boolean escape : new boolean[]{false, true}) {
+            for (boolean abbreviate : new boolean[] {false}) {
+                for (boolean escape : new boolean[] {false, true}) {
                     String derived = UnicodeUtilities.getPrettySet(source, abbreviate, escape);
                     UnicodeSet reparsed = new UnicodeSet(derived);
-                    if (!assertEquals("UnicodeSet " + source + ", " + abbreviate + ", " + escape, source, reparsed)) {
+                    if (!assertEquals(
+                            "UnicodeSet " + source + ", " + abbreviate + ", " + escape,
+                            source,
+                            reparsed)) {
                         logln(derived);
                     } else if (!assertTrue("Contains", derived.contains(test))) {
                         logln(derived);
@@ -119,24 +121,25 @@ public class TestUnicodeSet  extends TestFmwk2 {
                 }
             }
         }
-        String test = "[[[:age=4.1:]&" +
-                "[:toNFM!=@toNFKC_CF@:]]-[[:age=4.1:]&" +
-                "[[:dt=circle:]" +
-                "[:dt=sub:]" +
-                "[:dt=super:]" +
-                "[:dt=small:]" +
-                "[:dt=square:]" +
-                "[:dt=vertical:]" +
-                "[[:block=Kangxi_Radicals:]-[:cn:]]" +
-                "[[:toNFKC=/[ ().0-9/°]/:]-[:toNFKC=/^.$/:]]" +
-                "[[:defaultignorablecodepoint:]&[:cn:]]" +
-                "[:block=Hangul Compatibility Jamo:]" +
-                "[[:block=Halfwidth_And_Fullwidth_Forms:]&[:sc=Hang:]]" +
-                "[:block=tags:]" +
-                "]]]";
+        String test =
+                "[[[:age=4.1:]&"
+                        + "[:toNFM!=@toNFKC_CF@:]]-[[:age=4.1:]&"
+                        + "[[:dt=circle:]"
+                        + "[:dt=sub:]"
+                        + "[:dt=super:]"
+                        + "[:dt=small:]"
+                        + "[:dt=square:]"
+                        + "[:dt=vertical:]"
+                        + "[[:block=Kangxi_Radicals:]-[:cn:]]"
+                        + "[[:toNFKC=/[ ().0-9/°]/:]-[:toNFKC=/^.$/:]]"
+                        + "[[:defaultignorablecodepoint:]&[:cn:]]"
+                        + "[:block=Hangul Compatibility Jamo:]"
+                        + "[[:block=Halfwidth_And_Fullwidth_Forms:]&[:sc=Hang:]]"
+                        + "[:block=tags:]"
+                        + "]]]";
         UnicodeSet source = UnicodeSetUtilities.parseUnicodeSet(test);
         String derived = UnicodeUtilities.getPrettySet(source, false, false);
-        assertTrue ("contains 00A0", derived.contains("00A0"));
+        assertTrue("contains 00A0", derived.contains("00A0"));
         logln(derived);
     }
 
@@ -149,9 +152,11 @@ public class TestUnicodeSet  extends TestFmwk2 {
     //        checkProperties("[:isEncEUCKR:]", "[\\u00B0]", "[\u0350]");
     //    }
 
-    @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
+    @EnabledIf(
+            value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken",
+            disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
     @Test
-    public void TestU60 () {
+    public void TestU60() {
         logln("ICU Version: " + VersionInfo.ICU_VERSION.toString());
         logln("Unicode Data Version:   " + UCharacter.getUnicodeVersion().toString());
         logln("Java Version:   " + System.getProperty("java.version"));
@@ -173,7 +178,7 @@ public class TestUnicodeSet  extends TestFmwk2 {
     }
 
     @Test
-    public void TestUCA () {
+    public void TestUCA() {
         checkUca("[:uca=0304:]", "[\t]");
         checkUca("[:uca2=05 9E:]", "[Øø]");
         checkUca("[:uca2.5=81 81 01:]", "[ǄǢ]");
@@ -190,11 +195,16 @@ public class TestUnicodeSet  extends TestFmwk2 {
         }
     }
 
-    @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
+    @EnabledIf(
+            value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken",
+            disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
     @Test
     public void TestICUEnums() {
         UnicodeSet nonchars = UnicodeSetUtilities.parseUnicodeSet("\\p{noncharactercodepoint}");
-        assertEquals("Nonchars",new UnicodeSet("[:noncharactercodepoint:]").complement().complement(), nonchars.complement().complement());
+        assertEquals(
+                "Nonchars",
+                new UnicodeSet("[:noncharactercodepoint:]").complement().complement(),
+                nonchars.complement().complement());
 
         XPropertyFactory factory = XPropertyFactory.make();
         for (int propEnum = UProperty.INT_START; propEnum < UProperty.INT_LIMIT; ++propEnum) {
@@ -203,7 +213,6 @@ public class TestUnicodeSet  extends TestFmwk2 {
         for (int propEnum = UProperty.BINARY_START; propEnum < UProperty.BINARY_LIMIT; ++propEnum) {
             checkProperty(factory, propEnum);
         }
-
     }
 
     @Test
@@ -223,41 +232,48 @@ public class TestUnicodeSet  extends TestFmwk2 {
                 String icuValue;
                 try {
                     switch (propEnum) {
-                    case UProperty.BIDI_PAIRED_BRACKET:
-                        icuValue = UTF16.valueOf(UCharacter.getBidiPairedBracket(i));
-                        break;
-                    case UProperty.CASE_FOLDING:
-                        icuValue = UCharacter.foldCase(UTF16.valueOf(i), true);
-                        break;
-                    case UProperty.LOWERCASE_MAPPING:
-                        icuValue = UCharacter.toLowerCase(UTF16.valueOf(i));
-                        break;
-                    case UProperty.TITLECASE_MAPPING:
-                        icuValue = UCharacter.toTitleCase(UTF16.valueOf(i), titleIter);
-                        break;
-                    case UProperty.UPPERCASE_MAPPING:
-                        icuValue = UCharacter.toUpperCase(UTF16.valueOf(i));
-                        break;
-                    default:
-                        icuValue = UCharacter.getStringPropertyValue(propEnum, i, NameChoice.SHORT);
-                        if (propEnum == UProperty.AGE) {
-                            icuValue = icuValue.equals("0.0.0.0") ? "unassigned"
-                                    : VersionInfo.getInstance(icuValue).getVersionString(2, 2);
-                        }
+                        case UProperty.BIDI_PAIRED_BRACKET:
+                            icuValue = UTF16.valueOf(UCharacter.getBidiPairedBracket(i));
+                            break;
+                        case UProperty.CASE_FOLDING:
+                            icuValue = UCharacter.foldCase(UTF16.valueOf(i), true);
+                            break;
+                        case UProperty.LOWERCASE_MAPPING:
+                            icuValue = UCharacter.toLowerCase(UTF16.valueOf(i));
+                            break;
+                        case UProperty.TITLECASE_MAPPING:
+                            icuValue = UCharacter.toTitleCase(UTF16.valueOf(i), titleIter);
+                            break;
+                        case UProperty.UPPERCASE_MAPPING:
+                            icuValue = UCharacter.toUpperCase(UTF16.valueOf(i));
+                            break;
+                        default:
+                            icuValue =
+                                    UCharacter.getStringPropertyValue(
+                                            propEnum, i, NameChoice.SHORT);
+                            if (propEnum == UProperty.AGE) {
+                                icuValue =
+                                        icuValue.equals("0.0.0.0")
+                                                ? "unassigned"
+                                                : VersionInfo.getInstance(icuValue)
+                                                        .getVersionString(2, 2);
+                            }
                     }
                 } catch (Exception e) {
                     errln(propNameLong + "\t" + e.getMessage());
-                    if (++errorCount > 5) break; else continue;
+                    if (++errorCount > 5) break;
+                    else continue;
                 }
                 String propValue = prop3.getValue(i);
-                if (!Objects.equal(icuValue, propValue)) { // do to avoid verbose mode being every character
+                if (!Objects.equal(
+                        icuValue, propValue)) { // do to avoid verbose mode being every character
                     assertEquals("string value", icuValue, propValue);
-                    if (++errorCount > 5) break; else continue;
+                    if (++errorCount > 5) break;
+                    else continue;
                 }
             }
         }
     }
-
 
     @Test
     public void TestICUDoubleProps() {
@@ -293,7 +309,8 @@ public class TestUnicodeSet  extends TestFmwk2 {
             logln(propName);
             for (int value = min; value <= max; ++value) {
                 UnicodeSet icuSet = new UnicodeSet().applyIntPropertyValue(propEnum, value);
-                String valueName = UCharacter.getPropertyValueName(propEnum, value, NameChoice.SHORT);
+                String valueName =
+                        UCharacter.getPropertyValueName(propEnum, value, NameChoice.SHORT);
                 if (valueName == null) {
                     valueName = UCharacter.getPropertyValueName(propEnum, value, NameChoice.LONG);
                 }
@@ -313,9 +330,15 @@ public class TestUnicodeSet  extends TestFmwk2 {
                 assertEquals(propName + "=" + valueName, icuSet, toolSet);
             }
             if (propName.equals("gc")) {
-                toolValues.removeAll(Arrays.asList("Cased_Letter, Letter, Mark, Number, Other, Punctuation, Separator, Symbol".split(", ")));
+                toolValues.removeAll(
+                        Arrays.asList(
+                                "Cased_Letter, Letter, Mark, Number, Other, Punctuation, Separator, Symbol"
+                                        .split(", ")));
             }
-            if (!assertEquals(propName + " should have no extra values: ", Collections.EMPTY_SET, toolValues)) {
+            if (!assertEquals(
+                    propName + " should have no extra values: ",
+                    Collections.EMPTY_SET,
+                    toolValues)) {
                 int debug = 0;
             }
         } catch (Exception e) {
@@ -330,7 +353,8 @@ public class TestUnicodeSet  extends TestFmwk2 {
     //        UnicodeProperty prop2 = factory.getProperty("enc_Latin2");
     //        UnicodeMap<String> map = prop.getUnicodeMap();
     //        UnicodeMap<String> map2 = prop2.getUnicodeMap();
-    //        for (String value : Builder.with(new TreeSet<String>()).addAll(map.values()).addAll(map2.values()).get()) {
+    //        for (String value : Builder.with(new
+    // TreeSet<String>()).addAll(map.values()).addAll(map2.values()).get()) {
     //            logln(value + "\t" + map.getSet(value) + "\t" + map2.getSet(value));
     //        }
     //        UnicodeSet set = UnicodeSetUtilities.parseUnicodeSet("[:enc_Latin1=/61/:]");
@@ -340,7 +364,7 @@ public class TestUnicodeSet  extends TestFmwk2 {
     public static Stream<Arguments> charsetProvider() {
         final SortedMap<String, Charset> charsets = Charset.availableCharsets();
         final List<Arguments> args = new ArrayList<Arguments>(charsets.size());
-        int count = (int)(5 + charsets.size()*getInclusion()/10.0);
+        int count = (int) (5 + charsets.size() * getInclusion() / 10.0);
         for (final Map.Entry<String, Charset> e : Charset.availableCharsets().entrySet()) {
             if (--count < 0) break;
             args.add(arguments(e.getKey(), e.getValue()));
@@ -391,37 +415,37 @@ public class TestUnicodeSet  extends TestFmwk2 {
         //        assertNotEquals("Hant", 0, set.size());
         UnicodeSet set2 = UnicodeSetUtilities.parseUnicodeSet("[:scx=Arab,Syrc:]");
         assertNotEquals("Arab Syrc", 0, set2.size());
-
     }
 
     @Test
     public void TestGC() {
-        Map<String,R2<String,UnicodeSet>> SPECIAL_GC = new LinkedHashMap<String,R2<String,UnicodeSet>>();
+        Map<String, R2<String, UnicodeSet>> SPECIAL_GC =
+                new LinkedHashMap<String, R2<String, UnicodeSet>>();
 
         String[][] extras = {
-                {"Other", "C", "[[:Cc:][:Cf:][:Cn:][:Co:][:Cs:]]"},
-                {"Letter", "L", "[[:Ll:][:Lm:][:Lo:][:Lt:][:Lu:]]"},
-                {"Cased_Letter", "LC", "[[:Ll:][:Lt:][:Lu:]]"},
-                {"Mark", "M", "[[:Mc:][:Me:][:Mn:]]"},
-                {"Number", "N", "[[:Nd:][:Nl:][:No:]]"},
-                {"Punctuation", "P", "[[:Pc:][:Pd:][:Pe:][:Pf:][:Pi:][:Po:][:Ps:]]"},
-                {"Symbol", "S", "[[:Sc:][:Sk:][:Sm:][:So:]]"},
-                {"Separator", "Z", "[[:Zl:][:Zp:][:Zs:]]"},
+            {"Other", "C", "[[:Cc:][:Cf:][:Cn:][:Co:][:Cs:]]"},
+            {"Letter", "L", "[[:Ll:][:Lm:][:Lo:][:Lt:][:Lu:]]"},
+            {"Cased_Letter", "LC", "[[:Ll:][:Lt:][:Lu:]]"},
+            {"Mark", "M", "[[:Mc:][:Me:][:Mn:]]"},
+            {"Number", "N", "[[:Nd:][:Nl:][:No:]]"},
+            {"Punctuation", "P", "[[:Pc:][:Pd:][:Pe:][:Pf:][:Pi:][:Po:][:Ps:]]"},
+            {"Symbol", "S", "[[:Sc:][:Sk:][:Sm:][:So:]]"},
+            {"Separator", "Z", "[[:Zl:][:Zp:][:Zs:]]"},
         };
 
         String[] gcs = {"General_Category=", "", "gc="};
         /*
-gc ; C         ; Other                            # Cc | Cf | Cn | Co | Cs
-gc ; Cc        ; Control                          ; cntrl
-gc ; L         ; Letter                           # Ll | Lm | Lo | Lt | Lu
-gc ; LC        ; Cased_Letter                     # Ll | Lt | Lu
-gc ; M         ; Mark                             # Mc | Me | Mn
-gc ; N         ; Number                           # Nd | Nl | No
-gc ; Nd        ; Decimal_Number                   ; digit
-gc ; P         ; Punctuation                      ; punct                            # Pc | Pd | Pe | Pf | Pi | Po | Ps
-gc ; S         ; Symbol                           # Sc | Sk | Sm | So
-gc ; Z         ; Separator                        # Zl | Zp | Zs
-         */
+        gc ; C         ; Other                            # Cc | Cf | Cn | Co | Cs
+        gc ; Cc        ; Control                          ; cntrl
+        gc ; L         ; Letter                           # Ll | Lm | Lo | Lt | Lu
+        gc ; LC        ; Cased_Letter                     # Ll | Lt | Lu
+        gc ; M         ; Mark                             # Mc | Me | Mn
+        gc ; N         ; Number                           # Nd | Nl | No
+        gc ; Nd        ; Decimal_Number                   ; digit
+        gc ; P         ; Punctuation                      ; punct                            # Pc | Pd | Pe | Pf | Pi | Po | Ps
+        gc ; S         ; Symbol                           # Sc | Sk | Sm | So
+        gc ; Z         ; Separator                        # Zl | Zp | Zs
+                 */
         for (String[] extra : extras) {
             UnicodeSet expected = new UnicodeSet(extra[2]).freeze();
             for (String test : extra) {
@@ -432,19 +456,23 @@ gc ; Z         ; Separator                        # Zl | Zp | Zs
                 }
             }
         }
-        assertEquals("Coverage:\t", new UnicodeSet("[:any:]"), UnicodeSetUtilities.parseUnicodeSet("[[:C:][:L:][:M:][:N:][:P:][:S:][:Z:]]"));
+        assertEquals(
+                "Coverage:\t",
+                new UnicodeSet("[:any:]"),
+                UnicodeSetUtilities.parseUnicodeSet("[[:C:][:L:][:M:][:N:][:P:][:S:][:Z:]]"));
     }
 
     @Test
     public void TestNF() {
-        for (String nf : new String[]{"d", "c", "kd", "kc"}) {
+        for (String nf : new String[] {"d", "c", "kd", "kc"}) {
             checkSetsEqual("[:isnf" + nf + ":]", "[:nf" + nf + "qc!=N:]");
             checkSetsEqual("[:isnf" + nf + ":]", "[:tonf" + nf + "=@cp@:]");
         }
     }
 
-
-    @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
+    @EnabledIf(
+            value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken",
+            disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
     @Test
     public void TestSets() {
 
@@ -452,8 +480,8 @@ gc ; Z         ; Separator                        # Zl | Zp | Zs
         checkProperties("[:toLowercase=a:]", "[Aa]", "[b]");
         checkProperties("[:subhead=/Mayanist/:]", "[\uA726]");
 
-        //checkProperties("[[:script=*latin:]-[:script=latin:]]");
-        //checkProperties("[[:script=**latin:]-[:script=latin:]]");
+        // checkProperties("[[:script=*latin:]-[:script=latin:]]");
+        // checkProperties("[[:script=**latin:]-[:script=latin:]]");
         checkProperties("abc-m", "[d]");
 
         //        checkProperties("[:usage=common:]", "[9]");
@@ -490,14 +518,24 @@ gc ; Z         ; Separator                        # Zl | Zp | Zs
             UnicodeSet contains = new UnicodeSet(containsSet);
             if (!tc1.containsAll(contains)) {
                 UnicodeSet missing = new UnicodeSet(contains).removeAll(tc1);
-                errln(tc1 + "\t=\t" + tc1.complement().complement() + "\t\nDoesn't contain " + missing);
+                errln(
+                        tc1
+                                + "\t=\t"
+                                + tc1.complement().complement()
+                                + "\t\nDoesn't contain "
+                                + missing);
             }
         }
         if (doesntContainSet != null) {
             UnicodeSet doesntContain = new UnicodeSet(doesntContainSet);
             if (!tc1.containsNone(doesntContain)) {
                 UnicodeSet extra = new UnicodeSet(doesntContain).retainAll(tc1);
-                errln(tc1 + "\t=\t" + tc1.complement().complement() + "\t\nContains some of" + extra);
+                errln(
+                        tc1
+                                + "\t=\t"
+                                + tc1.complement().complement()
+                                + "\t\nContains some of"
+                                + extra);
             }
         }
     }
@@ -514,12 +552,15 @@ gc ; Z         ; Separator                        # Zl | Zp | Zs
         }
     }
 
-    @EnabledIf(value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken", disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
+    @EnabledIf(
+            value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken",
+            disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
     @Test
     public void TestSetSyntax() {
-        //System.out.println("Script for A6E6: " + script + ", " + UScript.getName(script) + ", " + script2);
+        // System.out.println("Script for A6E6: " + script + ", " + UScript.getName(script) + ", " +
+        // script2);
         checkProperties("[:subhead=/Syllables/:]", "[\u1200]");
-        //showIcuEnums();
+        // showIcuEnums();
         checkProperties("\\p{ccc:0}", "\\p{ccc=0}", "[\u0308]");
         checkProperties("\\p{isNFC}", "[:ASCII:]", "[\u212B]");
         checkProperties("[:isNFC=no:]", "[\u212B]", "[:ASCII:]");
@@ -532,7 +573,13 @@ gc ; Z         ; Separator                        # Zl | Zp | Zs
         UnicodeProperty prop = factory.getProperty("tonfkccf");
         String trans2 = prop.getValue('\u2065');
         if (!trans1.equals(trans2)) {
-            errln("mapping of \u2065 " + UCharacter.getName('\u2065') + "," + trans1 + "," + trans2);
+            errln(
+                    "mapping of \u2065 "
+                            + UCharacter.getName('\u2065')
+                            + ","
+                            + trans1
+                            + ","
+                            + trans2);
         }
         checkProperties("[:tonfkccf=/^$/:]", "[:di:]", "[abc]");
         checkProperties("[:ccc=/3/:]", "[\u0308]");
@@ -544,7 +591,8 @@ gc ; Z         ; Separator                        # Zl | Zp | Zs
         checkProperties("[:^sc:Latn:]", "[\u0308]");
         checkProperties("[:sc≠Latn:]", "[\u0308]");
         checkSetsEqual("[:sc≠Latn:]", "[:^sc:Latn:]", "[:^sc=Latn:]", "[:sc!=Latn:]");
-        checkSetsEqual("[:sc=Latn:]", "[:sc:Latn:]", "[:^sc≠Latn:]", "[:^sc!=Latn:]", "[:^sc!:Latn:]");
+        checkSetsEqual(
+                "[:sc=Latn:]", "[:sc:Latn:]", "[:^sc≠Latn:]", "[:^sc!=Latn:]", "[:^sc!:Latn:]");
 
         try {
             checkProperties("[:linebreak:]", "[\u0308]");
@@ -571,13 +619,9 @@ gc ; Z         ; Separator                        # Zl | Zp | Zs
         checkProperties("[:alphabetic=f:]", "[\u0308]");
         checkProperties("[:alphabetic=n:]", "[\u0308]");
 
-
         checkProperties("\\p{idna2003=disallowed}", "[\\u0001]");
         checkProperties("\\p{idna=valid}", "[\u0308]");
         checkProperties("\\p{uts46=valid}", "[\u0308]");
         checkProperties("\\p{idna2008=disallowed}", "[A]");
     }
-
-
-
 }

@@ -1,25 +1,23 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/WriteJavaScriptInfo.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/WriteJavaScriptInfo.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import org.unicode.text.utility.Utility;
 
 public class WriteJavaScriptInfo implements UCD_Types {
 
-    static public void assigned() throws IOException {
-        final PrintWriter log = Utility.openPrintWriterGenDir("log/assigned.js", Utility.LATIN1_UNIX);
+    public static void assigned() throws IOException {
+        final PrintWriter log =
+                Utility.openPrintWriterGenDir("log/assigned.js", Utility.LATIN1_UNIX);
         final UCD ucd = UCD.makeLatestVersion();
         boolean wasIn = false;
         int lastWritten = -100;
@@ -34,16 +32,16 @@ public class WriteJavaScriptInfo implements UCD_Types {
                 log.print(i + ",");
                 lastWritten = i;
             } else {
-                if (lastWritten != i-1) {
-                    log.print(i-1);
+                if (lastWritten != i - 1) {
+                    log.print(i - 1);
                 }
                 log.println(",");
             }
             wasIn = in;
         }
         if (wasIn) {
-            if (lastWritten != i-1) {
-                log.print(i-1);
+            if (lastWritten != i - 1) {
+                log.print(i - 1);
             }
             log.println(",");
         }

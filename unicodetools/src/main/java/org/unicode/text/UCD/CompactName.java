@@ -1,14 +1,12 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/CompactName.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/CompactName.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
 import java.io.IOException;
@@ -31,9 +29,7 @@ public class CompactName {
             final String s = CompactName.stringFromToken(i);
             System.out.println(s);
         }
-
     }
-
 
     static final char[] compactMap = new char[128];
     static final char[] compactUnmap = new char[128];
@@ -108,7 +104,8 @@ public class CompactName {
         tokenList[lastToken++] = value;
 
         if (DEBUG) {
-            System.out.println("'" + s + "', tokenList[" + result + "] = lead: " + lead + ", trail: " + trail);
+            System.out.println(
+                    "'" + s + "', tokenList[" + result + "] = lead: " + lead + ", trail: " + trail);
             final String roundTrip = stringFromToken(result);
             if (!roundTrip.equals(s)) {
                 System.out.println("\t*** No Round Trip: '" + roundTrip + "'");
@@ -160,9 +157,8 @@ public class CompactName {
         if (in == null) {
             return -1;
         }
-        return ((Integer)in).intValue();
+        return ((Integer) in).intValue();
     }
-
 
     static int addWord(String s) {
 
@@ -233,8 +229,7 @@ public class CompactName {
     }
 
     static void show(String s, String firstPart, String lastPart, String comment) {
-        System.out.println((s) + " => '" + (firstPart)
-                + "' # '" + (lastPart) + "' " + comment);
+        System.out.println((s) + " => '" + (firstPart) + "' # '" + (lastPart) + "' " + comment);
     }
 
     static void startLines() {
@@ -259,7 +254,7 @@ public class CompactName {
             }
 
             final String firstPart = s.substring(0, i);
-            final String lastPart = s.substring(i+1);
+            final String lastPart = s.substring(i + 1);
 
             final int lead = tokenFromString(firstPart);
             final int trail = tokenFromString(lastPart);

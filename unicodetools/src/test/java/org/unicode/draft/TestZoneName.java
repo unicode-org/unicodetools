@@ -1,12 +1,12 @@
 package org.unicode.draft;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class TestZoneName {
     public static void main(String[] args) {
@@ -31,7 +31,7 @@ public class TestZoneName {
                 }
             }
             final long end = System.currentTimeMillis();
-            System.out.format("Pattern: %s,\tMilliseconds:%d\n", patternString, end-start);
+            System.out.format("Pattern: %s,\tMilliseconds:%d\n", patternString, end - start);
             System.out.println();
         }
     }

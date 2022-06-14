@@ -62,9 +62,9 @@ final class UnicodeMapInt {
         return data[findIndex(cp) - 1];
     }
 
-     *//**
-     * Returns the set of all characters that have the given value
-     *//*
+     */
+    /** Returns the set of all characters that have the given value */
+    /*
     public UnicodeSet getMatch(int value) {
         UnicodeSet result = new UnicodeSet();
         for (int i = 0; i < len; ++i) {
@@ -73,7 +73,9 @@ final class UnicodeMapInt {
         return result;
     }
 
-      *//** Finds the least index with a value greater than cp *//*
+      */
+    /** Finds the least index with a value greater than cp */
+    /*
     private int findIndex( int cp) {
         if (cp > 0x10FFFF) throw new ArrayIndexOutOfBoundsException("Code point too large: " + cp); // out of bounds!
         int i = -1;

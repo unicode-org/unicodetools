@@ -1,5 +1,8 @@
 package org.unicode.jsp;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.Utility;
+import com.ibm.icu.text.UnicodeSet;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Map;
@@ -7,12 +10,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.unicode.cldr.draft.FileUtilities;
-
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.Utility;
-import com.ibm.icu.text.UnicodeSet;
 
 public class Annotations {
     private static final UnicodeMap<Set<String>> data = new UnicodeMap();
@@ -30,14 +28,13 @@ public class Annotations {
     }
 
     static {
-        Map<String,Integer> idToCodepoint = new TreeMap();
-        for (String line : FileUtilities.in(Annotations.class,"annotations.txt")) {
+        Map<String, Integer> idToCodepoint = new TreeMap();
+        for (String line : FileUtilities.in(Annotations.class, "annotations.txt")) {
             String[] parts = line.split("\t");
             int codepoint = parts[1].codePointAt(0);
             idToCodepoint.put(parts[2], codepoint);
             String annotation = parts[3];
             data.put(codepoint, Collections.singleton(annotation));
-
         }
         // resolve references
         UnicodeSet copy = new UnicodeSet(keys());
@@ -65,10 +62,9 @@ public class Annotations {
                         throw new IllegalArgumentException("Can't replace " + original);
                     } else {
                         b.append(aString, lastEnd, m.start())
-                        .append("{")
-                        .append(replacement.iterator().next())
-                        .append("}")
-                        ;
+                                .append("{")
+                                .append(replacement.iterator().next())
+                                .append("}");
                         lastEnd = m.end();
                         ++count;
                         if (count > 10) {

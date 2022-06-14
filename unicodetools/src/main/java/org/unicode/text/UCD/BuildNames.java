@@ -1,16 +1,15 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/BuildNames.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/BuildNames.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
+import com.ibm.icu.text.UTF16;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -19,12 +18,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.text.utility.LengthFirstComparator;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.text.UTF16;
-
 
 public class BuildNames implements UCD_Types {
 
@@ -42,7 +37,10 @@ public class BuildNames implements UCD_Types {
     static int[] letters = new int[128];
 
     static class Count {
-        Count(int count) {this.count = count;}
+        Count(int count) {
+            this.count = count;
+        }
+
         int count;
     }
 
@@ -92,11 +90,11 @@ public class BuildNames implements UCD_Types {
             final char c = line.charAt(i);
 
             if (c == '-' || c == '<' || c == '>') {
-                if (result.length() > 0 && result.charAt(result.length()-1) != ' ') {
+                if (result.length() > 0 && result.charAt(result.length() - 1) != ' ') {
                     result.append(' ');
                 }
                 result.append(c);
-                if (i + 1 < line.length() && line.charAt(i+1) != ' ') {
+                if (i + 1 < line.length() && line.charAt(i + 1) != ' ') {
                     result.append(' ');
                 }
                 changed = true;
@@ -104,12 +102,12 @@ public class BuildNames implements UCD_Types {
             }
 
             if ('a' <= c && c <= 'z') {
-                result.append((char)(c - 'a' + 'A'));
+                result.append((char) (c - 'a' + 'A'));
                 changed = true;
                 continue;
             }
             if ('0' <= c && c <= '9') {
-                result.append('*').append((char)(c - '0' + 'A'));
+                result.append('*').append((char) (c - '0' + 'A'));
                 changed = true;
                 continue;
             }
@@ -131,7 +129,9 @@ public class BuildNames implements UCD_Types {
         while (it.hasNext()) {
             final String word = (String) it.next();
             final Count count = (Count) words.get(word);
-            biggest.put(new Integer(-count.count * word.length()), word); // make it negative just to reverse the sort
+            biggest.put(
+                    new Integer(-count.count * word.length()),
+                    word); // make it negative just to reverse the sort
         }
 
         it = biggest.keySet().iterator();
@@ -153,9 +153,9 @@ public class BuildNames implements UCD_Types {
         final PrintWriter log = Utility.openPrintWriterGenDir(fname, Utility.LATIN1_WINDOWS);
 
         System.out.println("Gathering data");
-        //Counter counter = new Counter();
+        // Counter counter = new Counter();
         final String[] parts = new String[100];
-        //int total = 0;
+        // int total = 0;
         int used = 0;
         int sum = 0;
         int longSum = 0;
@@ -190,10 +190,9 @@ public class BuildNames implements UCD_Types {
             for (int i = 0; i < str.length(); i += UTF16.getCharCount(cp2)) {
                 cp2 = UTF16.charAt(str, i);
                 name = Default.ucd().getName(cp2, SHORT);
-                if (name == null)
-                {
+                if (name == null) {
                     continue;
-                    //name = transform(name);
+                    // name = transform(name);
                 }
 
                 sum += name.length();
@@ -212,12 +211,12 @@ public class BuildNames implements UCD_Types {
         }
         log.close();
         Utility.fixDot();
-        //System.out.println("Overhead: " + (lastLink - used) + ", " + ((lastLink - used) * 100 / used) + "%");
-        //System.out.println("Strings: " + sum + ", " + (lastLink*4));
-        System.out.println("Short Names sum: " + sum + ", average: " + (sum + 0.0)/used);
-        System.out.println("Long Names sum: " + longSum + ", average: " + (longSum + 0.0)/used);
-        System.out.println("Savings: " + (1 - (sum+0.0)/longSum));
-
+        // System.out.println("Overhead: " + (lastLink - used) + ", " + ((lastLink - used) * 100 /
+        // used) + "%");
+        // System.out.println("Strings: " + sum + ", " + (lastLink*4));
+        System.out.println("Short Names sum: " + sum + ", average: " + (sum + 0.0) / used);
+        System.out.println("Long Names sum: " + longSum + ", average: " + (longSum + 0.0) / used);
+        System.out.println("Savings: " + (1 - (sum + 0.0) / longSum));
 
         printWords(words);
         printWords(doubleWords);
@@ -240,8 +239,15 @@ public class BuildNames implements UCD_Types {
             final String round = CompactName.stringFromToken(test);
             final boolean goesRound = round.equals(s);
             if (false || !goesRound) {
-                System.out.println("Compacting: '" + s + "': " + i++ + "(" + CompactName.lastToken + ")"
-                        + (goesRound ? ": NO RT: '" + round + "'" : ""));
+                System.out.println(
+                        "Compacting: '"
+                                + s
+                                + "': "
+                                + i++
+                                + "("
+                                + CompactName.lastToken
+                                + ")"
+                                + (goesRound ? ": NO RT: '" + round + "'" : ""));
             }
         }
 
@@ -260,8 +266,15 @@ public class BuildNames implements UCD_Types {
             final String round = CompactName.stringFromToken(test);
             final boolean goesRound = round.equals(s);
             if (false || !goesRound) {
-                System.out.println("Compacting: '" + s + "': " + i++ + "(" + CompactName.lastToken + ")"
-                        + (!goesRound ? ": NO RT: '" + round + "'" : ""));
+                System.out.println(
+                        "Compacting: '"
+                                + s
+                                + "': "
+                                + i++
+                                + "("
+                                + CompactName.lastToken
+                                + ")"
+                                + (!goesRound ? ": NO RT: '" + round + "'" : ""));
             }
         }
 
@@ -271,35 +284,37 @@ public class BuildNames implements UCD_Types {
             System.out.println(i + ": '" + s + "'");
         }*/
 
-        System.out.println("Strings: " + sum
-                + ", " + (CompactName.spacedMinimum*4)
-                + ", " + (CompactName.lastToken*4)
-                );
-
+        System.out.println(
+                "Strings: "
+                        + sum
+                        + ", "
+                        + (CompactName.spacedMinimum * 4)
+                        + ", "
+                        + (CompactName.lastToken * 4));
     }
     /*
-        Set stuff = new TreeSet();
-        for (int i = 0; i < letters.length; ++i) {
-            if (letters[i] != 0) {
-                stuff.add(new Integer((letters[i] << 8) + i));
-            }
-        }
+       Set stuff = new TreeSet();
+       for (int i = 0; i < letters.length; ++i) {
+           if (letters[i] != 0) {
+               stuff.add(new Integer((letters[i] << 8) + i));
+           }
+       }
 
-        it = stuff.iterator();
-        while (it.hasNext()) {
-            int in = ((Integer) it.next()).intValue();
-            System.out.println((char)(in & 0xFF) + ":\t" + String.valueOf(in >> 8));
-        }
-            int r = addString(name);
-            if (!DEBUG && !rname.equals(name)) {
-                System.out.println("\tNo Round Trip: '" + rname + "'");
-            }
-     */
+       it = stuff.iterator();
+       while (it.hasNext()) {
+           int in = ((Integer) it.next()).intValue();
+           System.out.println((char)(in & 0xFF) + ":\t" + String.valueOf(in >> 8));
+       }
+           int r = addString(name);
+           if (!DEBUG && !rname.equals(name)) {
+               System.out.println("\tNo Round Trip: '" + rname + "'");
+           }
+    */
 
     static Map stringToInt = new HashMap();
     static Map intToString = new HashMap();
 
-    static final int[] remap = new int['Z'+1];
+    static final int[] remap = new int['Z' + 1];
     static final int maxToken;
 
     static {
@@ -318,12 +333,13 @@ public class BuildNames implements UCD_Types {
     }
 
     static final String[] unmap = new String[maxToken];
+
     static {
         unmap[0] = "";
         for (int i = 0; i < remap.length; ++i) {
             final int x = remap[i];
             if (x != 0) {
-                unmap[x] = String.valueOf((char)i);
+                unmap[x] = String.valueOf((char) i);
             }
         }
     }
@@ -352,9 +368,9 @@ public class BuildNames implements UCD_Types {
         } else {
             final int value = links[i];
             final int lead = value >>> 16;
-                final int trail = value & 0xFFFF;
-                //if (DEBUG) System.out.println("lead: " + lead + ", trail: " + trail);
-                result = lookup(lead) + lookup(trail);
+            final int trail = value & 0xFFFF;
+            // if (DEBUG) System.out.println("lead: " + lead + ", trail: " + trail);
+            result = lookup(lead) + lookup(trail);
         }
         if (trailingSpace) {
             result += ' ';
@@ -378,7 +394,7 @@ public class BuildNames implements UCD_Types {
         if (in == null) {
             return -1;
         }
-        return ((Integer)in).intValue();
+        return ((Integer) in).intValue();
     }
 
     static int putString(String s, int lead, int trail) {
@@ -391,7 +407,8 @@ public class BuildNames implements UCD_Types {
         links[lastLink++] = value;
 
         if (DEBUG) {
-            System.out.println("'" + s + "', link[" + result + "] = lead: " + lead + ", trail: " + trail);
+            System.out.println(
+                    "'" + s + "', link[" + result + "] = lead: " + lead + ", trail: " + trail);
             final String roundTrip = lookup(result);
             if (!roundTrip.equals(s)) {
                 System.out.println("\t*** No Round Trip: '" + roundTrip + "'");
@@ -419,7 +436,7 @@ public class BuildNames implements UCD_Types {
         // invariant. We break after a space if there is one.
 
         for (int i = 1; i < limit; ++i) {
-            final char c = s.charAt(i-1);
+            final char c = s.charAt(i - 1);
             spaceBits = 0;
             endOfFirst = i;
             if (c == ' ') {
@@ -437,8 +454,14 @@ public class BuildNames implements UCD_Types {
             final int trail = getInt(lastPart);
             if (lead >= 0 && trail >= 0) { // if both match, return immediately with pair
                 if (DEBUG) {
-                    System.out.println(s + " => '" + firstPart + (spaceBits != 0 ? "*" : "")
-                            + "' # '" + lastPart + "' MATCH BOTH");
+                    System.out.println(
+                            s
+                                    + " => '"
+                                    + firstPart
+                                    + (spaceBits != 0 ? "*" : "")
+                                    + "' # '"
+                                    + lastPart
+                                    + "' MATCH BOTH");
                 }
                 return putString(s, spaceBits | lead, trail);
             }
@@ -483,21 +506,32 @@ public class BuildNames implements UCD_Types {
             final int trail = getInt(lastPart);
             if (lead >= 0) {
                 if (DEBUG) {
-                    System.out.println(s + " => '" + firstPart + (spaceBits != 0 ? "*" : "")
-                            + "' # '" + lastPart + "' MATCH FIRST");
+                    System.out.println(
+                            s
+                                    + " => '"
+                                    + firstPart
+                                    + (spaceBits != 0 ? "*" : "")
+                                    + "' # '"
+                                    + lastPart
+                                    + "' MATCH FIRST");
                 }
                 return putString(s, spaceBits | lead, addString(lastPart));
             } else {
                 if (DEBUG) {
-                    System.out.println(s + " => '" + firstPart + (spaceBits != 0 ? "*" : "")
-                            + "' # '" + lastPart + "' MATCH SECOND");
+                    System.out.println(
+                            s
+                                    + " => '"
+                                    + firstPart
+                                    + (spaceBits != 0 ? "*" : "")
+                                    + "' # '"
+                                    + lastPart
+                                    + "' MATCH SECOND");
                 }
                 return putString(s, spaceBits | addString(firstPart), trail);
             }
         }
         // otherwise, we failed to find anything. Then break before the last word, if there is one
         // otherwise break in the middle (but at even value)
-
 
         if (lastSpace >= 0) {
             best_i = lastSpace;
@@ -509,8 +543,14 @@ public class BuildNames implements UCD_Types {
         final String firstPart = s.substring(0, endOfFirst);
         final String lastPart = s.substring(best_i);
         if (DEBUG) {
-            System.out.println(s + " => '" + firstPart + (spaceBits != 0 ? "*" : "")
-                    + "' # '" + lastPart + "' FALLBACK");
+            System.out.println(
+                    s
+                            + " => '"
+                            + firstPart
+                            + (spaceBits != 0 ? "*" : "")
+                            + "' # '"
+                            + lastPart
+                            + "' FALLBACK");
         }
         return putString(s, spaceBits | addString(firstPart), addString(lastPart));
     }

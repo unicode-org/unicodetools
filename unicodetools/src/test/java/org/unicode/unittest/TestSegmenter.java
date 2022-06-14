@@ -1,41 +1,44 @@
 package org.unicode.unittest;
 
+import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableSet;
+import com.ibm.icu.text.CanonicalIterator;
 import java.io.File;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
-import org.unicode.cldr.util.CldrUtility;
-import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Segmenter;
 
-import com.google.common.base.Splitter;
-import com.google.common.collect.ImmutableSet;
-import com.ibm.icu.text.CanonicalIterator;
-
 public class TestSegmenter extends TestFmwkMinusMinus {
 
-    Segmenter gcb = Segmenter.make(ToolUnicodePropertySource.make(Default.ucdVersion()), "GraphemeClusterBreak").make();
+    Segmenter gcb =
+            Segmenter.make(
+                            ToolUnicodePropertySource.make(Default.ucdVersion()),
+                            "GraphemeClusterBreak")
+                    .make();
 
-        @Test
+    @Test
     public void Test11() {
         String[][] tests = {
-                {"🛑\u200d🛑", "|---"},
+            {"🛑\u200d🛑", "|---"},
         };
         for (String[] test : tests) {
             String s = test[0];
             String expected = test[1];
             int expectedIndex = 0;
             for (int i = 0; i < s.length(); ++i) {
-                boolean expectedBreak = i >= s.length() || Character.isLowSurrogate(s.charAt(i)) ? false : expected.charAt(expectedIndex++) == '|';
+                boolean expectedBreak =
+                        i >= s.length() || Character.isLowSurrogate(s.charAt(i))
+                                ? false
+                                : expected.charAt(expectedIndex++) == '|';
                 boolean actualBreak = gcb.breaksAt(s, i);
                 String title = s.substring(0, i) + "|" + s.substring(i);
                 if (!assertEquals(title, expectedBreak, actualBreak)) {
@@ -46,16 +49,15 @@ public class TestSegmenter extends TestFmwkMinusMinus {
     }
 
     @Disabled("Broken")
-        @Test
+    @Test
     public void TestIndic() {
         System.out.println();
 
         CanonicalIterator it = new CanonicalIterator("");
         Set<String> seen = new HashSet<>();
-        for (File file : new File(
-                CLDRPaths.TEST_DATA + "segmentation/graphemeCluster")
-                .listFiles()) {
-                int lineCount = 0;
+        for (File file :
+                new File(CLDRPaths.TEST_DATA + "segmentation/graphemeCluster").listFiles()) {
+            int lineCount = 0;
             for (String line : FileUtilities.in(file)) {
                 lineCount++;
                 int subcount = 0;
@@ -68,18 +70,26 @@ public class TestSegmenter extends TestFmwkMinusMinus {
                 }
                 List<String> parts = SEMI.splitToList(line);
                 try {
-                    //String sourceId = parts.get(0);
+                    // String sourceId = parts.get(0);
                     String source = parts.get(0);
                     String expected = parts.get(1);
                     StringBuilder cleaned = new StringBuilder();
                     extractBreakPoints(expected, cleaned);
                     String cleanedStr = cleaned.toString();
                     if (!source.equals(cleanedStr)) {
-                        errln("Expected value doesn't have same characters as source: "
-                                + file.getName()
-                                + "\t" + line + " // " + source + " ≠ " + cleanedStr
-                                + "\t" + Utility.hex(source) + " ≠ " + Utility.hex(cleanedStr)
-                                );
+                        errln(
+                                "Expected value doesn't have same characters as source: "
+                                        + file.getName()
+                                        + "\t"
+                                        + line
+                                        + " // "
+                                        + source
+                                        + " ≠ "
+                                        + cleanedStr
+                                        + "\t"
+                                        + Utility.hex(source)
+                                        + " ≠ "
+                                        + Utility.hex(cleanedStr));
                         continue;
                     }
 
@@ -98,9 +108,7 @@ public class TestSegmenter extends TestFmwkMinusMinus {
                     //                seen.add(line);
                     //            }
                 } catch (Exception e) {
-                    errln("Bad format for line: "
-                            + file.getName()
-                            + "\t" + line);
+                    errln("Bad format for line: " + file.getName() + "\t" + line);
                 }
             }
         }
@@ -108,7 +116,8 @@ public class TestSegmenter extends TestFmwkMinusMinus {
 
     static final Splitter SEMI = Splitter.on(';').trimResults();
 
-    private void showBreakLines(File file, final int lineCount, final int subcount, final String expected) {
+    private void showBreakLines(
+            File file, final int lineCount, final int subcount, final String expected) {
         try {
             StringBuilder cleaned = new StringBuilder();
             Set<Integer> expectedBreaks = extractBreakPoints(expected, cleaned);
@@ -119,12 +128,21 @@ public class TestSegmenter extends TestFmwkMinusMinus {
                 String actualForm = displayForm(source, actualBreaks);
                 String expectedForm = displayForm(source, expectedBreaks);
 
-                errln(file.getName()
-                        + "\t" + lineCount + ":" + subcount
-                        +")\t" + source + "; expected: " + expectedForm + "; actual: " + actualForm);
+                errln(
+                        file.getName()
+                                + "\t"
+                                + lineCount
+                                + ":"
+                                + subcount
+                                + ")\t"
+                                + source
+                                + "; expected: "
+                                + expectedForm
+                                + "; actual: "
+                                + actualForm);
             }
         } catch (Exception e) {
-            throw new IllegalArgumentException(lineCount + ":" + subcount + ") " + expected,e);
+            throw new IllegalArgumentException(lineCount + ":" + subcount + ") " + expected, e);
         }
     }
 
@@ -156,6 +174,7 @@ public class TestSegmenter extends TestFmwkMinusMinus {
 
     /**
      * extract break points. Always have break at start and end, even if not listed
+     *
      * @param expected
      * @return
      */
@@ -166,17 +185,19 @@ public class TestSegmenter extends TestFmwkMinusMinus {
         for (int i = 0; i < expected.length(); ++i) {
             char cp = expected.charAt(i);
             switch (cp) {
-            case '÷': case '➗':
-                result.add(offset);
-                break;
-            case '×': case '✖':
-                result.add(offset);
-                break;
-            default:
-                if (cleaned != null) {
-                    cleaned.append(cp);
-                }
-                offset++;
+                case '÷':
+                case '➗':
+                    result.add(offset);
+                    break;
+                case '×':
+                case '✖':
+                    result.add(offset);
+                    break;
+                default:
+                    if (cleaned != null) {
+                        cleaned.append(cp);
+                    }
+                    offset++;
             }
         }
         result.add(offset);

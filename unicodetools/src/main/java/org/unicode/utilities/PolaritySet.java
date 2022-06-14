@@ -1,14 +1,13 @@
 package org.unicode.utilities;
 
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
-
-import com.google.common.base.Joiner;
-import com.google.common.base.Splitter;
 
 public class PolaritySet<T> {
     public enum Operation {
@@ -19,9 +18,11 @@ public class PolaritySet<T> {
         XOR("⊕"),
         ;
         public final String display;
+
         private Operation(String display) {
             this.display = display;
         }
+
         public static Operation fromDisplay(String op) {
             for (Operation item : values()) {
                 if (item.display.equals(op)) {
@@ -31,6 +32,7 @@ public class PolaritySet<T> {
             return null;
         }
     }
+
     private static final Joiner SPACE_JOINER = Joiner.on(' ');
     private boolean isPositive;
     private Set<T> source;
@@ -73,7 +75,7 @@ public class PolaritySet<T> {
     }
 
     public boolean remove(Object o) {
-        return isPositive ? source.remove(o) : source.add((T)o);
+        return isPositive ? source.remove(o) : source.add((T) o);
     }
 
     public boolean containsAll(Collection<?> c) {
@@ -88,40 +90,40 @@ public class PolaritySet<T> {
 
     public boolean addAll(PolaritySet<T> other) {
         if (isPositive && other.isPositive) {
-            return source.addAll(other.source);                // A ∪ B
-        } else         if (isPositive && !other.isPositive) {
+            return source.addAll(other.source); // A ∪ B
+        } else if (isPositive && !other.isPositive) {
             isPositive = false;
-            return otherRemoveAllMe(other.source);        // B ∖ A
-        } else         if (!isPositive && other.isPositive) {
-            return source.removeAll(other.source);        // A ∖ B
+            return otherRemoveAllMe(other.source); // B ∖ A
+        } else if (!isPositive && other.isPositive) {
+            return source.removeAll(other.source); // A ∖ B
         } else /* if (!isPositive && !other.isPositive) */ {
-            return source.retainAll(other.source);        // A ∩ B
+            return source.retainAll(other.source); // A ∩ B
         }
     }
 
     public boolean retainAll(PolaritySet<T> other) {
         if (isPositive && other.isPositive) {
-            return source.retainAll(other.source);        // A ∩ B
-        } else         if (isPositive && !other.isPositive) {
-            return source.removeAll(other.source);        // A ∖ B
-        } else         if (!isPositive && other.isPositive) {
+            return source.retainAll(other.source); // A ∩ B
+        } else if (isPositive && !other.isPositive) {
+            return source.removeAll(other.source); // A ∖ B
+        } else if (!isPositive && other.isPositive) {
             isPositive = true;
-            return otherRemoveAllMe(other.source);        // B ∖ A
+            return otherRemoveAllMe(other.source); // B ∖ A
         } else /* if (!isPositive && !other.isPositive) */ {
-            return source.addAll(other.source);                // A ∪ B
+            return source.addAll(other.source); // A ∪ B
         }
     }
 
     public boolean removeAll(PolaritySet<T> other) {
         if (isPositive && other.isPositive) {
-            return source.removeAll(other.source);        // A ∖ B
-        } else         if (isPositive && !other.isPositive) {
-            return source.retainAll(other.source);        // A ∩ B
-        } else         if (!isPositive && other.isPositive) {
-            return source.addAll(other.source);                // A ∪ B
+            return source.removeAll(other.source); // A ∖ B
+        } else if (isPositive && !other.isPositive) {
+            return source.retainAll(other.source); // A ∩ B
+        } else if (!isPositive && other.isPositive) {
+            return source.addAll(other.source); // A ∪ B
         } else /* if (!isPositive && !other.isPositive) */ {
             isPositive = true;
-            return otherRemoveAllMe(other.source);        // B ∖ A
+            return otherRemoveAllMe(other.source); // B ∖ A
         }
     }
 
@@ -131,7 +133,6 @@ public class PolaritySet<T> {
         removeAll(other);
         addAll(temp);
     }
-
 
     private boolean otherRemoveAllMe(Set<T> other) {
         HashSet<T> temp = new HashSet<>(source);
@@ -151,12 +152,12 @@ public class PolaritySet<T> {
     }
 
     public boolean equals(Object o) {
-        PolaritySet<T> other = (PolaritySet<T>) o; 
+        PolaritySet<T> other = (PolaritySet<T>) o;
         return source.equals(o) && (isPositive == other.isPositive);
     }
 
     public int hashCode() {
-        return isPositive  ? source.hashCode() : source.hashCode() ^ 1;
+        return isPositive ? source.hashCode() : source.hashCode() ^ 1;
     }
 
     @Override
@@ -168,11 +169,11 @@ public class PolaritySet<T> {
         Set<?> temp = source;
         if (item instanceof Comparable) {
             temp = new TreeSet(); // put in defined order for debugging
-            temp.addAll((Set)source);
+            temp.addAll((Set) source);
         }
         return (isPositive ? "" : Operation.NEGATION.display) + "{" + SPACE_JOINER.join(temp) + "}";
     }
-    
+
     private static final Splitter SPACE_SPLITTER = Splitter.on(' ');
 
     public static PolaritySet<String> fromTestString(String source) {
@@ -182,20 +183,19 @@ public class PolaritySet<T> {
             source = source.substring(1);
         }
         TreeSet<String> set = new TreeSet<>();
-        switch(source) {
-        case "∅": 
-            break;
-        case "Ω": 
-            isNegated = !isNegated; 
-            break;
-        default:
-            if (!source.startsWith("{") || !source.endsWith("}")) {
-                return null;
-            }
-            set.addAll(SPACE_SPLITTER.splitToList(source.substring(1, source.length()-1)));
-            break;
+        switch (source) {
+            case "∅":
+                break;
+            case "Ω":
+                isNegated = !isNegated;
+                break;
+            default:
+                if (!source.startsWith("{") || !source.endsWith("}")) {
+                    return null;
+                }
+                set.addAll(SPACE_SPLITTER.splitToList(source.substring(1, source.length() - 1)));
+                break;
         }
         return PolaritySet.of(set, !isNegated);
     }
-
 }

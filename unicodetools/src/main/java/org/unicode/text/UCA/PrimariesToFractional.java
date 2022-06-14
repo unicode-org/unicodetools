@@ -1,16 +1,14 @@
 package org.unicode.text.UCA;
 
-import java.util.BitSet;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
-import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.UCD_Types;
-import org.unicode.text.utility.Utility;
-
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+import java.util.BitSet;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.utility.Utility;
 
 /**
  * Maps UCA-style primary weights to byte-fractional primaries.
@@ -24,18 +22,17 @@ public final class PrimariesToFractional {
     private final UCA uca;
 
     /**
-     * Fractional primary weight for numeric sorting (CODAN).
-     * Single-byte weight, lead byte for all computed whole-number CEs.
+     * Fractional primary weight for numeric sorting (CODAN). Single-byte weight, lead byte for all
+     * computed whole-number CEs.
      *
-     * <p>This must be a "homeless" weight.
-     * If any character or string mapped to a weight with this same lead byte,
-     * then we would get an illegal prefix overlap.
+     * <p>This must be a "homeless" weight. If any character or string mapped to a weight with this
+     * same lead byte, then we would get an illegal prefix overlap.
      */
     private int numericFractionalPrimary;
 
     /**
-     * One flag per fractional primary lead byte for whether
-     * the fractional weights that start with that byte are sort-key-compressible.
+     * One flag per fractional primary lead byte for whether the fractional weights that start with
+     * that byte are sort-key-compressible.
      */
     private final BitSet compressibleBytes = new BitSet(256);
 
@@ -59,12 +56,12 @@ public final class PrimariesToFractional {
         boolean beginsByte;
         boolean endsByte;
         /**
-         * If true, then primary weights of this group/script all have the same lead byte
-         * and are therefore compressible when writing sort keys.
-         * We need to know this before assigning
+         * If true, then primary weights of this group/script all have the same lead byte and are
+         * therefore compressible when writing sort keys. We need to know this before assigning
          * fractional primary weights so that we can assign them optimally.
          */
         boolean compressible = true;
+
         boolean defaultTwoBytePrimaries;
         boolean defaultTwoBytePunctuation;
         boolean twoBytesIfVariants = true;
@@ -98,45 +95,49 @@ public final class PrimariesToFractional {
             endsByte = true;
             return this;
         }
+
         ScriptOptions notCompressible() {
             if (!beginsByte && !endsByte) {
                 throw new IllegalArgumentException(
-                        "non-compressible script must begin or end with a lead byte boundary, " +
-                        "or both; see LDML collation spec");
+                        "non-compressible script must begin or end with a lead byte boundary, "
+                                + "or both; see LDML collation spec");
             }
             compressible = false;
             return this;
         }
+
         ScriptOptions twoBytePrimaries() {
             defaultTwoBytePrimaries = defaultTwoBytePunctuation = true;
             return this;
         }
+
         ScriptOptions noTwoBytePrimariesIfVariants() {
             twoBytesIfVariants = false;
             return this;
         }
+
         ScriptOptions twoBytePunctuation() {
             defaultTwoBytePunctuation = true;
             return this;
         }
+
         ScriptOptions threeBytePunctuation() {
             defaultTwoBytePunctuation = false;
             return this;
         }
+
         ScriptOptions minimalGap3() {
             useMinimalGap3 = true;
             return this;
         }
     }
 
-    /**
-     * FractionalUCA properties for a UCA primary weight.
-     */
+    /** FractionalUCA properties for a UCA primary weight. */
     public static class PrimaryToFractional {
         private ScriptOptions options;
         /**
-         * true if this primary is at the start of a group or script
-         * that begins with a new primary lead byte.
+         * true if this primary is at the start of a group or script that begins with a new primary
+         * lead byte.
          */
         private boolean newByte;
 
@@ -146,41 +147,39 @@ public final class PrimariesToFractional {
 
         private int fractionalPrimary;
         /**
-         * Stores fractional primaries for a siniform ideographic range, otherwise null.
-         * Offset by options.implicitRange.startCP. 0 for unassigned code points.
+         * Stores fractional primaries for a siniform ideographic range, otherwise null. Offset by
+         * options.implicitRange.startCP. 0 for unassigned code points.
          */
         private int[] rangePrimaries;
 
         /**
-         * FractionalUCA sets neutralSec and neutralTer to the sec/ter values
-         * when secTerToFractional==null and both values are either 0 or neutral.
-         * These values are then added to secTerToFractional when it is allocated.
+         * FractionalUCA sets neutralSec and neutralTer to the sec/ter values when
+         * secTerToFractional==null and both values are either 0 or neutral. These values are then
+         * added to secTerToFractional when it is allocated.
          */
         int neutralSec = -1;
+
         int neutralTer = -1;
         /**
-         * {@link PrimaryToFractional} serves as a container for {@link SecTerToFractional}.
-         * {@link PrimaryToFractional} does not set or use this reference at all.
-         * We just avoid yet another map from primary weights to values,
-         * and another map lookup for the same primary.
+         * {@link PrimaryToFractional} serves as a container for {@link SecTerToFractional}. {@link
+         * PrimaryToFractional} does not set or use this reference at all. We just avoid yet another
+         * map from primary weights to values, and another map lookup for the same primary.
          *
-         * <p>This is null until there is a non-neutral secondary or tertiary weight
-         * for this primary.
+         * <p>This is null until there is a non-neutral secondary or tertiary weight for this
+         * primary.
          */
         public SecTerToFractional secTerToFractional;
 
         private PrimaryToFractional() {}
 
-        /**
-         * Returns the planned number of fractional primary weight bytes.
-         */
+        /** Returns the planned number of fractional primary weight bytes. */
         private int getFractionalLength() {
             if (useSingleBytePrimary) {
                 return 1;
             }
-            if (useTwoBytePrimary ||
-                    (options.defaultTwoBytePrimaries && !useThreeBytePrimary) ||
-                    (options.twoBytesIfVariants && secTerToFractional != null)) {
+            if (useTwoBytePrimary
+                    || (options.defaultTwoBytePrimaries && !useThreeBytePrimary)
+                    || (options.twoBytesIfVariants && secTerToFractional != null)) {
                 return 2;
             }
             return 3;
@@ -195,10 +194,10 @@ public final class PrimariesToFractional {
         }
 
         /**
-         * Returns the script-first fractional primary that precedes this UCA primary's
-         * own fractional primary, if this is the first primary of a group or script,
-         * otherwise returns 0.
-         * The script-first primary is reset, so that the next call with the same UCA primary returns 0.
+         * Returns the script-first fractional primary that precedes this UCA primary's own
+         * fractional primary, if this is the first primary of a group or script, otherwise returns
+         * 0. The script-first primary is reset, so that the next call with the same UCA primary
+         * returns 0.
          */
         public int getAndResetScriptFirstFractionalPrimary() {
             if (options == null || !options.needToWriteScriptFirstFractional) {
@@ -213,9 +212,7 @@ public final class PrimariesToFractional {
             return newByte;
         }
 
-        /**
-         * Returns the fractional primary weight for the UCA primary.
-         */
+        /** Returns the fractional primary weight for the UCA primary. */
         public int getFractionalPrimary() {
             return fractionalPrimary;
         }
@@ -225,34 +222,35 @@ public final class PrimariesToFractional {
         }
 
         /**
-         * @return the script-first fractional primary of the reserved range before
-         * this primary's script, or 0 if there is none
+         * @return the script-first fractional primary of the reserved range before this primary's
+         *     script, or 0 if there is none
          */
         public int getReservedBeforeFractionalPrimary() {
-            return options != null && options.reservedBefore != null ?
-                    options.reservedBefore.scriptFirstFractional : 0;
+            return options != null && options.reservedBefore != null
+                    ? options.reservedBefore.scriptFirstFractional
+                    : 0;
         }
 
         /**
-         * @return the special reorder code of the reserved range before
-         * this primary's script, or -1 if there is none
+         * @return the special reorder code of the reserved range before this primary's script, or
+         *     -1 if there is none
          */
         public int getReservedBeforeReorderCode() {
-            return options != null && options.reservedBefore != null ?
-                    options.reservedBefore.reorderCode : -1;
+            return options != null && options.reservedBefore != null
+                    ? options.reservedBefore.reorderCode
+                    : -1;
         }
     }
 
     /**
-     * Computes valid FractionalUCA primary weights of desired byte lengths.
-     * Always starts with the first primary weight after 02.
-     * {@link PrimaryWeight#next(int)} increments
-     * one 1/2/3-byte weight to another 1/2/3-byte weight.
+     * Computes valid FractionalUCA primary weights of desired byte lengths. Always starts with the
+     * first primary weight after 02. {@link PrimaryWeight#next(int)} increments one 1/2/3-byte
+     * weight to another 1/2/3-byte weight.
      */
     private static class PrimaryWeight {
         /**
-         * For most bytes except a primary weight's lead byte, 02 is ok.
-         * It just needs to be greater than the level separator 01.
+         * For most bytes except a primary weight's lead byte, 02 is ok. It just needs to be greater
+         * than the level separator 01.
          */
         private static final int MIN_BYTE = 2;
 
@@ -260,30 +258,30 @@ public final class PrimariesToFractional {
         private static final int MAX2_UNCOMPRESSED = 0xff;
 
         /**
-         * Primary compression for sort keys uses bytes 03 and FF as compression terminators.
-         * The low terminator must be greater than the end-of-merged-string separator 02.
+         * Primary compression for sort keys uses bytes 03 and FF as compression terminators. The
+         * low terminator must be greater than the end-of-merged-string separator 02.
          */
         private static final int MIN2_COMPRESSED = MIN_BYTE + 2;
+
         private static final int MAX2_COMPRESSED = 0xfe;
 
         /**
-         * Increment byte2 a little more around single-byte primaries,
-         * for tailoring of at least 4 two-byte primaries or more than 1000 three-byte primaries.
+         * Increment byte2 a little more around single-byte primaries, for tailoring of at least 4
+         * two-byte primaries or more than 1000 three-byte primaries.
          */
         private static final int GAP2_FOR_SINGLE = 4;
 
         /**
          * Increment byte3 with a tailoring gap.
          *
-         * <p>When the gap is too large, then we allocate too many primary weights for
-         * a minor script and might overflow the single lead byte of a compressible reordering group.
+         * <p>When the gap is too large, then we allocate too many primary weights for a minor
+         * script and might overflow the single lead byte of a compressible reordering group.
          *
          * <p>When the gap is too small, then only a small number of characters can be tailored
          * (efficiently or at all) between root collation weights.
          *
          * <p>We can adjust in the {@link PrimariesToFractional#PrimariesToFractional(UCA)}
-         * constructor which script starts a new lead byte.
-         * See the comments there for criteria.
+         * constructor which script starts a new lead byte. See the comments there for criteria.
          */
         private static final int GAP3 = 6;
 
@@ -324,7 +322,7 @@ public final class PrimariesToFractional {
                 // At least a normal three-byte gap.
                 inc1 = byte2 < maxByte2 || (byte3 + gap3) <= 0xff ? 1 : 2;
             }
-            if(inc1 != 1 && compressibleLeadByte) {
+            if (inc1 != 1 && compressibleLeadByte) {
                 ++numErrors;
                 System.out.flush();
                 System.err.printf(
@@ -383,61 +381,61 @@ public final class PrimariesToFractional {
             final int oByte2 = byte2;
 
             switch (lastByteLength) {
-            case 1:
-                switch (newByteLength) {
                 case 1:
-                    // Gap of 1 lead byte between singles.
-                    addTo1(2);
+                    switch (newByteLength) {
+                        case 1:
+                            // Gap of 1 lead byte between singles.
+                            addTo1(2);
+                            break;
+                        case 2:
+                            // Larger two-byte gap after a single.
+                            addTo1(1);
+                            byte2 = minByte2 + GAP2_FOR_SINGLE;
+                            break;
+                        case 3:
+                            // Larger two-byte gap after a single.
+                            addTo1(1);
+                            byte2 = minByte2 + GAP2_FOR_SINGLE;
+                            byte3 = MIN_BYTE;
+                            break;
+                    }
                     break;
                 case 2:
-                    // Larger two-byte gap after a single.
-                    addTo1(1);
-                    byte2 = minByte2 + GAP2_FOR_SINGLE;
+                    switch (newByteLength) {
+                        case 1:
+                            // At least a larger two-byte gap before a single.
+                            addTo1((byte2 + GAP2_FOR_SINGLE) <= maxByte2 ? 1 : 2);
+                            byte2 = 0;
+                            break;
+                        case 2:
+                            // Normal two-byte gap.
+                            addTo2(2);
+                            break;
+                        case 3:
+                            // At least a two-byte gap after a double.
+                            addTo2(2);
+                            byte3 = MIN_BYTE;
+                            break;
+                    }
                     break;
                 case 3:
-                    // Larger two-byte gap after a single.
-                    addTo1(1);
-                    byte2 = minByte2 + GAP2_FOR_SINGLE;
-                    byte3 = MIN_BYTE;
+                    switch (newByteLength) {
+                        case 1:
+                            // At least a larger two-byte gap before a single.
+                            addTo1((byte2 + GAP2_FOR_SINGLE) <= maxByte2 ? 1 : 2);
+                            byte2 = byte3 = 0;
+                            break;
+                        case 2:
+                            // At least a two-byte gap before a double.
+                            addTo2(2);
+                            byte3 = 0;
+                            break;
+                        case 3:
+                            // Normal three-byte gap.
+                            addTo3(gap3 + 1);
+                            break;
+                    }
                     break;
-                }
-                break;
-            case 2:
-                switch (newByteLength) {
-                case 1:
-                    // At least a larger two-byte gap before a single.
-                    addTo1((byte2 + GAP2_FOR_SINGLE) <= maxByte2 ? 1 : 2);
-                    byte2 = 0;
-                    break;
-                case 2:
-                    // Normal two-byte gap.
-                    addTo2(2);
-                    break;
-                case 3:
-                    // At least a two-byte gap after a double.
-                    addTo2(2);
-                    byte3 = MIN_BYTE;
-                    break;
-                }
-                break;
-            case 3:
-                switch (newByteLength) {
-                case 1:
-                    // At least a larger two-byte gap before a single.
-                    addTo1((byte2 + GAP2_FOR_SINGLE) <= maxByte2 ? 1 : 2);
-                    byte2 = byte3 = 0;
-                    break;
-                case 2:
-                    // At least a two-byte gap before a double.
-                    addTo2(2);
-                    byte3 = 0;
-                    break;
-                case 3:
-                    // Normal three-byte gap.
-                    addTo3(gap3 + 1);
-                    break;
-                }
-                break;
             }
 
             check(oByte1, oByte2, newByteLength, false);
@@ -446,34 +444,33 @@ public final class PrimariesToFractional {
             return getIntValue();
         }
 
-        /**
-         * Checks that we made a good transition.
-         */
+        /** Checks that we made a good transition. */
         private void check(int oByte1, int oByte2, int newByteLength, boolean newFirstByte) {
             // verify results
             // right bytes are filled in, as requested
             switch (newByteLength) {
-            case 1:
-                assertTrue(byte1 != 0 && byte2 == 0 &&  byte3 == 0);
-                break;
-            case 2:
-                assertTrue(byte1 != 0 && byte2 != 0 &&  byte3 == 0);
-                break;
-            case 3:
-                assertTrue(byte1 != 0 && byte2 != 0 &&  byte3 != 0);
-                break;
+                case 1:
+                    assertTrue(byte1 != 0 && byte2 == 0 && byte3 == 0);
+                    break;
+                case 2:
+                    assertTrue(byte1 != 0 && byte2 != 0 && byte3 == 0);
+                    break;
+                case 3:
+                    assertTrue(byte1 != 0 && byte2 != 0 && byte3 != 0);
+                    break;
             }
 
             // neither is prefix of the other
             if (lastByteLength != newByteLength) {
-                final int minLength = lastByteLength < newByteLength ? lastByteLength : newByteLength;
+                final int minLength =
+                        lastByteLength < newByteLength ? lastByteLength : newByteLength;
                 switch (minLength) {
-                case 1:
-                    assertTrue(byte1 != oByte1);
-                    break;
-                case 2:
-                    assertTrue(byte1 != oByte1 || byte2 != oByte2);
-                    break;
+                    case 1:
+                        assertTrue(byte1 != oByte1);
+                        break;
+                    case 2:
+                        assertTrue(byte1 != oByte1 || byte2 != oByte2);
+                        break;
                 }
             }
 
@@ -558,9 +555,9 @@ public final class PrimariesToFractional {
     }
 
     /**
-     * This constructor just performs basic initialization.
-     * You must call {@link PrimariesToFractional#assignFractionalPrimaries(StringBuilder)}
-     * to build the data for the rest of the API.
+     * This constructor just performs basic initialization. You must call {@link
+     * PrimariesToFractional#assignFractionalPrimaries(StringBuilder)} to build the data for the
+     * rest of the API.
      */
     public PrimariesToFractional(UCA uca) {
         this.uca = uca;
@@ -572,11 +569,17 @@ public final class PrimariesToFractional {
 
         // Some spaces and punctuation share a lead byte.
         setOptionsForScript(ReorderCodes.SPACE).newByte().notCompressible().twoBytePrimaries();
-        setOptionsForScript(ReorderCodes.PUNCTUATION).finishByte().notCompressible().twoBytePrimaries();
+        setOptionsForScript(ReorderCodes.PUNCTUATION)
+                .finishByte()
+                .notCompressible()
+                .twoBytePrimaries();
 
         // Some general and currency symbols share a lead byte.
         setOptionsForScript(ReorderCodes.SYMBOL).newByte().notCompressible().twoBytePrimaries();
-        setOptionsForScript(ReorderCodes.CURRENCY).finishByte().notCompressible().twoBytePrimaries();
+        setOptionsForScript(ReorderCodes.CURRENCY)
+                .finishByte()
+                .notCompressible()
+                .twoBytePrimaries();
 
         setOptionsForScript(ReorderCodes.DIGIT).wholeByte().notCompressible().twoBytePrimaries();
 
@@ -614,20 +617,27 @@ public final class PrimariesToFractional {
         // Mark reserved ranges as not compressible, to avoid confusion,
         // and to avoid tools code issues with using multiple lead bytes.
         setOptionsForReservedRangeBeforeScript(
-                ReorderCodes.REORDER_RESERVED_BEFORE_LATIN, UCD_Types.LATIN_SCRIPT)
-                .wholeByte().notCompressible();
+                        ReorderCodes.REORDER_RESERVED_BEFORE_LATIN, UCD_Types.LATIN_SCRIPT)
+                .wholeByte()
+                .notCompressible();
         // Latin uses multiple lead bytes, with single-byte primaries for A-Z.
-        setOptionsForScript(UCD_Types.LATIN_SCRIPT).wholeByte().notCompressible().twoBytePrimaries();
+        setOptionsForScript(UCD_Types.LATIN_SCRIPT)
+                .wholeByte()
+                .notCompressible()
+                .twoBytePrimaries();
         setOptionsForReservedRangeBeforeScript(
-                ReorderCodes.REORDER_RESERVED_AFTER_LATIN, UCD_Types.GREEK_SCRIPT)
-                .wholeByte().notCompressible();
+                        ReorderCodes.REORDER_RESERVED_AFTER_LATIN, UCD_Types.GREEK_SCRIPT)
+                .wholeByte()
+                .notCompressible();
         // Recommended Script, and cased.
         setOptionsForScript(UCD_Types.GREEK_SCRIPT).newByte().twoBytePrimaries();
         // Not a Recommended Script but cased, and easily fits into the same lead byte as Greek.
         setOptionsForScript(UCD_Types.COPTIC).twoBytePrimaries().threeBytePunctuation();
         // Cyrillic uses one lead byte, with two-byte primaries for common characters.
-        setOptionsForScript(UCD_Types.CYRILLIC_SCRIPT).wholeByte()
-                .noTwoBytePrimariesIfVariants().twoBytePunctuation();
+        setOptionsForScript(UCD_Types.CYRILLIC_SCRIPT)
+                .wholeByte()
+                .noTwoBytePrimariesIfVariants()
+                .twoBytePunctuation();
         // Recommended Script, and cased; avoid lead byte overflow.
         setOptionsForScript(UCD_Types.GEORGIAN_SCRIPT).newByte().twoBytePrimaries();
         // Recommended Script, and cased. Does not fit in a lead byte with Georgian.
@@ -635,8 +645,10 @@ public final class PrimariesToFractional {
         // Recommended Script, few primaries, with active computer/internet usage.
         setOptionsForScript(UCD_Types.HEBREW_SCRIPT).newByte().twoBytePrimaries();
         // Arabic uses one lead byte, with two-byte primaries for common characters.
-        setOptionsForScript(UCD_Types.ARABIC_SCRIPT).wholeByte()
-                .noTwoBytePrimariesIfVariants().twoBytePunctuation();
+        setOptionsForScript(UCD_Types.ARABIC_SCRIPT)
+                .wholeByte()
+                .noTwoBytePrimariesIfVariants()
+                .twoBytePunctuation();
         // Recommended Script, few primaries.
         setOptionsForScript(UCD_Types.THAANA_SCRIPT).twoBytePrimaries();
         // Ethiopic is a Recommended Script but needs three-byte primaries so that
@@ -681,11 +693,15 @@ public final class PrimariesToFractional {
         // Limited Use Script, avoid lead byte overflow.
         setOptionsForScript(UCD_Types.Vai).newByte();
         // Hangul uses one lead byte, with two-byte primaries for conjoining Jamo L/V/T.
-        setOptionsForScript(UCD_Types.HANGUL_SCRIPT).wholeByte()
-                .noTwoBytePrimariesIfVariants().twoBytePunctuation();
+        setOptionsForScript(UCD_Types.HANGUL_SCRIPT)
+                .wholeByte()
+                .noTwoBytePrimariesIfVariants()
+                .twoBytePunctuation();
         // Kana uses one lead byte, with two-byte primaries for common characters.
         setOptionsForScripts(
-                UCD_Types.HIRAGANA_SCRIPT, UCD_Types.KATAKANA_SCRIPT, UCD_Types.KATAKANA_OR_HIRAGANA)
+                        UCD_Types.HIRAGANA_SCRIPT,
+                        UCD_Types.KATAKANA_SCRIPT,
+                        UCD_Types.KATAKANA_OR_HIRAGANA)
                 .wholeByte();
         // Recommended Script, some characters have variants.
         setOptionsForScript(UCD_Types.BOPOMOFO_SCRIPT).newByte().twoBytePrimaries();
@@ -703,17 +719,20 @@ public final class PrimariesToFractional {
         setOptionsForScripts(UCD_Types.Tangut).minimalGap3();
         // Han uses many lead bytes, so that tailoring tens of thousands of characters
         // can use many two-byte primaries.
-        setOptionsForScript(UCD_Types.HAN_SCRIPT).wholeByte().notCompressible().twoBytePunctuation();
+        setOptionsForScript(UCD_Types.HAN_SCRIPT)
+                .wholeByte()
+                .notCompressible()
+                .twoBytePunctuation();
 
         // All other scripts get default options.
     }
- 
+
     private ScriptOptions setOptionsForScript(int script) {
         return scriptOptions[script] = getOrCreateOptionsForScript(script);
     }
 
-    private ScriptOptions setOptionsForScripts(int ...scripts) {
-        ScriptOptions o = getOrCreateOptionsForScript(scripts[0]);  // The other scripts are aliases.
+    private ScriptOptions setOptionsForScripts(int... scripts) {
+        ScriptOptions o = getOrCreateOptionsForScript(scripts[0]); // The other scripts are aliases.
         for (int script : scripts) {
             scriptOptions[script] = o;
         }
@@ -740,9 +759,8 @@ public final class PrimariesToFractional {
     }
 
     /**
-     * Loads the set of UCA primary weights, finds reordering group boundaries,
-     * assigns a fractional primary weight for every UCA primary,
-     * and writes the [top_byte] information.
+     * Loads the set of UCA primary weights, finds reordering group boundaries, assigns a fractional
+     * primary weight for every UCA primary, and writes the [top_byte] information.
      */
     public PrimariesToFractional assignFractionalPrimaries(StringBuilder topByteInfo) {
         System.out.println("Finding Bumps");
@@ -768,7 +786,7 @@ public final class PrimariesToFractional {
         final Iterator<UCA.Primary> regularPrimaries = uca.getRegularPrimaries().iterator();
         final Iterator<PrimaryToFractional> siniformRanges = getSiniformRanges().iterator();
 
-        for (;;) {
+        for (; ; ) {
             int primary;
             int nextPrimary;
             int representativeCP;
@@ -818,8 +836,13 @@ public final class PrimariesToFractional {
                     assert options.beginsByte;
                     final int firstFractional = fractionalPrimary.startNewByte(options);
                     final int leadByte = Fractional.getLeadByte(firstFractional);
-                    appendTopByteInfo(topByteInfo, previousGroupIsCompressible,
-                            previousGroupLeadByte, leadByte, groupInfo, numPrimaries);
+                    appendTopByteInfo(
+                            topByteInfo,
+                            previousGroupIsCompressible,
+                            previousGroupLeadByte,
+                            leadByte,
+                            groupInfo,
+                            numPrimaries);
                     previousGroupLeadByte = leadByte;
                     previousGroupIsCompressible = options.compressible;
 
@@ -841,8 +864,13 @@ public final class PrimariesToFractional {
                     final int leadByte = Fractional.getLeadByte(firstFractional);
 
                     // Finish the previous reordering group.
-                    appendTopByteInfo(topByteInfo, previousGroupIsCompressible,
-                            previousGroupLeadByte, leadByte, groupInfo, numPrimaries);
+                    appendTopByteInfo(
+                            topByteInfo,
+                            previousGroupIsCompressible,
+                            previousGroupLeadByte,
+                            leadByte,
+                            groupInfo,
+                            numPrimaries);
                     previousGroupLeadByte = leadByte;
                     previousGroupIsCompressible = options.compressible;
 
@@ -851,7 +879,7 @@ public final class PrimariesToFractional {
                     groupInfo.setLength(0);
                     groupInfo.append(ReorderCodes.getShortName(reorderCode));
                     if (reorderCode == UCD_Types.HIRAGANA_SCRIPT) {
-                        groupInfo.append(" Hrkt Kana");  // script aliases
+                        groupInfo.append(" Hrkt Kana"); // script aliases
                     }
                     String groupComment = " starts new lead byte";
                     if (options.compressible) {
@@ -885,7 +913,7 @@ public final class PrimariesToFractional {
                     }
                     groupInfo.append(ReorderCodes.getShortName(reorderCode));
                     if (reorderCode == UCD_Types.Meroitic_Cursive) {
-                        groupInfo.append(" Mero");  // script aliases
+                        groupInfo.append(" Mero"); // script aliases
                     }
                     System.out.printf(
                             "[%s]  # %s first primary\n",
@@ -896,7 +924,9 @@ public final class PrimariesToFractional {
             }
 
             int currentByteLength = props.getFractionalLength();
-            if (currentByteLength == 3 && fractionalPrimary.lastByteLength <= 2 && nextPrimary >= 0) {
+            if (currentByteLength == 3
+                    && fractionalPrimary.lastByteLength <= 2
+                    && nextPrimary >= 0) {
                 // We slightly optimize the assignment of primary weights:
                 // If a 3-byte primary is surrounded by one-or-two-byte primaries,
                 // then we can shorten the middle one to two bytes as well,
@@ -919,9 +949,10 @@ public final class PrimariesToFractional {
                 // We do not want to auto-shorten just before the first-script primary weights
                 // because that could increase the gap in between.
                 final PrimaryToFractional nextProps = getProps(nextPrimary);
-                if (nextPrimary < Implicit.START &&
-                        nextProps != null && nextProps.getFractionalLength() <= 2 &&
-                        !nextProps.isFirstForScript(nextPrimary)) {
+                if (nextPrimary < Implicit.START
+                        && nextProps != null
+                        && nextProps.getFractionalLength() <= 2
+                        && !nextProps.isFirstForScript(nextPrimary)) {
                     currentByteLength = 2;
                 }
             }
@@ -936,20 +967,25 @@ public final class PrimariesToFractional {
             if (DEBUG_FW) {
                 System.out.println(
                         currentByteLength
-                        + ", " + old
-                        + " => " + fractionalPrimary.toString()
-                        + "\t" + Utility.hex(representativeCP));
+                                + ", "
+                                + old
+                                + " => "
+                                + fractionalPrimary.toString()
+                                + "\t"
+                                + Utility.hex(representativeCP));
             }
 
             if (implicitRange != null) {
                 // We only computed the first fractional primary.
                 // Now compute and store the remaining ones.
                 props.rangePrimaries = new int[implicitRange.lastCP - implicitRange.startCP + 1];
-                props.rangePrimaries[implicitRange.firstCP - implicitRange.startCP] = props.fractionalPrimary;
+                props.rangePrimaries[implicitRange.firstCP - implicitRange.startCP] =
+                        props.fractionalPrimary;
                 UnicodeSetIterator iter = new UnicodeSetIterator(implicitRange.set);
-                iter.next();  // Skip the first code point.
+                iter.next(); // Skip the first code point.
                 while (iter.next()) {
-                    props.rangePrimaries[iter.codepoint - implicitRange.startCP] = fractionalPrimary.next(currentByteLength);
+                    props.rangePrimaries[iter.codepoint - implicitRange.startCP] =
+                            fractionalPrimary.next(currentByteLength);
                     ++numPrimaries;
                 }
             }
@@ -962,8 +998,13 @@ public final class PrimariesToFractional {
         int leadByte = Fractional.getLeadByte(firstFractional);
 
         // Finish the previous reordering group.
-        appendTopByteInfo(topByteInfo, previousGroupIsCompressible,
-                previousGroupLeadByte, leadByte, groupInfo, numPrimaries);
+        appendTopByteInfo(
+                topByteInfo,
+                previousGroupIsCompressible,
+                previousGroupLeadByte,
+                leadByte,
+                groupInfo,
+                numPrimaries);
         previousGroupLeadByte = leadByte;
 
         // Record Hani.
@@ -1006,8 +1047,14 @@ public final class PrimariesToFractional {
             }
         };
     }
-    private static void appendTopByteInfo(StringBuilder topByteInfo, boolean compress,
-            int b, int limit, CharSequence groupInfo, int count) {
+
+    private static void appendTopByteInfo(
+            StringBuilder topByteInfo,
+            boolean compress,
+            int b,
+            int limit,
+            CharSequence groupInfo,
+            int count) {
         final boolean canCompress = (limit - b) == 1;
         if (compress) {
             if (!canCompress) {
@@ -1016,24 +1063,30 @@ public final class PrimariesToFractional {
                 // after printing error messages.
                 System.out.flush();
                 System.err.println(
-                        "reordering group {" + groupInfo +
-                        "} marked for compression but uses more than one lead byte " +
-                        Utility.hex(b, 2) + ".." +
-                        Utility.hex(limit - 1, 2));
+                        "reordering group {"
+                                + groupInfo
+                                + "} marked for compression but uses more than one lead byte "
+                                + Utility.hex(b, 2)
+                                + ".."
+                                + Utility.hex(limit - 1, 2));
                 System.err.flush();
                 compress = false;
             }
         } else if (canCompress) {
             System.out.println(
-                    "# Note: reordering group {" + groupInfo + "} " +
-                            "not marked for compression but uses only one lead byte " +
-                            Utility.hex(b, 2));
+                    "# Note: reordering group {"
+                            + groupInfo
+                            + "} "
+                            + "not marked for compression but uses only one lead byte "
+                            + Utility.hex(b, 2));
         }
 
         while (b < limit) {
-            topByteInfo.append("[top_byte\t").
-            append(Utility.hex(b, 2)).
-            append("\t").append(groupInfo);
+            topByteInfo
+                    .append("[top_byte\t")
+                    .append(Utility.hex(b, 2))
+                    .append("\t")
+                    .append(groupInfo);
             if (compress) {
                 topByteInfo.append("\tCOMPRESS");
             }
@@ -1072,10 +1125,9 @@ public final class PrimariesToFractional {
     }
 
     /**
-     * Returns the properties for the UCA primary weight.
-     * Returns the same object for all primary lead weights for each
-     * UCA implicit-weights range (only one for Han).
-     * Returns null if there are no data for this primary.
+     * Returns the properties for the UCA primary weight. Returns the same object for all primary
+     * lead weights for each UCA implicit-weights range (only one for Han). Returns null if there
+     * are no data for this primary.
      */
     public PrimaryToFractional getProps(int ucaPrimary) {
         int index = pinPrimary(ucaPrimary);
@@ -1083,8 +1135,8 @@ public final class PrimariesToFractional {
     }
 
     /**
-     * Returns the properties for the UCA primary weight.
-     * Creates and caches a new one if there are no data for this primary yet.
+     * Returns the properties for the UCA primary weight. Creates and caches a new one if there are
+     * no data for this primary yet.
      */
     public PrimaryToFractional getOrCreateProps(int ucaPrimary) {
         int index = pinPrimary(ucaPrimary);
@@ -1114,9 +1166,10 @@ public final class PrimariesToFractional {
 
     /**
      * Analyzes the UCA primary weights.
+     *
      * <ul>
-     * <li>Determines the lengths of the corresponding fractional weights.
-     * <li>Sets a flag for the first UCA primary in each reordering group.
+     *   <li>Determines the lengths of the corresponding fractional weights.
+     *   <li>Sets a flag for the first UCA primary in each reordering group.
      * </ul>
      */
     private void findBumps() {
@@ -1139,12 +1192,13 @@ public final class PrimariesToFractional {
                     // do nothing, assume Latin 1 is "frequent"
                 } else {
                     final byte cat = Fractional.getFixedCategory(ch);
-                    if (cat == UCD_Types.OTHER_SYMBOL ||
-                            cat == UCD_Types.MATH_SYMBOL ||
-                            cat == UCD_Types.MODIFIER_SYMBOL ||
-                            (script != UCD_Types.COMMON_SCRIPT &&
-                                    script != UCD_Types.INHERITED_SCRIPT &&
-                                    !getOrCreateOptionsForScript(script).defaultTwoBytePunctuation)) {
+                    if (cat == UCD_Types.OTHER_SYMBOL
+                            || cat == UCD_Types.MATH_SYMBOL
+                            || cat == UCD_Types.MODIFIER_SYMBOL
+                            || (script != UCD_Types.COMMON_SCRIPT
+                                    && script != UCD_Types.INHERITED_SCRIPT
+                                    && !getOrCreateOptionsForScript(script)
+                                            .defaultTwoBytePunctuation)) {
                         // Note: We do not test reorderCode == ReorderCodes.SYMBOL
                         // because that includes Lm etc.
                         props.useThreeBytePrimary = true;
@@ -1153,8 +1207,9 @@ public final class PrimariesToFractional {
                 script = (short) reorderCode;
             }
 
-            if (script == UCD_Types.COMMON_SCRIPT || script == UCD_Types.INHERITED_SCRIPT ||
-                    script == UCD_Types.Unknown_Script) {
+            if (script == UCD_Types.COMMON_SCRIPT
+                    || script == UCD_Types.INHERITED_SCRIPT
+                    || script == UCD_Types.Unknown_Script) {
                 // Not a real script, keep current options.
             } else if (script != options.reorderCode) {
                 ScriptOptions newOptions = getOrCreateOptionsForScript(script);
@@ -1166,14 +1221,21 @@ public final class PrimariesToFractional {
                     // - We emit (and implementations test) compressibility by primary lead bytes.
                     // - The set of bytes usable for primary second bytes depends on
                     //   whether the lead byte is compressible.
-                    props.newByte = options.endsByte || newOptions.beginsByte ||
-                            options.compressible != newOptions.compressible;
+                    props.newByte =
+                            options.endsByte
+                                    || newOptions.beginsByte
+                                    || options.compressible != newOptions.compressible;
                     System.out.println(
-                            (props.newByte ? "New primary lead byte:\t" : "Continue lead byte:   \t")
-                            + Utility.hex(primary) + " "
-                            + ReorderCodes.getName(script) + " "
-                            + Utility.hex(ch) + " "
-                            + Default.ucd().getName(ch));
+                            (props.newByte
+                                            ? "New primary lead byte:\t"
+                                            : "Continue lead byte:   \t")
+                                    + Utility.hex(primary)
+                                    + " "
+                                    + ReorderCodes.getName(script)
+                                    + " "
+                                    + Utility.hex(ch)
+                                    + " "
+                                    + Default.ucd().getName(ch));
                     options = newOptions;
                 }
             }
@@ -1184,8 +1246,9 @@ public final class PrimariesToFractional {
         // Iterate over siniform ideographic ranges, start scripts.
         for (Implicit.Range r : uca.implicit.ranges) {
             short script = Fractional.getFixedScript(r.firstCP);
-            assert script != UCD_Types.COMMON_SCRIPT && script != UCD_Types.INHERITED_SCRIPT &&
-                    script != UCD_Types.Unknown_Script;
+            assert script != UCD_Types.COMMON_SCRIPT
+                    && script != UCD_Types.INHERITED_SCRIPT
+                    && script != UCD_Types.Unknown_Script;
             PrimaryToFractional props = getOrCreateProps(r.leadPrimary);
             props.options = getOrCreateOptionsForScript(script);
             props.options.firstPrimary = r.leadPrimary;
@@ -1197,10 +1260,7 @@ public final class PrimariesToFractional {
         hanProps.options.firstPrimary = Implicit.CJK_BASE;
         hanProps.newByte = true;
 
-        final char[][] singlePairs = {
-                {'a','z'}, {' ', ' '},
-                {'0', '9'}, {'.', '.'},  {',', ','}
-        };
+        final char[][] singlePairs = {{'a', 'z'}, {' ', ' '}, {'0', '9'}, {'.', '.'}, {',', ','}};
         for (final char[] singlePair : singlePairs) {
             final char start = singlePair[0];
             final char end = singlePair[1];
@@ -1209,45 +1269,56 @@ public final class PrimariesToFractional {
             }
         }
 
-        final UnicodeSet twoByteChars = new UnicodeSet(
-                "[" +
-                        // Cyrillic main exemplar characters from CLDR 22,
-                        // for common locales plus Mongolian.
-                        // We could make this dynamic, using CLDR's tools to fetch this data.
-                        // Consider adding Cyrillic auxiliary exemplar characters.
-                        "\u0430-\u044F\u0451-\u045C\u045E-\u045F\u0491\u0493\u0495\u049B\u049D" +
-                        "\u04A3\u04A5\u04AF\u04B1\u04B3\u04B7\u04B9\u04BB\u04CA" +
-                        "\u04D5\u04D9\u04E3\u04E9\u04EF" +
-                        // Try to mostly fill the Cyrillic lead byte.
-                        // Most of Cyrillic & Cyrillic Supplement
-                        // but not archaic/historic characters.
-                        "\u0400-\u045F\u048A-\u04F9\u0500-\u050D" +
+        final UnicodeSet twoByteChars =
+                new UnicodeSet(
+                        "["
+                                +
+                                // Cyrillic main exemplar characters from CLDR 22,
+                                // for common locales plus Mongolian.
+                                // We could make this dynamic, using CLDR's tools to fetch this
+                                // data.
+                                // Consider adding Cyrillic auxiliary exemplar characters.
+                                "\u0430-\u044F\u0451-\u045C\u045E-\u045F\u0491\u0493\u0495\u049B\u049D"
+                                + "\u04A3\u04A5\u04AF\u04B1\u04B3\u04B7\u04B9\u04BB\u04CA"
+                                + "\u04D5\u04D9\u04E3\u04E9\u04EF"
+                                +
+                                // Try to mostly fill the Cyrillic lead byte.
+                                // Most of Cyrillic & Cyrillic Supplement
+                                // but not archaic/historic characters.
+                                "\u0400-\u045F\u048A-\u04F9\u0500-\u050D"
+                                +
 
-                        // Arabic main exemplar characters from CLDR 22,
-                        // except for primary ignorable characters.
-                        "\u0621-\u063A\u0641-\u064A\u066E\u0672\u0679\u067C\u067E" +
-                        "\u0681\u0685\u0686\u0688\u0689\u0691\u0693\u0696\u0698\u069A" +
-                        "\u06A9\u06AB\u06AF\u06BA\u06BC\u06BE\u06C1\u06C2\u06C4\u06C7\u06C9\u06CC\u06CD" +
-                        "\u06D0\u06D2" +
-                        // Try to mostly fill the Arabic lead byte.
-                        // Some of the Unicode 1.1 Extended Arabic letters.
-                        "\u0674-\u06A0" +
-                        // Jamo L, V, T
-                        "\u1100-\u1112\u1161-\u1175\u11A8-\u11C2" +
+                                // Arabic main exemplar characters from CLDR 22,
+                                // except for primary ignorable characters.
+                                "\u0621-\u063A\u0641-\u064A\u066E\u0672\u0679\u067C\u067E"
+                                + "\u0681\u0685\u0686\u0688\u0689\u0691\u0693\u0696\u0698\u069A"
+                                + "\u06A9\u06AB\u06AF\u06BA\u06BC\u06BE\u06C1\u06C2\u06C4\u06C7\u06C9\u06CC\u06CD"
+                                + "\u06D0\u06D2"
+                                +
+                                // Try to mostly fill the Arabic lead byte.
+                                // Some of the Unicode 1.1 Extended Arabic letters.
+                                "\u0674-\u06A0"
+                                +
+                                // Jamo L, V, T
+                                "\u1100-\u1112\u1161-\u1175\u11A8-\u11C2"
+                                +
 
-                        // Try to mostly fill the Hangul lead byte.
-                        // Some old Hangul letters, mostly with variants.
-                        // Old initial consonants
-                        "\u1114-\u1115\u111A-\u1123\u1127-\u112F\u1157-\u1159" +
-                        // Old medial vowels
-                        "\u1184-\u1188\u1191-\u1194\u119E-\u11A1" +
-                        // Old final consonants
-                        "\u11C7\u11C8\u11CC-\u11CE" +
+                                // Try to mostly fill the Hangul lead byte.
+                                // Some old Hangul letters, mostly with variants.
+                                // Old initial consonants
+                                "\u1114-\u1115\u111A-\u1123\u1127-\u112F\u1157-\u1159"
+                                +
+                                // Old medial vowels
+                                "\u1184-\u1188\u1191-\u1194\u119E-\u11A1"
+                                +
+                                // Old final consonants
+                                "\u11C7\u11C8\u11CC-\u11CE"
+                                +
 
-                        // Hiragana & Katakana main-block letters,
-                        // but not extensions nor Hentaigana.
-                        "\\u3041-\\u309E\u30A1-\u30FE" +
-                "]");
+                                // Hiragana & Katakana main-block letters,
+                                // but not extensions nor Hentaigana.
+                                "\\u3041-\\u309E\u30A1-\u30FE"
+                                + "]");
         final UnicodeSetIterator twoByteIter = new UnicodeSetIterator(twoByteChars);
         while (twoByteIter.next()) {
             setTwoBytePrimaryFor(firstScriptPrimary, twoByteIter.codepoint);

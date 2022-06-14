@@ -1,5 +1,12 @@
 package org.unicode.draft;
 
+import com.ibm.icu.impl.Utility;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UProperty;
+import com.ibm.icu.lang.UProperty.NameChoice;
+import com.ibm.icu.text.Normalizer;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -12,39 +19,20 @@ import java.util.SortedMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Counter;
 
-import com.ibm.icu.impl.Utility;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.lang.UProperty.NameChoice;
-import com.ibm.icu.text.Normalizer;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-
 public class IdnaFrequency {
     private static final Charset LATIN1 = Charset.forName("8859-1");
 
     /**
-     * cm000162 3 481 31032 6 22 \xc5\xa2\xc4\x98\xc4\x82M\xc4\x8c\xc5\x96@\xc5\xb9\xc5\xb8.yoll.net 278 41991 0 29
-     * home.\xc5\xa2replug.net
-     * 0 c = child, p=parent; m = mapped, u=unmapped; 000162 hex code point
-     * 1 3 - count
-     * 2 481 - navboost
-     * 3 31032 - page rank
-     * 4 6 - language
-     * 5 22 - encoding
-     * 6 url in utf-8 (c-style byte escapes)
-     * 7,8,9,10
-     * 11 url
-     * 12,13,14,15
-     * 16 url
-     * ...
-     * 
+     * cm000162 3 481 31032 6 22 \xc5\xa2\xc4\x98\xc4\x82M\xc4\x8c\xc5\x96@\xc5\xb9\xc5\xb8.yoll.net
+     * 278 41991 0 29 home.\xc5\xa2replug.net 0 c = child, p=parent; m = mapped, u=unmapped; 000162
+     * hex code point 1 3 - count 2 481 - navboost 3 31032 - page rank 4 6 - language 5 22 -
+     * encoding 6 url in utf-8 (c-style byte escapes) 7,8,9,10 11 url 12,13,14,15 16 url ...
+     *
      * @param args
      * @throws IOException
      */
@@ -55,10 +43,17 @@ public class IdnaFrequency {
             String norm = normalize(cp);
             if (!norm.equals(UTF16.valueOf(cp))) {
                 final int dt = UCharacter.getIntPropertyValue(cp, UProperty.DECOMPOSITION_TYPE);
-                final String tdName = UCharacter
-                    .getPropertyValueName(UProperty.DECOMPOSITION_TYPE, dt, NameChoice.LONG);
-                System.out.println(charTotal.getCount(cp) + "\t" + tdName + "\t" + getCodeAndName(cp) + "\t=>\t"
-                    + getCodeAndName(norm));
+                final String tdName =
+                        UCharacter.getPropertyValueName(
+                                UProperty.DECOMPOSITION_TYPE, dt, NameChoice.LONG);
+                System.out.println(
+                        charTotal.getCount(cp)
+                                + "\t"
+                                + tdName
+                                + "\t"
+                                + getCodeAndName(cp)
+                                + "\t=>\t"
+                                + getCodeAndName(norm));
             }
         }
     }
@@ -66,8 +61,12 @@ public class IdnaFrequency {
     static UnicodeSet testchars = new UnicodeSet("[[:script=greek:]ÄäÖöÜüß]");
 
     public static Counter<Integer> getData(boolean writeOut) throws IOException {
-        BufferedReader in = FileUtilities.openUTF8Reader("", CldrUtility.getProperty("idnaFrequency"));
-        PrintWriter out = !writeOut ? null : FileUtilities.openUTF8Writer(CLDRPaths.GEN_DIRECTORY, "idn41-data.txt");
+        BufferedReader in =
+                FileUtilities.openUTF8Reader("", CldrUtility.getProperty("idnaFrequency"));
+        PrintWriter out =
+                !writeOut
+                        ? null
+                        : FileUtilities.openUTF8Writer(CLDRPaths.GEN_DIRECTORY, "idn41-data.txt");
         if (writeOut) {
             out.write((char) 0xFEFF);
         }
@@ -75,7 +74,7 @@ public class IdnaFrequency {
         // Mapper<Encoding> encodingMapper = new Mapper<Encoding>(Encoding.values());
         Counter<Integer> charTotal = new Counter<Integer>();
 
-        for (int counter = 0;; ++counter) {
+        for (int counter = 0; ; ++counter) {
             String line = in.readLine();
             if (line == null) {
                 break;
@@ -121,9 +120,11 @@ public class IdnaFrequency {
         }
     }
 
-    static UnicodeSet diSet = new UnicodeSet(
-        "[\\u034F \\u180B-\\u180D\\u200B-\\u200F\\u202A-\\u202E\\u2060-\\u2064\\u206A-\\u206F \\uFE00-\\uFE0F\\uFEFF\\U0001D173-\\U0001D17A\\U000E0001\\U000E0020-\\U000E007F \\U000E0100-\\U000E01EF \\u00AD \\u17B4 \\u17B5 \\u115F \\u1160\\u3164\\uFFA0 \\u2065-\\u2069 \\uFFF0-\\uFFF8]");
-    static Matcher defaultIgnorables = Pattern.compile(diSet.toPattern(false), Pattern.COMMENTS).matcher("");
+    static UnicodeSet diSet =
+            new UnicodeSet(
+                    "[\\u034F \\u180B-\\u180D\\u200B-\\u200F\\u202A-\\u202E\\u2060-\\u2064\\u206A-\\u206F \\uFE00-\\uFE0F\\uFEFF\\U0001D173-\\U0001D17A\\U000E0001\\U000E0020-\\U000E007F \\U000E0100-\\U000E01EF \\u00AD \\u17B4 \\u17B5 \\u115F \\u1160\\u3164\\uFFA0 \\u2065-\\u2069 \\uFFF0-\\uFFF8]");
+    static Matcher defaultIgnorables =
+            Pattern.compile(diSet.toPattern(false), Pattern.COMMENTS).matcher("");
 
     private static String normalize(int cp) {
         String a = Normalizer.normalize(cp, Normalizer.NFKC);
@@ -134,8 +135,12 @@ public class IdnaFrequency {
     }
 
     private static String getCodeAndName(int cp) {
-        return "U+" + Utility.hex(cp, 4) + "\t( " + com.ibm.icu.text.UTF16.valueOf(cp) + " )\t"
-            + UCharacter.getName(cp);
+        return "U+"
+                + Utility.hex(cp, 4)
+                + "\t( "
+                + com.ibm.icu.text.UTF16.valueOf(cp)
+                + " )\t"
+                + UCharacter.getName(cp);
     }
 
     private static String getCodeAndName(String cp) {
@@ -156,30 +161,30 @@ public class IdnaFrequency {
         for (int i = 0; i < string.length(); ++i) {
             char b = string.charAt(i);
             switch (state) {
-            case 0:
-                if (b == '\\') {
-                    state = 1;
-                } else {
-                    out.write(b);
-                }
-                break;
-            case 1:
-                if (b != 'x') {
-                    out.write(b);
+                case 0:
+                    if (b == '\\') {
+                        state = 1;
+                    } else {
+                        out.write(b);
+                    }
+                    break;
+                case 1:
+                    if (b != 'x') {
+                        out.write(b);
+                        state = 0;
+                    } else {
+                        state = 2;
+                    }
+                    break;
+                case 2:
+                    chBuffer = getNybble(b) << 4;
+                    state = 3;
+                    break;
+                case 3:
+                    chBuffer |= getNybble(b);
+                    out.write((byte) chBuffer);
                     state = 0;
-                } else {
-                    state = 2;
-                }
-                break;
-            case 2:
-                chBuffer = getNybble(b) << 4;
-                state = 3;
-                break;
-            case 3:
-                chBuffer |= getNybble(b);
-                out.write((byte) chBuffer);
-                state = 0;
-                break;
+                    break;
             }
         }
         out.close();

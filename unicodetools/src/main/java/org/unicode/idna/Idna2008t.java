@@ -1,14 +1,12 @@
 package org.unicode.idna;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.unicode.idna.Idna2008.Idna2008Type;
-
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UnicodeSet;
 
 public class Idna2008t extends Idna {
 
@@ -24,15 +22,15 @@ public class Idna2008t extends Idna {
         for (final Idna2008Type oldType : oldTypes.values()) {
             final UnicodeSet uset = oldTypes.getSet(oldType);
             switch (oldType) {
-            case UNASSIGNED:
-            case DISALLOWED:
-                types.putAll(uset, Idna.IdnaType.disallowed);
-                break;
-            case PVALID:
-            case CONTEXTJ:
-            case CONTEXTO:
-                types.putAll(uset, Idna.IdnaType.valid);
-                break;
+                case UNASSIGNED:
+                case DISALLOWED:
+                    types.putAll(uset, Idna.IdnaType.disallowed);
+                    break;
+                case PVALID:
+                case CONTEXTJ:
+                case CONTEXTO:
+                    types.putAll(uset, Idna.IdnaType.valid);
+                    break;
             }
         }
         types.put('.', IdnaType.valid);
@@ -50,18 +48,21 @@ public class Idna2008t extends Idna {
 
     private static void initData() {
 
-        final Matcher DATALINE = Pattern.compile(
-                "([0-9a-fA-F]{4,6})" +
-                        "(?:\\.\\.([0-9a-fA-F]{4,6}))?" +
-                        "\\s*;\\s*" +
-                        "(PVALID|DISALLOWED|UNASSIGNED|CONTEXTJ|CONTEXTO)" +
-                        "\\s*#\\s*" +
-                "(.*)").matcher("");
+        final Matcher DATALINE =
+                Pattern.compile(
+                                "([0-9a-fA-F]{4,6})"
+                                        + "(?:\\.\\.([0-9a-fA-F]{4,6}))?"
+                                        + "\\s*;\\s*"
+                                        + "(PVALID|DISALLOWED|UNASSIGNED|CONTEXTJ|CONTEXTO)"
+                                        + "\\s*#\\s*"
+                                        + "(.*)")
+                        .matcher("");
 
         try {
-            final BufferedReader in = new BufferedReader(
-                    new InputStreamReader(
-                            Idna2008.class.getResourceAsStream("tables.txt")));
+            final BufferedReader in =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    Idna2008.class.getResourceAsStream("tables.txt")));
             // FileUtilities.openReader(Utility.DATA_DIRECTORY + "/IDN/",
             // "draft-faltstrom-idnabis-tables-05.txt", "ascii");
             boolean inTable = false;
@@ -87,7 +88,9 @@ public class Idna2008t extends Idna {
                 if (!inTable) {
                     continue;
                 }
-                if (line.length() == 0 || line.startsWith("Faltstrom") || line.startsWith("Internet-Draft")) {
+                if (line.length() == 0
+                        || line.startsWith("Faltstrom")
+                        || line.startsWith("Internet-Draft")) {
                     continue;
                 }
                 // we now have real data
@@ -96,8 +99,10 @@ public class Idna2008t extends Idna {
                     continue;
                 }
                 final int startChar = Integer.parseInt(DATALINE.group(1), 16);
-                final int endChar = DATALINE.group(2) == null ? startChar : Integer.parseInt(DATALINE
-                        .group(2), 16);
+                final int endChar =
+                        DATALINE.group(2) == null
+                                ? startChar
+                                : Integer.parseInt(DATALINE.group(2), 16);
                 final Idna2008Type idnaType = Idna2008Type.valueOf(DATALINE.group(3));
                 oldTypes.putAll(startChar, endChar, idnaType);
             }

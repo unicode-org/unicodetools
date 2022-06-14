@@ -1,17 +1,15 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/IntMap.java,v $
- * $Date: 2007-02-11 08:15:09 $
- * $Revision: 1.2 $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/IntMap.java,v $ $Date: 2007-02-11
+ * 08:15:09 $ $Revision: 1.2 $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
+
 import java.util.HashMap;
 
 public class IntMap {

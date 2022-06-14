@@ -1,22 +1,18 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UData.java,v $
- * $Date: 2010-06-21 18:23:39 $
- * $Revision: 1.15 $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UData.java,v $ $Date: 2010-06-21
+ * 18:23:39 $ $Revision: 1.15 $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
@@ -57,13 +53,13 @@ class UData implements UCD_Types {
     byte Vertical_Orientation = VO_R;
 
     static final UData UNASSIGNED = new UData();
-    //static final UData NONCHARACTER = new UData();
+    // static final UData NONCHARACTER = new UData();
     static {
         UNASSIGNED.name = "<unassigned>";
-        UNASSIGNED.decompositionMapping = UNASSIGNED.bidiMirror
-                = UNASSIGNED.simpleUppercase
-                = UNASSIGNED.simpleLowercase
-                = UNASSIGNED.simpleTitlecase = "";
+        UNASSIGNED.decompositionMapping =
+                UNASSIGNED.bidiMirror =
+                        UNASSIGNED.simpleUppercase =
+                                UNASSIGNED.simpleLowercase = UNASSIGNED.simpleTitlecase = "";
         UNASSIGNED.fleshOut();
 
         /*NONCHARACTER.name = "<noncharacter>";
@@ -77,12 +73,11 @@ class UData implements UCD_Types {
          */
     }
 
-    public UData (int codePoint) {
+    public UData(int codePoint) {
         this.codePoint = codePoint;
     }
 
-    public UData () {
-    }
+    public UData() {}
 
     @Override
     public boolean equals(Object that) {
@@ -249,9 +244,8 @@ class UData implements UCD_Types {
         final String codeValue = UTF32.valueOf32(codePoint);
 
         // first case folding
-        
-        if (fullCaseFolding.equals(fullLowercase)
-                && codePoint >= 0x13A0 && codePoint <= 0x13F5) {
+
+        if (fullCaseFolding.equals(fullLowercase) && codePoint >= 0x13A0 && codePoint <= 0x13F5) {
             fullCaseFolding = null;
         }
         if (simpleCaseFolding.equals(simpleLowercase)) {
@@ -309,7 +303,7 @@ class UData implements UCD_Types {
     }
 
     public boolean isLetter() {
-        return ((1<<generalCategory) & UCD_Types.LETTER_MASK) != 0;
+        return ((1 << generalCategory) & UCD_Types.LETTER_MASK) != 0;
     }
 
     public static void writeString(DataOutputStream os, String s) throws IOException {
@@ -346,7 +340,7 @@ class UData implements UCD_Types {
         result.append("<e cp='").append(Utility.quoteXML(codePoint)).append('\'');
         result.append(" hx='").append(Utility.hex(codePoint)).append('\'');
         if (full || script != COMMON_SCRIPT) {
-            result.append(" sn='").append(UCD.getScriptID_fromIndex(script,SHORT)).append('\'');
+            result.append(" sn='").append(UCD.getScriptID_fromIndex(script, SHORT)).append('\'');
         }
         result.append(" n='").append(Utility.quoteXML(name)).append("'\n");
 
@@ -359,7 +353,9 @@ class UData implements UCD_Types {
             result.append(" cc='").append(combiningClass & 0xFF).append('\'');
         }
         if (full || decompositionType != NONE) {
-            result.append(" dt='").append(UCD_Names.LONG_DECOMPOSITION_TYPE[decompositionType]).append('\'');
+            result.append(" dt='")
+                    .append(UCD_Names.LONG_DECOMPOSITION_TYPE[decompositionType])
+                    .append('\'');
         }
         if (full || !s.equals(decompositionMapping)) {
             result.append(" dm='").append(Utility.quoteXML(decompositionMapping)).append('\'');
@@ -373,7 +369,9 @@ class UData implements UCD_Types {
         }
 
         if (full || eastAsianWidth != EAN) {
-            result.append(" ea='").append(UCD_Names.LONG_EAST_ASIAN_WIDTH[eastAsianWidth]).append('\'');
+            result.append(" ea='")
+                    .append(UCD_Names.LONG_EAST_ASIAN_WIDTH[eastAsianWidth])
+                    .append('\'');
         }
         if (full || lineBreak != LB_AL) {
             result.append(" lb='").append(UCD_Names.LINE_BREAK[lineBreak]).append('\'');
@@ -398,10 +396,14 @@ class UData implements UCD_Types {
             result.append(" bpb='").append(Utility.quoteXML(Bidi_Paired_Bracket)).append('\'');
         }
         if (full || Bidi_Paired_Bracket_Type != 0) {
-            result.append(" bpt='").append(UCD_Names.Bidi_Paired_Bracket_Type_SHORT[Bidi_Paired_Bracket_Type]).append('\'');
+            result.append(" bpt='")
+                    .append(UCD_Names.Bidi_Paired_Bracket_Type_SHORT[Bidi_Paired_Bracket_Type])
+                    .append('\'');
         }
         if (full || Vertical_Orientation != 0) {
-            result.append(" vo='").append(UCD_Names.Vertical_Orientation_SHORT[Vertical_Orientation]).append('\'');
+            result.append(" vo='")
+                    .append(UCD_Names.Vertical_Orientation_SHORT[Vertical_Orientation])
+                    .append('\'');
         }
 
         if (lastPos != result.length()) {
@@ -409,10 +411,10 @@ class UData implements UCD_Types {
             lastPos = result.length();
         }
 
-        //String bp = "";
+        // String bp = "";
         final long bprops = binaryProperties;
         for (int i = 0; i < LIMIT_BINARY_PROPERTIES; ++i) {
-            if ((bprops & (1L<<i)) != 0) {
+            if ((bprops & (1L << i)) != 0) {
                 result.append(UCD_Names.BP[i]).append("='T' ");
             }
         }
@@ -553,6 +555,7 @@ class UData implements UCD_Types {
         }
          */
     }
+
     static boolean HACK = false;
 
     public void cleanup() {

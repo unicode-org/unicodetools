@@ -1,5 +1,11 @@
 package org.unicode.draft;
 
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.impl.Relation;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ULocale;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,24 +18,18 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.utility.Settings;
-
-import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.impl.Relation;
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.ULocale;
 
 public class Cmudict {
     static final String BASE_DIR = Settings.UnicodeTools.DATA_DIR + "translit/";
     private static final String GEN_TRANSLIT_DIR = Settings.Output.GEN_DIR + "translit/";
     static final Collator col = Collator.getInstance(ULocale.ROOT);
-    //static final StressFixer stressFixer = new StressFixer();
-    static final Transliterator arpabet = getTransliteratorFromFile("arpabet-ipa", BASE_DIR, "arpabet-ipa.txt");
-    static final Transliterator respell = getTransliteratorFromFile("ipa-en", BASE_DIR, "respell.txt");
+    // static final StressFixer stressFixer = new StressFixer();
+    static final Transliterator arpabet =
+            getTransliteratorFromFile("arpabet-ipa", BASE_DIR, "arpabet-ipa.txt");
+    static final Transliterator respell =
+            getTransliteratorFromFile("ipa-en", BASE_DIR, "respell.txt");
 
     public static void main(String[] args) throws IOException {
 
@@ -37,10 +37,12 @@ public class Cmudict {
         final UnicodeSet WORD_OK = new UnicodeSet("[-.a-z’¹²³\\u0020]").freeze();
         final Set<String> funnyWords = new TreeSet<String>();
 
-        final Relation<String,String> toIPA = new Relation(new TreeMap<String,String>(col), LinkedHashSet.class);
-        final Relation<String,String> fromIpa = new Relation(new TreeMap(col), TreeSet.class);
+        final Relation<String, String> toIPA =
+                new Relation(new TreeMap<String, String>(col), LinkedHashSet.class);
+        final Relation<String, String> fromIpa = new Relation(new TreeMap(col), TreeSet.class);
         final Set<String> ipaWithoutStress = new TreeSet<String>(col);
-        final Relation<String,String> ipaDifferingByStress = new Relation(new TreeMap(col), TreeSet.class);
+        final Relation<String, String> ipaDifferingByStress =
+                new Relation(new TreeMap(col), TreeSet.class);
 
         final BufferedReader in = FileUtilities.openUTF8Reader(BASE_DIR, "cmudict.0.7a.txt");
         while (true) {
@@ -59,19 +61,22 @@ public class Cmudict {
             //                continue;
             //            }
             final int wordEnd = line.indexOf(' ');
-            final String word = line.substring(0,wordEnd).toLowerCase(Locale.ENGLISH)
-                    .replace('\'', '’')
-                    .replace('_', ' ')
-                    .replace("(1)","") // ¹
-                    .replace("(2)","") // ²
-                    .replace("(3)","") // ³
+            final String word =
+                    line.substring(0, wordEnd)
+                            .toLowerCase(Locale.ENGLISH)
+                            .replace('\'', '’')
+                            .replace('_', ' ')
+                            .replace("(1)", "") // ¹
+                            .replace("(2)", "") // ²
+                            .replace("(3)", "") // ³
                     ;
-            if (!WORD_OK.containsAll(word) || SKIP_START.contains(word.codePointAt(0))
+            if (!WORD_OK.containsAll(word)
+                    || SKIP_START.contains(word.codePointAt(0))
                     || word.startsWith("’") && word.contains("quote")) {
                 funnyWords.add(word);
                 continue;
             }
-            final String pronunciation = line.substring(wordEnd+1);
+            final String pronunciation = line.substring(wordEnd + 1);
             final String ipa = getIpa(pronunciation);
             fromIpa.put(ipa, word);
             toIPA.put(word, ipa);
@@ -81,7 +86,7 @@ public class Cmudict {
             if (!ipa.contains("ˈ")) {
                 ipaWithoutStress.add(ipa);
             }
-            final String stresslessIpa = ipa.replace("ˈ","").replace("ˌ","");
+            final String stresslessIpa = ipa.replace("ˈ", "").replace("ˌ", "");
             ipaDifferingByStress.put(stresslessIpa, ipa);
         }
         in.close();
@@ -114,10 +119,10 @@ public class Cmudict {
         //            }
         //        }
 
-
         System.out.println("Post-processing");
         final Set<String> removals = new HashSet<String>();
-        final Relation<String,String> specials = new Relation(new TreeMap(col), LinkedHashSet.class);
+        final Relation<String, String> specials =
+                new Relation(new TreeMap(col), LinkedHashSet.class);
 
         for (final Entry<String, Set<String>> entry : toIPA.keyValuesSet()) {
             final String word = entry.getKey();
@@ -132,7 +137,7 @@ public class Cmudict {
                 newWord = newWord.substring(1);
             }
             if (endsWith) {
-                newWord = newWord.substring(0, newWord.length()-1);
+                newWord = newWord.substring(0, newWord.length() - 1);
             }
             final Collection<String> values2 = toIPA.get(newWord);
             if (values2 == null) {
@@ -141,7 +146,15 @@ public class Cmudict {
                 // System.out.println("Values Match:\t" + word + "\t" + values + "\t" + values2);
                 removals.add(word);
             } else {
-                System.out.println("Values Differ:\t" + word + "\t" + values + "\t" + newWord + "\t" + values2);
+                System.out.println(
+                        "Values Differ:\t"
+                                + word
+                                + "\t"
+                                + values
+                                + "\t"
+                                + newWord
+                                + "\t"
+                                + values2);
             }
         }
         toIPA.removeAll(removals);
@@ -149,7 +162,7 @@ public class Cmudict {
             System.out.println("Missing?\t" + entry);
         }
 
-        PrintWriter out = FileUtilities.openUTF8Writer(GEN_TRANSLIT_DIR, "cmudict.txt") ;
+        PrintWriter out = FileUtilities.openUTF8Writer(GEN_TRANSLIT_DIR, "cmudict.txt");
         for (final Entry<String, Set<String>> entry : toIPA.keyValuesSet()) {
             final String word = entry.getKey();
             final Set<String> values = entry.getValue();
@@ -157,7 +170,7 @@ public class Cmudict {
         }
         out.close();
 
-        out = FileUtilities.openUTF8Writer(GEN_TRANSLIT_DIR, "homonyms.txt") ;
+        out = FileUtilities.openUTF8Writer(GEN_TRANSLIT_DIR, "homonyms.txt");
         final Set<String> temp = new TreeSet(col);
         for (final Entry<String, Set<String>> entry : fromIpa.keyValuesSet()) {
             final Set<String> values = entry.getValue();
@@ -166,7 +179,7 @@ public class Cmudict {
             }
             temp.clear();
             for (String value : values) {
-                value = value.replace("’","");
+                value = value.replace("’", "");
                 temp.add(value);
             }
             if (temp.size() == 1) {
@@ -193,14 +206,20 @@ public class Cmudict {
                 final String otherIpa = reverseIpa.get(reversedRespelledKey);
                 final String respelledOtherIpa = respell.transform(otherIpa);
                 final String reversedRespelledOtherIpa = respell.transform(respelledOtherIpa);
-                System.out.println("Collision:"
-                        + "\t" + ipa
-                        + "\t" + respelledKey
-                        + "\t" + reversedRespelledKey
-                        + "\t" + otherIpa
-                        + "\t" + respelledOtherIpa
-                        + "\t" + reversedRespelledOtherIpa
-                        );
+                System.out.println(
+                        "Collision:"
+                                + "\t"
+                                + ipa
+                                + "\t"
+                                + respelledKey
+                                + "\t"
+                                + reversedRespelledKey
+                                + "\t"
+                                + otherIpa
+                                + "\t"
+                                + respelledOtherIpa
+                                + "\t"
+                                + reversedRespelledOtherIpa);
             }
             reverseIpa.put(reversedRespelledKey, ipa);
         }
@@ -208,16 +227,19 @@ public class Cmudict {
         out = FileUtilities.openUTF8Writer(GEN_TRANSLIT_DIR, "reversed.txt");
         for (final Entry<String, String> reversed_normal : reverseIpa.entrySet()) {
             final String original = reversed_normal.getValue();
-            out.println(CollectionUtilities.join(fromIpa.get(original), ", ") + "\t{"
-                    // + reversed_normal.getKey() + ", "
-                    + original + "}");
+            out.println(
+                    CollectionUtilities.join(fromIpa.get(original), ", ")
+                            + "\t{"
+                            // + reversed_normal.getKey() + ", "
+                            + original
+                            + "}");
         }
         out.close();
-
     }
 
     static UnicodeSet IPA_UNITS = new UnicodeSet("[{aɪ}{aʊ}{ɔɪ}{tʃ}{dʒ}]").freeze();
-    static UnicodeSet RESPELL_UNITS = new UnicodeSet("[{ùr}{òu}{òi}{cħ}{dʒ}{tħ}{ţħ}{sħ}{nġ}]").freeze();
+    static UnicodeSet RESPELL_UNITS =
+            new UnicodeSet("[{ùr}{òu}{òi}{cħ}{dʒ}{tħ}{ţħ}{sħ}{nġ}]").freeze();
 
     private static String reverse(String sourceString, UnicodeSet units) {
         final StringBuilder result = new StringBuilder();
@@ -226,9 +248,9 @@ public class Cmudict {
             final int matchValue = units.matchesAt(temp, i);
             if (matchValue > i) {
                 final char ch1 = temp.charAt(i);
-                final char ch2 = temp.charAt(i+1);
+                final char ch2 = temp.charAt(i + 1);
                 temp.setCharAt(i, ch2);
-                temp.setCharAt(i+1, ch1);
+                temp.setCharAt(i + 1, ch1);
             }
         }
         // pass through and reverse duals
@@ -242,7 +264,7 @@ public class Cmudict {
 
     private static String getIpa(String pronunciation) {
         String ipa = arpabet.transform(pronunciation);
-        ipa = ipa.replace(""+PRIMARY_STRESS, "").replace(""+SECONDARY_STRESS, "");
+        ipa = ipa.replace("" + PRIMARY_STRESS, "").replace("" + SECONDARY_STRESS, "");
         return ipa;
     }
 
@@ -272,8 +294,7 @@ public class Cmudict {
                 if (line == null) {
                     break;
                 }
-                if (line.startsWith("\uFEFF"))
-                {
+                if (line.startsWith("\uFEFF")) {
                     line = line.substring(1); // remove BOM
                 }
                 input.append(line);
@@ -281,7 +302,9 @@ public class Cmudict {
             }
             return Transliterator.createFromRules(ID, input.toString(), Transliterator.FORWARD);
         } catch (final IOException e) {
-            throw (IllegalArgumentException) new IllegalArgumentException("Can't open transliterator file " + file).initCause(e);
+            throw (IllegalArgumentException)
+                    new IllegalArgumentException("Can't open transliterator file " + file)
+                            .initCause(e);
         }
     }
 
@@ -379,7 +402,8 @@ public class Cmudict {
 //                System.out.println("* Too few primaries\t" + input);
 //                if (firstSecondary >= 0) {
 //                    --secondaryCount;
-//                    input = input.substring(0,firstSecondary) + 'ˌ' + input.substring(firstSecondary+1);
+//                    input = input.substring(0,firstSecondary) + 'ˌ' +
+// input.substring(firstSecondary+1);
 //                } else {
 //                    input = input.substring(0,firstVowel) + 'ˌ' + input.substring(firstVowel);
 //                }

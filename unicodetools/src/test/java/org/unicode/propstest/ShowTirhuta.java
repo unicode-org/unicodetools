@@ -1,30 +1,30 @@
 package org.unicode.propstest;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.TreeMap;
-
-import org.unicode.props.UnicodeProperty;
-import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.text.UCD.Default;
-
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UnicodeProperty;
+import org.unicode.text.UCD.Default;
 
 public class ShowTirhuta {
     public static void main(String[] args) {
 
-        Transform<String,String> t = Transliterator.createFromRules("id", "([:di:]) > &hex($1);", Transliterator.FORWARD);
+        Transform<String, String> t =
+                Transliterator.createFromRules(
+                        "id", "([:di:]) > &hex($1);", Transliterator.FORWARD);
         String source = "abc\u00ADd\u034Fe";
         String formatted = t.transform(source);
         System.out.println(source + " => " + formatted);
 
-        UnicodeSet us =  new UnicodeSet("[:di:]").freeze();
+        UnicodeSet us = new UnicodeSet("[:di:]").freeze();
         UnicodeSet x = new UnicodeSet().addAll(source).retainAll(us);
         StringBuilder b = new StringBuilder();
         for (String s : x) {
@@ -32,14 +32,12 @@ public class ShowTirhuta {
                 b.append(", ");
             }
             b.append("U+")
-            .append(Utility.hex(s.codePointAt(0)))
-            .append(' ')
-            .append(UCharacter.getName(s.codePointAt(0)));
+                    .append(Utility.hex(s.codePointAt(0)))
+                    .append(' ')
+                    .append(UCharacter.getName(s.codePointAt(0)));
         }
         System.out.println(b);
         // abc­d => abc\u00ADd
-
-
 
         if (true) return;
         IndexUnicodeProperties latest = IndexUnicodeProperties.make(Default.ucdVersion());
@@ -63,8 +61,8 @@ public class ShowTirhuta {
         }
     }
 
-    public static Map<String, Integer> getMap(UnicodeProperty nameProp,
-            UnicodeSet tirhuta, String scriptPrefix) {
+    public static Map<String, Integer> getMap(
+            UnicodeProperty nameProp, UnicodeSet tirhuta, String scriptPrefix) {
         Map<String, Integer> tirhutaToName = new HashMap();
         for (String s : tirhuta) {
             final int codePoint = s.codePointAt(0);

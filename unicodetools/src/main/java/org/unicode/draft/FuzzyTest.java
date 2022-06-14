@@ -1,4 +1,5 @@
 package org.unicode.draft;
+
 import java.util.Random;
 
 public class FuzzyTest {
@@ -13,7 +14,6 @@ public class FuzzyTest {
         expected = new FuzzyNumber(1.0, 0.95, 1.05);
         assertEquals("aa", expected, aa);
 
-
         final Random r = new Random(0);
         for (int k = 0; k < 1000; ++k) {
             final FuzzyNumber a = new FuzzyNumber(r.nextInt(200) / 10.0D - 10, 0.5);
@@ -24,11 +24,35 @@ public class FuzzyTest {
             final FuzzyNumber multiplied = a.multiply(b);
             final FuzzyNumber divided = a.divide(b);
             if (false) {
-                System.out.println("1/" + a + " = " + invert
-                        + "\t\t" + a + " + " + b + " = " + added
-                        + "\t\t" + a + " - " + b + " = " + subtracted
-                        + "\t\t" + a + " × " + b + " = " + multiplied
-                        + "\t\t" + a + " ÷ " + b + " = " + divided);
+                System.out.println(
+                        "1/"
+                                + a
+                                + " = "
+                                + invert
+                                + "\t\t"
+                                + a
+                                + " + "
+                                + b
+                                + " = "
+                                + added
+                                + "\t\t"
+                                + a
+                                + " - "
+                                + b
+                                + " = "
+                                + subtracted
+                                + "\t\t"
+                                + a
+                                + " × "
+                                + b
+                                + " = "
+                                + multiplied
+                                + "\t\t"
+                                + a
+                                + " ÷ "
+                                + b
+                                + " = "
+                                + divided);
             }
 
             for (int i = 1; i < 10; ++i) {
@@ -49,7 +73,7 @@ public class FuzzyTest {
     }
 
     private static void assertEquals(String string, FuzzyNumber aa, FuzzyNumber bb) {
-        if (!equals(aa,bb)) {
+        if (!equals(aa, bb)) {
             System.out.println("FAILURE " + string + "\t" + aa + " != " + bb);
         } else {
             System.out.println(string + "\t" + aa + " = " + bb);
@@ -58,9 +82,7 @@ public class FuzzyTest {
 
     private static boolean equals(FuzzyNumber aa, FuzzyNumber bb) {
         // TODO Auto-generated method stub
-        return aa.value == bb.value
-                && aa.lower == bb.lower
-                && aa.upper == bb.upper;
+        return aa.value == bb.value && aa.lower == bb.lower && aa.upper == bb.upper;
     }
 
     private static boolean assertCovers(String title, FuzzyNumber added, double d) {
@@ -74,5 +96,4 @@ public class FuzzyTest {
         }
         return true;
     }
-
 }

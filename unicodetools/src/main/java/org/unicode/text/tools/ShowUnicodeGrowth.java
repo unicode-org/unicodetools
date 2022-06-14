@@ -1,8 +1,8 @@
 package org.unicode.text.tools;
 
+import com.ibm.icu.text.UnicodeSet;
 import java.util.Set;
 import java.util.TreeSet;
-
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.TestData;
@@ -10,12 +10,25 @@ import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 
-import com.ibm.icu.text.UnicodeSet;
-
 public class ShowUnicodeGrowth {
     private static final int LATEST = UCD_Types.AGE_VERSIONS.length - 1;
 
-    enum Type {format, whitespace, number, punctuation, symbol, mark, hangul, han, other_letter, surrogate, private_use, noncharacter, unassigned};
+    enum Type {
+        format,
+        whitespace,
+        number,
+        punctuation,
+        symbol,
+        mark,
+        hangul,
+        han,
+        other_letter,
+        surrogate,
+        private_use,
+        noncharacter,
+        unassigned
+    };
+
     static UCD ucd = UCD.make(UCD_Types.AGE_VERSIONS[LATEST]);
 
     public static void main(String[] args) {
@@ -55,14 +68,16 @@ public class ShowUnicodeGrowth {
         final Counter<String> counter = new Counter();
         final ToolUnicodePropertySource toolSource52 = ToolUnicodePropertySource.make("5.2.0");
         final ToolUnicodePropertySource toolSource51 = ToolUnicodePropertySource.make("5.1.0");
-        final UnicodeSet current = new UnicodeSet(toolSource51.getSet("gc=cn")).removeAll(toolSource52.getSet("gc=cn"));
+        final UnicodeSet current =
+                new UnicodeSet(toolSource51.getSet("gc=cn"))
+                        .removeAll(toolSource52.getSet("gc=cn"));
 
         for (final String s : current) {
             final int cp = s.codePointAt(0);
             final String script = Default.ucd().getScriptID(cp);
             if (script.equals("COMMON") || script.equals("INHERITED")) {
                 final String category = Default.ucd().getCategoryID(cp);
-                counter.add(""+category.charAt(0) + "*", 1);
+                counter.add("" + category.charAt(0) + "*", 1);
                 continue;
             }
             counter.add(script, 1);
@@ -85,54 +100,54 @@ public class ShowUnicodeGrowth {
             return Type.noncharacter;
         } else {
             switch (ucd.getCategory(i)) {
-            case UCD_Types.UNASSIGNED:
-            case UCD_Types.UPPERCASE_LETTER:
-            case UCD_Types.LOWERCASE_LETTER:
-            case UCD_Types.TITLECASE_LETTER:
-            case UCD_Types.MODIFIER_LETTER:
-            case UCD_Types.OTHER_LETTER:
-                final short script = ucd.getScript(i);
-                if (script == UCD_Types.HANGUL_SCRIPT) {
-                    return  Type.hangul;
-                } else if (script == UCD_Types.HAN_SCRIPT) {
-                    return  Type.han;
-                } else {
-                    return  Type.other_letter;
-                }
+                case UCD_Types.UNASSIGNED:
+                case UCD_Types.UPPERCASE_LETTER:
+                case UCD_Types.LOWERCASE_LETTER:
+                case UCD_Types.TITLECASE_LETTER:
+                case UCD_Types.MODIFIER_LETTER:
+                case UCD_Types.OTHER_LETTER:
+                    final short script = ucd.getScript(i);
+                    if (script == UCD_Types.HANGUL_SCRIPT) {
+                        return Type.hangul;
+                    } else if (script == UCD_Types.HAN_SCRIPT) {
+                        return Type.han;
+                    } else {
+                        return Type.other_letter;
+                    }
 
-            case UCD_Types.NON_SPACING_MARK:
-            case UCD_Types.ENCLOSING_MARK:
-            case UCD_Types.COMBINING_SPACING_MARK:
-                return  Type.mark;
-            case UCD_Types.DECIMAL_DIGIT_NUMBER:
-            case UCD_Types.LETTER_NUMBER:
-            case UCD_Types.OTHER_NUMBER:
-                return  Type.number;
-            case UCD_Types.SPACE_SEPARATOR:
-            case UCD_Types.LINE_SEPARATOR:
-            case UCD_Types.PARAGRAPH_SEPARATOR:
-                return  Type.whitespace;
-            case UCD_Types.CONTROL:
-            case UCD_Types.FORMAT:
-                return  Type.format;
-            case UCD_Types.UNUSED_CATEGORY:
-            case UCD_Types.PRIVATE_USE:
-                return  Type.private_use;
-            case UCD_Types.SURROGATE:
-                return  Type.surrogate;
-            case UCD_Types.DASH_PUNCTUATION:
-            case UCD_Types.START_PUNCTUATION:
-            case UCD_Types.END_PUNCTUATION:
-            case UCD_Types.CONNECTOR_PUNCTUATION:
-            case UCD_Types.OTHER_PUNCTUATION:
-            case UCD_Types.INITIAL_PUNCTUATION:
-            case UCD_Types.FINAL_PUNCTUATION:
-                return  Type.punctuation;
-            case UCD_Types.MATH_SYMBOL:
-            case UCD_Types.CURRENCY_SYMBOL:
-            case UCD_Types.MODIFIER_SYMBOL:
-            case UCD_Types.OTHER_SYMBOL:
-                return  Type.symbol;
+                case UCD_Types.NON_SPACING_MARK:
+                case UCD_Types.ENCLOSING_MARK:
+                case UCD_Types.COMBINING_SPACING_MARK:
+                    return Type.mark;
+                case UCD_Types.DECIMAL_DIGIT_NUMBER:
+                case UCD_Types.LETTER_NUMBER:
+                case UCD_Types.OTHER_NUMBER:
+                    return Type.number;
+                case UCD_Types.SPACE_SEPARATOR:
+                case UCD_Types.LINE_SEPARATOR:
+                case UCD_Types.PARAGRAPH_SEPARATOR:
+                    return Type.whitespace;
+                case UCD_Types.CONTROL:
+                case UCD_Types.FORMAT:
+                    return Type.format;
+                case UCD_Types.UNUSED_CATEGORY:
+                case UCD_Types.PRIVATE_USE:
+                    return Type.private_use;
+                case UCD_Types.SURROGATE:
+                    return Type.surrogate;
+                case UCD_Types.DASH_PUNCTUATION:
+                case UCD_Types.START_PUNCTUATION:
+                case UCD_Types.END_PUNCTUATION:
+                case UCD_Types.CONNECTOR_PUNCTUATION:
+                case UCD_Types.OTHER_PUNCTUATION:
+                case UCD_Types.INITIAL_PUNCTUATION:
+                case UCD_Types.FINAL_PUNCTUATION:
+                    return Type.punctuation;
+                case UCD_Types.MATH_SYMBOL:
+                case UCD_Types.CURRENCY_SYMBOL:
+                case UCD_Types.MODIFIER_SYMBOL:
+                case UCD_Types.OTHER_SYMBOL:
+                    return Type.symbol;
             }
         }
         return null;

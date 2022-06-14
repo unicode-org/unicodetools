@@ -6,31 +6,29 @@
  */
 package org.unicode.text.utility;
 
-import org.unicode.text.utility.UnicodeTransform.Type;
-
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Normalizer2;
+import org.unicode.text.utility.UnicodeTransform.Type;
 
 /**
  * @author markdavis
- *
  */
 public class IcuUnicodeNormalizerFactory implements UnicodeTransform.Factory {
 
     public UnicodeTransform getInstance(Type type) {
         switch (type) {
-        case NFC:
-            return new IcuUnicodeNormalizer(Normalizer2.getNFCInstance());
-        case NFKC:
-            return new IcuUnicodeNormalizer(Normalizer2.getNFKCInstance());
-        case NFD:
-            return new IcuUnicodeNormalizer(Normalizer2.getNFDInstance());
-        case NFKD:
-            return new IcuUnicodeNormalizer(Normalizer2.getNFKDInstance());
-        case CASEFOLD:
-            return new CaseFolder();
-        default:
-            throw new IllegalArgumentException();
+            case NFC:
+                return new IcuUnicodeNormalizer(Normalizer2.getNFCInstance());
+            case NFKC:
+                return new IcuUnicodeNormalizer(Normalizer2.getNFKCInstance());
+            case NFD:
+                return new IcuUnicodeNormalizer(Normalizer2.getNFDInstance());
+            case NFKD:
+                return new IcuUnicodeNormalizer(Normalizer2.getNFKDInstance());
+            case CASEFOLD:
+                return new CaseFolder();
+            default:
+                throw new IllegalArgumentException();
         }
     }
 
