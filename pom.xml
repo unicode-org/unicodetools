@@ -132,7 +132,7 @@
                     <configuration>
                         <!-- optional: limit format enforcement to just the files changed by this feature branch -->
                         <!-- You can explicitly disable ratchet functionality by providing the value 'NONE': -->
-                        <ratchetFrom>origin/main</ratchetFrom>
+                        <ratchetFrom>NONE</ratchetFrom>
                         <!-- define a language-specific format -->
                         <java>
                             <!-- no need to specify files, inferred automatically, but you can if you want -->
