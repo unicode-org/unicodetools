@@ -173,6 +173,8 @@ jobs:
           cd unicodetools/mine/src
           # run GenerateEnums
           mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.props.GenerateEnums"  -Dexec.args=""  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+          # apply formatting because generated file will not pass Java formatter
+          mvn apply:spotless
           # TODO(#100) Get rid of need for fake version 13.1 of Unicode enum val
           # Fail if we haven't committed changes from Generate Enums, but make exception for fake Unicode version hack (#100)
           echo "Check if GenerateEnums output has been committed to repo"
