@@ -570,7 +570,7 @@ A673  ; historic  # [*035B.0020.0002.A673] # SLAVONIC ASTERISK
 2E35 ; historic # 122A022
 2E39 ; historic # 122A022
 
-# Updated to UAX31, Table 3. Candidate Characters for Inclusion in Identifiers
+# Updated to UAX31, Tables 3/3a/3b, Optional Characters for Start/Medial/Continue
 
 0027 ; inclusion # (') APOSTROPHE
 002D ; inclusion # (-) HYPHEN-MINUS
@@ -581,8 +581,12 @@ A673  ; historic  # [*035B.0020.0002.A673] # SLAVONIC ASTERISK
 05F3 ; inclusion # (׳) HEBREW PUNCTUATION GERESH
 05F4 ; inclusion # (״) HEBREW PUNCTUATION GERSHAYIM
 0F0B ; inclusion # ( ་ ) TIBETAN MARK INTERSYLLABIC TSHEG
-200C ; inclusion # () ZERO WIDTH NON-JOINER*
-200D ; inclusion # () ZERO WIDTH JOINER*
+
+# UTC AI 171-A128: ... remove the Joiner_Control characters ZWJ and ZWNJ from Identifier_Type=Inclusion and Identifier_Status=Allowed.
+# Without an override, they get Identifier_Type=Default_Ignorable
+# 200C ; inclusion # () ZERO WIDTH NON-JOINER*
+# 200D ; inclusion # () ZERO WIDTH JOINER*
+
 2010 ; inclusion # (‐) HYPHEN
 2019 ; inclusion # (’) RIGHT SINGLE QUOTATION MARK
 2027 ; inclusion # (‧) HYPHENATION POINT

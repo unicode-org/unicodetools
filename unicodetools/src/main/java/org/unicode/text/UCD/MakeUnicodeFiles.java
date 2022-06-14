@@ -24,8 +24,13 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.props.BagFormatter;
+import org.unicode.props.DefaultValues;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.props.UcdPropertyValues.Bidi_Class_Values;
+import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.text.UCD.MakeUnicodeFiles.Format.PrintStyle;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
@@ -41,6 +46,7 @@ import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
+import com.ibm.icu.util.VersionInfo;
 
 public class MakeUnicodeFiles {
     static boolean DEBUG = false;
@@ -398,11 +404,11 @@ public class MakeUnicodeFiles {
             final Iterator<String> it = Format.theFormat.getFiles().iterator();
             boolean gotOne = false;
             while (it.hasNext()) {
-                final String propname = it.next();
-                if (!matcher.reset(propname).find()) {
+                final String filename = it.next();
+                if (!matcher.reset(filename).find()) {
                     continue;
                 }
-                generateFile(propname);
+                generateFile(filename);
                 gotOne = true;
             }
             if (!gotOne) {
@@ -981,10 +987,9 @@ public class MakeUnicodeFiles {
         if (dir == null) {
             dir = "";
         }
+        dir = "UCD/" + Default.ucdVersion() + '/' + dir;
         final UnicodeDataFile udf =
-                UnicodeDataFile.openAndWriteHeader(
-                        "UCD/" + Default.ucdVersion() + '/' + dir,
-                        filename).
+                UnicodeDataFile.openAndWriteHeader(dir, filename).
                 setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter pwFile = udf.out;
         // bf2.openUTF8Writer(UCD_Types.GEN_DIR, "Test" + filename + ".txt");
@@ -1119,6 +1124,14 @@ public class MakeUnicodeFiles {
         if (DEBUG) {
             System.out.println("SPOT-CHECK: " + prop.getValue(0xE000));
         }
+
+        UnicodeMap<Bidi_Class_Values> defaultBidiValues = null;
+        if (prop.getName().equals("Bidi_Class")) {
+            VersionInfo versionInfo = Default.ucdVersionInfo();
+            defaultBidiValues = DefaultValues.BidiClass.forVersion(
+                    versionInfo, DefaultValues.BidiClass.Option.OMIT_BN);
+        }
+
         final String missing = ps.skipUnassigned != null ? ps.skipUnassigned : ps.skipValue;
         if (missing != null && !missing.equals(UCD_Names.NO)) {
             pw.println();
@@ -1127,6 +1140,10 @@ public class MakeUnicodeFiles {
             //      else if (propName.length() != 0) propName = propName + "; ";
             //pw.println("# @missing: 0000..10FFFF; " + propName + missing);
             printDefaultValueComment(pw, propName, prop, propName != null && propName.length() != 0, missing);
+            if (prop.getName().equals("Bidi_Class")) {
+                Bidi_Class_Values overallDefault = Bidi_Class_Values.forName(missing);
+                writeEnumeratedMissingValues(pw, overallDefault, defaultBidiValues);
+            }
         }
         for (final Iterator<String> it = aliases.iterator(); it.hasNext();) {
             final String value = it.next();
@@ -1157,12 +1174,21 @@ public class MakeUnicodeFiles {
                 continue;
             }
 
+            bf.setFullTotal(totalSize);
             if (UnicodeProperty.compareNames(value, ps.skipUnassigned) == 0) {
-                bf.setFullTotal(s.size());
                 if (DEBUG) {
                     System.out.println("Removing Unassigneds: " + value);
                 }
                 s.removeAll(unassigned);
+            } else if (defaultBidiValues != null) {
+                Bidi_Class_Values bidiValue = Bidi_Class_Values.forName(value);
+                if (defaultBidiValues.containsValue(bidiValue)) {
+                    // We assume that unassigned code points that have this value
+                    // according to the props data also have this value according to the defaults.
+                    // Otherwise we would need to intersect defaultBidiValues.keySet(bidiValue)
+                    // with the unassigned set before removing from s.
+                    s.removeAll(unassigned);
+                }
             }
 
             //if (s.size() == 0) continue;
@@ -1238,6 +1264,44 @@ public class MakeUnicodeFiles {
             if (DEBUG) {
                 System.out.println(bf.showSetNames(s));
             }
+        }
+    }
+
+    private static <T> void writeEnumeratedMissingValues(
+            PrintWriter pw, T overallDefault, UnicodeMap<T> defaultValues) {
+        VersionInfo versionInfo = Default.ucdVersionInfo();
+        IndexUnicodeProperties props = IndexUnicodeProperties.make(versionInfo);
+        UnicodeMap<Block_Values> blocks = props.loadEnum(UcdProperty.Block);
+        Iterator<UnicodeMap.EntryRange<Block_Values>> blockIter = blocks.entryRanges().iterator();
+        UnicodeMap.EntryRange<Block_Values> blockRange = null;
+
+        for (UnicodeMap.EntryRange<T> range : defaultValues.entryRanges()) {
+            if (range.value == overallDefault) {
+                continue;
+            }
+            int start = range.codepoint;
+            int end = range.codepointEnd;
+            pw.println();
+            // Skip blocks before this default-value range.
+            while ((blockRange == null || blockRange.codepointEnd < start) && blockIter.hasNext()) {
+                blockRange = blockIter.next();
+            }
+            // Print blocks that overlap with this default-value range.
+            while (blockRange.codepoint <= end) {
+                if (blockRange.value != Block_Values.No_Block) {
+                    String partial =
+                            blockRange.codepoint < start || blockRange.codepointEnd > end
+                            ? " (partial)" : "";
+                    pw.printf("# %04X..%04X %s%s\n",
+                            blockRange.codepoint, blockRange.codepointEnd,
+                            blockRange.value, partial);
+                }
+                if (blockRange.codepointEnd > end || !blockIter.hasNext()) {
+                    break;
+                }
+                blockRange = blockIter.next();
+            }
+            pw.printf("# @missing: %04X..%04X; %s\n", start, end, range.value);
         }
     }
 

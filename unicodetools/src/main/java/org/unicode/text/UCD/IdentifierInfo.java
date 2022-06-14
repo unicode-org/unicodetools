@@ -880,8 +880,6 @@ public class IdentifierInfo {
         //someRemovals = removals;
         out = FileUtilities.openUTF8Writer(GenerateConfusables.reformatedInternal, "draft-restrictions.txt");
         out.println("# Characters restricted in domain names");
-        out.println("# $Revision: 1.32 $");
-        out.println("# $Date: 2010-06-19 00:29:21 $");
         out.println("#");
         out.println("# This file contains a draft list of characters for use in");
         out.println("#     UTR #36: Unicode Security Considerations");
@@ -906,8 +904,6 @@ public class IdentifierInfo {
         out.println("# - Characters listed as ~IICore are restricted because they are Ideographic,");
         out.println("#   but not part of the IICore set defined by the IRG as the minimal set");
         out.println("#   of required ideographs for East Asian use.");
-        out.println("# - The files in this directory are 'live', and may change at any time.");
-        out.println("#   Please include the above Revision number in your feedback.");
 
         bf.setRangeBreakSource(new GenerateConfusables.FakeBreak2());
         if (MAIN_CODE) {

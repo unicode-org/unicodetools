@@ -24,8 +24,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.props.DefaultValues;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues.Bidi_Class_Values;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
@@ -414,7 +416,38 @@ public final class UCD implements UCD_Types {
         return combiningClassSet.get(0xFF & value);
     }
 
-    static UnicodeSet BIDI_R_SET, BIDI_AL_SET, BIDI_BN_SET, BIDI_ET_SET;
+    /** Bidi_Class values for unassigned code points. */
+    private static UnicodeMap<Bidi_Class_Values> defaultBidiValues;
+
+    private static final byte[] BIDI_INTS = {
+            BIDI_AL,
+            BIDI_AN,
+            BIDI_B,
+            BIDI_BN,
+            BIDI_CS,
+            BIDI_EN,
+            BIDI_ES,
+            BIDI_ET,
+            BIDI_FSI,
+            BIDI_L,
+            BIDI_LRE,
+            BIDI_LRI,
+            BIDI_LRO,
+            BIDI_NSM,
+            BIDI_ON,
+            BIDI_PDF,
+            BIDI_PDI,
+            BIDI_R,
+            BIDI_RLE,
+            BIDI_RLI,
+            BIDI_RLO,
+            BIDI_S,
+            BIDI_WS
+    };
+
+    private static byte bidiIntForUcdPropertyValue(Bidi_Class_Values bc) {
+        return BIDI_INTS[bc.ordinal()];
+    }
 
     /**
      * Get the bidi class
@@ -424,137 +457,13 @@ public final class UCD implements UCD_Types {
             return get(codePoint, false).bidiClass;
         }
 
-        if (BIDI_R_SET == null) { // build it
-
-            BIDI_R_SET = new UnicodeSet();
-            BIDI_ET_SET = new UnicodeSet();
-            BIDI_AL_SET = new UnicodeSet();
-            final UnicodeSet temp2 = new UnicodeSet();
-
-            if (blockData == null) {
-                loadBlocks();
-            }
-
-            if (compositeVersion >= 0x60300) {
-                blockData.keySet("Currency_Symbols",BIDI_ET_SET);
-            }
-
-            blockData.keySet("Hebrew",BIDI_R_SET);
-            blockData.keySet("Cypriot_Syllabary",BIDI_R_SET);
-            blockData.keySet("Kharoshthi",BIDI_R_SET);
-
-            // Update the derived bidi class to reflect the change of U+08A0..U+08FF and U+1EE00..U+1EEFF to "AL".
-
-            blockData.keySet("Arabic",BIDI_AL_SET);
-
-            if (compositeVersion >= 0x60100) {
-                blockData.keySet("Arabic_Mathematical_Alphabetic_Symbols",temp2);
-                blockData.keySet("Arabic_Extended_A",temp2);
-                BIDI_AL_SET.addAll(temp2);
-            }
-            blockData.keySet("Syriac",BIDI_AL_SET);
-            blockData.keySet("Arabic_Supplement",BIDI_AL_SET);
-            blockData.keySet("Thaana",BIDI_AL_SET);
-            blockData.keySet("Arabic_Presentation_Forms_A",BIDI_AL_SET);
-            blockData.keySet("Arabic_Presentation_Forms_B",BIDI_AL_SET);
-
-            if (SHOW_LOADING) {
-                System.out.println("BIDI_R_SET: " + BIDI_R_SET);
-                System.out.println("BIDI_AL_SET: " + BIDI_AL_SET);
-            }
-
-            final UnicodeSet BIDI_R_Delta = new UnicodeSet()
-                .add(0x07C0,0x89F)
-                .add(0xFB1D, 0xFB4F)
-                .add(0x10800, 0x10FFF);
-            if (compositeVersion >= 0x50200) {
-                BIDI_R_Delta.add(0x1E800, 0x1EFFF);
-            }
-            if (versionInfo.getMajor() >= 10) {
-                // Unicode 10: Syriac Supplement block R->AL
-                BIDI_AL_SET.add(0x0860, 0x086F);
-            }
-            if (versionInfo.getMajor() >= 11) {
-                // Unicode 11: Hanifi Rohingya, Sogdian, Indic Siyaq Numbers blocks R->AL
-                // Note: Old Sogdian is R
-                BIDI_AL_SET.add(0x10D00, 0x10D3F);
-                BIDI_AL_SET.add(0x10F30, 0x10F6F);
-                BIDI_AL_SET.add(0x1EC70, 0x1ECBF);
-            }
-            if (versionInfo.getMajor() >= 12) {
-                // Unicode 12:
-                // The Ottoman Siyaq Numbers block defaults to bc=AL, similar to Indic Siyaq.
-                BIDI_AL_SET.add(0x1ED00, 0x1ED4F);
-            }
-            if (versionInfo.getMajor() >= 14) {
-                // Unicode 14:
-                // New block 0870..089F "Arabic Extended-B" defaults to bc=AL.
-                blockData.keySet("Arabic_Extended_B", BIDI_AL_SET);
-            }
-            if (versionInfo.getMajor() >= 15) {
-                // Unicode 15:
-                // New block 10EC0..10EFF "Arabic Extended-C" defaults to bc=AL.
-                blockData.keySet("Arabic_Extended_C", BIDI_AL_SET);
-            }
-            BIDI_R_Delta.removeAll(BIDI_R_SET).removeAll(BIDI_AL_SET);
-            if (SHOW_LOADING) {
-                System.out.println("R: Adding " + BIDI_R_Delta);
-            }
-            BIDI_R_SET.addAll(BIDI_R_Delta);
-            BIDI_R_SET.removeAll(temp2);
-
-            final UnicodeSet BIDI_AL_Delta = new UnicodeSet(0x0750, 0x077F);
-            BIDI_AL_Delta.removeAll(BIDI_AL_SET);
-            if (SHOW_LOADING) {
-                System.out.println("AL: Adding " + BIDI_AL_Delta);
-            }
-
-            BIDI_AL_SET.addAll(BIDI_AL_Delta);
-
-            final UnicodeSet noncharacters = UnifiedBinaryProperty.make(BINARY_PROPERTIES + Noncharacter_Code_Point, this).getSet();
-            noncharacters.remove(Utility.BOM);
-
-            if (SHOW_LOADING) {
-                System.out.println("Removing Noncharacters/BOM  " + noncharacters);
-            }
-            BIDI_R_SET.removeAll(noncharacters);
-            BIDI_AL_SET.removeAll(noncharacters);
-
-            BIDI_BN_SET = new UnicodeSet();
-            if (compositeVersion >= 0x40001) {
-                BIDI_BN_SET.addAll(noncharacters);
-                final UnicodeSet DefaultIg = DerivedProperty.make(DefaultIgnorable, this).getSet();
-                if (SHOW_LOADING) {
-                    System.out.println("DefaultIg: " + DefaultIg);
-                }
-                BIDI_BN_SET.addAll(DefaultIg);
-            }
-
-            if (SHOW_LOADING) {
-                System.out.println("BIDI_R_SET: " + BIDI_R_SET);
-                System.out.println("BIDI_AL_SET: " + BIDI_AL_SET);
-                System.out.println("BIDI_BN_SET: " + BIDI_BN_SET);
-            }
-
-            if (BIDI_R_SET.containsSome(BIDI_AL_SET)) {
-                throw new ChainException("BIDI values for Cf characters overlap!!", null);
-            }
-
+        if (defaultBidiValues == null) {
+            defaultBidiValues = DefaultValues.BidiClass.forVersion(
+                    versionInfo, DefaultValues.BidiClass.Option.ALL);
         }
 
-        if (BIDI_BN_SET.contains(codePoint)) {
-            return BIDI_BN;
-        }
-        if (BIDI_R_SET.contains(codePoint)) {
-            return BIDI_R;
-        }
-        if (BIDI_AL_SET.contains(codePoint)) {
-            return BIDI_AL;
-        }
-        if (BIDI_ET_SET.contains(codePoint)) {
-            return BIDI_ET;
-        }
-        return BIDI_L;
+        Bidi_Class_Values bidi = defaultBidiValues.get(codePoint);
+        return bidiIntForUcdPropertyValue(bidi);
     }
 
     /**

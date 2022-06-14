@@ -139,19 +139,11 @@ jobs:
         run: |
           cd unicodetools/mine/src
           # invoke main() in class ...UCA.Main
-          mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCA.Main"  -Dexec.args="writeCollationValidityLog"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+          mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCA.Main"  -Dexec.args="writeCollationValidityLog ICU"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
           # check for output file
           compgen -G "../Generated/UCA/*/CheckCollationValidity.html"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # TODO: file issue to uncomment, debug errors, and fix?
-      # - name: Run command - UCA - for CLDR & ICU
-      #   run: |
-      #     cd unicodetools/mine/src
-      #     # invoke main() in class ...UCA.Main
-      #     mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.text.UCA.Main"  -Dexec.args="ICU"  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # https://github.com/unicode-org/unicodetools/blob/main/docs/idna.md
       - name: Run command - IDNA

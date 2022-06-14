@@ -2,7 +2,7 @@
 // License & terms of use: https://www.unicode.org/copyright.html
 /*
 **      Unilib
-**      Copyright 2021
+**      Copyright 2022
 **      Ken Whistler, All rights reserved.
 */
 
@@ -43,6 +43,7 @@
  *               4 new archaic kana: U+1B11F..U+1B122.
  *   2021-Jul-06 Fix for 3 local array overflows for sprintf in getName().
  *   2021-Jul-12 Bump version number for memory leak fix in unisyms.c.
+ *   2022-May-12 Updates for Unicode 15.0.
  */
 
 /*
@@ -167,15 +168,15 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 14.0.0d5, 2021-07-12\n";
+static char versionString[] = "Sifter version 15.0.0d1, 2022-05-12\n";
 
-static char unidatafilename[] = "unidata-14.0.0.txt";
-static char allkeysfilename[] = "allkeys-14.0.0.txt";
-static char decompsfilename[] = "decomps-14.0.0.txt";
+static char unidatafilename[] = "unidata-15.0.0.txt";
+static char allkeysfilename[] = "allkeys-15.0.0.txt";
+static char decompsfilename[] = "decomps-15.0.0.txt";
 
-static char versionstring[] = "@version 14.0.0\n\n";
+static char versionstring[] = "@version 15.0.0\n\n";
 
-#define COPYRIGHTYEAR (2021)
+#define COPYRIGHTYEAR (2022)
 
 #define defaultInfile "unidata.col"
 
@@ -273,7 +274,7 @@ int digitsInitialized;
 #define CJK_EXTB_FIRST (0x20000)
 #define CJK_EXTB_LAST  (0x2A6DF)
 #define CJK_EXTC_FIRST (0x2A700)
-#define CJK_EXTC_LAST  (0x2B738)
+#define CJK_EXTC_LAST  (0x2B739)
 #define CJK_EXTD_FIRST (0x2B740)
 #define CJK_EXTD_LAST  (0x2B81D)
 #define CJK_EXTE_FIRST (0x2B820)
@@ -282,6 +283,8 @@ int digitsInitialized;
 #define CJK_EXTF_LAST  (0x2EBE0)
 #define CJK_EXTG_FIRST (0x30000)
 #define CJK_EXTG_LAST  (0x3134A)
+#define CJK_EXTH_FIRST (0x31350)
+#define CJK_EXTH_LAST  (0x323AF)
 
 /*
  * Constants defining other ideographic ranges for implicit weights.
@@ -537,6 +540,10 @@ WALNUTPTR getSiftDataPtr ( UInt32 i )
     {
         return ( &handata );
     }
+    else if ( i <= CJK_EXTH_LAST )
+    {
+        return ( &handata );
+    }
     else if ( ( i >= 0xE0000 ) && ( i <= 0xE01FF ) )
     {
         return ( &(plane14[i - 0xE0000]) );
@@ -596,7 +603,8 @@ char localbuf[20];
              ( ( c >= CJK_EXTD_FIRST ) && ( c <= CJK_EXTD_LAST ) ) ||
              ( ( c >= CJK_EXTE_FIRST ) && ( c <= CJK_EXTE_LAST ) ) ||
              ( ( c >= CJK_EXTF_FIRST ) && ( c <= CJK_EXTF_LAST ) ) ||
-             ( ( c >= CJK_EXTG_FIRST ) && ( c <= CJK_EXTG_LAST ) ) )
+             ( ( c >= CJK_EXTG_FIRST ) && ( c <= CJK_EXTG_LAST ) ) ||
+             ( ( c >= CJK_EXTH_FIRST ) && ( c <= CJK_EXTH_LAST ) ) )
         {
             sprintf ( localbuf, "HAN%04X", c );
             strcpy ( dp, localbuf );
@@ -1142,7 +1150,8 @@ UShort16 base;
               ( ( i >= CJK_EXTD_FIRST ) && ( i <= CJK_EXTD_LAST ) ) ||
               ( ( i >= CJK_EXTE_FIRST ) && ( i <= CJK_EXTE_LAST ) ) ||
               ( ( i >= CJK_EXTF_FIRST ) && ( i <= CJK_EXTF_LAST ) ) ||
-              ( ( i >= CJK_EXTG_FIRST ) && ( i <= CJK_EXTG_LAST ) ) )
+              ( ( i >= CJK_EXTG_FIRST ) && ( i <= CJK_EXTG_LAST ) ) || 
+              ( ( i >= CJK_EXTH_FIRST ) && ( i <= CJK_EXTH_LAST ) ) )
     {
         base = 0xFB80; /* Tangut ideographs and Tangut components */
     }
@@ -1485,6 +1494,7 @@ static int unisift_ForceToSecondary ( UInt32 c )
     case 0x0C03 :
     case 0x0C82 :
     case 0x0C83 :
+    case 0x0CF3 :
     case 0x0D02 :
     case 0x0D03 :
     case 0x0D82 :
@@ -1539,6 +1549,9 @@ static int unisift_ForceToSecondary ( UInt32 c )
     case 0x1163E :
     case 0x116AB :   /* Takri */
     case 0x116AC :
+    case 0x11F00 :   /* Kawi */
+    case 0x11F01 :
+    case 0x11F03 :
 #endif
         return ( 1 );
     default: 
@@ -1632,7 +1645,7 @@ struct tm *temptptr;
     fputs ( localbuf, fd );
     sprintf ( localbuf, "# Copyright %d Unicode, Inc.\n", COPYRIGHTYEAR );
     fputs ( localbuf, fd );
-    sprintf ( localbuf, "# For terms of use, see http://www.unicode.org/terms_of_use.html\n#\n" );
+    sprintf ( localbuf, "# For terms of use, see https://www.unicode.org/terms_of_use.html\n#\n" );
     fputs ( localbuf, fd );
     sprintf ( localbuf, "# This file defines the Default Unicode Collation Element Table\n" );
     fputs ( localbuf, fd );
@@ -1676,7 +1689,7 @@ FILE *fdi;
     fputs ( localbuf, fd );
     sprintf ( localbuf, "# Copyright %d Unicode, Inc.\n", COPYRIGHTYEAR );
     fputs ( localbuf, fd );
-    sprintf ( localbuf, "# For terms of use, see http://www.unicode.org/terms_of_use.html\n#\n" );
+    sprintf ( localbuf, "# For terms of use, see https://www.unicode.org/terms_of_use.html\n#\n" );
     fputs ( localbuf, fd );
     sprintf ( localbuf, "# This file lists decompositions used in generating the Default Unicode Collation Element Table\n" );
     fputs ( localbuf, fd );
@@ -3443,16 +3456,16 @@ static unichar kanaMap2[] =
 /*
  * Another kana map to deal with the Small Kana Extension block
  * at U+1B130..U+1B16F. The full range is defined here, even though
- * most of the characters are still unassigned as of Unicode 12.0,
+ * most of the characters are still unassigned as of Unicode 15.0,
  * to simplify the task of filling in the rest once they are added.
  */
 static unichar kanaMap3[] =
     {
-      0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, /* 3 */
+      0x0000, 0x0000, 0x30B3, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, /* 3 */
       0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
       0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, /* 4 */
       0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
-      0x30F0, 0x30F1, 0x30F2, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, /* 5 */
+      0x30F0, 0x30F1, 0x30F2, 0x0000, 0x0000, 0x30B3, 0x0000, 0x0000, /* 5 */
       0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
       0x0000, 0x0000, 0x0000, 0x0000, 0x30F0, 0x30F1, 0x30F2, 0x30F3, /* 6 */
       0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000
@@ -3502,13 +3515,13 @@ static UChar8 tertwtMap[] =
 
 static UChar8 tertwtMap3[] =
     {
+           0,      0,      HIRA_S, 0,      0,      0,      0,      0,
            0,      0,      0,      0,      0,      0,      0,      0,
            0,      0,      0,      0,      0,      0,      0,      0,
            0,      0,      0,      0,      0,      0,      0,      0,
+           HIRA_S, HIRA_S, HIRA_S, 0,      0,      KATA_S, 0,      0,
            0,      0,      0,      0,      0,      0,      0,      0,
-           HIRA_S, HIRA_S, HIRA_S, 0,      0,      0,      0,      0,
-           0,      0,      0,      0,      0,      0,      0,      0,
-           0,      0,      0,      0, KATA_S, KATA_S, KATA_S, KATA_S,
+           0,      0,      0,      0,      KATA_S, KATA_S, KATA_S, KATA_S,
            0,      0,      0,      0,      0,      0,      0,      0
     };
 

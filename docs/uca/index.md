@@ -11,17 +11,17 @@ sent to the ucd-dev mailing list.
 Markus has been taking the incremental file changes, and the notes, into this repo.
 
 See the history of commits that changed decomps.txt and allkeys.txt.
-
-For UCA 14 see https://github.com/unicode-org/unicodetools/pull/71
-
-For the collection of notes for UCA 10 see ducet.md.
+(We lost some of that history in the Unicode server crash of 2020.)
+-   For UCA 15 see https://github.com/unicode-org/unicodetools/pull/246
+-   For UCA 14 see https://github.com/unicode-org/unicodetools/pull/71
+-   For the collection of notes for UCA 10 see ducet.md.
 
 ## Before generating
 
 (Same prerequisite as for [security data](../security.md).)
 
 First, in CLDR, update the script metadata:
-http://cldr.unicode.org/development/updating-codes/updating-script-metadata
+https://cldr.unicode.org/development/updating-codes/updating-script-metadata
 
 We need the script “ID Usage” (e.g., Limited_Use) and script sample characters
 for the CLDR/ICU FractionalUCA.txt data.
@@ -34,18 +34,21 @@ for the CLDR/ICU FractionalUCA.txt data.
 2.  We also need the UCA/DUCET files in
     https://github.com/unicode-org/unicodetools/tree/main/unicodetools/data/uca/dev
     When they become first available for a new version, or when they are updated:
+    1.  Note that the following steps are probably no longer necessary.
+        Instead, we get the updated files from Ken, or we run the sifter tool, and
+        update the files in .../data/uca/dev.
     1.  Download UCA files (mostly allkeys.txt) from
         `https://www.unicode.org/Public/UCA/{beta version}/`
-    2.  Run `desuffixucd.py` (see the [inputdata](../inputdata.md) page)
-    3.  Update the input files for the UCA tools, at
+    1.  Run `desuffixucd.py` (see the [inputdata](../inputdata.md) page)
+    1.  Update the input files for the UCA tools, at
         {this repo}/unicodetools/data/uca/dev
 3.  You will use `org.unicode.text.UCA.Main` as your main class.
-    Normally use the command-line options `writeCollationValidityLog ICU`
-    1.  Possible additional options (VM arguments):
-    2.  -DNODATE (suppresses date output, to avoid gratuitous diffs during
+    Normally use the command-line options `writeCollationValidityLog ICU`.
+    Possible additional options (VM arguments):
+    -   -DNODATE (suppresses date output, to avoid gratuitous diffs during
         development)
-    3.  -DAUTHOR (suppresses only the author suffix from the date)
-    4.  -DAUTHOR=XYZ (sets the author suffix to " \[XYZ\]")
+    -   -DAUTHOR (suppresses only the author suffix from the date)
+    -   -DAUTHOR=XYZ (sets the author suffix to " \[XYZ\]")
 
 Using the `writeCollationValidityLog` option tests whether the UCA files are valid.
 It will create a file: `{Generated}/UCA/{version}/CheckCollationValidity.html`
@@ -115,9 +118,9 @@ Judgment call. See Cherokee, Deseret, Osage, Vithkuqi for examples.
 After running the tool, diff the main mapping file and look for bad changes
 (for example, more bytes per weight for common characters).
 ```
-~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ~/cldr/uni/src/common/uca/FractionalUCA.txt > ../frac-13.0.txt
-~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ../Generated/UCA/14.0.0/CollationAuxiliary/FractionalUCA.txt > ../frac-14.0.txt
-~/unitools/mine/src$ meld ../frac-13.0.txt ../frac-14.0.txt
+~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ~/cldr/uni/src/common/uca/FractionalUCA.txt > ../frac-14.0.txt
+~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ../Generated/UCA/15.0.0/CollationAuxiliary/FractionalUCA.txt > ../frac-15.0.txt
+~/unitools/mine/src$ meld ../frac-14.0.txt ../frac-15.0.txt
 ```
 
 CLDR root data files are checked into $CLDR_SRC/common/uca/
@@ -161,8 +164,8 @@ Review the generated data; compare files, use
 [blankweights.sed](https://github.com/unicode-org/cldr/blob/master/tools/scripts/uca/blankweights.sed)
 or similar:
 ```
-~/svn.unitools/Generated$ sed -r -f ~/svn.cldr/trunk/tools/scripts/uca/blankweights.sed ~/svn.cldr/trunk/common/uca/FractionalUCA.txt > ../frac-9.txt
-~/svn.unitools/Generated$ sed -r -f ~/svn.cldr/trunk/tools/scripts/uca/blankweights.sed uca/10.0.0/CollationAuxiliary/FractionalUCA.txt > ../frac-10.txt && meld ../frac-9.txt ../frac-10.txt
+~/unitools/mine/Generated$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ~/cldr/uni/src/common/uca/FractionalUCA.txt > ../frac-9.txt
+~/unitools/mine/Generated$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed uca/10.0.0/CollationAuxiliary/FractionalUCA.txt > ../frac-10.txt && meld ../frac-9.txt ../frac-10.txt
 ```
 
 Copy all generated files to unicode.org for review & staging by Ken & editors.
@@ -173,7 +176,7 @@ Once the files look good:
 *   Create a branch for it.
 *   Copy the generated `CollationAuxiliary/*` files to the CLDR branch at `common/uca/` and commit for review.
     ```
-    ~/svn.unitools$ cp Generated/uca/8.0.0/CollationAuxiliary/* ~/svn.cldr/trunk/common/uca/
+    ~/unitools/mine$ cp Generated/uca/15.0.0/CollationAuxiliary/* ~/cldr/uni/src/common/uca/
     ```
     Ignore files that were copied but are not version-controlled, that is,
     `git status` shows a question mark status for them.
