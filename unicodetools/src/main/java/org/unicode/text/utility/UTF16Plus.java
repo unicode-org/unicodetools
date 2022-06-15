@@ -1,14 +1,12 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/UTF16Plus.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/utility/UTF16Plus.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.utility;
 
 public final class UTF16Plus {

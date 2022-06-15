@@ -1,5 +1,7 @@
 package org.unicode.props;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.EnumSet;
@@ -8,59 +10,55 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
-
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.text.utility.Settings;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UnicodeSet;
-
 /**
- * This class analyzes a possible identifier for script and identifier status.
- * Use it by calling setIdentifierProfile then setIdentifier.
- * At this point:
+ * This class analyzes a possible identifier for script and identifier status. Use it by calling
+ * setIdentifierProfile then setIdentifier. At this point:
+ *
  * <ol>
- * <li>call getScripts for the specific scripts in the identifier. The identifier contains at least one character in
- * each of these.
- * <li>call getAlternates to get cases where a character is not limited to a single script. For example, it could be
- * either Katakana or Hiragana.
- * <li>call getCommonAmongAlternates to find out if any scripts are common to all the alternates.
- * <li>call getNumerics to get a representative character (with value zero) for each of the decimal number systems in
- * the identifier.
- * <li>call getRestrictionLevel to see what the UTS36 restriction level is. (This has some proposed changes from the
- * current one, however.)
+ *   <li>call getScripts for the specific scripts in the identifier. The identifier contains at
+ *       least one character in each of these.
+ *   <li>call getAlternates to get cases where a character is not limited to a single script. For
+ *       example, it could be either Katakana or Hiragana.
+ *   <li>call getCommonAmongAlternates to find out if any scripts are common to all the alternates.
+ *   <li>call getNumerics to get a representative character (with value zero) for each of the
+ *       decimal number systems in the identifier.
+ *   <li>call getRestrictionLevel to see what the UTS36 restriction level is. (This has some
+ *       proposed changes from the current one, however.)
  * </ol>
- * 
+ *
  * @author markdavis
  * @internal
  */
 public class ScriptInfo {
 
     public enum IdentifierStatus {
-        /** Only ASCII characters: U+0000..U+007F **/
+        /** Only ASCII characters: U+0000..U+007F * */
         ASCII,
         /**
-         * All characters in each identifier must be from a single script, or
-         * from the combinations: Latin + Han + Hiragana + Katakana; Latin + Han
-         * + Bopomofo; or Latin + Han + Hangul. Note that this level will satisfy
-         * the vast majority of Latin-script users; also that TR36 has ASCII instead of Latin.
-         **/
+         * All characters in each identifier must be from a single script, or from the combinations:
+         * Latin + Han + Hiragana + Katakana; Latin + Han + Bopomofo; or Latin + Han + Hangul. Note
+         * that this level will satisfy the vast majority of Latin-script users; also that TR36 has
+         * ASCII instead of Latin.
+         */
         HIGHLY_RESTRICTIVE,
         /**
-         * Allow Latin with other scripts except Cyrillic, Greek, Cherokee
-         * Otherwise, the same as Highly Restrictive
-         **/
+         * Allow Latin with other scripts except Cyrillic, Greek, Cherokee Otherwise, the same as
+         * Highly Restrictive
+         */
         MODERATELY_RESTRICTIVE,
         /**
-         * Allow arbitrary mixtures of scripts, such as Ωmega, Teχ, HλLF-LIFE,
-         * Toys-Я-Us. Otherwise, the same as Moderately Restrictive
-         **/
+         * Allow arbitrary mixtures of scripts, such as Ωmega, Teχ, HλLF-LIFE, Toys-Я-Us. Otherwise,
+         * the same as Moderately Restrictive
+         */
         MINIMALLY_RESTRICTIVE,
         /**
-         * Any valid identifiers, including characters outside of the Identifier
-         * Profile, such as I♥NY.org
-         **/
+         * Any valid identifiers, including characters outside of the Identifier Profile, such as
+         * I♥NY.org
+         */
         UNRESTRICTIVE
     }
 
@@ -70,13 +68,13 @@ public class ScriptInfo {
     private final EnumSet<Script_Values> requiredScripts = EnumSet.noneOf(Script_Values.class);
     private final EnumSet<Script_Values> explicitScripts = EnumSet.noneOf(Script_Values.class);
     private final Set<Set<Script_Values>> scriptSetSet = new HashSet<>();
-    private final EnumSet<Script_Values> commonAmongAlternates = EnumSet.noneOf(Script_Values.class);
+    private final EnumSet<Script_Values> commonAmongAlternates =
+            EnumSet.noneOf(Script_Values.class);
     private final UnicodeSet numerics = new UnicodeSet();
     private final UnicodeSet identifierProfile = new UnicodeSet(0, 0x10FFFF);
     private final IdentifierVersionInfo ivi;
 
     public static ScriptInfo IDENTIFIER_INFO = new ScriptInfo(Settings.latestVersion);
-
 
     private static final EnumSet<Script_Values> ALL_SCRIPTS = EnumSet.allOf(Script_Values.class);
 
@@ -89,11 +87,15 @@ public class ScriptInfo {
 
         public IdentifierVersionInfo(String version) {
             IndexUnicodeProperties iup = IndexUnicodeProperties.make(version);
-            generalCategory = iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
+            generalCategory =
+                    iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
             numericValue = iup.loadDouble(UcdProperty.Numeric_Value);
             scriptExtensions = iup.loadEnumSet(UcdProperty.Script_Extensions, Script_Values.class);
-            scriptExtensionsFlattened = IndexUnicodeProperties.freeze(
-                    IndexUnicodeProperties.invertSet(scriptExtensions, new EnumMap<Script_Values, UnicodeSet>(Script_Values.class)));
+            scriptExtensionsFlattened =
+                    IndexUnicodeProperties.freeze(
+                            IndexUnicodeProperties.invertSet(
+                                    scriptExtensions,
+                                    new EnumMap<Script_Values, UnicodeSet>(Script_Values.class)));
             //            script = iup.loadEnum(UcdProperty.Script);
         }
 
@@ -123,7 +125,7 @@ public class ScriptInfo {
     public UnicodeSet getIdentifierProfile() {
         return new UnicodeSet(identifierProfile);
     }
-    
+
     public UnicodeSet getUnicodeSetContaining(Script_Values value) {
         return ivi.scriptExtensionsFlattened.get(value);
     }
@@ -136,7 +138,8 @@ public class ScriptInfo {
             cp = Character.codePointAt(identifier, i);
             // Store a representative character for each kind of decimal digit
             if (ivi.generalCategory.getValue(cp) == General_Category_Values.Decimal_Number) {
-                // Just store the zero character as a representative for comparison. Unicode guarantees it is cp - value
+                // Just store the zero character as a representative for comparison. Unicode
+                // guarantees it is cp - value
                 numerics.add(cp - ivi.numericValue.getValue(cp).intValue());
             }
             Set<Script_Values> scripts = ivi.scriptExtensions.getValue(cp);
@@ -156,7 +159,7 @@ public class ScriptInfo {
             commonAmongAlternates.clear();
         } else {
             commonAmongAlternates.addAll(ALL_SCRIPTS);
-            for (Iterator<Set<Script_Values>> it = scriptSetSet.iterator(); it.hasNext();) {
+            for (Iterator<Set<Script_Values>> it = scriptSetSet.iterator(); it.hasNext(); ) {
                 Set<Script_Values> next = it.next();
                 if (!Collections.disjoint(requiredScripts, next)) {
                     it.remove();
@@ -187,7 +190,8 @@ public class ScriptInfo {
         return this;
     }
 
-    static final EnumSet<Script_Values> COMMON_AND_INHERITED = EnumSet.of(Script_Values.Common, Script_Values.Inherited);
+    static final EnumSet<Script_Values> COMMON_AND_INHERITED =
+            EnumSet.of(Script_Values.Common, Script_Values.Inherited);
 
     public boolean isMultiScript() {
         return scriptSetSet.size() + explicitScripts.size() > 1;
@@ -227,11 +231,15 @@ public class ScriptInfo {
 
     //    // EnumSet<Script_Values> doesn't support "contains(...)", so we have inverted constants
     //    // They are private; they can't be made immutable in Java.
-    //    private final static EnumSet<Script_Values> JAPANESE = EnumSet.of(Script_Values.Latin, Script_Values.Han, Script_Values.Hiragana,
+    //    private final static EnumSet<Script_Values> JAPANESE = EnumSet.of(Script_Values.Latin,
+    // Script_Values.Han, Script_Values.Hiragana,
     //            Script_Values.Katakana);
-    //    private final static EnumSet<Script_Values> CHINESE = EnumSet.of(Script_Values.Latin, Script_Values.Han, Script_Values.Bopomofo);
-    //    private final static EnumSet<Script_Values> KOREAN = EnumSet.of(Script_Values.Latin, Script_Values.Han, Script_Values.Hangul);
-    //    private final static EnumSet<Script_Values> CONFUSABLE_WITH_LATIN = EnumSet.of(Script_Values.Cyrillic, Script_Values.Greek,
+    //    private final static EnumSet<Script_Values> CHINESE = EnumSet.of(Script_Values.Latin,
+    // Script_Values.Han, Script_Values.Bopomofo);
+    //    private final static EnumSet<Script_Values> KOREAN = EnumSet.of(Script_Values.Latin,
+    // Script_Values.Han, Script_Values.Hangul);
+    //    private final static EnumSet<Script_Values> CONFUSABLE_WITH_LATIN =
+    // EnumSet.of(Script_Values.Cyrillic, Script_Values.Greek,
     //            Script_Values.Cherokee);
     //
     //    public IdentifierStatus getRestrictionLevel() {
@@ -247,9 +255,12 @@ public class ScriptInfo {
     //        temp.clear(Script_Values.Inherited);
     //        // This is a bit tricky. We look at a number of factors.
     //        // The number of scripts in the text.
-    //        // Plus 1 if there is some commonality among the alternates (eg [Arab Thaa]; [Arab Syrc])
-    //        // Plus number of alternates otherwise (this only works because we only test cardinality up to 2.)
-    //        final int cardinalityPlus = temp.size() + (commonAmongAlternates.isEmpty() ? scriptSetSet.size() : 1);
+    //        // Plus 1 if there is some commonality among the alternates (eg [Arab Thaa]; [Arab
+    // Syrc])
+    //        // Plus number of alternates otherwise (this only works because we only test
+    // cardinality up to 2.)
+    //        final int cardinalityPlus = temp.size() + (commonAmongAlternates.isEmpty() ?
+    // scriptSetSet.size() : 1);
     //        if (cardinalityPlus < 2) {
     //            return IdentifierStatus.HIGHLY_RESTRICTIVE;
     //        }
@@ -268,11 +279,16 @@ public class ScriptInfo {
 
     @Override
     public String toString() {
-        return identifier + ", " + identifierProfile.toPattern(false)
+        return identifier
+                + ", "
+                + identifierProfile.toPattern(false)
                 //                + ", " + getRestrictionLevel()
-                + ", " + requiredScripts
-                + ", " + scriptSetSet
-                + ", " + numerics;
+                + ", "
+                + requiredScripts
+                + ", "
+                + scriptSetSet
+                + ", "
+                + numerics;
     }
 
     public static EnumSet<Script_Values> parseScripts(String scriptsString) {
@@ -304,10 +320,11 @@ public class ScriptInfo {
 
     public static boolean isMixedScript(String source) {
         return IDENTIFIER_INFO.setIdentifier(source).isMultiScript();
-        //return getSingleScript(source) == UCD_Types.UNUSED_SCRIPT;
+        // return getSingleScript(source) == UCD_Types.UNUSED_SCRIPT;
     }
 
-    //    private boolean containsWithAlternates(EnumSet<Script_Values> container, EnumSet<Script_Values> containee) {
+    //    private boolean containsWithAlternates(EnumSet<Script_Values> container,
+    // EnumSet<Script_Values> containee) {
     //        if (!contains(container, containee)) {
     //            return false;
     //        }

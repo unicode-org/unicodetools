@@ -2,7 +2,6 @@ package org.unicode.text.utility;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
 import org.unicode.props.BagFormatter;
 
 public class CallArgs {
@@ -14,22 +13,21 @@ public class CallArgs {
         if (pos < 0) {
             return "";
         }
-        return prefix.substring(0,pos+1);
+        return prefix.substring(0, pos + 1);
     }
 
     public static void call(String[] args, String prefix) throws Exception {
 
         for (final String arg2 : args) {
             String arg = arg2;
-            if (arg.startsWith("#"))
-            {
+            if (arg.startsWith("#")) {
                 break; // comments out rest of line
             }
             String[] methodArgs = null;
             final int par = arg.indexOf('(');
             if (par >= 0) {
-                methodArgs = Utility.split(arg.substring(par+1, arg.length()-1),',');
-                arg = arg.substring(0,par);
+                methodArgs = Utility.split(arg.substring(par + 1, arg.length() - 1), ',');
+                arg = arg.substring(0, par);
             }
             final int pos = arg.indexOf('.');
             Method method = null;
@@ -37,8 +35,8 @@ public class CallArgs {
             String methodName = "";
 
             if (pos >= 0) {
-                className = prefix + arg.substring(0,pos);
-                methodName = arg.substring(pos+1);
+                className = prefix + arg.substring(0, pos);
+                methodName = arg.substring(pos + 1);
                 method = tryMethod(className, methodName, methodArgs);
             } else {
                 method = tryMethod(className, arg, methodArgs);
@@ -49,12 +47,14 @@ public class CallArgs {
                 }
             }
             if (method == null) {
-                throw new IllegalArgumentException("Bad parameter: " + className + ", " + methodName);
+                throw new IllegalArgumentException(
+                        "Bad parameter: " + className + ", " + methodName);
             }
             System.out.println(method.getName() + "\t" + bf.join(methodArgs));
-            method.invoke(null,methodArgs);
+            method.invoke(null, methodArgs);
         }
     }
+
     private static Method tryMethod(String className, String methodName, String[] methodArgs)
             throws IllegalAccessException, InvocationTargetException {
         try {
@@ -66,7 +66,7 @@ public class CallArgs {
                     parameterTypes[i] = String.class;
                 }
             }
-            return foo.getDeclaredMethod(methodName,parameterTypes);
+            return foo.getDeclaredMethod(methodName, parameterTypes);
         } catch (final Exception e) {
             return null;
         }

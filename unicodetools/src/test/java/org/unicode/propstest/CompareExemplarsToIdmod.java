@@ -1,10 +1,15 @@
 package org.unicode.propstest;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
+import com.ibm.icu.impl.Utility;
+import com.ibm.icu.lang.CharSequences;
+import com.ibm.icu.text.Normalizer2;
+import com.ibm.icu.text.UnicodeSet;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
-
 import org.unicode.cldr.tool.LikelySubtags;
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
@@ -25,34 +30,45 @@ import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.Identifier_Status_Values;
 import org.unicode.props.UcdPropertyValues.Identifier_Type_Values;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
-import com.ibm.icu.impl.Utility;
-import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.UnicodeSet;
-
 public class CompareExemplarsToIdmod {
-    static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
-    static final  UnicodeMap<String> nameMap = iup.load(UcdProperty.Name);
+    static final IndexUnicodeProperties iup =
+            IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
+    static final UnicodeMap<String> nameMap = iup.load(UcdProperty.Name);
 
-    static final  CLDRConfig testInfo = CLDRConfig.getInstance();
+    static final CLDRConfig testInfo = CLDRConfig.getInstance();
 
-    private static final SupplementalDataInfo SUPPLEMENTAL_DATA_INFO = testInfo.getSupplementalDataInfo();
-    static final  Factory cldrFactory;
+    private static final SupplementalDataInfo SUPPLEMENTAL_DATA_INFO =
+            testInfo.getSupplementalDataInfo();
+    static final Factory cldrFactory;
+
     static {
-        File[] paths = { new File(CLDRPaths.MAIN_DIRECTORY), new File(CLDRPaths.SEED_DIRECTORY), new File(CLDRPaths.EXEMPLARS_DIRECTORY)};
+        File[] paths = {
+            new File(CLDRPaths.MAIN_DIRECTORY),
+            new File(CLDRPaths.SEED_DIRECTORY),
+            new File(CLDRPaths.EXEMPLARS_DIRECTORY)
+        };
         cldrFactory = SimpleFactory.make(paths, ".*");
     }
-    static final  Set<String> defaultContents = SUPPLEMENTAL_DATA_INFO.getDefaultContentLocales();
-    static final  Normalizer2 nfd = Normalizer2.getNFDInstance();
-    static final  Normalizer2 nfkc = Normalizer2.getNFKCInstance();
+
+    static final Set<String> defaultContents = SUPPLEMENTAL_DATA_INFO.getDefaultContentLocales();
+    static final Normalizer2 nfd = Normalizer2.getNFDInstance();
+    static final Normalizer2 nfkc = Normalizer2.getNFKCInstance();
 
     public static void main(String[] args) {
-        UnicodeMap<Identifier_Status_Values> statusMap = iup.loadEnum(UcdProperty.Identifier_Status, UcdPropertyValues.Identifier_Status_Values.class);
-        UnicodeMap<Identifier_Type_Values> typeMap = iup.loadEnum(UcdProperty.Identifier_Type, UcdPropertyValues.Identifier_Type_Values.class);
-        UnicodeSet xidContinue = iup.loadEnum(UcdProperty.XID_Continue, UcdPropertyValues.Binary.class).getSet(Binary.Yes);
-        UnicodeSet Unified_Ideograph = iup.loadEnum(UcdProperty.Unified_Ideograph, UcdPropertyValues.Binary.class).getSet(Binary.Yes);
+        UnicodeMap<Identifier_Status_Values> statusMap =
+                iup.loadEnum(
+                        UcdProperty.Identifier_Status,
+                        UcdPropertyValues.Identifier_Status_Values.class);
+        UnicodeMap<Identifier_Type_Values> typeMap =
+                iup.loadEnum(
+                        UcdProperty.Identifier_Type,
+                        UcdPropertyValues.Identifier_Type_Values.class);
+        UnicodeSet xidContinue =
+                iup.loadEnum(UcdProperty.XID_Continue, UcdPropertyValues.Binary.class)
+                        .getSet(Binary.Yes);
+        UnicodeSet Unified_Ideograph =
+                iup.loadEnum(UcdProperty.Unified_Ideograph, UcdPropertyValues.Binary.class)
+                        .getSet(Binary.Yes);
         UnicodeMap<String> Confusables = iup.load(UcdProperty.Confusable_MA);
 
         UnicodeSet allowed = statusMap.getSet(Identifier_Status_Values.Allowed);
@@ -83,7 +99,7 @@ public class CompareExemplarsToIdmod {
         UnicodeMap<Integer> charToPopulation = new UnicodeMap();
 
         for (String rawLocale : cldrFactory.getAvailable()) {
-            if (defaultContents.contains(rawLocale) 
+            if (defaultContents.contains(rawLocale)
                     || !ltp.set(rawLocale).getRegion().isEmpty()
                     || ltp.getScript().equals("Dsrt")) {
                 continue;
@@ -94,7 +110,8 @@ public class CompareExemplarsToIdmod {
                 continue;
             }
             String locale = rawLocale;
-            PopulationData pop = SUPPLEMENTAL_DATA_INFO.getBaseLanguagePopulationData(ltp.getLanguage());
+            PopulationData pop =
+                    SUPPLEMENTAL_DATA_INFO.getBaseLanguagePopulationData(ltp.getLanguage());
             if (pop == null) {
                 missingPopData.add(locale);
                 continue;
@@ -126,15 +143,14 @@ public class CompareExemplarsToIdmod {
                 if (entry.string != null) {
                     flattened.add(entry.string);
                 } else {
-                    flattened.add(entry.codepoint,entry.codepointEnd);
+                    flattened.add(entry.codepoint, entry.codepointEnd);
                 }
             }
         }
-        UnicodeSet allowedButNotInCLDR = new UnicodeSet(flattenedAllowed)
-                .removeAll(flattened)
-                .removeAll(Unified_Ideograph);
+        UnicodeSet allowedButNotInCLDR =
+                new UnicodeSet(flattenedAllowed).removeAll(flattened).removeAll(Unified_Ideograph);
 
-        System.out.println("allowedButNotInCLDR: " + allowedButNotInCLDR.toPattern(false));  
+        System.out.println("allowedButNotInCLDR: " + allowedButNotInCLDR.toPattern(false));
 
         System.out.println("nonLiving: " + nonLiving);
         System.out.println("missingPopData: " + missingPopData);
@@ -167,34 +183,38 @@ public class CompareExemplarsToIdmod {
         //                    }
         //                    String value = f.getStringValue(path);
         //                    suspicious.removeAll(nfd.normalize(value));
-        //                    suspicious.removeAll(nfd.normalize(UCharacter.toUpperCase(ULocale.ROOT, value)));
-        //                    suspicious.removeAll(nfd.normalize(UCharacter.toLowerCase(ULocale.ROOT, value)));
+        //
+        // suspicious.removeAll(nfd.normalize(UCharacter.toUpperCase(ULocale.ROOT, value)));
+        //
+        // suspicious.removeAll(nfd.normalize(UCharacter.toLowerCase(ULocale.ROOT, value)));
         //                }
         //            }
         //            if (!suspicious.isEmpty()) {
-        //                System.out.println(localeName + "\tSuspicious characters; never in CLDR data: ");
+        //                System.out.println(localeName + "\tSuspicious characters; never in CLDR
+        // data: ");
         //                for (String cp : suspicious) {
         //                    System.out.println("\t" + getCodeAndName(cp));
         //                }
         //            }
         //        }
         //        for (String cp : restricted) {
-        //            System.out.println(Utility.hex(cp) + " (" + cp + ") " + nameMap.get(cp) + "\t" + restricted.get(cp));
+        //            System.out.println(Utility.hex(cp) + " (" + cp + ") " + nameMap.get(cp) + "\t"
+        // + restricted.get(cp));
         //        }
         //        for (String locale :  nonapprovedLocales) {
-        //            System.out.println("No approved exemplars for " + english.getName(locale) + "\t" + locale);
+        //            System.out.println("No approved exemplars for " + english.getName(locale) +
+        // "\t" + locale);
         //        }
     }
 
     private static void add(String nfdValue, int population, UnicodeMap<Integer> charToPopulation) {
         for (int cp : CharSequences.codePoints(nfdValue)) {
             Integer old = charToPopulation.get(cp);
-            charToPopulation.put(cp, old == null ? population : population+old);
+            charToPopulation.put(cp, old == null ? population : population + old);
         }
     }
 
     public static String getCodeAndName(String cp) {
         return Utility.hex(cp) + " (" + cp + ") " + nameMap.get(cp);
     }
-
 }

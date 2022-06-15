@@ -1,5 +1,8 @@
 package org.unicode.propstest;
 
+import com.google.common.base.Splitter;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
@@ -7,16 +10,10 @@ import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.With;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
-
-import com.google.common.base.Splitter;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-
 
 public class Ids {
     static final Pattern NCR_PATTERN = Pattern.compile("\\&[^;]+;");
@@ -52,11 +49,16 @@ public class Ids {
     static final Map<Integer, String> Ids = new TreeMap();
     static final Splitter tabs = Splitter.on('\t');
     static final Splitter semi = Splitter.on(';').trimResults();
-    static final UnicodeSet ID = new UnicodeSet("[[:IDS_Binary_Operator:][:IDS_Trinary_Operator:]]").freeze();
+    static final UnicodeSet ID =
+            new UnicodeSet("[[:IDS_Binary_Operator:][:IDS_Trinary_Operator:]]").freeze();
     static final UnicodeSet RADICAL_ID = new UnicodeSet("[:radical:]").addAll(ID).freeze();
 
     static {
-        for (String line : FileUtilities.in(Settings.UnicodeTools.UNICODETOOLS_REPO_DIR + "/unicodetools/data/ucd/8.0.0-Update", "CJKRadicals.txt")) {
+        for (String line :
+                FileUtilities.in(
+                        Settings.UnicodeTools.UNICODETOOLS_REPO_DIR
+                                + "/unicodetools/data/ucd/8.0.0-Update",
+                        "CJKRadicals.txt")) {
             if (line.isEmpty() || line.startsWith("#")) {
                 continue;
             }
@@ -67,7 +69,6 @@ public class Ids {
             DecompIds.put(ideo, UTF16.valueOf(radical));
         }
     }
-
 
     public static void main(String[] args) {
         NcrToPua cleanup = new NcrToPua();
@@ -84,21 +85,24 @@ public class Ids {
                 int codePoint = Integer.parseInt(codePointString.substring(2), 16);
                 String chars = cleanup.clean(parts.get(1));
                 if (chars.codePointAt(0) != codePoint) {
-                    System.out.println("Error on line:\t" + Utility.hex(codePoint)
-                            + "\t" + Utility.hex(chars.codePointAt(0))
-                            + "\t" + line
-                            );
+                    System.out.println(
+                            "Error on line:\t"
+                                    + Utility.hex(codePoint)
+                                    + "\t"
+                                    + Utility.hex(chars.codePointAt(0))
+                                    + "\t"
+                                    + line);
                 }
                 String decomp = cleanup.clean(parts.get(2));
                 Ids.put(codePoint, decomp);
-//                if (codePoint == decomp.codePointAt(0)) {
-//                    DecompIds.put(codePoint, decomp);
-//                }
+                //                if (codePoint == decomp.codePointAt(0)) {
+                //                    DecompIds.put(codePoint, decomp);
+                //                }
             }
         }
         // decompose
         UnicodeSet allMissing = new UnicodeSet();
-        
+
         for (Entry<Integer, String> entry : Ids.entrySet()) {
             int key = entry.getKey();
             String value = entry.getValue();
@@ -111,19 +115,25 @@ public class Ids {
                     notice = "\t # " + extra.toPattern(false);
                 }
 
-                System.out.println("U+" + Utility.hex(key) 
-                        + "\t" + UTF16.valueOf(key) 
-                        + "\t" + value 
-                        + "\t=>\t" + fixed
-                        + notice);
+                System.out.println(
+                        "U+"
+                                + Utility.hex(key)
+                                + "\t"
+                                + UTF16.valueOf(key)
+                                + "\t"
+                                + value
+                                + "\t=>\t"
+                                + fixed
+                                + notice);
             }
         }
-        
-//        for (Entry<Integer, String> entry : Ids.entrySet()) {
-//            int key = entry.getKey();
-//            String value = entry.getValue();
-//            System.out.println("U+" + Utility.hex(key) + "\t" + UTF16.valueOf(key) + "\t" + value);
-//        }
+
+        //        for (Entry<Integer, String> entry : Ids.entrySet()) {
+        //            int key = entry.getKey();
+        //            String value = entry.getValue();
+        //            System.out.println("U+" + Utility.hex(key) + "\t" + UTF16.valueOf(key) + "\t"
+        // + value);
+        //        }
         for (Entry<String, Integer> entry : cleanup.data.entrySet()) {
             String key = entry.getKey();
             int value = entry.getValue();
@@ -131,7 +141,6 @@ public class Ids {
         }
         System.out.println("Undecomposed:\t" + allMissing.toPattern(false));
     }
-
 
     private static String addDecompose(int key, String value) {
         String value2 = DecompIds.get(key);
@@ -154,7 +163,7 @@ public class Ids {
                     if (value == null) { // PUA
                         value = UTF16.valueOf(codePoint);
                         DecompIds.put(codePoint, value);
-                    } else if (codePoint == value.codePointAt(0)){
+                    } else if (codePoint == value.codePointAt(0)) {
                         DecompIds.put(codePoint, value);
                     } else {
                         value = addDecompose(codePoint, value);

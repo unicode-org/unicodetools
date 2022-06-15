@@ -1,15 +1,14 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/MyPropertyLister.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/MyPropertyLister.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
+
 import java.io.PrintWriter;
 
 final class MyPropertyLister extends PropertyLister {
@@ -27,8 +26,7 @@ final class MyPropertyLister extends PropertyLister {
         this.output = output;
         ucdData = ucd;
         up = UnifiedBinaryProperty.make(propMask, ucd);
-        if (propMask < COMBINING_CLASS)
-        {
+        if (propMask < COMBINING_CLASS) {
             usePropertyComment = false; // skip gen cat
         }
         isDefaultValue = up.isDefaultValue();
@@ -38,7 +36,7 @@ final class MyPropertyLister extends PropertyLister {
     public String headerString() {
         final int main = (propMask & 0xFF00);
         if (main == COMBINING_CLASS) {
-            String s = UCD.getCombiningClassID_fromIndex((short)(propMask & 0xFF), LONG);
+            String s = UCD.getCombiningClassID_fromIndex((short) (propMask & 0xFF), LONG);
             if (s.charAt(0) <= '9') {
                 s = "Other Combining Class";
             }
@@ -72,8 +70,7 @@ final class MyPropertyLister extends PropertyLister {
 
     @Override
     public String optionalComment(int cp) {
-        if (propMask < COMBINING_CLASS)
-        {
+        if (propMask < COMBINING_CLASS) {
             return ""; // skip gen cat
         }
         final int cat = ucdData.getCategory(cp);
@@ -95,13 +92,13 @@ final class MyPropertyLister extends PropertyLister {
 
     @Override
     public byte status(int cp) {
-        //if (cp == 0xFFFF) {
+        // if (cp == 0xFFFF) {
         //    System.out.println("# " + Utility.hex(cp));
-        //}
+        // }
         final byte cat = ucdData.getCategory(cp);
-        //if (cp == 0x0385) {
+        // if (cp == 0x0385) {
         //    System.out.println(Utility.hex(firstRealCp));
-        //}
+        // }
 
         if (isDefaultValue
                 && cat == Cn
@@ -124,18 +121,15 @@ final class MyPropertyLister extends PropertyLister {
         }
          */
         /* HACK
-1D400;MATHEMATICAL BOLD CAPITAL A;Lu;0;L;<font> 0041;;;;N;;;;;
-1D6A3;MATHEMATICAL MONOSPACE SMALL Z;Ll;0;L;<font> 007A;;;;N;;;;;
-1D6A8;MATHEMATICAL BOLD CAPITAL ALPHA;Lu;0;L;<font> 0391;;;;N;;;;;
-1D7C9;MATHEMATICAL SANS-SERIF BOLD ITALIC PI SYMBOL;Ll;0;L;<font> 03D6;;;;N;;;;;
-         */
+        1D400;MATHEMATICAL BOLD CAPITAL A;Lu;0;L;<font> 0041;;;;N;;;;;
+        1D6A3;MATHEMATICAL MONOSPACE SMALL Z;Ll;0;L;<font> 007A;;;;N;;;;;
+        1D6A8;MATHEMATICAL BOLD CAPITAL ALPHA;Lu;0;L;<font> 0391;;;;N;;;;;
+        1D7C9;MATHEMATICAL SANS-SERIF BOLD ITALIC PI SYMBOL;Ll;0;L;<font> 03D6;;;;N;;;;;
+                 */
 
         if (!inSet) {
             return EXCLUDE;
         }
         return INCLUDE;
     }
-
-
 }
-

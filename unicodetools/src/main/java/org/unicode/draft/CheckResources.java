@@ -1,13 +1,4 @@
 package org.unicode.draft;
-import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.LinkedHashSet;
-import java.util.Set;
-import java.util.TreeSet;
-
-import org.unicode.cldr.util.Counter;
 
 import com.ibm.icu.impl.ICUData;
 import com.ibm.icu.impl.ICUResourceBundle;
@@ -17,7 +8,14 @@ import com.ibm.icu.text.UnicodeCompressor;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.UResourceBundle;
-
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.TreeSet;
+import org.unicode.cldr.util.Counter;
 
 public class CheckResources {
 
@@ -37,20 +35,23 @@ public class CheckResources {
 
     // Ugly hack to get base names
     static Collection<String> getBaseNames() {
-        return new LinkedHashSet<String>(Arrays.asList(new String[] {
-                ICUData.ICU_BASE_NAME,
-                ICUData.ICU_BRKITR_BASE_NAME,
-                ICUData.ICU_COLLATION_BASE_NAME,
-                ICUData.ICU_RBNF_BASE_NAME,
-                ICUData.ICU_TRANSLIT_BASE_NAME
-        }));
+        return new LinkedHashSet<String>(
+                Arrays.asList(
+                        new String[] {
+                            ICUData.ICU_BASE_NAME,
+                            ICUData.ICU_BRKITR_BASE_NAME,
+                            ICUData.ICU_COLLATION_BASE_NAME,
+                            ICUData.ICU_RBNF_BASE_NAME,
+                            ICUData.ICU_TRANSLIT_BASE_NAME
+                        }));
     }
-
 
     private static void gatherData(String baseName) {
         ULocale[] availableULocales;
         try {
-            availableULocales = ICUResourceBundle.getAvailableULocales(baseName, ICUResourceBundle.ICU_DATA_CLASS_LOADER);
+            availableULocales =
+                    ICUResourceBundle.getAvailableULocales(
+                            baseName, ICUResourceBundle.ICU_DATA_CLASS_LOADER);
         } catch (final Exception e) {
             e.printStackTrace();
             System.out.println("*** Unable to load " + baseName);
@@ -69,26 +70,27 @@ public class CheckResources {
             keyCounter.add(key, 1);
         }
         switch (rs.getType()) {
-        case UResourceBundle.STRING:
-            counter.add(rs.getString(), 1);
-            break;
-        case UResourceBundle.ARRAY:
-        case UResourceBundle.TABLE:
-            for (int i = 0; i < rs.getSize(); ++i) {
-                final UResourceBundle rs2 = rs.get(i);
-                addStrings(rs2);
-            }
-            break;
-        case UResourceBundle.BINARY:
-        case UResourceBundle.INT:
-        case UResourceBundle.INT_VECTOR: // skip
-            break;
-        default:
-            throw new IllegalArgumentException("Unknown Option: " + rs.getType());
+            case UResourceBundle.STRING:
+                counter.add(rs.getString(), 1);
+                break;
+            case UResourceBundle.ARRAY:
+            case UResourceBundle.TABLE:
+                for (int i = 0; i < rs.getSize(); ++i) {
+                    final UResourceBundle rs2 = rs.get(i);
+                    addStrings(rs2);
+                }
+                break;
+            case UResourceBundle.BINARY:
+            case UResourceBundle.INT:
+            case UResourceBundle.INT_VECTOR: // skip
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown Option: " + rs.getType());
         }
     }
 
-    private static void printData(Counter<String> counter2, boolean showKeys) throws UnsupportedEncodingException {
+    private static void printData(Counter<String> counter2, boolean showKeys)
+            throws UnsupportedEncodingException {
         long totalUtf16Size = 0;
         long totalUtf8Size = 0;
         long totalScsuSize = 0;
@@ -99,10 +101,10 @@ public class CheckResources {
         for (final String key : counter2.getKeysetSortedByCount(false)) {
             final long count = counter2.getCount(key);
             if (showKeys) {
-                final String trunc = key.length() < 20 ? key : key.substring(0,19) + "...";
+                final String trunc = key.length() < 20 ? key : key.substring(0, 19) + "...";
                 System.out.println(count + "\t" + trunc);
             }
-            final long utf16Length = (key.length()+1) * 2;
+            final long utf16Length = (key.length() + 1) * 2;
             uniqueUtf16Size += utf16Length;
             totalUtf16Size += utf16Length * count;
 
@@ -126,7 +128,8 @@ public class CheckResources {
         System.out.println("Total Unique Size (SCSU):\t" + nf.format(uniqueScsuSize) + " bytes");
     }
 
-    private static void printDataCompressed(Counter<String> counter2, boolean show) throws UnsupportedEncodingException {
+    private static void printDataCompressed(Counter<String> counter2, boolean show)
+            throws UnsupportedEncodingException {
         long uniqueUtf8Size = 0;
         long savedUtf8Size = 0;
         long savedUtf8SingleSize = 0;
@@ -138,7 +141,7 @@ public class CheckResources {
         String lastKey = "";
         for (final String key : count_key) {
             final long count = counter2.getCount(key);
-            final String trunc = key.length() < 20 ? key : key.substring(0,19) + "...";
+            final String trunc = key.length() < 20 ? key : key.substring(0, 19) + "...";
             if (show) {
                 System.out.print(count + "\t" + trunc);
             }
@@ -152,7 +155,8 @@ public class CheckResources {
                 if (show) {
                     System.out.print("\tSKIP SINGLE");
                 }
-            } else if (key.regionMatches(0, lastKey, lastKey.length() - key.length(), key.length())) {
+            } else if (key.regionMatches(
+                    0, lastKey, lastKey.length() - key.length(), key.length())) {
                 savedUtf8Size += utf8Length;
                 if (show) {
                     System.out.print("\tSKIP");
@@ -165,16 +169,30 @@ public class CheckResources {
             }
         }
         System.out.println("Total Unique Size:\t" + nf.format(uniqueUtf8Size) + " bytes");
-        System.out.println("Total Saved Shared Suffix Size:\t" + nf.format(savedUtf8Size) + " bytes\t"
-                + savedUtf8Size/(double)(uniqueUtf8Size));
-        System.out.println("Total Saved Singleton Size:\t" + nf.format(savedUtf8SingleSize) + " bytes\t"
-                + savedUtf8SingleSize/(double)(uniqueUtf8Size));
+        System.out.println(
+                "Total Saved Shared Suffix Size:\t"
+                        + nf.format(savedUtf8Size)
+                        + " bytes\t"
+                        + savedUtf8Size / (double) (uniqueUtf8Size));
+        System.out.println(
+                "Total Saved Singleton Size:\t"
+                        + nf.format(savedUtf8SingleSize)
+                        + " bytes\t"
+                        + savedUtf8SingleSize / (double) (uniqueUtf8Size));
 
         System.out.println("Character Frequencies");
         int i = 0;
         for (final Character key : charCount.getKeysetSortedByCount(false)) {
             final long count = charCount.getCount(key);
-            System.out.println(++i + "\t" + count + "\t" + key + "\t" + Utility.hex(key) + (alphanum.contains(key) ? "" : "\t!Alphanum"));
+            System.out.println(
+                    ++i
+                            + "\t"
+                            + count
+                            + "\t"
+                            + key
+                            + "\t"
+                            + Utility.hex(key)
+                            + (alphanum.contains(key) ? "" : "\t!Alphanum"));
             if (i > 99) {
                 break;
             }
@@ -192,6 +210,7 @@ public class CheckResources {
     static Counter<String> counter = new Counter<String>();
     static Counter<String> keyCounter = new Counter<String>();
     static NumberFormat nf = NumberFormat.getInstance(ULocale.ENGLISH);
+
     static {
         nf.setGroupingUsed(true);
     }
@@ -214,5 +233,6 @@ public class CheckResources {
             }
         }
     }
+
     static Comparator<String> REVERSE = new SortReverseLengthFirst();
 }

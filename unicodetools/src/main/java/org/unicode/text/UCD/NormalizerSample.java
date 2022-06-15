@@ -1,68 +1,54 @@
 package org.unicode.text.UCD;
 
+import com.ibm.icu.text.UTF16;
 import java.util.BitSet;
 import java.util.HashMap;
-
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.text.UTF16;
-
 
 /**
  * Implements Unicode Normalization Forms C, D, KC, KD.<br>
  * See UTR#15 for details.<br>
  * Copyright © 1998-1999 Unicode, Inc. All Rights Reserved.<br>
- * The Unicode Consortium makes no expressed or implied warranty of any
- * kind, and assumes no liability for errors or omissions.
- * No liability is assumed for incidental and consequential damages
- * in connection with or arising out of the use of the information here.
+ * The Unicode Consortium makes no expressed or implied warranty of any kind, and assumes no
+ * liability for errors or omissions. No liability is assumed for incidental and consequential
+ * damages in connection with or arising out of the use of the information here.
+ *
  * @author Mark Davis
  */
-
 public class NormalizerSample implements UCD_Types {
-    static final String copyright = "Copyright (C) 2001, IBM Corp. and Unicode Inc. All Rights Reserved.";
+    static final String copyright =
+            "Copyright (C) 2001, IBM Corp. and Unicode Inc. All Rights Reserved.";
 
     public static boolean SHOW_PROGRESS = false;
 
-    /**
-     * Create a normalizer for a given form.
-     */
+    /** Create a normalizer for a given form. */
     public NormalizerSample(byte form, String unicodeVersion) {
         composition = (form & COMPOSITION_MASK) != 0;
         compatibility = (form & COMPATIBILITY_MASK) != 0;
         data = getData(unicodeVersion);
     }
 
-    /**
-     * Create a normalizer for a given form.
-     */
+    /** Create a normalizer for a given form. */
     public NormalizerSample(byte form) {
-        this(form,"");
+        this(form, "");
     }
 
-    /**
-     * Masks for the form selector
-     */
-    public static final byte
-    COMPATIBILITY_MASK = 1,
-    COMPOSITION_MASK = 2;
+    /** Masks for the form selector */
+    public static final byte COMPATIBILITY_MASK = 1, COMPOSITION_MASK = 2;
+
+    /** Normalization Form Selector */
+    public static final byte NFD = 0,
+            NFKD = COMPATIBILITY_MASK,
+            NFC = COMPOSITION_MASK,
+            NFKC = (byte) (COMPATIBILITY_MASK + COMPOSITION_MASK);
 
     /**
-     * Normalization Form Selector
-     */
-    public static final byte
-    NFD = 0 ,
-    NFKD = COMPATIBILITY_MASK,
-    NFC = COMPOSITION_MASK,
-    NFKC = (byte)(COMPATIBILITY_MASK + COMPOSITION_MASK);
-
-    /**
-     * Normalizes text according to the chosen form,
-     * replacing contents of the target buffer.
-     * @param   source      the original text, unnormalized
-     * @param   target      the resulting normalized text
+     * Normalizes text according to the chosen form, replacing contents of the target buffer.
+     *
+     * @param source the original text, unnormalized
+     * @param target the resulting normalized text
      */
     public StringBuffer normalize(String source, StringBuffer target) {
 
@@ -80,8 +66,9 @@ public class NormalizerSample implements UCD_Types {
 
     /**
      * Normalizes text according to the chosen form
-     * @param   source      the original text, unnormalized
-     * @return  target      the resulting normalized text
+     *
+     * @param source the original text, unnormalized
+     * @return target the resulting normalized text
      */
     public String normalize(String source) {
         return normalize(source, new StringBuffer()).toString();
@@ -89,15 +76,15 @@ public class NormalizerSample implements UCD_Types {
 
     /**
      * Normalizes text according to the chosen form
-     * @param   newLocaleID      the original text, unnormalized
-     * @return  target      the resulting normalized text
+     *
+     * @param newLocaleID the original text, unnormalized
+     * @return target the resulting normalized text
      */
     public String normalize(int cp) {
         return normalize(UTF16.valueOf(cp));
     }
 
-    /**
-     */
+    /** */
     private final StringBuffer hasDecompositionBuffer = new StringBuffer();
 
     public boolean hasDecomposition(int cp) {
@@ -110,48 +97,44 @@ public class NormalizerSample implements UCD_Types {
     }
 
     /**
-     * Utility: Checks whether there is a recursive decomposition of a character from the
-     * Unicode Character Database. It is compatibility or canonical according to the particular
-     * normalizer.
-     * @param   ch      the source character
+     * Utility: Checks whether there is a recursive decomposition of a character from the Unicode
+     * Character Database. It is compatibility or canonical according to the particular normalizer.
+     *
+     * @param ch the source character
      */
     public boolean normalizationDiffers(int ch) {
         return data.normalizationDiffers(ch, composition, compatibility);
     }
 
     /**
-     * Utility: Gets recursive decomposition of a character from the
-     * Unicode Character Database.
-     * @param   compatibility    If false selects the recursive
-     *                  canonical decomposition, otherwise selects
-     *                  the recursive compatibility AND canonical decomposition.
-     * @param   ch      the source character
-     * @param   buffer  buffer to be filled with the decomposition
+     * Utility: Gets recursive decomposition of a character from the Unicode Character Database.
+     *
+     * @param compatibility If false selects the recursive canonical decomposition, otherwise
+     *     selects the recursive compatibility AND canonical decomposition.
+     * @param ch the source character
+     * @param buffer buffer to be filled with the decomposition
      */
     public void getRecursiveDecomposition(char ch, StringBuffer buffer) {
         data.getRecursiveDecomposition(ch, buffer, compatibility);
     }
 
-
     // ======================================
     //                  PRIVATES
     // ======================================
 
-    /**
-     * The current form.
-     */
+    /** The current form. */
     private final boolean composition;
+
     private final boolean compatibility;
 
     /**
-     * Decomposes text, either canonical or compatibility,
-     * replacing contents of the target buffer.
-     * @param   form        the normalization form. If COMPATIBILITY_MASK
-     *                      bit is on in this byte, then selects the recursive
-     *                      compatibility decomposition, otherwise selects
-     *                      the recursive canonical decomposition.
-     * @param   source      the original text, unnormalized
-     * @param   target      the resulting normalized text
+     * Decomposes text, either canonical or compatibility, replacing contents of the target buffer.
+     *
+     * @param form the normalization form. If COMPATIBILITY_MASK bit is on in this byte, then
+     *     selects the recursive compatibility decomposition, otherwise selects the recursive
+     *     canonical decomposition.
+     * @param source the original text, unnormalized
+     * @param target the resulting normalized text
      */
     private void internalDecompose(String source, StringBuffer target) {
         final StringBuffer buffer = new StringBuffer();
@@ -176,7 +159,7 @@ public class NormalizerSample implements UCD_Types {
 
                     int ch2;
                     for (; k > 0; k -= UTF16.getCharCount(ch2)) {
-                        ch2 = UTF16.charAt(target, k-1);
+                        ch2 = UTF16.charAt(target, k - 1);
                         if (data.getCanonicalClass(ch2) <= chClass) {
                             break;
                         }
@@ -188,19 +171,17 @@ public class NormalizerSample implements UCD_Types {
     }
 
     /**
-     * Composes text in place. Target must already
-     * have been decomposed.
-     * Uses UTF16, which is a utility class for supplementary character support in Java.
-     * @param   target      input: decomposed text.
-     *                      output: the resulting normalized text.
+     * Composes text in place. Target must already have been decomposed. Uses UTF16, which is a
+     * utility class for supplementary character support in Java.
+     *
+     * @param target input: decomposed text. output: the resulting normalized text.
      */
     private void internalCompose(StringBuffer target) {
         int starterPos = 0;
-        int starterCh = UTF16.charAt(target,0);
+        int starterCh = UTF16.charAt(target, 0);
         int compPos = UTF16.getCharCount(starterCh); // length of last composition
         int lastClass = data.getCanonicalClass(starterCh);
-        if (lastClass != 0)
-        {
+        if (lastClass != 0) {
             lastClass = 256; // fix for strings staring with a combining mark
         }
         int oldLen = target.length();
@@ -208,19 +189,23 @@ public class NormalizerSample implements UCD_Types {
         // Loop on the decomposed characters, combining where possible
 
         int ch;
-        for (int decompPos = compPos; decompPos < target.length(); decompPos += UTF16.getCharCount(ch)) {
+        for (int decompPos = compPos;
+                decompPos < target.length();
+                decompPos += UTF16.getCharCount(ch)) {
             ch = UTF16.charAt(target, decompPos);
             if (SHOW_PROGRESS) {
-                System.out.println(Utility.hex(target)
-                        + ", decompPos: " + decompPos
-                        + ", compPos: " + compPos
-                        + ", ch: " + Utility.hex(ch)
-                        );
+                System.out.println(
+                        Utility.hex(target)
+                                + ", decompPos: "
+                                + decompPos
+                                + ", compPos: "
+                                + compPos
+                                + ", ch: "
+                                + Utility.hex(ch));
             }
             final int chClass = data.getCanonicalClass(ch);
             final int composite = data.getPairwiseComposition(starterCh, ch);
-            if (composite != Stub.NOT_COMPOSITE
-                    && (lastClass < chClass || lastClass == 0)) {
+            if (composite != Stub.NOT_COMPOSITE && (lastClass < chClass || lastClass == 0)) {
                 UTF16.setCharAt(target, starterPos, composite);
                 // we know that we will only be replacing non-supplementaries by non-supplementaries
                 // so we don't have to adjust the decompPos
@@ -228,7 +213,7 @@ public class NormalizerSample implements UCD_Types {
             } else {
                 if (chClass == 0) {
                     starterPos = compPos;
-                    starterCh  = ch;
+                    starterCh = ch;
                 }
                 lastClass = chClass;
                 UTF16.setCharAt(target, compPos, ch);
@@ -245,7 +230,8 @@ public class NormalizerSample implements UCD_Types {
         target.setLength(compPos);
     }
 
-    // The following class makes use of the UCD class, which accesses data in the Unicode Character Database
+    // The following class makes use of the UCD class, which accesses data in the Unicode Character
+    // Database
 
     static class Stub {
         private final UCD ucd;
@@ -277,7 +263,8 @@ public class NormalizerSample implements UCD_Types {
                         final int len = UTF16.countCodePoint(s);
                         if (len != 2) {
                             if (len > 2) {
-                                throw new IllegalArgumentException("BAD LENGTH: " + len + ucd.toString(i));
+                                throw new IllegalArgumentException(
+                                        "BAD LENGTH: " + len + ucd.toString(i));
                             }
                             continue;
                         }
@@ -300,11 +287,11 @@ public class NormalizerSample implements UCD_Types {
                             compatibilityRecompose.set(i);
                         }
 
-                        final long key = (((long)a)<<32) | b;
+                        final long key = (((long) a) << 32) | b;
 
                         compTable.put(new Long(key), new Integer(i));
                     } catch (final Exception e) {
-                        throw new ChainException("Error: {0}", new Object[]{ucd.toString(i)}, e);
+                        throw new ChainException("Error: {0}", new Object[] {ucd.toString(i)}, e);
                     }
                 }
             }
@@ -356,28 +343,27 @@ public class NormalizerSample implements UCD_Types {
             if (hangulPoss != 0xFFFF) {
                 return hangulPoss;
             }
-            final Object obj = compTable.get(new Long((((long)starterCh)<<32) | ch));
+            final Object obj = compTable.get(new Long((((long) starterCh) << 32) | ch));
             if (obj == null) {
                 return 0xFFFF;
             }
-            return ((Integer)obj).intValue();
+            return ((Integer) obj).intValue();
         }
-
     }
 
     /**
-     * Contains normalization data from the Unicode Character Database.
-     * use false for the minimal set, true for the real set.
+     * Contains normalization data from the Unicode Character Database. use false for the minimal
+     * set, true for the real set.
      */
     private final Stub data;
 
     private static HashMap versionCache = new HashMap();
 
-    private static Stub getData (String version) {
+    private static Stub getData(String version) {
         if (version.length() == 0) {
             version = Settings.latestVersion;
         }
-        Stub result = (Stub)versionCache.get(version);
+        Stub result = (Stub) versionCache.get(version);
         if (result == null) {
             result = new Stub(version);
             versionCache.put(version, result);

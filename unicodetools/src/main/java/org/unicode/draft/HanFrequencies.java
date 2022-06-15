@@ -1,5 +1,10 @@
 package org.unicode.draft;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.Row;
+import com.ibm.icu.impl.Row.R2;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,16 +16,9 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.utility.Settings;
-
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.Row;
-import com.ibm.icu.impl.Row.R2;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
 
 public class HanFrequencies {
     private static final String GEN_HANFREQ_DIR = Settings.Output.GEN_DIR + "/hanfrequency";
@@ -51,8 +49,11 @@ public class HanFrequencies {
             rank.put(parts[0], ++count);
         }
         freq.close();
-        final BufferedReader readings = FileUtilities.openUTF8Reader(Settings.UnicodeTools.DATA_DIR + "/frequency", "han-reading-diff.txt");
-        final Set<R2<Integer, Map<ReadingRows,String>>> ordered = new TreeSet<R2<Integer,Map<ReadingRows,String>>>();
+        final BufferedReader readings =
+                FileUtilities.openUTF8Reader(
+                        Settings.UnicodeTools.DATA_DIR + "/frequency", "han-reading-diff.txt");
+        final Set<R2<Integer, Map<ReadingRows, String>>> ordered =
+                new TreeSet<R2<Integer, Map<ReadingRows, String>>>();
         while (true) {
             String line = readings.readLine();
             if (line == null) {
@@ -63,17 +64,18 @@ public class HanFrequencies {
             }
             line = line; // just to make spreadsheets happy with the hex.
             final String[] parts = line.split("\t");
-            //4F3D    伽   jiā;    gā; jiā x   # std=old
+            // 4F3D    伽   jiā;    gā; jiā x   # std=old
             try {
                 Integer rankValue = rank.get(parts[1]);
                 if (rankValue == null) {
                     rankValue = ++count; // next value
                     System.out.println("Missing rank: " + line);
                 }
-                if (parts[1].codePointAt(0) != Integer.parseInt(parts[0],16) || parts.length != 7) {
+                if (parts[1].codePointAt(0) != Integer.parseInt(parts[0], 16)
+                        || parts.length != 7) {
                     throw new IllegalArgumentException();
                 }
-                final Map<ReadingRows,String> values = new TreeMap<ReadingRows,String>();
+                final Map<ReadingRows, String> values = new TreeMap<ReadingRows, String>();
                 values.put(ReadingRows.hex, "x" + parts[0]);
                 values.put(ReadingRows.character, parts[1]);
                 values.put(ReadingRows.oldVal, parts[2]);
@@ -81,7 +83,8 @@ public class HanFrequencies {
                 values.put(ReadingRows.CN, parts[4]);
                 final String[] alt = parts[5].split(":");
 
-                final ReadingAlt type = alt[0].equals("?") ? ReadingAlt.x : ReadingAlt.valueOf(alt[0]);
+                final ReadingAlt type =
+                        alt[0].equals("?") ? ReadingAlt.x : ReadingAlt.valueOf(alt[0]);
                 values.put(ReadingRows.TW, type == ReadingAlt.tw ? alt[1] : "");
                 values.put(ReadingRows.name, type == ReadingAlt.nm ? alt[1] : "");
                 values.put(ReadingRows.combo, type == ReadingAlt.co ? alt[1] : "");
@@ -93,7 +96,7 @@ public class HanFrequencies {
                 }
                 values.put(ReadingRows.comment, comment);
 
-                final R2<Integer, Map<ReadingRows,String>> row = Row.of(rankValue, values);
+                final R2<Integer, Map<ReadingRows, String>> row = Row.of(rankValue, values);
                 ordered.add(row);
             } catch (final Exception e) {
                 throw new IllegalArgumentException(line, e);
@@ -101,17 +104,18 @@ public class HanFrequencies {
         }
         readings.close();
 
-        final PrintWriter out = FileUtilities.openUTF8Writer(GEN_HANFREQ_DIR, "han-reading-diff.html");
-        //PrintStream out = System.out;
+        final PrintWriter out =
+                FileUtilities.openUTF8Writer(GEN_HANFREQ_DIR, "han-reading-diff.html");
+        // PrintStream out = System.out;
         final ReadingRows[] values = ReadingRows.values();
         out.println("<html><body><table>");
-        for (final R2<Integer, Map<ReadingRows,String>> entry : ordered) {
+        for (final R2<Integer, Map<ReadingRows, String>> entry : ordered) {
             out.print("<tr><td>");
             out.print(entry.get0());
             for (final ReadingRows heading : values) {
                 out.print("</td><td>");
                 String column = entry.get1().get(heading);
-                column = column.replace(";","");
+                column = column.replace(";", "");
                 out.print(column);
             }
             out.println("</td></tr>");
@@ -120,18 +124,33 @@ public class HanFrequencies {
         out.close();
     }
 
-    enum ReadingRows {hex, character, oldVal, newVal, CN, TW, name, combo, comment}
-    enum ReadingAlt {x, co, nm, tw}
+    enum ReadingRows {
+        hex,
+        character,
+        oldVal,
+        newVal,
+        CN,
+        TW,
+        name,
+        combo,
+        comment
+    }
+
+    enum ReadingAlt {
+        x,
+        co,
+        nm,
+        tw
+    }
 
     //    #   tw: - alt reading for TW (not Hant; in HK,MO this reading is not relevant)
     //    #   nm: - alt reading for names (personal or geographic)
     //    #   co: - alt non-name reading only used in combinations
 
-
     private static void generateFrequencies() {
         final Set<String> languages = CharacterFrequency.getLanguagesWithCounter();
         showInterleaved();
-        //System.out.println(languages);
+        // System.out.println(languages);
         show("zh");
         show("zh-Hant");
         show("ja");
@@ -140,8 +159,11 @@ public class HanFrequencies {
     }
 
     private static void showInterleaved() {
-        final PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(GEN_HANFREQ_DIR,
-                "unifiedZh.txt", org.unicode.text.utility.Utility.UTF8_WINDOWS);
+        final PrintWriter out =
+                org.unicode.text.utility.Utility.openPrintWriter(
+                        GEN_HANFREQ_DIR,
+                        "unifiedZh.txt",
+                        org.unicode.text.utility.Utility.UTF8_WINDOWS);
 
         final LinkedHashMap<String, Integer> rank1 = getFilteredList("zh");
         final Iterator<Entry<String, Integer>> it1 = rank1.entrySet().iterator();
@@ -160,16 +182,28 @@ public class HanFrequencies {
         out.close();
     }
 
-    private static Entry<String, Integer> writeItem(PrintWriter out, Iterator<Entry<String, Integer>> it1, LinkedHashMap<String, Integer> otherRank, HashSet<String> alreadyDone, String titles) {
+    private static Entry<String, Integer> writeItem(
+            PrintWriter out,
+            Iterator<Entry<String, Integer>> it1,
+            LinkedHashMap<String, Integer> otherRank,
+            HashSet<String> alreadyDone,
+            String titles) {
         final Entry<String, Integer> entry1 = it1.hasNext() ? it1.next() : null;
 
         if (entry1 != null) {
             final String item1 = entry1.getKey();
             if (!alreadyDone.contains(item1)) {
                 final Integer otherValue = otherRank.get(item1);
-                out.println(item1
-                        + "\t" + titles.charAt(0) + "\t" + entry1.getValue()
-                        + "\t" + titles.charAt(1) + "\t" + (otherValue == null ? "-" : otherValue.toString()));
+                out.println(
+                        item1
+                                + "\t"
+                                + titles.charAt(0)
+                                + "\t"
+                                + entry1.getValue()
+                                + "\t"
+                                + titles.charAt(1)
+                                + "\t"
+                                + (otherValue == null ? "-" : otherValue.toString()));
                 alreadyDone.add(item1);
             }
         }
@@ -178,7 +212,7 @@ public class HanFrequencies {
 
     private static LinkedHashMap<String, Integer> getFilteredList(String locale) {
         final Counter<Integer> counter1 = CharacterFrequency.getCodePointCounter(locale, true);
-        final LinkedHashMap<String,Integer> list1 = new LinkedHashMap<String,Integer>();
+        final LinkedHashMap<String, Integer> list1 = new LinkedHashMap<String, Integer>();
         int rank = 0;
         for (final Integer item : counter1.getKeysetSortedByCount(false)) {
             if (HAN.contains(item)) {
@@ -190,8 +224,11 @@ public class HanFrequencies {
 
     private static void show(String locale) {
         System.out.println("Writing:\t" + locale);
-        final PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(GEN_HANFREQ_DIR,
-                locale + ".txt", org.unicode.text.utility.Utility.UTF8_WINDOWS);
+        final PrintWriter out =
+                org.unicode.text.utility.Utility.openPrintWriter(
+                        GEN_HANFREQ_DIR,
+                        locale + ".txt",
+                        org.unicode.text.utility.Utility.UTF8_WINDOWS);
         final Counter<Integer> counter = CharacterFrequency.getCodePointCounter(locale, true);
         long total = 0;
         for (final Integer item : counter) {
@@ -200,7 +237,7 @@ public class HanFrequencies {
             }
             total += counter.get(item);
         }
-        final long countLimit = (long)(total * 0.999995d);
+        final long countLimit = (long) (total * 0.999995d);
         final UnicodeSet currentSet = new UnicodeSet();
         int setCount = 0;
         long runningTotal = 0;
@@ -214,7 +251,12 @@ public class HanFrequencies {
             currentSet.add(item);
             if (currentSet.size() >= chunkLimit) {
                 setCount += currentSet.size();
-                out.println(setCount + "\t" + (runningTotal/(double)total) + "\t" + currentSet.toPattern(false));
+                out.println(
+                        setCount
+                                + "\t"
+                                + (runningTotal / (double) total)
+                                + "\t"
+                                + currentSet.toPattern(false));
                 out.flush();
                 System.out.print(".");
                 currentSet.clear();

@@ -1,25 +1,22 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UnifiedProperty.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UnifiedProperty.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
+
+import com.ibm.icu.text.UnicodeSet;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.text.UnicodeSet;
 
 public final class UnifiedProperty extends UCDProperty {
     int majorProp;
@@ -82,7 +79,7 @@ public final class UnifiedProperty extends UCDProperty {
     }
 
     private static void cacheNames(UCD ucd) {
-        //System.out.println("Caching Property Names");
+        // System.out.println("Caching Property Names");
         propNameCache = new HashMap();
 
         for (int i = 0; i < LIMIT_ENUM; ++i) {
@@ -93,14 +90,14 @@ public final class UnifiedProperty extends UCDProperty {
             if (!up.isStandard()) {
                 continue;
             }
-            //if (up.getValueType() < BINARY_PROP) continue;
+            // if (up.getValueType() < BINARY_PROP) continue;
             final Integer result = new Integer(i);
 
             final String longRaw = up.getPropertyName(LONG);
             final String longName = Utility.getSkeleton(longRaw);
             final String shortRaw = up.getPropertyName(SHORT);
             final String shortName = Utility.getSkeleton(shortRaw);
-            //System.out.println("Caching Names: " + longRaw + ", " + shortRaw);
+            // System.out.println("Caching Names: " + longRaw + ", " + shortRaw);
             if (longName != null && !propNameCache.keySet().contains(longName)) {
                 propNameCache.put(longName, result);
             }
@@ -115,7 +112,7 @@ public final class UnifiedProperty extends UCDProperty {
             }
             availablePropNames.add(key);
         }
-        //System.out.println("Done Caching");
+        // System.out.println("Done Caching");
     }
 
     static Map cache = new HashMap();
@@ -127,6 +124,7 @@ public final class UnifiedProperty extends UCDProperty {
     static class Clump {
         int prop;
         UCD ucd;
+
         @Override
         public boolean equals(Object other) {
             final Clump that = (Clump) other;
@@ -136,7 +134,7 @@ public final class UnifiedProperty extends UCDProperty {
 
     private static UnifiedProperty getCached(int propMask, UCD ucd) {
 
-        //System.out.println(ucd);
+        // System.out.println(ucd);
         if (ucd.equals(lastUCD) && propMask == lastPropMask) {
             return lastValue;
         }
@@ -160,49 +158,49 @@ public final class UnifiedProperty extends UCDProperty {
         ucd = ucdin;
         majorProp = propMask >> 8;
 
-        //System.out.println("A: " + getValueType());
-        if (majorProp <= (JOINING_GROUP>>8)
-                || majorProp == SCRIPT>>8
-                || majorProp==(HANGUL_SYLLABLE_TYPE>>8))
-        {
+        // System.out.println("A: " + getValueType());
+        if (majorProp <= (JOINING_GROUP >> 8)
+                || majorProp == SCRIPT >> 8
+                || majorProp == (HANGUL_SYLLABLE_TYPE >> 8)) {
             setValueType(FLATTENED_BINARY_PROP);
-            //System.out.println("B: " + getValueType());
+            // System.out.println("B: " + getValueType());
         }
 
         name = UCD_Names.UNIFIED_PROPERTIES[majorProp];
         shortName = UCD_Names.SHORT_UNIFIED_PROPERTIES[majorProp];
     }
 
-    static private boolean isDefined(int propMask, UCD ucd) {
+    private static boolean isDefined(int propMask, UCD ucd) {
         final int majorProp = propMask >> 8;
         switch (majorProp) {
-        case CATEGORY>>8:
-        case COMBINING_CLASS>>8:
-        case BIDI_CLASS>>8:
-        case DECOMPOSITION_TYPE>>8:
-        case NUMERIC_TYPE>>8:
-        case EAST_ASIAN_WIDTH>>8:
-        case LINE_BREAK>>8:
-        case JOINING_TYPE>>8:
-        case JOINING_GROUP>>8:
-        case SCRIPT>>8:
-        case AGE>>8:
-        case HANGUL_SYLLABLE_TYPE>>8:
-            return true;
-        /*
-          case DERIVED>>8:
-            UnicodeProperty up = DerivedProperty.make(propValue, ucd);
-            if (up == null) break;
-            return up.hasValue(cp);
-         */
+            case CATEGORY >> 8:
+            case COMBINING_CLASS >> 8:
+            case BIDI_CLASS >> 8:
+            case DECOMPOSITION_TYPE >> 8:
+            case NUMERIC_TYPE >> 8:
+            case EAST_ASIAN_WIDTH >> 8:
+            case LINE_BREAK >> 8:
+            case JOINING_TYPE >> 8:
+            case JOINING_GROUP >> 8:
+            case SCRIPT >> 8:
+            case AGE >> 8:
+            case HANGUL_SYLLABLE_TYPE >> 8:
+                return true;
+                /*
+                 case DERIVED>>8:
+                   UnicodeProperty up = DerivedProperty.make(propValue, ucd);
+                   if (up == null) break;
+                   return up.hasValue(cp);
+                */
         }
         return false;
     }
 
     @Override
     public boolean hasValue(int cp) {
-        throw new ChainException("Can't call 'hasValue' on non-binary property {0}", new Object[]{
-                new Integer(majorProp)});
+        throw new ChainException(
+                "Can't call 'hasValue' on non-binary property {0}",
+                new Object[] {new Integer(majorProp)});
     }
 
     @Override
@@ -223,20 +221,32 @@ public final class UnifiedProperty extends UCDProperty {
     @Override
     public String getValue(int cp, byte style) {
         switch (majorProp) {
-        case CATEGORY>>8: return UCD.getCategoryID_fromIndex(ucd.getCategory(cp), style);
-        case COMBINING_CLASS>>8: return UCD.getCombiningClassID_fromIndex(ucd.getCombiningClass(cp), style);
-        case BIDI_CLASS>>8: return UCD.getBidiClassID_fromIndex(ucd.getBidiClass(cp), style);
-        case DECOMPOSITION_TYPE>>8: return UCD.getDecompositionTypeID_fromIndex(ucd.getDecompositionType(cp), style);
-        case NUMERIC_TYPE>>8: return UCD.getNumericTypeID_fromIndex(ucd.getNumericType(cp), style);
-        case EAST_ASIAN_WIDTH>>8: return UCD.getEastAsianWidthID_fromIndex(ucd.getEastAsianWidth(cp), style);
-        case LINE_BREAK>>8:  return UCD.getLineBreakID_fromIndex(ucd.getLineBreak(cp), style);
-        case JOINING_TYPE>>8: return UCD.getJoiningTypeID_fromIndex(ucd.getJoiningType(cp), style);
-        case JOINING_GROUP>>8: return UCD.getJoiningGroupID_fromIndex(ucd.getJoiningGroup(cp), style);
-        case SCRIPT>>8: return UCD.getScriptID_fromIndex(ucd.getScript(cp), style);
-        case AGE>>8: return UCD.getAgeID_fromIndex(ucd.getAge(cp), style);
-        case HANGUL_SYLLABLE_TYPE>>8:
-            return ucd.getHangulSyllableTypeID(cp,style);
-        default: throw new IllegalArgumentException("Internal Error");
+            case CATEGORY >> 8:
+                return UCD.getCategoryID_fromIndex(ucd.getCategory(cp), style);
+            case COMBINING_CLASS >> 8:
+                return UCD.getCombiningClassID_fromIndex(ucd.getCombiningClass(cp), style);
+            case BIDI_CLASS >> 8:
+                return UCD.getBidiClassID_fromIndex(ucd.getBidiClass(cp), style);
+            case DECOMPOSITION_TYPE >> 8:
+                return UCD.getDecompositionTypeID_fromIndex(ucd.getDecompositionType(cp), style);
+            case NUMERIC_TYPE >> 8:
+                return UCD.getNumericTypeID_fromIndex(ucd.getNumericType(cp), style);
+            case EAST_ASIAN_WIDTH >> 8:
+                return UCD.getEastAsianWidthID_fromIndex(ucd.getEastAsianWidth(cp), style);
+            case LINE_BREAK >> 8:
+                return UCD.getLineBreakID_fromIndex(ucd.getLineBreak(cp), style);
+            case JOINING_TYPE >> 8:
+                return UCD.getJoiningTypeID_fromIndex(ucd.getJoiningType(cp), style);
+            case JOINING_GROUP >> 8:
+                return UCD.getJoiningGroupID_fromIndex(ucd.getJoiningGroup(cp), style);
+            case SCRIPT >> 8:
+                return UCD.getScriptID_fromIndex(ucd.getScript(cp), style);
+            case AGE >> 8:
+                return UCD.getAgeID_fromIndex(ucd.getAge(cp), style);
+            case HANGUL_SYLLABLE_TYPE >> 8:
+                return ucd.getHangulSyllableTypeID(cp, style);
+            default:
+                throw new IllegalArgumentException("Internal Error");
         }
     }
 }

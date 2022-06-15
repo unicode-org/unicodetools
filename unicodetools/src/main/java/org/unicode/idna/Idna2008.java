@@ -9,14 +9,19 @@ public class Idna2008 extends Idna {
     public static final UnicodeSet GRANDFATHERED_VALID = new UnicodeSet().add(0x19DA).freeze();
 
     public enum Idna2008Type {
-        UNASSIGNED, DISALLOWED, PVALID, CONTEXTJ, CONTEXTO
+        UNASSIGNED,
+        DISALLOWED,
+        PVALID,
+        CONTEXTJ,
+        CONTEXTO
     }
 
     static final UnicodeMap<Idna2008Type> IDNA2008Computed;
 
     static {
         // A: General_Category(cp) is in {Ll, Lu, Lo, Nd, Lm, Mn, Mc}
-        final UnicodeSet LetterDigits = new UnicodeSet("[[:Ll:][:Lu:][:Lo:][:Nd:][:Lm:][:Mn:][:Mc:]]").freeze();
+        final UnicodeSet LetterDigits =
+                new UnicodeSet("[[:Ll:][:Lu:][:Lo:][:Nd:][:Lm:][:Mn:][:Mc:]]").freeze();
 
         // B: toNFKC(toCaseFold(toNFKC(cp))) != cp
         final UnicodeSet Unstable = new UnicodeSet();
@@ -34,15 +39,21 @@ public class Idna2008 extends Idna {
         // C: Default_Ignorable_Code_Point(cp) = True or
         // White_Space(cp) = True or
         // Noncharacter_Code_Point(cp) = True
-        final UnicodeSet IgnorableProperties = new UnicodeSet("[[:Default_Ignorable_Code_Point:]" +
-                "[:White_Space:]" +
-                "[:Noncharacter_Code_Point:]]").freeze();
+        final UnicodeSet IgnorableProperties =
+                new UnicodeSet(
+                                "[[:Default_Ignorable_Code_Point:]"
+                                        + "[:White_Space:]"
+                                        + "[:Noncharacter_Code_Point:]]")
+                        .freeze();
 
         // Block(cp) is in {Combining Diacritical Marks for Symbols,
         // Musical Symbols, Ancient Greek Musical Notation}
-        final UnicodeSet IgnorableBlocks = new UnicodeSet("[[:block=Combining Diacritical Marks for Symbols:]" +
-                "[:block=Musical Symbols:]" +
-                "[:block=Ancient Greek Musical Notation:]]").freeze();
+        final UnicodeSet IgnorableBlocks =
+                new UnicodeSet(
+                                "[[:block=Combining Diacritical Marks for Symbols:]"
+                                        + "[:block=Musical Symbols:]"
+                                        + "[:block=Ancient Greek Musical Notation:]]")
+                        .freeze();
 
         // E: cp is in {002D, 0030..0039, 0061..007A}
         final UnicodeSet LDH = new UnicodeSet("[\u002D\u0030-\u0039\u0061-\u007A]").freeze();
@@ -54,11 +65,20 @@ public class Idna2008 extends Idna {
         // 302E, 302F, 3031, 3032, 3033, 3034, 3035, 303B,
         // 30FB}
 
-        final UnicodeMap<Idna2008Type> Exceptions = new UnicodeMap<Idna2008Type>()
-                .putAll(new UnicodeSet("[\u00DF\u03C2\u06FD\u06FE\u0F0B\u3007]"), Idna2008Type.PVALID)
-                .putAll(new UnicodeSet("[\u00B7\u0375\u05F3\u05F4\u30FB\u0660-\u0669\u06F0-\u06F9]"), Idna2008Type.CONTEXTO)
-                .putAll(new UnicodeSet("[\u0640\u07FA\u302E\u302F\u3031\u3032\u3033\u3034\u3035\u303B]"), Idna2008Type.DISALLOWED)
-                .freeze();
+        final UnicodeMap<Idna2008Type> Exceptions =
+                new UnicodeMap<Idna2008Type>()
+                        .putAll(
+                                new UnicodeSet("[\u00DF\u03C2\u06FD\u06FE\u0F0B\u3007]"),
+                                Idna2008Type.PVALID)
+                        .putAll(
+                                new UnicodeSet(
+                                        "[\u00B7\u0375\u05F3\u05F4\u30FB\u0660-\u0669\u06F0-\u06F9]"),
+                                Idna2008Type.CONTEXTO)
+                        .putAll(
+                                new UnicodeSet(
+                                        "[\u0640\u07FA\u302E\u302F\u3031\u3032\u3033\u3034\u3035\u303B]"),
+                                Idna2008Type.DISALLOWED)
+                        .freeze();
 
         // G: cp is in {}
 
@@ -70,9 +90,11 @@ public class Idna2008 extends Idna {
 
         // Hangul_Syllable_Type(cp) is in {L, V, T}
 
-        final UnicodeSet OldHangulJamo = new UnicodeSet("[[:Hangul_Syllable_Type=L:]" +
-                "[:Hangul_Syllable_Type=V:]" +
-                "[:Hangul_Syllable_Type=T:]]");
+        final UnicodeSet OldHangulJamo =
+                new UnicodeSet(
+                        "[[:Hangul_Syllable_Type=L:]"
+                                + "[:Hangul_Syllable_Type=V:]"
+                                + "[:Hangul_Syllable_Type=T:]]");
 
         // J: General_Category(cp) is in {Cn} and
         // Noncharacter_Code_Point(cp) = False
@@ -91,8 +113,10 @@ public class Idna2008 extends Idna {
         // Else If .cp. .in. LetterDigits Then PVALID;
         // Else DISALLOWED;
 
-        
-        final UnicodeMap<Idna2008Type> Incompatible = new UnicodeMap<Idna2008Type>().putAll(GRANDFATHERED_VALID, Idna2008Type.PVALID).freeze();
+        final UnicodeMap<Idna2008Type> Incompatible =
+                new UnicodeMap<Idna2008Type>()
+                        .putAll(GRANDFATHERED_VALID, Idna2008Type.PVALID)
+                        .freeze();
 
         IDNA2008Computed = new UnicodeMap<Idna2008Type>();
 
@@ -128,21 +152,21 @@ public class Idna2008 extends Idna {
         IDNA2008Computed.freeze();
     }
 
-    public static Idna2008                SINGLETON = new Idna2008();
+    public static Idna2008 SINGLETON = new Idna2008();
 
     private Idna2008() {
         for (final Idna2008Type oldType : IDNA2008Computed.values()) {
             final UnicodeSet uset = IDNA2008Computed.getSet(oldType);
             switch (oldType) {
-            case UNASSIGNED:
-            case DISALLOWED:
-                types.putAll(uset, Idna.IdnaType.disallowed);
-                break;
-            case PVALID:
-            case CONTEXTJ:
-            case CONTEXTO:
-                types.putAll(uset, Idna.IdnaType.valid);
-                break;
+                case UNASSIGNED:
+                case DISALLOWED:
+                    types.putAll(uset, Idna.IdnaType.disallowed);
+                    break;
+                case PVALID:
+                case CONTEXTJ:
+                case CONTEXTO:
+                    types.putAll(uset, Idna.IdnaType.valid);
+                    break;
             }
         }
         types.put('.', IdnaType.valid);
@@ -158,7 +182,8 @@ public class Idna2008 extends Idna {
 
     public static UnicodeSet getIdna2008Valid() {
         //    IdnaLabelTester tester = getIdna2008Tester();
-        //    UnicodeSet valid2008 = UnicodeSetUtilities.parseUnicodeSet(tester.getVariable("$Valid"), TableStyle.simple);
+        //    UnicodeSet valid2008 =
+        // UnicodeSetUtilities.parseUnicodeSet(tester.getVariable("$Valid"), TableStyle.simple);
         //    return valid2008;
         UnicodeMap<Idna2008Type> typeMapping = Idna2008.getTypeMapping();
         return new UnicodeSet(typeMapping.getSet(Idna2008Type.PVALID))

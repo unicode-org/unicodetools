@@ -1,13 +1,11 @@
 package org.unicode.tools.emoji;
 
+import com.ibm.icu.lang.UCharacter;
 import java.io.File;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.Emoji.Source;
-
-import com.ibm.icu.lang.UCharacter;
 
 public class FindExtraImages {
     public static void main(String[] args) {
@@ -15,7 +13,7 @@ public class FindExtraImages {
         for (String emoji : EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives()) {
             emojiFileSuffixes.add(Emoji.buildFileName(emoji, "_"));
         }
-        //Map<Source,UnicodeSet> extraChars = 
+        // Map<Source,UnicodeSet> extraChars =
         for (Emoji.Source source : Source.values()) {
             if (source == Source.charOverride || source.compareTo(Source.gmail) >= 0) {
                 continue;
@@ -31,7 +29,8 @@ public class FindExtraImages {
                 String otherChars = "";
                 String otherName = "";
                 if (name.startsWith(source.getPrefix() + "_") && name.endsWith(".png")) {
-                    String remainder = name.substring(source.getPrefix().length()+1, name.length()-4);
+                    String remainder =
+                            name.substring(source.getPrefix().length() + 1, name.length() - 4);
                     if (emojiFileSuffixes.contains(remainder)) {
                         continue;
                     } else {
@@ -48,7 +47,7 @@ public class FindExtraImages {
                     }
                 }
                 missing.add(name);
-                System.out.println(source + "\t" +name + otherChars);
+                System.out.println(source + "\t" + name + otherChars);
             }
         }
     }

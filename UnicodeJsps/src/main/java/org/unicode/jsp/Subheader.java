@@ -1,6 +1,10 @@
 package org.unicode.jsp;
 
-
+import com.ibm.icu.impl.Relation;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UProperty;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,23 +22,16 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.unicode.cldr.util.MultiComparator;
 
-import com.ibm.icu.impl.Relation;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
-
-public class Subheader implements Iterable<String> { 
+public class Subheader implements Iterable<String> {
     static final boolean DEBUG = false;
     Matcher subheadMatcher = Pattern.compile("(@+)\\s+(.*)").matcher("");
     Matcher hexMatcher = Pattern.compile("([A-Z0-9]+).*").matcher("");
     Map<Integer, String> codePoint2Subblock = new HashMap<Integer, String>();
     Map<String, UnicodeSet> subblock2UnicodeSet = new TreeMap<String, UnicodeSet>();
-    Map<String,Set<String>> block2subblock = new TreeMap<String, Set<String>>();
-    Map<String,Set<String>> subblock2block = new TreeMap<String, Set<String>>();
+    Map<String, Set<String>> block2subblock = new TreeMap<String, Set<String>>();
+    Map<String, Set<String>> subblock2block = new TreeMap<String, Set<String>>();
 
     public Subheader(String unicodeDataDirectory) {
         try {
@@ -62,18 +59,21 @@ public class Subheader implements Iterable<String> {
         fillTables();
     }
 
-    static final Comparator<CharSequence> SHORTEST_FIRST = new Comparator<CharSequence>() {
-        @Override
-        public int compare(CharSequence arg0, CharSequence arg1) {
-            return arg0.length() - arg1.length();
-        } 
-    };
+    static final Comparator<CharSequence> SHORTEST_FIRST =
+            new Comparator<CharSequence>() {
+                @Override
+                public int compare(CharSequence arg0, CharSequence arg1) {
+                    return arg0.length() - arg1.length();
+                }
+            };
 
-    static final MultiComparator SHORTEST = new MultiComparator(SHORTEST_FIRST, UnicodeSetUtilities.MAIN_COLLATOR);
+    static final MultiComparator SHORTEST =
+            new MultiComparator(SHORTEST_FIRST, UnicodeSetUtilities.MAIN_COLLATOR);
 
     private void fillTables() {
         // fix plurals & casing
-        Relation<String,String> caseless = new Relation(new TreeMap<String,String>(), TreeSet.class, SHORTEST);
+        Relation<String, String> caseless =
+                new Relation(new TreeMap<String, String>(), TreeSet.class, SHORTEST);
 
         for (String subhead : subblock2UnicodeSet.keySet()) {
             String norm = getSkeleton(subhead);
@@ -85,8 +85,9 @@ public class Subheader implements Iterable<String> {
             if (set.size() == 1) {
                 continue;
             }
-            if (DEBUG) System.out.println("***Merging similar names:\t" + set + "\tskeleton:" + norm);
-            
+            if (DEBUG)
+                System.out.println("***Merging similar names:\t" + set + "\tskeleton:" + norm);
+
             UnicodeSet best = null;
             String bestName = null;
             for (String name : set) {
@@ -110,10 +111,15 @@ public class Subheader implements Iterable<String> {
 
         for (String subblock : subblock2UnicodeSet.keySet()) {
             final UnicodeSet uset = subblock2UnicodeSet.get(subblock);
-            for (UnicodeSetIterator it = new UnicodeSetIterator(uset); it.next();) {
+            for (UnicodeSetIterator it = new UnicodeSetIterator(uset); it.next(); ) {
                 codePoint2Subblock.put(it.codepoint, subblock);
 
-                String block = UCharacter.getStringPropertyValue(UProperty.BLOCK, it.codepoint, UProperty.NameChoice.LONG).toString().replace('_', ' ').intern();
+                String block =
+                        UCharacter.getStringPropertyValue(
+                                        UProperty.BLOCK, it.codepoint, UProperty.NameChoice.LONG)
+                                .toString()
+                                .replace('_', ' ')
+                                .intern();
 
                 Set<String> set = block2subblock.get(block);
                 if (set == null) {
@@ -130,11 +136,13 @@ public class Subheader implements Iterable<String> {
         }
     }
 
-    static final Pattern NON_ALPHANUM = Pattern.compile("[^" +
-            "\\p{Ll}\\p{Lu}\\p{Lt}\\p{Lo}\\p{Lm}" +
-            "\\p{Me}\\p{Mc}\\p{Mn}" +
-            "\\p{Nd}" +
-    "]+");
+    static final Pattern NON_ALPHANUM =
+            Pattern.compile(
+                    "[^"
+                            + "\\p{Ll}\\p{Lu}\\p{Lt}\\p{Lo}\\p{Lm}"
+                            + "\\p{Me}\\p{Mc}\\p{Mn}"
+                            + "\\p{Nd}"
+                            + "]+");
 
     static final Pattern TERMINATION = Pattern.compile("(ies|es|s|y)_");
     static final Pattern INITIAL_GORP = Pattern.compile("$[A-Z]\\.");
@@ -167,12 +175,11 @@ public class Subheader implements Iterable<String> {
         result = result.replace("_archaic_", "_historic_");
         result = result.replace("_general_use_", "_general_");
 
-
-
         return result;
     }
 
-    private Map<String, UnicodeSet> getDataFromFile(String filename) throws FileNotFoundException, IOException {
+    private Map<String, UnicodeSet> getDataFromFile(String filename)
+            throws FileNotFoundException, IOException {
         InputStream is = new FileInputStream(filename);
         return getDataFromStream(is);
     }

@@ -1,14 +1,12 @@
 package org.unicode.text.UCD;
-import java.io.PrintWriter;
-
-import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
-import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
-
+import java.io.PrintWriter;
+import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
+import org.unicode.text.utility.Utility;
 
 public final class NFSkippable extends UCDProperty {
 
@@ -36,9 +34,9 @@ public final class NFSkippable extends UCDProperty {
         if (composes) {
             for (int cp2 = 0; cp2 <= 0x10FFFF; ++cp2) {
                 if (nf.isTrailing(cp2)) {
-                    //System.out.println("Trailing: " + ucd.getCodeAndName(cp2));
+                    // System.out.println("Trailing: " + ucd.getCodeAndName(cp2));
                     if (UCD.isNonLeadJamo(cp2)) {
-                        //System.out.println("Jamo: " + ucd.getCodeAndName(cp2));
+                        // System.out.println("Jamo: " + ucd.getCodeAndName(cp2));
                         continue;
                     }
                     realTrailers[realTrailerCount++] = cp2;
@@ -46,21 +44,20 @@ public final class NFSkippable extends UCDProperty {
             }
         }
         Utility.fixDot();
-        //System.out.println("trailer count: " + realTrailerCount);
+        // System.out.println("trailer count: " + realTrailerCount);
     }
 
-    /** A skippable character is<br>
+    /**
+     * A skippable character is<br>
      * a) unassigned, or ALL of the following:<br>
      * b) of combining class 0.<br>
      * c) not decomposed by this normalization form.<br>
      * AND if NKC or NFKC, <br>
      * d) can never compose with a previous character.<br>
      * e) can never compose with a following character.<br>
-     * f) can never change if another character is added.
-     *    Example: a-breve might satisfy all but f, but if you
-     *    add an ogonek it changes to a-ogonek + breve
+     * f) can never change if another character is added. Example: a-breve might satisfy all but f,
+     * but if you add an ogonek it changes to a-ogonek + breve
      */
-
     String cause = "";
 
     @Override
@@ -155,9 +152,8 @@ public final class NFSkippable extends UCDProperty {
     // both the following should go into UTF16
 
     public static String replace(String source, int toReplace, int replacement) {
-        if (0 <= toReplace && toReplace <= 0xFFFF
-                && 0 <= replacement && replacement <= 0xFFFF) {
-            return source.replace((char)toReplace, (char)replacement);
+        if (0 <= toReplace && toReplace <= 0xFFFF && 0 <= replacement && replacement <= 0xFFFF) {
+            return source.replace((char) toReplace, (char) replacement);
         }
         return replace(source, UTF16.valueOf(toReplace), UTF16.valueOf(replacement));
     }
@@ -198,13 +194,13 @@ public final class NFSkippable extends UCDProperty {
             // if we have a slash in the last 5 characters, backup
 
             final int lastSlash = s.lastIndexOf('\\', end);
-            if (lastSlash >= end-5) {
+            if (lastSlash >= end - 5) {
                 end = lastSlash;
             }
 
             // backup if we broke on a \
 
-            while (end > start && s.charAt(end-1) == '\\') {
+            while (end > start && s.charAt(end - 1) == '\\') {
                 --end;
             }
 
@@ -227,18 +223,18 @@ public final class NFSkippable extends UCDProperty {
                         + "E\\u01A0-\\u01A1\\u01AF-\\u01B0\\u01CD-\\u01DC\\u01DE-\\u01E3\\u"
                         + "01E6-\\u01F0\\u01F4-\\u01F5\\u01F8-\\u021B\\u021E-\\u021F\\u0226";
         final PrintWriter pw = new PrintWriter(System.out);
-        writeStringInPieces(pw,test,"");
-        writeStringInPieces(pw,replace(test, "\\", "\\\\"),"");
+        writeStringInPieces(pw, test, "");
+        writeStringInPieces(pw, replace(test, "\\", "\\\\"), "");
 
         pw.flush();
     }
 
     static int limit = 0x10FFFF; // full version = 10ffff, for testing may use smaller
 
-    public static void main (String[] args) throws java.io.IOException {
+    public static void main(String[] args) throws java.io.IOException {
 
-
-        final PrintWriter out = Utility.openPrintWriterGenDir("NFSafeSets.txt", Utility.UTF8_WINDOWS);
+        final PrintWriter out =
+                Utility.openPrintWriterGenDir("NFSafeSets.txt", Utility.UTF8_WINDOWS);
         out.println(Utility.BOM);
         out.println("NFSafeSets");
         out.println("Version: " + Default.ucd().getVersion());
@@ -247,7 +243,8 @@ public final class NFSkippable extends UCDProperty {
 
         for (int mode = NFD_UnsafeStart; mode <= NFKC_UnsafeStart; ++mode) {
             final UCDProperty up = DerivedProperty.make(mode, Default.ucd());
-            generateSet(out, "UNSAFE[" + Normalizer.getName((byte)(mode-NFD_UnsafeStart)) + "]", up);
+            generateSet(
+                    out, "UNSAFE[" + Normalizer.getName((byte) (mode - NFD_UnsafeStart)) + "]", up);
         }
 
         for (byte mode = NFD; mode <= NFKC; ++mode) {
@@ -280,11 +277,13 @@ public final class NFSkippable extends UCDProperty {
         if (true) {
             rSet = result.toPattern(false);
         } else {
-            final UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter()
-            .setOrdering(Collator.getInstance(ULocale.ROOT))
-            .setSpaceComparator(Collator.getInstance(ULocale.ROOT)
-                    .setStrength2(Collator.PRIMARY))
-                    .setCompressRanges(true);
+            final UnicodeSetPrettyPrinter pp =
+                    new UnicodeSetPrettyPrinter()
+                            .setOrdering(Collator.getInstance(ULocale.ROOT))
+                            .setSpaceComparator(
+                                    Collator.getInstance(ULocale.ROOT)
+                                            .setStrength2(Collator.PRIMARY))
+                            .setCompressRanges(true);
             if (null != null) {
                 pp.setToQuote(null);
             }
@@ -305,54 +304,54 @@ public final class NFSkippable extends UCDProperty {
     }
 
     /*
-       // DerivedProperty dp = new DerivedProperty(UCD.make(version));
+      // DerivedProperty dp = new DerivedProperty(UCD.make(version));
 
-            System.out.println(skipper.getName(NORMAL));
+           System.out.println(skipper.getName(NORMAL));
 
-            UnicodeSet result = new UnicodeSet();
-            for (int cp = 0; cp <= limit; ++cp) {
-                Utility.dot(cp);
-                if (skipper.hasProperty(cp)) result.add(cp);
-            }
-            Utility.fixDot();
+           UnicodeSet result = new UnicodeSet();
+           for (int cp = 0; cp <= limit; ++cp) {
+               Utility.dot(cp);
+               if (skipper.hasProperty(cp)) result.add(cp);
+           }
+           Utility.fixDot();
 
-            String rSet = result.toPattern(true);
-            rSet = replace(rSet, "\\U", "\\\\U");
-            out.println("\tSKIPPABLE[" + skipper.getName(NORMAL)
-                + "] = new UnicodeSet(");
-            writeStringInPieces(out, rSet, ", false);");
-            out.println();
+           String rSet = result.toPattern(true);
+           rSet = replace(rSet, "\\U", "\\\\U");
+           out.println("\tSKIPPABLE[" + skipper.getName(NORMAL)
+               + "] = new UnicodeSet(");
+           writeStringInPieces(out, rSet, ", false);");
+           out.println();
 
-            rSet = result.toPattern(false);
-            out.println("/*Unicode: ");
-     */
-    //writeStringInPieces(out, rSet, "*/");
+           rSet = result.toPattern(false);
+           out.println("/*Unicode: ");
+    */
+    // writeStringInPieces(out, rSet, "*/");
     /*out.println();
-            out.flush();
+           out.flush();
 
-        if (false) {
-            NFSkippable skipper = new NFSkippable(Normalizer.NFC,"");
-            NFSkippable skipper2 = new NFSkippable(Normalizer.NFKC,"");
-            for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-                if (cp > 0xFF) {
-                    if (!skipper.ucd.isAssigned(cp)) continue;
-                    byte cat = skipper.ucd.getCategory(cp);
-                    if (cat == PRIVATE_USE || cat == SURROGATE) continue;
-                    if (skipper.ucd.getCombiningClass(cp) != 0) continue;
-                    if (!skipper.nf.isNormalized(cp)) continue;
-                    if ((cp < 0xAC00 || cp > 0xAE00)
-                        && cp != skipper.ucd.mapToRepresentative(cp, false)) continue;
-                }
+       if (false) {
+           NFSkippable skipper = new NFSkippable(Normalizer.NFC,"");
+           NFSkippable skipper2 = new NFSkippable(Normalizer.NFKC,"");
+           for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+               if (cp > 0xFF) {
+                   if (!skipper.ucd.isAssigned(cp)) continue;
+                   byte cat = skipper.ucd.getCategory(cp);
+                   if (cat == PRIVATE_USE || cat == SURROGATE) continue;
+                   if (skipper.ucd.getCombiningClass(cp) != 0) continue;
+                   if (!skipper.nf.isNormalized(cp)) continue;
+                   if ((cp < 0xAC00 || cp > 0xAE00)
+                       && cp != skipper.ucd.mapToRepresentative(cp, false)) continue;
+               }
 
-                if (skipper2.hasProperty(cp) == skipper.hasProperty(cp)) continue;
+               if (skipper2.hasProperty(cp) == skipper.hasProperty(cp)) continue;
 
-                String status = (skipper.hasProperty(cp) ? "  SKIPc " : "NOSKIPc ")
-                    + (skipper2.hasProperty(cp) ? "  SKIPkc " : "NOSKIPkc ");
-                System.out.println(status
-                    + skipper.ucd.getCodeAndName(cp)
-                    + skipper.cause);
-            }
-        }
-     */
+               String status = (skipper.hasProperty(cp) ? "  SKIPc " : "NOSKIPc ")
+                   + (skipper2.hasProperty(cp) ? "  SKIPkc " : "NOSKIPkc ");
+               System.out.println(status
+                   + skipper.ucd.getCodeAndName(cp)
+                   + skipper.cause);
+           }
+       }
+    */
 
 }

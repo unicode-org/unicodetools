@@ -1,32 +1,25 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateData.java,v $
- * $Date: 2009-08-18 23:38:46 $
- * $Revision: 1.43 $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateData.java,v $ $Date:
+ * 2009-08-18 23:38:46 $ $Revision: 1.43 $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
+import com.ibm.icu.text.UTF16;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
-
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.UnicodeDataFile;
-import org.unicode.text.utility.UnicodeDataFile.FileInfix;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.text.UTF16;
-
 
 public class GenerateData implements UCD_Types {
 
@@ -748,21 +741,25 @@ public class GenerateData implements UCD_Types {
     }
 
      */
-    static public void writeNormalizerTestSuite(String directory, String fileName) throws IOException {
+    public static void writeNormalizerTestSuite(String directory, String fileName)
+            throws IOException {
 
-        final UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(directory, fileName).setSkipCopyright(Settings.SKIP_COPYRIGHT);
+        final UnicodeDataFile fc =
+                UnicodeDataFile.openAndWriteHeader(directory, fileName)
+                        .setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter log = fc.out;
 
-        //final String suffix = FileInfix.getDefault().getFileSuffix(".txt");
-        //final String newFile = directory + fileName + suffix;
-        //PrintWriter log = Utility.openPrintWriter(newFile, Utility.UTF8_UNIX);
-        //String[] batName = {""};
-        //String mostRecent = org.unicode.cldr.util.Utility.generateBat(directory, fileName, UnicodeDataFile.getFileSuffix(true), batName);
+        // final String suffix = FileInfix.getDefault().getFileSuffix(".txt");
+        // final String newFile = directory + fileName + suffix;
+        // PrintWriter log = Utility.openPrintWriter(newFile, Utility.UTF8_UNIX);
+        // String[] batName = {""};
+        // String mostRecent = org.unicode.cldr.util.Utility.generateBat(directory, fileName,
+        // UnicodeDataFile.getFileSuffix(true), batName);
 
         final String[] example = new String[256];
 
-        //log.println("# " + fileName + UnicodeDataFile.getFileSuffix(false));
-        //log.println(UnicodeDataFile.generateDateLine());
+        // log.println("# " + fileName + UnicodeDataFile.getFileSuffix(false));
+        // log.println(UnicodeDataFile.generateDateLine());
         //        log.println("#");
         //        log.println("# Normalization Test Suite");
         //        log.println("# Format:");
@@ -771,7 +768,8 @@ public class GenerateData implements UCD_Types {
         //        log.println("#   Comments are indicated with hash marks");
         //        log.println("#");
         //        log.println("# CONFORMANCE:");
-        //        log.println("# 1. The following invariants must be true for all conformant implementations");
+        //        log.println("# 1. The following invariants must be true for all conformant
+        // implementations");
         //        log.println("#");
         //        log.println("#    NFC");
         //        log.println("#      c2 ==  NFC(c1) ==  NFC(c2) ==  NFC(c3)");
@@ -782,13 +780,17 @@ public class GenerateData implements UCD_Types {
         //        log.println("#      c5 ==  NFD(c4) ==  NFD(c5)");
         //        log.println("#");
         //        log.println("#    NFKC");
-        //        log.println("#      c4 == NFKC(c1) == NFKC(c2) == NFKC(c3) == NFKC(c4) == NFKC(c5)");
+        //        log.println("#      c4 == NFKC(c1) == NFKC(c2) == NFKC(c3) == NFKC(c4) ==
+        // NFKC(c5)");
         //        log.println("#");
         //        log.println("#    NFKD");
-        //        log.println("#      c5 == NFKD(c1) == NFKD(c2) == NFKD(c3) == NFKD(c4) == NFKD(c5)");
+        //        log.println("#      c5 == NFKD(c1) == NFKD(c2) == NFKD(c3) == NFKD(c4) ==
+        // NFKD(c5)");
         //        log.println("#");
-        //        log.println("# 2. For every code point X assigned in this version of Unicode that is not specifically");
-        //        log.println("#    listed in Part 1, the following invariants must be true for all conformant");
+        //        log.println("# 2. For every code point X assigned in this version of Unicode that
+        // is not specifically");
+        //        log.println("#    listed in Part 1, the following invariants must be true for all
+        // conformant");
         //        log.println("#    implementations:");
         //        log.println("#");
         //        log.println("#      X == NFC(X) == NFD(X) == NFKC(X) == NFKD(X)");
@@ -807,7 +809,8 @@ public class GenerateData implements UCD_Types {
 
         log.println("#");
         log.println("@Part1 # Character by character test");
-        log.println("# All characters not explicitly occurring in c1 of Part 1 have identical NFC, D, KC, KD forms.");
+        log.println(
+                "# All characters not explicitly occurring in c1 of Part 1 have identical NFC, D, KC, KD forms.");
         log.println("#");
 
         for (int ch = 0; ch < 0x10FFFF; ++ch) {
@@ -819,7 +822,7 @@ public class GenerateData implements UCD_Types {
                 continue;
             }
             final String cc = UTF32.valueOf32(ch);
-            writeLine(cc,log, true);
+            writeLine(cc, log, true);
         }
         Utility.fixDot();
 
@@ -863,7 +866,7 @@ public class GenerateData implements UCD_Types {
             // add character with higher class, same class, lower class
 
             String sample = "";
-            for (int i = c+1; i < example.length; ++i) {
+            for (int i = c + 1; i < example.length; ++i) {
                 if (example[i] == null) {
                     continue;
                 }
@@ -871,7 +874,7 @@ public class GenerateData implements UCD_Types {
                 break;
             }
             sample += example[c];
-            for (int i = c-1; i > 0; --i) {
+            for (int i = c - 1; i > 0; --i) {
                 if (example[i] == null) {
                     continue;
                 }
@@ -910,7 +913,7 @@ public class GenerateData implements UCD_Types {
             if (Default.ucd().getDecompositionType(ch) != CANONICAL) {
                 continue;
             }
-            //if (!Default.nfc().isNormalized(ch)) continue;
+            // if (!Default.nfc().isNormalized(ch)) continue;
             final String s = Default.ucd().getDecompositionMapping(ch);
             if (UTF16.hasMoreCodePointsThan(s, 2)) {
                 continue;
@@ -930,15 +933,15 @@ public class GenerateData implements UCD_Types {
         }
         Utility.fixDot();
 
-        for (final Iterator it = prilist.iterator(); it.hasNext();) {
-            writeLine((String)it.next(),log, false);
+        for (final Iterator it = prilist.iterator(); it.hasNext(); ) {
+            writeLine((String) it.next(), log, false);
         }
 
         Utility.fixDot();
         log.println("#");
         log.println("# EOF");
         fc.close();
-        //Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
+        // Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
     }
     /*
 
@@ -981,18 +984,35 @@ public class GenerateData implements UCD_Types {
 
         // printout
         log.println(
-                Utility.hex(cc," ") + ";" + Utility.hex(c," ") + ";" + Utility.hex(d," ") + ";"
-                        + Utility.hex(kc," ") + ";" + Utility.hex(kd," ")
+                Utility.hex(cc, " ")
+                        + ";"
+                        + Utility.hex(c, " ")
+                        + ";"
+                        + Utility.hex(d, " ")
+                        + ";"
+                        + Utility.hex(kc, " ")
+                        + ";"
+                        + Utility.hex(kd, " ")
                         + "; # ("
-                        + comma(cc) + "; " + comma(c) + "; " + comma(d) + "; " + comma(kc) + "; " + comma(kd) + "; "
-                        + ") " + Default.ucd().getName(cc));
+                        + comma(cc)
+                        + "; "
+                        + comma(c)
+                        + "; "
+                        + comma(d)
+                        + "; "
+                        + comma(kc)
+                        + "; "
+                        + comma(kd)
+                        + "; "
+                        + ") "
+                        + Default.ucd().getName(cc));
     }
 
     static StringBuffer commaResult = new StringBuffer();
 
     // not recursive!!!
     static final String comma(String s) {
-        //if (true) return s;
+        // if (true) return s;
         commaResult.setLength(0);
         int cp;
         for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {

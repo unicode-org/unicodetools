@@ -1,12 +1,10 @@
 package org.unicode.jsp;
 
-import java.util.Comparator;
-import java.util.List;
-
-import org.unicode.props.UnicodeProperty;
-
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import java.util.Comparator;
+import java.util.List;
+import org.unicode.props.UnicodeProperty;
 
 public class MySymbolTable extends UnicodeSet.XSymbolTable {
     private UnicodeRegex unicodeRegex;
@@ -16,7 +14,6 @@ public class MySymbolTable extends UnicodeSet.XSymbolTable {
         factory = propertyFactory;
         unicodeRegex = new UnicodeRegex().setSymbolTable(this);
     }
-
 
     //    public boolean applyPropertyAlias0(String propertyName,
     //            String propertyValue, UnicodeSet result) {
@@ -31,8 +28,8 @@ public class MySymbolTable extends UnicodeSet.XSymbolTable {
     //      return null;
     //    }
 
-    public boolean applyPropertyAlias(String propertyName,
-            String propertyValue, UnicodeSet result) {
+    public boolean applyPropertyAlias(
+            String propertyName, String propertyValue, UnicodeSet result) {
         boolean status = false;
         boolean invert = false;
         int posNotEqual = propertyName.indexOf('\u2260');
@@ -41,9 +38,11 @@ public class MySymbolTable extends UnicodeSet.XSymbolTable {
             if (posNotEqual < 0) posNotEqual = propertyName.length();
             if (posColon < 0) posColon = propertyName.length();
             int opPos = posNotEqual < posColon ? posNotEqual : posColon;
-            propertyValue = propertyValue.length() == 0 ? propertyName.substring(opPos+1)
-                    : propertyName.substring(opPos+1) + "=" + propertyValue;
-            propertyName = propertyName.substring(0,opPos);
+            propertyValue =
+                    propertyValue.length() == 0
+                            ? propertyName.substring(opPos + 1)
+                            : propertyName.substring(opPos + 1) + "=" + propertyValue;
+            propertyName = propertyName.substring(0, opPos);
             if (posNotEqual < posColon) {
                 invert = true;
             }
@@ -58,15 +57,21 @@ public class MySymbolTable extends UnicodeSet.XSymbolTable {
         } else {
             try {
                 status = applyPropertyAlias0("gc", propertyName, result);
-            } catch (Exception e) {};
+            } catch (Exception e) {
+            }
+            ;
             if (!status) {
                 try {
                     status = applyPropertyAlias0("sc", propertyName, result);
-                } catch (Exception e) {};
+                } catch (Exception e) {
+                }
+                ;
                 if (!status) {
                     try {
                         status = applyPropertyAlias0(propertyName, "Yes", result);
-                    } catch (Exception e) {};
+                    } catch (Exception e) {
+                    }
+                    ;
                     if (!status) {
                         status = applyPropertyAlias0(propertyName, "", result);
                     }
@@ -79,17 +84,22 @@ public class MySymbolTable extends UnicodeSet.XSymbolTable {
         return status;
     }
 
-    public boolean applyPropertyAlias0(String propertyName,
-            String propertyValue, UnicodeSet result) {
+    public boolean applyPropertyAlias0(
+            String propertyName, String propertyValue, UnicodeSet result) {
         result.clear();
         UnicodeProperty.PatternMatcher patternMatcher = null;
-        if (propertyValue.length() > 1 && propertyValue.startsWith("/") && propertyValue.endsWith("/")) {
-            String fixedRegex = unicodeRegex.transform(propertyValue.substring(1, propertyValue.length() - 1));
+        if (propertyValue.length() > 1
+                && propertyValue.startsWith("/")
+                && propertyValue.endsWith("/")) {
+            String fixedRegex =
+                    unicodeRegex.transform(propertyValue.substring(1, propertyValue.length() - 1));
             patternMatcher = new UnicodeProperty.RegexMatcher().set(fixedRegex);
         }
         UnicodeProperty otherProperty = null;
         boolean testCp = false;
-        if (propertyValue.length() > 1 && propertyValue.startsWith("@") && propertyValue.endsWith("@")) {
+        if (propertyValue.length() > 1
+                && propertyValue.startsWith("@")
+                && propertyValue.endsWith("@")) {
             String otherPropName = propertyValue.substring(1, propertyValue.length() - 1).trim();
             if ("cp".equalsIgnoreCase(otherPropName)) {
                 testCp = true;
@@ -119,12 +129,21 @@ public class MySymbolTable extends UnicodeSet.XSymbolTable {
                 }
             } else if (patternMatcher == null) {
                 if (!isValid(prop, propertyValue)) {
-                    throw new IllegalArgumentException("The value '" + propertyValue + "' is illegal. Values for " + propertyName
-                            + " must be in "
-                            + prop.getAvailableValues() + " or in " + prop.getValueAliases());
+                    throw new IllegalArgumentException(
+                            "The value '"
+                                    + propertyValue
+                                    + "' is illegal. Values for "
+                                    + propertyName
+                                    + " must be in "
+                                    + prop.getAvailableValues()
+                                    + " or in "
+                                    + prop.getValueAliases());
                 }
                 if (isAge) {
-                    set = prop.getSet(new ComparisonMatcher(propertyValue, ComparisonMatcher.Relation.geq));
+                    set =
+                            prop.getSet(
+                                    new ComparisonMatcher(
+                                            propertyValue, ComparisonMatcher.Relation.geq));
                 } else {
                     set = prop.getSet(propertyValue);
                 }
@@ -149,8 +168,6 @@ public class MySymbolTable extends UnicodeSet.XSymbolTable {
         throw new IllegalArgumentException("Illegal property: " + propertyName);
     }
 
-
-
     private boolean isValid(UnicodeProperty prop, String propertyValue) {
         //      if (prop.getName().equals("General_Category")) {
         //        if (propertyValue)
@@ -160,8 +177,16 @@ public class MySymbolTable extends UnicodeSet.XSymbolTable {
 
     public static class ComparisonMatcher implements UnicodeProperty.PatternMatcher {
         Relation relation;
-        enum Relation {less, leq, equal, geq, greater}
-        static Comparator comparator = new UTF16.StringComparator(true, false,0);
+
+        enum Relation {
+            less,
+            leq,
+            equal,
+            geq,
+            greater
+        }
+
+        static Comparator comparator = new UTF16.StringComparator(true, false, 0);
 
         String pattern;
 
@@ -174,11 +199,16 @@ public class MySymbolTable extends UnicodeSet.XSymbolTable {
         public boolean test(String value) {
             int comp = comparator.compare(pattern, value.toString());
             switch (relation) {
-            case less: return comp < 0;
-            case leq: return comp <= 0;
-            default: return comp == 0;
-            case geq: return comp >= 0;
-            case greater: return comp > 0;
+                case less:
+                    return comp < 0;
+                case leq:
+                    return comp <= 0;
+                default:
+                    return comp == 0;
+                case geq:
+                    return comp >= 0;
+                case greater:
+                    return comp > 0;
             }
         }
 

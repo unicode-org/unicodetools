@@ -1,14 +1,12 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/ProcessUnihan.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/ProcessUnihan.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
 // stub file, ignore
@@ -67,4 +65,3 @@ public final class ProcessUnihan {
     }
      */
 }
-

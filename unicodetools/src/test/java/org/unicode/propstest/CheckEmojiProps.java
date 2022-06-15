@@ -1,7 +1,6 @@
 package org.unicode.propstest;
 
 import java.util.Objects;
-
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Utility;
@@ -12,7 +11,8 @@ public class CheckEmojiProps {
         final String unassigned = new StringBuilder().appendCodePoint(0x1FC00).toString();
         final String sampleEmoji = "🧔";
 
-        System.out.println("Comparing samples: " + sampleEmoji + " to U+" + Utility.hex(unassigned));
+        System.out.println(
+                "Comparing samples: " + sampleEmoji + " to U+" + Utility.hex(unassigned));
         for (UcdProperty item : UcdProperty.values()) {
             try {
                 String cn = latest.getResolvedValue(item, unassigned);

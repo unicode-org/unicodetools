@@ -1,10 +1,8 @@
 package org.unicode.draft;
 
-import java.util.Collections;
-
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
-
+import java.util.Collections;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.unicode.unittest.TestFmwkMinusMinus;
@@ -40,12 +38,18 @@ public class TestSourceTarget extends TestFmwkMinusMinus {
                 boolean hasError = false;
                 if (!source.containsAll(testSource)) {
                     testSource.removeAll(source);
-                    errln(id + "\tgetSourceSet doesn't contain mapped characters:\t" + testSource.toPattern(false));
+                    errln(
+                            id
+                                    + "\tgetSourceSet doesn't contain mapped characters:\t"
+                                    + testSource.toPattern(false));
                     hasError = true;
                 }
                 if (!target.containsAll(testTarget)) {
                     testTarget.removeAll(target);
-                    errln(id + "\tgetTargetSet doesn't contain mapped-to characters:\t" + testSource.toPattern(false));
+                    errln(
+                            id
+                                    + "\tgetTargetSet doesn't contain mapped-to characters:\t"
+                                    + testSource.toPattern(false));
                     hasError = true;
                 }
                 if (!hasError) {

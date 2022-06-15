@@ -10,8 +10,8 @@ package org.unicode.bidi;
 import java.io.PrintWriter;
 
 /**
- * A class that maps ASCII characters to bidi direction types, used for testing purposes.
- * This class should not be used as a model for access to or storage of this information.
+ * A class that maps ASCII characters to bidi direction types, used for testing purposes. This class
+ * should not be used as a model for access to or storage of this information.
  *
  * @author Doug Felt
  */
@@ -58,13 +58,12 @@ public abstract class BidiReferenceTestCharmap {
 
     private static final String[] typenames = BidiReference.typenames;
 
-    /**
-     * Return the name of this mapping.
-     */
+    /** Return the name of this mapping. */
     public abstract String getName();
 
     /**
      * Return the bidi direction codes corresponding to the ASCII characters in the string.
+     *
      * @param str the string
      * @return an array of bidi direction codes
      */
@@ -74,6 +73,7 @@ public abstract class BidiReferenceTestCharmap {
 
     /**
      * Return the bidi direction codes corresponding to the ASCII characters in the array.
+     *
      * @param chars the array of ASCII characters
      * @return an array of bidi direction codes
      */
@@ -82,8 +82,9 @@ public abstract class BidiReferenceTestCharmap {
     }
 
     /**
-     * Return the bidi direction codes corresponding to the ASCII characters in the subrange
-     * of the array.
+     * Return the bidi direction codes corresponding to the ASCII characters in the subrange of the
+     * array.
+     *
      * @param chars the array of ASCII characters
      * @param charstart the start of the subrange to use
      * @param count the number of characters in the subrange to use
@@ -95,9 +96,7 @@ public abstract class BidiReferenceTestCharmap {
         return result;
     }
 
-    /**
-     * Display the mapping from ASCII to bidi direction codes using the provided PrintWriter.
-     */
+    /** Display the mapping from ASCII to bidi direction codes using the provided PrintWriter. */
     public abstract void dumpInfo(PrintWriter w);
 
     /**
@@ -109,11 +108,10 @@ public abstract class BidiReferenceTestCharmap {
      * @param codeStart the start position in the codes array
      * @param count the number of characters to convert to direction codes
      */
-    public abstract void convert(char[] chars, int charStart, byte[] codes, int codeStart, int count);
+    public abstract void convert(
+            char[] chars, int charStart, byte[] codes, int codeStart, int count);
 
-    /**
-     * Constructor for subclass use.
-     */
+    /** Constructor for subclass use. */
     protected BidiReferenceTestCharmap() {
         // don't know why the compiler default constructor isn't acceptable
     }
@@ -125,15 +123,13 @@ public abstract class BidiReferenceTestCharmap {
     /**
      * Default implementation that maps ASCII to all bidi types.
      *
-     * This is the base class for TestArabic, TestHebrew, and TestMixed mappings.
+     * <p>This is the base class for TestArabic, TestHebrew, and TestMixed mappings.
      */
     public static class DefaultCharmap extends BidiReferenceTestCharmap {
         protected String name;
         protected byte[] map;
 
-        /**
-         * Initialize to default mapping, and define name.
-         */
+        /** Initialize to default mapping, and define name. */
         public DefaultCharmap(String name) {
 
             this.name = name;
@@ -152,14 +148,12 @@ public abstract class BidiReferenceTestCharmap {
             setMap(FSI, "?");
             setMap(PDI, "=");
             setMap(NSM, "~");
-            setMap( BN, "`");
-            setMap(  B, "|"); // visible character for convenience
-            setMap(  S, "_"); // visible character for convenience
+            setMap(BN, "`");
+            setMap(B, "|"); // visible character for convenience
+            setMap(S, "_"); // visible character for convenience
         }
 
-        /**
-         * Utility used to change the mapping.
-         */
+        /** Utility used to change the mapping. */
         protected void setMap(byte value, String chars) {
             for (int i = 0; i < chars.length(); ++i) {
                 map[chars.charAt(i)] = value;
@@ -167,39 +161,149 @@ public abstract class BidiReferenceTestCharmap {
         }
 
         /**
-         * Standard character mapping for Latin-1. Protected so that it can be
-         * directly accessed by subclasses.
+         * Standard character mapping for Latin-1. Protected so that it can be directly accessed by
+         * subclasses.
          */
         protected static final byte[] baseMap = {
-            ON,  ON,  ON,  ON,  ON,  ON,  ON,  ON,  // 00-07 c0 c0 c0 c0 c0 c0 c0 c0
-            ON,   S,   B,   S,   B,   B,  ON,  ON,  // 08-0f c0 HT LF VT FF CR c0 c0
-            ON,  ON,  ON,  ON,  ON,  ON,  ON,  ON,  // 10-17 c0 c0 c0 c0 c0 c0 c0 c0
-            ON,  ON,  ON,  ON,   B,   B,   B,   S,  // 18-1f c0 c0 c0 c0 FS GS RS US
-            WS,  ON,  ON,  ET,  ET,  ET,  ON,  ON,  // 20-27     !  "  #  $  %  &  '
-            ON,  ON,  ON,  ET,  CS,  ET,  CS,  ES,  // 28-2f  (  )  *  +  ,  -  .  /
-            EN,  EN,  EN,  EN,  EN,  EN,  EN,  EN,  // 30-37  0  1  2  3  4  5  6  7
-            EN,  EN,  CS,  ON,  ON,  ON,  ON,  ON,  // 38-3f  8  9  :  ;  <  =  >  ?
-            ON,   L,   L,   L,   L,   L,   L,   L,  // 40-47  @  A  B  C  D  E  F  G
-             L,   L,   L,   L,   L,   L,   L,   L,  // 48-4f  H  I  J  K  L  M  N  O
-             L,   L,   L,   L,   L,   L,   L,   L,  // 50-57  P  Q  R  S  T  U  V  W
-             L,   L,   L,  ON,  ON,  ON,  ON,   S,  // 58-5f  X  Y  Z  [  \  ]  ^  _
-            ON,   L,   L,   L,   L,   L,   L,   L,  // 60-67  `  a  b  c  d  e  f  g
-             L,   L,   L,   L,   L,   L,   L,   L,  // 68-6f  h  i  j  k  l  m  n  o
-             L,   L,   L,   L,   L,   L,   L,   L,  // 70-77  p  q  r  s  t  u  v  w
-             L,   L,   L,  ON,  ON,  ON,  ON,  ON   // 78-7f  x  y  z  {  |  }  ~  DEL
+            ON,
+            ON,
+            ON,
+            ON,
+            ON,
+            ON,
+            ON,
+            ON, // 00-07 c0 c0 c0 c0 c0 c0 c0 c0
+            ON,
+            S,
+            B,
+            S,
+            B,
+            B,
+            ON,
+            ON, // 08-0f c0 HT LF VT FF CR c0 c0
+            ON,
+            ON,
+            ON,
+            ON,
+            ON,
+            ON,
+            ON,
+            ON, // 10-17 c0 c0 c0 c0 c0 c0 c0 c0
+            ON,
+            ON,
+            ON,
+            ON,
+            B,
+            B,
+            B,
+            S, // 18-1f c0 c0 c0 c0 FS GS RS US
+            WS,
+            ON,
+            ON,
+            ET,
+            ET,
+            ET,
+            ON,
+            ON, // 20-27     !  "  #  $  %  &  '
+            ON,
+            ON,
+            ON,
+            ET,
+            CS,
+            ET,
+            CS,
+            ES, // 28-2f  (  )  *  +  ,  -  .  /
+            EN,
+            EN,
+            EN,
+            EN,
+            EN,
+            EN,
+            EN,
+            EN, // 30-37  0  1  2  3  4  5  6  7
+            EN,
+            EN,
+            CS,
+            ON,
+            ON,
+            ON,
+            ON,
+            ON, // 38-3f  8  9  :  ;  <  =  >  ?
+            ON,
+            L,
+            L,
+            L,
+            L,
+            L,
+            L,
+            L, // 40-47  @  A  B  C  D  E  F  G
+            L,
+            L,
+            L,
+            L,
+            L,
+            L,
+            L,
+            L, // 48-4f  H  I  J  K  L  M  N  O
+            L,
+            L,
+            L,
+            L,
+            L,
+            L,
+            L,
+            L, // 50-57  P  Q  R  S  T  U  V  W
+            L,
+            L,
+            L,
+            ON,
+            ON,
+            ON,
+            ON,
+            S, // 58-5f  X  Y  Z  [  \  ]  ^  _
+            ON,
+            L,
+            L,
+            L,
+            L,
+            L,
+            L,
+            L, // 60-67  `  a  b  c  d  e  f  g
+            L,
+            L,
+            L,
+            L,
+            L,
+            L,
+            L,
+            L, // 68-6f  h  i  j  k  l  m  n  o
+            L,
+            L,
+            L,
+            L,
+            L,
+            L,
+            L,
+            L, // 70-77  p  q  r  s  t  u  v  w
+            L,
+            L,
+            L,
+            ON,
+            ON,
+            ON,
+            ON,
+            ON // 78-7f  x  y  z  {  |  }  ~  DEL
         };
 
-        /**
-         * Return the name.
-         */
+        /** Return the name. */
         @Override
         public String getName() {
             return name;
         }
 
         /**
-         * Standard implementation of dumpInfo that displays, for each bidi
-         * direction type, the characters that are mapped to that type.
+         * Standard implementation of dumpInfo that displays, for each bidi direction type, the
+         * characters that are mapped to that type.
          */
         @Override
         public void dumpInfo(PrintWriter w) {
@@ -227,29 +331,29 @@ public abstract class BidiReferenceTestCharmap {
                             w.print(",");
                         }
                         switch (runEnd - runStart) {
-                        case 1:
-                            dumpChar(runStart, w);
-                            break;
-                        case 2:
-                            dumpChar(runStart, w);
-                            w.print(",");
-                            dumpChar(runEnd - 1, w);
-                            break;
-                        default:
-                            // only use ranges for a-z, A-Z, 0-9, c0 (hex display)
-                            if ((runStart >= 'a' && (runEnd - 1 <= 'z')) ||
-                                    (runStart >= 'A' && (runEnd - 1 <= 'Z')) ||
-                                    (runStart >= '0' && (runEnd - 1 <= '9')) ||
-                                    (runStart >= 0x0 && (runEnd - 1 <= 0x1f))) {
-
+                            case 1:
                                 dumpChar(runStart, w);
-                                w.print("-");
+                                break;
+                            case 2:
+                                dumpChar(runStart, w);
+                                w.print(",");
                                 dumpChar(runEnd - 1, w);
-                            } else {
-                                dumpChar(runStart, w);
-                                runEnd = runStart + 1;
-                            }
-                            break;
+                                break;
+                            default:
+                                // only use ranges for a-z, A-Z, 0-9, c0 (hex display)
+                                if ((runStart >= 'a' && (runEnd - 1 <= 'z'))
+                                        || (runStart >= 'A' && (runEnd - 1 <= 'Z'))
+                                        || (runStart >= '0' && (runEnd - 1 <= '9'))
+                                        || (runStart >= 0x0 && (runEnd - 1 <= 0x1f))) {
+
+                                    dumpChar(runStart, w);
+                                    w.print("-");
+                                    dumpChar(runEnd - 1, w);
+                                } else {
+                                    dumpChar(runStart, w);
+                                    runEnd = runStart + 1;
+                                }
+                                break;
                         }
 
                         runStart = runEnd;
@@ -261,19 +365,15 @@ public abstract class BidiReferenceTestCharmap {
         }
 
         /**
-         * Utility used to output a 'name' of single character, passed as an
-         * integer. Printable characters are represented as themselves,
-         * non-printable characters as hex values. Comma, hyphen, and space are
-         * represented as strings surrounded by square brackets.
+         * Utility used to output a 'name' of single character, passed as an integer. Printable
+         * characters are represented as themselves, non-printable characters as hex values. Comma,
+         * hyphen, and space are represented as strings surrounded by square brackets.
          *
-         * @param i
-         *            the integer value of the character
-         * @param w
-         *            the PrintWriter on which to output the representation of
-         *            the character
+         * @param i the integer value of the character
+         * @param w the PrintWriter on which to output the representation of the character
          */
         protected static void dumpChar(int i, PrintWriter w) {
-            final char c = (char)i;
+            final char c = (char) i;
 
             if (c == ',') {
                 w.print("[comma]");
@@ -288,9 +388,7 @@ public abstract class BidiReferenceTestCharmap {
             }
         }
 
-        /**
-         * Standard implementation of convert.
-         */
+        /** Standard implementation of convert. */
         @Override
         public void convert(char[] chars, int charStart, byte[] codes, int codeStart, int count) {
             for (int i = 0; i < count; ++i) {
@@ -329,7 +427,7 @@ public abstract class BidiReferenceTestCharmap {
 
     private static class TestHebrew extends DefaultCharmap {
         private TestHebrew() {
-            super ("Test Hebrew");
+            super("Test Hebrew");
 
             setMap(R, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         }

@@ -1,13 +1,13 @@
 package org.unicode.text.UCD;
 
-
 public class ToolIdna2008 {
     //
     //    public enum Idna2008Type {
     //        UNASSIGNED, DISALLOWED, PVALID, CONTEXTJ, CONTEXTO
     //    }
     //
-    //    static ToolUnicodePropertySource source = ToolUnicodePropertySource.make(Default.ucdVersion());
+    //    static ToolUnicodePropertySource source =
+    // ToolUnicodePropertySource.make(Default.ucdVersion());
     //
     //    private static final UnicodeSet IDNA2008Valid;
     //
@@ -15,7 +15,8 @@ public class ToolIdna2008 {
     //
     //    static {
     //        // A: General_Category(cp) is in {Ll, Lu, Lo, Nd, Lm, Mn, Mc}
-    //        UnicodeSet LetterDigits = new UnicodeSet() // "[[:Ll:][:Lu:][:Lo:][:Nd:][:Lm:][:Mn:][:Mc:]]")
+    //        UnicodeSet LetterDigits = new UnicodeSet() //
+    // "[[:Ll:][:Lu:][:Lo:][:Nd:][:Lm:][:Mn:][:Mc:]]")
     //        .addAll(source.getSet("gc=Ll"))
     //        .addAll(source.getSet("gc=Lu"))
     //        .addAll(source.getSet("gc=Lo"))
@@ -73,9 +74,14 @@ public class ToolIdna2008 {
     //        // 30FB}
     //
     //        UnicodeMap<Idna2008Type> Exceptions = new UnicodeMap<Idna2008Type>()
-    //                .putAll(new UnicodeSet("[\u00DF\u03C2\u06FD\u06FE\u0F0B\u3007]"), Idna2008Type.PVALID)
-    //                .putAll(new UnicodeSet("[\u00B7\u0375\u05F3\u05F4\u30FB\u0660-\u0669\u06F0-\u06F9]"), Idna2008Type.CONTEXTO)
-    //                .putAll(new UnicodeSet("[\u0640\u07FA\u302E\u302F\u3031\u3032\u3033\u3034\u3035\u303B]"), Idna2008Type.DISALLOWED)
+    //                .putAll(new UnicodeSet("[\u00DF\u03C2\u06FD\u06FE\u0F0B\u3007]"),
+    // Idna2008Type.PVALID)
+    //                .putAll(new
+    // UnicodeSet("[\u00B7\u0375\u05F3\u05F4\u30FB\u0660-\u0669\u06F0-\u06F9]"),
+    // Idna2008Type.CONTEXTO)
+    //                .putAll(new
+    // UnicodeSet("[\u0640\u07FA\u302E\u302F\u3031\u3032\u3033\u3034\u3035\u303B]"),
+    // Idna2008Type.DISALLOWED)
     //                .freeze();
     //
     //        // G: cp is in {}
@@ -120,7 +126,8 @@ public class ToolIdna2008 {
     //        // Else If .cp. .in. LetterDigits Then PVALID;
     //        // Else DISALLOWED;
     //
-    //        UnicodeMap<Idna2008Type> Incompatible = new UnicodeMap<Idna2008Type>().put(0x19DA, Idna2008Type.PVALID).freeze();
+    //        UnicodeMap<Idna2008Type> Incompatible = new UnicodeMap<Idna2008Type>().put(0x19DA,
+    // Idna2008Type.PVALID).freeze();
     //
     //        IDNA2008Computed = new UnicodeMap<Idna2008Type>();
     //

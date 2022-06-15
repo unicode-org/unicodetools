@@ -1,16 +1,18 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/VerifyUCD.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/VerifyUCD.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
+import com.ibm.icu.text.CanonicalIterator;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,16 +24,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
-
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.text.CanonicalIterator;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
 
 public class VerifyUCD implements UCD_Types {
     static final boolean DEBUG = false;
@@ -51,20 +47,17 @@ public class VerifyUCD implements UCD_Types {
             final String decomp = Default.nfd().normalize(cp);
             final String foldDecomp = Default.ucd().getCase(decomp, FULL, FOLD);
             final int d0 = Default.ucd().getCombiningClass(decomp.charAt(0));
-            final int dL = Default.ucd().getCombiningClass(decomp.charAt(decomp.length()-1));
+            final int dL = Default.ucd().getCombiningClass(decomp.charAt(decomp.length() - 1));
             final int f0 = Default.ucd().getCombiningClass(foldDecomp.charAt(0));
-            final int fL = Default.ucd().getCombiningClass(foldDecomp.charAt(decomp.length()-1));
+            final int fL = Default.ucd().getCombiningClass(foldDecomp.charAt(decomp.length() - 1));
             if (d0 != f0 || dL != fL) {
                 Utility.fixDot();
                 System.out.println();
                 System.out.println("Exception: " + Default.ucd().getCodeAndName(cp));
                 System.out.println("Decomp: " + Default.ucd().getCodeAndName(decomp));
                 System.out.println("FoldedDecomp: " + Default.ucd().getCodeAndName(foldDecomp));
-                System.out.println("d0: " + d0 + ", "
-                        + "dL: " + dL + ", "
-                        + "f0: " + f0 + ", "
-                        + "fL: " + fL
-                        );
+                System.out.println(
+                        "d0: " + d0 + ", " + "dL: " + dL + ", " + "f0: " + f0 + ", " + "fL: " + fL);
                 sum.add(cp);
             }
         }
@@ -94,16 +87,21 @@ public class VerifyUCD implements UCD_Types {
     static final byte NC = UNUSED_CATEGORY;
 
     static final NumberFormat format = NumberFormat.getInstance();
+
     static {
         format.setMinimumFractionDigits(0);
         format.setGroupingUsed(true);
     }
 
-    static abstract class SimpleProp {
+    abstract static class SimpleProp {
         abstract String getTitle();
+
         abstract short getUnallocatedProp();
+
         abstract short getProp(int cp);
+
         abstract String getName(short prop);
+
         abstract String getCode(short prop);
 
         byte[] subtotalBreaks = null;
@@ -141,6 +139,7 @@ public class VerifyUCD implements UCD_Types {
         String getTitle() {
             return "General Category";
         }
+
         @Override
         short getUnallocatedProp() {
             return Cn;
@@ -154,6 +153,7 @@ public class VerifyUCD implements UCD_Types {
             }
             return cat;
         }
+
         @Override
         String getCode(short prop) {
             if (prop >= LIMIT_CATEGORY) {
@@ -165,6 +165,7 @@ public class VerifyUCD implements UCD_Types {
             Default.ucd();
             return UCD.getCategoryID_fromIndex(prop);
         }
+
         @Override
         String getName(short prop) {
             if (prop >= LIMIT_CATEGORY) {
@@ -182,14 +183,11 @@ public class VerifyUCD implements UCD_Types {
         }
 
         {
-            permute = new byte[] {
-                    Lu, Ll, Lt, Lo, Lm,
-                    Mn, Me, Mc,
-                    Nd, Nl, No,
-                    Pd, Pc, Ps, Pi, Pe, Pf, Po,
-                    Sc, Sm, Sk, So,
-                    Zs, Zl, Zp,
-                    Cc, Cf, Co, Cs, NC, Cn};
+            permute =
+                    new byte[] {
+                        Lu, Ll, Lt, Lo, Lm, Mn, Me, Mc, Nd, Nl, No, Pd, Pc, Ps, Pi, Pe, Pf, Po, Sc,
+                        Sm, Sk, So, Zs, Zl, Zp, Cc, Cf, Co, Cs, NC, Cn
+                    };
 
             subtotalBreaks = new byte[] {Lm, Mc, No, Po, So, Zp, Cs, Cn};
 
@@ -202,6 +200,7 @@ public class VerifyUCD implements UCD_Types {
         String getTitle() {
             return "Script";
         }
+
         @Override
         short getUnallocatedProp() {
             return COMMON_SCRIPT;
@@ -211,6 +210,7 @@ public class VerifyUCD implements UCD_Types {
         short getProp(int cp) {
             return Default.ucd().getScript(cp);
         }
+
         @Override
         String getCode(short prop) {
             if (prop >= LIMIT_SCRIPT) {
@@ -219,6 +219,7 @@ public class VerifyUCD implements UCD_Types {
             Default.ucd();
             return UCD.getScriptID_fromIndex(prop, SHORT);
         }
+
         @Override
         String getName(short prop) {
             if (prop >= LIMIT_SCRIPT) {
@@ -227,22 +228,24 @@ public class VerifyUCD implements UCD_Types {
             Default.ucd();
             return UCD.getScriptID_fromIndex(prop, LONG);
         }
+
         @Override
         short getPermutation(short prop) {
-            if (prop == LIMIT_SCRIPT-1) {
+            if (prop == LIMIT_SCRIPT - 1) {
                 return COMMON_SCRIPT;
             }
-            if (prop == LIMIT_SCRIPT-2) {
+            if (prop == LIMIT_SCRIPT - 2) {
                 return INHERITED_SCRIPT;
             }
             if (prop >= LIMIT_SCRIPT) {
                 return prop;
             }
-            if (prop >= INHERITED_SCRIPT-1) {
-                return (byte)(prop+2);
+            if (prop >= INHERITED_SCRIPT - 1) {
+                return (byte) (prop + 2);
             }
-            return (byte)(prop+1);
+            return (byte) (prop + 1);
         }
+
         {
             cumulativeTotalBreaks = new byte[] {TAGBANWA_SCRIPT};
         }
@@ -265,8 +268,6 @@ public class VerifyUCD implements UCD_Types {
         final int[] subtotalCount = new int[5];
         final int[] totalCount = new int[5];
 
-
-
         short cat;
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             Utility.dot(cp);
@@ -279,24 +280,26 @@ public class VerifyUCD implements UCD_Types {
             setSample(count[cat], sample[cat], 0, cp);
 
             if (checkNormalizer(Default.nfd(), cp)) {
-                setSample(count[cat], sample[cat], NFD+1, cp);
+                setSample(count[cat], sample[cat], NFD + 1, cp);
             }
             if (checkNormalizer(Default.nfc(), cp)) {
-                setSample(count[cat], sample[cat], NFC+1, cp);
+                setSample(count[cat], sample[cat], NFC + 1, cp);
             }
             if (checkNormalizer(Default.nfkd(), cp)) {
-                setSample(count[cat], sample[cat], NFKD+1, cp);
+                setSample(count[cat], sample[cat], NFKD + 1, cp);
             }
             if (checkNormalizer(Default.nfkc(), cp)) {
-                setSample(count[cat], sample[cat], NFKC+1, cp);
+                setSample(count[cat], sample[cat], NFKC + 1, cp);
             }
-
         }
 
         Utility.fixDot();
 
         System.out.println("<table border='1' cellspacing='0' cellpadding='4'>");
-        System.out.print("<tr><th class='tt' colspan='2'>" + prop.getTitle() + "</th><th class='tn' colspan='2'>Count");
+        System.out.print(
+                "<tr><th class='tt' colspan='2'>"
+                        + prop.getTitle()
+                        + "</th><th class='tn' colspan='2'>Count");
         for (byte j = 0; j < 4; ++j) {
             System.out.println("</th><th class='tn' colspan='2'>" + UCD_Names.NF_NAME[j]);
         }
@@ -304,7 +307,8 @@ public class VerifyUCD implements UCD_Types {
 
         for (short ii = 0; ii < count.length; ++ii) {
             final short i = prop.getPermutation(ii);
-            // System.out.println(prop.getCode(ii) + ", " + ii + " => " + prop.getCode(i) + ", " + i);
+            // System.out.println(prop.getCode(ii) + ", " + ii + " => " + prop.getCode(i) + ", " +
+            // i);
             if (count[i][0] == 0) {
                 continue;
             }
@@ -312,14 +316,20 @@ public class VerifyUCD implements UCD_Types {
             final String code = prop.getCode(i);
             final String name = prop.getName(i);
 
-            System.out.println(" <tr><th class='t'>" + code + "</th><th class='t'>" + name + "</th>");
+            System.out.println(
+                    " <tr><th class='t'>" + code + "</th><th class='t'>" + name + "</th>");
             for (byte j = 0; j < 5; ++j) {
                 if (count[i][j] == 0) {
                     System.out.println("<td colspan='2'> </td>");
                 } else {
-                    System.out.println("  <td class='n'><b>" + format.format(count[i][j]) + "</b></td>");
-                    System.out.println("  <td class='s'><div title='" +
-                            Default.ucd().getCodeAndName(sample[i][j]) + "'>" + quote(sample[i][j]) + "</div></td>");
+                    System.out.println(
+                            "  <td class='n'><b>" + format.format(count[i][j]) + "</b></td>");
+                    System.out.println(
+                            "  <td class='s'><div title='"
+                                    + Default.ucd().getCodeAndName(sample[i][j])
+                                    + "'>"
+                                    + quote(sample[i][j])
+                                    + "</div></td>");
                 }
                 subtotalCount[j] += count[i][j];
                 totalCount[j] += count[i][j];
@@ -336,7 +346,7 @@ public class VerifyUCD implements UCD_Types {
         System.out.println("</table>");
     }
 
-    static public String quote(int cp) {
+    public static String quote(int cp) {
         final byte cat2 = Default.ucd().getCategory(cp);
         if (cat2 == Zs || cat2 == Zp || cat2 == Zl) {
             return "&nbsp;";
@@ -350,7 +360,7 @@ public class VerifyUCD implements UCD_Types {
         return "&#" + cp + ";";
     }
 
-    static public void setSample(int[] count, int[] array, int index, int cp) {
+    public static void setSample(int[] count, int[] array, int index, int cp) {
         count[index]++;
         final int value = array[index];
         if (value == 0) {
@@ -393,12 +403,13 @@ public class VerifyUCD implements UCD_Types {
         return count;
     }
 
-
     public static void printTotals(String title, int[] subtotalCount, boolean zeroit) {
         System.out.println(" <tr><th class='tt' colspan='2'>" + title + "</th>");
         for (byte j = 0; j < subtotalCount.length; ++j) {
-            System.out.println("  <td class='tn' colspan='2'>"
-                    + (subtotalCount[j] == 0 ? "" : format.format(subtotalCount[j])) + "</td>");
+            System.out.println(
+                    "  <td class='tn' colspan='2'>"
+                            + (subtotalCount[j] == 0 ? "" : format.format(subtotalCount[j]))
+                            + "</td>");
             if (zeroit) {
                 subtotalCount[j] = 0;
             }
@@ -418,7 +429,6 @@ public class VerifyUCD implements UCD_Types {
     }
 
     public static void checkBIDI() {
-
 
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             Utility.dot(cp);
@@ -440,9 +450,18 @@ public class VerifyUCD implements UCD_Types {
 
             if (!bidiDecomp.equals(bidiSource) || !bidiComp.equals(bidiSource)) {
                 Utility.fixDot();
-                System.out.println(Default.ucd().getCodeAndName(cp) + ": " + getBidi(source, false));
-                System.out.println("\tNFC: " + Default.ucd().getCodeAndName(comp) + ": " + getBidi(comp, false));
-                System.out.println("\tNFD: " + Default.ucd().getCodeAndName(decomp) + ": " + getBidi(decomp, false));
+                System.out.println(
+                        Default.ucd().getCodeAndName(cp) + ": " + getBidi(source, false));
+                System.out.println(
+                        "\tNFC: "
+                                + Default.ucd().getCodeAndName(comp)
+                                + ": "
+                                + getBidi(comp, false));
+                System.out.println(
+                        "\tNFD: "
+                                + Default.ucd().getCodeAndName(decomp)
+                                + ": "
+                                + getBidi(decomp, false));
             }
         }
     }
@@ -464,8 +483,12 @@ public class VerifyUCD implements UCD_Types {
                     continue;
                 }
             }
-            result += Default.ucd().getCase(
-                    Default.ucd().getBidiClassID_fromIndex(bidi, SHORT), FULL, TITLE);
+            result +=
+                    Default.ucd()
+                            .getCase(
+                                    Default.ucd().getBidiClassID_fromIndex(bidi, SHORT),
+                                    FULL,
+                                    TITLE);
             lastBidi = bidi;
         }
         return result;
@@ -473,54 +496,52 @@ public class VerifyUCD implements UCD_Types {
 
     public static void verify() throws IOException {
 
-
         checkIdentical("ea=h", "dt=nar");
         checkIdentical("ea=f", "dt=wide");
         checkIdentical("gc=ps", "lb=op");
         checkIdentical("lb=sg", "gc=cs");
 
         /*
-For LB we now have:
+        For LB we now have:
 
-GC:Ps == LB:OP
-GC:Nd && !(EA:F)
+        GC:Ps == LB:OP
+        GC:Nd && !(EA:F)
 
-Try these on for size, and report any discrepancies
+        Try these on for size, and report any discrepancies
 
->GC:L& && EA:W -> LB:ID
->GC:L& && EA:A -> LB:AI
->GC:L& && EA:N -> LB:AL
->GC:L& && EA:Na -> LB:AL
+        >GC:L& && EA:W -> LB:ID
+        >GC:L& && EA:A -> LB:AI
+        >GC:L& && EA:N -> LB:AL
+        >GC:L& && EA:Na -> LB:AL
 
-plus
+        plus
 
->LB:ID contains Ideo:T
+        >LB:ID contains Ideo:T
 
-Also, try these rules
+        Also, try these rules
 
-GC:S# && EA:W -> LB:ID
-GC:S# && EA:A -> LB:AI
-GC:S# && EA:N -> LB:AL
-GC:S# && EA:Na -> LB:AL
+        GC:S# && EA:W -> LB:ID
+        GC:S# && EA:A -> LB:AI
+        GC:S# && EA:N -> LB:AL
+        GC:S# && EA:Na -> LB:AL
 
-where S# is Sm | Sk | So
+        where S# is Sm | Sk | So
 
-these will generate exceptions, but I need to see the list to them before I
-can help you narrow these down.
+        these will generate exceptions, but I need to see the list to them before I
+        can help you narrow these down.
 
->The trivial ones that I could glean from reading the TR are
->LB:SG == GC:Cs
->GC:Pi -> LB:QU
->GC:Pf -> LB:QU
->GC:Mc -> LB:CM
->GC:Me -> LB:CM
->GC:Mn -> LB:CM
->GC:Pe -> LB:CL
-         */
+        >The trivial ones that I could glean from reading the TR are
+        >LB:SG == GC:Cs
+        >GC:Pi -> LB:QU
+        >GC:Pf -> LB:QU
+        >GC:Mc -> LB:CM
+        >GC:Me -> LB:CM
+        >GC:Mn -> LB:CM
+        >GC:Pe -> LB:CL
+                 */
     }
 
-    static final void checkCase3 () {
-
+    static final void checkCase3() {
 
         checkNF_AndCase("\u0130", true);
         checkNF_AndCase("\u0131", true);
@@ -541,22 +562,21 @@ can help you narrow these down.
                 if (!checkNF_AndCase(str, false)) {
                     badChars.add(cp);
                 }
-                //if (Default.ucd.getScript(cp) != GREEK_SCRIPT) continue;
+                // if (Default.ucd.getScript(cp) != GREEK_SCRIPT) continue;
                 str += "\u0334";
                 try {
-                    //System.out.println("Check " + Default.ucd.getCodeAndName(str));
+                    // System.out.println("Check " + Default.ucd.getCodeAndName(str));
                     cit.setSource(str);
                     while (true) {
                         final String s = cit.next();
                         if (s == null) {
                             break;
                         }
-                        if (s.equals(str))
-                        {
+                        if (s.equals(str)) {
                             continue; // don't check twice
                         }
 
-                        //System.out.println("  Checking " + Default.ucd.getCodeAndName(s));
+                        // System.out.println("  Checking " + Default.ucd.getCodeAndName(s));
                         if (!checkNF_AndCase(s, false)) {
                             badChars.add(cp);
                         }
@@ -565,21 +585,22 @@ can help you narrow these down.
                     System.out.println("Problem with " + Default.ucd().getCodeAndName(str));
                     throw e;
                 }
-
             }
 
             if (false) {
                 if (softdot == null) {
                     softdot = DerivedProperty.make(Type_i, Default.ucd());
                 }
-                if (Default.ucd().getBinaryProperty(cp, Soft_Dotted) !=
-                        softdot.hasValue(cp)) {
+                if (Default.ucd().getBinaryProperty(cp, Soft_Dotted) != softdot.hasValue(cp)) {
                     System.out.println("FAIL: " + Default.ucd().getCodeAndName(cp));
-                    System.out.println("Soft_Dotted='" + Default.ucd().getBinaryPropertiesID(cp, Soft_Dotted)
-                            + "', DerivedSD=" + softdot.getValue(cp) + "'");
+                    System.out.println(
+                            "Soft_Dotted='"
+                                    + Default.ucd().getBinaryPropertiesID(cp, Soft_Dotted)
+                                    + "', DerivedSD="
+                                    + softdot.getValue(cp)
+                                    + "'");
                 }
             }
-
         }
         System.out.println();
         Utility.showSetNames("", badChars, false, Default.ucd());
@@ -596,18 +617,23 @@ can help you narrow these down.
         set2minus1.removeAll(set1);
 
         if (set1minus2.isEmpty() && set2minus1.isEmpty()) {
-            System.out.println("PASS: " + prop1.getFullName(LONG) + " == " + prop2.getFullName(LONG));
+            System.out.println(
+                    "PASS: " + prop1.getFullName(LONG) + " == " + prop2.getFullName(LONG));
             System.out.println();
             return;
         }
         System.out.println("FAIL: " + prop1.getFullName(LONG) + " != " + prop2.getFullName(LONG));
         if (!set1minus2.isEmpty()) {
-            System.out.println(" In " + prop1.getFullName(LONG) + " but not " + prop2.getFullName(LONG));
-            Utility.showSetNames("  " + prop1.getFullName(SHORT) + ": ", set1minus2, false, Default.ucd());
+            System.out.println(
+                    " In " + prop1.getFullName(LONG) + " but not " + prop2.getFullName(LONG));
+            Utility.showSetNames(
+                    "  " + prop1.getFullName(SHORT) + ": ", set1minus2, false, Default.ucd());
         }
         if (!set2minus1.isEmpty()) {
-            System.out.println(" In " + prop2.getFullName(LONG) + " but not " + prop1.getFullName(LONG));
-            Utility.showSetNames("  " + prop2.getFullName(SHORT) + ": ", set2minus1, false, Default.ucd());
+            System.out.println(
+                    " In " + prop2.getFullName(LONG) + " but not " + prop1.getFullName(LONG));
+            Utility.showSetNames(
+                    "  " + prop2.getFullName(SHORT) + ": ", set2minus1, false, Default.ucd());
         }
         System.out.println();
     }
@@ -617,51 +643,111 @@ can help you narrow these down.
         final String decomp = Default.nfd().normalize(source);
         if (!decomp.equals(source)) {
 
-            result &= checkNFC("Lower", source, decomp, Default.ucd().getCase(source, FULL, LOWER), Default.ucd().getCase(decomp, FULL, LOWER));
-            result &= checkNFC("Upper", source, decomp, Default.ucd().getCase(source, FULL, UPPER), Default.ucd().getCase(decomp, FULL, UPPER));
-            result &= checkNFC("Title", source, decomp, Default.ucd().getCase(source, FULL, TITLE), Default.ucd().getCase(decomp, FULL, TITLE));
-            result &= checkNFC("Fold", source, decomp, Default.ucd().getCase(source, FULL, FOLD), Default.ucd().getCase(decomp, FULL, FOLD));
+            result &=
+                    checkNFC(
+                            "Lower",
+                            source,
+                            decomp,
+                            Default.ucd().getCase(source, FULL, LOWER),
+                            Default.ucd().getCase(decomp, FULL, LOWER));
+            result &=
+                    checkNFC(
+                            "Upper",
+                            source,
+                            decomp,
+                            Default.ucd().getCase(source, FULL, UPPER),
+                            Default.ucd().getCase(decomp, FULL, UPPER));
+            result &=
+                    checkNFC(
+                            "Title",
+                            source,
+                            decomp,
+                            Default.ucd().getCase(source, FULL, TITLE),
+                            Default.ucd().getCase(decomp, FULL, TITLE));
+            result &=
+                    checkNFC(
+                            "Fold",
+                            source,
+                            decomp,
+                            Default.ucd().getCase(source, FULL, FOLD),
+                            Default.ucd().getCase(decomp, FULL, FOLD));
 
             if (!both) {
                 return result;
             }
 
-            result &= checkNFC("SLower", source, decomp, Default.ucd().getCase(source, SIMPLE, LOWER), Default.ucd().getCase(decomp, SIMPLE, LOWER));
-            result &= checkNFC("SUpper", source, decomp, Default.ucd().getCase(source, SIMPLE, UPPER), Default.ucd().getCase(decomp, SIMPLE, UPPER));
-            result &= checkNFC("STitle", source, decomp, Default.ucd().getCase(source, SIMPLE, TITLE), Default.ucd().getCase(decomp, SIMPLE, TITLE));
-            result &= checkNFC("SFold", source, decomp, Default.ucd().getCase(source, SIMPLE, TITLE), Default.ucd().getCase(decomp, SIMPLE, TITLE));
+            result &=
+                    checkNFC(
+                            "SLower",
+                            source,
+                            decomp,
+                            Default.ucd().getCase(source, SIMPLE, LOWER),
+                            Default.ucd().getCase(decomp, SIMPLE, LOWER));
+            result &=
+                    checkNFC(
+                            "SUpper",
+                            source,
+                            decomp,
+                            Default.ucd().getCase(source, SIMPLE, UPPER),
+                            Default.ucd().getCase(decomp, SIMPLE, UPPER));
+            result &=
+                    checkNFC(
+                            "STitle",
+                            source,
+                            decomp,
+                            Default.ucd().getCase(source, SIMPLE, TITLE),
+                            Default.ucd().getCase(decomp, SIMPLE, TITLE));
+            result &=
+                    checkNFC(
+                            "SFold",
+                            source,
+                            decomp,
+                            Default.ucd().getCase(source, SIMPLE, TITLE),
+                            Default.ucd().getCase(decomp, SIMPLE, TITLE));
         }
         return result;
     }
 
     static final boolean SHOW_NFC_DIFFERENCE = false;
 
-    static boolean checkNFC(String label, String source, String decomp, String casedCp, String casedDecomp) {
+    static boolean checkNFC(
+            String label, String source, String decomp, String casedCp, String casedDecomp) {
         if (!Default.nfd().normalize(casedCp).equals(Default.nfd().normalize(casedDecomp))) {
             if (SHOW_NFC_DIFFERENCE) {
                 Utility.fixDot();
-                System.out.println("FAIL CASE CE: " + label + " (" + Default.ucd().getCodeAndName(source) + ")");
-                System.out.println("\t" + Default.ucd().getCode(source) + " => " + Default.ucd().getCode(casedCp));
-                System.out.println("\t" + Default.ucd().getCode(decomp) + " => " + Default.ucd().getCode(casedDecomp));
+                System.out.println(
+                        "FAIL CASE CE: "
+                                + label
+                                + " ("
+                                + Default.ucd().getCodeAndName(source)
+                                + ")");
+                System.out.println(
+                        "\t"
+                                + Default.ucd().getCode(source)
+                                + " => "
+                                + Default.ucd().getCode(casedCp));
+                System.out.println(
+                        "\t"
+                                + Default.ucd().getCode(decomp)
+                                + " => "
+                                + Default.ucd().getCode(casedDecomp));
             }
             return false;
         }
         return true;
     }
 
-    
-
     /*
-        System.out.println(Default.ucd.toString(0x0387));
-        System.out.println(Default.ucd.toString(0x00B7));
-        System.out.println(Default.ucd.toString(0x03a3));
-        System.out.println(Default.ucd.toString(0x03c2));
-        System.out.println(Default.ucd.toString(0x03c3));
-        System.out.println(Default.ucd.toString(0x0069));
-        System.out.println(Default.ucd.toString(0x0130));
-        System.out.println(Default.ucd.toString(0x0131));
-        System.out.println(Default.ucd.toString(0x0345));
-     */
+       System.out.println(Default.ucd.toString(0x0387));
+       System.out.println(Default.ucd.toString(0x00B7));
+       System.out.println(Default.ucd.toString(0x03a3));
+       System.out.println(Default.ucd.toString(0x03c2));
+       System.out.println(Default.ucd.toString(0x03c3));
+       System.out.println(Default.ucd.toString(0x0069));
+       System.out.println(Default.ucd.toString(0x0130));
+       System.out.println(Default.ucd.toString(0x0131));
+       System.out.println(Default.ucd.toString(0x0345));
+    */
 
     static void checkAgainstOtherVersion(String otherVersion) {
 
@@ -681,9 +767,10 @@ can help you narrow these down.
     static void generateXML() throws IOException {
 
         final String filename = "UCD.xml";
-        final PrintWriter log = Utility.openPrintWriterGenDir("log/" + filename, Utility.LATIN1_UNIX);
+        final PrintWriter log =
+                Utility.openPrintWriterGenDir("log/" + filename, Utility.LATIN1_UNIX);
 
-        //log.println('\uFEFF');
+        // log.println('\uFEFF');
         log.println("<ucd>");
 
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
@@ -701,25 +788,28 @@ can help you narrow these down.
         log.close();
     }
 
-    static final byte MIXED = (byte)(UNCASED + 1);
+    static final byte MIXED = (byte) (UNCASED + 1);
 
     public static void checkCase() throws IOException {
 
         Utility.fixDot();
         System.out.println("checkCase");
 
-        final String test = "The qui'ck br\u2019own 'fox jum\u00ADped ov\u200Ber th\u200Ce lazy dog.";
+        final String test =
+                "The qui'ck br\u2019own 'fox jum\u00ADped ov\u200Ber th\u200Ce lazy dog.";
 
         final String ttest = Default.ucd().getCase(test, FULL, TITLE);
 
-        final PrintWriter titleTest = Utility.openPrintWriterGenDir("log/TestTitle.txt", Utility.LATIN1_UNIX);
+        final PrintWriter titleTest =
+                Utility.openPrintWriterGenDir("log/TestTitle.txt", Utility.LATIN1_UNIX);
         titleTest.println(test);
         titleTest.println(ttest);
         titleTest.close();
 
         System.out.println(Default.ucd().getCase("ABC,DE'F G\u0308H", FULL, TITLE));
         final String fileName = "CaseDifferences.txt";
-        final PrintWriter log = Utility.openPrintWriterGenDir("log/" + fileName, Utility.LATIN1_UNIX);
+        final PrintWriter log =
+                Utility.openPrintWriterGenDir("log/" + fileName, Utility.LATIN1_UNIX);
 
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             Utility.dot(cp);
@@ -748,24 +838,34 @@ can help you narrow these down.
             final byte cat = Default.ucd().getCategory(cp);
             final boolean otherLower = Default.ucd().getBinaryProperty(cp, Other_Lowercase);
             final boolean otherUpper = Default.ucd().getBinaryProperty(cp, Other_Uppercase);
-            final byte oldCaseCat = (cat == Lu || otherUpper) ? UPPER
-                    : (cat == Ll || otherLower) ? LOWER
-                            : (cat == Lt) ? TITLE
-                                    : UNCASED;
+            final byte oldCaseCat =
+                    (cat == Lu || otherUpper)
+                            ? UPPER
+                            : (cat == Ll || otherLower) ? LOWER : (cat == Lt) ? TITLE : UNCASED;
 
             if (caseCat != oldCaseCat) {
-                log.println(UTF32.valueOf32(cp)
-                        + "\t" + names[caseCat]
-                                + "\t" + names[oldCaseCat]
-                                        + "\t" + Default.ucd().getCategoryID_fromIndex(cat)
-                                        + "\t" + lowerNames[otherLower ? 1 : 0]
-                                                + "\t" + upperNames[otherUpper ? 1 : 0]
-                                                        + "\t" + Default.ucd().getCodeAndName(cp)
-                                                        + "\t" + Default.ucd().getCodeAndName(x)
-                                                        + "\t" + Default.ucd().getCodeAndName(xu)
-                                                        + "\t" + Default.ucd().getCodeAndName(xl)
-                                                        + "\t" + Default.ucd().getCodeAndName(xt)
-                        );
+                log.println(
+                        UTF32.valueOf32(cp)
+                                + "\t"
+                                + names[caseCat]
+                                + "\t"
+                                + names[oldCaseCat]
+                                + "\t"
+                                + Default.ucd().getCategoryID_fromIndex(cat)
+                                + "\t"
+                                + lowerNames[otherLower ? 1 : 0]
+                                + "\t"
+                                + upperNames[otherUpper ? 1 : 0]
+                                + "\t"
+                                + Default.ucd().getCodeAndName(cp)
+                                + "\t"
+                                + Default.ucd().getCodeAndName(x)
+                                + "\t"
+                                + Default.ucd().getCodeAndName(xu)
+                                + "\t"
+                                + Default.ucd().getCodeAndName(xl)
+                                + "\t"
+                                + Default.ucd().getCodeAndName(xt));
             }
         }
 
@@ -785,15 +885,15 @@ can help you narrow these down.
         //System.out.println(Default.ucd.getCase("ABC,DE'F G\u0308H", FULL, TITLE));
          */
 
-
         final String fileName = "CaseNormalizationDifferences.txt";
-        final PrintWriter log = Utility.openPrintWriterGenDir("log/" + fileName, Utility.LATIN1_UNIX);
+        final PrintWriter log =
+                Utility.openPrintWriterGenDir("log/" + fileName, Utility.LATIN1_UNIX);
 
         log.println("Differences between case(normalize(cp)) and normalize(case(cp))");
         log.println("u, l, t - upper, lower, title");
         log.println("c, d - nfc, nfd");
 
-        //Utility.DOTMASK = 0x7F;
+        // Utility.DOTMASK = 0x7F;
 
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             Utility.dot(cp);
@@ -835,17 +935,26 @@ can help you narrow these down.
                 if (needBreak) {
                     log.println("# Was not NFC:");
                     log.println(
-                            "## " + Utility.hex(x) + "; "
-                                    + Utility.hex(lx) + "; "
-                                    + Utility.hex(tx) + "; "
-                                    + Utility.hex(ux) + "; # "
+                            "## "
+                                    + Utility.hex(x)
+                                    + "; "
+                                    + Utility.hex(lx)
+                                    + "; "
+                                    + Utility.hex(tx)
+                                    + "; "
+                                    + Utility.hex(ux)
+                                    + "; # "
                                     + Default.ucd().getName(x));
                     log.println("#   should be:");
                     log.println(
-                            Utility.hex(x) + "; "
-                                    + Utility.hex(clx) + "; "
-                                    + Utility.hex(ctx) + "; "
-                                    + Utility.hex(cux) + "; # "
+                            Utility.hex(x)
+                                    + "; "
+                                    + Utility.hex(clx)
+                                    + "; "
+                                    + Utility.hex(ctx)
+                                    + "; "
+                                    + Utility.hex(cux)
+                                    + "; # "
                                     + Default.ucd().getName(x));
                     log.println();
                 }
@@ -854,8 +963,6 @@ can help you narrow these down.
             final String dux = Default.nfd().normalize(ux);
             final String dlx = Default.nfd().normalize(lx);
             final String dtx = Default.nfd().normalize(tx);
-
-
 
             final String startdx = getMarks(dx, false);
             final String enddx = getMarks(dx, true);
@@ -871,16 +978,43 @@ can help you narrow these down.
 
             // If the new marks don't occur in the old decomposition, we got a problem!
 
-            if (!startdx.startsWith(startdux) || !startdx.startsWith(startdtx) || !startdx.startsWith(startdlx)
-                    || !enddx.endsWith(enddux) || !enddx.endsWith(enddtx) || !enddx.endsWith(enddlx)) {
+            if (!startdx.startsWith(startdux)
+                    || !startdx.startsWith(startdtx)
+                    || !startdx.startsWith(startdlx)
+                    || !enddx.endsWith(enddux)
+                    || !enddx.endsWith(enddtx)
+                    || !enddx.endsWith(enddlx)) {
                 log.println("Combining Class Difference for " + Default.ucd().getCodeAndName(x));
-                log.println("x:  " + Default.ucd().getCodeAndName(dx) + ", " + Utility.hex(startdx) + ", " + Utility.hex(enddx));
-                log.println("ux: " + Default.ucd().getCodeAndName(dux) + ", " + Utility.hex(startdux) + ", " + Utility.hex(enddux));
-                log.println("tx: " + Default.ucd().getCodeAndName(dtx) + ", " + Utility.hex(startdtx) + ", " + Utility.hex(enddtx));
-                log.println("lx: " + Default.ucd().getCodeAndName(dlx) + ", " + Utility.hex(startdlx) + ", " + Utility.hex(enddlx));
+                log.println(
+                        "x:  "
+                                + Default.ucd().getCodeAndName(dx)
+                                + ", "
+                                + Utility.hex(startdx)
+                                + ", "
+                                + Utility.hex(enddx));
+                log.println(
+                        "ux: "
+                                + Default.ucd().getCodeAndName(dux)
+                                + ", "
+                                + Utility.hex(startdux)
+                                + ", "
+                                + Utility.hex(enddux));
+                log.println(
+                        "tx: "
+                                + Default.ucd().getCodeAndName(dtx)
+                                + ", "
+                                + Utility.hex(startdtx)
+                                + ", "
+                                + Utility.hex(enddtx));
+                log.println(
+                        "lx: "
+                                + Default.ucd().getCodeAndName(dlx)
+                                + ", "
+                                + Utility.hex(startdlx)
+                                + ", "
+                                + Utility.hex(enddlx));
                 log.println();
             }
-
 
             if (!longForm) {
                 continue;
@@ -902,7 +1036,6 @@ can help you narrow these down.
             final String clcx = Default.nfc().normalize(lcx);
             final String ctcx = Default.nfc().normalize(tcx);
 
-
             if (!dux.equals(udx)
                     || !dlx.equals(ldx)
                     || !dtx.equals(tdx)
@@ -914,8 +1047,7 @@ can help you narrow these down.
                     || !dtx.equals(dtdx)
                     || !cux.equals(cucx)
                     || !clx.equals(clcx)
-                    || !ctx.equals(ctcx)
-                    ) {
+                    || !ctx.equals(ctcx)) {
                 log.println();
                 log.println("Difference at " + Default.ucd().getCodeAndName(cp));
                 if (!x.equals(ux)) {
@@ -1017,7 +1149,7 @@ can help you narrow these down.
             }
         } else {
             for (int i = s.length(); i > 0; i -= UTF16.getCharCount(cp)) {
-                cp = UTF16.charAt(s, i-1); // will go 2 before if necessary
+                cp = UTF16.charAt(s, i - 1); // will go 2 before if necessary
                 final int cc = Default.ucd().getCombiningClass(cp);
                 if (cc == 0) {
                     return s.substring(i);
@@ -1042,8 +1174,10 @@ can help you narrow these down.
             }
 
             boolean failed = false;
-            final String fullTest = Default.ucd().getCase(Default.ucd().getCase(cp, FULL, UPPER), FULL, LOWER);
-            final String simpleTest = Default.ucd().getCase(Default.ucd().getCase(cp, SIMPLE, UPPER), SIMPLE, LOWER);
+            final String fullTest =
+                    Default.ucd().getCase(Default.ucd().getCase(cp, FULL, UPPER), FULL, LOWER);
+            final String simpleTest =
+                    Default.ucd().getCase(Default.ucd().getCase(cp, SIMPLE, UPPER), SIMPLE, LOWER);
 
             final String full = Default.ucd().getCase(cp, FULL, FOLD);
             final String simple = Default.ucd().getCase(cp, SIMPLE, FOLD);
@@ -1054,13 +1188,23 @@ can help you narrow these down.
 
             for (byte style = FOLD; style < LIMIT_CASE; ++style) {
 
-                final String fold_NFD = Default.nfd().normalize(Default.ucd().getCase(realTest, FULL, style));
-                final String NFD_fold = Default.ucd().getCase(Default.nfd().normalize(realTest), FULL, style);
+                final String fold_NFD =
+                        Default.nfd().normalize(Default.ucd().getCase(realTest, FULL, style));
+                final String NFD_fold =
+                        Default.ucd().getCase(Default.nfd().normalize(realTest), FULL, style);
                 if (!fold_NFD.equals(NFD_fold)) {
                     Utility.fixDot();
                     System.out.println("Case check fails at " + Default.ucd().getCodeAndName(cp));
-                    System.out.println("\t" + names2[style] + ", then NFD: " + Default.ucd().getCodeAndName(fold_NFD));
-                    System.out.println("\tNFD, then " + names2[style] + ": " + Default.ucd().getCodeAndName(NFD_fold));
+                    System.out.println(
+                            "\t"
+                                    + names2[style]
+                                    + ", then NFD: "
+                                    + Default.ucd().getCodeAndName(fold_NFD));
+                    System.out.println(
+                            "\tNFD, then "
+                                    + names2[style]
+                                    + ": "
+                                    + Default.ucd().getCodeAndName(NFD_fold));
                     failed = true;
                 }
             }
@@ -1087,8 +1231,10 @@ can help you narrow these down.
             if (!full.equals(fullTest)) {
                 Utility.fixDot();
                 System.out.println("Case fold fails at " + Default.ucd().getCodeAndName(cp));
-                System.out.println("  fullFold(ch):             " + Default.ucd().getCodeAndName(full));
-                System.out.println("  fullUpper(fullLower(ch)): " + Default.ucd().getCodeAndName(fullTest));
+                System.out.println(
+                        "  fullFold(ch):             " + Default.ucd().getCodeAndName(full));
+                System.out.println(
+                        "  fullUpper(fullLower(ch)): " + Default.ucd().getCodeAndName(fullTest));
                 failed = true;
             }
             if (!simple.equals(simpleTest)) {
@@ -1096,8 +1242,11 @@ can help you narrow these down.
                 if (!failed) {
                     System.out.println("Case fold fails at " + Default.ucd().getCodeAndName(cp));
                 }
-                System.out.println("  simpleFold(ch):               " + Default.ucd().getCodeAndName(simple));
-                System.out.println("  simpleUpper(simpleLower(ch)): " + Default.ucd().getCodeAndName(simpleTest));
+                System.out.println(
+                        "  simpleFold(ch):               " + Default.ucd().getCodeAndName(simple));
+                System.out.println(
+                        "  simpleUpper(simpleLower(ch)): "
+                                + Default.ucd().getCodeAndName(simpleTest));
                 failed = true;
             }
             if (failed) {
@@ -1108,10 +1257,11 @@ can help you narrow these down.
 
     public static void compareBlueberry() {
 
-
-        final UnicodeSet NameStartChar = new UnicodeSet("[A-Z:_a-z\\u00C0-\\u02FF"
-                + "\\u0370-\\u037D\\u037F-\\u2027\\u202A-\\u218F\\u2800-\\uD7FF"
-                + "\\uE000-\\uFDCF\\uFDE0-\\uFFEF\\U00010000-\\U0010FFFF]");
+        final UnicodeSet NameStartChar =
+                new UnicodeSet(
+                        "[A-Z:_a-z\\u00C0-\\u02FF"
+                                + "\\u0370-\\u037D\\u037F-\\u2027\\u202A-\\u218F\\u2800-\\uD7FF"
+                                + "\\uE000-\\uFDCF\\uFDE0-\\uFFEF\\U00010000-\\U0010FFFF]");
         System.out.println("NameStartChar:");
         System.out.println("\t" + NameStartChar.toPattern(true));
 
@@ -1210,14 +1360,20 @@ can help you narrow these down.
             }
 
             if (cp == 0x3131) {
-                System.out.println("Debug: " + idnProhibited
-                        + ", " + idnUnassigned
-                        + ", " + !Default.nfkd().isNormalized(cp)
-                        + ", " + Default.ucd().getCodeAndName(Default.nfkc().normalize(cp))
-                        + ", " + Default.ucd().getCodeAndName(Default.nfc().normalize(cp)));
+                System.out.println(
+                        "Debug: "
+                                + idnProhibited
+                                + ", "
+                                + idnUnassigned
+                                + ", "
+                                + !Default.nfkd().isNormalized(cp)
+                                + ", "
+                                + Default.ucd().getCodeAndName(Default.nfkc().normalize(cp))
+                                + ", "
+                                + Default.ucd().getCodeAndName(Default.nfc().normalize(cp)));
             }
 
-            if (!idnProhibited && ! idnUnassigned && !Default.nfkd().isNormalized(cp)) {
+            if (!idnProhibited && !idnUnassigned && !Default.nfkd().isNormalized(cp)) {
                 final String kc = Default.nfkc().normalize(cp);
                 final String c = Default.nfc().normalize(cp);
                 if (kc.equals(c)) {
@@ -1234,15 +1390,17 @@ can help you narrow these down.
                     }
                 }
                 if (!excluded) {
-                    showError("Remapped to core abstract character with NFKC (but not NFC)", cp, ""); // , "\t=> " + Default.ucd.getCodeAndName(kc));
+                    showError(
+                            "Remapped to core abstract character with NFKC (but not NFC)",
+                            cp,
+                            ""); // , "\t=> " + Default.ucd.getCodeAndName(kc));
                 }
             }
-
         }
         System.out.println("Writing IDNCheck.txt");
 
-
-        final PrintWriter log = Utility.openPrintWriterGenDir("log/IDNCheck.txt", Utility.LATIN1_UNIX);
+        final PrintWriter log =
+                Utility.openPrintWriterGenDir("log/IDNCheck.txt", Utility.LATIN1_UNIX);
         log.println("IDN Check");
         log.println("Total Errors: " + errorCount);
 
@@ -1273,31 +1431,46 @@ can help you narrow these down.
             probe = new TreeMap();
             idnMap.put(description, probe);
         }
-        probe.put(new Integer(cp), Default.ucd().getCodeAndName(cp) + " (" + Default.ucd().getCategoryID(cp) + ")" + option);
+        probe.put(
+                new Integer(cp),
+                Default.ucd().getCodeAndName(cp)
+                        + " ("
+                        + Default.ucd().getCategoryID(cp)
+                        + ")"
+                        + option);
     }
 
-    static void showDifferences(PrintWriter log, UnicodeSet s1, String name1, UnicodeSet s2, String name2, boolean both) {
+    static void showDifferences(
+            PrintWriter log,
+            UnicodeSet s1,
+            String name1,
+            UnicodeSet s2,
+            String name2,
+            boolean both) {
         if (!s1.equals(s2)) {
             log.println();
             log.println("In " + name1 + ", but NOT " + name2);
-            Utility.showSetNames(log," ", new UnicodeSet(s1).removeAll(s2), false, false, Default.ucd());
+            Utility.showSetNames(
+                    log, " ", new UnicodeSet(s1).removeAll(s2), false, false, Default.ucd());
             log.println();
             log.println("NOT in " + name1 + ", but in " + name2);
-            Utility.showSetNames(log," ", new UnicodeSet(s2).removeAll(s1), false, false, Default.ucd());
+            Utility.showSetNames(
+                    log, " ", new UnicodeSet(s2).removeAll(s1), false, false, Default.ucd());
             log.println();
             if (both) {
                 log.println("In both " + name1 + " AND " + name2);
-                Utility.showSetNames(log," ", new UnicodeSet(s2).retainAll(s1), false, false, Default.ucd());
+                Utility.showSetNames(
+                        log, " ", new UnicodeSet(s2).retainAll(s1), false, false, Default.ucd());
                 log.println();
             }
         }
     }
 
-
     public static void genIDN() throws IOException {
         final PrintWriter out = new PrintWriter(System.out);
 
-        final PrintWriter log = Utility.openPrintWriterGenDir("log/IDN-tables.txt", Utility.LATIN1_UNIX);
+        final PrintWriter log =
+                Utility.openPrintWriterGenDir("log/IDN-tables.txt", Utility.LATIN1_UNIX);
 
         /*UnicodeSet y = UnifiedBinaryProperty.make(CATEGORY + FORMAT).getSet();
         UnicodeSet x = new UnicodeSet(0xE0001,0xE007F).retainAll(y);
@@ -1308,54 +1481,78 @@ can help you narrow these down.
         out.flush();
          */
 
-
         // table1
         System.out.println("Getting Basics");
         final UnicodeSet unassigned = UnifiedBinaryProperty.make(CATEGORY + UNASSIGNED).getSet();
         System.out.print(".");
-        final UnicodeSet lineSeparators = UnifiedBinaryProperty.make(CATEGORY+LINE_SEPARATOR).getSet();
+        final UnicodeSet lineSeparators =
+                UnifiedBinaryProperty.make(CATEGORY + LINE_SEPARATOR).getSet();
         System.out.print(".");
-        final UnicodeSet paraSeparators = UnifiedBinaryProperty.make(CATEGORY+PARAGRAPH_SEPARATOR).getSet();
+        final UnicodeSet paraSeparators =
+                UnifiedBinaryProperty.make(CATEGORY + PARAGRAPH_SEPARATOR).getSet();
         System.out.print(".");
-        final UnicodeSet spaceSeparators = UnifiedBinaryProperty.make(CATEGORY+SPACE_SEPARATOR).getSet();
+        final UnicodeSet spaceSeparators =
+                UnifiedBinaryProperty.make(CATEGORY + SPACE_SEPARATOR).getSet();
         System.out.print(".");
-        final UnicodeSet noncharacters = UnifiedBinaryProperty.make(BINARY_PROPERTIES + Noncharacter_Code_Point).getSet();
+        final UnicodeSet noncharacters =
+                UnifiedBinaryProperty.make(BINARY_PROPERTIES + Noncharacter_Code_Point).getSet();
         System.out.print(".");
-        final UnicodeSet deprecated = UnifiedBinaryProperty.make(BINARY_PROPERTIES + Deprecated).getSet();
+        final UnicodeSet deprecated =
+                UnifiedBinaryProperty.make(BINARY_PROPERTIES + Deprecated).getSet();
         System.out.print(".");
         final UnicodeSet format = UnifiedBinaryProperty.make(CATEGORY + FORMAT).getSet();
         System.out.print(".");
-        final UnicodeSet bidi_control = UnifiedBinaryProperty.make(BINARY_PROPERTIES+Bidi_Control).getSet();
+        final UnicodeSet bidi_control =
+                UnifiedBinaryProperty.make(BINARY_PROPERTIES + Bidi_Control).getSet();
         System.out.print(".");
-        final UnicodeSet binary_IDS = UnifiedBinaryProperty.make(BINARY_PROPERTIES+IDS_BinaryOperator).getSet();
+        final UnicodeSet binary_IDS =
+                UnifiedBinaryProperty.make(BINARY_PROPERTIES + IDS_BinaryOperator).getSet();
         System.out.print(".");
-        final UnicodeSet trinary_IDS = UnifiedBinaryProperty.make(BINARY_PROPERTIES+IDS_TrinaryOperator).getSet();
+        final UnicodeSet trinary_IDS =
+                UnifiedBinaryProperty.make(BINARY_PROPERTIES + IDS_TrinaryOperator).getSet();
         System.out.print(".");
-        final UnicodeSet whitespace = UnifiedBinaryProperty.make(BINARY_PROPERTIES+White_space).getSet();
+        final UnicodeSet whitespace =
+                UnifiedBinaryProperty.make(BINARY_PROPERTIES + White_space).getSet();
         whitespace.addAll(spaceSeparators); // bug.
         System.out.print(".");
 
-        final UnicodeSet defaultIgnorable = UnifiedBinaryProperty.make(DERIVED + DefaultIgnorable).getSet();
+        final UnicodeSet defaultIgnorable =
+                UnifiedBinaryProperty.make(DERIVED + DefaultIgnorable).getSet();
         System.out.print(".");
 
-        final UnicodeSet privateUse = UnifiedBinaryProperty.make(CATEGORY+PRIVATE_USE).getSet();
+        final UnicodeSet privateUse = UnifiedBinaryProperty.make(CATEGORY + PRIVATE_USE).getSet();
         System.out.print(".");
-        final UnicodeSet control = UnifiedBinaryProperty.make(CATEGORY+Cc).getSet();
+        final UnicodeSet control = UnifiedBinaryProperty.make(CATEGORY + Cc).getSet();
         System.out.print(".");
-        final UnicodeSet surrogate = UnifiedBinaryProperty.make(CATEGORY+SURROGATE).getSet();
+        final UnicodeSet surrogate = UnifiedBinaryProperty.make(CATEGORY + SURROGATE).getSet();
 
         System.out.println("Building Sets");
         // small test:
 
         if (DEBUG) {
-            showDifferences(log, whitespace, "White_Space",
-                    new UnicodeSet(spaceSeparators).addAll(lineSeparators).addAll(paraSeparators), "Separators", true);
+            showDifferences(
+                    log,
+                    whitespace,
+                    "White_Space",
+                    new UnicodeSet(spaceSeparators).addAll(lineSeparators).addAll(paraSeparators),
+                    "Separators",
+                    true);
 
-            showDifferences(log, UnifiedBinaryProperty.make(DERIVED + ID_Start).getSet(), "ID_Start",
-                    UnifiedBinaryProperty.make(DERIVED + Mod_ID_Start).getSet(), "XID_Start", false);
+            showDifferences(
+                    log,
+                    UnifiedBinaryProperty.make(DERIVED + ID_Start).getSet(),
+                    "ID_Start",
+                    UnifiedBinaryProperty.make(DERIVED + Mod_ID_Start).getSet(),
+                    "XID_Start",
+                    false);
 
-            showDifferences(log, UnifiedBinaryProperty.make(DERIVED + ID_Continue_NO_Cf).getSet(), "ID_Continue",
-                    UnifiedBinaryProperty.make(DERIVED + Mod_ID_Continue_NO_Cf).getSet(), "XID_Continue", false);
+            showDifferences(
+                    log,
+                    UnifiedBinaryProperty.make(DERIVED + ID_Continue_NO_Cf).getSet(),
+                    "ID_Continue",
+                    UnifiedBinaryProperty.make(DERIVED + Mod_ID_Continue_NO_Cf).getSet(),
+                    "XID_Continue",
+                    false);
 
             System.out.println("Done with Test");
         }
@@ -1365,31 +1562,41 @@ can help you narrow these down.
         // special code for B1
 
         /*
-B1, old
-00AD; SOFT HYPHEN
-1806; MONGOLIAN TODO SOFT HYPHEN
-180B; MONGOLIAN FREE VARIATION SELECTOR ONE
-180C; MONGOLIAN FREE VARIATION SELECTOR TWO
-180D; MONGOLIAN FREE VARIATION SELECTOR THREE
-200B; ZERO WIDTH SPACE
-200C; ZERO WIDTH NON-JOINER
-200D; ZERO WIDTH JOINER
-FEFF; ZERO WIDTH NO-BREAK SPACE
-         */
+        B1, old
+        00AD; SOFT HYPHEN
+        1806; MONGOLIAN TODO SOFT HYPHEN
+        180B; MONGOLIAN FREE VARIATION SELECTOR ONE
+        180C; MONGOLIAN FREE VARIATION SELECTOR TWO
+        180D; MONGOLIAN FREE VARIATION SELECTOR THREE
+        200B; ZERO WIDTH SPACE
+        200C; ZERO WIDTH NON-JOINER
+        200D; ZERO WIDTH JOINER
+        FEFF; ZERO WIDTH NO-BREAK SPACE
+                 */
 
-        final UnicodeSet B1 = new UnicodeSet().add(0xAD).add(0x1806).add(0x034F); // START WITH soft hyphen, mongolian soft hyphen, grapheme joiner
+        final UnicodeSet B1 =
+                new UnicodeSet()
+                        .add(0xAD)
+                        .add(0x1806)
+                        .add(0x034F); // START WITH soft hyphen, mongolian soft hyphen, grapheme
+        // joiner
         // THEN ADD default ignorables or format characters that are *variation* or *zero width*
-        final UnicodeSet temp = new UnicodeSet(defaultIgnorable).addAll(format).addAll(spaceSeparators)
-                .removeAll(surrogate).removeAll(control); // remove some just to avoid clutter when debugging.
+        final UnicodeSet temp =
+                new UnicodeSet(defaultIgnorable)
+                        .addAll(format)
+                        .addAll(spaceSeparators)
+                        .removeAll(surrogate)
+                        .removeAll(control); // remove some just to avoid clutter when debugging.
         final UnicodeSetIterator it = new UnicodeSetIterator(temp);
-        while(it.next()) {
+        while (it.next()) {
             if (!Default.ucd().isAssigned(it.codepoint)) {
                 continue;
             }
             final String name = Default.ucd().getName(it.codepoint);
             System.out.print(Default.ucd().getCodeAndName(it.codepoint));
 
-            if (name.indexOf("VARIATION") >= 0 || name.indexOf("ZERO") >= 0
+            if (name.indexOf("VARIATION") >= 0
+                    || name.indexOf("ZERO") >= 0
                     || name.indexOf("WORD JOINER") >= 0) {
                 B1.add(it.codepoint);
                 System.out.print("*");
@@ -1397,11 +1604,20 @@ FEFF; ZERO WIDTH NO-BREAK SPACE
             System.out.println();
         }
 
-        final UnicodeSet C1 = new UnicodeSet(whitespace).removeAll(control).removeAll(lineSeparators)
-                .removeAll(paraSeparators);
+        final UnicodeSet C1 =
+                new UnicodeSet(whitespace)
+                        .removeAll(control)
+                        .removeAll(lineSeparators)
+                        .removeAll(paraSeparators);
 
-        final UnicodeSet C2 = new UnicodeSet(defaultIgnorable).removeAll(unassigned).removeAll(surrogate)
-                .addAll(control).addAll(format).addAll(lineSeparators).addAll(paraSeparators);
+        final UnicodeSet C2 =
+                new UnicodeSet(defaultIgnorable)
+                        .removeAll(unassigned)
+                        .removeAll(surrogate)
+                        .addAll(control)
+                        .addAll(format)
+                        .addAll(lineSeparators)
+                        .addAll(paraSeparators);
 
         final UnicodeSet C3 = new UnicodeSet(privateUse);
 
@@ -1415,10 +1631,9 @@ FEFF; ZERO WIDTH NO-BREAK SPACE
 
         final UnicodeSet C8 = new UnicodeSet(deprecated).addAll(bidi_control);
 
-        final UnicodeSet C9 = new UnicodeSet(0xE0001,0xE007F).retainAll(format);
-        //Utility.showSetNames(out, "\t&&& ", C9, false, true, Default.ucd);
-        //out.flush();
-
+        final UnicodeSet C9 = new UnicodeSet(0xE0001, 0xE007F).retainAll(format);
+        // Utility.showSetNames(out, "\t&&& ", C9, false, true, Default.ucd);
+        // out.flush();
 
         // FIX UP SETS!!
         B1.removeAll(C6);
@@ -1435,7 +1650,9 @@ FEFF; ZERO WIDTH NO-BREAK SPACE
         System.out.println("Check that A1, B1, C1..9 are disjoint");
 
         final UnicodeSet[] test = {A1, B1, C1, C2, C3, C4, C5, C6, C7, C8, C9};
-        final String[] testNames = {"A1", "B1", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9"};
+        final String[] testNames = {
+            "A1", "B1", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9"
+        };
         final UnicodeSet union = new UnicodeSet();
 
         for (int i = 0; i < test.length; ++i) {
@@ -1446,24 +1663,41 @@ FEFF; ZERO WIDTH NO-BREAK SPACE
                 }
                 log.println(testNames[i] + " and " + testNames[j] + " intersect!");
                 final UnicodeSet intersection = new UnicodeSet(test[i]).retainAll(test[j]);
-                Utility.showSetNames(log,"  ", intersection, false, true, Default.ucd());
+                Utility.showSetNames(log, "  ", intersection, false, true, Default.ucd());
                 log.println();
             }
         }
 
         System.out.println("Check that union works");
 
-        final UnicodeSet[] badChars = {unassigned, noncharacters, deprecated, format,
-                control, surrogate, privateUse, binary_IDS, trinary_IDS, whitespace, defaultIgnorable,
-                lineSeparators, paraSeparators, spaceSeparators};
+        final UnicodeSet[] badChars = {
+            unassigned,
+            noncharacters,
+            deprecated,
+            format,
+            control,
+            surrogate,
+            privateUse,
+            binary_IDS,
+            trinary_IDS,
+            whitespace,
+            defaultIgnorable,
+            lineSeparators,
+            paraSeparators,
+            spaceSeparators
+        };
         final UnicodeSet badCharUnion = new UnicodeSet();
         for (final UnicodeSet badChar : badChars) {
             badCharUnion.addAll(badChar);
         }
 
-        showDifferences(log, union, "(A1+B1+C1-C9)",
+        showDifferences(
+                log,
+                union,
+                "(A1+B1+C1-C9)",
                 badCharUnion,
-                "(Whitespace+Deprecated+DefaultIgnorable+Separator+Other (cont/format/surr/priv/unass))", false);
+                "(Whitespace+Deprecated+DefaultIgnorable+Separator+Other (cont/format/surr/priv/unass))",
+                false);
 
         System.out.println("Generating B2, B3");
 
@@ -1477,8 +1711,8 @@ FEFF; ZERO WIDTH NO-BREAK SPACE
             if (!Default.ucd().isAssigned(i)) {
                 continue;
             }
-            //if (cat == Cc || cat == Cf || cat == Co || cat == Cn) continue; // we can skip these
-            //if (Default.ucd.hasComputableName(i)) continue;
+            // if (cat == Cc || cat == Cf || cat == Co || cat == Cn) continue; // we can skip these
+            // if (Default.ucd.hasComputableName(i)) continue;
             tempInteger = null;
 
             final String original = UTF16.valueOf(i);
@@ -1514,10 +1748,10 @@ FEFF; ZERO WIDTH NO-BREAK SPACE
             }
         }
 
-
         // PRINTOUT
 
-        printIDN_Table(log, "A.1", "Unassigned code points in Unicode " + Default.ucd().getVersion(), A1);
+        printIDN_Table(
+                log, "A.1", "Unassigned code points in Unicode " + Default.ucd().getVersion(), A1);
         printIDN_Table(log, "B.1", "Commonly mapped to nothing", B1);
 
         printIDN_Map(log, "B.2", "Mapping for lowercase used with NFKC", B2, B3);
@@ -1538,28 +1772,34 @@ FEFF; ZERO WIDTH NO-BREAK SPACE
         log.close();
     }
 
-    public static void printIDN_Map(PrintWriter log, String tableNumber, String description, Map map, Map other) {
-        System.out.println(tableNumber+ " " + description);
+    public static void printIDN_Map(
+            PrintWriter log, String tableNumber, String description, Map map, Map other) {
+        System.out.println(tableNumber + " " + description);
         log.println("");
-        log.println(tableNumber+ " " + description);
+        log.println(tableNumber + " " + description);
         log.println("");
         log.println("----- Start Table " + tableNumber + " -----");
         final Iterator it = map.keySet().iterator();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             final Integer key = (Integer) it.next();
             final String value = (String) map.get(key);
             final int cp = key.intValue();
-            log.println(Utility.hex(cp, 4) + "; " + Utility.hex(value, 4) + "; "
-                    + (!value.equals(other.get(key))? "***" : "")
-                    + Default.ucd().getName(cp));
+            log.println(
+                    Utility.hex(cp, 4)
+                            + "; "
+                            + Utility.hex(value, 4)
+                            + "; "
+                            + (!value.equals(other.get(key)) ? "***" : "")
+                            + Default.ucd().getName(cp));
         }
         log.println("----- End Table " + tableNumber + " -----");
     }
 
-    public static void printIDN_Table(PrintWriter log, String tableNumber, String description, UnicodeSet set) {
-        System.out.println(tableNumber+ " " + description);
+    public static void printIDN_Table(
+            PrintWriter log, String tableNumber, String description, UnicodeSet set) {
+        System.out.println(tableNumber + " " + description);
         log.println("");
-        log.println(tableNumber+ " " + description);
+        log.println(tableNumber + " " + description);
         log.println("");
         log.println("----- Start Table " + tableNumber + " -----");
         Utility.showSetNames(log, "", set, false, true, Default.ucd());
@@ -1641,168 +1881,171 @@ FEFF; ZERO WIDTH NO-BREAK SPACE
         return result;
     }
 
-    static boolean isIDS(int cp) { return 0x2FF0 <= cp && cp <= 0x2FFB; }
-
+    static boolean isIDS(int cp) {
+        return 0x2FF0 <= cp && cp <= 0x2FFB;
+    }
 
     /*
-5.1 Currently-prohibited ASCII characters
+    5.1 Currently-prohibited ASCII characters
 
-Some of the ASCII characters that are currently prohibited in host names
-by [STD13] are also used in protocol elements such as URIs [URI]. The other
-characters in the range U+0000 to U+007F that are not currently allowed
-are also prohibited in host name parts to reserve them for future use in
-protocol elements.
+    Some of the ASCII characters that are currently prohibited in host names
+    by [STD13] are also used in protocol elements such as URIs [URI]. The other
+    characters in the range U+0000 to U+007F that are not currently allowed
+    are also prohibited in host name parts to reserve them for future use in
+    protocol elements.
 
-0000-002C; [ASCII CONTROL CHARACTERS and SPACE through ,]
-002E-002F; [ASCII . through /]
-003A-0040; [ASCII : through @]
-005B-0060; [ASCII [ through `]
-007B-007F; [ASCII { through DEL]
+    0000-002C; [ASCII CONTROL CHARACTERS and SPACE through ,]
+    002E-002F; [ASCII . through /]
+    003A-0040; [ASCII : through @]
+    005B-0060; [ASCII [ through `]
+    007B-007F; [ASCII { through DEL]
 
-5.2 Space characters
+    5.2 Space characters
 
-Space characters would make visual transcription of URLs nearly
-impossible and could lead to user entry errors in many ways.
+    Space characters would make visual transcription of URLs nearly
+    impossible and could lead to user entry errors in many ways.
 
-0020; SPACE
-00A0; NO-BREAK SPACE
-1680; OGHAM SPACE MARK
-2000; EN QUAD
-2001; EM QUAD
-2002; EN SPACE
-2003; EM SPACE
-2004; THREE-PER-EM SPACE
-2005; FOUR-PER-EM SPACE
-2006; SIX-PER-EM SPACE
-2007; FIGURE SPACE
-2008; PUNCTUATION SPACE
-2009; THIN SPACE
-200A; HAIR SPACE
-202F; NARROW NO-BREAK SPACE
-3000; IDEOGRAPHIC SPACE
+    0020; SPACE
+    00A0; NO-BREAK SPACE
+    1680; OGHAM SPACE MARK
+    2000; EN QUAD
+    2001; EM QUAD
+    2002; EN SPACE
+    2003; EM SPACE
+    2004; THREE-PER-EM SPACE
+    2005; FOUR-PER-EM SPACE
+    2006; SIX-PER-EM SPACE
+    2007; FIGURE SPACE
+    2008; PUNCTUATION SPACE
+    2009; THIN SPACE
+    200A; HAIR SPACE
+    202F; NARROW NO-BREAK SPACE
+    3000; IDEOGRAPHIC SPACE
 
-5.3 Control characters
+    5.3 Control characters
 
-Control characters cannot be seen and can cause unpredictable results
-when displayed.
+    Control characters cannot be seen and can cause unpredictable results
+    when displayed.
 
-0000-001F; [CONTROL CHARACTERS]
-007F; DELETE
-0080-009F; [CONTROL CHARACTERS]
-2028; LINE SEPARATOR
-2029; PARAGRAPH SEPARATOR
-206A-206F; [CONTROL CHARACTERS]
-FFF9-FFFC; [CONTROL CHARACTERS]
-1D173-1D17A; [MUSICAL CONTROL CHARACTERS]
+    0000-001F; [CONTROL CHARACTERS]
+    007F; DELETE
+    0080-009F; [CONTROL CHARACTERS]
+    2028; LINE SEPARATOR
+    2029; PARAGRAPH SEPARATOR
+    206A-206F; [CONTROL CHARACTERS]
+    FFF9-FFFC; [CONTROL CHARACTERS]
+    1D173-1D17A; [MUSICAL CONTROL CHARACTERS]
 
-5.4 Private use and replacement characters
+    5.4 Private use and replacement characters
 
-Because private-use characters do not have defined meanings, they are
-prohibited. The private-use characters are:
+    Because private-use characters do not have defined meanings, they are
+    prohibited. The private-use characters are:
 
-E000-F8FF; [PRIVATE USE, PLANE 0]
-F0000-FFFFD; [PRIVATE USE, PLANE 15]
-100000-10FFFD; [PRIVATE USE, PLANE 16]
+    E000-F8FF; [PRIVATE USE, PLANE 0]
+    F0000-FFFFD; [PRIVATE USE, PLANE 15]
+    100000-10FFFD; [PRIVATE USE, PLANE 16]
 
-The replacement character (U+FFFD) has no known semantic definition in a
-name, and is often displayed by renderers to indicate "there would be
-some character here, but it cannot be rendered". For example, on a
-computer with no Asian fonts, a name with three ideographs might be
-rendered with three replacement characters.
+    The replacement character (U+FFFD) has no known semantic definition in a
+    name, and is often displayed by renderers to indicate "there would be
+    some character here, but it cannot be rendered". For example, on a
+    computer with no Asian fonts, a name with three ideographs might be
+    rendered with three replacement characters.
 
-FFFD; REPLACEMENT CHARACTER
+    FFFD; REPLACEMENT CHARACTER
 
-5.5 Non-character code points
+    5.5 Non-character code points
 
-Non-character code points are code points that have been allocated in
-ISO/IEC 10646 but are not characters. Because they are already assigned,
-they are guaranteed not to later change into characters.
+    Non-character code points are code points that have been allocated in
+    ISO/IEC 10646 but are not characters. Because they are already assigned,
+    they are guaranteed not to later change into characters.
 
-FDD0-FDEF; [NONCHARACTER CODE POINTS]
-FFFE-FFFF; [NONCHARACTER CODE POINTS]
-1FFFE-1FFFF; [NONCHARACTER CODE POINTS]
-2FFFE-2FFFF; [NONCHARACTER CODE POINTS]
-3FFFE-3FFFF; [NONCHARACTER CODE POINTS]
-4FFFE-4FFFF; [NONCHARACTER CODE POINTS]
-5FFFE-5FFFF; [NONCHARACTER CODE POINTS]
-6FFFE-6FFFF; [NONCHARACTER CODE POINTS]
-7FFFE-7FFFF; [NONCHARACTER CODE POINTS]
-8FFFE-8FFFF; [NONCHARACTER CODE POINTS]
-9FFFE-9FFFF; [NONCHARACTER CODE POINTS]
-AFFFE-AFFFF; [NONCHARACTER CODE POINTS]
-BFFFE-BFFFF; [NONCHARACTER CODE POINTS]
-CFFFE-CFFFF; [NONCHARACTER CODE POINTS]
-DFFFE-DFFFF; [NONCHARACTER CODE POINTS]
-EFFFE-EFFFF; [NONCHARACTER CODE POINTS]
-FFFFE-FFFFF; [NONCHARACTER CODE POINTS]
-10FFFE-10FFFF; [NONCHARACTER CODE POINTS]
+    FDD0-FDEF; [NONCHARACTER CODE POINTS]
+    FFFE-FFFF; [NONCHARACTER CODE POINTS]
+    1FFFE-1FFFF; [NONCHARACTER CODE POINTS]
+    2FFFE-2FFFF; [NONCHARACTER CODE POINTS]
+    3FFFE-3FFFF; [NONCHARACTER CODE POINTS]
+    4FFFE-4FFFF; [NONCHARACTER CODE POINTS]
+    5FFFE-5FFFF; [NONCHARACTER CODE POINTS]
+    6FFFE-6FFFF; [NONCHARACTER CODE POINTS]
+    7FFFE-7FFFF; [NONCHARACTER CODE POINTS]
+    8FFFE-8FFFF; [NONCHARACTER CODE POINTS]
+    9FFFE-9FFFF; [NONCHARACTER CODE POINTS]
+    AFFFE-AFFFF; [NONCHARACTER CODE POINTS]
+    BFFFE-BFFFF; [NONCHARACTER CODE POINTS]
+    CFFFE-CFFFF; [NONCHARACTER CODE POINTS]
+    DFFFE-DFFFF; [NONCHARACTER CODE POINTS]
+    EFFFE-EFFFF; [NONCHARACTER CODE POINTS]
+    FFFFE-FFFFF; [NONCHARACTER CODE POINTS]
+    10FFFE-10FFFF; [NONCHARACTER CODE POINTS]
 
-5.6 Surrogate codes
+    5.6 Surrogate codes
 
-The following code points are permanently reserved for use as surrogate
-code values in the UTF-16 encoding, will never be assigned to
-characters, and are therefore prohibited:
+    The following code points are permanently reserved for use as surrogate
+    code values in the UTF-16 encoding, will never be assigned to
+    characters, and are therefore prohibited:
 
-D800-DFFF; [SURROGATE CODES]
+    D800-DFFF; [SURROGATE CODES]
 
-5.7 Inappropriate for plain text
+    5.7 Inappropriate for plain text
 
-The following characters should not appear in regular text.
+    The following characters should not appear in regular text.
 
-FFF9; INTERLINEAR ANNOTATION ANCHOR
-FFFA; INTERLINEAR ANNOTATION SEPARATOR
-FFFB; INTERLINEAR ANNOTATION TERMINATOR
-FFFC; OBJECT REPLACEMENT CHARACTER
+    FFF9; INTERLINEAR ANNOTATION ANCHOR
+    FFFA; INTERLINEAR ANNOTATION SEPARATOR
+    FFFB; INTERLINEAR ANNOTATION TERMINATOR
+    FFFC; OBJECT REPLACEMENT CHARACTER
 
-5.8 Inappropriate for domain names
+    5.8 Inappropriate for domain names
 
-The ideographic description characters allow different sequences of
-characters to be rendered the same way, which makes them inappropriate
-for host names that must have a single canonical representation.
+    The ideographic description characters allow different sequences of
+    characters to be rendered the same way, which makes them inappropriate
+    for host names that must have a single canonical representation.
 
-2FF0-2FFB; [IDEOGRAPHIC DESCRIPTION CHARACTERS]
+    2FF0-2FFB; [IDEOGRAPHIC DESCRIPTION CHARACTERS]
 
-5.9 Change display properties
+    5.9 Change display properties
 
-The following characters, some of which are deprecated in ISO/IEC 10646,
-can cause changes in display or the order in which characters appear
-when rendered.
+    The following characters, some of which are deprecated in ISO/IEC 10646,
+    can cause changes in display or the order in which characters appear
+    when rendered.
 
-200E; LEFT-TO-RIGHT MARK
-200F; RIGHT-TO-LEFT MARK
-202A; LEFT-TO-RIGHT EMBEDDING
-202B; RIGHT-TO-LEFT EMBEDDING
-202C; POP DIRECTIONAL FORMATTING
-202D; LEFT-TO-RIGHT OVERRIDE
-202E; RIGHT-TO-LEFT OVERRIDE
-206A; INHIBIT SYMMETRIC SWAPPING
-206B; ACTIVATE SYMMETRIC SWAPPING
-206C; INHIBIT ARABIC FORM SHAPING
-206D; ACTIVATE ARABIC FORM SHAPING
-206E; NATIONAL DIGIT SHAPES
-206F; NOMINAL DIGIT SHAPES
+    200E; LEFT-TO-RIGHT MARK
+    200F; RIGHT-TO-LEFT MARK
+    202A; LEFT-TO-RIGHT EMBEDDING
+    202B; RIGHT-TO-LEFT EMBEDDING
+    202C; POP DIRECTIONAL FORMATTING
+    202D; LEFT-TO-RIGHT OVERRIDE
+    202E; RIGHT-TO-LEFT OVERRIDE
+    206A; INHIBIT SYMMETRIC SWAPPING
+    206B; ACTIVATE SYMMETRIC SWAPPING
+    206C; INHIBIT ARABIC FORM SHAPING
+    206D; ACTIVATE ARABIC FORM SHAPING
+    206E; NATIONAL DIGIT SHAPES
+    206F; NOMINAL DIGIT SHAPES
 
-5.10 Inappropriate characters from common input mechanisms
+    5.10 Inappropriate characters from common input mechanisms
 
-U+3002 is used as if it were U+002E in many input mechanisms,
-particularly in Asia. This prohibition allows input mechanisms to safely
-map U+3002 to U+002E before doing nameprep without worrying about
-preventing users from accessing legitimate host name parts.
+    U+3002 is used as if it were U+002E in many input mechanisms,
+    particularly in Asia. This prohibition allows input mechanisms to safely
+    map U+3002 to U+002E before doing nameprep without worrying about
+    preventing users from accessing legitimate host name parts.
 
-3002; IDEOGRAPHIC FULL STOP
+    3002; IDEOGRAPHIC FULL STOP
 
-5.11 Tagging characters
+    5.11 Tagging characters
 
-The following characters are used for tagging text and are invisible.
+    The following characters are used for tagging text and are invisible.
 
-E0001; LANGUAGE TAG
-E0020-E007F; [TAGGING CHARACTERS]
-     */
-
+    E0001; LANGUAGE TAG
+    E0020-E007F; [TAGGING CHARACTERS]
+         */
 
     public static int verifyUTFMap(BitSet mappedOut) throws IOException {
         int errorCount = 0;
-        final BufferedReader input = new BufferedReader(new FileReader(Settings.UnicodeTools.IDN_DIR + "IDN-Mapping.txt"),32*1024);
+        final BufferedReader input =
+                new BufferedReader(
+                        new FileReader(Settings.UnicodeTools.IDN_DIR + "IDN-Mapping.txt"),
+                        32 * 1024);
         String line = "";
         final Map idnFold = new TreeMap();
         final Map idnWhy = new HashMap();
@@ -1825,9 +2068,10 @@ E0020-E007F; [TAGGING CHARACTERS]
                     continue;
                 }
 
-                final int count = Utility.split(line,';',parts);
+                final int count = Utility.split(line, ';', parts);
                 if (count != 3) {
-                    throw new ChainException("Incorrect # of fields in IDN folding, line = {0}",
+                    throw new ChainException(
+                            "Incorrect # of fields in IDN folding, line = {0}",
                             new String[] {line});
                 }
 
@@ -1862,15 +2106,17 @@ E0020-E007F; [TAGGING CHARACTERS]
                 }
 
                 final String key = UTF32.valueOf32(cp);
-                String value = (String)idnFold.get(key);
+                String value = (String) idnFold.get(key);
                 if (value == null) {
                     value = key;
                 }
-                final String reason = (String)idnWhy.get(key);
+                final String reason = (String) idnWhy.get(key);
                 final String ucdFold = Default.ucd().getCase(cp, FULL, FOLD, "I");
                 if (!ucdFold.equals(value)) {
-                    final String b = Default.nfkc().normalize(Default.ucd().getCase(cp, FULL, FOLD, "I"));
-                    final String c = Default.nfkc().normalize(Default.ucd().getCase(b, FULL, FOLD, "I"));
+                    final String b =
+                            Default.nfkc().normalize(Default.ucd().getCase(cp, FULL, FOLD, "I"));
+                    final String c =
+                            Default.nfkc().normalize(Default.ucd().getCase(b, FULL, FOLD, "I"));
 
                     if (c.equals(value)) {
                         continue;
@@ -1878,8 +2124,14 @@ E0020-E007F; [TAGGING CHARACTERS]
                     Utility.fixDot();
 
                     System.out.println("Mismatch: " + Default.ucd().getCodeAndName(cp));
-                    System.out.println("  UCD Case Fold: <" + Default.ucd().getCodeAndName(ucdFold) + ">");
-                    System.out.println("  IDN Map [" + reason + "]: <" + Default.ucd().getCodeAndName(value) + ">");
+                    System.out.println(
+                            "  UCD Case Fold: <" + Default.ucd().getCodeAndName(ucdFold) + ">");
+                    System.out.println(
+                            "  IDN Map ["
+                                    + reason
+                                    + "]: <"
+                                    + Default.ucd().getCodeAndName(value)
+                                    + ">");
                     errorCount++;
                 }
             }
@@ -1890,7 +2142,8 @@ E0020-E007F; [TAGGING CHARACTERS]
     }
 
     static BitSet getIDNList(String file) throws IOException {
-        final BufferedReader input = new BufferedReader(new FileReader(Settings.UnicodeTools.IDN_DIR + file),32*1024);
+        final BufferedReader input =
+                new BufferedReader(new FileReader(Settings.UnicodeTools.IDN_DIR + file), 32 * 1024);
         final BitSet result = new BitSet();
         String line;
         try {
@@ -1907,7 +2160,7 @@ E0020-E007F; [TAGGING CHARACTERS]
 
                 final int commentPos = line.indexOf(';');
                 if (commentPos >= 0) {
-                    line = line.substring(0,commentPos);
+                    line = line.substring(0, commentPos);
                 }
                 line = line.trim();
                 if (line.length() == 0) {
@@ -1917,7 +2170,7 @@ E0020-E007F; [TAGGING CHARACTERS]
                     continue;
                 }
 
-                final int count = Utility.split(line,'-',parts);
+                final int count = Utility.split(line, '-', parts);
                 if (count > 2) {
                     throw new ChainException("Incorrect # of fields in IDN list", null);
                 }
@@ -1935,14 +2188,14 @@ E0020-E007F; [TAGGING CHARACTERS]
     }
 
     /*
-                    + "\n#  Generated from <2060..206F, FFF0..FFFB, E0000..E0FFF>"
-                    + "\n#    + Other_Default_Ignorable_Code_Point + (Cf + Cc + Cs - White_Space)";
-     */
+                   + "\n#  Generated from <2060..206F, FFF0..FFFB, E0000..E0FFF>"
+                   + "\n#    + Other_Default_Ignorable_Code_Point + (Cf + Cc + Cs - White_Space)";
+    */
 
-    public static void diffIgnorable () {
+    public static void diffIgnorable() {
 
-
-        final UnicodeSet control = UnifiedBinaryProperty.make(CATEGORY + Cf, Default.ucd()).getSet();
+        final UnicodeSet control =
+                UnifiedBinaryProperty.make(CATEGORY + Cf, Default.ucd()).getSet();
 
         System.out.println("Cf");
         Utility.showSetNames("", control, false, Default.ucd());
@@ -1957,17 +2210,23 @@ E0020-E007F; [TAGGING CHARACTERS]
         System.out.println("Cf + Cc + Cs");
         Utility.showSetNames("", control, false, Default.ucd());
 
-        control.removeAll(UnifiedBinaryProperty.make(BINARY_PROPERTIES + White_space, Default.ucd()).getSet());
+        control.removeAll(
+                UnifiedBinaryProperty.make(BINARY_PROPERTIES + White_space, Default.ucd())
+                        .getSet());
 
         System.out.println("Cf + Cc + Cs - WhiteSpace");
         Utility.showSetNames("", control, false, Default.ucd());
 
-        control.add(0x2060,0x206f).add(0xFFF0,0xFFFB).add(0xE0000,0xE0FFF);
+        control.add(0x2060, 0x206f).add(0xFFF0, 0xFFFB).add(0xE0000, 0xE0FFF);
 
         System.out.println("(Cf + Cc + Cs - WhiteSpace) + ranges");
         Utility.showSetNames("", control, false, Default.ucd());
 
-        final UnicodeSet odicp = UnifiedBinaryProperty.make(BINARY_PROPERTIES + Other_Default_Ignorable_Code_Point, Default.ucd()).getSet();
+        final UnicodeSet odicp =
+                UnifiedBinaryProperty.make(
+                                BINARY_PROPERTIES + Other_Default_Ignorable_Code_Point,
+                                Default.ucd())
+                        .getSet();
 
         odicp.removeAll(control);
 
@@ -1975,19 +2234,18 @@ E0020-E007F; [TAGGING CHARACTERS]
         Utility.showSetNames("", odicp, true, Default.ucd());
     }
 
-
     public static void IdentifierTest() {
-        final String x = normalize(UTF32.valueOf32(0x10300), 4) ;
+        final String x = normalize(UTF32.valueOf32(0x10300), 4);
         getCategoryID(x);
 
         /*
-        Changes Category: U+10300 OLD ITALIC LETTER A
-   nfx_cp: U+D800 <surrogate-D800>
- isIdentifier(nfx_cp, true): false
-   cat(nfx_cp): Cs
- isIdentifierStart(cp, true): true
-   cat(cp): Lo
-         */
+               Changes Category: U+10300 OLD ITALIC LETTER A
+          nfx_cp: U+D800 <surrogate-D800>
+        isIdentifier(nfx_cp, true): false
+          cat(nfx_cp): Cs
+        isIdentifierStart(cp, true): true
+          cat(cp): Lo
+                */
 
         for (int j = 0; j < 5; ++j) {
             System.out.println();
@@ -2005,9 +2263,9 @@ E0020-E007F; [TAGGING CHARACTERS]
                     continue;
                 }
 
-//                if (cp == 0xFDFB || cp == 0x0140) {
-//                    System.out.println("debug point");
-//                }
+                //                if (cp == 0xFDFB || cp == 0x0140) {
+                //                    System.out.println("debug point");
+                //                }
 
                 final boolean norm;
                 final boolean plain;
@@ -2018,7 +2276,7 @@ E0020-E007F; [TAGGING CHARACTERS]
                     throw new RuntimeException("Fix plain & norm, 4 instances!!");
                 }
                 // plain = Default.ucd.isIdentifier(x_cp, true);
-                //norm = Default.ucd.isIdentifier(nfx_x_cp, true);
+                // norm = Default.ucd.isIdentifier(nfx_x_cp, true);
                 if (plain & !norm) {
                     Utility.fixDot();
                     System.out.println("*Not Identifier: " + Default.ucd().getCodeAndName(cp));
@@ -2103,11 +2361,15 @@ E0020-E007F; [TAGGING CHARACTERS]
                 final boolean call = !nfx.isNormalized(i);
                 if (differs != call) {
                     Utility.fixDot();
-                    System.out.println("Problem: differs: " + differs
-                            + ", call: " + call + " " + Default.ucd().getCodeAndName(i));
+                    System.out.println(
+                            "Problem: differs: "
+                                    + differs
+                                    + ", call: "
+                                    + call
+                                    + " "
+                                    + Default.ucd().getCodeAndName(i));
                 }
             }
-
         }
     }
 
@@ -2130,21 +2392,30 @@ E0020-E007F; [TAGGING CHARACTERS]
             byte cat = Default.ucd().getCategory(i);
             final short script = Default.ucd().getScript(i);
             switch (cat) {
-            case Lo: case Lt: case Ll: case Lu: case Lm: case Mc: case Sk:
-                ok = script != INHERITED_SCRIPT && script != COMMON_SCRIPT;
-                break;
-            case Mn: case Me:
-                ok = script == INHERITED_SCRIPT;
-                break;
-            default:
-                ok = script == COMMON_SCRIPT;
-                break;
+                case Lo:
+                case Lt:
+                case Ll:
+                case Lu:
+                case Lm:
+                case Mc:
+                case Sk:
+                    ok = script != INHERITED_SCRIPT && script != COMMON_SCRIPT;
+                    break;
+                case Mn:
+                case Me:
+                    ok = script == INHERITED_SCRIPT;
+                    break;
+                default:
+                    ok = script == COMMON_SCRIPT;
+                    break;
             }
             if (show.contains(i)) {
-                System.out.println(Default.ucd().getCodeAndName(i)
-                        + "; " + Default.ucd().getScriptID(i)
-                        + "; " + Default.ucd().getCategoryID(i)
-                        );
+                System.out.println(
+                        Default.ucd().getCodeAndName(i)
+                                + "; "
+                                + Default.ucd().getScriptID(i)
+                                + "; "
+                                + Default.ucd().getCategoryID(i));
             }
             if (!ok) {
                 if (cat == Ll || cat == Lt) {
@@ -2168,7 +2439,8 @@ E0020-E007F; [TAGGING CHARACTERS]
             }
         }
 
-        final PrintWriter log = Utility.openPrintWriterGenDir("log/CheckScriptsLog.txt", Utility.LATIN1_UNIX);
+        final PrintWriter log =
+                Utility.openPrintWriterGenDir("log/CheckScriptsLog.txt", Utility.LATIN1_UNIX);
 
         final Iterator it = m.keySet().iterator();
         while (it.hasNext()) {
@@ -2179,24 +2451,33 @@ E0020-E007F; [TAGGING CHARACTERS]
             for (int kk = 0; kk < ranges; ++kk) {
                 final int start = badChars.getRangeStart(kk);
                 final int end = badChars.getRangeEnd(kk);
-                final String code = Utility.hex(start) + (start != end ? ".." + Utility.hex(end) : "");
+                final String code =
+                        Utility.hex(start) + (start != end ? ".." + Utility.hex(end) : "");
                 final String scriptName = Default.ucd().getScriptID(start);
                 String title = "FAIL";
                 if ((intKey & EXCEPTION_FLAG) != 0) {
                     title = "EXCEPTION";
                 }
-                log.println(title + ": " + code + "; " + Utility.repeat(" ", 14 - code.length())
-                        + scriptName + Utility.repeat(" ", maxScriptLen-scriptName.length())
-                        + " # (" + LCgetCategoryID(start) + ") " + Default.ucd().getName(start)
-                        + (start != end ? ".." + Default.ucd().getName(end) : "")
-                        );
+                log.println(
+                        title
+                                + ": "
+                                + code
+                                + "; "
+                                + Utility.repeat(" ", 14 - code.length())
+                                + scriptName
+                                + Utility.repeat(" ", maxScriptLen - scriptName.length())
+                                + " # ("
+                                + LCgetCategoryID(start)
+                                + ") "
+                                + Default.ucd().getName(start)
+                                + (start != end ? ".." + Default.ucd().getName(end) : ""));
             }
             log.println();
         }
         log.close();
     }
 
-    static public String LCgetCategoryID(int cp) {
+    public static String LCgetCategoryID(int cp) {
         final byte cat = Default.ucd().getCategory(cp);
         if (cat == Lu || cat == Lt || cat == Ll) {
             return "LC";
@@ -2204,13 +2485,13 @@ E0020-E007F; [TAGGING CHARACTERS]
         return Default.ucd().getCategoryID(cp);
     }
 
-    static public void verifyNormalizationStability() {
+    public static void verifyNormalizationStability() {
 
         verifyNormalizationStability2("3.1.0");
         verifyNormalizationStability2("3.0.0");
     }
 
-    static public void verifyNormalizationStability2(String version) {
+    public static void verifyNormalizationStability2(String version) {
 
         // Default.nfd.normalizationDiffers(0x10300);
 
@@ -2221,7 +2502,8 @@ E0020-E007F; [TAGGING CHARACTERS]
         final Normalizer oldNFKC = new Normalizer(UCD_Types.NFKC, older.getVersion());
         final Normalizer oldNFKD = new Normalizer(UCD_Types.NFKD, older.getVersion());
 
-        System.out.println("Testing " + Default.nfd().getUCDVersion() + " against " + oldNFD.getUCDVersion());
+        System.out.println(
+                "Testing " + Default.nfd().getUCDVersion() + " against " + oldNFD.getUCDVersion());
 
         for (int i = 0; i <= 0x10FFFF; ++i) {
             Utility.dot(i);
@@ -2247,25 +2529,48 @@ E0020-E007F; [TAGGING CHARACTERS]
                 final int newCan = Default.ucd().getCombiningClass(i);
                 final int oldCan = older.getCombiningClass(i);
                 if (newCan != oldCan) {
-                    System.out.println("FAILS CCC STABILITY: " + newCan + " != " + oldCan
-                            + "; " + Default.ucd().getCodeAndName(i));
+                    System.out.println(
+                            "FAILS CCC STABILITY: "
+                                    + newCan
+                                    + " != "
+                                    + oldCan
+                                    + "; "
+                                    + Default.ucd().getCodeAndName(i));
                 }
 
-                verifyEquals(i, "NFD STABILITY (new/old)", Default.nfd().normalize(i), oldNFD.normalize(i));
-                verifyEquals(i, "NFC STABILITY (new/old)", Default.nfc().normalize(i), oldNFC.normalize(i));
-                verifyEquals(i, "NFKD STABILITY (new/old)", Default.nfkd().normalize(i), oldNFKD.normalize(i));
-                verifyEquals(i, "NFKC STABILITY (new/old)", Default.nfkc().normalize(i), oldNFKC.normalize(i));
+                verifyEquals(
+                        i,
+                        "NFD STABILITY (new/old)",
+                        Default.nfd().normalize(i),
+                        oldNFD.normalize(i));
+                verifyEquals(
+                        i,
+                        "NFC STABILITY (new/old)",
+                        Default.nfc().normalize(i),
+                        oldNFC.normalize(i));
+                verifyEquals(
+                        i,
+                        "NFKD STABILITY (new/old)",
+                        Default.nfkd().normalize(i),
+                        oldNFKD.normalize(i));
+                verifyEquals(
+                        i,
+                        "NFKC STABILITY (new/old)",
+                        Default.nfkc().normalize(i),
+                        oldNFKC.normalize(i));
 
             } else {
                 // not in older version.
-                // (1) If there is a decomp, and it is composed of all OLD characters, then it must NOT compose
+                // (1) If there is a decomp, and it is composed of all OLD characters, then it must
+                // NOT compose
                 if (!Default.nfd().isNormalized(i)) {
                     final String decomp = Default.nfd().normalize(i);
                     if (noneHaveCategory(decomp, Cn, older)) {
                         final String recomp = Default.nfc().normalize(decomp);
                         if (recomp.equals(UTF16.valueOf(i))) {
                             Utility.fixDot();
-                            System.out.println("FAILS COMP STABILITY: " + Default.ucd().getCodeAndName(i));
+                            System.out.println(
+                                    "FAILS COMP STABILITY: " + Default.ucd().getCodeAndName(i));
                             System.out.println("\t" + Default.ucd().getCodeAndName(decomp));
                             System.out.println("\t" + Default.ucd().getCodeAndName(recomp));
                             System.out.println();
@@ -2358,7 +2663,6 @@ E0020-E007F; [TAGGING CHARACTERS]
          */
     }
 
-
     public static void check(int cp, boolean x, boolean y, String[] names, String type) {
         check(cp, x ? 1 : 0, y ? 1 : 0, names, type);
     }
@@ -2369,9 +2673,19 @@ E0020-E007F; [TAGGING CHARACTERS]
         }
         showLast(cp);
         Utility.fixDot();
-        System.out.println("  " + type + ": "
-                + Utility.getName(x, names) + " (" + x  + ") " + " != "
-                + Utility.getName(y, names) + " (" + y  + ") ") ;
+        System.out.println(
+                "  "
+                        + type
+                        + ": "
+                        + Utility.getName(x, names)
+                        + " ("
+                        + x
+                        + ") "
+                        + " != "
+                        + Utility.getName(y, names)
+                        + " ("
+                        + y
+                        + ") ");
     }
 
     public static void check(int cp, int x, int y, String type) {
@@ -2380,26 +2694,28 @@ E0020-E007F; [TAGGING CHARACTERS]
         }
         showLast(cp);
         Utility.fixDot();
-        System.out.println("  " + type + ": " + x + " != " + y) ;
+        System.out.println("  " + type + ": " + x + " != " + y);
     }
 
     public static void check(int cp, double x, double y, String type) {
-        if (!(x > y) && !(x < y))
-        {
-            return;   // funny syntax to catch NaN
+        if (!(x > y) && !(x < y)) {
+            return; // funny syntax to catch NaN
         }
         showLast(cp);
         Utility.fixDot();
-        System.out.println("  " + type + ": " + x + " != " + y) ;
+        System.out.println("  " + type + ": " + x + " != " + y);
     }
 
     public static void check(int cp, String x, String y, String type) {
         if (x != null && x.equals(y)) {
             return;
         }
-        if (x != null && y != null
-                && x.length() > 0 && y.length() > 0
-                && x.charAt(0) == '<' && y.charAt(0) == '<') {
+        if (x != null
+                && y != null
+                && x.length() > 0
+                && y.length() > 0
+                && x.charAt(0) == '<'
+                && y.charAt(0) == '<') {
             if (x.startsWith("<unassigned") && y.equals("<reserved>")) {
                 return;
             }
@@ -2415,9 +2731,14 @@ E0020-E007F; [TAGGING CHARACTERS]
         }
         showLast(cp);
         Utility.fixDot();
-        System.out.println("  " + type + ": " + Utility.quoteJavaString(x) + " != " + Utility.quoteJavaString(y));
+        System.out.println(
+                "  "
+                        + type
+                        + ": "
+                        + Utility.quoteJavaString(x)
+                        + " != "
+                        + Utility.quoteJavaString(y));
     }
-
 
     static int lastShowed = -1;
     static boolean showCanonicalDecomposition = false;
@@ -2438,38 +2759,54 @@ E0020-E007F; [TAGGING CHARACTERS]
 
     public static void test1() {
 
-
         for (int i = 0x19; i < 0x10FFFF; ++i) {
 
-            System.out.println(Utility.hex(i) + " " + Utility.quoteJavaString(Default.ucd().getName(i)));
+            System.out.println(
+                    Utility.hex(i) + " " + Utility.quoteJavaString(Default.ucd().getName(i)));
 
-            System.out.print("    "
-                    + ", gc=" + Default.ucd().getCategoryID(i)
-                    + ", bc=" + Default.ucd().getBidiClassID(i)
-                    + ", cc=" + Default.ucd().getCombiningClassID(i)
-                    + ", ea=" + Default.ucd().getEastAsianWidthID(i)
-                    + ", lb=" + Default.ucd().getLineBreakID(i)
-                    + ", dt=" + Default.ucd().getDecompositionTypeID(i)
-                    + ", nt=" + Default.ucd().getNumericTypeID(i)
-                    + ", nv=" + Default.ucd().getNumericValue(i)
-                    );
+            System.out.print(
+                    "    "
+                            + ", gc="
+                            + Default.ucd().getCategoryID(i)
+                            + ", bc="
+                            + Default.ucd().getBidiClassID(i)
+                            + ", cc="
+                            + Default.ucd().getCombiningClassID(i)
+                            + ", ea="
+                            + Default.ucd().getEastAsianWidthID(i)
+                            + ", lb="
+                            + Default.ucd().getLineBreakID(i)
+                            + ", dt="
+                            + Default.ucd().getDecompositionTypeID(i)
+                            + ", nt="
+                            + Default.ucd().getNumericTypeID(i)
+                            + ", nv="
+                            + Default.ucd().getNumericValue(i));
             for (int j = 0; j < UCD_Types.LIMIT_BINARY_PROPERTIES; ++j) {
-                if (Default.ucd().getBinaryProperty(i,j)) {
+                if (Default.ucd().getBinaryProperty(i, j)) {
                     System.out.print(", " + UCD_Names.BP[j]);
                 }
             }
             System.out.println();
 
-            System.out.println("    "
-                    + ", dm=" + Utility.quoteJavaString(Default.ucd().getDecompositionMapping(i))
-                    + ", slc=" + Utility.quoteJavaString(Default.ucd().getCase(i, SIMPLE, LOWER))
-                    + ", stc=" + Utility.quoteJavaString(Default.ucd().getCase(i, SIMPLE, TITLE))
-                    + ", suc=" + Utility.quoteJavaString(Default.ucd().getCase(i, SIMPLE, UPPER))
-                    + ", flc=" + Utility.quoteJavaString(Default.ucd().getCase(i, FULL, LOWER))
-                    + ", ftc=" + Utility.quoteJavaString(Default.ucd().getCase(i, FULL, TITLE))
-                    + ", fuc=" + Utility.quoteJavaString(Default.ucd().getCase(i, FULL, UPPER))
-                    + ", sc=" + Utility.quoteJavaString(Default.ucd().getSpecialCase(i))
-                    );
+            System.out.println(
+                    "    "
+                            + ", dm="
+                            + Utility.quoteJavaString(Default.ucd().getDecompositionMapping(i))
+                            + ", slc="
+                            + Utility.quoteJavaString(Default.ucd().getCase(i, SIMPLE, LOWER))
+                            + ", stc="
+                            + Utility.quoteJavaString(Default.ucd().getCase(i, SIMPLE, TITLE))
+                            + ", suc="
+                            + Utility.quoteJavaString(Default.ucd().getCase(i, SIMPLE, UPPER))
+                            + ", flc="
+                            + Utility.quoteJavaString(Default.ucd().getCase(i, FULL, LOWER))
+                            + ", ftc="
+                            + Utility.quoteJavaString(Default.ucd().getCase(i, FULL, TITLE))
+                            + ", fuc="
+                            + Utility.quoteJavaString(Default.ucd().getCase(i, FULL, UPPER))
+                            + ", sc="
+                            + Utility.quoteJavaString(Default.ucd().getSpecialCase(i)));
 
             if (i > 0x180) {
                 i = 3 * i / 2;
@@ -2482,7 +2819,11 @@ E0020-E007F; [TAGGING CHARACTERS]
         System.out.println(Default.ucd().toString(0x1E0A));
 
         System.out.println("Cross-checking canonical equivalence");
-        System.out.println("Version: " + Default.ucd().getVersion() + ", " + new Date(Default.ucd().getDate()));
+        System.out.println(
+                "Version: "
+                        + Default.ucd().getVersion()
+                        + ", "
+                        + new Date(Default.ucd().getDate()));
         showCanonicalDecomposition = true;
         for (int q = 1; q < 2; ++q) {
             for (int i = 0; i <= 0x10FFFF; ++i) {
@@ -2500,21 +2841,56 @@ E0020-E007F; [TAGGING CHARACTERS]
                 final int j = s.codePointAt(0);
                 try {
                     if (q == 0) {
-                        check(i, Default.ucd().getCategory(i), Default.ucd().getCategory(j), UCD_Names.GENERAL_CATEGORY, "GeneralCategory");
-                        check(i, Default.ucd().getCombiningClass(i), Default.ucd().getCombiningClass(j), "CanonicalClass");
-                        check(i, Default.ucd().getBidiClass(i), Default.ucd().getBidiClass(j), UCD_Names.BIDI_CLASS, "BidiClass");
-                        check(i, Default.ucd().getNumericValue(i), Default.ucd().getNumericValue(j), "NumericValue");
-                        check(i, Default.ucd().getNumericType(i), Default.ucd().getNumericType(j), UCD_Names.LONG_NUMERIC_TYPE, "NumericType");
+                        check(
+                                i,
+                                Default.ucd().getCategory(i),
+                                Default.ucd().getCategory(j),
+                                UCD_Names.GENERAL_CATEGORY,
+                                "GeneralCategory");
+                        check(
+                                i,
+                                Default.ucd().getCombiningClass(i),
+                                Default.ucd().getCombiningClass(j),
+                                "CanonicalClass");
+                        check(
+                                i,
+                                Default.ucd().getBidiClass(i),
+                                Default.ucd().getBidiClass(j),
+                                UCD_Names.BIDI_CLASS,
+                                "BidiClass");
+                        check(
+                                i,
+                                Default.ucd().getNumericValue(i),
+                                Default.ucd().getNumericValue(j),
+                                "NumericValue");
+                        check(
+                                i,
+                                Default.ucd().getNumericType(i),
+                                Default.ucd().getNumericType(j),
+                                UCD_Names.LONG_NUMERIC_TYPE,
+                                "NumericType");
 
                         if (false) {
                             for (byte k = LOWER; k < LIMIT_CASE; ++k) {
-                                check(i, Default.ucd().getCase(i, SIMPLE, k), Default.ucd().getCase(j, SIMPLE, k), "Simple("+k+")");
-                                check(i, Default.ucd().getCase(i, FULL, k), Default.ucd().getCase(j, FULL, k), "Full("+k+")");
+                                check(
+                                        i,
+                                        Default.ucd().getCase(i, SIMPLE, k),
+                                        Default.ucd().getCase(j, SIMPLE, k),
+                                        "Simple(" + k + ")");
+                                check(
+                                        i,
+                                        Default.ucd().getCase(i, FULL, k),
+                                        Default.ucd().getCase(j, FULL, k),
+                                        "Full(" + k + ")");
                             }
                         }
 
                         if (slen == 1) {
-                            check(i, Default.ucd().getSpecialCase(i), Default.ucd().getSpecialCase(j), "SpecialCase");
+                            check(
+                                    i,
+                                    Default.ucd().getSpecialCase(i),
+                                    Default.ucd().getSpecialCase(j),
+                                    "SpecialCase");
                         }
 
                         for (byte k = 0; k < LIMIT_BINARY_PROPERTIES; ++k) {
@@ -2530,15 +2906,27 @@ E0020-E007F; [TAGGING CHARACTERS]
                             if (k == CompositionExclusion) {
                                 continue;
                             }
-                            check(i, Default.ucd().getBinaryProperty(i, k), Default.ucd().getBinaryProperty(j, k), UCD_Names.YN_TABLE, Default.ucd().getBinaryPropertiesID_fromIndex(k));
+                            check(
+                                    i,
+                                    Default.ucd().getBinaryProperty(i, k),
+                                    Default.ucd().getBinaryProperty(j, k),
+                                    UCD_Names.YN_TABLE,
+                                    Default.ucd().getBinaryPropertiesID_fromIndex(k));
                         }
                     } else {
-                        //check(i, Default.ucd.getLineBreak(i), Default.ucd.getLineBreak(j), UCD_Names.LB, "LineBreak");
-                        //check(i, Default.ucd.getEastAsianWidth(i), Default.ucd.getEastAsianWidth(j), UCD_Names.EA, "EastAsian");
+                        // check(i, Default.ucd.getLineBreak(i), Default.ucd.getLineBreak(j),
+                        // UCD_Names.LB, "LineBreak");
+                        // check(i, Default.ucd.getEastAsianWidth(i),
+                        // Default.ucd.getEastAsianWidth(j), UCD_Names.EA, "EastAsian");
                     }
 
                 } catch (final Exception e) {
-                    System.out.println("Error: " + Utility.hex(i) + " " + e.getClass().getName() + e.getMessage());
+                    System.out.println(
+                            "Error: "
+                                    + Utility.hex(i)
+                                    + " "
+                                    + e.getClass().getName()
+                                    + e.getMessage());
                     e.printStackTrace();
                 }
             }
@@ -2559,36 +2947,36 @@ E0020-E007F; [TAGGING CHARACTERS]
         end = System.currentTimeMillis();
         final double base = end - start;
 
-        System.out.println("unsynchronized static char[]: " + nf.format((end - start)/base));
+        System.out.println("unsynchronized static char[]: " + nf.format((end - start) / base));
 
         start = System.currentTimeMillis();
         for (int i = count; i >= 0; --i) {
             sum += dummy2(i).length();
         }
         end = System.currentTimeMillis();
-        System.out.println("synchronized static char[]: " + nf.format((end - start)/base));
+        System.out.println("synchronized static char[]: " + nf.format((end - start) / base));
 
         start = System.currentTimeMillis();
         for (int i = count; i >= 0; --i) {
             sum += dummy1(i).length();
         }
         end = System.currentTimeMillis();
-        System.out.println("char[] each time: " + nf.format((end - start)/base));
+        System.out.println("char[] each time: " + nf.format((end - start) / base));
 
         start = System.currentTimeMillis();
         for (int i = count; i >= 0; --i) {
             sum += dummy3(i).length();
         }
         end = System.currentTimeMillis();
-        System.out.println("two valueofs: " + nf.format((end - start)/base));
+        System.out.println("two valueofs: " + nf.format((end - start) / base));
 
         System.out.println(sum);
     }
 
     static String dummy1(int a) {
         final char[] temp = new char[2];
-        temp[0] = (char)(a >>> 16);
-        temp[1] = (char)a;
+        temp[0] = (char) (a >>> 16);
+        temp[1] = (char) a;
         return new String(temp);
     }
 
@@ -2596,20 +2984,19 @@ E0020-E007F; [TAGGING CHARACTERS]
 
     static String dummy2(int a) {
         synchronized (temp2) {
-            temp2[0] = (char)(a >>> 16);
-            temp2[1] = (char)a;
+            temp2[0] = (char) (a >>> 16);
+            temp2[1] = (char) a;
             return new String(temp2);
         }
     }
 
     static String dummy0(int a) {
-        temp2[0] = (char)(a >>> 16);
-        temp2[1] = (char)a;
+        temp2[0] = (char) (a >>> 16);
+        temp2[1] = (char) a;
         return new String(temp2);
     }
 
     static String dummy3(int a) {
-        return String.valueOf((char)(a >>> 16)) + (char)a;
+        return String.valueOf((char) (a >>> 16)) + (char) a;
     }
-
 }

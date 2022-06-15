@@ -1,29 +1,29 @@
 package org.unicode.text.UCD;
-import java.util.Iterator;
 
 import com.ibm.icu.text.UnicodeSet;
+import java.util.Iterator;
 
 // Enumerated properties will be IntCodePointProperty.
 // The string values they return will be the property value names.
 // Binary properties are Enumerated properties. They return 0 or 1
 
-abstract public class CodePointProperty {
+public abstract class CodePointProperty {
     // styles for names and string values
     static final byte SHORT = 0, DEFAULT = 1, LONG = 2, NORMAL_LIMIT = 3;
 
     // gets the property name
-    abstract public String getName(byte style);
+    public abstract String getName(byte style);
 
     // value may also be numeric, etc, but this returns string equivalent.
-    abstract public String getValue(int codePoint, byte style);
+    public abstract String getValue(int codePoint, byte style);
 
     // returns true if the code point has the value
     // works with any style that getValue takes
-    abstract public boolean hasValue(int codePoint, String value);
+    public abstract boolean hasValue(int codePoint, String value);
 
     // returns the set of all code points with that value.
     // same effect as using hasValue one by one, but faster internal implementation
-    abstract public UnicodeSet getSet(String value);
+    public abstract UnicodeSet getSet(String value);
 
     // returns a list of all possible values
     // logically the same as looping from 0..10FFFF with getValue and getStyleLimit,
@@ -45,19 +45,25 @@ abstract public class CodePointProperty {
 
     // subclasses
 
-    static abstract public class IntCodePointProperty extends CodePointProperty {
+    public abstract static class IntCodePointProperty extends CodePointProperty {
         abstract int getNumericValue(int codePoint);
+
         abstract int getMaxValue();
+
         abstract int getMinValue();
+
         static Iterator getAllNumericValues() {
             return null;
         }
     }
 
-    static abstract public class DoubleCodePointProperty extends CodePointProperty {
+    public abstract static class DoubleCodePointProperty extends CodePointProperty {
         abstract double getNumericValue(int codePoint);
+
         abstract double getMaxValue();
+
         abstract double getMinValue();
+
         static Iterator getAllNumericValues() {
             return null;
         }
@@ -67,7 +73,7 @@ abstract public class CodePointProperty {
 
     // register a new property
     static void register(CodePointProperty newProp) {
-        //...
+        // ...
     }
 
     // finds a registered property by name
@@ -96,7 +102,9 @@ abstract public class CodePointProperty {
     public boolean hasParameters() {
         return false;
     }
+
     public void setParameters(String parameters) {}
+
     public String getParameters() {
         return null;
     }

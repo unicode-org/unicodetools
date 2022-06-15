@@ -1,5 +1,12 @@
 package org.unicode.jsp;
 
+import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.util.ICUUncheckedIOException;
+import com.ibm.icu.util.VersionInfo;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -9,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -17,19 +23,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.zip.GZIPInputStream;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.jsp.UnicodeDataInput.ItemReader;
-
-import com.google.common.base.Splitter;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.util.ICUUncheckedIOException;
-import com.ibm.icu.util.VersionInfo;
-
 import org.unicode.props.UnicodeProperty;
 
 public class CachedProps {
@@ -38,13 +33,15 @@ public class CachedProps {
     public static final Splitter HASH_SPLITTER = Splitter.on('#').trimResults();
     public static final Splitter SEMI_SPLITTER = Splitter.on(';').trimResults();
 
-    static ConcurrentHashMap<VersionInfo, CachedProps> versionToCachedProps = new ConcurrentHashMap();
+    static ConcurrentHashMap<VersionInfo, CachedProps> versionToCachedProps =
+            new ConcurrentHashMap();
 
     public final VersionInfo version;
     final Set<String> propNames;
-    final ConcurrentHashMap<String, UnicodeProperty> propertyCache = new ConcurrentHashMap<String, UnicodeProperty>();
-    final BiMultimap<String,String> nameToAliases = new BiMultimap<String,String>(null,null);
-    final Map<String,BiMultimap<String,String>> nameToValueToAliases = new LinkedHashMap();
+    final ConcurrentHashMap<String, UnicodeProperty> propertyCache =
+            new ConcurrentHashMap<String, UnicodeProperty>();
+    final BiMultimap<String, String> nameToAliases = new BiMultimap<String, String>(null, null);
+    final Map<String, BiMultimap<String, String>> nameToValueToAliases = new LinkedHashMap();
 
     static CachedProps CACHED_PROPS = getInstance(VersionInfo.getInstance(14));
 
@@ -56,7 +53,7 @@ public class CachedProps {
         LinkedHashSet<String> temp = new LinkedHashSet<String>();
         for (String filename : dir.list()) {
             if (filename.endsWith(".bin")) {
-                temp.add(filename.substring(0, filename.length()-4));
+                temp.add(filename.substring(0, filename.length() - 4));
             }
         }
 
@@ -73,9 +70,11 @@ public class CachedProps {
                 nameToAliases.putAll(name, nameAliases);
             }
         }
-        // AHex; Y                               ; Yes                              ; T                                ; True
+        // AHex; Y                               ; Yes                              ; T
+        //                   ; True
         // ccc;   0; NR                         ; Not_Reordered
-        for (String fileName : Arrays.asList("PropertyValueAliases.txt", "ExtraPropertyValueAliases.txt")) {
+        for (String fileName :
+                Arrays.asList("PropertyValueAliases.txt", "ExtraPropertyValueAliases.txt")) {
             for (String line : FileUtilities.in(CachedProps.class, "data/" + fileName)) {
                 List<String> splitLine = breakLine(line);
                 if (splitLine == null) {
@@ -86,7 +85,8 @@ public class CachedProps {
                 String longName = names.iterator().next();
                 BiMultimap<String, String> valueToAliases = nameToValueToAliases.get(longName);
                 if (valueToAliases == null) {
-                    nameToValueToAliases.put(longName, valueToAliases = new BiMultimap<String, String>(null,null));
+                    nameToValueToAliases.put(
+                            longName, valueToAliases = new BiMultimap<String, String>(null, null));
                 }
                 List<String> aliases = splitLine.subList(1, splitLine.size());
                 for (String item : aliases) {
@@ -110,7 +110,6 @@ public class CachedProps {
         return splitLine;
     }
 
-
     public static CachedProps getInstance(VersionInfo version) {
         CachedProps result = versionToCachedProps.get(version);
         if (result == null) {
@@ -130,7 +129,11 @@ public class CachedProps {
                 result = null;
             } else {
                 try {
-                    return new DelayedUnicodeProperty(version, propName, nameToAliases.getValues(propName), nameToValueToAliases.get(propName));
+                    return new DelayedUnicodeProperty(
+                            version,
+                            propName,
+                            nameToAliases.getValues(propName),
+                            nameToValueToAliases.get(propName));
                 } catch (Exception e) {
                     throw new IllegalArgumentException(propName, e);
                 }
@@ -144,9 +147,11 @@ public class CachedProps {
         private final VersionInfo version;
         private UnicodeMap<String> map;
         private List<String> nameAliases;
-        private Multimap<String,String> valueToAliases;
+        private Multimap<String, String> valueToAliases;
 
-        public DelayedUnicodeProperty(VersionInfo version, String propName,
+        public DelayedUnicodeProperty(
+                VersionInfo version,
+                String propName,
                 Collection<String> nameAliases,
                 BiMultimap<String, String> biMultimap) {
             this.version = version;
@@ -161,7 +166,10 @@ public class CachedProps {
                 temp = nameAliases;
             }
             this.nameAliases = ImmutableList.copyOf(temp);
-            this.valueToAliases = biMultimap == null ? null : ImmutableMultimap.copyOf(biMultimap.getKeyToValues());
+            this.valueToAliases =
+                    biMultimap == null
+                            ? null
+                            : ImmutableMultimap.copyOf(biMultimap.getKeyToValues());
             setName(propName);
         }
 
@@ -212,7 +220,7 @@ public class CachedProps {
                 try {
                     String baseName = getName();
                     if (baseName.endsWith("β")) {
-                        baseName = baseName.substring(0, baseName.length()-1);
+                        baseName = baseName.substring(0, baseName.length() - 1);
                     }
                     fis = CachedProps.class.getResourceAsStream("props/" + baseName + ".bin");
                     gs = new GZIPInputStream(fis);
@@ -222,7 +230,8 @@ public class CachedProps {
                     final UnicodeDataInput unicodeDataInput = new UnicodeDataInput();
                     newItem = unicodeDataInput.set(in, true).readUnicodeMap(stringReader);
                     map = newItem.freeze();
-                } catch (Exception e) { }
+                } catch (Exception e) {
+                }
                 try {
                     if (fis != null) {
                         fis.close();
@@ -233,7 +242,8 @@ public class CachedProps {
                             }
                         }
                     }
-                } catch (IOException e) {}
+                } catch (IOException e) {
+                }
             }
             return map;
         }
@@ -257,17 +267,18 @@ public class CachedProps {
         System.out.println(available);
         for (String name : available) {
             UnicodeProperty p = cp.getProperty(name);
-            System.out.println(p.getName() + "\t" + p.getNameAliases() + "\t" + clip(p.getAvailableValues()));
+            System.out.println(
+                    p.getName() + "\t" + p.getNameAliases() + "\t" + clip(p.getAvailableValues()));
             String value = p.getValue('a');
             System.out.println("value('a'): " + value + "\t" + p.getValueAliases(value));
         }
     }
 
-
     private static String clip(Collection availableValues) {
-        return availableValues.size() > 24 ? new ArrayList(availableValues).subList(0, 23) + ", …" : availableValues.toString();
+        return availableValues.size() > 24
+                ? new ArrayList(availableValues).subList(0, 23) + ", …"
+                : availableValues.toString();
     }
-
 
     public Set<String> getPropertyNames() {
         return nameToAliases.keySet();

@@ -1,5 +1,3 @@
 package org.unicode.propstest;
 
-public class CheckXML {
-
-}
+public class CheckXML {}

@@ -1,10 +1,9 @@
 package org.unicode.text.tools;
 
-import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.tools.emoji.CandidateData;
-
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
+import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.tools.emoji.CandidateData;
 
 public class TransformFile {
     public static void main(String[] args) {
@@ -18,7 +17,8 @@ public class TransformFile {
             }
             rules.append(line);
         }
-        Transform<String,String> trans = Transliterator.createFromRules("foo", rules.toString(), Transliterator.FORWARD);
+        Transform<String, String> trans =
+                Transliterator.createFromRules("foo", rules.toString(), Transliterator.FORWARD);
 
         int countChanged = 0;
         for (String line : FileUtilities.in(class1, sourceFile)) {

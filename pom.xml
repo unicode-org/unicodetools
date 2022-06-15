@@ -1,136 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.unicode.unicodetools</groupId>
-	<artifactId>unicodetools-parent</artifactId>
-	<version>1.0.0</version>
-	<name>Parent of Unicode Tools</name>
-	<packaging>pom</packaging>
-	<licenses>
-		<license>
-			<name>Unicode-DFS-2016</name>
-		</license>
-	</licenses>
-
-
-	<url>https://unicode.org/cldr</url>
-
-	<scm>
-		<connection>scm:git:https://github.com/unicode-org/unicodetools.git</connection>
-	</scm>
-
-	<properties>
-		<!--
-			For ICU versions, see https://github.com/orgs/unicode-org/packages?repo_name=icu
-			Note that we can't use the general ICU maven packages, because utilities isn't exported (yet).
-		 -->
-		<icu.version>70.0.1-SNAPSHOT-cldr-2021-09-15</icu.version>
-
-		<!--
-			 For CLDR versions, see https://github.com/orgs/unicode-org/packages?repo_name=cldr
-		  -->
-		<cldr.version>0.0.0-SNAPSHOT-e849e51d51</cldr.version>
+    <groupId>org.unicode.unicodetools</groupId>
+    <artifactId>unicodetools-parent</artifactId>
+    <version>1.0.0</version>
+    <name>Parent of Unicode Tools</name>
+    <packaging>pom</packaging>
+    <licenses>
+        <license>
+            <name>Unicode-DFS-2016</name>
+        </license>
+    </licenses>
 
 
-		<!-- these two set the JDK version for source and target -->
-		<maven.compiler.source>11</maven.compiler.source>
-		<maven.compiler.target>11</maven.compiler.target>
+    <url>https://unicode-org.github.io/unicodetools/</url>
 
-		<!-- Good hygiene. This is Unicode after all! -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <scm>
+        <connection>scm:git:https://github.com/unicode-org/unicodetools.git</connection>
+    </scm>
 
-		<!-- Fix the JUnit version -->
-		<junit-version>5.7.2</junit-version>
-		<!-- Need to use an updated surefire plugin here. -->
-		<maven-surefire-plugin-version>3.0.0-M5</maven-surefire-plugin-version>
-	</properties>
+    <properties>
+        <!--
+            For ICU versions, see https://github.com/orgs/unicode-org/packages?repo_name=icu
+            Note that we can't use the general ICU maven packages, because utilities isn't exported (yet).
+         -->
+        <icu.version>70.0.1-SNAPSHOT-cldr-2021-09-15</icu.version>
 
-	<modules>
-		<module>unicodetools-testutils</module>
-		<module>unicodetools</module>
-		<module>UnicodeJsps</module>
-	</modules>
+        <!--
+             For CLDR versions, see https://github.com/orgs/unicode-org/packages?repo_name=cldr
+          -->
+        <cldr.version>0.0.0-SNAPSHOT-e849e51d51</cldr.version>
 
-	<dependencyManagement>
-		<dependencies>
 
-			<dependency>
-				<groupId>org.unicode.unicodetools</groupId>
-				<artifactId>unicodetools</artifactId>
-				<version>${project.version}</version>
-			</dependency>
+        <!-- these two set the JDK version for source and target -->
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
 
-			<!-- icu -->
-			<dependency>
-				<groupId>com.ibm.icu</groupId>
-				<artifactId>icu4j-for-cldr</artifactId>
-				<version>${icu.version}</version>
-			</dependency>
+        <!-- Good hygiene. This is Unicode after all! -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-			<dependency>
-				<groupId>com.ibm.icu</groupId>
-				<artifactId>utilities-for-cldr</artifactId>
-				<version>${icu.version}</version>
-			</dependency>
-			<!-- cldr -->
-			<dependency>
-				<groupId>org.unicode.cldr</groupId>
-				<artifactId>cldr-code</artifactId>
-				<version>${cldr.version}</version>
-			</dependency>
+        <!-- Fix the JUnit version -->
+        <junit-version>5.7.2</junit-version>
+        <!-- Need to use an updated surefire plugin here. -->
+        <maven-surefire-plugin-version>3.0.0-M5</maven-surefire-plugin-version>
 
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter</artifactId>
-				<version>${junit-version}</version>
-			</dependency>
+        <spotless.version>2.22.5</spotless.version>
+    </properties>
 
-			<dependency>
-				<groupId>org.unicode.unicodetools</groupId>
-				<artifactId>unicodetools-testutils</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>${maven-surefire-plugin-version}</version>
-					<configuration>
-						<systemPropertyVariables>
-							<!-- These are variables which are picked up by test runs -->
-							<UVERSION>13.0.0</UVERSION>
-							<CLDR_ENVIRONMENT>UNITTEST</CLDR_ENVIRONMENT>
-							<java.awt.headless>true</java.awt.headless>
-							<UNICODETOOLS_REPO_DIR>${project.basedir}/..</UNICODETOOLS_REPO_DIR>
-							<!-- sibling of unicodetools-->
-							<UNICODETOOLS_GEN_DIR>${project.basedir}/../Generated</UNICODETOOLS_GEN_DIR>
-						</systemPropertyVariables>
-						<argLine>-Xmx10g -enableassertions</argLine>
-					</configuration>
-				</plugin>
-				<plugin>
-					<artifactId>maven-failsafe-plugin</artifactId>
-					<version>${maven-surefire-plugin-version}</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
-	<repositories>
-		<repository>
-			<id>githubicu</id>
-			<name>GitHub unicode-org/icu Apache Maven Packages</name>
-			<url>https://maven.pkg.github.com/unicode-org/icu</url>
-		</repository>
-		<repository>
-			<id>githubcldr</id>
-			<name>GitHub unicode-org/cldr Apache Maven Packages</name>
-			<url>https://maven.pkg.github.com/unicode-org/cldr</url>
-		</repository>
-	</repositories>
+    <modules>
+        <module>unicodetools-testutils</module>
+        <module>unicodetools</module>
+        <module>UnicodeJsps</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>org.unicode.unicodetools</groupId>
+                <artifactId>unicodetools</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- icu -->
+            <dependency>
+                <groupId>com.ibm.icu</groupId>
+                <artifactId>icu4j-for-cldr</artifactId>
+                <version>${icu.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ibm.icu</groupId>
+                <artifactId>utilities-for-cldr</artifactId>
+                <version>${icu.version}</version>
+            </dependency>
+            <!-- cldr -->
+            <dependency>
+                <groupId>org.unicode.cldr</groupId>
+                <artifactId>cldr-code</artifactId>
+                <version>${cldr.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.unicode.unicodetools</groupId>
+                <artifactId>unicodetools-testutils</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin-version}</version>
+                    <configuration>
+                        <systemPropertyVariables>
+                            <!-- These are variables which are picked up by test runs -->
+                            <UVERSION>13.0.0</UVERSION>
+                            <CLDR_ENVIRONMENT>UNITTEST</CLDR_ENVIRONMENT>
+                            <java.awt.headless>true</java.awt.headless>
+                            <UNICODETOOLS_REPO_DIR>${project.basedir}/..</UNICODETOOLS_REPO_DIR>
+                            <!-- sibling of unicodetools-->
+                            <UNICODETOOLS_GEN_DIR>${project.basedir}/../Generated</UNICODETOOLS_GEN_DIR>
+                        </systemPropertyVariables>
+                        <argLine>-Xmx10g -enableassertions</argLine>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${maven-surefire-plugin-version}</version>
+                </plugin>
+                <!-- 
+                    Spotless info:
+                      - How to preview what `mvn spotless:apply` will do: https://github.com/diffplug/spotless/tree/main/plugin-maven#how-do-i-preview-what-mvn-spotlessapply-will-do
+                      - Apply Spotless to specific files: https://github.com/diffplug/spotless/tree/main/plugin-maven#can-i-apply-spotless-to-specific-files
+                -->
+                <plugin>
+                    <groupId>com.diffplug.spotless</groupId>
+                    <artifactId>spotless-maven-plugin</artifactId>
+                    <version>${spotless.version}</version>
+                    <configuration>
+                        <!-- optional: limit format enforcement to just the files changed by this feature branch -->
+                        <!-- You can explicitly disable ratchet functionality by providing the value 'NONE': -->
+                        <ratchetFrom>NONE</ratchetFrom>
+                        <!-- define a language-specific format -->
+                        <java>
+                            <!-- no need to specify files, inferred automatically, but you can if you want -->
+                            <!-- apply a specific flavor of google-java-format and reflow long strings -->
+                            <googleJavaFormat>
+                                <!-- version of google-java-style -->
+                                <version>1.15.0</version>
+                                <style>AOSP</style>
+                                <reflowLongStrings>false</reflowLongStrings>
+                            </googleJavaFormat>
+                        </java>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+    <repositories>
+        <repository>
+            <id>githubicu</id>
+            <name>GitHub unicode-org/icu Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/unicode-org/icu</url>
+        </repository>
+        <repository>
+            <id>githubcldr</id>
+            <name>GitHub unicode-org/cldr Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/unicode-org/cldr</url>
+        </repository>
+    </repositories>
 </project>

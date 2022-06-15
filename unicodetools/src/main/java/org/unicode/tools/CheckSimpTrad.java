@@ -13,10 +13,7 @@ public class CheckSimpTrad {
             cp = Character.codePointAt(test, i);
             String sVar = iup.getResolvedValue(UcdProperty.kSimplifiedVariant, cp);
             String tVar = iup.getResolvedValue(UcdProperty.kTraditionalVariant, cp);
-            System.out.println(Utility.hex(cp) 
-                    + "\tsVar:\t" + sVar
-                    + "\ttVar:\t" + tVar
-                    );
+            System.out.println(Utility.hex(cp) + "\tsVar:\t" + sVar + "\ttVar:\t" + tVar);
         }
         ;
     }

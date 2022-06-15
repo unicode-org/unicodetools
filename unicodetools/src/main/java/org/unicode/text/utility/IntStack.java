@@ -1,14 +1,12 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/IntStack.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/utility/IntStack.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.utility;
 
 // =============================================================
@@ -42,8 +40,8 @@ public final class IntStack implements Comparable<IntStack>, Cloneable {
 
     public IntStack push(int value) {
         if (top >= values.length) { // must grow?
-            final int[] temp = new int[values.length*2];
-            System.arraycopy(values,0,temp,0,values.length);
+            final int[] temp = new int[values.length * 2];
+            System.arraycopy(values, 0, temp, 0, values.length);
             values = temp;
         }
         values[top++] = value;
@@ -151,6 +149,7 @@ public final class IntStack implements Comparable<IntStack>, Cloneable {
 
     /**
      * Copy items from the stack into a buffer, and return number of items copied.
+     *
      * @param limit
      * @param start
      * @param buffer
@@ -158,7 +157,7 @@ public final class IntStack implements Comparable<IntStack>, Cloneable {
      * @return
      */
     public int extractInto(int start, int limit, int[] buffer, int bufferStart) {
-        final int len = limit-start;
+        final int len = limit - start;
         System.arraycopy(values, first + start, buffer, bufferStart, len);
         return len;
     }

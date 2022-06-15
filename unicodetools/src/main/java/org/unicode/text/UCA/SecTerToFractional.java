@@ -3,9 +3,7 @@ package org.unicode.text.UCA;
 import java.util.Map;
 import java.util.TreeMap;
 
-/**
- * Maps per-one-primary secondary and tertiary UCA weights to fractional weights.
- */
+/** Maps per-one-primary secondary and tertiary UCA weights to fractional weights. */
 public final class SecTerToFractional {
     // There is one instance of this class per primary weight
     // that has non-trivial secondary and/or tertiary weights.
@@ -36,37 +34,31 @@ public final class SecTerToFractional {
 
     private static final int UCA_TERTIARY_LIMIT = UCA_Types.MAX_TERTIARY + 1;
     /**
-     * If true, then we store the secondary and tertiary weights
-     * for CEs like [00, 00, tt] and [00, ss, tt].
-     * ss cannot be the common weight.
-     * {@link #commonSecTs2f} stores the tertiary weights of tertiary CEs [00, 00, tt],
-     * if there are any besides 00.
+     * If true, then we store the secondary and tertiary weights for CEs like [00, 00, tt] and [00,
+     * ss, tt]. ss cannot be the common weight. {@link #commonSecTs2f} stores the tertiary weights
+     * of tertiary CEs [00, 00, tt], if there are any besides 00.
      *
-     * <p>If false, then we store the weights for CEs like [pp, ss, tt] (where pp!=0).
-     * ss cannot be 00.
-     * {@link #commonSecTs2f} stores the tertiary weights of primary CEs like [pp, ss, tt]
-     * where ss=common, if there are any besides the common tertiary.
+     * <p>If false, then we store the weights for CEs like [pp, ss, tt] (where pp!=0). ss cannot be
+     * 00. {@link #commonSecTs2f} stores the tertiary weights of primary CEs like [pp, ss, tt] where
+     * ss=common, if there are any besides the common tertiary.
      */
     private final boolean isPrimaryIgnorable;
+
     private int commonSecLowestUCATer;
     /**
-     * Tertiaries for the 00 or common secondary weight.
-     * null if only 00 and common tertiary weights.
+     * Tertiaries for the 00 or common secondary weight. null if only 00 and common tertiary
+     * weights.
      *
      * @see #isPrimaryIgnorable
      */
     private int[] commonSecTs2f;
-    /**
-     * Secondaries-to-fractional.
-     */
+    /** Secondaries-to-fractional. */
     private Map<Integer, SecondaryToFractional> ss2f;
 
     private static final class SecondaryToFractional {
         private int fractionalSecondary;
         private int lowestUCATer;
-        /**
-         * Tertiaries-to-fractional.
-         */
+        /** Tertiaries-to-fractional. */
         private int[] ts2f;
     }
 
@@ -110,8 +102,8 @@ public final class SecTerToFractional {
     }
 
     /**
-     * After adding all of the secondary and tertiary weights for a primary,
-     * this method must be called before using {@link #getFractionalSecAndTer(int, int)}.
+     * After adding all of the secondary and tertiary weights for a primary, this method must be
+     * called before using {@link #getFractionalSecAndTer(int, int)}.
      */
     public void assignFractionalWeights() {
         if (commonSecTs2f != null) {
@@ -122,7 +114,8 @@ public final class SecTerToFractional {
                 terForcedToCommon = -1;
             } else {
                 int secondLowestTer = commonSecLowestUCATer + 1;
-                while (secondLowestTer <= UCA_Types.MAX_TERTIARY && commonSecTs2f[secondLowestTer] == 0) {
+                while (secondLowestTer <= UCA_Types.MAX_TERTIARY
+                        && commonSecTs2f[secondLowestTer] == 0) {
                     ++secondLowestTer;
                 }
                 if (secondLowestTer == UCA_Types.NORMAL_HIRAGANA_TERTIARY) {
@@ -178,7 +171,8 @@ public final class SecTerToFractional {
         }
     }
 
-    private void setFractionalTertiaries(int[] secTs2f, int terForcedToCommon, Fractional.WeightIterator iter) {
+    private void setFractionalTertiaries(
+            int[] secTs2f, int terForcedToCommon, Fractional.WeightIterator iter) {
         for (int ter = UCA_Types.NEUTRAL_TERTIARY + 1; ter < secTs2f.length; ++ter) {
             if (ter == terForcedToCommon) {
                 secTs2f[ter] = Fractional.COMMON_TER;
@@ -230,9 +224,8 @@ public final class SecTerToFractional {
     }
 
     /**
-     * Converts the UCA secondary & tertiary weights to fractional weights.
-     * Returns an int with the fractional secondary in the upper 16 bits
-     * and the fractional tertiary in the lower 16 bits.
+     * Converts the UCA secondary & tertiary weights to fractional weights. Returns an int with the
+     * fractional secondary in the upper 16 bits and the fractional tertiary in the lower 16 bits.
      */
     public int getFractionalSecAndTer(int sec, int ter) {
         checkUCAWeights(sec, ter);

@@ -1,14 +1,5 @@
 package org.unicode.tools;
 
-import java.util.List;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
-
-import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.text.utility.Settings;
-import org.unicode.text.utility.Utility;
-
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -16,11 +7,20 @@ import com.ibm.icu.impl.Relation;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.Utility;
 
 public class IdsFileData {
     public static final UnicodeMap<UnicodeSet> cjkStrokeToExamples = new UnicodeMap<UnicodeSet>();
-    public static final Relation<Integer,String> radToCjkRad = Relation.of(new TreeMap<Integer,Set<String>>(), TreeSet.class);
-    public static final Relation<String,Integer> cjkRadToRad = Relation.of(new TreeMap<String,Set<Integer>>(), TreeSet.class);
+    public static final Relation<Integer, String> radToCjkRad =
+            Relation.of(new TreeMap<Integer, Set<String>>(), TreeSet.class);
+    public static final Relation<String, Integer> cjkRadToRad =
+            Relation.of(new TreeMap<String, Set<Integer>>(), TreeSet.class);
     public static final UnicodeMap<String> cjkRadSupToIdeo = new UnicodeMap<>();
     public static final UnicodeMap<List<Integer>> TOTAL_STROKES = new UnicodeMap<>();
 
@@ -43,11 +43,11 @@ public class IdsFileData {
             TOTAL_STROKES.put(cp, ilb.build());
         }
         TOTAL_STROKES.freeze();
-        
+
         for (String line : FileUtilities.in(Ids.class, "n3063StrokeExamples.txt")) {
             int hashPos = line.indexOf('#');
             if (hashPos >= 0) {
-                line= line.substring(0, hashPos).trim();
+                line = line.substring(0, hashPos).trim();
             }
             if (line.isEmpty()) {
                 continue;
@@ -62,7 +62,7 @@ public class IdsFileData {
         for (String line : FileUtilities.in(Ids.class, "idsCjkRadicals.txt")) {
             int hashPos = line.indexOf('#');
             if (hashPos >= 0) {
-                line= line.substring(0, hashPos).trim();
+                line = line.substring(0, hashPos).trim();
             }
             if (line.isEmpty()) {
                 continue;
@@ -93,4 +93,3 @@ public class IdsFileData {
         cjkRadSupToIdeo.freeze();
     }
 }
-

@@ -1,5 +1,8 @@
 package org.unicode.text.tools;
 
+import com.ibm.icu.impl.Utility;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -14,7 +17,6 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.unicode.cldr.util.XMLFileReader;
 import org.unicode.cldr.util.XPathParts;
 import org.unicode.jsp.ICUPropertyFactory;
@@ -24,10 +26,6 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Settings;
 
-import com.ibm.icu.impl.Utility;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-
 public class VerifyXmlUcd {
     public static final boolean USE_ICU = false;
     public static final boolean ABBREVIATED = true;
@@ -35,14 +33,17 @@ public class VerifyXmlUcd {
 
     static Factory getFactory() {
         if (factory == null) {
-            factory = USE_ICU ? ICUPropertyFactory.make() : ToolUnicodePropertySource.make(Default.ucdVersion());
+            factory =
+                    USE_ICU
+                            ? ICUPropertyFactory.make()
+                            : ToolUnicodePropertySource.make(Default.ucdVersion());
         }
         return factory;
     }
 
     public static void main(String[] args) throws IOException {
         try {
-            //checkRegex();
+            // checkRegex();
             // TODO: There is no xml folder inside .../unicodetools/data/ucd/
             // Instead, there is a ucdxml folder parallel to ucd.
             // Is this class obsolete?
@@ -63,7 +64,9 @@ public class VerifyXmlUcd {
             if (patternString == null) {
                 continue;
             }
-            final Matcher matcher = Pattern.compile(patternString.replace("\\U0010FFFF","\uDBFF\uDFFF")).matcher("");
+            final Matcher matcher =
+                    Pattern.compile(patternString.replace("\\U0010FFFF", "\uDBFF\uDFFF"))
+                            .matcher("");
             System.out.format("Testing %s (%s) with /%s/\n", shortName, prop, patternString);
             try {
                 Collection<String> values = property.getAvailableValues();
@@ -91,35 +94,36 @@ public class VerifyXmlUcd {
             }
         }
     }
-    static Map<String,String> PROP_REGEX = new TreeMap();
+
+    static Map<String, String> PROP_REGEX = new TreeMap();
+
     static {
         final String cp = "[\\u0000-\\U0010FFFF]"; // "[\\x{0}-\\x{10FFFF}]";
         final String name = "[A-Z0-9]+(([-\\ ]|\\ -|-\\ )[A-Z0-9]+)*";
         final String bname = "[a-zA-Z0-9]+([_\\ ][a-zA-Z0-9]+)*";
-        PROP_REGEX.put("nv", "-?[0-9]+\\.[0-9]+");  //  * nv        ; Numeric_Value
-        PROP_REGEX.put("bmg", cp);  //    bmg       ; Bidi_Mirroring_Glyph
-        PROP_REGEX.put("cf", cp+"+");  //    cf        ; Case_Folding
-        PROP_REGEX.put("dm", cp+"+");  //    dm        ; Decomposition_Mapping
-        PROP_REGEX.put("FC_NFKC", cp+"+");  //    FC_NFKC   ; FC_NFKC_Closure
-        PROP_REGEX.put("lc", cp+"+");  //    lc        ; Lowercase_Mapping
-        PROP_REGEX.put("scc", cp+"*");  //    scc       ; Special_Case_Condition
-        PROP_REGEX.put("sfc", cp);  //    sfc       ; Simple_Case_Folding
-        PROP_REGEX.put("slc", cp);  //    slc       ; Simple_Lowercase_Mapping
-        PROP_REGEX.put("stc", cp);  //    stc       ; Simple_Titlecase_Mapping
-        PROP_REGEX.put("suc", cp);  //    suc       ; Simple_Uppercase_Mapping
-        PROP_REGEX.put("tc", cp+"+");  //    tc        ; Titlecase_Mapping
-        PROP_REGEX.put("uc", cp+"+");  //    uc        ; Uppercase_Mapping
-        PROP_REGEX.put("isc", name);  //    isc       ; ISO_Comment
-        PROP_REGEX.put("na", "("+name + "|\\<control\\>)?");  //    na        ; Name
-        PROP_REGEX.put("na1","("+name + "(\\ \\((CR|FF|LF|NEL)\\))?)?");  //    na1       ; Unicode_1_Name
-        //PROP_REGEX.put("bmg", ".*");  //    URS       ; Unicode_Radical_Stroke
-        PROP_REGEX.put("age", "([0-9]+\\.[0-9]|unassigned)");  //    age       ; Age
-        PROP_REGEX.put("blk", bname);  //    blk       ; Block
-        PROP_REGEX.put("sc", bname);  //    sc        ; Script
+        PROP_REGEX.put("nv", "-?[0-9]+\\.[0-9]+"); //  * nv        ; Numeric_Value
+        PROP_REGEX.put("bmg", cp); //    bmg       ; Bidi_Mirroring_Glyph
+        PROP_REGEX.put("cf", cp + "+"); //    cf        ; Case_Folding
+        PROP_REGEX.put("dm", cp + "+"); //    dm        ; Decomposition_Mapping
+        PROP_REGEX.put("FC_NFKC", cp + "+"); //    FC_NFKC   ; FC_NFKC_Closure
+        PROP_REGEX.put("lc", cp + "+"); //    lc        ; Lowercase_Mapping
+        PROP_REGEX.put("scc", cp + "*"); //    scc       ; Special_Case_Condition
+        PROP_REGEX.put("sfc", cp); //    sfc       ; Simple_Case_Folding
+        PROP_REGEX.put("slc", cp); //    slc       ; Simple_Lowercase_Mapping
+        PROP_REGEX.put("stc", cp); //    stc       ; Simple_Titlecase_Mapping
+        PROP_REGEX.put("suc", cp); //    suc       ; Simple_Uppercase_Mapping
+        PROP_REGEX.put("tc", cp + "+"); //    tc        ; Titlecase_Mapping
+        PROP_REGEX.put("uc", cp + "+"); //    uc        ; Uppercase_Mapping
+        PROP_REGEX.put("isc", name); //    isc       ; ISO_Comment
+        PROP_REGEX.put("na", "(" + name + "|\\<control\\>)?"); //    na        ; Name
+        PROP_REGEX.put(
+                "na1",
+                "(" + name + "(\\ \\((CR|FF|LF|NEL)\\))?)?"); //    na1       ; Unicode_1_Name
+        // PROP_REGEX.put("bmg", ".*");  //    URS       ; Unicode_Radical_Stroke
+        PROP_REGEX.put("age", "([0-9]+\\.[0-9]|unassigned)"); //    age       ; Age
+        PROP_REGEX.put("blk", bname); //    blk       ; Block
+        PROP_REGEX.put("sc", bname); //    sc        ; Script
     }
-
-
-
 
     private static void testFile(String file) throws IOException {
         System.out.format("\nTesting: %s\n\n", file);
@@ -131,15 +135,15 @@ public class VerifyXmlUcd {
         final XMLFileReader xmlFileReader = new XMLFileReader();
         final MySimpleHandler handler = new MySimpleHandler();
         xmlFileReader.setHandler(handler);
-        xmlFileReader.read(file,XMLFileReader.CONTENT_HANDLER,false);
+        xmlFileReader.read(file, XMLFileReader.CONTENT_HANDLER, false);
         handler.showSummary();
     }
 
     static Set codepoints = getSet("char", "reserved", "noncharacter", "surrogate");
     static Set skipProperties = getSet("cp", "first-cp", "last-cp");
-    //static Set hexValue = getSet("slc", "bmg", "lc", "stc", "suc", "tc", "uc");
+    // static Set hexValue = getSet("slc", "bmg", "lc", "stc", "suc", "tc", "uc");
 
-    static Set<String> getSet(String ... strings) {
+    static Set<String> getSet(String... strings) {
         return Collections.unmodifiableSet(new HashSet(Arrays.asList(strings)));
     }
 
@@ -155,7 +159,7 @@ public class VerifyXmlUcd {
         private final Set unhandledElements = new HashSet();
 
         MySimpleHandler() {
-            final String test = factory.getProperty("lb").getValue(0x10EA0,true);
+            final String test = factory.getProperty("lb").getValue(0x10EA0, true);
             System.out.println("test: " + test);
         }
 
@@ -174,12 +178,14 @@ public class VerifyXmlUcd {
                 core.add(p.getFirstNameAlias());
             }
             showDifference("core", core, "xml_core", accummulatedProperties);
-            showDifference("blocks", Default.ucd().getBlockNames(), "xml_blocks", accummulatedBlocks);
+            showDifference(
+                    "blocks", Default.ucd().getBlockNames(), "xml_blocks", accummulatedBlocks);
             System.out.format("unhandled elements: %s\n", unhandledElements);
             System.out.format("skipped properties: %s\n", bogusPropertiesSkipped);
         }
 
-        private void showDifference(String title1, Collection core, String title2, Collection accummulatedProperties) {
+        private void showDifference(
+                String title1, Collection core, String title2, Collection accummulatedProperties) {
             final Set core_minus_xml = new HashSet(core);
             core_minus_xml.removeAll(accummulatedProperties);
             final Set xml_minus_core = new HashSet(accummulatedProperties);
@@ -198,7 +204,8 @@ public class VerifyXmlUcd {
                     return;
                 }
                 if (value.length() != 0) {
-                    throw new IllegalArgumentException(String.format("non-empty value: %s, %s", value, path));
+                    throw new IllegalArgumentException(
+                            String.format("non-empty value: %s, %s", value, path));
                 }
                 XPathParts.getFrozenInstance(path);
                 final String finalElement = parser.getElement(-1);
@@ -208,42 +215,47 @@ public class VerifyXmlUcd {
                         return;
                     }
                     Map attributes = parser.getAttributes(-1);
-                    final Map groupAttributes = parser.getElement(-2).equals("group") ? parser.getAttributes(-2) : null;
+                    final Map groupAttributes =
+                            parser.getElement(-2).equals("group") ? parser.getAttributes(-2) : null;
                     if (groupAttributes != null) {
                         groupAttributes.putAll(attributes); // add, possibly overriding
                         attributes = groupAttributes;
                     }
                     checkAttributes(path, finalElement, attributes);
                 } else if (finalElement.equals("block")) {
-                    final Map<String,String> attributes = parser.getAttributes(-1);
-                    final int cpStart = Integer.parseInt(attributes.get("first-cp"),16);
-                    final int cpEnd = Integer.parseInt(attributes.get("last-cp"),16);
+                    final Map<String, String> attributes = parser.getAttributes(-1);
+                    final int cpStart = Integer.parseInt(attributes.get("first-cp"), 16);
+                    final int cpEnd = Integer.parseInt(attributes.get("last-cp"), 16);
                     final String blockName = attributes.get("name");
                     accummulatedBlocks.add(
                             org.unicode.text.utility.Utility.getUnskeleton(blockName, true));
                     final UnicodeSet xmlBlock = new UnicodeSet(cpStart, cpEnd);
-                    final UnicodeSet toolBlock = Default.ucd().getBlockSet(blockName, new UnicodeSet());
+                    final UnicodeSet toolBlock =
+                            Default.ucd().getBlockSet(blockName, new UnicodeSet());
                     if (!xmlBlock.equals(toolBlock)) {
-                        System.out.format("blocks differ: %s, %s != %s\n", blockName, xmlBlock, toolBlock);
+                        System.out.format(
+                                "blocks differ: %s, %s != %s\n", blockName, xmlBlock, toolBlock);
                     }
                 } else {
                     unhandledElements.add(finalElement);
                 }
             } catch (final Exception e) {
-                throw (RuntimeException) new IllegalArgumentException("Failure at: " + path).initCause(e);
+                throw (RuntimeException)
+                        new IllegalArgumentException("Failure at: " + path).initCause(e);
             }
         }
 
         private void checkAttributes(String path, String element, Map<String, String> attributes) {
-            // get the start and end of the range. Would be slightly simpler if first-cp were just cp.
+            // get the start and end of the range. Would be slightly simpler if first-cp were just
+            // cp.
             String cpStartString = attributes.get("cp");
             String cpEndString = null;
             if (cpStartString == null) {
                 cpStartString = attributes.get("first-cp");
                 cpEndString = attributes.get("last-cp");
             }
-            final int cpStart = Integer.parseInt(cpStartString,16);
-            int cpEnd = cpEndString == null ? cpStart : Integer.parseInt(cpEndString,16);
+            final int cpStart = Integer.parseInt(cpStartString, 16);
+            int cpEnd = cpEndString == null ? cpStart : Integer.parseInt(cpEndString, 16);
             if (ABBREVIATED && !element.equals("char")) {
                 if (cpEnd > cpStart + 10) {
                     cpEnd = cpStart + 10;
@@ -271,14 +283,13 @@ public class VerifyXmlUcd {
                     // fix up names
                     value = value.replace("#", Utility.hex(cp));
                     // hack for bad names:
-                    //value = value.replace("CJK UNIFIED IDEOGRAPHS-", "CJK UNIFIED IDEOGRAPH-");
+                    // value = value.replace("CJK UNIFIED IDEOGRAPHS-", "CJK UNIFIED IDEOGRAPH-");
                 }
 
                 final UnicodeProperty toolProperty = factory.getProperty(property);
 
                 final String toolValue = matchEricsValues(cp, property, toolProperty);
-                if (toolValue == null)
-                {
+                if (toolValue == null) {
                     continue; // for now
                 }
 
@@ -291,15 +302,25 @@ public class VerifyXmlUcd {
                             System.out.println(path);
                             okSoFar = false;
                         }
-                        System.out.println("cp=" + Utility.hex(cp) + ", " + property + "=<" + value + "> (" + originalValue + ") != <" + toolValue + ">");
+                        System.out.println(
+                                "cp="
+                                        + Utility.hex(cp)
+                                        + ", "
+                                        + property
+                                        + "=<"
+                                        + value
+                                        + "> ("
+                                        + originalValue
+                                        + ") != <"
+                                        + toolValue
+                                        + ">");
                     }
                 }
             }
         }
 
-        static Set defaultSame = getSet("dm", "bmg",
-                "cf", "lc", "tc", "uc",
-                "sfc", "slc", "stc", "suc");
+        static Set defaultSame =
+                getSet("dm", "bmg", "cf", "lc", "tc", "uc", "sfc", "slc", "stc", "suc");
         static Set bogusProperties = getSet("dm", "ccf", "jamo", "fcf", "tcf", "isc");
         static Set bogusPropertiesSkipped = new HashSet();
 
@@ -324,8 +345,7 @@ public class VerifyXmlUcd {
                 return USE_ICU ? null : "MISSING";
             }
             String toolValue = toolProperty.getValue(cp, true);
-            if (toolValue == null)
-            {
+            if (toolValue == null) {
                 return USE_ICU ? null : ""; // for ICU, only test a subset
             }
             final int type = toolProperty.getType();
@@ -339,12 +359,13 @@ public class VerifyXmlUcd {
             //    return null;
             //    }
 
-            //if (type == UnicodeProperty.STRING) {
+            // if (type == UnicodeProperty.STRING) {
             // UCD marks no change with "". I reflect the full value, Eric doesn't.
             // however, this is tricky, so I'm still playing with it to get them to match up.
-            //if (UTF16.valueOf(cp).equals(toolValue)) {
-            //toolValue = "#";
-            //        } else if (property.equals("lc") || property.equals("uc") || property.equals("tc")) {
+            // if (UTF16.valueOf(cp).equals(toolValue)) {
+            // toolValue = "#";
+            //        } else if (property.equals("lc") || property.equals("uc") ||
+            // property.equals("tc")) {
             //          String basePropertyName = property.equals("tc") ? "uc" : "s" + property;
             //          UnicodeProperty baseProperty = factory.getProperty(basePropertyName);
             //          String baseValue = baseProperty.getValue(cp, true);
@@ -353,8 +374,8 @@ public class VerifyXmlUcd {
             //          } else if (property.equals("tc")){
             //
             //          }
-            //}
-            //}
+            // }
+            // }
 
             // differences in format
 
@@ -371,11 +392,11 @@ public class VerifyXmlUcd {
                 }
             }
 
-            if (//property.endsWith("_QC")
-                    // these are uppercase in in PropertyValueAliases
-                    //||
-                    property.equals("dt"))
-                // these are not uppercase in in PropertyValueAliases, so Eric is right
+            if ( // property.endsWith("_QC")
+            // these are uppercase in in PropertyValueAliases
+            // ||
+            property.equals("dt"))
+            // these are not uppercase in in PropertyValueAliases, so Eric is right
             {
                 toolValue = toolValue.toLowerCase(Locale.ENGLISH);
             }
@@ -388,14 +409,15 @@ public class VerifyXmlUcd {
                 } else {
                     toolValue = org.unicode.text.utility.Utility.hex(toolValue, " ");
                 }
-                //if (property.equals("FC_NFKC")) toolValue = toolValue.toLowerCase(); // but formatting problem here, should be uppercase
+                // if (property.equals("FC_NFKC")) toolValue = toolValue.toLowerCase(); // but
+                // formatting problem here, should be uppercase
             }
 
             if (property.equals("nv")) {
-                // I'm using the format in http://unicode.org/Public/UNIDATA/extracted/DerivedNumericValues.txt
+                // I'm using the format in
+                // http://unicode.org/Public/UNIDATA/extracted/DerivedNumericValues.txt
                 toolValue = dumbFraction(toolValue);
             }
-
 
             return toolValue;
         }

@@ -1,5 +1,12 @@
 package org.unicode.text.UCD;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UScript;
+import com.ibm.icu.text.Normalizer;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,24 +16,26 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.XEquivalenceClass;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UScript;
-import com.ibm.icu.text.Normalizer;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
-
 public class TestIdentifiers {
 
     public static void main(String[] args) throws IOException {
-        final String[] tests = { "SØS", "façade", "MOPE", "VOP", "scope", "ibm", "vop",
-                "toys-я-us", "1iνе", "back", "boгing" };
+        final String[] tests = {
+            "SØS",
+            "façade",
+            "MOPE",
+            "VOP",
+            "scope",
+            "ibm",
+            "vop",
+            "toys-я-us",
+            "1iνе",
+            "back",
+            "boгing"
+        };
 
         final TestIdentifiers ti = new TestIdentifiers("L");
         final TestIdentifiers tiany = new TestIdentifiers("A");
@@ -54,8 +63,8 @@ public class TestIdentifiers {
                 final int cp = test.charAt(j);
                 final Set s = ti.getConfusables(cp, "MA");
                 System.out.println(Default.ucd().getCodeAndName(cp));
-                for (final Iterator it = s.iterator(); it.hasNext();) {
-                    System.out.println("\t= " + Default.ucd().getCodeAndName((String)it.next()));
+                for (final Iterator it = s.iterator(); it.hasNext(); ) {
+                    System.out.println("\t= " + Default.ucd().getCodeAndName((String) it.next()));
                 }
             }
         }
@@ -87,11 +96,10 @@ public class TestIdentifiers {
 
     private static final String indir = "C:\\Unicode-CVS2\\draft\\reports\\tr36\\data/";
 
-    private static UnicodeSet commonAndInherited = new UnicodeSet(
-            "[[:script=common:][:script=inherited:]]");
+    private static UnicodeSet commonAndInherited =
+            new UnicodeSet("[[:script=common:][:script=inherited:]]");
 
-    private static UnicodeSet XIDContinueSet = new UnicodeSet("[:xidcontinue:]")
-    .add('-');
+    private static UnicodeSet XIDContinueSet = new UnicodeSet("[:xidcontinue:]").add('-');
 
     private static final boolean DEBUG = false;
     private final String caseType;
@@ -125,7 +133,8 @@ public class TestIdentifiers {
         private int script;
     }
 
-    UnicodeSetToScript[][] scriptToUnicodeSetToScript = new UnicodeSetToScript[UScript.CODE_LIMIT][];
+    UnicodeSetToScript[][] scriptToUnicodeSetToScript =
+            new UnicodeSetToScript[UScript.CODE_LIMIT][];
     UnicodeSet[] fastReject = new UnicodeSet[UScript.CODE_LIMIT];
 
     UnicodeMap idnChars = new UnicodeMap();
@@ -151,22 +160,19 @@ public class TestIdentifiers {
                 if (rangeDivider < 0) {
                     start = end = Integer.parseInt(range, 16);
                 } else {
-                    start = Integer.parseInt(range.substring(0, rangeDivider),
-                            16);
-                    end = Integer.parseInt(range.substring(rangeDivider + 2),
-                            16);
+                    start = Integer.parseInt(range.substring(0, rangeDivider), 16);
+                    end = Integer.parseInt(range.substring(rangeDivider + 2), 16);
                 }
                 // part 1 is script1
                 final String type = pieces[1].trim().intern();
                 if (type.equals("nonstarting")) {
-                    nonstarting.add(start,end);
+                    nonstarting.add(start, end);
                 } else {
                     idnChars.putAll(start, end, type);
                 }
             }
         } catch (final Exception e) {
-            throw (RuntimeException) new RuntimeException("Failure on line "
-                    + line).initCause(e);
+            throw (RuntimeException) new RuntimeException("Failure on line " + line).initCause(e);
         }
         br.close();
     }
@@ -198,11 +204,11 @@ public class TestIdentifiers {
                     type_equivalences.put(type, ec = new XEquivalenceClass(""));
                 }
                 ec.add(s, t);
-                //System.out.println(type + ": " + Default.ucd().getCodeAndName(s) + " => " + Default.ucd().getCodeAndName(t));
+                // System.out.println(type + ": " + Default.ucd().getCodeAndName(s) + " => " +
+                // Default.ucd().getCodeAndName(t));
             }
         } catch (final Exception e) {
-            throw (RuntimeException) new RuntimeException("Failure on line "
-                    + line).initCause(e);
+            throw (RuntimeException) new RuntimeException("Failure on line " + line).initCause(e);
         }
         br.close();
     }
@@ -220,7 +226,8 @@ public class TestIdentifiers {
     }
 
     void loadWholeScriptConfusables(String filterType) throws IOException {
-        final UnicodeSet[][] script_script_set = new UnicodeSet[UScript.CODE_LIMIT][UScript.CODE_LIMIT];
+        final UnicodeSet[][] script_script_set =
+                new UnicodeSet[UScript.CODE_LIMIT][UScript.CODE_LIMIT];
         for (int i = 0; i < UScript.CODE_LIMIT; ++i) {
             script_script_set[i] = new UnicodeSet[UScript.CODE_LIMIT];
         }
@@ -243,10 +250,8 @@ public class TestIdentifiers {
                 if (rangeDivider < 0) {
                     start = end = Integer.parseInt(range, 16);
                 } else {
-                    start = Integer.parseInt(range.substring(0, rangeDivider),
-                            16);
-                    end = Integer.parseInt(range.substring(rangeDivider + 2),
-                            16);
+                    start = Integer.parseInt(range.substring(0, rangeDivider), 16);
+                    end = Integer.parseInt(range.substring(rangeDivider + 2), 16);
                 }
                 // part 1 is script1
                 final int script1 = UScript.getCodeFromName(pieces[1].trim());
@@ -269,28 +274,28 @@ public class TestIdentifiers {
                         continue;
                     }
                     accept.addAll(script_script_set[i][j]);
-                    curr.add(new UnicodeSetToScript().setScript(j).setSet(
-                            script_script_set[i][j]));
+                    curr.add(new UnicodeSetToScript().setScript(j).setSet(script_script_set[i][j]));
                     if (DEBUG && i == UScript.LATIN) {
-                        System.out.println(UScript.getName(i) + "; "
-                                + UScript.getName(j) + "; "
-                                + script_script_set[i][j]);
+                        System.out.println(
+                                UScript.getName(i)
+                                        + "; "
+                                        + UScript.getName(j)
+                                        + "; "
+                                        + script_script_set[i][j]);
                     }
                 }
                 if (curr.size() == 0) {
                     continue;
                 }
-                scriptToUnicodeSetToScript[i] = (UnicodeSetToScript[]) curr
-                        .toArray(new UnicodeSetToScript[curr.size()]);
+                scriptToUnicodeSetToScript[i] =
+                        (UnicodeSetToScript[]) curr.toArray(new UnicodeSetToScript[curr.size()]);
                 fastReject[i] = accept.complement();
                 if (DEBUG && i == UScript.LATIN) {
-                    System.out.println(UScript.getName(i) + "; "
-                            + fastReject[i]);
+                    System.out.println(UScript.getName(i) + "; " + fastReject[i]);
                 }
             }
         } catch (final Exception e) {
-            throw (RuntimeException) new RuntimeException("Failure on line "
-                    + line).initCause(e);
+            throw (RuntimeException) new RuntimeException("Failure on line " + line).initCause(e);
         }
         br.close();
     }
@@ -304,16 +309,14 @@ public class TestIdentifiers {
         if (givenScript == UScript.INVALID_CODE) {
             return false;
         }
-        final UnicodeSet givenSet = new UnicodeSet().addAll(givenString).removeAll(
-                commonAndInherited);
+        final UnicodeSet givenSet =
+                new UnicodeSet().addAll(givenString).removeAll(commonAndInherited);
         return hasWholeScriptConfusable(givenScript, givenSet, resultingScripts);
     }
 
-    /**
-     * 
-     */
-    private boolean hasWholeScriptConfusable(int givenScript,
-            UnicodeSet givenSet, BitSet resultingScripts) {
+    /** */
+    private boolean hasWholeScriptConfusable(
+            int givenScript, UnicodeSet givenSet, BitSet resultingScripts) {
         resultingScripts.clear();
         if (fastReject[givenScript] == null) {
             return false;
@@ -335,12 +338,13 @@ public class TestIdentifiers {
      * whether there is at least one whole-script confusable.
      */
     boolean hasMixedScriptConfusable(String givenString) {
-        final UnicodeSet givenSet = new UnicodeSet().addAll(givenString).removeAll(
-                commonAndInherited);
+        final UnicodeSet givenSet =
+                new UnicodeSet().addAll(givenString).removeAll(commonAndInherited);
         final UnicodeSet[] byScript = getScripts(givenSet);
         final BitSet wholeScripts = new BitSet();
         boolean result = false;
-        main: for (int i = 0; i < byScript.length; ++i) {
+        main:
+        for (int i = 0; i < byScript.length; ++i) {
             if (byScript[i] == null) {
                 continue;
             }
@@ -353,8 +357,7 @@ public class TestIdentifiers {
                 if (!hasWholeScriptConfusable(j, byScript[j], wholeScripts)) {
                     continue main;
                 }
-                if (!wholeScripts.get(i))
-                {
+                if (!wholeScripts.get(i)) {
                     continue main; // doesn't have the
                 }
                 // one we want
@@ -394,8 +397,7 @@ public class TestIdentifiers {
 
     public static UnicodeSet[] getScripts(UnicodeSet sourceSet) {
         final UnicodeSet[] byScript = new UnicodeSet[UScript.CODE_LIMIT];
-        for (final UnicodeSetIterator usi = new UnicodeSetIterator(sourceSet); usi
-                .next();) {
+        for (final UnicodeSetIterator usi = new UnicodeSetIterator(sourceSet); usi.next(); ) {
             final int script = UScript.getScript(usi.codepoint);
             if (byScript[script] == null) {
                 byScript[script] = new UnicodeSet();
@@ -404,5 +406,4 @@ public class TestIdentifiers {
         }
         return byScript;
     }
-
 }

@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
-
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.StandardCodes;
@@ -44,7 +43,8 @@ public class GenerateSubtagNames {
         StandardCodes sc = StandardCodes.make();
         CLDRFile english = config.getEnglish();
         Set<String> CODE_OK = new HashSet(Arrays.asList("QO", "UK", "ZZ"));
-        for (Entry<LstrType, Map<String, Map<LstrField, String>>> entry : StandardCodes.getEnumLstreg().entrySet()) {
+        for (Entry<LstrType, Map<String, Map<LstrField, String>>> entry :
+                StandardCodes.getEnumLstreg().entrySet()) {
             LstrType type = entry.getKey();
             int cldrType = -1;
             switch (type) {
@@ -73,7 +73,9 @@ public class GenerateSubtagNames {
                     continue;
                 }
                 String description = fieldToValue.get(LstrField.Description);
-                if (description != null && description.equalsIgnoreCase("Private use") && !CODE_OK.contains(code)) {
+                if (description != null
+                        && description.equalsIgnoreCase("Private use")
+                        && !CODE_OK.contains(code)) {
                     continue;
                 }
                 if (seen.containsKey(code)) {

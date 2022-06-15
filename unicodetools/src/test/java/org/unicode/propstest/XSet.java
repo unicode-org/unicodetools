@@ -1,21 +1,19 @@
 package org.unicode.propstest;
 
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.util.Freezable;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
-import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.util.Freezable;
-
 public class XSet<U extends Comparable<U>> implements Freezable<XSet<U>> {
     private boolean pos = true;
     private final TreeSet<U> set = new TreeSet<U>();
     boolean frozen;
 
-    public XSet() {
-    }
+    public XSet() {}
 
     public static <U extends Comparable<U>> XSet<U> of(XSet<U> a) {
         return new XSet<U>().set(a);
@@ -63,7 +61,7 @@ public class XSet<U extends Comparable<U>> implements Freezable<XSet<U>> {
             } else { // !pos && !c.pos
                 return c.set.containsAll(set);
             }
-        } else { 
+        } else {
             if (pos) { // pos && !c.pos
                 return false;
             } else { // !pos && c.pos
@@ -79,7 +77,7 @@ public class XSet<U extends Comparable<U>> implements Freezable<XSet<U>> {
             } else { // !pos && !c.pos
                 return false;
             }
-        } else { 
+        } else {
             if (pos) { // pos && !c.pos
                 return c.set.containsAll(set);
             } else { // !pos && c.pos
@@ -98,7 +96,7 @@ public class XSet<U extends Comparable<U>> implements Freezable<XSet<U>> {
             } else { // !pos && !c.pos
                 set.retainAll(c.set);
             }
-        } else { 
+        } else {
             if (pos) { // pos && !c.pos
                 otherRemoveAll(set, c.set);
                 pos = false;
@@ -110,25 +108,25 @@ public class XSet<U extends Comparable<U>> implements Freezable<XSet<U>> {
     }
 
     public XSet<U> retainAll(XSet<U> c) {
-         if (frozen) {
-             throw new UnsupportedOperationException();
-         }
-         if (pos == c.pos) {
-             if (pos) { // pos && c.pos
-                 set.retainAll(c.set);
-             } else { // !pos && !c.pos
-                 set.addAll(c.set);
-             }
-         } else { 
-             if (pos) { // pos && !c.pos
-                 set.removeAll(c.set);
-             } else { // !pos && c.pos
-                 otherRemoveAll(set, c.set);
-                 pos = true;
-             }
-         }
-         return this;
-     }
+        if (frozen) {
+            throw new UnsupportedOperationException();
+        }
+        if (pos == c.pos) {
+            if (pos) { // pos && c.pos
+                set.retainAll(c.set);
+            } else { // !pos && !c.pos
+                set.addAll(c.set);
+            }
+        } else {
+            if (pos) { // pos && !c.pos
+                set.removeAll(c.set);
+            } else { // !pos && c.pos
+                otherRemoveAll(set, c.set);
+                pos = true;
+            }
+        }
+        return this;
+    }
 
     public XSet<U> removeAll(XSet<U> c) {
         if (frozen) {
@@ -141,7 +139,7 @@ public class XSet<U extends Comparable<U>> implements Freezable<XSet<U>> {
                 otherRemoveAll(set, c.set);
                 pos = true;
             }
-        } else { 
+        } else {
             if (pos) { // pos && !c.pos
                 set.retainAll(c.set);
             } else { // !pos && c.pos
@@ -151,7 +149,6 @@ public class XSet<U extends Comparable<U>> implements Freezable<XSet<U>> {
         return this;
     }
 
- 
     private static <U> void otherRemoveAll(Set<U> set, Set<U> other) {
         HashSet<U> temp = new HashSet<>(other);
         temp.removeAll(set);
@@ -182,13 +179,13 @@ public class XSet<U extends Comparable<U>> implements Freezable<XSet<U>> {
     public boolean isPositive() {
         return pos;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         XSet<U> other = (XSet<U>) obj;
         return pos == other.pos && set.equals(other.set);
     }
-    
+
     @Override
     public int hashCode() {
         return Objects.hash(pos, set);

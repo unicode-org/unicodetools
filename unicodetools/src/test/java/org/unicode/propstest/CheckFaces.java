@@ -1,14 +1,12 @@
 package org.unicode.propstest;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UnicodeSet;
 
 public class CheckFaces {
     public static void main(String[] args) {
@@ -29,10 +27,16 @@ public class CheckFaces {
             String noface = name.replace("FACE", "").trim().replace("  ", " ");
             UnicodeSet others = nameToUset.get(noface);
             if (others != null) {
-                System.out.println("U+" + Utility.hex(s) 
-                        + "\t" + name 
-                        + "\t" + "U+" + Utility.hex(others.iterator().next()) 
-                        + "\t" + noface);
+                System.out.println(
+                        "U+"
+                                + Utility.hex(s)
+                                + "\t"
+                                + name
+                                + "\t"
+                                + "U+"
+                                + Utility.hex(others.iterator().next())
+                                + "\t"
+                                + noface);
             }
         }
     }

@@ -1,6 +1,5 @@
 package org.unicode.draft;
 
-
 import java.text.NumberFormat;
 
 public class FuzzyNumber {
@@ -27,7 +26,10 @@ public class FuzzyNumber {
         in = in.trim();
         final double value = Double.parseDouble(in);
         final int decimalPos = in.indexOf('.');
-        final double increment = decimalPos < 0 || decimalPos == in.length() - 1 ? 0.5 : 0.5 / Math.pow(10, in.length() - decimalPos - 1);
+        final double increment =
+                decimalPos < 0 || decimalPos == in.length() - 1
+                        ? 0.5
+                        : 0.5 / Math.pow(10, in.length() - decimalPos - 1);
         return new FuzzyNumber(value, increment);
     }
 
@@ -62,7 +64,8 @@ public class FuzzyNumber {
             if (upper < 0) {
                 return new FuzzyNumber(1.0D / value, 1.0D / upper, 1.0D / lower);
             } else {
-                return new FuzzyNumber(1.0D / value, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+                return new FuzzyNumber(
+                        1.0D / value, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
             }
         } else { // == 0 or NaN
             return new FuzzyNumber(1.0D / value, 1.0D / upper, Double.POSITIVE_INFINITY);
@@ -78,7 +81,11 @@ public class FuzzyNumber {
 
     @Override
     public String toString() {
-        return nf.format(value) + " {-" + pf.format(Math.abs((value - lower) / value)) + "+" + pf.format(Math.abs((upper - value) / value)) + "}";
+        return nf.format(value)
+                + " {-"
+                + pf.format(Math.abs((value - lower) / value))
+                + "+"
+                + pf.format(Math.abs((upper - value) / value))
+                + "}";
     }
-
 }

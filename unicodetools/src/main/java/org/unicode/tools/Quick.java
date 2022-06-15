@@ -1,8 +1,9 @@
 package org.unicode.tools;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
 import java.util.EnumSet;
 import java.util.Set;
-
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyNames.Named;
 import org.unicode.props.UcdProperty;
@@ -13,24 +14,26 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiData;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UnicodeSet;
-
 public class Quick {
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
     static final UnicodeMap<String> names = iup.load(UcdProperty.Name);
-    static final UnicodeMap<Block_Values> blocks = iup.loadEnum(UcdProperty.Block, Block_Values.class);
+    static final UnicodeMap<Block_Values> blocks =
+            iup.loadEnum(UcdProperty.Block, Block_Values.class);
     static final IndexUnicodeProperties iupOld = IndexUnicodeProperties.make(Settings.lastVersion);
     static final EmojiData emojiData = EmojiData.EMOJI_DATA;
-    static final UnicodeMap<General_Category_Values> gencat = iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
+    static final UnicodeMap<General_Category_Values> gencat =
+            iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
     static final UnicodeSet Cn = gencat.getSet(General_Category_Values.Unassigned);
-    
+
     public static void main(String[] args) {
         showValue(0xE0041, UcdProperty.Word_Break, UcdPropertyValues.Word_Break_Values.class);
         showValue(0xE0041, UcdProperty.Line_Break, UcdPropertyValues.Line_Break_Values.class);
-        showValue(0xE0041, UcdProperty.Grapheme_Cluster_Break, UcdPropertyValues.Grapheme_Cluster_Break_Values.class);
+        showValue(
+                0xE0041,
+                UcdProperty.Grapheme_Cluster_Break,
+                UcdPropertyValues.Grapheme_Cluster_Break_Values.class);
         if (true) return;
-        
+
         Set<Block_Values> emojiBlocks = EnumSet.noneOf(Block_Values.class);
         UnicodeSet emoji = emojiData.getSingletonsWithoutDefectives();
         for (String s : new UnicodeSet(emoji).addAll(ExtendedPictographic.GLUE_AFTER_ZWJ)) {
@@ -41,14 +44,19 @@ public class Quick {
         System.out.println(ExtendedPictographic.HEADER);
         for (Block_Values block : emojiBlocks) {
             System.out.println("# " + block);
-            
+
             UnicodeSet blockSet = blocks.getSet(block);
             UnicodeSet emojiInBlock = new UnicodeSet(blockSet).retainAll(emoji);
-            UnicodeSet gazInBlock = new UnicodeSet(blockSet).retainAll(ExtendedPictographic.GLUE_AFTER_ZWJ);
+            UnicodeSet gazInBlock =
+                    new UnicodeSet(blockSet).retainAll(ExtendedPictographic.GLUE_AFTER_ZWJ);
             UnicodeSet gazInBlockNoCn = new UnicodeSet(gazInBlock).removeAll(Cn);
             UnicodeSet gazInBlockCn = new UnicodeSet(gazInBlock).retainAll(Cn);
             UnicodeSet cnInBlock = new UnicodeSet(blockSet).retainAll(Cn).removeAll(gazInBlock);
-            UnicodeSet otherInBlock = new UnicodeSet(blockSet).removeAll(emojiInBlock).removeAll(cnInBlock).removeAll(gazInBlock);
+            UnicodeSet otherInBlock =
+                    new UnicodeSet(blockSet)
+                            .removeAll(emojiInBlock)
+                            .removeAll(cnInBlock)
+                            .removeAll(gazInBlock);
 
             showNonEmpty("emoji", emojiInBlock, true);
             showNonEmpty("gaz", gazInBlock, true);
@@ -71,31 +79,50 @@ public class Quick {
 
     private static void showValue(int cp, final UcdProperty prop, final Class classIn) {
         Named value = (Named) iup.loadEnum(prop, classIn).get(cp);
-        System.out.println(Utility.hex(cp) + " " + names.get(cp) 
-                + " → " + prop.getShortName() + "=" + value.getShortName() + "\t" + prop + "=" + value);
+        System.out.println(
+                Utility.hex(cp)
+                        + " "
+                        + names.get(cp)
+                        + " → "
+                        + prop.getShortName()
+                        + "="
+                        + value.getShortName()
+                        + "\t"
+                        + prop
+                        + "="
+                        + value);
     }
 
     private static void showRanges(UnicodeSet gazInBlock, boolean includeSetName) {
         for (UnicodeSet.EntryRange range : gazInBlock.ranges()) {
             System.out.println(
                     printRange(range.codepoint, range.codepointEnd)
-                    + "\t; Glue_After_Zwj"
-                    + " #\t"
-                    + (includeSetName ?  
-                    new UnicodeSet(range.codepoint, range.codepointEnd).toPattern(false)
-                    + "\t" + getNames(range.codepoint, range.codepointEnd) : "GC=Cn")
-                    );
+                            + "\t; Glue_After_Zwj"
+                            + " #\t"
+                            + (includeSetName
+                                    ? new UnicodeSet(range.codepoint, range.codepointEnd)
+                                                    .toPattern(false)
+                                            + "\t"
+                                            + getNames(range.codepoint, range.codepointEnd)
+                                    : "GC=Cn"));
         }
     }
 
     private static void showNonEmpty(String title, UnicodeSet emojiInBlock, boolean includeUS) {
         if (!emojiInBlock.isEmpty()) {
-            System.out.println("# " + title + "=" + emojiInBlock.size() + (includeUS ? "\t: " + emojiInBlock.toPattern(false) : ""));
+            System.out.println(
+                    "# "
+                            + title
+                            + "="
+                            + emojiInBlock.size()
+                            + (includeUS ? "\t: " + emojiInBlock.toPattern(false) : ""));
         }
     }
 
-    //        UnicodeMap<Line_Break_Values> linebreak = iup.loadEnum(UcdProperty.Line_Break, Line_Break_Values.class);
-    //        UnicodeMap<Line_Break_Values> linebreakOld = iupOld.loadEnum(UcdProperty.Line_Break, Line_Break_Values.class);
+    //        UnicodeMap<Line_Break_Values> linebreak = iup.loadEnum(UcdProperty.Line_Break,
+    // Line_Break_Values.class);
+    //        UnicodeMap<Line_Break_Values> linebreakOld = iupOld.loadEnum(UcdProperty.Line_Break,
+    // Line_Break_Values.class);
     //        UnicodeSet ID = linebreak.getSet(Line_Break_Values.Ideographic);
     //        UnicodeSet IdOld = linebreakOld.getSet(Line_Break_Values.Ideographic);
     //        UnicodeSet IdCn = new UnicodeSet(ID)
@@ -131,7 +158,6 @@ public class Quick {
     }
 
     private static String printRange(int start, int end) {
-        return "U+" + Utility.hex(start)
-                + (start == end ? "" : "..U+" + Utility.hex(end));
+        return "U+" + Utility.hex(start) + (start == end ? "" : "..U+" + Utility.hex(end));
     }
 }

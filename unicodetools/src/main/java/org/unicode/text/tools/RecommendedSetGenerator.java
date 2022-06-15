@@ -1,136 +1,137 @@
 package org.unicode.text.tools;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
 import java.util.Set;
-
 import org.unicode.text.UCD.IdentifierInfo.Identifier_Status;
 import org.unicode.text.UCD.IdentifierInfo.Identifier_Type;
 import org.unicode.text.utility.Settings;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UnicodeSet;
-
 /**
  * Generates the recommended UnicodeSet according to UTS 39. Used for updating the constant in ICU
  * SpoofChecker.
- * 
+ *
  * @author Shane Carr
  * @see com.ibm.icu.text.SpoofChecker
  */
 public class RecommendedSetGenerator {
-  public static void main(String[] args) {
-    Sets sets = generateSet();
-    System.out.println("# inclusion: \n" + sets.inclusion.toString());
-    System.out.println("\n# recommended: \n" + sets.recommended.toString());
-    System.out.println("\n\nJava Version:\n\n");
-    System.out.println(uniSetToCodeString(sets.inclusion, "INCLUSION", true));
-    System.out.println(uniSetToCodeString(sets.recommended, "RECOMMENDED", true));
-    System.out.println("\n\nC++ Version:\n\n");
-    System.out.println(uniSetToCodeString(sets.inclusion, "inclusionPat", false));
-    System.out.println(uniSetToCodeString(sets.recommended, "recommendedPat", false));
-  }
-
-  public static String uniSetToCodeString(UnicodeSet uniset, String varName, boolean isJava) {
-    String str = uniset.toString().replace("\\", "\\\\");
-    StringBuilder result = new StringBuilder();
-    if (isJava) {
-      result.append("    public static final UnicodeSet " + varName + " = new UnicodeSet(");
-    } else {
-      result.append("    static const char16_t *" + varName + " =");
+    public static void main(String[] args) {
+        Sets sets = generateSet();
+        System.out.println("# inclusion: \n" + sets.inclusion.toString());
+        System.out.println("\n# recommended: \n" + sets.recommended.toString());
+        System.out.println("\n\nJava Version:\n\n");
+        System.out.println(uniSetToCodeString(sets.inclusion, "INCLUSION", true));
+        System.out.println(uniSetToCodeString(sets.recommended, "RECOMMENDED", true));
+        System.out.println("\n\nC++ Version:\n\n");
+        System.out.println(uniSetToCodeString(sets.inclusion, "inclusionPat", false));
+        System.out.println(uniSetToCodeString(sets.recommended, "recommendedPat", false));
     }
-    for (int i = 0; i < str.length();) {
-      // split into short lines
-      int end = i + 75;
-      if (end > str.length()) {
-        end = str.length();
-      }
-      // break before an escape, not in the middle
-      // 11 = "\\\\U0010FFFF".length()
-      int min = end - 11;
-      if (min < i) { min = i; }
-      char nextChar = 0;
-      for (int j = end; min < j;) {
-        char c = str.charAt(--j);
-        if (c == '\\') {
-          if ((nextChar == 'u' && (end - j) >= 6) || (nextChar == 'U' && (end - j) >= 10)) {
-            // The escape sequence is completely on this line.
-          } else {
-            // Truncate before double escape.
-            if (i < j && str.charAt(j - 1) == '\\') {
-              --j;
-            }
-            // Do not truncate to nothing.
-            if (i < j) {
-              end = j;
-            }
-          }
-          break;
+
+    public static String uniSetToCodeString(UnicodeSet uniset, String varName, boolean isJava) {
+        String str = uniset.toString().replace("\\", "\\\\");
+        StringBuilder result = new StringBuilder();
+        if (isJava) {
+            result.append("    public static final UnicodeSet " + varName + " = new UnicodeSet(");
+        } else {
+            result.append("    static const char16_t *" + varName + " =");
         }
-        nextChar = c;
-      }
-      String line = str.substring(i, end);
-      if (isJava) {
-        result.append("\n            " + (i == 0 ? "\"" : "+ \"") + line + '"');
-      } else {
-        result.append("\n        u\"" + line + '"');
-      }
-      i = end;
+        for (int i = 0; i < str.length(); ) {
+            // split into short lines
+            int end = i + 75;
+            if (end > str.length()) {
+                end = str.length();
+            }
+            // break before an escape, not in the middle
+            // 11 = "\\\\U0010FFFF".length()
+            int min = end - 11;
+            if (min < i) {
+                min = i;
+            }
+            char nextChar = 0;
+            for (int j = end; min < j; ) {
+                char c = str.charAt(--j);
+                if (c == '\\') {
+                    if ((nextChar == 'u' && (end - j) >= 6)
+                            || (nextChar == 'U' && (end - j) >= 10)) {
+                        // The escape sequence is completely on this line.
+                    } else {
+                        // Truncate before double escape.
+                        if (i < j && str.charAt(j - 1) == '\\') {
+                            --j;
+                        }
+                        // Do not truncate to nothing.
+                        if (i < j) {
+                            end = j;
+                        }
+                    }
+                    break;
+                }
+                nextChar = c;
+            }
+            String line = str.substring(i, end);
+            if (isJava) {
+                result.append("\n            " + (i == 0 ? "\"" : "+ \"") + line + '"');
+            } else {
+                result.append("\n        u\"" + line + '"');
+            }
+            i = end;
+        }
+        result.append(isJava ? "\n    ).freeze();\n" : ";\n");
+        return result.toString();
     }
-    result.append(isJava ? "\n    ).freeze();\n" : ";\n");
-    return result.toString();
-  }
 
-  public static Sets generateSet() {
-    String path = Settings.UnicodeTools.getDataPathStringForLatestVersion("security");
-    XIDModifications inst = new XIDModifications(path);
+    public static Sets generateSet() {
+        String path = Settings.UnicodeTools.getDataPathStringForLatestVersion("security");
+        XIDModifications inst = new XIDModifications(path);
 
-    // Compute sets based on status
-    UnicodeSet allowedS = new UnicodeSet();
-    UnicodeSet restrictedS = new UnicodeSet();
-    UnicodeMap<Identifier_Status> statuses = inst.getStatus();
-    for (String range : statuses) {
-      Identifier_Status status = statuses.get(range);
-      if (status == Identifier_Status.allowed) {
-        allowedS.add(range);
-      } else {
-        restrictedS.add(range);
-      }
+        // Compute sets based on status
+        UnicodeSet allowedS = new UnicodeSet();
+        UnicodeSet restrictedS = new UnicodeSet();
+        UnicodeMap<Identifier_Status> statuses = inst.getStatus();
+        for (String range : statuses) {
+            Identifier_Status status = statuses.get(range);
+            if (status == Identifier_Status.allowed) {
+                allowedS.add(range);
+            } else {
+                restrictedS.add(range);
+            }
+        }
+        allowedS.freeze();
+        restrictedS.freeze();
+
+        // Compute sets based on types
+        UnicodeSet recommendedT = new UnicodeSet();
+        UnicodeSet inclusionT = new UnicodeSet();
+        UnicodeSet restrictedT = new UnicodeSet();
+        UnicodeMap<Set<Identifier_Type>> typeses = inst.getType();
+        for (String range : typeses) {
+            Set<Identifier_Type> types = typeses.get(range);
+            if (types.contains(Identifier_Type.inclusion)) {
+                inclusionT.add(range);
+            } else if (types.contains(Identifier_Type.recommended)) {
+                recommendedT.add(range);
+            } else {
+                restrictedT.add(range);
+            }
+        }
+        recommendedT.freeze();
+        inclusionT.freeze();
+        restrictedT.freeze();
+        assert restrictedS.equals(restrictedT);
+
+        // ALLOWED should be the union of RECOMMENDED and INCLUSION.
+        UnicodeSet allowed = recommendedT.cloneAsThawed().addAll(inclusionT).freeze();
+        assert allowedS.equals(allowed);
+
+        // Return value
+        Sets result = new Sets();
+        result.inclusion = inclusionT;
+        result.recommended = recommendedT;
+        return result;
     }
-    allowedS.freeze();
-    restrictedS.freeze();
 
-    // Compute sets based on types
-    UnicodeSet recommendedT = new UnicodeSet();
-    UnicodeSet inclusionT = new UnicodeSet();
-    UnicodeSet restrictedT = new UnicodeSet();
-    UnicodeMap<Set<Identifier_Type>> typeses = inst.getType();
-    for (String range : typeses) {
-      Set<Identifier_Type> types = typeses.get(range);
-      if (types.contains(Identifier_Type.inclusion)) {
-        inclusionT.add(range);
-      } else if (types.contains(Identifier_Type.recommended)) {
-        recommendedT.add(range);
-      } else {
-        restrictedT.add(range);
-      }
+    public static class Sets {
+        public UnicodeSet recommended;
+        public UnicodeSet inclusion;
     }
-    recommendedT.freeze();
-    inclusionT.freeze();
-    restrictedT.freeze();
-    assert restrictedS.equals(restrictedT);
-
-    // ALLOWED should be the union of RECOMMENDED and INCLUSION.
-    UnicodeSet allowed = recommendedT.cloneAsThawed().addAll(inclusionT).freeze();
-    assert allowedS.equals(allowed);
-
-    // Return value
-    Sets result = new Sets();
-    result.inclusion = inclusionT;
-    result.recommended = recommendedT;
-    return result;
-  }
-
-  public static class Sets {
-    public UnicodeSet recommended;
-    public UnicodeSet inclusion;
-  }
 }

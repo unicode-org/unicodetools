@@ -1,5 +1,23 @@
 package org.unicode.tools.emoji;
 
+import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.TreeMultimap;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.CharSequences;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.BreakIterator;
+import com.ibm.icu.text.Transform;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetSpanner;
+import com.ibm.icu.util.ICUException;
+import com.ibm.icu.util.ULocale;
+import com.ibm.icu.util.VersionInfo;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -14,7 +32,6 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Annotations;
 import org.unicode.cldr.util.Annotations.AnnotationSet;
@@ -35,28 +52,10 @@ import org.unicode.tools.emoji.Emoji.CharSource;
 import org.unicode.tools.emoji.Emoji.Qualified;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 
-import com.google.common.base.Splitter;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.TreeMultimap;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.BreakIterator;
-import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetSpanner;
-import com.ibm.icu.util.ICUException;
-import com.ibm.icu.util.ULocale;
-import com.ibm.icu.util.VersionInfo;
-
 public class EmojiData implements EmojiDataSource {
     // should be properties
-    private static final UnicodeSet MULTIPERSON = new UnicodeSet("[👯 🤼 👫-👭 💏 💑 👪 🤝]").freeze();
+    private static final UnicodeSet MULTIPERSON =
+            new UnicodeSet("[👯 🤼 👫-👭 💏 💑 👪 🤝]").freeze();
     private static final UnicodeSet EXPLICIT_HAIR = new UnicodeSet("[👱]").freeze();
 
     static final int HANDSHAKE = 0x1f91d;
@@ -64,8 +63,8 @@ public class EmojiData implements EmojiDataSource {
     public static final String NEUTRAL_HOLDING = "🧑‍🤝‍🧑";
     public static final String SAMPLE_NEUTRAL_HOLDING_WITH_SKIN = "🧑🏼‍🤝‍🧑🏻";
     public static final String MAN_WITH_RED_HAIR = "👨‍🦰";
-    public static final UnicodeSet HOLDING_HANDS_COMPOSITES = new UnicodeSet().add(0x1F46B).add(0x1F46C).add(0x1F46D)
-            .freeze();
+    public static final UnicodeSet HOLDING_HANDS_COMPOSITES =
+            new UnicodeSet().add(0x1F46B).add(0x1F46C).add(0x1F46D).freeze();
     public static final UnicodeSet OTHER_GROUP = new UnicodeSet("[💏 💑]").freeze();
 
     static final String ZWJ_HANDSHAKE_ZWJ = Emoji.JOINER_STR + "🤝" + Emoji.JOINER_STR;
@@ -75,9 +74,14 @@ public class EmojiData implements EmojiDataSource {
     static final String SHAKING_HANDS = RIGHTWARDS_HAND + Emoji.JOINER_STR + LEFTWARDS_HAND;
 
     public static boolean ALLOW_UNICODE_NAME = System.getProperty("ALLOW_UNICODE_NAME") != null;
-    public static final UnicodeSet TAKES_NO_VARIANT = new UnicodeSet(Emoji.EMOJI_VARIANTS_JOINER)
-            .addAll(new UnicodeSet("[[:M:][:Variation_Selector:][:Block=Tags:]]")) // TODO fix to use indexed props
-            .freeze();
+    public static final UnicodeSet TAKES_NO_VARIANT =
+            new UnicodeSet(Emoji.EMOJI_VARIANTS_JOINER)
+                    .addAll(
+                            new UnicodeSet(
+                                    "[[:M:][:Variation_Selector:][:Block=Tags:]]")) // TODO fix to
+                    // use indexed
+                    // props
+                    .freeze();
 
     public static final String SAMPLE_WITHOUT_TRAILING_EVS = "👮🏻‍♀";
     public static final AnnotationSet ANNOTATION_SET = Annotations.getDataSet("en");
@@ -85,7 +89,8 @@ public class EmojiData implements EmojiDataSource {
     public static final UnicodeSet MODIFIERS = new UnicodeSet(0x1F3FB, 0x1F3FF).freeze();
 
     public enum DefaultPresentation {
-        text, emoji
+        text,
+        emoji
     }
 
     private final UnicodeSet singletonsWithDefectives = new UnicodeSet();
@@ -129,9 +134,14 @@ public class EmojiData implements EmojiDataSource {
     private UnicodeSet otherHuman;
     private UnicodeSet genderBase;
     private UnicodeMap<String> toNeutral;
-    static final UnicodeSetSpanner MODS_SPANNER = new UnicodeSetSpanner(
-            new UnicodeSet(MODIFIERS).addAll(Emoji.ZWJ_GENDER_MARKERS).addAll(Emoji.FULL_ZWJ_GENDER_MARKERS).freeze());
-    public static final UnicodeSetSpanner SKIN_SPANNER = new UnicodeSetSpanner(new UnicodeSet(MODIFIERS).freeze());
+    static final UnicodeSetSpanner MODS_SPANNER =
+            new UnicodeSetSpanner(
+                    new UnicodeSet(MODIFIERS)
+                            .addAll(Emoji.ZWJ_GENDER_MARKERS)
+                            .addAll(Emoji.FULL_ZWJ_GENDER_MARKERS)
+                            .freeze());
+    public static final UnicodeSetSpanner SKIN_SPANNER =
+            new UnicodeSetSpanner(new UnicodeSet(MODIFIERS).freeze());
 
     public static final Splitter semi = Splitter.onPattern("[;#]").trimResults();
     public static final Splitter semiOnly = Splitter.onPattern(";").trimResults();
@@ -151,7 +161,12 @@ public class EmojiData implements EmojiDataSource {
     }
 
     private enum EmojiProp {
-        Emoji, Emoji_Presentation, Emoji_Modifier, Emoji_Modifier_Base, Emoji_Component, Extended_Pictographic
+        Emoji,
+        Emoji_Presentation,
+        Emoji_Modifier,
+        Emoji_Modifier_Base,
+        Emoji_Component,
+        Extended_Pictographic
     }
     // 0023 ; Emoji # [1] (#️) NUMBER SIGN
     // 231A..231B ; Emoji_Presentation # [2] (⌚️..⌛️) WATCH..HOURGLASS
@@ -159,15 +174,20 @@ public class EmojiData implements EmojiDataSource {
     // 261D ; Emoji_Modifier_Base # [1] (☝️) WHITE UP POINTING INDEX
 
     private EmojiData(VersionInfo version) {
-        final UnicodeMap<General_Category_Values> gc = Emoji.BETA.loadEnum(UcdProperty.General_Category,
-                UcdPropertyValues.General_Category_Values.class);
+        final UnicodeMap<General_Category_Values> gc =
+                Emoji.BETA.loadEnum(
+                        UcdProperty.General_Category,
+                        UcdPropertyValues.General_Category_Values.class);
         UnicodeSet NSM = gc.getSet(UcdPropertyValues.General_Category_Values.Nonspacing_Mark);
         UnicodeSet EM = gc.getSet(UcdPropertyValues.General_Category_Values.Enclosing_Mark);
-        EnumMap<Emoji.ModifierStatus, UnicodeSet> _modifierClassMap = new EnumMap<>(Emoji.ModifierStatus.class);
+        EnumMap<Emoji.ModifierStatus, UnicodeSet> _modifierClassMap =
+                new EnumMap<>(Emoji.ModifierStatus.class);
 
-        String[] ADD_VARIANT_KEYCAPS = { Emoji.KEYCAP_MARK_STRING,
-                // Emoji.TEXT_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING,
-                Emoji.EMOJI_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING, };
+        String[] ADD_VARIANT_KEYCAPS = {
+            Emoji.KEYCAP_MARK_STRING,
+            // Emoji.TEXT_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING,
+            Emoji.EMOJI_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING,
+        };
 
         this.version = version;
         final String directory =
@@ -183,8 +203,7 @@ public class EmojiData implements EmojiDataSource {
             // jw # V1.1 (☺) white smiling face
             ++lineCount;
             line = line.trim();
-            if (line.startsWith("#") || line.isEmpty())
-                continue;
+            if (line.startsWith("#") || line.isEmpty()) continue;
             if (line.startsWith("2388")) {
                 int debug = 0;
             }
@@ -222,13 +241,13 @@ public class EmojiData implements EmojiDataSource {
                 // # emoji: default emoji presentation
                 boolean emojiPresentation = false;
                 switch (f1) {
-                case "text":
-                    break;
-                case "emoji":
-                    emojiPresentation = true;
-                    break;
-                default:
-                    throw new IllegalArgumentException(line);
+                    case "text":
+                        break;
+                    case "emoji":
+                        emojiPresentation = true;
+                        break;
+                    default:
+                        throw new IllegalArgumentException(line);
                 }
                 // # Field 3 — Emoji_Modifier_Status:
                 // # modifier: an emoji modifier
@@ -240,17 +259,17 @@ public class EmojiData implements EmojiDataSource {
                 boolean emojiModifierBase = false;
 
                 switch (f3) {
-                case "modifier":
-                    emojiModifier = true;
-                    break;
-                case "primary":
-                case "secondary":
-                    emojiModifierBase = true;
-                    break;
-                case "none":
-                    break;
-                default:
-                    throw new IllegalArgumentException(line);
+                    case "modifier":
+                        emojiModifier = true;
+                        break;
+                    case "primary":
+                    case "secondary":
+                        emojiModifierBase = true;
+                        break;
+                    case "none":
+                        break;
+                    default:
+                        throw new IllegalArgumentException(line);
                 }
                 for (int cp = codePoint; cp <= codePointEnd; ++cp) {
                     emojiData.add(cp, EmojiProp.Emoji);
@@ -311,8 +330,9 @@ public class EmojiData implements EmojiDataSource {
                 singletonsWithoutDefectives.add(cp);
             }
 
-            EmojiData.DefaultPresentation styleIn = set.contains(EmojiProp.Emoji_Presentation)
-                    ? EmojiData.DefaultPresentation.emoji
+            EmojiData.DefaultPresentation styleIn =
+                    set.contains(EmojiProp.Emoji_Presentation)
+                            ? EmojiData.DefaultPresentation.emoji
                             : EmojiData.DefaultPresentation.text;
             if (styleIn == EmojiData.DefaultPresentation.emoji) {
                 emojiPresentationSet.add(cp);
@@ -320,20 +340,24 @@ public class EmojiData implements EmojiDataSource {
                 textPresentationSet.add(cp);
             }
 
-            Emoji.ModifierStatus modClass = set.contains(EmojiProp.Emoji_Modifier) ? Emoji.ModifierStatus.modifier
-                    : set.contains(EmojiProp.Emoji_Modifier_Base) ? Emoji.ModifierStatus.modifier_base
-                            : Emoji.ModifierStatus.none;
+            Emoji.ModifierStatus modClass =
+                    set.contains(EmojiProp.Emoji_Modifier)
+                            ? Emoji.ModifierStatus.modifier
+                            : set.contains(EmojiProp.Emoji_Modifier_Base)
+                                    ? Emoji.ModifierStatus.modifier_base
+                                    : Emoji.ModifierStatus.none;
             putUnicodeSetValue(_modifierClassMap, cp, modClass);
-
         }
         singletonsWithDefectives.freeze();
         singletonsWithoutDefectives.freeze();
 
         emojiPresentationSet.freeze();
         textPresentationSet.freeze();
-        modifierBases = new UnicodeSet().addAll(_modifierClassMap.get(Emoji.ModifierStatus.modifier_base))
-                // .addAll(modifierClassMap.get(ModifierStatus.secondary))
-                .freeze();
+        modifierBases =
+                new UnicodeSet()
+                        .addAll(_modifierClassMap.get(Emoji.ModifierStatus.modifier_base))
+                        // .addAll(modifierClassMap.get(ModifierStatus.secondary))
+                        .freeze();
         if (!modifierBases.contains(0x1F90C)) {
             if (version.compareTo(Emoji.VERSION13) >= 0) {
                 int debug = 0;
@@ -371,8 +395,14 @@ public class EmojiData implements EmojiDataSource {
             modifierBasesRgi = new UnicodeSet();
             modifierSequences = new UnicodeSet();
             // HACK 1F441 200D 1F5E8
-            zwjSequencesAll.add(new StringBuilder().appendCodePoint(0x1F441).appendCodePoint(0xFE0F)
-                    .appendCodePoint(0x200D).appendCodePoint(0x1F5E8).appendCodePoint(0xFE0F).toString());
+            zwjSequencesAll.add(
+                    new StringBuilder()
+                            .appendCodePoint(0x1F441)
+                            .appendCodePoint(0xFE0F)
+                            .appendCodePoint(0x200D)
+                            .appendCodePoint(0x1F5E8)
+                            .appendCodePoint(0xFE0F)
+                            .toString());
 
             // VariantFactory vf = new VariantFactory();
             UnicodeSet debugSet = new UnicodeSet("[\\x{1F48F}\\x{1F491}]").freeze();
@@ -404,7 +434,14 @@ public class EmojiData implements EmojiDataSource {
                             }
                             if (EmojiData.MODIFIERS.contains(cp1)) {
                                 if (last < 0) {
-                                    throw new IllegalArgumentException("In " + file + ", modifier " + Utility.hex(last) + " " + UTF16.valueOf(cp1) + "not following base ");
+                                    throw new IllegalArgumentException(
+                                            "In "
+                                                    + file
+                                                    + ", modifier "
+                                                    + Utility.hex(last)
+                                                    + " "
+                                                    + UTF16.valueOf(cp1)
+                                                    + "not following base ");
                                 }
                                 modifierBasesRgi.add(last);
                                 modifierSequences.add(With.fromCodePoint(last, cp1));
@@ -443,7 +480,8 @@ public class EmojiData implements EmojiDataSource {
                                 int debug = 0;
                             }
                             addToZwjSequencesAll(noVariant); // get non-variant
-                            final Set<String> noVariantPlusModifiers = addModifiers(noVariant, false);
+                            final Set<String> noVariantPlusModifiers =
+                                    addModifiers(noVariant, false);
                             for (String modSeq : noVariantPlusModifiers) {
                                 addToZwjSequencesAll(modSeq);
                                 addName(modSeq, list);
@@ -470,16 +508,20 @@ public class EmojiData implements EmojiDataSource {
                                 }
                             } else if (EM.containsSome(noVariant) || NSM.containsSome(noVariant)) {
                                 final String firstString = source.substring(0, 1);
-                                keycapSequences
-                                .add(firstString + Emoji.EMOJI_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING);
+                                keycapSequences.add(
+                                        firstString
+                                                + Emoji.EMOJI_VARIANT_STRING
+                                                + Emoji.KEYCAP_MARK_STRING);
                                 for (String s : ADD_VARIANT_KEYCAPS) {
                                     keycapSequenceAll.add(firstString + s);
                                 }
                                 keycapBases.add(firstString);
-                            } else if (Emoji.DEFECTIVE.contains(first) // if it starts with a defective
-                                    && !Emoji.KEYCAP_BASE.contains(noVariant) // and is not just one of the keycap
-                                    // starts in Basic_Emoji
-                                    ) {
+                            } else if (Emoji.DEFECTIVE.contains(
+                                            first) // if it starts with a defective
+                                    && !Emoji.KEYCAP_BASE.contains(
+                                            noVariant) // and is not just one of the keycap
+                            // starts in Basic_Emoji
+                            ) {
                                 throw new IllegalArgumentException("Unexpected Defective");
                             }
                         }
@@ -501,8 +543,9 @@ public class EmojiData implements EmojiDataSource {
         }
 
         if (version.compareTo(Emoji.VERSION4) <= 0) {
-            UnicodeMap<String> sv = IndexUnicodeProperties.make(Emoji.VERSION_TO_GENERATE_UNICODE)
-                    .load(UcdProperty.Standardized_Variant);
+            UnicodeMap<String> sv =
+                    IndexUnicodeProperties.make(Emoji.VERSION_TO_GENERATE_UNICODE)
+                            .load(UcdProperty.Standardized_Variant);
             for (String s : sv.keySet()) {
                 if (s.contains(Emoji.EMOJI_VARIANT_STRING)) {
                     emojiWithVariants.add(s.codePointAt(0));
@@ -517,8 +560,7 @@ public class EmojiData implements EmojiDataSource {
                 if (hashPos >= 0) {
                     line = line.substring(0, hashPos);
                 }
-                if (line.isEmpty())
-                    continue;
+                if (line.isEmpty()) continue;
 
                 List<String> list = semi.splitToList(line);
                 String source = Utility.fromHex(list.get(0));
@@ -535,8 +577,7 @@ public class EmojiData implements EmojiDataSource {
                 // # Code ; Default Style ; Ordering ; Annotations ; Sources #Version Char Name
                 // U+263A ; text ; 0 ; face, human, outlined, relaxed, smile, smiley, smiling ;
                 // jw # V1.1 (☺) white smiling face
-                if (line.startsWith("#") || line.isEmpty())
-                    continue;
+                if (line.startsWith("#") || line.isEmpty()) continue;
                 List<String> coreList = hashOnly.splitToList(line);
                 List<String> list = semi.splitToList(coreList.get(0));
                 final String f0 = list.get(0);
@@ -553,7 +594,8 @@ public class EmojiData implements EmojiDataSource {
                 if (!"ExtendedPictographic".equals(prop.replace("_", ""))) {
                     throw new IllegalArgumentException();
                 }
-                boolean negative = list.size() > 2 && "NO".equals(list.get(2).toUpperCase(Locale.ENGLISH));
+                boolean negative =
+                        list.size() > 2 && "NO".equals(list.get(2).toUpperCase(Locale.ENGLISH));
                 if (negative) {
                     extendedPictographic.remove(codePoint, codePointEnd);
                 } else {
@@ -583,8 +625,11 @@ public class EmojiData implements EmojiDataSource {
         // emojiRegionalIndicators.addAll(emojiData.getKeys(EmojiProp.Emoji_Regional_Indicator)).freeze();
         emojiComponents.addAll(emojiData.getKeys(EmojiProp.Emoji_Component)).freeze();
 
-        if (version.compareTo(Emoji.VERSION11) >= 0 && !new UnicodeSet(emojiComponents).removeAll(MODIFIERS)
-                .removeAll(Emoji.HAIR_STYLES).equals(Emoji.DEFECTIVE)) {
+        if (version.compareTo(Emoji.VERSION11) >= 0
+                && !new UnicodeSet(emojiComponents)
+                        .removeAll(MODIFIERS)
+                        .removeAll(Emoji.HAIR_STYLES)
+                        .equals(Emoji.DEFECTIVE)) {
             throw new IllegalArgumentException(
                     "Bad components or defectives\n" + emojiComponents + "\n" + Emoji.DEFECTIVE);
         }
@@ -599,16 +644,18 @@ public class EmojiData implements EmojiDataSource {
         keycapBases.freeze();
         toNormalizedVariant.freeze();
         fromNormalizedVariant.freeze();
-        UnicodeSet rawHairBases = new UnicodeSet().addAll(
-                "🧒 👦 👧 🧑 👨 👩 🧓 👴 👵 👮 🕵 💂 👷 🤴 👸 👳 👲 🧔 🤵 👰 🤰 🤱 🎅 🤶 🧙-🧝 🙍 🙎 🙅 🙆 💁 🙋 🙇 🤦 🤷 💆 💇 🚶 🏃 💃 🕺 👯 🧖-🧘 🛀 🛌 🤺 🏇 ⛷ 🏂 🏌 🏄 🚣 🏊 ⛹ 🏋 🚴 🚵 🏎 🏍 🤸 🤼-🤾 🤹 🎓 🌾 🍳 🏫 🏭 🎨 🚒 ✈ 🚀 🎤 💻 🔬 💼 🔧 ⚖ ♀ ♂ ⚕ ")
-                .add(0x1F9B8).add(0x1F9B9).freeze();
+        UnicodeSet rawHairBases =
+                new UnicodeSet()
+                        .addAll(
+                                "🧒 👦 👧 🧑 👨 👩 🧓 👴 👵 👮 🕵 💂 👷 🤴 👸 👳 👲 🧔 🤵 👰 🤰 🤱 🎅 🤶 🧙-🧝 🙍 🙎 🙅 🙆 💁 🙋 🙇 🤦 🤷 💆 💇 🚶 🏃 💃 🕺 👯 🧖-🧘 🛀 🛌 🤺 🏇 ⛷ 🏂 🏌 🏄 🚣 🏊 ⛹ 🏋 🚴 🚵 🏎 🏍 🤸 🤼-🤾 🤹 🎓 🌾 🍳 🏫 🏭 🎨 🚒 ✈ 🚀 🎤 💻 🔬 💼 🔧 ⚖ ♀ ♂ ⚕ ")
+                        .add(0x1F9B8)
+                        .add(0x1F9B9)
+                        .freeze();
 
-        if (DEBUG)
-            System.out.println("rawHairBases: " + rawHairBases.toPattern(false));
+        if (DEBUG) System.out.println("rawHairBases: " + rawHairBases.toPattern(false));
 
         hairBases.addAll(rawHairBases).retainAll(modifierBases).freeze();
-        if (DEBUG)
-            System.out.println(version + "Hairbases: " + hairBases.toPattern(false));
+        if (DEBUG) System.out.println(version + "Hairbases: " + hairBases.toPattern(false));
 
         for (String s : zwjSequencesNormal) {
             if (s.contains("♀️") && !MODIFIERS.containsSome(s)) {
@@ -642,9 +689,16 @@ public class EmojiData implements EmojiDataSource {
         // //.removeAll(new UnicodeSet("[[:L:][:M:][:^nt=none:]+_-]"))
         // .freeze();
 
-        allEmojiWithoutDefectives = new UnicodeSet(singletonsWithDefectives).addAll(flagSequences)
-                .addAll(emojiTagSequences).addAll(modifierSequences).addAll(keycapSequences).addAll(zwjSequencesNormal)
-                .removeAll(Emoji.DEFECTIVE).addAll(MODIFIERS).freeze();
+        allEmojiWithoutDefectives =
+                new UnicodeSet(singletonsWithDefectives)
+                        .addAll(flagSequences)
+                        .addAll(emojiTagSequences)
+                        .addAll(modifierSequences)
+                        .addAll(keycapSequences)
+                        .addAll(zwjSequencesNormal)
+                        .removeAll(Emoji.DEFECTIVE)
+                        .addAll(MODIFIERS)
+                        .freeze();
         // if (allEmojiWithoutDefectives.contains("👨🏻‍🤝‍👨🏼")) {
         // throw new ICUException("??? 👨🏻‍🤝‍👨🏼");
         // }
@@ -665,11 +719,17 @@ public class EmojiData implements EmojiDataSource {
             int debug = 0;
         }
 
-        allEmojiWithDefectives = new UnicodeSet(allEmojiWithoutDefectives).addAll(zwjSequencesAll)
-                .addAll(keycapSequenceAll).freeze();
+        allEmojiWithDefectives =
+                new UnicodeSet(allEmojiWithoutDefectives)
+                        .addAll(zwjSequencesAll)
+                        .addAll(keycapSequenceAll)
+                        .freeze();
 
         // make sure we are a superset (except for modifiers)
-        extendedPictographic.addAll(singletonsWithoutDefectives).removeAll(EmojiData.MODIFIERS).freeze();
+        extendedPictographic
+                .addAll(singletonsWithoutDefectives)
+                .removeAll(EmojiData.MODIFIERS)
+                .freeze();
     }
 
     private UnicodeSet addToSequencesNormal(String modSeq) {
@@ -735,9 +795,11 @@ public class EmojiData implements EmojiDataSource {
                     genderBase.add(first);
                 }
             }
-            String neutered = Emoji.TO_NEUTRAL.transform(emoji)
-                    .replace(Emoji.JOINER + Emoji.FEMALE + Emoji.EMOJI_VARIANT, "")
-                    .replace(Emoji.JOINER + Emoji.MALE + Emoji.EMOJI_VARIANT, "");
+            String neutered =
+                    Emoji.TO_NEUTRAL
+                            .transform(emoji)
+                            .replace(Emoji.JOINER + Emoji.FEMALE + Emoji.EMOJI_VARIANT, "")
+                            .replace(Emoji.JOINER + Emoji.MALE + Emoji.EMOJI_VARIANT, "");
 
             if (!neutered.equals(emoji)) {
                 toNeutral.put(emoji, neutered);
@@ -777,7 +839,9 @@ public class EmojiData implements EmojiDataSource {
 
         String name;
         if (lineParts != null && lineParts.size() > 2) {
-            name = UCharacter.toTitleCase(lineParts.get(2), BreakIterator.getSentenceInstance(ULocale.ENGLISH));
+            name =
+                    UCharacter.toTitleCase(
+                            lineParts.get(2), BreakIterator.getSentenceInstance(ULocale.ENGLISH));
         } else {
             name = getFallbackName(filteredSource);
         }
@@ -800,8 +864,11 @@ public class EmojiData implements EmojiDataSource {
     }
 
     public UnicodeSet getEmojiForSortRules() {
-        return new UnicodeSet().addAll(getAllEmojiWithoutDefectives()).removeAll(Emoji.DEFECTIVE)
-                .addAll(getZwjSequencesNormal()).addAll(getKeycapSequences());
+        return new UnicodeSet()
+                .addAll(getAllEmojiWithoutDefectives())
+                .removeAll(Emoji.DEFECTIVE)
+                .addAll(getZwjSequencesNormal())
+                .addAll(getKeycapSequences());
     }
 
     public UnicodeSet getAllEmojiWithoutDefectives() {
@@ -827,19 +894,23 @@ public class EmojiData implements EmojiDataSource {
     }
 
     public DefaultPresentation getStyle(String ch) {
-        return textPresentationSet.contains(ch) ? DefaultPresentation.text
+        return textPresentationSet.contains(ch)
+                ? DefaultPresentation.text
                 : emojiPresentationSet.contains(ch) ? DefaultPresentation.emoji : null;
     }
 
     public DefaultPresentation getStyle(int ch) {
-        return textPresentationSet.contains(ch) ? DefaultPresentation.text
+        return textPresentationSet.contains(ch)
+                ? DefaultPresentation.text
                 : emojiPresentationSet.contains(ch) ? DefaultPresentation.emoji : null;
     }
 
     @Deprecated
     public UnicodeSet getModifierStatusSet(Emoji.ModifierStatus source) {
-        return source == Emoji.ModifierStatus.modifier ? getModifiers()
-                : source == Emoji.ModifierStatus.modifier_base ? modifierBases
+        return source == Emoji.ModifierStatus.modifier
+                ? getModifiers()
+                : source == Emoji.ModifierStatus.modifier_base
+                        ? modifierBases
                         : throwBad(new IllegalArgumentException());
     }
 
@@ -891,13 +962,14 @@ public class EmojiData implements EmojiDataSource {
         throw e;
     }
 
-
     // public Iterable<Entry<String, EmojiDatum>> entrySet() {
     // return data.entrySet();
     // }
 
-    private static Set<Emoji.CharSource> getSet(EnumMap<Emoji.CharSource, UnicodeSet> _defaultPresentationMap,
-            String source, String string) {
+    private static Set<Emoji.CharSource> getSet(
+            EnumMap<Emoji.CharSource, UnicodeSet> _defaultPresentationMap,
+            String source,
+            String string) {
         if (string.isEmpty()) {
             return Collections.emptySet();
         }
@@ -963,15 +1035,35 @@ public class EmojiData implements EmojiDataSource {
     //
 
     private static void show(int cp, final UnicodeMap<String> names, EmojiData emojiData) {
-        System.out.println(emojiData.version + "\t" + Utility.hex(cp) + ", " + emojiData.getStyle(cp)
-        + (emojiData.modifierBases.contains(cp) ? ", modifierBase" : "") + "\t" + names.get(cp));
+        System.out.println(
+                emojiData.version
+                        + "\t"
+                        + Utility.hex(cp)
+                        + ", "
+                        + emojiData.getStyle(cp)
+                        + (emojiData.modifierBases.contains(cp) ? ", modifierBase" : "")
+                        + "\t"
+                        + names.get(cp));
     }
 
-    private static void show(String cp, UnicodeMap<Age_Values> ages, final UnicodeMap<String> names,
+    private static void show(
+            String cp,
+            UnicodeMap<Age_Values> ages,
+            final UnicodeMap<String> names,
             EmojiData emojiData) {
-        System.out.println(BirthInfo.getBirthInfoMap().get(cp) + ";\temojiVersion="
-                + Emoji.getShortName(emojiData.version) + ";\t" + Utility.hex(cp) + ";\t" + cp + ";\t" + names.get(cp)
-                + ";\t" + emojiData.getStyle(cp) + (emojiData.modifierBases.contains(cp) ? ", modifierBase" : ""));
+        System.out.println(
+                BirthInfo.getBirthInfoMap().get(cp)
+                        + ";\temojiVersion="
+                        + Emoji.getShortName(emojiData.version)
+                        + ";\t"
+                        + Utility.hex(cp)
+                        + ";\t"
+                        + cp
+                        + ";\t"
+                        + names.get(cp)
+                        + ";\t"
+                        + emojiData.getStyle(cp)
+                        + (emojiData.modifierBases.contains(cp) ? ", modifierBase" : ""));
     }
 
     public UnicodeSet getSortingChars() {
@@ -981,7 +1073,8 @@ public class EmojiData implements EmojiDataSource {
     public static final EmojiData EMOJI_DATA = of(Emoji.VERSION_TO_GENERATE);
     public static final EmojiData EMOJI_DATA_PREVIOUS = of(Emoji.VERSION_TO_GENERATE_PREVIOUS);
     public static final EmojiData EMOJI_DATA_RELEASED = of(Emoji.VERSION_LAST_RELEASED);
-    public static final EmojiData EMOJI_DATA_BETA = Emoji.IS_BETA ? of(Emoji.VERSION_BETA) : EMOJI_DATA;
+    public static final EmojiData EMOJI_DATA_BETA =
+            Emoji.IS_BETA ? of(Emoji.VERSION_BETA) : EMOJI_DATA;
 
     public UnicodeSet getFlagSequences() {
         return flagSequences;
@@ -991,7 +1084,7 @@ public class EmojiData implements EmojiDataSource {
         return keycapSequences;
     }
 
-    /** Include variant VS sequences **/
+    /** Include variant VS sequences * */
     public UnicodeSet getKeycapSequencesAll() {
         return keycapSequenceAll;
     }
@@ -1002,22 +1095,30 @@ public class EmojiData implements EmojiDataSource {
 
     public boolean skipEmojiSequence(String string) {
         EmojiData emojiData = this;
-        if (string.equals(" ") || string.equals("\t") || string.equals(Emoji.EMOJI_VARIANT_STRING)
-                || string.equals(Emoji.TEXT_VARIANT_STRING) || string.equals(Emoji.JOINER_STRING)) {
+        if (string.equals(" ")
+                || string.equals("\t")
+                || string.equals(Emoji.EMOJI_VARIANT_STRING)
+                || string.equals(Emoji.TEXT_VARIANT_STRING)
+                || string.equals(Emoji.JOINER_STRING)) {
             return true;
         }
-        if (!emojiData.getSortingChars().contains(string) && !emojiData.getZwjSequencesNormal().contains(string)) {
+        if (!emojiData.getSortingChars().contains(string)
+                && !emojiData.getZwjSequencesNormal().contains(string)) {
             return true;
         }
         return false;
     }
 
-    static final UnicodeSet JCARRIERS = new UnicodeSet().addAll(Emoji.BETA.load(UcdProperty.Emoji_DCM).keySet())
-            .addAll(Emoji.BETA.load(UcdProperty.Emoji_KDDI).keySet())
-            .addAll(Emoji.BETA.load(UcdProperty.Emoji_SB).keySet()).removeAll(new UnicodeSet("[:whitespace:]"))
-            .freeze();
+    static final UnicodeSet JCARRIERS =
+            new UnicodeSet()
+                    .addAll(Emoji.BETA.load(UcdProperty.Emoji_DCM).keySet())
+                    .addAll(Emoji.BETA.load(UcdProperty.Emoji_KDDI).keySet())
+                    .addAll(Emoji.BETA.load(UcdProperty.Emoji_SB).keySet())
+                    .removeAll(new UnicodeSet("[:whitespace:]"))
+                    .freeze();
 
-    private static Pattern EMOJI_VARIANTs = Pattern.compile("[" + Emoji.EMOJI_VARIANT + Emoji.TEXT_VARIANT + "]");
+    private static Pattern EMOJI_VARIANTs =
+            Pattern.compile("[" + Emoji.EMOJI_VARIANT + Emoji.TEXT_VARIANT + "]");
 
     public enum VariantStatus {
         /** All characters that need them have emoji-variants */
@@ -1077,11 +1178,13 @@ public class EmojiData implements EmojiDataSource {
             }
             ImmutableList.Builder<String> _parts = ImmutableList.builder();
             StringBuilder result = new StringBuilder();
-            int[] sequences = CharSequences.codePoints(EMOJI_VARIANTs.matcher(source).replaceAll(""));
+            int[] sequences =
+                    CharSequences.codePoints(EMOJI_VARIANTs.matcher(source).replaceAll(""));
             for (int i = 0; i < sequences.length; ++i) {
                 int cp = sequences[i];
                 result.appendCodePoint(cp);
-                if (!TAKES_NO_VARIANT.contains(cp) && !emojiPresentationSet.contains(cp)
+                if (!TAKES_NO_VARIANT.contains(cp)
+                        && !emojiPresentationSet.contains(cp)
                         && (i == sequences.length - 1 || !MODIFIERS.contains(sequences[i + 1]))) {
                     _parts.add(result.toString());
                     result.setLength(0);
@@ -1114,7 +1217,8 @@ public class EmojiData implements EmojiDataSource {
                 }
                 result.append(parts.get(item));
                 String itemString = result.toString();
-                if (full == null) { // the first one has all 1's, ie, all possible cases with emoji variants
+                if (full == null) { // the first one has all 1's, ie, all possible cases with emoji
+                    // variants
                     full = itemString;
                 }
                 combo.add(itemString);
@@ -1133,7 +1237,7 @@ public class EmojiData implements EmojiDataSource {
 
     /**
      * Add EVS to sequences where needed (and remove where not)
-     * 
+     *
      * @param source
      * @return
      */
@@ -1147,7 +1251,7 @@ public class EmojiData implements EmojiDataSource {
 
     /**
      * Add EVS or TVS to sequences where needed (and remove where not)
-     * 
+     *
      * @param source
      * @param qualified TODO
      * @return
@@ -1183,7 +1287,8 @@ public class EmojiData implements EmojiDataSource {
 
     private boolean needsVariant(int cp) {
         return cp == Emoji.TRANSGENDER_CP // hack
-                || (getSingletonsWithDefectives().contains(cp) && !getEmojiPresentationSet().contains(cp)
+                || (getSingletonsWithDefectives().contains(cp)
+                        && !getEmojiPresentationSet().contains(cp)
                         && !TAKES_NO_VARIANT.contains(cp));
     }
 
@@ -1197,7 +1302,8 @@ public class EmojiData implements EmojiDataSource {
 
     static final String DEBUG_STRING = UTF16.valueOf(0x1F3F4);
 
-    private String _getName(String source, boolean toLower, Transform<String, String> otherNameSource) {
+    private String _getName(
+            String source, boolean toLower, Transform<String, String> otherNameSource) {
         if (source.contains(DEBUG_STRING)) {
             int debug = 0;
         }
@@ -1228,12 +1334,18 @@ public class EmojiData implements EmojiDataSource {
             ANNOTATION_SET.getShortName(tToV, otherNameSource);
             if (!ALLOW_UNICODE_NAME) {
                 name = otherNameSource.transform(source);
-                throw new IllegalArgumentException("no name for " + source + " " + Utility.hex(source)
-                + (source.equals(tToV) ? "" : " or " + Utility.hex(tToV)));
+                throw new IllegalArgumentException(
+                        "no name for "
+                                + source
+                                + " "
+                                + Utility.hex(source)
+                                + (source.equals(tToV) ? "" : " or " + Utility.hex(tToV)));
             }
         }
 
-        source = source.replace(Emoji.EMOJI_VARIANT_STRING, "").replace(Emoji.TEXT_VARIANT_STRING, "");
+        source =
+                source.replace(Emoji.EMOJI_VARIANT_STRING, "")
+                        .replace(Emoji.TEXT_VARIANT_STRING, "");
         name = latest.getName(source, ", ");
         if (name != null) {
             return name.toLowerCase(Locale.ENGLISH);
@@ -1243,7 +1355,7 @@ public class EmojiData implements EmojiDataSource {
 
     /**
      * Get all characters that are in emoji sequences, but are not singleton emoji.
-     * 
+     *
      * @return
      */
     public UnicodeSet getEmojiDefectives() {
@@ -1257,7 +1369,8 @@ public class EmojiData implements EmojiDataSource {
             return "Keycap " + name.toLowerCase(Locale.ENGLISH);
         }
         final int firstCount = Character.charCount(firstCodePoint);
-        main: if (s.length() > firstCount) {
+        main:
+        if (s.length() > firstCount) {
             int cp2 = s.codePointAt(firstCount);
             // final EmojiDatum edata = getData(cp2);
             if (MODIFIERS.contains(cp2)) {
@@ -1276,10 +1389,18 @@ public class EmojiData implements EmojiDataSource {
                     } else if (s.indexOf(EmojiData.HANDSHAKE) >= 0) { // HEART
                         title = "Couple holding hands: ";
                     } else if (s.indexOf(0x2640) >= 0) {
-                        name = nameBuffer.append("FEMALE: ").append(Emoji.NAME.get(s.codePointAt(0))).toString();
+                        name =
+                                nameBuffer
+                                        .append("FEMALE: ")
+                                        .append(Emoji.NAME.get(s.codePointAt(0)))
+                                        .toString();
                         break main;
                     } else if (s.indexOf(0x2642) >= 0) {
-                        name = nameBuffer.append("MALE: ").append(Emoji.NAME.get(s.codePointAt(0))).toString();
+                        name =
+                                nameBuffer
+                                        .append("MALE: ")
+                                        .append(Emoji.NAME.get(s.codePointAt(0)))
+                                        .toString();
                         break main;
                     } else if (Emoji.PROFESSION_OBJECT.containsSome(s)) {
                         title = "Role: ";
@@ -1289,7 +1410,10 @@ public class EmojiData implements EmojiDataSource {
                     nameBuffer.append(title);
                 }
                 for (int cp : CharSequences.codePoints(s)) {
-                    if (cp == Emoji.JOINER || cp == Emoji.EMOJI_VARIANT || cp == 0x2764 || cp == 0x1F48B
+                    if (cp == Emoji.JOINER
+                            || cp == Emoji.EMOJI_VARIANT
+                            || cp == 0x2764
+                            || cp == 0x1F48B
                             || cp == HANDSHAKE) { // heart, kiss
                         continue;
                     }
@@ -1320,15 +1444,15 @@ public class EmojiData implements EmojiDataSource {
 
     static String shortModNameZ(int cp2) {
         switch (cp2) {
-        case 0x1F3FB:
-            return "t1/2";
-        case 0x1F3FC:
-        case 0x1F3FD:
-        case 0x1F3FE:
-        case 0x1F3FF:
-            return "t" + (cp2 - 0x1F3F9);
-        default:
-            throw new IllegalArgumentException("Illegal Modifier Name");
+            case 0x1F3FB:
+                return "t1/2";
+            case 0x1F3FC:
+            case 0x1F3FD:
+            case 0x1F3FE:
+            case 0x1F3FF:
+                return "t" + (cp2 - 0x1F3F9);
+            default:
+                throw new IllegalArgumentException("Illegal Modifier Name");
         }
     }
 
@@ -1375,10 +1499,12 @@ public class EmojiData implements EmojiDataSource {
         if (NEUTRAL_HOLDING.equals(singletonOrSequence) && addMultiples) {
             int debug = 0;
         }
-        if (singletonOrSequence == null || getModifiers().containsSome(singletonOrSequence) // skip if has modifiers
+        if (singletonOrSequence == null
+                || getModifiers().containsSome(singletonOrSequence) // skip if has modifiers
                 // already
-                || !getModifierBasesRgi().containsSome(singletonOrSequence) // skip if has no modifier bases
-                ) {
+                || !getModifierBasesRgi()
+                        .containsSome(singletonOrSequence) // skip if has no modifier bases
+        ) {
             return Collections.emptySet();
         }
         LinkedHashSet<String> output = new LinkedHashSet<>();
@@ -1391,13 +1517,20 @@ public class EmojiData implements EmojiDataSource {
                     didMultiples = true;
                     // TODO HACK for now. If we add other groupings with skintones, generalize
                     String prefix = singletonOrSequence.substring(0, handshakePos);
-                    String postfix = singletonOrSequence.substring(handshakePos + ZWJ_HANDSHAKE_ZWJ.length());
+                    String postfix =
+                            singletonOrSequence.substring(
+                                    handshakePos + ZWJ_HANDSHAKE_ZWJ.length());
                     boolean sameAffix = prefix.equals(postfix);
                     final boolean skipIfFirstLighterThanSecond = !afterVersion12 && sameAffix;
-                    addMultiples(prefix, ZWJ_HANDSHAKE_ZWJ, postfix, skipIfFirstLighterThanSecond, output);
+                    addMultiples(
+                            prefix,
+                            ZWJ_HANDSHAKE_ZWJ,
+                            postfix,
+                            skipIfFirstLighterThanSecond,
+                            output);
                 }
             } else if (isHandshake(singletonOrSequence)) {
-                    addMultiples(RIGHTWARDS_HAND, Emoji.JOINER_STR, LEFTWARDS_HAND, false, output);
+                addMultiples(RIGHTWARDS_HAND, Emoji.JOINER_STR, LEFTWARDS_HAND, false, output);
             } else if (false && MULTIPLE_SKINS.contains(singletonOrSequence)) {
                 if (version.compareTo(Emoji.VERSION13) > 0) {
                     String infix = "\u200D\u2764\u200D";
@@ -1407,7 +1540,7 @@ public class EmojiData implements EmojiDataSource {
                         pos = singletonOrSequence.indexOf(infix);
                     }
                     if (pos > 0) {
-                        String prefix = singletonOrSequence.substring(0,pos);
+                        String prefix = singletonOrSequence.substring(0, pos);
                         String postfix = singletonOrSequence.substring(pos + infix.length());
                         addMultiples(prefix, ZWJ_HANDSHAKE_ZWJ, postfix, false, output);
                     }
@@ -1428,15 +1561,20 @@ public class EmojiData implements EmojiDataSource {
         return output.isEmpty() ? Collections.emptySet() : ImmutableSet.copyOf(output);
     }
 
-    public void addMultiples(String prefix, String infix, String postfix,
-            final boolean skipIfFirstLighterThanSecond, LinkedHashSet<String> output) {
+    public void addMultiples(
+            String prefix,
+            String infix,
+            String postfix,
+            final boolean skipIfFirstLighterThanSecond,
+            LinkedHashSet<String> output) {
         for (String mod : EmojiData.MODIFIERS) {
             String prefixMod = addModifierPart(prefix, mod);
             if (prefixMod == null) {
                 throw new IllegalArgumentException("internal error");
             }
             for (String mod2 : EmojiData.MODIFIERS) {
-                if (skipIfFirstLighterThanSecond && mod.compareTo(mod2) < 0) { // skip if first mod is lighter than second
+                if (skipIfFirstLighterThanSecond
+                        && mod.compareTo(mod2) < 0) { // skip if first mod is lighter than second
                     continue;
                 }
                 String postfixMod = addModifierPart(postfix, mod2);
@@ -1481,14 +1619,18 @@ public class EmojiData implements EmojiDataSource {
         return b.toString();
     }
 
-    static final IndexUnicodeProperties latest = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
+    static final IndexUnicodeProperties latest =
+            IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
     static final IndexUnicodeProperties beta = IndexUnicodeProperties.make();
     static boolean SKIP = true;
 
     private static String getSpecialAge(String s) {
-        return CandidateData.getInstance().getCharacters().containsAll(s) ? "Candidate"
-                : EmojiData.of(Emoji.VERSION3).getAllEmojiWithDefectives().contains(s) ? "Emoji v3.0"
-                        : EmojiData.of(Emoji.VERSION4).getAllEmojiWithDefectives().contains(s) ? "Emoji v4.0"
+        return CandidateData.getInstance().getCharacters().containsAll(s)
+                ? "Candidate"
+                : EmojiData.of(Emoji.VERSION3).getAllEmojiWithDefectives().contains(s)
+                        ? "Emoji v3.0"
+                        : EmojiData.of(Emoji.VERSION4).getAllEmojiWithDefectives().contains(s)
+                                ? "Emoji v4.0"
                                 : "Emoji v5.0";
         //
         // return version.compareTo(VersionInfo.UNICODE_10_0) == 0 ? "Candidate"
@@ -1499,9 +1641,7 @@ public class EmojiData implements EmojiDataSource {
         final VersionInfo v1_0 = VersionInfo.getInstance(1);
         EmojiData emoji10 = EmojiData.of(v1_0);
         UnicodeSet all = emoji10.getAllEmojiWithoutDefectives();
-        System.out
-        .println(emoji10.getAllEmojiWithoutDefectives().size() 
-                + "\t" + all);
+        System.out.println(emoji10.getAllEmojiWithoutDefectives().size() + "\t" + all);
         for (String s : all) {
             BirthInfo bi = BirthInfo.getBirthInfo(s);
             if (bi.emojiVersionInfo != v1_0) {
@@ -1517,8 +1657,7 @@ public class EmojiData implements EmojiDataSource {
             }
             System.out.println(Utility.hex(s) + "; \t" + s + "; \t" + emojiReleased.getName(s));
         }
-        if (true)
-            return;
+        if (true) return;
 
         EmojiData e11a = null;
         for (Entry<String, Collection<String>> entry : e11a.maleToOther.asMap().entrySet()) {
@@ -1528,40 +1667,68 @@ public class EmojiData implements EmojiDataSource {
             System.out.println("F2M\t" + entry.getKey() + "\t" + entry.getValue());
         }
         System.out.println("otherHuman:\t" + e11a.otherHuman.toPattern(false));
-        System.out.println("otherHuman-mods:\t" + new UnicodeSet(e11a.allEmojiWithoutDefectivesOrModifiers)
-                .retainAll(e11a.otherHuman).toPattern(false));
+        System.out.println(
+                "otherHuman-mods:\t"
+                        + new UnicodeSet(e11a.allEmojiWithoutDefectivesOrModifiers)
+                                .retainAll(e11a.otherHuman)
+                                .toPattern(false));
 
-        UnicodeSet explicitGendered = new UnicodeSet().addAll(e11a.maleToOther.keySet())
-                .addAll(e11a.femaleToOther.keySet()).add(new UnicodeSet("[🧔]")).freeze();
+        UnicodeSet explicitGendered =
+                new UnicodeSet()
+                        .addAll(e11a.maleToOther.keySet())
+                        .addAll(e11a.femaleToOther.keySet())
+                        .add(new UnicodeSet("[🧔]"))
+                        .freeze();
 
-        UnicodeSet gendered = new UnicodeSet().addAll(e11a.maleToOther.keySet()).addAll(e11a.femaleToOther.keySet())
-                .addAll(e11a.otherHuman).freeze();
+        UnicodeSet gendered =
+                new UnicodeSet()
+                        .addAll(e11a.maleToOther.keySet())
+                        .addAll(e11a.femaleToOther.keySet())
+                        .addAll(e11a.otherHuman)
+                        .freeze();
 
-        UnicodeSet people = new UnicodeSet().addAll(EmojiOrder.BETA_ORDER.majorGroupings.getSet(MajorGroup.People))
-                .removeAll(EmojiOrder.BETA_ORDER.charactersToOrdering.getSet("body"))
-                .removeAll(EmojiOrder.BETA_ORDER.charactersToOrdering.getSet("emotion"))
-                .removeAll(EmojiOrder.BETA_ORDER.charactersToOrdering.getSet("clothing"))
-                .retainAll(e11a.allEmojiWithoutDefectives).freeze();
+        UnicodeSet people =
+                new UnicodeSet()
+                        .addAll(EmojiOrder.BETA_ORDER.majorGroupings.getSet(MajorGroup.People))
+                        .removeAll(EmojiOrder.BETA_ORDER.charactersToOrdering.getSet("body"))
+                        .removeAll(EmojiOrder.BETA_ORDER.charactersToOrdering.getSet("emotion"))
+                        .removeAll(EmojiOrder.BETA_ORDER.charactersToOrdering.getSet("clothing"))
+                        .retainAll(e11a.allEmojiWithoutDefectives)
+                        .freeze();
 
         diff2("gendered", gendered, "people", people);
 
-        System.out
-        .println("genderBase:\t" + e11a.getGenderBase().size() + "\t" + e11a.getGenderBase().toPattern(false));
+        System.out.println(
+                "genderBase:\t"
+                        + e11a.getGenderBase().size()
+                        + "\t"
+                        + e11a.getGenderBase().toPattern(false));
 
-        diff2("otherHuman", new UnicodeSet(e11a.otherHuman).removeAll(e11a.otherHuman.strings()), "genderBase",
+        diff2(
+                "otherHuman",
+                new UnicodeSet(e11a.otherHuman).removeAll(e11a.otherHuman.strings()),
+                "genderBase",
                 e11a.getGenderBase());
 
         UnicodeSet explicitNeutral = new UnicodeSet("[👶🧒🧑🧓👼🧔🗣👤👥]").freeze();
         UnicodeSet group = new UnicodeSet("[👫👬👭💏💑👪]").freeze();
-        UnicodeSet explicitGender = new UnicodeSet(explicitGendered).removeAll(explicitGendered.strings())
-                .removeAll(group);
+        UnicodeSet explicitGender =
+                new UnicodeSet(explicitGendered)
+                        .removeAll(explicitGendered.strings())
+                        .removeAll(group);
 
         show("genderBase", e11a.getGenderBase());
         show("explicitGender", explicitGender);
         show("explicitNeutral", explicitNeutral);
         show("group", group);
-        show("otherHuman", new UnicodeSet(e11a.otherHuman).removeAll(e11a.otherHuman.strings())
-                .removeAll(e11a.getGenderBase()).removeAll(group).removeAll(explicitNeutral).removeAll(explicitGender));
+        show(
+                "otherHuman",
+                new UnicodeSet(e11a.otherHuman)
+                        .removeAll(e11a.otherHuman.strings())
+                        .removeAll(e11a.getGenderBase())
+                        .removeAll(group)
+                        .removeAll(explicitNeutral)
+                        .removeAll(explicitGender));
         // diff2("genderBase", e11a.getGenderBase(), "Emoji.GENDER_BASE",
         // Emoji.GENDER_BASE);
 
@@ -1573,9 +1740,11 @@ public class EmojiData implements EmojiDataSource {
         {
             EmojiData e11 = EmojiData.of(Emoji.VERSION11);
             EmojiData e5 = EmojiData.of(Emoji.VERSION5);
-            UnicodeSet us11 = new UnicodeSet(e11.getAllEmojiWithoutDefectives())
-                    .removeAll(e5.getAllEmojiWithoutDefectives());
-            Set<String> sorted = us11.addAllTo(new TreeSet<>(EmojiOrder.of(Emoji.VERSION11).codepointCompare));
+            UnicodeSet us11 =
+                    new UnicodeSet(e11.getAllEmojiWithoutDefectives())
+                            .removeAll(e5.getAllEmojiWithoutDefectives());
+            Set<String> sorted =
+                    us11.addAllTo(new TreeSet<>(EmojiOrder.of(Emoji.VERSION11).codepointCompare));
             int count = 0;
             for (String s : sorted) {
                 String v = e11.addEmojiVariants(s);
@@ -1589,8 +1758,7 @@ public class EmojiData implements EmojiDataSource {
                 // }
             }
         }
-        if (true)
-            return;
+        if (true) return;
 
         EmojiData one = EmojiData.of(Emoji.VERSION1);
         UnicodeSet e1 = one.getAllEmojiWithDefectives();
@@ -1606,17 +1774,18 @@ public class EmojiData implements EmojiDataSource {
             items.put(cat, item);
         }
         for (Entry<Category, Collection<String>> entry : items.asMap().entrySet()) {
-            System.out.println(entry.getKey() + "\t" + entry.getKey().getAttributes() + entry.getValue());
+            System.out.println(
+                    entry.getKey() + "\t" + entry.getKey().getAttributes() + entry.getValue());
         }
-        if (SKIP)
-            return;
+        if (SKIP) return;
         BirthInfo.checkYears();
 
         EmojiData v6 = EmojiData.of(Emoji.VERSION11);
         EmojiOrder order6 = EmojiOrder.of(Emoji.VERSION11);
         UnicodeSet Uv7 = new UnicodeSet("[:age=7.0:]");
-        UnicodeSet newItems6 = new UnicodeSet(v6.allEmojiWithoutDefectivesOrModifiers)
-                .addAll(CandidateData.getInstance().getCharacters());
+        UnicodeSet newItems6 =
+                new UnicodeSet(v6.allEmojiWithoutDefectivesOrModifiers)
+                        .addAll(CandidateData.getInstance().getCharacters());
         for (String s : newItems6) {
             if (Uv7.containsAll(s)) {
                 continue;
@@ -1625,13 +1794,18 @@ public class EmojiData implements EmojiDataSource {
             if (category == null) {
                 category = CandidateData.getInstance().getCategory(s);
             }
-            System.out.println(UCharacter.toTitleCase(v6.getName(s), null) + "\t"
-                    + UCharacter.toTitleCase(category, null) + "\t" + getSpecialAge(s));
+            System.out.println(
+                    UCharacter.toTitleCase(v6.getName(s), null)
+                            + "\t"
+                            + UCharacter.toTitleCase(category, null)
+                            + "\t"
+                            + getSpecialAge(s));
         }
 
         EmojiData v4 = EmojiData.of(Emoji.VERSION4);
-        UnicodeSet newItems = new UnicodeSet(last.getSingletonsWithoutDefectives())
-                .removeAll(v4.getSingletonsWithoutDefectives());
+        UnicodeSet newItems =
+                new UnicodeSet(last.getSingletonsWithoutDefectives())
+                        .removeAll(v4.getSingletonsWithoutDefectives());
         Set<String> sorted2 = new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare);
         for (String s : newItems.addAllTo(sorted2)) {
             System.out.println("U+" + Utility.hex(s));
@@ -1668,32 +1842,50 @@ public class EmojiData implements EmojiDataSource {
             for (String combo : combos.getValue()) {
                 Integer count = combos.getKey();
                 System.out.println(
-                        count + "\t" + Utility.hex(combo, " ") + "\t(" + combo + ")" + "\t" + betaData.getName(combo));
-                if (--max < 0)
-                    break;
+                        count
+                                + "\t"
+                                + Utility.hex(combo, " ")
+                                + "\t("
+                                + combo
+                                + ")"
+                                + "\t"
+                                + betaData.getName(combo));
+                if (--max < 0) break;
             }
             System.out.println();
         }
 
-        if (true)
-            return;
+        if (true) return;
 
         EmojiData lastReleasedData = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
-        showDiff("Emoji", Emoji.VERSION_LAST_RELEASED_STRING, lastReleasedData.getSingletonsWithoutDefectives(),
-                Emoji.VERSION_BETA_STRING_WITH_COLOR, betaData.getSingletonsWithoutDefectives());
-        showDiff("Emoji_Presentation", Emoji.VERSION_LAST_RELEASED_STRING, lastReleasedData.getEmojiPresentationSet(),
-                Emoji.VERSION_BETA_STRING_WITH_COLOR, betaData.getEmojiPresentationSet());
-        showDiff("Emoji_Modifier_Base", Emoji.VERSION_LAST_RELEASED_STRING, lastReleasedData.getModifierBases(),
-                Emoji.VERSION_BETA_STRING_WITH_COLOR, betaData.getModifierBases());
+        showDiff(
+                "Emoji",
+                Emoji.VERSION_LAST_RELEASED_STRING,
+                lastReleasedData.getSingletonsWithoutDefectives(),
+                Emoji.VERSION_BETA_STRING_WITH_COLOR,
+                betaData.getSingletonsWithoutDefectives());
+        showDiff(
+                "Emoji_Presentation",
+                Emoji.VERSION_LAST_RELEASED_STRING,
+                lastReleasedData.getEmojiPresentationSet(),
+                Emoji.VERSION_BETA_STRING_WITH_COLOR,
+                betaData.getEmojiPresentationSet());
+        showDiff(
+                "Emoji_Modifier_Base",
+                Emoji.VERSION_LAST_RELEASED_STRING,
+                lastReleasedData.getModifierBases(),
+                Emoji.VERSION_BETA_STRING_WITH_COLOR,
+                betaData.getModifierBases());
 
         String name = betaData.getName("🏂🏻");
 
         for (String s : betaData.getModifierBases()) {
-            String comp = betaData.getVariant(s, Emoji.Qualified.all, Emoji.EMOJI_VARIANT) + "\u200D\u2642\uFE0F";
+            String comp =
+                    betaData.getVariant(s, Emoji.Qualified.all, Emoji.EMOJI_VARIANT)
+                            + "\u200D\u2642\uFE0F";
             System.out.println(Utility.hex(comp, " ") + "\t" + s + "\t" + betaData.getName(s));
         }
-        if (true)
-            return;
+        if (true) return;
         for (String s : betaData.allEmojiWithDefectives) {
             System.out.println(Emoji.show(s));
         }
@@ -1716,45 +1908,75 @@ public class EmojiData implements EmojiDataSource {
         System.out.println("Version " + GenerateEnums.ENUM_VERSION);
         final UnicodeMap<String> betaNames = beta.load(UcdProperty.Name);
         final UnicodeMap<String> names = latest.load(UcdProperty.Name);
-        final UnicodeMap<Age_Values> ages = beta.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
+        final UnicodeMap<Age_Values> ages =
+                beta.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
 
         show(0x1f946, names, betaData);
         show(0x1f93b, names, betaData);
 
-        UnicodeSet overlap = new UnicodeSet(betaData.getModifierBases())
-                .retainAll(EmojiData.DefaultPresentation.text == EmojiData.DefaultPresentation.emoji
-                ? betaData.getEmojiPresentationSet()
-                        : betaData.getTextPresentationSet());
-        System.out.println("ModifierBase + TextPresentation: " + overlap.size() + "\t" + overlap.toPattern(false));
+        UnicodeSet overlap =
+                new UnicodeSet(betaData.getModifierBases())
+                        .retainAll(
+                                EmojiData.DefaultPresentation.text
+                                                == EmojiData.DefaultPresentation.emoji
+                                        ? betaData.getEmojiPresentationSet()
+                                        : betaData.getTextPresentationSet());
+        System.out.println(
+                "ModifierBase + TextPresentation: "
+                        + overlap.size()
+                        + "\t"
+                        + overlap.toPattern(false));
         for (String s : overlap) {
-            System.out.println(Utility.hex(s) + "\t" + s + "\t" + ages.get(s) + "\t" + names.get(s));
+            System.out.println(
+                    Utility.hex(s) + "\t" + s + "\t" + ages.get(s) + "\t" + names.get(s));
         }
 
-        System.out.println("v2 SingletonsWithDefectives " + lastReleasedData.getSingletonsWithDefectives().size() + "\t"
-                + lastReleasedData.getSingletonsWithDefectives());
+        System.out.println(
+                "v2 SingletonsWithDefectives "
+                        + lastReleasedData.getSingletonsWithDefectives().size()
+                        + "\t"
+                        + lastReleasedData.getSingletonsWithDefectives());
 
-        System.out.println("SingletonsWithDefectives " + betaData.getSingletonsWithDefectives().size() + "\t"
-                + betaData.getSingletonsWithDefectives());
-        System.out.println("Defectives "
-                + -(betaData.getSingletonsWithDefectives().size() - betaData.getSingletonsWithoutDefectives().size()));
+        System.out.println(
+                "SingletonsWithDefectives "
+                        + betaData.getSingletonsWithDefectives().size()
+                        + "\t"
+                        + betaData.getSingletonsWithDefectives());
+        System.out.println(
+                "Defectives "
+                        + -(betaData.getSingletonsWithDefectives().size()
+                                - betaData.getSingletonsWithoutDefectives().size()));
         System.out.println("Flag Sequences " + betaData.getFlagSequences().size());
         System.out.println("ModiferSequences " + betaData.getModifierSequences().size());
-        System.out.println("Keycap Sequences " + betaData.getKeycapSequences().size() + "\t"
-                + betaData.getKeycapSequences().toPattern(false));
-        System.out.println("Zwj Sequences " + betaData.getZwjSequencesNormal().size() + "\t"
-                + betaData.getZwjSequencesNormal().toPattern(false));
+        System.out.println(
+                "Keycap Sequences "
+                        + betaData.getKeycapSequences().size()
+                        + "\t"
+                        + betaData.getKeycapSequences().toPattern(false));
+        System.out.println(
+                "Zwj Sequences "
+                        + betaData.getZwjSequencesNormal().size()
+                        + "\t"
+                        + betaData.getZwjSequencesNormal().toPattern(false));
 
         System.out.println("modifier" + ", " + betaData.MODIFIERS.toPattern(false));
         System.out.println(
-                Emoji.CharSource.WDings + ", " + betaData.getCharSourceSet(Emoji.CharSource.WDings).toPattern(false));
-        System.out.println(EmojiData.DefaultPresentation.emoji + ", "
-                + (EmojiData.DefaultPresentation.emoji == EmojiData.DefaultPresentation.emoji
-                ? betaData.getEmojiPresentationSet()
-                        : betaData.getTextPresentationSet()).toPattern(false));
+                Emoji.CharSource.WDings
+                        + ", "
+                        + betaData.getCharSourceSet(Emoji.CharSource.WDings).toPattern(false));
+        System.out.println(
+                EmojiData.DefaultPresentation.emoji
+                        + ", "
+                        + (EmojiData.DefaultPresentation.emoji
+                                                == EmojiData.DefaultPresentation.emoji
+                                        ? betaData.getEmojiPresentationSet()
+                                        : betaData.getTextPresentationSet())
+                                .toPattern(false));
         show(0x1F3CB, names, betaData);
         show(0x1F3CB, names, lastReleasedData);
-        UnicodeSet keys = new UnicodeSet(betaData.getSingletonsWithDefectives())
-                .addAll(lastReleasedData.getSingletonsWithDefectives());
+        UnicodeSet keys =
+                new UnicodeSet(betaData.getSingletonsWithDefectives())
+                        .addAll(lastReleasedData.getSingletonsWithDefectives());
         System.out.println("Diffs");
         for (String key : keys) {
             // EmojiDatum datum = lastReleasedData.data.get(key);
@@ -1766,11 +1988,22 @@ public class EmojiData implements EmojiDataSource {
                 // show(key, ages, betaNames, emojiData2);
             }
         }
-        System.out.println("Keycap0 " + betaData.getSortingChars().contains("0" + Emoji.KEYCAP_MARK_STRING));
-        System.out.println("KeycapE "
-                + betaData.getSortingChars().contains("0" + Emoji.EMOJI_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
-        System.out.println("KeycapT "
-                + betaData.getSortingChars().contains("0" + Emoji.TEXT_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
+        System.out.println(
+                "Keycap0 " + betaData.getSortingChars().contains("0" + Emoji.KEYCAP_MARK_STRING));
+        System.out.println(
+                "KeycapE "
+                        + betaData.getSortingChars()
+                                .contains(
+                                        "0"
+                                                + Emoji.EMOJI_VARIANT_STRING
+                                                + Emoji.KEYCAP_MARK_STRING));
+        System.out.println(
+                "KeycapT "
+                        + betaData.getSortingChars()
+                                .contains(
+                                        "0"
+                                                + Emoji.TEXT_VARIANT_STRING
+                                                + Emoji.KEYCAP_MARK_STRING));
     }
 
     private static void show(String title, UnicodeSet uset) {
@@ -1781,7 +2014,8 @@ public class EmojiData implements EmojiDataSource {
             } catch (Exception e) {
                 StringBuilder nameBuffer = new StringBuilder();
                 for (int cp : With.codePointArray(emoji)) {
-                    if (!MODIFIERS.contains(cp) && EmojiData.EMOJI_DATA.emojiComponents.contains(cp)) {
+                    if (!MODIFIERS.contains(cp)
+                            && EmojiData.EMOJI_DATA.emojiComponents.contains(cp)) {
                         continue;
                     }
                     if (nameBuffer.length() != 0) {
@@ -1791,13 +2025,15 @@ public class EmojiData implements EmojiDataSource {
                 }
                 name = nameBuffer.toString();
             }
-            System.out.println(title + "\t\\x{" + Utility.hex(emoji, 1, " ") + "}\t" + emoji + "\t" + name);
+            System.out.println(
+                    title + "\t\\x{" + Utility.hex(emoji, 1, " ") + "}\t" + emoji + "\t" + name);
         }
     }
 
     private static void diff(String title1, UnicodeSet set1, String title2, UnicodeSet set2) {
         UnicodeSet uset = new UnicodeSet(set1).removeAll(set2);
-        System.out.println(title1 + " - " + title2 + "\t" + uset.size() + "\t" + uset.toPattern(false));
+        System.out.println(
+                title1 + " - " + title2 + "\t" + uset.size() + "\t" + uset.toPattern(false));
     }
 
     private static void diff2(String title1, UnicodeSet set1, String title2, UnicodeSet set2) {
@@ -1833,7 +2069,8 @@ public class EmojiData implements EmojiDataSource {
         return UTF16.valueOf(first) + Emoji.EMOJI_VARIANT_STRING + item.substring(firstLen);
     }
 
-    private static void showDiff(String title, String string1, UnicodeSet set1, String string2, UnicodeSet set2) {
+    private static void showDiff(
+            String title, String string1, UnicodeSet set1, String string2, UnicodeSet set2) {
         int count = showAminusB(title, string1, set1, string2, set2);
         count += showAminusB(title, string2, set2, string1, set1);
         if (count == 0) {
@@ -1841,29 +2078,32 @@ public class EmojiData implements EmojiDataSource {
         }
     }
 
-    private static int showAminusB(String title, String string1, UnicodeSet set1, String string2, UnicodeSet set2) {
+    private static int showAminusB(
+            String title, String string1, UnicodeSet set1, String string2, UnicodeSet set2) {
         UnicodeSet firstMinusSecond = new UnicodeSet(set1).removeAll(set2);
         if (!firstMinusSecond.isEmpty()) {
-            System.out.println("Diff " + title + ": " + string1 + " - " + string2 + ": " + firstMinusSecond);
+            System.out.println(
+                    "Diff " + title + ": " + string1 + " - " + string2 + ": " + firstMinusSecond);
         }
         return firstMinusSecond.size();
     }
 
     /**
-     * private final EmojiData.DefaultPresentation style; private final
-     * Emoji.ModifierStatus modifierStatus; private final Set<Emoji.CharSource>
-     * sources;
-     * 
+     * private final EmojiData.DefaultPresentation style; private final Emoji.ModifierStatus
+     * modifierStatus; private final Set<Emoji.CharSource> sources;
+     *
      * @param lastReleasedData
      * @param betaData
      * @param key
      * @return
      */
     private static boolean dataEquals(EmojiData lastReleasedData, EmojiData betaData, String key) {
-        return lastReleasedData.singletonsWithDefectives.contains(key) == betaData.singletonsWithDefectives
-                .contains(key)
-                && lastReleasedData.emojiPresentationSet.contains(key) == betaData.emojiPresentationSet.contains(key)
-                && lastReleasedData.modifierBases.contains(key) == betaData.modifierBases.contains(key);
+        return lastReleasedData.singletonsWithDefectives.contains(key)
+                        == betaData.singletonsWithDefectives.contains(key)
+                && lastReleasedData.emojiPresentationSet.contains(key)
+                        == betaData.emojiPresentationSet.contains(key)
+                && lastReleasedData.modifierBases.contains(key)
+                        == betaData.modifierBases.contains(key);
     }
 
     @Override
@@ -1905,7 +2145,8 @@ public class EmojiData implements EmojiDataSource {
         return emojiTagSequences;
     }
 
-    static final UnicodeSet TYPICAL_DUP_GROUP = new UnicodeSet("[{👨‍👩‍👧‍👦}]").freeze(); // "[{👩‍❤️‍💋‍👨}
+    static final UnicodeSet TYPICAL_DUP_GROUP =
+            new UnicodeSet("[{👨‍👩‍👧‍👦}]").freeze(); // "[{👩‍❤️‍💋‍👨}
     // {👨‍👩‍👧‍👦}
     // {👩‍❤️‍👨}]"
     static final UnicodeSet TYPICAL_DUP_SIGN = new UnicodeSet("[{\u200D\u2642}]").freeze();
@@ -1931,22 +2172,21 @@ public class EmojiData implements EmojiDataSource {
     public UnicodeSet getHairBases() {
         return hairBases;
     }
-    
-    private static final UnicodeSet EXPLICIT_GENDER_13 = new UnicodeSet(
-            "[[👦-👩 👴 👵 🤴 👸 👲 🧕 🤵 👰 🤰 🤱 🎅 🤶 💃 🕺 🧔 🕴 👫-👭]]")
-            .freeze();
 
-    private static final UnicodeSet EXPLICIT_GENDER_13_1 = new UnicodeSet(EXPLICIT_GENDER_13)
-            .remove("🧔")
-            .freeze();
+    private static final UnicodeSet EXPLICIT_GENDER_13 =
+            new UnicodeSet("[[👦-👩 👴 👵 🤴 👸 👲 🧕 🤵 👰 🤰 🤱 🎅 🤶 💃 🕺 🧔 🕴 👫-👭]]")
+                    .freeze();
 
-//    private static final UnicodeSet EXPLICIT_GENDER_13 = new UnicodeSet(
-//            "[[👦-👩 👴 👵 🤴 👸 👲 🧕 🤵 👰 🤰 🤱 🎅 🤶 💃 🕺 🧔 🕴 👫-👭]]")
-//            .freeze();
-//
-//    private static final UnicodeSet EXPLICIT_GENDER_13_1 = new UnicodeSet(EXPLICIT_GENDER_13)
-//            .remove("🧔")
-//            .freeze();
+    private static final UnicodeSet EXPLICIT_GENDER_13_1 =
+            new UnicodeSet(EXPLICIT_GENDER_13).remove("🧔").freeze();
+
+    //    private static final UnicodeSet EXPLICIT_GENDER_13 = new UnicodeSet(
+    //            "[[👦-👩 👴 👵 🤴 👸 👲 🧕 🤵 👰 🤰 🤱 🎅 🤶 💃 🕺 🧔 🕴 👫-👭]]")
+    //            .freeze();
+    //
+    //    private static final UnicodeSet EXPLICIT_GENDER_13_1 = new UnicodeSet(EXPLICIT_GENDER_13)
+    //            .remove("🧔")
+    //            .freeze();
 
     public UnicodeSet getExplicitGender() {
         return version.compareTo(Emoji.VERSION13) <= 0 ? EXPLICIT_GENDER_13 : EXPLICIT_GENDER_13_1;
@@ -1976,28 +2216,29 @@ public class EmojiData implements EmojiDataSource {
         return MULTIPERSON;
     }
 
-    /**
-     * This contains the mapping to the "shortest form" form for certain combinations.
-     */
-    public static final Map<String, String> MAP_TO_COUPLES = ImmutableMap.<String, String>builder()
-            .put("👨‍🤝‍👨", "👬") 
-            .put("👩‍🤝‍👨", "👫")
-            .put("👩‍🤝‍👩", "👭")
-            .put("🧑‍❤️‍💋‍🧑", "💏")
-            .put("🧑‍❤️‍🧑", "💑")
-            .build();
+    /** This contains the mapping to the "shortest form" form for certain combinations. */
+    public static final Map<String, String> MAP_TO_COUPLES =
+            ImmutableMap.<String, String>builder()
+                    .put("👨‍🤝‍👨", "👬")
+                    .put("👩‍🤝‍👨", "👫")
+                    .put("👩‍🤝‍👩", "👭")
+                    .put("🧑‍❤️‍💋‍🧑", "💏")
+                    .put("🧑‍❤️‍🧑", "💑")
+                    .build();
 
-    public static final Map<String, String> COUPLES_TO_HANDSHAKE_VERSION = ImmutableMap.<String, String>builder()
-            .put("👬", "👨‍🤝‍👨")
-            .put("👫", "👩‍🤝‍👨")
-            .put("👭", "👩‍🤝‍👩")
-            .build();
+    public static final Map<String, String> COUPLES_TO_HANDSHAKE_VERSION =
+            ImmutableMap.<String, String>builder()
+                    .put("👬", "👨‍🤝‍👨")
+                    .put("👫", "👩‍🤝‍👨")
+                    .put("👭", "👩‍🤝‍👩")
+                    .build();
 
-    public static final UnicodeSet COUPLES = new UnicodeSet().addAll(COUPLES_TO_HANDSHAKE_VERSION.keySet()).freeze();
+    public static final UnicodeSet COUPLES =
+            new UnicodeSet().addAll(COUPLES_TO_HANDSHAKE_VERSION.keySet()).freeze();
 
     /**
      * Remove the skin tone modifiers and the gender signs, and remap the couples.
-     * 
+     *
      * @param s
      * @return
      */
@@ -2006,26 +2247,27 @@ public class EmojiData implements EmojiDataSource {
         String temp = MAP_TO_COUPLES.get(result);
         if (temp != null) {
             result = temp;
-            if (DEBUG)
-                System.out.println("couple: " + s + " => " + result);
+            if (DEBUG) System.out.println("couple: " + s + " => " + result);
         }
         return result;
     }
 
     public boolean isHandshake(String s) {
-            if (version.compareTo(Emoji.VERSION14) >= 0) {
-                    return getBaseRemovingModsGender(s).equals(EmojiData.SHAKING_HANDS);
-            }
-            return false;
+        if (version.compareTo(Emoji.VERSION14) >= 0) {
+            return getBaseRemovingModsGender(s).equals(EmojiData.SHAKING_HANDS);
+        }
+        return false;
     }
 
     private static final Map<Emoji.CharSource, UnicodeSet> charSourcesToUnicodeSet;
-    private static final UnicodeMap<Set<Emoji.CharSource>> codepointToCharSource = new UnicodeMap<>();
+    private static final UnicodeMap<Set<Emoji.CharSource>> codepointToCharSource =
+            new UnicodeMap<>();
+
     static {
-        EnumMap<Emoji.CharSource, UnicodeSet> _charSourceMap = new EnumMap<>(Emoji.CharSource.class);
+        EnumMap<Emoji.CharSource, UnicodeSet> _charSourceMap =
+                new EnumMap<>(Emoji.CharSource.class);
         for (String line : FileUtilities.in(EmojiData.class, "emojiSources.txt")) {
-            if (line.startsWith("#") || line.isEmpty())
-                continue;
+            if (line.startsWith("#") || line.isEmpty()) continue;
             List<String> list = semi.splitToList(line);
             String source = Utility.fromHex(list.get(0));
             Set<Emoji.CharSource> sourcesIn = getSet(list.get(1));
@@ -2042,13 +2284,16 @@ public class EmojiData implements EmojiDataSource {
         charSourcesToUnicodeSet = Collections.unmodifiableMap(_charSourceMap);
         freezeUnicodeSets(_charSourceMap.values());
     }
+
     public static UnicodeSet getCharSourceSet(Emoji.CharSource charSource) {
         return CldrUtility.ifNull(charSourcesToUnicodeSet.get(charSource), UnicodeSet.EMPTY);
     }
+
     public static Set<CharSource> getCharSources(int codepoint) {
         return codepointToCharSource.get(codepoint);
     }
+
     public static Set<CharSource> getCharSources(String codepoints) {
-        return CldrUtility.ifNull(codepointToCharSource.get(codepoints),Collections.emptySet());
+        return CldrUtility.ifNull(codepointToCharSource.get(codepoints), Collections.emptySet());
     }
 }

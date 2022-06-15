@@ -6,6 +6,7 @@
  */
 package org.unicode.unused;
 
+import com.ibm.icu.text.UTF16;
 import java.io.DataInput;
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -14,11 +15,9 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-import com.ibm.icu.text.UTF16;
-
 /**
- * Simple data input compressor. Nothing fancy, but much smaller footprint for
- * ints and many strings.
+ * Simple data input compressor. Nothing fancy, but much smaller footprint for ints and many
+ * strings.
  */
 public final class DataInputCompressor implements ObjectInput {
     static final boolean SHOW = false;
@@ -78,24 +77,31 @@ public final class DataInputCompressor implements ObjectInput {
     public int available() throws IOException {
         return dataInput.available();
     }
+
     public void close() throws IOException {
         dataInput.close();
     }
+
     public int read() throws IOException {
         return dataInput.read();
     }
+
     public int read(byte[] b) throws IOException {
         return dataInput.read(b);
     }
+
     public int read(byte[] b, int off, int len) throws IOException {
         return dataInput.read(b, off, len);
     }
+
     public Object readObject() throws ClassNotFoundException, IOException {
         return dataInput.readObject();
     }
+
     public long skip(long n) throws IOException {
         return dataInput.skip(n);
     }
+
     public String toString() {
         return dataInput.toString();
     }
@@ -145,15 +151,13 @@ public final class DataInputCompressor implements ObjectInput {
         while (true) {
             long input = readByte();
             result |= (input & 0x7F) << offset;
-            if ((input & 0x80) == 0)
-                break;
+            if ((input & 0x80) == 0) break;
             offset += 7;
         }
         boolean negative = (result & 1) != 0; // get sign bit from the bottom,
-                                              // and invert
+        // and invert
         result >>>= 1;
-        if (negative)
-            result = ~result;
+        if (negative) result = ~result;
         return result;
     }
 
@@ -161,20 +165,16 @@ public final class DataInputCompressor implements ObjectInput {
         long result = 0;
         int offset = 0;
         while (true) { // read sequence of 7 bits, with top bit = 1 for
-                       // continuation
+            // continuation
             int input = readByte();
             result |= (input & 0x7F) << offset;
-            if ((input & 0x80) == 0)
-                return result;
+            if ((input & 0x80) == 0) return result;
             offset += 7;
         }
     }
 
-    /**
-     *  
-     */
-    public Object[] readStringSet(Collection availableValues)
-            throws IOException {
+    /** */
+    public Object[] readStringSet(Collection availableValues) throws IOException {
         int size = readUInt();
         if (SHOW) System.out.println("readStringSet");
         Object[] valuesList = new Object[size + 1];
@@ -195,19 +195,20 @@ public final class DataInputCompressor implements ObjectInput {
                 current = readUTF();
                 trailingPool.add(current);
             }
-            valuesList[i + 1] = lastString = lastString.substring(0, common)
-                    + current;
+            valuesList[i + 1] = lastString = lastString.substring(0, common) + current;
             if (SHOW) System.out.println("\t\t" + lastString);
             if (availableValues != null) availableValues.add(current);
         }
         return valuesList;
     }
-    
+
     public static class ReadPool {
         private List trailingPool = new ArrayList();
+
         public Object get(int index) {
             return trailingPool.get(index);
         }
+
         public void add(Object o) {
             trailingPool.add(o);
         }
@@ -216,14 +217,14 @@ public final class DataInputCompressor implements ObjectInput {
     /**
      * @throws IOException
      * @throws ClassNotFoundException
-     * 
      */
-    public Object[] readCollection(LinkedHashSet availableValues) throws ClassNotFoundException, IOException {
+    public Object[] readCollection(LinkedHashSet availableValues)
+            throws ClassNotFoundException, IOException {
         int size = readUInt();
         Object[] valuesList = new Object[size + 1];
         for (int i = 0; i < size; ++i) {
             valuesList[i + 1] = readObject();
         }
-       return valuesList;
+        return valuesList;
     }
 }

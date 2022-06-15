@@ -1,13 +1,11 @@
 package org.unicode.text.UCD;
+
+import com.ibm.icu.util.VersionInfo;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
-
 import org.unicode.text.utility.Settings;
-
-import com.ibm.icu.util.VersionInfo;
-
 
 public final class Default implements UCD_Types {
 
@@ -26,7 +24,7 @@ public final class Default implements UCD_Types {
     }
 
     private static boolean inRecursiveCall = false;
-    
+
     private static void setUCD() {
         if (inRecursiveCall) {
             throw new IllegalArgumentException("Recursive call to setUCD");
@@ -41,7 +39,7 @@ public final class Default implements UCD_Types {
         inRecursiveCall = false;
     }
 
-    //static DateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    // static DateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     static DateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd', 'HH:mm:ss' GMT'");
     static DateFormat yearFormat = new SimpleDateFormat("yyyy");
 
@@ -75,30 +73,35 @@ public final class Default implements UCD_Types {
         }
         return ucd;
     }
+
     public static Normalizer nfc() {
         if (ucd == null) {
             setUCD();
         }
         return nfc;
     }
+
     public static Normalizer nfd() {
         if (ucd == null) {
             setUCD();
         }
         return nfd;
     }
+
     public static Normalizer nfkc() {
         if (ucd == null) {
             setUCD();
         }
         return nfkc;
     }
+
     public static Normalizer nfkd() {
         if (ucd == null) {
             setUCD();
         }
         return nfkd;
     }
+
     public static Normalizer nf(int index) {
         if (ucd == null) {
             setUCD();

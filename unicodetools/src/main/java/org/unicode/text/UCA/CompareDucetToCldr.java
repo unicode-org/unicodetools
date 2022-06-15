@@ -1,5 +1,12 @@
 package org.unicode.text.UCA;
 
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.impl.Relation;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UProperty;
+import com.ibm.icu.lang.UProperty.NameChoice;
+import com.ibm.icu.text.Transform;
+import com.ibm.icu.text.UnicodeSet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -13,73 +20,81 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.test.TestMetadata;
 import org.unicode.cldr.util.With;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.impl.Relation;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.lang.UProperty.NameChoice;
-import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UnicodeSet;
-
 public class CompareDucetToCldr {
     private static final Date DATE = new Date();
-    private static final String BASE_DIR = Settings.UnicodeTools.DATA_DIR + "/UCA/6.1.0/";  // TODO: parameterize
-    static class Birelation<K,V> {
-        private final Relation<K,V> keyValues;
-        private final Relation<V,K> valueKeys;
+    private static final String BASE_DIR =
+            Settings.UnicodeTools.DATA_DIR + "/UCA/6.1.0/"; // TODO: parameterize
+
+    static class Birelation<K, V> {
+        private final Relation<K, V> keyValues;
+        private final Relation<V, K> valueKeys;
+
         public Birelation(Relation<K, V> keyValues, Relation<V, K> valueKeys) {
             this.keyValues = keyValues;
             this.valueKeys = valueKeys;
         }
+
         public Set<V> getValues(K key) {
             return keyValues.getAll(key);
         }
+
         public Set<K> getKeys(V value) {
             return valueKeys.getAll(value);
         }
-        public static <K,V> Birelation<K,V> of(
-                Map<K, Set<V>> map1, Class class1,
-                Map<V, Set<K>> map2, Class class2) {
-            return new Birelation<K,V>(Relation.of(map1, class1), Relation.of(map2, class2));
+
+        public static <K, V> Birelation<K, V> of(
+                Map<K, Set<V>> map1, Class class1, Map<V, Set<K>> map2, Class class2) {
+            return new Birelation<K, V>(Relation.of(map1, class1), Relation.of(map2, class2));
         }
+
         public void put(K key, V value) {
             keyValues.put(key, value);
             valueKeys.put(value, key);
         }
+
         public <C extends Collection<V>> C values(C arrayList) {
             return keyValues.values(arrayList);
         }
+
         public Set<Entry<K, Set<V>>> keyValuesSet() {
             return keyValues.keyValuesSet();
         }
     }
 
-    static class HexAndName implements Transform<String,String> {
+    static class HexAndName implements Transform<String, String> {
         final Birelation<WeightList, String> keyValue;
+
         public HexAndName(Birelation<WeightList, String> ducet) {
             keyValue = ducet;
         }
 
         @Override
         public String transform(String source) {
-            return
-                    Utility.hex(source, ",")
-                    + " ( " + source + " ) "
-                    + "[" + UCharacter.getPropertyValueName(UProperty.GENERAL_CATEGORY, UCharacter.getType(source.codePointAt(0)), NameChoice.SHORT) + "] "
+            return Utility.hex(source, ",")
+                    + " ( "
+                    + source
+                    + " ) "
+                    + "["
+                    + UCharacter.getPropertyValueName(
+                            UProperty.GENERAL_CATEGORY,
+                            UCharacter.getType(source.codePointAt(0)),
+                            NameChoice.SHORT)
+                    + "] "
                     + UCharacter.getName(source, ", ")
-                    + "\t" + keyValue.getKeys(source);
+                    + "\t"
+                    + keyValue.getKeys(source);
         }
     }
 
     public static void main(String[] args) throws IOException {
-        final Birelation<WeightList, String> cldr = getData(BASE_DIR + "CollationAuxiliary/", "allkeys_CLDR.txt");
+        final Birelation<WeightList, String> cldr =
+                getData(BASE_DIR + "CollationAuxiliary/", "allkeys_CLDR.txt");
         writeValues(cldr, "cldr.txt", false);
         writeValues(cldr, "cldr_weights.txt", true);
         final Birelation<WeightList, String> ducet = getData(BASE_DIR, "allkeys.txt");
@@ -93,8 +108,7 @@ public class CompareDucetToCldr {
                         cldr.values(new ArrayList<String>()),
                         "\n",
                         new HexAndName(ducet),
-                        new HexAndName(cldr))
-                );
+                        new HexAndName(cldr)));
         //        int diffCount = 0;
         //        Differ<String> differ = new Differ(100, 10);
         //
@@ -103,7 +117,8 @@ public class CompareDucetToCldr {
         //            WeightList ducetWeights = ducet.get
         //            if (!UnicodeProperty.equals(cldrWeights, ducetWeights)) {
         //                System.out.println(Utility.hex(key) +
-        //                        " ;\t" + (ducetWeights == null ? "null" : ducetWeights.toString()) +
+        //                        " ;\t" + (ducetWeights == null ? "null" : ducetWeights.toString())
+        // +
         //                        " ;\t" + (cldrWeights == null ? "null" : cldrWeights.toString()));
         //                ++diffCount;
         //            }
@@ -114,18 +129,30 @@ public class CompareDucetToCldr {
         System.out.println("Done");
     }
 
-    public static void writeValues(Birelation<WeightList, String> cldr, String filename, boolean showWeights) throws IOException {
-        final PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "uca_COMP/", filename);
+    public static void writeValues(
+            Birelation<WeightList, String> cldr, String filename, boolean showWeights)
+            throws IOException {
+        final PrintWriter out =
+                FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "uca_COMP/", filename);
         out.println("#Date: " + DATE);
         for (final Entry<WeightList, Set<String>> kvs : cldr.keyValuesSet()) {
             final WeightList weights = kvs.getKey();
             for (final String source : kvs.getValue()) {
-                out.println (
-                        "U+" + Utility.hex(source, " U+")
-                        + " ( " + source + " )"
-                        + " [" + UCharacter.getPropertyValueName(UProperty.GENERAL_CATEGORY, UCharacter.getType(source.codePointAt(0)), NameChoice.SHORT) + "]"
-                        + " " + UCharacter.getName(source, ", ")
-                        + (showWeights ? " " + weights : ""));
+                out.println(
+                        "U+"
+                                + Utility.hex(source, " U+")
+                                + " ( "
+                                + source
+                                + " )"
+                                + " ["
+                                + UCharacter.getPropertyValueName(
+                                        UProperty.GENERAL_CATEGORY,
+                                        UCharacter.getType(source.codePointAt(0)),
+                                        NameChoice.SHORT)
+                                + "]"
+                                + " "
+                                + UCharacter.getName(source, ", ")
+                                + (showWeights ? " " + weights : ""));
             }
         }
         out.close();
@@ -134,9 +161,10 @@ public class CompareDucetToCldr {
     static UnicodeSet SKIPPED = new UnicodeSet();
 
     public static Birelation<WeightList, String> getData(String directory, String filename) {
-        final Birelation<WeightList, String> cldr = Birelation.of(
-                new TreeMap<WeightList, Set<String>>(), TreeSet.class,
-                new TreeMap<String, Set<WeightList>>(), TreeSet.class);
+        final Birelation<WeightList, String> cldr =
+                Birelation.of(
+                        new TreeMap<WeightList, Set<String>>(), TreeSet.class,
+                        new TreeMap<String, Set<WeightList>>(), TreeSet.class);
         for (final String line : FileUtilities.in(directory, filename)) {
             if (line.startsWith("@version")) {
                 continue;
@@ -170,9 +198,11 @@ public class CompareDucetToCldr {
 
     private static class WeightList implements Comparable<WeightList> {
         final List<Weight> list;
+
         public WeightList(List<Weight> result) {
             list = result;
         }
+
         @Override
         public int compareTo(WeightList other) {
             for (int i = 0; i < list.size() && i < other.list.size(); ++i) {
@@ -183,22 +213,28 @@ public class CompareDucetToCldr {
             }
             return list.size() - other.list.size();
         }
+
         @Override
         public boolean equals(Object other) {
-            return list.equals(((WeightList)other).list);
+            return list.equals(((WeightList) other).list);
         }
+
         @Override
         public String toString() {
-            return CollectionUtilities.join(list,"");
+            return CollectionUtilities.join(list, "");
         }
     }
 
     private static class Weight implements Comparable<Weight> {
-        static Matcher WEIGHT = Pattern.compile("\\[([.*])([0-9A-F]{4})\\.([0-9A-F]{4})\\.([0-9A-F]{4})\\.([0-9A-F]{4,6})\\]").matcher("");
-        final private boolean variable;
-        final private int primary;
-        final private int secondary;
-        final private int tertiary;
+        static Matcher WEIGHT =
+                Pattern.compile(
+                                "\\[([.*])([0-9A-F]{4})\\.([0-9A-F]{4})\\.([0-9A-F]{4})\\.([0-9A-F]{4,6})\\]")
+                        .matcher("");
+        private final boolean variable;
+        private final int primary;
+        private final int secondary;
+        private final int tertiary;
+
         public Weight(boolean variable, int parseInt, int parseInt2, int parseInt3) {
             this.variable = variable;
             primary = parseInt;
@@ -215,11 +251,12 @@ public class CompareDucetToCldr {
                     throw new IllegalArgumentException();
                 }
                 final boolean variable = WEIGHT.group(1).equals("*");
-                result.add(new Weight(
-                        variable,
-                        Integer.parseInt(WEIGHT.group(2),16),
-                        Integer.parseInt(WEIGHT.group(3),16),
-                        Integer.parseInt(WEIGHT.group(4),16)));
+                result.add(
+                        new Weight(
+                                variable,
+                                Integer.parseInt(WEIGHT.group(2), 16),
+                                Integer.parseInt(WEIGHT.group(3), 16),
+                                Integer.parseInt(WEIGHT.group(4), 16)));
                 last = WEIGHT.end();
             }
             if (last != input.length()) {
@@ -227,17 +264,28 @@ public class CompareDucetToCldr {
             }
             return new WeightList(result);
         }
+
         @Override
         public boolean equals(Object object) {
-            final Weight other = (Weight)object;
-            return variable == other.variable && primary == other.primary && secondary == other.secondary && tertiary == other.tertiary;
+            final Weight other = (Weight) object;
+            return variable == other.variable
+                    && primary == other.primary
+                    && secondary == other.secondary
+                    && tertiary == other.tertiary;
         }
+
         @Override
         public String toString() {
-            return "[" +
-                    (variable ? "*" : ".") +
-                    Utility.hex(primary) + "." + Utility.hex(secondary) + "." + Utility.hex(tertiary) + "]";
+            return "["
+                    + (variable ? "*" : ".")
+                    + Utility.hex(primary)
+                    + "."
+                    + Utility.hex(secondary)
+                    + "."
+                    + Utility.hex(tertiary)
+                    + "]";
         }
+
         @Override
         public int compareTo(Weight other) {
             int result;

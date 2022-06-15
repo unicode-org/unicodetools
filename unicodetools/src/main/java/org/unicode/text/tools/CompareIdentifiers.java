@@ -28,13 +28,14 @@ public class CompareIdentifiers {
         final UnicodeSet unicodeStart = new UnicodeSet("[:id_start:]").freeze();
         final UnicodeSet unicodePart = new UnicodeSet("[:id_continue:]").freeze();
 
-        final UnicodeSet simulatedJavaStart = new UnicodeSet(unicodeStart)
-        .addAll("[:gc=Pc:]")
-        .addAll("[:gc=Sc:]").freeze();
+        final UnicodeSet simulatedJavaStart =
+                new UnicodeSet(unicodeStart).addAll("[:gc=Pc:]").addAll("[:gc=Sc:]").freeze();
 
-        final UnicodeSet simulatedJavaPart = new UnicodeSet(unicodeStart)
-        .addAll("[\\u0000-\\u0008 \\u000E-\\u001B \\u007F-\\u009F ]")
-        .addAll("[:gc=Cf:]").freeze();
+        final UnicodeSet simulatedJavaPart =
+                new UnicodeSet(unicodeStart)
+                        .addAll("[\\u0000-\\u0008 \\u000E-\\u001B \\u007F-\\u009F ]")
+                        .addAll("[:gc=Cf:]")
+                        .freeze();
 
         showDiff("javaStart", javaStart, "simulatedJavaStart", simulatedJavaStart);
         showDiff("javaPart", javaPart, "simulatedJavaPart", simulatedJavaPart);

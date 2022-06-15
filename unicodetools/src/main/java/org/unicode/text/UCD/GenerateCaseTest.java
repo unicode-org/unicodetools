@@ -1,29 +1,27 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateCaseTest.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateCaseTest.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
+import com.ibm.icu.text.UTF16;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.text.UTF16;
-
-abstract public class GenerateCaseTest implements UCD_Types {
+public abstract class GenerateCaseTest implements UCD_Types {
 
     public static void main(String[] args) throws IOException {
-        System.out.println("Remember to add length marks (half & full) and other punctuation for sentence, with FF61");
+        System.out.println(
+                "Remember to add length marks (half & full) and other punctuation for sentence, with FF61");
 
-        final PrintWriter out = Utility.openPrintWriterGenDir("log/CaseTest.txt", Utility.UTF8_WINDOWS);
+        final PrintWriter out =
+                Utility.openPrintWriterGenDir("log/CaseTest.txt", Utility.UTF8_WINDOWS);
 
         out.println("# CaseTest");
         out.println("# Generated: " + Default.getDate() + ", MED");
@@ -47,9 +45,7 @@ abstract public class GenerateCaseTest implements UCD_Types {
             final String upper = Default.ucd().getCase(cp, FULL, UPPER);
             final String title = Default.ucd().getCase(cp, FULL, TITLE);
             final String fold = Default.ucd().getCase(cp, FULL, FOLD);
-            if (lower.equals(upper)
-                    && lower.equals(title)
-                    && lower.equals(fold)) {
+            if (lower.equals(upper) && lower.equals(title) && lower.equals(fold)) {
                 continue;
             }
 
@@ -67,11 +63,10 @@ abstract public class GenerateCaseTest implements UCD_Types {
             final String title1 = Default.nfc().normalize(Default.ucd().getCase(s2, FULL, TITLE));
             final String fold1 = Default.nfc().normalize(Default.ucd().getCase(s2, FULL, FOLD));
 
-            if (lower1.equals(Default.nfc().normalize(lower+testChar))
-                    && upper1.equals(Default.nfc().normalize(upper+testChar))
-                    && title1.equals(Default.nfc().normalize(title+testChar))
-                    && fold1.equals(Default.nfc().normalize(fold+testChar))
-                    ) {
+            if (lower1.equals(Default.nfc().normalize(lower + testChar))
+                    && upper1.equals(Default.nfc().normalize(upper + testChar))
+                    && title1.equals(Default.nfc().normalize(title + testChar))
+                    && fold1.equals(Default.nfc().normalize(fold + testChar))) {
                 continue;
             }
 
@@ -90,13 +85,17 @@ abstract public class GenerateCaseTest implements UCD_Types {
         final String upper = Default.nfc().normalize(Default.ucd().getCase(s, FULL, UPPER));
         final String title = Default.nfc().normalize(Default.ucd().getCase(s, FULL, TITLE));
         final String fold = Default.nfc().normalize(Default.ucd().getCase(s, FULL, FOLD));
-        out.println(Utility.hex(ss) + "; "
-                + Utility.hex(lower) + "; "
-                + Utility.hex(upper) + "; "
-                + Utility.hex(title) + "; "
-                + Utility.hex(fold)
-                + (doComment ?  "\t# " + Default.ucd().getName(ss) : "")
-                );
+        out.println(
+                Utility.hex(ss)
+                        + "; "
+                        + Utility.hex(lower)
+                        + "; "
+                        + Utility.hex(upper)
+                        + "; "
+                        + Utility.hex(title)
+                        + "; "
+                        + Utility.hex(fold)
+                        + (doComment ? "\t# " + Default.ucd().getName(ss) : ""));
         counter++;
     }
 }

@@ -1,7 +1,4 @@
 package org.unicode.draft;
-import java.util.Random;
-
-import org.unicode.cldr.util.Counter;
 
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
@@ -9,7 +6,8 @@ import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.UnicodeSet;
-
+import java.util.Random;
+import org.unicode.cldr.util.Counter;
 
 public class TestRandomIDNA {
     static final boolean SHOW = false;
@@ -17,6 +15,7 @@ public class TestRandomIDNA {
     static final int MAX_LENGTH = 4;
     static NumberFormat percent = NumberFormat.getPercentInstance();
     static NumberFormat number = NumberFormat.getNumberInstance();
+
     static {
         percent.setMaximumFractionDigits(3);
         percent.setMinimumFractionDigits(3);
@@ -26,7 +25,7 @@ public class TestRandomIDNA {
     public static void main(String[] args) throws StringPrepParseException {
         showPunycode("가나다댯라럈마먔ﾲ뱟사샷악얐ﾸ쟛차챴카컀");
         showPunycode("aא");
-        //"aא"
+        // "aא"
         checkString("mrk-qla", true);
         final IncrementalString incrementalString = new IncrementalString();
         final Counter<PunyType>[] data = new Counter[21];
@@ -40,13 +39,13 @@ public class TestRandomIDNA {
             if (len > MAX_LENGTH) {
                 break;
             }
-            data[len].increment(checkString(testString, SHOW && (i%interval)==0));
+            data[len].increment(checkString(testString, SHOW && (i % interval) == 0));
         }
         final RandomString randomString = new RandomString(MAX_LENGTH, 20);
         for (int i = 0; i < 1000000; ++i) {
             final String testString = randomString.next();
             final int len = testString.length();
-            data[len].increment(checkString(testString, SHOW && (i%interval)==0));
+            data[len].increment(checkString(testString, SHOW && (i % interval) == 0));
         }
         for (int i = 0; i < data.length; ++i) {
             if (data[i].size() > 0) {
@@ -63,11 +62,30 @@ public class TestRandomIDNA {
     private static void showCounter(int len, Counter<PunyType> data) {
         System.out.println("length: " + len);
         for (final PunyType key : data.getKeysetSortedByCount(false)) {
-            System.out.println("\t" + percent.format(((double)data.getCount(key))/data.getTotal()) + "\t:\t" + key + "\t(" + number.format(data.getCount(key)) + ")");
+            System.out.println(
+                    "\t"
+                            + percent.format(((double) data.getCount(key)) / data.getTotal())
+                            + "\t:\t"
+                            + key
+                            + "\t("
+                            + number.format(data.getCount(key))
+                            + ")");
         }
     }
 
-    enum PunyType {illegal_punycode, non_LMN, all_ascii, unassigned, non_folded, otherwise_ok, null_punydecode, no_roundtrip, illegal_char_found, invalid_char_found};
+    enum PunyType {
+        illegal_punycode,
+        non_LMN,
+        all_ascii,
+        unassigned,
+        non_folded,
+        otherwise_ok,
+        null_punydecode,
+        no_roundtrip,
+        illegal_char_found,
+        invalid_char_found
+    };
+
     static final UnicodeSet ASCII = new UnicodeSet("[:ASCII:]");
     static final UnicodeSet LMN = new UnicodeSet("[[:L:][:M:][:N:]\\-]");
     static final UnicodeSet UNASSIGNED = new UnicodeSet("[:cn:]");
@@ -87,7 +105,15 @@ public class TestRandomIDNA {
                 return PunyType.no_roundtrip;
             }
             if (show) {
-                System.out.println("OK\t" + testString + "\t=>\t" + decodeOut + ";" + Utility.hex(decodeOut) + "\t=>\t" + encodedString);
+                System.out.println(
+                        "OK\t"
+                                + testString
+                                + "\t=>\t"
+                                + decodeOut
+                                + ";"
+                                + Utility.hex(decodeOut)
+                                + "\t=>\t"
+                                + encodedString);
             }
             if (UNASSIGNED.containsSome(decodedString)) {
                 return PunyType.unassigned;
@@ -108,7 +134,15 @@ public class TestRandomIDNA {
             return PunyType.otherwise_ok;
         } catch (final StringPrepParseException e) {
             if (show) {
-                System.out.println("BAD\t" + testString + "\t=>\t" + decodeOut + ";" + Utility.hex(decodeOut == null ? "" : decodeOut.toString()) + "\t=>\t" + e.getMessage());
+                System.out.println(
+                        "BAD\t"
+                                + testString
+                                + "\t=>\t"
+                                + decodeOut
+                                + ";"
+                                + Utility.hex(decodeOut == null ? "" : decodeOut.toString())
+                                + "\t=>\t"
+                                + e.getMessage());
             }
             PunyType result = PunyType.valueOf(PrepErrorName[e.getError()].toLowerCase());
             if (result == PunyType.invalid_char_found || result == PunyType.illegal_char_found) {
@@ -138,22 +172,24 @@ public class TestRandomIDNA {
         StringBuffer result = new StringBuffer();
         private final int minLen;
         private final int maxLen;
+
         RandomString(int minLen, int maxLen) {
             this.minLen = minLen;
             this.maxLen = maxLen - minLen;
         }
+
         String next() {
             result.setLength(0);
-            //result.append("xn-");
+            // result.append("xn-");
             final int len = minLen + random.nextInt(maxLen);
             for (int i = 0; i <= len; ++i) {
                 final int index = random.nextInt(37);
                 if (index < 26) {
-                    result.append((char)('a'+index));
+                    result.append((char) ('a' + index));
                 } else if (index < 27) {
                     result.append('-');
                 } else {
-                    result.append((char)('0' + index-27));
+                    result.append((char) ('0' + index - 27));
                 }
             }
             return result.toString();
@@ -163,6 +199,7 @@ public class TestRandomIDNA {
     public static class IncrementalString {
         long counter;
         StringBuffer result = new StringBuffer();
+
         String next() {
             result.setLength(0);
             long current = counter;
@@ -174,11 +211,11 @@ public class TestRandomIDNA {
                 final long index = current % 37;
                 current = current / 37;
                 if (index < 26) {
-                    result.append((char)('a'+index));
+                    result.append((char) ('a' + index));
                 } else if (index < 27) {
                     result.append('-');
                 } else {
-                    result.append((char)('0' + index-27));
+                    result.append((char) ('0' + index - 27));
                 }
             }
             return result.toString();

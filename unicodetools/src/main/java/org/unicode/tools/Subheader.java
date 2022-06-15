@@ -1,8 +1,12 @@
-/**
- * 
- */
+/** */
 package org.unicode.tools;
 
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UProperty;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UTF16.StringComparator;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,15 +21,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
-
 import org.unicode.cldr.util.PatternCache;
-
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UTF16.StringComparator;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
 
 class Subheader {
     Matcher isArchaic = GeneratePickerData.IS_ARCHAIC.matcher("");
@@ -44,7 +40,8 @@ class Subheader {
         // if (false) {
         // if (GeneratePickerData.DEBUG)
         // System.out.println("*** Fixing plurals");
-        // for (java.util.Iterator<String> it = subblock2UnicodeSet.keySet().iterator(); it.hasNext();) {
+        // for (java.util.Iterator<String> it = subblock2UnicodeSet.keySet().iterator();
+        // it.hasNext();) {
         // String subblock = it.next();
         // final String pluralSubblock = subblock + "s";
         // UnicodeSet plural = subblock2UnicodeSet.get(pluralSubblock);
@@ -61,12 +58,15 @@ class Subheader {
 
         for (String subblock : subblock2UnicodeSet.keySet()) {
             final UnicodeSet uset = subblock2UnicodeSet.get(subblock);
-            for (UnicodeSetIterator it = new UnicodeSetIterator(uset); it.next();) {
+            for (UnicodeSetIterator it = new UnicodeSetIterator(uset); it.next(); ) {
                 codePoint2Subblock.put(it.codepoint, subblock);
 
-                String block = UCharacter
-                    .getStringPropertyValue(UProperty.BLOCK, it.codepoint, UProperty.NameChoice.LONG).toString()
-                    .replace('_', ' ').intern();
+                String block =
+                        UCharacter.getStringPropertyValue(
+                                        UProperty.BLOCK, it.codepoint, UProperty.NameChoice.LONG)
+                                .toString()
+                                .replace('_', ' ')
+                                .intern();
 
                 Set<String> set = block2subblock.get(block);
                 if (set == null) {
@@ -81,7 +81,9 @@ class Subheader {
                 set.add(block);
 
                 String name = UCharacter.getExtendedName(it.codepoint);
-                if (isArchaic.reset(block).find() || isArchaic.reset(subblock).find() || isArchaic.reset(name).find()) {
+                if (isArchaic.reset(block).find()
+                        || isArchaic.reset(subblock).find()
+                        || isArchaic.reset(name).find()) {
                     archaicSubblock.add(it.codepoint);
                 }
             }
@@ -92,19 +94,34 @@ class Subheader {
 
     private void writeBlockInfo(String outputDirectory) throws IOException, FileNotFoundException {
         System.out.println("***Block/Subblock start");
-        PrintWriter out = GeneratePickerData.getFileWriter(outputDirectory, "blocks_subblocks.html");
+        PrintWriter out =
+                GeneratePickerData.getFileWriter(outputDirectory, "blocks_subblocks.html");
 
         htmlHeader(out);
-        out.println("<tr><th>" + "Block" + "</th><th>" + "Notes" + "</th><th>" + "Subblock" + "</th></tr>");
+        out.println(
+                "<tr><th>"
+                        + "Block"
+                        + "</th><th>"
+                        + "Notes"
+                        + "</th><th>"
+                        + "Subblock"
+                        + "</th></tr>");
         for (String block : block2subblock.keySet()) {
             final Set<String> set = block2subblock.get(block);
             for (String subblock2 : set) {
-                out.println("<tr><td>" + block + "</td><td>" +
-                    (subblock2.equalsIgnoreCase(block) || subblock2.equalsIgnoreCase(block + "s") ? "duplicate" : "") +
-                    (set.size() < 2 ? " singleton" : "")
-                    + "\u00a0"
-                    + "</td><td>" + subblock2 +
-                    "</td></tr>");
+                out.println(
+                        "<tr><td>"
+                                + block
+                                + "</td><td>"
+                                + (subblock2.equalsIgnoreCase(block)
+                                                || subblock2.equalsIgnoreCase(block + "s")
+                                        ? "duplicate"
+                                        : "")
+                                + (set.size() < 2 ? " singleton" : "")
+                                + "\u00a0"
+                                + "</td><td>"
+                                + subblock2
+                                + "</td></tr>");
             }
         }
         out.println("</table></body></html>");
@@ -114,7 +131,14 @@ class Subheader {
         out = GeneratePickerData.getFileWriter(outputDirectory, "subblocks_blocks.html");
 
         htmlHeader(out);
-        out.println("<tr><th>" + "Subblock" + "</th><th>" + "Notes" + "</th><th>" + "Blocks" + "</th></tr>");
+        out.println(
+                "<tr><th>"
+                        + "Subblock"
+                        + "</th><th>"
+                        + "Notes"
+                        + "</th><th>"
+                        + "Blocks"
+                        + "</th></tr>");
         StringComparator caseless = new UTF16.StringComparator(true, true, 0);
         TreeSet<String> tests = new TreeSet<String>(caseless);
         tests.addAll(subblock2block.keySet());
@@ -123,10 +147,14 @@ class Subheader {
             final String first = set.iterator().next();
             String otherString = String.valueOf(set);
             otherString = otherString.substring(1, otherString.length() - 1) + '\u00a0';
-            out.println("<tr><td>" + subblock2
-                + "</td><td>" + getComments(subblock2, tests)
-                + "</td><td>" + otherString
-                + "</td></tr>");
+            out.println(
+                    "<tr><td>"
+                            + subblock2
+                            + "</td><td>"
+                            + getComments(subblock2, tests)
+                            + "</td><td>"
+                            + otherString
+                            + "</td></tr>");
         }
         System.out.println("***Block/Subblock end");
         out.close();
@@ -135,34 +163,30 @@ class Subheader {
     private String getComments(String subblock2, Set<String> keySet) {
 
         if (keySet.contains(subblock2 + "s")
-            || keySet.contains("Additional " + subblock2)
-            || keySet.contains("Additional " + subblock2 + "s")
-            || keySet.contains("Other " + subblock2)
-            || keySet.contains("Other " + subblock2 + "s")
-            || keySet.contains("Miscellaneous " + subblock2)
-            || keySet.contains("Miscellaneous " + subblock2 + "s")) return "has-longer";
+                || keySet.contains("Additional " + subblock2)
+                || keySet.contains("Additional " + subblock2 + "s")
+                || keySet.contains("Other " + subblock2)
+                || keySet.contains("Other " + subblock2 + "s")
+                || keySet.contains("Miscellaneous " + subblock2)
+                || keySet.contains("Miscellaneous " + subblock2 + "s")) return "has-longer";
         return "\u00a0";
     }
 
     private void htmlHeader(PrintWriter out) {
-        out.println("<html><head>"
-            +
-            "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>"
-            +
-            "<style>"
-            +
-            "table    { border-spacing: 0; border-collapse: collapse; border-style: solid; border-color: blue; border-width: 1px; }"
-            +
-            "th, td    { border-spacing: 0; border-collapse: collapse; border-style: solid; border-color: blue; border-width: 1px;"
-            +
-            "color: black; vertical-align: top; text-align: left;        }" +
-            "</style>" +
-            "</head>" +
-            "<body><table>"
-            );
+        out.println(
+                "<html><head>"
+                        + "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>"
+                        + "<style>"
+                        + "table    { border-spacing: 0; border-collapse: collapse; border-style: solid; border-color: blue; border-width: 1px; }"
+                        + "th, td    { border-spacing: 0; border-collapse: collapse; border-style: solid; border-color: blue; border-width: 1px;"
+                        + "color: black; vertical-align: top; text-align: left;        }"
+                        + "</style>"
+                        + "</head>"
+                        + "<body><table>");
     }
 
-    private String getDataFromFile(String dir, String filenameRegex) throws FileNotFoundException, IOException {
+    private String getDataFromFile(String dir, String filenameRegex)
+            throws FileNotFoundException, IOException {
         String subblock = "?";
         File actualName = getFileNameFromPattern(dir, filenameRegex);
         BufferedReader in = new BufferedReader(new FileReader(actualName));
@@ -194,8 +218,13 @@ class Subheader {
             }
             String[] files = dir.list(new RegexFileFilter(filenameRegex));
             if (files.length != 1) {
-                throw new IllegalArgumentException("Not a unique match for : " + dir.getCanonicalPath() + " / "
-                    + filenameRegex + " : " + Arrays.asList(files));
+                throw new IllegalArgumentException(
+                        "Not a unique match for : "
+                                + dir.getCanonicalPath()
+                                + " / "
+                                + filenameRegex
+                                + " : "
+                                + Arrays.asList(files));
             }
             return new File(directory, files[0]);
         } catch (IOException e) {

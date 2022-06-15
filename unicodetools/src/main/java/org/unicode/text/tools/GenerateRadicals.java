@@ -1,5 +1,14 @@
 package org.unicode.text.tools;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.Relation;
+import com.ibm.icu.impl.Row.R5;
+import com.ibm.icu.lang.CharSequences;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.Normalizer2;
+import com.ibm.icu.text.RuleBasedCollator;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ULocale;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,7 +20,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
-
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -26,33 +34,26 @@ import org.unicode.tools.Common;
 import org.unicode.tools.IdsFileData;
 import org.unicode.tools.RadicalEnum;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.Relation;
-import com.ibm.icu.impl.Row.R5;
-import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.RuleBasedCollator;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.ULocale;
-
 public class GenerateRadicals {
     public static final Normalizer2 NFKC = Normalizer2.getNFKCInstance();
     public static final Normalizer2 NFC = Normalizer2.getNFKCInstance();
-    private static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
+    private static final IndexUnicodeProperties iup =
+            IndexUnicodeProperties.make(Settings.latestVersion);
 
-    interface Collector<T,S> {
+    interface Collector<T, S> {
         void add(T item);
+
         S get();
     }
 
-    static class StringCollector implements Collector<String,String> {
+    static class StringCollector implements Collector<String, String> {
         private StringBuilder b = new StringBuilder();
         private String separator;
 
         StringCollector(String separator) {
             this.separator = separator;
         }
+
         @Override
         public void add(String item) {
             if (b.length() != 0) {
@@ -66,10 +67,10 @@ public class GenerateRadicals {
             String result = b.toString();
             b.setLength(0);
             return result;
-        }        
+        }
     }
 
-    public static <T,S> S transform(String s, UnicodeMap<T> map, Collector<T,S> collector) {
+    public static <T, S> S transform(String s, UnicodeMap<T> map, Collector<T, S> collector) {
         for (int cp : CharSequences.codePoints(s)) {
             T value = map.get(cp);
             collector.add(value);
@@ -86,20 +87,23 @@ public class GenerateRadicals {
 
     public static void main(String[] args) {
         UnicodeMap<String> names = iup.load(UcdProperty.Name);
-        UnicodeMap<General_Category_Values> gc = iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
+        UnicodeMap<General_Category_Values> gc =
+                iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
         UnicodeMap<String> cjkRadicals = iup.load(UcdProperty.CJK_Radical);
         UnicodeSet radical = iup.loadEnum(UcdProperty.Radical, Binary.class).getSet(Binary.Yes);
-        UnicodeMap<Block_Values> blocks = iup.loadEnum(UcdProperty.Block, UcdPropertyValues.Block_Values.class);
-        UnicodeSet interest = new UnicodeSet()
-        .addAll(blocks.getSet(Block_Values.CJK_Strokes))
-        .removeAll(gc.getSet(General_Category_Values.Unassigned)
-                );
+        UnicodeMap<Block_Values> blocks =
+                iup.loadEnum(UcdProperty.Block, UcdPropertyValues.Block_Values.class);
+        UnicodeSet interest =
+                new UnicodeSet()
+                        .addAll(blocks.getSet(Block_Values.CJK_Strokes))
+                        .removeAll(gc.getSet(General_Category_Values.Unassigned));
 
-        Relation<RadicalEnum,String> cjkRadicalToIdeograph = Relation.of(new HashMap(), LinkedHashSet.class);
+        Relation<RadicalEnum, String> cjkRadicalToIdeograph =
+                Relation.of(new HashMap(), LinkedHashSet.class);
         for (Entry<String, String> entry : cjkRadicals.entrySet()) {
             cjkRadicalToIdeograph.put(RadicalEnum.fromString(entry.getValue()), entry.getKey());
         }
-        Map<String,String> radicalToUnified = new HashMap<>();
+        Map<String, String> radicalToUnified = new HashMap<>();
         for (Entry<RadicalEnum, Set<String>> entry : cjkRadicalToIdeograph.keyValuesSet()) {
             List<String> values = new ArrayList<>(entry.getValue());
             String item0 = values.get(0);
@@ -113,7 +117,6 @@ public class GenerateRadicals {
 
         StringCollector sc = new StringCollector("+");
         ComparisonNormalizer cnorm = ComparisonNormalizer.getSimple();
-
 
         RuleBasedCollator col = (RuleBasedCollator) Collator.getInstance(ULocale.ROOT);
         col.setNumericCollation(true);
@@ -136,7 +139,8 @@ public class GenerateRadicals {
             }
 
             for (RadicalEnum radical1 : radicals) {
-                Relation<String,String> otherToCause = Relation.of(new HashMap(), LinkedHashSet.class);
+                Relation<String, String> otherToCause =
+                        Relation.of(new HashMap(), LinkedHashSet.class);
                 addOther(cp, radicalToUnified.get(cp), "CJKRadicals.txt", otherToCause);
                 addOther(cp, NFKC.normalize(cp), "NFKC", otherToCause);
                 addOther(cp, cnorm.get(cp), "UCA", otherToCause);
@@ -147,7 +151,13 @@ public class GenerateRadicals {
 
                 } else {
                     for (Entry<String, Set<String>> entry : otherToCause.keyValuesSet()) {
-                        sorted.add(new Data(radical1, cp.charAt(0) >= 0x2F00 ? 0 : 1, cp, entry.getKey(), Common.COMMA_JOINER.join(entry.getValue())));
+                        sorted.add(
+                                new Data(
+                                        radical1,
+                                        cp.charAt(0) >= 0x2F00 ? 0 : 1,
+                                        cp,
+                                        entry.getKey(),
+                                        Common.COMMA_JOINER.join(entry.getValue())));
                     }
                 }
             }
@@ -169,34 +179,56 @@ public class GenerateRadicals {
             String other = entry.get3();
             soFar.add(other);
             String cause = entry.get4();
-            
-            System.out.println(Utility.hex(cp) + ";"
-                    + "\t" + Common.COMMA_JOINER.join(getTotalStrokes(other)) + ";" 
-                    + "\t" + radNum + ";" 
-                    + "\t" + Utility.hex(other)
-                    + ";\t#\t" + cp + "\t→\t" + other
-                    + "\t" + names.get(cp)
-                    + ";\t" + cause
-                    );
+
+            System.out.println(
+                    Utility.hex(cp)
+                            + ";"
+                            + "\t"
+                            + Common.COMMA_JOINER.join(getTotalStrokes(other))
+                            + ";"
+                            + "\t"
+                            + radNum
+                            + ";"
+                            + "\t"
+                            + Utility.hex(other)
+                            + ";\t#\t"
+                            + cp
+                            + "\t→\t"
+                            + other
+                            + "\t"
+                            + names.get(cp)
+                            + ";\t"
+                            + cause);
         }
         doFinal(last, soFar);
     }
 
     private static List<Integer> getTotalStrokes(String other) {
-        List<Integer> totalStrokes = CldrUtility.ifNull(
-                other.isEmpty() ? null : IdsFileData.TOTAL_STROKES.get(other), 
+        List<Integer> totalStrokes =
+                CldrUtility.ifNull(
+                        other.isEmpty() ? null : IdsFileData.TOTAL_STROKES.get(other),
                         Collections.singletonList(0));
         return totalStrokes;
     }
 
     private static void doFinal(RadicalEnum radical1, Set<String> soFar) {
-        Set<String> unicodeItems1 = normalizeSet(new LinkedHashSet<>(CldrUtility.ifNull(UNICODE_RADICALS.get(radical1), Collections.<String>emptySet())));
+        Set<String> unicodeItems1 =
+                normalizeSet(
+                        new LinkedHashSet<>(
+                                CldrUtility.ifNull(
+                                        UNICODE_RADICALS.get(radical1),
+                                        Collections.<String>emptySet())));
         unicodeItems1.removeAll(soFar);
-        
+
         Set<String> unicodeItems = unicodeItems1;
         showOthers(radical1, unicodeItems, "kRSUnicode");
 
-        Set<String> adobeItems = normalizeSet(new LinkedHashSet<>(CldrUtility.ifNull(ADOBE_RADICALS.get(radical1), Collections.<String>emptySet())));
+        Set<String> adobeItems =
+                normalizeSet(
+                        new LinkedHashSet<>(
+                                CldrUtility.ifNull(
+                                        ADOBE_RADICALS.get(radical1),
+                                        Collections.<String>emptySet())));
         adobeItems.removeAll(soFar);
         adobeItems.removeAll(unicodeItems);
         showOthers(radical1, adobeItems, "kRSAdobe");
@@ -204,14 +236,24 @@ public class GenerateRadicals {
 
     private static void showOthers(RadicalEnum radical1, Set<String> unicodeItems, String cause) {
         for (String other : unicodeItems) {
-            System.out.println("#?   "
-                    + "\t" + Common.COMMA_JOINER.join(getTotalStrokes(other)) + ";" 
-                    + "\t" + radical1 + ";" 
-                    + "\t" + Utility.hex(other)
-                    + ";\t#\t" + "?" + "\t→\t" + other
-                    + "\t" + "?"
-                    + ";\t" + cause
-                    );
+            System.out.println(
+                    "#?   "
+                            + "\t"
+                            + Common.COMMA_JOINER.join(getTotalStrokes(other))
+                            + ";"
+                            + "\t"
+                            + radical1
+                            + ";"
+                            + "\t"
+                            + Utility.hex(other)
+                            + ";\t#\t"
+                            + "?"
+                            + "\t→\t"
+                            + other
+                            + "\t"
+                            + "?"
+                            + ";\t"
+                            + cause);
         }
     }
 
@@ -229,16 +271,19 @@ public class GenerateRadicals {
             if (b.length() != 0) {
                 b.append(", ");
             }
-            List<Integer> totalStrokes = CldrUtility.ifNull(IdsFileData.TOTAL_STROKES.get(s), Collections.singletonList(0));
+            List<Integer> totalStrokes =
+                    CldrUtility.ifNull(
+                            IdsFileData.TOTAL_STROKES.get(s), Collections.singletonList(0));
 
-            b.append(Utility.hex(s) 
-                    + " (" + s
-                    + "/" + Common.COMMA_JOINER.join(totalStrokes) + ")");
-        };
+            b.append(
+                    Utility.hex(s) + " (" + s + "/" + Common.COMMA_JOINER.join(totalStrokes) + ")");
+        }
+        ;
         return b.toString();
     }
 
-    private static void addOther(String cp, Set<String> mapped, String string, Relation<String, String> otherToCause) {
+    private static void addOther(
+            String cp, Set<String> mapped, String string, Relation<String, String> otherToCause) {
         if (mapped != null) {
             for (String other : mapped) {
                 addOther(cp, other, string, otherToCause);
@@ -246,20 +291,24 @@ public class GenerateRadicals {
         }
     }
 
-    private static String addOther(String cp, String mapped, String cause, Relation<String, String> otherToCause) {
+    private static String addOther(
+            String cp, String mapped, String cause, Relation<String, String> otherToCause) {
         String other = mapped;
         if (other == null) {
             return other;
         }
         other = NFC.normalize(other);
         if (!cp.equals(other)) {
-            otherToCause.put(other,cause);
+            otherToCause.put(other, cause);
         }
         return other;
     }
 
-    static final Relation<RadicalEnum, String> ADOBE_RADICALS = Relation.of(new HashMap(), TreeSet.class);
-    static final Relation<RadicalEnum, String> UNICODE_RADICALS = Relation.of(new HashMap(), TreeSet.class);
+    static final Relation<RadicalEnum, String> ADOBE_RADICALS =
+            Relation.of(new HashMap(), TreeSet.class);
+    static final Relation<RadicalEnum, String> UNICODE_RADICALS =
+            Relation.of(new HashMap(), TreeSet.class);
+
     static {
         Matcher m = Common.ADOBE_RS_MATCHER.matcher("");
         UnicodeMap<Set<String>> adobeRadicalStroke = iup.loadSet(UcdProperty.kRSAdobe_Japan1_6);

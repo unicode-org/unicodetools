@@ -1,5 +1,16 @@
 package org.unicode.draft;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.Relation;
+import com.ibm.icu.impl.Utility;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.Normalizer2;
+import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.ULocale;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -14,38 +25,30 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.cldr.draft.CodePoints;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.Relation;
-import com.ibm.icu.impl.Utility;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
-import com.ibm.icu.util.ULocale;
-
 public abstract class Ids2 implements Comparable<Ids2> {
 
-    static final UnicodeSet ALLOWED = new UnicodeSet("[[:Unified_Ideograph:]]").freeze(); // [:Block=CJK Radicals
-                                                                                          // Supplement:][:Block=Kangxi
-                                                                                          // Radicals:]
-    static final UnicodeSet FULL_ALLOWED = new UnicodeSet("\\p{Block=Ideographic Description Characters}").addAll(
-        ALLOWED).freeze();
-    static final UnicodeSet FULL_ALLOWED_AND_PU = new UnicodeSet("[:General_Category=Private_Use:]").addAll(
-        FULL_ALLOWED).freeze();
-    static final UnicodeSet MAIN_CJK = new UnicodeSet("[[:block=CJK_Unified_Ideographs:]]").freeze();
+    static final UnicodeSet ALLOWED =
+            new UnicodeSet("[[:Unified_Ideograph:]]").freeze(); // [:Block=CJK Radicals
+    // Supplement:][:Block=Kangxi
+    // Radicals:]
+    static final UnicodeSet FULL_ALLOWED =
+            new UnicodeSet("\\p{Block=Ideographic Description Characters}")
+                    .addAll(ALLOWED)
+                    .freeze();
+    static final UnicodeSet FULL_ALLOWED_AND_PU =
+            new UnicodeSet("[:General_Category=Private_Use:]").addAll(FULL_ALLOWED).freeze();
+    static final UnicodeSet MAIN_CJK =
+            new UnicodeSet("[[:block=CJK_Unified_Ideographs:]]").freeze();
     static final Normalizer2 nfc = Normalizer2.getInstance(null, "nfc", Normalizer2.Mode.COMPOSE);
     static final char BAD_CHAR = '\uFFFF';
     static NumberFormat nf = NumberFormat.getInstance();
+
     static {
         nf.setGroupingUsed(true);
     }
@@ -58,7 +61,8 @@ public abstract class Ids2 implements Comparable<Ids2> {
         UnicodeMap<String> remap = new UnicodeMap<String>();
         UnicodeSet radicals = new UnicodeSet();
         String line = "";
-        Relation<String, String> problems = Relation.of(new LinkedHashMap<String, Set<String>>(), LinkedHashSet.class);
+        Relation<String, String> problems =
+                Relation.of(new LinkedHashMap<String, Set<String>>(), LinkedHashSet.class);
 
         void addProblem(String problem) {
             if (problem != null) {
@@ -97,14 +101,11 @@ public abstract class Ids2 implements Comparable<Ids2> {
     protected int codepoint;
 
     static class Visitor {
-        public void atCodePoint(int codepoint) {
-        }
+        public void atCodePoint(int codepoint) {}
 
-        public void atRelation(int codepoint) {
-        }
+        public void atRelation(int codepoint) {}
 
-        public void atComponent(Ids2 first) {
-        }
+        public void atComponent(Ids2 first) {}
     }
 
     public boolean equals(Object other) {
@@ -165,44 +166,47 @@ public abstract class Ids2 implements Comparable<Ids2> {
         if (result instanceof Leaf) {
             result = null;
         }
-        return result == null ? UTF16.valueOf(codepoint)
-            : !replace ? "*" + UTF16.valueOf(codepoint)
-                : maxLevel <= 0 ? "†" + UTF16.valueOf(codepoint)
-                    : result.toString(data, replace, maxLevel - 1);
+        return result == null
+                ? UTF16.valueOf(codepoint)
+                : !replace
+                        ? "*" + UTF16.valueOf(codepoint)
+                        : maxLevel <= 0
+                                ? "†" + UTF16.valueOf(codepoint)
+                                : result.toString(data, replace, maxLevel - 1);
     }
 
     protected static Ids2 parse(CodePoints codePoints) {
         codePoints.next();
         int cp = codePoints.getCodePoint();
         switch (cp) {
-        // double
-        case '\u2FF0':
-        case '\u2FF1':
-        case '\u2FF4':
-        case '\u2FF5':
-        case '\u2FF6':
-        case '\u2FF7':
-        case '\u2FF8':
-        case '\u2FF9':
-        case '\u2FFA':
-        case '\u2FFB':
-            return new Dual(cp, codePoints);
-            // triple
-        case '\u2FF2':
-        case '\u2FF3':
-            return new Trial(cp, codePoints);
-        case '&':
-            StringBuffer ncr = new StringBuffer();
-            while (codePoints.next()) {
-                cp = codePoints.getCodePoint();
-                if (cp == ';') {
-                    return new Leaf(ncr.toString());
+                // double
+            case '\u2FF0':
+            case '\u2FF1':
+            case '\u2FF4':
+            case '\u2FF5':
+            case '\u2FF6':
+            case '\u2FF7':
+            case '\u2FF8':
+            case '\u2FF9':
+            case '\u2FFA':
+            case '\u2FFB':
+                return new Dual(cp, codePoints);
+                // triple
+            case '\u2FF2':
+            case '\u2FF3':
+                return new Trial(cp, codePoints);
+            case '&':
+                StringBuffer ncr = new StringBuffer();
+                while (codePoints.next()) {
+                    cp = codePoints.getCodePoint();
+                    if (cp == ';') {
+                        return new Leaf(ncr.toString());
+                    }
+                    ncr.appendCodePoint(cp);
                 }
-                ncr.appendCodePoint(cp);
-            }
-            throw new IllegalArgumentException("NCR too short: " + ncr);
-        default:
-            return new Leaf(cp);
+                throw new IllegalArgumentException("NCR too short: " + ncr);
+            default:
+                return new Leaf(cp);
         }
     }
 
@@ -226,9 +230,7 @@ public abstract class Ids2 implements Comparable<Ids2> {
             counter.add(codepoint, 1);
         }
 
-        public void atComponent(Ids2 first) {
-
-        }
+        public void atComponent(Ids2 first) {}
 
         public void atRelation(int codepoint) {
             relationCounter.add(codepoint, 1);
@@ -239,7 +241,8 @@ public abstract class Ids2 implements Comparable<Ids2> {
         Leaf(int cp) {
             String nfcForm = nfc.normalize(UTF16.valueOf(cp));
             if (nfcForm.codePointCount(0, nfcForm.length()) != 1) {
-                throw new IllegalArgumentException("NFC form is too long:\t" + Utility.hex(nfcForm));
+                throw new IllegalArgumentException(
+                        "NFC form is too long:\t" + Utility.hex(nfcForm));
             }
             cp = nfcForm.codePointAt(0);
             String revised = hacks.remap.get(cp);
@@ -314,8 +317,11 @@ public abstract class Ids2 implements Comparable<Ids2> {
         }
 
         public String toString(UnicodeMap<Ids2> data, boolean replace, int maxLevel) {
-            return "{" + showCodepoint(data, replace, maxLevel - 1) + first.toString(data, replace, maxLevel - 1)
-                + second.toString(data, replace, maxLevel - 1) + "}";
+            return "{"
+                    + showCodepoint(data, replace, maxLevel - 1)
+                    + first.toString(data, replace, maxLevel - 1)
+                    + second.toString(data, replace, maxLevel - 1)
+                    + "}";
         }
 
         public int compareTo(Ids2 o) {
@@ -339,8 +345,9 @@ public abstract class Ids2 implements Comparable<Ids2> {
         }
 
         public boolean contains(int codepoint, UnicodeMap<Ids2> data) {
-            return super.contains(codepoint, data) || first.contains(codepoint, data)
-                || second.contains(codepoint, data);
+            return super.contains(codepoint, data)
+                    || first.contains(codepoint, data)
+                    || second.contains(codepoint, data);
         }
 
         public int size() {
@@ -392,16 +399,26 @@ public abstract class Ids2 implements Comparable<Ids2> {
         }
 
         public int hashCode() {
-            return codepoint ^ (37 * first.hashCode() ^ (37 * second.hashCode() ^ (37 * third.hashCode())));
+            return codepoint
+                    ^ (37 * first.hashCode() ^ (37 * second.hashCode() ^ (37 * third.hashCode())));
         }
 
         public String toString() {
-            return "{" + UTF16.valueOf(codepoint) + first.toString() + second.toString() + third.toString() + "}";
+            return "{"
+                    + UTF16.valueOf(codepoint)
+                    + first.toString()
+                    + second.toString()
+                    + third.toString()
+                    + "}";
         }
 
         public String toString(UnicodeMap<Ids2> data, boolean replace, int maxLevel) {
-            return "{" + showCodepoint(data, replace, maxLevel - 1) + first.toString(data, replace, maxLevel - 1)
-                + second.toString(data, replace, maxLevel - 1) + third.toString(data, replace, maxLevel - 1) + "}";
+            return "{"
+                    + showCodepoint(data, replace, maxLevel - 1)
+                    + first.toString(data, replace, maxLevel - 1)
+                    + second.toString(data, replace, maxLevel - 1)
+                    + third.toString(data, replace, maxLevel - 1)
+                    + "}";
         }
 
         public int compareTo(Ids2 o) {
@@ -446,13 +463,14 @@ public abstract class Ids2 implements Comparable<Ids2> {
         }
     }
 
-    static Comparator<Ids2> IdsComparator = new Comparator<Ids2>() {
-        public int compare(Ids2 o1, Ids2 o2) {
-            int diff = o1.size() - o2.size();
-            if (diff != 0) return diff;
-            return o1.compareTo(o2);
-        }
-    };
+    static Comparator<Ids2> IdsComparator =
+            new Comparator<Ids2>() {
+                public int compare(Ids2 o1, Ids2 o2) {
+                    int diff = o1.size() - o2.size();
+                    if (diff != 0) return diff;
+                    return o1.compareTo(o2);
+                }
+            };
     /*
      * U+2FF0 ( ⿰ ) IDEOGRAPHIC DESCRIPTION CHARACTER LEFT TO RIGHT
      * U+2FF1 ( ⿱ ) IDEOGRAPHIC DESCRIPTION CHARACTER ABOVE TO BELOW
@@ -468,12 +486,15 @@ public abstract class Ids2 implements Comparable<Ids2> {
      * U+2FFB ( ⿻ ) IDEOGRAPHIC DESCRIPTION CHARACTER OVERLAID
      */
 
-    static UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter().setOrdering(RadicalStroke2.RadicalStrokeComparator).setCompressRanges(
-        false);
+    static UnicodeSetPrettyPrinter pp =
+            new UnicodeSetPrettyPrinter()
+                    .setOrdering(RadicalStroke2.RadicalStrokeComparator)
+                    .setCompressRanges(false);
 
     public static void main(String[] args) throws IOException {
 
-        TreeSet<String> sortedByRadicalStroke = new TreeSet<String>(RadicalStroke2.RadicalStrokeComparator);
+        TreeSet<String> sortedByRadicalStroke =
+                new TreeSet<String>(RadicalStroke2.RadicalStrokeComparator);
         for (String s : ALLOWED) {
             sortedByRadicalStroke.add(s);
         }
@@ -502,20 +523,24 @@ public abstract class Ids2 implements Comparable<Ids2> {
                 if (radicals) {
                     if (line.startsWith("#")) continue;
                     if (line.startsWith(";")) continue;
-                    // ;Radical Number,Status,Unified Ideo,Hex,Radical,Hex,Name,Conf. Char,Hex,Unified Ideo. has NO
+                    // ;Radical Number,Status,Unified Ideo,Hex,Radical,Hex,Name,Conf.
+                    // Char,Hex,Unified Ideo. has NO
                     // Remaining Strokes in Unihan
                     // 5,Variant,,#VALUE!,⺄,U+2E84,SECOND_THREE
                     // 6,Main,亅,U+4E85,⼅,U+2F05,HOOK,,,𠄌
 
                     String[] split = line.split(",");
-                    // we depend on the file being set up so that the first integer radical has a Main. Detect bad
+                    // we depend on the file being set up so that the first integer radical has a
+                    // Main. Detect bad
                     // cases.
                     double radical = Double.parseDouble(split[0]);
                     int baseRadical = (int) radical;
                     String base = radicalToBase.get(baseRadical);
                     if (base == null) {
                         base = split[2];
-                        if (!"Main".equals(split[1]) || radical != baseRadical || !ALLOWED.containsAll(base)) {
+                        if (!"Main".equals(split[1])
+                                || radical != baseRadical
+                                || !ALLOWED.containsAll(base)) {
                             throw new IllegalArgumentException("Bad radical file");
                         }
                         radicalToBase.put(baseRadical, base);
@@ -564,22 +589,33 @@ public abstract class Ids2 implements Comparable<Ids2> {
             }
         }
 
-        openFile("problems-parsing.txt", ";@ Parsing Problems:\t" + nf.format(hacks.problems.size()));
+        openFile(
+                "problems-parsing.txt",
+                ";@ Parsing Problems:\t" + nf.format(hacks.problems.size()));
         int counter = 0;
         for (String s : hacks.problems.keySet()) {
             out.println(nf.format(++counter) + ")\t" + s + "\t" + hacks.problems.getAll(s));
         }
 
-        openFile("problems-self.txt", ";@ Character maps to self in IDS data:\t" + nf.format(mapsToSelf.size()));
+        openFile(
+                "problems-self.txt",
+                ";@ Character maps to self in IDS data:\t" + nf.format(mapsToSelf.size()));
         out.println(pp.format(mapsToSelf));
 
-        openFile("problems-bad.txt", ";@ Bad Chars in IDS data:\t" + nf.format(hacks.badChars.getTotal()));
+        openFile(
+                "problems-bad.txt",
+                ";@ Bad Chars in IDS data:\t" + nf.format(hacks.badChars.getTotal()));
         out.println(";count ; char ; (hex) ; name\n");
         for (Integer cp : hacks.badChars.getKeysetSortedByKey()) {
             if (cp == 0xFFFF) {
                 out.println(hacks.badChars.getCount(cp) + "\t" + "TRUNCATED");
             } else {
-                out.println(hacks.badChars.getCount(cp) + "\t" + charAndHex(cp) + "\t" + UCharacter.getName(cp));
+                out.println(
+                        hacks.badChars.getCount(cp)
+                                + "\t"
+                                + charAndHex(cp)
+                                + "\t"
+                                + UCharacter.getName(cp));
             }
         }
         TreeSet<String> sortedUCA = new TreeSet<String>(Collator.getInstance(ULocale.ROOT));
@@ -588,8 +624,9 @@ public abstract class Ids2 implements Comparable<Ids2> {
                 sortedUCA.add(s);
             }
         }
-        openFile("problems-missing-components.txt",
-            ";@ Missing Components in IDS data:\t" + nf.format(sortedUCA.size()) + "\n");
+        openFile(
+                "problems-missing-components.txt",
+                ";@ Missing Components in IDS data:\t" + nf.format(sortedUCA.size()) + "\n");
         String tempStr = sortedUCA.toString();
         out.println(tempStr);
 
@@ -619,8 +656,12 @@ public abstract class Ids2 implements Comparable<Ids2> {
             }
         }
         for (Integer value : sameRadical.values()) {
-            out.println(nf.format(++counter) + ")\t"
-                + charAndHex(value) + "\t" + pp.format(new UnicodeSet(sameRadical.getSet(value)).remove(value)));
+            out.println(
+                    nf.format(++counter)
+                            + ")\t"
+                            + charAndHex(value)
+                            + "\t"
+                            + pp.format(new UnicodeSet(sameRadical.getSet(value)).remove(value)));
         }
 
         openFile("minimalization.txt", ";@ Minimized IDS Data");
@@ -632,8 +673,8 @@ public abstract class Ids2 implements Comparable<Ids2> {
             Integer cp = reverseData2.get(ids);
             String old = ids.toString();
             if (ids.minimize(reverseData2)) {
-                out.println(nf.format(++counter) + ")\t"
-                    + charAndHex(cp) + "\t" + ids + "\t" + old);
+                out.println(
+                        nf.format(++counter) + ")\t" + charAndHex(cp) + "\t" + ids + "\t" + old);
             }
         }
 
@@ -643,7 +684,8 @@ public abstract class Ids2 implements Comparable<Ids2> {
         // hacks.hackStringSample.get(s));
         // }
 
-        Relation<Ids2, Integer> reverseData = Relation.of(new HashMap<Ids2, Set<Integer>>(), LinkedHashSet.class);
+        Relation<Ids2, Integer> reverseData =
+                Relation.of(new HashMap<Ids2, Set<Integer>>(), LinkedHashSet.class);
         UnicodeMap<UnicodeSet> charsToContainingChars = new UnicodeMap<UnicodeSet>();
 
         // get other data
@@ -655,7 +697,7 @@ public abstract class Ids2 implements Comparable<Ids2> {
             value.addChars(charsInIds.clear(), null);
             charsInIds.remove(key);
 
-            for (UnicodeSetIterator it = new UnicodeSetIterator(charsInIds); it.next();) {
+            for (UnicodeSetIterator it = new UnicodeSetIterator(charsInIds); it.next(); ) {
                 UnicodeSet containingSet = charsToContainingChars.get(it.codepoint);
                 if (containingSet == null) {
                     charsToContainingChars.put(it.codepoint, containingSet = new UnicodeSet());
@@ -674,13 +716,13 @@ public abstract class Ids2 implements Comparable<Ids2> {
             for (int i : set) {
                 uset.add(i);
             }
-            out.println(nf.format(++counter) + ")\t"
-                + pp.format(uset) + "\t" + ids);
+            out.println(nf.format(++counter) + ")\t" + pp.format(uset) + "\t" + ids);
         }
 
         openFile("chars-to-ids.txt", ";@ Characters to IDS");
         out.println("; Sorted by total-strokes, then radical (from Unihan data)");
-        out.println(";line-number ; total-strokes/radical ; char ; (hex) ; ids-contains-radical? ; ids");
+        out.println(
+                ";line-number ; total-strokes/radical ; char ; (hex) ; ids-contains-radical? ; ids");
         counter = 0;
 
         UnicodeSet missingInfo = new UnicodeSet();
@@ -704,19 +746,28 @@ public abstract class Ids2 implements Comparable<Ids2> {
             // if (ids instanceof Leaf && ids.codepoint == containingChar.codePointAt(0)) {
             // continue;
             // }
-            out.println(nf.format(++counter) + ")\t"
-                + strokes + UTF16.valueOf(radical)
-                + "\t" + charAndHex(containingChar)
-                + "\t" + (ids != null && ids.contains(radical, data) ? "" : "N")
-                + "\t" + ids);
+            out.println(
+                    nf.format(++counter)
+                            + ")\t"
+                            + strokes
+                            + UTF16.valueOf(radical)
+                            + "\t"
+                            + charAndHex(containingChar)
+                            + "\t"
+                            + (ids != null && ids.contains(radical, data) ? "" : "N")
+                            + "\t"
+                            + ids);
         }
 
-        openFile("chars-without-ids.txt", ";@ Characters without Ids data\t" + nf.format(missingInfo.size()));
+        openFile(
+                "chars-without-ids.txt",
+                ";@ Characters without Ids data\t" + nf.format(missingInfo.size()));
         out.println(";\tcount ; total-strokes/radical ; set-without-ids\n");
         counter = 0;
         oldStrokes = 0;
         oldRadical = 0;
-        TreeSet<String> sortedByRadicalStroke2 = new TreeSet<String>(RadicalStroke2.RadicalStrokeComparator);
+        TreeSet<String> sortedByRadicalStroke2 =
+                new TreeSet<String>(RadicalStroke2.RadicalStrokeComparator);
         for (String s : missingInfo) {
             sortedByRadicalStroke2.add(s);
         }
@@ -731,8 +782,13 @@ public abstract class Ids2 implements Comparable<Ids2> {
             if (strokes == null) strokes = 0;
             if (radical != oldRadical || strokes != oldStrokes) {
                 if (temp.size() != 0) {
-                    out.println(nf.format(++counter) + ")\t" + oldStrokes + UTF16.valueOf(oldRadical) + "\t"
-                        + pp.format(temp));
+                    out.println(
+                            nf.format(++counter)
+                                    + ")\t"
+                                    + oldStrokes
+                                    + UTF16.valueOf(oldRadical)
+                                    + "\t"
+                                    + pp.format(temp));
                 }
                 oldRadical = radical;
                 oldStrokes = strokes;
@@ -743,7 +799,13 @@ public abstract class Ids2 implements Comparable<Ids2> {
             // continue;
             // }
         }
-        out.println(nf.format(++counter) + ")\t" + oldStrokes + UTF16.valueOf(oldRadical) + "\t" + pp.format(temp));
+        out.println(
+                nf.format(++counter)
+                        + ")\t"
+                        + oldStrokes
+                        + UTF16.valueOf(oldRadical)
+                        + "\t"
+                        + pp.format(temp));
 
         openFile("expanded-ids.txt", ";@ Characters to IDS-Expansion");
         out.println("; Shows the recursive expansion of IDS, if different");
@@ -760,15 +822,19 @@ public abstract class Ids2 implements Comparable<Ids2> {
             String idsSimple = ids.toString();
             String idsString = ids.toString(data, true, 20);
             if (!idsSimple.equals(idsString)) {
-                out.println(nf.format(++counter) + ")\t"
-                    + charAndHex(containingChar)
-                    + "\t" + idsSimple
-                    + "\t" + idsString
-                    );
+                out.println(
+                        nf.format(++counter)
+                                + ")\t"
+                                + charAndHex(containingChar)
+                                + "\t"
+                                + idsSimple
+                                + "\t"
+                                + idsString);
             }
         }
-        openFile("chars-in-expanded-ids.txt",
-            ";@ Characters present in expanded IDS:\t" + nf.format(leafCounter.counter.size()));
+        openFile(
+                "chars-in-expanded-ids.txt",
+                ";@ Characters present in expanded IDS:\t" + nf.format(leafCounter.counter.size()));
         UnicodeSet allowedExpanded = new UnicodeSet();
         UnicodeSet radicalsAllowed = new UnicodeSet();
         for (Integer cp : leafCounter.counter.getKeysetSortedByCount(false)) {
@@ -798,8 +864,12 @@ public abstract class Ids2 implements Comparable<Ids2> {
                 continue;
             }
             inOtherChar.add(containedChar);
-            out.println(nf.format(++counter) + ")\t"
-                + charAndHex(containedChar) + "\t" + pp.format(keyset));
+            out.println(
+                    nf.format(++counter)
+                            + ")\t"
+                            + charAndHex(containedChar)
+                            + "\t"
+                            + pp.format(keyset));
         }
 
         int limitHack = 0xE000 + hacks.hackStrings.size();
@@ -808,11 +878,17 @@ public abstract class Ids2 implements Comparable<Ids2> {
             if (keyset == null) {
                 continue;
             }
-            out.println(nf.format(++counter) + ")\t"
-                + charAndHex(containedChar) + "\t" + pp.format(keyset));
+            out.println(
+                    nf.format(++counter)
+                            + ")\t"
+                            + charAndHex(containedChar)
+                            + "\t"
+                            + pp.format(keyset));
         }
 
-        openFile("chars-in-ids.txt", ";@ Characters present in some IDS:\t" + nf.format(inOtherChar.size()));
+        openFile(
+                "chars-in-ids.txt",
+                ";@ Characters present in some IDS:\t" + nf.format(inOtherChar.size()));
         out.println(pp.format(inOtherChar));
 
         out.close();
@@ -836,11 +912,13 @@ public abstract class Ids2 implements Comparable<Ids2> {
 
     private static String charAndHex(int codepoint) {
         String hack = hacks.getHackString(codepoint);
-        return UTF16.valueOf(codepoint) + "\t(" + (hack == null ? Utility.hex(codepoint) : hack) + ")";
+        return UTF16.valueOf(codepoint)
+                + "\t("
+                + (hack == null ? Utility.hex(codepoint) : hack)
+                + ")";
     }
 
     private static String charAndHex(String codepoint) {
         return codepoint + "\t(" + Utility.hex(codepoint) + ")";
     }
-
 }

@@ -1,15 +1,13 @@
 package org.unicode.propstest;
 
+import com.ibm.icu.text.UnicodeSet;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.unicode.props.UnicodeProperty;
+import org.unicode.jsp.MySymbolTable;
 import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.unittest.TestFmwkMinusMinus;
-
-import org.unicode.jsp.MySymbolTable;
-
-import com.ibm.icu.text.UnicodeSet;
 
 public class TestXUnicodeSet extends TestFmwkMinusMinus {
     private static final UnicodeProperty name;
@@ -20,11 +18,10 @@ public class TestXUnicodeSet extends TestFmwkMinusMinus {
         name = IUP.getProperty("name");
         age = IUP.getProperty("age");
         for (String prop : IUP.getAvailableNames()) {
-            //System.out.println(prop);
+            // System.out.println(prop);
             UnicodeProperty property = IUP.getProperty(prop);
         }
     }
-
 
     @Disabled("Broken")
     @Test
@@ -38,10 +35,12 @@ public class TestXUnicodeSet extends TestFmwkMinusMinus {
             assertNotEquals("", 0, v70.size());
             assertNotEquals("", 0, v63.size());
             //        for (String s : new UnicodeSet("[[:age=7.0:]-[:age=6.3:]]")) {
-            //            System.out.println(Utility.hex(s) + "\t" + name.getValue(s.codePointAt(0)));
+            //            System.out.println(Utility.hex(s) + "\t" +
+            // name.getValue(s.codePointAt(0)));
             //        }
             //        for (String s : new UnicodeSet("[:name=/MARK/:]")) {
-            //            System.out.println(Utility.hex(s) + "\t" + age.getValue(s.codePointAt(0)) + "\t" + name.getValue(s.codePointAt(0)));
+            //            System.out.println(Utility.hex(s) + "\t" + age.getValue(s.codePointAt(0))
+            // + "\t" + name.getValue(s.codePointAt(0)));
             //        }
         } finally {
             MySymbolTable.setDefaultXSymbolTable(null);

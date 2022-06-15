@@ -1,5 +1,3 @@
 package org.unicode.unittest;
 
-public @interface Rule {
-
-}
+public @interface Rule {}

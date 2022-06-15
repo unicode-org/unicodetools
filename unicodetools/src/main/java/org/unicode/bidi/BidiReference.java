@@ -14,58 +14,55 @@ import java.util.Arrays;
  * (C) Copyright Google Inc. 2013, All Rights Reserved
  *
  * Distributed under the Terms of Use in http://www.unicode.org/copyright.html.
-*/
+ */
 
 /**
  * Reference implementation of the Unicode Bidirectional Algorithm (UAX #9).
  *
- * <p>
- * This implementation is not optimized for performance. It is intended as a
- * reference implementation that closely follows the specification of the
- * Bidirectional Algorithm in The Unicode Standard version 6.3.
- * <p>
- * <b>Input:</b><br>
- * There are two levels of input to the algorithm, since clients may prefer to
- * supply some information from out-of-band sources rather than relying on the
- * default behavior.
+ * <p>This implementation is not optimized for performance. It is intended as a reference
+ * implementation that closely follows the specification of the Bidirectional Algorithm in The
+ * Unicode Standard version 6.3.
+ *
+ * <p><b>Input:</b><br>
+ * There are two levels of input to the algorithm, since clients may prefer to supply some
+ * information from out-of-band sources rather than relying on the default behavior.
+ *
  * <ol>
- * <li>Bidi class array
- * <li>Bidi class array, with externally supplied base line direction
+ *   <li>Bidi class array
+ *   <li>Bidi class array, with externally supplied base line direction
  * </ol>
- * <p>
- * <b>Output:</b><br>
- * Output is separated into several stages as well, to better enable clients to
- * evaluate various aspects of implementation conformance.
+ *
+ * <p><b>Output:</b><br>
+ * Output is separated into several stages as well, to better enable clients to evaluate various
+ * aspects of implementation conformance.
+ *
  * <ol>
- * <li>levels array over entire paragraph
- * <li>reordering array over entire paragraph
- * <li>levels array over line
- * <li>reordering array over line
+ *   <li>levels array over entire paragraph
+ *   <li>reordering array over entire paragraph
+ *   <li>levels array over line
+ *   <li>reordering array over line
  * </ol>
- * Note that for conformance to the Unicode Bidirectional Algorithm,
- * implementations are only required to generate correct reordering and
- * character directionality (odd or even levels) over a line. Generating
- * identical level arrays over a line is not required. Bidi explicit format
- * codes (LRE, RLE, LRO, RLO, PDF) and BN can be assigned arbitrary levels and
- * positions as long as the rest of the input is properly reordered.
- * <p>
- * As the algorithm is defined to operate on a single paragraph at a time, this
- * implementation is written to handle single paragraphs. Thus rule P1 is
- * presumed by this implementation-- the data provided to the implementation is
- * assumed to be a single paragraph, and either contains no 'B' codes, or a
- * single 'B' code at the end of the input. 'B' is allowed as input to
- * illustrate how the algorithm assigns it a level.
- * <p>
- * Also note that rules L3 and L4 depend on the rendering engine that uses the
- * result of the bidi algorithm. This implementation assumes that the rendering
- * engine expects combining marks in visual order (e.g. to the left of their
- * base character in RTL runs) and that it adjusts the glyphs used to render
- * mirrored characters that are in RTL runs so that they render appropriately.
+ *
+ * Note that for conformance to the Unicode Bidirectional Algorithm, implementations are only
+ * required to generate correct reordering and character directionality (odd or even levels) over a
+ * line. Generating identical level arrays over a line is not required. Bidi explicit format codes
+ * (LRE, RLE, LRO, RLO, PDF) and BN can be assigned arbitrary levels and positions as long as the
+ * rest of the input is properly reordered.
+ *
+ * <p>As the algorithm is defined to operate on a single paragraph at a time, this implementation is
+ * written to handle single paragraphs. Thus rule P1 is presumed by this implementation-- the data
+ * provided to the implementation is assumed to be a single paragraph, and either contains no 'B'
+ * codes, or a single 'B' code at the end of the input. 'B' is allowed as input to illustrate how
+ * the algorithm assigns it a level.
+ *
+ * <p>Also note that rules L3 and L4 depend on the rendering engine that uses the result of the bidi
+ * algorithm. This implementation assumes that the rendering engine expects combining marks in
+ * visual order (e.g. to the left of their base character in RTL runs) and that it adjusts the
+ * glyphs used to render mirrored characters that are in RTL runs so that they render appropriately.
  *
  * @author Doug Felt
  * @author Roozbeh Pournader
  */
-
 public final class BidiReference {
     private final byte[] initialTypes;
     private byte paragraphEmbeddingLevel = -1; // undefined
@@ -168,29 +165,8 @@ public final class BidiReference {
 
     /** Shorthand names of bidi type values, for error reporting. */
     public static final String[] typenames = {
-            "L",
-            "LRE",
-            "LRO",
-            "R",
-            "AL",
-            "RLE",
-            "RLO",
-            "PDF",
-            "EN",
-            "ES",
-            "ET",
-            "AN",
-            "CS",
-            "NSM",
-            "BN",
-            "B",
-            "S",
-            "WS",
-            "ON",
-            "LRI",
-            "RLI",
-            "FSI",
-            "PDI"
+        "L", "LRE", "LRO", "R", "AL", "RLE", "RLO", "PDF", "EN", "ES", "ET", "AN", "CS", "NSM",
+        "BN", "B", "S", "WS", "ON", "LRI", "RLI", "FSI", "PDI"
     };
 
     //
@@ -198,12 +174,10 @@ public final class BidiReference {
     //
 
     /**
-     * Initialize using an array of direction types. Types range from TYPE_MIN
-     * to TYPE_MAX inclusive and represent the direction codes of the characters
-     * in the text.
+     * Initialize using an array of direction types. Types range from TYPE_MIN to TYPE_MAX inclusive
+     * and represent the direction codes of the characters in the text.
      *
-     * @param types
-     *            the types array
+     * @param types the types array
      */
     public BidiReference(byte[] types) {
         validateTypes(types);
@@ -214,16 +188,14 @@ public final class BidiReference {
     }
 
     /**
-     * Initialize using an array of direction types and an externally supplied
-     * paragraph embedding level. The embedding level may be -1, 0, or 1.
-     * <p>
-     * -1 means to apply the default algorithm (rules P2 and P3), 0 is for LTR
-     * paragraphs, and 1 is for RTL paragraphs.
+     * Initialize using an array of direction types and an externally supplied paragraph embedding
+     * level. The embedding level may be -1, 0, or 1.
      *
-     * @param types
-     *            the types array
-     * @param paragraphEmbeddingLevel
-     *            the externally supplied paragraph embedding level.
+     * <p>-1 means to apply the default algorithm (rules P2 and P3), 0 is for LTR paragraphs, and 1
+     * is for RTL paragraphs.
+     *
+     * @param types the types array
+     * @param paragraphEmbeddingLevel the externally supplied paragraph embedding level.
      */
     public BidiReference(byte[] types, byte paragraphEmbeddingLevel) {
         validateTypes(types);
@@ -236,8 +208,8 @@ public final class BidiReference {
     }
 
     /**
-     * The algorithm. Does not include line-based processing (Rules L1, L2).
-     * These are applied later in the line-based phase of the algorithm.
+     * The algorithm. Does not include line-based processing (Rules L1, L2). These are applied later
+     * in the line-based phase of the algorithm.
      */
     private void runAlgorithm() {
         textLength = initialTypes.length;
@@ -302,19 +274,18 @@ public final class BidiReference {
 
     /**
      * Determine the matching PDI for each isolate initiator and vice versa.
-     * <p>
-     * Definition BD9.
-     * <p>
-     * At the end of this function:
+     *
+     * <p>Definition BD9.
+     *
+     * <p>At the end of this function:
+     *
      * <ul>
-     * <li>The member variable matchingPDI is set to point to the index of the
-     * matching PDI character for each isolate initiator character. If there is
-     * no matching PDI, it is set to the length of the input text. For other
-     * characters, it is set to -1.
-     * <li>The member variable matchingIsolateInitiator is set to point to the
-     * index of the matching isolate initiator character for each PDI character.
-     * If there is no matching isolate initiator, or the character is not a PDI,
-     * it is set to -1.
+     *   <li>The member variable matchingPDI is set to point to the index of the matching PDI
+     *       character for each isolate initiator character. If there is no matching PDI, it is set
+     *       to the length of the input text. For other characters, it is set to -1.
+     *   <li>The member variable matchingIsolateInitiator is set to point to the index of the
+     *       matching isolate initiator character for each PDI character. If there is no matching
+     *       isolate initiator, or the character is not a PDI, it is set to -1.
      * </ul>
      */
     private void determineMatchingIsolates() {
@@ -352,16 +323,12 @@ public final class BidiReference {
     }
 
     /**
-     * Determines the paragraph level based on rules P2, P3. This is also used
-     * in rule X5c to find if an FSI should resolve to LRI or RLI.
+     * Determines the paragraph level based on rules P2, P3. This is also used in rule X5c to find
+     * if an FSI should resolve to LRI or RLI.
      *
-     * @param startIndex
-     *            the index of the beginning of the substring
-     * @param endIndex
-     *            the index of the character after the end of the string
-     *
-     * @return the resolved paragraph direction of the substring limited by
-     *         startIndex and endIndex
+     * @param startIndex the index of the beginning of the substring
+     * @param endIndex the index of the character after the end of the string
+     * @return the resolved paragraph direction of the substring limited by startIndex and endIndex
      */
     private byte determineParagraphEmbeddingLevel(int startIndex, int endIndex) {
         byte strongType = -1; // unknown
@@ -431,9 +398,7 @@ public final class BidiReference {
         }
     }
 
-    /**
-     * Determine explicit levels using rules X1 - X8
-     */
+    /** Determine explicit levels using rules X1 - X8 */
     private void determineExplicitEmbeddingLevels() {
         directionalStatusStack stack = new directionalStatusStack();
         int overflowIsolateCount, overflowEmbeddingCount, validIsolateCount;
@@ -449,114 +414,113 @@ public final class BidiReference {
 
             // Rules X2, X3, X4, X5, X5a, X5b, X5c
             switch (t) {
-            case RLE:
-            case LRE:
-            case RLO:
-            case LRO:
-            case RLI:
-            case LRI:
-            case FSI:
-                boolean isIsolate = (t == RLI || t == LRI || t == FSI);
-                boolean isRTL = (t == RLE || t == RLO || t == RLI);
-                // override if this is an FSI that resolves to RLI
-                if (t == FSI) {
-                    isRTL = (determineParagraphEmbeddingLevel(i + 1, matchingPDI[i]) == 1);
-                }
-
-                if (isIsolate) {
-                    resultLevels[i] = stack.lastEmbeddingLevel();
-                }
-
-                byte newLevel;
-                if (isRTL) {
-                    // least greater odd
-                    newLevel = (byte) ((stack.lastEmbeddingLevel() + 1) | 1);
-                } else {
-                    // least greater even
-                    newLevel = (byte) ((stack.lastEmbeddingLevel() + 2) & ~1);
-                }
-
-                if (newLevel <= MAX_DEPTH && overflowIsolateCount == 0 && overflowEmbeddingCount == 0) {
-                    if (isIsolate) {
-                        ++validIsolateCount;
+                case RLE:
+                case LRE:
+                case RLO:
+                case LRO:
+                case RLI:
+                case LRI:
+                case FSI:
+                    boolean isIsolate = (t == RLI || t == LRI || t == FSI);
+                    boolean isRTL = (t == RLE || t == RLO || t == RLI);
+                    // override if this is an FSI that resolves to RLI
+                    if (t == FSI) {
+                        isRTL = (determineParagraphEmbeddingLevel(i + 1, matchingPDI[i]) == 1);
                     }
-                    // Push new embedding level, override status, and isolated
-                    // status.
-                    // No check for valid stack counter, since the level check
-                    // suffices.
-                    stack.push(
-                            newLevel,
-                            t == LRO ? L : t == RLO ? R : ON,
-                            isIsolate);
 
-                    // Not really part of the spec
-                    if (!isIsolate) {
-                        resultLevels[i] = newLevel;
-                    }
-                } else {
-                    // This is an invalid explicit formatting character,
-                    // so apply the "Otherwise" part of rules X2-X5b.
                     if (isIsolate) {
-                        ++overflowIsolateCount;
-                    } else { // !isIsolate
-                        if (overflowIsolateCount == 0) {
-                            ++overflowEmbeddingCount;
+                        resultLevels[i] = stack.lastEmbeddingLevel();
+                    }
+
+                    byte newLevel;
+                    if (isRTL) {
+                        // least greater odd
+                        newLevel = (byte) ((stack.lastEmbeddingLevel() + 1) | 1);
+                    } else {
+                        // least greater even
+                        newLevel = (byte) ((stack.lastEmbeddingLevel() + 2) & ~1);
+                    }
+
+                    if (newLevel <= MAX_DEPTH
+                            && overflowIsolateCount == 0
+                            && overflowEmbeddingCount == 0) {
+                        if (isIsolate) {
+                            ++validIsolateCount;
+                        }
+                        // Push new embedding level, override status, and isolated
+                        // status.
+                        // No check for valid stack counter, since the level check
+                        // suffices.
+                        stack.push(newLevel, t == LRO ? L : t == RLO ? R : ON, isIsolate);
+
+                        // Not really part of the spec
+                        if (!isIsolate) {
+                            resultLevels[i] = newLevel;
+                        }
+                    } else {
+                        // This is an invalid explicit formatting character,
+                        // so apply the "Otherwise" part of rules X2-X5b.
+                        if (isIsolate) {
+                            ++overflowIsolateCount;
+                        } else { // !isIsolate
+                            if (overflowIsolateCount == 0) {
+                                ++overflowEmbeddingCount;
+                            }
                         }
                     }
-                }
-                break;
+                    break;
 
-            // Rule X6a
-            case PDI:
-                if (overflowIsolateCount > 0) {
-                    --overflowIsolateCount;
-                } else if (validIsolateCount == 0) {
-                    // do nothing
-                } else {
-                    overflowEmbeddingCount = 0;
-                    while (!stack.lastDirectionalIsolateStatus()) {
+                    // Rule X6a
+                case PDI:
+                    if (overflowIsolateCount > 0) {
+                        --overflowIsolateCount;
+                    } else if (validIsolateCount == 0) {
+                        // do nothing
+                    } else {
+                        overflowEmbeddingCount = 0;
+                        while (!stack.lastDirectionalIsolateStatus()) {
+                            stack.pop();
+                        }
                         stack.pop();
+                        --validIsolateCount;
                     }
-                    stack.pop();
-                    --validIsolateCount;
-                }
-                resultLevels[i] = stack.lastEmbeddingLevel();
-                break;
+                    resultLevels[i] = stack.lastEmbeddingLevel();
+                    break;
 
-            // Rule X7
-            case PDF:
-                // Not really part of the spec
-                resultLevels[i] = stack.lastEmbeddingLevel();
+                    // Rule X7
+                case PDF:
+                    // Not really part of the spec
+                    resultLevels[i] = stack.lastEmbeddingLevel();
 
-                if (overflowIsolateCount > 0) {
-                    // do nothing
-                } else if (overflowEmbeddingCount > 0) {
-                    --overflowEmbeddingCount;
-                } else if (!stack.lastDirectionalIsolateStatus() && stack.depth() >= 2) {
-                    stack.pop();
-                } else {
-                    // do nothing
-                }
-                break;
+                    if (overflowIsolateCount > 0) {
+                        // do nothing
+                    } else if (overflowEmbeddingCount > 0) {
+                        --overflowEmbeddingCount;
+                    } else if (!stack.lastDirectionalIsolateStatus() && stack.depth() >= 2) {
+                        stack.pop();
+                    } else {
+                        // do nothing
+                    }
+                    break;
 
-            case B:
-                // Rule X8.
+                case B:
+                    // Rule X8.
 
-                // These values are reset for clarity, in this implementation B
-                // can only occur as the last code in the array.
-                stack.empty();
-                overflowIsolateCount = 0;
-                overflowEmbeddingCount = 0;
-                validIsolateCount = 0;
-                resultLevels[i] = paragraphEmbeddingLevel;
-                break;
+                    // These values are reset for clarity, in this implementation B
+                    // can only occur as the last code in the array.
+                    stack.empty();
+                    overflowIsolateCount = 0;
+                    overflowEmbeddingCount = 0;
+                    validIsolateCount = 0;
+                    resultLevels[i] = paragraphEmbeddingLevel;
+                    break;
 
-            default:
-                resultLevels[i] = stack.lastEmbeddingLevel();
-                if (stack.lastDirectionalOverrideStatus() != ON) {
-                    resultTypes[i] = stack.lastDirectionalOverrideStatus();
-                }
-                break;
+                default:
+                    resultLevels[i] = stack.lastEmbeddingLevel();
+                    if (stack.lastDirectionalOverrideStatus() != ON) {
+                        resultTypes[i] = stack.lastDirectionalOverrideStatus();
+                    }
+                    break;
             }
         }
     }
@@ -565,9 +529,9 @@ public final class BidiReference {
         private final int[] indexes; // indexes to the original string
         private final byte[] types; // type of each character using the index
         private byte[] resolvedLevels; // resolved levels after application of
-                                       // rules
+        // rules
         private final int length; // length of isolating run sequence in
-                                  // characters
+        // characters
         private final byte level;
         private final byte sos, eos;
 
@@ -595,8 +559,8 @@ public final class BidiReference {
                 succLevel = paragraphEmbeddingLevel;
             } else {
                 int limit = indexes[length - 1] + 1; // the first character
-                                                     // after the end of
-                                                     // run sequence
+                // after the end of
+                // run sequence
                 while (limit < textLength && isRemovedByX9(initialTypes[limit])) {
                     ++limit;
                 }
@@ -608,13 +572,15 @@ public final class BidiReference {
         /**
          * 3) resolving weak types Rules W1-W7.
          *
-         * Note that some weak types (EN, AN) remain after this processing is
-         * complete.
+         * <p>Note that some weak types (EN, AN) remain after this processing is complete.
          */
         public void resolveWeakTypes() {
 
             // on entry, only these types remain
-            assertOnly(new byte[] { L, R, AL, EN, ES, ET, AN, CS, B, S, WS, ON, NSM, LRI, RLI, FSI, PDI });
+            assertOnly(
+                    new byte[] {
+                        L, R, AL, EN, ES, ET, AN, CS, B, S, WS, ON, NSM, LRI, RLI, FSI, PDI
+                    });
 
             // Rule W1.
             // Changes all NSMs.
@@ -684,7 +650,7 @@ public final class BidiReference {
                 if (types[i] == ET) {
                     // locate end of sequence
                     int runstart = i;
-                    int runlimit = findRunLimit(runstart, length, new byte[] { ET });
+                    int runlimit = findRunLimit(runstart, length, new byte[] {ET});
 
                     // check values at ends of sequence
                     byte t = runstart == 0 ? sos : types[runstart - 1];
@@ -729,20 +695,23 @@ public final class BidiReference {
             }
         }
 
-        /**
-         * 6) resolving neutral types Rules N1-N2.
-         */
+        /** 6) resolving neutral types Rules N1-N2. */
         public void resolveNeutralTypes() {
 
             // on entry, only these types can be in resultTypes
-            assertOnly(new byte[] { L, R, EN, AN, B, S, WS, ON, RLI, LRI, FSI, PDI });
+            assertOnly(new byte[] {L, R, EN, AN, B, S, WS, ON, RLI, LRI, FSI, PDI});
 
             for (int i = 0; i < length; ++i) {
                 byte t = types[i];
-                if (t == WS || t == ON || t == B || t == S || t == RLI || t == LRI || t == FSI || t == PDI) {
+                if (t == WS || t == ON || t == B || t == S || t == RLI || t == LRI || t == FSI
+                        || t == PDI) {
                     // find bounds of run of neutrals
                     int runstart = i;
-                    int runlimit = findRunLimit(runstart, length, new byte[] { B, S, WS, ON, RLI, LRI, FSI, PDI });
+                    int runlimit =
+                            findRunLimit(
+                                    runstart,
+                                    length,
+                                    new byte[] {B, S, WS, ON, RLI, LRI, FSI, PDI});
 
                     // determine effective types at ends of run
                     byte leadingType;
@@ -787,13 +756,11 @@ public final class BidiReference {
             }
         }
 
-        /**
-         * 7) resolving implicit embedding levels Rules I1, I2.
-         */
+        /** 7) resolving implicit embedding levels Rules I1, I2. */
         public void resolveImplicitLevels() {
 
             // on entry, only these types can be in resultTypes
-            assertOnly(new byte[] { L, R, EN, AN });
+            assertOnly(new byte[] {L, R, EN, AN});
 
             resolvedLevels = new byte[length];
             setLevels(resolvedLevels, 0, length, level);
@@ -836,12 +803,12 @@ public final class BidiReference {
         }
 
         /**
-         * Return the limit of the run consisting only of the types in validSet
-         * starting at index. This checks the value at index, and will return
-         * index if that value is not in validSet.
+         * Return the limit of the run consisting only of the types in validSet starting at index.
+         * This checks the value at index, and will return index if that value is not in validSet.
          */
         private int findRunLimit(int index, int limit, byte[] validSet) {
-            loop: while (index < limit) {
+            loop:
+            while (index < limit) {
                 byte t = types[index];
                 for (int i = 0; i < validSet.length; ++i) {
                     if (t == validSet[i]) {
@@ -855,21 +822,17 @@ public final class BidiReference {
             return limit;
         }
 
-        /**
-         * Set types from start up to (but not including) limit to newType.
-         */
+        /** Set types from start up to (but not including) limit to newType. */
         private void setTypes(int start, int limit, byte newType) {
             for (int i = start; i < limit; ++i) {
                 types[i] = newType;
             }
         }
 
-        /**
-         * Algorithm validation. Assert that all values in types are in the
-         * provided set.
-         */
+        /** Algorithm validation. Assert that all values in types are in the provided set. */
         private void assertOnly(byte[] codes) {
-            loop: for (int i = 0; i < length; ++i) {
+            loop:
+            for (int i = 0; i < length; ++i) {
                 byte t = types[i];
                 for (int j = 0; j < codes.length; ++j) {
                     if (t == codes[j]) {
@@ -877,7 +840,11 @@ public final class BidiReference {
                     }
                 }
 
-                throw new Error("invalid bidi code " + typenames[t] + " present in assertOnly at position " + indexes[i]);
+                throw new Error(
+                        "invalid bidi code "
+                                + typenames[t]
+                                + " present in assertOnly at position "
+                                + indexes[i]);
             }
         }
     }
@@ -905,26 +872,33 @@ public final class BidiReference {
         int[] currentRunSequence = new int[textLength];
         for (int i = 0; i < levelRuns.length; ++i) {
             int firstCharacter = levelRuns[i][0];
-            if (initialTypes[firstCharacter] != PDI || matchingIsolateInitiator[firstCharacter] == -1) {
+            if (initialTypes[firstCharacter] != PDI
+                    || matchingIsolateInitiator[firstCharacter] == -1) {
                 int currentRunSequenceLength = 0;
                 int run = i;
                 do {
                     // Copy this level run into currentRunSequence
-                    System.arraycopy(levelRuns[run], 0, currentRunSequence, currentRunSequenceLength, levelRuns[run].length);
+                    System.arraycopy(
+                            levelRuns[run],
+                            0,
+                            currentRunSequence,
+                            currentRunSequenceLength,
+                            levelRuns[run].length);
                     currentRunSequenceLength += levelRuns[run].length;
 
                     int lastCharacter = currentRunSequence[currentRunSequenceLength - 1];
                     byte lastType = initialTypes[lastCharacter];
-                    if ((lastType == LRI || lastType == RLI || lastType == FSI) &&
-                            matchingPDI[lastCharacter] != textLength) {
+                    if ((lastType == LRI || lastType == RLI || lastType == FSI)
+                            && matchingPDI[lastCharacter] != textLength) {
                         run = runForCharacter[matchingPDI[lastCharacter]];
                     } else {
                         break;
                     }
                 } while (true);
 
-                sequences[numSequences] = new IsolatingRunSequence(
-                        Arrays.copyOf(currentRunSequence, currentRunSequenceLength));
+                sequences[numSequences] =
+                        new IsolatingRunSequence(
+                                Arrays.copyOf(currentRunSequence, currentRunSequenceLength));
                 ++numSequences;
             }
         }
@@ -932,12 +906,11 @@ public final class BidiReference {
     }
 
     /**
-     * Determines the level runs. Rule X9 will be applied in determining the
-     * runs, in the way that makes sure the characters that are supposed to be
-     * removed are not included in the runs.
+     * Determines the level runs. Rule X9 will be applied in determining the runs, in the way that
+     * makes sure the characters that are supposed to be removed are not included in the runs.
      *
-     * @return an array of level runs. Each level run is described as an array
-     *         of indexes into the input string.
+     * @return an array of level runs. Each level run is described as an array of indexes into the
+     *     input string.
      */
     private int[][] determineLevelRuns() {
         // temporary array to hold the run
@@ -951,7 +924,7 @@ public final class BidiReference {
         for (int i = 0; i < textLength; ++i) {
             if (!isRemovedByX9(initialTypes[i])) {
                 if (resultLevels[i] != currentLevel) { // we just encountered a
-                                                       // new run
+                    // new run
                     // Wrap up last run
                     if (currentLevel >= 0) { // only wrap it up if there was a run
                         int[] run = Arrays.copyOf(temporaryRun, runLength);
@@ -977,15 +950,12 @@ public final class BidiReference {
     }
 
     /**
-     * Assign level information to characters removed by rule X9. This is for
-     * ease of relating the level information to the original input data. Note
-     * that the levels assigned to these codes are arbitrary, they're chosen so
-     * as to avoid breaking level runs.
+     * Assign level information to characters removed by rule X9. This is for ease of relating the
+     * level information to the original input data. Note that the levels assigned to these codes
+     * are arbitrary, they're chosen so as to avoid breaking level runs.
      *
-     * @param textLength
-     *            the length of the data after compression
-     * @return the length of the data (original length of types array supplied
-     *         to constructor)
+     * @param textLength the length of the data after compression
+     * @return the length of the data (original length of types array supplied to constructor)
      */
     private int assignLevelsToCharactersRemovedByX9() {
         for (int i = 0; i < initialTypes.length; ++i) {
@@ -1022,16 +992,15 @@ public final class BidiReference {
     /**
      * Return levels array breaking lines at offsets in linebreaks. <br>
      * Rule L1.
-     * <p>
-     * The returned levels array contains the resolved level for each bidi code
-     * passed to the constructor.
-     * <p>
-     * The linebreaks array must include at least one value. The values must be
-     * in strictly increasing order (no duplicates) between 1 and the length of
-     * the text, inclusive. The last value must be the length of the text.
      *
-     * @param linebreaks
-     *            the offsets at which to break the paragraph
+     * <p>The returned levels array contains the resolved level for each bidi code passed to the
+     * constructor.
+     *
+     * <p>The linebreaks array must include at least one value. The values must be in strictly
+     * increasing order (no duplicates) between 1 and the length of the text, inclusive. The last
+     * value must be the length of the text.
+     *
+     * @param linebreaks the offsets at which to break the paragraph
      * @return the resolved levels of the text
      */
     public byte[] getLevels(int[] linebreaks) {
@@ -1050,7 +1019,7 @@ public final class BidiReference {
         validateLineBreaks(linebreaks, textLength);
 
         byte[] result = resultLevels.clone(); // will be returned to
-                                              // caller
+        // caller
 
         // don't worry about linebreaks since if there is a break within
         // a series of WS values preceding S, the linebreak itself
@@ -1064,7 +1033,7 @@ public final class BidiReference {
                 // Rule L1, clause three.
                 for (int j = i - 1; j >= 0; --j) {
                     if (isWhitespace(initialTypes[j])) { // including format
-                                                         // codes
+                        // codes
                         result[j] = paragraphEmbeddingLevel;
                     } else {
                         break;
@@ -1093,25 +1062,23 @@ public final class BidiReference {
 
     /**
      * Return reordering array breaking lines at offsets in linebreaks.
-     * <p>
-     * The reordering array maps from a visual index to a logical index. Lines
-     * are concatenated from left to right. So for example, the fifth character
-     * from the left on the third line is
+     *
+     * <p>The reordering array maps from a visual index to a logical index. Lines are concatenated
+     * from left to right. So for example, the fifth character from the left on the third line is
      *
      * <pre>
      * getReordering(linebreaks)[linebreaks[1] + 4]
      * </pre>
      *
-     * (linebreaks[1] is the position after the last character of the second
-     * line, which is also the index of the first character on the third line,
-     * and adding four gets the fifth character from the left).
-     * <p>
-     * The linebreaks array must include at least one value. The values must be
-     * in strictly increasing order (no duplicates) between 1 and the length of
-     * the text, inclusive. The last value must be the length of the text.
+     * (linebreaks[1] is the position after the last character of the second line, which is also the
+     * index of the first character on the third line, and adding four gets the fifth character from
+     * the left).
      *
-     * @param linebreaks
-     *            the offsets at which to break the paragraph.
+     * <p>The linebreaks array must include at least one value. The values must be in strictly
+     * increasing order (no duplicates) between 1 and the length of the text, inclusive. The last
+     * value must be the length of the text.
+     *
+     * @param linebreaks the offsets at which to break the paragraph.
      */
     public int[] getReordering(int[] linebreaks) {
         validateLineBreaks(linebreaks, textLength);
@@ -1122,8 +1089,8 @@ public final class BidiReference {
     }
 
     /**
-     * Return multiline reordering array for a given level array. Reordering
-     * does not occur across a line break.
+     * Return multiline reordering array for a given level array. Reordering does not occur across a
+     * line break.
      */
     private static int[] computeMultilineReordering(byte[] levels, int[] linebreaks) {
         int[] result = new int[levels.length];
@@ -1147,9 +1114,9 @@ public final class BidiReference {
     }
 
     /**
-     * Return reordering array for a given level array. This reorders a single
-     * line. The reordering is a visual to logical map. For example, the
-     * leftmost char is string.charAt(order[0]). Rule L2.
+     * Return reordering array for a given level array. This reorders a single line. The reordering
+     * is a visual to logical map. For example, the leftmost char is string.charAt(order[0]). Rule
+     * L2.
      */
     private static int[] computeReordering(byte[] levels) {
         int lineLength = levels.length;
@@ -1203,65 +1170,54 @@ public final class BidiReference {
         return result;
     }
 
-    /**
-     * Return the base level of the paragraph.
-     */
+    /** Return the base level of the paragraph. */
     public byte getBaseLevel() {
         return paragraphEmbeddingLevel;
     }
 
     // --- internal utilities -------------------------------------------------
 
-    /**
-     * Return true if the type is considered a whitespace type for the line
-     * break rules.
-     */
+    /** Return true if the type is considered a whitespace type for the line break rules. */
     private static boolean isWhitespace(byte biditype) {
         switch (biditype) {
-        case LRE:
-        case RLE:
-        case LRO:
-        case RLO:
-        case PDF:
-        case LRI:
-        case RLI:
-        case FSI:
-        case PDI:
-        case BN:
-        case WS:
-            return true;
-        default:
-            return false;
+            case LRE:
+            case RLE:
+            case LRO:
+            case RLO:
+            case PDF:
+            case LRI:
+            case RLI:
+            case FSI:
+            case PDI:
+            case BN:
+            case WS:
+                return true;
+            default:
+                return false;
         }
     }
 
-    /**
-     * Return true if the type is one of the types removed in X9.
-     */
+    /** Return true if the type is one of the types removed in X9. */
     private static boolean isRemovedByX9(byte biditype) {
         switch (biditype) {
-        case LRE:
-        case RLE:
-        case LRO:
-        case RLO:
-        case PDF:
-        case BN:
-            return true;
-        default:
-            return false;
+            case LRE:
+            case RLE:
+            case LRO:
+            case RLO:
+            case PDF:
+            case BN:
+                return true;
+            default:
+                return false;
         }
     }
 
-    /**
-     * Return the strong type (L or R) corresponding to the level.
-     */
+    /** Return the strong type (L or R) corresponding to the level. */
     private static byte typeForLevel(int level) {
         return ((level & 0x1) == 0) ? L : R;
     }
 
-    /**
-     * Set levels from start up to (but not including) limit to newLevel.
-     */
+    /** Set levels from start up to (but not including) limit to newLevel. */
     private void setLevels(byte[] levels, int start, int limit, byte newLevel) {
         for (int i = start; i < limit; ++i) {
             levels[i] = newLevel;
@@ -1270,9 +1226,7 @@ public final class BidiReference {
 
     // --- input validation ---------------------------------------------------
 
-    /**
-     * Throw exception if type array is invalid.
-     */
+    /** Throw exception if type array is invalid. */
     private static void validateTypes(byte[] types) {
         if (types == null) {
             throw new IllegalArgumentException("types is null");
@@ -1290,21 +1244,19 @@ public final class BidiReference {
     }
 
     /**
-     * Throw exception if paragraph embedding level is invalid. Special
-     * allowance for -1 so that default processing can still be performed when
-     * using this API.
+     * Throw exception if paragraph embedding level is invalid. Special allowance for -1 so that
+     * default processing can still be performed when using this API.
      */
     private static void validateParagraphEmbeddingLevel(byte paragraphEmbeddingLevel) {
-        if (paragraphEmbeddingLevel != -1 &&
-                paragraphEmbeddingLevel != 0 &&
-                paragraphEmbeddingLevel != 1) {
-            throw new IllegalArgumentException("illegal paragraph embedding level: " + paragraphEmbeddingLevel);
+        if (paragraphEmbeddingLevel != -1
+                && paragraphEmbeddingLevel != 0
+                && paragraphEmbeddingLevel != 1) {
+            throw new IllegalArgumentException(
+                    "illegal paragraph embedding level: " + paragraphEmbeddingLevel);
         }
     }
 
-    /**
-     * Throw exception if line breaks array is invalid.
-     */
+    /** Throw exception if line breaks array is invalid. */
     private static void validateLineBreaks(int[] linebreaks, int textLength) {
         int prev = 0;
         for (int i = 0; i < linebreaks.length; ++i) {

@@ -1,4 +1,5 @@
 package org.unicode.draft;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ public class WordSolver {
             shared[i] = new int[count];
             for (int j = 0; j < count; ++j) {
                 final int share = shared[i][j] = countShared(i, j);
-                bits[i] |= (1<<share);
+                bits[i] |= (1 << share);
             }
         }
     }
@@ -200,11 +201,15 @@ public class WordSolver {
         }
 
         public double getScore() {
-            return 1000 + minItemCountFactor*minItemCount + averageFactor*average + modeFactor*mode + minItemFactor*minItem;
+            return 1000
+                    + minItemCountFactor * minItemCount
+                    + averageFactor * average
+                    + modeFactor * mode
+                    + minItemFactor * minItem;
         }
 
         public Distribution(int stringLength) {
-            distribution = new int[stringLength+1];
+            distribution = new int[stringLength + 1];
         }
 
         private Distribution fill(int row) {
@@ -236,7 +241,7 @@ public class WordSolver {
                     }
                 }
             }
-            average = total/(double)count;
+            average = total / (double) count;
             return this;
         }
 
@@ -248,17 +253,18 @@ public class WordSolver {
                     result.append("\t" + distribution[j] + "*" + j);
                 }
             }
-            result.append("\tave: " + (int)(getAverage()*100)/100.0);
+            result.append("\tave: " + (int) (getAverage() * 100) / 100.0);
             result.append("\tmode: " + getMode());
             result.append("\tmin: " + getMinItemCount() + "*" + getMinItem());
-            result.append("\tscore: " + (int)(getScore()*100)/100.0);
+            result.append("\tscore: " + (int) (getScore() * 100) / 100.0);
             return result.toString();
         }
     }
 
     static String testString =
             "knuckles informed knightly androids engulfed engineer entrance invented involved kneecaps inserted intended inferior invaders injected infested infected infamous uncommon sneaking"
-            //"BENEFITS SURPRISE GENETICS EXPLAINS PILGRIMS LUNATICS THROWING STARTING GRASPING PLOTTING SPEEDING SPENDING SHUTTING SCOUTING SHOOTING SHACKLES SYNOPSES"
+            // "BENEFITS SURPRISE GENETICS EXPLAINS PILGRIMS LUNATICS THROWING STARTING GRASPING
+            // PLOTTING SPEEDING SPENDING SHUTTING SCOUTING SHOOTING SHACKLES SYNOPSES"
             ;
 
     public static void main(String[] args) {
@@ -299,7 +305,7 @@ public class WordSolver {
             }
         }
         System.out.println(guessCount);
-        System.out.println("Average Guesses Needed: " + (total/(double)count));
+        System.out.println("Average Guesses Needed: " + (total / (double) count));
     }
 
     private static void checkManual(String[] tests) {
@@ -322,6 +328,5 @@ public class WordSolver {
         System.out.println(wordSolver);
         guess = wordSolver.guessNext();
         System.out.println("Guess: " + guess);
-
     }
 }

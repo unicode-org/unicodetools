@@ -1,23 +1,22 @@
 package org.unicode.propstest;
 
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.impl.Relation;
+import com.ibm.icu.text.UnicodeSet;
 import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.props.PropertyStatus;
 import org.unicode.props.UcdProperty;
-
-import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.impl.Relation;
-import com.ibm.icu.text.UnicodeSet;
 
 public class ShowPropertyMetadata {
 
     //    static final EnumSet<UcdProperty> PROVISIONAL_PROPERTY;
-    //    private static final Comparator<Set<PropertyType>> COMPARABLE = new Comparator<Set<PropertyType>>() {
+    //    private static final Comparator<Set<PropertyType>> COMPARABLE = new
+    // Comparator<Set<PropertyType>>() {
     //        @Override
     //        public int compare(Set<PropertyType> arg0, Set<PropertyType> arg1) {
     //            // TODO Auto-generated method stub
@@ -65,18 +64,19 @@ public class ShowPropertyMetadata {
     //        }
     //    }
 
-
-    private static final Comparator<Set<PropertyStatus>> COMPARABLE = new Comparator<Set<PropertyStatus>>() {
-        @Override
-        public int compare(Set<PropertyStatus> arg0, Set<PropertyStatus> arg1) {
-            return UnicodeSet.compare(arg0, arg1);
-        }
-    };
+    private static final Comparator<Set<PropertyStatus>> COMPARABLE =
+            new Comparator<Set<PropertyStatus>>() {
+                @Override
+                public int compare(Set<PropertyStatus> arg0, Set<PropertyStatus> arg1) {
+                    return UnicodeSet.compare(arg0, arg1);
+                }
+            };
 
     public static void main(String[] args) {
 
-        final Relation<Set<PropertyStatus>,UcdProperty> typesToProperties =
-                Relation.of(new TreeMap<Set<PropertyStatus>, Set<UcdProperty>>(COMPARABLE),
+        final Relation<Set<PropertyStatus>, UcdProperty> typesToProperties =
+                Relation.of(
+                        new TreeMap<Set<PropertyStatus>, Set<UcdProperty>>(COMPARABLE),
                         TreeSet.class);
         for (final UcdProperty prop : UcdProperty.values()) {
             EnumSet<PropertyStatus> statuses = PropertyStatus.getPropertyStatusSet(prop);

@@ -1,6 +1,4 @@
-/**
- * 
- */
+/** */
 package org.unicode.draft;
 
 import java.io.DataOutput;
@@ -14,7 +12,6 @@ public final class CompressedDataOutput implements DataOutput {
         this.out = out;
         return this;
     }
-
 
     @Override
     public void writeLong(long longValue) throws IOException {
@@ -30,9 +27,8 @@ public final class CompressedDataOutput implements DataOutput {
     }
 
     /**
-     * Write a long as a series of 7-bits, with the last one having the top bit
-     * on.
-     * 
+     * Write a long as a series of 7-bits, with the last one having the top bit on.
+     *
      * @param longValue
      * @throws IOException
      */
@@ -40,12 +36,12 @@ public final class CompressedDataOutput implements DataOutput {
         while (true) {
             final int bottom = 0x7F & (int) longValue;
             longValue >>>= 7;
-        if (longValue == 0) {
-            out.write(bottom | 0x80); // write byte
-            return;
-        } else {
-            out.write(bottom); // write byte
-        }
+            if (longValue == 0) {
+                out.write(bottom | 0x80); // write byte
+                return;
+            } else {
+                out.write(bottom); // write byte
+            }
         }
     }
 
@@ -108,7 +104,8 @@ public final class CompressedDataOutput implements DataOutput {
     }
 
     /**
-     * Doesn't do the intracharacter compression that writeUTF does, because the caller may assume that it is equivalent to calling writeChar multiple times.
+     * Doesn't do the intracharacter compression that writeUTF does, because the caller may assume
+     * that it is equivalent to calling writeChar multiple times.
      */
     @Override
     public final void writeChars(String s) throws IOException {
@@ -134,30 +131,25 @@ public final class CompressedDataOutput implements DataOutput {
         out.write(b, off, len);
     }
 
-
     @Override
     public void write(byte[] b) throws IOException {
         out.write(b);
     }
-
 
     @Override
     public void write(int b) throws IOException {
         out.write(b);
     }
 
-
     @Override
     public void writeBoolean(boolean v) throws IOException {
         out.writeBoolean(v);
     }
 
-
     @Override
     public void writeByte(int v) throws IOException {
         out.writeByte(v);
     }
-
 
     @Override
     public void writeBytes(String s) throws IOException {

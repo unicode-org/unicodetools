@@ -1,19 +1,17 @@
 package org.unicode.text.tools;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 import java.io.IOException;
 import java.util.TreeSet;
-
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Idna2003;
 import org.unicode.idna.Idna2008;
 import org.unicode.idna.Idna2008.Idna2008Type;
 import org.unicode.idna.Idna2008t;
 import org.unicode.idna.Uts46;
-
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.VersionInfo;
 
 public class CompareIDNA {
 
@@ -58,7 +56,8 @@ public class CompareIDNA {
             }
 
             final IdnaType idna2008Mapped =
-                    (idna2008 == Idna2008Type.UNASSIGNED || idna2008 == Idna2008Type.DISALLOWED) ? IdnaType.disallowed
+                    (idna2008 == Idna2008Type.UNASSIGNED || idna2008 == Idna2008Type.DISALLOWED)
+                            ? IdnaType.disallowed
                             : IdnaType.valid;
 
             final VersionInfo age = UCharacter.getAge(i);

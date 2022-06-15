@@ -13,8 +13,7 @@ public class Alphagram {
         }
     }
 
-    public Alphagram() {
-    }
+    public Alphagram() {}
 
     public Alphagram intersection(Alphagram other) {
         final Alphagram result = new Alphagram();
@@ -38,7 +37,7 @@ public class Alphagram {
         for (int i = 0; i < letters.length; ++i) {
             final int count = letters[i];
             while (count > 0) {
-                result.append((char)(i + 'a'));
+                result.append((char) (i + 'a'));
             }
         }
         return result.toString();

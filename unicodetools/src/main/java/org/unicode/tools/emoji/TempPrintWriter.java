@@ -1,15 +1,13 @@
 package org.unicode.tools.emoji;
 
+import com.ibm.icu.util.ICUUncheckedIOException;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.Random;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.util.ICUUncheckedIOException;
 
 public class TempPrintWriter extends Writer {
     final PrintWriter tempPrintWriter;
@@ -60,7 +58,7 @@ public class TempPrintWriter extends Writer {
     public void println(String line) {
         tempPrintWriter.println(line);
     }
-    
+
     public void println() {
         tempPrintWriter.println();
     }

@@ -1,38 +1,34 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/EnumBase.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/utility/EnumBase.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.utility;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
-    Used for generating fake enums. These can be compared with ==,
-    used in for statements, etc.
-    Subclasses will be of the form:
-    <pre>
-    static public class MyEnum extends EnumBase {
-        public static MyEnum
-            ZEROED = (MyEnum) makeNext(new MyEnum(), "ZEROED"),
-            SHIFTED = (MyEnum) makeNext(new MyEnum(), "SHIFTED"),
-            NON_IGNORABLE = (MyEnum) makeNext(new MyEnum(), "NON_IGNORABLE");
-        public MyEnum next() { return (MyEnum) internalNext(); }
-    }
-    </pre>
+ * Used for generating fake enums. These can be compared with ==, used in for statements, etc.
+ * Subclasses will be of the form:
+ *
+ * <pre>
+ * static public class MyEnum extends EnumBase {
+ * public static MyEnum
+ * ZEROED = (MyEnum) makeNext(new MyEnum(), "ZEROED"),
+ * SHIFTED = (MyEnum) makeNext(new MyEnum(), "SHIFTED"),
+ * NON_IGNORABLE = (MyEnum) makeNext(new MyEnum(), "NON_IGNORABLE");
+ * public MyEnum next() { return (MyEnum) internalNext(); }
+ * }
+ * </pre>
  */
-
 public class EnumBase implements Comparable {
 
-    /** For use in collections
-     */
+    /** For use in collections */
     @Override
     public int compareTo(Object other) {
         final EnumBase that = (EnumBase) other;
@@ -48,7 +44,7 @@ public class EnumBase implements Comparable {
 
     @Override
     public String toString() {
-        return (String)uniqueNames.get(value);
+        return (String) uniqueNames.get(value);
     }
 
     //////////////////
@@ -57,8 +53,7 @@ public class EnumBase implements Comparable {
     private static List uniqueList = new ArrayList();
     private static List uniqueNames = new ArrayList();
 
-    /** For use in for(..) statements
-     */
+    /** For use in for(..) statements */
     public Object internalNext() {
         final int temp = value + 1;
         if (temp >= uniqueList.size()) {
@@ -71,10 +66,8 @@ public class EnumBase implements Comparable {
         return result;
     }
 
-    /**
-     * For constructing the enums the first time
-     */
-    static protected EnumBase makeNext(EnumBase result, String name) {
+    /** For constructing the enums the first time */
+    protected static EnumBase makeNext(EnumBase result, String name) {
         try {
             result.value = uniqueList.size();
             uniqueList.add(result);
@@ -94,4 +87,3 @@ public class EnumBase implements Comparable {
 
     protected EnumBase() {}
 }
-

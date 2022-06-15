@@ -1,9 +1,11 @@
 package org.unicode.text.tools;
 
+import com.google.common.base.Splitter;
+import com.google.common.collect.LinkedHashMultimap;
+import com.ibm.icu.dev.util.UnicodeMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -16,14 +18,13 @@ import org.unicode.text.utility.Utility;
 import org.unicode.tools.Confusables;
 import org.unicode.tools.Confusables.Style;
 
-import com.google.common.base.Splitter;
-import com.google.common.collect.LinkedHashMultimap;
-import com.ibm.icu.dev.util.UnicodeMap;
-
 public class CheckSecurityProposals {
-    private static final String SECURITY_DIR = Settings.UnicodeTools.getDataPathStringForLatestVersion("security");
-    private static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(Settings.latestVersion);
-    private static final UnicodeMap<Age_Values> AGE = IUP.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
+    private static final String SECURITY_DIR =
+            Settings.UnicodeTools.getDataPathStringForLatestVersion("security");
+    private static final IndexUnicodeProperties IUP =
+            IndexUnicodeProperties.make(Settings.latestVersion);
+    private static final UnicodeMap<Age_Values> AGE =
+            IUP.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
 
     public static final Confusables CONFUSABLES = new Confusables(SECURITY_DIR);
     public static final UnicodeMap<String> conMap = CONFUSABLES.getRawMapToRepresentative(Style.MA);
@@ -40,8 +41,8 @@ public class CheckSecurityProposals {
         HashMap<String, String> contributor = new HashMap<>();
 
         String path =
-                Settings.UnicodeTools.getDataPathStringForLatestVersion("security") +
-                "/data/source/";
+                Settings.UnicodeTools.getDataPathStringForLatestVersion("security")
+                        + "/data/source/";
         for (String line : FileUtilities.in(path, "proposals.txt")) {
             List<String> parts = TAB_SPLITTER.splitToList(line);
             String sourceRaw = parts.get(1);
@@ -63,51 +64,63 @@ public class CheckSecurityProposals {
             }
             String sourceMapped = skeleton(source);
             String targetMapped = skeleton(target);
-            contributor.put(source+"\uFFFF" + target, parts.get(5));
+            contributor.put(source + "\uFFFF" + target, parts.get(5));
             String type = parts.get(7);
             switch (type) {
-            case "Confusable": 
-                if (sourceMapped.equals(targetMapped)) {
-                    System.out.println("Already present: " + line);
-                    continue;
-                }
-                confusable.put(source, target); 
-                break;
-            case "Not Confusable": 
-                if (!sourceMapped.equals(targetMapped)) {
-                    System.out.println("NOT Already present: " + line);
-                    continue;
-                }
-                nonconfusable.put(source, target); 
-                break;
-            default: throw new IllegalArgumentException();
+                case "Confusable":
+                    if (sourceMapped.equals(targetMapped)) {
+                        System.out.println("Already present: " + line);
+                        continue;
+                    }
+                    confusable.put(source, target);
+                    break;
+                case "Not Confusable":
+                    if (!sourceMapped.equals(targetMapped)) {
+                        System.out.println("NOT Already present: " + line);
+                        continue;
+                    }
+                    nonconfusable.put(source, target);
+                    break;
+                default:
+                    throw new IllegalArgumentException();
             }
         }
         show("Confusable", confusable, contributor);
         System.out.println();
         show("Not Confusable", nonconfusable, contributor);
-
     }
 
     private static String skeleton(String source) {
         return conMap.transform(NFD.normalize(source));
     }
 
-    private static void show(String type, LinkedHashMultimap<String, String> confusable, HashMap<String, String> contributor) {
+    private static void show(
+            String type,
+            LinkedHashMultimap<String, String> confusable,
+            HashMap<String, String> contributor) {
         String lastCon = "";
         for (Entry<String, String> entry : confusable.entries()) {
             String source = entry.getKey();
             String target = entry.getValue();
-            String con = contributor.get(source+"\uFFFF" + target);
+            String con = contributor.get(source + "\uFFFF" + target);
             if (!con.equals(lastCon)) {
                 System.out.println("# " + con);
                 lastCon = con;
             }
-            System.out.println(Utility.hex(source) + "; " + Utility.hex(target)
-            + "; " + (source.isEmpty() ? "NULL" : AGE.get(source))
-            + "; " + source + " => " + target
-            + "; " + IUP.getName(source, " + ") + " => " + IUP.getName(target, " + ")
-                    );
+            System.out.println(
+                    Utility.hex(source)
+                            + "; "
+                            + Utility.hex(target)
+                            + "; "
+                            + (source.isEmpty() ? "NULL" : AGE.get(source))
+                            + "; "
+                            + source
+                            + " => "
+                            + target
+                            + "; "
+                            + IUP.getName(source, " + ")
+                            + " => "
+                            + IUP.getName(target, " + "));
         }
     }
 }

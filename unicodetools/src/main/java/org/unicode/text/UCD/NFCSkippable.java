@@ -1,4 +1,5 @@
 package org.unicode.text.UCD;
+
 public class NFCSkippable {
 
     // find all the characters that are
@@ -15,6 +16,5 @@ public class NFCSkippable {
         return false;
     }
 
-    public static void main (String[] args) {
-    }
+    public static void main(String[] args) {}
 }

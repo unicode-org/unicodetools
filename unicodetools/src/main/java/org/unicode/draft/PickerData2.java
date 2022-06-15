@@ -3,10 +3,8 @@ package org.unicode.draft;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
-
 import org.unicode.cldr.draft.CharacterListCompressor;
 import org.unicode.cldr.draft.CharacterListCompressor.Interval;
-
 import org.unicode.picker.CharData;
 
 public class PickerData2 {
@@ -23,7 +21,7 @@ public class PickerData2 {
     public static int SUBCATEGORY_BASE88 = 1;
 
     static {
-        List<String> categories = new LinkedList<String>(/*CharData.CATEGORIES.length*/);
+        List<String> categories = new LinkedList<String>(/*CharData.CATEGORIES.length*/ );
         for (int i = 0; i < CharData.CATEGORIES.length; i++) {
             categories.add(CharData.CATEGORIES[i][CATEGORY_TITLE][CATEGORY_TITLE]);
         }
@@ -43,7 +41,7 @@ public class PickerData2 {
     }
 
     public static List<Interval> getStringArray(int a, int b) {
-        return CharacterListCompressor.base88DecodeList(CharData.CATEGORIES[a][b + SUBCATEGORY_OFFSET][SUBCATEGORY_BASE88]);
+        return CharacterListCompressor.base88DecodeList(
+                CharData.CATEGORIES[a][b + SUBCATEGORY_OFFSET][SUBCATEGORY_BASE88]);
     }
-
 }

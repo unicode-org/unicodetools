@@ -5,42 +5,42 @@ import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.util.ULocale;
 
 /**
- * Simple program to try out different rounding schemes to preserve significant digits for unit conversion. 
- * No attempt has been made to make the code efficient.
+ * Simple program to try out different rounding schemes to preserve significant digits for unit
+ * conversion. No attempt has been made to make the code efficient.
+ *
  * @author markdavis
  */
 public class Rounder {
     private static final double cmPerInch = 2.54d;
-    private static final double litersPerGallon = 0.946352946d*4;
+    private static final double litersPerGallon = 0.946352946d * 4;
     private static final double kmPerMile = cmPerInch * 12 * 5280 / 100000d;
     private static final double lpkmToMpg = litersPerGallon / kmPerMile;
-    
+
     public static class BoundedDouble extends Number {
         private double low;
         private double high;
-        
+
         @Override
         public int intValue() {
-            return (int)((low + high) / 2);
+            return (int) ((low + high) / 2);
         }
 
         @Override
         public long longValue() {
-            return (long)((low + high) / 2);
+            return (long) ((low + high) / 2);
         }
 
         @Override
         public float floatValue() {
-            return (float)((low + high) / 2);
+            return (float) ((low + high) / 2);
         }
 
         @Override
         public double doubleValue() {
             return (low + high) / 2;
         }
-        
     }
-    
+
     public static void main(String[] args) {
         tryRounderlpkm();
         tryRounder();
@@ -186,7 +186,7 @@ public class Rounder {
             low = base - 0.5;
             high = base + 0.5;
         }
-        double[] result = { low, high };
+        double[] result = {low, high};
         return result;
     }
 
@@ -215,8 +215,10 @@ public class Rounder {
         throw new IllegalArgumentException("Bad degree format for " + s);
     }
 
-    static final DecimalFormat nf          = (DecimalFormat) NumberFormat.getInstance(ULocale.ENGLISH);
-    static final DecimalFormat nfPlusMinus = (DecimalFormat) NumberFormat.getInstance(ULocale.ENGLISH);
+    static final DecimalFormat nf = (DecimalFormat) NumberFormat.getInstance(ULocale.ENGLISH);
+    static final DecimalFormat nfPlusMinus =
+            (DecimalFormat) NumberFormat.getInstance(ULocale.ENGLISH);
+
     static {
         nf.setMinimumSignificantDigits(1);
         nf.setMaximumSignificantDigits(9);
@@ -225,10 +227,19 @@ public class Rounder {
     }
 
     private static void tryRounder60() {
-        System.out
-                .println("\nRounding when convering double degrees to degrees-minutes-seconds\nSource\tdegrees interpreted\tlast digit internals\t rounded & converted to dms\tdms interpreted\t rounded & converted back\tSame?");
+        System.out.println(
+                "\nRounding when convering double degrees to degrees-minutes-seconds\nSource\tdegrees interpreted\tlast digit internals\t rounded & converted to dms\tdms interpreted\t rounded & converted back\tSame?");
         String[] tests = {
-                "12", "12.3", "12.30", "12.34", "12.340", "12.345", "12.3456", "12.34567", "12.3456789", "12.34567890"
+            "12",
+            "12.3",
+            "12.30",
+            "12.34",
+            "12.340",
+            "12.345",
+            "12.3456",
+            "12.34567",
+            "12.3456789",
+            "12.34567890"
         };
         Rounder rounder = new Rounder();
         for (String test : tests) {
@@ -242,25 +253,34 @@ public class Rounder {
             StringBuilder rounded3 = rounder.round(back[0], back[1]);
 
             System.out.println(
-                    '“' + test + "°" + '”'
-                            + "\t" + showPlusMinus(start) + "°"
-                            + "\t" + finalDigits
-                            + "\t“" + rounded + "”"
-                            + "\t" + showPlusMinus(back) + "°"
-                            + "\t“" + rounded3 + "°”"
-                            + (test.equals(rounded3.toString()) ? "" : "\tNO")
-                    );
+                    '“'
+                            + test
+                            + "°"
+                            + '”'
+                            + "\t"
+                            + showPlusMinus(start)
+                            + "°"
+                            + "\t"
+                            + finalDigits
+                            + "\t“"
+                            + rounded
+                            + "”"
+                            + "\t"
+                            + showPlusMinus(back)
+                            + "°"
+                            + "\t“"
+                            + rounded3
+                            + "°”"
+                            + (test.equals(rounded3.toString()) ? "" : "\tNO"));
         }
     }
 
     private static void tryRounder() {
-        System.out
-                .println("Rounding when convering centimeter values to inches\nSource\tcm interpreted\tmapped to inches\t rounded & converted \tinches interpreted\tmapped to cm\t rounded & converted \tSame?\t");
+        System.out.println(
+                "Rounding when convering centimeter values to inches\nSource\tcm interpreted\tmapped to inches\t rounded & converted \tinches interpreted\tmapped to cm\t rounded & converted \tSame?\t");
         String[] tests = {
-                "0.49", "0.5", "0.50", "0.51", "0.510", "0.52",
-                "4.8", "4.9", "5", "5.0", "5.1", "5.10", "5.2",
-                "49", "50", "51", "51.0", "52",
-                "0.98", "0.99", "0.100"
+            "0.49", "0.5", "0.50", "0.51", "0.510", "0.52", "4.8", "4.9", "5", "5.0", "5.1", "5.10",
+            "5.2", "49", "50", "51", "51.0", "52", "0.98", "0.99", "0.100"
         };
         Rounder rounder = new Rounder();
         for (String test : tests) {
@@ -268,33 +288,33 @@ public class Rounder {
 
             double low = start[0];
             double high = start[1];
-            //StringBuilder rounded = rounder.round(low, high);
-            double[] start2 = { low / cmPerInch, high / cmPerInch };
+            // StringBuilder rounded = rounder.round(low, high);
+            double[] start2 = {low / cmPerInch, high / cmPerInch};
             StringBuilder rounded2 = rounder.round(start2[0], start2[1]);
             double[] back = parseLowHigh(rounded2);
-            double[] back2 = { back[0] * cmPerInch, back[1] * cmPerInch };
+            double[] back2 = {back[0] * cmPerInch, back[1] * cmPerInch};
             StringBuilder rounded3 = rounder.round(back2[0], back2[1]);
-//            System.out.println('“' + test + '”'
-//                    + "\t" + showPlusMinus(start)
-//                    //+ "\t" + rounded + " cm"
-//                    + "\t" + showPlusMinus(start2) + " in"
-//                    + "\t" + rounded2 + " in"
-//                    + "\t" + showPlusMinus(back) + " in"
-//                    + "\t" + showPlusMinus(back2) + " cm"
-//                    + "\t" + rounded3 + " cm"
-//                    + (test.equals(rounded3.toString()) ? "" : "\tNO")
-//                    );
+            //            System.out.println('“' + test + '”'
+            //                    + "\t" + showPlusMinus(start)
+            //                    //+ "\t" + rounded + " cm"
+            //                    + "\t" + showPlusMinus(start2) + " in"
+            //                    + "\t" + rounded2 + " in"
+            //                    + "\t" + showPlusMinus(back) + " in"
+            //                    + "\t" + showPlusMinus(back2) + " cm"
+            //                    + "\t" + rounded3 + " cm"
+            //                    + (test.equals(rounded3.toString()) ? "" : "\tNO")
+            //                    );
             showConversion("cm", "in", test, start, start2, rounded2, back, back2, rounded3);
         }
     }
-    
+
     private static void tryRounderlpkm() {
-        System.out
-                .println("Rounding when convering liters/km values to mpg\nSource\tlpkm interpreted\tmapped to mpg\t rounded & converted \tmpg interpreted\tmapped to lpkm\t rounded & converted \tSame?\t");
+        System.out.println(
+                "Rounding when convering liters/km values to mpg\nSource\tlpkm interpreted\tmapped to mpg\t rounded & converted \tmpg interpreted\tmapped to lpkm\t rounded & converted \tSame?\t");
         String[] tests = {
-                "0.49", "0.5", "0.50", "0.51", "0.510", "0.52",
-                "4.9", "5", "5.0", "5.1", "5.10", "5.2",
-                "49", "50", "51", "51.0", "52"
+            "0.49", "0.5", "0.50", "0.51", "0.510", "0.52",
+            "4.9", "5", "5.0", "5.1", "5.10", "5.2",
+            "49", "50", "51", "51.0", "52"
         };
         Rounder rounder = new Rounder();
         for (String test : tests) {
@@ -304,29 +324,59 @@ public class Rounder {
             double high = start[1];
             // 235 / (L/100 km) = mpgUS
 
-            //StringBuilder rounded = rounder.round(low, high);
-            double[] start2 = { lpkmToMpg / low, lpkmToMpg / high };
+            // StringBuilder rounded = rounder.round(low, high);
+            double[] start2 = {lpkmToMpg / low, lpkmToMpg / high};
             StringBuilder rounded2 = rounder.round(start2[0], start2[1]);
             double[] back = parseLowHigh(rounded2);
-            double[] back2 = { lpkmToMpg / back[0], lpkmToMpg / back[1] };
+            double[] back2 = {lpkmToMpg / back[0], lpkmToMpg / back[1]};
             StringBuilder rounded3 = rounder.round(back2[0], back2[1]);
             showConversion("lpkm", "mpg", test, start, start2, rounded2, back, back2, rounded3);
         }
     }
 
-    private static void showConversion(String sourceUnit, String targetUnit, String test, double[] start, double[] start2, StringBuilder rounded2, double[] back,
-            double[] back2, StringBuilder rounded3) {
-        System.out.println('“' + test + " " + sourceUnit + '”'
-                + "\t" + showPlusMinus(start)
-                + "\t" + showPlusMinus(start2) + " " + targetUnit
-                + "\t“" + rounded2 + " " + targetUnit + "”"
-                + "\t" + showPlusMinus(back) + " " + targetUnit
-                + "\t" + showPlusMinus(back2) + " " + sourceUnit
-                + "\t“" + rounded3 + " " + sourceUnit + "”"
-                + (test.equals(rounded3.toString()) ? "" : "\tNO")
-                );
+    private static void showConversion(
+            String sourceUnit,
+            String targetUnit,
+            String test,
+            double[] start,
+            double[] start2,
+            StringBuilder rounded2,
+            double[] back,
+            double[] back2,
+            StringBuilder rounded3) {
+        System.out.println(
+                '“'
+                        + test
+                        + " "
+                        + sourceUnit
+                        + '”'
+                        + "\t"
+                        + showPlusMinus(start)
+                        + "\t"
+                        + showPlusMinus(start2)
+                        + " "
+                        + targetUnit
+                        + "\t“"
+                        + rounded2
+                        + " "
+                        + targetUnit
+                        + "”"
+                        + "\t"
+                        + showPlusMinus(back)
+                        + " "
+                        + targetUnit
+                        + "\t"
+                        + showPlusMinus(back2)
+                        + " "
+                        + sourceUnit
+                        + "\t“"
+                        + rounded3
+                        + " "
+                        + sourceUnit
+                        + "”"
+                        + (test.equals(rounded3.toString()) ? "" : "\tNO"));
     }
-    
+
     private static String showPlusMinus(double[] start) {
         double average = (start[0] + start[1]) / 2;
         return nf.format(average) + " ± " + nfPlusMinus.format(Math.abs(start[1] - average));

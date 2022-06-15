@@ -1,19 +1,19 @@
 package org.unicode.draft;
-import java.nio.ByteBuffer;
-import java.util.Arrays;
-import java.util.Locale;
 
 import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.DecimalFormatSymbols;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.util.Currency;
 import com.ibm.icu.util.ULocale;
-
+import java.nio.ByteBuffer;
+import java.util.Arrays;
+import java.util.Locale;
 
 public class Test3 {
-    public void method(int...stuff) {
+    public void method(int... stuff) {
         System.out.println("int...\t" + Arrays.asList(stuff));
     }
+
     public void method2(int[] stuff) {
         System.out.println("int[]\t" + Arrays.asList(stuff));
     }
@@ -25,6 +25,7 @@ public class Test3 {
         protected MyCurrency(String theISOCode) {
             super(Currency.getInstance(theISOCode).getCurrencyCode());
         }
+
         @Override
         public String getName(ULocale locale, int nameStyle, boolean[] isChoiceFormat) {
             final String currencyCode = getCurrencyCode();
@@ -38,11 +39,12 @@ public class Test3 {
     static final Currency USD = Currency.getInstance("USD");
 
     static class MyCurrencyFormat extends DecimalFormat {
-        public MyCurrencyFormat(Locale locale){
+        public MyCurrencyFormat(Locale locale) {
             final DecimalFormat format = (DecimalFormat) NumberFormat.getCurrencyInstance(locale);
             applyPattern(format.toPattern());
             setDecimalFormatSymbols(format.getDecimalFormatSymbols());
         }
+
         @Override
         public void setCurrency(Currency theCurrency) {
             super.setCurrency(theCurrency);
@@ -55,10 +57,9 @@ public class Test3 {
         }
     }
 
-
     public static void main(String[] args) {
         // Currency.getAvailableLocales()
-        for (final Locale locale : new Locale[]{Locale.US, Locale.CANADA}) {
+        for (final Locale locale : new Locale[] {Locale.US, Locale.CANADA}) {
             final DecimalFormat format = (DecimalFormat) NumberFormat.getCurrencyInstance(locale);
 
             String pattern = format.toPattern();
@@ -81,11 +82,11 @@ public class Test3 {
         }
 
         final Test3 test = new Test3();
-        test.method(1,2,3);
-        test.method(new int[]{1,2,3});
+        test.method(1, 2, 3);
+        test.method(new int[] {1, 2, 3});
 
-        //test.method2(1,2,3); // fails to compile
-        test.method2(new int[]{1,2,3});
+        // test.method2(1,2,3); // fails to compile
+        test.method2(new int[] {1, 2, 3});
 
         final int foo = new Integer(1).hashCode();
     }

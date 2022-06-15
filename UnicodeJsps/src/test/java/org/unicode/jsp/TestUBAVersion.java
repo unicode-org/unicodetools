@@ -5,10 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.EnumSet;
-
 import com.ibm.icu.text.UnicodeSet;
-
+import java.util.EnumSet;
 import org.junit.jupiter.api.Test;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 
@@ -34,7 +32,7 @@ public class TestUBAVersion {
         assertNotNull(versions);
 
         // Current is the last item
-        assertTrue(current.equals(versions.toArray()[versions.size()-1]));
+        assertTrue(current.equals(versions.toArray()[versions.size() - 1]));
 
         // First is 6.2
         final Age_Values first = versions.iterator().next();

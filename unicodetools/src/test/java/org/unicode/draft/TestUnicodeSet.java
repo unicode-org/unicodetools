@@ -1,20 +1,21 @@
 package org.unicode.draft;
+
+import com.ibm.icu.text.UnicodeSet;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.text.UnicodeSet;
 
 public class TestUnicodeSet {
 
-    static final UnicodeSet POSSIBLY_INVISIBLE = new UnicodeSet("[[:cc:][:di:]-[:whitespace:]]").freeze();
+    static final UnicodeSet POSSIBLY_INVISIBLE =
+            new UnicodeSet("[[:cc:][:di:]-[:whitespace:]]").freeze();
 
     static String replace(String source, UnicodeSet matcher, String replacement) {
-        if (matcher.containsNone(source)) { // common case. can optimize further on later version of ICU
+        if (matcher.containsNone(
+                source)) { // common case. can optimize further on later version of ICU
             return source;
         }
         final StringBuilder result = new StringBuilder();
@@ -45,14 +46,14 @@ public class TestUnicodeSet {
             System.out.println("ts\t" + s);
         }
 
-        System.out.println("expect equal?\t" + UnicodeSet.compare(foo,target));
+        System.out.println("expect equal?\t" + UnicodeSet.compare(foo, target));
 
         final UnicodeSet fii = new UnicodeSet("[a d-g {ch} {zh}]");
         System.out.println("expect unequal?\t" + foo.compareTo(fii));
-        System.out.println("expect unequal?\t" + UnicodeSet.compare(foo,fii));
+        System.out.println("expect unequal?\t" + UnicodeSet.compare(foo, fii));
 
         System.out.println("expect unequal?\t" + fii.compareTo(foo));
-        System.out.println("expect unequal?\t" + UnicodeSet.compare(fii,foo));
+        System.out.println("expect unequal?\t" + UnicodeSet.compare(fii, foo));
 
         final int max = 1000;
         final Set<String> test1 = new HashSet<String>(max);
@@ -61,9 +62,9 @@ public class TestUnicodeSet {
             test1.add("a" + i);
             test2.add("a" + (max - i)); // add in reverse order
         }
-        System.out.println("expect equal?\t" + UnicodeSet.compare(test1,test2));
+        System.out.println("expect equal?\t" + UnicodeSet.compare(test1, test2));
         final List<String> test1a = new ArrayList<String>(test1);
         final List<String> test2a = new ArrayList<String>(test2);
-        System.out.println("expect equal?\t" + UnicodeSet.compare(test1a,test2a));
+        System.out.println("expect equal?\t" + UnicodeSet.compare(test1a, test2a));
     }
 }

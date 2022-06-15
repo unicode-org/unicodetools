@@ -14,6 +14,21 @@ env:
 
 jobs:
 
+  # Using the Java style formatter google-java-style provided by the Spotless
+  # plugin configured in the root pom.xml using 4-space indents (AOSP style).
+  # Spotless is configured to run only on files in this branch (PR) that differ
+  # from origin/main
+  formatter:
+    name: Formatter + Style checker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Unicode Tools
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # fetch all branches so that Spotless can resolve `origin/main`
+      - name: Check Java style
+        run: mvn spotless:check || (echo "Style checker failed. Formatting changes can be applied by 'mvn spotless:apply'" && exit 1)
+
   # Only run 1 or 2 commands for in-source build instructions, just to demonstrate
   # what translating between an out-of-source build and an in-source build would
   # look like. Rely on out-of-source build steps as the canonical way to
@@ -23,9 +38,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Check out CLDR
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: unicode-org/cldr
           path: cldr
@@ -66,12 +81,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: unicode-org/unicodetools
           path: unicodetools/mine/src
       - name: Checkout CLDR
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: unicode-org/cldr
           path: cldr/mine/src
@@ -158,6 +173,8 @@ jobs:
           cd unicodetools/mine/src
           # run GenerateEnums
           mvn -s .github/workflows/mvn-settings.xml exec:java -Dexec.mainClass="org.unicode.props.GenerateEnums"  -Dexec.args=""  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+          # apply formatting because generated file will not pass Java formatter
+          mvn spotless:apply
           # TODO(#100) Get rid of need for fake version 13.1 of Unicode enum val
           # Fail if we haven't committed changes from Generate Enums, but make exception for fake Unicode version hack (#100)
           echo "Check if GenerateEnums output has been committed to repo"
@@ -170,7 +187,7 @@ jobs:
             names=`git diff --name-status | awk '{print $2;}'`
             if [[ "$names" == "unicodetools/src/main/java/org/unicode/props/UcdPropertyValues.java" ]]; then
               gitdiffstat=`git diff --stat | tail -n 1`
-              if [[ "$gitdiffstat" = " 1 file changed, 1 insertion(+), 1 deletion(-)" ]]; then
+              if [[ "$gitdiffstat" = " 1 file changed, 1 insertion(+), 2 deletions(-)" ]]; then
                 git diff | grep 'V13_1("13.1")'
                 if [ $? -eq 0 ]; then
                   echo "Inferred: Only non-committed change after GenerateEnums is temporary V13_1 hack (issue #100)"

@@ -1,16 +1,16 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCA;
 
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -34,7 +34,6 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Vector;
 import java.util.regex.Pattern;
-
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCA.UCA.Remap;
@@ -48,9 +47,6 @@ import org.unicode.text.utility.IntStack;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-
 public class WriteCollationData {
     private static final boolean SHOW_NON_MAPPED = false;
 
@@ -58,17 +54,17 @@ public class WriteCollationData {
 
     private static final String UNICODE_VERSION = Settings.latestVersion;
 
-    private static UCA                 ducetCollator;
-    private static UCA                 cldrCollator;
-    private static UCA                 cldrWithoutFFFxCollator;
+    private static UCA ducetCollator;
+    private static UCA cldrCollator;
+    private static UCA cldrWithoutFFFxCollator;
 
-    private static PrintWriter              log;
+    private static PrintWriter log;
 
     // Called by UCA.Main.
     // TODO: Remove? This code tests the Java Collator. Useful?
     static void javatest() throws Exception {
-        checkJavaRules("& J , K / B & K , M", new String[] { "JA", "MA", "KA", "KC", "JC", "MC" });
-        checkJavaRules("& J , K / B , M", new String[] { "JA", "MA", "KA", "KC", "JC", "MC" });
+        checkJavaRules("& J , K / B & K , M", new String[] {"JA", "MA", "KA", "KC", "JC", "MC"});
+        checkJavaRules("& J , K / B , M", new String[] {"JA", "MA", "KA", "KC", "JC", "MC"});
     }
 
     private static void checkJavaRules(String rules, String[] tests) throws Exception {
@@ -79,7 +75,8 @@ public class WriteCollationData {
         // duplicate the effect of ICU 1.8 by grabbing the default rules and
         // appending
 
-        final RuleBasedCollator defaultCollator = (RuleBasedCollator) Collator.getInstance(Locale.US);
+        final RuleBasedCollator defaultCollator =
+                (RuleBasedCollator) Collator.getInstance(Locale.US);
         final RuleBasedCollator col = new RuleBasedCollator(defaultCollator.getRules() + rules);
 
         // check to make sure each pair is in order
@@ -97,7 +94,7 @@ public class WriteCollationData {
     private static String showJavaCollationKey(RuleBasedCollator col, String test) {
         final CollationElementIterator it = col.getCollationElementIterator(test);
         String result = "[";
-        for (int i = 0;; ++i) {
+        for (int i = 0; ; ++i) {
             final int ce = it.next();
             if (ce == CollationElementIterator.NULLORDER) {
                 break;
@@ -113,11 +110,14 @@ public class WriteCollationData {
     // Called by UCA.Main.
     static void writeCaseFolding() throws IOException {
         System.err.println("Writing Javascript data");
-        final BufferedReader in = Utility.openUnicodeFile("CaseFolding", UNICODE_VERSION, true, Utility.LATIN1);
+        final BufferedReader in =
+                Utility.openUnicodeFile("CaseFolding", UNICODE_VERSION, true, Utility.LATIN1);
         // new BufferedReader(new FileReader(DIR31 +
         // "CaseFolding-3.d3.alpha.txt"), 64*1024);
         // log = new PrintWriter(new FileOutputStream("CaseFolding_data.js"));
-        log = Utility.openPrintWriter(UCA.getOutputDir(), "CaseFolding_data.js", Utility.UTF8_WINDOWS);
+        log =
+                Utility.openPrintWriter(
+                        UCA.getOutputDir(), "CaseFolding_data.js", Utility.UTF8_WINDOWS);
         log.println("var CF = new Object();");
         int count = 0;
         while (true) {
@@ -169,7 +169,9 @@ public class WriteCollationData {
         // Normalizer normKD = new Normalizer(Normalizer.NFKD, UNICODE_VERSION);
         // Normalizer normD = new Normalizer(Normalizer.NFD, UNICODE_VERSION);
         // log = new PrintWriter(new FileOutputStream("Normalization_data.js"));
-        log = Utility.openPrintWriter(UCA.getOutputDir(), "Normalization_data.js", Utility.LATIN1_WINDOWS);
+        log =
+                Utility.openPrintWriter(
+                        UCA.getOutputDir(), "Normalization_data.js", Utility.LATIN1_WINDOWS);
 
         int count = 0;
         int datasize = 0;
@@ -197,7 +199,8 @@ public class WriteCollationData {
                     ++over7;
                 }
                 csa.setElementAt(c, (short) count);
-                log.println("\t KD[0x" + Utility.hex(c) + "]='\\u" + Utility.hex(decomp, "\\u") + "';");
+                log.println(
+                        "\t KD[0x" + Utility.hex(c) + "]='\\u" + Utility.hex(decomp, "\\u") + "';");
             }
         }
         csa.compact();
@@ -230,7 +233,8 @@ public class WriteCollationData {
                     max = decomp.length();
                 }
                 csa.setElementAt(c, (short) count);
-                log.println("\t D[0x" + Utility.hex(c) + "]='\\u" + Utility.hex(decomp, "\\u") + "';");
+                log.println(
+                        "\t D[0x" + Utility.hex(c) + "]='\\u" + Utility.hex(decomp, "\\u") + "';");
             }
         }
         csa.compact();
@@ -288,8 +292,9 @@ public class WriteCollationData {
         log.println("# UCA Version: " + getCollator(CollatorType.ducet).getDataVersion());
         log.println("# UCD Version: " + getCollator(CollatorType.ducet).getDataVersion());
         if (auxiliary) {
-            log.println("# For a description of the format and usage, see\n" +
-                    "# http://www.unicode.org/reports/tr35/tr35-collation.html#Root_Data_Files");
+            log.println(
+                    "# For a description of the format and usage, see\n"
+                            + "# http://www.unicode.org/reports/tr35/tr35-collation.html#Root_Data_Files");
         } else {
             log.println("# For a description of the format and usage, see CollationTest.html");
         }
@@ -299,7 +304,8 @@ public class WriteCollationData {
     // Called by UCA.Main.
     static void writeContractions() throws IOException {
         final String fullFileName = "UCA_Contractions.txt";
-        final PrintWriter diLog = Utility.openPrintWriter(UCA.getOutputDir(), fullFileName, Utility.UTF8_WINDOWS);
+        final PrintWriter diLog =
+                Utility.openPrintWriter(UCA.getOutputDir(), fullFileName, Utility.UTF8_WINDOWS);
 
         diLog.write('\uFEFF');
 
@@ -315,10 +321,15 @@ public class WriteCollationData {
             final CEList ces = cc.getCEs();
 
             if (s.length() > 1) {
-                diLog.println(Utility.hex(s, " ")
-                        + ";\t #" + ces
-                        + " ( " + s + " )"
-                        + " " + Default.ucd().getName(s));
+                diLog.println(
+                        Utility.hex(s, " ")
+                                + ";\t #"
+                                + ces
+                                + " ( "
+                                + s
+                                + " )"
+                                + " "
+                                + Default.ucd().getName(s));
             }
         }
         diLog.close();
@@ -326,7 +337,9 @@ public class WriteCollationData {
 
     // Called by UCA.Main.
     static void checkDisjointIgnorables() throws IOException {
-        final PrintWriter diLog = Utility.openPrintWriter(UCA.getOutputDir(), "DisjointIgnorables.js", Utility.UTF8_WINDOWS);
+        final PrintWriter diLog =
+                Utility.openPrintWriter(
+                        UCA.getOutputDir(), "DisjointIgnorables.js", Utility.UTF8_WINDOWS);
 
         diLog.write('\uFEFF');
 
@@ -383,7 +396,11 @@ public class WriteCollationData {
             for (int kk = 0; kk < s.length(); kk += Character.charCount(ccc)) {
                 ccc = UTF16.charAt(s, kk);
                 final byte cat = Default.ucd().getCategory(ccc);
-                if (cat == UCD_Types.Cf || cat == UCD_Types.Cc || cat == UCD_Types.Zs || cat == UCD_Types.Zl || cat == UCD_Types.Zp) {
+                if (cat == UCD_Types.Cf
+                        || cat == UCD_Types.Cc
+                        || cat == UCD_Types.Zs
+                        || cat == UCD_Types.Zl
+                        || cat == UCD_Types.Zp) {
                     sortedCodes.add(ces + "\t" + Default.ucd().getCodeAndName(s));
                     break;
                 }
@@ -450,7 +467,10 @@ public class WriteCollationData {
                 }
                 if (secondariesNZP[i] != 0) {
                     if (i == 0x20) {
-                        diLog.println("(omitting " + secondariesNZP[i] + " NZP with values 0020 -- values don't change)");
+                        diLog.println(
+                                "(omitting "
+                                        + secondariesNZP[i]
+                                        + " NZP with values 0020 -- values don't change)");
                     } else {
                         showSampleOverlap(diLog, true, sign + "NZP", secondariesNZPsample[i]); // i,
                         // 0x20
@@ -461,7 +481,13 @@ public class WriteCollationData {
                 diLog.println();
             }
         }
-        diLog.println("ZP Count = " + zpCount + ", NZP Count = " + nzpCount + ", Collisions = " + bothCount);
+        diLog.println(
+                "ZP Count = "
+                        + zpCount
+                        + ", NZP Count = "
+                        + nzpCount
+                        + ", Collisions = "
+                        + bothCount);
 
         /*
          * diLog.println(); diLog.println("OVERLAPS"); diLog.println();
@@ -480,9 +506,15 @@ public class WriteCollationData {
         diLog.println("# BACKGROUND INFORMATION");
         diLog.println();
         diLog.println("# All characters with 'mixed' CEs: variable and non-variable");
-        diLog.println("# Note: variables are in "
-                + Utility.hex(CEList.getPrimary(getCollator(CollatorType.ducet).getVariableLowCE())) + " to "
-                + Utility.hex(CEList.getPrimary(getCollator(CollatorType.ducet).getVariableHighCE())));
+        diLog.println(
+                "# Note: variables are in "
+                        + Utility.hex(
+                                CEList.getPrimary(
+                                        getCollator(CollatorType.ducet).getVariableLowCE()))
+                        + " to "
+                        + Utility.hex(
+                                CEList.getPrimary(
+                                        getCollator(CollatorType.ducet).getVariableHighCE())));
         diLog.println();
 
         Iterator<String> it;
@@ -505,13 +537,15 @@ public class WriteCollationData {
         diLog.close();
     }
 
-    private static void showSampleOverlap(PrintWriter diLog, boolean doNew, String head, Vector<String> v) {
+    private static void showSampleOverlap(
+            PrintWriter diLog, boolean doNew, String head, Vector<String> v) {
         for (int i = 0; i < v.size(); ++i) {
             showSampleOverlap(diLog, doNew, head, v.get(i));
         }
     }
 
-    private static void showSampleOverlap(PrintWriter diLog, boolean doNew, String head, String src) {
+    private static void showSampleOverlap(
+            PrintWriter diLog, boolean doNew, String head, String src) {
         final int[] ces = new int[30];
         final int len = getCollator(CollatorType.ducet).getCEs(src, true, ces);
         int[] newCes = null;
@@ -533,18 +567,22 @@ public class WriteCollationData {
         }
         diLog.println(
                 UCD.getCode(src)
-                + "\t" + head
-                // + "\t" + Utility.hex(oldWeight)
-                // + " => " + Utility.hex(newWeight)
-                + "\t" + CEList.toString(ces, len)
-                + (doNew ? " => " + CEList.toString(newCes, newLen) : "")
-                + "\t( " + src + " )"
-                + "\t" + Default.ucd().getName(src)
-                );
+                        + "\t"
+                        + head
+                        // + "\t" + Utility.hex(oldWeight)
+                        // + " => " + Utility.hex(newWeight)
+                        + "\t"
+                        + CEList.toString(ces, len)
+                        + (doNew ? " => " + CEList.toString(newCes, newLen) : "")
+                        + "\t( "
+                        + src
+                        + " )"
+                        + "\t"
+                        + Default.ucd().getName(src));
     }
 
     // Options for writeRules(byte options, ...), used by UCA.Main.
-    static final byte    WITHOUT_NAMES                = 0, WITH_NAMES = 1, IN_XML = 2;
+    static final byte WITHOUT_NAMES = 0, WITH_NAMES = 1, IN_XML = 2;
 
     private static final boolean SKIP_CANONICAL_DECOMPOSIBLES = true;
 
@@ -557,7 +595,10 @@ public class WriteCollationData {
         if (UCA.isImplicitLeadCE(ces.at(0))) {
             expansionStart = 2; // move up if first is double-ce
         }
-        if (len > expansionStart && getCollator(CollatorType.ducet).getHomelessSecondaries().contains(CEList.getSecondary(ces.at(expansionStart)))) {
+        if (len > expansionStart
+                && getCollator(CollatorType.ducet)
+                        .getHomelessSecondaries()
+                        .contains(CEList.getSecondary(ces.at(expansionStart)))) {
             if (log2 != null) {
                 log2.println("Homeless: " + ces);
             }
@@ -569,17 +610,23 @@ public class WriteCollationData {
     private static PrintWriter log2 = null;
 
     // Called by UCA.Main.
-    static void writeRules(byte option, boolean shortPrint, boolean noCE, CollatorType collatorType) throws IOException {
+    static void writeRules(byte option, boolean shortPrint, boolean noCE, CollatorType collatorType)
+            throws IOException {
         System.out.println("Sorting");
         final Map<ArrayWrapper, String> backMap = new HashMap<ArrayWrapper, String>();
         final Map<String, String> ordered = new TreeMap<String, String>();
 
         final UCA uca = getCollator(collatorType);
-        final UCA.UCAContents cc = uca.getContents(SKIP_CANONICAL_DECOMPOSIBLES ? Default.nfd() : null);
+        final UCA.UCAContents cc =
+                uca.getContents(SKIP_CANONICAL_DECOMPOSIBLES ? Default.nfd() : null);
 
         final Set<String> alreadyDone = new HashSet<String>();
 
-        log2 = Utility.openPrintWriter(UCA.getOutputDir() + File.separator + "log", "UCARules-log.txt", Utility.UTF8_WINDOWS);
+        log2 =
+                Utility.openPrintWriter(
+                        UCA.getOutputDir() + File.separator + "log",
+                        "UCARules-log.txt",
+                        Utility.UTF8_WINDOWS);
 
         while (true) {
             final String s = cc.next();
@@ -593,7 +640,12 @@ public class WriteCollationData {
             }
 
             final String safeString = s.replace("\u0000", "\\u0000");
-            log2.println(safeString + "\t" + bidiBracket(ces.toString()) + "\t" + Default.ucd().getCodeAndName(s));
+            log2.println(
+                    safeString
+                            + "\t"
+                            + bidiBracket(ces.toString())
+                            + "\t"
+                            + Default.ucd().getCodeAndName(s));
 
             addToBackMap(backMap, ces, s, false);
 
@@ -607,10 +659,19 @@ public class WriteCollationData {
                 }
             }
 
-            final String key = String.valueOf(CEList.getPrimary(ces.at(0))) + String.valueOf(CEList.getPrimary(ce2)) + String.valueOf(CEList.getPrimary(ce3))
-                    + String.valueOf(CEList.getSecondary(ces.at(0))) + String.valueOf(CEList.getSecondary(ce2)) + String.valueOf(CEList.getSecondary(ce3))
-                    + String.valueOf(CEList.getTertiary(ces.at(0))) + String.valueOf(CEList.getTertiary(ce2)) + String.valueOf(CEList.getTertiary(ce3))
-                    + uca.getSortKey(s, UCA_Types.NON_IGNORABLE) + '\u0000' + UCA.codePointOrder(s);
+            final String key =
+                    String.valueOf(CEList.getPrimary(ces.at(0)))
+                            + String.valueOf(CEList.getPrimary(ce2))
+                            + String.valueOf(CEList.getPrimary(ce3))
+                            + String.valueOf(CEList.getSecondary(ces.at(0)))
+                            + String.valueOf(CEList.getSecondary(ce2))
+                            + String.valueOf(CEList.getSecondary(ce3))
+                            + String.valueOf(CEList.getTertiary(ces.at(0)))
+                            + String.valueOf(CEList.getTertiary(ce2))
+                            + String.valueOf(CEList.getTertiary(ce3))
+                            + uca.getSortKey(s, UCA_Types.NON_IGNORABLE)
+                            + '\u0000'
+                            + UCA.codePointOrder(s);
 
             // String.valueOf((char)(ces.at(0]>>>16)) +
             // String.valueOf((char)(ces.at(0] & 0xFFFF))
@@ -655,7 +716,8 @@ public class WriteCollationData {
         }
         final UnicodeSet CJKcomposites = new UnicodeSet(CJK).retainAll(composites);
         System.out.println("CJK composites " + CJKcomposites.toPattern(true));
-        System.out.println("CJK NONcomposites " + new UnicodeSet(CJK).removeAll(composites).toPattern(true));
+        System.out.println(
+                "CJK NONcomposites " + new UnicodeSet(CJK).removeAll(composites).toPattern(true));
 
         final UnicodeSet mapped = new UnicodeSet();
         Iterator<String> it = alreadyDone.iterator();
@@ -665,9 +727,14 @@ public class WriteCollationData {
         }
         final UnicodeSet CJKmapped = new UnicodeSet(CJK).retainAll(mapped);
         System.out.println("Mapped CJK: " + CJKmapped.toPattern(true));
-        System.out.println("UNMapped CJK: " + new UnicodeSet(CJK).removeAll(mapped).toPattern(true));
-        System.out.println("Neither Mapped nor Composite CJK: "
-                + new UnicodeSet(CJK).removeAll(CJKcomposites).removeAll(CJKmapped).toPattern(true));
+        System.out.println(
+                "UNMapped CJK: " + new UnicodeSet(CJK).removeAll(mapped).toPattern(true));
+        System.out.println(
+                "Neither Mapped nor Composite CJK: "
+                        + new UnicodeSet(CJK)
+                                .removeAll(CJKcomposites)
+                                .removeAll(CJKmapped)
+                                .toPattern(true));
 
         /*
          * 2E80..2EFF; CJK Radicals Supplement 2F00..2FDF; Kangxi Radicals
@@ -700,8 +767,14 @@ public class WriteCollationData {
                 alreadyDone.add(s);
                 final CEList ces = uca.getCEList(s, true);
 
-                log2.println(s + "\t" + ces
-                        + "\t" + Default.ucd().getCodeAndName(s) + " from " + Default.ucd().getCodeAndName(i));
+                log2.println(
+                        s
+                                + "\t"
+                                + ces
+                                + "\t"
+                                + Default.ucd().getCodeAndName(s)
+                                + " from "
+                                + Default.ucd().getCodeAndName(i));
 
                 addToBackMap(backMap, ces, s, false);
             }
@@ -710,7 +783,8 @@ public class WriteCollationData {
         System.out.println("Find Exact Equivalents");
 
         final Set<String> removals = new HashSet<String>();
-        final Map<String,String> equivalentsMap = findExactEquivalents(backMap, ordered, collatorType, removals);
+        final Map<String, String> equivalentsMap =
+                findExactEquivalents(backMap, ordered, collatorType, removals);
         for (final String s : removals) {
             ordered.remove(s);
         }
@@ -733,30 +807,37 @@ public class WriteCollationData {
             filename += ".txt";
         }
 
-        final String directory = UCA.getOutputDir() + File.separator
-                + (collatorType==CollatorType.cldr ? "CollationAuxiliary" : "Ducet");
+        final String directory =
+                UCA.getOutputDir()
+                        + File.separator
+                        + (collatorType == CollatorType.cldr ? "CollationAuxiliary" : "Ducet");
 
         log = Utility.openPrintWriter(directory, filename, Utility.UTF8_WINDOWS);
 
         //        String[] commentText = {
         //                filename,
-        //                "This file contains the UCA tables for the given version, but transformed into rule syntax.",
+        //                "This file contains the UCA tables for the given version, but transformed
+        // into rule syntax.",
         //                "Generated:   " + getNormalDate(),
-        //                "NOTE: Since UCA handles canonical equivalents, no composites are necessary",
+        //                "NOTE: Since UCA handles canonical equivalents, no composites are
+        // necessary",
         //                "(except in extensions).",
-        //                "For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_Intro.html"
+        //                "For syntax description, see:
+        // http://oss.software.ibm.com/icu/userguide/Collate_Intro.html"
         //        };
 
         if (option == IN_XML) {
             log.println("<collation>");
             log.println("<!--");
-            WriteCollationData.writeVersionAndDate(log, filename, collatorType==CollatorType.cldr);
+            WriteCollationData.writeVersionAndDate(
+                    log, filename, collatorType == CollatorType.cldr);
             log.println("-->");
             log.println("<base uca='" + uca.getDataVersion() + "/" + uca.getUCDVersion() + "'/>");
             log.println("<rules>");
         } else {
             log.write('\uFEFF'); // BOM
-            WriteCollationData.writeVersionAndDate(log, filename, collatorType==CollatorType.cldr);
+            WriteCollationData.writeVersionAndDate(
+                    log, filename, collatorType == CollatorType.cldr);
         }
 
         it = ordered.keySet().iterator();
@@ -776,7 +857,7 @@ public class WriteCollationData {
         CEList ces = bogusCes;
 
         String nextChr = "";
-        CEList nextCes = bogusCes;  // bogusCes signals that we need to skip!!
+        CEList nextCes = bogusCes; // bogusCes signals that we need to skip!!
 
         String lastChr = "";
         CEList lastCes = CEList.EMPTY;
@@ -810,30 +891,63 @@ public class WriteCollationData {
                 if (result < 0) {
                     System.out.println();
                     System.out.println("DANGER: Sort Key Unordered!");
-                    System.out.println((loopCounter - 1) + " " + Utility.hex(lastSortKey)
-                            + ", " + Default.ucd().getCodeAndName(lastSortKey.charAt(lastSortKey.length() - 1)));
-                    System.out.println(loopCounter + " " + Utility.hex(nextSortKey)
-                            + ", " + Default.ucd().getCodeAndName(nextSortKey.charAt(nextSortKey.length() - 1)));
+                    System.out.println(
+                            (loopCounter - 1)
+                                    + " "
+                                    + Utility.hex(lastSortKey)
+                                    + ", "
+                                    + Default.ucd()
+                                            .getCodeAndName(
+                                                    lastSortKey.charAt(lastSortKey.length() - 1)));
+                    System.out.println(
+                            loopCounter
+                                    + " "
+                                    + Utility.hex(nextSortKey)
+                                    + ", "
+                                    + Default.ucd()
+                                            .getCodeAndName(
+                                                    nextSortKey.charAt(nextSortKey.length() - 1)));
                 }
                 if (nextChr == null) {
                     Utility.fixDot();
                     if (!showNext) {
                         System.out.println();
-                        System.out.println((loopCounter - 1) + "   Last = " + Utility.hex(lastSortKey)
-                                + ", " + Default.ucd().getCodeAndName(lastSortKey.charAt(lastSortKey.length() - 1)));
+                        System.out.println(
+                                (loopCounter - 1)
+                                        + "   Last = "
+                                        + Utility.hex(lastSortKey)
+                                        + ", "
+                                        + Default.ucd()
+                                                .getCodeAndName(
+                                                        lastSortKey.charAt(
+                                                                lastSortKey.length() - 1)));
                     }
-                    System.out.println(lastSortKey.compareTo(nextSortKey)
-                            + ", " + nextSortKey.compareTo(lastSortKey));
-                    System.out.println(loopCounter + " NULL AT  " + Utility.hex(nextSortKey)
-                            + ", " + Default.ucd().getCodeAndName(nextSortKey.charAt(nextSortKey.length() - 1)));
+                    System.out.println(
+                            lastSortKey.compareTo(nextSortKey)
+                                    + ", "
+                                    + nextSortKey.compareTo(lastSortKey));
+                    System.out.println(
+                            loopCounter
+                                    + " NULL AT  "
+                                    + Utility.hex(nextSortKey)
+                                    + ", "
+                                    + Default.ucd()
+                                            .getCodeAndName(
+                                                    nextSortKey.charAt(nextSortKey.length() - 1)));
                     nextChr = "??";
                     showNext = true;
                 } else if (showNext) {
                     showNext = false;
-                    System.out.println(lastSortKey.compareTo(nextSortKey)
-                            + ", " + nextSortKey.compareTo(lastSortKey));
-                    System.out.println(loopCounter + "   Next = " + Utility.hex(nextSortKey)
-                            + ", " + Default.ucd().getCodeAndName(nextChr));
+                    System.out.println(
+                            lastSortKey.compareTo(nextSortKey)
+                                    + ", "
+                                    + nextSortKey.compareTo(lastSortKey));
+                    System.out.println(
+                            loopCounter
+                                    + "   Next = "
+                                    + Utility.hex(nextSortKey)
+                                    + ", "
+                                    + Default.ucd().getCodeAndName(nextChr));
                 }
                 lastSortKey = nextSortKey;
             } else {
@@ -854,9 +968,11 @@ public class WriteCollationData {
 
             if (loopCounter < 5) {
                 System.out.println(loopCounter);
-                System.out.println(lastCes.toString() + ", " + Default.ucd().getCodeAndName(lastChr));
+                System.out.println(
+                        lastCes.toString() + ", " + Default.ucd().getCodeAndName(lastChr));
                 System.out.println(ces.toString() + ", " + Default.ucd().getCodeAndName(chr));
-                System.out.println(nextCes.toString() + ", " + Default.ucd().getCodeAndName(nextChr));
+                System.out.println(
+                        nextCes.toString() + ", " + Default.ucd().getCodeAndName(nextChr));
             }
 
             // get relation
@@ -874,7 +990,8 @@ public class WriteCollationData {
             int relation = getStrengthDifference(ces, expansionStart, lastCes, lastExpansionStart);
 
             if (relation == QUARTERNARY_DIFF) {
-                final int relation2 = getStrengthDifference(ces, ces.length(), lastCes, lastCes.length());
+                final int relation2 =
+                        getStrengthDifference(ces, ces.length(), lastCes, lastCes.length());
                 if (relation2 != QUARTERNARY_DIFF) {
                     relation = TERTIARY_DIFF;
                 }
@@ -891,8 +1008,9 @@ public class WriteCollationData {
             if (ceLayout == IMPLICIT) {
                 if (relation == PRIMARY_DIFF) {
                     final int primary = CEList.getPrimary(ce);
-                    final int resetCp = uca.implicit.codePointForPrimaryPair(
-                            primary, CEList.getPrimary(ces.at(1)));
+                    final int resetCp =
+                            uca.implicit.codePointForPrimaryPair(
+                                    primary, CEList.getPrimary(ces.at(1)));
 
                     final CEList ces2 = uca.getCEList(UTF16.valueOf(resetCp), true);
                     relation = getStrengthDifference(ces, ces.length(), ces2, ces2.length());
@@ -908,24 +1026,24 @@ public class WriteCollationData {
             } else if (ceLayout != getCELayout(lastCE, uca) || firstTime) {
                 resetToParameter = true;
                 switch (ceLayout) {
-                case T_IGNORE:
-                    reset = "last tertiary ignorable";
-                    break;
-                case S_IGNORE:
-                    reset = "last secondary ignorable";
-                    break;
-                case P_IGNORE:
-                    reset = "last primary ignorable";
-                    break;
-                case VARIABLE:
-                    reset = "last regular";
-                    break;
-                case NON_IGNORE: /* reset = "top"; */
-                    insertVariableTop = true;
-                    break;
-                case TRAILING:
-                    reset = "last trailing";
-                    break;
+                    case T_IGNORE:
+                        reset = "last tertiary ignorable";
+                        break;
+                    case S_IGNORE:
+                        reset = "last secondary ignorable";
+                        break;
+                    case P_IGNORE:
+                        reset = "last primary ignorable";
+                        break;
+                    case VARIABLE:
+                        reset = "last regular";
+                        break;
+                    case NON_IGNORE: /* reset = "top"; */
+                        insertVariableTop = true;
+                        break;
+                    case TRAILING:
+                        reset = "last trailing";
+                        break;
                 }
             }
 
@@ -938,8 +1056,14 @@ public class WriteCollationData {
             if (ces.length() > expansionStart) {
                 // int tert0 = ces.at(0] & 0xFF;
                 // boolean isCompat = tert0 != 2 && tert0 != 8;
-                log2.println("Exp: " + Default.ucd().getCodeAndName(chr) + ", " + ces + ", start: " + expansionStart);
-                final int[] rel = { relation };
+                log2.println(
+                        "Exp: "
+                                + Default.ucd().getCodeAndName(chr)
+                                + ", "
+                                + ces
+                                + ", start: "
+                                + expansionStart);
+                final int[] rel = {relation};
                 expansion = getFromBackMap(backMap, ces, expansionStart, ces.length(), chr, rel);
                 // relation = rel[0];
 
@@ -948,18 +1072,32 @@ public class WriteCollationData {
                 // the first CE
                 // ONLY reset if the sort keys are not equal
                 if (false && (relation == PRIMARY_DIFF || relation == SECONDARY_DIFF)) {
-                    final int relation2 = getStrengthDifference(ces, expansionStart, lastCes, lastExpansionStart);
+                    final int relation2 =
+                            getStrengthDifference(ces, expansionStart, lastCes, lastExpansionStart);
                     if (relation2 != relation) {
                         System.out.println();
-                        System.out.println("Resetting: " + RELATION_NAMES[relation] + " to " + RELATION_NAMES[relation2]);
-                        System.out.println("LCes: " + lastCes + ", " + lastExpansionStart
-                                + ", " + Default.ucd().getCodeAndName(lastChr));
-                        System.out.println("Ces:  " + ces + ", " + expansionStart
-                                + ", " + Default.ucd().getCodeAndName(chr));
+                        System.out.println(
+                                "Resetting: "
+                                        + RELATION_NAMES[relation]
+                                        + " to "
+                                        + RELATION_NAMES[relation2]);
+                        System.out.println(
+                                "LCes: "
+                                        + lastCes
+                                        + ", "
+                                        + lastExpansionStart
+                                        + ", "
+                                        + Default.ucd().getCodeAndName(lastChr));
+                        System.out.println(
+                                "Ces:  "
+                                        + ces
+                                        + ", "
+                                        + expansionStart
+                                        + ", "
+                                        + Default.ucd().getCodeAndName(chr));
                         relation = relation2;
                     }
                 }
-
             }
 
             // print results
@@ -980,9 +1118,14 @@ public class WriteCollationData {
                      */
 
                     if (reset.length() != 0) {
-                        log.println("<reset/>"
-                                + (resetToParameter ? "<position at=\"" + reset + "\"/>" : Utility.quoteXML(reset))
-                                + (resetComment.length() != 0 ? "<!-- " + resetComment + "-->" : ""));
+                        log.println(
+                                "<reset/>"
+                                        + (resetToParameter
+                                                ? "<position at=\"" + reset + "\"/>"
+                                                : Utility.quoteXML(reset))
+                                        + (resetComment.length() != 0
+                                                ? "<!-- " + resetComment + "-->"
+                                                : ""));
                     }
                     if (expansion.length() > 0) {
                         log.print("<x>");
@@ -1015,9 +1158,14 @@ public class WriteCollationData {
                         log.println(RELATION_NAMES[0] + " [variable top]");
                     }
                     if (reset.length() != 0) {
-                        log.println("& "
-                                + (resetToParameter ? "[" : "") + reset + (resetToParameter ? "]" : "")
-                                + (resetComment.length() != 0 ? "\t\t# " + resetComment : ""));
+                        log.println(
+                                "& "
+                                        + (resetToParameter ? "[" : "")
+                                        + reset
+                                        + (resetToParameter ? "]" : "")
+                                        + (resetComment.length() != 0
+                                                ? "\t\t# " + resetComment
+                                                : ""));
                     }
                     if (!firstTime) {
                         log.print(RELATION_NAMES[relation] + " " + quoteOperand(chr));
@@ -1056,31 +1204,31 @@ public class WriteCollationData {
             final String valueToSetTo = sourceReplacement.getValue();
             final String stringToSet = sourceReplacement.getKey();
             if (option == IN_XML) {
-                log.print("<reset/>"
-                        + Utility.quoteXML(valueToSetTo)
-                        + "<i>"
-                        + Utility.quoteXML(stringToSet)
-                        + "</i>");
+                log.print(
+                        "<reset/>"
+                                + Utility.quoteXML(valueToSetTo)
+                                + "<i>"
+                                + Utility.quoteXML(stringToSet)
+                                + "</i>");
                 if (!shortPrint) {
                     log.print("\t<!--");
-                    log.print(Default.ucd().getCodeAndName(stringToSet)
-                            + "\t→\t"
-                            + Default.ucd().getCodeAndName(valueToSetTo));
+                    log.print(
+                            Default.ucd().getCodeAndName(stringToSet)
+                                    + "\t→\t"
+                                    + Default.ucd().getCodeAndName(valueToSetTo));
                     log.print("-->");
                 }
             } else {
-                log.print("& "
-                        + quoteOperand(valueToSetTo)
-                        + " = "
-                        + quoteOperand(stringToSet));
+                log.print("& " + quoteOperand(valueToSetTo) + " = " + quoteOperand(stringToSet));
                 if (!shortPrint) {
                     log.print("\t# ");
                     log.print(latestAge(stringToSet) + " [");
                     final String typeKD = ReorderingTokens.getTypesCombined(stringToSet);
                     log.print(typeKD + "] ");
-                    log.print(Default.ucd().getCodeAndName(stringToSet)
-                            + "\t→\t"
-                            + Default.ucd().getCodeAndName(valueToSetTo));
+                    log.print(
+                            Default.ucd().getCodeAndName(stringToSet)
+                                    + "\t→\t"
+                                    + Default.ucd().getCodeAndName(valueToSetTo));
                 }
             }
             log.println();
@@ -1094,9 +1242,12 @@ public class WriteCollationData {
         Utility.fixDot();
     }
 
-    private static final UnicodeSet SKIP_TIBETAN_EQUIVALENTS = new UnicodeSet("[ྲཱི  ྲཱི ྲཱུ  ྲཱུ ླཱི  ླཱི ླཱུ  ླཱུ]").freeze();
+    private static final UnicodeSet SKIP_TIBETAN_EQUIVALENTS =
+            new UnicodeSet("[ྲཱི  ྲཱི ྲཱུ  ྲཱུ ླཱི  ླཱི ླཱུ  ླཱུ]").freeze();
+
     private static Map<String, String> findExactEquivalents(
-            Map<ArrayWrapper, String> backMap, Map<String, String> ordered,
+            Map<ArrayWrapper, String> backMap,
+            Map<String, String> ordered,
             CollatorType collatorType,
             Set<String> removals) {
         final Map<String, String> equivalentsStrings = new LinkedHashMap<String, String>();
@@ -1159,8 +1310,9 @@ public class WriteCollationData {
     }
 
     private static final UnicodeProperty bidiProp = getToolUnicodeSource().getProperty("bc");
-    private static final UnicodeSet      BIDI     = new UnicodeSet(bidiProp.getSet("AL")).addAll(bidiProp.getSet("R")).freeze();
-    private static final String          LRM      = "\u200E";
+    private static final UnicodeSet BIDI =
+            new UnicodeSet(bidiProp.getSet("AL")).addAll(bidiProp.getSet("R")).freeze();
+    private static final String LRM = "\u200E";
 
     private static String latestAge(String chr) {
         int cp;
@@ -1183,7 +1335,13 @@ public class WriteCollationData {
         return ageProp.getValue(cp, true);
     }
 
-    private static final int T_IGNORE = 1, S_IGNORE = 2, P_IGNORE = 3, VARIABLE = 4, NON_IGNORE = 5, IMPLICIT = 6, TRAILING = 7;
+    private static final int T_IGNORE = 1,
+            S_IGNORE = 2,
+            P_IGNORE = 3,
+            VARIABLE = 4,
+            NON_IGNORE = 5,
+            IMPLICIT = 6,
+            TRAILING = 7;
 
     private static int getCELayout(int ce, UCA collator) {
         final int primary = CEList.getPrimary(ce);
@@ -1210,18 +1368,17 @@ public class WriteCollationData {
         return TRAILING;
     }
 
-    private static final int
-    PRIMARY_DIFF = 0,
-    SECONDARY_DIFF = 1,
-    TERTIARY_DIFF = 2,
-    QUARTERNARY_DIFF = 3,
-    DONE = -1;
+    private static final int PRIMARY_DIFF = 0,
+            SECONDARY_DIFF = 1,
+            TERTIARY_DIFF = 2,
+            QUARTERNARY_DIFF = 3,
+            DONE = -1;
 
     private static class CE_Iterator {
         CEList ces;
-        int   len;
-        int   current;
-        int   level;
+        int len;
+        int current;
+        int level;
 
         void reset(CEList ces, int len) {
             this.ces = ces;
@@ -1240,15 +1397,15 @@ public class WriteCollationData {
             while (current < len) {
                 final int ce = ces.at(current++);
                 switch (level) {
-                case PRIMARY_DIFF:
-                    val = CEList.getPrimary(ce);
-                    break;
-                case SECONDARY_DIFF:
-                    val = CEList.getSecondary(ce);
-                    break;
-                case TERTIARY_DIFF:
-                    val = CEList.getTertiary(ce);
-                    break;
+                    case PRIMARY_DIFF:
+                        val = CEList.getPrimary(ce);
+                        break;
+                    case SECONDARY_DIFF:
+                        val = CEList.getSecondary(ce);
+                        break;
+                    case TERTIARY_DIFF:
+                        val = CEList.getTertiary(ce);
+                        break;
                 }
                 if (val != 0) {
                     return val;
@@ -1287,13 +1444,13 @@ public class WriteCollationData {
         return QUARTERNARY_DIFF;
     }
 
-    private static final String[] RELATION_NAMES     = { " <\t", "  <<\t", "   <<<\t", "    =\t" };
-    private static final String[] XML_RELATION_NAMES = { "p", "s", "t", "i" };
+    private static final String[] RELATION_NAMES = {" <\t", "  <<\t", "   <<<\t", "    =\t"};
+    private static final String[] XML_RELATION_NAMES = {"p", "s", "t", "i"};
 
     private static class ArrayWrapper {
         int[] array;
-        int   start;
-        int   limit;
+        int start;
+        int limit;
 
         /*
          * public ArrayWrapper(int[] contents) { set(contents, 0,
@@ -1361,8 +1518,11 @@ public class WriteCollationData {
         return false;
     }
 
-    private static final void addToBackMap(Map<ArrayWrapper,String> backMap, CEList ces, String s, boolean show) {
-        if (show || contains(testCase, 0, testCase.length, ces.at(0)) || testString.indexOf(s) > 0) {
+    private static final void addToBackMap(
+            Map<ArrayWrapper, String> backMap, CEList ces, String s, boolean show) {
+        if (show
+                || contains(testCase, 0, testCase.length, ces.at(0))
+                || testString.indexOf(s) > 0) {
             System.out.println("Test case: " + Utility.hex(s) + ", " + ces);
         }
         // NOTE: we add the back map based on the string value; the smallest
@@ -1381,7 +1541,13 @@ public class WriteCollationData {
         backMap.put(key, s);
     }
 
-    private static final String getFromBackMap(Map<ArrayWrapper, String> backMap, CEList originalces, int expansionStart, int len, String chr, int[] rel) {
+    private static final String getFromBackMap(
+            Map<ArrayWrapper, String> backMap,
+            CEList originalces,
+            int expansionStart,
+            int len,
+            String chr,
+            int[] rel) {
         final UCA ducet = getCollator(CollatorType.ducet);
         final int[] ces = new int[originalces.length()];
         originalces.appendTo(ces, 0);
@@ -1398,30 +1564,30 @@ public class WriteCollationData {
 
             int tert = tertiary;
             switch (tert) {
-            case 8:
-            case 9:
-            case 0xA:
-            case 0xB:
-            case 0xC:
-            case 0x1D:
-                tert = 8;
-                break;
-            case 0xD:
-            case 0x10:
-            case 0x11:
-            case 0x12:
-            case 0x13:
-            case 0x1C:
-                tert = 0xE;
-                break;
-            default:
-                tert = 2;
-                break;
+                case 8:
+                case 9:
+                case 0xA:
+                case 0xB:
+                case 0xC:
+                case 0x1D:
+                    tert = 8;
+                    break;
+                case 0xD:
+                case 0x10:
+                case 0x11:
+                case 0x12:
+                case 0x13:
+                case 0x1C:
+                    tert = 0xE;
+                    break;
+                default:
+                    tert = 2;
+                    break;
             }
             ces[i] = UCA.makeKey(primary, secondary, tert);
         }
 
-        for (int i = expansionStart; i < len;) {
+        for (int i = expansionStart; i < len; ) {
             int limit;
             String s = null;
             for (limit = len; limit > i; --limit) {
@@ -1446,8 +1612,9 @@ public class WriteCollationData {
                     final int probe = ces[i];
                     if (UCA.isImplicitLeadCE(probe)) {
                         int nextCE = ces[i + 1];
-                        int c = ducet.implicit.codePointForPrimaryPair(
-                                CEList.getPrimary(probe), CEList.getPrimary(nextCE));
+                        int c =
+                                ducet.implicit.codePointForPrimaryPair(
+                                        CEList.getPrimary(probe), CEList.getPrimary(nextCE));
                         s = UTF16.valueOf(c);
                         ++i; // skip over trail primary
                         break;
@@ -1472,11 +1639,16 @@ public class WriteCollationData {
 
                     // we failed completely. Print error message, and bail
 
-                    System.out.println("Fix Homeless! No back map for " + CEList.toString(ces[i])
-                            + " from " + CEList.toString(ces, len));
-                    System.out.println("\t" + Default.ucd().getCodeAndName(chr)
-                            + " => " + Default.ucd().getCodeAndName(Default.nfkd().normalize(chr))
-                            );
+                    System.out.println(
+                            "Fix Homeless! No back map for "
+                                    + CEList.toString(ces[i])
+                                    + " from "
+                                    + CEList.toString(ces, len));
+                    System.out.println(
+                            "\t"
+                                    + Default.ucd().getCodeAndName(chr)
+                                    + " => "
+                                    + Default.ucd().getCodeAndName(Default.nfkd().normalize(chr)));
                     s = "[" + Utility.hex(ces[i]) + "]";
                 } while (false); // exactly one time, just for breaking
                 limit = i + 1;
@@ -1487,10 +1659,10 @@ public class WriteCollationData {
         return expansion;
     }
 
-    private static StringBuffer   quoteOperandBuffer           = new StringBuffer();                            // faster
+    private static StringBuffer quoteOperandBuffer = new StringBuffer(); // faster
 
-    private static UnicodeSet     needsQuoting                 = null;
-    private static UnicodeSet     needsUnicodeForm             = null;
+    private static UnicodeSet needsQuoting = null;
+    private static UnicodeSet needsUnicodeForm = null;
 
     static final String quoteOperand(String s) {
         if (needsQuoting == null) {
@@ -1501,14 +1673,17 @@ public class WriteCollationData {
              * c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || c >= '0' && c <=
              * '9' || (c >= 0xA0 && !UCharacterProperty.isRuleWhiteSpace(c))
              */
-            needsQuoting = new UnicodeSet("[[:whitespace:][:z:][:c:][:ascii:]-[a-zA-Z0-9]-[:cn:]]").addAll(cn); //
+            needsQuoting =
+                    new UnicodeSet("[[:whitespace:][:z:][:c:][:ascii:]-[a-zA-Z0-9]-[:cn:]]")
+                            .addAll(cn); //
             // "[[:ascii:]-[a-zA-Z0-9]-[:c:]-[:z:]]"); //
             // [:whitespace:][:c:][:z:]
             // for (int i = 0; i <= 0x10FFFF; ++i) {
             // if (UCharacterProperty.isRuleWhiteSpace(i)) needsQuoting.add(i);
             // }
             // needsQuoting.remove();
-            needsUnicodeForm = new UnicodeSet("[\\u000d\\u000a[:zl:][:zp:][:c:][:di:]-[:cn:]]").addAll(cn);
+            needsUnicodeForm =
+                    new UnicodeSet("[\\u000d\\u000a[:zl:][:zp:][:c:][:di:]-[:cn:]]").addAll(cn);
         }
         s = Default.nfc().normalize(s);
         quoteOperandBuffer.setLength(0);
@@ -1681,37 +1856,42 @@ public class WriteCollationData {
     }
 
     public static UCA getCollator(CollatorType type) {
-        switch(type) {
-        case cldr:
-            if (cldrCollator == null) {
-                //                if (Default.ucdVersion().compareTo("6.1") < 0) { // only reorder if less than v6.1
-                //                    cldrCollator = buildCldrCollator(true);
-                //                } else
-                {
-                    cldrCollator = buildCldrCollator(false);
+        switch (type) {
+            case cldr:
+                if (cldrCollator == null) {
+                    //                if (Default.ucdVersion().compareTo("6.1") < 0) { // only
+                    // reorder if less than v6.1
+                    //                    cldrCollator = buildCldrCollator(true);
+                    //                } else
+                    {
+                        cldrCollator = buildCldrCollator(false);
 
-                    cldrCollator.overrideCE("\uFFFE", 0x1, 0x20, 2);
-                    cldrCollator.overrideCE("\uFFFF", 0xFFFE, 0x20, 2);
+                        cldrCollator.overrideCE("\uFFFE", 0x1, 0x20, 2);
+                        cldrCollator.overrideCE("\uFFFF", 0xFFFE, 0x20, 2);
+                    }
                 }
-            }
-            return cldrCollator;
-        case ducet:
-            if (ducetCollator == null) {
-                ducetCollator = UCA.buildCollator(null);
-            }
-            return ducetCollator;
-        case cldrWithoutFFFx:
-            if (cldrWithoutFFFxCollator == null) {
-                cldrWithoutFFFxCollator = buildCldrCollator(false);
-            }
-            return cldrWithoutFFFxCollator;
-        default:
-            throw new IllegalArgumentException();
+                return cldrCollator;
+            case ducet:
+                if (ducetCollator == null) {
+                    ducetCollator = UCA.buildCollator(null);
+                }
+                return ducetCollator;
+            case cldrWithoutFFFx:
+                if (cldrWithoutFFFxCollator == null) {
+                    cldrWithoutFFFxCollator = buildCldrCollator(false);
+                }
+                return cldrWithoutFFFxCollator;
+            default:
+                throw new IllegalArgumentException();
         }
     }
 
     private static UCA buildCldrCollator(boolean addFFFx) {
-        final PrintWriter fractionalLog = Utility.openPrintWriter(UCA.getOutputDir() + File.separator + "log", "FractionalRemap.txt", Utility.UTF8_WINDOWS);
+        final PrintWriter fractionalLog =
+                Utility.openPrintWriter(
+                        UCA.getOutputDir() + File.separator + "log",
+                        "FractionalRemap.txt",
+                        Utility.UTF8_WINDOWS);
         // hack to reorder elements
         final UCA ducet = getCollator(CollatorType.ducet);
         final CEList ceListForA = ducet.getCEList("a", true);
@@ -1742,59 +1922,81 @@ public class WriteCollationData {
             CharSequence rep2 = filter(repChar);
             if (rep2 == null) {
                 rep2 = repChar;
-                fractionalLog.println("# Warning - No NFKD primary with:\t" + Utility.hex(ducetPrimary)
-                        + "\t" + repChar
-                        + "\t" + Default.ucd().getCodeAndName(repChar.toString()));
-                //continue;
+                fractionalLog.println(
+                        "# Warning - No NFKD primary with:\t"
+                                + Utility.hex(ducetPrimary)
+                                + "\t"
+                                + repChar
+                                + "\t"
+                                + Default.ucd().getCodeAndName(repChar.toString()));
+                // continue;
             }
             rep2 = repChar;
             final int firstChar = Character.codePointAt(rep2, 0);
             final int cat = Default.ucd().getCategory(firstChar);
             switch (cat) {
-            case UCD_Types.SPACE_SEPARATOR: case UCD_Types.LINE_SEPARATOR: case UCD_Types.PARAGRAPH_SEPARATOR: case UCD_Types.CONTROL:
-                spaces.add(ducetPrimary);
-                break;
-            case UCD_Types.DASH_PUNCTUATION: case UCD_Types.START_PUNCTUATION: case UCD_Types.END_PUNCTUATION: case UCD_Types.CONNECTOR_PUNCTUATION:
-            case UCD_Types.OTHER_PUNCTUATION: case UCD_Types.INITIAL_PUNCTUATION: case UCD_Types.FINAL_PUNCTUATION:
-                punctuation.add(ducetPrimary);
-                break;
-            case UCD_Types.DECIMAL_DIGIT_NUMBER:
-                numbers.add(ducetPrimary);
-                break;
-            case UCD_Types.LETTER_NUMBER: case UCD_Types.OTHER_NUMBER:
-                if (ducetPrimary >= firstScriptPrimary) {
+                case UCD_Types.SPACE_SEPARATOR:
+                case UCD_Types.LINE_SEPARATOR:
+                case UCD_Types.PARAGRAPH_SEPARATOR:
+                case UCD_Types.CONTROL:
+                    spaces.add(ducetPrimary);
                     break;
-                }
-                numbers.add(ducetPrimary);
-                break;
-            case UCD_Types.CURRENCY_SYMBOL:
-                currencySymbols.add(ducetPrimary);
-                break;
-            case UCD_Types.MATH_SYMBOL: case UCD_Types.MODIFIER_SYMBOL: case UCD_Types.OTHER_SYMBOL:
-                generalSymbols.add(ducetPrimary);
-                break;
-            case UCD_Types.UNASSIGNED: case UCD_Types.UPPERCASE_LETTER: case UCD_Types.LOWERCASE_LETTER: case UCD_Types.TITLECASE_LETTER: case UCD_Types.MODIFIER_LETTER:
-            case UCD_Types.OTHER_LETTER: case UCD_Types.NON_SPACING_MARK: case UCD_Types.ENCLOSING_MARK: case UCD_Types.COMBINING_SPACING_MARK:
-            case UCD_Types.FORMAT:
-                if (ducetPrimary >= firstScriptPrimary) {
+                case UCD_Types.DASH_PUNCTUATION:
+                case UCD_Types.START_PUNCTUATION:
+                case UCD_Types.END_PUNCTUATION:
+                case UCD_Types.CONNECTOR_PUNCTUATION:
+                case UCD_Types.OTHER_PUNCTUATION:
+                case UCD_Types.INITIAL_PUNCTUATION:
+                case UCD_Types.FINAL_PUNCTUATION:
+                    punctuation.add(ducetPrimary);
                     break;
-                }
-                generalSymbols.add(ducetPrimary);
-                break;
-            default:
-                throw new IllegalArgumentException();
+                case UCD_Types.DECIMAL_DIGIT_NUMBER:
+                    numbers.add(ducetPrimary);
+                    break;
+                case UCD_Types.LETTER_NUMBER:
+                case UCD_Types.OTHER_NUMBER:
+                    if (ducetPrimary >= firstScriptPrimary) {
+                        break;
+                    }
+                    numbers.add(ducetPrimary);
+                    break;
+                case UCD_Types.CURRENCY_SYMBOL:
+                    currencySymbols.add(ducetPrimary);
+                    break;
+                case UCD_Types.MATH_SYMBOL:
+                case UCD_Types.MODIFIER_SYMBOL:
+                case UCD_Types.OTHER_SYMBOL:
+                    generalSymbols.add(ducetPrimary);
+                    break;
+                case UCD_Types.UNASSIGNED:
+                case UCD_Types.UPPERCASE_LETTER:
+                case UCD_Types.LOWERCASE_LETTER:
+                case UCD_Types.TITLECASE_LETTER:
+                case UCD_Types.MODIFIER_LETTER:
+                case UCD_Types.OTHER_LETTER:
+                case UCD_Types.NON_SPACING_MARK:
+                case UCD_Types.ENCLOSING_MARK:
+                case UCD_Types.COMBINING_SPACING_MARK:
+                case UCD_Types.FORMAT:
+                    if (ducetPrimary >= firstScriptPrimary) {
+                        break;
+                    }
+                    generalSymbols.add(ducetPrimary);
+                    break;
+                default:
+                    throw new IllegalArgumentException();
             }
         }
         // now reorder
         primaryRemap
-        .addItems(spaces)
-        .addItems(punctuation)
-        .setVariableHigh()
-        .addItems(generalSymbols)
-        .addItems(currencySymbols)
-        .putRemappedCharacters(0x20A8) // U+20A8 RUPEE SIGN
-        .putRemappedCharacters(0xFDFC) // U+FDFC RIAL SIGN
-        .addItems(numbers);
+                .addItems(spaces)
+                .addItems(punctuation)
+                .setVariableHigh()
+                .addItems(generalSymbols)
+                .addItems(currencySymbols)
+                .putRemappedCharacters(0x20A8) // U+20A8 RUPEE SIGN
+                .putRemappedCharacters(0xFDFC) // U+FDFC RIAL SIGN
+                .addItems(numbers);
 
         primaryRemap.setFirstDucetNonVariable(firstDucetNonVariable);
 
@@ -1810,9 +2012,11 @@ public class WriteCollationData {
             //                    if (rep2 == null) {
             //                        rep2 = repChar;
             //                    }
-            final String gcInfo = FractionalUCA.getStringTransform(rep2, "/", FractionalUCA.GeneralCategoryTransform, s);
+            final String gcInfo =
+                    FractionalUCA.getStringTransform(
+                            rep2, "/", FractionalUCA.GeneralCategoryTransform, s);
             // FractionalUCA.GeneralCategoryTransform.transform(repChar);
-            //String scriptInfo = FractionalUCA.ScriptTransform.transform(repChar);
+            // String scriptInfo = FractionalUCA.ScriptTransform.transform(repChar);
 
             final Integer remap = primaryRemap.getRemappedPrimary(ducetPrimary);
             if (remap == null) {
@@ -1823,23 +2027,33 @@ public class WriteCollationData {
             final int remap2 = remap == null ? ducetPrimary : remap;
             fractionalLog.println(
                     (remap == null ? "#" : "")
-                    + "\t" + ducetPrimary
-                    + "\t" + remap2
-                    + "\tx" + Utility.hex(ducetPrimary)
-                    + "\tx" + Utility.hex(remap2)
-                    + "\t" + gcInfo
-                    + "\t" + excelQuote(rep2)
-                    + "\t" + Default.ucd().getCodeAndName(Character.codePointAt(rep2, 0))
-                    );
+                            + "\t"
+                            + ducetPrimary
+                            + "\t"
+                            + remap2
+                            + "\tx"
+                            + Utility.hex(ducetPrimary)
+                            + "\tx"
+                            + Utility.hex(remap2)
+                            + "\t"
+                            + gcInfo
+                            + "\t"
+                            + excelQuote(rep2)
+                            + "\t"
+                            + Default.ucd().getCodeAndName(Character.codePointAt(rep2, 0)));
         }
         final Map<Integer, IntStack> characterRemap = primaryRemap.getCharacterRemap();
         fractionalLog.println("# Remapped characters");
 
         for (final Entry<Integer, IntStack> x : characterRemap.entrySet()) {
             final Integer character = x.getKey();
-            fractionalLog.println("#" + Utility.hex(character)
-                    + "\t" + x.getValue()
-                    + "\t" + Default.ucd().getCodeAndName(character));
+            fractionalLog.println(
+                    "#"
+                            + Utility.hex(character)
+                            + "\t"
+                            + x.getValue()
+                            + "\t"
+                            + Default.ucd().getCodeAndName(character));
         }
         fractionalLog.close();
 
@@ -1858,19 +2072,51 @@ public class WriteCollationData {
             final CEList fb2_f71 = result.getCEList("\u0FB2\u0F71", true);
             final CEList fb3_f71 = result.getCEList("\u0FB3\u0F71", true);
 
-            addOverride(result, "\u0FB2\u0F71", fb2_f71);               //0FB2 0F71      ;     [.255A.0020.0002.0FB2][.2570.0020.0002.0F71] - concat 0FB2 + 0F71
-            addOverride(result, "\u0FB2\u0F71\u0F72", fb2, f71_f72);    //0FB2 0F71 0F72 ;    [.255A.0020.0002.0FB2][.2572.0020.0002.0F73] - concat 0FB2 + (0F71/0F72)
-            addOverride(result, "\u0FB2\u0F73", fb2, f71_f72);          //0FB2 0F73      ;        [.255A.0020.0002.0FB2][.2572.0020.0002.0F73] = prev
-            addOverride(result, "\u0FB2\u0F71\u0F74", fb2, f71_f74);    //0FB2 0F71 0F74 ;    [.255A.0020.0002.0FB2][.2576.0020.0002.0F75] - concat 0FB2 + (0F71/0F74)
-            addOverride(result, "\u0FB2\u0F75", fb2, f71_f74);          //0FB2 0F75      ;        [.255A.0020.0002.0FB2][.2576.0020.0002.0F75]  = prev
+            addOverride(
+                    result,
+                    "\u0FB2\u0F71",
+                    fb2_f71); // 0FB2 0F71      ;     [.255A.0020.0002.0FB2][.2570.0020.0002.0F71] -
+            // concat 0FB2 + 0F71
+            addOverride(
+                    result,
+                    "\u0FB2\u0F71\u0F72",
+                    fb2,
+                    f71_f72); // 0FB2 0F71 0F72 ;    [.255A.0020.0002.0FB2][.2572.0020.0002.0F73] -
+            // concat 0FB2 + (0F71/0F72)
+            addOverride(result, "\u0FB2\u0F73", fb2, f71_f72); // 0FB2 0F73      ;
+            // [.255A.0020.0002.0FB2][.2572.0020.0002.0F73] = prev
+            addOverride(
+                    result,
+                    "\u0FB2\u0F71\u0F74",
+                    fb2,
+                    f71_f74); // 0FB2 0F71 0F74 ;    [.255A.0020.0002.0FB2][.2576.0020.0002.0F75] -
+            // concat 0FB2 + (0F71/0F74)
+            addOverride(result, "\u0FB2\u0F75", fb2, f71_f74); // 0FB2 0F75      ;
+            // [.255A.0020.0002.0FB2][.2576.0020.0002.0F75]  = prev
 
             // same as above, but 0FB2 => 0FB3 and fb2 => fb3
 
-            addOverride(result, "\u0FB3\u0F71", fb3_f71);               //0FB3 0F71      ;     [.255A.0020.0002.0FB3][.2570.0020.0002.0F71] - concat 0FB3 + 0F71
-            addOverride(result, "\u0FB3\u0F71\u0F72", fb3, f71_f72);    //0FB3 0F71 0F72 ;    [.255A.0020.0002.0FB3][.2572.0020.0002.0F73] - concat 0FB3 + (0F71/0F72)
-            addOverride(result, "\u0FB3\u0F73", fb3, f71_f72);          //0FB3 0F73      ;        [.255A.0020.0002.0FB3][.2572.0020.0002.0F73] = prev
-            addOverride(result, "\u0FB3\u0F71\u0F74", fb3, f71_f74);    //0FB3 0F71 0F74 ;    [.255A.0020.0002.0FB3][.2576.0020.0002.0F75] - concat 0FB3 + (0F71/0F74)
-            addOverride(result, "\u0FB3\u0F75", fb3, f71_f74);          //0FB3 0F75      ;        [.255A.0020.0002.0FB3][.2576.0020.0002.0F75]  = prev
+            addOverride(
+                    result,
+                    "\u0FB3\u0F71",
+                    fb3_f71); // 0FB3 0F71      ;     [.255A.0020.0002.0FB3][.2570.0020.0002.0F71] -
+            // concat 0FB3 + 0F71
+            addOverride(
+                    result,
+                    "\u0FB3\u0F71\u0F72",
+                    fb3,
+                    f71_f72); // 0FB3 0F71 0F72 ;    [.255A.0020.0002.0FB3][.2572.0020.0002.0F73] -
+            // concat 0FB3 + (0F71/0F72)
+            addOverride(result, "\u0FB3\u0F73", fb3, f71_f72); // 0FB3 0F73      ;
+            // [.255A.0020.0002.0FB3][.2572.0020.0002.0F73] = prev
+            addOverride(
+                    result,
+                    "\u0FB3\u0F71\u0F74",
+                    fb3,
+                    f71_f74); // 0FB3 0F71 0F74 ;    [.255A.0020.0002.0FB3][.2576.0020.0002.0F75] -
+            // concat 0FB3 + (0F71/0F74)
+            addOverride(result, "\u0FB3\u0F75", fb3, f71_f74); // 0FB3 0F75      ;
+            // [.255A.0020.0002.0FB3][.2576.0020.0002.0F75]  = prev
         }
 
         // verify results
@@ -1888,23 +2134,35 @@ public class WriteCollationData {
             final int cat = Default.ucd().getCategory(i);
 
             switch (cat) {
-            case UCD_Types.SPACE_SEPARATOR: case UCD_Types.LINE_SEPARATOR: case UCD_Types.PARAGRAPH_SEPARATOR: case UCD_Types.CONTROL:
-            case UCD_Types.DASH_PUNCTUATION: case UCD_Types.START_PUNCTUATION: case UCD_Types.END_PUNCTUATION: case UCD_Types.CONNECTOR_PUNCTUATION:
-            case UCD_Types.OTHER_PUNCTUATION: case UCD_Types.INITIAL_PUNCTUATION: case UCD_Types.FINAL_PUNCTUATION:
-            case UCD_Types.DECIMAL_DIGIT_NUMBER: // case LETTER_NUMBER: case OTHER_NUMBER:
-            case UCD_Types.CURRENCY_SYMBOL:
-            case UCD_Types.MATH_SYMBOL: case UCD_Types.MODIFIER_SYMBOL:
-                //case OTHER_SYMBOL:
-                if (primary > firstScriptPrimary) {
-                    failures.append("\t" + Utility.hex(primary)
-                            + "\t" + Default.ucd().getCategoryID(i)
-                            + "\t" + Default.ucd().getCodeAndName(i)
-                            + "\n"
-                            );
-                }
-                break;
-            default:
-                // no action
+                case UCD_Types.SPACE_SEPARATOR:
+                case UCD_Types.LINE_SEPARATOR:
+                case UCD_Types.PARAGRAPH_SEPARATOR:
+                case UCD_Types.CONTROL:
+                case UCD_Types.DASH_PUNCTUATION:
+                case UCD_Types.START_PUNCTUATION:
+                case UCD_Types.END_PUNCTUATION:
+                case UCD_Types.CONNECTOR_PUNCTUATION:
+                case UCD_Types.OTHER_PUNCTUATION:
+                case UCD_Types.INITIAL_PUNCTUATION:
+                case UCD_Types.FINAL_PUNCTUATION:
+                case UCD_Types.DECIMAL_DIGIT_NUMBER: // case LETTER_NUMBER: case OTHER_NUMBER:
+                case UCD_Types.CURRENCY_SYMBOL:
+                case UCD_Types.MATH_SYMBOL:
+                case UCD_Types.MODIFIER_SYMBOL:
+                    // case OTHER_SYMBOL:
+                    if (primary > firstScriptPrimary) {
+                        failures.append(
+                                "\t"
+                                        + Utility.hex(primary)
+                                        + "\t"
+                                        + Default.ucd().getCategoryID(i)
+                                        + "\t"
+                                        + Default.ucd().getCodeAndName(i)
+                                        + "\n");
+                    }
+                    break;
+                default:
+                    // no action
             }
         }
         if (failures.length() > 0) {

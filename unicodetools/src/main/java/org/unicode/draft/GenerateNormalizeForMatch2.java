@@ -5,6 +5,19 @@
  */
 package org.unicode.draft;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.DateFormat;
+import com.ibm.icu.text.DecimalFormat;
+import com.ibm.icu.text.Normalizer;
+import com.ibm.icu.text.Normalizer.Mode;
+import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.text.SimpleDateFormat;
+import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.VersionInfo;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,22 +33,7 @@ import java.util.Date;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
-
 import org.unicode.cldr.util.PatternCache;
-
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.DateFormat;
-import com.ibm.icu.text.DecimalFormat;
-import com.ibm.icu.text.Normalizer;
-import com.ibm.icu.text.Normalizer.Mode;
-import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.SimpleDateFormat;
-import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
-import com.ibm.icu.util.VersionInfo;
 
 @Deprecated
 public class GenerateNormalizeForMatch2 {
@@ -43,7 +41,9 @@ public class GenerateNormalizeForMatch2 {
 
     // Command choices
     enum ListStyle {
-        ALL, SHOW_AGE, ONLY_OLD
+        ALL,
+        SHOW_AGE,
+        ONLY_OLD
     }
 
     private static ListStyle LIST_STYLE = ListStyle.ALL;
@@ -57,7 +57,8 @@ public class GenerateNormalizeForMatch2 {
 
     private static int DEBUG_CODE_POINT = 0x0041; // eg 0xFDFA
 
-    private static final Matcher HEXFORM = PatternCache.get("[0-9A-Fa-f]{4,6}(\\s+[0-9A-Fa-f]{4,6})*").matcher("");
+    private static final Matcher HEXFORM =
+            PatternCache.get("[0-9A-Fa-f]{4,6}(\\s+[0-9A-Fa-f]{4,6})*").matcher("");
 
     private static final int DIFF_LIMIT = 10;
 
@@ -65,10 +66,15 @@ public class GenerateNormalizeForMatch2 {
 
     // Fixes to match Jim's names
     private static UnicodeMap<String> JIM_NAMES = new UnicodeMap<String>();
+
     static {
         JIM_NAMES.putAll(new UnicodeSet("[:block=CJK Unified Ideographs:]"), "<CJK Ideograph>");
-        JIM_NAMES.putAll(new UnicodeSet("[:block=CJK Unified Ideographs Extension A:]"), "<CJK Ideograph Extension A>");
-        JIM_NAMES.putAll(new UnicodeSet("[:block=CJK Unified Ideographs Extension B:]"), "<CJK Ideograph Extension B>");
+        JIM_NAMES.putAll(
+                new UnicodeSet("[:block=CJK Unified Ideographs Extension A:]"),
+                "<CJK Ideograph Extension A>");
+        JIM_NAMES.putAll(
+                new UnicodeSet("[:block=CJK Unified Ideographs Extension B:]"),
+                "<CJK Ideograph Extension B>");
         JIM_NAMES.freeze();
     }
 
@@ -76,7 +82,7 @@ public class GenerateNormalizeForMatch2 {
 
     /**
      * Generate new files or reformat old ones, depending on options
-     * 
+     *
      * @param args
      * @throws IOException
      */
@@ -103,10 +109,13 @@ public class GenerateNormalizeForMatch2 {
             } else if (arg.equals("fix")) {
                 fix = true;
             } else {
-                throw new IllegalArgumentException("Unknown option: " + arg + "\n" +
-                    "-o <targetFile>\n" +
-                    "-i <inputFile>\n" +
-                    "-l <logFile>");
+                throw new IllegalArgumentException(
+                        "Unknown option: "
+                                + arg
+                                + "\n"
+                                + "-o <targetFile>\n"
+                                + "-i <inputFile>\n"
+                                + "-l <logFile>");
             }
         }
         if (logFile == null) {
@@ -115,16 +124,17 @@ public class GenerateNormalizeForMatch2 {
             LOG_WRITER = openUTF8Writer(logFile);
             LOG_WRITER.write(0xFEFF);
             if (TABLE) {
-                LOG_WRITER.write("<html>\n" +
-                    "<head>\n" +
-                    "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>\n" +
-                    "<style type='text/css'>\n" +
-                    "table { border: 1px solid blue; border-collapse: collapse; }" +
-                    "td,th { border: 1px solid blue; vertical-align: top; }" +
-                    "</style>" +
-                    "</head>\n" +
-                    "<body>\n" +
-                    "<pre>\n");
+                LOG_WRITER.write(
+                        "<html>\n"
+                                + "<head>\n"
+                                + "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>\n"
+                                + "<style type='text/css'>\n"
+                                + "table { border: 1px solid blue; border-collapse: collapse; }"
+                                + "td,th { border: 1px solid blue; vertical-align: top; }"
+                                + "</style>"
+                                + "</head>\n"
+                                + "<body>\n"
+                                + "<pre>\n");
             }
         }
         if (fix) {
@@ -143,8 +153,9 @@ public class GenerateNormalizeForMatch2 {
         System.out.println("DONE");
     }
 
-    private static void logDiffs(UnicodeMap<String> newMappings, String oldMappingFile, String frequencyFile)
-        throws IOException {
+    private static void logDiffs(
+            UnicodeMap<String> newMappings, String oldMappingFile, String frequencyFile)
+            throws IOException {
         LOG_WRITER.println();
         LOG_WRITER.println("# *** Differences from " + new File(oldMappingFile).getName() + " ***");
         LOG_WRITER.println();
@@ -155,24 +166,40 @@ public class GenerateNormalizeForMatch2 {
         UnicodeSet diffSourceSet = diffMappings.keySet();
         UnicodeSet union = new UnicodeSet(newSource).addAll(diffSourceSet);
 
-        UnicodeSet isLetter = new UnicodeSet(
-            "[[:L:][:M:][:N:]\\u002B\\u005F\\uFF06\\uFF0B\\uFF3F\\u309B\\u309C\\u30a0]");
-        showOrderedList("IsLetter", new UnicodeSet(union).retainAll(isLetter), diffMappings, newMappings,
-            Integer.MAX_VALUE);
-        showOrderedList("NOT IsLetter", new UnicodeSet(union).removeAll(isLetter), diffMappings, newMappings,
-            Integer.MAX_VALUE);
+        UnicodeSet isLetter =
+                new UnicodeSet(
+                        "[[:L:][:M:][:N:]\\u002B\\u005F\\uFF06\\uFF0B\\uFF3F\\u309B\\u309C\\u30a0]");
+        showOrderedList(
+                "IsLetter",
+                new UnicodeSet(union).retainAll(isLetter),
+                diffMappings,
+                newMappings,
+                Integer.MAX_VALUE);
+        showOrderedList(
+                "NOT IsLetter",
+                new UnicodeSet(union).removeAll(isLetter),
+                diffMappings,
+                newMappings,
+                Integer.MAX_VALUE);
     }
 
-    private static void showOrderedList(String title, UnicodeSet charsToShow,
-        UnicodeMap<String> oldMappings, UnicodeMap<String> newMappings, int limit) {
+    private static void showOrderedList(
+            String title,
+            UnicodeSet charsToShow,
+            UnicodeMap<String> oldMappings,
+            UnicodeMap<String> newMappings,
+            int limit) {
 
         Set<Comparable<? extends Object>[]> ordered = new TreeSet(DOUBLE_STRING_COMP);
-        for (UnicodeSetIterator it = new UnicodeSetIterator(charsToShow); it.next();) {
+        for (UnicodeSetIterator it = new UnicodeSetIterator(charsToShow); it.next(); ) {
             String oldMapped = getRemapped(it.codepoint, oldMappings);
             String newMapped = getRemapped(it.codepoint, newMappings);
             if (!newMapped.equals(oldMapped)) {
                 Long count = frequencies == null ? null : frequencies.getCount(it.codepoint);
-                ordered.add(new Comparable[] { count == null ? 0L : count, it.codepoint, oldMapped, newMapped });
+                ordered.add(
+                        new Comparable[] {
+                            count == null ? 0L : count, it.codepoint, oldMapped, newMapped
+                        });
             }
         }
         showOrderedList2(title, ordered, limit);
@@ -182,7 +209,8 @@ public class GenerateNormalizeForMatch2 {
         return name.replace(' ', '_').toLowerCase();
     }
 
-    private static void showOrderedList2(String title, Collection<Comparable<? extends Object>[]> ordered, int limit) {
+    private static void showOrderedList2(
+            String title, Collection<Comparable<? extends Object>[]> ordered, int limit) {
         if (ordered.size() == 0) {
             String msg = "NO CHARACTERS CHANGED";
             if (TABLE) {
@@ -210,7 +238,10 @@ public class GenerateNormalizeForMatch2 {
                 footer += "\tOmitted from sample below:\t" + FORMAT.format(ordered.size() - limit);
             }
             if (TABLE) {
-                footer = "<table><tr><td>" + footer.replace("\t", "</td><td>") + "</td></tr></table><br>";
+                footer =
+                        "<table><tr><td>"
+                                + footer.replace("\t", "</td><td>")
+                                + "</td></tr></table><br>";
             }
             LOG_WRITER.println(footer);
         }
@@ -219,13 +250,13 @@ public class GenerateNormalizeForMatch2 {
             LOG_WRITER.println("<table>");
             if (longEnough) {
                 LOG_WRITER.println(
-                    "<tr>\n" +
-                        "<th>Code</th>" +
-                        "<th>New Map</th>" +
-                        "<th>Freq.</th>" +
-                        "<th>Name</th>" +
-                        "<th>↛ Old Map Name</th>" +
-                        "<th>→ New Map Name</th></tr>");
+                        "<tr>\n"
+                                + "<th>Code</th>"
+                                + "<th>New Map</th>"
+                                + "<th>Freq.</th>"
+                                + "<th>Name</th>"
+                                + "<th>↛ Old Map Name</th>"
+                                + "<th>→ New Map Name</th></tr>");
             }
         }
 
@@ -239,15 +270,27 @@ public class GenerateNormalizeForMatch2 {
             final int cp = (Integer) items[1];
             final String oldMapped = (String) items[2];
             final String newMapped = (String) items[3];
-            final String countStr = count == 0 ? "0" : "1/" + FORMAT.format(frequencies.getTotal() / count);
+            final String countStr =
+                    count == 0 ? "0" : "1/" + FORMAT.format(frequencies.getTotal() / count);
 
-            String line = com.ibm.icu.impl.Utility.hex(cp) + " ; "
-                + hex(newMapped, " ") + " ; "
-                + countStr + " ; # "
-                + showChanged(UTF16.valueOf(cp), oldMapped, newMapped, Form.codeStringAndName);
+            String line =
+                    com.ibm.icu.impl.Utility.hex(cp)
+                            + " ; "
+                            + hex(newMapped, " ")
+                            + " ; "
+                            + countStr
+                            + " ; # "
+                            + showChanged(
+                                    UTF16.valueOf(cp),
+                                    oldMapped,
+                                    newMapped,
+                                    Form.codeStringAndName);
 
             if (TABLE) {
-                line = "<tr><td>" + line.replace("\t", "</td><td>").replace(" ; ", "</td><td>") + "</td></tr>";
+                line =
+                        "<tr><td>"
+                                + line.replace("\t", "</td><td>").replace(" ; ", "</td><td>")
+                                + "</td></tr>";
             }
             LOG_WRITER.println(line);
         }
@@ -257,33 +300,34 @@ public class GenerateNormalizeForMatch2 {
         }
     }
 
-    static Comparator<Comparable<Object>[]> DOUBLE_STRING_COMP = new Comparator<Comparable<Object>[]>() {
-        // only handle the case where the lengths are equal
-        public int compare(Comparable<Object>[] o1, Comparable<Object>[] o2) {
-            for (int i = 0; i < o1.length; ++i) {
-                int result = o1[i].compareTo(o2[i]);
-                if (result != 0) {
-                    return -result;
+    static Comparator<Comparable<Object>[]> DOUBLE_STRING_COMP =
+            new Comparator<Comparable<Object>[]>() {
+                // only handle the case where the lengths are equal
+                public int compare(Comparable<Object>[] o1, Comparable<Object>[] o2) {
+                    for (int i = 0; i < o1.length; ++i) {
+                        int result = o1[i].compareTo(o2[i]);
+                        if (result != 0) {
+                            return -result;
+                        }
+                    }
+                    return 0;
                 }
-            }
-            return 0;
-        }
-    };
+            };
 
     /**
-     * Generate new mapping file, based on exceptions file. See normalizeForMatchExceptions.txt for the format.
-     * 
-     * @param specialMappingsFile
-     *            TODO
-     * @param outputFile
-     *            TODO
+     * Generate new mapping file, based on exceptions file. See normalizeForMatchExceptions.txt for
+     * the format.
+     *
+     * @param specialMappingsFile TODO
+     * @param outputFile TODO
      * @param diffSource
      * @param frequencyData
      * @param frequencyFile
      * @throws IOException
      */
-    static void generateMappings(String specialMappingsFile, String outputFile, String diffSource, String frequencyFile)
-        throws IOException {
+    static void generateMappings(
+            String specialMappingsFile, String outputFile, String diffSource, String frequencyFile)
+            throws IOException {
         PrintWriter out = openUTF8Writer(outputFile);
         out.println("# Generated from: " + new File(specialMappingsFile).getName());
         out.println("# Date: " + ISO_DATE.format(new Date()));
@@ -295,7 +339,7 @@ public class GenerateNormalizeForMatch2 {
         loadMappings(specialMappingsFile, SPECIAL_MAPPINGS, true);
 
         UnicodeMap<String> mappings = new UnicodeMap<String>();
-        for (UnicodeSetIterator it = new UnicodeSetIterator(ASSIGNED); it.next();) {
+        for (UnicodeSetIterator it = new UnicodeSetIterator(ASSIGNED); it.next(); ) {
             if (LIST_STYLE == ListStyle.ONLY_OLD && !U50.contains(it.codepoint)) {
                 continue;
             }
@@ -309,7 +353,7 @@ public class GenerateNormalizeForMatch2 {
         while (true) {
             UnicodeMap<String> deltaMappings = new UnicodeMap<String>();
             UnicodeSet done = new UnicodeSet();
-            for (UnicodeSetIterator it = new UnicodeSetIterator(mappings.keySet()); it.next();) {
+            for (UnicodeSetIterator it = new UnicodeSetIterator(mappings.keySet()); it.next(); ) {
                 String target = (String) mappings.getValue(it.codepoint);
                 String recursed = replace(target, mappings);
                 if (recursed != target) {
@@ -326,7 +370,7 @@ public class GenerateNormalizeForMatch2 {
         ;
 
         // print them
-        for (UnicodeSetIterator it = new UnicodeSetIterator(mappings.keySet()); it.next();) {
+        for (UnicodeSetIterator it = new UnicodeSetIterator(mappings.keySet()); it.next(); ) {
             writeMapping(out, it.getString(), (String) mappings.getValue(it.codepoint), SIMPLE);
         }
         out.close();
@@ -361,16 +405,23 @@ public class GenerateNormalizeForMatch2 {
     }
 
     enum RuleMappings {
-        __ok, __nfc, __caseonly, __bracket, __bracket_up, __bracket_circle, __bracket_down, __delete, __exclude
+        __ok,
+        __nfc,
+        __caseonly,
+        __bracket,
+        __bracket_up,
+        __bracket_circle,
+        __bracket_down,
+        __delete,
+        __exclude
     }
 
     /**
-     * Remap a string based on a special flag (usually gotten from the special_mappings, but
-     * broken out so that we can see the effects of new rules).
-     * 
+     * Remap a string based on a special flag (usually gotten from the special_mappings, but broken
+     * out so that we can see the effects of new rules).
+     *
      * @param codepoint
-     * @param special
-     *            either "exclude", or "caseonly", or null, or actual result.
+     * @param special either "exclude", or "caseonly", or null, or actual result.
      * @return
      */
     private static String getRemapped(int codepoint, String special) {
@@ -384,29 +435,29 @@ public class GenerateNormalizeForMatch2 {
             other = special;
         } else {
             switch (RuleMappings.valueOf(special)) {
-            case __ok:
-                other = normalizeAndCaseFold(other, Normalizer.NFKC);
-                break;
-            case __nfc:
-                other = Normalizer.normalize(other, Normalizer.NFC, 0);
-                break;
-            case __caseonly:
-                other = normalizeAndCaseFold(other, Normalizer.NFC);
-                break;
-            case __bracket:
-                other = " " + normalizeAndCaseFold(other, Normalizer.NFKC) + " ";
-                break;
-            case __bracket_down:
-                other = "⌜" + normalizeAndCaseFold(other, Normalizer.NFKC) + "⌝";
-                break;
-            case __bracket_up:
-                other = "⌞" + normalizeAndCaseFold(other, Normalizer.NFKC) + "⌟";
-                break;
-            case __bracket_circle:
-                other = "(" + normalizeAndCaseFold(other, Normalizer.NFKC) + ")";
-                break;
-            default:
-                throw new IllegalArgumentException("Missing rule");
+                case __ok:
+                    other = normalizeAndCaseFold(other, Normalizer.NFKC);
+                    break;
+                case __nfc:
+                    other = Normalizer.normalize(other, Normalizer.NFC, 0);
+                    break;
+                case __caseonly:
+                    other = normalizeAndCaseFold(other, Normalizer.NFC);
+                    break;
+                case __bracket:
+                    other = " " + normalizeAndCaseFold(other, Normalizer.NFKC) + " ";
+                    break;
+                case __bracket_down:
+                    other = "⌜" + normalizeAndCaseFold(other, Normalizer.NFKC) + "⌝";
+                    break;
+                case __bracket_up:
+                    other = "⌞" + normalizeAndCaseFold(other, Normalizer.NFKC) + "⌟";
+                    break;
+                case __bracket_circle:
+                    other = "(" + normalizeAndCaseFold(other, Normalizer.NFKC) + ")";
+                    break;
+                default:
+                    throw new IllegalArgumentException("Missing rule");
             }
         }
         return other;
@@ -414,7 +465,7 @@ public class GenerateNormalizeForMatch2 {
 
     /**
      * Do the standard normalization & casefold
-     * 
+     *
      * @param other
      * @return
      */
@@ -427,44 +478,64 @@ public class GenerateNormalizeForMatch2 {
 
     /**
      * Write out a mapping line
-     * 
+     *
      * @param out
      * @param source
      * @param target
      * @param simple TODO
      */
-    private static void writeMapping(PrintWriter out, String source, String target, boolean simple) {
+    private static void writeMapping(
+            PrintWriter out, String source, String target, boolean simple) {
         if (simple) {
-            out.println(source + "; " + target 
-                + " # " + hex(source, " ") + " → " + hex(target, " ") 
-                + ", " + UCharacter.getName(source, " + ") + " → " + UCharacter.getName(target, " + "));
+            out.println(
+                    source
+                            + "; "
+                            + target
+                            + " # "
+                            + hex(source, " ")
+                            + " → "
+                            + hex(target, " ")
+                            + ", "
+                            + UCharacter.getName(source, " + ")
+                            + " → "
+                            + UCharacter.getName(target, " + "));
             return;
         }
         String otherName = jimName(target);
-        String age = (LIST_STYLE == ListStyle.SHOW_AGE) && (!U50.containsAll(source) || !U50.containsAll(target))
-            ? showVersion(getNewest(source + target)) + " " : "";
-        out.println(hex(source, " ")
-            + " ; " + hex(target, " ").replace(",", " ")
-            + " ; # " + age + UCharacter.getName(source, " + ")
-            + " => " + otherName
-            );
+        String age =
+                (LIST_STYLE == ListStyle.SHOW_AGE)
+                                && (!U50.containsAll(source) || !U50.containsAll(target))
+                        ? showVersion(getNewest(source + target)) + " "
+                        : "";
+        out.println(
+                hex(source, " ")
+                        + " ; "
+                        + hex(target, " ").replace(",", " ")
+                        + " ; # "
+                        + age
+                        + UCharacter.getName(source, " + ")
+                        + " => "
+                        + otherName);
     }
 
     /**
      * Show the version in a nice format
-     * 
+     *
      * @param newest
      * @return
      */
     private static String showVersion(VersionInfo newest) {
-        return "[" + newest.getMajor() + "." + newest.getMinor()
-            + (newest.getMilli() == 0 ? "" : "." + newest.getMilli())
-            + "]";
+        return "["
+                + newest.getMajor()
+                + "."
+                + newest.getMinor()
+                + (newest.getMilli() == 0 ? "" : "." + newest.getMilli())
+                + "]";
     }
 
     /**
      * Get the age of the newest character in the string.
-     * 
+     *
      * @param string
      * @return
      */
@@ -483,16 +554,15 @@ public class GenerateNormalizeForMatch2 {
 
     /**
      * Load the special mappings from a file.
-     * 
-     * @param filename
-     *            TODO
+     *
+     * @param filename TODO
      * @param resultMappings
-     * @param printWriter
-     *            TODO
+     * @param printWriter TODO
      * @throws IOException
      */
-    private static void loadMappings(String filename, UnicodeMap<String> resultMappings, boolean printWriter)
-        throws IOException {
+    private static void loadMappings(
+            String filename, UnicodeMap<String> resultMappings, boolean printWriter)
+            throws IOException {
         // SPECIAL_MAPPINGS.putAll(0,0x10FFFF, "exclude");
         BufferedReader in = openUTF8Reader(filename);
         int lineNumber = 0;
@@ -507,17 +577,20 @@ public class GenerateNormalizeForMatch2 {
 
     /**
      * Process each special mapping line from a file
-     * 
+     *
      * @param lineNumber
      * @param line
      * @param skipIfIdentical
      * @param resultMappings
-     * @param printWriter
-     *            TODO
+     * @param printWriter TODO
      * @param mappings
      */
-    private static void getMappingFromSemiLine(int lineNumber, String line, boolean skipIfIdentical,
-        UnicodeMap<String> resultMappings, boolean printWriter) {
+    private static void getMappingFromSemiLine(
+            int lineNumber,
+            String line,
+            boolean skipIfIdentical,
+            UnicodeMap<String> resultMappings,
+            boolean printWriter) {
         line = line.trim();
         if (line.startsWith("\uFEFF")) {
             line = line.substring(1);
@@ -556,24 +629,29 @@ public class GenerateNormalizeForMatch2 {
             source.add(start, end);
         }
 
-        UnicodeSet targetFilter = pieces.length < 3 || pieces[2].length() == 0 ? new UnicodeSet(ASSIGNED)
-            : new UnicodeSet(pieces[2]);
+        UnicodeSet targetFilter =
+                pieces.length < 3 || pieces[2].length() == 0
+                        ? new UnicodeSet(ASSIGNED)
+                        : new UnicodeSet(pieces[2]);
         addMappings(source, target, targetFilter, resultMappings, printWriter);
     }
 
     /**
      * Add exceptions based on a line from the special mapping files
-     * 
+     *
      * @param source
      * @param target
      * @param targetFilter
      * @param resultMappings
-     * @param printWriter
-     *            TODO
+     * @param printWriter TODO
      * @param mappings
      */
-    private static void addMappings(UnicodeSet source, String target, UnicodeSet targetFilter,
-        UnicodeMap<String> resultMappings, boolean printWriter) {
+    private static void addMappings(
+            UnicodeSet source,
+            String target,
+            UnicodeSet targetFilter,
+            UnicodeMap<String> resultMappings,
+            boolean printWriter) {
         // remap options
 
         if (target.equalsIgnoreCase("delete")) {
@@ -597,7 +675,7 @@ public class GenerateNormalizeForMatch2 {
         UnicodeMap<String> deltaMappings = new UnicodeMap<String>();
         UnicodeSet done = new UnicodeSet();
 
-        for (UnicodeSetIterator it = new UnicodeSetIterator(affected); it.next();) {
+        for (UnicodeSetIterator it = new UnicodeSetIterator(affected); it.next(); ) {
             String willGet = getRemapped(it.codepoint, target);
             if (!targetFilter.containsAll(willGet)) {
                 continue;
@@ -626,7 +704,8 @@ public class GenerateNormalizeForMatch2 {
             // //final String caseFolded = UCharacter.foldCase(string, true);
             //
             // if (printWriter != null) {
-            // printWriter.println("\t" + codeAndName(string, Form.codeStringAndName) + "\t;\t" + oldTarget
+            // printWriter.println("\t" + codeAndName(string, Form.codeStringAndName) + "\t;\t" +
+            // oldTarget
             // + "\t; #\t" + showChanged(string, didGet, willGet, Form.string));
             // }
         }
@@ -638,30 +717,35 @@ public class GenerateNormalizeForMatch2 {
     }
 
     enum Form {
-        string, codeStringAndName
+        string,
+        codeStringAndName
     }
 
-    private static String showChanged(final String string, String didGet, String willGet, Form form) {
+    private static String showChanged(
+            final String string, String didGet, String willGet, Form form) {
         final String didGetStr = string.equals(didGet) ? "[unchanged]" : codeAndName(didGet, form);
         return codeAndName(string, form)
-            + "\t ↛ " + didGetStr
-            + "\t → " + codeAndName(willGet, form);
+                + "\t ↛ "
+                + didGetStr
+                + "\t → "
+                + codeAndName(willGet, form);
     }
 
     static final UnicodeSet BIDI = new UnicodeSet("[[:bidiclass=R:][:bidiclass=AL:]]");
     static final UnicodeSet DI = new UnicodeSet("[[:C:][:Default_Ignorable_Code_Point:]]");
-    static final UnicodeSet FISHY = new UnicodeSet(
-        "[\\<\\&\\>\\\"[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]]");
+    static final UnicodeSet FISHY =
+            new UnicodeSet(
+                    "[\\<\\&\\>\\\"[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]]");
 
     private static final String RULES =
-        "'<' > '&lt;' ;" +
-            "'&' > '&amp;' ;" +
-            "'>' > '&gt;' ;" +
-            "'\"' > '&quot;' ; " +
-            ":: [[:C:][:Default_Ignorable_Code_Point:]-[\\u0020\\u0009\\u000A\\u000D]] hex/java ; ";
+            "'<' > '&lt;' ;"
+                    + "'&' > '&amp;' ;"
+                    + "'>' > '&gt;' ;"
+                    + "'\"' > '&quot;' ; "
+                    + ":: [[:C:][:Default_Ignorable_Code_Point:]-[\\u0020\\u0009\\u000A\\u000D]] hex/java ; ";
 
-    public static final Transliterator toHTMLControl = Transliterator.createFromRules(
-        "any-html", RULES, Transliterator.FORWARD);
+    public static final Transliterator toHTMLControl =
+            Transliterator.createFromRules("any-html", RULES, Transliterator.FORWARD);
 
     private static FrequencyData2 frequencies;
 
@@ -685,23 +769,28 @@ public class GenerateNormalizeForMatch2 {
 
     /**
      * Printing convenience function
-     * 
+     *
      * @param defaultChange
      * @return
      */
     private static String codeAndName(String defaultChange, Form form) {
-        final String quotedChar = DI.containsAll(defaultChange) ? "«»" : "«" + quote(defaultChange) + "»";
+        final String quotedChar =
+                DI.containsAll(defaultChange) ? "«»" : "«" + quote(defaultChange) + "»";
         switch (form) {
-        default:
-            return quotedChar;
-        case codeStringAndName:
-            return hex(defaultChange, " ") + " " + quotedChar + " " + UCharacter.getName(defaultChange, " + ");
+            default:
+                return quotedChar;
+            case codeStringAndName:
+                return hex(defaultChange, " ")
+                        + " "
+                        + quotedChar
+                        + " "
+                        + UCharacter.getName(defaultChange, " + ");
         }
     }
 
     /**
      * Printing convenience function
-     * 
+     *
      * @param spaceDelimitedHex
      * @return
      */
@@ -720,13 +809,15 @@ public class GenerateNormalizeForMatch2 {
 
     /**
      * Printing convenience function
-     * 
+     *
      * @param other
      * @return
      */
     private static String jimName(String other) {
-        String otherName = UTF16.countCodePoint(other) != 1 ? null
-            : (String) JIM_NAMES.getValue(UTF16.charAt(other, 0));
+        String otherName =
+                UTF16.countCodePoint(other) != 1
+                        ? null
+                        : (String) JIM_NAMES.getValue(UTF16.charAt(other, 0));
         if (otherName == null) {
             otherName = UCharacter.getName(other, " + ");
         }
@@ -735,7 +826,7 @@ public class GenerateNormalizeForMatch2 {
 
     /**
      * Printing convenience function
-     * 
+     *
      * @param s
      * @param separator
      * @return
@@ -760,12 +851,13 @@ public class GenerateNormalizeForMatch2 {
     static BufferedReader openUTF8Reader(String filename) throws IOException {
         File file = new File(filename);
         System.out.println("Reading:\t" + file.getCanonicalPath());
-        return new BufferedReader(new InputStreamReader(new FileInputStream(file), UTF8), 1024 * 64);
+        return new BufferedReader(
+                new InputStreamReader(new FileInputStream(file), UTF8), 1024 * 64);
     }
 
     /**
      * Used to reformat files into consistent form.
-     * 
+     *
      * @param sourceFile
      * @param targetFile
      * @throws IOException
@@ -781,7 +873,7 @@ public class GenerateNormalizeForMatch2 {
         }
         in.close();
         PrintWriter out = openUTF8Writer(targetFile);
-        for (UnicodeSetIterator it = new UnicodeSetIterator(oldMap.keySet()); it.next();) {
+        for (UnicodeSetIterator it = new UnicodeSetIterator(oldMap.keySet()); it.next(); ) {
             String str = it.getString();
             String other = (String) oldMap.getValue(it.codepoint);
             writeMapping(out, str, other, false);

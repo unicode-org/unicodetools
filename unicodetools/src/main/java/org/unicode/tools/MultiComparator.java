@@ -6,12 +6,12 @@ public class MultiComparator<T> implements Comparator<T> {
     private Comparator<T>[] comparators;
 
     @SafeVarargs
-    public <U extends Comparator<T>> MultiComparator (U... comparators) {
+    public <U extends Comparator<T>> MultiComparator(U... comparators) {
         this.comparators = comparators;
     }
 
     /* Lexigraphic compare. Returns the first difference
-     * @return zero if equal. Otherwise +/- (i+1) 
+     * @return zero if equal. Otherwise +/- (i+1)
      * where i is the index of the first comparator finding a difference
      * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
      */

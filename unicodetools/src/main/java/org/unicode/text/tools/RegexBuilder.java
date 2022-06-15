@@ -1,23 +1,22 @@
 package org.unicode.text.tools;
 
-import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.unicode.tools.emoji.Emoji;
-import org.unicode.tools.emoji.EmojiData;
-
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
+import java.util.Locale;
 
 public class RegexBuilder {
-    public enum Style {CODEPOINT_REGEX, CHAR_REGEX}
-    public static final UnicodeSet NEEDS_ESCAPE = new UnicodeSet("[[:di:][:Me:][:Mn:][:c:]]")
-//          .add(0x1F1E6,0x1F1FF)
-            .freeze();
+    public enum Style {
+        CODEPOINT_REGEX,
+        CHAR_REGEX
+    }
+
+    public static final UnicodeSet NEEDS_ESCAPE =
+            new UnicodeSet("[[:di:][:Me:][:Mn:][:c:]]")
+                    //          .add(0x1F1E6,0x1F1FF)
+                    .freeze();
 
     public static StringBuilder showSet(UnicodeSet us, StringBuilder output) {
         if (us.size() == 1) {
@@ -30,7 +29,8 @@ public class RegexBuilder {
                 if (count > 0) {
                     if (count != 1) {
                         output.append('-');
-                    };
+                    }
+                    ;
                     showChar(e.codepointEnd, output);
                 }
             }
@@ -59,8 +59,8 @@ public class RegexBuilder {
     public static StringBuilder showChar(int cp, StringBuilder output) {
         if (NEEDS_ESCAPE.contains(cp)) {
             output.append("\\x{")
-            .append(Integer.toHexString(cp).toUpperCase(Locale.ROOT))
-            .append("}");
+                    .append(Integer.toHexString(cp).toUpperCase(Locale.ROOT))
+                    .append("}");
         } else {
             output.appendCodePoint(cp);
         }
@@ -79,7 +79,8 @@ public class RegexBuilder {
 
         public String toString() {
             return "〔" + plainSet + "/" + plainMap + "/" + optionalMap + "〕";
-        };
+        }
+        ;
 
         NodeF(Node source) {
             UnicodeSet finals = source.finals;
@@ -89,16 +90,16 @@ public class RegexBuilder {
             plainSet = new UnicodeSet(finals).removeAll(multiKeys).freeze();
             optionalMap = new UnicodeMap<NodeF>().putAll(continues).retainAll(finals).freeze();
             plainMap = new UnicodeMap<NodeF>().putAll(continues).removeAll(finals).freeze();
-
         }
+
         @Override
         public boolean equals(Object obj) {
             NodeF that = (NodeF) obj;
-            return that.plainSet.equals(plainSet) 
+            return that.plainSet.equals(plainSet)
                     && that.plainMap.equals(plainMap)
-                    && that.optionalMap.equals(optionalMap)
-                    ;
+                    && that.optionalMap.equals(optionalMap);
         }
+
         @Override
         public int hashCode() {
             int result = plainSet.hashCode();
@@ -123,12 +124,13 @@ public class RegexBuilder {
             return result.freeze();
         }
 
-        private StringBuilder print(int depth, boolean showLevel, boolean optional, StringBuilder output) {
+        private StringBuilder print(
+                int depth, boolean showLevel, boolean optional, StringBuilder output) {
 
-            int mapItemCount = countItems(plainMap)
-                    + countItems(optionalMap);
+            int mapItemCount = countItems(plainMap) + countItems(optionalMap);
             int setCount = plainSet.isEmpty() ? 0 : 1;
-            final boolean needsParen = (mapItemCount + setCount) > 1 || optional && mapItemCount != 0;
+            final boolean needsParen =
+                    (mapItemCount + setCount) > 1 || optional && mapItemCount != 0;
 
             if (needsParen) {
                 output.append('(');
@@ -153,7 +155,13 @@ public class RegexBuilder {
             return output;
         }
 
-        private boolean print(UnicodeMap<NodeF> plainMap, int depth, boolean showLevel, StringBuilder output, boolean first, boolean optional) {
+        private boolean print(
+                UnicodeMap<NodeF> plainMap,
+                int depth,
+                boolean showLevel,
+                StringBuilder output,
+                boolean first,
+                boolean optional) {
             for (NodeF n : plainMap.values()) {
                 if (first) {
                     first = false;
@@ -165,14 +173,11 @@ public class RegexBuilder {
                 }
                 UnicodeSet us = plainMap.getSet(n);
                 showSet(us, output);
-                n.print(depth+1, false, optional, output);
+                n.print(depth + 1, false, optional, output);
             }
             return first;
         }
-
-
     }
-
 
     // TODO fix hashcode
     // TODO make strings be empty not null
@@ -223,7 +228,7 @@ public class RegexBuilder {
             if (node2 == null) {
                 data2.continues.put(cp, node2 = new Node());
             }
-            add(list, pos+1, node2);
+            add(list, pos + 1, node2);
         }
     }
 

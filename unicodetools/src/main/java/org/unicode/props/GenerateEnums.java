@@ -1,5 +1,11 @@
 package org.unicode.props;
 
+import com.google.common.base.Splitter;
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.RuleBasedCollator;
+import com.ibm.icu.util.ICUException;
+import com.ibm.icu.util.VersionInfo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
@@ -16,28 +22,25 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.google.common.base.Splitter;
-import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.RuleBasedCollator;
-import com.ibm.icu.util.ICUException;
-import com.ibm.icu.util.VersionInfo;
-
 public class GenerateEnums {
     public static final String ENUM_VERSION = Settings.latestVersion;
-    public static final VersionInfo ENUM_VERSION_INFO = VersionInfo.getInstance(GenerateEnums.ENUM_VERSION);
+    public static final VersionInfo ENUM_VERSION_INFO =
+            VersionInfo.getInstance(GenerateEnums.ENUM_VERSION);
 
-    public static final String PROPERTY_FILE_OUTPUT = Settings.UnicodeTools.UNICODETOOLS_JAVA_DIR + "/org/unicode/props/UcdProperty.java";
-    public static final String PROPERTY_VALUE_OUTPUT = Settings.UnicodeTools.UNICODETOOLS_JAVA_DIR + "/org/unicode/props/UcdPropertyValues.java";
+    public static final String PROPERTY_FILE_OUTPUT =
+            Settings.UnicodeTools.UNICODETOOLS_JAVA_DIR + "/org/unicode/props/UcdProperty.java";
+    public static final String PROPERTY_VALUE_OUTPUT =
+            Settings.UnicodeTools.UNICODETOOLS_JAVA_DIR
+                    + "/org/unicode/props/UcdPropertyValues.java";
 
     //    private static class Locations {
-    //        private static Set<String> files = addAll(new HashSet<String>(), new File(SOURCE_DIR));
+    //        private static Set<String> files = addAll(new HashSet<String>(), new
+    // File(SOURCE_DIR));
     //        public static boolean contains(String file) {
     //            return files.contains(file.replace("_",""));
     //        }
@@ -62,24 +65,28 @@ public class GenerateEnums {
     //        }
     //    }
 
+    static Map<String, PropName> lookup = new HashMap<String, PropName>();
+    static Map<String, PropName> lookupMain = new TreeMap<String, PropName>();
 
-    static Map<String,PropName> lookup = new HashMap<String,PropName>();
-    static Map<String,PropName> lookupMain = new TreeMap<String,PropName>();
+    private static final Pattern PROPERTY_LONG_NAME =
+            Pattern.compile("[A-Z]+[0-9]?[a-z]*(_[A-Z0-9]+[a-z]*)*");
+    private static final Pattern PROPERTY_VALUE_LONG_NAME =
+            Pattern.compile("[A-Z]+[0-9]?[a-z]*(_[A-Z0-9]+[a-z]*)*(\\d*)");
+    private static final Pattern PROPER_CJK_LONG_NAME =
+            Pattern.compile("(cj)?k[A-Z][a-z]*(_?[A-Z0-9][a-z]*)*");
 
-    private static final Pattern PROPERTY_LONG_NAME = Pattern.compile("[A-Z]+[0-9]?[a-z]*(_[A-Z0-9]+[a-z]*)*");
-    private static final Pattern PROPERTY_VALUE_LONG_NAME = Pattern.compile("[A-Z]+[0-9]?[a-z]*(_[A-Z0-9]+[a-z]*)*(\\d*)");
-    private static final Pattern PROPER_CJK_LONG_NAME = Pattern.compile("(cj)?k[A-Z][a-z]*(_?[A-Z0-9][a-z]*)*");
-
-    static class PropName implements Comparable<PropName>{
+    static class PropName implements Comparable<PropName> {
         final PropertyType propertyType;
         final String shortName;
         final String longName;
         final List<String> others;
         final Map<String, PropName> subnames = new TreeMap<String, PropName>();
-        PropName(PropertyType type, OverrideChoice override, String...strings) {
+
+        PropName(PropertyType type, OverrideChoice override, String... strings) {
             shortName = strings[0];
             longName = strings[1];
-            propertyType = longName.equals("Script_Extensions") ? PropertyType.Catalog : type; // HACK
+            propertyType =
+                    longName.equals("Script_Extensions") ? PropertyType.Catalog : type; // HACK
             final String badName = isProperLongName(longName, PROPERTY_LONG_NAME, true);
             if (badName != null) {
                 addWarning("Improper Property long name: " + badName);
@@ -102,7 +109,9 @@ public class GenerateEnums {
             }
             lookupMain.put(longName, this);
         }
-        private static String isProperLongName(String longName2, Pattern pattern, boolean allowCjk) {
+
+        private static String isProperLongName(
+                String longName2, Pattern pattern, boolean allowCjk) {
             boolean result = pattern.matcher(longName2).matches();
             if (result == false && allowCjk) {
                 result = PROPER_CJK_LONG_NAME.matcher(longName2).matches();
@@ -112,10 +121,20 @@ public class GenerateEnums {
             }
             return null;
         }
+
         @Override
         public String toString() {
-            return "{" + propertyType + ",    " + longName + ",    " + shortName + ",    " + others + "}";
+            return "{"
+                    + propertyType
+                    + ",    "
+                    + longName
+                    + ",    "
+                    + shortName
+                    + ",    "
+                    + others
+                    + "}";
         }
+
         @Override
         public int compareTo(PropName arg0) {
             if (longName.contains("10")) {
@@ -126,32 +145,47 @@ public class GenerateEnums {
     }
 
     static final RuleBasedCollator COL = (RuleBasedCollator) Collator.getInstance(Locale.ROOT);
+
     static {
         COL.setNumericCollation(true);
         COL.freeze();
     }
-    private static final Comparator<String[]> ARRAY_SORT = new Comparator<String[]>() {
-        @Override
-        public int compare(String[] o1, String[] o2) {
-            int min = o1.length < o2.length ? o1.length : o2.length;
-            for (int i = 0; i < min; ++i) {
-                int diff = COL.compare(o1[i], o2[i]);
-                if (diff != 0) {
-                    return diff;
-                }
-            }
-            return o1.length - o2.length;
-        }
-    };
 
-    enum OverrideChoice {allow, disallow}
+    private static final Comparator<String[]> ARRAY_SORT =
+            new Comparator<String[]>() {
+                @Override
+                public int compare(String[] o1, String[] o2) {
+                    int min = o1.length < o2.length ? o1.length : o2.length;
+                    for (int i = 0; i < min; ++i) {
+                        int diff = COL.compare(o1[i], o2[i]);
+                        if (diff != 0) {
+                            return diff;
+                        }
+                    }
+                    return o1.length - o2.length;
+                }
+            };
+
+    enum OverrideChoice {
+        allow,
+        disallow
+    }
 
     public static void main(String[] args) throws IOException {
 
         final Map<PropName, Set<String[]>> values = new TreeMap<PropName, Set<String[]>>();
 
-        addPropertyAliases(values, FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyAliases", ENUM_VERSION, true, true)), OverrideChoice.disallow);
-        addPropertyAliases(values, FileUtilities.in(GenerateEnums.class, "ExtraPropertyAliases.txt"), OverrideChoice.allow);
+        addPropertyAliases(
+                values,
+                FileUtilities.in(
+                        "",
+                        Utility.getMostRecentUnicodeDataFile(
+                                "PropertyAliases", ENUM_VERSION, true, true)),
+                OverrideChoice.disallow);
+        addPropertyAliases(
+                values,
+                FileUtilities.in(GenerateEnums.class, "ExtraPropertyAliases.txt"),
+                OverrideChoice.allow);
 
         writeMainUcdFile();
 
@@ -165,59 +199,84 @@ public class GenerateEnums {
     }
 
     public static String getNameStuff2(final String enumName) {
-        return ";\n"  +
-                "        private final PropertyNames<" + enumName + "> names;\n"+
-                "        private " + enumName + " (String shortName, String...otherNames) {\n"+
-                "            names = new PropertyNames<" + enumName + ">(\n"
-                + "                " + enumName + ".class, this, shortName, otherNames);\n"+
-                "        }\n"+
-                "        public PropertyNames<" + enumName + "> getNames() {\n"+
-                "            return names;\n"+
-                "        }\n" +
-                "        public String getShortName() {\n" +
-                "            return names.getShortName();\n" +
-                "        }\n" +
-                "        private static final NameMatcher<" + enumName + "> NAME_MATCHER = PropertyNames.getNameToEnums(" + enumName + ".class);\n" +
-                "        public static " + enumName + " forName(String name) {\n" +
-                "            return NAME_MATCHER.get(name);\n" +
-                "        }\n" +
-                "    }\n";
+        return ";\n"
+                + "        private final PropertyNames<"
+                + enumName
+                + "> names;\n"
+                + "        private "
+                + enumName
+                + " (String shortName, String...otherNames) {\n"
+                + "            names = new PropertyNames<"
+                + enumName
+                + ">(\n"
+                + "                "
+                + enumName
+                + ".class, this, shortName, otherNames);\n"
+                + "        }\n"
+                + "        public PropertyNames<"
+                + enumName
+                + "> getNames() {\n"
+                + "            return names;\n"
+                + "        }\n"
+                + "        public String getShortName() {\n"
+                + "            return names.getShortName();\n"
+                + "        }\n"
+                + "        private static final NameMatcher<"
+                + enumName
+                + "> NAME_MATCHER = PropertyNames.getNameToEnums("
+                + enumName
+                + ".class);\n"
+                + "        public static "
+                + enumName
+                + " forName(String name) {\n"
+                + "            return NAME_MATCHER.get(name);\n"
+                + "        }\n"
+                + "    }\n";
     }
 
     public static void writeValueEnumFile(Map<PropName, Set<String[]>> values) throws IOException {
         final PrintWriter output = FileUtilities.openUTF8Writer("", PROPERTY_VALUE_OUTPUT);
-        output.println("package org.unicode.props;\n"
-                + "import org.unicode.props.PropertyNames.NameMatcher;\n"
-                + "import org.unicode.props.PropertyNames.Named;\n"
-                + "\n"
-                + "/**\n"
-                + "    Machine-generated file for property values, produced by GenerateEnums.java\n"
-                + "    from PropertyValueAliases.txt and ExtraPropertyValueAliases.txt.\n"
-                + "    The ordering of property value enums is alphabetical (ASCII),\n"
-                + "    but the order of the values for the enums is based on the order within those two files\n"
-                + "    with the ones in PropertyValueAliases coming first.\n"
-                + "*/\n"
-                + "public class UcdPropertyValues {");
+        output.println(
+                "package org.unicode.props;\n"
+                        + "import org.unicode.props.PropertyNames.NameMatcher;\n"
+                        + "import org.unicode.props.PropertyNames.Named;\n"
+                        + "\n"
+                        + "/**\n"
+                        + "    Machine-generated file for property values, produced by GenerateEnums.java\n"
+                        + "    from PropertyValueAliases.txt and ExtraPropertyValueAliases.txt.\n"
+                        + "    The ordering of property value enums is alphabetical (ASCII),\n"
+                        + "    but the order of the values for the enums is based on the order within those two files\n"
+                        + "    with the ones in PropertyValueAliases coming first.\n"
+                        + "*/\n"
+                        + "public class UcdPropertyValues {");
 
-        //[Alpha, N, No, F, False]
-        addPropertyValueAliases(values, FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyValueAliases", ENUM_VERSION, true, true)));
-        addPropertyValueAliases(values, FileUtilities.in(GenerateEnums.class, "ExtraPropertyValueAliases.txt"));
+        // [Alpha, N, No, F, False]
+        addPropertyValueAliases(
+                values,
+                FileUtilities.in(
+                        "",
+                        Utility.getMostRecentUnicodeDataFile(
+                                "PropertyValueAliases", ENUM_VERSION, true, true)));
+        addPropertyValueAliases(
+                values, FileUtilities.in(GenerateEnums.class, "ExtraPropertyValueAliases.txt"));
 
         output.println(
-                "\n    public enum Binary implements Named {\n"+
-                        "        No(\"N\", \"F\", \"False\"),\n"+
-                        "        Yes(\"Y\", \"T\", \"True\")" +
-                        getNameStuff2("Binary")
-                        //                        ";\n"+
-                        //
-                        //                        "        private final PropertyNames<Binary> names;\n"+
-                        //                        "        private Binary (String shortName, String...otherNames) {\n"+
-                        //                        "            names = new PropertyNames(Binary.class, this, shortName, otherNames);\n"+
-                        //                        "        }\n"+
-                        //                        "        public PropertyNames<Binary> getNames() {\n"+
-                        //                        "            return names;\n"+
-                        //                        "        }\n"+
-                        //                        "    }\n"
+                "\n    public enum Binary implements Named {\n"
+                        + "        No(\"N\", \"F\", \"False\"),\n"
+                        + "        Yes(\"Y\", \"T\", \"True\")"
+                        + getNameStuff2("Binary")
+                //                        ";\n"+
+                //
+                //                        "        private final PropertyNames<Binary> names;\n"+
+                //                        "        private Binary (String shortName,
+                // String...otherNames) {\n"+
+                //                        "            names = new PropertyNames(Binary.class, this,
+                // shortName, otherNames);\n"+
+                //                        "        }\n"+
+                //                        "        public PropertyNames<Binary> getNames() {\n"+
+                //                        "            return names;\n"+
+                //                        "        }\n"+
+                //                        "    }\n"
                 );
 
         for (final Entry<PropName, Set<String[]>> value : values.entrySet()) {
@@ -231,7 +290,8 @@ public class GenerateEnums {
                 output.println("        // " + propName.longName);
                 continue;
             }
-            output.println("    public enum " + (propName.longName + "_Values") + " implements Named {");
+            output.println(
+                    "    public enum " + (propName.longName + "_Values") + " implements Named {");
             final StringBuilder constants = new StringBuilder();
             boolean first = true;
             for (final String[] parts : partList) {
@@ -241,7 +301,8 @@ public class GenerateEnums {
                 if (propName.shortName.equals("ccc")) {
                     longName = parts[3];
                 }
-                final String badName = PropName.isProperLongName(longName, PROPERTY_VALUE_LONG_NAME, false);
+                final String badName =
+                        PropName.isProperLongName(longName, PROPERTY_VALUE_LONG_NAME, false);
                 if (badName != null) {
                     addWarning("Improper long value name for " + parts[0] + ": " + badName);
                 }
@@ -256,7 +317,11 @@ public class GenerateEnums {
 
                 for (int i = 1; i < parts.length; ++i) {
                     final String otherName = parts[i];
-                    if (i == 2 || otherName.equals("n/a") || otherName.equals(longName) || otherName.contains("-") || otherName.charAt(0) < 'A') {
+                    if (i == 2
+                            || otherName.equals("n/a")
+                            || otherName.equals(longName)
+                            || otherName.contains("-")
+                            || otherName.charAt(0) < 'A') {
                         continue;
                     }
                     if (constants.length() != 0) {
@@ -267,14 +332,14 @@ public class GenerateEnums {
             }
             final String enumName = propName.longName;
 
-            output.println(getNameStuff2(enumName+"_Values"));
+            output.println(getNameStuff2(enumName + "_Values"));
         }
         output.println("}");
         output.close();
     }
 
-
     static Set<String> WARNINGS = new LinkedHashSet<String>();
+
     private static void addWarning(String string) {
         WARNINGS.add(string);
     }
@@ -305,10 +370,12 @@ public class GenerateEnums {
         output.print(")");
     }
 
-    static Map<String,ValueCardinality> NAME2CARD = new HashMap<>();
+    static Map<String, ValueCardinality> NAME2CARD = new HashMap<>();
+
     static {
         Splitter SEMICOLON = Splitter.on(";").trimResults();
-        for (String line : FileUtilities.in(IndexUnicodeProperties.class, "IndexPropertyRegex.txt")) {
+        for (String line :
+                FileUtilities.in(IndexUnicodeProperties.class, "IndexPropertyRegex.txt")) {
             line = line.trim();
             if (line.startsWith("$") || line.isEmpty() || line.startsWith("#")) {
                 continue;
@@ -323,12 +390,22 @@ public class GenerateEnums {
             } catch (Exception e) {
                 throw new ICUException("Bad line " + line, e);
             }
-            switch(multivalued) {
-            case "ORDERED": NAME2CARD.put(propertyName, ValueCardinality.Ordered); break;
-            case "MULTI_VALUED": NAME2CARD.put(propertyName, ValueCardinality.Unordered); break;
-            case "SINGLE_VALUED": NAME2CARD.put(propertyName, ValueCardinality.Singleton); break;
-            case "EXTENSIBLE": NAME2CARD.put(propertyName, ValueCardinality.Singleton); break;
-            default: throw new UnicodePropertyException("IndexPropertyRegex: didn't expect " + multivalued);
+            switch (multivalued) {
+                case "ORDERED":
+                    NAME2CARD.put(propertyName, ValueCardinality.Ordered);
+                    break;
+                case "MULTI_VALUED":
+                    NAME2CARD.put(propertyName, ValueCardinality.Unordered);
+                    break;
+                case "SINGLE_VALUED":
+                    NAME2CARD.put(propertyName, ValueCardinality.Singleton);
+                    break;
+                case "EXTENSIBLE":
+                    NAME2CARD.put(propertyName, ValueCardinality.Singleton);
+                    break;
+                default:
+                    throw new UnicodePropertyException(
+                            "IndexPropertyRegex: didn't expect " + multivalued);
             }
         }
     }
@@ -337,30 +414,33 @@ public class GenerateEnums {
         final PrintWriter output = FileUtilities.openUTF8Writer("", PROPERTY_FILE_OUTPUT);
 
         output.print(
-                        "package org.unicode.props;\n" +
-                        "import java.util.EnumSet;\n" +
-                        "import java.util.Set;\n"+
-                        "import org.unicode.props.PropertyNames.NameMatcher;\n"
-                        //"import org.unicode.props.UcdPropertyValues.*;\n\n"
+                "package org.unicode.props;\n"
+                        + "import java.util.EnumSet;\n"
+                        + "import java.util.Set;\n"
+                        + "import org.unicode.props.PropertyNames.NameMatcher;\n"
+                // "import org.unicode.props.UcdPropertyValues.*;\n\n"
                 );
         output.println("import org.unicode.props.UcdPropertyValues.Binary;");
         TreeSet<String> imports = new TreeSet<>();
         for (final Entry<String, PropName> i : lookupMain.entrySet()) {
             final PropName pname = i.getValue();
             switch (pname.propertyType) {
-            case Enumerated:
-            case Catalog:
-                final String longName = pname.longName;
-                if (!pname.longName.equals("Script_Extensions")) {  // exception, since uses Script_Values
-                    imports.add(longName);
-                }
-//                final ValueCardinality cardinality = NAME2CARD.get(longName.toLowerCase(Locale.ENGLISH));
-//                if (true || cardinality == null || cardinality == ValueCardinality.Singleton) {
-//                    imports.add(longName);
-//                }
-                break;
-            default:
-                break;
+                case Enumerated:
+                case Catalog:
+                    final String longName = pname.longName;
+                    if (!pname.longName.equals(
+                            "Script_Extensions")) { // exception, since uses Script_Values
+                        imports.add(longName);
+                    }
+                    //                final ValueCardinality cardinality =
+                    // NAME2CARD.get(longName.toLowerCase(Locale.ENGLISH));
+                    //                if (true || cardinality == null || cardinality ==
+                    // ValueCardinality.Singleton) {
+                    //                    imports.add(longName);
+                    //                }
+                    break;
+                default:
+                    break;
             }
         }
         for (String s : imports) {
@@ -368,12 +448,15 @@ public class GenerateEnums {
         }
         output.println();
 
-        output.println("/**\n"
-                + "    Machine-generated file for properties, produced by GenerateEnums.java\n"
-                + "    from PropertyAliases.txt and ExtraPropertyAliases.txt.\n"
-                + "    The ordering of properties is first by category, then alphabetical (ASCII order).\n"
-                + "*/\n"
-                + "public enum " + "UcdProperty" + " {");
+        output.println(
+                "/**\n"
+                        + "    Machine-generated file for properties, produced by GenerateEnums.java\n"
+                        + "    from PropertyAliases.txt and ExtraPropertyAliases.txt.\n"
+                        + "    The ordering of properties is first by category, then alphabetical (ASCII order).\n"
+                        + "*/\n"
+                        + "public enum "
+                        + "UcdProperty"
+                        + " {");
         Set<String> missingCardinality = new TreeSet<>();
         Set<String> extraCardinality = new TreeSet<>(NAME2CARD.keySet());
 
@@ -402,19 +485,23 @@ public class GenerateEnums {
                 }
 
                 switch (pt) {
-                case Binary:
-                    classItem = //"UcdPropertyValues." +
-                    "Binary.class";
-                    break;
-                case Enumerated:
-                case Catalog:
-                    classItem = // "UcdPropertyValues." +
-                    ("Script_Extensions".equals(pname.longName) ? "Script" : pname.longName) + "_Values.class"; // HACK!
-                    break;
-                default:
-                    break;  // leave classItem = null
+                    case Binary:
+                        classItem = // "UcdPropertyValues." +
+                                "Binary.class";
+                        break;
+                    case Enumerated:
+                    case Catalog:
+                        classItem = // "UcdPropertyValues." +
+                                ("Script_Extensions".equals(pname.longName)
+                                                ? "Script"
+                                                : pname.longName)
+                                        + "_Values.class"; // HACK!
+                        break;
+                    default:
+                        break; // leave classItem = null
                 }
-                writeOtherNames(output, type, classItem, cardinality, pname.shortName, pname.others);
+                writeOtherNames(
+                        output, type, classItem, cardinality, pname.shortName, pname.others);
                 output.print(",\n");
             }
         }
@@ -425,82 +512,89 @@ public class GenerateEnums {
             System.err.println("Extra Cardinality for " + extraCardinality);
         }
         output.println("        ;");
-        output.println("\n" +
-                "private final PropertyType type;\n"+
-                "    private final PropertyNames<UcdProperty> names;\n"+
-                "    // for enums\n"+
-                "    private final NameMatcher name2enum;\n"+
-                "    private final EnumSet enums;\n"+
-                "    private final Class enumClass;\n"+
-                "    private final ValueCardinality cardinality;\n"+
-                "    \n"+
-                "    private UcdProperty(PropertyType type, String shortName, String...otherNames) {\n"+
-                "        this.type = type;\n"+
-                "        names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);\n"+
-                "        name2enum = null;\n"+
-                "        enums = null;\n"+
-                "        enumClass = null;\n"+
-                "        cardinality = ValueCardinality.Singleton;\n"+
-                "    }\n"+
-                "    private UcdProperty(PropertyType type, Class classItem, ValueCardinality _cardinality, String shortName, String...otherNames) {\n"+
-                "        this.type = type;\n"+
-                "        names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);\n"+
-                "        cardinality = _cardinality == null ? ValueCardinality.Singleton : _cardinality;\n"+
-                "        if (classItem == null) {\n" +
-                "            name2enum = null;\n"+
-                "            enums = null;\n"+
-                "            enumClass = null;\n"+
-                "        } else {\n" +
-                "            enums = EnumSet.allOf(classItem);\n"+
-                "            name2enum = PropertyNames.getNameToEnums(classItem);\n"+
-                "            enumClass = classItem;\n"+
-                "        }\n" +
-                "    }\n"+
-                "    \n"+
-                "    public ValueCardinality getCardinality() {\n"+
-                "        return cardinality;\n"+
-                "    }\n"+
-                "    public Class<Enum> getEnumClass() {\n"+
-                "        return enumClass;\n"+
-                "    }\n"+
-                "    public PropertyType getType() {\n"+
-                "        return type;\n"+
-                "    }\n"+
-                "    public PropertyNames<UcdProperty> getNames() {\n"+
-                "        return names;\n"+
-                "    }\n"+
-                "    public String getShortName() {\n" +
-                "        return names.getShortName();\n" +
-                "    }\n" +
-                "    public static UcdProperty forString(String name) {\n"+
-                "        return Numeric_Value.names.forString(name);\n"+
-                "    }\n"+
-                "    public Enum getEnum(String name) {\n"+
-                "        return name2enum == null ? null : name2enum.get(name);\n"+
-                "    }\n"+
-                "    public PropertyNames getEnumNames() {\n"+
-                "        return name2enum == null ? null : name2enum.getNames();\n"+
-                "    }\n"    +
-                "    public Set<Enum> getEnums() {\n"+
-                "        return enums;\n"+
-                "    }\n"
-                );
+        output.println(
+                "\n"
+                        + "private final PropertyType type;\n"
+                        + "    private final PropertyNames<UcdProperty> names;\n"
+                        + "    // for enums\n"
+                        + "    private final NameMatcher name2enum;\n"
+                        + "    private final EnumSet enums;\n"
+                        + "    private final Class enumClass;\n"
+                        + "    private final ValueCardinality cardinality;\n"
+                        + "    \n"
+                        + "    private UcdProperty(PropertyType type, String shortName, String...otherNames) {\n"
+                        + "        this.type = type;\n"
+                        + "        names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);\n"
+                        + "        name2enum = null;\n"
+                        + "        enums = null;\n"
+                        + "        enumClass = null;\n"
+                        + "        cardinality = ValueCardinality.Singleton;\n"
+                        + "    }\n"
+                        + "    private UcdProperty(PropertyType type, Class classItem, ValueCardinality _cardinality, String shortName, String...otherNames) {\n"
+                        + "        this.type = type;\n"
+                        + "        names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);\n"
+                        + "        cardinality = _cardinality == null ? ValueCardinality.Singleton : _cardinality;\n"
+                        + "        if (classItem == null) {\n"
+                        + "            name2enum = null;\n"
+                        + "            enums = null;\n"
+                        + "            enumClass = null;\n"
+                        + "        } else {\n"
+                        + "            enums = EnumSet.allOf(classItem);\n"
+                        + "            name2enum = PropertyNames.getNameToEnums(classItem);\n"
+                        + "            enumClass = classItem;\n"
+                        + "        }\n"
+                        + "    }\n"
+                        + "    \n"
+                        + "    public ValueCardinality getCardinality() {\n"
+                        + "        return cardinality;\n"
+                        + "    }\n"
+                        + "    public Class<Enum> getEnumClass() {\n"
+                        + "        return enumClass;\n"
+                        + "    }\n"
+                        + "    public PropertyType getType() {\n"
+                        + "        return type;\n"
+                        + "    }\n"
+                        + "    public PropertyNames<UcdProperty> getNames() {\n"
+                        + "        return names;\n"
+                        + "    }\n"
+                        + "    public String getShortName() {\n"
+                        + "        return names.getShortName();\n"
+                        + "    }\n"
+                        + "    public static UcdProperty forString(String name) {\n"
+                        + "        return Numeric_Value.names.forString(name);\n"
+                        + "    }\n"
+                        + "    public Enum getEnum(String name) {\n"
+                        + "        return name2enum == null ? null : name2enum.get(name);\n"
+                        + "    }\n"
+                        + "    public PropertyNames getEnumNames() {\n"
+                        + "        return name2enum == null ? null : name2enum.getNames();\n"
+                        + "    }\n"
+                        + "    public Set<Enum> getEnums() {\n"
+                        + "        return enums;\n"
+                        + "    }\n");
 
         output.println("\n}");
         output.close();
     }
 
-
-    public static void writeOtherNames(PrintWriter output, String type,
-            String classItem, ValueCardinality cardinality,
-            String shortName, List<String> otherNames) {
+    public static void writeOtherNames(
+            PrintWriter output,
+            String type,
+            String classItem,
+            ValueCardinality cardinality,
+            String shortName,
+            List<String> otherNames) {
         output.print("(");
-        //if (shortName != null) {
+        // if (shortName != null) {
         output.print(type);
         if (classItem != null || cardinality != ValueCardinality.Singleton) {
-            output.print(", " + classItem + ", "
-                    + (cardinality == ValueCardinality.Singleton ? "null"
-                            : "ValueCardinality." + cardinality.toString()));
+            output.print(
+                    ", "
+                            + classItem
+                            + ", "
+                            + (cardinality == ValueCardinality.Singleton
+                                    ? "null"
+                                    : "ValueCardinality." + cardinality.toString()));
         }
         output.print(", \"" + shortName + "\"");
         for (final String otherName : otherNames) {
@@ -509,8 +603,8 @@ public class GenerateEnums {
         output.print(")");
     }
 
-
-    public static void addPropertyValueAliases(Map<PropName, Set<String[]>> values, Iterable<String> lines) {
+    public static void addPropertyValueAliases(
+            Map<PropName, Set<String[]>> values, Iterable<String> lines) {
         for (final String line : lines) {
             final String[] parts = FileUtilities.cleanSemiFields(line);
             if (parts == null) {
@@ -522,12 +616,14 @@ public class GenerateEnums {
             }
             final Set<String[]> set = values.get(propName);
             set.add(parts);
-            //System.out.println(propName.longName + "    " + Arrays.asList(parts));
+            // System.out.println(propName.longName + "    " + Arrays.asList(parts));
         }
     }
 
-    public static void addPropertyAliases(Map<PropName, Set<String[]>> values, Iterable<String> lines, OverrideChoice override) {
-        final Matcher propType = Pattern.compile("#\\s+(\\p{Alpha}+)\\s+Properties\\s*").matcher("");
+    public static void addPropertyAliases(
+            Map<PropName, Set<String[]>> values, Iterable<String> lines, OverrideChoice override) {
+        final Matcher propType =
+                Pattern.compile("#\\s+(\\p{Alpha}+)\\s+Properties\\s*").matcher("");
         PropertyType type = null;
         for (final String line : lines) {
             System.out.println(line);
@@ -539,13 +635,18 @@ public class GenerateEnums {
                 continue;
             }
             final PropName propName = new PropName(type, override, parts);
-            values.put(propName, propName.longName.equals("Age") ? new TreeSet<>(ARRAY_SORT) : new LinkedHashSet<>());
+            values.put(
+                    propName,
+                    propName.longName.equals("Age")
+                            ? new TreeSet<>(ARRAY_SORT)
+                            : new LinkedHashSet<>());
             System.out.println(propName);
             //            if (!Locations.contains(propName.longName)) {
             //                System.out.println("Missing file: " + propName.longName);
             //            }
         }
     }
+
     private static String fix(String string) {
         final char ch = string.charAt(0);
         if ('0' <= ch && ch <= '9') {

@@ -4,13 +4,13 @@
  *
  */
 package org.unicode.unused;
-//import java.util.*;
+// import java.util.*;
 
 abstract class TransformTransliterator {
     // Currently unused
 }
 
-///**
+/// **
 // * An abstract class for transliterators based on a transform
 // * operation.  To create a transliterator that implements a
 // * transformation, create a subclass of this class and implement the
@@ -18,7 +18,7 @@ abstract class TransformTransliterator {
 // * methods.
 // * @author Alan Liu
 // */
-//abstract class TransformTransliterator extends Transliterator {
+// abstract class TransformTransliterator extends Transliterator {
 //
 //    /**
 //     * Constructs a transliterator.  For use by subclasses.
@@ -48,7 +48,7 @@ abstract class TransformTransliterator {
 //
 //                int len = offsets.limit - start;
 //                // assert(len >= 1);
-//                
+//
 //                char[] buf = new char[len];
 //                text.getChars(start, offsets.limit, buf, 0);
 //
@@ -98,7 +98,7 @@ abstract class TransformTransliterator {
 //                    start += segStart - segLimit;
 //
 //                } while (segStart < len);
-//                
+//
 //                offsets.limit += lenDelta;
 //                offsets.contextLimit += lenDelta;
 //                offsets.start = offsets.limit;
@@ -124,4 +124,4 @@ abstract class TransformTransliterator {
 //     * Subclasses must implement this method to transform a string.
 //     */
 //    protected abstract String transform(String s);
-//}
+// }

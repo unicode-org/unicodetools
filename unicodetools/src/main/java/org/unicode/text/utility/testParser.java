@@ -1,18 +1,16 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/testParser.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/utility/testParser.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.utility;
 
-/** Simple Test program for XMLParse
- */
+/** Simple Test program for XMLParse */
+import com.ibm.icu.text.UTF16;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
@@ -20,19 +18,17 @@ import java.io.PrintWriter;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.ibm.icu.text.UTF16;
-
-
 public class testParser implements XMLParseTypes {
     // TODO: There is no such UNIDATA folder. Is this class obsolete?
     public static final String BASE_DIR = Settings.UnicodeTools.UCD_DIR + "/UNIDATA 3.0.1/";
     public static final boolean VERBOSE = false;
 
-    private static final String testFile = BASE_DIR + "UCD-Main.xml"; // "test.xml"; // BASE_DIR + "UCD-Main.xml";
+    private static final String testFile =
+            BASE_DIR + "UCD-Main.xml"; // "test.xml"; // BASE_DIR + "UCD-Main.xml";
 
-    public static void main (String[] args) throws Exception {
-        //test1();
-        //test2();
+    public static void main(String[] args) throws Exception {
+        // test1();
+        // test2();
         test3();
     }
 
@@ -44,28 +40,52 @@ public class testParser implements XMLParseTypes {
                 break;
             }
             final String value = xml.getValue();
-            final int quoteFlags = QUOTE_IEBUG | QUOTE_NON_ASCII | (kind != TEXT ? QUOTE_TABCRLF : 0);
+            final int quoteFlags =
+                    QUOTE_IEBUG | QUOTE_NON_ASCII | (kind != TEXT ? QUOTE_TABCRLF : 0);
             final String qValue = XMLParse.quote(value, quoteFlags);
             if (VERBOSE) {
                 System.out.println(kindNames[kind] + ", \"" + value + "\", \"" + qValue + "\"");
             } else {
                 switch (kind) {
-                case ELEMENT_TAG: System.out.print('<' + qValue); break;
-                case ELEMENT_TAG_SLASH: System.out.print("</" + qValue); break;
-                case ELEMENT_TAG_COMMENT: System.out.print("<" + qValue); break;
-                case ELEMENT_TAG_QUESTION: System.out.print("<?" + qValue); break;
+                    case ELEMENT_TAG:
+                        System.out.print('<' + qValue);
+                        break;
+                    case ELEMENT_TAG_SLASH:
+                        System.out.print("</" + qValue);
+                        break;
+                    case ELEMENT_TAG_COMMENT:
+                        System.out.print("<" + qValue);
+                        break;
+                    case ELEMENT_TAG_QUESTION:
+                        System.out.print("<?" + qValue);
+                        break;
 
-                case END_ELEMENT: System.out.print(">"); break;
-                case END_ELEMENT_COMMENT: System.out.print(">"); break;
-                case END_ELEMENT_SLASH: System.out.print("/>"); break;
-                case END_ELEMENT_QUESTION: System.out.print("?>"); break;
+                    case END_ELEMENT:
+                        System.out.print(">");
+                        break;
+                    case END_ELEMENT_COMMENT:
+                        System.out.print(">");
+                        break;
+                    case END_ELEMENT_SLASH:
+                        System.out.print("/>");
+                        break;
+                    case END_ELEMENT_QUESTION:
+                        System.out.print("?>");
+                        break;
 
-                case ATTRIBUTE_TAG: System.out.print(" " + qValue + "="); break;
-                case ATTRIBUTE_VALUE: System.out.print("\"" + qValue + "\""); break;
+                    case ATTRIBUTE_TAG:
+                        System.out.print(" " + qValue + "=");
+                        break;
+                    case ATTRIBUTE_VALUE:
+                        System.out.print("\"" + qValue + "\"");
+                        break;
 
-                case TEXT: System.out.print(qValue); break;
+                    case TEXT:
+                        System.out.print(qValue);
+                        break;
 
-                default: throw new Exception("Unknown KIND");
+                    default:
+                        throw new Exception("Unknown KIND");
                 }
             }
         }
@@ -75,27 +95,31 @@ public class testParser implements XMLParseTypes {
 
     static void test2() throws Exception {
 
-        final PrintWriter log = Utility.openPrintWriterGenDir("log/UCD-Extract.html", Utility.UTF8_WINDOWS);
+        final PrintWriter log =
+                Utility.openPrintWriterGenDir("log/UCD-Extract.html", Utility.UTF8_WINDOWS);
 
-        //int fieldCount = 4;
-        //int width = 100/fieldCount;
-        //int first = width + 100 - width*fieldCount;
+        // int fieldCount = 4;
+        // int width = 100/fieldCount;
+        // int first = width + 100 - width*fieldCount;
         try {
-            log.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
+            log.println(
+                    "<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
             log.println("<style><!--");
-            log.println("th { background-color: #99FFFF; text-align: Left; font-style: italic; font-weight: bold }");
+            log.println(
+                    "th { background-color: #99FFFF; text-align: Left; font-style: italic; font-weight: bold }");
             log.println("table { page-break-after: always }");
             log.println("--></style>");
 
             log.println("<title>Extract from UCD</title>");
             log.println("</head><body>");
 
-            final String tableHead = "<table border='1' width='100%' cellpadding='4'><tr>"
-                    + "<th width='20'>Code</th>"
-                    + "<th width='20'>Char</th>"
-                    + "<th width='20'>GC</th>"
-                    + "<th width='50%'>Props</th>"
-                    + "<th width='50%'>Name</th></tr></tr>";
+            final String tableHead =
+                    "<table border='1' width='100%' cellpadding='4'><tr>"
+                            + "<th width='20'>Code</th>"
+                            + "<th width='20'>Char</th>"
+                            + "<th width='20'>GC</th>"
+                            + "<th width='50%'>Props</th>"
+                            + "<th width='50%'>Name</th></tr></tr>";
             log.println(tableHead);
 
             final XMLParse xml = new XMLParse(BASE_DIR + "UCD-Main.xml", new char[1000]);
@@ -112,72 +136,79 @@ public class testParser implements XMLParseTypes {
                 }
                 final String value = xml.getValue();
                 switch (kind) {
-                case ELEMENT_TAG:
-                    recordingChar = value.equals("e");
-                    break;
-
-                case ATTRIBUTE_TAG:
-                    if (!recordingChar) {
+                    case ELEMENT_TAG:
+                        recordingChar = value.equals("e");
                         break;
-                    }
-                    lastTag = value;
-                    break;
 
-                case ATTRIBUTE_VALUE:
-                    if (!recordingChar) {
-                        break;
-                    }
-                    data.put(lastTag, value);
-                    break;
-
-                case END_ELEMENT:
-                case END_ELEMENT_SLASH:
-                    if (!recordingChar) {
-                        break;
-                    }
-                    recordingChar = false;
-
-                    // get data
-
-                    String ch = (String)data.get("c");
-                    ch = fixHack(ch);
-                    String name = (String)data.get("n");
-                    if (name == null) {
-                        name = "<computed>";
-                    }
-                    String props = (String)data.get("xs");
-                    if (props == null) {
-                        props = "\u00A0";
-                    }
-                    String gc = (String)data.get("gc");
-                    if (gc == null) {
-                        gc = "Lo";
-                    }
-
-                    // split tables
-                    final int code = UTF16.charAt(ch, 0);
-                    if ((topByte & ~0x1F) != (code & ~0x1F)) {
-                        log.println("</table><br>");
-                        log.println(tableHead);
-                        topByte = code;
-                        if ((printByte & ~0xFF) != (code & ~0xFF)) {
-                            System.out.println("Printing table for " + XMLParse.hex(topByte,2));
-                            printByte = code;
+                    case ATTRIBUTE_TAG:
+                        if (!recordingChar) {
+                            break;
                         }
-                    }
+                        lastTag = value;
+                        break;
 
-                    // draw line
+                    case ATTRIBUTE_VALUE:
+                        if (!recordingChar) {
+                            break;
+                        }
+                        data.put(lastTag, value);
+                        break;
 
-                    log.println("<tr><td>" + XMLParse.hex(code,4) +
-                            "</td><td>" + XMLParse.quote(ch,NORMAL_QUOTE) +
-                            "</td><td>" + XMLParse.quote(gc,NORMAL_QUOTE) +
-                            "</td><td>" + XMLParse.quote(props,NORMAL_QUOTE) +
-                            "</td><td>" + XMLParse.quote(name,NORMAL_QUOTE) + "</td></tr>");
+                    case END_ELEMENT:
+                    case END_ELEMENT_SLASH:
+                        if (!recordingChar) {
+                            break;
+                        }
+                        recordingChar = false;
 
-                    // clear storage
-                    data.clear();
-                    break;
+                        // get data
 
+                        String ch = (String) data.get("c");
+                        ch = fixHack(ch);
+                        String name = (String) data.get("n");
+                        if (name == null) {
+                            name = "<computed>";
+                        }
+                        String props = (String) data.get("xs");
+                        if (props == null) {
+                            props = "\u00A0";
+                        }
+                        String gc = (String) data.get("gc");
+                        if (gc == null) {
+                            gc = "Lo";
+                        }
+
+                        // split tables
+                        final int code = UTF16.charAt(ch, 0);
+                        if ((topByte & ~0x1F) != (code & ~0x1F)) {
+                            log.println("</table><br>");
+                            log.println(tableHead);
+                            topByte = code;
+                            if ((printByte & ~0xFF) != (code & ~0xFF)) {
+                                System.out.println(
+                                        "Printing table for " + XMLParse.hex(topByte, 2));
+                                printByte = code;
+                            }
+                        }
+
+                        // draw line
+
+                        log.println(
+                                "<tr><td>"
+                                        + XMLParse.hex(code, 4)
+                                        + "</td><td>"
+                                        + XMLParse.quote(ch, NORMAL_QUOTE)
+                                        + "</td><td>"
+                                        + XMLParse.quote(gc, NORMAL_QUOTE)
+                                        + "</td><td>"
+                                        + XMLParse.quote(props, NORMAL_QUOTE)
+                                        + "</td><td>"
+                                        + XMLParse.quote(name, NORMAL_QUOTE)
+                                        + "</td></tr>");
+
+                        // clear storage
+                        data.clear();
+                        break;
                 }
             }
             log.println("</table></body></html>");
@@ -187,30 +218,32 @@ public class testParser implements XMLParseTypes {
     }
 
     static void test3() throws Exception {
-        final PrintWriter log = new PrintWriter(new BufferedWriter(
-                new OutputStreamWriter(
-                        new FileOutputStream(BASE_DIR + "CaseFoldingDraft3.txt"),
-                        "UTF8"),
-                        32*1024));
+        final PrintWriter log =
+                new PrintWriter(
+                        new BufferedWriter(
+                                new OutputStreamWriter(
+                                        new FileOutputStream(BASE_DIR + "CaseFoldingDraft3.txt"),
+                                        "UTF8"),
+                                32 * 1024));
 
         try {
             collect(log, "Other_Math");
-            collect (log, "Other_Alphabetic");
-            collect (log, "Other_Composite");
-            //int fieldCount = 4;
-            //int width = 100/fieldCount;
-            //int first = width + 100 - width*fieldCount;
+            collect(log, "Other_Alphabetic");
+            collect(log, "Other_Composite");
+            // int fieldCount = 4;
+            // int width = 100/fieldCount;
+            // int first = width + 100 - width*fieldCount;
         } finally {
             log.close();
         }
     }
 
-    static final void collect(PrintWriter log, String prop)  throws Exception {
+    static final void collect(PrintWriter log, String prop) throws Exception {
         final XMLParse xml = new XMLParse(BASE_DIR + "UCD-Main.xml", new char[1000]);
-        //boolean recordingChar = false;
-        //int topByte = 0;
-        //int printByte = 0;
-        //Map data = new TreeMap();
+        // boolean recordingChar = false;
+        // int topByte = 0;
+        // int printByte = 0;
+        // Map data = new TreeMap();
         String lastTag = "";
         String lastChar = "";
         String lastName = "";
@@ -230,67 +263,83 @@ public class testParser implements XMLParseTypes {
             }
             final String value = xml.getValue();
             switch (kind) {
-            case ATTRIBUTE_TAG:
-                lastTag = value;
-                break;
+                case ATTRIBUTE_TAG:
+                    lastTag = value;
+                    break;
 
-            case ATTRIBUTE_VALUE:
-                if (lastTag.equals("c")) {
-                    lastChar = value;
-                } else if (lastTag.equals("n")) {
-                    lastName = value;
-                } else if (lastTag.equals("gc")) {
-                    lastCat = value;
-                } else if (lastTag.equals("xs") && value.indexOf(prop) >= 0) {
-                    lastChar = fixHack(lastChar);
-                    final int ch = UTF16.charAt(lastChar, 0);
-                    if (ch == endChar + 1) {
-                        endChar = ch;
-                    } else {
-                        //FDD0; FDEF; Noncharacter_Code_Point; # XX;    32;
-                        if (endChar >= 0) {
-                            log.println(Utility.hex(startChar, 4) + "; "
-                                    + (endChar == startChar ? "    " : Utility.hex(endChar, 4))
-                                    + "; " + prop
-                                    + "; # " + startCat
-                                    + "; " + (endChar-startChar+1)
-                                    + "; " + startName
-                                    + (endChar == startChar ? "" : "..."));
+                case ATTRIBUTE_VALUE:
+                    if (lastTag.equals("c")) {
+                        lastChar = value;
+                    } else if (lastTag.equals("n")) {
+                        lastName = value;
+                    } else if (lastTag.equals("gc")) {
+                        lastCat = value;
+                    } else if (lastTag.equals("xs") && value.indexOf(prop) >= 0) {
+                        lastChar = fixHack(lastChar);
+                        final int ch = UTF16.charAt(lastChar, 0);
+                        if (ch == endChar + 1) {
+                            endChar = ch;
+                        } else {
+                            // FDD0; FDEF; Noncharacter_Code_Point; # XX;    32;
+                            if (endChar >= 0) {
+                                log.println(
+                                        Utility.hex(startChar, 4)
+                                                + "; "
+                                                + (endChar == startChar
+                                                        ? "    "
+                                                        : Utility.hex(endChar, 4))
+                                                + "; "
+                                                + prop
+                                                + "; # "
+                                                + startCat
+                                                + "; "
+                                                + (endChar - startChar + 1)
+                                                + "; "
+                                                + startName
+                                                + (endChar == startChar ? "" : "..."));
+                            }
+                            startChar = endChar = ch;
+                            startName = lastName;
+                            startCat = lastCat;
                         }
-                        startChar = endChar = ch;
-                        startName = lastName;
-                        startCat = lastCat;
                     }
-                }
-                break;
+                    break;
             }
         }
         if (endChar >= 0) {
-            log.println(Utility.hex(startChar, 4) + "; "
-                    + (endChar == startChar ? "    " : Utility.hex(endChar, 4))
-                    + "; " + prop
-                    + "; # " + startCat
-                    + "; " + (endChar-startChar+1)
-                    + "; " + startName
-                    + (endChar == startChar ? "" : "..."));
+            log.println(
+                    Utility.hex(startChar, 4)
+                            + "; "
+                            + (endChar == startChar ? "    " : Utility.hex(endChar, 4))
+                            + "; "
+                            + prop
+                            + "; # "
+                            + startCat
+                            + "; "
+                            + (endChar - startChar + 1)
+                            + "; "
+                            + startName
+                            + (endChar == startChar ? "" : "..."));
         }
     }
 
     static void test4() throws Exception {
-        final PrintWriter log = new PrintWriter(new BufferedWriter(
-                new OutputStreamWriter(
-                        new FileOutputStream(BASE_DIR + "CaseFoldingDraft3.txt"),
-                        "UTF8"),
-                        32*1024));
+        final PrintWriter log =
+                new PrintWriter(
+                        new BufferedWriter(
+                                new OutputStreamWriter(
+                                        new FileOutputStream(BASE_DIR + "CaseFoldingDraft3.txt"),
+                                        "UTF8"),
+                                32 * 1024));
 
-        //int fieldCount = 4;
-        //int width = 100/fieldCount;
-        //int first = width + 100 - width*fieldCount;
+        // int fieldCount = 4;
+        // int width = 100/fieldCount;
+        // int first = width + 100 - width*fieldCount;
         try {
             final XMLParse xml = new XMLParse(BASE_DIR + "UCD-Main.xml", new char[1000]);
             boolean recordingChar = false;
-            //int topByte = 0;
-            //int printByte = 0;
+            // int topByte = 0;
+            // int printByte = 0;
             final Map data = new TreeMap();
             String lastTag = "";
 
@@ -304,71 +353,85 @@ public class testParser implements XMLParseTypes {
                 }
                 final String value = xml.getValue();
                 switch (kind) {
-                case ELEMENT_TAG:
-                    recordingChar = value.equals("e");
-                    break;
-
-                case ATTRIBUTE_TAG:
-                    if (!recordingChar) {
+                    case ELEMENT_TAG:
+                        recordingChar = value.equals("e");
                         break;
-                    }
-                    lastTag = value;
-                    break;
 
-                case ATTRIBUTE_VALUE:
-                    if (!recordingChar) {
-                        break;
-                    }
-                    data.put(lastTag, value);
-                    break;
-
-                case END_ELEMENT:
-                case END_ELEMENT_SLASH:
-                    if (!recordingChar) {
-                        break;
-                    }
-                    recordingChar = false;
-
-                    // get data
-
-                    String ch = (String)data.get("c");
-                    ch = fixHack(ch);
-
-                    String name = (String)data.get("n");
-                    if (name == null) {
-                        name = "<computed>";
-                    }
-
-                    String lc = (String)data.get("lc");
-                    if (lc == null) {
-                        lc = ch;
-                    }
-
-                    String fc = (String)data.get("fc");
-                    if (fc == null) {
-                        fc = (String)data.get("sl");
-                    }
-                    if (fc == null) {
-                        fc = lc;
-                    }
-
-                    if (fc.equals(ch)) {
-                        continue;
-                    }
-
-                    if (fc.length() == 1) {
-                        log.println(Utility.hex(ch, " ") + "; C; " + Utility.hex(fc, " ") + "; # " + name);
-                    } else {
-                        log.println(Utility.hex(ch, " ") + "; F; " + Utility.hex(fc, " ") + "; # " + name);
-                        if (!lc.equals(ch)) {
-                            log.println(Utility.hex(ch, " ") + "; S; " + Utility.hex(lc, " ") + "; # " + name);
+                    case ATTRIBUTE_TAG:
+                        if (!recordingChar) {
+                            break;
                         }
-                    }
+                        lastTag = value;
+                        break;
 
-                    // clear storage
-                    data.clear();
-                    break;
+                    case ATTRIBUTE_VALUE:
+                        if (!recordingChar) {
+                            break;
+                        }
+                        data.put(lastTag, value);
+                        break;
 
+                    case END_ELEMENT:
+                    case END_ELEMENT_SLASH:
+                        if (!recordingChar) {
+                            break;
+                        }
+                        recordingChar = false;
+
+                        // get data
+
+                        String ch = (String) data.get("c");
+                        ch = fixHack(ch);
+
+                        String name = (String) data.get("n");
+                        if (name == null) {
+                            name = "<computed>";
+                        }
+
+                        String lc = (String) data.get("lc");
+                        if (lc == null) {
+                            lc = ch;
+                        }
+
+                        String fc = (String) data.get("fc");
+                        if (fc == null) {
+                            fc = (String) data.get("sl");
+                        }
+                        if (fc == null) {
+                            fc = lc;
+                        }
+
+                        if (fc.equals(ch)) {
+                            continue;
+                        }
+
+                        if (fc.length() == 1) {
+                            log.println(
+                                    Utility.hex(ch, " ")
+                                            + "; C; "
+                                            + Utility.hex(fc, " ")
+                                            + "; # "
+                                            + name);
+                        } else {
+                            log.println(
+                                    Utility.hex(ch, " ")
+                                            + "; F; "
+                                            + Utility.hex(fc, " ")
+                                            + "; # "
+                                            + name);
+                            if (!lc.equals(ch)) {
+                                log.println(
+                                        Utility.hex(ch, " ")
+                                                + "; S; "
+                                                + Utility.hex(lc, " ")
+                                                + "; # "
+                                                + name);
+                            }
+                        }
+
+                        // clear storage
+                        data.clear();
+                        break;
                 }
             }
         } finally {
@@ -384,14 +447,14 @@ public class testParser implements XMLParseTypes {
             final char c = s.charAt(i);
             if (position > 0) {
                 if (c == ';') {
-                    final int x = Integer.parseInt(s.substring(position,i),16);
+                    final int x = Integer.parseInt(s.substring(position, i), 16);
                     result.append(UTF32.valueOf32(x));
                     position = -1;
                 }
             } else {
                 if (last == '#' && c == 'x') {
-                    result.setLength(result.length()-1); // remove '#'
-                    position = i+1;
+                    result.setLength(result.length() - 1); // remove '#'
+                    position = i + 1;
                 } else {
                     result.append(c);
                 }

@@ -1,17 +1,15 @@
 package org.unicode.tools;
 
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.TreeSet;
-
-import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.UcdProperty;
-import org.unicode.text.utility.Settings;
-
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.util.ULocale;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.TreeSet;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
+import org.unicode.text.utility.Settings;
 
 public class GenerateRadicalEnum {
     public static void main(String[] args) {
@@ -29,7 +27,7 @@ public class GenerateRadicalEnum {
         for (String item : sorted) {
             boolean prime = item.endsWith("'");
             if (prime) {
-                item = item.substring(0,item.length()-1);
+                item = item.substring(0, item.length() - 1);
             }
             System.out.println("R" + item + (prime ? "a" : "") + ",");
         }

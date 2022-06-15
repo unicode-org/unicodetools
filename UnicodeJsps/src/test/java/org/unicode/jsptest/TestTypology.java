@@ -1,5 +1,15 @@
 package org.unicode.jsptest;
 
+import com.ibm.icu.dev.test.TestFmwk;
+import com.ibm.icu.impl.Row;
+import com.ibm.icu.impl.Row.R2;
+import com.ibm.icu.impl.Row.R3;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UProperty;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -13,41 +23,31 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.MultiComparator;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.jsp.Subheader;
 import org.unicode.jsp.Typology;
 
-import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.impl.Row;
-import com.ibm.icu.impl.Row.R2;
-import com.ibm.icu.impl.Row.R3;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-
-/**
- * Was commented out of TestAll. Status?
- */
+/** Was commented out of TestAll. Status? */
 public class TestTypology extends TestFmwk {
 
     public static void main(String[] args) {
         new TestTypology().run(args);
     }
 
-    MultiComparator col = new MultiComparator(
-            Collator.getInstance(),
-            new UTF16.StringComparator(true, false, 0));
+    MultiComparator col =
+            new MultiComparator(Collator.getInstance(), new UTF16.StringComparator(true, false, 0));
     Collator primaryOnly = Collator.getInstance();
-    UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter().setOrdering(Collator.getInstance()).setSpaceComparator(primaryOnly);
+    UnicodeSetPrettyPrinter pp =
+            new UnicodeSetPrettyPrinter()
+                    .setOrdering(Collator.getInstance())
+                    .setSpaceComparator(primaryOnly);
 
     public void TestSimple() throws IOException {
-        Set<String> archaicLabels = new HashSet<String>(Arrays.asList("Archaic Ancient Biblical Historic".split("\\s")));
+        Set<String> archaicLabels =
+                new HashSet<String>(
+                        Arrays.asList("Archaic Ancient Biblical Historic".split("\\s")));
         UnicodeSet archaic = new UnicodeSet();
         //        System.out.println();
         //        System.out.println("Label\tSet");
@@ -68,35 +68,43 @@ public class TestTypology extends TestFmwk {
         logln(list.toString());
 
         String GEN_DIR = "/Users/markdavis/Documents/workspace/Generated/";
-        PrintWriter out = FileUtilities.openUTF8Writer(GEN_DIR  + "/categories", "CategoryLabels.txt");
-        PrintWriter html = FileUtilities.openUTF8Writer(GEN_DIR + "/categories", "CategoryLabels.html");
-        String fontList = "Georgia, 'Times New Roman', Times, Symbola, Aegyptus, Aegean, Akkadian, Analecta, Musica, Code2000,  Code2001,  Code2002, serif";
+        PrintWriter out =
+                FileUtilities.openUTF8Writer(GEN_DIR + "/categories", "CategoryLabels.txt");
+        PrintWriter html =
+                FileUtilities.openUTF8Writer(GEN_DIR + "/categories", "CategoryLabels.html");
+        String fontList =
+                "Georgia, 'Times New Roman', Times, Symbola, Aegyptus, Aegean, Akkadian, Analecta, Musica, Code2000,  Code2001,  Code2002, serif";
         html.println(
-                "<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN'>\n" +
-                "<html><head>\n" +
-                "<base target='_blank'/>\n" +
-                "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/> " +
-                "<style>\n" +
-                "body {font-family: " + fontList + "}\n" +
-                "td,th,table { padding:1px; border:1px solid #eeeeFF; vertical-align:top; text-align: left; }\n" +
-                "table { border-collapse: collapse; width 100% }\n" +
-                "caption {text-align: left; font-size: 150%;}\n"+
-                "ul,li {padding: 0px; margin: 0px;}\n" +
-                "ul {padding-left: 1.5em;}\n" +
-                ".b {font-size: 133%}\n" +
-                ".p100 {color:green}\n" +
-                ".p66 {color:blue}\n" +
-                ".p33 {color:purple}\n" +
-                ".p0 {color:Maroon}\n" +
-                ".sub {color: gray}\n" +
-                "</style></head><body>\n" +
-                "<p><b>L2/10-450R4</b></p>\n" +
-                "<p>Subject: Labels and UTR#49</p>\n" +
-                "<p>From: Mark Davis</p>\n" +
-                "<p>Date: " + new Date() + "</p>\n" +
-                "<p>The following provides a breakdown of the data file for UTR#49. I'll explain more about the" +
-                " format during the meeting. Body fonts include: " + fontList + ".</p>"
-        );
+                "<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN'>\n"
+                        + "<html><head>\n"
+                        + "<base target='_blank'/>\n"
+                        + "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/> "
+                        + "<style>\n"
+                        + "body {font-family: "
+                        + fontList
+                        + "}\n"
+                        + "td,th,table { padding:1px; border:1px solid #eeeeFF; vertical-align:top; text-align: left; }\n"
+                        + "table { border-collapse: collapse; width 100% }\n"
+                        + "caption {text-align: left; font-size: 150%;}\n"
+                        + "ul,li {padding: 0px; margin: 0px;}\n"
+                        + "ul {padding-left: 1.5em;}\n"
+                        + ".b {font-size: 133%}\n"
+                        + ".p100 {color:green}\n"
+                        + ".p66 {color:blue}\n"
+                        + ".p33 {color:purple}\n"
+                        + ".p0 {color:Maroon}\n"
+                        + ".sub {color: gray}\n"
+                        + "</style></head><body>\n"
+                        + "<p><b>L2/10-450R4</b></p>\n"
+                        + "<p>Subject: Labels and UTR#49</p>\n"
+                        + "<p>From: Mark Davis</p>\n"
+                        + "<p>Date: "
+                        + new Date()
+                        + "</p>\n"
+                        + "<p>The following provides a breakdown of the data file for UTR#49. I'll explain more about the"
+                        + " format during the meeting. Body fonts include: "
+                        + fontList
+                        + ".</p>");
 
         //        startTable(html, out, "Labels");
         //        showLabel(html, out, pp, "Label", null, false);
@@ -108,18 +116,22 @@ public class TestTypology extends TestFmwk {
         //
         //        closeTable(html, out);
 
-
         startTable(html, out, "Labels, Other Labels in Path, and Subheads");
-        showLabel(html, out, pp, "Label\tSize\tContents/Other-Labels/Subheads", LabelStyle.title, LabelRowStyle.normal);
+        showLabel(
+                html,
+                out,
+                pp,
+                "Label\tSize\tContents/Other-Labels/Subheads",
+                LabelStyle.title,
+                LabelRowStyle.normal);
 
         for (String label : list) {
             UnicodeSet uset = Typology.label_to_uset.get(label);
-            UnicodeSet[] usets = { uset };
+            UnicodeSet[] usets = {uset};
             showLabel(html, out, pp, label, LabelStyle.subhead, LabelRowStyle.normal, usets);
         }
 
         closeTable(html, out);
-
 
         //        startTable(html, out, "Label in single path");
         //        showLabel(html, out, pp, "Label\tPath\tSize\tContents", LabelStyle.title);
@@ -147,16 +159,22 @@ public class TestTypology extends TestFmwk {
             for (Entry<String, UnicodeSet> parentAndSet : lists.entrySet()) {
                 String parent = parentAndSet.getKey();
                 UnicodeSet uset = parentAndSet.getValue();
-                showLabel(html, out, pp, (label + "\t" + parent), LabelStyle.normal,
+                showLabel(
+                        html,
+                        out,
+                        pp,
+                        (label + "\t" + parent),
+                        LabelStyle.normal,
                         !label.equals(oldLabel) ? LabelRowStyle.normal : LabelRowStyle.sub,
-                                uset);
+                        uset);
                 oldLabel = label;
             }
         }
         closeTable(html, out);
 
         Set<PropData> props = getProps();
-        Set<R3<Double, String, TreeSet<Row.R2<Double, PropData>>>> matches = new TreeSet<R3<Double, String, TreeSet<Row.R2<Double, PropData>>>>();
+        Set<R3<Double, String, TreeSet<Row.R2<Double, PropData>>>> matches =
+                new TreeSet<R3<Double, String, TreeSet<Row.R2<Double, PropData>>>>();
 
         for (String label : list) {
             UnicodeSet uset = Typology.label_to_uset.get(label);
@@ -185,12 +203,19 @@ public class TestTypology extends TestFmwk {
                 closestValue = row.get0();
             }
 
-            R3<Double, String, TreeSet<Row.R2<Double, PropData>>> match = Row.of(closestValue, label, close);
+            R3<Double, String, TreeSet<Row.R2<Double, PropData>>> match =
+                    Row.of(closestValue, label, close);
             matches.add(match);
         }
 
         startTable(html, out, "Labels compared to Properties");
-        showLabel(html, out, pp, "Overlap\tLabel\tProp/Subhead\tCount Shared\tShared\tLabel-Prop\tProp-Label", LabelStyle.title, LabelRowStyle.normal);
+        showLabel(
+                html,
+                out,
+                pp,
+                "Overlap\tLabel\tProp/Subhead\tCount Shared\tShared\tLabel-Prop\tProp-Label",
+                LabelStyle.title,
+                LabelRowStyle.normal);
 
         for (R3<Double, String, TreeSet<Row.R2<Double, PropData>>> match : matches) {
             String label = match.get1();
@@ -206,15 +231,24 @@ public class TestTypology extends TestFmwk {
                 UnicodeSet label_AND_propset = new UnicodeSet(uset).retainAll(propSet);
                 UnicodeSet label_propset = new UnicodeSet(uset).removeAll(propSet);
                 UnicodeSet propset_label = new UnicodeSet(propSet).removeAll(uset);
-                //showLabel(html, out, pp, label + "\t" + path, Typology.path_to_uset.get(path), false);
-                showLabel(html, out, pp, pf.format(closeness)
-                        + "\t" + label
-                        + "\t" + propData.getName() + "=" + propData.getValue(),
+                // showLabel(html, out, pp, label + "\t" + path, Typology.path_to_uset.get(path),
+                // false);
+                showLabel(
+                        html,
+                        out,
+                        pp,
+                        pf.format(closeness)
+                                + "\t"
+                                + label
+                                + "\t"
+                                + propData.getName()
+                                + "="
+                                + propData.getValue(),
                         LabelStyle.normal,
                         first ? LabelRowStyle.normal : LabelRowStyle.sub,
-                                label_AND_propset,
-                                label_propset, propset_label
-                );
+                        label_AND_propset,
+                        label_propset,
+                        propset_label);
                 first = false;
             }
         }
@@ -229,6 +263,7 @@ public class TestTypology extends TestFmwk {
     static class InverseIterator<T> implements Iterator<T>, Iterable<T> {
         private ArrayList<T> items;
         private int position;
+
         private InverseIterator(ArrayList<T> items) {
             this.items = items;
             this.position = items.size();
@@ -275,9 +310,11 @@ public class TestTypology extends TestFmwk {
         public UnicodeSet getSet() {
             return get0();
         }
+
         public String getName() {
             return get1();
         }
+
         public String getValue() {
             return get2();
         }
@@ -288,31 +325,40 @@ public class TestTypology extends TestFmwk {
             return 0d;
         }
         UnicodeSet intersect = new UnicodeSet(get2).retainAll(uset);
-        return (2d * intersect.size())/(get2.size() + uset.size());
+        return (2d * intersect.size()) / (get2.size() + uset.size());
     }
 
-    static final Set<String> SKIP_PROPS = new HashSet<String>(Arrays.asList("Trail_Canonical_Combining_Class Lead_Canonical_Combining_Class".split("\\s")));
+    static final Set<String> SKIP_PROPS =
+            new HashSet<String>(
+                    Arrays.asList(
+                            "Trail_Canonical_Combining_Class Lead_Canonical_Combining_Class"
+                                    .split("\\s")));
 
     private Set<PropData> getProps() {
         Set<PropData> props = new HashSet<PropData>();
         int[][] ranges = {
-                {UProperty.BINARY_START,    UProperty.BINARY_LIMIT},
-                {UProperty.INT_START,       UProperty.INT_LIMIT},
-                {UProperty.DOUBLE_START,    UProperty.DOUBLE_LIMIT},
-                {UProperty.STRING_START,    UProperty.STRING_LIMIT},
+            {UProperty.BINARY_START, UProperty.BINARY_LIMIT},
+            {UProperty.INT_START, UProperty.INT_LIMIT},
+            {UProperty.DOUBLE_START, UProperty.DOUBLE_LIMIT},
+            {UProperty.STRING_START, UProperty.STRING_LIMIT},
         };
         UnicodeSet skip = new UnicodeSet("[[:cn:][:cs:][:co:]]");
         for (int[] range : ranges) {
-            for (int propEnum  = range[0]; propEnum < range[1]; ++propEnum) {
+            for (int propEnum = range[0]; propEnum < range[1]; ++propEnum) {
                 String alias = UCharacter.getPropertyName(propEnum, UProperty.NameChoice.LONG);
                 if (SKIP_PROPS.contains(alias)) {
                     continue;
                 }
                 int max = UCharacter.getIntPropertyMaxValue(propEnum);
-                for (int valueEnum = UCharacter.getIntPropertyMinValue(propEnum); valueEnum <= max; ++valueEnum) {
+                for (int valueEnum = UCharacter.getIntPropertyMinValue(propEnum);
+                        valueEnum <= max;
+                        ++valueEnum) {
                     try {
-                        UnicodeSet foo = new UnicodeSet().applyIntPropertyValue(propEnum, valueEnum);
-                        String valueAlias = UCharacter.getPropertyValueName(propEnum, valueEnum, UProperty.NameChoice.LONG);
+                        UnicodeSet foo =
+                                new UnicodeSet().applyIntPropertyValue(propEnum, valueEnum);
+                        String valueAlias =
+                                UCharacter.getPropertyValueName(
+                                        propEnum, valueEnum, UProperty.NameChoice.LONG);
 
                         //                        foo.removeAll(skip);
                         //                        if (foo.size() == 0) {
@@ -338,13 +384,14 @@ public class TestTypology extends TestFmwk {
         return props;
     }
 
-    private void addProps(Set<PropData> props, UnicodeSet skip, String subhead, UnicodeSet uset, String alias) {
+    private void addProps(
+            Set<PropData> props, UnicodeSet skip, String subhead, UnicodeSet uset, String alias) {
         UnicodeSet foo = new UnicodeSet(uset);
         foo.removeAll(skip);
         if (foo.size() != 0) {
             PropData r = new PropData(foo, alias, subhead);
             props.add(r);
-           logln(alias + "=" + subhead);
+            logln(alias + "=" + subhead);
         }
     }
 
@@ -364,11 +411,24 @@ public class TestTypology extends TestFmwk {
     final String unicodeDataDirectory = "../jsp/";
     Subheader subheader = new Subheader(Typology.class.getResourceAsStream("NamesList.txt"));
 
-    enum LabelStyle {title, normal, subhead}
-    enum LabelRowStyle {normal, sub}
+    enum LabelStyle {
+        title,
+        normal,
+        subhead
+    }
 
-    private void showLabel(PrintWriter html, PrintWriter printStream, UnicodeSetPrettyPrinter ppx,
-            String labelName, LabelStyle subhead, LabelRowStyle labelRowStyle,
+    enum LabelRowStyle {
+        normal,
+        sub
+    }
+
+    private void showLabel(
+            PrintWriter html,
+            PrintWriter printStream,
+            UnicodeSetPrettyPrinter ppx,
+            String labelName,
+            LabelStyle subhead,
+            LabelRowStyle labelRowStyle,
             UnicodeSet... usets) {
         String cell;
         String setString;
@@ -377,26 +437,35 @@ public class TestTypology extends TestFmwk {
             cell = "th";
         } else if (subhead == LabelStyle.subhead) {
             cell = "td";
-            Map<String,Double> subheads = getSubheadInfo(usets[0]);
-            setString = formatUnicodeSet(usets)
-            + "<p>" + Typology.label_parent_uset.get(labelName).keySet()
-            + "<p>" + join(subheads, labelName);
+            Map<String, Double> subheads = getSubheadInfo(usets[0]);
+            setString =
+                    formatUnicodeSet(usets)
+                            + "<p>"
+                            + Typology.label_parent_uset.get(labelName).keySet()
+                            + "<p>"
+                            + join(subheads, labelName);
 
-            sizeString = usets.length == 0 ? "" : usets[0].size()+"";
+            sizeString = usets.length == 0 ? "" : usets[0].size() + "";
             labelName = BREAK_AFTER.matcher(labelName).replaceAll("$1\u200B");
             labelName += "\t" + sizeString + "\t" + setString;
         } else {
             cell = "td";
             setString = formatUnicodeSet(usets);
-            sizeString = usets.length == 0 ? "" : usets[0].size()+"";
+            sizeString = usets.length == 0 ? "" : usets[0].size() + "";
             labelName = BREAK_AFTER.matcher(labelName).replaceAll("$1\u200B");
             labelName += "\t" + sizeString + "\t" + setString;
         }
         printStream.println(labelName);
-        html.println("<tr" + (labelRowStyle == LabelRowStyle.normal ? "" : " class='sub'") +
-                "><" + cell + ">"
-                + labelName.replace("\t", "</" + cell + "><" + cell + ">")
-                + "</" + cell + "></tr>");
+        html.println(
+                "<tr"
+                        + (labelRowStyle == LabelRowStyle.normal ? "" : " class='sub'")
+                        + "><"
+                        + cell
+                        + ">"
+                        + labelName.replace("\t", "</" + cell + "><" + cell + ">")
+                        + "</"
+                        + cell
+                        + "></tr>");
     }
 
     private String formatUnicodeSet(UnicodeSet... usets) {
@@ -411,7 +480,7 @@ public class TestTypology extends TestFmwk {
     }
 
     private String formatUnicodeSet(UnicodeSet uset) {
-        if (uset.size() ==0) return "∅";
+        if (uset.size() == 0) return "∅";
         String setString;
         setString = pp.format(uset);
         if (setString.length() > LIMIT) {
@@ -425,13 +494,13 @@ public class TestTypology extends TestFmwk {
             setString = setString.substring(0, limit) + "…";
         }
         String uset2 = uset.toPattern(false);
-        String href = "<a href='http://unicode.org/cldr/utility/list-unicodeset.jsp?a=" + uset2 + "'>";
+        String href =
+                "<a href='http://unicode.org/cldr/utility/list-unicodeset.jsp?a=" + uset2 + "'>";
         return "<span class='b'>" + href + setString + "</a></span>";
     }
 
-
-    private Map<String,Double> getSubheadInfo(UnicodeSet uset) {
-        Map<String,Double> subheads = new TreeMap<String,Double>();
+    private Map<String, Double> getSubheadInfo(UnicodeSet uset) {
+        Map<String, Double> subheads = new TreeMap<String, Double>();
         for (String s : uset) {
             String subheadString = subheader.getSubheader(s.codePointAt(0));
             double percent;
@@ -441,14 +510,14 @@ public class TestTypology extends TestFmwk {
             } else {
                 UnicodeSet other = subheader.getUnicodeSet(subheadString);
                 UnicodeSet overlap = new UnicodeSet(other).retainAll(uset);
-                percent = overlap.size()/(double)other.size();
+                percent = overlap.size() / (double) other.size();
             }
             subheads.put(subheadString, percent);
         }
         return subheads;
     }
 
-    public static String join(Map<String,Double> map, String label) {
+    public static String join(Map<String, Double> map, String label) {
         StringBuffer result = new StringBuffer("<b>OL:</b> ");
         Set<String> lists = Typology.labelToPaths.getAll(label);
         TreeSet<String> otherLabels = new TreeSet<String>();
@@ -516,7 +585,7 @@ public class TestTypology extends TestFmwk {
             } catch (Exception e) {
                 throw new IllegalArgumentException();
             }
-            appendWithCoverage(result, otherLabel, overlap.size()/(double)other.size());
+            appendWithCoverage(result, otherLabel, overlap.size() / (double) other.size());
         }
     }
 
@@ -527,11 +596,11 @@ public class TestTypology extends TestFmwk {
     }
 
     private static String coverageToClass(double coverage) {
-        String pc = coverage >= 0.999d ? "p100"
-                : coverage > 0.666d ? "p66"
-                        : coverage > 0.333 ? "p33"
-                                : "p0";
-                        return pc;
+        String pc =
+                coverage >= 0.999d
+                        ? "p100"
+                        : coverage > 0.666d ? "p66" : coverage > 0.333 ? "p33" : "p0";
+        return pc;
     }
 
     static NumberFormat pf = NumberFormat.getPercentInstance();

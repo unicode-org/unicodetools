@@ -1,5 +1,7 @@
 package org.unicode.draft;
 
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.util.VersionInfo;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -10,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Vector;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,13 +26,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.ListDataListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
 import org.unicode.cldr.draft.CharacterListCompressor.Interval;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.CLDRTool;
-
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.util.VersionInfo;
 
 @CLDRTool(alias = "picker", description = "DEMO Character Picker app based on CLDR data")
 public class PickerApp implements ListSelectionListener {
@@ -39,11 +36,8 @@ public class PickerApp implements ListSelectionListener {
     private final Font pickerFont;
     private final Font biggerFont;
 
-    private final class CharPickerCellRenderer extends JLabel implements
-        ListCellRenderer<String> {
-        /**
-         *
-         */
+    private final class CharPickerCellRenderer extends JLabel implements ListCellRenderer<String> {
+        /** */
         private static final long serialVersionUID = 869587839960963873L;
 
         CharPickerCellRenderer() {
@@ -56,27 +50,31 @@ public class PickerApp implements ListSelectionListener {
 
         @Override
         public Component getListCellRendererComponent(
-            JList<? extends String> list, String value, int index,
-            boolean isSelected, boolean cellHasFocus) {
+                JList<? extends String> list,
+                String value,
+                int index,
+                boolean isSelected,
+                boolean cellHasFocus) {
             setText(value);
             setBackground(isSelected ? Color.YELLOW : frame.getBackground());
             return this;
         }
     }
 
-    final private JList<String> catList;
-    final private JList<String> grpList;
-    final private JList<String> charList;
-    final private JPanel label;
-    final private JFrame frame;
+    private final JList<String> catList;
+    private final JList<String> grpList;
+    private final JList<String> charList;
+    private final JPanel label;
+    private final JFrame frame;
 
     public static void main(String args[]) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new PickerApp();
-            }
-        });
+        SwingUtilities.invokeLater(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        new PickerApp();
+                    }
+                });
     }
 
     public PickerApp() {
@@ -85,40 +83,45 @@ public class PickerApp implements ListSelectionListener {
         pickerFont = mainFont.deriveFont(24);
         biggerFont = mainFont.deriveFont(36);
 
-        frame = new JFrame("CLDR " + CLDRFile.GEN_VERSION + " CharPicker http://cldr.unicode.org, ICU:" + VersionInfo.ICU_VERSION);
+        frame =
+                new JFrame(
+                        "CLDR "
+                                + CLDRFile.GEN_VERSION
+                                + " CharPicker http://cldr.unicode.org, ICU:"
+                                + VersionInfo.ICU_VERSION);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(512, 342);
 
         //                JLabel l = new JLabel("s+rl");
         //                j.getContentPane().add(l);
         frame.setLayout(new GridLayout(3, 1));
-        ListModel<String> model = new ListModel<String>() {
-            final List<String> categories = PickerData2.CATEGORIES;
+        ListModel<String> model =
+                new ListModel<String>() {
+                    final List<String> categories = PickerData2.CATEGORIES;
 
-            @Override
-            public int getSize() {
-                // TODO Auto-generated method stub
-                return categories.size();
-            }
+                    @Override
+                    public int getSize() {
+                        // TODO Auto-generated method stub
+                        return categories.size();
+                    }
 
-            @Override
-            public String getElementAt(int index) {
-                // TODO Auto-generated method stub
-                return categories.get(index);
-            }
+                    @Override
+                    public String getElementAt(int index) {
+                        // TODO Auto-generated method stub
+                        return categories.get(index);
+                    }
 
-            @Override
-            public void addListDataListener(ListDataListener l) {
-                // never changes
-                //throw new InternalError("foo");
-            }
+                    @Override
+                    public void addListDataListener(ListDataListener l) {
+                        // never changes
+                        // throw new InternalError("foo");
+                    }
 
-            @Override
-            public void removeListDataListener(ListDataListener l) {
-                // throw new InternalError("foo");
-            }
-
-        };
+                    @Override
+                    public void removeListDataListener(ListDataListener l) {
+                        // throw new InternalError("foo");
+                    }
+                };
         catList = new JList<String>(model);
         catList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         catList.addListSelectionListener(this);
@@ -153,16 +156,18 @@ public class PickerApp implements ListSelectionListener {
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        //if(!e.getValueIsAdjusting()) return;
-        //System.err.println(e.toString());
+        // if(!e.getValueIsAdjusting()) return;
+        // System.err.println(e.toString());
         int c = e.getFirstIndex();
         if (e.getSource() == catList) {
-            //System.err.println("catlist click " + c);
+            // System.err.println("catlist click " + c);
             grpList.setListData(PickerData2.getSubCategories(c));
             frame.pack();
         } else if (e.getSource() == grpList) {
-            //System.err.println("grplist click" + c);
-            List<Interval> chars = PickerData2.getStringArray(catList.getSelectedIndex(), grpList.getSelectedIndex());
+            // System.err.println("grplist click" + c);
+            List<Interval> chars =
+                    PickerData2.getStringArray(
+                            catList.getSelectedIndex(), grpList.getSelectedIndex());
             Vector<String> stringVector = new Vector<String>();
             for (Interval interval : chars) {
                 for (int i = interval.first(); i <= interval.last(); i++) {
@@ -194,13 +199,15 @@ public class PickerApp implements ListSelectionListener {
                 label.add(new JLabel(sb.toString()));
 
                 JButton copyButton = new JButton("Copy");
-                copyButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        Toolkit.getDefaultToolkit().getSystemClipboard()
-                            .setContents(new StringSelection(str), null);
-                    }
-                });
+                copyButton.addActionListener(
+                        new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                Toolkit.getDefaultToolkit()
+                                        .getSystemClipboard()
+                                        .setContents(new StringSelection(str), null);
+                            }
+                        });
                 label.add(copyButton);
 
                 label.setVisible(true);

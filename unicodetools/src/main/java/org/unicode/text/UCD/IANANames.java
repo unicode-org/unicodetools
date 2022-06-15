@@ -1,16 +1,17 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/IANANames.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/IANANames.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,13 +19,8 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
-
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
 
 public class IANANames implements UCD_Types {
     private final Map aliasToBase = new TreeMap();
@@ -54,10 +50,19 @@ public class IANANames implements UCD_Types {
                 final String base = iNames.getBase(alias);
                 final String otherBase = iNames.getBase(other);
                 if (!base.equals(otherBase)) {
-                    System.out.println("Collision between: " + alias + " (" + base + ") and "
-                            + other + " (" + otherBase + ")");
+                    System.out.println(
+                            "Collision between: "
+                                    + alias
+                                    + " ("
+                                    + base
+                                    + ") and "
+                                    + other
+                                    + " ("
+                                    + otherBase
+                                    + ")");
                 } else {
-                    System.out.println("Alias Variant: " + alias + " and " + other + " (" + base + ")");
+                    System.out.println(
+                            "Alias Variant: " + alias + " and " + other + " (" + base + ")");
                 }
             } else {
                 m.put(skeleton, alias);
@@ -69,12 +74,15 @@ public class IANANames implements UCD_Types {
         final UnicodeSetIterator usi = new UnicodeSetIterator(removed);
         while (usi.next()) {
             final char c = (char) usi.codepoint; // safe, can't be supplementary
-            System.out.println("0x" + usi.codepoint + "\t'" + c + "'\t" + UCharacter.getName(usi.codepoint));
+            System.out.println(
+                    "0x" + usi.codepoint + "\t'" + c + "'\t" + UCharacter.getName(usi.codepoint));
         }
     }
 
     public IANANames() throws IOException {
-        final BufferedReader in = Utility.openReadFile(Settings.UnicodeTools.DATA_DIR + "IANA/character-sets.txt", Utility.LATIN1);
+        final BufferedReader in =
+                Utility.openReadFile(
+                        Settings.UnicodeTools.DATA_DIR + "IANA/character-sets.txt", Utility.LATIN1);
         try {
             boolean atStart = true;
             String lastName = "";
@@ -97,7 +105,8 @@ public class IANANames implements UCD_Types {
 
                 if (line.startsWith("Name:") || line.startsWith("Alias:")) {
                     lastName = add(line, lastName, counter);
-                } else if (line.startsWith("Source:") || line.startsWith("MIBenum:")
+                } else if (line.startsWith("Source:")
+                        || line.startsWith("MIBenum:")
                         || line.startsWith("        ")) {
                     continue;
                 } else if (line.equals("REFERENCES")) {
@@ -117,7 +126,7 @@ public class IANANames implements UCD_Types {
         if (pos < 0) {
             throw new IllegalArgumentException("Bad line: " + counter + " '" + line + "'");
         }
-        String alias = line.substring(pos+2).trim();
+        String alias = line.substring(pos + 2).trim();
 
         // get comment
         String comment = null;
@@ -138,13 +147,28 @@ public class IANANames implements UCD_Types {
                 if (baseName.equals(alias)) {
                     System.out.println();
                 }
-                System.out.println("Adding " + alias + "\t=> " + baseName + (comment != null ? "\t(" + comment + ")" : ""));
+                System.out.println(
+                        "Adding "
+                                + alias
+                                + "\t=> "
+                                + baseName
+                                + (comment != null ? "\t(" + comment + ")" : ""));
             }
             // check if it is stored already
             final String oldbaseName = (String) aliasToBase.get(alias);
             if (oldbaseName != null) {
-                System.out.println("Duplicate alias (" + alias + ", " + oldbaseName + ", " + baseName + "): "
-                        + counter + " '" + line + "'");
+                System.out.println(
+                        "Duplicate alias ("
+                                + alias
+                                + ", "
+                                + oldbaseName
+                                + ", "
+                                + baseName
+                                + "): "
+                                + counter
+                                + " '"
+                                + line
+                                + "'");
             }
             aliasToBase.put(alias, baseName);
             if (comment != null) {
@@ -159,9 +183,7 @@ public class IANANames implements UCD_Types {
         return aliasToBase.keySet().iterator();
     }
 
-    /**
-     * Returns the name for this alias, or "" if there is none
-     */
+    /** Returns the name for this alias, or "" if there is none */
     public String getBase(String alias) {
         return (String) aliasToBase.get(alias);
     }
@@ -192,7 +214,7 @@ public class IANANames implements UCD_Types {
                 }
             }
         }
-        //if (removedZero) System.out.println("Removed 0 from " + s + " => " + result);
+        // if (removedZero) System.out.println("Removed 0 from " + s + " => " + result);
         return result.toString();
     }
 }

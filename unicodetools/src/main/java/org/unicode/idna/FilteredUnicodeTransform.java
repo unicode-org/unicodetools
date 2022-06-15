@@ -1,17 +1,18 @@
 package org.unicode.idna;
 
-import org.unicode.text.utility.UnicodeTransform;
-
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
+import org.unicode.text.utility.UnicodeTransform;
 
 public class FilteredUnicodeTransform extends UnicodeTransform {
     final UnicodeSet transformOnly;
     final UnicodeTransform baseTransform;
+
     public FilteredUnicodeTransform(UnicodeTransform transform, UnicodeSet unicodeSet) {
         baseTransform = transform;
         transformOnly = unicodeSet;
     }
+
     @Override
     public String transform(String source) {
         final StringBuilder builder = new StringBuilder();
@@ -33,7 +34,6 @@ public class FilteredUnicodeTransform extends UnicodeTransform {
             if (end == source.length()) {
                 break;
             }
-
         }
         return builder.toString();
     }

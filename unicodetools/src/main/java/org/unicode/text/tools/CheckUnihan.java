@@ -1,5 +1,6 @@
 package org.unicode.text.tools;
 
+import com.ibm.icu.impl.Relation;
 import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -7,17 +8,15 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.utility.Settings;
-
-import com.ibm.icu.impl.Relation;
 
 public class CheckUnihan {
 
     public static void main(String[] args) {
         final SortedSet<String> props = new TreeSet<String>();
-        final Relation<String,String> values = Relation.of(new HashMap<String,Set<String>>(), HashSet.class);
+        final Relation<String, String> values =
+                Relation.of(new HashMap<String, Set<String>>(), HashSet.class);
         final Pattern tabSplitter = Pattern.compile("\t");
         // TODO: There is no Unihan folder directly inside .../unicodetools/data/ucd/
         // Is this class obsolete?
@@ -27,7 +26,7 @@ public class CheckUnihan {
                 if (line.length() == 0 || line.startsWith("#")) {
                     continue;
                 }
-                //U+3405  kOtherNumeric   5
+                // U+3405  kOtherNumeric   5
                 final String[] parts = tabSplitter.split(line);
                 props.add(parts[1]);
                 if (!parts[2].contains(" ")) {

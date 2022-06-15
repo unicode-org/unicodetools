@@ -1,5 +1,8 @@
 package org.unicode.text.UCD;
 
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,27 +12,23 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UnicodeSet;
-
 public class GetTypology {
     public static void main(String[] args) throws IOException {
         final UnicodeMap<String> data2 = new UnicodeMap();
-        final Map<String,UnicodeSet> data = new TreeMap();
-        final Map<String,Set<String>> uniqueUnordered = new HashMap();
+        final Map<String, UnicodeSet> data = new TreeMap();
+        final Map<String, Set<String>> uniqueUnordered = new HashMap();
 
-        final Map<String,Map<String,UnicodeSet>> labelToPrefixes = new TreeMap();
-        final Map<String,Set<String>> toOriginals = new TreeMap();
+        final Map<String, Map<String, UnicodeSet>> labelToPrefixes = new TreeMap();
+        final Map<String, Set<String>> toOriginals = new TreeMap();
 
         final String filename = "U52M09XXXX.lst";
-        final BufferedReader br = FileUtilities.openUTF8Reader(Settings.UnicodeTools.UCD_DIR, filename);
+        final BufferedReader br =
+                FileUtilities.openUTF8Reader(Settings.UnicodeTools.UCD_DIR, filename);
         final StringBuilder name = new StringBuilder();
         String nameString = null;
 
@@ -39,7 +38,7 @@ public class GetTypology {
                 break;
             }
             final String[] parts = line.split("\t");
-            final int cp = Integer.parseInt(parts[0],16);
+            final int cp = Integer.parseInt(parts[0], 16);
             name.setLength(0);
 
             for (int i = 0; i < parts.length; ++i) {
@@ -58,7 +57,7 @@ public class GetTypology {
                     continue;
                 }
 
-                part = part.substring(1, part.length()-1);
+                part = part.substring(1, part.length() - 1);
                 final String original = part;
                 part = part.replaceAll("[^\\-0-9A-Za-z]", "_");
                 Set<String> canonicalized = toOriginals.get(part);
@@ -90,7 +89,8 @@ public class GetTypology {
                 }
                 name.append(part);
                 nameString = name.toString();
-                final TreeSet nameSet = new TreeSet(Arrays.asList(nameString.toLowerCase().split("\\|")));
+                final TreeSet nameSet =
+                        new TreeSet(Arrays.asList(nameString.toLowerCase().split("\\|")));
                 final String unorderedName = CollectionUtilities.join(nameSet, "|").toLowerCase();
                 Set<String> names = uniqueUnordered.get(unorderedName);
                 if (names == null) {
@@ -102,7 +102,9 @@ public class GetTypology {
         }
         br.close();
 
-        final PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR + "/classification", "classification_analysis.txt");
+        final PrintWriter out =
+                FileUtilities.openUTF8Writer(
+                        Settings.Output.GEN_DIR + "/classification", "classification_analysis.txt");
         out.println("# Source:\t" + filename);
         int count;
         out.println();
@@ -122,7 +124,6 @@ public class GetTypology {
         out.println();
         out.println("# Total:\t" + count);
 
-
         count = 0;
         out.println();
         out.println("@ Problems with label format");
@@ -141,7 +142,8 @@ public class GetTypology {
 
         out.println();
         out.println("@ Labels with multiple prefixes");
-        out.println("# These need to be examined to ensure consistent semantics of labels with the same prefix.");
+        out.println(
+                "# These need to be examined to ensure consistent semantics of labels with the same prefix.");
         out.println("# Format:");
         out.println("# label ; count; characters");
         out.println();
@@ -183,10 +185,14 @@ public class GetTypology {
         out.close();
     }
 
-    static final UnicodeSet TO_QUOTE = new UnicodeSet("[[:z:][:me:][:mn:][:di:][:c:]-[\u0020]]").freeze();
+    static final UnicodeSet TO_QUOTE =
+            new UnicodeSet("[[:z:][:me:][:mn:][:di:][:c:]-[\u0020]]").freeze();
     static final UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter().setToQuote(TO_QUOTE);
 
-    private static void showPrefixes(Map<String, Map<String, UnicodeSet>> labelToPrefixes, PrintWriter out, boolean singles) {
+    private static void showPrefixes(
+            Map<String, Map<String, UnicodeSet>> labelToPrefixes,
+            PrintWriter out,
+            boolean singles) {
         int count = 0;
         for (final String label : labelToPrefixes.keySet()) {
             final Map<String, UnicodeSet> prefixes = labelToPrefixes.get(label);
@@ -195,7 +201,14 @@ public class GetTypology {
             }
             for (final String prefix : prefixes.keySet()) {
                 final UnicodeSet samples = prefixes.get(prefix);
-                out.println(label + " ; \t" + prefix + " ;\t" + samples.size() + " ;\t" + showUnicodeSet(samples));
+                out.println(
+                        label
+                                + " ; \t"
+                                + prefix
+                                + " ;\t"
+                                + samples.size()
+                                + " ;\t"
+                                + showUnicodeSet(samples));
                 count++;
             }
         }
@@ -206,7 +219,7 @@ public class GetTypology {
     private static String showUnicodeSet(UnicodeSet samples) {
         String result = pp.format(samples);
         if (result.length() > 120) {
-            result = result.substring(0,120) + "…";
+            result = result.substring(0, 120) + "…";
         }
         return result;
     }

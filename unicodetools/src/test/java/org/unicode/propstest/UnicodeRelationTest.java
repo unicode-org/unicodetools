@@ -1,5 +1,7 @@
 package org.unicode.propstest;
 
+import com.ibm.icu.impl.Relation;
+import com.ibm.icu.text.UnicodeSet;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.EnumSet;
@@ -9,24 +11,27 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
-
 import org.junit.jupiter.api.Test;
 import org.unicode.props.UnicodeRelation;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
-import com.ibm.icu.impl.Relation;
-import com.ibm.icu.text.UnicodeSet;
-
 public class UnicodeRelationTest extends TestFmwkMinusMinus {
 
-    enum Foo {aa, bb, cc, dd, ee}
+    enum Foo {
+        aa,
+        bb,
+        cc,
+        dd,
+        ee
+    }
 
-    static UnicodeRelation.SetMaker<Foo> FOOSETMAKER = new UnicodeRelation.SetMaker<Foo>()  {
-        @Override
-        public Set<Foo> make() {
-            return EnumSet.noneOf(Foo.class);
-        }
-    };
+    static UnicodeRelation.SetMaker<Foo> FOOSETMAKER =
+            new UnicodeRelation.SetMaker<Foo>() {
+                @Override
+                public Set<Foo> make() {
+                    return EnumSet.noneOf(Foo.class);
+                }
+            };
 
     @Test
     public void TestBasic() {
@@ -58,45 +63,49 @@ public class UnicodeRelationTest extends TestFmwkMinusMinus {
     @Test
     public void TestMonkey() {
         UnicodeRelation<Foo> ur = new UnicodeRelation<>(FOOSETMAKER);
-        Relation<String,Foo> rr = Relation.of(new HashMap<String,Set<Foo>>(), HashSet.class);
+        Relation<String, Foo> rr = Relation.of(new HashMap<String, Set<Foo>>(), HashSet.class);
         for (int i = 0; i < 1000; ++i) {
             String key = random(keys);
             int choice = random.nextInt(6);
             Foo value;
-            switch(choice) {
-            case 0:
-                value = random(values);
-                ur.add(key, value);
-                rr.put(key, value);
-                break;
-            case 1:
-                ur.remove(key);
-                rr.removeAll(key);
-                break;
-            case 2:
-                Set<Foo> values2 = ur.get(key);
-                value = values2 == null ? null : getNth(values2, random.nextInt(values2.size()));
-                ur.remove(key, value);
-                rr.remove(key, value);
-                break;
-            case 3:
-                ur.addAll(key, values);
-                rr.putAll(key, values);
-                break;
-            case 4:
-                ur.removeAll(key, values);
-                rr.removeAll(key, values);
-                break;
-            case 5:
-                assertEquals(choice + "keySet: ", ur.keySet(), new UnicodeSet().addAll(rr.keySet()));
-                break;
-            case 6:
-                value = random(values);
-                ur.addAll(ukeys, value);
-                rr.putAll(keys, value);
-                break;
+            switch (choice) {
+                case 0:
+                    value = random(values);
+                    ur.add(key, value);
+                    rr.put(key, value);
+                    break;
+                case 1:
+                    ur.remove(key);
+                    rr.removeAll(key);
+                    break;
+                case 2:
+                    Set<Foo> values2 = ur.get(key);
+                    value =
+                            values2 == null
+                                    ? null
+                                    : getNth(values2, random.nextInt(values2.size()));
+                    ur.remove(key, value);
+                    rr.remove(key, value);
+                    break;
+                case 3:
+                    ur.addAll(key, values);
+                    rr.putAll(key, values);
+                    break;
+                case 4:
+                    ur.removeAll(key, values);
+                    rr.removeAll(key, values);
+                    break;
+                case 5:
+                    assertEquals(
+                            choice + "keySet: ", ur.keySet(), new UnicodeSet().addAll(rr.keySet()));
+                    break;
+                case 6:
+                    value = random(values);
+                    ur.addAll(ukeys, value);
+                    rr.putAll(keys, value);
+                    break;
             }
-            checkSame(choice, ur,rr);
+            checkSame(choice, ur, rr);
         }
     }
 
@@ -133,7 +142,8 @@ public class UnicodeRelationTest extends TestFmwkMinusMinus {
             try {
                 value.remove(value.iterator().next());
                 logln("Value modifiable for " + entry.getKey());
-            } catch (java.lang.UnsupportedOperationException e) {}
+            } catch (java.lang.UnsupportedOperationException e) {
+            }
         }
     }
 }

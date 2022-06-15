@@ -1,5 +1,8 @@
 package org.unicode.text.UCD;
 
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ULocale;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -9,18 +12,13 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
-
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.props.BagFormatter;
 import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.jsp.ICUPropertyFactory;
+import org.unicode.props.BagFormatter;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.ULocale;
 
 public class CheckICU {
     static final BagFormatter bf = new BagFormatter();
@@ -37,20 +35,22 @@ public class CheckICU {
 
     static class ReplaceLabel extends UnicodeLabel {
         UnicodeProperty p;
+
         ReplaceLabel(UnicodeProperty p) {
             this.p = p;
         }
+
         @Override
         public String getValue(int codepoint, boolean isShort) {
             // TODO Auto-generated method stub
-            return p.getValue(codepoint, isShort).replace('_',' ');
+            return p.getValue(codepoint, isShort).replace('_', ' ');
         }
+
         @Override
         public int getMaxWidth(boolean v) {
             return p.getMaxWidth(v);
         }
     }
-
 
     public static void test() throws IOException {
         checkAvailable();
@@ -63,9 +63,9 @@ public class CheckICU {
         toolFactory = ToolUnicodePropertySource.make("4.0.0");
 
         final String[] quickList = {
-                // "Canonical_Combining_Class",
-                // "Script", "Bidi_Mirroring_Glyph", "Case_Folding",
-                //"Numeric_Value"
+            // "Canonical_Combining_Class",
+            // "Script", "Bidi_Mirroring_Glyph", "Case_Folding",
+            // "Numeric_Value"
         };
         for (final String element : quickList) {
             testProperty(element, -1);
@@ -77,7 +77,8 @@ public class CheckICU {
         final Collection availableTool = toolFactory.getAvailableNames();
 
         final Collection availableICU = icuFactory.getAvailableNames();
-        System.out.println(showDifferences("Property Aliases", "ICU", availableICU, "Tool", availableTool));
+        System.out.println(
+                showDifferences("Property Aliases", "ICU", availableICU, "Tool", availableTool));
         final Collection common = new TreeSet(availableICU);
         common.retainAll(availableTool);
 
@@ -86,18 +87,16 @@ public class CheckICU {
             System.out.println(UnicodeProperty.getTypeName(j));
             final Iterator it = common.iterator();
             while (it.hasNext()) {
-                final String prop = (String)it.next();
+                final String prop = (String) it.next();
                 testProperty(prop, j);
             }
         }
     }
 
-    /**
-     *
-     */
+    /** */
     private static void checkAvailable() {
-        //generateFile("4.0.0", "DerivedCombiningClass");
-        //generateFile("4.0.0", "DerivedCoreProperties");
+        // generateFile("4.0.0", "DerivedCombiningClass");
+        // generateFile("4.0.0", "DerivedCoreProperties");
         final ULocale[] locales = Collator.getAvailableULocales();
 
         System.out.println("Collation");
@@ -112,9 +111,7 @@ public class CheckICU {
             }
         }
         System.out.println("Differing Collators:");
-        final Set testSet = new HashSet(Arrays.asList(new String[] {
-                "nl", "de", "de_DE", "zh_TW"
-        }));
+        final Set testSet = new HashSet(Arrays.asList(new String[] {"nl", "de", "de_DE", "zh_TW"}));
         for (int k = 0; k < locales.length; ++k) {
             if (!testSet.contains(locales[k].toString())) {
                 continue;
@@ -123,43 +120,59 @@ public class CheckICU {
         }
     }
 
-    /**
-     *
-     */
+    /** */
     private static void showCollationVariants(ULocale locale) {
         final String[] keywords = Collator.getKeywords();
         System.out.println(locale.getDisplayName(ULocale.ENGLISH) + " [" + locale + "]");
         for (int i = 0; i < Collator.getKeywords().length; ++i) {
-            final ULocale base = Collator.getFunctionalEquivalent(keywords[i],
-                    locale
-                    //new ULocale(locale + "@" + keywords[i] + "=standard")
-                    );
+            final ULocale base =
+                    Collator.getFunctionalEquivalent(
+                            keywords[i], locale
+                            // new ULocale(locale + "@" + keywords[i] + "=standard")
+                            );
             if (true) {
-                System.out.println("\"" + base + "\" == Collator.getFunctionalEquivalent(\"" + keywords[i] + "\", \"" + locale + "\");");
+                System.out.println(
+                        "\""
+                                + base
+                                + "\" == Collator.getFunctionalEquivalent(\""
+                                + keywords[i]
+                                + "\", \""
+                                + locale
+                                + "\");");
             }
             final String[] values = Collator.getKeywordValues(keywords[i]);
             for (int j = 0; j < Collator.getKeywordValues(keywords[i]).length; ++j) {
-                final ULocale other = Collator.getFunctionalEquivalent(keywords[i],
-                        new ULocale(locale + "@" + keywords[i] + "=" + values[j]));
+                final ULocale other =
+                        Collator.getFunctionalEquivalent(
+                                keywords[i],
+                                new ULocale(locale + "@" + keywords[i] + "=" + values[j]));
                 if (true) {
                     System.out.println(
-                            "\"" + other
-                            + "\" == Collator.getFunctionalEquivalent(\"" + keywords[i]
+                            "\""
+                                    + other
+                                    + "\" == Collator.getFunctionalEquivalent(\""
+                                    + keywords[i]
                                     + "\", new ULocale(\""
-                                    + locale + "@" + keywords[i] + "=" + values[j] + "\");");
+                                    + locale
+                                    + "@"
+                                    + keywords[i]
+                                    + "="
+                                    + values[j]
+                                    + "\");");
                 }
                 // HACK: commented line should work but doesn't
                 if (!other.equals(base)) {
-                    //if (other.toString().indexOf("@") >= 0) {
-                    System.out.println("\t" + keywords[i] + "=" + values[j] + "; \t" + base + "; \t" + other);
+                    // if (other.toString().indexOf("@") >= 0) {
+                    System.out.println(
+                            "\t" + keywords[i] + "=" + values[j] + "; \t" + base + "; \t" + other);
                 }
             }
         }
     }
 
     /**
-     * Sample code that prints out the variants that 'make a difference' for a given locale.
-     * To iterate through the locales, use Collator.getVariant
+     * Sample code that prints out the variants that 'make a difference' for a given locale. To
+     * iterate through the locales, use Collator.getVariant
      */
     private static void showCollationVariants2(ULocale locale) {
         final String[] keywords = Collator.getKeywords();
@@ -168,10 +181,13 @@ public class CheckICU {
             final ULocale base = Collator.getFunctionalEquivalent(keywords[i], locale);
             final String[] values = Collator.getKeywordValues(keywords[i]);
             for (int j = 0; j < Collator.getKeywordValues(keywords[i]).length; ++j) {
-                final ULocale other = Collator.getFunctionalEquivalent(keywords[i],
-                        new ULocale(locale + "@" + keywords[i] + "=" + values[j]));
+                final ULocale other =
+                        Collator.getFunctionalEquivalent(
+                                keywords[i],
+                                new ULocale(locale + "@" + keywords[i] + "=" + values[j]));
                 if (!other.equals(base)) {
-                    System.out.println("\t" + keywords[i] + "=" + values[j] + "; \t" + base + "; \t" + other);
+                    System.out.println(
+                            "\t" + keywords[i] + "=" + values[j] + "; \t" + base + "; \t" + other);
                 }
             }
         }
@@ -194,9 +210,10 @@ public class CheckICU {
                 leading.add(i);
             }
         }
-        final PrintWriter pw = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "Trailing.txt");
+        final PrintWriter pw =
+                FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "Trailing.txt");
         pw.println("+Trailing+Starter");
-        bf.showSetNames(pw,  new UnicodeSet(trailing).retainAll(starter));
+        bf.showSetNames(pw, new UnicodeSet(trailing).retainAll(starter));
         pw.println("+Trailing-Starter");
         bf.showSetNames(pw, new UnicodeSet(trailing).removeAll(starter));
         pw.println("-Trailing-Starter");
@@ -208,17 +225,17 @@ public class CheckICU {
         pw.close();
     }
     /*
-     *                 int icuType;
-                int toolType;
-                Collection icuAliases;
-                Collection toolAliases;
-                String firstDiffICU;
-                String firstDiffTool;
-                String firstDiffCP;
-                String icuProp;
-                String toolProp;
+    *                 int icuType;
+               int toolType;
+               Collection icuAliases;
+               Collection toolAliases;
+               String firstDiffICU;
+               String firstDiffTool;
+               String firstDiffCP;
+               String icuProp;
+               String toolProp;
 
-     */
+    */
 
     private static void testProperty(String prop, int typeFilter) {
         final UnicodeProperty icuProp = icuFactory.getProperty(prop);
@@ -234,8 +251,11 @@ public class CheckICU {
 
         final int toolType = toolProp.getType();
         if (icuType != toolType) {
-            System.out.println("FAILURE Type: ICU: " + UnicodeProperty.getTypeName(icuType)
-                    + "\tTool: " + UnicodeProperty.getTypeName(toolType));
+            System.out.println(
+                    "FAILURE Type: ICU: "
+                            + UnicodeProperty.getTypeName(icuType)
+                            + "\tTool: "
+                            + UnicodeProperty.getTypeName(toolType));
         }
 
         Collection icuAliases = icuProp.getNameAliases(new ArrayList());
@@ -244,7 +264,8 @@ public class CheckICU {
 
         icuAliases = icuProp.getAvailableValues(new ArrayList());
         toolAliases = toolProp.getAvailableValues(new ArrayList());
-        System.out.println(showDifferences("Value Aliases", "ICU", icuAliases, "Tool", toolAliases));
+        System.out.println(
+                showDifferences("Value Aliases", "ICU", icuAliases, "Tool", toolAliases));
 
         // TODO do property value aliases
         itemFailures.clear();
@@ -274,9 +295,8 @@ public class CheckICU {
             if (firstDiffTool != null) {
                 firstDiffTool = BagFormatter.hex.transliterate(firstDiffTool);
             }
-            System.out.println(firstDiffCP
-                    + "\tICU: <" + firstDiffICU
-                    + ">\tTool: <" + firstDiffTool + ">");
+            System.out.println(
+                    firstDiffCP + "\tICU: <" + firstDiffICU + ">\tTool: <" + firstDiffTool + ">");
         }
         System.out.println("done");
 
@@ -295,12 +315,8 @@ public class CheckICU {
         return a.equals(b);
     }
 
-    static public String showDifferences(
-            String title,
-            String name1,
-            Collection set1,
-            String name2,
-            Collection set2) {
+    public static String showDifferences(
+            String title, String name1, Collection set1, String name2, Collection set2) {
 
         final Collection temp = new TreeSet(set1);
         temp.retainAll(set2);
@@ -323,7 +339,6 @@ public class CheckICU {
             result.append("\n");
         }
 
-
         temp.clear();
         temp.addAll(set1);
         temp.removeAll(set2);
@@ -342,9 +357,6 @@ public class CheckICU {
             result.append("\n");
         }
 
-
         return result.toString();
     }
-
-
 }

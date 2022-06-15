@@ -1,29 +1,26 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/DerivedProperty.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/DerivedProperty.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
+
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 import java.io.PrintWriter;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
 
 public final class DerivedProperty implements UCD_Types {
 
@@ -38,11 +35,11 @@ public final class DerivedProperty implements UCD_Types {
 
     // ADD CONSTANT to UCD_TYPES
 
-    static public UCDProperty make(int derivedPropertyID) {
+    public static UCDProperty make(int derivedPropertyID) {
         return make(derivedPropertyID, Default.ucd());
     }
 
-    static public UCDProperty make(int derivedPropertyID, UCD ucd) {
+    public static UCDProperty make(int derivedPropertyID, UCD ucd) {
         if (derivedPropertyID < 0 || derivedPropertyID >= DERIVED_PROPERTY_LIMIT) {
             return null;
         }
@@ -109,19 +106,18 @@ public final class DerivedProperty implements UCD_Types {
      */
     private final UCDProperty[] dprops = new UCDProperty[50];
 
-    static final String[] CaseNames = {
-        "Uppercase",
-        "Lowercase",
-    "Mixedcase"};
+    static final String[] CaseNames = {"Uppercase", "Lowercase", "Mixedcase"};
 
     class ExDProp extends UCDProperty {
         Normalizer nfx;
+
         ExDProp(int i) {
             type = DERIVED_NORMALIZATION;
             nfx = nf[i];
             name = "Expands_On_" + nfx.getName();
             shortName = "XO_" + nfx.getName();
         }
+
         @Override
         public boolean hasValue(int cp) {
             if (ucdData.getDecompositionType(cp) == NONE) {
@@ -133,11 +129,12 @@ public final class DerivedProperty implements UCD_Types {
             }
             return false;
         }
-    };
+    }
+    ;
 
     class NF_UnsafeStartProp extends UCDProperty {
         Normalizer nfx;
-        //int prop;
+        // int prop;
 
         NF_UnsafeStartProp(int i) {
             isStandard = false;
@@ -146,6 +143,7 @@ public final class DerivedProperty implements UCD_Types {
             name = nfx.getName() + "_UnsafeStart";
             shortName = nfx.getName() + "_SS";
         }
+
         @Override
         public boolean hasValue(int cp) {
             if (ucdData.getCombiningClass(cp) != 0) {
@@ -156,15 +154,13 @@ public final class DerivedProperty implements UCD_Types {
             if (ucdData.getCombiningClass(first) != 0) {
                 return true;
             }
-            if (nfx.isComposition()
-                    && dprops[NFC_TrailingZero].hasValue(first))
-            {
+            if (nfx.isComposition() && dprops[NFC_TrailingZero].hasValue(first)) {
                 return true; // 1,3 == composing
             }
             return false;
         }
-    };
-
+    }
+    ;
 
     /*
     class HangulSyllableType extends UnicodeProperty {
@@ -194,7 +190,6 @@ public final class DerivedProperty implements UCD_Types {
     };
      */
 
-
     class NFC_Prop extends UCDProperty {
         BitSet bitset;
         boolean filter = false;
@@ -204,18 +199,26 @@ public final class DerivedProperty implements UCD_Types {
             isStandard = false;
             type = DERIVED_NORMALIZATION;
             final BitSet[] bitsets = new BitSet[3];
-            switch(i) {
-            case NFC_Leading: bitsets[0] = bitset = new BitSet(); break;
-            case NFC_Resulting: bitsets[2] = bitset = new BitSet(); break;
-            case NFC_TrailingZero: keepNonZero = false; // FALL THRU
-            case NFC_TrailingNonZero: bitsets[1] = bitset = new BitSet(); break;
+            switch (i) {
+                case NFC_Leading:
+                    bitsets[0] = bitset = new BitSet();
+                    break;
+                case NFC_Resulting:
+                    bitsets[2] = bitset = new BitSet();
+                    break;
+                case NFC_TrailingZero:
+                    keepNonZero = false; // FALL THRU
+                case NFC_TrailingNonZero:
+                    bitsets[1] = bitset = new BitSet();
+                    break;
             }
             filter = bitsets[1] != null;
             nfc.getCompositionStatus(bitsets[0], bitsets[1], bitsets[2]);
 
-            name = Names[i-NFC_Leading];
-            shortName = SNames[i-NFC_Leading];
+            name = Names[i - NFC_Leading];
+            shortName = SNames[i - NFC_Leading];
         }
+
         @Override
         public boolean hasValue(int cp) {
             boolean result = bitset.get(cp);
@@ -224,21 +227,25 @@ public final class DerivedProperty implements UCD_Types {
             }
             return result;
         }
-        final String[] Names = {"NFC_Leading", "NFC_TrailingNonZero", "NFC_TrailingZero", "NFC_Resulting"};
+
+        final String[] Names = {
+            "NFC_Leading", "NFC_TrailingNonZero", "NFC_TrailingZero", "NFC_Resulting"
+        };
         final String[] SNames = {"NFC_L", "NFC_TNZ", "NFC_TZ", "NFC_R"};
         final String[] Description = {
-                "Characters that can combine with following characters in NFC",
-                "Characters that can combine with previous characters in NFC, and have non-zero combining class",
-                "Characters that can combine with previous characters in NFC, and have zero combining class",
-                "Characters that can result from a combination of other characters in NFC",
+            "Characters that can combine with following characters in NFC",
+            "Characters that can combine with previous characters in NFC, and have non-zero combining class",
+            "Characters that can combine with previous characters in NFC, and have zero combining class",
+            "Characters that can result from a combination of other characters in NFC",
         };
-    };
+    }
+    ;
 
     class GenDProp extends UCDProperty {
         Normalizer nfx;
         Normalizer nfComp = null;
 
-        GenDProp (int i) {
+        GenDProp(int i) {
             isStandard = false;
             setValueType(STRING_PROP);
             type = DERIVED_NORMALIZATION;
@@ -274,32 +281,37 @@ public final class DerivedProperty implements UCD_Types {
                 final String normal = nfx.normalize(cps);
                 if (!comp.equals(normal)) {
                     final String norm = Utility.hex(normal);
-                    final String pad = Utility.repeat(" ", 14-norm.length());
+                    final String pad = Utility.repeat(" ", 14 - norm.length());
                     cacheStr = name + "; " + norm + pad;
                 }
             }
 
             return cacheStr;
-            //if (cp >= 0xAC00 && cp <= 0xD7A3) return true;
-            //System.out.println(Utility.hex(cps) + " => " + Utility.hex(nf[i-4].normalize(cps)));
+            // if (cp >= 0xAC00 && cp <= 0xD7A3) return true;
+            // System.out.println(Utility.hex(cps) + " => " + Utility.hex(nf[i-4].normalize(cps)));
         } // default
+
         @Override
-        public boolean hasValue(int cp) { return getValue(cp).length() != 0; }
-    };
+        public boolean hasValue(int cp) {
+            return getValue(cp).length() != 0;
+        }
+    }
+    ;
 
     class CaseDProp extends UCDProperty {
         byte val;
-        CaseDProp (int i) {
+
+        CaseDProp(int i) {
             type = DERIVED_CORE;
             isStandard = false;
             val = (i == Missing_Uppercase ? Lu : i == Missing_Lowercase ? Ll : Lt);
-            name = "Possible_Missing_" + CaseNames[i-Missing_Uppercase];
+            name = "Possible_Missing_" + CaseNames[i - Missing_Uppercase];
         }
+
         @Override
         public boolean hasValue(int cp) {
             final byte cat = ucdData.getCategory(cp);
-            if (cat == val
-                    || val != Lt && ucdData.getBinaryProperty(cp, Other_Uppercase)) {
+            if (cat == val || val != Lt && ucdData.getBinaryProperty(cp, Other_Uppercase)) {
                 return false;
             }
             final byte xCat = getDecompCat(cp);
@@ -308,14 +320,16 @@ public final class DerivedProperty implements UCD_Types {
             }
             return false;
         }
-    };
+    }
+    ;
 
     class QuickDProp extends UCDProperty {
         String NO;
         String MAYBE;
         Normalizer nfx;
-        QuickDProp (int i) {
-            //setValueType((i == NFC || i == NFKC) ? ENUMERATED_PROP : BINARY_PROP);
+
+        QuickDProp(int i) {
+            // setValueType((i == NFC || i == NFKC) ? ENUMERATED_PROP : BINARY_PROP);
             setValueType(ENUMERATED_PROP);
             type = DERIVED_NORMALIZATION;
             nfx = nf[i];
@@ -342,13 +356,15 @@ public final class DerivedProperty implements UCD_Types {
         }
 
         @Override
-        public boolean hasValue(int cp) { return getValue(cp).length() != 0; }
-    };
+        public boolean hasValue(int cp) {
+            return getValue(cp).length() != 0;
+        }
+    }
+    ;
 
     private DerivedProperty(UCD ucd) {
         ucdData = ucd;
         final IndexUnicodeProperties iupCurrent = IndexUnicodeProperties.make(ucd.getVersion());
-
 
         nfd = nf[NFD] = new Normalizer(UCD_Types.NFD, ucdData.getVersion());
         nfc = nf[NFC] = new Normalizer(UCD_Types.NFC, ucdData.getVersion());
@@ -356,11 +372,11 @@ public final class DerivedProperty implements UCD_Types {
         nfkc = nf[NFKC] = new Normalizer(UCD_Types.NFKC, ucdData.getVersion());
 
         for (int i = ExpandsOnNFD; i <= ExpandsOnNFKC; ++i) {
-            dprops[i] = new ExDProp(i-ExpandsOnNFD);
+            dprops[i] = new ExDProp(i - ExpandsOnNFD);
         }
 
         for (int i = GenNFD; i <= GenNFKC; ++i) {
-            dprops[i] = new GenDProp(i-GenNFD);
+            dprops[i] = new GenDProp(i - GenNFD);
         }
 
         for (int i = NFC_Leading; i <= NFC_Resulting; ++i) {
@@ -368,47 +384,51 @@ public final class DerivedProperty implements UCD_Types {
         }
 
         for (int i = NFD_UnsafeStart; i <= NFKC_UnsafeStart; ++i) {
-            dprops[i] = new NF_UnsafeStartProp(i-NFD_UnsafeStart);
+            dprops[i] = new NF_UnsafeStartProp(i - NFD_UnsafeStart);
         }
 
-        dprops[ID_Start] = new UCDProperty() {
-            {
-                type = DERIVED_CORE;
-                name = "ID_Start";
-                shortName = "IDS";
-            }
-            @Override
-            public boolean hasValue(int cp) {
-                return ucdData.isIdentifierStart(cp);
-            }
-        };
+        dprops[ID_Start] =
+                new UCDProperty() {
+                    {
+                        type = DERIVED_CORE;
+                        name = "ID_Start";
+                        shortName = "IDS";
+                    }
 
-        dprops[ID_Continue_NO_Cf] = new UCDProperty() {
-            {
-                name = "ID_Continue";
-                type = DERIVED_CORE;
-                shortName = "IDC";
-            }
-            @Override
-            public boolean hasValue(int cp) {
-                return ucdData.isIdentifierContinue_NO_Cf(cp);
-            }
-        };
+                    @Override
+                    public boolean hasValue(int cp) {
+                        return ucdData.isIdentifierStart(cp);
+                    }
+                };
+
+        dprops[ID_Continue_NO_Cf] =
+                new UCDProperty() {
+                    {
+                        name = "ID_Continue";
+                        type = DERIVED_CORE;
+                        shortName = "IDC";
+                    }
+
+                    @Override
+                    public boolean hasValue(int cp) {
+                        return ucdData.isIdentifierContinue_NO_Cf(cp);
+                    }
+                };
 
         final StringBuffer tempBuf = new StringBuffer();
 
-        //System.out.println("Deriving data for XID");
+        // System.out.println("Deriving data for XID");
         // special hack for middle dot
         XID_Continue_Set.add(0x00B7);
-        //System.out.println("Adding (2)" + ucdData.getCodeAndName(0x00B7));
-
+        // System.out.println("Adding (2)" + ucdData.getCodeAndName(0x00B7));
 
         for (int cp = 0; cp < 0x10FFFF; ++cp) {
             // skip cases that can't matter
             if (!ucdData.isAssigned(cp)) {
                 continue;
             }
-            if (ucdData.getBinaryProperty(cp, Pattern_Syntax) || ucdData.getBinaryProperty(cp, Pattern_White_Space)) {
+            if (ucdData.getBinaryProperty(cp, Pattern_Syntax)
+                    || ucdData.getBinaryProperty(cp, Pattern_White_Space)) {
                 continue;
             }
 
@@ -447,15 +467,15 @@ public final class DerivedProperty implements UCD_Types {
 
                 // Now see if the statuses are compatible.
                 if (status != status2) {
-                    //System.out.println("Need to do something with:");
-                    //System.out.println("  " + status + ": " + ucdData.getCodeAndName(cp));
-                    //System.out.println("  " + status2 + ": " + ucdData.getCodeAndName(tempBuf.toString()));
+                    // System.out.println("Need to do something with:");
+                    // System.out.println("  " + status + ": " + ucdData.getCodeAndName(cp));
+                    // System.out.println("  " + status2 + ": " +
+                    // ucdData.getCodeAndName(tempBuf.toString()));
                     if (status2 == 0) {
                         status = 0;
-                    } else if (status2 > status)
-                    {
+                    } else if (status2 > status) {
                         status = status2;
-                        //System.out.println("  " + status + ": " + ucdData.getCodeAndName(cp));
+                        // System.out.println("  " + status + ": " + ucdData.getCodeAndName(cp));
                     }
                 }
             }
@@ -468,513 +488,572 @@ public final class DerivedProperty implements UCD_Types {
             }
         }
 
-        dprops[Mod_ID_Start] = new UCDProperty() {
-            {
-                type = DERIVED_CORE;
-                name = "XID_Start";
-                shortName = "XIDS";
-            }
-            @Override
-            public boolean hasValue(int cp) {
-                return XID_Start_Set.contains(cp);
-            }
-        };
+        dprops[Mod_ID_Start] =
+                new UCDProperty() {
+                    {
+                        type = DERIVED_CORE;
+                        name = "XID_Start";
+                        shortName = "XIDS";
+                    }
 
-        dprops[Mod_ID_Continue_NO_Cf] = new UCDProperty() {
-            {
-                type = DERIVED_CORE;
-                name = "XID_Continue";
-                shortName = "XIDC";
-            }
-            @Override
-            public boolean hasValue(int cp) {
-                return XID_Continue_Set.contains(cp);
-            }
-        };
+                    @Override
+                    public boolean hasValue(int cp) {
+                        return XID_Start_Set.contains(cp);
+                    }
+                };
 
-        dprops[PropMath] = new UCDProperty() {
-            {
-                type = DERIVED_CORE;
-                name = "Math";
-                shortName = name;
-            }
-            @Override
-            public boolean hasValue(int cp) {
-                final byte cat = ucdData.getCategory(cp);
-                if (cat == Sm
-                        || ucdData.getBinaryProperty(cp,Math_Property)) {
-                    return true;
-                }
-                return false;
-            }
-        };
+        dprops[Mod_ID_Continue_NO_Cf] =
+                new UCDProperty() {
+                    {
+                        type = DERIVED_CORE;
+                        name = "XID_Continue";
+                        shortName = "XIDC";
+                    }
 
-        dprops[PropAlphabetic] = new UCDProperty() {
-            {
-                type = DERIVED_CORE;
-                name = "Alphabetic";
-                shortName = "Alpha";
-            }
-            @Override
-            public boolean hasValue(int cp) {
-                final byte cat = ucdData.getCategory(cp);
-                if (cat == Lu || cat == Ll || cat == Lt || cat == Lm || cat == Lo || cat == Nl
-                        || ucdData.getBinaryProperty(cp, Other_Alphabetic)) {
-                    return true;
-                }
-                return false;
-            }
-        };
+                    @Override
+                    public boolean hasValue(int cp) {
+                        return XID_Continue_Set.contains(cp);
+                    }
+                };
 
-        dprops[PropLowercase] = new UCDProperty() {
-            {
-                type = DERIVED_CORE;
-                name = "Lowercase";
-                shortName = "Lower";
-            }
-            @Override
-            public boolean hasValue(int cp) {
-                final byte cat = ucdData.getCategory(cp);
-                if (cat == Ll
-                        || ucdData.getBinaryProperty(cp, Other_Lowercase)) {
-                    return true;
-                }
-                return false;
-            }
-        };
+        dprops[PropMath] =
+                new UCDProperty() {
+                    {
+                        type = DERIVED_CORE;
+                        name = "Math";
+                        shortName = name;
+                    }
 
-        dprops[PropUppercase] = new UCDProperty() {
-            {
-                type = DERIVED_CORE;
-                name = "Uppercase";
-                shortName = "Upper";
-            }
-            @Override
-            public boolean hasValue(int cp) {
-                final byte cat = ucdData.getCategory(cp);
-                if (cat == Lu
-                        || ucdData.getBinaryProperty(cp, Other_Uppercase)) {
-                    return true;
-                }
-                return false;
-            }
-        };
+                    @Override
+                    public boolean hasValue(int cp) {
+                        final byte cat = ucdData.getCategory(cp);
+                        if (cat == Sm || ucdData.getBinaryProperty(cp, Math_Property)) {
+                            return true;
+                        }
+                        return false;
+                    }
+                };
+
+        dprops[PropAlphabetic] =
+                new UCDProperty() {
+                    {
+                        type = DERIVED_CORE;
+                        name = "Alphabetic";
+                        shortName = "Alpha";
+                    }
+
+                    @Override
+                    public boolean hasValue(int cp) {
+                        final byte cat = ucdData.getCategory(cp);
+                        if (cat == Lu
+                                || cat == Ll
+                                || cat == Lt
+                                || cat == Lm
+                                || cat == Lo
+                                || cat == Nl
+                                || ucdData.getBinaryProperty(cp, Other_Alphabetic)) {
+                            return true;
+                        }
+                        return false;
+                    }
+                };
+
+        dprops[PropLowercase] =
+                new UCDProperty() {
+                    {
+                        type = DERIVED_CORE;
+                        name = "Lowercase";
+                        shortName = "Lower";
+                    }
+
+                    @Override
+                    public boolean hasValue(int cp) {
+                        final byte cat = ucdData.getCategory(cp);
+                        if (cat == Ll || ucdData.getBinaryProperty(cp, Other_Lowercase)) {
+                            return true;
+                        }
+                        return false;
+                    }
+                };
+
+        dprops[PropUppercase] =
+                new UCDProperty() {
+                    {
+                        type = DERIVED_CORE;
+                        name = "Uppercase";
+                        shortName = "Upper";
+                    }
+
+                    @Override
+                    public boolean hasValue(int cp) {
+                        final byte cat = ucdData.getCategory(cp);
+                        if (cat == Lu || ucdData.getBinaryProperty(cp, Other_Uppercase)) {
+                            return true;
+                        }
+                        return false;
+                    }
+                };
 
         for (int i = Missing_Uppercase; i <= Missing_Mixedcase; ++i) {
             dprops[i] = new CaseDProp(i);
         }
 
         /*
-(3) Singleton Decompositions: characters that  can be derived from the UnicodeData file by
-including all characters whose canonical decomposition consists of a single character.
-(4) Non-Starter Decompositions: characters that  can be derived from the UnicodeData
-file by including all characters whose canonical decomposition consists of a sequence
-of characters, the first of which has a non-zero combining class.
-         */
-        dprops[FullCompExclusion] = new UCDProperty() {
-            {
-                type = DERIVED_NORMALIZATION;
-                name = "Full_Composition_Exclusion";
-                shortName = "Comp_Ex";
-                defaultValueStyle = defaultPropertyStyle = SHORT;
-            }
-            @Override
-            public boolean hasValue(int cp) {
-                if (!ucdData.isRepresented(cp)) {
-                    return false;
-                }
-                final byte dtype = ucdData.getDecompositionType(cp);
-                if (dtype != CANONICAL) {
-                    return false;
-                }
+        (3) Singleton Decompositions: characters that  can be derived from the UnicodeData file by
+        including all characters whose canonical decomposition consists of a single character.
+        (4) Non-Starter Decompositions: characters that  can be derived from the UnicodeData
+        file by including all characters whose canonical decomposition consists of a sequence
+        of characters, the first of which has a non-zero combining class.
+                 */
+        dprops[FullCompExclusion] =
+                new UCDProperty() {
+                    {
+                        type = DERIVED_NORMALIZATION;
+                        name = "Full_Composition_Exclusion";
+                        shortName = "Comp_Ex";
+                        defaultValueStyle = defaultPropertyStyle = SHORT;
+                    }
 
-                if (isCompEx(cp)) {
-                    return true;
-                }
-                return false;
-            }
-            /*public String getListingValue(int cp) {
-                        return "Comp_Ex";
-                }*/
-            /*
-                        public String getListingValue(int cp) {
-                        if (getValueType() != BINARY) return getValue(cp, SHORT);
-                        return getProperty(SHORT);
+                    @Override
+                    public boolean hasValue(int cp) {
+                        if (!ucdData.isRepresented(cp)) {
+                            return false;
                         }
-             */
-        };
+                        final byte dtype = ucdData.getDecompositionType(cp);
+                        if (dtype != CANONICAL) {
+                            return false;
+                        }
 
-        dprops[FullCompInclusion] = new UCDProperty() {
-            {
-                isStandard = false;
-                type = DERIVED_NORMALIZATION;
-                name = "Full_Composition_Inclusion";
-                shortName = "Comp_In";
-                defaultValueStyle = defaultPropertyStyle = SHORT;
-            }
-            @Override
-            public boolean hasValue(int cp) {
-                if (!ucdData.isRepresented(cp)) {
-                    return false;
-                }
-                final byte dtype = ucdData.getDecompositionType(cp);
-                if (dtype != CANONICAL) {
-                    return false;
-                }
+                        if (isCompEx(cp)) {
+                            return true;
+                        }
+                        return false;
+                    }
+                    /*public String getListingValue(int cp) {
+                            return "Comp_Ex";
+                    }*/
+                    /*
+                               public String getListingValue(int cp) {
+                               if (getValueType() != BINARY) return getValue(cp, SHORT);
+                               return getProperty(SHORT);
+                               }
+                    */
+                };
 
-                if (isCompEx(cp)) {
-                    return true;
-                }
-                return false;
-            }
-        };
+        dprops[FullCompInclusion] =
+                new UCDProperty() {
+                    {
+                        isStandard = false;
+                        type = DERIVED_NORMALIZATION;
+                        name = "Full_Composition_Inclusion";
+                        shortName = "Comp_In";
+                        defaultValueStyle = defaultPropertyStyle = SHORT;
+                    }
 
-        dprops[FC_NFKC_Closure] = new UCDProperty() {
-            {
-                type = DERIVED_NORMALIZATION;
-                setValueType(STRING_PROP);
-                name = "FC_NFKC_Closure";
-                shortName = "FC_NFKC";
-            }
-            @Override
-            public String getValue(int cp, byte style) {
-                if (!ucdData.isRepresented(cp)) {
-                    return "";
-                }
-                final String b = nfkc.normalize(fold(cp));
-                final String c = nfkc.normalize(fold(b));
-                if (c.equals(b)) {
-                    return "";
-                }
-                return "FNC; " + Utility.hex(c);
-            } // default
-            @Override
-            public boolean hasValue(int cp) { return getValue(cp).length() != 0; }
-        };
+                    @Override
+                    public boolean hasValue(int cp) {
+                        if (!ucdData.isRepresented(cp)) {
+                            return false;
+                        }
+                        final byte dtype = ucdData.getDecompositionType(cp);
+                        if (dtype != CANONICAL) {
+                            return false;
+                        }
 
-        dprops[FC_NFC_Closure] = new UCDProperty() {
-            {
-                type = DERIVED_NORMALIZATION;
-                isStandard = false;
-                name = "FC_NFC_Closure";
-                setValueType(STRING_PROP);
-                shortName = "FC_NFC";
-            }
-            @Override
-            public String getValue(int cp, byte style) {
-                if (!ucdData.isRepresented(cp)) {
-                    return "";
-                }
-                final String b = nfc.normalize(fold(cp));
-                final String c = nfc.normalize(fold(b));
-                if (c.equals(b)) {
-                    return "";
-                }
-                return "FN; " + Utility.hex(c);
-            } // default
-            @Override
-            public boolean hasValue(int cp) { return getValue(cp).length() != 0; }
-        };
+                        if (isCompEx(cp)) {
+                            return true;
+                        }
+                        return false;
+                    }
+                };
+
+        dprops[FC_NFKC_Closure] =
+                new UCDProperty() {
+                    {
+                        type = DERIVED_NORMALIZATION;
+                        setValueType(STRING_PROP);
+                        name = "FC_NFKC_Closure";
+                        shortName = "FC_NFKC";
+                    }
+
+                    @Override
+                    public String getValue(int cp, byte style) {
+                        if (!ucdData.isRepresented(cp)) {
+                            return "";
+                        }
+                        final String b = nfkc.normalize(fold(cp));
+                        final String c = nfkc.normalize(fold(b));
+                        if (c.equals(b)) {
+                            return "";
+                        }
+                        return "FNC; " + Utility.hex(c);
+                    } // default
+
+                    @Override
+                    public boolean hasValue(int cp) {
+                        return getValue(cp).length() != 0;
+                    }
+                };
+
+        dprops[FC_NFC_Closure] =
+                new UCDProperty() {
+                    {
+                        type = DERIVED_NORMALIZATION;
+                        isStandard = false;
+                        name = "FC_NFC_Closure";
+                        setValueType(STRING_PROP);
+                        shortName = "FC_NFC";
+                    }
+
+                    @Override
+                    public String getValue(int cp, byte style) {
+                        if (!ucdData.isRepresented(cp)) {
+                            return "";
+                        }
+                        final String b = nfc.normalize(fold(cp));
+                        final String c = nfc.normalize(fold(b));
+                        if (c.equals(b)) {
+                            return "";
+                        }
+                        return "FN; " + Utility.hex(c);
+                    } // default
+
+                    @Override
+                    public boolean hasValue(int cp) {
+                        return getValue(cp).length() != 0;
+                    }
+                };
 
         for (int i = QuickNFD; i <= QuickNFKC; ++i) {
             dprops[i] = new QuickDProp(i - QuickNFD);
         }
 
-        dprops[DefaultIgnorable] = new UCDProperty() {
-            {
-                type = DERIVED_CORE;
-                name = "Default_Ignorable_Code_Point";
-                hasUnassigned = true;
-                shortName = "DI";
-            }
-
-            
-            UnicodeSet removals;
-            {
-                // Prepended_Concatenation_Mark characters
-                try {
-                    UnicodeMap<Binary> pcm = iupCurrent.loadEnum(UcdProperty.Prepended_Concatenation_Mark, Binary.class);
-                    removals = new UnicodeSet(pcm.getSet(Binary.Yes)).freeze();
-                } catch (Exception e) {
-                    removals = UnicodeSet.EMPTY;
-                }
-            }
-
-
-            /**
-                (See MakeUnicodeFiles.txt)
-                # Derived Property: Default_Ignorable_Code_Point
-                #  Generated from
-                #    Other_Default_Ignorable_Code_Point
-                #  + Cf (Format characters)
-                #  + Variation_Selector
-                #  - White_Space
-                #  - FFF9..FFFB (Interlinear annotation format characters)
-                #  - 13430..13440 (Egyptian hieroglyph format characters)
-                #  - Prepended_Concatenation_Mark (Exceptional format characters that should be visible)
-             */
-            @Override
-            public boolean hasValue(int cp) {
-                if (removals.contains(cp)) {
-                    return false;
-                }
-                if (ucdData.getBinaryProperty(cp, White_space)) {
-                    return false;
-                }
-                if (ucdData.getBinaryProperty(cp, Other_Default_Ignorable_Code_Point)) {
-                    return true;
-                }
-
-                if (ucdData.getCompositeVersion() > 0x040000 && cp >= 0xFFF9 && cp <= 0xFFFB) {
-                    return false;
-                }
-
-                // Unicode 12.0: 13430..13438 (Egyptian hieroglyph format characters)
-                if (ucdData.getCompositeVersion() >= 0x0c0000 && cp >= 0x13430 && cp <= 0x13438) {
-                    return false;
-                }
-                // Unicode 15.0: 13439..13440 (Egyptian hieroglyph format characters)
-                if (ucdData.getCompositeVersion() >= 0x0f0000 && cp >= 0x13439 && cp <= 0x13440) {
-                    return false;
-                }
-
-                final byte cat = ucdData.getCategory(cp);
-                if (cat == Cf) {
-                    return true;
-                }
-
-                if (ucdData.getCompositeVersion() <= 0x040000) {
-                    return false;
-                }
-
-                if (ucdData.getBinaryProperty(cp, Variation_Selector)) {
-                    return true;
-                }
-                return false;
-            }
-
-        };
-
-        dprops[Case_Sensitive] = new UCDProperty() {
-            {
-                type = DERIVED_CORE;
-                isStandard = false;
-                name = "Case_Sensitive";
-                hasUnassigned = false;
-                shortName = "CS";
-            }
-
-            UnicodeSet case_sensitive = null;
-            UnicodeSet tempSet = new UnicodeSet();
-            UnicodeSet cased = null;
-            PrintWriter log;
-
-            private void addCase(String cps, byte c1, byte c2) {
-                final String temp = ucdData.getCase(cps, c1, c2);
-                if (temp.equals(cps)) {
-                    return;
-                }
-
-                //temp = nfc.normalize(temp);
-                //if (temp.equals(cps)) return;
-
-                tempSet.clear();
-                tempSet.addAll(cps);
-                tempSet.addAll(temp);
-                if (!case_sensitive.containsAll(tempSet)) {
-                    tempSet.removeAll(case_sensitive);
-                    if (!cased.containsAll(tempSet)) {
-                        log.println();
-                        log.println("Adding " + tempSet + " because of: ");
-                        log.println("\t" + ucdData.getCodeAndName(cps));
-                        log.println("=>\t" + ucdData.getCodeAndName(temp));
+        dprops[DefaultIgnorable] =
+                new UCDProperty() {
+                    {
+                        type = DERIVED_CORE;
+                        name = "Default_Ignorable_Code_Point";
+                        hasUnassigned = true;
+                        shortName = "DI";
                     }
-                    case_sensitive.addAll(tempSet);
-                }
-            }
 
-            @Override
-            public boolean hasValue(int cp) {
-                if (case_sensitive == null) {
-                    try {
-                        log = Utility.openPrintWriterGenDir("log/Case_Sensitive_Log.txt", Utility.UTF8_UNIX);
+                    UnicodeSet removals;
 
-                        System.out.println("Building Case-Sensitive cache");
-                        case_sensitive = new UnicodeSet();
-                        cased = DerivedProperty.make(PropLowercase, ucdData).getSet()
-                                .addAll(DerivedProperty.make(PropUppercase, ucdData).getSet())
-                                .addAll(UnifiedBinaryProperty.make(CATEGORY | Lt).getSet());
-                        for (int c = 0; c < 0x10FFFF; ++c) {
-                            Utility.dot(c);
-                            // skip cases that can't matter
-                            if (!ucdData.isAssigned(c)) {
-                                continue;
-                            }
-
-                            final String cps = UTF16.valueOf(c);
-                            addCase(cps, FULL, LOWER);
-                            addCase(cps, FULL, UPPER);
-                            addCase(cps, FULL, TITLE);
-                            addCase(cps, FULL, FOLD);
-                            addCase(cps, SIMPLE, LOWER);
-                            addCase(cps, SIMPLE, UPPER);
-                            addCase(cps, SIMPLE, TITLE);
-                            addCase(cps, SIMPLE, FOLD);
+                    {
+                        // Prepended_Concatenation_Mark characters
+                        try {
+                            UnicodeMap<Binary> pcm =
+                                    iupCurrent.loadEnum(
+                                            UcdProperty.Prepended_Concatenation_Mark, Binary.class);
+                            removals = new UnicodeSet(pcm.getSet(Binary.Yes)).freeze();
+                        } catch (Exception e) {
+                            removals = UnicodeSet.EMPTY;
                         }
-                        Utility.fixDot();
-                        UnicodeSet temp;
-                        log.println("Cased, but not Case_Sensitive");
-                        temp = new UnicodeSet().addAll(cased).removeAll(case_sensitive);
-                        Utility.showSetNames(log, "", temp, false, false, ucdData);
-
-                        log.println("Case_Sensitive, but not Cased");
-                        temp = new UnicodeSet().addAll(case_sensitive).removeAll(cased);
-                        Utility.showSetNames(log, "", temp, false, false, ucdData);
-
-                        log.println("Both Case_Sensitive, and Cased");
-                        temp = new UnicodeSet().addAll(case_sensitive).retainAll(cased);
-                        log.println(temp);
-                        System.out.println("Done Building Case-Sensitive cache");
-
-                        log.close();
-
-                    } catch (final Exception e) {
-                        throw new ChainException("internal error", null, e);
                     }
-                }
-                return case_sensitive.contains(cp);
-            }
-        };
 
-        dprops[Other_Case_Ignorable] = new UCDProperty() {
-            {
-                name = "Other_Case_Ignorable";
-                shortName = "OCI";
-                isStandard = false;
-
-            }
-            @Override
-            public boolean hasValue(int cp) {
-                switch(cp) {
-                case 0x27: case 0x2019: case 0xAD: return true;
-                //  case 0x2d: case 0x2010: case 0x2011:
-                /*
-0027          ; Other_Case_Ignorable # Po       APOSTROPHE
-00AD          ; Other_Case_Ignorable # Pd       SOFT HYPHEN
-2019          ; Other_Case_Ignorable # Pf       RIGHT SINGLE QUOTATION MARK
-                 */
-                }
-                return false;
-            }
-        };
-
-        dprops[Type_i] = new UCDProperty() {
-            {
-                type = DERIVED_CORE;
-                isStandard = false;
-                name = "DSoft_Dotted";
-                shortName = "DSDot";
-            }
-            @Override
-            public boolean hasValue(int cp) {
-                if (hasSoftDot(cp)) {
-                    return true;
-                }
-                if (nfkd.isNormalized(cp)) {
-                    return false;
-                }
-                final String decomp = nfd.normalize(cp);
-                boolean ok = false;
-                for (int i = decomp.length()-1; i >= 0; --i) {
-                    final int ch = UTF16.charAt(decomp, i);
-                    final int cc = ucdData.getCombiningClass(ch);
-                    if (cc == 230) {
-                        return false;
-                    }
-                    if (cc == 0) {
-                        if (!hasSoftDot(ch)) {
+                    /**
+                     * (See MakeUnicodeFiles.txt) # Derived Property: Default_Ignorable_Code_Point #
+                     * Generated from # Other_Default_Ignorable_Code_Point # + Cf (Format
+                     * characters) # + Variation_Selector # - White_Space # - FFF9..FFFB
+                     * (Interlinear annotation format characters) # - 13430..13440 (Egyptian
+                     * hieroglyph format characters) # - Prepended_Concatenation_Mark (Exceptional
+                     * format characters that should be visible)
+                     */
+                    @Override
+                    public boolean hasValue(int cp) {
+                        if (removals.contains(cp)) {
                             return false;
                         }
-                        ok = true;
+                        if (ucdData.getBinaryProperty(cp, White_space)) {
+                            return false;
+                        }
+                        if (ucdData.getBinaryProperty(cp, Other_Default_Ignorable_Code_Point)) {
+                            return true;
+                        }
+
+                        if (ucdData.getCompositeVersion() > 0x040000
+                                && cp >= 0xFFF9
+                                && cp <= 0xFFFB) {
+                            return false;
+                        }
+
+                        // Unicode 12.0: 13430..13438 (Egyptian hieroglyph format characters)
+                        if (ucdData.getCompositeVersion() >= 0x0c0000
+                                && cp >= 0x13430
+                                && cp <= 0x13438) {
+                            return false;
+                        }
+                        // Unicode 15.0: 13439..13440 (Egyptian hieroglyph format characters)
+                        if (ucdData.getCompositeVersion() >= 0x0f0000
+                                && cp >= 0x13439
+                                && cp <= 0x13440) {
+                            return false;
+                        }
+
+                        final byte cat = ucdData.getCategory(cp);
+                        if (cat == Cf) {
+                            return true;
+                        }
+
+                        if (ucdData.getCompositeVersion() <= 0x040000) {
+                            return false;
+                        }
+
+                        if (ucdData.getBinaryProperty(cp, Variation_Selector)) {
+                            return true;
+                        }
+                        return false;
                     }
-                }
-                return ok;
-            }
-            boolean hasSoftDot(int ch) {
-                return ch == 'i' || ch == 'j' || ch == 0x0268 || ch == 0x0456 || ch == 0x0458;
-            }
-        };
+                };
 
-        dprops[Case_Ignorable] = new UCDProperty() {
-            {
-                name = "Case_Ignorable";
-                isStandard = false;
-                shortName = "CI";
-            }
-            @Override
-            public boolean hasValue(int cp) {
-                final byte cat = ucdData.getCategory(cp);
-                //Word_Break(C) = MidLetter or MidNumLet, or
-                //General_Category(C) = Nonspacing_Mark (Mn), Enclosing_Mark (Me), Format (Cf), Modifier_Letter (Lm), or Modifier_Symbol (Sk).
+        dprops[Case_Sensitive] =
+                new UCDProperty() {
+                    {
+                        type = DERIVED_CORE;
+                        isStandard = false;
+                        name = "Case_Sensitive";
+                        hasUnassigned = false;
+                        shortName = "CS";
+                    }
 
-                if (cat == Lm || cat == Cf || cat == Mn || cat == Me) {
-                    return true;
-                }
-                if (dprops[Other_Case_Ignorable].hasValue(cp)) {
-                    return true;
-                }
-                return false;
-            }
-        };
+                    UnicodeSet case_sensitive = null;
+                    UnicodeSet tempSet = new UnicodeSet();
+                    UnicodeSet cased = null;
+                    PrintWriter log;
+
+                    private void addCase(String cps, byte c1, byte c2) {
+                        final String temp = ucdData.getCase(cps, c1, c2);
+                        if (temp.equals(cps)) {
+                            return;
+                        }
+
+                        // temp = nfc.normalize(temp);
+                        // if (temp.equals(cps)) return;
+
+                        tempSet.clear();
+                        tempSet.addAll(cps);
+                        tempSet.addAll(temp);
+                        if (!case_sensitive.containsAll(tempSet)) {
+                            tempSet.removeAll(case_sensitive);
+                            if (!cased.containsAll(tempSet)) {
+                                log.println();
+                                log.println("Adding " + tempSet + " because of: ");
+                                log.println("\t" + ucdData.getCodeAndName(cps));
+                                log.println("=>\t" + ucdData.getCodeAndName(temp));
+                            }
+                            case_sensitive.addAll(tempSet);
+                        }
+                    }
+
+                    @Override
+                    public boolean hasValue(int cp) {
+                        if (case_sensitive == null) {
+                            try {
+                                log =
+                                        Utility.openPrintWriterGenDir(
+                                                "log/Case_Sensitive_Log.txt", Utility.UTF8_UNIX);
+
+                                System.out.println("Building Case-Sensitive cache");
+                                case_sensitive = new UnicodeSet();
+                                cased =
+                                        DerivedProperty.make(PropLowercase, ucdData)
+                                                .getSet()
+                                                .addAll(
+                                                        DerivedProperty.make(PropUppercase, ucdData)
+                                                                .getSet())
+                                                .addAll(
+                                                        UnifiedBinaryProperty.make(CATEGORY | Lt)
+                                                                .getSet());
+                                for (int c = 0; c < 0x10FFFF; ++c) {
+                                    Utility.dot(c);
+                                    // skip cases that can't matter
+                                    if (!ucdData.isAssigned(c)) {
+                                        continue;
+                                    }
+
+                                    final String cps = UTF16.valueOf(c);
+                                    addCase(cps, FULL, LOWER);
+                                    addCase(cps, FULL, UPPER);
+                                    addCase(cps, FULL, TITLE);
+                                    addCase(cps, FULL, FOLD);
+                                    addCase(cps, SIMPLE, LOWER);
+                                    addCase(cps, SIMPLE, UPPER);
+                                    addCase(cps, SIMPLE, TITLE);
+                                    addCase(cps, SIMPLE, FOLD);
+                                }
+                                Utility.fixDot();
+                                UnicodeSet temp;
+                                log.println("Cased, but not Case_Sensitive");
+                                temp = new UnicodeSet().addAll(cased).removeAll(case_sensitive);
+                                Utility.showSetNames(log, "", temp, false, false, ucdData);
+
+                                log.println("Case_Sensitive, but not Cased");
+                                temp = new UnicodeSet().addAll(case_sensitive).removeAll(cased);
+                                Utility.showSetNames(log, "", temp, false, false, ucdData);
+
+                                log.println("Both Case_Sensitive, and Cased");
+                                temp = new UnicodeSet().addAll(case_sensitive).retainAll(cased);
+                                log.println(temp);
+                                System.out.println("Done Building Case-Sensitive cache");
+
+                                log.close();
+
+                            } catch (final Exception e) {
+                                throw new ChainException("internal error", null, e);
+                            }
+                        }
+                        return case_sensitive.contains(cp);
+                    }
+                };
+
+        dprops[Other_Case_Ignorable] =
+                new UCDProperty() {
+                    {
+                        name = "Other_Case_Ignorable";
+                        shortName = "OCI";
+                        isStandard = false;
+                    }
+
+                    @Override
+                    public boolean hasValue(int cp) {
+                        switch (cp) {
+                            case 0x27:
+                            case 0x2019:
+                            case 0xAD:
+                                return true;
+                                //  case 0x2d: case 0x2010: case 0x2011:
+                                /*
+                                0027          ; Other_Case_Ignorable # Po       APOSTROPHE
+                                00AD          ; Other_Case_Ignorable # Pd       SOFT HYPHEN
+                                2019          ; Other_Case_Ignorable # Pf       RIGHT SINGLE QUOTATION MARK
+                                                 */
+                        }
+                        return false;
+                    }
+                };
+
+        dprops[Type_i] =
+                new UCDProperty() {
+                    {
+                        type = DERIVED_CORE;
+                        isStandard = false;
+                        name = "DSoft_Dotted";
+                        shortName = "DSDot";
+                    }
+
+                    @Override
+                    public boolean hasValue(int cp) {
+                        if (hasSoftDot(cp)) {
+                            return true;
+                        }
+                        if (nfkd.isNormalized(cp)) {
+                            return false;
+                        }
+                        final String decomp = nfd.normalize(cp);
+                        boolean ok = false;
+                        for (int i = decomp.length() - 1; i >= 0; --i) {
+                            final int ch = UTF16.charAt(decomp, i);
+                            final int cc = ucdData.getCombiningClass(ch);
+                            if (cc == 230) {
+                                return false;
+                            }
+                            if (cc == 0) {
+                                if (!hasSoftDot(ch)) {
+                                    return false;
+                                }
+                                ok = true;
+                            }
+                        }
+                        return ok;
+                    }
+
+                    boolean hasSoftDot(int ch) {
+                        return ch == 'i'
+                                || ch == 'j'
+                                || ch == 0x0268
+                                || ch == 0x0456
+                                || ch == 0x0458;
+                    }
+                };
+
+        dprops[Case_Ignorable] =
+                new UCDProperty() {
+                    {
+                        name = "Case_Ignorable";
+                        isStandard = false;
+                        shortName = "CI";
+                    }
+
+                    @Override
+                    public boolean hasValue(int cp) {
+                        final byte cat = ucdData.getCategory(cp);
+                        // Word_Break(C) = MidLetter or MidNumLet, or
+                        // General_Category(C) = Nonspacing_Mark (Mn), Enclosing_Mark (Me), Format
+                        // (Cf), Modifier_Letter (Lm), or Modifier_Symbol (Sk).
+
+                        if (cat == Lm || cat == Cf || cat == Mn || cat == Me) {
+                            return true;
+                        }
+                        if (dprops[Other_Case_Ignorable].hasValue(cp)) {
+                            return true;
+                        }
+                        return false;
+                    }
+                };
 
         /*
-        GraphemeExtend = 27,
-        GraphemeBase = 28,
-# GraphemeExtend := Me + Mn + Mc + Other_GraphemeExtend - GraphemeLink
-# GraphemeBase :=
+                GraphemeExtend = 27,
+                GraphemeBase = 28,
+        # GraphemeExtend := Me + Mn + Mc + Other_GraphemeExtend - GraphemeLink
+        # GraphemeBase :=
 
-         */
-        dprops[GraphemeExtend] = new UCDProperty() {
-            {
-                type = DERIVED_CORE;
-                name = "Grapheme_Extend";
-                shortName = "Gr_Ext";
-            }
-            @Override
-            public boolean hasValue(int cp) {
-                //if (cp == 0x034F) return false;
-                //if (ucdData.getBinaryProperty(cp, GraphemeLink)) return false;
-                // || cat == Mc
-                final byte cat = ucdData.getCategory(cp);
-                if (cat == Me || cat == Mn
-                        || ucdData.getBinaryProperty(cp,Other_GraphemeExtend)) {
-                    return true;
-                }
-                return false;
-            }
-        };
+                 */
+        dprops[GraphemeExtend] =
+                new UCDProperty() {
+                    {
+                        type = DERIVED_CORE;
+                        name = "Grapheme_Extend";
+                        shortName = "Gr_Ext";
+                    }
 
-        dprops[GraphemeBase] = new UCDProperty() {
-            {
-                type = DERIVED_CORE;
-                name = "Grapheme_Base";
-                shortName = "Gr_Base";
+                    @Override
+                    public boolean hasValue(int cp) {
+                        // if (cp == 0x034F) return false;
+                        // if (ucdData.getBinaryProperty(cp, GraphemeLink)) return false;
+                        // || cat == Mc
+                        final byte cat = ucdData.getCategory(cp);
+                        if (cat == Me
+                                || cat == Mn
+                                || ucdData.getBinaryProperty(cp, Other_GraphemeExtend)) {
+                            return true;
+                        }
+                        return false;
+                    }
+                };
 
-            }
-            @Override
-            public boolean hasValue(int cp) {
-                //if (cp == 0x034F) return false;
-                final byte cat = ucdData.getCategory(cp);
-                if (cat == Cc || cat == Cf || cat == Cs || cat == Co || cat == Cn || cat == Zl || cat == Zp) {
-                    return false;
-                }
-                // || ucdData.getBinaryProperty(cp,GraphemeLink)
-                if (dprops[GraphemeExtend].hasValue(cp)) {
-                    return false;
-                }
-                return true;
-            }
-        };
+        dprops[GraphemeBase] =
+                new UCDProperty() {
+                    {
+                        type = DERIVED_CORE;
+                        name = "Grapheme_Base";
+                        shortName = "Gr_Base";
+                    }
+
+                    @Override
+                    public boolean hasValue(int cp) {
+                        // if (cp == 0x034F) return false;
+                        final byte cat = ucdData.getCategory(cp);
+                        if (cat == Cc || cat == Cf || cat == Cs || cat == Co || cat == Cn
+                                || cat == Zl || cat == Zp) {
+                            return false;
+                        }
+                        // || ucdData.getBinaryProperty(cp,GraphemeLink)
+                        if (dprops[GraphemeExtend].hasValue(cp)) {
+                            return false;
+                        }
+                        return true;
+                    }
+                };
 
         for (final UCDProperty up : dprops) {
             if (up == null) {
@@ -991,12 +1070,10 @@ of characters, the first of which has a non-zero combining class.
 
     byte getDecompCat(int cp) {
         final byte cat = ucdData.getCategory(cp);
-        if (cat == Lu
-                || ucdData.getBinaryProperty(cp, Other_Uppercase)) {
+        if (cat == Lu || ucdData.getBinaryProperty(cp, Other_Uppercase)) {
             return Lu;
         }
-        if (cat == Ll
-                || ucdData.getBinaryProperty(cp, Other_Lowercase)) {
+        if (cat == Ll || ucdData.getBinaryProperty(cp, Other_Lowercase)) {
             return Ll;
         }
         if (cat == Lt || cat == Lo || cat == Lm || cat == Nl) {

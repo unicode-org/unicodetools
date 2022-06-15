@@ -1,5 +1,10 @@
 package org.unicode.tools.emoji;
 
+import com.google.common.collect.ImmutableSet;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ICUException;
+import com.ibm.icu.util.VersionInfo;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
@@ -8,7 +13,6 @@ import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Map.Entry;
 import java.util.Set;
-
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.props.IndexUnicodeProperties;
@@ -21,26 +25,31 @@ import org.unicode.tools.emoji.EmojiData.VariantFactory;
 import org.unicode.tools.emoji.EmojiData.VariantStatus;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 
-import com.google.common.collect.ImmutableSet;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.ICUException;
-import com.ibm.icu.util.VersionInfo;
-
 public class GenerateEmojiTestFile {
 
     private static final EmojiOrder GEN_ORDER = EmojiOrder.BETA_ORDER;
 
-    enum Target {csv, propFile, summary}
+    enum Target {
+        csv,
+        propFile,
+        summary
+    }
 
     public static void main(String[] args) throws Exception {
-        System.out.println("\t\tSingletons\tCount w/o Skintones\t-Typical Dups\tCount Total\t-Typical Dups");
+        System.out.println(
+                "\t\tSingletons\tCount w/o Skintones\t-Typical Dups\tCount Total\t-Typical Dups");
         if (true) {
             for (VersionInfo version : Arrays.asList(Emoji.VERSION5, Emoji.VERSION11)) {
                 GenerateEmojiTestFile.getCounts(version, false);
             }
 
-            for (VersionInfo version : Arrays.asList(Emoji.VERSION2, Emoji.VERSION3, Emoji.VERSION4, Emoji.VERSION5, Emoji.VERSION11)) {
+            for (VersionInfo version :
+                    Arrays.asList(
+                            Emoji.VERSION2,
+                            Emoji.VERSION3,
+                            Emoji.VERSION4,
+                            Emoji.VERSION5,
+                            Emoji.VERSION11)) {
                 GenerateEmojiTestFile.getCounts(version, true);
             }
         }
@@ -53,13 +62,17 @@ public class GenerateEmojiTestFile {
             System.out.println("has hair");
         }
 
-        GenerateEmojiTestFile.showLines(GEN_ORDER, sortingChars, Target.propFile, GenerateEmojiData.OUTPUT_DIR);
-        GenerateEmojiTestFile.showLines(GEN_ORDER, sortingChars, Target.csv, Emoji.TR51_INTERNAL_DIR + "keyboard");
-        //        boolean foo2 = EmojiData.EMOJI_DATA.getChars().contains(EmojiData.SAMPLE_WITHOUT_TRAILING_EVS);
-        //        Set<String> foo = EmojiOrder.sort(EmojiOrder.STD_ORDER.codepointCompare, 
+        GenerateEmojiTestFile.showLines(
+                GEN_ORDER, sortingChars, Target.propFile, GenerateEmojiData.OUTPUT_DIR);
+        GenerateEmojiTestFile.showLines(
+                GEN_ORDER, sortingChars, Target.csv, Emoji.TR51_INTERNAL_DIR + "keyboard");
+        //        boolean foo2 =
+        // EmojiData.EMOJI_DATA.getChars().contains(EmojiData.SAMPLE_WITHOUT_TRAILING_EVS);
+        //        Set<String> foo = EmojiOrder.sort(EmojiOrder.STD_ORDER.codepointCompare,
         //                EmojiData.EMOJI_DATA.getChars());
         //
-        //        showDiff(EmojiData.EMOJI_DATA.getChars(), EmojiOrder.STD_ORDER.emojiData.getSortingChars());
+        //        showDiff(EmojiData.EMOJI_DATA.getChars(),
+        // EmojiOrder.STD_ORDER.emojiData.getSortingChars());
     }
 
     private static void getCounts(VersionInfo version, boolean emojiVersion) {
@@ -70,10 +83,21 @@ public class GenerateEmojiTestFile {
         if (!emojiVersion) {
             emojiData = EmojiData.of(Emoji.VERSION2);
             setToList = emojiData.getAllEmojiWithoutDefectives();
-            setToList = new UnicodeSet(IndexUnicodeProperties.make(version)
-                    .loadEnumSet(UcdProperty.General_Category, UcdPropertyValues.General_Category_Values.Unassigned)).complement()
-                    .retainAll(setToList);
-            date = "U" + versionString + " / " + VersionToAge.ucd.getYear(Age_Values.forName(versionString)) + "";
+            setToList =
+                    new UnicodeSet(
+                                    IndexUnicodeProperties.make(version)
+                                            .loadEnumSet(
+                                                    UcdProperty.General_Category,
+                                                    UcdPropertyValues.General_Category_Values
+                                                            .Unassigned))
+                            .complement()
+                            .retainAll(setToList);
+            date =
+                    "U"
+                            + versionString
+                            + " / "
+                            + VersionToAge.ucd.getYear(Age_Values.forName(versionString))
+                            + "";
             System.out.println("\nUnicode Version Year:\t" + date);
         } else {
             emojiData = EmojiData.of(version);
@@ -91,9 +115,10 @@ public class GenerateEmojiTestFile {
         Counter<EmojiOrder.MajorGroup> totals = new Counter<>();
         Counter<EmojiOrder.MajorGroup> totalDuplicates = new Counter<>();
         for (String emoji : setToList) {
-            boolean isDup = EmojiData.isTypicallyDuplicateGroup(emoji) 
-                    || emojiData.isTypicallyDuplicateSign(emoji) 
-                    || EmojiData.MODIFIERS.contains(emoji);
+            boolean isDup =
+                    EmojiData.isTypicallyDuplicateGroup(emoji)
+                            || emojiData.isTypicallyDuplicateSign(emoji)
+                            || EmojiData.MODIFIERS.contains(emoji);
 
             MajorGroup majorGroup = GEN_ORDER.majorGroupings.get(emoji);
 
@@ -113,24 +138,37 @@ public class GenerateEmojiTestFile {
             }
         }
         for (MajorGroup group : EmojiOrder.MajorGroup.values()) {
-            System.out.println(group.toPlainString() 
-                    + "\t" + date
-                    + "\t" + totalSingletons.get(group)
-                    //                    + "\t" + totalsWithoutModifiers.get(group) 
-                    //                    + "\t" + totalDuplicatesWithoutModifiers.get(group)
-                    + "\t" + totals.get(group) 
-                    + "\t" + totalDuplicates.get(group)
-                    + "\t" + (totals.get(group)+totalDuplicates.get(group))
-                    );
+            System.out.println(
+                    group.toPlainString()
+                            + "\t"
+                            + date
+                            + "\t"
+                            + totalSingletons.get(group)
+                            //                    + "\t" + totalsWithoutModifiers.get(group)
+                            //                    + "\t" +
+                            // totalDuplicatesWithoutModifiers.get(group)
+                            + "\t"
+                            + totals.get(group)
+                            + "\t"
+                            + totalDuplicates.get(group)
+                            + "\t"
+                            + (totals.get(group) + totalDuplicates.get(group)));
         }
-        System.out.println("TOTAL:"
-                + "\t" + date  
-                + "\t" + totalSingletons.getTotal()
-                //                + "\t" + totalsWithoutModifiers.getTotal() 
-                //                + "\t" + (totalsWithoutModifiers.getTotal()+totalDuplicatesWithoutModifiers.getTotal())
-                + "\t" + totals.getTotal() 
-                + "\t" + totalDuplicates.getTotal()
-                + "\t" + (totals.getTotal()+totalDuplicates.getTotal()));
+        System.out.println(
+                "TOTAL:"
+                        + "\t"
+                        + date
+                        + "\t"
+                        + totalSingletons.getTotal()
+                        //                + "\t" + totalsWithoutModifiers.getTotal()
+                        //                + "\t" +
+                        // (totalsWithoutModifiers.getTotal()+totalDuplicatesWithoutModifiers.getTotal())
+                        + "\t"
+                        + totals.getTotal()
+                        + "\t"
+                        + totalDuplicates.getTotal()
+                        + "\t"
+                        + (totals.getTotal() + totalDuplicates.getTotal()));
     }
 
     private static boolean isSingleCodePoint(String emoji) {
@@ -159,20 +197,37 @@ public class GenerateEmojiTestFile {
             }
         }
 
-        private void show(TempPrintWriter out, EmojiOrder.MajorGroup lastMajorGroup) throws IOException {
+        private void show(TempPrintWriter out, EmojiOrder.MajorGroup lastMajorGroup)
+                throws IOException {
             Totals totals = this;
             out.println("");
             out.println("# " + lastMajorGroup.toPlainString() + " subtotal:\t\t" + totals.total);
-            out.println("# " + lastMajorGroup.toPlainString() + " subtotal:\t\t" + totals.totalNoMod + "\tw/o modifiers");
-            System.out.println("\t" + lastMajorGroup.toPlainString() + "\t" + totals.total + "\t" + totals.totalNoMod + "\t" + totals.totalNoModNoSign);
+            out.println(
+                    "# "
+                            + lastMajorGroup.toPlainString()
+                            + " subtotal:\t\t"
+                            + totals.totalNoMod
+                            + "\tw/o modifiers");
+            System.out.println(
+                    "\t"
+                            + lastMajorGroup.toPlainString()
+                            + "\t"
+                            + totals.total
+                            + "\t"
+                            + totals.totalNoMod
+                            + "\t"
+                            + totals.totalNoModNoSign);
             totals.total = 0;
             totals.totalNoMod = 0;
             totals.totalNoModNoSign = 0;
         }
     }
 
-    public static void showLines(EmojiOrder emojiOrder, UnicodeSet charactersToInclude, Target target, String directory) throws IOException {
-        Set<String> retain = ImmutableSet.copyOf(charactersToInclude.addAllTo(new HashSet<String>()));
+    public static void showLines(
+            EmojiOrder emojiOrder, UnicodeSet charactersToInclude, Target target, String directory)
+            throws IOException {
+        Set<String> retain =
+                ImmutableSet.copyOf(charactersToInclude.addAllTo(new HashSet<String>()));
 
         UnicodeSet charactersNotShown = new UnicodeSet().addAll(retain);
         EmojiOrder.MajorGroup lastMajorGroup = null;
@@ -192,43 +247,56 @@ public class GenerateEmojiTestFile {
                 maxField2 = s.name.length();
             }
         }
-        Tabber tabber = new Tabber.MonoTabber()
-                .add(maxField1+1, Tabber.LEFT)
-                .add(maxField2+3, Tabber.LEFT);
+        Tabber tabber =
+                new Tabber.MonoTabber()
+                        .add(maxField1 + 1, Tabber.LEFT)
+                        .add(maxField2 + 3, Tabber.LEFT);
         ;
 
         Counter<VariantStatus> vsCount = new Counter<>();
 
-        for (Entry<String, Collection<String>> labelToSet : emojiOrder.orderingToCharacters.asMap().entrySet()) {
+        for (Entry<String, Collection<String>> labelToSet :
+                emojiOrder.orderingToCharacters.asMap().entrySet()) {
             final String label = labelToSet.getKey();
             final Collection<String> list = labelToSet.getValue();
-            if (list.contains("🏻") 
-                    || list.contains("🦲")) {
+            if (list.contains("🏻") || list.contains("🦲")) {
                 int debug = 0;
             }
-            EmojiOrder.MajorGroup majorGroup = emojiOrder.getMajorGroupFromCategory(label); // majorGroupings.get(list.iterator().next());
+            EmojiOrder.MajorGroup majorGroup =
+                    emojiOrder.getMajorGroupFromCategory(
+                            label); // majorGroupings.get(list.iterator().next());
             if (majorGroup == null) {
                 throw new ICUException("Major group not found for «" + label + "»");
             }
             if (lastMajorGroup != majorGroup) {
                 if (out != null) {
                     totals.show(out, lastMajorGroup);
-                    if (target == Target.csv){ 
+                    if (target == Target.csv) {
                         out.println("\n#EOF");
                         out.close();
                         out = null;
                     }
                 }
                 if (out == null) {
-                    String filename = target == Target.csv ? majorGroup.toPlainString().toLowerCase(Locale.ENGLISH).replaceAll("[^a-z]+", "_") : "emoji-test";
+                    String filename =
+                            target == Target.csv
+                                    ? majorGroup
+                                            .toPlainString()
+                                            .toLowerCase(Locale.ENGLISH)
+                                            .replaceAll("[^a-z]+", "_")
+                                    : "emoji-test";
                     final String suffix = target == Target.csv ? ".csv" : ".txt";
                     out = new TempPrintWriter(directory, filename + suffix);
                     if (target == Target.csv) {
                         out.println("# " + filename);
-                        out.println("\n# Format\n"
-                                + "#   Hex code points, characters, name");
+                        out.println("\n# Format\n" + "#   Hex code points, characters, name");
                     } else {
-                        out.println(Utility.getBaseDataHeader(filename, 51, "Emoji Keyboard/Display Test Data", Emoji.VERSION_STRING));
+                        out.println(
+                                Utility.getBaseDataHeader(
+                                        filename,
+                                        51,
+                                        "Emoji Keyboard/Display Test Data",
+                                        Emoji.VERSION_STRING));
                         out.println(
                                 "# This file provides data for testing which emoji forms should be in keyboards and which should also be displayed/processed.\n"
                                         + "# Format: code points; status # emoji name\n"
@@ -263,7 +331,9 @@ public class GenerateEmojiTestFile {
             if (filtered.isEmpty()) {
                 continue;
             }
-            out.println("\n# subgroup: " + label); //  + "; size: " + filtered.size() + "; list: [" + CollectionUtilities.join(filtered, " ") + "]\n");
+            out.println(
+                    "\n# subgroup: " + label); //  + "; size: " + filtered.size() + "; list: [" +
+            // CollectionUtilities.join(filtered, " ") + "]\n");
 
             VariantFactory vf = emojiOrder.emojiData.new VariantFactory();
             for (String cp_raw : filtered) {
@@ -273,22 +343,34 @@ public class GenerateEmojiTestFile {
                     VariantStatus variantStatus = emojiOrder.emojiData.getVariantStatus(cp);
                     String ageDisplay = "E" + BirthInfo.getVersionInfo(cp).getVersionString(2, 2);
 
-                    switch(target) {
-                    case csv:
-                        if (variantStatus == VariantStatus.full) {
-                            out.println("U+" + Utility.hex(cp,"U+") 
-                            + "," + cp 
-                            + "," + ageDisplay
-                            + "," + EmojiData.EMOJI_DATA.getName(cp)
-                            );
-                        }
-                        break;
-                    case propFile:
-                        vsCount.add(variantStatus, 1);
-                        out.println(tabber.process(Utility.hex(cp) 
-                                + "\t; " + variantStatus.name
-                                + "\t# " + cp + " " + ageDisplay + " " + EmojiData.EMOJI_DATA.getName(cp)));
-                        break;
+                    switch (target) {
+                        case csv:
+                            if (variantStatus == VariantStatus.full) {
+                                out.println(
+                                        "U+"
+                                                + Utility.hex(cp, "U+")
+                                                + ","
+                                                + cp
+                                                + ","
+                                                + ageDisplay
+                                                + ","
+                                                + EmojiData.EMOJI_DATA.getName(cp));
+                            }
+                            break;
+                        case propFile:
+                            vsCount.add(variantStatus, 1);
+                            out.println(
+                                    tabber.process(
+                                            Utility.hex(cp)
+                                                    + "\t; "
+                                                    + variantStatus.name
+                                                    + "\t# "
+                                                    + cp
+                                                    + " "
+                                                    + ageDisplay
+                                                    + " "
+                                                    + EmojiData.EMOJI_DATA.getName(cp)));
+                            break;
                     }
                     totals.add(cp);
                 }
@@ -297,10 +379,12 @@ public class GenerateEmojiTestFile {
             //          allCharacters.add(filtered);
             //          if (!allCharacters.equals(new UnicodeSet().addAll(retain))) {
             //              out.println(
-            //                      retain.size() 
-            //                      + "\t" + allCharacters.size() 
-            //                      + "\t" + new UnicodeSet().addAll(retain).removeAll(allCharacters)
-            //                      + "\t" + new UnicodeSet().addAll(allCharacters).removeAll(retain)
+            //                      retain.size()
+            //                      + "\t" + allCharacters.size()
+            //                      + "\t" + new
+            // UnicodeSet().addAll(retain).removeAll(allCharacters)
+            //                      + "\t" + new
+            // UnicodeSet().addAll(allCharacters).removeAll(retain)
             //                      );
             //          }
         }
@@ -316,15 +400,19 @@ public class GenerateEmojiTestFile {
             out.close();
         }
         if (charactersNotShown.size() != 0) {
-            System.err.println("Missing characters: " + charactersNotShown.size() + "\t" + charactersNotShown.toPattern(false));
+            System.err.println(
+                    "Missing characters: "
+                            + charactersNotShown.size()
+                            + "\t"
+                            + charactersNotShown.toPattern(false));
         }
     }
 
     //    static Splitter vsSplitter = Splitter.on(Emoji.EMOJI_VARIANT);
 
-    /** Show all of the combinations with VS, except for all VS characters.
-     */
-    //    private static void showWithoutVS(TempPrintWriter out, Tabber tabber, String cp, UnicodeSet charactersNotShown) throws IOException {
+    /** Show all of the combinations with VS, except for all VS characters. */
+    //    private static void showWithoutVS(TempPrintWriter out, Tabber tabber, String cp,
+    // UnicodeSet charactersNotShown) throws IOException {
     //        if (!cp.contains(Emoji.JOINER_STRING)) {
     //            return;
     //        }
@@ -348,7 +436,7 @@ public class GenerateEmojiTestFile {
     //                }
     //                temp += parts.get(rest+1);
     //            }
-    //            out.println(tabber.process(Utility.hex(temp) + "\t; " 
+    //            out.println(tabber.process(Utility.hex(temp) + "\t; "
     //                    + "non-fully-qualified"
     //                    + "\t# " + temp + " " + name));
     //            charactersNotShown.remove(temp);

@@ -1,18 +1,17 @@
 package org.unicode.tools.emoji;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
-import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.text.utility.Utility;
-
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.text.utility.Utility;
 
 public class Keywords {
     private static final Multimap<String, String> keywords;
+
     static {
         String source = null;
         Splitter barSplit = Splitter.on('|').trimResults();
@@ -34,6 +33,7 @@ public class Keywords {
         }
         keywords = _keywords.build();
     }
+
     public static Collection<String> get(String source) {
         Collection<String> result = keywords.get(source);
         return result == null ? Collections.<String>emptySet() : result;

@@ -1,5 +1,8 @@
 package org.unicode.text.tools;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
+import com.ibm.icu.text.UnicodeSet;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.font.FontRenderContext;
@@ -8,12 +11,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
-import com.ibm.icu.text.UnicodeSet;
 
 public class CheckFonts {
     public static void main(String[] args) {
@@ -23,8 +21,21 @@ public class CheckFonts {
         Font[] fonts = e.getAllFonts(); // Get the fonts
 
         // order the fonts to put big ones first, avoiding costly glyph check
-        String[] bigFonts = { "NotoSansCJKjp-Black", "NotoSans", "NotoSansSymbols", "NotoSansYi", "NotoSansEgyptianHieroglyphs", "NotoSansCuneiform",
-                "NotoSansCanadianAboriginal", "NotoSansBamum", "NotoNaskhArabic", "NotoSansEthiopic", "NotoKufiArabic", "NotoSansVai", "NotoSansLinearB" };
+        String[] bigFonts = {
+            "NotoSansCJKjp-Black",
+            "NotoSans",
+            "NotoSansSymbols",
+            "NotoSansYi",
+            "NotoSansEgyptianHieroglyphs",
+            "NotoSansCuneiform",
+            "NotoSansCanadianAboriginal",
+            "NotoSansBamum",
+            "NotoNaskhArabic",
+            "NotoSansEthiopic",
+            "NotoKufiArabic",
+            "NotoSansVai",
+            "NotoSansLinearB"
+        };
         Set<Font> allFonts = new LinkedHashSet<>();
         for (String s : bigFonts) {
             for (Font f : fonts) {
@@ -47,17 +58,16 @@ public class CheckFonts {
                     && !fontName.startsWith("Roboto")
                     && !fontName.startsWith("Arimo")
                     && !fontName.startsWith("Cousine")
-                    && !fontName.startsWith("Tinos")
-                    ) {
+                    && !fontName.startsWith("Tinos")) {
                 continue;
             }
             // skip -Medium, etc.
             int pos = fontName.indexOf('-');
-            String baseName = pos < 0 ? fontName : fontName.substring(0,pos);
+            String baseName = pos < 0 ? fontName : fontName.substring(0, pos);
             if (seen.contains(baseName)) continue;
             seen.add(baseName);
 
-            //System.out.println("*" + fontName);
+            // System.out.println("*" + fontName);
             for (String s : TESTSET) {
                 if (ur.containsKey(s)) {
                     continue;
@@ -65,7 +75,7 @@ public class CheckFonts {
                 if (!f.canDisplay(s.codePointAt(0))) {
                     continue;
                 }
-                if (canDisplay(f,s)) {
+                if (canDisplay(f, s)) {
                     ur.put(s, fontName);
                 }
             }
@@ -77,9 +87,14 @@ public class CheckFonts {
             if (entry.string != null) {
                 System.out.println(Utility.hex(entry.string) + " ;\t" + entry.value);
             } else if (entry.codepoint == entry.codepointEnd) {
-                System.out.println(Utility.hex(entry.codepoint) + " ;\t" + entry.value); 
+                System.out.println(Utility.hex(entry.codepoint) + " ;\t" + entry.value);
             } else {
-                System.out.println(Utility.hex(entry.codepoint) + ".." + Utility.hex(entry.codepointEnd) + " ;\t" + entry.value); 
+                System.out.println(
+                        Utility.hex(entry.codepoint)
+                                + ".."
+                                + Utility.hex(entry.codepointEnd)
+                                + " ;\t"
+                                + entry.value);
             }
         }
     }

@@ -1,66 +1,60 @@
 package org.unicode.test;
 
+import com.ibm.icu.lang.CharSequences;
+import com.ibm.icu.text.UnicodeSet;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.tools.Confusables.CodepointToConfusables;
 import org.unicode.tools.ScriptDetector;
 
-import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.text.UnicodeSet;
-
 /**
  * A class for checking the whole-script confusable status of a string. Also returns examples.
+ *
  * @author markdavis
  */
 public class CheckWholeScript {
     private static final Normalizer NFD = Default.nfd();
-    private static final UnicodeSet ALL_CODEPOINTS = new UnicodeSet("[:any:]").freeze(); 
+    private static final UnicodeSet ALL_CODEPOINTS = new UnicodeSet("[:any:]").freeze();
 
-    static final Map<Script_Values, Map<Script_Values, CodepointToConfusables>> SCRIPT_SCRIPT_UNICODESET2 =
-            TestSecurity.Confusables_.INSTANCE.getScriptToScriptToCodepointToUnicodeSet();
+    static final Map<Script_Values, Map<Script_Values, CodepointToConfusables>>
+            SCRIPT_SCRIPT_UNICODESET2 =
+                    TestSecurity.Confusables_.INSTANCE.getScriptToScriptToCodepointToUnicodeSet();
 
-    static final CodepointToConfusables COMMON_COMMON_UNICODESET2 
-    = SCRIPT_SCRIPT_UNICODESET2.get(Script_Values.Common).get(Script_Values.Common);
-    
+    static final CodepointToConfusables COMMON_COMMON_UNICODESET2 =
+            SCRIPT_SCRIPT_UNICODESET2.get(Script_Values.Common).get(Script_Values.Common);
 
     /**
      * The status of a whole-script confusable.
+     *
      * @author markdavis
      */
     public enum Status {
-        /**
-         * There is a same-script confusable, like "google" and "goog1e"
-         */
+        /** There is a same-script confusable, like "google" and "goog1e" */
         SAME,
-        /**
-         * There is a common-only confusable, like "l" and "1"
-         */
-        COMMON, 
-        /**
-         * There is a different script confusable, like "sex" (Latin) and "ѕех" (Cyrillic)
-         */
+        /** There is a common-only confusable, like "l" and "1" */
+        COMMON,
+        /** There is a different script confusable, like "sex" (Latin) and "ѕех" (Cyrillic) */
         OTHER
     }
 
     private final UnicodeSet includeOnly;
 
-    /**
-     * Returns the set of characters allowed in identifiers, passed in on creation.
-     */
+    /** Returns the set of characters allowed in identifiers, passed in on creation. */
     public UnicodeSet getIncludeOnly() {
         return includeOnly;
     }
 
     /**
-     * Create a checker, with the set of allowed characters. Null means there are no character limits.
+     * Create a checker, with the set of allowed characters. Null means there are no character
+     * limits.
+     *
      * @param includeOnly the includeOnly to set. Note that it becomes frozen.
      */
     public CheckWholeScript(UnicodeSet includeOnly) {
@@ -71,12 +65,14 @@ public class CheckWholeScript {
     private ScriptDetector tempScriptDetector = new ScriptDetector();
 
     /**
-     * Gets the whole-script confusable status, filling in the examples (if not null).
-     * Example:
+     * Gets the whole-script confusable status, filling in the examples (if not null). Example:
+     *
      * <ul>
-     * <li>source = sex (Latin) => [SAME, COMMON], with examples= {Latin=ƽꬲⅹ, Common=𝐬℮×}</li>
-     * <li>source = NO (Latin) => returns [OTHER], with examples= {Coptic=ⲚⲞ, Elbasan=𐔓𐔖, Greek=ΝΟ, Lisu=ꓠꓳ}</li>
+     *   <li>source = sex (Latin) => [SAME, COMMON], with examples= {Latin=ƽꬲⅹ, Common=𝐬℮×}
+     *   <li>source = NO (Latin) => returns [OTHER], with examples= {Coptic=ⲚⲞ, Elbasan=𐔓𐔖,
+     *       Greek=ΝΟ, Lisu=ꓠꓳ}
      * </ul>
+     *
      * @param source
      * @param examples
      * @return
@@ -110,8 +106,10 @@ public class CheckWholeScript {
         return result;
     }
 
-    private void hasRestricted(String nfd, Script_Values sourceScript, EnumMap<Script_Values, String> examples) {
-        Map<Script_Values, CodepointToConfusables> submap = SCRIPT_SCRIPT_UNICODESET2.get(sourceScript);
+    private void hasRestricted(
+            String nfd, Script_Values sourceScript, EnumMap<Script_Values, String> examples) {
+        Map<Script_Values, CodepointToConfusables> submap =
+                SCRIPT_SCRIPT_UNICODESET2.get(sourceScript);
         if (submap == null) {
             return;
         }
@@ -126,11 +124,12 @@ public class CheckWholeScript {
         }
     }
 
-    /**
-     * Return true if there is a match, and set example correctly.
-     */
-    private boolean hasRestricted(Script_Values targetScript, String nfd, 
-            CodepointToConfusables cpToIdentifierSet, CodepointToConfusables cpToCommonSet, 
+    /** Return true if there is a match, and set example correctly. */
+    private boolean hasRestricted(
+            Script_Values targetScript,
+            String nfd,
+            CodepointToConfusables cpToIdentifierSet,
+            CodepointToConfusables cpToCommonSet,
             StringBuilder example) {
         example.setLength(0);
         for (int cp : CharSequences.codePoints(nfd)) { // for all chars in the givenSet
@@ -152,22 +151,27 @@ public class CheckWholeScript {
             }
             example.append(sample);
         }
-        // skip if the target cannot be different than the source, 
+        // skip if the target cannot be different than the source,
         if (CharSequences.equalsChars(example, nfd)) {
             return false;
         }
         // or the targetsScript != common and the example is all Common,
-        if (targetScript != Script_Values.Common 
-                && tempScriptDetector.set(example.toString()).getSingleScripts().contains(Script_Values.Common)) {
+        if (targetScript != Script_Values.Common
+                && tempScriptDetector
+                        .set(example.toString())
+                        .getSingleScripts()
+                        .contains(Script_Values.Common)) {
             return false;
         }
         return true;
     }
 
-    /** Get a sample from the intersection, avoiding cp if possible, and null if impossible.
-     * @param avoidIfPossible 
-     * @param avoidIfPossible 
-     **/
+    /**
+     * Get a sample from the intersection, avoiding cp if possible, and null if impossible.
+     *
+     * @param avoidIfPossible
+     * @param avoidIfPossible
+     */
     private static String getSampleFlattened(int avoidIfPossible, UnicodeSet a, UnicodeSet b) {
         if (b == null) {
             return null;

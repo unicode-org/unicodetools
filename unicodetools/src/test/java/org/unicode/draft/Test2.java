@@ -1,4 +1,22 @@
 package org.unicode.draft;
+
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UCharacterEnums.ECharacterCategory;
+import com.ibm.icu.lang.UProperty;
+import com.ibm.icu.lang.UProperty.NameChoice;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.DecimalFormat;
+import com.ibm.icu.text.MessageFormat;
+import com.ibm.icu.text.Normalizer2;
+import com.ibm.icu.text.Normalizer2.Mode;
+import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.text.PluralRules;
+import com.ibm.icu.text.StringTransform;
+import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.Currency;
+import com.ibm.icu.util.ULocale;
 import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,27 +46,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.unicode.cldr.util.Counter;
-
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UCharacterEnums.ECharacterCategory;
-import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.lang.UProperty.NameChoice;
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.DecimalFormat;
-import com.ibm.icu.text.MessageFormat;
-import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.Normalizer2.Mode;
-import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.PluralRules;
-import com.ibm.icu.text.StringTransform;
-import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.Currency;
-import com.ibm.icu.util.ULocale;
-
 
 public class Test2 {
     public static void main(String[] args) throws Exception {
@@ -60,9 +58,15 @@ public class Test2 {
         if (true) {
             return;
         }
-        final LinkedHashMap<Integer, Integer> s = getMatchingBraces(new LinkedHashMap<Integer, Integer>());
+        final LinkedHashMap<Integer, Integer> s =
+                getMatchingBraces(new LinkedHashMap<Integer, Integer>());
         for (final int startChar : s.keySet()) {
-            System.out.println(UTF16.valueOf(startChar) + "\t" + UTF16.valueOf(s.get(startChar)) + "\t" + UCharacter.getName(startChar));
+            System.out.println(
+                    UTF16.valueOf(startChar)
+                            + "\t"
+                            + UTF16.valueOf(s.get(startChar))
+                            + "\t"
+                            + UCharacter.getName(startChar));
         }
         verifyUtf8();
         getISOAliases();
@@ -72,7 +76,7 @@ public class Test2 {
         if (true) {
             return;
         }
-        System.out.println(new Date(2010-1900,12-1,10).getTime());
+        System.out.println(new Date(2010 - 1900, 12 - 1, 10).getTime());
         tryPlural();
 
         final ULocale myLocale = ULocale.FRANCE;
@@ -92,7 +96,9 @@ public class Test2 {
         foo(Enum2.b);
         timeStrings();
         final StringTransform t = Transliterator.getInstance("any-publishing");
-        final String result = t.transform("\"he said 'I won't, and can't!' as he stormed out--and slammed the door.\"");
+        final String result =
+                t.transform(
+                        "\"he said 'I won't, and can't!' as he stormed out--and slammed the door.\"");
         System.out.println(result);
     }
 
@@ -104,7 +110,9 @@ public class Test2 {
         for (int i = 1; i <= 0x10FFFF; ++i) {
             final int type = UCharacter.getType(i);
 
-            if (type == ECharacterCategory.UNASSIGNED || type == ECharacterCategory.PRIVATE_USE || type == ECharacterCategory.SURROGATE) {
+            if (type == ECharacterCategory.UNASSIGNED
+                    || type == ECharacterCategory.PRIVATE_USE
+                    || type == ECharacterCategory.SURROGATE) {
                 continue;
             }
             final String s = UTF16.valueOf(i);
@@ -130,48 +138,60 @@ public class Test2 {
         final String punctStart = "<*\t\u200e'";
         final String punctEnd = "'\u200e";
 
-
         final StringBuffer punctuation = new StringBuffer();
         int oldPunctuation = -1;
         for (final String s : sorted) {
             int type = UCharacter.getType(s.codePointAt(0));
             switch (type) {
-            case ECharacterCategory.UPPERCASE_LETTER:
-            case ECharacterCategory.LOWERCASE_LETTER:
-                type = ECharacterCategory.OTHER_LETTER;
-                break;
-            case ECharacterCategory.START_PUNCTUATION:
-            case ECharacterCategory.END_PUNCTUATION:
-            case ECharacterCategory.INITIAL_PUNCTUATION:
-            case ECharacterCategory.FINAL_PUNCTUATION:
-                type = ECharacterCategory.START_PUNCTUATION;
-            case ECharacterCategory.OTHER_PUNCTUATION:
-            case ECharacterCategory.CONNECTOR_PUNCTUATION:
-            case ECharacterCategory.DASH_PUNCTUATION:
-                if (punctuation.length() >= 50 || oldPunctuation != type && oldPunctuation != -1) {
-                    rules.append(punctStart);
-                    rules.append(punctuation);
-                    rules.append(punctEnd);
-                    if (oldPunctuation != -1) {
-                        final String punctLabel = type == ECharacterCategory.START_PUNCTUATION ? "Poc"
-                                : UCharacter.getPropertyValueName(UProperty.GENERAL_CATEGORY, oldPunctuation, NameChoice.SHORT);
-                        rules.append(" \t# " + punctLabel);
+                case ECharacterCategory.UPPERCASE_LETTER:
+                case ECharacterCategory.LOWERCASE_LETTER:
+                    type = ECharacterCategory.OTHER_LETTER;
+                    break;
+                case ECharacterCategory.START_PUNCTUATION:
+                case ECharacterCategory.END_PUNCTUATION:
+                case ECharacterCategory.INITIAL_PUNCTUATION:
+                case ECharacterCategory.FINAL_PUNCTUATION:
+                    type = ECharacterCategory.START_PUNCTUATION;
+                case ECharacterCategory.OTHER_PUNCTUATION:
+                case ECharacterCategory.CONNECTOR_PUNCTUATION:
+                case ECharacterCategory.DASH_PUNCTUATION:
+                    if (punctuation.length() >= 50
+                            || oldPunctuation != type && oldPunctuation != -1) {
+                        rules.append(punctStart);
+                        rules.append(punctuation);
+                        rules.append(punctEnd);
+                        if (oldPunctuation != -1) {
+                            final String punctLabel =
+                                    type == ECharacterCategory.START_PUNCTUATION
+                                            ? "Poc"
+                                            : UCharacter.getPropertyValueName(
+                                                    UProperty.GENERAL_CATEGORY,
+                                                    oldPunctuation,
+                                                    NameChoice.SHORT);
+                            rules.append(" \t# " + punctLabel);
+                        }
+                        rules.append("\n");
+                        punctuation.setLength(0);
                     }
-                    rules.append("\n");
-                    punctuation.setLength(0);
-                }
-                oldPunctuation = type;
-                punctuation.append(s);
-                break;
+                    oldPunctuation = type;
+                    punctuation.append(s);
+                    break;
             }
 
             if (type != oldType) {
                 if (oldType != -1) {
                     count += chars.size();
-                    System.out.println(count + "\t"
-                            + UCharacter.getPropertyValueName(UProperty.GENERAL_CATEGORY, oldType, UProperty.NameChoice.SHORT)
-                            + "\t" + chars.size()
-                            + "\t" + chars.toPattern(false));
+                    System.out.println(
+                            count
+                                    + "\t"
+                                    + UCharacter.getPropertyValueName(
+                                            UProperty.GENERAL_CATEGORY,
+                                            oldType,
+                                            UProperty.NameChoice.SHORT)
+                                    + "\t"
+                                    + chars.size()
+                                    + "\t"
+                                    + chars.toPattern(false));
                     chars.clear();
                 }
                 oldType = type;
@@ -179,10 +199,15 @@ public class Test2 {
             chars.add(s);
         }
         count += chars.size();
-        System.out.println(count + "\t"
-                + UCharacter.getPropertyValueName(UProperty.GENERAL_CATEGORY, oldType, UProperty.NameChoice.SHORT)
-                + "\t" + chars.size()
-                + "\t" + chars.toPattern(false));
+        System.out.println(
+                count
+                        + "\t"
+                        + UCharacter.getPropertyValueName(
+                                UProperty.GENERAL_CATEGORY, oldType, UProperty.NameChoice.SHORT)
+                        + "\t"
+                        + chars.size()
+                        + "\t"
+                        + chars.toPattern(false));
         if (punctuation.length() > 0) {
             rules.append(punctStart);
             rules.append(punctuation);
@@ -192,21 +217,25 @@ public class Test2 {
     }
 
     private static void addChars(StringBuffer punctuationChars, String relation, String s) {
-        punctuationChars.append(relation +
-                "\t\u200E'"
-                + s
-                + "'\u200E"
-                + "\t# "
-                + UCharacter.getName(s, " + ")
-                + "\n");
+        punctuationChars.append(
+                relation
+                        + "\t\u200E'"
+                        + s
+                        + "'\u200E"
+                        + "\t# "
+                        + UCharacter.getName(s, " + ")
+                        + "\n");
     }
 
-    static final UnicodeSet INITIAL_PUNCTUATION = new UnicodeSet("[[:Ps:][:Pi:]-[༺༼᚛‘‚‛“„‟〝]]").freeze();
+    static final UnicodeSet INITIAL_PUNCTUATION =
+            new UnicodeSet("[[:Ps:][:Pi:]-[༺༼᚛‘‚‛“„‟〝]]").freeze();
+
     private static <T extends Map<Integer, Integer>> T getMatchingBraces(T output) {
         for (final String start : INITIAL_PUNCTUATION) {
             final int startChar = start.codePointAt(0);
-            final String end = UCharacter.getStringPropertyValue(UProperty.BIDI_MIRRORING_GLYPH, startChar,
-                    UProperty.NameChoice.SHORT);
+            final String end =
+                    UCharacter.getStringPropertyValue(
+                            UProperty.BIDI_MIRRORING_GLYPH, startChar, UProperty.NameChoice.SHORT);
             if (end == null) {
                 continue;
             }
@@ -224,9 +253,9 @@ public class Test2 {
             }
             for (int j = 1; j <= 4; ++j) {
                 final byte[] bytes = new byte[j];
-                int values = (int)i;
+                int values = (int) i;
                 for (int k = 0; k < bytes.length; ++k) {
-                    bytes[k] = (byte)values;
+                    bytes[k] = (byte) values;
                     values >>= 8;
                 }
                 final String s = new String(bytes, utf8);
@@ -235,7 +264,7 @@ public class Test2 {
                 final ByteString byteString = ByteString.copyFrom(bytes);
                 if (isValidUtf8(byteString) != roundtrips) {
                     isValidUtf8(byteString);
-                    System.out.println("Failed at " + Integer.toHexString((int)i));
+                    System.out.println("Failed at " + Integer.toHexString((int) i));
                     return;
                 }
             }
@@ -273,6 +302,7 @@ public class Test2 {
         public byte byteAt(int index) {
             return bytes[index];
         }
+
         @Override
         public boolean equals(Object other) {
             final ByteString that = (ByteString) other;
@@ -299,6 +329,7 @@ public class Test2 {
     }
     /**
      * Verifies correct UTF-8. Uses Table 3-7 of the Unicode Standard.
+     *
      * @param byteString
      * @return
      */
@@ -360,7 +391,7 @@ public class Test2 {
     private static void getISOAliases() throws IOException {
         final InputStream input = Test2.class.getResourceAsStream("iana_character-sets.txt");
         final BufferedReader in = new BufferedReader(new InputStreamReader(input));
-        final Map<String,Set<String>> data = new TreeMap(Collator.getInstance());
+        final Map<String, Set<String>> data = new TreeMap(Collator.getInstance());
         Set<String> currentSet = new LinkedHashSet();
         String currentName = null;
         final Matcher nameMatcher = Pattern.compile("(Alias|Name):\\s+(\\S+).*").matcher("");
@@ -410,7 +441,7 @@ public class Test2 {
         final CharBuffer returnCharBuffer = CharBuffer.wrap(returnChars);
         final int[][] iso8859Results = new int[16][256];
         final Counter<String>[] counter = new Counter[16];
-        final Map<String,String>[] samples = new HashMap[16];
+        final Map<String, String>[] samples = new HashMap[16];
 
         for (final String iso8859 : charsets.keySet()) {
             if (!iso8859.startsWith("ISO-8859-")) {
@@ -420,7 +451,13 @@ public class Test2 {
             iso8859Results[numb] = new int[256];
             counter[numb] = new Counter<String>();
             samples[numb] = new HashMap();
-            fillArray(charsets, iso8859, byteBuffer, returnCharBuffer, returnChars, iso8859Results[numb]);
+            fillArray(
+                    charsets,
+                    iso8859,
+                    byteBuffer,
+                    returnCharBuffer,
+                    returnChars,
+                    iso8859Results[numb]);
         }
         final int[] array256 = new int[256];
         final Set<String> seen = new HashSet();
@@ -444,11 +481,11 @@ public class Test2 {
                         score++;
                     } else {
                         sample.append(Integer.toHexString(j).toUpperCase())
-                        .append("-")
-                        .appendCodePoint(iso8859Results[numb][j])
-                        .append("-")
-                        .appendCodePoint(array256[j])
-                        .append(" ");
+                                .append("-")
+                                .appendCodePoint(iso8859Results[numb][j])
+                                .append("-")
+                                .appendCodePoint(array256[j])
+                                .append(" ");
                     }
                 }
                 samples[numb].put(name, sample.toString());
@@ -463,14 +500,30 @@ public class Test2 {
                 final long score = counter[numb].get(name);
                 if (score > 200) {
                     final Charset charset = charsets.get(name);
-                    System.out.println("iso-8859-" + numb + "\t" + score + "\t" + name + "\t" + charset.aliases() + "\t" + samples[numb].get(name));
+                    System.out.println(
+                            "iso-8859-"
+                                    + numb
+                                    + "\t"
+                                    + score
+                                    + "\t"
+                                    + name
+                                    + "\t"
+                                    + charset.aliases()
+                                    + "\t"
+                                    + samples[numb].get(name));
                 }
             }
             System.out.println();
         }
     }
 
-    private static void fillArray(SortedMap<String, Charset> charsets, String iso8859, ByteBuffer byteBuffer, CharBuffer returnCharBuffer, char[] returnChars, int[] results) {
+    private static void fillArray(
+            SortedMap<String, Charset> charsets,
+            String iso8859,
+            ByteBuffer byteBuffer,
+            CharBuffer returnCharBuffer,
+            char[] returnChars,
+            int[] results) {
         final int[] array256 = results;
         final CharsetDecoder iso8859Decoder = getDecoder(charsets, iso8859);
         for (int i = 0x20; i < 256; ++i) {
@@ -478,12 +531,14 @@ public class Test2 {
                 continue;
             }
             byteBuffer.clear();
-            byteBuffer.put((byte)i);
+            byteBuffer.put((byte) i);
             byteBuffer.flip();
             returnCharBuffer.clear();
             try {
-                final CoderResult decodeResult = iso8859Decoder.decode(byteBuffer, returnCharBuffer, true);
-                array256[i] = decodeResult.isError() ? 0xFFFD : Character.codePointAt(returnChars, 0);
+                final CoderResult decodeResult =
+                        iso8859Decoder.decode(byteBuffer, returnCharBuffer, true);
+                array256[i] =
+                        decodeResult.isError() ? 0xFFFD : Character.codePointAt(returnChars, 0);
             } catch (final Exception e) {
                 array256[i] = -1;
             }
@@ -492,21 +547,22 @@ public class Test2 {
 
     static CharsetDecoder getDecoder(SortedMap<String, Charset> charsets, String name) {
         final Charset charset = charsets.get(name);
-        final CharsetDecoder decoder = charset.newDecoder()
-                .onMalformedInput(CodingErrorAction.REPORT)
-                .onUnmappableCharacter(CodingErrorAction.REPORT);
+        final CharsetDecoder decoder =
+                charset.newDecoder()
+                        .onMalformedInput(CodingErrorAction.REPORT)
+                        .onUnmappableCharacter(CodingErrorAction.REPORT);
         return decoder;
     }
-
-
 
     private static void trySortedListCountries() {
         final ULocale[] list = {ULocale.ENGLISH, ULocale.FRENCH, ULocale.GERMAN};
         for (final ULocale usersLocale : list) {
 
-            System.out.println("\n*** User's Locale = " + usersLocale.getDisplayName(ULocale.ENGLISH) + "\n");
+            System.out.println(
+                    "\n*** User's Locale = " + usersLocale.getDisplayName(ULocale.ENGLISH) + "\n");
 
-            final TreeMap<String, String> mapNameToCode = new TreeMap<String, String>(com.ibm.icu.text.Collator.getInstance(usersLocale));
+            final TreeMap<String, String> mapNameToCode =
+                    new TreeMap<String, String>(com.ibm.icu.text.Collator.getInstance(usersLocale));
 
             for (String countryCode : ULocale.getISOCountries()) {
                 countryCode = countryCode.toLowerCase(Locale.ENGLISH);
@@ -514,15 +570,22 @@ public class Test2 {
                 mapNameToCode.put(name, countryCode);
             }
 
-            assert(list.length == mapNameToCode.size());
+            assert (list.length == mapNameToCode.size());
 
             for (final String name : mapNameToCode.keySet()) {
                 final String countryCode = mapNameToCode.get(name);
                 final String googleDomain = "http://www.google." + countryCode;
-                // the above line is just a stand-in for getting the actual domain, such as google.co.uk
-                System.out.println(" <a href='" + googleDomain + "/'>\n  " +
-                        "<span class='asm'></span>" + googleDomain +
-                        "<br>" + makeHtmlSafe(name) + "</a>");
+                // the above line is just a stand-in for getting the actual domain, such as
+                // google.co.uk
+                System.out.println(
+                        " <a href='"
+                                + googleDomain
+                                + "/'>\n  "
+                                + "<span class='asm'></span>"
+                                + googleDomain
+                                + "<br>"
+                                + makeHtmlSafe(name)
+                                + "</a>");
             }
         }
     }
@@ -531,53 +594,68 @@ public class Test2 {
         final ULocale[] list = {ULocale.ENGLISH, ULocale.FRENCH, ULocale.GERMAN, ULocale.JAPANESE};
         for (final ULocale pageLocale : list) {
 
-            final TreeMap<String, String> mapNameToCode = new TreeMap<String, String>(com.ibm.icu.text.Collator.getInstance(pageLocale));
+            final TreeMap<String, String> mapNameToCode =
+                    new TreeMap<String, String>(com.ibm.icu.text.Collator.getInstance(pageLocale));
             for (final ULocale menuItem : list) {
                 if (menuItem.equals(pageLocale)) {
                     continue;
                 }
                 final String inPageLocale = menuItem.getDisplayName(pageLocale);
                 final String inSelf = menuItem.getDisplayName(menuItem);
-                final String name = inPageLocale.equals(inSelf) ? inPageLocale : inPageLocale + " - " + inSelf;
+                final String name =
+                        inPageLocale.equals(inSelf) ? inPageLocale : inPageLocale + " - " + inSelf;
                 mapNameToCode.put(name, menuItem.toLanguageTag());
             }
 
-            System.out.println("<select> <!-- User's Locale = " + pageLocale.getDisplayName(ULocale.ENGLISH) + "-->");
-            System.out.println(" <option value='" + pageLocale.toLanguageTag() + "'>" + makeHtmlSafe(pageLocale.getDisplayName(pageLocale)) + "</option>");
+            System.out.println(
+                    "<select> <!-- User's Locale = "
+                            + pageLocale.getDisplayName(ULocale.ENGLISH)
+                            + "-->");
+            System.out.println(
+                    " <option value='"
+                            + pageLocale.toLanguageTag()
+                            + "'>"
+                            + makeHtmlSafe(pageLocale.getDisplayName(pageLocale))
+                            + "</option>");
             for (final String name : mapNameToCode.keySet()) {
-                System.out.println(" <option value='" + mapNameToCode.get(name) + "'>" + makeHtmlSafe(name) + "</option>");
+                System.out.println(
+                        " <option value='"
+                                + mapNameToCode.get(name)
+                                + "'>"
+                                + makeHtmlSafe(name)
+                                + "</option>");
             }
-            System.out.println(" <option value='more'>" + makeHtmlSafe("[translated 'More…']") + "</option>");
+            System.out.println(
+                    " <option value='more'>" + makeHtmlSafe("[translated 'More…']") + "</option>");
             System.out.println("</select>\n");
         }
     }
-
 
     private static String makeHtmlSafe(String name) {
         return name;
     }
 
     private static void tryPlural() {
-        //MessageFormat mf = new MessageFormat("{0, plural, one {{1} rated this place} other {{1} and # others rated this place}}}");
+        // MessageFormat mf = new MessageFormat("{0, plural, one {{1} rated this place} other {{1}
+        // and # others rated this place}}}");
         final String[] patterns = {
-                "{NUM_PEOPLE,choice,"
-                        + "0#nobody likes"
-                        + "|1#{PERSON} likes"
-                        + "|2#{PERSON} and {PERSON2} like"
-                        + "|3#{NUM_OTHERS, plural, one {{PERSON}} other {{PERSON}, {PERSON2} and # others}}"
-                        + "} this place.",
-                        "{NUM_OTHERS, plural, one {{PERSON}} other {{PERSON} and # others}} rated this place.",
-                        "There {NUM_PEOPLE,choice,0#are no files|1#is one file|1&lt;are {0,number,integer} files}.",
-
+            "{NUM_PEOPLE,choice,"
+                    + "0#nobody likes"
+                    + "|1#{PERSON} likes"
+                    + "|2#{PERSON} and {PERSON2} like"
+                    + "|3#{NUM_OTHERS, plural, one {{PERSON}} other {{PERSON}, {PERSON2} and # others}}"
+                    + "} this place.",
+            "{NUM_OTHERS, plural, one {{PERSON}} other {{PERSON} and # others}} rated this place.",
+            "There {NUM_PEOPLE,choice,0#are no files|1#is one file|1&lt;are {0,number,integer} files}.",
         };
         for (final String pattern : patterns) {
             final MessageFormat mf = new MessageFormat(pattern);
             mf.setLocale(ULocale.ENGLISH);
-            final Map<String,Object> arguments = new HashMap<String,Object>();
+            final Map<String, Object> arguments = new HashMap<String, Object>();
             arguments.put("PERSON", "John");
             arguments.put("PERSON2", "Mary");
             final StringBuffer result = new StringBuffer();
-            final FieldPosition pos = new FieldPosition(0);// what is FP for?
+            final FieldPosition pos = new FieldPosition(0); // what is FP for?
             for (int i = 0; i < 5; ++i) {
                 arguments.put("NUM_PEOPLE", i);
                 arguments.put("NUM_OTHERS", 3);
@@ -586,7 +664,6 @@ public class Test2 {
                 final StringBuffer formatted = mf.format(arguments, result, null);
                 System.out.println(i + "\t" + formatted);
             }
-
         }
         for (final ULocale locale : PluralRules.getAvailableULocales()) {
             final PluralRules pr = PluralRules.forLocale(locale);
@@ -609,11 +686,16 @@ public class Test2 {
             final String oldNegative = nf.format(-0.1234);
             nf = ensurePlus(nf);
             final String newPositive = nf.format(0.1234);
-            System.out.println(locale + "\t" + locale.getDisplayName(ULocale.ENGLISH)
-                    + "\t" + newPositive
-                    + "\t" + oldPositive
-                    + "\t" + oldNegative
-                    );
+            System.out.println(
+                    locale
+                            + "\t"
+                            + locale.getDisplayName(ULocale.ENGLISH)
+                            + "\t"
+                            + newPositive
+                            + "\t"
+                            + oldPositive
+                            + "\t"
+                            + oldNegative);
         }
     }
 
@@ -640,8 +722,6 @@ public class Test2 {
             // TODO Auto-generated method stub
             return 0;
         }
-
-
     }
 
     public LanguageCode fromOther(ULocale uLocale) {
@@ -671,7 +751,7 @@ public class Test2 {
                 if (lastUnder < 0) {
                     throw e;
                 }
-                localeString = localeString.substring(0,lastUnder);
+                localeString = localeString.substring(0, lastUnder);
             }
         }
     }
@@ -693,20 +773,23 @@ public class Test2 {
         final double time1 = time(s1, data1, 100);
         System.out.println("Hash\t" + time1);
         final double time2 = time(s1, data2, 100);
-        System.out.println("Hash\t" + time2 + "\t\t" + 100*time2/time1 + "%");
+        System.out.println("Hash\t" + time2 + "\t\t" + 100 * time2 / time1 + "%");
     }
 
     static class Hasher implements CharSequence, Comparable<CharSequence> {
         CharSequence s;
         int hashCode;
+
         Hasher(CharSequence s) {
             this.s = s;
             hashCode = s.hashCode();
         }
+
         @Override
         public char charAt(int index) {
             return s.charAt(index);
         }
+
         @Override
         public int compareTo(CharSequence other) {
             final int length = s.length();
@@ -730,19 +813,23 @@ public class Test2 {
         public boolean equals(CharSequence anObject) {
             return s.equals(anObject);
         }
+
         @Override
         public int hashCode() {
             return s.hashCode();
         }
+
         @Override
         public int length() {
             return s.length();
         }
+
         @Override
         public CharSequence subSequence(int start, int end) {
             return s.subSequence(start, end);
         }
-    };
+    }
+    ;
 
     private static double time(Set<CharSequence> s1, List<CharSequence> data, int count) {
         final double start = System.currentTimeMillis();
@@ -754,19 +841,29 @@ public class Test2 {
                 in ^= s1.contains(item);
             }
         }
-        return (System.currentTimeMillis() - start)/count;
+        return (System.currentTimeMillis() - start) / count;
     }
+
     static class LanguageCode {
 
         public static LanguageCode forString(String string) {
             // TODO Auto-generated method stub
             return null;
         }
-
     }
 
-    enum Enum1 {a, b, c}
-    enum Enum2 {b, c, d}
+    enum Enum1 {
+        a,
+        b,
+        c
+    }
+
+    enum Enum2 {
+        b,
+        c,
+        d
+    }
+
     static void foo(Enum x) {
         System.out.println(x.compareTo(Enum2.b));
         System.out.println(x.name());
@@ -776,8 +873,5 @@ public class Test2 {
         System.out.println(Enum.valueOf(Enum2.class, "b"));
     }
 
-    static class InvalidLanguageCode extends RuntimeException {
-
-    }
-
+    static class InvalidLanguageCode extends RuntimeException {}
 }

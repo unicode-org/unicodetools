@@ -1,13 +1,10 @@
-/**
- * 
- */
+/** */
 package org.unicode.text.UCA;
 
+import com.ibm.icu.text.UnicodeSet;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.ibm.icu.text.UnicodeSet;
 
 public class UCA_Statistics {
 
@@ -22,25 +19,24 @@ public class UCA_Statistics {
     private final RoBitSet secondarySetRo = new RoBitSet(secondarySet);
     private final RoBitSet tertiarySetRo = new RoBitSet(tertiarySet);
 
-    Map<Integer,StringBuilder> representativePrimary = new HashMap<Integer,StringBuilder>();
-    Map<Integer,StringBuilder> representativePrimarySeconds = new HashMap<Integer,StringBuilder>();
+    Map<Integer, StringBuilder> representativePrimary = new HashMap<Integer, StringBuilder>();
+    Map<Integer, StringBuilder> representativePrimarySeconds =
+            new HashMap<Integer, StringBuilder>();
 
-    /**
-     * For recording statistics
-     */
+    /** For recording statistics */
     int count1 = 0, count2 = 0, count3 = 0, max2 = 0, max3 = 0;
+
     int oldKey1 = -1, oldKey2 = -1, oldKey3 = -1;
     UnicodeSet found = new UnicodeSet();
 
     boolean haveUnspecified = false;
     UnicodeSet unspecified = new UnicodeSet();
-    UnicodeSet variantSecondaries = new UnicodeSet(0x0153,0x0154); // TODO, fix
-    UnicodeSet digitSecondaries = new UnicodeSet(0x155,0x017F); // TODO, fix
+    UnicodeSet variantSecondaries = new UnicodeSet(0x0153, 0x0154); // TODO, fix
+    UnicodeSet digitSecondaries = new UnicodeSet(0x155, 0x017F); // TODO, fix
     UnicodeSet homelessSecondaries;
-    /**
-     * Just for statistics
-     */
+    /** Just for statistics */
     int lastUniqueVariable = 0;
+
     int renumberedVariable = 50;
     char MIN1 = '\uFFFF'; // start large; will be reset as table is built
     char MIN2 = '\uFFFF'; // start large; will be reset as table is built
@@ -55,30 +51,37 @@ public class UCA_Statistics {
     public RoBitSet getPrimarySet() {
         return primarySetRo;
     }
+
     public RoBitSet getSecondarySet() {
         return secondarySetRo;
     }
+
     public RoBitSet getTertiarySet() {
         return tertiarySetRo;
     }
 
     // HACK for CJK
-    //secondarySet.set(0x0040);
+    // secondarySet.set(0x0040);
 
     public static class RoBitSet {
         private final BitSet guts;
+
         public RoBitSet(BitSet bitSetToProtect) {
             guts = bitSetToProtect;
         }
+
         public int length() {
             return guts.length();
         }
+
         public boolean get(int i) {
             return guts.get(i);
         }
+
         public int nextSetBit(int i) {
             return guts.nextSetBit(i);
         }
+
         public int size() {
             return guts.size();
         }
@@ -87,9 +90,11 @@ public class UCA_Statistics {
     public void setPrimary(int key1) {
         primarySet.set(key1);
     }
+
     public void setSecondary(int key2) {
         secondarySet.set(key2);
     }
+
     public void setTertiary(int key3) {
         tertiarySet.set(key3);
     }

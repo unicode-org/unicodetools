@@ -1,15 +1,14 @@
 package org.unicode.tools.emoji;
 
+import com.ibm.icu.lang.CharSequences;
+import com.ibm.icu.text.UnicodeSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.text.UnicodeSet;
-
 public final class EmojiIterator implements Iterable<String>, Iterator<String> {
     private static UnicodeSet COMBINING = new UnicodeSet("[:M:]").freeze();
-    private static UnicodeSet TAGS = new UnicodeSet(0xE0020,0xE007F).freeze();
+    private static UnicodeSet TAGS = new UnicodeSet(0xE0020, 0xE007F).freeze();
 
     private int[] line;
     private int pos;
@@ -26,8 +25,9 @@ public final class EmojiIterator implements Iterable<String>, Iterator<String> {
     }
     /**
      * Resets newLabel if there is a label.
+     *
      * @param line
-     * @return 
+     * @return
      */
     public EmojiIterator set(String line) {
         line = Emoji.UNESCAPE.transform(line);
@@ -35,12 +35,16 @@ public final class EmojiIterator implements Iterable<String>, Iterator<String> {
         int tabPos = line.indexOf('\t');
         if (tabPos >= 0) {
             newLabel.clear();
-            String[] temp = line.substring(0,tabPos).trim().split(",\\s*");
+            String[] temp = line.substring(0, tabPos).trim().split(",\\s*");
             for (String part : temp) {
                 if (Emoji.KEYWORD_CHARS.containsAll(part)) {
                     newLabel.add(part);
                 } else {
-                    throw new IllegalArgumentException("Bad label format before tab: " + line + " — " + new UnicodeSet().addAll(part).removeAll(Emoji.KEYWORD_CHARS));
+                    throw new IllegalArgumentException(
+                            "Bad label format before tab: "
+                                    + line
+                                    + " — "
+                                    + new UnicodeSet().addAll(part).removeAll(Emoji.KEYWORD_CHARS));
                 }
             }
             line = line.substring(tabPos + 1);
@@ -52,6 +56,7 @@ public final class EmojiIterator implements Iterable<String>, Iterator<String> {
 
     /**
      * Gets the next sequence, either single code points or emoji sequences.
+     *
      * @return
      */
     public String next() {
@@ -81,7 +86,7 @@ public final class EmojiIterator implements Iterable<String>, Iterator<String> {
                 }
                 current = line[pos++];
             }
-            
+
             int lastTag = -1;
             while (TAGS.contains(current)) {
                 lastTag = current;
@@ -117,9 +122,9 @@ public final class EmojiIterator implements Iterable<String>, Iterator<String> {
         }
         // remove trailing emoji variant
         if (stripTrailingStyleVariants) {
-            final char finalChar = result.charAt(result.length()-1);
+            final char finalChar = result.charAt(result.length() - 1);
             if (finalChar == Emoji.EMOJI_VARIANT || finalChar == Emoji.TEXT_VARIANT) {
-                result.setLength(result.length()-1);
+                result.setLength(result.length() - 1);
             }
         }
         return result.toString();
@@ -138,13 +143,13 @@ public final class EmojiIterator implements Iterable<String>, Iterator<String> {
     // quick test.
     public static void main(String[] args) {
         String[] tests = {
-                " couple\t👩‍❤️‍💋‍👩",
-                " flag, junk\t🇰🇷🦄👦🏻 ㊗\uFE0F㊗\uFE0F",
-                " face \t  😀  😁  😂  😃  😄  😅  😆  😉   ",
-                " 😊  😋  😎  😍  😘  😗 😙  😚",
-                " unicorn \t  🦄",
-                " cheese  \t🧀🍕",
-                " no bullying, witness  \t  👁‍🗨",
+            " couple\t👩‍❤️‍💋‍👩",
+            " flag, junk\t🇰🇷🦄👦🏻 ㊗\uFE0F㊗\uFE0F",
+            " face \t  😀  😁  😂  😃  😄  😅  😆  😉   ",
+            " 😊  😋  😎  😍  😘  😗 😙  😚",
+            " unicorn \t  🦄",
+            " cheese  \t🧀🍕",
+            " no bullying, witness  \t  👁‍🗨",
         };
         EmojiIterator ei = new EmojiIterator(EmojiData.of(Emoji.VERSION_LAST_RELEASED), true);
         for (String line : tests) {

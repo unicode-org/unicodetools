@@ -1,15 +1,12 @@
 package org.unicode.draft;
-import java.util.Comparator;
 
+import java.util.Comparator;
 
 public class Compare {
 
-    public static Compare
-    START = new Compare();
+    public static Compare START = new Compare();
 
-    private static Compare
-    GREATER = new CompareDone(1),
-    LESS = new CompareDone(-1);
+    private static Compare GREATER = new CompareDone(1), LESS = new CompareDone(-1);
 
     public <T extends Comparable<T>> Compare compare(T a, T b) {
         if (a == null) {
@@ -43,7 +40,6 @@ public class Compare {
         return GREATER;
     }
 
-
     public Compare compare(int a, int b) {
         if (a == b) {
             return this;
@@ -60,24 +56,28 @@ public class Compare {
 
     private Compare() {} // hide constructor
 
-    static private class CompareDone extends Compare {
+    private static class CompareDone extends Compare {
         private final int result;
 
         private CompareDone(int result) {
             this.result = result;
         }
+
         @Override
         public int done() {
             return result;
         }
+
         @Override
         public Compare compare(int a, int b) {
             return this;
         }
+
         @Override
         public <T extends Comparable<T>> Compare compare(T a, T b) {
             return this;
         }
+
         public <T extends Comparable<T>> Compare compare(T a, T b, Comparator<T> comparator) {
             return this;
         }
@@ -95,18 +95,14 @@ public class Compare {
 
         @Override
         public int compareTo(Foo other) {
-            return Compare.START
-                    .compare(a, other.a)
-                    .compare(b, other.b)
-                    .compare(c, other.c)
-                    .done();
+            return Compare.START.compare(a, other.a).compare(b, other.b).compare(c, other.c).done();
         }
     }
 
     public static void main(String[] args) {
-        final Foo a = new Foo(1,2,"ab");
-        final Foo b = new Foo(0,2,"ab");
-        final Foo c = new Foo(1,2,"ab");
+        final Foo a = new Foo(1, 2, "ab");
+        final Foo b = new Foo(0, 2, "ab");
+        final Foo c = new Foo(1, 2, "ab");
         System.out.println(a.compareTo(b));
         System.out.println(a.compareTo(c));
     }

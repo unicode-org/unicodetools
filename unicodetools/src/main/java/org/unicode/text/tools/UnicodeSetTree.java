@@ -1,12 +1,11 @@
 package org.unicode.text.tools;
 
+import com.ibm.icu.text.UnicodeSet;
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-
-import com.ibm.icu.text.UnicodeSet;
 
 public class UnicodeSetTree<T> {
     static boolean SHOW = false;
@@ -14,9 +13,11 @@ public class UnicodeSetTree<T> {
     static class Node {
         final UnicodeSet parent;
         final Set<Node> children = new LinkedHashSet<>();
+
         Node(UnicodeSet set) {
             parent = set;
         }
+
         public boolean add(UnicodeSet entry) {
             return add(new Node(entry));
         }
@@ -35,9 +36,11 @@ public class UnicodeSetTree<T> {
                 if (!didAdd) { // only add as child if not in any children already
                     if (SHOW) {
                         System.out.println(
-                                (parent == null ? "null" : parent.toPattern(false)) 
-                                + "\t" + show(children) 
-                                + "\t" + entry.parent.toPattern(false));
+                                (parent == null ? "null" : parent.toPattern(false))
+                                        + "\t"
+                                        + show(children)
+                                        + "\t"
+                                        + entry.parent.toPattern(false));
                     }
                     children.add(entry);
                 }
@@ -56,22 +59,24 @@ public class UnicodeSetTree<T> {
             }
             return b.toString();
         }
+
         @Override
         public String toString() {
             return parent + " =>\n" + children;
         }
     }
 
-    private static final Comparator<UnicodeSet> LONGEST = new Comparator<UnicodeSet>() {
-        @Override
-        public int compare(UnicodeSet o1, UnicodeSet o2) {
-            return o1.compareTo(o2,UnicodeSet.ComparisonStyle.LONGER_FIRST);
-        }
-    };
+    private static final Comparator<UnicodeSet> LONGEST =
+            new Comparator<UnicodeSet>() {
+                @Override
+                public int compare(UnicodeSet o1, UnicodeSet o2) {
+                    return o1.compareTo(o2, UnicodeSet.ComparisonStyle.LONGER_FIRST);
+                }
+            };
 
     final Node base = new Node(new UnicodeSet());
 
-    final Map<UnicodeSet,T> data = new TreeMap<UnicodeSet,T>(LONGEST);
+    final Map<UnicodeSet, T> data = new TreeMap<UnicodeSet, T>(LONGEST);
 
     static interface Merger<T> {
         T merge(T a, T b);
@@ -87,7 +92,8 @@ public class UnicodeSetTree<T> {
         T old = data.get(set);
         if (old != null) {
             name = merger.merge(old, name);
-        };
+        }
+        ;
         data.put(set, name);
         base.parent.addAll(set);
         return this;
@@ -112,6 +118,7 @@ public class UnicodeSetTree<T> {
 
     static interface Visitor {
         public <T> void show(UnicodeSetTree<T> tree, Node node, int indent);
+
         public void showRemainder(UnicodeSet remainder, int indent);
     }
 

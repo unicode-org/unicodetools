@@ -1,19 +1,16 @@
 package org.unicode.idna;
 
-import java.util.List;
-import java.util.Set;
-import java.util.regex.Pattern;
-
-import org.unicode.text.utility.Settings;
-
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableSortedSet;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
-
+import java.util.List;
+import java.util.Set;
+import java.util.regex.Pattern;
 import org.unicode.jsp.FileUtilities;
+import org.unicode.text.utility.Settings;
 
 public class Uts46 extends Idna {
 
@@ -28,7 +25,8 @@ public class Uts46 extends Idna {
         mappings.freeze();
         mappings_display.freeze();
         validSet = new UnicodeSet(types.getSet(IdnaType.valid)).freeze();
-        validSet_transitional = new UnicodeSet(validSet).addAll(types.getSet(IdnaType.deviation)).freeze();
+        validSet_transitional =
+                new UnicodeSet(validSet).addAll(types.getSet(IdnaType.deviation)).freeze();
         checkPunycodeValidity = true;
     } // private
 
@@ -46,24 +44,24 @@ public class Uts46 extends Idna {
 
             String value;
             switch (type) {
-            case mapped:
-                value = Utility.fromHex(items[2], 4, " ");
-                break;
-            case deviation:
-                if (items.length > 2) {
+                case mapped:
                     value = Utility.fromHex(items[2], 4, " ");
-                } else {
+                    break;
+                case deviation:
+                    if (items.length > 2) {
+                        value = Utility.fromHex(items[2], 4, " ");
+                    } else {
+                        value = "";
+                    }
+                    break;
+                case ignored:
                     value = "";
-                }
-                break;
-            case ignored:
-                value = "";
-                break;
-            case disallowed:
-            case valid:
-            default:
-                value = null;
-                break;
+                    break;
+                case disallowed:
+                case valid:
+                default:
+                    value = null;
+                    break;
             }
             if (mappings != null) {
                 mappings.putAll(start, end, value);
@@ -163,25 +161,26 @@ public class Uts46 extends Idna {
      * NSM.
      */
 
-    static final UnicodeSet R_AL_AN                       = new UnicodeSet("[[:bc=R:][:bc=AL:][:bc=AN:]]").freeze();
-    static final UnicodeSet R_AL                          = new UnicodeSet("[[:bc=R:][:bc=AL:]]").freeze();
-    static final UnicodeSet L                             = new UnicodeSet("[[:bc=L:]]").freeze();
-    static final UnicodeSet ES_CS_ET_ON_BN_NSM            = new UnicodeSet("[[:bc=ES:][:bc=CS:][:bc=ET:][:bc=ON:][:bc=BN:][:bc=NSM:]]").freeze();
-    static final UnicodeSet R_AL_AN_EN                    = new UnicodeSet("[[:bc=R:][:bc=AL:][:bc=AN:][:bc=EN:]]").freeze();
-    static final UnicodeSet R_AL_AN_EN_ES_CS_ET_ON_BN_NSM = new UnicodeSet(R_AL_AN_EN).addAll(ES_CS_ET_ON_BN_NSM).freeze();
-    static final UnicodeSet L_EN                          = new UnicodeSet("[[:bc=L:][:bc=EN:]]").freeze();
-    static final UnicodeSet L_EN_ES_CS_ET_ON_BN_NSM       = new UnicodeSet(L_EN).addAll(ES_CS_ET_ON_BN_NSM).freeze();
-    static final UnicodeSet EN                            = new UnicodeSet("[[:bc=EN:]]").freeze();
-    static final UnicodeSet AN                            = new UnicodeSet("[[:bc=AN:]]").freeze();
-    static final UnicodeSet NSM                           = new UnicodeSet("[[:bc=NSM:]]").freeze();
+    static final UnicodeSet R_AL_AN = new UnicodeSet("[[:bc=R:][:bc=AL:][:bc=AN:]]").freeze();
+    static final UnicodeSet R_AL = new UnicodeSet("[[:bc=R:][:bc=AL:]]").freeze();
+    static final UnicodeSet L = new UnicodeSet("[[:bc=L:]]").freeze();
+    static final UnicodeSet ES_CS_ET_ON_BN_NSM =
+            new UnicodeSet("[[:bc=ES:][:bc=CS:][:bc=ET:][:bc=ON:][:bc=BN:][:bc=NSM:]]").freeze();
+    static final UnicodeSet R_AL_AN_EN =
+            new UnicodeSet("[[:bc=R:][:bc=AL:][:bc=AN:][:bc=EN:]]").freeze();
+    static final UnicodeSet R_AL_AN_EN_ES_CS_ET_ON_BN_NSM =
+            new UnicodeSet(R_AL_AN_EN).addAll(ES_CS_ET_ON_BN_NSM).freeze();
+    static final UnicodeSet L_EN = new UnicodeSet("[[:bc=L:][:bc=EN:]]").freeze();
+    static final UnicodeSet L_EN_ES_CS_ET_ON_BN_NSM =
+            new UnicodeSet(L_EN).addAll(ES_CS_ET_ON_BN_NSM).freeze();
+    static final UnicodeSet EN = new UnicodeSet("[[:bc=EN:]]").freeze();
+    static final UnicodeSet AN = new UnicodeSet("[[:bc=AN:]]").freeze();
+    static final UnicodeSet NSM = new UnicodeSet("[[:bc=NSM:]]").freeze();
     /**
      * Checks a string for IDNA2008 bidi errors. label must not be empty
      *
-     * @param domainName
-     *            the string to be tested
-     * @param errors
-     *            if an error is found, then an error string is added to this
-     *            set.
+     * @param domainName the string to be tested
+     * @param errors if an error is found, then an error string is added to this set.
      * @return true if errors are found, otherwise false.
      */
     public static boolean hasBidiError(String label, Set<Errors> errors) {
@@ -248,14 +247,14 @@ public class Uts46 extends Idna {
     }
 
     static final UnicodeSet JOINER_SET = new UnicodeSet("[\u200C\u200D]");
-    static final UnicodeSet VIRAMAS    = new UnicodeSet("[:ccc=virama:]");
-    static final UnicodeSet T          = new UnicodeSet("[:jt=T:]");
-    static final UnicodeSet L_D        = new UnicodeSet("[[:jt=L:][:jt=D:]]");
-    static final UnicodeSet R_D        = new UnicodeSet("[[:jt=R:][:jt=D:]]");
+    static final UnicodeSet VIRAMAS = new UnicodeSet("[:ccc=virama:]");
+    static final UnicodeSet T = new UnicodeSet("[:jt=T:]");
+    static final UnicodeSet L_D = new UnicodeSet("[[:jt=L:][:jt=D:]]");
+    static final UnicodeSet R_D = new UnicodeSet("[[:jt=R:][:jt=D:]]");
 
-    static final Pattern    JOINERS    = Pattern.compile("[\u200C\u200D]");
-    static final int        NON_JOINER = 0x200C;
-    static final int        JOINER     = 0x200D;
+    static final Pattern JOINERS = Pattern.compile("[\u200C\u200D]");
+    static final int NON_JOINER = 0x200C;
+    static final int JOINER = 0x200D;
 
     // U+200C ( ) ZERO WIDTH NON-JOINER
     // U+200D ( ) ZERO WIDTH JOINER
@@ -308,7 +307,11 @@ public class Uts46 extends Idna {
                 if (beforeT > 0) {
                     final int previousChar = Character.codePointBefore(domain, beforeT);
                     if (L_D.contains(previousChar)) {
-                        final int afterT = (i + 1) + T.span(domain.subSequence(i + 1, domain.length()), SpanCondition.CONTAINED);
+                        final int afterT =
+                                (i + 1)
+                                        + T.span(
+                                                domain.subSequence(i + 1, domain.length()),
+                                                SpanCondition.CONTAINED);
                         if (afterT < domain.length()) {
                             final int nextChar = Character.codePointAt(domain, afterT);
                             if (R_D.contains(nextChar)) {
@@ -370,26 +373,27 @@ public class Uts46 extends Idna {
         }
     }
 
-    static final UnicodeSet     ASCII     = new UnicodeSet("[\\u0000-\\u007F]").freeze();
+    static final UnicodeSet ASCII = new UnicodeSet("[\\u0000-\\u007F]").freeze();
 
     public enum IdnaChoice {
-        transitional, nontransitional
+        transitional,
+        nontransitional
     }
 
-    public static final int UIDNA_ERROR_INVALID_ACE_LABEL      = 1;
-    public static final int UIDNA_ERROR_DISALLOWED             = 2;
-    public static final int UIDNA_ERROR_PUNYCODE               = 4;
-    public static final int UIDNA_ERROR_CONTEXTJ               = 8;
-    public static final int UIDNA_ERROR_LABEL_TOO_LONG         = 16;
-    public static final int UIDNA_ERROR_DOMAIN_NAME_TOO_LONG   = 32;
-    public static final int UIDNA_ERROR_EMPTY_LABEL            = 64;
-    public static final int UIDNA_ERROR_LEADING_HYPHEN         = 128;
-    public static final int UIDNA_ERROR_HYPHEN_3_4             = 256;
-    public static final int UIDNA_ERROR_TRAILING_HYPHEN        = 512;
+    public static final int UIDNA_ERROR_INVALID_ACE_LABEL = 1;
+    public static final int UIDNA_ERROR_DISALLOWED = 2;
+    public static final int UIDNA_ERROR_PUNYCODE = 4;
+    public static final int UIDNA_ERROR_CONTEXTJ = 8;
+    public static final int UIDNA_ERROR_LABEL_TOO_LONG = 16;
+    public static final int UIDNA_ERROR_DOMAIN_NAME_TOO_LONG = 32;
+    public static final int UIDNA_ERROR_EMPTY_LABEL = 64;
+    public static final int UIDNA_ERROR_LEADING_HYPHEN = 128;
+    public static final int UIDNA_ERROR_HYPHEN_3_4 = 256;
+    public static final int UIDNA_ERROR_TRAILING_HYPHEN = 512;
     public static final int UIDNA_ERROR_LEADING_COMBINING_MARK = 1024;
-    public static final int UIDNA_ERROR_BIDI                   = 2048;
-    public static final int UIDNA_ERROR_LABEL_HAS_DOT          = 4096;
-    public static final int UIDNA_NOT_IDNA2008                 = 8192;
+    public static final int UIDNA_ERROR_BIDI = 2048;
+    public static final int UIDNA_ERROR_LABEL_HAS_DOT = 4096;
+    public static final int UIDNA_NOT_IDNA2008 = 8192;
 
     public enum Errors {
         B1(UIDNA_ERROR_BIDI),
@@ -441,23 +445,25 @@ public class Uts46 extends Idna {
     }
 
     /**
-     * Returns number of new errors. Must already be in canonical form, unicode with period separators.
+     * Returns number of new errors. Must already be in canonical form, unicode with period
+     * separators.
+     *
      * @param domainName
      * @param errors
      * @return
      */
     public static int hasBidiOrContextError(String domainName, Set<Errors> errors) {
         if (domainName.endsWith(".")) {
-            domainName = domainName.substring(0,domainName.length() - 1);
+            domainName = domainName.substring(0, domainName.length() - 1);
         }
-//        From end of https://tools.ietf.org/html/rfc5893#section-1.4
-//        An RTL label is a label that contains at least one character of type
-//        R, AL, or AN.
-//
-//        An LTR label is any label that is not an RTL label.
-//
-//        A "Bidi domain name" is a domain name that contains at least one RTL
-//        label.
+        //        From end of https://tools.ietf.org/html/rfc5893#section-1.4
+        //        An RTL label is a label that contains at least one character of type
+        //        R, AL, or AN.
+        //
+        //        An LTR label is any label that is not an RTL label.
+        //
+        //        A "Bidi domain name" is a domain name that contains at least one RTL
+        //        label.
         boolean isBidi = R_AL_AN.containsSome(domainName);
         final int oldErrorLength = errors.size();
         for (final String label : PERIOD.split(domainName)) {
@@ -487,44 +493,45 @@ public class Uts46 extends Idna {
             // disallowed: Leave the code point unchanged in the string, and
             // record that there was an error.
             switch (type) {
-            case disallowed:
-                errors.add(Errors.P1);
-                buffer.appendCodePoint(cp);
-                break;
-                // ignored: Remove the code point from the string. This is
-                // equivalent to mapping the code point to an empty string.
-            case ignored:
-                break;
-                // mapped: Replace the code point in the string by the value for the
-                // mapping in Section 5, IDNA Mapping Table.
-            case mapped:
-                String mapped = mappings.get(cp);
-                buffer.append(mapped);
-                break;
-                // deviation:
-                // For Transitional Processing, replace the code point in the string
-                // by the value for the mapping in Section 5, IDNA Mapping Table.
-                // For Nontransitional Processing, leave the code point unchanged in
-                // the string.
-            case deviation:
-                if (idnaChoice == IdnaChoice.transitional) {
-                    mapped = mappings.get(cp);
-                    buffer.append(mapped);
-                } else {
+                case disallowed:
+                    errors.add(Errors.P1);
                     buffer.appendCodePoint(cp);
-                }
-                break;
-                // valid: Leave the code point unchanged in the string.
-            case valid:
-                buffer.appendCodePoint(cp);
-                break;
+                    break;
+                    // ignored: Remove the code point from the string. This is
+                    // equivalent to mapping the code point to an empty string.
+                case ignored:
+                    break;
+                    // mapped: Replace the code point in the string by the value for the
+                    // mapping in Section 5, IDNA Mapping Table.
+                case mapped:
+                    String mapped = mappings.get(cp);
+                    buffer.append(mapped);
+                    break;
+                    // deviation:
+                    // For Transitional Processing, replace the code point in the string
+                    // by the value for the mapping in Section 5, IDNA Mapping Table.
+                    // For Nontransitional Processing, leave the code point unchanged in
+                    // the string.
+                case deviation:
+                    if (idnaChoice == IdnaChoice.transitional) {
+                        mapped = mappings.get(cp);
+                        buffer.append(mapped);
+                    } else {
+                        buffer.appendCodePoint(cp);
+                    }
+                    break;
+                    // valid: Leave the code point unchanged in the string.
+                case valid:
+                    buffer.appendCodePoint(cp);
+                    break;
             }
         }
         domainName = buffer.toString();
         return domainName;
     }
 
-    private String processConvertValidateLabels(IdnaChoice idnaChoice, Set<Errors> errors, Iterable<String> labels) {
+    private String processConvertValidateLabels(
+            IdnaChoice idnaChoice, Set<Errors> errors, Iterable<String> labels) {
         String domainName;
         final StringBuilder buffer = new StringBuilder();
         boolean first = true;
@@ -562,17 +569,18 @@ public class Uts46 extends Idna {
             }
             buffer.append(label);
         }
-//        drop final period
-//        if (buffer.length() > 0 && Character.codePointBefore(buffer, buffer.length()) == '.') {
-//            buffer.setLength(buffer.length()-1);
-//        }
+        //        drop final period
+        //        if (buffer.length() > 0 && Character.codePointBefore(buffer, buffer.length()) ==
+        // '.') {
+        //            buffer.setLength(buffer.length()-1);
+        //        }
         domainName = buffer.toString();
         return domainName;
     }
 
-    static final Pattern    HYPHEN34         = Pattern.compile("..--.*");
-    static final Pattern    HYPHEN_START_END = Pattern.compile("(-.*)|(.*-)");
-    static final UnicodeSet MARKS            = new UnicodeSet("[:M:]").freeze();
+    static final Pattern HYPHEN34 = Pattern.compile("..--.*");
+    static final Pattern HYPHEN_START_END = Pattern.compile("(-.*)|(.*-)");
+    static final UnicodeSet MARKS = new UnicodeSet("[:M:]").freeze();
 
     private void checkLabelValidity(String label, IdnaChoice idnaChoice, Set<Errors> errors) {
         // Each of the following criteria must be satisfied for a label:
@@ -613,15 +621,15 @@ public class Uts46 extends Idna {
             // For Nontransitional Processing, each value must be either valid
             // or deviation.
             switch (type) {
-            case valid:
-                break;
-            case deviation:
-                if (idnaChoice == IdnaChoice.transitional) {
+                case valid:
+                    break;
+                case deviation:
+                    if (idnaChoice == IdnaChoice.transitional) {
+                        errors.add(Errors.V6);
+                    }
+                    break;
+                default:
                     errors.add(Errors.V6);
-                }
-                break;
-            default:
-                errors.add(Errors.V6);
             }
         }
     }
@@ -666,17 +674,20 @@ public class Uts46 extends Idna {
             }
             buffer.append(label);
         }
-//        drop final period
-//        if (buffer.length() > 0 && Character.codePointBefore(buffer, buffer.length()) == '.') {
-//            buffer.setLength(buffer.length()-1);
-//        }
+        //        drop final period
+        //        if (buffer.length() > 0 && Character.codePointBefore(buffer, buffer.length()) ==
+        // '.') {
+        //            buffer.setLength(buffer.length()-1);
+        //        }
         domainName = buffer.toString();
         // Verify DNS length restrictions. This may record an error. For more
         // information, see [STD13] and [STD3].
         // The length of the domain name, excluding the root label and its dot,
         // is from 1 to 253.
         final int labelDomainNameLength = UTF16.countCodePoint(domainName);
-        if (labelDomainNameLength < 0 || labelDomainNameLength > 254 || labelDomainNameLength == 254 && !domainName.endsWith(".")) {
+        if (labelDomainNameLength < 0
+                || labelDomainNameLength > 254
+                || labelDomainNameLength == 254 && !domainName.endsWith(".")) {
             errors.add(Errors.A4_1);
         }
         // If an error was recorded, then the operation failed, and no DNS

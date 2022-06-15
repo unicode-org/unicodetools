@@ -1,4 +1,6 @@
 package org.unicode.draft;
+
+import com.ibm.icu.text.UnicodeSet;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -6,76 +8,90 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.tool.LanguageCodeConverter;
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.utility.Settings;
 
-import com.ibm.icu.text.UnicodeSet;
-
 /**
  * Tool to process raw character data, extracting a subset for faster processing by other tools.
- * Here are the latest results of the code point frequencies for one
-whole Base segment:
-
-http://www.corp.google.com/~erikv/unicode-count62.txt
-
-The 1st column is the code point.
-
-Then there are 3 groups of 4 columns, where each group is:
-
-pre-HTML code point count, post-HTML code point count, document count, UTF-8 document count
-
-The 1st group includes "bad" docs (error during input conversion or
-contains unassigned or high private use), 2nd group excludes "bad"
-docs, 3rd group is multiplied by pagerank (and excludes "bad" docs).
-
-Then there are up to 3 groups, where each group is:
-
-navboost, pagerank, language, encoding, url
-
-...Data/unicode-count62.txt
+ * Here are the latest results of the code point frequencies for one whole Base segment:
+ *
+ * <p>http://www.corp.google.com/~erikv/unicode-count62.txt
+ *
+ * <p>The 1st column is the code point.
+ *
+ * <p>Then there are 3 groups of 4 columns, where each group is:
+ *
+ * <p>pre-HTML code point count, post-HTML code point count, document count, UTF-8 document count
+ *
+ * <p>The 1st group includes "bad" docs (error during input conversion or contains unassigned or
+ * high private use), 2nd group excludes "bad" docs, 3rd group is multiplied by pagerank (and
+ * excludes "bad" docs).
+ *
+ * <p>Then there are up to 3 groups, where each group is:
+ *
+ * <p>navboost, pagerank, language, encoding, url
+ *
+ * <p>...Data/unicode-count62.txt
  */
 public class WebpageCharacterData {
 
-    private static final UnicodeSet DEBUG_SET = new UnicodeSet(0x0020,0x0020).freeze();
-    private static final String SOURCE_DATA = "Apr.11.2015.tsv"; // "unicode-count75.txt"; // "unicode-count-2012-July-21.txt";
+    private static final UnicodeSet DEBUG_SET = new UnicodeSet(0x0020, 0x0020).freeze();
+    private static final String SOURCE_DATA =
+            "Apr.11.2015.tsv"; // "unicode-count75.txt"; // "unicode-count-2012-July-21.txt";
 
     enum Columns {
-        // 000009    ht    954857442    0    0    0    953577889    0    0    0    11182029595621    0    0    0    804363    56255    139    22    http://www.palmbeachschools.org/    71269    55048    139    22    http://www.palmbeachschools.org/jobs/    50871    54366    139    22    http://rtghaiti.com/
+        // 000009    ht    954857442    0    0    0    953577889    0    0    0    11182029595621
+        // 0    0    0    804363    56255    139    22    http://www.palmbeachschools.org/    71269
+        //   55048    139    22    http://www.palmbeachschools.org/jobs/    50871    54366    139
+        // 22    http://rtghaiti.com/
         codePoint,
         language,
-        preHtmlCount1, postHtmlCount1, documentCount1, utf8DocumentCount1,
-        preHtmlCount2, postHtmlCount2, documentCount2, utf8DocumentCount2,
-        preHtmlCount3, postHtmlCount3, documentCount3, utf8DocumentCount3;
+        preHtmlCount1,
+        postHtmlCount1,
+        documentCount1,
+        utf8DocumentCount1,
+        preHtmlCount2,
+        postHtmlCount2,
+        documentCount2,
+        utf8DocumentCount2,
+        preHtmlCount3,
+        postHtmlCount3,
+        documentCount3,
+        utf8DocumentCount3;
         static String[] parts;
+
         public static void set(String line) {
             parts = line.split("\t");
         }
+
         public String get() {
             return parts[ordinal()];
         }
+
         @Override
         public String toString() {
             return name() + "(" + get() + ")";
         }
     }
 
-    private static Map<String,Counter<Integer>> lang2chars = new HashMap<String,Counter<Integer>>();
-    private static Map<String,Counter<Integer>> lang2charsPageRank = new HashMap<String,Counter<Integer>>();
+    private static Map<String, Counter<Integer>> lang2chars =
+            new HashMap<String, Counter<Integer>>();
+    private static Map<String, Counter<Integer>> lang2charsPageRank =
+            new HashMap<String, Counter<Integer>>();
 
     public static void main(String[] args) throws IOException {
         doData();
         System.out.println("DONE");
     }
 
-    static public void doData() throws IOException {
-        final BufferedReader in = FileUtilities.openUTF8Reader(
-                Settings.Output.GEN_DIR + "frequency/", SOURCE_DATA);
+    public static void doData() throws IOException {
+        final BufferedReader in =
+                FileUtilities.openUTF8Reader(Settings.Output.GEN_DIR + "frequency/", SOURCE_DATA);
         int lineCounter = 0;
         final int zeroCountLines = 0;
-        final HashMap<String, String> langSeen = new HashMap<String,String>();
+        final HashMap<String, String> langSeen = new HashMap<String, String>();
         while (true) {
             final String line = in.readLine();
             if (line == null) {
@@ -101,7 +117,6 @@ public class WebpageCharacterData {
                 }
             }
 
-
             final long good = Long.parseLong(Columns.postHtmlCount2.get());
             addToCounter(lang2chars, lang, codePoint, good);
             addToCounter(lang2chars, "mul", codePoint, good);
@@ -111,15 +126,14 @@ public class WebpageCharacterData {
         }
         in.close();
         System.out.println("Writing data");
-        //System.out.println("zeroCountLines " + zeroCountLines);
-        writeData(lang2chars, Settings.Output.GEN_DIR +
-                "frequency/languages");
+        // System.out.println("zeroCountLines " + zeroCountLines);
+        writeData(lang2chars, Settings.Output.GEN_DIR + "frequency/languages");
         System.out.println("Writing ranked data");
-        writeData(lang2charsPageRank, Settings.Output.GEN_DIR +
-                "frequency/languages-rank");
+        writeData(lang2charsPageRank, Settings.Output.GEN_DIR + "frequency/languages-rank");
     }
 
-    public static void writeData(Map<String, Counter<Integer>> map, String directory) throws IOException {
+    public static void writeData(Map<String, Counter<Integer>> map, String directory)
+            throws IOException {
         final Counter<String> totalLang = new Counter<String>();
         final Counter<String> totalLangChars = new Counter<String>();
         for (final Entry<String, Counter<Integer>> entry : map.entrySet()) {
@@ -132,7 +146,10 @@ public class WebpageCharacterData {
                 final long count = counter.getCount(cp);
                 totalCount += count;
                 totalChars += 1;
-                out.println(com.ibm.icu.impl.Utility.hex(cp) + " ; " + count); //  + " # " + UCharacter.getExtendedName(cp));
+                out.println(
+                        com.ibm.icu.impl.Utility.hex(cp)
+                                + " ; "
+                                + count); //  + " # " + UCharacter.getExtendedName(cp));
             }
             totalLang.add(lang, totalCount);
             totalLangChars.add(lang, totalChars);
@@ -145,7 +162,8 @@ public class WebpageCharacterData {
         }
     }
 
-    public static void addToCounter(Map<String, Counter<Integer>> map, String lang, int codePoint, long post) {
+    public static void addToCounter(
+            Map<String, Counter<Integer>> map, String lang, int codePoint, long post) {
         if (post == 0) {
             return;
         }

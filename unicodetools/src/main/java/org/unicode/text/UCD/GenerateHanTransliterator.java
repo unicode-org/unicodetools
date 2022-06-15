@@ -1,16 +1,25 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateHanTransliterator.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateHanTransliterator.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.Replaceable;
+import com.ibm.icu.text.ReplaceableString;
+import com.ibm.icu.text.RuleBasedCollator;
+import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeMatcher;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.ULocale;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,7 +35,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -34,19 +42,6 @@ import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Pair;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.Replaceable;
-import com.ibm.icu.text.ReplaceableString;
-import com.ibm.icu.text.RuleBasedCollator;
-import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeMatcher;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
-import com.ibm.icu.util.ULocale;
-
 
 public final class GenerateHanTransliterator implements UCD_Types {
 
@@ -71,7 +66,8 @@ public final class GenerateHanTransliterator implements UCD_Types {
         log.println("<title>Unihan check</title>");
         log.println("</head>");
 
-        final BufferedReader in = Utility.openUnicodeFile("Unihan", Default.ucdVersion(), true, Utility.UTF8);
+        final BufferedReader in =
+                Utility.openUnicodeFile("Unihan", Default.ucdVersion(), true, Utility.UTF8);
 
         final Map properties = new TreeMap();
 
@@ -101,10 +97,10 @@ public final class GenerateHanTransliterator implements UCD_Types {
                 integerCode = new Integer(code);
             }
 
-            final int tabPos2 = line.indexOf('\t', tabPos+1);
-            final String property = line.substring(tabPos+1, tabPos2).trim();
+            final int tabPos2 = line.indexOf('\t', tabPos + 1);
+            final String property = line.substring(tabPos + 1, tabPos2).trim();
 
-            String propertyValue = line.substring(tabPos2+1).trim();
+            String propertyValue = line.substring(tabPos2 + 1).trim();
             if (propertyValue.indexOf("U+") >= 0) {
                 propertyValue = fromHexUnicode.transliterate(propertyValue);
             }
@@ -149,12 +145,16 @@ public final class GenerateHanTransliterator implements UCD_Types {
         Iterator it = props.iterator();
         log.println("<ol>");
         while (it.hasNext()) {
-            final String property = (String)it.next();
+            final String property = (String) it.next();
             final HanInfo values = (HanInfo) properties.get(property);
             log.println("<li><b>" + property + "</b><ul><li>");
-            log.println("count: " + values.count
-                    + ", min length: " + values.minLen
-                    + ", max length: " + values.maxLen);
+            log.println(
+                    "count: "
+                            + values.count
+                            + ", min length: "
+                            + values.minLen
+                            + ", max length: "
+                            + values.maxLen);
             log.println("</li><li>samples:");
             Utility.print(log, values.samples, "; ");
             log.println("</li></ul></li>");
@@ -178,12 +178,22 @@ public final class GenerateHanTransliterator implements UCD_Types {
                 if (ovalue.equals(uvalue)) {
                     redundants.add(key);
                 } else if (++unequalCount < 5) {
-                    log.println("<p>" + Integer.toString(key.intValue(),16)
-                            + ": <b>" + ovalue + "</b>, " + uvalue + "</p>");
+                    log.println(
+                            "<p>"
+                                    + Integer.toString(key.intValue(), 16)
+                                    + ": <b>"
+                                    + ovalue
+                                    + "</b>, "
+                                    + uvalue
+                                    + "</p>");
                 }
             }
-            log.println("</p>Total Unique: " + (otherInfo.size() - redundants.size())
-                    + "(out of" + otherInfo.size() + ")</p></blockquote>");
+            log.println(
+                    "</p>Total Unique: "
+                            + (otherInfo.size() - redundants.size())
+                            + "(out of"
+                            + otherInfo.size()
+                            + ")</p></blockquote>");
         }
 
         log.println("<p><b>Checking Redundants for kTotalStrokes</b></p><blockquote>");
@@ -192,7 +202,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
         final Map kTotalStrokesMap = ((HanInfo) properties.get("kTotalStrokes")).map;
         final int[] radCount = new int[512];
         it = kRSUnicodeMap.keySet().iterator();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             final Integer key = (Integer) it.next();
             final String uvalue = (String) kRSUnicodeMap.get(key);
             if (uvalue.endsWith(".0")) {
@@ -201,7 +211,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
                     continue;
                 }
                 final int rs = getRadicalStroke(uvalue);
-                radCount[rs>>8] = Integer.parseInt(tvalue);
+                radCount[rs >> 8] = Integer.parseInt(tvalue);
             }
         }
 
@@ -209,22 +219,32 @@ public final class GenerateHanTransliterator implements UCD_Types {
         it = kTotalStrokesMap.keySet().iterator();
         unequalCount = 0;
         redundants.clear();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             final Integer key = (Integer) it.next();
             final String uvalue = (String) kRSUnicodeMap.get(key);
             final int rs = getRadicalStroke(uvalue);
             final String tvalue = (String) kTotalStrokesMap.get(key);
             final int t = Integer.parseInt(tvalue);
-            final int projected = radCount[rs>>8] + (rs & 0xFF);
+            final int projected = radCount[rs >> 8] + (rs & 0xFF);
             if (t == projected) {
                 redundants.add(key);
             } else if (++unequalCount < 5) {
-                log.println("<p>" + Integer.toString(key.intValue(),16)
-                        + ": <b>" + t + "</b>, " + projected + "</p>");
+                log.println(
+                        "<p>"
+                                + Integer.toString(key.intValue(), 16)
+                                + ": <b>"
+                                + t
+                                + "</b>, "
+                                + projected
+                                + "</p>");
             }
         }
-        log.println("</p>Total Unique: " + (kTotalStrokesMap.size() - redundants.size())
-                + "(out of" + kTotalStrokesMap.size() + ")</p></blockquote>");
+        log.println(
+                "</p>Total Unique: "
+                        + (kTotalStrokesMap.size() - redundants.size())
+                        + "(out of"
+                        + kTotalStrokesMap.size()
+                        + ")</p></blockquote>");
 
         log.println("</body>");
         in.close();
@@ -233,13 +253,13 @@ public final class GenerateHanTransliterator implements UCD_Types {
 
     static int getRadicalStroke(String s) {
         int dotPos = s.indexOf('.');
-        final int strokes = Integer.parseInt(s.substring(dotPos+1));
+        final int strokes = Integer.parseInt(s.substring(dotPos + 1));
         int radical = 0;
         if (s.charAt(dotPos - 1) == '\'') {
             radical = 256;
             --dotPos;
         }
-        radical += Integer.parseInt(s.substring(0,dotPos));
+        radical += Integer.parseInt(s.substring(0, dotPos));
         return (radical << 8) + strokes;
     }
 
@@ -297,11 +317,18 @@ public final class GenerateHanTransliterator implements UCD_Types {
         final UnicodeSet gotAtLeastOne = new UnicodeSet(gotMandarin).addAll(gotHanyu);
         final Map outmap = new TreeMap(Collator.getInstance(new ULocale("zh")));
         for (final UnicodeSetIterator it = new UnicodeSetIterator(gotAtLeastOne); it.next(); ) {
-            //String code = UTF16.valueOf(it.codepoint);
+            // String code = UTF16.valueOf(it.codepoint);
             final String hanyu = (String) kHanyuPinlu.getValue(it.codepoint);
             final String mandarin = (String) kMandarin.getValue(it.codepoint);
-            final String hPinyin = hanyu == null ? null : digitPinyin_accentPinyin.transliterate(getUpTo(hanyu,'('));
-            final String mPinyin = mandarin == null ? null : digitPinyin_accentPinyin.transliterate(getUpTo(mandarin.toLowerCase(),' '));
+            final String hPinyin =
+                    hanyu == null
+                            ? null
+                            : digitPinyin_accentPinyin.transliterate(getUpTo(hanyu, '('));
+            final String mPinyin =
+                    mandarin == null
+                            ? null
+                            : digitPinyin_accentPinyin.transliterate(
+                                    getUpTo(mandarin.toLowerCase(), ' '));
             final String uPinyin = hPinyin != null ? hPinyin : mPinyin;
             UnicodeSet s = (UnicodeSet) outmap.get(uPinyin);
             if (s == null) {
@@ -312,7 +339,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
         }
         final String filename = "Raw_Transliterator_Han_Latin.txt";
         final PrintWriter out = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, filename);
-        for (final Iterator it = outmap.keySet().iterator(); it.hasNext();) {
+        for (final Iterator it = outmap.keySet().iterator(); it.hasNext(); ) {
             final String pinyin = (String) it.next();
             final UnicodeSet uset = (UnicodeSet) outmap.get(pinyin);
             if (uset.size() == 1) {
@@ -329,14 +356,16 @@ public final class GenerateHanTransliterator implements UCD_Types {
     public static class PairComparator implements Comparator {
         Comparator first;
         Comparator second;
+
         PairComparator(Comparator first, Comparator second) {
             this.first = first;
             this.second = second;
         }
+
         @Override
         public int compare(Object o1, Object o2) {
-            final Pair p1 = (Pair)o1;
-            final Pair p2 = (Pair)o2;
+            final Pair p1 = (Pair) o1;
+            final Pair p2 = (Pair) o2;
             final int result = first.compare(p1.first, p2.first);
             if (result != 0) {
                 return result;
@@ -365,8 +394,15 @@ public final class GenerateHanTransliterator implements UCD_Types {
             final String code = UTF16.valueOf(it.codepoint);
             final String hanyu = (String) kHanyuPinlu.getValue(it.codepoint);
             final String mandarin = (String) kMandarin.getValue(it.codepoint);
-            final String hPinyin = hanyu == null ? null : digitPinyin_accentPinyin.transliterate(getUpTo(hanyu,'('));
-            final String mPinyin = mandarin == null ? null : digitPinyin_accentPinyin.transliterate(getUpTo(mandarin.toLowerCase(),' '));
+            final String hPinyin =
+                    hanyu == null
+                            ? null
+                            : digitPinyin_accentPinyin.transliterate(getUpTo(hanyu, '('));
+            final String mPinyin =
+                    mandarin == null
+                            ? null
+                            : digitPinyin_accentPinyin.transliterate(
+                                    getUpTo(mandarin.toLowerCase(), ' '));
             final String uPinyin = hPinyin != null ? hPinyin : mPinyin;
 
             String iPinyin = icuPinyin.transliterate(code).trim();
@@ -386,13 +422,21 @@ public final class GenerateHanTransliterator implements UCD_Types {
             }
 
             if (gPinyin != null && !gPinyin.equals(uPinyin)) {
-                log.println((++counter) + "\t" + Utility.hex(it.codepoint) + "\t" + code
-                        + "\t" + (uPinyin == null ? "" : uPinyin)
-                        + "\t" + (iPinyin == null ? "" : iPinyin.equals(gPinyin) ? "" : iPinyin)
-                        + "\t" + (gPinyin == null ? "" : gPinyin)
-                        + "\t" + (hanyu == null ? "" : hanyu + " / ")
-                        + (mandarin == null ? "" : mandarin)
-                        );
+                log.println(
+                        (++counter)
+                                + "\t"
+                                + Utility.hex(it.codepoint)
+                                + "\t"
+                                + code
+                                + "\t"
+                                + (uPinyin == null ? "" : uPinyin)
+                                + "\t"
+                                + (iPinyin == null ? "" : iPinyin.equals(gPinyin) ? "" : iPinyin)
+                                + "\t"
+                                + (gPinyin == null ? "" : gPinyin)
+                                + "\t"
+                                + (hanyu == null ? "" : hanyu + " / ")
+                                + (mandarin == null ? "" : mandarin));
                 if (hanyu != null) {
                     hCount++;
                 }
@@ -404,26 +448,42 @@ public final class GenerateHanTransliterator implements UCD_Types {
             if (isEqualOrNull(uPinyin, iPinyin)) {
                 continue;
             }
-            log.println((++counter) + "\t" + Utility.hex(it.codepoint) + "\t" + code
-                    + "\t" + (uPinyin == null ? "" : uPinyin)
-                    + "\t" + (iPinyin == null ? "" : iPinyin)
-                    + "\t" + (gPinyin == null ? "" : gPinyin)
-                    + "\t" + (hanyu == null ? "" : hanyu + " / ")
-                    + (mandarin == null ? "" : mandarin)
-                    );
+            log.println(
+                    (++counter)
+                            + "\t"
+                            + Utility.hex(it.codepoint)
+                            + "\t"
+                            + code
+                            + "\t"
+                            + (uPinyin == null ? "" : uPinyin)
+                            + "\t"
+                            + (iPinyin == null ? "" : iPinyin)
+                            + "\t"
+                            + (gPinyin == null ? "" : gPinyin)
+                            + "\t"
+                            + (hanyu == null ? "" : hanyu + " / ")
+                            + (mandarin == null ? "" : mandarin));
         }
         log.println("kHanyuPinlu count: " + hCount);
 
-        final Collator col = Collator.getInstance(new Locale("zh","","PINYIN"));
+        final Collator col = Collator.getInstance(new Locale("zh", "", "PINYIN"));
         final UnicodeSet tailored = col.getTailoredSet().addAll(gotAtLeastOne);
-        final Collator pinyinCollator = new RuleBasedCollator(
-                "&[before 1] a < \u0101 <<< \u0100 << \u00E1 <<< \u00C1 << \u01CE <<< \u01CD << \u00E0 <<< \u00C0 << a <<< A" +
-                        "&[before 1] e < \u0113 <<< \u0112 << \u00E9 <<< \u00C9 << \u011B <<< \u011A << \u00E8 <<< \u00C8 << e <<< A" +
-                        "&[before 1] i < \u012B <<< \u012A << \u00ED <<< \u00CD << \u01D0 <<< \u01CF << \u00EC <<< \u00CC << i <<< I" +
-                        "&[before 1] o < \u014D <<< \u014C << \u00F3 <<< \u00D3 << \u01D2 <<< \u01D1 << \u00F2 <<< \u00D2 << o <<< O" +
-                        "&[before 1] u < \u016B <<< \u016A << \u00FA <<< \u00DA << \u01D4 <<< \u01D3 << \u00F9 <<< \u00D9 << u <<< U" +
-                " << \u01D6 <<< \u01D5 << \u01D8 <<< \u01D7 << \u01DA <<< \u01D9 << \u01DC <<< \u01DB << \u00FC");
-        printSortedChars("ICU_Pinyin_Sort.txt", col, tailored, reformed, kHanyuPinlu, kMandarin, pinyinCollator);
+        final Collator pinyinCollator =
+                new RuleBasedCollator(
+                        "&[before 1] a < \u0101 <<< \u0100 << \u00E1 <<< \u00C1 << \u01CE <<< \u01CD << \u00E0 <<< \u00C0 << a <<< A"
+                                + "&[before 1] e < \u0113 <<< \u0112 << \u00E9 <<< \u00C9 << \u011B <<< \u011A << \u00E8 <<< \u00C8 << e <<< A"
+                                + "&[before 1] i < \u012B <<< \u012A << \u00ED <<< \u00CD << \u01D0 <<< \u01CF << \u00EC <<< \u00CC << i <<< I"
+                                + "&[before 1] o < \u014D <<< \u014C << \u00F3 <<< \u00D3 << \u01D2 <<< \u01D1 << \u00F2 <<< \u00D2 << o <<< O"
+                                + "&[before 1] u < \u016B <<< \u016A << \u00FA <<< \u00DA << \u01D4 <<< \u01D3 << \u00F9 <<< \u00D9 << u <<< U"
+                                + " << \u01D6 <<< \u01D5 << \u01D8 <<< \u01D7 << \u01DA <<< \u01D9 << \u01DC <<< \u01DB << \u00FC");
+        printSortedChars(
+                "ICU_Pinyin_Sort.txt",
+                col,
+                tailored,
+                reformed,
+                kHanyuPinlu,
+                kMandarin,
+                pinyinCollator);
         /*
         MultiComparator mcol = new MultiComparator(new Comparator[] {
                 new UnicodeMapComparator(reformed, pinyinCollator), col});
@@ -435,14 +495,16 @@ public final class GenerateHanTransliterator implements UCD_Types {
     static class UnicodeMapComparator implements Comparator {
         UnicodeMap map;
         Comparator comp;
+
         UnicodeMapComparator(UnicodeMap map, Comparator comp) {
             this.map = map;
             this.comp = comp;
         }
+
         @Override
         public int compare(Object o1, Object o2) {
-            final int c1 = UTF16.charAt((String) o1,0);
-            final int c2 = UTF16.charAt((String) o2,0);
+            final int c1 = UTF16.charAt((String) o1, 0);
+            final int c2 = UTF16.charAt((String) o2, 0);
             final Object v1 = map.getValue(c1);
             final Object v2 = map.getValue(c2);
             if (v1 == null) {
@@ -460,7 +522,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
     static class MultiComparator implements Comparator {
         private final Comparator[] comparators;
 
-        public MultiComparator (Comparator[] comparators) {
+        public MultiComparator(Comparator[] comparators) {
             this.comparators = comparators;
         }
 
@@ -477,17 +539,23 @@ public final class GenerateHanTransliterator implements UCD_Types {
                     continue;
                 }
                 if (result > 0) {
-                    return i+1;
+                    return i + 1;
                 }
-                return -(i+1);
+                return -(i + 1);
             }
             return 0;
         }
     }
 
-    private static void printSortedChars(String file, Comparator col, UnicodeSet tailored,
-            UnicodeMap map, UnicodeMap hanyu, UnicodeMap mand, Comparator p2)
-                    throws IOException {
+    private static void printSortedChars(
+            String file,
+            Comparator col,
+            UnicodeSet tailored,
+            UnicodeMap map,
+            UnicodeMap hanyu,
+            UnicodeMap mand,
+            Comparator p2)
+            throws IOException {
         final Set set = new TreeSet(col);
         final PrintWriter pw = Utility.openPrintWriterGenDir("log/" + file, Utility.UTF8_WINDOWS);
         for (final UnicodeSetIterator it = new UnicodeSetIterator(tailored); it.next(); ) {
@@ -496,29 +564,29 @@ public final class GenerateHanTransliterator implements UCD_Types {
         String lastm = "";
         String lasts = "";
         for (final Iterator it2 = set.iterator(); it2.hasNext(); ) {
-            final String s = (String)it2.next();
-            String m = map == null ? null : (String) map.getValue(UTF16.charAt(s,0));
+            final String s = (String) it2.next();
+            String m = map == null ? null : (String) map.getValue(UTF16.charAt(s, 0));
             if (m == null) {
                 m = "";
             }
             String info = m;
-            if (p2.compare(lastm,m) > 0) {
+            if (p2.compare(lastm, m) > 0) {
                 info = info + "\t" + lastm + " > " + m + "\t";
                 Object temp;
-                temp = hanyu.getValue(UTF16.charAt(lasts,0));
+                temp = hanyu.getValue(UTF16.charAt(lasts, 0));
                 if (temp != null) {
                     info += "[" + temp + "]";
                 }
-                temp = mand.getValue(UTF16.charAt(lasts,0));
+                temp = mand.getValue(UTF16.charAt(lasts, 0));
                 if (temp != null) {
                     info += "[" + temp + "]";
                 }
                 info += " > ";
-                temp = hanyu.getValue(UTF16.charAt(s,0));
+                temp = hanyu.getValue(UTF16.charAt(s, 0));
                 if (temp != null) {
                     info += "[" + temp + "]";
                 }
-                temp = mand.getValue(UTF16.charAt(s,0));
+                temp = mand.getValue(UTF16.charAt(s, 0));
                 if (temp != null) {
                     info += "[" + temp + "]";
                 }
@@ -530,7 +598,9 @@ public final class GenerateHanTransliterator implements UCD_Types {
         pw.close();
     }
 
-    static void addField(String dir, String file, int hexCodeFieldNumber, int valueNumber, UnicodeMap result) throws IOException {
+    static void addField(
+            String dir, String file, int hexCodeFieldNumber, int valueNumber, UnicodeMap result)
+            throws IOException {
         final BufferedReader br = FileUtilities.openUTF8Reader((String) dir, (String) file);
         while (true) {
             String line = br.readLine();
@@ -547,7 +617,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
             if (line.startsWith("#") || line.length() == 0) {
                 continue;
             }
-            final String[] pieces = Utility.split(line,'\t');
+            final String[] pieces = Utility.split(line, '\t');
             result.put(Integer.parseInt(pieces[hexCodeFieldNumber], 16), pieces[valueNumber]);
         }
         br.close();
@@ -559,12 +629,13 @@ public final class GenerateHanTransliterator implements UCD_Types {
         }
         return a.equals(b);
     }
+
     public static String getUpTo(String s, char ch) {
         final int pos = s.indexOf(ch);
         if (pos < 0) {
             return s;
         }
-        return s.substring(0,pos);
+        return s.substring(0, pos);
     }
 
     public static void main(int typeIn) throws IOException {
@@ -579,24 +650,24 @@ public final class GenerateHanTransliterator implements UCD_Types {
             System.out.println("Quoting: " + quoteNonLetters.toRules(true));
             System.out.println("Quoting: " + quoteNonLetters.toRules(true));
 
-
             String key; // kMandarin, kKorean, kJapaneseKun, kJapaneseOn
             String filename;
 
             switch (type) {
-            case DEFINITION:
-                key = "kDefinition"; // kMandarin, kKorean, kJapaneseKun, kJapaneseOn
-                filename = "Raw_Transliterator_Han_Latin_Definition";
-                break;
-            case JAPANESE:
-                key = "kJapaneseOn";
-                filename = "Raw_Transliterator_ja_Latin";
-                break;
-            case CHINESE:
-                key = "kMandarin";
-                filename = "Raw_Transliterator_Han_Latin";
-                break;
-            default: throw new IllegalArgumentException("Unexpected option: must be 0..2");
+                case DEFINITION:
+                    key = "kDefinition"; // kMandarin, kKorean, kJapaneseKun, kJapaneseOn
+                    filename = "Raw_Transliterator_Han_Latin_Definition";
+                    break;
+                case JAPANESE:
+                    key = "kJapaneseOn";
+                    filename = "Raw_Transliterator_ja_Latin";
+                    break;
+                case CHINESE:
+                    key = "kMandarin";
+                    filename = "Raw_Transliterator_Han_Latin";
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unexpected option: must be 0..2");
             }
             filename += Default.ucd().getVersion() + ".txt";
 
@@ -619,7 +690,9 @@ public final class GenerateHanTransliterator implements UCD_Types {
             log.println();
             log.println("@Unihan Data");
             log.println();
-            out2 = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "unihan_kmandarinDump.txt");
+            out2 =
+                    FileUtilities.openUTF8Writer(
+                            Settings.Output.GEN_DIR, "unihan_kmandarinDump.txt");
 
             readUnihanData(key);
 
@@ -640,31 +713,52 @@ public final class GenerateHanTransliterator implements UCD_Types {
                 }
             }
 
-
             it = unihanMap.keySet().iterator();
             final Map badPinyin = new TreeMap();
-            final PrintWriter out2 = Utility.openPrintWriterGenDir("log/Raw_mapping.txt", Utility.UTF8_WINDOWS);
+            final PrintWriter out2 =
+                    Utility.openPrintWriterGenDir("log/Raw_mapping.txt", Utility.UTF8_WINDOWS);
             try {
                 while (it.hasNext()) {
                     final String keyChar = (String) it.next();
                     final String def = (String) unihanMap.get(keyChar);
                     if (!isValidPinyin(def)) {
                         final String fixedDef = fixPinyin(def);
-                        err.println(Default.ucd().getCode(keyChar) + "\t" + keyChar + "\t" + fixedDef + "\t#" + def
-                                + (fixedDef.equals(def) ? " FAIL" : ""));
+                        err.println(
+                                Default.ucd().getCode(keyChar)
+                                        + "\t"
+                                        + keyChar
+                                        + "\t"
+                                        + fixedDef
+                                        + "\t#"
+                                        + def
+                                        + (fixedDef.equals(def) ? " FAIL" : ""));
                         Utility.addToSet(badPinyin, def, keyChar);
                     }
                     // check both ways
                     final String digitDef = accentPinyin_digitPinyin.transliterate(def);
                     final String accentDef = digitPinyin_accentPinyin.transliterate(digitDef);
                     if (!accentDef.equals(def)) {
-                        err.println("Failed Digit Pinyin: "
-                                + Default.ucd().getCode(keyChar) + "\t" + keyChar + "\t"
-                                + def + " => " + digitDef + " => " + accentDef);
+                        err.println(
+                                "Failed Digit Pinyin: "
+                                        + Default.ucd().getCode(keyChar)
+                                        + "\t"
+                                        + keyChar
+                                        + "\t"
+                                        + def
+                                        + " => "
+                                        + digitDef
+                                        + " => "
+                                        + accentDef);
                     }
 
-                    out2.println(toHexUnicode.transliterate(keyChar)
-                            + "\tkMandarin\t" + digitDef.toUpperCase() + "\t# " + keyChar + ";\t" + def);
+                    out2.println(
+                            toHexUnicode.transliterate(keyChar)
+                                    + "\tkMandarin\t"
+                                    + digitDef.toUpperCase()
+                                    + "\t# "
+                                    + keyChar
+                                    + ";\t"
+                                    + def);
                 }
                 err.println();
                 err.println("Summary of Bad syllables");
@@ -700,8 +794,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
             while (it.hasNext()) {
                 final String keyChar = (String) it.next();
                 String def = (String) unihanMap.get(keyChar);
-                if (def == null)
-                {
+                if (def == null) {
                     continue; // skipping
                     // sort longer definitions first!
                 }
@@ -713,15 +806,19 @@ public final class GenerateHanTransliterator implements UCD_Types {
                     def += " " + toSub.transliterate(String.valueOf(defCount));
                 }
 
-                lenSet.add(new Pair(
-                        new Pair(new Integer(-UTF16.countCodePoint(keyChar)),
-                                new Pair(new Integer(-def.length()), new Integer(rank++))),
+                lenSet.add(
+                        new Pair(
+                                new Pair(
+                                        new Integer(-UTF16.countCodePoint(keyChar)),
+                                        new Pair(new Integer(-def.length()), new Integer(rank++))),
                                 new Pair(keyChar, def)));
-                backSet.add(new Pair(
-                        new Pair(new Integer(-def.toString().length()), new Integer(rank++)),
-                        new Pair(keyChar, def)));
+                backSet.add(
+                        new Pair(
+                                new Pair(
+                                        new Integer(-def.toString().length()), new Integer(rank++)),
+                                new Pair(keyChar, def)));
 
-                definitionCount.put(oldDef, new Integer(defCount+1));
+                definitionCount.put(oldDef, new Integer(defCount + 1));
                 gotAlready.add(keyChar);
             }
 
@@ -742,15 +839,21 @@ public final class GenerateHanTransliterator implements UCD_Types {
                     def += " " + toSub.transliterate(String.valueOf(defCount));
                 }
 
-                lenSet.add(new Pair(
-                        new Pair(new Integer(-UTF16.countCodePoint(keyChar)),
-                                new Pair(new Integer(-def.toString().length()), new Integer(rank++))),
+                lenSet.add(
+                        new Pair(
+                                new Pair(
+                                        new Integer(-UTF16.countCodePoint(keyChar)),
+                                        new Pair(
+                                                new Integer(-def.toString().length()),
+                                                new Integer(rank++))),
                                 new Pair(keyChar, def)));
-                backSet.add(new Pair(
-                        new Pair(new Integer(-def.toString().length()), new Integer(rank++)),
-                        new Pair(keyChar, def)));
+                backSet.add(
+                        new Pair(
+                                new Pair(
+                                        new Integer(-def.toString().length()), new Integer(rank++)),
+                                new Pair(keyChar, def)));
 
-                definitionCount.put(oldDef, new Integer(defCount+1));
+                definitionCount.put(oldDef, new Integer(defCount + 1));
             }
 
             // First, find the ones that we want a definition for, based on the ranking
@@ -770,8 +873,11 @@ public final class GenerateHanTransliterator implements UCD_Types {
                     final String def = (String) p.second;
                     if (!gotIt.contains(def)) {
                         if (unihanNonSingular) {
-                            out.println(quoteNonLetters.transliterate(keyChar)
-                                    + " < " + quoteNonLetters.transliterate(def) + ";");
+                            out.println(
+                                    quoteNonLetters.transliterate(keyChar)
+                                            + " < "
+                                            + quoteNonLetters.transliterate(def)
+                                            + ";");
                         } else {
                             doReverse.add(keyChar);
                         }
@@ -779,7 +885,6 @@ public final class GenerateHanTransliterator implements UCD_Types {
                     gotIt.add(def);
                 }
             }
-
 
             it = lenSet.iterator();
             while (it.hasNext()) {
@@ -790,9 +895,12 @@ public final class GenerateHanTransliterator implements UCD_Types {
                 final String def = (String) p.second;
                 final String rel = !DO_SIMPLE && doReverse.contains(keyChar) ? "<>" : ">";
 
-                out.println(quoteNonLetters.transliterate(keyChar) + rel
-                        + quoteNonLetters.transliterate(def) + "|\\ ;");
-                //if (TESTING) System.out.println("# " + code + " > " + definition);
+                out.println(
+                        quoteNonLetters.transliterate(keyChar)
+                                + rel
+                                + quoteNonLetters.transliterate(def)
+                                + "|\\ ;");
+                // if (TESTING) System.out.println("# " + code + " > " + definition);
             }
 
             out.println("\u3002 <> '.';");
@@ -805,7 +913,6 @@ public final class GenerateHanTransliterator implements UCD_Types {
             }
             out.println(":: fullwidth-halfwidth ();");
              */
-
 
             System.out.println("Total: " + totalCount);
             System.out.println("Defined Count: " + count);
@@ -876,38 +983,32 @@ public final class GenerateHanTransliterator implements UCD_Types {
         }
     }
 
-    //http://fog.ccsf.cc.ca.us/~jliou/phonetic.htm
+    // http://fog.ccsf.cc.ca.us/~jliou/phonetic.htm
     // longer ones must be AFTER!
     // longer ones must be AFTER!
     static final String[] initialPinyin = {
-        "",
-        "b", "p", "m", "f",
-        "d", "t", "n", "l",
-        "z", "c", "s",
-        "zh", "ch", "sh", "r",
-        "j", "q", "x",
-        "g", "k", "h",
-        "y", "w"}; // added to make checking simpler
+        "", "b", "p", "m", "f", "d", "t", "n", "l", "z", "c", "s", "zh", "ch", "sh", "r", "j", "q",
+        "x", "g", "k", "h", "y", "w"
+    }; // added to make checking simpler
 
     static final String[] finalPinyin = {
-        "a", "ai", "ao", "an", "ang",
-        "o", "ou", "ong",
-        "e", "ei", "er", "en", "eng",
-        "i", "ia", "iao", "ie", "iu", "ian", "in", "iang", "ing", "iong",
-        "u", "ua", "uo", "uai", "ui", "uan", "un", "uang", "ueng",
-        "ü", "üe", "üan", "ün"
+        "a", "ai", "ao", "an", "ang", "o", "ou", "ong", "e", "ei", "er", "en", "eng", "i", "ia",
+        "iao", "ie", "iu", "ian", "in", "iang", "ing", "iong", "u", "ua", "uo", "uai", "ui", "uan",
+        "un", "uang", "ueng", "ü", "üe", "üan", "ün"
     };
     // Don't bother with the following rules; just add w,y to initials
     // When “i” stands alone, a “y” will be added before it as “yi”.
     //      If “i” is the first letter of the syllable it will be changed to “y”.
     // When “u” stands alone, a “w” will be added before it as “wu”.
-    //      If “u” is the first letter of the syllable it will be changed to “w”. e.g. “uang -> wang”.
+    //      If “u” is the first letter of the syllable it will be changed to “w”. e.g. “uang ->
+    // wang”.
     // When “ü” stands alone, a “y” will be added before it and “ü” will be changed to “u” as “yu”.
-    //      If “ü” is the first letter of the syllable, then the spelling will be changed to “yu”. e.g. “üan -> yuan”.
-    //Note: The nasal final “ueng” never occurs after an initial but always form a syllable by itself.
+    //      If “ü” is the first letter of the syllable, then the spelling will be changed to “yu”.
+    // e.g. “üan -> yuan”.
+    // Note: The nasal final “ueng” never occurs after an initial but always form a syllable by
+    // itself.
     // The “o” in “iou” is hidden, so it will be wrote as “iu”. But, don’t forget to pronounce it.
     // The “e” in “uei” is hidden, so it will be wrote as “ui”. But, don’t forget to pronounce it.
-
 
     public static final String[] pinyin_bopomofo = {
         "a", "\u311a",
@@ -951,7 +1052,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
         "chong", "\u3114\u3121\u3125",
         "chou", "\u3114\u3121",
         "chu", "\u3114\u3128",
-        //"chua", "XXX",
+        // "chua", "XXX",
         "chuai", "\u3114\u3128\u311e",
         "chuan", "\u3114\u3128\u3122",
         "chuang", "\u3114\u3128\u3124",
@@ -1328,8 +1429,9 @@ public final class GenerateHanTransliterator implements UCD_Types {
     };
 
     static final Set fullPinyin = new TreeSet();
+
     static {
-        for (int i = 0; i < pinyin_bopomofo.length; i+= 2) {
+        for (int i = 0; i < pinyin_bopomofo.length; i += 2) {
             fullPinyin.add(pinyin_bopomofo[i]);
         }
     }
@@ -1344,10 +1446,10 @@ public final class GenerateHanTransliterator implements UCD_Types {
 
     static boolean isValidPinyin2(String s) {
         s = dropTones.transliterate(s);
-        for (int i = initialPinyin.length-1; i >= 0; --i) {
+        for (int i = initialPinyin.length - 1; i >= 0; --i) {
             if (s.startsWith(initialPinyin[i])) {
                 final String end = s.substring(initialPinyin[i].length());
-                for (int j = finalPinyin.length-1; j >= 0; --j) {
+                for (int j = finalPinyin.length - 1; j >= 0; --j) {
                     if (end.equals(finalPinyin[j])) {
                         return true;
                     }
@@ -1407,47 +1509,48 @@ public final class GenerateHanTransliterator implements UCD_Types {
     U+7878    ·    nüè    #nuè
      */
 
-    static Transliterator fixTypos = Transliterator.createFromRules("fix_typos",
-            "$cons=[bcdfghjklmnpqrstvwxyz];"
-                    +"$nlet=[^[:Letter:][:Mark:]];"
-                    +"$cons{iou}$nlet   > iu;"
-                    +"$cons{em}$nlet    > an;"
-                    +"$cons{uen}$nlet   > ueng;"
-                    +"$cons{ve}$nlet    > üe;"
-                    +"$cons{v}$nlet     > ü;"
-                    +"$cons{yue}$nlet   > iu;"
-                    +"$cons{yng}$nlet   > ing;"
-                    +"$cons{yu}$nlet    > iu;"
-                    //+"$cons{ue}       > üe;"
-                    +"jj                > j;"
-                    //+"$nlet{ng}$nlet  > eng;"
-                    //+"$nlet{n}$nlet   > en;"
-                    //+"$nlet{m}$nlet   > en;"
-                    +"$nlet{au}$nlet    > ao;"
+    static Transliterator fixTypos =
+            Transliterator.createFromRules(
+                    "fix_typos",
+                    "$cons=[bcdfghjklmnpqrstvwxyz];"
+                            + "$nlet=[^[:Letter:][:Mark:]];"
+                            + "$cons{iou}$nlet   > iu;"
+                            + "$cons{em}$nlet    > an;"
+                            + "$cons{uen}$nlet   > ueng;"
+                            + "$cons{ve}$nlet    > üe;"
+                            + "$cons{v}$nlet     > ü;"
+                            + "$cons{yue}$nlet   > iu;"
+                            + "$cons{yng}$nlet   > ing;"
+                            + "$cons{yu}$nlet    > iu;"
+                            // +"$cons{ue}       > üe;"
+                            + "jj                > j;"
+                            // +"$nlet{ng}$nlet  > eng;"
+                            // +"$nlet{n}$nlet   > en;"
+                            // +"$nlet{m}$nlet   > en;"
+                            + "$nlet{au}$nlet    > ao;"
 
-        // new fixes
-        +"zhueng}$nlet       > zhong;"
-        +"zhuen}$nlet       > zhuan;"
-        +"lue > lüe;"
-        +"liong > liang;"
-        +"nue > nüe;"
-        +"chua > chuo;"
-        +"yian > yan;"
-        +"yie > ye;"
-        +"lüan > luan;"
-        +"iong > yong;"
-        , Transliterator.FORWARD);
-
+                            // new fixes
+                            + "zhueng}$nlet       > zhong;"
+                            + "zhuen}$nlet       > zhuan;"
+                            + "lue > lüe;"
+                            + "liong > liang;"
+                            + "nue > nüe;"
+                            + "chua > chuo;"
+                            + "yian > yan;"
+                            + "yie > ye;"
+                            + "lüan > luan;"
+                            + "iong > yong;",
+                    Transliterator.FORWARD);
 
     static String fixPinyin(String s) {
         final String original = s;
-        //err.println("Source: " + s);
+        // err.println("Source: " + s);
         s = accentPinyin_digitPinyin.transliterate(s);
-        //err.println("Digit: " + s);
+        // err.println("Digit: " + s);
         s = fixTypos.transliterate(s);
-        //err.println("fixed: " + s);
+        // err.println("fixed: " + s);
         s = digitPinyin_accentPinyin.transliterate(s);
-        //err.println("Result: " + s);
+        // err.println("Result: " + s);
         if (isValidPinyin(s)) {
             return s;
         }
@@ -1478,7 +1581,10 @@ public final class GenerateHanTransliterator implements UCD_Types {
 
             if (type == CHINESE) {
                 System.out.println("Reading chinese_frequency.txt");
-                br = Utility.openReadFile(Settings.UnicodeTools.DATA_DIR + "dict/chinese_frequency.txt", Utility.UTF8);
+                br =
+                        Utility.openReadFile(
+                                Settings.UnicodeTools.DATA_DIR + "dict/chinese_frequency.txt",
+                                Utility.UTF8);
                 counter = 0;
                 while (true) {
                     line = Utility.readDataLine(br);
@@ -1490,9 +1596,9 @@ public final class GenerateHanTransliterator implements UCD_Types {
                     }
                     Utility.dot(counter++);
                     final int tabPos = line.indexOf('\t');
-                    final int rank = Integer.parseInt(line.substring(0,tabPos));
-                    final int cp = line.charAt(tabPos+1);
-                    //if ((rank % 100) == 0) System.out.println(rank + ", " + Utility.hex(cp));
+                    final int rank = Integer.parseInt(line.substring(0, tabPos));
+                    final int cp = line.charAt(tabPos + 1);
+                    // if ((rank % 100) == 0) System.out.println(rank + ", " + Utility.hex(cp));
                     combinedRank.add(new Pair(new Integer(rank), UTF16.valueOf(cp)));
                 }
                 br.close();
@@ -1501,7 +1607,10 @@ public final class GenerateHanTransliterator implements UCD_Types {
             if (type == JAPANESE) {
                 System.out.println("Reading japanese_frequency.txt");
 
-                br = Utility.openReadFile(Settings.UnicodeTools.DATA_DIR + "dict/japanese_frequency.txt", Utility.UTF8);
+                br =
+                        Utility.openReadFile(
+                                Settings.UnicodeTools.DATA_DIR + "dict/japanese_frequency.txt",
+                                Utility.UTF8);
                 final Map japaneseMap = new HashMap();
                 while (true) {
                     line = Utility.readDataLine(br);
@@ -1514,15 +1623,17 @@ public final class GenerateHanTransliterator implements UCD_Types {
                     Utility.dot(counter++);
                     final int tabPos = line.indexOf(' ');
 
-                    final int tabPos2 = line.indexOf(' ', tabPos+1);
-                    final int freq = Integer.parseInt(line.substring(tabPos2+1));
+                    final int tabPos2 = line.indexOf(' ', tabPos + 1);
+                    final int freq = Integer.parseInt(line.substring(tabPos2 + 1));
 
-                    for (int i = tabPos+1; i < tabPos2; ++i) {
+                    for (int i = tabPos + 1; i < tabPos2; ++i) {
                         final int cp = line.charAt(i);
                         final int script = Default.ucd().getScript(cp);
                         if (script != HAN_SCRIPT) {
-                            if (script != HIRAGANA_SCRIPT && script != KATAKANA_SCRIPT
-                                    && cp != 0x30FB && cp != 0x30FC) {
+                            if (script != HIRAGANA_SCRIPT
+                                    && script != KATAKANA_SCRIPT
+                                    && cp != 0x30FB
+                                    && cp != 0x30FC) {
                                 System.out.println("Huh: " + Default.ucd().getCodeAndName(cp));
                             }
                             continue;
@@ -1540,9 +1651,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
                     final Comparable val = (Comparable) japaneseMap.get(key);
                     combinedRank.add(new Pair(new Integer(++countJapanese), key));
                 }
-
             }
-
 
             int overallRank = 0;
             it = combinedRank.iterator();
@@ -1557,7 +1666,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
 
             // make up rankMap, rankList
 
-            while(it.hasNext()) {
+            while (it.hasNext()) {
                 final Pair p = (Pair) it.next();
                 if (showFrequency) {
                     log.println(p.first + ", " + p.second);
@@ -1686,7 +1795,6 @@ public final class GenerateHanTransliterator implements UCD_Types {
         }
     }
 
-
     static Map rankMap = new TreeMap(); // maps from single char strings to overall rank
     static List rankList = new ArrayList(10000);
 
@@ -1699,7 +1807,9 @@ public final class GenerateHanTransliterator implements UCD_Types {
         }
 
         System.out.println("Reading " + fname);
-        final BufferedReader br = Utility.openReadFile(Settings.UnicodeTools.DATA_DIR + "dict/" + fname, Utility.UTF8);
+        final BufferedReader br =
+                Utility.openReadFile(
+                        Settings.UnicodeTools.DATA_DIR + "dict/" + fname, Utility.UTF8);
         int counter = 0;
         final String[] pieces = new String[50];
         String line = "";
@@ -1715,33 +1825,33 @@ public final class GenerateHanTransliterator implements UCD_Types {
                 }
                 Utility.dot(counter++);
 
-
                 final int pinyinStart = line.indexOf('[');
-                final int pinyinEnd = line.indexOf(']', pinyinStart+1);
-                final int defStart = line.indexOf('/', pinyinEnd+1);
-                final int defEnd = line.indexOf('/', defStart+1);
+                final int pinyinEnd = line.indexOf(']', pinyinStart + 1);
+                final int defStart = line.indexOf('/', pinyinEnd + 1);
+                final int defEnd = line.indexOf('/', defStart + 1);
 
                 final int firstData = pinyinStart >= 0 ? pinyinStart : defStart;
 
-                final String word = line.substring(0,firstData).trim();
+                final String word = line.substring(0, firstData).trim();
 
                 if (type == DEFINITION) {
-                    definition = fixDefinition(line.substring(defStart+1, defEnd), line);
+                    definition = fixDefinition(line.substring(defStart + 1, defEnd), line);
                     addCheck(word, definition, line);
                 } else if (pinyinStart >= 0) {
-                    definition = line.substring(pinyinStart+1, pinyinEnd).trim();
+                    definition = line.substring(pinyinStart + 1, pinyinEnd).trim();
                     if (type == JAPANESE) {
                         processEdict(word, definition, line);
                     } else {
                         definition = digitToPinyin(definition, line);
-                        //definition = Utility.replace(definition, " ", "\\ ");
+                        // definition = Utility.replace(definition, " ", "\\ ");
                         addCheck(word, definition, line);
                     }
                 }
             }
             br.close();
         } catch (final Exception e) {
-            throw new ChainException("{0} Failed at {1}" , new Object []{new Integer(counter), line}, e);
+            throw new ChainException(
+                    "{0} Failed at {1}", new Object[] {new Integer(counter), line}, e);
         }
     }
 
@@ -1752,7 +1862,9 @@ public final class GenerateHanTransliterator implements UCD_Types {
         final String fname = "Chinese_override.txt";
 
         System.out.println("Reading " + fname);
-        final BufferedReader br = Utility.openReadFile(Settings.UnicodeTools.DATA_DIR + "dict/" + fname, Utility.UTF8);
+        final BufferedReader br =
+                Utility.openReadFile(
+                        Settings.UnicodeTools.DATA_DIR + "dict/" + fname, Utility.UTF8);
         int counter = 0;
         final String[] pieces = new String[50];
         String line = "";
@@ -1767,15 +1879,15 @@ public final class GenerateHanTransliterator implements UCD_Types {
                     continue;
                 }
                 Utility.dot(counter++);
-                //System.out.println(line);
+                // System.out.println(line);
 
                 // skip code
-                line=line.toLowerCase();
+                line = line.toLowerCase();
 
                 final int wordStart = line.indexOf('\t') + 1;
                 final int wordEnd = line.indexOf('\t', wordStart);
                 final String word = line.substring(wordStart, wordEnd);
-                final String definition = fixPinyin(line.substring(wordEnd+1));
+                final String definition = fixPinyin(line.substring(wordEnd + 1));
                 final String old = (String) unihanMap.get(word);
                 if (old != null) {
                     if (!old.equals(definition)) {
@@ -1783,9 +1895,17 @@ public final class GenerateHanTransliterator implements UCD_Types {
                             System.out.println("Overriding Failure");
                             noOverrideFailure = false;
                         }
-                        err.println("Overriding Failure: " + word
-                                + "\t" + old + " " + toHexUnicode.transliterate(old)
-                                + "\t" + definition + " " + toHexUnicode.transliterate(definition));
+                        err.println(
+                                "Overriding Failure: "
+                                        + word
+                                        + "\t"
+                                        + old
+                                        + " "
+                                        + toHexUnicode.transliterate(old)
+                                        + "\t"
+                                        + definition
+                                        + " "
+                                        + toHexUnicode.transliterate(definition));
                     }
                 } else {
                     addCheck(word, definition, line);
@@ -1794,17 +1914,17 @@ public final class GenerateHanTransliterator implements UCD_Types {
             }
             br.close();
         } catch (final Exception e) {
-            throw new ChainException("{0} Failed at {1}" , new Object []{new Integer(counter), line}, e);
+            throw new ChainException(
+                    "{0} Failed at {1}", new Object[] {new Integer(counter), line}, e);
         }
     }
 
-
     /*
-    @Unihan Data
+        @Unihan Data
 
-Bad pinyin data: \u4E7F    ?    LE
-\u7684    ?    de, de, dí, dì
-     */
+    Bad pinyin data: \u4E7F    ?    LE
+    \u7684    ?    de, de, dí, dì
+         */
 
     static void fixChineseOverrides() throws IOException {
 
@@ -1819,7 +1939,9 @@ Bad pinyin data: \u4E7F    ?    LE
             final String pinyinPrefix = "Bad pinyin data: ";
 
             System.out.println("Reading " + fname);
-            final BufferedReader br = Utility.openReadFile(Settings.UnicodeTools.DATA_DIR + "dict/" + fname, Utility.UTF8);
+            final BufferedReader br =
+                    Utility.openReadFile(
+                            Settings.UnicodeTools.DATA_DIR + "dict/" + fname, Utility.UTF8);
             try {
                 while (true) {
                     line = Utility.readDataLine(br);
@@ -1837,7 +1959,6 @@ Bad pinyin data: \u4E7F    ?    LE
                     }
                     Utility.dot(counter++);
 
-
                     if (line.charAt(0) == '@') {
                         continue;
                     }
@@ -1846,19 +1967,20 @@ Bad pinyin data: \u4E7F    ?    LE
                     }
                     line = line.toLowerCase();
 
-                    //System.out.println(Default.ucd.getCode(line));
+                    // System.out.println(Default.ucd.getCode(line));
                     // skip code
                     final int wordStart = line.indexOf('\t') + 1;
                     final int wordEnd = line.indexOf('\t', wordStart);
                     final String word = line.substring(wordStart, wordEnd).trim();
 
-                    final int defStart = wordEnd+1;
+                    final int defStart = wordEnd + 1;
                     int defEnd = line.indexOf(',', defStart);
                     if (defEnd < 0) {
                         defEnd = line.length();
                     }
 
-                    String definition = fixCircumflex.transliterate(line.substring(defStart, defEnd).trim());
+                    String definition =
+                            fixCircumflex.transliterate(line.substring(defStart, defEnd).trim());
 
                     final String notones = dropTones.transliterate(definition);
                     if (definition.equals(notones)) {
@@ -1872,7 +1994,8 @@ Bad pinyin data: \u4E7F    ?    LE
                     out.println(hex.transliterate(word) + "\t" + word + "\t" + definition);
                 }
             } catch (final Exception e) {
-                throw new ChainException("{0} Failed at {1}" , new Object []{new Integer(counter), line}, e);
+                throw new ChainException(
+                        "{0} Failed at {1}", new Object[] {new Integer(counter), line}, e);
             } finally {
                 br.close();
             }
@@ -1880,8 +2003,6 @@ Bad pinyin data: \u4E7F    ?    LE
             out.close();
         }
     }
-
-
 
     static Set overrideSet = new HashSet();
 
@@ -1905,8 +2026,7 @@ Bad pinyin data: \u4E7F    ?    LE
             // find next CJK block
             // where CJK really means anything but kana
             final int type = find(word, kana, offset, offset2, word.length(), false, false);
-            if (type == UnicodeMatcher.U_MISMATCH)
-            {
+            if (type == UnicodeMatcher.U_MISMATCH) {
                 break; // we are done.
             }
             pairList[pairCount][0] = offset[0];
@@ -1925,20 +2045,30 @@ Bad pinyin data: \u4E7F    ?    LE
 
         if (pairCount < 1) {
             System.out.println("No Kanji on line, skipping");
-            System.out.println(hex.transliterate(word) + " > " + hex.transliterate(definition)
-                    + ", " + kanaToLatin.transliterate(definition));
+            System.out.println(
+                    hex.transliterate(word)
+                            + " > "
+                            + hex.transliterate(definition)
+                            + ", "
+                            + kanaToLatin.transliterate(definition));
             return;
         }
 
         // Now generate the rules
 
-
         if (DEBUG && pairCount > 1) {
             System.out.println("Paircount: " + pairCount);
-            System.out.println("\t" + hex.transliterate(word) + " > " + hex.transliterate(definition) + ", " + kanaToLatin.transliterate(definition));
+            System.out.println(
+                    "\t"
+                            + hex.transliterate(word)
+                            + " > "
+                            + hex.transliterate(definition)
+                            + ", "
+                            + kanaToLatin.transliterate(definition));
         }
 
-        pairList[pairCount][0] = word.length(); // to make the algorithm easier, we add a termination
+        pairList[pairCount][0] =
+                word.length(); // to make the algorithm easier, we add a termination
         int delta = 0; // the current difference in positions between the definition and the word
 
         for (int i = 0; i < pairCount; ++i) {
@@ -1948,13 +2078,15 @@ Bad pinyin data: \u4E7F    ?    LE
                 System.out.println(start + ", " + limit + ", " + delta);
             }
 
-            // that part was easy. the hard part is figuring out where this corresponds to in the definition.
+            // that part was easy. the hard part is figuring out where this corresponds to in the
+            // definition.
             // For now, we use a simple mechanism.
 
-            // The word and the definition should match to this point, so we just use the start (offset by delta)
+            // The word and the definition should match to this point, so we just use the start
+            // (offset by delta)
             // We'll check just to be sure.
 
-            final int lastLimit = i == 0 ? 0 : pairList[i-1][1];
+            final int lastLimit = i == 0 ? 0 : pairList[i - 1][1];
 
             final int defStart = start + delta;
 
@@ -1969,36 +2101,57 @@ Bad pinyin data: \u4E7F    ?    LE
             if (!firstGood) {
                 // Houston, we have a problem.
                 Utility.fixDot();
-                System.out.println("Suspect line: " + hex.transliterate(word) + " > " + hex.transliterate(definition)
-                        + ", " + kanaToLatin.transliterate(definition));
-                System.out.println("\tNo match for " + hex.transliterate(word.substring(lastLimit, start))
-                        + " at end of " + hex.transliterate(definition.substring(0, defStart)));
+                System.out.println(
+                        "Suspect line: "
+                                + hex.transliterate(word)
+                                + " > "
+                                + hex.transliterate(definition)
+                                + ", "
+                                + kanaToLatin.transliterate(definition));
+                System.out.println(
+                        "\tNo match for "
+                                + hex.transliterate(word.substring(lastLimit, start))
+                                + " at end of "
+                                + hex.transliterate(definition.substring(0, defStart)));
                 break; // BAIL
             }
 
             // For the limit of the defintion, we get the intermediate portion of the word
             // then search for it in the definition.
-            // We could get tripped up if the end of the transliteration of the Kanji matched the start.
+            // We could get tripped up if the end of the transliteration of the Kanji matched the
+            // start.
             // If so, we should find out on the next pass.
 
             int defLimit;
             if (limit == word.length()) {
                 defLimit = definition.length();
             } else {
-                final String afterPart = word.substring(limit, pairList[i+1][0]);
-                defLimit = definition.indexOf(afterPart, defStart+1); // we assume the CJK is at least one!
+                final String afterPart = word.substring(limit, pairList[i + 1][0]);
+                defLimit =
+                        definition.indexOf(
+                                afterPart, defStart + 1); // we assume the CJK is at least one!
                 if (defLimit < 0) {
                     final String afterPart2 = katakanatoHiragana.transliterate(afterPart);
-                    defLimit = definition.indexOf(afterPart2, defStart+1); // we assume the CJK is at least one!
+                    defLimit =
+                            definition.indexOf(
+                                    afterPart2, defStart + 1); // we assume the CJK is at least one!
                 }
 
                 if (defLimit < 0) {
                     // Houston, we have a problem.
                     Utility.fixDot();
-                    System.out.println("Suspect line: " + hex.transliterate(word) + " > " + hex.transliterate(definition)
-                            + ", " + kanaToLatin.transliterate(definition));
-                    System.out.println("\tNo match for " + hex.transliterate(afterPart)
-                            + " in " + hex.transliterate(definition.substring(0, defStart+1)));
+                    System.out.println(
+                            "Suspect line: "
+                                    + hex.transliterate(word)
+                                    + " > "
+                                    + hex.transliterate(definition)
+                                    + ", "
+                                    + kanaToLatin.transliterate(definition));
+                    System.out.println(
+                            "\tNo match for "
+                                    + hex.transliterate(afterPart)
+                                    + " in "
+                                    + hex.transliterate(definition.substring(0, defStart + 1)));
                 }
                 break;
             }
@@ -2007,7 +2160,8 @@ Bad pinyin data: \u4E7F    ?    LE
             defPart = kanaToLatin.transliterate(defPart);
 
             // FOR NOW, JUNK the context before!!
-            // String contextWord = word.substring(0, start) + "{" + word.substring(start, limit) + "}" + word.substring(limit);
+            // String contextWord = word.substring(0, start) + "{" + word.substring(start, limit) +
+            // "}" + word.substring(limit);
             String contextWord = word.substring(start, limit);
             if (limit != word.length()) {
                 contextWord += "}" + word.substring(limit);
@@ -2015,34 +2169,43 @@ Bad pinyin data: \u4E7F    ?    LE
 
             addCheck(contextWord, defPart, line);
             if (DEBUG && pairCount > 1) {
-                System.out.println("\t" + hex.transliterate(contextWord) + " > " + hex.transliterate(defPart));
+                System.out.println(
+                        "\t" + hex.transliterate(contextWord) + " > " + hex.transliterate(defPart));
             }
 
             delta = defLimit - limit;
         }
-
     }
 
     // Useful Utilities?
 
     /**
-     * Returns the start of the first substring that matches m.
-     * Most arguments are the same as UnicodeMatcher.matches, except for offset[]
-     * @positive Use true if you want the first point that matches, and false if you want the first point that doesn't match.
-     * @offset On input, the starting position. On output, the start of the match position (not the end!!)
+     * Returns the start of the first substring that matches m. Most arguments are the same as
+     * UnicodeMatcher.matches, except for offset[]
+     *
+     * @positive Use true if you want the first point that matches, and false if you want the first
+     *     point that doesn't match.
+     * @offset On input, the starting position. On output, the start of the match position (not the
+     *     end!!)
      */
-    static int find(Replaceable s, UnicodeMatcher m, int[] offset, int limit, boolean incremental, boolean positive) {
+    static int find(
+            Replaceable s,
+            UnicodeMatcher m,
+            int[] offset,
+            int limit,
+            boolean incremental,
+            boolean positive) {
         final int direction = offset[0] <= limit ? 1 : -1;
-
 
         while (offset[0] != limit) {
             final int original = offset[0];
-            final int type = m.matches(s, offset, limit, incremental); // if successful, changes offset.
+            final int type =
+                    m.matches(s, offset, limit, incremental); // if successful, changes offset.
             if (type == UnicodeMatcher.U_MISMATCH) {
                 if (!positive) {
                     return UnicodeMatcher.U_MATCH;
                 }
-                offset[0] += direction;  // used to skip to next code unit, in the positive case
+                offset[0] += direction; // used to skip to next code unit, in the positive case
                 // !! This should be safe, and saves checking the length of the code point
             } else if (positive) {
                 offset[0] = original; // reset to the start position!!!
@@ -2053,11 +2216,19 @@ Bad pinyin data: \u4E7F    ?    LE
     }
 
     /**
-     * Returns the start/limit of the first substring that matches m. Most arguments are the same as find().<br>
-     * <b>Warning:</b> if the search is backwards, then substringEnd will contain the <i>start</i> of the substring
-     * and offset will contain the </i>limit</i> of the substring.
+     * Returns the start/limit of the first substring that matches m. Most arguments are the same as
+     * find().<br>
+     * <b>Warning:</b> if the search is backwards, then substringEnd will contain the <i>start</i>
+     * of the substring and offset will contain the </i>limit</i> of the substring.
      */
-    static int find(Replaceable s, UnicodeMatcher m, int[] offset, int[] offset2, int limit, boolean incremental, boolean positive) {
+    static int find(
+            Replaceable s,
+            UnicodeMatcher m,
+            int[] offset,
+            int[] offset2,
+            int limit,
+            boolean incremental,
+            boolean positive) {
         final int type = find(s, m, offset, limit, incremental, positive);
         if (type == UnicodeMatcher.U_MISMATCH) {
             return type;
@@ -2067,12 +2238,25 @@ Bad pinyin data: \u4E7F    ?    LE
         return type;
     }
 
-    static int find(String ss, UnicodeMatcher m, int[] offset, int limit, boolean incremental, boolean positive) {
+    static int find(
+            String ss,
+            UnicodeMatcher m,
+            int[] offset,
+            int limit,
+            boolean incremental,
+            boolean positive) {
         // UGLY that we have to create a wrapper!
         return find(new ReplaceableString(ss), m, offset, limit, incremental, positive);
     }
 
-    static int find(String ss, UnicodeMatcher m, int[] offset, int[] offset2, int limit, boolean incremental, boolean positive) {
+    static int find(
+            String ss,
+            UnicodeMatcher m,
+            int[] offset,
+            int[] offset2,
+            int limit,
+            boolean incremental,
+            boolean positive) {
         // UGLY that we have to create a wrapper!
         return find(new ReplaceableString(ss), m, offset, offset2, limit, incremental, positive);
     }
@@ -2099,10 +2283,10 @@ Bad pinyin data: \u4E7F    ?    LE
             return;
         }
 
-        if (pua.containsSome(word) ) {
+        if (pua.containsSome(word)) {
             Utility.fixDot();
             System.out.println("PUA on: " + line);
-        } else if (numbers.containsAll(definition) ) {
+        } else if (numbers.containsAll(definition)) {
             Utility.fixDot();
             System.out.println("Only numbers on: " + line);
         } else {
@@ -2123,7 +2307,9 @@ Bad pinyin data: \u4E7F    ?    LE
         System.out.println("Reading cdict.txt");
         final String fname = "cdict.txt";
 
-        final BufferedReader br = Utility.openReadFile(Settings.UnicodeTools.DATA_DIR + "dict/" + fname, Utility.UTF8);
+        final BufferedReader br =
+                Utility.openReadFile(
+                        Settings.UnicodeTools.DATA_DIR + "dict/" + fname, Utility.UTF8);
         int counter = 0;
         final String[] pieces = new String[50];
         String line = "";
@@ -2139,23 +2325,22 @@ Bad pinyin data: \u4E7F    ?    LE
                 }
                 Utility.dot(counter++);
                 final int tabPos = line.indexOf('[');
-                String word = line.substring(0,tabPos).trim();
+                String word = line.substring(0, tabPos).trim();
                 word = Utility.replace(word, "\uFE4D", "");
                 word = Utility.replace(word, ".", "");
                 word = Utility.replace(word, "/", "");
                 word = Utility.replace(word, "(", "");
                 word = Utility.replace(word, ")", "");
 
-
-                final int tab2Pos = line.indexOf(']', tabPos+1);
-                final String pinyins = line.substring(tabPos+1, tab2Pos);
+                final int tab2Pos = line.indexOf(']', tabPos + 1);
+                final String pinyins = line.substring(tabPos + 1, tab2Pos);
                 final int len = Utility.split(pinyins, ' ', pieces);
                 if (word.length() != len) {
                     log.println("Len mismatch: " + line);
                     continue;
                 }
                 for (int i = 0; i < len; ++i) {
-                    final String chr = word.substring(i, i+1);
+                    final String chr = word.substring(i, i + 1);
 
                     final String piece = digitToPinyin(pieces[i], line);
 
@@ -2199,7 +2384,8 @@ Bad pinyin data: \u4E7F    ?    LE
             }
 
         } catch (final Exception e) {
-            throw new ChainException("{0} Failed at {1}" , new Object []{new Integer(counter), line}, e);
+            throw new ChainException(
+                    "{0} Failed at {1}", new Object[] {new Integer(counter), line}, e);
         }
     }
 
@@ -2218,7 +2404,8 @@ Bad pinyin data: \u4E7F    ?    LE
 
     static void readUnihanData(String key) throws java.io.IOException {
 
-        final BufferedReader in = Utility.openUnicodeFile("Unihan", Default.ucdVersion(), true, Utility.UTF8);
+        final BufferedReader in =
+                Utility.openUnicodeFile("Unihan", Default.ucdVersion(), true, Utility.UTF8);
 
         final int count = 0;
         int lineCounter = 0;
@@ -2239,14 +2426,14 @@ Bad pinyin data: \u4E7F    ?    LE
             line = line.trim();
 
             final int tabPos = line.indexOf('\t');
-            final int tabPos2 = line.indexOf('\t', tabPos+1);
+            final int tabPos2 = line.indexOf('\t', tabPos + 1);
 
             final String scode = line.substring(2, tabPos).trim();
 
             final int code = Integer.parseInt(scode, 16);
-            final String property = line.substring(tabPos+1, tabPos2).trim();
+            final String property = line.substring(tabPos + 1, tabPos2).trim();
 
-            String propertyValue = line.substring(tabPos2+1).trim();
+            String propertyValue = line.substring(tabPos2 + 1).trim();
             if (propertyValue.indexOf("U+") >= 0) {
                 propertyValue = fromHexUnicode.transliterate(propertyValue);
             }
@@ -2262,14 +2449,13 @@ Bad pinyin data: \u4E7F    ?    LE
 
             if (key.equals("kMandarin") && property.equals("kHanyuPinlu")) {
                 // U+64D4   kHanyuPinlu dan1(297), dan4(61), dan5(36)
-                final String[] piece = Utility.split(propertyValue,'(');
+                final String[] piece = Utility.split(propertyValue, '(');
                 final String pinyin = digitToPinyin(piece[0], line);
                 log.println(scode + "\t" + pinyin + "\t" + line);
-                kHanyuPinlu.put(Integer.parseInt(scode,16), pinyin);
+                kHanyuPinlu.put(Integer.parseInt(scode, 16), pinyin);
             }
             if (property.equals(key)
-                    || key.equals("kJapaneseOn") && property.equals("kJapaneseKun")
-                    ) {
+                    || key.equals("kJapaneseOn") && property.equals("kJapaneseKun")) {
                 storeDef(out, code, propertyValue, line);
             }
         }
@@ -2280,7 +2466,7 @@ Bad pinyin data: \u4E7F    ?    LE
     static void storeDef(PrintWriter out, int cp, String rawDefinition, String line) {
         // skip spaces & numbers at start
         int start;
-        for (start = 0;start < rawDefinition.length(); ++start) {
+        for (start = 0; start < rawDefinition.length(); ++start) {
             final char ch = rawDefinition.charAt(start);
             if (ch != ' ' && ch != '\t' && (ch < '0' || ch > '9')) {
                 break;
@@ -2302,7 +2488,7 @@ Bad pinyin data: \u4E7F    ?    LE
         }
 
         // IF CHINESE or JAPANESE, stop at first space!!!
-        rawDefinition = rawDefinition.substring(start,end);
+        rawDefinition = rawDefinition.substring(start, end);
 
         if (type == DEFINITION) {
             storeDef2(out, cp, rawDefinition, line);
@@ -2310,7 +2496,7 @@ Bad pinyin data: \u4E7F    ?    LE
             if (rawDefinition.indexOf(' ') < 0) {
                 storeDef2(out, cp, rawDefinition, line);
             } else {
-                final String [] pieces = Utility.split(rawDefinition, ' ');
+                final String[] pieces = Utility.split(rawDefinition, ' ');
                 for (final String piece : pieces) {
                     storeDef2(out, cp, piece, line);
                 }
@@ -2321,20 +2507,26 @@ Bad pinyin data: \u4E7F    ?    LE
     static void storeDef2(PrintWriter out, int cp, String definition, String line) {
         if (type == CHINESE) {
             // since data are messed up, terminate after first digit
-            int end3 = findInString(definition, "12345")+1;
+            int end3 = findInString(definition, "12345") + 1;
             if (end3 == 0) {
-                log.println("Bad pinyin data: " + hex.transliterate(UTF16.valueOf(cp))
-                        + "\t" + UTF16.valueOf(cp) + "\t" + definition);
+                log.println(
+                        "Bad pinyin data: "
+                                + hex.transliterate(UTF16.valueOf(cp))
+                                + "\t"
+                                + UTF16.valueOf(cp)
+                                + "\t"
+                                + definition);
                 end3 = definition.length();
             }
             definition = definition.substring(0, end3);
 
             definition = digitToPinyin(definition, line);
-            out2.println(Utility.hex(cp) + '\t' + UTF16.valueOf(cp) + "\t" + definition.toLowerCase());
+            out2.println(
+                    Utility.hex(cp) + '\t' + UTF16.valueOf(cp) + "\t" + definition.toLowerCase());
         }
         if (type == DEFINITION) {
-            definition = removeMatched(definition,'(', ')', line);
-            definition = removeMatched(definition,'[', ']', line);
+            definition = removeMatched(definition, '(', ')', line);
+            definition = removeMatched(definition, '[', ']', line);
             definition = fixDefinition(definition, line);
         }
         definition = definition.trim();
@@ -2342,7 +2534,11 @@ Bad pinyin data: \u4E7F    ?    LE
 
         if (definition.length() == 0) {
             Utility.fixDot();
-            err.println("Zero value for " + Default.ucd().getCode(cp) + " on: " + hex.transliterate(line));
+            err.println(
+                    "Zero value for "
+                            + Default.ucd().getCode(cp)
+                            + " on: "
+                            + hex.transliterate(line));
         } else {
             addCheck(UTF16.valueOf(cp), definition, line);
         }
@@ -2364,7 +2560,6 @@ Bad pinyin data: \u4E7F    ?    LE
         return definition;
     }
 
-
     // WARNING not supplemenatary-safe!
 
     static int findInString(String source, String chars) {
@@ -2384,12 +2579,12 @@ Bad pinyin data: \u4E7F    ?    LE
             if (pos < 0) {
                 break;
             }
-            int epos = source.indexOf(end, pos+1);
+            int epos = source.indexOf(end, pos + 1);
             if (epos < 0) {
-                epos = source.length()-1;
+                epos = source.length() - 1;
                 log.println("Mismatches with " + start + ", " + end + ": " + originalLine);
             }
-            source = source.substring(0,pos) + source.substring(epos+1);
+            source = source.substring(0, pos) + source.substring(epos + 1);
         }
         return source;
     }
@@ -2402,32 +2597,39 @@ Bad pinyin data: \u4E7F    ?    LE
     static StringBuffer handlePinyinTemp = new StringBuffer();
 
     static final Transliterator hex = Transliterator.getInstance("[^\\u0020-\\u007F] hex");
-    static final Transliterator quoteNonLetters = Transliterator.createFromRules("any-quotenonletters",
-            "([[\\u0020-\\u007E]-[:L:]-[\\'\\{\\}]-[0-9]]) > \\u005C $1; "
-                    + "\\' > \\'\\';",
+    static final Transliterator quoteNonLetters =
+            Transliterator.createFromRules(
+                    "any-quotenonletters",
+                    "([[\\u0020-\\u007E]-[:L:]-[\\'\\{\\}]-[0-9]]) > \\u005C $1; "
+                            + "\\' > \\'\\';",
                     Transliterator.FORWARD);
-    static final Transliterator toSub = Transliterator.createFromRules("any-subscript",
-            " 0 > \u2080; "
-                    + " 1 > \u2081; "
-                    + " 2 > \u2082; "
-                    + " 3 > \u2084; "
-                    + " 4 > \u2084; "
-                    + " 5 > \u2085; "
-                    + " 6 > \u2086; "
-                    + " 7 > \u2087; "
-                    + " 8 > \u2088; "
-                    + " 9 > \u2089; ",
-                    Transliterator.FORWARD);
-
-    static final Transliterator kanaToLatin = Transliterator.createFromRules("any-subscript",
-            " $kata = [[:katakana:]\u30FC]; "
-                    + "[:hiragana:] {} [:^hiragana:] > ' '; "
-                    + "$kata {} [^[:hiragana:]$kata] > ' '; "
-                    + "::Katakana-Latin; "
-                    + "::Hiragana-Latin;",
+    static final Transliterator toSub =
+            Transliterator.createFromRules(
+                    "any-subscript",
+                    " 0 > \u2080; "
+                            + " 1 > \u2081; "
+                            + " 2 > \u2082; "
+                            + " 3 > \u2084; "
+                            + " 4 > \u2084; "
+                            + " 5 > \u2085; "
+                            + " 6 > \u2086; "
+                            + " 7 > \u2087; "
+                            + " 8 > \u2088; "
+                            + " 9 > \u2089; ",
                     Transliterator.FORWARD);
 
-    static final Transliterator katakanatoHiragana = Transliterator.getInstance("katakana-hiragana");
+    static final Transliterator kanaToLatin =
+            Transliterator.createFromRules(
+                    "any-subscript",
+                    " $kata = [[:katakana:]\u30FC]; "
+                            + "[:hiragana:] {} [:^hiragana:] > ' '; "
+                            + "$kata {} [^[:hiragana:]$kata] > ' '; "
+                            + "::Katakana-Latin; "
+                            + "::Hiragana-Latin;",
+                    Transliterator.FORWARD);
+
+    static final Transliterator katakanatoHiragana =
+            Transliterator.getInstance("katakana-hiragana");
 
     static final UnicodeSet kana = new UnicodeSet("[[:hiragana:][:katakana:]\u30FC]");
     // since we are working in NFC, we don't worry about the combining marks.
@@ -2443,6 +2645,7 @@ Bad pinyin data: \u4E7F    ?    LE
             System.out.println("Registering: " + ID + ", " + t.toRules(true));
             Transliterator.registerFactory(ID, singleton);
         }
+
         @Override
         public Transliterator getInstance(String ID) {
             return (Transliterator) m.get(ID);
@@ -2451,130 +2654,137 @@ Bad pinyin data: \u4E7F    ?    LE
 
     static Transliterator digitPinyin_accentPinyin;
 
-    static Transliterator accentPinyin_digitPinyin = Transliterator.createFromRules("accentPinyin_digitPinyin",
-            "::NFD; "
-                    + " ([\u0304\u0301\u030C\u0300\u0306]) ([[:Mark:][:Letter:]]+) > $2 | $1;"
-                    + "\u0304 > '1'; \u0301 > '2'; \u030C > '3'; \u0300 > '4'; \u0306 > '3';"
-                    + " ::NFC;", Transliterator.FORWARD);
+    static Transliterator accentPinyin_digitPinyin =
+            Transliterator.createFromRules(
+                    "accentPinyin_digitPinyin",
+                    "::NFD; "
+                            + " ([\u0304\u0301\u030C\u0300\u0306]) ([[:Mark:][:Letter:]]+) > $2 | $1;"
+                            + "\u0304 > '1'; \u0301 > '2'; \u030C > '3'; \u0300 > '4'; \u0306 > '3';"
+                            + " ::NFC;",
+                    Transliterator.FORWARD);
 
-    static Transliterator fixCircumflex = Transliterator.createFromRules("fix_circumflex",
-            "::NFD; \u0306 > \u030C; ::NFC;", Transliterator.FORWARD);
+    static Transliterator fixCircumflex =
+            Transliterator.createFromRules(
+                    "fix_circumflex", "::NFD; \u0306 > \u030C; ::NFC;", Transliterator.FORWARD);
 
-    static Transliterator dropTones = Transliterator.createFromRules("drop_tones",
-            "::NFD; \u0304 > ; \u0301 > ; \u030C > ; \u0300 > ; \u0306 > ; ::NFC;", Transliterator.FORWARD);
+    static Transliterator dropTones =
+            Transliterator.createFromRules(
+                    "drop_tones",
+                    "::NFD; \u0304 > ; \u0301 > ; \u030C > ; \u0300 > ; \u0306 > ; ::NFC;",
+                    Transliterator.FORWARD);
 
     static {
-        final String dt = "1 > \u0304;\n"
-                + "2 <> \u0301;\n"
-                + "3 <> \u030C;\n"
-                + "4 <> \u0300;\n"
-                + "5 <> ;";
+        final String dt =
+                "1 > \u0304;\n" + "2 <> \u0301;\n" + "3 <> \u030C;\n" + "4 <> \u0300;\n" + "5 <> ;";
 
-        final String dp = "# syllable is ...vowel+ consonant* number\n"
-                + "# 'a', 'e' are the preferred bases\n"
-                + "# otherwise 'o'\n"
-                + "# otherwise last vowel\n"
-                + "::NFC;\n"
-                + "$vowel = [aAeEiIoOuUüÜ];\n"
-                + "$consonant = [[a-z A-Z] - [$vowel]];\n"
-                + "$digit = [1-5];\n"
-                + "([aAeE]) ($vowel* $consonant*) ($digit) > $1 &digit-tone($3) $2;\n"
-                + "([oO]) ([$vowel-[aeAE]]* $consonant*) ($digit) > $1 &digit-tone($3) $2;\n"
-                + "($vowel) ($consonant*) ($digit) > $1 &digit-tone($3) $2;\n"
-                + "($digit) > &digit-tone($1);\n"
-                + "::NFC;\n";
+        final String dp =
+                "# syllable is ...vowel+ consonant* number\n"
+                        + "# 'a', 'e' are the preferred bases\n"
+                        + "# otherwise 'o'\n"
+                        + "# otherwise last vowel\n"
+                        + "::NFC;\n"
+                        + "$vowel = [aAeEiIoOuUüÜ];\n"
+                        + "$consonant = [[a-z A-Z] - [$vowel]];\n"
+                        + "$digit = [1-5];\n"
+                        + "([aAeE]) ($vowel* $consonant*) ($digit) > $1 &digit-tone($3) $2;\n"
+                        + "([oO]) ([$vowel-[aeAE]]* $consonant*) ($digit) > $1 &digit-tone($3) $2;\n"
+                        + "($vowel) ($consonant*) ($digit) > $1 &digit-tone($3) $2;\n"
+                        + "($digit) > &digit-tone($1);\n"
+                        + "::NFC;\n";
 
-        final Transliterator at = Transliterator.createFromRules("digit-tone", dt, Transliterator.FORWARD);
+        final Transliterator at =
+                Transliterator.createFromRules("digit-tone", dt, Transliterator.FORWARD);
         System.out.println(at.transliterate("a1a2a3a4a5"));
         DummyFactory.add(at.getID(), at);
 
-        digitPinyin_accentPinyin = Transliterator.createFromRules("digit-pinyin", dp, Transliterator.FORWARD);
-        System.out.println(digitPinyin_accentPinyin.transliterate("an2 aon2 oan2 ion2 oin2 uin2 iun2"));
-
+        digitPinyin_accentPinyin =
+                Transliterator.createFromRules("digit-pinyin", dp, Transliterator.FORWARD);
+        System.out.println(
+                digitPinyin_accentPinyin.transliterate("an2 aon2 oan2 ion2 oin2 uin2 iun2"));
     }
     /*
 
-    static String convertTones(String source, String debugLine) {
-        try {
-            result = new StringBuffer();
-            main:
-            for (int i = 0; i < source.length(); ++i) {
-                ch = source.charAt(i);
-                switch (ch) {
-                    case ':':
-                        if (i > 0) {
-                            char last = result.charAt(result.length()-1);
-                            if (last == 'u') {
-                                result.setCharAt(result.length()-1, 'ü');
-                                continue main;
-                            } else if (last == 'U') {
-                                result.setCharAt(result.length()-1, 'Ü');
-                                continue main;
+        static String convertTones(String source, String debugLine) {
+            try {
+                result = new StringBuffer();
+                main:
+                for (int i = 0; i < source.length(); ++i) {
+                    ch = source.charAt(i);
+                    switch (ch) {
+                        case ':':
+                            if (i > 0) {
+                                char last = result.charAt(result.length()-1);
+                                if (last == 'u') {
+                                    result.setCharAt(result.length()-1, 'ü');
+                                    continue main;
+                                } else if (last == 'U') {
+                                    result.setCharAt(result.length()-1, 'Ü');
+                                    continue main;
+                                }
                             }
-                        }
-                        break;
-                    case '1': break; // skip character
-                    case '2': case '3': case '4': case '5':
-                        applyToPrecedingBase(result, ch-'0');
-                        break;
-                    default:
-                        result.append(ch);
-                        break;
+                            break;
+                        case '1': break; // skip character
+                        case '2': case '3': case '4': case '5':
+                            applyToPrecedingBase(result, ch-'0');
+                            break;
+                        default:
+                            result.append(ch);
+                            break;
+                    }
                 }
             }
+
+
+            source = source.trim();
+                char ch = source.charAt(source.length()-1);
+                int num = (int)(ch-'1');
+                if (num < 0 || num > 5) throw new Exception("none");
+                handlePinyinTemp.setLength(0);
+                boolean gotIt = false;
+                boolean messageIfNoGotIt = true;
+
+                for (int i = source.length()-2; i >= 0; --i) {
+                    ch = source.charAt(i);
+                    if (ch == ':') {
+                        ch = 'Ü';
+                        --i;
+                    }
+                    if ('0' <= ch && ch <= '9') break;
+                    if (ch != 'Ü' && (ch < 'A' || ch > 'Z')) {
+                        Utility.fixDot();
+                        System.out.println("Warning: non-ASCII in " + hex.transliterate(source) + " (" + hex.transliterate(debugLine) + ")");
+                        break;
+                    }
+                    if (!gotIt) switch (ch) {
+                        case 'A': ch = "AÁ\u0102À\u0100".charAt(num); gotIt = true; break;
+                        case 'E': ch = "EÉ\u0114È\u0112".charAt(num); gotIt = true; break;
+                        case 'I': ch = "IÍ\u012CÌ\u012A".charAt(num); gotIt = true; break;
+                        case 'O': ch = "OÓ\u014EÒ\u014C".charAt(num); gotIt = true; break;
+                        case 'U': ch = "UÚ\u016CÙ\u016A".charAt(num); gotIt = true; break;
+                        case 'Ü': ch = "Ü\u01D7\u01D9\u01DB\u01D5".charAt(num); gotIt = true; break;
+                    }
+                    handlePinyinTemp.insert(0,ch);
+                }
+                if (!gotIt && num > 0) {
+                    handlePinyinTemp.append(" \u0301\u0306\u0300\u0304".charAt(num));
+                    if (messageIfNoGotIt) {
+                        err.println("Missing vowel?: " + debugLine + " -> " + handlePinyinTemp
+                        .toString());
+                    }
+                }
+                source = handlePinyinTemp.toString().toLowerCase();
+            } catch (Exception e) {
+                log.println("Bad line: " + debugLine);
+            }
+            return source;
         }
 
-
-        source = source.trim();
-            char ch = source.charAt(source.length()-1);
-            int num = (int)(ch-'1');
-            if (num < 0 || num > 5) throw new Exception("none");
-            handlePinyinTemp.setLength(0);
-            boolean gotIt = false;
-            boolean messageIfNoGotIt = true;
-
-            for (int i = source.length()-2; i >= 0; --i) {
-                ch = source.charAt(i);
-                if (ch == ':') {
-                    ch = 'Ü';
-                    --i;
-                }
-                if ('0' <= ch && ch <= '9') break;
-                if (ch != 'Ü' && (ch < 'A' || ch > 'Z')) {
-                    Utility.fixDot();
-                    System.out.println("Warning: non-ASCII in " + hex.transliterate(source) + " (" + hex.transliterate(debugLine) + ")");
-                    break;
-                }
-                if (!gotIt) switch (ch) {
-                    case 'A': ch = "AÁ\u0102À\u0100".charAt(num); gotIt = true; break;
-                    case 'E': ch = "EÉ\u0114È\u0112".charAt(num); gotIt = true; break;
-                    case 'I': ch = "IÍ\u012CÌ\u012A".charAt(num); gotIt = true; break;
-                    case 'O': ch = "OÓ\u014EÒ\u014C".charAt(num); gotIt = true; break;
-                    case 'U': ch = "UÚ\u016CÙ\u016A".charAt(num); gotIt = true; break;
-                    case 'Ü': ch = "Ü\u01D7\u01D9\u01DB\u01D5".charAt(num); gotIt = true; break;
-                }
-                handlePinyinTemp.insert(0,ch);
-            }
-            if (!gotIt && num > 0) {
-                handlePinyinTemp.append(" \u0301\u0306\u0300\u0304".charAt(num));
-                if (messageIfNoGotIt) {
-                    err.println("Missing vowel?: " + debugLine + " -> " + handlePinyinTemp
-                    .toString());
-                }
-            }
-            source = handlePinyinTemp.toString().toLowerCase();
-        } catch (Exception e) {
-            log.println("Bad line: " + debugLine);
-        }
-        return source;
-    }
-
-/*
-A and e trump all other vowels and always take the tone mark.
-There are no Mandarin syllables that contain both a and e.
-In the combination ou, o takes the mark.
-In all other cases, the final vowel takes the mark.
-     */
+    /*
+    A and e trump all other vowels and always take the tone mark.
+    There are no Mandarin syllables that contain both a and e.
+    In the combination ou, o takes the mark.
+    In all other cases, the final vowel takes the mark.
+         */
     /*
     static String applyToPrecedingBase(StringBuffer result, int tone) {
         for (int i = result.length()-1; i >= 0; --i) {

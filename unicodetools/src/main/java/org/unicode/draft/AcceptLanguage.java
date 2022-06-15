@@ -16,22 +16,19 @@ package org.unicode.draft;
  *  limitations under the License.
  */
 
-
-
+import com.ibm.icu.lang.UCharacter;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Locale;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
-import com.ibm.icu.lang.UCharacter;
-
 /**
- * Util to process the "Accept-Language" header. Used by facade to implement
- * getLocale() and by StaticInterceptor.
+ * Util to process the "Accept-Language" header. Used by facade to implement getLocale() and by
+ * StaticInterceptor.
  *
- * Not optimized - it's very slow.
- * 
+ * <p>Not optimized - it's very slow.
+ *
  * @author James Duncan Davidson [duncan@eng.sun.com]
  * @author James Todd [gonzo@eng.sun.com]
  * @author Jason Hunter [jch@eng.sun.com]
@@ -42,22 +39,22 @@ public class AcceptLanguage {
     UCharacter foo;
 
     public static Locale getLocale(String acceptLanguage) {
-        if( acceptLanguage == null ) {
+        if (acceptLanguage == null) {
             return Locale.getDefault();
         }
 
         final Hashtable languages = new Hashtable();
-        final Vector quality=new Vector();
-        processAcceptLanguage(acceptLanguage, languages,quality);
+        final Vector quality = new Vector();
+        processAcceptLanguage(acceptLanguage, languages, quality);
 
         if (languages.size() == 0) {
             return Locale.getDefault();
         }
 
         final Vector l = new Vector();
-        extractLocales( languages,quality, l);
+        extractLocales(languages, quality, l);
 
-        return (Locale)l.elementAt(0);
+        return (Locale) l.elementAt(0);
     }
 
     public static Enumeration getLocales(String acceptLanguage) {
@@ -69,8 +66,8 @@ public class AcceptLanguage {
         }
 
         final Hashtable languages = new Hashtable();
-        final Vector quality=new Vector();
-        processAcceptLanguage(acceptLanguage, languages , quality);
+        final Vector quality = new Vector();
+        processAcceptLanguage(acceptLanguage, languages, quality);
 
         if (languages.size() == 0) {
             final Vector v = new Vector();
@@ -78,15 +75,13 @@ public class AcceptLanguage {
             return v.elements();
         }
         final Vector l = new Vector();
-        extractLocales( languages, quality , l);
+        extractLocales(languages, quality, l);
         return l.elements();
     }
 
-    private static void processAcceptLanguage( String acceptLanguage,
-            Hashtable languages, Vector q)
-    {
-        final StringTokenizer languageTokenizer =
-                new StringTokenizer(acceptLanguage, ",");
+    private static void processAcceptLanguage(
+            String acceptLanguage, Hashtable languages, Vector q) {
+        final StringTokenizer languageTokenizer = new StringTokenizer(acceptLanguage, ",");
 
         while (languageTokenizer.hasMoreTokens()) {
             String language = languageTokenizer.nextToken().trim();
@@ -95,16 +90,13 @@ public class AcceptLanguage {
             final int equalIndex = language.indexOf('=');
             Double qValue = new Double(1);
 
-            if (qValueIndex > -1 &&
-                    qValueIndex < qIndex &&
-                    qIndex < equalIndex) {
+            if (qValueIndex > -1 && qValueIndex < qIndex && qIndex < equalIndex) {
                 String qValueStr = language.substring(qValueIndex + 1);
                 language = language.substring(0, qValueIndex);
                 qValueStr = qValueStr.trim().toLowerCase();
                 qValueIndex = qValueStr.indexOf('=');
                 qValue = new Double(0);
-                if (qValueStr.startsWith("q") &&
-                        qValueIndex > -1) {
+                if (qValueStr.startsWith("q") && qValueIndex > -1) {
                     qValueStr = qValueStr.substring(qValueIndex + 1);
                     try {
                         qValue = new Double(qValueStr.trim());
@@ -116,13 +108,13 @@ public class AcceptLanguage {
             // XXX
             // may need to handle "*" at some point in time
 
-            if (! language.equals("*")) {
+            if (!language.equals("*")) {
                 final String key = qValue.toString();
                 Vector v;
                 if (languages.containsKey(key)) {
-                    v = (Vector)languages.get(key) ;
+                    v = (Vector) languages.get(key);
                 } else {
-                    v= new Vector();
+                    v = new Vector();
                     q.addElement(qValue);
                 }
                 v.addElement(language);
@@ -131,16 +123,14 @@ public class AcceptLanguage {
         }
     }
 
-    private static void extractLocales(Hashtable languages, Vector q,Vector l)
-    {
+    private static void extractLocales(Hashtable languages, Vector q, Vector l) {
         // XXX We will need to order by q value Vector in the Future ?
         final Enumeration e = q.elements();
         while (e.hasMoreElements()) {
-            final Vector v =
-                    (Vector)languages.get(((Double)e.nextElement()).toString());
+            final Vector v = (Vector) languages.get(((Double) e.nextElement()).toString());
             final Enumeration le = v.elements();
             while (le.hasMoreElements()) {
-                String language = (String)le.nextElement();
+                String language = (String) le.nextElement();
                 String country = "";
                 final int countryIndex = language.indexOf("-");
                 if (countryIndex > -1) {
@@ -151,6 +141,7 @@ public class AcceptLanguage {
             }
         }
     }
+
     public static void main(String[] args) {
         final Hashtable languages = new Hashtable();
         final Vector quality = new Vector();
@@ -161,5 +152,4 @@ public class AcceptLanguage {
         extractLocales(languages, quality, locales);
         System.out.println("locales: " + locales);
     }
-
 }

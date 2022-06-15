@@ -1,22 +1,20 @@
 package org.unicode.text.UCA;
 
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.CanonicalIterator;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.TreeMap;
-
 import org.unicode.text.UCA.UCA.AppendToCe;
 import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.CanonicalIterator;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
 
 public class WriteConformanceTest {
     private static final boolean DEBUG = false;
@@ -29,10 +27,12 @@ public class WriteConformanceTest {
 
     private static final char LOW_ACCENT = '\u0334';
 
-    private static final String   SUPPLEMENTARY_ACCENT         = UTF16.valueOf(0x1D165);
-    private static final String   COMPLETELY_IGNOREABLE        = "\u0001";
-    private static final String   COMPLETELY_IGNOREABLE_ACCENT = "\u0591";
-    private static final String[] CONTRACTION_TEST = { SUPPLEMENTARY_ACCENT, COMPLETELY_IGNOREABLE, COMPLETELY_IGNOREABLE_ACCENT };
+    private static final String SUPPLEMENTARY_ACCENT = UTF16.valueOf(0x1D165);
+    private static final String COMPLETELY_IGNOREABLE = "\u0001";
+    private static final String COMPLETELY_IGNOREABLE_ACCENT = "\u0591";
+    private static final String[] CONTRACTION_TEST = {
+        SUPPLEMENTARY_ACCENT, COMPLETELY_IGNOREABLE, COMPLETELY_IGNOREABLE_ACCENT
+    };
 
     private static CanonicalIterator canIt = null;
     private static TreeMap<String, String> sortedD = new TreeMap<String, String>();
@@ -43,7 +43,9 @@ public class WriteConformanceTest {
     private static Normalizer nfkd;
     private static UnicodeSet hanNotInCPOrder;
 
-    static void writeConformance(String filename, byte option, boolean shortPrint, CollatorType collatorType) throws IOException {
+    static void writeConformance(
+            String filename, byte option, boolean shortPrint, CollatorType collatorType)
+            throws IOException {
         ucd = Default.ucd();
         collator = WriteCollationData.getCollator(collatorType);
         nfd = Default.nfd();
@@ -53,7 +55,25 @@ public class WriteConformanceTest {
          * LATIN CAPITAL LETTER U WITH DIAERESIS, U+0304 COMBINING MACRON
          */
         if (DEBUG) {
-            final String[] testList = { "\u0000", "\u0000\u0300", "\u0300", "\u0301", "\u0020", "\u0020\u0300", "A", "\u3192", "\u3220", "\u0344", "\u0385", "\uF934", "U", "U\u0308", "\u00DC", "\u00DC\u0304", "U\u0308\u0304" };
+            final String[] testList = {
+                "\u0000",
+                "\u0000\u0300",
+                "\u0300",
+                "\u0301",
+                "\u0020",
+                "\u0020\u0300",
+                "A",
+                "\u3192",
+                "\u3220",
+                "\u0344",
+                "\u0385",
+                "\uF934",
+                "U",
+                "U\u0308",
+                "\u00DC",
+                "\u00DC\u0304",
+                "U\u0308\u0304"
+            };
             // load the library first
             collator.getCEList("a", true);
 
@@ -72,18 +92,26 @@ public class WriteConformanceTest {
             }
         }
 
-        final String fullFileName = "CollationTest"
-                + (collatorType==CollatorType.cldr ? "_CLDR" : "")
-                + (option == UCA_Types.NON_IGNORABLE ? "_NON_IGNORABLE" : "_SHIFTED")
-                //+ (appendNfd ? "_NFD" : "")
-                + (shortPrint ? "_SHORT" : "") + ".txt";
+        final String fullFileName =
+                "CollationTest"
+                        + (collatorType == CollatorType.cldr ? "_CLDR" : "")
+                        + (option == UCA_Types.NON_IGNORABLE ? "_NON_IGNORABLE" : "_SHIFTED")
+                        // + (appendNfd ? "_NFD" : "")
+                        + (shortPrint ? "_SHORT" : "")
+                        + ".txt";
 
-        final String directory = UCA.getOutputDir() + File.separator
-                + (collatorType==CollatorType.cldr ? "CollationAuxiliary" : "CollationTest");
+        final String directory =
+                UCA.getOutputDir()
+                        + File.separator
+                        + (collatorType == CollatorType.cldr
+                                ? "CollationAuxiliary"
+                                : "CollationTest");
 
-        final PrintWriter log = Utility.openPrintWriter(directory, fullFileName, Utility.UTF8_WINDOWS);
+        final PrintWriter log =
+                Utility.openPrintWriter(directory, fullFileName, Utility.UTF8_WINDOWS);
         // if (!shortPrint) log.write('\uFEFF');
-        WriteCollationData.writeVersionAndDate(log, fullFileName, collatorType==CollatorType.cldr);
+        WriteCollationData.writeVersionAndDate(
+                log, fullFileName, collatorType == CollatorType.cldr);
 
         System.out.println("Sorting");
         int counter = 0;
@@ -102,7 +130,9 @@ public class WriteConformanceTest {
                 break;
             }
 
-            if (SKIP_SPECIAL_TIBETAN && collatorType==CollatorType.ducet && s.length() > 1
+            if (SKIP_SPECIAL_TIBETAN
+                    && collatorType == CollatorType.ducet
+                    && s.length() > 1
                     && (s.startsWith("\u0FB2") || s.startsWith("\u0FB3"))) {
                 continue;
             }
@@ -130,30 +160,34 @@ public class WriteConformanceTest {
 
         final UnicodeSet found = collator.getStatistics().found;
         if (!found2.containsAll(found2)) {
-            System.out.println("In both: " + new UnicodeSet(found).retainAll(found2).toPattern(true));
-            System.out.println("In UCA but not iteration: " + new UnicodeSet(found).removeAll(found2).toPattern(true));
-            System.out.println("In iteration but not UCA: " + new UnicodeSet(found2).removeAll(found).toPattern(true));
+            System.out.println(
+                    "In both: " + new UnicodeSet(found).retainAll(found2).toPattern(true));
+            System.out.println(
+                    "In UCA but not iteration: "
+                            + new UnicodeSet(found).removeAll(found2).toPattern(true));
+            System.out.println(
+                    "In iteration but not UCA: "
+                            + new UnicodeSet(found2).removeAll(found).toPattern(true));
             throw new IllegalArgumentException("Inconsistent data");
-
         }
 
         /*
          * for (int i = 0; i <= 0x10FFFF; ++i) { if (!ucd.isAssigned(i))
          * continue; addStringX(UTF32.valueOf32(i), option); }
-         * 
+         *
          * Hashtable multiTable = collator.getContracting(); Enumeration enum =
          * multiTable.keys(); while (enum.hasMoreElements()) {
          * Utility.dot(counter++); addStringX((String)enum.nextElement(),
          * option); }
-         * 
+         *
          * for (int i = 0; i < extraConformanceTests.length; ++i) { // put in
          * sample non-characters Utility.dot(counter++); String s =
          * UTF32.valueOf32(extraConformanceTests[i]); Utility.fixDot();
          * System.out.println("Adding: " + Utility.hex(s)); addStringX(s,
          * option); }
-         * 
-         * 
-         * 
+         *
+         *
+         *
          * for (int i = 0; i < extraConformanceRanges.length; ++i) {
          * Utility.dot(counter++); int start = extraConformanceRanges[i][0]; int
          * end = extraConformanceRanges[i][1]; int increment = ((end - start +
@@ -206,11 +240,7 @@ public class WriteConformanceTest {
                 if (RTL.containsSome(quoteOperand)) {
                     quoteOperand = '\u200E' + quoteOperand + '\u200E';
                 }
-                log.print(
-                        ";\t# (" + quoteOperand + ") "
-                                + name
-                                + "\t"
-                                + UCA.toString(key, level));
+                log.print(";\t# (" + quoteOperand + ") " + name + "\t" + UCA.toString(key, level));
             } else {
                 log.print(Utility.hex(source));
             }

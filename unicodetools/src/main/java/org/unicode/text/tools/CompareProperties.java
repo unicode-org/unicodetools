@@ -1,29 +1,28 @@
 package org.unicode.text.tools;
 
-import java.util.HashMap;
-import java.util.List;
-
-import org.unicode.props.UnicodeProperty;
-import org.unicode.text.UCD.ToolUnicodePropertySource;
-
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.text.UnicodeSet;
+import java.util.HashMap;
+import java.util.List;
+import org.unicode.props.UnicodeProperty;
+import org.unicode.text.UCD.ToolUnicodePropertySource;
 
 public class CompareProperties {
     public static void main(String[] args) {
         final ToolUnicodePropertySource u61 = ToolUnicodePropertySource.make("6.1.0");
         final ToolUnicodePropertySource u60 = ToolUnicodePropertySource.make("6.0.0");
-        final UnicodeSet toTest = new UnicodeSet(0,0x10FFFF)
-        .removeAll(u60.getSet("gc=Cn"))
-        .removeAll(u60.getSet("gc=Cs"))
-        .removeAll(u60.getSet("gc=Co"))
-        .removeAll(u60.getSet("gc=Cc"))
-        .freeze();
+        final UnicodeSet toTest =
+                new UnicodeSet(0, 0x10FFFF)
+                        .removeAll(u60.getSet("gc=Cn"))
+                        .removeAll(u60.getSet("gc=Cs"))
+                        .removeAll(u60.getSet("gc=Co"))
+                        .removeAll(u60.getSet("gc=Cc"))
+                        .freeze();
 
-        final UnicodeMap<R2<String,String>> diff = new UnicodeMap();
-        final Interner<R2<String,String>> interner = new Interner();
+        final UnicodeMap<R2<String, String>> diff = new UnicodeMap();
+        final Interner<R2<String, String>> interner = new Interner();
 
         for (final String prop : (List<String>) u61.getAvailableNames()) {
             //            if (!prop.equals("General_Category")) {
@@ -43,7 +42,7 @@ public class CompareProperties {
                 if (UnicodeProperty.equals(v61, v60)) {
                     continue;
                 }
-                final R2<String,String> info = Row.of(v60,v61);
+                final R2<String, String> info = Row.of(v60, v61);
                 diff.put(s, interner.get(info));
             }
 
@@ -51,17 +50,16 @@ public class CompareProperties {
                 System.out.println(prop);
                 for (final R2<String, String> i : diff.getAvailableValues()) {
                     final UnicodeSet set = diff.getSet(i);
-                    System.out.println("\t" + i.get0() + " → " + i.get1()
-                            + "\t" + set.size()
-                            + "\t" + set
-                            );
+                    System.out.println(
+                            "\t" + i.get0() + " → " + i.get1() + "\t" + set.size() + "\t" + set);
                 }
             }
         }
     }
 
     static class Interner<T> {
-        HashMap<T,T> items = new HashMap<T,T>();
+        HashMap<T, T> items = new HashMap<T, T>();
+
         T get(T item) {
             T result = items.get(item);
             if (result == null) {

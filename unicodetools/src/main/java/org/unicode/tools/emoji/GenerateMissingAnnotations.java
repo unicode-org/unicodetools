@@ -1,5 +1,13 @@
 package org.unicode.tools.emoji;
 
+import com.google.common.base.Splitter;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Multimap;
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.Row.R2;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,7 +21,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Annotations;
 import org.unicode.cldr.util.Annotations.AnnotationSet;
@@ -31,53 +38,52 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiAnnotations.Status;
 
-import com.google.common.base.Splitter;
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Multimap;
-import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.Row.R2;
-
 /**
  * Generates csvs for spreadsheet, to be parsed with ParseSpreadsheetAnnotations
- * @author markdavis
  *
+ * @author markdavis
  */
 public class GenerateMissingAnnotations {
-    private final static Factory FACTORY = CLDRConfig.getInstance().getCldrFactory();
-    public final static CLDRFile ENGLISH_CLDR = CLDRConfig.getInstance().getEnglish();
-    public final static AnnotationSet ENGLISH_ANNOTATIONS = Annotations.getDataSet("en");
-    public final static Set<String> SORTED_EMOJI;
-    public final static Map<String,String> CHARACTER_LABELS_AND_PATHS;
-    public final static Map<String,String> CHARACTER_LABEL_PATTERNS_AND_PATHS;
+    private static final Factory FACTORY = CLDRConfig.getInstance().getCldrFactory();
+    public static final CLDRFile ENGLISH_CLDR = CLDRConfig.getInstance().getEnglish();
+    public static final AnnotationSet ENGLISH_ANNOTATIONS = Annotations.getDataSet("en");
+    public static final Set<String> SORTED_EMOJI;
+    public static final Map<String, String> CHARACTER_LABELS_AND_PATHS;
+    public static final Map<String, String> CHARACTER_LABEL_PATTERNS_AND_PATHS;
+
     static {
-        TreeSet<String> sorted = ENGLISH_ANNOTATIONS.keySet().addAllTo(new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare));
+        TreeSet<String> sorted =
+                ENGLISH_ANNOTATIONS
+                        .keySet()
+                        .addAllTo(new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare));
         sorted.remove("🔟"); // keycaps done differently
         SORTED_EMOJI = ImmutableSet.copyOf(sorted);
-        CHARACTER_LABELS_AND_PATHS = loadLabels(ENGLISH_CLDR, "//ldml/characterLabels/characterLabel[");
-        CHARACTER_LABEL_PATTERNS_AND_PATHS = loadLabels(ENGLISH_CLDR, "//ldml/characterLabels/characterLabelP");
+        CHARACTER_LABELS_AND_PATHS =
+                loadLabels(ENGLISH_CLDR, "//ldml/characterLabels/characterLabel[");
+        CHARACTER_LABEL_PATTERNS_AND_PATHS =
+                loadLabels(ENGLISH_CLDR, "//ldml/characterLabels/characterLabelP");
     }
-    public static final Set<String> LABELS = ImmutableSet.of(
-            "person",
-            "body",
-            "place",
-            "plant",
-            "nature",
-            "animal",
-            "smiley",
-            "female",
-            "male",
-            "weather",
-            "travel",
-            "sport",
-            "flag",
-            "building",
-            "heart"
-            );
+
+    public static final Set<String> LABELS =
+            ImmutableSet.of(
+                    "person",
+                    "body",
+                    "place",
+                    "plant",
+                    "nature",
+                    "animal",
+                    "smiley",
+                    "female",
+                    "male",
+                    "weather",
+                    "travel",
+                    "sport",
+                    "flag",
+                    "building",
+                    "heart");
 
     static final boolean DO_MISSING = true;
+
     public static void main(String[] args) throws IOException {
         if (DO_MISSING) {
             generateMissing();
@@ -87,13 +93,14 @@ public class GenerateMissingAnnotations {
     }
 
     private static void countWords() {
-        Multimap<String,String> orderWordToCps = HashMultimap.create();
+        Multimap<String, String> orderWordToCps = HashMultimap.create();
         Counter<String> orderCounter = new Counter<>();
 
-        for (Entry<String, Collection<String>> entry : EmojiOrder.STD_ORDER.orderingToCharacters.asMap().entrySet()) {
+        for (Entry<String, Collection<String>> entry :
+                EmojiOrder.STD_ORDER.orderingToCharacters.asMap().entrySet()) {
             final String orderWords = entry.getKey();
             final Set<String> cps = (Set<String>) entry.getValue();
-            //System.out.println(orderWords + "\t" + cps);
+            // System.out.println(orderWords + "\t" + cps);
             for (String orderWord : orderWords.split("[-\\s]+")) {
                 for (String cp : cps) {
                     if (EmojiData.MODIFIERS.containsSome(cp)) {
@@ -109,9 +116,9 @@ public class GenerateMissingAnnotations {
         }
 
         Counter<String> keywordCounter = new Counter<>();
-        Multimap<String,String> keywordToCps = HashMultimap.create();
+        Multimap<String, String> keywordToCps = HashMultimap.create();
         EmojiAnnotations em = new EmojiAnnotations("en", EmojiOrder.STD_ORDER.codepointCompare);
-        for (String cp: em.getStatusKeys()) {
+        for (String cp : em.getStatusKeys()) {
             final Status status = em.getStatus(cp);
             if (status == Status.missing || status == Status.constructed) {
                 continue;
@@ -176,16 +183,15 @@ public class GenerateMissingAnnotations {
 
     private static void generateMissing() throws IOException {
         final CLDRConfig config = CLDRConfig.getInstance();
-        Set<String> locales = StandardCodes.make().getLocaleCoverageLocales(Organization.google, EnumSet.of(Level.MODERN));
-
+        Set<String> locales =
+                StandardCodes.make()
+                        .getLocaleCoverageLocales(Organization.google, EnumSet.of(Level.MODERN));
 
         final String emojiDir = Settings.Output.GEN_DIR + "emoji/";
         final String annotationDir = emojiDir + "annotations-v4.0/";
         try (PrintWriter out = FileUtilities.openUTF8Writer(emojiDir, "images.txt")) {
             for (String s : SORTED_EMOJI) {
-                out.println(getKey(s) 
-                        + "\t" + s
-                        + "\t" + ENGLISH_ANNOTATIONS.getShortName(s));
+                out.println(getKey(s) + "\t" + s + "\t" + ENGLISH_ANNOTATIONS.getShortName(s));
             }
         }
 
@@ -194,11 +200,14 @@ public class GenerateMissingAnnotations {
         Counts totals = new Counts();
 
         for (String s : locales) {
-            if (!Annotations.getAvailableLocales().contains(s) 
-                    || s.equals("en") 
-                    //|| s.equals("ga")
-                    || (s.contains("_") && !s.equals("zh_Hant")) // hack for now to reduce data size. Redo once base locales are populated
-                    ) {
+            if (!Annotations.getAvailableLocales().contains(s)
+                    || s.equals("en")
+                    // || s.equals("ga")
+                    || (s.contains("_")
+                            && !s.equals(
+                                    "zh_Hant")) // hack for now to reduce data size. Redo once base
+            // locales are populated
+            ) {
                 skipped.add(s);
                 continue;
             }
@@ -217,11 +226,17 @@ public class GenerateMissingAnnotations {
             }
         }
         for (String skip : skipped) {
-            System.out.println("Skipping " + skip + " ("+  config.getEnglish().getName(skip) + "), no current CLDR annotation data");
+            System.out.println(
+                    "Skipping "
+                            + skip
+                            + " ("
+                            + config.getEnglish().getName(skip)
+                            + "), no current CLDR annotation data");
         }
         for (Entry<String, Counts> entry : countMap.entrySet()) {
             String locale = entry.getKey();
-            System.out.println(locale + "\t"+  config.getEnglish().getName(locale) + "\t" + entry.getValue());
+            System.out.println(
+                    locale + "\t" + config.getEnglish().getName(locale) + "\t" + entry.getValue());
         }
         System.out.println("Totals:\t\t" + totals);
     }
@@ -239,27 +254,31 @@ public class GenerateMissingAnnotations {
             //            String combined = CollectionUtilities.join(foo, " ");
             //            charCount += Math.min(combined.length() / 6, 6);
         }
+
         public boolean isEmpty() {
             // TODO Auto-generated method stub
             return emojiCount == 0;
         }
+
         public void add(Counts other) {
             emojiCount += other.emojiCount;
             //            charCount += other.charCount;
         }
+
         @Override
         public String toString() {
             return String.valueOf(emojiCount)
-                    //                    + "\t" + charCount
-                    ;
+            //                    + "\t" + charCount
+            ;
         }
     }
 
     public static String getKey(String s) {
-        return "_" + Utility.hex(s,"_").toLowerCase(Locale.ROOT).replace("_fe0f", "");
+        return "_" + Utility.hex(s, "_").toLowerCase(Locale.ROOT).replace("_fe0f", "");
     }
 
-    private static void doAnnotations(final String localeStr, PrintWriter out, Set<String> sorted, Counts counts) {
+    private static void doAnnotations(
+            final String localeStr, PrintWriter out, Set<String> sorted, Counts counts) {
         UnicodeMap<Annotations> em = Annotations.getDataSet(localeStr).getExplicitValues();
         CLDRFile main = FACTORY.make(localeStr, true);
         Set<String> missing = new LinkedHashSet<>();
@@ -275,12 +294,15 @@ public class GenerateMissingAnnotations {
             String tts = annotations == null ? null : annotations.getShortName();
             if (annotations == null || tts == null || keywords == null || keywords.isEmpty()) {
                 tts = tts == null ? "???" : tts;
-                keywords = keywords == null || keywords.isEmpty() ? Collections.singleton("???") : keywords;
+                keywords =
+                        keywords == null || keywords.isEmpty()
+                                ? Collections.singleton("???")
+                                : keywords;
                 ++count;
                 final String engShortName = ENGLISH_ANNOTATIONS.getShortName(s);
                 final Set<String> engKeys = ENGLISH_ANNOTATIONS.getKeywords(s);
-                showMissingLine(missing, count, getKey(s), engShortName, engKeys, 
-                        "", "", tts, keywords);
+                showMissingLine(
+                        missing, count, getKey(s), engShortName, engKeys, "", "", tts, keywords);
                 counts.add(engShortName, engKeys);
             }
         }
@@ -288,28 +310,45 @@ public class GenerateMissingAnnotations {
         for (Entry<String, String> labelAndPath : CHARACTER_LABELS_AND_PATHS.entrySet()) {
             final String stringValue = ENGLISH_CLDR.getStringValue(labelAndPath.getValue());
             String nativeKeys = "n/a".equals("n/a") ? "n/a" : "";
-            showMissingLine(missing, ++count, labelAndPath.getKey(), stringValue, Collections.singleton("n/a"), 
-                    "", nativeKeys, "n/a", Collections.singleton("n/a"));
+            showMissingLine(
+                    missing,
+                    ++count,
+                    labelAndPath.getKey(),
+                    stringValue,
+                    Collections.singleton("n/a"),
+                    "",
+                    nativeKeys,
+                    "n/a",
+                    Collections.singleton("n/a"));
             counts.add(stringValue, null);
         }
         for (Entry<String, String> labelAndPath : CHARACTER_LABEL_PATTERNS_AND_PATHS.entrySet()) {
             final String stringValue = ENGLISH_CLDR.getStringValue(labelAndPath.getValue());
             String nativeKeys = "n/a".equals("n/a") ? "n/a" : "";
-            showMissingLine(missing, ++count, labelAndPath.getKey(), stringValue, Collections.singleton("n/a"), 
-                    "", nativeKeys, "n/a", Collections.singleton("n/a"));
+            showMissingLine(
+                    missing,
+                    ++count,
+                    labelAndPath.getKey(),
+                    stringValue,
+                    Collections.singleton("n/a"),
+                    "",
+                    nativeKeys,
+                    "n/a",
+                    Collections.singleton("n/a"));
             counts.add(stringValue, null);
         }
         if (!missing.isEmpty()) {
-            out.println(localeStr
-                    + "\tImage\tEnglish Name\tEnglish Keywords\tNative Name\tNative Keywords\tFYI Name (constructed!)\tFYI Native Keywords (constructed!)\t-\tInternal GTN\tInternal GTK");
+            out.println(
+                    localeStr
+                            + "\tImage\tEnglish Name\tEnglish Keywords\tNative Name\tNative Keywords\tFYI Name (constructed!)\tFYI Native Keywords (constructed!)\t-\tInternal GTN\tInternal GTK");
             for (String s : missing) {
                 out.println(s);
             }
         }
     }
-    
+
     static ImmutableMap<String, String> loadLabels(CLDRFile main, String prefix) {
-        Map<String,String> result = new TreeMap<>();
+        Map<String, String> result = new TreeMap<>();
         for (String path : With.in(ENGLISH_CLDR.iterator(prefix))) {
             String source = main.getSourceLocaleID(path, null);
             if (source.equals(XMLSource.ROOT_ID) || source.equals(XMLSource.CODE_FALLBACK_ID)) {
@@ -328,21 +367,48 @@ public class GenerateMissingAnnotations {
 
     static final Splitter BAR = Splitter.on('|').trimResults();
 
-    static void showMissingLine(Set<String> missing, int count, String emoji, String engShortName, Set<String> engKeys,
-            String nativeShortName, String nativeKeys,
-            String fyiShortName, Set<String> fyiKeywords) {
-        final String image = CHARACTER_LABELS_AND_PATHS.keySet().contains(emoji)  || CHARACTER_LABEL_PATTERNS_AND_PATHS.keySet().contains(emoji) ? "n/a" : "=vlookup(A" + count + ",Internal!A:C,2,0)";
-        missing.add(emoji 
-                + "\t" + image 
-                + "\t" + engShortName 
-                + "\t" + CollectionUtilities.join(engKeys, " | ") 
-                + "\t" + nativeShortName
-                + "\t" + nativeKeys
-                + "\t" + fyiShortName 
-                + "\t" + CollectionUtilities.join(fyiKeywords, " | ")
-                + "\t" + "-"
-                + "\t" + (nativeShortName.isEmpty() ? "=googletranslate(E" + count + ",A$1,\"en\")" : "n/a")
-                + "\t" + (nativeKeys.isEmpty() ? "=googletranslate(regexreplace(F" + count + ",\"\\s*\\|\\s*\",\"/ \"),A$1,\"en\")" : "n/a")
-                );
+    static void showMissingLine(
+            Set<String> missing,
+            int count,
+            String emoji,
+            String engShortName,
+            Set<String> engKeys,
+            String nativeShortName,
+            String nativeKeys,
+            String fyiShortName,
+            Set<String> fyiKeywords) {
+        final String image =
+                CHARACTER_LABELS_AND_PATHS.keySet().contains(emoji)
+                                || CHARACTER_LABEL_PATTERNS_AND_PATHS.keySet().contains(emoji)
+                        ? "n/a"
+                        : "=vlookup(A" + count + ",Internal!A:C,2,0)";
+        missing.add(
+                emoji
+                        + "\t"
+                        + image
+                        + "\t"
+                        + engShortName
+                        + "\t"
+                        + CollectionUtilities.join(engKeys, " | ")
+                        + "\t"
+                        + nativeShortName
+                        + "\t"
+                        + nativeKeys
+                        + "\t"
+                        + fyiShortName
+                        + "\t"
+                        + CollectionUtilities.join(fyiKeywords, " | ")
+                        + "\t"
+                        + "-"
+                        + "\t"
+                        + (nativeShortName.isEmpty()
+                                ? "=googletranslate(E" + count + ",A$1,\"en\")"
+                                : "n/a")
+                        + "\t"
+                        + (nativeKeys.isEmpty()
+                                ? "=googletranslate(regexreplace(F"
+                                        + count
+                                        + ",\"\\s*\\|\\s*\",\"/ \"),A$1,\"en\")"
+                                : "n/a"));
     }
 }

@@ -1,7 +1,7 @@
 package org.unicode.propstest;
 
+import com.ibm.icu.dev.util.UnicodeMap;
 import java.util.Collection;
-
 import org.junit.jupiter.api.Test;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
@@ -11,11 +11,10 @@ import org.unicode.props.UnicodePropertyException;
 import org.unicode.props.ValueCardinality;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-
 public class TestPropertyAccess extends TestFmwkMinusMinus {
 
-    static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
+    static final IndexUnicodeProperties iup =
+            IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
 
     @Test
     public void TestEmoji() {
@@ -30,58 +29,74 @@ public class TestPropertyAccess extends TestFmwkMinusMinus {
                 if (propertyType != getMainType(propertyType)) {
                     continue;
                 }
-                System.out.println("\nCARDINALITY: " + cardinality.toString() + ", PROPERTY_TYPE: " + propertyType.toString() + "\n");
+                System.out.println(
+                        "\nCARDINALITY: "
+                                + cardinality.toString()
+                                + ", PROPERTY_TYPE: "
+                                + propertyType.toString()
+                                + "\n");
 
                 for (UcdProperty prop : iup.getAvailableUcdProperties()) {
                     try {
-                        if (prop.getCardinality() != cardinality || getMainType(prop.getType()) != propertyType) {
+                        if (prop.getCardinality() != cardinality
+                                || getMainType(prop.getType()) != propertyType) {
                             continue;
                         }
                         System.out.println(prop);
                         switch (propertyType) {
-                        case Numeric: {
-                            logShow(prop, iup.loadDouble(prop));
-                            break;
-                        }
-                        case Binary:
-                        case Catalog:
-                        case Enumerated:
-                            switch (cardinality) {
-                            case Singleton: {
-                                if (prop == UcdProperty.Canonical_Combining_Class) {
-                                    logShow(prop, iup.loadInt(prop));
+                            case Numeric:
+                                {
+                                    logShow(prop, iup.loadDouble(prop));
+                                    break;
                                 }
-                                logShow(prop, iup.loadEnum(prop, prop.getEnumClass()));
+                            case Binary:
+                            case Catalog:
+                            case Enumerated:
+                                switch (cardinality) {
+                                    case Singleton:
+                                        {
+                                            if (prop == UcdProperty.Canonical_Combining_Class) {
+                                                logShow(prop, iup.loadInt(prop));
+                                            }
+                                            logShow(prop, iup.loadEnum(prop, prop.getEnumClass()));
+                                            break;
+                                        }
+                                    case Unordered:
+                                        {
+                                            logShow(
+                                                    prop,
+                                                    iup.loadEnumSet(prop, prop.getEnumClass()));
+                                            break;
+                                        }
+                                    case Ordered:
+                                        {
+                                            System.err.println(prop + "\t" + cardinality);
+                                            break;
+                                        }
+                                }
                                 break;
-                            }
-                            case Unordered: {
-                                logShow(prop, iup.loadEnumSet(prop, prop.getEnumClass()));
-                                break;
-                            }
-                            case Ordered: {
-                                System.err.println(prop + "\t" + cardinality);
-                                break;
-                            }
-                            }
-                            break;
-                        case Miscellaneous:
-                        case String: {
-                            switch (cardinality) {
-                            case Singleton: {
-                                logShow(prop, iup.load(prop));
-                                break;
-                            }
-                            case Unordered: {
-                                logShow(prop, iup.loadSet(prop));
-                                break;
-                            }
-                            case Ordered: {
-                                logShow(prop, iup.loadList(prop));
-                                break;
-                            }
-                            }
-                            break;
-                        }
+                            case Miscellaneous:
+                            case String:
+                                {
+                                    switch (cardinality) {
+                                        case Singleton:
+                                            {
+                                                logShow(prop, iup.load(prop));
+                                                break;
+                                            }
+                                        case Unordered:
+                                            {
+                                                logShow(prop, iup.loadSet(prop));
+                                                break;
+                                            }
+                                        case Ordered:
+                                            {
+                                                logShow(prop, iup.loadList(prop));
+                                                break;
+                                            }
+                                    }
+                                    break;
+                                }
                         }
                     } catch (UnicodePropertyException e) {
                         errln("Failed to load: " + prop + ", " + e.getMessage());
@@ -90,6 +105,7 @@ public class TestPropertyAccess extends TestFmwkMinusMinus {
             }
         }
     }
+
     private void logShow(UcdProperty prop, UnicodeMap temp) {
         if (isVerbose()) {
             logln(prop + "\t" + show(temp));
@@ -98,14 +114,14 @@ public class TestPropertyAccess extends TestFmwkMinusMinus {
 
     PropertyType getMainType(PropertyType input) {
         switch (input) {
-        case Binary:
-        case Catalog:
-            return PropertyType.Enumerated;
-        case Miscellaneous:
-        case String:
-            return PropertyType.String;
-        default:
-            return input;
+            case Binary:
+            case Catalog:
+                return PropertyType.Enumerated;
+            case Miscellaneous:
+            case String:
+                return PropertyType.String;
+            default:
+                return input;
         }
     }
 

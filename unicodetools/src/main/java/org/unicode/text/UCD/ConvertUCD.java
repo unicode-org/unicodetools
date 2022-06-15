@@ -1,16 +1,15 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/ConvertUCD.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/ConvertUCD.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
+import com.ibm.icu.text.UTF16;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -28,18 +27,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.text.UTF16;
-
-
-/** Simple program to merge UCD files into XML. Not yet documented!!
+/**
+ * Simple program to merge UCD files into XML. Not yet documented!!
+ *
  * @author Mark Davis
  */
-
 public final class ConvertUCD implements UCD_Types {
     public static final boolean SHOW = false;
     public static final boolean DEBUG = false;
@@ -60,26 +56,44 @@ public final class ConvertUCD implements UCD_Types {
     public static final String BASE_DIR31 = DATA_DIR + "\\3.1-Update\\";
      */
 
-    //public static final String blocksnamePlain = "Blocks.txt";
-    //public static final String blocksname31 = "Blocks-4d2.beta";
+    // public static final String blocksnamePlain = "Blocks.txt";
+    // public static final String blocksname31 = "Blocks-4d2.beta";
 
-    /** First item is file name, rest are field names (skipping character).
-     *  "OMIT" is special -- means don't record
+    /**
+     * First item is file name, rest are field names (skipping character). "OMIT" is special --
+     * means don't record
      */
-
     static String[][] labelList = {
         // Labels for the incoming files. Labels MUST match field order in file.
         // IMPORTANT - defaults of form y-=x must occur after x is encountered!
         // The one exception is "st", which is handled specially.
         // So file order is important.
-        //*
-        // 01CA;LATIN CAPITAL LETTER NJ;Lu;0; L; <compat> 004E 004A;  ;  ;  ;N ;LATIN CAPITAL LETTER N J;    ;  ;01CC;01CB
-        //      n                       gc cc bc dm                 dd dv nv bm on                       cm,  uc lc   tc
-        {"UnicodeData", "n", "gc", "ccc", "bc", "dm", "dd", "dv", "nv", "bm", "on", "OMIT", "*uc", "*lc", "*tc"},
-        //{"ExtraProperties", "xp"},
+        // *
+        // 01CA;LATIN CAPITAL LETTER NJ;Lu;0; L; <compat> 004E 004A;  ;  ;  ;N ;LATIN CAPITAL LETTER
+        // N J;    ;  ;01CC;01CB
+        //      n                       gc cc bc dm                 dd dv nv bm on
+        //     cm,  uc lc   tc
+        {
+            "UnicodeData",
+            "n",
+            "gc",
+            "ccc",
+            "bc",
+            "dm",
+            "dd",
+            "dv",
+            "nv",
+            "bm",
+            "on",
+            "OMIT",
+            "*uc",
+            "*lc",
+            "*tc"
+        },
+        // {"ExtraProperties", "xp"},
         {"PropList", "binary"},
 
-        //{"ExtraProperties", "xp"},
+        // {"ExtraProperties", "xp"},
 
         {"EastAsianWidth", "ea", "OMIT"},
         {"LineBreak", "lb", "OMIT"},
@@ -89,15 +103,18 @@ public final class ConvertUCD implements UCD_Types {
         {"ArabicShaping", "OMIT", "jt", "jg"},
         {"BidiMirroring", "*bg"},
         {"Scripts", "sn"},
-        {"BidiBrackets", "bpb", "bpt"}, // 0028; 0029; o # LEFT PARENTHESIS Bidi_Paired_Bracket, Bidi_Paired_Bracket_Type
+        {
+            "BidiBrackets", "bpb", "bpt"
+        }, // 0028; 0029; o # LEFT PARENTHESIS Bidi_Paired_Bracket, Bidi_Paired_Bracket_Type
         {"VerticalOrientation", "vo", "OMIT"},
-        //{"Jamo", "jn"},
-        //{"Scripts-1d4", "RANGE", "sn"},
-        //{"Age", "*sn"},
-        //*/
+        // {"Jamo", "jn"},
+        // {"Scripts-1d4", "RANGE", "sn"},
+        // {"Age", "*sn"},
+        // */
         /*
         //*/
     };
+
     static HashMap<String, String> isHex = new HashMap<String, String>();
     static HashMap<String, String> defaults = new HashMap<String, String>();
 
@@ -108,7 +125,7 @@ public final class ConvertUCD implements UCD_Types {
             for (int i = 1; i < labels.length; ++i) {
                 boolean hex = false;
                 final String def = null;
-                //char appendChar = '\u0000';
+                // char appendChar = '\u0000';
 
                 // pull off "*": hex interpretation
                 if (labels[i].charAt(0) == '*') { // HEX value
@@ -136,7 +153,7 @@ public final class ConvertUCD implements UCD_Types {
                 if (hex) {
                     isHex.put(labels[i], "");
                 }
-                //if (appendChar != 0) appendDuplicates.put(labels[i], String.valueOf(appendChar));
+                // if (appendChar != 0) appendDuplicates.put(labels[i], String.valueOf(appendChar));
                 defaults.put(labels[i], def);
             }
         }
@@ -227,7 +244,7 @@ public final class ConvertUCD implements UCD_Types {
 
     // handles
     public static final String blocksname = "Blocks";
-    //public static final String[][] labelList;
+    // public static final String[][] labelList;
     public static final boolean NEWPROPS = true;
 
     /*
@@ -259,17 +276,19 @@ public final class ConvertUCD implements UCD_Types {
      */
     static final String dataFilePrefix = "UCD_Data";
 
-
     // MAIN!!
 
-    public static void main (String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
         System.out.println("Building binary version of UCD");
 
-        log = new PrintWriter(new BufferedWriter(
-                new OutputStreamWriter(
-                        new FileOutputStream(Settings.Output.GEN_DIR + "ConvertUCD-log.txt"),
-                        "UTF8"),
-                        32*1024));
+        log =
+                new PrintWriter(
+                        new BufferedWriter(
+                                new OutputStreamWriter(
+                                        new FileOutputStream(
+                                                Settings.Output.GEN_DIR + "ConvertUCD-log.txt"),
+                                        "UTF8"),
+                                32 * 1024));
         log.write("\uFEFF"); // BOM
 
         try {
@@ -352,19 +371,19 @@ public final class ConvertUCD implements UCD_Types {
     }
 
     static PrintWriter log;
-    //static String directory = BASE_DIR;
-    //static Map appendDuplicates = new HashMap();
+    // static String directory = BASE_DIR;
+    // static Map appendDuplicates = new HashMap();
 
-    /** First item in labels is file name, rest are field names (skipping character).
-     *  "OMIT" is special -- means don't record
+    /**
+     * First item in labels is file name, rest are field names (skipping character). "OMIT" is
+     * special -- means don't record
      */
-
-
     List<String[]> blockData = new LinkedList<String[]>();
 
     void readBlocks() throws Exception {
         System.out.println("Reading 'Blocks'");
-        final BufferedReader input = Utility.openUnicodeFile(blocksname, version, true, Utility.LATIN1);
+        final BufferedReader input =
+                Utility.openUnicodeFile(blocksname, version, true, Utility.LATIN1);
         String line = "";
         try {
             final String[] parts = new String[20];
@@ -386,11 +405,14 @@ public final class ConvertUCD implements UCD_Types {
                     continue;
                 }
 
-                final int count = Utility.split(line,';',parts);
+                final int count = Utility.split(line, ';', parts);
                 if (count != 3) {
                     throw new ChainException("Bad count in Blocks", null);
                 }
-                blockData.add(new String[] {Utility.fromHex(parts[0]), Utility.fromHex(parts[1]), parts[2].trim()});
+                blockData.add(
+                        new String[] {
+                            Utility.fromHex(parts[0]), Utility.fromHex(parts[1]), parts[2].trim()
+                        });
             }
 
         } catch (final Exception e) {
@@ -416,7 +438,8 @@ public final class ConvertUCD implements UCD_Types {
         if (version.equals(Settings.latestVersion)) {
             tempVersion = "";
         }
-        final BufferedReader input = Utility.openUnicodeFile(labels[0], tempVersion, true, Utility.LATIN1);
+        final BufferedReader input =
+                Utility.openUnicodeFile(labels[0], tempVersion, true, Utility.LATIN1);
         if (input == null) {
             System.out.println("COULDN'T OPEN: " + labels[0]);
             return;
@@ -450,7 +473,7 @@ public final class ConvertUCD implements UCD_Types {
                         continue;
                     }
 
-                    int count = Utility.split(line,';',parts);
+                    int count = Utility.split(line, ';', parts);
 
                     // fix malformed or simple lists.
 
@@ -466,11 +489,12 @@ public final class ConvertUCD implements UCD_Types {
                             }
                         } else {
                             System.out.println("Too few fields: " + original);
-                            throw new ChainException("too few fields: {0}",
+                            throw new ChainException(
+                                    "too few fields: {0}",
                                     new Object[] {new Integer(line), new Integer(count)});
                         }
                     } else if (count > labels.length) {
-                        if (count == labels.length + 1 && parts[count-1].equals("")) {
+                        if (count == labels.length + 1 && parts[count - 1].equals("")) {
                             if (labels[0].equals("SpecialCasing")) {
                                 // In SpecialCasing.txt, the condition_list field is optional,
                                 // and the semicolon is documented as being a terminator,
@@ -486,7 +510,8 @@ public final class ConvertUCD implements UCD_Types {
                             }
                         } else {
                             System.out.println("Too many fields: " + original);
-                            throw new ChainException("too many fields: {0}",
+                            throw new ChainException(
+                                    "too many fields: {0}",
                                     new Object[] {new Integer(line), new Integer(count)});
                         }
                     }
@@ -497,8 +522,8 @@ public final class ConvertUCD implements UCD_Types {
                     int cpStart;
                     final int ddot = parts[0].indexOf(".");
                     if (ddot >= 0) {
-                        cpStart = UTF16.charAt(Utility.fromHex(parts[0].substring(0,ddot)), 0);
-                        cpTop = UTF16.charAt(Utility.fromHex(parts[0].substring(ddot+2)), 0);
+                        cpStart = UTF16.charAt(Utility.fromHex(parts[0].substring(0, ddot)), 0);
+                        cpTop = UTF16.charAt(Utility.fromHex(parts[0].substring(ddot + 2)), 0);
                         // System.out.println(Utility.hex(cpStart) + " ... " + Utility.hex(cpTop));
                     } else {
                         cpStart = UTF16.charAt(Utility.fromHex(parts[0]), 0);
@@ -519,7 +544,8 @@ public final class ConvertUCD implements UCD_Types {
                         }
                         // END FIX!!
                         properties.add(prop);
-                        if (Utility.find(prop, UCD_Names.DeletedProperties, true) == -1) { // only undeleted
+                        if (Utility.find(prop, UCD_Names.DeletedProperties, true)
+                                == -1) { // only undeleted
                             int end = UTF16.charAt(Utility.fromHex(parts[1]), 0);
                             if (end == 0) {
                                 end = cpStart;
@@ -545,55 +571,69 @@ public final class ConvertUCD implements UCD_Types {
                             } else {
                                 val = parts[i].trim();
                             }
-                            if (key.equals("OMIT"))
-                            {
+                            if (key.equals("OMIT")) {
                                 continue;
                             }
-                            if (key.equals("RANGE"))
-                            {
+                            if (key.equals("RANGE")) {
                                 continue;
                             }
-                            if (val.equals(""))
-                            {
+                            if (val.equals("")) {
                                 continue; // skip empty values, they mean default
                             }
 
                             for (int cps = cpStart; cps <= cpTop; ++cps) {
-                                if (UCD.mapToRepresentative(cps, Integer.MAX_VALUE) != cps)
-                                {
-                                    continue;    // skip condensed ranges
+                                if (UCD.mapToRepresentative(cps, Integer.MAX_VALUE) != cps) {
+                                    continue; // skip condensed ranges
                                 }
 
                                 if (key.equals("binary")) {
                                     appendCharProperties(cps, val);
                                 } else if (key.equals("fc")) {
                                     final UData data = getEntry(cps);
-                                    final String type = parts[i-1].trim();
-                                    if (type.equals("F") || type.equals("C") || type.equals("E") || type.equals("L")) {
+                                    final String type = parts[i - 1].trim();
+                                    if (type.equals("F")
+                                            || type.equals("C")
+                                            || type.equals("E")
+                                            || type.equals("L")) {
                                         data.fullCaseFolding = val;
-                                        //System.out.println("*<" + parts[i-1] + "> Setting " + Utility.hex(cps) + ": " + Utility.hex(val));
+                                        // System.out.println("*<" + parts[i-1] + "> Setting " +
+                                        // Utility.hex(cps) + ": " + Utility.hex(val));
                                     }
                                     if (type.equals("S") || type.equals("C") || type.equals("L")) {
                                         data.simpleCaseFolding = val;
-                                        //System.out.println("<" + parts[i-1] + "> Setting " + Utility.hex(cps) + ": " + Utility.hex(val));
+                                        // System.out.println("<" + parts[i-1] + "> Setting " +
+                                        // Utility.hex(cps) + ": " + Utility.hex(val));
                                     }
                                     if (type.equals("I")) {
                                         data.simpleCaseFolding = val;
                                         setBinaryProperty(cps, CaseFoldTurkishI);
                                         if (DEBUG) {
-                                            System.out.println("SPOT-CHECK: <" + parts[i-1] + "> Setting "
-                                                    + Utility.hex(cps) + ": " + Utility.hex(val));
+                                            System.out.println(
+                                                    "SPOT-CHECK: <"
+                                                            + parts[i - 1]
+                                                            + "> Setting "
+                                                            + Utility.hex(cps)
+                                                            + ": "
+                                                            + Utility.hex(val));
                                         }
                                     }
-                                } else if (labels[0].equals("SpecialCasing")   // special handling for special casing
+                                } else if (labels[0].equals(
+                                                "SpecialCasing") // special handling for special
+                                        // casing
                                         && labels[4].equals("sc")
                                         && parts[4].trim().length() > 0) {
                                     if (i < 4) {
                                         if (DEBUG) {
-                                            System.out.println("Got special: " + Utility.hex(cps) + ", "
-                                                    + Utility.hex(key) + ":" + Utility.hex(val));
+                                            System.out.println(
+                                                    "Got special: "
+                                                            + Utility.hex(cps)
+                                                            + ", "
+                                                            + Utility.hex(key)
+                                                            + ":"
+                                                            + Utility.hex(val));
                                         }
-                                        addCharData(cps, "sc", parts[4].trim() + ":" + key + ":" + val);
+                                        addCharData(
+                                                cps, "sc", parts[4].trim() + ":" + key + ":" + val);
                                     }
                                 } else {
                                     /*if (key.equals("sn")) { // SKIP UNDEFINED!!
@@ -609,7 +649,7 @@ public final class ConvertUCD implements UCD_Types {
                 } catch (final Exception e) {
                     System.err.println("*Exception at: " + line + ", " + e.getMessage());
                     throw e;
-                    //System.err.println(e.getMessage());
+                    // System.err.println(e.getMessage());
                 }
             }
         } catch (final Throwable e) {
@@ -618,8 +658,8 @@ public final class ConvertUCD implements UCD_Types {
         } finally {
             input.close();
         }
-        //printValues("JOINING_TYPE", jtSet);
-        //printValues("JOINING_GROUP", jgSet);
+        // printValues("JOINING_TYPE", jtSet);
+        // printValues("JOINING_GROUP", jgSet);
     }
 
     static void printValues(String title, Set<String> s) {
@@ -635,7 +675,8 @@ public final class ConvertUCD implements UCD_Types {
         int count = 0;
         while (it.hasNext()) {
             final String value = it.next();
-            System.out.println("    " + value.replace(' ', '-').toUpperCase() + " = " + (count++) + ",");
+            System.out.println(
+                    "    " + value.replace(' ', '-').toUpperCase() + " = " + (count++) + ",");
         }
         System.out.println("    LIMIT_" + title + " = " + count);
         System.out.println(";");
@@ -692,7 +733,8 @@ public final class ConvertUCD implements UCD_Types {
                     String value = Utility.quoteXML((String) data.get(label));
                     output.write(" " + label + "='" + value + "'");
                 }
-     *//*
+     */
+    /*
                 output.write("/>\n");
             }
 
@@ -710,10 +752,15 @@ public final class ConvertUCD implements UCD_Types {
         final int codePoint = -1;
         System.out.println("Writing " + dataFilePrefix + version);
         Settings.Output.ensureOutputDirs();
-        final DataOutputStream dataOut = new DataOutputStream(
-                new BufferedOutputStream(
-                        new FileOutputStream(Settings.Output.BIN_DIR +  dataFilePrefix + version + ".bin"),
-                        128*1024));
+        final DataOutputStream dataOut =
+                new DataOutputStream(
+                        new BufferedOutputStream(
+                                new FileOutputStream(
+                                        Settings.Output.BIN_DIR
+                                                + dataFilePrefix
+                                                + version
+                                                + ".bin"),
+                                128 * 1024));
 
         // write header
         dataOut.writeByte(BINARY_FORMAT);
@@ -732,7 +779,7 @@ public final class ConvertUCD implements UCD_Types {
 
             while (it.hasNext()) {
                 final Object cc = it.next();
-                //codePoint = UTF32.char32At(cc,0);
+                // codePoint = UTF32.char32At(cc,0);
                 if (DEBUG) {
                     System.out.println(Utility.hex(cc));
                 }
@@ -754,13 +801,14 @@ public final class ConvertUCD implements UCD_Types {
             }
             System.out.println("Wrote Data " + count);
         } catch (final Exception e) {
-            throw new ChainException("Bad data write {0}", new Object [] {Utility.hex(codePoint)}, e);
+            throw new ChainException(
+                    "Bad data write {0}", new Object[] {Utility.hex(codePoint)}, e);
         } finally {
             dataOut.close();
         }
     }
 
-    //static String[] xsSplit = new String[40];
+    // static String[] xsSplit = new String[40];
 
     // Cache a little bit for speed
     int getEntryCodePoint = -1;
@@ -791,15 +839,13 @@ public final class ConvertUCD implements UCD_Types {
         if (charEntry == null) {
             charEntry = new UData(cp);
             charData.put(cc, charEntry);
-            //charEntry.put("c", cc);
+            // charEntry.put("c", cc);
         }
         getEntryCodePoint = cp;
         getEntryUData = charEntry;
         return charEntry;
     }
-    /** Adds the character data. Signals duplicates with an exception
-     */
-
+    /** Adds the character data. Signals duplicates with an exception */
     void setBinaryProperty(int cp, int binProp) {
         final UData charEntry = getEntry(cp);
         charEntry.binaryProperties |= (1L << binProp);
@@ -810,12 +856,12 @@ public final class ConvertUCD implements UCD_Types {
         setBinaryProperty(cp, ind);
     }
 
-    /** Adds the character data. Signals duplicates with an exception
-     */
+    /** Adds the character data. Signals duplicates with an exception */
     void addCharData(int cp, String key, String value) {
-        //if (cp < 10) System.out.println("A: " + Utility.hex(cp) + ", " + key + ", " + Utility.quoteJavaString(value));
+        // if (cp < 10) System.out.println("A: " + Utility.hex(cp) + ", " + key + ", " +
+        // Utility.quoteJavaString(value));
         final UData charEntry = getEntry(cp);
-        //if (cp < 10) System.out.println("   " + charEntry);
+        // if (cp < 10) System.out.println("   " + charEntry);
 
         if (SHOW_SAMPLE && cp == 0x221) {
             System.out.println("Sample: " + cp + ", " + key + ", " + value);
@@ -836,24 +882,24 @@ public final class ConvertUCD implements UCD_Types {
             charEntry.decompositionType = CANONICAL;
             if (value.charAt(0) == '<') {
                 final int pos = value.indexOf('>');
-                String dType = value.substring(1,pos);
+                String dType = value.substring(1, pos);
                 if (major < 2) {
                     if (dType.charAt(0) == '+') {
                         dType = dType.substring(1);
                     }
                 }
-                value = value.substring(pos+1);
+                value = value.substring(pos + 1);
                 setField(charEntry, "dt", dType);
             }
             // FIX OLD
             if (major < 2) {
                 int oldStyle = value.indexOf('<');
                 if (oldStyle > 0) {
-                    value = value.substring(0,oldStyle);
+                    value = value.substring(0, oldStyle);
                 }
                 oldStyle = value.indexOf('{');
                 if (oldStyle > 0) {
-                    value = value.substring(0,oldStyle);
+                    value = value.substring(0, oldStyle);
                 }
             }
             setField(charEntry, key, Utility.fromHex(value));
@@ -875,10 +921,10 @@ public final class ConvertUCD implements UCD_Types {
             }
             setField(charEntry, "nv", value);
             /*} else if (key.equals("jt")) {
-            jtSet.add(value);
-        } else if (key.equals("jg")) {
-            jgSet.add(value);
-             */
+                jtSet.add(value);
+            } else if (key.equals("jg")) {
+                jgSet.add(value);
+                 */
         } else {
             setField(charEntry, key, value);
         }
@@ -886,7 +932,6 @@ public final class ConvertUCD implements UCD_Types {
             System.out.println("Sample Result:");
             System.out.println(charEntry);
         }
-
     }
 
     public void setField(UData uData, String fieldName, String fieldValue) {
@@ -908,7 +953,8 @@ public final class ConvertUCD implements UCD_Types {
                 uData.fullUppercase = fieldValue;
             } else if (fieldName.equals("sl")) {
                 if (DEBUG) {
-                    System.out.println("Setting full lowercase to " + Utility.hex(fieldValue) + uData);
+                    System.out.println(
+                            "Setting full lowercase to " + Utility.hex(fieldValue) + uData);
                 }
                 uData.fullLowercase = fieldValue;
             } else if (fieldName.equals("st")) {
@@ -922,16 +968,18 @@ public final class ConvertUCD implements UCD_Types {
 
             } else if (fieldName.equals("xp")) {
                 uData.binaryProperties |= 1L << Utility.lookup(fieldValue, UCD_Names.BP, true);
-                //UCD_Names.BP_OLD
+                // UCD_Names.BP_OLD
 
             } else if (fieldName.equals("gc")) {
-                uData.generalCategory = Utility.lookup(fieldValue, UCD_Names.GENERAL_CATEGORY, true);
+                uData.generalCategory =
+                        Utility.lookup(fieldValue, UCD_Names.GENERAL_CATEGORY, true);
                 //                if (major >= 5 && uData.script == Unknown_Script
                 //                        && uData.generalCategory != Cn
                 //                        && uData.generalCategory != Cs
                 //                        && uData.generalCategory != Co) {
                 //                    uData.script = COMMON_SCRIPT;
-                //                    System.out.println("Resetting to Common Script: " + Utility.hex(uData.codePoint));
+                //                    System.out.println("Resetting to Common Script: " +
+                // Utility.hex(uData.codePoint));
                 //                }
             } else if (fieldName.equals("bc")) {
                 uData.bidiClass = Utility.lookup(fieldValue, UCD_Names.BIDI_CLASS, true);
@@ -953,7 +1001,8 @@ public final class ConvertUCD implements UCD_Types {
                         fieldValue = "compat";
                     }
                 }
-                uData.decompositionType = Utility.lookup(fieldValue, UCD_Names.LONG_DECOMPOSITION_TYPE, true);
+                uData.decompositionType =
+                        Utility.lookup(fieldValue, UCD_Names.LONG_DECOMPOSITION_TYPE, true);
             } else if (fieldName.equals("nt")) {
                 uData.numericType = Utility.lookup(fieldValue, UCD_Names.LONG_NUMERIC_TYPE, true);
 
@@ -969,8 +1018,12 @@ public final class ConvertUCD implements UCD_Types {
                 if (true) { // codepoint == 0x10D1D) {
                     int debug = 0;
                 }
-                uData.joiningGroup = Utility.lookupShort(fieldValue,
-                        UCD_Names.OLD_JOINING_GROUP, UCD_Names.JOINING_GROUP, true);
+                uData.joiningGroup =
+                        Utility.lookupShort(
+                                fieldValue,
+                                UCD_Names.OLD_JOINING_GROUP,
+                                UCD_Names.JOINING_GROUP,
+                                true);
             } else if (fieldName.equals("nv")) {
                 if (major < 2) {
                     if (fieldValue.equals("-")) {
@@ -979,35 +1032,42 @@ public final class ConvertUCD implements UCD_Types {
                 }
                 uData.numericValue = Utility.doubleFrom(fieldValue);
             } else if (fieldName.equals("ccc")) {
-                uData.combiningClass = (byte)Utility.intFrom(fieldValue);
+                uData.combiningClass = (byte) Utility.intFrom(fieldValue);
                 if (uData.combiningClass == 9 && major >= 5) {
                     if (DEBUG) {
-                        System.out.println("setting Grapheme_Link " + Utility.hex(uData.codePoint) + "\t" + uData.name);
+                        System.out.println(
+                                "setting Grapheme_Link "
+                                        + Utility.hex(uData.codePoint)
+                                        + "\t"
+                                        + uData.name);
                     }
-                    uData.binaryProperties |= (1<<GraphemeLink);
+                    uData.binaryProperties |= (1 << GraphemeLink);
                     if (DEBUG) {
                         System.out.println(uData);
                     }
                 }
             } else if (fieldName.equals("bp")) {
-                uData.binaryProperties = (byte)Utility.longFrom(fieldValue);
-                //                if (major >= 5 && (uData.binaryProperties & 1<<Noncharacter_Code_Point) != 0) {
+                uData.binaryProperties = (byte) Utility.longFrom(fieldValue);
+                //                if (major >= 5 && (uData.binaryProperties &
+                // 1<<Noncharacter_Code_Point) != 0) {
                 //                  uData.script = Unknown_Script;
                 //                }
                 System.out.println("Resetting: " + uData);
             } else if (fieldName.equals("bpb")) {
                 uData.Bidi_Paired_Bracket = Integer.parseInt(fieldValue, 16);
             } else if (fieldName.equals("bpt")) {
-                uData.Bidi_Paired_Bracket_Type = Utility.lookup(fieldValue, UCD_Names.Bidi_Paired_Bracket_Type_SHORT, true);
+                uData.Bidi_Paired_Bracket_Type =
+                        Utility.lookup(fieldValue, UCD_Names.Bidi_Paired_Bracket_Type_SHORT, true);
             } else if (fieldName.equals("vo")) {
-                uData.Vertical_Orientation = Utility.lookup(fieldValue, UCD_Names.Vertical_Orientation_SHORT, true);
+                uData.Vertical_Orientation =
+                        Utility.lookup(fieldValue, UCD_Names.Vertical_Orientation_SHORT, true);
             } else {
                 throw new IllegalArgumentException("Unknown fieldName");
             }
         } catch (final Exception e) {
             throw new ChainException(
-                    "Bad field name= \"{0}\", value= \"{1}\"", new Object[] {fieldName, fieldValue}, e);
+                    "Bad field name= \"{0}\", value= \"{1}\"",
+                    new Object[] {fieldName, fieldValue}, e);
         }
     }
-
 }

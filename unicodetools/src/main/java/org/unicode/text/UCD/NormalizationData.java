@@ -14,11 +14,9 @@ public interface NormalizationData {
 
     public abstract boolean isLeading(int cp);
 
-    public abstract boolean normalizationDiffers(int cp, boolean composition,
-            boolean compat);
+    public abstract boolean normalizationDiffers(int cp, boolean composition, boolean compat);
 
-    public abstract void getRecursiveDecomposition(int cp, StringBuffer buffer,
-            boolean compat);
+    public abstract void getRecursiveDecomposition(int cp, StringBuffer buffer, boolean compat);
 
     public abstract int getPairwiseComposition(int starterCh, int ch);
 
@@ -26,7 +24,5 @@ public interface NormalizationData {
 
     public abstract boolean isNonSpacing(int cp);
 
-    public abstract void getCompositionStatus(BitSet leading, BitSet trailing,
-            BitSet resulting);
-
+    public abstract void getCompositionStatus(BitSet leading, BitSet trailing, BitSet resulting);
 }

@@ -6,9 +6,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StripDAndCopy {
-    
-    static final Matcher fileMatcher = Pattern.compile("([^-]*)(-[\\d\\.]+d\\d+)?(\\.[a-z]+)").matcher("");
-    
+
+    static final Matcher fileMatcher =
+            Pattern.compile("([^-]*)(-[\\d\\.]+d\\d+)?(\\.[a-z]+)").matcher("");
+
     public static void main(String[] args) throws IOException {
         File kenDir = new File(args[0]);
         File toolDir = new File(args[1]);
@@ -35,6 +36,6 @@ public class StripDAndCopy {
             } else {
                 System.err.println("Can't copy " + file);
             }
-        }    
+        }
     }
 }

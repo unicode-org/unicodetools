@@ -1,25 +1,21 @@
 package org.unicode.tools.emoji;
 
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
+import com.ibm.icu.impl.locale.XCldrStub.ImmutableMap;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.Set;
 import java.util.TreeMap;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.tools.emoji.DocRegistry.DocRegistryEntry;
-
-import com.google.common.base.Joiner;
-import com.google.common.base.Splitter;
-import com.google.common.collect.ImmutableSet;
-import com.ibm.icu.impl.locale.XCldrStub.ImmutableMap;
 
 public class DocRegistry {
     private static final Pattern PROPOSAL = Pattern.compile("(L2/\\d{2}-\\d{3})(R\\d?)?");
@@ -43,13 +39,10 @@ public class DocRegistry {
 
         @Override
         public String toString() {
-            return "L2=«" + L2
-                    + "» title=«" + title
-                    + "» source=«" + source
-                    + "» other=" + other
-                    ;
+            return "L2=«" + L2 + "» title=«" + title + "» source=«" + source + "» other=" + other;
         }
     }
+
     static final Map<String, DocRegistryEntry> map = load();
 
     private static Map<String, DocRegistryEntry> load() {
@@ -115,10 +108,20 @@ public class DocRegistry {
 
     public static String getProposalForHtml(String proposalItem) {
         DocRegistryEntry item = get(proposalItem);
-        String title = item == null ? "" : " title ='" + TransliteratorUtilities.toHTML.transform(item.title + " 👈 " + item.source) + "'";
+        String title =
+                item == null
+                        ? ""
+                        : " title ='"
+                                + TransliteratorUtilities.toHTML.transform(
+                                        item.title + " 👈 " + item.source)
+                                + "'";
         return "<a target='e-prop' "
-        + "href='https://www.unicode.org/cgi-bin/GetDocumentLink?" + proposalItem.replace('\u2011', '-')
-        + "'" + title + ">"
-        + proposalItem + "</a>";
+                + "href='https://www.unicode.org/cgi-bin/GetDocumentLink?"
+                + proposalItem.replace('\u2011', '-')
+                + "'"
+                + title
+                + ">"
+                + proposalItem
+                + "</a>";
     }
 }

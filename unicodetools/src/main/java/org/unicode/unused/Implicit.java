@@ -9,23 +9,15 @@ import org.unicode.text.utility.Utility;
 
 /**
  * For generation of Implicit CEs
- * @author Davis
  *
- * Cleaned up so that changes can be made more easily.
- * Old values:
-# First Implicit: E26A792D
-# Last Implicit: E3DC70C0
-# First CJK: E0030300
-# Last CJK: E0A9DD00
-# First CJK_A: E0A9DF00
-# Last CJK_A: E0DE3100
-
+ * @author Davis
+ *     <p>Cleaned up so that changes can be made more easily. Old values: # First Implicit: E26A792D
+ *     # Last Implicit: E3DC70C0 # First CJK: E0030300 # Last CJK: E0A9DD00 # First CJK_A: E0A9DF00
+ *     # Last CJK_A: E0DE3100
  */
 public class Implicit implements UCD_Types {
 
-    /**
-     * constants
-     */
+    /** constants */
     static final boolean DEBUG = true;
 
     static final long topByte = 0xFF000000L;
@@ -36,6 +28,7 @@ public class Implicit implements UCD_Types {
 
     /**
      * Testing function
+     *
      * @param args ignored
      */
     public static void main(String[] args) {
@@ -43,7 +36,7 @@ public class Implicit implements UCD_Types {
         try {
             final Implicit foo = new Implicit(0xE0, 0xE4);
 
-            //int x = foo.getRawImplicit(0xF810);
+            // int x = foo.getRawImplicit(0xF810);
             foo.getRawFromImplicit(0xE20303E7);
 
             final int gap4 = foo.getGap4();
@@ -57,13 +50,13 @@ public class Implicit implements UCD_Types {
                 current = foo.getImplicitFromRaw(i) & fourBytes;
 
                 // check that it round-trips AND that all intervening ones are illegal
-                int roundtrip = foo.getRawFromImplicit((int)current);
+                int roundtrip = foo.getRawFromImplicit((int) current);
                 if (roundtrip != i) {
                     foo.throwError("No roundtrip", i);
                 }
                 if (last != 0) {
                     for (long j = last + 1; j < current; ++j) {
-                        roundtrip = foo.getRawFromImplicit((int)j);
+                        roundtrip = foo.getRawFromImplicit((int) j);
                         // raise an error if it *doesn't* find an error
                         if (roundtrip != -1) {
                             foo.throwError("Fails to recognize illegal", j);
@@ -95,9 +88,9 @@ public class Implicit implements UCD_Types {
                  */
                 // print out some values for spot-checking
                 if (lastTop != currentTop || i == 0x10000 || i == 0x110000) {
-                    foo.show(i-3);
-                    foo.show(i-2);
-                    foo.show(i-1);
+                    foo.show(i - 3);
+                    foo.show(i - 2);
+                    foo.show(i - 1);
                     if (i == 0) {
                         // do nothing
                     } else if (lastBottom == 0 && currentBottom != 0) {
@@ -106,14 +99,14 @@ public class Implicit implements UCD_Types {
                         System.out.println("+ primary boundary");
                     }
                     foo.show(i);
-                    foo.show(i+1);
-                    foo.show(i+2);
+                    foo.show(i + 1);
+                    foo.show(i + 2);
                     System.out.println("...");
                 }
                 last = current;
             }
-            foo.show(MAX_INPUT-2);
-            foo.show(MAX_INPUT-1);
+            foo.show(MAX_INPUT - 2);
+            foo.show(MAX_INPUT - 1);
             foo.show(MAX_INPUT);
         } catch (final Exception e) {
             e.printStackTrace();
@@ -123,7 +116,12 @@ public class Implicit implements UCD_Types {
     }
 
     private void throwError(String title, int cp) {
-        throw new IllegalArgumentException(title + "\t" + Utility.hex(cp) + "\t" + Utility.hex(getImplicitFromRaw(cp) & fourBytes));
+        throw new IllegalArgumentException(
+                title
+                        + "\t"
+                        + Utility.hex(cp)
+                        + "\t"
+                        + Utility.hex(getImplicitFromRaw(cp) & fourBytes));
     }
 
     private void throwError(String title, long ce) {
@@ -132,14 +130,14 @@ public class Implicit implements UCD_Types {
 
     private void show(int i) {
         if (i >= 0 && i <= MAX_INPUT) {
-            System.out.println(Utility.hex(i) + "\t" + Utility.hex(getImplicitFromRaw(i) & fourBytes));
+            System.out.println(
+                    Utility.hex(i) + "\t" + Utility.hex(getImplicitFromRaw(i) & fourBytes));
         }
     }
 
-    /**
-     * Precomputed by constructor
-     */
+    /** Precomputed by constructor */
     int final3Multiplier;
+
     int final4Multiplier;
     int final3Count;
     int final4Count;
@@ -163,13 +161,12 @@ public class Implicit implements UCD_Types {
 
     // old comment
     // we must skip all 00, 01, 02, FF bytes, so most bytes have 252 values
-    // we must leave a gap of 01 between all values of the last byte, so the last byte has 126 values (3 byte case)
+    // we must leave a gap of 01 between all values of the last byte, so the last byte has 126
+    // values (3 byte case)
     // we shift so that HAN all has the same first primary, for compression.
     // for the 4 byte case, we make the gap as large as we can fit.
 
-    /**
-     * Supply parameters for generating implicit CEs
-     */
+    /** Supply parameters for generating implicit CEs */
     public Implicit(int minPrimary, int maxPrimary) {
         // 13 is the largest 4-byte gap we can use without getting 2 four-byte forms.
         this(minPrimary, maxPrimary, 0x04, 0xFE, 1, 1);
@@ -177,6 +174,7 @@ public class Implicit implements UCD_Types {
 
     /**
      * Set up to generate implicits.
+     *
      * @param minPrimary
      * @param maxPrimary
      * @param minTrail final byte
@@ -184,7 +182,13 @@ public class Implicit implements UCD_Types {
      * @param gap3 the gap we leave for tailoring for 3-byte forms
      * @param primaries3count number of 3-byte primarys we can use (normally 1)
      */
-    public Implicit(int minPrimary, int maxPrimary, int minTrail, int maxTrail, int gap3, int primaries3count) {
+    public Implicit(
+            int minPrimary,
+            int maxPrimary,
+            int minTrail,
+            int maxTrail,
+            int gap3,
+            int primaries3count) {
         if (DEBUG) {
             System.out.println("minPrimary: " + Utility.hex(minPrimary));
             System.out.println("maxPrimary: " + Utility.hex(maxPrimary));
@@ -239,7 +243,8 @@ public class Implicit implements UCD_Types {
             System.out.println("neededPerPrimaryByte: " + neededPerPrimaryByte);
         }
 
-        final int neededPerFinalByte = divideAndRoundUp(neededPerPrimaryByte, medialCount * medialCount);
+        final int neededPerFinalByte =
+                divideAndRoundUp(neededPerPrimaryByte, medialCount * medialCount);
         if (DEBUG) {
             System.out.println("neededPerFinalByte: " + neededPerFinalByte);
         }
@@ -262,17 +267,18 @@ public class Implicit implements UCD_Types {
         if (DEBUG) {
             System.out.println("final4Count: " + final4Count);
             for (int counter = 0; counter < final4Count; ++counter) {
-                final int value = minTrail + (1 + counter)*final4Multiplier;
+                final int value = minTrail + (1 + counter) * final4Multiplier;
                 System.out.println(counter + "\t" + value + "\t" + Utility.hex(value));
             }
         }
     }
 
-    static public int divideAndRoundUp(int a, int b) {
-        return 1 + (a-1)/b;
+    public static int divideAndRoundUp(int a, int b) {
+        return 1 + (a - 1) / b;
     }
     /**
      * Converts implicit CE into raw integer
+     *
      * @param implicit
      * @return -1 if illegal format
      */
@@ -280,15 +286,14 @@ public class Implicit implements UCD_Types {
         int result;
         int b3 = implicit & 0xFF;
         implicit >>= 8;
-            int b2 = implicit & 0xFF;
-            implicit >>= 8;
+        int b2 = implicit & 0xFF;
+        implicit >>= 8;
         int b1 = implicit & 0xFF;
         implicit >>= 8;
         int b0 = implicit & 0xFF;
 
         // simple parameter checks
-        if (b0 < min3Primary || b0 > max4Primary
-                || b1 < minTrail || b1 > maxTrail) {
+        if (b0 < min3Primary || b0 > max4Primary || b1 < minTrail || b1 > maxTrail) {
             return -1;
         }
         // normal offsets
@@ -308,8 +313,7 @@ public class Implicit implements UCD_Types {
             b2 /= final3Multiplier;
             result = ((b0 * medialCount) + b1) * final3Count + b2;
         } else {
-            if (b2 < minTrail || b2 > maxTrail
-                    || b3 < minTrail || b3 > max4Trail) {
+            if (b2 < minTrail || b2 > maxTrail || b3 < minTrail || b3 > max4Trail) {
                 return -1;
             }
             b2 -= minTrail;
@@ -320,7 +324,10 @@ public class Implicit implements UCD_Types {
             }
             b3 /= final4Multiplier;
             b0 -= min4Primary;
-            result = (((b0 * medialCount) + b1) * medialCount + b2) * final4Count + b3 + min4Boundary;
+            result =
+                    (((b0 * medialCount) + b1) * medialCount + b2) * final4Count
+                            + b3
+                            + min4Boundary;
         }
         // final check
         if (result < 0 || result > MAX_INPUT) {
@@ -330,8 +337,9 @@ public class Implicit implements UCD_Types {
     }
 
     /**
-     * Generate the implicit CE, from raw integer.
-     * Left shifted to put the first byte at the top of an int.
+     * Generate the implicit CE, from raw integer. Left shifted to put the first byte at the top of
+     * an int.
+     *
      * @param cp code point
      * @return
      */
@@ -347,12 +355,13 @@ public class Implicit implements UCD_Types {
             int last2 = last1 / medialCount;
             last1 %= medialCount;
 
-            last0 = minTrail + last0*final3Multiplier; // spread out, leaving gap at start
+            last0 = minTrail + last0 * final3Multiplier; // spread out, leaving gap at start
             last1 = minTrail + last1; // offset
             last2 = min3Primary + last2; // offset
 
             if (last2 >= min4Primary) {
-                throw new IllegalArgumentException("4-byte out of range: " + Utility.hex(cp) + ", " + Utility.hex(last2));
+                throw new IllegalArgumentException(
+                        "4-byte out of range: " + Utility.hex(cp) + ", " + Utility.hex(last2));
             }
 
             return (last2 << 24) + (last1 << 16) + (last0 << 8);
@@ -366,22 +375,23 @@ public class Implicit implements UCD_Types {
             int last3 = last2 / medialCount;
             last2 %= medialCount;
 
-            last0 = minTrail + last0*final4Multiplier; // spread out, leaving gap at start
+            last0 = minTrail + last0 * final4Multiplier; // spread out, leaving gap at start
             last1 = minTrail + last1; // offset
             last2 = minTrail + last2; // offset
             last3 = min4Primary + last3; // offset
 
             if (last3 > max4Primary) {
-                throw new IllegalArgumentException("4-byte out of range: " + Utility.hex(cp) + ", " + Utility.hex(last3));
+                throw new IllegalArgumentException(
+                        "4-byte out of range: " + Utility.hex(cp) + ", " + Utility.hex(last3));
             }
 
             return (last3 << 24) + (last2 << 16) + (last1 << 8) + last0;
         }
     }
     /**
-     * Gets an Implicit from a code point. Internally,
-     * swaps (which produces a raw value 0..220000,
+     * Gets an Implicit from a code point. Internally, swaps (which produces a raw value 0..220000,
      * then converts raw to implicit.
+     *
      * @param cp
      * @return
      */
@@ -402,33 +412,18 @@ public class Implicit implements UCD_Types {
         return getImplicitFromRaw(cp);
     }
 
-
     /**
-     * Function used to:
-     * a) collapse the 2 different Han ranges from UCA into one (in the right order), and
-     * b) bump any non-CJK characters by 10FFFF.
-     * The relevant blocks are:
-     * A:    4E00..9FFF; CJK Unified Ideographs
-     *       F900..FAFF; CJK Compatibility Ideographs
-     * B:    3400..4DBF; CJK Unified Ideographs Extension A
-     *       20000..XX;  CJK Unified Ideographs Extension B (and others later on)
-     * As long as
-     *   no new B characters are allocated between 4E00 and FAFF, and
-     *   no new A characters are outside of this range,
-     * (very high probability) this simple code will work.
-     * The reordered blocks are:
-     * Block1 is CJK
-     * Block2 is CJK_COMPAT_USED
-     * Block3 is CJK_A
-     * (all contiguous)
-     * Any other CJK gets its normal code point
-     * Any non-CJK gets +10FFFF
-     * When we reorder Block1, we make sure that it is at the very start,
-     * so that it will use a 3-byte form.
-     * Warning: the we only pick up the compatibility characters that are
-     * NOT decomposed, so that block is smaller!
+     * Function used to: a) collapse the 2 different Han ranges from UCA into one (in the right
+     * order), and b) bump any non-CJK characters by 10FFFF. The relevant blocks are: A: 4E00..9FFF;
+     * CJK Unified Ideographs F900..FAFF; CJK Compatibility Ideographs B: 3400..4DBF; CJK Unified
+     * Ideographs Extension A 20000..XX; CJK Unified Ideographs Extension B (and others later on) As
+     * long as no new B characters are allocated between 4E00 and FAFF, and no new A characters are
+     * outside of this range, (very high probability) this simple code will work. The reordered
+     * blocks are: Block1 is CJK Block2 is CJK_COMPAT_USED Block3 is CJK_A (all contiguous) Any
+     * other CJK gets its normal code point Any non-CJK gets +10FFFF When we reorder Block1, we make
+     * sure that it is at the very start, so that it will use a 3-byte form. Warning: the we only
+     * pick up the compatibility characters that are NOT decomposed, so that block is smaller!
      */
-
     static int NON_CJK_OFFSET = 0x110000;
 
     static int swapCJK(int i) {
@@ -443,32 +438,30 @@ public class Implicit implements UCD_Types {
             }
 
             if (i < CJK_COMPAT_USED_LIMIT) {
-                return i - CJK_COMPAT_USED_BASE
-                        + (CJK_LIMIT - CJK_BASE);
+                return i - CJK_COMPAT_USED_BASE + (CJK_LIMIT - CJK_BASE);
             }
             if (i < CJK_B_BASE) {
                 return i + NON_CJK_OFFSET;
             }
 
-            if (i < CJK_B_LIMIT)
-            {
+            if (i < CJK_B_LIMIT) {
                 return i; // non-BMP-CJK
             }
 
-            return i + NON_CJK_OFFSET;  // non-CJK
+            return i + NON_CJK_OFFSET; // non-CJK
         }
         if (i < CJK_A_BASE) {
             return i + NON_CJK_OFFSET;
         }
 
         if (i < CJK_A_LIMIT) {
-            return i - CJK_A_BASE
+            return i
+                    - CJK_A_BASE
                     + (CJK_LIMIT - CJK_BASE)
                     + (CJK_COMPAT_USED_LIMIT - CJK_COMPAT_USED_BASE);
         }
         return i + NON_CJK_OFFSET; // non-CJK
     }
-
 
     /**
      * @return
@@ -483,5 +476,4 @@ public class Implicit implements UCD_Types {
     public int getMaxTrail() {
         return maxTrail;
     }
-
 }

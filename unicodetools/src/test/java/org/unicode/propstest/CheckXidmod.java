@@ -1,12 +1,20 @@
 package org.unicode.propstest;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.Relation;
+import com.ibm.icu.impl.Utility;
+import com.ibm.icu.lang.UProperty;
+import com.ibm.icu.lang.UScript;
+import com.ibm.icu.text.Normalizer2;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
@@ -36,40 +44,34 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.propstest.TestProperties.ExemplarExceptions;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.Relation;
-import com.ibm.icu.impl.Utility;
-import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.lang.UScript;
-import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
-
 public class CheckXidmod {
-    private static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
+    private static final IndexUnicodeProperties iup =
+            IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
 
-    private static final  CLDRConfig testInfo = CLDRConfig.getInstance();
-    private static final SupplementalDataInfo SUPPLEMENTAL_DATA_INFO = testInfo.getSupplementalDataInfo();
-    private static final  Factory cldrFactory = testInfo.getCldrFactory();
-    private static final  Set<String> defaultContents = SUPPLEMENTAL_DATA_INFO.getDefaultContentLocales();
-    private static final  Normalizer2 nfd = Normalizer2.getNFDInstance();
-    private static final  Normalizer2 nfkc = Normalizer2.getNFKCInstance();
+    private static final CLDRConfig testInfo = CLDRConfig.getInstance();
+    private static final SupplementalDataInfo SUPPLEMENTAL_DATA_INFO =
+            testInfo.getSupplementalDataInfo();
+    private static final Factory cldrFactory = testInfo.getCldrFactory();
+    private static final Set<String> defaultContents =
+            SUPPLEMENTAL_DATA_INFO.getDefaultContentLocales();
+    private static final Normalizer2 nfd = Normalizer2.getNFDInstance();
+    private static final Normalizer2 nfkc = Normalizer2.getNFKCInstance();
 
     public static void main(String[] args) {
         new CheckXidmod().TestBuildingIdModType();
     }
+
     public void TestBuildingIdModType() {
         UnicodeSet LGC = new UnicodeSet("[[:sc=Latin:][:sc=Greek:][:sc=Cyrl:]]").freeze();
         UnicodeSet AE = new UnicodeSet("[[:sc=Arab:][:sc=Ethiopic:]]").freeze();
         UnicodeMap<String> simulateType = new UnicodeMap();
         // we load the items in reverse order, so that we override with more "powerful" categories
-        //UnicodeMap<String> Script_Extensions = iup.load(UcdProperty.Script_Extensions);
+        // UnicodeMap<String> Script_Extensions = iup.load(UcdProperty.Script_Extensions);
         // now simulate
-        //ScriptCategories sc = new ScriptCategories();
+        // ScriptCategories sc = new ScriptCategories();
 
         // start big, and whittle down
-        simulateType.putAll(0,0x10FFFF, "not-CLDR");
+        simulateType.putAll(0, 0x10FFFF, "not-CLDR");
 
         UnicodeMap<String> cldrExemplars = getCldrExemplars();
 
@@ -78,10 +80,10 @@ public class CheckXidmod {
         UnicodeMap<String> Unified_Ideograph = iup.load(UcdProperty.Unified_Ideograph);
         simulateType.putAll(Unified_Ideograph.getSet("Yes"), "recommended");
 
-
         // Script Metadata
 
-        // we do it this way so that if any of the scripts for a character are recommended, it is recommended.
+        // we do it this way so that if any of the scripts for a character are recommended, it is
+        // recommended.
         ScriptMetadata smd = new ScriptMetadata();
 
         //        UnicodeMap<String> Script = iup.load(UcdProperty.Script);
@@ -104,17 +106,17 @@ public class CheckXidmod {
             IdUsage bestIdUsage = getBestIdUsage(value);
             UnicodeSet chars = Script_Extensions.getSet(value);
             switch (bestIdUsage) {
-            case LIMITED_USE:
-            case ASPIRATIONAL:
-                //simulateType.putAll(chars, "limited-use");
-                simulateType.putAll(chars, "historic");
-                break;
-            case EXCLUSION:
-                simulateType.putAll(chars, "historic");
-                break;
-                //            case RECOMMENDED:
-                //                simulateType.putAll(chars, "historic");
-                //                break;
+                case LIMITED_USE:
+                case ASPIRATIONAL:
+                    // simulateType.putAll(chars, "limited-use");
+                    simulateType.putAll(chars, "historic");
+                    break;
+                case EXCLUSION:
+                    simulateType.putAll(chars, "historic");
+                    break;
+                    //            case RECOMMENDED:
+                    //                simulateType.putAll(chars, "historic");
+                    //                break;
             }
         }
 
@@ -122,22 +124,23 @@ public class CheckXidmod {
 
         simulateType.putAll(iup.load(UcdProperty.XID_Continue).getSet("No"), "not-xid");
 
-
         simulateType.putAll(iup.load(UcdProperty.NFKC_Quick_Check).getSet("No"), "not-NFKC");
 
         UnicodeMap<String> General_Category = iup.load(UcdProperty.General_Category);
         UnicodeSet White_Space = iup.load(UcdProperty.White_Space).getSet("Yes");
-        for (General_Category_Values gc : EnumSet.of(
-                General_Category_Values.Unassigned,
-                General_Category_Values.Private_Use,
-                General_Category_Values.Surrogate,
-                General_Category_Values.Control
-                )) {
+        for (General_Category_Values gc :
+                EnumSet.of(
+                        General_Category_Values.Unassigned,
+                        General_Category_Values.Private_Use,
+                        General_Category_Values.Surrogate,
+                        General_Category_Values.Control)) {
             UnicodeSet set = General_Category.getSet(gc.toString());
             set = new UnicodeSet(set).removeAll(White_Space);
             simulateType.putAll(set, "not-chars");
         }
-        simulateType.putAll(iup.load(UcdProperty.Default_Ignorable_Code_Point).getSet("Yes"), "default-ignorable");
+        simulateType.putAll(
+                iup.load(UcdProperty.Default_Ignorable_Code_Point).getSet("Yes"),
+                "default-ignorable");
         simulateType.putAll(new UnicodeSet("['\\-.\\:·͵֊׳״۽۾་‌‍‐’‧゠・_]"), "inclusion");
         // map technical to historic
         UnicodeMap<String> typeMap = new UnicodeMap().putAll(iup.load(UcdProperty.Identifier_Type));
@@ -154,17 +157,27 @@ public class CheckXidmod {
             UnicodeSet idmodMinusSim = new UnicodeSet(idmodSet).removeAll(simSet);
             UnicodeSet same = new UnicodeSet(idmodSet).retainAll(simSet);
             UnicodeSet simMinusIdmod = new UnicodeSet(simSet).removeAll(idmodSet);
-            logln(type 
-                    + "\tsame:\t" + same.size()
-                    + "\n\t\tsim-idmod:\t" + simMinusIdmod.size() 
-                    + "\t" + simMinusIdmod.toPattern(false)
-                    + "\n\t\tidmod-sim:\t" + idmodMinusSim.size() 
-                    + "\t" + idmodMinusSim.toPattern(false));
+            logln(
+                    type
+                            + "\tsame:\t"
+                            + same.size()
+                            + "\n\t\tsim-idmod:\t"
+                            + simMinusIdmod.size()
+                            + "\t"
+                            + simMinusIdmod.toPattern(false)
+                            + "\n\t\tidmod-sim:\t"
+                            + idmodMinusSim.size()
+                            + "\t"
+                            + idmodMinusSim.toPattern(false));
         }
-        UnicodeSet typeOk = new UnicodeSet(typeMap.getSet("inclusion"))
-        .addAll(typeMap.getSet("recommended")).freeze();
-        UnicodeSet simOk = new UnicodeSet(simulateType.getSet("inclusion"))
-        .addAll(simulateType.getSet("recommended")).freeze();
+        UnicodeSet typeOk =
+                new UnicodeSet(typeMap.getSet("inclusion"))
+                        .addAll(typeMap.getSet("recommended"))
+                        .freeze();
+        UnicodeSet simOk =
+                new UnicodeSet(simulateType.getSet("inclusion"))
+                        .addAll(simulateType.getSet("recommended"))
+                        .freeze();
         UnicodeSet simMinusType = new UnicodeSet(simOk).removeAll(typeOk);
         UnicodeSet typeMinusSim = new UnicodeSet(typeOk).removeAll(simOk);
         showDiff(cldrExemplars, simMinusType);
@@ -177,21 +190,25 @@ public class CheckXidmod {
         logln("Current - new, Remainder");
         showDiff(new UnicodeSet(x).removeAll(AE));
     }
+
     private void logln(String string) {
-        System.out.println(string);        
+        System.out.println(string);
     }
+
     private void showDiff(UnicodeSet target) {
         logln(target.toPattern(false));
         for (int i = 0; i < UScript.CODE_LIMIT; ++i) {
             UnicodeSet script = new UnicodeSet().applyIntPropertyValue(UProperty.SCRIPT, i);
             if (script.containsSome(target)) {
                 UnicodeSet diff = new UnicodeSet(target).retainAll(script);
-                logln(UScript.getName(i) + "\thttp://unicode.org/cldr/utility/list-unicodeset.jsp?abb=on&g=sc+gc+subhead&"
-                        + diff.toPattern(false));
+                logln(
+                        UScript.getName(i)
+                                + "\thttp://unicode.org/cldr/utility/list-unicodeset.jsp?abb=on&g=sc+gc+subhead&"
+                                + diff.toPattern(false));
             }
         }
     }
-    
+
     private UnicodeMap<String> getCldrExemplars() {
         LanguageTagParser ltp = new LanguageTagParser();
         UnicodeMap<String> result = new UnicodeMap<>();
@@ -201,7 +218,7 @@ public class CheckXidmod {
         CoverageData coverageData = new CoverageData();
 
         for (String locale : cldrFactory.getAvailable()) {
-            if (defaultContents.contains(locale) 
+            if (defaultContents.contains(locale)
                     || !ltp.set(locale).getRegion().isEmpty()
                     || ltp.getScript().equals("Dsrt")) {
                 continue;
@@ -217,10 +234,13 @@ public class CheckXidmod {
                     continue;
                 }
             }
-            PopulationData languageInfo = SUPPLEMENTAL_DATA_INFO.getLanguagePopulationData(baseLanguage);
+            PopulationData languageInfo =
+                    SUPPLEMENTAL_DATA_INFO.getLanguagePopulationData(baseLanguage);
             if (languageInfo == null) {
                 String max = LikelySubtags.maximize(baseLanguage, likely);
-                languageInfo = SUPPLEMENTAL_DATA_INFO.getLanguagePopulationData(ltp.set(max).getLanguageScript());
+                languageInfo =
+                        SUPPLEMENTAL_DATA_INFO.getLanguagePopulationData(
+                                ltp.set(max).getLanguageScript());
             }
             if (languageInfo == null) {
                 logln("No literate-population data:\t" + getLanguageNameAndCode(locale));
@@ -231,15 +251,24 @@ public class CheckXidmod {
             Map<Level, Double> coverage = coverageData.getData(f);
             if (languageInfo.getLiteratePopulation() < 1000000) {
                 if (coverage.get(Level.MODERN) < 0.5) {
-                    logln("Small literate-population:\t" + getLanguageNameAndCode(locale) + "\t" + languageInfo.getLiteratePopulation());
+                    logln(
+                            "Small literate-population:\t"
+                                    + getLanguageNameAndCode(locale)
+                                    + "\t"
+                                    + languageInfo.getLiteratePopulation());
                     continue;
                 } else {
-                    logln("Retaining Small literate-population:\t" + getLanguageNameAndCode(locale) + "\t" + languageInfo.getLiteratePopulation()
-                            + "\tCoverage:\t" + coverage);
+                    logln(
+                            "Retaining Small literate-population:\t"
+                                    + getLanguageNameAndCode(locale)
+                                    + "\t"
+                                    + languageInfo.getLiteratePopulation()
+                                    + "\tCoverage:\t"
+                                    + coverage);
                 }
             }
 
-            //CLDRFile f = cldrFactory.make(locale, false, DraftStatus.approved);
+            // CLDRFile f = cldrFactory.make(locale, false, DraftStatus.approved);
             UnicodeSet uset = f.getExemplarSet("", WinningChoice.WINNING);
             if (uset == null) {
                 continue;
@@ -258,6 +287,7 @@ public class CheckXidmod {
         }
         return result;
     }
+
     private IdUsage getBestIdUsage(String value) {
         String[] scripts = value.split(" ");
         IdUsage bestIdUsage = IdUsage.UNKNOWN;
@@ -270,12 +300,12 @@ public class CheckXidmod {
         }
         return bestIdUsage;
     }
+
     private String getLanguageNameAndCode(String baseLanguage) {
         return testInfo.getEnglish().getName(baseLanguage) + " (" + baseLanguage + ")";
     }
 
-    private void showDiff(UnicodeMap<String> cldrExemplars,
-            UnicodeSet simMinusIdmod) {
+    private void showDiff(UnicodeMap<String> cldrExemplars, UnicodeSet simMinusIdmod) {
         for (String locales : cldrExemplars.values()) {
             UnicodeSet exemplars = cldrExemplars.getSet(locales);
             if (simMinusIdmod.containsSome(exemplars)) {
@@ -286,33 +316,46 @@ public class CheckXidmod {
     }
 
     private void showSet(String title, UnicodeSet uset) {
-        for (UnicodeSetIterator it = new UnicodeSetIterator(uset); it.nextRange();) {
+        for (UnicodeSetIterator it = new UnicodeSetIterator(uset); it.nextRange(); ) {
             logln("\t\t" + getCodeAndName(UTF16.valueOf(it.codepoint)) + "\t//" + title);
             if (it.codepoint != it.codepointEnd) {
                 logln("\t\t... " + getCodeAndName(UTF16.valueOf(it.codepointEnd)) + "\t//" + title);
             }
         }
     }
+
     public String getCodeAndName(String cp) {
         return Utility.hex(cp) + " (" + cp + ") " + nameMap.get(cp);
     }
-    private static final  UnicodeMap<String> nameMap = iup.load(UcdProperty.Name);
+
+    private static final UnicodeMap<String> nameMap = iup.load(UcdProperty.Name);
+
     private static class CoverageData {
         // setup for coverage
         Counter<Level> foundCounter = new Counter<Level>();
         Counter<Level> unconfirmedCounter = new Counter<Level>();
         Counter<Level> missingCounter = new Counter<Level>();
-        PathHeader.Factory pathHeaderFactory = PathHeader.getFactory(testInfo.getCldrFactory().make("en", true));
+        PathHeader.Factory pathHeaderFactory =
+                PathHeader.getFactory(testInfo.getCldrFactory().make("en", true));
         Comparator<String> ldmlComp2 = CLDRFile.getComparator(DtdType.ldml);
-        Relation<MissingStatus, String> missingPaths = Relation.of(new EnumMap<MissingStatus, Set<String>>(
-                MissingStatus.class), TreeSet.class, ldmlComp2);
+        Relation<MissingStatus, String> missingPaths =
+                Relation.of(
+                        new EnumMap<MissingStatus, Set<String>>(MissingStatus.class),
+                        TreeSet.class,
+                        ldmlComp2);
         Set<String> unconfirmed = new TreeSet(ldmlComp2);
 
         Map<Level, Double> getData(CLDRFile f) {
             Map<Level, Double> confirmedCoverage = new EnumMap(Level.class);
-            VettingViewer.getStatus(testInfo.getEnglish().fullIterable(), f,
-                    pathHeaderFactory, foundCounter, unconfirmedCounter,
-                    missingCounter, missingPaths, unconfirmed);
+            VettingViewer.getStatus(
+                    testInfo.getEnglish().fullIterable(),
+                    f,
+                    pathHeaderFactory,
+                    foundCounter,
+                    unconfirmedCounter,
+                    missingCounter,
+                    missingPaths,
+                    unconfirmed);
             int sumFound = 0;
             int sumMissing = 0;
             int sumUnconfirmed = 0;
@@ -320,10 +363,10 @@ public class CheckXidmod {
                 sumFound += foundCounter.get(level);
                 sumUnconfirmed += unconfirmedCounter.get(level);
                 sumMissing += missingCounter.get(level);
-                confirmedCoverage.put(level, (sumFound) / (double) (sumFound + sumUnconfirmed + sumMissing));
+                confirmedCoverage.put(
+                        level, (sumFound) / (double) (sumFound + sumUnconfirmed + sumMissing));
             }
             return confirmedCoverage;
         }
     }
-
 }

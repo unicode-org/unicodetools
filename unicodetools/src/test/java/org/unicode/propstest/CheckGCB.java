@@ -1,5 +1,11 @@
 package org.unicode.propstest;
 
+import com.google.common.collect.ImmutableBiMap;
+import com.google.common.collect.ImmutableSet;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.locale.XCldrStub.ImmutableMap;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.UnicodeSet;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -11,7 +17,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyNames;
 import org.unicode.props.UcdProperty;
@@ -22,45 +27,41 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Segmenter;
 
-import com.google.common.collect.ImmutableBiMap;
-import com.google.common.collect.ImmutableSet;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.locale.XCldrStub.ImmutableMap;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.UnicodeSet;
-
 public class CheckGCB {
-    private static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(Settings.latestVersion);
+    private static final IndexUnicodeProperties IUP =
+            IndexUnicodeProperties.make(Settings.latestVersion);
 
-    private static final Set<PropertyNames.Named> TO_SKIP = ImmutableSet.of(
-            Line_Break_Values.Complex_Context,
-
-            Word_Break_Values.Regional_Indicator
-            );
+    private static final Set<PropertyNames.Named> TO_SKIP =
+            ImmutableSet.of(
+                    Line_Break_Values.Complex_Context, Word_Break_Values.Regional_Indicator);
 
     public static void main(String[] args) {
         final Segmenter gcb =
                 Segmenter.make(IUP, "GraphemeClusterBreak", Segmenter.Target.FOR_UCD).make();
-        final UnicodeMap<UcdPropertyValues.Grapheme_Cluster_Break_Values> gcbProps = IUP.loadEnum(UcdProperty.Grapheme_Cluster_Break);
+        final UnicodeMap<UcdPropertyValues.Grapheme_Cluster_Break_Values> gcbProps =
+                IUP.loadEnum(UcdProperty.Grapheme_Cluster_Break);
 
         final Segmenter wb = Segmenter.make(IUP, "WordBreak", Segmenter.Target.FOR_UCD).make();
-        final UnicodeMap<UcdPropertyValues.Word_Break_Values> wbProps = IUP.loadEnum(UcdProperty.Word_Break);
-        
+        final UnicodeMap<UcdPropertyValues.Word_Break_Values> wbProps =
+                IUP.loadEnum(UcdProperty.Word_Break);
+
         check2("GCB", gcb, gcbProps, "WB", wb, wbProps, 3, false);
 
         final Segmenter sb = Segmenter.make(IUP, "SentenceBreak", Segmenter.Target.FOR_UCD).make();
-        final UnicodeMap<UcdPropertyValues.Sentence_Break_Values> sbProps = IUP.loadEnum(UcdProperty.Sentence_Break);
-        
+        final UnicodeMap<UcdPropertyValues.Sentence_Break_Values> sbProps =
+                IUP.loadEnum(UcdProperty.Sentence_Break);
+
         check2("GCB", gcb, gcbProps, "SB", sb, sbProps, 3, false);
-        
+
         final Segmenter lb = Segmenter.make(IUP, "LineBreak", Segmenter.Target.FOR_UCD).make();
-        final UnicodeMap<UcdPropertyValues.Line_Break_Values> lbProps = IUP.loadEnum(UcdProperty.Line_Break);
-        
+        final UnicodeMap<UcdPropertyValues.Line_Break_Values> lbProps =
+                IUP.loadEnum(UcdProperty.Line_Break);
+
         check2("GCB", gcb, gcbProps, "LB", lb, lbProps, 2, true);
         check2("WB", wb, wbProps, "LB", lb, lbProps, 2, true);
     }
 
-    //    private static void check(String title, 
+    //    private static void check(String title,
     //            Segmenter seg2, UnicodeMap props2) {
     //        System.out.println("\n\t\tGCB\t≠\t" + title);
     //        Samples samples = new Samples(gcbProps, props2, TO_SKIP);
@@ -86,12 +87,12 @@ public class CheckGCB {
     //                    EPair<Enum, Enum> pair2 = samples.getPair(cp2);
     //                    System.out.println(
     //                            "\\p{gcb=" + pair1.x + "} × \\p{gcb=" + pair2.x + "}"
-    //                                    + "\t but \t" 
+    //                                    + "\t but \t"
     //                                    + xb + pair1.y + "} ÷ " + xb + pair2.y + "}"
     //                                    + "\t(" + samples.getSet(pair1).size()
     //                                    + " vs " + samples.getSet(pair2).size()
     //                                    + ")"
-    //                                    + "\t\\x{" + Utility.hex(sb, 1) 
+    //                                    + "\t\\x{" + Utility.hex(sb, 1)
     //                                    + "}\t«" + sb + "»");
     //                    countErrors++;
     //                }
@@ -100,25 +101,36 @@ public class CheckGCB {
     //        System.out.println("Errors: " + countErrors);
     //    }
 
-    private static void check2(String title1, 
-            Segmenter seg1, UnicodeMap props1, 
-            String title2, Segmenter seg2, 
-            UnicodeMap props2, int sampleLength, boolean skipSpaceBefore) {
+    private static void check2(
+            String title1,
+            Segmenter seg1,
+            UnicodeMap props1,
+            String title2,
+            Segmenter seg2,
+            UnicodeMap props2,
+            int sampleLength,
+            boolean skipSpaceBefore) {
         System.out.println("\n\t\t" + title1 + "\t≠\t" + title2);
 
         Samples samples = new Samples(props1, props2, TO_SKIP);
         Set<String> exclude = new HashSet<>();
-        Set<String> strings = buildStrings(samples, sampleLength, new StringBuilder(), new LinkedHashSet<String>(), exclude);
+        Set<String> strings =
+                buildStrings(
+                        samples,
+                        sampleLength,
+                        new StringBuilder(),
+                        new LinkedHashSet<String>(),
+                        exclude);
         Set<EPair> pairsFound = new TreeSet<>();
         System.out.println("Samples count:\t" + strings.size() + "\tmax-length:\t" + sampleLength);
         for (String s : strings) {
             int cp;
             for (int i = 0; i < s.length(); i += UCharacter.charCount(cp)) {
-                cp = s.codePointAt(i); 
+                cp = s.codePointAt(i);
                 if (i == 0) {
                     continue;
                 }
-                if (skipSpaceBefore && s.charAt(i-1) == 0x20) {
+                if (skipSpaceBefore && s.charAt(i - 1) == 0x20) {
                     continue;
                 }
                 boolean b1 = seg1.breaksAt(s, i);
@@ -131,15 +143,16 @@ public class CheckGCB {
         }
         if (!pairsFound.isEmpty()) {
             System.out.println("\n* Pairs found in problem strings");
-            System.out.println("Pair {"
-                    + title1.toLowerCase(Locale.ROOT)
-                    + ", " + title2.toLowerCase(Locale.ROOT) 
-                    + "}\tCP Count\tSample: Hex\tString\tName");
+            System.out.println(
+                    "Pair {"
+                            + title1.toLowerCase(Locale.ROOT)
+                            + ", "
+                            + title2.toLowerCase(Locale.ROOT)
+                            + "}\tCP Count\tSample: Hex\tString\tName");
             for (EPair pair : pairsFound) {
                 UnicodeSet us = samples.getSet(pair);
                 String sample = us.iterator().next();
-                System.out.println(pair + "\t" + us.size() 
-                + "\t" + hexStringName(sample));
+                System.out.println(pair + "\t" + us.size() + "\t" + hexStringName(sample));
             }
         } else {
             System.out.println("NO PROBLEMS FOUND!");
@@ -147,12 +160,19 @@ public class CheckGCB {
     }
 
     private static String hexStringName(String sample) {
-        return "\\x{" + Utility.hex(sample, 1) + "}" 
-                + "\t" + "«" + sample + "»"
-                + "\t" + IUP.getName(sample, " + ");
+        return "\\x{"
+                + Utility.hex(sample, 1)
+                + "}"
+                + "\t"
+                + "«"
+                + sample
+                + "»"
+                + "\t"
+                + IUP.getName(sample, " + ");
     }
 
-    private static Set<String> buildStrings(Samples samples, int depth, StringBuilder sb, Set<String> output, Set<String> exclude) {
+    private static Set<String> buildStrings(
+            Samples samples, int depth, StringBuilder sb, Set<String> output, Set<String> exclude) {
         int oldLength = sb.length();
         for (int cp1 : samples) {
             sb.appendCodePoint(cp1);
@@ -163,7 +183,7 @@ public class CheckGCB {
             output.add(candidate);
 
             if (depth > 1) {
-                buildStrings(samples, depth-1, sb, output, exclude);
+                buildStrings(samples, depth - 1, sb, output, exclude);
             }
             sb.setLength(oldLength); // backup
         }
@@ -180,7 +200,7 @@ public class CheckGCB {
     }
 
     static class Samples implements Iterable<Integer> {
-        final Map<EPair<Enum, Enum>, UnicodeSet>  pairToUnicodeSet;
+        final Map<EPair<Enum, Enum>, UnicodeSet> pairToUnicodeSet;
         final Map<EPair<Enum, Enum>, Integer> pairToCodePoint;
         final UnicodeMap<EPair<Enum, Enum>> codepointToPair = new UnicodeMap<>();
 
@@ -198,7 +218,8 @@ public class CheckGCB {
             pairToCodePoint = ImmutableBiMap.copyOf(_pairToCodePoint);
         }
 
-        public StringBuilder show(String s, int offset, String sep1, String sep2, Set<EPair> pairsFound) {
+        public StringBuilder show(
+                String s, int offset, String sep1, String sep2, Set<EPair> pairsFound) {
             StringBuilder sb = new StringBuilder();
             List<Integer> sizes = new ArrayList();
             int cp;
@@ -207,7 +228,7 @@ public class CheckGCB {
                 if (i == offset) {
                     sb.append(sep1);
                 } else if (i != 0) {
-                    sb.append(" • "); 
+                    sb.append(" • ");
                 }
                 EPair<Enum, Enum> pair = getPair(cp);
                 sizes.add(pairToUnicodeSet.get(pair).size());
@@ -220,13 +241,12 @@ public class CheckGCB {
                 if (i == offset) {
                     sb.append(sep2);
                 } else if (i != 0) {
-                    sb.append(" • "); 
+                    sb.append(" • ");
                 }
                 sb.append(getPair(cp).y);
             }
-            sb.append("\t" + "\\x{" + Utility.hex(s, 1) + "}"
-                    + "\t" + sizes
-                    + "\t" + "«" + s + "»");
+            sb.append(
+                    "\t" + "\\x{" + Utility.hex(s, 1) + "}" + "\t" + sizes + "\t" + "«" + s + "»");
             return sb;
         }
 
@@ -245,7 +265,7 @@ public class CheckGCB {
             @Override
             public Integer next() {
                 return iterator.next();
-            } 
+            }
         }
 
         @Override
@@ -276,19 +296,21 @@ public class CheckGCB {
                 if (joint.isEmpty()) {
                     continue;
                 }
-                result.put(new EPair(v1,v2), joint.freeze());
+                result.put(new EPair(v1, v2), joint.freeze());
             }
         }
         return ImmutableMap.copyOf(result);
     }
 
-    static class EPair<T extends Enum, U extends Enum> implements Comparable<EPair<T,U>> {
+    static class EPair<T extends Enum, U extends Enum> implements Comparable<EPair<T, U>> {
         final T x;
         final U y;
+
         public EPair(T x, U y) {
             this.x = x;
             this.y = y;
         }
+
         @Override
         public int compareTo(EPair o) {
             int diff = x.ordinal() - o.x.ordinal();
@@ -297,19 +319,21 @@ public class CheckGCB {
             }
             return y.ordinal() - o.y.ordinal();
         }
+
         @Override
         public boolean equals(Object obj) {
-            EPair<T,U> that = (EPair<T,U>)obj;
+            EPair<T, U> that = (EPair<T, U>) obj;
             return x == that.x && y == that.y;
         }
+
         @Override
         public int hashCode() {
-            return x.hashCode()*7919 + y.hashCode();
+            return x.hashCode() * 7919 + y.hashCode();
         }
+
         @Override
         public String toString() {
             return "{" + x + ", " + y + "}";
         }
     }
-
 }

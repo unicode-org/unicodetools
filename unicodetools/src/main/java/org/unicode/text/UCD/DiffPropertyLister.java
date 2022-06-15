@@ -1,25 +1,24 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/DiffPropertyLister.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/DiffPropertyLister.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
-import java.io.PrintWriter;
 
 import com.ibm.icu.text.UnicodeSet;
+import java.io.PrintWriter;
 
 class DiffPropertyLister extends PropertyLister {
     private UCD oldUCD;
     private final UnicodeSet set = new UnicodeSet();
     private static final int NOPROPERTY = -1;
 
-    public DiffPropertyLister(String oldUCDName, String newUCDName, PrintWriter output, int property) {
+    public DiffPropertyLister(
+            String oldUCDName, String newUCDName, PrintWriter output, int property) {
         this.output = output;
         ucdData = UCD.make(newUCDName);
         if (property != NOPROPERTY) {
@@ -74,14 +73,12 @@ class DiffPropertyLister extends PropertyLister {
         return normal;
     }
 
-
     @Override
     byte getModCat(int cp) {
         final byte result = ucdData.getModCat(cp, breakByCategory ? CASED_LETTER_MASK : -1);
-        //System.out.println(breakByCategory + ", " + ucdData.getModCatID_fromIndex(result));
+        // System.out.println(breakByCategory + ", " + ucdData.getModCatID_fromIndex(result));
         return result;
     }
-
 
     @Override
     public byte status(int cp) {
@@ -121,16 +118,18 @@ class DiffPropertyLister extends PropertyLister {
     public String headerString() {
         String result;
         if (oldUCD != null) {
-            result = "# Differences between "
-                    + major_minor_only(ucdData.getVersion())
-                    + " and "
-                    + major_minor_only(oldUCD.getVersion());
+            result =
+                    "# Differences between "
+                            + major_minor_only(ucdData.getVersion())
+                            + " and "
+                            + major_minor_only(oldUCD.getVersion());
         } else {
-            result = "# Designated as of "
-                    + major_minor_only(ucdData.getVersion())
-                    + " [excluding removed Hangul Syllables]";
+            result =
+                    "# Designated as of "
+                            + major_minor_only(ucdData.getVersion())
+                            + " [excluding removed Hangul Syllables]";
         }
-        //System.out.println("hs: " + result);
+        // System.out.println("hs: " + result);
         return result;
     }
 
@@ -167,6 +166,4 @@ class DiffPropertyLister extends PropertyLister {
 
         return s.substring(0, s.lastIndexOf('.'));
     }
-
 }
-

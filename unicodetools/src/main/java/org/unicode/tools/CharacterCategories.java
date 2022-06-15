@@ -1,34 +1,34 @@
 package org.unicode.tools;
 
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSet.SpanCondition;
+import com.ibm.icu.util.ULocale;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.PropertyValueSets;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSet.SpanCondition;
-import com.ibm.icu.util.ULocale;
-
 public class CharacterCategories {
     static final Comparator<String> COLLATOR;
+
     static {
         Collator COLLATOR1 = Collator.getInstance(ULocale.forLanguageTag("und-u-co-emoji"));
         COLLATOR1.setStrength(Collator.IDENTICAL);
         Comparator<String> stringComparator = new UTF16.StringComparator(true, false, 0);
-        COLLATOR = new MultiComparator<String>(
-                (Comparator) COLLATOR1, 
-                (Comparator<String>) stringComparator);
+        COLLATOR =
+                new MultiComparator<String>(
+                        (Comparator) COLLATOR1, (Comparator<String>) stringComparator);
     }
+
     private static final int LINE_WIDTH = 50;
     private static final Map<String, UnicodeSet> data = new TreeMap<>(COLLATOR);
     static final UnicodeSet nonspacing = new UnicodeSet("[[:Mn:][:Me:]]").freeze();
@@ -38,7 +38,7 @@ public class CharacterCategories {
         UnicodeSet currentSet = null;
         UnicodeSet ASCII_ID = new UnicodeSet("[_:/\\&A-Za-z0-9]").freeze();
         UnicodeSet UNASSIGNED = new UnicodeSet("[:cn:]").freeze();
-        
+
         for (String line : FileUtilities.in(CharacterCategories.class, "characterCategories.txt")) {
             if (line.isEmpty()) {
                 continue;
@@ -54,7 +54,7 @@ public class CharacterCategories {
             }
             line = line.trim();
             if (line.startsWith("#")) {
-                //comment
+                // comment
             } else if (UnicodeSet.resemblesPattern(line, 0)) {
                 currentSet.addAll(new UnicodeSet(line));
             } else if (line.startsWith("-") && UnicodeSet.resemblesPattern(line, 1)) {
@@ -64,23 +64,36 @@ public class CharacterCategories {
             }
         }
         data.put("Format_&_Whitespace:Whitespace", new UnicodeSet("[:Whitespace:]"));
-        data.put("Format_&_Whitespace:Format", new UnicodeSet("[[:Cf:][:di:][:Variation_Selector:][:block=Ideographic_Description_Characters:]-[:Whitespace:]]"));
+        data.put(
+                "Format_&_Whitespace:Format",
+                new UnicodeSet(
+                        "[[:Cf:][:di:][:Variation_Selector:][:block=Ideographic_Description_Characters:]-[:Whitespace:]]"));
         data.put("Symbols:Emoji", new UnicodeSet("[:emoji:]"));
-        data.put("Symbols:Currency_Symbols", new UnicodeSet(FixedProps.FixedGeneralCategory.getSet(General_Category_Values.Currency_Symbol))); // "[:sc:]"
+        data.put(
+                "Symbols:Currency_Symbols",
+                new UnicodeSet(
+                        FixedProps.FixedGeneralCategory.getSet(
+                                General_Category_Values.Currency_Symbol))); // "[:sc:]"
         data.put("Symbols:Non-Spacing", new UnicodeSet(nonspacing));
 
-        UnicodeSet common = FixedProps.FixedScriptExceptions.getSet(Collections.singleton(Script_Values.Common));
-        UnicodeSet inherited = FixedProps.FixedScriptExceptions.getSet(Collections.singleton(Script_Values.Inherited));
+        UnicodeSet common =
+                FixedProps.FixedScriptExceptions.getSet(
+                        Collections.singleton(Script_Values.Common));
+        UnicodeSet inherited =
+                FixedProps.FixedScriptExceptions.getSet(
+                        Collections.singleton(Script_Values.Inherited));
         UnicodeSet control = FixedProps.FixedGeneralCategory.getSet(PropertyValueSets.CONTROL);
-        UnicodeSet punctuation = FixedProps.FixedGeneralCategory.getSet(PropertyValueSets.PUNCTUATION);
-        UnicodeSet missing = new UnicodeSet(common).addAll(inherited).removeAll(control).removeAll(punctuation);
-        
-//                "["
-//                + "[:scx=common:]"
-//                + "[:scx=inherited:]"
-//                + "-[:C:]"
-//                + "-[:p:]"
-//                + "]");
+        UnicodeSet punctuation =
+                FixedProps.FixedGeneralCategory.getSet(PropertyValueSets.PUNCTUATION);
+        UnicodeSet missing =
+                new UnicodeSet(common).addAll(inherited).removeAll(control).removeAll(punctuation);
+
+        //                "["
+        //                + "[:scx=common:]"
+        //                + "[:scx=inherited:]"
+        //                + "-[:C:]"
+        //                + "-[:p:]"
+        //                + "]");
         UnicodeSet punc = new UnicodeSet(punctuation);
         for (Entry<String, UnicodeSet> entry : data.entrySet()) {
             UnicodeSet us = entry.getValue();
@@ -92,9 +105,10 @@ public class CharacterCategories {
         data.put("ZSymbol_missing", missing.freeze());
         data.put("Punctuation:Other", punc.freeze());
     }
-    
+
     public static void main(String[] args) {
-        UnicodeSet invisible = new UnicodeSet("[[:c:][:z:][:whitespace:][:di:][:Variation_Selector:]]").freeze();
+        UnicodeSet invisible =
+                new UnicodeSet("[[:c:][:z:][:whitespace:][:di:][:Variation_Selector:]]").freeze();
         StringBuilder b = new StringBuilder();
         TreeSet<String> sorted = new TreeSet(COLLATOR);
         for (Entry<String, UnicodeSet> entry : data.entrySet()) {
@@ -111,8 +125,8 @@ public class CharacterCategories {
                     count = 0;
                 }
                 if (invisible.contains(cp)) {
-                    b.append(" \\x{").append(Utility.hex(cp,1)).append("}");
-                    count+=8;
+                    b.append(" \\x{").append(Utility.hex(cp, 1)).append("}");
+                    count += 8;
                 } else if (nonspacing.contains(cp)) {
                     b.append(" ").append(cp);
                     count++;

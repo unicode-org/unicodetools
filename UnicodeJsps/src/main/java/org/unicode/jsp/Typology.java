@@ -1,5 +1,10 @@
 package org.unicode.jsp;
 
+import com.ibm.icu.impl.Relation;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UProperty;
+import com.ibm.icu.lang.UProperty.NameChoice;
+import com.ibm.icu.text.UnicodeSet;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -9,15 +14,10 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 
-import com.ibm.icu.impl.Relation;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.lang.UProperty.NameChoice;
-import com.ibm.icu.text.UnicodeSet;
-
 public class Typology {
-    //static UnicodeMap<String> reasons = new UnicodeMap<String>();
-    public static Map<String,UnicodeSet> label_to_uset = new TreeMap<String,UnicodeSet>();
+    // static UnicodeMap<String> reasons = new UnicodeMap<String>();
+    public static Map<String, UnicodeSet> label_to_uset = new TreeMap<String, UnicodeSet>();
+
     static {
         label_to_uset.put("S", new UnicodeSet("[:S:]").freeze());
         label_to_uset.put("L", new UnicodeSet("[:L:]").freeze());
@@ -27,17 +27,20 @@ public class Typology {
         label_to_uset.put("Z", new UnicodeSet("[:Z:]").freeze());
         label_to_uset.put("P", new UnicodeSet("[:P:]").freeze());
     }
-    public static Map<String,UnicodeSet> full_path_to_uset = new TreeMap<String,UnicodeSet>();
-    public static Map<String,UnicodeSet> path_to_uset = new TreeMap<String,UnicodeSet>();
-    //static Map<List<String>,UnicodeSet> path_to_uset = new TreeMap<List<String>,UnicodeSet>();
-    public static Relation<String, String> labelToPaths = new Relation(new TreeMap(), TreeSet.class);
-    public static Map<String, Map<String,UnicodeSet>> label_parent_uset = new TreeMap();
-    //public static Relation<String, String> pathToList = new Relation(new TreeMap(), TreeSet.class);
+
+    public static Map<String, UnicodeSet> full_path_to_uset = new TreeMap<String, UnicodeSet>();
+    public static Map<String, UnicodeSet> path_to_uset = new TreeMap<String, UnicodeSet>();
+    // static Map<List<String>,UnicodeSet> path_to_uset = new TreeMap<List<String>,UnicodeSet>();
+    public static Relation<String, String> labelToPaths =
+            new Relation(new TreeMap(), TreeSet.class);
+    public static Map<String, Map<String, UnicodeSet>> label_parent_uset = new TreeMap();
+    // public static Relation<String, String> pathToList = new Relation(new TreeMap(),
+    // TreeSet.class);
 
     static class MyReader extends FileUtilities.SemiFileReader {
-        //0000  Cc  [Control] [X] [X] [X] <control>
-        public final static Pattern SPLIT = Pattern.compile("\\s*\t\\s*");
-        public final static Pattern NON_ALPHANUM = Pattern.compile("[^0-9A-Za-z]+");
+        // 0000  Cc  [Control] [X] [X] [X] <control>
+        public static final Pattern SPLIT = Pattern.compile("\\s*\t\\s*");
+        public static final Pattern NON_ALPHANUM = Pattern.compile("[^0-9A-Za-z]+");
 
         protected String[] splitLine(String line) {
             return SPLIT.split(line);
@@ -56,13 +59,13 @@ public class Typology {
                 if (!item.startsWith("[") || !item.endsWith("]")) {
                     throw new IllegalArgumentException(i + "\t" + item);
                 }
-                item = item.substring(1, item.length()-1);
+                item = item.substring(1, item.length() - 1);
                 if (item.length() == 0) continue;
                 item = NON_ALPHANUM.matcher(item).replaceAll("_");
                 temp_path.append('/').append(item);
             }
             String fullPath = temp_path.toString();
-            
+
             // store
             {
                 fullPath = fullPath.intern();
@@ -82,7 +85,7 @@ public class Typology {
                 }
                 uset.add(startRaw, endRaw);
 
-                //labelToPath.put(item, path);
+                // labelToPath.put(item, path);
 
                 path = (path + "/" + item).intern();
 
@@ -95,13 +98,13 @@ public class Typology {
             return true;
         }
 
-        Map<List<String>,List<String>> listCache = new HashMap<List<String>,List<String>>();
-        Map<Set<String>,Set<String>> setCache = new HashMap<Set<String>,Set<String>>();
+        Map<List<String>, List<String>> listCache = new HashMap<List<String>, List<String>>();
+        Map<Set<String>, Set<String>> setCache = new HashMap<Set<String>, Set<String>>();
 
-        private <T> T intern(Map<T,T> cache, T list) {
+        private <T> T intern(Map<T, T> cache, T list) {
             T old = cache.get(list);
             if (old != null) return old;
-            cache.put(list,list);
+            cache.put(list, list);
             return list;
         }
     }
@@ -110,13 +113,14 @@ public class Typology {
         new MyReader().process(Typology.class, "Categories.txt"); // "09421-u52m09xxxx.txt"
 
         // fix the paths
-        Map<String, UnicodeSet> temp= new TreeMap<String, UnicodeSet>();
+        Map<String, UnicodeSet> temp = new TreeMap<String, UnicodeSet>();
         for (int i = 0; i < UCharacter.CHAR_CATEGORY_COUNT; ++i) {
-            UnicodeSet same = new UnicodeSet()
-            .applyIntPropertyValue(UProperty.GENERAL_CATEGORY, i);
-            String gcName = UCharacter.getPropertyValueName(UProperty.GENERAL_CATEGORY, i, NameChoice.SHORT);
-            //System.out.println("\n" + gcName);
-            String prefix = gcName.substring(0,1);
+            UnicodeSet same = new UnicodeSet().applyIntPropertyValue(UProperty.GENERAL_CATEGORY, i);
+            String gcName =
+                    UCharacter.getPropertyValueName(
+                            UProperty.GENERAL_CATEGORY, i, NameChoice.SHORT);
+            // System.out.println("\n" + gcName);
+            String prefix = gcName.substring(0, 1);
 
             for (String path : path_to_uset.keySet()) {
                 UnicodeSet uset = path_to_uset.get(path);

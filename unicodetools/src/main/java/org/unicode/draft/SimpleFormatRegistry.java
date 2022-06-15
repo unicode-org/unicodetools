@@ -1,7 +1,4 @@
 package org.unicode.draft;
-import java.text.ChoiceFormat;
-import java.text.Format;
-import java.util.Date;
 
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.DecimalFormat;
@@ -11,7 +8,9 @@ import com.ibm.icu.text.PluralFormat;
 import com.ibm.icu.text.RuleBasedNumberFormat;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.util.ULocale;
-
+import java.text.ChoiceFormat;
+import java.text.Format;
+import java.util.Date;
 
 public class SimpleFormatRegistry implements FormatRegistry {
 
@@ -26,7 +25,7 @@ public class SimpleFormatRegistry implements FormatRegistry {
         } else if (classType.isAssignableFrom(Date.class)) {
             // format a Date if can
             return DateFormat.getDateTimeInstance(
-                    DateFormat.SHORT, DateFormat.SHORT, ulocale);//fix
+                    DateFormat.SHORT, DateFormat.SHORT, ulocale); // fix
         } else {
             return null;
         }
@@ -34,18 +33,10 @@ public class SimpleFormatRegistry implements FormatRegistry {
 
     // UGLY CODE, move somewhere else
     /**
-    if (subFormatter instanceof ChoiceFormat
-                        || subFormatter instanceof PluralFormat) {
-                        arg = formats[i].format(obj);
-                        // TODO: This should be made more robust.
-                        //       Does this work with '{' in quotes?
-                        if (arg.indexOf('{') >= 0) {
-                            subFormatter = new MessageFormat(arg, ulocale);
-                            obj = arguments;
-                            arg = null;
-                        }
-                    }
-
+     * if (subFormatter instanceof ChoiceFormat || subFormatter instanceof PluralFormat) { arg =
+     * formats[i].format(obj); // TODO: This should be made more robust. // Does this work with '{'
+     * in quotes? if (arg.indexOf('{') >= 0) { subFormatter = new MessageFormat(arg, ulocale); obj =
+     * arguments; arg = null; } }
      */
     // for now, just hard-code
     /* (non-Javadoc)
@@ -66,40 +57,40 @@ public class SimpleFormatRegistry implements FormatRegistry {
             } else if (formats.equals(NumberFormat.getIntegerInstance(ulocale))) {
                 return ("number,integer");
             } else {
-                return ("number," +
-                        ((DecimalFormat)formats).toPattern());
+                return ("number," + ((DecimalFormat) formats).toPattern());
             }
         } else if (formats instanceof SimpleDateFormat) {
-            if (formats.equals(DateFormat.getDateInstance(DateFormat.DEFAULT,ulocale))) {
+            if (formats.equals(DateFormat.getDateInstance(DateFormat.DEFAULT, ulocale))) {
                 return ("date");
-            } else if (formats.equals(DateFormat.getDateInstance(DateFormat.SHORT,ulocale))) {
+            } else if (formats.equals(DateFormat.getDateInstance(DateFormat.SHORT, ulocale))) {
                 return ("date,short");
-                //This code will never be executed [alan]
-                //            } else if (inputFormat.equals(DateFormat.getDateInstance(DateFormat.DEFAULT,ulocale))) {
+                // This code will never be executed [alan]
+                //            } else if
+                // (inputFormat.equals(DateFormat.getDateInstance(DateFormat.DEFAULT,ulocale))) {
                 //                return ("date,medium");
-            } else if (formats.equals(DateFormat.getDateInstance(DateFormat.LONG,ulocale))) {
+            } else if (formats.equals(DateFormat.getDateInstance(DateFormat.LONG, ulocale))) {
                 return ("date,long");
-            } else if (formats.equals(DateFormat.getDateInstance(DateFormat.FULL,ulocale))) {
+            } else if (formats.equals(DateFormat.getDateInstance(DateFormat.FULL, ulocale))) {
                 return ("date,full");
-            } else if (formats.equals(DateFormat.getTimeInstance(DateFormat.DEFAULT,ulocale))) {
+            } else if (formats.equals(DateFormat.getTimeInstance(DateFormat.DEFAULT, ulocale))) {
                 return ("time");
-            } else if (formats.equals(DateFormat.getTimeInstance(DateFormat.SHORT,ulocale))) {
+            } else if (formats.equals(DateFormat.getTimeInstance(DateFormat.SHORT, ulocale))) {
                 return ("time,short");
-                //This code will never be executed [alan]
-                //            } else if (inputFormat.equals(DateFormat.getTimeInstance(DateFormat.DEFAULT,ulocale))) {
+                // This code will never be executed [alan]
+                //            } else if
+                // (inputFormat.equals(DateFormat.getTimeInstance(DateFormat.DEFAULT,ulocale))) {
                 //                return ("time,medium");
-            } else if (formats.equals(DateFormat.getTimeInstance(DateFormat.LONG,ulocale))) {
+            } else if (formats.equals(DateFormat.getTimeInstance(DateFormat.LONG, ulocale))) {
                 return ("time,long");
-            } else if (formats.equals(DateFormat.getTimeInstance(DateFormat.FULL,ulocale))) {
+            } else if (formats.equals(DateFormat.getTimeInstance(DateFormat.FULL, ulocale))) {
                 return ("time,full");
             } else {
-                return ("date," + ((SimpleDateFormat)formats).toPattern());
+                return ("date," + ((SimpleDateFormat) formats).toPattern());
             }
         } else if (formats instanceof ChoiceFormat) {
-            return ("choice,"
-                    + ((ChoiceFormat) formats).toPattern());
+            return ("choice," + ((ChoiceFormat) formats).toPattern());
         } else if (formats instanceof PluralFormat) {
-            String pat = ((PluralFormat)formats).toPattern();
+            String pat = ((PluralFormat) formats).toPattern();
             // TODO: PluralFormat doesn't do the single quote thing, just reapply
             if (pat.indexOf('\'') != 0) {
                 final StringBuffer buf = new StringBuffer();
@@ -118,37 +109,34 @@ public class SimpleFormatRegistry implements FormatRegistry {
         }
     }
 
-    private static final String[] typeList = {"", "number", "date", "time", "choice", "spellout", "ordinal", "duration", "plural"};
+    private static final String[] typeList = {
+        "", "number", "date", "time", "choice", "spellout", "ordinal", "duration", "plural"
+    };
 
-    private static final int
-    TYPE_EMPTY = 0,
-    TYPE_NUMBER = 1,
-    TYPE_DATE = 2,
-    TYPE_TIME = 3,
-    TYPE_CHOICE = 4,
-    TYPE_SPELLOUT = 5,
-    TYPE_ORDINAL = 6,
-    TYPE_DURATION = 7,
-    TYPE_PLURAL = 8;
+    private static final int TYPE_EMPTY = 0,
+            TYPE_NUMBER = 1,
+            TYPE_DATE = 2,
+            TYPE_TIME = 3,
+            TYPE_CHOICE = 4,
+            TYPE_SPELLOUT = 5,
+            TYPE_ORDINAL = 6,
+            TYPE_DURATION = 7,
+            TYPE_PLURAL = 8;
 
-    private static final String[] modifierList =
-        {"", "currency", "percent", "integer"};
+    private static final String[] modifierList = {"", "currency", "percent", "integer"};
 
-    private static final int
-    MODIFIER_EMPTY = 0,
-    MODIFIER_CURRENCY = 1,
-    MODIFIER_PERCENT = 2,
-    MODIFIER_INTEGER = 3;
+    private static final int MODIFIER_EMPTY = 0,
+            MODIFIER_CURRENCY = 1,
+            MODIFIER_PERCENT = 2,
+            MODIFIER_INTEGER = 3;
 
-    private static final String[] dateModifierList =
-        {"", "short", "medium", "long", "full"};
+    private static final String[] dateModifierList = {"", "short", "medium", "long", "full"};
 
-    private static final int
-    DATE_MODIFIER_EMPTY = 0,
-    DATE_MODIFIER_SHORT = 1,
-    DATE_MODIFIER_MEDIUM = 2,
-    DATE_MODIFIER_LONG = 3,
-    DATE_MODIFIER_FULL = 4;
+    private static final int DATE_MODIFIER_EMPTY = 0,
+            DATE_MODIFIER_SHORT = 1,
+            DATE_MODIFIER_MEDIUM = 2,
+            DATE_MODIFIER_LONG = 3,
+            DATE_MODIFIER_FULL = 4;
 
     private static final int findKeyword(String s, String[] list) {
         s = s.trim().toLowerCase();
@@ -160,8 +148,6 @@ public class SimpleFormatRegistry implements FormatRegistry {
         return -1;
     }
 
-
-
     /* (non-Javadoc)
      * @see FormatRegistry2#getFormat(java.lang.String, java.lang.String, com.ibm.icu.util.ULocale, boolean[])
      */
@@ -169,153 +155,152 @@ public class SimpleFormatRegistry implements FormatRegistry {
     public Format getFormat(String mainType, String subType, ULocale ulocale) {
         Format newFormat = null;
         switch (findKeyword(mainType, typeList)) {
-        case TYPE_EMPTY:
-            break;
-        case TYPE_NUMBER:
-            switch (findKeyword(subType, modifierList)) {
-            case MODIFIER_EMPTY:
-                newFormat = NumberFormat.getInstance(ulocale);
+            case TYPE_EMPTY:
                 break;
-            case MODIFIER_CURRENCY:
-                newFormat = NumberFormat.getCurrencyInstance(ulocale);
+            case TYPE_NUMBER:
+                switch (findKeyword(subType, modifierList)) {
+                    case MODIFIER_EMPTY:
+                        newFormat = NumberFormat.getInstance(ulocale);
+                        break;
+                    case MODIFIER_CURRENCY:
+                        newFormat = NumberFormat.getCurrencyInstance(ulocale);
+                        break;
+                    case MODIFIER_PERCENT:
+                        newFormat = NumberFormat.getPercentInstance(ulocale);
+                        break;
+                    case MODIFIER_INTEGER:
+                        newFormat = NumberFormat.getIntegerInstance(ulocale);
+                        break;
+                    default: // pattern
+                        newFormat = new DecimalFormat(subType, new DecimalFormatSymbols(ulocale));
+                        break;
+                }
                 break;
-            case MODIFIER_PERCENT:
-                newFormat = NumberFormat.getPercentInstance(ulocale);
+            case TYPE_DATE:
+                switch (findKeyword(subType, dateModifierList)) {
+                    case DATE_MODIFIER_EMPTY:
+                        newFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, ulocale);
+                        break;
+                    case DATE_MODIFIER_SHORT:
+                        newFormat = DateFormat.getDateInstance(DateFormat.SHORT, ulocale);
+                        break;
+                    case DATE_MODIFIER_MEDIUM:
+                        newFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, ulocale);
+                        break;
+                    case DATE_MODIFIER_LONG:
+                        newFormat = DateFormat.getDateInstance(DateFormat.LONG, ulocale);
+                        break;
+                    case DATE_MODIFIER_FULL:
+                        newFormat = DateFormat.getDateInstance(DateFormat.FULL, ulocale);
+                        break;
+                    default:
+                        newFormat = new SimpleDateFormat(subType, ulocale);
+                        break;
+                }
                 break;
-            case MODIFIER_INTEGER:
-                newFormat = NumberFormat.getIntegerInstance(ulocale);
+            case TYPE_TIME:
+                switch (findKeyword(subType, dateModifierList)) {
+                    case DATE_MODIFIER_EMPTY:
+                        newFormat = DateFormat.getTimeInstance(DateFormat.DEFAULT, ulocale);
+                        break;
+                    case DATE_MODIFIER_SHORT:
+                        newFormat = DateFormat.getTimeInstance(DateFormat.SHORT, ulocale);
+                        break;
+                    case DATE_MODIFIER_MEDIUM:
+                        newFormat = DateFormat.getTimeInstance(DateFormat.DEFAULT, ulocale);
+                        break;
+                    case DATE_MODIFIER_LONG:
+                        newFormat = DateFormat.getTimeInstance(DateFormat.LONG, ulocale);
+                        break;
+                    case DATE_MODIFIER_FULL:
+                        newFormat = DateFormat.getTimeInstance(DateFormat.FULL, ulocale);
+                        break;
+                    default:
+                        newFormat = new SimpleDateFormat(subType, ulocale);
+                        break;
+                }
                 break;
-            default: // pattern
-                newFormat = new DecimalFormat(subType, new DecimalFormatSymbols(ulocale));
-                break;
-            }
-            break;
-        case TYPE_DATE:
-            switch (findKeyword(subType, dateModifierList)) {
-            case DATE_MODIFIER_EMPTY:
-                newFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, ulocale);
-                break;
-            case DATE_MODIFIER_SHORT:
-                newFormat = DateFormat.getDateInstance(DateFormat.SHORT, ulocale);
-                break;
-            case DATE_MODIFIER_MEDIUM:
-                newFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, ulocale);
-                break;
-            case DATE_MODIFIER_LONG:
-                newFormat = DateFormat.getDateInstance(DateFormat.LONG, ulocale);
-                break;
-            case DATE_MODIFIER_FULL:
-                newFormat = DateFormat.getDateInstance(DateFormat.FULL, ulocale);
-                break;
-            default:
-                newFormat = new SimpleDateFormat(subType, ulocale);
-                break;
-            }
-            break;
-        case TYPE_TIME:
-            switch (findKeyword(subType, dateModifierList)) {
-            case DATE_MODIFIER_EMPTY:
-                newFormat = DateFormat.getTimeInstance(DateFormat.DEFAULT, ulocale);
-                break;
-            case DATE_MODIFIER_SHORT:
-                newFormat = DateFormat.getTimeInstance(DateFormat.SHORT, ulocale);
-                break;
-            case DATE_MODIFIER_MEDIUM:
-                newFormat = DateFormat.getTimeInstance(DateFormat.DEFAULT, ulocale);
-                break;
-            case DATE_MODIFIER_LONG:
-                newFormat = DateFormat.getTimeInstance(DateFormat.LONG, ulocale);
-                break;
-            case DATE_MODIFIER_FULL:
-                newFormat = DateFormat.getTimeInstance(DateFormat.FULL, ulocale);
-                break;
-            default:
-                newFormat = new SimpleDateFormat(subType, ulocale);
-                break;
-            }
-            break;
-        case TYPE_CHOICE:
-            try {
-                newFormat = new ChoiceFormat(subType);
-            } catch (final Exception e) {
-                throw new IllegalArgumentException("Choice Pattern incorrect", e);
-            }
-            break;
-        case TYPE_SPELLOUT:
-        {
-            final RuleBasedNumberFormat rbnf = new RuleBasedNumberFormat(ulocale, RuleBasedNumberFormat.SPELLOUT);
-            final String ruleset = subType.trim();
-            if (ruleset.length() != 0) {
+            case TYPE_CHOICE:
                 try {
-                    rbnf.setDefaultRuleSet(ruleset);
+                    newFormat = new ChoiceFormat(subType);
+                } catch (final Exception e) {
+                    throw new IllegalArgumentException("Choice Pattern incorrect", e);
                 }
-                catch (final Exception e) {
-                    // warn invalid ruleset
-                }
-            }
-            newFormat = rbnf;
-        }
-        break;
-        case TYPE_ORDINAL:
-        {
-            final RuleBasedNumberFormat rbnf = new RuleBasedNumberFormat(ulocale, RuleBasedNumberFormat.ORDINAL);
-            final String ruleset = subType.trim();
-            if (ruleset.length() != 0) {
-                try {
-                    rbnf.setDefaultRuleSet(ruleset);
-                }
-                catch (final Exception e) {
-                    // warn invalid ruleset
-                }
-            }
-            newFormat = rbnf;
-        }
-        break;
-        case TYPE_DURATION:
-        {
-            final RuleBasedNumberFormat rbnf = new RuleBasedNumberFormat(ulocale, RuleBasedNumberFormat.DURATION);
-            final String ruleset = subType.trim();
-            if (ruleset.length() != 0) {
-                try {
-                    rbnf.setDefaultRuleSet(ruleset);
-                }
-                catch (final Exception e) {
-                    // warn invalid ruleset
-                }
-            }
-            newFormat = rbnf;
-        }
-        break;
-        case TYPE_PLURAL:
-        {
-            // PluralFormat does not handle quotes.
-            // Remove quotes.
-            // TODO: Should PluralFormat handle quotes?
-            final StringBuffer unquotedPattern = new StringBuffer();
-            final String quotedPattern = subType;
-            boolean inQuote = false;
-            for (int i = 0; i < quotedPattern.length(); ++i) {
-                final char ch = quotedPattern.charAt(i);
-                if (ch == '\'') {
-                    if (i+1 < quotedPattern.length() &&
-                            quotedPattern.charAt(i+1) == '\'') {
-                        unquotedPattern.append(ch);
-                        ++i;
-                    } else {
-                        inQuote = !inQuote;
+                break;
+            case TYPE_SPELLOUT:
+                {
+                    final RuleBasedNumberFormat rbnf =
+                            new RuleBasedNumberFormat(ulocale, RuleBasedNumberFormat.SPELLOUT);
+                    final String ruleset = subType.trim();
+                    if (ruleset.length() != 0) {
+                        try {
+                            rbnf.setDefaultRuleSet(ruleset);
+                        } catch (final Exception e) {
+                            // warn invalid ruleset
+                        }
                     }
-                } else {
-                    unquotedPattern.append(ch);
+                    newFormat = rbnf;
                 }
-            }
+                break;
+            case TYPE_ORDINAL:
+                {
+                    final RuleBasedNumberFormat rbnf =
+                            new RuleBasedNumberFormat(ulocale, RuleBasedNumberFormat.ORDINAL);
+                    final String ruleset = subType.trim();
+                    if (ruleset.length() != 0) {
+                        try {
+                            rbnf.setDefaultRuleSet(ruleset);
+                        } catch (final Exception e) {
+                            // warn invalid ruleset
+                        }
+                    }
+                    newFormat = rbnf;
+                }
+                break;
+            case TYPE_DURATION:
+                {
+                    final RuleBasedNumberFormat rbnf =
+                            new RuleBasedNumberFormat(ulocale, RuleBasedNumberFormat.DURATION);
+                    final String ruleset = subType.trim();
+                    if (ruleset.length() != 0) {
+                        try {
+                            rbnf.setDefaultRuleSet(ruleset);
+                        } catch (final Exception e) {
+                            // warn invalid ruleset
+                        }
+                    }
+                    newFormat = rbnf;
+                }
+                break;
+            case TYPE_PLURAL:
+                {
+                    // PluralFormat does not handle quotes.
+                    // Remove quotes.
+                    // TODO: Should PluralFormat handle quotes?
+                    final StringBuffer unquotedPattern = new StringBuffer();
+                    final String quotedPattern = subType;
+                    boolean inQuote = false;
+                    for (int i = 0; i < quotedPattern.length(); ++i) {
+                        final char ch = quotedPattern.charAt(i);
+                        if (ch == '\'') {
+                            if (i + 1 < quotedPattern.length()
+                                    && quotedPattern.charAt(i + 1) == '\'') {
+                                unquotedPattern.append(ch);
+                                ++i;
+                            } else {
+                                inQuote = !inQuote;
+                            }
+                        } else {
+                            unquotedPattern.append(ch);
+                        }
+                    }
 
-            final PluralFormat pls = new PluralFormat(ulocale,
-                    unquotedPattern.toString());
-            newFormat = pls;
-        }
-        break;
-        default:
-            throw new IllegalArgumentException("unknown format type at ");
+                    final PluralFormat pls = new PluralFormat(ulocale, unquotedPattern.toString());
+                    newFormat = pls;
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("unknown format type at ");
         }
         return newFormat;
     }

@@ -1,28 +1,5 @@
 package org.unicode.tools;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
-import java.util.function.Consumer;
-
-import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.Counter;
-import org.unicode.cldr.util.With;
-import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.UcdProperty;
-import org.unicode.props.UcdPropertyValues.General_Category_Values;
-import org.unicode.text.utility.Utility;
-
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
@@ -46,13 +23,37 @@ import com.ibm.icu.util.CharsTrieBuilder;
 import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.StringTrieBuilder.Option;
 import com.ibm.icu.util.ULocale;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.function.Consumer;
+import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.Counter;
+import org.unicode.cldr.util.With;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues.General_Category_Values;
+import org.unicode.text.utility.Utility;
 
 public class Unilex {
     static final Splitter TAB = Splitter.on('\t');
-    static final String DATADIR = "/Users/markdavis/Google Drive/workspace/DATA/unilex/"; 
-    static final String GENDIR = "/Users/markdavis/Google Drive/workspace/Generated/unilex/"; 
-    static final UnicodeSet IPA_VOWELS = new UnicodeSet("[a æ ɐ-ɒ e ə ɛ ɘ ɜ ɞ ɤ i ɪ ɨ oø œ ɶ ɔ ɵ u ʉ ɯ ʊ ʌ y ʏ]").freeze();
-    static final UnicodeSet VOWELS = new UnicodeSet("[AEIOUYaeiouyÀ-ÆÈ-ÏÒ-Ö Ø-Ýà-æè-ïò-öø-ýÿ-ąĒ-ě Ĩ-İŌ-œŨ-ųŶ-ŸƆƏƐƗƜƟ-ơƯ-Ʊ Ǎ-ǜǞ-ǣǪ-ǭǺ-ȏȔ-ȗȦ-ȳɄɅɐ-ɒ ɔɘəɛɜɞɤɨɪɯɵɶʉʊʌʏḀḁḔ-ḝ Ḭ-ḯṌ-ṓṲ-ṻẎẏẙẠ-ỹÅⱭⱯⱰꞫꞮ]");
+    static final String DATADIR = "/Users/markdavis/Google Drive/workspace/DATA/unilex/";
+    static final String GENDIR = "/Users/markdavis/Google Drive/workspace/Generated/unilex/";
+    static final UnicodeSet IPA_VOWELS =
+            new UnicodeSet("[a æ ɐ-ɒ e ə ɛ ɘ ɜ ɞ ɤ i ɪ ɨ oø œ ɶ ɔ ɵ u ʉ ɯ ʊ ʌ y ʏ]").freeze();
+    static final UnicodeSet VOWELS =
+            new UnicodeSet(
+                    "[AEIOUYaeiouyÀ-ÆÈ-ÏÒ-Ö Ø-Ýà-æè-ïò-öø-ýÿ-ąĒ-ě Ĩ-İŌ-œŨ-ųŶ-ŸƆƏƐƗƜƟ-ơƯ-Ʊ Ǎ-ǜǞ-ǣǪ-ǭǺ-ȏȔ-ȗȦ-ȳɄɅɐ-ɒ ɔɘəɛɜɞɤɨɪɯɵɶʉʊʌʏḀḁḔ-ḝ Ḭ-ḯṌ-ṓṲ-ṻẎẏẙẠ-ỹÅⱭⱯⱰꞫꞮ]");
     private static final Long ZERO = new Long(0);
     private static final Long ONE = new Long(1);
     private static Normalizer2 NFC = Normalizer2.getNFCInstance();
@@ -64,42 +65,51 @@ public class Unilex {
     // TODO clean IPA də.ˈˈpɥi => dəˈpɥi, etc.
 
     public static class Frequency {
-        private final Map<String,Long> data;
+        private final Map<String, Long> data;
         private final Multimap<Long, String> value2keys;
 
         public Long get(String key) {
             Long result = data.get(key);
             return result == null ? ZERO : result;
         }
+
         public int size() {
             return data.size();
         }
+
         public Set<String> keySet() {
             return data.keySet();
         }
+
         public Set<Long> valueSet() {
             return value2keys.keySet();
         }
+
         public Set<String> getKeys(Long value) {
             return (Set<String>) value2keys.get(value);
         }
 
-        private Frequency(Map<String,Long> data) {
+        private Frequency(Map<String, Long> data) {
             this.data = data;
-            TreeMultimap<Long, String> inverted = Multimaps.invertFrom(Multimaps.forMap(data), TreeMultimap.<Long,String>create());
+            TreeMultimap<Long, String> inverted =
+                    Multimaps.invertFrom(
+                            Multimaps.forMap(data), TreeMultimap.<Long, String>create());
             value2keys = ImmutableSetMultimap.copyOf(inverted);
         }
-        public static Frequency create(String locale) {
-            locale = locale.replace("-fonxsamp","");
 
-            Map<String,Long> temp = new TreeMap<>();
-            processFields(DATADIR + "frequency", locale+".txt", parts -> {
-                if (parts.size() != 2) {
-                    throw new IllegalArgumentException("Wrong number of items: " + parts);
-                }
-                temp.put(cleanTerm(parts.get(0)), Long.parseLong(parts.get(1)));
-            }
-                    );
+        public static Frequency create(String locale) {
+            locale = locale.replace("-fonxsamp", "");
+
+            Map<String, Long> temp = new TreeMap<>();
+            processFields(
+                    DATADIR + "frequency",
+                    locale + ".txt",
+                    parts -> {
+                        if (parts.size() != 2) {
+                            throw new IllegalArgumentException("Wrong number of items: " + parts);
+                        }
+                        temp.put(cleanTerm(parts.get(0)), Long.parseLong(parts.get(1)));
+                    });
             return new Frequency(ImmutableMap.copyOf(temp));
         }
     }
@@ -107,66 +117,77 @@ public class Unilex {
     static final Transliterator XSampa_IPA = Transliterator.getInstance("XSampa-IPA");
 
     public static class Pronunciation {
-        private final Map<String,String> data;
-        private final Map<String,String> rawToIpa;
+        private final Map<String, String> data;
+        private final Map<String, String> rawToIpa;
         private final Multimap<String, String> value2keys;
 
         public int size() {
             return data.size();
         }
+
         public String get(Object key) {
             return data.get(key);
         }
+
         public Set<String> keySet() {
             return data.keySet();
         }
+
         public Set<String> valueSet() {
             return value2keys.keySet();
         }
+
         public Set<String> getKeys(String value) {
             return (Set<String>) value2keys.get(value);
         }
 
-        private Pronunciation(Map<String,String> data, Map<String,String> rawToIpa) {
+        private Pronunciation(Map<String, String> data, Map<String, String> rawToIpa) {
             this.data = data;
             this.rawToIpa = rawToIpa;
-            
-            TreeMultimap<String, String> inverted = Multimaps.invertFrom(Multimaps.forMap(data), TreeMultimap.<String,String>create());
+
+            TreeMultimap<String, String> inverted =
+                    Multimaps.invertFrom(
+                            Multimaps.forMap(data), TreeMultimap.<String, String>create());
             value2keys = ImmutableSetMultimap.copyOf(inverted);
         }
+
         public static Pronunciation create(String locale) {
-            Map<String,String> temp = new TreeMap<>();
-            Map<String,String> _rawToIpa = new TreeMap<>();
+            Map<String, String> temp = new TreeMap<>();
+            Map<String, String> _rawToIpa = new TreeMap<>();
             boolean isXsampa = locale.contains("fonxsamp");
-            processFields(DATADIR + "pronunciation", locale+".txt", parts -> {
-                String source = cleanTerm(parts.get(0));
-                switch(parts.size()) {
-                case 2:
-                    String target = parts.get(1);
-                    _rawToIpa.put(source, target);
-                    if (isXsampa) {
-                        target = XSampa_IPA.transform(target
-                                .replace('\'', 'ˈ')
-                                .replace('-', '.')
-                                .replace(',', 'ˌ')
-                                );
-                    }
-                    target = target.replace(".ˈ", "ˈ").replace(".ˌ", "ˌ");
-                    temp.put(source, target);
-                    break;
-                case 0:
-                case 1:
-                    break;
-                default:
-                    throw new IllegalArgumentException("Wrong number of items: " + parts);
-                }
-            }
-                    );
+            processFields(
+                    DATADIR + "pronunciation",
+                    locale + ".txt",
+                    parts -> {
+                        String source = cleanTerm(parts.get(0));
+                        switch (parts.size()) {
+                            case 2:
+                                String target = parts.get(1);
+                                _rawToIpa.put(source, target);
+                                if (isXsampa) {
+                                    target =
+                                            XSampa_IPA.transform(
+                                                    target.replace('\'', 'ˈ')
+                                                            .replace('-', '.')
+                                                            .replace(',', 'ˌ'));
+                                }
+                                target = target.replace(".ˈ", "ˈ").replace(".ˌ", "ˌ");
+                                temp.put(source, target);
+                                break;
+                            case 0:
+                            case 1:
+                                break;
+                            default:
+                                throw new IllegalArgumentException(
+                                        "Wrong number of items: " + parts);
+                        }
+                    });
             return new Pronunciation(ImmutableMap.copyOf(temp), ImmutableMap.copyOf(_rawToIpa));
         }
     }
 
-    private static <T> void processFields(String directory, String file, Consumer<List<String>> processor) {
+    private static <T> void processFields(
+            String directory, String file, Consumer<List<String>> processor) {
         boolean firstNonEmpty = true;
         for (String line : FileUtilities.in(directory, file)) {
             if (line.isEmpty() || line.startsWith("#")) {
@@ -184,7 +205,7 @@ public class Unilex {
     public static void main(String[] args) {
         Pronunciation xsamp = getData("de-fonxsamp");
         Pronunciation plain = getData("de");
-        
+
         Set<String> combined = new LinkedHashSet<>(xsamp.data.keySet());
         combined.addAll(plain.keySet());
         Set<String> extra = new LinkedHashSet<>();
@@ -194,17 +215,20 @@ public class Unilex {
             if (Objects.equal(xsampValue, plainValue)) {
                 continue;
             }
-            String plainValue2 = plainValue == null ? null : plainValue
-            .replace("ɐ̯", "ɐ")
-            .replace("ʊ̯", "ʊ")
-            .replace("ʏ̯", "ʏ")
-            .replace("ɪ̯", "ɪ")
-            //.replace("ʊ̯̯", "ʊ")
-            .replace("t͡s", "ts")
-            .replace("t͡ʃ", "tʃ")
-            .replace("p͡f", "pf")
-            // 
-            ;
+            String plainValue2 =
+                    plainValue == null
+                            ? null
+                            : plainValue
+                                    .replace("ɐ̯", "ɐ")
+                                    .replace("ʊ̯", "ʊ")
+                                    .replace("ʏ̯", "ʏ")
+                                    .replace("ɪ̯", "ɪ")
+                                    // .replace("ʊ̯̯", "ʊ")
+                                    .replace("t͡s", "ts")
+                                    .replace("t͡ʃ", "tʃ")
+                                    .replace("p͡f", "pf")
+                    //
+                    ;
             if (plainValue != null && !plainValue2.contains("ˈ")) {
                 plainValue2 = "ˈ" + plainValue2;
             }
@@ -258,12 +282,12 @@ public class Unilex {
                     ++i;
                 }
             }
-            
+
             out.println("\n#1a. Odd syllable breaks");
 
             pronGraphemes.print(out, 2, "Pronunciation Graphemes");
 
-            //termGraphemes.print(out, 3, "Pronunciation Term Graphemes");
+            // termGraphemes.print(out, 3, "Pronunciation Term Graphemes");
 
             // show the pronunciations in descending frequency order
             i = 0;
@@ -290,10 +314,10 @@ public class Unilex {
                 lines.add(0 + "\t" + fkey + "\t" + p);
                 i++;
             }
-            
+
             CharsTrie onsetCharTrie = freqGraphemes.termOnsets.computeStringTrie();
             CharsTrie codaCharTrie = freqGraphemes.termCodas.computeStringTrie();
-            
+
             check("ʃta", onsetCharTrie, codaCharTrie);
 
             freqGraphemes.print(out, 3, "Term Graphemes");
@@ -311,7 +335,7 @@ public class Unilex {
 
     private static Set<String> reduceCase(Set<String> set) {
         Set<String> result = new LinkedHashSet<>(set);
-        for (Iterator<String> it = result.iterator(); it.hasNext();) {
+        for (Iterator<String> it = result.iterator(); it.hasNext(); ) {
             String item = it.next();
             String lc = UCharacter.toLowerCase(item); // TODO locale sensitive
             if (!lc.equals(item) && set.contains(lc)) {
@@ -322,9 +346,10 @@ public class Unilex {
     }
 
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make();
-    static final UnicodeMap<General_Category_Values> cat = iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
+    static final UnicodeMap<General_Category_Values> cat =
+            iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
 
-    static public final class GraphemeList implements Iterable<String> {
+    public static final class GraphemeList implements Iterable<String> {
         private List<String> graphemes = new ArrayList<>();
         private transient StringBuilder item = new StringBuilder();
 
@@ -332,37 +357,38 @@ public class Unilex {
             graphemes.clear();
             for (int cp : With.codePointArray(source)) {
                 switch (cat.get(cp)) {
-                default:
-                    //            case Uppercase_Letter:
-                    //            case Lowercase_Letter:
-                    //            case Other_Letter:
-                    //            case Titlecase_Letter:
-                    if (item.length() != 0 && item.charAt(item.length()-1) == '͡') {
-                        // special
-                    } else {
-                        flush(source);
-                    }
-                    item.appendCodePoint(cp);
-                    break;
-                case Enclosing_Mark:
-                case Nonspacing_Mark:
-                case Spacing_Mark:
-                    item.appendCodePoint(cp);
-                    break;
-                case Modifier_Letter:
-                case Modifier_Symbol:
-                    if (cp == 'ˈ' || cp == 'ˌ' || cp == '.') { // singleton
-                        flush(source);
+                    default:
+                        //            case Uppercase_Letter:
+                        //            case Lowercase_Letter:
+                        //            case Other_Letter:
+                        //            case Titlecase_Letter:
+                        if (item.length() != 0 && item.charAt(item.length() - 1) == '͡') {
+                            // special
+                        } else {
+                            flush(source);
+                        }
                         item.appendCodePoint(cp);
-                        flush(source);
-                    } else {
+                        break;
+                    case Enclosing_Mark:
+                    case Nonspacing_Mark:
+                    case Spacing_Mark:
                         item.appendCodePoint(cp);
-                    }
-                    break;
+                        break;
+                    case Modifier_Letter:
+                    case Modifier_Symbol:
+                        if (cp == 'ˈ' || cp == 'ˌ' || cp == '.') { // singleton
+                            flush(source);
+                            item.appendCodePoint(cp);
+                            flush(source);
+                        } else {
+                            item.appendCodePoint(cp);
+                        }
+                        break;
                 }
             }
             flush(source);
         }
+
         private void flush(String source) {
             if (item.length() != 0) {
                 String string = item.toString();
@@ -370,6 +396,7 @@ public class Unilex {
                 item.setLength(0);
             }
         }
+
         @Override
         public Iterator<String> iterator() {
             return graphemes.iterator();
@@ -378,16 +405,16 @@ public class Unilex {
 
     static class FrequencyAndSamples {
         private Counter<String> targetMap = new Counter<>();
-        private Map<String,String> sampleMap = new HashMap<>();
+        private Map<String, String> sampleMap = new HashMap<>();
 
         private void add(String string, Long frequency, String sampleString) {
             Long oldFreq = targetMap.get(string);
-            if (oldFreq  == null || oldFreq <= frequency) {
+            if (oldFreq == null || oldFreq <= frequency) {
                 targetMap.add(string, frequency);
                 sampleMap.put(string, sampleString);
             }
         }
-        
+
         public CharsTrie computeStringTrie() {
             CharsTrieBuilder b = new CharsTrieBuilder();
             int item = 0;
@@ -397,17 +424,18 @@ public class Unilex {
             return b.build(Option.FAST);
         }
     }
-    
-    static final Splitter SYLLABLE_SPLITTER = Splitter.on(CharMatcher.anyOf(".")).omitEmptyStrings().trimResults();
-    
+
+    static final Splitter SYLLABLE_SPLITTER =
+            Splitter.on(CharMatcher.anyOf(".")).omitEmptyStrings().trimResults();
+
     static boolean check(String source, CharsTrie onset, CharsTrie coda) {
-/*
-Result result=current();
-for(each c in s)
-if(!result.hasNext()) return Result.NO_MATCH;
-result=next(c);
-return result;
-*/
+        /*
+        Result result=current();
+        for(each c in s)
+        if(!result.hasNext()) return Result.NO_MATCH;
+        result=next(c);
+        return result;
+        */
         for (String part : SYLLABLE_SPLITTER.split(source)) {
             int sLimit = part.length();
             Result result = onset.current();
@@ -417,20 +445,19 @@ return result;
                     break;
                 }
                 char ch = part.charAt(start);
-                result=onset.next(ch);
+                result = onset.next(ch);
             }
             System.out.println("onset: " + result + ", " + start);
             switch (result) {
-            case FINAL_VALUE:
-            case INTERMEDIATE_VALUE:
-                System.out.println("value: " + onset.getValue());
+                case FINAL_VALUE:
+                case INTERMEDIATE_VALUE:
+                    System.out.println("value: " + onset.getValue());
             }
         }
         return true;
     }
 
-
-    static public final class GraphemeCount {
+    public static final class GraphemeCount {
         FrequencyAndSamples source = new FrequencyAndSamples();
 
         private Counter<String> target = new Counter<>();
@@ -449,7 +476,7 @@ return result;
         public GraphemeCount(Comparator collator) {
             this.collator = (Comparator<String>) collator;
         }
-        
+
         void add(Long frequency, String source, boolean toLower, String... samples) {
             //            if (frequency.equals(ZERO)) {
             //                frequency = ONE;
@@ -474,7 +501,8 @@ return result;
                         termOnset.append(grapheme);
                     }
                 }
-                // capture the rime (vowel & everything after), but flush whenever we transition from consonant to vowel
+                // capture the rime (vowel & everything after), but flush whenever we transition
+                // from consonant to vowel
                 if (isVowel) {
                     termCoda.setLength(0);
                     if (!wasVowel) {
@@ -492,9 +520,9 @@ return result;
                 termRimes.add(clean(termRime), frequency, sampleString);
             }
         }
-        
+
         private String clean(CharSequence source) {
-            return source.toString().replace("ˈ","").replace(".","");
+            return source.toString().replace("ˈ", "").replace(".", "");
         }
 
         private void flush(String grapheme, Long frequency, String sampleString) {
@@ -518,28 +546,41 @@ return result;
             out.println("\n#" + num + "a." + title);
             out.println("#Frequency\tGrapheme\tHex\tSample");
             for (R2<Long, String> item : entries()) {
-                out.println(item.get0() 
-                        + "\t" + item.get1() 
-                        + "\t" + Utility.hex(item.get1(), " ") 
-                        + "\t" + getSample(item.get1()));
+                out.println(
+                        item.get0()
+                                + "\t"
+                                + item.get1()
+                                + "\t"
+                                + Utility.hex(item.get1(), " ")
+                                + "\t"
+                                + getSample(item.get1()));
             }
             out.println("\n#" + num + "b." + title);
             out.println("#Frequency\tOnset\tHex");
-            for (R2<Long, String> item : termOnsets.targetMap.getEntrySetSortedByCount(false, collator)) {
-                out.println(item.get0() 
-                        + "\t" + item.get1() 
-                        + "\t" + Utility.hex(item.get1(), " ")
-                        + "\t" + termOnsets.sampleMap.get(item.get1()));
+            for (R2<Long, String> item :
+                    termOnsets.targetMap.getEntrySetSortedByCount(false, collator)) {
+                out.println(
+                        item.get0()
+                                + "\t"
+                                + item.get1()
+                                + "\t"
+                                + Utility.hex(item.get1(), " ")
+                                + "\t"
+                                + termOnsets.sampleMap.get(item.get1()));
             }
             out.println("\n#" + num + "c." + title);
             out.println("#Frequency\tCoda\tHex");
-            for (R2<Long, String> item : termCodas.targetMap.getEntrySetSortedByCount(false, collator)) {
-                out.println(item.get0() 
-                        + "\t" + item.get1() 
-                        + "\t" + Utility.hex(item.get1(), " ")
-                        + "\t" + termCodas.sampleMap.get(item.get1()));
+            for (R2<Long, String> item :
+                    termCodas.targetMap.getEntrySetSortedByCount(false, collator)) {
+                out.println(
+                        item.get0()
+                                + "\t"
+                                + item.get1()
+                                + "\t"
+                                + Utility.hex(item.get1(), " ")
+                                + "\t"
+                                + termCodas.sampleMap.get(item.get1()));
             }
         }
-
     }
 }

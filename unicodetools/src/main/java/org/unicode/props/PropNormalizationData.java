@@ -1,17 +1,13 @@
 package org.unicode.props;
 
-import java.util.BitSet;
-import java.util.HashMap;
-
-import org.unicode.props.UnicodeProperty;
-import org.unicode.props.UcdPropertyValues.Canonical_Combining_Class_Values;
-import org.unicode.text.UCD.NormalizationData;
-import org.unicode.text.utility.Utility;
-
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-
+import java.util.BitSet;
+import java.util.HashMap;
+import org.unicode.props.UcdPropertyValues.Canonical_Combining_Class_Values;
+import org.unicode.text.UCD.NormalizationData;
+import org.unicode.text.utility.Utility;
 
 public class PropNormalizationData implements org.unicode.text.UCD.NormalizationData {
     private static final boolean SHOW_PROGRESS = false;
@@ -26,9 +22,13 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
     public PropNormalizationData(IndexUnicodeProperties properties) {
         version = properties.getUcdVersion().toString();
         UnicodeProperty canonicalProp = properties.getProperty("ccc");
-        canonical.setMissing(Short.valueOf((short)0));
+        canonical.setMissing(Short.valueOf((short) 0));
         UnicodeSet nullValues = new UnicodeSet();
-        for (String s : new UnicodeSet(canonicalProp.getSet(Canonical_Combining_Class_Values.Not_Reordered.toString())).complement()) {
+        for (String s :
+                new UnicodeSet(
+                                canonicalProp.getSet(
+                                        Canonical_Combining_Class_Values.Not_Reordered.toString()))
+                        .complement()) {
             final int cp = s.codePointAt(0);
             String v = canonicalProp.getValue(cp);
             if (v == null) {
@@ -52,7 +52,8 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
         StringBuilder buffer = new StringBuilder();
         for (String s : new UnicodeSet(none).complement()) {
             int cp = s.codePointAt(0);
-            if (dtp.getValue(cp).equals(UcdPropertyValues.Decomposition_Type_Values.Canonical.toString())) {
+            if (dtp.getValue(cp)
+                    .equals(UcdPropertyValues.Decomposition_Type_Values.Canonical.toString())) {
                 continue;
             }
             String dmpStr = dmp.getValue(cp);
@@ -62,12 +63,11 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
                 final int first = dmpStr.codePointAt(0);
                 if (ce.getValue(cp).equals("Yes")
                         || UTF16.countCodePoint(dmpStr) == 1
-                        || canonical.getValue(first) != 0
-                        ) {
+                        || canonical.getValue(first) != 0) {
                     // skip
                 } else {
                     final int second = dmpStr.codePointAt(Character.charCount(first));
-                    HashMap<Integer,Integer> um2 = pairwiseComposition.get(first);
+                    HashMap<Integer, Integer> um2 = pairwiseComposition.get(first);
                     if (um2 == null) {
                         um2 = new HashMap<>();
                         pairwiseComposition.put(first, um2);
@@ -96,8 +96,12 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
         return canonical.get(cp);
     }
 
-    public  void getRecursiveDecomposition2(int cp,
-            boolean compat, UnicodeProperty dtp, UnicodeProperty dmp, StringBuilder buffer) {
+    public void getRecursiveDecomposition2(
+            int cp,
+            boolean compat,
+            UnicodeProperty dtp,
+            UnicodeProperty dmp,
+            StringBuilder buffer) {
         // we know we decompose all CANONICAL, plus > CANONICAL if compat is TRUE.
         String dt = dtp.getValue(cp);
         if (dt.equals("Canonical") || compat && !dt.equals("None")) {
@@ -110,7 +114,6 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
             buffer.appendCodePoint(cp);
         }
     }
-
 
     @Override
     public String getUCDVersion() {
@@ -135,15 +138,13 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
     }
 
     @Override
-    public boolean normalizationDiffers(int cp, boolean composition,
-            boolean compat) {
+    public boolean normalizationDiffers(int cp, boolean composition, boolean compat) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public void getRecursiveDecomposition(int cp, StringBuffer buffer,
-            boolean compat) {
+    public void getRecursiveDecomposition(int cp, StringBuffer buffer, boolean compat) {
         // TODO Auto-generated method stub
 
     }
@@ -170,25 +171,30 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
         return false;
     }
 
-    public enum Type {nfd, nfc, nfkd, nfkc}
+    public enum Type {
+        nfd,
+        nfc,
+        nfkd,
+        nfkc
+    }
 
     public String normalize(CharSequence source, Type type) {
         StringBuilder target = new StringBuilder();
         switch (type) {
-        case nfd:
-            internalDecompose(source, target, false);
-        break;
-        case nfkd:
-            internalDecompose(source, target, true);
-        break;
-        case nfc:
-            internalDecompose(source, target, false);
-            internalCompose(target);
-        break;
-        case nfkc:
-            internalDecompose(source, target, true);
-            internalCompose(target);
-        break;
+            case nfd:
+                internalDecompose(source, target, false);
+                break;
+            case nfkd:
+                internalDecompose(source, target, true);
+                break;
+            case nfc:
+                internalDecompose(source, target, false);
+                internalCompose(target);
+                break;
+            case nfkc:
+                internalDecompose(source, target, true);
+                internalCompose(target);
+                break;
         }
         return target.toString();
     }
@@ -196,9 +202,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
     public String normalize(int source, Type type) {
         StringBuilder target = new StringBuilder();
 
-        String buffer = type == Type.nfkd || type == Type.nfkc
-                ? nfkd.get(source)
-                        : nfd.get(source);
+        String buffer = type == Type.nfkd || type == Type.nfkc ? nfkd.get(source) : nfd.get(source);
         if (buffer == null) {
             target.append(source);
         } else {
@@ -206,25 +210,24 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
         }
 
         switch (type) {
-        case nfc:
-            internalCompose(target);
-        break;
-        case nfkc:
-            internalCompose(target);
-        break;
+            case nfc:
+                internalCompose(target);
+                break;
+            case nfkc:
+                internalCompose(target);
+                break;
         }
         return target.toString();
     }
 
     /**
-     * Decomposes text, either canonical or compatibility,
-     * replacing contents of the target buffer.
-     * @param   form        the normalization form. If NF_COMPATIBILITY_MASK
-     *                      bit is on in this byte, then selects the recursive
-     *                      compatibility decomposition, otherwise selects
-     *                      the recursive canonical decomposition.
-     * @param   source      the original text, unnormalized
-     * @param   target      the resulting normalized text
+     * Decomposes text, either canonical or compatibility, replacing contents of the target buffer.
+     *
+     * @param form the normalization form. If NF_COMPATIBILITY_MASK bit is on in this byte, then
+     *     selects the recursive compatibility decomposition, otherwise selects the recursive
+     *     canonical decomposition.
+     * @param source the original text, unnormalized
+     * @param target the resulting normalized text
      */
     private void internalDecompose(CharSequence source, StringBuilder target, boolean compat) {
         int ch32;
@@ -250,7 +253,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
 
                     int ch2;
                     for (; k > 0; k -= UTF16.getCharCount(ch2)) {
-                        ch2 = UTF16.charAt(target, k-1);
+                        ch2 = UTF16.charAt(target, k - 1);
                         if (canonical.getValue(ch2) <= chClass) {
                             break;
                         }
@@ -262,19 +265,17 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
     }
 
     /**
-     * Composes text in place. Target must already
-     * have been decomposed.
-     * Uses UTF16, which is a utility class for supplementary character support in Java.
-     * @param   target      input: decomposed text.
-     *                      output: the resulting normalized text.
+     * Composes text in place. Target must already have been decomposed. Uses UTF16, which is a
+     * utility class for supplementary character support in Java.
+     *
+     * @param target input: decomposed text. output: the resulting normalized text.
      */
     private void internalCompose(StringBuilder target) {
         int starterPos = 0;
-        int starterCh = UTF16.charAt(target,0);
+        int starterCh = UTF16.charAt(target, 0);
         int compPos = UTF16.getCharCount(starterCh); // length of last composition
         int lastClass = canonical.getValue(starterCh);
-        if (lastClass != 0)
-        {
+        if (lastClass != 0) {
             lastClass = 256; // fix for strings staring with a combining mark
         }
         int oldLen = target.length();
@@ -282,14 +283,19 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
         // Loop on the decomposed characters, combining where possible
 
         int ch;
-        for (int decompPos = compPos; decompPos < target.length(); decompPos += UTF16.getCharCount(ch)) {
+        for (int decompPos = compPos;
+                decompPos < target.length();
+                decompPos += UTF16.getCharCount(ch)) {
             ch = UTF16.charAt(target, decompPos);
             if (SHOW_PROGRESS) {
-                System.out.println(Utility.hex(target)
-                        + ", decompPos: " + decompPos
-                        + ", compPos: " + compPos
-                        + ", ch: " + Utility.hex(ch)
-                        );
+                System.out.println(
+                        Utility.hex(target)
+                                + ", decompPos: "
+                                + decompPos
+                                + ", compPos: "
+                                + compPos
+                                + ", ch: "
+                                + Utility.hex(ch));
             }
             final int chClass = canonical.getValue(ch);
             int composite = NormalizationData.NOT_COMPOSITE;
@@ -297,7 +303,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
             if (um2 != null) {
                 Integer temp = um2.get(ch);
                 if (temp != null) {
-                  composite = temp;
+                    composite = temp;
                 }
             }
             if (composite != NormalizationData.NOT_COMPOSITE
@@ -309,7 +315,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
             } else {
                 if (chClass == 0) {
                     starterPos = compPos;
-                    starterCh  = ch;
+                    starterCh = ch;
                 }
                 lastClass = chClass;
                 setCharAt(target, compPos, ch);
@@ -327,8 +333,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
     }
 
     @Override
-    public void getCompositionStatus(BitSet leading, BitSet trailing,
-            BitSet resulting) {
+    public void getCompositionStatus(BitSet leading, BitSet trailing, BitSet resulting) {
         throw new UnsupportedOperationException();
     }
 
@@ -339,13 +344,15 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
 
         if (Character.isSurrogate(single)) {
             // pairs of the surrogate with offset16 at the lead char found
-            if (Character.isHighSurrogate(single) && (target.length() > offset16 + 1)
+            if (Character.isHighSurrogate(single)
+                    && (target.length() > offset16 + 1)
                     && Character.isLowSurrogate(target.charAt(offset16 + 1))) {
                 count++;
             } else {
                 // pairs of the surrogate with offset16 at the trail char
                 // found
-                if (Character.isLowSurrogate(single) && (offset16 > 0)
+                if (Character.isLowSurrogate(single)
+                        && (offset16 > 0)
                         && Character.isHighSurrogate(target.charAt(offset16 - 1))) {
                     offset16--;
                     count++;

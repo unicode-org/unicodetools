@@ -1,22 +1,5 @@
 package org.unicode.tools;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
-
-import org.unicode.cldr.util.MultiComparator;
-import org.unicode.cldr.util.With;
-
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Utility;
@@ -30,6 +13,21 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import org.unicode.cldr.util.MultiComparator;
+import org.unicode.cldr.util.With;
 
 public class CollatorEquivalences {
     private static final Normalizer2 nfc = Normalizer2.getNFCInstance();
@@ -37,7 +35,7 @@ public class CollatorEquivalences {
 
     public static void main(String[] args) throws IOException {
         showMappings(equiv);
-        //System.out.println(remapped.toPattern(false));
+        // System.out.println(remapped.toPattern(false));
     }
 
     static final class RawKey implements Comparable<RawKey> {
@@ -85,14 +83,17 @@ public class CollatorEquivalences {
                 }
             }
         }
+
         @Override
         public int hashCode() {
             return key.hashCode();
         }
+
         @Override
         public boolean equals(Object obj) {
-            return key.equals(((RawKey)obj).key);
+            return key.equals(((RawKey) obj).key);
         }
+
         @Override
         public String toString() {
             StringBuilder b = new StringBuilder("[");
@@ -111,7 +112,8 @@ public class CollatorEquivalences {
     static final UnicodeSet LETTER = new UnicodeSet("[:L:]").freeze();
     static final UnicodeSet KATAKANA = new UnicodeSet("[:sc=Katakana:]").freeze();
     static final UnicodeSet KATAKANA_SMALL = new UnicodeSet("[ァィゥェォッャュョヮヵヶㇰ-ㇿｧ-ｯ]").freeze();
-    static final UnicodeSet ChangesWithNfkccf = new UnicodeSet("[:Changes_When_NFKC_Casefolded:]").freeze();
+    static final UnicodeSet ChangesWithNfkccf =
+            new UnicodeSet("[:Changes_When_NFKC_Casefolded:]").freeze();
 
     static {
         RuleBasedCollator temp = (RuleBasedCollator) Collator.getInstance(ULocale.ROOT);
@@ -120,62 +122,82 @@ public class CollatorEquivalences {
         temp.freeze();
         UCA_SECONDARY_ONLY = temp;
 
-        Comparator<String> LONGER_FIRST = new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return o1.equals(o2) ? 0
-                        : o1.isEmpty() ? -1
-                                :o2.isEmpty() ? 1
-                                        : o2.codePointCount(0, o2.length()) - o1.codePointCount(0, o1.length());
-            }
-        };
-        Comparator<String> REGULAR_FIRST = new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return (LETTER.containsAll(o1) ? 0 : 1) - (LETTER.containsAll(o2) ? 0 : 1);
-            }
-        };
-        
-        Comparator<String> NFKCCF_FIRST = new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return (ChangesWithNfkccf.containsNone(o1) ? 0 : 1) - (ChangesWithNfkccf.containsNone(o2) ? 0 : 1);
-            }
-        };
+        Comparator<String> LONGER_FIRST =
+                new Comparator<String>() {
+                    @Override
+                    public int compare(String o1, String o2) {
+                        return o1.equals(o2)
+                                ? 0
+                                : o1.isEmpty()
+                                        ? -1
+                                        : o2.isEmpty()
+                                                ? 1
+                                                : o2.codePointCount(0, o2.length())
+                                                        - o1.codePointCount(0, o1.length());
+                    }
+                };
+        Comparator<String> REGULAR_FIRST =
+                new Comparator<String>() {
+                    @Override
+                    public int compare(String o1, String o2) {
+                        return (LETTER.containsAll(o1) ? 0 : 1) - (LETTER.containsAll(o2) ? 0 : 1);
+                    }
+                };
 
-        Comparator<String> KANA_FIRST = new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                int order1 = (KATAKANA_SMALL.containsAll(o1) ? 1 : KATAKANA.containsAll(o1) ? 0 : 2);
-                int order2 = (KATAKANA_SMALL.containsAll(o2) ? 1 : KATAKANA.containsAll(o2) ? 0 : 2);
-                if (order1 != order2) {
-                  int debug = 0;
-                }
-                return order1 - order2;
-            }
-        };
+        Comparator<String> NFKCCF_FIRST =
+                new Comparator<String>() {
+                    @Override
+                    public int compare(String o1, String o2) {
+                        return (ChangesWithNfkccf.containsNone(o1) ? 0 : 1)
+                                - (ChangesWithNfkccf.containsNone(o2) ? 0 : 1);
+                    }
+                };
+
+        Comparator<String> KANA_FIRST =
+                new Comparator<String>() {
+                    @Override
+                    public int compare(String o1, String o2) {
+                        int order1 =
+                                (KATAKANA_SMALL.containsAll(o1)
+                                        ? 1
+                                        : KATAKANA.containsAll(o1) ? 0 : 2);
+                        int order2 =
+                                (KATAKANA_SMALL.containsAll(o2)
+                                        ? 1
+                                        : KATAKANA.containsAll(o2) ? 0 : 2);
+                        if (order1 != order2) {
+                            int debug = 0;
+                        }
+                        return order1 - order2;
+                    }
+                };
 
         RuleBasedCollator temp2 = (RuleBasedCollator) Collator.getInstance(ULocale.ROOT);
         temp2.setDecomposition(Collator.CANONICAL_DECOMPOSITION);
         temp2.freeze();
-        Comparator<String> CODEPOINT = new StringComparator(true, false, StringComparator.FOLD_CASE_DEFAULT);
-        BEST_IS_LEAST = new MultiComparator<String>(
-                LONGER_FIRST, 
-                KANA_FIRST,
-                //NFKCCF_FIRST,
-                (Comparator<String>)(Comparator<?>) temp2, 
-                REGULAR_FIRST, 
-                CODEPOINT);
+        Comparator<String> CODEPOINT =
+                new StringComparator(true, false, StringComparator.FOLD_CASE_DEFAULT);
+        BEST_IS_LEAST =
+                new MultiComparator<String>(
+                        LONGER_FIRST,
+                        KANA_FIRST,
+                        // NFKCCF_FIRST,
+                        (Comparator<String>) (Comparator<?>) temp2,
+                        REGULAR_FIRST,
+                        CODEPOINT);
     }
 
     public static UnicodeMap<String> COLLATION_MAP = new UnicodeMap();
-    static Relation<RawKey, String> equiv = Relation.of(new TreeMap<RawKey, Set<String>>(), TreeSet.class, BEST_IS_LEAST);
+    static Relation<RawKey, String> equiv =
+            Relation.of(new TreeMap<RawKey, Set<String>>(), TreeSet.class, BEST_IS_LEAST);
     static Set<RawKey> failed = new LinkedHashSet<>();
 
-    static  {
+    static {
         for (int i = 0; i <= 0x10FFFF; ++i) {
             int gc = UCharacter.getIntPropertyValue(i, UProperty.GENERAL_CATEGORY);
-            if (gc == UCharacter.UNASSIGNED || gc == UCharacter.PRIVATE_USE || gc == UCharacter.SURROGATE) {
+            if (gc == UCharacter.UNASSIGNED
+                    || gc == UCharacter.PRIVATE_USE
+                    || gc == UCharacter.SURROGATE) {
                 continue;
             }
             String s = UTF16.valueOf(i);
@@ -187,21 +209,21 @@ public class CollatorEquivalences {
         StringBuilder b = new StringBuilder();
         Set<String> moreStrings = new HashSet<>();
         combos:
-            for (RawKey rawKey : equiv.keySet()) {
-                if (rawKey.size() < 2) continue;
-                b.setLength(0);
-                for (Integer temp : rawKey.key){
-                    RawKey singleKey = new RawKey(temp);
-                    Set<String> items = equiv.get(singleKey);
-                    if (items == null) {
-                        failed.add(singleKey);
-                        //System.out.println("Failed to map " + rawKey + "\t" + equiv.get(rawKey));
-                        continue combos;
-                    }
-                    b.append(items.iterator().next());
+        for (RawKey rawKey : equiv.keySet()) {
+            if (rawKey.size() < 2) continue;
+            b.setLength(0);
+            for (Integer temp : rawKey.key) {
+                RawKey singleKey = new RawKey(temp);
+                Set<String> items = equiv.get(singleKey);
+                if (items == null) {
+                    failed.add(singleKey);
+                    // System.out.println("Failed to map " + rawKey + "\t" + equiv.get(rawKey));
+                    continue combos;
                 }
-                moreStrings.add(nfc.normalize(b.toString()));
+                b.append(items.iterator().next());
             }
+            moreStrings.add(nfc.normalize(b.toString()));
+        }
 
         // we found something, try adding
         // might be redundant, but we don't care.
@@ -230,7 +252,8 @@ public class CollatorEquivalences {
 
     private static void showMappings(Relation<RawKey, String> equiv) {
         UnicodeSet remapped = new UnicodeSet();
-        System.out.println("Source Hex\tTarget Hex\t(Source→Target)\tCollation Key (P/S)\tSource Name → Target Name");
+        System.out.println(
+                "Source Hex\tTarget Hex\t(Source→Target)\tCollation Key (P/S)\tSource Name → Target Name");
         for (Entry<RawKey, Set<String>> entry : equiv.keyValuesSet()) {
             RawKey rawKey = entry.getKey();
             Set<String> equivalentItems = entry.getValue();
@@ -242,8 +265,10 @@ public class CollatorEquivalences {
 
     //  private static final UnicodeSet DIGIT = new UnicodeSet("[0-9]").freeze();
     //  private static final UnicodeSet NSM = new UnicodeSet("[[:Mn:][:Me:]]").freeze();
-    //  private static final UnicodeSet COMMON = new UnicodeSet("[[:scx=Common:]-[:Block=Counting Rod Numerals:]]").freeze();
-    //  private static final UnicodeSet SKIP = new UnicodeSet("[\\u0C01\\u0020 ः\u20DD\u0982\\p{Block=Musical Symbols}"
+    //  private static final UnicodeSet COMMON = new UnicodeSet("[[:scx=Common:]-[:Block=Counting
+    // Rod Numerals:]]").freeze();
+    //  private static final UnicodeSet SKIP = new UnicodeSet("[\\u0C01\\u0020
+    // ः\u20DD\u0982\\p{Block=Musical Symbols}"
     //      + "[:sc=Hiragana:]"
     //      + "[:sc=Katakana:]"
     //      + "]").freeze();
@@ -266,10 +291,20 @@ public class CollatorEquivalences {
     }
 
     private static void showMapping(RawKey rawKey, String source, String target) {
-        System.out.println(Utility.hex(source) + " ;\t" + Utility.hex(target,4," ") 
-                + " #\t(" + source + "→" + target + ")\t"
-                + rawKey + "\t"
-                + getName(source," + ") + " → " + getName(target," + "));
+        System.out.println(
+                Utility.hex(source)
+                        + " ;\t"
+                        + Utility.hex(target, 4, " ")
+                        + " #\t("
+                        + source
+                        + "→"
+                        + target
+                        + ")\t"
+                        + rawKey
+                        + "\t"
+                        + getName(source, " + ")
+                        + " → "
+                        + getName(target, " + "));
     }
 
     private static String getName(String best, String separator) {
@@ -298,5 +333,4 @@ public class CollatorEquivalences {
         }
         return fixed.iterator().next();
     }
-
 }

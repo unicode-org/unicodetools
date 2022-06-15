@@ -1,5 +1,7 @@
 package org.unicode.tools.emoji;
 
+import com.ibm.icu.impl.Utility;
+import com.ibm.icu.text.UnicodeSet;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,14 +13,10 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.tools.emoji.Emoji.Source;
 import org.unicode.tools.emoji.GenerateEmoji.Style;
 import org.unicode.tools.emoji.GenerateEmoji.Visibility;
-
-import com.ibm.icu.impl.Utility;
-import com.ibm.icu.text.UnicodeSet;
 
 class EmojiStats {
     enum Type {
@@ -28,8 +26,8 @@ class EmojiStats {
         other(UnicodeSet.EMPTY),
         modifierSequences(EmojiData.EMOJI_DATA.getModifierSequences()),
         zwjSequences(EmojiData.EMOJI_DATA.getZwjSequencesNormal()),
-        //            standardAdditions8(nc8)
-        ;
+    //            standardAdditions8(nc8)
+    ;
         final UnicodeSet items;
 
         Type(UnicodeSet _items) {
@@ -58,7 +56,8 @@ class EmojiStats {
         Map<Source, UnicodeSet> _totalMissingData = new EnumMap<>(Emoji.Source.class);
         Map<Source, UnicodeSet> _extraData = new EnumMap<>(Emoji.Source.class);
         Map<Type, UnicodeSet> _allTypes = new EnumMap<>(Type.class);
-        Map<EmojiStats.Type, Map<Emoji.Source, UnicodeSet>> _data = new EnumMap<>(EmojiStats.Type.class);
+        Map<EmojiStats.Type, Map<Emoji.Source, UnicodeSet>> _data =
+                new EnumMap<>(EmojiStats.Type.class);
         for (Emoji.Source s : Emoji.Source.values()) {
             _totalMissingData.put(s, new UnicodeSet());
             _extraData.put(s, new UnicodeSet());
@@ -82,7 +81,9 @@ class EmojiStats {
             }
             Source source;
             try {
-                source = Source.valueOf(platformString.equals("android") ? "google" : platformString);
+                source =
+                        Source.valueOf(
+                                platformString.equals("android") ? "google" : platformString);
             } catch (Exception e) {
                 if (SHOW) System.out.println("Skipping directory file " + platformString);
                 continue;
@@ -141,8 +142,14 @@ class EmojiStats {
     public void write(Set<Source> platforms2) throws IOException {
         final boolean extraPlatforms = false;
         final String outFileName = "missing-emoji-list.html";
-        PrintWriter out = FileUtilities.openUTF8Writer(extraPlatforms ? Emoji.INTERNAL_OUTPUT_DIR : Emoji.TR51_INTERNAL_DIR, outFileName);
-        PrintWriter outText = FileUtilities.openUTF8Writer(extraPlatforms ? Emoji.INTERNAL_OUTPUT_DIR : Emoji.TR51_INTERNAL_DIR, "missing-emoji-list.txt");
+        PrintWriter out =
+                FileUtilities.openUTF8Writer(
+                        extraPlatforms ? Emoji.INTERNAL_OUTPUT_DIR : Emoji.TR51_INTERNAL_DIR,
+                        outFileName);
+        PrintWriter outText =
+                FileUtilities.openUTF8Writer(
+                        extraPlatforms ? Emoji.INTERNAL_OUTPUT_DIR : Emoji.TR51_INTERNAL_DIR,
+                        "missing-emoji-list.txt");
         UnicodeSet jc = EmojiData.JCARRIERS;
         // new UnicodeSet()
         // .addAll(totalData.get(Source.sb))
@@ -153,34 +160,63 @@ class EmojiStats {
         UnicodeSet needsVS = new UnicodeSet();
         for (String s : jc) {
             int first = s.codePointAt(0);
-            if (!EmojiData.EMOJI_DATA.getEmojiWithVariants().contains(first) && textStyle.contains(first)) {
+            if (!EmojiData.EMOJI_DATA.getEmojiWithVariants().contains(first)
+                    && textStyle.contains(first)) {
                 needsVS.add(first);
             }
         }
 
-        if (SHOW) System.out.println("All Emoji\t" + EmojiData.EMOJI_DATA.getChars().toPattern(false));
+        if (SHOW)
+            System.out.println("All Emoji\t" + EmojiData.EMOJI_DATA.getChars().toPattern(false));
 
         if (SHOW) System.out.println("needs VS\t" + needsVS.toPattern(false));
 
-        if (SHOW) System.out.println("gmail-jc\t"
-                + new UnicodeSet(totalMissingData.get(Emoji.Source.gmail)).removeAll(jc).toPattern(false));
-        if (SHOW) System.out.println("jc-gmail\t"
-                + new UnicodeSet(jc).removeAll(totalMissingData.get(Emoji.Source.gmail)).toPattern(false));
+        if (SHOW)
+            System.out.println(
+                    "gmail-jc\t"
+                            + new UnicodeSet(totalMissingData.get(Emoji.Source.gmail))
+                                    .removeAll(jc)
+                                    .toPattern(false));
+        if (SHOW)
+            System.out.println(
+                    "jc-gmail\t"
+                            + new UnicodeSet(jc)
+                                    .removeAll(totalMissingData.get(Emoji.Source.gmail))
+                                    .toPattern(false));
 
         for (Entry<Emoji.Source, UnicodeSet> entry : totalMissingData.entrySet()) {
             if (SHOW) System.out.println(entry.getKey() + "\t" + entry.getValue().toPattern(false));
         }
 
-        ChartUtilities.writeHeader(outFileName, out, "Missing", null, false, "<p>Missing list of emoji characters.</p>\n", Emoji.DATA_DIR_PRODUCTION, Emoji.TR51_HTML);
+        ChartUtilities.writeHeader(
+                outFileName,
+                out,
+                "Missing",
+                null,
+                false,
+                "<p>Missing list of emoji characters.</p>\n",
+                Emoji.DATA_DIR_PRODUCTION,
+                Emoji.TR51_HTML);
         out.println("<table " + "border='1'" + ">");
         String headerRow = "<tr><th>Type</th>";
         for (Emoji.Source type : platforms2) {
-            headerRow += "<th class='centerTop' width='" + (80.0 / platforms2.size()) + "%'>" + type + " missing</th>";
+            headerRow +=
+                    "<th class='centerTop' width='"
+                            + (80.0 / platforms2.size())
+                            + "%'>"
+                            + type
+                            + " missing</th>";
         }
         headerRow += "</tr>";
 
         for (Entry<EmojiStats.Type, Map<Emoji.Source, UnicodeSet>> entry : data.entrySet()) {
-            showDiff(out, outText, headerRow, entry.getKey().toString(), entry.getValue(), platforms2);
+            showDiff(
+                    out,
+                    outText,
+                    headerRow,
+                    entry.getKey().toString(),
+                    entry.getValue(),
+                    platforms2);
         }
 
         out.println("</table>");
@@ -189,8 +225,13 @@ class EmojiStats {
         outText.close();
     }
 
-    private void showDiff(PrintWriter out, PrintWriter outText, String headerRow, final String title, 
-            final Map<Emoji.Source, UnicodeSet> values, Set<Source> platforms2) {
+    private void showDiff(
+            PrintWriter out,
+            PrintWriter outText,
+            String headerRow,
+            final String title,
+            final Map<Emoji.Source, UnicodeSet> values,
+            Set<Source> platforms2) {
         // find common
         UnicodeSet common = null;
         boolean skipSeparate = true;
@@ -207,7 +248,8 @@ class EmojiStats {
 
         // per source
         String sectionLink = ChartUtilities.getDoubleLink(title);
-        final GenerateEmojiData.PropPrinter propPrinter = new GenerateEmojiData.PropPrinter().set(EmojiDataSourceCombined.EMOJI_DATA);
+        final GenerateEmojiData.PropPrinter propPrinter =
+                new GenerateEmojiData.PropPrinter().set(EmojiDataSourceCombined.EMOJI_DATA);
 
         if (!skipSeparate) {
             out.println(headerRow);
@@ -215,51 +257,96 @@ class EmojiStats {
             out.print("<tr><th>" + sectionLink + " count</th>");
             sectionLink = title;
             for (Emoji.Source source : platforms2) {
-                final UnicodeSet us = org.unicode.text.utility.Utility.ifNull(values.get(source), UnicodeSet.EMPTY);
+                final UnicodeSet us =
+                        org.unicode.text.utility.Utility.ifNull(
+                                values.get(source), UnicodeSet.EMPTY);
                 out.print("<td class='centerTop'>" + (us.size() - common.size()) + "</td>");
             }
             out.print("</tr>");
             out.print("<tr><th>" + title + " chars</th>");
             for (Emoji.Source source : platforms2) {
-                final UnicodeSet us = org.unicode.text.utility.Utility.ifNull(values.get(source), UnicodeSet.EMPTY);
+                final UnicodeSet us =
+                        org.unicode.text.utility.Utility.ifNull(
+                                values.get(source), UnicodeSet.EMPTY);
                 final UnicodeSet missing = new UnicodeSet(us).removeAll(common);
-                GenerateEmoji.displayUnicodeSet(out, missing.addAllTo(new TreeSet<String>(GenerateEmoji.EMOJI_COMPARATOR)), Style.bestImage, 0, 1, 1, "../../emoji/charts/full-emoji-list.html", "", "lchars", Visibility.external);
+                GenerateEmoji.displayUnicodeSet(
+                        out,
+                        missing.addAllTo(new TreeSet<String>(GenerateEmoji.EMOJI_COMPARATOR)),
+                        Style.bestImage,
+                        0,
+                        1,
+                        1,
+                        "../../emoji/charts/full-emoji-list.html",
+                        "",
+                        "lchars",
+                        Visibility.external);
                 outText.println(source + "\t" + missing.size());
-                propPrinter.show(outText, source+"", null, 14, 14, us, true, false, false);
+                propPrinter.show(outText, source + "", null, 14, 14, us, true, false, false);
             }
             out.print("</tr>");
         }
         // common
         if (common.size() != 0) {
-            out.println("<tr><th>Common</th>"
-                    + "<th class='cchars' colSpan='" + platforms2.size() + "'>"
-                    + "common missing</th></tr>");
-            out.println("<tr><th>" + sectionLink + " count</th>"
-                    + "<td class='cchars' colSpan='" + platforms2.size() + "'>"
-                    + common.size() + "</td></tr>");
+            out.println(
+                    "<tr><th>Common</th>"
+                            + "<th class='cchars' colSpan='"
+                            + platforms2.size()
+                            + "'>"
+                            + "common missing</th></tr>");
+            out.println(
+                    "<tr><th>"
+                            + sectionLink
+                            + " count</th>"
+                            + "<td class='cchars' colSpan='"
+                            + platforms2.size()
+                            + "'>"
+                            + common.size()
+                            + "</td></tr>");
             out.println("<tr><th>" + title + "</th>");
-            GenerateEmoji.displayUnicodeSet(out, common.addAllTo(new TreeSet<String>(GenerateEmoji.EMOJI_COMPARATOR)), Style.bestImage, 0, platforms2.size(), 1, null, "", "lchars", Visibility.external);
+            GenerateEmoji.displayUnicodeSet(
+                    out,
+                    common.addAllTo(new TreeSet<String>(GenerateEmoji.EMOJI_COMPARATOR)),
+                    Style.bestImage,
+                    0,
+                    platforms2.size(),
+                    1,
+                    null,
+                    "",
+                    "lchars",
+                    Visibility.external);
             out.println("</td></tr>");
             outText.println("common \t" + common.size());
             propPrinter.show(outText, "common", null, 14, 14, common, true, false, false);
         }
     }
+
     public static void main(String[] args) {
-        
-        final UnicodeSet missingSamsung = new UnicodeSet(EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives())
-        .removeAll(EmojiData.EMOJI_DATA.getModifierSequences())
-        .removeAll(totalMissingData.get(Source.samsung));
-        System.out.println("\nSamsung missing: " + missingSamsung.size() + "\t" + missingSamsung.toPattern(false) + "\n");
+
+        final UnicodeSet missingSamsung =
+                new UnicodeSet(EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives())
+                        .removeAll(EmojiData.EMOJI_DATA.getModifierSequences())
+                        .removeAll(totalMissingData.get(Source.samsung));
+        System.out.println(
+                "\nSamsung missing: "
+                        + missingSamsung.size()
+                        + "\t"
+                        + missingSamsung.toPattern(false)
+                        + "\n");
         for (String cp : missingSamsung) {
             show(Source.samsung, cp);
         }
 
         UnicodeSet samsungExtras = extraData.get(Source.samsung);
-        System.out.println("\nSamsung extras: " + samsungExtras.size() + "\t" + samsungExtras.toPattern(false) + "\n");
+        System.out.println(
+                "\nSamsung extras: "
+                        + samsungExtras.size()
+                        + "\t"
+                        + samsungExtras.toPattern(false)
+                        + "\n");
         for (String cp : samsungExtras) {
             show(Source.samsung, cp);
         }
-        
+
         for (String cp : totalMissingData.get(Source.google)) {
             show(Source.google, cp);
         }
@@ -267,9 +354,15 @@ class EmojiStats {
 
     private static void show(Source source, String cp) {
         System.out.println(
-                source.getPrefix() + "_" + Emoji.buildFileName(cp, "_") + ".png"
-                + " ;\t" + cp 
-                + " ;\tv" + BirthInfo.getYear(cp)
-                + " ;\t" + EmojiData.EMOJI_DATA.getName(cp));
+                source.getPrefix()
+                        + "_"
+                        + Emoji.buildFileName(cp, "_")
+                        + ".png"
+                        + " ;\t"
+                        + cp
+                        + " ;\tv"
+                        + BirthInfo.getYear(cp)
+                        + " ;\t"
+                        + EmojiData.EMOJI_DATA.getName(cp));
     }
 }

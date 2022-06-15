@@ -1,16 +1,27 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/QuickTest.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/QuickTest.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.Utility;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UProperty;
+import com.ibm.icu.text.CanonicalIterator;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.text.RuleBasedCollator;
+import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.ULocale;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -30,7 +41,6 @@ import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CaseIterator;
 import org.unicode.cldr.util.Counter;
@@ -40,39 +50,22 @@ import org.unicode.props.BagFormatter;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.text.utility.Settings;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.Utility;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.text.CanonicalIterator;
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.RuleBasedCollator;
-import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
-import com.ibm.icu.util.ULocale;
-
 public class QuickTest implements UCD_Types {
     public static void main(String[] args) throws IOException {
         try {
             final String methodName = System.getProperty("method");
             org.unicode.cldr.util.CldrUtility.callMethod(methodName, QuickTest.class);
 
-
             if (true) {
                 return;
             }
             getHangulDecomps();
 
-
             showLeadingTrailingNonStarters();
-            //checkBufferStatus(true);
-
+            // checkBufferStatus(true);
 
             checkNormalization("NFC", Default.nfc());
-            //checkNormalization("NFKC", Default.nfkc());
+            // checkNormalization("NFKC", Default.nfkc());
 
             if (true) {
                 return;
@@ -82,8 +75,6 @@ public class QuickTest implements UCD_Types {
             if (true) {
                 return;
             }
-
-
 
             checkCase();
 
@@ -100,18 +91,17 @@ public class QuickTest implements UCD_Types {
             getLengths("NFKC", Default.nfkc());
             getLengths("NFKD", Default.nfkd());
 
-
             if (true) {
                 return;
             }
             tem();
-            //checkPrettyPrint();
+            // checkPrettyPrint();
             final Collection l = new CaseVariantMaker().getVariants("abc");
-            for (final Iterator it = l.iterator(); it.hasNext();) {
+            for (final Iterator it = l.iterator(); it.hasNext(); ) {
                 System.out.println(it.next());
             }
             final String propName = UCharacter.getPropertyName(3, UProperty.NameChoice.LONG);
-            //testProps();
+            // testProps();
 
             getBidiMirrored();
             getHasAllNormalizations();
@@ -121,17 +111,18 @@ public class QuickTest implements UCD_Types {
     }
 
     private static void getHangulDecomps() {
-        //Normalizer nfkd500 = new Normalizer(Normalizer.NFKD, "5.0.0");
+        // Normalizer nfkd500 = new Normalizer(Normalizer.NFKD, "5.0.0");
         final Normalizer nfkd218 = new Normalizer(UCD_Types.NFKD, "2.1.8");
         final UnicodeMap diff = new UnicodeMap();
         final Map compose = new HashMap();
         final Map decompose = new HashMap();
         // UnicodeSet applicable = // new UnicodeSet("[:HangulSyllable=NA:]");
-        final UnicodeSet applicable = new UnicodeSet("[[\u1100-\u11FF \uAC00-\uD7FF]&[:assigned:]]");
+        final UnicodeSet applicable =
+                new UnicodeSet("[[\u1100-\u11FF \uAC00-\uD7FF]&[:assigned:]]");
         for (final UnicodeSetIterator it = new UnicodeSetIterator(applicable); it.next(); ) {
             final String source = it.getString();
             final String v218 = nfkd218.normalize(source);
-            //String v500 = nfkd500.normalize(source);
+            // String v500 = nfkd500.normalize(source);
             if (v218.equals(source)) {
                 continue;
             }
@@ -140,14 +131,15 @@ public class QuickTest implements UCD_Types {
         }
         // now try recomposing
 
-        for (final Iterator it = decompose.keySet().iterator(); it.hasNext();) {
+        for (final Iterator it = decompose.keySet().iterator(); it.hasNext(); ) {
             final String source = (String) it.next();
             String decomposition = (String) decompose.get(source);
             if (decomposition.length() > 2) {
                 final String trial = decomposition.substring(0, decomposition.length() - 1);
                 final String composition = (String) compose.get(trial);
                 if (composition != null) {
-                    decomposition = composition + decomposition.substring(decomposition.length() - 1);
+                    decomposition =
+                            composition + decomposition.substring(decomposition.length() - 1);
                 }
             }
             if (decomposition.length() != 2) {
@@ -217,10 +209,12 @@ public class QuickTest implements UCD_Types {
         System.out.println("Starter, Stable: " + "\n" + bf.showSetNames(starterStable));
         System.out.println("Starter, Both: " + "\n" + bf.showSetNames(starterBoth));
         System.out.println("Non-Starter, CWP: " + "\n" + bf.showSetNames(nonStarterTrailing));
-        System.out.println("Non-Starter, Non-CWP: " + "\n" + bf.showSetNames(nonStarterNonTrailing));
+        System.out.println(
+                "Non-Starter, Non-CWP: " + "\n" + bf.showSetNames(nonStarterNonTrailing));
         System.out.println("Disallowed: " + "\n" + bf.showSetNames(disallowed));
 
-        //        System.out.println(bf.showSetDifferences("NFC CWP", leadingC, "NFC Trailing", trailingC));
+        //        System.out.println(bf.showSetDifferences("NFC CWP", leadingC, "NFC Trailing",
+        // trailingC));
     }
 
     private static void checkCaseChanges() {
@@ -234,12 +228,14 @@ public class QuickTest implements UCD_Types {
         final UnicodeSet differentBehavior = new UnicodeSet();
         for (int i = 0; i < 0x10FFFF; ++i) {
             final int type = ucd50.getCategory(i);
-            if (type == UCD_Types.UNASSIGNED || type == UCD_Types.PRIVATE_USE || type == UCD_Types.SURROGATE) {
+            if (type == UCD_Types.UNASSIGNED
+                    || type == UCD_Types.PRIVATE_USE
+                    || type == UCD_Types.SURROGATE) {
                 continue;
             }
             final String c1 = UTF16.valueOf(i);
-            final String c3 = ucd30.getCase(i,UCD_Types.FULL,UCD_Types.FOLD);
-            final String c5 = ucd50.getCase(i,UCD_Types.FULL,UCD_Types.FOLD);
+            final String c3 = ucd30.getCase(i, UCD_Types.FULL, UCD_Types.FOLD);
+            final String c5 = ucd50.getCase(i, UCD_Types.FULL, UCD_Types.FOLD);
             if (c1.equals(c3) && c1.equals(c5)) {
                 continue;
             }
@@ -271,15 +267,15 @@ public class QuickTest implements UCD_Types {
         final UnicodeSet uset = new UnicodeSet("[a{bc}{cd}pqr\u0000]");
         System.out.println(uset + " ~ " + uset.getRegexEquivalent());
         final String[][] testStrings = {
-                {"x", "none"},
-                {"bc", "all"},
-                {"cdbca", "all"},
-                {"a", "all"},
-                {"bcx", "some"},
-                {"ab", "some"},
-                {"acb", "some"},
-                {"bcda", "some"},
-                {"dccbx", "none"},
+            {"x", "none"},
+            {"bc", "all"},
+            {"cdbca", "all"},
+            {"a", "all"},
+            {"bcx", "some"},
+            {"ab", "some"},
+            {"acb", "some"},
+            {"bcda", "some"},
+            {"dccbx", "none"},
         };
         for (final String[] testString : testStrings) {
             check(uset, testString[0], testString[1]);
@@ -289,14 +285,24 @@ public class QuickTest implements UCD_Types {
     private static void check(UnicodeSet uset, String string, String desiredStatus) {
         final boolean shouldContainAll = desiredStatus.equals("all");
         final boolean shouldContainNone = desiredStatus.equals("none");
-        System.out.println((uset.containsAll(string) == shouldContainAll ? "" : "FAILURE:") + "\tcontainsAll " +  string + " = " + shouldContainAll);
-        System.out.println((uset.containsNone(string) == shouldContainNone ? "" : "FAILURE:") + "\tcontainsNone " +  string + " = " + shouldContainNone);
+        System.out.println(
+                (uset.containsAll(string) == shouldContainAll ? "" : "FAILURE:")
+                        + "\tcontainsAll "
+                        + string
+                        + " = "
+                        + shouldContainAll);
+        System.out.println(
+                (uset.containsNone(string) == shouldContainNone ? "" : "FAILURE:")
+                        + "\tcontainsNone "
+                        + string
+                        + " = "
+                        + shouldContainNone);
     }
 
     private static void getCaseFoldingUnstable() {
         for (int i = 3; i < org.unicode.text.utility.Utility.searchPath.length - 1; ++i) {
             final String newName = org.unicode.text.utility.Utility.searchPath[i];
-            final String oldName = org.unicode.text.utility.Utility.searchPath[i+1];
+            final String oldName = org.unicode.text.utility.Utility.searchPath[i + 1];
             showMemoryUsage();
             final UCD ucdNew = UCD.make(newName);
             showMemoryUsage();
@@ -312,13 +318,15 @@ public class QuickTest implements UCD_Types {
                 final String newString = ucdNew.getCase(j, UCD_Types.FULL, UCD_Types.FOLD);
                 if (!oldString.equals(newString)) {
                     differenceSet.add(j);
-                    differences.put(j, new String[]{oldString, newString});
+                    differences.put(j, new String[] {oldString, newString});
                     System.out.println(".");
                 }
             }
             if (differenceSet.size() != 0) {
-                System.out.println("Differences in " + org.unicode.text.utility.Utility.searchPath[i]);
-                for (final UnicodeSetIterator it = new UnicodeSetIterator(differenceSet); it.next();) {
+                System.out.println(
+                        "Differences in " + org.unicode.text.utility.Utility.searchPath[i]);
+                for (final UnicodeSetIterator it = new UnicodeSetIterator(differenceSet);
+                        it.next(); ) {
                     System.out.println(ucdNew.getCodeAndName(it.codepoint));
                     final String[] strings = (String[]) differences.getValue(it.codepoint);
                     System.out.println("\t" + oldName + ": " + ucdNew.getCodeAndName(strings[0]));
@@ -328,13 +336,28 @@ public class QuickTest implements UCD_Types {
         }
     }
 
-    static public void showMemoryUsage() {
-        System.gc(); System.gc(); System.gc(); System.gc();
-        System.gc(); System.gc(); System.gc(); System.gc();
-        System.gc(); System.gc(); System.gc(); System.gc();
-        System.gc(); System.gc(); System.gc(); System.gc();
-        System.out.println("total:\t" + Runtime.getRuntime().totalMemory() + ";\tfree:\t" +
-                Runtime.getRuntime().freeMemory());
+    public static void showMemoryUsage() {
+        System.gc();
+        System.gc();
+        System.gc();
+        System.gc();
+        System.gc();
+        System.gc();
+        System.gc();
+        System.gc();
+        System.gc();
+        System.gc();
+        System.gc();
+        System.gc();
+        System.gc();
+        System.gc();
+        System.gc();
+        System.gc();
+        System.out.println(
+                "total:\t"
+                        + Runtime.getRuntime().totalMemory()
+                        + ";\tfree:\t"
+                        + Runtime.getRuntime().freeMemory());
     }
 
     private static void getHasAllNormalizations() {
@@ -359,28 +382,45 @@ public class QuickTest implements UCD_Types {
             s.add(nfkd);
             s.add(nfkc);
             if (s.size() > 3) {
-                System.out.println(Utility.hex(source) + "\t" + Utility.escape(source)
-                        + "\t" + Default.ucd().getName(source)
-                        + "\tnfd\t" + Utility.hex(nfd) + "\t" + Utility.escape(nfd)
-                        + "\tnfc\t" + Utility.hex(nfc) + "\t" + Utility.escape(nfc)
-                        + "\tnfkd\t" + Utility.hex(nfkd) + "\t" + Utility.escape(nfkd)
-                        + "\tnfkc\t" + Utility.hex(nfkc) + "\t" + Utility.escape(nfkc));
+                System.out.println(
+                        Utility.hex(source)
+                                + "\t"
+                                + Utility.escape(source)
+                                + "\t"
+                                + Default.ucd().getName(source)
+                                + "\tnfd\t"
+                                + Utility.hex(nfd)
+                                + "\t"
+                                + Utility.escape(nfd)
+                                + "\tnfc\t"
+                                + Utility.hex(nfc)
+                                + "\t"
+                                + Utility.escape(nfc)
+                                + "\tnfkd\t"
+                                + Utility.hex(nfkd)
+                                + "\t"
+                                + Utility.escape(nfkd)
+                                + "\tnfkc\t"
+                                + Utility.hex(nfkc)
+                                + "\t"
+                                + Utility.escape(nfkc));
             }
         }
     }
 
-    static UnicodeMap.Composer MyComposer = new UnicodeMap.Composer(){
-        @Override
-        public Object compose(int codepoint, String string, Object a, Object b) {
-            if (a == null) {
-                return b;
-            }
-            if (b == null) {
-                return a;
-            }
-            return a + "; " + b;
-        }
-    };
+    static UnicodeMap.Composer MyComposer =
+            new UnicodeMap.Composer() {
+                @Override
+                public Object compose(int codepoint, String string, Object a, Object b) {
+                    if (a == null) {
+                        return b;
+                    }
+                    if (b == null) {
+                        return a;
+                    }
+                    return a + "; " + b;
+                }
+            };
 
     static void add(UnicodeMap map, int cp, String s) {
         final String x = (String) map.getValue(cp);
@@ -392,10 +432,13 @@ public class QuickTest implements UCD_Types {
     }
 
     private static void getBidiMirrored() throws IOException {
-        //UnicodeMap.Composer composer;
-        //ToolUnicodePropertySource foo = ToolUnicodePropertySource.make("");
-        final UnicodeSet proposed = new UnicodeSet("[\u0F3A-\u0F3D\u169B\u169C\u2018-\u201F\u301D-\u301F\uFD3E\uFD3F\uFE59-\uFE5E\uFE64\uFE65\\U0001D6DB\\U0001D715\\U0001D74F\\U0001D789\\U0001D7C3]");
-        //UnicodeSet proposed = new UnicodeSet("[\u0F3A-\u0F3D\u169B\u169C\u2018-\u201F\u301D-\u301F\uFD3E\uFD3F\uFE59-\uFE5E\uFE64\uFE65]");
+        // UnicodeMap.Composer composer;
+        // ToolUnicodePropertySource foo = ToolUnicodePropertySource.make("");
+        final UnicodeSet proposed =
+                new UnicodeSet(
+                        "[\u0F3A-\u0F3D\u169B\u169C\u2018-\u201F\u301D-\u301F\uFD3E\uFD3F\uFE59-\uFE5E\uFE64\uFE65\\U0001D6DB\\U0001D715\\U0001D74F\\U0001D789\\U0001D7C3]");
+        // UnicodeSet proposed = new
+        // UnicodeSet("[\u0F3A-\u0F3D\u169B\u169C\u2018-\u201F\u301D-\u301F\uFD3E\uFD3F\uFE59-\uFE5E\uFE64\uFE65]");
         final UnicodeMap status = new UnicodeMap();
         final UCD ucd31 = UCD.make("3.1.0");
         for (int cp = 0; cp < 0x10FFFF; ++cp) {
@@ -420,9 +463,9 @@ public class QuickTest implements UCD_Types {
                 add(status, cp, "bmg");
             }
 
-            if (ucd31.getBinaryProperty(cp,BidiMirrored)) {
+            if (ucd31.getBinaryProperty(cp, BidiMirrored)) {
                 add(status, cp, "bmp3.1");
-            } else if (Default.ucd().getBinaryProperty(cp,BidiMirrored)) {
+            } else if (Default.ucd().getBinaryProperty(cp, BidiMirrored)) {
                 add(status, cp, "bmp5.0");
             } else if (!Default.nfkc().isNormalized(cp)) {
                 final String ss = Default.nfkc().normalize(cp);
@@ -433,19 +476,17 @@ public class QuickTest implements UCD_Types {
                         proposed.add(cp);
                     }
                 }
-
             }
 
             if (type == Sm) {
                 add(status, cp, "Sm");
-            }
-            else if (Default.ucd().getBinaryProperty(cp,Math_Property)) {
+            } else if (Default.ucd().getBinaryProperty(cp, Math_Property)) {
                 final String ss = Default.nfkc().normalize(cp);
                 if (UTF16.countCodePoint(ss) == 1) {
                     final int cp2 = UTF16.charAt(ss, 0);
                     final int type2 = Default.ucd().getCategory(cp2);
                     if (type2 == UCD_Types.Lu || type2 == Ll || type2 == Lo || type2 == Nd) {
-                        //System.out.println("Skipping: " + Default.ucd().getCodeAndName(cp));
+                        // System.out.println("Skipping: " + Default.ucd().getCodeAndName(cp));
                     } else {
                         add(status, cp, "S-Math");
                     }
@@ -462,14 +503,15 @@ public class QuickTest implements UCD_Types {
             //        }
             //        status.composeWith(temp, MyComposer);
 
-            //showStatus(status);
+            // showStatus(status);
             // close under nfd
 
         }
-        //proposed = status.getSet("Px");
+        // proposed = status.getSet("Px");
         System.out.println(proposed);
-        //showStatus(status);
-        final PrintWriter pw = FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "bidimirroring_chars.txt");
+        // showStatus(status);
+        final PrintWriter pw =
+                FileUtilities.openUTF8Writer(Settings.Output.GEN_DIR, "bidimirroring_chars.txt");
         showStatus(pw, status);
         pw.close();
     }
@@ -478,7 +520,7 @@ public class QuickTest implements UCD_Types {
         int cp;
         for (int i = 0; i < ss.length(); i += UTF16.getCharCount(cp)) {
             cp = UTF16.charAt(ss, i);
-            if (!Default.ucd().getBinaryProperty(cp,BidiMirrored)) {
+            if (!Default.ucd().getBinaryProperty(cp, BidiMirrored)) {
                 return false;
             }
         }
@@ -486,6 +528,7 @@ public class QuickTest implements UCD_Types {
     }
 
     static BagFormatter bf = new BagFormatter();
+
     private static void showStatus(PrintWriter pw, UnicodeMap status) {
         final Collection list = new TreeSet(status.getAvailableValues());
         for (final Iterator it = list.iterator(); it.hasNext(); ) {
@@ -494,17 +537,21 @@ public class QuickTest implements UCD_Types {
                 continue;
             }
             final UnicodeSet set = status.keySet(value);
-            for (final UnicodeSetIterator umi = new UnicodeSetIterator(set); umi.next();) {
-                pw.println(Utility.hex(umi.codepoint)
-                        //+ (value.startsWith("*") ? ";\tBidi_Mirrored" : "")
-                        + "\t# " + value
-                        + "\t\t( " + UTF16.valueOf(umi.codepoint) + " ) "
-                        //+ ";\t" + (x.contains(umi.codepoint) ? "O" : "")
-                        + "\t" + Default.ucd().getName(umi.codepoint));
+            for (final UnicodeSetIterator umi = new UnicodeSetIterator(set); umi.next(); ) {
+                pw.println(
+                        Utility.hex(umi.codepoint)
+                                // + (value.startsWith("*") ? ";\tBidi_Mirrored" : "")
+                                + "\t# "
+                                + value
+                                + "\t\t( "
+                                + UTF16.valueOf(umi.codepoint)
+                                + " ) "
+                                // + ";\t" + (x.contains(umi.codepoint) ? "O" : "")
+                                + "\t"
+                                + Default.ucd().getName(umi.codepoint));
             }
         }
     }
-
 
     public static class Length {
         String title;
@@ -512,10 +559,12 @@ public class QuickTest implements UCD_Types {
         int longestCodePoint = -1;
         double longestLength = 0;
         UnicodeMap longestSet = new UnicodeMap();
+
         Length(String title, int bytesPerCodeUnit) {
             this.title = title;
             this.bytesPerCodeUnit = bytesPerCodeUnit;
         }
+
         void add(int codePoint, int cuLen, int processedUnitLength, String processedString) {
             final double codeUnitLength = processedUnitLength / (double) cuLen;
             if (codeUnitLength > longestLength) {
@@ -523,22 +572,26 @@ public class QuickTest implements UCD_Types {
                 longestLength = codeUnitLength;
                 longestSet.clear();
                 longestSet.put(codePoint, processedString);
-                System.out.println(title + " \t(" + codeUnitLength*bytesPerCodeUnit + " bytes, "
-                        + codeUnitLength + " code units) \t"
-                        + longestLength + " expansion) \t"
-                        + Default.ucd().getCodeAndName(codePoint)
-                        + "\n\t=> " + Default.ucd().getCodeAndName(processedString)
-                        );
+                System.out.println(
+                        title
+                                + " \t("
+                                + codeUnitLength * bytesPerCodeUnit
+                                + " bytes, "
+                                + codeUnitLength
+                                + " code units) \t"
+                                + longestLength
+                                + " expansion) \t"
+                                + Default.ucd().getCodeAndName(codePoint)
+                                + "\n\t=> "
+                                + Default.ucd().getCodeAndName(processedString));
             } else if (codeUnitLength == longestLength) {
                 longestSet.put(codePoint, processedString);
             }
         }
     }
 
-    static final int skip = (1<<UCD.UNASSIGNED) | (1<<UCD.PRIVATE_USE) | (1<<UCD.SURROGATE);
-    /**
-     *
-     */
+    static final int skip = (1 << UCD.UNASSIGNED) | (1 << UCD.PRIVATE_USE) | (1 << UCD.SURROGATE);
+    /** */
     private static void getLengths(String title, Normalizer normalizer) throws IOException {
         System.out.println();
         final Length utf8Len = new Length(title + "\tUTF8", 1);
@@ -555,9 +608,10 @@ public class QuickTest implements UCD_Types {
             utf16Len.add(i, is.length(), norm.length(), norm);
             utf32Len.add(i, 1, UTF16.countCodePoint(norm), norm);
         }
-        final UnicodeSet common = new UnicodeSet(utf8Len.longestSet.keySet())
-        .retainAll(utf16Len.longestSet.keySet())
-        .retainAll(utf32Len.longestSet.keySet());
+        final UnicodeSet common =
+                new UnicodeSet(utf8Len.longestSet.keySet())
+                        .retainAll(utf16Len.longestSet.keySet())
+                        .retainAll(utf32Len.longestSet.keySet());
         if (common.size() > 0) {
             final UnicodeSetIterator it = new UnicodeSetIterator(common);
             it.next();
@@ -581,9 +635,10 @@ public class QuickTest implements UCD_Types {
             utf16Len.add(i, is.length(), norm.length(), norm);
             utf32Len.add(i, 1, UTF16.countCodePoint(norm), norm);
         }
-        final UnicodeSet common = new UnicodeSet(utf8Len.longestSet.keySet())
-        .retainAll(utf16Len.longestSet.keySet())
-        .retainAll(utf32Len.longestSet.keySet());
+        final UnicodeSet common =
+                new UnicodeSet(utf8Len.longestSet.keySet())
+                        .retainAll(utf16Len.longestSet.keySet())
+                        .retainAll(utf32Len.longestSet.keySet());
         if (common.size() > 0) {
             final UnicodeSetIterator it = new UnicodeSetIterator(common);
             it.next();
@@ -591,9 +646,9 @@ public class QuickTest implements UCD_Types {
         }
     }
 
-
     static ByteArrayOutputStream utf8baos;
     static Writer utf8bw;
+
     static int getUTF8Length(String source) throws IOException {
         if (utf8bw == null) {
             utf8baos = new ByteArrayOutputStream();
@@ -604,6 +659,7 @@ public class QuickTest implements UCD_Types {
         utf8bw.flush();
         return utf8baos.size();
     }
+
     static final void test() {
         final String test2 = "ab\u263ac";
         final StringTokenizer st = new StringTokenizer(test2, "\u263a");
@@ -612,7 +668,8 @@ public class QuickTest implements UCD_Types {
                 final String s = st.nextToken();
                 System.out.println(s);
             }
-        } catch (final Exception e) {        }
+        } catch (final Exception e) {
+        }
         final StringReader r = new StringReader(test2);
         final StreamTokenizer s = new StreamTokenizer(r);
         try {
@@ -623,7 +680,8 @@ public class QuickTest implements UCD_Types {
                 }
                 System.out.println(s.sval);
             }
-        } catch (final Exception e) {        }
+        } catch (final Exception e) {
+        }
 
         final String testString = "en-Arab-200-gaulish-a-abcd-def-x-abcd1234-12345678";
         for (int i = testString.length() + 1; i > 0; --i) {
@@ -638,38 +696,41 @@ public class QuickTest implements UCD_Types {
         }
         // legit truncation point has - after, and two letters before
         do {
-            if (tag.charAt(limit) == '-' && tag.charAt(limit-1) != '-' && tag.charAt(limit-2) != '-') {
+            if (tag.charAt(limit) == '-'
+                    && tag.charAt(limit - 1) != '-'
+                    && tag.charAt(limit - 2) != '-') {
                 break;
             }
         } while (--limit > 2);
-        return tag.substring(0,limit);
+        return tag.substring(0, limit);
     }
 
     static final void test2() {
 
         final UnicodeSet format = new UnicodeSet("[:Cf:]");
         /*
- [4]     NameStartChar := ":" | [A-Z] | "_" | [a-z] |
-            [#xC0-#x2FF] | [#x370-#x37D] | [#x37F-#x1FFF] |
-            [#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] |
-            [#x3001-#xD7FF] | [#xF900-#xEFFFF]
- [4a]    NameChar := NameStartChar | "-" | "." | [0-9] | #xB7 |
-            [#x0300-#x036F] | [#x203F-#x2040]
-         */
-        final UnicodeSet nameStartChar = new UnicodeSet("[\\: A-Z \\_ a-z"
-                + "\\u00c0-\\u02FF \\u0370-\\u037D \\u037F-\\u1FFF"
-                + "\\u200C-\\u200D \\u2070-\\u218F \\u2C00-\\u2FEF"
-                + "\\u3001-\\uD7FF \\uF900-\\U000EFFFF]");
+        [4]     NameStartChar := ":" | [A-Z] | "_" | [a-z] |
+                   [#xC0-#x2FF] | [#x370-#x37D] | [#x37F-#x1FFF] |
+                   [#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] |
+                   [#x3001-#xD7FF] | [#xF900-#xEFFFF]
+        [4a]    NameChar := NameStartChar | "-" | "." | [0-9] | #xB7 |
+                   [#x0300-#x036F] | [#x203F-#x2040]
+                */
+        final UnicodeSet nameStartChar =
+                new UnicodeSet(
+                        "[\\: A-Z \\_ a-z"
+                                + "\\u00c0-\\u02FF \\u0370-\\u037D \\u037F-\\u1FFF"
+                                + "\\u200C-\\u200D \\u2070-\\u218F \\u2C00-\\u2FEF"
+                                + "\\u3001-\\uD7FF \\uF900-\\U000EFFFF]");
 
-        final UnicodeSet nameChar = new UnicodeSet("[\\- \\. 0-9 \\u00B7 "
-                + "\\u0300-\\u036F \\u203F-\\u2040]")
-        .addAll(nameStartChar);
+        final UnicodeSet nameChar =
+                new UnicodeSet("[\\- \\. 0-9 \\u00B7 " + "\\u0300-\\u036F \\u203F-\\u2040]")
+                        .addAll(nameStartChar);
 
         final UnicodeSet nameAll = new UnicodeSet(nameChar).addAll(nameStartChar);
 
         showSet("NameStartChar", nameStartChar);
         showDiffs("NameChar", nameChar, "NameStartChar", nameStartChar);
-
 
         final UnicodeSet ID_Start = new UnicodeSet("[:ID_Start:]");
         final UnicodeSet ID_Continue = new UnicodeSet("[:ID_Continue:]").removeAll(format);
@@ -679,9 +740,10 @@ public class QuickTest implements UCD_Types {
         showDiffs("ID_All", ID_All, "nameAll", nameAll);
         showDiffs("ID_Start", ID_Start, "nameStartChar", nameStartChar);
 
-
-        final UnicodeSet defaultIgnorable = UnifiedBinaryProperty.make(DERIVED | DefaultIgnorable).getSet();
-        final UnicodeSet whitespace = UnifiedBinaryProperty.make(BINARY_PROPERTIES | White_space).getSet();
+        final UnicodeSet defaultIgnorable =
+                UnifiedBinaryProperty.make(DERIVED | DefaultIgnorable).getSet();
+        final UnicodeSet whitespace =
+                UnifiedBinaryProperty.make(BINARY_PROPERTIES | White_space).getSet();
 
         final UnicodeSet notNFKC = new UnicodeSet();
         final UnicodeSet privateUse = new UnicodeSet();
@@ -708,17 +770,20 @@ public class QuickTest implements UCD_Types {
         showSet("Whitespace in NameChar", new UnicodeSet(nameChar).retainAll(whitespace));
         showSet("Whitespace not in NameChar", new UnicodeSet(whitespace).removeAll(nameChar));
 
-
         showSet("Noncharacters in NameChar", new UnicodeSet(noncharacter).retainAll(noncharacter));
-        showSet("Noncharacters outside of NameChar", new UnicodeSet(noncharacter).removeAll(nameChar));
+        showSet(
+                "Noncharacters outside of NameChar",
+                new UnicodeSet(noncharacter).removeAll(nameChar));
 
         showSet("Format in NameChar", new UnicodeSet(nameChar).retainAll(format));
-        showSet("Other Default_Ignorables in NameChar", new UnicodeSet(defaultIgnorable).removeAll(format).retainAll(nameChar));
+        showSet(
+                "Other Default_Ignorables in NameChar",
+                new UnicodeSet(defaultIgnorable).removeAll(format).retainAll(nameChar));
         showSet("PrivateUse in NameChar", new UnicodeSet(defaultIgnorable).retainAll(privateUse));
 
         final UnicodeSet CID_Start = new UnicodeSet("[:ID_Start:]").removeAll(notNFKC);
-        final UnicodeSet CID_Continue = new UnicodeSet("[:ID_Continue:]")
-        .removeAll(notNFKC).removeAll(format);
+        final UnicodeSet CID_Continue =
+                new UnicodeSet("[:ID_Continue:]").removeAll(notNFKC).removeAll(format);
 
         final UnicodeSet CID_Continue_extras = new UnicodeSet(CID_Continue).removeAll(CID_Start);
 
@@ -742,15 +807,20 @@ public class QuickTest implements UCD_Types {
         System.out.println("\tCount:" + set1.size());
         System.out.println("\tSet:" + set1.toPattern(true));
         System.out.println("\tDetails:");
-        //Utility.showSetNames("", set1, false, Default.ucd());
+        // Utility.showSetNames("", set1, false, Default.ucd());
     }
 
-
     private static void checkPrettyPrint() {
-        //System.out.println("Test: " + fixTransRule("\\u0061"));
+        // System.out.println("Test: " + fixTransRule("\\u0061"));
         final UnicodeSet s = new UnicodeSet("[^[:script=common:][:script=inherited:]]");
         final UnicodeSet quoting = new UnicodeSet("[[:Mn:][:Me:]]");
-        final String ss = new UnicodeSetPrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY)).setToQuote(quoting).format(s);
+        final String ss =
+                new UnicodeSetPrettyPrinter()
+                        .setOrdering(Collator.getInstance(ULocale.ROOT))
+                        .setSpaceComparator(
+                                Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY))
+                        .setToQuote(quoting)
+                        .format(s);
         System.out.println("test: " + ss);
     }
 
@@ -810,71 +880,82 @@ public class QuickTest implements UCD_Types {
         String text = "\ufb03";
 
         final String BASE_RULES =
-                "'<' > '&lt;' ;" +
-                        "'<' < '&'[lL][Tt]';' ;" +
-                        "'&' > '&amp;' ;" +
-                        "'&' < '&'[aA][mM][pP]';' ;" +
-                        "'>' < '&'[gG][tT]';' ;" +
-                        "'\"' < '&'[qQ][uU][oO][tT]';' ; " +
-                        "'' < '&'[aA][pP][oO][sS]';' ; ";
+                "'<' > '&lt;' ;"
+                        + "'<' < '&'[lL][Tt]';' ;"
+                        + "'&' > '&amp;' ;"
+                        + "'&' < '&'[aA][mM][pP]';' ;"
+                        + "'>' < '&'[gG][tT]';' ;"
+                        + "'\"' < '&'[qQ][uU][oO][tT]';' ; "
+                        + "'' < '&'[aA][pP][oO][sS]';' ; ";
 
-        final String CONTENT_RULES =
-                "'>' > '&gt;' ;";
+        final String CONTENT_RULES = "'>' > '&gt;' ;";
 
-        final String HTML_RULES = BASE_RULES + CONTENT_RULES +
-                "'\"' > '&quot;' ; ";
+        final String HTML_RULES = BASE_RULES + CONTENT_RULES + "'\"' > '&quot;' ; ";
 
-        final String HTML_RULES_CONTROLS = HTML_RULES +
-                "([[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:][\\u0080-\\U0010FFFF]-[\\u0020]]) > &hex/xml($1) ; ";
+        final String HTML_RULES_CONTROLS =
+                HTML_RULES
+                        + "([[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:][\\u0080-\\U0010FFFF]-[\\u0020]]) > &hex/xml($1) ; ";
 
+        final Transliterator toHTML =
+                Transliterator.createFromRules(
+                        "any-xml", HTML_RULES_CONTROLS, Transliterator.FORWARD);
 
-        final Transliterator toHTML = Transliterator.createFromRules(
-                "any-xml", HTML_RULES_CONTROLS, Transliterator.FORWARD);
-
-        final int[][] ranges = {{UProperty.BINARY_START, UProperty.BINARY_LIMIT},
-                {UProperty.INT_START, UProperty.INT_LIMIT},
-                {UProperty.DOUBLE_START, UProperty.DOUBLE_START},
-                {UProperty.STRING_START, UProperty.STRING_LIMIT},
+        final int[][] ranges = {
+            {UProperty.BINARY_START, UProperty.BINARY_LIMIT},
+            {UProperty.INT_START, UProperty.INT_LIMIT},
+            {UProperty.DOUBLE_START, UProperty.DOUBLE_START},
+            {UProperty.STRING_START, UProperty.STRING_LIMIT},
         };
         final Collator col = Collator.getInstance(ULocale.ROOT);
-        ((RuleBasedCollator)col).setNumericCollation(true);
+        ((RuleBasedCollator) col).setNumericCollation(true);
         final Map alpha = new TreeMap(col);
 
         final String HTML_INPUT = "::hex-any/xml10; ::hex-any/unicode; ::hex-any/java;";
-        final Transliterator fromHTML = Transliterator.createFromRules(
-                "any-xml", HTML_INPUT, Transliterator.FORWARD);
+        final Transliterator fromHTML =
+                Transliterator.createFromRules("any-xml", HTML_INPUT, Transliterator.FORWARD);
 
         text = fromHTML.transliterate(text);
 
         final int cp = UTF16.charAt(text, 0);
-        text = UTF16.valueOf(text,0);
+        text = UTF16.valueOf(text, 0);
         for (int range = 0; range < ranges.length; ++range) {
             for (int propIndex = ranges[range][0]; propIndex < ranges[range][1]; ++propIndex) {
-                final String propName = UCharacter.getPropertyName(propIndex, UProperty.NameChoice.LONG);
+                final String propName =
+                        UCharacter.getPropertyName(propIndex, UProperty.NameChoice.LONG);
                 String propValue = null;
                 int ival;
                 switch (range) {
-                default: propValue = "???"; break;
-                case 0: ival = UCharacter.getIntPropertyValue(cp, propIndex);
-                if (ival != 0) {
-                    propValue = UCD_Names.YES;
-                }
-                break;
-                case 2: propValue = String.valueOf(UCharacter.getNumericValue(cp)); break;
-                case 3:
-                    propValue = UCharacter.getStringPropertyValue(propIndex, cp, UProperty.NameChoice.LONG);
-                    if (text.equals(propValue)) {
-                        propValue = null;
-                    }
-                    break;
-                case 1: ival = UCharacter.getIntPropertyValue(cp, propIndex);
-                if (ival != 0) {
-                    propValue = UCharacter.getPropertyValueName(propIndex, ival, UProperty.NameChoice.LONG);
-                    if (propValue == null) {
-                        propValue = String.valueOf(ival);
-                    }
-                }
-                break;
+                    default:
+                        propValue = "???";
+                        break;
+                    case 0:
+                        ival = UCharacter.getIntPropertyValue(cp, propIndex);
+                        if (ival != 0) {
+                            propValue = UCD_Names.YES;
+                        }
+                        break;
+                    case 2:
+                        propValue = String.valueOf(UCharacter.getNumericValue(cp));
+                        break;
+                    case 3:
+                        propValue =
+                                UCharacter.getStringPropertyValue(
+                                        propIndex, cp, UProperty.NameChoice.LONG);
+                        if (text.equals(propValue)) {
+                            propValue = null;
+                        }
+                        break;
+                    case 1:
+                        ival = UCharacter.getIntPropertyValue(cp, propIndex);
+                        if (ival != 0) {
+                            propValue =
+                                    UCharacter.getPropertyValueName(
+                                            propIndex, ival, UProperty.NameChoice.LONG);
+                            if (propValue == null) {
+                                propValue = String.valueOf(ival);
+                            }
+                        }
+                        break;
                 }
                 if (propValue != null) {
                     alpha.put(propName, propValue);
@@ -882,31 +963,33 @@ public class QuickTest implements UCD_Types {
             }
         }
         String x;
-        final String upper = x = UCharacter.toUpperCase(ULocale.ENGLISH,text);
+        final String upper = x = UCharacter.toUpperCase(ULocale.ENGLISH, text);
         if (!text.equals(x)) {
             alpha.put("Uppercase", x);
         }
-        final String lower = x = UCharacter.toLowerCase(ULocale.ENGLISH,text);
+        final String lower = x = UCharacter.toLowerCase(ULocale.ENGLISH, text);
         if (!text.equals(x)) {
             alpha.put("Lowercase", x);
         }
-        final String title = x = UCharacter.toTitleCase(ULocale.ENGLISH,text,null);
+        final String title = x = UCharacter.toTitleCase(ULocale.ENGLISH, text, null);
         if (!text.equals(x)) {
             alpha.put("Titlecase", x);
         }
-        final String nfc = x = com.ibm.icu.text.Normalizer.normalize(text,com.ibm.icu.text.Normalizer.NFC);
+        final String nfc =
+                x = com.ibm.icu.text.Normalizer.normalize(text, com.ibm.icu.text.Normalizer.NFC);
         if (!text.equals(x)) {
             alpha.put("NFC", x);
         }
-        final String nfd = x = com.ibm.icu.text.Normalizer.normalize(text,com.ibm.icu.text.Normalizer.NFD);
+        final String nfd =
+                x = com.ibm.icu.text.Normalizer.normalize(text, com.ibm.icu.text.Normalizer.NFD);
         if (!text.equals(x)) {
             alpha.put("NFD", x);
         }
-        x = com.ibm.icu.text.Normalizer.normalize(text,com.ibm.icu.text.Normalizer.NFKD);
+        x = com.ibm.icu.text.Normalizer.normalize(text, com.ibm.icu.text.Normalizer.NFKD);
         if (!text.equals(x)) {
             alpha.put("NFKD", x);
         }
-        x = com.ibm.icu.text.Normalizer.normalize(text,com.ibm.icu.text.Normalizer.NFKC);
+        x = com.ibm.icu.text.Normalizer.normalize(text, com.ibm.icu.text.Normalizer.NFKC);
         if (!text.equals(x)) {
             alpha.put("NFKC", x);
         }
@@ -946,18 +1029,36 @@ public class QuickTest implements UCD_Types {
         }
 
         out.println("<table>");
-        out.println("<tr><td><b>" + "Character" + "</b></td><td><b>" + toHTML.transliterate(text) + "</b></td></tr>");
-        out.println("<tr><td><b>" + "Code_Point" + "</b></td><td><b>" + com.ibm.icu.impl.Utility.hex(cp,4) + "</b></td></tr>");
-        out.println("<tr><td><b>" + "Name" + "</b></td><td><b>" + toHTML.transliterate((String)alpha.get("Name")) + "</b></td></tr>");
+        out.println(
+                "<tr><td><b>"
+                        + "Character"
+                        + "</b></td><td><b>"
+                        + toHTML.transliterate(text)
+                        + "</b></td></tr>");
+        out.println(
+                "<tr><td><b>"
+                        + "Code_Point"
+                        + "</b></td><td><b>"
+                        + com.ibm.icu.impl.Utility.hex(cp, 4)
+                        + "</b></td></tr>");
+        out.println(
+                "<tr><td><b>"
+                        + "Name"
+                        + "</b></td><td><b>"
+                        + toHTML.transliterate((String) alpha.get("Name"))
+                        + "</b></td></tr>");
         alpha.remove("Name");
-        for (final Iterator it = alpha.keySet().iterator(); it.hasNext();) {
+        for (final Iterator it = alpha.keySet().iterator(); it.hasNext(); ) {
             final String propName = (String) it.next();
             final String propValue = (String) alpha.get(propName);
-            out.println("<tr><td>" + propName + "</td><td>" + toHTML.transliterate(propValue) + "</td></tr>");
+            out.println(
+                    "<tr><td>"
+                            + propName
+                            + "</td><td>"
+                            + toHTML.transliterate(propValue)
+                            + "</td></tr>");
         }
         out.println("</table>");
-
-
     }
 
     private static void checkCase() {
@@ -987,7 +1088,7 @@ public class QuickTest implements UCD_Types {
                 hasTo.add(xx);
             }
 
-            xx = UCharacter.toTitleCase(si,null);
+            xx = UCharacter.toTitleCase(si, null);
             if (si.equals(xx)) {
                 isTitle.add(i);
             } else {
@@ -996,7 +1097,11 @@ public class QuickTest implements UCD_Types {
             }
         }
 
-        final UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
+        final UnicodeSetPrettyPrinter pp =
+                new UnicodeSetPrettyPrinter()
+                        .setOrdering(Collator.getInstance(ULocale.ROOT))
+                        .setSpaceComparator(
+                                Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
 
         showDifferences(pp, "hasFrom", hasFrom, "hasTo", hasTo, "xxx", new UnicodeSet());
 
@@ -1022,32 +1127,48 @@ public class QuickTest implements UCD_Types {
 
         final UnicodeSet LowercaseProperty = new UnicodeSet("[:Lowercase:]");
         final UnicodeSet LowercaseCategory = new UnicodeSet("[:Lowercase_Letter:]");
-        //System.out.println(pp.toPattern(isLower));
+        // System.out.println(pp.toPattern(isLower));
 
-        showDifferences(pp, "Lowercase", LowercaseProperty,
-                "Functionally Lowercase", isLower,
-                "Lowercase_Letter", LowercaseCategory);
+        showDifferences(
+                pp,
+                "Lowercase",
+                LowercaseProperty,
+                "Functionally Lowercase",
+                isLower,
+                "Lowercase_Letter",
+                LowercaseCategory);
 
         final UnicodeSet TitlecaseProperty = new UnicodeSet();
         final UnicodeSet TitlecaseCategory = new UnicodeSet("[:Titlecase_Letter:]");
 
-        showDifferences(pp, "Titlecase", TitlecaseProperty,
-                "Functionally Titlecase", isTitle,
-                "Titlecase_Letter", TitlecaseCategory);
+        showDifferences(
+                pp,
+                "Titlecase",
+                TitlecaseProperty,
+                "Functionally Titlecase",
+                isTitle,
+                "Titlecase_Letter",
+                TitlecaseCategory);
 
         final UnicodeSet UppercaseProperty = new UnicodeSet("[:Uppercase:]");
         final UnicodeSet UppercaseCategory = new UnicodeSet("[:Uppercase_Letter:]");
 
-        showDifferences(pp, "Uppercase", UppercaseProperty,
-                "Functionally Uppercase", new UnicodeSet(isUpper).addAll(upperAndTitle),
-                "Uppercase_Letter", UppercaseCategory);
-
+        showDifferences(
+                pp,
+                "Uppercase",
+                UppercaseProperty,
+                "Functionally Uppercase",
+                new UnicodeSet(isUpper).addAll(upperAndTitle),
+                "Uppercase_Letter",
+                UppercaseCategory);
 
         //        UnicodeMap compare = new UnicodeMap();
         //        compare.putAll(isLower,"isLowercase&isCased");
         //
-        //        compare.composeWith(new UnicodeMap().putAll(LowercaseProperty,"Lowercase"), new MyComposer());
-        //        compare.composeWith(new UnicodeMap().putAll(LowercaseProperty,"Lowercase_Letter"), new MyComposer());
+        //        compare.composeWith(new UnicodeMap().putAll(LowercaseProperty,"Lowercase"), new
+        // MyComposer());
+        //        compare.composeWith(new UnicodeMap().putAll(LowercaseProperty,"Lowercase_Letter"),
+        // new MyComposer());
         //        for (Iterator it = compare.getAvailableValues().iterator(); it.hasNext();) {
         //            String value = (String) it.next();
         //            UnicodeSet chars = compare.getSet(value);
@@ -1056,10 +1177,14 @@ public class QuickTest implements UCD_Types {
         //        }
     }
 
-    private static void showDifferences(UnicodeSetPrettyPrinter pp,
-            String lowercaseTitle, UnicodeSet LowercaseProperty,
-            String funcLowerTitle, UnicodeSet isLower,
-            String lowercaseCatTitle, UnicodeSet LowercaseCategory) {
+    private static void showDifferences(
+            UnicodeSetPrettyPrinter pp,
+            String lowercaseTitle,
+            UnicodeSet LowercaseProperty,
+            String funcLowerTitle,
+            UnicodeSet isLower,
+            String lowercaseCatTitle,
+            UnicodeSet LowercaseCategory) {
         System.out.println("Getting Values3");
         final UnicodeSet[] categories = new UnicodeSet[8];
         for (int i = 0; i < categories.length; ++i) {
@@ -1111,7 +1236,6 @@ public class QuickTest implements UCD_Types {
             }
             return a + " & " + b;
         }
-
     }
 
     static Counter bufferTypes = new Counter();
@@ -1122,19 +1246,25 @@ public class QuickTest implements UCD_Types {
         int medials;
         int finals;
         int sample;
+
         @Override
         public boolean equals(Object other) {
-            final BufferData that = (BufferData)other;
-            return starterIsZero == that.starterIsZero && initials == that.initials && medials == that.medials && finals == that.finals;
+            final BufferData that = (BufferData) other;
+            return starterIsZero == that.starterIsZero
+                    && initials == that.initials
+                    && medials == that.medials
+                    && finals == that.finals;
         }
+
         @Override
         public int hashCode() {
-            return ((starterIsZero * 37 + initials)*37 + medials)*37 + finals;
+            return ((starterIsZero * 37 + initials) * 37 + medials) * 37 + finals;
         }
+
         public BufferData set(int codepoint) {
             final String s = Default.nfkd().normalize(codepoint);
             int cp;
-            starterIsZero = (byte)(UCharacter.getCombiningClass(codepoint) == 0 ? 0 : 1);
+            starterIsZero = (byte) (UCharacter.getCombiningClass(codepoint) == 0 ? 0 : 1);
             boolean isInitial = true;
             for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
                 cp = UTF16.charAt(s, i);
@@ -1159,32 +1289,67 @@ public class QuickTest implements UCD_Types {
                 System.out.println("WARNING: BAD CHARACTER");
                 cp = sample;
                 int ccc = UCharacter.getCombiningClass(cp);
-                System.out.println("U+" +  Utility.hex(cp) + "\t" + UCharacter.getName(cp) + " (ccc=" + ccc + ")");
+                System.out.println(
+                        "U+"
+                                + Utility.hex(cp)
+                                + "\t"
+                                + UCharacter.getName(cp)
+                                + " (ccc="
+                                + ccc
+                                + ")");
                 for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
                     cp = UTF16.charAt(s, i);
                     ccc = UCharacter.getCombiningClass(cp);
-                    System.out.println("\tU+" +  Utility.hex(cp) + "\t" + UCharacter.getName(cp) + " (ccc=" + ccc + ")");
+                    System.out.println(
+                            "\tU+"
+                                    + Utility.hex(cp)
+                                    + "\t"
+                                    + UCharacter.getName(cp)
+                                    + " (ccc="
+                                    + ccc
+                                    + ")");
                 }
             }
             return this;
         }
+
         public static String getHeader() {
-            return "Starter?" + "\t" + "initials" + "\t" + "Contains Starter?" + "\t" + "finals" + "\t"  + "sample hex" + "\t" + "sample name";
+            return "Starter?"
+                    + "\t"
+                    + "initials"
+                    + "\t"
+                    + "Contains Starter?"
+                    + "\t"
+                    + "finals"
+                    + "\t"
+                    + "sample hex"
+                    + "\t"
+                    + "sample name";
         }
+
         @Override
         public String toString() {
-            final String result = (starterIsZero == 0 ? "Y" : "") + "\t" + initials + "\t" + (medials != 0 ? "Y" : "") + "\t" + finals + "\t";
+            final String result =
+                    (starterIsZero == 0 ? "Y" : "")
+                            + "\t"
+                            + initials
+                            + "\t"
+                            + (medials != 0 ? "Y" : "")
+                            + "\t"
+                            + finals
+                            + "\t";
             if (sample == 0) {
-                return  result + "-" + "\t" + "all others";
+                return result + "-" + "\t" + "all others";
             }
-            return result  + Utility.hex(sample) + "\t" + UCharacter.getName(sample);
+            return result + Utility.hex(sample) + "\t" + UCharacter.getName(sample);
         }
     }
+
     static class BufferDataComparator implements Comparator {
         @Override
         public int compare(Object arg0, Object arg1) {
-            final BufferData a0 = (BufferData)arg0;
-            final BufferData a1 = (BufferData)arg1;
+            final BufferData a0 = (BufferData) arg0;
+            final BufferData a1 = (BufferData) arg1;
             int result;
             if (0 != (result = a0.starterIsZero - a1.starterIsZero)) {
                 return result;
@@ -1201,27 +1366,28 @@ public class QuickTest implements UCD_Types {
             return 0;
         }
     }
+
     private static void showLeadingTrailingNonStarters() {
         final BufferData non = new BufferData().set(0);
         final Tabber tabber = new Tabber.HTMLTabber();
         for (int i = 0; i <= 0x10ffff; ++i) {
             final int type = Default.ucd().getCategory(i);
-            if (type == UCD_Types.UNASSIGNED || type == UCD_Types.PRIVATE_USE || type == UCD_Types.SURROGATE) {
-                bufferTypes.add(non,1);
+            if (type == UCD_Types.UNASSIGNED
+                    || type == UCD_Types.PRIVATE_USE
+                    || type == UCD_Types.SURROGATE) {
+                bufferTypes.add(non, 1);
                 continue;
             }
-            bufferTypes.add(new BufferData().set(i),1);
+            bufferTypes.add(new BufferData().set(i), 1);
         }
         final TreeSet sorted = new TreeSet(new BufferDataComparator());
         final NumberFormat nf = NumberFormat.getInstance();
         sorted.addAll(bufferTypes.keySet());
         System.out.println(tabber.process("total\t" + BufferData.getHeader()));
-        for (final Iterator it = sorted.iterator(); it.hasNext();) {
+        for (final Iterator it = sorted.iterator(); it.hasNext(); ) {
             final Object key = it.next();
             final Object value = bufferTypes.getCount(key);
             System.out.println(tabber.process(nf.format(value) + "\t" + key));
         }
     }
-
-
 }

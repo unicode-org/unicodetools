@@ -1,14 +1,12 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/FileLineIterator.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/utility/FileLineIterator.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.utility;
 
 import java.io.BufferedReader;
@@ -16,16 +14,16 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Opens a file, and iterates through the lines in the file.
- * Options allow trimming and comment handling, and splitting
+ * Opens a file, and iterates through the lines in the file. Options allow trimming and comment
+ * handling, and splitting
  */
 public class FileLineIterator {
-    static public final char NOTCHAR = '\uFFFF';
+    public static final char NOTCHAR = '\uFFFF';
 
     // public writable
     public boolean doCounter = true;
     public int lineLimit = Integer.MAX_VALUE;
-    public char commentChar = '#';  // NOTCHAR if no comments
+    public char commentChar = '#'; // NOTCHAR if no comments
     public boolean showFilename = true;
 
     // public readable
@@ -36,9 +34,7 @@ public class FileLineIterator {
     private BufferedReader br = null;
     private Utility.Encoding encoding = Utility.UTF8;
 
-    /**
-     * Open the file for reading. If useGenDir is set, use the normal generation directory
-     */
+    /** Open the file for reading. If useGenDir is set, use the normal generation directory */
     public void open(String filename, Utility.Encoding encoding) throws IOException {
         if (showFilename) {
             Utility.fixDot();
@@ -49,7 +45,8 @@ public class FileLineIterator {
     }
 
     /**
-     * Fetch a non-zero-length line from the file, stripping comments & using counter, according to settings.
+     * Fetch a non-zero-length line from the file, stripping comments & using counter, according to
+     * settings.
      */
     public String read() throws IOException {
         while (true) {
@@ -65,7 +62,10 @@ public class FileLineIterator {
             }
 
             // drop BOM
-            if (encoding == Utility.UTF8 && counter == 0 && cleanedLine.length() > 0 && cleanedLine.charAt(0) == 0xFEFF) {
+            if (encoding == Utility.UTF8
+                    && counter == 0
+                    && cleanedLine.length() > 0
+                    && cleanedLine.charAt(0) == 0xFEFF) {
                 cleanedLine = cleanedLine.substring(1);
             }
 

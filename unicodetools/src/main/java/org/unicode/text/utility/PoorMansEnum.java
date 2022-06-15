@@ -1,12 +1,11 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/PoorMansEnum.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/utility/PoorMansEnum.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
 
 /* Goal for enum is:
@@ -39,11 +38,9 @@ public class PoorMansEnum {
 
     // for subclassers
 
-    protected PoorMansEnum() {
-    }
+    protected PoorMansEnum() {}
 
-    /** Utility for subclasses
-     */
+    /** Utility for subclasses */
     protected static class EnumStore {
         private final List int2Id = new ArrayList();
         private final Map string2Id = new HashMap();

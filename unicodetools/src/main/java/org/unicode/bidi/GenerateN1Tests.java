@@ -6,15 +6,23 @@ import java.util.EnumSet;
 import java.util.List;
 
 public class GenerateN1Tests {
-    enum Sample {AL("\u0627\u062F\u0630\u0631"), R("\u05D0\u05D1\u05d2\u05d3"), L("abcd"), AN("\u0660\u0661\u0662\u0663"), EN("6789"), N("!&?@");
-    static EnumSet<Sample> STRONG = EnumSet.of(Sample.R, Sample.AL, Sample.L);
-    static EnumSet<Sample> NUMERIC = EnumSet.of(Sample.AN, Sample.EN);
-    private final String[] str = new String[2];
-    Sample(String instr) {
-        str[0] = instr.substring(0,2);
-        str[1] = instr.substring(2);
+    enum Sample {
+        AL("\u0627\u062F\u0630\u0631"),
+        R("\u05D0\u05D1\u05d2\u05d3"),
+        L("abcd"),
+        AN("\u0660\u0661\u0662\u0663"),
+        EN("6789"),
+        N("!&?@");
+        static EnumSet<Sample> STRONG = EnumSet.of(Sample.R, Sample.AL, Sample.L);
+        static EnumSet<Sample> NUMERIC = EnumSet.of(Sample.AN, Sample.EN);
+        private final String[] str = new String[2];
+
+        Sample(String instr) {
+            str[0] = instr.substring(0, 2);
+            str[1] = instr.substring(2);
+        }
     }
-    }
+
     static class SampleEnumerator {
         private final List<Sample> items = new ArrayList<Sample>();
         private final List<Sample> readOnlyItems = Collections.unmodifiableList(items);
@@ -25,9 +33,12 @@ public class GenerateN1Tests {
         }
 
         boolean next() {
-            for (int i = items.size()-1; i >= 0; --i) {
+            for (int i = items.size() - 1; i >= 0; --i) {
                 final Sample oldValue = items.get(i);
-                final Sample newValue = oldValue.ordinal() < Sample.values().length - 1 ? Sample.values()[oldValue.ordinal()+1] : null; // next value
+                final Sample newValue =
+                        oldValue.ordinal() < Sample.values().length - 1
+                                ? Sample.values()[oldValue.ordinal() + 1]
+                                : null; // next value
                 if (newValue != null) {
                     items.set(i, newValue);
                     return true;
@@ -79,9 +90,7 @@ public class GenerateN1Tests {
             if (samples.getItems().get(2) != Sample.N) {
                 continue;
             }
-            if (samples.getItems().get(1) == Sample.N
-                    || samples.getItems().get(3) == Sample.N
-                    ) {
+            if (samples.getItems().get(1) == Sample.N || samples.getItems().get(3) == Sample.N) {
                 continue;
             }
             if (!Sample.STRONG.contains(samples.getItems().get(0))) {

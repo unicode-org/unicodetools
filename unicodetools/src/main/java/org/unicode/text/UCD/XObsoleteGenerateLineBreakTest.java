@@ -1,22 +1,18 @@
 /**
- *******************************************************************************
- * Copyright (C) 1996-2001, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
- *******************************************************************************
+ * ****************************************************************************** Copyright (C)
+ * 1996-2001, International Business Machines Corporation and * others. All Rights Reserved. *
+ * ******************************************************************************
  *
- * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateLineBreakTest.java,v $
+ * <p>$Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateLineBreakTest.java,v $
  *
- *******************************************************************************
+ * <p>******************************************************************************
  */
-
 package org.unicode.text.UCD;
 
+import com.ibm.icu.text.UTF16;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.text.UTF16;
 
 public class XObsoleteGenerateLineBreakTest implements UCD_Types {
 
@@ -48,28 +44,61 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
         return hNot;
     }
 
-    //============================
+    // ============================
 
     protected String rule;
     protected String fileName = "Line";
 
     // all the other items are supplied in UCD_TYPES
-    static byte LB_L = LB_LIMIT + hL, LB_V = LB_LIMIT + hV, LB_T = LB_LIMIT + hT,
-            LB_LV = LB_LIMIT + hLV, LB_LVT = LB_LIMIT + hLVT, LB_SUP = LB_LIMIT + hLIMIT,
-            LB2_LIMIT = (byte)(LB_SUP + 1);
+    static byte LB_L = LB_LIMIT + hL,
+            LB_V = LB_LIMIT + hV,
+            LB_T = LB_LIMIT + hT,
+            LB_LV = LB_LIMIT + hLV,
+            LB_LVT = LB_LIMIT + hLVT,
+            LB_SUP = LB_LIMIT + hLIMIT,
+            LB2_LIMIT = (byte) (LB_SUP + 1);
 
     String[] samples = new String[100];
 
-
     byte[] TypeOrder = {
-            LB_OP, LB_CL, LB_QU, LB_GL, LB_NS, LB_EX, LB_SY, LB_IS, LB_PR, LB_PO,
-            LB_NU, LB_AL, LB_ID, LB_IN, LB_HY, LB_BA, LB_BB, LB_B2, LB_ZW, LB_CM,
-            // missing from Pair Table
-            LB_SP, LB_BK, LB_CR, LB_LF,
-            // resolved types below
-            LB_CB, LB_AI, LB_SA, LB_SG, LB_XX,
-            // 3 JAMO CLASSES, plus supplementary
-            LB_L, LB_V, LB_T, LB_LV, LB_LVT, LB_SUP
+        LB_OP,
+        LB_CL,
+        LB_QU,
+        LB_GL,
+        LB_NS,
+        LB_EX,
+        LB_SY,
+        LB_IS,
+        LB_PR,
+        LB_PO,
+        LB_NU,
+        LB_AL,
+        LB_ID,
+        LB_IN,
+        LB_HY,
+        LB_BA,
+        LB_BB,
+        LB_B2,
+        LB_ZW,
+        LB_CM,
+        // missing from Pair Table
+        LB_SP,
+        LB_BK,
+        LB_CR,
+        LB_LF,
+        // resolved types below
+        LB_CB,
+        LB_AI,
+        LB_SA,
+        LB_SG,
+        LB_XX,
+        // 3 JAMO CLASSES, plus supplementary
+        LB_L,
+        LB_V,
+        LB_T,
+        LB_LV,
+        LB_LVT,
+        LB_SUP
     };
 
     public static void main(String[] args) throws IOException {
@@ -84,15 +113,16 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
         findSamples();
 
         // test individual cases
-        //printLine(out, samples[LB_ZW], "", samples[LB_CL]);
-        //printLine(out, samples[LB_ZW], " ", samples[LB_CL]);
+        // printLine(out, samples[LB_ZW], "", samples[LB_CL]);
+        // printLine(out, samples[LB_ZW], " ", samples[LB_CL]);
 
-        PrintWriter out = Utility.openPrintWriterGenDir(fileName + "BreakTest.html", Utility.UTF8_WINDOWS);
-        out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'><title>"
-                + fileName + "</title></head>");
+        PrintWriter out =
+                Utility.openPrintWriterGenDir(fileName + "BreakTest.html", Utility.UTF8_WINDOWS);
+        out.println(
+                "<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'><title>"
+                        + fileName
+                        + "</title></head>");
         out.println("<body bgcolor='#FFFFFF'><h3>Current (fixed only for consistency):</h3>");
-
-
 
         generateTable(out, false);
         out.println("<h3>Recommended:</h3>");
@@ -104,7 +134,10 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
         // do main test
 
         for (int k = 0; k < 2; ++k) {
-            out = Utility.openPrintWriterGenDir(fileName + (k == 0 ? "Test_SHORT.txt" : "Test.txt"), Utility.LATIN1_WINDOWS);
+            out =
+                    Utility.openPrintWriterGenDir(
+                            fileName + (k == 0 ? "Test_SHORT.txt" : "Test.txt"),
+                            Utility.LATIN1_WINDOWS);
             int counter = 0;
 
             out.println("# Default " + fileName + " Break Test");
@@ -196,7 +229,7 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
         }
         final byte result = getHangulType(cp);
         if (result != hNot) {
-            return (byte)(result + LB_LIMIT);
+            return (byte) (result + LB_LIMIT);
         }
         return Default.ucd().getLineBreak(cp);
     }
@@ -208,7 +241,6 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
     public int getTableLimit() {
         return LB_SUP; // skip last;
     }
-
 
     public void generateTable(PrintWriter out, boolean recommended) {
         final String width = "width='" + (100 / (getTableLimit() + 1)) + "%'";
@@ -260,7 +292,8 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
         out.println("</table>");
     }
 
-    public String getTableEntry(String before, String after, boolean recommended, String[] ruleOut) {
+    public String getTableEntry(
+            String before, String after, boolean recommended, String[] ruleOut) {
         String t = "_";
         final boolean spaceBreak = isBreak(before + " " + after, before.length() + 1, recommended);
         final String spaceRule = rule;
@@ -309,7 +342,8 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
             string.append(Utility.hex(cp));
             comment.append(Default.ucd().getName(cp) + " (" + getTypeID(cp) + ")");
 
-            status = isBreak(source, offset + UTF16.getCharCount(cp), recommended) ? BREAK : NOBREAK;
+            status =
+                    isBreak(source, offset + UTF16.getCharCount(cp), recommended) ? BREAK : NOBREAK;
             string.append(' ').append(status);
             comment.append(' ').append(status).append(" [").append(rule).append(']');
         }
@@ -328,7 +362,7 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
             if (0xD800 <= i && i <= 0xDFFF) {
                 continue;
             }
-            if(i == 0x1100) {
+            if (i == 0x1100) {
                 System.out.print("here");
             }
             final byte lb = getType(i);
@@ -341,7 +375,6 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
             System.out.println(getTypeID(sample) + ":\t" + Default.ucd().getCodeAndName(sample));
         }
     }
-
 
     public String getTypeID(String s) {
         if (s == null) {
@@ -364,7 +397,7 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
 
     public int findLastNon(String source, int offset, byte notLBType, boolean recommended) {
         int cp;
-        for (int i = offset-1; i >= 0; i -= UTF16.getCharCount(cp)) {
+        for (int i = offset - 1; i >= 0; i -= UTF16.getCharCount(cp)) {
             cp = UTF16.charAt(source, i);
             final byte f = getResolvedType(cp, recommended);
             if (f != notLBType) {
@@ -374,16 +407,23 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
         return -1;
     }
 
-    public byte getResolvedType (int cp, boolean recommended) {
+    public byte getResolvedType(int cp, boolean recommended) {
         // LB 1  Assign a line break category to each character of the input.
-        // Resolve AI, CB, SA, SG, XX into other line break classes depending on criteria outside this algorithm.
+        // Resolve AI, CB, SA, SG, XX into other line break classes depending on criteria outside
+        // this algorithm.
         byte result = getType(cp);
         switch (result) {
-        case LB_AI: result = LB_AI; break;
-        // case LB_CB: result = LB_ID; break;
-        case LB_SA: result = LB_AL; break;
-        // case LB_SG: result = LB_XX; break; Surrogates; will never occur
-        case LB_XX: result = LB_AL; break;
+            case LB_AI:
+                result = LB_AI;
+                break;
+                // case LB_CB: result = LB_ID; break;
+            case LB_SA:
+                result = LB_AL;
+                break;
+                // case LB_SG: result = LB_XX; break; Surrogates; will never occur
+            case LB_XX:
+                result = LB_AL;
+                break;
         }
         if (recommended) {
             if (getHangulType(cp) != hNot) {
@@ -401,7 +441,7 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
         if (offset == 0 || offset == s.length()) {
             return true;
         }
-        if (UTF16.isLeadSurrogate(s.charAt(offset-1))
+        if (UTF16.isLeadSurrogate(s.charAt(offset - 1))
                 && UTF16.isTrailSurrogate(s.charAt(offset))) {
             return false;
         }
@@ -414,41 +454,38 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
     public boolean isBreak(String source, int offset, boolean recommended) {
 
         // LB 1  Assign a line break category to each character of the input.
-        // Resolve AI, CB, SA, SG, XX into other line break classes depending on criteria outside this algorithm.
+        // Resolve AI, CB, SA, SG, XX into other line break classes depending on criteria outside
+        // this algorithm.
         // this is taken care of in the getResolvedType function
 
         // LB 2a  Never break at the start of text
 
-        rule="2a";
+        rule = "2a";
         if (offset <= 0) {
             return false;
         }
 
         // LB 2b  Always break at the end of text
 
-        rule="2b";
+        rule = "2b";
         if (offset >= source.length()) {
             return true;
         }
-
 
         // UTF-16: never break in the middle of a code point
         if (!onCodepointBoundary(source, offset)) {
             return false;
         }
 
-
         // now get the character before and after, and their types
 
-
-        final int cpBefore = UTF16.charAt(source, offset-1);
+        final int cpBefore = UTF16.charAt(source, offset - 1);
         final int cpAfter = UTF16.charAt(source, offset);
 
         byte before = getResolvedType(cpBefore, recommended);
         final byte after = getResolvedType(cpAfter, recommended);
 
-
-        rule="3a";
+        rule = "3a";
         // Always break after hard line breaks (but never between CR and LF).
         // CR ^ LF
         if (before == LB_CR && after == LB_LF) {
@@ -458,8 +495,8 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
             return true;
         }
 
-        //LB 3b  Don’t break before hard line breaks.
-        rule="3b";
+        // LB 3b  Don’t break before hard line breaks.
+        rule = "3b";
         if (after == LB_BK || after == LB_LF | after == LB_CR) {
             return false;
         }
@@ -468,25 +505,27 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
         // × SP
         // × ZW
 
-        rule="4";
+        rule = "4";
         if (after == LB_SP || after == LB_ZW) {
             return false;
         }
 
         // LB 5 Break after zero-width space.
         // ZW ÷
-        rule="5";
+        rule = "5";
         if (before == LB_ZW) {
             return true;
         }
 
-        // LB 6  Don’t break graphemes (before combining marks, around virama or on sequences of conjoining Jamos.
-        rule="6";
+        // LB 6  Don’t break graphemes (before combining marks, around virama or on sequences of
+        // conjoining Jamos.
+        rule = "6";
         if (after == LB_CM) {
             return false;
         }
 
-        if (before == LB_L && (after == LB_L || after == LB_V || after == LB_LV || after == LB_LVT)) {
+        if (before == LB_L
+                && (after == LB_L || after == LB_V || after == LB_LV || after == LB_LVT)) {
             return false;
         }
 
@@ -509,21 +548,21 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
             }
         }
 
-        // LB 7  In all of the following rules, if a space is the base character for a combining mark,
+        // LB 7  In all of the following rules, if a space is the base character for a combining
+        // mark,
         // the space is changed to type ID. In other words, break before SP CM* in the same cases as
         // one would break before an ID.
-        rule="7";
+        rule = "7";
         if (setBase && before == LB_SP) {
             before = LB_ID;
         }
 
         // LB 8  Don’t break before ‘]’ or ‘!’ or ‘;’ or ‘/’,  even after spaces.
         // × CL, × EX, × IS, × SY
-        rule="8";
+        rule = "8";
         if (after == LB_CL || after == LB_EX || after == LB_SY | after == LB_IS) {
             return false;
         }
-
 
         // find the last non-space character; we will need it
         byte lastNonSpace = before;
@@ -536,47 +575,47 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
 
         // LB 9  Don’t break after ‘[’, even after spaces.
         // OP SP* ×
-        rule="9";
+        rule = "9";
         if (lastNonSpace == LB_OP) {
             return false;
         }
 
         // LB 10  Don’t break within ‘”[’, , even with intervening spaces.
         // QU SP* × OP
-        rule="10";
+        rule = "10";
         if (lastNonSpace == LB_QU && after == LB_OP) {
             return false;
         }
 
         // LB 11  Don’t break within ‘]h’, even with intervening spaces.
         // CL SP* × NS
-        rule="11";
+        rule = "11";
         if (lastNonSpace == LB_CL && after == LB_NS) {
             return false;
         }
 
         // LB 11a  Don’t break within ‘——’, even with intervening spaces.
         // B2 × B2
-        rule="11a";
+        rule = "11a";
         if (lastNonSpace == LB_B2 && after == LB_B2) {
             return false;
         }
-
 
         if (recommended) {
             // LB 13  Don’t break before or after NBSP or WORD JOINER
             // × GL
             // GL ×
 
-            rule="11b";
+            rule = "11b";
             if (after == LB_GL || before == LB_GL) {
                 return false;
             }
         }
 
-        // [Note: by this time, all of the "X" in the table are accounted for. We can safely break after spaces.]
+        // [Note: by this time, all of the "X" in the table are accounted for. We can safely break
+        // after spaces.]
 
-        rule="12";
+        rule = "12";
         // LB 12  Break after spaces
         // SP ÷
 
@@ -589,13 +628,13 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
             // × GL
             // GL ×
 
-            rule="13";
+            rule = "13";
             if (after == LB_GL || before == LB_GL) {
                 return false;
             }
         }
 
-        rule="14";
+        rule = "14";
         // LB 14  Don’t break before or after ‘”’
         // × QU
         // QU ×
@@ -617,10 +656,9 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
             if (before == LB_CB || after == LB_CB) {
                 return true;
             }
-
         }
 
-        rule="15";
+        rule = "15";
         if (after == LB_NS) {
             return false;
         }
@@ -639,7 +677,7 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
             // HY ÷
             // ÷ BB
 
-            rule="15b";
+            rule = "15b";
             if (before == LB_HY) {
                 return true;
             }
@@ -654,7 +692,7 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
         // IN × IN
         // NU × IN
         // Examples: ’9...’, ‘a...’, ‘H...’
-        rule="16";
+        rule = "16";
         if ((before == LB_NU || before == LB_AL || before == LB_ID) && after == LB_IN) {
             return false;
         }
@@ -671,7 +709,7 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
         // Examples:   $(12.35)    2,1234    (12)¢    12.54¢
         // This is approximated with the following rules. (Some cases already handled above,
         // like ‘9,’, ‘[9’.)
-        rule="17";
+        rule = "17";
         if (before == LB_ID && after == LB_PO) {
             return false;
         }
@@ -696,7 +734,7 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
         // SY × NU
         // Example pairs: ‘$9’, ‘$[’, ‘$-‘, ‘-9’, ‘/9’, ‘99’, ‘,9’,  ‘9%’ ‘]%’
 
-        rule="18";
+        rule = "18";
         if (before == LB_CL && after == LB_PO) {
             return false;
         }
@@ -738,7 +776,7 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
             // HY ÷
             // ÷ BB
 
-            rule="18b";
+            rule = "18b";
             if (before == LB_HY) {
                 return true;
             }
@@ -750,7 +788,7 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
         // LB 19  Don’t break between alphabetics (“at”)
         // AL × AL
 
-        rule="19";
+        rule = "19";
         if (before == LB_AL && after == LB_AL) {
             return false;
         }
@@ -759,18 +797,32 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
         // ALL ÷
         // ÷ ALL
 
-        rule="20";
+        rule = "20";
         return true;
     }
 
     static class GenerateWordBreakTest extends XObsoleteGenerateLineBreakTest {
 
-        static final byte CR = 0, LF = 1, Control = 2, Extend = 3, Link = 4, CGJ = 5, Base = 6, LetterBase = 7, Other = 8,
+        static final byte CR = 0,
+                LF = 1,
+                Control = 2,
+                Extend = 3,
+                Link = 4,
+                CGJ = 5,
+                Base = 6,
+                LetterBase = 7,
+                Other = 8,
                 oLIMIT = 9, // RESET THIS IF LIST ABOVE CHANGES!
-                L = oLIMIT + hL, V = oLIMIT + hV, T = oLIMIT + hT, LV = oLIMIT + hLV, LVT = oLIMIT + hLVT,
+                L = oLIMIT + hL,
+                V = oLIMIT + hV,
+                T = oLIMIT + hT,
+                LV = oLIMIT + hLV,
+                LVT = oLIMIT + hLVT,
                 LIMIT = LVT + 1;
 
-        static final String[] Names = {"CR", "LF", "CTL", "Extend", "Link", "CGJ", "Base", "LetterBase", "Other" };
+        static final String[] Names = {
+            "CR", "LF", "CTL", "Extend", "Link", "CGJ", "Base", "LetterBase", "Other"
+        };
 
         static UCDProperty extendProp = UnifiedBinaryProperty.make(DERIVED | GraphemeExtend);
         static UCDProperty baseProp = UnifiedBinaryProperty.make(DERIVED | GraphemeBase);
@@ -807,7 +859,8 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
         }
 
         @Override
-        public String getTableEntry(String before, String after, boolean recommended, String[] ruleOut) {
+        public String getTableEntry(
+                String before, String after, boolean recommended, String[] ruleOut) {
             final boolean normalBreak = isBreak(before + after, before.length(), recommended);
             ruleOut[0] = rule;
             return normalBreak ? BREAK : NOBREAK;
@@ -843,7 +896,7 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
             // Hangul
             final byte result = getHangulType(cp);
             if (result != hNot) {
-                return (byte)(result + oLIMIT);
+                return (byte) (result + oLIMIT);
             }
 
             // other properties
@@ -855,7 +908,7 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
             if (cat == Cf) {
                 return Extend;
             }
-            if (((1<<cat) & LETTER_MASK) != 0) {
+            if (((1 << cat) & LETTER_MASK) != 0) {
                 return LetterBase;
             }
 
@@ -880,7 +933,7 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
 
         @Override
         public boolean isBreak(String source, int offset, boolean recommended) {
-            rule="1";
+            rule = "1";
             if (offset < 0 || offset > source.length()) {
                 return false;
             }
@@ -900,8 +953,7 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
 
             // now get the character before and after, and their types
 
-
-            final int cpBefore = UTF16.charAt(source, offset-1);
+            final int cpBefore = UTF16.charAt(source, offset - 1);
             final int cpAfter = UTF16.charAt(source, offset);
 
             final byte before = getResolvedType(cpBefore, recommended);
@@ -913,8 +965,12 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
             }
 
             rule = "4";
-            if (before == CR || before == LF || before == Control
-                    || after == Control || after == LF || after == CR) {
+            if (before == CR
+                    || before == LF
+                    || before == Control
+                    || after == Control
+                    || after == LF
+                    || after == CR) {
                 return true;
             }
 
@@ -946,8 +1002,14 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
 
                 // Do not break around a CGJ.
                 rule = "10";
-                if (before == CGJ && (after == Base
-                        || after == LetterBase || after == L || after == V || after == T || after == LV || after == LVT)) {
+                if (before == CGJ
+                        && (after == Base
+                                || after == LetterBase
+                                || after == L
+                                || after == V
+                                || after == T
+                                || after == LV
+                                || after == LVT)) {
                     return false;
                 }
                 rule = "11";
@@ -955,14 +1017,22 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
                     return false;
                 }
 
-                // Do not break between linking characters and letters, or before linking characters. This provides for Indic graphemes, where virama (halant) will link character clusters together.
+                // Do not break between linking characters and letters, or before linking
+                // characters. This provides for Indic graphemes, where virama (halant) will link
+                // character clusters together.
 
                 rule = "12";
-                //Link Extend* × LetterBase  (12)
-                if (after == LetterBase || after == L || after == V || after == T || after == LV || after == LVT) {
+                // Link Extend* × LetterBase  (12)
+                if (after == LetterBase
+                        || after == L
+                        || after == V
+                        || after == T
+                        || after == LV
+                        || after == LVT) {
                     final int backOffset = findLastNon(source, offset, Extend, recommended);
                     if (backOffset >= 0) {
-                        final byte last = getResolvedType(UTF16.charAt(source, backOffset), recommended);
+                        final byte last =
+                                getResolvedType(UTF16.charAt(source, backOffset), recommended);
                         if (last == Link) {
                             return false;
                         }
@@ -978,8 +1048,6 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
             // Otherwise break after all characters.
             rule = "14";
             return true;
-
         }
-
     }
 }

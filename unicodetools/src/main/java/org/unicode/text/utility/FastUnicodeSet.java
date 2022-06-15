@@ -6,10 +6,11 @@ public final class FastUnicodeSet {
     static final int index1Length = 272;
     static final int index2Length = 64;
     /**
-     * Structured as a simple trie. The last level is a long (64 bits). It is accessed by
-     * taking successive parts of the codepoint
+     * Structured as a simple trie. The last level is a long (64 bits). It is accessed by taking
+     * successive parts of the codepoint
      */
     private final long[][] data = new long[272][64];
+
     private int size = 0;
 
     public FastUnicodeSet(UnicodeSet source) {
@@ -36,7 +37,7 @@ public final class FastUnicodeSet {
         index1 >>= 6;
         final int index2 = index1 & 0x3F; // middle 6 bits
         index1 >>= 6; // top 9 bits
-        return 0 != (data[index1][index2] & (1L<<index3));
+        return 0 != (data[index1][index2] & (1L << index3));
     }
 
     public boolean containsAll(FastUnicodeSet other) {
@@ -99,8 +100,8 @@ public final class FastUnicodeSet {
         int index1 = codePoint;
         final int index3 = index1 & 0x3F; // bottom 6 bits
         index1 >>= 6;
-            final int index2 = index1 & 0x3F; // middle 6 bits
-            index1 >>= 6; // top 11 bits
-            data[index1][index2] |= 1L<<index3;
+        final int index2 = index1 & 0x3F; // middle 6 bits
+        index1 >>= 6; // top 11 bits
+        data[index1][index2] |= 1L << index3;
     }
 }
