@@ -1,5 +1,5 @@
 # DerivedLineBreak-15.0.0.txt
-# Date: 2022-07-08, 22:07:42 GMT
+# Date: 2022-07-09, 02:00:32 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -15,6 +15,49 @@
 #  have the value Unknown (XX).
 
 # @missing: 0000..10FFFF; Unknown
+
+# 20A0..20CF Currency_Symbols
+# @missing: 20A0..20CF; Prefix_Numeric
+
+# 3400..4DBF CJK_Unified_Ideographs_Extension_A
+# @missing: 3400..4DBF; Ideographic
+
+# 4E00..9FFF CJK_Unified_Ideographs
+# @missing: 4E00..9FFF; Ideographic
+
+# F900..FAFF CJK_Compatibility_Ideographs
+# @missing: F900..FAFF; Ideographic
+
+# 1F000..1F02F Mahjong_Tiles
+# 1F030..1F09F Domino_Tiles
+# 1F0A0..1F0FF Playing_Cards
+# 1F100..1F1FF Enclosed_Alphanumeric_Supplement
+# 1F200..1F2FF Enclosed_Ideographic_Supplement
+# 1F300..1F5FF Miscellaneous_Symbols_And_Pictographs
+# 1F600..1F64F Emoticons
+# 1F650..1F67F Ornamental_Dingbats
+# 1F680..1F6FF Transport_And_Map_Symbols
+# 1F700..1F77F Alchemical_Symbols
+# 1F780..1F7FF Geometric_Shapes_Extended
+# 1F800..1F8FF Supplemental_Arrows_C
+# 1F900..1F9FF Supplemental_Symbols_And_Pictographs
+# 1FA00..1FA6F Chess_Symbols
+# 1FA70..1FAFF Symbols_And_Pictographs_Extended_A
+# @missing: 1F000..1FAFF; Ideographic
+
+# @missing: 1FC00..1FFFD; Ideographic
+
+# 20000..2A6DF CJK_Unified_Ideographs_Extension_B
+# 2A700..2B73F CJK_Unified_Ideographs_Extension_C
+# 2B740..2B81F CJK_Unified_Ideographs_Extension_D
+# 2B820..2CEAF CJK_Unified_Ideographs_Extension_E
+# 2CEB0..2EBEF CJK_Unified_Ideographs_Extension_F
+# 2F800..2FA1F CJK_Compatibility_Ideographs_Supplement
+# @missing: 20000..2FFFD; Ideographic
+
+# 30000..3134F CJK_Unified_Ideographs_Extension_G
+# 31350..323AF CJK_Unified_Ideographs_Extension_H
+# @missing: 30000..3FFFD; Ideographic
 
 # ================================================
 
@@ -385,7 +428,6 @@ FE13..FE14    ; IS # Po   [2] PRESENTATION FORM FOR VERTICAL COLON..PRESENTATION
 20B7..20BA    ; PR # Sc   [4] SPESMILO SIGN..TURKISH LIRA SIGN
 20BC..20BD    ; PR # Sc   [2] MANAT SIGN..RUBLE SIGN
 20BF          ; PR # Sc       BITCOIN SIGN
-20C1..20CF    ; PR # Cn  [15] <reserved-20C1>..<reserved-20CF>
 2116          ; PR # So       NUMERO SIGN
 2212..2213    ; PR # Sm   [2] MINUS SIGN..MINUS-OR-PLUS SIGN
 FE69          ; PR # Sc       SMALL DOLLAR SIGN
@@ -394,6 +436,7 @@ FFE1          ; PR # Sc       FULLWIDTH POUND SIGN
 FFE5..FFE6    ; PR # Sc   [2] FULLWIDTH YEN SIGN..FULLWIDTH WON SIGN
 1E2FF         ; PR # Sc       WANCHO NGUN SIGN
 
+# The above property value applies to 15 code points not listed here.
 # Total code points: 67
 
 # ================================================
@@ -1669,9 +1712,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 A016..A48C    ; ID # Lo [1143] YI SYLLABLE BIT..YI SYLLABLE YYR
 A490..A4C6    ; ID # So  [55] YI RADICAL QOT..YI RADICAL KE
 F900..FA6D    ; ID # Lo [366] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIBILITY IDEOGRAPH-FA6D
-FA6E..FA6F    ; ID # Cn   [2] <reserved-FA6E>..<reserved-FA6F>
 FA70..FAD9    ; ID # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COMPATIBILITY IDEOGRAPH-FAD9
-FADA..FAFF    ; ID # Cn  [38] <reserved-FADA>..<reserved-FAFF>
 FE30          ; ID # Po       PRESENTATION FORM FOR VERTICAL TWO DOT LEADER
 FE31..FE32    ; ID # Pd   [2] PRESENTATION FORM FOR VERTICAL EM DASH..PRESENTATION FORM FOR VERTICAL EN DASH
 FE33..FE34    ; ID # Pc   [2] PRESENTATION FORM FOR VERTICAL LOW LINE..PRESENTATION FORM FOR VERTICAL WAVY LOW LINE
@@ -1720,31 +1761,19 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 1B000..1B122  ; ID # Lo [291] KATAKANA LETTER ARCHAIC E..KATAKANA LETTER ARCHAIC WU
 1B170..1B2FB  ; ID # Lo [396] NUSHU CHARACTER-1B170..NUSHU CHARACTER-1B2FB
 1F000..1F02B  ; ID # So  [44] MAHJONG TILE EAST WIND..MAHJONG TILE BACK
-1F02C..1F02F  ; ID # Cn   [4] <reserved-1F02C>..<reserved-1F02F>
 1F030..1F093  ; ID # So [100] DOMINO TILE HORIZONTAL BACK..DOMINO TILE VERTICAL-06-06
-1F094..1F09F  ; ID # Cn  [12] <reserved-1F094>..<reserved-1F09F>
 1F0A0..1F0AE  ; ID # So  [15] PLAYING CARD BACK..PLAYING CARD KING OF SPADES
-1F0AF..1F0B0  ; ID # Cn   [2] <reserved-1F0AF>..<reserved-1F0B0>
 1F0B1..1F0BF  ; ID # So  [15] PLAYING CARD ACE OF HEARTS..PLAYING CARD RED JOKER
-1F0C0         ; ID # Cn       <reserved-1F0C0>
 1F0C1..1F0CF  ; ID # So  [15] PLAYING CARD ACE OF DIAMONDS..PLAYING CARD BLACK JOKER
-1F0D0         ; ID # Cn       <reserved-1F0D0>
 1F0D1..1F0F5  ; ID # So  [37] PLAYING CARD ACE OF CLUBS..PLAYING CARD TRUMP-21
-1F0F6..1F0FF  ; ID # Cn  [10] <reserved-1F0F6>..<reserved-1F0FF>
 1F10D..1F10F  ; ID # So   [3] CIRCLED ZERO WITH SLASH..CIRCLED DOLLAR SIGN WITH OVERLAID BACKSLASH
 1F16D..1F16F  ; ID # So   [3] CIRCLED CC..CIRCLED HUMAN FIGURE
 1F1AD         ; ID # So       MASK WORK SYMBOL
-1F1AE..1F1E5  ; ID # Cn  [56] <reserved-1F1AE>..<reserved-1F1E5>
 1F200..1F202  ; ID # So   [3] SQUARE HIRAGANA HOKA..SQUARED KATAKANA SA
-1F203..1F20F  ; ID # Cn  [13] <reserved-1F203>..<reserved-1F20F>
 1F210..1F23B  ; ID # So  [44] SQUARED CJK UNIFIED IDEOGRAPH-624B..SQUARED CJK UNIFIED IDEOGRAPH-914D
-1F23C..1F23F  ; ID # Cn   [4] <reserved-1F23C>..<reserved-1F23F>
 1F240..1F248  ; ID # So   [9] TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-672C..TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-6557
-1F249..1F24F  ; ID # Cn   [7] <reserved-1F249>..<reserved-1F24F>
 1F250..1F251  ; ID # So   [2] CIRCLED IDEOGRAPH ADVANTAGE..CIRCLED IDEOGRAPH ACCEPT
-1F252..1F25F  ; ID # Cn  [14] <reserved-1F252>..<reserved-1F25F>
 1F260..1F265  ; ID # So   [6] ROUNDED SYMBOL FOR FU..ROUNDED SYMBOL FOR CAI
-1F266..1F2FF  ; ID # Cn [154] <reserved-1F266>..<reserved-1F2FF>
 1F300..1F384  ; ID # So [133] CYCLONE..CHRISTMAS TREE
 1F386..1F39B  ; ID # So  [22] FIREWORKS..CONTROL KNOBS
 1F39E..1F3B4  ; ID # So  [23] FILM FRAMES..FLOWER PLAYING CARDS
@@ -1783,27 +1812,14 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 1F6B7..1F6BF  ; ID # So   [9] NO PEDESTRIANS..SHOWER
 1F6C1..1F6CB  ; ID # So  [11] BATHTUB..COUCH AND LAMP
 1F6CD..1F6D7  ; ID # So  [11] SHOPPING BAGS..ELEVATOR
-1F6D8..1F6DB  ; ID # Cn   [4] <reserved-1F6D8>..<reserved-1F6DB>
 1F6DC..1F6EC  ; ID # So  [17] WIRELESS..AIRPLANE ARRIVING
-1F6ED..1F6EF  ; ID # Cn   [3] <reserved-1F6ED>..<reserved-1F6EF>
 1F6F0..1F6FC  ; ID # So  [13] SATELLITE..ROLLER SKATE
-1F6FD..1F6FF  ; ID # Cn   [3] <reserved-1F6FD>..<reserved-1F6FF>
 1F774..1F776  ; ID # So   [3] LOT OF FORTUNE..LUNAR ECLIPSE
-1F777..1F77A  ; ID # Cn   [4] <reserved-1F777>..<reserved-1F77A>
 1F77B..1F77F  ; ID # So   [5] HAUMEA..ORCUS
 1F7D5..1F7D9  ; ID # So   [5] CIRCLED TRIANGLE..NINE POINTED WHITE STAR
-1F7DA..1F7DF  ; ID # Cn   [6] <reserved-1F7DA>..<reserved-1F7DF>
 1F7E0..1F7EB  ; ID # So  [12] LARGE ORANGE CIRCLE..LARGE BROWN SQUARE
-1F7EC..1F7EF  ; ID # Cn   [4] <reserved-1F7EC>..<reserved-1F7EF>
 1F7F0         ; ID # So       HEAVY EQUALS SIGN
-1F7F1..1F7FF  ; ID # Cn  [15] <reserved-1F7F1>..<reserved-1F7FF>
-1F80C..1F80F  ; ID # Cn   [4] <reserved-1F80C>..<reserved-1F80F>
-1F848..1F84F  ; ID # Cn   [8] <reserved-1F848>..<reserved-1F84F>
-1F85A..1F85F  ; ID # Cn   [6] <reserved-1F85A>..<reserved-1F85F>
-1F888..1F88F  ; ID # Cn   [8] <reserved-1F888>..<reserved-1F88F>
-1F8AE..1F8AF  ; ID # Cn   [2] <reserved-1F8AE>..<reserved-1F8AF>
 1F8B0..1F8B1  ; ID # So   [2] ARROW POINTING UPWARDS THEN NORTH WEST..ARROW POINTING RIGHTWARDS THEN CURVING SOUTH WEST
-1F8B2..1F8FF  ; ID # Cn  [78] <reserved-1F8B2>..<reserved-1F8FF>
 1F90D..1F90E  ; ID # So   [2] WHITE HEART..BROWN HEART
 1F910..1F917  ; ID # So   [8] ZIPPER-MOUTH FACE..HUGGING FACE
 1F920..1F925  ; ID # So   [6] FACE WITH COWBOY HAT..LYING FACE
@@ -1816,40 +1832,23 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 1F9BC..1F9CC  ; ID # So  [17] MOTORIZED WHEELCHAIR..TROLL
 1F9D0         ; ID # So       FACE WITH MONOCLE
 1F9DE..1F9FF  ; ID # So  [34] GENIE..NAZAR AMULET
-1FA54..1FA5F  ; ID # Cn  [12] <reserved-1FA54>..<reserved-1FA5F>
 1FA60..1FA6D  ; ID # So  [14] XIANGQI RED GENERAL..XIANGQI BLACK SOLDIER
-1FA6E..1FA6F  ; ID # Cn   [2] <reserved-1FA6E>..<reserved-1FA6F>
 1FA70..1FA7C  ; ID # So  [13] BALLET SHOES..CRUTCH
-1FA7D..1FA7F  ; ID # Cn   [3] <reserved-1FA7D>..<reserved-1FA7F>
 1FA80..1FA88  ; ID # So   [9] YO-YO..FLUTE
-1FA89..1FA8F  ; ID # Cn   [7] <reserved-1FA89>..<reserved-1FA8F>
 1FA90..1FABD  ; ID # So  [46] RINGED PLANET..WING
-1FABE         ; ID # Cn       <reserved-1FABE>
 1FABF..1FAC2  ; ID # So   [4] GOOSE..PEOPLE HUGGING
-1FAC6..1FACD  ; ID # Cn   [8] <reserved-1FAC6>..<reserved-1FACD>
 1FACE..1FADB  ; ID # So  [14] MOOSE..PEA POD
-1FADC..1FADF  ; ID # Cn   [4] <reserved-1FADC>..<reserved-1FADF>
 1FAE0..1FAE8  ; ID # So   [9] MELTING FACE..SHAKING FACE
-1FAE9..1FAEF  ; ID # Cn   [7] <reserved-1FAE9>..<reserved-1FAEF>
-1FAF9..1FAFF  ; ID # Cn   [7] <reserved-1FAF9>..<reserved-1FAFF>
-1FC00..1FFFD  ; ID # Cn [1022] <reserved-1FC00>..<reserved-1FFFD>
 20000..2A6DF  ; ID # Lo [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
-2A6E0..2A6FF  ; ID # Cn  [32] <reserved-2A6E0>..<reserved-2A6FF>
 2A700..2B739  ; ID # Lo [4154] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B739
-2B73A..2B73F  ; ID # Cn   [6] <reserved-2B73A>..<reserved-2B73F>
 2B740..2B81D  ; ID # Lo [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
-2B81E..2B81F  ; ID # Cn   [2] <reserved-2B81E>..<reserved-2B81F>
 2B820..2CEA1  ; ID # Lo [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
-2CEA2..2CEAF  ; ID # Cn  [14] <reserved-2CEA2>..<reserved-2CEAF>
 2CEB0..2EBE0  ; ID # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
-2EBE1..2F7FF  ; ID # Cn [3103] <reserved-2EBE1>..<reserved-2F7FF>
 2F800..2FA1D  ; ID # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
-2FA1E..2FFFD  ; ID # Cn [1504] <reserved-2FA1E>..<reserved-2FFFD>
 30000..3134A  ; ID # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
-3134B..3134F  ; ID # Cn   [5] <reserved-3134B>..<reserved-3134F>
 31350..323AF  ; ID # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
-323B0..3FFFD  ; ID # Cn [56398] <reserved-323B0>..<reserved-3FFFD>
 
+# The above property value applies to 62600 code points not listed here.
 # Total code points: 172465
 
 # ================================================
