@@ -38,6 +38,7 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Bidi_Class_Values;
 import org.unicode.props.UcdPropertyValues.Block_Values;
+import org.unicode.props.UcdPropertyValues.East_Asian_Width_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.MakeUnicodeFiles.Format.PrintStyle;
 import org.unicode.text.utility.ChainException;
@@ -1186,11 +1187,15 @@ public class MakeUnicodeFiles {
         }
 
         UnicodeMap<Bidi_Class_Values> defaultBidiValues = null;
+        UnicodeMap<East_Asian_Width_Values> defaultEaValues = null;
         if (prop.getName().equals("Bidi_Class")) {
             VersionInfo versionInfo = Default.ucdVersionInfo();
             defaultBidiValues =
                     DefaultValues.BidiClass.forVersion(
                             versionInfo, DefaultValues.BidiClass.Option.OMIT_BN);
+        } else if (prop.getName().equals("East_Asian_Width")) {
+            VersionInfo versionInfo = Default.ucdVersionInfo();
+            defaultEaValues = DefaultValues.EastAsianWidth.forVersion(versionInfo);
         }
 
         final String missing = ps.skipUnassigned != null ? ps.skipUnassigned : ps.skipValue;
@@ -1205,6 +1210,9 @@ public class MakeUnicodeFiles {
             if (prop.getName().equals("Bidi_Class")) {
                 Bidi_Class_Values overallDefault = Bidi_Class_Values.forName(missing);
                 writeEnumeratedMissingValues(pw, overallDefault, defaultBidiValues);
+            } else if (prop.getName().equals("East_Asian_Width")) {
+                East_Asian_Width_Values overallDefault = East_Asian_Width_Values.forName(missing);
+                writeEnumeratedMissingValues(pw, overallDefault, defaultEaValues);
             }
         }
         for (final Iterator<String> it = aliases.iterator(); it.hasNext(); ) {
@@ -1254,6 +1262,15 @@ public class MakeUnicodeFiles {
                     // We assume that unassigned code points that have this value
                     // according to the props data also have this value according to the defaults.
                     // Otherwise we would need to intersect defaultBidiValues.keySet(bidiValue)
+                    // with the unassigned set before removing from s.
+                    s.removeAll(unassigned);
+                }
+            } else if (defaultEaValues != null) {
+                East_Asian_Width_Values eaValue = East_Asian_Width_Values.forName(value);
+                if (defaultEaValues.containsValue(eaValue)) {
+                    // We assume that unassigned code points that have this value
+                    // according to the props data also have this value according to the defaults.
+                    // Otherwise we would need to intersect defaultEaValues.keySet(eaValue)
                     // with the unassigned set before removing from s.
                     s.removeAll(unassigned);
                 }

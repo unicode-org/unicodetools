@@ -5,9 +5,26 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 import org.unicode.props.UcdPropertyValues.Bidi_Class_Values;
 import org.unicode.props.UcdPropertyValues.Block_Values;
+import org.unicode.props.UcdPropertyValues.East_Asian_Width_Values;
 
-/** Default property values for some properties and certain ranges other than all of Unicode. */
+/**
+ * Default property values for some properties and certain ranges other than all of Unicode. See
+ * https://www.unicode.org/reports/tr44/#Complex_Default_Values
+ */
 public final class DefaultValues {
+    private static class BuilderBase {
+        int compositeVersion;
+        IndexUnicodeProperties props;
+        UnicodeMap<Block_Values> blocks;
+
+        BuilderBase(VersionInfo version) {
+            compositeVersion =
+                    (version.getMajor() << 16) | (version.getMinor() << 8) | version.getMilli();
+            props = IndexUnicodeProperties.make(version);
+            blocks = props.loadEnum(UcdProperty.Block);
+        }
+    }
+
     public static final class BidiClass {
         private static final Bidi_Class_Values L = Bidi_Class_Values.Left_To_Right;
         private static final Bidi_Class_Values R = Bidi_Class_Values.Right_To_Left;
@@ -20,17 +37,11 @@ public final class DefaultValues {
             OMIT_BN
         };
 
-        private static final class Builder {
-            int compositeVersion;
-            IndexUnicodeProperties props;
-            UnicodeMap<Block_Values> blocks;
+        private static final class Builder extends BuilderBase {
             UnicodeMap<Bidi_Class_Values> bidi = new UnicodeMap<>();
 
             Builder(VersionInfo version) {
-                compositeVersion =
-                        (version.getMajor() << 16) | (version.getMinor() << 8) | version.getMilli();
-                props = IndexUnicodeProperties.make(version);
-                blocks = props.loadEnum(UcdProperty.Block);
+                super(version);
             }
 
             UnicodeMap<Bidi_Class_Values> build(Option option) {
@@ -104,23 +115,96 @@ public final class DefaultValues {
             }
 
             private void addRangeValueIfAtLeast(
-                    int start, int end, int minVersion, Bidi_Class_Values bidiValue) {
+                    int start, int end, int minVersion, Bidi_Class_Values value) {
                 if (compositeVersion >= minVersion) {
-                    bidi.putAll(start, end, bidiValue);
+                    bidi.putAll(start, end, value);
                 }
             }
 
             private void addBlockValueIfAtLeast(
-                    Block_Values blockValue, int minVersion, Bidi_Class_Values bidiValue) {
+                    Block_Values blockValue, int minVersion, Bidi_Class_Values value) {
                 if (compositeVersion >= minVersion) {
                     UnicodeSet block = blocks.keySet(blockValue);
-                    bidi.putAll(block, bidiValue);
+                    bidi.putAll(block, value);
                 }
             }
         }
 
         public static UnicodeMap<Bidi_Class_Values> forVersion(VersionInfo version, Option option) {
             return new Builder(version).build(option);
+        }
+    }
+
+    public static final class EastAsianWidth {
+        private static final East_Asian_Width_Values A = East_Asian_Width_Values.Ambiguous;
+        private static final East_Asian_Width_Values N = East_Asian_Width_Values.Neutral;
+        private static final East_Asian_Width_Values W = East_Asian_Width_Values.Wide;
+
+        private static final class Builder extends BuilderBase {
+            UnicodeMap<East_Asian_Width_Values> ea = new UnicodeMap<>();
+
+            Builder(VersionInfo version) {
+                super(version);
+            }
+
+            UnicodeMap<East_Asian_Width_Values> build() {
+                // Overall default
+                ea.setMissing(N);
+
+                // Unicode 3.0 was the first version to publish UAX #11, effectively create
+                // the East_Asian_Width property, and assign default East_Asian_Width values.
+
+                // https://www.unicode.org/reports/tr44/#Complex_Default_Values
+                // This property defaults to Neutral for most code points, but
+                // defaults to Wide for unassigned code points in blocks associated with CJK
+                // ideographs.
+
+                // https://www.unicode.org/reports/tr11/#Unassigned
+                // All private-use characters are by default classified as Ambiguous...
+                // (except not the noncharacters)
+                //
+                // Omit these, so that private use areas (which are not unassigned gc=Cn)
+                // are listed in data files explicitly.
+                //
+                // addBlockValueIfAtLeast(Block_Values.Private_Use_Area, 0x30000, A);
+                // addRangeValueIfAtLeast(0xF0000, 0xFFFFD, 0x30100, A);
+                // addRangeValueIfAtLeast(0x100000, 0x10FFFD, 0x30100, A);
+
+                // Unassigned code points in ranges intended for CJK ideographs
+                // are classified as Wide. Those ranges are:
+                // - the CJK Unified Ideographs block, 4E00..9FFF
+                // - the CJK Unified Ideographs Extension A block, 3400..4DBF
+                // - the CJK Compatibility Ideographs block, F900..FAFF
+                // - the Supplementary Ideographic Plane, 20000..2FFFF
+                // - the Tertiary Ideographic Plane, 30000..3FFFF
+                // (except not the noncharacters)
+                addBlockValueIfAtLeast(Block_Values.CJK_Unified_Ideographs, 0x50200, W);
+                addBlockValueIfAtLeast(Block_Values.CJK_Unified_Ideographs_Extension_A, 0x50200, W);
+                addBlockValueIfAtLeast(Block_Values.CJK_Compatibility_Ideographs, 0x50200, W);
+                addRangeValueIfAtLeast(0x20000, 0x2FFFD, 0x40000, W);
+                addRangeValueIfAtLeast(0x30000, 0x3FFFD, 0x40000, W);
+
+                return ea;
+            }
+
+            private void addRangeValueIfAtLeast(
+                    int start, int end, int minVersion, East_Asian_Width_Values value) {
+                if (compositeVersion >= minVersion) {
+                    ea.putAll(start, end, value);
+                }
+            }
+
+            private void addBlockValueIfAtLeast(
+                    Block_Values blockValue, int minVersion, East_Asian_Width_Values value) {
+                if (compositeVersion >= minVersion) {
+                    UnicodeSet block = blocks.keySet(blockValue);
+                    ea.putAll(block, value);
+                }
+            }
+        }
+
+        public static UnicodeMap<East_Asian_Width_Values> forVersion(VersionInfo version) {
+            return new Builder(version).build();
         }
     }
 }

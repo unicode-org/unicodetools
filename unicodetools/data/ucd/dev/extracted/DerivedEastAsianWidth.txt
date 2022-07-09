@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-15.0.0.txt
-# Date: 2022-05-25, 20:14:07 GMT
+# Date: 2022-07-08, 23:49:26 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -15,6 +15,27 @@
 #  have the value Neutral (N).
 
 # @missing: 0000..10FFFF; Neutral
+
+# 3400..4DBF CJK_Unified_Ideographs_Extension_A
+# @missing: 3400..4DBF; Wide
+
+# 4E00..9FFF CJK_Unified_Ideographs
+# @missing: 4E00..9FFF; Wide
+
+# F900..FAFF CJK_Compatibility_Ideographs
+# @missing: F900..FAFF; Wide
+
+# 20000..2A6DF CJK_Unified_Ideographs_Extension_B
+# 2A700..2B73F CJK_Unified_Ideographs_Extension_C
+# 2B740..2B81F CJK_Unified_Ideographs_Extension_D
+# 2B820..2CEAF CJK_Unified_Ideographs_Extension_E
+# 2CEB0..2EBEF CJK_Unified_Ideographs_Extension_F
+# 2F800..2FA1F CJK_Compatibility_Ideographs_Supplement
+# @missing: 20000..2FFFD; Wide
+
+# 30000..3134F CJK_Unified_Ideographs_Extension_G
+# 31350..323AF CJK_Unified_Ideographs_Extension_H
+# @missing: 30000..3FFFD; Wide
 
 # ================================================
 
@@ -2372,9 +2393,7 @@ A490..A4C6    ; W # So  [55] YI RADICAL QOT..YI RADICAL KE
 A960..A97C    ; W # Lo  [29] HANGUL CHOSEONG TIKEUT-MIEUM..HANGUL CHOSEONG SSANGYEORINHIEUH
 AC00..D7A3    ; W # Lo [11172] HANGUL SYLLABLE GA..HANGUL SYLLABLE HIH
 F900..FA6D    ; W # Lo [366] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIBILITY IDEOGRAPH-FA6D
-FA6E..FA6F    ; W # Cn   [2] <reserved-FA6E>..<reserved-FA6F>
 FA70..FAD9    ; W # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COMPATIBILITY IDEOGRAPH-FAD9
-FADA..FAFF    ; W # Cn  [38] <reserved-FADA>..<reserved-FAFF>
 FE10..FE16    ; W # Po   [7] PRESENTATION FORM FOR VERTICAL COMMA..PRESENTATION FORM FOR VERTICAL QUESTION MARK
 FE17          ; W # Ps       PRESENTATION FORM FOR VERTICAL LEFT WHITE LENTICULAR BRACKET
 FE18          ; W # Pe       PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET
@@ -2485,22 +2504,15 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 1FAE0..1FAE8  ; W # So   [9] MELTING FACE..SHAKING FACE
 1FAF0..1FAF8  ; W # So   [9] HAND WITH INDEX FINGER AND THUMB CROSSED..RIGHTWARDS PUSHING HAND
 20000..2A6DF  ; W # Lo [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
-2A6E0..2A6FF  ; W # Cn  [32] <reserved-2A6E0>..<reserved-2A6FF>
 2A700..2B739  ; W # Lo [4154] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B739
-2B73A..2B73F  ; W # Cn   [6] <reserved-2B73A>..<reserved-2B73F>
 2B740..2B81D  ; W # Lo [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
-2B81E..2B81F  ; W # Cn   [2] <reserved-2B81E>..<reserved-2B81F>
 2B820..2CEA1  ; W # Lo [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
-2CEA2..2CEAF  ; W # Cn  [14] <reserved-2CEA2>..<reserved-2CEAF>
 2CEB0..2EBE0  ; W # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
-2EBE1..2F7FF  ; W # Cn [3103] <reserved-2EBE1>..<reserved-2F7FF>
 2F800..2FA1D  ; W # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
-2FA1E..2FFFD  ; W # Cn [1504] <reserved-2FA1E>..<reserved-2FFFD>
 30000..3134A  ; W # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
-3134B..3134F  ; W # Cn   [5] <reserved-3134B>..<reserved-3134F>
 31350..323AF  ; W # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
-323B0..3FFFD  ; W # Cn [56398] <reserved-323B0>..<reserved-3FFFD>
 
+# The above property value applies to 61104 code points not listed here.
 # Total code points: 182412
 
 # ================================================
