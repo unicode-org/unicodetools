@@ -18,7 +18,7 @@ public final class DefaultValues {
     private static final UnicodeSet IDEO_PLANES =
             new UnicodeSet(0x20000, 0x2FFFD, 0x30000, 0x3FFFD).freeze();
 
-    private static class BuilderBase<T> {
+    private static class BuilderBase {
         int compositeVersion;
         IndexUnicodeProperties props;
         UnicodeMap<Block_Values> blocks;
@@ -28,6 +28,12 @@ public final class DefaultValues {
                     (version.getMajor() << 16) | (version.getMinor() << 8) | version.getMilli();
             props = IndexUnicodeProperties.make(version);
             blocks = props.loadEnum(UcdProperty.Block);
+        }
+    }
+
+    private static class MapBuilderBase<T> extends BuilderBase {
+        MapBuilderBase(VersionInfo version) {
+            super(version);
         }
 
         protected void addRangeValueIfAtLeast(
@@ -65,7 +71,7 @@ public final class DefaultValues {
             OMIT_BN
         };
 
-        private static final class Builder extends BuilderBase<Bidi_Class_Values> {
+        private static final class Builder extends MapBuilderBase<Bidi_Class_Values> {
             UnicodeMap<Bidi_Class_Values> bidi = new UnicodeMap<>();
 
             Builder(VersionInfo version) {
@@ -163,7 +169,7 @@ public final class DefaultValues {
         private static final East_Asian_Width_Values N = East_Asian_Width_Values.Neutral;
         private static final East_Asian_Width_Values W = East_Asian_Width_Values.Wide;
 
-        private static final class Builder extends BuilderBase<East_Asian_Width_Values> {
+        private static final class Builder extends MapBuilderBase<East_Asian_Width_Values> {
             UnicodeMap<East_Asian_Width_Values> ea = new UnicodeMap<>();
 
             Builder(VersionInfo version) {
@@ -218,7 +224,7 @@ public final class DefaultValues {
         private static final Line_Break_Values ID = Line_Break_Values.Ideographic;
         private static final Line_Break_Values PR = Line_Break_Values.Prefix_Numeric;
 
-        private static final class Builder extends BuilderBase<Line_Break_Values> {
+        private static final class Builder extends MapBuilderBase<Line_Break_Values> {
             UnicodeMap<Line_Break_Values> lb = new UnicodeMap<>();
 
             Builder(VersionInfo version) {
@@ -251,6 +257,34 @@ public final class DefaultValues {
 
         public static UnicodeMap<Line_Break_Values> forVersion(VersionInfo version) {
             return new Builder(version).build();
+        }
+    }
+
+    /**
+     * Implemented and should be ready to go, but as of Unicode 15 the UCD file format does not
+     * support multiple `@missing` lines for binary properties, so this is currently unused. See
+     * L2/22-124: UTC #172 properties feedback & recommendations, item UCD17.
+     */
+    // Extended_Pictographic
+    public static final class ExtendedPictographic {
+        public static UnicodeSet forVersion(VersionInfo version) {
+            // https://www.unicode.org/reports/tr44/#Complex_Default_Values
+            // This property defaults to N (= False) for most code points, but
+            // defaults to Y (= True) for unassigned code points in blocks
+            // in the ranges U+1F000..U+1FAFF and U+1FC00..U+1FFFD.
+            // Those ranges are correlated with the ranges associated with default values for
+            // the Line_Break property, and have the same rationale.
+            UnicodeSet set = new UnicodeSet();
+            int majorVersion = version.getMajor();
+            if (majorVersion >= 9) {
+                set.add(0x1F000, 0x1FFFD);
+            }
+            // Unicode 13+: punch a hole
+            if (majorVersion >= 13) {
+                set.remove(0x1FB00, 0x1FBFF);
+            }
+
+            return set;
         }
     }
 }

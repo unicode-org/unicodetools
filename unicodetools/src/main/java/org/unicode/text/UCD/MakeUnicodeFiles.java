@@ -1391,24 +1391,61 @@ public class MakeUnicodeFiles {
             }
             // Print blocks that overlap with this default-value range.
             while (blockRange.codepoint <= end) {
-                if (blockRange.value != Block_Values.No_Block) {
-                    String partial =
-                            blockRange.codepoint < start || blockRange.codepointEnd > end
-                                    ? " (partial)"
-                                    : "";
-                    pw.printf(
-                            "# %04X..%04X %s%s\n",
-                            blockRange.codepoint,
-                            blockRange.codepointEnd,
-                            blockRange.value,
-                            partial);
-                }
+                writeBlockOverlappingWithMissingRange(pw, start, end, blockRange);
                 if (blockRange.codepointEnd > end || !blockIter.hasNext()) {
                     break;
                 }
                 blockRange = blockIter.next();
             }
             pw.printf("# @missing: %04X..%04X; %s\n", start, end, range.value);
+        }
+    }
+
+    /**
+     * Called by {@link org.unicode.tools.emoji.GenerateEmojiData} but implemented here to keep
+     * similar functions next to each other.
+     *
+     * <p>Assumes that the overall default is "No".
+     */
+    // Note 2022-jul-13: Not actually used yet.
+    // For reasons see the comments on DefaultValues.ExtendedPictographic.
+    public static void writeBinaryMissingValues(
+            PrintWriter pw, VersionInfo versionInfo, String propName, UnicodeSet defaultYesSet) {
+        IndexUnicodeProperties props = IndexUnicodeProperties.make(versionInfo);
+        UnicodeMap<Block_Values> blocks = props.loadEnum(UcdProperty.Block);
+        Iterator<UnicodeMap.EntryRange<Block_Values>> blockIter = blocks.entryRanges().iterator();
+        UnicodeMap.EntryRange<Block_Values> blockRange = null;
+
+        for (UnicodeSet.EntryRange range : defaultYesSet.ranges()) {
+            int start = range.codepoint;
+            int end = range.codepointEnd;
+            pw.println();
+            // Skip blocks before this default-value range.
+            while ((blockRange == null || blockRange.codepointEnd < start) && blockIter.hasNext()) {
+                blockRange = blockIter.next();
+            }
+            // Print blocks that overlap with this default-value range.
+            while (blockRange.codepoint <= end) {
+                writeBlockOverlappingWithMissingRange(pw, start, end, blockRange);
+                if (blockRange.codepointEnd > end || !blockIter.hasNext()) {
+                    break;
+                }
+                blockRange = blockIter.next();
+            }
+            pw.printf("# @missing: %04X..%04X; %s; Yes\n", start, end, propName);
+        }
+    }
+
+    private static void writeBlockOverlappingWithMissingRange(
+            PrintWriter pw, int start, int end, UnicodeMap.EntryRange<Block_Values> blockRange) {
+        if (blockRange.value != Block_Values.No_Block) {
+            String partial =
+                    blockRange.codepoint < start || blockRange.codepointEnd > end
+                            ? " (partial)"
+                            : "";
+            pw.printf(
+                    "# %04X..%04X %s%s\n",
+                    blockRange.codepoint, blockRange.codepointEnd, blockRange.value, partial);
         }
     }
 
