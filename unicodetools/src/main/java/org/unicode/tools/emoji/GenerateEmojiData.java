@@ -25,11 +25,13 @@ import org.unicode.cldr.tool.Option;
 import org.unicode.cldr.tool.Option.Options;
 import org.unicode.cldr.tool.Option.Params;
 import org.unicode.cldr.util.Tabber;
+import org.unicode.props.DefaultValues;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
+import org.unicode.text.UCD.MakeUnicodeFiles;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.CountEmoji.Category;
@@ -682,14 +684,14 @@ public class GenerateEmojiData {
     private static void showTypeFieldsMessage(
             Writer out, Collection<String> type_fields, String extraMessage) throws IOException {
         out.write("# Format:\n");
-        out.write("#   code_point(s) ; type_field ; description # comments \n");
+        out.write("#   code_point(s) ; type_field ; description # comments\n");
         out.write("# Fields:\n");
         out.write(
                 "#   code_point(s): one or more code points in hex format, separated by spaces\n");
         out.write(
                 "#   type_field"
                         + (type_fields.size() != 1
-                                ? ", one of the following: \n#       "
+                                ? ", one of the following:\n#       "
                                         + CollectionUtilities.join(type_fields, "\n#       ")
                                 : " :" + type_fields.iterator().next())
                         + "\n"
@@ -778,9 +780,38 @@ public class GenerateEmojiData {
                     }
                     out.write("\n\n");
                 } else {
-                    out.write("# All omitted code points have " + title + "=No \n");
-                    out.write("# @missing: 0000..10FFFF  ; " + title + " ; No\n\n");
+                    out.write("# All omitted code points have " + title + "=No\n");
+                    out.write("# @missing: 0000..10FFFF  ; " + title + " ; No\n");
                 }
+
+                // Note 2022-jul-13: This code does not work yet.
+                // Reason 1: As of Unicode 15, UCD syntax does not yet support
+                // multiple @missing lines for binary properties;
+                // see the comments on DefaultValues.ExtendedPictographic.
+                //
+                // Reason 2: Aside from printing multiple @missing lines, in the following code
+                // we will need to suppress printing default-value lines for unassigned code points,
+                // and print explicit lines with binary value "No" in defaultYesSet ranges.
+                UnicodeSet defaultYesSet = null;
+                if (title.equals("TODO----Extended_Pictographic")) {
+                    defaultYesSet =
+                            DefaultValues.ExtendedPictographic.forVersion(DATA_VERSION_TO_GENERATE);
+                }
+                if (defaultYesSet != null) {
+                    PrintWriter pw;
+                    if (out instanceof PrintWriter) {
+                        pw = (PrintWriter) out;
+                    } else if (out instanceof TempPrintWriter) {
+                        pw = ((TempPrintWriter) out).tempPrintWriter;
+                    } else {
+                        throw new IllegalArgumentException(
+                                "need a PrintWriter or a TempPrintWriter for calling "
+                                        + "MakeUnicodeFiles.writeBinaryMissingValues()");
+                    }
+                    MakeUnicodeFiles.writeBinaryMissingValues(
+                            pw, DATA_VERSION_TO_GENERATE, "Extended_Pictographic", defaultYesSet);
+                }
+                out.write("\n");
 
                 String titleField = maxTitleWidth == 0 ? "" : "; " + title;
 

@@ -38,6 +38,8 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Bidi_Class_Values;
 import org.unicode.props.UcdPropertyValues.Block_Values;
+import org.unicode.props.UcdPropertyValues.East_Asian_Width_Values;
+import org.unicode.props.UcdPropertyValues.Line_Break_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.MakeUnicodeFiles.Format.PrintStyle;
 import org.unicode.text.utility.ChainException;
@@ -1186,11 +1188,19 @@ public class MakeUnicodeFiles {
         }
 
         UnicodeMap<Bidi_Class_Values> defaultBidiValues = null;
+        UnicodeMap<East_Asian_Width_Values> defaultEaValues = null;
+        UnicodeMap<Line_Break_Values> defaultLbValues = null;
         if (prop.getName().equals("Bidi_Class")) {
             VersionInfo versionInfo = Default.ucdVersionInfo();
             defaultBidiValues =
                     DefaultValues.BidiClass.forVersion(
                             versionInfo, DefaultValues.BidiClass.Option.OMIT_BN);
+        } else if (prop.getName().equals("East_Asian_Width")) {
+            VersionInfo versionInfo = Default.ucdVersionInfo();
+            defaultEaValues = DefaultValues.EastAsianWidth.forVersion(versionInfo);
+        } else if (prop.getName().equals("Line_Break")) {
+            VersionInfo versionInfo = Default.ucdVersionInfo();
+            defaultLbValues = DefaultValues.LineBreak.forVersion(versionInfo);
         }
 
         final String missing = ps.skipUnassigned != null ? ps.skipUnassigned : ps.skipValue;
@@ -1205,6 +1215,12 @@ public class MakeUnicodeFiles {
             if (prop.getName().equals("Bidi_Class")) {
                 Bidi_Class_Values overallDefault = Bidi_Class_Values.forName(missing);
                 writeEnumeratedMissingValues(pw, overallDefault, defaultBidiValues);
+            } else if (prop.getName().equals("East_Asian_Width")) {
+                East_Asian_Width_Values overallDefault = East_Asian_Width_Values.forName(missing);
+                writeEnumeratedMissingValues(pw, overallDefault, defaultEaValues);
+            } else if (prop.getName().equals("Line_Break")) {
+                Line_Break_Values overallDefault = Line_Break_Values.forName(missing);
+                writeEnumeratedMissingValues(pw, overallDefault, defaultLbValues);
             }
         }
         for (final Iterator<String> it = aliases.iterator(); it.hasNext(); ) {
@@ -1254,6 +1270,24 @@ public class MakeUnicodeFiles {
                     // We assume that unassigned code points that have this value
                     // according to the props data also have this value according to the defaults.
                     // Otherwise we would need to intersect defaultBidiValues.keySet(bidiValue)
+                    // with the unassigned set before removing from s.
+                    s.removeAll(unassigned);
+                }
+            } else if (defaultEaValues != null) {
+                East_Asian_Width_Values eaValue = East_Asian_Width_Values.forName(value);
+                if (defaultEaValues.containsValue(eaValue)) {
+                    // We assume that unassigned code points that have this value
+                    // according to the props data also have this value according to the defaults.
+                    // Otherwise we would need to intersect defaultEaValues.keySet(eaValue)
+                    // with the unassigned set before removing from s.
+                    s.removeAll(unassigned);
+                }
+            } else if (defaultLbValues != null) {
+                Line_Break_Values lbValue = Line_Break_Values.forName(value);
+                if (defaultLbValues.containsValue(lbValue)) {
+                    // We assume that unassigned code points that have this value
+                    // according to the props data also have this value according to the defaults.
+                    // Otherwise we would need to intersect defaultEaValues.keySet(eaValue)
                     // with the unassigned set before removing from s.
                     s.removeAll(unassigned);
                 }
@@ -1357,24 +1391,61 @@ public class MakeUnicodeFiles {
             }
             // Print blocks that overlap with this default-value range.
             while (blockRange.codepoint <= end) {
-                if (blockRange.value != Block_Values.No_Block) {
-                    String partial =
-                            blockRange.codepoint < start || blockRange.codepointEnd > end
-                                    ? " (partial)"
-                                    : "";
-                    pw.printf(
-                            "# %04X..%04X %s%s\n",
-                            blockRange.codepoint,
-                            blockRange.codepointEnd,
-                            blockRange.value,
-                            partial);
-                }
+                writeBlockOverlappingWithMissingRange(pw, start, end, blockRange);
                 if (blockRange.codepointEnd > end || !blockIter.hasNext()) {
                     break;
                 }
                 blockRange = blockIter.next();
             }
             pw.printf("# @missing: %04X..%04X; %s\n", start, end, range.value);
+        }
+    }
+
+    /**
+     * Called by {@link org.unicode.tools.emoji.GenerateEmojiData} but implemented here to keep
+     * similar functions next to each other.
+     *
+     * <p>Assumes that the overall default is "No".
+     */
+    // Note 2022-jul-13: Not actually used yet.
+    // For reasons see the comments on DefaultValues.ExtendedPictographic.
+    public static void writeBinaryMissingValues(
+            PrintWriter pw, VersionInfo versionInfo, String propName, UnicodeSet defaultYesSet) {
+        IndexUnicodeProperties props = IndexUnicodeProperties.make(versionInfo);
+        UnicodeMap<Block_Values> blocks = props.loadEnum(UcdProperty.Block);
+        Iterator<UnicodeMap.EntryRange<Block_Values>> blockIter = blocks.entryRanges().iterator();
+        UnicodeMap.EntryRange<Block_Values> blockRange = null;
+
+        for (UnicodeSet.EntryRange range : defaultYesSet.ranges()) {
+            int start = range.codepoint;
+            int end = range.codepointEnd;
+            pw.println();
+            // Skip blocks before this default-value range.
+            while ((blockRange == null || blockRange.codepointEnd < start) && blockIter.hasNext()) {
+                blockRange = blockIter.next();
+            }
+            // Print blocks that overlap with this default-value range.
+            while (blockRange.codepoint <= end) {
+                writeBlockOverlappingWithMissingRange(pw, start, end, blockRange);
+                if (blockRange.codepointEnd > end || !blockIter.hasNext()) {
+                    break;
+                }
+                blockRange = blockIter.next();
+            }
+            pw.printf("# @missing: %04X..%04X; %s; Yes\n", start, end, propName);
+        }
+    }
+
+    private static void writeBlockOverlappingWithMissingRange(
+            PrintWriter pw, int start, int end, UnicodeMap.EntryRange<Block_Values> blockRange) {
+        if (blockRange.value != Block_Values.No_Block) {
+            String partial =
+                    blockRange.codepoint < start || blockRange.codepointEnd > end
+                            ? " (partial)"
+                            : "";
+            pw.printf(
+                    "# %04X..%04X %s%s\n",
+                    blockRange.codepoint, blockRange.codepointEnd, blockRange.value, partial);
         }
     }
 
