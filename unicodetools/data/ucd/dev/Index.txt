@@ -270,6 +270,7 @@ ARABIC LETTER HEH WITH YEH ABOVE	06C0
 ARABIC LETTER MARK	061C
 Arabic Letters, Extended	0671
 Arabic Letters, Extended	0750
+Arabic Letters, Extended	10EC0
 ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHEEM	FDFD
 Arabic Ligatures	FBEA
 Arabic Mathematical Alphabetic Symbols	1EE00
@@ -953,6 +954,7 @@ CJK Unified Ideographs Extension D	2B740
 CJK Unified Ideographs Extension E	2B820
 CJK Unified Ideographs Extension F	2CEB0
 CJK Unified Ideographs Extension G	30000
+CJK Unified Ideographs Extension H	31350
 CLAPPING HANDS SIGN	1F44F
 claudian antisigma	2183
 claudian digamma inversum	2132
@@ -1374,6 +1376,7 @@ Cyrillic Combining Characters	0483
 Cyrillic Extended-A	2DE0
 Cyrillic Extended-B	A640
 Cyrillic Extended-C	1C80
+Cyrillic Extended-D	1E030
 Cyrillic Extensions	0450
 Cyrillic Extensions	048A
 Cyrillic Historic Letters	0460
@@ -1467,6 +1470,7 @@ Devanagari Dependent Vowel Signs	093E
 Devanagari Digits	0966
 DEVANAGARI DOUBLE DANDA	0965
 Devanagari Extended	A8E0
+Devanagari Extended-A	11B00
 Devanagari Extensions	0951
 Devanagari Independent Vowels	0904
 DEVANAGARI OM	0950
@@ -2647,6 +2651,7 @@ Ideographs Extension D, CJK Unified	2B740
 Ideographs Extension E, CJK Unified	2B820
 Ideographs Extension F, CJK Unified	2CEB0
 Ideographs Extension G, CJK Unified	30000
+Ideographs Extension H, CJK Unified	31350
 Ideographs Supplement, CJK Compatibility	2F800
 Ideographs, Circled	3280
 Ideographs, CJK Compatibility	F900
@@ -2853,6 +2858,7 @@ K, LATIN SUBSCRIPT SMALL LETTER	2096
 KA, HIRAGANA LETTER SMALL	3095
 kabusiki-gaisya	337F
 Kaithi	11080
+Kaktovik Numerals	1D2C0
 Kana Extended-A	1B100
 Kana Extension, Small	1B130
 Kana Repeat Marks	3031
@@ -2877,6 +2883,7 @@ Katakana Words, Squared	3300
 Katakana, Circled	32D0
 KATAKANA-HIRAGANA DOUBLE HYPHEN	30A0
 KATAKANA-HIRAGANA PROLONGED SOUND MARK	30FC
+Kawi	11F00
 Kayah Li	A900
 KELVIN SIGN	212A
 ket	27E9
@@ -3622,6 +3629,7 @@ N-ARY WHITE VERTICAL BAR	2AFF
 naal, tamil	0BF3
 Nabataean	10880
 NABLA	2207
+Nag Mundari	1E4D0
 NAIRA SIGN	20A6
 NAND	22BC
 Nandinagari	119A0
@@ -3737,6 +3745,7 @@ Numbers, Runic Golden	16EE
 Numbers, Tamil	0BE7
 Numbers, White on Black Circled	24EB
 Numerals, Hangzhou	3021
+Numerals, Kaktovik	1D2C0
 Numerals, Mayan	1D2E0
 Numerals, Old Italic	10320
 Numerals, Roman	2160
