@@ -1161,6 +1161,9 @@ public class EmojiData implements EmojiDataSource {
         int firstCount = Character.charCount(first);
         if (emoji.length() > firstCount) {
             int second = emoji.codePointAt(firstCount);
+            if (second == Emoji.EMOJI_VARIANT) { // UTS #51 ED-9a
+                return VariantStatus.initial;
+            }
             if (MODIFIERS.contains(second)) {
                 return VariantStatus.initial;
             }
