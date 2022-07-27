@@ -1,5 +1,5 @@
 # emoji-test.txt
-# Date: 2022-06-02, 21:37:06 GMT
+# Date: 2022-07-18, 21:49:52 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -235,7 +235,7 @@
 1F4AC                                                  ; fully-qualified     # 💬 E0.6 speech balloon
 1F441 FE0F 200D 1F5E8 FE0F                             ; fully-qualified     # 👁️‍🗨️ E2.0 eye in speech bubble
 1F441 200D 1F5E8 FE0F                                  ; unqualified         # 👁‍🗨️ E2.0 eye in speech bubble
-1F441 FE0F 200D 1F5E8                                  ; unqualified         # 👁️‍🗨 E2.0 eye in speech bubble
+1F441 FE0F 200D 1F5E8                                  ; minimally-qualified # 👁️‍🗨 E2.0 eye in speech bubble
 1F441 200D 1F5E8                                       ; unqualified         # 👁‍🗨 E2.0 eye in speech bubble
 1F5E8 FE0F                                             ; fully-qualified     # 🗨️ E2.0 left speech bubble
 1F5E8                                                  ; unqualified         # 🗨 E2.0 left speech bubble
@@ -1472,7 +1472,7 @@
 1F575 1F3FF                                            ; fully-qualified     # 🕵🏿 E2.0 detective: dark skin tone
 1F575 FE0F 200D 2642 FE0F                              ; fully-qualified     # 🕵️‍♂️ E4.0 man detective
 1F575 200D 2642 FE0F                                   ; unqualified         # 🕵‍♂️ E4.0 man detective
-1F575 FE0F 200D 2642                                   ; unqualified         # 🕵️‍♂ E4.0 man detective
+1F575 FE0F 200D 2642                                   ; minimally-qualified # 🕵️‍♂ E4.0 man detective
 1F575 200D 2642                                        ; unqualified         # 🕵‍♂ E4.0 man detective
 1F575 1F3FB 200D 2642 FE0F                             ; fully-qualified     # 🕵🏻‍♂️ E4.0 man detective: light skin tone
 1F575 1F3FB 200D 2642                                  ; minimally-qualified # 🕵🏻‍♂ E4.0 man detective: light skin tone
@@ -1486,7 +1486,7 @@
 1F575 1F3FF 200D 2642                                  ; minimally-qualified # 🕵🏿‍♂ E4.0 man detective: dark skin tone
 1F575 FE0F 200D 2640 FE0F                              ; fully-qualified     # 🕵️‍♀️ E4.0 woman detective
 1F575 200D 2640 FE0F                                   ; unqualified         # 🕵‍♀️ E4.0 woman detective
-1F575 FE0F 200D 2640                                   ; unqualified         # 🕵️‍♀ E4.0 woman detective
+1F575 FE0F 200D 2640                                   ; minimally-qualified # 🕵️‍♀ E4.0 woman detective
 1F575 200D 2640                                        ; unqualified         # 🕵‍♀ E4.0 woman detective
 1F575 1F3FB 200D 2640 FE0F                             ; fully-qualified     # 🕵🏻‍♀️ E4.0 woman detective: light skin tone
 1F575 1F3FB 200D 2640                                  ; minimally-qualified # 🕵🏻‍♀ E4.0 woman detective: light skin tone
@@ -2319,7 +2319,7 @@
 1F3CC 1F3FF                                            ; fully-qualified     # 🏌🏿 E4.0 person golfing: dark skin tone
 1F3CC FE0F 200D 2642 FE0F                              ; fully-qualified     # 🏌️‍♂️ E4.0 man golfing
 1F3CC 200D 2642 FE0F                                   ; unqualified         # 🏌‍♂️ E4.0 man golfing
-1F3CC FE0F 200D 2642                                   ; unqualified         # 🏌️‍♂ E4.0 man golfing
+1F3CC FE0F 200D 2642                                   ; minimally-qualified # 🏌️‍♂ E4.0 man golfing
 1F3CC 200D 2642                                        ; unqualified         # 🏌‍♂ E4.0 man golfing
 1F3CC 1F3FB 200D 2642 FE0F                             ; fully-qualified     # 🏌🏻‍♂️ E4.0 man golfing: light skin tone
 1F3CC 1F3FB 200D 2642                                  ; minimally-qualified # 🏌🏻‍♂ E4.0 man golfing: light skin tone
@@ -2333,7 +2333,7 @@
 1F3CC 1F3FF 200D 2642                                  ; minimally-qualified # 🏌🏿‍♂ E4.0 man golfing: dark skin tone
 1F3CC FE0F 200D 2640 FE0F                              ; fully-qualified     # 🏌️‍♀️ E4.0 woman golfing
 1F3CC 200D 2640 FE0F                                   ; unqualified         # 🏌‍♀️ E4.0 woman golfing
-1F3CC FE0F 200D 2640                                   ; unqualified         # 🏌️‍♀ E4.0 woman golfing
+1F3CC FE0F 200D 2640                                   ; minimally-qualified # 🏌️‍♀ E4.0 woman golfing
 1F3CC 200D 2640                                        ; unqualified         # 🏌‍♀ E4.0 woman golfing
 1F3CC 1F3FB 200D 2640 FE0F                             ; fully-qualified     # 🏌🏻‍♀️ E4.0 woman golfing: light skin tone
 1F3CC 1F3FB 200D 2640                                  ; minimally-qualified # 🏌🏻‍♀ E4.0 woman golfing: light skin tone
@@ -2444,7 +2444,7 @@
 26F9 1F3FF                                             ; fully-qualified     # ⛹🏿 E2.0 person bouncing ball: dark skin tone
 26F9 FE0F 200D 2642 FE0F                               ; fully-qualified     # ⛹️‍♂️ E4.0 man bouncing ball
 26F9 200D 2642 FE0F                                    ; unqualified         # ⛹‍♂️ E4.0 man bouncing ball
-26F9 FE0F 200D 2642                                    ; unqualified         # ⛹️‍♂ E4.0 man bouncing ball
+26F9 FE0F 200D 2642                                    ; minimally-qualified # ⛹️‍♂ E4.0 man bouncing ball
 26F9 200D 2642                                         ; unqualified         # ⛹‍♂ E4.0 man bouncing ball
 26F9 1F3FB 200D 2642 FE0F                              ; fully-qualified     # ⛹🏻‍♂️ E4.0 man bouncing ball: light skin tone
 26F9 1F3FB 200D 2642                                   ; minimally-qualified # ⛹🏻‍♂ E4.0 man bouncing ball: light skin tone
@@ -2458,7 +2458,7 @@
 26F9 1F3FF 200D 2642                                   ; minimally-qualified # ⛹🏿‍♂ E4.0 man bouncing ball: dark skin tone
 26F9 FE0F 200D 2640 FE0F                               ; fully-qualified     # ⛹️‍♀️ E4.0 woman bouncing ball
 26F9 200D 2640 FE0F                                    ; unqualified         # ⛹‍♀️ E4.0 woman bouncing ball
-26F9 FE0F 200D 2640                                    ; unqualified         # ⛹️‍♀ E4.0 woman bouncing ball
+26F9 FE0F 200D 2640                                    ; minimally-qualified # ⛹️‍♀ E4.0 woman bouncing ball
 26F9 200D 2640                                         ; unqualified         # ⛹‍♀ E4.0 woman bouncing ball
 26F9 1F3FB 200D 2640 FE0F                              ; fully-qualified     # ⛹🏻‍♀️ E4.0 woman bouncing ball: light skin tone
 26F9 1F3FB 200D 2640                                   ; minimally-qualified # ⛹🏻‍♀ E4.0 woman bouncing ball: light skin tone
@@ -2479,7 +2479,7 @@
 1F3CB 1F3FF                                            ; fully-qualified     # 🏋🏿 E2.0 person lifting weights: dark skin tone
 1F3CB FE0F 200D 2642 FE0F                              ; fully-qualified     # 🏋️‍♂️ E4.0 man lifting weights
 1F3CB 200D 2642 FE0F                                   ; unqualified         # 🏋‍♂️ E4.0 man lifting weights
-1F3CB FE0F 200D 2642                                   ; unqualified         # 🏋️‍♂ E4.0 man lifting weights
+1F3CB FE0F 200D 2642                                   ; minimally-qualified # 🏋️‍♂ E4.0 man lifting weights
 1F3CB 200D 2642                                        ; unqualified         # 🏋‍♂ E4.0 man lifting weights
 1F3CB 1F3FB 200D 2642 FE0F                             ; fully-qualified     # 🏋🏻‍♂️ E4.0 man lifting weights: light skin tone
 1F3CB 1F3FB 200D 2642                                  ; minimally-qualified # 🏋🏻‍♂ E4.0 man lifting weights: light skin tone
@@ -2493,7 +2493,7 @@
 1F3CB 1F3FF 200D 2642                                  ; minimally-qualified # 🏋🏿‍♂ E4.0 man lifting weights: dark skin tone
 1F3CB FE0F 200D 2640 FE0F                              ; fully-qualified     # 🏋️‍♀️ E4.0 woman lifting weights
 1F3CB 200D 2640 FE0F                                   ; unqualified         # 🏋‍♀️ E4.0 woman lifting weights
-1F3CB FE0F 200D 2640                                   ; unqualified         # 🏋️‍♀ E4.0 woman lifting weights
+1F3CB FE0F 200D 2640                                   ; minimally-qualified # 🏋️‍♀ E4.0 woman lifting weights
 1F3CB 200D 2640                                        ; unqualified         # 🏋‍♀ E4.0 woman lifting weights
 1F3CB 1F3FB 200D 2640 FE0F                             ; fully-qualified     # 🏋🏻‍♀️ E4.0 woman lifting weights: light skin tone
 1F3CB 1F3FB 200D 2640                                  ; minimally-qualified # 🏋🏻‍♀ E4.0 woman lifting weights: light skin tone
@@ -4742,7 +4742,7 @@
 1F3F3 200D 1F308                                       ; unqualified         # 🏳‍🌈 E4.0 rainbow flag
 1F3F3 FE0F 200D 26A7 FE0F                              ; fully-qualified     # 🏳️‍⚧️ E13.0 transgender flag
 1F3F3 200D 26A7 FE0F                                   ; unqualified         # 🏳‍⚧️ E13.0 transgender flag
-1F3F3 FE0F 200D 26A7                                   ; unqualified         # 🏳️‍⚧ E13.0 transgender flag
+1F3F3 FE0F 200D 26A7                                   ; minimally-qualified # 🏳️‍⚧ E13.0 transgender flag
 1F3F3 200D 26A7                                        ; unqualified         # 🏳‍⚧ E13.0 transgender flag
 1F3F4 200D 2620 FE0F                                   ; fully-qualified     # 🏴‍☠️ E11.0 pirate flag
 1F3F4 200D 2620                                        ; minimally-qualified # 🏴‍☠ E11.0 pirate flag
@@ -5017,8 +5017,8 @@
 
 # Status Counts
 # fully-qualified : 3655
-# minimally-qualified : 817
-# unqualified : 252
+# minimally-qualified : 827
+# unqualified : 242
 # component : 9
 
 #EOF
