@@ -360,6 +360,7 @@
 35CC	(non-classical form) to scold with loud voice, to talk out of control; loquacious
 35CD	(non-classical form) to gnaw; to bite; to masticate, sound of biting
 35CE	(Cant.) final particle indicating emphasis or surprise; phonetic
+35D1	a grammatical particle indicating an assertion
 35D2	(in grammar) interjection; to express sadness; sorrow and emotional excitement
 35D3	mouthful
 35D4	(a dialect) joy; happiness
@@ -426,7 +427,7 @@
 3622	a round cave; a round hole
 3623	compasses, (same as U+5713 圓) round; circular
 3624	circle of the moving water
-3625	(same as 囮) to inveigle; to decoy, a decoy-bird; a go-between; a medium
+3625	to inveigle; to decoy, a decoy-bird; a go-between; a medium
 3626	wall made of soil, used in name of places
 3627	(same as 序) precedence, order, orderly, the east and west walls of the parlor
 3628	deep; profound, empty; hollow, quite; peaceful
@@ -768,7 +769,7 @@
 37AB	(non-classical form of 走) to walk, to run, to leave
 37AC	close or near
 37AD	name of an island
-37AE	variant of 出 U+51FA, to go out, send out; to stand; to produce
+37AE	(Japanese, non-standard variant of U+51FA 出), to go out, send out; to stand; to produce
 37AF	(same as 岊) the turning area of a mountain, mountain top; summit, a high mountain, a bare (of bald) mountain or hill
 37B0	name of a mountain
 37B1	dusk; twilight
@@ -3627,7 +3628,7 @@
 43EF	(same as 痣) moles; birthmarks
 43F0	a kind of insects; earthworm, durable; strong and soft; pliable yet tough
 43F1	body, fat; plump
-43F2	(same as 胅) protruded bones, swelling, a crooked nose
+43F2	protruded bones; swelling, a crooked nose
 43F3	(in chemistry) olein, oil and grease; fats (esp. animal), the ribs and skin
 43F4	dim; ambiguous; unclear eyesight, sharp ends of something
 43F5	plump, rich and full, plentiful, swelling, a plump trunk (body)
@@ -4030,7 +4031,7 @@
 459F	(non-classical form of U+8771 虻) a gadfly
 45A0	(non-classical form of 螈) a kind of lizard found in damp places; Diemyctylus pyrrhogaster, a kind of amphibious reptile
 45A1	millipede
-45A2	first-born silkworm
+45A2	first-born silkworm; (Cant., saa1) a kind of cookie
 45A3	(same as U+86A4 蚤) flea, to scratch, the mortices in the hub for the spokes of the wheel
 45A4	(same as 蜿) to creep; to wriggle
 45A5	(same as 蟊) insects that are injurious to crops
@@ -4040,6 +4041,7 @@
 45A9	a kind of bee; black bee
 45AA	(same as 蠀) grub (a kind of larva); maggots, looper; inchworm; geometer
 45AB	(same as 蚌) oyster
+45AC	beetle
 45AD	grub (a kind of larva), second for spider, a variety of spider; octopus; a long-legged spider
 45AE	(same as U+8801 蠁) larvae; grubs
 45AF	poisonous insect, (same as 奎) one of the 28 constellations which ancient Chinese astrologers believed to control the literary trends of the world, (same as 蛙) frog
@@ -6291,6 +6293,7 @@
 4F63	commission fee
 4F64	the Va (Wa) nationality, living in Yunnan
 4F65	all, together, unanimous
+4F67	old name for the Wǎ (佤) ethnic group of Yúnnán and Myanmar
 4F69	belt ornament, pendant; wear at waist, tie to the belt; respect
 4F6A	hesitate
 4F6C	(Cant.) man, person; mature
@@ -6355,6 +6358,7 @@
 4FB5	invade, encroach upon, raid
 4FB6	companion; associate with
 4FB7	narrow, cramped, confined
+4FB9	straight
 4FBF	convenience, ease; expedient
 4FC1	big
 4FC2	bind, tie up; involve, relation
@@ -6440,6 +6444,7 @@
 502E	bare, naked, uncovered
 5032	(simplified form) rude; barbarous, stupid; dull, last name
 5033	to stick in, to stab; to erect
+5034	a place in Héběi
 5036	all
 5039	temperate, frugal, economical
 503A	debt, loan, liabilities
@@ -6542,6 +6547,7 @@
 50D6	joy, gladness, delight; surname
 50DA	companion, colleague; officials; bureaucracy; a pretty face
 50DB	tipsy reel
+50DC	Dèng ethnic group of Tibet
 50DD	to revile; to abuse
 50DE	false, counterfeit, bogus
 50E3	assume, usurp
@@ -6562,6 +6568,7 @@
 50F6	forcefully
 50F9	price, value
 50FB	out-of-the-way, remote; unorthodox
+50FD	haggard; sallow, pallid
 50FE	like
 50FF	small, minute; lacking sincerity
 5100	ceremony, rites gifts; admire
@@ -6734,6 +6741,7 @@
 51D3	shiver; severe cold
 51D4	cold
 51D6	rule, guideline, standard
+51D8	ice floating in freshly-melted water
 51D9	an icicle
 51DA	cold; chilly
 51DB	to shiver with cold or fear
@@ -6873,6 +6881,7 @@
 527D	rob, plunder; slice off; fast
 527E	to pick up with knife
 527F	destroy, exterminate, annihilate
+5281	geld, castrate
 5282	chisel for engraving; engrave
 5283	divide, mark off, lay boundary
 5284	brief note; official communique
@@ -6891,6 +6900,7 @@
 5293	cut off nose
 5294	sword, dagger, saber
 5296	make into mince; cut
+5297	to cut, clip
 5298	make into mince
 5299	a divide, to partition
 529A	cut
@@ -6946,6 +6956,7 @@
 52E2	power, force; tendency
 52E3	achievements, conduct deserving
 52E4	industrious, diligent, attentive
+52E5	to force; tough
 52E6	destroy, exterminate, annihilate
 52E7	recommend, advise, urge
 52E9	work hard; belabored; toil
@@ -6997,11 +7008,13 @@
 532F	a concourse; to flow together, gather together; (same as U+6ED9 滙) to remit money
 5331	to lack
 5333	ladies toilet case with mirror
+5334	an ancient, bamboo hat box
 5335	case; casket
 5338	box; Kangxi radical 23
 5339	bolt of cloth; counter for horses
 533A	area, district, region, ward
 533B	cure, heal; doctor, medical
+533C	place in Ruìchéng county, Shānxī; ancient term for a scholar's cap
 533D	to hide, to secrete, to repress; to bend
 533E	flat, round split-bamboo contain
 533F	hide; go into hiding
@@ -7165,7 +7178,7 @@
 53F9	sigh, admire
 53FA	a straw bag; a tobacco pouch
 53FB	used in place names; (Cant.) smart, clever
-53FC	holding in mouth
+53FC	hold in mouth
 53FD	sigh in disapproval; take small
 53FE	西貢叾, a place in Hong Kong
 5401	interjection 'Alas!'; to sigh
@@ -7215,6 +7228,7 @@
 5434	name of warring state; surname
 5435	argue, dispute; disturb, annoy
 5436	raise voice, yell out loud, shout; stammer
+5437	a soft sound made by blowing through the mouth
 5438	inhale, suck in; absorb; attract
 5439	blow; puff; brag, boast
 543B	kiss; the lips; coinciding
@@ -7231,6 +7245,7 @@
 5448	submit, show; appear; petition
 5449	one of warring states; surname
 544A	tell, announce, inform; accuse
+544B	(呋喃) furan (C₄H₄O)
 544C	to call; to summon
 544D	(Cant.) phonetic
 544E	foot
@@ -7251,6 +7266,7 @@
 5460	to spurt; to blow out; to puff out; to snort
 5461	the corners of the mouth the lips
 5462	interrogative or emphatic final; (Cant.) this
+5463	interjection indicating a question or thought (um)
 5464	purine
 5465	(Cant.) intensifying particle
 5466	the bleating of the deer
@@ -7324,6 +7340,7 @@
 54B1	we, us
 54B2	smile, laugh, giggle; snicker
 54B3	cough
+54B4	neigh, whinny
 54B5	to revile
 54B7	howl, cry loudly
 54B8	together; all, completely; united
@@ -7346,6 +7363,7 @@
 54CC	used in translation
 54CD	make sound, make noise; sound
 54CE	interjection of surprise
+54CF	something funny
 54D0	syllable
 54D1	dumb, mute; become hoarse
 54D2	a sound made to get a horse to move forward
@@ -7354,7 +7372,7 @@
 54D5	belch; vomit
 54D7	rushing sound; gush forward
 54D9	swallow, gulp down; greedy
-54DA	chemical element; (Cant.) backing, support of someone powerful; a little
+54DA	(Cant.) backing, support of someone powerful; a little
 54DC	sip
 54DD	whisper
 54DE	moo
@@ -7374,6 +7392,7 @@
 54EE	cough; pant; roar
 54F0	incoherent chatter
 54F2	wise, sagacious; wise man, sage
+54F3	to twitter
 54F4	crying of infants
 54F5	the cry of a bird
 54F6	bleat
@@ -7397,6 +7416,7 @@
 5513	(Cant.) interjection
 5514	hold in mouth; bite; (Cant.) not, negation
 5516	dumb, mute; become hoarse
+5517	interjection: greeting or sigh
 551A	vomiting of animals; to use bad language
 551B	mark
 551E	(Cant.) to gasp; to breathe; to rest
@@ -7433,6 +7453,7 @@
 5544	to peck; (Cant.) to slander
 5546	commerce, business, trade
 5547	to stalk; the stem; the foot; the base
+5548	to speak harshly, command sharply
 5549	stupid; slow
 554A	exclamatory particle
 554B	(Cant.) an interjection used to berate someone
@@ -7527,7 +7548,7 @@
 55B6	encampment, barracks; manage
 55B7	spurt, blow out, puff out
 55B8	place name
-55B9	chemical compound
+55B9	quinoline
 55BA	(Cant.) to be located at
 55BB	metaphor, analogy; example; like
 55BC	(Cant.) used phonetically in English loan-words (e.g., cap, keep)
@@ -7542,7 +7563,9 @@
 55C7	miserly, thrifty, stingy; stopped up, constipated
 55C8	the call of a bird
 55C9	bird's crop; wine pot
+55CA	used in place and other names
 55CC	the throat; to quarrel, choke
+55CD	to suck
 55CE	final interrogative particle
 55CF	(Cant.) imperative final particle
 55D0	alas!
@@ -7560,6 +7583,7 @@
 55DE	to consult about, to plan; to report in writing to an equal; a despatch
 55DF	sigh, alas
 55E1	sound of flying bees, airplanes
+55E2	a loud, prolonged laugh
 55E3	to connect, inherit; descendants, heirs
 55E4	laugh at, ridicule, sneer; snort
 55E5	roar, call out, wail; bark, yelp
@@ -7612,10 +7636,12 @@
 561E	(Cant.) final particle used for polite refusal
 561F	sound of horn tooting
 5620	the chirping of birds loud laughter
+5621	onomatopoeic: clang, bang
 5622	(Cant.) thing
 5623	syllable
 5624	seek friends; also used in onomatopoetic expressions
 5625	(Cant.) to waste; all, entirely
+5626	if only; compound form of 只要
 5627	pyrimidine
 5628	roar, howl, scream; whistle
 5629	rushing sound; gush forward
@@ -7641,6 +7667,8 @@
 5642	meet
 5643	(Cant.) emphatic final particle
 5645	to speak falsely or wrongly; ugly
+5646	to hold in the mouth; to bite
+5647	eating and drinking without restraint
 5649	bite, chew; (Cant.) like this, in this way
 564B	to swallow hastily; to gobble up
 564C	scold, shout at
@@ -7787,6 +7815,7 @@
 570D	surround, encircle, corral
 570E	circle; round, circular; complete
 570F	to circle; a circle; corral
+5710	place in Shānyīn county, Shānxī
 5712	garden; park, orchard
 5713	circle; round, circular; complete
 5715	library
@@ -7804,6 +7833,7 @@
 5727	same as 壓 U+58D3, to press; to oppress; to crush; pressure
 5728	be at, in, on; consist in, rest
 5729	dike, embankment
+572A	(圪墶) a pimple; a mound
 572C	plaster over with layer of mud
 572D	jade pointed at top
 572E	destroyed, ruined; to subvert to injure
@@ -7859,6 +7889,7 @@
 5784	grave, mound; ridge in field
 5785	mound, grave; ridge in field
 5786	black clods of earth; shop, hut
+5787	used in place names
 5788	used in place names; Japanese -nuta; Korean -dae
 578B	pattern, model, type; law; mold
 578C	a field; used in place names
@@ -7872,6 +7903,7 @@
 579C	heap; buttress; battlements
 579D	dilapidated, ruined
 579E	small mound; place name; hillock
+579F	a cultivated field; used in place names
 57A0	boundary, bank of stream or river
 57A1	plow soil; place name
 57A2	dirt, filth, stains; dirty
@@ -7928,6 +7960,7 @@
 57F8	a border; a limit; a dike; a frontier; a boundary
 57F9	bank up with dirt; cultivate
 57FA	foundation, base
+57FB	bull's-eye, target
 57FC	headland
 57FD	broom; to sweep, clear away
 5800	cave, hole
@@ -7942,7 +7975,8 @@
 580A	white earth; to daub with white mud
 580B	bury
 580C	dam, dike; used in place names
-580E	character used for place names
+580D	the flat ground at either end of a bridge
+580E	a place in Xīnjiàn county, Jiāngxī
 5811	moat, trench, pit, cavity
 5815	fall, sink, let fall; degenerate
 5816	small, head shaped hill, used in place names
@@ -7972,7 +8006,9 @@
 583F	salty
 5840	wall, fence
 5841	rampart, military wall
+5843	mined ore
 5844	elevated bank in field
+5845	a large flat area, usually used in place names
 5848	paint, decorate
 584A	piece, lump; dollar
 584B	grave, tomb, cemetery
@@ -7995,6 +8031,7 @@
 5861	fill in, fill up; make good
 5862	entrenchment, bank, low wall
 5864	instrument
+5868	used in personal names
 5869	salt
 586B	fill in, fill up; make good
 586C	plateau
@@ -8040,9 +8077,12 @@
 58AC	to fall, sink
 58AE	fall, sink, let fall; degenerate
 58B0	an earthenware jar; a jug
+58B1	stone steps, stairs up a platform
 58B3	grave, mound; bulge; bulging
+58B6	(圪墶) a pimple; a mound
 58BA	four walls
 58BB	wall
+58BC	unfired brick
 58BE	cultivate, reclaim, to farm land
 58C1	partition wall; walls of a house
 58C5	to obstruct
@@ -8064,7 +8104,7 @@
 58D9	tomb, grave: prairie; open wilderness
 58DA	black clods of earth; shop, hut
 58DC	earthen jar or jug
-58DD	a mound, an embankment the earthen altar to the god of the soil
+58DD	a mound, embankment; the earthen altar to the god of the soil
 58DE	bad, spoil(ed), ruin, destroy
 58DF	grave, mound; ridge in field
 58E0	mound, grave; ridge in field
@@ -8099,6 +8139,7 @@
 590D	return; repeat; repeatedly
 590F	summer; great, grand, big
 5910	long, faraway; pre-eminent
+5912	a kind of monkey, macaque
 5914	one-legged monster; walrus
 5915	evening, night, dusk; slanted
 5916	out, outside, external; foreign
@@ -8107,6 +8148,7 @@
 5919	early in morning, dawn; previous
 591A..591B	much, many; more than, over
 591C	night, dark; in night; by night
+591D	ancient form of U+6674 晴; clear weather
 591F..5920	enough, adequate
 5922	dream; visionary; wishful
 5923	a dream; to dream visionary; stupid
@@ -8128,11 +8170,13 @@
 5939	be wedged or inserted between
 593A	take by force, rob, snatch
 593B	fish name
+593C	low or swampy land, most often used in place names
 593E	be wedged or inserted between
 5940	(Cant.) skinny, tiny; to jerk, dangle
 5941	lady's vanity case; trousseau
 5942	be numerous, brilliant
 5944	ere long; remain, tarry; feeble
+5945	imaginary; (Cant.) a lie
 5947	strange, unusual, uncanny, occult
 5948	but, how; bear, stand, endure
 5949	offer; receive; serve; respect
@@ -8166,7 +8210,7 @@
 596D	red; anger; ire; surname
 596E	strive, exert effort; arouse
 5970	anger
-5973	woman, girl; feminine; rad. 38
+5973	woman, girl; feminine; Kangxi radical 38
 5974	slave, servant
 5976	milk; woman's breasts; nurse
 5978	crafty, villainous, false
@@ -8182,10 +8226,12 @@
 5988	mother, mama
 598A	conceive, be pregnant
 598D	beautiful, handsome; seductive
+598E	jealous, jealousy
 5992	jealous, envious
 5993	prostitute
 5996	strange, weird, supernatural
 5997	wife of mother's brother
+5998	surname
 5999	mysterious, subtle; exquisite
 599D	to adorn oneself, dress up, use make-up
 599E	girl
@@ -8213,6 +8259,7 @@
 59C6	child's governess; matron
 59C9..59CA	elder sister
 59CB	begin, start; then, only then
+59CC	weak and slender in appearance
 59CD	slander; ridicule; proceed slowly
 59D0	elder sister, young lady
 59D1	father's sister; husband's mother
@@ -8256,6 +8303,7 @@
 5A11	dance, frolic; lounge; saunter
 5A12	matron
 5A13	comply; complying, agreeable
+5A16	cautious, prudent
 5A18	mother; young girl; woman; wife
 5A1B	pleasure, enjoyment, amusement
 5A1C	elegant, graceful, delicate
@@ -8300,7 +8348,7 @@
 5A75	beautiful, lovely, pretty, graceful
 5A76	wife of father's younger brother
 5A77	pretty; attractive; graceful
-5A7A	name of a star
+5A7A	a river and county in Jiāngxī; ancient name for 女宿, one of the 28 lunar mansions; used in various star names in Aquarius
 5A7C	person
 5A7E	handsome
 5A7F	son-in-law; husband
@@ -8309,6 +8357,7 @@
 5A8A	star
 5A8D	woman, wife
 5A92	go-between, matchmaker; medium
+5A94	beautiful, clear eyes
 5A95	undecided
 5A96	beauty; beautiful
 5A9A	charming, attractive; flatter
@@ -8317,6 +8366,7 @@
 5A9F	lust after, act indecently; lewd
 5AA2	be jealous of, be envious
 5AA4	husband's family
+5AA5	lightly circling; lightly fluttering
 5AA7	mythological snail goddess
 5AAA	old woman; lower-class woman
 5AAC	governess; nurse
@@ -8351,6 +8401,7 @@
 5ADA	scorn, despise; be rude, affront
 5ADB	compliant, yielding; easy-going a newborn child
 5ADC	husband's father
+5ADF	intimate; close relation
 5AE0	a widow
 5AE1	legal wife, child of legal wife
 5AE3	charming, fascinating; gay
@@ -8358,6 +8409,7 @@
 5AE9	soft, tender, delicate; young
 5AEA	hanker
 5AEB	Huangdi's ugly concubine; nurse
+5AED	beautiful woman
 5AF0	tender, delicate, soft
 5AF1	lady
 5AF2	(Cant.) paternal grandmother
@@ -8451,6 +8503,7 @@
 5B8F	wide, spacious, great, vast
 5B90	right, fitting, seemly
 5B93	quiet, silent; in good health
+5B94	anciently, a stone box holding an image in an ancestral temple
 5B95	stone quarry; cave dwelling
 5B97	lineage, ancestry; ancestor, clan
 5B98	official, public servant
@@ -8566,6 +8619,7 @@
 5C22	weak; Kangxi radical 43
 5C23	lame; the first form is Radical 43
 5C24	especially, particularly
+5C25	a backward kick, as by a mule or horse
 5C27	a legendary ancient emperor-sage
 5C28	shaggy haired dog; variegated
 5C29	weak; a rickety person; emaciated
@@ -8637,8 +8691,10 @@
 5C80	go out
 5C81	year; age; harvest
 5C82	how? what?
+5C88	嵖岈山, a mountain in Suìpíng county, Hénán
 5C8A	foothill
 5C8C	perilous, hazardous; high, steep
+5C8D	a mountain in Shaanxi
 5C90	high; majestic; fork in road
 5C91	steep, precipitous; peak
 5C94	diverge, branch off; fork in road
@@ -8650,7 +8706,9 @@
 5C9B	island
 5C9C	rock mountain
 5C9D	name of a mountain in Shandong
+5C9E	a mountain in Chāngyì county, Shāndōng
 5CA1	ridge or crest of hill
+5CA2	a county in Shānxī
 5CA3	a hill in Hunan
 5CA7	peak; cliff; precipice
 5CA8	uneven
@@ -8669,7 +8727,7 @@
 5CBF	grand, stately; secure, lasting
 5CC0	mountain peak; cave, cavern
 5CC1	yellow dirt mount
-5CC2	name of place
+5CC2	name of a place in Běijīng's Shìhǎidiàn district
 5CC3	big rocky mountain
 5CC4	a range of peaks in Shandong and Jiangsu; the name of a mountain
 5CC7	cave, cavern
@@ -8684,6 +8742,7 @@
 5CE4	high pointed mountain
 5CE5	high, lofty, noble; steep, perilous
 5CE6	mountain range; pointed mountain
+5CE7	used in place names
 5CE8..5CE9	lofty
 5CEA	valley, ravine
 5CEB	mountain in Shandong province
@@ -8758,6 +8817,7 @@
 5D6B	a hill in Shantung
 5D6C	high; rugged, rocky, precipitous
 5D6F	high, towering; irregular, rugged
+5D72	towering mountain
 5D73	high, towering; irregular, rugged
 5D74	mountain ridge
 5D76	low part of a mountain
@@ -8766,8 +8826,10 @@
 5D82	cliff; mountain barrier
 5D83	a cliff, a peak
 5D84	high, steep, precipitous; new
+5D85	numerous small rocks on a mountain; used in mountain and place names
 5D87	steep, sheer; rugged, rough
 5D8B..5D8C	island
+5D8D	a mountain in Yúnnán
 5D8E	luxuriant, elegant
 5D92	towering, lofty, steep
 5D93	Boshan, mountain in Shaanxi
@@ -8799,6 +8861,7 @@
 5DCB	grand, stately; secure, lasting
 5DCC	cliff, precipice; cave, grotto
 5DCD	high, lofty, majestic, eminent
+5DCE	used in personal names
 5DD2	mountain range; pointed mountain
 5DD3	summit of mountain
 5DD4	summit of mountain, mountain top
@@ -8861,6 +8924,7 @@
 5E1D	supreme ruler, emperor; god
 5E1F	tent
 5E21	shelter, screen, awning
+5E22	a silk hat worn by ancient scholars
 5E23	bag
 5E25	commander, commander-in-chief
 5E26	belt, girdle, band, strap, zone
@@ -8989,6 +9053,7 @@
 5ED4	building of two or more stories
 5ED5	shade; protect, shade, cover
 5ED6	surname; name of an ancient state
+5ED9	respectful
 5EDA	kitchen; closet; cupboard
 5EDB	a store, shop; ground allotted to a retainer
 5EDD	servant
@@ -9024,6 +9089,7 @@
 5F02	different, unusual, strange
 5F03	reject, abandon, discard
 5F04	do, play or fiddle with; alley
+5F06	to collect
 5F07	cover over, hide; narrow-necked
 5F08	Chinese chess
 5F09	large, powerful, stout, thick
@@ -9089,6 +9155,7 @@
 5F59..5F5A	collect, compile, assemble; hedgehog
 5F5B..5F5D	Yi (nationality); tripod, wine vessel; rule
 5F5E	yi; tripod
+5F60	scale, standard
 5F61	hair; Kangxi radical 59
 5F62	form, shape, appearance
 5F64	red, vermilion
@@ -9204,6 +9271,7 @@
 6004	annoyed
 6005	disappointed, dissatisfied
 6006	sad, broken-hearted, disconsolate
+600A	sad, disappointed
 600C	bosom; to carry in the bosom; to cherish
 600D	to be ashamed
 600E	what? why? how?
@@ -9478,6 +9546,7 @@
 6190	pity, sympathize
 6191	lean on, depend on, rely on
 6192	confused, troubled, muddle-headed
+6193	benefit, favor; follow, obey
 6194	be worn-out, emaciated, haggard
 6196	cautious; willing; but, moreover
 6198..6199	like, love, enjoy; joyful thing
@@ -9500,6 +9569,7 @@
 61B6	remember, reflect upon; memory
 61B7	painful; suffering; privation
 61B8	to flatter; crafty, having a specious tongue
+61B9	upset; to regret
 61BA	peace
 61BE	to regret, remorse; dissatisfied
 61C1	anxious, distressed
@@ -9797,6 +9867,7 @@
 633E	clasp under arm; hold to bosom
 633F	insert, stick into; plant
 6342	resist
+6343	to pick up, collect
 6344	long and curved
 6345	jab
 6346	tie up; bind, truss up; bundle
@@ -9827,6 +9898,7 @@
 636C	press down heavily with hands
 636D	to open; to spread out
 636E	to occupy, take possession of; a base, position
+636F	pull back continuously on a rope or line with both hands
 6371	put off, procrastinate; endure
 6372	curl, roll up; curly, rolled up
 6375	(Cant.) to hold between the fingers and thumb
@@ -9961,6 +10033,7 @@
 6417	hull; thresh; beat, attack
 6418	prop
 6419	to handle; to play with
+641B	to pick up with chopsticks
 641C	search, seek; investigate
 641E	to clear, clarify
 6420	to daub; to thrust
@@ -9979,6 +10052,7 @@
 642F	take out, pull out
 6430	dig; turbid; exert; (Cant.) to shake
 6432	to seize, to grasp
+6433	boxing; a finger-guessing game
 6434	extract; seize; pluck up
 6435	wipe off; press down with knuckle; to immerse; (Cant.) to search, look for
 6436	plunder, rob, take by force
@@ -9995,6 +10069,7 @@
 6447	wag, swing, wave; shake; scull
 6448	exclude, expel, reject; usher
 644A	spread out, open; apportion
+644B	to strike with the hand
 644E	to strangle; to inquire into
 644F	pound; strike against; ram; (Cant.) to hit with the elbow
 6450	to hit (a bell or drum)
@@ -10049,6 +10124,7 @@
 6492	release, cast away, let go; disperse; relax
 6493	scratch; disturb, bother; submit
 6495	rip, tear; buy cloth
+6496	surname
 6498	(Cant.) to strike, pound
 6499	economize; abide by, comply with
 649A	twirl in fingers, tease, toy with
@@ -10167,6 +10243,7 @@
 6538	distant, far; adverbial prefix
 6539	change, alter; improve, remodel
 653B	attack, assault; criticize
+653D	to divide, allot; to send to
 653E	put, release, free, liberate
 653F	government, political affairs
 6541	to weigh in the hand, to estimate; to shake
@@ -10257,6 +10334,7 @@
 65B2	cut, chop, hack
 65B4	the sound of water flowing among rocks
 65B5	to cut to pieces; to hack; to chop or hew; to carve for ornaments
+65B6	used in personal names
 65B7	sever, cut off; interrupt
 65B8	cut
 65B9	a square, rectangle; a region; local
@@ -10324,6 +10402,7 @@
 660E	bright, light, brilliant; clear
 660F	dusk, nightfall, twilight, dark
 6611	bright
+6612	daybreak, dawn
 6613	change; easy
 6614	formerly; ancient; in beginning
 6615	dawn; early morning; day
@@ -10345,6 +10424,7 @@
 662F	indeed, yes, right; to be; demonstrative pronoun, this, that
 6630	variant of 'to be'; summer; name
 6631	bright light, sunlight; dazzling
+6632	sun-dried
 6633	the declining sun in the west
 6634	eighteenth of the twenty-eight lunar mansions (宿)
 6635	intimate, close; approach
@@ -10463,6 +10543,7 @@
 66F3	trail, tow, drag, pull
 66F4	more, still further, much more; to change, alter
 66F5	trail, tow, drag, pull
+66F6	used in personal names
 66F7	why? what? where?
 66F8	book, letter, document; writings
 66F9	ministry officials; surname
@@ -10473,6 +10554,7 @@
 6701	if, supposing, nevertheless
 6703	to assemble, meet together; a meeting; an organization
 6705	brave
+6706	(Wu) not yet
 6708	moon; month; Kangxi radical 74
 6709	have, own, possess; exist
 670B	friend, pal, acquaintance
@@ -10525,7 +10607,7 @@
 674F	apricot; almond
 6750	material, stuff; timber; talent
 6751	village, hamlet; uncouth, vulgar
-6753	handle of cup, ladle, spoon; name of a constellation
+6753	handle of cup, ladle, spoon; name of a constellation (the handle of the Big Dipper)
 6755	alone
 6756	cane, walking stick
 6757	beam
@@ -10568,6 +10650,7 @@
 678C	variety of elm with small seeds
 678F	a variety of evergreen tree
 6790	split wood; break apart; divide
+6791	anciently, a wooden fence in front of a yamen
 6792	the coconut tree; rim
 6793	capital
 6795	pillow
@@ -10693,6 +10776,7 @@
 683C	pattern, standard, form; style
 683D	to cultivate, plant; to care for plants
 683E	name of tree; a part of cornice
+683F	a beam (archaic)
 6840	chicken roost; ancient emperor
 6841	cross-beams of roof
 6842	cassia or cinnamon
@@ -10702,6 +10786,7 @@
 6846	frame; framework; door frame
 6848	table, bench; legal case
 6849	eucalyptus
+684A	a small iron ring or wooden stick worn on the nose of a bull
 684B	tree
 684C	table, desk, stand
 684E	fetters, shackles, handcuffs
@@ -10731,6 +10816,7 @@
 686D	eaves; space between two pillars
 686E	cup, glass, tumbler
 686F	table
+6872	quince
 6874	raft; drumstick; ridge pole
 6875	small thorny bushes
 6876	pail, bucket, tub; cask, keg
@@ -10764,6 +10850,7 @@
 68A7	Chinese parasol tree, Sterculia platanifolia
 68A8	pear; opera; cut, slash
 68A9	a hod, a basket in which to carry earth
+68AB	ancient term for cassia
 68AD	weaver's shuttle; go to and fro
 68AE	snowshoes
 68AF	ladder, steps, stairs; lean
@@ -10826,6 +10913,7 @@
 6901	outer-coffin; vault
 6904	to graft
 6905	chair, seat
+6907	(枳椇) Hovenia acerba, Chinese raisin tree
 6908	cedar
 690A	to fit a handle into a socket; a plug or cork
 690B	fruit
@@ -10843,6 +10931,7 @@
 691F	cabinet, wardrobe; closet
 6920	wooden tablet; edition
 6924	tree
+6925	place in Vietnam
 6927	gutter
 692A	Machilus nanmu, variety of evergreen
 692B	coffin
@@ -10897,6 +10986,7 @@
 6979	column, pillar; numerary adjunct
 697C	building of two or more stories
 697D	happy, glad; enjoyable; music
+6980	classifier for roof beams
 6982	generally, approximately
 6983	raised path between fields
 6984	olive
@@ -10944,6 +11034,7 @@
 69D0	locust tree
 69D1	plums, prunes
 69D3	lever, pole, crowbar; sharpen; (Cant.) a wardrobe, trunk
+69D4	well sweep, water pulley
 69D6	a sack; a stamping sound
 69D8	shape, form, pattern, style
 69D9	a twig; an ornamental evergreen
@@ -10964,6 +11055,7 @@
 69F2	type of oak
 69F3	oar, paddle
 69F9	spar; well-sweep
+69FA	(榔槺) cumbersome
 69FB	zelkova tree
 69FC	rules, regulations, customs, law
 69FD	trough; manger; vat, tank; groove; a distillery
@@ -10982,6 +11074,7 @@
 6A15	shrub
 6A16	(Cant.) classifier for plants or trees; a tree-trunk
 6A17	Ailanthus glandulosa or A. altissima, a kind of tree useless as timber
+6A18	a pillar, doorpost
 6A19	a mark, symbol, label, sign; standard
 6A1A	a pulley, a windlass, a wheel, a block
 6A1B	bending branches, bent limbs
@@ -11051,6 +11144,7 @@
 6A8D	ilex
 6A8E	small red apple
 6A90	eaves of house; brim, rim
+6A91	logs rolled down to defend a city
 6A94	shelf; frame, crosspiece
 6A96	wild pear tree
 6A97	a cork tree
@@ -11072,6 +11166,7 @@
 6AAF	table
 6AB3	betel-nut, areca nut
 6AB4	tree
+6AB5	Loropetalum chinense, Chinese fringe flower
 6AB8	lemon
 6ABB	threshold, door-sill
 6ABC	ridge pole; shape wood by use of heat; tool for shaping bent wood
@@ -11098,9 +11193,11 @@
 6AEC	coffin; tung tree
 6AF1	stump, sprout
 6AF3	cage, pen; set of bars
+6AF6	Excentrodendron hsienmu
 6AF8	type of elm
 6AFA	carved or patterned window sills
 6AFB	cherry, cherry blossom
+6AFC	wedge
 6AFD	shape wood by use of heat; tool for shaping bent wood
 6AFE	the pomelo
 6B03	sandalwood; comet
@@ -11211,6 +11308,7 @@
 6BA2	be in great difficulty, greatly
 6BA3	die; death; to starve to death
 6BA4	die young; national mourning
+6BA5	a far or distant place
 6BA8	to open as an ulcer or sore
 6BAA	die; kill, exterminate
 6BAB	utmost, entirely, quite; use up
@@ -11241,6 +11339,7 @@
 6BCE	every
 6BCF	every, each
 6BD0	person of reprehensible morals; immoral; adulterer
+6BD1	grandmother, older woman
 6BD2	poison, venom; poisonous
 6BD3	give birth to; bring up, educate
 6BD4	to compare, liken; comparison; than
@@ -11263,6 +11362,7 @@
 6BF3	fine hair or fur on animals
 6BF5	long feathers; scraggy
 6BF7	restless
+6BF9	rug
 6BFB	to molt; to change the coat of animals; (Cant.) muddled, confused
 6BFD	a shuttlecock
 6BFE	a coarse, woollen serge
@@ -11277,6 +11377,7 @@
 6C0A	felt; coarse fabrics use for rugs, carpets, wrappers etc.
 6C0C	thick rough serge from Tibet
 6C0D	fine woollen cloth; a mat used by the emperor in worshipping god
+6C0E	fine cotton cloth
 6C0F	clan, family; mister
 6C10	name of an ancient tribe
 6C11	people, subjects, citizens
@@ -11324,12 +11425,14 @@
 6C42	seek; demand, request; beseech
 6C46	to parboil; hot water kettle; to boil
 6C47	concourse; flow together, gather
+6C48	a lake in Húběi
 6C49	Chinese people; Chinese language
 6C4A	a branching stream
 6C4B	to pour
 6C4D	weep
 6C4E	float, drift; afloat; careless
 6C50	night tides, evening ebb tide
+6C54	close, almost
 6C55	basket for catching fish; bamboo; Swatow (Shantou)
 6C57	perspiration, sweat
 6C59..6C5A	filthy, dirty, impure, polluted
@@ -11455,6 +11558,7 @@
 6CFE	name of a river
 6D01	clean, purify, pure
 6D04	a back-water; an eddy a whirlpool
+6D07	to soak paper, blot
 6D0A	flowing water
 6D0B	ocean, sea; foreign; western
 6D0C	clear
@@ -11517,6 +11621,7 @@
 6D5B	place in Yingde, Guangdong province
 6D5C	creek, stream; beach, sea coast
 6D5E	to soak, to steep in water
+6D60	a river in Húběi
 6D61	burst forth; rise; vigorous
 6D63	to wash, to rinse
 6D64	beating of ocean; surging of water
@@ -11608,6 +11713,7 @@
 6DF0	fish; still; (Cant.) thoroughly soaked; a deep sleep
 6DF1	deep; depth; far; very, extreme
 6DF3	honest, simple, unsophisticated; cyanogen; ethane dinitrile
+6DF4	to wash, bathe
 6DF5	gulf, abyss, deep
 6DF6	river in Hebei province; creek
 6DF7	to mix, blend, mingle; to bumble along
@@ -11904,6 +12010,7 @@
 6FB7	water overflowing diffused; spreading
 6FB9	calm, quiet, tranquil
 6FBC	bleach; wash, clean
+6FBD	a river in Shaanxi
 6FBE	slippery, smooth
 6FC0	arouse, excite, incite; quickly
 6FC1	muddy, turbid, dirty, filthy
@@ -11975,6 +12082,7 @@
 7039	to boil; to wash, to cleanse, to soak
 703A	sound
 703C	river in Henan province; flowing
+703D	splash (water); pour (liquid)
 703E	overflowing; waves, ripples
 7043	river in Shanxi province
 7044	river in Hubei province
@@ -12416,7 +12524,7 @@
 732B	cat
 732C	vulgar; wanton; low; many; varied; a hedgehog, porcupine
 732E	offer, present; show, display
-7331	a monkey with yellow hair
+7331	a monkey with yellow hair, macaque
 7332	smoke or flames from fire; roast
 7334	monkey, ape; monkey-like
 7336	like, similar to, just like, as
@@ -13506,6 +13614,7 @@
 79B9	legendary hsia dynasty founder
 79BA	district; mountain in Zhejiang
 79BB	rare beast; strange; elegant
+79BC	used in personal names
 79BD	birds, fowl; surname;; capture
 79BE	grain still on stalk; rice plant
 79BF	bald, bare, stripped
@@ -14582,8 +14691,7 @@
 7F9F	hydroxide
 7FA1	envy, admire; praise; covet
 7FA2	fine woolen fabrics
-7FA3	(same as U+7FA4 群) group, crowd, multitude, mob
-7FA4	(same as U+7FA3 羣) group, crowd, multitude, mob
+7FA3..7FA4	group, crowd, multitude, mob
 7FA5	hydroxyl group
 7FA7	carboxyl group
 7FA8	envy, admire; praise; covet
@@ -14885,7 +14993,7 @@
 8146	prosperous; good; protruding
 8148	nitrile
 8149	nipple, pap
-814A	year end sacrifice; dried meat
+814A	year-end sacrifice; dried meat
 814B	armpit
 814C	salt, pickle; be dirty
 814D	soft
@@ -15291,8 +15399,8 @@
 836E	to wrap with grass, bundle
 836F	leaf of Dahurian angelica plant; medicine
 8373	beans, peas; bean-shaped
-8375	polemonium
-8377	lotus, water lily, holland
+8375	various species of the genus Polemonium
+8377	lotus, water lily; Holland
 8378	water chestnut
 837B	reed, Miscanthus saccariflorus
 837C	thistle, sowthistle; bitter
@@ -15423,6 +15531,7 @@
 8451	the rape-turnip
 8452	Polygonum orientale, prince's feather
 8453	Polygonum orientale, prince's feather'
+8456	radish, turnip
 8457	manifest; (Cant.) to wear
 8459	feather cockscomb (Celosia argentea)
 845A	mulberry fruit
@@ -19660,7 +19769,7 @@
 9C67	snakehead
 9C68	codfish
 9C6D	anchovy
-9C6E	silver carp (Hypophthalmichthys molitrix); bream; (Cant.) 大嶼山 daai6ju4saan1 Lantau Island
+9C6E	silver carp (Hypophthalmichthys molitrix); bream; (Cant.) 大嶼山 daai6jyu4saan1 Lantau Island
 9C72	(Cant.) 赤鱲角, Hong Kong place name
 9C76	a shark
 9C77	crocodile, alligator
@@ -20088,6 +20197,7 @@
 9EF0	young girl's hair style
 9EF2	grey black
 9EF4	mold, mildew; bacteria, fungi
+9EF5	to soil, stain
 9EF6	mole, scar, blemish
 9EF7	to dishonor, defile, corrupt; soiled
 9EF9	embroidery, needlework; Kangxi radical 204
@@ -20117,6 +20227,7 @@
 9F19	drum carried on horseback
 9F1A	drumming
 9F1B	drum
+9F1F	onomatopoeic, drumming sound
 9F20	rat, mouse; Kangxi radical 208
 9F21	rat, mouse
 9F22	a variety of mole
@@ -20784,6 +20895,8 @@ FA2D	crane
 21CA2	(Cant.) shit
 21CAC	(Cant.) blunt
 21D0E	hill
+21D32	dangerous, precarious; high
+21D41	dangerous, precarious; high
 21ED5	year of age
 21F71	a high hill; the name of a hill
 21F9F	danger
@@ -21015,6 +21128,7 @@ FA2D	crane
 24C15	channels
 24C1D	channels
 24C21	farmers
+24C48	a mǔ (畝), a unit of area roughly equal to 600 square meters
 24C6C	to clear land
 24D10	thunder
 24D14	foot (obs.); bale
