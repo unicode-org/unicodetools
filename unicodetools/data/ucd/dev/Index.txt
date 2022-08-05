@@ -1630,6 +1630,7 @@ DOLPHIN	1F42C
 domain restriction	25C1
 Domino Tiles	1F030
 DONG SIGN	20AB
+DONKEY	1FACF
 dot	002E
 DOT ABOVE	02D9
 DOT ABOVE RIGHT, COMBINING	0358
@@ -2046,6 +2047,7 @@ factory	26ED
 FAHRENHEIT, DEGREE	2109
 Fairy Tale Symbols	1F478
 FAMILY	1F46A
+FAN, FOLDING HAND	1FAAD
 fast cursor down	21A1
 fast cursor left	219E
 fast cursor right	21A0
@@ -2254,6 +2256,7 @@ GETA MARK	3013
 ghana currency	20B5
 GHOST	1F47B
 GIMEL SYMBOL	2137
+GINGER ROOT	1FADA
 GIRL	1F467
 Glagolitic	2C00
 Glagolitic Supplement	1E000
@@ -2276,6 +2279,7 @@ GOBLIN, JAPANESE	1F47A
 gold medal	1F947
 Golden Numbers, Runic	16EE
 golf course	26F3
+GOOSE	1FABF
 Gothic	10330
 Grantha	11300
 GRAPHEME JOINER, COMBINING	034F
@@ -2567,6 +2571,7 @@ ht	0009
 Hungarian, Old	10C80
 HV, LATIN SMALL LETTER	0195
 HWAIR, LATIN CAPITAL LETTER	01F6
+HYACINTH	1FABB
 HYPHEN	2010
 HYPHEN BULLET	2043
 hyphen or minus sign	002D
@@ -2835,6 +2840,7 @@ Japanese Katakana Words, Squared	3300
 Japanese Katakana, Circled	32D0
 japanese kome	203B
 Javanese	A980
+JELLYFISH	1FABC
 JERUSALEM, CROSS OF	2629
 jis composition circle	20DD
 JIS X 0213 Compatibility Ideographs	FA30
@@ -2901,7 +2907,9 @@ Keyboard Symbols	2324
 Keyboard Symbols	2380
 Keyboard Symbols	2396
 KEYCAP, COMBINING ENCLOSING	20E3
+KHANDA	1F11F
 khanda, gurmukhi	262C
+khanda ta, bangla	09CE
 Kharoshthi	10A00
 Kharoshthi Digits	10A40
 Khitan Small Script	18B00
@@ -3544,6 +3552,7 @@ MOON, CRESCENT	1F319
 MOON, FIRST QUARTER	263D
 MOON, LAST QUARTER	263E
 Moon, Sun, and Star Symbols	1F311
+MOOSE	1FACE
 mortarboard	1F393
 most positive	223E
 MOTORWAY	1F6E3
@@ -4109,6 +4118,8 @@ plaintiff	226C
 PLANCK CONSTANT	210E
 PLANCK CONSTANT OVER TWO PI	210F
 Planet Symbols	263F
+Planets, Symbols for Minor	26B3
+Planets, Symbols for Minor	1F77B
 Plant Symbols	1F330
 Plastics Recycling Symbols	2673
 Playing Card Suits	2660
@@ -5994,6 +6005,7 @@ WHITE VERTICAL BAR, N-ARY	2AFF
 WIDE BRIDGE ABOVE, COMBINING	20E9
 Wiggly Fences	29D8
 WIGGLY VERTICAL LINE	2E3E
+WING	1FABD
 wj	2060
 WOLF FACE	1F43A
 WOMAN	1F469
