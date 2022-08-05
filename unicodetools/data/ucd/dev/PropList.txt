@@ -834,6 +834,15 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 
 # Total code points: 1420
 
+# [172-A17] Action Item for Markus Scherer, PAG:
+# Change the following five bindu characters to Alphabetic=Yes
+# by adding them to Other_Alphabetic in PropList.txt (Reference: Section 27 of L2/22-128):
+0C04 ; Other_Alphabetic # TELUGU SIGN COMBINING ANUSVARA ABOVE
+0F82 ; Other_Alphabetic # TIBETAN SIGN NYI ZLA NAA DA
+0F83 ; Other_Alphabetic # TIBETAN SIGN SNA LDAN
+11080 ; Other_Alphabetic # KAITHI SIGN CANDRABINDU
+11081 ; Other_Alphabetic # KAITHI SIGN ANUSVARA
+
 # ================================================
 
 3006          ; Ideographic # Lo       IDEOGRAPHIC CLOSING MARK
@@ -1170,6 +1179,20 @@ AB5C..AB5F    ; Other_Lowercase # Lm   [4] MODIFIER LETTER SMALL HENG..MODIFIER 
 
 # Total code points: 305
 
+# [172-A58] Action Item for Markus Scherer, PAG:
+# Give the Other_Lowercase property (and thus also Cased)
+# to modifier letter U+1E06D,
+# for Unicode Version 15.0. See L2/22-124 item UCD3.
+1E06D ; Other_Lowercase
+
+# [172-A59] Action Item for Markus Scherer, PAG:
+# Give the Other_Lowercase property (and thus also Cased)
+# to the modifier letters U+10FC and U+A7F2..A7F4 and U+AB69,
+# for Unicode Version 15.0. See L2/22-124 item UCD4.
+10FC ; Other_Lowercase
+A7F2..A7F4 ; Other_Lowercase
+AB69 ; Other_Lowercase
+
 # ================================================
 
 2160..216F    ; Other_Uppercase # Nl  [16] ROMAN NUMERAL ONE..ROMAN NUMERAL ONE THOUSAND
@@ -1341,6 +1364,15 @@ E0001         ; Deprecated # Cf       LANGUAGE TAG
 1DF1A         ; Soft_Dotted # L&       LATIN SMALL LETTER I WITH STROKE AND RETROFLEX HOOK
 
 # Total code points: 47
+
+# [172-A57] Action Item for Markus Scherer, PAG:
+# Give the Soft_Dotted property to U+1E04C and U+1E04D and U+1E068,
+# for consistency with other modifier letters,
+# and for consistency with the regular Cyrillic letters;
+# for Unicode Version 15.0. See L2/22-124 item UCD2.
+1E04C ; Soft_Dotted
+1E04D ; Soft_Dotted
+1E068 ; Soft_Dotted
 
 # ================================================
 
