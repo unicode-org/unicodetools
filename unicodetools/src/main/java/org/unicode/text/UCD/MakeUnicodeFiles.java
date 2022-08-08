@@ -815,6 +815,7 @@ public class MakeUnicodeFiles {
         CASELESS_COMPARATOR.freeze();
     }
 
+    // PropertyValueAliases.txt
     public static void generateValueAliasFile(String filename) throws IOException {
         String outputDir = "UCD/" + Default.ucdVersion() + '/';
         final UnicodeDataFile udf =
@@ -948,7 +949,13 @@ public class MakeUnicodeFiles {
                     pw.println("ccc; 133; CCC133                     ; CCC133 # RESERVED");
                 }
             }
-            if (sortedSet.size() == 0 || isGC || isJamoShortName) {
+            if (propName.equals("Bidi_Mirroring_Glyph")
+                    || propName.equals("Equivalent_Unified_Ideograph")
+                    || propName.equals("NFKC_Casefold")
+                    || propName.equals("Script_Extensions")) {
+                // Action item [172-A71]: Don't print @missing lines
+                // for properties whose specific data files already contain such lines.
+            } else if (sortedSet.size() == 0 || isGC || isJamoShortName) {
                 printDefaultValueComment(pw, propName, up, true, null);
             } else if (propName.equals("Bidi_Paired_Bracket_Type")) {
                 printDefaultValueComment(pw, propName, up, true, "n");

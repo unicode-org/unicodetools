@@ -872,6 +872,21 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 }
             }
             if (line.contents == UcdLine.Contents.DATA) {
+                if (propInfo.getDefaultValue() == null) {
+                    // Old versions of data files did not yet have @missing lines.
+                    // Supply the default value before applying the first real data line.
+                    String defaultValue = null;
+                    switch (propInfo.property) {
+                        case NFKC_Casefold:
+                            defaultValue = "<code point>";
+                            break;
+                        default:
+                            break;
+                    }
+                    if (defaultValue != null) {
+                        setPropDefault(propInfo.property, defaultValue, "hardcoded", false);
+                    }
+                }
                 final UnicodeMap<String> data;
                 try {
                     data = indexUnicodeProperties.property2UnicodeMap.get(propInfo.property);
@@ -1087,6 +1102,27 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             UcdLineParser parser, PropertyParsingInfo propInfo, UnicodeMap<String> data) {
         for (UcdLine line : parser) {
             if (line.contents == UcdLine.Contents.DATA) {
+                if (propInfo.getDefaultValue() == null) {
+                    // Old versions of data files did not yet have @missing lines.
+                    // Supply the default value before applying the first real data line.
+                    String defaultValue = null;
+                    switch (propInfo.property) {
+                        case Bidi_Mirroring_Glyph:
+                            defaultValue = "<none>";
+                            break;
+                        case Equivalent_Unified_Ideograph:
+                            defaultValue = "<none>";
+                            break;
+                        case Script_Extensions:
+                            defaultValue = "<script>";
+                            break;
+                        default:
+                            break;
+                    }
+                    if (defaultValue != null) {
+                        setPropDefault(propInfo.property, defaultValue, "hardcoded", false);
+                    }
+                }
                 propInfo.put(data, line.missingSet, line.intRange, line.parts[1], null, false);
             } else {
                 setPropDefault(
@@ -1179,6 +1215,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
      * @internal
      * @deprecated
      */
+    @Deprecated
     public static Relation<String, PropertyParsingInfo> getFile2PropertyInfoSet() {
         return file2PropertyInfoSet;
     }

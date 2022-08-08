@@ -1,5 +1,5 @@
 # PropertyValueAliases-15.0.0.txt
-# Date: 2022-02-02, 23:35:44 GMT
+# Date: 2022-08-05, 23:42:17 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -136,7 +136,6 @@ Bidi_M; Y                             ; Yes                              ; T    
 
 # Bidi_Mirroring_Glyph (bmg)
 
-# @missing: 0000..10FFFF; Bidi_Mirroring_Glyph; <none>
 
 # Bidi_Paired_Bracket (bpb)
 
@@ -671,7 +670,6 @@ EPres; Y                              ; Yes                              ; T    
 
 # Equivalent_Unified_Ideograph (EqUIdeo)
 
-# @missing: 0000..10FFFF; Equivalent_Unified_Ideograph; <none>
 
 # Expands_On_NFC (XO_NFC)
 
@@ -1151,7 +1149,6 @@ NFD_QC; Y                             ; Yes
 
 # NFKC_Casefold (NFKC_CF)
 
-# @missing: 0000..10FFFF; NFKC_Casefold; <code point>
 
 # NFKC_Quick_Check (NFKC_QC)
 
@@ -1428,7 +1425,6 @@ sc ; Zzzz                             ; Unknown
 
 # Script_Extensions (scx)
 
-# @missing: 0000..10FFFF; Script_Extensions; <script>
 
 # Sentence_Break (SB)
 
