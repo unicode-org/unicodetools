@@ -75,6 +75,7 @@ ipch
 pkgdata.inc
 pkgdataMakefile
 rules.mk
+target/watcher.txt
 
 # Directory specific wildcards
 # (none yet, see ICU .gitignore for examples)

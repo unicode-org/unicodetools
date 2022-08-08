@@ -97,10 +97,11 @@ When creating pull requests, you can check the formatting locally using the comm
 
 Some IDEs can integrate the formatter via plugins, which can minimize the need to manually run the formatter separately.  The following links for specific IDEs may work:
 
-* Eclipse: Follow the [instructions](https://source.android.com/devices/tech/test_infra/tradefed/development/eclipse#auto_format) in the "Auto format" section. You can alternatively use this link for [`android-formatting.xml`](https://raw.githubusercontent.com/aosp-mirror/platform_development/master/ide/eclipse/android-formatting.xml).
+* Eclipse: Follow the [instructions](https://source.android.com/devices/tech/test_infra/tradefed/development/eclipse#auto_format) in the "Auto format" section. You can alternatively use this link for [`android-formatting.xml`](https://raw.githubusercontent.com/aosp-mirror/platform_development/master/ide/eclipse/android-formatting.xml) from the [AOSP mirror on Github](https://github.com/aosp-mirror/platform_development/tree/master/ide/eclipse).
 * VSCode: Follow the [instructions](https://code.visualstudio.com/docs/java/java-linting#_formatter) in "Applying formatter settings", but use the same `android-formatting.xml` link mentioned for Eclipse (ex: `"java.format.settings.url": "https://raw.githubusercontent.com/aosp-mirror/platform_development/master/ide/eclipse/android-formatting.xml",`).  Also use the profile name corresponding to that XML file: (ex: `"java.format.settings.profile": "Android",`).
 * IntelliJ: Use the [official plugin](https://plugins.jetbrains.com/plugin/8527-google-java-format/) for the formatter.
 
+As an alternative to IDE formatter plugins, you can pre-apply the canonically correct formatting in a pseudo-interactive manner by opening a separate terminal session that runs the formatter every time a file is saved. This is achieved by running the command `mvn fizzed-watcher:run` in that terminal session. The command should be terminated manually (ex: Ctrl+C) after local editing is done.
 
 #### Eclipse-specific Additional Setup
 

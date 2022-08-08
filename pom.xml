@@ -146,6 +146,30 @@
                         </java>
                     </configuration>
                 </plugin>
+                <!--
+                    Allows the possibility to auto-run a Maven command on every file save
+                    https://github.com/fizzed/maven-plugins#watcher-fizzed-watcher-maven-plugin
+
+                    To execute, open a separate terminal and run this command:
+                    mvn fizzed-watcher:run
+
+                    The process will continue until you manually terminate it.
+                 -->
+                <plugin>
+                    <groupId>com.fizzed</groupId>
+                    <artifactId>fizzed-watcher-maven-plugin</artifactId>
+                    <version>1.0.6</version>
+                    <configuration>
+                        <watches>
+                            <watch>
+                                <directory>.</directory>
+                            </watch>
+                        </watches>
+                        <goals>
+                            <goal>spotless:apply</goal>
+                        </goals>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
