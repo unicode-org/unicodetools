@@ -781,7 +781,7 @@ public class GenerateEmojiData {
                     out.write("\n\n");
                 } else {
                     out.write("# All omitted code points have " + title + "=No\n");
-                    //out.write("# @missing: 0000..10FFFF  ; " + title + " ; No\n");
+                    // out.write("# @missing: 0000..10FFFF  ; " + title + " ; No\n");
                 }
 
                 // Note 2022-jul-13: This code does not work yet.
