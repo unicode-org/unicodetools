@@ -140,7 +140,7 @@ public class UpdateJspFiles {
 
     private static void copyOtherProps(VersionInfo fromVersion) throws IOException {
         copyTextFiles(
-                UNICODE_TOOLS_DIR.resolve("org/unicode/props"), // TODO: will break with mavenize
+                UNICODE_TOOLS_DIR.resolve("src/main/resources/org/unicode/props"), // TODO: will break with mavenize
                 JSP_RESOURCE_DATA.resolve("data"),
                 "ExtraPropertyAliases.txt",
                 "ExtraPropertyValueAliases.txt");
