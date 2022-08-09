@@ -54,7 +54,8 @@ public class UpdateJspFiles {
         System.out.println("Sublaunching CopyPropsToUnicodeJsp");
         CopyPropsToUnicodeJsp.main(args);
 
-        System.out.println("DONE! Now go run 'mvn jetty:run' to fire up the JSP");
+        System.out.println(
+                "DONE! Now go run 'mvn org.eclipse.jetty:jetty-maven-plugin:run' to fire up the JSP");
     }
 
     private static void copyTextFiles(VersionInfo fromVersion) throws IOException {
@@ -140,7 +141,9 @@ public class UpdateJspFiles {
 
     private static void copyOtherProps(VersionInfo fromVersion) throws IOException {
         copyTextFiles(
-                UNICODE_TOOLS_DIR.resolve("src/main/resources/org/unicode/props"), // TODO: will break with mavenize
+                UNICODE_TOOLS_DIR.resolve("src/main/resources/org/unicode/props"), // TODO: will
+                // break with
+                // mavenize
                 JSP_RESOURCE_DATA.resolve("data"),
                 "ExtraPropertyAliases.txt",
                 "ExtraPropertyValueAliases.txt");
