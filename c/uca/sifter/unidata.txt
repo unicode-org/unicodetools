@@ -1,5 +1,5 @@
 # unidata-15.0.0.txt
-# Date: 2022-07-20, 00:00:00 GMT [KW]
+# Date: 2022-08-09, 00:00:00 GMT [KW]
 # © 2022 Unicode®, Inc.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -9,8 +9,8 @@
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
 #
-# Version 15.0.0 draft 6 (Unicode Version: 15.0.0)
-# based on Unicode data file UnicodeData-15.0.0d6.txt
+# Version 15.0.0 draft 7 (Unicode Version: 15.0.0)
+# based on Unicode data file UnicodeData-15.0.0d7.txt
 # Ordering for Unicode 15.0
 #
 # Fields:
@@ -1569,8 +1569,10 @@ AABF;TAI VIET TONE MAI EK;Mn;;;;;;
 AAC1;TAI VIET TONE MAI THO;Mn;;;;;;
 
 0F39;TIBETAN MARK TSA -PHRU;Mn;;;tsa tru;;;
-0F7E;TIBETAN SIGN RJES SU NGA RO;Mn;0902;;je su nga ro;;;
-0F7F;TIBETAN SIGN RNAM BCAD;Mc;0903;;nam chey;;;
+0F7E;TIBETAN SIGN RJES SU NGA RO;Mn;0902;;;;;
+0F7F;TIBETAN SIGN RNAM BCAD;Mc;0903;;;;;
+0F82;TIBETAN SIGN NYI ZLA NAA DA;Mn;0901;;;;;
+0F83;TIBETAN SIGN SNA LDAN;Mn;0901;;;;;
 
 11CB5;MARCHEN SIGN ANUSVARA;Mn;0902;;;;;
 11CB6;MARCHEN SIGN CANDRABINDU;Mn;0901;;;;;
@@ -23506,11 +23508,9 @@ DEFAULT
 
 IGNOREON
 
-0F82;TIBETAN SIGN NYI ZLA NAA DA;Mn;;;nyi da na da;;;
-0F83;TIBETAN SIGN SNA LDAN;Mn;;;nan de;;;
-0F86;TIBETAN SIGN LCI RTAGS;Mn;;;ji ta;;;
-0F87;TIBETAN SIGN YANG RTAGS;Mn;;;yang ta;;;
-0FC6;TIBETAN SYMBOL PADMA GDAN;Mn;;;pema den;;;
+0F86;TIBETAN SIGN LCI RTAGS;Mn;;;;;;
+0F87;TIBETAN SIGN YANG RTAGS;Mn;;;;;;
+0FC6;TIBETAN SYMBOL PADMA GDAN;Mn;;;;;;
 
 DEFAULT
 
