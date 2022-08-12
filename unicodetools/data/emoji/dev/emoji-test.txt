@@ -1,5 +1,5 @@
 # emoji-test.txt
-# Date: 2022-07-18, 21:49:52 GMT
+# Date: 2022-08-12, 20:24:39 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -490,11 +490,11 @@
 1F932 1F3FE                                            ; fully-qualified     # 🤲🏾 E5.0 palms up together: medium-dark skin tone
 1F932 1F3FF                                            ; fully-qualified     # 🤲🏿 E5.0 palms up together: dark skin tone
 1F91D                                                  ; fully-qualified     # 🤝 E3.0 handshake
-1F91D 1F3FB                                            ; fully-qualified     # 🤝🏻 E3.0 handshake: light skin tone
-1F91D 1F3FC                                            ; fully-qualified     # 🤝🏼 E3.0 handshake: medium-light skin tone
-1F91D 1F3FD                                            ; fully-qualified     # 🤝🏽 E3.0 handshake: medium skin tone
-1F91D 1F3FE                                            ; fully-qualified     # 🤝🏾 E3.0 handshake: medium-dark skin tone
-1F91D 1F3FF                                            ; fully-qualified     # 🤝🏿 E3.0 handshake: dark skin tone
+1F91D 1F3FB                                            ; fully-qualified     # 🤝🏻 E14.0 handshake: light skin tone
+1F91D 1F3FC                                            ; fully-qualified     # 🤝🏼 E14.0 handshake: medium-light skin tone
+1F91D 1F3FD                                            ; fully-qualified     # 🤝🏽 E14.0 handshake: medium skin tone
+1F91D 1F3FE                                            ; fully-qualified     # 🤝🏾 E14.0 handshake: medium-dark skin tone
+1F91D 1F3FF                                            ; fully-qualified     # 🤝🏿 E14.0 handshake: dark skin tone
 1FAF1 1F3FB 200D 1FAF2 1F3FC                           ; fully-qualified     # 🫱🏻‍🫲🏼 E14.0 handshake: light skin tone, medium-light skin tone
 1FAF1 1F3FB 200D 1FAF2 1F3FD                           ; fully-qualified     # 🫱🏻‍🫲🏽 E14.0 handshake: light skin tone, medium skin tone
 1FAF1 1F3FB 200D 1FAF2 1F3FE                           ; fully-qualified     # 🫱🏻‍🫲🏾 E14.0 handshake: light skin tone, medium-dark skin tone
