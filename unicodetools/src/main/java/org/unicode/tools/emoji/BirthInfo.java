@@ -118,6 +118,12 @@ public class BirthInfo implements Comparable<BirthInfo> {
                         || sources.contains(CharSource.WDings)) {
                     year = 2014;
                     versionInfo = Emoji.VERSION0_7;
+                } else if (s.codePointAt(0) == EmojiData.HANDSHAKE
+                        && s.length() > 2
+                        && EmojiData.MODIFIERS.contains(s.codePointAt(2))) {
+                    // Handshake is E3.0 but mods were not added until E14.0
+                    year = 2021;
+                    versionInfo = Emoji.VERSION14;
                 } else {
                     for (Entry<VersionInfo, Integer> entry :
                             Emoji.EMOJI_VERSION_TO_YEAR.entrySet()) {
