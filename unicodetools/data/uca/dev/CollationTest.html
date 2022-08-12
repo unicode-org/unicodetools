@@ -22,7 +22,7 @@
 </tbody></table>
 <div class="body">
   <h1>Unicode® Collation Algorithm<br>Conformance Tests</h1>
-  <h2 align="center" class="changed">Version 15.0.0<br>2022-05-16</h2>
+  <h2 align="center" class="changed">Version 15.0.0<br>2022-08-12</h2>
 <p>The following files provide conformance tests for the Unicode Collation Algorithm
   (<a href="https://www.unicode.org/reports/tr10/tr10-46.html">UTS #10: Unicode Collation Algorithm</a>).</p>
   <ul>
@@ -32,6 +32,22 @@
     <li>CollationTest_NON_IGNORABLE_SHORT.txt</li>
   </ul>
   <p>These files are large, and thus packaged in zip format to save download time.</p>
+
+  <blockquote class="changed">
+    <p><b>Note:</b> These files test the sort order of an untailored DUCET table.
+    If you are using an implementation of the
+    <a href="https://www.unicode.org/reports/tr35/tr35-collation.html#CLDR_Collation_Algorithm">CLDR Collation Algorithm</a>
+    with its <a href="https://www.unicode.org/reports/tr35/tr35-collation.html#Root_Collation">tailored root collation data</a>,
+    for example ICU or a library that uses ICU for collation,
+    then you need to test with files that reflect that sort order.
+    The CLDR collation conformance test files have
+    the same names (except for an added _CLDR infix)
+    and structures as the ones here for the DUCET.
+    You can find them in the <a href="https://github.com/unicode-org/cldr/tree/main/common/uca">CLDR GitHub repo in the folder “common/uca”</a>,
+    or in the <a href="https://www.unicode.org/Public/cldr/">CLDR data file download area</a>,
+    in the “cldr-common-*.zip” file, again in the folder “common/uca”.
+    Select the files for the version of CLDR that is used in the implementation.</p>
+  </blockquote>
 
 <h2>Format</h2>
   <p>There are four different files:</p>
@@ -81,7 +97,7 @@
   <p>These files contain test cases that include ill-formed strings, with surrogate code points.
   Implementations that do not weight surrogate code points the same way as reserved code points
   may filter out such lines lines in the test cases, before testing for conformance.</p>
-  <blockquote>
+  <blockquote class="removed">
     <p><b>Note:</b> This test is only valid for an untailored DUCET table.</p>
   </blockquote>
 
