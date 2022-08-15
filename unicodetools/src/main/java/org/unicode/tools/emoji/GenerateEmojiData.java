@@ -901,7 +901,10 @@ public class GenerateEmojiData {
                                                         + "\t"
                                                         + titleField
                                                         + (showName
-                                                                ? "\t; " + getName(s) + " "
+                                                                ? "\t; "
+                                                                    + getName(s)
+                                                                    + ".."
+                                                                    + getName(e)
                                                                 : "")
                                                         + "\t#"
                                                         + "\t"
