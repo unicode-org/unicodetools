@@ -27,17 +27,21 @@ If you already have `UnicodeJsps` in eclipse, it might be better to remove it fr
 ### Command Line
 
 ```shell
-mvn jetty:run
+mvn org.eclipse.jetty:jetty-maven-plugin:run
 ```
 
 You can now connect to <http://127.0.0.1:8080> as suggested from the command line.
 Use Control-C to stop the server.
 
+> Note: this used to be `mvn jetty:run` but a more verbose command is needed at present.
+
 ### Running from within Eclipse
 
-This screenshot shows creating a `jetty:run` maven run configuration.
+This screenshot shows creating a `org.eclipse.jetty:jetty-maven-plugin:run` maven run configuration.
 
-![Running jetty:run from eclipse](eclipse-jetty-run.png)
+![Running org.eclipse.jetty:jetty-maven-plugin:run from eclipse](eclipse-jetty-run.png)
+
+> Note: Please change the Goal to `org.eclipse.jetty:jetty-maven-plugin:run` instead of `jetty:run`
 
 ### Debugging from within eclipse
 
