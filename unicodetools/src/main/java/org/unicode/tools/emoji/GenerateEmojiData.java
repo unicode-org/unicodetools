@@ -902,9 +902,9 @@ public class GenerateEmojiData {
                                                         + titleField
                                                         + (showName
                                                                 ? "\t; "
-                                                                    + getName(s)
-                                                                    + ".."
-                                                                    + getName(e)
+                                                                        + getName(s)
+                                                                        + ".."
+                                                                        + getName(e)
                                                                 : "")
                                                         + "\t#"
                                                         + "\t"
