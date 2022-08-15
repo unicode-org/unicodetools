@@ -1,23 +1,19 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 15.0.0
-@@@+	U15M220504.lst
-	Unicode 15.0.0 names list, fourth delta.
-	Repertoire synched with UnicodeData-15.0.0d4.txt.
-	Rollup of alpha review fixes.
-	Adjusted alias and added xref for 1F728.
-	Added annotations for 1F772, 1F773.
-	Fixed typos in annotations for 1342F and 13430.
-	Added cross-references to 20E6.
-	Added cross-references between 1FAAF and 262C.
-	Updated annotation for 26A5.
-	Added annotation for 33D7.
-	Added annotation for 11F52.
-	Added cross-references between 10EFD and 08DD.
-	Added cross-references for 11B00 and 11B09.
-	Added name alias of type correction for 1BBD.
-	Added annotation and cross-reference for 2E95.
-	Extended the range for CJK Unified Ideographs Extension C to 2B739.
-	Added some annotations for Old Hungarian.
+@@@+	U15M220815.lst
+	Unicode 15.0.0 names list, sixth delta.
+	Repertoire synched with UnicodeData-15.0.0d7.txt.
+	Rollup of beta review fixes.
+	Added annotations to left-side New Tai Lue vowels.
+	Added asterisk to notice at 2E4E.
+	Updated schwa in note to 11F40 to use 0259.
+	Updated comment at 052B to a notice, to prevent incorrect display of date.
+	Lowercased centrigrade in annotation to 2103.
+	Added formal name alias correction for 0616.
+	Updated annotation for 06AE.
+	Adjusted notice for 0675.
+	Added annotation for AB30.
+	Added annotations for 204F and 2E41.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -3574,7 +3570,7 @@
 @+		These are obsolete letters attested in a 19th century grammar of Komi.
 052A	CYRILLIC CAPITAL LETTER DZZHE
 052B	CYRILLIC SMALL LETTER DZZHE
-	* also used for Ossetian until 1924
+@+	* also used for Ossetian until 1924
 052C	CYRILLIC CAPITAL LETTER DCHE
 052D	CYRILLIC SMALL LETTER DCHE
 @		Khanty letters
@@ -3901,6 +3897,7 @@
 	* should not be confused with the small TAH sign used as a diacritic for some letters such as 0679
 @		Extended Arabic mark
 0616	ARABIC SMALL HIGH LIGATURE ALEF WITH LAM WITH YEH
+	% ARABIC SMALL HIGH LIGATURE ALEF WITH YEH BARREE
 	* early Persian
 @		Quranic annotation signs
 0617	ARABIC SMALL HIGH ZAIN
@@ -4085,7 +4082,7 @@
 	* Kazakh, Jawi
 	* forms digraphs
 @		Digraphic letters for Kazakh
-@+		Use of these characters is discouraged. They were encoded for Kazakh digraphs, but their decompositions do not reflect the preferred order of representation. Accordingly, the representation of these Kazakh digraphs should instead use the preferred two-character spellings with the correct order of elements.
+@+		These characters were encoded for Kazakh digraphs, but their compatibility decompositions do not reflect the preferred order of representation. Accordingly, the representation of these Kazakh digraphs should instead use the preferred two-character spellings with the correct order of elements.
 0675	ARABIC LETTER HIGH HAMZA ALEF
 	* preferred spelling is 0674 0627
 	# 0627 0674
@@ -4215,7 +4212,7 @@
 	* Uyghur, Kazakh, Moroccan Arabic, early Jawi, early Persian, ...
 06AE	ARABIC LETTER KAF WITH THREE DOTS BELOW
 	* Berber, early Persian
-	* Pegon alternative for 068A
+	* Pegon alternative for 08B4
 06AF	ARABIC LETTER GAF
 	* Persian, Urdu, ...
 06B0	ARABIC LETTER GAF WITH RING
@@ -10158,18 +10155,22 @@
 19AA	NEW TAI LUE LETTER HIGH SUA
 19AB	NEW TAI LUE LETTER LOW SUA
 	* a labialized consonant cluster
-@		Vowel signs
+@		Vowels
 19B0	NEW TAI LUE VOWEL SIGN VOWEL SHORTENER
 19B1	NEW TAI LUE VOWEL SIGN AA
 19B2	NEW TAI LUE VOWEL SIGN II
 19B3	NEW TAI LUE VOWEL SIGN U
 19B4	NEW TAI LUE VOWEL SIGN UU
 19B5	NEW TAI LUE VOWEL SIGN E
+	* precedes consonant in visual order
 19B6	NEW TAI LUE VOWEL SIGN AE
+	* precedes consonant in visual order
 19B7	NEW TAI LUE VOWEL SIGN O
+	* precedes consonant in visual order
 19B8	NEW TAI LUE VOWEL SIGN OA
 19B9	NEW TAI LUE VOWEL SIGN UE
 19BA	NEW TAI LUE VOWEL SIGN AY
+	* precedes consonant in visual order
 19BB	NEW TAI LUE VOWEL SIGN AAY
 19BC	NEW TAI LUE VOWEL SIGN UY
 19BD	NEW TAI LUE VOWEL SIGN OY
@@ -13035,7 +13036,7 @@
 	x (asterisk - 002A)
 	x (combining asterisk below - 0359)
 204F	REVERSED SEMICOLON
-	* also used in Sindhi
+	* used occasionally in Sindhi when Sindhi is written in the Arabic script
 	x (semicolon - 003B)
 	x (arabic semicolon - 061B)
 2050	CLOSE UP
@@ -13423,7 +13424,7 @@
 	= the set of complex numbers
 	# <font> 0043 latin capital letter c
 2103	DEGREE CELSIUS
-	= degrees Centigrade
+	= degrees centigrade
 	# 00B0 0043
 2104	CENTRE LINE SYMBOL
 	= clone
@@ -19328,7 +19329,8 @@
 	x (modifier letter short equals sign - A78A)
 @		Reversed punctuation
 2E41	REVERSED COMMA
-	* also used in Sindhi
+	* Old Hungarian
+	* used occasionally in Sindhi when Sindhi is written in the Arabic script
 	x (comma - 002C)
 	x (arabic comma - 060C)
 2E42	DOUBLE LOW-REVERSED-9 QUOTATION MARK
@@ -19365,7 +19367,7 @@
 	x (paragraphos - 2E0F)
 	x (capitulum - 2E3F)
 2E4E	PUNCTUS ELEVATUS MARK
-@+		This mark indicates a major intermediate pause where the sensus is complete but the sentence is not; this is similar in some regards to the modern use of a semicolon.
+@+		* This mark indicates a major intermediate pause where the sensus is complete but the sentence is not; this is similar in some regards to the modern use of a semicolon.
 2E4F	CORNISH VERSE DIVIDER
 2E50	CROSS PATTY WITH RIGHT CROSSBAR
 	x (maltese cross - 2720)
@@ -25562,6 +25564,7 @@ AB2E	ETHIOPIC SYLLABLE BBO
 @@	AB30	Latin Extended-E	AB6F
 @		Letters for German dialectology
 AB30	LATIN SMALL LETTER BARRED ALPHA
+@+		* This letter is a Latin alpha with a horizontal strikethrough bar. In some font designs, the bar might not extend beyond the edge of the letter, and in such cases, the letter should not be confused with a ligature of epsilon and iota.
 AB31	LATIN SMALL LETTER A REVERSED-SCHWA
 AB32	LATIN SMALL LETTER BLACKLETTER E
 AB33	LATIN SMALL LETTER BARRED E
@@ -35030,7 +35033,7 @@ FFFF	<not a character>
 11B07	DEVANAGARI SIGN WESTERN NINE-LIKE BHALE
 11B08	DEVANAGARI SIGN REVERSED NINE-LIKE BHALE
 11B09	DEVANAGARI SIGN MINDU
-	x (devanagari digit zero - 0966)	
+	x (devanagari digit zero - 0966)
 @@	11C00	Bhaiksuki	11C6F
 @		Independent vowels
 11C00	BHAIKSUKI LETTER A
@@ -35473,7 +35476,7 @@ FFFF	<not a character>
 11F3E	KAWI VOWEL SIGN E
 11F3F	KAWI VOWEL SIGN AI
 11F40	KAWI VOWEL SIGN EU
-	* represents schwa [ǝ]
+	* represents schwa [ə]
 @		Viramas
 11F41	KAWI SIGN KILLER
 	* vowel killer, always rendered visibly
