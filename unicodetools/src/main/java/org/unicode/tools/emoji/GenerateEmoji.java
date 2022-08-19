@@ -4193,8 +4193,11 @@ public class GenerateEmoji {
                         ? " Where the last Sample cell is marked with the symbol "
                                 + NOT_NEW
                                 + ", there is a row for an pre-existing character that has new gender and/or modifier variants. "
-                                + "For example, ➕ 5 " + Category.mod_seq.html + " means that additional 5 skintone variants on the original character are added,  "
-                                + "and  ➕ 20 " + Category.zwj_seq_mod.html + " means 20 zwj sequences are added, used to compose two other characters with a skintone on each.</p>\n"
+                                + "For example, ➕ 5 "
+                                + Category.mod_seq.html
+                                + " means that additional 5 skintone variants on the original character are added, and ➕ 20 "
+                                + Category.zwj_seq_mod.html
+                                + " means 20 zwj sequences are added, used to compose two other characters with a skintone on each.</p>\n"
                                 /*
                                 + "<p><b style='background-color:yellow'>Note that certain CLDR names are to be changed after CLDR v36 ships:<ul>"
                                 + "<li>👰 → person with veil</li>"
@@ -4217,8 +4220,9 @@ public class GenerateEmoji {
                         + top2
                         + "<h2>Background</h2>\n"
                         + top3
-                        + "<p>The count of new variants is in the Other Keywords column, such as “➕ 5 " + Category.mod_seq.html + "”. "
-                        + "The abbreviations and symbols are documented in "
+                        + "<p>The count of new variants is in the Other Keywords column, such as “➕ 5 "
+                        + Category.mod_seq.html
+                        + "”. The abbreviations and symbols are documented in "
                         + CountEmoji.EMOJI_COUNT_KEY
                         + ", and the symbol meanings can be seen by hovering with a mouse."
                         + top4
