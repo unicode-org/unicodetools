@@ -431,6 +431,10 @@ Show [\u20b9]
 # [\p{Alphabetic}] ∥ \p{Script=Common}
 #  & [\p{Decomposition_Type=None} \p{Decomposition_Type=Canonical}]
 
+# Nonalphabetic bindus
+Let $nonAlphaBindus = [\u0C04\u0F82\u0F83\U00011080\U00011081]
+[\p{InSc=Bindu} - $nonAlphaBindus - \p{Alphabetic}] = [] 
+
 ##########################
 # LineBreak property
 ##########################
