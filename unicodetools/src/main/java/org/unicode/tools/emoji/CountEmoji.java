@@ -448,7 +448,7 @@ public class CountEmoji {
                 }
                 StringBuilder sb = new StringBuilder();
                 StringBuilder sbLong = new StringBuilder();
-                if (attributes.size() == 1 & attributes.contains(Attribute.skin)) {
+                if (attributes.size() == 1 && attributes.contains(Attribute.skin)) {
                     sb.append(Attribute.singleton.label);
                     sbLong.append(Attribute.singleton.toString());
                 }
@@ -479,6 +479,8 @@ public class CountEmoji {
                 title = name().replace('_', '-');
             }
             String _html = TransliteratorUtilities.toHTML.transform(displayName);
+            // Google Chrome will only fallback to an emoji font for mods when they follow an emoji character or no character, trigger the latter case:
+            _html = _html.replace(Attribute.skin.label, "<span style=\"display:inline-block;\">" + Attribute.skin.label + "</span>");
             html = title == null ? _html : "<span title='" + title + "'>" + _html + "</span>";
         }
 
