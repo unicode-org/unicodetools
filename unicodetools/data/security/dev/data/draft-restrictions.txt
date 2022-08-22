@@ -19388,6 +19388,7 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 303B          ;  ; Technical #      (〻)  VERTICAL IDEOGRAPHIC ITERATION MARK
 303C          ;  ; Technical #      (〼)  MASU MARK
 A78E          ;  ; Technical #      (ꞎ)  LATIN SMALL LETTER L WITH RETROFLEX HOOK AND BELT
+A7AE          ;  ; Technical #      (Ɪ)  LATIN CAPITAL LETTER SMALL CAPITAL I
 A7AF          ;  ; Technical #      (ꞯ)  LATIN LETTER SMALL CAPITAL Q
 A7BA          ;  ; Technical #      (Ꞻ)  LATIN CAPITAL LETTER GLOTTAL A
 A7BB          ;  ; Technical #      (ꞻ)  LATIN SMALL LETTER GLOTTAL A
@@ -19476,7 +19477,7 @@ FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 1D185..1D18B  ;  ; Technical #  [7] (𝆅..𝆋)  MUSICAL SYMBOL COMBINING DOIT..MUSICAL SYMBOL COMBINING TRIPLE TONGUE
 1D1AA..1D1AD  ;  ; Technical #  [4] (𝆪..𝆭)  MUSICAL SYMBOL COMBINING DOWN BOW..MUSICAL SYMBOL COMBINING SNAP PIZZICATO
 
-# Total code points: 561
+# Total code points: 562
 
 0181..0182    ;  ; Uncommon_Use #  [2] (Ɓ..Ƃ)  LATIN CAPITAL LETTER B WITH HOOK..LATIN CAPITAL LETTER B WITH TOPBAR
 0183          ;  ; Uncommon_Use #      (ƃ)  LATIN SMALL LETTER B WITH TOPBAR
@@ -19748,6 +19749,8 @@ A7B2..A7B4    ;  ; Uncommon_Use #  [3] (Ʝ..Ꞵ)  LATIN CAPITAL LETTER J WITH C
 A7B5          ;  ; Uncommon_Use #      (ꞵ)  LATIN SMALL LETTER BETA
 A7B6          ;  ; Uncommon_Use #      (Ꞷ)  LATIN CAPITAL LETTER OMEGA
 A7B7          ;  ; Uncommon_Use #      (ꞷ)  LATIN SMALL LETTER OMEGA
+A7B8          ;  ; Uncommon_Use #      (Ꞹ)  LATIN CAPITAL LETTER U WITH STROKE
+A7B9          ;  ; Uncommon_Use #      (ꞹ)  LATIN SMALL LETTER U WITH STROKE
 AB60          ;  ; Uncommon_Use #      (ꭠ)  LATIN SMALL LETTER SAKHA YAT
 AB61          ;  ; Uncommon_Use #      (ꭡ)  LATIN SMALL LETTER IOTIFIED E
 AB62          ;  ; Uncommon_Use #      (ꭢ)  LATIN SMALL LETTER OPEN OE
@@ -19770,7 +19773,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 1AFFD         ;  ; Uncommon_Use #      (𚿽)  KATAKANA LETTER MINNAN NASALIZED TONE-7
 1AFFE         ;  ; Uncommon_Use #      (𚿾)  KATAKANA LETTER MINNAN NASALIZED TONE-8
 
-# Total code points: 311
+# Total code points: 313
 
 00B7          ; Allowed ; Inclusion #      (·)  MIDDLE DOT
 
@@ -22882,9 +22885,6 @@ A78D          ; Allowed ; Recommended #      (Ɥ)  LATIN CAPITAL LETTER TURNED 
 A792          ; Allowed ; Recommended #      (Ꞓ)  LATIN CAPITAL LETTER C WITH BAR
 A793          ; Allowed ; Recommended #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 A7AA          ; Allowed ; Recommended #      (Ɦ)  LATIN CAPITAL LETTER H WITH HOOK
-A7AE          ; Allowed ; Recommended #      (Ɪ)  LATIN CAPITAL LETTER SMALL CAPITAL I
-A7B8          ; Allowed ; Recommended #      (Ꞹ)  LATIN CAPITAL LETTER U WITH STROKE
-A7B9          ; Allowed ; Recommended #      (ꞹ)  LATIN SMALL LETTER U WITH STROKE
 A7C0          ; Allowed ; Recommended #      (Ꟁ)  LATIN CAPITAL LETTER OLD POLISH O
 A7C1          ; Allowed ; Recommended #      (ꟁ)  LATIN SMALL LETTER OLD POLISH O
 A7C2          ; Allowed ; Recommended #      (Ꟃ)  LATIN CAPITAL LETTER ANGLICANA W
@@ -49789,7 +49789,7 @@ FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 323AF         ; Allowed ; Recommended #      (𲎯)  CJK UNIFIED IDEOGRAPH-323AF
 E0100..E01EF  ; Allowed ; Recommended # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 112377
+# Total code points: 112374
 
 005F          ; ~IDNA #      (_)  LOW LINE
 04C0          ; ~IDNA #      (Ӏ)  CYRILLIC LETTER PALOCHKA
@@ -50166,7 +50166,7 @@ FFF9..FFFD    ; ~Unicode Identifier #  [5] (U+FFF9..�)  INTERLINEAR ANNOTATION
 11FFF         ; ~Unicode Identifier #      (𑿿)  TAMIL PUNCTUATION END OF TEXT
 12470..12474  ; ~Unicode Identifier #  [5] (𒑰..𒑴)  CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD DIVIDER..CUNEIFORM PUNCTUATION SIGN DIAGONAL QUADCOLON
 12FF1..12FF2  ; ~Unicode Identifier #  [2] (𒿱..𒿲)  CYPRO-MINOAN SIGN CM301..CYPRO-MINOAN SIGN CM302
-13430..1343F  ; ~Unicode Identifier # [16] (U+13430..𓐿)  EGYPTIAN HIEROGLYPH VERTICAL JOINER..EGYPTIAN HIEROGLYPH END WALLED ENCLOSURE
+13430..1343F  ; ~Unicode Identifier # [16] (U+13430..U+1343F)  EGYPTIAN HIEROGLYPH VERTICAL JOINER..EGYPTIAN HIEROGLYPH END WALLED ENCLOSURE
 16A6E..16A6F  ; ~Unicode Identifier #  [2] (𖩮..𖩯)  MRO DANDA..MRO DOUBLE DANDA
 16AF5         ; ~Unicode Identifier #      (𖫵)  BASSA VAH FULL STOP
 16B37..16B3F  ; ~Unicode Identifier #  [9] (𖬷..𖬿)  PAHAWH HMONG SIGN VOS THOM..PAHAWH HMONG SIGN XYEEM FAIB

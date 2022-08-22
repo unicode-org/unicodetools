@@ -1,5 +1,5 @@
 ﻿# IdentifierStatus.txt
-# Date: 2022-05-18, 21:51:57 GMT
+# Date: 2022-08-22, 22:20:56 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -531,8 +531,6 @@ A788          ; Allowed    # 5.1        MODIFIER LETTER LOW CIRCUMFLEX ACCENT
 A78D          ; Allowed    # 6.0        LATIN CAPITAL LETTER TURNED H
 A792..A793    ; Allowed    # 6.1    [2] LATIN CAPITAL LETTER C WITH BAR..LATIN SMALL LETTER C WITH BAR
 A7AA          ; Allowed    # 6.1        LATIN CAPITAL LETTER H WITH HOOK
-A7AE          ; Allowed    # 9.0        LATIN CAPITAL LETTER SMALL CAPITAL I
-A7B8..A7B9    ; Allowed    # 11.0   [2] LATIN CAPITAL LETTER U WITH STROKE..LATIN SMALL LETTER U WITH STROKE
 A7C0..A7C1    ; Allowed    # 14.0   [2] LATIN CAPITAL LETTER OLD POLISH O..LATIN SMALL LETTER OLD POLISH O
 A7C2..A7C6    ; Allowed    # 12.0   [5] LATIN CAPITAL LETTER ANGLICANA W..LATIN CAPITAL LETTER Z WITH PALATAL HOOK
 A7C7..A7CA    ; Allowed    # 13.0   [4] LATIN CAPITAL LETTER D WITH SHORT STROKE OVERLAY..LATIN SMALL LETTER S WITH SHORT STROKE OVERLAY
@@ -586,4 +584,4 @@ FA27..FA29    ; Allowed    # 1.1    [3] CJK COMPATIBILITY IDEOGRAPH-FA27..CJK CO
 30000..3134A  ; Allowed    # 13.0 [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Allowed    # 15.0 [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 112159
+# Total code points: 112156
