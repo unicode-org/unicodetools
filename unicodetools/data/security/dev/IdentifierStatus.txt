@@ -1,5 +1,5 @@
 ﻿# IdentifierStatus.txt
-# Date: 2022-08-22, 22:20:56 GMT
+# Date: 2022-08-22, 23:13:14 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -14,16 +14,17 @@
 # Field 0: code point
 # Field 1: Identifier_Status value (see Table 1 of http://www.unicode.org/reports/tr39)
 #
-# Any missing code points have the Identifier_Status value Restricted
-#
 # For the purpose of regular expressions, the property Identifier_Status is defined as
 # an enumerated property of code points.
 # The short name of Identifier_Status is the same as the long name.
 # The possible values are:
 #   Allowed, Restricted
 # The short name of each value is the same as its long name.
-# The default property value for all Unicode code points U+0000..U+10FFFF
-# not mentioned in this data file is Restricted.
+
+# All code points not explicitly listed for Identifier_Status
+# have the value Restricted.
+
+# @missing: 0000..10FFFF; Restricted
 
 
 #	Identifier_Status:	Allowed

@@ -918,7 +918,7 @@ public class IdentifierInfo {
                         if (b == null) {
                             return null;
                         }
-                        String x = (String) b;
+                        String x = b;
                         //                if (ALT) {
                         //                    if
                         // (!GenerateConfusables.IDNOutputSet.contains(codePoint)) {
@@ -988,7 +988,7 @@ public class IdentifierInfo {
         if (MAIN_CODE) {
             final Set<String> values = new TreeSet<>(someRemovals.getAvailableValues());
             for (final Iterator<String> it = values.iterator(); it.hasNext(); ) {
-                final String reason1 = (String) it.next();
+                final String reason1 = it.next();
                 bf.setValueSource(reason1);
                 final UnicodeSet keySet = someRemovals.keySet(reason1);
                 if (reason1.contains("recommended")) {
@@ -1057,11 +1057,7 @@ public class IdentifierInfo {
                     "# Format"
                             + "\n#"
                             + "\n# Field 0: code point"
-                            + "\n# Field 1: set of Identifier_Type values (see Table 1 of http://www.unicode.org/reports/tr39)"
-                            + "\n#"
-                            + "\n# Any missing code points have the "
-                            + propName
-                            + " value Not_Character");
+                            + "\n# Field 1: set of Identifier_Type values (see Table 1 of http://www.unicode.org/reports/tr39)");
 
             out2.println(
                     "#\n"
@@ -1075,9 +1071,10 @@ public class IdentifierInfo {
                             + "# The possible values are:\n"
                             + "#   Not_Character, Deprecated, Default_Ignorable, Not_NFKC, Not_XID,\n"
                             + "#   Exclusion, Obsolete, Technical, Uncommon_Use, Limited_Use, Inclusion, Recommended\n"
-                            + "# The short name of each value is the same as its long name.\n"
-                            + "# The default property value for all Unicode code points U+0000..U+10FFFF\n"
-                            + "# not mentioned in this data file is Not_Character.\n"
+                            + "# The short name of each value is the same as its long name.\n\n"
+                            + "# All code points not explicitly listed for " + propName + "\n"
+                            + "# have the value Not_Character.\n\n"
+                            + "# @missing: 0000..10FFFF; Not_Character\n\n"
                             + "# As usual, sets are unordered, with no duplicate values.\n");
 
             bf2.setValueSource(
@@ -1129,11 +1126,7 @@ public class IdentifierInfo {
                     "# Format"
                             + "\n#"
                             + "\n# Field 0: code point"
-                            + "\n# Field 1: Identifier_Status value (see Table 1 of http://www.unicode.org/reports/tr39)"
-                            + "\n#"
-                            + "\n# Any missing code points have the "
-                            + propName
-                            + " value Restricted");
+                            + "\n# Field 1: Identifier_Status value (see Table 1 of http://www.unicode.org/reports/tr39)");
 
             out2.println(
                     "#\n"
@@ -1146,9 +1139,10 @@ public class IdentifierInfo {
                             + " is the same as the long name.\n"
                             + "# The possible values are:\n"
                             + "#   Allowed, Restricted\n"
-                            + "# The short name of each value is the same as its long name.\n"
-                            + "# The default property value for all Unicode code points U+0000..U+10FFFF\n"
-                            + "# not mentioned in this data file is Restricted.\n");
+                            + "# The short name of each value is the same as its long name.\n\n"
+                            + "# All code points not explicitly listed for " + propName + "\n"
+                            + "# have the value Restricted.\n\n"
+                            + "# @missing: 0000..10FFFF; Restricted\n");
 
             bf2.setValueSource(
                     (new UnicodeProperty.UnicodeMapProperty() {})
