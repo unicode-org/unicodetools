@@ -322,6 +322,16 @@ public class TestInvariants extends TestFmwkMinusMinus {
                     // from Identifier_Type=Inclusion and Identifier_Status=Allowed.
                     level = LOG;
                 }
+                if (ucdProperty == UcdProperty.Identifier_Type
+                        && value.equals("Recommended")
+                        && Settings.latestVersion.equals("15.0.0")
+                        && missing.size() == 3
+                        && missing.containsAll("\uA7AE\uA7B8\uA7B9")) {
+                    // Intentional removal of characters from Identifier_Type=Recommended:
+                    // [172-A61] Change the Identifier_Type of U+A7AE to Technical
+                    // [172-A62] Change the Identifier_Type of U+A7B8 and U+A7B9 to Uncommon_Use
+                    level = LOG;
+                }
                 msg(
                         "Unicode "
                                 + Settings.latestVersion
