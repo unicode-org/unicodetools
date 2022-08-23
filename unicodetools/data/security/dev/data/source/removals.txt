@@ -211,6 +211,17 @@
 024E ; uncommon-use # ( Ɏ ) LATIN CAPITAL LETTER Y WITH STROKE
 024F ; uncommon-use # ( ɏ ) LATIN SMALL LETTER Y WITH STROKE
 
+# A few lines above, U+023A LATIN CAPITAL LETTER A WITH STROKE
+# and U+0246, U+0247 are set to uncommon-use,
+# and elsewhere U+2C65 is set to technical.
+# These are used in Mazahua.
+# For consistency, change the following which are also used in Mazahua:
+# [172-A62] ... Change the Identifier_Type of
+# U+A7B8 [LATIN CAPITAL LETTER U WITH STROKE] and
+# U+A7B9 [LATIN SMALL LETTER U WITH STROKE] to Uncommon_Use
+# (and thus their Identifier_Status to Restricted), for Unicode Version 15.0.
+A7B8..A7B9 ; uncommon-use
+
 # IPA Extensions - IPA extensions: 20
 0253 ; technical # ( ɓ ) LATIN SMALL LETTER B WITH HOOK
 0254 ; technical # ( ɔ ) LATIN SMALL LETTER OPEN O
@@ -336,6 +347,11 @@ A78B..A78C ; uncommon-use # ( Ꞌ ) LATIN CAPITAL LETTER SALTILLO .. ( ꞌ ) LAT
 02A3..02AB; technical #  symbol (Latin digraph)
 02AC          ; technical # symbol (phonetic) #      (ʬ)  LATIN LETTER BILABIAL PERCUSSIVE
 02AD          ; technical # symbol (phonetic) #      (ʭ)  LATIN LETTER BIDENTAL PERCUSSIVE
+
+# A few lines above, U+026A LATIN LETTER SMALL CAPITAL I is set to technical.
+# [172-A61] ... Change the Identifier_Type of U+A7AE [LATIN CAPITAL LETTER SMALL CAPITAL I] to Technical
+# (and thus its Identifier_Status to Restricted), for Unicode Version 15.0. See L2/22-124 item UCD7.
+A7AE; technical
 
 03F3; technical # presentation form
 0483..0486; historic
