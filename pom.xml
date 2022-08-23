@@ -26,12 +26,12 @@
             For ICU versions, see https://github.com/orgs/unicode-org/packages?repo_name=icu
             Note that we can't use the general ICU maven packages, because utilities isn't exported (yet).
          -->
-        <icu.version>72.0.1-SNAPSHOT-cldr-2022-06-27</icu.version>
+        <icu.version>72.0.1-SNAPSHOT-cldr-2022-08-17</icu.version>
 
         <!--
              For CLDR versions, see https://github.com/orgs/unicode-org/packages?repo_name=cldr
           -->
-        <cldr.version>0.0.0-SNAPSHOT-11ae1ba2f8</cldr.version>
+        <cldr.version>0.0.0-SNAPSHOT-273d736f11</cldr.version>
 
 
         <!-- these two set the JDK version for source and target -->
