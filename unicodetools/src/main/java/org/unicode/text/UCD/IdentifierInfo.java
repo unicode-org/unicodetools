@@ -1072,7 +1072,9 @@ public class IdentifierInfo {
                             + "#   Not_Character, Deprecated, Default_Ignorable, Not_NFKC, Not_XID,\n"
                             + "#   Exclusion, Obsolete, Technical, Uncommon_Use, Limited_Use, Inclusion, Recommended\n"
                             + "# The short name of each value is the same as its long name.\n\n"
-                            + "# All code points not explicitly listed for " + propName + "\n"
+                            + "# All code points not explicitly listed for "
+                            + propName
+                            + "\n"
                             + "# have the value Not_Character.\n\n"
                             + "# @missing: 0000..10FFFF; Not_Character\n\n"
                             + "# As usual, sets are unordered, with no duplicate values.\n");
@@ -1140,7 +1142,9 @@ public class IdentifierInfo {
                             + "# The possible values are:\n"
                             + "#   Allowed, Restricted\n"
                             + "# The short name of each value is the same as its long name.\n\n"
-                            + "# All code points not explicitly listed for " + propName + "\n"
+                            + "# All code points not explicitly listed for "
+                            + propName
+                            + "\n"
                             + "# have the value Restricted.\n\n"
                             + "# @missing: 0000..10FFFF; Restricted\n");
 
