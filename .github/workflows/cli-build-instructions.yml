@@ -76,14 +76,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Upload UnicodeTestResults
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: unicode-test-results
-          path: |
-            Generated/UnicodeTestResults.*
-
   out-of-source-build:
     name: Out-of-source Instructions
     runs-on: ubuntu-latest
@@ -125,6 +117,14 @@ jobs:
           MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload UnicodeTestResults artifact
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: unicode-test-results
+          path: |
+            unicodetools/mine/Generated/UnicodeTestResults.*
 
       - name: Run command - Make Unicode Files
         run: |
