@@ -437,8 +437,7 @@ Show [\u20b9]
 # - is the rule roughly right?
 # - if so, are these intentional exceptions?
 # - otherwise, are these wrong? should these 5 be alphabetic?
-Let $nonAlphaBindus = [\u0C04\u0F82\u0F83\U00011080\U00011081]
-[\p{InSc=Bindu} - $nonAlphaBindus - \p{Alphabetic}] = [] 
+[\p{InSc=Bindu} - \p{Alphabetic}] = [] 
 
 ##########################
 # LineBreak property
