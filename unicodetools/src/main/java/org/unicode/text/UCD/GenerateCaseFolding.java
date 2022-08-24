@@ -108,21 +108,19 @@ public class GenerateCaseFolding implements UCD_Types {
                 continue;
             }
 
-            if (rFull != null && rFull.equals(rSimple)
+            // Hardcode variants of letter i.
+            if (ch == 0x49) {
+                drawLine(out, ch, "C", "i");
+                drawLine(out, ch, "T", "\u0131");
+            } else if (ch == 0x130) {
+                drawLine(out, ch, "F", "i\u0307");
+                drawLine(out, ch, "T", "i");
+            } else if (ch == 0x131) {
+                // do nothing
+                // drawLine(out, ch, "I", "i");
+            } else if (rFull != null && rFull.equals(rSimple)
                     || (PICK_SHORT && UTF16.countCodePoint(rFull) == 1)) {
-                final String type = "C";
-                if (ch == 0x49) {
-                    drawLine(out, ch, "C", "i");
-                    drawLine(out, ch, "T", "\u0131");
-                } else if (ch == 0x130) {
-                    drawLine(out, ch, "F", "i\u0307");
-                    drawLine(out, ch, "T", "i");
-                } else if (ch == 0x131) {
-                    // do nothing
-                    // drawLine(out, ch, "I", "i");
-                } else {
-                    drawLine(out, ch, type, rFull);
-                }
+                drawLine(out, ch, "C", rFull);
             } else {
                 if (rFull != null) {
                     drawLine(out, ch, "F", rFull);
@@ -188,8 +186,8 @@ public class GenerateCaseFolding implements UCD_Types {
     static int probeCh = 0x01f0;
     static String shower = UTF16.valueOf(probeCh);
 
-    static Map<String, String> getCaseFolding(boolean full, boolean nfClose, String condition)
-            throws java.io.IOException {
+    private static Map<String, String> getCaseFolding(
+            boolean full, boolean nfClose, String condition) throws java.io.IOException {
         final Map<String, Set<String>> data = new TreeMap<String, Set<String>>();
         final Map<String, String> repChar = new TreeMap<String, String>();
 
@@ -729,7 +727,7 @@ public class GenerateCaseFolding implements UCD_Types {
                 if (ch == 0x01F0) {
                     x = 0x03B1; // HACK to reorder the same
                 }
-                sorted.put(new Integer((order << 24) | x), mapping);
+                sorted.put((order << 24) | x, mapping);
             }
         }
         log.close();
