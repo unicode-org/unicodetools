@@ -607,7 +607,17 @@ public final class UCD implements UCD_Types {
         }
         if (caseType < FOLD) {
             if (simpleVsFull == FULL && udata.specialCasing.length() != 0) {
-                if (condition.length() == 0 || udata.specialCasing.indexOf(condition) < 0) {
+                // When we are looking for a full case mapping
+                // for a character that has conditional mappings,
+                // and looking for the default mapping (empty condition string),
+                // or when the condition does not match one in SpecialCasing.txt for this character,
+                // then return the simple case mapping.
+                // This mostly works, but not always.
+                if (codePoint == 0x130 && caseType == LOWER) {
+                    // LATIN CAPITAL LETTER I WITH DOT ABOVE has a simple lowercase mapping to 'i'
+                    // but a full lowercase mapping to "i\u0307".
+                    // Return fullLowercase.
+                } else if (condition.length() == 0 || udata.specialCasing.indexOf(condition) < 0) {
                     simpleVsFull = SIMPLE;
                 }
             }
