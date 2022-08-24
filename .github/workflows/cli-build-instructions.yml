@@ -118,6 +118,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Upload UnicodeTestResults artifact
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: unicode-test-results
+          path: |
+            unicodetools/mine/Generated/UnicodeTestResults.*
+
       - name: Run command - Make Unicode Files
         run: |
           cd unicodetools/mine/src
@@ -236,4 +244,3 @@ jobs:
           mvn -s .github/workflows/mvn-settings.xml -Dexec.mainClass="org.unicode.propstest.CheckProperties" -Dexec.classpathScope=test test-compile  -Dexec.args="COMPARE ALL $PREVIOUS_UVERSION" exec:java  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-

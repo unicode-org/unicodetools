@@ -635,6 +635,7 @@ Unicode 15 TODO: See above; commit new input data, run tools, review output, cop
     1.  Run>Run
     2.  Select the Arguments tab, and add the following
         1.  VM arguments: `-DSHOW_FILES`
+2.  The CI job will retrieve the "UnicodeTestData.html" file that is generated when running this test and attach it to the CI job as an artifact that can be downloaded from the CI run by navigating to the [unicodetools Actions tab](https://github.com/unicode-org/unicodetools/actions/runs/), selecting the relevant run for "build.md", then clicking `unicode-test-results` in the "Artifacts" section.
 
 ## UCA
 
