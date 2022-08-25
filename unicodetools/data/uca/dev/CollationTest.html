@@ -22,9 +22,9 @@
 </tbody></table>
 <div class="body">
   <h1>Unicode® Collation Algorithm<br>Conformance Tests</h1>
-  <h2 align="center" class="changed">Version 15.0.0<br>2022-08-12</h2>
+  <h2 align="center">Version 15.0.0<br>2022-08-12</h2>
 <p>The following files provide conformance tests for the Unicode Collation Algorithm
-  (<a href="https://www.unicode.org/reports/tr10/tr10-46.html">UTS #10: Unicode Collation Algorithm</a>).</p>
+  (<a href="https://www.unicode.org/reports/tr10/tr10-47.html">UTS #10: Unicode Collation Algorithm</a>).</p>
   <ul>
     <li>CollationTest_SHIFTED.txt</li>
     <li>CollationTest_NON_IGNORABLE.txt</li>
@@ -33,7 +33,7 @@
   </ul>
   <p>These files are large, and thus packaged in zip format to save download time.</p>
 
-  <blockquote class="changed">
+  <blockquote>
     <p><b>Note:</b> These files test the sort order of an untailored DUCET table.
     If you are using an implementation of the
     <a href="https://www.unicode.org/reports/tr35/tr35-collation.html#CLDR_Collation_Algorithm">CLDR Collation Algorithm</a>
@@ -53,7 +53,7 @@
   <p>There are four different files:</p>
   <ul>
     <li>The shifted vs non-ignorable files correspond to the two alternate
-      <a href="https://www.unicode.org/reports/tr10/tr10-46.html#Variable_Weighting">Variable Weighting</a> values.</li>
+      <a href="https://www.unicode.org/reports/tr10/tr10-47.html#Variable_Weighting">Variable Weighting</a> values.</li>
     <li>The SHORT versions omit the comments, for more compact storage.</li>
   </ul>
 <p>The format is illustrated by the following example:</p>
@@ -80,7 +80,7 @@
   <h2>Testing</h2>
   <p>The files are designed so each line in the file will order as being greater than or equal to 
   the previous one, when using the UCA and the
-  <a href="https://www.unicode.org/reports/tr10/tr10-46.html#Default_Unicode_Collation_Element_Table">Default
+  <a href="https://www.unicode.org/reports/tr10/tr10-47.html#Default_Unicode_Collation_Element_Table">Default
   Unicode Collation Element Table</a>.
   A test program can read in each line, compare it to 
   the last line, and signal an error if order is not correct. The exact comparison that should be 
@@ -97,9 +97,6 @@
   <p>These files contain test cases that include ill-formed strings, with surrogate code points.
   Implementations that do not weight surrogate code points the same way as reserved code points
   may filter out such lines lines in the test cases, before testing for conformance.</p>
-  <blockquote class="removed">
-    <p><b>Note:</b> This test is only valid for an untailored DUCET table.</p>
-  </blockquote>
 
   <h2>Migration</h2>
   <h3>Tie-breaker</h3>
@@ -131,14 +128,14 @@
     <li>S2.1.1 loops over each of the following three characters C,
     but there is no table entry for any of those three S+C.
     In particular, there is no DUCET mapping for 0FB2+0F71
-    (see <i><a href="https://www.unicode.org/reports/tr10/tr10-46.html#Well_Formed_DUCET">Tibetan and
+    (see <i><a href="https://www.unicode.org/reports/tr10/tr10-47.html#Well_Formed_DUCET">Tibetan and
     Well-Formedness of DUCET</a></i>).</li>
     <li>The loop exits without finding any match beyond S=0FB2.</li>
   </ul>
 
   <p>See “Also note that the Algorithm employs two distinct contraction matching methods:”
   at the end of <i>Section 7.2,
-  <a href="https://www.unicode.org/reports/tr10/tr10-46.html#Step_2">Produce Collation Element Arrays</a></i>.</p>
+  <a href="https://www.unicode.org/reports/tr10/tr10-47.html#Step_2">Produce Collation Element Arrays</a></i>.</p>
 
   <hr width="50%">
   <p class="copyright">© 2022 Unicode, Inc. All Rights Reserved.
