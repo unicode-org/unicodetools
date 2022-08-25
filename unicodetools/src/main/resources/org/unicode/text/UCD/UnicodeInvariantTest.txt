@@ -432,13 +432,13 @@ Show [\u20b9]
 #  & [\p{Decomposition_Type=None} \p{Decomposition_Type=Canonical}]
 
 # The UTC 172 script ad hoc report (L2/22-128) item VII 27 “Nonalphabetic bindus” points out that
-# “Most characters with InSC=Bindu have Alphabetic=Yes.” but there could be exceptions.
-# TODO: Review with SAH:
-# - is the rule roughly right?
-# - if so, are these intentional exceptions?
-# - otherwise, are these wrong? should these 5 be alphabetic?
-Let $nonAlphaBindus = [\u0C04\u0F82\u0F83\U00011080\U00011081]
-[\p{InSc=Bindu} - $nonAlphaBindus - \p{Alphabetic}] = [] 
+# “Most characters with InSC=Bindu have Alphabetic=Yes”
+# and adjustments have been made so that all current bindus have Alphabetic=Yes.
+# The check below enforces that rule, but allows for possible future
+# exceptions. Should such exceptions arise, they can be added to the definition of
+# $nonAlphabeticBindus to avoid a failure on this test.
+Let $nonAlphabeticBindus = []
+[\p{InSc=Bindu} - $nonAlphabeticBindus - \p{Alphabetic}] = [] 
 
 ##########################
 # LineBreak property
