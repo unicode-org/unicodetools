@@ -432,8 +432,9 @@ Show [\u20b9]
 #  & [\p{Decomposition_Type=None} \p{Decomposition_Type=Canonical}]
 
 # The UTC 172 script ad hoc report (L2/22-128) item VII 27 “Nonalphabetic bindus” points out that
-# “Most characters with InSC=Bindu have Alphabetic=Yes” and adjustments have been so that all current
-# bindus have Alphabetic=Yes. The check below enforces that rule, but allows for possible future
+# “Most characters with InSC=Bindu have Alphabetic=Yes”
+# and adjustments have been made so that all current bindus have Alphabetic=Yes.
+# The check below enforces that rule, but allows for possible future
 # exceptions. Should such exceptions arise, they can be added to the definition of
 # $nonAlphabeticBindus to avoid a failure on this test.
 Let $nonAlphabeticBindus = []
