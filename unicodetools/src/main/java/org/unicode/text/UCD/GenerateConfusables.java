@@ -1476,6 +1476,7 @@ public class GenerateConfusables {
 
         private static Comparator<Pair<String, String>> MyPairComparator =
                 new Comparator<Pair<String, String>>() {
+                    @Override
                     public int compare(Pair<String, String> o1, Pair<String, String> o2) {
                         int result = UCAComparator.compare(o1.getFirst(), o2.getFirst());
                         return result != 0
@@ -2640,8 +2641,6 @@ public class GenerateConfusables {
     static PrintWriter openAndWriteHeader(String dir, String filename, String title)
             throws IOException {
         final PrintWriter out = FileUtilities.openUTF8Writer(dir, filename);
-        out.print('\uFEFF');
-        // int trNumber, String title, String filename, String version
         out.println(
                 Utility.getBaseDataHeader(filename, 39, "Unicode Security Mechanisms", version));
         //        out.println("# " + title);
