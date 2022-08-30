@@ -1,19 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 15.0.0
 @@@+	U15M220815.lst
-	Unicode 15.0.0 names list, sixth delta.
-	Repertoire synched with UnicodeData-15.0.0d7.txt.
-	Rollup of beta review fixes.
-	Added annotations to left-side New Tai Lue vowels.
-	Added asterisk to notice at 2E4E.
-	Updated schwa in note to 11F40 to use 0259.
-	Updated comment at 052B to a notice, to prevent incorrect display of date.
-	Lowercased centrigrade in annotation to 2103.
-	Added formal name alias correction for 0616.
-	Updated annotation for 06AE.
-	Adjusted notice for 0675.
-	Added annotation for AB30.
-	Added annotations for 204F and 2E41.
+	Unicode 15.0.0 final names list.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
