@@ -176,7 +176,7 @@ public class XMLProperties {
                                 + arg1
                                 + ", "
                                 + arg2,
-                        e);
+                                e);
             }
             // System.out.println("Removed:\t" + removed);
         }
@@ -235,7 +235,7 @@ public class XMLProperties {
         @Override
         public void startElement(
                 String namespaceURI, String localName, String qName, Attributes atts)
-                throws SAXException {
+                        throws SAXException {
             try {
                 final XmlLeaf xmlLeaf = XmlLeaf.forString(qName);
                 if (xmlLeaf == null) {
@@ -259,101 +259,101 @@ public class XMLProperties {
                 addAttributes(atts, attributes);
                 String cps;
                 switch (xmlLeaf) {
-                    case CHAR:
-                    case RESERVED:
-                    case SURROGATE:
-                    case NONCHARACTER:
-                        parseCp(attributes);
-                        for (final Entry<String, String> entry : attributes.entrySet()) {
-                            doAttributes(entry.getKey(), entry.getValue());
-                        }
-                        if (xmlLeaf == XmlLeaf.NONCHARACTER) {
-                            property2data
-                                    .get(UcdProperty.Noncharacter_Code_Point)
-                                    .putAll(cp.start, cp.end, "Yes");
-                        }
-                        break;
-                    case BLOCK:
-                        // ucd/blocks/block[@first-cp="100000"][@last-cp="10FFFF"][@name="Supplementary Private Use Area-B"]
-                        parseCp(attributes);
+                case CHAR:
+                case RESERVED:
+                case SURROGATE:
+                case NONCHARACTER:
+                    parseCp(attributes);
+                    for (final Entry<String, String> entry : attributes.entrySet()) {
+                        doAttributes(entry.getKey(), entry.getValue());
+                    }
+                    if (xmlLeaf == XmlLeaf.NONCHARACTER) {
                         property2data
-                                .get(UcdProperty.Block)
-                                .putAll(cp.start, cp.end, attributes.get("name"));
-                        break;
-                    case NAMED_SEQUENCE:
-                        // ucd/named-sequences/named-sequence[@name="BENGALI LETTER
-                        // KHINYA"][@cps="0995 09CD 09B7"]
-                        cps = Utility.fromHex(attributes.get("cps"));
-                        property2data
-                                .get(UcdProperty.Named_Sequences)
-                                .put(cps, attributes.get("name"));
-                        break;
-                    case CJK_RADICAL:
-                        // ucd/cjk-radicals/cjk-radical[@number="1"][@radical="2F00"][@ideograph="4E00"]
-                        final String number = attributes.get("number");
-                        setProp(
-                                Utility.fromHex(attributes.get("radical")),
-                                UcdProperty.CJK_Radical,
-                                number);
-                        setProp(
-                                Utility.fromHex(attributes.get("ideograph")),
-                                UcdProperty.CJK_Radical,
-                                number);
-                        break;
-                    case EMOJI_SOURCE:
-                        // ucd/emoji-sources/emoji-source[@unicode="0023
-                        // 20E3"][@docomo="F985"][@kddi="F489"][@softbank="F7B0"]
-                        cps = Utility.fromHex(attributes.get("unicode"));
-                        setProp(cps, UcdProperty.Emoji_DCM, attributes.get("docomo"));
-                        setProp(cps, UcdProperty.Emoji_KDDI, attributes.get("kddi"));
-                        setProp(cps, UcdProperty.Emoji_SB, attributes.get("softbank"));
-                        break;
-                    case REPERTOIRE:
-                    case BLOCKS:
-                    case CJK_RADICALS:
-                    case EMOJI_SOURCES:
-                    case NAMED_SEQUENCES:
-                    case NORMALIZATION_CORRECTIONS:
-                    case STANDARDIZED_VARIANTS:
-                    case DESCRIPTION:
-                        // non-informational nodes, skip
-                        if (atts.getLength() != 0) {
-                            throw new IllegalArgumentException("Has attributes");
-                        }
-                        break;
-                    case UCD:
-                        if (atts.getLength() != 0) {
-                            throw new IllegalArgumentException(
-                                    "Has wrong number of attributes: " + attributes.entrySet());
-                        }
-                        break;
-                    case NAME_ALIAS:
-                        // <char cp="0000" na1="NULL">
-                        // <name-alias alias="NUL" type="abbreviation"/>
-                        appendProp(cp.start, UcdProperty.Name_Alias, attributes.get("alias"));
-                        leavesNotHandled.add("name-alias type=");
-                        break;
-                    case STANDARDIZED_VARIANT:
-                        {
-                            // <standardized-variant cps="0023 FE0E" desc="text style" when=""/>
-                            // ucd/standardized-variants/standardized-variant[@cps="1820
-                            // 180B"][@desc="second form"][@when="isolate medial final"]
-                            String desc = attributes.get("desc");
-                            final String when = attributes.get("when");
-                            if (!when.isEmpty()) {
-                                desc = desc + "(" + when + ")";
-                            }
-                            cps = Utility.fromHex(attributes.get("cps"));
-                            appendProp(cps, UcdProperty.Standardized_Variant, desc);
-                            break;
-                        }
-                    case NORMALIZATION_CORRECTION:
-                        // ucd/normalization-corrections/normalization-correction[@cp="F951"][@old="96FB"][@new="964B"][@version="3.2.0"
-                    default:
-                        leavesNotHandled.add(qName);
-                        break;
-                    case GROUP:
-                        break; // handled above
+                        .get(UcdProperty.Noncharacter_Code_Point)
+                        .putAll(cp.start, cp.end, "Yes");
+                    }
+                    break;
+                case BLOCK:
+                    // ucd/blocks/block[@first-cp="100000"][@last-cp="10FFFF"][@name="Supplementary Private Use Area-B"]
+                    parseCp(attributes);
+                    property2data
+                    .get(UcdProperty.Block)
+                    .putAll(cp.start, cp.end, attributes.get("name"));
+                    break;
+                case NAMED_SEQUENCE:
+                    // ucd/named-sequences/named-sequence[@name="BENGALI LETTER
+                    // KHINYA"][@cps="0995 09CD 09B7"]
+                    cps = Utility.fromHex(attributes.get("cps"));
+                    property2data
+                    .get(UcdProperty.Named_Sequences)
+                    .put(cps, attributes.get("name"));
+                    break;
+                case CJK_RADICAL:
+                    // ucd/cjk-radicals/cjk-radical[@number="1"][@radical="2F00"][@ideograph="4E00"]
+                    final String number = attributes.get("number");
+                    setProp(
+                            Utility.fromHex(attributes.get("radical")),
+                            UcdProperty.CJK_Radical,
+                            number);
+                    setProp(
+                            Utility.fromHex(attributes.get("ideograph")),
+                            UcdProperty.CJK_Radical,
+                            number);
+                    break;
+                case EMOJI_SOURCE:
+                    // ucd/emoji-sources/emoji-source[@unicode="0023
+                    // 20E3"][@docomo="F985"][@kddi="F489"][@softbank="F7B0"]
+                    cps = Utility.fromHex(attributes.get("unicode"));
+                    setProp(cps, UcdProperty.Emoji_DCM, attributes.get("docomo"));
+                    setProp(cps, UcdProperty.Emoji_KDDI, attributes.get("kddi"));
+                    setProp(cps, UcdProperty.Emoji_SB, attributes.get("softbank"));
+                    break;
+                case REPERTOIRE:
+                case BLOCKS:
+                case CJK_RADICALS:
+                case EMOJI_SOURCES:
+                case NAMED_SEQUENCES:
+                case NORMALIZATION_CORRECTIONS:
+                case STANDARDIZED_VARIANTS:
+                case DESCRIPTION:
+                    // non-informational nodes, skip
+                    if (atts.getLength() != 0) {
+                        throw new IllegalArgumentException("Has attributes");
+                    }
+                    break;
+                case UCD:
+                    if (atts.getLength() != 0) {
+                        throw new IllegalArgumentException(
+                                "Has wrong number of attributes: " + attributes.entrySet());
+                    }
+                    break;
+                case NAME_ALIAS:
+                    // <char cp="0000" na1="NULL">
+                    // <name-alias alias="NUL" type="abbreviation"/>
+                    appendProp(cp.start, UcdProperty.Name_Alias, attributes.get("alias"));
+                    leavesNotHandled.add("name-alias type=");
+                    break;
+                case STANDARDIZED_VARIANT:
+                {
+                    // <standardized-variant cps="0023 FE0E" desc="text style" when=""/>
+                    // ucd/standardized-variants/standardized-variant[@cps="1820
+                    // 180B"][@desc="second form"][@when="isolate medial final"]
+                    String desc = attributes.get("desc");
+                    final String when = attributes.get("when");
+                    if (!when.isEmpty()) {
+                        desc = desc + "(" + when + ")";
+                    }
+                    cps = Utility.fromHex(attributes.get("cps"));
+                    appendProp(cps, UcdProperty.Standardized_Variant, desc);
+                    break;
+                }
+                case NORMALIZATION_CORRECTION:
+                    // ucd/normalization-corrections/normalization-correction[@cp="F951"][@old="96FB"][@new="964B"][@version="3.2.0"
+                default:
+                    leavesNotHandled.add(qName);
+                    break;
+                case GROUP:
+                    break; // handled above
                 }
             } catch (final SkipException e) {
                 throw e;
@@ -466,9 +466,10 @@ public class XMLProperties {
     static String show(String ival) {
         if (ival == null) {
             return "null";
-        }
-        if (ival.isEmpty()) {
+        } else if (ival.isEmpty()) {
             return "<empty>";
+        } else if (ival.codePointAt(0) < 0x20) {
+            return "\\u{" + Utility.hex(ival, 4) + "}";
         }
         return "«" + ival + "»";
     }
@@ -480,51 +481,56 @@ public class XMLProperties {
     static final boolean HACK_XML_DEFAULTS = false;
 
     public static String getXmlResolved(UcdProperty property, int codePoint, String propertyValue) {
+        if (property == UcdProperty.Name) {
+            int debug = 0;
+        }
         switch (property.getType()) {
-            case Binary:
-                if (HACK_XML_DEFAULTS) {
-                    if (propertyValue == null) {
-                        propertyValue = "No";
-                    } else {
-                        propertyValue =
-                                IndexUnicodeProperties.normalizeValue(property, propertyValue);
-                    }
+        case Binary:
+            if (HACK_XML_DEFAULTS) {
+                if (propertyValue == null) {
+                    propertyValue = "No";
+                } else {
+                    propertyValue =
+                            IndexUnicodeProperties.normalizeValue(property, propertyValue);
+                }
+                break;
+            }
+            // $FALL-THROUGH$
+        case Enumerated:
+        case Catalog:
+            if (propertyValue != null) {
+                propertyValue = IndexUnicodeProperties.normalizeValue(property, propertyValue);
+            }
+            break;
+        case Numeric:
+            //            if (HACK_XML_DEFAULTS) {
+            //                if (propertyValue == null || propertyValue.isEmpty()) {
+            //                    propertyValue = "NaN";
+            //                }
+            //            }
+            break;
+        case Miscellaneous:
+            if (propertyValue != null) {
+                switch (property) {
+                case Script_Extensions:
+                    propertyValue =
+                    IndexUnicodeProperties.normalizeValue(property, propertyValue);
                     break;
-                }
-                // $FALL-THROUGH$
-            case Enumerated:
-            case Catalog:
-                if (propertyValue != null) {
-                    propertyValue = IndexUnicodeProperties.normalizeValue(property, propertyValue);
-                }
-                break;
-            case Numeric:
-                //            if (HACK_XML_DEFAULTS) {
-                //                if (propertyValue == null || propertyValue.isEmpty()) {
-                //                    propertyValue = "NaN";
-                //                }
-                //            }
-                break;
-            case Miscellaneous:
-                if (propertyValue != null) {
-                    switch (property) {
-                        case Script_Extensions:
-                            propertyValue =
-                                    IndexUnicodeProperties.normalizeValue(property, propertyValue);
-                            break;
-                        case Name:
-                            break;
-                        default:
-                            propertyValue = propertyValue.replace("#", Utility.hex(codePoint));
-                    }
-                }
-                break;
-            case String:
-                if (propertyValue != null) {
+//                case Name:
+//                    break;
+                default:
                     propertyValue = propertyValue.replace("#", Utility.hex(codePoint));
-                    propertyValue = Utility.fromHex(propertyValue);
                 }
-                break;
+            }
+            break;
+        case String:
+            if (propertyValue != null) {
+                propertyValue = propertyValue.replace("#", Utility.hex(codePoint));
+                propertyValue = Utility.fromHex(propertyValue);
+            }
+            break;
+        default:
+            break;
         }
         return propertyValue;
         // return propertyValue == null ? "<none>" : propertyValue;

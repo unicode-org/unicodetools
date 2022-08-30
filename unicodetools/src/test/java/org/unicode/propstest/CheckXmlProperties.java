@@ -90,9 +90,9 @@ public class CheckXmlProperties {
             errorMap.clear();
             for (int i = 0; i <= 0x10ffff; ++i) {
                 String xval = XMLProperties.getXmlResolved(prop, i, xmap.get(i));
-                String ival = iup.getResolvedValue(prop, i);
-                if (prop == UcdProperty.Name && ival != null) {
-                    ival = ival.replace("#", Utility.hex(i,4));
+                String upval = iup.getResolvedValue(prop, i);
+                if (prop == UcdProperty.Name && upval != null) {
+                    upval = upval.replace("#", Utility.hex(i,4));
                 } else if (prop == UcdProperty.Bidi_Paired_Bracket && xval != null) {
                     if (xval.startsWith("\\u00")) {
                         xval = Utility.fromHex(xval.substring(2));
@@ -100,20 +100,20 @@ public class CheckXmlProperties {
                 }
                 if (prop.getCardinality() != ValueCardinality.Singleton
                         && prop != UcdProperty.Script_Extensions) {
-                    ival = ival == null ? null : ival.replace('|', ' ');
+                    upval = upval == null ? null : upval.replace('|', ' ');
                 }
-                if (!UnicodeProperty.equals(xval, ival)) {
-                    // for debugging
+                if (!UnicodeProperty.equals(xval, upval)) {
+                    // just for debugging
                     final String xx = XMLProperties.getXmlResolved(prop, i, xmap.get(i));
                     final String ii = iup.getResolvedValue(prop, i);
 
-                    if (xval == null || xval.isEmpty()) {
+                    if ((xval == null || xval.isEmpty()) && (upval == null || upval.isEmpty())) {
                         empty.add(i);
                     } else {
                         errorMap.put(i, " codepoints where up=\t"
-                                + XMLProperties.show(xval)
+                                + XMLProperties.show(upval)
                                 + "\t& xml=\t"
-                                + XMLProperties.show(ival));
+                                + XMLProperties.show(xval));
                     }
                 }
             }
