@@ -94,9 +94,9 @@ public class XMLProperties {
     //    Set<String> leavesNotRecognized = new LinkedHashSet<String>();
 
     public XMLProperties(String folder, boolean includeUnihan, int maxLines) {
-        readFile(folder + "ucd.nounihan.grouped.xml", maxLines);
+        readFile(folder + "/ucd.nounihan.grouped.xml", maxLines);
         if (includeUnihan) {
-            readFile(folder + "ucd.unihan.grouped.xml", maxLines);
+            readFile(folder + "/ucd.unihan.grouped.xml", maxLines);
         }
 
         for (final UcdProperty prop : property2data.keySet()) {
@@ -470,7 +470,7 @@ public class XMLProperties {
         if (ival.isEmpty()) {
             return "<empty>";
         }
-        return "[" + ival + "]";
+        return "«" + ival + "»";
     }
 
     //    private static final String NO_VALUE =
