@@ -2,7 +2,6 @@ package org.unicode.propstest;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
-
 import org.unicode.cldr.util.Timer;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -41,7 +40,10 @@ public class CheckXmlProperties {
      * <p>Failing tests: 9 Warning tests: 4
      */
     static final boolean LONG_TEST = true;
-    static final boolean VERBOSE = false; // should change this into regular JUnit test, but for now just make easier to read.
+
+    static final boolean VERBOSE =
+            false; // should change this into regular JUnit test, but for now just make easier to
+    // read.
     static final boolean SHOW_WARNINGS = false;
     static final int MAX_SHOW = 20;
 
@@ -50,11 +52,11 @@ public class CheckXmlProperties {
 
     static final UcdProperty[] SHORT_LIST =
             new UcdProperty[] {
-                    //                UcdProperty.Lowercase_Mapping,
-                    UcdProperty.Script_Extensions,
-                    //                UcdProperty.Titlecase_Mapping,
-                    //                UcdProperty.Uppercase_Mapping
-    };
+                //                UcdProperty.Lowercase_Mapping,
+                UcdProperty.Script_Extensions,
+                //                UcdProperty.Titlecase_Mapping,
+                //                UcdProperty.Uppercase_Mapping
+            };
 
     public static void main(String[] args) {
         final Timer timer = new Timer();
@@ -92,7 +94,7 @@ public class CheckXmlProperties {
                 String xval = XMLProperties.getXmlResolved(prop, i, xmap.get(i));
                 String upval = iup.getResolvedValue(prop, i);
                 if (prop == UcdProperty.Name && upval != null) {
-                    upval = upval.replace("#", Utility.hex(i,4));
+                    upval = upval.replace("#", Utility.hex(i, 4));
                 } else if (prop == UcdProperty.Bidi_Paired_Bracket && xval != null) {
                     if (xval.startsWith("\\u00")) {
                         xval = Utility.fromHex(xval.substring(2));
@@ -110,10 +112,12 @@ public class CheckXmlProperties {
                     if ((xval == null || xval.isEmpty()) && (upval == null || upval.isEmpty())) {
                         empty.add(i);
                     } else {
-                        errorMap.put(i, " codepoints where up=\t"
-                                + XMLProperties.show(upval)
-                                + "\t& xml=\t"
-                                + XMLProperties.show(xval));
+                        errorMap.put(
+                                i,
+                                " codepoints where up=\t"
+                                        + XMLProperties.show(upval)
+                                        + "\t& xml=\t"
+                                        + XMLProperties.show(xval));
                     }
                 }
             }
@@ -125,12 +129,18 @@ public class CheckXmlProperties {
             } else {
                 if (errorMap.size() != 0) {
                     failedTests++;
-                    System.out.println("*FAIL*\t" + prop + " has " + errorMap.size() + " codepoints where up != xml.");
+                    System.out.println(
+                            "*FAIL*\t"
+                                    + prop
+                                    + " has "
+                                    + errorMap.size()
+                                    + " codepoints where up != xml.");
                     int showCount = 0;
                     for (String value : errorMap.values()) {
-                        System.out.println("\t" + value + "\t: " + errorMap.getSet(value).toPattern(false));
+                        System.out.println(
+                                "\t" + value + "\t: " + errorMap.getSet(value).toPattern(false));
                         if (++showCount > MAX_SHOW) {
-                            System.out.println("… " + (errorMap.size()-MAX_SHOW) + " more");
+                            System.out.println("… " + (errorMap.size() - MAX_SHOW) + " more");
                             break;
                         }
                     }
@@ -138,7 +148,12 @@ public class CheckXmlProperties {
                 if (empty.size() != 0) {
                     warningTests++;
                     if (SHOW_WARNINGS) {
-                        System.out.println("*WARNING*\t" + prop + " has " + (empty.size()) + " codepoints where up=\tnull\t& xml=\t\"\"");
+                        System.out.println(
+                                "*WARNING*\t"
+                                        + prop
+                                        + " has "
+                                        + (empty.size())
+                                        + " codepoints where up=\tnull\t& xml=\t\"\"");
                         System.out.println("\t" + empty.toPattern(false));
                     }
                 }
