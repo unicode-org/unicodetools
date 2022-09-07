@@ -94,9 +94,9 @@ public class XMLProperties {
     //    Set<String> leavesNotRecognized = new LinkedHashSet<String>();
 
     public XMLProperties(String folder, boolean includeUnihan, int maxLines) {
-        readFile(folder + "ucd.nounihan.grouped.xml", maxLines);
+        readFile(folder + "/ucd.nounihan.grouped.xml", maxLines);
         if (includeUnihan) {
-            readFile(folder + "ucd.unihan.grouped.xml", maxLines);
+            readFile(folder + "/ucd.unihan.grouped.xml", maxLines);
         }
 
         for (final UcdProperty prop : property2data.keySet()) {
@@ -466,11 +466,12 @@ public class XMLProperties {
     static String show(String ival) {
         if (ival == null) {
             return "null";
-        }
-        if (ival.isEmpty()) {
+        } else if (ival.isEmpty()) {
             return "<empty>";
+        } else if (ival.codePointAt(0) < 0x20) {
+            return "\\u{" + Utility.hex(ival, 4) + "}";
         }
-        return "[" + ival + "]";
+        return "«" + ival + "»";
     }
 
     //    private static final String NO_VALUE =
@@ -480,6 +481,9 @@ public class XMLProperties {
     static final boolean HACK_XML_DEFAULTS = false;
 
     public static String getXmlResolved(UcdProperty property, int codePoint, String propertyValue) {
+        if (property == UcdProperty.Name) {
+            int debug = 0;
+        }
         switch (property.getType()) {
             case Binary:
                 if (HACK_XML_DEFAULTS) {
@@ -512,8 +516,8 @@ public class XMLProperties {
                             propertyValue =
                                     IndexUnicodeProperties.normalizeValue(property, propertyValue);
                             break;
-                        case Name:
-                            break;
+                            //                case Name:
+                            //                    break;
                         default:
                             propertyValue = propertyValue.replace("#", Utility.hex(codePoint));
                     }
@@ -524,6 +528,8 @@ public class XMLProperties {
                     propertyValue = propertyValue.replace("#", Utility.hex(codePoint));
                     propertyValue = Utility.fromHex(propertyValue);
                 }
+                break;
+            default:
                 break;
         }
         return propertyValue;

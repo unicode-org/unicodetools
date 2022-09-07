@@ -1,6 +1,7 @@
 package org.unicode.propstest;
 
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
 import org.unicode.cldr.util.Timer;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -40,6 +41,12 @@ public class CheckXmlProperties {
      */
     static final boolean LONG_TEST = true;
 
+    static final boolean VERBOSE =
+            false; // should change this into regular JUnit test, but for now just make easier to
+    // read.
+    static final boolean SHOW_WARNINGS = false;
+    static final int MAX_SHOW = 20;
+
     private static final boolean INCLUDE_UNIHAN = true && LONG_TEST;
     private static final int MAX_LINE_COUNT = Integer.MAX_VALUE; // 4000; // Integer.MAX_VALUE;
 
@@ -53,6 +60,7 @@ public class CheckXmlProperties {
 
     public static void main(String[] args) {
         final Timer timer = new Timer();
+        System.out.println("For details, set VERBOSE, MAX_SHOW, and/or SHOW_WARNINGS");
 
         System.out.println("Loading Index Props");
         timer.start();
@@ -70,84 +78,83 @@ public class CheckXmlProperties {
         int warningTests = 0;
         int okTests = 0;
 
-        final UnicodeMap<String> empty = new UnicodeMap<String>();
+        final UnicodeSet empty = new UnicodeSet();
         final UnicodeMap<String> errorMap = new UnicodeMap<String>();
         final UcdProperty[] testValues =
                 CheckXmlProperties.LONG_TEST ? UcdProperty.values() : SHORT_LIST;
         for (final UcdProperty prop : testValues) {
-            System.out.println("\nTESTING\t" + prop);
             final UnicodeMap<String> xmap = xmlProps.getMap(prop);
             if (xmap.size() == 0) {
-                System.out.println("*No XML Values*");
+                System.out.println("*No XML Values*\t" + prop);
                 continue;
             }
-            int errors = 0;
             empty.clear();
             errorMap.clear();
             for (int i = 0; i <= 0x10ffff; ++i) {
-                final String xval = XMLProperties.getXmlResolved(prop, i, xmap.get(i));
-                String ival = iup.getResolvedValue(prop, i);
+                String xval = XMLProperties.getXmlResolved(prop, i, xmap.get(i));
+                String upval = iup.getResolvedValue(prop, i);
+                if (prop == UcdProperty.Name && upval != null) {
+                    upval = upval.replace("#", Utility.hex(i, 4));
+                } else if (prop == UcdProperty.Bidi_Paired_Bracket && xval != null) {
+                    if (xval.startsWith("\\u00")) {
+                        xval = Utility.fromHex(xval.substring(2));
+                    }
+                }
                 if (prop.getCardinality() != ValueCardinality.Singleton
                         && prop != UcdProperty.Script_Extensions) {
-                    ival = ival == null ? null : ival.replace('|', ' ');
+                    upval = upval == null ? null : upval.replace('|', ' ');
                 }
-                if (!UnicodeProperty.equals(xval, ival)) {
-                    // for debugging
+                if (!UnicodeProperty.equals(xval, upval)) {
+                    // just for debugging
                     final String xx = XMLProperties.getXmlResolved(prop, i, xmap.get(i));
                     final String ii = iup.getResolvedValue(prop, i);
 
-                    if (xval == null || xval.isEmpty()) {
-                        empty.put(i, ival);
+                    if ((xval == null || xval.isEmpty()) && (upval == null || upval.isEmpty())) {
+                        empty.add(i);
                     } else {
-                        if (errors == 0) {
-                            System.out.println("\nProperty\t cp\t xml\t unicodetools");
-                        }
-                        if (++errors < 11) {
-                            System.out.println(
-                                    prop
-                                            + "\t"
-                                            + Utility.hex(i)
-                                            + "\t"
-                                            + XMLProperties.show(xval)
-                                            + "\t"
-                                            + XMLProperties.show(ival));
-                        }
-                        errorMap.put(i, XMLProperties.show(xval) + "\t" + XMLProperties.show(ival));
+                        errorMap.put(
+                                i,
+                                " codepoints where up=\t"
+                                        + XMLProperties.show(upval)
+                                        + "\t& xml=\t"
+                                        + XMLProperties.show(xval));
                     }
                 }
             }
-            if (errors == 0 && empty.size() == 0) {
-                System.out.println("*OK*\t" + prop);
+            if (errorMap.size() == 0 && empty.size() == 0) {
                 okTests++;
+                if (VERBOSE) {
+                    System.out.println("*OK*\t" + prop);
+                }
             } else {
-                if (errors != 0) {
-                    System.out.println("*FAIL*\t" + prop + " with " + errors + " errors.");
+                if (errorMap.size() != 0) {
+                    failedTests++;
+                    System.out.println(
+                            "*FAIL*\t"
+                                    + prop
+                                    + " has "
+                                    + errorMap.size()
+                                    + " codepoints where up != xml.");
                     int showCount = 0;
                     for (String value : errorMap.values()) {
-                        System.out.println(value + "\t" + errorMap.getSet(value).toPattern(false));
-                        if (++showCount > 100) {
+                        System.out.println(
+                                "\t" + value + "\t: " + errorMap.getSet(value).toPattern(false));
+                        if (++showCount > MAX_SHOW) {
+                            System.out.println("… " + (errorMap.size() - MAX_SHOW) + " more");
                             break;
                         }
                     }
-                    failedTests++;
                 }
                 if (empty.size() != 0) {
-                    System.out.println(
-                            "*WARNING*\t"
-                                    + prop
-                                    + " with "
-                                    + (empty.size())
-                                    + " “empty” differences.");
                     warningTests++;
-                    if (empty.size() != 0) {
-                        System.out.println("*Empty/null XML Values:\t" + empty.size());
-                        int maxCount = 0;
-                        for (final String ival : empty.values()) {
-                            if (++maxCount > 10) {
-                                break;
-                            }
-                            System.out.println(ival + "\t" + empty.getSet(ival));
-                        }
+                    if (SHOW_WARNINGS) {
+                        System.out.println(
+                                "*WARNING*\t"
+                                        + prop
+                                        + " has "
+                                        + (empty.size())
+                                        + " codepoints where up=\tnull\t& xml=\t\"\"");
+                        System.out.println("\t" + empty.toPattern(false));
                     }
                 }
             }
