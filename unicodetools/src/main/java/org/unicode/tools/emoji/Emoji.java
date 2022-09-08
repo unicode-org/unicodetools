@@ -94,9 +94,8 @@ public class Emoji {
             true; // set to true between the release of Emoji 5.0 & Unicode 10.0. (or similar
     // situation)
 
-    /** Constants for versions */
+    // Constants for versions
     public static final VersionInfo VERSION15 = VersionInfo.getInstance(15, 0);
-
     public static final VersionInfo VERSION14 = VersionInfo.getInstance(14, 0);
     public static final VersionInfo VERSION13_1 = VersionInfo.getInstance(13, 1);
     public static final VersionInfo VERSION13 = VersionInfo.getInstance(13);
@@ -129,9 +128,9 @@ public class Emoji {
      * Change each following once we release. That is, VERSION_LAST_RELEASED* becomes VERSION_BETA*,
      * and both the latter increment. Also add to EMOJI_TO_UNICODE_VERSION
      */
-    public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION13_1;
+    public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION14;
 
-    public static final VersionInfo VERSION_LAST_RELEASED = VERSION14;
+    public static final VersionInfo VERSION_LAST_RELEASED = VERSION15;
     public static final VersionInfo VERSION_BETA = VERSION15;
 
     public static final VersionInfo VERSION_TO_TEST = VERSION_BETA;
@@ -157,9 +156,9 @@ public class Emoji {
 
     public static final Map<VersionInfo, String> EMOJI_TO_DATE =
             ImmutableMap.<VersionInfo, String>builder()
-                    .put(VERSION15, "2022-09-10")
-                    .put(VERSION14, "2021-09-10")
-                    .put(VERSION13_1, "2020-09-10")
+                    .put(VERSION15, "2022-09-13")
+                    .put(VERSION14, "2021-09-14")
+                    .put(VERSION13_1, "2020-09-15")
                     .put(VERSION13, "2020-03-10")
                     .put(VERSION12_1, "2019-10-29")
                     .put(VERSION12, "2019-02-04")
