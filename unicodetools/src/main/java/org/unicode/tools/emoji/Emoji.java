@@ -94,7 +94,7 @@ public class Emoji {
             true; // set to true between the release of Emoji 5.0 & Unicode 10.0. (or similar
     // situation)
 
-    /** Constants for versions */
+    // Constants for versions
     public static final VersionInfo VERSION15 = VersionInfo.getInstance(15, 0);
     public static final VersionInfo VERSION14 = VersionInfo.getInstance(14, 0);
     public static final VersionInfo VERSION13_1 = VersionInfo.getInstance(13, 1);
