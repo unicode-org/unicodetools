@@ -1805,6 +1805,30 @@
 1FAF5 1F3FF; L2/20-212; null
 1FAF6 1F3FF; L2/20-211; null
 
+1F6DC; L2/21-191; wireless
+1FA75; L2/21-202, L2/21-075; light blue heart
+1FA76; L2/21-201, L2/21-075; grey heart
+1FA77; L2/21-203, L2/21-075; pink heart
+1FA87; L2/21-194; maracas
+1FA88; L2/21-193; flute
+1FAAD; L2/21-192; folding hand fan
+1FAAE; L2/21-218; hair pick
+1FAAF; L2/21-223; khanda
+1FABB; L2/21-215; hyacinth
+1FABC; L2/21-217; jellyfish
+1FABD; L2/21-198; wing
+1FABF; L2/21-219; goose
+1FACE; L2/21-197; moose
+1FACF; L2/21-196; donkey
+1FADA; L2/21-200; ginger root
+1FADB; L2/21-199; pea pod
+1FAE8; L2/21-214; shaking face
+1FAF7; L2/21-216; leftwards pushing hand
+1FAF8; L2/21-216; rightwards pushing hand
+1F426 200D 2B1B; L2/19-307; black bird
+1FAF7 1F3FF; L2/21-216; null
+1FAF8 1F3FF; L2/21-216; null
+
 # MISSING-2015
 1F441 FE0F 200D 1F5E8 FE0F; MISSING # 2015 (👁️‍🗨️) eye in speech bubble
 002A FE0F 20E3; MISSING # 2015 (*️⃣) keycap: *
