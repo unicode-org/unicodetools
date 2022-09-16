@@ -2559,7 +2559,7 @@ faz;Northwestern Fars
 fbl;West Albay Bikol
 fcs;Quebec Sign Language
 fer;Feroge
-ff;Fulah
+ff;Fula
 ffi;Foia Foia
 ffm;Maasina Fulfulde
 fgr;Fongoro
@@ -6537,7 +6537,7 @@ sac;Meskwaki
 sad;Sandawe
 sae;Sabanê
 saf;Safaliba
-sah;Sakha
+sah;Yakut
 sai;South American Indian (Other)
 saj;Sahu
 sak;Sake
