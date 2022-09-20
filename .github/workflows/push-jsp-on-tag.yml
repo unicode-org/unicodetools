@@ -12,6 +12,15 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - uses: actions/checkout@v2
+    - name: Check out CLDR
+      uses: actions/checkout@v2
+      with:
+        repository: unicode-org/cldr
+        path: cldr
+    - name: Backup Unicodetools and CLDR for jsps
+      run:
+        mkdir -p UnicodeJsps/target && tar cfpz ./cldr ./unicodetools UnicodeJsps/target/cldr-unicodetools.tgz
     - name: Cache local Maven repository
       uses: actions/cache@v2
       with:
