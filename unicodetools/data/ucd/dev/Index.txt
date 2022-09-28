@@ -388,7 +388,7 @@ ASTERISM	2042
 Astrological Signs	26B3
 Astrological Signs, Tibetan	0F15
 Astrological Symbols	263D
-Astrological Symbols	28D3
+Astrological Symbols	2BD3
 Astrological Symbols, Weather and	2600
 asymptotic to	2248
 ASYMPTOTICALLY EQUAL TO	2243
@@ -2907,7 +2907,7 @@ Keyboard Symbols	2324
 Keyboard Symbols	2380
 Keyboard Symbols	2396
 KEYCAP, COMBINING ENCLOSING	20E3
-KHANDA	1F11F
+KHANDA	1FAAF
 khanda, gurmukhi	262C
 khanda ta, bangla	09CE
 Kharoshthi	10A00

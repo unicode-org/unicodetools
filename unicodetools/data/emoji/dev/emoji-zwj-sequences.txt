@@ -1,5 +1,5 @@
 # emoji-zwj-sequences.txt
-# Date: 2022-05-10, 18:13:25 GMT
+# Date: 2022-05-06, 16:14:52 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
