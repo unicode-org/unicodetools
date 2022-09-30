@@ -1,0 +1,90 @@
+# emoji-internal.txt
+# Date: 2022-05-02, 03:44:53 GMT
+# © 2022 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
+# For terms of use, see https://www.unicode.org/terms_of_use.html
+#
+# Emoji Data Internal for UTS #51
+# Version: 15.0
+#
+# For documentation and usage, see https://www.unicode.org/reports/tr51
+#
+# Format: 
+# <codepoint(s)> ; <property> # <comments> 
+# Note: there is no guarantee as to the structure of whitespace or comments
+#
+# Characters and sequences are listed in code point order. Users should be shown a more natural order.
+# See the CLDR collation order for Emoji.
+
+
+# ================================================
+
+# All omitted code points have Emoji_Gender_Base=No 
+# @missing: 0000..10FFFF  ; Emoji_Gender_Base ; No
+
+26F9          ; Emoji_Gender_Base       # E0.7   [1] (⛹️)       person bouncing ball
+1F3C3..1F3C4  ; Emoji_Gender_Base       # E0.6   [2] (🏃..🏄)    person running..person surfing
+1F3CA         ; Emoji_Gender_Base       # E0.6   [1] (🏊)       person swimming
+1F3CB..1F3CC  ; Emoji_Gender_Base       # E0.7   [2] (🏋️..🏌️)    person lifting weights..person golfing
+1F46E..1F471  ; Emoji_Gender_Base       # E0.6   [4] (👮..👱)    police officer..person: blond hair
+1F473         ; Emoji_Gender_Base       # E0.6   [1] (👳)       person wearing turban
+1F477         ; Emoji_Gender_Base       # E0.6   [1] (👷)       construction worker
+1F481..1F482  ; Emoji_Gender_Base       # E0.6   [2] (💁..💂)    person tipping hand..guard
+1F486..1F487  ; Emoji_Gender_Base       # E0.6   [2] (💆..💇)    person getting massage..person getting haircut
+1F575         ; Emoji_Gender_Base       # E0.7   [1] (🕵️)       detective
+1F645..1F647  ; Emoji_Gender_Base       # E0.6   [3] (🙅..🙇)    person gesturing NO..person bowing
+1F64B         ; Emoji_Gender_Base       # E0.6   [1] (🙋)       person raising hand
+1F64D..1F64E  ; Emoji_Gender_Base       # E0.6   [2] (🙍..🙎)    person frowning..person pouting
+1F6A3         ; Emoji_Gender_Base       # E1.0   [1] (🚣)       person rowing boat
+1F6B4..1F6B5  ; Emoji_Gender_Base       # E1.0   [2] (🚴..🚵)    person biking..person mountain biking
+1F6B6         ; Emoji_Gender_Base       # E0.6   [1] (🚶)       person walking
+1F926         ; Emoji_Gender_Base       # E3.0   [1] (🤦)       person facepalming
+1F935         ; Emoji_Gender_Base       # E3.0   [1] (🤵)       person in tuxedo
+1F937..1F939  ; Emoji_Gender_Base       # E3.0   [3] (🤷..🤹)    person shrugging..person juggling
+1F93C..1F93E  ; Emoji_Gender_Base       # E3.0   [3] (🤼..🤾)    people wrestling..person playing handball
+1F9B8..1F9B9  ; Emoji_Gender_Base       # E11.0  [2] (🦸..🦹)    superhero..supervillain
+1F9CD..1F9CF  ; Emoji_Gender_Base       # E12.0  [3] (🧍..🧏)    person standing..deaf person
+1F9D4         ; Emoji_Gender_Base       # E5.0   [1] (🧔)       person: beard
+1F9D6..1F9DF  ; Emoji_Gender_Base       # E5.0  [10] (🧖..🧟)    person in steamy room..zombie
+
+# Total elements: 51
+
+# ================================================
+
+# All omitted code points have Emoji_Explicit_Gender=No 
+# @missing: 0000..10FFFF  ; Emoji_Explicit_Gender ; No
+
+1F385         ; Emoji_Explicit_Gender   # E0.6   [1] (🎅)       Santa Claus
+1F466..1F469  ; Emoji_Explicit_Gender   # E0.6   [4] (👦..👩)    boy..woman
+1F46B         ; Emoji_Explicit_Gender   # E0.6   [1] (👫)       woman and man holding hands
+1F46C..1F46D  ; Emoji_Explicit_Gender   # E1.0   [2] (👬..👭)    men holding hands..women holding hands
+1F470         ; Emoji_Explicit_Gender   # E0.6   [1] (👰)       person with veil
+1F472         ; Emoji_Explicit_Gender   # E0.6   [1] (👲)       person with skullcap
+1F474..1F475  ; Emoji_Explicit_Gender   # E0.6   [2] (👴..👵)    old man..old woman
+1F478         ; Emoji_Explicit_Gender   # E0.6   [1] (👸)       princess
+1F483         ; Emoji_Explicit_Gender   # E0.6   [1] (💃)       woman dancing
+1F574         ; Emoji_Explicit_Gender   # E0.7   [1] (🕴️)       person in suit levitating
+1F57A         ; Emoji_Explicit_Gender   # E3.0   [1] (🕺)       man dancing
+1F930         ; Emoji_Explicit_Gender   # E3.0   [1] (🤰)       pregnant woman
+1F931         ; Emoji_Explicit_Gender   # E5.0   [1] (🤱)       breast-feeding
+1F934..1F936  ; Emoji_Explicit_Gender   # E3.0   [3] (🤴..🤶)    prince..Mrs. Claus
+1F9D5         ; Emoji_Explicit_Gender   # E5.0   [1] (🧕)       woman with headscarf
+
+# Total elements: 22
+
+# ================================================
+
+# All omitted code points have Multi_Person_Groupings=No 
+# @missing: 0000..10FFFF  ; Multi_Person_Groupings ; No
+
+1F46A..1F46B  ; Multi_Person_Groupings  # E0.6   [2] (👪..👫)    family..woman and man holding hands
+1F46C..1F46D  ; Multi_Person_Groupings  # E1.0   [2] (👬..👭)    men holding hands..women holding hands
+1F46F         ; Multi_Person_Groupings  # E0.6   [1] (👯)       people with bunny ears
+1F48F         ; Multi_Person_Groupings  # E0.6   [1] (💏)       kiss
+1F491         ; Multi_Person_Groupings  # E0.6   [1] (💑)       couple with heart
+1F91D         ; Multi_Person_Groupings  # E3.0   [1] (🤝)       handshake
+1F93C         ; Multi_Person_Groupings  # E3.0   [1] (🤼)       people wrestling
+
+# Total elements: 9
+
+#EOF
