@@ -177,7 +177,7 @@ public class GenerateIdnaTest {
             // See https://github.com/unicode-org/unicodetools/issues/100 "Whither 13.1.0?"
             lastVersion = "13.0.0";
         }
-        int ucdTypesLastVersion = UCD_Types.AGE140;
+        int ucdTypesLastVersion = UCD_Types.AGE150;
         String ucdTypesLastVersionString = UCD_Types.AGE_VERSIONS[ucdTypesLastVersion];
         if (!ucdTypesLastVersionString.equals(lastVersion)) {
             throw new AssertionError(
