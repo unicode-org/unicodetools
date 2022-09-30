@@ -66,12 +66,30 @@ public class Settings {
                 && TRIMMED_LATEST_VERSION.regionMatches(0, version, 0, length);
     }
 
+    private static final int getMajorVersion(String version) {
+        int dotIndex = version.indexOf('.');
+        if (dotIndex < 0) {
+            dotIndex = version.length();
+        }
+        if (dotIndex == 0) {
+            return 0;
+        }
+        String major = version.substring(0, dotIndex);
+        return Integer.parseUnsignedInt(major);
+    }
+
     private static final Path getPath(Path parentPath, String relativeDir, String version) {
         if (relativeDir != null) {
             parentPath = parentPath.resolve(relativeDir);
         }
+        // UCD data folders for versions before version 15 have a "-Update" suffix.
+        // This was unnecessary, and didn't even match the public release folders like 4.0-Update1.
+        // Starting with Unicode 15, the UCD data folders simply use the 3-field version number.
+        // https://github.com/unicode-org/unicodetools/issues/157
         String versionName = version;
-        if (!version.endsWith("-Update") && parentPath.equals(UnicodeTools.UCD_PATH)) {
+        if (!version.endsWith("-Update")
+                && parentPath.equals(UnicodeTools.UCD_PATH)
+                && getMajorVersion(version) < 15) {
             versionName += "-Update";
         }
         Path path = parentPath.resolve(versionName);

@@ -79,6 +79,7 @@ public class TestSettings extends TestFmwkMinusMinus {
         }
     }
 
+    @Test
     public void TestDataDirVersion() {
         assertEquals(
                 "Emoji 1.2",
@@ -102,26 +103,33 @@ public class TestSettings extends TestFmwkMinusMinus {
                         VersionInfo.getInstance(1, 0, 0, 0)));
     }
 
+    @Test
     public void TestDataDirPath() {
+        // Test with versions whose folders exist, or else the Settings code will not return a Path.
         assertEquals(
-                "Emoji 1.2",
-                Settings.UnicodeTools.DATA_PATH.resolve("emoji/1.2"),
-                Settings.UnicodeTools.DataDir.EMOJI.asPath(VersionInfo.getInstance(1, 2, 3, 4)));
+                "Emoji 2.0",
+                Settings.UnicodeTools.DATA_PATH.resolve("emoji/2.0"),
+                Settings.UnicodeTools.DataDir.EMOJI.asPath(VersionInfo.getInstance(2, 0, 3, 4)));
         assertEquals(
-                "UCD 1.2.3",
-                Settings.UnicodeTools.DATA_PATH.resolve("ucd/1.2.3-Update"),
-                Settings.UnicodeTools.DataDir.UCD.asPath(VersionInfo.getInstance(1, 2, 3, 4)));
+                "UCD 4.0.1",
+                Settings.UnicodeTools.DATA_PATH.resolve("ucd/4.0.1-Update"),
+                Settings.UnicodeTools.DataDir.UCD.asPath(VersionInfo.getInstance(4, 0, 1, 99)));
         assertEquals(
-                "Security 1.0.0",
-                Settings.UnicodeTools.DATA_PATH.resolve("security/1.0.0"),
-                Settings.UnicodeTools.DataDir.SECURITY.asPath(VersionInfo.getInstance(1, 0, 0, 0)));
+                "Security 6.3.0",
+                Settings.UnicodeTools.DATA_PATH.resolve("security/6.3.0"),
+                Settings.UnicodeTools.DataDir.SECURITY.asPath(VersionInfo.getInstance(6, 3, 0, 0)));
         assertEquals(
                 "Emoji 1.0",
                 Settings.UnicodeTools.DATA_PATH.resolve("emoji/1.0"),
                 Settings.UnicodeTools.DataDir.EMOJI.asPath(VersionInfo.getInstance(1, 0, 0, 0)));
         assertEquals(
-                "UCD 1.0.0",
-                Settings.UnicodeTools.DATA_PATH.resolve("ucd/1.0.0-Update"),
-                Settings.UnicodeTools.DataDir.UCD.asPath(VersionInfo.getInstance(1, 0, 0, 0)));
+                "UCD 1.1.0",
+                Settings.UnicodeTools.DATA_PATH.resolve("ucd/1.1.0-Update"),
+                Settings.UnicodeTools.DataDir.UCD.asPath(VersionInfo.getInstance(1, 1, 0, 0)));
+        // Starting with Unicode 15, we stop appending "-Update" to UCD data folder names.
+        assertEquals(
+                "UCD 15.0.0",
+                Settings.UnicodeTools.DATA_PATH.resolve("ucd/15.0.0"),
+                Settings.UnicodeTools.DataDir.UCD.asPath(VersionInfo.getInstance(15, 0, 0, 4)));
     }
 }
