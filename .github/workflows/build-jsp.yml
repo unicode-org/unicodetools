@@ -31,33 +31,28 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
-    - name: Build all with Maven
-      run: >
-        mvn -s .github/workflows/mvn-settings.xml -B compile install -DskipTests=true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     # TODO: move this DOWN after JSPs once it works
     - name: Generate Unicode data
       # TODO: hard coded version
       # TODO: symlink of security here?
       run: >
         mkdir -pv $(pwd)/output/Generated/ &&
-        mvn -s .github/workflows/mvn-settings.xml -B exec:java
+        mvn -s .github/workflows/mvn-settings.xml -B compile exec:java
         -Dexec.mainClass="org.unicode.text.UCD.Main" -Dexec.args="version 15.0.0 build MakeUnicodeFiles"
-        -pl unicodetools -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr
+        -am -pl unicodetools -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr
         -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=15.0.0
         -DUNICODETOOLS_GEN_DIR=$(pwd)/output/Generated
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Run unicodetools tests
       run: >
-        mvn -s .github/workflows/mvn-settings.xml -B test -pl unicodetools
+        mvn -s .github/workflows/mvn-settings.xml -B test -am -pl unicodetools
         -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr -T 1C -Dparallel=classes -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=15.0.0 -DUNICODETOOLS_GEN_DIR=$(pwd)/output/Generated
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Package JSPs
       run: >
-        mvn -s .github/workflows/mvn-settings.xml -B -pl UnicodeJsps install package -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr
+        mvn -s .github/workflows/mvn-settings.xml -B -am -pl UnicodeJsps package -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Upload UnicodeJsps.war
