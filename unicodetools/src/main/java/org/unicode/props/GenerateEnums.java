@@ -213,11 +213,13 @@ public class GenerateEnums {
                 + enumName
                 + ".class, this, shortName, otherNames);\n"
                 + "        }\n"
+                + "        @Override\n"
                 + "        public PropertyNames<"
                 + enumName
                 + "> getNames() {\n"
                 + "            return names;\n"
                 + "        }\n"
+                + "        @Override\n"
                 + "        public String getShortName() {\n"
                 + "            return names.getShortName();\n"
                 + "        }\n"
