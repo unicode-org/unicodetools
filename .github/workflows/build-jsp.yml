@@ -37,7 +37,7 @@ jobs:
       # TODO: symlink of security here?
       run: >
         mkdir -pv $(pwd)/output/Generated/ &&
-        mvn -s .github/workflows/mvn-settings.xml -B compile exec:java
+        mvn -s .github/workflows/mvn-settings.xml -B compile exec:java -DskipTests=true
         -Dexec.mainClass="org.unicode.text.UCD.Main" -Dexec.args="version 15.0.0 build MakeUnicodeFiles"
         -am -pl unicodetools -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr
         -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=15.0.0
@@ -52,7 +52,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Package JSPs
       run: >
-        mvn -s .github/workflows/mvn-settings.xml -B -am -pl UnicodeJsps package -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr
+        mvn -s .github/workflows/mvn-settings.xml -B -am -pl UnicodeJsps package -DskipTests=true -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Upload UnicodeJsps.war
