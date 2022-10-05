@@ -28,14 +28,9 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
-    - name: Compile with Maven
-      run: >  # skip unicodetools tests here
-        mvn -s .github/workflows/mvn-settings.xml -B compile install -DskipTests=true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Package with Maven
       run: >
-        mvn -s .github/workflows/mvn-settings.xml -B compile install package -pl UnicodeJsps -DskipTests=true
+        mvn -s .github/workflows/mvn-settings.xml -B package -am -pl UnicodeJsps -DskipTests=true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Upload UnicodeJsps.war
