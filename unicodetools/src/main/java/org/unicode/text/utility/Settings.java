@@ -22,9 +22,9 @@ public class Settings {
     // Are they equivalent for our purposes?
 
     /** Used for the default version. */
-    public static final String latestVersion = "15.0.0";
+    public static final String latestVersion = "15.1.0";
 
-    public static final String lastVersion = "14.0.0"; // last released version
+    public static final String lastVersion = "15.0.0"; // last released version
 
     private static final String TRIMMED_LATEST_VERSION = trimVersion(latestVersion);
 

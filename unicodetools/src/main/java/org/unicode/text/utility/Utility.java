@@ -480,7 +480,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                             }
                             count = 0;
                             value = 0;
-                            output.appendCodePoint((int) ch);
+                            output.appendCodePoint(ch);
                             continue main;
                         }
                         throw new ChainException(
@@ -889,6 +889,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
 
     public static final String[] searchPath = {
         // "EXTRAS" + (FIX_FOR_NEW_VERSION == 0 ? "" : ""),
+        "15.1.0",
         "15.0.0",
         "14.0.0",
         "13.1.0", // TODO: there is no Unicode 13.1, see

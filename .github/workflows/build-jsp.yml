@@ -38,16 +38,16 @@ jobs:
       run: >
         mkdir -pv $(pwd)/output/Generated/ &&
         mvn -s .github/workflows/mvn-settings.xml -B compile exec:java -DskipTests=true
-        -Dexec.mainClass="org.unicode.text.UCD.Main" -Dexec.args="version 15.0.0 build MakeUnicodeFiles"
+        -Dexec.mainClass="org.unicode.text.UCD.Main" -Dexec.args="version 15.1.0 build MakeUnicodeFiles"
         -am -pl unicodetools -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr
-        -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=15.0.0
+        -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=15.1.0
         -DUNICODETOOLS_GEN_DIR=$(pwd)/output/Generated
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Run unicodetools tests
       run: >
         mvn -s .github/workflows/mvn-settings.xml -B test -am -pl unicodetools
-        -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr -T 1C -Dparallel=classes -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=15.0.0 -DUNICODETOOLS_GEN_DIR=$(pwd)/output/Generated
+        -DCLDR_DIR=${GITHUB_WORKSPACE}/cldr -T 1C -Dparallel=classes -DUNICODETOOLS_REPO_DIR=$(pwd) -DUVERSION=15.1.0 -DUNICODETOOLS_GEN_DIR=$(pwd)/output/Generated
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Package JSPs

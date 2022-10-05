@@ -1,5 +1,5 @@
-# PropertyValueAliases-15.0.0.txt
-# Date: 2022-08-05, 23:42:17 GMT
+# PropertyValueAliases-15.1.0.txt
+# Date: 2022-09-30
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -91,6 +91,7 @@ age; 12.1                             ; V12_1
 age; 13.0                             ; V13_0
 age; 14.0                             ; V14_0
 age; 15.0                             ; V15_0
+age; 15.1                             ; V15_1
 age; NA                               ; Unassigned
 
 # Alphabetic (Alpha)

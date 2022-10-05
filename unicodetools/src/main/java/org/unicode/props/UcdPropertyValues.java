@@ -20,10 +20,12 @@ public class UcdPropertyValues {
             names = new PropertyNames<Binary>(Binary.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Binary> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -64,6 +66,7 @@ public class UcdPropertyValues {
         // https://github.com/unicode-org/unicodetools/issues/100
         V14_0("14.0"),
         V15_0("15.0"),
+        V15_1("15.1"),
         Unassigned("NA");
         private final PropertyNames<Age_Values> names;
 
@@ -71,10 +74,12 @@ public class UcdPropertyValues {
             names = new PropertyNames<Age_Values>(Age_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Age_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -119,10 +124,12 @@ public class UcdPropertyValues {
                             Bidi_Class_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Bidi_Class_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -149,10 +156,12 @@ public class UcdPropertyValues {
                             Bidi_Paired_Bracket_Type_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Bidi_Paired_Bracket_Type_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -503,10 +512,12 @@ public class UcdPropertyValues {
                             Block_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Block_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -586,10 +597,12 @@ public class UcdPropertyValues {
                             Canonical_Combining_Class_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Canonical_Combining_Class_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -636,10 +649,12 @@ public class UcdPropertyValues {
                             Decomposition_Type_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Decomposition_Type_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -667,10 +682,12 @@ public class UcdPropertyValues {
                             East_Asian_Width_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<East_Asian_Width_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -735,10 +752,12 @@ public class UcdPropertyValues {
                             General_Category_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<General_Category_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -778,10 +797,12 @@ public class UcdPropertyValues {
                             Grapheme_Cluster_Break_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Grapheme_Cluster_Break_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -809,10 +830,12 @@ public class UcdPropertyValues {
                             Hangul_Syllable_Type_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Hangul_Syllable_Type_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -836,10 +859,12 @@ public class UcdPropertyValues {
                             Identifier_Status_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Identifier_Status_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -874,10 +899,12 @@ public class UcdPropertyValues {
                             Identifier_Type_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Identifier_Type_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -902,10 +929,12 @@ public class UcdPropertyValues {
                             Idn_2008_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Idn_2008_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -935,10 +964,12 @@ public class UcdPropertyValues {
                             Idn_Status_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Idn_Status_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -976,10 +1007,12 @@ public class UcdPropertyValues {
                             Indic_Positional_Category_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Indic_Positional_Category_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -1037,10 +1070,12 @@ public class UcdPropertyValues {
                             Indic_Syllabic_Category_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Indic_Syllabic_Category_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -1115,10 +1150,12 @@ public class UcdPropertyValues {
                             Jamo_Short_Name_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Jamo_Short_Name_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -1244,10 +1281,12 @@ public class UcdPropertyValues {
                             Joining_Group_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Joining_Group_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -1275,10 +1314,12 @@ public class UcdPropertyValues {
                             Joining_Type_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Joining_Type_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -1444,10 +1485,12 @@ public class UcdPropertyValues {
                             Line_Break_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Line_Break_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -1477,10 +1520,12 @@ public class UcdPropertyValues {
                             NFC_Quick_Check_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<NFC_Quick_Check_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -1504,10 +1549,12 @@ public class UcdPropertyValues {
                             NFD_Quick_Check_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<NFD_Quick_Check_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -1533,10 +1580,12 @@ public class UcdPropertyValues {
                             NFKC_Quick_Check_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<NFKC_Quick_Check_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -1560,10 +1609,12 @@ public class UcdPropertyValues {
                             NFKD_Quick_Check_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<NFKD_Quick_Check_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -1589,10 +1640,12 @@ public class UcdPropertyValues {
                             Numeric_Type_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Numeric_Type_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -1787,10 +1840,12 @@ public class UcdPropertyValues {
                             Script_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Script_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -1828,10 +1883,12 @@ public class UcdPropertyValues {
                             Sentence_Break_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Sentence_Break_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -1865,10 +1922,12 @@ public class UcdPropertyValues {
                             Vertical_Orientation_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Vertical_Orientation_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
@@ -1913,10 +1972,12 @@ public class UcdPropertyValues {
                             Word_Break_Values.class, this, shortName, otherNames);
         }
 
+        @Override
         public PropertyNames<Word_Break_Values> getNames() {
             return names;
         }
 
+        @Override
         public String getShortName() {
             return names.getShortName();
         }
