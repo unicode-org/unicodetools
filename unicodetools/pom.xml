@@ -42,4 +42,23 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+                                                                   
+
+	<!-- 
+		The other part of configuring root & submodules to skip / not skip `exec:java`, as mentioned
+		in the root pom.xml (where it must be skipepd), is to turn on `exec:java` in submodules which
+		contain the classes that are intended to be executed by `exec:java`.
+	-->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<configuration>
+					<skip>false</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>

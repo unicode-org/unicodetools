@@ -146,6 +146,29 @@
                         </java>
                     </configuration>
                 </plugin>
+                <!--
+                    We need to tell exec:java to not try run commands from the root/parent pom.xml because
+                    the structure of the project as a multi-module one means there is no source code to be
+                    found here to be compiled and run.
+                    Instead, we should explicitly override this setting in the submodules in which we know
+                     we need to run exec:java. We do so with a similar <build> -> <plugins> -> <plugin> entry
+                    that contains `<skip>false</skip>` in the pom.xml.
+                    See comments in this answer: https://stackoverflow.com/a/26448447/2077918
+
+                    If we ever need to have more fine-grained customziation of which submodules should skip 
+                    (or not) the `exec:java` execution, then we might need to use profiles to configure which
+                    submodules are skipping / not skipping `exec:java` for a particular execution, as described
+                    in a sibling answer: https://stackoverflow.com/a/8098019/2077918
+                -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>1.3.2</version>
+                    <configuration>
+                        <skip>true</skip>
+                        <executable>java</executable>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
