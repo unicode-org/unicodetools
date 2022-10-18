@@ -7,20 +7,32 @@ jobs:
   build-and-push-to-gcr:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up JDK 11
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    - uses: actions/checkout@v2
+    - name: Get the CLDR_REF from pom.xml
+      id: cldr_ref
+      run: echo "CLDR_REF="$(mvn help:evaluate -Dexpression=cldr.version -q -DforceStdout | cut -d- -f3) >> $GITHUB_OUTPUT && cat ${GITHUB_OUTPUT}
+    - name: Verify CLDR checkout ref
+      run: echo CLDR_REF="${{ steps.cldr_ref.outputs.CLDR_REF }}" && [ "${{ steps.cldr_ref.outputs.CLDR_REF }}x" != "x" ] # fail if empty
+    - name: Cache CLDR
+      uses: actions/cache@v2
+      with:
+        path: cldr
+        key: cldr-${{ steps.cldr_ref.outputs.CLDR_REF }}
+        restore-keys: |
+          cldr-${{ steps.cldr_ref.outputs.CLDR_REF }}
     - name: Check out CLDR
-      uses: actions/checkout@v2
+      uses: actions/checkout@v1.2  # yes, v1 due to https://github.com/actions/checkout/issues/265
       with:
         repository: unicode-org/cldr
         path: cldr
+        ref: ${{ steps.cldr_ref.outputs.CLDR_REF }}
     - name: Backup Unicodetools and CLDR for jsps
       run:
-        mkdir -p UnicodeJsps/target && tar cfpz UnicodeJsps/target/cldr-unicodetools.tgz ./cldr ./unicodetools
+        mkdir -p UnicodeJsps/target && tar -cpz --exclude=.git -f UnicodeJsps/target/cldr-unicodetools.tgz ./cldr ./unicodetools
     - name: Cache local Maven repository
       uses: actions/cache@v2
       with:

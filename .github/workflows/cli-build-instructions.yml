@@ -39,14 +39,33 @@ jobs:
     steps:
       - name: Checkout Unicode Tools
         uses: actions/checkout@v3
+      - name: Get the CLDR_REF from pom.xml
+        id: cldr_ref
+        run: echo "CLDR_REF="$(mvn help:evaluate -Dexpression=cldr.version -q -DforceStdout | cut -d- -f3) >> $GITHUB_OUTPUT && cat ${GITHUB_OUTPUT}
+      - name: Verify CLDR checkout ref
+        run: echo CLDR_REF="${{ steps.cldr_ref.outputs.CLDR_REF }}" && [ "${{ steps.cldr_ref.outputs.CLDR_REF }}x" != "x" ] # fail if empty
+      - name: Cache CLDR repository
+        uses: actions/cache@v3
+        with:
+          path: cldr
+          key: cldr-${{ steps.cldr_ref.outputs.CLDR_REF }}
+          restore-keys: |
+            cldr
       - name: Check out CLDR
         uses: actions/checkout@v3
         with:
           repository: unicode-org/cldr
           path: cldr
-      - name: Move CLDR working copy to be sibling of Unicode Tools
+          ref: main
+          fetch-depth: 0
+      - name: Switch CLDR to CLDR_REF
+        run: cd cldr && git fetch && git checkout ${{ steps.cldr_ref.outputs.CLDR_REF }}
+      - name: Backup Unicodetools and CLDR for jsps  # this is needed only for the Docker build
+        run:
+          mkdir -p UnicodeJsps/target && tar -cpz --exclude=.git -f UnicodeJsps/target/cldr-unicodetools.tgz ./cldr ./unicodetools
+      - name: Symlink CLDR working copy to be sibling of Unicode Tools
         run: |
-          mv cldr ..
+          ln -s cldr ..
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
@@ -81,11 +100,27 @@ jobs:
         with:
           repository: unicode-org/unicodetools
           path: unicodetools/mine/src
-      - name: Checkout CLDR
+      - name: Get the CLDR_REF from pom.xml
+        id: cldr_ref
+        run: echo "CLDR_REF="$(mvn --file unicodetools/mine/src/pom.xml help:evaluate -Dexpression=cldr.version -q -DforceStdout | cut -d- -f3) >> $GITHUB_OUTPUT && cat ${GITHUB_OUTPUT}
+      - name: Verify CLDR checkout ref
+        run: echo CLDR_REF="${{ steps.cldr_ref.outputs.CLDR_REF }}" && [ "${{ steps.cldr_ref.outputs.CLDR_REF }}x" != "x" ] # fail if empty
+      - name: Cache CLDR repository
+        uses: actions/cache@v3
+        with:
+          path: cldr/mine/src
+          key: cldr-${{ steps.cldr_ref.outputs.CLDR_REF }}
+          restore-keys: |
+            cldr
+      - name: Check out CLDR
         uses: actions/checkout@v3
         with:
           repository: unicode-org/cldr
           path: cldr/mine/src
+          ref: main
+          fetch-depth: 0
+      - name: Switch CLDR to CLDR_REF
+        run: cd cldr/mine/src && git fetch && git checkout ${{ steps.cldr_ref.outputs.CLDR_REF }}
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
@@ -198,7 +233,7 @@ jobs:
             exit 1
           fi
           # TODO(#100): Note: when running locally on a clean checkout, this command
-          # leaves a change in UcdPropertyValues.java by not preserving the comment 
+          # leaves a change in UcdPropertyValues.java by not preserving the comment
           # about the fake Unicode version 13.1.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -210,7 +245,7 @@ jobs:
           # run GenerateConfusables
           mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCD.GenerateConfusables"  -Dexec.args="-c -b" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
           # run Build & Test command again to rerun TestSecurity test to verify output is okay
-          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -pl unicodetools -Dtest=TestSecurity -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestSecurity -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -222,7 +257,7 @@ jobs:
           mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.draft.GenerateUnihanCollators"  -Dexec.args="" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+
       # https://github.com/unicode-org/unicodetools/blob/main/docs/newunicodeproperties.md#checking-other-properties
       - name: Run command - Checking Other Properties
         run: |
@@ -231,6 +266,6 @@ jobs:
           # Note: the test-compile phase/target needs to precede `compile exec:java` because
           # the source code is in src/test/java, not src/main/java, and we need the
           # code to compile before it is executed.
-          mvn -s .github/workflows/mvn-settings.xml -Dexec.mainClass="org.unicode.propstest.CheckProperties" -Dexec.classpathScope=test test-compile  -Dexec.args="COMPARE ALL $PREVIOUS_UVERSION" compile exec:java -am  -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+          mvn -s .github/workflows/mvn-settings.xml -Dexec.mainClass="org.unicode.propstest.CheckProperties" -Dexec.classpathScope=test test-compile  -Dexec.args="COMPARE ALL $PREVIOUS_UVERSION" compile exec:java -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
