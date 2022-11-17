@@ -60,6 +60,10 @@ Pull request cycle:
 *   More commits as necessary until changes look good, tests pass,
     and someone (preferably KenW) approves.
 *   **Squash**-and-merge.
+    *   Or squash locally, force-push, and rebase-merge.
+    *   Or, if you are comfortable with git, you may locally squash down to two commits,
+        one with the input changes and one with all of the generated changes and code fixes,
+        and rebase-merge.
 
 ### Notes about emoji data files
 
