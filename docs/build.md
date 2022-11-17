@@ -245,11 +245,19 @@ That is, we are reversing the flow of files.
 (See [issue #144](https://github.com/unicode-org/unicodetools/issues/144).)
 
 We are also no longer generating and posting files with version suffixes.
+(We now generate files into an output folder with the Unicode version number.)
 
 Except: Some files, such as Unihan and ucdxml data files, are developed elsewhere,
 and we continue to ingest them as before.
 
-###
+Starting with Unicode 15, we keep the latest versions of data files in
+unversioned "dev" folders in this repo.
+
+#### Unicode 15.1+ workflow
+
+See data-workflow.md .
+
+### Unicode 15.0.0 changes
 
 All of the following have `version 15.0.0` (or whatever the latest version is)
 in the options given to Java.
@@ -261,10 +269,7 @@ Example changes for adding properties:
 <https://github.com/unicode-org/unicodetools/pull/40>. Throughout these steps we
 will walk through updating unicodetools to support Unicode 15 or 14.
 
-Starting with Unicode 15, we keep the latest versions of data files in
-unversioned "dev" folders in this repo.
-
-Unicode 14:
+### Unicode 14.0.0 changes
 
 Firstly, fetch the latest data files for this version from
 <https://www.unicode.org/Public/14.0.0/ucd/>, matching your new version number.
@@ -279,13 +284,6 @@ desuffix the files (removing the -dN suffixes). Copy these into
 
 to set up the inputs correctly. For some updates you may need to pull in other
 (uca, security, idna, etc) files, see [Input data setup](inputdata.md) for more information.
-
-Unicode 15:
-
-We no longer generate files with version suffixes.
-We now generate files into an output folder with the Unicode version number.
-
-Unicode 14:
 
 Now, update the following files:
 
