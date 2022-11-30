@@ -213,9 +213,10 @@ public class UnicodeJsp {
         String trimmed = text.trim();
         // Accept U+ notation and standalone hexadecimal digits, as well as a variety
         // of hexadecimal character escape and numeric literal syntaxes.
-        Matcher matcher = Pattern.compile(
-            "(?:U\\+|\\\\[ux]\\{?|&#x|0x|16#|&H)?([0-9a-f'_]+)[\\};#]?",
-            Pattern.CASE_INSENSITIVE).matcher(trimmed);
+        Matcher matcher =
+                Pattern.compile("(?:U\\+|\\\\[ux]\\{?|&#x|0x|16#|&H)?([0-9a-f'_]+)[\\};#]?",
+                                Pattern.CASE_INSENSITIVE)
+                        .matcher(trimmed);
         String digits = matcher.matches() ? matcher.group(1).replaceAll("['_]", "") : null;
         if (digits != null && digits.length() > 1) {
             try {
@@ -230,13 +231,13 @@ public class UnicodeJsp {
             if (cp > 0x10FFFF) {
                 cp = 0;
             }
-            return new int[]{cp};
+            return new int[] {cp};
         } else if (previousButton != null) {
             cp -= 1;
             if (cp < 0) {
                 cp = 0x10FFFF;
             }
-            return new int[]{cp};
+            return new int[] {cp};
         }
         return result;
     }
