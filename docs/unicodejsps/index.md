@@ -15,7 +15,7 @@ need to actually need to download or build CLDR itself.
 
 ### Building from the command line
 
-Run `mvn package -DskipTests` in the repository directory to build the JSPs.
+Run `mvn -am -pl UnicodeJsps package -DskipTests` at the root directory of the repository to build the JSPs.
 
 ### Building from Eclipse
 
