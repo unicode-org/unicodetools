@@ -50,6 +50,7 @@ ARM/
 ARM64/
 Debug/
 Generated[!!-~]Files/
+Generated/
 Release/
 __pycache__/
 arm/
