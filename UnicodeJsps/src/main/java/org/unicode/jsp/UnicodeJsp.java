@@ -214,7 +214,8 @@ public class UnicodeJsp {
         // Accept U+ notation and standalone hexadecimal digits, as well as a variety
         // of hexadecimal character escape and numeric literal syntaxes.
         Matcher matcher =
-                Pattern.compile("(?:U\\+|\\\\[ux]\\{?|&#x|0x|16#|&H)?([0-9a-f'_]+)[\\};#]?",
+                Pattern.compile(
+                                "(?:U\\+|\\\\[ux]\\{?|&#x|0x|16#|&H)?([0-9a-f'_]+)[\\};#]?",
                                 Pattern.CASE_INSENSITIVE)
                         .matcher(trimmed);
         String digits = matcher.matches() ? matcher.group(1).replaceAll("['_]", "") : null;
