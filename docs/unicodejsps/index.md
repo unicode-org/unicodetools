@@ -15,7 +15,7 @@ need to actually need to download or build CLDR itself.
 
 ### Building from the command line
 
-Run `mvn package` in the UnicodeJsps directory to build the JSPs.
+Run `mvn -am -pl UnicodeJsps package -DskipTests` at the root directory of the repository to build the JSPs.
 
 ### Building from Eclipse
 
@@ -29,6 +29,10 @@ If you already have `UnicodeJsps` in eclipse, it might be better to remove it fr
 ```shell
 mvn org.eclipse.jetty:jetty-maven-plugin:run
 ```
+
+If port 8080 is in use, another port can be specified with `-Djetty.port=⟨port number⟩`.
+
+The following system properties described in [Building Unicode Tools](../build.md#java-system-properties-used-in-unicode-tools) must be set in order for the JSPs to function properly: `CLDR_DIR`, `UNICODETOOLS_REPO_DIR`; this can be done with `-DCLDR_DIR=⟨some path⟩ -DUNICODETOOLS_REPO_DIR=.`.
 
 You can now connect to <http://127.0.0.1:8080> as suggested from the command line.
 Use Control-C to stop the server.

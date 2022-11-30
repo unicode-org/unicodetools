@@ -208,28 +208,39 @@ public class UnicodeJsp {
         UnicodeUtilities.getDifferences(setA, setB, abbreviate, abResults, abSizes, abLinks);
     }
 
-    public static int parseCode(String text, String nextButton, String previousButton) {
+    public static int[] parseCode(String text, String nextButton, String previousButton) {
         // text = fromHTML.transliterate(text);
         String trimmed = text.trim();
-        if (trimmed.length() > 1) {
+        // Accept U+ notation and standalone hexadecimal digits, as well as a variety
+        // of hexadecimal character escape and numeric literal syntaxes.
+        Matcher matcher =
+                Pattern.compile(
+                                "(?:U\\+|\\\\[ux]\\{?|&#x|0x|16#|&H)?([0-9a-f'_]+)[\\};#]?",
+                                Pattern.CASE_INSENSITIVE)
+                        .matcher(trimmed);
+        String digits = matcher.matches() ? matcher.group(1).replaceAll("['_]", "") : null;
+        if (digits != null && digits.length() > 1) {
             try {
-                text = UTF16.valueOf(Integer.parseInt(trimmed, 16));
+                text = UTF16.valueOf(Integer.parseInt(digits, 16));
             } catch (Exception e) {
             }
         }
-        int cp = UTF16.charAt(text, 0);
+        int[] result = text.codePoints().toArray();
+        int cp = result[0];
         if (nextButton != null) {
             cp += 1;
             if (cp > 0x10FFFF) {
                 cp = 0;
             }
+            return new int[] {cp};
         } else if (previousButton != null) {
             cp -= 1;
             if (cp < 0) {
                 cp = 0x10FFFF;
             }
+            return new int[] {cp};
         }
-        return cp;
+        return result;
     }
 
     public static String getConfusables(String test, int choice) {
