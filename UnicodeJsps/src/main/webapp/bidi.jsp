@@ -36,7 +36,7 @@ function insert(myField, myValue) {
         UtfParameters utfParameters = new UtfParameters(queryString);
 
         String sample = utfParameters.getParameter("a", "mark 3.1% \u0645\u0627\u0631\u0652\u0643 2.0.");
-        String sampleEscaped = UnicodeUtilities.toHTML(sample);
+        String sampleEscaped = UnicodeUtilities.toHTMLInput(sample);
         boolean hack = !"off".equals(utfParameters.getParameter("hack", "off"));
         String p = utfParameters.getParameter("p", "Auto");
         int p2 = p.equals("LTR") ? 0 : p.equals("RTL") ? 1 : -1;

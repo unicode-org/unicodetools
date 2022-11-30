@@ -75,6 +75,7 @@ public class UnicodeUtilities {
     private static Subheader subheader = null;
 
     static Transliterator toHTML;
+    static Transliterator toHTMLInput;
     static String HTML_RULES_CONTROLS;
 
     static {
@@ -90,6 +91,8 @@ public class UnicodeUtilities {
         String CONTENT_RULES = "'>' > '&gt;' ;";
 
         String HTML_RULES = BASE_RULES + CONTENT_RULES + "'\"' > '&quot;' ; ";
+
+        toHTMLInput = Transliterator.createFromRules("any-xml", HTML_RULES, Transliterator.FORWARD);
 
         HTML_RULES_CONTROLS =
                 HTML_RULES
@@ -107,6 +110,10 @@ public class UnicodeUtilities {
 
     public static String toHTML(String input) {
         return toHTML.transliterate(input);
+    }
+
+    public static String toHTMLInput(String input) {
+        return toHTMLInput.transliterate(input);
     }
 
     static Transliterator UNICODE = Transliterator.getInstance("hex-any");
