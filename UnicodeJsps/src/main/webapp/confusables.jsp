@@ -12,7 +12,7 @@
 		UtfParameters utfParameters = new UtfParameters(queryString);
 
 		String test = utfParameters.getParameter("a", "paypal");
-		String testEscaped = UnicodeUtilities.toHTML(test);
+		String testEscaped = UnicodeUtilities.toHTMLInput(test);
 
 		String p = utfParameters.getParameter("r", "None");
         int p2 = p.equals("None") ? 0
