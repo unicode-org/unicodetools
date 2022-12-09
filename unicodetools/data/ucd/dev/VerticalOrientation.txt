@@ -1,5 +1,5 @@
-# VerticalOrientation-15.0.0.txt
-# Date: 2022-08-07, 18:01:57 GMT [EM, KI, LI, KW, MS]
+# VerticalOrientation-15.1.0.txt
+# Date: 2022-11-04 [KW, LI]
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1185,8 +1185,7 @@
 2F00..2FD5     ; U  # So   [214] KANGXI RADICAL ONE..KANGXI RADICAL FLUTE
 2FD6..2FDF     ; U  # Cn    [10] <reserved-2FD6>..<reserved-2FDF>
 2FE0..2FEF     ; U  # Cn    [16] <reserved-2FE0>..<reserved-2FEF>
-2FF0..2FFB     ; U  # So    [12] IDEOGRAPHIC DESCRIPTION CHARACTER LEFT TO RIGHT..IDEOGRAPHIC DESCRIPTION CHARACTER OVERLAID
-2FFC..2FFF     ; U  # Cn     [4] <reserved-2FFC>..<reserved-2FFF>
+2FF0..2FFF     ; U  # So    [16] IDEOGRAPHIC DESCRIPTION CHARACTER LEFT TO RIGHT..IDEOGRAPHIC DESCRIPTION CHARACTER ROTATION
 3000           ; U  # Zs         IDEOGRAPHIC SPACE
 3001..3002     ; Tu # Po     [2] IDEOGRAPHIC COMMA..IDEOGRAPHIC FULL STOP
 3003           ; U  # Po         DITTO MARK
@@ -1294,7 +1293,8 @@
 3196..319F     ; U  # So    [10] IDEOGRAPHIC ANNOTATION TOP MARK..IDEOGRAPHIC ANNOTATION MAN MARK
 31A0..31BF     ; U  # Lo    [32] BOPOMOFO LETTER BU..BOPOMOFO LETTER AH
 31C0..31E3     ; U  # So    [36] CJK STROKE T..CJK STROKE Q
-31E4..31EF     ; U  # Cn    [12] <reserved-31E4>..<reserved-31EF>
+31E4..31EE     ; U  # Cn    [11] <reserved-31E4>..<reserved-31EE>
+31EF           ; U  # So         IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
 31F0..31FF     ; Tu # Lo    [16] KATAKANA LETTER SMALL KU..KATAKANA LETTER SMALL RO
 3200..321E     ; U  # So    [31] PARENTHESIZED HANGUL KIYEOK..PARENTHESIZED KOREAN CHARACTER O HU
 321F           ; U  # Cn         <reserved-321F>
