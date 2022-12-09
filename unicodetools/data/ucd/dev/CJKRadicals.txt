@@ -1,5 +1,5 @@
-# CJKRadicals-15.0.0.txt
-# Date: 2022-05-03, 18:49:00 GMT [RC, KW, LI]
+# CJKRadicals-15.1.0.txt
+# Date: 2022-11-02, 23:20:00 GMT [RC, KW, LI]
 # © 2022 Unicode®, Inc.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -19,8 +19,8 @@
 # CJK radical number. The second field is the CJK radical character.
 # The third field is the CJK unified ideograph.
 #
-# CJK radical numbers match the regular expression [1-9][0-9]{0,2}\'?
-# and in particular they can end with a U+0027 ' APOSTROPHE.
+# CJK radical numbers match the regular expression [1-9][0-9]{0,2}\'{0,2}
+# and in particular they can end with one or two U+0027 ' APOSTROPHE characters.
 #
 # For more information, see UAX #38: Unicode Han Database (Unihan),
 # at https://www.unicode.org/reports/tr38/
@@ -265,12 +265,16 @@
 209; 2FD0; 9F3B
 210; 2FD1; 9F4A
 210'; 2EEC; 9F50
+210''; 2EEB; 6589
 211; 2FD2; 9F52
 211'; 2EEE; 9F7F
+211''; 2EED; 6B6F
 212; 2FD3; 9F8D
 212'; 2EF0; 9F99
+212''; 2EEF; 7ADC
 213; 2FD4; 9F9C
 213'; 2EF3; 9F9F
+213''; 2EF2; 4E80
 214; 2FD5; 9FA0
 
 # EOF

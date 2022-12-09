@@ -1,5 +1,5 @@
 # PropList-15.0.0.txt
-# Date: 2022-08-05, 22:17:16 GMT
+# Date: 2022-11-04, 14:18:18 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1241,13 +1241,20 @@ E0020..E007F  ; Other_Grapheme_Extend # Cf  [96] TAG SPACE..CANCEL TAG
 # ================================================
 
 2FF0..2FF1    ; IDS_Binary_Operator # So   [2] IDEOGRAPHIC DESCRIPTION CHARACTER LEFT TO RIGHT..IDEOGRAPHIC DESCRIPTION CHARACTER ABOVE TO BELOW
-2FF4..2FFB    ; IDS_Binary_Operator # So   [8] IDEOGRAPHIC DESCRIPTION CHARACTER FULL SURROUND..IDEOGRAPHIC DESCRIPTION CHARACTER OVERLAID
+2FF4..2FFD    ; IDS_Binary_Operator # So  [10] IDEOGRAPHIC DESCRIPTION CHARACTER FULL SURROUND..IDEOGRAPHIC DESCRIPTION CHARACTER SURROUND FROM LOWER RIGHT
+31EF          ; IDS_Binary_Operator # So       IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
 
-# Total code points: 10
+# Total code points: 13
 
 # ================================================
 
 2FF2..2FF3    ; IDS_Trinary_Operator # So   [2] IDEOGRAPHIC DESCRIPTION CHARACTER LEFT TO MIDDLE AND RIGHT..IDEOGRAPHIC DESCRIPTION CHARACTER ABOVE TO MIDDLE AND BELOW
+
+# Total code points: 2
+
+# ================================================
+
+2FFE..2FFF    ; IDS_Unary_Operator # So   [2] IDEOGRAPHIC DESCRIPTION CHARACTER HORIZONTAL REFLECTION..IDEOGRAPHIC DESCRIPTION CHARACTER ROTATION
 
 # Total code points: 2
 
