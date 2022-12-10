@@ -1,5 +1,5 @@
-# PropertyAliases-15.0.0.txt
-# Date: 2022-02-02, 23:35:44 GMT
+# PropertyAliases-15.1.0.txt
+# Date: 2022-12-09
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -173,6 +173,7 @@ Ideo                     ; Ideographic
 IDS                      ; ID_Start
 IDSB                     ; IDS_Binary_Operator
 IDST                     ; IDS_Trinary_Operator
+IDSU                     ; IDS_Unary_Operator
 Join_C                   ; Join_Control
 LOE                      ; Logical_Order_Exception
 Lower                    ; Lowercase
@@ -207,6 +208,6 @@ XO_NFKC                  ; Expands_On_NFKC
 XO_NFKD                  ; Expands_On_NFKD
 
 # ================================================
-# Total:    129
+# Total:    130
 
 # EOF

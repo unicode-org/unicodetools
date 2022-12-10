@@ -259,7 +259,8 @@ public interface UCD_Types {
             Pattern_Syntax = 36,
             Prepended_Concatenation_Mark = 37,
             Regional_Indicator = 38,
-            LIMIT_BINARY_PROPERTIES = 39;
+            IDS_UnaryOperator = 39,
+            LIMIT_BINARY_PROPERTIES = 40;
 
     /*
     static final int

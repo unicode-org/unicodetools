@@ -203,9 +203,10 @@ public class GenerateEnums {
                 + "        private final PropertyNames<"
                 + enumName
                 + "> names;\n"
+                + "\n"
                 + "        private "
                 + enumName
-                + " (String shortName, String...otherNames) {\n"
+                + "(String shortName, String... otherNames) {\n"
                 + "            names = new PropertyNames<"
                 + enumName
                 + ">(\n"
@@ -213,21 +214,25 @@ public class GenerateEnums {
                 + enumName
                 + ".class, this, shortName, otherNames);\n"
                 + "        }\n"
+                + "\n"
                 + "        @Override\n"
                 + "        public PropertyNames<"
                 + enumName
                 + "> getNames() {\n"
                 + "            return names;\n"
                 + "        }\n"
+                + "\n"
                 + "        @Override\n"
                 + "        public String getShortName() {\n"
                 + "            return names.getShortName();\n"
                 + "        }\n"
+                + "\n"
                 + "        private static final NameMatcher<"
                 + enumName
                 + "> NAME_MATCHER = PropertyNames.getNameToEnums("
                 + enumName
                 + ".class);\n"
+                + "\n"
                 + "        public static "
                 + enumName
                 + " forName(String name) {\n"
@@ -239,17 +244,16 @@ public class GenerateEnums {
     public static void writeValueEnumFile(Map<PropName, Set<String[]>> values) throws IOException {
         final PrintWriter output = FileUtilities.openUTF8Writer("", PROPERTY_VALUE_OUTPUT);
         output.println(
-                "package org.unicode.props;\n"
+                "package org.unicode.props;\n\n"
                         + "import org.unicode.props.PropertyNames.NameMatcher;\n"
                         + "import org.unicode.props.PropertyNames.Named;\n"
                         + "\n"
                         + "/**\n"
-                        + "    Machine-generated file for property values, produced by GenerateEnums.java\n"
-                        + "    from PropertyValueAliases.txt and ExtraPropertyValueAliases.txt.\n"
-                        + "    The ordering of property value enums is alphabetical (ASCII),\n"
-                        + "    but the order of the values for the enums is based on the order within those two files\n"
-                        + "    with the ones in PropertyValueAliases coming first.\n"
-                        + "*/\n"
+                        + " * Machine-generated file for property values, produced by GenerateEnums.java from\n"
+                        + " * PropertyValueAliases.txt and ExtraPropertyValueAliases.txt. The ordering of property value enums\n"
+                        + " * is alphabetical (ASCII), but the order of the values for the enums is based on the order within\n"
+                        + " * those two files with the ones in PropertyValueAliases coming first.\n"
+                        + " */\n"
                         + "public class UcdPropertyValues {");
 
         // [Alpha, N, No, F, False]
@@ -415,15 +419,12 @@ public class GenerateEnums {
     public static void writeMainUcdFile() throws IOException {
         final PrintWriter output = FileUtilities.openUTF8Writer("", PROPERTY_FILE_OUTPUT);
 
-        output.print(
-                "package org.unicode.props;\n"
-                        + "import java.util.EnumSet;\n"
-                        + "import java.util.Set;\n"
-                        + "import org.unicode.props.PropertyNames.NameMatcher;\n"
-                // "import org.unicode.props.UcdPropertyValues.*;\n\n"
-                );
-        output.println("import org.unicode.props.UcdPropertyValues.Binary;");
+        output.print("package org.unicode.props;\n\n");
         TreeSet<String> imports = new TreeSet<>();
+        imports.add("import java.util.EnumSet;");
+        imports.add("import java.util.Set;");
+        imports.add("import org.unicode.props.PropertyNames.NameMatcher;");
+        imports.add("import org.unicode.props.UcdPropertyValues.Binary;");
         for (final Entry<String, PropName> i : lookupMain.entrySet()) {
             final PropName pname = i.getValue();
             switch (pname.propertyType) {
@@ -432,7 +433,10 @@ public class GenerateEnums {
                     final String longName = pname.longName;
                     if (!pname.longName.equals(
                             "Script_Extensions")) { // exception, since uses Script_Values
-                        imports.add(longName);
+                        imports.add(
+                                "import org.unicode.props.UcdPropertyValues."
+                                        + longName
+                                        + "_Values;");
                     }
                     //                final ValueCardinality cardinality =
                     // NAME2CARD.get(longName.toLowerCase(Locale.ENGLISH));
@@ -446,16 +450,16 @@ public class GenerateEnums {
             }
         }
         for (String s : imports) {
-            output.println("import org.unicode.props.UcdPropertyValues." + s + "_Values;");
+            output.println(s);
         }
         output.println();
 
         output.println(
                 "/**\n"
-                        + "    Machine-generated file for properties, produced by GenerateEnums.java\n"
-                        + "    from PropertyAliases.txt and ExtraPropertyAliases.txt.\n"
-                        + "    The ordering of properties is first by category, then alphabetical (ASCII order).\n"
-                        + "*/\n"
+                        + " * Machine-generated file for properties, produced by GenerateEnums.java from PropertyAliases.txt\n"
+                        + " * and ExtraPropertyAliases.txt. The ordering of properties is first by category, then alphabetical\n"
+                        + " * (ASCII order).\n"
+                        + " */\n"
                         + "public enum "
                         + "UcdProperty"
                         + " {");
@@ -524,7 +528,7 @@ public class GenerateEnums {
                         + "    private final Class enumClass;\n"
                         + "    private final ValueCardinality cardinality;\n"
                         + "    \n"
-                        + "    private UcdProperty(PropertyType type, String shortName, String...otherNames) {\n"
+                        + "    private UcdProperty(PropertyType type, String shortName, String... otherNames) {\n"
                         + "        this.type = type;\n"
                         + "        names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);\n"
                         + "        name2enum = null;\n"
@@ -532,7 +536,13 @@ public class GenerateEnums {
                         + "        enumClass = null;\n"
                         + "        cardinality = ValueCardinality.Singleton;\n"
                         + "    }\n"
-                        + "    private UcdProperty(PropertyType type, Class classItem, ValueCardinality _cardinality, String shortName, String...otherNames) {\n"
+                        + "\n"
+                        + "    private UcdProperty(\n"
+                        + "            PropertyType type,\n"
+                        + "            Class classItem,\n"
+                        + "            ValueCardinality _cardinality,\n"
+                        + "            String shortName,\n"
+                        + "            String... otherNames) {\n"
                         + "        this.type = type;\n"
                         + "        names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);\n"
                         + "        cardinality = _cardinality == null ? ValueCardinality.Singleton : _cardinality;\n"
@@ -550,32 +560,40 @@ public class GenerateEnums {
                         + "    public ValueCardinality getCardinality() {\n"
                         + "        return cardinality;\n"
                         + "    }\n"
+                        + "\n"
                         + "    public Class<Enum> getEnumClass() {\n"
                         + "        return enumClass;\n"
                         + "    }\n"
+                        + "\n"
                         + "    public PropertyType getType() {\n"
                         + "        return type;\n"
                         + "    }\n"
+                        + "\n"
                         + "    public PropertyNames<UcdProperty> getNames() {\n"
                         + "        return names;\n"
                         + "    }\n"
+                        + "\n"
                         + "    public String getShortName() {\n"
                         + "        return names.getShortName();\n"
                         + "    }\n"
+                        + "\n"
                         + "    public static UcdProperty forString(String name) {\n"
                         + "        return Numeric_Value.names.forString(name);\n"
                         + "    }\n"
+                        + "\n"
                         + "    public Enum getEnum(String name) {\n"
                         + "        return name2enum == null ? null : name2enum.get(name);\n"
                         + "    }\n"
+                        + "\n"
                         + "    public PropertyNames getEnumNames() {\n"
                         + "        return name2enum == null ? null : name2enum.getNames();\n"
                         + "    }\n"
+                        + "\n"
                         + "    public Set<Enum> getEnums() {\n"
                         + "        return enums;\n"
-                        + "    }\n");
+                        + "    }");
 
-        output.println("\n}");
+        output.println("}");
         output.close();
     }
 

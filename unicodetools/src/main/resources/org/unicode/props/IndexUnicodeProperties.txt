@@ -163,6 +163,7 @@ PropList ; Hyphen
 PropList ; Ideographic
 PropList ; IDS_Binary_Operator
 PropList ; IDS_Trinary_Operator
+PropList ; IDS_Unary_Operator
 PropList ; Join_Control
 PropList ; Logical_Order_Exception
 PropList ; Noncharacter_Code_Point
