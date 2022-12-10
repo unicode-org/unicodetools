@@ -34,7 +34,7 @@
 3443	(same as 拗) to pull; to drag, to break off, to pluck, as a flower
 3444	(ancient form of 侮) to insult, to ridicule
 3445	(same as 作) to make; to do; to act, to write; to compose; to rise, work
-3447	(a simplified form) clever; ingenious; cute; pretty
+3447	clever, ingenious; cute; pretty
 3448	(simplified form) rude; barbarous, stupid; dull, last name
 3449	cannot straighten up
 344A	a kind of disease
@@ -267,7 +267,7 @@
 3555	(ancient form of 幻) deception; sleight of hand; magic
 3556	(ancient form of 素) plain; unornamented, white, ordinary, simple
 3557	(same as 誘) to induce; to entice; to mislead; to lead on
-3558	(a variant of 參) to take part in; to visit; to counsel, one of the 28 lunar mansions; ginseng
+3558	to take part in; to visit; to counsel, one of the 28 lunar mansions; ginseng
 3559	a wily rabbit; a cunning hare
 355A	(ancient form of 爪) claws of birds or animals, feet, to scratch, to claw, to grasp
 355B	(ancient form of 友) a friend; a companion; an associate, friendly, to make friends of, brotherly regard
@@ -279,6 +279,7 @@
 3562	profound significance, just now; then; in that case
 3563	a marsh at the foot of the hills, (interchangeable 湢 沇) name of a river
 3564	a proud temper, military equipment; a long spear
+3565	by means of; thereby, therefore; in order to
 3566	loud; clamour; hubbub, big mouth, to brag
 3567	used to represent sound; to hum; to groan
 3569	(non-classical form) sound of tapping; sound of striking, opposing voices
@@ -435,7 +436,7 @@
 362A	(same as 耗) to waste, to destroy, to diminish; hence it came to mean, a rat, heedless; careless; inattentive; rough and coarse
 362B	(a variant of 阱) to fall into a well, a pit; a pitfall; a hole; a gully, to involve; to entrap
 362C	(same as 坳) a hollow in the ground; a cavity, (same as 物) matter; substance, all living creatures, things in general, the affairs of this world, things or matters outside oneself, others, goods, the Tibetan classical text means Buddha
-362D	(same as 坳) a hollow in the ground; a cavity, undulating
+362D	a hollow in the ground; a cavity, undulating
 3630	(interchangeable 斟) name of an old country; used in name of a place
 3631	(same as 坍) to fall into ruins; to collapse
 3632	a cove; a bay, a bend or nook in the hills, the outside part of a curved bank; the curve of a bow
@@ -489,7 +490,7 @@
 3669	an enclosing wall
 366A	dark; the sun hidden by clouds, obscure
 366B	a fountain or spring out from the underground
-366C	(ancient form of 垠) a bank; a boundary
+366C	a bank; a boundary
 366E	a tower, pagoda
 366F	(same as 藝) skill, ability in handicraft, a craft, an art, a calling, a trade, an accomplishment
 3670	name of a place in ancient times
@@ -507,7 +508,7 @@
 367C	(same as 壘) a military wall, a rampart, to pile up, a pile
 367E	(same as 嶨) hills with lots of big rocks
 3680	lofty, dangerous; critical, (same as 虧) to destroy; to injure; to damage
-3681	the long tail feathers which curl up; to elevate; to raise the head; warped, (interchangeable 翹) long tail feathers, to raise, outstanding
+3681	the long tail feathers which curl up; to elevate; to raise the head; warped; outstanding
 3682	dust; dirt, a cellar, a caverns
 3683	to take a hint; a group of Chinese characters the construction of which suggests the meaning, the fate; good luck or bad are in the pot; don't expose; or leak out
 3685	to worship of God, to praise; many; much
@@ -541,7 +542,7 @@
 36A6	(ancient form of U+59EC 姬) a charming girl, a charming concubine; a monarch's wife
 36A7	(same as 嬐) agile; adroit fast; quick; prompt, neat; tidy; orderly, to raise the head; to look up
 36A8	used in girl's name
-36A9	with a charming sprightly carriage (said of a woman)
+36A9	with a charming, sprightly appearance (said of a woman)
 36AA	to make a deceptive show of power, not really strict
 36AB	used in girl's name, a woman's countenance; features
 36AC	a lady start to doll up
@@ -586,6 +587,7 @@
 36DA	equal; uniform, used in girl's name
 36DB	(same as U+5A20 娠) pregnant, to let develop; to nourish; to foster; to nurture, slave girls
 36DC..36DE	used in girl's name
+36E3	(the large seal type 妘) last name, used in girl's name
 36E5	to prostrate; to make obeisance, to concede or submit willingly
 36E6	good; nice; fine; excellent
 36E7	name of a county in today's Shanxi province
@@ -667,7 +669,7 @@
 373C	(same as 姪) children of one's brother -- nephews or nieces, I; me (when speaking to a family friend of father's generation)
 373D	(ancient form of 子) child, seed, 1st terrestrial branch
 373E	(same as 孩) a child; an infant, young; small
-373F	name of a fish in legend, spawn, or roe
+373F	name of a legendary fish; spawn; roe
 3740	(same as 好) to like; to love; to be fond of
 3741	(same as 嬛) lonely; solitary, exquisite; fine, to worship with reverence
 3742	locust, larva of Chilo simplex; a kind of moth
@@ -691,7 +693,7 @@
 3756	(corrupted form) right; fitting; proper; good, should; ought to; had better
 3757	spaciously rooms, expansive; vast and boundless
 3758	(non-classical form) harmony; peace, pleasant; agreeable; delightful
-3759	(ancient form of 寅) the third of the twelve terrestrial branches, a fellow officer, horary sign (for period from 3 to 5 a.m.)
+3759	(ancient form of U+5BC5 寅) the third of the twelve terrestrial branches; a fellow officer
 375B	(ancient form of 宿) a halting place; to lodge for the night, to keep over night, to cherish, asleep and perching
 375C	night; dark; darkness, of death, to mourn, to lose; to deprived of
 375D	deep, profound, far, extremely
@@ -863,7 +865,7 @@
 380E	(same as U+380D 㠍) a lofty mountain
 380F	name of a mountain
 3810	high and pointed mountain, mountain paths (same as 嶠) lofty
-3811	high mountain steep rugged and uneven
+3811	high, rugged mountain
 3812	(same as U+37FD 㟽) mountain top; summit, pointed mountain top
 3813	name of a mountain
 3814	shapes of the mountain, the strategic and dangerous gorge, (a dialect) field in between of the valleys
@@ -1373,7 +1375,8 @@
 3A3C	(non-classical form of U+63A0 掠) to take by force, to throw aside
 3A3D	to cut or rip open
 3A3E	a type; a model; a mode; a style
-3A3F..3A40	(a variant of 據) to receive, as communications from a subordinate, to rely on, to lean on, evidence; proof, according to; whereas
+3A3F	to receive, as communications from a subordinate, to rely on, to lean on, evidence; proof, according to; whereas
+3A40	(a variant of 據) to receive, as communications from a subordinate, to rely on, to lean on, evidence; proof, according to; whereas
 3A41	to knock, to pick out, to ridicule, (a variant) monopoly, a footbridge. a toll levied at a bridge or a ferry
 3A43	to take or capture (a city, etc.), to gather or to collect
 3A44	to strike; to beat, to get scattered and lost
@@ -1387,6 +1390,7 @@
 3A4C	to strike; to fight with hands, to scratch lightly; to brush; to shake; to dust, to knock down; to floor
 3A4D	to back up; to support, to take; to receive; to fetch; to obtain; to take hold of
 3A4E	(same as 擪) to press with a finger; to tuck in; to put the finger into; to put in; to stow away
+3A50	to move, shake
 3A52	(same as U+64D2 擒) to arrest; to capture; (Cant.) to press down firmly
 3A53	to wound; to damage; to destroy; to injure
 3A54	a tool to make (crumble and to make smooth) a bow, to beat; to strike; to attack
@@ -1394,7 +1398,7 @@
 3A56	to back up; to support
 3A57	(non-classical form of 攜) to lead by the hand, to conduct to; to take with
 3A58	(corrupted form of 檥) (interchangeable 艤) to moor to the bank
-3A59	(same as 塞) a cork or stopper; to cork; to seal, to fill up, to block
+3A59	a cork or stopper; to cork; to seal, to fill up, to block
 3A5A	to collect (tax, grains), to draw together; to contract, to become less flagrant in behavior
 3A5B	(same as 摶) to roll round with the hand, to rely on, to take or follow (a trail, etc.)
 3A5C	(same as U+652C 攬) to be in possession of; to grasp, to make selective collection or coverage of; (Cant.) actually; strong
@@ -1943,10 +1947,10 @@
 3CBF	extensive body of water; broad and deep of water; momentum of moving water deep and wide
 3CC0	a river in ancient times
 3CC1	water flow; water current; momentum of moving water
-3CC2	(same as 沿) to follow a course; to go along; to coast, to hand down; to continue, to conserve; along or by, as a road or a coast
+3CC2	to follow a course; to go along; to coast, to hand down; to continue, to conserve; along or by, as a road or a coast
 3CC3	(non-classical of 淬) to temper iron, or steel for making swords, etc. (also used figuratively), to dip into water; to soak; to dye
 3CC4	(a variant of 涎) spittle, saliva
-3CC5	(ancient form of 流) to flow, to drift, to circulate, a current, to descend, unstable; weak
+3CC5	to flow, to drift, to circulate, a current, to descend, unstable; weak
 3CC6	name of a place in ancient times
 3CC7	name of a place in today's Jiangsu Province Yixing county, to float; to waft; to swim
 3CC8	(standard form of 沛) a great flow of water; flowing copiously, quickly; rapidly; sudden, flourishing; luxuriant; prosperous or abundant, marsh; swamp
@@ -1958,7 +1962,7 @@
 3CCF	a river in ancient times; in Henan Province
 3CD0	flowing of the water, sound of the flowing water
 3CD1	(abbreviated form of U+6EA2 溢) to flow over; to brim over, excessive
-3CD2	(a variant of 法) statutes, laws, regulations, a rule, legal standard, plan or methods, etc.
+3CD2	statutes, laws, regulations, a rule, legal standard, plan or methods, etc.
 3CD4	to soak or be soaked; to dip; to immerse
 3CD5	(simplified form of 灡) water in which rice has been washed, (interchangeable 瀾) a great wave; a huge billow
 3CD6	name of a river
@@ -2029,7 +2033,7 @@
 3D26	(corrupted form of 涫) (interchangeable 盥) to wash hands, to wash, to boil
 3D27	of flowing water, a river
 3D28	water current; water flow
-3D29	(same as 灉) name of a stream in Shandong Province, the flowing back of flooding waters, a sluice
+3D29	name of a stream in Shandong Province; the flowing back of flooding waters, a sluice
 3D2A	name of a river
 3D2B	great flowing; big flood, name of a county in ancient times
 3D2C	a river in ancient times; head of source from today's Henan Province Xinanxian; and flowing south to Luoshui
@@ -3599,7 +3603,7 @@
 43D2	half of the body, (non-classical form of U+80D6 胖) fat; obese
 43D3	the stomach; gizzard
 43D4	to eat meat; (same as U+8098 肘) the elbow; (same as U+816C 腬) fine quality of meat; (same as U+8844 衄) nosebleed
-43D5	(ancient form of 飪) to cook food thoroughly
+43D5	to cook food thoroughly
 43D6	a wound; a bruise; a sore, scar, muscles of the back
 43D7	unexpectedly; suddenly aching of the midriff or waist; lumbago
 43D8	a big abdomen, a female animal with a fat belly
@@ -4450,7 +4454,7 @@
 475C	(same as U+72FB 狻) a Tibetan lion
 475D	(same as 猗) an exclamation indicating admiration, an adverbial particle
 475E	name of an immortal; with man's face and bird's body; be known as (禺號)
-475F	a fierce man-eating animal in legend
+475F	a legendary man-eating animal
 4760	(same as 獂) a kind of wild boar
 4761	(same as 獌) an animal in old times; like fox but much bigger
 4762	same as U+734C 獌 or U+8C99 貙
@@ -6005,7 +6009,7 @@
 4E0E	and; with; to; for; give, grant
 4E0F	parapet; invisible
 4E10	beggar; beg; give
-4E11	clown, comedian; 2nd terrestrial branch
+4E11	clown, comedian; second earthly branch
 4E12	the period from 1 to 3 a.m.; 2nd character of the 'branches'
 4E13	monopolize, take sole possession
 4E14	moreover, also (post-subject); about to, will soon (pre-verb)
@@ -6023,7 +6027,7 @@
 4E20	hill; elder; empty; a name
 4E21	two, both, pair, couple; a tael, ounce
 4E22	discard
-4E23	ancient form of the tenth of the twelve Terrestrial Branches, U+9149 酉
+4E23	(ancient form of U+9149 酉) tenth earthly branch
 4E24	two, both, pair, couple; ounce
 4E25	strict, rigorous, rigid; stern
 4E26	equal to; side by side; also, what is more; both
@@ -6058,7 +6062,7 @@
 4E44	SHIME: to find a place to dwell; sum; a measurement of paper; SHITE to do; (not to be confused with U3024 HANGZHOU NUMERAL FIVE)
 4E45..4E46	long time (ago); time passage, grow late
 4E47	to depend on, to entrust with
-4E48	interrogative particle; repetition of a tune small; tender
+4E48	interrogative particle; small
 4E49	right conduct, righteousness
 4E4A	kwukyel
 4E4B	marks preceding phrase as modifier of following phrase; it, him her, them; go to
@@ -6102,7 +6106,7 @@
 4E79	(Cant.) to clean; dried up
 4E7A	painting tool place name
 4E7C	rope
-4E7E	dry; first hexagram; warming principle of the sun, penetrating and fertilizing, heavenly generative principle (male)
+4E7E	dry; warming principle of the sun, penetrating and fertilizing, heavenly generative principle (male); trigram ☰; hexagram ䷀
 4E7F	to cure, to heal
 4E80	turtle or tortoise; cuckold
 4E81	dry; dried, as opposed to fresh
@@ -6123,7 +6127,7 @@
 4E92	mutually, reciprocally
 4E93	(archaic form) his, her, its, their; that
 4E94	five; surname
-4E95	well, mine shaft, pit
+4E95	well, mine shaft, pit; surname; 22nd lunar mansion, determinative star μ Geminorum (Tejat); hexagram ䷯
 4E96	four
 4E97	harvest; year; age
 4E98..4E99	extend across, through; from
@@ -6135,9 +6139,9 @@
 4E9F	urgently, immediately, extremely
 4EA0	head; Kangxi radical 8
 4EA1	death, destroyed; lose, perish
-4EA2	high, proud; violent, excessive; skilled; name
+4EA2	high, proud; violent, excessive; skilled; name; 2nd lunar mansion, determinative star κ Virginis (Kang)
 4EA4	mix; intersect; exchange, communicate; deliver
-4EA5	12th terrestrial branch
+4EA5	twelfth earthly branch
 4EA6	also, too; likewise
 4EA7	give birth, bring forth, produce
 4EA8	smoothly, progressing, no trouble
@@ -6209,7 +6213,7 @@
 4EF6	numerary adjunct for article; matter
 4EF7	price, value
 4EF8	bent, distorted, crooked; feeble
-4EFB	trust to, rely on, appoint; to bear, duty, office; allow
+4EFB..4EFC	trust to, rely on, appoint; to bear, duty, office; allow
 4EFD	portion, part; duty
 4EFE	to hang or bow the head, to droop, to lower; low, beneath
 4EFF	imitate, copy; as if
@@ -6359,6 +6363,7 @@
 4FB6	companion; associate with
 4FB7	narrow, cramped, confined
 4FB9	straight
+4FBB	to run away, escape
 4FBF	convenience, ease; expedient
 4FC1	big
 4FC2	bind, tie up; involve, relation
@@ -6446,6 +6451,7 @@
 5033	to stick in, to stab; to erect
 5034	a place in Héběi
 5036	all
+5038	notice, pay attention to
 5039	temperate, frugal, economical
 503A	debt, loan, liabilities
 503B	phonetic used in Korean place names
@@ -6463,6 +6469,8 @@
 504E	cling to, cuddle, embrace, fondle
 504F	inclined one side; slanting
 5050	false, counterfeit, spurious
+5051	(simplified form of 偑) name of a place, last name
+5052	pond, pool; wash away, cleanse
 5053	to fuss
 5055	together; be in order
 5056	rip up, tear down; raise; haul
@@ -6480,6 +6488,7 @@
 506C	urgent
 506D	transgress
 506F	sob
+5070	an ancestor of the Shāng emperors, said to be one of Shùn’s ministers
 5072	talented; urgent
 5074	side; incline, slant, lean
 5075	spy, reconnoiter; detective
@@ -6550,6 +6559,7 @@
 50DC	Dèng ethnic group of Tibet
 50DD	to revile; to abuse
 50DE	false, counterfeit, bogus
+50E1	favor, benefit, confer kindness
 50E3	assume, usurp
 50E4	sincere
 50E5	be lucky; by chance, by luck
@@ -6606,6 +6616,7 @@
 5131	rude; barbarous
 5132	to save money, store, reserve; an heir
 5133	obstinate; stupid; uneven; mix
+5135	hastily, suddenly, abruptly
 5136	valiant, brave; eminent
 5137	spouse, couple, pair
 5138	bandit, daredevil
@@ -6627,7 +6638,7 @@
 5148	first, former, previous
 5149	light, brilliant, shine; only
 514B	gram; overcome; transliteration
-514C	cash; exchange, barter; weight
+514C	cash; exchange, barter; weight; trigram ☱; hexagram ䷹
 514D	spare; excuse from; evade
 514E	rabbit, hare
 5150	son, child, oneself; final part
@@ -6702,6 +6713,7 @@
 519E	far
 51A0	cap, crown, headgear
 51A2	burial mound, mausoleum; grand
+51A3	(ancient form of U+805A 聚) assemble; most, extremely
 51A4	grievance, injustice, wrong
 51A5	dark, gloomy, night; deep
 51A6	bandits, thieves; enemy; invade
@@ -6835,6 +6847,7 @@
 5242	medicinal preparation
 5243	shave
 5244	cut throat
+5245	mouth of a stream; waterway beneath a dam
 5247	rule, law, regulation; grades
 5249	cut, file, trim; file
 524A	scrape off, pare, trim
@@ -6854,7 +6867,7 @@
 525A	stab
 525B	hard, tough, rigid, strong
 525C	cut, cut out, pick out, scoop out
-525D	peel, peel off, to shell, strip
+525D	peel, peel off, to shell, strip; hexagram ䷖
 525E	carving or engraving knife; grave
 525F	to prick; to cut blocks, to engrave
 5260	brand
@@ -7006,10 +7019,12 @@
 532D	small box; chest, casket
 532E	to lack
 532F	a concourse; to flow together, gather together; (same as U+6ED9 滙) to remit money
+5330	utensils used anciently in ancestral temples
 5331	to lack
 5333	ladies toilet case with mirror
 5334	an ancient, bamboo hat box
 5335	case; casket
+5336	a coffin containing a corpse
 5338	box; Kangxi radical 23
 5339	bolt of cloth; counter for horses
 533A	area, district, region, ward
@@ -7025,8 +7040,8 @@
 5344	twenty, twentieth
 5345	thirty, thirtieth
 5346	soldier; servant; at last, finally
-5347	arise, go up; hoist; advance
-5348	noon; 7th terrestrial branch
+5347	arise, go up; hoist; advance; hexagram ䷭
+5348	seventh earthly branch
 5349	general term for plants; myriads
 534A	half
 534B	same as 世 U+4E16, generation; world; era
@@ -7062,9 +7077,9 @@
 536C	lofty; high; raise; high-priced
 536D	high. to raise
 536E	measuring cup; wine container
-536F	4th terrestrial branch; period from 5-7 a.m.
+536F	fourth earthly branch
 5370	print, seal, stamp, chop, mark
-5371	dangerous, precarious; high
+5371	dangerous, precarious; high; 12th lunar mansion, determinative star α Aquarii (Sadalmelik)
 5372	eminent, lofty; beautiful; surname
 5373	promptly, quickly, immediately
 5374	still, but; decline; retreat
@@ -7077,6 +7092,7 @@
 537C	unsteady; dangerous
 537D	promptly
 537F	noble, high officer
+5380	knee
 5382	factory, workshop; radical 27
 5383	to look upward
 5384	adversity, difficulty, distress
@@ -7124,7 +7140,8 @@
 53BE	lightly tap; through away; drop; sentence final particle
 53BF	county, district, subdivision
 53C1	bank form of numeral 'three'
-53C2..53C4	take part in, intervene; ginseng
+53C2	take part in, intervene; ginseng; 21st lunar mansion, determinative star ζ Orionis (Alnitak)
+53C3..53C4	take part in, intervene; ginseng
 53C5	to counsel, to consult together; to take part in; to intervene
 53C6	cloudy sky; dark, obscure
 53C7	cloudy sky; not clear; dark
@@ -7211,7 +7228,7 @@
 5422	vomiting of a dog
 5423	vomit
 5425	a swelling; spongy, flabby
-5426	not, no, negative; final particle
+5426	not, no, negative; final particle; hexagram ䷋
 5427	emphatic final particle
 5428	metric ton; (Cant.) to babble, gibberish
 5429	order, command, instruct
@@ -7262,6 +7279,7 @@
 5459	chat, jaw, gossip, talk; mouth
 545B	choke by smoke; irritates nose
 545C	sound of crying, sobbing
+545D	belch; hiccup
 545F	to mutter, grumble, murmur
 5460	to spurt; to blow out; to puff out; to snort
 5461	the corners of the mouth the lips
@@ -7343,7 +7361,7 @@
 54B4	neigh, whinny
 54B5	to revile
 54B7	howl, cry loudly
-54B8	together; all, completely; united
+54B8	together; all, completely; united; hexagram ䷞
 54B9	(Cant.) sound of an automobile horn
 54BA	majestic
 54BB	shout
@@ -7415,10 +7433,13 @@
 5511	(chem.) azole
 5513	(Cant.) interjection
 5514	hold in mouth; bite; (Cant.) not, negation
+5515	chatter
 5516	dumb, mute; become hoarse
 5517	interjection: greeting or sigh
+5519	backbite
 551A	vomiting of animals; to use bad language
 551B	mark
+551D	used in place and other names
 551E	(Cant.) to gasp; to breathe; to rest
 551F	place name
 5520	chat, jaw, gossip, talk
@@ -7464,6 +7485,7 @@
 5550	to taste, to sip; to spit; the sound of sipping; to surprise
 5551	to gobble
 5553	open; begin, commence; explain
+5554	to open; begin, commence; explain
 5555	wail
 5556	eat, feed; chew, bite; entice
 5557	eat, chew, bite; entice, lure
@@ -7548,7 +7570,7 @@
 55B6	encampment, barracks; manage
 55B7	spurt, blow out, puff out
 55B8	place name
-55B9	quinoline
+55B9	quinoxaline (chemical compound)
 55BA	(Cant.) to be located at
 55BB	metaphor, analogy; example; like
 55BC	(Cant.) used phonetically in English loan-words (e.g., cap, keep)
@@ -7707,11 +7729,13 @@
 5673	many
 5674	spurt, blow out, puff out
 5676	used in transliterations
+5677	an exclamation
 5678	ton (metric or English)
 5679	sound of bells
 567A	story, talk
 567B	character used in translation
 567C	sound; (Cant.) a child's buttocks
+567D	mound, lump; stealthily
 5680	enjoin, instruct; charge
 5683	gobble
 5684	roar
@@ -7788,7 +7812,7 @@
 56ED	garden; park, orchard
 56EE	inveigle, decoy; cheat
 56EF	variant of U+56FD 国, nation, country, nation-state
-56F0	to surround, besiege; to be surrounded; difficult
+56F0	to surround, besiege; to be surrounded; difficult; hexagram ䷮
 56F1	chimney
 56F2	surround, encircle, corral; whip
 56F3	diagram; chart, map, picture
@@ -7851,7 +7875,7 @@
 574A	neighborhood, urban subdivision; (J) priest's residence; (Buddhist) priest; boy
 574B..574C	dust, earth; a bank of earth; to dig; to bring together
 574D	collapse; landslide
-574E	pit, hole; snare, trap; crisis
+574E	pit, hole; snare, trap; crisis; trigram ☵; hexagram ䷜
 574F	rotten, spoilt, bad, broken down
 5750	sit; seat; ride, travel by
 5751	pit, hole; bury, trap; harry
@@ -7865,7 +7889,8 @@
 575F	grave, mound; bulge; bulging
 5760	fall down, drop, sink, go to ruin
 5761	slope, bank, hillside
-5764	earth; feminine, female
+5763	hall, government office; (simplified form of U+58C6 壆) stiff, hard clay; crack in a jar
+5764	earth; feminine, female; trigram ☷; hexagram ䷁
 5766	flat, smooth; self-possessed
 5768	a lump, heap
 5769	earthenware, earthenware vessel
@@ -7893,6 +7918,7 @@
 5788	used in place names; Japanese -nuta; Korean -dae
 578B	pattern, model, type; law; mold
 578C	a field; used in place names
+578D	firm ground
 5792	rampart, military wall
 5793	border, boundary, frontier
 5794	to restrain; to dam a stream and change its direction; a mound
@@ -7915,6 +7941,8 @@
 57AB	advance money, pay for another
 57AD	character used in place names
 57AE	be defeated, fail, collapse
+57AF	(圪墶) a pimple; a mound
+57B1	a dike used to divert water in a rice paddy or field for irrigation
 57B2	high and dry place
 57B4	small, head shaped hill, used in place names
 57B5	cover with earth; a pit; a hole
@@ -8055,7 +8083,7 @@
 588A	advance money, pay for another
 588D	paint, decorate
 5890	to build with soil, plaster over with mud
-5892	wet tilth
+5892	wet, cultivated land
 5893	grave, tomb
 5896	pagoda, dagoba, tower
 5897	increase
@@ -8084,12 +8112,14 @@
 58BB	wall
 58BC	unfired brick
 58BE	cultivate, reclaim, to farm land
-58C1	partition wall; walls of a house
+58C1	partition wall; walls of a house; 14th lunar mansion, determinative star γ Pegasi (Algenib)
+58C4	open country, field; wilderness
 58C5	to obstruct
 58C6	stiff, hard clay or rocky strata; crack in a jar
 58C7	altar; arena, examination hall
 58C8	disappointed
 58CA	bad, spoil(ed), ruin, destroy
+58CB	a dike used to divert water in a rice paddy or field for irrigation
 58CC	soil, loam, earth; rich
 58CD	moat around a city. a channel
 58CE	instrument
@@ -8112,7 +8142,7 @@
 58E4	soil, loam, earth; rich
 58E9	embankment; dam
 58EB	scholar, gentleman; soldier
-58EC	9th heavenly stem
+58EC	ninth heavenly stem
 58ED	kwukyel
 58EE..58EF	big, large; robust; name of tribe
 58F0	sound, voice, noise; tone; music
@@ -8144,7 +8174,7 @@
 5915	evening, night, dusk; slanted
 5916	out, outside, external; foreign
 5917	to turn over when asleep
-5918	4th of Earth Branches; period from 5-7 a.m.
+5918	fourth earthly branch
 5919	early in morning, dawn; previous
 591A..591B	much, many; more than, over
 591C	night, dark; in night; by night
@@ -8158,7 +8188,7 @@
 5929	sky, heaven; god, celestial
 592A	very, too, much; big; extreme
 592B	man, male adult, husband; those
-592C	parted; fork; certain
+592C	parted; fork; certain; hexagram ䷪
 592D	young, fresh-looking; die young
 592E	center, conclude, run out; beg
 592F	heavy load, burden; lift up
@@ -8182,7 +8212,7 @@
 5949	offer; receive; serve; respect
 594B	strive, exert effort; arouse
 594C	dot, speck, spot; point, degree
-594E	stride of man; one of the twenty-eight lunar mansions
+594E	stride of man; 15th lunar mansion, determinative star η Andromedae
 594F	memorialize emperor; report
 5950	be numerous, brilliant
 5951	deed, contract, bond; engrave
@@ -8210,7 +8240,7 @@
 596D	red; anger; ire; surname
 596E	strive, exert effort; arouse
 5970	anger
-5973	woman, girl; feminine; Kangxi radical 38
+5973	woman, girl; feminine; Kangxi radical 38; 10th lunar mansion, determinative star ε Aquarii (Albali)
 5974	slave, servant
 5976	milk; woman's breasts; nurse
 5978	crafty, villainous, false
@@ -8249,6 +8279,7 @@
 59B2	concubine of last ruler of the Shang dynasty
 59B3	you (female)
 59B5	person's name
+59B7	brother's child; debauchery
 59B8	person
 59B9	younger sister
 59BA	wife of the last ruler of the Xia dynasty
@@ -8275,12 +8306,12 @@
 59DE	concubine
 59E2	beautiful, graceful
 59E3	beautiful, handsome, pretty
-59E4	mate; copulate; good
+59E4	mate; copulate; good; hexagram ䷫
 59E5	maternal grandmother; midwife
 59E6	adultery, debauchery; debauch
 59E8	mother/wife's sister; concubine
 59E9	(Cant.) breast
-59EA	niece
+59EA	brother's child
 59EB..59EC	beauty; imperial concubine
 59EE	lady
 59F1	beautiful, handsome, elegant
@@ -8305,6 +8336,7 @@
 5A13	comply; complying, agreeable
 5A16	cautious, prudent
 5A18	mother; young girl; woman; wife
+5A19	beautiful woman
 5A1B	pleasure, enjoyment, amusement
 5A1C	elegant, graceful, delicate
 5A1F	beautiful, graceful
@@ -8324,7 +8356,7 @@
 5A3C	prostitute, harlot
 5A3F	beautiful, graceful
 5A40	be beautiful, be graceful
-5A41	surname; a constellation (sixteenth of the twenty-eight lunar mansions); to wear
+5A41	surname; to wear; 16th lunar mansion, determinative star β Arietis (Sheratan)
 5A44	(Cant.) soft, weak; to soak; unreliable
 5A46	old woman; grandmother
 5A49	amiable, congenial; restrained
@@ -8451,12 +8483,12 @@
 5B43	troubled, oppressed; fat; mother
 5B45	slender, thin; sharp-pointed
 5B4C	lovely, beautiful; docile, obedient
-5B50	offspring, child; fruit, seed of; 1st terrestrial branch
+5B50	offspring, child; fruit, seed of; first earthly branch
 5B51	remaining, left-over; lonely
 5B52	larvae of the mosquito
 5B53	beautiful
 5B54	opening, hole, orifice; great
-5B55	be pregnant, pregnancy
+5B55	be pregnant; pregnancy
 5B56	twins
 5B57	letter, character, word
 5B58	exist, live, be; survive; remain
@@ -8517,7 +8549,7 @@
 5BA1	examine, investigate; judge
 5BA2	guest, traveller; customer
 5BA3	declare, announce, proclaim
-5BA4	room, home, house, chamber
+5BA4	room, home, house, chamber; 13th lunar mansion, determinative star α Pegasi (Markab)
 5BA5	forgive, pardon, indulge
 5BA6	officialdom, government official
 5BA7	corner
@@ -8539,10 +8571,10 @@
 5BBF	stop, rest, lodge, stay overnight; constellation
 5BC0	feudal estate
 5BC1	quick, fast
-5BC2	still, silent, quiet, desolate
+5BC2	still, silent, quiet; desolate
 5BC3	grievance, injustice, wrong
 5BC4	send, transmit, mail; rely on
-5BC5	to respect, reverence; respectfully; 3rd terrestrial branch
+5BC5	to respect, reverence; respectfully; third earthly branch
 5BC6	dense, thick, close; intimate
 5BC7	bandits, thieves; enemy; invade
 5BCC	abundant, ample; rich, wealthy
@@ -8637,7 +8669,7 @@
 5C3B	end of spine; buttocks, sacrum
 5C3C	Buddhist nun; transliteration
 5C3D	exhaust, use up; deplete
-5C3E	tail, extremity; end, stern
+5C3E	tail, extremity; end, stern; 6th lunar mansion, determinative star μ¹ Scorpii (Xamidimura)
 5C3F	urine; urinate
 5C40	bureau, office; circumstance
 5C41	break wind; fart; buttocks
@@ -8665,11 +8697,12 @@
 5C5C	drawer; tray; pad; screen
 5C5D	straw shoes; straw door
 5C5E	class, category, type; belong to
+5C5F	wooden shoes, clogs
 5C60	butcher, slaughter, massacre
 5C61..5C62	frequently, often, again and again
 5C63	straw sandals or slippers that have no heel-backs
 5C64	story, layer, floor, stratum
-5C65	footwear, shoes; walk on, tread
+5C65	footwear, shoes; walk on, tread; hexagram ䷉
 5C66	straw sandals; tread on
 5C67	wooden shoes, clogs
 5C68	straw sandals; tread on
@@ -8678,7 +8711,7 @@
 5C6C	class, category, type; to belong to
 5C6D	gigantic strength
 5C6E	sprout; Kangxi radical 45
-5C6F	village, hamlet; camp; station
+5C6F	village, hamlet; camp; station; hexagram ䷂
 5C70	disobedient
 5C71	mountain, hill, peak
 5C74	lofty
@@ -8691,6 +8724,7 @@
 5C80	go out
 5C81	year; age; harvest
 5C82	how? what?
+5C85	mountain slope
 5C88	嵖岈山, a mountain in Suìpíng county, Hénán
 5C8A	foothill
 5C8C	perilous, hazardous; high, steep
@@ -8721,6 +8755,7 @@
 5CB5	hill
 5CB7	Minshan mountain range in northern Sichuan and southern Gansu, Min River
 5CB8	bank, shore; beach, coast
+5CB9	peak; cliff, precipice
 5CBA	mountain ridge, mountain peak
 5CBD	place name in Guangxi province
 5CBE	mountain pass (Korean)
@@ -8748,7 +8783,7 @@
 5CEB	mountain in Shandong province
 5CED	steep, precipitous, rugged
 5CEF..5CF0	peak, summit; hump of camel
-5CF1	name of a mountain
+5CF1	name of a mountain in Shāndōng
 5CF4	steep hill; mountain in Hubei
 5CF6	island
 5CFB	high, steep, towering; stern
@@ -8760,7 +8795,7 @@
 5D03	mountain in Sichuan province
 5D04	high, steep, precipitous
 5D06	Kongtong mountain
-5D07	esteem, honor, revere, venerate
+5D07..5D08	esteem, honor, revere, venerate
 5D0B	flowery; illustrious; Chinese
 5D0C	mountain name
 5D0D	mountain in Sichuan province
@@ -8787,6 +8822,7 @@
 5D2C	place name in Guangxi province
 5D2D	high, steep, precipitous; new
 5D2E	a mesa, hill with flat top and steep sides
+5D2F	cliffs
 5D31	lofty
 5D33	county in Shandong province
 5D34	high, lofty; precipitous
@@ -8821,6 +8857,7 @@
 5D73	high, towering; irregular, rugged
 5D74	mountain ridge
 5D76	low part of a mountain
+5D7D	towering; a tall mountain
 5D7E	uneven
 5D81	Goulou mountain peak in Hunan
 5D82	cliff; mountain barrier
@@ -8843,6 +8880,7 @@
 5DA2	high or tall
 5DA7	a range of peaks in Shandong and Jiangsu; the name of a mountain
 5DA8	big rocky mountain
+5DA9	a mountain in Shāndōng
 5DAD	elevated, lofty
 5DAE	high, steep, precipitous
 5DB0	gorge
@@ -8851,7 +8889,7 @@
 5DB7	a range of mountains in Hunan province
 5DB8	high, steep; lofty, towering
 5DBA	mountain ridge, mountain peak
-5DBC	island
+5DBC	island; (Cant.) 大嶼山 daai6jyu4saan1 Lantau Island
 5DBD	mountain peak, summit
 5DC2	place name
 5DC3	lofty
@@ -8865,7 +8903,7 @@
 5DD2	mountain range; pointed mountain
 5DD3	summit of mountain
 5DD4	summit of mountain, mountain top
-5DD6	cliff, precipice; cave, grotto
+5DD6..5DD7	cliff, precipice; cave, grotto
 5DD8	summit, peak
 5DDB	river; Kangxi radical 47
 5DDD	stream, river; flow; boil
@@ -8887,14 +8925,14 @@
 5DEF..5DF0	an atom group
 5DF1	self, oneself; personal, private; 6th heavenly stem
 5DF2	already; finished; stop
-5DF3	the hours from 9 to 11; 6th terrestrial branch
+5DF3	sixth earthly branch
 5DF4	greatly desire, anxiously hope
 5DF5	measuring cup; wine container
 5DF7	alley, lane
 5DFA	5th of the 8 trigrams; South-east; mild, modest, obedient
 5DFB	scroll; curl; make a comeback
 5DFC	place name
-5DFD	5th of the 8 trigrams; south-east; mild, modest, obedient
+5DFD	south-east; mild, modest, obedient; trigram ☴; hexagram ䷸
 5DFE	kerchief; towel; turban; Kangxi radical 50
 5DFF	revolve, make circuit, turn
 5E00	to go round, to make a circuit, to make a revolution, to turn round
@@ -8930,7 +8968,7 @@
 5E26	belt, girdle, band, strap, zone
 5E27	picture, scroll; one of pair of
 5E28	handkerchief, kerchief, shawl
-5E2B	teacher, master, specialist; multitude, troops
+5E2B	teacher, master, specialist; multitude, troops; hexagram ䷆
 5E2C	the skirt of a lady's dress; petticoat
 5E2D	seat; mat; take seat; banquet
 5E2E	help, assist; defend; shoe upper
@@ -8953,9 +8991,12 @@
 5E44	tent; mosquito net
 5E45	piece, strip, breadth of, hem
 5E47	help, assist; defend; shoe upper
+5E48	a folding screen
 5E4B	belt
 5E4C	curtain, cloth screen
 5E4E	cover-cloth, cover with cloth
+5E51	(same as 徽 揮) mark; sign; indication; flags; pennants, streamers, etc., to prance, to brandish, to shake; to rattle, name of a flag
+5E53	(simplified form of U+5E53 幓) (same as U+7E3F 縿) the long bands or ribbons attached to flags and banners (same as U+8942 襂) the feather decorated carriages or dresses; flapping and dangling, headdress used by man in ancient times
 5E54..5E55	curtain, screen, tent
 5E57	women's headgear; mourning cap
 5E58	turban; conical cap
@@ -9033,7 +9074,9 @@
 5EB9	the length of one's two outstretched arms
 5EBB	numerous, various; multitude
 5EBC	room
+5EBD	residence; lodge
 5EBE	granary; storehouse
+5EBF	temple, shrine
 5EC0	to conceal; to search into
 5EC1	toilet, lavatory; mingle with
 5EC2	side-room, wing; theatre box
@@ -9127,7 +9170,7 @@
 5F31	weak; fragile, delicate
 5F33	circular measure
 5F34	red lacquer bow
-5F35	stretch, extend, expand; sheet
+5F35	stretch, extend, expand; sheet; 26th lunar mansion, determinative star υ¹ Hydrae
 5F36	a snare
 5F37	strong, powerful, energetic
 5F38	a bow stretched to the full; tensely drawn
@@ -9137,6 +9180,7 @@
 5F3E	variant of 彈 U+5F48, a pellet, bullet, shot, shell
 5F40	enough, adequate fully, quite
 5F42	issue, dispatch, send out, emit
+5F43	to shoot
 5F44	nock at end of bow; stretch
 5F46	awkward
 5F48	pellet, bullet, shot, shell
@@ -9155,7 +9199,7 @@
 5F59..5F5A	collect, compile, assemble; hedgehog
 5F5B..5F5D	Yi (nationality); tripod, wine vessel; rule
 5F5E	yi; tripod
-5F60	scale, standard
+5F5F..5F60	scale, standard
 5F61	hair; Kangxi radical 59
 5F62	form, shape, appearance
 5F64	red, vermilion
@@ -9208,7 +9252,7 @@
 5FA4	strong, robust; to strengthen
 5FA7	everywhere, all over, all around
 5FA8	doubtful, irresolute, vacillating
-5FA9	return; repeat; repeatedly
+5FA9	return; repeat; repeatedly; hexagram ䷗
 5FAA	obey, comply with, follow
 5FAC	to wander about, walk along side of; to be next to
 5FAD	conscript labor, compulsory labor
@@ -9223,7 +9267,7 @@
 5FBC	frontier, border; inspect, patrol
 5FBD	a badge, insignia
 5FC0	to stroll; to ramble
-5FC3	heart; mind, intelligence; soul
+5FC3	heart; mind, intelligence; soul; 5th lunar mansion, determinative star α Scorpii (Antares)
 5FC4	heart; radical number 61
 5FC5	surely, most certainly; must
 5FC6	remember, reflect upon; memory
@@ -9316,7 +9360,7 @@
 6041	that, like this, thus, so, such
 6042	careful, sincere, honest; trust
 6043	rely on, presume on, trust to
-6046	constant, regular, persistent
+6046	constant, regular, persistent; hexagram ䷟
 6047	fear
 6049	meaning, purport, drift
 604A	be united; cooperate
@@ -9469,6 +9513,7 @@
 6114	comfortable, contented, peaceful
 6115	startled, alarmed, astonished
 6116	to hesitate
+6119	respectful, reverent
 611A	stupid, doltish, foolish
 611B	love, be fond of, like
 611C	be satisfied, be comfortable
@@ -9508,6 +9553,7 @@
 614D	angry, indignant, resentful
 614E	act with care, be cautious
 6151	afraid, scared, fearful
+6153	nimble
 6155	long for, desire; admire
 6158	sad, pitiful, wretched; cruel
 6159..615A	ashamed, humiliated; shameful
@@ -9533,6 +9579,7 @@
 6175	indolent, easy-going, lazy
 6176	congratulate, celebrate
 6177	ardent; generous, magnanimous
+617A	(simplified form of U+617A 慺) diligent; industrious; sedulous, to encourage; to make efforts
 617C..617D	sorrowful, mournful; sorrow
 617E	lust, desire, passion; appetite
 6180	to rely on
@@ -9625,7 +9672,7 @@
 6209	a battle-axe, a halberd
 620A	5th heavenly stem
 620B	small, narrow, tiny, little
-620C	11th terrestrial branch
+620C	eleventh earthly branch
 620D	defend borders, guard frontiers
 620E	arms, armaments; military affair
 620F	theatrical play, show
@@ -9669,10 +9716,10 @@
 6239	In difficulty, distressed
 623A	stone boarder; steps
 623B	perverse
-623C	4th of Earth Branches; period from 5-7 a.m.
+623C	fourth earthly branch
 623D	to bale out water
 623E	perverse, recalcitrant, rebellious
-623F	house, building; room
+623F	house, building; room; 4th lunar mansion, determinative star π Scorpii
 6240	place, location; numerary adjunct
 6241	flat; tablet, signboard
 6243	a door bar placed outside a door
@@ -9763,6 +9810,7 @@
 62B0	to shake (clothes, etc.)
 62B1	embrace, hold in arms, enfold
 62B3	(Cant.) to crush, mash, grind
+62B4	to drag; to join
 62B5	resist, oppose; deny; off-set
 62B6	beat
 62B9	smear, apply, wipe off, erase
@@ -9915,6 +9963,7 @@
 6383	sweep, clear away; exterminate
 6384	swing, brandish, flourish
 6385	(Cant.) to lift up; to seize, grab
+6386	(a simplified form of 掆) to carry on the shoulders of two or more men, to raise
 6387	collect, gather up, pick up
 6388	give to, transmit; confer
 6389	turn, move; shake, wag; drop down
@@ -9968,6 +10017,7 @@
 63C5	grind, rub; study, research; (Cant.) to play a stringed instrument
 63C6	prime minister; to guess, estimate
 63C7	(Cant.) to measure a distance with the extended thumb and forefinger or middle finger
+63C8	to expel
 63C9	rub, massage; crush by hand
 63CC	to shake
 63CD	hit, beat; smash, break
@@ -9976,6 +10026,7 @@
 63D0	hold in hand; lift in hand
 63D1	to fabricate; to trump up
 63D2	insert, stick into; plant
+63D4	collect; overall, altogether
 63D5	roll up the sleeves; fight bare-fisted; strike, stab
 63D6	salute, bow; defer to, yield
 63D7	strike, hit with hand; tap; (Cant.) to be frightened; to move to and fro
@@ -10021,7 +10072,7 @@
 640A	pluck
 640B	to thump
 640C	to wipe tears; to bind
-640D	diminish; impair; injure
+640D	diminish; impair; injure; hexagram ䷨
 640E	to rub with the hand; to stroke
 640F	seize; spring upon; strike
 6410	cramp, spasm, convulsion; twitch
@@ -10115,6 +10166,7 @@
 6486	to skim off, cast away
 6487	discard, abandon, throw away
 6488	scoop out of water; dredge, fish
+6489	to squat, crouch
 648A	fierce; wrathful
 648B	to rub between the hands
 648D	to hold in the hand, to grasp; to wring; (Cant.) to pull out
@@ -10171,6 +10223,7 @@
 64D2	catch, capture, seize, arrest
 64D3	to rub, to scratch
 64D4	carry, bear, undertake
+64D5	to lead by the hand; take, carry
 64D6	scrape
 64D7	to beat the breast
 64D8	thumb; break, tear open, rip
@@ -10224,10 +10277,12 @@
 651C	lead by hand, take with; carry
 651D	take in, absorb; act as deputy; administer, assist
 651E	to split, to rend; to choose to rub, to wipe
+651F	to pick up, collect
 6522	save, hoard
 6523	tangled; entwined; crooked
 6524	spread out, open; apportion
 6525	(coll.) hold; grip; grasp
+6527	to stumble, slip, fall down
 6529	to obstruct; shut out; shelter from; keep off; stop; resist
 652A	disturb, agitate, stir up
 652B	snatch away, seize; catch with
@@ -10265,6 +10320,7 @@
 6557	be defeated, decline, fail
 6558	express, state, relate, narrate
 6559	teach, class
+655A	take by force, rob
 655B	draw back, fold back; collect
 655C	fill up
 655D	break, destroy; broken, tattered
@@ -10310,7 +10366,7 @@
 6592	variegated; striped; marbled
 6593	multicolored
 6595	multicolored
-6597	Chinese peck; liquid measure
+6597	a dipper; unit of volume (ten 升 or litres); Kangxi radical 68; 8th lunar mansion, determinative star φ Sagittarii
 6599	consider, conjecture; materials, ingredients
 659A	a small cup of stone with ears, used in ancient times for libations
 659B	dry measure equal to some five or ten dou (U+6597 舒)
@@ -10347,12 +10403,12 @@
 65C2	flag
 65C3	silk banner with bent pole
 65C4	a kind of ancient flag; old
-65C5	trip, journey; travel; traveler
+65C5	trip, journey; travel; traveler; hexagram ䷷
 65C6	flag ornament; flags, banners
 65C8	fringes of pearls on crowns; a pennant
 65C9	to state to, to announce
 65CB	revolve, move in orbit; return
-65CC	banner or flag adorned with feathers; to signal
+65CC..65CD	banner or flag adorned with feathers; to signal
 65CE	fluttering of flag; romantic
 65CF	a family clan, ethnic group, tribe
 65D0	an embroidered pennant
@@ -10381,6 +10437,7 @@
 65EE..65EF	nook, corner
 65F0	sunset, dusk; evening
 65F1	drought; dry; dry land
+65F3	possessive, adjectival suffix
 65F4	dawn
 65F6	time, season; era, age, period
 65F7	extensive, wide, broad; empty
@@ -10390,6 +10447,7 @@
 65FB	heaven
 65FC	gentle and affable
 65FD	morning sun, sunrise
+65FE	spring; wanton
 6600	sun light; used in personal names
 6602	rise, raise; proud, bold; upright
 6603	afternoon; the sun in the afternoon sky; to decline
@@ -10407,10 +10465,11 @@
 6614	formerly; ancient; in beginning
 6615	dawn; early morning; day
 6619	become cloudy, overcast
+661A	to be cautious
 661C	to open out, to expand; bright, glorious
 661D	a dual pronoun, I, you and me, we two
 661E	bright, luminous; glorious
-661F	a star, planet; any point of light
+661F	a star, planet; any point of light; 25th lunar mansion, determinative star α Hydrae (Alphard)
 6620	project; reflect light
 6621	long day; extended; relaxed
 6624	sunshine
@@ -10426,7 +10485,7 @@
 6631	bright light, sunlight; dazzling
 6632	sun-dried
 6633	the declining sun in the west
-6634	eighteenth of the twenty-eight lunar mansions (宿)
+6634	18th lunar mansion, determinative star 17 Tauri (Electra)
 6635	intimate, close; approach
 6636	a long day. bright. extended. clear
 6637	to feed a prisoner
@@ -10440,7 +10499,7 @@
 6642	time, season; era, age, period
 6643..6644	bright, dazzling; to sway, shake
 6645	light of the sun; to dry in the sun
-6649	advance, increase; promote
+6649	advance, increase; promote; hexagram ䷢
 664B	advance, increase; promote
 664C	noon, midday; moment; unit land measurement equal to seven mou (U+755D 畝), or the area that can be sown in one day
 664F	peaceful, quiet; clear; late in the day
@@ -10521,6 +10580,7 @@
 66C7	become cloudy, overcast
 66C8	twilight just before sunrise
 66C9	dawn, daybreak; clear, explicit
+66CC	Wǔ Zétiān (a self-coined name)
 66CD	bright, brilliant
 66CF	once upon time; period of time
 66D5	to dry or cook in the sun
@@ -10537,6 +10597,7 @@
 66E8	vague, dim; twilight
 66E9	in ancient times, of old, former
 66EC	dry in sun, expose to sun
+66ED	overcast day
 66F0	say; Kangxi radical 73
 66F1	(Cant.) cockroach
 66F2	crooked, bent; wrong, false
@@ -10579,7 +10640,7 @@
 6726..6727	condition or appearance of moon
 6728	tree; wood, lumber; wooden
 6729	kwukyel: rank, grade; wait; equal; 'etc.'
-672A	not yet; 8th terrestrial branch
+672A	not yet; eighth earthly branch
 672B	final, last, end; insignificant
 672C	root, origin, source; basis
 672D	letter, note; correspondence
@@ -10626,6 +10687,7 @@
 6768	willow, poplar, aspen; surname
 6769	headboard
 676A	tip of twig, top of tree; twig
+676C	(archaic) a tree whose bark can be used in pickling; (Cant.) olive
 676D	cross stream; navigate
 676E	wood shavings
 676F	cup, glass
@@ -10719,7 +10781,7 @@
 67F0	crab-apple tree; endure, bear
 67F1	pillar, post; support; lean on
 67F2	handle
-67F3	willow tree; pleasure
+67F3	willow tree; pleasure; 24th lunar mansion, determinative star δ Hydrae
 67F4	firewood, faggots, fuel
 67F5	fence; palisade; grid
 67F6	ladle
@@ -10745,7 +10807,7 @@
 680C	supporting block; sumac, loquat
 680D	a lot; a label; a slip of bamboo engraved with signs
 680E	chestnut-leaved oak; oak
-680F	railing, balustrade; animal pan
+680F	railing, balustrade; animal pen
 6811	tree; plant; set up, establish
 6812	cross bar
 6813	wooden peg, post or stick
@@ -10822,6 +10884,7 @@
 6876	pail, bucket, tub; cask, keg
 6877	rafter; Malus toringo
 6879	palm
+687A	willow
 687C	the varnish tree; lacquer, varnish, paint
 687F	pole; stick; club; pole as unit
 6881	bridge; beam; rafters; surname
@@ -10889,6 +10952,7 @@
 68DC	branch, fork; tray
 68DF	the main beams supporting a house
 68E0	crab apple tree; wild plums
+68E1	(simplified form of 棡) a tall tree; a large tree, (interchangeable 扛) to carry on the shoulders of two of more men
 68E2	the felloe or rim of a wheel
 68E3	Kerria japonica, Japanese rose
 68E5	a railing; a fence an enclosed place
@@ -10924,6 +10988,7 @@
 6911	oval
 6912	pepper, spices
 6913	strike, hit, beat, hammer
+6917	anchor
 691A	a kind of oak used for charcoal
 691B	type of birch
 691C	check; examine
@@ -10938,6 +11003,7 @@
 692D	oval-shaped, elliptical, tubular
 692E	leafless; fish trap
 6930	palm tree, coconut palm
+6932	(simplified form of 椲) a kind of wood (used as a kind of material to make basin and bowl, etc.); (same as 楎) a peg for hanging things on, a clothes-horse
 6933	the pivots, at the top and bottom of a Chinese door, on which the door turns
 6934	poplar, aspen
 6935	pompelmous; canque (breech, rump, buttock)
@@ -11035,11 +11101,13 @@
 69D1	plums, prunes
 69D3	lever, pole, crowbar; sharpen; (Cant.) a wardrobe, trunk
 69D4	well sweep, water pulley
+69D5	table, desk
 69D6	a sack; a stamping sound
 69D8	shape, form, pattern, style
 69D9	a twig; an ornamental evergreen
 69DA	small evergreen shrub
 69DB	threshold, door-sill
+69DC	wooden rammer or pestle
 69DF	betel-nut, areca nut
 69E0	Oak
 69E2	a hard wood
@@ -11083,6 +11151,7 @@
 6A1F	camphor tree
 6A20	elm; gum
 6A21	model, standard, pattern; copy
+6A22	(simplified form) (same as 蔦) the convolvulus; a kind of creeping plant, partridge; francolin, in Japan, the pole out side of a building used to post the public notice
 6A23	shape, form, pattern, style
 6A28	scrambled eggs
 6A29	power, right, authority
@@ -11201,7 +11270,7 @@
 6AFD	shape wood by use of heat; tool for shaping bent wood
 6AFE	the pomelo
 6B03	sandalwood; comet
-6B04	railing, balustrade; animal pan
+6B04	railing, balustrade; animal pen
 6B05	zelkova
 6B0A	power, right, authority
 6B0B	to wave; fool; urge
@@ -11273,7 +11342,7 @@
 6B71	to visit; to imitate
 6B72..6B73	year; age; harvest
 6B74	take place, past, history
-6B77	take place, past, history
+6B77	history; past; to take place
 6B78	return; return to, revert to
 6B79	bad, vicious, depraved, wicked
 6B7A	vicious, depraved, bad
@@ -11333,6 +11402,7 @@
 6BC5	resolute, decisive, firm, persist
 6BC6	beat, fight with fists, hit; to strike, brawl
 6BC8	infertile eggs; (Cant.) rotten, muddled
+6BC9	medicine; to cure, heal; physician; a black stone like jade
 6BCB	do not; not; surname; rad. 80
 6BCC	old form of 貫; component in 贯,貫,實, etc.; not to be confused with 毋
 6BCD	mother; female elders; female
@@ -11342,7 +11412,7 @@
 6BD1	grandmother, older woman
 6BD2	poison, venom; poisonous
 6BD3	give birth to; bring up, educate
-6BD4	to compare, liken; comparison; than
+6BD4	to compare, liken; comparison; than; hexagram ䷇
 6BD5	end, finish, conclude; completed
 6BD6	guard against, take care; caution
 6BD7..6BD8	help, assist; connect, adjoin
@@ -11379,7 +11449,7 @@
 6C0D	fine woollen cloth; a mat used by the emperor in worshipping god
 6C0E	fine cotton cloth
 6C0F	clan, family; mister
-6C10	name of an ancient tribe
+6C10	name of an ancient tribe; root; 3rd lunar mansion, determinative star α Librae (Zubenelgenubi)
 6C11	people, subjects, citizens
 6C13	people; subjects; vassals
 6C14	steam, vapor; Kangxi radical 84
@@ -11544,7 +11614,7 @@
 6CED	a raft
 6CEE	Zhou dynasty school; disperse; fall apart
 6CEF	destroy, eliminate; perish
-6CF0	great, exalted, superior; big
+6CF0	great, exalted, superior; big; hexagram ䷊
 6CF1	great, expansive; agitated
 6CF2	kind of white wine; rivers in Hebei and Shandong
 6CF3	dive; swim
@@ -11738,7 +11808,7 @@
 6E15	surge up, bubble up, gush forth
 6E16	juice; liquid; water; to leak, pour
 6E17	soak through, infiltrate
-6E19	scatter; scattered, dispersed
+6E19	scatter; scattered, dispersed; hexagram ䷺
 6E1A	small sand bank, islet
 6E1B	decrease, subtract, diminish
 6E1D	change; chongqing
@@ -11806,7 +11876,7 @@
 6E81	a stream, eddy; to eddy
 6E83	flooding river; militarily defeat
 6E85	sprinkle, spray; spill, splash
-6E86	river in Hunan
+6E86	river in Húnán
 6E87	river in Hubei province
 6E88	name of a river in Hunan
 6E89	water, irrigate, flood; wash
@@ -11927,10 +11997,10 @@
 6F31	gargle, rinse; wash, scour
 6F32	rise in price
 6F33	name of a river in Henan
-6F35	river in Hunan
+6F35	river in Húnán
 6F36	indecipherable
 6F37	river in Hebei province
-6F38	gradually
+6F38	gradually; hexagram ䷴
 6F3C	having the appearance of depth
 6F3E	overflow; swirl, ripple; to be tossed by waves
 6F3F	any thick fluid; starch; broth
@@ -12016,9 +12086,11 @@
 6FC1	muddy, turbid, dirty, filthy
 6FC2	a waterfall; a river in Hunan
 6FC3	thick, strong, concentrated
+6FC4	(simplified form of 濄) (same as 渦) name of a river, to whirl, an eddy
 6FC6	river bank; river in Henan province; gush
 6FC7	astringent; harsh, rough; uneven
 6FC8	many
+6FC9	a river in Anui
 6FCA	vast, expansive, deep; dirty
 6FD1	swift current; rapids
 6FD2	approach, be on verge of; near
@@ -12391,7 +12463,7 @@
 7256	window; lead enlightenment
 7258	writing tablet; documents, books
 7259	tooth, molars, teeth; serrated
-725B	cow, ox, bull; Kangxi radical 93
+725B	cow, ox, bull; Kangxi radical 93; 9th lunar mansion, determinative star β Capricorni (Dabih)
 725C	an ox, a cow Radical 93
 725D	female of species; deep gorge
 725F	make; seek, get; barley; low
@@ -12524,6 +12596,7 @@
 732B	cat
 732C	vulgar; wanton; low; many; varied; a hedgehog, porcupine
 732E	offer, present; show, display
+7330	a legendary man-eating animal
 7331	a monkey with yellow hair, macaque
 7332	smoke or flames from fire; roast
 7334	monkey, ape; monkey-like
@@ -12592,7 +12665,7 @@
 7394	green jade
 7395	inferior variety of gem
 7396	black-colored jade
-7397	1/2 pr stone
+7397	a jade-like stone
 7398	court-dress jewels
 7399	beautiful jade
 739A	a kind of jade
@@ -12762,6 +12835,7 @@
 74A9	jade ring; earrings; surname
 74AA	pearl pendants on coronet
 74AB	pendant ornaments, earrings
+74AF	(simplified form of U+74AF 璯) jade decorated cap, used in person's name
 74B0	jade ring or bracelet; ring
 74B2	pendant girdle ornament
 74B5	beautiful jade
@@ -12807,6 +12881,7 @@
 7503	brick wall of a well
 7504	to examine, discern; to grade; a surname
 7505	centigram
+7506	crockery, porcelain, chinaware
 7507	jar
 750B	a jar without ears
 750C	bowl, cup; small tray
@@ -12843,7 +12918,7 @@
 7530	field, arable land, cultivated
 7531	cause, reason; from
 7532	armor, shell; fingernails; 1st heavenly stem
-7533	to state to a superior, report; extend; 9th terrestrial branch
+7533	to state to a superior, report; extend; ninth earthly branch
 7534	(Cant.) cockroach
 7535	electricity; electric; lightning
 7537	male, man; son; baron; surname
@@ -12878,7 +12953,7 @@
 755D	Chinese land measure; fields
 755F	plough
 7560	garden, field, farm, plantation
-7562	end, finish, conclude; completed
+7562	end, finish, conclude; completed; 19th lunar mansion, determinative star ε Tauri (Ain)
 7564	place for worshipping heaven
 7565	approximately, roughly; outline
 7566	sections in vegetable farm
@@ -13144,7 +13219,7 @@
 76C7	why not? would it not be better to?
 76C8	fill; full, overflowing; surplus
 76C9	to compound
-76CA	profit, benefit; advantage
+76CA	profit, benefit; advantage; hexagram ䷩
 76CB	earthenware basin; alms bowl (Sanskrit paatra)
 76CC	bowl, basin, cup
 76CD	what? why not?
@@ -13263,7 +13338,7 @@
 7779	look at, gaze at; observe
 777A	(Cant.) to watch
 777C	to gaze at
-777D	staring
+777D	to squint; to stare at; unusual, strange; hexagram ䷥
 777E	testicle
 777F	shrewd, astute, clever, keen
 7780	to look at closely; nearsighted; dim; indistinct vision
@@ -13436,7 +13511,7 @@
 788F	coloured
 7891	stone tablet; gravestone
 7893	pestle
-7894	1/2 pr stone
+7894	an inferior gem
 7895	a cape, spit, promontory
 7897	bowl, small dish
 7898	iodine (element 53, I)
@@ -13465,6 +13540,7 @@
 78BA	sure, certain; real, true
 78BB	solid
 78BC	number, numerals; yard; symbol
+78BD	(a simplified form of 碽) sound of bumping or striking, arched bridge
 78BE	roller, crush; roll
 78C1	magnetic; magnetism; porcelain
 78C5	pound; weigh
@@ -13543,7 +13619,7 @@
 7947	the spirit of the earth; (used for U+53EA 只) only, merely, but
 7948	pray; entreat, beseech
 7949	happiness, blessings, good luck
-794A	river in Shandong; space inside
+794A	river in Shāndōng; space inside
 794E	excellent
 794F	shrine
 7950	divine intervention, protection
@@ -13925,7 +14001,7 @@
 7B92	broom
 7B93	book
 7B94	reed screen; frame for growing silkworms
-7B95	sieve; dust pan, garbage bag
+7B95	sieve; dust pan, garbage bag; 7th lunar mansion, determinative star γ² Sagittarii (Alnasl)
 7B96	a large basket
 7B97	count, calculate, figure; plan
 7B98	fine bamboo
@@ -13953,7 +14029,7 @@
 7BB7	a bamboo rack, clothes horse
 7BB8	chopsticks
 7BBE	musical instrument like pan-pipes, bamboo flute
-7BC0	knot, node, joint; section
+7BC0	knot, node, joint; section; hexagram ䷻
 7BC1	bamboo grove; bamboo
 7BC4	pattern, model, rule, law
 7BC5	bamboo silo; bamboo tool
@@ -14002,7 +14078,7 @@
 7C07	swarm, crowd together, cluster
 7C08	bamboo mat used to protect carriage passengers from dust
 7C09	deputy, subordinate; concubine
-7C0B	a square basket of bamboo for holding grain used at sacrifices, feast
+7C0B	a square basket of bamboo for holding grain used at sacrifices
 7C0C	(of flower petals) falling
 7C0D	bamboo basket
 7C0F	a box, a basket
@@ -14563,6 +14639,7 @@
 7F0D	a kind of thin silk
 7F0E	satin
 7F0F	hem; plait, braid, queue
+7F10	thread, line, wire; clue
 7F11	cord binding on hilt of sword
 7F12	climb down rope; hang by rope
 7F13	slow, leisurely; to postpone, delay
@@ -14747,7 +14824,7 @@
 7FF9	turn up, lift, elevate, raise
 7FFA	soar, roam
 7FFB	flip over, upset, capsize
-7FFC	wings; fins on fish; shelter
+7FFC	wings; fins on fish; shelter; 27th lunar mansion, determinative star α Crateris (Alkes)
 7FFD	whir
 7FFE	fly; to flit
 7FFF	streamer adorned with feathers
@@ -14894,7 +14971,7 @@
 80C0	swell, inflate, expand
 80C1	ribs, armpits; flank; threaten
 80C2	arsine; chiropractic
-80C3	stomach; gizzard of fowl
+80C3	stomach; gizzard of fowl; 17th lunar mansion, determinative star 35 Arietis
 80C4	helmet, headpiece; descendant
 80C6	gall bladder; bravery, courage
 80C8	hair on the thigh
@@ -15113,7 +15190,7 @@
 81E4	hard; wise
 81E5	lie down; crouch
 81E7	good, right, generous; command
-81E8	draw near, approach; descend
+81E8	draw near, approach; descend; hexagram ䷒
 81EA	self, private, personal; from; Kangxi radical 132
 81EC	law, rule; door post
 81ED	smell, stink, emit foul odor
@@ -15205,7 +15282,7 @@
 826A	oar, scull; row
 826B	bow or prow of boat
 826D	ship
-826E	seventh of eight trigrams; Kangxi radical 138
+826E	Kangxi radical 138; trigram ☶; hexagram ䷳
 826F	good, virtuous, respectable
 8270..8271	difficult, hard; distressing
 8272	color, tint, hue, shade; form, body; beauty, desire for beauty; Kangxi radical 139
@@ -15486,7 +15563,7 @@
 83FD	beans and peas, collectively
 83FE	beet
 8401	beakstalk, stalks of pulse
-8403	dense, thick, close-set; to collect together
+8403	dense, thick, close-set; to collect together; hexagram ䷬
 8404	grapes
 8405	spring; wanton
 8406	the castor-oil plant
@@ -15570,7 +15647,7 @@
 8494	transplant; plant; dill, Anethum graveolens
 8496	plant name
 8497	(寧蒗) Ninglong Yi Autonomous County in Yunnan
-8499	cover; ignorant; suffer; Mongolia
+8499	cover; ignorant; suffer; Mongolia; hexagram ䷃
 849C	garlic
 849E	reach, arrive; manage
 849F	betel pepper; Amorphophallus konjac
@@ -15706,6 +15783,7 @@
 857A	Houttuynia cordata, fish mint
 857B	budding
 857E	buds, unopened flowers
+857F	day-lily, Hemerocallis flava
 8580	the hippuris or mare's tail plant
 8581	vine
 8584	thin, slight, weak; poor, stingy
@@ -15742,6 +15820,7 @@
 85B0	a medicinal herb; to cauterize
 85B3	name of a herb; surname; (Cant.) a plant stem
 85B4	China grass, ramie (Boehmeria nivea); limonene
+85B5	(simplified form of 薵) name of a variety of grass, (same as 葤) use grass to wrap things, to cover; to put a cover over something
 85B6	to bury, to stop up; dirty, filthy
 85B7	Elshotria paltrini
 85B8	duckweed
@@ -15827,7 +15906,7 @@
 8655	place, locale; department
 8656	to cry; to shout; to howl
 865A	false
-865B	false, worthless; empty, hollow
+865B	false, worthless; empty, hollow; 11th lunar mansion, determinative star β Aquarii (Sadalsuud)
 865C	to capture, imprison, seize; a prison
 865E	concerned about, anxious, worried
 865F	mark, sign; symbol; number
@@ -16112,7 +16191,7 @@
 8829	a toad
 882D	bees, hornets, wasps
 882E	bee
-8831	poison; venom; harm; bewitch
+8831	poison; venom; harm; bewitch; hexagram ䷑
 8832	millipede; glow-worm; bright, clear
 8835	large turtles
 8836	silkworm
@@ -16368,7 +16447,7 @@
 89BC	to explain in detail
 89BD	look at, inspect; perceive
 89BF	see; interview; be admitted to audience
-89C0	see, observe, view; appearance
+89C0	see, observe, view; appearance; hexagram ䷓
 89C1	see, observe, behold; perceive
 89C2	see, observe, view; appearance
 89C3	place name
@@ -16386,16 +16465,16 @@
 89CF	meet or see unexpectedly
 89D0	have imperial audience
 89D1	peep at; watch, spy on
-89D2	horn; angle, corner; point; Kangxi radical 148
+89D2	horn; angle, corner; point; Kangxi radical 148; 1st lunar mansion, determinative star Spica
 89D4	catty
 89D5	coarse, rough, rude
 89D6	to long for; dissatisfied; to criticize
 89DA	jug, winecup, goblet; square
-89DC	turtle beak; 20th lunar mansions; λ Orionis (Meissa)
+89DC	turtle beak; 20th lunar mansion, determinative star λ Orionis (Meissa)
 89DD	gore, butt; resist; push
 89DE	wine vessel; propose toast; feast
 89E1	antlers
-89E3	loosen, unfasten, untie; explain
+89E3	loosen, unfasten, untie; explain; hexagram ䷧
 89E5	a cup made of horn; obstinate
 89E6	butt, ram, gore; touch
 89E7	loosen, unfasten, untie; explain
@@ -16434,7 +16513,7 @@
 8A1A	speak gently; respectful
 8A1B	swindle, cheat; erroneous, wrong
 8A1D	express surprise, be surprised
-8A1F	accuse; argue, dispute; litigate
+8A1F	accuse; argue, dispute; litigate; hexagram ䷅
 8A20	much more, still more; the gums
 8A21	to chant, to moan, to sigh
 8A22	pleased, delighted; happy
@@ -16601,7 +16680,7 @@
 8B14	jeer
 8B16	rise up; raise up
 8B17	slander, libel
-8B19	humble, modest
+8B19	humble, modest; hexagram ䷎
 8B1A	to confer posthumous titles
 8B1B	explain; discuss; talk
 8B1D	thank; decline
@@ -16843,7 +16922,7 @@
 8C4C	peas
 8C4E	vertical; perpendicular; upright
 8C4F	half-grown beans
-8C50	abundant, lush, bountiful, plenty
+8C50	abundant, lush, bountiful, plenty; hexagram ䷶
 8C53	beautiful, captivating, plump, voluptuous
 8C54	plump, voluptuous, beautiful
 8C55	a pig, boar; Kangxi radical 152
@@ -16859,7 +16938,7 @@
 8C66	a wild boar; to fight
 8C68	pig, hog
 8C6A	brave, heroic, chivalrous
-8C6B	relaxed, comfortable, at ease
+8C6B	relaxed, comfortable, at ease; hexagram ䷏
 8C6C	pig, hog
 8C6D	boar, male pig
 8C6E	castrated pig
@@ -16919,7 +16998,7 @@
 8CBD	give to, hand down, bequeath
 8CBF	trade, barter; mixed; rashly
 8CC0	congratulate; send present
-8CC1	forge ahead; energetic; surname
+8CC1	forge ahead; energetic; surname; hexagram ䷕
 8CC2	bribe; give present
 8CC3	rent, hire; hired person
 8CC4	bribe; riches, wealth
@@ -17203,7 +17282,7 @@
 8E44	hoof; horse
 8E45	to tread on, walk through
 8E46	(Cant.) to move in a straight line
-8E47	lame, crippled; unlucky
+8E47	lame, crippled; unlucky; hexagram ䷦
 8E48	stamp feet; dance
 8E49	error, mistake, slip; failure
 8E4A	footpath, trail; track
@@ -17262,6 +17341,7 @@
 8E8A	hesitate, falter; smug, self-satisfied
 8E8B	ascend, go up, rise
 8E8D	skip, jump, frolic
+8E8E	(non-classical form of 跈), (same as 踐) to step upon; to tread upon; to trample, (same as 趁) to take advantage, hard to proceeding
 8E8F	trample down, oppress, overrun
 8E90	to stride over; to step across
 8E91	waver, hesitate, be irresolute
@@ -17325,7 +17405,7 @@
 8EE4	surname
 8EE5	yoke
 8EE8	wooden cross-piece on front inside of carriage box
-8EEB	cross-board at rear of a carriage; 28th lunar mansion
+8EEB	cross-board at rear of a carriage; 28th lunar mansion, determinative star γ Corvi (Gienah)
 8EED	(Cant.) to spoil, ruin
 8EEF	surname
 8EF0	a row of carriages; a generation; a class, a series a kind; denotes the plural
@@ -17484,7 +17564,7 @@
 8FAD	words, speech, expression, phrase
 8FAE	braid; pigtail, plait, queue
 8FAF	dispute, argue, debate, discuss
-8FB0	early morning; 5th terrestrial branch; Kangxi radical 161
+8FB0	early morning; fifth earthly branch; Kangxi radical 161
 8FB1	humiliate, insult, abuse
 8FB2..8FB3	agriculture, farming; farmer
 8FB5..8FB6	walk; walking; Kangxi radical 162
@@ -17635,7 +17715,7 @@
 906B	speed
 906D	come across, meet with, encounter
 906E	cover, shield, protect
-906F	deceive, hide, conceal; flee
+906F	deceive, hide, conceal; flee; hexagram ䷠
 9070	grunting sound of pigs; clash
 9072	late, tardy; slow; delay
 9074	select, choose; surname
@@ -17789,7 +17869,7 @@
 9146	Zhou-era state in modern Sichuan
 9147	collect; small administration
 9148	place in today's Henan province; surname
-9149	a wine vessel; 10th terrestrial branch; Kangxi radical 164
+9149	a wine vessel; tenth earthly branch; Kangxi radical 164
 914A	drunk, intoxicated
 914B	chief of tribe, chieftain
 914C	serve wine; feast; deliberate
@@ -17860,7 +17940,7 @@
 91A8	dregs of wine
 91A9	sediment, dregs; grains from a distillery; disordered, spoilt
 91AA	unclear wine, wine with dregs
-91AB	cure, heal; doctor, medical
+91AB	medicine; to cure, heal; physician
 91AC	any jam-like or paste-like food
 91AD	molds on liquids; scum
 91AE	religious service; Daoist or Buddhist ceremony
@@ -18050,7 +18130,7 @@
 92D9	misfit; discordant; musical instrument; hoe
 92DA	iron; bronze decoration on bridle
 92DC	fetters, shackles
-92DD	6 oz; ancient measurement
+92DD	ancient unit of measure equal to 6 taels (about 300 grams)
 92DF	carve
 92E3	sword
 92E4	hoe; eradicate
@@ -18374,6 +18454,7 @@
 94DA	a sickle
 94DB	frying pan; warming vessel
 94DC	copper, brass, bronze
+94DE	hasp and staple
 94DF	indium (element 49, In)
 94E0	armor, chain mail
 94E1	sickle for cutting grass or hay
@@ -18417,9 +18498,10 @@
 9507	osmium (element 76, Os)
 9508	rust, corrode
 9509	carpenter's file, file smooth
-950A	6 oz; ancient measurement
+950A	ancient unit of measure equal to 6 taels (about 300 grams)
 950B	point of spear, sharp point
 950C	zinc (element 30, Zn)
+950D	matte, a crude mixture of sulfides formed in smelting sulfide ores
 950E	caesium/cesium (element 55, Cs)
 950F	kind of rapier
 9510	sharp, keen, acute, pointed
@@ -18749,7 +18831,7 @@
 96A3	neighbor; neighboring; adjacent
 96A4	to fall in ruins; to collapse
 96A7	tunnel, underground passageway, path to a tomb
-96A8	follow, listen to, submit; to accompany; subsequently, then
+96A8	follow, listen to, submit; to accompany; subsequently, then; hexagram ䷐
 96A9	profound, subtle; warm
 96AA	narrow pass, strategic point, dangerous
 96AE	to rise up; a rainbow; to fall
@@ -18793,7 +18875,7 @@
 96DE	chickens; domestic fowl
 96DF	sparrow; revolve; place name
 96E0	enemy, rival, opponent
-96E2	leave, depart; go away; separate
+96E2	leave, depart; go away; separate; trigram ☲; hexagram ䷝
 96E3	difficult, arduous, hard; unable
 96E8	rain; rainy; Kangxi radical 173
 96E9	offer sacrifice for rain
@@ -18809,14 +18891,14 @@
 96F9	hail
 96FB	electricity, electric; lightning
 96FE	fog, mist, vapor, fine spray
-9700	need, require, must
+9700	need, require, must; hexagram ䷄
 9701	to clear up after rain; to cease be angry
 9702	fine rain, drizzle
 9703	long continued rains
 9704	sky; clouds, mist; night
 9705	thunder
 9706	a sudden peal of thunder
-9707	shake, quake, tremor; excite
+9707	shake, quake, tremor; excite; trigram ☳; hexagram ䷲
 9708	torrential rains, flow of water
 9709	mildew, mold; moldy, mildewed
 970A	spirit, soul; spiritual world
@@ -18872,7 +18954,7 @@
 9766	timid, shy, bashful
 9767	wash face
 9768	dimples
-9769	leather, animal hides; Kangxi radical 177
+9769	leather, animal hides; Kangxi radical 177; hexagram ䷰
 976A	to cobble, to patch
 976B	strong and pliable, resilient
 976D	strong and pliable, resilient
@@ -19011,7 +19093,7 @@
 9820	quiet
 9821	fly upward, soar; contest; to rob
 9823	to view others with raised eyes
-9824	cheeks; jaw; chin; rear; to nourish
+9824	cheeks; jaw; chin; rear; to nourish; hexagram ䷚
 9826	chin
 982B	bow; nod; condescend
 982C	cheeks, jaw
@@ -19275,6 +19357,7 @@
 9975	bait; bait, entice; dumplings
 9976	bountiful, abundant, plentiful
 9977	rations and pay for soldiers
+9978..9979	(餄餎) buckwheat noodles
 997A	stuffed dumplings
 997C	rice-cakes, biscuits
 997D	ferrule
@@ -19289,6 +19372,7 @@
 9986	public building
 9987	stir and cook
 9988	offer food superior; send gift
+9989	(餶飿) glutinous rice
 998A	spoiled, rotten, stale, rancid
 998B	gluttonous, greedy; lewd, lecherous
 998C	carry meal to workers in field
@@ -19540,6 +19624,7 @@
 9AE5	beard; mustache
 9AE6	flowing hair of young child
 9AE7	long hair; (Cant.) to hang down, droop
+9AE9	hair on the temples
 9AEA	hair
 9AEB	children's hair style; a youngster
 9AED	mustache
@@ -19600,7 +19685,7 @@
 9B35	big iron pot, caldron
 9B37	pot
 9B3B	sell; child, childish; nourish
-9B3C	ghost; spirit of dead; devil; Kangxi radical 194
+9B3C	ghost; spirit of dead; devil; Kangxi radical 194; 23rd lunar mansion, determinative star θ Cancri
 9B3D	kind of forest demon, elf
 9B41	chief; leader; best; monstrous
 9B42	soul, spirit
@@ -19769,7 +19854,7 @@
 9C67	snakehead
 9C68	codfish
 9C6D	anchovy
-9C6E	silver carp (Hypophthalmichthys molitrix); bream; (Cant.) 大嶼山 daai6jyu4saan1 Lantau Island
+9C6E	silver carp (Hypophthalmichthys molitrix); bream
 9C72	(Cant.) 赤鱲角, Hong Kong place name
 9C76	a shark
 9C77	crocodile, alligator
@@ -19790,8 +19875,10 @@
 9C88	sea perch, sea bass
 9C8A	minced and salted fish; to preserve
 9C8B	carp, Carassius auratus
+9C8C	common bleak (Alburnus alburnus); various other freshwater fish
 9C8D	abalone; dried fish; surname
 9C8E	king crab
+9C8F	Spanish mackerel
 9C90	globefish, tetraodon
 9C91	salmon; Spheroides vermicularis
 9C92	clam; oyster
@@ -19852,6 +19939,7 @@
 9CCE	sole
 9CCF	huge fish; widower; bachelor
 9CD0	the nautilus; the ray
+9CD1	several species of small carp
 9CD2	big-mouthed flounder
 9CD3	Chinese herring; shad
 9CD4	swimming bladder of fish
@@ -20059,6 +20147,8 @@
 9E38	swallow
 9E39	the crow
 9E3A	horned owl, scops chinensis
+9E3B	plover
+9E3C	ancient name for a bird with black featers and a short tail
 9E3D	pigeon, dove; Columba species (various)
 9E3E	fabulous bird
 9E3F	species of wild swan; vast
@@ -20088,9 +20178,11 @@
 9E58	a kind of pigeon; Treron permagna
 9E59	large waterfowl with naked head; Garrulus glandarius
 9E5A	cormorant
+9E5B	babbler, Timaliidae species (various); thrush
 9E5C	duck
 9E5D	pheasant
 9E5E	sparrow hawk; kite shaped like
+9E5F	flycatcher
 9E60	the owl
 9E61	wagtail
 9E62	fishhawk bow or prow
@@ -20215,7 +20307,7 @@
 9F09	Chinese allegator (Alligator sinensis)
 9F0B	large turtle, sea turtle
 9F0D	large reptile, water lizard
-9F0E	large, three-legged bronze caldron; Kangxi radical 206
+9F0E	large, three-legged bronze caldron; Kangxi radical 206; hexagram ䷱
 9F0F	cover of tripod caldron
 9F10	incense tripod
 9F12	large tripod caldron with small mouth
@@ -20323,6 +20415,7 @@
 9FA4	to harmonize; to accord with; to agree
 9FA5	beg, appeal for help
 9FC3	(same as U+7752 睒) to blink, twinkle
+9FCC	cool, cold; disheartened
 9FCD	hill; long and narrow highland; used in place names; (Cant.) throw up and scatter (as dust)
 9FCE	(tǎ) place name in Zhejiang; (dá) cobblestone, water gate, place name in Guangdong
 9FCF	meitnerium (element 109, Mt)
@@ -20361,7 +20454,7 @@ F919	cream, cheese; koumiss
 F91A	white horse with black mane; camel
 F91B	confusion, state of chaos; create chaos, revolt
 F91C	egg; ovum; roe; spawn
-F91D	railing, balustrade; animal pan
+F91D	railing, balustrade; animal pen
 F91E	rotten, spoiled, decayed
 F91F	orchid; elegant, graceful
 F920	fabulous bird
@@ -20646,6 +20739,8 @@ FA2D	crane
 201D0	respectful; attentive, carefully; cautious; to heed; to be watchful, to rely on; to trust to; to lean towards
 201F1	a kind of music
 201F9	straight; pass
+20228	make; work; compose, write; act, perform
+20242	to escape; to abscond; to flee, (interchangeable 達)
 2026A	small, light; insignificant
 202A7	even, together; to reduce, equalize
 20325	(Cant.) to bow, stoop
@@ -20682,6 +20777,7 @@ FA2D	crane
 208A4	to urge, compel
 2090E	seven
 2090F	a tithing
+20984	general term for plants; myriads
 2098C	forty
 2099C	forty
 209E9	an archaic form of U+6094 悔, to repent
@@ -20689,6 +20785,8 @@ FA2D	crane
 20A75	to pass, go through
 20A7A	to split, rive, crack
 20A99	tent; caravan
+20AB1	history; past; to take place
+20ACA	hall, central room
 20AE4	stingy
 20AED	to join
 20B1B	to dive under water
@@ -20696,9 +20794,11 @@ FA2D	crane
 20B22	slippery
 20B24	spy on
 20B36	to invade
+20B6F	handful; to grasp, seize
 20B74	(same as U+3441 㑁) short; of short stature
 20BA8	(Cant.) to tie, tow; bring along
 20BA9	(Cant.) an interjection; rare, specialized
+20BBE	final particle
 20BC8	phonetic
 20BCB	(Cant.) naughty, inferior
 20BD1	tongue
@@ -20715,6 +20815,7 @@ FA2D	crane
 20C43	(Cant.) thin, flat; poor
 20C53	(Cant.) to importune, beg
 20C58	(Cant.) contrary, opposing, against; disobedient
+20C5E	to play (on an instrument); to accompany; to banter, jeer
 20C65	(Cant.) wrangling, a noise; fitful; a soft fabric with no body
 20C77	(Cant.) small
 20C78	(Cant.) phonetic
@@ -20729,6 +20830,7 @@ FA2D	crane
 20CD6	(Cant.) to strike, pound
 20CF6	tongue-tied; to lisp
 20D15	(Cant.) to purse the lips; to wriggle
+20D1F	bleating of sheep
 20D30	(Cant.) classifier for a piece or lump of something
 20D33	(Cant.) a tiger or demon's howl; to argue, quarrel
 20D46	to carry on a pole; to bear; a burden
@@ -20749,6 +20851,7 @@ FA2D	crane
 20DA7	(Cant.) straight, vertical; OK; to pick up with the fingers; verbal aspect marker of successful completion
 20DAE	joy
 20DB2	(Cant.) to stare at; to take a big bite
+20DFF	what? why? how?
 20E09	(Cant.) to block, obstruct
 20E0A	(Cant.) an intensifying particle
 20E0E	(Cant.) and, with
@@ -20863,6 +20966,7 @@ FA2D	crane
 2161E	dustpan, shovel
 21681	used-up, malpractices; (Cant.) bad, vile, corrupt
 216A6	(Cant.) vulgar term for female sex organ
+216F7	older sister
 21731	to envy, to be angry with; (Cant.) pregnant
 21760	milk, the breasts of a woman, to suckle, word of respect for women, (for Qi's people) mother, used in girl's name
 21764	surname; sixteenth of the twenty-eight lunar mansions
@@ -20872,11 +20976,13 @@ FA2D	crane
 217EC	lay hand on
 2181C	a good but ugly woman
 21839	cunning; wicked, spoiled; coddled
+21898	to be pregnant; pregnancy
 218D5	a concubine, wife
 21949	filial
 21967	last
 2197C	(Cant.) to carry on the back
 219CC	traitor
+219EF	still, silent, quiet; desolate
 21A04	to stop up
 21A34	rather; it is better; it is easier
 21A4B	repose, serenity, peace; peaceful; Nanking
@@ -20922,6 +21028,7 @@ FA2D	crane
 2228D	variant of 厨 U+53A8, a kitchen; a closet; a cupboard
 222C8	cottage; a coarse house, house with flat roof
 2231C	(royal) court
+2237A	catch, arrest; shoot with bow
 2237F	spike
 223F3	pulled taut
 22427	a stand, frame
@@ -20931,6 +21038,7 @@ FA2D	crane
 225D3	to walk in a composed (comfortable) way, respectful; reverent
 22605	(Cant.) flurried, flustered; arbitrarily
 22638	to hate; willful
+22650	upset; to regret
 22662	to fear
 22671	to impose upon; stupid
 22696	(Cant.) intensifier
@@ -20954,6 +21062,7 @@ FA2D	crane
 22960	terrified, afraid
 22982	(Cant.) to brag, praise oneself
 2298F	to cut, wound, hurt
+229D0	war, fighting, battle
 229DC	large profit
 22A66	(Cant.) to squeeze out (as from a tube); to tickle
 22A93	raise, lift up; recommend
@@ -20963,6 +21072,7 @@ FA2D	crane
 22AE6	variant of 拍, to clap, tap, beat; a beat or rhythm
 22AE8	(Cant.) to push from behind
 22AEB	(Cant.) to rub
+22AEC	to strike with the hand
 22B02	firm hand
 22B0D	tuck; hold
 22B3F	(Cant.) sections or wedges (as of fruit); to take in the hand; to use
@@ -20990,6 +21100,7 @@ FA2D	crane
 22CC2	(Cant.) to scoop up, ladle out
 22CC6	(Cant.) to shake, rattle
 22CDC	to waste
+22CDF	jab
 22D08	(Cant.) to throw down, fall down
 22D12	(Cant.) to chase, drive away
 22D44	(Cant.) to save up (money)
@@ -21016,10 +21127,13 @@ FA2D	crane
 22F38	small
 22F74	(Cant.) to poke, jab
 22F7E	teach, instruct; be aroused; awake; intelligent
+22F96	to stop, prevent; restrict
 23012	to enter abruptly, a nod
 230C1	cut
 230C8	hack
+23108	(same as 徽 揮) mark; sign; indication; flags; pennants, streamers, etc., to prance, to brandish, to shake; to rattle, name of a flag
 23119	a sign for a tavern or shop
+231C0	late afternoon
 231E2	to try fruit, etc., in the sun
 231E8	dark
 2325E	white, clear
@@ -21034,33 +21148,43 @@ FA2D	crane
 234C1	print
 234CC	a well-sweep
 234EA	abandon
+23519	shovel; trough used to carry water
 23528	(Cant.) to be entangled, twisted; (of alcohol and tobacco) to be strong
 23533	rattle
 2353C	a cane, rod, pole, staff
+23572	(same as 亙 堥) an extreme limit, to fill, universal, connected, revolve
 23595	(Cant.) the back of a chair for one to lean against
 235CA	elm; gum
 235CB	a cross-piece, as the round of a ladder, the rail of a chair; shelves; pigeonholes
+23610	(same as 棘) the jujube tree, thorny brambles, a kind of date (with a sour taste)
 23617	a tree a thousand feet high
 2361A	(Cant.) a bar; to bolt, lock
 23626	ebony
 23695	(Cant.) to wave, beckon with the hand
 236BA	(Cant.) a young chicken
-237EC	same as 欄 U+6B04, a railing, balustrade; an animal pan
+237C4	watchman’s rattle
+237EC	a railing, balustrade; an animal pen
 237F1	Zelkova tree
+237F4	bolt, latch, crossbar
 2383D	same as 欛 U+6B1B, a handle
 238BE	treat; sum; item
 239C2	(Cant.) untidy
 239DF	confused
+23A10	to die
 23A2F	die
 23A3C	be in great difficulty, greatly
 23A75	funeral
+23A95	a square basket of bamboo for holding grain used at sacrifices
+23A98	a square basket of bamboo for holding grain used at sacrifices
 23AA0	to attack
 23AB5	palace; rear
 23ABA	gauze
 23AC2	hub, car; push
 23AC5	tremble; rough; wrestle
 23ACB	a kind of tree
+23B72	down
 23C07	down
+23C5D	radon (obsolete; 氡 U+6C21 now in use instead)
 23C97	river in Shanxi province
 23C98	river in Hunan
 23CB7	(Cant.) sticky; not smooth; slow
@@ -21073,7 +21197,6 @@ FA2D	crane
 23F49	to soak; delay
 23F7D	floods (of tears)
 23F8D	name of a stream; head source from Henan Province jiyuanxian Wangwushan
-2401C	a river in Anhui
 24073	river name
 240F6	swept away, as by a flood; soaked, saturated; to settle, as with alum; to strain; to drain off
 2418D	red; communist, 'red'; bare
@@ -21096,17 +21219,21 @@ FA2D	crane
 24455	smoke, fog, vapor; smoke, cure
 244D3	smoky or burning smell
 24514	to govern
+2456A	half of tree trunk; Kangxi radical 90
 2456D	to get hold of, take
 2456F	a syrupy liquid
 245C8	(Cant.) to squeeze in, to stuff in
 24605	a very young child
 24618	cattle, domestic animals
 24674	(Cant.) gore
+246C9	linchpin of wheel
+246D8	a bull
 2472F	(Cant.) to bite
 2475E	a lemur of the genus Cynocephalus
 2476C	a horned animal butting against something; a fox-like animal
 247A4	a dog with a long snout or muzzle
 247E5	dog
+2480B	(same as 貗) the badger; a wild bear
 24811	sea otter
 2483E	lynx, wildcat
 2486E	a kind of monkey
@@ -21116,6 +21243,7 @@ FA2D	crane
 24957	a kind of gem; diamond
 2498F	turquoise
 249DA	turquoise
+24A0F	fragments; trifling, petty; troublesome
 24A7D	sceptre
 24AE9	(same as U+73B2 玲) tinkling of jade pendants
 24B1B	a gourd
@@ -21129,12 +21257,16 @@ FA2D	crane
 24C1D	channels
 24C21	farmers
 24C48	a mǔ (畝), a unit of area roughly equal to 600 square meters
+24C5D	hamlet; area outside city
 24C6C	to clear land
+24CC8	wet, cultivated land
 24D10	thunder
 24D14	foot (obs.); bale
 24D2F	ulcer
+24D50	a sudden outbreak of spots
 24D5A	humpback
 24D8A	(Cant.) tired, exhausted
+24D99	scrofulous swellings and sores, mumps
 24DB8	(Cant.) a scar
 24DC7	(Cant.) severe pain
 24DEA	(Cant.) impatient, restless
@@ -21144,9 +21276,12 @@ FA2D	crane
 24E3B	(Cant.) a scar, scab; and, with
 24E50	(Cant.) a knot
 24E93	suppurating ulcer; to restrain
+24E9B	epilepsy, convulsions
 24EA7	(Cant.) annoyed
 24EBA	to suffer
+24ECA	(same as U+3FC9 㿉) disease of the private part of the human body
 24ED8	rash; addiction, craving, habit
+24F6F	(same as 疇) fields, a pronoun; who?, formerly; previously, a class; a rank
 24FC2	(Cant.) unattractive, pale
 24FCE	to split
 24FEA	(Cant.) wrinkled, crumpled
@@ -21165,6 +21300,7 @@ FA2D	crane
 25148	(Cant.) to look, scan
 2515F	bopeep, peekaboo
 25160	(Cant.) to fix one's eyes on, gaze at
+25174	(same as 眨) to wink; (same as 睫) eyelashes, having one eye smaller than the other, joke; witticism; pleasantry; jest; fun; (Cant.) to peep at; to blink, wink
 2517E	(Cant.) to peek or peep at
 251A7	to blink or twitch the eyes
 251E2	to wink
@@ -21195,6 +21331,7 @@ FA2D	crane
 25535	variant of U+78C1 磁, magnetic; magnetism; porcelain
 2553F	(Cant.) classifier for cannons, large guns, etc.
 25562	place name in Hunan province
+256F1	space inside
 2570C	a coat, jacket, robe
 25712	to pray to the gods
 25725	the duration of a dynasty or reign
@@ -21204,6 +21341,7 @@ FA2D	crane
 25864	to shrink
 25874	surname
 258A2	(a simplified form) disease of the private part, hernia, colic
+2591B	autumn
 25945	(Cant.) a hole, hollow; cavity
 259F9	(Cant.) puddle
 25A72	a god; to raise
@@ -21221,6 +21359,7 @@ FA2D	crane
 25D26	flute
 25D27	rough mat; ugly
 25D5A	thorns, brambles
+25D5C	(same as U+6534 攴) to tap; to rap, (same as U+64B2 撲) to pat; to beat; to strike; to dash; to smash
 25E49	(Cant.) sticky
 25E85	to overturn; to pour out, to respond, to examine carefully, to stick, thick congee
 25EDA	agreeable
@@ -21230,10 +21369,12 @@ FA2D	crane
 26007	the past; a classic
 26097	(Cant.) to tighten
 260A5	(Cant.) to drop down
+260B3	tense, tight, taut; firm, secure
 26102	girdle; zone
 2619F	tangled
 261AF	confused
 2620C	a kind of sackcloth
+2620F	variant of 緡 U+7DE1, a fishing-line; cord; string of coins; a paper or straw string
 26210	to tangle, knot, kink, get twisted; to get complicated
 26213	a decorative knot made of colorful silk (blue, yellow, red, white and black)
 26215	net
@@ -21241,6 +21382,8 @@ FA2D	crane
 26218	a kerchief hung at the waist, a tiny sack; a purse or pouch carried hanging over the girdle
 26219	connected silk, measurement
 2621C	to gather; to assemble; to come together; to blend; to mix, disorderly; mixed, a general term for wealthy goods and textiles (in southern minority group)
+2621E	to weave silk ribbons, (interchangeable 澼) to wash; to launder
+2621F	silk, a general name of silk fabrics or goods, (interchangeable 紺) reddish dark color; violet or purple
 26220	to sew clothes; to do needle-work
 26221	fine silk gauze; torn piece of silk
 26246	to break off; a potsherd, a flaw
@@ -21292,6 +21435,7 @@ FA2D	crane
 269F2	(Cant.) to dribble, spit; to pester, nag
 269FA	(Cant.) to lick, lap up
 26A88	(Cant.) to kneel
+26C0F	bamboo basket; weeder, rake
 26C29	distress
 26C34	name of a variety of grass
 26C44	mushroom
@@ -21336,6 +21480,7 @@ FA2D	crane
 27694	(Cant.) a kind of skirt
 27700	rug
 27701	to make smaller, fit; seam
+2772D	(same as 襡) a long coat; a long jacket, the connection of the top and bottom of clothes
 27735	arid; dry; parched
 2775E	(Cant.) 卡𧝞, khaki
 277AA	old or badly fitting clothes; untidy
@@ -21365,6 +21510,9 @@ FA2D	crane
 27DB6	to peddle, trade, deal in
 27DC7	parting gift
 27E16	to earn, sell at a profit
+27E51	(ancient form of 貨) money; wealth, natural endowment or gifts, to aid or help, to gamble; to bet, to compete
+27E52	buy, purchase; bribe, persuade
+27E54	accounts; bill, debt; credit
 27E55	to sell, to store up; to stockpile; to deposit
 27E57	to earn, to make a profit; (Cant.) to enjoy oneself
 27E89	surname
@@ -21375,6 +21523,7 @@ FA2D	crane
 27F78	to step, jump
 27FB7	foot; ample
 27FD2	(Cant.) to stamp (one's foot)
+27FDB	footprints, traces, tracks
 27FEB	(Cant.) to have a rest
 27FF9	thumb, big toe
 28001	to walk
@@ -21382,6 +21531,7 @@ FA2D	crane
 28024	(Cant.) to suddenly fall or drop down
 28043	tripping
 28048	(Cant.) to ford, wade
+28054	jump, leap, vault, bounce; dance
 28090	(Cant.) to suddenly fall or drop down
 280BD	(Cant.) to stamp the foot
 280BE	(Cant.) to step across
@@ -21390,6 +21540,7 @@ FA2D	crane
 280E9	(Cant.) to slip, slide
 2812E	fall to the ground; stumble, trip
 2814F	(Cant.) to step over, step across
+2815B	(same as 蠋 躅) to walk slowly and cautiously; to limp
 2815D	(Cant.) to press down or out with the foot; to kick; to tread on
 2816C	to pass; to step over; to creep; to twine round
 281AA	(Cant.) to press down or push out with the foot
@@ -21402,6 +21553,7 @@ FA2D	crane
 28263	to bow; to stoop
 2827C	(Cant.) to stoop, bow
 2829B	(Cant.) nude, naked
+282B0	(simplified form of 𨊰[U+282b0])
 282B8	(simplified form) tire of a wheel
 282CC	rumble; bombard
 282CD	(Cant.) a van
@@ -21411,6 +21563,7 @@ FA2D	crane
 28373	distant; an open carriage
 283B4	vertical pegs of wood used to keep the axle-tree of a cart in its place
 28452	a disciple
+28479	to walk slowly; to walk in a leisurely manner, (same as 蹤) track; trace; vestige, to keep track; to follow up clues
 284C8	used in names
 285C9	so; then; succeed
 28812	evil spirits or influences
@@ -21439,6 +21592,7 @@ FA2D	crane
 28D99	(Cant., vulg.) penis
 28DB9	to close, shut
 28DFF	between steps, window
+28E04	(same as 限) a threshold; door-sill
 28E1A	series, rank, grade
 28E1F	a rough road, a rugged; steep mountain uneasy
 28E2C	battle-field, battle array
@@ -21459,6 +21613,7 @@ FA2D	crane
 29357	the lining of a shoe; the vamp or upper part of a shoe or boot
 2939F	red
 293FC	weak; feeble; tender; delicate; soft, (dialect) to hang down the head and sleepy
+293FF	(same as 韙) right; proper; propriety, official in charge of music
 29400	shoes
 2947A	long beard, whiskers
 294E5	(Cant.) to raise the head
@@ -21467,17 +21622,21 @@ FA2D	crane
 29544	fontanel; crown
 2956D	the top of a skull
 29597	weak and dull, to gnash the teeth (in anger or hatred)
+295E1	wind; storm, sound of the wind
 295F4	(Cant.) classifier for odors
 29667	wind; storm, sound of the wind
 2966A	whirlwind
 2966B	blowing of the wind
 2966E	the wind blows, blown by the wind
+2966F	(same as U+4B16 䬖) a storm; a tempest
 29707	thin wafers in which meat and other foods are rolled and eaten
 29720	(Cant.) soft rice for a small child
 29760	spoiled provisions
+297AF	(simplified form) (same as 糧) grains; foodstuff; provisions; rations
 297C4	sacrificial grain
 297D4	(Cant., vulg.) to eat
 29807	food (of the Taoist)
+29808	to eat to until full (飽); (same as 飪) to cook food thoroughly; cakes
 29809	thin wafers in which meat and other foods are rolled and eaten
 2980C	(Cant.) a side dish of food prepared to accompany rice
 29811	top, head, summit
@@ -21485,13 +21644,17 @@ FA2D	crane
 298D1	(same as U+978D 鞍) saddle; a saddle-like terrain or thing
 2994B	to gallop wildly
 299A2	to provide for; anxious; danger
+299EA	(same as 龐) huge, rich; abundance, to fill up; full of (same as 龍) a legendary; miraculous; marvelous animal; the dragon, associated with rain, floods, and geomancy, an emblem of imperialism
 299ED	a swift horse, to summon; to ask; to solicit; to request; to seek for
 299F0	a legendary animal, a wild horse; mustang
 299FF	a kind of animal
 29A01	a piebald horse, particoloured, miscellaneous, confused and disorderly, a stupid horse
+29A07	a big mule (same as 驢) an ass; a donkey
+29A0F	to give birth to, to bring and to rear (interchangeable 蕃) to increase; to multiply; to propagate
 29A12	muscle
 29A18	arm, side
 29A2D	stiffness in the joints
+29A48	boneware used to comb the hair, to bind the hair, (same as 鬠) hair tied in a knot for the mourning rites
 29A4D	(Cant.) ribs, rib-cage
 29A97	tailbones, the coccyx
 29AAF	knee-cap
@@ -21507,11 +21670,14 @@ FA2D	crane
 29E28	male whale
 29E72	ray
 29F08	a variety of perch
+29F7C	grass carp (Ctenopharyngodon idella)
 29F7E	anglerfish
 29F82	big fish
 29F83	Sciaena albiflora; Otolithoides miiuy
 29F87	mythical dolphin-like fish
+29F88	(same as 鮛) a small kind of tuna or sturgeon
 29F8A	a kind of fish
+29F8B	(same as 鮦 鯉 鱧) a kind of fish; black fish
 29F8C	anglerfish
 29FDE	to whisper, twitter
 2A012	variant of 鴟 U+9D1F, a kite (bird)
@@ -21524,6 +21690,7 @@ FA2D	crane
 2A269	variant of 塩 U+5869, salt
 2A378	young wheat
 2A388	crumbs of barley; bran; chaff
+2A38B	a kind of cake, a kind of herb medicine, (same as 黏) to stick, glutinous; adhesive
 2A3AD	millet
 2A3D9	a yolk
 2A400	(Cant.) relationship; together
@@ -21552,11 +21719,13 @@ FA2D	crane
 2A81F	to plough; to till, black color
 2A833	(Cant.) interjection
 2A835	an interjection used in poems and songs
+2A83D	sound of bells
 2A840	(Cant.) coincidental
 2A848	used in transliteration
 2A84B	the movement of a fish's mouth at the surface of the water
 2A84F	gruel
 2A85B	to laugh loudly, to blame; to reprimand, entrance to a cave or to a gorge
+2A88C	prolix speech, (same as 讕) to make a false charge; to lay a false accusation
 2A890	(Cant.) to leave behind, omit
 2A8A0	confused talk
 2A8AE	entire, complete; round
@@ -21566,12 +21735,15 @@ FA2D	crane
 2AA0A	semen
 2AA17	straw sandals
 2AA27	Kunlun mountains in Jiangsu
+2AA36	沙田禾輋, Hong Kong toponym
 2AA47	mountain top; summit
 2AA58	summit, peak
 2AA78	trappings
 2AA91	a high house; a high building
 2AA9D	the Hall of Learning; a marsh, feces; harmony
 2AA9E	wall
+2AABC	to shoot
+2AAF7	(same as 懤) grieved; pained; in deep grief; to lament deeply
 2AAFA	to flatter; crafty, having a specious tongue
 2AB62	to hit (a bell or drum)
 2AB7E	fierce; wrathful
@@ -21583,8 +21755,10 @@ FA2D	crane
 2AC77	a palm-tree
 2AC8E	a kind of tree suitable for use to make axles for large carts
 2AC94	beam
+2AC9B	Loropetalum chinense, Chinese fringe flower
 2AD19	gather
 2AD71	cross on stepping-stones
+2ADCD	cold; chilly, (ancient form of 凈) clean; pure; to purify
 2ADFD	to spatter, to splash, to scatter
 2AE29	weld, solder
 2AE73	simmer, cook over slow fire
@@ -21593,6 +21767,7 @@ FA2D	crane
 2AED0	tinkling of jade pendants
 2AF0B	a jade tube with white and nature colors, jade with the colour of nature (green; blue; black), sapphire
 2AF6A	a swelled belly; dropsical; to swell; inflated
+2AF6E	carbuncle (interchangeable 廬) used in naming of a place, a swelling of the abdomen from constipation
 2AFA2	to look at fearfully; overly cautious
 2AFA6	the pupil of the eye; to see
 2AFB8	an angry glare; to open the eyes with anger
@@ -21659,12 +21834,14 @@ FA2D	crane
 2B374	chatter
 2B378	beguile, cajole
 2B37B	scream
+2B37F	shallow; stupid
 2B386	young pig
 2B3A7	wages; salary, to redeem; to ransom
 2B3A9	precious
 2B3AA	to do alms for the Buddhist priests or monks in old times, to bestow; to present; to confer; to give; to donate
 2B3AB	earnest money; silk label on books
 2B3AC	Jiangxi province
+2B3AD	(same as U+8D6C 赬) deep red, to blush, to dye red
 2B3B1	to walk, agile; adroit, a method of wielding the brush in writing Chinese characters
 2B3B3	to keep persons off the route of the emperor, when on tour, imperial halting-place, worship of the kitchen god (performed on the 23rd day of the 12th moon)
 2B3BA	to move or march swiftly; to walk quickly; to run, to go; to go to a meeting
@@ -21705,6 +21882,7 @@ FA2D	crane
 2B50D	vanadium (element 23, V)
 2B50E	hasp of a lock
 2B514	to engrave or carve, as a block for printing
+2B52D	open; initiate, begin, start
 2B535	very dense; no break; to cluster together
 2B536	the doorsill
 2B565	fall
@@ -21712,6 +21890,7 @@ FA2D	crane
 2B585	a halter
 2B587	boots
 2B592	knee-pad
+2B594	bellows
 2B595	leather arm band
 2B5AB	the occiput, or occipital bone, to hang down one's head, ugly, silly; foolish; stupid; idiotic; crazy; insane
 2B5AC	to deal with affairs cautiously, head with less hair, ashamed; humiliated
@@ -21720,7 +21899,9 @@ FA2D	crane
 2B5B0	ugly
 2B5B1	the lower end of the jaws, high cheek-bone, to bend (or lower) one's head
 2B5B2	facial complexion (yellowish because of worrying), a round skull and face
+2B5B3	(Cant.) 大頭頵, a big head
 2B5B5	(Cant.) to raise the head
+2B5B8	desire, want; wish; ambition
 2B5B9	frown
 2B5BA	ugly
 2B5C7	a typhoon; great gale of wind
@@ -21740,7 +21921,9 @@ FA2D	crane
 2B5EC	feast
 2B5ED	to feed, to raise
 2B5EE	to eat; dinner-time, sunset
+2B5EF	dry goods, dry provisions
 2B5F0	steamed dumplings; cakes
+2B5F1	incorruptible; honest; clean, (same as U+6B49 歉) deficient, poor crop or harvest, to regret; sorry, (same as U+9921 餡) anything serving as stuffing for dumplings, etc.
 2B5F4	gruel
 2B5F5	rations and pay for soldiers; dried rice
 2B61D	gallop
@@ -21753,8 +21936,10 @@ FA2D	crane
 2B62A	bay
 2B62D	horse
 2B62E	a kind of beast, a kind of mule
+2B63D	to make a top knot; (Cant.) 鬅鬠, to be slovenly dressed
 2B688	silver carp (Hypophthalmichthys molitrix); bream
 2B689	a ray, skate
+2B68B	anchovy
 2B68C	shark family, including some rays and skates
 2B68D	shrimp
 2B68F	a kind of medium sized fish grown in the sea, long and flat; with a big mouth
@@ -21766,6 +21951,7 @@ FA2D	crane
 2B699	the skate or ray
 2B69A	dried fish
 2B69C	the globefish; blowfish; puffer
+2B6A0	(record in an antique books) a kind of fish (same as 鱔) eels
 2B6A2	sheat
 2B6A5	shrimp, prawn
 2B6A7	herring
@@ -21776,7 +21962,9 @@ FA2D	crane
 2B6E3	swoop
 2B6E9	quail
 2B6EA	a species of bird resembling quail
+2B6EC	(same as 鵌) a kind of bird which shares its nest with rats
 2B6EE	a legendary bird; second name for an owl
+2B6F0	(same as 鶀) small wild goose
 2B6F1	pheasant
 2B6F2	eagle, vulture; Aquila species (various)
 2B6F3	owl-like bird; buzzard; Otus scops
@@ -21789,6 +21977,7 @@ FA2D	crane
 2B705	a kind of water bird; deep eyed, general term for a group of bird
 2B712	cakes and biscuits
 2B714	a small round piece of distiller's grains or yeast
+2B719	black color, black specks; mottles on the face, black face, (same as 暈) to faint; giddy and dizzy
 2B728	irregular and prominent teeth
 2B729	bite, gnaw; wear down, erode
 2B72A	to chew; to bite
@@ -21800,10 +21989,13 @@ FA2D	crane
 2B748	last name, girl's name
 2B766..2B767	used in girl's name
 2B797	to pollute, contaminate
+2B79B	name of a stream in Hebei Province Hengshan, name of a river (same as 涂水)
 2B7A3	to bite (said of a dog), dog to take food
 2B7A9	reddish
 2B7C3	to lay the warp; to weave
 2B7D1	name of a variety of grass; nasturtium
+2B7D5	(same as 蘄) name of a county in ancient times; today's south of Anhui Province, Suxian
+2B7E2	(non-classical form) (same as 談) to talk; to converse; to chat
 2B7E4	to move swiftly; to dart; to fleet; to drive very fast
 2B7E5	sound of carts or stones (big things) knocking together, cross-bar in the rear of a carriage
 2B7E6	decoration on carriage
@@ -21813,17 +22005,21 @@ FA2D	crane
 2B806	to raise one's head
 2B808	breeze; light wind, cold or flu
 2B80A	an one-year-old horse, a black horse
+2B811	a family name, (same as 緧) a crupper
 2B812	an octopus, devilfish
 2B81C	teeth grown in old age
 2B825	to retire into obscurity
+2B852	to loose, take off, get rid of
 2B88A	money, currency, coins
 2B892	rude; barbarous
 2B899	labor; work
 2B8B8	sincere
 2B8CA	like
+2B938	(corrupted form) in contravention of; to offend (same as 冒) incautious, to risk, to put forth
 2B977	conical; a knob
 2B985	to cut; to hack; to reap, minced meat mixed up with ginger and cassia
 2B989	to carve; to hollow out
+2B98C	(same as 絕) to cut short; to break off; to interrupt, to drag; to pull
 2B99F	to cut, stick in
 2B9A9	strong resistance; lazy, reluctant
 2B9B3	to break something, to drag; to pull
@@ -21833,6 +22029,7 @@ FA2D	crane
 2BA64	eating or talking, moving of the mouth
 2BA65	(Cant.) a lump; measure word
 2BA66	thin, flat, poor
+2BA69	to shout or bawl, talking manner of a mean person, (same as 謅) to jest; to joke; to quip
 2BA73	(Cant.) to urge, importune; a lie, fib
 2BA7D	to run aground
 2BA7E	to turn over
@@ -21845,6 +22042,7 @@ FA2D	crane
 2BA9A	to blink
 2BAA2	to turn, skip, shake
 2BAB1	to wave away
+2BABA	(same as 嚏) to sneeze; a running at the nose
 2BAC3	(Cant.) sarcastic interrogative
 2BAC4	to tuck up, strap
 2BAC7	nastiness; nauseate: sickening
@@ -21870,8 +22068,10 @@ FA2D	crane
 2BB5E	brick
 2BB6A	stony
 2BB83	smooth, hard spot made level for sacrificial altar
+2BB9C	(ancient form of 垠) a bank; a boundary
 2BBAC	a prop, support
 2BBF6	deep and broad (expanse of water); abyss
+2BC1B	beautiful woman
 2BC21	beautiful; used in girls' names
 2BC28	crafty; artful
 2BC55	to go beyond normal limit; excessive; out of control, to covet; greedy, to be impolite, used in girl's name
@@ -21881,15 +22081,18 @@ FA2D	crane
 2BD71	(Cant.) penis
 2BD77	a mountain in Jiangxi Province; southeast of Jingde county
 2BD85	irregular outline of a range of hills
+2BD87	towering; a tall mountain
 2BDC5	drawers; trousers or pants
 2BDC9	curtain at front of carriage
 2BDEE	shade; protect, shade, cover
 2BDF7	to prepare horses and chariots for battle
+2BDF9	building of two or more stories
 2BE29	nock at end of bow; stretch
 2BE77	terrified, afraid
 2BE81	to think; to contemplate; to consider, to pant because of fear
 2BE86	lavish; luxurious, wasteful
 2BE8A	angry
+2BE93	(same as 懣) resentful; sullen; sulky; anger (especially at injustice) indignant, annoyed; depressed; bored
 2BE96	creaking
 2BE98	regret
 2BEB7	fear
@@ -21905,10 +22108,13 @@ FA2D	crane
 2BF40	to hit; to strike
 2BF41	to transport; to remove to take; (Cant.) to pinch; to tidy up
 2BF47	the thumb, to split; to tear apart, sound of ripping or tearing, to cut open with something sharp
+2BF4A	(non-classical form of 攪) to disturb or to agitate; to bother; to trouble, to stir; to churn; to mix evenly by stirring
 2BF4B	to split, to rend; to choose to rub, to wipe
 2BF62	(Cant.) to poke
 2BF67	to strike; to fight with hands, to scratch lightly; to brush; to shake; to dust, to knock down; to floor
 2BF6E	to obstruct; shut out; shelter from; keep off; stop; resist
+2BF72	(same as U+22E23 𢸣) to select, pick
+2BF89	(same as 揮) to move; to shake; to wield; to direct, to arouse
 2C029	the bright shining of the sun
 2C02A	sunlight
 2C02E	luxuriant; exuberant; lush; flourishing
@@ -21923,6 +22129,7 @@ FA2D	crane
 2C0A9	chopstick
 2C0C0	zelkova tree
 2C0D8	jujube
+2C0EB	Excentrodendron hsienmu
 2C0F2	to bend (or lower) one's head; to bow (usually refer to submission or admission of a wrong doing)
 2C129	shape wood by use of heat; tool for shaping bent wood
 2C162	asthmatic breathing, supposed upward motion of the spirit (in Chinese herb medicine), to long for; to covet, to hum over; to moan; to groan
@@ -21934,6 +22141,7 @@ FA2D	crane
 2C1F0	filled with water; full of water, annoyed; vexed; depressed; bored, to make tea by boiling water and then put the lid on to cover it
 2C1F9	a river
 2C201	a rapid; a sand-bank; a foreshore
+2C215	(same as U+6CB8 沸) boiling (water, etc.) to gush; bubbling up, (sane as U+6E43 湃) the roaring of billows, name of a person
 2C227	astringent; harsh, rough; uneven
 2C247	to overflow; to spread
 2C261	sap
@@ -21944,6 +22152,7 @@ FA2D	crane
 2C296	(Cant.) to suck or chew without using the teeth
 2C29C	smoky or burning smell
 2C2A4	to make a fire; blaze
+2C2BE	(an ancient form of 然) to burn; to light a fire
 2C2CD	fierce of fire, cruel; malicious, fire; flame
 2C337	dogs wormed through a narrow place, to oppress cruelly; to injure heartlessly, dogs biting, dog's hair, legendary monster (looks like a dwarf), bark
 2C359	carved jade wine cup
@@ -21957,19 +22166,23 @@ FA2D	crane
 2C41A	a wine-jar
 2C44D	to see; to look at; to gaze
 2C44F	to look straight forward, to look, eyesight blurred; not clear
+2C452	(same as 眗) hollow-eyed
 2C454	multitude, crowd; masses, public
 2C457	spy, peep; cornea
 2C461	to see; to look at; to gaze
 2C48D	to fall from or into
+2C48E	simple and crude (same as 硜) the sound of pebbles or stones knocking together, obstinate; determined; resolute
 2C494	place name in Guangdong; (Cant.) for something hard or bulging to press against the body and cause it discomfort
 2C495	black colored grindstone or whetstone
 2C498	arsenic (element 33, As)
 2C4EB	autumn, fall; year
 2C4F5	over-ripe, over-cooked, worn out
+2C4F8	not sticking together, non-adherent; (same as 曬) to dry in the sun; to expose to sunlight
 2C4FC	ruined, decayed; to disintegrate
 2C502	(Cant.) exclamation in calling a person
 2C542	the name of bamboo hat
 2C54A	(non-classical form) to observe; to watch; to examine
+2C55B	a thin and long strip of bamboo for making baskets, etc.; thin (bamboo) laths, name of a variety of bamboo, (corrupted form of U+7C35 簬) used for arrows
 2C566	a cradle
 2C5A0	to rob; to loot; to plunder
 2C603	disorder; confused mass
@@ -21977,6 +22190,7 @@ FA2D	crane
 2C616	cocoon; callus, blister
 2C618	a fringe
 2C619	fabric; textile with patterns used for hem decorations, decorations on carriage and horses, varicolored silk or fine cloth loose in texture
+2C61C	to mend (clothes, etc.), (interchangeable 綻) ripped seam; a crack; split
 2C61D	turns or twist; a switch
 2C621	matting; coverlet; cloudy
 2C622	fine silks; floss
@@ -21989,6 +22203,7 @@ FA2D	crane
 2C62E	ropes; cords; cables
 2C631	a pleat; fold, a piece of string; ribbon used to tie clothes, a rope; a line; a cord
 2C632	cotton and silk to be laid and attached each other
+2C634	(same as 鞦) a swing (same as U+97A7 緧) a crupper; traces
 2C635	a rope
 2C637	to twist
 2C63A	band
@@ -22007,6 +22222,8 @@ FA2D	crane
 2C72F	name of a variety of grass
 2C741	name of a variety of grass; perilla ocimoides, whose seeds are a bird feed
 2C774	name of a variety of grass
+2C795	orchid; elegant, graceful
+2C79F	apple
 2C7FD	rainbow
 2C805	mantis
 2C808	to wriggle; to work through, as smoke through a crevice
@@ -22021,18 +22238,24 @@ FA2D	crane
 2C890	to see; to look at, to examine, to spy upon, to wait upon
 2C891	to see; to look at, to examine
 2C895	a cup
+2C8AA	deceive, cheat; hurried, bustling
 2C8BF	to mutter
 2C8C0	to exaggerate; incredible
 2C8D9	boast, exaggerate; great, broad
 2C8DB	do not know, to know nothing about, quickly; fast, sharp; keen
+2C8DC	(interchangeable 耗) news; tidings; report; information; message
 2C8DD	(Cant.) to fool, deceive, hoodwink
 2C8DF	to induce; to lure; to allure; to attract; to entice; to tempt; to seduce (with speech; words; through talking)
 2C8E1	flattering
+2C8E3	explain; annotate; make entry
 2C8E6	(Cant.) to argue, debate
 2C8E7	loquacious, to talk quickly
+2C8E8	(Cant.) 𧧝𧨊, to bar the way, obstruct
 2C8EA	ringing, spacious
+2C8EC	(same as 詯) courage
 2C8EF	to think of; to remember (someone), to read out aloud, loquacious, guttural sound, noise; uproar; turmoil
 2C8F3	difficulty in speaking; wrangling
+2C8F6	(Cant.) 𧧝𧨊, to bar the way, obstruct
 2C8F8	loquacity, boasting; hyperbole, to talk harshly; to shout angrily
 2C8F9	urgently; hastily; hurriedly, a hasty speech
 2C8FF	sound, noisy; full of confused noises; clamorous
@@ -22045,6 +22268,7 @@ FA2D	crane
 2C90E	noisy, uproarious; forget
 2C910	song; sing, chant; praise
 2C911	cunning; craft; sly; wily; artful, bright; wise
+2C918	to jest; to joke; to quip (same as 誺) unintelligible answering
 2C919	to shout; to mourn to invoke
 2C91B	flatter; suspect, be uncertain
 2C91F	sweet; artful words
@@ -22059,20 +22283,25 @@ FA2D	crane
 2C92E	praise, commend, eulogize
 2C930	cheer; noise, noisy
 2C944	good, fine pig; an ancient term for pigs used in Liangzhou
+2C948	(ancient form of U+7683 貌) facial appearance, manner; bearing
+2C975	(same as 貤) to change hands; to shift, a series, steps; grades, to promote; to reward; ennobled; to bestow, to extend; to prolong
 2C977	(Cant.) to owe
 2C97A	corresponding; equivalent, appropriate, to compare the length of two articles
 2C97B	fairly prosperous, well-to-do; not very rich
 2C97D	to desire for more money than one's rightful share
 2C985	walking rapidly
 2C9A0	to step, trample
+2C9A5	walk slowly because of the wrong position of the feet, (same as 狽) a kind of wolf with shorter forelegs, lame; crippled
 2C9BB	(Cant.) to stumble over, to fall
 2C9BE	(Cant.) to step over, step across
 2C9C0	to limp; walking; in motion
+2C9C3	(same as 騰) to prance; to rear; to leap; to jump, to go up, to turn over
 2C9DF	calf of the leg
 2C9E2	not well-formed figure, incorrect; unrespectable; improper physical build
 2C9EF	a pair of balances
 2CA02	axle-tip
 2CA06	rim of a wheel; felly; felloe, (or a wheel) to run over, to oppress, the shafts of a cart or carriage
+2CA08	mourn; pull; draw
 2CA09	sound of moving carriages
 2CA0C	a ring of the horizontal front bar on a carriage; to control the wheel
 2CA0D	great array of spears and chariots
@@ -22094,6 +22323,7 @@ FA2D	crane
 2CB38	needle
 2CB3A	hoe; eradicate, eliminate
 2CB3B	fireplace, stove, oven, furnace
+2CB46	short; incomplete; deficient (same as U+5241 剁) to chop; to mince; to hash
 2CB48	an ornament at the end of a belt used in ancient times
 2CB4C	sword
 2CB4D	solder, weld; leg armor, greaves
@@ -22107,6 +22337,9 @@ FA2D	crane
 2CB68	hammer, mallet; club
 2CB6A	the linch-pin of a wheel to govern or control the noise of a barrow
 2CB6D	axe
+2CB6F	(same as 鐅) the blade or edge of a spade, an open-lidded shallow pan used to boil salt
+2CB72	a lock, padlock; shackles, chains
+2CB74	a kind of sickle, chemical element; old translation of (鎳); Nickel Ni, to carve
 2CB75	(Cant.) bang; pan (Eng. loanwords)
 2CB78	phosphonium
 2CB7B	to cut with shears
@@ -22118,6 +22351,7 @@ FA2D	crane
 2CBA8	sound of a door; to open
 2CBAD	flash; flashing; steal look
 2CBB1	curved, bent; a curved wall
+2CBB3	boss, the owner, person in charge
 2CBB4	close, shut; dark, dismal
 2CBBA	to increase; to profit; to augment, artful; clever; skillful, chips (in gambling, etc.), a number (for identification), abundant; rich; exuberant; flourishing; prosperous
 2CBBB	entrenchment, bank, low wall
@@ -22125,7 +22359,9 @@ FA2D	crane
 2CBC5	narrow
 2CBCE	to fall in ruins; to collapse
 2CC03	fine rain; drizzle
+2CC25	(same as 緉) a unit to count shoes in ancient times; a pair
 2CC33	a metal ornament on some kind of belt (clothing of the Northern barbarians)
+2CC37	a shield; a screen, (same as 襜) the low front of a robe, gown, etc., a short coat that have no lining, a small mud guard, or fender, a leather garment worn during sacrificial rituals in ancient times
 2CC53	cheekbone
 2CC56	good and beautiful
 2CC57	(Cant.) to raise the head
@@ -22146,11 +22382,18 @@ FA2D	crane
 2CC95	tasteless; without enough salt; insipid; dull; not interesting, to taste food before royalty partook
 2CC9C	to eat much; to distend by eating
 2CCA6	to feed; provisions
+2CCAB	to have congee (wheat gruel) with friends in old times, (interchangeable 餂) to obtain by hook
 2CCAE	clarified butter (regarded as symbol of Buddhist wisdom or truth), cream cheese, to sponge on others; to board
+2CCAF	to eat to the half full, (corrupted and abbreviated form of 饇) to eat to much; surfeited
 2CCB2	rich; abundance, to eat, to eat without spontaneity; to eat reluctantly
+2CCB3	(same as 繹) a kind of sacrifice offered to gods or the deceased; rotten food; food; cakes and biscuits
+2CCB6	(same as 餈 粢 躄) rice cakes, rice to offered as sacrifice, the grains
 2CCB7	to starve; hungry, famished; feeble; decay or decomposition of fish
 2CCBB	cakes and biscuits
+2CCBE	cakes, (same as 餬) congee; porridge; gruel
 2CCBF	(Cant.) soft rice for a small child
+2CCC0	(same as 噎) to choke on food, (ancient form of 饐) decayed; rotten and smelly
+2CCC1	prepared meat; food
 2CCC2	libation
 2CCC5	mashed beans, sugared cakes
 2CCCB	breath, to grow; to thrive, to eat, food
@@ -22165,13 +22408,17 @@ FA2D	crane
 2CCF8	to move slowly and then swiftly (said of a horse), a swift horse, to neigh
 2CCFA	to drive; hasten; navigate
 2CCFD	crowd
+2CCFE	(same as 馳) to go swiftly; to fleet; to rush; to speed
 2CD01	white from forehead to lips of a horse, reddish (of a horse head), horse head
 2CD02	horse; run
 2CD03	the sound of a knife cracking or breaking something; suddenly
 2CD05	loud, noisy, boisterous; fight
 2CD0B	black (horse)
+2CD0D	(same as 鑣) bit for a horse, to ride on a horse
+2CD0F	(same as 蹇) lame; crippled, slow, weak; feeble; a vicious horse; a feeble donkey
 2CD10	happy, pleased, glad; joy; to enjoy
 2CD81	mermaid; manatee
+2CD86	a fish, (same as 蚌) oyster, a kind of clam, a pretty pearl
 2CD8A	tuna, something like sturgeon
 2CD8D	snakefish
 2CD8E	a kind of fish; grown in fresh water; with flat body; orange color or blue colored pattern
@@ -22180,18 +22427,26 @@ FA2D	crane
 2CD97	a kind of fish
 2CD9B	eel
 2CDA0	a herring
+2CDA3	(standard form) (same as 鮓) a condiment made from minced fish salted, preserved fish
 2CDA4	Parasilurus asotus; small fish, fry; large carp
 2CDAB	the sturgeon
 2CDB4	the Yangtze porpoise
 2CDEF	species of falcon
+2CDFC	hawk; Ardea cinerea
+2CDFE	(same as 鴻) wild swan, a wild goose, vast; profound
 2CE05	chick, fledging; infant, toddler
+2CE06	a kind of bird, (same as 鼪) weasel
+2CE08	variant of 鴟 U+9D1F, kite, horned owl; wine cups
 2CE0A	hoopoe
 2CE15	the mango-bird; the Chinese oriole
 2CE1A	a legendary waterfowl; a young phoenix
+2CE1B	(same as 凰) the female phoenix, a legendary bird in Chinese mythology, (standard form of 皇) beautiful; brilliant, royal
 2CE20	a goose
 2CE23	to soar
 2CE26	phoenix
+2CE27	swallow (bird)
 2CE29	(non-classical form) a kind of water bird
+2CE2F	little grebe, dabchick (Tachybaptus ruficollis)
 2CE31	a species of mynah
 2CE33	soap
 2CE45	distiller's grains or yeast; ferment for brewing
@@ -22208,6 +22463,7 @@ FA2D	crane
 2CF01	dram (apothecary symbol ʒ)
 2CF04	ounce (apothecary symbol ℥)
 2D016	manage, control; thousandth part of tael
+2D11B	to cut, clip
 2D1DC	to expel the breath
 2D1E1	(Cant.) to pout
 2D1EF	a clear sound
@@ -22220,14 +22476,21 @@ FA2D	crane
 2D546	fragments
 2D613	cover
 2D6A6	to draw a bow to the full
+2D74B	(same as 憐 怜) to pity; to have compassion on; to sympathize
 2D8E7	dislike; be weary of; explain
 2D930	an military flag or standard
+2D9CB	overcast day
+2DA5A	variant of 艤 U+8264, to moor a boat to the bank
 2DA5B	a kind of oak used for charcoal
 2DA86	a switch, whip
 2DAC0	cupboard, wardrobe, counter
+2DAD9	(same as 樀) eaves of a house; brim, part of a loom, the cross beams on the frame on which silkworms spin, a bookcase, to abandon or give up
 2DB48	asses braying, shortwindedness; hiccough, asthmatic breathing, supposed upward motion of the spirit (in Chinese herb medicine), to exhaust; extreme
 2DC4A	vast
+2DD0A	(same as 無) without, none, a negative (a variant 嬭) to burn food in cocking; singed; burnt
+2DE5C	珂㼈版, collotype
 2E18F	bow case
+2E260	young and small, (same as 絿) rash and impatient
 2E261	to soften hemp by boiling; thread
 2E262	to sew
 2E263	thick and big ropes or cords; bulky cables, spoilt silk
@@ -22250,6 +22513,7 @@ FA2D	crane
 2E77A	great array of spears and chariots
 2E81E	a kind of wine be brewed from grains, a kind of daily drinks for a minority group
 2E8F2	tire of wheel; band
+2E8F4	short, iron-handled spear
 2E8F5	armor neckplates
 2E8F6	file, rasp; file; polish; (Cant.) to cut
 2E92C	the door is wide open; directly in the front
@@ -22282,8 +22546,12 @@ FA2D	crane
 2EBD9	to bite; use all the strength to bite; to gnaw, bones squeeze between teeth (could not be picked out)
 2F817	business, duty
 2F835	ashes, lime
+2F865	illicit sexual relations
+2F8BF	to stick into; to shake
+2F8D2	risk, brave, dare
 2F8E0	tie beam; davit
 2F907	(Cant.) mud, mire
+30021	hard; wise
 30078	stop
 3007E	follow
 3008E	courageous; martial; dignified
@@ -22295,6 +22563,7 @@ FA2D	crane
 300FF	to be rude to, to annoy, to profane; to trouble, to harass
 3011E	cut
 30165	case; casket
+30166	utensils used anciently in ancestral temples
 30195	a lofty peak; a mountain peak
 301C0	profound significance, just now; then; in that case
 301CE	loquacity
@@ -22308,8 +22577,12 @@ FA2D	crane
 3021D	(Cant.) awry; slanting; askew
 3022E	(Cant.) a lasso; a circle, frame
 30241	to make a disturbance; to quarrel; to wrangle
+30258	(non-classical form of 韓) a fence, name of a star, a small feudal State, old name for Korea
 30259	earthen jug, crock, cistern
 30271	soda; alkaline
+3027D	(same as 嶨) hills with lots of big rocks
+3029B	(same as 逵 馗) cross-road; a thorough-fare; a center from which nine roads lead out, to accumulate soil, to store up soil
+3029F	(same as 墁 鏝) a trowel; a plaster; a trowel for plastering
 302A2	moat around a city. a channel
 30300	lady
 30306	beautiful; pretty, used in girl's name
@@ -22330,7 +22603,9 @@ FA2D	crane
 30467	ashamed, humiliated; shameful
 3046B	ashamed; abashed; mortified; humiliated, few; little scarce; rare
 3046C	enraged; resentful.to hate. to desist
+30478	(same as 瘱) quiet; calm; still peaceful, gracefully quiet, clear and evident; obvious, deep and far; profound and abstruse, to conceal; to hide
 304C6	to cover with the hand; to hide
+304D4	swift; rapid quick; speedy, (same as 掞) easy; smooth; suave; comfortable
 304D9	to tuck in, to put the finger into, to put in, to stow away
 304DC	(Cant.) to squeeze out; tickle
 304E7	to rub with the hand; to stroke
@@ -22367,6 +22642,8 @@ FA2D	crane
 306E9	the current of a stream, brave; courageous; decision with courage; (a person) of determination, swift flowing of the water currents, to float; to waft, to overflow
 306EE	thick gravy, sauce, broth; brine
 306F2	overflowing
+306FD	(same as 濎) (water etc.) boiling
+30710	marinate in salt
 3071D	waves, ripples, rapids; overflow
 30722	name of a river
 3074B	an ancient name of a river in Henan Province Dengfengxian
@@ -22392,27 +22669,34 @@ FA2D	crane
 30928	jutting on the epidermis or the cuticle (of plants); (Cant.) skin peeling off
 3094A	vessel; container; a box; a chest; a trunk, a small cup
 3095B	to sleep
+3095E	deluding and causing disorder (interchangeable 熒) lights shining; sparkling; twinkling; shimmering
 30960	to see, witness, inspect
 30962	to stare at
 30968	to peep; to spy
+30994	(standard form of 規) regulations; laws; rules; customs or usages, a pair of compasses
+309A8	(same as 毀) to ruin, to destroy, to break down
 309B4	uneven or rugged terrains
 309B7	stoneware; stone implement, soap-stone, sound of the bumping rocks, (in music) a chord
 309C3	brook, mountain stream
+309CE	name of a mountain (same as 嶔) lofty (of a mountain)
 309D8	a whetstone used to grind precious stone (jade; a gem)
 309F0	to drive out demons, etc., as was done at the new-year
 30A26	sheaf
 30A33	to accumulate or to store up rice, to purchase grain with public funds and store it against famine
 30A45	a hole; a cleft; empty
+30A67	to wait for; to wait (same as 須) to stop at, to have to, a moment; a while, (interchangeable 需) to need; demand
 30A72	bamboo; the handle of the spear
 30A78	a large pipe; a farm tool
 30A79	bamboo
 30A7B	empty
 30A8F	fine bamboo
 30AA3	bamboo chest; tubular bamboo case
+30AAB	(same as 糰) dumplings; doughnuts
 30AAD	provisions
 30AB6	rice ball
 30ACB	adorned; beautified; made up; glossy, thick and sticky thing on the surface of congee; rice gruel
 30AFD	fresh
+30B02	(an abbreviated form of 䋪) fine and delicate silk, plain white sackcloth for mourning
 30B03	to tie; to knot, to join
 30B08	string on musical instrument
 30B09	a strand of silk
@@ -22428,13 +22712,17 @@ FA2D	crane
 30B20	obstinate; perverse
 30B21	to join, to splice, to braid
 30B25	collect; overall, altogether
+30B29	embroider; embroidery; ornament
 30B2A	streamer
+30B2B	delicate, fine; dense
 30B2D	hempen sandals, leather shoes (for children)
 30B2E	tow line
 30B2F	net
 30B30	collect; overall, altogether
+30B31	(non-classical form of 索) a thick rope; a cable, alone, to tighten; to squeeze, to need, to demand
 30B32	orange or reddish-yellow silk
 30B34	matter, affair
+30B36	lace; embroidered hem (of a garment), (same as 緁) a narrow strip of woven material (such as the hem of a straw hat)
 30B37	umbrella, parasol, parachute
 30B38	fine cloth
 30B3B	rope
@@ -22442,6 +22730,7 @@ FA2D	crane
 30B44	jar, jug, pitcher, pot
 30B54	to trap, snare
 30B63	streamer adorned with feathers
+30B79	(same as 聾) deaf; hard of hearing
 30B85	soup
 30B87	fine
 30B99	to wrinkle; to contract, beautiful; elegant, dried and seasoned meat, excellent food; delicacies
@@ -22461,6 +22750,7 @@ FA2D	crane
 30C69	Compositae; chrysanthemum family; perennial herbage; herb medicine
 30C6E	madder
 30C7E	shade
+30C96	(same as 虈) angelica; the root of Dahurian angelica
 30C9F	a tiger
 30CAF	the solitary wasp, lice on cattle, a kind of gad-fly
 30CB3	the millipede, a kind of cicada; big and with black color
@@ -22480,6 +22770,7 @@ FA2D	crane
 30D24	the middle of the horn
 30D4E	fault
 30D4F	clamour, uproar, annoyance, etc.
+30D50	reasonable authority statements, (same as 呶) noise (especially from a brawling crowd); uproar; turmoil, abusive language, to boast
 30D51	false, erroneous
 30D52	sincere; faithful
 30D53	to beguile with false stories
@@ -22487,10 +22778,12 @@ FA2D	crane
 30D5A	to sell
 30D5B	blame
 30D5C	to provoke or arouse (ill-will, etc.) to cause disputes; to sow discord between two parties, to talk nonsense; to talk incoherently or unintelligibly; lies or wild talks
+30D5E	sing, hum, chant
 30D60	gibberish; to wrangle
 30D64	orders
 30D65	part
 30D66	genus of cicada, Cosmopsaltria
+30D67	write down; record; magazine
 30D69	huge; to admonish
 30D6B	unable to talk, incapable; inefficient
 30D6E	to intone, hum
@@ -22502,21 +22795,27 @@ FA2D	crane
 30D7D	flatter; suspect, be uncertain
 30D7E	shame, disgrace
 30D87	to withdraw; to decline, clever
+30D88	(same as 謘) slow on talking; incapable; obtuse; awkward
 30D8E	wriggling
 30DAC	a sow
 30DDE	to beg; to err, be mistaken
 30DE0	steps, grade, strata; series
 30DE5	tribute paid in cloth by the tribes in Szechwan and Yunnan under the Han dynasty
 30DE7	farewell gift
+30DE9	(same as 賸) a surplus; an overplus, remains, superfluous
 30DEC	to earn, sell at a profit
+30DED	booty, loot, stolen goods; bribe
 30DF4	to jump; to leap; to bounce; to spring, to run over; to oppress
 30DF6	nimble
 30E08	to trip up; to be hindered; to stroll
 30E0A	to urinate; to pass urine; to empty the bladder; to make water; weary, tired, fatigued
 30E10	sandal
+30E1B	to go, to walk in one leg; leap; crippled, (ancient form of 逝) to pass; to be gone; to depart, (interchangeable 滯) in a standstill; stagnant; impeded; blocked
 30E40	to droop, hang down
 30E72	a brass parts for a cart in ancient China
+30E73	something used to bind the frame work in a cart (compartment) of old times, (same as 輴) a hearse; a funeral carriage, (interchangeable 巡) to inspect (said of ranking officials)
 30E75	rings on a yoke
+30E77	(same as 軏) the cross-bar at the end of the pole of a carriage
 30E78	war car
 30E7A	the protruded sides of a carriage (used in ancient times to screen off muddy dust)
 30E7D	surname
@@ -22525,12 +22824,18 @@ FA2D	crane
 30E8A	a car-rut; rumbling of a cart
 30E8B	then; each; rack on chariot for luggage or weapons
 30E8D	grease pot hung under axle of cart
+30E90	same as 轗 U+8F57, to fail; a difficulty, misfortune
 30E91	a rear covering of a big carriage, an armed carriage; a military cart; cart used by the soldiers, name of a carriage
 30E93	two pieces of wood underneath a cart
 30E97	a vehicle for transporting prisoners
+30E98	strong and durable (same as 轂) hub (of a wheel), wheel
 30E99	framework of lattice on cart
 30E9B	rut
+30E9D	carriage used in ancient times to take enemy position, (interchangeable 幢) a curtain for a carriage
 30E9E	sleeping cart
+30EA0	high cartloads, (same as 轙) rings on the yokes
+30EA1	(same as 轄) noise of vehicles
+30EA4	(same as U+4851 䡑) shake of a cart, awning in front of a cart, covering the horse or mule in the shafts; (same as U+8ED2 軒) high front of a chariot or carriage
 30EB2	a time; a row; to fall, miss
 30EB7	entwine; wind around; surround
 30EC6	grunting sound of pigs; clash
@@ -22541,11 +22846,14 @@ FA2D	crane
 30F57	an alms bowl; a small bell
 30F58	fetters; to fetter
 30F5A	mine; mineral, ore
+30F5D	(same as 鬲) cooking utensil used in old times, sacrificial vessel; a heavy three-legged caldron; huge tripod of bronze with two ears
 30F5E	(Cant.) bracelet; bangle
+30F60	(obsolete) germanium
 30F62	small chisel
 30F69	cadmium (element 48, Cd)
 30F6B	(Cant.) to rust
 30F6C	the bells on the cart in ancient China
+30F6D	hook, barb; sickle; stroke with
 30F75	point of a sword
 30F78	to split; to slash or rip open (by means of a knife), jewels or ornaments on a sword, to analyze; to study; to investigate
 30F7A	agricultural implements; from tools, shining iron, a plectrum from stringed the teeth of a saw
@@ -22555,6 +22863,8 @@ FA2D	crane
 30F84	bit cup
 30F86	a poker; brass filings; to file
 30F88	a small gong, a sieve; a sifter; a strainer
+30F8D	a watch, clock
+30F90	a tiny needle; thin pin; one of the nine needles used in Chinese medicine, (same as 扉) a door leaf
 30F93	cap
 30F95	thin plates of metal
 30F96	heavy iron part of a plough, the linch-pin of a wheel
@@ -22570,11 +22880,19 @@ FA2D	crane
 30FAD	ionium
 30FAE	sickle
 30FB8	huge tripod of bronze with two ears; sacrificial vessel
+30FB9	engraving tool; carve, engrave
+30FBB	(same as 鈿) silver of gold filigree, hairpin, inlaid work
+30FC1	(standard form of 鏖) desperate fighting; to fight hard, (a stove) for keeping warm; to stew something until it's tender
 30FC2	bolt of a Chinese lock
+30FC5	(same as 鐫) to engrave or carve; as a block for printing
+30FC6	drill, bore; pierce; diamond
+30FC7	(same as U+9358 鍘) a hinged shear or long knife for cutting fodder or hay; sheet-iron, etc., to cut up
+30FE8	(interchangeable 管) a mechanical device for lead ore, (non-classical form of 閌) high; tall and big; lofty (said of the door)
 30FEB	open the door, the door is slanted
 30FF0	(Cant.) to hide oneself
 30FF4	sound of the door
 30FFB	peacefully; quietly
+30FFE	open; settle, develop, open up
 31011	stallion; promote
 31052	gathering clouds
 31074	leather arm guard
@@ -22589,6 +22907,7 @@ FA2D	crane
 3108B	bow-bag
 3108C	leather thong wound around the handle of a sword
 3108E	shallots or scallions, small (piece of land); narrow (minded)
+31090	rhyme; vowel
 310A2	the cheek-bone; the malar bone; the malar
 310A5	the forehead; a fixed number
 310A8	(nose) bridge
@@ -22600,18 +22919,23 @@ FA2D	crane
 310B6	top of the head; skull
 310BB	be worn-out, emaciated, haggard
 310D6	sound of the wind
+310D7	typhoon
 310D9	sound of wind
 310DA	a gale; a gust of swift wind, timely wind
 310DC	breeze
 310DE	hurricane; gale; cyclone
 310E0	whirlwind, stormy gale
+310F1	(same as 餼) a sacrificial victim, explained as used of the living beast, to bite; to gnaw, to eat to the full; surfeited, a wart; a pimple; a pustule
 310F2	to eat too much, surfeited; to confer
+310F3	(same as 餺) a kind of cooked noodle
 310F5	to eat to the full; surfeited, well-stacked (figure, etc.); plump
 310F7	cakes made of rice flour
+310F8	(same as 銍) a sickle
 310F9	food (wheat gruel, etc.) to welcome the guest in old times, to eat to the full; surfeited
 310FA	to obtain by hook
 310FD	hiccough
 310FF	incite
+31103	(same as 餰) congee; rice gruel, (same as 饘) thick congee or porridge
 31106	wine and food eaten with wine
 31108	well-filled dish
 31109	food (wheat gruel, etc.) to welcome the guest in old times, to eat to the full; surfeited
@@ -22632,6 +22956,7 @@ FA2D	crane
 3115D	to swindle; to cheat
 3115E	bay
 31160	long-hair horse
+31166	(same as 騜) horse with mixed colors of yellow and white, chestnut color mixed with white
 3116A	black horse
 3116B	black horses
 31181	to go bald
@@ -22643,9 +22968,14 @@ FA2D	crane
 311A5	Danio chrysotaeniata
 311CD	the sheatfish
 311D1	the globefish, blowfish, puffer
+311D5	(same as 漁) to catch fish, to fish, to seize
 311D6	sole or flounder
 311D9	the young of fish
+311DA	(same as 鱴 鮆) the mullet, a kind of fish grown in the sea; like abalone; a salted fish
+311DE	(same as 鱔) the eel
+311E2	a legendary giant fish
 311E4	a fish; common carp
+311E5	(same as 䱍) tuna, something like sturgeon
 311E7	the sheatfish
 311EC	globefish; blowfish; puffer
 311ED	to confer; to bestow on an inferior; to reward
@@ -22656,16 +22986,21 @@ FA2D	crane
 311F3	dace; Canton dace
 311F7	shark
 311F9	a kind of fish; silver-gray color with black dots; with small mouth and no teeth
+311FB	same as U+9C64 鱤
 311FD	the globefish; blowfish; puffer
 311FF	dried fish
 31200	(an ancient name) a kind of silver fish, a kind of insect
 31204	blowfish
 31206	a carp-like savory fish
 31207	tuna
+31208	(same as 䱭) tuna
 3120D	a sardine
+31210	anchovy
 31212	a kind of fish; tuna
 31213	a ray, skate
 31216	shad
+31218	codfish
+3121A	crocodile, alligator
 3121B	an ancient name for tuna, a kind of sturgeon
 3121C	fresh, new, delicious; rare, few
 31247	swallow
@@ -22675,10 +23010,14 @@ FA2D	crane
 31256	osprey; water hawk
 31257	a kind of nightingale
 31259	a kind of bird which shares its nest with rats, sound of birds
+3125E	(same as 鵡) parrot
+31264	cuckoo, pelican, (same as 鴃) a shrike; butcherbird
 31266	a kind of water bird, a vulture; a condor
 31267	a kind of bird, a hawk; sparrow hawk
+31268	crow, raven; Corvus species (various)
 31269	the pelican
 3126C	long-tailed pheasant
+31270	eastern jackdaw; Corvus monedula
 31272	a crested ibis
 31276	a sort of nightingale which is said to sing for the dawn; also the name for a large bat with awing-spread of two feet, a sort of pheasant
 3127A	the pigeon, the turtle dove
@@ -22686,6 +23025,7 @@ FA2D	crane
 31282	a legendary bird, divine birds; the phoenix
 31284	hawk; Ardea cinerea
 31285	pigeon; turtle-dove; a hawk
+31288	hawk; Ardea cinerea
 3128A	a fabulous night-bird, grotesque monster
 3128C	a sea-bird with a white breast
 31292	a bird which frequents the sea-shore
@@ -22694,19 +23034,28 @@ FA2D	crane
 3129A	Caprimulgus indicus
 3129B	a hawk
 312A1	call
+312A3	(same as 鵪) the quail
 312A6	cormorant
+312AA	crane; small swan; non-classical form of U+9D12 鴒, wagtail
+312AD	eastern jackdaw; Corvus monedula
 312B0	swallow
 312BC	salt, soybean sauce; soy
 312C6	cakes pf leaven; yeast, ferment for brewing, crumbs of barley
 312CA	flour, rice flour
 312CB	porridge
 312CE	distiller's grains or yeast
+312D0	yeast, leaven
+312D4	(same as 餅) cakes; biscuits; pastry
 312D6	bran of wheat
+312D7	bran; refuse
+312D9	cakes; biscuits; pastry, distiller's grains or yeast, (interchangeable 稞) grains ready for grinding; healthy grains, flour, (same as 䴷) use the whole piece of barley to ferment for brewing
 312DD	cakes; cookies; biscuits; pastries; dumplings
 312EA	to grind wheat to powder; with bran and flour mixed together
 312EB	a kind of barley, dust of ferment for brewing; small crumbs of grains from the distillery
+312EE	(same as 䴿) grains from the distillery, crumbs of barley, crumbs of rice
 312F4	yellow, (dialect) yellowish black; dark yellow
 31301	a kind of frog; a kind of sea turtle; with two horns; and pattern on the tortoise shell
+31303	(same as 鼃 蛙) frog, (interchangeable 哇) retch, noise of vomiting
 31304	spider
 31307	a fresh-water turtle, Trionyx sinensis
 3130A	drumming
@@ -22714,7 +23063,9 @@ FA2D	crane
 31317	steam
 3132B	to display the teeth
 3132C	to chew
+3132E	act; stanza; time, occasion
 3132F	to chew the cud
+31330	to gnaw; to bite
 31333	toothless
 31335	in the manner a toothless person chewing food
 31339	uneven (teeth)
