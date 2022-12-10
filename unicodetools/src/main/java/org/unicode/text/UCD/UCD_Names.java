@@ -103,13 +103,14 @@ public final class UCD_Names implements UCD_Types {
         "Pattern_Syntax",
         "Prepended_Concatenation_Mark",
         "Regional_Indicator",
+        "IDS_Unary_Operator",
     };
 
     static final String[] SHORT_BP = {
         "Bidi_M", "CE", "WSpace", "NBrk", "Bidi_C", "JoinC", "Dash", "Hyphen", "QMark", "Term",
         "OMath", "Hex", "AHex", "OAlpha", "Ideo", "Dia", "Ext", "OLower", "OUpper", "NChar",
         "TurkI", "OGrExt", "Gr_Link", "IDSB", "IDST", "Radical", "UIdeo", "ODI", "Dep", "SD", "LOE",
-        "OIDS", "STerm", "VS", "OIDC", "PatWS", "PatSyn", "PCM", "RI",
+        "OIDS", "STerm", "VS", "OIDC", "PatWS", "PatSyn", "PCM", "RI", "IDSU",
     };
 
     public static final int BINARY_UNIFIED_IDEOGRAPH =
