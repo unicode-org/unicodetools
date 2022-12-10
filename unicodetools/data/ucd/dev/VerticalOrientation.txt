@@ -1,5 +1,5 @@
 # VerticalOrientation-15.1.0.txt
-# Date: 2022-11-04 [KW, LI]
+# Date: 2022-11-16, 09:36:32 GMT [KW, LI]
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -133,7 +133,7 @@
 00D7           ; U  # Sm         MULTIPLICATION SIGN
 00D8..00F6     ; R  # L&    [31] LATIN CAPITAL LETTER O WITH STROKE..LATIN SMALL LETTER O WITH DIAERESIS
 00F7           ; U  # Sm         DIVISION SIGN
-00F8..00FF     ; R  # L&     [8] LATIN SMALL LETTER O WITH STROKE..LATIN SMALL LETTER Y WITH DIAERESIS
+00F8..00FF     ; R  # Ll     [8] LATIN SMALL LETTER O WITH STROKE..LATIN SMALL LETTER Y WITH DIAERESIS
 0100..017F     ; R  # L&   [128] LATIN CAPITAL LETTER A WITH MACRON..LATIN SMALL LETTER LONG S
 0180..01BA     ; R  # L&    [59] LATIN SMALL LETTER B WITH STROKE..LATIN SMALL LETTER EZH WITH TAIL
 01BB           ; R  # Lo         LATIN LETTER TWO WITH STROKE
@@ -1499,7 +1499,9 @@ D7B0..D7C6     ; U  # Lo    [23] HANGUL JUNGSEONG O-YEO..HANGUL JUNGSEONG ARAEA-
 D7C7..D7CA     ; U  # Cn     [4] <reserved-D7C7>..<reserved-D7CA>
 D7CB..D7FB     ; U  # Lo    [49] HANGUL JONGSEONG NIEUN-RIEUL..HANGUL JONGSEONG PHIEUPH-THIEUTH
 D7FC..D7FF     ; U  # Cn     [4] <reserved-D7FC>..<reserved-D7FF>
-D800..DFFF     ; R  # Cs  [2048] <surrogate-D800>..<surrogate-DFFF>
+D800..DB7F     ; R  # Cs   [896] <surrogate-D800>..<surrogate-DB7F>
+DB80..DBFF     ; R  # Cs   [128] <surrogate-DB80>..<surrogate-DBFF>
+DC00..DFFF     ; R  # Cs  [1024] <surrogate-DC00>..<surrogate-DFFF>
 E000..F8FF     ; U  # Co  [6400] <private-use-E000>..<private-use-F8FF>
 F900..FA6D     ; U  # Lo   [366] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIBILITY IDEOGRAPH-FA6D
 FA6E..FA6F     ; U  # Cn     [2] <reserved-FA6E>..<reserved-FA6F>
@@ -2426,7 +2428,8 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 2CEB0..2EBE0   ; U  # Lo  [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2EBE1..2F7FF   ; U  # Cn  [3103] <reserved-2EBE1>..<reserved-2F7FF>
 2F800..2FA1D   ; U  # Lo   [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
-2FA1E..2FFFD   ; U  # Cn  [1504] <reserved-2FA1E>..<reserved-2FFFD>
+2FA1E..2FA1F   ; U  # Cn     [2] <reserved-2FA1E>..<reserved-2FA1F>
+2FA20..2FFFD   ; U  # Cn  [1502] <reserved-2FA20>..<reserved-2FFFD>
 30000..3134A   ; U  # Lo  [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 3134B..3134F   ; U  # Cn     [5] <reserved-3134B>..<reserved-3134F>
 31350..323AF   ; U  # Lo  [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
