@@ -58,6 +58,7 @@
 3444	mou5
 3445	zok3
 3446	hing1
+3447	zau3
 3448	dung1
 344C	hong1
 344E	nou5
@@ -82,6 +83,7 @@
 346D	bei2
 346F	seoi2
 3472	naam4
+3473	zau3
 3474	cam1
 3475	zat6
 3476	hei3
@@ -92,6 +94,7 @@
 347D	tong4
 3485	kai2
 3486	kap1
+3487	mou5
 348B	si1
 348C	king4
 348F	hon4
@@ -102,6 +105,7 @@
 3497	toi4
 3498	syu6
 3499	min4
+349A	wan2
 349D	mit6
 349E	wai6
 349F	niu5
@@ -170,6 +174,7 @@
 34F3	dai1
 34F5	ngok6
 34F6	kit3
+34F7	ji6
 34F8	zoek3
 34FA	kin4
 34FB	gong1
@@ -237,6 +242,7 @@
 3553	cin4
 3554	teng1
 3556	sou3
+3558	caam1
 3559	zeon3
 355A	zaau2
 355C	si2
@@ -327,6 +333,7 @@
 35CF	waai1
 35D0	haap3
 35D1	baai6
+35D2	aai1
 35D3	zeoi1
 35D4	hin1
 35D6	daam6
@@ -366,6 +373,7 @@
 3605	haam4
 3607	wing4
 3609	zik1
+360E	haam3
 360F	dou6
 3611	lai6
 3612	zung2
@@ -384,6 +392,7 @@
 3628	nip6
 3629	bei6
 362A	hou3
+362D	aau3
 362E	jik6
 362F	coeng4
 3630	zam1
@@ -425,6 +434,7 @@
 3667	lau6
 3668	gei1
 3669	liu4
+366C	ngan4
 366D	kyut3
 366E	daap3
 3672	jung1
@@ -436,6 +446,7 @@
 367D	sik1
 367E	hok6
 367F..3680	hei1
+3681	kiu3
 3683	wan1
 3684	zi3
 3685	lung4
@@ -468,6 +479,7 @@
 36A3	gaau2
 36A6	gei1
 36A8	san1
+36A9	jim5
 36AA	hou3
 36AB	saap3
 36AC	gwan1
@@ -497,6 +509,7 @@
 36D6	so1
 36D9	san1
 36DA	tung2
+36DB	san1
 36DD	bui3
 36DE	lung6
 36DF	wun6
@@ -899,6 +912,7 @@
 3914	fu6
 3916	no6
 3917	taai3
+3918	zau3
 391A	hong4
 391D	cung1
 391E	caa3
@@ -1095,6 +1109,8 @@
 3A3C	loek6
 3A3D	bik1
 3A3E	joeng6
+3A3F	geoi3
+3A41	kok1
 3A42	huk6
 3A43	gin2
 3A44	saai1
@@ -1112,6 +1128,7 @@
 3A55	ling1
 3A56	koeng4
 3A57	kwai4
+3A59	sak1
 3A5A	mung4
 3A5B	tyun4
 3A5C	laam5
@@ -1145,6 +1162,7 @@
 3A7D	kei4
 3A7E	zeoi1
 3A81	kam4
+3A85	gang1
 3A86	dai2
 3A87	sin3
 3A88	gwai3
@@ -1186,6 +1204,7 @@
 3AC0	ding2
 3AC1	dyun6
 3AC2	zyu3
+3AC3	jin2
 3AC4	pong4
 3AC5	kei4
 3AC6	ji5
@@ -1527,6 +1546,7 @@
 3C90	gam1
 3C91	seoi2
 3C92	bou6
+3C93	jung2
 3C94	sin1
 3C96	siu1
 3C97	fu1
@@ -1558,13 +1578,16 @@
 3CBF	wong2
 3CC0	gwo3
 3CC1	zak1
+3CC2	jyun4
 3CC3	ceoi3
 3CC4	jin4
+3CC5	lau4
 3CC7	fu6
 3CC8	pui3
 3CC9	jyut6
 3CCD	bou3
 3CCE	bin6
+3CD2	faat3
 3CD3	jau6
 3CD4	deoi6
 3CD5	laan4
@@ -1606,6 +1629,7 @@
 3D0F	wong2
 3D10	min6
 3D11	sou3
+3D14	kap1
 3D16	lok6
 3D18	mou6
 3D1A	seoi6
@@ -1622,6 +1646,7 @@
 3D26	gun3
 3D27	sik1
 3D28	zam6
+3D29	jung1
 3D2C	ze6
 3D2E	sit3
 3D2F	zi1
@@ -1727,6 +1752,7 @@
 3DC1	jung2
 3DC5	caau2
 3DC7	fui1
+3DC9	tong3
 3DCC	zau2
 3DCD	leon4
 3DCE	hot3
@@ -2038,6 +2064,7 @@
 3F96	lei5
 3F97	loeng6
 3F98	gang2
+3F99	jan3
 3F9A	se1
 3F9B	cam2
 3F9C	hip3
@@ -2217,6 +2244,7 @@
 40A6	zan1
 40A8	cik1
 40AA	haau1
+40AB	haang1
 40AC	gung2
 40AE	loek6
 40AF	gwaai3
@@ -2284,6 +2312,7 @@
 40FF	fu1
 4100	wo6
 4102	lau6
+4103	joeng1
 4105	gyun3
 4106	wut6
 4107	cing4
@@ -2398,6 +2427,7 @@
 41B9	cung1
 41BA	pun1
 41BB	kiu3
+41BC	wo1
 41BD	keoi4
 41BE	laam4
 41C1	si1
@@ -2457,6 +2487,7 @@
 4209	saap3
 420A	ling4
 420D	mang4
+420E	jip6
 420F	bok6
 4210	kui2
 4211	gwaa2
@@ -2748,6 +2779,7 @@
 43D0	kyut3
 43D2	pin3
 43D3	gun2
+43D5	jam6
 43D8	pat1
 43D9	dam1
 43DB	ceon2
@@ -2798,6 +2830,7 @@
 442A	zeon3
 442C	cou4
 442D	zai6
+4430	sau1
 4432	zaap6
 4434	gui3
 4436	zaam1
@@ -3033,6 +3066,7 @@
 456A	zaak6
 456B	kwai4
 456C	goeng1
+456D	cam4
 456E	guk1
 4570	faan4
 4572	lam5
@@ -3049,6 +3083,7 @@
 4582	lyun4
 4585	ling4
 4587	wat1
+4588	joek6
 4589	heoi1
 458D	kin4
 458E	haap6
@@ -3314,6 +3349,7 @@
 46F8	zaam1
 46F9	sin3
 46FA	gaai3
+46FB	jau5
 46FC	wai2
 46FE	sou3
 46FF	gaak3
@@ -3623,6 +3659,7 @@
 4894	hap6
 4897	kuk1
 4898	sau2
+4899	baai6
 489A	gang1
 489B	gwing2
 489C	gwai1
@@ -3828,7 +3865,7 @@
 4997	gwik1
 4998	haan6
 4999	zi6
-499B	zaang3
+499B	zang3
 499C	ng4
 499D	waak6
 499F	ceoi3
@@ -3883,6 +3920,7 @@
 49DE	maa6
 49DF	haam6
 49E0	zyun1
+49E1	jung4
 49E2	keoi1
 49E5	wai6
 49E6	wai4
@@ -4174,6 +4212,7 @@
 4BC4	waa1
 4BC5	nip6
 4BCA	kaa3
+4BCC	haau1
 4BCD	ling4
 4BCE	gon3
 4BD2	hang4
@@ -4469,6 +4508,7 @@
 4D8A	nuk6
 4D8C	paau3
 4D8D	tai3
+4D8F	tai3
 4D91	tai3
 4D92	cai4
 4D94	ci4
@@ -4484,6 +4524,7 @@
 4DA0	gaam1
 4DA2	gaam1
 4DA3	ngoi4
+4DA7	ngaau5
 4DAA	caat3
 4DAC	gin1
 4DAD	wong1
@@ -4662,6 +4703,7 @@
 4EAC	ging1
 4EAD	ting4
 4EAE	loeng6
+4EAF	hoeng2
 4EB0	ging1
 4EB1	je6
 4EB2	can1
@@ -4926,6 +4968,7 @@
 4FB8	syu6
 4FB9	ting5
 4FBA	sam6
+4FBB	tyut3
 4FBC	but6
 4FBD	naam4
 4FBE	haau1
@@ -4996,6 +5039,7 @@
 4FFF	fu2
 5000	coeng1
 5001	zi1
+5002	bing3
 5003	gau6
 5004	haau4
 5005	ceoi4
@@ -6074,6 +6118,7 @@
 545A	mui4
 545B	coeng1
 545C	wu1
+545D	ak1
 545E	si1
 545F	gyun2
 5460	pan3
@@ -6277,6 +6322,7 @@
 5528	zo2
 5529	wo1
 552A	fung2
+552B	jam4
 552C	fu2
 552D	kei3
 552E	sau6
@@ -6387,6 +6433,7 @@
 559A..559B	wun6
 559C	hei2
 559D	hot3
+559E	zik1
 559F	wai2
 55A0	zung2
 55A1	wai4
@@ -7645,6 +7692,7 @@
 5AAB	zit3
 5AAC	bou2
 5AAD	seoi1
+5AAE	jyu4
 5AAF	gwai1
 5AB0	co4
 5AB1	jiu4
@@ -11687,6 +11735,7 @@
 6AFB	jing1
 6AFC	zim1
 6AFD	jan2
+6AFE	jau2
 6AFF	jing4
 6B00	soeng1
 6B01	nung4
@@ -13532,7 +13581,7 @@
 7258	duk6
 7259	ngaa4
 725A	caang1
-725B	ngau4
+725B..725C	ngau4
 725D	pan5
 725E	kau1
 725F	mau4
@@ -13740,6 +13789,7 @@
 732D	cyun1
 732E	hin3
 732F	teon1
+7330	aat3
 7331	naau4
 7332	hit3
 7333	gaa1
@@ -19583,6 +19633,7 @@
 8A8F	long5
 8A90	ngo4
 8A91	gwong2
+8A92	oi1
 8A93	sai6
 8A94	ting5
 8A95	daan3
@@ -19936,6 +19987,7 @@
 8BF3	gwong2
 8BF4	syut3
 8BF5	zung6
+8BF6	oi1
 8BF7	cing2
 8BF8	zyu1
 8BF9	zau1
@@ -21553,6 +21605,7 @@
 9265	seot6
 9266	zing1
 9267	mou5
+9268	nip6
 9269	saai2
 926A	dai6
 926B	gaa1
@@ -22500,6 +22553,7 @@
 9629	sing1
 962A	baan2
 962B	pei1
+962C	haang1
 962D	wan5
 962E	jyun2
 962F	zi2
@@ -22511,6 +22565,7 @@
 9635	zan6
 9636	gaai1
 9637	cing1
+9638	aai3
 9639	keoi1
 963A	dai2
 963B	zo2
@@ -23345,6 +23400,7 @@
 9992	maan6
 9993	saan2
 9994	zaan6
+9995	nong4
 9996	sau2
 9997	kwai4
 9998	gwik1
@@ -24080,6 +24136,7 @@
 9C82	fong4
 9C83	baa1
 9C84	ho4
+9C85	bat6
 9C86	ping4
 9C87	nim4
 9C88	lou4
@@ -24096,6 +24153,7 @@
 9C93	kaau3
 9C94	fui2
 9C95	ji4
+9C96	tung4
 9C97	caak6
 9C98	hau6
 9C99	kui2
@@ -24948,6 +25006,7 @@ FA17	jik1
 20299	ji4
 2029E	zung1
 202A0	fan1
+202A7	bing3
 202B7	zi6
 202BF	syun1
 202C0	jung5
@@ -24984,6 +25043,7 @@ FA17	jik1
 204D7	fu3
 204FC	sip3
 204FE	cyun4
+20503	hai4
 20533	lim4
 20541	saan1
 20544	nap1
@@ -25013,8 +25073,10 @@ FA17	jik1
 206EC	jing4
 2070E	sin3
 20731	pai1
+2073C	haap3
 2076D	peng2
 20779	gaai3
+207AD	dau1
 207B0	ziu2
 207B3	gwaai2
 207CD	cung1
@@ -25027,6 +25089,8 @@ FA17	jik1
 20923	ci3
 20954	wui6
 20979	au1
+20984	wai2
+2098C	sei3
 209E7	sai1
 209E9	fui3
 20A11	mong4
@@ -25037,8 +25101,10 @@ FA17	jik1
 20A7A	lei4
 20A8A	lim4
 20A99	jik6
+20AB1	lik6
 20AB4	co2
 20AC2	lou4
+20ACA	teng1
 20AE4	leon6
 20AED	caam1
 20B0D	zeon3
@@ -25047,9 +25113,11 @@ FA17	jik1
 20B22	to1
 20B24	jik6
 20B36	cam1
+20B6F	zaa1
 20B8F	jeoi6
 20B9F	cik1
 20BA8	naai3
+20BBE	ng6
 20BBF	saan1
 20BC6	jyu4
 20BC8	daai6
@@ -25075,6 +25143,7 @@ FA17	jik1
 20C43	nip1
 20C53	ngai1
 20C58	ngaak6
+20C5E	caap3
 20C65	fik1
 20C77	ming1
 20C7C	haau2
@@ -25083,6 +25152,7 @@ FA17	jik1
 20C9C	zaang1
 20CA5	lai2
 20CB5	gip3
+20CBF	sok3
 20CC1	kwan3
 20CCF	ce2
 20CD3	bei3
@@ -25093,6 +25163,7 @@ FA17	jik1
 20CED	hak1
 20CFF	mei5
 20D15	miu2
+20D1F	me1
 20D28	gwaan1
 20D30	gau6
 20D31	wu4
@@ -25122,6 +25193,7 @@ FA17	jik1
 20DAE	hei2
 20DB2	gap6
 20DC8	leot6
+20DFF	zaa3
 20E04	jing1
 20E09	kak1
 20E0A	tap1
@@ -25224,6 +25296,7 @@ FA17	jik1
 21187	wok1
 211D9	doe4
 2120E	mui4
+21219	ngo4
 2121B	waan1
 2123C	ting2
 21244	gaa2
@@ -25294,6 +25367,7 @@ FA17	jik1
 216DF	jyut6
 216E6	bing2
 216E8	kaa1
+216F7	zi2
 216FA	jau4
 216FB	wing5
 216FC	juk6
@@ -25358,6 +25432,7 @@ FA17	jik1
 21883	haan5
 21884	man5
 21885	wan4
+21898	jan6
 2189E	jing1
 2189F	co3
 218A0	wo1
@@ -25392,6 +25467,7 @@ FA17	jik1
 21996	mun5
 219CC	gwai2
 219DB	fu6
+219EF	zik6
 219F3	coi3
 21A2D	cung4
 21A34	ning4
@@ -25450,6 +25526,7 @@ FA17	jik1
 22045	seon3
 22049	seon3
 2207E	ciu1
+22091	sik1
 2209A	coek3
 220C7	lei5
 220FC	mei4
@@ -25460,6 +25537,7 @@ FA17	jik1
 22165	cyu4
 22173	lim4
 2217A	zin2
+2219E	gin2
 221A1	nin1
 221C1	si1
 221C2	gwaan1
@@ -25471,6 +25549,7 @@ FA17	jik1
 2231C	ting4
 22321	gwing2
 22325	cing2
+2237A	jik6
 2237F	coeng4
 223BD	kap6
 223D0	wang4
@@ -25516,6 +25595,7 @@ FA17	jik1
 2271B	jan1
 2271F	gong1
 2272A	nok6
+2272B	sing1
 22775	fit1
 22781	fung1
 22796	tai3
@@ -25565,6 +25645,7 @@ FA17	jik1
 22B22	diu3
 22B3F	kaai2
 22B43	dau6
+22B46	cau1
 22B4F	dou2
 22B6A	hak1
 22B91	luk1
@@ -25591,6 +25672,7 @@ FA17	jik1
 22CC6	ngou4
 22CC9	keoi1
 22CDC	saai1
+22CDF	tung2
 22D07	zap1
 22D08	daat3
 22D12	paang1
@@ -25625,6 +25707,7 @@ FA17	jik1
 22F38	mei4
 22F74	duk1
 22F7E	haau6
+22F96	dou6
 22FCC	hing3
 22FE3	hiu1
 23033	nip6
@@ -25640,12 +25723,14 @@ FA17	jik1
 230C8	zyu3
 230DA	hong4
 23103	kei4
+23108	fai1
 2313D	doek3
 2317D	pui3
 23182	jyun6
 23190	lou4
 231A4..231A5	fong2
 231B3	gang2
+231C0	bou1
 231C8	hiu2
 231C9	gwan1
 231E8	doi6
@@ -25705,6 +25790,7 @@ FA17	jik1
 234E5	jau4
 234EA	hei3
 234FF	lou6
+23519	him1
 23528	kang3
 23530	zi1
 23533	tok3
@@ -25752,9 +25838,11 @@ FA17	jik1
 237A2	ze3
 237BC	joeng5
 237C2	fun1
+237C4	tok3
 237D5	san1
 237D6	mo4
 237D7	ji4
+237F4	saan1
 2383A	cip3
 238BE	fun2
 239B5	daai2
@@ -25764,6 +25852,8 @@ FA17	jik1
 23A2F	fan1
 23A3C	tai3
 23A75	ban3
+23A95	gwai2
+23A98	gwai2
 23AA0	gik1
 23AA7	jan1
 23AB5	din6
@@ -25776,6 +25866,7 @@ FA17	jik1
 23AFA	juk6
 23B1A	paak3
 23B5A	bou6
+23B72	jung2
 23BF6	saam1
 23C07	jung5
 23C5D	dung1
@@ -25858,7 +25949,7 @@ FA17	jik1
 23FEF	sam1
 23FF0	zeon3
 24011	ning6
-2401C	seoi1
+2401C	leot6
 24039	zeon3
 2403A	gaa1
 2403B	sam1
@@ -25959,7 +26050,9 @@ FA17	jik1
 244D6	lyun4
 24505	dit6
 24521	wai4
+2456A	baan6
 2456D	zoeng1
+2456F	zoeng1
 24578	zong1
 245C8	sip3
 24618	hau2
@@ -25967,7 +26060,9 @@ FA17	jik1
 24665	hak1
 24674	caau1
 24697	syun1
+246C9	hat6
 246D4	maan6
+246D8	mong1
 24706	lung4
 24725	ji6
 2472F	kap6
@@ -26046,6 +26141,7 @@ FA17	jik1
 249F9	ci4
 249FB	ting4
 24A0E	keoi4
+24A0F	so2
 24A12	jan1
 24A13	caa4
 24A15	lak6
@@ -26107,9 +26203,12 @@ FA17	jik1
 24C15	gyun2
 24C1D	gyun2
 24C21	man4
+24C48	mau5
+24C5D	teon2
 24C6C	seon1
 24C9E	jyu4
 24C9F	cing1
+24CC8	soeng1
 24CC9	hon3
 24CD9	jyun2
 24D06	cau4
@@ -26117,6 +26216,7 @@ FA17	jik1
 24D13	zing3
 24D14	so1
 24D2F	waan6
+24D50	ng6
 24D5A	to4
 24D8A	gui6
 24D99	zaa3
@@ -26128,6 +26228,7 @@ FA17	jik1
 24E05	man4
 24E3B	naa1
 24E50	lit3
+24E9B	gaan2
 24EA5	daap3
 24EA7	zang2
 24EBA	taan1
@@ -26186,6 +26287,7 @@ FA17	jik1
 2531B	lai6
 2538A	kan4
 2539D	zyun2
+25418	sek6
 25419	paat3
 2541E	mong4
 2541F	ngai5
@@ -26224,6 +26326,7 @@ FA17	jik1
 25683	leoi5
 25695	coeng1
 256E3	daai3
+256F1	bang1
 256F6	sin6
 25706	lau4
 2570C	ou3
@@ -26246,6 +26349,7 @@ FA17	jik1
 258DE	dek6
 258E1	leon6
 25903	jau5
+2591B	cau1
 25945	lung1
 25946	miu5
 25956	gu2
@@ -26311,6 +26415,7 @@ FA17	jik1
 25F4B	cim1
 25F58	mut6
 25FE2	wang4
+26007	ging1
 26021	jyu5
 26029	dyun6
 26048	hung3
@@ -26319,6 +26424,7 @@ FA17	jik1
 26097	sok3
 260A4	ping4
 260A5	dam3
+260B3	gan2
 26102	daai3
 26121	maan6
 26159	man4
@@ -26391,8 +26497,10 @@ FA17	jik1
 26612	nip6
 26626	siu6
 26629	paa4
+26675	wun2
 26676	gu2
 2667C	ci3
+26693	ping4
 26696	zaap3
 266A7	ceon2
 266AF	jan6
@@ -26406,9 +26514,11 @@ FA17	jik1
 26761	jim1
 2677C	leoi4
 26799	deoi2
+267A3	sou1
 267B3	jung4
 267B4	jim1
 267CC	zin2
+267E4	sau1
 2681C	jip6
 26846	fat1
 2685E	gam3
@@ -26457,6 +26567,7 @@ FA17	jik1
 26BB3	kei5
 26BC0	ban6
 26BF7	miu6
+26C0F	diu6
 26C21	naa5
 26C29	gaan1
 26C40	juk6
@@ -26531,6 +26642,7 @@ FA17	jik1
 26FDE	cung1
 26FDF	ji2
 2700E	gou1
+27039	ze3
 2704B	man5
 27052	joeng6
 27088	ziu2
@@ -26561,6 +26673,7 @@ FA17	jik1
 272B5	gong3
 272B6	doe3
 272CA	saa1
+272CD	zit3
 272E6	mei1
 27307	bang1
 27313	fau6
@@ -26646,6 +26759,7 @@ FA17	jik1
 27C0A	tin4
 27C0E	lou4
 27C12	gwok3
+27C35	duk1
 27C3C	zoeng6
 27C6C	jyu5
 27CB1	joeng1
@@ -26686,6 +26800,7 @@ FA17	jik1
 28024	leoi1
 28043	dai6
 28048	gaang3
+28054	tiu3
 28083	pang4
 28090	leoi1
 280BD	dam6
@@ -26729,6 +26844,7 @@ FA17	jik1
 28405	syu4
 28408	gwong1
 28412	ci4
+28452	tou4
 28468	zat1
 28473	ting4
 28482	jin4
@@ -26756,6 +26872,7 @@ FA17	jik1
 28812	faan5
 28816	baau3
 2882B	jau4
+288A5	mai4
 288E6	zeoi6
 2890D	ling4
 28933	lei4
@@ -26909,6 +27026,7 @@ FA17	jik1
 28EB3	jung5
 28ED9	fong2
 28EE7	lau4
+28EF2	laa3
 28EF6	gwik1
 28F4C	jan2
 28FC5	lok6
@@ -26963,6 +27081,7 @@ FA17	jik1
 295B0	cam4
 295B8	hou4
 295D7	geoi6
+295E1	tou4
 295E9	lau4
 295F4	bung6
 29665	bat6
@@ -26977,6 +27096,7 @@ FA17	jik1
 29807	seon3
 2980C	sung3
 29810	sau2
+29811	ding2
 29857	cau3
 298A4	juk6
 298B2	sai2
@@ -27050,6 +27170,7 @@ FA17	jik1
 29F30	ci4
 29F79	ngap6
 29F7C	waan5
+29F7E	on1
 29F81	kau4
 29F83	min5
 29F87	fu2
@@ -27109,6 +27230,7 @@ FA17	jik1
 2A4AC	nung1
 2A4D0	co2
 2A502	ding2
+2A599	hau1
 2A5C6	cai4
 2A5CB	zi1
 2A601	kap6
@@ -27152,6 +27274,7 @@ FA17	jik1
 2AA58	jin2
 2AA78	fan4
 2AA9E	coeng4
+2AABC	bat1
 2AACC	lung6
 2AAF7	cau4
 2AAFA	cim1
@@ -27568,6 +27691,7 @@ FA17	jik1
 2B810	haam4
 2B812	zoeng1
 2B81C	ngai4
+2B852	luk6
 2B88A	cin4
 2B892	lung5
 2B899	dung6
@@ -27762,6 +27886,7 @@ FA17	jik1
 2C446	gwan3
 2C44D	cau2
 2C453	jip6
+2C454	zung3
 2C455	gwan3
 2C457	gaan3
 2C461	cau2
@@ -28289,12 +28414,16 @@ FA17	jik1
 2EBD9	kaa1
 2F817	jung2
 2F825	jung5
+2F835	fui1
 2F83B	jiu1
 2F840	ngok6
+2F865	ping1
 2F878	cit3
 2F894	tou1
 2F8A6	ci4
+2F8BF	zeon3
 2F8CD	zeon3
+2F8D2	mou6
 2F8E0	gai1
 2F907	baan6
 2F994	fong1
@@ -28320,7 +28449,7 @@ FA17	jik1
 3011E	tyun4
 30154	leoi6
 30165	duk6
-30166	dan1
+30166	daan1
 3019A	laam4
 301C0	haai6
 301CE	dung2
@@ -28852,6 +28981,7 @@ FA17	jik1
 30F7F	zip3
 30F80	but6
 30F81	hung3
+30F83	zok6
 30F84	mui4
 30F85	ham4
 30F86	juk6
