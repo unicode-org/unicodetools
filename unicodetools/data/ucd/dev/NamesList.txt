@@ -1,7 +1,14 @@
 ; charset=UTF-8
-@@@	The Unicode Standard 15.0.0
-@@@+	U15M220815.lst
-	Unicode 15.0.0 final names list.
+@@@	The Unicode Standard 15.1.0
+@@@+	U15M221201.lst
+	Unicode 15.1.0 names list, second delta.
+	Repertoire synched with UnicodeData-15.1.0d1.txt.
+	Added Kangxi radical number annotations to Kangxi Radicals block.
+	Add blind xref from 2E9A to 2F46.
+	Added annotation for new Hieroglyph format control.
+	Added xrefs for 20A3 and A798.
+	Updated annotation for A799.
+	Added annotation and xref for AB3E.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -1940,7 +1947,7 @@
 	= barred i, i bar
 	* high central unrounded vowel
 	* uppercase is 0197
-@+	* ISO 6438 gives lowercase of 0197 as 026A, not 0268
+	* ISO 6438 gives lowercase of 0197 as 026A, not 0268
 0269	LATIN SMALL LETTER IOTA
 	* semi-high front unrounded vowel
 @+	* obsoleted by IPA in 1989
@@ -4950,6 +4957,8 @@
 @		Arabic letters for Arwi
 08B3	ARABIC LETTER AIN WITH THREE DOTS BELOW
 08B4	ARABIC LETTER KAF WITH DOT BELOW
+	* also used in Pegon
+	x (arabic letter kaf with three dots below - 06AE)
 @		Early Arabic letter
 08B5	ARABIC LETTER QAF WITH DOT BELOW AND NO DOTS ABOVE
 @		Arabic letters for Bravanese
@@ -13245,6 +13254,7 @@
 	* Brazil
 20A3	FRENCH FRANC SIGN
 	* France
+	x (latin capital letter f with stroke - A798)
 20A4	LIRA SIGN
 	* intended for lira, but not widely used
 	* preferred character for lira is 00A3
@@ -19460,6 +19470,8 @@
 2E99	CJK RADICAL RAP
 	* form used on right side
 	x 6535
+2E9A	<reserved>
+	x 2F46
 2E9B	CJK RADICAL CHOKE
 	x 65E1
 2E9C	CJK RADICAL SUN
@@ -19683,433 +19695,647 @@
 @@	2F00	Kangxi Radicals	2FDF
 @		Kangxi radicals
 2F00	KANGXI RADICAL ONE
+	* Kangxi Radical 1
 	# 4E00
 2F01	KANGXI RADICAL LINE
+	* Kangxi Radical 2
 	# 4E28
 2F02	KANGXI RADICAL DOT
+	* Kangxi Radical 3
 	# 4E36
 2F03	KANGXI RADICAL SLASH
+	* Kangxi Radical 4
 	# 4E3F
 2F04	KANGXI RADICAL SECOND
+	* Kangxi Radical 5
 	# 4E59
 2F05	KANGXI RADICAL HOOK
+	* Kangxi Radical 6
 	# 4E85
 2F06	KANGXI RADICAL TWO
+	* Kangxi Radical 7
 	# 4E8C
 2F07	KANGXI RADICAL LID
+	* Kangxi Radical 8
 	# 4EA0
 2F08	KANGXI RADICAL MAN
+	* Kangxi Radical 9
 	# 4EBA
 2F09	KANGXI RADICAL LEGS
+	* Kangxi Radical 10
 	# 513F
 2F0A	KANGXI RADICAL ENTER
+	* Kangxi Radical 11
 	# 5165
 2F0B	KANGXI RADICAL EIGHT
+	* Kangxi Radical 12
 	# 516B
 2F0C	KANGXI RADICAL DOWN BOX
+	* Kangxi Radical 13
 	# 5182
 2F0D	KANGXI RADICAL COVER
+	* Kangxi Radical 14
 	# 5196
 2F0E	KANGXI RADICAL ICE
+	* Kangxi Radical 15
 	# 51AB
 2F0F	KANGXI RADICAL TABLE
+	* Kangxi Radical 16
 	# 51E0
 2F10	KANGXI RADICAL OPEN BOX
+	* Kangxi Radical 17
 	# 51F5
 2F11	KANGXI RADICAL KNIFE
+	* Kangxi Radical 18
 	# 5200
 2F12	KANGXI RADICAL POWER
+	* Kangxi Radical 19
 	# 529B
 2F13	KANGXI RADICAL WRAP
+	* Kangxi Radical 20
 	# 52F9
 2F14	KANGXI RADICAL SPOON
+	* Kangxi Radical 21
 	# 5315
 2F15	KANGXI RADICAL RIGHT OPEN BOX
+	* Kangxi Radical 22
 	# 531A
 2F16	KANGXI RADICAL HIDING ENCLOSURE
+	* Kangxi Radical 23
 	# 5338
 2F17	KANGXI RADICAL TEN
+	* Kangxi Radical 24
 	# 5341
 2F18	KANGXI RADICAL DIVINATION
+	* Kangxi Radical 25
 	# 535C
 2F19	KANGXI RADICAL SEAL
+	* Kangxi Radical 26
 	# 5369
 2F1A	KANGXI RADICAL CLIFF
+	* Kangxi Radical 27
 	# 5382
 2F1B	KANGXI RADICAL PRIVATE
+	* Kangxi Radical 28
 	# 53B6
 2F1C	KANGXI RADICAL AGAIN
+	* Kangxi Radical 29
 	# 53C8
 2F1D	KANGXI RADICAL MOUTH
+	* Kangxi Radical 30
 	# 53E3
 2F1E	KANGXI RADICAL ENCLOSURE
+	* Kangxi Radical 31
 	# 56D7
 2F1F	KANGXI RADICAL EARTH
+	* Kangxi Radical 32
 	# 571F
 2F20	KANGXI RADICAL SCHOLAR
+	* Kangxi Radical 33
 	# 58EB
 2F21	KANGXI RADICAL GO
+	* Kangxi Radical 34
 	# 5902
 2F22	KANGXI RADICAL GO SLOWLY
+	* Kangxi Radical 35
 	# 590A
 2F23	KANGXI RADICAL EVENING
+	* Kangxi Radical 36
 	# 5915
 2F24	KANGXI RADICAL BIG
+	* Kangxi Radical 37
 	# 5927
 2F25	KANGXI RADICAL WOMAN
+	* Kangxi Radical 38
 	# 5973
 2F26	KANGXI RADICAL CHILD
+	* Kangxi Radical 39
 	# 5B50
 2F27	KANGXI RADICAL ROOF
+	* Kangxi Radical 40
 	# 5B80
 2F28	KANGXI RADICAL INCH
+	* Kangxi Radical 41
 	# 5BF8
 2F29	KANGXI RADICAL SMALL
+	* Kangxi Radical 42
 	# 5C0F
 2F2A	KANGXI RADICAL LAME
+	* Kangxi Radical 43
 	x 21BC1
 	# 5C22
 2F2B	KANGXI RADICAL CORPSE
+	* Kangxi Radical 44
 	# 5C38
 2F2C	KANGXI RADICAL SPROUT
+	* Kangxi Radical 45
 	# 5C6E
 2F2D	KANGXI RADICAL MOUNTAIN
+	* Kangxi Radical 46
 	# 5C71
 2F2E	KANGXI RADICAL RIVER
+	* Kangxi Radical 47
 	# 5DDB
 2F2F	KANGXI RADICAL WORK
+	* Kangxi Radical 48
 	# 5DE5
 2F30	KANGXI RADICAL ONESELF
+	* Kangxi Radical 49
 	# 5DF1
 2F31	KANGXI RADICAL TURBAN
+	* Kangxi Radical 50
 	# 5DFE
 2F32	KANGXI RADICAL DRY
+	* Kangxi Radical 51
 	# 5E72
 2F33	KANGXI RADICAL SHORT THREAD
+	* Kangxi Radical 52
 	# 5E7A
 2F34	KANGXI RADICAL DOTTED CLIFF
+	* Kangxi Radical 53
 	# 5E7F
 2F35	KANGXI RADICAL LONG STRIDE
+	* Kangxi Radical 54
 	# 5EF4
 2F36	KANGXI RADICAL TWO HANDS
+	* Kangxi Radical 55
 	# 5EFE
 2F37	KANGXI RADICAL SHOOT
+	* Kangxi Radical 56
 	# 5F0B
 2F38	KANGXI RADICAL BOW
+	* Kangxi Radical 57
 	# 5F13
 2F39	KANGXI RADICAL SNOUT
+	* Kangxi Radical 58
 	# 5F50
 2F3A	KANGXI RADICAL BRISTLE
+	* Kangxi Radical 59
 	# 5F61
 2F3B	KANGXI RADICAL STEP
+	* Kangxi Radical 60
 	# 5F73
 2F3C	KANGXI RADICAL HEART
+	* Kangxi Radical 61
 	# 5FC3
 2F3D	KANGXI RADICAL HALBERD
+	* Kangxi Radical 62
 	# 6208
 2F3E	KANGXI RADICAL DOOR
+	* Kangxi Radical 63
 	# 6236
 2F3F	KANGXI RADICAL HAND
+	* Kangxi Radical 64
 	# 624B
 2F40	KANGXI RADICAL BRANCH
+	* Kangxi Radical 65
 	# 652F
 2F41	KANGXI RADICAL RAP
+	* Kangxi Radical 66
 	# 6534
 2F42	KANGXI RADICAL SCRIPT
+	* Kangxi Radical 67
 	# 6587
 2F43	KANGXI RADICAL DIPPER
+	* Kangxi Radical 68
 	# 6597
 2F44	KANGXI RADICAL AXE
+	* Kangxi Radical 69
 	# 65A4
 2F45	KANGXI RADICAL SQUARE
+	* Kangxi Radical 70
 	# 65B9
 2F46	KANGXI RADICAL NOT
+	* Kangxi Radical 71
 	# 65E0
 2F47	KANGXI RADICAL SUN
+	* Kangxi Radical 72
 	# 65E5
 2F48	KANGXI RADICAL SAY
+	* Kangxi Radical 73
 	# 66F0
 2F49	KANGXI RADICAL MOON
+	* Kangxi Radical 74
 	# 6708
 2F4A	KANGXI RADICAL TREE
+	* Kangxi Radical 75
 	# 6728
 2F4B	KANGXI RADICAL LACK
+	* Kangxi Radical 76
 	# 6B20
 2F4C	KANGXI RADICAL STOP
+	* Kangxi Radical 77
 	# 6B62
 2F4D	KANGXI RADICAL DEATH
+	* Kangxi Radical 78
 	# 6B79
 2F4E	KANGXI RADICAL WEAPON
+	* Kangxi Radical 79
 	# 6BB3
 2F4F	KANGXI RADICAL DO NOT
+	* Kangxi Radical 80
 	# 6BCB
 2F50	KANGXI RADICAL COMPARE
+	* Kangxi Radical 81
 	# 6BD4
 2F51	KANGXI RADICAL FUR
+	* Kangxi Radical 82
 	# 6BDB
 2F52	KANGXI RADICAL CLAN
+	* Kangxi Radical 83
 	# 6C0F
 2F53	KANGXI RADICAL STEAM
+	* Kangxi Radical 84
 	# 6C14
 2F54	KANGXI RADICAL WATER
+	* Kangxi Radical 85
 	# 6C34
 2F55	KANGXI RADICAL FIRE
+	* Kangxi Radical 86
 	# 706B
 2F56	KANGXI RADICAL CLAW
+	* Kangxi Radical 87
 	# 722A
 2F57	KANGXI RADICAL FATHER
+	* Kangxi Radical 88
 	# 7236
 2F58	KANGXI RADICAL DOUBLE X
+	* Kangxi Radical 89
 	# 723B
 2F59	KANGXI RADICAL HALF TREE TRUNK
+	* Kangxi Radical 90
 	# 723F
 2F5A	KANGXI RADICAL SLICE
+	* Kangxi Radical 91
 	# 7247
 2F5B	KANGXI RADICAL FANG
+	* Kangxi Radical 92
 	# 7259
 2F5C	KANGXI RADICAL COW
+	* Kangxi Radical 93
 	# 725B
 2F5D	KANGXI RADICAL DOG
+	* Kangxi Radical 94
 	# 72AC
 2F5E	KANGXI RADICAL PROFOUND
+	* Kangxi Radical 95
 	# 7384
 2F5F	KANGXI RADICAL JADE
+	* Kangxi Radical 96
 	# 7389
 2F60	KANGXI RADICAL MELON
+	* Kangxi Radical 97
 	# 74DC
 2F61	KANGXI RADICAL TILE
+	* Kangxi Radical 98
 	# 74E6
 2F62	KANGXI RADICAL SWEET
+	* Kangxi Radical 99
 	# 7518
 2F63	KANGXI RADICAL LIFE
+	* Kangxi Radical 100
 	# 751F
 2F64	KANGXI RADICAL USE
+	* Kangxi Radical 101
 	# 7528
 2F65	KANGXI RADICAL FIELD
+	* Kangxi Radical 102
 	# 7530
 2F66	KANGXI RADICAL BOLT OF CLOTH
+	* Kangxi Radical 103
 	# 758B
 2F67	KANGXI RADICAL SICKNESS
+	* Kangxi Radical 104
 	# 7592
 2F68	KANGXI RADICAL DOTTED TENT
+	* Kangxi Radical 105
 	# 7676
 2F69	KANGXI RADICAL WHITE
+	* Kangxi Radical 106
 	# 767D
 2F6A	KANGXI RADICAL SKIN
+	* Kangxi Radical 107
 	# 76AE
 2F6B	KANGXI RADICAL DISH
+	* Kangxi Radical 108
 	# 76BF
 2F6C	KANGXI RADICAL EYE
+	* Kangxi Radical 109
 	# 76EE
 2F6D	KANGXI RADICAL SPEAR
+	* Kangxi Radical 110
 	# 77DB
 2F6E	KANGXI RADICAL ARROW
+	* Kangxi Radical 111
 	# 77E2
 2F6F	KANGXI RADICAL STONE
+	* Kangxi Radical 112
 	# 77F3
 2F70	KANGXI RADICAL SPIRIT
+	* Kangxi Radical 113
 	# 793A
 2F71	KANGXI RADICAL TRACK
+	* Kangxi Radical 114
 	# 79B8
 2F72	KANGXI RADICAL GRAIN
+	* Kangxi Radical 115
 	# 79BE
 2F73	KANGXI RADICAL CAVE
+	* Kangxi Radical 116
 	# 7A74
 2F74	KANGXI RADICAL STAND
+	* Kangxi Radical 117
 	# 7ACB
 2F75	KANGXI RADICAL BAMBOO
+	* Kangxi Radical 118
 	# 7AF9
 2F76	KANGXI RADICAL RICE
+	* Kangxi Radical 119
 	# 7C73
 2F77	KANGXI RADICAL SILK
+	* Kangxi Radical 120
 	# 7CF8
 2F78	KANGXI RADICAL JAR
+	* Kangxi Radical 121
 	# 7F36
 2F79	KANGXI RADICAL NET
+	* Kangxi Radical 122
 	# 7F51
 2F7A	KANGXI RADICAL SHEEP
+	* Kangxi Radical 123
 	# 7F8A
 2F7B	KANGXI RADICAL FEATHER
+	* Kangxi Radical 124
 	# 7FBD
 2F7C	KANGXI RADICAL OLD
+	* Kangxi Radical 125
 	# 8001
 2F7D	KANGXI RADICAL AND
+	* Kangxi Radical 126
 	# 800C
 2F7E	KANGXI RADICAL PLOW
+	* Kangxi Radical 127
 	# 8012
 2F7F	KANGXI RADICAL EAR
+	* Kangxi Radical 128
 	# 8033
 2F80	KANGXI RADICAL BRUSH
+	* Kangxi Radical 129
 	# 807F
 2F81	KANGXI RADICAL MEAT
+	* Kangxi Radical 130
 	# 8089
 2F82	KANGXI RADICAL MINISTER
+	* Kangxi Radical 131
 	# 81E3
 2F83	KANGXI RADICAL SELF
+	* Kangxi Radical 132
 	# 81EA
 2F84	KANGXI RADICAL ARRIVE
+	* Kangxi Radical 133
 	# 81F3
 2F85	KANGXI RADICAL MORTAR
+	* Kangxi Radical 134
 	# 81FC
 2F86	KANGXI RADICAL TONGUE
+	* Kangxi Radical 135
 	# 820C
 2F87	KANGXI RADICAL OPPOSE
+	* Kangxi Radical 136
 	# 821B
 2F88	KANGXI RADICAL BOAT
+	* Kangxi Radical 137
 	# 821F
 2F89	KANGXI RADICAL STOPPING
+	* Kangxi Radical 138
 	# 826E
 2F8A	KANGXI RADICAL COLOR
+	* Kangxi Radical 139
 	# 8272
 2F8B	KANGXI RADICAL GRASS
+	* Kangxi Radical 140
 	# 8278
 2F8C	KANGXI RADICAL TIGER
+	* Kangxi Radical 141
 	# 864D
 2F8D	KANGXI RADICAL INSECT
+	* Kangxi Radical 142
 	# 866B
 2F8E	KANGXI RADICAL BLOOD
+	* Kangxi Radical 143
 	# 8840
 2F8F	KANGXI RADICAL WALK ENCLOSURE
+	* Kangxi Radical 144
 	# 884C
 2F90	KANGXI RADICAL CLOTHES
+	* Kangxi Radical 145
 	# 8863
 2F91	KANGXI RADICAL WEST
+	* Kangxi Radical 146
 	# 897E
 2F92	KANGXI RADICAL SEE
+	* Kangxi Radical 147
 	# 898B
 2F93	KANGXI RADICAL HORN
+	* Kangxi Radical 148
 	# 89D2
 2F94	KANGXI RADICAL SPEECH
+	* Kangxi Radical 149
 	# 8A00
 2F95	KANGXI RADICAL VALLEY
+	* Kangxi Radical 150
 	# 8C37
 2F96	KANGXI RADICAL BEAN
+	* Kangxi Radical 151
 	# 8C46
 2F97	KANGXI RADICAL PIG
+	* Kangxi Radical 152
 	# 8C55
 2F98	KANGXI RADICAL BADGER
+	* Kangxi Radical 153
 	# 8C78
 2F99	KANGXI RADICAL SHELL
+	* Kangxi Radical 154
 	# 8C9D
 2F9A	KANGXI RADICAL RED
+	* Kangxi Radical 155
 	# 8D64
 2F9B	KANGXI RADICAL RUN
+	* Kangxi Radical 156
 	# 8D70
 2F9C	KANGXI RADICAL FOOT
+	* Kangxi Radical 157
 	# 8DB3
 2F9D	KANGXI RADICAL BODY
+	* Kangxi Radical 158
 	# 8EAB
 2F9E	KANGXI RADICAL CART
+	* Kangxi Radical 159
 	# 8ECA
 2F9F	KANGXI RADICAL BITTER
+	* Kangxi Radical 160
 	# 8F9B
 2FA0	KANGXI RADICAL MORNING
+	* Kangxi Radical 161
 	# 8FB0
 2FA1	KANGXI RADICAL WALK
+	* Kangxi Radical 162
 	# 8FB5
 2FA2	KANGXI RADICAL CITY
+	* Kangxi Radical 163
 	# 9091
 2FA3	KANGXI RADICAL WINE
+	* Kangxi Radical 164
 	# 9149
 2FA4	KANGXI RADICAL DISTINGUISH
+	* Kangxi Radical 165
 	# 91C6
 2FA5	KANGXI RADICAL VILLAGE
+	* Kangxi Radical 166
 	# 91CC
 2FA6	KANGXI RADICAL GOLD
+	* Kangxi Radical 167
 	# 91D1
 2FA7	KANGXI RADICAL LONG
+	* Kangxi Radical 168
 	# 9577
 2FA8	KANGXI RADICAL GATE
+	* Kangxi Radical 169
 	# 9580
 2FA9	KANGXI RADICAL MOUND
+	* Kangxi Radical 170
 	# 961C
 2FAA	KANGXI RADICAL SLAVE
+	* Kangxi Radical 171
 	# 96B6
 2FAB	KANGXI RADICAL SHORT TAILED BIRD
+	* Kangxi Radical 172
 	# 96B9
 2FAC	KANGXI RADICAL RAIN
+	* Kangxi Radical 173
 	# 96E8
 2FAD	KANGXI RADICAL BLUE
+	* Kangxi Radical 174
 	# 9751
 2FAE	KANGXI RADICAL WRONG
+	* Kangxi Radical 175
 	# 975E
 2FAF	KANGXI RADICAL FACE
+	* Kangxi Radical 176
 	# 9762
 2FB0	KANGXI RADICAL LEATHER
+	* Kangxi Radical 177
 	# 9769
 2FB1	KANGXI RADICAL TANNED LEATHER
+	* Kangxi Radical 178
 	# 97CB
 2FB2	KANGXI RADICAL LEEK
+	* Kangxi Radical 179
 	# 97ED
 2FB3	KANGXI RADICAL SOUND
+	* Kangxi Radical 180
 	# 97F3
 2FB4	KANGXI RADICAL LEAF
+	* Kangxi Radical 181
 	# 9801
 2FB5	KANGXI RADICAL WIND
+	* Kangxi Radical 182
 	# 98A8
 2FB6	KANGXI RADICAL FLY
+	* Kangxi Radical 183
 	# 98DB
 2FB7	KANGXI RADICAL EAT
+	* Kangxi Radical 184
 	# 98DF
 2FB8	KANGXI RADICAL HEAD
+	* Kangxi Radical 185
 	# 9996
 2FB9	KANGXI RADICAL FRAGRANT
+	* Kangxi Radical 186
 	# 9999
 2FBA	KANGXI RADICAL HORSE
+	* Kangxi Radical 187
 	# 99AC
 2FBB	KANGXI RADICAL BONE
+	* Kangxi Radical 188
 	# 9AA8
 2FBC	KANGXI RADICAL TALL
+	* Kangxi Radical 189
 	# 9AD8
 2FBD	KANGXI RADICAL HAIR
+	* Kangxi Radical 190
 	# 9ADF
 2FBE	KANGXI RADICAL FIGHT
+	* Kangxi Radical 191
 	# 9B25
 2FBF	KANGXI RADICAL SACRIFICIAL WINE
+	* Kangxi Radical 192
 	# 9B2F
 2FC0	KANGXI RADICAL CAULDRON
+	* Kangxi Radical 193
 	# 9B32
 2FC1	KANGXI RADICAL GHOST
+	* Kangxi Radical 194
 	# 9B3C
 2FC2	KANGXI RADICAL FISH
+	* Kangxi Radical 195
 	# 9B5A
 2FC3	KANGXI RADICAL BIRD
+	* Kangxi Radical 196
 	# 9CE5
 2FC4	KANGXI RADICAL SALT
+	* Kangxi Radical 197
 	# 9E75
 2FC5	KANGXI RADICAL DEER
+	* Kangxi Radical 198
 	# 9E7F
 2FC6	KANGXI RADICAL WHEAT
+	* Kangxi Radical 199
 	# 9EA5
 2FC7	KANGXI RADICAL HEMP
+	* Kangxi Radical 200
 	# 9EBB
 2FC8	KANGXI RADICAL YELLOW
+	* Kangxi Radical 201
 	# 9EC3
 2FC9	KANGXI RADICAL MILLET
+	* Kangxi Radical 202
 	# 9ECD
 2FCA	KANGXI RADICAL BLACK
+	* Kangxi Radical 203
 	# 9ED1
 2FCB	KANGXI RADICAL EMBROIDERY
+	* Kangxi Radical 204
 	# 9EF9
 2FCC	KANGXI RADICAL FROG
+	* Kangxi Radical 205
 	# 9EFD
 2FCD	KANGXI RADICAL TRIPOD
+	* Kangxi Radical 206
 	# 9F0E
 2FCE	KANGXI RADICAL DRUM
+	* Kangxi Radical 207
 	# 9F13
 2FCF	KANGXI RADICAL RAT
+	* Kangxi Radical 208
 	# 9F20
 2FD0	KANGXI RADICAL NOSE
+	* Kangxi Radical 209
 	# 9F3B
 2FD1	KANGXI RADICAL EVEN
+	* Kangxi Radical 210
 	# 9F4A
 2FD2	KANGXI RADICAL TOOTH
+	* Kangxi Radical 211
 	# 9F52
 2FD3	KANGXI RADICAL DRAGON
+	* Kangxi Radical 212
 	# 9F8D
 2FD4	KANGXI RADICAL TURTLE
+	* Kangxi Radical 213
 	# 9F9C
 2FD5	KANGXI RADICAL FLUTE
+	* Kangxi Radical 214
 	# 9FA0
 @@	2FF0	Ideographic Description Characters	2FFF
 @		Ideographic description characters
@@ -20126,6 +20352,10 @@
 2FF9	IDEOGRAPHIC DESCRIPTION CHARACTER SURROUND FROM UPPER RIGHT
 2FFA	IDEOGRAPHIC DESCRIPTION CHARACTER SURROUND FROM LOWER LEFT
 2FFB	IDEOGRAPHIC DESCRIPTION CHARACTER OVERLAID
+2FFC	IDEOGRAPHIC DESCRIPTION CHARACTER SURROUND FROM RIGHT
+2FFD	IDEOGRAPHIC DESCRIPTION CHARACTER SURROUND FROM LOWER RIGHT
+2FFE	IDEOGRAPHIC DESCRIPTION CHARACTER HORIZONTAL REFLECTION
+2FFF	IDEOGRAPHIC DESCRIPTION CHARACTER ROTATION
 @@	3000	CJK Symbols and Punctuation	303F
 @@+
 @		CJK symbols and punctuation
@@ -20992,6 +21222,10 @@
 	* 1st stroke of 4E44
 31E3	CJK STROKE Q
 	* 6th stroke of 3514
+@		Ideographic description character
+@+		This is a visibly displayed graphic character, not an invisible composition control. It is used with other characters from the Ideographic Description Characters block.
+31EF	IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
+	* used to describe a character with a stroke removed
 @@	31F0	Katakana Phonetic Extensions	31FF
 @		Phonetic extensions for Ainu
 31F0	KATAKANA LETTER SMALL KU
@@ -24343,9 +24577,10 @@ A797	LATIN SMALL LETTER B WITH FLOURISH
 @		Archaic letters for Ewe
 A798	LATIN CAPITAL LETTER F WITH STROKE
 	x (latin capital letter f with hook - 0191)
+	x (french franc sign - 20A3)
 A799	LATIN SMALL LETTER F WITH STROKE
 	* old Ewe orthography
-	* also used in German dialectology
+	* also used in the Anthropos phonetic alphabet
 @		Archaic letters for Volapük
 A79A	LATIN CAPITAL LETTER VOLAPUK AE
 A79B	LATIN SMALL LETTER VOLAPUK AE
@@ -25568,6 +25803,8 @@ AB3B	LATIN SMALL LETTER N WITH CROSSED-TAIL
 AB3C	LATIN SMALL LETTER ENG WITH CROSSED-TAIL
 AB3D	LATIN SMALL LETTER BLACKLETTER O
 AB3E	LATIN SMALL LETTER BLACKLETTER O WITH STROKE
+@+		* This letter was encoded based on a misinterpretation of a low quality copy of Sievers 1901. It is not actually used in German dialectology.
+	x (latin small letter o with stroke - 00F8)
 AB3F	LATIN SMALL LETTER OPEN O WITH STROKE
 AB40	LATIN SMALL LETTER INVERTED OE
 	= latin small letter o reversed-schwa
