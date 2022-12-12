@@ -450,11 +450,12 @@ Let $IDInclusions = [[:block=/Ideographs/:] [[\U00020000-\U0003FFFF][\U0001F000-
 \p{LB=ID} ⊃ $IDInclusions
 \p{Line_Break=Unknown} = [\p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse} - $IDInclusions - [\u20C0-\u20CF]]
 
-Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288\U00013379\U00013437\U0001343C\U0001343E\U000145CE\U0001E95E-\U0001E95F]
+Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288\U00013379\U0001342F\U00013437\U0001343C\U0001343E\U000145CE\U0001E95E-\U0001E95F]
 # 7.0 Removed hack  - [\u2308\u230A]
 # 9.0 Added Adlam initial punctuation 1E95E..1E95F
 # 12.0 Added Egyptian control begin segment 13437 (gc=Cf, lb=OP)
 # 15.0 Added Egyptian control begin enclosure 1343C, begin walled enclosure 1343E (gc=Cf, lb=OP)
+# 15.1 UTC AI 173-A9: Change the Line_Break value of U+1342F EGYPTIAN HIEROGLYPH V011D from AL to OP.
 
 \p{LB=OP} = [\p{GC=Ps} $OPInclusions]
 [\p{LB=CL}\p{LB=CP}] ⊃ [\p{GC=Pe} - [\u2309\u230B]]
