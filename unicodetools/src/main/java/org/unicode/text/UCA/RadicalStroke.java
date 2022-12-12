@@ -368,6 +368,13 @@ public final class RadicalStroke {
                 simplified = 1;
                 --radicalNumberLimit;
             }
+            if (radicalString.charAt(radicalNumberLimit - 1) == '\'') {
+                // Unicode 15.1 UAX #38:
+                // Two apostrophes (") after the radical indicates a
+                // non-Chinese simplified version of the given radical.
+                // Ignore.
+                continue;
+            }
             int radicalNumber = parseInt(radicalString, 0, radicalNumberLimit);
             int radicalNumberAndSimplified = (radicalNumber << 1) | simplified;
             radicalStrings[radicalNumberAndSimplified] = radicalString;

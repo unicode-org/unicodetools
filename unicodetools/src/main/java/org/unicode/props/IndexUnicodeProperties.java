@@ -228,7 +228,17 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                             Integer.parseInt(value.substring(0, pos))
                                     / (double) Integer.parseInt(value.substring(pos + 1));
                 } else {
-                    convertedValue = Double.parseDouble(value);
+                    String v = value;
+                    if (prop2 == UcdProperty.kPrimaryNumeric
+                            || prop2 == UcdProperty.kAccountingNumeric
+                            || prop2 == UcdProperty.kOtherNumeric) {
+                        // Unicode 15.1: A character may have multiple numeric values.
+                        pos = v.indexOf(' ');
+                        if (pos >= 0) {
+                            v = value.substring(0, pos);
+                        }
+                    }
+                    convertedValue = Double.parseDouble(v);
                 }
                 UnicodeSet uset = m.getSet(value);
                 result.putAll(uset, convertedValue);
