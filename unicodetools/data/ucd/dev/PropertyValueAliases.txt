@@ -1,5 +1,5 @@
 # PropertyValueAliases-15.1.0.txt
-# Date: 2022-09-30
+# Date: 2022-12-12, 03:55:10 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -817,6 +817,11 @@ IDSB; Y                               ; Yes                              ; T    
 
 IDST; N                               ; No                               ; F                                ; False
 IDST; Y                               ; Yes                              ; T                                ; True
+
+# IDS_Unary_Operator (IDSU)
+
+IDSU; N                               ; No                               ; F                                ; False
+IDSU; Y                               ; Yes                              ; T                                ; True
 
 # ID_Continue (IDC)
 

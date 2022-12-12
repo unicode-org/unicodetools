@@ -674,6 +674,8 @@ Property:	IDS_Binary_Operator
 
 Property:	IDS_Trinary_Operator
 
+Property:	IDS_Unary_Operator
+
 Property:	Radical
 
 Property:	Unified_Ideograph

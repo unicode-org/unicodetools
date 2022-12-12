@@ -1,5 +1,5 @@
-# DerivedAge-15.0.0.txt
-# Date: 2022-04-26, 23:14:23 GMT
+# DerivedAge-15.1.0.txt
+# Date: 2022-12-12, 03:54:25 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1990,5 +1990,16 @@ FDFE..FDFF    ; 14.0 #   [2] ARABIC LIGATURE SUBHAANAHU WA TAAALAA..ARABIC LIGAT
 31350..323AF  ; 15.0 # [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
 # Total code points: 4489
+
+# ================================================
+
+# Age=V15_1
+
+# Newly assigned in Unicode 15.1.0 (September, 2023)
+
+2FFC..2FFF    ; 15.1 #   [4] IDEOGRAPHIC DESCRIPTION CHARACTER SURROUND FROM RIGHT..IDEOGRAPHIC DESCRIPTION CHARACTER ROTATION
+31EF          ; 15.1 #       IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
+
+# Total code points: 5
 
 # EOF

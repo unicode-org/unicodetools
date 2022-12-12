@@ -69,6 +69,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         Rational
     }
 
+    private static final String NEW_UNICODE_PROPS_DOCS =
+            "https://github.com/unicode-org/unicodetools/blob/main/docs/newunicodeproperties.md";
     private static final VersionInfo MIN_VERSION = VersionInfo.getInstance(0, 0, 0, 0);
     public final String file;
     public final UcdProperty property;
@@ -841,7 +843,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 throw new IllegalArgumentException(
                         "Missing property enum in UcdProperty for "
                                 + propName
-                                + "\nSee https://sites.google.com/site/unicodetools/home/newunicodeproperties");
+                                + "\nSee "
+                                + NEW_UNICODE_PROPS_DOCS);
             }
 
             PropertyParsingInfo propInfo;
@@ -849,6 +852,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 propInfo = property2PropertyInfo.get(item);
             } catch (Exception e) {
                 throw new IllegalArgumentException(line.line, e);
+            }
+            if (propInfo == null) {
+                throw new IllegalArgumentException(
+                        "need to define PropertyParsingInfo for " + item);
             }
             //                    if (!propInfoSet.contains(propInfo)) {
             //                        throw new UnicodePropertyException("Property not listed for
@@ -917,7 +924,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 throw new IllegalArgumentException(
                         "Missing property enum in UcdProperty for "
                                 + propName
-                                + "\nSee https://sites.google.com/site/unicodetools/home/newunicodeproperties");
+                                + "\nSee "
+                                + NEW_UNICODE_PROPS_DOCS);
             }
             final PropertyParsingInfo propInfo = property2PropertyInfo.get(ucdProp);
             if (!propInfoSet.contains(propInfo)) {
@@ -1270,9 +1278,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         final UcdProperty ucdProp = UcdProperty.forString(propName);
         if (ucdProp == null) {
             throw new IllegalArgumentException(
-                    propName
-                            + " not defined. "
-                            + "See https://sites.google.com/site/unicodetools/home/newunicodeproperties");
+                    propName + " not defined. " + "See " + NEW_UNICODE_PROPS_DOCS);
         }
         final PropertyParsingInfo propInfo = property2PropertyInfo.get(ucdProp);
         setPropDefault(propInfo.property, value, line, isEmpty);

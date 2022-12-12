@@ -15,15 +15,15 @@ Occasionally you need to add a 'non-standard' property. Here's what to do, with
 some examples of changes in the links.
 
 *   Add properties to
-    [ExtraPropertyAliases.txt](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/org/unicode/props/ExtraPropertyAliases.txt)
+    [ExtraPropertyAliases.txt](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/src/main/resources/org/unicode/props/ExtraPropertyAliases.txt)
 *   Add file and the field locations to
-    [IndexUnicodeProperties.txt](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/org/unicode/props/IndexUnicodeProperties.txt)
+    [IndexUnicodeProperties.txt](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/src/main/resources/org/unicode/props/IndexUnicodeProperties.txt)
 *   Add @missing and enum values to
-    [ExtraPropertyValueAliases.txt](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/org/unicode/props/ExtraPropertyValueAliases.txt)
+    [ExtraPropertyValueAliases.txt](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/src/main/resources/org/unicode/props/ExtraPropertyValueAliases.txt)
 *   Add regex values, etc. to
-    [IndexPropertyRegex.txt](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/org/unicode/props/IndexPropertyRegex.txt)
+    [IndexPropertyRegex.txt](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/src/main/resources/org/unicode/props/IndexPropertyRegex.txt)
 *   If the file is in a different location, you'll have to modify
-    [Utility.getMostRecentUnicodeDataFile.txt](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/org/unicode/text/utility/Utility.java)
+    [Utility.getMostRecentUnicodeDataFile.txt](https://github.com/unicode-org/unicodetools/blob/main/unicodetools/src/main/java/org/unicode/text/utility/Utility.java)
 *   For an old example of adding properties see [commit 2ff83c6](https://github.com/unicode-org/unicodetools/commit/2ff83c6a0d0eef7286e98c3b94b3de538b44e404).
 *   Ideally, add a test in TestProperties.
 

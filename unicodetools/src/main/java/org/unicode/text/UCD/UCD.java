@@ -536,7 +536,12 @@ public final class UCD implements UCD_Types {
             }
 
             for (int code = range.codepoint; code <= range.codepointEnd; ++code) {
-                if (code == 0x5793 || code == 0x4EAC) {
+                // Unicode 15.1:
+                // This code had these two exceptions, but now U+4EAC actually has value
+                // 10000000000000000
+                // and we want to see that in DerivedNumericValues.txt,
+                // so we stop making these exceptions.
+                if (compositeVersion < 0xf0100 && (code == 0x5793 || code == 0x4EAC)) {
                     continue; // two exceptions!!
                 }
 
