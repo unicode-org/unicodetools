@@ -740,14 +740,14 @@ public final class DerivedProperty implements UCD_Types {
                     UnicodeSet removals;
 
                     {
-                        // Prepended_Concatenation_Mark characters
-                        try {
+                        // Prepended_Concatenation_Mark has been defined since Unicode 9.
+                        if (iupCurrent.getUcdVersion().getMajor() < 9) {
+                            removals = UnicodeSet.EMPTY;
+                        } else {
                             UnicodeMap<Binary> pcm =
                                     iupCurrent.loadEnum(
                                             UcdProperty.Prepended_Concatenation_Mark, Binary.class);
                             removals = new UnicodeSet(pcm.getSet(Binary.Yes)).freeze();
-                        } catch (Exception e) {
-                            removals = UnicodeSet.EMPTY;
                         }
                     }
 
