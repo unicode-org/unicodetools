@@ -1,5 +1,5 @@
 # DerivedAge-15.1.0.txt
-# Date: 2022-12-12, 03:54:25 GMT
+# Date: 2022-12-20, 01:07:57 GMT
 # © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1999,7 +1999,9 @@ FDFE..FDFF    ; 14.0 #   [2] ARABIC LIGATURE SUBHAANAHU WA TAAALAA..ARABIC LIGAT
 
 2FFC..2FFF    ; 15.1 #   [4] IDEOGRAPHIC DESCRIPTION CHARACTER SURROUND FROM RIGHT..IDEOGRAPHIC DESCRIPTION CHARACTER ROTATION
 31EF          ; 15.1 #       IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
+11BC0..11BE1  ; 15.1 #  [34] SUNUWAR LETTER DEVI..SUNUWAR SIGN PVO
+11BF0..11BF9  ; 15.1 #  [10] SUNUWAR DIGIT ZERO..SUNUWAR DIGIT NINE
 
-# Total code points: 5
+# Total code points: 49
 
 # EOF
