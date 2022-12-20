@@ -424,6 +424,7 @@ blk; Soyombo                          ; Soyombo
 blk; Specials                         ; Specials
 blk; Sundanese                        ; Sundanese
 blk; Sundanese_Sup                    ; Sundanese_Supplement
+blk; Sunuwar                          ; Sunuwar
 blk; Sup_Arrows_A                     ; Supplemental_Arrows_A
 blk; Sup_Arrows_B                     ; Supplemental_Arrows_B
 blk; Sup_Arrows_C                     ; Supplemental_Arrows_C
@@ -1397,6 +1398,7 @@ sc ; Sogo                             ; Old_Sogdian
 sc ; Sora                             ; Sora_Sompeng
 sc ; Soyo                             ; Soyombo
 sc ; Sund                             ; Sundanese
+sc ; Sunu                             ; Sunuwar
 sc ; Sylo                             ; Syloti_Nagri
 sc ; Syrc                             ; Syriac
 sc ; Tagb                             ; Tagbanwa

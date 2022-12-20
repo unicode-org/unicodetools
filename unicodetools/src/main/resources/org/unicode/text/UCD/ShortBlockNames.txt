@@ -271,6 +271,7 @@ Soyombo	;	Soyombo
 Specials	;	Specials
 Sundanese	;	Sundanese
 Sundanese_Sup	;	Sundanese_Supplement
+Sunuwar	;	Sunuwar
 Super_And_Sub	;	Superscripts_And_Subscripts
 Sup_Arrows_A	;	Supplemental_Arrows_A
 Sup_Arrows_B	;	Supplemental_Arrows_B
