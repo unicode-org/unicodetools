@@ -909,6 +909,9 @@ public class GenerateUnihanCollators {
                     mainStrokesTotal.add(radical, radicalsStrokes);
                     mainCount.add(radical, 1);
                 } else {
+                    // TODO: Starting with Unicode 15.1, "simplified" can have a value of 2
+                    // (UAX #38 "non-Chinese simplified form of the radical").
+                    // Should we do something different than for simplified==1?
                     alternateStrokesTotal.add(radical, radicalsStrokes);
                     alternateCount.add(radical, 1);
                 }
@@ -958,7 +961,7 @@ public class GenerateUnihanCollators {
     }
 
     private static int getRSShortData(int c) {
-        int data = radicalStroke.getShortData(c);
+        int data = radicalStroke.getShortDataForCodePoint(c);
         if (data != 0) {
             return data;
         }
@@ -969,13 +972,13 @@ public class GenerateUnihanCollators {
             }
             c = radical.codePointAt(0);
             assert radical.length() == Character.charCount(c); // single code point
-            data = radicalStroke.getShortData(c);
+            data = radicalStroke.getShortDataForCodePoint(c);
             assert data != 0;
             return data;
         }
         String decomp = nfd.normalize(c);
         c = decomp.codePointAt(0);
-        data = radicalStroke.getShortData(c);
+        data = radicalStroke.getShortDataForCodePoint(c);
         return data;
     }
 
