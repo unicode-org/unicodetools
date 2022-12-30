@@ -199,6 +199,9 @@ public class Uts46 extends Idna {
         final boolean LTR = L.contains(firstChar);
         if (!RTL && !LTR) {
             errors.add(Errors.B1);
+
+            // A label that fails B1 can't fail any of B2 to B6.
+            return errors.size() > oldErrorLength;
         }
 
         // 2. In an RTL label, only characters with the BIDI properties R,
@@ -209,12 +212,6 @@ public class Uts46 extends Idna {
         }
 
         final int endExcludingNSM = NSM.spanBack(label, SpanCondition.CONTAINED);
-        if (endExcludingNSM == 0) {
-            // degenerate case, fails Bs 3 and 6
-            errors.add(Errors.B3);
-            errors.add(Errors.B6);
-            return true;
-        }
         final int lastChar = Character.codePointBefore(label, endExcludingNSM);
 
         // 3. In an RTL label, the end of the label must be a character with
