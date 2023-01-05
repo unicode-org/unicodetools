@@ -1,14 +1,10 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 15.1.0
-@@@+	U15M221201.lst
-	Unicode 15.1.0 names list, second delta.
+@@@+	U15M221219.lst
+	Unicode 15.1.0 names list, third delta.
 	Repertoire synched with UnicodeData-15.1.0d1.txt.
-	Added Kangxi radical number annotations to Kangxi Radicals block.
-	Add blind xref from 2E9A to 2F46.
-	Added annotation for new Hieroglyph format control.
-	Added xrefs for 20A3 and A798.
-	Updated annotation for A799.
-	Added annotation and xref for AB3E.
+	Update copyright date to 2023.
+	Correct blind xref syntax for x2E9A.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -19471,7 +19467,7 @@
 	* form used on right side
 	x 6535
 2E9A	<reserved>
-	x 2F46
+	x (kangxi radical not - 2F46)
 2E9B	CJK RADICAL CHOKE
 	x 65E1
 2E9C	CJK RADICAL SUN
