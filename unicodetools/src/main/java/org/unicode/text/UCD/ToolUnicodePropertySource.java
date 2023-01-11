@@ -125,6 +125,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         UnicodeSet Zwj = new UnicodeSet(0x200D, 0x200D).freeze();
 
         version = ucd.getVersion(); // regularize
+        // Unicode 15.1 reclassifies some properties from miscellaneous to string.
+        // TODO: Try to get the classification from parsing PropertyAliases.txt rather than hardcode
+        // it.
+        boolean isAtLeast15_1 = ucd.getCompositeVersion() >= 0x0f0100;
 
         // first the special cases
         if (DEBUG) {
@@ -515,7 +519,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                         return ucd.getBidiMirror(codepoint);
                     }
                 }.setValues("<string>")
-                        .setMain("Bidi_Mirroring_Glyph", "bmg", UnicodeProperty.MISC, version));
+                        .setMain(
+                                "Bidi_Mirroring_Glyph",
+                                "bmg",
+                                isAtLeast15_1 ? UnicodeProperty.STRING : UnicodeProperty.MISC,
+                                version));
 
         add(
                 new UnicodeProperty.SimpleProperty() {
@@ -524,7 +532,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                         return UTF16.valueOf(ucd.getBidi_Paired_Bracket(codepoint));
                     }
                 }.setValues("<string>")
-                        .setMain("Bidi_Paired_Bracket", "bpb", UnicodeProperty.MISC, version));
+                        .setMain(
+                                "Bidi_Paired_Bracket",
+                                "bpb",
+                                isAtLeast15_1 ? UnicodeProperty.STRING : UnicodeProperty.MISC,
+                                version));
 
         BaseProperty bpt =
                 new UnicodeProperty.SimpleProperty() {

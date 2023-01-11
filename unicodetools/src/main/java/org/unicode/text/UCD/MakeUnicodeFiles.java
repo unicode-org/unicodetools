@@ -1024,6 +1024,7 @@ public class MakeUnicodeFiles {
         if (defaultValue != null) {
             // ok
         } else if (propName.equals("Bidi_Mirroring_Glyph")
+                || propName.equals("Bidi_Paired_Bracket")
                 || propName.equals("ISO_Comment")
                 || propName.equals("Name")
                 || propName.equals("Unicode_Radical_Stroke")
