@@ -64,9 +64,12 @@ nv                       ; Numeric_Value
 # ================================================
 # String Properties
 # ================================================
+bmg                      ; Bidi_Mirroring_Glyph
+bpb                      ; Bidi_Paired_Bracket
 cf                       ; Case_Folding
 cjkCompatibilityVariant  ; kCompatibilityVariant
 dm                       ; Decomposition_Mapping
+EqUIdeo                  ; Equivalent_Unified_Ideograph
 FC_NFKC                  ; FC_NFKC_Closure
 lc                       ; Lowercase_Mapping
 NFKC_CF                  ; NFKC_Casefold
@@ -80,8 +83,6 @@ uc                       ; Uppercase_Mapping
 # ================================================
 # Miscellaneous Properties
 # ================================================
-bmg                      ; Bidi_Mirroring_Glyph
-bpb                      ; Bidi_Paired_Bracket
 cjkIICore                ; kIICore
 cjkIRG_GSource           ; kIRG_GSource
 cjkIRG_HSource           ; kIRG_HSource
@@ -95,7 +96,6 @@ cjkIRG_UKSource          ; kIRG_UKSource
 cjkIRG_USource           ; kIRG_USource
 cjkIRG_VSource           ; kIRG_VSource
 cjkRSUnicode             ; kRSUnicode                  ; Unicode_Radical_Stroke; URS
-EqUIdeo                  ; Equivalent_Unified_Ideograph
 isc                      ; ISO_Comment
 JSN                      ; Jamo_Short_Name
 na                       ; Name
