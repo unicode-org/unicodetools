@@ -124,7 +124,7 @@ to the locations behind the version-specific release folders.
 For example:
 *   https://www.unicode.org/Public/draft/UCD/ → https://www.unicode.org/Public/15.1.0/
 *   https://www.unicode.org/Public/draft/UCA/ → https://www.unicode.org/Public/UCA/15.1.0/
-*   https://www.unicode.org/Public/draft/emoji/ → https://www.unicode.org/Public/UCA/15.1/
+*   https://www.unicode.org/Public/draft/emoji/ → https://www.unicode.org/Public/emoji/15.1/
 *   etc.
 
 After a Unicode release, copy a snapshot of the unicodetools repo .../dev/ files
