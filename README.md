@@ -2,7 +2,7 @@
 
 This is a collection of tools by and for Unicode Character Database (UCD)
 maintainers for the production and vetting of data files for the UCD and
-other Unicode specs such as UCA, emoji, idna, and security.
+other Unicode specs such as UCA.
 
 Do not use the Unicode data files in this repo for production.
 Do use the data files posted publicly on unicode.org.
