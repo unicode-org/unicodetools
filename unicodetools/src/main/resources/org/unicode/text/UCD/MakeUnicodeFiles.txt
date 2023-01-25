@@ -692,6 +692,10 @@ Property:	Other_ID_Start
 
 Property:	Other_ID_Continue
 
+Property:	ID_Compat_Math_Continue
+
+Property:	ID_Compat_Math_Start
+
 Property:	STerm
 
 Property:	Variation_Selector

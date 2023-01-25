@@ -161,6 +161,8 @@ PropList ; Extender
 PropList ; Hex_Digit
 PropList ; Hyphen
 PropList ; Ideographic
+PropList ; ID_Compat_Math_Continue
+PropList ; ID_Compat_Math_Start
 PropList ; IDS_Binary_Operator
 PropList ; IDS_Trinary_Operator
 PropList ; IDS_Unary_Operator
