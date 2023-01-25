@@ -281,6 +281,8 @@ public enum UcdProperty {
     IDS_Binary_Operator(PropertyType.Binary, Binary.class, null, "IDSB"),
     IDS_Trinary_Operator(PropertyType.Binary, Binary.class, null, "IDST"),
     IDS_Unary_Operator(PropertyType.Binary, Binary.class, null, "IDSU"),
+    ID_Compat_Math_Continue(PropertyType.Binary, Binary.class, null, "ID_Compat_Math_Continue"),
+    ID_Compat_Math_Start(PropertyType.Binary, Binary.class, null, "ID_Compat_Math_Start"),
     ID_Continue(PropertyType.Binary, Binary.class, null, "IDC"),
     ID_Start(PropertyType.Binary, Binary.class, null, "IDS"),
     Ideographic(PropertyType.Binary, Binary.class, null, "Ideo"),

@@ -260,7 +260,9 @@ public interface UCD_Types {
             Prepended_Concatenation_Mark = 37,
             Regional_Indicator = 38,
             IDS_UnaryOperator = 39,
-            LIMIT_BINARY_PROPERTIES = 40;
+            ID_Compat_Math_Start = 40,
+            ID_Compat_Math_Continue = 41,
+            LIMIT_BINARY_PROPERTIES = 42;
 
     /*
     static final int
