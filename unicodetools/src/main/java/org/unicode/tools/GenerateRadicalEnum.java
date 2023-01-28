@@ -13,6 +13,8 @@ import org.unicode.text.utility.Settings;
 
 public class GenerateRadicalEnum {
     public static void main(String[] args) {
+        // Note: CJKRadicals.txt cannot be completely represented via a UnicodeMap.
+        // See the comments in RadicalStroke.getCJKRadicals().
         final IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
         UnicodeMap<List<String>> unicodeToRadicalRaw = iup.loadList(UcdProperty.CJK_Radical);
         RuleBasedCollator col = (RuleBasedCollator) Collator.getInstance(ULocale.ROOT);

@@ -165,6 +165,8 @@ public class CheckProperties {
         //
         //        latest.show(UcdProperty.General_Category);
 
+        // Note: CJKRadicals.txt cannot be completely represented via a UnicodeMap.
+        // See the comments in RadicalStroke.getCJKRadicals().
         final List<UcdProperty> values =
                 extent == null
                         ? new ArrayList(properties)

@@ -238,6 +238,8 @@ public class Ids {
     static final Relation<String, String> radToUnicode;
 
     static {
+        // Note: CJKRadicals.txt cannot be completely represented via a UnicodeMap.
+        // See the comments in RadicalStroke.getCJKRadicals().
         UnicodeMap<List<String>> unicodeToRadicalRaw = iup.loadList(UcdProperty.CJK_Radical);
 
         rawRadToUnicode = Relation.of(new TreeMap(), TreeSet.class);

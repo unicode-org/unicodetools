@@ -86,6 +86,8 @@ public class GenerateRadicals {
     }
 
     public static void main(String[] args) {
+        // Note: CJKRadicals.txt cannot be completely represented via a UnicodeMap.
+        // See the comments in RadicalStroke.getCJKRadicals().
         UnicodeMap<String> names = iup.load(UcdProperty.Name);
         UnicodeMap<General_Category_Values> gc =
                 iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);

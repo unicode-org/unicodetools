@@ -6,7 +6,10 @@ import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Arrays;
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.PropertyParsingInfo;
+import org.unicode.props.UcdLineParser;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Utility;
@@ -424,14 +427,41 @@ public final class RadicalStroke {
         return 0; // not found
     }
 
+    // TODO: Consider moving this into a new class/file CJKRadicals which could also be called from
+    // other code
+    // that currently uses iup.load(UcdProperty.CJK_Radical) even though that cannot represent all
+    // of the data.
     private void getCJKRadicals(IndexUnicodeProperties iup) {
-        UnicodeMap<String> cjkr = iup.load(UcdProperty.CJK_Radical);
-        // cjkr maps from each radical code point to the radical string.
-        for (UnicodeMap.EntryRange<String> range : cjkr.entryRanges()) {
-            String radicalString = range.value;
-            if (radicalString == null) {
-                continue;
-            }
+        // Here we don't use
+        //   UnicodeMap<String> cjkr = iup.load(UcdProperty.CJK_Radical)
+        // because CJKRadicals.txt is a mapping from radical to one or two characters, not the other
+        // way around.
+        // In particular, starting with Unicode 15.1 some radicals do not have a character in a
+        // radicals block,
+        // so we cannot represent all of the data via a UnicodeMap, which would require an inversion
+        // to
+        // a character->radical map.
+        // Instead, we parse the file directly.
+        String fullFilename =
+                PropertyParsingInfo.getFullFileName(UcdProperty.CJK_Radical, iup.getUcdVersion());
+        Iterable<String> rawLines = FileUtilities.in("", fullFilename);
+        // CJKRadicals.txt
+        // # There is one line per CJK radical number. Each line contains three
+        // # fields, separated by a semicolon (';'). The first field is the
+        // # CJK radical number. The second field is the CJK radical character,
+        // # which may be empty if the CJK radical character is not included in
+        // # the Kangxi Radicals block or the CJK Radicals Supplement block.
+        // # The third field is the CJK unified ideograph.
+        // 1; 2F00; 4E00
+        // 182''; ; 322C4
+        //
+        // (Unicode 15.1 is the first version where the second field may be empty
+        // and where the third field may be outside of the original Unihan block,
+        // and even a supplementary code point. See UTC #174 minutes.)
+        UcdLineParser parser = new UcdLineParser(rawLines).withRange(false);
+        for (UcdLineParser.UcdLine line : parser) {
+            String[] parts = line.getParts();
+            String radicalString = parts[0];
             int simplified = 0;
             int radicalNumberLimit = radicalString.length();
             if (radicalString.charAt(radicalNumberLimit - 1) == '\'') {
@@ -449,45 +479,23 @@ public final class RadicalStroke {
             int radicalNumberAndSimplified =
                     makeRadicalNumberAndSimplified(radicalNumber, simplified);
             radicalStrings[radicalNumberAndSimplified] = radicalString;
-            int c = range.codepoint;
-            assert c >= 0;
-            String oldValue = radToChar[radicalNumberAndSimplified];
-            if (oldValue == null) {
-                assert c < 0x3000; // should be a radical code point
+
+            int radicalChar = -1;
+            String radicalCharString = "";
+            if (!parts[1].isEmpty()) {
+                radicalChar = Integer.parseInt(parts[1], 16);
+                assert 0 < radicalChar;
+                assert radicalChar < 0x3000; // should be a radical code point
                 radToChar[radicalNumberAndSimplified] =
-                        radToChars[radicalNumberAndSimplified] = Character.toString((char) c);
-            } else {
-                assert 0x4e00 <= c && c <= LAST_UNIHAN_11;
-                int oldCodePoint = oldValue.codePointAt(0);
-                assert oldCodePoint < 0x3000;
-                assert oldValue == radToChars[radicalNumberAndSimplified];
-                radToChars[radicalNumberAndSimplified] = oldValue + (char) c;
+                        radicalCharString = Character.toString((char) radicalChar);
+                // radToChar[] remains null if there is no radical character.
             }
-        }
-        // Unicode 15.1 adds two radicals which do not have characters in the radicals ranges. (This
-        // is new.)
-        // One of them has a code point outside the original Unihan block (more: a supplementary
-        // code point). (Also new.)
-        // TODO: Hardcoded until the UTC decides how to represent these.
-        // Unlike for all of the other radicals, radToChar[] remains null and radToChars[] contains
-        // only one character.
-        // 182''; ; 322C4
-        // 208''; ; 9F21
-        {
-            int radicalNumberAndSimplified = makeRadicalNumberAndSimplified(182, 2);
-            radicalStrings[radicalNumberAndSimplified] = "182''";
-            String oldChars = radToChars[radicalNumberAndSimplified];
-            if (oldChars == null) {
-                radToChars[radicalNumberAndSimplified] = new String(Character.toChars(0x322C4));
-            }
-        }
-        {
-            int radicalNumberAndSimplified = makeRadicalNumberAndSimplified(208, 2);
-            radicalStrings[radicalNumberAndSimplified] = "208''";
-            String oldChars = radToChars[radicalNumberAndSimplified];
-            if (oldChars == null) {
-                radToChars[radicalNumberAndSimplified] = "\u9F21";
-            }
+
+            int ideograph = Integer.parseInt(parts[2], 16);
+            assert 0x3000 < ideograph;
+            String ideographString = new String(Character.toChars(ideograph));
+            radToChars[radicalNumberAndSimplified] = radicalCharString + ideographString;
+            // radToChars[] contains only one character if there is no radical character.
         }
     }
 
