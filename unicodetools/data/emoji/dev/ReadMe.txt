@@ -1,21 +1,21 @@
 # Unicode Emoji
-# © 2022 Unicode®, Inc.
+# © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 
-This directory contains final data files for Unicode Emoji, Version 15.0
+This directory contains draft data files for Unicode Emoji, Version 15.1
 
-Public/emoji/15.0/
+Public/draft/emoji/
 
   emoji-sequences.txt
   emoji-zwj-sequences.txt
   emoji-test.txt
 
-The following related files are found in the UCD for Version 15.0
+The following related files are found in the UCD for Version 15.1
 
-Public/15.0.0/ucd/emoji/
+Public/draft/UCD/ucd/emoji/
 
   emoji-data.txt
   emoji-variation-sequences.txt
 
-For documentation, see UTS #51 Unicode Emoji, Version 15.0
+For documentation, see UTS #51 Unicode Emoji, Version 15.1

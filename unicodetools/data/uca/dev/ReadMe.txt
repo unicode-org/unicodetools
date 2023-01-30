@@ -1,6 +1,6 @@
 # Unicode Collation Algorithm
-# Date: 2022-05-16
-# © 2022 Unicode®, Inc.
+# Date: 2023-01-30
+# © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -17,6 +17,12 @@ https://www.unicode.org/Public/UCA/latest/ReadMe.txt
 
 then you are looking at the most current version of the data
 files for the Unicode Collation Algorithm.
+
+If you accessed this file via
+
+https://www.unicode.org/Public/draft/UCA/ReadMe.txt
+
+then you are looking at a draft for the next version of the UCA.
 
 Otherwise the version number is part of the path name.
 
