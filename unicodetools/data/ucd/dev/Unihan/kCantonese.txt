@@ -21923,7 +21923,7 @@
 93A9	saat3
 93AA	sau1
 93AB	faan6
-93AC	gou2
+93AC	hou6
 93AD..93AE	zan3
 93AF	long4
 93B0	jat6
@@ -25031,7 +25031,7 @@ FA17	jik1
 20414	lou5
 2041F	liu4
 20465	cau4
-20487	maau6
+20487	ji4
 2048E	fu4
 20491	jyun4
 20492	jan5
@@ -26043,7 +26043,7 @@ FA17	jik1
 24473	siu1
 24487	san1
 24488	jin3
-244B9	bat1
+244B9	jip6
 244BC	fong2
 244CE	zaan3
 244D3	lo3
@@ -26744,6 +26744,7 @@ FA17	jik1
 27ABE	syun1
 27AF4	gan2
 27B06	zin2
+27B08	hap6
 27B0B	faat3
 27B18	gaan1
 27B28	wai3
@@ -27373,6 +27374,7 @@ FA17	jik1
 2B235	zyut6
 2B241	oi3
 2B244	syu4
+2B26C	wok6
 2B2AE	lou4
 2B2B1	gaan2
 2B2B8	giu2
