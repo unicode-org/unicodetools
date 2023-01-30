@@ -21813,6 +21813,7 @@ FA2D	crane
 2B235	handful
 2B241	to cover; to hide; to conceal
 2B244	yam, tuber, potato
+2B26C	obtain, get, receive; seize
 2B2AA	millipede, (of a road) winding; zigzag
 2B2B8	insect
 2B2BB	a kind of crab
