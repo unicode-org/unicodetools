@@ -1,7 +1,7 @@
 # USourceData-15.1.0.txt
-# Date: 2022-11-05, 00:00:00 GMT [JHJ]
+# Date: 2023-01-30, 00:00:00 GMT [JHJ]
 #
-# © 2022 Unicode®, Inc.
+# © 2023 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr45/
 #
@@ -3350,7 +3350,7 @@ UTC-03294;FutureWS;;113.8;;⿰礻规;UTCDoc L2/22-040 40;kTraditionalVariant UTC
 UTC-03295;FutureWS;U+31FC3;140.5;;⿱花一;UTCDoc L2/22-040 41;;8;3
 UTC-03296;FutureWS;U+20BC7;30.3;;⿰口己;UTCDoc L2/22-085 1;kSpoofingVariant U+20BC7;6;5
 UTC-03297;FutureWS;U+25426;112.3;;⿰石己;UTCDoc L2/22-085 2;kSpoofingVariant U+25426;8;5
-# Unicode 15.1.0 Additions: 38
+# Unicode 15.1.0 Additions: 39
 UTC-03298;FutureWS;;2.12;;⿱⿰中人𭠀;UTCDoc L2/22-206 1;;13;2
 UTC-03299;FutureWS;;9.3;;⿰亻凢;UTCDoc L2/22-206 2;;5;3
 UTC-03300;FutureWS;;15.3;;⿰冫上;UTCDoc L2/22-206 3;;5;2
@@ -3389,4 +3389,5 @@ UTC-03332;FutureWS;;75.4;;⿰木太;UTCDoc L2/22-206 35;;8;1
 UTC-03333;FutureWS;;85.3;;⿰氵士;UTCDoc L2/22-206 36;;6;1
 UTC-03334;FutureWS;;85.4;;⿰氵五;UTCDoc L2/22-206 37;;7;1
 UTC-03335;FutureWS;;85.4;;⿰氵六;UTCDoc L2/22-206 38;;7;4
+UTC-03336;FutureWS;;195'.8;;⿰鱼孟;UTCDoc L2/22-282;kTraditionalVariant U+9BED;16;5
 # EOF
