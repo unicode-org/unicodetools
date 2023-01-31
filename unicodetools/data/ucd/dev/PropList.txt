@@ -1,5 +1,5 @@
 # PropList-15.1.0.txt
-# Date: 2023-01-05, 20:34:45 GMT
+# Date: 2023-01-31, 21:26:44 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1383,8 +1383,9 @@ AABB..AABC    ; Logical_Order_Exception # Lo   [2] TAI VIET VOWEL AUE..TAI VIET 
 0387          ; Other_ID_Continue # Po       GREEK ANO TELEIA
 1369..1371    ; Other_ID_Continue # No   [9] ETHIOPIC DIGIT ONE..ETHIOPIC DIGIT NINE
 19DA          ; Other_ID_Continue # No       NEW TAI LUE THAM DIGIT ONE
+200C..200D    ; Other_ID_Continue # Cf   [2] ZERO WIDTH NON-JOINER..ZERO WIDTH JOINER
 
-# Total code points: 12
+# Total code points: 14
 
 # ================================================
 
