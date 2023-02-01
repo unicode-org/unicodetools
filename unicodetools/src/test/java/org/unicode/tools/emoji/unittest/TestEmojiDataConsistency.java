@@ -6,6 +6,8 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ICUException;
+import com.ibm.icu.util.VersionInfo;
+
 import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -20,7 +22,9 @@ import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Tabber;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.EmojiDataSourceCombined;
 import org.unicode.tools.emoji.GenerateEmojiData;
@@ -74,12 +78,12 @@ public class TestEmojiDataConsistency extends TestFmwkMinusMinus {
     @Disabled("Broken? data load issue")
     @Test
     public void TestFiles() {
-        checkFiles(TestAll.VERSION_TO_TEST_PREVIOUS_STRING, TestAll.VERSION_TO_TEST_STRING);
+        checkFiles(Emoji.VERSION_TO_TEST_PREVIOUS, Emoji.VERSION_TO_TEST);
     }
 
-    public void checkFiles(String oldVersion, String newVersion) {
-        File oldDir = new File(GenerateEmojiData.OUTPUT_DIR_BASE + oldVersion);
-        File newDir = new File(GenerateEmojiData.OUTPUT_DIR_BASE + newVersion);
+    public void checkFiles(VersionInfo oldVersionInfo, VersionInfo newVersionInfo) {
+        File oldDir = new File(Settings.UnicodeTools.DataDir.EMOJI.asPath(oldVersionInfo).toString());
+        File newDir = new File(Settings.UnicodeTools.DataDir.EMOJI.asPath(newVersionInfo).toString());
         Function<String, String> cleaner =
                 x ->
                         x.replaceAll("\\s+", " ")
@@ -102,10 +106,12 @@ public class TestEmojiDataConsistency extends TestFmwkMinusMinus {
             unicodeToPropToLine(newDir.toString(), oldFileName, cleaner, newProps, newPropToFile);
         }
 
+        String oldVersion = oldVersionInfo.getVersionString(2, 2);
+        String newVersion = newVersionInfo.getVersionString(2, 2);
         UnicodeMap<String> empty = new UnicodeMap<String>().freeze();
 
         try (TempPrintWriter out =
-                new TempPrintWriter(GenerateEmojiData.OUTPUT_DIR, "internal/emoji-diff.txt")) {
+                new TempPrintWriter(GenerateEmojiData.getOutputDir(), "internal/emoji-diff.txt")) {
             Set<String> props = new LinkedHashSet<>(oldProps.keySet());
             props.addAll(newProps.keySet());
             for (String prop : props) {

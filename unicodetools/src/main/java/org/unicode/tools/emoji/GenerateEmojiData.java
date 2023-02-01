@@ -41,6 +41,10 @@ public class GenerateEmojiData {
     private static final VersionInfo DATA_VERSION_TO_GENERATE = EmojiData.EMOJI_DATA.getVersion();
     private static final String VERSION_STRING = DATA_VERSION_TO_GENERATE.getVersionString(2, 2);
 
+    public static final String getOutputDir() {
+        return Settings.UnicodeTools.DataDir.EMOJI.asPath(Emoji.VERSION_BETA).toString();
+    }
+
     private static final String ORDERING_NOTE =
             "#\n"
                     + "# Characters and sequences are listed in code point order. Users should be shown a more natural order.\n"
@@ -155,7 +159,7 @@ public class GenerateEmojiData {
     }
 
     public static <T> void printData(EmojiDataSource emojiDataSource) throws IOException {
-        String emojiPathString = Settings.UnicodeTools.DataDir.EMOJI.asPath(Emoji.VERSION_BETA).toString();
+        String emojiPathString = getOutputDir();
         String ucdPathString = Settings.UnicodeTools.DataDir.UCD.asPath(Emoji.VERSION_TO_GENERATE_UNICODE).toString() + "/emoji";
         String versionTextForUCD =
                 "Used with Emoji Version "
@@ -165,6 +169,7 @@ public class GenerateEmojiData {
 
         PropPrinter printer = new PropPrinter().set(emojiDataSource);
 
+        final String VERSION_STRING = DATA_VERSION_TO_GENERATE.getVersionString(2, 2);
         try (TempPrintWriter outText2 =
                 new TempPrintWriter(emojiPathString, "internal/emoji-internal.txt")) {
             UnicodeSet emojiGenderBase = emojiDataSource.getGenderBases();

@@ -85,7 +85,7 @@ public class TestEmojiData extends TestFmwkMinusMinus {
             return; // only test the beta stuff without combining
         }
         UnicodeMap<VariantStatus> tests = new UnicodeMap<>();
-        for (String line : FileUtilities.in(GenerateEmojiData.OUTPUT_DIR, "emoji-test.txt")) {
+        for (String line : FileUtilities.in(GenerateEmojiData.getOutputDir(), "emoji-test.txt")) {
             int hashPos = line.indexOf('#');
             if (hashPos >= 0) {
                 line = line.substring(0, hashPos);

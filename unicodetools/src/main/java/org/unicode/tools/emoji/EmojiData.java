@@ -192,12 +192,18 @@ public class EmojiData implements EmojiDataSource {
         this.version = version;
         final String directory =
                 Settings.UnicodeTools.getDataPathString("emoji", version.getVersionString(2, 4));
+        String ucdDirectory = directory;
+        if (version.compareTo(Emoji.VERSION13) >= 0) {
+            // As of E13.0 emoji-data.txt and emoji-variation-sequences.txt are no longer in the UCD.
+            VersionInfo unicodeVersion = Emoji.EMOJI_TO_UNICODE_VERSION.get(version);
+            ucdDirectory = Settings.UnicodeTools.DataDir.UCD.asPath(unicodeVersion).toString() + "/emoji";
+        }
         UnicodeRelation<EmojiProp> emojiData = new UnicodeRelation<>();
 
         boolean oldFormat = version.compareTo(Emoji.VERSION2) < 0;
         int lineCount = 0;
 
-        for (String line : FileUtilities.in(directory, "emoji-data.txt")) {
+        for (String line : FileUtilities.in(ucdDirectory, "emoji-data.txt")) {
             // # Code ; Default Style ; Ordering ; Annotations ; Sources #Version Char Name
             // U+263A ; text ; 0 ; face, human, outlined, relaxed, smile, smiley, smiling ;
             // jw # V1.1 (☺) white smiling face
@@ -555,7 +561,7 @@ public class EmojiData implements EmojiDataSource {
                 emojiWithVariants.add(0x2640).add(0x2642).add(0x2695);
             }
         } else {
-            for (String line : FileUtilities.in(directory, "emoji-variation-sequences.txt")) {
+            for (String line : FileUtilities.in(ucdDirectory, "emoji-variation-sequences.txt")) {
                 int hashPos = line.indexOf('#');
                 if (hashPos >= 0) {
                     line = line.substring(0, hashPos);
