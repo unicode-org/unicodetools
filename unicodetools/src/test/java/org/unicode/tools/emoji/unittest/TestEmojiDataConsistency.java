@@ -7,7 +7,6 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.VersionInfo;
-
 import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -82,8 +81,10 @@ public class TestEmojiDataConsistency extends TestFmwkMinusMinus {
     }
 
     public void checkFiles(VersionInfo oldVersionInfo, VersionInfo newVersionInfo) {
-        File oldDir = new File(Settings.UnicodeTools.DataDir.EMOJI.asPath(oldVersionInfo).toString());
-        File newDir = new File(Settings.UnicodeTools.DataDir.EMOJI.asPath(newVersionInfo).toString());
+        File oldDir =
+                new File(Settings.UnicodeTools.DataDir.EMOJI.asPath(oldVersionInfo).toString());
+        File newDir =
+                new File(Settings.UnicodeTools.DataDir.EMOJI.asPath(newVersionInfo).toString());
         Function<String, String> cleaner =
                 x ->
                         x.replaceAll("\\s+", " ")

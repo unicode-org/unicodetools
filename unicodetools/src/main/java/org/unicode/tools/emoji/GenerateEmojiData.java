@@ -159,7 +159,11 @@ public class GenerateEmojiData {
 
     public static <T> void printData(EmojiDataSource emojiDataSource) throws IOException {
         String emojiPathString = getOutputDir();
-        String ucdPathString = Settings.UnicodeTools.DataDir.UCD.asPath(Emoji.VERSION_TO_GENERATE_UNICODE).toString() + "/emoji";
+        String ucdPathString =
+                Settings.UnicodeTools.DataDir.UCD
+                                .asPath(Emoji.VERSION_TO_GENERATE_UNICODE)
+                                .toString()
+                        + "/emoji";
         String versionTextForUCD =
                 "Used with Emoji Version "
                         + Emoji.VERSION_UNICODE_STRING
@@ -351,7 +355,8 @@ public class GenerateEmojiData {
 
         try (Writer out = new TempPrintWriter(emojiPathString, "emoji-sequences.txt");
                 Writer outNonRgi =
-                        new TempPrintWriter(emojiPathString, "internal/emoji-sequences-nonrgi.txt")) {
+                        new TempPrintWriter(
+                                emojiPathString, "internal/emoji-sequences-nonrgi.txt")) {
             out.write(
                     Utility.getBaseDataHeader(
                                     "emoji-sequences", 51, "Emoji Sequence Data", VERSION_STRING)
@@ -644,7 +649,8 @@ public class GenerateEmojiData {
         System.out.println(
                 "Unlike the other data files, the test file doesn't use CandidateData.\n"
                         + "Instead, it needs to have the other data files built for the version, including the emoji ordering.");
-        GenerateEmojiTestFile.showLines(EmojiOrder.STD_ORDER, temp, Target.propFile, emojiPathString);
+        GenerateEmojiTestFile.showLines(
+                EmojiOrder.STD_ORDER, temp, Target.propFile, emojiPathString);
 
         //        try (TempPrintWriter reformatted = new TempPrintWriter(OUTPUT_DIR,
         // "internal/emojiOrdering.txt")) {
