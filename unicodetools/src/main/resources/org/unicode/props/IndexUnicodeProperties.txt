@@ -325,16 +325,28 @@ security/*/confusables ; Confusable_SA
 security/*/confusables ; Confusable_ML
 security/*/confusables ; Confusable_MA
 
+# Unicode 13 moves the emoji-data.txt and emoji-variation-sequences.txt files
+# from the emoji folder to the ucd/emoji folder.
+# The line with the new location (i.e., the line without version number)
+# must occur in this file before the line with the old location.
+FileType ; emoji-data ; PropertyValue
+emoji-data ; Emoji
+emoji-data ; Emoji_Presentation
+emoji-data ; Emoji_Modifier
+emoji-data ; Emoji_Modifier_Base
+emoji-data ; Emoji_Component
+emoji-data ; Extended_Pictographic
+
 FileType ; emoji/*/emoji-data ; PropertyValue
 FileType ; emoji/*/emoji-sequences ; PropertyValue
 FileType ; emoji/*/emoji-zwj-sequences ; PropertyValue
 
-emoji/*/emoji-data; Emoji
-emoji/*/emoji-data; Emoji_Presentation
-emoji/*/emoji-data; Emoji_Modifier
-emoji/*/emoji-data; Emoji_Modifier_Base
-emoji/*/emoji-data; Emoji_Component
-emoji/*/emoji-data; Extended_Pictographic
+emoji/*/emoji-data ; Emoji ; v12.1
+emoji/*/emoji-data ; Emoji_Presentation ; v12.1
+emoji/*/emoji-data ; Emoji_Modifier ; v12.1
+emoji/*/emoji-data ; Emoji_Modifier_Base ; v12.1
+emoji/*/emoji-data ; Emoji_Component ; v12.1
+emoji/*/emoji-data ; Extended_Pictographic ; v12.1
 
 emoji/*/emoji-sequences; Basic_Emoji 
 emoji/*/emoji-sequences; RGI_Emoji_Modifier_Sequence 
