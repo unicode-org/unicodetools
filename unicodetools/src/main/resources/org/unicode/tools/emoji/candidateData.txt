@@ -14,141 +14,599 @@
 # Then run ProposalData.java to generate an updated version of proposalData.txt that incorporates all the proposal data from this file.
 
 #================================
-Status=Final Candidate
+Status=Draft Candidate
 #================================
 
-Proposal=L2/21-214
-After=🤥
-U+1FAE8
-Name=shaking face
-Keywords=shock | shaking | face | earthquake | vibrate
+Proposal=L2/23-029
+After=👪
+U+1F9D1 U+200D U+1F9D2
+Name=family: adult, child
+Keywords=family
 
-Proposal=L2/21-202, L2/21-075
-After=💜
-U+1FA75
-Name=light blue heart
-Keywords=cyan | teal | light blue | heart
+U+1F9D1 U+200D U+1F9D2 U+200D U+1F9D2
+Name=adult, child, child
+Keywords=family
 
-Proposal=L2/21-201, L2/21-075
-After=💜
-U+1FA76
-Name=grey heart
-Keywords=gray | silver | slate | heart
+U+1F9D1 U+200D U+1F9D1 U+200D U+1F9D2
+Name=adult, adult, child
+Keywords=family
 
-Proposal=L2/21-203, L2/21-075
-After=💜
-U+1FA77
-Name=pink heart
-Keywords=pink | like | cute | love | heart
+U+1F9D1 U+200D U+1F9D1 U+200D U+1F9D2 U+200D U+1F9D2
+Name=adult, adult, child, child
+Keywords=family
 
-Proposal=L2/21-216
-After=🙏
-U+1FAF7
-Name=leftwards pushing hand
-Keywords=push | refuse | leftward | stop | wait | high five
-Emoji_Modifier_Base
-U+1FAF7 U+1F3FB
-U+1FAF7 U+1F3FC
-U+1FAF7 U+1F3FD
-U+1FAF7 U+1F3FE
-U+1FAF7 U+1F3FF
+Proposal=L2/23-030
+After=🚶
+U+1F6B6 U+200D U+27A1 U+FE0F
+Name=person walking facing right
+Keywords=rightward
 
-U+1FAF8
-Name=rightwards pushing hand
-Keywords=push | refuse | rightward | stop | wait | high five
-Emoji_Modifier_Base
-U+1FAF8 U+1F3FB
-U+1FAF8 U+1F3FC
-U+1FAF8 U+1F3FD
-U+1FAF8 U+1F3FE
-U+1FAF8 U+1F3FF
+After=🚶🏻
+U+1F6B6 U+1F3FB U+200D U+27A1 U+FE0F
+Name=person walking facing right: light skin tone
+Keywords=rightward
 
-Proposal=L2/21-197
-After=🐴
-U+1FACE
-Name=moose
-Keywords=antlers | mammal | animal | elk
+After=🚶🏼
+U+1F6B6 U+1F3FC U+200D U+27A1 U+FE0F
+Name=person walking facing right: medium-light skin tone
+Keywords=rightward
 
-Proposal=L2/21-196
-After=🐴
-U+1FACF
-Name=donkey
-Keywords=mule | burro | ass | stubborn | mammal | animal
+After=🚶🏽
+U+1F6B6 U+1F3FD U+200D U+27A1 U+FE0F
+Name=person walking facing right: medium skin tone
+Keywords=rightward
 
-Proposal=L2/21-198
-After=🦜
-U+1FABD
-Name=wing
-Keywords=flying | angelic | aviation | bird | mythology
+After=🚶🏾
+U+1F6B6 U+1F3FE U+200D U+27A1 U+FE0F
+Name=person walking facing right: medium-dark skin tone
+Keywords=rightward
 
-Proposal=L2/19-307
-After=🦜
-U+1F426 U+200D U+2B1B
-Name=black bird
-Keywords=bird | crow | raven | rook | black
+After=🚶🏿
+U+1F6B6 U+1F3FF U+200D U+27A1 U+FE0F
+Name=person walking facing right: dark skin tone
+Keywords=rightward
 
-Proposal=L2/21-219
-After=🦜
-U+1FABF
-Name=goose
-Keywords=bird | honk | fowl | silly
+After=🚶‍♂️
+U+1F6B6 U+200D U+2642 U+FE0F U+200D U+27A1 U+FE0F
+Name=man walking facing right
+Keywords=rightward
 
-Proposal=L2/21-217
-After=🪸
-U+1FABC
-Name=jellyfish
-Keywords=marine | invertebrate | jelly | stinger | burn | ouch
+After=🚶🏻‍♂️
+U+1F6B6 U+1F3FB U+200D U+2642 U+FE0F U+200D U+27A1 U+FE0F
+Name=man walking facing right: light skin tone
+Keywords=rightward
 
-Proposal=L2/21-215
-After=🌷
-U+1FABB
-Name=hyacinth
-Keywords=flower | lavender | bluebonnet | lupine | snapdragon
+After=🚶🏼‍♂️
+U+1F6B6 U+1F3FC U+200D U+2642 U+FE0F U+200D U+27A1 U+FE0F
+Name=man walking facing right: medium-light skin tone
+Keywords=rightward
 
-Proposal=L2/21-200
-After=🌰
-U+1FADA
-Name=ginger root
-Keywords=spice | root | beer
+After=🚶🏽‍♂️
+U+1F6B6 U+1F3FD U+200D U+2642 U+FE0F U+200D U+27A1 U+FE0F
+Name=man walking facing right: medium skin tone
+Keywords=rightward
 
-Proposal=L2/21-199
-After=🌰
-U+1FADB
-Name=pea pod
-Keywords=edamame | pod | beans | vegetable | legume | pea
+After=🚶🏾‍♂️
+U+1F6B6 U+1F3FE U+200D U+2642 U+FE0F U+200D U+27A1 U+FE0F
+Name=man walking facing right: medium-dark skin tone
+Keywords=rightward
 
-Proposal=L2/21-192
-After=👚
-U+1FAAD
-Name=folding hand fan
-Keywords=fan | cooling | hot | shy | flutter | dance
+After=🚶🏿‍♂️
+U+1F6B6 U+1F3FF U+200D U+2642 U+FE0F U+200D U+27A1 U+FE0F
+Name=man walking facing right: dark skin tone
+Keywords=rightward
 
-Proposal=L2/21-218
-After=👚
-U+1FAAE
-Name=hair pick
-Keywords=Afro | hair | pick | comb
+After=🚶‍♀️
+U+1F6B6 U+200D U+2640 U+FE0F U+200D U+27A1 U+FE0F
+Name=woman walking facing right
+Keywords=rightward
 
-Proposal=L2/21-194
-After=🪘
-U+1FA87
-Name=maracas
-Keywords=music | shake | instrument | rattle | percussion
+After=🚶🏻‍♀️
+U+1F6B6 U+1F3FB U+200D U+2640 U+FE0F U+200D U+27A1 U+FE0F
+Name=woman walking facing right: light skin tone
+Keywords=rightward
 
-Proposal=L2/21-193
-After=🪘
-U+1FA88
-Name=flute
-Keywords=recorder | music | woodwind | pipe | fife
+After=🚶🏼‍♀️
+U+1F6B6 U+1F3FC U+200D U+2640 U+FE0F U+200D U+27A1 U+FE0F
+Name=woman walking facing right: medium-light skin tone
+Keywords=rightward
 
-Proposal=L2/21-223
-After=🔯
-U+1FAAF
-Name=khanda
-Keywords=Sikh | religion
+After=🚶🏽‍♀️
+U+1F6B6 U+1F3FD U+200D U+2640 U+FE0F U+200D U+27A1 U+FE0F
+Name=woman walking facing right: medium skin tone
+Keywords=rightward
 
-Proposal=L2/21-191
-After=📴
-U+1F6DC
-Name=wireless
-Keywords=internet | computer | network
+After=🚶🏾‍♀️
+U+1F6B6 U+1F3FE U+200D U+2640 U+FE0F U+200D U+27A1 U+FE0F
+Name=woman walking facing right: medium-dark skin tone
+Keywords=rightward
+
+After=🚶🏿‍♀️
+U+1F6B6 U+1F3FF U+200D U+2640 U+FE0F U+200D U+27A1 U+FE0F
+Name=woman walking facing right: dark skin tone
+Keywords=rightward
+
+After=🧎
+U+1F9CE U+200D U+27A1 U+FE0F
+Name=person kneeling facing right
+Keywords=rightward
+
+After=🧎🏻
+U+1F9CE U+1F3FB U+200D U+27A1 U+FE0F
+Name=person kneeling facing right: light skin tone
+Keywords=rightward
+
+After=🧎🏼
+U+1F9CE U+1F3FC U+200D U+27A1 U+FE0F
+Name=person kneeling facing right: medium-light skin tone
+Keywords=rightward
+
+After=🧎🏽
+U+1F9CE U+1F3FD U+200D U+27A1 U+FE0F
+Name=person kneeling facing right: medium skin tone
+Keywords=rightward
+
+After=🧎🏾
+U+1F9CE U+1F3FE U+200D U+27A1 U+FE0F
+Name=person kneeling facing right: medium-dark skin tone
+Keywords=rightward
+
+After=🧎🏿
+U+1F9CE U+1F3FF U+200D U+27A1 U+FE0F
+Name=person kneeling facing right: dark skin tone
+Keywords=rightward
+
+After=🧎‍♂️
+U+1F9CE U+200D U+2642 U+FE0F U+200D U+27A1 U+FE0F
+Name=man kneeling facing right
+Keywords=rightward
+
+After=🧎🏻‍♂️
+U+1F9CE U+1F3FB U+200D U+2642 U+FE0F U+200D U+27A1 U+FE0F
+Name=man kneeling facing right: light skin tone
+Keywords=rightward
+
+After=🧎🏼‍♂️
+U+1F9CE U+1F3FC U+200D U+2642 U+FE0F U+200D U+27A1 U+FE0F
+Name=man kneeling facing right: medium-light skin tone
+Keywords=rightward
+
+After=🧎🏽‍♂️
+U+1F9CE U+1F3FD U+200D U+2642 U+FE0F U+200D U+27A1 U+FE0F
+Name=man kneeling facing right: medium skin tone
+Keywords=rightward
+
+After=🧎🏾‍♂️
+U+1F9CE U+1F3FE U+200D U+2642 U+FE0F U+200D U+27A1 U+FE0F
+Name=man kneeling facing right: medium-dark skin tone
+Keywords=rightward
+
+After=🧎🏿‍♂️
+U+1F9CE U+1F3FF U+200D U+2642 U+FE0F U+200D U+27A1 U+FE0F
+Name=man kneeling facing right: dark skin tone
+Keywords=rightward
+
+After=🧎‍♀️
+U+1F9CE U+200D U+2640 U+FE0F U+200D U+27A1 U+FE0F
+Name=woman kneeling facing right
+Keywords=rightward
+
+After=🧎🏻‍♀️
+U+1F9CE U+1F3FB U+200D U+2640 U+FE0F U+200D U+27A1 U+FE0F
+Name=woman kneeling facing right: light skin tone
+Keywords=rightward
+
+After=🧎🏼‍♀️
+U+1F9CE U+1F3FC U+200D U+2640 U+FE0F U+200D U+27A1 U+FE0F
+Name=woman kneeling facing right: medium-light skin tone
+Keywords=rightward
+
+After=🧎🏽‍♀️
+U+1F9CE U+1F3FD U+200D U+2640 U+FE0F U+200D U+27A1 U+FE0F
+Name=woman kneeling facing right: medium skin tone
+Keywords=rightward
+
+After=🧎🏾‍♀️
+U+1F9CE U+1F3FE U+200D U+2640 U+FE0F U+200D U+27A1 U+FE0F
+Name=woman kneeling facing right: medium-dark skin tone
+Keywords=rightward
+
+After=🧎🏿‍♀️
+U+1F9CE U+1F3FF U+200D U+2640 U+FE0F U+200D U+27A1 U+FE0F
+Name=woman kneeling facing right: dark skin tone
+Keywords=rightward
+
+After=🧑‍🦯
+U+1F9D1 U+200D U+1F9AF U+200D U+27A1 U+FE0F
+Name=person with white cane facing right
+Keywords=rightward
+
+After=🧑🏻‍🦯
+U+1F9D1 U+1F3FB U+200D U+1F9AF U+200D U+27A1 U+FE0F
+Name=person with white cane facing right: light skin tone
+Keywords=rightward
+
+After=🧑🏼‍🦯
+U+1F9D1 U+1F3FC U+200D U+1F9AF U+200D U+27A1 U+FE0F
+Name=person with white cane facing right: medium-light skin tone
+Keywords=rightward
+
+After=🧑🏽‍🦯
+U+1F9D1 U+1F3FD U+200D U+1F9AF U+200D U+27A1 U+FE0F
+Name=person with white cane facing right: medium skin tone
+Keywords=rightward
+
+After=🧑🏾‍🦯
+U+1F9D1 U+1F3FE U+200D U+1F9AF U+200D U+27A1 U+FE0F
+Name=person with white cane facing right: medium-dark skin tone
+Keywords=rightward
+
+After=🧑🏿‍🦯
+U+1F9D1 U+1F3FF U+200D U+1F9AF U+200D U+27A1 U+FE0F
+Name=person with white cane facing right: dark skin tone
+Keywords=rightward
+
+After=👨‍🦯
+U+1F468 U+200D U+1F9AF U+200D U+27A1 U+FE0F
+Name=man with white cane facing right
+Keywords=rightward
+
+After=👨🏻‍🦯
+U+1F468 U+1F3FB U+200D U+1F9AF U+200D U+27A1 U+FE0F
+Name=man with white cane facing right: light skin tone
+Keywords=rightward
+
+After=👨🏼‍🦯
+U+1F468 U+1F3FC U+200D U+1F9AF U+200D U+27A1 U+FE0F
+Name=man with white cane facing right: medium-light skin tone
+Keywords=rightward
+
+After=👨🏽‍🦯
+U+1F468 U+1F3FD U+200D U+1F9AF U+200D U+27A1 U+FE0F
+Name=man with white cane facing right: medium skin tone
+Keywords=rightward
+
+After=👨🏾‍🦯
+U+1F468 U+1F3FE U+200D U+1F9AF U+200D U+27A1 U+FE0F
+Name=man with white cane facing right: medium-dark skin tone
+Keywords=rightward
+
+After=👨🏿‍🦯
+U+1F468 U+1F3FF U+200D U+1F9AF U+200D U+27A1 U+FE0F
+Name=man with white cane facing right: dark skin tone
+Keywords=rightward
+
+After=👩‍🦯
+U+1F469 U+200D U+1F9AF U+200D U+27A1 U+FE0F
+Name=woman with white cane facing right
+Keywords=rightward
+
+After=👩🏻‍🦯
+U+1F469 U+1F3FB U+200D U+1F9AF U+200D U+27A1 U+FE0F
+Name=woman with white cane facing right: light skin tone
+Keywords=rightward
+
+After=👩🏼‍🦯
+U+1F469 U+1F3FC U+200D U+1F9AF U+200D U+27A1 U+FE0F
+Name=woman with white cane facing right: medium-light skin tone
+Keywords=rightward
+
+After=👩🏽‍🦯
+U+1F469 U+1F3FD U+200D U+1F9AF U+200D U+27A1 U+FE0F
+Name=woman with white cane facing right: medium skin tone
+Keywords=rightward
+
+After=👩🏾‍🦯
+U+1F469 U+1F3FE U+200D U+1F9AF U+200D U+27A1 U+FE0F
+Name=woman with white cane facing right: medium-dark skin tone
+Keywords=rightward
+
+After=👩🏿‍🦯
+U+1F469 U+1F3FF U+200D U+1F9AF U+200D U+27A1 U+FE0F
+Name=woman with white cane facing right: dark skin tone
+Keywords=rightward
+
+After=🧑‍🦼
+U+1F9D1 U+200D U+1F9BC U+200D U+27A1 U+FE0F
+Name=person in motorized wheelchair facing right
+Keywords=rightward
+
+After=🧑🏻‍🦼
+U+1F9D1 U+1F3FB U+200D U+1F9BC U+200D U+27A1 U+FE0F
+Name=person in motorized wheelchair facing right: light skin tone
+Keywords=rightward
+
+After=🧑🏼‍🦼
+U+1F9D1 U+1F3FC U+200D U+1F9BC U+200D U+27A1 U+FE0F
+Name=person in motorized wheelchair facing right: medium-light skin tone
+Keywords=rightward
+
+After=🧑🏽‍🦼
+U+1F9D1 U+1F3FD U+200D U+1F9BC U+200D U+27A1 U+FE0F
+Name=person in motorized wheelchair facing right: medium skin tone
+Keywords=rightward
+
+After=🧑🏾‍🦼
+U+1F9D1 U+1F3FE U+200D U+1F9BC U+200D U+27A1 U+FE0F
+Name=person in motorized wheelchair facing right: medium-dark skin tone
+Keywords=rightward
+
+After=🧑🏿‍🦼
+U+1F9D1 U+1F3FF U+200D U+1F9BC U+200D U+27A1 U+FE0F
+Name=person in motorized wheelchair facing right: dark skin tone
+Keywords=rightward
+
+After=👨‍🦼
+U+1F468 U+200D U+1F9BC U+200D U+27A1 U+FE0F
+Name=man in motorized wheelchair facing right
+Keywords=rightward
+
+After=👨🏻‍🦼
+U+1F468 U+1F3FB U+200D U+1F9BC U+200D U+27A1 U+FE0F
+Name=man in motorized wheelchair facing right: light skin tone
+Keywords=rightward
+
+After=👨🏼‍🦼
+U+1F468 U+1F3FC U+200D U+1F9BC U+200D U+27A1 U+FE0F
+Name=man in motorized wheelchair facing right: medium-light skin tone
+Keywords=rightward
+
+After=👨🏽‍🦼
+U+1F468 U+1F3FD U+200D U+1F9BC U+200D U+27A1 U+FE0F
+Name=man in motorized wheelchair facing right: medium skin tone
+Keywords=rightward
+
+After=👨🏾‍🦼
+U+1F468 U+1F3FE U+200D U+1F9BC U+200D U+27A1 U+FE0F
+Name=man in motorized wheelchair facing right: medium-dark skin tone
+Keywords=rightward
+
+After=👨🏿‍🦼
+U+1F468 U+1F3FF U+200D U+1F9BC U+200D U+27A1 U+FE0F
+Name=man in motorized wheelchair facing right: dark skin tone
+Keywords=rightward
+
+After=👩‍🦼
+U+1F469 U+200D U+1F9BC U+200D U+27A1 U+FE0F
+Name=woman in motorized wheelchair facing right
+Keywords=rightward
+
+After=👩🏻‍🦼
+U+1F469 U+1F3FB U+200D U+1F9BC U+200D U+27A1 U+FE0F
+Name=woman in motorized wheelchair facing right: light skin tone
+Keywords=rightward
+
+After=👩🏼‍🦼
+U+1F469 U+1F3FC U+200D U+1F9BC U+200D U+27A1 U+FE0F
+Name=woman in motorized wheelchair facing right: medium-light skin tone
+Keywords=rightward
+
+After=👩🏽‍🦼
+U+1F469 U+1F3FD U+200D U+1F9BC U+200D U+27A1 U+FE0F
+Name=woman in motorized wheelchair facing right: medium skin tone
+Keywords=rightward
+
+After=👩🏾‍🦼
+U+1F469 U+1F3FE U+200D U+1F9BC U+200D U+27A1 U+FE0F
+Name=woman in motorized wheelchair facing right: medium-dark skin tone
+Keywords=rightward
+
+After=👩🏿‍🦼
+U+1F469 U+1F3FF U+200D U+1F9BC U+200D U+27A1 U+FE0F
+Name=woman in motorized wheelchair facing right: dark skin tone
+Keywords=rightward
+
+After=🧑‍🦽
+U+1F9D1 U+200D U+1F9BD U+200D U+27A1 U+FE0F
+Name=person in manual wheelchair facing right
+Keywords=rightward
+
+After=🧑🏻‍🦽
+U+1F9D1 U+1F3FB U+200D U+1F9BD U+200D U+27A1 U+FE0F
+Name=person in manual wheelchair facing right: light skin tone
+Keywords=rightward
+
+After=🧑🏼‍🦽
+U+1F9D1 U+1F3FC U+200D U+1F9BD U+200D U+27A1 U+FE0F
+Name=person in manual wheelchair facing right: medium-light skin tone
+Keywords=rightward
+
+After=🧑🏽‍🦽
+U+1F9D1 U+1F3FD U+200D U+1F9BD U+200D U+27A1 U+FE0F
+Name=person in manual wheelchair facing right: medium skin tone
+Keywords=rightward
+
+After=🧑🏾‍🦽
+U+1F9D1 U+1F3FE U+200D U+1F9BD U+200D U+27A1 U+FE0F
+Name=person in manual wheelchair facing right: medium-dark skin tone
+Keywords=rightward
+
+After=🧑🏿‍🦽
+U+1F9D1 U+1F3FF U+200D U+1F9BD U+200D U+27A1 U+FE0F
+Name=person in manual wheelchair facing right: dark skin tone
+Keywords=rightward
+
+After=👨‍🦽
+U+1F468 U+200D U+1F9BD U+200D U+27A1 U+FE0F
+Name=man in manual wheelchair facing right
+Keywords=rightward
+
+After=👨🏻‍🦽
+U+1F468 U+1F3FB U+200D U+1F9BD U+200D U+27A1 U+FE0F
+Name=man in manual wheelchair facing right: light skin tone
+Keywords=rightward
+
+After=👨🏼‍🦽
+U+1F468 U+1F3FC U+200D U+1F9BD U+200D U+27A1 U+FE0F
+Name=man in manual wheelchair facing right: medium-light skin tone
+Keywords=rightward
+
+After=👨🏽‍🦽
+U+1F468 U+1F3FD U+200D U+1F9BD U+200D U+27A1 U+FE0F
+Name=man in manual wheelchair facing right: medium skin tone
+Keywords=rightward
+
+After=👨🏾‍🦽
+U+1F468 U+1F3FE U+200D U+1F9BD U+200D U+27A1 U+FE0F
+Name=man in manual wheelchair facing right: medium-dark skin tone
+Keywords=rightward
+
+After=👨🏿‍🦽
+U+1F468 U+1F3FF U+200D U+1F9BD U+200D U+27A1 U+FE0F
+Name=man in manual wheelchair facing right: dark skin tone
+Keywords=rightward
+
+After=👩‍🦽
+U+1F469 U+200D U+1F9BD U+200D U+27A1 U+FE0F
+Name=woman in manual wheelchair facing right
+Keywords=rightward
+
+After=👩🏻‍🦽
+U+1F469 U+1F3FB U+200D U+1F9BD U+200D U+27A1 U+FE0F
+Name=woman in manual wheelchair facing right: light skin tone
+Keywords=rightward
+
+After=👩🏼‍🦽
+U+1F469 U+1F3FC U+200D U+1F9BD U+200D U+27A1 U+FE0F
+Name=woman in manual wheelchair facing right: medium-light skin tone
+Keywords=rightward
+
+After=👩🏽‍🦽
+U+1F469 U+1F3FD U+200D U+1F9BD U+200D U+27A1 U+FE0F
+Name=woman in manual wheelchair facing right: medium skin tone
+Keywords=rightward
+
+After=👩🏾‍🦽
+U+1F469 U+1F3FE U+200D U+1F9BD U+200D U+27A1 U+FE0F
+Name=woman in manual wheelchair facing right: medium-dark skin tone
+Keywords=rightward
+
+After=👩🏿‍🦽
+U+1F469 U+1F3FF U+200D U+1F9BD U+200D U+27A1 U+FE0F
+Name=woman in manual wheelchair facing right: dark skin tone
+Keywords=rightward
+
+After=🏃
+U+1F3C3 U+200D U+27A1 U+FE0F
+Name=person running facing right
+Keywords=rightward
+
+After=🏃🏻
+U+1F3C3 U+1F3FB U+200D U+27A1 U+FE0F
+Name=person running facing right: light skin tone
+Keywords=rightward
+
+After=🏃🏼
+U+1F3C3 U+1F3FC U+200D U+27A1 U+FE0F
+Name=person running facing right: medium-light skin tone
+Keywords=rightward
+
+After=🏃🏽
+U+1F3C3 U+1F3FD U+200D U+27A1 U+FE0F
+Name=person running facing right: medium skin tone
+Keywords=rightward
+
+After=🏃🏾
+U+1F3C3 U+1F3FE U+200D U+27A1 U+FE0F
+Name=person running facing right: medium-dark skin tone
+Keywords=rightward
+
+After=🏃🏿
+U+1F3C3 U+1F3FF U+200D U+27A1 U+FE0F
+Name=person running facing right: dark skin tone
+Keywords=rightward
+
+After=🏃‍♂️
+U+1F3C3 U+200D U+2642 U+FE0F U+200D U+27A1 U+FE0F
+Name=man running facing right
+Keywords=rightward
+
+After=🏃🏻‍♂️
+U+1F3C3 U+1F3FB U+200D U+2642 U+FE0F U+200D U+27A1 U+FE0F
+Name=man running facing right: light skin tone
+Keywords=rightward
+
+After=🏃🏼‍♂️
+U+1F3C3 U+1F3FC U+200D U+2642 U+FE0F U+200D U+27A1 U+FE0F
+Name=man running facing right: medium-light skin tone
+Keywords=rightward
+
+After=🏃🏽‍♂️
+U+1F3C3 U+1F3FD U+200D U+2642 U+FE0F U+200D U+27A1 U+FE0F
+Name=man running facing right: medium skin tone
+Keywords=rightward
+
+After=🏃🏾‍♂️
+U+1F3C3 U+1F3FE U+200D U+2642 U+FE0F U+200D U+27A1 U+FE0F
+Name=man running facing right: medium-dark skin tone
+Keywords=rightward
+
+After=🏃🏿‍♂️
+U+1F3C3 U+1F3FF U+200D U+2642 U+FE0F U+200D U+27A1 U+FE0F
+Name=man running facing right: dark skin tone
+Keywords=rightward
+
+After=🏃‍♀️
+U+1F3C3 U+200D U+2640 U+FE0F U+200D U+27A1 U+FE0F
+Name=woman running facing right
+Keywords=rightward
+
+After=🏃🏻‍♀️
+U+1F3C3 U+1F3FB U+200D U+2640 U+FE0F U+200D U+27A1 U+FE0F
+Name=woman running facing right: light skin tone
+Keywords=rightward
+
+After=🏃🏼‍♀️
+U+1F3C3 U+1F3FC U+200D U+2640 U+FE0F U+200D U+27A1 U+FE0F
+Name=woman running facing right: medium-light skin tone
+Keywords=rightward
+
+After=🏃🏽‍♀️
+U+1F3C3 U+1F3FD U+200D U+2640 U+FE0F U+200D U+27A1 U+FE0F
+Name=woman running facing right: medium skin tone
+Keywords=rightward
+
+After=🏃🏾‍♀️
+U+1F3C3 U+1F3FE U+200D U+2640 U+FE0F U+200D U+27A1 U+FE0F
+Name=woman running facing right: medium-dark skin tone
+Keywords=rightward
+
+After=🏃🏿‍♀️
+U+1F3C3 U+1F3FF U+200D U+2640 U+FE0F U+200D U+27A1 U+FE0F
+Name=woman running facing right: dark skin tone
+Keywords=rightward
+
+Proposal=L2/23-031
+After=🍋
+U+1F34B U+200D U+1F7E9
+Name=lime
+Keywords=citrus, fruit, tropical
+
+Proposal=L2/23-032
+After=🫛
+U+1F344 U+200D U+1F7EB
+Name=brown mushroom
+Keywords=food, fungus, nature, vegetable
+
+Proposal=L2/23-033
+After=🪿
+U+1F426 U+200D U+1F525
+Name=phoenix
+Keywords=fantasy, firebird, rebirth, reincarnation
+
+Proposal=L2/23-034
+After=🫨
+U+1F642 U+200D U+2194 U+FE0F
+Name=head shaking horizontally
+Keywords=no, shake
+
+Proposal=L2/23-035
+U+1F642 U+200D U+2195 U+FE0F
+Name=head shaking vertically
+Keywords=nod, yes
+
+Proposal=L2/23-036
+After=🔗
+U+26D3 U+FE0F U+200D U+1F4A5
+Name=broken chain
+Keywords=break, breaking, chain, cuffs, freedom

@@ -41,9 +41,6 @@ public class GenerateEmojiData {
     private static final VersionInfo DATA_VERSION_TO_GENERATE = EmojiData.EMOJI_DATA.getVersion();
     private static final String VERSION_STRING = DATA_VERSION_TO_GENERATE.getVersionString(2, 2);
 
-    public static final String OUTPUT_DIR_BASE = Settings.Output.GEN_DIR + "emoji/";
-    public static String OUTPUT_DIR = OUTPUT_DIR_BASE + VERSION_STRING;
-
     private static final String ORDERING_NOTE =
             "#\n"
                     + "# Characters and sequences are listed in code point order. Users should be shown a more natural order.\n"
@@ -158,7 +155,8 @@ public class GenerateEmojiData {
     }
 
     public static <T> void printData(EmojiDataSource emojiDataSource) throws IOException {
-        OUTPUT_DIR = OUTPUT_DIR_BASE + emojiDataSource.getPlainVersion();
+        String emojiPathString = Settings.UnicodeTools.DataDir.EMOJI.asPath(Emoji.VERSION_BETA).toString();
+        String ucdPathString = Settings.UnicodeTools.DataDir.UCD.asPath(Emoji.VERSION_TO_GENERATE_UNICODE).toString() + "/emoji";
         String versionTextForUCD =
                 "Used with Emoji Version "
                         + Emoji.VERSION_UNICODE_STRING
@@ -168,7 +166,7 @@ public class GenerateEmojiData {
         PropPrinter printer = new PropPrinter().set(emojiDataSource);
 
         try (TempPrintWriter outText2 =
-                new TempPrintWriter(OUTPUT_DIR, "internal/emoji-internal.txt")) {
+                new TempPrintWriter(emojiPathString, "internal/emoji-internal.txt")) {
             UnicodeSet emojiGenderBase = emojiDataSource.getGenderBases();
             UnicodeSet emojiExplicitGender = emojiDataSource.getExplicitGender();
             outText2.println(
@@ -219,7 +217,7 @@ public class GenerateEmojiData {
         }
 
         try (TempPrintWriter outText2 =
-                new TempPrintWriter(OUTPUT_DIR, "internal/emoji-proposals.txt")) {
+                new TempPrintWriter(emojiPathString, "internal/emoji-proposals.txt")) {
             outText2.println("# Mapping from emoji to proposals.");
             outText2.println("# Format: ");
             outText2.println("#     <emoji> ; <property> # <comments> ");
@@ -233,7 +231,7 @@ public class GenerateEmojiData {
             outText2.println("\n#EOF");
         }
 
-        try (TempPrintWriter outText2 = new TempPrintWriter(OUTPUT_DIR, "emoji-data.txt")) {
+        try (TempPrintWriter outText2 = new TempPrintWriter(ucdPathString, "emoji-data.txt")) {
             UnicodeSet emoji = emojiDataSource.getSingletonsWithDefectives();
             UnicodeSet emoji_presentation = emojiDataSource.getEmojiPresentationSet();
             UnicodeSet emoji_modifiers = EmojiData.MODIFIERS;
@@ -347,9 +345,9 @@ public class GenerateEmojiData {
         UnicodeSet nonRgiSequences = new UnicodeSet();
         String prefix13 = emojiDataSource.getVersionString().compareTo("13") >= 0 ? "RGI_" : "";
 
-        try (Writer out = new TempPrintWriter(OUTPUT_DIR, "emoji-sequences.txt");
+        try (Writer out = new TempPrintWriter(emojiPathString, "emoji-sequences.txt");
                 Writer outNonRgi =
-                        new TempPrintWriter(OUTPUT_DIR, "internal/emoji-sequences-nonrgi.txt")) {
+                        new TempPrintWriter(emojiPathString, "internal/emoji-sequences-nonrgi.txt")) {
             out.write(
                     Utility.getBaseDataHeader(
                                     "emoji-sequences", 51, "Emoji Sequence Data", VERSION_STRING)
@@ -457,10 +455,10 @@ public class GenerateEmojiData {
             out.write("\n#EOF\n");
         }
 
-        try (Writer out = new TempPrintWriter(OUTPUT_DIR, "emoji-zwj-sequences.txt");
+        try (Writer out = new TempPrintWriter(emojiPathString, "emoji-zwj-sequences.txt");
                 Writer outNonRgi =
                         new TempPrintWriter(
-                                OUTPUT_DIR, "internal/emoji-zwj-sequences-nonrgi.txt")) {
+                                emojiPathString, "internal/emoji-zwj-sequences-nonrgi.txt")) {
             out.write(
                     Utility.getBaseDataHeader(
                                     "emoji-zwj-sequences",
@@ -498,7 +496,6 @@ public class GenerateEmojiData {
                 switch (zwjType) {
                     case zwj_seq_fam:
                     case zwj_seq_fam_mod:
-                    case zwj_seq_mod:
                         types.put(s, "family");
                         break;
 
@@ -537,7 +534,7 @@ public class GenerateEmojiData {
         }
 
         if (DATA_VERSION_TO_GENERATE.compareTo(Emoji.VERSION5) >= 0) {
-            try (Writer out = new TempPrintWriter(OUTPUT_DIR, "emoji-variation-sequences.txt")) {
+            try (Writer out = new TempPrintWriter(ucdPathString, "emoji-variation-sequences.txt")) {
                 out.write(
                         Utility.getBaseDataHeaderWithVersionText(
                                         "emoji-variation-sequences",
@@ -619,7 +616,7 @@ public class GenerateEmojiData {
                             + emojiDataSource.getAllEmojiWithoutDefectives().toPattern(false));
 
         try (TempPrintWriter reformatted =
-                new TempPrintWriter(OUTPUT_DIR, "internal/emojiOrdering.txt")) {
+                new TempPrintWriter(emojiPathString, "internal/emojiOrdering.txt")) {
             new EmojiDataSourceCombined().showOrderingInterleaved(reformatted);
         }
 
@@ -643,7 +640,7 @@ public class GenerateEmojiData {
         System.out.println(
                 "Unlike the other data files, the test file doesn't use CandidateData.\n"
                         + "Instead, it needs to have the other data files built for the version, including the emoji ordering.");
-        GenerateEmojiTestFile.showLines(EmojiOrder.STD_ORDER, temp, Target.propFile, OUTPUT_DIR);
+        GenerateEmojiTestFile.showLines(EmojiOrder.STD_ORDER, temp, Target.propFile, emojiPathString);
 
         //        try (TempPrintWriter reformatted = new TempPrintWriter(OUTPUT_DIR,
         // "internal/emojiOrdering.txt")) {
@@ -778,7 +775,7 @@ public class GenerateEmojiData {
                     if (comments != null) {
                         out.write(": " + comments);
                     }
-                    out.write("\n\n");
+                    out.write("\n");
                 } else {
                     out.write("# All omitted code points have " + title + "=No\n");
                     // out.write("# @missing: 0000..10FFFF  ; " + title + " ; No\n");

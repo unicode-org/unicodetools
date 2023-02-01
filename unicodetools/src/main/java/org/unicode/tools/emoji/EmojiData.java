@@ -67,8 +67,8 @@ public class EmojiData implements EmojiDataSource {
             new UnicodeSet().add(0x1F46B).add(0x1F46C).add(0x1F46D).freeze();
     public static final UnicodeSet OTHER_GROUP = new UnicodeSet("[💏 💑]").freeze();
 
-    static final String ZWJ_HANDSHAKE_ZWJ = Emoji.JOINER_STR + "🤝" + Emoji.JOINER_STR;
-    private static final String BAD_HANDSHAKE = "👨🏻‍🤝‍👨🏼";
+    static final String ZWJ_HANDSHAKE_ZWJ = Emoji.ZWJ_HANDSHAKE_ZWJ;
+
     static final String RIGHTWARDS_HAND = UTF16.valueOf(0x1faf1);
     static final String LEFTWARDS_HAND = UTF16.valueOf(0x1faf2);
     static final String SHAKING_HANDS = RIGHTWARDS_HAND + Emoji.JOINER_STR + LEFTWARDS_HAND;
@@ -1585,7 +1585,7 @@ public class EmojiData implements EmojiDataSource {
                     throw new IllegalArgumentException("internal error");
                 }
                 String result = prefixMod + infix + postfixMod;
-                if (result.equals(BAD_HANDSHAKE)) {
+                if (result.equals("👨🏻‍🤝‍👨🏼")) {
                     int x = 0;
                 }
                 if (result.contains("👯")) {

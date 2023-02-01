@@ -1139,6 +1139,63 @@
 # L2/20-211
 1FAF6; L2/20-211 # 2021 (🫶) heart hands
 
+# L2/21-191
+1F6DC; L2/21-191 # 2022 (🛜) wireless
+
+# L2/21-202, L2/21-075
+1FA75; L2/21-202, L2/21-075 # 2022 (🩵) light blue heart
+
+# L2/21-201, L2/21-075
+1FA76; L2/21-201, L2/21-075 # 2022 (🩶) grey heart
+
+# L2/21-203, L2/21-075
+1FA77; L2/21-203, L2/21-075 # 2022 (🩷) pink heart
+
+# L2/21-194
+1FA87; L2/21-194 # 2022 (🪇) maracas
+
+# L2/21-193
+1FA88; L2/21-193 # 2022 (🪈) flute
+
+# L2/21-192
+1FAAD; L2/21-192 # 2022 (🪭) folding hand fan
+
+# L2/21-218
+1FAAE; L2/21-218 # 2022 (🪮) hair pick
+
+# L2/21-223
+1FAAF; L2/21-223 # 2022 (🪯) khanda
+
+# L2/21-215
+1FABB; L2/21-215 # 2022 (🪻) hyacinth
+
+# L2/21-217
+1FABC; L2/21-217 # 2022 (🪼) jellyfish
+
+# L2/21-198
+1FABD; L2/21-198 # 2022 (🪽) wing
+
+# L2/21-219
+1FABF; L2/21-219 # 2022 (🪿) goose
+
+# L2/21-197
+1FACE; L2/21-197 # 2022 (🫎) moose
+
+# L2/21-196
+1FACF; L2/21-196 # 2022 (🫏) donkey
+
+# L2/21-200
+1FADA; L2/21-200 # 2022 (🫚) ginger root
+
+# L2/21-199
+1FADB; L2/21-199 # 2022 (🫛) pea pod
+
+# L2/21-214
+1FAE8; L2/21-214 # 2022 (🫨) shaking face
+
+# L2/21-216
+1FAF7..1FAF8; L2/21-216 # 2022..2022 (🫷..🫸) leftwards pushing hand..rightwards pushing hand
+
 # L2/07-257, L2/09-026, L2/14-173
 261D 1F3FF; L2/07-257, L2/09-026, L2/14-173 # 2015 (☝🏿) index pointing up: dark skin tone
 270A 1F3FF; L2/07-257, L2/09-026, L2/14-173 # 2015 (✊🏿) raised fist: dark skin tone
@@ -1554,6 +1611,9 @@
 # L2/18-256
 1F415 200D 1F9BA; L2/18-256 # 2019 (🐕‍🦺) service dog
 
+# L2/19-307
+1F426 200D 2B1B; L2/19-307 # 2022 (🐦‍⬛) black bird
+
 # L2/19-296
 1F43B 200D 2744; L2/19-296 # 2020 (🐻‍❄️) polar bear
 
@@ -1711,7 +1771,7 @@
 1F90F 1F3FF; L2/18-139, L2/14-173 # 2019 (🤏🏿) pinching hand: dark skin tone
 
 # L2/19-265, L2/19-370, L2/14-173
-1F91D 1F3FF; L2/19-265, L2/19-370, L2/14-173 # 2016 (🤝🏿) handshake: dark skin tone
+1F91D 1F3FF; L2/19-265, L2/19-370, L2/14-173 # 2021 (🤝🏿) handshake: dark skin tone
 1FAF1 1F3FF; L2/19-265, L2/19-370, L2/14-173 # 2021 (🫱🏿) rightwards hand: dark skin tone
 1FAF2 1F3FF; L2/19-265, L2/19-370, L2/14-173 # 2021 (🫲🏿) leftwards hand: dark skin tone
 
@@ -1885,6 +1945,10 @@
 
 # L2/20-211, L2/14-173
 1FAF6 1F3FF; L2/20-211, L2/14-173 # 2021 (🫶🏿) heart hands: dark skin tone
+
+# L2/21-216, L2/14-173
+1FAF7 1F3FF; L2/21-216, L2/14-173 # 2022 (🫷🏿) leftwards pushing hand: dark skin tone
+1FAF8 1F3FF; L2/21-216, L2/14-173 # 2022 (🫸🏿) rightwards pushing hand: dark skin tone
 
 # MISSING-2015
 1F441 FE0F 200D 1F5E8 FE0F; MISSING # 2015 (👁️‍🗨️) eye in speech bubble

@@ -573,9 +573,12 @@ public class CountEmoji {
                         attributes.add(Attribute.role);
                     }
                     boolean family =
-                            noVariants.contains(EmojiData.ZWJ_HANDSHAKE_ZWJ)
-                                    || Emoji.FAMILY_MARKERS.contains(first)
-                                            && Emoji.FAMILY_MARKERS.containsSome(butFirst);
+                            noVariants.contains(Emoji.ZWJ_HANDSHAKE_ZWJ) // holding hands
+                                    || noVariants.contains(Emoji.ZWJ_HEART_ZWJ) // couple with heart, kiss
+                                    || EmojiData.of(Emoji.VERSION_BETA).isHandshake(s)
+                                    || (Emoji.FAMILY_MARKERS.contains(first)
+                                            && Emoji.FAMILY_MARKERS.containsSome(butFirst))
+                                    || Emoji.NEUTRAL_FAMILY_ZWJ_SEQUENCES.contains(s);
                     if (family) {
                         attributes.add(Attribute.family);
                     }

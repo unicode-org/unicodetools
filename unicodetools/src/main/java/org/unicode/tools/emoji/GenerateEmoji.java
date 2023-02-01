@@ -3763,7 +3763,7 @@ public class GenerateEmoji {
         }
     }
 
-    static boolean altAppearance = false;
+    static boolean altAppearance = true;
 
     static String altClass(String cell) {
         return cell.replace(ALT_COLUMN, (altAppearance = !altAppearance) ? "andr" : "andr alt");
