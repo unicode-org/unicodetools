@@ -38,11 +38,10 @@ import org.unicode.tools.emoji.CountEmoji.Category;
 import org.unicode.tools.emoji.GenerateEmojiTestFile.Target;
 
 public class GenerateEmojiData {
-    private static final VersionInfo DATA_VERSION_TO_GENERATE = EmojiData.EMOJI_DATA.getVersion();
-    private static final String VERSION_STRING = DATA_VERSION_TO_GENERATE.getVersionString(2, 2);
+    private static final VersionInfo DATA_VERSION_TO_GENERATE = Emoji.VERSION_TO_GENERATE;
 
     public static final String getOutputDir() {
-        return Settings.UnicodeTools.DataDir.EMOJI.asPath(Emoji.VERSION_BETA).toString();
+        return Settings.UnicodeTools.DataDir.EMOJI.asPath(DATA_VERSION_TO_GENERATE).toString();
     }
 
     private static final String ORDERING_NOTE =
