@@ -95,10 +95,10 @@ and skip any others that are only for internal use.
 
 ### Publish an alpha snapshot
 
-TODO: Define the minimal set of files to be published for an alpha.
+For the alpha review, publish (at least) the UCD and emoji files, and the charts.
 
-TODO: Write a script like /pub/copy-alpha-to-draft.sh that will be run on the unicode.org server
-and copy the set of the .../dev/ data files for an alpha snapshot
+Run the [pub/copy-alpha-to-draft.sh](https://github.com/unicode-org/unicodetools/blob/main/pub/copy-alpha-to-draft.sh)
+on the unicode.org server which copies the set of the .../dev/ data files for an alpha snapshot
 from a unicodetools workspace to the location behind https://www.unicode.org/Public/draft/ .
 
 Note: No version/delta infixes in names of data files.
