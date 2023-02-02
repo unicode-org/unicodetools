@@ -1,5 +1,5 @@
 # USourceData-15.1.0.txt
-# Date: 2023-01-30, 00:00:00 GMT [JHJ]
+# Date: 2023-01-31, 00:00:00 GMT [JHJ]
 #
 # © 2023 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -3042,7 +3042,7 @@ UTC-02990;ExtH;U+31598;32.5;;⿰土处;UTCDoc L2/17-062 10;kMandarin: qián;8;3
 UTC-02991;ExtH;U+3158E;32.4;;⿰土夭;UTCDoc L2/17-062 11;kMandarin: āo;7;3
 UTC-02992;ExtH;U+31604;32.13;;⿱敬土;UTCDoc L2/17-062 12;kMandarin: qiáng;16 15;1
 UTC-02993;URO;U+9FFF;85.9;;⿳甫人氺;UTCDoc L2/17-062 13;kMandarin: xìng;14;1
-UTC-02994;WS-2017;U+44D5;162.8;;⿺辶芫;UTCDoc L2/17-062 14;kMandarin: yuǎn;12 10;1
+UTC-02994;ExtA;U+44D5;140.8 162.8;;⿺辶芫;UTCDoc L2/17-062 14;kMandarin: yuǎn;12 10;1
 UTC-02995;ExtH;U+31712;46.13;;⿱解山;UTCDoc L2/17-062 15;kMandarin: xiè;16;3
 UTC-02996;ExtH;U+31580;31.8;;⿴囗昏;UTCDoc L2/17-062 16;kMandarin: hōng;11;3
 UTC-02997;ExtH;U+31587;32.3;;⿰土干;UTCDoc L2/17-062 17;kMandarin: gān;6;1
