@@ -63,7 +63,7 @@ public class GenerateEmojiTestFile {
         }
 
         GenerateEmojiTestFile.showLines(
-                GEN_ORDER, sortingChars, Target.propFile, GenerateEmojiData.OUTPUT_DIR);
+                GEN_ORDER, sortingChars, Target.propFile, GenerateEmojiData.getOutputDir());
         GenerateEmojiTestFile.showLines(
                 GEN_ORDER, sortingChars, Target.csv, Emoji.TR51_INTERNAL_DIR + "keyboard");
         //        boolean foo2 =

@@ -1,11 +1,11 @@
 # emoji-internal.txt
-# Date: 2022-05-02, 03:44:53 GMT
-# © 2022 Unicode®, Inc.
+# Date: 2023-02-01, 01:15:48 GMT
+# © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Emoji Data Internal for UTS #51
-# Version: 15.0
+# Version: 15.1
 #
 # For documentation and usage, see https://www.unicode.org/reports/tr51
 #
@@ -19,8 +19,7 @@
 
 # ================================================
 
-# All omitted code points have Emoji_Gender_Base=No 
-# @missing: 0000..10FFFF  ; Emoji_Gender_Base ; No
+# All omitted code points have Emoji_Gender_Base=No
 
 26F9          ; Emoji_Gender_Base       # E0.7   [1] (⛹️)       person bouncing ball
 1F3C3..1F3C4  ; Emoji_Gender_Base       # E0.6   [2] (🏃..🏄)    person running..person surfing
@@ -51,8 +50,7 @@
 
 # ================================================
 
-# All omitted code points have Emoji_Explicit_Gender=No 
-# @missing: 0000..10FFFF  ; Emoji_Explicit_Gender ; No
+# All omitted code points have Emoji_Explicit_Gender=No
 
 1F385         ; Emoji_Explicit_Gender   # E0.6   [1] (🎅)       Santa Claus
 1F466..1F469  ; Emoji_Explicit_Gender   # E0.6   [4] (👦..👩)    boy..woman
@@ -74,8 +72,7 @@
 
 # ================================================
 
-# All omitted code points have Multi_Person_Groupings=No 
-# @missing: 0000..10FFFF  ; Multi_Person_Groupings ; No
+# All omitted code points have Multi_Person_Groupings=No
 
 1F46A..1F46B  ; Multi_Person_Groupings  # E0.6   [2] (👪..👫)    family..woman and man holding hands
 1F46C..1F46D  ; Multi_Person_Groupings  # E1.0   [2] (👬..👭)    men holding hands..women holding hands
