@@ -1001,7 +1001,7 @@ public class Emoji {
     }
 
     static final String INTERNAL_OUTPUT_DIR =
-            Settings.Output.GEN_DIR + "emoji/" + VERSION_TO_GENERATE + "/";
+            Settings.Output.GEN_DIR + "emoji/" + VERSION_TO_GENERATE.getVersionString(2, 2) + "/";
     public static final String HEALTHCARE = "⚕";
     public static final String UN = "🇺🇳";
 

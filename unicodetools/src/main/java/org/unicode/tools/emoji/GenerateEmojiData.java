@@ -625,7 +625,7 @@ public class GenerateEmojiData {
                             + emojiDataSource.getAllEmojiWithoutDefectives().toPattern(false));
 
         try (TempPrintWriter reformatted =
-                new TempPrintWriter(emojiPathString, "internal/emojiOrdering.txt")) {
+                new TempPrintWriter(Emoji.INTERNAL_OUTPUT_DIR, "internal/emojiOrdering.txt")) {
             new EmojiDataSourceCombined().showOrderingInterleaved(reformatted);
         }
 
