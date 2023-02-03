@@ -2,7 +2,7 @@
 // License & terms of use: https://www.unicode.org/copyright.html
 /*
 **      Unilib
-**      Copyright 2022
+**      Copyright 2023
 **      Ken Whistler, All rights reserved.
 */
 
@@ -44,12 +44,13 @@
  *   2021-Jul-06 Fix for 3 local array overflows for sprintf in getName().
  *   2021-Jul-12 Bump version number for memory leak fix in unisyms.c.
  *   2022-May-12 Updates for Unicode 15.0.
+ *   2023-Jan-31 Updates for Unicode 15.1.
  */
 
 /*
  * Strategy:
  *
- * Parse unidata.col.
+ * Parse unidata.txt.
  *
  * On first pass, extract fields:
  * 0 : Codepoint in 4-digit hex   
@@ -168,17 +169,17 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 15.0.0d1, 2022-05-12\n";
+static char versionString[] = "Sifter version 15.1.0d1, 2023-01-31\n";
 
-static char unidatafilename[] = "unidata-15.0.0.txt";
-static char allkeysfilename[] = "allkeys-15.0.0.txt";
-static char decompsfilename[] = "decomps-15.0.0.txt";
+static char unidatafilename[] = "unidata-15.1.0.txt";
+static char allkeysfilename[] = "allkeys-15.1.0.txt";
+static char decompsfilename[] = "decomps-15.1.0.txt";
 
-static char versionstring[] = "@version 15.0.0\n\n";
+static char versionstring[] = "@version 15.1.0\n\n";
 
-#define COPYRIGHTYEAR (2022)
+#define COPYRIGHTYEAR (2023)
 
-#define defaultInfile "unidata.col"
+#define defaultInfile "unidata.txt"
 
 char infile[PATHNAMELEN];
 char outfile1[] = "basekeys.txt"; /* sortable list of base keys */
