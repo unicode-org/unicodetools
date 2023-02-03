@@ -18,8 +18,6 @@ rm $DRAFT/UCD/ucd/zipped-ReadMe.txt
 
 mkdir -p $DRAFT/emoji
 cp $UNITOOLS_DATA/emoji/dev/* $DRAFT/emoji
-rm $DRAFT/emoji/emoji-data.txt
-rm $DRAFT/emoji/emoji-variation-sequences.txt
 
 echo "--------------------"
 echo "Copy files from elsewhere:"

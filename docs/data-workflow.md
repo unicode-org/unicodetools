@@ -98,8 +98,14 @@ and skip any others that are only for internal use.
 For the alpha review, publish (at least) the UCD and emoji files, and the charts.
 
 Run the [pub/copy-alpha-to-draft.sh](https://github.com/unicode-org/unicodetools/blob/main/pub/copy-alpha-to-draft.sh)
-on the unicode.org server which copies the set of the .../dev/ data files for an alpha snapshot
-from a unicodetools workspace to the location behind https://www.unicode.org/Public/draft/ .
+script from an up-to-date repo workspace.
+The script copies the set of the .../dev/ data files for an alpha snapshot
+from a unicodetools workspace to a target folder with the layout of https://www.unicode.org/Public/draft/ .
+
+Go into the “draft” target folder and zip its contents. Send the zip file to Rick for posting.
+Ask Rick to add other files that are not tracked in the unicodetools repo:
+*   Unihan.zip to .../draft/UCD/ucd
+*   alpha charts to .../draft/UCD/charts
 
 Note: No version/delta infixes in names of data files.
 We simply use the “draft” folder and the file-internal time stamps for versioning.
