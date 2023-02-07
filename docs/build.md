@@ -217,9 +217,7 @@ See the top level `pom.xml` under `<properties>`.
 
 The input data files for the Unicode Tools are checked into the repo since
 2012-dec-21:
-
-*   <https://github.com/unicode-org/unicodetools/tree/main/unicodetools/data/ucd>
-*   <https://github.com/unicode-org/unicodetools/tree/main/unicodetools/data/ucd>
+*   https://github.com/unicode-org/unicodetools/tree/main/unicodetools/data/
 
 This is inside the unicodetools file tree, and the Java code has been updated to
 assume that. Any old Eclipse setup needs its path variables checked.
@@ -242,7 +240,9 @@ Starting with Unicode 15, we are developing most of the Unicode data files
 in this Unicode Tools project, and publish them to the Public folder
 only for alpha/beta/final releases.
 That is, we are reversing the flow of files.
-(See [issue #144](https://github.com/unicode-org/unicodetools/issues/144).)
+
+See [data workflow](data-workflow.md). (Based on
+[issue #144](https://github.com/unicode-org/unicodetools/issues/144).)
 
 We are also no longer generating and posting files with version suffixes.
 (We now generate files into an output folder with the Unicode version number.)
@@ -255,7 +255,7 @@ unversioned "dev" folders in this repo.
 
 #### Unicode 15.1+ workflow
 
-See data-workflow.md .
+See [data workflow](data-workflow.md).
 
 ### Unicode 15.0.0 changes
 
@@ -374,10 +374,10 @@ to generate new files). For all the new ones:
 Make a pull request to incorporate these updates, and upload the generated files
 in a way that can be shared with ucd-dev.
 
-Unicode 15 TODO:
-We plan to
+Unicode 15+:
 - make a commit for changes in input data files
 - copy the output files back into the input folders, review, and commit again
+
 ... instead of posting draft files elsewhere and re-ingesting them later.
 
 Ideally, diff the files to check for any discrepancies. The script will do this
@@ -530,13 +530,16 @@ If there are new break rules (or changes), see
     Unicode.
 4.  On Windows you can run these BATs to compare files: TODO??
 
-### Upload for Ken Whistler & editorial committee
+### Upload for Ken Whistler & other reviewers
 
-Unicode 15 TODO: See above; commit new input data, run tools, review output, copy back to input, commit, pull request...
+Unicode 15+: See above; commit new input data, run tools, review output, copy back to input, commit, pull request...
 
 1.  Check diffs for problems
-2.  First drop for a version: Upload **all** files
-3.  Subsequent drop for a version: Upload *only modified* files
+2.  Ask for reviews on the pull request.
+3.  For & during alpha & beta we publish whole snapshots of multiple repo data folders
+    using publication scripts: See [data workflow](data-workflow.md).
+
+We no longer post files to FTP folders, nor publish individual files without consistent changes in others.
 
 ### Invariant Checking
 

@@ -7,11 +7,12 @@ the character properties are pretty stable (coming up on the beta),
 Ken inserts all of the new characters into the default sort order.
 
 For a few releases, he has documented his incremental progress with valuable notes
-sent to the ucd-dev mailing list.
+sent to the properties mailing list (formerly the ucd-dev list).
 Markus has been taking the incremental file changes, and the notes, into this repo.
 
 See the history of commits that changed decomps.txt and allkeys.txt.
 (We lost some of that history in the Unicode server crash of 2020.)
+-   For UCA 15.1 see https://github.com/unicode-org/unicodetools/pull/403
 -   For UCA 15 see https://github.com/unicode-org/unicodetools/pull/246
 -   For UCA 14 see https://github.com/unicode-org/unicodetools/pull/71
 -   For the collection of notes for UCA 10 see ducet.md.
@@ -34,12 +35,9 @@ for the CLDR/ICU FractionalUCA.txt data.
 2.  We also need the UCA/DUCET files in
     https://github.com/unicode-org/unicodetools/tree/main/unicodetools/data/uca/dev
     When they become first available for a new version, or when they are updated:
-    1.  Note that the following steps are probably no longer necessary.
-        Instead, we get the updated files from Ken, or we run the sifter tool, and
+    1.  We get the updated files from Ken, or we run the sifter tool, and
         update the files in .../data/uca/dev.
-    1.  Download UCA files (mostly allkeys.txt) from
-        `https://www.unicode.org/Public/UCA/{beta version}/`
-    1.  Run `desuffixucd.py` (see the [inputdata](../inputdata.md) page)
+    1.  Download Ken's UCA files (allkeys.txt & decomps.txt).
     1.  Update the input files for the UCA tools, at
         {this repo}/unicodetools/data/uca/dev
 3.  You will use `org.unicode.text.UCA.Main` as your main class.
