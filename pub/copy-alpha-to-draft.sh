@@ -19,6 +19,12 @@ rm $DRAFT/UCD/ucd/zipped-ReadMe.txt
 mkdir -p $DRAFT/emoji
 cp $UNITOOLS_DATA/emoji/dev/* $DRAFT/emoji
 
+# Fix permissions. Everyone can read, and search directories.
+chmod a+rX -R $DRAFT
+
+rm $DRAFT/alpha.zip
+(cd $DRAFT; zip -r alpha.zip *)
+
 echo "--------------------"
 echo "Copy files from elsewhere:"
 echo "- Unihan.zip to $DRAFT/UCD/ucd"
