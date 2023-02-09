@@ -410,7 +410,7 @@ public class GenerateEmojiData {
                     out,
                     prefix13 + "Emoji_Flag_Sequence",
                     "This list does not include deprecated or macroregion flags, except for UN and EU.\n"
-                            + "# See Annex B of TR51 for more information.",
+                            + "# See Annex B of UTS #51 for more information.",
                     width,
                     14,
                     emojiDataSource.getFlagSequences(),
@@ -420,7 +420,7 @@ public class GenerateEmojiData {
             printer.show(
                     out,
                     prefix13 + "Emoji_Tag_Sequence",
-                    "See Annex C of TR51 for more information.",
+                    "See Annex C of UTS #51 for more information.",
                     width,
                     14,
                     emojiDataSource.getTagSequences(),
