@@ -2,3 +2,6 @@
 
 !/jetty.d
 /target
+
+# copied via update-bidic-ucd.sh
+/src/main/resources/org/unicode/jsp/bidiref1/ucd
