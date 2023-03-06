@@ -1831,6 +1831,7 @@ public class UcdPropertyValues {
         Math_Symbols("Zmth"),
         Emoji_Symbols("Zsye"),
         Other_Symbols("Zsym"),
+        Sidetic("Qabw"),
         Unwritten("Zxxx");
         private final PropertyNames<Script_Values> names;
 

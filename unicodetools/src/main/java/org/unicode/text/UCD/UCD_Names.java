@@ -408,6 +408,8 @@ public final class UCD_Names implements UCD_Types {
         // Unicode 15
         "Kawi",
         "Nag_Mundari",
+        // Unicode 16?
+        "Sidetic",
     };
 
     public static final Relation<String, String> EXTRA_SCRIPT =
@@ -592,6 +594,8 @@ public final class UCD_Names implements UCD_Types {
         // Unicode 15
         "Kawi",
         "Nagm",
+        // Unicode 16?
+        "Qabw",
     };
 
     static final String[] SHORT_AGE = {
