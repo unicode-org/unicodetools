@@ -1,5 +1,5 @@
 # WordBreakProperty-15.1.0.txt
-# Date: 2023-01-05, 20:35:04 GMT
+# Date: 2023-03-06, 17:34:14 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1101,6 +1101,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 108F4..108F5  ; ALetter # Lo   [2] HATRAN LETTER SHIN..HATRAN LETTER TAW
 10900..10915  ; ALetter # Lo  [22] PHOENICIAN LETTER ALF..PHOENICIAN LETTER TAU
 10920..10939  ; ALetter # Lo  [26] LYDIAN LETTER A..LYDIAN LETTER C
+10940..1095C  ; ALetter # Lo  [29] SIDETIC LETTER N1..SIDETIC LETTER N29
 10980..109B7  ; ALetter # Lo  [56] MEROITIC HIEROGLYPHIC LETTER A..MEROITIC CURSIVE LETTER DA
 109BE..109BF  ; ALetter # Lo   [2] MEROITIC CURSIVE LOGOGRAM RMT..MEROITIC CURSIVE LOGOGRAM IMN
 10A00         ; ALetter # Lo       KHAROSHTHI LETTER A
@@ -1319,7 +1320,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1F150..1F169  ; ALetter # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; ALetter # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 29489
+# Total code points: 29518
 
 # ================================================
 

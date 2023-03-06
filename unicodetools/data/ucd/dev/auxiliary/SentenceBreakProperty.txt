@@ -1,5 +1,5 @@
 # SentenceBreakProperty-15.1.0.txt
-# Date: 2023-01-05, 20:35:03 GMT
+# Date: 2023-03-06, 17:34:14 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2343,6 +2343,7 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 108F4..108F5  ; OLetter # Lo   [2] HATRAN LETTER SHIN..HATRAN LETTER TAW
 10900..10915  ; OLetter # Lo  [22] PHOENICIAN LETTER ALF..PHOENICIAN LETTER TAU
 10920..10939  ; OLetter # Lo  [26] LYDIAN LETTER A..LYDIAN LETTER C
+10940..1095C  ; OLetter # Lo  [29] SIDETIC LETTER N1..SIDETIC LETTER N29
 10980..109B7  ; OLetter # Lo  [56] MEROITIC HIEROGLYPHIC LETTER A..MEROITIC CURSIVE LETTER DA
 109BE..109BF  ; OLetter # Lo   [2] MEROITIC CURSIVE LOGOGRAM RMT..MEROITIC CURSIVE LOGOGRAM IMN
 10A00         ; OLetter # Lo       KHAROSHTHI LETTER A
@@ -2541,7 +2542,7 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 30000..3134A  ; OLetter # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; OLetter # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 132036
+# Total code points: 132065
 
 # ================================================
 

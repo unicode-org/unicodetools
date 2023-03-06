@@ -1,5 +1,5 @@
 # DerivedCombiningClass-15.1.0.txt
-# Date: 2023-01-05, 20:34:33 GMT
+# Date: 2023-03-06, 17:33:53 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1419,6 +1419,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1091F         ; 0 # Po       PHOENICIAN WORD SEPARATOR
 10920..10939  ; 0 # Lo  [26] LYDIAN LETTER A..LYDIAN LETTER C
 1093F         ; 0 # Po       LYDIAN TRIANGULAR MARK
+10940..1095C  ; 0 # Lo  [29] SIDETIC LETTER N1..SIDETIC LETTER N29
 10980..109B7  ; 0 # Lo  [56] MEROITIC HIEROGLYPHIC LETTER A..MEROITIC CURSIVE LETTER DA
 109BC..109BD  ; 0 # No   [2] MEROITIC CURSIVE FRACTION ELEVEN TWELFTHS..MEROITIC CURSIVE FRACTION ONE HALF
 109BE..109BF  ; 0 # Lo   [2] MEROITIC CURSIVE LOGOGRAM RMT..MEROITIC CURSIVE LOGOGRAM IMN
@@ -2004,7 +2005,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 827388 code points not listed here.
+# The above property value applies to 827359 code points not listed here.
 # Total code points: 1113190
 
 # ================================================
