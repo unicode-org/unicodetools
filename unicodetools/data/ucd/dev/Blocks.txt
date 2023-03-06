@@ -226,6 +226,7 @@ FFF0..FFFF; Specials
 108E0..108FF; Hatran
 10900..1091F; Phoenician
 10920..1093F; Lydian
+10940..1095C; Sidetic
 10980..1099F; Meroitic Hieroglyphs
 109A0..109FF; Meroitic Cursive
 10A00..10A5F; Kharoshthi

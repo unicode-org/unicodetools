@@ -260,6 +260,7 @@ Sharada	;	Sharada
 Shavian	;	Shavian
 Shorthand_Format_Controls	;	Shorthand_Format_Controls
 Siddham	;	Siddham
+Sidetic ;	Sidetic
 Sinhala	;	Sinhala
 Sinhala_Archaic_Numbers	;	Sinhala_Archaic_Numbers
 Small_Forms	;	Small_Form_Variants

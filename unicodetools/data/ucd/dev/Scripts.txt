@@ -3029,4 +3029,6 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 
 # Total code points: 42
 
+10940..1095C   ; Sidetic # Meow
+
 # EOF
