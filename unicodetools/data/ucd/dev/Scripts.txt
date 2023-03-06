@@ -1369,6 +1369,7 @@ AA7B          ; Myanmar # Mc       MYANMAR SIGN PAO KAREN TONE
 AA7C          ; Myanmar # Mn       MYANMAR SIGN TAI LAING TONE-2
 AA7D          ; Myanmar # Mc       MYANMAR SIGN TAI LAING TONE-5
 AA7E..AA7F    ; Myanmar # Lo   [2] MYANMAR LETTER SHWE PALAUNG CHA..MYANMAR LETTER SHWE PALAUNG SHA
+116D0..116E3  ; Myanmar # Meow
 
 # Total code points: 223
 
