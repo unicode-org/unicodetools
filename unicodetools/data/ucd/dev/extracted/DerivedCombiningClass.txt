@@ -1,5 +1,5 @@
 # DerivedCombiningClass-15.1.0.txt
-# Date: 2023-01-05, 20:34:33 GMT
+# Date: 2023-03-06, 14:07:08 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1622,6 +1622,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 116B8         ; 0 # Lo       TAKRI LETTER ARCHAIC KHA
 116B9         ; 0 # Po       TAKRI ABBREVIATION SIGN
 116C0..116C9  ; 0 # Nd  [10] TAKRI DIGIT ZERO..TAKRI DIGIT NINE
+116D0..116E3  ; 0 # Nd  [20] MYANMAR PAO DIGIT ZERO..MYANMAR EASTERN PWO KAREN DIGIT NINE
 11700..1171A  ; 0 # Lo  [27] AHOM LETTER KA..AHOM LETTER ALTERNATE BA
 1171D..1171F  ; 0 # Mn   [3] AHOM CONSONANT SIGN MEDIAL LA..AHOM CONSONANT SIGN MEDIAL LIGATING RA
 11720..11721  ; 0 # Mc   [2] AHOM VOWEL SIGN A..AHOM VOWEL SIGN AA
@@ -2004,7 +2005,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 827388 code points not listed here.
+# The above property value applies to 827368 code points not listed here.
 # Total code points: 1113190
 
 # ================================================

@@ -1,5 +1,5 @@
 # DerivedNumericType-15.1.0.txt
-# Date: 2023-01-05, 20:34:41 GMT
+# Date: 2023-03-06, 14:07:14 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -269,6 +269,7 @@ FF10..FF19    ; Decimal # Nd  [10] FULLWIDTH DIGIT ZERO..FULLWIDTH DIGIT NINE
 114D0..114D9  ; Decimal # Nd  [10] TIRHUTA DIGIT ZERO..TIRHUTA DIGIT NINE
 11650..11659  ; Decimal # Nd  [10] MODI DIGIT ZERO..MODI DIGIT NINE
 116C0..116C9  ; Decimal # Nd  [10] TAKRI DIGIT ZERO..TAKRI DIGIT NINE
+116D0..116E3  ; Decimal # Nd  [20] MYANMAR PAO DIGIT ZERO..MYANMAR EASTERN PWO KAREN DIGIT NINE
 11730..11739  ; Decimal # Nd  [10] AHOM DIGIT ZERO..AHOM DIGIT NINE
 118E0..118E9  ; Decimal # Nd  [10] WARANG CITI DIGIT ZERO..WARANG CITI DIGIT NINE
 11950..11959  ; Decimal # Nd  [10] DIVES AKURU DIGIT ZERO..DIVES AKURU DIGIT NINE
@@ -286,6 +287,6 @@ FF10..FF19    ; Decimal # Nd  [10] FULLWIDTH DIGIT ZERO..FULLWIDTH DIGIT NINE
 1E950..1E959  ; Decimal # Nd  [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 1FBF0..1FBF9  ; Decimal # Nd  [10] SEGMENTED DIGIT ZERO..SEGMENTED DIGIT NINE
 
-# Total code points: 680
+# Total code points: 700
 
 # EOF
