@@ -1,5 +1,5 @@
 # Scripts-15.1.0.txt
-# Date: 2023-01-05, 20:35:02 GMT
+# Date: 2023-03-06, 14:41:09 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1369,9 +1369,9 @@ AA7B          ; Myanmar # Mc       MYANMAR SIGN PAO KAREN TONE
 AA7C          ; Myanmar # Mn       MYANMAR SIGN TAI LAING TONE-2
 AA7D          ; Myanmar # Mc       MYANMAR SIGN TAI LAING TONE-5
 AA7E..AA7F    ; Myanmar # Lo   [2] MYANMAR LETTER SHWE PALAUNG CHA..MYANMAR LETTER SHWE PALAUNG SHA
-116D0..116E3  ; Myanmar # Meow
+116D0..116E3  ; Myanmar # Nd  [20] MYANMAR PAO DIGIT ZERO..MYANMAR EASTERN PWO KAREN DIGIT NINE
 
-# Total code points: 223
+# Total code points: 243
 
 # ================================================
 
