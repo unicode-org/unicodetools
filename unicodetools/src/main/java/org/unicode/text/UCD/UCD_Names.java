@@ -595,7 +595,7 @@ public final class UCD_Names implements UCD_Types {
         "Kawi",
         "Nagm",
         // Unicode 16?
-        "Qabw",
+        "Qabw",  // Temporary private use code for Sidetic.
     };
 
     static final String[] SHORT_AGE = {

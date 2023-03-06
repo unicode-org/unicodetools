@@ -1831,7 +1831,7 @@ public class UcdPropertyValues {
         Math_Symbols("Zmth"),
         Emoji_Symbols("Zsye"),
         Other_Symbols("Zsym"),
-        Sidetic("Qabw"),
+        Sidetic("Qabw"),  // Temporary private use code.
         Unwritten("Zxxx");
         private final PropertyNames<Script_Values> names;
 
