@@ -17,7 +17,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Binary> names;
 
         private Binary(String shortName, String... otherNames) {
-            names = new PropertyNames<Binary>(Binary.class, this, shortName, otherNames);
+            names = new PropertyNames<Binary>(
+                Binary.class, this, shortName, otherNames);
         }
 
         @Override
@@ -30,8 +31,7 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Binary> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Binary.class);
+        private static final NameMatcher<Binary> NAME_MATCHER = PropertyNames.getNameToEnums(Binary.class);
 
         public static Binary forName(String name) {
             return NAME_MATCHER.get(name);
@@ -62,8 +62,7 @@ public class UcdPropertyValues {
         V12_0("12.0"),
         V12_1("12.1"),
         V13_0("13.0"),
-        V13_1("13.1"), // TODO: there is no Unicode 13.1, see
-        // https://github.com/unicode-org/unicodetools/issues/100
+        V13_1("13.1"),
         V14_0("14.0"),
         V15_0("15.0"),
         V15_1("15.1"),
@@ -71,7 +70,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Age_Values> names;
 
         private Age_Values(String shortName, String... otherNames) {
-            names = new PropertyNames<Age_Values>(Age_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Age_Values>(
+                Age_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -84,8 +84,7 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Age_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Age_Values.class);
+        private static final NameMatcher<Age_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Age_Values.class);
 
         public static Age_Values forName(String name) {
             return NAME_MATCHER.get(name);
@@ -119,9 +118,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Bidi_Class_Values> names;
 
         private Bidi_Class_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Bidi_Class_Values>(
-                            Bidi_Class_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Bidi_Class_Values>(
+                Bidi_Class_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -134,16 +132,15 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Bidi_Class_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Bidi_Class_Values.class);
+        private static final NameMatcher<Bidi_Class_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Bidi_Class_Values.class);
 
         public static Bidi_Class_Values forName(String name) {
             return NAME_MATCHER.get(name);
         }
     }
 
-    // Bidi_Mirroring_Glyph
-    // Bidi_Paired_Bracket
+        // Bidi_Mirroring_Glyph
+        // Bidi_Paired_Bracket
     public enum Bidi_Paired_Bracket_Type_Values implements Named {
         Close("c"),
         None("n"),
@@ -151,9 +148,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Bidi_Paired_Bracket_Type_Values> names;
 
         private Bidi_Paired_Bracket_Type_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Bidi_Paired_Bracket_Type_Values>(
-                            Bidi_Paired_Bracket_Type_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Bidi_Paired_Bracket_Type_Values>(
+                Bidi_Paired_Bracket_Type_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -166,8 +162,7 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Bidi_Paired_Bracket_Type_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Bidi_Paired_Bracket_Type_Values.class);
+        private static final NameMatcher<Bidi_Paired_Bracket_Type_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Bidi_Paired_Bracket_Type_Values.class);
 
         public static Bidi_Paired_Bracket_Type_Values forName(String name) {
             return NAME_MATCHER.get(name);
@@ -258,8 +253,7 @@ public class UcdPropertyValues {
         Devanagari_Extended_A("Devanagari_Ext_A"),
         Combining_Diacritical_Marks("Diacriticals"),
         Combining_Diacritical_Marks_Extended("Diacriticals_Ext"),
-        Combining_Diacritical_Marks_For_Symbols(
-                "Diacriticals_For_Symbols", "Combining_Marks_For_Symbols"),
+        Combining_Diacritical_Marks_For_Symbols("Diacriticals_For_Symbols", "Combining_Marks_For_Symbols"),
         Combining_Diacritical_Marks_Supplement("Diacriticals_Sup"),
         Dingbats("Dingbats"),
         Dives_Akuru("Dives_Akuru"),
@@ -391,6 +385,7 @@ public class UcdPropertyValues {
         Myanmar("Myanmar"),
         Myanmar_Extended_A("Myanmar_Ext_A"),
         Myanmar_Extended_B("Myanmar_Ext_B"),
+        Myanmar_Extended_C("Myanmar_Ext_C"),
         Nabataean("Nabataean"),
         Nag_Mundari("Nag_Mundari"),
         Nandinagari("Nandinagari"),
@@ -507,9 +502,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Block_Values> names;
 
         private Block_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Block_Values>(
-                            Block_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Block_Values>(
+                Block_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -522,8 +516,7 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Block_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Block_Values.class);
+        private static final NameMatcher<Block_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Block_Values.class);
 
         public static Block_Values forName(String name) {
             return NAME_MATCHER.get(name);
@@ -592,9 +585,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Canonical_Combining_Class_Values> names;
 
         private Canonical_Combining_Class_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Canonical_Combining_Class_Values>(
-                            Canonical_Combining_Class_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Canonical_Combining_Class_Values>(
+                Canonical_Combining_Class_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -607,21 +599,20 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Canonical_Combining_Class_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Canonical_Combining_Class_Values.class);
+        private static final NameMatcher<Canonical_Combining_Class_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Canonical_Combining_Class_Values.class);
 
         public static Canonical_Combining_Class_Values forName(String name) {
             return NAME_MATCHER.get(name);
         }
     }
 
-    // Case_Folding
-    // CJK_Radical
-    // Confusable_MA
-    // Confusable_ML
-    // Confusable_SA
-    // Confusable_SL
-    // Decomposition_Mapping
+        // Case_Folding
+        // CJK_Radical
+        // Confusable_MA
+        // Confusable_ML
+        // Confusable_SA
+        // Confusable_SL
+        // Decomposition_Mapping
     public enum Decomposition_Type_Values implements Named {
         Canonical("Can", "can"),
         Compat("Com", "com"),
@@ -644,9 +635,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Decomposition_Type_Values> names;
 
         private Decomposition_Type_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Decomposition_Type_Values>(
-                            Decomposition_Type_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Decomposition_Type_Values>(
+                Decomposition_Type_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -659,8 +649,7 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Decomposition_Type_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Decomposition_Type_Values.class);
+        private static final NameMatcher<Decomposition_Type_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Decomposition_Type_Values.class);
 
         public static Decomposition_Type_Values forName(String name) {
             return NAME_MATCHER.get(name);
@@ -677,9 +666,8 @@ public class UcdPropertyValues {
         private final PropertyNames<East_Asian_Width_Values> names;
 
         private East_Asian_Width_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<East_Asian_Width_Values>(
-                            East_Asian_Width_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<East_Asian_Width_Values>(
+                East_Asian_Width_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -692,19 +680,18 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<East_Asian_Width_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(East_Asian_Width_Values.class);
+        private static final NameMatcher<East_Asian_Width_Values> NAME_MATCHER = PropertyNames.getNameToEnums(East_Asian_Width_Values.class);
 
         public static East_Asian_Width_Values forName(String name) {
             return NAME_MATCHER.get(name);
         }
     }
 
-    // Emoji_DCM
-    // Emoji_KDDI
-    // Emoji_SB
-    // Equivalent_Unified_Ideograph
-    // FC_NFKC_Closure
+        // Emoji_DCM
+        // Emoji_KDDI
+        // Emoji_SB
+        // Equivalent_Unified_Ideograph
+        // FC_NFKC_Closure
     public enum General_Category_Values implements Named {
         Other("C"),
         Control("Cc", "cntrl"),
@@ -747,9 +734,8 @@ public class UcdPropertyValues {
         private final PropertyNames<General_Category_Values> names;
 
         private General_Category_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<General_Category_Values>(
-                            General_Category_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<General_Category_Values>(
+                General_Category_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -762,8 +748,7 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<General_Category_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(General_Category_Values.class);
+        private static final NameMatcher<General_Category_Values> NAME_MATCHER = PropertyNames.getNameToEnums(General_Category_Values.class);
 
         public static General_Category_Values forName(String name) {
             return NAME_MATCHER.get(name);
@@ -792,9 +777,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Grapheme_Cluster_Break_Values> names;
 
         private Grapheme_Cluster_Break_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Grapheme_Cluster_Break_Values>(
-                            Grapheme_Cluster_Break_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Grapheme_Cluster_Break_Values>(
+                Grapheme_Cluster_Break_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -807,8 +791,7 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Grapheme_Cluster_Break_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Grapheme_Cluster_Break_Values.class);
+        private static final NameMatcher<Grapheme_Cluster_Break_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Grapheme_Cluster_Break_Values.class);
 
         public static Grapheme_Cluster_Break_Values forName(String name) {
             return NAME_MATCHER.get(name);
@@ -825,9 +808,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Hangul_Syllable_Type_Values> names;
 
         private Hangul_Syllable_Type_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Hangul_Syllable_Type_Values>(
-                            Hangul_Syllable_Type_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Hangul_Syllable_Type_Values>(
+                Hangul_Syllable_Type_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -840,8 +822,7 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Hangul_Syllable_Type_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Hangul_Syllable_Type_Values.class);
+        private static final NameMatcher<Hangul_Syllable_Type_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Hangul_Syllable_Type_Values.class);
 
         public static Hangul_Syllable_Type_Values forName(String name) {
             return NAME_MATCHER.get(name);
@@ -854,9 +835,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Identifier_Status_Values> names;
 
         private Identifier_Status_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Identifier_Status_Values>(
-                            Identifier_Status_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Identifier_Status_Values>(
+                Identifier_Status_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -869,8 +849,7 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Identifier_Status_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Identifier_Status_Values.class);
+        private static final NameMatcher<Identifier_Status_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Identifier_Status_Values.class);
 
         public static Identifier_Status_Values forName(String name) {
             return NAME_MATCHER.get(name);
@@ -894,9 +873,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Identifier_Type_Values> names;
 
         private Identifier_Type_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Identifier_Type_Values>(
-                            Identifier_Type_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Identifier_Type_Values>(
+                Identifier_Type_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -909,8 +887,7 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Identifier_Type_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Identifier_Type_Values.class);
+        private static final NameMatcher<Identifier_Type_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Identifier_Type_Values.class);
 
         public static Identifier_Type_Values forName(String name) {
             return NAME_MATCHER.get(name);
@@ -924,9 +901,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Idn_2008_Values> names;
 
         private Idn_2008_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Idn_2008_Values>(
-                            Idn_2008_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Idn_2008_Values>(
+                Idn_2008_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -939,15 +915,14 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Idn_2008_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Idn_2008_Values.class);
+        private static final NameMatcher<Idn_2008_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Idn_2008_Values.class);
 
         public static Idn_2008_Values forName(String name) {
             return NAME_MATCHER.get(name);
         }
     }
 
-    // Idn_Mapping
+        // Idn_Mapping
     public enum Idn_Status_Values implements Named {
         valid("v"),
         ignored("i"),
@@ -959,9 +934,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Idn_Status_Values> names;
 
         private Idn_Status_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Idn_Status_Values>(
-                            Idn_Status_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Idn_Status_Values>(
+                Idn_Status_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -974,8 +948,7 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Idn_Status_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Idn_Status_Values.class);
+        private static final NameMatcher<Idn_Status_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Idn_Status_Values.class);
 
         public static Idn_Status_Values forName(String name) {
             return NAME_MATCHER.get(name);
@@ -1002,9 +975,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Indic_Positional_Category_Values> names;
 
         private Indic_Positional_Category_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Indic_Positional_Category_Values>(
-                            Indic_Positional_Category_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Indic_Positional_Category_Values>(
+                Indic_Positional_Category_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -1017,8 +989,7 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Indic_Positional_Category_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Indic_Positional_Category_Values.class);
+        private static final NameMatcher<Indic_Positional_Category_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Indic_Positional_Category_Values.class);
 
         public static Indic_Positional_Category_Values forName(String name) {
             return NAME_MATCHER.get(name);
@@ -1065,9 +1036,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Indic_Syllabic_Category_Values> names;
 
         private Indic_Syllabic_Category_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Indic_Syllabic_Category_Values>(
-                            Indic_Syllabic_Category_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Indic_Syllabic_Category_Values>(
+                Indic_Syllabic_Category_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -1080,15 +1050,14 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Indic_Syllabic_Category_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Indic_Syllabic_Category_Values.class);
+        private static final NameMatcher<Indic_Syllabic_Category_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Indic_Syllabic_Category_Values.class);
 
         public static Indic_Syllabic_Category_Values forName(String name) {
             return NAME_MATCHER.get(name);
         }
     }
 
-    // ISO_Comment
+        // ISO_Comment
     public enum Jamo_Short_Name_Values implements Named {
         A("A"),
         AE("AE"),
@@ -1145,9 +1114,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Jamo_Short_Name_Values> names;
 
         private Jamo_Short_Name_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Jamo_Short_Name_Values>(
-                            Jamo_Short_Name_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Jamo_Short_Name_Values>(
+                Jamo_Short_Name_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -1160,8 +1128,7 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Jamo_Short_Name_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Jamo_Short_Name_Values.class);
+        private static final NameMatcher<Jamo_Short_Name_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Jamo_Short_Name_Values.class);
 
         public static Jamo_Short_Name_Values forName(String name) {
             return NAME_MATCHER.get(name);
@@ -1276,9 +1243,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Joining_Group_Values> names;
 
         private Joining_Group_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Joining_Group_Values>(
-                            Joining_Group_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Joining_Group_Values>(
+                Joining_Group_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -1291,8 +1257,7 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Joining_Group_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Joining_Group_Values.class);
+        private static final NameMatcher<Joining_Group_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Joining_Group_Values.class);
 
         public static Joining_Group_Values forName(String name) {
             return NAME_MATCHER.get(name);
@@ -1309,9 +1274,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Joining_Type_Values> names;
 
         private Joining_Type_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Joining_Type_Values>(
-                            Joining_Type_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Joining_Type_Values>(
+                Joining_Type_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -1324,115 +1288,114 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Joining_Type_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Joining_Type_Values.class);
+        private static final NameMatcher<Joining_Type_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Joining_Type_Values.class);
 
         public static Joining_Type_Values forName(String name) {
             return NAME_MATCHER.get(name);
         }
     }
 
-    // kAccountingNumeric
-    // kBigFive
-    // kCangjie
-    // kCantonese
-    // kCCCII
-    // kCheungBauer
-    // kCheungBauerIndex
-    // kCihaiT
-    // kCNS1986
-    // kCNS1992
-    // kCompatibilityVariant
-    // kCowles
-    // kDaeJaweon
-    // kDefinition
-    // kEACC
-    // kFenn
-    // kFennIndex
-    // kFourCornerCode
-    // kFrequency
-    // kGB0
-    // kGB1
-    // kGB3
-    // kGB5
-    // kGB7
-    // kGB8
-    // kGradeLevel
-    // kGSR
-    // kHangul
-    // kHanYu
-    // kHanyuPinlu
-    // kHanyuPinyin
-    // kHDZRadBreak
-    // kHKGlyph
-    // kHKSCS
-    // kIBMJapan
-    // kIICore
-    // kIRG_GSource
-    // kIRG_HSource
-    // kIRG_JSource
-    // kIRG_KPSource
-    // kIRG_KSource
-    // kIRG_MSource
-    // kIRG_SSource
-    // kIRG_TSource
-    // kIRG_UKSource
-    // kIRG_USource
-    // kIRG_VSource
-    // kIRGDaeJaweon
-    // kIRGDaiKanwaZiten
-    // kIRGHanyuDaZidian
-    // kIRGKangXi
-    // kJa
-    // kJapaneseKun
-    // kJapaneseOn
-    // kJinmeiyoKanji
-    // kJis0
-    // kJis1
-    // kJIS0213
-    // kJoyoKanji
-    // kKangXi
-    // kKarlgren
-    // kKorean
-    // kKoreanEducationHanja
-    // kKoreanName
-    // kKPS0
-    // kKPS1
-    // kKSC0
-    // kKSC1
-    // kLau
-    // kMainlandTelegraph
-    // kMandarin
-    // kMatthews
-    // kMeyerWempe
-    // kMorohashi
-    // kNelson
-    // kOtherNumeric
-    // kPhonetic
-    // kPrimaryNumeric
-    // kPseudoGB1
-    // kRSAdobe_Japan1_6
-    // kRSJapanese
-    // kRSKangXi
-    // kRSKanWa
-    // kRSKorean
-    // kRSUnicode
-    // kSBGY
-    // kSemanticVariant
-    // kSimplifiedVariant
-    // kSpecializedSemanticVariant
-    // kSpoofingVariant
-    // kTaiwanTelegraph
-    // kTang
-    // kTGH
-    // kTGHZ2013
-    // kTotalStrokes
-    // kTraditionalVariant
-    // kUnihanCore2020
-    // kVietnamese
-    // kXerox
-    // kXHC1983
-    // kZVariant
+        // kAccountingNumeric
+        // kBigFive
+        // kCangjie
+        // kCantonese
+        // kCCCII
+        // kCheungBauer
+        // kCheungBauerIndex
+        // kCihaiT
+        // kCNS1986
+        // kCNS1992
+        // kCompatibilityVariant
+        // kCowles
+        // kDaeJaweon
+        // kDefinition
+        // kEACC
+        // kFenn
+        // kFennIndex
+        // kFourCornerCode
+        // kFrequency
+        // kGB0
+        // kGB1
+        // kGB3
+        // kGB5
+        // kGB7
+        // kGB8
+        // kGradeLevel
+        // kGSR
+        // kHangul
+        // kHanYu
+        // kHanyuPinlu
+        // kHanyuPinyin
+        // kHDZRadBreak
+        // kHKGlyph
+        // kHKSCS
+        // kIBMJapan
+        // kIICore
+        // kIRG_GSource
+        // kIRG_HSource
+        // kIRG_JSource
+        // kIRG_KPSource
+        // kIRG_KSource
+        // kIRG_MSource
+        // kIRG_SSource
+        // kIRG_TSource
+        // kIRG_UKSource
+        // kIRG_USource
+        // kIRG_VSource
+        // kIRGDaeJaweon
+        // kIRGDaiKanwaZiten
+        // kIRGHanyuDaZidian
+        // kIRGKangXi
+        // kJa
+        // kJapaneseKun
+        // kJapaneseOn
+        // kJinmeiyoKanji
+        // kJis0
+        // kJis1
+        // kJIS0213
+        // kJoyoKanji
+        // kKangXi
+        // kKarlgren
+        // kKorean
+        // kKoreanEducationHanja
+        // kKoreanName
+        // kKPS0
+        // kKPS1
+        // kKSC0
+        // kKSC1
+        // kLau
+        // kMainlandTelegraph
+        // kMandarin
+        // kMatthews
+        // kMeyerWempe
+        // kMorohashi
+        // kNelson
+        // kOtherNumeric
+        // kPhonetic
+        // kPrimaryNumeric
+        // kPseudoGB1
+        // kRSAdobe_Japan1_6
+        // kRSJapanese
+        // kRSKangXi
+        // kRSKanWa
+        // kRSKorean
+        // kRSUnicode
+        // kSBGY
+        // kSemanticVariant
+        // kSimplifiedVariant
+        // kSpecializedSemanticVariant
+        // kSpoofingVariant
+        // kTaiwanTelegraph
+        // kTang
+        // kTGH
+        // kTGHZ2013
+        // kTotalStrokes
+        // kTraditionalVariant
+        // kUnihanCore2020
+        // kVietnamese
+        // kXerox
+        // kXHC1983
+        // kZVariant
     public enum Line_Break_Values implements Named {
         Ambiguous("AI"),
         Alphabetic("AL"),
@@ -1480,9 +1443,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Line_Break_Values> names;
 
         private Line_Break_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Line_Break_Values>(
-                            Line_Break_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Line_Break_Values>(
+                Line_Break_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -1495,19 +1457,18 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Line_Break_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Line_Break_Values.class);
+        private static final NameMatcher<Line_Break_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Line_Break_Values.class);
 
         public static Line_Break_Values forName(String name) {
             return NAME_MATCHER.get(name);
         }
     }
 
-    // Lowercase_Mapping
-    // Name
-    // Name_Alias
-    // Named_Sequences
-    // Named_Sequences_Prov
+        // Lowercase_Mapping
+        // Name
+        // Name_Alias
+        // Named_Sequences
+        // Named_Sequences_Prov
     public enum NFC_Quick_Check_Values implements Named {
         Maybe("M"),
         No("N"),
@@ -1515,9 +1476,8 @@ public class UcdPropertyValues {
         private final PropertyNames<NFC_Quick_Check_Values> names;
 
         private NFC_Quick_Check_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<NFC_Quick_Check_Values>(
-                            NFC_Quick_Check_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<NFC_Quick_Check_Values>(
+                NFC_Quick_Check_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -1530,8 +1490,7 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<NFC_Quick_Check_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(NFC_Quick_Check_Values.class);
+        private static final NameMatcher<NFC_Quick_Check_Values> NAME_MATCHER = PropertyNames.getNameToEnums(NFC_Quick_Check_Values.class);
 
         public static NFC_Quick_Check_Values forName(String name) {
             return NAME_MATCHER.get(name);
@@ -1544,9 +1503,8 @@ public class UcdPropertyValues {
         private final PropertyNames<NFD_Quick_Check_Values> names;
 
         private NFD_Quick_Check_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<NFD_Quick_Check_Values>(
-                            NFD_Quick_Check_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<NFD_Quick_Check_Values>(
+                NFD_Quick_Check_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -1559,15 +1517,14 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<NFD_Quick_Check_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(NFD_Quick_Check_Values.class);
+        private static final NameMatcher<NFD_Quick_Check_Values> NAME_MATCHER = PropertyNames.getNameToEnums(NFD_Quick_Check_Values.class);
 
         public static NFD_Quick_Check_Values forName(String name) {
             return NAME_MATCHER.get(name);
         }
     }
 
-    // NFKC_Casefold
+        // NFKC_Casefold
     public enum NFKC_Quick_Check_Values implements Named {
         Maybe("M"),
         No("N"),
@@ -1575,9 +1532,8 @@ public class UcdPropertyValues {
         private final PropertyNames<NFKC_Quick_Check_Values> names;
 
         private NFKC_Quick_Check_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<NFKC_Quick_Check_Values>(
-                            NFKC_Quick_Check_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<NFKC_Quick_Check_Values>(
+                NFKC_Quick_Check_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -1590,8 +1546,7 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<NFKC_Quick_Check_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(NFKC_Quick_Check_Values.class);
+        private static final NameMatcher<NFKC_Quick_Check_Values> NAME_MATCHER = PropertyNames.getNameToEnums(NFKC_Quick_Check_Values.class);
 
         public static NFKC_Quick_Check_Values forName(String name) {
             return NAME_MATCHER.get(name);
@@ -1604,9 +1559,8 @@ public class UcdPropertyValues {
         private final PropertyNames<NFKD_Quick_Check_Values> names;
 
         private NFKD_Quick_Check_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<NFKD_Quick_Check_Values>(
-                            NFKD_Quick_Check_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<NFKD_Quick_Check_Values>(
+                NFKD_Quick_Check_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -1619,8 +1573,7 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<NFKD_Quick_Check_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(NFKD_Quick_Check_Values.class);
+        private static final NameMatcher<NFKD_Quick_Check_Values> NAME_MATCHER = PropertyNames.getNameToEnums(NFKD_Quick_Check_Values.class);
 
         public static NFKD_Quick_Check_Values forName(String name) {
             return NAME_MATCHER.get(name);
@@ -1635,9 +1588,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Numeric_Type_Values> names;
 
         private Numeric_Type_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Numeric_Type_Values>(
-                            Numeric_Type_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Numeric_Type_Values>(
+                Numeric_Type_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -1650,15 +1602,14 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Numeric_Type_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Numeric_Type_Values.class);
+        private static final NameMatcher<Numeric_Type_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Numeric_Type_Values.class);
 
         public static Numeric_Type_Values forName(String name) {
             return NAME_MATCHER.get(name);
         }
     }
 
-    // Numeric_Value
+        // Numeric_Value
     public enum Script_Values implements Named {
         Adlam("Adlm"),
         Caucasian_Albanian("Aghb"),
@@ -1835,9 +1786,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Script_Values> names;
 
         private Script_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Script_Values>(
-                            Script_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Script_Values>(
+                Script_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -1850,15 +1800,14 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Script_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Script_Values.class);
+        private static final NameMatcher<Script_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Script_Values.class);
 
         public static Script_Values forName(String name) {
             return NAME_MATCHER.get(name);
         }
     }
 
-    // Script_Extensions
+        // Script_Extensions
     public enum Sentence_Break_Values implements Named {
         ATerm("AT"),
         Close("CL"),
@@ -1878,9 +1827,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Sentence_Break_Values> names;
 
         private Sentence_Break_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Sentence_Break_Values>(
-                            Sentence_Break_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Sentence_Break_Values>(
+                Sentence_Break_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -1893,22 +1841,21 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Sentence_Break_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Sentence_Break_Values.class);
+        private static final NameMatcher<Sentence_Break_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Sentence_Break_Values.class);
 
         public static Sentence_Break_Values forName(String name) {
             return NAME_MATCHER.get(name);
         }
     }
 
-    // Simple_Case_Folding
-    // Simple_Lowercase_Mapping
-    // Simple_Titlecase_Mapping
-    // Simple_Uppercase_Mapping
-    // Standardized_Variant
-    // Titlecase_Mapping
-    // Unicode_1_Name
-    // Uppercase_Mapping
+        // Simple_Case_Folding
+        // Simple_Lowercase_Mapping
+        // Simple_Titlecase_Mapping
+        // Simple_Uppercase_Mapping
+        // Standardized_Variant
+        // Titlecase_Mapping
+        // Unicode_1_Name
+        // Uppercase_Mapping
     public enum Vertical_Orientation_Values implements Named {
         Rotated("R"),
         Transformed_Rotated("Tr"),
@@ -1917,9 +1864,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Vertical_Orientation_Values> names;
 
         private Vertical_Orientation_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Vertical_Orientation_Values>(
-                            Vertical_Orientation_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Vertical_Orientation_Values>(
+                Vertical_Orientation_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -1932,8 +1878,7 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Vertical_Orientation_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Vertical_Orientation_Values.class);
+        private static final NameMatcher<Vertical_Orientation_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Vertical_Orientation_Values.class);
 
         public static Vertical_Orientation_Values forName(String name) {
             return NAME_MATCHER.get(name);
@@ -1967,9 +1912,8 @@ public class UcdPropertyValues {
         private final PropertyNames<Word_Break_Values> names;
 
         private Word_Break_Values(String shortName, String... otherNames) {
-            names =
-                    new PropertyNames<Word_Break_Values>(
-                            Word_Break_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Word_Break_Values>(
+                Word_Break_Values.class, this, shortName, otherNames);
         }
 
         @Override
@@ -1982,11 +1926,11 @@ public class UcdPropertyValues {
             return names.getShortName();
         }
 
-        private static final NameMatcher<Word_Break_Values> NAME_MATCHER =
-                PropertyNames.getNameToEnums(Word_Break_Values.class);
+        private static final NameMatcher<Word_Break_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Word_Break_Values.class);
 
         public static Word_Break_Values forName(String name) {
             return NAME_MATCHER.get(name);
         }
     }
+
 }
