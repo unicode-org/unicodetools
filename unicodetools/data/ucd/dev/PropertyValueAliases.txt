@@ -1090,7 +1090,10 @@ jt ; U                                ; Non_Joining
 # Line_Break (lb)
 
 lb ; AI                               ; Ambiguous
+lb ; AK                               ; Aksara
 lb ; AL                               ; Alphabetic
+lb ; AP                               ; Aksara_Prebase
+lb ; AS                               ; Aksara_Start
 lb ; B2                               ; Break_Both
 lb ; BA                               ; Break_After
 lb ; BB                               ; Break_Before
@@ -1128,6 +1131,8 @@ lb ; SA                               ; Complex_Context
 lb ; SG                               ; Surrogate
 lb ; SP                               ; Space
 lb ; SY                               ; Break_Symbols
+lb ; VF                               ; Virama_Final
+lb ; VI                               ; Virama
 lb ; WJ                               ; Word_Joiner
 lb ; XX                               ; Unknown
 lb ; ZW                               ; ZWSpace
