@@ -62,8 +62,7 @@ public class UcdPropertyValues {
         V12_0("12.0"),
         V12_1("12.1"),
         V13_0("13.0"),
-        V13_1("13.1"), // TODO: there is no Unicode 13.1, see
-        // https://github.com/unicode-org/unicodetools/issues/100
+        V13_1("13.1"),
         V14_0("14.0"),
         V15_0("15.0"),
         V15_1("15.1"),
@@ -1435,7 +1434,10 @@ public class UcdPropertyValues {
     // kZVariant
     public enum Line_Break_Values implements Named {
         Ambiguous("AI"),
+        Aksara("AK"),
         Alphabetic("AL"),
+        Aksara_Prebase("AP"),
+        Aksara_Start("AS"),
         Break_Both("B2"),
         Break_After("BA"),
         Break_Before("BB"),
@@ -1473,6 +1475,8 @@ public class UcdPropertyValues {
         Surrogate("SG"),
         Space("SP"),
         Break_Symbols("SY"),
+        Virama_Final("VF"),
+        Virama("VI"),
         Word_Joiner("WJ"),
         Unknown("XX"),
         ZWSpace("ZW"),
