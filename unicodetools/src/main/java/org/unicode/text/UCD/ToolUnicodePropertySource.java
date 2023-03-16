@@ -1288,7 +1288,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     "MidNumLet");
 
             unicodeMap.putAll(
-                    new UnicodeSet(lineBreak.getSet("Numeric")).remove(0x066C).add(0xFF10, 0xFF19),
+                    new UnicodeSet(lineBreak.getSet("Numeric")).add(cat.getSet("Decimal_Number")).remove(0x066C),
                     "Numeric"); // .remove(0x387)
             unicodeMap.putAll(
                     cat.getSet("Connector_Punctuation")
@@ -1404,7 +1404,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             unicodeMap.putAll(temp, "OLetter");
             final UnicodeProperty lineBreak = getProperty("Line_Break");
             unicodeMap.putAll(
-                    new UnicodeSet(lineBreak.getSet("Numeric")).add(0xFF10, 0xFF19), "Numeric");
+                    new UnicodeSet(lineBreak.getSet("Numeric")).add(cat.getSet("Decimal_Number")), "Numeric");
             unicodeMap.putAll(new UnicodeSet("[\\u002E\\u2024\\uFE52\\uFF0E]"), "ATerm");
             unicodeMap.putAll(
                     getProperty("STerm")
