@@ -1,5 +1,5 @@
 # DerivedLineBreak-15.1.0.txt
-# Date: 2023-03-10, 16:08:01 GMT
+# Date: 2023-03-16, 15:30:20 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -319,11 +319,12 @@ FF64          ; CL # Po       HALFWIDTH IDEOGRAPHIC COMMA
 2007          ; GL # Zs       FIGURE SPACE
 2011          ; GL # Pd       NON-BREAKING HYPHEN
 202F          ; GL # Zs       NARROW NO-BREAK SPACE
+1107F         ; GL # Mn       BRAHMI NUMBER JOINER
 13430..13436  ; GL # Cf   [7] EGYPTIAN HIEROGLYPH VERTICAL JOINER..EGYPTIAN HIEROGLYPH OVERLAY MIDDLE
 13439..1343B  ; GL # Cf   [3] EGYPTIAN HIEROGLYPH INSERT AT MIDDLE..EGYPTIAN HIEROGLYPH INSERT AT BOTTOM
 16FE4         ; GL # Mn       KHITAN SMALL SCRIPT FILLER
 
-# Total code points: 31
+# Total code points: 32
 
 # ================================================
 
@@ -2820,9 +2821,8 @@ D800..DFFF    ; SG # Cs [2048] <surrogate-D800>..<surrogate-DFFF>
 
 2060          ; WJ # Cf       WORD JOINER
 FEFF          ; WJ # Cf       ZERO WIDTH NO-BREAK SPACE
-1107F         ; WJ # Mn       BRAHMI NUMBER JOINER
 
-# Total code points: 3
+# Total code points: 2
 
 # ================================================
 
