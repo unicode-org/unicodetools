@@ -463,7 +463,8 @@ Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288
 [\p{LB=CL}\p{LB=CP}] ⊃ [\p{GC=Pe} - [\u2309\u230B]]
 
 # See L2/22-086 for an explanation of the special case of Batak.
-[\p{LB=VI}\p{LB=VF}] = [[\p{Indic_Syllabic_Category=Virama}\p{Indic_Syllabic_Category=Invisible_Stacker}] & $BrahmicLineBreaking [\p{Indic_Syllabic_Category=Pure_Killer}&\p{sc=Batak}]]
+\p{LB=VI} = [\p{Indic_Syllabic_Category=Virama}\p{Indic_Syllabic_Category=Invisible_Stacker}] & $BrahmicLineBreaking
+\p{LB=VF} = \p{Indic_Syllabic_Category=Pure_Killer} & \p{sc=Batak}
 \p{LB=CM} = [[\u3035] \p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -[\U00013437\U00013438\U0001343C-\U0001343F] -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL} -\p{LB=ZWJ} - \p{LB=VI} - \p{LB=VF}]
 # Excluded Egyptian controls begin/end segment etc. 13437, 13438 & 1343C..1343F (gc=Cf, lb=OP/CL)
 
