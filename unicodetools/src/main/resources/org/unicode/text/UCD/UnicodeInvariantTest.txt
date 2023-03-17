@@ -483,8 +483,17 @@ Let $QUInclusions = [\u275F-\u2760 \U0001F676-\U0001F678 \u0022 \u0027 \u275B-\u
 \p{LB=SG} = \p{GC=Cs}
 \p{LB=SP} = \N{SPACE}
 \p{LB=SY} = \N{SOLIDUS}
+
+# The classes WJ and ZW are reserved for characters meant as explicit overrides
+# to the line breaking algorithms.  For historical reasons, WJ has two such
+# characters, see L2/00-258.
+# These invariants should not change unless a change to the overrides is being
+# considered.  In particular, ordinary characters whose joining or shaping
+# behaviour requires the prohibition of line breaks on either side should have
+# class GL.
 \p{LB=WJ} = [\N{WORD JOINER} \N{ZERO WIDTH NO-BREAK SPACE}]
 \p{LB=ZW} = \N{ZERO WIDTH SPACE}
+
 \p{LB=ZWJ} = [\u200D]
 \p{LB=RI} = \p{RI=Y}
 
