@@ -1,5 +1,5 @@
 # PropertyAliases-15.1.0.txt
-# Date: 2023-01-31, 22:27:07 GMT
+# Date: 2023-03-23, 00:36:58 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -211,6 +211,6 @@ XO_NFKC                  ; Expands_On_NFKC
 XO_NFKD                  ; Expands_On_NFKD
 
 # ================================================
-# Total:    132
+# Total:    133
 
 # EOF
