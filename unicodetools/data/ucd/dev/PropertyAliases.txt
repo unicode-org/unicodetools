@@ -73,6 +73,7 @@ EqUIdeo                  ; Equivalent_Unified_Ideograph
 FC_NFKC                  ; FC_NFKC_Closure
 lc                       ; Lowercase_Mapping
 NFKC_CF                  ; NFKC_Casefold
+NFKC_SCF                 ; NFKC_SimpleCasefold
 scf                      ; Simple_Case_Folding         ; sfc
 slc                      ; Simple_Lowercase_Mapping
 stc                      ; Simple_Titlecase_Mapping
