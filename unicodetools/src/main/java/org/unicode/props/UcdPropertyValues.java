@@ -62,7 +62,8 @@ public class UcdPropertyValues {
         V12_0("12.0"),
         V12_1("12.1"),
         V13_0("13.0"),
-        V13_1("13.1"),
+        V13_1("13.1"), // TODO: there is no Unicode 13.1, see
+        // https://github.com/unicode-org/unicodetools/issues/100
         V14_0("14.0"),
         V15_0("15.0"),
         V15_1("15.1"),
