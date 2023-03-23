@@ -320,6 +320,11 @@ public class GenerateEnums {
                 }
                 output.print(fix(longName));
                 writeOtherNames2(output, longName, parts);
+                if (propName.longName.equals("Age") && longName.equals("V13_1")) {
+                    output.println(", // TODO: there is no Unicode 13.1, see");
+                    output.println("// https://github.com/unicode-org/unicodetools/issues/100");
+                    first = true;
+                }
 
                 for (int i = 1; i < parts.length; ++i) {
                     final String otherName = parts[i];
