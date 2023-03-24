@@ -55,4 +55,4 @@ jobs:
       # invoked and the job completes successfully.
       #
       # It seems sufficient for the CI job here to finish successfully by
-      # trivially run nothing.
+      # trivially running nothing.
