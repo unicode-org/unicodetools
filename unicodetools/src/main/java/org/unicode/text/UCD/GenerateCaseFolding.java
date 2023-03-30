@@ -92,7 +92,7 @@ public class GenerateCaseFolding implements UCD_Types {
 
         for (int ch = 0; ch <= 0x10FFFF; ++ch) {
             Utility.dot(ch);
-                       
+
             var normativeSCF = new StringBuffer();
             var normativeCF = new StringBuffer();
 
@@ -152,14 +152,16 @@ public class GenerateCaseFolding implements UCD_Types {
                 final String ucdSCF = Default.ucd().getCase(ch, UCD.SIMPLE, UCD.FOLD);
                 final String ucdCF = Default.ucd().getCase(ch, UCD.FULL, UCD.FOLD);
                 if (!ucdSCF.equals(normativeSCF.toString())) {
-                    throw new AssertionError(String.format(
-                            "UCD.getCase(\"\\u%04X\", UCD.SIMPLE, UCD.FOLD)=\"%s\", should be \"%s\" per CaseFolding.txt",
-                            ch, ucdSCF, normativeSCF));
+                    throw new AssertionError(
+                            String.format(
+                                    "UCD.getCase(\"\\u%04X\", UCD.SIMPLE, UCD.FOLD)=\"%s\", should be \"%s\" per CaseFolding.txt",
+                                    ch, ucdSCF, normativeSCF));
                 }
                 if (!ucdCF.equals(normativeCF.toString())) {
-                    throw new AssertionError(String.format(
-                            "UCD.getCase(\"\\u%04X\", UCD.FULL, UCD.FOLD)=\"%s\", should be \"%s\" per CaseFolding.txt",
-                            ch, ucdCF, normativeCF));
+                    throw new AssertionError(
+                            String.format(
+                                    "UCD.getCase(\"\\u%04X\", UCD.FULL, UCD.FOLD)=\"%s\", should be \"%s\" per CaseFolding.txt",
+                                    ch, ucdCF, normativeCF));
                 }
             }
         }
@@ -178,7 +180,13 @@ public class GenerateCaseFolding implements UCD_Types {
     0130; T; 0069; # LATIN CAPITAL LETTER I WITH DOT ABOVE
          */
 
-    static void drawLine(PrintWriter out, int ch, String type, String result, StringBuffer normativeSCF, StringBuffer normativeCF) {
+    static void drawLine(
+            PrintWriter out,
+            int ch,
+            String type,
+            String result,
+            StringBuffer normativeSCF,
+            StringBuffer normativeCF) {
         String comment = "";
         if (COMMENT_DIFFS) {
             final String lower = Default.ucd().getCase(UTF16.valueOf(ch), FULL, LOWER);

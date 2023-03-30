@@ -10,13 +10,12 @@
  */
 package org.unicode.text.UCD;
 
+import com.ibm.icu.text.UTF16;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.text.UTF16;
 
 class UData implements UCD_Types {
     String name;
