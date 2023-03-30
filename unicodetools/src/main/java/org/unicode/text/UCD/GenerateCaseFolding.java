@@ -92,7 +92,7 @@ public class GenerateCaseFolding implements UCD_Types {
 
         for (int ch = 0; ch <= 0x10FFFF; ++ch) {
             Utility.dot(ch);
-            
+                       
             var normativeSCF = new StringBuffer();
             var normativeCF = new StringBuffer();
 
@@ -140,6 +140,9 @@ public class GenerateCaseFolding implements UCD_Types {
                     drawLine(out, ch, "t", rSimpleTurkish, normativeSCF, normativeCF);
                 }
             } finally {
+                // We have two independent definitions of the case foldings.
+                // Check that they are consistent. Eventually we should get rid of one of them, see
+                // https://github.com/unicode-org/unicodetools/issues/426.
                 if (normativeSCF.isEmpty()) {
                     normativeSCF.append(UTF16.valueOf(ch));
                 }
