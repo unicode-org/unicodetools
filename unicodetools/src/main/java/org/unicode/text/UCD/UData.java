@@ -10,6 +10,7 @@
  */
 package org.unicode.text.UCD;
 
+import com.ibm.icu.text.UTF16;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -221,6 +222,10 @@ class UData implements UCD_Types {
         }
 
         // case folding
+
+        if (codePoint == 0x0130) {
+            simpleCaseFolding = UTF16.valueOf(codePoint);
+        }
 
         if (codePoint >= 0x13A0 && codePoint <= 0x13F5) { // HACK for Cherokee Uppercase
             if (simpleCaseFolding == null) {
