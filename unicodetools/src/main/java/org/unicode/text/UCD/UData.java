@@ -16,6 +16,8 @@ import java.io.IOException;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
+import com.ibm.icu.text.UTF16;
+
 class UData implements UCD_Types {
     String name;
     String shortName; // cache
@@ -221,6 +223,10 @@ class UData implements UCD_Types {
         }
 
         // case folding
+
+        if (codePoint == 0x0130) {
+            simpleCaseFolding = UTF16.valueOf(codePoint);
+        }
 
         if (codePoint >= 0x13A0 && codePoint <= 0x13F5) { // HACK for Cherokee Uppercase
             if (simpleCaseFolding == null) {
