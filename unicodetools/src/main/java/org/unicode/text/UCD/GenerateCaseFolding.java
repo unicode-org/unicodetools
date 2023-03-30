@@ -92,48 +92,72 @@ public class GenerateCaseFolding implements UCD_Types {
 
         for (int ch = 0; ch <= 0x10FFFF; ++ch) {
             Utility.dot(ch);
+            
+            var normativeSCF = new StringBuffer();
+            var normativeCF = new StringBuffer();
 
-            if (!charsUsed.get(ch)) {
-                continue;
-            }
-
-            final String rFull = fullData.get(UTF16.valueOf(ch));
-            final String rSimple = simpleData.get(UTF16.valueOf(ch));
-            final String rFullTurkish = fullDataTurkish.get(UTF16.valueOf(ch));
-            final String rSimpleTurkish = simpleDataTurkish.get(UTF16.valueOf(ch));
-            if (rFull == null
-                    && rSimple == null
-                    && rFullTurkish == null
-                    && rSimpleTurkish == null) {
-                continue;
-            }
-
-            // Hardcode variants of letter i.
-            if (ch == 0x49) {
-                drawLine(out, ch, "C", "i");
-                drawLine(out, ch, "T", "\u0131");
-            } else if (ch == 0x130) {
-                drawLine(out, ch, "F", "i\u0307");
-                drawLine(out, ch, "T", "i");
-            } else if (ch == 0x131) {
-                // do nothing
-                // drawLine(out, ch, "I", "i");
-            } else if (rFull != null && rFull.equals(rSimple)
-                    || (PICK_SHORT && UTF16.countCodePoint(rFull) == 1)) {
-                drawLine(out, ch, "C", rFull);
-            } else {
-                if (rFull != null) {
-                    drawLine(out, ch, "F", rFull);
+            try {
+                if (!charsUsed.get(ch)) {
+                    continue;
                 }
-                if (rSimple != null) {
-                    drawLine(out, ch, "S", rSimple);
+
+                final String rFull = fullData.get(UTF16.valueOf(ch));
+                final String rSimple = simpleData.get(UTF16.valueOf(ch));
+                final String rFullTurkish = fullDataTurkish.get(UTF16.valueOf(ch));
+                final String rSimpleTurkish = simpleDataTurkish.get(UTF16.valueOf(ch));
+                if (rFull == null
+                        && rSimple == null
+                        && rFullTurkish == null
+                        && rSimpleTurkish == null) {
+                    continue;
                 }
-            }
-            if (rFullTurkish != null && !rFullTurkish.equals(rFull)) {
-                drawLine(out, ch, "T", rFullTurkish);
-            }
-            if (rSimpleTurkish != null && !rSimpleTurkish.equals(rSimple)) {
-                drawLine(out, ch, "t", rSimpleTurkish);
+
+                // Hardcode variants of letter i.
+                if (ch == 0x49) {
+                    drawLine(out, ch, "C", "i", normativeSCF, normativeCF);
+                    drawLine(out, ch, "T", "\u0131", normativeSCF, normativeCF);
+                } else if (ch == 0x130) {
+                    drawLine(out, ch, "F", "i\u0307", normativeSCF, normativeCF);
+                    drawLine(out, ch, "T", "i", normativeSCF, normativeCF);
+                } else if (ch == 0x131) {
+                    // do nothing
+                    // drawLine(out, ch, "I", "i");
+                } else if (rFull != null && rFull.equals(rSimple)
+                        || (PICK_SHORT && UTF16.countCodePoint(rFull) == 1)) {
+                    drawLine(out, ch, "C", rFull, normativeSCF, normativeCF);
+                } else {
+                    if (rFull != null) {
+                        drawLine(out, ch, "F", rFull, normativeSCF, normativeCF);
+                    }
+                    if (rSimple != null) {
+                        drawLine(out, ch, "S", rSimple, normativeSCF, normativeCF);
+                    }
+                }
+                if (rFullTurkish != null && !rFullTurkish.equals(rFull)) {
+                    drawLine(out, ch, "T", rFullTurkish, normativeSCF, normativeCF);
+                }
+                if (rSimpleTurkish != null && !rSimpleTurkish.equals(rSimple)) {
+                    drawLine(out, ch, "t", rSimpleTurkish, normativeSCF, normativeCF);
+                }
+            } finally {
+                if (normativeSCF.isEmpty()) {
+                    normativeSCF.append(UTF16.valueOf(ch));
+                }
+                if (normativeCF.isEmpty()) {
+                    normativeCF.append(UTF16.valueOf(ch));
+                }
+                final String ucdSCF = Default.ucd().getCase(ch, UCD.SIMPLE, UCD.FOLD);
+                final String ucdCF = Default.ucd().getCase(ch, UCD.FULL, UCD.FOLD);
+                if (!ucdSCF.equals(normativeSCF.toString())) {
+                    throw new AssertionError(String.format(
+                            "UCD.getCase(\"\\u%04X\", UCD.SIMPLE, UCD.FOLD)=\"%s\", should be \"%s\" per CaseFolding.txt",
+                            ch, ucdSCF, normativeSCF));
+                }
+                if (!ucdCF.equals(normativeCF.toString())) {
+                    throw new AssertionError(String.format(
+                            "UCD.getCase(\"\\u%04X\", UCD.FULL, UCD.FOLD)=\"%s\", should be \"%s\" per CaseFolding.txt",
+                            ch, ucdCF, normativeCF));
+                }
             }
         }
         out.println("#");
@@ -151,7 +175,7 @@ public class GenerateCaseFolding implements UCD_Types {
     0130; T; 0069; # LATIN CAPITAL LETTER I WITH DOT ABOVE
          */
 
-    static void drawLine(PrintWriter out, int ch, String type, String result) {
+    static void drawLine(PrintWriter out, int ch, String type, String result, StringBuffer normativeSCF, StringBuffer normativeCF) {
         String comment = "";
         if (COMMENT_DIFFS) {
             final String lower = Default.ucd().getCase(UTF16.valueOf(ch), FULL, LOWER);
@@ -170,6 +194,21 @@ public class GenerateCaseFolding implements UCD_Types {
                                     + "] ";
                 }
             }
+        }
+
+        if (type == "C" || type == "S") {
+            if (!normativeSCF.isEmpty()) {
+                throw new AssertionError(
+                        String.format("Conflicting SCF assignments for U+%04X", ch));
+            }
+            normativeSCF.append(result);
+        }
+        if (type == "C" || type == "F") {
+            if (!normativeCF.isEmpty()) {
+                throw new AssertionError(
+                        String.format("Conflicting CF assignments for U+%04X", ch));
+            }
+            normativeCF.append(result);
         }
 
         out.println(
