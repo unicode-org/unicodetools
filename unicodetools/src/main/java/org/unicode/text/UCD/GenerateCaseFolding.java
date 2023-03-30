@@ -143,10 +143,10 @@ public class GenerateCaseFolding implements UCD_Types {
                 // We have two independent definitions of the case foldings.
                 // Check that they are consistent. Eventually we should get rid of one of them, see
                 // https://github.com/unicode-org/unicodetools/issues/426.
-                if (normativeSCF.isEmpty()) {
+                if (normativeSCF.length() == 0) {
                     normativeSCF.append(UTF16.valueOf(ch));
                 }
-                if (normativeCF.isEmpty()) {
+                if (normativeCF.length() == 0) {
                     normativeCF.append(UTF16.valueOf(ch));
                 }
                 final String ucdSCF = Default.ucd().getCase(ch, UCD.SIMPLE, UCD.FOLD);
@@ -208,14 +208,14 @@ public class GenerateCaseFolding implements UCD_Types {
         }
 
         if (type == "C" || type == "S") {
-            if (!normativeSCF.isEmpty()) {
+            if (normativeSCF.length() != 0) {
                 throw new AssertionError(
                         String.format("Conflicting SCF assignments for U+%04X", ch));
             }
             normativeSCF.append(result);
         }
         if (type == "C" || type == "F") {
-            if (!normativeCF.isEmpty()) {
+            if (normativeCF.length() != 0) {
                 throw new AssertionError(
                         String.format("Conflicting CF assignments for U+%04X", ch));
             }
