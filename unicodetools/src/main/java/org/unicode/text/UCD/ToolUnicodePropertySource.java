@@ -1293,9 +1293,13 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     "MidNumLet");
 
             unicodeMap.putAll(
-                    new UnicodeSet(lineBreak.getSet("Numeric")).remove(0x066C).add(0xFF10, 0xFF19)
-                    // 174-CXX.
-                    .add(new UnicodeSet("[\u0600-\u0605\u06DD\u0890\u0891\u08E2\\U000110BD\\U000110CD]")),
+                    new UnicodeSet(lineBreak.getSet("Numeric"))
+                            .remove(0x066C)
+                            .add(0xFF10, 0xFF19)
+                            // 174-CXX.
+                            .add(
+                                    new UnicodeSet(
+                                            "[\u0600-\u0605\u06DD\u0890\u0891\u08E2\\U000110BD\\U000110CD]")),
                     "Numeric"); // .remove(0x387)
             unicodeMap.putAll(
                     cat.getSet("Connector_Punctuation")
