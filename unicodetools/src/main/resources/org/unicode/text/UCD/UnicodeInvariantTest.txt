@@ -336,11 +336,11 @@ In \p{sc=Cher} scf = suc
 #       https://unicode.org/reports/tr55/#Evolution-Unicode-3.
 Let $identifier_start = [\p{GC=Lu}\p{GC=Ll}\p{GC=Lt}\p{GC=Lm}\p{GC=Lo}\p{GC=Nl}]
 Let $identifier_extend = [\p{GC=Mn}\p{GC=Mc}\p{GC=Nd}\p{GC=Pc}]
-[\p{ID_Start}]    ⊇ $identifier_start
-[\p{ID_Continue}] ⊇ [$identifier_start $identifier_extend]
+[\p{ID_Start}\p{Name=VERTICAL TILDE}]    ⊇ $identifier_start
+[\p{ID_Continue}\p{Name=VERTICAL TILDE}] ⊇ [$identifier_start $identifier_extend]
 
-[\p{XID_Start}]    ⊇ [$identifier_start-\p{NFKC_QC=No}]
-[\p{XID_Continue}] ⊇ [[$identifier_start $identifier_extend]-\p{NFKC_QC=No}]
+[\p{XID_Start}\p{Name=VERTICAL TILDE}]    ⊇ [$identifier_start-\p{NFKC_QC=No}]
+[\p{XID_Continue}\p{Name=VERTICAL TILDE}] ⊇ [[$identifier_start $identifier_extend]-\p{NFKC_QC=No}]
 
 ##########################
 # Normalization
