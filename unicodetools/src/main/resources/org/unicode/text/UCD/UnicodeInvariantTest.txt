@@ -333,7 +333,7 @@ In \p{sc=Cher} scf = suc
 #
 # NOTE: If this invariant needs to change, the section on migrating from the
 #       Unicode 3.0 identifier definition in UTS #55 must be updated:
-#       https://unicode.org/reports/tr55/#Evolution-Unicode-3.
+#       https://www.unicode.org/reports/tr55/#Evolution-Unicode-3.
 Let $identifier_start = [\p{GC=Lu}\p{GC=Ll}\p{GC=Lt}\p{GC=Lm}\p{GC=Lo}\p{GC=Nl}]
 Let $identifier_extend = [\p{GC=Mn}\p{GC=Mc}\p{GC=Nd}\p{GC=Pc}]
 [\p{ID_Start}\p{Name=VERTICAL TILDE}]    ⊇ $identifier_start
