@@ -25,8 +25,8 @@ public class ScriptExtensions {
                     if (o1.equals(o2)) {
                         return 0;
                     }
-                    final String n1 = getNames(o1, UCD_Types.LONG, " ");
-                    final String n2 = getNames(o2, UCD_Types.LONG, " ");
+                    final String n1 = getNames(o1, UCD_Types.SHORT, " ");
+                    final String n2 = getNames(o2, UCD_Types.SHORT, " ");
                     return n1.compareToIgnoreCase(n2);
                 }
             };
