@@ -104,7 +104,10 @@ public class MakeUnicodeFiles {
             boolean makeFirstLetterLowercase = false;
             boolean orderByRangeStart = false;
             boolean interleaveValues = false;
-            boolean lineBreakStyle = false;
+            // Whether the file should be produced in the style of VerticalOrientation.txt and the
+            // Unicode 15.1 and later LineBreak.txt and EastAsianWidth.txt, which are all generated
+            // in that format by some other tool.
+            boolean kenFile = false;
             boolean hackValues = false;
             boolean mergeRanges = true;
             String nameStyle = "none";
@@ -130,9 +133,8 @@ public class MakeUnicodeFiles {
                         orderByRangeStart = true;
                     } else if (piece.equals("valueList")) {
                         interleaveValues = true;
-                    } else if (piece.equals("lineBreakValueList")) {
-                        interleaveValues = true;
-                        lineBreakStyle = true;
+                    } else if (piece.equals("kenFile")) {
+                        kenFile = true;
                     } else if (piece.equals("hackValues")) {
                         hackValues = true;
                     } else if (piece.equals("sortNumeric")) {
@@ -1146,7 +1148,9 @@ public class MakeUnicodeFiles {
                 bf.setPropName(name);
             }
 
-            if (ps.interleaveValues) {
+            if (ps.kenFile) {
+                writeKenFile(pwProp, bf, prop, ps);
+            } else if (ps.interleaveValues) {
                 writeInterleavedValues(pwProp, bf, prop, ps);
             } else if (prop.isType(UnicodeProperty.STRING_OR_MISC_MASK)
                     && !prop.getName().equals("Script_Extensions")) {
@@ -1489,6 +1493,33 @@ public class MakeUnicodeFiles {
     bf.showSetNames(pw, s);
     }
       */
+    
+    private static void writeKenFile(
+            PrintWriter pw, BagFormatter bf, UnicodeProperty prop, PrintStyle ps) {
+        if (DEBUG) {
+            System.out.println("Writing Ken-style File: " + prop.getName());
+        }
+        pw.println();
+        var source = ToolUnicodePropertySource.make(Default.ucdVersion());
+        UnicodeProperty generalCategory = source.getProperty("General_Category");
+        UnicodeProperty block = source.getProperty("Block");
+        // Ranges do not span blocks, even when characters are unassigned, except in ideographic planes,
+        // where Cn ranges are allowed to extend from the unassigned part of one block into the No_Block void beyond.
+        Map<String, String> ignoreBlocksInCJKVPlanes = new HashMap<String, String>();
+        for (char ext = 'B'; ext <= 'I'; ++ext) {
+            ignoreBlocksInCJKVPlanes.put("CJK_Ext_" + ext, "NB");
+        }
+        UnicodeProperty blockOrIdeographicPlane = new UnicodeProperty.FilteredProperty(block, new UnicodeProperty.MapFilter(ignoreBlocksInCJKVPlanes));
+        UnicodeSet omitted = generalCategory.getSet("Unassigned").retainAll(prop.getSet(ps.skipValue));
+        bf.setValueSource(prop)
+                    .setRangeBreakSource(blockOrIdeographicPlane)
+                    .setMinSpacesBeforeSemicolon(1)
+                    .setValueWidthOverride(3)
+                    .setMinSpacesBeforeComment(0)
+                    .setRefinedLabelSource(generalCategory).setCountWidth(7)
+                    .setMergeRanges(ps.mergeRanges)
+                    .showSetNames(pw, new UnicodeSet(0, 0x10FFFF).removeAll(omitted));
+    }
 
     private static void writeInterleavedValues(
             PrintWriter pw, BagFormatter bf, UnicodeProperty prop, PrintStyle ps) {
@@ -1496,22 +1527,13 @@ public class MakeUnicodeFiles {
             System.out.println("Writing Interleaved Values: " + prop.getName());
         }
         pw.println();
-        bf.setValueSource(new UnicodeProperty.FilteredProperty(prop, new RestoreSpacesFilter(ps)));        
-        if (ps.lineBreakStyle) {
-            var source = ToolUnicodePropertySource.make(Default.ucdVersion());
-            UnicodeProperty generalCategory = source.getProperty("General_Category");
-            UnicodeProperty block = source.getProperty("Block");
-            bf.setRangeBreakSource(block)
-                    .setMinSpacesBeforeSemicolon(1).setMinSpacesBeforeComment(1)
-                    .setRefinedLabelSource(generalCategory).setCountWidth(7);
-        } else {
-            bf.setNameSource(null)
+        bf.setValueSource(new UnicodeProperty.FilteredProperty(prop, new RestoreSpacesFilter(ps)))
+              .setNameSource(null)
               .setLabelSource(null)
               .setRangeBreakSource(null)
-              .setShowCount(false);
-        }
-        bf.setMergeRanges(ps.mergeRanges);
-        bf.showSetNames(pw, new UnicodeSet(0, 0x10FFFF));
+              .setShowCount(false)
+              .setMergeRanges(ps.mergeRanges)
+              .showSetNames(pw, new UnicodeSet(0, 0x10FFFF));
     }
 
     private static void writeStringValues(

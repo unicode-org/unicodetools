@@ -769,7 +769,7 @@ File:	LineBreak
 # For more information, see UAX #14: Unicode Line Breaking Algorithm,
 # at https://www.unicode.org/reports/tr14/
 Property: Line_Break
-Format: lineBreakValueList nameStyle=none valueStyle=short skipValue=Unknown
+Format: kenFile skipValue=Unknown
 
 File:	SpecialCasing
 Property: SPECIAL

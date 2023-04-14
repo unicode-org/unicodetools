@@ -47,7 +47,7 @@ public class BagFormatter {
     private String prefix = "[";
     private String suffix = "]";
     private UnicodeProperty.Factory source;
-    private int minSpacesBeforeComment = 2;
+    private int minSpacesBeforeComment = 1;
     private UnicodeLabel nameSource;
     private UnicodeLabel labelSource;
     private UnicodeLabel refinedLabelSource;
@@ -505,10 +505,10 @@ public class BagFormatter {
 
             if (DEBUG) System.out.println("ValueSize: " + valueSize);
             if (valueSize > 0) {
-                tabber.add(valueSize + minSpacesBeforeComment, Tabber.LEFT); // value
+                tabber.add(valueSize + 2, Tabber.LEFT); // value
             }
 
-            tabber.add(3, Tabber.LEFT); // comment character
+            tabber.add(minSpacesBeforeComment + 2, Tabber.LEFT); // comment character
 
             labelSize =
                     maxLabelWidthOverride > 0
@@ -532,7 +532,7 @@ public class BagFormatter {
                                     || showLiteral != null
                                     || getLabelSource(true) != UnicodeLabel.NULL
                                     || getNameSource() != UnicodeLabel.NULL)
-                            ? "\t #"
+                            ? "\t" + " ".repeat(minSpacesBeforeComment) + "#"
                             : "";
 
             if (DEBUG) System.out.println("Tabber: " + tabber.toString());
@@ -1016,7 +1016,7 @@ public class BagFormatter {
     }
 
     /**
-     * @param n minimum number of spaces before the comment (default: 2)
+     * @param n minimum number of spaces before the comment (default: 1)
      * @return this (for chaining)
      */
     public BagFormatter setMinSpacesBeforeComment(int n) {
