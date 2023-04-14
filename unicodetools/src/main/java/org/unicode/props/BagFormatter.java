@@ -267,10 +267,10 @@ public class BagFormatter {
      * @param n minimum number of spaces before the semicolon (default: 0)
      * @return this (for chaining)
      */
-     public BagFormatter setMinSpacesBeforeSemicolon(int n) {
+    public BagFormatter setMinSpacesBeforeSemicolon(int n) {
         minSpacesBeforeSemicolon = n;
         return this;
-     }
+    }
 
     public BagFormatter setMergeRanges(boolean in) {
         mergeRanges = in;
@@ -936,22 +936,20 @@ public class BagFormatter {
         return this;
     }
 
-
     /**
      * @param label a label, which must refine the labelSource, that is:
-     * <blockquote>
+     *     <blockquote>
      *     refinedLabelSource (X) = refinedLabelSource (Y) ⇒ labelSource (X) = labelSource (Y).
-     * </blockquote>
-     * Further, whenever it strictly refines the labelSource, it must differ from it:
-     * <blockquote>
+     *     </blockquote>
+     *     Further, whenever it strictly refines the labelSource, it must differ from it:
+     *     <blockquote>
      *     refinedLabelSource⁻¹ (L) ⊊ refinedLabelSource⁻¹ (M) ⇒ L ≠ M.
-     * </blockquote>
-     * The labelSource is used to determine the ranges, but if all elements of a range have the
-     * same refinedLabelSource, the refinedLabelSource is shown.
-     * 
-     * For example, if the labelSource merges Ll, Lu, and Lt to L&, but the refinedLabelSource is
-     * the General_Category, the following ranges can be produced:
-     * <pre>
+     *     </blockquote>
+     *     The labelSource is used to determine the ranges, but if all elements of a range have the
+     *     same refinedLabelSource, the refinedLabelSource is shown.
+     *     <p>For example, if the labelSource merges Ll, Lu, and Lt to L&, but the
+     *     refinedLabelSource is the General_Category, the following ranges can be produced:
+     *     <pre>
      * 0041..005A;AL     # Lu    [26] LATIN CAPITAL LETTER A..LATIN CAPITAL LETTER Z
      * 00D8..00F6;AL     # L&    [31] LATIN CAPITAL LETTER O WITH STROKE..LATIN SMALL LETTER O WITH DIAERESIS
      * </pre>
