@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-15.1.0.txt
-# Date: 2023-01-05, 20:34:37 GMT
+# Date: 2023-04-14, 13:59:19 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -120,7 +120,7 @@
 0C49          ; Cn #       <reserved-0C49>
 0C4E..0C54    ; Cn #   [7] <reserved-0C4E>..<reserved-0C54>
 0C57          ; Cn #       <reserved-0C57>
-0C5B..0C5C    ; Cn #   [2] <reserved-0C5B>..<reserved-0C5C>
+0C5B          ; Cn #       <reserved-0C5B>
 0C5E..0C5F    ; Cn #   [2] <reserved-0C5E>..<reserved-0C5F>
 0C64..0C65    ; Cn #   [2] <reserved-0C64>..<reserved-0C65>
 0C70..0C76    ; Cn #   [7] <reserved-0C70>..<reserved-0C76>
@@ -132,7 +132,7 @@
 0CC5          ; Cn #       <reserved-0CC5>
 0CC9          ; Cn #       <reserved-0CC9>
 0CCE..0CD4    ; Cn #   [7] <reserved-0CCE>..<reserved-0CD4>
-0CD7..0CDC    ; Cn #   [6] <reserved-0CD7>..<reserved-0CDC>
+0CD7..0CDB    ; Cn #   [5] <reserved-0CD7>..<reserved-0CDB>
 0CDF          ; Cn #       <reserved-0CDF>
 0CE4..0CE5    ; Cn #   [2] <reserved-0CE4>..<reserved-0CE5>
 0CF0          ; Cn #       <reserved-0CF0>
@@ -722,7 +722,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 825340
+# Total code points: 825338
 
 # ================================================
 
@@ -2231,7 +2231,7 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 0C2A..0C39    ; Lo #  [16] TELUGU LETTER PA..TELUGU LETTER HA
 0C3D          ; Lo #       TELUGU SIGN AVAGRAHA
 0C58..0C5A    ; Lo #   [3] TELUGU LETTER TSA..TELUGU LETTER RRRA
-0C5D          ; Lo #       TELUGU LETTER NAKAARA POLLU
+0C5C..0C5D    ; Lo #   [2] TELUGU ARCHAIC SHRII..TELUGU LETTER NAKAARA POLLU
 0C60..0C61    ; Lo #   [2] TELUGU LETTER VOCALIC RR..TELUGU LETTER VOCALIC LL
 0C80          ; Lo #       KANNADA SIGN SPACING CANDRABINDU
 0C85..0C8C    ; Lo #   [8] KANNADA LETTER A..KANNADA LETTER VOCALIC L
@@ -2240,7 +2240,7 @@ FF9E..FF9F    ; Lm #   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAK
 0CAA..0CB3    ; Lo #  [10] KANNADA LETTER PA..KANNADA LETTER LLA
 0CB5..0CB9    ; Lo #   [5] KANNADA LETTER VA..KANNADA LETTER HA
 0CBD          ; Lo #       KANNADA SIGN AVAGRAHA
-0CDD..0CDE    ; Lo #   [2] KANNADA LETTER NAKAARA POLLU..KANNADA LETTER FA
+0CDC..0CDE    ; Lo #   [3] KANNADA ARCHAIC SHRII..KANNADA LETTER FA
 0CE0..0CE1    ; Lo #   [2] KANNADA LETTER VOCALIC RR..KANNADA LETTER VOCALIC LL
 0CF1..0CF2    ; Lo #   [2] KANNADA SIGN JIHVAMULIYA..KANNADA SIGN UPADHMANIYA
 0D04..0D0C    ; Lo #   [9] MALAYALAM LETTER VEDIC ANUSVARA..MALAYALAM LETTER VOCALIC L
@@ -2652,7 +2652,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 30000..3134A  ; Lo # [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Lo # [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 131612
+# Total code points: 131614
 
 # ================================================
 

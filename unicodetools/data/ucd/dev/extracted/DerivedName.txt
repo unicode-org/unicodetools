@@ -1,5 +1,5 @@
 # DerivedName-15.1.0.txt
-# Date: 2023-01-05, 20:34:38 GMT
+# Date: 2023-04-14, 13:59:20 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2836,6 +2836,7 @@
 0C58          ; TELUGU LETTER TSA
 0C59          ; TELUGU LETTER DZA
 0C5A          ; TELUGU LETTER RRRA
+0C5C          ; TELUGU ARCHAIC SHRII
 0C5D          ; TELUGU LETTER NAKAARA POLLU
 0C60          ; TELUGU LETTER VOCALIC RR
 0C61          ; TELUGU LETTER VOCALIC LL
@@ -2932,6 +2933,7 @@
 0CCD          ; KANNADA SIGN VIRAMA
 0CD5          ; KANNADA LENGTH MARK
 0CD6          ; KANNADA AI LENGTH MARK
+0CDC          ; KANNADA ARCHAIC SHRII
 0CDD          ; KANNADA LETTER NAKAARA POLLU
 0CDE          ; KANNADA LETTER FA
 0CE0          ; KANNADA LETTER VOCALIC RR
@@ -44175,6 +44177,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 149191
+# Total code points: 149193
 
 # EOF
