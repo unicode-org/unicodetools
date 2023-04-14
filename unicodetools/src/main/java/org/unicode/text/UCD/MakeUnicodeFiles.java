@@ -104,6 +104,7 @@ public class MakeUnicodeFiles {
             boolean makeFirstLetterLowercase = false;
             boolean orderByRangeStart = false;
             boolean interleaveValues = false;
+            boolean lineBreakStyle = false;
             boolean hackValues = false;
             boolean mergeRanges = true;
             String nameStyle = "none";
@@ -129,6 +130,9 @@ public class MakeUnicodeFiles {
                         orderByRangeStart = true;
                     } else if (piece.equals("valueList")) {
                         interleaveValues = true;
+                    } else if (piece.equals("lineBreakValueList")) {
+                        interleaveValues = true;
+                        lineBreakStyle = true;
                     } else if (piece.equals("hackValues")) {
                         hackValues = true;
                     } else if (piece.equals("sortNumeric")) {
@@ -1492,13 +1496,22 @@ public class MakeUnicodeFiles {
             System.out.println("Writing Interleaved Values: " + prop.getName());
         }
         pw.println();
-        bf.setValueSource(new UnicodeProperty.FilteredProperty(prop, new RestoreSpacesFilter(ps)))
-                .setNameSource(null)
-                .setLabelSource(null)
-                .setRangeBreakSource(null)
-                .setShowCount(false)
-                .setMergeRanges(ps.mergeRanges)
-                .showSetNames(pw, new UnicodeSet(0, 0x10FFFF));
+        bf.setValueSource(new UnicodeProperty.FilteredProperty(prop, new RestoreSpacesFilter(ps)));        
+        if (ps.lineBreakStyle) {
+            var source = ToolUnicodePropertySource.make(Default.ucdVersion());
+            UnicodeProperty generalCategory = source.getProperty("General_Category");
+            UnicodeProperty block = source.getProperty("Block");
+            bf.setRangeBreakSource(block)
+                    .setMinSpacesBeforeSemicolon(1).setMinSpacesBeforeComment(1)
+                    .setRefinedLabelSource(generalCategory).setCountWidth(7);
+        } else {
+            bf.setNameSource(null)
+              .setLabelSource(null)
+              .setRangeBreakSource(null)
+              .setShowCount(false);
+        }
+        bf.setMergeRanges(ps.mergeRanges);
+        bf.showSetNames(pw, new UnicodeSet(0, 0x10FFFF));
     }
 
     private static void writeStringValues(

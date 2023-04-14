@@ -723,6 +723,54 @@ File:	Scripts
 Property:	Script
 Format:	nameStyle=none skipValue=Unknown
 
+File:	LineBreak
+#
+# Line_Break Property
+#
+# This file is a normative contributory data file in the
+# Unicode Character Database.
+#
+# The format is two fields separated by a semicolon.
+# Field 0: Unicode code point value or range of code point values
+# Field 1: Line_Break property, consisting of one of the following values:
+#   Non-tailorable:
+#         "BK", "CM", "CR", "GL", "LF", "NL", "SP", "WJ", "ZW", "ZWJ"
+#   Tailorable:
+#         "AI", "AL", "B2", "BA", "BB", "CB", "CJ", "CL", "CP", "EB",
+#         "EM", "EX", "H2", "H3", "HL", "HY", "ID", "IN", "IS", "JL",
+#         "JT", "JV", "NS", "NU", "OP", "PO", "PR", "QU", "RI", "SA",
+#         "SG", "SY", "XX"
+#  - All code points, assigned and unassigned, that are not listed
+#      explicitly are given the value "XX".
+#  - The unassigned code points in the following blocks default to "ID":
+#         CJK Unified Ideographs Extension A: U+3400..U+4DBF
+#         CJK Unified Ideographs:             U+4E00..U+9FFF
+#         CJK Compatibility Ideographs:       U+F900..U+FAFF
+#  - All undesignated code points in Planes 2 and 3, whether inside or
+#      outside of allocated blocks, default to "ID":
+#         Plane 2:                            U+20000..U+2FFFD
+#         Plane 3:                            U+30000..U+3FFFD
+#  - All unassigned code points in the following Plane 1 ranges, whether
+#      inside or outside of allocated blocks, also default to "ID":
+#         Plane 1 range:                      U+1F000..U+1FAFF
+#         Plane 1 range:                      U+1FC00..U+1FFFD
+#  - The unassigned code points in the following block default to "PR":
+#         Currency Symbols:                   U+20A0..U+20CF
+#
+# Character ranges are specified as for other property files in the
+# Unicode Character Database.
+#
+# For legacy reasons, there are no spaces before or after the semicolon
+# which separates the two fields. The comments following the number sign
+# "#" list the General_Category property value or the L& alias of the
+# derived value LC, the Unicode character name or names, and, in lines
+# with ranges of code points, the code point count in square brackets.
+#
+# For more information, see UAX #14: Unicode Line Breaking Algorithm,
+# at https://www.unicode.org/reports/tr14/
+Property: Line_Break
+Format: lineBreakValueList nameStyle=none valueStyle=short skipValue=Unknown
+
 File:	SpecialCasing
 Property: SPECIAL
 
@@ -776,7 +824,6 @@ ArabicShaping
 BidiMirroring
 CompositionExclusions
 EastAsianWidth
-LineBreak
 StandardizedVariants
 UnicodeData
 VerticalOrientation
