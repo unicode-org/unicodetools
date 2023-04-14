@@ -1,5 +1,5 @@
 # DerivedCombiningClass-15.1.0.txt
-# Date: 2023-01-05, 20:34:33 GMT
+# Date: 2023-04-14, 13:17:03 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -184,6 +184,7 @@
 0888          ; 0 # Sk       ARABIC RAISED ROUND DOT
 0889..088E    ; 0 # Lo   [6] ARABIC LETTER NOON WITH INVERTED SMALL V..ARABIC VERTICAL TAIL
 0890..0891    ; 0 # Cf   [2] ARABIC POUND MARK ABOVE..ARABIC PIASTRE MARK ABOVE
+0897          ; 0 # Mn       ARABIC PEPET
 08A0..08C8    ; 0 # Lo  [41] ARABIC LETTER BEH WITH SMALL V BELOW..ARABIC LETTER GRAF
 08C9          ; 0 # Lm       ARABIC SMALL FARSI YEH
 08E2          ; 0 # Cf       ARABIC DISPUTED END OF AYAH
@@ -1463,6 +1464,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 10E80..10EA9  ; 0 # Lo  [42] YEZIDI LETTER ELIF..YEZIDI LETTER ET
 10EAD         ; 0 # Pd       YEZIDI HYPHENATION MARK
 10EB0..10EB1  ; 0 # Lo   [2] YEZIDI LETTER LAM WITH DOT ABOVE..YEZIDI LETTER YOT WITH CIRCUMFLEX ABOVE
+10EC2..10EC4  ; 0 # Lo   [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
 10F00..10F1C  ; 0 # Lo  [29] OLD SOGDIAN LETTER ALEPH..OLD SOGDIAN LETTER FINAL TAW WITH VERTICAL TAIL
 10F1D..10F26  ; 0 # No  [10] OLD SOGDIAN NUMBER ONE..OLD SOGDIAN FRACTION ONE HALF
 10F27         ; 0 # Lo       OLD SOGDIAN LIGATURE AYIN-DALETH
@@ -2004,7 +2006,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 827388 code points not listed here.
+# The above property value applies to 827384 code points not listed here.
 # Total code points: 1113190
 
 # ================================================

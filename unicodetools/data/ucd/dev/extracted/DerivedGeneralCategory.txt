@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-15.1.0.txt
-# Date: 2023-01-05, 20:34:37 GMT
+# Date: 2023-04-14, 13:17:06 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -37,7 +37,7 @@
 085F          ; Cn #       <reserved-085F>
 086B..086F    ; Cn #   [5] <reserved-086B>..<reserved-086F>
 088F          ; Cn #       <reserved-088F>
-0892..0897    ; Cn #   [6] <reserved-0892>..<reserved-0897>
+0892..0896    ; Cn #   [5] <reserved-0892>..<reserved-0896>
 0984          ; Cn #       <reserved-0984>
 098D..098E    ; Cn #   [2] <reserved-098D>..<reserved-098E>
 0991..0992    ; Cn #   [2] <reserved-0991>..<reserved-0992>
@@ -435,7 +435,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 10E7F         ; Cn #       <reserved-10E7F>
 10EAA         ; Cn #       <reserved-10EAA>
 10EAE..10EAF  ; Cn #   [2] <reserved-10EAE>..<reserved-10EAF>
-10EB2..10EFC  ; Cn #  [75] <reserved-10EB2>..<reserved-10EFC>
+10EB2..10EC1  ; Cn #  [16] <reserved-10EB2>..<reserved-10EC1>
+10EC5..10EFC  ; Cn #  [56] <reserved-10EC5>..<reserved-10EFC>
 10F28..10F2F  ; Cn #   [8] <reserved-10F28>..<reserved-10F2F>
 10F5A..10F6F  ; Cn #  [22] <reserved-10F5A>..<reserved-10F6F>
 10F8A..10FAF  ; Cn #  [38] <reserved-10F8A>..<reserved-10FAF>
@@ -722,7 +723,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 825340
+# Total code points: 825336
 
 # ================================================
 
@@ -2483,6 +2484,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 10D00..10D23  ; Lo #  [36] HANIFI ROHINGYA LETTER A..HANIFI ROHINGYA MARK NA KHONNA
 10E80..10EA9  ; Lo #  [42] YEZIDI LETTER ELIF..YEZIDI LETTER ET
 10EB0..10EB1  ; Lo #   [2] YEZIDI LETTER LAM WITH DOT ABOVE..YEZIDI LETTER YOT WITH CIRCUMFLEX ABOVE
+10EC2..10EC4  ; Lo #   [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
 10F00..10F1C  ; Lo #  [29] OLD SOGDIAN LETTER ALEPH..OLD SOGDIAN LETTER FINAL TAW WITH VERTICAL TAIL
 10F27         ; Lo #       OLD SOGDIAN LIGATURE AYIN-DALETH
 10F30..10F45  ; Lo #  [22] SOGDIAN LETTER ALEPH..SOGDIAN INDEPENDENT SHIN
@@ -2652,7 +2654,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 30000..3134A  ; Lo # [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Lo # [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 131612
+# Total code points: 131615
 
 # ================================================
 
@@ -2682,7 +2684,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 0825..0827    ; Mn #   [3] SAMARITAN VOWEL SIGN SHORT A..SAMARITAN VOWEL SIGN U
 0829..082D    ; Mn #   [5] SAMARITAN VOWEL SIGN LONG I..SAMARITAN MARK NEQUDAA
 0859..085B    ; Mn #   [3] MANDAIC AFFRICATION MARK..MANDAIC GEMINATION MARK
-0898..089F    ; Mn #   [8] ARABIC SMALL HIGH WORD AL-JUZ..ARABIC HALF MADDA OVER MADDA
+0897..089F    ; Mn #   [9] ARABIC PEPET..ARABIC HALF MADDA OVER MADDA
 08CA..08E1    ; Mn #  [24] ARABIC SMALL HIGH FARSI YEH..ARABIC SMALL HIGH SIGN SAFHA
 08E3..0902    ; Mn #  [32] ARABIC TURNED DAMMA BELOW..DEVANAGARI SIGN ANUSVARA
 093A          ; Mn #       DEVANAGARI VOWEL SIGN OE
@@ -3005,7 +3007,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 1985
+# Total code points: 1986
 
 # ================================================
 
