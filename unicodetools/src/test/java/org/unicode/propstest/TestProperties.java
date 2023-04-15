@@ -227,12 +227,14 @@ public class TestProperties extends TestFmwkMinusMinus {
                     set.forEach(
                             (c) -> {
                                 assertEquals(
-                                        Utility.hex(first)
-                                                + " and "
-                                                + Utility.hex(c)
-                                                + " have different joining types but are in the"
-                                                + " same joining group "
-                                                + group,
+                                        "U+"
+                                                + getCodeAndName(Character.toString(first))
+                                                + "\nand\nU+"
+                                                + getCodeAndName(c)
+                                                + "\nhave different joining types but are in the"
+                                                + " same joining group ("
+                                                + group
+                                                + ")\n",
                                         firstType,
                                         joiningType.get(c));
                             });
