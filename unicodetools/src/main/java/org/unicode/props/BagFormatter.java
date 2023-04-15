@@ -1192,7 +1192,8 @@ public class BagFormatter {
         return showTotal;
     }
 
-    public void setShowTotal(boolean showTotal) {
+    public BagFormatter setShowTotal(boolean showTotal) {
         this.showTotal = showTotal;
+        return this;
     }
 }

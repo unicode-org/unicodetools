@@ -769,6 +769,7 @@ Format: kenFile skipValue=Unknown
 #
 # For more information, see UAX #14: Unicode Line Breaking Algorithm,
 # at https://www.unicode.org/reports/tr14/
+#
 Property: Line_Break
 
 File:	SpecialCasing

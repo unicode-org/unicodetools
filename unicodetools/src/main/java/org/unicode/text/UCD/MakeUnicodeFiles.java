@@ -1097,26 +1097,29 @@ public class MakeUnicodeFiles {
             } catch (final Exception e) {
                 throw new IllegalArgumentException("No property for name: " + nextPropName);
             }
-            pwProp.println();
-            pwProp.println(SEPARATOR);
+            final Format.PrintStyle ps =
+                    Format.theFormat.filePrintStyleMap.getOrDefault(
+                            filename, Format.theFormat.getPrintStyle(name));
+            if (!ps.kenFile) {
+                pwProp.println();
+                pwProp.println(SEPARATOR);
+            }
             final String propComment = Format.theFormat.getValueComments(name, "");
             if (propComment != null && propComment.length() != 0) {
                 pwProp.println();
                 pwProp.println(propComment);
-            } else if (!prop.isType(UnicodeProperty.BINARY_MASK)) {
+            } else if (!prop.isType(UnicodeProperty.BINARY_MASK) && !ps.kenFile) {
                 pwProp.println();
                 pwProp.println("# Property:\t" + name);
             }
 
-            final Format.PrintStyle ps =
-                    Format.theFormat.filePrintStyleMap.getOrDefault(
-                            filename, Format.theFormat.getPrintStyle(name));
             if (DEBUG) {
                 System.out.println(ps.toString());
             }
 
             if (!prop.isType(UnicodeProperty.BINARY_MASK)
-                    && (ps.skipUnassigned != null || ps.skipValue != null)) {
+                    && (ps.skipUnassigned != null || ps.skipValue != null)
+                    && !ps.kenFile) {
                 String v = ps.skipValue;
                 if (v == null) {
                     v = ps.skipUnassigned;
@@ -1507,7 +1510,12 @@ public class MakeUnicodeFiles {
         if (DEBUG) {
             System.out.println("Writing Ken-style File: " + prop.getName());
         }
-        pw.println();
+        printDefaultValueComment(
+                pw,
+                prop.getName(),
+                prop,
+                /*showPropName=*/ false,
+                prop.getFirstValueAlias(ps.skipValue));
         var source = ToolUnicodePropertySource.make(Default.ucdVersion());
         UnicodeProperty generalCategory = source.getProperty("General_Category");
         UnicodeProperty block = source.getProperty("Block");
@@ -1532,6 +1540,7 @@ public class MakeUnicodeFiles {
                 .setRefinedLabelSource(generalCategory)
                 .setCountWidth(7)
                 .setMergeRanges(ps.mergeRanges)
+                .setShowTotal(false)
                 .showSetNames(pw, new UnicodeSet(0, 0x10FFFF).removeAll(omitted));
     }
 
