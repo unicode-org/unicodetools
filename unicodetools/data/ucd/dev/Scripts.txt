@@ -24,6 +24,11 @@
 
 # ================================================
 
+2427..2429;Common
+1CC00..1CCF9;Common
+1CD00..1CEAF;Common
+1F8B3..1F8BB;Common
+1FBCB..1FBEF;Common
 0000..001F    ; Common # Cc  [32] <control-0000>..<control-001F>
 0020          ; Common # Zs       SPACE
 0021..0023    ; Common # Po   [3] EXCLAMATION MARK..NUMBER SIGN
