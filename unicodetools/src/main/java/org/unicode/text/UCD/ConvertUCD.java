@@ -459,9 +459,9 @@ public final class ConvertUCD implements UCD_Types {
                     if (line == null) {
                         break;
                     }
-                    if (line.startsWith("<<<<<<<") ||
-                        line.startsWith("=======") ||
-                        line.startsWith(">>>>>>>")) {
+                    if (line.startsWith("<<<<<<<")
+                            || line.startsWith("=======")
+                            || line.startsWith(">>>>>>>")) {
                         continue;
                     }
                     if (SHOW && (lineNumber % 500) == 0) {
