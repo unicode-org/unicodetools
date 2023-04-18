@@ -462,6 +462,7 @@ public class UcdPropertyValues {
         Syloti_Nagri("Syloti_Nagri"),
         Symbols_And_Pictographs_Extended_A("Symbols_And_Pictographs_Ext_A"),
         Symbols_For_Legacy_Computing("Symbols_For_Legacy_Computing"),
+        Symbols_For_Legacy_Computing_Supplement("Symbols_For_Legacy_Computing_Sup"),
         Syriac("Syriac"),
         Syriac_Supplement("Syriac_Sup"),
         Tagalog("Tagalog"),
