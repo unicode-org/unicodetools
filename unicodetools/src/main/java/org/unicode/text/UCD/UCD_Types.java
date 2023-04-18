@@ -588,7 +588,20 @@ public interface UCD_Types {
             // Unicode 15
             Kawi = 164,
             Nag_Mundari = 165,
-            LIMIT_SCRIPT = Nag_Mundari + 1;
+            // A future version of Unicode
+            Sunuwar = 166,
+            Tulu_Tigalari = 167,
+            Kirat_Rai = 168,
+            Todhri = 169,
+            Garay = 170,
+            Gurung_Khema = 171,
+            Ol_Onal = 172,
+            // Provisionally assigned
+            Sidetic = 173,
+            Chisoi = 174,
+            Tolong_Siki  = 175,
+            Tai_Yo = 176,
+            LIMIT_SCRIPT = Tai_Yo + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte BPT_N = 0, BPT_O = 1, BPT_C = 2, LIMIT_BPT = 3;
