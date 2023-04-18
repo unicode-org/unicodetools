@@ -906,6 +906,10 @@ public class MakeUnicodeFiles {
                                             | (1 << UnicodeProperty.NUMERIC)))
                             == 0) {
                 for (final String value : up.getAvailableValues()) {
+                    if (propName.equals("Script") && up.getSet(value).isEmpty() &&
+                        !value.equals("Katakana_Or_Hiragana")) {
+                        continue;
+                    }
                     final List<String> l = up.getValueAliases(value);
                     // HACK
                     if (isJoiningGroup && value.equals("Hamzah_On_Ha_Goal")) {
