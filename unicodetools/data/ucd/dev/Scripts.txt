@@ -24,6 +24,8 @@
 
 # ================================================
 
+1CEB0..1CEB3;Common
+1F8B2;Common
 0000..001F    ; Common # Cc  [32] <control-0000>..<control-001F>
 0020          ; Common # Zs       SPACE
 0021..0023    ; Common # Po   [3] EXCLAMATION MARK..NUMBER SIGN
