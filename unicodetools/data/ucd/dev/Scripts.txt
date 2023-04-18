@@ -1,5 +1,5 @@
 # Scripts-15.1.0.txt
-# Date: 2023-01-05, 20:35:02 GMT
+# Date: 2023-04-18, 16:43:46 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -24,7 +24,6 @@
 
 # ================================================
 
-16D40..16D79;Kirat_Rai
 0000..001F    ; Common # Cc  [32] <control-0000>..<control-001F>
 0020          ; Common # Zs       SPACE
 0021..0023    ; Common # Po   [3] EXCLAMATION MARK..NUMBER SIGN
@@ -3029,5 +3028,15 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 1E4F0..1E4F9  ; Nag_Mundari # Nd  [10] NAG MUNDARI DIGIT ZERO..NAG MUNDARI DIGIT NINE
 
 # Total code points: 42
+
+# ================================================
+
+16D40..16D42  ; Kirat_Rai # Lm   [3] KIRAT RAI SIGN ANUSVARA..KIRAT RAI SIGN VISARGA
+16D43..16D6A  ; Kirat_Rai # Lo  [40] KIRAT RAI LETTER A..KIRAT RAI VOWEL SIGN AU
+16D6B..16D6C  ; Kirat_Rai # Lm   [2] KIRAT RAI SIGN VIRAMA..KIRAT RAI SIGN SAAT
+16D6D..16D6F  ; Kirat_Rai # Po   [3] KIRAT RAI SIGN YUPI..KIRAT RAI DOUBLE DANDA
+16D70..16D79  ; Kirat_Rai # Nd  [10] KIRAT RAI DIGIT ZERO..KIRAT RAI DIGIT NINE
+
+# Total code points: 58
 
 # EOF

@@ -1,5 +1,5 @@
 # PropertyValueAliases-15.1.0.txt
-# Date: 2023-01-31, 22:27:07 GMT
+# Date: 2023-04-18, 16:43:34 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -310,6 +310,7 @@ blk; Khmer                            ; Khmer
 blk; Khmer_Symbols                    ; Khmer_Symbols
 blk; Khojki                           ; Khojki
 blk; Khudawadi                        ; Khudawadi
+blk; Kirat_Rai                        ; Kirat_Rai
 blk; Lao                              ; Lao
 blk; Latin_1_Sup                      ; Latin_1_Supplement               ; Latin_1
 blk; Latin_Ext_A                      ; Latin_Extended_A
@@ -1390,6 +1391,7 @@ sc ; Phlp                             ; Psalter_Pahlavi
 sc ; Phnx                             ; Phoenician
 sc ; Plrd                             ; Miao
 sc ; Prti                             ; Inscriptional_Parthian
+sc ; Qabc                             ; Kirat_Rai
 sc ; Rjng                             ; Rejang
 sc ; Rohg                             ; Hanifi_Rohingya
 sc ; Runr                             ; Runic
