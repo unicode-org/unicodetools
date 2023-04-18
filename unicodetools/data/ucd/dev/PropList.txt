@@ -1,5 +1,5 @@
 # PropList-15.1.0.txt
-# Date: 2023-01-31, 22:27:04 GMT
+# Date: 2023-04-18, 10:34:42 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1635,8 +1635,8 @@ E0100..E01EF  ; Variation_Selector # Mn [240] VARIATION SELECTOR-17..VARIATION S
 239B..23B3    ; Pattern_Syntax # Sm  [25] LEFT PARENTHESIS UPPER HOOK..SUMMATION BOTTOM
 23B4..23DB    ; Pattern_Syntax # So  [40] TOP SQUARE BRACKET..FUSE
 23DC..23E1    ; Pattern_Syntax # Sm   [6] TOP PARENTHESIS..BOTTOM TORTOISE SHELL BRACKET
-23E2..2426    ; Pattern_Syntax # So  [69] WHITE TRAPEZIUM..SYMBOL FOR SUBSTITUTE FORM TWO
-2427..243F    ; Pattern_Syntax # Cn  [25] <reserved-2427>..<reserved-243F>
+23E2..2429    ; Pattern_Syntax # So  [72] WHITE TRAPEZIUM..SYMBOL FOR DELETE MEDIUM SHADE FORM
+242A..243F    ; Pattern_Syntax # Cn  [22] <reserved-242A>..<reserved-243F>
 2440..244A    ; Pattern_Syntax # So  [11] OCR HOOK..OCR DOUBLE BACKSLASH
 244B..245F    ; Pattern_Syntax # Cn  [21] <reserved-244B>..<reserved-245F>
 2500..25B6    ; Pattern_Syntax # So [183] BOX DRAWINGS LIGHT HORIZONTAL..BLACK RIGHT-POINTING TRIANGLE

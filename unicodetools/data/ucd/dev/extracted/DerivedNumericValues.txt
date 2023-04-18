@@ -1,5 +1,5 @@
 # DerivedNumericValues-15.1.0.txt
-# Date: 2023-01-05, 20:34:41 GMT
+# Date: 2023-04-18, 10:34:39 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -111,6 +111,7 @@ FF10          ; 0.0 ; ; 0 # Nd       FULLWIDTH DIGIT ZERO
 16AC0         ; 0.0 ; ; 0 # Nd       TANGSA DIGIT ZERO
 16B50         ; 0.0 ; ; 0 # Nd       PAHAWH HMONG DIGIT ZERO
 16E80         ; 0.0 ; ; 0 # No       MEDEFAIDRIN DIGIT ZERO
+1CCF0         ; 0.0 ; ; 0 # Nd       OUTLINED DIGIT ZERO
 1D2C0         ; 0.0 ; ; 0 # No       KAKTOVIK NUMERAL ZERO
 1D2E0         ; 0.0 ; ; 0 # No       MAYAN NUMERAL ZERO
 1D7CE         ; 0.0 ; ; 0 # Nd       MATHEMATICAL BOLD DIGIT ZERO
@@ -126,7 +127,7 @@ FF10          ; 0.0 ; ; 0 # Nd       FULLWIDTH DIGIT ZERO
 1F10B..1F10C  ; 0.0 ; ; 0 # No   [2] DINGBAT CIRCLED SANS-SERIF DIGIT ZERO..DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ZERO
 1FBF0         ; 0.0 ; ; 0 # Nd       SEGMENTED DIGIT ZERO
 
-# Total code points: 88
+# Total code points: 89
 
 # ================================================
 
@@ -530,6 +531,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 16B51         ; 1.0 ; ; 1 # Nd       PAHAWH HMONG DIGIT ONE
 16E81         ; 1.0 ; ; 1 # No       MEDEFAIDRIN DIGIT ONE
 16E94         ; 1.0 ; ; 1 # No       MEDEFAIDRIN DIGIT ONE ALTERNATE FORM
+1CCF1         ; 1.0 ; ; 1 # Nd       OUTLINED DIGIT ONE
 1D2C1         ; 1.0 ; ; 1 # No       KAKTOVIK NUMERAL ONE
 1D2E1         ; 1.0 ; ; 1 # No       MAYAN NUMERAL ONE
 1D360         ; 1.0 ; ; 1 # No       COUNTING ROD UNIT DIGIT ONE
@@ -553,7 +555,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 1FBF1         ; 1.0 ; ; 1 # Nd       SEGMENTED DIGIT ONE
 2092A         ; 1.0 ; ; 1 # Lo       CJK UNIFIED IDEOGRAPH-2092A
 
-# Total code points: 144
+# Total code points: 145
 
 # ================================================
 
@@ -684,6 +686,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 16B52         ; 2.0 ; ; 2 # Nd       PAHAWH HMONG DIGIT TWO
 16E82         ; 2.0 ; ; 2 # No       MEDEFAIDRIN DIGIT TWO
 16E95         ; 2.0 ; ; 2 # No       MEDEFAIDRIN DIGIT TWO ALTERNATE FORM
+1CCF2         ; 2.0 ; ; 2 # Nd       OUTLINED DIGIT TWO
 1D2C2         ; 2.0 ; ; 2 # No       KAKTOVIK NUMERAL TWO
 1D2E2         ; 2.0 ; ; 2 # No       MAYAN NUMERAL TWO
 1D361         ; 2.0 ; ; 2 # No       COUNTING ROD UNIT DIGIT TWO
@@ -707,7 +710,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 1FBF2         ; 2.0 ; ; 2 # Nd       SEGMENTED DIGIT TWO
 22390         ; 2.0 ; ; 2 # Lo       CJK UNIFIED IDEOGRAPH-22390
 
-# Total code points: 146
+# Total code points: 147
 
 # ================================================
 
@@ -830,6 +833,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 16B53         ; 3.0 ; ; 3 # Nd       PAHAWH HMONG DIGIT THREE
 16E83         ; 3.0 ; ; 3 # No       MEDEFAIDRIN DIGIT THREE
 16E96         ; 3.0 ; ; 3 # No       MEDEFAIDRIN DIGIT THREE ALTERNATE FORM
+1CCF3         ; 3.0 ; ; 3 # Nd       OUTLINED DIGIT THREE
 1D2C3         ; 3.0 ; ; 3 # No       KAKTOVIK NUMERAL THREE
 1D2E3         ; 3.0 ; ; 3 # No       MAYAN NUMERAL THREE
 1D362         ; 3.0 ; ; 3 # No       COUNTING ROD UNIT DIGIT THREE
@@ -855,7 +859,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 22998         ; 3.0 ; ; 3 # Lo       CJK UNIFIED IDEOGRAPH-22998
 23B1B         ; 3.0 ; ; 3 # Lo       CJK UNIFIED IDEOGRAPH-23B1B
 
-# Total code points: 144
+# Total code points: 145
 
 # ================================================
 
@@ -972,6 +976,7 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 16AC4         ; 4.0 ; ; 4 # Nd       TANGSA DIGIT FOUR
 16B54         ; 4.0 ; ; 4 # Nd       PAHAWH HMONG DIGIT FOUR
 16E84         ; 4.0 ; ; 4 # No       MEDEFAIDRIN DIGIT FOUR
+1CCF4         ; 4.0 ; ; 4 # Nd       OUTLINED DIGIT FOUR
 1D2C4         ; 4.0 ; ; 4 # No       KAKTOVIK NUMERAL FOUR
 1D2E4         ; 4.0 ; ; 4 # No       MAYAN NUMERAL FOUR
 1D363         ; 4.0 ; ; 4 # No       COUNTING ROD UNIT DIGIT FOUR
@@ -996,7 +1001,7 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 200E2         ; 4.0 ; ; 4 # Lo       CJK UNIFIED IDEOGRAPH-200E2
 2626D         ; 4.0 ; ; 4 # Lo       CJK UNIFIED IDEOGRAPH-2626D
 
-# Total code points: 135
+# Total code points: 136
 
 # ================================================
 
@@ -1116,6 +1121,7 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 16AC5         ; 5.0 ; ; 5 # Nd       TANGSA DIGIT FIVE
 16B55         ; 5.0 ; ; 5 # Nd       PAHAWH HMONG DIGIT FIVE
 16E85         ; 5.0 ; ; 5 # No       MEDEFAIDRIN DIGIT FIVE
+1CCF5         ; 5.0 ; ; 5 # Nd       OUTLINED DIGIT FIVE
 1D2C5         ; 5.0 ; ; 5 # No       KAKTOVIK NUMERAL FIVE
 1D2E5         ; 5.0 ; ; 5 # No       MAYAN NUMERAL FIVE
 1D364         ; 5.0 ; ; 5 # No       COUNTING ROD UNIT DIGIT FIVE
@@ -1139,7 +1145,7 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 1FBF5         ; 5.0 ; ; 5 # Nd       SEGMENTED DIGIT FIVE
 20121         ; 5.0 ; ; 5 # Lo       CJK UNIFIED IDEOGRAPH-20121
 
-# Total code points: 133
+# Total code points: 134
 
 # ================================================
 
@@ -1246,6 +1252,7 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 16AC6         ; 6.0 ; ; 6 # Nd       TANGSA DIGIT SIX
 16B56         ; 6.0 ; ; 6 # Nd       PAHAWH HMONG DIGIT SIX
 16E86         ; 6.0 ; ; 6 # No       MEDEFAIDRIN DIGIT SIX
+1CCF6         ; 6.0 ; ; 6 # Nd       OUTLINED DIGIT SIX
 1D2C6         ; 6.0 ; ; 6 # No       KAKTOVIK NUMERAL SIX
 1D2E6         ; 6.0 ; ; 6 # No       MAYAN NUMERAL SIX
 1D365         ; 6.0 ; ; 6 # No       COUNTING ROD UNIT DIGIT SIX
@@ -1267,7 +1274,7 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 1FBF6         ; 6.0 ; ; 6 # Nd       SEGMENTED DIGIT SIX
 20AEA         ; 6.0 ; ; 6 # Lo       CJK UNIFIED IDEOGRAPH-20AEA
 
-# Total code points: 117
+# Total code points: 118
 
 # ================================================
 
@@ -1372,6 +1379,7 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 16AC7         ; 7.0 ; ; 7 # Nd       TANGSA DIGIT SEVEN
 16B57         ; 7.0 ; ; 7 # Nd       PAHAWH HMONG DIGIT SEVEN
 16E87         ; 7.0 ; ; 7 # No       MEDEFAIDRIN DIGIT SEVEN
+1CCF7         ; 7.0 ; ; 7 # Nd       OUTLINED DIGIT SEVEN
 1D2C7         ; 7.0 ; ; 7 # No       KAKTOVIK NUMERAL SEVEN
 1D2E7         ; 7.0 ; ; 7 # No       MAYAN NUMERAL SEVEN
 1D366         ; 7.0 ; ; 7 # No       COUNTING ROD UNIT DIGIT SEVEN
@@ -1393,7 +1401,7 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 1FBF7         ; 7.0 ; ; 7 # Nd       SEGMENTED DIGIT SEVEN
 20001         ; 7.0 ; ; 7 # Lo       CJK UNIFIED IDEOGRAPH-20001
 
-# Total code points: 117
+# Total code points: 118
 
 # ================================================
 
@@ -1495,6 +1503,7 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 16AC8         ; 8.0 ; ; 8 # Nd       TANGSA DIGIT EIGHT
 16B58         ; 8.0 ; ; 8 # Nd       PAHAWH HMONG DIGIT EIGHT
 16E88         ; 8.0 ; ; 8 # No       MEDEFAIDRIN DIGIT EIGHT
+1CCF8         ; 8.0 ; ; 8 # Nd       OUTLINED DIGIT EIGHT
 1D2C8         ; 8.0 ; ; 8 # No       KAKTOVIK NUMERAL EIGHT
 1D2E8         ; 8.0 ; ; 8 # No       MAYAN NUMERAL EIGHT
 1D367         ; 8.0 ; ; 8 # No       COUNTING ROD UNIT DIGIT EIGHT
@@ -1515,7 +1524,7 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 1F109         ; 8.0 ; ; 8 # No       DIGIT EIGHT COMMA
 1FBF8         ; 8.0 ; ; 8 # Nd       SEGMENTED DIGIT EIGHT
 
-# Total code points: 112
+# Total code points: 113
 
 # ================================================
 
@@ -1620,6 +1629,7 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 16AC9         ; 9.0 ; ; 9 # Nd       TANGSA DIGIT NINE
 16B59         ; 9.0 ; ; 9 # Nd       PAHAWH HMONG DIGIT NINE
 16E89         ; 9.0 ; ; 9 # No       MEDEFAIDRIN DIGIT NINE
+1CCF9         ; 9.0 ; ; 9 # Nd       OUTLINED DIGIT NINE
 1D2C9         ; 9.0 ; ; 9 # No       KAKTOVIK NUMERAL NINE
 1D2E9         ; 9.0 ; ; 9 # No       MAYAN NUMERAL NINE
 1D368         ; 9.0 ; ; 9 # No       COUNTING ROD UNIT DIGIT NINE
@@ -1641,7 +1651,7 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 1FBF9         ; 9.0 ; ; 9 # Nd       SEGMENTED DIGIT NINE
 2F890         ; 9.0 ; ; 9 # Lo       CJK COMPATIBILITY IDEOGRAPH-2F890
 
-# Total code points: 118
+# Total code points: 119
 
 # ================================================
 
