@@ -1,5 +1,5 @@
 # PropertyValueAliases-15.1.0.txt
-# Date: 2023-01-31, 22:27:07 GMT
+# Date: 2023-04-18, 11:20:56 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -437,6 +437,7 @@ blk; Sutton_SignWriting               ; Sutton_SignWriting
 blk; Syloti_Nagri                     ; Syloti_Nagri
 blk; Symbols_And_Pictographs_Ext_A    ; Symbols_And_Pictographs_Extended_A
 blk; Symbols_For_Legacy_Computing     ; Symbols_For_Legacy_Computing
+blk; Symbols_For_Legacy_Computing_Sup ; Symbols_For_Legacy_Computing_Supplement
 blk; Syriac                           ; Syriac
 blk; Syriac_Sup                       ; Syriac_Supplement
 blk; Tagalog                          ; Tagalog
