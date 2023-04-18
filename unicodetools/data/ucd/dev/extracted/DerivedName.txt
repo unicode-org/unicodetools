@@ -1,5 +1,5 @@
 # DerivedName-15.1.0.txt
-# Date: 2023-04-18, 10:34:37 GMT
+# Date: 2023-04-18, 10:57:26 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -38341,7 +38341,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1CE32         ; LARGE TYPE PIECE CENTRE OF X
 1CE33         ; LARGE TYPE PIECE CENTRE OF Y
 1CE34         ; LARGE TYPE PIECE CENTRE OF Z WITH CROSSBAR
-1CE35         ; LARGE TYPE PIECE RAISED UPPER RIGHT ARC
+1CE35         ; LARGE TYPE PIECE RAISED UPPER LEFT ARC
 1CE36         ; LARGE TYPE PIECE STEM WITH LEFT CROSSBAR
 1CE37         ; LARGE TYPE PIECE LOWER RIGHT AND UPPER RIGHT ARC
 1CE38         ; LARGE TYPE PIECE DIAGONAL UPPER LEFT AND LOWER LEFT
