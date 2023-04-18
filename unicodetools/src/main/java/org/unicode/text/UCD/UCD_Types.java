@@ -599,7 +599,7 @@ public interface UCD_Types {
             // Provisionally assigned
             Sidetic = 173,
             Chisoi = 174,
-            Tolong_Siki  = 175,
+            Tolong_Siki = 175,
             Tai_Yo = 176,
             LIMIT_SCRIPT = Tai_Yo + 1;
 
