@@ -158,6 +158,7 @@ Khmer	;	Khmer
 Khmer_Symbols	;	Khmer_Symbols
 Khojki	;	Khojki
 Khudawadi	;	Khudawadi
+Kirat_Rai	;	Kirat_Rai
 Lao	;	Lao
 Latin_1_Sup	;	Latin_1_Supplement
 Latin_Ext_A	;	Latin_Extended_A
