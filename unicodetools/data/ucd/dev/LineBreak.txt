@@ -1,5 +1,5 @@
 # LineBreak-15.1.0.txt
-# Date: 2023-04-15, 00:27:09 GMT
+# Date: 2023-04-19, 18:36:42 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -42,11 +42,10 @@
 # Character ranges are specified as for other property files in the
 # Unicode Character Database.
 #
-# For legacy reasons, there are no spaces before or after the semicolon
-# which separates the two fields. The comments following the number sign
-# "#" list the General_Category property value or the L& alias of the
-# derived value LC, the Unicode character name or names, and, in lines
-# with ranges of code points, the code point count in square brackets.
+# The comments following the number sign "#" list the General_Category
+# property value or the L& alias of the derived value LC, the Unicode
+# character name or names, and, in lines with ranges of code points,
+# the code point count in square brackets.
 #
 # For more information, see UAX #14: Unicode Line Breaking Algorithm,
 # at https://www.unicode.org/reports/tr14/
