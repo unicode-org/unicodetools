@@ -1105,12 +1105,14 @@ public class MakeUnicodeFiles {
                 pwProp.println(SEPARATOR);
             }
             final String propComment = Format.theFormat.getValueComments(name, "");
-            if (propComment != null && propComment.length() != 0) {
-                pwProp.println();
-                pwProp.println(propComment);
-            } else if (!prop.isType(UnicodeProperty.BINARY_MASK) && !ps.kenFile) {
-                pwProp.println();
-                pwProp.println("# Property:\t" + name);
+            if (!ps.kenFile) {
+                if (propComment != null && propComment.length() != 0) {
+                    pwProp.println();
+                    pwProp.println(propComment);
+                } else if (!prop.isType(UnicodeProperty.BINARY_MASK)) {
+                    pwProp.println();
+                    pwProp.println("# Property:\t" + name);
+                }
             }
 
             if (DEBUG) {
