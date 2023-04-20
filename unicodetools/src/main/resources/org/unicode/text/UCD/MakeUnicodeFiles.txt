@@ -1,4 +1,4 @@
-Generate: UnicodeData
+Generate: .
 CopyrightYear: 2023
 
 File: extra/ScriptNfkc

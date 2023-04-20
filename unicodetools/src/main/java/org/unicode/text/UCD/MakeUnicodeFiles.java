@@ -32,7 +32,6 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.props.UnicodeLabel;
-import org.unicode.draft.Compare;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.DefaultValues;
 import org.unicode.props.IndexUnicodeProperties;
@@ -1924,7 +1923,8 @@ public class MakeUnicodeFiles {
             if (nt.equals("None") || nameStr.startsWith("<CJK")) {
                 nameStr += ";;;";
             } else {
-                final String nv = dumbFraction(numericValue.getValue(codepoint), name.getValue(codepoint));
+                final String nv =
+                        dumbFraction(numericValue.getValue(codepoint), name.getValue(codepoint));
                 if (nt.equals("Decimal")) {
                     nameStr += nv + ";" + nv + ";" + nv + ";";
                 } else if (nt.equals("Digit")) {
@@ -2097,18 +2097,19 @@ public class MakeUnicodeFiles {
         // Prefer denominators that are in the name, and among those prefer
         // those with the longest name (so that we use sixty-fourths, not
         // fourths, when both work).  Otherwise prefer smaller denominators.
-        denominators.sort((m, n) -> {
-            final boolean m_in_name = name.contains(names.get(m));
-            final boolean n_in_name = name.contains(names.get(n));
-            if (m_in_name != n_in_name) {
-                return Boolean.compare(n_in_name, m_in_name);
-            }
-            if (m_in_name) {
-                return Integer.compare(names.get(n).length(), names.get(m).length());
-            } else {
-                return m.compareTo(n);
-            }
-        });
+        denominators.sort(
+                (m, n) -> {
+                    final boolean m_in_name = name.contains(names.get(m));
+                    final boolean n_in_name = name.contains(names.get(n));
+                    if (m_in_name != n_in_name) {
+                        return Boolean.compare(n_in_name, m_in_name);
+                    }
+                    if (m_in_name) {
+                        return Integer.compare(names.get(n).length(), names.get(m).length());
+                    } else {
+                        return m.compareTo(n);
+                    }
+                });
         for (int i : denominators) {
             final double numerator = value * i;
             final long rounded = Math.round(numerator);
