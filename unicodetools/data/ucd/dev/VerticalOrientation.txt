@@ -1,11 +1,11 @@
 # VerticalOrientation-15.1.0.txt
-# Date: 2022-11-16, 09:36:32 GMT [KW, LI]
-# © 2022 Unicode®, Inc.
+# Date: 2023-04-19, 18:25:32 GMT
+# © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# For documentation, see https://www.unicode.org/reports/tr44/
+#   For documentation, see https://www.unicode.org/reports/tr44/
 #
 # Vertical_Orientation (vo) Property
 #
@@ -73,7 +73,6 @@
 # the code point count in square brackets.
 #
 # @missing: 0000..10FFFF; R
-
 0000..001F     ; R  # Cc    [32] <control-0000>..<control-001F>
 0020           ; R  # Zs         SPACE
 0021..0023     ; R  # Po     [3] EXCLAMATION MARK..NUMBER SIGN

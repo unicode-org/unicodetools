@@ -557,6 +557,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
 
         BaseProperty vo =
                 new UnicodeProperty.SimpleProperty() {
+                    {
+                        setUniformUnassigned(false);
+                    }
+
                     @Override
                     public String _getValue(int codepoint) {
                         return ucd.getVertical_OrientationID(codepoint);
