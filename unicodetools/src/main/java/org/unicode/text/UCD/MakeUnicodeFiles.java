@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collection;
 import java.util.Comparator;
@@ -631,6 +632,7 @@ public class MakeUnicodeFiles {
                 .setShowCount(false)
                 .setShowTotal(false)
                 .showSetNames(pw, new UnicodeSet(0, 0x10FFFF));
+        udf.close();
     }
 
     private static void doBidiTest(String filename) throws IOException {
@@ -1886,82 +1888,62 @@ public class MakeUnicodeFiles {
             }
             final String blk = block.getValue(codepoint);
             final boolean isHangulSyllable = blk.equals("Hangul_Syllables");
+            final String[] fields = new String[15];
+            Arrays.fill(fields, "");
 
-            // Field 1.
-            String nameStr;
             if (rangeBlocks.containsKey(blk)) {
-                nameStr = "<" + rangeBlocks.get(blk) + ", " + BagFormatter.RANGE_PLACEHOLDER + ">";
+                fields[1] =
+                        "<" + rangeBlocks.get(blk) + ", " + BagFormatter.RANGE_PLACEHOLDER + ">";
             } else {
-                nameStr = name.getValue(codepoint);
-                if (nameStr.startsWith("<control")) {
-                    nameStr = "<control>";
+                fields[1] = name.getValue(codepoint);
+                if (fields[1].startsWith("<control")) {
+                    fields[1] = "<control>";
                 }
             }
 
-            // Fields 2, 3, 4.
-            nameStr +=
-                    ";"
-                            + gc
-                            + ";"
-                            + combiningClass.getValue(codepoint, true)
-                            + ";"
-                            + bidiClass.getValue(codepoint, true)
-                            + ";";
+            fields[2] = gc;
+            fields[3] = combiningClass.getValue(codepoint, true);
+            fields[4] = bidiClass.getValue(codepoint, true);
 
             // Field 5.
             final String dt = decompositionType.getValue(codepoint);
             if (!isHangulSyllable && !dt.equals("None")) {
                 if (!dt.equals("Canonical")) {
-                    nameStr += "<" + dt.toLowerCase().replace("nobreak", "noBreak") + "> ";
+                    fields[5] = "<" + dt.toLowerCase().replace("nobreak", "noBreak") + "> ";
                 }
-                nameStr += Utility.hex(decompositionValue.getValue(codepoint));
+                fields[5] += Utility.hex(decompositionValue.getValue(codepoint));
             }
-            nameStr += ";";
 
-            // Fields 6, 7, 8.
             final String nt = numericType.getValue(codepoint);
-            if (nt.equals("None") || nameStr.startsWith("<CJK")) {
-                nameStr += ";;;";
-            } else {
+            if (!nt.equals("None") && !fields[1].startsWith("<CJK")) {
                 final String nv =
                         dumbFraction(numericValue.getValue(codepoint), name.getValue(codepoint));
                 if (nt.equals("Decimal")) {
-                    nameStr += nv + ";" + nv + ";" + nv + ";";
+                    fields[6] = fields[7] = fields[8] = nv;
                 } else if (nt.equals("Digit")) {
-                    nameStr += ";" + nv + ";" + nv + ";";
+                    fields[7] = fields[8] = nv;
                 } else if (nt.equals("Numeric")) {
-                    nameStr += ";;" + nv + ";";
+                    fields[8] = nv;
                 }
             }
 
-            // Field 9.
-            nameStr += bidiMirrored.getValue(codepoint, true);
+            fields[9] = bidiMirrored.getValue(codepoint, true);
 
-            // Field 10.
-            nameStr += ";";
-            nameStr += unicode1Name.getValue(codepoint);
-            // Field 11.
-            nameStr += ";";
-            // ISO Comment; obsolete, deprecated, and stabilized; always null.
-            // Field 12.
-            nameStr += ";";
+            fields[10] = unicode1Name.getValue(codepoint);
+            // Field 11 is ISO_Comment; obsolete, deprecated, and stabilized; always empty.
             final String suc = simpleUppercaseMapping.getValue(codepoint);
             if (!suc.equals(Character.toString(codepoint))) {
-                nameStr += Utility.hex(suc);
+                fields[12] = Utility.hex(suc);
             }
-            // Field 13.
-            nameStr += ";";
             final String slc = simpleLowercaseMapping.getValue(codepoint);
             if (!slc.equals(Character.toString(codepoint))) {
-                nameStr += Utility.hex(slc);
+                fields[13] = Utility.hex(slc);
             }
-            // Field 14.
-            nameStr += ";";
             final String stc = simpleTitlecaseMapping.getValue(codepoint);
             if (!stc.equals(Character.toString(codepoint)) || !stc.equals(suc)) {
-                nameStr += Utility.hex(stc);
+                fields[14] = Utility.hex(stc);
             }
-            return nameStr;
+            return String.join(";", Arrays.copyOfRange(fields, 1, fields.length));
         }
     }
 
