@@ -723,6 +723,163 @@ File:	Scripts
 Property:	Script
 Format:	nameStyle=none skipValue=Unknown
 
+File:	LineBreak
+Format: kenFile skipValue=Unknown
+#
+# Line_Break Property
+#
+# This file is a normative contributory data file in the
+# Unicode Character Database.
+#
+# The format is two fields separated by a semicolon.
+# Field 0: Unicode code point value or range of code point values
+# Field 1: Line_Break property, consisting of one of the following values:
+#   Non-tailorable:
+#         "BK", "CM", "CR", "GL", "LF", "NL", "SP", "WJ", "ZW", "ZWJ"
+#   Tailorable:
+#         "AI", "AL", "B2", "BA", "BB", "CB", "CJ", "CL", "CP", "EB",
+#         "EM", "EX", "H2", "H3", "HL", "HY", "ID", "IN", "IS", "JL",
+#         "JT", "JV", "NS", "NU", "OP", "PO", "PR", "QU", "RI", "SA",
+#         "SG", "SY", "XX"
+#  - All code points, assigned and unassigned, that are not listed
+#      explicitly are given the value "XX".
+#  - The unassigned code points in the following blocks default to "ID":
+#         CJK Unified Ideographs Extension A: U+3400..U+4DBF
+#         CJK Unified Ideographs:             U+4E00..U+9FFF
+#         CJK Compatibility Ideographs:       U+F900..U+FAFF
+#  - All undesignated code points in Planes 2 and 3, whether inside or
+#      outside of allocated blocks, default to "ID":
+#         Plane 2:                            U+20000..U+2FFFD
+#         Plane 3:                            U+30000..U+3FFFD
+#  - All unassigned code points in the following Plane 1 ranges, whether
+#      inside or outside of allocated blocks, also default to "ID":
+#         Plane 1 range:                      U+1F000..U+1FAFF
+#         Plane 1 range:                      U+1FC00..U+1FFFD
+#  - The unassigned code points in the following block default to "PR":
+#         Currency Symbols:                   U+20A0..U+20CF
+#
+# Character ranges are specified as for other property files in the
+# Unicode Character Database.
+#
+# The comments following the number sign "#" list the General_Category
+# property value or the L& alias of the derived value LC, the Unicode
+# character name or names, and, in lines with ranges of code points,
+# the code point count in square brackets.
+#
+# For more information, see UAX #14: Unicode Line Breaking Algorithm,
+# at https://www.unicode.org/reports/tr14/
+#
+Property: Line_Break
+
+File:	EastAsianWidth
+Format: kenFile skipValue=Neutral
+#
+# East_Asian_Width Property
+#
+# This file is a normative contributory data file in the
+# Unicode Character Database.
+#
+# The format is two fields separated by a semicolon.
+# Field 0: Unicode code point value or range of code point values
+# Field 1: East_Asian_Width property, consisting of one of the following values:
+#         "A", "F", "H", "N", "Na", "W"
+#  - All code points, assigned or unassigned, that are not listed
+#      explicitly are given the value "N".
+#  - The unassigned code points in the following blocks default to "W":
+#         CJK Unified Ideographs Extension A: U+3400..U+4DBF
+#         CJK Unified Ideographs:             U+4E00..U+9FFF
+#         CJK Compatibility Ideographs:       U+F900..U+FAFF
+#  - All undesignated code points in Planes 2 and 3, whether inside or
+#      outside of allocated blocks, default to "W":
+#         Plane 2:                            U+20000..U+2FFFD
+#         Plane 3:                            U+30000..U+3FFFD
+#
+# Character ranges are specified as for other property files in the
+# Unicode Character Database.
+#
+# The comments following the number sign "#" list the General_Category
+# property value or the L& alias of the derived value LC, the Unicode
+# character name or names, and, in lines with ranges of code points,
+# the code point count in square brackets.
+#
+# For more information, see UAX #11: East Asian Width,
+# at https://www.unicode.org/reports/tr11/
+#
+Property: East_Asian_Width
+
+File:	VerticalOrientation
+Format: kenFile skipValue=Rotated
+#
+# Vertical_Orientation (vo) Property
+#
+# This file defines the Vertical_Orientation property. See UAX #50:
+# Unicode Vertical Text Layout, at https://www.unicode.org/reports/tr50/
+#
+# The format of the file is two fields separated by a semicolon.
+# Field 0: Unicode code point value or range of code point values in
+#   hexadecimal form
+# Field 1: Vertical_Orientation property value, one of the following:
+#   U - Upright, the same orientation as in the code charts
+#   R - Rotated 90 degrees clockwise compared to the code charts
+#   Tu - Transformed typographically, with fallback to Upright
+#   Tr - Transformed typographically, with fallback to Rotated
+#
+#  - Certain ranges of unassigned code points default to U. These ranges
+#      are mostly associated with CJK scripts and punctuation, or with
+#      a small number of other scripts which are predominantly Upright.
+#      The private use areas also default to U, because of their most
+#      common use for CJK. In the following list of explicit code points
+#      and ranges, all unassigned code points default to U:
+#         Canadian Syllabics Extended:        U+18B0..U+18FF
+#         Reserved Default_Ignorable_Code_Point:      U+2065
+#         Number Forms:                       U+2150..U+218F
+#         Control Pictures & OCR              U+2400..U+245F
+#         Symbols:                            U+2BB8..U+2BFF
+#         CJK-Related & Yi:                   U+2E80..U+A4CF
+#         Hangul Jamo Extended-A:             U+A960..U+A97F
+#         Hangul Syllables & Jamo Extended-B: U+AC00..U+D7FF
+#         PUA & CJK Compatibility Ideographs: U+E000..U+FAFF
+#         Vertical Forms:                     U+FE10..U+FE1F
+#         Small Form Variants:                U+FE50..U+FE6F
+#         Fullwidth Forms:                            U+FFE7
+#         Specials:                           U+FFF0..U+FFF8
+#         Siddham:                           U+11580..U+115FF
+#         Zanabazar Square & Soyombo:        U+11A00..U+11AAF
+#         Egyptian Hieroglyphs & Controls:   U+13000..U+1345F
+#         Anatolian Hieroglyphs:             U+14400..U+1467F
+#         Ideographic Symbols & Tangut:      U+16FE0..U+18AFF
+#         Khitan Small Script & Tangut Sup:  U+18B00..U+18D7F
+#         Kana Extended-B:                   U+1AFF0..U+1AFFF
+#         Kana Extended-A & Small Kana Ext:  U+1B100..U+1B16F
+#         Nushu:                             U+1B170..U+1B2FF
+#         Musical Symbols:                   U+1CF00..U+1CFCF
+#         Musical Symbols:                   U+1D000..U+1D1FF
+#         Mayan Numerals:                    U+1D2E0..U+1D2FF
+#         Symbols & Rods:                    U+1D300..U+1D37F
+#         Sutton SignWriting:                U+1D800..U+1DAAF
+#         Game Symbols:                      U+1F000..U+1F0FF
+#         Enclosed Symbols:                  U+1F100..U+1F2FF
+#         Symbols:                           U+1F680..U+1F7FF
+#         Symbols and Pictographs:           U+1F900..U+1F9FF
+#         Chess Symbols & Pictographs Ext-A: U+1FA00..U+1FAFF
+#         Plane 2:                           U+20000..U+2FFFD
+#         Plane 3:                           U+30000..U+3FFFD
+#         Plane 15 PUA:                      U+F0000..U+FFFFD
+#         Plane 16 PUA:                     U+100000..U+10FFFD
+#
+#  - All other code points, assigned and unassigned, that are not listed
+#      explicitly in the data section of this file are given the value R.
+#
+# The comments following the number sign "#" list the General_Category
+# property value or the L& alias of the derived value LC, the Unicode
+# character name or names, and, in lines with ranges of code points,
+# the code point count in square brackets.
+#
+Property: VerticalOrientation
+
+File:	UnicodeData
+Property: SPECIAL
+
 File:	SpecialCasing
 Property: SPECIAL
 
@@ -775,10 +932,6 @@ sorts by the short name
 ArabicShaping
 BidiMirroring
 CompositionExclusions
-EastAsianWidth
-LineBreak
 StandardizedVariants
-UnicodeData
-VerticalOrientation
 
 

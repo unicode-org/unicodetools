@@ -15,6 +15,7 @@
 *.cc text diff=cpp
 *.classpath text
 *.cmd text eol=crlf
+*.config text eol=lf
 *.cpp text diff=cpp
 *.css text diff=css
 *.dsp text
