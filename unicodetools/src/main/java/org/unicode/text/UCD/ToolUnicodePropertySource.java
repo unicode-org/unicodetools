@@ -170,7 +170,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 new UnicodeProperty.SimpleProperty() {
                     @Override
                     public String _getValue(int codepoint) {
-                        return UCharacter.getName1_0(codepoint);
+                        return ucd.get(codepoint, true).unicode1Name;
                     }
                 }.setValues("<string>")
                         .setMain("Unicode_1_Name", "na1", UnicodeProperty.MISC, version));
