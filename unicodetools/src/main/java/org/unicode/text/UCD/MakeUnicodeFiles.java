@@ -32,6 +32,7 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.props.UnicodeLabel;
+import org.unicode.draft.Compare;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.DefaultValues;
 import org.unicode.props.IndexUnicodeProperties;
@@ -1377,7 +1378,7 @@ public class MakeUnicodeFiles {
                 }
             }
             if (numeric) {
-                displayValue += " ; ; " + dumbFraction(displayValue);
+                displayValue += " ; ; " + dumbFraction(displayValue, "");
                 if (DEBUG) {
                     System.out.println("Changing value3 " + displayValue);
                 }
@@ -1912,7 +1913,7 @@ public class MakeUnicodeFiles {
             final String dt = decompositionType.getValue(codepoint);
             if (!isHangulSyllable && !dt.equals("None")) {
                 if (!dt.equals("Canonical")) {
-                    nameStr += "<" + dt.toLowerCase() + "> ";
+                    nameStr += "<" + dt.toLowerCase().replace("nobreak", "noBreak") + "> ";
                 }
                 nameStr += Utility.hex(decompositionValue.getValue(codepoint));
             }
@@ -1920,10 +1921,10 @@ public class MakeUnicodeFiles {
 
             // Fields 6, 7, 8.
             final String nt = numericType.getValue(codepoint);
-            final String nv = numericValue.getValue(codepoint);
             if (nt.equals("None") || nameStr.startsWith("<CJK")) {
                 nameStr += ";;;";
             } else {
+                final String nv = dumbFraction(numericValue.getValue(codepoint), name.getValue(codepoint));
                 if (nt.equals("Decimal")) {
                     nameStr += nv + ";" + nv + ";" + nv + ";";
                 } else if (nt.equals("Digit")) {
@@ -1942,15 +1943,23 @@ public class MakeUnicodeFiles {
             // Field 11.
             nameStr += ";";
             // ISO Comment; obsolete, deprecated, and stabilized; always null.
-            for (var mapping :
-                    new UnicodeProperty[] {
-                        simpleUppercaseMapping, simpleLowercaseMapping, simpleTitlecaseMapping
-                    }) {
-                nameStr += ";";
-                final String value = mapping.getValue(codepoint);
-                if (!value.equals(Character.toString(codepoint))) {
-                    nameStr += Utility.hex(value);
-                }
+            // Field 12.
+            nameStr += ";";
+            final String suc = simpleUppercaseMapping.getValue(codepoint);
+            if (!suc.equals(Character.toString(codepoint))) {
+                nameStr += Utility.hex(suc);
+            }
+            // Field 13.
+            nameStr += ";";
+            final String slc = simpleLowercaseMapping.getValue(codepoint);
+            if (!slc.equals(Character.toString(codepoint))) {
+                nameStr += Utility.hex(slc);
+            }
+            // Field 14.
+            nameStr += ";";
+            final String stc = simpleTitlecaseMapping.getValue(codepoint);
+            if (!stc.equals(Character.toString(codepoint)) || !stc.equals(suc)) {
+                nameStr += Utility.hex(stc);
             }
             return nameStr;
         }
@@ -2053,7 +2062,7 @@ public class MakeUnicodeFiles {
       */
 
     // quick and dirty fractionator
-    private static String dumbFraction(String toolValue) {
+    private static String dumbFraction(String toolValue, String name) {
         if (toolValue.indexOf('.') < 0) {
             return toolValue;
         }
@@ -2064,11 +2073,43 @@ public class MakeUnicodeFiles {
             return toolValue.substring(0, toolValue.length() - 2);
         }
         final double value = Double.parseDouble(toolValue);
-        for (int i :
-                new int[] {
-                    1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-                    12, 16, 20, 32, 40, 64, 80, 128, 160, 320
-                }) {
+        Map<Integer, String> names = new TreeMap<>();
+        names.put(1, "n/a");
+        names.put(2, "HALF");
+        names.put(3, "THIRD");
+        names.put(4, "FOURTH");
+        names.put(5, "FIFTH");
+        names.put(6, "SIXTH");
+        names.put(7, "SEVENTH");
+        names.put(8, "EIGHTH");
+        names.put(9, "NINTH");
+        names.put(10, "TENTH");
+        names.put(12, "TWELFTH");
+        names.put(16, "SIXTEENTH");
+        names.put(20, "TWENTIETH");
+        names.put(40, "FORTIETH");
+        names.put(32, "THIRTY-SECOND");
+        names.put(64, "SIXTY-FOURTH");
+        names.put(80, "EIGHTIETH");
+        names.put(160, "ONE-HUNDRED-AND-SIXTIETH");
+        names.put(320, "THREE-HUNDRED-AND-TWENTIETH");
+        List<Integer> denominators = new ArrayList<>(names.keySet());
+        // Prefer denominators that are in the name, and among those prefer
+        // those with the longest name (so that we use sixty-fourths, not
+        // fourths, when both work).  Otherwise prefer smaller denominators.
+        denominators.sort((m, n) -> {
+            final boolean m_in_name = name.contains(names.get(m));
+            final boolean n_in_name = name.contains(names.get(n));
+            if (m_in_name != n_in_name) {
+                return Boolean.compare(n_in_name, m_in_name);
+            }
+            if (m_in_name) {
+                return Integer.compare(names.get(n).length(), names.get(m).length());
+            } else {
+                return m.compareTo(n);
+            }
+        });
+        for (int i : denominators) {
             final double numerator = value * i;
             final long rounded = Math.round(numerator);
             if (Math.abs(numerator - rounded) < 0.000001d) {

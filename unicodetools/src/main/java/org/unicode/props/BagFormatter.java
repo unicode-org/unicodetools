@@ -717,7 +717,7 @@ public class BagFormatter {
             if (start != end && unicodeDataStyleRanges) {
                 if (rightHandSide.contains(RANGE_PLACEHOLDER)) {
                     toTable(hex(start, start) + rightHandSide.replace(RANGE_PLACEHOLDER, "First"));
-                    toTable(hex(start, start) + rightHandSide.replace(RANGE_PLACEHOLDER, "Last"));
+                    toTable(hex(end, end) + rightHandSide.replace(RANGE_PLACEHOLDER, "Last"));
                 } else {
                     for (int c = start; c <= end; ++c) {
                         toTable(hex(c, c) + rightHandSide);
