@@ -40,6 +40,8 @@ public class BagFormatter {
 
     public static final PrintWriter CONSOLE = new PrintWriter(System.out, true);
 
+    public static final String RANGE_PLACEHOLDER = "%RANGE_PLACEHOLDER%";
+
     private static PrintWriter log = CONSOLE;
 
     private boolean abbreviated = false;
@@ -272,6 +274,30 @@ public class BagFormatter {
         return this;
     }
 
+    /**
+     * Places the semicolon immediately after the code point or range.
+     *
+     * @return this (for chaining)
+     */
+    public BagFormatter setNoSpacesBeforeSemicolon() {
+        minSpacesBeforeSemicolon = Integer.MIN_VALUE;
+        return this;
+    }
+
+    /**
+     * @param n minimum number of spaces after the semicolon (default: 1)
+     * @return this (for chaining)
+     */
+    public BagFormatter setMinSpacesAfterSemicolon(int n) {
+        minSpacesAfterSemicolon = n;
+        return this;
+    }
+
+    public BagFormatter setUnicodeDataStyleRanges(boolean unicodeDataStyleRanges) {
+        this.unicodeDataStyleRanges = unicodeDataStyleRanges;
+        return this;
+    }
+
     public BagFormatter setMergeRanges(boolean in) {
         mergeRanges = in;
         return this;
@@ -387,7 +413,9 @@ public class BagFormatter {
     private Join labelVisitor = new Join();
 
     private int minSpacesBeforeSemicolon = 0;
+    private int minSpacesAfterSemicolon = 1;
     private boolean mergeRanges = true;
+    private boolean unicodeDataStyleRanges = false;
     private Transliterator showLiteral = null;
     private Transliterator fixName = null;
     private boolean showSetAlso = false;
@@ -603,7 +631,8 @@ public class BagFormatter {
                         getValueSource() == UnicodeLabel.NULL
                                 ? ""
                                 : getValueSource().getValue(thing, ",", true);
-                if (getValueSource() != UnicodeLabel.NULL) value = "\t; " + value;
+                if (getValueSource() != UnicodeLabel.NULL)
+                    value = "\t;" + " ".repeat(minSpacesAfterSemicolon) + value;
                 String label =
                         getLabelSource(true) == UnicodeLabel.NULL
                                 ? ""
@@ -654,10 +683,10 @@ public class BagFormatter {
             counter += end - start + 1;
             String pn = propName;
             if (pn.length() != 0) {
-                pn = "\t; " + pn;
+                pn = "\t;" + " ".repeat(minSpacesAfterSemicolon) + pn;
             }
             if (valueSize > 0) {
-                value = "\t; " + value;
+                value = "\t;" + " ".repeat(minSpacesAfterSemicolon) + value;
             } else if (value.length() > 0) {
                 throw new IllegalArgumentException(
                         "maxwidth bogus " + value + "," + getValueSource().getMaxWidth(shortValue));
@@ -677,16 +706,34 @@ public class BagFormatter {
                 if (end == start) count = "\t";
                 else count = "\t [" + nf.format(end - start + 1) + "]";
             }
-
-            toTable(
-                    hex(start, end)
-                            + pn
+            final String rightHandSide =
+                    pn
                             + value
                             + commentSeparator
                             + label
                             + count
                             + insertLiteral(start, end)
-                            + getName("\t ", start, end));
+                            + getName("\t ", start, end);
+            if (start != end && unicodeDataStyleRanges) {
+                if (rightHandSide.contains(RANGE_PLACEHOLDER)) {
+                    toTable(hex(start, start) + rightHandSide.replace(RANGE_PLACEHOLDER, "First"));
+                    toTable(hex(start, start) + rightHandSide.replace(RANGE_PLACEHOLDER, "Last"));
+                } else {
+                    for (int c = start; c <= end; ++c) {
+                        toTable(hex(c, c) + rightHandSide);
+                    }
+                }
+            } else {
+                toTable(
+                        hex(start, end)
+                                + pn
+                                + value
+                                + commentSeparator
+                                + label
+                                + count
+                                + insertLiteral(start, end)
+                                + getName("\t ", start, end));
+            }
         }
 
         private String insertLiteral(String thing) {

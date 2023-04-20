@@ -501,6 +501,9 @@ public class MakeUnicodeFiles {
                 case "DerivedLabel":
                     generateDerivedName(filename);
                     break;
+                case "UnicodeData":
+                    generateUnicodeData(filename);
+                    break;
                 default:
                     generatePropertyFile(filename);
                     break;
@@ -608,6 +611,26 @@ public class MakeUnicodeFiles {
         }
 
         udf.close();
+    }
+
+    private static void generateUnicodeData(String filename) throws IOException {
+        final UnicodeDataFile udf =
+                UnicodeDataFile.openAndWriteHeader("UCD/" + Default.ucdVersion() + '/', filename);
+        final PrintWriter pw = udf.out;
+        var source = ToolUnicodePropertySource.make(Default.ucdVersion());
+
+        final BagFormatter bf = new BagFormatter();
+        bf.setHexValue(false)
+                .setMergeRanges(true)
+                .setNoSpacesBeforeSemicolon()
+                .setMinSpacesAfterSemicolon(0)
+                .setUnicodeDataStyleRanges(true)
+                .setNameSource(null)
+                .setLabelSource(null)
+                .setValueSource(new UnicodeDataHack(source))
+                .setShowCount(false)
+                .setShowTotal(false)
+                .showSetNames(pw, new UnicodeSet(0, 0x10FFFF));
     }
 
     private static void doBidiTest(String filename) throws IOException {
@@ -1802,13 +1825,19 @@ public class MakeUnicodeFiles {
         // private final UnicodeProperty.Factory factory;
         private final UnicodeProperty name;
         private final UnicodeProperty bidiMirrored;
-        // private final UnicodeProperty numericValue;
+        private final UnicodeProperty numericValue;
         private final UnicodeProperty numericType;
         private final UnicodeProperty decompositionValue;
         private final UnicodeProperty decompositionType;
         private final UnicodeProperty bidiClass;
         private final UnicodeProperty combiningClass;
         private final UnicodeProperty category;
+        private final UnicodeProperty unicode1Name;
+        private final UnicodeProperty simpleUppercaseMapping;
+        private final UnicodeProperty simpleLowercaseMapping;
+        private final UnicodeProperty simpleTitlecaseMapping;
+        private final UnicodeProperty block;
+        private final Map<String, String> rangeBlocks;
 
         UnicodeDataHack(UnicodeProperty.Factory factory) {
             // this.factory = factory;
@@ -1817,52 +1846,112 @@ public class MakeUnicodeFiles {
             combiningClass = factory.getProperty("Canonical_Combining_Class");
             bidiClass = factory.getProperty("Bidi_Class");
             decompositionType = factory.getProperty("Decomposition_Type");
-            decompositionValue = factory.getProperty("Decomposition_Value");
+            decompositionValue = factory.getProperty("Decomposition_Mapping");
             numericType = factory.getProperty("Numeric_Type");
-            // numericValue = factory.getProperty("Numeric_Value");
+            numericValue = factory.getProperty("Numeric_Value");
             bidiMirrored = factory.getProperty("Bidi_Mirrored");
-            // name10
-            // isoComment
+            unicode1Name = factory.getProperty("Unicode_1_Name");
+            simpleUppercaseMapping = factory.getProperty("Simple_Uppercase_Mapping");
+            simpleLowercaseMapping = factory.getProperty("Simple_Lowercase_Mapping");
+            simpleTitlecaseMapping = factory.getProperty("Simple_Titlecase_Mapping");
+            block = factory.getProperty("Block");
+
+            rangeBlocks = new HashMap<>();
+            for (char c = 'A'; c <= 'Z'; ++c) {
+                rangeBlocks.put(
+                        "CJK_Unified_Ideographs_Extension_" + c, "CJK Ideograph Extension " + c);
+            }
+            rangeBlocks.put("CJK_Unified_Ideographs", "CJK Ideograph");
+            rangeBlocks.put("Hangul_Syllables", "Hangul Syllable");
+            rangeBlocks.put("High_Surrogates", "Non Private Use High Surrogate");
+            rangeBlocks.put("High_Private_Use_Surrogates", "Private Use High Surrogate");
+            rangeBlocks.put("Low_Surrogates", "Low Surrogate");
+            rangeBlocks.put("Private_Use_Area", "Private Use");
+            rangeBlocks.put("Tangut", "Tangut Ideograph");
+            rangeBlocks.put("Tangut_Supplement", "Tangut Ideograph Supplement");
+            rangeBlocks.put("Supplementary_Private_Use_Area_A", "Plane 15 Private Use");
+            rangeBlocks.put("Supplementary_Private_Use_Area_B", "Plane 16 Private Use");
+        }
+
+        @Override
+        public int getMaxWidth(boolean isShort) {
+            return 1729;
         }
 
         @Override
         public String getValue(int codepoint, boolean isShort) {
-            String nameStr = name.getName();
-            if (nameStr.startsWith("<reserved")) {
+            final String gc = category.getValue(codepoint, true);
+            if (gc == "Cn") {
                 return null;
             }
-            final String code = Utility.hex(codepoint);
-            final int pos = nameStr.indexOf(code);
-            if (pos > 0) {
-                nameStr = nameStr.substring(0, pos) + "%" + nameStr.substring(pos + code.length());
+            final String blk = block.getValue(codepoint);
+            final boolean isHangulSyllable = blk.equals("Hangul_Syllables");
+
+            // Field 1.
+            String nameStr;
+            if (rangeBlocks.containsKey(blk)) {
+                nameStr = "<" + rangeBlocks.get(blk) + ", " + BagFormatter.RANGE_PLACEHOLDER + ">";
+            } else {
+                nameStr = name.getValue(codepoint);
+                if (nameStr.startsWith("<control")) {
+                    nameStr = "<control>";
+                }
             }
+
+            // Fields 2, 3, 4.
             nameStr +=
                     ";"
-                            + category.getValue(codepoint, true)
+                            + gc
                             + ";"
                             + combiningClass.getValue(codepoint, true)
                             + ";"
                             + bidiClass.getValue(codepoint, true)
                             + ";";
-            String temp = decompositionType.getValue(codepoint, true);
-            if (!temp.equals("None")) {
-                nameStr += "<" + temp + "> " + Utility.hex(decompositionValue.getValue(codepoint));
+
+            // Field 5.
+            final String dt = decompositionType.getValue(codepoint);
+            if (!isHangulSyllable && !dt.equals("None")) {
+                if (!dt.equals("Canonical")) {
+                    nameStr += "<" + dt.toLowerCase() + "> ";
+                }
+                nameStr += Utility.hex(decompositionValue.getValue(codepoint));
             }
             nameStr += ";";
-            temp = numericType.getValue(codepoint, true);
-            if (temp.equals("Decimal")) {
-                nameStr += temp + ";" + temp + ";" + temp + ";";
-            } else if (temp.equals("Digit")) {
-                nameStr += ";" + temp + ";" + temp + ";";
-            } else if (temp.equals("Numeric")) {
-                nameStr += ";;" + temp + ";";
-            } else if (temp.equals("Digit")) {
+
+            // Fields 6, 7, 8.
+            final String nt = numericType.getValue(codepoint);
+            final String nv = numericValue.getValue(codepoint);
+            if (nt.equals("None") || nameStr.startsWith("<CJK")) {
                 nameStr += ";;;";
+            } else {
+                if (nt.equals("Decimal")) {
+                    nameStr += nv + ";" + nv + ";" + nv + ";";
+                } else if (nt.equals("Digit")) {
+                    nameStr += ";" + nv + ";" + nv + ";";
+                } else if (nt.equals("Numeric")) {
+                    nameStr += ";;" + nv + ";";
+                }
             }
-            if (bidiMirrored.getValue(codepoint, true).equals(UCD_Names.YES)) {
-                nameStr += "Y" + ";";
-            }
+
+            // Field 9.
+            nameStr += bidiMirrored.getValue(codepoint, true);
+
+            // Field 10.
             nameStr += ";";
+            nameStr += unicode1Name.getValue(codepoint);
+            // Field 11.
+            nameStr += ";";
+            // ISO Comment; obsolete, deprecated, and stabilized; always null.
+            for (var mapping :
+                    new UnicodeProperty[] {
+                        simpleUppercaseMapping, simpleLowercaseMapping, simpleTitlecaseMapping
+                    }) {
+                nameStr += ";";
+                final String value = mapping.getValue(codepoint);
+                if (!value.equals(Character.toString(codepoint))) {
+                    nameStr += Utility.hex(value);
+                }
+            }
             return nameStr;
         }
     }

@@ -1,4 +1,4 @@
-Generate: .
+Generate: UnicodeData
 CopyrightYear: 2023
 
 File: extra/ScriptNfkc
@@ -877,6 +877,9 @@ Format: kenFile skipValue=Rotated
 #
 Property: VerticalOrientation
 
+File:	UnicodeData
+Property: SPECIAL
+
 File:	SpecialCasing
 Property: SPECIAL
 
@@ -930,6 +933,5 @@ ArabicShaping
 BidiMirroring
 CompositionExclusions
 StandardizedVariants
-UnicodeData
 
 
