@@ -5,7 +5,7 @@ maintainers for the production and vetting of data files for the UCD and
 other Unicode specs such as UCA, emoji, idna, and security.
 
 Do not use the Unicode data files in this repo for production.
-Do use the data files posted publicly on unicode.org.
+Do use the data files [posted publicly on unicode.org](https://www.unicode.org/releases/)
 
 There is some documentation for these tools in this repo, in the [docs folder](./docs/).
 
