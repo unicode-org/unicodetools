@@ -1,11 +1,11 @@
 # VerticalOrientation-15.1.0.txt
-# Date: 2023-04-19, 18:25:32 GMT
+# Date: 2023-04-26, 09:40:02 GMT [KW, LI]
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-#   For documentation, see https://www.unicode.org/reports/tr44/
+# For documentation, see https://www.unicode.org/reports/tr44/
 #
 # Vertical_Orientation (vo) Property
 #
@@ -73,6 +73,7 @@
 # the code point count in square brackets.
 #
 # @missing: 0000..10FFFF; R
+
 0000..001F     ; R  # Cc    [32] <control-0000>..<control-001F>
 0020           ; R  # Zs         SPACE
 0021..0023     ; R  # Po     [3] EXCLAMATION MARK..NUMBER SIGN
@@ -2425,7 +2426,9 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 2B820..2CEA1   ; U  # Lo  [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 2CEA2..2CEAF   ; U  # Cn    [14] <reserved-2CEA2>..<reserved-2CEAF>
 2CEB0..2EBE0   ; U  # Lo  [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
-2EBE1..2F7FF   ; U  # Cn  [3103] <reserved-2EBE1>..<reserved-2F7FF>
+2EBE1..2EBEF   ; U  # Cn    [15] <reserved-2EBE1>..<reserved-2EBEF>
+2EBF0..2EE4A   ; U  # Lo   [603] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE4A
+2EE4B..2F7FF   ; U  # Cn  [2485] <reserved-2EE4B>..<reserved-2F7FF>
 2F800..2FA1D   ; U  # Lo   [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 2FA1E..2FA1F   ; U  # Cn     [2] <reserved-2FA1E>..<reserved-2FA1F>
 2FA20..2FFFD   ; U  # Cn  [1502] <reserved-2FA20>..<reserved-2FFFD>
