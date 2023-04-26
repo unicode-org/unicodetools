@@ -1,11 +1,11 @@
 # EastAsianWidth-15.1.0.txt
-# Date: 2023-04-26, 09:39:59 GMT [KW, LI]
+# Date: 2023-04-26, 18:59:46 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# For documentation, see https://www.unicode.org/reports/tr44/
+#   For documentation, see https://www.unicode.org/reports/tr44/
 #
 # East_Asian_Width Property
 #
@@ -30,10 +30,10 @@
 # Character ranges are specified as for other property files in the
 # Unicode Character Database.
 #
-# The comments following the number sign
-# "#" list the General_Category property value or the L& alias of the
-# derived value LC, the Unicode character name or names, and, in lines
-# with ranges of code points, the code point count in square brackets.
+# The comments following the number sign "#" list the General_Category
+# property value or the L& alias of the derived value LC, the Unicode
+# character name or names, and, in lines with ranges of code points,
+# the code point count in square brackets.
 #
 # For more information, see UAX #11: East Asian Width,
 # at https://www.unicode.org/reports/tr11/
