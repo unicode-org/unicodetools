@@ -1,5 +1,5 @@
 # Scripts-15.1.0.txt
-# Date: 2023-04-26, 17:54:16 GMT
+# Date: 2023-04-26, 19:00:07 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1599,7 +1599,7 @@ FA70..FAD9    ; Han # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COMPATIBILI
 30000..3134A  ; Han # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Han # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 98408
+# Total code points: 99011
 
 # ================================================
 

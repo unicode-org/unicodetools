@@ -1,5 +1,5 @@
 # PropertyValueAliases-15.1.0.txt
-# Date: 2023-01-31, 22:27:07 GMT
+# Date: 2023-04-26
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -209,6 +209,7 @@ blk; CJK_Ext_E                        ; CJK_Unified_Ideographs_Extension_E
 blk; CJK_Ext_F                        ; CJK_Unified_Ideographs_Extension_F
 blk; CJK_Ext_G                        ; CJK_Unified_Ideographs_Extension_G
 blk; CJK_Ext_H                        ; CJK_Unified_Ideographs_Extension_H
+blk; CJK_Ext_I                        ; CJK_Unified_Ideographs_Extension_I
 blk; CJK_Radicals_Sup                 ; CJK_Radicals_Supplement
 blk; CJK_Strokes                      ; CJK_Strokes
 blk; CJK_Symbols                      ; CJK_Symbols_And_Punctuation
