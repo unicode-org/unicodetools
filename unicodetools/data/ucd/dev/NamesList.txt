@@ -1,10 +1,9 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 15.1.0
-@@@+	U15M230127.lst
-	Unicode 15.1.0 names list, fourth delta.
+@@@+	U15M230220.lst
+	Unicode 15.1.0 names list, fifth delta.
 	Repertoire synched with UnicodeData-15.1.0d1.txt.
-	Update copyright date.
-	Add annotations to the CJK Radicals Supplement block.
+	Enable Egyptian Hieroglyph variation sequences.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -38890,7 +38889,7 @@ FFFF	<not a character>
 1342F	EGYPTIAN HIEROGLYPH V011D
 	* knotted beginning of cartouche
 	* not to be confused with 13378
-@~	!
+@~	Standardized Variation Sequences
 @@	13430	Egyptian Hieroglyph Format Controls	1345F
 @+		These format controls are used to render Egyptian hieroglyphic spatial arrangements, including quadrats, overlays, insertions, and blank, lost or damaged sections.
 @		Joiners
