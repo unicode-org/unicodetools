@@ -1,11 +1,11 @@
 # LineBreak-15.1.0.txt
-# Date: 2023-04-19, 18:36:42 GMT
+# Date: 2023-04-26, 09:46:48 GMT [KW, LI]
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-#   For documentation, see https://www.unicode.org/reports/tr44/
+# For documentation, see https://www.unicode.org/reports/tr44/
 #
 # Line_Break Property
 #
@@ -42,10 +42,10 @@
 # Character ranges are specified as for other property files in the
 # Unicode Character Database.
 #
-# The comments following the number sign "#" list the General_Category
-# property value or the L& alias of the derived value LC, the Unicode
-# character name or names, and, in lines with ranges of code points,
-# the code point count in square brackets.
+# The comments following the number sign
+# "#" list the General_Category property value or the L& alias of the
+# derived value LC, the Unicode character name or names, and, in lines
+# with ranges of code points, the code point count in square brackets.
 #
 # For more information, see UAX #14: Unicode Line Breaking Algorithm,
 # at https://www.unicode.org/reports/tr14/
@@ -3581,7 +3581,9 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 2B820..2CEA1   ; ID # Lo  [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 2CEA2..2CEAF   ; ID # Cn    [14] <reserved-2CEA2>..<reserved-2CEAF>
 2CEB0..2EBE0   ; ID # Lo  [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
-2EBE1..2F7FF   ; ID # Cn  [3103] <reserved-2EBE1>..<reserved-2F7FF>
+2EBE1..2EBEF   ; ID # Cn    [15] <reserved-2EBE1>..<reserved-2EBEF>
+2EBF0..2EE4A   ; ID # Lo   [603] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE4A
+2EE4B..2F7FF   ; ID # Cn  [2485] <reserved-2EE4B>..<reserved-2F7FF>
 2F800..2FA1D   ; ID # Lo   [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 2FA1E..2FA1F   ; ID # Cn     [2] <reserved-2FA1E>..<reserved-2FA1F>
 2FA20..2FFFD   ; ID # Cn  [1502] <reserved-2FA20>..<reserved-2FFFD>
