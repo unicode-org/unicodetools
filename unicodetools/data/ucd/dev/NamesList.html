@@ -1,66 +1,130 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+<!doctype html> 
 
-       "http://www.w3.org/TR/html4/loose.dtd"> 
-
-<html>
+<html lang="en-us">
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="Content-Language" content="en-us">
-<title>UCD: Unicode NamesList File Format</title>
+<meta charset="utf-8">
+<title>Unicode NamesList Format</title>
 <link rel="stylesheet" type="text/css" href="https://www.unicode.org/reports/reports-v2.css">
+<style>
+a.headernav {
+    font-size: 90%;
+}
+a.headernav:link {
+    color: white;
+}
+a.headernav:visited {
+    color: white;
+}
+a.headernav:active {
+    color: white;
+}
+a.headernav:hover {
+    color: #B0B0B0;
+}
+.pageheader {
+    margin-top: 0; 
+    padding: 0 .5em 0 0;
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    background-color: #5555FF;
+    color: white;
+    font-family: arial, geneva, sans-serif;  
+    font-weight:bold;
+    align-items: center;
+    }
+.pageicon {
+    padding : 2px 4px 0 2px;
+    }
+.pagelogo {
+    height: 33px; width: 34px;
+    border: 0;
+    padding-bottom: 0px;
+    margin-bottom:-2px;
+    }
+.pagetitle {
+    font-size: 115%; 
+    flex-grow: 4;
+    padding-left: 1em;
+    }
+.headernav { padding-top: 0px;
+    font-weight: bold;
+    font-size: 100%;
+    color: white;  font-family: arial, geneva, sans-serif;
+    text-align:right;
+    }
+.graybar {
+    width: 100%;padding:0; 
+    font-size:50%;
+    background-color: #EEEEFE;
+    }
+.pagecontents {
+    padding-left: 3.25em; 
+    padding-right: 3.25em;
+    padding-bottom: 1.75em;
+    padding-top: 1em;
+}
+.pagebottom img
+{
+   padding-top: 2px;
+   width:216px; 
+   height:50px;
+   border: 0;
+}
+.pagebottom
+{
+   margin: auto;
+   text-align:center;
+}
+</style>
 </head>
 
 <body>
 
-	<table class="header">
-		<tr>
-          <td class="icon" style="width:38px; height:35px">
-          <a href="https://www.unicode.org/">
-          <img border="0" src="https://www.unicode.org/webscripts/logo60s2.gif" align="middle" 
-          alt="[Unicode]" width="34" height="33"></a>
-          </td>
+  <div class="pageheader">
+      <div class="pageicon"><a href="https://www.unicode.org/"><img class="pagelogo"
+      src="https://www.unicode.org/webscripts/logo60s2.gif" 
+      alt="[Unicode]" ></a></div>
 
-          <td class="icon" style="vertical-align:middle">
-          <a class="bar"> </a>
-          <a class="bar" href="https://www.unicode.org/ucd/"><font size="3">Unicode Character Database</font></a>
-          </td>
-		</tr>
-		<tr>
-			<td colspan="2" class="gray">&nbsp;</td>
-		</tr>
-	</table>
+      <div class="pagetitle"><a class="headernav" 
+      href="https://www.unicode.org/ucd/">Unicode Character Database</a></div>
+
+  </div>
+  <div class="graybar">&nbsp;</div>
+
 <div class="body">
   <h1>Unicode® NamesList File Format</h1>   
-  <table class="simple" width="90%">
+  <table class="simple">
     <tbody>
       <tr>
-        <td valign="top" width="144">Revision</td>
-        <td valign="top">15.0.0</td>
+        <td>Revision</td>
+        <td><span class="changedspan">15.1.0</span></td>
       </tr>
       <tr>
-        <td valign="top" width="144">Authors</td>
-        <td valign="top">Asmus Freytag, Ken Whistler</td>
+        <td>Authors</td>
+        <td>Asmus Freytag, Ken Whistler</td>
       </tr>
       <tr>
-        <td valign="top" width="144">Date</td>
-        <td valign="top">2022-08-08</td>
+        <td>Date</td>
+        <td><span class="changedspan">2023-01-19</span></td>
       </tr>
       <tr>
-        <td valign="top" width="144">This Version</td>
-        <td valign="top">
-		<a href="http://www.unicode.org/Public/15.0.0/ucd/NamesList.html">
-		http://www.unicode.org/Public/15.0.0/ucd/NamesList.html</a></td>
+        <td>This Version</td>
+        <td class="changed">
+		<a href="https://www.unicode.org/Public/15.1.0/ucd/NamesList.html">
+		https://www.unicode.org/Public/15.1.0/ucd/NamesList.html</a></td>
       </tr>
       <tr>
-        <td valign="top" width="144">Previous Version</td>
-        <td valign="top">
-		<a href="http://www.unicode.org/Public/14.0.0/ucd/NamesList.html">
-		http://www.unicode.org/Public/14.0.0/ucd/NamesList.html</a></td>
+        <td>Previous Version</td>
+        <td class="changed">
+		<a href="https://www.unicode.org/Public/15.0.0/ucd/NamesList.html">
+		https://www.unicode.org/Public/15.0.0/ucd/NamesList.html</a></td>
       </tr>
       <tr>
-        <td valign="top" width="144">Latest Version</td>
-        <td valign="top"><a href="http://www.unicode.org/Public/UCD/latest/ucd/NamesList.html">http://www.unicode.org/Public/UCD/latest/ucd/NamesList.html</a></td>
+        <td>Latest Version</td>
+        <td><a href="https://www.unicode.org/Public/UCD/latest/ucd/NamesList.html">https://www.unicode.org/Public/UCD/latest/ucd/NamesList.html</a></td>
       </tr>
     </tbody>
   </table>
@@ -71,13 +135,13 @@
   </blockquote>
   <h3><i>Status</i></h3>
   <blockquote>
-    <p><i>The file and the files described herein are part of the <a href="http://www.unicode.org/ucd/">Unicode 
-    Character Database</a> (UCD). The Unicode <a href="http://www.unicode.org/terms_of_use.html"> 
+    <p><i>The file and the files described herein are part of the <a href="https://www.unicode.org/ucd/">Unicode 
+    Character Database</a> (UCD). The Unicode <a href="https://www.unicode.org/terms_of_use.html"> 
     Terms of Use</a> apply.</i></p>
   </blockquote>
-  <hr width="50%">
+  <hr style="width:50%">
 
-<h2>1.0 <a name="Introduction" href="#Introduction">Introduction</a></h2>
+<h2 id="Introduction">1.0 <a href="#Introduction">Introduction</a></h2>
 
 <p>The Unicode name list file NamesList.txt (also NamesList.lst) is a plain
 text file used to drive the layout of the character code charts in the Unicode
@@ -103,16 +167,16 @@ limitation to U+0020..U+00FF, to include the wider range U+0020..U+02FF, as of U
   information in the name list file that is not needed (and in fact removed
   during parsing) for the Unicode code charts.</p>
 
-<p>With access to the layout program (<a href="http://www.unicode.org/unibook/">Unibook</a>) it is a simple matter of 
+<p>With access to the layout program (<a href="https://www.unicode.org/unibook/">Unibook</a>) it is a simple matter of 
 creating name lists for the purpose of formatting working drafts or other documents containing 
 proposed characters.</p>  
   <p>The content of the NamesList.txt file is optimized for code chart creation. 
   Some information that can be inferred by the reader from context has been 
   suppressed to make the code charts more readable. See the chapter on Code 
-	Charts in the <a href="http://www.unicode.org/versions/latest">Unicode 
+	Charts in the <a href="https://www.unicode.org/versions/latest">Unicode 
 	Standard</a>.</p> 
 
-<h3>1.1 <a name="Overview" href="#Overview">NamesList File Overview</a></h3>
+<h3 id="Overview">1.1 <a href="#Overview">NamesList File Overview</a></h3>
 
 <p>The NamesList files are plain text files which in their most simple form look 
 like this:</p>
@@ -135,12 +199,12 @@ their constituent syntax elements are needed.</p>
 
 <p>The full syntax with all the options is provided in the following sections.</p>
 
-<h2>2.0 <a name="FileStructure" href="#FileStructure">NamesList File Structure</a></h2>
+<h2 id="FileStructure">2.0 <a href="#FileStructure">NamesList File Structure</a></h2>
 
 <p>This section defines the overall file structure</p>
 
-<pre><strong>NAMELIST:     TITLE_PAGE* EXTENDED_BLOCK*
-</strong>
+<pre><strong>NAMELIST:     TITLE_PAGE* EXTENDED_BLOCK*</strong>
+
 <strong>TITLE_PAGE:   TITLE 
 		| TITLE_PAGE SUBTITLE 
 		| TITLE_PAGE SUBHEADER 
@@ -181,8 +245,8 @@ CHAR_ENTRY:   NAME_LINE | RESERVED_LINE
 		| CHAR_ENTRY EMPTY_LINE
 		| CHAR_ENTRY NOTICE_LINE
 		| CHAR_ENTRY FILE_COMMENT 
-		| CHAR_ENTRY VARIATION_LINE
-</strong></pre>
+		| CHAR_ENTRY VARIATION_LINE</strong>
+</pre>
 
 <p>In other words:</p>
 <p> 
@@ -202,7 +266,7 @@ CHAR_ENTRY:   NAME_LINE | RESERVED_LINE
   <li>The conventional order of elements in a char entry: NAME_LINE, 
     FORMALALIAS_LINE, ALIAS, COMMENT_LINE or NOTICE_LINE, CROSS_REFs, VARIATION_LINE, and optionally 
     ending in either DECOMPOSITION or COMPAT_MAPPING is not enforced by the layout program 
-    (<a href="http://www.unicode.org/unibook/">Unibook</a>). </li>
+    (<a href="https://www.unicode.org/unibook/">Unibook</a>). </li>
 </ul>
 <p>Except for CROSS_REF, NOTICE_LINE, SIDEBAR_LINE, EMPTY_LINE, IGNORED_LINE and 
     FILE_COMMENT, none of these lines may 
@@ -224,7 +288,7 @@ CHAR_ENTRY:   NAME_LINE | RESERVED_LINE
     the Latin-1 range will result in data corruption.</p>
 <p>Several of these elements, while part of the formal definition of the 
   file format, do not occur in final published versions of 
-   NamesList.txt in the UCD.</p>
+   NamesList.txt in the <a href="https://www.unicode.org/Public/UCD/latest/">UCD</a>.</p>
 
 <h4>Blocks followed by Summaries</h4>
 <p>A block may be extended by a summary of standard variation sequences or selected alternate glyphs (or both) defined for characters in the block:</p>
@@ -239,7 +303,7 @@ ALTGLYPH_SUMMARY:   ALTGLYPH_SUBHEADER
 
 VARIATION_SUMMARY:   VARIATION_SUBHEADER
 		| VARIATION_SUMMARY SUMMARY_LINE
-				
+
 MIXED_SUMMARY:   MIXED_SUBHEADER
 		| MIXED_SUMMARY SUMMARY_LINE
 
@@ -264,7 +328,7 @@ provide specific contents for these summary titles as well as allow the ability 
 information via SUBHEADER and NOTICE elements. The final published version of the Unicode names list 
 is machine generated and will always explicitly provide any summary subheaders.</p>
 
-<h3>2.1 <a name="FileElements" href="#FileElements">NamesList File Elements</a></h3>
+<h3 id="FileElements">2.1 <a href="#FileElements">NamesList File Elements</a></h3>
 
 <p>This section provides the details of the syntax for the individual elements.</p>
 
@@ -275,7 +339,7 @@ is machine generated and will always explicitly provide any summary subheaders.<
 			// followed by the name as given in NAME
 
 <strong>		| CHAR TAB &quot;&lt;&quot; LCNAME &quot;&gt;&quot; LF</strong>
-			// Control and noncharacters use this form of       
+			// Control and noncharacters use this form of
 			// lowercase, bracketed pseudo character name
 
 <strong>		| CHAR TAB NAME SP COMMENT LF</strong>
@@ -284,11 +348,11 @@ is machine generated and will always explicitly provide any summary subheaders.<
                         
 <strong>		| CHAR TAB &quot;&lt;&quot; LCNAME &quot;&gt;&quot; SP COMMENT LF</strong>
 			// Control and noncharacters may also have comments
-       
+
 <strong>RESERVED_LINE:	CHAR TAB &quot;&lt;reserved&gt;&quot; LF</strong>
 			// The CHAR is echoed followed by an icon for the
 			// reserved character and a fixed string e.g. &quot;&lt;reserved&gt;&quot;
-       
+
 <strong>COMMENT_LINE:	TAB &quot;*&quot; SP EXPAND_LINE</strong>
 			// * is replaced by BULLET, output line as comment
 
@@ -299,15 +363,15 @@ is machine generated and will always explicitly provide any summary subheaders.<
 			// Replace = by itself, output line as alias
 
 <strong>FORMALALIAS_LINE:
-		TAB &quot;%&quot; SP NAME LF</strong>   
+		TAB &quot;%&quot; SP NAME LF</strong>
 			// Replace % by U+203B, output line as formal alias
 
-<strong>CROSS_REF:	TAB &quot;x&quot; SP CHAR SP LCNAME LF	
+<strong>CROSS_REF:	TAB &quot;x&quot; SP CHAR SP LCNAME LF
 		| TAB &quot;x&quot; SP CHAR SP &quot;&lt;&quot; LCNAME &quot;&gt;&quot; LF</strong>
 			// x is replaced by a right arrow
 
-<strong>		| TAB &quot;x&quot; SP &quot;(&quot; LCNAME SP &quot;-&quot; SP CHAR &quot;)&quot; LF    
-		| TAB &quot;x&quot; SP &quot;(&quot; &quot;&lt;&quot; LCNAME &quot;&gt;&quot; SP &quot;-&quot; SP CHAR &quot;)&quot; LF</strong>  
+<strong>		| TAB &quot;x&quot; SP &quot;(&quot; LCNAME SP &quot;-&quot; SP CHAR &quot;)&quot; LF
+		| TAB &quot;x&quot; SP &quot;(&quot; &quot;&lt;&quot; LCNAME &quot;&gt;&quot; SP &quot;-&quot; SP CHAR &quot;)&quot; LF</strong>
 			// x is replaced by a right arrow;
 			// (second type as used for control and noncharacters)
 
@@ -321,11 +385,11 @@ is machine generated and will always explicitly provide any summary subheaders.<
 			// and is used for ideographs)
 
 <strong>VARIATION_LINE:	TAB &quot;~&quot; SP CHAR VARSEL SP LABEL LF   
-		| TAB &quot;~&quot; SP CHAR VARSEL SP LABEL &quot;(&quot; LCTAG &quot;)&quot;LF</strong>      
+		| TAB &quot;~&quot; SP CHAR VARSEL SP LABEL &quot;(&quot; LCTAG &quot;)&quot; LF</strong>
 			// output standardized variation sequence or simply the char code in case of alternate
 			// glyphs, followed by the alternate glyph or variation glyph and the label and context
 
-<strong>FILE_COMMENT:	&quot;;&quot;  LINE</strong> 
+<strong>FILE_COMMENT:	&quot;;&quot;  LINE</strong>
 
 <strong>EMPTY_LINE:	LF</strong>       
 			// Empty and ignored lines as well as 
@@ -337,15 +401,15 @@ is machine generated and will always explicitly provide any summary subheaders.<
 <strong>SIDEBAR_LINE: 	&quot;;;&quot; LINE</strong>
 			// Output LINE as marginal note
 
-<strong>DECOMPOSITION:	TAB &quot;:&quot; SP EXPAND_LINE       
-		| TAB &quot;:&quot; SP &quot;&lt;&quot; TAG &quot;&gt;&quot; SP EXPAND_LINE</strong>       
+<strong>DECOMPOSITION:	TAB &quot;:&quot; SP EXPAND_LINE
+		| TAB &quot;:&quot; SP &quot;&lt;&quot; TAG &quot;&gt;&quot; SP EXPAND_LINE</strong>
 			// Replace ':' by EQUIV, expand line into decomposition
 			// The &lt;tag&gt; gives optional information,
-			// e.g., about composition exclusion. 
+			// e.g., about composition exclusion.
 			// by convention the tag has initial lowercase
 
-<strong>COMPAT_MAPPING:	TAB &quot;#&quot; SP EXPAND_LINE       
-		| TAB &quot;#&quot; SP &quot;&lt;&quot; TAG &quot;&gt;&quot; SP EXPAND_LINE</strong>    
+<strong>COMPAT_MAPPING:	TAB &quot;#&quot; SP EXPAND_LINE
+		| TAB &quot;#&quot; SP &quot;&lt;&quot; TAG &quot;&gt;&quot; SP EXPAND_LINE</strong>
 			// Replace '#' by APPROX, output line as mapping
 			// The &lt;tag&gt; is the optional compatibility decomposition tag.
 			// by convention the tag has initial lowercase
@@ -361,44 +425,44 @@ is machine generated and will always explicitly provide any summary subheaders.<
 			// a character code apply to the page/block/column 
 			// and are italicized, but not indented
 
-<strong>TITLE:		&quot;@@@&quot; TAB LINE</strong>      
+<strong>TITLE:		&quot;@@@&quot; TAB LINE</strong>
 			// Output LINE as text
 			// Title is used in page headers
 
-<strong>SUBTITLE:	&quot;@@@+&quot; TAB LINE</strong>      
+<strong>SUBTITLE:	&quot;@@@+&quot; TAB LINE</strong>
 			// Output LINE as subtitle
 
-<strong>SUBHEADER:	&quot;@&quot; TAB LINE</strong> 
+<strong>SUBHEADER:	&quot;@&quot; TAB LINE</strong>
 			// Output LINE as column header
 
-<strong>VARIATION_SUBHEADER:</strong>	<strong>&quot;@~&quot; TAB LINE</strong>			
+<strong>VARIATION_SUBHEADER:</strong>	<strong>&quot;@~&quot; TAB LINE</strong>		
 			// Output LINE as column header (summary subheader)
-		<strong>| &quot;@~&quot;</strong>					
+		<strong>| &quot;@~&quot; LF</strong>
 			// Output a default standard variation sequences summary subheader
-		<strong>| &quot;@~&quot; TAB &quot;!&quot;</strong>		
+		<strong>| &quot;@~&quot; TAB &quot;!&quot; LF</strong>
 			// Suppress output of a default standard variant sequences summary subheader
 			// and disable display of summary
-		<strong>| &quot;@~&quot; TAB &quot;!&quot; VARSEL_LIST</strong>
+		<strong>| &quot;@~&quot; TAB &quot;!&quot; VARSEL_LIST LF</strong>
 		<strong>| &quot;@~&quot; TAB &quot;!&quot; VARSEL_LIST LINE</strong>
 			// Output a standard summary subheader, using default or LINE respectively
 			// Suppress any std variation sequences using selectors from the list
-											
-<strong>ALTGLYPH_SUBHEADER:</strong>	<strong>&quot;@@~&quot; TAB LINE</strong>			
+
+<strong>ALTGLYPH_SUBHEADER:</strong>	<strong>&quot;@@~&quot; TAB LINE</strong>	
 			// Output LINE as column header (summary subheader)
-		<strong>| &quot;@@~&quot;</strong>				
+		<strong>| &quot;@@~&quot; LF</strong>
 			// Output a default alternate glyph summary subheader
-		<strong>| &quot;@@~&quot; TAB &quot;!&quot;</strong>		
+		<strong>| &quot;@@~&quot; TAB &quot;!&quot; LF</strong>
 			// Suppress output of a default alternate glyph summary subheader
 			// and disable display of summary
 
-<strong>MIXED_SUBHEADER:	</strong><strong>&quot;@@@~&quot; TAB LINE</strong>			
+<strong>MIXED_SUBHEADER:	</strong><strong>&quot;@@@~&quot; TAB LINE</strong>
 			// Output LINE as column header (summary subheader)
-		<strong>| &quot;@@@~&quot;</strong>					
+		<strong>| &quot;@@@~&quot; LF</strong>
 			// Output a default combined variation and alternate glyph summary subheader
-		<strong>| &quot;@@@~&quot; TAB &quot;!&quot;</strong>			
+		<strong>| &quot;@@@~&quot; TAB &quot;!&quot; LF</strong>
 			// Suppress output of a default alternate glyph summary subheader
 			// and disable display of summary
-		<strong>| &quot;@@@~&quot; TAB &quot;!&quot; VARSEL_LIST</strong> 
+		<strong>| &quot;@@@~&quot; TAB &quot;!&quot; VARSEL_LIST LF</strong>
 		<strong>| &quot;@@@~&quot; TAB &quot;!&quot; VARSEL_LIST LINE</strong>
 			// Output a combined summary subheader, using default or LINE respectively
 			// Suppress any std variation sequences using selectors from the list
@@ -406,14 +470,14 @@ is machine generated and will always explicitly provide any summary subheaders.<
 <strong>BLOCKHEADER:	&quot;@@&quot; TAB BLOCKSTART TAB BLOCKNAME TAB BLOCKEND LF</strong>
 			// Cause a page break and optional
 			// blank page, then output one or more charts
-			// followed by the list of character names. 
+			// followed by the list of character names.
 			// Use BLOCKSTART and BLOCKEND to define
 			// what characters belong to a block.
 			// Use BLOCKNAME in page and table headers
 
 <strong>BLOCKNAME:	LABEL
-		| LABEL SP &quot;(&quot; LABEL &quot;)&quot;</strong>       
-			// If an alternate label is present it replaces 
+		| LABEL SP &quot;(&quot; LABEL &quot;)&quot;</strong>   
+			// If an alternate label is present it replaces
 			// the BLOCKNAME when an ISO-style names list is
 			// laid out; it is ignored in the Unicode charts
 
@@ -423,11 +487,11 @@ is machine generated and will always explicitly provide any summary subheaders.<
 <strong>INDEX_TAB:	&quot;@@+&quot;</strong>	// Start a new index tab at latest BLOCKSTART
 
 <strong>EXPAND_LINE:	{ESC_CHAR | CHAR | STRING | ESC +}+ LF</strong>
-			// Instances of CHAR (see Notes) are replaced by 
+			// Instances of CHAR (see Notes) are replaced by
 			// CHAR NBSP x NBSP where x is the single Unicode
 			// character corresponding to CHAR.
 			// If character is combining, it is replaced with
-			// CHAR NBSP &lt;circ&gt; x NBSP where &lt;circ&gt; is the 
+			// CHAR NBSP &lt;circ&gt; x NBSP where &lt;circ&gt; is the
 			// dotted circle
 </pre>
 
@@ -451,7 +515,7 @@ is machine generated and will always explicitly provide any summary subheaders.<
 	</ul>
 
 
-<h3>2.2 <a name="FilePrimitives" href="#FilePrimitives">NamesList File Primitives</a></h3>
+<h3 id="FilePrimitives">2.2 <a href="#FilePrimitives">NamesList File Primitives</a></h3>
 
 <p>The following are the primitives and terminals for the NamesList syntax.</p>
 
@@ -461,15 +525,14 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
 		| &quot;*&quot;</strong>
 
 <strong>NAME</strong>:	  	&lt;sequence of uppercase ASCII letters, digits, space and hyphen&gt; 
-<strong>LCNAME</strong>:		&lt;sequence of lowercase ASCII letters, digits, space and hyphen&gt;
-		<strong>| LCNAME &quot;-&quot; CHAR</strong>
+<strong>LCNAME</strong>:		&lt;sequence of lowercase ASCII letters, digits, space and hyphen&gt; <strong> (&quot;-&quot; CHAR)?</strong>
 
 <strong>TAG</strong>:		&lt;sequence of ASCII letters&gt;
 <strong>LCTAG</strong>:		&lt;sequence of lowercase ASCII letters&gt;
 <strong>STRING</strong>:	  	&lt;sequence of characters in the range U+0020..U+02FF, except controls&gt; 
 <strong>LABEL</strong>:	  	&lt;sequence of characters in the range U+0020..U+02FF, except controls, &quot;(&quot; or &quot;)&quot;&gt; 
 <strong>VARSEL</strong>:		<strong>CHAR
-		| ALT ( &quot;1&quot;|&quot;2&quot;|&quot;3&quot;|&quot;4&quot;|&quot;5&quot;|&quot;6&quot;|&quot;7&quot;|&quot;8&quot;|&quot;9&quot; )</strong>
+		| &quot;ALT&quot; ( &quot;1&quot;|&quot;2&quot;|&quot;3&quot;|&quot;4&quot;|&quot;5&quot;|&quot;6&quot;|&quot;7&quot;|&quot;8&quot;|&quot;9&quot; )</strong>
 <strong>VARSEL_LIST</strong>:	<strong>&quot;{&quot; CHAR_LIST &quot;}&quot;</strong>
 <strong>CHAR_LIST</strong>:	<strong>CHAR
 		| CHAR_LIST SP CHAR</strong>
@@ -477,13 +540,13 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
 		<strong>| X X X X X </strong>
 		<strong>| X X X X X X </strong>
 <strong>X</strong>:	  	<strong>&quot;0&quot;|&quot;1&quot;|&quot;2&quot;|&quot;3&quot;|&quot;4&quot;|&quot;5&quot;|&quot;6&quot;|&quot;7&quot;|&quot;8&quot;|&quot;9&quot;|&quot;A&quot;|&quot;B&quot;|&quot;C&quot;|&quot;D&quot;|&quot;E&quot;|&quot;F&quot;</strong> 
-<strong>ESC_CHAR</strong>:	<strong>ESC CHAR</strong>	
-<strong>ESC</strong>:	        <strong>&quot;\&quot;</strong>	
+<strong>ESC_CHAR</strong>:	<strong>ESC CHAR</strong>
+<strong>ESC</strong>:	        <strong>&quot;\&quot;</strong>
 			// Special semantics of backslash (\) are supported
 			// only in EXPAND_LINE.
-<strong>TAB</strong>:	  	&lt;sequence of one or more ASCII tab characters 0x09&gt;      
+<strong>TAB</strong>:	  	&lt;sequence of one or more ASCII tab characters 0x09&gt;    
 <strong>SP</strong>:	  	&lt;ASCII 20&gt;
-<strong>LF</strong>:	  	&lt;any sequence of ASCII 0A and 0D&gt;
+<strong>LF</strong>:	  	&lt;any sequence of a single ASCII 0A or 0D, or both&gt;
 </pre>
 
 <p><b>Notes:</b></p>
@@ -524,7 +587,7 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
        Otherwise, characters in the range U+0020..U+02FF
        	are allowed in STRING or LABEL elements, and elements derived from them.</li>
        <li>The code chart layout program
-       (<a href="http://www.unicode.org/unibook/">Unibook</a>)
+       (<a href="https://www.unicode.org/unibook/">Unibook</a>)
        can accept files in several other formats. These include little-endian UTF-16,
        prefixed with a BOM, or UTF-8 prefixed with the UTF-8 BOM.</li>
        <li>While the format allows multiple &lt;tab&gt; characters, by convention the 
@@ -535,10 +598,19 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
        being corrected, to retain stability of the published versions. Anyone 
        writing a parser for older versions of this file may need to be prepared to 
        handle such exceptions.</li>
+   <li>Lines are terminated by \r, \n, \r\n or \n\r. Repeated terminators imply empty lines, e.g. \r\r\n is treated as 2 lines, as is \r\n\r\n.</li>
        <li>The final LF in the file must be present.</li>
 </ul>
-  <h2><a name="Modifications" href="#Modifications">Modifications</a></h2>
+  <h2 id="Modifications"><a href="#Modifications">Modifications</a></h2>
 
+    <p><b>Version 15.1.0</b></p>
+        <ul>
+        <li>Reissued for Unicode 15.0.0.</li>
+<li>Corrected and clarified the BNF statement of nameslist syntax.</li>
+<li>Some literals had not been quoted, some productions were missing the trailing LF</li>
+<li>The LF and LCNAME productions were clarified</li>
+<li>Updated to HTML5</li>
+    	</ul>
     <p><b>Version 15.0.0</b></p>
         <ul>
         <li>Reissued for Unicode 15.0.0.</li>
@@ -672,18 +744,14 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
 	<ul>
 		<li>Use of 4-6 digit hex notation is now supported.</li>
 	</ul>
-  <hr width="50%">
-  <div align="center">
-    <center>
-    <table cellspacing="0" cellpadding="0" border="0">
-      <tr>
-        <td><a href="https://www.unicode.org/copyright.html">
-        <img src="https://www.unicode.org/img/hb_notice.gif" border="0" alt="Access to Copyright and terms of use" width="216" height="50"></a></td>
-      </tr>
-    </table>
-    </center>
-  </div>
 </div>
+
+  <div class="pagebottom">
+      <hr style="width:50%">
+      <a href="https://www.unicode.org/copyright.html">
+      <img src="https://www.unicode.org/img/hb_notice.gif" 
+      alt="Access to Copyright and terms of use" ></a>
+  </div>
 
 </body>
 
