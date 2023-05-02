@@ -120,13 +120,11 @@ public class MakeUnicodeFiles {
             boolean sortNumeric = false;
 
             String parse(String options) {
-                options = options.replace('\t', ' ');
-                final String[] pieces = Utility.split(options, ' ');
-                for (int i = 1; i < pieces.length; ++i) {
-                    String piece = pieces[i];
-                    while (piece.chars().filter(c -> c == '"').count() % 2 != 0) {
-                        piece = piece + pieces[++i];
-                    }
+                Matcher matcher = Pattern.compile("([^\" \t]|\"[^\"]*\")+").matcher(options);
+                matcher.find();
+                String firstPiece = matcher.group();
+                while (matcher.find()) {
+                    final String piece = matcher.group();
                     // binary
                     if (piece.equals("noLabel")) {
                         noLabel = true;
@@ -168,10 +166,10 @@ public class MakeUnicodeFiles {
                         skipUnassigned = afterEquals(piece);
                     } else if (piece.length() != 0) {
                         throw new IllegalArgumentException(
-                                "Illegal PrintStyle Parameter: " + piece + " in " + pieces[0]);
+                                "Illegal PrintStyle Parameter: " + piece + " in " + firstPiece);
                     }
                 }
-                return pieces[0];
+                return firstPiece;
             }
 
             private boolean afterEqualsBoolean(String piece) {
@@ -267,8 +265,8 @@ public class MakeUnicodeFiles {
             if (source.charAt(0) == '"' && source.charAt(source.length() - 1) == '"') {
                 contents = source.substring(1, source.length() - 1);
             }
-            if (contents.matches("\"[^\"]")) {
-                throw new IllegalArgumentException("Syntax error: improper quotes in " + source);
+            if (contents.matches("(?<!\")(\"\")*\"(?!\")")) {
+                throw new IllegalArgumentException("Syntax error: improper quotation marks in " + source);
             }
             return contents.replace("\"\"", "\"");
         }
