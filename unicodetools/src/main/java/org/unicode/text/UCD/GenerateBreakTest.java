@@ -1783,6 +1783,12 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         "etc.\u3002",
                         "\u5B57\u3002\u5B83",
                         "!\u0020\u0020",
+                        // Examples from ICU4X, see https://github.com/unicode-org/icu4x/pull/3126.
+                        "a.",
+                        "a.\r\n",
+                        "a.\r\n ",
+                        "a.\r\na",
+                        "A.\r\nA",
                     };
             final String[] temp = new String[extraSingleSamples.length * 2];
             System.arraycopy(extraSingleSamples, 0, temp, 0, extraSingleSamples.length);

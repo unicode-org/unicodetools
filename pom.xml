@@ -31,7 +31,7 @@
         <!--
              For CLDR versions, see https://github.com/orgs/unicode-org/packages?repo_name=cldr
           -->
-        <cldr.version>0.0.0-SNAPSHOT-273d736f11</cldr.version>
+        <cldr.version>0.0.0-SNAPSHOT-66d15bfc1b</cldr.version>
 
 
         <!-- these two set the JDK version for source and target -->

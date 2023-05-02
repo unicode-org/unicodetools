@@ -1,11 +1,11 @@
 # LineBreak-15.1.0.txt
-# Date: 2022-11-16, 09:28:38 GMT [KW, LI]
-# © 2022 Unicode®, Inc.
+# Date: 2023-05-02, 14:12:30 GMT
+# © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# For documentation, see https://www.unicode.org/reports/tr44/
+#   For documentation, see https://www.unicode.org/reports/tr44/
 #
 # Line_Break Property
 #
@@ -18,10 +18,10 @@
 #   Non-tailorable:
 #         "BK", "CM", "CR", "GL", "LF", "NL", "SP", "WJ", "ZW", "ZWJ"
 #   Tailorable:
-#         "AI", "AK", "AL", "AP", "AS", "B2", "BA", "BB", "CB", "CJ",
-#         "CL", "CP", "EB", "EM", "EX", "H2", "H3", "HL", "HY", "ID",
-#         "IN", "IS", "JL", "JT", "JV", "NS", "NU", "OP", "PO", "PR",
-#         "QU", "RI", "SA", "SG", "SY", "VF", "VI", "XX"
+#         "AI", "AL", "B2", "BA", "BB", "CB", "CJ", "CL", "CP", "EB",
+#         "EM", "EX", "H2", "H3", "HL", "HY", "ID", "IN", "IS", "JL",
+#         "JT", "JV", "NS", "NU", "OP", "PO", "PR", "QU", "RI", "SA",
+#         "SG", "SY", "XX"
 #  - All code points, assigned and unassigned, that are not listed
 #      explicitly are given the value "XX".
 #  - The unassigned code points in the following blocks default to "ID":
@@ -42,11 +42,10 @@
 # Character ranges are specified as for other property files in the
 # Unicode Character Database.
 #
-# For legacy reasons, there are no spaces before or after the semicolon
-# which separates the two fields. The comments following the number sign
-# "#" list the General_Category property value or the L& alias of the
-# derived value LC, the Unicode character name or names, and, in lines
-# with ranges of code points, the code point count in square brackets.
+# The comments following the number sign "#" list the General_Category
+# property value or the L& alias of the derived value LC, the Unicode
+# character name or names, and, in lines with ranges of code points,
+# the code point count in square brackets.
 #
 # For more information, see UAX #14: Unicode Line Breaking Algorithm,
 # at https://www.unicode.org/reports/tr14/
@@ -2920,7 +2919,7 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 11340          ; CM # Mn         GRANTHA VOWEL SIGN II
 11341..11344   ; CM # Mc     [4] GRANTHA VOWEL SIGN U..GRANTHA VOWEL SIGN VOCALIC RR
 11347..11348   ; CM # Mc     [2] GRANTHA VOWEL SIGN EE..GRANTHA VOWEL SIGN AI
-1134B..1134C   ; CM # Mc     [2] GRANTHA VOWEL SIGN OO..GRANTHA SIGN AU
+1134B..1134C   ; CM # Mc     [2] GRANTHA VOWEL SIGN OO..GRANTHA VOWEL SIGN AU
 1134D          ; VI # Mc         GRANTHA SIGN VIRAMA
 11350          ; AS # Lo         GRANTHA OM
 11357          ; CM # Mc         GRANTHA AU LENGTH MARK
@@ -3590,7 +3589,9 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 2B820..2CEA1   ; ID # Lo  [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 2CEA2..2CEAF   ; ID # Cn    [14] <reserved-2CEA2>..<reserved-2CEAF>
 2CEB0..2EBE0   ; ID # Lo  [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
-2EBE1..2F7FF   ; ID # Cn  [3103] <reserved-2EBE1>..<reserved-2F7FF>
+2EBE1..2EBEF   ; ID # Cn    [15] <reserved-2EBE1>..<reserved-2EBEF>
+2EBF0..2EE4A   ; ID # Lo   [603] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE4A
+2EE4B..2F7FF   ; ID # Cn  [2485] <reserved-2EE4B>..<reserved-2F7FF>
 2F800..2FA1D   ; ID # Lo   [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 2FA1E..2FA1F   ; ID # Cn     [2] <reserved-2FA1E>..<reserved-2FA1F>
 2FA20..2FFFD   ; ID # Cn  [1502] <reserved-2FA20>..<reserved-2FFFD>
