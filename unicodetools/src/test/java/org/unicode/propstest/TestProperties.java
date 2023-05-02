@@ -213,6 +213,35 @@ public class TestProperties extends TestFmwkMinusMinus {
     }
 
     @Test
+    public void TestJoiningGroupConsistency() {
+        // TODO(egg): I would like to be able to put that in the invariants tests as « the partition
+        // defined by Joining_Group is finer than that defined by Joining_Type ».
+        UnicodeMap<String> joiningGroup = iup.load(UcdProperty.Joining_Group);
+        UnicodeMap<String> joiningType = iup.load(UcdProperty.Joining_Type);
+        var charactersByJoiningGroup = new HashMap<String, UnicodeSet>();
+        joiningGroup.addInverseTo(charactersByJoiningGroup).remove("No_Joining_Group");
+        charactersByJoiningGroup.forEach(
+                (group, set) -> {
+                    final int first = set.getRangeStart(0);
+                    final String firstType = joiningType.get(first);
+                    set.forEach(
+                            (c) -> {
+                                assertEquals(
+                                        "U+"
+                                                + getCodeAndName(Character.toString(first))
+                                                + "\nand\nU+"
+                                                + getCodeAndName(c)
+                                                + "\nhave different joining types but are in the"
+                                                + " same joining group ("
+                                                + group
+                                                + ")\n",
+                                        firstType,
+                                        joiningType.get(c));
+                            });
+                });
+    }
+
+    @Test
     public void TestScripts() {
 
         logln("New chars: " + newChars.size());

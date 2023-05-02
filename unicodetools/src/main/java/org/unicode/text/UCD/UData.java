@@ -31,6 +31,7 @@ class UData implements UCD_Types {
     String fullCaseFolding;
     String specialCasing = "";
     String bidiMirror;
+    String unicode1Name = "";
 
     int codePoint = -1;
     double numericValue = Double.NaN;
@@ -120,6 +121,9 @@ class UData implements UCD_Types {
             return false;
         }
         if (!bidiMirror.equals(other.bidiMirror)) {
+            return false;
+        }
+        if (!unicode1Name.equals(other.unicode1Name)) {
             return false;
         }
 
@@ -477,6 +481,7 @@ class UData implements UCD_Types {
         writeString(os, fullCaseFolding);
         writeString(os, specialCasing);
         writeString(os, bidiMirror);
+        writeString(os, unicode1Name);
 
         os.writeDouble(numericValue);
         os.writeLong(binaryProperties);
@@ -512,6 +517,7 @@ class UData implements UCD_Types {
         fullCaseFolding = readString(is);
         specialCasing = readString(is);
         bidiMirror = readString(is);
+        unicode1Name = readString(is);
 
         numericValue = is.readDouble();
         binaryProperties = is.readLong();
