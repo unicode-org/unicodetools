@@ -231,7 +231,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         if (value != null
                 && value.isEmpty()
                 && property != UcdProperty.NFKC_Casefold
-                && property != UcdProperty.NFKC_SimpleCasefold) {
+                && property != UcdProperty.NFKC_Simple_Casefold) {
             value = null;
         }
         value = normalizeAndVerify(value);
@@ -684,7 +684,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 // Exception: NFKC_Casefold does remove some characters by mapping them to nothing.
                 assert !value.isEmpty()
                         || propInfo.property == UcdProperty.NFKC_Casefold
-                        || propInfo.property == UcdProperty.NFKC_SimpleCasefold;
+                        || propInfo.property == UcdProperty.NFKC_Simple_Casefold;
                 if (propInfo.property == UcdProperty.kMandarin) {
                     if (indexUnicodeProperties.oldVersion) {
                         value =
@@ -700,7 +700,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     String defaultValue = null;
                     switch (propInfo.property) {
                         case NFKC_Casefold:
-                        case NFKC_SimpleCasefold:
+                        case NFKC_Simple_Casefold:
                             defaultValue = "<code point>";
                             break;
                         default:

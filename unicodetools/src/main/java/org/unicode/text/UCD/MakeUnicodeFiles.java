@@ -994,7 +994,7 @@ public class MakeUnicodeFiles {
             if (propName.equals("Bidi_Mirroring_Glyph")
                     || propName.equals("Equivalent_Unified_Ideograph")
                     || propName.equals("NFKC_Casefold")
-                    || propName.equals("NFKC_SimpleCasefold")
+                    || propName.equals("NFKC_Simple_Casefold")
                     || propName.equals("Script_Extensions")) {
                 // Action item [172-A71]: Don't print @missing lines
                 // for properties whose specific data files already contain such lines.

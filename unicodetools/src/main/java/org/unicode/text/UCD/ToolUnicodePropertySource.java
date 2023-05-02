@@ -704,7 +704,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
 
         for (byte foldingType : new byte[] {UCD_Types.FULL, UCD_Types.SIMPLE}) {
             String longName =
-                    foldingType == UCD_Types.FULL ? "NFKC_Casefold" : "NFKC_SimpleCasefold";
+                    foldingType == UCD_Types.FULL ? "NFKC_Casefold" : "NFKC_Simple_Casefold";
             String shortName = foldingType == UCD_Types.FULL ? "NFKC_CF" : "NFKC_SCF";
             add(
                     new UnicodeProperty.SimpleProperty() {
