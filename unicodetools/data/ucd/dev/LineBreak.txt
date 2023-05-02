@@ -1,5 +1,5 @@
 # LineBreak-15.1.0.txt
-# Date: 2023-05-02, 14:12:30 GMT
+# Date: 2023-05-02, 14:19:30 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -18,10 +18,10 @@
 #   Non-tailorable:
 #         "BK", "CM", "CR", "GL", "LF", "NL", "SP", "WJ", "ZW", "ZWJ"
 #   Tailorable:
-#         "AI", "AL", "B2", "BA", "BB", "CB", "CJ", "CL", "CP", "EB",
-#         "EM", "EX", "H2", "H3", "HL", "HY", "ID", "IN", "IS", "JL",
-#         "JT", "JV", "NS", "NU", "OP", "PO", "PR", "QU", "RI", "SA",
-#         "SG", "SY", "XX"
+#         "AI", "AK", "AL", "AP", "AS", "B2", "BA", "BB", "CB", "CJ",
+#         "CL", "CP", "EB", "EM", "EX", "H2", "H3", "HL", "HY", "ID",
+#         "IN", "IS", "JL", "JT", "JV", "NS", "NU", "OP", "PO", "PR",
+#         "QU", "RI", "SA", "SG", "SY", "VF", "VI", "XX"
 #  - All code points, assigned and unassigned, that are not listed
 #      explicitly are given the value "XX".
 #  - The unassigned code points in the following blocks default to "ID":
