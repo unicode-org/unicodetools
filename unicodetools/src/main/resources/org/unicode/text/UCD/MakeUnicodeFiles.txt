@@ -486,7 +486,7 @@ Property:   NFKC_Casefold
 # @missing: 0000..10FFFF; NFKC_CF; <code point>
 Format: nameStyle=short skipValue=<codepoint>
 
-Property:   NFKC_SimpleCasefold
+Property:   NFKC_Simple_Casefold
 # Derived Property:   NFKC_SimpleCasefold (NFKC_SCF)
 #   This property removes certain variations from characters: case, compatibility, and default-ignorables.
 #   It is used for loose matching and certain types of identifiers.
