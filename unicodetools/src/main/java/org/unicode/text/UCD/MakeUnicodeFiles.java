@@ -123,7 +123,10 @@ public class MakeUnicodeFiles {
                 options = options.replace('\t', ' ');
                 final String[] pieces = Utility.split(options, ' ');
                 for (int i = 1; i < pieces.length; ++i) {
-                    final String piece = pieces[i];
+                    String piece = pieces[i];
+                    while (piece.chars().filter(c -> c == '"').count() % 2 != 0) {
+                        piece = piece + pieces[++i];
+                    }
                     // binary
                     if (piece.equals("noLabel")) {
                         noLabel = true;
@@ -253,8 +256,25 @@ public class MakeUnicodeFiles {
             return propertyToValueToComments.get(property);
         }
 
+        // Returns strings without U+0022 QUOTATION MARK (") unchanged.
+        // Strings that contain " must be enclosed in them, and are returned unquoted, with "" as
+        // the escape sequence, thus:
+        //   meow       ↦ meow
+        //   "meow"     ↦ meow
+        //   """meow""" ↦ "meow"
+        static String unquote(String source) {
+            String contents = source;
+            if (source.charAt(0) == '"' && source.charAt(source.length() - 1) == '"') {
+                contents = source.substring(1, source.length() - 1);
+            }
+            if (contents.matches("\"[^\"]")) {
+                throw new IllegalArgumentException("Syntax error: improper quotes in " + source);
+            }
+            return contents.replace("\"\"", "\"");
+        }
+
         static String afterEquals(String source) {
-            return source.substring(source.indexOf('=') + 1);
+            return unquote(source.substring(source.indexOf('=') + 1));
         }
 
         static String afterWhitespace(String source) {

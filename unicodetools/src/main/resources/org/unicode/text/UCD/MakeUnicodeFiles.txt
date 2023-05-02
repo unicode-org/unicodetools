@@ -484,7 +484,7 @@ Property:   NFKC_Casefold
 #            For more information, see [https://www.unicode.org/reports/tr44/]
 # Omitted code points are unchanged by this mapping.
 # @missing: 0000..10FFFF; NFKC_CF; <code point>
-Format: nameStyle=short skipValue=<code point>
+Format: nameStyle=short skipValue="<code point>"
 
 Property:   NFKC_Simple_Casefold
 # Derived Property:   NFKC_Simple_Casefold (NFKC_SCF)
@@ -496,7 +496,7 @@ Property:   NFKC_Simple_Casefold
 #            For more information, see [https://www.unicode.org/reports/tr44/]
 # Omitted code points are unchanged by this mapping.
 # @missing: 0000..10FFFF; NFKC_SCF; <code point>
-Format: nameStyle=short skipValue=<code point>
+Format: nameStyle=short skipValue="<code point>"
 
 Property:   Changes_When_NFKC_Casefolded
 # Derived Property:   Changes_When_NFKC_Casefolded (CWKCF)
