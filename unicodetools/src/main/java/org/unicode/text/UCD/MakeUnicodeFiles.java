@@ -1157,7 +1157,7 @@ public class MakeUnicodeFiles {
                 if (v == null) {
                     v = ps.skipUnassigned;
                 }
-                if (!v.equals("<codepoint>")) {
+                if (!v.equals("<code point>")) {
                     final String v2 = prop.getFirstValueAlias(v);
                     if (UnicodeProperty.compareNames(v, v2) != 0) {
                         v = v + " (" + v2 + ")";
