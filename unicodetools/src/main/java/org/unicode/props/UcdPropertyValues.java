@@ -1599,7 +1599,7 @@ public class UcdPropertyValues {
         }
     }
 
-    // NFKC_SimpleCasefold
+    // NFKC_Simple_Casefold
     public enum NFKD_Quick_Check_Values implements Named {
         No("N"),
         Yes("Y");
