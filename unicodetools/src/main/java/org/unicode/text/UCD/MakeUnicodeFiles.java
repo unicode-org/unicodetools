@@ -266,7 +266,8 @@ public class MakeUnicodeFiles {
                 contents = source.substring(1, source.length() - 1);
             }
             if (contents.matches("(?<!\")(\"\")*\"(?!\")")) {
-                throw new IllegalArgumentException("Syntax error: improper quotation marks in " + source);
+                throw new IllegalArgumentException(
+                        "Syntax error: improper quotation marks in " + source);
             }
             return contents.replace("\"\"", "\"");
         }
