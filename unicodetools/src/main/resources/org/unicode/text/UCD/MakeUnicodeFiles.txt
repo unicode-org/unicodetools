@@ -487,7 +487,7 @@ Property:   NFKC_Casefold
 Format: nameStyle=short skipValue=<codepoint>
 
 Property:   NFKC_Simple_Casefold
-# Derived Property:   NFKC_SimpleCasefold (NFKC_SCF)
+# Derived Property:   NFKC_Simple_Casefold (NFKC_SCF)
 #   This property removes certain variations from characters: case, compatibility, and default-ignorables.
 #   It is used for loose matching and certain types of identifiers.
 #   It is constructed by applying NFKC, simple CaseFolding, and removal of Default_Ignorable_Code_Points.
