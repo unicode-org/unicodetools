@@ -1,5 +1,5 @@
 # PropertyValueAliases-15.1.0.txt
-# Date: 2023-05-02, 10:01:56 GMT
+# Date: 2023-05-02, 10:31:42 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1173,7 +1173,7 @@ NFKC_QC; M                            ; Maybe
 NFKC_QC; N                            ; No
 NFKC_QC; Y                            ; Yes
 
-# NFKC_SimpleCasefold (NFKC_SCF)
+# NFKC_Simple_Casefold (NFKC_SCF)
 
 
 # NFKD_Quick_Check (NFKD_QC)
