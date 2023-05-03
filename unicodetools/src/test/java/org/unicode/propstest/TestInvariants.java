@@ -145,6 +145,7 @@ public class TestInvariants extends TestFmwkMinusMinus {
                 General_Category_Values.Unassigned,
                 Arrays.asList(
                         UcdProperty.NFKC_Casefold,
+                        UcdProperty.NFKC_Simple_Casefold,
                         UcdProperty.Age,
                         UcdProperty.Block,
                         UcdProperty.Bidi_Class,

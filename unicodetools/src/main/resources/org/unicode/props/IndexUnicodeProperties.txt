@@ -151,6 +151,7 @@ DerivedNormalizationProps ; NFKD_Quick_Check
 DerivedNormalizationProps ; NFC_Quick_Check
 DerivedNormalizationProps ; NFKC_Quick_Check
 DerivedNormalizationProps ; NFKC_Casefold
+DerivedNormalizationProps ; NFKC_Simple_Casefold
 DerivedNormalizationProps ; Changes_When_NFKC_Casefolded
 PropList ; ASCII_Hex_Digit
 PropList ; Bidi_Control

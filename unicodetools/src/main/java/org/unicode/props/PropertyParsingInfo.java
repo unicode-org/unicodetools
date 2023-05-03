@@ -228,7 +228,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             String value,
             Merge<String> merger,
             boolean hackHangul) {
-        if (value != null && value.isEmpty() && property != UcdProperty.NFKC_Casefold) {
+        if (value != null
+                && value.isEmpty()
+                && property != UcdProperty.NFKC_Casefold
+                && property != UcdProperty.NFKC_Simple_Casefold) {
             value = null;
         }
         value = normalizeAndVerify(value);
@@ -679,7 +682,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                 : line.getParts()[2];
                 // The value should not be an empty string.
                 // Exception: NFKC_Casefold does remove some characters by mapping them to nothing.
-                assert !value.isEmpty() || propInfo.property == UcdProperty.NFKC_Casefold;
+                assert !value.isEmpty()
+                        || propInfo.property == UcdProperty.NFKC_Casefold
+                        || propInfo.property == UcdProperty.NFKC_Simple_Casefold;
                 if (propInfo.property == UcdProperty.kMandarin) {
                     if (indexUnicodeProperties.oldVersion) {
                         value =
@@ -695,6 +700,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     String defaultValue = null;
                     switch (propInfo.property) {
                         case NFKC_Casefold:
+                        case NFKC_Simple_Casefold:
                             defaultValue = "<code point>";
                             break;
                         default:
