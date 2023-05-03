@@ -170,7 +170,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 new UnicodeProperty.SimpleProperty() {
                     @Override
                     public String _getValue(int codepoint) {
-                        return UCharacter.getName1_0(codepoint);
+                        return ucd.get(codepoint, true).unicode1Name;
                     }
                 }.setValues("<string>")
                         .setMain("Unicode_1_Name", "na1", UnicodeProperty.MISC, version));
@@ -557,6 +557,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
 
         BaseProperty vo =
                 new UnicodeProperty.SimpleProperty() {
+                    {
+                        setUniformUnassigned(false);
+                    }
+
                     @Override
                     public String _getValue(int codepoint) {
                         return ucd.getVertical_OrientationID(codepoint);
@@ -698,51 +702,78 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 new SimpleIsProperty("isNFC", "isNFC", version, getProperty("toNFC"), false)
                         .setExtended());
 
-        add(
-                new UnicodeProperty.SimpleProperty() {
-                    UnicodeSet ignorable = null;
+        for (byte foldingType : new byte[] {UCD_Types.FULL, UCD_Types.SIMPLE}) {
+            String longName =
+                    foldingType == UCD_Types.FULL ? "NFKC_Casefold" : "NFKC_Simple_Casefold";
+            String shortName = foldingType == UCD_Types.FULL ? "NFKC_CF" : "NFKC_SCF";
+            add(
+                    new UnicodeProperty.SimpleProperty() {
+                        UnicodeSet ignorable = null;
 
-                    @Override
-                    public String _getValue(final int cp) {
-                        if (!ucd.isRepresented(cp)) {
-                            return null;
-                        }
-                        boolean debug = false;
-                        if (cp == -1) { // change to a real code point for debugging
-                            debug = true;
-                        }
-                        // lazy eval
-                        if (ignorable == null) {
-                            ignorable =
-                                    getProperty("DefaultIgnorableCodePoint").getSet(UCD_Names.YES);
-                        }
-                        if (ignorable.contains(cp)) {
-                            return "";
-                        }
-                        final String case1 = ucd.getCase(cp, UCD_Types.FULL, UCD_Types.FOLD);
-                        final String b = nfkc.normalize(case1);
-                        if (equals(cp, b)) {
-                            return null;
-                        }
-                        if (debug) {
-                            System.out.println(
-                                    "NFKC_CF:"
-                                            + "\n\tsource:\tU+"
-                                            + Utility.hex(cp)
-                                            + "\t"
-                                            + Default.ucd().getName(cp)
-                                            + "\n\tcase1:\tU+"
-                                            + Utility.hex(case1)
-                                            + "\t"
-                                            + Default.ucd().getName(case1));
-                        }
-                        final String c = trans(b);
-                        if (c.equals(b)) {
-                            return c;
-                        }
-                        if (debug) {
-                            System.out.println(
-                                    "NFKC_CF:"
+                        @Override
+                        public String _getValue(final int cp) {
+                            if (!ucd.isRepresented(cp)) {
+                                return null;
+                            }
+                            boolean debug = false;
+                            if (cp == -1) { // change to a real code point for debugging
+                                debug = true;
+                            }
+                            // lazy eval
+                            if (ignorable == null) {
+                                ignorable =
+                                        getProperty("DefaultIgnorableCodePoint")
+                                                .getSet(UCD_Names.YES);
+                            }
+                            if (ignorable.contains(cp)) {
+                                return "";
+                            }
+                            final String case1 = ucd.getCase(cp, foldingType, UCD_Types.FOLD);
+                            final String b = nfkc.normalize(case1);
+                            if (equals(cp, b)) {
+                                return null;
+                            }
+                            if (debug) {
+                                System.out.println(
+                                        shortName
+                                                + ":"
+                                                + "\n\tsource:\tU+"
+                                                + Utility.hex(cp)
+                                                + "\t"
+                                                + Default.ucd().getName(cp)
+                                                + "\n\tcase1:\tU+"
+                                                + Utility.hex(case1)
+                                                + "\t"
+                                                + Default.ucd().getName(case1));
+                            }
+                            final String c = trans(b);
+                            if (c.equals(b)) {
+                                return c;
+                            }
+                            if (debug) {
+                                System.out.println(
+                                        shortName
+                                                + ":"
+                                                + "\n\tsource:\tU+"
+                                                + Utility.hex(cp)
+                                                + "\t"
+                                                + Default.ucd().getName(cp)
+                                                + "\n\tcase1:\tU+"
+                                                + Utility.hex(case1)
+                                                + "\t"
+                                                + Default.ucd().getName(case1)
+                                                + "\n\ttrans1:\tU+"
+                                                + Utility.hex(c)
+                                                + "\t"
+                                                + Default.ucd().getName(c));
+                            }
+                            final String d = trans(c);
+                            if (d.equals(c)) {
+                                return d;
+                            }
+                            throw new IllegalArgumentException(
+                                    shortName
+                                            + " requires THREE passes:"
                                             + "\n\tsource:\tU+"
                                             + Utility.hex(cp)
                                             + "\t"
@@ -754,44 +785,26 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                             + "\n\ttrans1:\tU+"
                                             + Utility.hex(c)
                                             + "\t"
-                                            + Default.ucd().getName(c));
+                                            + Default.ucd().getName(c)
+                                            + "\n\ttrans2:\tU+"
+                                            + Utility.hex(d)
+                                            + "\t"
+                                            + Default.ucd().getName(d));
                         }
-                        final String d = trans(c);
-                        if (d.equals(c)) {
-                            return d;
+
+                        private String trans(String b) {
+                            final String bb = removeFrom(b, ignorable);
+                            final String case2 = ucd.getCase(bb, foldingType, UCD_Types.FOLD);
+                            final String c = nfkc.normalize(case2);
+                            return c;
                         }
-                        throw new IllegalArgumentException(
-                                "NFKC_CF requires THREE passes:"
-                                        + "\n\tsource:\tU+"
-                                        + Utility.hex(cp)
-                                        + "\t"
-                                        + Default.ucd().getName(cp)
-                                        + "\n\tcase1:\tU+"
-                                        + Utility.hex(case1)
-                                        + "\t"
-                                        + Default.ucd().getName(case1)
-                                        + "\n\ttrans1:\tU+"
-                                        + Utility.hex(c)
-                                        + "\t"
-                                        + Default.ucd().getName(c)
-                                        + "\n\ttrans2:\tU+"
-                                        + Utility.hex(d)
-                                        + "\t"
-                                        + Default.ucd().getName(d));
-                    }
 
-                    private String trans(String b) {
-                        final String bb = removeFrom(b, ignorable);
-                        final String case2 = ucd.getCase(bb, UCD_Types.FULL, UCD_Types.FOLD);
-                        final String c = nfkc.normalize(case2);
-                        return c;
-                    }
-
-                    @Override
-                    public int getMaxWidth(boolean isShort) {
-                        return 14;
-                    }
-                }.setMain("NFKC_Casefold", "NFKC_CF", UnicodeProperty.STRING, version));
+                        @Override
+                        public int getMaxWidth(boolean isShort) {
+                            return 14;
+                        }
+                    }.setMain(longName, shortName, UnicodeProperty.STRING, version));
+        }
 
         add(
                 new SimpleIsProperty(

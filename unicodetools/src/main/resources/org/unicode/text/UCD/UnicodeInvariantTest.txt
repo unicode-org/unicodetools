@@ -324,6 +324,24 @@ In \p{sc=Cher} scf = suc
 \p{ID_Continue} ⊇ \p{XID_Continue}
 \p{ID_Start} ⊇ \p{XID_Start}
 
+# Not a stability policy, but we probably should avoid breaking it further:
+# The sets \p{ID_Start} and and \p{ID_Continue} preserve backward compatibility
+# with the General_Category-based identifier definition from Unicode 3.0, except
+# for \p{Cf}, which was ignored in identifier comparison, and for one—thankfully
+# obscure—letter added to \p{Pattern_Syntax} in Unicode 5.1.
+# See https://www.unicode.org/versions/Unicode3.0.0/ch05.pdf#page=31.
+#
+# NOTE: If this invariant needs to change, the section on migrating from the
+#       Unicode 3.0 identifier definition in UTS #55 must be updated:
+#       https://www.unicode.org/reports/tr55/#Evolution-Unicode-3.
+Let $identifier_start = [\p{GC=Lu}\p{GC=Ll}\p{GC=Lt}\p{GC=Lm}\p{GC=Lo}\p{GC=Nl}]
+Let $identifier_extend = [\p{GC=Mn}\p{GC=Mc}\p{GC=Nd}\p{GC=Pc}]
+[\p{ID_Start}\p{Name=VERTICAL TILDE}]    ⊇ $identifier_start
+[\p{ID_Continue}\p{Name=VERTICAL TILDE}] ⊇ [$identifier_start $identifier_extend]
+
+[\p{XID_Start}\p{Name=VERTICAL TILDE}]    ⊇ [$identifier_start-\p{NFKC_QC=No}]
+[\p{XID_Continue}\p{Name=VERTICAL TILDE}] ⊇ [[$identifier_start $identifier_extend]-\p{NFKC_QC=No}]
+
 ##########################
 # Normalization
 ##########################

@@ -60,6 +60,7 @@ public enum UcdProperty {
     Idn_Mapping(PropertyType.String, "idnm"),
     Lowercase_Mapping(PropertyType.String, "lc"),
     NFKC_Casefold(PropertyType.String, "NFKC_CF"),
+    NFKC_Simple_Casefold(PropertyType.String, "NFKC_SCF"),
     Simple_Case_Folding(PropertyType.String, "scf", "sfc"),
     Simple_Lowercase_Mapping(PropertyType.String, "slc"),
     Simple_Titlecase_Mapping(PropertyType.String, "stc"),

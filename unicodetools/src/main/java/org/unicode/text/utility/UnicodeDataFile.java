@@ -61,7 +61,8 @@ public class UnicodeDataFile {
                                 fileType);
         this.filename = filename;
 
-        if (!isHTML) {
+        final boolean isUnicodeData = filename.equals("UnicodeData");
+        if (!isHTML && !isUnicodeData) {
             out.println(Utility.getDataHeader(filename + FileInfix.plain.getFileSuffix(".txt")));
             out.println(
                     "#\n# Unicode Character Database"
