@@ -1,6 +1,6 @@
-# unidata-15.0.0.txt
-# Date: 2022-08-09, 00:00:00 GMT [KW]
-# © 2022 Unicode®, Inc.
+# unidata-15.1.0.txt
+# Date: 2023-05-02, 00:00:00 GMT [KW]
+# © 2023 Unicode®, Inc.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Source data for sifter
@@ -9,9 +9,9 @@
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
 #
-# Version 15.0.0 draft 7 (Unicode Version: 15.0.0)
-# based on Unicode data file UnicodeData-15.0.0d7.txt
-# Ordering for Unicode 15.0
+# Version 15.1.0 draft 3 (Unicode Version: 15.1.0)
+# based on Unicode data file UnicodeData-15.1.0d2.txt
+# Ordering for Unicode 15.1
 #
 # Fields:
 # Unicode;Name;Category;Decomposition;Num value;Comment;Uppercase;Lowercase;Titlecase
@@ -2847,6 +2847,8 @@ AA5C;CHAM PUNCTUATION SPIRAL;Po;;;;;;
 11C45;BHAIKSUKI GAP FILLER-2;Po;;;;;;
 
 10B39;AVESTAN ABBREVIATION MARK;Po;;;;;;
+
+10A7F;OLD SOUTH ARABIAN NUMERIC INDICATOR;Po;;;;;;
 
 10AF0;MANICHAEAN PUNCTUATION STAR;Po;;;;;;
 10AF1;MANICHAEAN PUNCTUATION FLEURON;Po;;;;;;
@@ -10273,6 +10275,11 @@ DEFAULT
 2FF9;IDEOGRAPHIC DESCRIPTION CHARACTER SURROUND FROM UPPER RIGHT;So;;;;;;
 2FFA;IDEOGRAPHIC DESCRIPTION CHARACTER SURROUND FROM LOWER LEFT;So;;;;;;
 2FFB;IDEOGRAPHIC DESCRIPTION CHARACTER OVERLAID;So;;;;;;
+2FFC;IDEOGRAPHIC DESCRIPTION CHARACTER SURROUND FROM RIGHT;So;;;;;;
+2FFD;IDEOGRAPHIC DESCRIPTION CHARACTER SURROUND FROM LOWER RIGHT;So;;;;;;
+2FFE;IDEOGRAPHIC DESCRIPTION CHARACTER HORIZONTAL REFLECTION;So;;;;;;
+2FFF;IDEOGRAPHIC DESCRIPTION CHARACTER ROTATION;So;;;;;;
+31EF;IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION;So;;;;;;
 
 # CJK strokes
 
@@ -11128,7 +11135,6 @@ A835;NORTH INDIC FRACTION THREE SIXTEENTHS;No;;3/16;;;;
 108FF;HATRAN NUMBER ONE HUNDRED;No;;;;100;;
 
 10A7E;OLD SOUTH ARABIAN NUMBER FIFTY;No;;50;;;;
-10A7F;OLD SOUTH ARABIAN NUMERIC INDICATOR;Po;;;;;;
 
 10A9E;OLD NORTH ARABIAN NUMBER TEN;No;;10;;;;
 10A9F;OLD NORTH ARABIAN NUMBER TWENTY;No;;20;;;;
@@ -11552,7 +11558,6 @@ A838;NORTH INDIC RUPEE MARK;Sc;;;;;;
 20A4;LIRA SIGN;Sc;;;;;;
 20A5;MILL SIGN;Sc;;;;;;
 20A6;NAIRA SIGN;Sc;;;;;;
-20A7;PESETA SIGN;Sc;;;;;;
 
 20A9;WON SIGN;Sc;;;;;;
 FFE6;FULLWIDTH WON SIGN;Sc;<wide> 20A9;;;;;
@@ -14314,6 +14319,10 @@ FF30;FULLWIDTH LATIN CAPITAL LETTER P;Lu;<wide> 0050;;;;FF50;
 1E54;LATIN CAPITAL LETTER P WITH ACUTE;Lu;0050 0301;;;;1E55;
 1E57;LATIN SMALL LETTER P WITH DOT ABOVE;Ll;0070 0307;;;1E56;;1E56
 1E56;LATIN CAPITAL LETTER P WITH DOT ABOVE;Lu;0050 0307;;;;1E57;
+
+# Starting with 15.1 given synthetic decomposition to match CLDR
+# Compare the handling of 20A8 RUPEE SIGN
+20A7;PESETA SIGN;Sc;<sort> 0050 0074 0073;;;;;
 
 1D18;LATIN LETTER SMALL CAPITAL P;Ll;;;;;;
 
@@ -29547,6 +29556,10 @@ FF9D;HALFWIDTH KATAKANA LETTER N;Lo;<narrow> 30F3;;;;;
 31BF;BOPOMOFO LETTER AH;Lo;;;;;;
 
 # Han script starts here
+# Note that the CJK Ideograph extensions do not need to
+# be processed by the sifter, as all weights are assigned
+# by the UCA algorithm. The following list is old and
+# incomplete.
 
 3400;<CJK Ideograph Extension A, First>;Lo;;;;;;
 4DB5;<CJK Ideograph Extension A, Last>;Lo;;;;;;
