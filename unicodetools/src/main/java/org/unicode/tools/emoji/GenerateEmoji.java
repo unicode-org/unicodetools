@@ -466,6 +466,20 @@ public class GenerateEmoji {
             sourceFound.value = null;
         }
 
+        if (s.endsWith(Emoji.ZWJ_RIGHTWARDS_ARROW)) {
+            int newLength = s.length() - Emoji.ZWJ_RIGHTWARDS_ARROW.length();
+            String trial = s.substring(0, newLength);
+            for (Emoji.Source source : Emoji.orderedEnum(doFirst)) {
+                String cell = getFlippedImage(source, trial, s, useDataURL, extraClasses);
+                if (cell != null) {
+                    if (sourceFound != null) {
+                        sourceFound.value = source;
+                    }
+                    return cell;
+                }
+            }
+        }
+
         if (!EmojiData.MODIFIERS.containsAll(s)
                 && (EmojiData.MODIFIERS.containsSome(s) || s.contains(Emoji.JOINER_STR))) {
             String classes = extraClasses;
@@ -527,6 +541,23 @@ public class GenerateEmoji {
             String chars,
             boolean useDataUrl,
             String extraClasses) {
+        return getImage(type, charsForFile, chars, useDataUrl, extraClasses, false);
+    }
+    public static String getFlippedImage(
+            Emoji.Source type,
+            String charsForFile,
+            String chars,
+            boolean useDataUrl,
+            String extraClasses) {
+        return getImage(type, charsForFile, chars, useDataUrl, extraClasses, true);
+    }
+    public static String getImage(
+            Emoji.Source type,
+            String charsForFile,
+            String chars,
+            boolean useDataUrl,
+            String extraClasses,
+            boolean doFlip) {
         if (chars.codePointAt(0) == 0x1FA72) {
             int debug = 0;
         }
@@ -543,7 +574,7 @@ public class GenerateEmoji {
                         type == Emoji.Source.svg
                                 ? "../../../../unicodetools/data/images/" + filename
                                 : useDataUrl
-                                        ? EmojiImageData.getDataUrlFromFilename(type, filename)
+                                        ? EmojiImageData.getDataUrlFromFilename(type, filename, doFlip)
                                         : "../images/" + filename;
             }
             return "<img alt='"
