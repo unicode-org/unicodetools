@@ -100,7 +100,7 @@ a.headernav:hover {
     <tbody>
       <tr>
         <td>Revision</td>
-        <td><span class="changedspan">15.1.0 (draft 2)</span></td>
+        <td><span class="changedspan">15.1.0 (draft 3)</span></td>
       </tr>
       <tr>
         <td>Authors</td>
@@ -417,7 +417,7 @@ is machine generated and will always explicitly provide any summary subheaders.<
 <strong>NOTICE_LINE:	&quot;@+&quot; TAB LINE</strong>       
 			// Output LINE as notice
 
-<strong>		| &quot;@+&quot; TAB * SP LINE</strong>   
+<strong>		| &quot;@+&quot; TAB <span class="changedspan">&quot;*&quot;</span> SP LINE</strong>   
 			// Output LINE as notice
 			// &quot;*&quot; expands to a bullet character
 			// Notices following a character code apply to the
@@ -512,10 +512,10 @@ is machine generated and will always explicitly provide any summary subheaders.<
     <li>A VARSEL_LIST may only contain code points for standard variation selectors (including script specific ones)</li>
     <li>When displaying a VARIATION_LINE for alternate glyphs, the &quot;ALTn&quot; selector is not displayed. </li>
     <li>If a glyph is unavailable for the variant glyph in a VARIATION_LINE it is replaced by the glyph for U+2591 LIGHT SHADE.</li>
-    <li class="changed">Because a LINE or an EXPAND_LINE can itself start with special character followed 
-        by a SP or LF, an "unmarked" COMMENT_LINE should match the input in lower priority than line 
+    <li class="changed">Because a LINE or an EXPAND_LINE can itself start with a special character followed 
+        by a SP or LF, an &quot;unmarked&quot; COMMENT_LINE should match the input in lower priority than line 
         types that require a special character or have a more restrictive set of characters than EXPAND_LINE. 
-        Similarly, a SUBHEADER containing TAB "!" LF should match with a higher priority than those
+        Similarly, a SUBHEADER containing TAB &quot;!&quot; LF should match with a higher priority than those
         where the TAB is followed by a LINE.</li>
 	</ul>
 
@@ -619,6 +619,8 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
         some line types.</li>
         <li class="changed">In Section 2.2, added a note clarifying the font handling for characters
         outside the range U+0000..U+02FF occurring in NAME or LABEL elements.</li>
+        <li class="changed">Added missing quotation marks around * in second expansion for
+        NOTICE_LINE.</li>
         <li>Corrected and clarified the BNF statement of nameslist syntax.</li>
         <li>Some literals had not been quoted, some productions were missing the trailing LF</li>
         <li>The LF and LCNAME productions were clarified</li>
