@@ -100,7 +100,7 @@ a.headernav:hover {
     <tbody>
       <tr>
         <td>Revision</td>
-        <td><span class="changedspan">15.1.0</span></td>
+        <td><span class="changedspan">15.1.0 (draft 2)</span></td>
       </tr>
       <tr>
         <td>Authors</td>
@@ -108,7 +108,7 @@ a.headernav:hover {
       </tr>
       <tr>
         <td>Date</td>
-        <td><span class="changedspan">2023-01-19</span></td>
+        <td><span class="changedspan">2023-05-05</span></td>
       </tr>
       <tr>
         <td>This Version</td>
@@ -203,7 +203,7 @@ their constituent syntax elements are needed.</p>
 
 <p>This section defines the overall file structure</p>
 
-<pre><strong>NAMELIST:     TITLE_PAGE* EXTENDED_BLOCK*</strong>
+<pre><strong>NAMELIST:     <span class="changedspan">FILE_COMMENT*</span> TITLE_PAGE* EXTENDED_BLOCK*</strong>
 
 <strong>TITLE_PAGE:   TITLE 
 		| TITLE_PAGE SUBTITLE 
@@ -214,7 +214,7 @@ their constituent syntax elements are needed.</p>
 		| TITLE_PAGE COMMENT_LINE
 		| TITLE_PAGE PAGEBREAK 
 		| TITLE_PAGE FILE_COMMENT 
-		| FILE_COMMENT
+		<span class="removedspan">| FILE_COMMENT</span>
 
 
 EXTENDED_BLOCK:	BLOCK 
@@ -507,11 +507,16 @@ is machine generated and will always explicitly provide any summary subheaders.<
 	<li>Reserved entries are optional, and will normally be supplied automatically. They are 
 		required whenever followed by ALIAS_LINE, COMMENT_LINE, NOTICE_LINE or CROSS_REF.
 	</li>
-<li>An empty alternative glyph summary subheader expression will result in default header &quot;Selected Alternative Glyphs&quot;</li>
-<li>An empty standard variation subheader expression will result in the default header &quot;Standardized Variation Sequences&quot;</li>
-<li> A VARSEL_LIST may only contain code points for standard variation selectors (including script specific ones)</li>
-<li>When displaying a VARIATION_LINE for alternate glyphs, the &quot;ALTn&quot; selector is not displayed. </li>
-<li>If a glyph is unavailable for the variant glyph in a VARIATION_LINE it is replaced by the glyph for U+2591 LIGHT SHADE.</li>
+    <li>An empty alternative glyph summary subheader expression will result in default header &quot;Selected Alternative Glyphs&quot;</li>
+    <li>An empty standard variation subheader expression will result in the default header &quot;Standardized Variation Sequences&quot;</li>
+    <li>A VARSEL_LIST may only contain code points for standard variation selectors (including script specific ones)</li>
+    <li>When displaying a VARIATION_LINE for alternate glyphs, the &quot;ALTn&quot; selector is not displayed. </li>
+    <li>If a glyph is unavailable for the variant glyph in a VARIATION_LINE it is replaced by the glyph for U+2591 LIGHT SHADE.</li>
+    <li class="changed">Because a LINE or an EXPAND_LINE can itself start with special character followed 
+        by a SP or LF, an "unmarked" COMMENT_LINE should match the input in lower priority than line 
+        types that require a special character or have a more restrictive set of characters than EXPAND_LINE. 
+        Similarly, a SUBHEADER containing TAB "!" LF should match with a higher priority than those
+        where the TAB is followed by a LINE.</li>
 	</ul>
 
 
@@ -576,6 +581,9 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
        of following characters.</li>
        <li>The hyphen in a character range CHAR-CHAR is replaced by an EN DASH on 
        output.</li>
+       <li class="changed">In a STRING or LABEL, a Unicode character outside the range 
+        U+0000..U+002FF is displayed as is, with a glyph matching
+        the chart font, and not with the font that is otherwise defined for that element.</li>
        <li>The NamesList.txt file is encoded in UTF-8 if the <i>first line</i> is a 
        FILE_COMMENT containing the declaration &quot;UTF-8&quot; or any casemap variation 
        thereof. Otherwise the file is encoded in Latin-1 (older versions). Beyond 
@@ -606,10 +614,15 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
     <p><b>Version 15.1.0</b></p>
         <ul>
         <li>Reissued for Unicode 15.0.0.</li>
-<li>Corrected and clarified the BNF statement of nameslist syntax.</li>
-<li>Some literals had not been quoted, some productions were missing the trailing LF</li>
-<li>The LF and LCNAME productions were clarified</li>
-<li>Updated to HTML5</li>
+        <li class="changed">Adjusted NAMELIST definition to account for positions of FILE_COMMENT.</li>
+        <li class="changed">Added a note to the bullets in Section 2.1 to clarify priority of matching for
+        some line types.</li>
+        <li class="changed">In Section 2.2, added a note clarifying the font handling for characters
+        outside the range U+0000..U+02FF occurring in NAME or LABEL elements.</li>
+        <li>Corrected and clarified the BNF statement of nameslist syntax.</li>
+        <li>Some literals had not been quoted, some productions were missing the trailing LF</li>
+        <li>The LF and LCNAME productions were clarified</li>
+        <li>Updated to HTML5</li>
     	</ul>
     <p><b>Version 15.0.0</b></p>
         <ul>
