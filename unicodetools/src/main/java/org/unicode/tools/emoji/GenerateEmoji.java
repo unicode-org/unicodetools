@@ -543,6 +543,7 @@ public class GenerateEmoji {
             String extraClasses) {
         return getImage(type, charsForFile, chars, useDataUrl, extraClasses, false);
     }
+
     public static String getFlippedImage(
             Emoji.Source type,
             String charsForFile,
@@ -551,6 +552,7 @@ public class GenerateEmoji {
             String extraClasses) {
         return getImage(type, charsForFile, chars, useDataUrl, extraClasses, true);
     }
+ 
     public static String getImage(
             Emoji.Source type,
             String charsForFile,

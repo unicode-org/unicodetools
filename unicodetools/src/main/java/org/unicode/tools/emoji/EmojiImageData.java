@@ -5,7 +5,6 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
 import com.ibm.icu.util.VersionInfo;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -19,9 +18,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
-
 import javax.imageio.ImageIO;
-
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.tools.emoji.Emoji.Source;
 import org.unicode.tools.emoji.GenerateEmoji.Style;
@@ -94,6 +91,7 @@ public class EmojiImageData {
     static String getDataUrlFromFilename(Source source, String filename) {
         return getDataUrlFromFilename(source, filename, false);
     }
+
     static String getDataUrlFromFilename(Source source, String filename, boolean doFlip) {
         if (source == Source.google && filename.contains("1f468_1f3fb_200d_1f9b0")) {
             int debug = 0;
@@ -118,18 +116,18 @@ public class EmojiImageData {
                     byte[] bytes;
                     if (!doFlip && GenerateEmoji.RESIZE_IMAGE <= 0) {
                         bytes = Files.readAllBytes(file.toPath());
-                    }
-                    else {
+                    } else {
                         BufferedImage image = ImageIO.read(file);
                         if (doFlip) {
                             image = LoadImage.flipImage(image);
                         }
                         if (GenerateEmoji.RESIZE_IMAGE > 0) {
-                            image = LoadImage.resizeImage(
-                                    image,
-                                    GenerateEmoji.RESIZE_IMAGE,
-                                    GenerateEmoji.RESIZE_IMAGE,
-                                    Resizing.DEFAULT);
+                            image =
+                                    LoadImage.resizeImage(
+                                            image,
+                                            GenerateEmoji.RESIZE_IMAGE,
+                                            GenerateEmoji.RESIZE_IMAGE,
+                                            Resizing.DEFAULT);
                         }
                         bytes = LoadImage.asByteArray(image);
                     }
