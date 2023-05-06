@@ -552,7 +552,7 @@ public class GenerateEmoji {
             String extraClasses) {
         return getImage(type, charsForFile, chars, useDataUrl, extraClasses, true);
     }
- 
+
     public static String getImage(
             Emoji.Source type,
             String charsForFile,
@@ -576,7 +576,8 @@ public class GenerateEmoji {
                         type == Emoji.Source.svg
                                 ? "../../../../unicodetools/data/images/" + filename
                                 : useDataUrl
-                                        ? EmojiImageData.getDataUrlFromFilename(type, filename, doFlip)
+                                        ? EmojiImageData.getDataUrlFromFilename(
+                                                type, filename, doFlip)
                                         : "../images/" + filename;
             }
             return "<img alt='"
