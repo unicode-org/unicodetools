@@ -151,4 +151,10 @@ public class ChartUtilities {
     public static String getDoubleLink(String anchor) {
         return getDoubleLink(anchor, anchor);
     }
+
+    public static String htmlSpanForSkintone(String modifier) {
+        return "<span style=\"display:inline-block;\">"
+                + modifier
+                + "</span>";
+    }
 }

@@ -484,9 +484,7 @@ public class CountEmoji {
             _html =
                     _html.replace(
                             Attribute.skin.label,
-                            "<span style=\"display:inline-block;\">"
-                                    + Attribute.skin.label
-                                    + "</span>");
+                            ChartUtilities.htmlSpanForSkintone(Attribute.skin.label));
             html = title == null ? _html : "<span title='" + title + "'>" + _html + "</span>";
         }
 

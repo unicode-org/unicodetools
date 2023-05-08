@@ -46,7 +46,7 @@ public class ProposalData {
     private static final String DEBUG_STRING = EmojiConstants.fromCodePoints(0x1F9AC).toString();
 
     private static final String MISSING_PROPOSAL = "MISSING";
-    private static final String GENDER_REPRESENTATIVE = "\u2640";
+    private static final String GENDER_REPRESENTATIVE = Emoji.FEMALE;
     private static final String SKIN_REPRESENTATIVE = "🏿";
     static final Splitter SPLITTER_SEMI = Splitter.on(';').trimResults();
     static final Splitter SPLITTER_SEMI_HASH = Splitter.on(Pattern.compile("[#;]")).trimResults();
@@ -334,6 +334,10 @@ public class ProposalData {
         return result;
     }
 
+    public static String removeEmojiVariant(String s) {
+        return s.replace(Emoji.EMOJI_VARIANT_STRING, "");
+    }
+
     /**
      * Normalize to woman, darkskin, no FE0F
      *
@@ -341,14 +345,15 @@ public class ProposalData {
      * @return
      */
     public static String getSkeleton(String code) {
-        code = code.trim().replace("\uFE0F", "");
+        code = removeEmojiVariant(code);
         if (CharSequences.getSingleCodePoint(code) != Integer.MAX_VALUE) {
             return code;
         }
         String result =
                 EmojiData.SKIN_SPANNER.replaceFrom(
-                        code.replace(Emoji.EMOJI_VARIANT_STRING, "")
-                                .replace("\u2642", GENDER_REPRESENTATIVE),
+                        EmojiData.GENDER_SPANNER.replaceFrom(
+                                code,
+                                GENDER_REPRESENTATIVE),
                         SKIN_REPRESENTATIVE);
         String shorter = shortestForm(result);
         return shorter == null ? result : shorter;
@@ -545,8 +550,18 @@ public class ProposalData {
                             + "the <a target='doc-registry' href='https://www.unicode.org/L2/L2007/07118.htm'>agreement to form a new Symbols Subcommittee</a> (use Find on page… » C.7.3)</li></ul>\n"
                             + "\n"
                             + "<p>This file is abbreviated by replacing certain characters that are always included in the same proposal:</p>"
-                            + "<ul><li>skintones (🏻 🏼 🏽 🏾 🏿) by "
-                            + SKIN_REPRESENTATIVE
+                            + "<ul><li>skintones ("
+                            + ChartUtilities.htmlSpanForSkintone(UTF16.valueOf(0x1F3FB))
+                            + " "
+                            + ChartUtilities.htmlSpanForSkintone(UTF16.valueOf(0x1F3FC))
+                            + " "
+                            + ChartUtilities.htmlSpanForSkintone(UTF16.valueOf(0x1F3FD))
+                            + " "
+                            + ChartUtilities.htmlSpanForSkintone(UTF16.valueOf(0x1F3FE))
+                            + " "
+                            + ChartUtilities.htmlSpanForSkintone(UTF16.valueOf(0x1F3FF))
+                            + ") by "
+                            + ChartUtilities.htmlSpanForSkintone(SKIN_REPRESENTATIVE)
                             + "</li>\n"
                             + "<li>gender signs (♀️ ♂️) by "
                             + GENDER_REPRESENTATIVE
@@ -616,7 +631,7 @@ public class ProposalData {
                 MajorGroup lastMajor = null;
                 for (String s : yearSet) {
                     String skeleton = getSkeleton(s);
-                    if (!s.equals(skeleton)) {
+                    if (!removeEmojiVariant(s).equals(skeleton)) {
                         continue;
                     }
                     // handle special case for multi-skintones
