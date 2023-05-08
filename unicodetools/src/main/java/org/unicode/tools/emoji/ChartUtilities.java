@@ -153,8 +153,6 @@ public class ChartUtilities {
     }
 
     public static String htmlSpanForSkintone(String modifier) {
-        return "<span style=\"display:inline-block;\">"
-                + modifier
-                + "</span>";
+        return "<span style=\"display:inline-block;\">" + modifier + "</span>";
     }
 }

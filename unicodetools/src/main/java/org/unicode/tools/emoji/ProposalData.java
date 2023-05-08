@@ -351,9 +351,7 @@ public class ProposalData {
         }
         String result =
                 EmojiData.SKIN_SPANNER.replaceFrom(
-                        EmojiData.GENDER_SPANNER.replaceFrom(
-                                code,
-                                GENDER_REPRESENTATIVE),
+                        EmojiData.GENDER_SPANNER.replaceFrom(code, GENDER_REPRESENTATIVE),
                         SKIN_REPRESENTATIVE);
         String shorter = shortestForm(result);
         return shorter == null ? result : shorter;
