@@ -1829,6 +1829,47 @@
 1FAF7 1F3FF; L2/21-216; null
 1FAF8 1F3FF; L2/21-216; null
 
+26D3 200D 1F4A5; L2/23-036; broken chain
+1F344 200D 1F7EB; L2/23-032; brown mushroom
+1F34B 200D 1F7E9; L2/23-031; lime
+1F3C3 200D 2640 200D 27A1; L2/23-030; woman running facing right
+1F3C3 200D 27A1; L2/23-030; person running facing right
+1F3C3 1F3FF 200D 2640 200D 27A1; L2/23-030; woman running facing right: light skin tone
+1F3C3 1F3FF 200D 27A1; L2/23-030; person running facing right: light skin tone
+1F426 200D 1F525; L2/23-033; phoenix
+1F468 200D 1F9AF 200D 27A1; L2/23-030; man with white cane facing right
+1F468 200D 1F9BC 200D 27A1; L2/23-030; man in motorized wheelchair facing right
+1F468 200D 1F9BD 200D 27A1; L2/23-030; man in manual wheelchair facing right
+1F468 1F3FF 200D 1F9AF 200D 27A1; L2/23-030; man with white cane facing right: light skin tone
+1F468 1F3FF 200D 1F9BC 200D 27A1; L2/23-030; man in motorized wheelchair facing right: light skin tone
+1F468 1F3FF 200D 1F9BD 200D 27A1; L2/23-030; man in manual wheelchair facing right: light skin tone
+1F469 200D 1F9AF 200D 27A1; L2/23-030; woman with white cane facing right
+1F469 200D 1F9BC 200D 27A1; L2/23-030; woman in motorized wheelchair facing right
+1F469 200D 1F9BD 200D 27A1; L2/23-030; woman in manual wheelchair facing right
+1F469 1F3FF 200D 1F9AF 200D 27A1; L2/23-030; woman with white cane facing right: light skin tone
+1F469 1F3FF 200D 1F9BC 200D 27A1; L2/23-030; woman in motorized wheelchair facing right: light skin tone
+1F469 1F3FF 200D 1F9BD 200D 27A1; L2/23-030; woman in manual wheelchair facing right: light skin tone
+1F642 200D 2194; L2/23-034; head shaking horizontally
+1F642 200D 2195; L2/23-035; head shaking vertically
+1F6B6 200D 2640 200D 27A1; L2/23-030; woman walking facing right
+1F6B6 200D 27A1; L2/23-030; person walking facing right
+1F6B6 1F3FF 200D 2640 200D 27A1; L2/23-030; woman walking facing right: light skin tone
+1F6B6 1F3FF 200D 27A1; L2/23-030; person walking facing right: light skin tone
+1F9CE 200D 2640 200D 27A1; L2/23-030; woman kneeling facing right
+1F9CE 200D 27A1; L2/23-030; person kneeling facing right
+1F9CE 1F3FF 200D 2640 200D 27A1; L2/23-030; woman kneeling facing right: light skin tone
+1F9CE 1F3FF 200D 27A1; L2/23-030; person kneeling facing right: light skin tone
+1F9D1 200D 1F9AF 200D 27A1; L2/23-030; person with white cane facing right
+1F9D1 200D 1F9BC 200D 27A1; L2/23-030; person in motorized wheelchair facing right
+1F9D1 200D 1F9BD 200D 27A1; L2/23-030; person in manual wheelchair facing right
+1F9D1 200D 1F9D1 200D 1F9D2; L2/23-029; family: adult, adult, child
+1F9D1 200D 1F9D1 200D 1F9D2 200D 1F9D2; L2/23-029; family: adult, adult, child, child
+1F9D1 200D 1F9D2; L2/23-029; family: adult, child
+1F9D1 200D 1F9D2 200D 1F9D2; L2/23-029; family: adult, child, child
+1F9D1 1F3FF 200D 1F9AF 200D 27A1; L2/23-030; person with white cane facing right: light skin tone
+1F9D1 1F3FF 200D 1F9BC 200D 27A1; L2/23-030; person in motorized wheelchair facing right: light skin tone
+1F9D1 1F3FF 200D 1F9BD 200D 27A1; L2/23-030; person in manual wheelchair facing right: light skin tone
+
 # MISSING-2015
 1F441 FE0F 200D 1F5E8 FE0F; MISSING # 2015 (👁️‍🗨️) eye in speech bubble
 002A FE0F 20E3; MISSING # 2015 (*️⃣) keycap: *
