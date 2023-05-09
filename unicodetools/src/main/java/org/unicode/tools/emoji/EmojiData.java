@@ -140,6 +140,8 @@ public class EmojiData implements EmojiDataSource {
                             .addAll(Emoji.ZWJ_GENDER_MARKERS)
                             .addAll(Emoji.FULL_ZWJ_GENDER_MARKERS)
                             .freeze());
+    public static final UnicodeSetSpanner GENDER_SPANNER =
+            new UnicodeSetSpanner(new UnicodeSet(Emoji.GENDER_MARKERS).freeze());
     public static final UnicodeSetSpanner SKIN_SPANNER =
             new UnicodeSetSpanner(new UnicodeSet(MODIFIERS).freeze());
 
