@@ -100,7 +100,7 @@ a.headernav:hover {
     <tbody>
       <tr>
         <td>Revision</td>
-        <td><span class="changedspan">15.1.0 (draft 3)</span></td>
+        <td><span class="changedspan">15.1.0 (draft 4)</span></td>
       </tr>
       <tr>
         <td>Authors</td>
@@ -108,7 +108,7 @@ a.headernav:hover {
       </tr>
       <tr>
         <td>Date</td>
-        <td><span class="changedspan">2023-05-05</span></td>
+        <td><span class="changedspan">2023-05-09</span></td>
       </tr>
       <tr>
         <td>This Version</td>
@@ -563,11 +563,11 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
        <li>When names containing code points are lowercased to make them LCNAMEs, 
          the code point values remain uppercase. Such code points by convention 
          follow a hyphen and are the last element in the name.</li>
-       <li>Special lookahead logic prevents a 4 digit number for a standard, such 
-       as ISO 9999 from being misinterpreted as ISO CHAR. Currently recognized are 
-       &quot;ISO&quot;, &quot;DIN&quot;, &quot;IEC&quot; and &quot;S X&quot; as well as &quot;S C&quot; for the JIS X and JIS C series of 
-       standards. For other standards, or for four-digit years in a comment, use a 
-       NOTICE_LINE instead, which prevents expansion, or use '\&quot; to escape the digits.</li>
+    <li>Special limited <span class="changedspan">lookbehind</span> logic prevents a 4 digit number for a standard, such
+    as ISO 9999 from being misinterpreted as ISO CHAR. Currently recognized are
+    &quot;ISO&quot;, &quot;DIN&quot;, &quot;IEC&quot; and &quot;S X&quot; as well as &quot;S C&quot; for the JIS X and JIS C series of
+    standards. <span class="changedspan">(In addition &quot;EEE&quot; and &quot;S X&quot; are recognized for use with IEEE and KSC X standards. For the GB series of standards, &quot; GB&quot; is defined to prevent conversion to CHAR, but has no effect at the start of a line).</span> For other standards, or for four-digit years in a comment, use a
+    NOTICE_LINE instead, which prevents expansion, or use &quot;\&quot; to escape the digits.</li>
        <li>Single and double straight quotes in an EXPAND_LINE are replaced by curly quotes using English rules.
     Smart apostrophes are supported, but nested quotes are not.
        Single quotes can only be applied around a single word.</li>
@@ -582,7 +582,7 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
        <li>The hyphen in a character range CHAR-CHAR is replaced by an EN DASH on 
        output.</li>
        <li class="changed">In a STRING or LABEL, a Unicode character outside the range 
-        U+0000..U+002FF is displayed as is, with a glyph matching
+        U+0000..U+02FF is displayed as is, with a glyph matching
         the chart font, and not with the font that is otherwise defined for that element.</li>
        <li>The NamesList.txt file is encoded in UTF-8 if the <i>first line</i> is a 
        FILE_COMMENT containing the declaration &quot;UTF-8&quot; or any casemap variation 
@@ -619,6 +619,9 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
         some line types.</li>
         <li class="changed">In Section 2.2, added a note clarifying the font handling for characters
         outside the range U+0000..U+02FF occurring in NAME or LABEL elements.</li>
+        <li class="changed">Also in Section 2.2, updated the bullet about lookbehind logic
+            for identifying digit sequences that are part of identifiers for various standards, 
+            to include the detection of IEEE, KSC X, and GB standards.</li>
         <li class="changed">Added missing quotation marks around * in second expansion for
         NOTICE_LINE.</li>
         <li>Corrected and clarified the BNF statement of nameslist syntax.</li>
