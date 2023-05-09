@@ -1,5 +1,5 @@
 # PropList-15.1.0.txt
-# Date: 2023-04-26, 18:59:50 GMT
+# Date: 2023-05-09, 01:31:57 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1455,6 +1455,7 @@ AABB..AABC    ; Logical_Order_Exception # Lo   [2] TAI VIET VOWEL AUE..TAI VIET 
 1367..1368    ; Sentence_Terminal # Po   [2] ETHIOPIC QUESTION MARK..ETHIOPIC PARAGRAPH SEPARATOR
 166E          ; Sentence_Terminal # Po       CANADIAN SYLLABICS FULL STOP
 1735..1736    ; Sentence_Terminal # Po   [2] PHILIPPINE SINGLE PUNCTUATION..PHILIPPINE DOUBLE PUNCTUATION
+17D4..17D5    ; Sentence_Terminal # Po   [2] KHMER SIGN KHAN..KHMER SIGN BARIYOOSAN
 1803          ; Sentence_Terminal # Po       MONGOLIAN FULL STOP
 1809          ; Sentence_Terminal # Po       MONGOLIAN MANCHU FULL STOP
 1944..1945    ; Sentence_Terminal # Po   [2] LIMBU EXCLAMATION MARK..LIMBU QUESTION MARK
@@ -1519,7 +1520,7 @@ FF61          ; Sentence_Terminal # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 1BC9F         ; Sentence_Terminal # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA88         ; Sentence_Terminal # Po       SIGNWRITING FULL STOP
 
-# Total code points: 154
+# Total code points: 156
 
 # ================================================
 
