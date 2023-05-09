@@ -1,5 +1,5 @@
 # SentenceBreakProperty-15.1.0.txt
-# Date: 2023-04-26, 19:00:08 GMT
+# Date: 2023-05-09, 01:32:06 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2641,6 +2641,7 @@ FF0E          ; ATerm # Po       FULLWIDTH FULL STOP
 1367..1368    ; STerm # Po   [2] ETHIOPIC QUESTION MARK..ETHIOPIC PARAGRAPH SEPARATOR
 166E          ; STerm # Po       CANADIAN SYLLABICS FULL STOP
 1735..1736    ; STerm # Po   [2] PHILIPPINE SINGLE PUNCTUATION..PHILIPPINE DOUBLE PUNCTUATION
+17D4..17D5    ; STerm # Po   [2] KHMER SIGN KHAN..KHMER SIGN BARIYOOSAN
 1803          ; STerm # Po       MONGOLIAN FULL STOP
 1809          ; STerm # Po       MONGOLIAN MANCHU FULL STOP
 1944..1945    ; STerm # Po   [2] LIMBU EXCLAMATION MARK..LIMBU QUESTION MARK
@@ -2703,7 +2704,7 @@ FF61          ; STerm # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 1BC9F         ; STerm # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA88         ; STerm # Po       SIGNWRITING FULL STOP
 
-# Total code points: 151
+# Total code points: 153
 
 # ================================================
 
