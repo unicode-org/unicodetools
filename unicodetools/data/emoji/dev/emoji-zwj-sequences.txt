@@ -1,5 +1,5 @@
 # emoji-zwj-sequences.txt
-# Date: 2023-02-01, 02:18:10 GMT
+# Date: 2023-05-03, 23:48:43 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -269,10 +269,10 @@
 1F469 1F3FF 200D 1F91D 200D 1F469 1F3FD     ; RGI_Emoji_ZWJ_Sequence  ; women holding hands: dark skin tone, medium skin tone          # E12.0  [1] (👩🏿‍🤝‍👩🏽)
 1F469 1F3FF 200D 1F91D 200D 1F469 1F3FE     ; RGI_Emoji_ZWJ_Sequence  ; women holding hands: dark skin tone, medium-dark skin tone     # E12.0  [1] (👩🏿‍🤝‍👩🏾)
 1F9D1 200D 1F91D 200D 1F9D1                 ; RGI_Emoji_ZWJ_Sequence  ; people holding hands                                           # E12.0  [1] (🧑‍🤝‍🧑)
-1F9D1 200D 1F9D1 200D 1F9D2                 ; RGI_Emoji_ZWJ_Sequence  ; adult, adult, child                                            # E15.1  [1] (🧑‍🧑‍🧒)
-1F9D1 200D 1F9D1 200D 1F9D2 200D 1F9D2      ; RGI_Emoji_ZWJ_Sequence  ; adult, adult, child, child                                     # E15.1  [1] (🧑‍🧑‍🧒‍🧒)
+1F9D1 200D 1F9D1 200D 1F9D2                 ; RGI_Emoji_ZWJ_Sequence  ; family: adult, adult, child                                    # E15.1  [1] (🧑‍🧑‍🧒)
+1F9D1 200D 1F9D1 200D 1F9D2 200D 1F9D2      ; RGI_Emoji_ZWJ_Sequence  ; family: adult, adult, child, child                             # E15.1  [1] (🧑‍🧑‍🧒‍🧒)
 1F9D1 200D 1F9D2                            ; RGI_Emoji_ZWJ_Sequence  ; family: adult, child                                           # E15.1  [1] (🧑‍🧒)
-1F9D1 200D 1F9D2 200D 1F9D2                 ; RGI_Emoji_ZWJ_Sequence  ; adult, child, child                                            # E15.1  [1] (🧑‍🧒‍🧒)
+1F9D1 200D 1F9D2 200D 1F9D2                 ; RGI_Emoji_ZWJ_Sequence  ; family: adult, child, child                                    # E15.1  [1] (🧑‍🧒‍🧒)
 1F9D1 1F3FB 200D 2764 FE0F 200D 1F48B 200D 1F9D1 1F3FC; RGI_Emoji_ZWJ_Sequence; kiss: person, person, light skin tone, medium-light skin tone #E13.1[1] (🧑🏻‍❤️‍💋‍🧑🏼)
 1F9D1 1F3FB 200D 2764 FE0F 200D 1F48B 200D 1F9D1 1F3FD; RGI_Emoji_ZWJ_Sequence; kiss: person, person, light skin tone, medium skin tone #E13.1  [1] (🧑🏻‍❤️‍💋‍🧑🏽)
 1F9D1 1F3FB 200D 2764 FE0F 200D 1F48B 200D 1F9D1 1F3FE; RGI_Emoji_ZWJ_Sequence; kiss: person, person, light skin tone, medium-dark skin tone #E13.1[1] (🧑🏻‍❤️‍💋‍🧑🏾)

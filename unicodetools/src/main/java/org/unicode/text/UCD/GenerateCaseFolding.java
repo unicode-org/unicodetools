@@ -93,8 +93,8 @@ public class GenerateCaseFolding implements UCD_Types {
         for (int ch = 0; ch <= 0x10FFFF; ++ch) {
             Utility.dot(ch);
 
-            var normativeSCF = new StringBuffer();
-            var normativeCF = new StringBuffer();
+            var normativeSCF = new StringBuilder();
+            var normativeCF = new StringBuilder();
 
             try {
                 if (!charsUsed.get(ch)) {
@@ -185,8 +185,8 @@ public class GenerateCaseFolding implements UCD_Types {
             int ch,
             String type,
             String result,
-            StringBuffer normativeSCF,
-            StringBuffer normativeCF) {
+            StringBuilder normativeSCF,
+            StringBuilder normativeCF) {
         String comment = "";
         if (COMMENT_DIFFS) {
             final String lower = Default.ucd().getCase(UTF16.valueOf(ch), FULL, LOWER);

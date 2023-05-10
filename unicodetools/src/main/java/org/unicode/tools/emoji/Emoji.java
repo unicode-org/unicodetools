@@ -260,6 +260,9 @@ public class Emoji {
     public static final char EMOJI_VARIANT = '\uFE0F';
     public static final char TEXT_VARIANT = '\uFE0E';
 
+    public static final String RIGHTWARDS_ARROW = UTF16.valueOf(0x27A1) + EMOJI_VARIANT;
+    public static final String ZWJ_RIGHTWARDS_ARROW = JOINER_STR + RIGHTWARDS_ARROW;
+
     // HACK
     //    static final UnicodeSet GENDER_BASE = new
     // UnicodeSet("[👯💂👳👱⛹🏃🏄🏊-🏌👮👷💁💆💇🕵🙅-🙇🙋🙍🙎🚣 🚴-🚶🤹

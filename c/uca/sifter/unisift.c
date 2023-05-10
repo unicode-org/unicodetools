@@ -2,7 +2,7 @@
 // License & terms of use: https://www.unicode.org/copyright.html
 /*
 **      Unilib
-**      Copyright 2022
+**      Copyright 2023
 **      Ken Whistler, All rights reserved.
 */
 
@@ -44,12 +44,15 @@
  *   2021-Jul-06 Fix for 3 local array overflows for sprintf in getName().
  *   2021-Jul-12 Bump version number for memory leak fix in unisyms.c.
  *   2022-May-12 Updates for Unicode 15.0.
+ *   2023-Jan-31 Updates for Unicode 15.1.
+ *   2023-May-02 Tweaks for CJK Extension I.
+ *   2023-May-09 Adjust for use of 4 more variant secondaries.
  */
 
 /*
  * Strategy:
  *
- * Parse unidata.col.
+ * Parse unidata.txt.
  *
  * On first pass, extract fields:
  * 0 : Codepoint in 4-digit hex   
@@ -168,17 +171,17 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 15.0.0d1, 2022-05-12\n";
+static char versionString[] = "Sifter version 15.1.0d3, 2023-05-09\n";
 
-static char unidatafilename[] = "unidata-15.0.0.txt";
-static char allkeysfilename[] = "allkeys-15.0.0.txt";
-static char decompsfilename[] = "decomps-15.0.0.txt";
+static char unidatafilename[] = "unidata-15.1.0.txt";
+static char allkeysfilename[] = "allkeys-15.1.0.txt";
+static char decompsfilename[] = "decomps-15.1.0.txt";
 
-static char versionstring[] = "@version 15.0.0\n\n";
+static char versionstring[] = "@version 15.1.0\n\n";
 
-#define COPYRIGHTYEAR (2022)
+#define COPYRIGHTYEAR (2023)
 
-#define defaultInfile "unidata.col"
+#define defaultInfile "unidata.txt"
 
 char infile[PATHNAMELEN];
 char outfile1[] = "basekeys.txt"; /* sortable list of base keys */
@@ -281,6 +284,8 @@ int digitsInitialized;
 #define CJK_EXTE_LAST  (0x2CEA1)
 #define CJK_EXTF_FIRST (0x2CEB0)
 #define CJK_EXTF_LAST  (0x2EBE0)
+#define CJK_EXTI_FIRST (0x2EBF0)
+#define CJK_EXTI_LAST  (0x2EE4A)
 #define CJK_EXTG_FIRST (0x30000)
 #define CJK_EXTG_LAST  (0x3134A)
 #define CJK_EXTH_FIRST (0x31350)
@@ -532,6 +537,10 @@ WALNUTPTR getSiftDataPtr ( UInt32 i )
     {
         return ( &handata );
     }
+    else if ( i <= CJK_EXTI_LAST )
+    {
+        return ( &handata );
+    }
     else if ( ( i >= 0x2F800 ) && ( i <= 0x2FFFF ) )
     {
         return ( &(plane2[i - 0x2F800] ) );
@@ -603,6 +612,7 @@ char localbuf[20];
              ( ( c >= CJK_EXTD_FIRST ) && ( c <= CJK_EXTD_LAST ) ) ||
              ( ( c >= CJK_EXTE_FIRST ) && ( c <= CJK_EXTE_LAST ) ) ||
              ( ( c >= CJK_EXTF_FIRST ) && ( c <= CJK_EXTF_LAST ) ) ||
+             ( ( c >= CJK_EXTI_FIRST ) && ( c <= CJK_EXTI_LAST ) ) ||
              ( ( c >= CJK_EXTG_FIRST ) && ( c <= CJK_EXTG_LAST ) ) ||
              ( ( c >= CJK_EXTH_FIRST ) && ( c <= CJK_EXTH_LAST ) ) )
         {
@@ -1150,6 +1160,7 @@ UShort16 base;
               ( ( i >= CJK_EXTD_FIRST ) && ( i <= CJK_EXTD_LAST ) ) ||
               ( ( i >= CJK_EXTE_FIRST ) && ( i <= CJK_EXTE_LAST ) ) ||
               ( ( i >= CJK_EXTF_FIRST ) && ( i <= CJK_EXTF_LAST ) ) ||
+              ( ( i >= CJK_EXTI_FIRST ) && ( i <= CJK_EXTI_LAST ) ) ||
               ( ( i >= CJK_EXTG_FIRST ) && ( i <= CJK_EXTG_LAST ) ) || 
               ( ( i >= CJK_EXTH_FIRST ) && ( i <= CJK_EXTH_LAST ) ) )
     {
@@ -1616,11 +1627,13 @@ char buffer[128];
                 currentSecondary - 1, currentSecondary - FIRST_SECONDARY );
     fputs ( buffer, fd );
 /*
- * Currently the number of variant secondaries is fixed at the 5 variant marks
- * used, F8F0..F8F4. These will be the last 5 (highest) secondary weight values.
+ * Currently the number of variant secondaries is fixed at the 9 variant marks
+ * used, F8F0..F8F4, F8F9..F8FC. These will be the last 9 (highest) secondary weight values.
+ * NB: This line needs to be revisited if any additional variant secondaries are
+ * added to the input file.
  */
-    sprintf ( buffer, "# Variant secondaries:    %04X..%04X (%d)\n", currentSecondary - 5,
-                currentSecondary - 1, 5 );
+    sprintf ( buffer, "# Variant secondaries:    %04X..%04X (%d)\n", currentSecondary - 9,
+                currentSecondary - 1, 9 );
     fputs ( buffer, fd );
     sprintf ( buffer, "# Tertiary weight range:  0002..001F (30)\n" );
     fputs ( buffer, fd );
@@ -4457,11 +4470,11 @@ int doTrace;
  * unidata.txt. But having this hook here allows experimentation
  * with PUA for such effects.
  *
- * Note that the sifter reserves F8F0..F8F4 as pseudo-variant
+ * Note that the sifter reserves F8F0..F8F4, F8F9..F8FC as pseudo-variant
  * combining marks to allow for secondary weights not associated
  * with specific combining marks, and F8F5..F8F8 as generic combining marks,
  * to allow for collapsing of multiple different combining mark characters
- * onto certain generic secondary weights. F8F9..F8FF are reserved,
+ * onto certain generic secondary weights. F8FD..F8FF are reserved,
  * but currently unused. All values in the range F8F0..F8FF are
  * treated as non-spacing combining marks, and are intercepted much
  * earlier in the sift. They should not be used for experimentation

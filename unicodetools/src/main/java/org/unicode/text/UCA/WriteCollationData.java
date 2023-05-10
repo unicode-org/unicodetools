@@ -2133,6 +2133,10 @@ public class WriteCollationData {
             final int primary = ceCount < 1 ? 0 : CEList.getPrimary(output[0]);
             final int cat = Default.ucd().getCategory(i);
 
+            if (i == 0x20A7) {
+                // Starting with Unicode 15.1, U+20A7 PESETA SIGN sorts like "Pts".
+                continue;
+            }
             switch (cat) {
                 case UCD_Types.SPACE_SEPARATOR:
                 case UCD_Types.LINE_SEPARATOR:
