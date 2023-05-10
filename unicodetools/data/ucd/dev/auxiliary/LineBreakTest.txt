@@ -1,5 +1,5 @@
 # LineBreakTest-15.1.0.txt
-# Date: 2023-05-10, 15:23:27 GMT
+# Date: 2023-05-10, 15:52:50 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -9504,7 +9504,7 @@
 × 0065 × 25CC × 0302 × 25CC × 0323 ÷	#  × [0.3] LATIN SMALL LETTER E (AL) × [28.0] DOTTED CIRCLE (AL) × [9.0] COMBINING CIRCUMFLEX ACCENT (CM1_CM) × [28.0] DOTTED CIRCLE (AL) × [9.0] COMBINING DOT BELOW (CM1_CM) ÷ [0.3]
 × 25CC × 1B44 × 1B2C ÷	#  × [0.3] DOTTED CIRCLE (AL) × [28.22] BALINESE ADEG ADEG (VI) × [28.23] BALINESE LETTER YA (AK) ÷ [0.3]
 × 25CC × 1B44 × 25CC × 1B44 × 1B2C ÷	#  × [0.3] DOTTED CIRCLE (AL) × [28.22] BALINESE ADEG ADEG (VI) × [28.23] DOTTED CIRCLE (AL) × [28.22] BALINESE ADEG ADEG (VI) × [28.23] BALINESE LETTER YA (AK) ÷ [0.3]
-× 25CC × A9B3 ÷ A9C0 ÷ A9A0 ÷	#  × [0.3] DOTTED CIRCLE (AL) × [9.0] JAVANESE SIGN CECAK TELU (CM1_CM) ÷ [999.0] JAVANESE PANGKON (VI) ÷ [999.0] JAVANESE LETTER TA (AK) ÷ [0.3]
+× 25CC × A9B3 × A9C0 × A9A0 ÷	#  × [0.3] DOTTED CIRCLE (AL) × [9.0] JAVANESE SIGN CECAK TELU (CM1_CM) × [28.22] JAVANESE PANGKON (VI) × [28.23] JAVANESE LETTER TA (AK) ÷ [0.3]
 × 1F02C × 1F3FF ÷	#  × [0.3] <reserved-1F02C> (Other) × [30.22] EMOJI MODIFIER FITZPATRICK TYPE-6 (EM) ÷ [0.3]
 × 00A9 ÷ 1F3FF ÷	#  × [0.3] COPYRIGHT SIGN (AL) ÷ [999.0] EMOJI MODIFIER FITZPATRICK TYPE-6 (EM) ÷ [0.3]
 #

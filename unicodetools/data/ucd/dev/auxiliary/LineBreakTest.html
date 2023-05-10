@@ -7,7 +7,7 @@ td, th { vertical-align: top }
 <body bgcolor='#FFFFFF'>
 <h2>Line_Break Chart</h2>
 <p><b>Unicode Version:</b> 15.1.0</p>
-<p><b>Date:</b> 2023-05-10, 15:23:27 GMT</p>
+<p><b>Date:</b> 2023-05-10, 15:52:50 GMT</p>
 <p>This page illustrates the application of the Line_Break specification. The material here is informative, not normative.</p> <p>The first chart shows where breaks would appear between different sample characters or strings. The sample characters are chosen mechanically to represent the different properties used by the specification.</p><p>Each cell shows the break-status for the position between the character(s) in its row header and the character(s) in its column header. The × symbol indicates no break, while the ÷ symbol indicated a break. The cells with × are also shaded to make it easier to scan the table. For example, in the cell at the intersection of the row headed by “CR” and the column headed by “LF”, there is a × symbol, indicating that there is no break between CR and LF.</p>
 <p>Some column headers may be composed, reflecting “treat as” or “ignore” rules.</p>
 <p>If your browser handles titles (tooltips), then hovering the mouse over the row header will show a sample character of that type. Hovering over a column header will show the sample character, plus its abbreviated general category and script. Hovering over the intersected cells shows the rule number that produces the break-status. For example, hovering over the cell at the intersection of H3 and JT shows ×, with the rule 26.03. Checking below the table, rule 26.03 is “JT | H3 × JT”, which is the one that applies to that case. Note that a rule is invoked only when no lower-numbered rules have applied.</p>
@@ -122,10 +122,10 @@ td, th { vertical-align: top }
 <tr><th style='text-align:right'><a href='#r27.01' name='r27.01'>27.01</a></th><td style='text-align:right'>JL | JV | JT | H2 | H3 </td><td>×</td><td> PO</td></tr>
 <tr><th style='text-align:right'><a href='#r27.02' name='r27.02'>27.02</a></th><td style='text-align:right'>PR </td><td>×</td><td> JL | JV | JT | H2 | H3</td></tr>
 <tr><th style='text-align:right'><a href='#r28.0' name='r28.0'>28.0</a></th><td style='text-align:right'>(AL | HL) </td><td>×</td><td> (AL | HL)</td></tr>
-<tr><th style='text-align:right'><a href='#r28.21' name='r28.21'>28.21</a></th><td style='text-align:right'>AP </td><td>×</td><td> (AK | ◌ | AS)</td></tr>
-<tr><th style='text-align:right'><a href='#r28.22' name='r28.22'>28.22</a></th><td style='text-align:right'>(AK | ◌ | AS) </td><td>×</td><td> (VF | VI)</td></tr>
-<tr><th style='text-align:right'><a href='#r28.23' name='r28.23'>28.23</a></th><td style='text-align:right'>(AK | ◌ | AS) VI </td><td>×</td><td> (AK | ◌)</td></tr>
-<tr><th style='text-align:right'><a href='#r28.24' name='r28.24'>28.24</a></th><td style='text-align:right'>(AK | ◌ | AS) </td><td>×</td><td> (AK | ◌ | AS) VF</td></tr>
+<tr><th style='text-align:right'><a href='#r28.21' name='r28.21'>28.21</a></th><td style='text-align:right'>AP </td><td>×</td><td> (AK | DottedCircle | AS)</td></tr>
+<tr><th style='text-align:right'><a href='#r28.22' name='r28.22'>28.22</a></th><td style='text-align:right'>(AK | DottedCircle | AS) </td><td>×</td><td> (VF | VI)</td></tr>
+<tr><th style='text-align:right'><a href='#r28.23' name='r28.23'>28.23</a></th><td style='text-align:right'>(AK | DottedCircle | AS) VI </td><td>×</td><td> (AK | DottedCircle)</td></tr>
+<tr><th style='text-align:right'><a href='#r28.24' name='r28.24'>28.24</a></th><td style='text-align:right'>(AK | DottedCircle | AS) </td><td>×</td><td> (AK | DottedCircle | AS) VF</td></tr>
 <tr><th style='text-align:right'><a href='#r29.0' name='r29.0'>29.0</a></th><td style='text-align:right'>IS </td><td>×</td><td> (AL | HL)</td></tr>
 <tr><th style='text-align:right'><a href='#r30.01' name='r30.01'>30.01</a></th><td style='text-align:right'>(AL | HL | NU) </td><td>×</td><td> OP30</td></tr>
 <tr><th style='text-align:right'><a href='#r30.02' name='r30.02'>30.02</a></th><td style='text-align:right'>CP30 </td><td>×</td><td> (AL | HL | NU)</td></tr>
@@ -926,7 +926,7 @@ td, th { vertical-align: top }
 <span title='0.3'><span>&nbsp;</span>&nbsp;</span><span title='U+25CC DOTTED CIRCLE (AL)'>&#x25CC;</span><span title='28.22'><span>&nbsp;</span>&nbsp;</span><span title='U+1B44 BALINESE ADEG ADEG (VI)'>&#x1B44;</span><span title='28.23'><span>&nbsp;</span>&nbsp;</span><span title='U+25CC DOTTED CIRCLE (AL)'>&#x25CC;</span><span title='28.22'><span>&nbsp;</span>&nbsp;</span><span title='U+1B44 BALINESE ADEG ADEG (VI)'>&#x1B44;</span><span title='28.23'><span>&nbsp;</span>&nbsp;</span><span title='U+1B2C BALINESE LETTER YA (AK)'>&#x1B2C;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
 </font></td></tr>
 <tr><th style='text-align:right'><a href='#s263' name='s263'>263</a></th><td><font size='5'>
-<span title='0.3'><span>&nbsp;</span>&nbsp;</span><span title='U+25CC DOTTED CIRCLE (AL)'>&#x25CC;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span><span title='U+A9B3 JAVANESE SIGN CECAK TELU (CM1_CM)'>&#x25CC;&#xA9B3;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+A9C0 JAVANESE PANGKON (VI)'>&#xA9C0;</span><span title='999.0'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span><span title='U+A9A0 JAVANESE LETTER TA (AK)'>&#xA9A0;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
+<span title='0.3'><span>&nbsp;</span>&nbsp;</span><span title='U+25CC DOTTED CIRCLE (AL)'>&#x25CC;</span><span title='9.0'><span>&nbsp;</span>&nbsp;</span><span title='U+A9B3 JAVANESE SIGN CECAK TELU (CM1_CM)'>&#x25CC;&#xA9B3;</span><span title='28.22'><span>&nbsp;</span>&nbsp;</span><span title='U+A9C0 JAVANESE PANGKON (VI)'>&#xA9C0;</span><span title='28.23'><span>&nbsp;</span>&nbsp;</span><span title='U+A9A0 JAVANESE LETTER TA (AK)'>&#xA9A0;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
 </font></td></tr>
 <tr><th style='text-align:right'><a href='#s264' name='s264'>264</a></th><td><font size='5'>
 <span title='0.3'><span>&nbsp;</span>&nbsp;</span><span title='U+1F02C &lt;reserved-1F02C&gt; (Other)'>&#x1F02C;</span><span title='30.22'><span>&nbsp;</span>&nbsp;</span><span title='U+1F3FF EMOJI MODIFIER FITZPATRICK TYPE-6 (EM)'>&#x1F3FF;</span><span title='0.3'><span style='border-right: 1px solid blue'>&nbsp;</span>&nbsp;</span>
