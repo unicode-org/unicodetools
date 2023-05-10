@@ -107,6 +107,8 @@ $EM=\p{Line_Break=E_Modifier}
 $ZWJ_O=\p{Line_Break=ZWJ}
 $ZWJ=\p{Line_Break=ZWJ}
 
+$DottedCircle = ◌
+
 $CP30=[$CP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
 $OP30=[$OP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
 
@@ -181,6 +183,8 @@ $RI=($RI $X)
 $EB=($EB $X)
 $EM=($EM $X)
 $ZWJ=($ZWJ $X)
+
+$DottedCircle=($DottedCircle $X)
 
 $CP30=($CP30 $X)
 $OP30=($OP30 $X)
@@ -290,10 +294,10 @@ $AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
 # LB 28  Do not break between alphabetics (\"at\").
 28) ($AL | $HL) × ($AL | $HL)
 # LB28b Do not break inside the orthographic syllables of Brahmic scripts.
-28.21) $AP × ($AK | ◌ | $AS)
-28.22) ($AK | ◌ | $AS) × ($VF | $VI)
-28.23) ($AK | ◌ | $AS) $VI × ($AK | ◌)
-28.24) ($AK | ◌ | $AS) × ($AK | ◌ | $AS) $VF
+28.21) $AP × ($AK | $DottedCircle | $AS)
+28.22) ($AK | $DottedCircle | $AS) × ($VF | $VI)
+28.23) ($AK | $DottedCircle | $AS) $VI × ($AK | $DottedCircle)
+28.24) ($AK | $DottedCircle | $AS) × ($AK | $DottedCircle | $AS) $VF
 # LB 29  Do not break between numeric punctuation and alphabetics (\"e.g.\").
 29) $IS × ($AL | $HL)
 # LB 30  Do not break between letters, numbers or ordinary symbols and opening or closing punctuation.
