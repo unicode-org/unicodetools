@@ -1,5 +1,5 @@
 # unidata-15.1.0.txt
-# Date: 2023-05-02, 00:00:00 GMT [KW]
+# Date: 2023-05-09, 00:00:00 GMT [KW]
 # © 2023 Unicode®, Inc.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -9,7 +9,7 @@
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
 #
-# Version 15.1.0 draft 3 (Unicode Version: 15.1.0)
+# Version 15.1.0 draft 4 (Unicode Version: 15.1.0)
 # based on Unicode data file UnicodeData-15.1.0d2.txt
 # Ordering for Unicode 15.1
 #
@@ -1837,12 +1837,24 @@ DEFAULT
 # the problem of what to do with modified secondary
 # weights for characters without decompositions involving
 # diacritics.
+#
+# 2023-05-09 WARNING: Do not try to reorder or reconflate
+# these actual PUA code point assignments in this input file without very
+# careful correlated changes to the sifter code itself. These involve
+# special-case handling, and are distinct from the assignments
+# of F8F5..F8F8 above as generic combining marks.
+# It is a false economy of effort to try to get these particular
+# PUA assignments to all be code-point adjacent in a single run.
 
 F8F0;PSEUDO-COMBINING VARIANT MARK 1;Mn;;;;;;
 F8F1;PSEUDO-COMBINING VARIANT MARK 2;Mn;;;;;;
 F8F2;PSEUDO-COMBINING VARIANT MARK 3;Mn;;;;;;
 F8F3;PSEUDO-COMBINING VARIANT MARK 4;Mn;;;;;;
 F8F4;PSEUDO-COMBINING VARIANT MARK 5;Mn;;;;;;
+F8F9;PSEUDO-COMBINING VARIANT MARK 6;Mn;;;;;;
+F8FA;PSEUDO-COMBINING VARIANT MARK 7;Mn;;;;;;
+F8FB;PSEUDO-COMBINING VARIANT MARK 8;Mn;;;;;;
+F8FC;PSEUDO-COMBINING VARIANT MARK 9;Mn;;;;;;
 
 # **********************************************************
 
@@ -2307,10 +2319,18 @@ A95F;REJANG SECTION MARK;Po;;;;;;
 0027;APOSTROPHE;Po;;;;;;
 FF07;FULLWIDTH APOSTROPHE;Po;<wide> 0027;;;;;
 
-2018;LEFT SINGLE QUOTATION MARK;Pi;;;;;;
-2019;RIGHT SINGLE QUOTATION MARK;Pf;;;;;;
-201A;SINGLE LOW-9 QUOTATION MARK;Ps;;;;;;
-201B;SINGLE HIGH-REVERSED-9 QUOTATION MARK;Pi;;;;;;
+# Starting with UCA 15.1, variant quotation marks are
+# given artificial secondary weights, for better overall
+# collation behavior, including equivalences to Hebrew geresh/gershayim.
+# See L2/23-016, UTC 174-C4 and 174-A19.
+2018;LEFT SINGLE QUOTATION MARK;Pi;<sort> 0027 F8F0;;;;;
+2019;RIGHT SINGLE QUOTATION MARK;Pf;<sort> 0027 F8F1;;;;;
+201A;SINGLE LOW-9 QUOTATION MARK;Ps;<sort> 0027 F8F2;;;;;
+201B;SINGLE HIGH-REVERSED-9 QUOTATION MARK;Pi;<sort> 0027 F8F3;;;;;
+# Hebrew geresh is sorted as a variant of the single quote,
+# in part because it sometimes is represented in text with 0027,
+# instead of 05F3.
+05F3;HEBREW PUNCTUATION GERESH;Po;<sort> 0027 F8FC;;;;;
 
 2039;SINGLE LEFT-POINTING ANGLE QUOTATION MARK;Pi;;;;;;
 203A;SINGLE RIGHT-POINTING ANGLE QUOTATION MARK;Pf;;;;;;
@@ -2318,15 +2338,19 @@ FF07;FULLWIDTH APOSTROPHE;Po;<wide> 0027;;;;;
 0022;QUOTATION MARK;Po;;;;;;
 FF02;FULLWIDTH QUOTATION MARK;Po;<wide> 0022;;;;;
 
-201C;LEFT DOUBLE QUOTATION MARK;Pi;;;;;;
-201D;RIGHT DOUBLE QUOTATION MARK;Pf;;;;;;
-201E;DOUBLE LOW-9 QUOTATION MARK;Ps;;;;;;
-201F;DOUBLE HIGH-REVERSED-9 QUOTATION MARK;Pi;;;;;;
-2E42;DOUBLE LOW-REVERSED-9 QUOTATION MARK;Ps;;;;;;
+201C;LEFT DOUBLE QUOTATION MARK;Pi;<sort> 0022 F8F0;;;;;
+201D;RIGHT DOUBLE QUOTATION MARK;Pf;<sort> 0022 F8F1;;;;;
+201E;DOUBLE LOW-9 QUOTATION MARK;Ps;<sort> 0022 F8F2;;;;;
+201F;DOUBLE HIGH-REVERSED-9 QUOTATION MARK;Pi;<sort> 0022 F8F3;;;;;
+2E42;DOUBLE LOW-REVERSED-9 QUOTATION MARK;Ps;<sort> 0022 F8F4;;;;;
 
-301D;REVERSED DOUBLE PRIME QUOTATION MARK;Ps;;;;;;
-301E;DOUBLE PRIME QUOTATION MARK;Pe;;;;;;
-301F;LOW DOUBLE PRIME QUOTATION MARK;Pe;;;;;;
+301D;REVERSED DOUBLE PRIME QUOTATION MARK;Ps;<sort> 0022 F8F9;;;;;
+301E;DOUBLE PRIME QUOTATION MARK;Pe;<sort> 0022 F8FA;;;;;
+301F;LOW DOUBLE PRIME QUOTATION MARK;Pe;<sort> 0022 F8FB;;;;;
+# Hebrew gershyim is sorted as a variant of the double quote,
+# in part because it sometimes is represented in text with 0022,
+# instead of 05F4.
+05F4;HEBREW PUNCTUATION GERSHAYIM;Po;<sort> 0022 F8FC;;;;;
 
 00AB;LEFT-POINTING DOUBLE ANGLE QUOTATION MARK;Pi;;;;;;
 00BB;RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK;Pf;;;;;;
@@ -2669,8 +2693,6 @@ A67E;CYRILLIC KAVYKA;Po;;;;;;
 05C0;HEBREW PUNCTUATION PASEQ;Po;;;;;;
 05C3;HEBREW PUNCTUATION SOF PASUQ;Po;;;;;;
 05C6;HEBREW PUNCTUATION NUN HAFUKHA;Po;;;;;;
-05F3;HEBREW PUNCTUATION GERESH;Po;;;;;;
-05F4;HEBREW PUNCTUATION GERSHAYIM;Po;;;;;;
 
 070A;SYRIAC CONTRACTION;Po;;;;;;
 070B;SYRIAC HARKLEAN OBELUS;Po;;;;;;

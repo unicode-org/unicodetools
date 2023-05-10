@@ -46,6 +46,7 @@
  *   2022-May-12 Updates for Unicode 15.0.
  *   2023-Jan-31 Updates for Unicode 15.1.
  *   2023-May-02 Tweaks for CJK Extension I.
+ *   2023-May-09 Adjust for use of 4 more variant secondaries.
  */
 
 /*
@@ -170,7 +171,7 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 15.1.0d2, 2023-05-02\n";
+static char versionString[] = "Sifter version 15.1.0d3, 2023-05-09\n";
 
 static char unidatafilename[] = "unidata-15.1.0.txt";
 static char allkeysfilename[] = "allkeys-15.1.0.txt";
@@ -1626,11 +1627,13 @@ char buffer[128];
                 currentSecondary - 1, currentSecondary - FIRST_SECONDARY );
     fputs ( buffer, fd );
 /*
- * Currently the number of variant secondaries is fixed at the 5 variant marks
- * used, F8F0..F8F4. These will be the last 5 (highest) secondary weight values.
+ * Currently the number of variant secondaries is fixed at the 9 variant marks
+ * used, F8F0..F8F4, F8F9..F8FC. These will be the last 9 (highest) secondary weight values.
+ * NB: This line needs to be revisited if any additional variant secondaries are
+ * added to the input file.
  */
-    sprintf ( buffer, "# Variant secondaries:    %04X..%04X (%d)\n", currentSecondary - 5,
-                currentSecondary - 1, 5 );
+    sprintf ( buffer, "# Variant secondaries:    %04X..%04X (%d)\n", currentSecondary - 9,
+                currentSecondary - 1, 9 );
     fputs ( buffer, fd );
     sprintf ( buffer, "# Tertiary weight range:  0002..001F (30)\n" );
     fputs ( buffer, fd );
@@ -4467,11 +4470,11 @@ int doTrace;
  * unidata.txt. But having this hook here allows experimentation
  * with PUA for such effects.
  *
- * Note that the sifter reserves F8F0..F8F4 as pseudo-variant
+ * Note that the sifter reserves F8F0..F8F4, F8F9..F8FC as pseudo-variant
  * combining marks to allow for secondary weights not associated
  * with specific combining marks, and F8F5..F8F8 as generic combining marks,
  * to allow for collapsing of multiple different combining mark characters
- * onto certain generic secondary weights. F8F9..F8FF are reserved,
+ * onto certain generic secondary weights. F8FD..F8FF are reserved,
  * but currently unused. All values in the range F8F0..F8FF are
  * treated as non-spacing combining marks, and are intercepted much
  * earlier in the sift. They should not be used for experimentation
