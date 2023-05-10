@@ -1695,7 +1695,10 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         // L2/22-080R2, p. 20.
                         "e◌̂◌̣",
                         "◌᭄ᬬ",
-                        "◌᭄◌᭄ᬬ"
+                        "◌᭄◌᭄ᬬ",
+                        // A Javanese cecak telu (nukta) and a subjoined consonant on the same
+                        // dotted circle.
+                        "◌꦳꧀ꦠ",
                     });
 
             // Additions for Unicode 14 LB30b   [\p{Extended_Pictographic}&\p{Cn}] × EM
