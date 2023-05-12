@@ -171,6 +171,18 @@ In \P{U-1:GC=Cn} name=U-1:name
 # Case Folding Stability: Caseless matching of Unicode strings used for identifiers is stable.
 # For each string S containing only assigned characters in a given Unicode version, toCasefold(toNFKC(S)) under that version is identical to toCasefold(toNFKC(S)) under any later version of Unicode.
 In \P{U-1:gc=Cn} U-1:Case_Folding * U-1:toNFKC = Case_Folding * toNFKC
+# For each string S containing only characters with the property XID_Continue in a given Unicode version, toNFKC_Casefold(S) under that version is identical to toNFKC_Casefold(S) under any later version of Unicode.
+# If this is violated as a result of a change to Default_Ignorable_Code_Point, the derivation of NFKC_Casefold must special-case the affected characters to restore stability.
+In \p{U-1:XID_Continue} U-1:NFKC_Casefold = NFKC_Casefold
+# The following is not guaranteed by the stability policy, indeed it does not hold as far back as 5.2, but we might want to know about it:
+In \P{U-1:gc=Cn} U-1:NFKC_Casefold = NFKC_Casefold
+
+# Not yet a stability policy, but see https://www.unicode.org/L2/L2023/23005.htm#174-A11.
+# Simple counterparts of the above.
+In \P{U-1:gc=Cn} U-1:Simple_Case_Folding * U-1:toNFKC = Simple_Case_Folding * toNFKC
+In \p{U-1:XID_Continue} U-1:NFKC_Simple_Casefold = NFKC_Simple_Casefold
+# As above, this one would not be guaranteed by the stability policy.
+In \P{U-1:gc=Cn} U-1:NFKC_Simple_Casefold = NFKC_Simple_Casefold
 
 # Case Pair Stability: If two characters form a case pair in a version of Unicode, they will remain a case pair in each subsequent version of Unicode. If two characters do not form a case pair in a version of Unicode, they will never become a case pair in any subsequent version of Unicode.
 # TODO

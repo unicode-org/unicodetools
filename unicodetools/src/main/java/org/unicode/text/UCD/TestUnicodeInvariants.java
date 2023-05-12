@@ -354,7 +354,7 @@ public class TestUnicodeInvariants {
         }
 
         private static final UnicodeSet PROPCHARS =
-                new UnicodeSet("[a-zA-Z0-9\\:\\-\\_\\u0020\\p{pattern white space}]");
+                new UnicodeSet("[a-zA-Z0-9.\\:\\-\\_\\u0020\\p{pattern white space}]");
         private final List<FilterOrProp> propOrFilters = new ArrayList<FilterOrProp>();
 
         static UnicodeProperty of(
