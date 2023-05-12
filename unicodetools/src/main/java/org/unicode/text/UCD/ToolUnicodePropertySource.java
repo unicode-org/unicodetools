@@ -655,52 +655,34 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 // .addName("FNC")
                 );
 
-        add(
-                new UnicodeProperty.SimpleProperty() {
-                    @Override
-                    public String _getValue(int cp) {
-                        if (!ucd.isRepresented(cp)) {
-                            return null;
+        for (Normalizer nf : new Normalizer[] {nfd, nfc, nfkd, nfkc}) {
+            add(
+                    new UnicodeProperty.SimpleProperty() {
+                        @Override
+                        public String _getValue(int cp) {
+                            final String b = nf.normalize(cp);
+                            return b;
                         }
-                        final String b = nfd.normalize(cp);
-                        if (b.codePointAt(0) == cp && b.length() == Character.charCount(cp)) {
-                            return null;
+
+                        @Override
+                        public int getMaxWidth(boolean isShort) {
+                            return 5;
                         }
-                        return b;
-                    }
+                    }.setMain(
+                            "to" + nf.getName(),
+                            "to" + nf.getName(),
+                            UnicodeProperty.EXTENDED_STRING,
+                            version));
 
-                    @Override
-                    public int getMaxWidth(boolean isShort) {
-                        return 5;
-                    }
-                }.setMain("toNFD", "toNFD", UnicodeProperty.EXTENDED_STRING, version));
-
-        add(
-                new UnicodeProperty.SimpleProperty() {
-                    @Override
-                    public String _getValue(int cp) {
-                        if (!ucd.isRepresented(cp)) {
-                            return null;
-                        }
-                        final String b = nfc.normalize(cp);
-                        if (b.codePointAt(0) == cp && b.length() == Character.charCount(cp)) {
-                            return null;
-                        }
-                        return b;
-                    }
-
-                    @Override
-                    public int getMaxWidth(boolean isShort) {
-                        return 5;
-                    }
-                }.setMain("toNFC", "toNFC", UnicodeProperty.EXTENDED_STRING, version));
-
-        add(
-                new SimpleIsProperty("isNFD", "isNFD", version, getProperty("toNFD"), false)
-                        .setExtended());
-        add(
-                new SimpleIsProperty("isNFC", "isNFC", version, getProperty("toNFC"), false)
-                        .setExtended());
+            add(
+                    new SimpleIsProperty(
+                                    "is" + nf.getName(),
+                                    "is" + nf.getName(),
+                                    version,
+                                    getProperty("to" + nf.getName()),
+                                    false)
+                            .setExtended());
+        }
 
         for (byte foldingType : new byte[] {UCD_Types.FULL, UCD_Types.SIMPLE}) {
             String longName =
