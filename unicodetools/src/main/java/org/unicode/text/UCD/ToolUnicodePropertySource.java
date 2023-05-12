@@ -663,11 +663,6 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             final String b = nf.normalize(cp);
                             return b;
                         }
-
-                        @Override
-                        public int getMaxWidth(boolean isShort) {
-                            return 5;
-                        }
                     }.setMain(
                             "to" + nf.getName(),
                             "to" + nf.getName(),
