@@ -1,13 +1,10 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 15.1.0
-@@@+	U15M230507.lst
-	Unicode 15.1.0 names list, sixth delta.
+@@@+	U15M230512.lst
+	Unicode 15.1.0 names list, seventh delta.
 	Repertoire synched with UnicodeData-15.1.0d2.txt.
-	Added annotations for Lisu.
-	Added xrefs for 2268 and 2269.
-	Added annotation for 06DE.
-	Added header for CJK Extension I.
-	Extensive set of annotations per EDC review of public feedback.
+	Tweak use of notices to suppress year expansions.
+	Update annotations for 06F4..06F7.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -1521,7 +1518,7 @@
 	* African
 01A6	LATIN LETTER YR
 	* Old Norse
-@+	* from German Standard DIN 31624 and ISO 5426-2
+	* from German Standard DIN 31624 and ISO 5426-2
 	* lowercase is 0280
 01A7	LATIN CAPITAL LETTER TONE TWO
 	x (latin letter voiced laryngeal spirant - 1D24)
@@ -4533,13 +4530,12 @@
 06F2	EXTENDED ARABIC-INDIC DIGIT TWO
 06F3	EXTENDED ARABIC-INDIC DIGIT THREE
 06F4	EXTENDED ARABIC-INDIC DIGIT FOUR
-	* Persian has a different glyph than Sindhi and Urdu
+	* Urdu and Kashmiri have a different glyph than Persian
 06F5	EXTENDED ARABIC-INDIC DIGIT FIVE
-	* Persian, Sindhi, and Urdu share glyph different from Arabic
 06F6	EXTENDED ARABIC-INDIC DIGIT SIX
-	* Persian, Sindhi, and Urdu have glyphs different from Arabic
+	* Sindhi, Urdu, and Kashmiri have a different glyph than Persian
 06F7	EXTENDED ARABIC-INDIC DIGIT SEVEN
-	* Urdu and Sindhi have glyphs different from Arabic
+	* Sindhi, Urdu, and Kashmiri have a different glyph than Persian
 06F8	EXTENDED ARABIC-INDIC DIGIT EIGHT
 06F9	EXTENDED ARABIC-INDIC DIGIT NINE
 @		Extended Arabic letters
@@ -12047,9 +12043,9 @@
 	: 004C 0323
 1E37	LATIN SMALL LETTER L WITH DOT BELOW
 	* Indic transliteration
-	: 006C 0323
-@+	* see ISO 15919 on the use of dot below versus ring below in Indic transliteration
+	* see ISO 15919 on the use of dot below versus ring below in Indic transliteration
 	x (combining ring below - 0325)
+	: 006C 0323
 1E38	LATIN CAPITAL LETTER L WITH DOT BELOW AND MACRON
 	: 1E36 0304
 1E39	LATIN SMALL LETTER L WITH DOT BELOW AND MACRON
@@ -12130,9 +12126,9 @@
 	: 0052 0323
 1E5B	LATIN SMALL LETTER R WITH DOT BELOW
 	* Indic transliteration
-	: 0072 0323
-@+	* see ISO 15919 on the use of dot below versus ring below in Indic transliteration
+	* see ISO 15919 on the use of dot below versus ring below in Indic transliteration
 	x (combining ring below - 0325)
+	: 0072 0323
 1E5C	LATIN CAPITAL LETTER R WITH DOT BELOW AND MACRON
 	: 1E5A 0304
 1E5D	LATIN SMALL LETTER R WITH DOT BELOW AND MACRON
@@ -14787,7 +14783,7 @@
 	x (latin small letter o with stroke - 00F8)
 	x (empty set - 2205)
 2301	ELECTRIC ARROW
-@+	* from ISO 2047
+	* from ISO 2047
 	* symbol for End of Transmission
 2302	HOUSE
 2303	UP ARROWHEAD
@@ -14951,7 +14947,7 @@
 	x (reversed empty set - 29B0)
 234A	APL FUNCTIONAL SYMBOL DOWN TACK UNDERBAR
 	= up tack underbar
-@+	* preferred naming for APL tack symbols now follows the London Convention in ISO/IEC 13751:2000 (APL Extended)
+	* preferred naming for APL tack symbols now follows the London Convention in ISO/IEC 13751:2000 (APL Extended)
 	x (up tack - 22A5)
 234B	APL FUNCTIONAL SYMBOL DELTA STILE
 234C	APL FUNCTIONAL SYMBOL QUAD DOWN CARET
@@ -15019,19 +15015,19 @@
 237A	APL FUNCTIONAL SYMBOL ALPHA
 @		Graphics for control codes
 237B	NOT CHECK MARK
-@+	* from ISO 2047
+	* from ISO 2047
 	* symbol for Negative Acknowledge
 @		Miscellaneous technical
 237C	RIGHT ANGLE WITH DOWNWARDS ZIGZAG ARROW
 @		Graphics for control codes
 237D	SHOULDERED OPEN BOX
-@+	* from ISO 9995-7
+	* from ISO 9995-7
 	* keyboard symbol for No Break Space
 	x (open box - 2423)
 237E	BELL SYMBOL
-@+	* from ISO 2047
+	* from ISO 2047
 237F	VERTICAL LINE WITH MIDDLE DOT
-@+	* from ISO 2047
+	* from ISO 2047
 	* symbol for End of Medium
 @		Keyboard symbols from ISO 9995-7
 2380	INSERTION SYMBOL
@@ -15261,10 +15257,10 @@
 	x (large red circle - 1F534)
 @		Power symbols from ISO 7000:2012
 23FB	POWER SYMBOL
-@+	* IEC 5009 standby symbol
-@+	* IEEE 1621 power symbol
+	* IEC 5009 standby symbol
+	* IEEE 1621 power symbol
 23FC	POWER ON-OFF SYMBOL
-@+	* IEC 5010 power on-off symbol
+	* IEC 5010 power on-off symbol
 23FD	POWER ON SYMBOL
 	* use 2B58 for power off symbol
 	x (heavy circle - 2B58)
@@ -15321,11 +15317,11 @@
 2424	SYMBOL FOR NEWLINE
 @		Keyboard symbol
 2425	SYMBOL FOR DELETE FORM TWO
-@+	* from ISO 9995-7
+	* from ISO 9995-7
 	* keyboard symbol for undoable delete
 @		Specific symbol for control code
 2426	SYMBOL FOR SUBSTITUTE FORM TWO
-@+	* from ISO 2047
+	* from ISO 2047
 	x (arabic question mark - 061F)
 @@	2440	Optical Character Recognition	245F
 @		OCR-A
