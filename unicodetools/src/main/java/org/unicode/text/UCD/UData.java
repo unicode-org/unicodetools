@@ -185,7 +185,7 @@ class UData implements UCD_Types {
     }
 
     public void fleshOut() {
-        final String codeValue = UTF32.valueOf32(codePoint);
+        final String codeValue = codePoint >= 0 ? UTF16.valueOf(codePoint) : "\uFFFD";
         if (codePoint == 0x13A0) {
             int debug = 0;
         }
@@ -228,7 +228,30 @@ class UData implements UCD_Types {
         // case folding
 
         if (codePoint == 0x0130) {
-            simpleCaseFolding = UTF16.valueOf(codePoint);
+            simpleCaseFolding = codeValue;
+        }
+
+        // Additions that don't naturally fall out of the closure.
+        for (int i = 0; i < GenerateCaseFolding.simpleAdditions.length; i += 2) {
+            int c1 = GenerateCaseFolding.simpleAdditions[i];
+            if (c1 != codePoint) {
+                continue;
+            }
+            int c2 = GenerateCaseFolding.simpleAdditions[i + 1];
+            String s2 = UTF16.valueOf(c2);
+            if (simpleCaseFolding != null) {
+                if (simpleCaseFolding.equals(s2)) {
+                    break;
+                }
+                String s1 = UTF16.valueOf(c1);
+                throw new IllegalArgumentException(
+                        String.format(
+                                "UData: Trying to add scf(U+%04X)→U+%04X (%s→%s) "
+                                        + "but the source character already has a mapping to %s",
+                                c1, c2, s1, s2, simpleCaseFolding));
+            }
+            simpleCaseFolding = s2;
+            break;
         }
 
         if (codePoint >= 0x13A0 && codePoint <= 0x13F5) { // HACK for Cherokee Uppercase
