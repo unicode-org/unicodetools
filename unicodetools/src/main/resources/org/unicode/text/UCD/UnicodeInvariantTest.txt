@@ -169,7 +169,8 @@ In \P{U-1:GC=Cn} name=U-1:name
 # Covered in Property Stability Section
 
 # Case Folding Stability: Caseless matching of Unicode strings used for identifiers is stable.
-# TODO
+# For each string S containing only assigned characters in a given Unicode version, toCasefold(toNFKC(S)) under that version is identical to toCasefold(toNFKC(S)) under any later version of Unicode.
+In \P{U-1:gc=Cn} Case_Folding * toNFKC = U-1:Case_Folding * U-1:toNFKC
 
 # Case Pair Stability: If two characters form a case pair in a version of Unicode, they will remain a case pair in each subsequent version of Unicode. If two characters do not form a case pair in a version of Unicode, they will never become a case pair in any subsequent version of Unicode.
 # TODO
@@ -247,7 +248,9 @@ Let $gcMn_bcL = [\u0CBF\u0CC6\U00011A07\U00011A08\U00011C3F]
 ##########################
 
 # Stability: The Case_Folding property value is limited so that no string when case folded expands to more than 3× in length (measured in code units). 
-# TODO
+\p{cf=/..../} = []
+# Note: This bound is tight:
+\p{cf=/.../} ⊃ []
 
 # Case folding is not the same as lowercasing: Cherokee case folds to uppercase.
 In \p{sc=Cher} cf = uc
@@ -364,13 +367,17 @@ Let $NFC_Exceptions = [\U0001109A\U0001109C\U000110AB[\U0001112E\U0001112F \U000
 \p{CCC=0} ⊇ [^ \p{GC=Mc} \p{GC=Mn}]
 
 # Stability: Canonical and compatibility mappings (Decomposition_Mapping property values) are always in canonical order, and the resulting recursive decomposition will also be in canonical order. 
-# TODO
+# Note: We really mean the fixed point of Decomposition_Mapping on the left-hand side here.
+In \P{Decomposition_Mapping=} Decomposition_Mapping * Decomposition_Mapping * Decomposition_Mapping = toNFKD
 
 # Stability: Canonical mappings (Decomposition_Mapping property values) are always limited either to a single value or to a pair. The second character in the pair cannot itself have a canonical mapping. 
-# TODO
+[ \p{Decomposition_Type=Canonical} & \p{Decomposition_Mapping=/.../} ] = []
+# TODO: The second character in the pair cannot itself have a canonical mapping.
 
 # Stability: Canonical mappings (Decomposition_Mapping property values) are always limited so that no string when normalized to NFC expands to more than 3× in length (measured in code units). 
-# TODO
+\p{toNFC=/..../} = []
+# Note: This bound is tight:
+\p{toNFC=/.../} ⊃ []
 
 # Stability: Once a character is assigned, its Decomposition_Mapping will never change. 
 In \P{U-1:GC=Cn} dm=U-1:dm
