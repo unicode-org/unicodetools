@@ -235,6 +235,25 @@ public class GenerateCaseFolding implements UCD_Types {
 
     static int probeCh = 0x01f0;
     static String shower = UTF16.valueOf(probeCh);
+    // Public only for unicode.text.UCD.UData.
+    // We have two independent definitions of the case foldings.
+    // Eventually we should get rid of one of them, see
+    // https://github.com/unicode-org/unicodetools/issues/426.
+    public static final int[] simpleAdditions = {
+        // [175-A66] add Simple_Case_Folding mappings for U+1FD3, U+1FE3, and U+FB05, see L2/23-062;
+        // for Unicode Version 15.1.
+        // ΐ → ΐ
+        // GREEK SMALL LETTER IOTA WITH DIALYTIKA AND OXIA →
+        // GREEK SMALL LETTER IOTA WITH DIALYTIKA AND TONOS
+        0x1FD3, 0x0390,
+        // ΰ → ΰ
+        // GREEK SMALL LETTER UPSILON WITH DIALYTIKA AND OXIA →
+        // GREEK SMALL LETTER UPSILON WITH DIALYTIKA AND TONOS
+        0x1FE3, 0x03B0,
+        // ﬅ → ﬆ
+        // LATIN SMALL LIGATURE LONG S T → LATIN SMALL LIGATURE ST
+        0xFB05, 0xFB06
+    };
 
     private static Map<String, String> getCaseFolding(
             boolean full, boolean nfClose, String condition) throws java.io.IOException {
@@ -313,6 +332,26 @@ public class GenerateCaseFolding implements UCD_Types {
                     repChar.put(s2, rep);
                     charsUsed.set(s2.codePointAt(0));
                 }
+            }
+        }
+
+        // Additions that don't naturally fall out of the closure.
+        if (!full) {
+            for (int i = 0; i < simpleAdditions.length; i += 2) {
+                int c1 = simpleAdditions[i];
+                int c2 = simpleAdditions[i + 1];
+                String s1 = UTF16.valueOf(c1);
+                String s2 = UTF16.valueOf(c2);
+                String t = repChar.get(s1);
+                if (t != null) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "GenerateCaseFolding: "
+                                            + "Trying to add scf(U+%04X)→U+%04X (%s→%s) but "
+                                            + "the source character already has a mapping to %s",
+                                    c1, c2, s1, s2, t));
+                }
+                repChar.put(s1, s2);
             }
         }
         return repChar;
