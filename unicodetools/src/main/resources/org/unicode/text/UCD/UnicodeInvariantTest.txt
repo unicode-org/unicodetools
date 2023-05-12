@@ -170,7 +170,7 @@ In \P{U-1:GC=Cn} name=U-1:name
 
 # Case Folding Stability: Caseless matching of Unicode strings used for identifiers is stable.
 # For each string S containing only assigned characters in a given Unicode version, toCasefold(toNFKC(S)) under that version is identical to toCasefold(toNFKC(S)) under any later version of Unicode.
-In \P{U-1:gc=Cn} Case_Folding * toNFKC = U-1:Case_Folding * U-1:toNFKC
+In \P{U-1:gc=Cn} U-1:Case_Folding * U-1:toNFKC = Case_Folding * toNFKC
 
 # Case Pair Stability: If two characters form a case pair in a version of Unicode, they will remain a case pair in each subsequent version of Unicode. If two characters do not form a case pair in a version of Unicode, they will never become a case pair in any subsequent version of Unicode.
 # TODO
