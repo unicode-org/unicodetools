@@ -660,8 +660,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     new UnicodeProperty.SimpleProperty() {
                         @Override
                         public String _getValue(int cp) {
-                            final String b = nf.normalize(cp);
-                            return b;
+                            return nf.normalize(cp);
                         }
                     }.setMain(
                             "to" + nf.getName(),
