@@ -11,6 +11,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
+import com.ibm.icu.util.VersionInfo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
@@ -41,7 +42,6 @@ public class GenerateIdna {
 
     // Utility.WORKSPACE_DIRECTORY + "draft/reports/tr46/data";
     private static final int MAX_STATUS_LENGTH = "disallowed_STD3_mapped".length();
-    private static final boolean TESTING = true;
     private static final boolean DISALLOW_BIDI_CONTROLS = true;
     public static UnicodeSet U32;
     public static UnicodeSet U40;
@@ -66,6 +66,8 @@ public class GenerateIdna {
             case 0:
                 break;
             case 1:
+                // TODO: This does not work due to static initializers which
+                // hardcode the latest version.
                 Default.setUCD(args[0]);
                 break;
             default:
@@ -392,7 +394,9 @@ public class GenerateIdna {
                 new UnicodeSet("[\u200C \u200D \u00DF \u03C2]").freeze(); // \u200C \u200D
 
         /**
-         * 1. If the code point is in the deviation set the status is deviation and the mapping
+         * Step 6: Produce the initial status and mapping values
+         *
+         * <p>1. If the code point is in the deviation set the status is deviation and the mapping
          * value is the base mapping value for that code point<br>
          * 2. Otherwise, if (a) the code point is in the base exclusion set, or if (b) any code
          * point in its base mapping value is not in the base valid set the status is disallowed and
@@ -411,9 +415,6 @@ public class GenerateIdna {
         final R2<IdnaType, String> validResult = Row.of(IdnaType.valid, (String) null);
 
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-            if (TESTING && cp == 0x10C7) {
-                System.out.println("??TEST");
-            }
             final String cpString = UTF16.valueOf(cp);
             Row.R2<IdnaType, String> result;
             String baseMappingValue = baseMapping.get(cp);
@@ -440,16 +441,25 @@ public class GenerateIdna {
             // if (0==(cp&0xFFF)) System.out.println(cp + " = " + result);
             mappingTable.put(cp, result);
         }
+
+        // Step 7: Produce the final status and mapping values
         final UnicodeSet excluded = new UnicodeSet();
+        VersionInfo unicodeVersion = VersionInfo.getInstance(Default.ucdVersion());
+        boolean is15OrEarlier = unicodeVersion.compareTo(VersionInfo.UNICODE_15_0) <= 0;
         do {
             excluded.clear();
             final UnicodeSet validSet = mappingTable.getSet(validResult);
             final UnicodeSet disallowedSet = mappingTable.getSet(disallowedResult);
             final UnicodeSet ignoredSet = mappingTable.getSet(ignoredResult);
-            for (final String valid : validSet) {
-                final String nfd = Default.nfd().normalize(valid);
-                if (!validSet.containsAll(nfd)) {
-                    excluded.add(valid);
+            // Unicode 15.1 & later: No longer check whether the NFD is valid.
+            // [175-A86] In IdnaMappingTable.txt, change U+2260 (≠), U+226E (≮), and U+226F (≯)
+            // from disallowed_STD3_valid to valid, for Unicode 15.1.
+            if (is15OrEarlier) {
+                for (final String valid : validSet) {
+                    final String nfd = Default.nfd().normalize(valid);
+                    if (!validSet.containsAll(nfd)) {
+                        excluded.add(valid);
+                    }
                 }
             }
             final UnicodeSet mappedSet =
@@ -459,22 +469,41 @@ public class GenerateIdna {
                             .removeAll(ignoredSet);
             for (final String mapped : mappedSet) {
                 final R2<IdnaType, String> mappedValue = mappingTable.get(mapped);
-                final String mapResult = mappedValue.get1();
-                final String nfd = Default.nfd().normalize(mapResult);
-                if (!validSet.containsAll(nfd)) {
+                String mapResult = mappedValue.get1();
+                // Unicode 15.1 & later: No longer check whether the NFD is valid, see above.
+                if (is15OrEarlier) {
+                    mapResult = Default.nfd().normalize(mapResult);
+                }
+                if (!validSet.containsAll(mapResult)) {
                     excluded.add(mapped);
                 }
             }
             mappingTable.putAll(excluded, disallowedResult);
-            System.out.println(STD3 + " ***InvalidDecomposition Exclusion: " + excluded);
+            System.out.println(STD3 + " ***Step 7 Invalid Exclusion: " + excluded);
         } while (excluded.size() != 0);
 
         // detect errors, where invalid character doesn't have at least one invalid in decomposition
-        final UnicodeSet invalidSet = mappingTable.getSet(disallowedResult).freeze();
-        for (final String valid : invalidSet) {
-            final String nfd = Default.nfd().normalize(valid);
+        final UnicodeSet invalidSet =
+                mappingTable
+                        .getSet(disallowedResult)
+                        // Skip the base exclusion set:
+                        // The five CJK compatibility ideographs whose normalization changed
+                        // are not actually "suspicious".
+                        .removeAll(baseExclusionSet)
+                        .freeze();
+        for (final String invalid : invalidSet) {
+            final String nfd = Default.nfd().normalize(invalid);
             if (invalidSet.containsNone(nfd)) {
-                System.out.println("SUSPICIOUS: " + valid + "\t" + nfd);
+                System.out.println(
+                        "SUSPICIOUS: "
+                                + invalid
+                                + " ("
+                                + Utility.hex(invalid)
+                                + ")\t"
+                                + nfd
+                                + " ("
+                                + Utility.hex(nfd)
+                                + ")\t");
             }
         }
 
@@ -488,9 +517,6 @@ public class GenerateIdna {
         final UnicodeSet mappingChanged = new UnicodeSet();
         for (final UnicodeSetIterator it = new UnicodeSetIterator(U32); it.next(); ) {
             final int i = it.codepoint;
-            if (TESTING && i == 0x41) {
-                System.out.println("??TEST??");
-            }
             final IdnaType type = Idna2003Data.types.get(i);
             switch (type) {
                 case disallowed:
