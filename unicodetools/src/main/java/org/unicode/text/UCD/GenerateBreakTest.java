@@ -1699,6 +1699,30 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         // A Javanese cecak telu (nukta) and a subjoined consonant on the same
                         // dotted circle.
                         "◌꦳꧀ꦠ",
+                        // Quotation mark examples from L2/23-063.  All spaces are U+0020 SPACE.
+                        // Swedish.
+                        "”Jo, når’n da ha gått ett stöck te, så kommer’n te e å, å i åa ä e ö.”\n"
+                                + "”Vasa”, sa’n.\n"
+                                + "”Å i åa ä e ö”, sa ja.",
+                        "En gång undföll det honom dock, medan han släpade på det våta "
+                                + "höet: »Varför är höet redan torrt och inkört där borta på "
+                                + "Solbacken, och här hos oss är det vått?» — »Därför att de ha "
+                                + "oftare sol än vi.»",
+                        // French.
+                        "vous me heurtez, vous dites : « Excusez-moi, » et vous croyez que cela "
+                                + "suffit ?",
+                        "j’ai dit : « Excusez-moi. » Il me semble donc que c’est assez.",
+                        "Et vise au front mon père en criant : « Caramba ! »\u2028"
+                                + "Le coup passa si près, que le chapeau tomba\u2028"
+                                + "Et que le cheval fit un écart en arrière.\u2028"
+                                + "« Donne-lui tout de même à boire, » dit mon père.",
+                        "« Je me suis vengé […]\u2029"
+                                + "» On ne me verra ni parler ni écrire ; vous aurez eu mes "
+                                + "dernières paroles comme mes dernières adorations.\u2029"
+                                + "» J. S. »",
+                        // Vietnamese. Note that here we have a full stop *after* the quotation
+                        // marks.
+                        "— Không ai hãm bao giờ mà bây giờ hãm, thế nó mới « mới »."
                     });
 
             // Additions for Unicode 14 LB30b   [\p{Extended_Pictographic}&\p{Cn}] × EM
@@ -1823,7 +1847,15 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         "1,",
                         "1.\u2060",
                     },
-                    new String[] {});
+                    new String[] {
+                        // Last word of and end of ayah 1, from
+                        // https://en.wikipedia.org/wiki/Al-Fatiha.
+                        "ٱلرَّحِيمِ ۝١",
+                        // TUS Figure 9-9, 1st line, preceded by the word “psalm”.
+                        "ܡܙܡܘܪܐ ܏ܝܗ",
+                        // TUS Figure 9-9, 3rd line (abbreviation of ܬܫܒܘܚܬܐ).
+                        "ܬ܏ܫܒܘ",
+                    });
             System.out.println();
             Sampler WB = new Sampler("WB");
             this.extraSingleSamples.addAll(

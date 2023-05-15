@@ -107,12 +107,21 @@ $EM=\p{Line_Break=E_Modifier}
 $ZWJ_O=\p{Line_Break=ZWJ}
 $ZWJ=\p{Line_Break=ZWJ}
 
+$QU_Pi=[$QU & \p{gc=Pi}]
+$QU_Pf=[$QU & \p{gc=Pf}]
+
 $DottedCircle = ◌
 
 $CP30=[$CP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
 $OP30=[$OP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
 
 $ExtPictUnassigned=[\p{Extended_Pictographic}&\p{gc=Cn}]
+
+# Some rules refer to the start and end of text.  We could just use a literal ^ for sot, but naming
+# it as in the spec makes it easier to compare.  The parser will eat (and choke on) $, so we play a
+# stupid trick instead.
+$sot=^
+$eot=(?!.)
 
 # SPECIAL EXTENSIONS
 
@@ -184,6 +193,9 @@ $EB=($EB $X)
 $EM=($EM $X)
 $ZWJ=($ZWJ $X)
 
+$QU_Pi=($QU_Pi $X)
+$QU_Pf=($QU_Pf $X)
+
 $DottedCircle=($DottedCircle $X)
 
 $CP30=($CP30 $X)
@@ -235,8 +247,13 @@ $AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
 ##	13.04) $Spec4_ × $SY
 #LB 14  Do not break after \u2018[\u2019, even after spaces.
 14) $OP $SP* ×
-# LB 15  Do not break within \u2018\"[\u2019, even with intervening spaces.
-15) $QU $SP* × $OP
+# LB 15a Do not break after an unresolved initial punctuation that lies at the start of the line,
+# after a space, after opening punctuation, or after an unresolved quotation mark, even after
+# spaces.
+15.11) ( $sot | $BK | $CR | $LF | $NL | $OP | $QU | $GL | $SP ) $QU_Pi $SP* ×
+# LB 15b Do not break before an unresolved final punctuation that lies at the end of the line, before
+# a space, before a prohibited break, or before an unresolved quotation mark, even before spaces.
+15.21) × $QU_Pf ( $SP | $GL | $WJ | $CL | $QU | $CP | $EX | $IS | $SY | $BK | $CR | $LF | $NL | $eot )
 # LB 16  Do not break between closing punctuation and a nonstarter (lb=NS), even with intervening spaces.
 16) ($CL | $CP) $SP* × $NS
 # LB 17  Do not break within \u2018\u2014\u2014\u2019, even with intervening spaces.
@@ -304,7 +321,7 @@ $AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
 30.01) ($AL | $HL | $NU) × $OP30
 30.02) $CP30 × ($AL | $HL | $NU)
 # LB 30a  Break between two Regional Indicators if and only if there is an even number of them before the point being considered.
-30.11) ^ ($RI $RI)* $RI × $RI
+30.11) $sot ($RI $RI)* $RI × $RI
 30.12) [^$RI] ($RI $RI)* $RI × $RI
 30.13) $RI ÷ $RI
 # LB 30b Do not break between an emoji base (or potential emoji) and an emoji modifier.
