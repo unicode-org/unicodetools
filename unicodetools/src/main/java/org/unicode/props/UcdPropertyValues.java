@@ -1436,7 +1436,10 @@ public class UcdPropertyValues {
     // kZVariant
     public enum Line_Break_Values implements Named {
         Ambiguous("AI"),
+        Aksara("AK"),
         Alphabetic("AL"),
+        Aksara_Prebase("AP"),
+        Aksara_Start("AS"),
         Break_Both("B2"),
         Break_After("BA"),
         Break_Before("BB"),
@@ -1474,6 +1477,8 @@ public class UcdPropertyValues {
         Surrogate("SG"),
         Space("SP"),
         Break_Symbols("SY"),
+        Virama_Final("VF"),
+        Virama("VI"),
         Word_Joiner("WJ"),
         Unknown("XX"),
         ZWSpace("ZW"),
