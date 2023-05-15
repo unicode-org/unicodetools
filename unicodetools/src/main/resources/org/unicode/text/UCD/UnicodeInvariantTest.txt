@@ -578,6 +578,15 @@ Let $Uax31Removals = [\-\u058A\u0F0B\u2010\u30A0\u30FB\u2E2F\u17B4-\u17B5]
 
 [\p{Alpha}\p{WB=Extend}\p{WB=FO}\p{WB=LE}\p{WB=ML}\p{WB=MB}\p{WB=EX}-$WBRemovals-$WBRemovals13] = [$gcAllLetters $gcAllMarks \p{gc=Nl}\p{gc=Pc}-$Uax31Removals]
 
+# Don’t break words after GCB=Prepend characters (that would be within a
+# grapheme cluster).
+# GCB=Prepend should not be WB=Format, PRI469 [Fri Jan 6 18:26:42 CST 2023].
+# We prevent that by excluding GCB=Prepend from Format.
+# We need to make sure that we remember to put them somewhere else appropriate
+# for their usage, so we check that they are not left in WB=Other.
+[\p{GCB=Prepend}&\p{WB=Format}] = []
+[\p{GCB=Prepend}&\p{WB=Other}] = []
+
 ##########################
 # Derivations
 ##########################

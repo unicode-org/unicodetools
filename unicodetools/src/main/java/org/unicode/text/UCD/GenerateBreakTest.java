@@ -1833,7 +1833,15 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         "1,",
                         "1.\u2060",
                     },
-                    new String[] {});
+                    new String[] {
+                        // Last word of and end of ayah 1, from
+                        // https://en.wikipedia.org/wiki/Al-Fatiha.
+                        "ٱلرَّحِيمِ ۝١",
+                        // TUS Figure 9-9, 1st line, preceded by the word “psalm”.
+                        "ܡܙܡܘܪܐ ܏ܝܗ",
+                        // TUS Figure 9-9, 3rd line (abbreviation of ܬܫܒܘܚܬܐ).
+                        "ܬ܏ܫܒܘ",
+                    });
             System.out.println();
             Sampler WB = new Sampler("WB");
             this.extraSingleSamples.addAll(

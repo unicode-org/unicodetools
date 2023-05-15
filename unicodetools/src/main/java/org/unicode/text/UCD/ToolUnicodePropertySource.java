@@ -1167,6 +1167,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
 
             final UnicodeProperty cat = getProperty("General_Category");
             final UnicodeProperty script = getProperty("Script");
+            final UnicodeProperty gcb = getProperty("Grapheme_Cluster_Break");
             // unicodeMap.put(0x200B, "Other");
 
             unicodeMap.putAll(new UnicodeSet("[\"]"), "Double_Quote");
@@ -1194,7 +1195,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             .remove(0x200C)
                             .remove(0x200D)
                             .remove(0x200B)
-                            .removeAll(tags),
+                            .removeAll(tags)
+                            // 174-CXX.
+                            .removeAll(gcb.getSet("Prepend")),
                     "Format");
             unicodeMap.putAll(
                     script.getSet("Katakana")
@@ -1225,7 +1228,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                             "[\\u02C2-\\u02C5\\u02D2-\\u02D7\\u02DE\\u02DF\\u02ED\\u02EF-\\u02FF\\uA720\\uA721\\uA789\\uA78A\\uAB5B]"))
                             // Armenian punctuation marks that occur within words; see
                             // http://www.unicode.org/L2/L2018/18115.htm#155-C3
-                            .addAll(new UnicodeSet("[\\u055B\\u055C\\u055E]")),
+                            .addAll(new UnicodeSet("[\\u055B\\u055C\\u055E]"))
+                            // 174-CXX.
+                            .add(0x070F),
                     "ALetter");
             unicodeMap.putAll(
                     new UnicodeSet("[\\u00B7\\u0387\\u05F4\\u2027\\u003A\\uFE13\\uFE55\\uFF1A]"),
@@ -1277,7 +1282,13 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     "MidNumLet");
 
             unicodeMap.putAll(
-                    new UnicodeSet(lineBreak.getSet("Numeric")).remove(0x066C).add(0xFF10, 0xFF19),
+                    new UnicodeSet(lineBreak.getSet("Numeric"))
+                            .remove(0x066C)
+                            .add(0xFF10, 0xFF19)
+                            // 174-CXX.
+                            .add(
+                                    new UnicodeSet(
+                                            "[\u0600-\u0605\u06DD\u0890\u0891\u08E2\\U000110BD\\U000110CD]")),
                     "Numeric"); // .remove(0x387)
             unicodeMap.putAll(
                     cat.getSet("Connector_Punctuation")
