@@ -372,7 +372,6 @@ Property:	Default_Ignorable_Code_Point
 # which is also XID_Continue=Yes, then exceptions must be put
 # in place to ensure that the NFKC_CF mapping value for that
 # existing character does not change.
-#
 
 Property:	Grapheme_Extend
 # Derived Property: Grapheme_Extend
