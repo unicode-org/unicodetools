@@ -102,7 +102,7 @@ script from an up-to-date repo workspace.
 The script copies the set of the .../dev/ data files for an alpha snapshot
 from a unicodetools workspace to a target folder with the layout of https://www.unicode.org/Public/draft/ .
 
-Go into the “draft” target folder and zip its contents. Send the zip file to Rick for posting.
+Send the resulting zip file to Rick for posting to https://www.unicode.org/Public/draft/ .
 Ask Rick to add other files that are not tracked in the unicodetools repo:
 *   Unihan.zip to .../draft/UCD/ucd
 *   alpha charts to .../draft/UCD/charts
@@ -112,9 +112,17 @@ We simply use the “draft” folder and the file-internal time stamps for versi
 
 ### Publish a beta snapshot
 
-TODO: Write a script like /pub/copy-beta-to-draft.sh that will be run on the unicode.org server
-and copy the set of the .../dev/ data files for a beta snapshot
-from a unicodetools workspace to the location behind https://www.unicode.org/Public/draft/ .
+For the beta review, publish all of the data files, and the charts.
+
+Run the [pub/copy-beta-to-draft.sh](https://github.com/unicode-org/unicodetools/blob/main/pub/copy-beta-to-draft.sh)
+script from an up-to-date repo workspace.
+The script copies the set of the .../dev/ data files for a beta snapshot
+from a unicodetools workspace to a target folder with the layout of https://www.unicode.org/Public/draft/ .
+
+Send the resulting zip file to Rick for posting to https://www.unicode.org/Public/draft/ .
+Ask Rick to add other files that are not tracked in the unicodetools repo:
+*   Unihan.zip to .../draft/UCD/ucd
+*   beta charts to .../draft/UCD/charts
 
 ### Publish a release
 
