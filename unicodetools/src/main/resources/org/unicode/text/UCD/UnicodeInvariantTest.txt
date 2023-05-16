@@ -137,6 +137,8 @@
 Let $foo = \p{ccc=9}
 Let $fii = \p{toNFD=/$foo/}
 
+Let $codepoints = [\u0000-\U00010FFF]
+
 Let $gcAllPunctuation = \p{gc=/_Punctuation/}
 $gcAllPunctuation = [\p{gc=Close_Punctuation}\p{gc=Connector_Punctuation}}\p{gc=Dash_Punctuation}\p{gc=Final_Punctuation}\p{gc=Initial_Punctuation}\p{gc=Open_Punctuation}\p{gc=Other_Punctuation}]
 
@@ -289,6 +291,11 @@ Let $gcMn_bcL = [\u0CBF\u0CC6\U00011A07\U00011A08\U00011C3F]
 # Case folding is not the same as lowercasing: Cherokee case folds to uppercase.
 In \p{sc=Cher} cf = uc
 In \p{sc=Cher} scf = suc
+
+# Simple and full case foldings define the same equivalence classes on code points.
+# This used not to be true, but was rectified by
+# https://www.unicode.org/cgi-bin/GetL2Ref.pl?175-C19.
+EquivalencesOf $codepoints Case_Folding ⇔ Simple_Case_Folding
 
 # Stability: All characters with the Lowercase property and all characters with the Uppercase property have the Alphabetic property. 
 \p{Alphabetic} ⊃ [\p{Uppercase} \p{Lowercase}]
