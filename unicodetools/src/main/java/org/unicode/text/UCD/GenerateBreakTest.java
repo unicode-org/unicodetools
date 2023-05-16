@@ -1396,15 +1396,13 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             sampleEmoji + zwj + sampleEmoji,
                             "a" + zwj + sampleEmoji,
                             sampleEXP + zwj + sampleEXP,
-                            "a" + zwj + sampleEXP
+                            "a" + zwj + sampleEXP,
 
                             // zwj + GCB.get("EBG") + GCB.get("E_Modifier"),
                             // zwj + GCB.get("Glue_After_Zwj"),
                             // zwj + GCB.get("EBG"),
                             // GCB.get("EBG") + GCB.get("EBG")
-                            ));
-            this.extraSingleSamples.addAll(
-                    Arrays.asList(
+
                             "क" + "त",
                             "क" + "\u094D" + "त",
                             "क" + "\u094D" + "\u094D" + "त",
