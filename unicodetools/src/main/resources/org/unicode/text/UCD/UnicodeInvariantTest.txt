@@ -83,8 +83,8 @@
 # On both sides, <props> is a composition of properties and filters, as in an “In” line.
 #
 #   Example:
-#       Case-insensitive equivalence of ASCII identifiers can be done indifferently by uppercasing
-#       or lowercasing.
+#       The case-insensitive comparison of ASCII identifiers defined by comparing their uppercase
+#       mappings is equivalent to that defined by comparing their lowercase mappings:
 #          EquivalencesOf \p{Block=Basic Latin} Uppercase_Mapping ⇔ Lowercase_Mapping
 #       This is not true in the broader Latin script (in fact neither implication holds).
 #          EquivalencesOf \p{Script=Latin} Uppercase_Mapping ⇎ Lowercase_Mapping
