@@ -16,6 +16,7 @@ import java.text.ParseException;
 import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -239,6 +240,8 @@ public class TestUnicodeInvariants {
                                 showMapLine(line, pp);
                             } else if (line.startsWith("Show")) {
                                 showLine(line, pp);
+                            } else if (line.startsWith("EquivalencesOf")) {
+                                equivalencesLine(line, pp);
                             } else {
                                 testLine(line, pp);
                             }
@@ -270,6 +273,166 @@ public class TestUnicodeInvariants {
         UnicodeProperty property1;
         boolean shouldBeEqual;
         UnicodeProperty property2;
+    }
+
+    private static void equivalencesLine(String line, ParsePosition pp) throws ParseException {
+        pp.setIndex("EquivalencesOf".length());
+        final UnicodeSet domain = new UnicodeSet(line, pp, symbolTable);
+        final var leftProperty = CompoundProperty.of(LATEST_PROPS, line, pp);
+        scan(PATTERN_WHITE_SPACE, line, pp, true);
+        char relationOperator = line.charAt(pp.getIndex());
+        pp.setIndex(pp.getIndex() + 1);
+        final var rightProperty = CompoundProperty.of(LATEST_PROPS, line, pp);
+
+        boolean leftShouldImplyRight = false;
+        boolean rightShouldImplyLeft = false;
+
+        boolean negated = true;
+        switch (relationOperator) {
+            case '⇍':
+                relationOperator = '⇐';
+                break;
+            case '⇎':
+                relationOperator = '⇔';
+                break;
+            case '⇏':
+                relationOperator = '⇒';
+                break;
+            default:
+                negated = false;
+        }
+
+        switch (relationOperator) {
+            case '⇐':
+                rightShouldImplyLeft = true;
+                break;
+            case '⇔':
+                leftShouldImplyRight = true;
+                rightShouldImplyLeft = true;
+                break;
+            case '⇒':
+                leftShouldImplyRight = true;
+                break;
+            default:
+                throw new ParseException(line, pp.getIndex());
+        }
+        final var leftValues = new HashMap<String, String>();
+        final var rightValues = new HashMap<String, String>();
+        final var leftClasses = new HashMap<String, UnicodeSet>();
+        final var rightClasses = new HashMap<String, UnicodeSet>();
+        for (String element : domain) {
+            final var leftValue = new StringBuilder();
+            final var rightValue = new StringBuilder();
+            for (int codepoint : element.codePoints().toArray()) {
+                leftValue.append(leftProperty.getValue(codepoint));
+                rightValue.append(rightProperty.getValue(codepoint));
+            }
+            leftValues.put(element, leftValue.toString());
+            rightValues.put(element, rightValue.toString());
+            leftClasses.computeIfAbsent(leftValue.toString(), (k) -> new UnicodeSet()).add(element);
+            rightClasses
+                    .computeIfAbsent(rightValue.toString(), (k) -> new UnicodeSet())
+                    .add(element);
+        }
+        final UnicodeSet remainingDomain = domain.cloneAsThawed();
+        final var leftImpliesRightCounterexamples = new ArrayList<String>();
+        final var rightImpliesLeftCounterexamples = new ArrayList<String>();
+        while (!remainingDomain.isEmpty()) {
+            String representative = remainingDomain.iterator().next();
+            UnicodeSet leftEquivalenceClass = leftClasses.get(leftValues.get(representative));
+            UnicodeSet rightEquivalenceClass = rightClasses.get(rightValues.get(representative));
+            if (leftShouldImplyRight && !rightEquivalenceClass.containsAll(leftEquivalenceClass)) {
+                final String counterexampleRhs =
+                        leftEquivalenceClass
+                                .cloneAsThawed()
+                                .removeAll(rightEquivalenceClass)
+                                .iterator()
+                                .next();
+                leftImpliesRightCounterexamples.add(
+                        "\t\t"
+                                + leftProperty.getNameAliases()
+                                + "("
+                                + representative
+                                + ") \t=\t "
+                                + leftProperty.getNameAliases()
+                                + "("
+                                + counterexampleRhs
+                                + ") \t=\t "
+                                + leftValues.get(representative)
+                                + " \tbut\t "
+                                + rightValues.get(representative)
+                                + " \t=\t "
+                                + rightProperty.getNameAliases()
+                                + "("
+                                + representative
+                                + ") \t≠\t "
+                                + rightProperty.getNameAliases()
+                                + "("
+                                + counterexampleRhs
+                                + ") \t=\t "
+                                + rightValues.get(counterexampleRhs));
+            }
+            if (rightShouldImplyLeft && !leftEquivalenceClass.containsAll(rightEquivalenceClass)) {
+                final String counterexampleRhs =
+                        rightEquivalenceClass
+                                .cloneAsThawed()
+                                .removeAll(leftEquivalenceClass)
+                                .iterator()
+                                .next();
+                rightImpliesLeftCounterexamples.add(
+                        leftValues.get(representative)
+                                + " \t=\t "
+                                + leftProperty.getNameAliases()
+                                + "("
+                                + representative
+                                + ") \t≠\t "
+                                + leftProperty.getNameAliases()
+                                + "("
+                                + counterexampleRhs
+                                + ") \t=\t "
+                                + rightValues.get(counterexampleRhs)
+                                + " \teven though\t "
+                                + rightValues.get(representative)
+                                + " \t=\t "
+                                + rightProperty.getNameAliases()
+                                + "("
+                                + representative
+                                + ") \t=\t "
+                                + rightProperty.getNameAliases()
+                                + "("
+                                + counterexampleRhs
+                                + ")\t\t");
+            }
+            remainingDomain.removeAll(
+                    leftEquivalenceClass.cloneAsThawed().retainAll(rightEquivalenceClass));
+        }
+        final var counterexamples = new ArrayList<>(leftImpliesRightCounterexamples);
+        counterexamples.addAll(rightImpliesLeftCounterexamples);
+        boolean failure = counterexamples.isEmpty() == negated;
+        if (failure) {
+            ++testFailureCount;
+            printErrorLine("Test Failure", Side.START, testFailureCount);
+        }
+        if (counterexamples.isEmpty()) {
+            println("There are no counterexamples to " + relationOperator + ".");
+        } else {
+            if (leftShouldImplyRight) {
+                println("The implication ⇒ is " + leftImpliesRightCounterexamples.isEmpty() + ".");
+            }
+            if (rightShouldImplyLeft) {
+                println("The implication ⇐ is " + rightImpliesLeftCounterexamples.isEmpty() + ".");
+            }
+        }
+        out.println(failure ? "<table class='f'>" : "<table>");
+        for (String counterexample : counterexamples) {
+            out.println("<tr><td>");
+            out.println(toHTML.transform(counterexample).replace("\t", "</td><td>"));
+            out.println("</tr></td>");
+        }
+        out.println("</table>");
+        if (failure) {
+            printErrorLine("Test Failure", Side.END, testFailureCount);
+        }
     }
 
     private static void inLine(ParsePosition pp, String line) throws ParseException {
@@ -800,6 +963,9 @@ public class TestUnicodeInvariants {
             for (final UnicodeSetIterator it = new UnicodeSetIterator(valueSet);
                     it.nextRange() && rangeLimit > 0;
                     --rangeLimit) {
+                if (it.codepoint == it.IS_STRING) {
+                    continue; // TODO(egg): Show strings too.
+                }
                 shorter.add(it.codepoint, it.codepointEnd);
             }
             abbreviated = totalSize - shorter.size();

@@ -74,6 +74,26 @@
 #       It then tests that against the result of filtering out NSM characters from X, then getting the BIDI_Class.
 #
 ##########################
+# Equivalences of <unicodeSet> <props> (⇐|⇔|⇒|⇍|⇎|⇏) <props>
+# 
+# Verify that the equivalence of elements of <unicodeSet> up to the left <props> is is implied,
+# equivalent, or implies equivalence up to the right <props>, or verify the negation of these
+# relations.
+#
+# <props> is as in an In line.
+#
+#   Example:
+           Let $codePoints = [\u0000-\U00010FFF]
+           EquivalencesOf \p{Block=Basic Latin} Uppercase_Mapping ⇔ Lowercase_Mapping
+           EquivalencesOf \p{Script=Latin} Uppercase_Mapping ⇔ Lowercase_Mapping
+#       Equivalence of code points up to case folding is the same as equivalence up to simple case
+#       folding. 
+#       This is not true for strings:
+           Let $strings = [ {Straße} {STRASSE} {ᾠδή} {ὨΙΔΉ} {...} ]
+           EquivalencesOf $strings Case_Folding ⇎ Simple_Case_Folding
+           EquivalencesOf $strings Case_Folding ⇏ Simple_Case_Folding
+           EquivalencesOf $strings Case_Folding ⇐ Simple_Case_Folding
+##########################
 # There is new syntax for testing UnicodeMaps
 #
 #  Map <unicodeMap> <relation> <unicodeMap>
@@ -776,7 +796,9 @@ $punct  ⊇ [[\u0021-\u007E] - [0-9 A-Z a-z]]
 # We should be able to use:
 # Map {\m{Case_Folding}&\P{U-1:gc=Cn}} = {\m{*Case_Folding}]}
 
-Map {\m{Case_Folding}&[^\p{age=14.0}]} = {\m{*Case_Folding}&[^\p{age=14.0}]}
+# Commented out because excruciatingly slow, and tested systematically above with an In line.
+# TODO(macchiati): Make this faster.
+# Map {\m{Case_Folding}&[^\p{age=14.0}]} = {\m{*Case_Folding}&[^\p{age=14.0}]}
 
 # The following are 'red flag' tests, just so that we review the changes and make sure they are ok.
 
