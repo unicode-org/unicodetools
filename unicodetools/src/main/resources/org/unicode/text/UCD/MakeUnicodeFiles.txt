@@ -363,6 +363,16 @@ Property:	Default_Ignorable_Code_Point
 #  - FFF9..FFFB (Interlinear annotation format characters)
 #  - 13430..13440 (Egyptian hieroglyph format characters)
 #  - Prepended_Concatenation_Mark (Exceptional format characters that should be visible)
+#
+# There are currently no stability guarantees for DICP. However, the
+# values of DICP interact with the derivation of XID_Continue
+# and NFKC_CF, for which there are stability guarantees.
+# Maintainers of this property should note that in the
+# unlikely case that the DICP value changes for an existing character
+# which is also XID_Continue=Yes, then exceptions must be put
+# in place to ensure that the NFKC_CF mapping value for that
+# existing character does not change.
+#
 
 Property:	Grapheme_Extend
 # Derived Property: Grapheme_Extend
