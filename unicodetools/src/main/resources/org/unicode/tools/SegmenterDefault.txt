@@ -18,8 +18,9 @@ $T=\p{Grapheme_Cluster_Break=T}
 $LV=\p{Grapheme_Cluster_Break=LV}
 $LVT=\p{Grapheme_Cluster_Break=LVT}
 # Note: The following may overlap with the above
-#CLDR: $Virama=[\p{Gujr}\p{sc=Telu}\p{sc=Mlym}\p{sc=Orya}\p{sc=Beng}\p{sc=Deva}&\p{Indic_Syllabic_Category=Virama}]
-#CLDR: $LinkingConsonant=[\p{Gujr}\p{sc=Telu}\p{sc=Mlym}\p{sc=Orya}\p{sc=Beng}\p{sc=Deva}&\p{Indic_Syllabic_Category=Consonant}]
+$ConjunctLinkingScripts=[\p{Gujr}\p{sc=Telu}\p{sc=Mlym}\p{sc=Orya}\p{sc=Beng}\p{sc=Deva}]
+$ConjunctLinker=[$ConjunctLinkingScripts&\p{Indic_Syllabic_Category=Virama}]
+$LinkingConsonant=[$ConjunctLinkingScripts&\p{Indic_Syllabic_Category=Consonant}]
 ##	$E_Base=\p{Grapheme_Cluster_Break=E_Base}
 ##	$E_Modifier=\p{Grapheme_Cluster_Break=E_Modifier}
 $ExtPict=\p{Extended_Pictographic}
@@ -39,12 +40,12 @@ $ExtCccZwj=[[$Extend-\p{ccc=0}] $ZWJ]
 7) ( $LV | $V ) 	× 	( $V | $T )
 8) ( $LVT | $T)    ×  $T
 ## Do not break before extending characters or ZWJ.
-##	9) × 	($Extend | $ZWJ | $Virama)
+##	9) × 	($Extend | $ZWJ | $ConjunctLinker)
 9) × 	($Extend | $ZWJ)
 # Only for extended grapheme clusters: Do not break before SpacingMarks, or after Prepend characters.
 9.1) × 	$SpacingMark
 9.2) $Prepend  ×
-##CLDR: 9.3) $LinkingConsonant $ExtCccZwj* $Virama $ExtCccZwj*  × $LinkingConsonant
+9.3) $LinkingConsonant $ExtCccZwj* $ConjunctLinker $ExtCccZwj*  × $LinkingConsonant
 ## Do not break within emoji modifier sequences or emoji zwj sequences.
 ##	10) $E_Base $Extend* × $E_Modifier
 11) $ExtPict $Extend* $ZWJ × $ExtPict

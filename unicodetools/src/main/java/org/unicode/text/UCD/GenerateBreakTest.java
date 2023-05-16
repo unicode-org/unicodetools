@@ -1396,27 +1396,23 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             sampleEmoji + zwj + sampleEmoji,
                             "a" + zwj + sampleEmoji,
                             sampleEXP + zwj + sampleEXP,
-                            "a" + zwj + sampleEXP
+                            "a" + zwj + sampleEXP,
 
                             // zwj + GCB.get("EBG") + GCB.get("E_Modifier"),
                             // zwj + GCB.get("Glue_After_Zwj"),
                             // zwj + GCB.get("EBG"),
                             // GCB.get("EBG") + GCB.get("EBG")
-                            ));
-            if (seg.target == Segmenter.Target.FOR_CLDR) {
-                this.extraSingleSamples.addAll(
-                        Arrays.asList(
-                                "क" + "त",
-                                "क" + "\u094D" + "त",
-                                "क" + "\u094D" + "\u094D" + "त",
-                                "क" + "\u094D" + zwj + "त",
-                                "क" + "\u093C" + zwj + "\u094D" + "त",
-                                "क" + "\u093C" + "\u094D" + zwj + "त",
-                                "क" + "\u094D" + "त" + '\u094D' + "य",
-                                "क" + "\u094D" + "a",
-                                "a" + "\u094D" + "त",
-                                "?" + "\u094D" + "त"));
-            }
+
+                            "क" + "त",
+                            "क" + "\u094D" + "त",
+                            "क" + "\u094D" + "\u094D" + "त",
+                            "क" + "\u094D" + zwj + "त",
+                            "क" + "\u093C" + zwj + "\u094D" + "त",
+                            "क" + "\u093C" + "\u094D" + zwj + "त",
+                            "क" + "\u094D" + "त" + '\u094D' + "य",
+                            "क" + "\u094D" + "a",
+                            "a" + "\u094D" + "त",
+                            "?" + "\u094D" + "त"));
         }
     }
 
