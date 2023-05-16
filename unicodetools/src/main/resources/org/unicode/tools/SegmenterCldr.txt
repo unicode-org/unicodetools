@@ -20,7 +20,7 @@ $LVT=\p{Grapheme_Cluster_Break=LVT}
 # Note: The following may overlap with the above
 $ConjunctLinkingScripts=[\p{Gujr}\p{sc=Telu}\p{sc=Mlym}\p{sc=Orya}\p{sc=Beng}\p{sc=Deva}]
 $ConjunctLinker=[$ConjunctLinkingScripts&\p{Indic_Syllabic_Category=Virama}]
-$LinkingConsonant=[\$ConjunctLinkingScripts&\p{Indic_Syllabic_Category=Consonant}]
+$LinkingConsonant=[$ConjunctLinkingScripts&\p{Indic_Syllabic_Category=Consonant}]
 ##	$E_Base=\p{Grapheme_Cluster_Break=E_Base}
 ##	$E_Modifier=\p{Grapheme_Cluster_Break=E_Modifier}
 $ExtPict=\p{Extended_Pictographic}
