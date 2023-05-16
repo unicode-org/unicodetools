@@ -74,23 +74,25 @@
 #       It then tests that against the result of filtering out NSM characters from X, then getting the BIDI_Class.
 #
 ##########################
-# Equivalences of <unicodeSet> <props> (⇐|⇔|⇒|⇍|⇎|⇏) <props>
+# EquivalencesOf <unicodeSet> <props> (⇐|⇔|⇒|⇍|⇎|⇏) <props>
 # 
 # Verify that the equivalence of elements of <unicodeSet> up to the left <props> is is implied,
 # equivalent, or implies equivalence up to the right <props>, or verify the negation of these
 # relations.
 #
-# <props> is as in an In line.
+# On both sides, <props> is a composition of properties and filters, as in an “In” line.
 #
 #   Example:
-           Let $codePoints = [\u0000-\U00010FFF]
+#       Case-insensitive equivalence of ASCII identifiers can be done indifferently by uppercasing
+#       or lowercasing.
            EquivalencesOf \p{Block=Basic Latin} Uppercase_Mapping ⇔ Lowercase_Mapping
-           EquivalencesOf \p{Script=Latin} Uppercase_Mapping ⇔ Lowercase_Mapping
-#       Equivalence of code points up to case folding is the same as equivalence up to simple case
-#       folding. 
-#       This is not true for strings:
+#       This is not true in the broader Latin script (in fact neither implication holds).
+           EquivalencesOf \p{Script=Latin} Uppercase_Mapping ⇎ Lowercase_Mapping
+#       The simple and full case foldings do not define the same equivalence classes on these
+#       strings:
            Let $strings = [ {Straße} {STRASSE} {ᾠδή} {ὨΙΔΉ} {...} ]
            EquivalencesOf $strings Case_Folding ⇎ Simple_Case_Folding
+#       Specifically, full case folding is coarser than simple case folding.
            EquivalencesOf $strings Case_Folding ⇏ Simple_Case_Folding
            EquivalencesOf $strings Case_Folding ⇐ Simple_Case_Folding
 ##########################

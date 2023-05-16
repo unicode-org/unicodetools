@@ -334,77 +334,98 @@ public class TestUnicodeInvariants {
                     .computeIfAbsent(rightValue.toString(), (k) -> new UnicodeSet())
                     .add(element);
         }
-        final UnicodeSet remainingDomain = domain.cloneAsThawed();
+        UnicodeSet remainingDomain = domain.cloneAsThawed();
         final var leftImpliesRightCounterexamples = new ArrayList<String>();
         final var rightImpliesLeftCounterexamples = new ArrayList<String>();
-        while (!remainingDomain.isEmpty()) {
-            String representative = remainingDomain.iterator().next();
-            UnicodeSet leftEquivalenceClass = leftClasses.get(leftValues.get(representative));
-            UnicodeSet rightEquivalenceClass = rightClasses.get(rightValues.get(representative));
-            if (leftShouldImplyRight && !rightEquivalenceClass.containsAll(leftEquivalenceClass)) {
-                final String counterexampleRhs =
-                        leftEquivalenceClass
-                                .cloneAsThawed()
-                                .removeAll(rightEquivalenceClass)
-                                .iterator()
-                                .next();
-                leftImpliesRightCounterexamples.add(
-                        "\t\t"
-                                + leftProperty.getNameAliases()
-                                + "("
-                                + representative
-                                + ") \t=\t "
-                                + leftProperty.getNameAliases()
-                                + "("
-                                + counterexampleRhs
-                                + ") \t=\t "
-                                + leftValues.get(representative)
-                                + " \tbut\t "
-                                + rightValues.get(representative)
-                                + " \t=\t "
-                                + rightProperty.getNameAliases()
-                                + "("
-                                + representative
-                                + ") \t≠\t "
-                                + rightProperty.getNameAliases()
-                                + "("
-                                + counterexampleRhs
-                                + ") \t=\t "
-                                + rightValues.get(counterexampleRhs));
+
+        // For the implication ⇒, produce at most one counterexample per equivalence class of the
+        // left-hand-side equivalence relation: we do not want an example per pair of Unicode code
+        // points!
+        if (leftShouldImplyRight) {
+            while (!remainingDomain.isEmpty()) {
+                String representative = remainingDomain.iterator().next();
+                UnicodeSet leftEquivalenceClass = leftClasses.get(leftValues.get(representative));
+                UnicodeSet rightEquivalenceClass =
+                        rightClasses.get(rightValues.get(representative));
+                if (leftShouldImplyRight
+                        && !rightEquivalenceClass.containsAll(leftEquivalenceClass)) {
+                    final String counterexampleRhs =
+                            leftEquivalenceClass
+                                    .cloneAsThawed()
+                                    .removeAll(rightEquivalenceClass)
+                                    .iterator()
+                                    .next();
+                    leftImpliesRightCounterexamples.add(
+                            "\t\t"
+                                    + leftProperty.getNameAliases()
+                                    + "("
+                                    + representative
+                                    + ") \t=\t "
+                                    + leftProperty.getNameAliases()
+                                    + "("
+                                    + counterexampleRhs
+                                    + ") \t=\t "
+                                    + leftValues.get(representative)
+                                    + " \tbut\t "
+                                    + rightValues.get(representative)
+                                    + " \t=\t "
+                                    + rightProperty.getNameAliases()
+                                    + "("
+                                    + representative
+                                    + ") \t≠\t "
+                                    + rightProperty.getNameAliases()
+                                    + "("
+                                    + counterexampleRhs
+                                    + ") \t=\t "
+                                    + rightValues.get(counterexampleRhs));
+                }
+                remainingDomain.removeAll(leftEquivalenceClass);
             }
-            if (rightShouldImplyLeft && !leftEquivalenceClass.containsAll(rightEquivalenceClass)) {
-                final String counterexampleRhs =
-                        rightEquivalenceClass
-                                .cloneAsThawed()
-                                .removeAll(leftEquivalenceClass)
-                                .iterator()
-                                .next();
-                rightImpliesLeftCounterexamples.add(
-                        leftValues.get(representative)
-                                + " \t=\t "
-                                + leftProperty.getNameAliases()
-                                + "("
-                                + representative
-                                + ") \t≠\t "
-                                + leftProperty.getNameAliases()
-                                + "("
-                                + counterexampleRhs
-                                + ") \t=\t "
-                                + rightValues.get(counterexampleRhs)
-                                + " \teven though\t "
-                                + rightValues.get(representative)
-                                + " \t=\t "
-                                + rightProperty.getNameAliases()
-                                + "("
-                                + representative
-                                + ") \t=\t "
-                                + rightProperty.getNameAliases()
-                                + "("
-                                + counterexampleRhs
-                                + ")\t\t");
+        }
+
+        // Likewise, for the implication ⇐, produce at most one counterexample per equivalence class
+        // of the
+        // right-hand-side equivalence relation.
+        remainingDomain = domain.cloneAsThawed();
+        if (rightShouldImplyLeft) {
+            while (!remainingDomain.isEmpty()) {
+                String representative = remainingDomain.iterator().next();
+                UnicodeSet leftEquivalenceClass = leftClasses.get(leftValues.get(representative));
+                UnicodeSet rightEquivalenceClass =
+                        rightClasses.get(rightValues.get(representative));
+                if (!leftEquivalenceClass.containsAll(rightEquivalenceClass)) {
+                    final String counterexampleRhs =
+                            rightEquivalenceClass
+                                    .cloneAsThawed()
+                                    .removeAll(leftEquivalenceClass)
+                                    .iterator()
+                                    .next();
+                    rightImpliesLeftCounterexamples.add(
+                            leftValues.get(representative)
+                                    + " \t=\t "
+                                    + leftProperty.getNameAliases()
+                                    + "("
+                                    + representative
+                                    + ") \t≠\t "
+                                    + leftProperty.getNameAliases()
+                                    + "("
+                                    + counterexampleRhs
+                                    + ") \t=\t "
+                                    + rightValues.get(counterexampleRhs)
+                                    + " \teven though\t "
+                                    + rightValues.get(representative)
+                                    + " \t=\t "
+                                    + rightProperty.getNameAliases()
+                                    + "("
+                                    + representative
+                                    + ") \t=\t "
+                                    + rightProperty.getNameAliases()
+                                    + "("
+                                    + counterexampleRhs
+                                    + ")\t\t");
+                }
+                remainingDomain.removeAll(rightEquivalenceClass);
             }
-            remainingDomain.removeAll(
-                    leftEquivalenceClass.cloneAsThawed().retainAll(rightEquivalenceClass));
         }
         final var counterexamples = new ArrayList<>(leftImpliesRightCounterexamples);
         counterexamples.addAll(rightImpliesLeftCounterexamples);
