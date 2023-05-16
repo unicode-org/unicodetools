@@ -1685,6 +1685,20 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         "\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDF8\uD83C\uDDEA",
                         "\uD83C\uDDF7\uD83C\uDDFA\u200B\uD83C\uDDF8\uD83C\uDDEA",
                         "\u05D0-\u05D0",
+                        // Examples from L2/22-080R2, pp. 10 sq.
+                        // NOTE(egg): This one does not use escape sequences,
+                        // since it is in Kawi, which is outside the BMP.
+                        "𑼦𑼂𑼭𑼦𑽂𑼦𑼱𑽁",
+                        "\u1BD7\u1BEC\u1BD2\u1BEA\u1BC9\u1BF3\u1BC2\u1BE7\u1BC9\u1BF3",
+                        "\u1B18\u1B27\u1B44\u200C\u1B2B\u1B38\u1B31\u1B44\u1B1D\u1B36",
+                        // Dotted circle behaviour.  Balinese examples from
+                        // L2/22-080R2, p. 20.
+                        "e◌̂◌̣",
+                        "◌᭄ᬬ",
+                        "◌᭄◌᭄ᬬ",
+                        // A Javanese cecak telu (nukta) and a subjoined consonant on the same
+                        // dotted circle.
+                        "◌꦳꧀ꦠ",
                         // Quotation mark examples from L2/23-063.  All spaces are U+0020 SPACE.
                         // Swedish.
                         "”Jo, når’n da ha gått ett stöck te, så kommer’n te e å, å i åa ä e ö.”\n"

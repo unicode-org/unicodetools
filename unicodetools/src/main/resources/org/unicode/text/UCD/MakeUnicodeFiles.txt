@@ -749,10 +749,10 @@ Format: kenFile skipValue=Unknown
 #   Non-tailorable:
 #         "BK", "CM", "CR", "GL", "LF", "NL", "SP", "WJ", "ZW", "ZWJ"
 #   Tailorable:
-#         "AI", "AL", "B2", "BA", "BB", "CB", "CJ", "CL", "CP", "EB",
-#         "EM", "EX", "H2", "H3", "HL", "HY", "ID", "IN", "IS", "JL",
-#         "JT", "JV", "NS", "NU", "OP", "PO", "PR", "QU", "RI", "SA",
-#         "SG", "SY", "XX"
+#         "AI", "AK", "AL", "AP", "AS", "B2", "BA", "BB", "CB", "CJ",
+#         "CL", "CP", "EB", "EM", "EX", "H2", "H3", "HL", "HY", "ID",
+#         "IN", "IS", "JL", "JT", "JV", "NS", "NU", "OP", "PO", "PR",
+#         "QU", "RI", "SA", "SG", "SY", "VF", "VI", "XX"
 #  - All code points, assigned and unassigned, that are not listed
 #      explicitly are given the value "XX".
 #  - The unassigned code points in the following blocks default to "ID":

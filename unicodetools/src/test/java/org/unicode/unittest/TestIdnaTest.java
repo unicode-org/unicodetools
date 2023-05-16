@@ -86,7 +86,16 @@ public class TestIdnaTest extends TestFmwkMinusMinus {
             String versionString =
                     " expected=v" + Settings.latestVersion + " actual=v" + Settings.lastVersion;
             assertEquals("mapping" + versionString, idnaMappingLast.get(x), idnaMapping.get(x));
-            assertEquals("status" + versionString, idnaStatusLast.get(x), idnaStatus.get(x));
+            Idn_Status_Values lastStatus = idnaStatusLast.get(x);
+            Idn_Status_Values currentStatus = idnaStatus.get(x);
+            char c0 = x.charAt(0);
+            // Unicode 15.1 changes these from disallowed_STD3_valid to valid.
+            boolean skip =
+                    (c0 == 0x2260 || c0 == 0x226E || c0 == 0x226F)
+                            && currentStatus == Idn_Status_Values.valid;
+            if (!skip) {
+                assertEquals("status" + versionString, lastStatus, currentStatus);
+            }
         }
     }
 

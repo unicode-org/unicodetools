@@ -58,7 +58,10 @@ $ExtCccZwj=[[$Extend-\p{ccc=0}] $ZWJ]
 # VARIABLES
 
 $AI=\p{Line_Break=Ambiguous}
+$AK=\p{Line_Break=Aksara}
 $AL=\p{Line_Break=Alphabetic}
+$AP=\p{Line_Break=Aksara_Prebase}
+$AS=\p{Line_Break=Aksara_Start}
 $B2=\p{Line_Break=Break_Both}
 $BA=\p{Line_Break=Break_After}
 $BB=\p{Line_Break=Break_Before}
@@ -92,6 +95,8 @@ $SA=\p{Line_Break=Complex_Context}
 $SG=\p{Line_Break=Surrogate}
 $SP=\p{Line_Break=Space}
 $SY=\p{Line_Break=Break_Symbols}
+$VF=\p{Line_Break=Virama_Final}
+$VI=\p{Line_Break=Virama}
 $WJ=\p{Line_Break=Word_Joiner}
 $XX=\p{Line_Break=Unknown}
 $ZW=\p{Line_Break=ZWSpace}
@@ -104,6 +109,8 @@ $ZWJ=\p{Line_Break=ZWJ}
 
 $QU_Pi=($QU_Pi $X)
 $QU_Pf=($QU_Pf $X)
+
+$DottedCircle = ◌
 
 $CP30=[$CP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
 $OP30=[$OP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
@@ -144,7 +151,10 @@ $Spec5_=[$BK $CB $CR $LF $NL $SP $ZW]
 # SPECIAL EXTENSIONS
 
 $AI=($AI $X)
+$AK=($AK $X)
 $AL=($AL $X)
+$AP=($AP $X)
+$AS=($AS $X)
 $B2=($B2 $X)
 $BA=($BA $X)
 $BB=($BB $X)
@@ -174,6 +184,8 @@ $QU=($QU $X)
 $SA=($SA $X)
 $SG=($SG $X)
 $SY=($SY $X)
+$VF=($VF $X)
+$VI=($VI $X)
 $WJ=($WJ $X)
 $XX=($XX $X)
 $RI=($RI $X)
@@ -183,6 +195,8 @@ $ZWJ=($ZWJ $X)
 
 $QU_Pi=($QU_Pi $X)
 $QU_Pf=($QU_Pi $X)
+
+$DottedCircle=($DottedCircle $X)
 
 $CP30=($CP30 $X)
 $OP30=($OP30 $X)
@@ -296,6 +310,11 @@ $AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
 27.02) $PR × $JL | $JV | $JT | $H2 | $H3
 # LB 28  Do not break between alphabetics (\"at\").
 28) ($AL | $HL) × ($AL | $HL)
+# LB28b Do not break inside the orthographic syllables of Brahmic scripts.
+28.21) $AP × ($AK | $DottedCircle | $AS)
+28.22) ($AK | $DottedCircle | $AS) × ($VF | $VI)
+28.23) ($AK | $DottedCircle | $AS) $VI × ($AK | $DottedCircle)
+28.24) ($AK | $DottedCircle | $AS) × ($AK | $DottedCircle | $AS) $VF
 # LB 29  Do not break between numeric punctuation and alphabetics (\"e.g.\").
 29) $IS × ($AL | $HL)
 # LB 30  Do not break between letters, numbers or ordinary symbols and opening or closing punctuation.
