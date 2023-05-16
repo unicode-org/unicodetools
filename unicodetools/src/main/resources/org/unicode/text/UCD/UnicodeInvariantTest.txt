@@ -137,7 +137,7 @@
 Let $foo = \p{ccc=9}
 Let $fii = \p{toNFD=/$foo/}
 
-Let $codepoints = [\u0000-\U00010FFF]
+Let $codepoints = [\u0000-\U0010FFFF]
 
 Let $gcAllPunctuation = \p{gc=/_Punctuation/}
 $gcAllPunctuation = [\p{gc=Close_Punctuation}\p{gc=Connector_Punctuation}}\p{gc=Dash_Punctuation}\p{gc=Final_Punctuation}\p{gc=Initial_Punctuation}\p{gc=Open_Punctuation}\p{gc=Other_Punctuation}]
