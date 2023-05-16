@@ -85,16 +85,16 @@
 #   Example:
 #       Case-insensitive equivalence of ASCII identifiers can be done indifferently by uppercasing
 #       or lowercasing.
-           EquivalencesOf \p{Block=Basic Latin} Uppercase_Mapping ⇔ Lowercase_Mapping
+#          EquivalencesOf \p{Block=Basic Latin} Uppercase_Mapping ⇔ Lowercase_Mapping
 #       This is not true in the broader Latin script (in fact neither implication holds).
-           EquivalencesOf \p{Script=Latin} Uppercase_Mapping ⇎ Lowercase_Mapping
+#          EquivalencesOf \p{Script=Latin} Uppercase_Mapping ⇎ Lowercase_Mapping
 #       The simple and full case foldings do not define the same equivalence classes on these
 #       strings:
-           Let $strings = [ {Straße} {STRASSE} {ᾠδή} {ὨΙΔΉ} {...} ]
-           EquivalencesOf $strings Case_Folding ⇎ Simple_Case_Folding
+#          Let $strings = [ {Straße} {STRASSE} {ᾠδή} {ὨΙΔΉ} {...} ]
+#          EquivalencesOf $strings Case_Folding ⇎ Simple_Case_Folding
 #       Specifically, full case folding is coarser than simple case folding.
-           EquivalencesOf $strings Case_Folding ⇏ Simple_Case_Folding
-           EquivalencesOf $strings Case_Folding ⇐ Simple_Case_Folding
+#          EquivalencesOf $strings Case_Folding ⇏ Simple_Case_Folding
+#          EquivalencesOf $strings Case_Folding ⇐ Simple_Case_Folding
 ##########################
 # There is new syntax for testing UnicodeMaps
 #
