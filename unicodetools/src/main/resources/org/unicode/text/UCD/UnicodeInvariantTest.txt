@@ -74,6 +74,28 @@
 #       It then tests that against the result of filtering out NSM characters from X, then getting the BIDI_Class.
 #
 ##########################
+# EquivalencesOf <unicodeSet> <props> (⇐|⇔|⇒|⇍|⇎|⇏) <props>
+# 
+# Verify that the equivalence of elements of <unicodeSet> up to the left <props> is is implied,
+# equivalent, or implies equivalence up to the right <props>, or verify the negation of these
+# relations.
+#
+# On both sides, <props> is a composition of properties and filters, as in an “In” line.
+#
+#   Example:
+#       The case-insensitive comparison of ASCII identifiers defined by comparing their uppercase
+#       mappings is equivalent to that defined by comparing their lowercase mappings:
+#          EquivalencesOf \p{Block=Basic Latin} Uppercase_Mapping ⇔ Lowercase_Mapping
+#       This is not true in the broader Latin script (in fact neither implication holds).
+#          EquivalencesOf \p{Script=Latin} Uppercase_Mapping ⇎ Lowercase_Mapping
+#       The simple and full case foldings do not define the same equivalence classes on these
+#       strings:
+#          Let $strings = [ {Straße} {STRASSE} {ᾠδή} {ὨΙΔΉ} {...} ]
+#          EquivalencesOf $strings Case_Folding ⇎ Simple_Case_Folding
+#       Specifically, full case folding is coarser than simple case folding.
+#          EquivalencesOf $strings Case_Folding ⇏ Simple_Case_Folding
+#          EquivalencesOf $strings Case_Folding ⇐ Simple_Case_Folding
+##########################
 # There is new syntax for testing UnicodeMaps
 #
 #  Map <unicodeMap> <relation> <unicodeMap>
@@ -114,6 +136,8 @@
 
 Let $foo = \p{ccc=9}
 Let $fii = \p{toNFD=/$foo/}
+
+Let $codepoints = [\u0000-\U0010FFFF]
 
 Let $gcAllPunctuation = \p{gc=/_Punctuation/}
 $gcAllPunctuation = [\p{gc=Close_Punctuation}\p{gc=Connector_Punctuation}}\p{gc=Dash_Punctuation}\p{gc=Final_Punctuation}\p{gc=Initial_Punctuation}\p{gc=Open_Punctuation}\p{gc=Other_Punctuation}]
@@ -267,6 +291,11 @@ Let $gcMn_bcL = [\u0CBF\u0CC6\U00011A07\U00011A08\U00011C3F]
 # Case folding is not the same as lowercasing: Cherokee case folds to uppercase.
 In \p{sc=Cher} cf = uc
 In \p{sc=Cher} scf = suc
+
+# Simple and full case foldings define the same equivalence classes on code points.
+# This used not to be true, but was rectified by
+# https://www.unicode.org/cgi-bin/GetL2Ref.pl?175-C19.
+EquivalencesOf $codepoints Case_Folding ⇔ Simple_Case_Folding
 
 # Stability: All characters with the Lowercase property and all characters with the Uppercase property have the Alphabetic property. 
 \p{Alphabetic} ⊃ [\p{Uppercase} \p{Lowercase}]
@@ -795,7 +824,9 @@ $punct  ⊇ [[\u0021-\u007E] - [0-9 A-Z a-z]]
 # We should be able to use:
 # Map {\m{Case_Folding}&\P{U-1:gc=Cn}} = {\m{*Case_Folding}]}
 
-Map {\m{Case_Folding}&[^\p{age=14.0}]} = {\m{*Case_Folding}&[^\p{age=14.0}]}
+# Commented out because excruciatingly slow, and tested systematically above with an In line.
+# TODO(macchiati): Make this faster.
+# Map {\m{Case_Folding}&[^\p{age=14.0}]} = {\m{*Case_Folding}&[^\p{age=14.0}]}
 
 # The following are 'red flag' tests, just so that we review the changes and make sure they are ok.
 
