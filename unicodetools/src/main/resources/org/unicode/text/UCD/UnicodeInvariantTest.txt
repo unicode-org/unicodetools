@@ -204,9 +204,9 @@ In \P{U-1:gc=Cn} U-1:NFKC_Casefold = NFKC_Casefold
 # Not yet a stability policy, but see https://www.unicode.org/L2/L2023/23005.htm#174-A11.
 # Simple counterparts of the above.
 In \P{U-1:gc=Cn} U-1:Simple_Case_Folding * U-1:toNFKC = Simple_Case_Folding * toNFKC
-In \p{U-1:XID_Continue} U-1:NFKC_Simple_Casefold = NFKC_Simple_Casefold
+In \p{U-1:XID_Continue} R-1:NFKC_Simple_Casefold = NFKC_Simple_Casefold
 # As above, this one would not be guaranteed by the stability policy.
-In \P{U-1:gc=Cn} U-1:NFKC_Simple_Casefold = NFKC_Simple_Casefold
+In \P{U-1:gc=Cn} R-1:NFKC_Simple_Casefold = NFKC_Simple_Casefold
 
 # Case Pair Stability: If two characters form a case pair in a version of Unicode, they will remain a case pair in each subsequent version of Unicode. If two characters do not form a case pair in a version of Unicode, they will never become a case pair in any subsequent version of Unicode.
 # TODO

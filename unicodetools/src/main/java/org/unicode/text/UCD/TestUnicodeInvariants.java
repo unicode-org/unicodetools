@@ -17,9 +17,11 @@ import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Tabber;
@@ -1224,14 +1226,31 @@ public class TestUnicodeInvariants {
         private UnicodeProperty property;
         private final transient PatternMatcher matcher = new UnicodeProperty.RegexMatcher();
 
+        private static final Set<String> TOOL_ONLY_PROPERTIES = Set.of(
+            "toNFC", "toNFD", "toNFKC", "toNFKD"
+        );
+
         public VersionedProperty set(String xPropertyName) {
             xPropertyName = xPropertyName.trim();
+            boolean allowRetroactive = false;
             if (xPropertyName.contains(":")) {
                 final String[] names = xPropertyName.split(":");
-                if (names.length != 2 || !names[0].startsWith("U")) {
+                if (names.length != 2) {
                     throw new IllegalArgumentException("Too many ':' fields in " + xPropertyName);
                 }
-                if (names[0].equalsIgnoreCase("U-1")) {
+                if (names[0].isEmpty()) {
+                    throw new IllegalArgumentException("Empty version field in " + xPropertyName);
+                }
+                switch (names[0].charAt(0)) {
+                    case 'U':
+                        break;
+                    case 'R':
+                        allowRetroactive = true;
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Version field should start with U or R in " + xPropertyName);
+                }
+                if (names[0].substring(1).equals("-1")) {
                     version = LAST_VERSION;
                 } else {
                     version = names[0].substring(1);
@@ -1242,18 +1261,19 @@ public class TestUnicodeInvariants {
             }
             ;
             propertyName = xPropertyName;
-            propSource = getProperties(version);
+            propSource = getIndexedProperties(version);
             property = propSource.getProperty(xPropertyName);
-            if (property == null) {
-                propSource = getIndexedProperties(version);
+            if ((property == null && TOOL_ONLY_PROPERTIES.contains(xPropertyName)) ||
+                (property.getUnicodeMap().isEmpty() && allowRetroactive)) {                
+                propSource = getProperties(version);
                 property = propSource.getProperty(xPropertyName);
-                if (property == null) {
-                    throw new IllegalArgumentException(
-                            "Can't create property from name: "
-                                    + propertyName
-                                    + " and version: "
-                                    + version);
-                }
+            }
+            if (property == null || property.getUnicodeMap().isEmpty()) {
+                throw new IllegalArgumentException(
+                        "Can't create property from name: "
+                                + propertyName
+                                + " and version: "
+                                + version);
             }
             return this;
         }
