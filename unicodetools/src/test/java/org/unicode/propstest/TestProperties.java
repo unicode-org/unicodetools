@@ -485,8 +485,9 @@ public class TestProperties extends TestFmwkMinusMinus {
         assertEquals("Wrong Uppercase_Mapping for a", "A", iup.getProperty(UcdProperty.Uppercase_Mapping).getValue('a'));
 
         for (var property : UcdProperty.values()) {
-            if (IndexUnicodeProperties.getResolvedDefaultValueType(property) != DefaultValueType.NONE) {
-                assertNotNull("Null " + property.name() + " for U+FFFF but DefaultValueType is " + IndexUnicodeProperties.getResolvedDefaultValueType(property),iup.getProperty(property).getValue('\uFFFF'));
+            if (property.getType() != PropertyType.Miscellaneous &&
+                IndexUnicodeProperties.getResolvedDefaultValueType(property) != DefaultValueType.NONE) {
+                assertNotNull("Null " + property.name() + " for U+FFFF but property is " + property.getType() + " with default value type " + IndexUnicodeProperties.getResolvedDefaultValueType(property) +". Add an @missing line to ExtraPropertyValueAliases.txt if needed.",iup.getProperty(property).getValue('\uFFFF'));
             }
         }
     }

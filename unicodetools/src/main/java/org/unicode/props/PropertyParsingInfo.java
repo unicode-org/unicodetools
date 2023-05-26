@@ -7,6 +7,12 @@ import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
+
+import java.io.File;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -1075,6 +1081,17 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         if (propInfo.getDefaultValue() == null) {
             propInfo.defaultValueType = IndexUnicodeProperties.DefaultValueType.forString(value);
             propInfo.defaultValue = value;
+            try {
+            Files.write(Paths.get("C:\\Users\\robin\\Desktop\\meow.txt"), 
+                    ("**\t"
+                            + prop
+                            + "\t"
+                            + propInfo.defaultValueType
+                            + "\t"
+                            + propInfo.getDefaultValue() +"\n").getBytes(),StandardOpenOption.APPEND);
+            } catch (Exception e) {
+                throw new InternalError(e);
+            }
             if (IndexUnicodeProperties.SHOW_DEFAULTS) {
                 IndexUnicodeProperties.getDataLoadingErrors()
                         .put(
