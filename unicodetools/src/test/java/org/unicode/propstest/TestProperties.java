@@ -504,6 +504,10 @@ public class TestProperties extends TestFmwkMinusMinus {
                 "Wrong Uppercase_Mapping for a",
                 "A",
                 iup.getProperty(UcdProperty.Uppercase_Mapping).getValue('a'));
+        assertEquals(
+                "Wrong Titlecase_Mapping for a",
+                "A",
+                iup.getProperty(UcdProperty.Titlecase_Mapping).getValue('a'));
 
         for (var property : UcdProperty.values()) {
             if (property.getType() != PropertyType.Miscellaneous
