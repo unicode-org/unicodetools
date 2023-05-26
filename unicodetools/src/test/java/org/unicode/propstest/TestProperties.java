@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import org.unicode.cldr.util.Counter;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.IndexUnicodeProperties.DefaultValueType;
 import org.unicode.props.PropertyNames;
 import org.unicode.props.PropertyType;
 import org.unicode.props.PropertyValueSets;
@@ -36,7 +37,6 @@ import org.unicode.props.UcdPropertyValues.Line_Break_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.ValueCardinality;
-import org.unicode.props.IndexUnicodeProperties.DefaultValueType;
 import org.unicode.tools.emoji.EmojiData;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
@@ -476,18 +476,48 @@ public class TestProperties extends TestFmwkMinusMinus {
 
     @Test
     public void TestDefaults() {
-        assertEquals("Wrong CCC for U+FFFF", "Not_Reordered", iup.getProperty(UcdProperty.Canonical_Combining_Class).getValue('\uFFFF'));
-        assertEquals("Wrong Simple_Lowercase_Mapping for a", "a", iup.getProperty(UcdProperty.Simple_Lowercase_Mapping).getValue('a'));
-        assertEquals("Wrong Simple_Uppercase_Mapping for A", "A", iup.getProperty(UcdProperty.Simple_Uppercase_Mapping).getValue('A'));
-        assertEquals("Wrong Case_Folding for a", "a", iup.getProperty(UcdProperty.Case_Folding).getValue('a'));
-        assertEquals("Wrong Simple_Case_Folding for a", "a", iup.getProperty(UcdProperty.Simple_Case_Folding).getValue('a'));
-        assertEquals("Wrong Lowercase_Mapping for a", "a", iup.getProperty(UcdProperty.Lowercase_Mapping).getValue('a'));
-        assertEquals("Wrong Uppercase_Mapping for a", "A", iup.getProperty(UcdProperty.Uppercase_Mapping).getValue('a'));
+        assertEquals(
+                "Wrong CCC for U+FFFF",
+                "Not_Reordered",
+                iup.getProperty(UcdProperty.Canonical_Combining_Class).getValue('\uFFFF'));
+        assertEquals(
+                "Wrong Simple_Lowercase_Mapping for a",
+                "a",
+                iup.getProperty(UcdProperty.Simple_Lowercase_Mapping).getValue('a'));
+        assertEquals(
+                "Wrong Simple_Uppercase_Mapping for A",
+                "A",
+                iup.getProperty(UcdProperty.Simple_Uppercase_Mapping).getValue('A'));
+        assertEquals(
+                "Wrong Case_Folding for a",
+                "a",
+                iup.getProperty(UcdProperty.Case_Folding).getValue('a'));
+        assertEquals(
+                "Wrong Simple_Case_Folding for a",
+                "a",
+                iup.getProperty(UcdProperty.Simple_Case_Folding).getValue('a'));
+        assertEquals(
+                "Wrong Lowercase_Mapping for a",
+                "a",
+                iup.getProperty(UcdProperty.Lowercase_Mapping).getValue('a'));
+        assertEquals(
+                "Wrong Uppercase_Mapping for a",
+                "A",
+                iup.getProperty(UcdProperty.Uppercase_Mapping).getValue('a'));
 
         for (var property : UcdProperty.values()) {
-            if (property.getType() != PropertyType.Miscellaneous &&
-                IndexUnicodeProperties.getResolvedDefaultValueType(property) != DefaultValueType.NONE) {
-                assertNotNull("Null " + property.name() + " for U+FFFF but property is " + property.getType() + " with default value type " + IndexUnicodeProperties.getResolvedDefaultValueType(property) +". Add an @missing line to ExtraPropertyValueAliases.txt if needed.",iup.getProperty(property).getValue('\uFFFF'));
+            if (property.getType() != PropertyType.Miscellaneous
+                    && IndexUnicodeProperties.getResolvedDefaultValueType(property)
+                            != DefaultValueType.NONE) {
+                assertNotNull(
+                        "Null "
+                                + property.name()
+                                + " for U+FFFF but property is "
+                                + property.getType()
+                                + " with default value type "
+                                + IndexUnicodeProperties.getResolvedDefaultValueType(property)
+                                + ". Add an @missing line to ExtraPropertyValueAliases.txt if needed.",
+                        iup.getProperty(property).getValue('\uFFFF'));
             }
         }
     }

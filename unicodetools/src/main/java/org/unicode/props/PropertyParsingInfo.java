@@ -7,9 +7,6 @@ import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
-
-import java.io.File;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -599,14 +596,14 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     // do nothing, already none;
                     break;
                 case CODE_POINT:
-                        // NOTE(egg): The naïve thing here would be
-                        //   for (final String cp : nullValues) {
-                        //     data.put(cp, cp);
-                        //   }
-                        // However, UnicodeMap is extremely slow with large numbers of values.
-                        // Instead we fill it with <code point>, and let IndexUnicodeProperty resolve
-                        // that.
-                        data.putAll(nullValues, propInfo.getDefaultValue());
+                    // NOTE(egg): The naïve thing here would be
+                    //   for (final String cp : nullValues) {
+                    //     data.put(cp, cp);
+                    //   }
+                    // However, UnicodeMap is extremely slow with large numbers of values.
+                    // Instead we fill it with <code point>, and let IndexUnicodeProperty resolve
+                    // that.
+                    data.putAll(nullValues, propInfo.getDefaultValue());
                     break;
                 default:
                     throw new UnicodePropertyException(); // unexpected error
@@ -1082,13 +1079,17 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             propInfo.defaultValueType = IndexUnicodeProperties.DefaultValueType.forString(value);
             propInfo.defaultValue = value;
             try {
-            Files.write(Paths.get("C:\\Users\\robin\\Desktop\\meow.txt"), 
-                    ("**\t"
-                            + prop
-                            + "\t"
-                            + propInfo.defaultValueType
-                            + "\t"
-                            + propInfo.getDefaultValue() +"\n").getBytes(),StandardOpenOption.APPEND);
+                Files.write(
+                        Paths.get("C:\\Users\\robin\\Desktop\\meow.txt"),
+                        ("**\t"
+                                        + prop
+                                        + "\t"
+                                        + propInfo.defaultValueType
+                                        + "\t"
+                                        + propInfo.getDefaultValue()
+                                        + "\n")
+                                .getBytes(),
+                        StandardOpenOption.APPEND);
             } catch (Exception e) {
                 throw new InternalError(e);
             }
