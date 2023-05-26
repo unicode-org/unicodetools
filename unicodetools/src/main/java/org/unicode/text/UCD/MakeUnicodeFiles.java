@@ -1617,10 +1617,23 @@ public class MakeUnicodeFiles {
             System.out.println("Writing String Values: " + prop.getName());
         }
         pw.println();
+        final var shownSet = new UnicodeSet();
+        if (ps.skipValue == null) {
+            shownSet.addAll(UnicodeSet.ALL_CODE_POINTS);
+        } else {
+            for (int c = 0; c <= 0x10FFFF; ++c) {
+                final String value = prop.getValue(c);
+                final String skipValue =
+                        ps.skipValue.equals("<code point>") ? Character.toString(c) : ps.skipValue;
+                if (!value.equals(skipValue)) {
+                    shownSet.add(c);
+                }
+            }
+        }
         bf.setValueSource(prop)
                 .setHexValue(true)
                 .setMergeRanges(ps.mergeRanges)
-                .showSetNames(pw, new UnicodeSet(0, 0x10FFFF));
+                .showSetNames(pw, shownSet);
     }
 
     static class RangeStartComparator implements Comparator<String> {
