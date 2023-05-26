@@ -17,7 +17,6 @@ import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -1232,9 +1231,8 @@ public class TestUnicodeInvariants {
         private UnicodeProperty property;
         private final transient PatternMatcher matcher = new UnicodeProperty.RegexMatcher();
 
-        private static final Set<String> TOOL_ONLY_PROPERTIES = Set.of(
-            "toNFC", "toNFD", "toNFKC", "toNFKD"
-        );
+        private static final Set<String> TOOL_ONLY_PROPERTIES =
+                Set.of("toNFC", "toNFD", "toNFKC", "toNFKD");
 
         public VersionedProperty set(String xPropertyName) {
             xPropertyName = xPropertyName.trim();
@@ -1254,7 +1252,8 @@ public class TestUnicodeInvariants {
                         allowRetroactive = true;
                         break;
                     default:
-                        throw new IllegalArgumentException("Version field should start with U or R in " + xPropertyName);
+                        throw new IllegalArgumentException(
+                                "Version field should start with U or R in " + xPropertyName);
                 }
                 if (names[0].substring(1).equals("-1")) {
                     version = LAST_VERSION;
@@ -1269,8 +1268,8 @@ public class TestUnicodeInvariants {
             propertyName = xPropertyName;
             propSource = getIndexedProperties(version);
             property = propSource.getProperty(xPropertyName);
-            if ((property == null && TOOL_ONLY_PROPERTIES.contains(xPropertyName)) ||
-                (property.getUnicodeMap().isEmpty() && allowRetroactive)) {                
+            if ((property == null && TOOL_ONLY_PROPERTIES.contains(xPropertyName))
+                    || (property.getUnicodeMap().isEmpty() && allowRetroactive)) {
                 propSource = getProperties(version);
                 property = propSource.getProperty(xPropertyName);
             }
