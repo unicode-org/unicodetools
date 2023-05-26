@@ -464,7 +464,7 @@ $decimalValue ⊇ \p{General_Category=Decimal_Number}
 
 # All and only those items with numeric types have numeric values
 
-Let $anyNumericValue = \p{Numeric_Value=/-?[0-9]+.[0-9]+/}
+Let $anyNumericValue = \p{Numeric_Value=/-?[0-9]+(.[0-9]+)?/}
 [\p{Numeric_Type=Decimal} \p{Numeric_Type=Digit} \p{Numeric_Type=Numeric}] = $anyNumericValue
 
 ##########################

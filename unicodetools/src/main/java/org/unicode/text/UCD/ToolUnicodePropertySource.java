@@ -689,7 +689,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                         @Override
                         public String _getValue(final int cp) {
                             if (!ucd.isRepresented(cp)) {
-                                return null;
+                                return Character.toString(cp);
                             }
                             boolean debug = false;
                             if (cp == -1) { // change to a real code point for debugging
@@ -707,7 +707,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             final String case1 = ucd.getCase(cp, foldingType, UCD_Types.FOLD);
                             final String b = nfkc.normalize(case1);
                             if (equals(cp, b)) {
-                                return null;
+                                return Character.toString(cp);
                             }
                             if (debug) {
                                 System.out.println(
