@@ -1235,8 +1235,11 @@ public class TestUnicodeInvariants {
                 Set.of("toNFC", "toNFD", "toNFKC", "toNFKD");
 
         private static boolean isTrivial(UnicodeMap<String> map) {
-            return map.isEmpty() || (map.values().size() == 1 && map.getSet(map.values().iterator().next()).equals(UnicodeSet.ALL_CODE_POINTS));
-        };
+            return map.isEmpty()
+                    || (map.values().size() == 1
+                            && map.getSet(map.values().iterator().next())
+                                    .equals(UnicodeSet.ALL_CODE_POINTS));
+        }
 
         public VersionedProperty set(String xPropertyName) {
             xPropertyName = xPropertyName.trim();
