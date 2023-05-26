@@ -1078,21 +1078,6 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         if (propInfo.getDefaultValue() == null) {
             propInfo.defaultValueType = IndexUnicodeProperties.DefaultValueType.forString(value);
             propInfo.defaultValue = value;
-            try {
-                Files.write(
-                        Paths.get("C:\\Users\\robin\\Desktop\\meow.txt"),
-                        ("**\t"
-                                        + prop
-                                        + "\t"
-                                        + propInfo.defaultValueType
-                                        + "\t"
-                                        + propInfo.getDefaultValue()
-                                        + "\n")
-                                .getBytes(),
-                        StandardOpenOption.APPEND);
-            } catch (Exception e) {
-                throw new InternalError(e);
-            }
             if (IndexUnicodeProperties.SHOW_DEFAULTS) {
                 IndexUnicodeProperties.getDataLoadingErrors()
                         .put(
