@@ -1268,6 +1268,9 @@ public class TestUnicodeInvariants {
             propertyName = xPropertyName;
             propSource = getIndexedProperties(version);
             property = propSource.getProperty(xPropertyName);
+            if (property.getName().equals("NFKC_Simple_Casefold") && version.equals(LAST_VERSION)) {
+                throw new InternalError("Debugging in CI: " + property.getUnicodeMap().toString());
+            }
             if ((property == null && TOOL_ONLY_PROPERTIES.contains(xPropertyName))
                     || (property.getUnicodeMap().isEmpty() && allowRetroactive)) {
                 propSource = getProperties(version);
