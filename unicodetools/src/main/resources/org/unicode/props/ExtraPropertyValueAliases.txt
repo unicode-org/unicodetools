@@ -87,12 +87,10 @@
 # End of binary properties.
 
 # @missing: 0000..10FFFF; Canonical_Combining_Class; Not_Reordered
-# @missing: 0000..10FFFF; Case_Folding; <code point>
+
 # @missing: 0000..10FFFF; Lowercase_Mapping; <slc>
 # @missing: 0000..10FFFF; Uppercase_Mapping; <suc>
-# @missing: 0000..10FFFF; Simple_Case_Folding; <code point>
-# @missing: 0000..10FFFF; Simple_Lowercase_Mapping; <code point>
-# @missing: 0000..10FFFF; Simple_Uppercase_Mapping; <code point>
+# @missing: 0000..10FFFF; Titlecase_Mapping; <stc>
 
 # @missing: 0000..10FFFF; kSimplifiedVariant ; <none>
 # @missing: 0000..10FFFF; kTraditionalVariant ; <none>
@@ -103,19 +101,12 @@
 # Overrides for bugs
 
 # TODO(egg): These are specified in their respective files, we should not need them here.
-# missing: 0000..10FFFF; Bidi_Class; Left_To_Right
 # @missing: 0000..10FFFF; Bidi_Mirroring_Glyph; <none>
 # @missing: 0000..10FFFF; Equivalent_Unified_Ideograph; <none>
 
 # Extras
 
 # @missing: 0000..10FFFF; Idn_Status   ; disallowed
-
-# TODO(egg): Apparently these should be <code point>, see below.
-# @missing: 0000..10FFFF; Confusable_MA ; <none>
-# @missing: 0000..10FFFF; Confusable_ML ; <none>
-# @missing: 0000..10FFFF; Confusable_SA ; <none>
-# @missing: 0000..10FFFF; Confusable_SL ; <none>
 
 idns ; v     ; valid
 idns ; i     ; ignored					
@@ -156,10 +147,10 @@ idtype	; a		; Aspirational
 idtype	; inc	; Inclusion				
 idtype	; rec	; Recommended	
 
-# @-missing: 0000..10FFFF; Confusable_SL    	; <code point>		
-# @-missing: 0000..10FFFF; Confusable_SA    	; <code point>		
-# @-missing: 0000..10FFFF; Confusable_ML    	; <code point>		
-# @-missing: 0000..10FFFF; Confusable_MA    	; <code point>		
+# @missing: 0000..10FFFF; Confusable_SL    	; <code point>
+# @missing: 0000..10FFFF; Confusable_SA    	; <code point>
+# @missing: 0000..10FFFF; Confusable_ML    	; <code point>
+# @missing: 0000..10FFFF; Confusable_MA    	; <code point>
 
 sc ; Hanb                             ; Han_with_Bopomofo
 sc ; Jpan                             ; Japanese
