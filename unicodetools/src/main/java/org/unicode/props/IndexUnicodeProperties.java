@@ -49,6 +49,7 @@ import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
 /**
@@ -686,7 +687,12 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
         @Override
         protected String _getValue(int codepoint) {
-            return _getUnicodeMap().get(codepoint);
+            final String result = _getUnicodeMap().get(codepoint);
+            if (DefaultValueType.forString(result) == DefaultValueType.CODE_POINT) {
+                return Character.toString(codepoint);
+            } else {
+                return result;
+            }
         }
 
         @Override

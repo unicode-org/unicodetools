@@ -25,6 +25,7 @@ import org.unicode.cldr.util.Counter;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyNames;
+import org.unicode.props.PropertyType;
 import org.unicode.props.PropertyValueSets;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
@@ -35,6 +36,7 @@ import org.unicode.props.UcdPropertyValues.Line_Break_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.ValueCardinality;
+import org.unicode.props.IndexUnicodeProperties.DefaultValueType;
 import org.unicode.tools.emoji.EmojiData;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
@@ -470,6 +472,23 @@ public class TestProperties extends TestFmwkMinusMinus {
         //        Enum z = PropertyValues.forValueName(UcdProperty.Bidi_Mirrored, "N");
         //        Enum w = PropertyValues.forValueName(UcdProperty.General_Category, "Cc");
         //        logln(x + " " + z + " " + w);
+    }
+
+    @Test
+    public void TestDefaults() {
+        assertEquals("Wrong CCC for U+FFFF", "Not_Reordered", iup.getProperty(UcdProperty.Canonical_Combining_Class).getValue('\uFFFF'));
+        assertEquals("Wrong Simple_Lowercase_Mapping for a", "a", iup.getProperty(UcdProperty.Simple_Lowercase_Mapping).getValue('a'));
+        assertEquals("Wrong Simple_Uppercase_Mapping for A", "A", iup.getProperty(UcdProperty.Simple_Uppercase_Mapping).getValue('A'));
+        assertEquals("Wrong Case_Folding for a", "a", iup.getProperty(UcdProperty.Case_Folding).getValue('a'));
+        assertEquals("Wrong Simple_Case_Folding for a", "a", iup.getProperty(UcdProperty.Simple_Case_Folding).getValue('a'));
+        assertEquals("Wrong Lowercase_Mapping for a", "a", iup.getProperty(UcdProperty.Lowercase_Mapping).getValue('a'));
+        assertEquals("Wrong Uppercase_Mapping for a", "A", iup.getProperty(UcdProperty.Uppercase_Mapping).getValue('a'));
+
+        for (var property : UcdProperty.values()) {
+            if (IndexUnicodeProperties.getResolvedDefaultValueType(property) != DefaultValueType.NONE) {
+                assertNotNull("Null " + property.name() + " for U+FFFF but DefaultValueType is " + IndexUnicodeProperties.getResolvedDefaultValueType(property),iup.getProperty(property).getValue('\uFFFF'));
+            }
+        }
     }
 
     @Test
