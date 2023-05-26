@@ -87,6 +87,7 @@
 # End of binary properties.
 
 # @missing: 0000..10FFFF; Canonical_Combining_Class; Not_Reordered
+
 # @missing: 0000..10FFFF; Lowercase_Mapping; <slc>
 # @missing: 0000..10FFFF; Uppercase_Mapping; <suc>
 # @missing: 0000..10FFFF; Titlecase_Mapping; <stc>
@@ -100,7 +101,6 @@
 # Overrides for bugs
 
 # TODO(egg): These are specified in their respective files, we should not need them here.
-# missing: 0000..10FFFF; Bidi_Class; Left_To_Right
 # @missing: 0000..10FFFF; Bidi_Mirroring_Glyph; <none>
 # @missing: 0000..10FFFF; Equivalent_Unified_Ideograph; <none>
 
