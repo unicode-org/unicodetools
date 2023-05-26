@@ -1234,6 +1234,10 @@ public class TestUnicodeInvariants {
         private static final Set<String> TOOL_ONLY_PROPERTIES =
                 Set.of("toNFC", "toNFD", "toNFKC", "toNFKD");
 
+        private static boolean isTrivial(UnicodeMap<String> map) {
+            return map.isEmpty() || (map.values().size() == 1 && map.getSet(map.values().iterator().next()).equals(UnicodeSet.ALL_CODE_POINTS));
+        };
+
         public VersionedProperty set(String xPropertyName) {
             xPropertyName = xPropertyName.trim();
             boolean allowRetroactive = false;
@@ -1268,15 +1272,12 @@ public class TestUnicodeInvariants {
             propertyName = xPropertyName;
             propSource = getIndexedProperties(version);
             property = propSource.getProperty(xPropertyName);
-            if (property.getName().equals("NFKC_Simple_Casefold") && version.equals(LAST_VERSION)) {
-                throw new InternalError("Debugging in CI: " + property.getUnicodeMap().toString());
-            }
             if ((property == null && TOOL_ONLY_PROPERTIES.contains(xPropertyName))
-                    || (property.getUnicodeMap().isEmpty() && allowRetroactive)) {
+                    || (isTrivial(property.getUnicodeMap()) && allowRetroactive)) {
                 propSource = getProperties(version);
                 property = propSource.getProperty(xPropertyName);
             }
-            if (property == null || property.getUnicodeMap().isEmpty()) {
+            if (property == null || isTrivial(property.getUnicodeMap())) {
                 throw new IllegalArgumentException(
                         "Can't create property from name: "
                                 + propertyName
