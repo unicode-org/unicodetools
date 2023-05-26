@@ -686,7 +686,12 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
         @Override
         protected String _getValue(int codepoint) {
-            return _getUnicodeMap().get(codepoint);
+            final String result = _getUnicodeMap().get(codepoint);
+            if (DefaultValueType.forString(result) == DefaultValueType.CODE_POINT) {
+                return Character.toString(codepoint);
+            } else {
+                return result;
+            }
         }
 
         @Override

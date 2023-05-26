@@ -7,6 +7,9 @@ import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -593,7 +596,14 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     // do nothing, already none;
                     break;
                 case CODE_POINT:
-                    // requires special handling later
+                    // NOTE(egg): The naïve thing here would be
+                    //   for (final String cp : nullValues) {
+                    //     data.put(cp, cp);
+                    //   }
+                    // However, UnicodeMap is extremely slow with large numbers of values.
+                    // Instead we fill it with <code point>, and let IndexUnicodeProperty resolve
+                    // that.
+                    data.putAll(nullValues, propInfo.getDefaultValue());
                     break;
                 default:
                     throw new UnicodePropertyException(); // unexpected error
