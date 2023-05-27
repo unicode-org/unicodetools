@@ -1223,7 +1223,7 @@ public class TestUnicodeInvariants {
         private UnicodeProperty.Factory propSource;
         private UnicodeProperty property;
         private final transient PatternMatcher matcher = new UnicodeProperty.RegexMatcher();
-
+//spots spots spots spots spots
         public VersionedProperty set(String xPropertyName) {
             xPropertyName = xPropertyName.trim();
             if (xPropertyName.contains(":")) {
