@@ -1,11 +1,11 @@
-XML Representation of Unicode 15.0.0 UCD
+XML Representation of Unicode 15.1.0 UCD
 
 
-© 2022 Unicode®, Inc.
+© 2023 Unicode®, Inc.
 For terms of use, see https://www.unicode.org/terms_of_use.html
 
 
-This directory contains the representation in XML of Version 15.0.0 of
+This directory contains the representation in XML of Version 15.1.0 of
 the UCD, using the schema defined by UAX #42: Unicode Character
 Database in XML, at https://www.unicode.org/reports/tr42/
 
@@ -19,9 +19,9 @@ the archive:
 
                     flat         grouped
 
-no Unihan data       959 KB          580 KB
-Unihan data only   6,386 KB        6,391 KB
-complete UCD       8,361 KB        6,653 KB
+no Unihan data     1,004 KB          599 KB
+Unihan data only   7,107 KB        7,116 KB
+complete UCD       9,309 KB        7,366 KB
 
 The flat versions do not use the group mechanism. The grouped versions
 use the group mechanism, with groups corresponding approximately to
