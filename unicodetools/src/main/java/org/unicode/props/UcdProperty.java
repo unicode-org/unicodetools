@@ -46,7 +46,7 @@ public enum UcdProperty {
     kOtherNumeric(PropertyType.Numeric, "cjkOtherNumeric"),
     kPrimaryNumeric(PropertyType.Numeric, "cjkPrimaryNumeric"),
 
-    // String
+    // Strings and spam
     Bidi_Mirroring_Glyph(PropertyType.String, "bmg"),
     Bidi_Paired_Bracket(PropertyType.String, "bpb"),
     Case_Folding(PropertyType.String, "cf"),
