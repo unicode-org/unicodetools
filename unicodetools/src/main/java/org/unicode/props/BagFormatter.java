@@ -538,10 +538,13 @@ public class BagFormatter {
 
             tabber.add(minSpacesBeforeComment + 2, Tabber.LEFT); // comment character
 
-            labelSize =
-                    maxLabelWidthOverride > 0
-                            ? maxLabelWidthOverride
-                            : getLabelSource(true).getMaxWidth(shortLabel);
+            labelSize = getLabelSource(true).getMaxWidth(shortLabel);
+            if (refinedLabelSource != null) {
+                labelSize = Math.max(labelSize, refinedLabelSource.getMaxWidth(shortLabel));
+            }
+            if (maxLabelWidthOverride > 0) {
+                labelSize = maxLabelWidthOverride;
+            }
             if (labelSize > 0) {
                 tabber.add(labelSize + 1, Tabber.LEFT); // value
             }
