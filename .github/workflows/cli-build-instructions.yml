@@ -207,34 +207,17 @@ jobs:
           # run GenerateEnums
           mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.props.GenerateEnums"  -Dexec.args="" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
           # apply formatting because generated file will not pass Java formatter
-          mvn spotless:apply
-          # TODO(#100) Get rid of need for fake version 13.1 of Unicode enum val
-          # Fail if we haven't committed changes from Generate Enums, but make exception for fake Unicode version hack (#100)
+          mvn spotless:apply '-DspotlessFiles=.*[\\/]org[\\/]unicode[\\/]props[\\/]UcdProperty(Values)?.java'
+          # Fail if we haven't committed changes from Generate Enums.
           echo "Check if GenerateEnums output has been committed to repo"
           echo "git diff --compact-summary"
           if git diff --compact-summary --exit-code; then
             echo "Success: Any output from GenerateEnums has already been committed."
             exit 0
           else
-            echo "git diff --name-status | awk '{print $2;}'"
-            names=`git diff --name-status | awk '{print $2;}'`
-            if [[ "$names" == "unicodetools/src/main/java/org/unicode/props/UcdPropertyValues.java" ]]; then
-              gitdiffstat=`git diff --stat | tail -n 1`
-              if [[ "$gitdiffstat" = " 1 file changed, 1 insertion(+), 2 deletions(-)" ]]; then
-                git diff | grep 'V13_1("13.1")'
-                if [ $? -eq 0 ]; then
-                  echo "Inferred: Only non-committed change after GenerateEnums is temporary V13_1 hack (issue #100)"
-                  echo "Check passed."
-                  exit 0
-                fi
-              fi
-            fi
             echo "Failure: GenerateEnums has changes that need to be committed."
             exit 1
           fi
-          # TODO(#100): Note: when running locally on a clean checkout, this command
-          # leaves a change in UcdPropertyValues.java by not preserving the comment
-          # about the fake Unicode version 13.1.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
