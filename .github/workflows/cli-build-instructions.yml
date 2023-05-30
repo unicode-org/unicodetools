@@ -218,9 +218,6 @@ jobs:
             echo "Failure: GenerateEnums has changes that need to be committed."
             exit 1
           fi
-          # TODO(#100): Note: when running locally on a clean checkout, this command
-          # leaves a change in UcdPropertyValues.java by not preserving the comment
-          # about the fake Unicode version 13.1.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
