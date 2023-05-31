@@ -28,7 +28,7 @@ import org.unicode.jsp.UnicodeDataInput.ItemReader;
 import org.unicode.props.UnicodeProperty;
 
 public class CachedProps {
-    public static final boolean IS_BETA = false;
+    public static final boolean IS_BETA = true;
 
     public static final Splitter HASH_SPLITTER = Splitter.on('#').trimResults();
     public static final Splitter SEMI_SPLITTER = Splitter.on(';').trimResults();
@@ -43,7 +43,7 @@ public class CachedProps {
     final BiMultimap<String, String> nameToAliases = new BiMultimap<String, String>(null, null);
     final Map<String, BiMultimap<String, String>> nameToValueToAliases = new LinkedHashMap();
 
-    static CachedProps CACHED_PROPS = getInstance(VersionInfo.getInstance(14));
+    static CachedProps CACHED_PROPS = getInstance(VersionInfo.getInstance(15, 1));
 
     static UnicodeProperty NAMES = CachedProps.CACHED_PROPS.getProperty("Name");
 
