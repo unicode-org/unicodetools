@@ -26,6 +26,7 @@ import java.util.zip.GZIPInputStream;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.jsp.UnicodeDataInput.ItemReader;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.text.utility.Settings;
 
 public class CachedProps {
     public static final boolean IS_BETA = true;
@@ -43,7 +44,9 @@ public class CachedProps {
     final BiMultimap<String, String> nameToAliases = new BiMultimap<String, String>(null, null);
     final Map<String, BiMultimap<String, String>> nameToValueToAliases = new LinkedHashMap();
 
-    static CachedProps CACHED_PROPS = getInstance(VersionInfo.getInstance(15, 1));
+    static String jspVersion = IS_BETA ? Settings.lastVersion : Settings.latestVersion;
+    static VersionInfo jspVersionInfo = VersionInfo.getInstance(jspVersion);
+    static CachedProps CACHED_PROPS = getInstance(jspVersionInfo);
 
     static UnicodeProperty NAMES = CachedProps.CACHED_PROPS.getProperty("Name");
 
