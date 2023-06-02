@@ -9,6 +9,21 @@ import java.util.Scanner;
 public class ReadTGHSet {
     public static void main(String[] args) throws FileNotFoundException {
         UnicodeSet set = new UnicodeSet();
+        // tgh2013-8105.txt file from Ken Lunde with lines like the following,
+        // with tabs between fields.
+        // # URO (7,832)
+        // U+4E00 1
+        // U+4E01 5
+        // U+4E03 7
+        // U+4E07 35
+        // ...
+        // # Extension A (77)
+        // U+3447 6602
+        // U+344A 6700
+        // ...
+        // # Extension E (108)
+        // U+2B8B8  7019
+        // U+2BAC7  7519
         Scanner sc =
                 new Scanner(new File("/usr/local/google/home/mscherer/Downloads/tgh2013-8105.txt"));
         while (sc.hasNextLine()) {
