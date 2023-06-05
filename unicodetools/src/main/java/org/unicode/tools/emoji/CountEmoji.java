@@ -570,6 +570,12 @@ public class CountEmoji {
                     if (role) {
                         attributes.add(Attribute.role);
                     }
+                    boolean direction = s.endsWith(Emoji.ZWJ_RIGHTWARDS_ARROW);
+                    if (direction && !gender) {
+                        // Directional sequences are currently limited to people
+                        // so make sure they don't end up in the "Other" bucket.
+                        attributes.add(Attribute.role);
+                    }
                     boolean family =
                             noVariants.contains(Emoji.ZWJ_HANDSHAKE_ZWJ) // holding hands
                                     || noVariants.contains(
