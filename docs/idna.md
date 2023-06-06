@@ -8,22 +8,28 @@
 2.  Run GenerateIdna.java
     *   It will generate
         {Generated}/idna/{version}/**IdnaMappingTable.txt**
-    *   ~~The data for the last 4 columns (h, i, j, k) of Table 4 IDNA
-        Comparisons for the UTR are listed at the bottom of the console
-        output.~~
-        *   ~~Fix Table 4 (h, i, j, k) with that data, and check into the repo.~~
-    *   ~~Diff with the previous version, and make sure everything is
-        understood, then check into the repo.~~
-    *   :construction: **TODO(markusicu)**: Obsolete?\
-        The results will be in
-        https://www.unicode.org/draft/Public/idna/{version}/ **IdnaMappingTable.txt**
+    *   Before [UTS #46 table 4](https://www.unicode.org/reports/tr46/#Table_IDNA_Comparisons)
+        was fixed at Unicode 11:
+        *   The data for the last 4 columns (h, i, j, k) of Table 4 IDNA
+            Comparisons for the UTR are listed at the bottom of the console output.
+        *   Fix Table 4 (h, i, j, k) with that data, and check into the repo.
+    *   Diff with the previous version, and make sure everything is understood,
+        then copy back into the dev folder.
+        ```
+        Generated$ meld ../src/unicodetools/data/idna/dev/IdnaMappingTable.txt idna/15.1.0/IdnaMappingTable.txt
+        Generated$ cp idna/15.1.0/IdnaMappingTable.txt ../src/unicodetools/data/idna/dev/IdnaMappingTable.txt
+        ```
+    *   *Important:* The mapping table file must be copied into the dev folder
+        before running GenerateIdnaTest.java!
+        Otherwise that tool will see the old version of the data.
 3.  Now run GenerateIdnaTest.java, in order to generate the test file.
     1.  It will generate {Generated}/idna/{version}/**IdnaTestV2.txt**
     2.  Diff with the previous version, and make sure everything is understood,
-        then check into the repo.
-    3.  :construction: **TODO(markusicu)**: Obsolete?\
-        The results will be in
-        https://www.unicode.org/draft/Public/idna/{version}/ **IdnaTestV2.txt**
+        then copy back into the dev folder.
+        ```
+        Generated$ meld ../src/unicodetools/data/idna/dev/IdnaTestV2.txt idna/15.1.0/IdnaTestV2.txt
+        Generated$ cp idna/15.1.0/IdnaTestV2.txt ../src/unicodetools/data/idna/dev/IdnaTestV2.txt
+        ```
 4.  Edit the ReadMe.txt if necessary.
     1.  Fix the copyright date
     2.  Add or remove "draft" in front of "data files", according to the status
