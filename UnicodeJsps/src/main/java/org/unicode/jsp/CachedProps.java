@@ -27,7 +27,6 @@ import java.util.zip.GZIPInputStream;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.jsp.UnicodeDataInput.ItemReader;
 import org.unicode.props.UnicodeProperty;
-import org.unicode.text.utility.Settings;
 
 public class CachedProps {
     public static final boolean IS_BETA = true;
