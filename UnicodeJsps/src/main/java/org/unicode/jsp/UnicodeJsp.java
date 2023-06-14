@@ -25,6 +25,7 @@ import org.unicode.idna.Idna2003;
 import org.unicode.idna.Idna2008;
 import org.unicode.idna.Uts46;
 import org.unicode.jsp.UnicodeUtilities.CodePointShower;
+import org.unicode.text.utility.Settings;
 
 public class UnicodeJsp {
 
@@ -420,7 +421,7 @@ public class UnicodeJsp {
                     : "<p style='border: 1pt solid red;'>Properties use ICU for Unicode V"
                             + UCharacter.getUnicodeVersion().getVersionString(2, 2)
                             + "; the beta properties support Unicode V"
-                            + CachedProps.CACHED_PROPS.version.getVersionString(2, 2)
+                            + VersionInfo.getInstance(Settings.latestVersion).getVersionString(2, 2)
                             + "&beta;. "
                             + "For more information, see <a target='help' href='https://unicode-org.github.io/unicodetools/help/changes'>Unicode Utilities Beta</a>.</p>";
 
