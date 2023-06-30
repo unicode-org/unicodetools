@@ -1,3 +1,4 @@
+<%@ page import="org.owasp.encoder.Encode" %>
 <html>
 <head>
 <%@ include file="header.jsp" %>
@@ -29,7 +30,7 @@
       <th class='r'>For special characters, you can use <a target="picker" href="http://macchiato.com/picker/MyApplication.html">Picker</a></th>
     </tr>
     <tr>
-      <td colSpan='2'><textarea name="a" rows="12" cols="10" style="width: 100%"><%=IDNA2008%></textarea></td>
+      <td colSpan='2'><textarea name="a" rows="12" cols="10" style="width: 100%"><%=Encode.forHtmlContent(IDNA2008)%></textarea></td>
     </tr>
 </table>
 <input id='main' type="submit" value="Show IDNA Status" onClick="window.location.href='idna.jsp?a='+document.getElementById('main').value"/>

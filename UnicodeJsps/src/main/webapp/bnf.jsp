@@ -1,3 +1,4 @@
+<%@ page import="org.owasp.encoder.Encode" %>
 <html>
 <head>
 <%@ include file="header.jsp" %>
@@ -50,23 +51,23 @@
       <th style="width: 50%">Input</th>
     </tr>
     <tr>
-      <td><textarea name="a" rows="8" cols="10" style="width: 100%"><%=bnf%></textarea></td>
+      <td><textarea name="a" rows="8" cols="10" style="width: 100%"><%=Encode.forHtmlContent(bnf)%></textarea></td>
     </tr>
     <tr>
       <th style="width: 50%">TestText</th>
     </tr>
     <tr>
-      <td><textarea name="b" rows="8" cols="10" style="width: 100%"><%=test%></textarea></td>
+      <td><textarea name="b" rows="8" cols="10" style="width: 100%"><%=Encode.forHtmlContent(test)%></textarea></td>
     </tr>
 </table>
 <input id='main' type="submit" value="Show Modified BNF Pattern" onClick="window.location.href='bnf.jsp?a='+document.getElementById('main').value"/>
 </form>
   <hr>
   <h2>Modified BNF Pattern</h2>
-  <p><%=fixedbnf%></p>
+  <p><%=Encode.forHtmlContent(fixedbnf)%></p>
   <hr>
   <h2>Underlined Find Values</h2>
-  <p><%=testPattern%></p>
+  <p><%=Encode.forHtmlContent(testPattern)%></p>
   <hr>
   <h2>Random Generation</h2>
   <%=random%>
