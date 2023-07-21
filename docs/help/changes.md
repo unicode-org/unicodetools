@@ -4,7 +4,7 @@ The Unicode Utilities have been modified to support both properties from the
 released version of Unicode (via ICU) and from the new Unicode beta.
 
 To get the beta version of the property, insert β *after* the property name.
-Examples:
+Examples: 
 
 | `\p{Word_Break=ALetter}` | Released version of Unicode |
 | `\p{Word_Breakβ=ALetter}` | Beta version of Unicode     |
