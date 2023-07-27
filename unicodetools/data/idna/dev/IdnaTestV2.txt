@@ -1,5 +1,5 @@
 # IdnaTestV2.txt
-# Date: 2023-06-06, 23:32:28 GMT
+# Date: 2023-07-27, 23:16:06 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -217,6 +217,8 @@ o\u0308bb; öbb; ; xn--bb-eka; ; ;  # öbb
 Öbb; öbb; ; xn--bb-eka; ; ;  # öbb
 O\u0308bb; öbb; ; xn--bb-eka; ; ;  # öbb
 xn--bb-eka; öbb; ; xn--bb-eka; ; ;  # öbb
+FAẞ.de; faß.de; ; xn--fa-hia.de; ; ; [V6] # faß.de
+FAẞ.DE; faß.de; ; xn--fa-hia.de; ; ; [V6] # faß.de
 βόλος.com; ; ; xn--nxasmm1c.com; ; xn--nxasmq6b.com;  # βόλος.com
 βο\u0301λος.com; βόλος.com; ; xn--nxasmm1c.com; ; xn--nxasmq6b.com;  # βόλος.com
 ΒΟ\u0301ΛΟΣ.COM; βόλοσ.com; ; xn--nxasmq6b.com; ; ;  # βόλοσ.com
