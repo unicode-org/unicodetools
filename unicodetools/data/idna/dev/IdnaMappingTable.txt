@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2023-05-15, 22:37:02 GMT
+# Date: 2023-07-27, 22:42:46 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2036,7 +2036,7 @@
 1E9A          ; mapped                 ; 0061 02BE     # 1.1  LATIN SMALL LETTER A WITH RIGHT HALF RING
 1E9B          ; mapped                 ; 1E61          # 2.0  LATIN SMALL LETTER LONG S WITH DOT ABOVE
 1E9C..1E9D    ; valid                                  # 5.1  LATIN SMALL LETTER LONG S WITH DIAGONAL STROKE..LATIN SMALL LETTER LONG S WITH HIGH STROKE
-1E9E          ; mapped                 ; 0073 0073     # 5.1  LATIN CAPITAL LETTER SHARP S
+1E9E          ; mapped                 ; 00DF          # 5.1  LATIN CAPITAL LETTER SHARP S
 1E9F          ; valid                                  # 5.1  LATIN SMALL LETTER DELTA
 1EA0          ; mapped                 ; 1EA1          # 1.1  LATIN CAPITAL LETTER A WITH DOT BELOW
 1EA1          ; valid                                  # 1.1  LATIN SMALL LETTER A WITH DOT BELOW
