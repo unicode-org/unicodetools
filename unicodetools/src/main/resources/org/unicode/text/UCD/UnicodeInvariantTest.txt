@@ -348,6 +348,14 @@ EquivalencesOf $codepoints Case_Folding ⇔ Simple_Case_Folding
 # Stability: If a character is XID_Start then it must also be XID_Continue. 
 \p{XID_Start} ⊇ \p{U-1:XID_Start}
 
+# While the above stability policy is only applicable back to 4.1.0+ for the
+# Continue properties, recent versions of Unicode are compatible further back.
+# See https://www.unicode.org/cgi-bin/GetL2Ref.pl?176-C18.
+\p{XID_Start} ⊇ \p{U3.1.0:XID_Start}
+\p{ID_Start} ⊇ \p{U3.1.0:ID_Start}
+\p{XID_Continue} ⊇ \p{U3.1.0:XID_Continue}
+\p{ID_Continue} ⊇ \p{U3.1.0:ID_Continue}
+
 # Stability: The Pattern_Syntax and Pattern_Whitespace properties are immutable code point properties, which means that their property values for all Unicode code points will never change.
 \p{Pattern_Whitespace} = \p{U-1:Pattern_Whitespace}
 \p{Pattern_Syntax} = \p{U-1:Pattern_Syntax}
