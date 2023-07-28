@@ -531,15 +531,19 @@ Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288
 # See L2/22-086 for an explanation of the special case of Batak.
 \p{LB=VI} = [[\p{Indic_Syllabic_Category=Virama}\p{Indic_Syllabic_Category=Invisible_Stacker}] & $BrahmicLineBreaking]
 \p{LB=VF} = [\p{Indic_Syllabic_Category=Pure_Killer} & \p{sc=Batak}]
-\p{LB=CM} = [[\u3035] \p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -[\U00013437\U00013438\U0001343C-\U0001343F] -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL} -\p{LB=ZWJ} - \p{LB=VI} - \p{LB=VF}]
+
+# 15.1: Action item UTC-176-A81: change [[:PCM:]-\u070F] lb=AL->NU
+\p{LB=CM} = [[\u3035] \p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -[\U00013437\U00013438\U0001343C-\U0001343F] -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL} -\p{LB=ZWJ} - \p{LB=VI} - \p{LB=VF} - \p{LB=NU}]
 # Excluded Egyptian controls begin/end segment etc. 13437, 13438 & 1343C..1343F (gc=Cf, lb=OP/CL)
 
 #  3.0.0: Numeric characters consist of decimal digits (all characters of General_Category Nd),
 #         except those with East_Asian_Width F (Fullwidth)
 # 15.1.0: and those from scripts that use the Brahmic style of context analysis,
 #  4.0.1: plus these characters: 066B ARABIC DECIMAL SEPARATOR, 066C ARABIC THOUSANDS SEPARATOR.
+# 15.1.0: Action item UTC-176-A81: change [[:PCM:]-\u070F] lb=AL->NU
 Let $NUInclusions = [\u066B\u066C]
-\p{LB=NU} = [\p{GC=Nd} $NUInclusions - \p{EA=F} - $BrahmicLineBreaking]
+Let $NUFormats = [[:PCM:]-[\u070F]]
+\p{LB=NU} = [\p{GC=Nd} $NUInclusions $NUFormats - \p{EA=F} - $BrahmicLineBreaking]
 
 Let $PRInclusions = [\u002b\u005c\u00b1\u2116\u2212\u2213\u20C0-\u20CF]
 \p{LB=PR} = [\p{GC=Sc} $PRInclusions - \p{LB=PO}]

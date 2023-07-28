@@ -1284,10 +1284,6 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             unicodeMap.putAll(
                     new UnicodeSet(lineBreak.getSet("Numeric"))
                             .add(cat.getSet("Decimal_Number"))
-                            // 174-CXX.
-                            .add(
-                                    new UnicodeSet(
-                                            "[\u0600-\u0605\u06DD\u0890\u0891\u08E2\\U000110BD\\U000110CD]"))
                             .remove(0x066C),
                     "Numeric"); // .remove(0x387)
             unicodeMap.putAll(
@@ -1366,8 +1362,16 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             .add(0xE0020, 0xE007F),
                     "Extend");
             unicodeMap.putAll(new UnicodeSet("[\\u0085\\u2028\\u2029]"), "Sep");
+            // Exclude lb=Numeric from SB=Format.
+            // Unicode 15.1 changes [[:PCM:]-\u070F] from lb=AL to lb=NU.
+            final UnicodeProperty lineBreak = getProperty("Line_Break");
+            final UnicodeSet lbNumeric = lineBreak.getSet("Numeric");
             unicodeMap.putAll(
-                    cat.getSet("Format").remove(0x200C).remove(0x200D).remove(0xE0020, 0xE007F),
+                    cat.getSet("Format")
+                            .remove(0x200C)
+                            .remove(0x200D)
+                            .remove(0xE0020, 0xE007F)
+                            .removeAll(lbNumeric),
                     "Format");
             unicodeMap.putAll(
                     getProperty("Whitespace")
@@ -1402,10 +1406,8 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             .removeAll(unicodeMap.keySet("Upper"))
                             .removeAll(unicodeMap.keySet("Extend"));
             unicodeMap.putAll(temp, "OLetter");
-            final UnicodeProperty lineBreak = getProperty("Line_Break");
             unicodeMap.putAll(
-                    new UnicodeSet(lineBreak.getSet("Numeric")).add(cat.getSet("Decimal_Number")),
-                    "Numeric");
+                    new UnicodeSet(lbNumeric).addAll(cat.getSet("Decimal_Number")), "Numeric");
             unicodeMap.putAll(new UnicodeSet("[\\u002E\\u2024\\uFE52\\uFF0E]"), "ATerm");
             unicodeMap.putAll(
                     getProperty("STerm")

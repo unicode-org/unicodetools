@@ -72,9 +72,9 @@ public interface UCD_Types {
 
             // Extension I is between extension F and the CJK Compatibility Ideographs Supplement.
             // 2EBF0;<CJK Ideograph Extension I, First>;Lo;0;L;;;;;N;;;;;
-            // 2EE4A;<CJK Ideograph Extension I, Last>;Lo;0;L;;;;;N;;;;;
+            // 2EE5D;<CJK Ideograph Extension I, Last>;Lo;0;L;;;;;N;;;;;
             CJK_I_BASE = 0x2EBF0,
-            CJK_I_LIMIT = 0x2EE4A + 1,
+            CJK_I_LIMIT = 0x2EE5D + 1,
 
             // 30000;<CJK Ideograph Extension G, First>;Lo;0;L;;;;;N;;;;;
             // 3134A;<CJK Ideograph Extension G, Last>;Lo;0;L;;;;;N;;;;;
