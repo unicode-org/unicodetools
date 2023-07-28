@@ -47,6 +47,7 @@
  *   2023-Jan-31 Updates for Unicode 15.1.
  *   2023-May-02 Tweaks for CJK Extension I.
  *   2023-May-09 Adjust for use of 4 more variant secondaries.
+ *   2023-Jul-28 Adjust end range of CJK Extension I.
  */
 
 /*
@@ -171,7 +172,7 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 15.1.0d3, 2023-05-09\n";
+static char versionString[] = "Sifter version 15.1.0d4, 2023-07-28\n";
 
 static char unidatafilename[] = "unidata-15.1.0.txt";
 static char allkeysfilename[] = "allkeys-15.1.0.txt";
@@ -285,7 +286,7 @@ int digitsInitialized;
 #define CJK_EXTF_FIRST (0x2CEB0)
 #define CJK_EXTF_LAST  (0x2EBE0)
 #define CJK_EXTI_FIRST (0x2EBF0)
-#define CJK_EXTI_LAST  (0x2EE4A)
+#define CJK_EXTI_LAST  (0x2EE5D)
 #define CJK_EXTG_FIRST (0x30000)
 #define CJK_EXTG_LAST  (0x3134A)
 #define CJK_EXTH_FIRST (0x31350)
