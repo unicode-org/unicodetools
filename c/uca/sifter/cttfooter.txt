@@ -25,7 +25,7 @@
 %      cp >= 0x2B740 && cp <= 0x2B81D % Ext. D
 %      cp >= 0x2B820 && cp <= 0x2CEA1 % Ext. E
 %      cp >= 0x2CEB0 && cp <= 0x2EBE0 % Ext. F
-%      cp >= 0x2EBF0 && cp <= 0x2EE4A % Ext. I
+%      cp >= 0x2EBF0 && cp <= 0x2EE5D % Ext. I
 %      cp >= 0x30000 && cp <= 0x3134A % Ext. G
 %      cp >= 0x31350 && cp <= 0x323AF % Ext. H
 %   For a given Han character at code point cp:

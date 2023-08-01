@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-15.1.0.txt
-# Date: 2023-04-26, 18:59:40 GMT
+# Date: 2023-07-28, 23:34:01 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -30,7 +30,7 @@
 # 2B740..2B81F CJK_Unified_Ideographs_Extension_D
 # 2B820..2CEAF CJK_Unified_Ideographs_Extension_E
 # 2CEB0..2EBEF CJK_Unified_Ideographs_Extension_F
-# 2EBF0..2EE4F CJK_Unified_Ideographs_Extension_I
+# 2EBF0..2EE5F CJK_Unified_Ideographs_Extension_I
 # 2F800..2FA1F CJK_Compatibility_Ideographs_Supplement
 # @missing: 20000..2FFFD; Wide
 
@@ -2510,12 +2510,12 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 2B740..2B81D  ; W # Lo [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 2B820..2CEA1  ; W # Lo [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 2CEB0..2EBE0  ; W # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
-2EBF0..2EE4A  ; W # Lo [603] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE4A
+2EBF0..2EE5D  ; W # Lo [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
 2F800..2FA1D  ; W # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; W # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; W # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# The above property value applies to 60501 code points not listed here.
+# The above property value applies to 60482 code points not listed here.
 # Total code points: 182417
 
 # ================================================

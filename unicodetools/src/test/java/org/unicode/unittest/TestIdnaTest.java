@@ -82,19 +82,29 @@ public class TestIdnaTest extends TestFmwkMinusMinus {
                         .complement()
                         .freeze();
 
+        String versionString =
+                " expected=v" + Settings.latestVersion + " actual=v" + Settings.lastVersion;
         for (String x : oldAssigned) {
-            String versionString =
-                    " expected=v" + Settings.latestVersion + " actual=v" + Settings.lastVersion;
-            assertEquals("mapping" + versionString, idnaMappingLast.get(x), idnaMapping.get(x));
-            Idn_Status_Values lastStatus = idnaStatusLast.get(x);
-            Idn_Status_Values currentStatus = idnaStatus.get(x);
             char c0 = x.charAt(0);
-            // Unicode 15.1 changes these from disallowed_STD3_valid to valid.
-            boolean skip =
-                    (c0 == 0x2260 || c0 == 0x226E || c0 == 0x226F)
-                            && currentStatus == Idn_Status_Values.valid;
-            if (!skip) {
-                assertEquals("status" + versionString, lastStatus, currentStatus);
+            {
+                // Unicode 15.1 changes the mapping of capital sharp s:
+                // Used to map to ss, now to lowercase sharp s.
+                boolean skip = c0 == 0x1E9E;
+                if (!skip) {
+                    assertEquals(
+                            "mapping" + versionString, idnaMappingLast.get(x), idnaMapping.get(x));
+                }
+            }
+            {
+                Idn_Status_Values lastStatus = idnaStatusLast.get(x);
+                Idn_Status_Values currentStatus = idnaStatus.get(x);
+                // Unicode 15.1 changes these from disallowed_STD3_valid to valid.
+                boolean skip =
+                        (c0 == 0x2260 || c0 == 0x226E || c0 == 0x226F)
+                                && currentStatus == Idn_Status_Values.valid;
+                if (!skip) {
+                    assertEquals("status" + versionString, lastStatus, currentStatus);
+                }
             }
         }
     }

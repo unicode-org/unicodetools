@@ -326,6 +326,13 @@ public class GenerateIdna {
         baseMapping.put(0x3002, "\u002E");
         baseMapping.put(0xFF61, "\u002E");
         baseMapping.putAll(bidiControls, null);
+        // UTC #176 (2023-jul) Action Item ...:
+        // - In UTS #46 Mapping Table Derivation step 1 (base mapping)
+        //   substep 1 (exceptional characters),
+        //   map U+1E9E capital sharp s to U+00DF small sharp s. ...
+        // - In IdnaMappingTable.txt map U+1E9E capital sharp s to U+00DF small sharp s
+        //   instead of to "ss", for Unicode 15.1.
+        baseMapping.put(0x1E9E, "\u00DF");
         baseMapping.freeze();
 
         final UnicodeSet labelSeparator =
@@ -344,6 +351,10 @@ public class GenerateIdna {
                         .removeAll(properties.getSet("gc=Zs"))
                         .removeAll(properties.getSet("Block=Ideographic_Description_Characters"))
                         .removeAll(new UnicodeSet("[\\u0000-\\u007F]"))
+                        // Add lowercase sharp s to the base valid set.
+                        // Otherwise the new-in-15.1 baseMapping for capital sharp s
+                        // would not be valid, and capital sharp s would end up disallowed.
+                        .add(0x00DF)
                         // .addAll(0x200c, 0x200d)
                         .addAll(STD3 ? VALID_ASCII : NSTD3_ASCII)
                         .freeze();
@@ -449,6 +460,7 @@ public class GenerateIdna {
         do {
             excluded.clear();
             final UnicodeSet validSet = mappingTable.getSet(validResult);
+            final UnicodeSet validOrDeviationSet = new UnicodeSet(validSet).addAll(deviationSet);
             final UnicodeSet disallowedSet = mappingTable.getSet(disallowedResult);
             final UnicodeSet ignoredSet = mappingTable.getSet(ignoredResult);
             // Unicode 15.1 & later: No longer check whether the NFD is valid.
@@ -474,7 +486,14 @@ public class GenerateIdna {
                 if (is15OrEarlier) {
                     mapResult = Default.nfd().normalize(mapResult);
                 }
-                if (!validSet.containsAll(mapResult)) {
+                // Unicode 15.1 & later: Allow deviation characters in the mapping.
+                // Otherwise, capital sharp s is disallowed because
+                // it now maps to lowercase sharp s which is a deviation character.
+                boolean mappedIsValid =
+                        is15OrEarlier
+                                ? validSet.containsAll(mapResult)
+                                : validOrDeviationSet.containsAll(mapResult);
+                if (!mappedIsValid) {
                     excluded.add(mapped);
                 }
             }
