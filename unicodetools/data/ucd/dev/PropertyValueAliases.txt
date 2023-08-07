@@ -853,6 +853,12 @@ IDS; Y                                ; Yes                              ; T    
 Ideo; N                               ; No                               ; F                                ; False
 Ideo; Y                               ; Yes                              ; T                                ; True
 
+# Indic_Conjunct_Break (InCB)
+InCB; Linker ; Linker
+InCB; Consonant ; Consonant
+InCB; Extend ; Extend
+InCB; None; None
+
 # Indic_Positional_Category (InPC)
 
 InPC; Bottom                          ; Bottom

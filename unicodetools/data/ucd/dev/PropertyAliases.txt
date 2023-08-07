@@ -122,6 +122,7 @@ ea                       ; East_Asian_Width
 gc                       ; General_Category
 GCB                      ; Grapheme_Cluster_Break
 hst                      ; Hangul_Syllable_Type
+InCB ; Indic_Conjunct_Break
 InPC                     ; Indic_Positional_Category
 InSC                     ; Indic_Syllabic_Category
 jg                       ; Joining_Group
