@@ -1158,6 +1158,58 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             //            unicodeMap.setErrorOnReset(false);
             //            unicodeMap.put(0,oldValue);
             //            unicodeMap.setErrorOnReset(true);
+
+            // Indic_Conjunct_Break. The definition depends on GCB derived just above.
+            final UnicodeProperty script = getProperty("Script");
+            final UnicodeProperty gcb = getProperty("Grapheme_Cluster_Break");
+            final UnicodeProperty ccc = getProperty("Canonical_Combining_Class");
+            // if (true) throw new IllegalAccessError(ccc.getSet("0").toString());
+            final UnicodeSet conjunctLinkingScripts =
+                    script.getSet("Gujr")
+                            .addAll(script.getSet("Telu"))
+                            .addAll(script.getSet("Mlym"))
+                            .addAll(script.getSet("Orya"))
+                            .addAll(script.getSet("Beng"))
+                            .addAll(script.getSet("Deva"));
+            final UnicodeMap<String> incbDefinition =
+                    new UnicodeMap<String>()
+                            .setErrorOnReset(true)
+                            .putAll(
+                                    conjunctLinkingScripts
+                                            .cloneAsThawed()
+                                            .retainAll(
+                                                    isc.getSet(
+                                                            Indic_Syllabic_Category_Values.Virama)),
+                                    "Linker")
+                            .putAll(
+                                    conjunctLinkingScripts
+                                            .cloneAsThawed()
+                                            .retainAll(
+                                                    isc.getSet(
+                                                            Indic_Syllabic_Category_Values
+                                                                    .Consonant)),
+                                    "Consonant")
+                            .putAll(
+                                    gcb.getSet("Extend")
+                                            .removeAll(ccc.getSet("Not_Reordered"))
+                                            .addAll(gcb.getSet("ZWJ"))
+                                            .removeAll(
+                                                    isc.getSet(
+                                                            Indic_Syllabic_Category_Values.Virama))
+                                            .removeAll(
+                                                    isc.getSet(
+                                                            Indic_Syllabic_Category_Values
+                                                                    .Consonant)),
+                                    "Extend")
+                            .setMissing("None");
+            add(
+                    new UnicodeProperty.UnicodeMapProperty()
+                            .set(incbDefinition)
+                            .setMain(
+                                    "Indic_Conjunct_Break",
+                                    "InCB",
+                                    UnicodeProperty.ENUMERATED,
+                                    version));
         }
 
         if (compositeVersion >= 0x040000) {
