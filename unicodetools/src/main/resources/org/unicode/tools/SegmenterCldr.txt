@@ -251,10 +251,10 @@ $AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
 # LB 15a Do not break after an unresolved initial punctuation that lies at the start of the line,
 # after a space, after opening punctuation, or after an unresolved quotation mark, even after
 # spaces.
-15.11) ( $sot | $BK | $CR | $LF | $NL | $OP | $QU | $GL | $SP ) $QU_Pi $SP* ×
+15.11) ( $sot | $BK | $CR | $LF | $NL | $OP | $QU | $GL | $SP | $ZW ) $QU_Pi $SP* ×
 # LB 15b Do not break before an unresolved final punctuation that lies at the end of the line, before
 # a space, before a prohibited break, or before an unresolved quotation mark, even before spaces.
-15.21) × $QU_Pf ( $SP | $GL | $WJ | $CL | $QU | $CP | $EX | $IS | $SY | $BK | $CR | $LF | $NL | $eot )
+15.21) × $QU_Pf ( $SP | $GL | $WJ | $CL | $QU | $CP | $EX | $IS | $SY | $BK | $CR | $LF | $NL | $ZW | $eot )
 # LB 16  Do not break between closing punctuation and a nonstarter (lb=NS), even with intervening spaces.
 16) ($CL | $CP) $SP* × $NS
 # LB 17  Do not break within \u2018\u2014\u2014\u2019, even with intervening spaces.
