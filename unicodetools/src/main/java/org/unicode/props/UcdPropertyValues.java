@@ -984,9 +984,9 @@ public class UcdPropertyValues {
     }
 
     public enum Indic_Conjunct_Break_Values implements Named {
-        Linker("Linker"),
         Consonant("Consonant"),
         Extend("Extend"),
+        Linker("Linker"),
         None("None");
         private final PropertyNames<Indic_Conjunct_Break_Values> names;
 
