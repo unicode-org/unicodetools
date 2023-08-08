@@ -7,7 +7,7 @@ td, th { vertical-align: top }
 <body bgcolor='#FFFFFF'>
 <h2>Line_Break Chart</h2>
 <p><b>Unicode Version:</b> 15.1.0</p>
-<p><b>Date:</b> 2023-06-21, 09:15:54 GMT</p>
+<p><b>Date:</b> 2023-08-08, 11:26:07 GMT</p>
 <p>This page illustrates the application of the Line_Break specification. The material here is informative, not normative.</p> <p>The first chart shows where breaks would appear between different sample characters or strings. The sample characters are chosen mechanically to represent the different properties used by the specification.</p><p>Each cell shows the break-status for the position between the character(s) in its row header and the character(s) in its column header. The × symbol indicates no break, while the ÷ symbol indicated a break. The cells with × are also shaded to make it easier to scan the table. For example, in the cell at the intersection of the row headed by “CR” and the column headed by “LF”, there is a × symbol, indicating that there is no break between CR and LF.</p>
 <p>Some column headers may be composed, reflecting “treat as” or “ignore” rules.</p>
 <p>If your browser handles titles (tooltips), then hovering the mouse over the row header will show a sample character of that type. Hovering over a column header will show the sample character, plus its abbreviated general category and script. Hovering over the intersected cells shows the rule number that produces the break-status. For example, hovering over the cell at the intersection of H3 and JT shows ×, with the rule 26.03. Checking below the table, rule 26.03 is “JT | H3 × JT”, which is the one that applies to that case. Note that a rule is invoked only when no lower-numbered rules have applied.</p>
@@ -92,8 +92,8 @@ td, th { vertical-align: top }
 <tr><th style='text-align:right'><a href='#r13.03' name='r13.03'>13.03</a></th><td style='text-align:right'>[^ NU CM] CM+ </td><td>×</td><td> (CL | CP | IS | SY)</td></tr>
 <tr><th style='text-align:right'><a href='#r13.04' name='r13.04'>13.04</a></th><td style='text-align:right'>^ CM+ </td><td>×</td><td> (CL | CP | IS | SY)</td></tr>
 <tr><th style='text-align:right'><a href='#r14.0' name='r14.0'>14.0</a></th><td style='text-align:right'>OP SP* </td><td>×</td><td></td></tr>
-<tr><th style='text-align:right'><a href='#r15.11' name='r15.11'>15.11</a></th><td style='text-align:right'>( sot | BK | CR | LF | NL | OP | QU | GL | SP ) QU_Pi SP* </td><td>×</td><td></td></tr>
-<tr><th style='text-align:right'><a href='#r15.21' name='r15.21'>15.21</a></th><td style='text-align:right'></td><td>×</td><td> QU_Pf ( SP | GL | WJ | CL | QU | CP | EX | IS | SY | BK | CR | LF | NL | eot )</td></tr>
+<tr><th style='text-align:right'><a href='#r15.11' name='r15.11'>15.11</a></th><td style='text-align:right'>( sot | BK | CR | LF | NL | OP | QU | GL | SP | ZW ) QU_Pi SP* </td><td>×</td><td></td></tr>
+<tr><th style='text-align:right'><a href='#r15.21' name='r15.21'>15.21</a></th><td style='text-align:right'></td><td>×</td><td> QU_Pf ( SP | GL | WJ | CL | QU | CP | EX | IS | SY | BK | CR | LF | NL | ZW | eot )</td></tr>
 <tr><th style='text-align:right'><a href='#r16.0' name='r16.0'>16.0</a></th><td style='text-align:right'>(CL | CP) SP* </td><td>×</td><td> NS</td></tr>
 <tr><th style='text-align:right'><a href='#r17.0' name='r17.0'>17.0</a></th><td style='text-align:right'>B2 SP* </td><td>×</td><td> B2</td></tr>
 <tr><th style='text-align:right'><a href='#r18.0' name='r18.0'>18.0</a></th><td style='text-align:right'>SP </td><td>÷</td><td></td></tr>
