@@ -140,6 +140,7 @@ DerivedCoreProperties ; ID_Start
 DerivedCoreProperties ; ID_Continue
 DerivedCoreProperties ; XID_Start
 DerivedCoreProperties ; XID_Continue
+DerivedCoreProperties ; Indic_Conjunct_Break
 DerivedNormalizationProps ; Full_Composition_Exclusion
 DerivedNormalizationProps ; Expands_On_NFC
 DerivedNormalizationProps ; Expands_On_NFD

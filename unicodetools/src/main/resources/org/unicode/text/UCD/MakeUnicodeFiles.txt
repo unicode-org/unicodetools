@@ -391,6 +391,13 @@ Property:	Grapheme_Link
 #  Generated from: Canonical_Combining_Class=Virama
 #  Use Canonical_Combining_Class=Virama directly instead
 
+Property:	Indic_Conjunct_Break
+# Derived Property: Indic_Conjunct_Break
+#  Generated from the Grapheme_Cluster_Break, Indic_Syllabic_Category,
+#  Canonical_Combining_Class, and Script properties as described in UAX #44:
+#  https://www.unicode.org/reports/tr44/.
+Format:	nameStyle=short valueStyle=short skipValue=None
+
 File:	extracted/DerivedDecompositionType
 Property:	Decomposition_Type
 Format:	skipValue=None

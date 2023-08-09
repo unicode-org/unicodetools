@@ -983,6 +983,37 @@ public class UcdPropertyValues {
         }
     }
 
+    public enum Indic_Conjunct_Break_Values implements Named {
+        Consonant("Consonant"),
+        Extend("Extend"),
+        Linker("Linker"),
+        None("None");
+        private final PropertyNames<Indic_Conjunct_Break_Values> names;
+
+        private Indic_Conjunct_Break_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Indic_Conjunct_Break_Values>(
+                            Indic_Conjunct_Break_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<Indic_Conjunct_Break_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Indic_Conjunct_Break_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Indic_Conjunct_Break_Values.class);
+
+        public static Indic_Conjunct_Break_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
     public enum Indic_Positional_Category_Values implements Named {
         Bottom("Bottom"),
         Bottom_And_Left("Bottom_And_Left"),

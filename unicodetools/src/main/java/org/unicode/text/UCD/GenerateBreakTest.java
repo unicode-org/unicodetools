@@ -1412,7 +1412,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             "क" + "\u094D" + "त" + '\u094D' + "य",
                             "क" + "\u094D" + "a",
                             "a" + "\u094D" + "त",
-                            "?" + "\u094D" + "त"));
+                            "?" + "\u094D" + "त",
+                            "क" + "\u094D\u094D" + "त"));
         }
     }
 
