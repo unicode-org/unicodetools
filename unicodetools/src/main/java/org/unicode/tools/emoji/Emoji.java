@@ -130,9 +130,9 @@ public class Emoji {
      * Change each following once we release. That is, VERSION_LAST_RELEASED* becomes VERSION_BETA*,
      * and both the latter increment. Also add to EMOJI_TO_UNICODE_VERSION
      */
-    public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION14;
+    public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION15;
 
-    public static final VersionInfo VERSION_LAST_RELEASED = VERSION15;
+    public static final VersionInfo VERSION_LAST_RELEASED = VERSION15_1;
     public static final VersionInfo VERSION_BETA = VERSION15_1;
 
     public static final VersionInfo VERSION_TO_TEST = VERSION_BETA;
