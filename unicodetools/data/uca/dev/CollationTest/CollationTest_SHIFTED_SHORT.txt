@@ -1,5 +1,5 @@
 # CollationTest_SHIFTED_SHORT.txt
-# Date: 2023-05-16, 22:08:49 GMT
+# Date: 2023-08-09, 21:05:22 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -195776,12 +195776,12 @@ FAD7 0062
 2EBF3 0061
 2EBF3 0041
 2EBF3 0062
-2EE4A 0021
-2EE4A 003F
-2EE4A 0334
-2EE4A 0061
-2EE4A 0041
-2EE4A 0062
+2EE5D 0021
+2EE5D 003F
+2EE5D 0334
+2EE5D 0061
+2EE5D 0041
+2EE5D 0062
 30000 0021
 30000 003F
 30000 0334
