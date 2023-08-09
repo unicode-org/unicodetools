@@ -1718,7 +1718,10 @@ public abstract class GenerateBreakTest implements UCD_Types {
                                 + "» J. S. »",
                         // Vietnamese. Note that here we have a full stop *after* the quotation
                         // marks.
-                        "— Không ai hãm bao giờ mà bây giờ hãm, thế nó mới « mới »."
+                        "— Không ai hãm bao giờ mà bây giờ hãm, thế nó mới « mới ».",
+                        // ZWSP.
+                        "Pas une citation »Zitat« Pas une citation non plus",
+                        "« Citation »\u200BKein Zitat\u200B« Autre citation »"
                     });
 
             // Additions for Unicode 14 LB30b   [\p{Extended_Pictographic}&\p{Cn}] × EM
