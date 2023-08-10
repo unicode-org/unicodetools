@@ -350,6 +350,7 @@ public class GenerateIdna {
                         .removeAll(properties.getSet("gc=Zp"))
                         .removeAll(properties.getSet("gc=Zs"))
                         .removeAll(properties.getSet("Block=Ideographic_Description_Characters"))
+                        .remove(0x31EF) // an IDC added in 15.1 outside the full IDC block
                         .removeAll(new UnicodeSet("[\\u0000-\\u007F]"))
                         // Add lowercase sharp s to the base valid set.
                         // Otherwise the new-in-15.1 baseMapping for capital sharp s
