@@ -19776,8 +19776,9 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 # Total code points: 313
 
 00B7          ; Allowed ; Inclusion #      (·)  MIDDLE DOT
+30FB          ; Allowed ; Inclusion #      (・)  KATAKANA MIDDLE DOT
 
-# Total code points: 1
+# Total code points: 2
 
 0030          ; Allowed ; Recommended #      (0)  DIGIT ZERO
 0031          ; Allowed ; Recommended #      (1)  DIGIT ONE
@@ -41260,6 +41261,25 @@ FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 2EE48         ; Allowed ; Recommended #      (𮹈)  CJK UNIFIED IDEOGRAPH-2EE48
 2EE49         ; Allowed ; Recommended #      (𮹉)  CJK UNIFIED IDEOGRAPH-2EE49
 2EE4A         ; Allowed ; Recommended #      (𮹊)  CJK UNIFIED IDEOGRAPH-2EE4A
+2EE4B         ; Allowed ; Recommended #      (𮹋)  CJK UNIFIED IDEOGRAPH-2EE4B
+2EE4C         ; Allowed ; Recommended #      (𮹌)  CJK UNIFIED IDEOGRAPH-2EE4C
+2EE4D         ; Allowed ; Recommended #      (𮹍)  CJK UNIFIED IDEOGRAPH-2EE4D
+2EE4E         ; Allowed ; Recommended #      (𮹎)  CJK UNIFIED IDEOGRAPH-2EE4E
+2EE4F         ; Allowed ; Recommended #      (𮹏)  CJK UNIFIED IDEOGRAPH-2EE4F
+2EE50         ; Allowed ; Recommended #      (𮹐)  CJK UNIFIED IDEOGRAPH-2EE50
+2EE51         ; Allowed ; Recommended #      (𮹑)  CJK UNIFIED IDEOGRAPH-2EE51
+2EE52         ; Allowed ; Recommended #      (𮹒)  CJK UNIFIED IDEOGRAPH-2EE52
+2EE53         ; Allowed ; Recommended #      (𮹓)  CJK UNIFIED IDEOGRAPH-2EE53
+2EE54         ; Allowed ; Recommended #      (𮹔)  CJK UNIFIED IDEOGRAPH-2EE54
+2EE55         ; Allowed ; Recommended #      (𮹕)  CJK UNIFIED IDEOGRAPH-2EE55
+2EE56         ; Allowed ; Recommended #      (𮹖)  CJK UNIFIED IDEOGRAPH-2EE56
+2EE57         ; Allowed ; Recommended #      (𮹗)  CJK UNIFIED IDEOGRAPH-2EE57
+2EE58         ; Allowed ; Recommended #      (𮹘)  CJK UNIFIED IDEOGRAPH-2EE58
+2EE59         ; Allowed ; Recommended #      (𮹙)  CJK UNIFIED IDEOGRAPH-2EE59
+2EE5A         ; Allowed ; Recommended #      (𮹚)  CJK UNIFIED IDEOGRAPH-2EE5A
+2EE5B         ; Allowed ; Recommended #      (𮹛)  CJK UNIFIED IDEOGRAPH-2EE5B
+2EE5C         ; Allowed ; Recommended #      (𮹜)  CJK UNIFIED IDEOGRAPH-2EE5C
+2EE5D         ; Allowed ; Recommended #      (𮹝)  CJK UNIFIED IDEOGRAPH-2EE5D
 30000         ; Allowed ; Recommended #      (𰀀)  CJK UNIFIED IDEOGRAPH-30000
 30001         ; Allowed ; Recommended #      (𰀁)  CJK UNIFIED IDEOGRAPH-30001
 30002         ; Allowed ; Recommended #      (𰀂)  CJK UNIFIED IDEOGRAPH-30002
@@ -50393,7 +50413,7 @@ FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 323AF         ; Allowed ; Recommended #      (𲎯)  CJK UNIFIED IDEOGRAPH-323AF
 E0100..E01EF  ; Allowed ; Recommended # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 112979
+# Total code points: 112998
 
 005F          ; ~IDNA #      (_)  LOW LINE
 04C0          ; ~IDNA #      (Ӏ)  CYRILLIC LETTER PALOCHKA
@@ -50612,7 +50632,6 @@ E0100..E01EF  ; Allowed ; Recommended # [240] (U+E0100..U+E01EF)  VARIATION SELE
 303D..303F    ; ~Unicode Identifier #  [3] (〽..〿)  PART ALTERNATION MARK..IDEOGRAPHIC HALF FILL SPACE
 309B..309C    ; ~Unicode Identifier #  [2] (゛..゜)  KATAKANA-HIRAGANA VOICED SOUND MARK..KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK
 309F..30A0    ; ~Unicode Identifier #  [2] (ゟ..゠)  HIRAGANA DIGRAPH YORI..KATAKANA-HIRAGANA DOUBLE HYPHEN
-30FB          ; ~Unicode Identifier #      (・)  KATAKANA MIDDLE DOT
 30FF          ; ~Unicode Identifier #      (ヿ)  KATAKANA DIGRAPH KOTO
 3131..318E    ; ~Unicode Identifier # [94] (ㄱ..ㆎ)  HANGUL LETTER KIYEOK..HANGUL LETTER ARAEAE
 3190..319F    ; ~Unicode Identifier # [16] (㆐..㆟)  IDEOGRAPHIC ANNOTATION LINKING MARK..IDEOGRAPHIC ANNOTATION MAN MARK
@@ -50903,4 +50922,4 @@ FFF9..FFFD    ; ~Unicode Identifier #  [5] (U+FFF9..�)  INTERLINEAR ANNOTATION
 E0001         ; ~Unicode Identifier #      (U+E0001)  LANGUAGE TAG
 E0020..E007F  ; ~Unicode Identifier # [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 
-# Total code points: 13421
+# Total code points: 13420

@@ -1,5 +1,5 @@
 # confusablesSummaryIdentifier.txt
-# Date: 2023-05-16, 22:25:14 GMT
+# Date: 2023-08-11, 17:46:40 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -529,10 +529,10 @@
 ←	(‎ ү̵ ‎)	04AF 0335	 CYRILLIC SMALL LETTER STRAIGHT U, COMBINING SHORT STROKE OVERLAY
 ←	(‎ ұ ‎)	04B1	 CYRILLIC SMALL LETTER STRAIGHT U WITH STROKE	# →ү̵→
 
-#	·	‧	・
+#	·	・	‧
 	(‎ · ‎)	00B7	 MIDDLE DOT
-←	(‎ ‧ ‎)	2027	 HYPHENATION POINT
 ←	(‎ ・ ‎)	30FB	 KATAKANA MIDDLE DOT	# →•→
+←	(‎ ‧ ‎)	2027	 HYPHENATION POINT
 
 #	Å	Ȧ
 	(‎ Å ‎)	00C5	 LATIN CAPITAL LETTER A WITH RING ABOVE
