@@ -1,5 +1,5 @@
 # formatted-source.txt
-# Date: 2023-05-16, 22:25:11 GMT
+# Date: 2023-08-11, 17:46:36 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -4000,7 +4000,7 @@
 
 3078 ;	30D8	# ( へ ~ ヘ ) HIRAGANA LETTER HE ~ KATAKANA LETTER HE
 
-30FB ;	2022	#* ( ・ ~ • ) KATAKANA MIDDLE DOT ~ BULLET
+30FB ;	2022	# ( ・ ~ • ) KATAKANA MIDDLE DOT ~ BULLET
 
 30FC ;	4E00	# ( ー ~ 一 ) KATAKANA-HIRAGANA PROLONGED SOUND MARK ~ CJK UNIFIED IDEOGRAPH-4E00
 30FC ;	FF0D	# ( ー ~ － ) KATAKANA-HIRAGANA PROLONGED SOUND MARK ~ FULLWIDTH HYPHEN-MINUS
