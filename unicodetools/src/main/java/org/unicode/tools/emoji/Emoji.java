@@ -384,6 +384,8 @@ public class Emoji {
         kddi("KDDI", "KDDI"),
         svg;
 
+        // The primary source for the column named "Sample":
+        static Source SAMPLE_SOURCE = Source.google;
         static final Set<Source> OLD_SOURCES =
                 ImmutableSet.copyOf(
                         EnumSet.of(gmail, sb, dcm, kddi)); // do this to get same order as Source
@@ -393,6 +395,14 @@ public class Emoji {
                                 apple, google, twitter, emojione, samsung, fb,
                                 windows)); // do this to get same order as Source
         static final Set<Emoji.Source> platformsToIncludeNormal =
+                ImmutableSet.copyOf(
+                        EnumSet.of(
+                                SAMPLE_SOURCE,
+                                Source.gmail,
+                                Source.dcm,
+                                Source.kddi,
+                                Source.sb));
+        static final Set<Emoji.Source> platformsToIncludeAllVendors =
                 ImmutableSet.copyOf(
                         EnumSet.of(
                                 Source.apple,
@@ -409,20 +419,8 @@ public class Emoji {
         // Ordering is what will appear with … fallback
         static final Set<Emoji.Source> PLATFORM_FALLBACK =
                 ImmutableSet.<Emoji.Source>builder()
-                        .addAll(
-                                EnumSet.of(
-                                        Source.apple,
-                                        Source.google,
-                                        Source.windows,
-                                        Source.twitter,
-                                        Source.emojione,
-                                        Source.samsung,
-                                        Source.fb))
-                        .add(Source.emojipedia)
-                        .add(Source.emojixpress)
-                        .add(Source.emojination)
+                        .add(Source.SAMPLE_SOURCE)
                         .add(Source.proposed)
-                        .add(Source.sample)
                         .build();
 
         private final String shortName;
