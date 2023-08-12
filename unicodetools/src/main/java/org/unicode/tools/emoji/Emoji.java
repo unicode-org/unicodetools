@@ -397,11 +397,7 @@ public class Emoji {
         static final Set<Emoji.Source> platformsToIncludeNormal =
                 ImmutableSet.copyOf(
                         EnumSet.of(
-                                SAMPLE_SOURCE,
-                                Source.gmail,
-                                Source.dcm,
-                                Source.kddi,
-                                Source.sb));
+                                SAMPLE_SOURCE, Source.gmail, Source.dcm, Source.kddi, Source.sb));
         static final Set<Emoji.Source> platformsToIncludeAllVendors =
                 ImmutableSet.copyOf(
                         EnumSet.of(

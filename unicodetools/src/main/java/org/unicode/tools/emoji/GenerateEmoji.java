@@ -425,7 +425,8 @@ public class GenerateEmoji {
     public static String getBestImage(
             String s, boolean useDataURL, String extraClasses, Emoji.Source... doFirst) {
         if (doFirst.length == 0) {
-            return getBestImageInternal(s, useDataURL, extraClasses, null, Emoji.Source.SAMPLE_SOURCE);
+            return getBestImageInternal(
+                    s, useDataURL, extraClasses, null, Emoji.Source.SAMPLE_SOURCE);
         }
         return getBestImageInternal(s, useDataURL, extraClasses, null, doFirst);
     }
@@ -449,6 +450,7 @@ public class GenerateEmoji {
     private static boolean isDirectionZwjSeq(String s) {
         return s.endsWith(Emoji.ZWJ_RIGHTWARDS_ARROW);
     }
+
     private static String removeDirectionZwjMod(String s) {
         return s.replace(Emoji.ZWJ_RIGHTWARDS_ARROW, "");
     }
@@ -3828,8 +3830,7 @@ public class GenerateEmoji {
     static final String ALT_COLUMN = "%%%";
 
     public static String toHtmlHeaderString(Form form, Set<Emoji.Source> platforms) {
-        StringBuilder otherCells =
-                appendPlatformHeaders(platforms, new StringBuilder());
+        StringBuilder otherCells = appendPlatformHeaders(platforms, new StringBuilder());
 
         return "<tr>"
                 + HEADER_NUM
@@ -3871,7 +3872,8 @@ public class GenerateEmoji {
         return otherCells;
     }
 
-    public static String toHtmlString(String chars2, Form form, Set<Emoji.Source> platforms, int item) {
+    public static String toHtmlString(
+            String chars2, Form form, Set<Emoji.Source> platforms, int item) {
         String bestCell = getCell(null, chars2, ALT_COLUMN, form == Form.noImages, null);
         // String symbolaCell = getCell(Emoji.Source.ref, chars2, ALT_COLUMN,
         // false);
