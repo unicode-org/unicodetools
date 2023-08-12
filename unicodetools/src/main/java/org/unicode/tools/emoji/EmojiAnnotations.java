@@ -97,7 +97,7 @@ public class EmojiAnnotations extends Birelation<String, String> {
             } else if (outShortName.value.contains(Annotations.BAD_MARKER)) {
                 status = Status.gender;
             }
-            // workaround: 15.1 sequences have commas instead of pipes 
+            // workaround: 15.1 sequences have commas instead of pipes
             Set<String> dataKeywords = new LinkedHashSet<String>();
             for (String k : annotationData.getKeywords(s)) {
                 if (k.contains(",") && !k.contains("family")) {
