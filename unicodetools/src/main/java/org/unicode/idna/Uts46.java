@@ -513,8 +513,17 @@ public class Uts46 extends Idna {
                     break;
                     // mapped: Replace the code point in the string by the value for the
                     // mapping in Section 5, IDNA Mapping Table.
+                    // Except, starting with 15.1:
+                    // If transitional and capital sharp s, then map to ss
+                    // to keep the mapping idempotent, and to
+                    // avoid the small sharp s failing the mode=transitional validity check.
                 case mapped:
-                    String mapped = mappings.get(cp);
+                    String mapped;
+                    if (idnaChoice == IdnaChoice.transitional && cp == 'ẞ') {
+                        mapped = "ss";
+                    } else {
+                        mapped = mappings.get(cp);
+                    }
                     buffer.append(mapped);
                     break;
                     // deviation:
