@@ -84,6 +84,7 @@ public class GenerateEmoji {
             "It does not include emoji sequences, except for keycaps and flags. ";
     static boolean SHOW = false;
     static boolean DO_SPECIALS = false;
+    static boolean ALL_VENDORS = false;
     private static final boolean DEBUG = CldrUtility.getProperty("GenerateEmoji:DEBUG", false);
     private static final boolean SHOW_NAMES_LIST = false;
     private static final boolean SHOW_RELEASE_DETAILS = false;
@@ -423,10 +424,14 @@ public class GenerateEmoji {
 
     public static String getBestImage(
             String s, boolean useDataURL, String extraClasses, Emoji.Source... doFirst) {
-        return getBestImage(s, useDataURL, extraClasses, null, doFirst);
+        if (doFirst.length == 0) {
+            return getBestImageInternal(
+                    s, useDataURL, extraClasses, null, Emoji.Source.SAMPLE_SOURCE);
+        }
+        return getBestImageInternal(s, useDataURL, extraClasses, null, doFirst);
     }
 
-    public static String getBestImage(
+    private static String getBestImageInternal(
             String s,
             boolean useDataURL,
             String extraClasses,
@@ -442,6 +447,14 @@ public class GenerateEmoji {
         return result;
     }
 
+    private static boolean isDirectionZwjSeq(String s) {
+        return s.endsWith(Emoji.ZWJ_RIGHTWARDS_ARROW);
+    }
+
+    private static String removeDirectionZwjMod(String s) {
+        return s.replace(Emoji.ZWJ_RIGHTWARDS_ARROW, "");
+    }
+
     private static String getBestImageNothrow(
             String stringForFile,
             String s,
@@ -452,7 +465,7 @@ public class GenerateEmoji {
         if (s.codePointAt(0) == 0x1f917) {
             int debug = 0;
         }
-        s = s.replace(Emoji.TEXT_VARIANT_STRING, "").replace(Emoji.TEXT_VARIANT_STRING, "");
+        s = s.replace(Emoji.TEXT_VARIANT_STRING, "");
         for (Emoji.Source source : Emoji.orderedEnum(doFirst)) {
             String cell = getImage(source, stringForFile, s, useDataURL, extraClasses);
             if (cell != null) {
@@ -462,13 +475,9 @@ public class GenerateEmoji {
                 return cell;
             }
         }
-        if (sourceFound != null) {
-            sourceFound.value = null;
-        }
 
-        if (s.endsWith(Emoji.ZWJ_RIGHTWARDS_ARROW)) {
-            int newLength = s.length() - Emoji.ZWJ_RIGHTWARDS_ARROW.length();
-            String trial = s.substring(0, newLength);
+        if (isDirectionZwjSeq(s)) {
+            String trial = removeDirectionZwjMod(s);
             for (Emoji.Source source : Emoji.orderedEnum(doFirst)) {
                 String cell = getFlippedImage(source, trial, s, useDataURL, extraClasses);
                 if (cell != null) {
@@ -478,6 +487,10 @@ public class GenerateEmoji {
                     return cell;
                 }
             }
+        }
+
+        if (sourceFound != null) {
+            sourceFound.value = null;
         }
 
         if (!EmojiData.MODIFIERS.containsAll(s)
@@ -3172,7 +3185,18 @@ public class GenerateEmoji {
                     Emoji.DATA_DIR_PRODUCTION,
                     Emoji.TR51_HTML);
             out.println("<table " + "border='1'" + ">");
-            final String htmlHeaderString = GenerateEmoji.toHtmlHeaderString(form);
+            Set<Emoji.Source> platforms = Emoji.Source.platformsToIncludeNormal;
+            if (ALL_VENDORS) {
+                platforms = Emoji.Source.platformsToIncludeAllVendors;
+            }
+            if (skinChoice == Skin.withSkin) {
+                // Skin tones postdate carrier sets.
+                Set<Emoji.Source> noCarrierPlatforms = new LinkedHashSet<Emoji.Source>(platforms);
+                if (noCarrierPlatforms.removeAll(Emoji.Source.OLD_SOURCES)) {
+                    platforms = noCarrierPlatforms;
+                }
+            }
+            final String htmlHeaderString = GenerateEmoji.toHtmlHeaderString(form, platforms);
             int rows = count("<th", htmlHeaderString);
             int item = 0;
             String lastOrderingGroup = "";
@@ -3245,7 +3269,7 @@ public class GenerateEmoji {
                     out.println(htmlHeaderString);
                     headerGroupCount = 0;
                 }
-                String toAdd = toHtmlString(s, form, ++item);
+                String toAdd = toHtmlString(s, form, platforms, ++item);
                 out.println(toAdd);
                 outPlain.println(
                         Utility.hex(s, 4, " ") + "\t" + EmojiData.ANNOTATION_SET.getShortName(s));
@@ -3706,7 +3730,7 @@ public class GenerateEmoji {
         if (type == null) {
             return "<td class='andr'>"
                     + linkPre
-                    + getBestImage(core, true, "", Emoji.Source.charOverride)
+                    + getBestImage(core, true, "", Emoji.Source.SAMPLE_SOURCE)
                     + linkPost
                     + "</td>\n";
         }
@@ -3805,9 +3829,8 @@ public class GenerateEmoji {
 
     static final String ALT_COLUMN = "%%%";
 
-    public static String toHtmlHeaderString(Form form) {
-        StringBuilder otherCells =
-                appendPlatformHeaders(Emoji.Source.platformsToIncludeNormal, new StringBuilder());
+    public static String toHtmlHeaderString(Form form, Set<Emoji.Source> platforms) {
+        StringBuilder otherCells = appendPlatformHeaders(platforms, new StringBuilder());
 
         return "<tr>"
                 + HEADER_NUM
@@ -3833,7 +3856,14 @@ public class GenerateEmoji {
 
     private static StringBuilder appendPlatformHeaders(
             Set<Source> platforms, StringBuilder otherCells) {
+        // Use "Sample" as the first header name.
+        boolean isSample = !ALL_VENDORS;
         for (Source s : platforms) {
+            if (isSample) {
+                isSample = false;
+                otherCells.append(HEADER_SAMPLE_IMAGE);
+                continue;
+            }
             otherCells.append(
                     "<th class='cchars'><a target='text' href='../format.html#col-vendor'>"
                             + s.shortName()
@@ -3842,7 +3872,8 @@ public class GenerateEmoji {
         return otherCells;
     }
 
-    public static String toHtmlString(String chars2, Form form, int item) {
+    public static String toHtmlString(
+            String chars2, Form form, Set<Emoji.Source> platforms, int item) {
         String bestCell = getCell(null, chars2, ALT_COLUMN, form == Form.noImages, null);
         // String symbolaCell = getCell(Emoji.Source.ref, chars2, ALT_COLUMN,
         // false);
@@ -3850,17 +3881,17 @@ public class GenerateEmoji {
         StringBuilder otherCells = new StringBuilder();
         Output<Boolean> isFound = new Output<>();
         int countFound = 0;
-        for (Source s : Emoji.Source.platformsToIncludeNormal) {
+        for (Source s : platforms) {
             String cell = getCell(s, chars2, ALT_COLUMN, false, isFound);
             otherCells.append(altClass(cell));
-            if (isFound.value) {
+            if (isFound.value && !Emoji.Source.OLD_SOURCES.contains(s)) {
                 countFound++;
             }
         }
         final boolean areNew = ARE_NEW.contains(chars2);
-        if (countFound < 2 || Emoji.IS_BETA && areNew) {
+        if (countFound < 1 || Emoji.IS_BETA && areNew) {
             otherCells.setLength(0);
-            int colSpan = Emoji.Source.platformsToIncludeNormal.size();
+            int colSpan = platforms.size();
             String imageString = getSamples(chars2, 99);
             otherCells.append(getCellFromImageStrings(colSpan, imageString));
         }
@@ -3928,6 +3959,9 @@ public class GenerateEmoji {
     }
 
     private static String getCellFromImageStrings(int colSpan, String imageString) {
+        if (colSpan == 1) {
+            return "<td class='andr' colSpan='" + colSpan + "'>" + imageString + "</td>";
+        }
         return "<td class='andr' colSpan='" + colSpan + "'>… " + imageString + " …</td>";
     }
 
@@ -4437,7 +4471,7 @@ public class GenerateEmoji {
                 if (artificialAddition) {
                     // String cell = getCell(Source.apple, source, ALT_COLUMN,
                     // false, isFound );
-                    String cell2 = getCell(Source.apple, NOT_NEW, ALT_COLUMN, false, null);
+                    String cell2 = getCell(Source.SAMPLE_SOURCE, NOT_NEW, ALT_COLUMN, false, null);
                     emojiImages =
                             getSamples(source, platforms, platforms.size() - 1, !future) + cell2;
                     if (true) // DEBUG
@@ -4694,24 +4728,28 @@ public class GenerateEmoji {
         return result.toString();
     }
 
-    private static String getSamples(String source, int maxImages) {
+    private static String getSamples(String s, int maxImages) {
         // apple, google, twitter, emojione, samsung, fb, windows
         LinkedHashSet<String> list = new LinkedHashSet<>();
-        for (Source item : Source.PLATFORM_FALLBACK) {
+        for (Source type : Source.PLATFORM_FALLBACK) {
             if (maxImages-- == 0) {
                 break;
             }
-            String image = getImage(item, source, source, true, "");
+            String image = getImage(type, s, s, true, "");
+            if (image == null && isDirectionZwjSeq(s) && type != Source.proposed) {
+                String trial = removeDirectionZwjMod(s);
+                image = getFlippedImage(type, trial, s, true, "");
+            }
             if (image != null) {
                 // hack
-                image = image.replace("title='", "title='" + "[" + item.shortName() + "] ");
+                image = image.replace("title='", "title='" + "[" + type.shortName() + "] ");
                 list.add(image);
             }
         }
         String color = SPACE_JOINER.join(list);
         if (color.isEmpty()) {
             Output<Emoji.Source> sourceFound = new Output<>();
-            color = getBestImage(source, true, "", sourceFound);
+            color = getBestImageInternal(s, true, "", sourceFound);
             if (color != null && sourceFound.value != null) {
                 // hack
                 color =
