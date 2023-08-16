@@ -27,6 +27,4 @@ Copyright © 2001-2023 Unicode, Inc. Unicode and the Unicode Logo are registered
 
 The project is released under [LICENSE](./LICENSE).
 
-Note that some CLDR tools depend on libraries managed via Maven; use of these libraries is governed by separate license agreements.
-
 A CLA is required to contribute to this project - please refer to the [CONTRIBUTING.md](https://github.com/unicode-org/.github/blob/main/.github/CONTRIBUTING.md) file (or start a Pull Request) for more information.
