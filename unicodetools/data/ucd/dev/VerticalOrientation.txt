@@ -1,11 +1,11 @@
 # VerticalOrientation-15.1.0.txt
-# Date: 2022-11-16, 09:36:32 GMT [KW, LI]
-# © 2022 Unicode®, Inc.
+# Date: 2023-08-16, 15:34:52 GMT
+# © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# For documentation, see https://www.unicode.org/reports/tr44/
+#   For documentation, see https://www.unicode.org/reports/tr44/
 #
 # Vertical_Orientation (vo) Property
 #
@@ -73,7 +73,6 @@
 # the code point count in square brackets.
 #
 # @missing: 0000..10FFFF; R
-
 0000..001F     ; R  # Cc    [32] <control-0000>..<control-001F>
 0020           ; R  # Zs         SPACE
 0021..0023     ; R  # Po     [3] EXCLAMATION MARK..NUMBER SIGN
@@ -2122,6 +2121,11 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 16B5B..16B61   ; R  # No     [7] PAHAWH HMONG NUMBER TENS..PAHAWH HMONG NUMBER TRILLIONS
 16B63..16B77   ; R  # Lo    [21] PAHAWH HMONG SIGN VOS LUB..PAHAWH HMONG SIGN CIM NRES TOS
 16B7D..16B8F   ; R  # Lo    [19] PAHAWH HMONG CLAN SIGN TSHEEJ..PAHAWH HMONG CLAN SIGN VWJ
+16D40..16D42   ; R  # Lm     [3] KIRAT RAI SIGN ANUSVARA..KIRAT RAI SIGN VISARGA
+16D43..16D6A   ; R  # Lo    [40] KIRAT RAI LETTER A..KIRAT RAI VOWEL SIGN AU
+16D6B..16D6C   ; R  # Lm     [2] KIRAT RAI SIGN VIRAMA..KIRAT RAI SIGN SAAT
+16D6D..16D6F   ; R  # Po     [3] KIRAT RAI SIGN YUPI..KIRAT RAI DOUBLE DANDA
+16D70..16D79   ; R  # Nd    [10] KIRAT RAI DIGIT ZERO..KIRAT RAI DIGIT NINE
 16E40..16E7F   ; R  # L&    [64] MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN SMALL LETTER Y
 16E80..16E96   ; R  # No    [23] MEDEFAIDRIN DIGIT ZERO..MEDEFAIDRIN DIGIT THREE ALTERNATE FORM
 16E97..16E9A   ; R  # Po     [4] MEDEFAIDRIN COMMA..MEDEFAIDRIN EXCLAMATION OH
@@ -2426,7 +2430,9 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 2B820..2CEA1   ; U  # Lo  [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 2CEA2..2CEAF   ; U  # Cn    [14] <reserved-2CEA2>..<reserved-2CEAF>
 2CEB0..2EBE0   ; U  # Lo  [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
-2EBE1..2F7FF   ; U  # Cn  [3103] <reserved-2EBE1>..<reserved-2F7FF>
+2EBE1..2EBEF   ; U  # Cn    [15] <reserved-2EBE1>..<reserved-2EBEF>
+2EBF0..2EE5D   ; U  # Lo   [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
+2EE5E..2F7FF   ; U  # Cn  [2466] <reserved-2EE5E>..<reserved-2F7FF>
 2F800..2FA1D   ; U  # Lo   [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 2FA1E..2FA1F   ; U  # Cn     [2] <reserved-2FA1E>..<reserved-2FA1F>
 2FA20..2FFFD   ; U  # Cn  [1502] <reserved-2FA20>..<reserved-2FFFD>

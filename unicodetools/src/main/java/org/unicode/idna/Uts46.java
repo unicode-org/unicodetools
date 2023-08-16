@@ -6,6 +6,7 @@ import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
+import com.ibm.icu.util.VersionInfo;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -18,6 +19,8 @@ public class Uts46 extends Idna {
 
     public static Uts46 SINGLETON = new Uts46();
 
+    private final boolean isUnicode15OrEarlier;
+
     private Uts46() {
         String path = Settings.UnicodeTools.getDataPathStringForLatestVersion("idna");
         new MyHandler().process(path, "IdnaMappingTable.txt");
@@ -28,6 +31,9 @@ public class Uts46 extends Idna {
         validSet_transitional =
                 new UnicodeSet(validSet).addAll(types.getSet(IdnaType.deviation)).freeze();
         checkPunycodeValidity = true;
+
+        VersionInfo unicodeVersion = VersionInfo.getInstance(Settings.latestVersion);
+        isUnicode15OrEarlier = unicodeVersion.compareTo(VersionInfo.UNICODE_15_0) <= 0;
     } // private
 
     class MyHandler extends FileUtilities.SemiFileReader {
@@ -491,7 +497,14 @@ public class Uts46 extends Idna {
             // record that there was an error.
             switch (type) {
                 case disallowed:
-                    errors.add(Errors.P1);
+                    if (isUnicode15OrEarlier) {
+                        // In Unicode 15.0 and earlier, we set an error for disallowed characters
+                        // twice, once here in the Map step -- *before normalization* --
+                        // and again in the Convert/Validate step (after normalization).
+                        // This yielded errors even when after mapping and normalization
+                        // there were no disallowed characters.
+                        errors.add(Errors.P1);
+                    }
                     buffer.appendCodePoint(cp);
                     break;
                     // ignored: Remove the code point from the string. This is

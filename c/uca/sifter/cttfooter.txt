@@ -13,18 +13,19 @@
 % Weights for unified Han characters follow the Unified Repertoire and
 %   Ordering, which is a language-neutral, traditional radical-stroke order.
 
-%   The original URO and Extensions A through H, plus the 12 unified Han characters
+%   The original URO and Extensions A through I, plus the 12 unified Han characters
 %   in the CJK compatibility area are weighted implicitly as defined here.
 
 %   WEIGHT_BASE = 0xFB40 for original URO and 12 unified Han from CJK compat area.
 %      cp >= 0x04E00 && cp <= 0x09FFF % URO
-%   WEIGHT_BASE = 0xFB80 for Extension A through Extension H Han characters.
+%   WEIGHT_BASE = 0xFB80 for Extension A through Extension I Han characters.
 %      cp >= 0x03400 && cp <= 0x04DBF % Ext. A
 %      cp >= 0x20000 && cp <= 0x2A6DF % Ext. B
 %      cp >= 0x2A700 && cp <= 0x2B739 % Ext. C
 %      cp >= 0x2B740 && cp <= 0x2B81D % Ext. D
 %      cp >= 0x2B820 && cp <= 0x2CEA1 % Ext. E
 %      cp >= 0x2CEB0 && cp <= 0x2EBE0 % Ext. F
+%      cp >= 0x2EBF0 && cp <= 0x2EE5D % Ext. I
 %      cp >= 0x30000 && cp <= 0x3134A % Ext. G
 %      cp >= 0x31350 && cp <= 0x323AF % Ext. H
 %   For a given Han character at code point cp:

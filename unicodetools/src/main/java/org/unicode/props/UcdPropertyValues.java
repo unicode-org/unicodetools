@@ -233,6 +233,7 @@ public class UcdPropertyValues {
         CJK_Unified_Ideographs_Extension_F("CJK_Ext_F"),
         CJK_Unified_Ideographs_Extension_G("CJK_Ext_G"),
         CJK_Unified_Ideographs_Extension_H("CJK_Ext_H"),
+        CJK_Unified_Ideographs_Extension_I("CJK_Ext_I"),
         CJK_Radicals_Supplement("CJK_Radicals_Sup"),
         CJK_Strokes("CJK_Strokes"),
         CJK_Symbols_And_Punctuation("CJK_Symbols"),
@@ -983,6 +984,37 @@ public class UcdPropertyValues {
         }
     }
 
+    public enum Indic_Conjunct_Break_Values implements Named {
+        Consonant("Consonant"),
+        Extend("Extend"),
+        Linker("Linker"),
+        None("None");
+        private final PropertyNames<Indic_Conjunct_Break_Values> names;
+
+        private Indic_Conjunct_Break_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Indic_Conjunct_Break_Values>(
+                            Indic_Conjunct_Break_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<Indic_Conjunct_Break_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Indic_Conjunct_Break_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Indic_Conjunct_Break_Values.class);
+
+        public static Indic_Conjunct_Break_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
     public enum Indic_Positional_Category_Values implements Named {
         Bottom("Bottom"),
         Bottom_And_Left("Bottom_And_Left"),
@@ -1436,7 +1468,10 @@ public class UcdPropertyValues {
     // kZVariant
     public enum Line_Break_Values implements Named {
         Ambiguous("AI"),
+        Aksara("AK"),
         Alphabetic("AL"),
+        Aksara_Prebase("AP"),
+        Aksara_Start("AS"),
         Break_Both("B2"),
         Break_After("BA"),
         Break_Before("BB"),
@@ -1474,6 +1509,8 @@ public class UcdPropertyValues {
         Surrogate("SG"),
         Space("SP"),
         Break_Symbols("SY"),
+        Virama_Final("VF"),
+        Virama("VI"),
         Word_Joiner("WJ"),
         Unknown("XX"),
         ZWSpace("ZW"),
@@ -1599,6 +1636,7 @@ public class UcdPropertyValues {
         }
     }
 
+    // NFKC_Simple_Casefold
     public enum NFKD_Quick_Check_Values implements Named {
         No("N"),
         Yes("Y");

@@ -1,11 +1,11 @@
 # confusablesSummary.txt
-# Date: 2022-08-26, 16:49:08 GMT
-# © 2022 Unicode®, Inc.
+# Date: 2023-08-11, 17:46:40 GMT
+# © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Security Mechanisms for UTS #39
-# Version: 15.0.0
+# Version: 15.1.0
 #
 # For documentation and usage, see https://www.unicode.org/reports/tr39
 #
@@ -4372,11 +4372,11 @@
 	(‎ ¶ ‎)	00B6	 PILCROW SIGN
 ←	(‎ ⸿ ‎)	2E3F	 CAPITULUM
 
-#	·	ᐧ	‧	・	᛫	•	∙	⋅	⸱	𐄁	ꞏ	·	･
+#	·	・	ᐧ	‧	᛫	•	∙	⋅	⸱	𐄁	ꞏ	·	･
 	(‎ · ‎)	00B7	 MIDDLE DOT
+←	(‎ ・ ‎)	30FB	 KATAKANA MIDDLE DOT	# →•→
 ←	(‎ ᐧ ‎)	1427	 CANADIAN SYLLABICS FINAL MIDDLE DOT
 ←	(‎ ‧ ‎)	2027	 HYPHENATION POINT
-←	(‎ ・ ‎)	30FB	 KATAKANA MIDDLE DOT	# →•→
 ←	(‎ ᛫ ‎)	16EB	 RUNIC SINGLE PUNCTUATION
 ←	(‎ • ‎)	2022	 BULLET
 ←	(‎ ∙ ‎)	2219	 BULLET OPERATOR

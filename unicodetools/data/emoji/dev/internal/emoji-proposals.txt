@@ -1251,6 +1251,9 @@
 1F6B6 1F3FF; L2/07-257, L2/09-026, L2/14-173 # 2015 (🚶🏿) person walking: dark skin tone
 1F6C0 1F3FF; L2/07-257, L2/09-026, L2/14-173 # 2015 (🛀🏿) person taking bath: dark skin tone
 
+# L2/23-036
+26D3 200D 1F4A5; L2/23-036 # 2023 (⛓️‍💥) broken chain
+
 # L2/16-181, L2/16-182, L2/16-160, L2/16‑160
 26F9 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (⛹️‍♀️) woman bouncing ball
 1F3C3 200D 2640; L2/16-181, L2/16-182, L2/16-160, L2/16‑160 # 2016 (🏃‍♀️) woman running
@@ -1553,7 +1556,7 @@
 1F1F9 1F1F2; L2/09-379 # 2015 (🇹🇲) flag: Turkmenistan
 1F1F9 1F1F3; L2/09-379 # 2015 (🇹🇳) flag: Tunisia
 1F1F9 1F1F4; L2/09-379 # 2015 (🇹🇴) flag: Tonga
-1F1F9 1F1F7; L2/09-379 # 2015 (🇹🇷) flag: Turkey
+1F1F9 1F1F7; L2/09-379 # 2015 (🇹🇷) flag: Türkiye
 1F1F9 1F1F9; L2/09-379 # 2015 (🇹🇹) flag: Trinidad & Tobago
 1F1F9 1F1FB; L2/09-379 # 2015 (🇹🇻) flag: Tuvalu
 1F1F9 1F1FC; L2/09-379 # 2015 (🇹🇼) flag: Taiwan
@@ -1579,6 +1582,50 @@
 1F1FF 1F1E6; L2/09-379 # 2015 (🇿🇦) flag: South Africa
 1F1FF 1F1F2; L2/09-379 # 2015 (🇿🇲) flag: Zambia
 1F1FF 1F1FC; L2/09-379 # 2015 (🇿🇼) flag: Zimbabwe
+
+# L2/23-032
+1F344 200D 1F7EB; L2/23-032 # 2023 (🍄‍🟫) brown mushroom
+
+# L2/23-031
+1F34B 200D 1F7E9; L2/23-031 # 2023 (🍋‍🟩) lime
+
+# L2/23-030, L2/16‑160
+1F3C3 200D 2640 200D 27A1; L2/23-030, L2/16‑160 # 2023 (🏃‍♀️‍➡️) woman running facing right
+1F6B6 200D 2640 200D 27A1; L2/23-030, L2/16‑160 # 2023 (🚶‍♀️‍➡️) woman walking facing right
+1F9CE 200D 2640 200D 27A1; L2/23-030, L2/16‑160 # 2023 (🧎‍♀️‍➡️) woman kneeling facing right
+
+# L2/23-030
+1F3C3 200D 27A1; L2/23-030 # 2023 (🏃‍➡️) person running facing right
+1F468 200D 1F9AF 200D 27A1; L2/23-030 # 2023 (👨‍🦯‍➡️) man with white cane facing right
+1F468 200D 1F9BC 200D 27A1; L2/23-030 # 2023 (👨‍🦼‍➡️) man in motorized wheelchair facing right
+1F468 200D 1F9BD 200D 27A1; L2/23-030 # 2023 (👨‍🦽‍➡️) man in manual wheelchair facing right
+1F469 200D 1F9AF 200D 27A1; L2/23-030 # 2023 (👩‍🦯‍➡️) woman with white cane facing right
+1F469 200D 1F9BC 200D 27A1; L2/23-030 # 2023 (👩‍🦼‍➡️) woman in motorized wheelchair facing right
+1F469 200D 1F9BD 200D 27A1; L2/23-030 # 2023 (👩‍🦽‍➡️) woman in manual wheelchair facing right
+1F6B6 200D 27A1; L2/23-030 # 2023 (🚶‍➡️) person walking facing right
+1F9CE 200D 27A1; L2/23-030 # 2023 (🧎‍➡️) person kneeling facing right
+1F9D1 200D 1F9AF 200D 27A1; L2/23-030 # 2023 (🧑‍🦯‍➡️) person with white cane facing right
+1F9D1 200D 1F9BC 200D 27A1; L2/23-030 # 2023 (🧑‍🦼‍➡️) person in motorized wheelchair facing right
+1F9D1 200D 1F9BD 200D 27A1; L2/23-030 # 2023 (🧑‍🦽‍➡️) person in manual wheelchair facing right
+
+# L2/23-030, L2/16‑160, L2/14-173
+1F3C3 1F3FF 200D 2640 200D 27A1; L2/23-030, L2/16‑160, L2/14-173 # 2023 (🏃🏿‍♀️‍➡️) woman running facing right: dark skin tone
+1F6B6 1F3FF 200D 2640 200D 27A1; L2/23-030, L2/16‑160, L2/14-173 # 2023 (🚶🏿‍♀️‍➡️) woman walking facing right: dark skin tone
+1F9CE 1F3FF 200D 2640 200D 27A1; L2/23-030, L2/16‑160, L2/14-173 # 2023 (🧎🏿‍♀️‍➡️) woman kneeling facing right: dark skin tone
+
+# L2/23-030, L2/14-173
+1F3C3 1F3FF 200D 27A1; L2/23-030, L2/14-173 # 2023 (🏃🏿‍➡️) person running facing right: dark skin tone
+1F468 1F3FF 200D 1F9AF 200D 27A1; L2/23-030, L2/14-173 # 2023 (👨🏿‍🦯‍➡️) man with white cane facing right: dark skin tone
+1F468 1F3FF 200D 1F9BC 200D 27A1; L2/23-030, L2/14-173 # 2023 (👨🏿‍🦼‍➡️) man in motorized wheelchair facing right: dark skin tone
+1F468 1F3FF 200D 1F9BD 200D 27A1; L2/23-030, L2/14-173 # 2023 (👨🏿‍🦽‍➡️) man in manual wheelchair facing right: dark skin tone
+1F469 1F3FF 200D 1F9AF 200D 27A1; L2/23-030, L2/14-173 # 2023 (👩🏿‍🦯‍➡️) woman with white cane facing right: dark skin tone
+1F469 1F3FF 200D 1F9BC 200D 27A1; L2/23-030, L2/14-173 # 2023 (👩🏿‍🦼‍➡️) woman in motorized wheelchair facing right: dark skin tone
+1F469 1F3FF 200D 1F9BD 200D 27A1; L2/23-030, L2/14-173 # 2023 (👩🏿‍🦽‍➡️) woman in manual wheelchair facing right: dark skin tone
+1F6B6 1F3FF 200D 27A1; L2/23-030, L2/14-173 # 2023 (🚶🏿‍➡️) person walking facing right: dark skin tone
+1F9CE 1F3FF 200D 27A1; L2/23-030, L2/14-173 # 2023 (🧎🏿‍➡️) person kneeling facing right: dark skin tone
+1F9D1 1F3FF 200D 1F9AF 200D 27A1; L2/23-030, L2/14-173 # 2023 (🧑🏿‍🦯‍➡️) person with white cane facing right: dark skin tone
+1F9D1 1F3FF 200D 1F9BC 200D 27A1; L2/23-030, L2/14-173 # 2023 (🧑🏿‍🦼‍➡️) person in motorized wheelchair facing right: dark skin tone
+1F9D1 1F3FF 200D 1F9BD 200D 27A1; L2/23-030, L2/14-173 # 2023 (🧑🏿‍🦽‍➡️) person in manual wheelchair facing right: dark skin tone
 
 # L2/16-228, L2/14-173
 1F3C7 1F3FF; L2/16-228, L2/14-173 # 2015 (🏇🏿) horse racing: dark skin tone
@@ -1613,6 +1660,9 @@
 
 # L2/19-307
 1F426 200D 2B1B; L2/19-307 # 2022 (🐦‍⬛) black bird
+
+# L2/23-033
+1F426 200D 1F525; L2/23-033 # 2023 (🐦‍🔥) phoenix
 
 # L2/19-296
 1F43B 200D 2744; L2/19-296 # 2020 (🐻‍❄️) polar bear
@@ -1767,6 +1817,12 @@
 # L2/19-390, L2/20-130
 1F636 200D 1F32B; L2/19-390, L2/20-130 # 2020 (😶‍🌫️) face in clouds
 
+# L2/23-034
+1F642 200D 2194; L2/23-034 # 2023 (🙂‍↔️) head shaking horizontally
+
+# L2/23-035
+1F642 200D 2195; L2/23-035 # 2023 (🙂‍↕️) head shaking vertically
+
 # L2/18-139, L2/14-173
 1F90F 1F3FF; L2/18-139, L2/14-173 # 2019 (🤏🏿) pinching hand: dark skin tone
 
@@ -1852,6 +1908,12 @@
 
 # L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340
 1F9D1 200D 1F91D 200D 1F9D1; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340 # 2019 (🧑‍🤝‍🧑) people holding hands
+
+# L2/23-029
+1F9D1 200D 1F9D1 200D 1F9D2; L2/23-029 # 2023 (🧑‍🧑‍🧒) family: adult, adult, child
+1F9D1 200D 1F9D1 200D 1F9D2 200D 1F9D2; L2/23-029 # 2023 (🧑‍🧑‍🧒‍🧒) family: adult, adult, child, child
+1F9D1 200D 1F9D2; L2/23-029 # 2023 (🧑‍🧒) family: adult, child
+1F9D1 200D 1F9D2 200D 1F9D2; L2/23-029 # 2023 (🧑‍🧒‍🧒) family: adult, child, child
 
 # L2/16-317, L2/14-173
 1F9D1 1F3FF; L2/16-317, L2/14-173 # 2017 (🧑🏿) person: dark skin tone

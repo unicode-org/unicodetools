@@ -59,6 +59,7 @@ CJK_Ext_E	;	CJK_Unified_Ideographs_Extension_E
 CJK_Ext_F	;	CJK_Unified_Ideographs_Extension_F
 CJK_Ext_G	;	CJK_Unified_Ideographs_Extension_G
 CJK_Ext_H	;	CJK_Unified_Ideographs_Extension_H
+CJK_Ext_I	;	CJK_Unified_Ideographs_Extension_I
 Diacriticals	;	Combining_Diacritical_Marks
 Diacriticals_Ext	;	Combining_Diacritical_Marks_Extended
 Diacriticals_For_Symbols	;	Combining_Diacritical_Marks_For_Symbols

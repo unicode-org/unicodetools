@@ -28,7 +28,9 @@ import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.FilteredImageSource;
@@ -1089,6 +1091,13 @@ public class LoadImage extends Component {
         return outputfile;
     }
 
+    public static BufferedImage flipImage(BufferedImage image) {
+        AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+        tx.translate(-image.getWidth(), 0);
+        AffineTransformOp op = new AffineTransformOp(tx, null);
+        return op.filter(image, null);
+    }
+
     public static BufferedImage resizeImage(
             BufferedImage sourceImage, int imageHeight, int imageWidth, Resizing resizing) {
         int sourceHeight = sourceImage.getHeight();
@@ -1192,6 +1201,13 @@ public class LoadImage extends Component {
         return (glyphCode > 0);
     }
 
+    static byte[] asByteArray(BufferedImage image) throws IOException {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ImageOutputStream ios = new MemoryCacheImageOutputStream(outputStream);
+        ImageIO.write(image, "png", ios);
+        return outputStream.toByteArray();
+    }
+
     static byte[] resizeImage(File file, int targetHeight, int targetWidth) {
         try {
             BufferedImage sourceImage = ImageIO.read(file);
@@ -1200,10 +1216,7 @@ public class LoadImage extends Component {
                 targetImage =
                         resizeImage(sourceImage, targetHeight, targetHeight, Resizing.DEFAULT);
             }
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            ImageOutputStream ios = new MemoryCacheImageOutputStream(outputStream);
-            ImageIO.write(targetImage, "png", ios);
-            return outputStream.toByteArray();
+            return asByteArray(targetImage);
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
         }

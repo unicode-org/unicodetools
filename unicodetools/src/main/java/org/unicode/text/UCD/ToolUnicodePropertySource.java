@@ -170,7 +170,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 new UnicodeProperty.SimpleProperty() {
                     @Override
                     public String _getValue(int codepoint) {
-                        return UCharacter.getName1_0(codepoint);
+                        return ucd.get(codepoint, true).unicode1Name;
                     }
                 }.setValues("<string>")
                         .setMain("Unicode_1_Name", "na1", UnicodeProperty.MISC, version));
@@ -557,6 +557,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
 
         BaseProperty vo =
                 new UnicodeProperty.SimpleProperty() {
+                    {
+                        setUniformUnassigned(false);
+                    }
+
                     @Override
                     public String _getValue(int codepoint) {
                         return ucd.getVertical_OrientationID(codepoint);
@@ -651,98 +655,101 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 // .addName("FNC")
                 );
 
-        add(
-                new UnicodeProperty.SimpleProperty() {
-                    @Override
-                    public String _getValue(int cp) {
-                        if (!ucd.isRepresented(cp)) {
-                            return null;
+        for (Normalizer nf : new Normalizer[] {nfd, nfc, nfkd, nfkc}) {
+            add(
+                    new UnicodeProperty.SimpleProperty() {
+                        @Override
+                        public String _getValue(int cp) {
+                            return nf.normalize(cp);
                         }
-                        final String b = nfd.normalize(cp);
-                        if (b.codePointAt(0) == cp && b.length() == Character.charCount(cp)) {
-                            return null;
-                        }
-                        return b;
-                    }
+                    }.setMain(
+                            "to" + nf.getName(),
+                            "to" + nf.getName(),
+                            UnicodeProperty.EXTENDED_STRING,
+                            version));
 
-                    @Override
-                    public int getMaxWidth(boolean isShort) {
-                        return 5;
-                    }
-                }.setMain("toNFD", "toNFD", UnicodeProperty.EXTENDED_STRING, version));
+            add(
+                    new SimpleIsProperty(
+                                    "is" + nf.getName(),
+                                    "is" + nf.getName(),
+                                    version,
+                                    getProperty("to" + nf.getName()),
+                                    false)
+                            .setExtended());
+        }
 
-        add(
-                new UnicodeProperty.SimpleProperty() {
-                    @Override
-                    public String _getValue(int cp) {
-                        if (!ucd.isRepresented(cp)) {
-                            return null;
-                        }
-                        final String b = nfc.normalize(cp);
-                        if (b.codePointAt(0) == cp && b.length() == Character.charCount(cp)) {
-                            return null;
-                        }
-                        return b;
-                    }
+        for (byte foldingType : new byte[] {UCD_Types.FULL, UCD_Types.SIMPLE}) {
+            String longName =
+                    foldingType == UCD_Types.FULL ? "NFKC_Casefold" : "NFKC_Simple_Casefold";
+            String shortName = foldingType == UCD_Types.FULL ? "NFKC_CF" : "NFKC_SCF";
+            add(
+                    new UnicodeProperty.SimpleProperty() {
+                        UnicodeSet ignorable = null;
 
-                    @Override
-                    public int getMaxWidth(boolean isShort) {
-                        return 5;
-                    }
-                }.setMain("toNFC", "toNFC", UnicodeProperty.EXTENDED_STRING, version));
-
-        add(
-                new SimpleIsProperty("isNFD", "isNFD", version, getProperty("toNFD"), false)
-                        .setExtended());
-        add(
-                new SimpleIsProperty("isNFC", "isNFC", version, getProperty("toNFC"), false)
-                        .setExtended());
-
-        add(
-                new UnicodeProperty.SimpleProperty() {
-                    UnicodeSet ignorable = null;
-
-                    @Override
-                    public String _getValue(final int cp) {
-                        if (!ucd.isRepresented(cp)) {
-                            return null;
-                        }
-                        boolean debug = false;
-                        if (cp == -1) { // change to a real code point for debugging
-                            debug = true;
-                        }
-                        // lazy eval
-                        if (ignorable == null) {
-                            ignorable =
-                                    getProperty("DefaultIgnorableCodePoint").getSet(UCD_Names.YES);
-                        }
-                        if (ignorable.contains(cp)) {
-                            return "";
-                        }
-                        final String case1 = ucd.getCase(cp, UCD_Types.FULL, UCD_Types.FOLD);
-                        final String b = nfkc.normalize(case1);
-                        if (equals(cp, b)) {
-                            return null;
-                        }
-                        if (debug) {
-                            System.out.println(
-                                    "NFKC_CF:"
-                                            + "\n\tsource:\tU+"
-                                            + Utility.hex(cp)
-                                            + "\t"
-                                            + Default.ucd().getName(cp)
-                                            + "\n\tcase1:\tU+"
-                                            + Utility.hex(case1)
-                                            + "\t"
-                                            + Default.ucd().getName(case1));
-                        }
-                        final String c = trans(b);
-                        if (c.equals(b)) {
-                            return c;
-                        }
-                        if (debug) {
-                            System.out.println(
-                                    "NFKC_CF:"
+                        @Override
+                        public String _getValue(final int cp) {
+                            if (!ucd.isRepresented(cp)) {
+                                return Character.toString(cp);
+                            }
+                            boolean debug = false;
+                            if (cp == -1) { // change to a real code point for debugging
+                                debug = true;
+                            }
+                            // lazy eval
+                            if (ignorable == null) {
+                                ignorable =
+                                        getProperty("DefaultIgnorableCodePoint")
+                                                .getSet(UCD_Names.YES);
+                            }
+                            if (ignorable.contains(cp)) {
+                                return "";
+                            }
+                            final String case1 = ucd.getCase(cp, foldingType, UCD_Types.FOLD);
+                            final String b = nfkc.normalize(case1);
+                            if (equals(cp, b)) {
+                                return Character.toString(cp);
+                            }
+                            if (debug) {
+                                System.out.println(
+                                        shortName
+                                                + ":"
+                                                + "\n\tsource:\tU+"
+                                                + Utility.hex(cp)
+                                                + "\t"
+                                                + Default.ucd().getName(cp)
+                                                + "\n\tcase1:\tU+"
+                                                + Utility.hex(case1)
+                                                + "\t"
+                                                + Default.ucd().getName(case1));
+                            }
+                            final String c = trans(b);
+                            if (c.equals(b)) {
+                                return c;
+                            }
+                            if (debug) {
+                                System.out.println(
+                                        shortName
+                                                + ":"
+                                                + "\n\tsource:\tU+"
+                                                + Utility.hex(cp)
+                                                + "\t"
+                                                + Default.ucd().getName(cp)
+                                                + "\n\tcase1:\tU+"
+                                                + Utility.hex(case1)
+                                                + "\t"
+                                                + Default.ucd().getName(case1)
+                                                + "\n\ttrans1:\tU+"
+                                                + Utility.hex(c)
+                                                + "\t"
+                                                + Default.ucd().getName(c));
+                            }
+                            final String d = trans(c);
+                            if (d.equals(c)) {
+                                return d;
+                            }
+                            throw new IllegalArgumentException(
+                                    shortName
+                                            + " requires THREE passes:"
                                             + "\n\tsource:\tU+"
                                             + Utility.hex(cp)
                                             + "\t"
@@ -754,44 +761,26 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                             + "\n\ttrans1:\tU+"
                                             + Utility.hex(c)
                                             + "\t"
-                                            + Default.ucd().getName(c));
+                                            + Default.ucd().getName(c)
+                                            + "\n\ttrans2:\tU+"
+                                            + Utility.hex(d)
+                                            + "\t"
+                                            + Default.ucd().getName(d));
                         }
-                        final String d = trans(c);
-                        if (d.equals(c)) {
-                            return d;
+
+                        private String trans(String b) {
+                            final String bb = removeFrom(b, ignorable);
+                            final String case2 = ucd.getCase(bb, foldingType, UCD_Types.FOLD);
+                            final String c = nfkc.normalize(case2);
+                            return c;
                         }
-                        throw new IllegalArgumentException(
-                                "NFKC_CF requires THREE passes:"
-                                        + "\n\tsource:\tU+"
-                                        + Utility.hex(cp)
-                                        + "\t"
-                                        + Default.ucd().getName(cp)
-                                        + "\n\tcase1:\tU+"
-                                        + Utility.hex(case1)
-                                        + "\t"
-                                        + Default.ucd().getName(case1)
-                                        + "\n\ttrans1:\tU+"
-                                        + Utility.hex(c)
-                                        + "\t"
-                                        + Default.ucd().getName(c)
-                                        + "\n\ttrans2:\tU+"
-                                        + Utility.hex(d)
-                                        + "\t"
-                                        + Default.ucd().getName(d));
-                    }
 
-                    private String trans(String b) {
-                        final String bb = removeFrom(b, ignorable);
-                        final String case2 = ucd.getCase(bb, UCD_Types.FULL, UCD_Types.FOLD);
-                        final String c = nfkc.normalize(case2);
-                        return c;
-                    }
-
-                    @Override
-                    public int getMaxWidth(boolean isShort) {
-                        return 14;
-                    }
-                }.setMain("NFKC_Casefold", "NFKC_CF", UnicodeProperty.STRING, version));
+                        @Override
+                        public int getMaxWidth(boolean isShort) {
+                            return 14;
+                        }
+                    }.setMain(longName, shortName, UnicodeProperty.STRING, version));
+        }
 
         add(
                 new SimpleIsProperty(
@@ -1169,6 +1158,58 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             //            unicodeMap.setErrorOnReset(false);
             //            unicodeMap.put(0,oldValue);
             //            unicodeMap.setErrorOnReset(true);
+
+            // Indic_Conjunct_Break. The definition depends on GCB derived just above.
+            final UnicodeProperty script = getProperty("Script");
+            final UnicodeProperty gcb = getProperty("Grapheme_Cluster_Break");
+            final UnicodeProperty ccc = getProperty("Canonical_Combining_Class");
+            // if (true) throw new IllegalAccessError(ccc.getSet("0").toString());
+            final UnicodeSet conjunctLinkingScripts =
+                    script.getSet("Gujr")
+                            .addAll(script.getSet("Telu"))
+                            .addAll(script.getSet("Mlym"))
+                            .addAll(script.getSet("Orya"))
+                            .addAll(script.getSet("Beng"))
+                            .addAll(script.getSet("Deva"));
+            final UnicodeMap<String> incbDefinition =
+                    new UnicodeMap<String>()
+                            .setErrorOnReset(true)
+                            .putAll(
+                                    conjunctLinkingScripts
+                                            .cloneAsThawed()
+                                            .retainAll(
+                                                    isc.getSet(
+                                                            Indic_Syllabic_Category_Values.Virama)),
+                                    "Linker")
+                            .putAll(
+                                    conjunctLinkingScripts
+                                            .cloneAsThawed()
+                                            .retainAll(
+                                                    isc.getSet(
+                                                            Indic_Syllabic_Category_Values
+                                                                    .Consonant)),
+                                    "Consonant")
+                            .putAll(
+                                    gcb.getSet("Extend")
+                                            .removeAll(ccc.getSet("Not_Reordered"))
+                                            .addAll(gcb.getSet("ZWJ"))
+                                            .removeAll(
+                                                    isc.getSet(
+                                                            Indic_Syllabic_Category_Values.Virama))
+                                            .removeAll(
+                                                    isc.getSet(
+                                                            Indic_Syllabic_Category_Values
+                                                                    .Consonant)),
+                                    "Extend")
+                            .setMissing("None");
+            add(
+                    new UnicodeProperty.UnicodeMapProperty()
+                            .set(incbDefinition)
+                            .setMain(
+                                    "Indic_Conjunct_Break",
+                                    "InCB",
+                                    UnicodeProperty.ENUMERATED,
+                                    version));
         }
 
         if (compositeVersion >= 0x040000) {
@@ -1178,6 +1219,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
 
             final UnicodeProperty cat = getProperty("General_Category");
             final UnicodeProperty script = getProperty("Script");
+            final UnicodeProperty gcb = getProperty("Grapheme_Cluster_Break");
             // unicodeMap.put(0x200B, "Other");
 
             unicodeMap.putAll(new UnicodeSet("[\"]"), "Double_Quote");
@@ -1205,7 +1247,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             .remove(0x200C)
                             .remove(0x200D)
                             .remove(0x200B)
-                            .removeAll(tags),
+                            .removeAll(tags)
+                            // 174-CXX.
+                            .removeAll(gcb.getSet("Prepend")),
                     "Format");
             unicodeMap.putAll(
                     script.getSet("Katakana")
@@ -1236,7 +1280,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                             "[\\u02C2-\\u02C5\\u02D2-\\u02D7\\u02DE\\u02DF\\u02ED\\u02EF-\\u02FF\\uA720\\uA721\\uA789\\uA78A\\uAB5B]"))
                             // Armenian punctuation marks that occur within words; see
                             // http://www.unicode.org/L2/L2018/18115.htm#155-C3
-                            .addAll(new UnicodeSet("[\\u055B\\u055C\\u055E]")),
+                            .addAll(new UnicodeSet("[\\u055B\\u055C\\u055E]"))
+                            // 174-CXX.
+                            .add(0x070F),
                     "ALetter");
             unicodeMap.putAll(
                     new UnicodeSet("[\\u00B7\\u0387\\u05F4\\u2027\\u003A\\uFE13\\uFE55\\uFF1A]"),
@@ -1288,7 +1334,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     "MidNumLet");
 
             unicodeMap.putAll(
-                    new UnicodeSet(lineBreak.getSet("Numeric")).remove(0x066C).add(0xFF10, 0xFF19),
+                    new UnicodeSet(lineBreak.getSet("Numeric"))
+                            .add(cat.getSet("Decimal_Number"))
+                            .remove(0x066C),
                     "Numeric"); // .remove(0x387)
             unicodeMap.putAll(
                     cat.getSet("Connector_Punctuation")
@@ -1366,8 +1414,16 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             .add(0xE0020, 0xE007F),
                     "Extend");
             unicodeMap.putAll(new UnicodeSet("[\\u0085\\u2028\\u2029]"), "Sep");
+            // Exclude lb=Numeric from SB=Format.
+            // Unicode 15.1 changes [[:PCM:]-\u070F] from lb=AL to lb=NU.
+            final UnicodeProperty lineBreak = getProperty("Line_Break");
+            final UnicodeSet lbNumeric = lineBreak.getSet("Numeric");
             unicodeMap.putAll(
-                    cat.getSet("Format").remove(0x200C).remove(0x200D).remove(0xE0020, 0xE007F),
+                    cat.getSet("Format")
+                            .remove(0x200C)
+                            .remove(0x200D)
+                            .remove(0xE0020, 0xE007F)
+                            .removeAll(lbNumeric),
                     "Format");
             unicodeMap.putAll(
                     getProperty("Whitespace")
@@ -1402,9 +1458,8 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             .removeAll(unicodeMap.keySet("Upper"))
                             .removeAll(unicodeMap.keySet("Extend"));
             unicodeMap.putAll(temp, "OLetter");
-            final UnicodeProperty lineBreak = getProperty("Line_Break");
             unicodeMap.putAll(
-                    new UnicodeSet(lineBreak.getSet("Numeric")).add(0xFF10, 0xFF19), "Numeric");
+                    new UnicodeSet(lbNumeric).addAll(cat.getSet("Decimal_Number")), "Numeric");
             unicodeMap.putAll(new UnicodeSet("[\\u002E\\u2024\\uFE52\\uFF0E]"), "ATerm");
             unicodeMap.putAll(
                     getProperty("STerm")

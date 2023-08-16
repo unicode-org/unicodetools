@@ -1,5 +1,5 @@
 # TangutSources-15.1.0.txt
-# Date: 2023-01-05
+# Date: 2023-04-26, 18:55:00 GMT [MS, KW]
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -11,6 +11,7 @@
 # Unicode Character Database.
 #
 #	Data values match those for ISO/IEC 10646:2020
+#	with exception of U+17105 where the Radical Stroke Index value has been updated from 11.10 to 11.9
 #	Original Date: 2019-07-29
 #
 #	Format information:
@@ -576,7 +577,7 @@ U+17103	kRSTUnicode	11.9
 U+17104	kTGT_MergedSrc	L2008-0064
 U+17104	kRSTUnicode	11.10
 U+17105	kTGT_MergedSrc	L2008-6004
-U+17105	kRSTUnicode	11.10
+U+17105	kRSTUnicode	11.9
 U+17106	kTGT_MergedSrc	L2008-6003
 U+17106	kRSTUnicode	11.10
 U+17107	kTGT_MergedSrc	L2006-6027

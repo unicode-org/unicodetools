@@ -1,11 +1,11 @@
 # IdentifierStatus.txt
-# Date: 2022-08-26, 16:49:09 GMT
-# © 2022 Unicode®, Inc.
+# Date: 2023-05-16, 22:25:15 GMT
+# © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Security Mechanisms for UTS #39
-# Version: 15.0.0
+# Version: 15.1.0
 #
 # For documentation and usage, see https://www.unicode.org/reports/tr39
 #
@@ -582,7 +582,8 @@ FA27..FA29    ; Allowed    # 1.1    [3] CJK COMPATIBILITY IDEOGRAPH-FA27..CJK CO
 2B740..2B81D  ; Allowed    # 6.0  [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 2B820..2CEA1  ; Allowed    # 8.0 [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 2CEB0..2EBE0  ; Allowed    # 10.0 [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
+2EBF0..2EE4A  ; Allowed    # 15.1 [603] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE4A
 30000..3134A  ; Allowed    # 13.0 [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Allowed    # 15.0 [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 112156
+# Total code points: 112759

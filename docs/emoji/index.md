@@ -44,17 +44,18 @@
  \[If New version\]
 Some things will not be fixed yet, so you have to take a second pass.
 
-1. Update emojiOrdering.txt
-Diff unicodetools/src/main/resources/org/unicode/tools/emoji/emojiOrdering.txt with the new 
-unicodetools/data/emoji/**NEXT**/internal/emojiOrdering.txt
-Copy in the new characters from internal/emojiOrdering.txt to emoji/emojiOrdering.txt. 
-**Don't** remove the sets of ZWJ sequences like 👱‍♀ 👱‍♀️ 👱‍♂ 👱‍♂️ 👱🏻‍♀ 👱🏻‍♀️ 👱🏻‍♂ 👱🏻‍♂️ 👱🏼‍♀ 👱🏼‍♀️ 👱🏼‍♂ 👱🏼‍♂️ 👱🏽‍♀ 👱🏽‍♀️ ; those are still needed.
+1. Update emojiOrdering.txt:
+	1. Diff unicodetools/src/main/resources/org/unicode/tools/emoji/emojiOrdering.txt with the new
+	unicodetools/data/emoji/**NEXT**/internal/emojiOrdering.txt
+	2. Copy in the new characters from internal/emojiOrdering.txt to emoji/emojiOrdering.txt.
+	3. **Don't** remove the sets of ZWJ sequences like 👱‍♀ 👱‍♀️ 👱‍♂ 👱‍♂️ 👱🏻‍♀ 👱🏻‍♀️ 👱🏻‍♂ 👱🏻‍♂️ 👱🏼‍♀ 👱🏼‍♀️ 👱🏼‍♂ 👱🏼‍♂️ 👱🏽‍♀ 👱🏽‍♀️ ; those are still needed.
 
 2. Run GenerateEmoji.java again.
 If you missed one of the new characters you will probably get an error in building the EmojiOrder. 
 This will update the generated files to have **NEXT** instead of E0.0. Example:
 ``
 1F6DC         ; Emoji                # E0.0   [1] (🛜)       wireless
+``
 becomes
 ``
 1F6DC         ; Emoji                # E15.0  [1] (🛜)       wireless

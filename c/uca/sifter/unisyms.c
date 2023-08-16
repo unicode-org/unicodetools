@@ -2,7 +2,7 @@
 // License & terms of use: http://www.unicode.org/copyright.html
 /*
 **      Unilib
-**      Copyright 2022
+**      Copyright 2023
 **      Ken Whistler, All rights reserved.
 */
 
@@ -37,6 +37,7 @@
  *   2021-Jul-12 Added test and free of outputstring in unisift_DropSymTreeP
  *               to fix memory leak.
  *   2022-May-18 Add secondary ranges for UCA 15.0. Tweak some other ranges.
+ *   2023-May-09 Add four more variant weights for UCA 15.1.
  */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -117,7 +118,7 @@ extern char *GetUnidataFileName ( void );
  * NUMSECONDSYMS and the following tables needs to be revisited whenever
  * any new NSM is added or reordered.
  */
-#define NUMSECONDSYMS (257)
+#define NUMSECONDSYMS (261)
 
 static const char *tertSyms[NUMTERTSYMS] =
                    { "<RES-1>",
@@ -716,7 +717,11 @@ static const char *secondSyms[NUMSECONDSYMS] = {
 "<VRNT2>",
 "<VRNT3>",
 "<VRNT4>",
-"<VRNT5>"
+"<VRNT5>",
+"<VRNT6>",
+"<VRNT7>",
+"<VRNT8>",
+"<VRNT9>"
 };
 
 static utf32char secondSymVals[NUMSECONDSYMS] = {
@@ -866,7 +871,7 @@ static utf32char secondSymVals[NUMSECONDSYMS] = {
     /* 0x20E2, 0x20E3, 0x20E4, 0x20E5,*/ 0x20E6, 0x20E7, 0x20E8, 0x20E9, 
     /* 0x20EA, 0x20EB, 0x20EC, 0x20ED, 0x20EE, 0x20EF, 0x20F0,*/
 /* User-defined characters used to hack in variants for secondary weights. */
-    0xF8F0, 0xF8F1, 0xF8F2, 0xF8F3, 0xF8F4
+    0xF8F0, 0xF8F1, 0xF8F2, 0xF8F3, 0xF8F4, 0xF8F9, 0xF8FA, 0xF8FB, 0xF8FC
 };
 
 /******************************************************************/

@@ -13,8 +13,8 @@ import com.ibm.icu.text.UnicodeSet;
 
 /** Class that maps from codepoints to an index, and optionally a label. */
 public class OldUnicodeMap {
-    UnicodeSet[] sets = new UnicodeSet[50];
-    String[] labels = new String[50];
+    UnicodeSet[] sets = new UnicodeSet[100];
+    String[] labels = new String[100];
     int count = 0;
 
     public int add(String label, UnicodeSet set) {
