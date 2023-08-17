@@ -1,5 +1,6 @@
 <html>
 <head>
+<%@ page import="org.owasp.encoder.Encode" %>
 <%@ include file="header.jsp" %>
 <title>Unicode Utilities: UnicodeSet</title>
 </head>
@@ -36,7 +37,7 @@
       <th style="width: 50%">Input</th>
     </tr>
     <tr>
-      <td><textarea name="a" rows="8" cols="10" style="width: 100%"><%=setA%></textarea></td>
+      <td><textarea name="a" rows="8" cols="10" style="width: 100%"><%=Encode.forHtmlContent(setA)%></textarea></td>
     </tr>
     <tr>
       <td>
@@ -46,9 +47,9 @@
       <input type="checkbox" <%=ucdFormat ? "checked" : ""%> name="ucd"><label for="ucd">UCD format</label>&nbsp;&nbsp;
       <input type="checkbox" <%=escape ? "checked" : ""%> name="esc"><label for="esc">Escape</label>&nbsp;&nbsp;
       <label for="g">Group by:</label>
-      <input type="text" <%=escape ? "checked" : ""%> name="g" size="25" value="<%=group%>">
+      <input type="text" <%=escape ? "checked" : ""%> name="g" size="25" value="<%=Encode.forHtmlAttribute(group)%>">
       <label for="i">Info:</label>
-      <input type="text" <%=escape ? "checked" : ""%> name="i" size="25" value="<%=info%>">
+      <input type="text" <%=escape ? "checked" : ""%> name="i" size="25" value="<%=Encode.forHtmlAttribute(info)%>">
       </td>
     </tr>
 </table>

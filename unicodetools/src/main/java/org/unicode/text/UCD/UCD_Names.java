@@ -185,7 +185,8 @@ public final class UCD_Names implements UCD_Types {
     static final String[] LINE_BREAK = {
         "XX", "OP", "CL", "QU", "GL", "NS", "EX", "SY", "IS", "PR", "PO", "NU", "AL", "ID", "IN",
         "HY", "CM", "BB", "BA", "SP", "BK", "CR", "LF", "CB", "SA", "AI", "B2", "SG", "ZW", "NL",
-        "WJ", "JL", "JV", "JT", "H2", "H3", "CP", "HL", "CJ", "RI", "EB", "EM", "ZWJ"
+        "WJ", "JL", "JV", "JT", "H2", "H3", "CP", "HL", "CJ", "RI", "EB", "EM", "ZWJ", "AK", "AP",
+        "AS", "VI", "VF"
     };
 
     static final String[] LONG_LINE_BREAK = {
@@ -231,7 +232,12 @@ public final class UCD_Names implements UCD_Types {
         "Regional_Indicator",
         "E_Base",
         "E_Modifier",
-        "ZWJ"
+        "ZWJ",
+        "Aksara",
+        "Aksara_Prebase",
+        "Aksara_Start",
+        "Virama",
+        "Virama_Final",
     };
 
     public static final String[] LONG_SCRIPT = {
@@ -408,6 +414,19 @@ public final class UCD_Names implements UCD_Types {
         // Unicode 15
         "Kawi",
         "Nag_Mundari",
+        // A future version of Unicode
+        "Sunuwar",
+        "Tulu_Tigalari",
+        "Kirat_Rai",
+        "Todhri",
+        "Garay",
+        "Gurung_Khema",
+        "Ol_Onal",
+        // Provisionally assigned
+        "Sidetic",
+        "Chisoi",
+        "Tolong_Siki",
+        "Tai_Yo",
     };
 
     public static final Relation<String, String> EXTRA_SCRIPT =
@@ -592,6 +611,19 @@ public final class UCD_Names implements UCD_Types {
         // Unicode 15
         "Kawi",
         "Nagm",
+        // A future version of Unicode
+        "Qaba",
+        "Qabb",
+        "Qabc",
+        "Qabd",
+        "Qabe",
+        "Qabf",
+        "Qabg",
+        // Provisionally assigned
+        "Qabh",
+        "Qabi",
+        "Qabj",
+        "Qabk",
     };
 
     static final String[] SHORT_AGE = {

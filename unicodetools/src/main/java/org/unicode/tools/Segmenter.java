@@ -678,7 +678,7 @@ public class Segmenter {
         /**
          * A workhorse. Replaces all variable references: anything of the form $id. Flags an error
          * if anything of that form is not a variable. Since we are using Java regex, the properties
-         * support are extremely week. So replace them by literals.
+         * support is extremely weak. So replace them by literals.
          *
          * @param input
          * @return

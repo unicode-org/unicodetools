@@ -49,6 +49,7 @@ Simple_Titlecase_Mapping ;    SINGLE_VALUED ;               $codePoint
 Simple_Uppercase_Mapping ;    SINGLE_VALUED ;               $codePoint
 
 NFKC_Casefold ;               SINGLE_VALUED ;               $codePoint0
+NFKC_Simple_Casefold ;        SINGLE_VALUED ;               $codePoint0
 
 Case_Folding ;                SINGLE_VALUED ;               $codePoints
 Decomposition_Mapping ;       SINGLE_VALUED ;               $codePoints

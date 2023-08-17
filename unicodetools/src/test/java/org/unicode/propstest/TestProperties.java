@@ -24,7 +24,9 @@ import org.junit.jupiter.api.Test;
 import org.unicode.cldr.util.Counter;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.IndexUnicodeProperties.DefaultValueType;
 import org.unicode.props.PropertyNames;
+import org.unicode.props.PropertyType;
 import org.unicode.props.PropertyValueSets;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
@@ -210,6 +212,35 @@ public class TestProperties extends TestFmwkMinusMinus {
                             + ".."
                             + nameMap.get(it.codepointEnd));
         }
+    }
+
+    @Test
+    public void TestJoiningGroupConsistency() {
+        // TODO(egg): I would like to be able to put that in the invariants tests as « the partition
+        // defined by Joining_Group is finer than that defined by Joining_Type ».
+        UnicodeMap<String> joiningGroup = iup.load(UcdProperty.Joining_Group);
+        UnicodeMap<String> joiningType = iup.load(UcdProperty.Joining_Type);
+        var charactersByJoiningGroup = new HashMap<String, UnicodeSet>();
+        joiningGroup.addInverseTo(charactersByJoiningGroup).remove("No_Joining_Group");
+        charactersByJoiningGroup.forEach(
+                (group, set) -> {
+                    final int first = set.getRangeStart(0);
+                    final String firstType = joiningType.get(first);
+                    set.forEach(
+                            (c) -> {
+                                assertEquals(
+                                        "U+"
+                                                + getCodeAndName(Character.toString(first))
+                                                + "\nand\nU+"
+                                                + getCodeAndName(c)
+                                                + "\nhave different joining types but are in the"
+                                                + " same joining group ("
+                                                + group
+                                                + ")\n",
+                                        firstType,
+                                        joiningType.get(c));
+                            });
+                });
     }
 
     @Test
@@ -441,6 +472,58 @@ public class TestProperties extends TestFmwkMinusMinus {
         //        Enum z = PropertyValues.forValueName(UcdProperty.Bidi_Mirrored, "N");
         //        Enum w = PropertyValues.forValueName(UcdProperty.General_Category, "Cc");
         //        logln(x + " " + z + " " + w);
+    }
+
+    @Test
+    public void TestDefaults() {
+        assertEquals(
+                "Wrong CCC for U+FFFF",
+                "Not_Reordered",
+                iup.getProperty(UcdProperty.Canonical_Combining_Class).getValue('\uFFFF'));
+        assertEquals(
+                "Wrong Simple_Lowercase_Mapping for a",
+                "a",
+                iup.getProperty(UcdProperty.Simple_Lowercase_Mapping).getValue('a'));
+        assertEquals(
+                "Wrong Simple_Uppercase_Mapping for A",
+                "A",
+                iup.getProperty(UcdProperty.Simple_Uppercase_Mapping).getValue('A'));
+        assertEquals(
+                "Wrong Case_Folding for a",
+                "a",
+                iup.getProperty(UcdProperty.Case_Folding).getValue('a'));
+        assertEquals(
+                "Wrong Simple_Case_Folding for a",
+                "a",
+                iup.getProperty(UcdProperty.Simple_Case_Folding).getValue('a'));
+        assertEquals(
+                "Wrong Lowercase_Mapping for a",
+                "a",
+                iup.getProperty(UcdProperty.Lowercase_Mapping).getValue('a'));
+        assertEquals(
+                "Wrong Uppercase_Mapping for a",
+                "A",
+                iup.getProperty(UcdProperty.Uppercase_Mapping).getValue('a'));
+        assertEquals(
+                "Wrong Titlecase_Mapping for a",
+                "A",
+                iup.getProperty(UcdProperty.Titlecase_Mapping).getValue('a'));
+
+        for (var property : UcdProperty.values()) {
+            if (property.getType() != PropertyType.Miscellaneous
+                    && IndexUnicodeProperties.getResolvedDefaultValueType(property)
+                            != DefaultValueType.NONE) {
+                assertNotNull(
+                        "Null "
+                                + property.name()
+                                + " for U+FFFF but property is "
+                                + property.getType()
+                                + " with default value type "
+                                + IndexUnicodeProperties.getResolvedDefaultValueType(property)
+                                + ". Add an @missing line to ExtraPropertyValueAliases.txt if needed.",
+                        iup.getProperty(property).getValue('\uFFFF'));
+            }
+        }
     }
 
     @Test

@@ -1,3 +1,4 @@
+<%@ page import="org.owasp.encoder.Encode" %>
 <html>
 
 <head>
@@ -38,7 +39,7 @@ span.break   { border-right: 1px solid red;}
       <input type="submit" value="Test" /></td>
     </tr>
     <tr>
-      <td><textarea name="a" rows="30" cols="30" style="width:100%; height:100%"><%=text%></textarea></td>
+      <td><textarea name="a" rows="30" cols="30" style="width:100%; height:100%"><%=Encode.forHtmlContent(text)%></textarea></td>
       <td>
       <%=UnicodeJsp.showBreaks(text, choice)%>&nbsp;</td>
     </tr>

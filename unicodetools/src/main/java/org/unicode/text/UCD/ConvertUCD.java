@@ -459,6 +459,11 @@ public final class ConvertUCD implements UCD_Types {
                     if (line == null) {
                         break;
                     }
+                    if (line.startsWith("<<<<<<<")
+                            || line.startsWith("=======")
+                            || line.startsWith(">>>>>>>")) {
+                        continue;
+                    }
                     if (SHOW && (lineNumber % 500) == 0) {
                         System.out.println("//" + lineNumber + ": '" + line + "'");
                     }
@@ -875,6 +880,7 @@ public final class ConvertUCD implements UCD_Types {
         } else if (key.equals("ce")) {
             charEntry.binaryProperties |= 2;
         } else if (key.equals("on")) {
+            charEntry.unicode1Name = value;
             if (charEntry.name.charAt(0) == '<') {
                 charEntry.name = '<' + value + '>';
             }

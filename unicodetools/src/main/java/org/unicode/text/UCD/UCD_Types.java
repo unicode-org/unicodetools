@@ -70,6 +70,12 @@ public interface UCD_Types {
             CJK_F_BASE = 0x2CEB0,
             CJK_F_LIMIT = 0x2EBE0 + 1,
 
+            // Extension I is between extension F and the CJK Compatibility Ideographs Supplement.
+            // 2EBF0;<CJK Ideograph Extension I, First>;Lo;0;L;;;;;N;;;;;
+            // 2EE5D;<CJK Ideograph Extension I, Last>;Lo;0;L;;;;;N;;;;;
+            CJK_I_BASE = 0x2EBF0,
+            CJK_I_LIMIT = 0x2EE5D + 1,
+
             // 30000;<CJK Ideograph Extension G, First>;Lo;0;L;;;;;N;;;;;
             // 3134A;<CJK Ideograph Extension G, Last>;Lo;0;L;;;;;N;;;;;
             CJK_G_BASE = 0x30000,
@@ -331,7 +337,12 @@ public interface UCD_Types {
             LB_EB = 40,
             LB_EM = 41,
             LB_ZWJ = 42,
-            LIMIT_LINE_BREAK = 43,
+            LB_AK = 43,
+            LB_AP = 44,
+            LB_AS = 45,
+            LB_VI = 46,
+            LB_VF = 47,
+            LIMIT_LINE_BREAK = 48,
             LB_LIMIT = LIMIT_LINE_BREAK;
 
     // east asian width
@@ -588,7 +599,20 @@ public interface UCD_Types {
             // Unicode 15
             Kawi = 164,
             Nag_Mundari = 165,
-            LIMIT_SCRIPT = Nag_Mundari + 1;
+            // A future version of Unicode
+            Sunuwar = 166,
+            Tulu_Tigalari = 167,
+            Kirat_Rai = 168,
+            Todhri = 169,
+            Garay = 170,
+            Gurung_Khema = 171,
+            Ol_Onal = 172,
+            // Provisionally assigned
+            Sidetic = 173,
+            Chisoi = 174,
+            Tolong_Siki = 175,
+            Tai_Yo = 176,
+            LIMIT_SCRIPT = Tai_Yo + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte BPT_N = 0, BPT_O = 1, BPT_C = 2, LIMIT_BPT = 3;
