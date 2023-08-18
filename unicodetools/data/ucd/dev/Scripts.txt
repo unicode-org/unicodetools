@@ -23,7 +23,7 @@
 # @missing: 0000..10FFFF; Unknown
 
 # ================================================
-
+11380..113E2; Tulu_Tigalari
 0000..001F    ; Common # Cc  [32] <control-0000>..<control-001F>
 0020          ; Common # Zs       SPACE
 0021..0023    ; Common # Po   [3] EXCLAMATION MARK..NUMBER SIGN
