@@ -308,6 +308,7 @@ Tibetan	;	Tibetan
 Tifinagh	;	Tifinagh
 Tirhuta	;	Tirhuta
 Toto    ;   Toto
+Tulu_Tigalari   ;   Tulu_Tigalari
 Transport_And_Map	;	Transport_And_Map_Symbols
 Ugaritic	;	Ugaritic
 UCAS	;	Unified_Canadian_Aboriginal_Syllabics
