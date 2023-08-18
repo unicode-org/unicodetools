@@ -1,3 +1,31 @@
+# Indic_Syllabic_Category=Bindu
+113CA ; Bindu # Mc TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CC ; Bindu # Mc TULU-TIGALARI SIGN ANUSVARA
+# Indic_Syllabic_Category=Visarga
+113CD ; Visarga # Mc TULU-TIGALARI SIGN VISARGA
+# Indic_Syllabic_Category=Avagraha
+113B7 ; Avagraha # Lo TULU-TIGALARI SIGN AVAGRAHA
+# Indic_Syllabic_Category=Pure_Killer
+113CE..113CF ; Pure_Killer # Mn [2] TULU-TIGALARI SIGN VIRAMA..TULU-TIGALARI SIGN LOOPED VIRAMA
+# Indic_Syllabic_Category=Invisible_Stacker
+113D0 ; Invisible_Stacker # Mn TULU-TIGALARI CONJOINER
+# Indic_Syllabic_Category=Vowel_Independent
+11380..11389 ; Vowel_Independent # Lo [10] TULU-TIGALARI LETTER A..TULU-TIGALARI LETTER VOCALIC LL
+1138B ; Vowel_Independent # Lo TULU-TIGALARI LETTER EE
+1138E ; Vowel_Independent # Lo TULU-TIGALARI LETTER AI
+11390..11391 ; Vowel_Independent # Lo [2] TULU-TIGALARI LETTER OO..TULU-TIGALARI LETTER VOCALIC AU
+# Indic_Syllabic_Category=Vowel_Dependent
+13B8..113BA ; Vowel_Dependent # Mc [3] TULU-TIGALARI VOWEL SIGN AA..TIGALARI VOWEL SIGN VOCALIC II
+113BB..113C0 ; Vowel_Dependent # Mn [6] TULU-TIGALARI VOWEL SIGN U..TIGALARI VOWEL SIGN VOCALIC LL
+113C2 ; Vowel_Dependent # Mn TIGALARI VOWEL SIGN EE
+113C5 ; Vowel_Dependent # Mn TIGALARI VOWEL SIGN AI
+113C7..113C9 ; Vowel_Dependent # Mc [3] TIGALARI VOWEL SIGN OO..TIGALARI VOWEL AU LENGTH MARK
+# Indic_Syllabic_Category=Consonant
+11392..113B5 ; Consonant # Lo [36] TULU-TIGALARI LETTER KA..TULU-TIGALARI LETTER LLLA
+# Indic_Syllabic_Category=Cantillation_Mark
+113E1..113E2 ; Cantillation_Mark # Mn [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
+# Indic_Syllabic_Category=Consonant_Preceding_Repha
+113D1 ; Consonant_Preceding_Repha # Lo TULU-TIGALARI REPHA
 # IndicSyllabicCategory-15.1.0.txt
 # Date: 2023-01-05
 # © 2023 Unicode®, Inc.
