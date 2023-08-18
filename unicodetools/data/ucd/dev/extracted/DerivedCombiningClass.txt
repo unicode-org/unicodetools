@@ -1,5 +1,5 @@
 # DerivedCombiningClass-15.1.0.txt
-# Date: 2023-07-28, 23:33:58 GMT
+# Date: 2023-08-18, 13:40:09 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1569,6 +1569,21 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 11357         ; 0 # Mc       GRANTHA AU LENGTH MARK
 1135D..11361  ; 0 # Lo   [5] GRANTHA SIGN PLUTA..GRANTHA LETTER VOCALIC LL
 11362..11363  ; 0 # Mc   [2] GRANTHA VOWEL SIGN VOCALIC L..GRANTHA VOWEL SIGN VOCALIC LL
+11380..11389  ; 0 # Lo  [10] TULU-TIGALARI LETTER A..TULU-TIGALARI LETTER VOCALIC LL
+1138B         ; 0 # Lo       TULU-TIGALARI LETTER EE
+1138E         ; 0 # Lo       TULU-TIGALARI LETTER AI
+11390..113B5  ; 0 # Lo  [38] TULU-TIGALARI LETTER OO..TULU-TIGALARI LETTER LLLA
+113B7         ; 0 # Lo       TULU-TIGALARI SIGN AVAGRAHA
+113B8..113BA  ; 0 # Mc   [3] TULU-TIGALARI VOWEL SIGN AA..TULU-TIGALARI VOWEL SIGN II
+113BB..113C0  ; 0 # Mn   [6] TULU-TIGALARI VOWEL SIGN U..TULU-TIGALARI VOWEL SIGN VOCALIC LL
+113C2         ; 0 # Mc       TULU-TIGALARI VOWEL SIGN EE
+113C5         ; 0 # Mc       TULU-TIGALARI VOWEL SIGN AI
+113C7..113CA  ; 0 # Mc   [4] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CC..113CD  ; 0 # Mc   [2] TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN VISARGA
+113D1         ; 0 # Lo       TULU-TIGALARI REPHA
+113D4..113D5  ; 0 # Po   [2] TULU-TIGALARI DANDA..TULU-TIGALARI DOUBLE DANDA
+113D7..113D8  ; 0 # Po   [2] TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA
+113E1..113E2  ; 0 # Mn   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 11400..11434  ; 0 # Lo  [53] NEWA LETTER A..NEWA LETTER HA
 11435..11437  ; 0 # Mc   [3] NEWA VOWEL SIGN AA..NEWA VOWEL SIGN II
 11438..1143F  ; 0 # Mn   [8] NEWA VOWEL SIGN U..NEWA VOWEL SIGN AI
@@ -2005,8 +2020,8 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 826766 code points not listed here.
-# Total code points: 1113190
+# The above property value applies to 826688 code points not listed here.
+# Total code points: 1113187
 
 # ================================================
 
@@ -2121,6 +2136,9 @@ ABED          ; 9 # Mn       MEETEI MAYEK APUN IYEK
 11235         ; 9 # Mc       KHOJKI SIGN VIRAMA
 112EA         ; 9 # Mn       KHUDAWADI SIGN VIRAMA
 1134D         ; 9 # Mc       GRANTHA SIGN VIRAMA
+113CE         ; 9 # Mn       TULU-TIGALARI SIGN VIRAMA
+113CF         ; 9 # Mc       TULU-TIGALARI SIGN LOOPED VIRAMA
+113D0         ; 9 # Mn       TULU-TIGALARI CONJOINER
 11442         ; 9 # Mn       NEWA SIGN VIRAMA
 114C2         ; 9 # Mn       TIRHUTA SIGN VIRAMA
 115BF         ; 9 # Mn       SIDDHAM SIGN VIRAMA
@@ -2140,7 +2158,7 @@ ABED          ; 9 # Mn       MEETEI MAYEK APUN IYEK
 11F41         ; 9 # Mc       KAWI SIGN KILLER
 11F42         ; 9 # Mn       KAWI CONJOINER
 
-# Total code points: 65
+# Total code points: 68
 
 # ================================================
 

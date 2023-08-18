@@ -1,5 +1,5 @@
 # DerivedDecompositionType-15.1.0.txt
-# Date: 2023-01-05, 20:34:36 GMT
+# Date: 2023-08-18, 13:40:11 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -254,6 +254,12 @@ FB46..FB4E    ; Canonical # Lo   [9] HEBREW LETTER TSADI WITH DAGESH..HEBREW LET
 110AB         ; Canonical # Lo       KAITHI LETTER VA
 1112E..1112F  ; Canonical # Mn   [2] CHAKMA VOWEL SIGN O..CHAKMA VOWEL SIGN AU
 1134B..1134C  ; Canonical # Mc   [2] GRANTHA VOWEL SIGN OO..GRANTHA VOWEL SIGN AU
+11383         ; Canonical # Lo       TULU-TIGALARI LETTER II
+11385         ; Canonical # Lo       TULU-TIGALARI LETTER UU
+1138E         ; Canonical # Lo       TULU-TIGALARI LETTER AI
+11391         ; Canonical # Lo       TULU-TIGALARI LETTER AU
+113C5         ; Canonical # Mc       TULU-TIGALARI VOWEL SIGN AI
+113C7..113C8  ; Canonical # Mc   [2] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI VOWEL SIGN AU
 114BB..114BC  ; Canonical # Mc   [2] TIRHUTA VOWEL SIGN AI..TIRHUTA VOWEL SIGN O
 114BE         ; Canonical # Mc       TIRHUTA VOWEL SIGN AU
 115BA..115BB  ; Canonical # Mc   [2] SIDDHAM VOWEL SIGN O..SIDDHAM VOWEL SIGN AU
@@ -262,7 +268,7 @@ FB46..FB4E    ; Canonical # Lo   [9] HEBREW LETTER TSADI WITH DAGESH..HEBREW LET
 1D1BB..1D1C0  ; Canonical # So   [6] MUSICAL SYMBOL MINIMA..MUSICAL SYMBOL FUSA BLACK
 2F800..2FA1D  ; Canonical # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# Total code points: 13233
+# Total code points: 13240
 
 # ================================================
 
