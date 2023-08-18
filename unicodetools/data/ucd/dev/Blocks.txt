@@ -258,6 +258,7 @@ FFF0..FFFF; Specials
 11280..112AF; Multani
 112B0..112FF; Khudawadi
 11300..1137F; Grantha
+11380..113FF; Tulu-Tigalari
 11400..1147F; Newa
 11480..114DF; Tirhuta
 11580..115FF; Siddham
