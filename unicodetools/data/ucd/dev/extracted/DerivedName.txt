@@ -1,5 +1,5 @@
 # DerivedName-15.1.0.txt
-# Date: 2023-07-28, 23:34:03 GMT
+# Date: 2023-08-21, 14:42:49 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -14241,6 +14241,9 @@ A7D6          ; LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D7          ; LATIN SMALL LETTER MIDDLE SCOTS S
 A7D8          ; LATIN CAPITAL LETTER SIGMOID S
 A7D9          ; LATIN SMALL LETTER SIGMOID S
+A7DA          ; LATIN CAPITAL LETTER LAMBDA
+A7DB          ; LATIN SMALL LETTER LAMBDA
+A7DC          ; LATIN CAPITAL LETTER LAMBDA WITH STROKE
 A7F2          ; MODIFIER LETTER CAPITAL C
 A7F3          ; MODIFIER LETTER CAPITAL F
 A7F4          ; MODIFIER LETTER CAPITAL Q
@@ -44176,6 +44179,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 149813
+# Total code points: 149816
 
 # EOF
