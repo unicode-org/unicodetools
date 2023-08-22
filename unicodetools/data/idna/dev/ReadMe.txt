@@ -1,10 +1,10 @@
 # Unicode IDNA Mapping and Test Data
-# Date: 2023-01-30
-# © 2023 Unicode®, Inc.
+# Date: PUB_DATE
+# © COPY_YEAR Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 
-This directory contains draft data files for version 15.1.0 of
+This directory contains PUB_STATUS data files for version UNI_VER of
 UTS #46, Unicode IDNA Compatibility Processing.
  
 https://www.unicode.org/reports/tr46/

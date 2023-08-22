@@ -1,6 +1,6 @@
 # Unicode Character Database
-# Date: 2023-01-30
-# © 2023 Unicode®, Inc.
+# Date: PUB_DATE
+# © COPY_YEAR Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -11,13 +11,13 @@
 # UAX #44, "Unicode Character Database"
 # UTS #51, "Unicode Emoji"
 #
-# The UAXes and UTS #51 can be accessed at https://www.unicode.org/versions/Unicode15.1.0/
+# The UAXes and UTS #51 can be accessed at https://www.unicode.org/versions/UnicodeUNI_VER/
 
-This directory contains the draft data files 
-for Version 15.1.0 of the Unicode Standard.
+This directory contains the PUB_STATUS data files 
+for Version UNI_VER of the Unicode Standard.
 
 The "ucd" subdirectory contains the Unicode
 Character Database data files.
 
 The "charts" subdirectory contains an archival set of
-pdf code charts corresponding exactly to Version 15.1.0.
+pdf code charts corresponding exactly to Version UNI_VER.
