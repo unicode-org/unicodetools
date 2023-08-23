@@ -93,45 +93,6 @@
   Implementations that do not weight surrogate code points the same way as reserved code points
   may filter out such lines lines in the test cases, before testing for conformance.</p>
 
-  <h2>Migration</h2>
-  <h3>Tie-breaker</h3>
-  <p>Beginning with UCA 6.2,
-  the test data strings are compared with strength = identical,
-  using UCA S3.10 as a tie-breaker, which compares the NFD forms of the strings in code point order.
-  Before UCA 6.2, the test files did not use strength = identical,
-  and instead used as a tie-breaker the comparison of the unnormalized strings.<br>
-  Therefore, implementations which use the UCA test files to test
-  multiple versions of UCA need to use different tie-breaker comparisons
-  depending on the UCA version.</p>
-
-  <h3>Discontiguous contractions</h3>
-  <p>Test data files for UCA 6.1 and earlier versions were generated with code that
-  had a bug in the contraction matching.
-  In that code, matches for certain contractions of Tibetan characters were found
-  despite intervening combining marks,
-  so that some test cases were not in proper order according to the UCA and the DUCET.
-  UCA 6.2 test files omitted the relevant test cases.
-  For UCA 6.3, the test data generation code was fixed and those test cases were restored.</p>
-
-  <p>For example, in the defective test data generation code,
-  the strings 0FB2 0F80 0F71 0334 and 0F77 0334 compared equal.
-  (U+0F77 is the TIBETAN VOWEL SIGN VOCALIC RR.)
-  However, UCA processing with the DUCET will not find the contraction 0FB2 0F71 0F80:</p>
-  <ul>
-    <li>UCA Step 1 normalizes 0FB2 0F80 0F71 0334 to 0FB2 0334 0F71 0F80.</li>
-    <li>Step 2.1 only finds a match for S=0FB2.</li>
-    <li>S2.1.1 loops over each of the following three characters C,
-    but there is no table entry for any of those three S+C.
-    In particular, there is no DUCET mapping for 0FB2+0F71
-    (see <i><a href="https://www.unicode.org/reports/tr10/TR10_REV.html#Well_Formed_DUCET">Tibetan and
-    Well-Formedness of DUCET</a></i>).</li>
-    <li>The loop exits without finding any match beyond S=0FB2.</li>
-  </ul>
-
-  <p>See “Also note that the Algorithm employs two distinct contraction matching methods:”
-  at the end of <i>Section 7.2,
-  <a href="https://www.unicode.org/reports/tr10/TR10_REV.html#Step_2">Produce Collation Element Arrays</a></i>.</p>
-
   <hr width="50%">
   <p class="copyright">© COPY_YEAR Unicode, Inc. All Rights Reserved.
   The Unicode Consortium makes no expressed or implied warranty 
