@@ -1,5 +1,13 @@
 # Building UnicodeJsp
 
+- Note: you can run the latest UnicodeJsp locally with docker using:
+
+```
+docker run --rm -p 8080:8080 unicode/unicode-jsp
+```
+
+- Note 2: there are some notes on updated processes for using GCP at [gcp-run.md](./gcp-run.md) - at present, automated deployment is TODO.
+
 ## Compiling
 ### Prerequisites
 - Java
