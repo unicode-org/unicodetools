@@ -525,6 +525,7 @@ Let $IDInclusions = [[:block=/Ideographs/:] [[\U00020000-\U0003FFFF][\U0001F000-
 \p{Line_Break=Unknown} = [\p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse} - $IDInclusions - [\u20C0-\u20CF]]
 
 Let $BrahmicLineBreaking = [\p{sc=Balinese}\p{sc=Batak}\p{sc=Brahmi}\p{sc=Cham}\p{sc=DivesAkuru}\p{sc=Grantha}\p{sc=Javanese}\p{sc=Makasar}\p{sc=Kawi}\p{sc=Cham}\p{sc=Makasar}]
+Let $VFScripts = [\p{sc=Batak}]
 
 Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288\U00013379\U0001342F\U00013437\U0001343C\U0001343E\U000145CE\U0001E95E-\U0001E95F]
 # 7.0 Removed hack  - [\u2308\u230A]
@@ -538,7 +539,7 @@ Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288
 
 # See L2/22-086 for an explanation of the special case of Batak.
 \p{LB=VI} = [[\p{Indic_Syllabic_Category=Virama}\p{Indic_Syllabic_Category=Invisible_Stacker}] & $BrahmicLineBreaking]
-\p{LB=VF} = [\p{Indic_Syllabic_Category=Pure_Killer} & \p{sc=Batak}]
+\p{LB=VF} = [\p{Indic_Syllabic_Category=Pure_Killer} & $VFScripts]
 
 # 15.1: Action item UTC-176-A81: change [[:PCM:]-\u070F] lb=AL->NU
 \p{LB=CM} = [[\u3035] \p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -[\U00013437\U00013438\U0001343C-\U0001343F] -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL} -\p{LB=ZWJ} - \p{LB=VI} - \p{LB=VF} - \p{LB=NU}]
@@ -552,6 +553,13 @@ Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288
 Let $NUInclusions = [\u066B\u066C]
 Let $NUFormats = [[:PCM:]-[\u070F]]
 \p{LB=NU} = [\p{GC=Nd} $NUInclusions $NUFormats - \p{EA=F} - $BrahmicLineBreaking]
+
+# Digits are lb=AS in scripts with brahmic line breaking.
+[\p{GC=Nd} & $BrahmicLineBreaking] ⊆ \p{LB=AS}
+
+# Batak is the one case where assigning LB=AS to digits could lead to unexpected results, because
+# of the rule (AK | ◌ | AS) × (AK | ◌ | AS) VF.  There are no Batak digits.
+[\p{GC=Nd} & $VFScripts] = []
 
 Let $PRInclusions = [\u002b\u005c\u00b1\u2116\u2212\u2213\u20C0-\u20CF]
 \p{LB=PR} = [\p{GC=Sc} $PRInclusions - \p{LB=PO}]
