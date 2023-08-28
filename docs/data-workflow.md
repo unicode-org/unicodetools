@@ -136,14 +136,14 @@ script from an up-to-date repo workspace.
 
 Send the resulting zip file to Rick for posting to https://www.unicode.org/Public/ (not .../Public/draft/).
 Ask Rick to add other files that are not tracked in the unicodetools repo:
-*   Unihan.zip to .../<version>/ucd
-*   UCDXML files to .../<version>/ucdxml
-*   final charts to .../<version>/charts
+*   Unihan.zip to .../{version}/ucd
+*   UCDXML files to .../{version}/ucdxml
+*   final charts to .../{version}/charts
 
 This script works much like the beta script, except it:
 *   assembles all of the files for Public/ in their release folder structure,
     rather than for Public/draft/
-*   creates a zipped/<version> folder with UCD.zip
+*   creates a zipped/{version} folder with UCD.zip
 
 ### After a release
 
