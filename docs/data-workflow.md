@@ -95,6 +95,8 @@ and skip any others that are only for internal use.
 
 For the alpha review, publish (at least) the UCD and emoji files, and the charts.
 
+Review/edit the pub/*.sh scripts and advance the version numbers and copyright years.
+
 Run the [pub/copy-alpha-to-draft.sh](https://github.com/unicode-org/unicodetools/blob/main/pub/copy-alpha-to-draft.sh)
 script from an up-to-date repo workspace.
 The script copies the set of the .../dev/ data files for an alpha snapshot
@@ -123,7 +125,7 @@ Ask Rick to add other files that are not tracked in the unicodetools repo:
 *   UCDXML files to .../draft/UCD/ucdxml
 *   beta charts to .../draft/UCD/charts
 
-### Publish a release
+### Publish a release snapshot
 
 After the last UTC meeting for the release, collect all of the data file updates
 (mostly from recently opened action items).
@@ -145,18 +147,25 @@ This script works much like the beta script, except it:
     rather than for Public/draft/
 *   creates a zipped/{version} folder with UCD.zip
 
-### After a release
+### Before a release
+
+When the data files are supposed to be final, about a week or two before the release:
 
 Verify once more that the unicodetools repo .../dev/ files match the released/published files.
-(They better...)
-
-Copy a snapshot of the unicodetools repo .../dev/ files to a versioned unicodetools folder;
-for example: .../unicodetools/data/ucd/15.1.0/ .
-(We no longer append a “-Update” suffix to the folder name.)
 
 Create a release tag in the repo.
+Example, from four days before Unicode 15.1 was released:
+https://github.com/unicode-org/unicodetools/releases/tag/final-15.1-20230908
 
-Edit the pub/*.sh scripts and advance the version numbers and copyright years.
+### After a release
+
+Copy a snapshot of the unicodetools repo .../dev/ files to a versioned unicodetools folder;
+for example: .../unicodetools/data/ucd/16.0.0/ .
+(We no longer append a “-Update” suffix to the folder name.)
+List: emoji, idna, security, uca, ucd, ucdxml
+Watch for different naming conventions: emoji versions use only two fields, not three.
+
+Edit the pub/*.sh scripts and advance the version numbers.
 
 Change the Unicode Tools code as necessary for the start of work on the next version.
 Settings.java lastVersion & latestVersion and more.
