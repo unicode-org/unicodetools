@@ -12,11 +12,11 @@ UNITOOLS_DATA=$UNICODETOOLS/unicodetools/data
 
 # Adjust the following for each year and version as needed.
 COPY_YEAR=2023
-UNI_VER=15.1.0
-EMOJI_VER=15.1
+UNI_VER=16.0.0
+EMOJI_VER=16.0
 # UTS #10 release revision number to be used in CollationTest.html:
 # One more than the last release revision number.
-TR10_REV=tr10-48
+TR10_REV=tr10-50
 
 TODAY=`date --iso-8601`
 

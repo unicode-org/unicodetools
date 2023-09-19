@@ -9,8 +9,8 @@ on:
     - '*'
 
 env:
-  CURRENT_UVERSION: 15.1.0
-  PREVIOUS_UVERSION: 15.0.0
+  CURRENT_UVERSION: 16.0.0
+  PREVIOUS_UVERSION: 15.1.0
 
 jobs:
 

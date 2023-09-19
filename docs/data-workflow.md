@@ -170,4 +170,6 @@ Edit the pub/*.sh scripts and advance the version numbers.
 Change the Unicode Tools code as necessary for the start of work on the next version.
 Settings.java lastVersion & latestVersion and more.
 
+Example, Unicode 15.1→16.0: https://github.com/unicode-org/unicodetools/pull/539
+
 Declare “main” to be open for the next version.

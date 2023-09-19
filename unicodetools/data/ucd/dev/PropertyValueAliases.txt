@@ -92,6 +92,7 @@ age; 13.0                             ; V13_0
 age; 14.0                             ; V14_0
 age; 15.0                             ; V15_0
 age; 15.1                             ; V15_1
+age; 16.0                             ; V16_0
 age; NA                               ; Unassigned
 
 # Alphabetic (Alpha)

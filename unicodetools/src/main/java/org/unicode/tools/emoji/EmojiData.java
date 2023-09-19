@@ -197,7 +197,7 @@ public class EmojiData implements EmojiDataSource {
         String ucdDirectory = directory;
         if (version.compareTo(Emoji.VERSION13) >= 0) {
             // As of E13.0 emoji-data.txt and emoji-variation-sequences.txt are in the UCD.
-            VersionInfo unicodeVersion = Emoji.EMOJI_TO_UNICODE_VERSION.get(version);
+            VersionInfo unicodeVersion = Emoji.getUnicodeVersionForEmojiVersion(version);
             ucdDirectory =
                     Settings.UnicodeTools.DataDir.UCD.asPath(unicodeVersion).toString() + "/emoji";
         }

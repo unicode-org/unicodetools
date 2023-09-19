@@ -22,9 +22,13 @@ public class Settings {
     // Are they equivalent for our purposes?
 
     /** Used for the default version. */
-    public static final String latestVersion = "15.1.0";
+    public static final String latestVersion = "16.0.0";
 
-    public static final String lastVersion = "15.0.0"; // last released version
+    public static final String lastVersion = "15.1.0"; // last released version
+
+    public static final VersionInfo LATEST_VERSION_INFO = VersionInfo.getInstance(latestVersion);
+    public static final VersionInfo LAST_VERSION_INFO = VersionInfo.getInstance(lastVersion);
+    public static final VersionInfo LAST2_VERSION_INFO = VersionInfo.getInstance(15);
 
     private static final String TRIMMED_LATEST_VERSION = trimVersion(latestVersion);
 

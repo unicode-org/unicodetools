@@ -233,6 +233,9 @@ Value:  V15_0
 Value:  V15_1
 # Newly assigned in Unicode 15.1.0 (September, 2023)
 
+Value:  V16_0
+# Newly assigned in Unicode 16.0.0 (September, 2024)
+
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class
 # Bidi Class (listing UnicodeData.txt, field 4: see UAX #44: https://www.unicode.org/reports/tr44/)

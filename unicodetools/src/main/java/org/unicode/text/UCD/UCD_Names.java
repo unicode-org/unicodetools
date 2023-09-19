@@ -629,7 +629,8 @@ public final class UCD_Names implements UCD_Types {
     static final String[] SHORT_AGE = {
         "NA", "1.1", "2.0", "2.1", "3.0", "3.1", "3.2", "4.0", "4.1", "5.0", "5.1", "5.2", "6.0",
         "6.1", "6.2", "6.3", "7.0", "8.0", "9.0", "10.0", "11.0", "12.0", "12.1", "13.0", "14.0",
-        "15.0", "15.1",
+        "15.0", "15.1", "16.0",
+        // FIX_FOR_NEW_VERSION
     };
 
     static final String[] LONG_AGE = {
@@ -660,6 +661,8 @@ public final class UCD_Names implements UCD_Types {
         "V14_0",
         "V15_0",
         "V15_1",
+        "V16_0",
+        // FIX_FOR_NEW_VERSION
     };
 
     static final String[] GENERAL_CATEGORY = {
