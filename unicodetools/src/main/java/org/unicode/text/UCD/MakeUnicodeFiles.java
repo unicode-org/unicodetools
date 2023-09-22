@@ -120,10 +120,11 @@ public class MakeUnicodeFiles {
             boolean sortNumeric = false;
 
             String parse(String options) {
-                options = options.replace('\t', ' ');
-                final String[] pieces = Utility.split(options, ' ');
-                for (int i = 1; i < pieces.length; ++i) {
-                    final String piece = pieces[i];
+                Matcher matcher = Pattern.compile("([^\" \t]|\"[^\"]*\")+").matcher(options);
+                matcher.find();
+                String firstPiece = matcher.group();
+                while (matcher.find()) {
+                    final String piece = matcher.group();
                     // binary
                     if (piece.equals("noLabel")) {
                         noLabel = true;
@@ -165,10 +166,10 @@ public class MakeUnicodeFiles {
                         skipUnassigned = afterEquals(piece);
                     } else if (piece.length() != 0) {
                         throw new IllegalArgumentException(
-                                "Illegal PrintStyle Parameter: " + piece + " in " + pieces[0]);
+                                "Illegal PrintStyle Parameter: " + piece + " in " + firstPiece);
                     }
                 }
-                return pieces[0];
+                return firstPiece;
             }
 
             private boolean afterEqualsBoolean(String piece) {
@@ -253,8 +254,26 @@ public class MakeUnicodeFiles {
             return propertyToValueToComments.get(property);
         }
 
+        // Returns strings without U+0022 QUOTATION MARK (") unchanged.
+        // Strings that contain " must be enclosed in them, and are returned unquoted, with "" as
+        // the escape sequence, thus:
+        //   meow       ↦ meow
+        //   "meow"     ↦ meow
+        //   """meow""" ↦ "meow"
+        static String unquote(String source) {
+            String contents = source;
+            if (source.charAt(0) == '"' && source.charAt(source.length() - 1) == '"') {
+                contents = source.substring(1, source.length() - 1);
+            }
+            if (contents.matches("(?<!\")(\"\")*\"(?!\")")) {
+                throw new IllegalArgumentException(
+                        "Syntax error: improper quotation marks in " + source);
+            }
+            return contents.replace("\"\"", "\"");
+        }
+
         static String afterEquals(String source) {
-            return source.substring(source.indexOf('=') + 1);
+            return unquote(source.substring(source.indexOf('=') + 1));
         }
 
         static String afterWhitespace(String source) {
@@ -994,6 +1013,7 @@ public class MakeUnicodeFiles {
             if (propName.equals("Bidi_Mirroring_Glyph")
                     || propName.equals("Equivalent_Unified_Ideograph")
                     || propName.equals("NFKC_Casefold")
+                    || propName.equals("NFKC_Simple_Casefold")
                     || propName.equals("Script_Extensions")) {
                 // Action item [172-A71]: Don't print @missing lines
                 // for properties whose specific data files already contain such lines.
@@ -1156,7 +1176,7 @@ public class MakeUnicodeFiles {
                 if (v == null) {
                     v = ps.skipUnassigned;
                 }
-                if (!v.equals("<codepoint>")) {
+                if (!v.equals("<code point>")) {
                     final String v2 = prop.getFirstValueAlias(v);
                     if (UnicodeProperty.compareNames(v, v2) != 0) {
                         v = v + " (" + v2 + ")";
@@ -1597,10 +1617,23 @@ public class MakeUnicodeFiles {
             System.out.println("Writing String Values: " + prop.getName());
         }
         pw.println();
+        final var shownSet = new UnicodeSet();
+        if (ps.skipValue == null) {
+            shownSet.addAll(UnicodeSet.ALL_CODE_POINTS);
+        } else {
+            for (int c = 0; c <= 0x10FFFF; ++c) {
+                final String value = prop.getValue(c);
+                final String skipValue =
+                        ps.skipValue.equals("<code point>") ? Character.toString(c) : ps.skipValue;
+                if (!value.equals(skipValue)) {
+                    shownSet.add(c);
+                }
+            }
+        }
         bf.setValueSource(prop)
                 .setHexValue(true)
                 .setMergeRanges(ps.mergeRanges)
-                .showSetNames(pw, new UnicodeSet(0, 0x10FFFF));
+                .showSetNames(pw, shownSet);
     }
 
     static class RangeStartComparator implements Comparator<String> {

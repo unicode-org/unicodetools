@@ -1,5 +1,5 @@
-# DerivedGeneralCategory-15.1.0.txt
-# Date: 2023-03-06, 14:07:10 GMT
+# DerivedGeneralCategory-16.0.0.txt
+# Date: 2023-09-22, 19:05:23 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -713,7 +713,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 2B73A..2B73F  ; Cn #   [6] <reserved-2B73A>..<reserved-2B73F>
 2B81E..2B81F  ; Cn #   [2] <reserved-2B81E>..<reserved-2B81F>
 2CEA2..2CEAF  ; Cn #  [14] <reserved-2CEA2>..<reserved-2CEAF>
-2EBE1..2F7FF  ; Cn # [3103] <reserved-2EBE1>..<reserved-2F7FF>
+2EBE1..2EBEF  ; Cn #  [15] <reserved-2EBE1>..<reserved-2EBEF>
+2EE5E..2F7FF  ; Cn # [2466] <reserved-2EE5E>..<reserved-2F7FF>
 2FA1E..2FFFF  ; Cn # [1506] <reserved-2FA1E>..<noncharacter-2FFFF>
 3134B..3134F  ; Cn #   [5] <reserved-3134B>..<reserved-3134F>
 323B0..E0000  ; Cn # [711761] <reserved-323B0>..<reserved-E0000>
@@ -723,7 +724,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 825320
+# Total code points: 824698
 
 # ================================================
 
@@ -2649,11 +2650,12 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 2B740..2B81D  ; Lo # [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 2B820..2CEA1  ; Lo # [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 2CEB0..2EBE0  ; Lo # [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
+2EBF0..2EE5D  ; Lo # [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
 2F800..2FA1D  ; Lo # [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; Lo # [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Lo # [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 131612
+# Total code points: 132234
 
 # ================================================
 

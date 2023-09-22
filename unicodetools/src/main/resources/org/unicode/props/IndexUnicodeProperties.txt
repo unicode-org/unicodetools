@@ -140,6 +140,7 @@ DerivedCoreProperties ; ID_Start
 DerivedCoreProperties ; ID_Continue
 DerivedCoreProperties ; XID_Start
 DerivedCoreProperties ; XID_Continue
+DerivedCoreProperties ; Indic_Conjunct_Break
 DerivedNormalizationProps ; Full_Composition_Exclusion
 DerivedNormalizationProps ; Expands_On_NFC
 DerivedNormalizationProps ; Expands_On_NFD
@@ -151,6 +152,7 @@ DerivedNormalizationProps ; NFKD_Quick_Check
 DerivedNormalizationProps ; NFC_Quick_Check
 DerivedNormalizationProps ; NFKC_Quick_Check
 DerivedNormalizationProps ; NFKC_Casefold
+DerivedNormalizationProps ; NFKC_Simple_Casefold
 DerivedNormalizationProps ; Changes_When_NFKC_Casefolded
 PropList ; ASCII_Hex_Digit
 PropList ; Bidi_Control

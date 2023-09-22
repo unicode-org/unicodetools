@@ -1,3 +1,4 @@
+<%@ page import="org.owasp.encoder.Encode" %>
 <html>
 
 <head>
@@ -258,7 +259,7 @@ function setUbaInput(str) {
         </tr>
         <tr>
             <td>
-                <textarea id="idInputCharSeq" name="s" rows="2" cols="100" maxlength="200" oninput="setUbaInputFromEdit(event)"><%= valInputCharSeq %></textarea>
+                <textarea id="idInputCharSeq" name="s" rows="2" cols="100" maxlength="200" oninput="setUbaInputFromEdit(event)"><%= Encode.forHtmlContent(valInputCharSeq) %></textarea>
             </td>
         </tr>
         <tr style="display:none">

@@ -233,6 +233,9 @@ Value:  V15_0
 Value:  V15_1
 # Newly assigned in Unicode 15.1.0 (September, 2023)
 
+Value:  V16_0
+# Newly assigned in Unicode 16.0.0 (September, 2024)
+
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class
 # Bidi Class (listing UnicodeData.txt, field 4: see UAX #44: https://www.unicode.org/reports/tr44/)
@@ -363,6 +366,15 @@ Property:	Default_Ignorable_Code_Point
 #  - FFF9..FFFB (Interlinear annotation format characters)
 #  - 13430..13440 (Egyptian hieroglyph format characters)
 #  - Prepended_Concatenation_Mark (Exceptional format characters that should be visible)
+#
+# There are currently no stability guarantees for DICP. However, the
+# values of DICP interact with the derivation of XID_Continue
+# and NFKC_CF, for which there are stability guarantees.
+# Maintainers of this property should note that in the
+# unlikely case that the DICP value changes for an existing character
+# which is also XID_Continue=Yes, then exceptions must be put
+# in place to ensure that the NFKC_CF mapping value for that
+# existing character does not change.
 
 Property:	Grapheme_Extend
 # Derived Property: Grapheme_Extend
@@ -381,6 +393,13 @@ Property:	Grapheme_Link
 # Derived Property: Grapheme_Link (deprecated)
 #  Generated from: Canonical_Combining_Class=Virama
 #  Use Canonical_Combining_Class=Virama directly instead
+
+Property:	Indic_Conjunct_Break
+# Derived Property: Indic_Conjunct_Break
+#  Generated from the Grapheme_Cluster_Break, Indic_Syllabic_Category,
+#  Canonical_Combining_Class, and Script properties as described in UAX #44:
+#  https://www.unicode.org/reports/tr44/.
+Format:	nameStyle=short valueStyle=short skipValue=None
 
 File:	extracted/DerivedDecompositionType
 Property:	Decomposition_Type
@@ -484,7 +503,19 @@ Property:   NFKC_Casefold
 #            For more information, see [https://www.unicode.org/reports/tr44/]
 # Omitted code points are unchanged by this mapping.
 # @missing: 0000..10FFFF; NFKC_CF; <code point>
-Format: nameStyle=short skipValue=<codepoint>
+Format: nameStyle=short skipValue="<code point>"
+
+Property:   NFKC_Simple_Casefold
+# Derived Property:   NFKC_Simple_Casefold (NFKC_SCF)
+#   This property removes certain variations from characters: case, compatibility, and default-ignorables.
+#   It is used for loose matching and certain types of identifiers.
+#   It is constructed by applying NFKC, simple CaseFolding, and removal of Default_Ignorable_Code_Points.
+#   The process of applying these transformations is repeated until a stable result is produced.
+#   WARNING: Application to STRINGS must apply NFC after mapping each character, because characters may interact.
+#            For more information, see [https://www.unicode.org/reports/tr44/]
+# Omitted code points are unchanged by this mapping.
+# @missing: 0000..10FFFF; NFKC_SCF; <code point>
+Format: nameStyle=short skipValue="<code point>"
 
 Property:   Changes_When_NFKC_Casefolded
 # Derived Property:   Changes_When_NFKC_Casefolded (CWKCF)
@@ -737,10 +768,10 @@ Format: kenFile skipValue=Unknown
 #   Non-tailorable:
 #         "BK", "CM", "CR", "GL", "LF", "NL", "SP", "WJ", "ZW", "ZWJ"
 #   Tailorable:
-#         "AI", "AL", "B2", "BA", "BB", "CB", "CJ", "CL", "CP", "EB",
-#         "EM", "EX", "H2", "H3", "HL", "HY", "ID", "IN", "IS", "JL",
-#         "JT", "JV", "NS", "NU", "OP", "PO", "PR", "QU", "RI", "SA",
-#         "SG", "SY", "XX"
+#         "AI", "AK", "AL", "AP", "AS", "B2", "BA", "BB", "CB", "CJ",
+#         "CL", "CP", "EB", "EM", "EX", "H2", "H3", "HL", "HY", "ID",
+#         "IN", "IS", "JL", "JT", "JV", "NS", "NU", "OP", "PO", "PR",
+#         "QU", "RI", "SA", "SG", "SY", "VF", "VI", "XX"
 #  - All code points, assigned and unassigned, that are not listed
 #      explicitly are given the value "XX".
 #  - The unassigned code points in the following blocks default to "ID":
