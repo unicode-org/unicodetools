@@ -12,8 +12,8 @@ UNITOOLS_DATA=$UNICODETOOLS/unicodetools/data
 
 # Adjust the following for each year and version as needed.
 COPY_YEAR=2023
-UNI_VER=15.1.0
-EMOJI_VER=15.1
+UNI_VER=16.0.0
+EMOJI_VER=16.0
 
 TODAY=`date --iso-8601`
 
