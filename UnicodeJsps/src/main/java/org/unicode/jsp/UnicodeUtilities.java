@@ -818,9 +818,9 @@ public class UnicodeUtilities {
                     alias = "no name";
                 }
                 if (plainText) {
-                    result.append("<i>" + alias + "</i>");
-                } else {
                     result.append("(" + alias + ")");
+                } else {
+                    result.append("<i>" + alias + "</i>");
                 }
             }
         }
