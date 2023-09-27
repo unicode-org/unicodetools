@@ -637,16 +637,7 @@ public class UnicodeUtilities {
             if (UnicodeUtilities.RTL.containsSome(literal)) {
                 literal = '\u200E' + literal + '\u200E';
             }
-            String name = UnicodeUtilities.getName(string, separator, false);
-            if (name == null || name.length() == 0) {
-                name = "<i>no name</i>";
-            } else {
-                boolean special = name.indexOf('<') >= 0;
-                name = UnicodeUtilities.toHTML.transliterate(name);
-                if (special) {
-                    name = "<i>" + name + "</i>";
-                }
-            }
+            String name = UnicodeUtilities.getName(string, separator, false, "meow");
             literal = UnicodeSetUtilities.addEmojiVariation(literal);
             if (doTable) {
                 out.append(
@@ -801,7 +792,7 @@ public class UnicodeUtilities {
         //        }
     }
 
-    private static String getName(String string, String separator, boolean andCode) {
+    private static String getName(String string, String separator, boolean andCode, String noName) {
         StringBuilder result = new StringBuilder();
         int cp;
         for (int i = 0; i < string.length(); i += UTF16.getCharCount(cp)) {
@@ -812,7 +803,21 @@ public class UnicodeUtilities {
             if (andCode) {
                 result.append("U+").append(com.ibm.icu.impl.Utility.hex(cp, 4)).append(' ');
             }
-            result.append(CachedProps.NAMES.getValue(cp));
+            final String name = CachedProps.NAMES.getValue(cp);
+            if (name != null) {
+                result.append(name);
+            } else {
+                // TODO(egg): We only have Name_Aliasβ during β, which is silly.  This will probably
+                // solve itself as part of https://github.com/unicode-org/unicodetools/issues/432.
+                String alias =
+                        getFactory()
+                                .getProperty(CachedProps.IS_BETA ? "Name_Aliasβ" : "Name_Alias")
+                                .getValue(cp);
+                if (alias == null) {
+                    alias = "no name";
+                }
+                result.append("<i>" + alias + "</i>");
+            }
         }
         return result.toString();
     }
@@ -1931,7 +1936,7 @@ public class UnicodeUtilities {
         writer.println("</tr><tr><th>Character</th>");
         for (int i = 0; i < str.length(); ++i) {
             final String s = str.substring(i, i + 1);
-            String title = toHTML.transform(getName(s, "", true));
+            String title = toHTML.transform(getName(s, "", true, "meow"));
             writer.println(
                     "<td class='bccell' title='"
                             + title
@@ -1982,7 +1987,7 @@ public class UnicodeUtilities {
             String title =
                     bidiChar.length() == 0
                             ? "deleted"
-                            : toHTML.transform(getName(bidiChar, "", true));
+                            : toHTML.transform(getName(bidiChar, "", true, "meow"));
             String td = bidiChar.length() == 0 ? "bxcell" : "bccell";
             writer.println(
                     "<td class='"
