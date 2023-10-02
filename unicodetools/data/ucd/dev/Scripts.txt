@@ -3033,33 +3033,22 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 # ================================================
 
 11380..11389  ; Tulu_Tigalari # Lo  [10] TULU-TIGALARI LETTER A..TULU-TIGALARI LETTER VOCALIC LL
-1138A         ; Tulu_Tigalari # Cn       <reserved-1138A>
 1138B         ; Tulu_Tigalari # Lo       TULU-TIGALARI LETTER EE
-1138C..1138D  ; Tulu_Tigalari # Cn   [2] <reserved-1138C>..<reserved-1138D>
 1138E         ; Tulu_Tigalari # Lo       TULU-TIGALARI LETTER AI
-1138F         ; Tulu_Tigalari # Cn       <reserved-1138F>
 11390..113B5  ; Tulu_Tigalari # Lo  [38] TULU-TIGALARI LETTER OO..TULU-TIGALARI LETTER LLLA
-113B6         ; Tulu_Tigalari # Cn       <reserved-113B6>
 113B7         ; Tulu_Tigalari # Lo       TULU-TIGALARI SIGN AVAGRAHA
 113B8..113BA  ; Tulu_Tigalari # Mc   [3] TULU-TIGALARI VOWEL SIGN AA..TULU-TIGALARI VOWEL SIGN II
 113BB..113C0  ; Tulu_Tigalari # Mn   [6] TULU-TIGALARI VOWEL SIGN U..TULU-TIGALARI VOWEL SIGN VOCALIC LL
-113C1         ; Tulu_Tigalari # Cn       <reserved-113C1>
 113C2         ; Tulu_Tigalari # Mc       TULU-TIGALARI VOWEL SIGN EE
-113C3..113C4  ; Tulu_Tigalari # Cn   [2] <reserved-113C3>..<reserved-113C4>
 113C5         ; Tulu_Tigalari # Mc       TULU-TIGALARI VOWEL SIGN AI
-113C6         ; Tulu_Tigalari # Cn       <reserved-113C6>
 113C7..113CA  ; Tulu_Tigalari # Mc   [4] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
-113CB         ; Tulu_Tigalari # Cn       <reserved-113CB>
 113CC..113CD  ; Tulu_Tigalari # Mc   [2] TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN VISARGA
 113CE         ; Tulu_Tigalari # Mn       TULU-TIGALARI SIGN VIRAMA
 113CF         ; Tulu_Tigalari # Mc       TULU-TIGALARI SIGN LOOPED VIRAMA
 113D0         ; Tulu_Tigalari # Mn       TULU-TIGALARI CONJOINER
 113D1         ; Tulu_Tigalari # Lo       TULU-TIGALARI REPHA
-113D2..113D3  ; Tulu_Tigalari # Cn   [2] <reserved-113D2>..<reserved-113D3>
 113D4..113D5  ; Tulu_Tigalari # Po   [2] TULU-TIGALARI DANDA..TULU-TIGALARI DOUBLE DANDA
-113D6         ; Tulu_Tigalari # Cn       <reserved-113D6>
 113D7..113D8  ; Tulu_Tigalari # Po   [2] TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA
-113D9..113E0  ; Tulu_Tigalari # Cn   [8] <reserved-113D9>..<reserved-113E0>
 113E1..113E2  ; Tulu_Tigalari # Mn   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 
 # Total code points: 99
