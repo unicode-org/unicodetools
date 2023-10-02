@@ -1,5 +1,5 @@
-# PropList-15.1.0.txt
-# Date: 2023-08-01, 21:56:53 GMT
+# PropList-16.0.0.txt
+# Date: 2023-10-02, 14:20:41 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -732,6 +732,11 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1134B..1134C  ; Other_Alphabetic # Mc   [2] GRANTHA VOWEL SIGN OO..GRANTHA VOWEL SIGN AU
 11357         ; Other_Alphabetic # Mc       GRANTHA AU LENGTH MARK
 11362..11363  ; Other_Alphabetic # Mc   [2] GRANTHA VOWEL SIGN VOCALIC L..GRANTHA VOWEL SIGN VOCALIC LL
+113B8..113BA  ; Other_Alphabetic # Mc   [3] TULU-TIGALARI VOWEL SIGN AA..TULU-TIGALARI VOWEL SIGN II
+113C2         ; Other_Alphabetic # Mc       TULU-TIGALARI VOWEL SIGN EE
+113C5         ; Other_Alphabetic # Mc       TULU-TIGALARI VOWEL SIGN AI
+113C7..113CA  ; Other_Alphabetic # Mc   [4] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CC..113CD  ; Other_Alphabetic # Mc   [2] TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN VISARGA
 11435..11437  ; Other_Alphabetic # Mc   [3] NEWA VOWEL SIGN AA..NEWA VOWEL SIGN II
 11438..1143F  ; Other_Alphabetic # Mn   [8] NEWA VOWEL SIGN U..NEWA VOWEL SIGN AI
 11440..11441  ; Other_Alphabetic # Mc   [2] NEWA VOWEL SIGN O..NEWA VOWEL SIGN AU
@@ -833,13 +838,8 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F130..1F149  ; Other_Alphabetic # So  [26] SQUARED LATIN CAPITAL LETTER A..SQUARED LATIN CAPITAL LETTER Z
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
-113B8..113BA;Other_Alphabetic
-113C2;Other_Alphabetic
-113C5;Other_Alphabetic
-113C7..113CA;Other_Alphabetic
-113CC..113CD;Other_Alphabetic
 
-# Total code points: 1425
+# Total code points: 1436
 
 # ================================================
 

@@ -1,5 +1,5 @@
 # DerivedCoreProperties-16.0.0.txt
-# Date: 2023-10-02, 13:54:56 GMT
+# Date: 2023-10-02, 14:20:32 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1126,6 +1126,11 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 1138E         ; Alphabetic # Lo       TULU-TIGALARI LETTER AI
 11390..113B5  ; Alphabetic # Lo  [38] TULU-TIGALARI LETTER OO..TULU-TIGALARI LETTER LLLA
 113B7         ; Alphabetic # Lo       TULU-TIGALARI SIGN AVAGRAHA
+113B8..113BA  ; Alphabetic # Mc   [3] TULU-TIGALARI VOWEL SIGN AA..TULU-TIGALARI VOWEL SIGN II
+113C2         ; Alphabetic # Mc       TULU-TIGALARI VOWEL SIGN EE
+113C5         ; Alphabetic # Mc       TULU-TIGALARI VOWEL SIGN AI
+113C7..113CA  ; Alphabetic # Mc   [4] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CC..113CD  ; Alphabetic # Mc   [2] TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN VISARGA
 113D1         ; Alphabetic # Lo       TULU-TIGALARI REPHA
 11400..11434  ; Alphabetic # Lo  [53] NEWA LETTER A..NEWA LETTER HA
 11435..11437  ; Alphabetic # Mc   [3] NEWA VOWEL SIGN AA..NEWA VOWEL SIGN II
@@ -1408,7 +1413,7 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 30000..3134A  ; Alphabetic # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Alphabetic # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 138439
+# Total code points: 138450
 
 # ================================================
 
