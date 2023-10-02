@@ -67,8 +67,7 @@ public class MakeUnicodeFiles {
         Map<String, List<String>> fileToPropertySet = new TreeMap<String, List<String>>();
         Map<String, String> fileToComments = new TreeMap<String, String>();
         Map<String, String> fileToDirectory = new TreeMap<String, String>();
-        Map<String, List<String>> propertyToOrderedValues =
-                new TreeMap<String, List<String>>();
+        Map<String, List<String>> propertyToOrderedValues = new TreeMap<String, List<String>>();
         Map<String, Map<String, String>> propertyToValueToComments =
                 new TreeMap<String, Map<String, String>>();
         Map<String, String> hackMap = new HashMap<String, String>();
@@ -1214,7 +1213,10 @@ public class MakeUnicodeFiles {
                 }
                 pwProp.println(ps.roozbehFile ? "#" : "");
                 pwProp.println("#  All code points not explicitly listed for " + prop.getName());
-                pwProp.println("#  have the value " + v + (ps.roozbehFile && v.equals("NA") ? " (not applicable)." : "."));
+                pwProp.println(
+                        "#  have the value "
+                                + v
+                                + (ps.roozbehFile && v.equals("NA") ? " (not applicable)." : "."));
             }
 
             if (!ps.interleaveValues && prop.isType(UnicodeProperty.BINARY_MASK)) {
@@ -1485,7 +1487,8 @@ public class MakeUnicodeFiles {
             bf.setMergeRanges(ps.mergeRanges);
             bf.setShowTotal(!ps.roozbehFile);
             if (ps.roozbehFile) {
-                bf.setRangeBreakSource(ToolUnicodePropertySource.make(Default.ucdVersion()).getProperty("Block"));
+                bf.setRangeBreakSource(
+                        ToolUnicodePropertySource.make(Default.ucdVersion()).getProperty("Block"));
             }
             bf.showSetNames(pw, s);
             if (DEBUG) {
