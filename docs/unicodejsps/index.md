@@ -1,5 +1,13 @@
 # Building UnicodeJsp
 
+- Note: you can run the latest UnicodeJsp locally with docker using:
+
+```
+docker run --rm -p 8080:8080 unicode/unicode-jsp
+```
+
+- Note 2: there are some notes on updated processes for using GCP at [gcp-run.md](./gcp-run.md) - at present, automated deployment is TODO.
+
 ## Compiling
 ### Prerequisites
 - Java
@@ -27,7 +35,7 @@ If you already have `UnicodeJsps` in eclipse, it might be better to remove it fr
 ### Command Line
 
 ```shell
-mvn org.eclipse.jetty:jetty-maven-plugin:run
+mvn -DCLDR_DIR=/path/to/cldr -DUNICODETOOLS_REPO_DIR=/path/to/unicodetools org.eclipse.jetty:jetty-maven-plugin:run
 ```
 
 If port 8080 is in use, another port can be specified with `-Djetty.port=⟨port number⟩`.

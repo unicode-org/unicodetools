@@ -30,17 +30,15 @@ Process:
 *   Iterate between KenW and Michel.
 *   Generated from UnicodeData.txt and an annotations file, using some C program.
 *   Used for generating code charts.
-*   KenW posts NamesList.txt into https://www.unicode.org/Public/draft/UCD/ucd/ .
+*   KenW posts NamesList.txt somewhere.
 *   A unicodetools GitHub contributor fetches this file
     and creates a pull request as for “regular” data files.
 
 ### Folder readmes
 
-The “source of truth” for these is outside of GitHub for now.
-KenW updates or vets these files and posts them to https://www.unicode.org/Public/draft/ .
-A unicodetools GitHub contributor fetches these files and creates a pull request as above.
-
-See https://github.com/unicode-org/properties/issues/8 “simplify versioning of readme files”
+The various ReadMe.txt files are checked into the unicodetools repo.
+They are templatized, and the publication scripts below replace variables with the
+Unicode and emoji versions, copyright year, and publication date (date when the script was run).
 
 ### “Regular” data files
 
@@ -97,6 +95,8 @@ and skip any others that are only for internal use.
 
 For the alpha review, publish (at least) the UCD and emoji files, and the charts.
 
+Review/edit the pub/*.sh scripts and advance the version numbers and copyright years.
+
 Run the [pub/copy-alpha-to-draft.sh](https://github.com/unicode-org/unicodetools/blob/main/pub/copy-alpha-to-draft.sh)
 script from an up-to-date repo workspace.
 The script copies the set of the .../dev/ data files for an alpha snapshot
@@ -122,27 +122,54 @@ from a unicodetools workspace to a target folder with the layout of https://www.
 Send the resulting zip file to Rick for posting to https://www.unicode.org/Public/draft/ .
 Ask Rick to add other files that are not tracked in the unicodetools repo:
 *   Unihan.zip to .../draft/UCD/ucd
+*   UCDXML files to .../draft/UCD/ucdxml
 *   beta charts to .../draft/UCD/charts
 
-### Publish a release
+### Publish a release snapshot
 
-TODO: Write a script like /pub/copy-release-to-draft.sh that will be run on the unicode.org server
-and copy the set of the .../dev/ data files for a beta snapshot
-from a unicodetools workspace to the location behind https://www.unicode.org/Public/draft/ .
+After the last UTC meeting for the release, collect all of the data file updates
+(mostly from recently opened action items).
 
+When complete, publish the draft files once more via the beta script.
 Verify the final set of files in the draft folder.
 
-TODO: Write a script like /pub/copy-draft-to-release.sh that will be run on the unicode.org server
-and copy the files from the location behind https://www.unicode.org/Public/draft/
-to the locations behind the version-specific release folders.
-For example:
-*   https://www.unicode.org/Public/draft/UCD/ → https://www.unicode.org/Public/15.1.0/
-*   https://www.unicode.org/Public/draft/UCA/ → https://www.unicode.org/Public/UCA/15.1.0/
-*   https://www.unicode.org/Public/draft/emoji/ → https://www.unicode.org/Public/emoji/15.1/
-*   etc.
+Run the [pub/copy-final.sh](https://github.com/unicode-org/unicodetools/blob/main/pub/copy-final.sh)
+script from an up-to-date repo workspace.
 
-After a Unicode release, copy a snapshot of the unicodetools repo .../dev/ files
-(matching the released files, of course) to a versioned unicodetools folder;
-for example: .../unicodetools/data/ucd/15.1.0/ .
+Send the resulting zip file to Rick for posting to https://www.unicode.org/Public/ (not .../Public/draft/).
+Ask Rick to add other files that are not tracked in the unicodetools repo:
+*   Unihan.zip to .../{version}/ucd
+*   UCDXML files to .../{version}/ucdxml
+*   final charts to .../{version}/charts
+
+This script works much like the beta script, except it:
+*   assembles all of the files for Public/ in their release folder structure,
+    rather than for Public/draft/
+*   creates a zipped/{version} folder with UCD.zip
+
+### Before a release
+
+When the data files are supposed to be final, about a week or two before the release:
+
+Verify once more that the unicodetools repo .../dev/ files match the released/published files.
+
+Create a release tag in the repo.
+Example, from four days before Unicode 15.1 was released:
+https://github.com/unicode-org/unicodetools/releases/tag/final-15.1-20230908
+
+### After a release
+
+Copy a snapshot of the unicodetools repo .../dev/ files to a versioned unicodetools folder;
+for example: .../unicodetools/data/ucd/16.0.0/ .
 (We no longer append a “-Update” suffix to the folder name.)
+List: emoji, idna, security, uca, ucd, ucdxml
+Watch for different naming conventions: emoji versions use only two fields, not three.
 
+Edit the pub/*.sh scripts and advance the version numbers.
+
+Change the Unicode Tools code as necessary for the start of work on the next version.
+Settings.java lastVersion & latestVersion and more.
+
+Example, Unicode 15.1→16.0: https://github.com/unicode-org/unicodetools/pull/539
+
+Declare “main” to be open for the next version.

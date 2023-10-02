@@ -11,7 +11,7 @@ RUN ls -lh /build/source/bidiref1 && (/build/source/bidiref1 || true)
 ADD ./target/cldr-unicodetools.tgz /build/data/
 # move this into place (including unicodetools/unicodetools)
 RUN rm -rf /build/data/cldr/.git  # unneeded
-FROM jetty:9-jre11-slim AS run
+FROM jetty:9-jre11-alpine-eclipse-temurin AS run
 ADD port-entrypoint.sh /port-entrypoint.sh
 ADD ./jetty.d/ROOT /var/lib/jetty/webapps/ROOT/
 ENTRYPOINT [ "/port-entrypoint.sh" ]
