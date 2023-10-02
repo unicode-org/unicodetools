@@ -1434,7 +1434,11 @@ public class MakeUnicodeFiles {
 
             if (!prop.isType(UnicodeProperty.BINARY_MASK)) {
                 pw.println();
-                pw.println(SEPARATOR);
+                if (ps.roozbehFile) {
+                    pw.println(SEPARATOR.replace('=', '-'));
+                } else {
+                    pw.println(SEPARATOR);
+                }
                 if (nonLongValue) {
                     pw.println();
                     pw.println("# " + prop.getName() + "=" + value);
