@@ -599,7 +599,7 @@ public interface UCD_Types {
             // Unicode 15
             Kawi = 164,
             Nag_Mundari = 165,
-            // A future version of Unicode
+            // Unicode 16
             Sunuwar = 166,
             Tulu_Tigalari = 167,
             Kirat_Rai = 168,
