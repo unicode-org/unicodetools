@@ -1,5 +1,5 @@
-# DerivedAge-15.1.0.txt
-# Date: 2023-04-18, 11:20:12 GMT
+# DerivedAge-16.0.0.txt
+# Date: 2023-10-02, 13:27:10 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1999,9 +1999,19 @@ FDFE..FDFF    ; 14.0 #   [2] ARABIC LIGATURE SUBHAANAHU WA TAAALAA..ARABIC LIGAT
 
 2FFC..2FFF    ; 15.1 #   [4] IDEOGRAPHIC DESCRIPTION CHARACTER SURROUND FROM RIGHT..IDEOGRAPHIC DESCRIPTION CHARACTER ROTATION
 31EF          ; 15.1 #       IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
-1CEB0..1CEB3  ; 15.1 #   [4] HORIZONTAL ZIGZAG LINE..BLACK RIGHT TRIANGLE CARET
-1F8B2         ; 15.1 #       RIGHTWARDS ARROW WITH LOWER HOOK
+2EBF0..2EE5D  ; 15.1 # [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
 
-# Total code points: 10
+# Total code points: 627
+
+# ================================================
+
+# Age=V16_0
+
+# Newly assigned in Unicode 16.0.0 (September, 2024)
+
+1CEB0..1CEB3  ; 16.0 #   [4] HORIZONTAL ZIGZAG LINE..BLACK RIGHT TRIANGLE CARET
+1F8B2         ; 16.0 #       RIGHTWARDS ARROW WITH LOWER HOOK
+
+# Total code points: 5
 
 # EOF

@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.VersionInfo;
 import java.io.DataInputStream;
@@ -43,7 +44,8 @@ public class CachedProps {
     final BiMultimap<String, String> nameToAliases = new BiMultimap<String, String>(null, null);
     final Map<String, BiMultimap<String, String>> nameToValueToAliases = new LinkedHashMap();
 
-    static CachedProps CACHED_PROPS = getInstance(VersionInfo.getInstance(14));
+    static VersionInfo jspVersionInfo = UCharacter.getUnicodeVersion();
+    static CachedProps CACHED_PROPS = getInstance(jspVersionInfo);
 
     static UnicodeProperty NAMES = CachedProps.CACHED_PROPS.getProperty("Name");
 

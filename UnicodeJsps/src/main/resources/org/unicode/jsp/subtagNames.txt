@@ -110,6 +110,7 @@ CM;Cameroon
 CN;China
 CO;Colombia
 CP;Clipperton Island
+CQ;Sark
 CR;Costa Rica
 CS;Serbia and Montenegro
 CU;Cuba
@@ -456,7 +457,7 @@ TM;Turkmenistan
 TN;Tunisia
 TO;Tonga
 TP;East Timor
-TR;Turkey
+TR;Türkiye
 TT;Trinidad & Tobago
 TV;Tuvalu
 TW;Taiwan
@@ -852,7 +853,7 @@ aox;Atorada
 aoz;Uab Meto
 apa;Apache languages
 apb;Sa'a
-apc;North Levantine Arabic
+apc;Levantine Arabic
 apd;Sudanese Arabic
 ape;Bukiyip
 apf;Pahanan Agta
@@ -3984,7 +3985,7 @@ krl;Karelian
 krm;Krim
 krn;Sapo
 kro;Kru
-krp;Korop
+krp;Durop
 krr;Krung
 krs;Gbaya (Sudan)
 krt;Tumari Kanuri
@@ -4450,7 +4451,7 @@ loc;Inonhan
 loe;Saluan
 lof;Logol
 log;Logo
-loh;Narim
+loh;Laarim
 loi;Loma (Côte d'Ivoire)
 loj;Lou
 lok;Loko
@@ -4511,6 +4512,8 @@ lsy;Mauritian Sign Language
 lt;Lithuanian
 ltc;Late Middle Chinese
 ltg;Latgalian
+ltg1929;The Latgalian language orthography codified in 1929
+ltg2007;The Latgalian language orthography codified in the language law in 2007
 lth;Thur
 lti;Leti (Indonesia)
 ltn;Latundê
@@ -8009,7 +8012,7 @@ wms;Wambon
 wmt;Walmajarri
 wmw;Mwani
 wmx;Womo
-wnb;Wanambre
+wnb;Mokati
 wnc;Wantoat
 wnd;Wandarang
 wne;Waneci
