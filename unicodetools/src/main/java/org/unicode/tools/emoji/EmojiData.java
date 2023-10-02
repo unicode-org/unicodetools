@@ -140,6 +140,8 @@ public class EmojiData implements EmojiDataSource {
                             .addAll(Emoji.ZWJ_GENDER_MARKERS)
                             .addAll(Emoji.FULL_ZWJ_GENDER_MARKERS)
                             .freeze());
+    public static final UnicodeSetSpanner GENDER_SPANNER =
+            new UnicodeSetSpanner(new UnicodeSet(Emoji.GENDER_MARKERS).freeze());
     public static final UnicodeSetSpanner SKIN_SPANNER =
             new UnicodeSetSpanner(new UnicodeSet(MODIFIERS).freeze());
 
@@ -195,7 +197,7 @@ public class EmojiData implements EmojiDataSource {
         String ucdDirectory = directory;
         if (version.compareTo(Emoji.VERSION13) >= 0) {
             // As of E13.0 emoji-data.txt and emoji-variation-sequences.txt are in the UCD.
-            VersionInfo unicodeVersion = Emoji.EMOJI_TO_UNICODE_VERSION.get(version);
+            VersionInfo unicodeVersion = Emoji.getUnicodeVersionForEmojiVersion(version);
             ucdDirectory =
                     Settings.UnicodeTools.DataDir.UCD.asPath(unicodeVersion).toString() + "/emoji";
         }

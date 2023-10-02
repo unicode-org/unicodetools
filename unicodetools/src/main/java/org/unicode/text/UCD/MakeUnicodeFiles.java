@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collection;
 import java.util.Comparator;
@@ -119,10 +120,11 @@ public class MakeUnicodeFiles {
             boolean sortNumeric = false;
 
             String parse(String options) {
-                options = options.replace('\t', ' ');
-                final String[] pieces = Utility.split(options, ' ');
-                for (int i = 1; i < pieces.length; ++i) {
-                    final String piece = pieces[i];
+                Matcher matcher = Pattern.compile("([^\" \t]|\"[^\"]*\")+").matcher(options);
+                matcher.find();
+                String firstPiece = matcher.group();
+                while (matcher.find()) {
+                    final String piece = matcher.group();
                     // binary
                     if (piece.equals("noLabel")) {
                         noLabel = true;
@@ -164,10 +166,10 @@ public class MakeUnicodeFiles {
                         skipUnassigned = afterEquals(piece);
                     } else if (piece.length() != 0) {
                         throw new IllegalArgumentException(
-                                "Illegal PrintStyle Parameter: " + piece + " in " + pieces[0]);
+                                "Illegal PrintStyle Parameter: " + piece + " in " + firstPiece);
                     }
                 }
-                return pieces[0];
+                return firstPiece;
             }
 
             private boolean afterEqualsBoolean(String piece) {
@@ -252,8 +254,26 @@ public class MakeUnicodeFiles {
             return propertyToValueToComments.get(property);
         }
 
+        // Returns strings without U+0022 QUOTATION MARK (") unchanged.
+        // Strings that contain " must be enclosed in them, and are returned unquoted, with "" as
+        // the escape sequence, thus:
+        //   meow       ↦ meow
+        //   "meow"     ↦ meow
+        //   """meow""" ↦ "meow"
+        static String unquote(String source) {
+            String contents = source;
+            if (source.charAt(0) == '"' && source.charAt(source.length() - 1) == '"') {
+                contents = source.substring(1, source.length() - 1);
+            }
+            if (contents.matches("(?<!\")(\"\")*\"(?!\")")) {
+                throw new IllegalArgumentException(
+                        "Syntax error: improper quotation marks in " + source);
+            }
+            return contents.replace("\"\"", "\"");
+        }
+
         static String afterEquals(String source) {
-            return source.substring(source.indexOf('=') + 1);
+            return unquote(source.substring(source.indexOf('=') + 1));
         }
 
         static String afterWhitespace(String source) {
@@ -501,6 +521,9 @@ public class MakeUnicodeFiles {
                 case "DerivedLabel":
                     generateDerivedName(filename);
                     break;
+                case "UnicodeData":
+                    generateUnicodeData(filename);
+                    break;
                 default:
                     generatePropertyFile(filename);
                     break;
@@ -607,6 +630,27 @@ public class MakeUnicodeFiles {
             pw.println(bf.showSetNames(uset));
         }
 
+        udf.close();
+    }
+
+    private static void generateUnicodeData(String filename) throws IOException {
+        final UnicodeDataFile udf =
+                UnicodeDataFile.openAndWriteHeader("UCD/" + Default.ucdVersion() + '/', filename);
+        final PrintWriter pw = udf.out;
+        var source = ToolUnicodePropertySource.make(Default.ucdVersion());
+
+        final BagFormatter bf = new BagFormatter();
+        bf.setHexValue(false)
+                .setMergeRanges(true)
+                .setNoSpacesBeforeSemicolon()
+                .setMinSpacesAfterSemicolon(0)
+                .setUnicodeDataStyleRanges(true)
+                .setNameSource(null)
+                .setLabelSource(null)
+                .setValueSource(new UnicodeDataHack(source))
+                .setShowCount(false)
+                .setShowTotal(false)
+                .showSetNames(pw, new UnicodeSet(0, 0x10FFFF));
         udf.close();
     }
 
@@ -906,6 +950,11 @@ public class MakeUnicodeFiles {
                                             | (1 << UnicodeProperty.NUMERIC)))
                             == 0) {
                 for (final String value : up.getAvailableValues()) {
+                    if (propName.equals("Script")
+                            && up.getSet(value).isEmpty()
+                            && !value.equals("Katakana_Or_Hiragana")) {
+                        continue;
+                    }
                     final List<String> l = up.getValueAliases(value);
                     // HACK
                     if (isJoiningGroup && value.equals("Hamzah_On_Ha_Goal")) {
@@ -964,6 +1013,7 @@ public class MakeUnicodeFiles {
             if (propName.equals("Bidi_Mirroring_Glyph")
                     || propName.equals("Equivalent_Unified_Ideograph")
                     || propName.equals("NFKC_Casefold")
+                    || propName.equals("NFKC_Simple_Casefold")
                     || propName.equals("Script_Extensions")) {
                 // Action item [172-A71]: Don't print @missing lines
                 // for properties whose specific data files already contain such lines.
@@ -1126,7 +1176,7 @@ public class MakeUnicodeFiles {
                 if (v == null) {
                     v = ps.skipUnassigned;
                 }
-                if (!v.equals("<codepoint>")) {
+                if (!v.equals("<code point>")) {
                     final String v2 = prop.getFirstValueAlias(v);
                     if (UnicodeProperty.compareNames(v, v2) != 0) {
                         v = v + " (" + v2 + ")";
@@ -1354,7 +1404,7 @@ public class MakeUnicodeFiles {
                 }
             }
             if (numeric) {
-                displayValue += " ; ; " + dumbFraction(displayValue);
+                displayValue += " ; ; " + dumbFraction(displayValue, "");
                 if (DEBUG) {
                     System.out.println("Changing value3 " + displayValue);
                 }
@@ -1567,10 +1617,23 @@ public class MakeUnicodeFiles {
             System.out.println("Writing String Values: " + prop.getName());
         }
         pw.println();
+        final var shownSet = new UnicodeSet();
+        if (ps.skipValue == null) {
+            shownSet.addAll(UnicodeSet.ALL_CODE_POINTS);
+        } else {
+            for (int c = 0; c <= 0x10FFFF; ++c) {
+                final String value = prop.getValue(c);
+                final String skipValue =
+                        ps.skipValue.equals("<code point>") ? Character.toString(c) : ps.skipValue;
+                if (!value.equals(skipValue)) {
+                    shownSet.add(c);
+                }
+            }
+        }
         bf.setValueSource(prop)
                 .setHexValue(true)
                 .setMergeRanges(ps.mergeRanges)
-                .showSetNames(pw, new UnicodeSet(0, 0x10FFFF));
+                .showSetNames(pw, shownSet);
     }
 
     static class RangeStartComparator implements Comparator<String> {
@@ -1802,13 +1865,19 @@ public class MakeUnicodeFiles {
         // private final UnicodeProperty.Factory factory;
         private final UnicodeProperty name;
         private final UnicodeProperty bidiMirrored;
-        // private final UnicodeProperty numericValue;
+        private final UnicodeProperty numericValue;
         private final UnicodeProperty numericType;
         private final UnicodeProperty decompositionValue;
         private final UnicodeProperty decompositionType;
         private final UnicodeProperty bidiClass;
         private final UnicodeProperty combiningClass;
         private final UnicodeProperty category;
+        private final UnicodeProperty unicode1Name;
+        private final UnicodeProperty simpleUppercaseMapping;
+        private final UnicodeProperty simpleLowercaseMapping;
+        private final UnicodeProperty simpleTitlecaseMapping;
+        private final UnicodeProperty block;
+        private final Map<String, String> rangeBlocks;
 
         UnicodeDataHack(UnicodeProperty.Factory factory) {
             // this.factory = factory;
@@ -1817,53 +1886,102 @@ public class MakeUnicodeFiles {
             combiningClass = factory.getProperty("Canonical_Combining_Class");
             bidiClass = factory.getProperty("Bidi_Class");
             decompositionType = factory.getProperty("Decomposition_Type");
-            decompositionValue = factory.getProperty("Decomposition_Value");
+            decompositionValue = factory.getProperty("Decomposition_Mapping");
             numericType = factory.getProperty("Numeric_Type");
-            // numericValue = factory.getProperty("Numeric_Value");
+            numericValue = factory.getProperty("Numeric_Value");
             bidiMirrored = factory.getProperty("Bidi_Mirrored");
-            // name10
-            // isoComment
+            unicode1Name = factory.getProperty("Unicode_1_Name");
+            simpleUppercaseMapping = factory.getProperty("Simple_Uppercase_Mapping");
+            simpleLowercaseMapping = factory.getProperty("Simple_Lowercase_Mapping");
+            simpleTitlecaseMapping = factory.getProperty("Simple_Titlecase_Mapping");
+            block = factory.getProperty("Block");
+
+            rangeBlocks = new HashMap<>();
+            for (char c = 'A'; c <= 'Z'; ++c) {
+                rangeBlocks.put(
+                        "CJK_Unified_Ideographs_Extension_" + c, "CJK Ideograph Extension " + c);
+            }
+            rangeBlocks.put("CJK_Unified_Ideographs", "CJK Ideograph");
+            rangeBlocks.put("Hangul_Syllables", "Hangul Syllable");
+            rangeBlocks.put("High_Surrogates", "Non Private Use High Surrogate");
+            rangeBlocks.put("High_Private_Use_Surrogates", "Private Use High Surrogate");
+            rangeBlocks.put("Low_Surrogates", "Low Surrogate");
+            rangeBlocks.put("Private_Use_Area", "Private Use");
+            rangeBlocks.put("Tangut", "Tangut Ideograph");
+            rangeBlocks.put("Tangut_Supplement", "Tangut Ideograph Supplement");
+            rangeBlocks.put("Supplementary_Private_Use_Area_A", "Plane 15 Private Use");
+            rangeBlocks.put("Supplementary_Private_Use_Area_B", "Plane 16 Private Use");
+        }
+
+        @Override
+        public int getMaxWidth(boolean isShort) {
+            return 1729;
         }
 
         @Override
         public String getValue(int codepoint, boolean isShort) {
-            String nameStr = name.getName();
-            if (nameStr.startsWith("<reserved")) {
+            final String gc = category.getValue(codepoint, true);
+            if (gc == "Cn") {
                 return null;
             }
-            final String code = Utility.hex(codepoint);
-            final int pos = nameStr.indexOf(code);
-            if (pos > 0) {
-                nameStr = nameStr.substring(0, pos) + "%" + nameStr.substring(pos + code.length());
+            final String blk = block.getValue(codepoint);
+            final boolean isHangulSyllable = blk.equals("Hangul_Syllables");
+            final String[] fields = new String[15];
+            Arrays.fill(fields, "");
+
+            if (rangeBlocks.containsKey(blk)) {
+                fields[1] =
+                        "<" + rangeBlocks.get(blk) + ", " + BagFormatter.RANGE_PLACEHOLDER + ">";
+            } else {
+                fields[1] = name.getValue(codepoint);
+                if (fields[1].startsWith("<control")) {
+                    fields[1] = "<control>";
+                }
             }
-            nameStr +=
-                    ";"
-                            + category.getValue(codepoint, true)
-                            + ";"
-                            + combiningClass.getValue(codepoint, true)
-                            + ";"
-                            + bidiClass.getValue(codepoint, true)
-                            + ";";
-            String temp = decompositionType.getValue(codepoint, true);
-            if (!temp.equals("None")) {
-                nameStr += "<" + temp + "> " + Utility.hex(decompositionValue.getValue(codepoint));
+
+            fields[2] = gc;
+            fields[3] = combiningClass.getValue(codepoint, true);
+            fields[4] = bidiClass.getValue(codepoint, true);
+
+            // Field 5.
+            final String dt = decompositionType.getValue(codepoint);
+            if (!isHangulSyllable && !dt.equals("None")) {
+                if (!dt.equals("Canonical")) {
+                    fields[5] = "<" + dt.toLowerCase().replace("nobreak", "noBreak") + "> ";
+                }
+                fields[5] += Utility.hex(decompositionValue.getValue(codepoint));
             }
-            nameStr += ";";
-            temp = numericType.getValue(codepoint, true);
-            if (temp.equals("Decimal")) {
-                nameStr += temp + ";" + temp + ";" + temp + ";";
-            } else if (temp.equals("Digit")) {
-                nameStr += ";" + temp + ";" + temp + ";";
-            } else if (temp.equals("Numeric")) {
-                nameStr += ";;" + temp + ";";
-            } else if (temp.equals("Digit")) {
-                nameStr += ";;;";
+
+            final String nt = numericType.getValue(codepoint);
+            if (!nt.equals("None") && !fields[1].startsWith("<CJK")) {
+                final String nv =
+                        dumbFraction(numericValue.getValue(codepoint), name.getValue(codepoint));
+                if (nt.equals("Decimal")) {
+                    fields[6] = fields[7] = fields[8] = nv;
+                } else if (nt.equals("Digit")) {
+                    fields[7] = fields[8] = nv;
+                } else if (nt.equals("Numeric")) {
+                    fields[8] = nv;
+                }
             }
-            if (bidiMirrored.getValue(codepoint, true).equals(UCD_Names.YES)) {
-                nameStr += "Y" + ";";
+
+            fields[9] = bidiMirrored.getValue(codepoint, true);
+
+            fields[10] = unicode1Name.getValue(codepoint);
+            // Field 11 is ISO_Comment; obsolete, deprecated, and stabilized; always empty.
+            final String suc = simpleUppercaseMapping.getValue(codepoint);
+            if (!suc.equals(Character.toString(codepoint))) {
+                fields[12] = Utility.hex(suc);
             }
-            nameStr += ";";
-            return nameStr;
+            final String slc = simpleLowercaseMapping.getValue(codepoint);
+            if (!slc.equals(Character.toString(codepoint))) {
+                fields[13] = Utility.hex(slc);
+            }
+            final String stc = simpleTitlecaseMapping.getValue(codepoint);
+            if (!stc.equals(Character.toString(codepoint)) || !stc.equals(suc)) {
+                fields[14] = Utility.hex(stc);
+            }
+            return String.join(";", Arrays.copyOfRange(fields, 1, fields.length));
         }
     }
 
@@ -1964,7 +2082,7 @@ public class MakeUnicodeFiles {
       */
 
     // quick and dirty fractionator
-    private static String dumbFraction(String toolValue) {
+    private static String dumbFraction(String toolValue, String name) {
         if (toolValue.indexOf('.') < 0) {
             return toolValue;
         }
@@ -1975,11 +2093,44 @@ public class MakeUnicodeFiles {
             return toolValue.substring(0, toolValue.length() - 2);
         }
         final double value = Double.parseDouble(toolValue);
-        for (int i :
-                new int[] {
-                    1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-                    12, 16, 20, 32, 40, 64, 80, 128, 160, 320
-                }) {
+        Map<Integer, String> names = new TreeMap<>();
+        names.put(1, "n/a");
+        names.put(2, "HALF");
+        names.put(3, "THIRD");
+        names.put(4, "FOURTH");
+        names.put(5, "FIFTH");
+        names.put(6, "SIXTH");
+        names.put(7, "SEVENTH");
+        names.put(8, "EIGHTH");
+        names.put(9, "NINTH");
+        names.put(10, "TENTH");
+        names.put(12, "TWELFTH");
+        names.put(16, "SIXTEENTH");
+        names.put(20, "TWENTIETH");
+        names.put(40, "FORTIETH");
+        names.put(32, "THIRTY-SECOND");
+        names.put(64, "SIXTY-FOURTH");
+        names.put(80, "EIGHTIETH");
+        names.put(160, "ONE-HUNDRED-AND-SIXTIETH");
+        names.put(320, "THREE-HUNDRED-AND-TWENTIETH");
+        List<Integer> denominators = new ArrayList<>(names.keySet());
+        // Prefer denominators that are in the name, and among those prefer
+        // those with the longest name (so that we use sixty-fourths, not
+        // fourths, when both work).  Otherwise prefer smaller denominators.
+        denominators.sort(
+                (m, n) -> {
+                    final boolean m_in_name = name.contains(names.get(m));
+                    final boolean n_in_name = name.contains(names.get(n));
+                    if (m_in_name != n_in_name) {
+                        return Boolean.compare(n_in_name, m_in_name);
+                    }
+                    if (m_in_name) {
+                        return Integer.compare(names.get(n).length(), names.get(m).length());
+                    } else {
+                        return m.compareTo(n);
+                    }
+                });
+        for (int i : denominators) {
             final double numerator = value * i;
             final long rounded = Math.round(numerator);
             if (Math.abs(numerator - rounded) < 0.000001d) {

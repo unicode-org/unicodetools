@@ -18,12 +18,16 @@ $T=\p{Grapheme_Cluster_Break=T}
 $LV=\p{Grapheme_Cluster_Break=LV}
 $LVT=\p{Grapheme_Cluster_Break=LVT}
 # Note: The following may overlap with the above
-$Virama=[\p{Gujr}\p{sc=Telu}\p{sc=Mlym}\p{sc=Orya}\p{sc=Beng}\p{sc=Deva}&\p{Indic_Syllabic_Category=Virama}]
-$LinkingConsonant=[\p{Gujr}\p{sc=Telu}\p{sc=Mlym}\p{sc=Orya}\p{sc=Beng}\p{sc=Deva}&\p{Indic_Syllabic_Category=Consonant}]
+# Note: ConjunctLinkingScripts is not used anymore, instead that list exists in the derivation of Indic_Conjunct_Break.
+# It is kept here so that the diff of the generated test cases compared to the Unicode 15.1 β is minimal.
+# TODO(egg): Consider removing in Unicode 16.0.
+$ConjunctLinkingScripts=[\p{Gujr}\p{sc=Telu}\p{sc=Mlym}\p{sc=Orya}\p{sc=Beng}\p{sc=Deva}]
+$ConjunctLinker=\p{Indic_Conjunct_Break=Linker}
+$LinkingConsonant=\p{Indic_Conjunct_Break=Consonant}
 ##	$E_Base=\p{Grapheme_Cluster_Break=E_Base}
 ##	$E_Modifier=\p{Grapheme_Cluster_Break=E_Modifier}
 $ExtPict=\p{Extended_Pictographic}
-$ExtCccZwj=[[$Extend-\p{ccc=0}] $ZWJ]
+$ExtCccZwj=[\p{Indic_Conjunct_Break=Linker}\p{Indic_Conjunct_Break=Extend}]
 ##	$EBG=\p{Grapheme_Cluster_Break=E_Base_GAZ}
 ##	$Glue_After_Zwj=\p{Grapheme_Cluster_Break=Glue_After_Zwj}
 
@@ -39,12 +43,12 @@ $ExtCccZwj=[[$Extend-\p{ccc=0}] $ZWJ]
 7) ( $LV | $V ) 	× 	( $V | $T )
 8) ( $LVT | $T)    ×  $T
 ## Do not break before extending characters or ZWJ.
-##	9) × 	($Extend | $ZWJ | $Virama)
+##	9) × 	($Extend | $ZWJ | $ConjunctLinker)
 9) × 	($Extend | $ZWJ)
 # Only for extended grapheme clusters: Do not break before SpacingMarks, or after Prepend characters.
 9.1) × 	$SpacingMark
 9.2) $Prepend  ×
-9.3) $LinkingConsonant $ExtCccZwj* $Virama $ExtCccZwj*  × $LinkingConsonant
+9.3) $LinkingConsonant $ExtCccZwj* $ConjunctLinker $ExtCccZwj*  × $LinkingConsonant
 ## Do not break within emoji modifier sequences or emoji zwj sequences.
 ##	10) $E_Base $Extend* × $E_Modifier
 11) $ExtPict $Extend* $ZWJ × $ExtPict
@@ -58,7 +62,10 @@ $ExtCccZwj=[[$Extend-\p{ccc=0}] $ZWJ]
 # VARIABLES
 
 $AI=\p{Line_Break=Ambiguous}
+$AK=\p{Line_Break=Aksara}
 $AL=\p{Line_Break=Alphabetic}
+$AP=\p{Line_Break=Aksara_Prebase}
+$AS=\p{Line_Break=Aksara_Start}
 $B2=\p{Line_Break=Break_Both}
 $BA=\p{Line_Break=Break_After}
 $BB=\p{Line_Break=Break_Before}
@@ -92,6 +99,8 @@ $SA=\p{Line_Break=Complex_Context}
 $SG=\p{Line_Break=Surrogate}
 $SP=\p{Line_Break=Space}
 $SY=\p{Line_Break=Break_Symbols}
+$VF=\p{Line_Break=Virama_Final}
+$VI=\p{Line_Break=Virama}
 $WJ=\p{Line_Break=Word_Joiner}
 $XX=\p{Line_Break=Unknown}
 $ZW=\p{Line_Break=ZWSpace}
@@ -102,10 +111,21 @@ $EM=\p{Line_Break=E_Modifier}
 $ZWJ_O=\p{Line_Break=ZWJ}
 $ZWJ=\p{Line_Break=ZWJ}
 
+$QU_Pi=($QU_Pi $X)
+$QU_Pf=($QU_Pf $X)
+
+$DottedCircle = ◌
+
 $CP30=[$CP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
 $OP30=[$OP-[\p{ea=F}\p{ea=W}\p{ea=H}]]
 
 $ExtPictUnassigned=[\p{Extended_Pictographic}&\p{gc=Cn}]
+
+# Some rules refer to the start and end of text.  We could just use a literal ^ for sot, but naming
+# it as in the spec makes it easier to compare.  The parser will eat (and choke on) $, so we play a
+# stupid trick instead.
+$sot=^
+$eot=(?!.)
 
 # SPECIAL EXTENSIONS
 
@@ -135,7 +155,10 @@ $Spec5_=[$BK $CB $CR $LF $NL $SP $ZW]
 # SPECIAL EXTENSIONS
 
 $AI=($AI $X)
+$AK=($AK $X)
 $AL=($AL $X)
+$AP=($AP $X)
+$AS=($AS $X)
 $B2=($B2 $X)
 $BA=($BA $X)
 $BB=($BB $X)
@@ -165,12 +188,19 @@ $QU=($QU $X)
 $SA=($SA $X)
 $SG=($SG $X)
 $SY=($SY $X)
+$VF=($VF $X)
+$VI=($VI $X)
 $WJ=($WJ $X)
 $XX=($XX $X)
 $RI=($RI $X)
 $EB=($EB $X)
 $EM=($EM $X)
 $ZWJ=($ZWJ $X)
+
+$QU_Pi=($QU_Pi $X)
+$QU_Pf=($QU_Pi $X)
+
+$DottedCircle=($DottedCircle $X)
 
 $CP30=($CP30 $X)
 $OP30=($OP30 $X)
@@ -221,8 +251,13 @@ $AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
 ##	13.04) $Spec4_ × $SY
 #LB 14  Do not break after \u2018[\u2019, even after spaces.
 14) $OP $SP* ×
-# LB 15  Do not break within \u2018\"[\u2019, even with intervening spaces.
-15) $QU $SP* × $OP
+# LB 15a Do not break after an unresolved initial punctuation that lies at the start of the line,
+# after a space, after opening punctuation, or after an unresolved quotation mark, even after
+# spaces.
+15.11) ( $sot | $BK | $CR | $LF | $NL | $OP | $QU | $GL | $SP | $ZW ) $QU_Pi $SP* ×
+# LB 15b Do not break before an unresolved final punctuation that lies at the end of the line, before
+# a space, before a prohibited break, or before an unresolved quotation mark, even before spaces.
+15.21) × $QU_Pf ( $SP | $GL | $WJ | $CL | $QU | $CP | $EX | $IS | $SY | $BK | $CR | $LF | $NL | $ZW | $eot )
 # LB 16  Do not break between closing punctuation and a nonstarter (lb=NS), even with intervening spaces.
 16) ($CL | $CP) $SP* × $NS
 # LB 17  Do not break within \u2018\u2014\u2014\u2019, even with intervening spaces.
@@ -279,13 +314,18 @@ $AL=($AL | ^ $CM | (?<=$Spec1_) $CM)
 27.02) $PR × $JL | $JV | $JT | $H2 | $H3
 # LB 28  Do not break between alphabetics (\"at\").
 28) ($AL | $HL) × ($AL | $HL)
+# LB28a Do not break inside the orthographic syllables of Brahmic scripts.
+28.11) $AP × ($AK | $DottedCircle | $AS)
+28.12) ($AK | $DottedCircle | $AS) × ($VF | $VI)
+28.13) ($AK | $DottedCircle | $AS) $VI × ($AK | $DottedCircle)
+28.14) ($AK | $DottedCircle | $AS) × ($AK | $DottedCircle | $AS) $VF
 # LB 29  Do not break between numeric punctuation and alphabetics (\"e.g.\").
 29) $IS × ($AL | $HL)
 # LB 30  Do not break between letters, numbers or ordinary symbols and opening or closing punctuation.
 30.01) ($AL | $HL | $NU) × $OP30
 30.02) $CP30 × ($AL | $HL | $NU)
 # LB 30a  Break between two Regional Indicators if and only if there is an even number of them before the point being considered.
-30.11) ^ ($RI $RI)* $RI × $RI
+30.11) $sot ($RI $RI)* $RI × $RI
 30.12) [^$RI] ($RI $RI)* $RI × $RI
 30.13) $RI ÷ $RI
 # LB 30b Do not break between an emoji base (or potential emoji) and an emoji modifier.
