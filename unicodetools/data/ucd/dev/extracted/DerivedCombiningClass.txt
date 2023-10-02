@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2023-10-02, 12:16:24 GMT
+# Date: 2023-10-02, 12:41:00 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -184,7 +184,6 @@
 0888          ; 0 # Sk       ARABIC RAISED ROUND DOT
 0889..088E    ; 0 # Lo   [6] ARABIC LETTER NOON WITH INVERTED SMALL V..ARABIC VERTICAL TAIL
 0890..0891    ; 0 # Cf   [2] ARABIC POUND MARK ABOVE..ARABIC PIASTRE MARK ABOVE
-0897          ; 0 # Mn       ARABIC PEPET
 08A0..08C8    ; 0 # Lo  [41] ARABIC LETTER BEH WITH SMALL V BELOW..ARABIC LETTER GRAF
 08C9          ; 0 # Lm       ARABIC SMALL FARSI YEH
 08E2          ; 0 # Cf       ARABIC DISPUTED END OF AYAH
@@ -2008,7 +2007,7 @@ F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
 # The above property value applies to 826762 code points not listed here.
-# Total code points: 1113190
+# Total code points: 1113189
 
 # ================================================
 
@@ -2654,7 +2653,7 @@ FE27..FE2D    ; 220 # Mn   [7] COMBINING LIGATURE LEFT HALF BELOW..COMBINING CON
 081B..0823    ; 230 # Mn   [9] SAMARITAN MARK EPENTHETIC YUT..SAMARITAN VOWEL SIGN A
 0825..0827    ; 230 # Mn   [3] SAMARITAN VOWEL SIGN SHORT A..SAMARITAN VOWEL SIGN U
 0829..082D    ; 230 # Mn   [5] SAMARITAN VOWEL SIGN LONG I..SAMARITAN MARK NEQUDAA
-0898          ; 230 # Mn       ARABIC SMALL HIGH WORD AL-JUZ
+0897..0898    ; 230 # Mn   [2] ARABIC PEPET..ARABIC SMALL HIGH WORD AL-JUZ
 089C..089F    ; 230 # Mn   [4] ARABIC MADDA WAAJIB..ARABIC HALF MADDA OVER MADDA
 08CA..08CE    ; 230 # Mn   [5] ARABIC SMALL HIGH FARSI YEH..ARABIC LARGE ROUND DOT ABOVE
 08D4..08E1    ; 230 # Mn  [14] ARABIC SMALL HIGH WORD AR-RUB..ARABIC SMALL HIGH SIGN SAFHA
@@ -2743,7 +2742,7 @@ FE2E..FE2F    ; 230 # Mn   [2] COMBINING CYRILLIC TITLO LEFT HALF..COMBINING CYR
 1E4EF         ; 230 # Mn       NAG MUNDARI SIGN SUTUH
 1E944..1E949  ; 230 # Mn   [6] ADLAM ALIF LENGTHENER..ADLAM GEMINATE CONSONANT MODIFIER
 
-# Total code points: 510
+# Total code points: 511
 
 # ================================================
 
