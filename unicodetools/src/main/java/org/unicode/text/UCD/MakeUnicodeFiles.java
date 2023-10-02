@@ -116,6 +116,8 @@ public class MakeUnicodeFiles {
             // IndicSyllabicCategory.txt, which are both generated in that format by some other
             // tool.
             boolean roozbehFile = false;
+            // Whether to separate values of enumerated properties using a line of equal signs.
+            boolean separateValues = true;
             boolean hackValues = false;
             boolean mergeRanges = true;
             String nameStyle = "none";
@@ -146,6 +148,8 @@ public class MakeUnicodeFiles {
                         kenFile = true;
                     } else if (piece.equals("roozbehFile")) {
                         roozbehFile = true;
+                    } else if (piece.startsWith("separateValues=")) {
+                        separateValues = afterEqualsBoolean(piece);
                     } else if (piece.equals("hackValues")) {
                         hackValues = true;
                     } else if (piece.equals("sortNumeric")) {
@@ -309,6 +313,10 @@ public class MakeUnicodeFiles {
                     }
                     line = line.trim();
                     if (line.length() == 0) {
+                        if (comments.length() != 0) {
+                            // Preserve blank lines between comments.
+                            comments += "\n";
+                        }
                         continue;
                     }
                     if (DEBUG) {
@@ -329,6 +337,7 @@ public class MakeUnicodeFiles {
                         comments += line;
                     } else {
                         // end of comments, roll up
+                        comments = comments.trim();
                         if (comments.length() != 0) {
                             if (property != null) {
                                 addValueComments(property, value, comments);
@@ -1166,7 +1175,7 @@ public class MakeUnicodeFiles {
                             filename, Format.theFormat.getPrintStyle(name));
             if (!ps.kenFile) {
                 pwProp.println();
-                if (ps.roozbehFile) {
+                if (!ps.separateValues) {
                     pwProp.println();
                 }
                 pwProp.println(SEPARATOR);
@@ -1276,7 +1285,6 @@ public class MakeUnicodeFiles {
             aliases = temp2;
         }
         if (ps.roozbehFile) {
-            System.out.println(Format.theFormat.propertyToOrderedValues);
             aliases = Format.theFormat.propertyToOrderedValues.get(prop.getName());
         }
         if (ps.sortNumeric) {
@@ -1327,7 +1335,7 @@ public class MakeUnicodeFiles {
                 writeEnumeratedMissingValues(pw, overallDefault, defaultLbValues);
             }
         }
-        if (ps.roozbehFile) {
+        if (!ps.separateValues) {
             pw.println();
             pw.println(SEPARATOR.replace('=', '-'));
         }
@@ -1445,11 +1453,11 @@ public class MakeUnicodeFiles {
 
             if (!prop.isType(UnicodeProperty.BINARY_MASK)) {
                 pw.println();
-                if (!ps.roozbehFile) {
+                if (ps.separateValues) {
                     pw.println(SEPARATOR);
                 }
                 if (nonLongValue) {
-                    if (!ps.roozbehFile) {
+                    if (ps.separateValues) {
                         pw.println();
                     }
                     pw.println("# " + prop.getName() + "=" + value);
@@ -1476,6 +1484,9 @@ public class MakeUnicodeFiles {
             // if (s.size() != 0)
             bf.setMergeRanges(ps.mergeRanges);
             bf.setShowTotal(!ps.roozbehFile);
+            if (ps.roozbehFile) {
+                bf.setRangeBreakSource(ToolUnicodePropertySource.make(Default.ucdVersion()).getProperty("Block"));
+            }
             bf.showSetNames(pw, s);
             if (DEBUG) {
                 System.out.println(bf.showSetNames(s));
