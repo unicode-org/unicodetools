@@ -1,3 +1,4 @@
+<%@ page import="org.owasp.encoder.Encode" %>
 <html>
 <head>
 <%@ include file="header.jsp" %>
@@ -24,13 +25,13 @@
       <th style="width: 50%">Transform Rules</th>
     </tr>
     <tr>
-      <td><textarea name="a" rows="8" cols="10" style="width: 100%"><%=transform%></textarea></td>
+      <td><textarea name="a" rows="8" cols="10" style="width: 100%"><%=Encode.forHtmlContent(transform)%></textarea></td>
     </tr>
     <tr>
       <th style="width: 50%">Sample</th>
     </tr>
     <tr>
-      <td><textarea name="b" rows="8" cols="10" style="width: 100%"><%=sample%></textarea></td>
+      <td><textarea name="b" rows="8" cols="10" style="width: 100%"><%=Encode.forHtmlContent(sample)%></textarea></td>
     </tr>
 </table>
 <input id='main' type="submit" value="Show Transform" onClick="window.location.href='transform.jsp?a='+document.getElementById('main').value"/>

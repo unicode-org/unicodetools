@@ -29,8 +29,8 @@ import org.unicode.tools.emoji.EmojiOrder;
 
 public class AacOrder {
 
-    private static final VersionInfo VERSION = Emoji.VERSION14;
-    private static final VersionInfo UCD_VERSION = Emoji.VERSION14;
+    private static final VersionInfo VERSION = Emoji.VERSION15_1;
+    private static final VersionInfo UCD_VERSION = Emoji.VERSION15;
 
     private static final CandidateData CANDIDATE_DATA = CandidateData.getInstance();
 

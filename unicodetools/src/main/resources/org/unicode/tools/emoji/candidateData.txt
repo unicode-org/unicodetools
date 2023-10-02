@@ -14,7 +14,7 @@
 # Then run ProposalData.java to generate an updated version of proposalData.txt that incorporates all the proposal data from this file.
 
 #================================
-Status=Draft Candidate
+Status=Final Candidate
 #================================
 
 Proposal=L2/23-029
@@ -24,15 +24,15 @@ Name=family: adult, child
 Keywords=family
 
 U+1F9D1 U+200D U+1F9D2 U+200D U+1F9D2
-Name=adult, child, child
+Name=family: adult, child, child
 Keywords=family
 
 U+1F9D1 U+200D U+1F9D1 U+200D U+1F9D2
-Name=adult, adult, child
+Name=family: adult, adult, child
 Keywords=family
 
 U+1F9D1 U+200D U+1F9D1 U+200D U+1F9D2 U+200D U+1F9D2
-Name=adult, adult, child, child
+Name=family: adult, adult, child, child
 Keywords=family
 
 Proposal=L2/23-030

@@ -397,6 +397,16 @@ public final class RadicalStroke {
 
     private int getUnifiedIdeographForRadicalNumberAndSimplified(int radicalNumberAndSimplified) {
         String radicalChars = radToChars[radicalNumberAndSimplified];
+        if (radicalChars == null) {
+            int radical = radicalNumberAndSimplified >> SIMPLIFIED_NUM_BITS;
+            int simplified = radicalNumberAndSimplified & ((1 << SIMPLIFIED_NUM_BITS) - 1);
+            if (radical == MAX_RADICAL_NUMBER && simplified == 2) {
+                // Special entry for missing radical-stroke data.
+                return '?';
+            }
+            throw new IllegalArgumentException(
+                    "no radToChars for " + radical + "'''".substring(0, simplified));
+        }
         int length = radicalChars.length();
         // All radical characters should be BMP characters.
         // Unicode 15.1 exception: 182'' --> U+322C4

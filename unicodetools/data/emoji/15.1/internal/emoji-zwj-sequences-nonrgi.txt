@@ -1,0 +1,18 @@
+# emoji-zwj-sequences-nonrgi.txt
+# Date: 2023-02-01, 01:15:49 GMT
+# © 2023 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
+# For terms of use, see https://www.unicode.org/terms_of_use.html
+#
+# Emoji ZWJ Sequences — Non-RGI for UTS #51
+# Version: 15.1
+#
+# For documentation and usage, see https://www.unicode.org/reports/tr51
+#
+
+# ================================================
+
+# RGI_Emoji_ZWJ_Sequence: Non-RGI
+
+
+# Total elements: 0

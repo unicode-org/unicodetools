@@ -232,7 +232,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     if (prop2 == UcdProperty.kPrimaryNumeric
                             || prop2 == UcdProperty.kAccountingNumeric
                             || prop2 == UcdProperty.kOtherNumeric) {
-                        // Unicode 15.1: A character may have multiple numeric values.
+                        // Unicode 15.1+: A character may have multiple Unihan numeric values.
                         pos = v.indexOf(' ');
                         if (pos >= 0) {
                             v = value.substring(0, pos);
@@ -686,7 +686,12 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
         @Override
         protected String _getValue(int codepoint) {
-            return _getUnicodeMap().get(codepoint);
+            final String result = _getUnicodeMap().get(codepoint);
+            if (DefaultValueType.forString(result) == DefaultValueType.CODE_POINT) {
+                return Character.toString(codepoint);
+            } else {
+                return result;
+            }
         }
 
         @Override

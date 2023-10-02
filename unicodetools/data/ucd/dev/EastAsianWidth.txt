@@ -1,11 +1,11 @@
-# EastAsianWidth-15.1.0.txt
-# Date: 2022-11-16, 09:33:27 GMT [KW, LI]
-# © 2022 Unicode®, Inc.
+# EastAsianWidth-16.0.0.txt
+# Date: 2023-10-02, 12:16:33 GMT
+# © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# For documentation, see https://www.unicode.org/reports/tr44/
+#   For documentation, see https://www.unicode.org/reports/tr44/
 #
 # East_Asian_Width Property
 #
@@ -30,11 +30,10 @@
 # Character ranges are specified as for other property files in the
 # Unicode Character Database.
 #
-# For legacy reasons, there are no spaces before or after the semicolon
-# which separates the two fields. The comments following the number sign
-# "#" list the General_Category property value or the L& alias of the
-# derived value LC, the Unicode character name or names, and, in lines
-# with ranges of code points, the code point count in square brackets.
+# The comments following the number sign "#" list the General_Category
+# property value or the L& alias of the derived value LC, the Unicode
+# character name or names, and, in lines with ranges of code points,
+# the code point count in square brackets.
 #
 # For more information, see UAX #11: East Asian Width,
 # at https://www.unicode.org/reports/tr11/
@@ -335,7 +334,7 @@
 0888           ; N  # Sk         ARABIC RAISED ROUND DOT
 0889..088E     ; N  # Lo     [6] ARABIC LETTER NOON WITH INVERTED SMALL V..ARABIC VERTICAL TAIL
 0890..0891     ; N  # Cf     [2] ARABIC POUND MARK ABOVE..ARABIC PIASTRE MARK ABOVE
-0898..089F     ; N  # Mn     [8] ARABIC SMALL HIGH WORD AL-JUZ..ARABIC HALF MADDA OVER MADDA
+0897..089F     ; N  # Mn     [9] ARABIC PEPET..ARABIC HALF MADDA OVER MADDA
 08A0..08C8     ; N  # Lo    [41] ARABIC LETTER BEH WITH SMALL V BELOW..ARABIC LETTER GRAF
 08C9           ; N  # Lm         ARABIC SMALL FARSI YEH
 08CA..08E1     ; N  # Mn    [24] ARABIC SMALL HIGH FARSI YEH..ARABIC SMALL HIGH SIGN SAFHA
@@ -1948,6 +1947,7 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 10EAB..10EAC   ; N  # Mn     [2] YEZIDI COMBINING HAMZA MARK..YEZIDI COMBINING MADDA MARK
 10EAD          ; N  # Pd         YEZIDI HYPHENATION MARK
 10EB0..10EB1   ; N  # Lo     [2] YEZIDI LETTER LAM WITH DOT ABOVE..YEZIDI LETTER YOT WITH CIRCUMFLEX ABOVE
+10EC2..10EC4   ; N  # Lo     [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
 10EFD..10EFF   ; N  # Mn     [3] ARABIC SMALL LOW WORD SAKTA..ARABIC SMALL LOW WORD MADDA
 10F00..10F1C   ; N  # Lo    [29] OLD SOGDIAN LETTER ALEPH..OLD SOGDIAN LETTER FINAL TAW WITH VERTICAL TAIL
 10F1D..10F26   ; N  # No    [10] OLD SOGDIAN NUMBER ONE..OLD SOGDIAN FRACTION ONE HALF
@@ -2603,7 +2603,9 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 2B820..2CEA1   ; W  # Lo  [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 2CEA2..2CEAF   ; W  # Cn    [14] <reserved-2CEA2>..<reserved-2CEAF>
 2CEB0..2EBE0   ; W  # Lo  [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
-2EBE1..2F7FF   ; W  # Cn  [3103] <reserved-2EBE1>..<reserved-2F7FF>
+2EBE1..2EBEF   ; W  # Cn    [15] <reserved-2EBE1>..<reserved-2EBEF>
+2EBF0..2EE5D   ; W  # Lo   [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
+2EE5E..2F7FF   ; W  # Cn  [2466] <reserved-2EE5E>..<reserved-2F7FF>
 2F800..2FA1D   ; W  # Lo   [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 2FA1E..2FA1F   ; W  # Cn     [2] <reserved-2FA1E>..<reserved-2FA1F>
 2FA20..2FFFD   ; W  # Cn  [1502] <reserved-2FA20>..<reserved-2FFFD>

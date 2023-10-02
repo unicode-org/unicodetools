@@ -145,6 +145,7 @@ public class TestInvariants extends TestFmwkMinusMinus {
                 General_Category_Values.Unassigned,
                 Arrays.asList(
                         UcdProperty.NFKC_Casefold,
+                        UcdProperty.NFKC_Simple_Casefold,
                         UcdProperty.Age,
                         UcdProperty.Block,
                         UcdProperty.Bidi_Class,
@@ -256,7 +257,7 @@ public class TestInvariants extends TestFmwkMinusMinus {
 
     @Test
     public void TestStandarizedVariant() {
-        CheckProps(WARN, UcdProperty.Standardized_Variant);
+        CheckProps("TestStandarizedVariant", WARN, UcdProperty.Standardized_Variant);
         //        UnicodeMap<String> currentStatus = iup.load(UcdProperty.Standardized_Variant);
         //        for (Entry<String, String> s : currentStatus.entrySet()) {
         //            System.out.println(s.getKey() + "\t" + Utility.hex(s.getKey()) + "\t" +
@@ -271,18 +272,25 @@ public class TestInvariants extends TestFmwkMinusMinus {
         // added,
         // then the list is longer but looks to the function like a different value.
         // As a result, it fails with what looks like an instability.
-        CheckProps(WARN, UcdProperty.Name_Alias, "END OF MEDIUM; EOM");
+        CheckProps("TestNameAlias", WARN, UcdProperty.Name_Alias, "END OF MEDIUM; EOM");
     }
 
     @Test
     public void TestIdna() {
-        CheckProps(WARN, UcdProperty.Idn_Status, Idn_Status_Values.disallowed.toString());
+        CheckProps(
+                "TestIdna", WARN, UcdProperty.Idn_Status, Idn_Status_Values.disallowed.toString());
     }
 
     @Test
     public void TestSecurity() {
-        CheckProps(WARN, UcdProperty.Identifier_Status, "Restricted", "Allowed");
         CheckProps(
+                "TestSecurity Identifier_Status",
+                WARN,
+                UcdProperty.Identifier_Status,
+                "Restricted",
+                "Allowed");
+        CheckProps(
+                "TestSecurity Identifier_Type",
                 WARN,
                 UcdProperty.Identifier_Type,
                 "Not_Character",
@@ -297,7 +305,8 @@ public class TestInvariants extends TestFmwkMinusMinus {
                 );
     }
 
-    public void CheckProps(int warnVsError, UcdProperty ucdProperty, String... skip) {
+    public void CheckProps(
+            String testName, int warnVsError, UcdProperty ucdProperty, String... skip) {
         UnicodeMap<String> currentStatus = iup.load(ucdProperty);
         UnicodeMap<String> oldStatus = iupLast.load(ucdProperty);
         Set<String> values = new LinkedHashSet<>();
@@ -332,8 +341,19 @@ public class TestInvariants extends TestFmwkMinusMinus {
                     // [172-A62] Change the Identifier_Type of U+A7B8 and U+A7B9 to Uncommon_Use
                     level = LOG;
                 }
+                if (ucdProperty == UcdProperty.Idn_Status
+                        && value.equals("disallowed_STD3_valid")
+                        && Settings.latestVersion.equals("15.1.0")
+                        && missing.size() == 3
+                        && missing.containsAll("\u2260\u226E\u226F")) {
+                    // [175-A86] In IdnaMappingTable.txt,
+                    // change U+2260 (≠), U+226E (≮), and U+226F (≯)
+                    // from disallowed_STD3_valid to valid, for Unicode 15.1.
+                    level = LOG;
+                }
                 msg(
-                        "Unicode "
+                        testName
+                                + ": Unicode "
                                 + Settings.latestVersion
                                 + " [:"
                                 + ucdProperty
@@ -348,7 +368,8 @@ public class TestInvariants extends TestFmwkMinusMinus {
             if (!oldSet.containsAll(newSet)) {
                 UnicodeSet newOnes = new UnicodeSet(newSet).removeAll(oldSet);
                 logln(
-                        "Unicode "
+                        testName
+                                + ": Unicode "
                                 + Settings.lastVersion
                                 + " [:"
                                 + ucdProperty
@@ -362,9 +383,11 @@ public class TestInvariants extends TestFmwkMinusMinus {
         if (same) {
             messageln(
                     warnVsError,
-                    "Should have a difference compared to last version: " + ucdProperty);
+                    testName
+                            + ": Should have a difference compared to last version: "
+                            + ucdProperty);
         } else if (currentStatus.equals(oldStatus)) {
-            warnln("Unicode map equals needs fixing");
+            warnln(testName + ": Unicode map equals needs fixing");
         }
     }
 

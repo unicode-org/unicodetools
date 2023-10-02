@@ -18,6 +18,7 @@ import org.unicode.props.UcdPropertyValues.Identifier_Status_Values;
 import org.unicode.props.UcdPropertyValues.Identifier_Type_Values;
 import org.unicode.props.UcdPropertyValues.Idn_2008_Values;
 import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
+import org.unicode.props.UcdPropertyValues.Indic_Conjunct_Break_Values;
 import org.unicode.props.UcdPropertyValues.Indic_Positional_Category_Values;
 import org.unicode.props.UcdPropertyValues.Indic_Syllabic_Category_Values;
 import org.unicode.props.UcdPropertyValues.Joining_Group_Values;
@@ -60,6 +61,7 @@ public enum UcdProperty {
     Idn_Mapping(PropertyType.String, "idnm"),
     Lowercase_Mapping(PropertyType.String, "lc"),
     NFKC_Casefold(PropertyType.String, "NFKC_CF"),
+    NFKC_Simple_Casefold(PropertyType.String, "NFKC_SCF"),
     Simple_Case_Folding(PropertyType.String, "scf", "sfc"),
     Simple_Lowercase_Mapping(PropertyType.String, "slc"),
     Simple_Titlecase_Mapping(PropertyType.String, "stc"),
@@ -226,6 +228,7 @@ public enum UcdProperty {
             "idtype"),
     Idn_2008(PropertyType.Enumerated, Idn_2008_Values.class, null, "idn8"),
     Idn_Status(PropertyType.Enumerated, Idn_Status_Values.class, null, "idns"),
+    Indic_Conjunct_Break(PropertyType.Enumerated, Indic_Conjunct_Break_Values.class, null, "InCB"),
     Indic_Positional_Category(
             PropertyType.Enumerated, Indic_Positional_Category_Values.class, null, "InPC"),
     Indic_Syllabic_Category(
