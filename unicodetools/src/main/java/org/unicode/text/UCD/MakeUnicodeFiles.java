@@ -714,7 +714,11 @@ public class MakeUnicodeFiles {
             pw.println();
             pw.println(SEPARATOR);
             pw.println();
-            pw.println("# Property:\t" + propName);
+            if (ps.roozbehFile) {
+                pw.println("# Property: " + propName);
+            } else {
+                pw.println("# Property:\t" + propName);
+            }
 
             final UnicodeMap<String> map = props.get(propName);
 
@@ -1320,6 +1324,9 @@ public class MakeUnicodeFiles {
                 writeEnumeratedMissingValues(pw, overallDefault, defaultLbValues);
             }
         }
+        if (ps.roozbehFile) {
+            pw.println(SEPARATOR.replace('=', '-'));
+        }
         for (final Iterator<String> it = aliases.iterator(); it.hasNext(); ) {
             final String value = it.next();
             if (DEBUG) {
@@ -1434,13 +1441,13 @@ public class MakeUnicodeFiles {
 
             if (!prop.isType(UnicodeProperty.BINARY_MASK)) {
                 pw.println();
-                if (ps.roozbehFile) {
-                    pw.println(SEPARATOR.replace('=', '-'));
-                } else {
+                if (!ps.roozbehFile) {
                     pw.println(SEPARATOR);
                 }
                 if (nonLongValue) {
-                    pw.println();
+                    if (!ps.roozbehFile) {
+                        pw.println();
+                    }
                     pw.println("# " + prop.getName() + "=" + value);
                 }
             }
@@ -1464,6 +1471,7 @@ public class MakeUnicodeFiles {
             pw.println();
             // if (s.size() != 0)
             bf.setMergeRanges(ps.mergeRanges);
+            bf.setShowTotal(!ps.roozbehFile);
             bf.showSetNames(pw, s);
             if (DEBUG) {
                 System.out.println(bf.showSetNames(s));

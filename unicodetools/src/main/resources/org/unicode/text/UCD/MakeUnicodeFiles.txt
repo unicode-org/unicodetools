@@ -909,6 +909,7 @@ Format: kenFile skipValue=Rotated
 Property: VerticalOrientation
 
 File:	IndicPositionalCategory
+#
 # This file defines the following property:
 #
 #    Indic_Positional_Category     enumerated property
@@ -1018,7 +1019,7 @@ File:	IndicPositionalCategory
 #     in Nandinagari.
 
 Property: Indic_Positional_Category
-Format:	roozbehFile skipValue=NA
+Format:	roozbehFile valueStyle=short skipValue=NA
 Value: Right
 Value: Left
 Value: Visual_Order_Left
