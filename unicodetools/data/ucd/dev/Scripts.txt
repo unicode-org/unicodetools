@@ -1,5 +1,5 @@
-# Scripts-15.1.0.txt
-# Date: 2023-08-18, 13:40:33 GMT
+# Scripts-16.0.0.txt
+# Date: 2023-10-02, 14:26:19 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -3051,6 +3051,6 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 113D7..113D8  ; Tulu_Tigalari # Po   [2] TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA
 113E1..113E2  ; Tulu_Tigalari # Mn   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 
-# Total code points: 99
+# Total code points: 78
 
 # EOF
