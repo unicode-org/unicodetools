@@ -908,6 +908,126 @@ Format: kenFile skipValue=Rotated
 #
 Property: VerticalOrientation
 
+File:	IndicPositionalCategory
+# IndicPositionalCategory-15.1.0.txt
+# Date: 2023-01-05
+# © 2023 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
+# For terms of use, see https://www.unicode.org/terms_of_use.html
+#
+# For documentation, see UAX #44: Unicode Character Database,
+# at https://www.unicode.org/reports/tr44/
+#
+# This file defines the following property:
+#
+#    Indic_Positional_Category     enumerated property
+#
+# Scope: This property is aimed at the problem of
+# the specification of syllabic structure for Indic scripts.
+# Because dependent vowels (matras), visible viramas, and other
+# characters are placed in notional slots around the consonant (or
+# consonant cluster) core of an Indic syllable, there may be
+# cooccurrence constraints or other interactions. Also, it may be
+# desirable, in cases where more than one such character may occur in
+# sequence, as for example, in a top slot and a bottom slot, to
+# specify preferred orders for spelling. As such, this property
+# is designed primarily to supplement the Indic_Syllabic_Category
+# property.
+#
+# In addition to combining marks associated with Indic scripts, the
+# Indic_Positional_Category has non-trivial values for special signs
+# associated with Indic_Syllabic_Category=Consonant_Prefixed
+# or Indic_Syllabic_Category=Consonant_Preceding_Repha. Those signs
+# have General_Category=Lo, rather than being combining marks.
+# They occur in initial position in syllabic structure. However, when
+# rendered, they appear as marks positioned with respect to another
+# base letter (usually above it). Hence, having an explicit value for
+# Indic_Positional_Category for those signs can be helpful.
+#
+# Note that this property is *not* intended as
+# a prescriptive property regarding display or font design,
+# for a number of reasons. Good font design requires information
+# that is outside the context of a character encoding standard,
+# and is best handled in other venues. For Indic dependent
+# vowels and similar characters, in particular:
+#
+#   1. Matra placement may vary somewhat based on typeface design.
+#   2. Matra placement, even within a single script, may vary
+#      somewhat according to historic period or local conventions.
+#   3. Matra placement may be changed by explicit orthographic reform
+#      decisions.
+#   4. Matras may ligate in various ways with a consonant (or even
+#      other elements of a syllable) instead of occurring in a
+#      discrete location.
+#   5. Matra display may be contextually determined. This is
+#      notable, for example, in the Tamil script, where the shape
+#      and placement of -u and -uu vowels depends strongly on
+#      which consonant they adjoin.
+#
+# Format:
+#    Field 0  Unicode code point value or range of code point values
+#    Field 1  Indic_Positional_Category property value
+#
+# Field 1 is followed by a comment field, starting with the number sign '#',
+# which shows the General_Category property value, the Unicode character name
+# or names, and, in lines with ranges of code points, the code point count in
+# square brackets.
+#
+# The scripts assessed as containing dependent vowels or similar characters
+# in the structural sense used for the Indic_Positional_Category are the
+# following:
+#
+# Ahom, Balinese, Batak, Bengali, Bhaiksuki, Brahmi, Buginese, Buhid,
+# Chakma, Cham, Devanagari, Dives Akuru, Dogra, Grantha, Gujarati,
+# Gunjala Gondi, Gurmukhi, Hanunoo, Javanese, Kaithi, Kannada, Kawi,
+# Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Lao, Lepcha, Limbu,
+# Makasar, Malayalam, Marchen, Masaram Gondi, Meetei Mayek, Modi,
+# Myanmar, Nandinagari, Newa, New Tai Lue, Oriya, Rejang, Saurashtra,
+# Sharada, Siddham, Sinhala, Soyombo, Sundanese, Syloti Nagri,
+# Tagalog, Tagbanwa, Tai Tham, Tai Viet, Takri, Tamil, Telugu, Thai,
+# Tibetan, Tirhuta, and Zanabazar Square.
+#
+# All characters for all other scripts not in that list
+# take the default value for this property.
+#
+# See IndicSyllabicCategory.txt for a slightly more extended
+# list of Indic scripts, including those which do not have
+# positional characters. Currently, those additional
+# Indic scripts without positional characters are
+# Multani, Phags-pa, and Tai Le.
+#
+# Notes:
+#
+# 1. The following characters are all assigned the positional category Right,
+# but may have different positions in some cases:
+#   * U+0BC1 TAMIL VOWEL SIGN U and U+0BC2 TAMIL VOWEL SIGN UU have
+#     contextually variable placement in Tamil.
+#   * U+0D41 MALAYALAM VOWEL SIGN U and U+0D42 MALAYALAM VOWEL SIGN UU form
+#     complex ligatures with consonants in older Malayalam orthography.
+#   * U+11341 GRANTHA VOWEL SIGN U and U+11342 GRANTHA VOWEL SIGN UU have
+#     contextually variable placement in Grantha.
+#   * U+11440 NEWA VOWEL SIGN O and U+11441 NEWA VOWEL SIGN AU have contextually
+#     variable placement in Newa.
+#
+# 2. The following characters are all assigned the positional category Top,
+# but may have different positions in some cases:
+#   * U+1143E NEWA VOWEL SIGN E and U+1143F NEWA VOWEL SIGN AI have contextually
+#     variable placement in Newa.
+#
+# 3. The following characters are all assigned the positional category Bottom,
+# but may have different positions in some cases:
+#   * U+102F MYANMAR VOWEL SIGN U and U+1030 MYANMAR VOWEL SIGN UU have
+#     contextually variable placement in Myanmar.
+#   * U+1A69 TAI THAM VOWEL SIGN U and U+1A6A TAI THAM VOWEL SIGN UU have
+#     contextually variable placement in Tai Tham.
+#
+# 4. The following character is assigned the positional category Left, but
+# may have different positions in different styles:
+#   * U+119D2 NANDINAGARI VOWEL SIGN I has stylistically variable placement
+#     in Nandinagari.
+Property: Indic_Positional_Category
+Format:	skipValue=NA
+
 File:	UnicodeData
 Property: SPECIAL
 
