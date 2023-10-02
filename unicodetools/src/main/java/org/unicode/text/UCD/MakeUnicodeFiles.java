@@ -714,11 +714,7 @@ public class MakeUnicodeFiles {
             pw.println();
             pw.println(SEPARATOR);
             pw.println();
-            if (ps.roozbehFile) {
-                pw.println("# Property: " + propName);
-            } else {
-                pw.println("# Property:\t" + propName);
-            }
+            pw.println("# Property:\t" + propName);
 
             final UnicodeMap<String> map = props.get(propName);
 
@@ -1170,6 +1166,9 @@ public class MakeUnicodeFiles {
                             filename, Format.theFormat.getPrintStyle(name));
             if (!ps.kenFile) {
                 pwProp.println();
+                if (ps.roozbehFile) {
+                    pwProp.println();
+                }
                 pwProp.println(SEPARATOR);
             }
             final String propComment = Format.theFormat.getValueComments(name, "");
@@ -1179,7 +1178,11 @@ public class MakeUnicodeFiles {
                     pwProp.println(propComment);
                 } else if (!prop.isType(UnicodeProperty.BINARY_MASK)) {
                     pwProp.println();
-                    pwProp.println("# Property:\t" + name);
+                    if (ps.roozbehFile) {
+                        pwProp.println("# Property: " + name);
+                    } else {
+                        pwProp.println("# Property:\t" + name);
+                    }
                 }
             }
 
@@ -1200,9 +1203,9 @@ public class MakeUnicodeFiles {
                         v = v + " (" + v2 + ")";
                     }
                 }
-                pwProp.println();
+                pwProp.println(ps.roozbehFile ? "#" : "");
                 pwProp.println("#  All code points not explicitly listed for " + prop.getName());
-                pwProp.println("#  have the value " + v + ".");
+                pwProp.println("#  have the value " + v + (ps.roozbehFile && v.equals("NA") ? " (not applicable)." : "."));
             }
 
             if (!ps.interleaveValues && prop.isType(UnicodeProperty.BINARY_MASK)) {
@@ -1306,7 +1309,7 @@ public class MakeUnicodeFiles {
 
         final String missing = ps.skipUnassigned != null ? ps.skipUnassigned : ps.skipValue;
         if (missing != null && !missing.equals(UCD_Names.NO)) {
-            pw.println();
+            pw.println(ps.roozbehFile ? "#" : "");
             final String propName = bf.getPropName();
             //      if (propName == null) propName = "";
             //      else if (propName.length() != 0) propName = propName + "; ";
@@ -1325,6 +1328,7 @@ public class MakeUnicodeFiles {
             }
         }
         if (ps.roozbehFile) {
+            pw.println();
             pw.println(SEPARATOR.replace('=', '-'));
         }
         for (final Iterator<String> it = aliases.iterator(); it.hasNext(); ) {

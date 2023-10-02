@@ -1017,7 +1017,6 @@ File:	IndicPositionalCategory
 # may have different positions in different styles:
 #   * U+119D2 NANDINAGARI VOWEL SIGN I has stylistically variable placement
 #     in Nandinagari.
-
 Property: Indic_Positional_Category
 Format:	roozbehFile valueStyle=short skipValue=NA
 Value: Right
