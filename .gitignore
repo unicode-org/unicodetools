@@ -85,3 +85,4 @@ rules.mk
 
 .DS_Store
 /output
+/cldr

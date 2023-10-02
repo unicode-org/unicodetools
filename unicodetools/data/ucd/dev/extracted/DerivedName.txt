@@ -1,5 +1,5 @@
-# DerivedName-15.1.0.txt
-# Date: 2023-04-18, 10:57:26 GMT
+# DerivedName-16.0.0.txt
+# Date: 2023-10-02, 13:07:54 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -44565,6 +44565,7 @@ FFFD          ; REPLACEMENT CHARACTER
 2B740..2B81D  ; CJK UNIFIED IDEOGRAPH-*
 2B820..2CEA1  ; CJK UNIFIED IDEOGRAPH-*
 2CEB0..2EBE0  ; CJK UNIFIED IDEOGRAPH-*
+2EBF0..2EE5D  ; CJK UNIFIED IDEOGRAPH-*
 2F800..2FA1D  ; CJK COMPATIBILITY IDEOGRAPH-*
 30000..3134A  ; CJK UNIFIED IDEOGRAPH-*
 31350..323AF  ; CJK UNIFIED IDEOGRAPH-*
@@ -44906,6 +44907,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 149922
+# Total code points: 150544
 
 # EOF

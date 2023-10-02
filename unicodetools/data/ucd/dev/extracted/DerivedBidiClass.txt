@@ -1,5 +1,5 @@
-# DerivedBidiClass-15.1.0.txt
-# Date: 2023-04-18, 10:34:31 GMT
+# DerivedBidiClass-16.0.0.txt
+# Date: 2023-10-02, 13:07:47 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1176,13 +1176,14 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 2B740..2B81D  ; L # Lo [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 2B820..2CEA1  ; L # Lo [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 2CEB0..2EBE0  ; L # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
+2EBF0..2EE5D  ; L # Lo [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
 2F800..2FA1D  ; L # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 30000..3134A  ; L # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; L # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 820353 code points not listed here.
+# The above property value applies to 819731 code points not listed here.
 # Total code points: 1095562
 
 # ================================================

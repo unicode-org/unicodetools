@@ -913,7 +913,7 @@ public class TestJsp extends TestFmwkMinusMinus {
         logln(uts46unic + ", " + error[0]);
         checkValues(error, Uts46.SINGLETON);
         checkValidIdna(Uts46.SINGLETON, "À｡÷");
-        checkInvalidIdna(Uts46.SINGLETON, "≠");
+        checkValidIdna(Uts46.SINGLETON, "≠"); // valid since Unicode 15.1
         checkInvalidIdna(Uts46.SINGLETON, "\u0001");
         checkToUnicode(Uts46.SINGLETON, "ß｡ab", "ß.ab");
         // checkToPunyCode(Uts46.SINGLETON, "\u0002", "xn---");
@@ -939,7 +939,7 @@ public class TestJsp extends TestFmwkMinusMinus {
 
         Uts46.SINGLETON.isValid("≠");
         assertTrue("uts46 a", Uts46.SINGLETON.isValid("a"));
-        assertFalse("uts46 not equals", Uts46.SINGLETON.isValid("≠"));
+        assertTrue("uts46 not equals", Uts46.SINGLETON.isValid("≠")); // valid since Unicode 15.1
 
         String testLines = UnicodeJsp.testIdnaLines("ΣΌΛΟΣ", "[]");
         assertContains(testLines, "xn--wxaikc6b");

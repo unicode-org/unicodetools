@@ -177,7 +177,7 @@ public class GenerateIdnaTest {
             // See https://github.com/unicode-org/unicodetools/issues/100 "Whither 13.1.0?"
             lastVersion = "13.0.0";
         }
-        int ucdTypesLastVersion = UCD_Types.AGE150;
+        int ucdTypesLastVersion = UCD_Types.AGE151;
         String ucdTypesLastVersionString = UCD_Types.AGE_VERSIONS[ucdTypesLastVersion];
         if (!ucdTypesLastVersionString.equals(lastVersion)) {
             throw new AssertionError(
@@ -672,8 +672,9 @@ public class GenerateIdnaTest {
         {"B\u00FCcher.de", "B", "b\u00FCcher.de", 0},
         // O-umlaut
         {"\u00D6BB", "B", "\u00F6bb", 0},
-        {"fa\u00DF.de", "N", "fa\u00DF.de", 0}, // sharp s
         // sharp s
+        {"fa\u00DF.de", "N", "fa\u00DF.de", 0},
+        {"FA\u1E9E.de", "N", "fa\u00DF.de", 0},
         {"fa\u00DF.de", "T", "fass.de", 0},
         // sharp s in Punycode
         {"XN--fA-hia.dE", "B", "fa\u00DF.de", 0},

@@ -1377,6 +1377,15 @@ public final class UCD implements UCD_Types {
                     return CJK_F_BASE;
                 }
             }
+            // 2EBF0..2EE4F; CJK Unified Ideographs Extension I
+            if (rCompositeVersion >= 0xf0100) {
+                if (ch <= CJK_I_BASE) {
+                    return ch; // Extension I first char
+                }
+                if (ch < CJK_I_LIMIT) {
+                    return CJK_I_BASE;
+                }
+            }
             // 30000..3134F; CJK Unified Ideographs Extension G
             if (rCompositeVersion >= 0xd0000) {
                 if (ch <= CJK_G_BASE) {
@@ -1645,6 +1654,7 @@ public final class UCD implements UCD_Types {
             case CJK_D_BASE: // Extension D
             case CJK_E_BASE: // Extension E
             case CJK_F_BASE: // Extension F
+            case CJK_I_BASE:
             case CJK_G_BASE: // Extension G
             case CJK_H_BASE:
                 if (fixStrings) {
