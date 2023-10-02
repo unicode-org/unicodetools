@@ -67,6 +67,8 @@ public class MakeUnicodeFiles {
         Map<String, List<String>> fileToPropertySet = new TreeMap<String, List<String>>();
         Map<String, String> fileToComments = new TreeMap<String, String>();
         Map<String, String> fileToDirectory = new TreeMap<String, String>();
+        Map<String, List<String>> propertyToOrderedValues =
+                new TreeMap<String, List<String>>();
         Map<String, Map<String, String>> propertyToValueToComments =
                 new TreeMap<String, Map<String, String>>();
         Map<String, String> hackMap = new HashMap<String, String>();
@@ -110,6 +112,10 @@ public class MakeUnicodeFiles {
             // Unicode 15.1 and later LineBreak.txt and EastAsianWidth.txt, which are all generated
             // in that format by some other tool.
             boolean kenFile = false;
+            // Whether the file should be produced in the style of IndicPositionalCategory.txt and
+            // IndicSyllabicCategory.txt, which are both generated in that format by some other
+            // tool.
+            boolean roozbehFile = false;
             boolean hackValues = false;
             boolean mergeRanges = true;
             String nameStyle = "none";
@@ -138,6 +144,8 @@ public class MakeUnicodeFiles {
                         interleaveValues = true;
                     } else if (piece.equals("kenFile")) {
                         kenFile = true;
+                    } else if (piece.equals("roozbehFile")) {
+                        roozbehFile = true;
                     } else if (piece.equals("hackValues")) {
                         hackValues = true;
                     } else if (piece.equals("sortNumeric")) {
@@ -350,6 +358,12 @@ public class MakeUnicodeFiles {
                             value = "";
                         } else if (line.startsWith("Value:")) {
                             value = lineValue;
+                            var values = propertyToOrderedValues.get(property);
+                            if (values == null) {
+                                values = new ArrayList<String>();
+                                propertyToOrderedValues.put(property, values);
+                            }
+                            values.add(value);
                         } else if (line.startsWith("HackName:")) {
                             final String regularItem = Utility.getUnskeleton(lineValue, true);
                             hackMap.put(regularItem, lineValue);
@@ -1253,6 +1267,10 @@ public class MakeUnicodeFiles {
             final TreeSet<String> temp2 = new TreeSet<String>(new RangeStartComparator(prop));
             temp2.addAll(aliases);
             aliases = temp2;
+        }
+        if (ps.roozbehFile) {
+            System.out.println(Format.theFormat.propertyToOrderedValues);
+            aliases = Format.theFormat.propertyToOrderedValues.get(prop.getName());
         }
         if (ps.sortNumeric) {
             if (DEBUG) {

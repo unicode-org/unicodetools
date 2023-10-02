@@ -909,15 +909,6 @@ Format: kenFile skipValue=Rotated
 Property: VerticalOrientation
 
 File:	IndicPositionalCategory
-# IndicPositionalCategory-15.1.0.txt
-# Date: 2023-01-05
-# © 2023 Unicode®, Inc.
-# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see https://www.unicode.org/terms_of_use.html
-#
-# For documentation, see UAX #44: Unicode Character Database,
-# at https://www.unicode.org/reports/tr44/
-#
 # This file defines the following property:
 #
 #    Indic_Positional_Category     enumerated property
@@ -1025,8 +1016,32 @@ File:	IndicPositionalCategory
 # may have different positions in different styles:
 #   * U+119D2 NANDINAGARI VOWEL SIGN I has stylistically variable placement
 #     in Nandinagari.
+
 Property: Indic_Positional_Category
-Format:	skipValue=NA
+Format:	roozbehFile skipValue=NA
+Value: Right
+Value: Left
+Value: Visual_Order_Left
+
+# These are dependent vowels that occur to the left of the consonant
+# letter in a syllable, but which occur in scripts using the visual order
+# model, instead of the logical order model. Because of the different
+# model, these left-side vowels occur first in the backing store (before
+# the consonant letter) and are not reordered during text rendering.
+#
+# [Derivation: Logical_Order_Exception=Yes]
+Value: Left_And_Right
+Value: Top
+Value: Bottom
+Value: Top_And_Bottom
+Value: Top_And_Right
+Value: Top_And_Left
+Value: Top_And_Left_And_Right
+Value: Bottom_And_Right
+Value: Bottom_And_Left
+Value: Top_And_Bottom_And_Right
+Value: Top_And_Bottom_And_Left
+Value: Overstruck
 
 File:	UnicodeData
 Property: SPECIAL
