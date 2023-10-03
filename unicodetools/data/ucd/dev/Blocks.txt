@@ -217,6 +217,7 @@ FFF0..FFFF; Specials
 10500..1052F; Elbasan
 10530..1056F; Caucasian Albanian
 10570..105BF; Vithkuqi
+105C0..105FF; Todhri
 10600..1077F; Linear A
 10780..107BF; Latin Extended-F
 10800..1083F; Cypriot Syllabary
