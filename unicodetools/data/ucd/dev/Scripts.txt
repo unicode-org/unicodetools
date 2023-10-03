@@ -1,6 +1,5 @@
-105C0..105F3;Todhri
 # Scripts-16.0.0.txt
-# Date: 2023-10-03, 12:53:12 GMT
+# Date: 2023-10-03, 13:47:30 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -3030,5 +3029,11 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 1E4F0..1E4F9  ; Nag_Mundari # Nd  [10] NAG MUNDARI DIGIT ZERO..NAG MUNDARI DIGIT NINE
 
 # Total code points: 42
+
+# ================================================
+
+105C0..105F3  ; Todhri # Lo  [52] TODHRI LETTER A..TODHRI LETTER OO
+
+# Total code points: 52
 
 # EOF
