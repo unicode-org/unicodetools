@@ -1,3 +1,5 @@
+1B4E..1B4F;Balinese
+1B7F;Balinese
 # Scripts-15.1.0.txt
 # Date: 2023-07-28, 16:01:07 GMT
 # © 2023 Unicode®, Inc.
