@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2023-10-03, 14:23:01 GMT
+# Date: 2023-10-03, 14:55:39 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1459,7 +1459,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 10CFA..10CFF  ; 0 # No   [6] OLD HUNGARIAN NUMBER ONE..OLD HUNGARIAN NUMBER ONE THOUSAND
 10D00..10D23  ; 0 # Lo  [36] HANIFI ROHINGYA LETTER A..HANIFI ROHINGYA MARK NA KHONNA
 10D30..10D39  ; 0 # Nd  [10] HANIFI ROHINGYA DIGIT ZERO..HANIFI ROHINGYA DIGIT NINE
-10D40         ; 0 # Nd       GARAY DIGIT ZERO
+10D40..10D49  ; 0 # Nd  [10] GARAY DIGIT ZERO..GARAY DIGIT NINE
 10D4A..10D4F  ; 0 # Lo   [6] GARAY VOWEL SIGN A..GARAY SUKUN
 10D50..10D65  ; 0 # L&  [22] GARAY CAPITAL LETTER A..GARAY CAPITAL LETTER OLD NA
 10D6E         ; 0 # Pd       GARAY HYPHEN
@@ -2013,7 +2013,7 @@ F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
 # The above property value applies to 826697 code points not listed here.
-# Total code points: 1113176
+# Total code points: 1113185
 
 # ================================================
 
@@ -2027,53 +2027,19 @@ F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 20E5..20E6    ; 1 # Mn   [2] COMBINING REVERSE SOLIDUS OVERLAY..COMBINING DOUBLE VERTICAL STROKE OVERLAY
 20EA..20EB    ; 1 # Mn   [2] COMBINING LEFTWARDS ARROW OVERLAY..COMBINING LONG DOUBLE SOLIDUS OVERLAY
 10A39         ; 1 # Mn       KHAROSHTHI SIGN CAUDA
-10D41         ; 1 # Nd       GARAY DIGIT ONE
 16AF0..16AF4  ; 1 # Mn   [5] BASSA VAH COMBINING HIGH TONE..BASSA VAH COMBINING HIGH-LOW TONE
 1BC9E         ; 1 # Mn       DUPLOYAN DOUBLE MARK
 1D167..1D169  ; 1 # Mn   [3] MUSICAL SYMBOL COMBINING TREMOLO-1..MUSICAL SYMBOL COMBINING TREMOLO-3
 
-# Total code points: 33
-
-# ================================================
-
-# Canonical_Combining_Class=2
-
-10D42         ; 2 # Nd       GARAY DIGIT TWO
-
-# Total code points: 1
-
-# ================================================
-
-# Canonical_Combining_Class=3
-
-10D43         ; 3 # Nd       GARAY DIGIT THREE
-
-# Total code points: 1
-
-# ================================================
-
-# Canonical_Combining_Class=4
-
-10D44         ; 4 # Nd       GARAY DIGIT FOUR
-
-# Total code points: 1
-
-# ================================================
-
-# Canonical_Combining_Class=5
-
-10D45         ; 5 # Nd       GARAY DIGIT FIVE
-
-# Total code points: 1
+# Total code points: 32
 
 # ================================================
 
 # Canonical_Combining_Class=Han_Reading
 
-10D46         ; 6 # Nd       GARAY DIGIT SIX
 16FF0..16FF1  ; 6 # Mc   [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 
-# Total code points: 3
+# Total code points: 2
 
 # ================================================
 
@@ -2091,7 +2057,6 @@ F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 1BE6          ; 7 # Mn       BATAK SIGN TOMPI
 1C37          ; 7 # Mn       LEPCHA SIGN NUKTA
 A9B3          ; 7 # Mn       JAVANESE SIGN CECAK TELU
-10D47         ; 7 # Nd       GARAY DIGIT SEVEN
 110BA         ; 7 # Mn       KAITHI SIGN NUKTA
 11173         ; 7 # Mn       MAHAJANI SIGN NUKTA
 111CA         ; 7 # Mn       SHARADA SIGN NUKTA
@@ -2107,16 +2072,15 @@ A9B3          ; 7 # Mn       JAVANESE SIGN CECAK TELU
 11D42         ; 7 # Mn       MASARAM GONDI SIGN NUKTA
 1E94A         ; 7 # Mn       ADLAM NUKTA
 
-# Total code points: 28
+# Total code points: 27
 
 # ================================================
 
 # Canonical_Combining_Class=Kana_Voicing
 
 3099..309A    ; 8 # Mn   [2] COMBINING KATAKANA-HIRAGANA VOICED SOUND MARK..COMBINING KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK
-10D48         ; 8 # Nd       GARAY DIGIT EIGHT
 
-# Total code points: 3
+# Total code points: 2
 
 # ================================================
 
@@ -2155,7 +2119,6 @@ A9C0          ; 9 # Mc       JAVANESE PANGKON
 AAF6          ; 9 # Mn       MEETEI MAYEK VIRAMA
 ABED          ; 9 # Mn       MEETEI MAYEK APUN IYEK
 10A3F         ; 9 # Mn       KHAROSHTHI VIRAMA
-10D49         ; 9 # Nd       GARAY DIGIT NINE
 11046         ; 9 # Mn       BRAHMI VIRAMA
 11070         ; 9 # Mn       BRAHMI SIGN OLD TAMIL VIRAMA
 1107F         ; 9 # Mn       BRAHMI NUMBER JOINER
@@ -2184,7 +2147,7 @@ ABED          ; 9 # Mn       MEETEI MAYEK APUN IYEK
 11F41         ; 9 # Mc       KAWI SIGN KILLER
 11F42         ; 9 # Mn       KAWI CONJOINER
 
-# Total code points: 66
+# Total code points: 65
 
 # ================================================
 

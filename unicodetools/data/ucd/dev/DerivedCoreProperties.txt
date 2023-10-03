@@ -1,5 +1,5 @@
 # DerivedCoreProperties-16.0.0.txt
-# Date: 2023-10-03, 14:23:02 GMT
+# Date: 2023-10-03, 14:55:40 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -12603,7 +12603,6 @@ A9C0          ; Grapheme_Link # Mc       JAVANESE PANGKON
 AAF6          ; Grapheme_Link # Mn       MEETEI MAYEK VIRAMA
 ABED          ; Grapheme_Link # Mn       MEETEI MAYEK APUN IYEK
 10A3F         ; Grapheme_Link # Mn       KHAROSHTHI VIRAMA
-10D49         ; Grapheme_Link # Nd       GARAY DIGIT NINE
 11046         ; Grapheme_Link # Mn       BRAHMI VIRAMA
 11070         ; Grapheme_Link # Mn       BRAHMI SIGN OLD TAMIL VIRAMA
 1107F         ; Grapheme_Link # Mn       BRAHMI NUMBER JOINER
@@ -12632,7 +12631,7 @@ ABED          ; Grapheme_Link # Mn       MEETEI MAYEK APUN IYEK
 11F41         ; Grapheme_Link # Mc       KAWI SIGN KILLER
 11F42         ; Grapheme_Link # Mn       KAWI CONJOINER
 
-# Total code points: 66
+# Total code points: 65
 
 # ================================================
 

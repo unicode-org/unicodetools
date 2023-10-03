@@ -1,5 +1,5 @@
 # DerivedBidiClass-16.0.0.txt
-# Date: 2023-10-03, 14:22:58 GMT
+# Date: 2023-10-03, 14:55:37 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -84,6 +84,7 @@
 # 10D00..10D3F Hanifi_Rohingya
 # @missing: 10D00..10D3F; Arabic_Letter
 
+# 10D40..10D8F Garay
 # 10E60..10E7F Rumi_Numeral_Symbols
 # 10E80..10EBF Yezidi
 # @missing: 10D40..10EBF; Right_To_Left
