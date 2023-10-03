@@ -1851,6 +1851,7 @@ public class UcdPropertyValues {
         Tibetan("Tibt"),
         Tirhuta("Tirh"),
         Tangsa("Tnsa"),
+        Todhri("Todr"),
         Toto("Toto"),
         Ugaritic("Ugar"),
         Vai("Vaii"),
