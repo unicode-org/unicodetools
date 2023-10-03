@@ -1,5 +1,5 @@
 # PropertyValueAliases-16.0.0.txt
-# Date: 2023-10-03, 10:47:07 GMT
+# Date: 2023-10-03, 14:13:03 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1336,7 +1336,6 @@ sc ; Goth                             ; Gothic
 sc ; Gran                             ; Grantha
 sc ; Grek                             ; Greek
 sc ; Gujr                             ; Gujarati
-sc ; Gukh                             ; Tulu_Tigalari
 sc ; Guru                             ; Gurmukhi
 sc ; Hang                             ; Hangul
 sc ; Hani                             ; Han
@@ -1444,6 +1443,7 @@ sc ; Tibt                             ; Tibetan
 sc ; Tirh                             ; Tirhuta
 sc ; Tnsa                             ; Tangsa
 sc ; Toto                             ; Toto
+sc ; Tutg                             ; Tulu_Tigalari
 sc ; Ugar                             ; Ugaritic
 sc ; Vaii                             ; Vai
 sc ; Vith                             ; Vithkuqi
