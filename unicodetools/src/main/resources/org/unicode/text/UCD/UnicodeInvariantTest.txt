@@ -427,7 +427,7 @@ $Unicode_7_Decompositions ⊆ [\p{Name=/^(GRANTHA|TIRHUTA|SIDDHAM) VOWEL SIGN /}
 Let $Unicode_6_1_Decompositions = [[\p{U6.1.0:Decomposition_Type=Canonical} - \p{U6.1.0:Full_Composition_Exclusion}] - [\p{U6.0.0:Decomposition_Type=Canonical} - \p{U6.0.0:Full_Composition_Exclusion}]]
 $Unicode_6_1_Decompositions ⊆ \p{U6.0.0:GC=Cn}
 In $Unicode_6_1_Decompositions toNFD * \P{U6.0.0:GC=Cn} ≠ toNFD
-$Unicode_6_1_Decompositions = [\U0001112E..\U0001112F]
+$Unicode_6_1_Decompositions = [\U0001112E-\U0001112F]
 $Unicode_6_1_Decompositions ⊆ [\p{Name=/^CHAKMA VOWEL SIGN /}]
 
 # Stability: All characters other than those with General_Category property values Spacing_Mark (Mc) and Nonspacing_Mark (Mn) have the Canonical_Combining_Class property value 0.
