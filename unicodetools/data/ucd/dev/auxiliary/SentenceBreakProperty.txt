@@ -1,5 +1,5 @@
-# SentenceBreakProperty-15.1.0.txt
-# Date: 2023-07-28, 23:34:37 GMT
+# SentenceBreakProperty-16.0.0.txt
+# Date: 2023-10-03, 19:02:47 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -892,6 +892,7 @@ E0001         ; Format # Cf       LANGUAGE TAG
 10FC          ; Lower # Lm       MODIFIER LETTER GEORGIAN NAR
 13F8..13FD    ; Lower # L&   [6] CHEROKEE SMALL LETTER YE..CHEROKEE SMALL LETTER MV
 1C80..1C88    ; Lower # L&   [9] CYRILLIC SMALL LETTER ROUNDED VE..CYRILLIC SMALL LETTER UNBLENDED UK
+1C8A          ; Lower # L&       CYRILLIC SMALL LETTER TJE
 1D00..1D2B    ; Lower # L&  [44] LATIN LETTER SMALL CAPITAL A..CYRILLIC LETTER SMALL CAPITAL EL
 1D2C..1D6A    ; Lower # Lm  [63] MODIFIER LETTER CAPITAL A..GREEK SUBSCRIPT SMALL LETTER CHI
 1D6B..1D77    ; Lower # L&  [13] LATIN SMALL LETTER UE..LATIN SMALL LETTER TURNED G
@@ -1297,7 +1298,7 @@ FF41..FF5A    ; Lower # L&  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN
 1E030..1E06D  ; Lower # Lm  [62] MODIFIER LETTER CYRILLIC SMALL A..MODIFIER LETTER CYRILLIC SMALL STRAIGHT U WITH STROKE
 1E922..1E943  ; Lower # L&  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 2497
+# Total code points: 2498
 
 # ================================================
 
@@ -1577,6 +1578,7 @@ FF41..FF5A    ; Lower # L&  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN
 10C7          ; Upper # L&       GEORGIAN CAPITAL LETTER YN
 10CD          ; Upper # L&       GEORGIAN CAPITAL LETTER AEN
 13A0..13F5    ; Upper # L&  [86] CHEROKEE LETTER A..CHEROKEE LETTER MV
+1C89          ; Upper # L&       CYRILLIC CAPITAL LETTER TJE
 1E00          ; Upper # L&       LATIN CAPITAL LETTER A WITH RING BELOW
 1E02          ; Upper # L&       LATIN CAPITAL LETTER B WITH DOT ABOVE
 1E04          ; Upper # L&       LATIN CAPITAL LETTER B WITH DOT BELOW
@@ -1954,7 +1956,7 @@ FF21..FF3A    ; Upper # L&  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LAT
 1F150..1F169  ; Upper # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Upper # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1936
+# Total code points: 1937
 
 # ================================================
 

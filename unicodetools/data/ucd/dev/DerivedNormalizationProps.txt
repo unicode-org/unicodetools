@@ -1,5 +1,5 @@
-# DerivedNormalizationProps-15.1.0.txt
-# Date: 2023-05-02, 13:20:58 GMT
+# DerivedNormalizationProps-16.0.0.txt
+# Date: 2023-10-03, 19:02:12 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -3545,6 +3545,7 @@ FFE3          ; Expands_On_NFKC # Sk       FULLWIDTH MACRON
 1C86          ; NFKC_CF; 044A           # L&       CYRILLIC SMALL LETTER TALL HARD SIGN
 1C87          ; NFKC_CF; 0463           # L&       CYRILLIC SMALL LETTER TALL YAT
 1C88          ; NFKC_CF; A64B           # L&       CYRILLIC SMALL LETTER UNBLENDED UK
+1C89          ; NFKC_CF; 1C8A           # L&       CYRILLIC CAPITAL LETTER TJE
 1C90          ; NFKC_CF; 10D0           # L&       GEORGIAN MTAVRULI CAPITAL LETTER AN
 1C91          ; NFKC_CF; 10D1           # L&       GEORGIAN MTAVRULI CAPITAL LETTER BAN
 1C92          ; NFKC_CF; 10D2           # L&       GEORGIAN MTAVRULI CAPITAL LETTER GAN
@@ -9001,7 +9002,7 @@ E0080..E00FF  ; NFKC_CF;                # Cn [128] <reserved-E0080>..<reserved-E
 E0100..E01EF  ; NFKC_CF;                # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; NFKC_CF;                # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10491
+# Total code points: 10492
 
 # ================================================
 
@@ -9652,6 +9653,7 @@ E01F0..E0FFF  ; NFKC_CF;                # Cn [3600] <reserved-E01F0>..<reserved-
 1C86          ; NFKC_SCF; 044A           # L&       CYRILLIC SMALL LETTER TALL HARD SIGN
 1C87          ; NFKC_SCF; 0463           # L&       CYRILLIC SMALL LETTER TALL YAT
 1C88          ; NFKC_SCF; A64B           # L&       CYRILLIC SMALL LETTER UNBLENDED UK
+1C89          ; NFKC_SCF; 1C8A           # L&       CYRILLIC CAPITAL LETTER TJE
 1C90          ; NFKC_SCF; 10D0           # L&       GEORGIAN MTAVRULI CAPITAL LETTER AN
 1C91          ; NFKC_SCF; 10D1           # L&       GEORGIAN MTAVRULI CAPITAL LETTER BAN
 1C92          ; NFKC_SCF; 10D2           # L&       GEORGIAN MTAVRULI CAPITAL LETTER GAN
@@ -15072,7 +15074,7 @@ E0080..E00FF  ; NFKC_SCF;                # Cn [128] <reserved-E0080>..<reserved-
 E0100..E01EF  ; NFKC_SCF;                # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; NFKC_SCF;                # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10453
+# Total code points: 10454
 
 # ================================================
 
@@ -15411,7 +15413,7 @@ E01F0..E0FFF  ; NFKC_SCF;                # Cn [3600] <reserved-E01F0>..<reserved
 180B..180D    ; Changes_When_NFKC_Casefolded # Mn   [3] MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
 180E          ; Changes_When_NFKC_Casefolded # Cf       MONGOLIAN VOWEL SEPARATOR
 180F          ; Changes_When_NFKC_Casefolded # Mn       MONGOLIAN FREE VARIATION SELECTOR FOUR
-1C80..1C88    ; Changes_When_NFKC_Casefolded # L&   [9] CYRILLIC SMALL LETTER ROUNDED VE..CYRILLIC SMALL LETTER UNBLENDED UK
+1C80..1C89    ; Changes_When_NFKC_Casefolded # L&  [10] CYRILLIC SMALL LETTER ROUNDED VE..CYRILLIC CAPITAL LETTER TJE
 1C90..1CBA    ; Changes_When_NFKC_Casefolded # L&  [43] GEORGIAN MTAVRULI CAPITAL LETTER AN..GEORGIAN MTAVRULI CAPITAL LETTER AIN
 1CBD..1CBF    ; Changes_When_NFKC_Casefolded # L&   [3] GEORGIAN MTAVRULI CAPITAL LETTER AEN..GEORGIAN MTAVRULI CAPITAL LETTER LABIAL SIGN
 1D2C..1D2E    ; Changes_When_NFKC_Casefolded # Lm   [3] MODIFIER LETTER CAPITAL A..MODIFIER LETTER CAPITAL B
@@ -16084,6 +16086,6 @@ E0080..E00FF  ; Changes_When_NFKC_Casefolded # Cn [128] <reserved-E0080>..<reser
 E0100..E01EF  ; Changes_When_NFKC_Casefolded # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; Changes_When_NFKC_Casefolded # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10491
+# Total code points: 10492
 
 # EOF
