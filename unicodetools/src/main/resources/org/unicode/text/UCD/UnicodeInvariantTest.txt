@@ -405,13 +405,30 @@ Let $identifier_extend = [\p{GC=Mn}\p{GC=Mc}\p{GC=Nd}\p{GC=Pc}]
 In \P{U-1:GC=Cn} ccc=U-1:ccc
 
 # Canonical decompositions (minus exclusions) must be identical across releases (also required by strong normalization stability),
-# except where a character and at lease one character in its decomposition are both new in the release.
-Let $NFC_Exceptions = [\U0001109A\U0001109C\U000110AB[\U0001112E\U0001112F \U0001134B-\U0001134C \U000114BB-\U000114BC \U000114BE \U000115BA-\U000115BB] \U00011938 \U00011383 \U00011385 \U0001138E \U00011391 \U000113C5 \U000113C7-\U000113C8]
-# 6.1.0 Added CHAKMA VOWEL SIGN O..CHAKMA VOWEL SIGN AU
-# 7.0 Added 1134B..1134C, 114BB..114BC, 114BE, and 115BA..115BB
-# 13.0 Added 11938 DIVES AKURU VOWEL SIGN O
-# 16.0 Added 11383, 11385, 1138E, 11391, 113C5, 113C7..113C8 (Tulu-Tigalari vowel letters and vowel signs).
-[\p{Decomposition_Type=Canonical} - \p{Full_Composition_Exclusion} - $NFC_Exceptions] = [\p{U-1:Decomposition_Type=Canonical} - \p{U-1:Full_Composition_Exclusion} - $NFC_Exceptions]
+# except where a character and at least one character in its decomposition are both new in the release.
+Let $New_Decompositions = [[\p{Decomposition_Type=Canonical} - \p{Full_Composition_Exclusion}] - [\p{U-1:Decomposition_Type=Canonical} - \p{U-1:Full_Composition_Exclusion}]]
+$New_Decompositions ⊆ \p{U-1:GC=Cn}
+# Stripping previously-unassigned characters from the current NFD does
+# something, that is, the decomposition contains newly-assigned characters.
+In $New_Decompositions toNFD * \P{U-1:GC=Cn} ≠ toNFD
+
+Let $Unicode_13_Decompositions = [[\p{U13.0.0:Decomposition_Type=Canonical} - \p{U13.0.0:Full_Composition_Exclusion}] - [\p{U12.1.0:Decomposition_Type=Canonical} - \p{U12.1.0:Full_Composition_Exclusion}]]
+$Unicode_13_Decompositions ⊆ \p{U12.1.0:GC=Cn}
+In $Unicode_13_Decompositions toNFD * \P{U12.1.0:GC=Cn} ≠ toNFD
+$Unicode_13_Decompositions = [\U00011938]
+$Unicode_13_Decompositions = [\p{Name=DIVES AKURU VOWEL SIGN O}]
+
+Let $Unicode_7_Decompositions = [[\p{U7.0.0:Decomposition_Type=Canonical} - \p{U7.0.0:Full_Composition_Exclusion}] - [\p{U6.3.0:Decomposition_Type=Canonical} - \p{U6.3.0:Full_Composition_Exclusion}]]
+$Unicode_7_Decompositions ⊆ \p{U6.3.0:GC=Cn}
+In $Unicode_7_Decompositions toNFD * \P{U6.3.0:GC=Cn} ≠ toNFD
+$Unicode_7_Decompositions = [\U0001134B-\U0001134C \U000114BB-\U000114BC \U000114BE \U000115BA-\U000115BB]
+$Unicode_7_Decompositions ⊆ [\p{Name=/^(GRANTHA|TIRHUTA|SIDDHAM) VOWEL SIGN /}]
+
+Let $Unicode_6_1_Decompositions = [[\p{U6.1.0:Decomposition_Type=Canonical} - \p{U6.1.0:Full_Composition_Exclusion}] - [\p{U6.0.0:Decomposition_Type=Canonical} - \p{U6.0.0:Full_Composition_Exclusion}]]
+$Unicode_6_1_Decompositions ⊆ \p{U6.0.0:GC=Cn}
+In $Unicode_6_1_Decompositions toNFD * \P{U6.0.0:GC=Cn} ≠ toNFD
+$Unicode_6_1_Decompositions = [\U0001112E-\U0001112F]
+$Unicode_6_1_Decompositions ⊆ [\p{Name=/^CHAKMA VOWEL SIGN /}]
 
 # Stability: All characters other than those with General_Category property values Spacing_Mark (Mc) and Nonspacing_Mark (Mn) have the Canonical_Combining_Class property value 0.
 \p{CCC=0} ⊇ [^ \p{GC=Mc} \p{GC=Mn}]
