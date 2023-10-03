@@ -1,3 +1,5 @@
+1C89; CYRILLIC CAPITAL LETTER TJE; Lu;0; L;;;;; N;;;; 1C8A;
+1C8A; CYRILLIC SMALL LETTER TJE; Ll;0; L;;;;; N;;; 1C89;; 1C8A
 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0001;<control>;Cc;0;BN;;;;;N;START OF HEADING;;;;
 0002;<control>;Cc;0;BN;;;;;N;START OF TEXT;;;;
