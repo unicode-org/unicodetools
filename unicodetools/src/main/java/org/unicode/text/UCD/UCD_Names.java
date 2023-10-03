@@ -414,7 +414,7 @@ public final class UCD_Names implements UCD_Types {
         // Unicode 15
         "Kawi",
         "Nag_Mundari",
-        // A future version of Unicode
+        // Unicode 16
         "Sunuwar",
         "Tulu_Tigalari",
         "Kirat_Rai",
@@ -611,19 +611,19 @@ public final class UCD_Names implements UCD_Types {
         // Unicode 15
         "Kawi",
         "Nagm",
-        // A future version of Unicode
-        "Qaba",
-        "Qabb",
-        "Qabc",
-        "Qabd",
-        "Qabe",
-        "Qabf",
-        "Qabg",
+        // Unicode 16
+        "Gara",
+        "Gukh",
+        "Krai",
+        "Onao",
+        "Sunu",
+        "Todr",
+        "Tutg",
         // Provisionally assigned
-        "Qabh",
-        "Qabi",
-        "Qabj",
-        "Qabk",
+        "Chis",
+        "Sidt",
+        "Tayo",
+        "Tols",
     };
 
     static final String[] SHORT_AGE = {
