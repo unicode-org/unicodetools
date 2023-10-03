@@ -39,7 +39,7 @@
 # Total code points: 2
 
 # ================================================
-
+10D6E;Dash
 002D          ; Dash # Pd       HYPHEN-MINUS
 058A          ; Dash # Pd       ARMENIAN HYPHEN
 05BE          ; Dash # Pd       HEBREW PUNCTUATION MAQAF
