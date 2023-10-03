@@ -1,5 +1,5 @@
-# DerivedBidiClass-15.1.0.txt
-# Date: 2023-07-28, 23:33:54 GMT
+# DerivedBidiClass-16.0.0.txt
+# Date: 2023-10-03, 12:05:23 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -660,7 +660,7 @@ A771..A787    ; L # L&  [23] LATIN SMALL LETTER DUM..LATIN SMALL LETTER INSULAR 
 A789..A78A    ; L # Sk   [2] MODIFIER LETTER COLON..MODIFIER LETTER SHORT EQUALS SIGN
 A78B..A78E    ; L # L&   [4] LATIN CAPITAL LETTER SALTILLO..LATIN SMALL LETTER L WITH RETROFLEX HOOK AND BELT
 A78F          ; L # Lo       LATIN LETTER SINOLOGICAL DOT
-A790..A7CA    ; L # L&  [59] LATIN CAPITAL LETTER N WITH DESCENDER..LATIN SMALL LETTER S WITH SHORT STROKE OVERLAY
+A790..A7CB    ; L # L&  [60] LATIN CAPITAL LETTER N WITH DESCENDER..LATIN CAPITAL LETTER RAMS HORN
 A7D0..A7D1    ; L # L&   [2] LATIN CAPITAL LETTER CLOSED INSULAR G..LATIN SMALL LETTER CLOSED INSULAR G
 A7D3          ; L # L&       LATIN SMALL LETTER DOUBLE THORN
 A7D5..A7D9    ; L # L&   [5] LATIN SMALL LETTER DOUBLE WYNN..LATIN SMALL LETTER SIGMOID S
@@ -1182,7 +1182,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 820462 code points not listed here.
+# The above property value applies to 820461 code points not listed here.
 # Total code points: 1096267
 
 # ================================================

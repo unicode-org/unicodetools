@@ -1,5 +1,5 @@
-# DerivedGeneralCategory-15.1.0.txt
-# Date: 2023-07-28, 23:34:02 GMT
+# DerivedGeneralCategory-16.0.0.txt
+# Date: 2023-10-03, 12:05:26 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -295,7 +295,7 @@ A48D..A48F    ; Cn #   [3] <reserved-A48D>..<reserved-A48F>
 A4C7..A4CF    ; Cn #   [9] <reserved-A4C7>..<reserved-A4CF>
 A62C..A63F    ; Cn #  [20] <reserved-A62C>..<reserved-A63F>
 A6F8..A6FF    ; Cn #   [8] <reserved-A6F8>..<reserved-A6FF>
-A7CB..A7CF    ; Cn #   [5] <reserved-A7CB>..<reserved-A7CF>
+A7CC..A7CF    ; Cn #   [4] <reserved-A7CC>..<reserved-A7CF>
 A7D2          ; Cn #       <reserved-A7D2>
 A7D4          ; Cn #       <reserved-A7D4>
 A7DA..A7F1    ; Cn #  [24] <reserved-A7DA>..<reserved-A7F1>
@@ -723,7 +723,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 824718
+# Total code points: 824717
 
 # ================================================
 
@@ -1329,6 +1329,7 @@ A7C0          ; Lu #       LATIN CAPITAL LETTER OLD POLISH O
 A7C2          ; Lu #       LATIN CAPITAL LETTER ANGLICANA W
 A7C4..A7C7    ; Lu #   [4] LATIN CAPITAL LETTER C WITH PALATAL HOOK..LATIN CAPITAL LETTER D WITH SHORT STROKE OVERLAY
 A7C9          ; Lu #       LATIN CAPITAL LETTER S WITH SHORT STROKE OVERLAY
+A7CB          ; Lu #       LATIN CAPITAL LETTER RAMS HORN
 A7D0          ; Lu #       LATIN CAPITAL LETTER CLOSED INSULAR G
 A7D6          ; Lu #       LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D8          ; Lu #       LATIN CAPITAL LETTER SIGMOID S
@@ -1376,7 +1377,7 @@ FF21..FF3A    ; Lu #  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LATIN CAP
 1D7CA         ; Lu #       MATHEMATICAL BOLD CAPITAL DIGAMMA
 1E900..1E921  ; Lu #  [34] ADLAM CAPITAL LETTER ALIF..ADLAM CAPITAL LETTER SHA
 
-# Total code points: 1831
+# Total code points: 1832
 
 # ================================================
 

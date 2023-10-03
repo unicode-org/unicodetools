@@ -1,5 +1,5 @@
-# DerivedName-15.1.0.txt
-# Date: 2023-07-28, 23:34:03 GMT
+# DerivedName-16.0.0.txt
+# Date: 2023-10-03, 12:05:28 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -14233,6 +14233,7 @@ A7C7          ; LATIN CAPITAL LETTER D WITH SHORT STROKE OVERLAY
 A7C8          ; LATIN SMALL LETTER D WITH SHORT STROKE OVERLAY
 A7C9          ; LATIN CAPITAL LETTER S WITH SHORT STROKE OVERLAY
 A7CA          ; LATIN SMALL LETTER S WITH SHORT STROKE OVERLAY
+A7CB          ; LATIN CAPITAL LETTER RAMS HORN
 A7D0          ; LATIN CAPITAL LETTER CLOSED INSULAR G
 A7D1          ; LATIN SMALL LETTER CLOSED INSULAR G
 A7D3          ; LATIN SMALL LETTER DOUBLE THORN
@@ -44176,6 +44177,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 149813
+# Total code points: 149814
 
 # EOF
