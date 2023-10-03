@@ -366,11 +366,9 @@ public class MakeUnicodeFiles {
                             value = "";
                         } else if (line.startsWith("Value:")) {
                             value = lineValue;
-                            var values = propertyToOrderedValues.get(property);
-                            if (values == null) {
-                                values = new ArrayList<String>();
-                                propertyToOrderedValues.put(property, values);
-                            }
+                            final var values =
+                                    propertyToOrderedValues.computeIfAbsent(
+                                            property, k -> new ArrayList<String>());
                             values.add(value);
                         } else if (line.startsWith("HackName:")) {
                             final String regularItem = Utility.getUnskeleton(lineValue, true);
