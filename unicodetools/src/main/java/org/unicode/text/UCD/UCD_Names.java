@@ -612,18 +612,18 @@ public final class UCD_Names implements UCD_Types {
         "Kawi",
         "Nagm",
         // Unicode 16
-        "Sunu",
-        "Tutg",
-        "Krai",
-        "Todr",
         "Gara",
         "Gukh",
+        "Krai",
         "Onao",
+        "Sunu",
+        "Todr",
+        "Tutg",
         // Provisionally assigned
-        "Sidt",
         "Chis",
-        "Tols",
+        "Sidt",
         "Tayo",
+        "Tols",
     };
 
     static final String[] SHORT_AGE = {

@@ -600,19 +600,19 @@ public interface UCD_Types {
             Kawi = 164,
             Nag_Mundari = 165,
             // Unicode 16
-            Sunuwar = 166,
-            Tulu_Tigalari = 167,
+            Garay = 166,
+            Gurung_Khema = 167,
             Kirat_Rai = 168,
-            Todhri = 169,
-            Garay = 170,
-            Gurung_Khema = 171,
-            Ol_Onal = 172,
+            Ol_Onal = 169,
+            Sunuwar = 170,
+            Todhri = 171,
+            Tulu_Tigalari = 172,
             // Provisionally assigned
-            Sidetic = 173,
-            Chisoi = 174,
-            Tolong_Siki = 175,
-            Tai_Yo = 176,
-            LIMIT_SCRIPT = Tai_Yo + 1;
+            Chisoi = 173,
+            Sidetic = 174,
+            Tai_Yo = 175,
+            Tolong_Siki = 176,
+            LIMIT_SCRIPT = Tolong_Siki + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte BPT_N = 0, BPT_O = 1, BPT_C = 2, LIMIT_BPT = 3;
