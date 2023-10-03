@@ -106,6 +106,7 @@ Ethiopic_Ext_A	;	Ethiopic_Extended_A
 Ethiopic_Ext_B	;	Ethiopic_Extended_B
 Ethiopic_Sup	;	Ethiopic_Supplement
 Punctuation	;	General_Punctuation
+Garay	;	Garay
 Geometric_Shapes	;	Geometric_Shapes
 Geometric_Shapes_Ext	;	Geometric_Shapes_Extended
 Georgian	;	Georgian
