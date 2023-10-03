@@ -486,6 +486,7 @@ public class UcdPropertyValues {
         Tibetan("Tibetan"),
         Tifinagh("Tifinagh"),
         Tirhuta("Tirhuta"),
+        Todhri("Todhri"),
         Toto("Toto"),
         Transport_And_Map_Symbols("Transport_And_Map"),
         Unified_Canadian_Aboriginal_Syllabics("UCAS", "Canadian_Syllabics"),
