@@ -1,5 +1,5 @@
-# DerivedBidiClass-15.1.0.txt
-# Date: 2023-07-28, 23:33:54 GMT
+# DerivedBidiClass-16.0.0.txt
+# Date: 2023-10-03, 12:52:30 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -821,6 +821,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 105A3..105B1  ; L # L&  [15] VITHKUQI SMALL LETTER HA..VITHKUQI SMALL LETTER RE
 105B3..105B9  ; L # L&   [7] VITHKUQI SMALL LETTER SE..VITHKUQI SMALL LETTER XE
 105BB..105BC  ; L # L&   [2] VITHKUQI SMALL LETTER Y..VITHKUQI SMALL LETTER ZE
+105C0..105F3  ; L # Lo  [52] TODHRI LETTER A..TODHRI LETTER OO
 10600..10736  ; L # Lo [311] LINEAR A SIGN AB001..LINEAR A SIGN A664
 10740..10755  ; L # Lo  [22] LINEAR A SIGN A701 A..LINEAR A SIGN A732 JE
 10760..10767  ; L # Lo   [8] LINEAR A SIGN A800..LINEAR A SIGN A807
@@ -1182,7 +1183,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 820462 code points not listed here.
+# The above property value applies to 820410 code points not listed here.
 # Total code points: 1096267
 
 # ================================================
