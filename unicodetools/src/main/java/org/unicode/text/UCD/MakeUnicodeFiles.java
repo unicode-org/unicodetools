@@ -1285,6 +1285,18 @@ public class MakeUnicodeFiles {
             aliases = temp2;
         }
         if (ps.roozbehFile) {
+            aliases.removeIf(alias -> UnicodeProperty.compareNames(alias, ps.skipValue) == 0);
+            if (!Format.theFormat
+                    .propertyToOrderedValues
+                    .get(prop.getName())
+                    .containsAll(aliases)) {
+                final TreeSet<String> missingAliases = new TreeSet<String>(aliases);
+                missingAliases.removeAll(
+                        Format.theFormat.propertyToOrderedValues.get(prop.getName()));
+                throw new IllegalArgumentException(
+                        "All values must be listed when using roozbehFile; missing "
+                                + missingAliases);
+            }
             aliases = Format.theFormat.propertyToOrderedValues.get(prop.getName());
         }
         if (ps.sortNumeric) {
