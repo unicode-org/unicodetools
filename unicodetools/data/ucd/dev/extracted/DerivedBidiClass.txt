@@ -1,5 +1,5 @@
-# DerivedBidiClass-15.1.0.txt
-# Date: 2023-07-28, 23:33:54 GMT
+# DerivedBidiClass-16.0.0.txt
+# Date: 2023-10-03, 15:46:11 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -489,11 +489,12 @@
 1B3D..1B41    ; L # Mc   [5] BALINESE VOWEL SIGN LA LENGA TEDUNG..BALINESE VOWEL SIGN TALING REPA TEDUNG
 1B43..1B44    ; L # Mc   [2] BALINESE VOWEL SIGN PEPET TEDUNG..BALINESE ADEG ADEG
 1B45..1B4C    ; L # Lo   [8] BALINESE LETTER KAF SASAK..BALINESE LETTER ARCHAIC JNYA
+1B4E..1B4F    ; L # Po   [2] BALINESE INVERTED CARIK SIKI..BALINESE INVERTED CARIK PAREREN
 1B50..1B59    ; L # Nd  [10] BALINESE DIGIT ZERO..BALINESE DIGIT NINE
 1B5A..1B60    ; L # Po   [7] BALINESE PANTI..BALINESE PAMENENG
 1B61..1B6A    ; L # So  [10] BALINESE MUSICAL SYMBOL DONG..BALINESE MUSICAL SYMBOL DANG GEDE
 1B74..1B7C    ; L # So   [9] BALINESE MUSICAL SYMBOL RIGHT-HAND OPEN DUG..BALINESE MUSICAL SYMBOL LEFT-HAND OPEN PING
-1B7D..1B7E    ; L # Po   [2] BALINESE PANTI LANTANG..BALINESE PAMADA LANTANG
+1B7D..1B7F    ; L # Po   [3] BALINESE PANTI LANTANG..BALINESE PANTI BAWAK
 1B82          ; L # Mc       SUNDANESE SIGN PANGWISAD
 1B83..1BA0    ; L # Lo  [30] SUNDANESE LETTER A..SUNDANESE LETTER HA
 1BA1          ; L # Mc       SUNDANESE CONSONANT SIGN PAMINGKAL
@@ -1182,7 +1183,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 820462 code points not listed here.
+# The above property value applies to 820459 code points not listed here.
 # Total code points: 1096267
 
 # ================================================
