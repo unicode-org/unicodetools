@@ -1,5 +1,5 @@
 # DerivedCoreProperties-16.0.0.txt
-# Date: 2023-10-03, 19:02:06 GMT
+# Date: 2023-10-03, 19:26:36 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -4997,6 +4997,7 @@ FF41..FF5A    ; Changes_When_Uppercased # L&  [26] FULLWIDTH LATIN SMALL LETTER 
 0561..0587    ; Changes_When_Titlecased # L&  [39] ARMENIAN SMALL LETTER AYB..ARMENIAN SMALL LIGATURE ECH YIWN
 13F8..13FD    ; Changes_When_Titlecased # L&   [6] CHEROKEE SMALL LETTER YE..CHEROKEE SMALL LETTER MV
 1C80..1C88    ; Changes_When_Titlecased # L&   [9] CYRILLIC SMALL LETTER ROUNDED VE..CYRILLIC SMALL LETTER UNBLENDED UK
+1C8A          ; Changes_When_Titlecased # L&       CYRILLIC SMALL LETTER TJE
 1D79          ; Changes_When_Titlecased # L&       LATIN SMALL LETTER INSULAR G
 1D7D          ; Changes_When_Titlecased # L&       LATIN SMALL LETTER P WITH STROKE
 1D8E          ; Changes_When_Titlecased # L&       LATIN SMALL LETTER Z WITH PALATAL HOOK
@@ -5336,7 +5337,7 @@ FF41..FF5A    ; Changes_When_Titlecased # L&  [26] FULLWIDTH LATIN SMALL LETTER 
 16E60..16E7F  ; Changes_When_Titlecased # L&  [32] MEDEFAIDRIN SMALL LETTER M..MEDEFAIDRIN SMALL LETTER Y
 1E922..1E943  ; Changes_When_Titlecased # L&  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 1452
+# Total code points: 1453
 
 # ================================================
 
