@@ -415,18 +415,18 @@ public final class UCD_Names implements UCD_Types {
         "Kawi",
         "Nag_Mundari",
         // Unicode 16
-        "Sunuwar",
-        "Tulu_Tigalari",
-        "Kirat_Rai",
-        "Todhri",
         "Garay",
         "Gurung_Khema",
+        "Kirat_Rai",
         "Ol_Onal",
+        "Sunuwar",
+        "Todhri",
+        "Tulu_Tigalari",
         // Provisionally assigned
-        "Sidetic",
         "Chisoi",
-        "Tolong_Siki",
+        "Sidetic",
         "Tai_Yo",
+        "Tolong_Siki",
     };
 
     public static final Relation<String, String> EXTRA_SCRIPT =
