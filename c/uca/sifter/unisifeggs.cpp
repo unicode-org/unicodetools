@@ -228,10 +228,10 @@ class UCD {
         code_points_with_numeric_value_.Include(range);
         if (rational_nv.find_first_not_of("0123456789") ==
             std::string_view::npos) {
-        for (char32_t const code_point : range) {
+          for (char32_t const code_point : range) {
             natural_numeric_value_.emplace(
                 code_point, std::stoll(std::string(rational_nv)));
-        }
+          }
         }
       }
     }
@@ -246,7 +246,8 @@ class UCD {
     return it->second;
   }
 
-  CodePointSet const& BinaryPropertySet(std::string_view const binary_property_name) {
+  CodePointSet const& BinaryPropertySet(
+      std::string_view const binary_property_name) {
     auto it = binary_properties_.find(binary_property_name);
     CHECK(it != binary_properties_.end()) << binary_property_name;
     return it->second;
@@ -355,14 +356,17 @@ static bool isSpecialCJKIdeograph(char32_t c) {
 }
 
 extern "C" int unisift_IsAlphabetic(UInt32 c) {
-  return ucd->BinaryPropertySet("Alphabetic").contains(c) && !isSpecialCJKIdeograph(c) &&
+  return ucd->BinaryPropertySet("Alphabetic").contains(c) &&
+         !isSpecialCJKIdeograph(c) &&
          !(c == 0x1E13C || c == 0x1E13D || c == 0x16B42 || c == 0x16B43);
 }
 extern "C" int unisift_IsNonSpacing(UInt32 c) {
-  return ucd->GeneralCategorySet("Mn").contains(c) || isSifterNonSpacingCombining(c);
+  return ucd->GeneralCategorySet("Mn").contains(c) ||
+         isSifterNonSpacingCombining(c);
 }
 extern "C" int unisift_IsCombining(UInt32 c) {
-  return ucd->GeneralCategorySet("M").contains(c) || isSifterNonSpacingCombining(c);
+  return ucd->GeneralCategorySet("M").contains(c) ||
+         isSifterNonSpacingCombining(c);
 }
 extern "C" int unisift_IsExtender(UInt32 c) {
   return ucd->BinaryPropertySet("Extender").contains(c);
