@@ -165,10 +165,7 @@ constexpr CodePointRange parse_hex_codepoint_range(std::string_view hex) {
 class UCD {
  public:
   explicit UCD() {
-    auto const ucd_directory = std::filesystem::current_path()
-                                   .parent_path()
-                                   .parent_path()
-                                   .parent_path() /
+    auto const ucd_directory = std::filesystem::current_path() /
                                "unicodetools" / "data" / "ucd" / "dev";
     {
       std::ifstream unicode_data(ucd_directory / "UnicodeData.txt");
