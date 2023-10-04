@@ -1,21 +1,26 @@
 #include <algorithm>
 #include <array>
 #include <filesystem>
+#include <fstream>
+#include <iostream>
 #include <map>
+#include <ranges>
 #include <string>
 #include <string_view>
 #include <vector>
-#include <ranges>
-#include <fstream>
-#include <iostream>
 
-#define CHECK(condition)                                          \
-  do {                                                            \
-    if (!(condition)) {                                           \
-      std::cerr << ("Check failed: " #condition "\n");            \
-      throw std::runtime_error("Check failed: " #condition); \
-    }                                                             \
-  } while (false)
+class CheckFailure {
+ public:
+  ~CheckFailure() {
+    std::terminate();
+  }
+  void operator&(std::ostream&) {}
+};
+
+#define CHECK(condition) \
+  (condition)            \
+      ? (void)0          \
+      : CheckFailure() & std::cerr << ("Check failed: " #condition "\n")
 
 class CodePointRange {
  public:
@@ -136,7 +141,7 @@ constexpr std::array<std::string_view, n> fields(std::string_view const line) {
   auto split = std::views::split(line, ';');
   auto it = split.begin();
   for (auto& field : result) {
-    CHECK(it != split.end());
+    CHECK(it != split.end()) << line;
     std::string_view field_with_spaces(*it++);
     auto const begin = std::min(field_with_spaces.find_first_not_of(" "),
                                 field_with_spaces.size());
@@ -237,13 +242,13 @@ class UCD {
       return coarse_general_category_.at(gc.front());
     }
     auto it = general_category_.find(gc);
-    CHECK(it != general_category_.end());
+    CHECK(it != general_category_.end()) << gc;
     return it->second;
   }
 
   CodePointSet const& BinaryPropertySet(std::string_view const binary_property_name) {
     auto it = binary_properties_.find(binary_property_name);
-    CHECK(it != binary_properties_.end());
+    CHECK(it != binary_properties_.end()) << binary_property_name;
     return it->second;
   }
 
@@ -308,7 +313,7 @@ class UCD {
         case 2:  // Enumerated property.
           break;
         default:
-          CHECK(false);
+          std::terminate();
       }
     }
   }
