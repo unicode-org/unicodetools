@@ -152,13 +152,26 @@ jobs:
           path: |
             unicodetools/mine/Generated/UnicodeTestResults.*
 
-      # TODO(egg): This should check that the Unicode files have been made, not just that they can be made.
       - name: Run command - Make Unicode Files
         run: |
           cd unicodetools/mine/src
           mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version $CURRENT_UVERSION build MakeUnicodeFiles" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check that UCD files are consistent
+        run: |
+          ./py/copygenerateducd.py
+          git diff --compact-summary --exit-code || {
+            git diff --compact-summary |
+              awk '{
+                if (previous) {
+                  print "::error file="previous",title=File must be regenerated::Run org.unicode.text.UCD.Main build MakeUnicodeFiles and copy any changed files to unicodetools/data/ucd/dev."
+                }
+                previous=$1
+              }'
+            exit 1
+          }
 
       # https://github.com/unicode-org/unicodetools/blob/main/docs/emoji/aac.md#aacorderjava
       - name: Run command - AAC Order
