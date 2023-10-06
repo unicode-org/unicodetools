@@ -1542,12 +1542,6 @@ A881;SAURASHTRA SIGN VISARGA;Mc;0903;;;;;
 11F01;KAWI SIGN ANUSVARA;Mn;0902;;;;;
 11F03;KAWI SIGN VISARGA;Mc;0903;;;;;
 
-16D40;KIRAT RAI SIGN ANUSVARA;Lm;0902;;;;;
-# L2/22-043R: Nasalization mark is denoted by SIGN TONPI ...
-# It corresponds in Devanagari to candrabindu U+0901.
-16D41;KIRAT RAI SIGN TONPI;Lm;0901;;;;;
-16D42;KIRAT RAI SIGN VISARGA;Lm;0903;;;;;
-
 # SE Asian script combining marks & others
 
 0E4E;THAI CHARACTER YAMAKKAN;Mn;;;;;;
@@ -33638,6 +33632,13 @@ A4F7;LISU LETTER OE;Lo;;;;;;
 # It will also occur in the core spec in near vicinity. Tangsa is 13.20,
 # and will be followed by 13.21 Sunuwar, 13.22 Gurung Khema, 13.23 Kirat Rai.
 
+# In Kirat Rai, these moral equivalents of candrabindu, bindi, and visarga are not combining marks,
+# and should not be equated to the Devanagari combining marks.
+# L2/22-043R puts them before the regular letters (in code point order).
+16D40;KIRAT RAI SIGN ANUSVARA;Lm;;;;;;
+16D41;KIRAT RAI SIGN TONPI;Lm;;;;;;
+16D42;KIRAT RAI SIGN VISARGA;Lm;;;;;;
+
 16D43;KIRAT RAI LETTER A;Lo;;;;;;
 16D44;KIRAT RAI LETTER KA;Lo;;;;;;
 16D45;KIRAT RAI LETTER KHA;Lo;;;;;;
@@ -33675,9 +33676,18 @@ A4F7;LISU LETTER OE;Lo;;;;;;
 16D65;KIRAT RAI VOWEL SIGN U;Lo;;;;;;
 16D66;KIRAT RAI VOWEL SIGN UE;Lo;;;;;;
 16D67;KIRAT RAI VOWEL SIGN E;Lo;;;;;;
+
+# L2/22-043R Section 4.1:
+# The Kirat Rai multipart vowels are intended to collate as units, not by their decompositions.
+# Enclose them in CONTRACTION..DEFAULT.
+
+CONTRACTION
+
 16D68;KIRAT RAI VOWEL SIGN AI;Lo;16D67 16D67;;;;;
 16D69;KIRAT RAI VOWEL SIGN O;Lo;16D63 16D67;;;;;
 16D6A;KIRAT RAI VOWEL SIGN AU;Lo;16D69 16D67;;;;;
+
+DEFAULT
 
 # L2/22-043R: Difference between Sign Virama and Sign Saat:
 # Both the signs are used to mute the inherent vowel sound. [...]
