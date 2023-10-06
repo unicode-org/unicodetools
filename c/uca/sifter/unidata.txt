@@ -1,5 +1,5 @@
-# unidata-15.1.0.txt
-# Date: 2023-07-28, 00:00:00 GMT [KW]
+# unidata-16.0.0.txt
+# Date: 2023-10-06
 # © 2023 Unicode®, Inc.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -8,10 +8,6 @@
 # This input file is used by the sifter to generate the
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
-#
-# Version 15.1.0 draft 5 (Unicode Version: 15.1.0)
-# based on Unicode data file UnicodeData-15.1.0d3.txt
-# Ordering for Unicode 15.1
 #
 # Fields:
 # Unicode;Name;Category;Decomposition;Num value;Comment;Uppercase;Lowercase;Titlecase
@@ -1546,6 +1542,12 @@ A881;SAURASHTRA SIGN VISARGA;Mc;0903;;;;;
 11F01;KAWI SIGN ANUSVARA;Mn;0902;;;;;
 11F03;KAWI SIGN VISARGA;Mc;0903;;;;;
 
+16D40;KIRAT RAI SIGN ANUSVARA;Lm;0902;;;;;
+# L2/22-043R: Nasalization mark is denoted by SIGN TONPI ...
+# It corresponds in Devanagari to candrabindu U+0901.
+16D41;KIRAT RAI SIGN TONPI;Lm;0901;;;;;
+16D42;KIRAT RAI SIGN VISARGA;Lm;0903;;;;;
+
 # SE Asian script combining marks & others
 
 0E4E;THAI CHARACTER YAMAKKAN;Mn;;;;;;
@@ -2211,6 +2213,8 @@ ABEB;MEETEI MAYEK CHEIKHEI;Po;;;;;;
 11F44;KAWI DOUBLE DANDA;Po;;;;;;
 16A6E;MRO DANDA;Po;;;;;;
 16A6F;MRO DOUBLE DANDA;Po;;;;;;
+16D6E;KIRAT RAI DANDA;Po;;;;;;
+16D6F;KIRAT RAI DOUBLE DANDA;Po;;;;;;
 1C7E;OL CHIKI PUNCTUATION MUCAAD;Po;;;;;;
 1C7F;OL CHIKI PUNCTUATION DOUBLE MUCAAD;Po;;;;;;
 
@@ -2926,9 +2930,13 @@ AA5C;CHAM PUNCTUATION SPIRAL;Po;;;;;;
 115D5;SIDDHAM SECTION MARK WITH CIRCLES AND RAYS;Po;;;;;;
 115D6;SIDDHAM SECTION MARK WITH CIRCLES AND TWO ENCLOSURES;Po;;;;;;
 115D7;SIDDHAM SECTION MARK WITH CIRCLES AND FOUR ENCLOSURES;Po;;;;;;
+
 11643;MODI ABBREVIATION SIGN;Po;;;;;;
 116B9;TAKRI ABBREVIATION SIGN;Po;;;;;;
 1183B;DOGRA ABBREVIATION SIGN;Po;;;;;;
+# L2/22-043R: Sign Yupi is used to make abbreviations
+16D6D;KIRAT RAI SIGN YUPI;Po;;;;;;
+
 11945;DIVES AKURU GAP FILLER;Po;;;;;;
 119E2;NANDINAGARI SIGN SIDDHAM;Po;;;;;;
 11FFF;TAMIL PUNCTUATION END OF TEXT;Po;;;;;;
@@ -33621,6 +33629,63 @@ A4F7;LISU LETTER OE;Lo;;;;;;
 16ABC;TANGSA LETTER DHA;Lo;;;;;;
 16ABD;TANGSA LETTER CHA;Lo;;;;;;
 16ABE;TANGSA LETTER ZA;Lo;;;;;;
+
+# Kirat Rai script begins here
+
+# After Tangsa as suggested by Ken Whistler:
+# Tangsa is another recently created script used in the same general area,
+# and the code point ranges are in close vicinity (deliberately).
+# It will also occur in the core spec in near vicinity. Tangsa is 13.20,
+# and will be followed by 13.21 Sunuwar, 13.22 Gurung Khema, 13.23 Kirat Rai.
+
+16D43;KIRAT RAI LETTER A;Lo;;;;;;
+16D44;KIRAT RAI LETTER KA;Lo;;;;;;
+16D45;KIRAT RAI LETTER KHA;Lo;;;;;;
+16D46;KIRAT RAI LETTER GA;Lo;;;;;;
+16D47;KIRAT RAI LETTER GHA;Lo;;;;;;
+16D48;KIRAT RAI LETTER NGA;Lo;;;;;;
+16D49;KIRAT RAI LETTER CA;Lo;;;;;;
+16D4A;KIRAT RAI LETTER CHA;Lo;;;;;;
+16D4B;KIRAT RAI LETTER JA;Lo;;;;;;
+16D4C;KIRAT RAI LETTER JHA;Lo;;;;;;
+16D4D;KIRAT RAI LETTER NYA;Lo;;;;;;
+16D4E;KIRAT RAI LETTER TTA;Lo;;;;;;
+16D4F;KIRAT RAI LETTER TTHA;Lo;;;;;;
+16D50;KIRAT RAI LETTER DDA;Lo;;;;;;
+16D51;KIRAT RAI LETTER DDHA;Lo;;;;;;
+16D52;KIRAT RAI LETTER TA;Lo;;;;;;
+16D53;KIRAT RAI LETTER THA;Lo;;;;;;
+16D54;KIRAT RAI LETTER DA;Lo;;;;;;
+16D55;KIRAT RAI LETTER DHA;Lo;;;;;;
+16D56;KIRAT RAI LETTER NA;Lo;;;;;;
+16D57;KIRAT RAI LETTER PA;Lo;;;;;;
+16D58;KIRAT RAI LETTER PHA;Lo;;;;;;
+16D59;KIRAT RAI LETTER BA;Lo;;;;;;
+16D5A;KIRAT RAI LETTER BHA;Lo;;;;;;
+16D5B;KIRAT RAI LETTER MA;Lo;;;;;;
+16D5C;KIRAT RAI LETTER YA;Lo;;;;;;
+16D5D;KIRAT RAI LETTER RA;Lo;;;;;;
+16D5E;KIRAT RAI LETTER LA;Lo;;;;;;
+16D5F;KIRAT RAI LETTER VA;Lo;;;;;;
+16D60;KIRAT RAI LETTER SA;Lo;;;;;;
+16D61;KIRAT RAI LETTER SHA;Lo;;;;;;
+16D62;KIRAT RAI LETTER HA;Lo;;;;;;
+16D63;KIRAT RAI VOWEL SIGN AA;Lo;;;;;;
+16D64;KIRAT RAI VOWEL SIGN I;Lo;;;;;;
+16D65;KIRAT RAI VOWEL SIGN U;Lo;;;;;;
+16D66;KIRAT RAI VOWEL SIGN UE;Lo;;;;;;
+16D67;KIRAT RAI VOWEL SIGN E;Lo;;;;;;
+16D68;KIRAT RAI VOWEL SIGN AI;Lo;16D67 16D67;;;;;
+16D69;KIRAT RAI VOWEL SIGN O;Lo;16D63 16D67;;;;;
+16D6A;KIRAT RAI VOWEL SIGN AU;Lo;16D69 16D67;;;;;
+
+# L2/22-043R: Difference between Sign Virama and Sign Saat:
+# Both the signs are used to mute the inherent vowel sound. [...]
+# SIGN SAAT is only used to mute the inherent vowel of the first letter of the word;
+# all other places are represented by SIGN VIRAMA.
+# Both the signs are represented in Devanagari by virama U+094D.
+16D6B;KIRAT RAI SIGN VIRAMA;Lm;;;;;;
+16D6C;KIRAT RAI SIGN SAAT;Lm;<sort> 16D6B;;;;;
 
 # Aegean syllabic scripts start here
 
