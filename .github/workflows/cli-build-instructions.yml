@@ -162,7 +162,7 @@ jobs:
       - name: Check that UCD files are consistent
         run: |
           cd unicodetools/mine/src
-          ./py/copygenerateducd.py
+          python3 -B ./py/copygenerateducd.py
           git diff --compact-summary --exit-code || {
             git diff --compact-summary |
               awk '{
