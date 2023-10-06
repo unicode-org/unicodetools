@@ -1,5 +1,5 @@
 # DerivedAge-16.0.0.txt
-# Date: 2023-10-02, 13:44:05 GMT
+# Date: 2023-10-06, 12:03:40 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2009,8 +2009,10 @@ FDFE..FDFF    ; 14.0 #   [2] ARABIC LIGATURE SUBHAANAHU WA TAAALAA..ARABIC LIGAT
 
 # Newly assigned in Unicode 16.0.0 (September, 2024)
 
+0897          ; 16.0 #       ARABIC PEPET
+10EC2..10EC4  ; 16.0 #   [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
 16D40..16D79  ; 16.0 #  [58] KIRAT RAI SIGN ANUSVARA..KIRAT RAI DIGIT NINE
 
-# Total code points: 58
+# Total code points: 62
 
 # EOF
