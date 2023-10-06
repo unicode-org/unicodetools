@@ -1,60 +1,5 @@
-16D40 ; Bindu # Lm KIRAT RAI SIGN ANUSVARA
-16D41 ; Bindu # Lm KIRAT RAI SIGN TONPI
-16D42 ; Visarga # Lm KIRAT RAI SIGN VISARGA
-16D43 ; Consonant # Lo KIRAT RAI LETTER A
-16D44 ; Consonant # Lo KIRAT RAI LETTER KA
-16D45 ; Consonant # Lo KIRAT RAI LETTER KHA
-16D46 ; Consonant # Lo KIRAT RAI LETTER GA
-16D47 ; Consonant # Lo KIRAT RAI LETTER GHA
-16D48 ; Consonant # Lo KIRAT RAI LETTER NGA
-16D49 ; Consonant # Lo KIRAT RAI LETTER CA
-16D4A ; Consonant # Lo KIRAT RAI LETTER CHA
-16D4B ; Consonant # Lo KIRAT RAI LETTER JA
-16D4C ; Consonant # Lo KIRAT RAI LETTER JHA
-16D4D ; Consonant # Lo KIRAT RAI LETTER NYA
-16D4E ; Consonant # Lo KIRAT RAI LETTER TTA
-16D4F ; Consonant # Lo KIRAT RAI LETTER TTHA
-16D50 ; Consonant # Lo KIRAT RAI LETTER DDA
-16D51 ; Consonant # Lo KIRAT RAI LETTER DDHA
-16D52 ; Consonant # Lo KIRAT RAI LETTER TA
-16D53 ; Consonant # Lo KIRAT RAI LETTER THA
-16D54 ; Consonant # Lo KIRAT RAI LETTER DA
-16D55 ; Consonant # Lo KIRAT RAI LETTER DHA
-16D56 ; Consonant # Lo KIRAT RAI LETTER NA
-16D57 ; Consonant # Lo KIRAT RAI LETTER PA
-16D58 ; Consonant # Lo KIRAT RAI LETTER PHA
-16D59 ; Consonant # Lo KIRAT RAI LETTER BA
-16D5A ; Consonant # Lo KIRAT RAI LETTER BHA
-16D5B ; Consonant # Lo KIRAT RAI LETTER MA
-16D5C ; Consonant # Lo KIRAT RAI LETTER YA
-16D5D ; Consonant # Lo KIRAT RAI LETTER RA
-16D5E ; Consonant # Lo KIRAT RAI LETTER LA
-16D5F ; Consonant # Lo KIRAT RAI LETTER VA
-16D60 ; Consonant # Lo KIRAT RAI LETTER SA
-16D61 ; Consonant # Lo KIRAT RAI LETTER SHA
-16D62 ; Consonant # Lo KIRAT RAI LETTER HA
-16D63 ; Vowel_Dependent # Lo KIRAT RAI VOWEL SIGN AA
-16D64 ; Vowel_Dependent # Lo KIRAT RAI VOWEL SIGN I
-16D65 ; Vowel_Dependent # Lo KIRAT RAI VOWEL SIGN U
-16D66 ; Vowel_Dependent # Lo KIRAT RAI VOWEL SIGN UE
-16D67 ; Vowel_Dependent # Lo KIRAT RAI VOWEL SIGN E
-16D68 ; Vowel_Dependent # Lo KIRAT RAI VOWEL SIGN AI
-16D69 ; Vowel_Dependent # Lo KIRAT RAI VOWEL SIGN O
-16D6A ; Vowel_Dependent # Lo KIRAT RAI VOWEL SIGN AU
-16D6B ; Pure_Killer # Lm KIRAT RAI SIGN VIRAMA
-16D6C ; Pure_Killer # Lm KIRAT RAI SIGN SAAT
-16D70 ; Number # Nd KIRAT RAI DIGIT ZERO
-16D71 ; Number # Nd KIRAT RAI DIGIT ONE
-16D72 ; Number # Nd KIRAT RAI DIGIT TWO
-16D73 ; Number # Nd KIRAT RAI DIGIT THREE
-16D74 ; Number # Nd KIRAT RAI DIGIT FOUR
-16D75 ; Number # Nd KIRAT RAI DIGIT FIVE
-16D76 ; Number # Nd KIRAT RAI DIGIT SIX
-16D77 ; Number # Nd KIRAT RAI DIGIT SEVEN
-16D78 ; Number # Nd KIRAT RAI DIGIT EIGHT
-16D79 ; Number # Nd KIRAT RAI DIGIT NINE
 # IndicSyllabicCategory-16.0.0.txt
-# Date: 2023-10-02, 22:58:33 GMT
+# Date: 2023-10-06, 13:10:36 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -190,6 +135,7 @@ A980..A981    ; Bindu # Mn   [2] JAVANESE SIGN PANYANGGA..JAVANESE SIGN CECAK
 11D40         ; Bindu # Mn       MASARAM GONDI SIGN ANUSVARA
 11D95         ; Bindu # Mn       GUNJALA GONDI SIGN ANUSVARA
 11F00..11F01  ; Bindu # Mn   [2] KAWI SIGN CANDRABINDU..KAWI SIGN ANUSVARA
+16D40..16D41  ; Bindu # Lm   [2] KIRAT RAI SIGN ANUSVARA..KIRAT RAI SIGN TONPI
 
 # ================================================
 
@@ -237,6 +183,7 @@ AAF5          ; Visarga # Mc       MEETEI MAYEK VOWEL SIGN VISARGA
 11D41         ; Visarga # Mn       MASARAM GONDI SIGN VISARGA
 11D96         ; Visarga # Mc       GUNJALA GONDI SIGN VISARGA
 11F03         ; Visarga # Mc       KAWI SIGN VISARGA
+16D42         ; Visarga # Lm       KIRAT RAI SIGN VISARGA
 
 # ================================================
 
@@ -379,6 +326,7 @@ ABED          ; Pure_Killer # Mn       MEETEI MAYEK APUN IYEK
 11A34         ; Pure_Killer # Mn       ZANABAZAR SQUARE SIGN VIRAMA
 11D44         ; Pure_Killer # Mn       MASARAM GONDI SIGN HALANTA
 11F41         ; Pure_Killer # Mc       KAWI SIGN KILLER
+16D6B..16D6C  ; Pure_Killer # Lm   [2] KIRAT RAI SIGN VIRAMA..KIRAT RAI SIGN SAAT
 
 # ================================================
 
@@ -767,6 +715,7 @@ ABE9..ABEA    ; Vowel_Dependent # Mc   [2] MEETEI MAYEK VOWEL SIGN CHEINAP..MEET
 11F36..11F3A  ; Vowel_Dependent # Mn   [5] KAWI VOWEL SIGN I..KAWI VOWEL SIGN VOCALIC R
 11F3E..11F3F  ; Vowel_Dependent # Mc   [2] KAWI VOWEL SIGN E..KAWI VOWEL SIGN AI
 11F40         ; Vowel_Dependent # Mn       KAWI VOWEL SIGN EU
+16D63..16D6A  ; Vowel_Dependent # Lo   [8] KIRAT RAI VOWEL SIGN AA..KIRAT RAI VOWEL SIGN AU
 
 # ================================================
 
@@ -977,6 +926,7 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 11D6C..11D89  ; Consonant # Lo  [30] GUNJALA GONDI LETTER YA..GUNJALA GONDI LETTER SA
 11EE0..11EF1  ; Consonant # Lo  [18] MAKASAR LETTER KA..MAKASAR LETTER A
 11F12..11F33  ; Consonant # Lo  [34] KAWI LETTER KA..KAWI LETTER JNYA
+16D43..16D62  ; Consonant # Lo  [32] KIRAT RAI LETTER A..KIRAT RAI LETTER HA
 
 # ================================================
 
@@ -1381,6 +1331,7 @@ ABF0..ABF9    ; Number # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NI
 11D50..11D59  ; Number # Nd  [10] MASARAM GONDI DIGIT ZERO..MASARAM GONDI DIGIT NINE
 11DA0..11DA9  ; Number # Nd  [10] GUNJALA GONDI DIGIT ZERO..GUNJALA GONDI DIGIT NINE
 11F50..11F59  ; Number # Nd  [10] KAWI DIGIT ZERO..KAWI DIGIT NINE
+16D70..16D79  ; Number # Nd  [10] KIRAT RAI DIGIT ZERO..KIRAT RAI DIGIT NINE
 
 # ================================================
 
