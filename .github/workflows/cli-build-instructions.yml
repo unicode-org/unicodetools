@@ -100,7 +100,7 @@ jobs:
 
   # Out-of-source build.
   ucd-and-smoke-tests:
-    name: UCD consistency, invariants, smoke-test generators
+    name: Check UCD consistency, invariants, smoke-test generators
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
