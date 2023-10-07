@@ -106,7 +106,6 @@ jobs:
       - name: Checkout Unicode Tools
         uses: actions/checkout@v3
         with:
-          repository: unicode-org/unicodetools
           path: unicodetools/mine/src
       - name: Get the CLDR_REF from pom.xml
         id: cldr_ref
@@ -154,8 +153,6 @@ jobs:
       - name: Check that UCD files are consistent
         run: |
           cd unicodetools/mine/src
-          # TODO(egg): Why do we need to chmod despite my git update-index --chmod=+x?
-          chmod +x py/copygenerateducd.py
           ./py/copygenerateducd.py --out-of-source -y
           git diff --compact-summary --exit-code || {
             git diff --compact-summary |
