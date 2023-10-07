@@ -81,8 +81,14 @@ jobs:
         run: |
           mkdir -p Generated/BIN
 
-      - name: Run command - Build and Test
-        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+      # Since these are just examples to smoke-test the in-source build process,
+      # let’s not run the whole build and test suite, which is quite slow (6 min
+      # 26 s as of this writing).  Just run the invariant tests and smoke-test
+      # MakeUnicodeFiles.  We don’t even check that MakeUnicodeFiles doesn’t
+      # change anything, which makes little sense; but that is the job of the
+      # other job.
+      - name: Run invariant tests
+        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestTestUnicodeInvariants -DfailIfNoTests=false -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -162,6 +168,8 @@ jobs:
             exit 1
           }
 
+      # Only test once we know the UCD is internally consistent.
+      # MakeUnicodeFiles is much faster than this anyway.
       - name: Run command - Build and Test
         run: |
           cd unicodetools/mine/src
