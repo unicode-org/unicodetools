@@ -162,7 +162,7 @@ jobs:
       - name: Check that UCD files are consistent
         run: |
           cd unicodetools/mine/src
-          stat py/copygenerateducd.py
+          chmod +x py/copygenerateducd.py  # TODO(egg): Why do we need that despite my git update-index --chmod=+x?
           ./py/copygenerateducd.py --out-of-source -y
           git diff --compact-summary --exit-code || {
             git diff --compact-summary |
