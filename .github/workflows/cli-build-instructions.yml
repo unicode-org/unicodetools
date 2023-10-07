@@ -92,8 +92,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # Out-of-source build.
-  ucd-security-idna-emoji:
-    name: Check UCD, security, IDNA, & emoji data
+  tests:
+    name: Build and test, including invariants
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
@@ -152,6 +152,52 @@ jobs:
           path: |
             unicodetools/mine/Generated/UnicodeTestResults.*
 
+  # Out-of-source build.
+  ucd-consistency-and-smoke-tests:
+    name: Check UCD consistency, smoke-test generators
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Unicode Tools
+        uses: actions/checkout@v3
+        with:
+          repository: unicode-org/unicodetools
+          path: unicodetools/mine/src
+      - name: Get the CLDR_REF from pom.xml
+        id: cldr_ref
+        run: echo "CLDR_REF="$(mvn --file unicodetools/mine/src/pom.xml help:evaluate -Dexpression=cldr.version -q -DforceStdout | cut -d- -f3) >> $GITHUB_OUTPUT && cat ${GITHUB_OUTPUT}
+      - name: Verify CLDR checkout ref
+        run: echo CLDR_REF="${{ steps.cldr_ref.outputs.CLDR_REF }}" && [ "${{ steps.cldr_ref.outputs.CLDR_REF }}x" != "x" ] # fail if empty
+      - name: Cache CLDR repository
+        uses: actions/cache@v3
+        with:
+          path: cldr/mine/src
+          key: cldr-${{ steps.cldr_ref.outputs.CLDR_REF }}
+          restore-keys: |
+            cldr
+      - name: Check out CLDR
+        uses: actions/checkout@v3
+        with:
+          repository: unicode-org/cldr
+          path: cldr/mine/src
+          ref: main
+          fetch-depth: 0
+      - name: Switch CLDR to CLDR_REF
+        run: cd cldr/mine/src && git fetch && git checkout ${{ steps.cldr_ref.outputs.CLDR_REF }}
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Set up out-of-source output dir
+        run: |
+          mkdir -p unicodetools/mine/Generated/BIN
+
       - name: Run command - Make Unicode Files
         run: |
           cd unicodetools/mine/src
@@ -162,7 +208,8 @@ jobs:
       - name: Check that UCD files are consistent
         run: |
           cd unicodetools/mine/src
-          chmod +x py/copygenerateducd.py  # TODO(egg): Why do we need that despite my git update-index --chmod=+x?
+          # TODO(egg): Why do we need to chmod despite my git update-index --chmod=+x?
+          chmod +x py/copygenerateducd.py
           ./py/copygenerateducd.py --out-of-source -y
           git diff --compact-summary --exit-code || {
             git diff --compact-summary |

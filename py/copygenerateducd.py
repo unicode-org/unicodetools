@@ -17,7 +17,7 @@ import sys
 
 
 def main():
-    out_of_source = '--out-of-source' in sys.argv()[1:]
+    out_of_source = '--out-of-source' in sys.argv[1:]
     cwd = Path().cwd()
     uversion = os.getenv("CURRENT_UVERSION")
     genucddir = (cwd / ".." if out_of_source else cwd) / "Generated" / "UCD" / uversion
