@@ -325,6 +325,7 @@ FFF0..FFFF; Specials
 1E290..1E2BF; Toto
 1E2C0..1E2FF; Wancho
 1E4D0..1E4FF; Nag Mundari
+1E5D0..1E5FF; Ol Onal
 1E7E0..1E7FF; Ethiopic Extended-B
 1E800..1E8DF; Mende Kikakui
 1E900..1E95F; Adlam
