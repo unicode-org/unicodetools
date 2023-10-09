@@ -429,6 +429,9 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 
 # ================================================
 
+1612A..1612D ; Other_Alphabetic
+1611E..16129; Other_Alphabetic
+1612D..1612F; Other_Alphabetic
 0345          ; Other_Alphabetic # Mn       COMBINING GREEK YPOGEGRAMMENI
 05B0..05BD    ; Other_Alphabetic # Mn  [14] HEBREW POINT SHEVA..HEBREW POINT METEG
 05BF          ; Other_Alphabetic # Mn       HEBREW POINT RAFE
