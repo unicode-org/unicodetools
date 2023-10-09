@@ -1,5 +1,5 @@
 # DerivedAge-16.0.0.txt
-# Date: 2023-10-03, 14:22:33 GMT
+# Date: 2023-10-09, 14:50:33 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2009,10 +2009,12 @@ FDFE..FDFF    ; 14.0 #   [2] ARABIC LIGATURE SUBHAANAHU WA TAAALAA..ARABIC LIGAT
 
 # Newly assigned in Unicode 16.0.0 (September, 2024)
 
+0897          ; 16.0 #       ARABIC PEPET
 10D40..10D65  ; 16.0 #  [38] GARAY DIGIT ZERO..GARAY CAPITAL LETTER OLD NA
 10D69..10D85  ; 16.0 #  [29] GARAY VOWEL SIGN E..GARAY SMALL LETTER OLD NA
 10D8E..10D8F  ; 16.0 #   [2] GARAY PLUS SIGN..GARAY MINUS SIGN
+10EC2..10EC4  ; 16.0 #   [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
 
-# Total code points: 69
+# Total code points: 73
 
 # EOF
