@@ -1,3 +1,20 @@
+# Indic_Syllabic_Category=Bindu
+1612D ; Bindu # Mn GURUNG KHEMA SIGN ANUSVARA
+# Indic_Syllabic_Category=Pure_Killer
+1612F ; Pure_Killer # Mn GURUNG KHEMA SIGN THOLHOMA
+# Indic_Syllabic_Category=Vowel_Independent
+16100 ; Vowel_Independent # Lo GURUNG KHEMA LETTER A
+# Indic_Syllabic_Category=Vowel_Dependent
+1611E..16129 ; Vowel_Dependent # Mn [12] GURUNG KHEMA VOWEL SIGN AA .. GURUNG KHEMA VOWEL LENGTH MARK
+# Indic_Syllabic_Category=Consonant
+16101..1611D ; Consonant # Lo [29] GURUNG KHEMA LETTER KA .. GURUNG KHEMA LETTER SA
+# Indic_Syllabic_Category=Consonant_Medial
+1612A..1612C ; Consonant_Medial # Mc [03] GURUNG KHEMA CONSONANT SIGN MEDIAL YA .. GURUNG KHEMA CONSONANT SIGN
+MEDIAL HA
+1612E ; Consonant_Medial # Mn GURUNG KHEMA CONSONANT SIGN MEDIAL RA
+# Indic_Syllabic_Category=Number
+16130..16139 ; Number # Nd [10] GURUNG KHEMA DIGIT ZERO .. GURUNG KHEMA DIGIT NINE
+
 # IndicSyllabicCategory-16.0.0.txt
 # Date: 2023-10-02, 22:58:33 GMT
 # © 2023 Unicode®, Inc.
