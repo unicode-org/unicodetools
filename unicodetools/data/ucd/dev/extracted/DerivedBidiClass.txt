@@ -1,5 +1,5 @@
 # DerivedBidiClass-16.0.0.txt
-# Date: 2023-10-03, 14:55:37 GMT
+# Date: 2023-10-09, 14:49:24 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1273,7 +1273,7 @@ FB46..FB4F    ; R # Lo  [10] HEBREW LETTER TSADI WITH DAGESH..HEBREW LIGATURE AL
 10CFA..10CFF  ; R # No   [6] OLD HUNGARIAN NUMBER ONE..OLD HUNGARIAN NUMBER ONE THOUSAND
 10D4A..10D4F  ; R # Lo   [6] GARAY VOWEL SIGN A..GARAY SUKUN
 10D50..10D65  ; R # L&  [22] GARAY CAPITAL LETTER A..GARAY CAPITAL LETTER OLD NA
-10D6F         ; R # So       GARAY REDUPLICATION MARK
+10D6F         ; R # Lm       GARAY REDUPLICATION MARK
 10D70..10D85  ; R # L&  [22] GARAY SMALL LETTER A..GARAY SMALL LETTER OLD NA
 10D8E..10D8F  ; R # Sm   [2] GARAY PLUS SIGN..GARAY MINUS SIGN
 10E80..10EA9  ; R # Lo  [42] YEZIDI LETTER ELIF..YEZIDI LETTER ET

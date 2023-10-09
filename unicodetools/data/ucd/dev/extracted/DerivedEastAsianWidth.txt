@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-16.0.0.txt
-# Date: 2023-10-03, 14:23:04 GMT
+# Date: 2023-10-09, 14:49:27 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1472,7 +1472,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 10D50..10D65  ; N # L&  [22] GARAY CAPITAL LETTER A..GARAY CAPITAL LETTER OLD NA
 10D69..10D6D  ; N # Mn   [5] GARAY VOWEL SIGN E..GARAY CONSONANT NASALIZATION MARK
 10D6E         ; N # Pd       GARAY HYPHEN
-10D6F         ; N # So       GARAY REDUPLICATION MARK
+10D6F         ; N # Lm       GARAY REDUPLICATION MARK
 10D70..10D85  ; N # L&  [22] GARAY SMALL LETTER A..GARAY SMALL LETTER OLD NA
 10D8E..10D8F  ; N # Sm   [2] GARAY PLUS SIGN..GARAY MINUS SIGN
 10E60..10E7E  ; N # No  [31] RUMI DIGIT ONE..RUMI FRACTION TWO THIRDS

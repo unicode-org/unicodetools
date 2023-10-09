@@ -1,5 +1,5 @@
 # SentenceBreakProperty-16.0.0.txt
-# Date: 2023-10-03, 14:23:40 GMT
+# Date: 2023-10-09, 14:49:47 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2357,6 +2357,7 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 10C00..10C48  ; OLetter # Lo  [73] OLD TURKIC LETTER ORKHON A..OLD TURKIC LETTER ORKHON BASH
 10D00..10D23  ; OLetter # Lo  [36] HANIFI ROHINGYA LETTER A..HANIFI ROHINGYA MARK NA KHONNA
 10D4A..10D4F  ; OLetter # Lo   [6] GARAY VOWEL SIGN A..GARAY SUKUN
+10D6F         ; OLetter # Lm       GARAY REDUPLICATION MARK
 10E80..10EA9  ; OLetter # Lo  [42] YEZIDI LETTER ELIF..YEZIDI LETTER ET
 10EB0..10EB1  ; OLetter # Lo   [2] YEZIDI LETTER LAM WITH DOT ABOVE..YEZIDI LETTER YOT WITH CIRCUMFLEX ABOVE
 10F00..10F1C  ; OLetter # Lo  [29] OLD SOGDIAN LETTER ALEPH..OLD SOGDIAN LETTER FINAL TAW WITH VERTICAL TAIL
@@ -2540,7 +2541,7 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 30000..3134A  ; OLetter # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; OLetter # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 132664
+# Total code points: 132665
 
 # ================================================
 
