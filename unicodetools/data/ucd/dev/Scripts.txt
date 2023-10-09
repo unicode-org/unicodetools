@@ -3037,7 +3037,6 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 1E5EE..1E5EF  ; Ol_Onal # Mn   [2] OL ONAL SIGN MU..OL ONAL SIGN IKIR
 1E5F0         ; Ol_Onal # Lo       OL ONAL SIGN HODDOND
 1E5F1..1E5FA  ; Ol_Onal # Nd  [10] OL ONAL DIGIT ZERO..OL ONAL DIGIT NINE
-1E5FB..1E5FE  ; Ol_Onal # Cn   [4] <reserved-1E5FB>..<reserved-1E5FE>
 1E5FF         ; Ol_Onal # Po       OL ONAL ABBREVIATION SIGN
 
 # Total code points: 48
