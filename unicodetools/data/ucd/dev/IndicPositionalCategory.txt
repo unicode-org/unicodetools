@@ -1,17 +1,5 @@
-# Indic_Positional_Category=Left
-1612A..1612B ; Left # Mc [02] GURUNG KHEMA CONSONANT SIGN MEDIAL YA .. GURUNG KHEMA CONSONANT SIGN MEDIAL VA
-# Indic_Positional_Category=Right
-1612C ; Right # Mc GURUNG KHEMA CONSONANT SIGN MEDIAL HA
-# Indic_Positional_Category=Top
-1611E..16129 ; Top # Mc [12] GURUNG KHEMA VOWEL SIGN AA .. GURUNG KHEMA VOWEL SIGN LENGTH MARK
-# Indic_Positional_Category=Top
-1612D ; Top # Mc GURUNG KHEMA SIGN ANUSVARA
-# Indic_Positional_Category=Bottom
-1612E ; Bottom # Mn GURUNG KHEMA CONSONANT SIGN MEDIAL RA
-1612F ; Bottom # Mn GURUNG KHEMA SIGN THOLHOMA
-
 # IndicPositionalCategory-16.0.0.txt
-# Date: 2023-10-02, 22:58:33 GMT
+# Date: 2023-10-09, 12:15:22 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -312,6 +300,7 @@ ABEC          ; Right # Mc       MEETEI MAYEK LUM IYEK
 11F03         ; Right # Mc       KAWI SIGN VISARGA
 11F34..11F35  ; Right # Mc   [2] KAWI VOWEL SIGN AA..KAWI VOWEL SIGN ALTERNATE AA
 11F41         ; Right # Mc       KAWI SIGN KILLER
+1612C         ; Right # Mc       GURUNG KHEMA CONSONANT SIGN MEDIAL HA
 
 # Indic_Positional_Category=Left
 
@@ -363,6 +352,7 @@ AAEE          ; Left # Mc       MEETEI MAYEK VOWEL SIGN AU
 11CB1         ; Left # Mc       MARCHEN VOWEL SIGN I
 11EF5         ; Left # Mc       MAKASAR VOWEL SIGN E
 11F3E..11F3F  ; Left # Mc   [2] KAWI VOWEL SIGN E..KAWI VOWEL SIGN AI
+1612A..1612B  ; Left # Mc   [2] GURUNG KHEMA CONSONANT SIGN MEDIAL YA..GURUNG KHEMA CONSONANT SIGN MEDIAL VA
 
 # Indic_Positional_Category=Visual_Order_Left
 
@@ -602,6 +592,8 @@ ABE5          ; Top # Mn       MEETEI MAYEK VOWEL SIGN ANAP
 11F02         ; Top # Lo       KAWI SIGN REPHA
 11F36..11F37  ; Top # Mn   [2] KAWI VOWEL SIGN I..KAWI VOWEL SIGN II
 11F40         ; Top # Mn       KAWI VOWEL SIGN EU
+1611E..16129  ; Top # Mn  [12] GURUNG KHEMA VOWEL SIGN AA..GURUNG KHEMA VOWEL LENGTH MARK
+1612D         ; Top # Mn       GURUNG KHEMA SIGN ANUSVARA
 
 # Indic_Positional_Category=Bottom
 
@@ -752,6 +744,7 @@ ABED          ; Bottom # Mn       MEETEI MAYEK APUN IYEK
 11D47         ; Bottom # Mn       MASARAM GONDI RA-KARA
 11EF4         ; Bottom # Mn       MAKASAR VOWEL SIGN U
 11F38..11F3A  ; Bottom # Mn   [3] KAWI VOWEL SIGN U..KAWI VOWEL SIGN VOCALIC R
+1612E..1612F  ; Bottom # Mn   [2] GURUNG KHEMA CONSONANT SIGN MEDIAL RA..GURUNG KHEMA SIGN THOLHOMA
 
 # Indic_Positional_Category=Top_And_Bottom
 

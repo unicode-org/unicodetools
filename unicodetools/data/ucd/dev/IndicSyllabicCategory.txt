@@ -1,21 +1,5 @@
-# Indic_Syllabic_Category=Bindu
-1612D ; Bindu # Mn GURUNG KHEMA SIGN ANUSVARA
-# Indic_Syllabic_Category=Pure_Killer
-1612F ; Pure_Killer # Mn GURUNG KHEMA SIGN THOLHOMA
-# Indic_Syllabic_Category=Vowel_Independent
-16100 ; Vowel_Independent # Lo GURUNG KHEMA LETTER A
-# Indic_Syllabic_Category=Vowel_Dependent
-1611E..16129 ; Vowel_Dependent # Mn [12] GURUNG KHEMA VOWEL SIGN AA .. GURUNG KHEMA VOWEL LENGTH MARK
-# Indic_Syllabic_Category=Consonant
-16101..1611D ; Consonant # Lo [29] GURUNG KHEMA LETTER KA .. GURUNG KHEMA LETTER SA
-# Indic_Syllabic_Category=Consonant_Medial
-1612A..1612C ; Consonant_Medial # Mc [03] GURUNG KHEMA CONSONANT SIGN MEDIAL YA .. GURUNG KHEMA CONSONANT SIGN MEDIAL HA
-1612E ; Consonant_Medial # Mn GURUNG KHEMA CONSONANT SIGN MEDIAL RA
-# Indic_Syllabic_Category=Number
-16130..16139 ; Number # Nd [10] GURUNG KHEMA DIGIT ZERO .. GURUNG KHEMA DIGIT NINE
-
 # IndicSyllabicCategory-16.0.0.txt
-# Date: 2023-10-02, 22:58:33 GMT
+# Date: 2023-10-09, 12:15:22 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -151,6 +135,7 @@ A980..A981    ; Bindu # Mn   [2] JAVANESE SIGN PANYANGGA..JAVANESE SIGN CECAK
 11D40         ; Bindu # Mn       MASARAM GONDI SIGN ANUSVARA
 11D95         ; Bindu # Mn       GUNJALA GONDI SIGN ANUSVARA
 11F00..11F01  ; Bindu # Mn   [2] KAWI SIGN CANDRABINDU..KAWI SIGN ANUSVARA
+1612D         ; Bindu # Mn       GURUNG KHEMA SIGN ANUSVARA
 
 # ================================================
 
@@ -340,6 +325,7 @@ ABED          ; Pure_Killer # Mn       MEETEI MAYEK APUN IYEK
 11A34         ; Pure_Killer # Mn       ZANABAZAR SQUARE SIGN VIRAMA
 11D44         ; Pure_Killer # Mn       MASARAM GONDI SIGN HALANTA
 11F41         ; Pure_Killer # Mc       KAWI SIGN KILLER
+1612F         ; Pure_Killer # Mn       GURUNG KHEMA SIGN THOLHOMA
 
 # ================================================
 
@@ -466,6 +452,7 @@ ABD1          ; Vowel_Independent # Lo       MEETEI MAYEK LETTER ATIYA
 11D67..11D68  ; Vowel_Independent # Lo   [2] GUNJALA GONDI LETTER EE..GUNJALA GONDI LETTER AI
 11D6A..11D6B  ; Vowel_Independent # Lo   [2] GUNJALA GONDI LETTER OO..GUNJALA GONDI LETTER AU
 11F04..11F10  ; Vowel_Independent # Lo  [13] KAWI LETTER A..KAWI LETTER O
+16100         ; Vowel_Independent # Lo       GURUNG KHEMA LETTER A
 
 # ================================================
 
@@ -728,6 +715,7 @@ ABE9..ABEA    ; Vowel_Dependent # Mc   [2] MEETEI MAYEK VOWEL SIGN CHEINAP..MEET
 11F36..11F3A  ; Vowel_Dependent # Mn   [5] KAWI VOWEL SIGN I..KAWI VOWEL SIGN VOCALIC R
 11F3E..11F3F  ; Vowel_Dependent # Mc   [2] KAWI VOWEL SIGN E..KAWI VOWEL SIGN AI
 11F40         ; Vowel_Dependent # Mn       KAWI VOWEL SIGN EU
+1611E..16129  ; Vowel_Dependent # Mn  [12] GURUNG KHEMA VOWEL SIGN AA..GURUNG KHEMA VOWEL LENGTH MARK
 
 # ================================================
 
@@ -938,6 +926,7 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 11D6C..11D89  ; Consonant # Lo  [30] GUNJALA GONDI LETTER YA..GUNJALA GONDI LETTER SA
 11EE0..11EF1  ; Consonant # Lo  [18] MAKASAR LETTER KA..MAKASAR LETTER A
 11F12..11F33  ; Consonant # Lo  [34] KAWI LETTER KA..KAWI LETTER JNYA
+16101..1611D  ; Consonant # Lo  [29] GURUNG KHEMA LETTER KA..GURUNG KHEMA LETTER SA
 
 # ================================================
 
@@ -1067,6 +1056,8 @@ AA35..AA36    ; Consonant_Medial # Mn   [2] CHAM CONSONANT SIGN LA..CHAM CONSONA
 11942         ; Consonant_Medial # Mc       DIVES AKURU MEDIAL RA
 11A3B..11A3E  ; Consonant_Medial # Mn   [4] ZANABAZAR SQUARE CLUSTER-FINAL LETTER YA..ZANABAZAR SQUARE CLUSTER-FINAL LETTER VA
 11D47         ; Consonant_Medial # Mn       MASARAM GONDI RA-KARA
+1612A..1612C  ; Consonant_Medial # Mc   [3] GURUNG KHEMA CONSONANT SIGN MEDIAL YA..GURUNG KHEMA CONSONANT SIGN MEDIAL HA
+1612E         ; Consonant_Medial # Mn       GURUNG KHEMA CONSONANT SIGN MEDIAL RA
 
 # ================================================
 
@@ -1342,6 +1333,7 @@ ABF0..ABF9    ; Number # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NI
 11D50..11D59  ; Number # Nd  [10] MASARAM GONDI DIGIT ZERO..MASARAM GONDI DIGIT NINE
 11DA0..11DA9  ; Number # Nd  [10] GUNJALA GONDI DIGIT ZERO..GUNJALA GONDI DIGIT NINE
 11F50..11F59  ; Number # Nd  [10] KAWI DIGIT ZERO..KAWI DIGIT NINE
+16130..16139  ; Number # Nd  [10] GURUNG KHEMA DIGIT ZERO..GURUNG KHEMA DIGIT NINE
 
 # ================================================
 

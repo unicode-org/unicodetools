@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2023-10-02, 12:41:00 GMT
+# Date: 2023-10-09, 12:15:17 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1761,6 +1761,11 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 13441..13446  ; 0 # Lo   [6] EGYPTIAN HIEROGLYPH FULL BLANK..EGYPTIAN HIEROGLYPH WIDE LOST SIGN
 13447..13455  ; 0 # Mn  [15] EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP START..EGYPTIAN HIEROGLYPH MODIFIER DAMAGED
 14400..14646  ; 0 # Lo [583] ANATOLIAN HIEROGLYPH A001..ANATOLIAN HIEROGLYPH A530
+16100..1611D  ; 0 # Lo  [30] GURUNG KHEMA LETTER A..GURUNG KHEMA LETTER SA
+1611E..16129  ; 0 # Mn  [12] GURUNG KHEMA VOWEL SIGN AA..GURUNG KHEMA VOWEL LENGTH MARK
+1612A..1612C  ; 0 # Mc   [3] GURUNG KHEMA CONSONANT SIGN MEDIAL YA..GURUNG KHEMA CONSONANT SIGN MEDIAL HA
+1612D..1612E  ; 0 # Mn   [2] GURUNG KHEMA SIGN ANUSVARA..GURUNG KHEMA CONSONANT SIGN MEDIAL RA
+16130..16139  ; 0 # Nd  [10] GURUNG KHEMA DIGIT ZERO..GURUNG KHEMA DIGIT NINE
 16800..16A38  ; 0 # Lo [569] BAMUM LETTER PHASE-A NGKUE MFON..BAMUM LETTER PHASE-F VUEQ
 16A40..16A5E  ; 0 # Lo  [31] MRO LETTER TA..MRO LETTER TEK
 16A60..16A69  ; 0 # Nd  [10] MRO DIGIT ZERO..MRO DIGIT NINE
@@ -2006,8 +2011,8 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 826762 code points not listed here.
-# Total code points: 1113189
+# The above property value applies to 826704 code points not listed here.
+# Total code points: 1113188
 
 # ================================================
 
@@ -2140,8 +2145,9 @@ ABED          ; 9 # Mn       MEETEI MAYEK APUN IYEK
 11D97         ; 9 # Mn       GUNJALA GONDI VIRAMA
 11F41         ; 9 # Mc       KAWI SIGN KILLER
 11F42         ; 9 # Mn       KAWI CONJOINER
+1612F         ; 9 # Mn       GURUNG KHEMA SIGN THOLHOMA
 
-# Total code points: 65
+# Total code points: 66
 
 # ================================================
 
