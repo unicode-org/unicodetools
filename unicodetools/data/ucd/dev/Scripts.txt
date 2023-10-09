@@ -1,5 +1,5 @@
 # Scripts-16.0.0.txt
-# Date: 2023-10-09, 13:22:09 GMT
+# Date: 2023-10-09, 13:51:26 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -3039,6 +3039,6 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 1E5F1..1E5FA  ; Ol_Onal # Nd  [10] OL ONAL DIGIT ZERO..OL ONAL DIGIT NINE
 1E5FF         ; Ol_Onal # Po       OL ONAL ABBREVIATION SIGN
 
-# Total code points: 48
+# Total code points: 44
 
 # EOF
