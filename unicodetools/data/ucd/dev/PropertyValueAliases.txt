@@ -1,5 +1,5 @@
-# PropertyValueAliases-15.1.0.txt
-# Date: 2023-08-07, 15:21:34 GMT
+# PropertyValueAliases-16.0.0.txt
+# Date: 2023-10-09, 13:39:58 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -463,6 +463,7 @@ blk; Tifinagh                         ; Tifinagh
 blk; Tirhuta                          ; Tirhuta
 blk; Toto                             ; Toto
 blk; Transport_And_Map                ; Transport_And_Map_Symbols
+blk; Tulu_Tigalari                    ; Tulu_Tigalari
 blk; UCAS                             ; Unified_Canadian_Aboriginal_Syllabics; Canadian_Syllabics
 blk; UCAS_Ext                         ; Unified_Canadian_Aboriginal_Syllabics_Extended
 blk; UCAS_Ext_A                       ; Unified_Canadian_Aboriginal_Syllabics_Extended_A
@@ -1442,6 +1443,7 @@ sc ; Tibt                             ; Tibetan
 sc ; Tirh                             ; Tirhuta
 sc ; Tnsa                             ; Tangsa
 sc ; Toto                             ; Toto
+sc ; Tutg                             ; Tulu_Tigalari
 sc ; Ugar                             ; Ugaritic
 sc ; Vaii                             ; Vai
 sc ; Vith                             ; Vithkuqi

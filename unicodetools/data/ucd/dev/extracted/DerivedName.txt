@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2023-10-02, 12:16:30 GMT
+# Date: 2023-10-09, 13:39:52 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -30933,6 +30933,8 @@ FFFD          ; REPLACEMENT CHARACTER
 11372         ; COMBINING GRANTHA LETTER NA
 11373         ; COMBINING GRANTHA LETTER VI
 11374         ; COMBINING GRANTHA LETTER PA
+113D2         ; TULU-TIGALARI GEMINATION MARK
+113D3         ; TULU-TIGALARI SIGN PLUTA
 11400         ; NEWA LETTER A
 11401         ; NEWA LETTER AA
 11402         ; NEWA LETTER I
@@ -44180,6 +44182,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 149817
+# Total code points: 149819
 
 # EOF

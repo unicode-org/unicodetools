@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-16.0.0.txt
-# Date: 2023-10-02, 12:16:33 GMT
+# Date: 2023-10-09, 13:39:54 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -358,6 +358,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 11357         ; Extend # Mc       GRANTHA AU LENGTH MARK
 11366..1136C  ; Extend # Mn   [7] COMBINING GRANTHA DIGIT ZERO..COMBINING GRANTHA DIGIT SIX
 11370..11374  ; Extend # Mn   [5] COMBINING GRANTHA LETTER A..COMBINING GRANTHA LETTER PA
+113D2         ; Extend # Mn       TULU-TIGALARI GEMINATION MARK
 11438..1143F  ; Extend # Mn   [8] NEWA VOWEL SIGN U..NEWA VOWEL SIGN AI
 11442..11444  ; Extend # Mn   [3] NEWA SIGN VIRAMA..NEWA SIGN ANUSVARA
 11446         ; Extend # Mn       NEWA SIGN NUKTA
@@ -459,7 +460,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2131
+# Total code points: 2132
 
 # ================================================
 

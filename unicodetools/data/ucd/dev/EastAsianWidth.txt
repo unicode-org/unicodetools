@@ -1,5 +1,5 @@
 # EastAsianWidth-16.0.0.txt
-# Date: 2023-10-02, 12:16:33 GMT
+# Date: 2023-10-09, 13:39:54 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2065,6 +2065,8 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 11362..11363   ; N  # Mc     [2] GRANTHA VOWEL SIGN VOCALIC L..GRANTHA VOWEL SIGN VOCALIC LL
 11366..1136C   ; N  # Mn     [7] COMBINING GRANTHA DIGIT ZERO..COMBINING GRANTHA DIGIT SIX
 11370..11374   ; N  # Mn     [5] COMBINING GRANTHA LETTER A..COMBINING GRANTHA LETTER PA
+113D2          ; N  # Mn         TULU-TIGALARI GEMINATION MARK
+113D3          ; N  # Lo         TULU-TIGALARI SIGN PLUTA
 11400..11434   ; N  # Lo    [53] NEWA LETTER A..NEWA LETTER HA
 11435..11437   ; N  # Mc     [3] NEWA VOWEL SIGN AA..NEWA VOWEL SIGN II
 11438..1143F   ; N  # Mn     [8] NEWA VOWEL SIGN U..NEWA VOWEL SIGN AI
