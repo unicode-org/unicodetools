@@ -289,6 +289,7 @@ FFF0..FFFF; Specials
 13000..1342F; Egyptian Hieroglyphs
 13430..1345F; Egyptian Hieroglyph Format Controls
 14400..1467F; Anatolian Hieroglyphs
+16100..1613F; Gurung Khema
 16800..16A3F; Bamum Supplement
 16A40..16A6F; Mro
 16A70..16ACF; Tangsa

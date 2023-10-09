@@ -120,6 +120,7 @@ Greek_Ext	;	Greek_Extended
 Gujarati	;	Gujarati
 Gunjala_Gondi	;	Gunjala_Gondi
 Gurmukhi	;	Gurmukhi
+Gurung Khema	;	Gurung Khema
 Half_And_Full_Forms	;	Halfwidth_And_Fullwidth_Forms
 Compat_Jamo	;	Hangul_Compatibility_Jamo
 Jamo	;	Hangul_Jamo
