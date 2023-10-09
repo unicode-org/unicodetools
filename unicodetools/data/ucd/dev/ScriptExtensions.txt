@@ -499,8 +499,8 @@ FE45..FE46    ; Bopo Hang Hani Hira Kana # Po   [2] SESAME DOT..WHITE SESAME DOT
 
 # Script_Extensions=Arab Nkoo Rohg Syrc Thaa Yezi
 
-060C          ; Arab Nkoo Rohg Syrc Thaa Yezi # Po       ARABIC COMMA
-061B          ; Arab Nkoo Rohg Syrc Thaa Yezi # Po       ARABIC SEMICOLON
+060C          ; Arab Nkoo Rohg Syrc Thaa Yezi Gara # Po       ARABIC COMMA
+061B          ; Arab Nkoo Rohg Syrc Thaa Yezi Gara # Po       ARABIC SEMICOLON
 
 # Total code points: 2
 
@@ -547,7 +547,7 @@ FF64..FF65    ; Bopo Hang Hani Hira Kana Yiii # Po   [2] HALFWIDTH IDEOGRAPHIC C
 
 # Script_Extensions=Adlm Arab Nkoo Rohg Syrc Thaa Yezi
 
-061F          ; Adlm Arab Nkoo Rohg Syrc Thaa Yezi # Po       ARABIC QUESTION MARK
+061F          ; Adlm Arab Nkoo Rohg Syrc Thaa Yezi Gara # Po       ARABIC QUESTION MARK
 
 # Total code points: 1
 
