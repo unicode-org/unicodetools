@@ -1,5 +1,5 @@
-# PropList-15.1.0.txt
-# Date: 2023-08-01, 21:56:53 GMT
+# PropList-16.0.0.txt
+# Date: 2023-10-09, 12:39:17 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -429,9 +429,6 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 
 # ================================================
 
-1612A..1612D ; Other_Alphabetic
-1611E..16129; Other_Alphabetic
-1612D..1612F; Other_Alphabetic
 0345          ; Other_Alphabetic # Mn       COMBINING GREEK YPOGEGRAMMENI
 05B0..05BD    ; Other_Alphabetic # Mn  [14] HEBREW POINT SHEVA..HEBREW POINT METEG
 05BF          ; Other_Alphabetic # Mn       HEBREW POINT RAFE
@@ -821,6 +818,9 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 11F36..11F3A  ; Other_Alphabetic # Mn   [5] KAWI VOWEL SIGN I..KAWI VOWEL SIGN VOCALIC R
 11F3E..11F3F  ; Other_Alphabetic # Mc   [2] KAWI VOWEL SIGN E..KAWI VOWEL SIGN AI
 11F40         ; Other_Alphabetic # Mn       KAWI VOWEL SIGN EU
+1611E..16129  ; Other_Alphabetic # Mn  [12] GURUNG KHEMA VOWEL SIGN AA..GURUNG KHEMA VOWEL LENGTH MARK
+1612A..1612C  ; Other_Alphabetic # Mc   [3] GURUNG KHEMA CONSONANT SIGN MEDIAL YA..GURUNG KHEMA CONSONANT SIGN MEDIAL HA
+1612D..1612F  ; Other_Alphabetic # Mn   [3] GURUNG KHEMA SIGN ANUSVARA..GURUNG KHEMA SIGN THOLHOMA
 16F4F         ; Other_Alphabetic # Mn       MIAO SIGN CONSONANT MODIFIER BAR
 16F51..16F87  ; Other_Alphabetic # Mc  [55] MIAO SIGN ASPIRATION..MIAO VOWEL SIGN UI
 16F8F..16F92  ; Other_Alphabetic # Mn   [4] MIAO TONE RIGHT..MIAO TONE BELOW
@@ -837,7 +837,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1425
+# Total code points: 1443
 
 # ================================================
 
