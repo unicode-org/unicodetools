@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-16.0.0.txt
-# Date: 2023-10-02, 12:16:27 GMT
+# Date: 2023-10-09, 11:14:41 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1181,6 +1181,7 @@ A789..A78A    ; N # Sk   [2] MODIFIER LETTER COLON..MODIFIER LETTER SHORT EQUALS
 A78B..A78E    ; N # L&   [4] LATIN CAPITAL LETTER SALTILLO..LATIN SMALL LETTER L WITH RETROFLEX HOOK AND BELT
 A78F          ; N # Lo       LATIN LETTER SINOLOGICAL DOT
 A790..A7CA    ; N # L&  [59] LATIN CAPITAL LETTER N WITH DESCENDER..LATIN SMALL LETTER S WITH SHORT STROKE OVERLAY
+A7CC..A7CD    ; N # L&   [2] LATIN CAPITAL LETTER S WITH DIAGONAL STROKE..LATIN SMALL LETTER S WITH DIAGONAL STROKE
 A7D0..A7D1    ; N # L&   [2] LATIN CAPITAL LETTER CLOSED INSULAR G..LATIN SMALL LETTER CLOSED INSULAR G
 A7D3          ; N # L&       LATIN SMALL LETTER DOUBLE THORN
 A7D5..A7D9    ; N # L&   [5] LATIN SMALL LETTER DOUBLE WYNN..LATIN SMALL LETTER SIGMOID S
@@ -2044,7 +2045,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 766280 code points not listed here.
+# The above property value applies to 766278 code points not listed here.
 # Total code points: 792618
 
 # ================================================
