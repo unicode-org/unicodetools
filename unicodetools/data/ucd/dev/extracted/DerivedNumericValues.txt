@@ -1,5 +1,5 @@
-# DerivedNumericValues-15.1.0.txt
-# Date: 2023-01-05, 20:34:41 GMT
+# DerivedNumericValues-16.0.0.txt
+# Date: 2023-10-09, 13:21:54 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -121,12 +121,13 @@ FF10          ; 0.0 ; ; 0 # Nd       FULLWIDTH DIGIT ZERO
 1E140         ; 0.0 ; ; 0 # Nd       NYIAKENG PUACHUE HMONG DIGIT ZERO
 1E2F0         ; 0.0 ; ; 0 # Nd       WANCHO DIGIT ZERO
 1E4F0         ; 0.0 ; ; 0 # Nd       NAG MUNDARI DIGIT ZERO
+1E5F1         ; 0.0 ; ; 0 # Nd       OL ONAL DIGIT ZERO
 1E950         ; 0.0 ; ; 0 # Nd       ADLAM DIGIT ZERO
 1F100..1F101  ; 0.0 ; ; 0 # No   [2] DIGIT ZERO FULL STOP..DIGIT ZERO COMMA
 1F10B..1F10C  ; 0.0 ; ; 0 # No   [2] DINGBAT CIRCLED SANS-SERIF DIGIT ZERO..DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ZERO
 1FBF0         ; 0.0 ; ; 0 # Nd       SEGMENTED DIGIT ZERO
 
-# Total code points: 88
+# Total code points: 89
 
 # ================================================
 
@@ -543,6 +544,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 1E141         ; 1.0 ; ; 1 # Nd       NYIAKENG PUACHUE HMONG DIGIT ONE
 1E2F1         ; 1.0 ; ; 1 # Nd       WANCHO DIGIT ONE
 1E4F1         ; 1.0 ; ; 1 # Nd       NAG MUNDARI DIGIT ONE
+1E5F2         ; 1.0 ; ; 1 # Nd       OL ONAL DIGIT ONE
 1E8C7         ; 1.0 ; ; 1 # No       MENDE KIKAKUI DIGIT ONE
 1E951         ; 1.0 ; ; 1 # Nd       ADLAM DIGIT ONE
 1EC71         ; 1.0 ; ; 1 # No       INDIC SIYAQ NUMBER ONE
@@ -553,7 +555,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 1FBF1         ; 1.0 ; ; 1 # Nd       SEGMENTED DIGIT ONE
 2092A         ; 1.0 ; ; 1 # Lo       CJK UNIFIED IDEOGRAPH-2092A
 
-# Total code points: 144
+# Total code points: 145
 
 # ================================================
 
@@ -696,6 +698,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 1E142         ; 2.0 ; ; 2 # Nd       NYIAKENG PUACHUE HMONG DIGIT TWO
 1E2F2         ; 2.0 ; ; 2 # Nd       WANCHO DIGIT TWO
 1E4F2         ; 2.0 ; ; 2 # Nd       NAG MUNDARI DIGIT TWO
+1E5F3         ; 2.0 ; ; 2 # Nd       OL ONAL DIGIT TWO
 1E8C8         ; 2.0 ; ; 2 # No       MENDE KIKAKUI DIGIT TWO
 1E952         ; 2.0 ; ; 2 # Nd       ADLAM DIGIT TWO
 1EC72         ; 2.0 ; ; 2 # No       INDIC SIYAQ NUMBER TWO
@@ -707,7 +710,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 1FBF2         ; 2.0 ; ; 2 # Nd       SEGMENTED DIGIT TWO
 22390         ; 2.0 ; ; 2 # Lo       CJK UNIFIED IDEOGRAPH-22390
 
-# Total code points: 146
+# Total code points: 147
 
 # ================================================
 
@@ -842,6 +845,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 1E143         ; 3.0 ; ; 3 # Nd       NYIAKENG PUACHUE HMONG DIGIT THREE
 1E2F3         ; 3.0 ; ; 3 # Nd       WANCHO DIGIT THREE
 1E4F3         ; 3.0 ; ; 3 # Nd       NAG MUNDARI DIGIT THREE
+1E5F4         ; 3.0 ; ; 3 # Nd       OL ONAL DIGIT THREE
 1E8C9         ; 3.0 ; ; 3 # No       MENDE KIKAKUI DIGIT THREE
 1E953         ; 3.0 ; ; 3 # Nd       ADLAM DIGIT THREE
 1EC73         ; 3.0 ; ; 3 # No       INDIC SIYAQ NUMBER THREE
@@ -855,7 +859,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 22998         ; 3.0 ; ; 3 # Lo       CJK UNIFIED IDEOGRAPH-22998
 23B1B         ; 3.0 ; ; 3 # Lo       CJK UNIFIED IDEOGRAPH-23B1B
 
-# Total code points: 144
+# Total code points: 145
 
 # ================================================
 
@@ -984,6 +988,7 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 1E144         ; 4.0 ; ; 4 # Nd       NYIAKENG PUACHUE HMONG DIGIT FOUR
 1E2F4         ; 4.0 ; ; 4 # Nd       WANCHO DIGIT FOUR
 1E4F4         ; 4.0 ; ; 4 # Nd       NAG MUNDARI DIGIT FOUR
+1E5F5         ; 4.0 ; ; 4 # Nd       OL ONAL DIGIT FOUR
 1E8CA         ; 4.0 ; ; 4 # No       MENDE KIKAKUI DIGIT FOUR
 1E954         ; 4.0 ; ; 4 # Nd       ADLAM DIGIT FOUR
 1EC74         ; 4.0 ; ; 4 # No       INDIC SIYAQ NUMBER FOUR
@@ -996,7 +1001,7 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 200E2         ; 4.0 ; ; 4 # Lo       CJK UNIFIED IDEOGRAPH-200E2
 2626D         ; 4.0 ; ; 4 # Lo       CJK UNIFIED IDEOGRAPH-2626D
 
-# Total code points: 135
+# Total code points: 136
 
 # ================================================
 
@@ -1129,6 +1134,7 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 1E145         ; 5.0 ; ; 5 # Nd       NYIAKENG PUACHUE HMONG DIGIT FIVE
 1E2F5         ; 5.0 ; ; 5 # Nd       WANCHO DIGIT FIVE
 1E4F5         ; 5.0 ; ; 5 # Nd       NAG MUNDARI DIGIT FIVE
+1E5F6         ; 5.0 ; ; 5 # Nd       OL ONAL DIGIT FIVE
 1E8CB         ; 5.0 ; ; 5 # No       MENDE KIKAKUI DIGIT FIVE
 1E955         ; 5.0 ; ; 5 # Nd       ADLAM DIGIT FIVE
 1EC75         ; 5.0 ; ; 5 # No       INDIC SIYAQ NUMBER FIVE
@@ -1139,7 +1145,7 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 1FBF5         ; 5.0 ; ; 5 # Nd       SEGMENTED DIGIT FIVE
 20121         ; 5.0 ; ; 5 # Lo       CJK UNIFIED IDEOGRAPH-20121
 
-# Total code points: 133
+# Total code points: 134
 
 # ================================================
 
@@ -1257,6 +1263,7 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 1E146         ; 6.0 ; ; 6 # Nd       NYIAKENG PUACHUE HMONG DIGIT SIX
 1E2F6         ; 6.0 ; ; 6 # Nd       WANCHO DIGIT SIX
 1E4F6         ; 6.0 ; ; 6 # Nd       NAG MUNDARI DIGIT SIX
+1E5F7         ; 6.0 ; ; 6 # Nd       OL ONAL DIGIT SIX
 1E8CC         ; 6.0 ; ; 6 # No       MENDE KIKAKUI DIGIT SIX
 1E956         ; 6.0 ; ; 6 # Nd       ADLAM DIGIT SIX
 1EC76         ; 6.0 ; ; 6 # No       INDIC SIYAQ NUMBER SIX
@@ -1267,7 +1274,7 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 1FBF6         ; 6.0 ; ; 6 # Nd       SEGMENTED DIGIT SIX
 20AEA         ; 6.0 ; ; 6 # Lo       CJK UNIFIED IDEOGRAPH-20AEA
 
-# Total code points: 117
+# Total code points: 118
 
 # ================================================
 
@@ -1383,6 +1390,7 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 1E147         ; 7.0 ; ; 7 # Nd       NYIAKENG PUACHUE HMONG DIGIT SEVEN
 1E2F7         ; 7.0 ; ; 7 # Nd       WANCHO DIGIT SEVEN
 1E4F7         ; 7.0 ; ; 7 # Nd       NAG MUNDARI DIGIT SEVEN
+1E5F8         ; 7.0 ; ; 7 # Nd       OL ONAL DIGIT SEVEN
 1E8CD         ; 7.0 ; ; 7 # No       MENDE KIKAKUI DIGIT SEVEN
 1E957         ; 7.0 ; ; 7 # Nd       ADLAM DIGIT SEVEN
 1EC77         ; 7.0 ; ; 7 # No       INDIC SIYAQ NUMBER SEVEN
@@ -1393,7 +1401,7 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 1FBF7         ; 7.0 ; ; 7 # Nd       SEGMENTED DIGIT SEVEN
 20001         ; 7.0 ; ; 7 # Lo       CJK UNIFIED IDEOGRAPH-20001
 
-# Total code points: 117
+# Total code points: 118
 
 # ================================================
 
@@ -1506,6 +1514,7 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 1E148         ; 8.0 ; ; 8 # Nd       NYIAKENG PUACHUE HMONG DIGIT EIGHT
 1E2F8         ; 8.0 ; ; 8 # Nd       WANCHO DIGIT EIGHT
 1E4F8         ; 8.0 ; ; 8 # Nd       NAG MUNDARI DIGIT EIGHT
+1E5F9         ; 8.0 ; ; 8 # Nd       OL ONAL DIGIT EIGHT
 1E8CE         ; 8.0 ; ; 8 # No       MENDE KIKAKUI DIGIT EIGHT
 1E958         ; 8.0 ; ; 8 # Nd       ADLAM DIGIT EIGHT
 1EC78         ; 8.0 ; ; 8 # No       INDIC SIYAQ NUMBER EIGHT
@@ -1515,7 +1524,7 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 1F109         ; 8.0 ; ; 8 # No       DIGIT EIGHT COMMA
 1FBF8         ; 8.0 ; ; 8 # Nd       SEGMENTED DIGIT EIGHT
 
-# Total code points: 112
+# Total code points: 113
 
 # ================================================
 
@@ -1631,6 +1640,7 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 1E149         ; 9.0 ; ; 9 # Nd       NYIAKENG PUACHUE HMONG DIGIT NINE
 1E2F9         ; 9.0 ; ; 9 # Nd       WANCHO DIGIT NINE
 1E4F9         ; 9.0 ; ; 9 # Nd       NAG MUNDARI DIGIT NINE
+1E5FA         ; 9.0 ; ; 9 # Nd       OL ONAL DIGIT NINE
 1E8CF         ; 9.0 ; ; 9 # No       MENDE KIKAKUI DIGIT NINE
 1E959         ; 9.0 ; ; 9 # Nd       ADLAM DIGIT NINE
 1EC79         ; 9.0 ; ; 9 # No       INDIC SIYAQ NUMBER NINE
@@ -1641,7 +1651,7 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 1FBF9         ; 9.0 ; ; 9 # Nd       SEGMENTED DIGIT NINE
 2F890         ; 9.0 ; ; 9 # Lo       CJK COMPATIBILITY IDEOGRAPH-2F890
 
-# Total code points: 118
+# Total code points: 119
 
 # ================================================
 
