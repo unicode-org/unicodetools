@@ -1,5 +1,5 @@
 # DerivedCoreProperties-16.0.0.txt
-# Date: 2023-10-02, 12:41:01 GMT
+# Date: 2023-10-09, 14:02:17 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -3389,6 +3389,7 @@ FFF9..FFFB    ; Case_Ignorable # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLI
 11F36..11F3A  ; Case_Ignorable # Mn   [5] KAWI VOWEL SIGN I..KAWI VOWEL SIGN VOCALIC R
 11F40         ; Case_Ignorable # Mn       KAWI VOWEL SIGN EU
 11F42         ; Case_Ignorable # Mn       KAWI CONJOINER
+11F5A         ; Case_Ignorable # Mn       KAWI SIGN NUKTA
 13430..1343F  ; Case_Ignorable # Cf  [16] EGYPTIAN HIEROGLYPH VERTICAL JOINER..EGYPTIAN HIEROGLYPH END WALLED ENCLOSURE
 13440         ; Case_Ignorable # Mn       EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY
 13447..13455  ; Case_Ignorable # Mn  [15] EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP START..EGYPTIAN HIEROGLYPH MODIFIER DAMAGED
@@ -3441,7 +3442,7 @@ E0001         ; Case_Ignorable # Cf       LANGUAGE TAG
 E0020..E007F  ; Case_Ignorable # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Case_Ignorable # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2708
+# Total code points: 2709
 
 # ================================================
 
@@ -8044,6 +8045,7 @@ FFDA..FFDC    ; ID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 11F41         ; ID_Continue # Mc       KAWI SIGN KILLER
 11F42         ; ID_Continue # Mn       KAWI CONJOINER
 11F50..11F59  ; ID_Continue # Nd  [10] KAWI DIGIT ZERO..KAWI DIGIT NINE
+11F5A         ; ID_Continue # Mn       KAWI SIGN NUKTA
 11FB0         ; ID_Continue # Lo       LISU LETTER YHA
 12000..12399  ; ID_Continue # Lo [922] CUNEIFORM SIGN A..CUNEIFORM SIGN U U
 12400..1246E  ; ID_Continue # Nl [111] CUNEIFORM NUMERIC SIGN TWO ASH..CUNEIFORM NUMERIC SIGN NINE U VARIANT FORM
@@ -8221,7 +8223,7 @@ FFDA..FFDC    ; ID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 31350..323AF  ; ID_Continue # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 E0100..E01EF  ; ID_Continue # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 140112
+# Total code points: 140113
 
 # ================================================
 
@@ -10161,6 +10163,7 @@ FFDA..FFDC    ; XID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HA
 11F41         ; XID_Continue # Mc       KAWI SIGN KILLER
 11F42         ; XID_Continue # Mn       KAWI CONJOINER
 11F50..11F59  ; XID_Continue # Nd  [10] KAWI DIGIT ZERO..KAWI DIGIT NINE
+11F5A         ; XID_Continue # Mn       KAWI SIGN NUKTA
 11FB0         ; XID_Continue # Lo       LISU LETTER YHA
 12000..12399  ; XID_Continue # Lo [922] CUNEIFORM SIGN A..CUNEIFORM SIGN U U
 12400..1246E  ; XID_Continue # Nl [111] CUNEIFORM NUMERIC SIGN TWO ASH..CUNEIFORM NUMERIC SIGN NINE U VARIANT FORM
@@ -10338,7 +10341,7 @@ FFDA..FFDC    ; XID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HA
 31350..323AF  ; XID_Continue # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 E0100..E01EF  ; XID_Continue # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 140093
+# Total code points: 140094
 
 # ================================================
 
@@ -10737,6 +10740,7 @@ FF9E..FF9F    ; Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK.
 11F36..11F3A  ; Grapheme_Extend # Mn   [5] KAWI VOWEL SIGN I..KAWI VOWEL SIGN VOCALIC R
 11F40         ; Grapheme_Extend # Mn       KAWI VOWEL SIGN EU
 11F42         ; Grapheme_Extend # Mn       KAWI CONJOINER
+11F5A         ; Grapheme_Extend # Mn       KAWI SIGN NUKTA
 13440         ; Grapheme_Extend # Mn       EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY
 13447..13455  ; Grapheme_Extend # Mn  [15] EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP START..EGYPTIAN HIEROGLYPH MODIFIER DAMAGED
 16AF0..16AF4  ; Grapheme_Extend # Mn   [5] BASSA VAH COMBINING HIGH TONE..BASSA VAH COMBINING HIGH-LOW TONE
@@ -10775,7 +10779,7 @@ FF9E..FF9F    ; Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK.
 E0020..E007F  ; Grapheme_Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Grapheme_Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2126
+# Total code points: 2127
 
 # ================================================
 

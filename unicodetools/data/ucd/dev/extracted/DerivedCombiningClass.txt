@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2023-10-02, 12:41:00 GMT
+# Date: 2023-10-09, 14:02:16 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1743,6 +1743,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 11F40         ; 0 # Mn       KAWI VOWEL SIGN EU
 11F43..11F4F  ; 0 # Po  [13] KAWI DANDA..KAWI PUNCTUATION CLOSING SPIRAL
 11F50..11F59  ; 0 # Nd  [10] KAWI DIGIT ZERO..KAWI DIGIT NINE
+11F5A         ; 0 # Mn       KAWI SIGN NUKTA
 11FB0         ; 0 # Lo       LISU LETTER YHA
 11FC0..11FD4  ; 0 # No  [21] TAMIL FRACTION ONE THREE-HUNDRED-AND-TWENTIETH..TAMIL FRACTION DOWNSCALING FACTOR KIIZH
 11FD5..11FDC  ; 0 # So   [8] TAMIL SIGN NEL..TAMIL SIGN MUKKURUNI
@@ -2006,7 +2007,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 826762 code points not listed here.
+# The above property value applies to 826761 code points not listed here.
 # Total code points: 1113189
 
 # ================================================

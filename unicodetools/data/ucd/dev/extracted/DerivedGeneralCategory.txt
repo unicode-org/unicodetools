@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2023-10-02, 12:16:28 GMT
+# Date: 2023-10-09, 14:02:18 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -531,7 +531,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 11EF9..11EFF  ; Cn #   [7] <reserved-11EF9>..<reserved-11EFF>
 11F11         ; Cn #       <reserved-11F11>
 11F3B..11F3D  ; Cn #   [3] <reserved-11F3B>..<reserved-11F3D>
-11F5A..11FAF  ; Cn #  [86] <reserved-11F5A>..<reserved-11FAF>
+11F5B..11FAF  ; Cn #  [85] <reserved-11F5B>..<reserved-11FAF>
 11FB1..11FBF  ; Cn #  [15] <reserved-11FB1>..<reserved-11FBF>
 11FF2..11FFE  ; Cn #  [13] <reserved-11FF2>..<reserved-11FFE>
 1239A..123FF  ; Cn # [102] <reserved-1239A>..<reserved-123FF>
@@ -724,7 +724,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 824714
+# Total code points: 824713
 
 # ================================================
 
@@ -2974,6 +2974,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 11F36..11F3A  ; Mn #   [5] KAWI VOWEL SIGN I..KAWI VOWEL SIGN VOCALIC R
 11F40         ; Mn #       KAWI VOWEL SIGN EU
 11F42         ; Mn #       KAWI CONJOINER
+11F5A         ; Mn #       KAWI SIGN NUKTA
 13440         ; Mn #       EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY
 13447..13455  ; Mn #  [15] EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP START..EGYPTIAN HIEROGLYPH MODIFIER DAMAGED
 16AF0..16AF4  ; Mn #   [5] BASSA VAH COMBINING HIGH TONE..BASSA VAH COMBINING HIGH-LOW TONE
@@ -3009,7 +3010,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 1986
+# Total code points: 1987
 
 # ================================================
 

@@ -1,7 +1,5 @@
-# Indic_Positional_Category=Top
-11F5A ; Top # Mn KAWI SIGN NUKTA
 # IndicPositionalCategory-16.0.0.txt
-# Date: 2023-10-02, 22:58:33 GMT
+# Date: 2023-10-09, 14:02:22 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -592,6 +590,7 @@ ABE5          ; Top # Mn       MEETEI MAYEK VOWEL SIGN ANAP
 11F02         ; Top # Lo       KAWI SIGN REPHA
 11F36..11F37  ; Top # Mn   [2] KAWI VOWEL SIGN I..KAWI VOWEL SIGN II
 11F40         ; Top # Mn       KAWI VOWEL SIGN EU
+11F5A         ; Top # Mn       KAWI SIGN NUKTA
 
 # Indic_Positional_Category=Bottom
 
