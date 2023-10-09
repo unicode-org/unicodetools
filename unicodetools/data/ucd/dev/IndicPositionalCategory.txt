@@ -1,3 +1,5 @@
+# Indic_Positional_Category=Bottom
+113D2; Bottom # Mn TULU-TIGALARI GEMINATION MARK
 # IndicPositionalCategory-16.0.0.txt
 # Date: 2023-10-02, 22:58:33 GMT
 # © 2023 Unicode®, Inc.
