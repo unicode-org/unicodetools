@@ -1,5 +1,5 @@
 # unidata-16.0.0.txt
-# Date: 2023-10-08, 00:00:00 GMT [KW]
+# Date: 2023-10-09, 00:00:00 GMT [KW]
 # © 2023 Unicode®, Inc.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -9,7 +9,7 @@
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
 #
-# Version 16.0.0 draft 10 (Unicode Version: 16.0.0)
+# Version 16.0.0 draft 11 (Unicode Version: 16.0.0)
 # based on Unicode data file UnicodeData-16.0.0d8.txt
 # Ordering for Unicode 16.0
 #
@@ -1565,8 +1565,13 @@ A881;SAURASHTRA SIGN VISARGA;Mc;0903;;;;;
 # The Soyombo gemination mark is a non-spacing mark, not a gc=Lm.
 # It is given its own secondary weight here. Cf. treatment of
 # 0A71 GURMUKHI ADDAK. It is unclear what else to do with it.
+# Similar handling for the Garay and Tulu-Tigalari
+# gemination marks, added for UCA 16.0.
 
 11A98;SOYOMBO GEMINATION MARK;Mn;;;;;;
+10D6A;GARAY CONSONANT GEMINATION MARK;Mn;;;;;;
+113D2;TULU-TIGALARI GEMINATION MARK;Mn;;;;;;
+
 11D40;MASARAM GONDI SIGN ANUSVARA;Mn;0902;;;;;
 11D41;MASARAM GONDI SIGN VISARGA;Mn;0903;;;;;
 11D42;MASARAM GONDI SIGN NUKTA;Mn;093C;;;;;
@@ -1802,6 +1807,12 @@ DEFAULT
 1E4ED;NAG MUNDARI SIGN TOYOR;Mn;;;;;;
 1E4EE;NAG MUNDARI SIGN IKIR;Mn;;;;;;
 1E4EF;NAG MUNDARI SIGN SUTUH;Mn;;;;;;
+
+# Ol Onal has just two combining marks, one a dot
+# above and one a dot below. These are given
+# generic above and generic below weights, respectively.
+1E5EE;OL ONAL SIGN MU;Mn;F8F5;;;;;
+1E5EF;OL ONAL SIGN IKIR;Mn;F8F6;;;;;
 
 # East Asian scripts
 
