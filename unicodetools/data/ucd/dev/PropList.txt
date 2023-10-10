@@ -1,5 +1,5 @@
-# PropList-15.1.0.txt
-# Date: 2023-08-01, 21:56:53 GMT
+# PropList-16.0.0.txt
+# Date: 2023-10-10, 11:51:10 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -429,7 +429,6 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 
 # ================================================
 
-0897 ; Other_Alphabetic
 0345          ; Other_Alphabetic # Mn       COMBINING GREEK YPOGEGRAMMENI
 05B0..05BD    ; Other_Alphabetic # Mn  [14] HEBREW POINT SHEVA..HEBREW POINT METEG
 05BF          ; Other_Alphabetic # Mn       HEBREW POINT RAFE
@@ -451,6 +450,7 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 081B..0823    ; Other_Alphabetic # Mn   [9] SAMARITAN MARK EPENTHETIC YUT..SAMARITAN VOWEL SIGN A
 0825..0827    ; Other_Alphabetic # Mn   [3] SAMARITAN VOWEL SIGN SHORT A..SAMARITAN VOWEL SIGN U
 0829..082C    ; Other_Alphabetic # Mn   [4] SAMARITAN VOWEL SIGN LONG I..SAMARITAN VOWEL SIGN SUKUN
+0897          ; Other_Alphabetic # Mn       ARABIC PEPET
 08D4..08DF    ; Other_Alphabetic # Mn  [12] ARABIC SMALL HIGH WORD AR-RUB..ARABIC SMALL HIGH WORD WAQFA
 08E3..08E9    ; Other_Alphabetic # Mn   [7] ARABIC TURNED DAMMA BELOW..ARABIC CURLY KASRATAN
 08F0..0902    ; Other_Alphabetic # Mn  [19] ARABIC OPEN FATHATAN..DEVANAGARI SIGN ANUSVARA
@@ -835,7 +835,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1425
+# Total code points: 1426
 
 # ================================================
 
