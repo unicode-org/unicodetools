@@ -48,6 +48,7 @@
  *   2023-May-02 Tweaks for CJK Extension I.
  *   2023-May-09 Adjust for use of 4 more variant secondaries.
  *   2023-Jul-28 Adjust end range of CJK Extension I.
+ *   2023-Oct-09 Updates for Unicode 16.0.
  */
 
 /*
@@ -172,13 +173,13 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 15.1.0d4, 2023-07-28\n";
+static char versionString[] = "Sifter version 16.0.0d1, 2023-10-09\n";
 
-static char unidatafilename[] = "unidata-15.1.0.txt";
-static char allkeysfilename[] = "allkeys-15.1.0.txt";
-static char decompsfilename[] = "decomps-15.1.0.txt";
+static char unidatafilename[] = "unidata-16.0.0.txt";
+static char allkeysfilename[] = "allkeys-16.0.0.txt";
+static char decompsfilename[] = "decomps-16.0.0.txt";
 
-static char versionstring[] = "@version 15.1.0\n\n";
+static char versionstring[] = "@version 16.0.0\n\n";
 
 #define COPYRIGHTYEAR (2023)
 
@@ -1551,6 +1552,9 @@ static int unisift_ForceToSecondary ( UInt32 c )
     case 0x11301 :
     case 0x11302 :
     case 0x11303 :
+    case 0x113CA :   /* Tulu-Tigalari */
+    case 0x113CB :
+    case 0x113CC :
     case 0x114BF :   /* Tirhuta */
     case 0x114C0 :
     case 0x114C1 :
@@ -1564,6 +1568,7 @@ static int unisift_ForceToSecondary ( UInt32 c )
     case 0x11F00 :   /* Kawi */
     case 0x11F01 :
     case 0x11F03 :
+    case 0x1612D :   /* Gurung Khema */
 #endif
         return ( 1 );
     default: 
@@ -4805,7 +4810,7 @@ int i;
 /*
  * Temp hack for Kayah Li in PUA. Modify this
  * accordingly for any usage of PUA for special effects
- * in unidata.col. Also would need to make corresponding changes
+ * in unidata.txt. Also would need to make corresponding changes
  * for the output of the CTT for 14651, to ensure all and only correct entries
  * are dumped for that table, too.
  *
