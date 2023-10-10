@@ -1,5 +1,5 @@
 # unidata-16.0.0.txt
-# Date: 2023-10-07, 00:00:00 GMT [KW]
+# Date: 2023-10-08, 00:00:00 GMT [KW]
 # © 2023 Unicode®, Inc.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -9,7 +9,7 @@
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
 #
-# Version 16.0.0 draft 5 (Unicode Version: 16.0.0)
+# Version 16.0.0 draft 6 (Unicode Version: 16.0.0)
 # based on Unicode data file UnicodeData-16.0.0d7.txt
 # Ordering for Unicode 16.0
 #
@@ -21399,16 +21399,16 @@ DEFAULT
 
 # Kannada two-part vowels collate as units, not
 # by their decompositions.
-# Added a second decomposition for 0CCB, to deal with
-# the canonical equivalence of 0CCA --> 0CC6 0CC2
 
 CONTRACTION
 
 0CC7;KANNADA VOWEL SIGN EE;Mc;0CC6 0CD5;;;;;
 0CC8;KANNADA VOWEL SIGN AI;Mc;0CC6 0CD6;;;;;
 0CCA;KANNADA VOWEL SIGN O;Mc;0CC6 0CC2;;;;;
-#0CCB;KANNADA VOWEL SIGN OO;Mc;0CC6 0CC2 0CD5;;;;;
-0CCB;KANNADA VOWEL SIGN OO;Mc;0CC6 0CC2 0CD5, 0CCA 0CD5;;;;;
+# Added a second decomposition for 0CCB, to deal with
+# the canonical equivalence of 0CCA --> 0CC6 0CC2
+#0CCB;KANNADA VOWEL SIGN OO;Mc;0CCA 0CD5;;;;;
+0CCB;KANNADA VOWEL SIGN OO;Mc;0CCA 0CD5, 0CC6 0CC2 0CD5;;;;;
 
 DEFAULT
 
@@ -21636,14 +21636,15 @@ DEFAULT
 
 # Sinhala two-part vowels collate as units, not
 # by their decompositions.
-#
-# A second decomposition is added for 0DDD, to deal
-# with the canonical equivalence of 0DDC -> 0DD9 0DCF
 
 CONTRACTION
 
 0DDC;SINHALA VOWEL SIGN KOMBUVA HAA AELA-PILLA;Mc;0DD9 0DCF;;;;;
-0DDD;SINHALA VOWEL SIGN KOMBUVA HAA DIGA AELA-PILLA;Mc;0DD9 0DCF 0DCA, 0DDC 0DCA;;;;;
+# A second decomposition is added for 0DDD, to deal
+# with the canonical equivalence of 0DDC -> 0DD9 0DCF
+# in order to maintain canonical closure.
+# 0DDD;SINHALA VOWEL SIGN KOMBUVA HAA DIGA AELA-PILLA;Mc;0DDC 0DCA;;;;;
+0DDD;SINHALA VOWEL SIGN KOMBUVA HAA DIGA AELA-PILLA;Mc;0DDC 0DCA, 0DD9 0DCF 0DCA;;;;;
 0DDE;SINHALA VOWEL SIGN KOMBUVA HAA GAYANUKITTA;Mc;0DD9 0DDF;;;;;
 
 DEFAULT
@@ -33773,6 +33774,66 @@ A4F7;LISU LETTER OE;Lo;;;;;;
 16ABC;TANGSA LETTER DHA;Lo;;;;;;
 16ABD;TANGSA LETTER CHA;Lo;;;;;;
 16ABE;TANGSA LETTER ZA;Lo;;;;;;
+
+# Kirat Rai script starts here
+
+16D40;KIRAT RAI SIGN ANUSVARA;Lm;;;;;;
+16D41;KIRAT RAI SIGN TONPI;Lm;;;;;;
+16D42;KIRAT RAI SIGN VISARGA;Lm;;;;;;
+16D43;KIRAT RAI LETTER A;Lo;;;;;;
+16D44;KIRAT RAI LETTER KA;Lo;;;;;;
+16D45;KIRAT RAI LETTER KHA;Lo;;;;;;
+16D46;KIRAT RAI LETTER GA;Lo;;;;;;
+16D47;KIRAT RAI LETTER GHA;Lo;;;;;;
+16D48;KIRAT RAI LETTER NGA;Lo;;;;;;
+16D49;KIRAT RAI LETTER CA;Lo;;;;;;
+16D4A;KIRAT RAI LETTER CHA;Lo;;;;;;
+16D4B;KIRAT RAI LETTER JA;Lo;;;;;;
+16D4C;KIRAT RAI LETTER JHA;Lo;;;;;;
+16D4D;KIRAT RAI LETTER NYA;Lo;;;;;;
+16D4E;KIRAT RAI LETTER TTA;Lo;;;;;;
+16D4F;KIRAT RAI LETTER TTHA;Lo;;;;;;
+16D50;KIRAT RAI LETTER DDA;Lo;;;;;;
+16D51;KIRAT RAI LETTER DDHA;Lo;;;;;;
+16D52;KIRAT RAI LETTER TA;Lo;;;;;;
+16D53;KIRAT RAI LETTER THA;Lo;;;;;;
+16D54;KIRAT RAI LETTER DA;Lo;;;;;;
+16D55;KIRAT RAI LETTER DHA;Lo;;;;;;
+16D56;KIRAT RAI LETTER NA;Lo;;;;;;
+16D57;KIRAT RAI LETTER PA;Lo;;;;;;
+16D58;KIRAT RAI LETTER PHA;Lo;;;;;;
+16D59;KIRAT RAI LETTER BA;Lo;;;;;;
+16D5A;KIRAT RAI LETTER BHA;Lo;;;;;;
+16D5B;KIRAT RAI LETTER MA;Lo;;;;;;
+16D5C;KIRAT RAI LETTER YA;Lo;;;;;;
+16D5D;KIRAT RAI LETTER RA;Lo;;;;;;
+16D5E;KIRAT RAI LETTER LA;Lo;;;;;;
+16D5F;KIRAT RAI LETTER VA;Lo;;;;;;
+16D60;KIRAT RAI LETTER SA;Lo;;;;;;
+16D61;KIRAT RAI LETTER SHA;Lo;;;;;;
+16D62;KIRAT RAI LETTER HA;Lo;;;;;;
+16D63;KIRAT RAI VOWEL SIGN AA;Lo;;;;;;
+16D64;KIRAT RAI VOWEL SIGN I;Lo;;;;;;
+16D65;KIRAT RAI VOWEL SIGN U;Lo;;;;;;
+16D66;KIRAT RAI VOWEL SIGN UE;Lo;;;;;;
+16D67;KIRAT RAI VOWEL SIGN E;Lo;;;;;;
+
+# Kirat Rai two-part and three-part vowels collate as units, not
+# by their decompositions.
+
+CONTRACTION
+
+16D68;KIRAT RAI VOWEL SIGN AI;Lo;16D67 16D67;;;;;
+16D69;KIRAT RAI VOWEL SIGN O;Lo;16D63 16D67;;;;;
+# The vowel sign au has a complex decomposition that recurses.
+# Add a secondary decomposition to 16D6A for canonical closure.
+# 16D6A;KIRAT RAI VOWEL SIGN AU;Lo;16D69 16D67;;;;;
+16D6A;KIRAT RAI VOWEL SIGN AU;Lo;16D69 16D67, 16D63 16D67 16D67;;;;;
+
+DEFAULT
+
+16D6B;KIRAT RAI SIGN VIRAMA;Lm;;;;;;
+16D6C;KIRAT RAI SIGN SAAT;Lm;;;;;;
 
 # Aegean syllabic scripts start here
 
