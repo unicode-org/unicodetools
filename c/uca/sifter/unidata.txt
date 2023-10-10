@@ -9,7 +9,7 @@
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
 #
-# Version 16.0.0 draft 3 (Unicode Version: 16.0.0)
+# Version 16.0.0 draft 4 (Unicode Version: 16.0.0)
 # based on Unicode data file UnicodeData-16.0.0d7.txt
 # Ordering for Unicode 16.0
 #
@@ -1228,6 +1228,18 @@ A6F1;BAMUM COMBINING MARK TUKWENTIS;Mn;;;;;;
 16AF3;BASSA VAH COMBINING LOW-MID TONE;Mn;;;;;;
 16AF4;BASSA VAH COMBINING HIGH-LOW TONE;Mn;;;;;;
 
+# Garay dot above and double dot above are effectively
+# nuktas. They need to be distinguished from each
+# other, but can otherwise be equated to a generic
+# above secondary and to a generic nukta.
+# The consonant nasalization mark seems to have no
+# significance for collation. It is here just equated
+# to another generic above secondary.
+
+10D6B;GARAY COMBINING DOT ABOVE;Mn;F8F5;;;;;
+10D6C;GARAY COMBINING DOUBLE DOT ABOVE;Mn;093C;;;;;
+10D6D;GARAY CONSONANT NASALIZATION MARK;Mn;F8F5;;;;;
+
 # Adlam combining marks are all positioned above
 # except the nukta, which can occur either above
 # or below, and which seems to be the only one
@@ -1339,6 +1351,8 @@ A8F1;COMBINING DEVANAGARI SIGN AVAGRAHA;Mn;;;;;;
 11372;COMBINING GRANTHA LETTER NA;Mn;;;;;;
 11373;COMBINING GRANTHA LETTER VI;Mn;;;;;;
 11374;COMBINING GRANTHA LETTER PA;Mn;;;;;;
+113E1;TULU-TIGALARI VEDIC TONE SVARITA;Mn;;;;;;
+113E2;TULU-TIGALARI VEDIC TONE ANUDATTA;Mn;;;;;;
 
 DEFAULT
 
@@ -1548,6 +1562,7 @@ A881;SAURASHTRA SIGN VISARGA;Mc;0903;;;;;
 11F00;KAWI SIGN CANDRABINDU;Mn;0901;;;;;
 11F01;KAWI SIGN ANUSVARA;Mn;0902;;;;;
 11F03;KAWI SIGN VISARGA;Mc;0903;;;;;
+11F5A;KAWI SIGN NUKTA;Mn;093C;;;;;
 1612D;GURUNG KHEMA SIGN ANUSVARA;Mn;0902;;;;;
 
 # SE Asian script combining marks & others
