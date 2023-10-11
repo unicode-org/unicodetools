@@ -1,6 +1,6 @@
-# GraphemeBreakProperty-15.1.0.txt
-# Date: 2022-12-12, 19:16:17 GMT
-# © 2022 Unicode®, Inc.
+# GraphemeBreakProperty-16.0.0.txt
+# Date: 2023-10-02, 12:16:33 GMT
+# © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -106,7 +106,7 @@ E01F0..E0FFF  ; Control # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 0825..0827    ; Extend # Mn   [3] SAMARITAN VOWEL SIGN SHORT A..SAMARITAN VOWEL SIGN U
 0829..082D    ; Extend # Mn   [5] SAMARITAN VOWEL SIGN LONG I..SAMARITAN MARK NEQUDAA
 0859..085B    ; Extend # Mn   [3] MANDAIC AFFRICATION MARK..MANDAIC GEMINATION MARK
-0898..089F    ; Extend # Mn   [8] ARABIC SMALL HIGH WORD AL-JUZ..ARABIC HALF MADDA OVER MADDA
+0897..089F    ; Extend # Mn   [9] ARABIC PEPET..ARABIC HALF MADDA OVER MADDA
 08CA..08E1    ; Extend # Mn  [24] ARABIC SMALL HIGH FARSI YEH..ARABIC SMALL HIGH SIGN SAFHA
 08E3..0902    ; Extend # Mn  [32] ARABIC TURNED DAMMA BELOW..DEVANAGARI SIGN ANUSVARA
 093A          ; Extend # Mn       DEVANAGARI VOWEL SIGN OE
@@ -459,7 +459,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2130
+# Total code points: 2131
 
 # ================================================
 

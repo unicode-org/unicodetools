@@ -22,6 +22,7 @@ public class ChartUtilities {
                 "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" "
                         + "\"http://www.w3.org/TR/html4/loose.dtd\">\n"
                         + UtilityBase.HTML_HEAD
+                        + "<link rel='stylesheet' type='text/css' href='https://www.unicode.org/webscripts/standard_styles.css'>\n"
                         + "<link rel='stylesheet' type='text/css' href='emoji-list.css'>\n"
                         + "<title>"
                         + fullTitle
@@ -37,7 +38,7 @@ public class ChartUtilities {
                         + (skipVersion ? "" : Emoji.BETA_HEADER_AFFIX)
                         + "</h1>\n"
                         + (skipVersion ? "" : ChartUtilities.getPointToOther(outFileName, title))
-                        + "<p style='font-size:80%'>"
+                        + "<p style='text-align:center'>"
                         + "<a target='text' href='index.html'>Index &amp; Help</a>\n"
                         + " | <a target='rights' href='../images.html'>Images &amp; Rights</a>\n"
                         + " | <a target='doc' href='"
@@ -149,5 +150,9 @@ public class ChartUtilities {
 
     public static String getDoubleLink(String anchor) {
         return getDoubleLink(anchor, anchor);
+    }
+
+    public static String htmlSpanForSkintone(String modifier) {
+        return "<span style=\"display:inline-block;\">" + modifier + "</span>";
     }
 }

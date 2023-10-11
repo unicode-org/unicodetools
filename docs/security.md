@@ -2,13 +2,6 @@
 
 ## Modifying
 
-Create new revision directory, such as .../unicodetools/data/security/6.3.0. The
-folder will match the version of the UCD used (perhaps with an incrementing 3rd
-field).
-
-*   As usual, use `git cp` to copy the previous directory to the new one. Do not
-    just "mkdir" and copy the files!
-
 To add or fix xidmodifications, look at source/removals.txt.
 
 To add or fix confusables, there are multiple source files. Many were

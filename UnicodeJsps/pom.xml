@@ -65,7 +65,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>29.0-jre</version>
+			<version>32.0.0-jre</version>
 		</dependency>
 
 		<!-- test -->
@@ -80,7 +80,19 @@
 			<artifactId>unicodetools-testutils</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+
+		<dependency>
+			<groupId>org.owasp.encoder</groupId>
+			<artifactId>encoder</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.owasp.encoder</groupId>
+			<artifactId>encoder-jsp</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+			</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>

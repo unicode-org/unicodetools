@@ -232,7 +232,7 @@ public class EmojiOrder {
 
         Set<String> sourceData =
                 emojiData
-                        .getAllEmojiWithDefectives()
+                        .getAllEmojiWithoutDefectives()
                         .addAllTo(new LinkedHashSet<>(mapCollator.getOrder()));
         check("orderedStrings vs sourceData", orderedStrings, sourceData, true);
 
@@ -274,7 +274,7 @@ public class EmojiOrder {
             if (!aMinusB.isEmpty() || !bMinusA.isEmpty()) {
                 throw new ICUException(
                         (title.isEmpty() ? "" : title + ": ")
-                                + "missmatch:\n\t(a-b)="
+                                + "mismatch:\n\t(a-b)="
                                 + aMinusB
                                 + ";\n\t(b-a)="
                                 + bMinusA);
@@ -291,7 +291,7 @@ public class EmojiOrder {
             T bItem = itb.next();
             if (!aItem.equals(bItem)) {
                 throw new ICUException(
-                        counter + ") ordering missmatch: a=" + aItem + "; b-a=" + bItem);
+                        counter + ") ordering mismatch: a=" + aItem + "; b-a=" + bItem);
             }
             ++counter;
         }
@@ -311,8 +311,7 @@ public class EmojiOrder {
         MajorGroup majorGroup = null;
         EmojiIterator ei = new EmojiIterator(emojiData, false);
         final String directory =
-                Settings.UnicodeTools.getDataPathString("emoji", version.getVersionString(2, 2))
-                        + "/source";
+                Settings.UnicodeTools.getDataPathString("emoji", version.getVersionString(2, 2));
         int lineCounter = 0;
 
         for (String line : FileUtilities.in(EmojiOrder.class, sourceFile)) {

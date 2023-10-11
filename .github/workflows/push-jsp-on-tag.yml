@@ -25,12 +25,15 @@ jobs:
         restore-keys: |
           cldr-${{ steps.cldr_ref.outputs.CLDR_REF }}
     - name: Check out CLDR
-      uses: actions/checkout@v1.2  # yes, v1 due to https://github.com/actions/checkout/issues/265
+      uses: actions/checkout@v3
       with:
         repository: unicode-org/cldr
         path: cldr
-        ref: ${{ steps.cldr_ref.outputs.CLDR_REF }}
-    - name: Backup Unicodetools and CLDR for jsps
+        ref: main
+        fetch-depth: 0
+    - name: Switch CLDR to CLDR_REF
+      run: cd cldr && git fetch && git checkout ${{ steps.cldr_ref.outputs.CLDR_REF }}
+    - name: Backup Unicodetools and CLDR for jsps  # this is needed only for the Docker build
       run:
         mkdir -p UnicodeJsps/target && tar -cpz --exclude=.git -f UnicodeJsps/target/cldr-unicodetools.tgz ./cldr ./unicodetools
     - name: Cache local Maven repository
@@ -55,12 +58,12 @@ jobs:
     - name: Get the version
       id: get_tag_name
       run: echo ::set-output name=GIT_TAG_NAME::${GITHUB_REF/refs\/tags\//}
-    - uses: RafikFarhad/push-to-gcr-github-action@v3
+    - uses: RafikFarhad/push-to-gcr-github-action@241707854fb71f655ec4e2a98bb16505f218bcc2
       with:
         gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
         registry: us.gcr.io
         project_id: dev-infra-273822
         image_name: unicode-jsps
-        image_tag: ${{ steps.get_tag_name.outputs.GIT_TAG_NAME}}
+        image_tag: ${{ steps.get_tag_name.outputs.GIT_TAG_NAME }}
         dockerfile: ./UnicodeJsps/Dockerfile
         context: ./UnicodeJsps/

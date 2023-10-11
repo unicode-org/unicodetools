@@ -52,18 +52,16 @@ import org.unicode.text.utility.Utility;
  *   <li>VERSION_BETA = VERSIONzz;
  * </ul>
  *
- * You also need to add 2 new constants, such as:
+ * <p>Normally, when emoji and Unicode versions are in sync, we should use
+ * Settings.LATEST_VERSION_INFO etc. here.
+ *
+ * <p>You also need to
  *
  * <ul>
- *   <li>VERSION15;
- *   <li>UCD15;
- * </ul>
- *
- * And add dates to the following:
- *
- * <ul>
- *   <li>EMOJI_TO_UNICODE_VERSION
- *   <li>EMOJI_TO_DATE
+ *   <li>add a new constant like <code>VERSION15</code>
+ *   <li>add a mapping to EMOJI_TO_UNICODE_VERSION <em>only if</em> the emoji version differs from
+ *       the Unicode version
+ *   <li>add a mapping to EMOJI_TO_DATE
  * </ul>
  */
 public class Emoji {
@@ -95,6 +93,8 @@ public class Emoji {
     // situation)
 
     // Constants for versions
+    public static final VersionInfo VERSION16 = VersionInfo.getInstance(16);
+    public static final VersionInfo VERSION15_1 = VersionInfo.getInstance(15, 1);
     public static final VersionInfo VERSION15 = VersionInfo.getInstance(15, 0);
     public static final VersionInfo VERSION14 = VersionInfo.getInstance(14, 0);
     public static final VersionInfo VERSION13_1 = VersionInfo.getInstance(13, 1);
@@ -102,6 +102,9 @@ public class Emoji {
     public static final VersionInfo VERSION12_1 = VersionInfo.getInstance(12, 1);
     public static final VersionInfo VERSION12 = VersionInfo.getInstance(12);
     public static final VersionInfo VERSION11 = VersionInfo.getInstance(11);
+    public static final VersionInfo VERSION10 = VersionInfo.getInstance(10);
+    public static final VersionInfo VERSION9 = VersionInfo.getInstance(9);
+    public static final VersionInfo VERSION8 = VersionInfo.getInstance(8);
     public static final VersionInfo VERSION5 = VersionInfo.getInstance(5);
     public static final VersionInfo VERSION4 = VersionInfo.getInstance(4);
     public static final VersionInfo VERSION3 = VersionInfo.getInstance(3);
@@ -109,53 +112,40 @@ public class Emoji {
     public static final VersionInfo VERSION1 = VersionInfo.getInstance(1);
     public static final VersionInfo VERSION0_7 = VersionInfo.getInstance(0, 7);
     public static final VersionInfo VERSION0_6 = VersionInfo.getInstance(0, 6);
-    public static final VersionInfo VERSION0_5 = VersionInfo.getInstance(0, 5, 2);
+    // lic static final VersionInfo VERSION0_5 = VersionInfo.getInstance(0, 5, 2);
 
     // ALSO fix VersionToAge.java!
-    public static final VersionInfo UCD15 = VERSION15;
-    public static final VersionInfo UCD14 = VERSION14;
-    public static final VersionInfo UCD13 = VERSION13;
-    public static final VersionInfo UCD12_1 = VERSION12_1;
-    public static final VersionInfo UCD12 = VERSION12;
-    public static final VersionInfo UCD11 = VERSION11;
-    public static final VersionInfo UCD10 = VersionInfo.getInstance(10);
-    public static final VersionInfo UCD9 = VersionInfo.getInstance(9);
-    public static final VersionInfo UCD8 = VersionInfo.getInstance(8);
-    public static final VersionInfo UCD7 = VersionInfo.getInstance(7);
-    public static final VersionInfo UCD6 = VersionInfo.getInstance(6);
 
     /**
      * Change each following once we release. That is, VERSION_LAST_RELEASED* becomes VERSION_BETA*,
-     * and both the latter increment. Also add to EMOJI_TO_UNICODE_VERSION
+     * and both the latter increment. As long as we keep emoji versions and Unicode versions in
+     * sync, we can just use Settings.LATEST_VERSION_INFO and Settings.LAST_VERSION_INFO.
      */
-    public static final VersionInfo VERSION_LAST_RELEASED2 = VERSION14;
+    public static final VersionInfo VERSION_LAST_RELEASED2 = Settings.LAST2_VERSION_INFO;
 
-    public static final VersionInfo VERSION_LAST_RELEASED = VERSION15;
-    public static final VersionInfo VERSION_BETA = VERSION15;
+    public static final VersionInfo VERSION_LAST_RELEASED = Settings.LAST_VERSION_INFO;
+    public static final VersionInfo VERSION_BETA = Settings.LATEST_VERSION_INFO;
 
     public static final VersionInfo VERSION_TO_TEST = VERSION_BETA;
     public static final VersionInfo VERSION_TO_TEST_PREVIOUS = VERSION_LAST_RELEASED;
 
-    public static Map<VersionInfo, VersionInfo> EMOJI_TO_UNICODE_VERSION =
+    // We only need to add exceptions where the emoji version differs from the Unicode version.
+    private static Map<VersionInfo, VersionInfo> EMOJI_TO_UNICODE_VERSION =
             ImmutableMap.<VersionInfo, VersionInfo>builder()
-                    .put(VERSION15, UCD15)
-                    .put(VERSION14, UCD14)
-                    .put(VERSION13_1, UCD13)
-                    .put(VERSION13, UCD13)
-                    .put(VERSION12_1, UCD12_1)
-                    .put(VERSION12, UCD12)
-                    .put(VERSION11, UCD11)
-                    .put(VERSION5, UCD10)
-                    .put(VERSION4, UCD9)
-                    .put(VERSION3, UCD9)
-                    .put(VERSION2, UCD8)
-                    .put(VERSION1, UCD8)
+                    .put(VERSION13_1, VERSION13)
+                    .put(VERSION5, VERSION10)
+                    .put(VERSION4, VERSION9)
+                    .put(VERSION3, VERSION9)
+                    .put(VERSION2, VERSION8)
+                    .put(VERSION1, VERSION8)
                     //            .put(VERSION0_7, UCD7)
                     //            .put(VERSION0_6, UCD6)
                     .build();
 
     public static final Map<VersionInfo, String> EMOJI_TO_DATE =
             ImmutableMap.<VersionInfo, String>builder()
+                    .put(VERSION16, "2024-09-10")
+                    .put(VERSION15_1, "2023-09-12")
                     .put(VERSION15, "2022-09-13")
                     .put(VERSION14, "2021-09-14")
                     .put(VERSION13_1, "2020-09-15")
@@ -190,9 +180,9 @@ public class Emoji {
     }
 
     public static final VersionInfo VERSION_LAST_RELEASED_UNICODE =
-            EMOJI_TO_UNICODE_VERSION.get(VERSION_LAST_RELEASED);
+            getUnicodeVersionForEmojiVersion(VERSION_LAST_RELEASED);
     public static final VersionInfo VERSION_BETA_UNICODE =
-            EMOJI_TO_UNICODE_VERSION.get(VERSION_BETA);
+            getUnicodeVersionForEmojiVersion(VERSION_BETA);
 
     private static final String BETA_PLAIN = "β";
     private static final String BETA_COLORED = "<span style='color:red'>" + BETA_PLAIN + "</span>";
@@ -256,6 +246,9 @@ public class Emoji {
     public static final char EMOJI_VARIANT = '\uFE0F';
     public static final char TEXT_VARIANT = '\uFE0E';
 
+    public static final String RIGHTWARDS_ARROW = UTF16.valueOf(0x27A1) + EMOJI_VARIANT;
+    public static final String ZWJ_RIGHTWARDS_ARROW = JOINER_STR + RIGHTWARDS_ARROW;
+
     // HACK
     //    static final UnicodeSet GENDER_BASE = new
     // UnicodeSet("[👯💂👳👱⛹🏃🏄🏊-🏌👮👷💁💆💇🕵🙅-🙇🙋🙍🙎🚣 🚴-🚶🤹
@@ -264,7 +257,7 @@ public class Emoji {
 
     static final UnicodeSet PROFESSION_OBJECT =
             new UnicodeSet(
-                            "[⚕🌾🍳🎓🎤🏫🏭💻💼🔧🔬🎨 🚒 ✈ 🚀 ⚖ \\U0001F37C \\U0001F9AF \\U0001F9BC \\U0001F9BD]")
+                            "[⚕🌾🍳🎓🎤🏫🏭💻💼🔧🔬🎨 🚒 ✈ 🚀 ⚖ \\U0001F37C \\U0001F384 \\U0001F9AF \\U0001F9BC \\U0001F9BD]")
                     .freeze();
     static final UnicodeSet HAIR_STYLES = new UnicodeSet("[\\U0001F9B0-\\U0001F9B3]").freeze();
     static final UnicodeSet HAIR_EXPLICIT = new UnicodeSet("[🧔 👱]").freeze();
@@ -283,6 +276,9 @@ public class Emoji {
     public static final String TRANSGENDER = "\u26A7";
     public static final char TRANSGENDER_CP = '\u26A7';
 
+    public static final String ZWJ_HANDSHAKE_ZWJ = JOINER_STR + UTF16.valueOf(0x1F91D) + JOINER_STR;
+    public static final String ZWJ_HEART_ZWJ = JOINER_STR + UTF16.valueOf(0x2764) + JOINER_STR;
+
     static final UnicodeMap<String> TO_NEUTRAL =
             new UnicodeMap<String>()
                     .put("👦", "🧒")
@@ -297,9 +293,9 @@ public class Emoji {
                     .put("🤶", "🧑\u200D🎄")
                     .put("💃", "🧑\u200D🎶")
                     .put("🕺", "🧑\u200D🎶")
-                    .put("👫", "🧑" + EmojiData.ZWJ_HANDSHAKE_ZWJ + "🧑")
-                    .put("👬", "🧑" + EmojiData.ZWJ_HANDSHAKE_ZWJ + "🧑")
-                    .put("👭", "🧑" + EmojiData.ZWJ_HANDSHAKE_ZWJ + "🧑")
+                    .put("👫", "🧑" + ZWJ_HANDSHAKE_ZWJ + "🧑")
+                    .put("👬", "🧑" + ZWJ_HANDSHAKE_ZWJ + "🧑")
+                    .put("👭", "🧑" + ZWJ_HANDSHAKE_ZWJ + "🧑")
                     .freeze();
 
     static final UnicodeMap<String> MALE_TO_OTHER =
@@ -374,6 +370,8 @@ public class Emoji {
         kddi("KDDI", "KDDI"),
         svg;
 
+        // The primary source for the column named "Sample":
+        static Source SAMPLE_SOURCE = Source.google;
         static final Set<Source> OLD_SOURCES =
                 ImmutableSet.copyOf(
                         EnumSet.of(gmail, sb, dcm, kddi)); // do this to get same order as Source
@@ -383,6 +381,10 @@ public class Emoji {
                                 apple, google, twitter, emojione, samsung, fb,
                                 windows)); // do this to get same order as Source
         static final Set<Emoji.Source> platformsToIncludeNormal =
+                ImmutableSet.copyOf(
+                        EnumSet.of(
+                                SAMPLE_SOURCE, Source.gmail, Source.dcm, Source.kddi, Source.sb));
+        static final Set<Emoji.Source> platformsToIncludeAllVendors =
                 ImmutableSet.copyOf(
                         EnumSet.of(
                                 Source.apple,
@@ -399,20 +401,8 @@ public class Emoji {
         // Ordering is what will appear with … fallback
         static final Set<Emoji.Source> PLATFORM_FALLBACK =
                 ImmutableSet.<Emoji.Source>builder()
-                        .addAll(
-                                EnumSet.of(
-                                        Source.apple,
-                                        Source.google,
-                                        Source.windows,
-                                        Source.twitter,
-                                        Source.emojione,
-                                        Source.samsung,
-                                        Source.fb))
-                        .add(Source.emojipedia)
-                        .add(Source.emojixpress)
-                        .add(Source.emojination)
+                        .add(Source.SAMPLE_SOURCE)
                         .add(Source.proposed)
-                        .add(Source.sample)
                         .build();
 
         private final String shortName;
@@ -564,6 +554,11 @@ public class Emoji {
     // public static final UnicodeSet SKIP_ANDROID = new UnicodeSet("[♨ ⚠ ▶ ◀ ✉ ✏ ✒ ✂ ⬆ ↗ ➡ ↘ ⬇ ↙ ⬅
     // ↖ ↕ ↔ ↩ ↪ ⤴ ⤵ ♻ ☑ ✔ ✖ 〽 ✳ ✴ ❇ ▪ ▫ ◻ ◼ ‼ ⁉ 〰 © ® 🅰 🅱 ℹ Ⓜ 🅾 🅿 ™ 🈂 🈷 ㊗ ㊙]").freeze();
 
+    public static final VersionInfo getUnicodeVersionForEmojiVersion(VersionInfo emojiVersion) {
+        VersionInfo unicodeVersion = EMOJI_TO_UNICODE_VERSION.get(emojiVersion);
+        return unicodeVersion != null ? unicodeVersion : emojiVersion;
+    }
+
     public static String buildFileName(String chars, String separator) {
         StringBuilder result = new StringBuilder();
         boolean first = true;
@@ -644,11 +639,18 @@ public class Emoji {
     public static final int GIRL = 0x1F467;
     public static final int MAN = 0x1F468;
     public static final int WOMAN = 0x1F469;
-    public static final int ADULT_CP = 0x1f9d1;
-    public static final String ADULT = UTF16.valueOf(ADULT_CP);
+    public static final String ADULT = UTF16.valueOf(0x1F9D1);
+    public static final String CHILD = UTF16.valueOf(0x1F9D2);
     public static final String MAN_STR = UTF16.valueOf(MAN);
     public static final String WOMAN_STR = UTF16.valueOf(WOMAN);
     public static final String NEUTRAL_FAMILY = UTF16.valueOf(0x1F46A);
+    public static final UnicodeSet NEUTRAL_FAMILY_ZWJ_SEQUENCES =
+            new UnicodeSet()
+                    .add(ADULT + JOINER + CHILD)
+                    .add(ADULT + JOINER + CHILD + JOINER + CHILD)
+                    .add(ADULT + JOINER + ADULT + JOINER + CHILD)
+                    .add(ADULT + JOINER + ADULT + JOINER + CHILD + JOINER + CHILD)
+                    .freeze();
 
     public static final UnicodeSet FAMILY_MARKERS =
             new UnicodeSet().add(BOY, WOMAN).freeze(); // includes girl, man
@@ -987,7 +989,7 @@ public class Emoji {
     }
 
     static final String INTERNAL_OUTPUT_DIR =
-            Settings.Output.GEN_DIR + "emoji/" + VERSION_TO_GENERATE + "/";
+            Settings.Output.GEN_DIR + "emoji/" + VERSION_TO_GENERATE.getVersionString(2, 2) + "/";
     public static final String HEALTHCARE = "⚕";
     public static final String UN = "🇺🇳";
 

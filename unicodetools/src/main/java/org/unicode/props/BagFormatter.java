@@ -40,6 +40,8 @@ public class BagFormatter {
 
     public static final PrintWriter CONSOLE = new PrintWriter(System.out, true);
 
+    public static final String RANGE_PLACEHOLDER = "%RANGE_PLACEHOLDER%";
+
     private static PrintWriter log = CONSOLE;
 
     private boolean abbreviated = false;
@@ -47,12 +49,15 @@ public class BagFormatter {
     private String prefix = "[";
     private String suffix = "]";
     private UnicodeProperty.Factory source;
+    private int minSpacesBeforeComment = 1;
     private UnicodeLabel nameSource;
     private UnicodeLabel labelSource;
+    private UnicodeLabel refinedLabelSource;
     private UnicodeLabel rangeBreakSource;
     private UnicodeLabel valueSource;
     private String propName = "";
     private boolean showCount = true;
+    private int countWidth = 5;
     // private boolean suppressReserved = true;
     private boolean hexValue = false;
     private static final String NULL_VALUE = "_NULL_VALUE_";
@@ -260,6 +265,39 @@ public class BagFormatter {
     }
      */
 
+    /**
+     * @param n minimum number of spaces before the semicolon (default: 0)
+     * @return this (for chaining)
+     */
+    public BagFormatter setMinSpacesBeforeSemicolon(int n) {
+        minSpacesBeforeSemicolon = n;
+        return this;
+    }
+
+    /**
+     * Places the semicolon immediately after the code point or range.
+     *
+     * @return this (for chaining)
+     */
+    public BagFormatter setNoSpacesBeforeSemicolon() {
+        minSpacesBeforeSemicolon = Integer.MIN_VALUE;
+        return this;
+    }
+
+    /**
+     * @param n minimum number of spaces after the semicolon (default: 1)
+     * @return this (for chaining)
+     */
+    public BagFormatter setMinSpacesAfterSemicolon(int n) {
+        minSpacesAfterSemicolon = n;
+        return this;
+    }
+
+    public BagFormatter setUnicodeDataStyleRanges(boolean unicodeDataStyleRanges) {
+        this.unicodeDataStyleRanges = unicodeDataStyleRanges;
+        return this;
+    }
+
     public BagFormatter setMergeRanges(boolean in) {
         mergeRanges = in;
         return this;
@@ -374,7 +412,10 @@ public class BagFormatter {
 
     private Join labelVisitor = new Join();
 
+    private int minSpacesBeforeSemicolon = 0;
+    private int minSpacesAfterSemicolon = 1;
     private boolean mergeRanges = true;
+    private boolean unicodeDataStyleRanges = false;
     private Transliterator showLiteral = null;
     private Transliterator fixName = null;
     private boolean showSetAlso = false;
@@ -479,7 +520,7 @@ public class BagFormatter {
             // 0009..000D    ; White_Space # Cc   [5] <control-0009>..<control-000D>
             // new
             // 0009..000D    ; White_Space #Cc  [5] <control>..<control>
-            tabber.add(mergeRanges ? 14 : 6, Tabber.LEFT);
+            tabber.add((mergeRanges ? 14 : 6) + minSpacesBeforeSemicolon, Tabber.LEFT);
 
             if (propName.length() > 0) {
                 tabber.add(propName.length() + 2, Tabber.LEFT);
@@ -495,18 +536,21 @@ public class BagFormatter {
                 tabber.add(valueSize + 2, Tabber.LEFT); // value
             }
 
-            tabber.add(3, Tabber.LEFT); // comment character
+            tabber.add(minSpacesBeforeComment + 2, Tabber.LEFT); // comment character
 
-            labelSize =
-                    maxLabelWidthOverride > 0
-                            ? maxLabelWidthOverride
-                            : getLabelSource(true).getMaxWidth(shortLabel);
+            labelSize = getLabelSource(true).getMaxWidth(shortLabel);
+            if (refinedLabelSource != null) {
+                labelSize = Math.max(labelSize, refinedLabelSource.getMaxWidth(shortLabel));
+            }
+            if (maxLabelWidthOverride > 0) {
+                labelSize = maxLabelWidthOverride;
+            }
             if (labelSize > 0) {
                 tabber.add(labelSize + 1, Tabber.LEFT); // value
             }
 
             if (mergeRanges && showCount) {
-                tabber.add(5, Tabber.RIGHT);
+                tabber.add(countWidth, Tabber.RIGHT);
             }
 
             if (showLiteral != null) {
@@ -519,7 +563,7 @@ public class BagFormatter {
                                     || showLiteral != null
                                     || getLabelSource(true) != UnicodeLabel.NULL
                                     || getNameSource() != UnicodeLabel.NULL)
-                            ? "\t #"
+                            ? "\t" + " ".repeat(minSpacesBeforeComment) + "#"
                             : "";
 
             if (DEBUG) System.out.println("Tabber: " + tabber.toString());
@@ -590,7 +634,8 @@ public class BagFormatter {
                         getValueSource() == UnicodeLabel.NULL
                                 ? ""
                                 : getValueSource().getValue(thing, ",", true);
-                if (getValueSource() != UnicodeLabel.NULL) value = "\t; " + value;
+                if (getValueSource() != UnicodeLabel.NULL)
+                    value = "\t;" + " ".repeat(minSpacesAfterSemicolon) + value;
                 String label =
                         getLabelSource(true) == UnicodeLabel.NULL
                                 ? ""
@@ -623,16 +668,28 @@ public class BagFormatter {
 
         private void showLine(int start, int end) {
             String label = getLabelSource(true).getValue(start, shortLabel);
+            if (refinedLabelSource != null) {
+                String refinedLabel = refinedLabelSource.getValue(start, shortLabel);
+                for (int i = start; i <= end; ++i) {
+                    if (refinedLabelSource.getValue(i, shortLabel) != refinedLabel) {
+                        refinedLabel = null;
+                        break;
+                    }
+                }
+                if (refinedLabel != null) {
+                    label = refinedLabel;
+                }
+            }
             String value = getValue(start, shortValue);
             if (value == NULL_VALUE) return;
 
             counter += end - start + 1;
             String pn = propName;
             if (pn.length() != 0) {
-                pn = "\t; " + pn;
+                pn = "\t;" + " ".repeat(minSpacesAfterSemicolon) + pn;
             }
             if (valueSize > 0) {
-                value = "\t; " + value;
+                value = "\t;" + " ".repeat(minSpacesAfterSemicolon) + value;
             } else if (value.length() > 0) {
                 throw new IllegalArgumentException(
                         "maxwidth bogus " + value + "," + getValueSource().getMaxWidth(shortValue));
@@ -652,16 +709,34 @@ public class BagFormatter {
                 if (end == start) count = "\t";
                 else count = "\t [" + nf.format(end - start + 1) + "]";
             }
-
-            toTable(
-                    hex(start, end)
-                            + pn
+            final String rightHandSide =
+                    pn
                             + value
                             + commentSeparator
                             + label
                             + count
                             + insertLiteral(start, end)
-                            + getName("\t ", start, end));
+                            + getName("\t ", start, end);
+            if (start != end && unicodeDataStyleRanges) {
+                if (rightHandSide.contains(RANGE_PLACEHOLDER)) {
+                    toTable(hex(start, start) + rightHandSide.replace(RANGE_PLACEHOLDER, "First"));
+                    toTable(hex(end, end) + rightHandSide.replace(RANGE_PLACEHOLDER, "Last"));
+                } else {
+                    for (int c = start; c <= end; ++c) {
+                        toTable(hex(c, c) + rightHandSide);
+                    }
+                }
+            } else {
+                toTable(
+                        hex(start, end)
+                                + pn
+                                + value
+                                + commentSeparator
+                                + label
+                                + count
+                                + insertLiteral(start, end)
+                                + getName("\t ", start, end));
+            }
         }
 
         private String insertLiteral(String thing) {
@@ -912,6 +987,29 @@ public class BagFormatter {
     }
 
     /**
+     * @param label a label, which must refine the labelSource, that is:
+     *     <blockquote>
+     *     refinedLabelSource (X) = refinedLabelSource (Y) ⇒ labelSource (X) = labelSource (Y).
+     *     </blockquote>
+     *     Further, whenever it strictly refines the labelSource, it must differ from it:
+     *     <blockquote>
+     *     refinedLabelSource⁻¹ (L) ⊊ refinedLabelSource⁻¹ (M) ⇒ L ≠ M.
+     *     </blockquote>
+     *     The labelSource is used to determine the ranges, but if all elements of a range have the
+     *     same refinedLabelSource, the refinedLabelSource is shown.
+     *     <p>For example, if the labelSource merges Ll, Lu, and Lt to L&, but the
+     *     refinedLabelSource is the General_Category, the following ranges can be produced:
+     *     <pre>
+     * 0041..005A;AL     # Lu    [26] LATIN CAPITAL LETTER A..LATIN CAPITAL LETTER Z
+     * 00D8..00F6;AL     # L&    [31] LATIN CAPITAL LETTER O WITH STROKE..LATIN SMALL LETTER O WITH DIAERESIS
+     * </pre>
+     */
+    public BagFormatter setRefinedLabelSource(UnicodeLabel label) {
+        refinedLabelSource = label;
+        return this;
+    }
+
+    /**
      * @return the NameLable representing the source
      */
     public UnicodeLabel getNameSource() {
@@ -966,11 +1064,29 @@ public class BagFormatter {
     }
 
     /**
+     * @param n minimum number of spaces before the comment (default: 1)
+     * @return this (for chaining)
+     */
+    public BagFormatter setMinSpacesBeforeComment(int n) {
+        minSpacesBeforeComment = n;
+        return this;
+    }
+
+    /**
      * @param b true to show the count
      * @return this (for chaining)
      */
     public BagFormatter setShowCount(boolean b) {
         showCount = b;
+        return this;
+    }
+
+    /**
+     * @param width width of the count field in the comments (default: 5)
+     * @return this (for chaining)
+     */
+    public BagFormatter setCountWidth(int width) {
+        countWidth = width;
         return this;
     }
 
@@ -1126,7 +1242,8 @@ public class BagFormatter {
         return showTotal;
     }
 
-    public void setShowTotal(boolean showTotal) {
+    public BagFormatter setShowTotal(boolean showTotal) {
         this.showTotal = showTotal;
+        return this;
     }
 }

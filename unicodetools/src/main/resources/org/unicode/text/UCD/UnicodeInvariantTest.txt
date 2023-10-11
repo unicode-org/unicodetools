@@ -74,6 +74,28 @@
 #       It then tests that against the result of filtering out NSM characters from X, then getting the BIDI_Class.
 #
 ##########################
+# EquivalencesOf <unicodeSet> <props> (⇐|⇔|⇒|⇍|⇎|⇏) <props>
+# 
+# Verify that the equivalence of elements of <unicodeSet> up to the left <props> is is implied,
+# equivalent, or implies equivalence up to the right <props>, or verify the negation of these
+# relations.
+#
+# On both sides, <props> is a composition of properties and filters, as in an “In” line.
+#
+#   Example:
+#       The case-insensitive comparison of ASCII identifiers defined by comparing their uppercase
+#       mappings is equivalent to that defined by comparing their lowercase mappings:
+#          EquivalencesOf \p{Block=Basic Latin} Uppercase_Mapping ⇔ Lowercase_Mapping
+#       This is not true in the broader Latin script (in fact neither implication holds).
+#          EquivalencesOf \p{Script=Latin} Uppercase_Mapping ⇎ Lowercase_Mapping
+#       The simple and full case foldings do not define the same equivalence classes on these
+#       strings:
+#          Let $strings = [ {Straße} {STRASSE} {ᾠδή} {ὨΙΔΉ} {...} ]
+#          EquivalencesOf $strings Case_Folding ⇎ Simple_Case_Folding
+#       Specifically, full case folding is coarser than simple case folding.
+#          EquivalencesOf $strings Case_Folding ⇏ Simple_Case_Folding
+#          EquivalencesOf $strings Case_Folding ⇐ Simple_Case_Folding
+##########################
 # There is new syntax for testing UnicodeMaps
 #
 #  Map <unicodeMap> <relation> <unicodeMap>
@@ -114,6 +136,8 @@
 
 Let $foo = \p{ccc=9}
 Let $fii = \p{toNFD=/$foo/}
+
+Let $codepoints = [\u0000-\U0010FFFF]
 
 Let $gcAllPunctuation = \p{gc=/_Punctuation/}
 $gcAllPunctuation = [\p{gc=Close_Punctuation}\p{gc=Connector_Punctuation}}\p{gc=Dash_Punctuation}\p{gc=Final_Punctuation}\p{gc=Initial_Punctuation}\p{gc=Open_Punctuation}\p{gc=Other_Punctuation}]
@@ -169,7 +193,20 @@ In \P{U-1:GC=Cn} name=U-1:name
 # Covered in Property Stability Section
 
 # Case Folding Stability: Caseless matching of Unicode strings used for identifiers is stable.
-# TODO
+# For each string S containing only assigned characters in a given Unicode version, toCasefold(toNFKC(S)) under that version is identical to toCasefold(toNFKC(S)) under any later version of Unicode.
+In \P{U-1:gc=Cn} U-1:Case_Folding * U-1:toNFKC = Case_Folding * toNFKC
+# For each string S containing only characters with the property XID_Continue in a given Unicode version, toNFKC_Casefold(S) under that version is identical to toNFKC_Casefold(S) under any later version of Unicode.
+# If this is violated as a result of a change to Default_Ignorable_Code_Point, the derivation of NFKC_Casefold must special-case the affected characters to restore stability.
+In \p{U-1:XID_Continue} U-1:NFKC_Casefold = NFKC_Casefold
+# The following is not guaranteed by the stability policy, indeed it does not hold as far back as 5.2, but we might want to know about it:
+In \P{U-1:gc=Cn} U-1:NFKC_Casefold = NFKC_Casefold
+
+# Not yet a stability policy, but see https://www.unicode.org/L2/L2023/23005.htm#174-A11.
+# Simple counterparts of the above.
+In \P{U-1:gc=Cn} U-1:Simple_Case_Folding * U-1:toNFKC = Simple_Case_Folding * toNFKC
+In \p{U-1:XID_Continue} R-1:NFKC_Simple_Casefold = NFKC_Simple_Casefold
+# As above, this one would not be guaranteed by the stability policy.
+In \P{U-1:gc=Cn} R-1:NFKC_Simple_Casefold = NFKC_Simple_Casefold
 
 # Case Pair Stability: If two characters form a case pair in a version of Unicode, they will remain a case pair in each subsequent version of Unicode. If two characters do not form a case pair in a version of Unicode, they will never become a case pair in any subsequent version of Unicode.
 # TODO
@@ -247,11 +284,18 @@ Let $gcMn_bcL = [\u0CBF\u0CC6\U00011A07\U00011A08\U00011C3F]
 ##########################
 
 # Stability: The Case_Folding property value is limited so that no string when case folded expands to more than 3× in length (measured in code units). 
-# TODO
+\p{cf=/..../} = []
+# Note: This bound is tight:
+\p{cf=/.../} ⊃ []
 
 # Case folding is not the same as lowercasing: Cherokee case folds to uppercase.
 In \p{sc=Cher} cf = uc
 In \p{sc=Cher} scf = suc
+
+# Simple and full case foldings define the same equivalence classes on code points.
+# This used not to be true, but was rectified by
+# https://www.unicode.org/cgi-bin/GetL2Ref.pl?175-C19.
+EquivalencesOf $codepoints Case_Folding ⇔ Simple_Case_Folding
 
 # Stability: All characters with the Lowercase property and all characters with the Uppercase property have the Alphabetic property. 
 \p{Alphabetic} ⊃ [\p{Uppercase} \p{Lowercase}]
@@ -304,6 +348,14 @@ In \p{sc=Cher} scf = suc
 # Stability: If a character is XID_Start then it must also be XID_Continue. 
 \p{XID_Start} ⊇ \p{U-1:XID_Start}
 
+# While the above stability policy is only applicable back to 4.1.0+ for the
+# Continue properties, recent versions of Unicode are compatible further back.
+# See https://www.unicode.org/cgi-bin/GetL2Ref.pl?176-C18.
+\p{XID_Start} ⊇ \p{U3.1.0:XID_Start}
+\p{ID_Start} ⊇ \p{U3.1.0:ID_Start}
+\p{XID_Continue} ⊇ \p{U3.1.0:XID_Continue}
+\p{ID_Continue} ⊇ \p{U3.1.0:ID_Continue}
+
 # Stability: The Pattern_Syntax and Pattern_Whitespace properties are immutable code point properties, which means that their property values for all Unicode code points will never change.
 \p{Pattern_Whitespace} = \p{U-1:Pattern_Whitespace}
 \p{Pattern_Syntax} = \p{U-1:Pattern_Syntax}
@@ -324,6 +376,24 @@ In \p{sc=Cher} scf = suc
 \p{ID_Continue} ⊇ \p{XID_Continue}
 \p{ID_Start} ⊇ \p{XID_Start}
 
+# Not a stability policy, but we probably should avoid breaking it further:
+# The sets \p{ID_Start} and and \p{ID_Continue} preserve backward compatibility
+# with the General_Category-based identifier definition from Unicode 3.0, except
+# for \p{Cf}, which was ignored in identifier comparison, and for one—thankfully
+# obscure—letter added to \p{Pattern_Syntax} in Unicode 5.1.
+# See https://www.unicode.org/versions/Unicode3.0.0/ch05.pdf#page=31.
+#
+# NOTE: If this invariant needs to change, the section on migrating from the
+#       Unicode 3.0 identifier definition in UTS #55 must be updated:
+#       https://www.unicode.org/reports/tr55/#Evolution-Unicode-3.
+Let $identifier_start = [\p{GC=Lu}\p{GC=Ll}\p{GC=Lt}\p{GC=Lm}\p{GC=Lo}\p{GC=Nl}]
+Let $identifier_extend = [\p{GC=Mn}\p{GC=Mc}\p{GC=Nd}\p{GC=Pc}]
+[\p{ID_Start}\p{Name=VERTICAL TILDE}]    ⊇ $identifier_start
+[\p{ID_Continue}\p{Name=VERTICAL TILDE}] ⊇ [$identifier_start $identifier_extend]
+
+[\p{XID_Start}\p{Name=VERTICAL TILDE}]    ⊇ [$identifier_start-\p{NFKC_QC=No}]
+[\p{XID_Continue}\p{Name=VERTICAL TILDE}] ⊇ [[$identifier_start $identifier_extend]-\p{NFKC_QC=No}]
+
 ##########################
 # Normalization
 ##########################
@@ -335,24 +405,46 @@ In \p{sc=Cher} scf = suc
 In \P{U-1:GC=Cn} ccc=U-1:ccc
 
 # Canonical decompositions (minus exclusions) must be identical across releases (also required by strong normalization stability),
-# except where a character and at lease one character in its decomposition are both new in the release.
-Let $NFC_Exceptions = [\U0001109A\U0001109C\U000110AB[\U0001112E\U0001112F \U0001134B-\U0001134C \U000114BB-\U000114BC \U000114BE \U000115BA-\U000115BB] \U00011938]
-# 6.1.0 Added CHAKMA VOWEL SIGN O..CHAKMA VOWEL SIGN AU
-# 7.0 Added 1134B..1134C, 114BB..114BC, 114BE, and 115BA..115BB
-# 13.0 Added 11938 DIVES AKURU VOWEL SIGN O
-[\p{Decomposition_Type=Canonical} - \p{Full_Composition_Exclusion} - $NFC_Exceptions] = [\p{U-1:Decomposition_Type=Canonical} - \p{U-1:Full_Composition_Exclusion} - $NFC_Exceptions]
+# except where a character and at least one character in its decomposition are both new in the release.
+Let $New_Decompositions = [[\p{Decomposition_Type=Canonical} - \p{Full_Composition_Exclusion}] - [\p{U-1:Decomposition_Type=Canonical} - \p{U-1:Full_Composition_Exclusion}]]
+$New_Decompositions ⊆ \p{U-1:GC=Cn}
+# Stripping previously-unassigned characters from the current NFD does
+# something, that is, the decomposition contains newly-assigned characters.
+In $New_Decompositions toNFD * \P{U-1:GC=Cn} ≠ toNFD
+
+Let $Unicode_13_Decompositions = [[\p{U13.0.0:Decomposition_Type=Canonical} - \p{U13.0.0:Full_Composition_Exclusion}] - [\p{U12.1.0:Decomposition_Type=Canonical} - \p{U12.1.0:Full_Composition_Exclusion}]]
+$Unicode_13_Decompositions ⊆ \p{U12.1.0:GC=Cn}
+In $Unicode_13_Decompositions toNFD * \P{U12.1.0:GC=Cn} ≠ toNFD
+$Unicode_13_Decompositions = [\U00011938]
+$Unicode_13_Decompositions = [\p{Name=DIVES AKURU VOWEL SIGN O}]
+
+Let $Unicode_7_Decompositions = [[\p{U7.0.0:Decomposition_Type=Canonical} - \p{U7.0.0:Full_Composition_Exclusion}] - [\p{U6.3.0:Decomposition_Type=Canonical} - \p{U6.3.0:Full_Composition_Exclusion}]]
+$Unicode_7_Decompositions ⊆ \p{U6.3.0:GC=Cn}
+In $Unicode_7_Decompositions toNFD * \P{U6.3.0:GC=Cn} ≠ toNFD
+$Unicode_7_Decompositions = [\U0001134B-\U0001134C \U000114BB-\U000114BC \U000114BE \U000115BA-\U000115BB]
+$Unicode_7_Decompositions ⊆ [\p{Name=/^(GRANTHA|TIRHUTA|SIDDHAM) VOWEL SIGN /}]
+
+Let $Unicode_6_1_Decompositions = [[\p{U6.1.0:Decomposition_Type=Canonical} - \p{U6.1.0:Full_Composition_Exclusion}] - [\p{U6.0.0:Decomposition_Type=Canonical} - \p{U6.0.0:Full_Composition_Exclusion}]]
+$Unicode_6_1_Decompositions ⊆ \p{U6.0.0:GC=Cn}
+In $Unicode_6_1_Decompositions toNFD * \P{U6.0.0:GC=Cn} ≠ toNFD
+$Unicode_6_1_Decompositions = [\U0001112E-\U0001112F]
+$Unicode_6_1_Decompositions ⊆ [\p{Name=/^CHAKMA VOWEL SIGN /}]
 
 # Stability: All characters other than those with General_Category property values Spacing_Mark (Mc) and Nonspacing_Mark (Mn) have the Canonical_Combining_Class property value 0.
 \p{CCC=0} ⊇ [^ \p{GC=Mc} \p{GC=Mn}]
 
 # Stability: Canonical and compatibility mappings (Decomposition_Mapping property values) are always in canonical order, and the resulting recursive decomposition will also be in canonical order. 
-# TODO
+# Note: We really mean the fixed point of Decomposition_Mapping on the left-hand side here.
+In \P{Decomposition_Mapping=} Decomposition_Mapping * Decomposition_Mapping * Decomposition_Mapping = toNFKD
 
 # Stability: Canonical mappings (Decomposition_Mapping property values) are always limited either to a single value or to a pair. The second character in the pair cannot itself have a canonical mapping. 
-# TODO
+[ \p{Decomposition_Type=Canonical} & \p{Decomposition_Mapping=/.../} ] = []
+# TODO: The second character in the pair cannot itself have a canonical mapping.
 
 # Stability: Canonical mappings (Decomposition_Mapping property values) are always limited so that no string when normalized to NFC expands to more than 3× in length (measured in code units). 
-# TODO
+\p{toNFC=/..../} = []
+# Note: This bound is tight:
+\p{toNFC=/.../} ⊃ []
 
 # Stability: Once a character is assigned, its Decomposition_Mapping will never change. 
 In \P{U-1:GC=Cn} dm=U-1:dm
@@ -398,7 +490,7 @@ $decimalValue ⊇ \p{General_Category=Decimal_Number}
 
 # All and only those items with numeric types have numeric values
 
-Let $anyNumericValue = \p{Numeric_Value=/-?[0-9]+.[0-9]+/}
+Let $anyNumericValue = \p{Numeric_Value=/-?[0-9]+(.[0-9]+)?/}
 [\p{Numeric_Type=Decimal} \p{Numeric_Type=Digit} \p{Numeric_Type=Numeric}] = $anyNumericValue
 
 ##########################
@@ -438,7 +530,10 @@ Show [\u20b9]
 # exceptions. Should such exceptions arise, they can be added to the definition of
 # $nonAlphabeticBindus to avoid a failure on this test.
 Let $nonAlphabeticBindus = []
-[\p{InSc=Bindu} - $nonAlphabeticBindus - \p{Alphabetic}] = [] 
+[\p{InSc=Bindu} - \p{Alphabetic}] = $nonAlphabeticBindus
+
+Let $nonAlphabeticDependentVowels = [\N{ORIYA SIGN OVERLINE}\N{THAI CHARACTER MAITAIKHU}\N{LIMBU SIGN KEMPHRENG}\N{SHARADA VOWEL MODIFIER MARK}\N{SHARADA EXTRA SHORT VOWEL MARK}]
+[\p{InSC=Vowel_Dependent} - \p{Alphabetic}] = $nonAlphabeticDependentVowels
 
 ##########################
 # LineBreak property
@@ -450,6 +545,8 @@ Let $IDInclusions = [[:block=/Ideographs/:] [[\U00020000-\U0003FFFF][\U0001F000-
 \p{LB=ID} ⊃ $IDInclusions
 \p{Line_Break=Unknown} = [\p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse} - $IDInclusions - [\u20C0-\u20CF]]
 
+Let $BrahmicLineBreaking = [\p{sc=Balinese}\p{sc=Batak}\p{sc=Brahmi}\p{sc=Cham}\p{sc=DivesAkuru}\p{sc=Grantha}\p{sc=Javanese}\p{sc=Makasar}\p{sc=Kawi}\p{sc=Cham}\p{sc=Makasar}]
+
 Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288\U00013379\U0001342F\U00013437\U0001343C\U0001343E\U000145CE\U0001E95E-\U0001E95F]
 # 7.0 Removed hack  - [\u2308\u230A]
 # 9.0 Added Adlam initial punctuation 1E95E..1E95F
@@ -459,11 +556,23 @@ Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288
 
 \p{LB=OP} = [\p{GC=Ps} $OPInclusions]
 [\p{LB=CL}\p{LB=CP}] ⊃ [\p{GC=Pe} - [\u2309\u230B]]
-\p{LB=CM} = [[\u3035] \p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -[\U00013437\U00013438\U0001343C-\U0001343F] -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL} -\p{LB=ZWJ}]
+
+# See L2/22-086 for an explanation of the special case of Batak.
+\p{LB=VI} = [[\p{Indic_Syllabic_Category=Virama}\p{Indic_Syllabic_Category=Invisible_Stacker}] & $BrahmicLineBreaking]
+\p{LB=VF} = [\p{Indic_Syllabic_Category=Pure_Killer} & \p{sc=Batak}]
+
+# 15.1: Action item UTC-176-A81: change [[:PCM:]-\u070F] lb=AL->NU
+\p{LB=CM} = [[\u3035] \p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -[\U00013437\U00013438\U0001343C-\U0001343F] -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL} -\p{LB=ZWJ} - \p{LB=VI} - \p{LB=VF} - \p{LB=NU}]
 # Excluded Egyptian controls begin/end segment etc. 13437, 13438 & 1343C..1343F (gc=Cf, lb=OP/CL)
 
+#  3.0.0: Numeric characters consist of decimal digits (all characters of General_Category Nd),
+#         except those with East_Asian_Width F (Fullwidth)
+# 15.1.0: and those from scripts that use the Brahmic style of context analysis,
+#  4.0.1: plus these characters: 066B ARABIC DECIMAL SEPARATOR, 066C ARABIC THOUSANDS SEPARATOR.
+# 15.1.0: Action item UTC-176-A81: change [[:PCM:]-\u070F] lb=AL->NU
 Let $NUInclusions = [\u066B\u066C]
-\p{LB=NU} = [\p{GC=Nd} $NUInclusions - \p{EA=F} ]
+Let $NUFormats = [[:PCM:]-[\u070F]]
+\p{LB=NU} = [\p{GC=Nd} $NUInclusions $NUFormats - \p{EA=F} - $BrahmicLineBreaking]
 
 Let $PRInclusions = [\u002b\u005c\u00b1\u2116\u2212\u2213\u20C0-\u20CF]
 \p{LB=PR} = [\p{GC=Sc} $PRInclusions - \p{LB=PO}]
@@ -474,8 +583,17 @@ Let $QUInclusions = [\u275F-\u2760 \U0001F676-\U0001F678 \u0022 \u0027 \u275B-\u
 \p{LB=SG} = \p{GC=Cs}
 \p{LB=SP} = \N{SPACE}
 \p{LB=SY} = \N{SOLIDUS}
+
+# The classes WJ and ZW are reserved for characters meant as explicit overrides
+# to the line breaking algorithms.  For historical reasons, WJ has two such
+# characters, see L2/00-258.
+# These invariants should not change unless a change to the overrides is being
+# considered.  In particular, ordinary characters whose joining or shaping
+# behaviour requires the prohibition of line breaks on either side should have
+# class GL.
 \p{LB=WJ} = [\N{WORD JOINER} \N{ZERO WIDTH NO-BREAK SPACE}]
 \p{LB=ZW} = \N{ZERO WIDTH SPACE}
+
 \p{LB=ZWJ} = [\u200D]
 \p{LB=RI} = \p{RI=Y}
 
@@ -540,6 +658,15 @@ Let $Uax31Removals = [\-\u058A\u0F0B\u2010\u30A0\u30FB\u2E2F\u17B4-\u17B5]
 # 6.1.0 adjust SAMVAT, KHMER VOWEL INHERENT*
 
 [\p{Alpha}\p{WB=Extend}\p{WB=FO}\p{WB=LE}\p{WB=ML}\p{WB=MB}\p{WB=EX}-$WBRemovals-$WBRemovals13] = [$gcAllLetters $gcAllMarks \p{gc=Nl}\p{gc=Pc}-$Uax31Removals]
+
+# Don’t break words after GCB=Prepend characters (that would be within a
+# grapheme cluster).
+# GCB=Prepend should not be WB=Format, PRI469 [Fri Jan 6 18:26:42 CST 2023].
+# We prevent that by excluding GCB=Prepend from Format.
+# We need to make sure that we remember to put them somewhere else appropriate
+# for their usage, so we check that they are not left in WB=Other.
+[\p{GCB=Prepend}&\p{WB=Format}] = []
+[\p{GCB=Prepend}&\p{WB=Other}] = []
 
 ##########################
 # Derivations
@@ -730,7 +857,9 @@ $punct  ⊇ [[\u0021-\u007E] - [0-9 A-Z a-z]]
 # We should be able to use:
 # Map {\m{Case_Folding}&\P{U-1:gc=Cn}} = {\m{*Case_Folding}]}
 
-Map {\m{Case_Folding}&[^\p{age=14.0}]} = {\m{*Case_Folding}&[^\p{age=14.0}]}
+# Commented out because excruciatingly slow, and tested systematically above with an In line.
+# TODO(macchiati): Make this faster.
+# Map {\m{Case_Folding}&[^\p{age=14.0}]} = {\m{*Case_Folding}&[^\p{age=14.0}]}
 
 # The following are 'red flag' tests, just so that we review the changes and make sure they are ok.
 

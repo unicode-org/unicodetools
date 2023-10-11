@@ -8787,3 +8787,309 @@ L2/22-097	On LATIN SMALL LETTER TURNED O OPEN-O and LATIN SMALL LETTER TURNED O 
 L2/22-098	Updated proposal to encode the Tai Don script	Kushim Jiang	2022-04-14
 L2/22-099	Comments on "Updated proposal to encode the Tai Don script"	Jim Brase	2022-04-14
 L2/22-100	Request for consideration to add 4 sequences used for Chinese Pinyin to NamedSequences.txt	Eiso Chan	2022-05-02
+L2/22-101	Proposal to revise the glyph of LATIN SMALL LETTER BARRED ALPHA (revised)	Denis Moyogo Jacquerye	2022-06-14
+L2/22-102	A survey of non-XID identifier usage in program text	Robin Leroy	2022-06-07
+L2/22-103	Request to speed up the process of approval to "Proposal to encode Tulu Script in Unicode"	V Sunill Kumar	2022-05-27
+L2/22-104	Fixing the name and glyph for U+0616	Roozbeh Pournader	2022-05-27
+L2/22-105	Annotations for New Tai Lue block	Eiso Chan	2022-05-27
+L2/22-106	Proposal to encode LATIN SMALL LIGATURE VE	Erol Çitci	2022-05-27
+L2/22-107	Proposal to Add Data for Pairs of Confusable sequences	Asmus Freytag	2022-06-07
+L2/22-108	Proposal to Add Data for Pairs of Identical sequences	Asmus Freytag	2022-06-07
+L2/22-109	On TURNED O OPEN-O and TURNED O OPEN-O WITH STROKE	Michael Everson	2022-06-10
+L2/22-110	Addressing inconsistencies in UAX #31 (revised)	Robin Leroy, Mark Davis, et al	2022-07-25
+L2/22-111	Unihan Numeric Fields Problems and Proposed Updates	Wang Yifan, Eiso Chan	2022-06-14
+L2/22-112	Proposed Changes to the Unihan Database's kMandarin Field	John H. Jenkins	2022-06-14
+L2/22-113	Unicode request for two BMP Latin characters (revised)	Kirk Miller	2022-06-14
+L2/22-114	Response to PRI 451	Asmus Freytag	2022-06-14
+L2/22-115	Annotations for CJK strokes used as Hangul strokes	Eiso Chan	2022-06-17
+L2/22-116	Proposal to Encode Four Pegon Characters	Rikza F. Sh.	2022-06-22
+L2/22-117	Proposal to encode Kōdō Incense Linear Patterns	Eiso Chan	2022-06-22
+L2/22-118	Proposal to encode Latin Capital and Small letter I with Bowl (revised)	Nikita Manulov	2022-07-29
+L2/22-119	Proposal to encode Cyrillic letter Khanty Tje	Nikita Manulov	2022-06-22
+L2/22-120	UTC #172 Agenda	Peter Constable	2022-07-25
+L2/22-121	UTC #172 Minutes	Peter Constable	2022-11-02
+L2/22-122	Recently Closed Action Items (since 2022-04-14)	Rick McGowan	2022-07-22
+L2/22-123	Comments on Public Review Issues (April 11 - July 11, 2022)	Rick McGowan	2022-07-21
+L2/22-124	UTC #172 properties feedback & recommendations	Markus Scherer, et al	2022-07-21
+L2/22-125	Editorial Committee Report and Recommendations for UTC #172 Meeting	Ken Whistler	2022-07-25
+L2/22-126	Emoji Subcommittee Report for UTC #172 (2022Q3)	ESC / Jennifer Daniel	2022-07-19
+L2/22-127	CJK & Unihan Group Recommendations for UTC #172 Meeting	Ken Lunde	2022-07-21
+L2/22-128	Recommendations to UTC #172 July 2022 on Script Proposals	Deborah Anderson, et al	2022-07-25
+L2/22-129	SEI Liaison Report	Deborah Anderson / SEI	2022-07-25
+L2/22-130	Preliminary proposal to encode Rma script	Eiso Chan, et al	2022-06-22
+L2/22-131	Proposal to encode segmented hexadecimal digits from Chinese legacy	Eiso Chan	2022-06-22
+L2/22-132	On the encoding model of the Gurung Khema script	Eduardo Marín Silva	2022-06-22
+L2/22-133	New candidates of Unihan kSpoofingVariant and kZVariant	Ryusei Yamaguchi	2022-07-06
+L2/22-134	ISO/IEC 10646 repertoire proposal post CDAM1.2	Michel Suignard	2022-07-06
+L2/22-135	Preliminary proposal to add kFanqie to Unihan Database	Eiso Chan	2022-07-08
+L2/22-136	Feedback on Proposals to Encode New Ideographic Description Characters	Andrew West	2022-07-08
+L2/22-137	Feedback on Hangul Strokes	Kyongsok Kim	2022-07-08
+L2/22-138	Proposal to update the reference glyphs in the Nüshu block and the Ideographic Symbols and Punctuation block	Kushim Jiang	2022-07-08
+L2/22-139	TCA and China Feedback on N5133 (WG2 N5133)	Shouwen Seal Experts	2022-07-11
+L2/22-140	About the future extension of other versions of Shuowen Seal (WG2 N5188)	TCA	2022-07-11
+L2/22-141	THX Seal glyph Correction Principles (WG2 N5189)	Selena / TCA	2022-07-11
+L2/22-142	THX correction glyph summary table (WG2 N5190)	TCA / China	2022-07-11
+L2/22-143	THX Property Table (14.5MB) (WG2 N5191)	TCA / China	2022-07-11
+L2/22-144	Resolutions of the 27th ISO/IEC JTC 1/SC 2 Plenary Meeting, Virtual, 2022-06-20 and 24 (SC2 N4811)	SC2 Secretariat	2022-07-12
+L2/22-145	SC2 Liaison Report from SC2 #27	Peter Constable	2022-07-14
+L2/22-146	Proposal to encode the Northern Palaeohispanic script	Joan Ferrer i Jané, et al	2022-07-18
+L2/22-147	Proposal to encode the Southern Palaeohispanic script	Joan Ferrer i Jané, et al	2022-07-18
+L2/22-148	Re: Palaeohispanic o	Joan Ferrer i Jané	2022-07-18
+L2/22-149	Responses from experts on Palaeohispanic	Deborah Anderson	2022-07-18
+L2/22-150	Proposal to Encode Bima Characters	Febri Muhammad Nasrullah	2022-07-18
+L2/22-151	Proposal to encode the Ol Onal script (revised)	Biswajit Mandal, Jan Kučera	2022-10-31
+L2/22-152	Preliminary Proposal to encode the Yo Lai Tay Script	Viet Khoi Nguyen, et al	2022-07-18
+L2/22-153	Proposal to Encode Three Quranic Arabic Characters	Rikza F. Sh.	2022-07-18
+L2/22-154	Proposal to encode 18 Cyrillic characters for old Bashkir	Nikita Manulov	2022-07-18
+L2/22-155	On the Kodo incense patterns	Eduardo Marín Silva	2022-07-18
+L2/22-156	Feedback on L2/22-117 (Proposal to encode Kōdō Incense Linear Patterns)	Wang Yifan	2022-07-18
+L2/22-157	Proposal to Encode the Gurung Khema	Biswajit Mandal	2022-07-18
+L2/22-158	CJK Unified Ideographs Extension B UCS2003 Reference Glyphs Archival Code Charts	Ken Lunde	2022-07-19
+L2/22-159	Working Draft Proposed Update with conformance improvements to UAX #29, Revision 40, 2022-07-18, post PRI #441 (HTML version)	Mark Davis	2022-07-19
+L2/22-160	RGI_Emoji_Qualification	Mark Davis	2022-07-19
+L2/22-161	Status report of the source code working group for UTC #172	Robin Leroy, et al	2022-07-19
+L2/22-162	Proposed Update UAX #38, Unicode Han Database (Unihan)	John H. Jenkins, et al	2022-07-22
+L2/22-163	Proposed Update UAX #44, Unicode Character Database	Ken Whistler	2022-07-22
+L2/22-164	Proposed Update UAX #50, Unicode Vertical Text Layout	Ken Lunde, Koji Ishii	2022-07-22
+L2/22-165	Proposed Update UTS #10, Unicode Collation Algorithm	Ken Whistler, Markus Scherer	2022-07-22
+L2/22-166	Proposed Update UAX #29, Unicode Text Segmentation	Christopher Chapman	2022-07-22
+L2/22-167	Proposed Update UAX #34, Unicode Named Character Sequences	Ken Whistler	2022-07-22
+L2/22-168	Proposed Update UAX #45, U-source Ideographs	John H. Jenkins	2022-07-22
+L2/22-169	Proposed Update UAX #14, Unicode Line Breaking Algorithm	Christopher Chapman	2022-07-22
+L2/22-170	Proposed Update UAX #24, Unicode Script Property	Ken Whistler	2022-07-22
+L2/22-171	Proposed Update UAX #41, Common References for Unicode Standard Annexes	Ken Whistler, Rick McGowan	2022-07-22
+L2/22-172	Proposed Update UAX #9, Unicode Bidirectional Algorithm	Mark Davis	2022-07-22
+L2/22-173	Proposed Update UAX #31 Unicode Identifier and Pattern Syntax	Mark Davis	2022-07-22
+L2/22-174	Proposed Update UTS #39 Unicode Security Mechanisms	Mark Davis, Michel Suignard	2022-07-22
+L2/22-175	Proposed Update UAX #15, Unicode Normalization Forms	Ken Whistler	2022-07-22
+L2/22-176	Proposed Update UTS #51, Unicode Emoji (revised)	Mark Davis, Ned Holbrook	2022-07-28
+L2/22-177	Proposed Update UTS #46, Unicode IDNA Compatibility Processing	Mark Davis, Michel Suignard	2022-07-22
+L2/22-178	Proposed Update UAX #42, Unicode Character Database in XML	Eric Muller	2022-07-22
+L2/22-179	Working Draft Proposed Update UAX #31 Unicode Identifier and Pattern Syntax, Revision 36, Draft 6, 2022-07-21, post PRI #450 (HTML snapshot)	Mark Davis, Robin Leroy	2022-07-25
+L2/22-180	Inline Emotes Ad-Hoc Session (UTC#172)	Sean Stewart	2022-07-27
+L2/22-181	Proposal for new provisional Unihan Database property: kJapanese	Ken Lunde	2022-08-23
+L2/22-182	New kFourCornerCode values for 660 ideographs	Jaemin Chung	2022-08-01
+L2/22-183	Introduction to encode Yi Ideographs	Kushim Jiang	2022-08-03
+L2/22-184	Updates for Unihan kXHC1983 data	Andrew West	2022-08-04
+L2/22-185	Proposed Changes to UAX #45 Status Values	John H. Jenkins	2022-08-15
+L2/22-186	Proposal to Correct Several Kmandarin Readings For Japanese-made Kanji	Alexander Zapryagaev	2022-08-15
+L2/22-187	Proposal for new provisional Unihan Database property: kMojiJoho	Ken Lunde	2022-08-19
+L2/22-188	Proposal to remove/improve provisional Unihan database properties	Ken Lunde	2022-09-01
+L2/22-189	Proposal to streamline U+96B9 隹 as a component in V-Source representative glyphs	Alexander Zapryagaev	2022-08-19
+L2/22-190	Proposal for kStrange property value changes and additions	Ken Lunde	2022-08-23
+L2/22-191	Proposal to encode five new Ideographic Description Characters	Ken Lunde, et al	2022-08-24
+L2/22-192	Proposal for kSimplifiedVariant and kTraditionalVariant changes and additions	Ken Lunde	2022-08-30
+L2/22-193	Proposal for kRSUnicode and kTotalStrokes changes	Ken Lunde	2022-08-30
+L2/22-194	Additional draft repertoire for ISO/IEC 10646 6th edition Amendment 2 (CDAM2)	Michel Suignard	2022-08-31
+L2/22-195	Proposal to remove the kRSKangXi property from the Unihan database	Ken Lunde	2022-08-30
+L2/22-196	On LATIN CAPITAL LETTER F WITH STROKE	Denis Moyogo Jacquerye	2022-08-30
+L2/22-198	On LATIN SMALL LETTER BLACKLETTER O WITH STROKE	Denis Moyogo Jacquerye	2022-08-30
+L2/22-199	On LATIN SMALL LETTER Y WITH SHORT RIGHT LEG	Denis Moyogo Jacquerye	2022-08-30
+L2/22-200	Proposal to enhance the kRSUnicode property for non-Chinese simplified radicals	Ken Lunde	2022-09-02
+L2/22-201	Proposal to correct inconsistent total strokes data in the Unihan database	Ken Lunde	2022-09-07
+L2/22-202	US/Unicode Activity Report for IRG #59	Ken Lunde	2022-09-07
+L2/22-203	Suggestion for Unihan	M	2022-09-08
+L2/22-204	Proposal to Add Two New Fields to the Unihan Database (revised)	John H. Jenkins	2022-10-25
+L2/22-205	Reply L2/22-115 Annotations for CJK strokes used as Hangul strokes	Xuan Longyun (玄龙云)	2022-09-09
+L2/22-206	Proposal to add 38 characters used for the Chinese traditional musical notation to UAX #45	Eiso Chan	2022-09-19
+L2/22-207	Proposal to encode the Sanban Sign for Chinese folk music and local operas (revised)	Eiso Chan	2022-12-19
+L2/22-208	Final Proposal to encode the Yo Lai Tay Script	Viet Khoi Nguyen, et al	2022-10-03
+L2/22-209	Proposal to encode the pictograph Wuyue Zhenxing Tu(Fu) Character	WEI Xitong (魏锡同)	2022-09-29
+L2/22-210	Final proposal to add 22 characters for Tai Don writing system	Kushim Jiang	2022-09-29
+L2/22-211	Proposal to encode Russian Fire Hydrant Symbol	Nikita Manulov	2022-09-29
+L2/22-212	PROPOSAL TO ENCODE SYLOTI NAGRI NUMERALS	Biswajit Mandal	2022-09-29
+L2/22-213	Use of Fractions and Rupee Mark in Sharada script	Srinidhi A, Sridatta A	2022-09-29
+L2/22-214	Use of ARDHAVISARGA in Malayalam and Sinhala	Srinidhi A, Sridatta A	2022-09-29
+L2/22-215	Proposal to encode missing Latin letters from Benjamin Franklin's phonetic alphabet	Nikita Manulov	2022-09-29
+L2/22-216	Proposal to Encode Latin characters for old Adyghian	Nikita Manulov	2022-09-29
+L2/22-217	Proposal to encode missing Cyrillic case pair for old Udmurt	Nikita Manulov	2022-09-29
+L2/22-218	Proposal to Encode Chisoi (revised)	Biswajit Mandal	2023-01-09
+L2/22-219	Proposal to encode MINIMIZING VIRAMA in Brahmi script	Srinidhi A, Sridatta A	2022-09-29
+L2/22-220	INTRODUCING THE BADUGU SCRIPT	Biswajit Mandal	2022-09-29
+L2/22-221	On ARABIC LETTER KAF WITH DOT BELOW	Febri Muhammad Nasrullah	2022-09-29
+L2/22-222	Proposal for the encoding of «KORE SEBELI»	Mohamed Bentoura Bangoura	2022-10-03
+L2/22-223	Proposed Updates and Expansions of Unihan Numeric Fields	Wang Yifan, Eiso Chan	2022-10-03
+L2/22-224	Proposal to add back U+2E9A	CheonHyeong Sim(沈天珩 )	2022-10-03
+L2/22-225	Supportive letter for Syloti Numerals	Md Islam	2022-10-03
+L2/22-226	Five consolidated public feedback items	Ken Lunde	2022-10-10
+L2/22-227	SAT Feedback to "Preliminary proposal to add a new provisional kIDS property (Unihan)" (IRGN2492) and "Proposal to encode five new Ideographic Description Characters" (IRGN2572)	SAT	2022-10-10
+L2/22-228	Feedback on IRGN2572 "Proposal to encode 5 new ideograph description characters"	FAN Ming	2022-10-10
+L2/22-229	Proposed changes to Unicode properties and reports for source code handling (revised)	Robin Leroy, Mark Davis / Source Code WG	2022-10-28
+L2/22-230	Mathematical notation profile for default identifiers	Robin Leroy / Source Code WG	2022-10-21
+L2/22-231	Mixed-script detection in identifier chunks (revised)	Robin Leroy / Source Code WG	2022-10-28
+L2/22-232	Unicode identifier styles	Robin Leroy / Source Code WG	2022-10-21
+L2/22-233	Process report from the source code working group	Robin Leroy / Source Code WG	2022-10-21
+L2/22-234	Recommendations of the source code working group for UTC #173 (revised)	Robin Leroy / Source Code WG	2022-11-03
+L2/22-235	Revised proposal to encode the Sidetic script	Anshuman Pandey	2022-10-17
+L2/22-236	Proposal to encode KAWI SIGN NUKTA	Febri Muhammad Nasrullah	2022-10-17
+L2/22-237	Request to Update Glyph for U+31D5A	Henry Chan, Woo Chi Chung	2022-10-17
+L2/22-238	Proposal to consider adding CodeCharts support for kIRG_KPSource representative glyphs	Yi Bai (白 易 ), CheonHyeong Sim (沈天珩 )	2022-10-17
+L2/22-239	Revised proposal to encode Proto-Cuneiform	Anshuman Pandey	2022-10-17
+L2/22-240	UTC #173 Agenda	Peter Constable	2022-10-31
+L2/22-241	UTC #173 Minutes (draft)	Peter Constable	2022-11-09
+L2/22-242	Recently Closed Action Items (since 2022-07-22)	Rick McGowan	2022-10-27
+L2/22-243	Comments on Public Review Issues (July 11 - October 27, 2022)	Rick McGowan	2022-10-27
+L2/22-244	UTC #173 properties feedback & recommendations	Markus Scherer, et al	2022-10-27
+L2/22-245	Editorial Committee Report and Recommendations for UTC #173 Meeting	Ken Whistler	2022-10-27
+L2/22-246	Emoji Subcommittee Report for UTC #173 (2022Q4)	ESC / Jennifer Daniel	2022-10-31
+L2/22-247	CJK & Unihan Group Recommendations for UTC #173 Meeting	Ken Lunde	2022-11-01
+L2/22-248	Recommendations to UTC #173 October 2022 on Script Proposals	Deborah Anderson, et al	2022-10-31
+L2/22-249	SEI Liaison Report	Deborah Anderson / SEI	2022-10-27
+L2/22-250	Canonical combining class for nukta characters	Norbert Lindenberg	2022-10-18
+L2/22-251	Review of some Arabic additions for Quranic orthographies	Salim Al Mandhari	2022-10-18
+L2/22-252	Suggested improvements to the code chart annotations of many Latin extensions	Eduardo Marín Silva	2022-10-20
+L2/22-253	IRG Meeting #59 Recommendations and Action Items	IRG	2022-10-21
+L2/22-254	Editorial Report on Miscellaneous Issues	IRG / CJK editorial group	2022-10-21
+L2/22-255	Response to Feedback Regarding kSimplifiedVariant/kTraditionalVariant	John H. Jenkins	2022-10-21
+L2/22-256	T-Source Glyph Correction and Horizontal Extension	TCA	2022-10-24
+L2/22-257	An item WG2 N5194 requests a feedback from IRG	Toshiya Suzuki	2022-10-24
+L2/22-258	Changing glyphs and IDSs of 97 KR Hanja chars containing '叱 (U+53F1)'	SHIN SangHyun, KIM Kyongsok	2022-10-24
+L2/22-259	IRGN2556R2 V-Source Glyph and Codes Updates	Vietnam NB	2022-10-24
+L2/22-260	Proposal to encode three characters in Tulu-Tigalari	Srinidhi A, Sridatta A	2022-10-25
+L2/22-261	Proposal for extensions to the Arabic block	Mohamed Naji	2022-10-25
+L2/22-262	Proposal to encode 23 Cyrillic characters for old Uslar's Caucasian Alphabets	Nikita Manulov	2022-10-25
+L2/22-263	Feedback to Nushu glyph update proposed by L2/22-138	Toshiya Suzuki	2022-10-25
+L2/22-264	Nüshu feedback on L2/22-138 (Proposal to update the reference glyphs in the Nüshu block and the Ideographic Symbols and Punctuation block)	Endo Orie	2022-10-28
+L2/22-265	Considerations concerning Egyptian Hieroglyphs extension	Michel Suignard	2022-10-25
+L2/22-266	Summary of SAH and PAG joint meetings	Deborah Anderson	2022-10-25
+L2/22-267	Comments on L2/22-230 "Mathematical notation profile for default identifiers"	Kent Karlsson	2022-10-25
+L2/22-268	Proposal to Encode Alternate BA for the Bengali Language (revised)	Vinodh Rajan, Deepro Chakraborty	2022-12-23
+L2/22-269	Response to L2/22-214, Use of ARDHAVISARGA in Malayalam and Sinhala	Gihan Dias	2022-10-26
+L2/22-270	Release Management Group Recommendations for 2023-2024 Releases	Peter Constable	2022-10-28
+L2/22-271	On LATIN SMALL LETTER TURNED O OPEN-O and LATIN SMALL LETTER TURNED O OPEN-O WITH STROKE  (revised)	Denis Moyogo Jacquerye	2022-10-26
+L2/22-272	Comments on the Tai Don or Tai Khao encoding	Eiso Chan	2022-10-26
+L2/22-273	Response to Eiso Chan's "Comments on the Tai Don or Tai Khao encoding"	Jim Brase	2022-10-26
+L2/22-274	Disruptive Changes in GB 18030-2022 (revised)	Peter Constable	2023-01-05
+L2/22-275	Exploring Emoji Directionality	ESC / Sean Stewart, Jennifer Daniel	2022-10-31
+L2/22-276	Guidelines for Family Emoji ZWJ Sequences that currently lack RGI tone support	ESC / Jennifer Daniel	2022-10-31
+L2/22-277	Proposal to add Kangxi Radical annotations to the CJK Radicals Supplement block	Ken Lunde	2022-11-08
+L2/22-278	Usages of Bengali Letter Alternate BA for Pali language	Srinidhi A, Sridatta A	2022-11-07
+L2/22-279	UCS Seal Script Source Mapping Data	Richard Cook	2022-11-08
+L2/22-280	Proposal to encode Cyrillic letter Che With Hook	Nikita Manulov	2022-11-30
+L2/22-281	Proposal to Encode Two Quranic Arabic Characters (Replaces L2/22-153) (revised)	Rikza F. Sh.	2023-01-05
+L2/22-282	Proposal to add one common character used for Cantonese cuisine to UAX #45	Eiso Chan	2022-12-08
+L2/22-283	Proposal to encode Universal Feed Symbol	Pierre Marshall	2022-11-30
+L2/22-284	List of Unencoded Arabic Characters	Rikza F. Sh.	2022-11-30
+L2/22-285	Proposal for a compromise of the recent Old Hungarian proposal	Viktor Kovács	2022-11-30
+L2/22-286	Proposal to Encode Latin characters for Initial Teaching Alphabet	Nikita Manulov	2022-11-30
+L2/22-287	Request to change glyphs of 63 K-source Hanja chars in UCS	KIM Kyongsok	2022-11-30
+L2/22-288	Proposal to enhance the provisional kBigFive property	Ken Lunde	2022-11-30
+L2/22-289	Final Proposal to encode the Tai Yo Script (replaces L2/22-208) (revised)	Viet Khoi Nguyen, et al	2023-01-09
+L2/22-290	Khmer Encoding Structure (Nov 2022)	Martin Hosken, et al	2022-12-21
+L2/23-001	Complete UTC Document Register 2022	Rick McGowan	2023-01-05
+L2/23-002	Proposal to add kFanqie to Unihan Database	Eiso Chan	2023-01-05
+L2/23-003	Industry Recommendations for GB 18030 Testing & Certification	Ken Lunde	2023-01-17
+L2/23-004	UTC #174 Agenda	Peter Constable	2023-01-23
+L2/23-005	UTC #174 Minutes	Peter Constable	2023-02-01
+L2/23-006	Recently Closed Action Items (since 2022-10-27)	Rick McGowan	2023-01-20
+L2/23-007	Comments on Public Review Issues (October 27, 2022 - January 5, 2023)	Rick McGowan	2023-01-06
+L2/23-008	UTC #174 properties feedback & recommendations	Markus Scherer, et al	2023-01-18
+L2/23-009	Editorial Committee Report and Recommendations for UTC #174 Meeting	Ken Whistler	2023-01-23
+L2/23-010	Emoji Subcommittee Report for UTC #174 (2023Q1) (revised)	ESC / Jennifer Daniel	2023-01-26
+L2/23-011	CJK & Unihan Group Recommendations for UTC #174 Meeting	Ken Lunde	2023-01-11
+L2/23-012	Recommendations to UTC #174 January 2023 on Script Proposals	Deborah Anderson, et al	2023-01-17
+L2/23-013	SEI Liaison Report	Deborah Anderson / SEI	2023-01-12
+L2/23-014	Proposal for amendments to UAX #9	Manish Goregaokar (मनीष गोरेगांवकर)	2023-01-06
+L2/23-015	Comments on CYRILLIC CHE WITH HOOK's use in Khanty and Tofa (Tofalar) (L2/22-280)	Deborah Anderson	2023-01-05
+L2/23-016	DUCET: Sort quotation marks+Geresh+Gershayim like their ASCII fallbacks	Markus Scherer / PAG	2023-01-05
+L2/23-017	Recommendations of the source code working group for UTC #174	Robin Leroy / SCWG	2023-01-13
+L2/23-018	Proposal to Update Properties for Two Khmer Characters (revision 2)	Steven Loomis	2023-04-28
+L2/23-019	Revised proposal to encode Sidetic in Unicode	Anshuman Pandey	2023-01-06
+L2/23-020	Preliminary Classic Maya Syllabary and List of Classic Maya Signs	Gabrielle Vail	2023-01-09
+L2/23-021	Additional Document for Unicode Tulu Proposal	Akash Raj Jain	2023-01-09
+L2/23-022	Proposal to encode Transnistrian Ruble Sign	Nikita Manulov	2023-01-11
+L2/23-023	Proposal to encode additional Tai Viet characters for the Jinping Dai	Kushim Jiang	2023-01-11
+L2/23-024	Proposal to encode Tolong Siki	Anshuman Pandey	2023-01-11
+L2/23-025	Khmer orthographic syllables	Norbert Lindenberg	2023-01-12
+L2/23-026	Confusables in Khmer	Norbert Lindenberg	2023-01-17
+L2/23-027	Confusables in Balinese, Javanese, and Kawi	Norbert Lindenberg	2023-01-17
+L2/23-028	Preliminary proposal to encode Ranjana	Anshuman Pandey	2023-02-02
+L2/23-029	Family Emoji Redesign: Gender Inclusive Variants	Sean Stewart / ESC	2023-01-17
+L2/23-030	Emoji Directionality Recommendation (revised)	Sean Stewart / ESC	2023-01-26
+L2/23-031	Proposal for Emoji: Lime	Nicholas Antonio, Tanita Antonio	2023-01-17
+L2/23-032	Brown Mushroom Emoji Proposal	Jennifer Daniel / ESC	2023-01-17
+L2/23-033	Proposal for Emoji: PHOENIX BIRD	Jennifer 8. Lee, Samantha Sunne / ESC	2023-01-17
+L2/23-034	Head Shaking Horizontally Unicode Emoji Proposal	Lauren Gawne, Jennifer Daniel / ESC	2023-01-17
+L2/23-035	Head Shaking Vertically Unicode Emoji Proposal	Lauren Gawne, Jennifer Daniel / ESC	2023-01-17
+L2/23-036	Chain with Broken Link Proposal	Jennifer Daniel / ESC	2023-01-17
+L2/23-037	Recommendations for ZWJ Sequences, Unicode 15.1 (revised)	Jennifer Daniel / ESC	2023-01-26
+L2/23-038	Orthographic Syllable Structure in Core Spec	Roozbeh Pournader	2023-01-13
+L2/23-039	Scope of the Unicode 15.1 Alpha Review	Markus Scherer	2023-01-19
+L2/23-040	Release Management Group Report to UTC #174	RMG / Peter Constable	2023-01-20
+L2/23-041	Review report of KP part of preliminary 15.1 Alpha Code Charts	Yi Bai (白 易), CheonHyeong Sim (沈天珩)	2023-01-18
+L2/23-042	Proposed Update UAX #9, Unicode Bidirectional Algorithm (HTML version)	Mark Davis, Ken Whistler	2023-01-20
+L2/23-043	Proposed Update UAX #14, Unicode Line Breaking Algorithm (HTML version)	Robin Leroy	2023-01-20
+L2/23-044	Proposed Update UAX #24, Unicode Script Property (HTML version)	Ken Whistler	2023-01-20
+L2/23-045	Proposed Update UAX #29, Unicode Text Segmentation (HTML version)	Christopher Chapman	2023-01-20
+L2/23-046	Proposed Update UAX #31, Unicode Identifiers and Syntax (HTML version)	Mark Davis, Robin Leroy	2023-01-20
+L2/23-047	Proposed Update UAX #38, Unicode Han Database (HTML version)	John Jenkins, et al	2023-01-20
+L2/23-048	Proposed Update UAX #41, Common References for Unicode Standard Annexes (HTML version)	Ken Whistler, Rick McGowan	2023-01-20
+L2/23-049	Proposed Update UAX #44, Unicode Character Database (HTML version)	Ken Whistler	2023-01-20
+L2/23-050	Proposed Update UAX #45, U-Source Ideographs (HTML version)	John Jenkins	2023-01-20
+L2/23-051	Proposed Update UTS #39, Unicode Security Mechanisms (HTML version)	Mark Davis, Michel Suignard	2023-01-20
+L2/23-052	Proposed Draft UTS #55, Unicode Source Code Handling (HTML version)	Robin Leroy, Mark Davis	2023-01-20
+L2/23-053	Proposed Update UTS #51, Unicode Emoji (HTML version)	Mark David, Ned Holbrook	2023-01-23
+L2/23-054	Requirements and Process for Changing Script Status for Identifier Use	Asmus Freytag	2023-01-23
+L2/23-055	Disunification of Tulu-Tigalari script & Invented Tulu Script	Vaishnavi Murthy, Vinodh Rajan	2023-01-23
+L2/23-056	Beyond Canonical Equivalence: A discussion on a way forward	Lawrence Wolf-Sonkin	2023-01-23
+L2/23-057	Draft GB 18030-2022 Amendment Feedback & Recommendations	USNB	2023-02-03
+L2/23-058	US/Unicode Activity Report for IRG #60	Ken Lunde	2023-02-07
+L2/23-059	Additional kRSUnicode Values	John H. Jenkins	2023-02-01
+L2/23-060	Proposal to Encode a Hungarian Forint Symbol (revised)	Vacek Nules	2023-05-02
+L2/23-061	Request to replace "start" with "star" in the name for U+06DE	Kamal Mansour	2023-02-15
+L2/23-062	Add Simple_Case_Folding mappings for three existing characters	Markus Scherer	2023-03-02
+L2/23-063	Line breaking around quotation marks	Robin Leroy	2023-03-21
+L2/23-064	Left-to-right directionality in Arabic numeric expressions	Kamal Mansour	2023-03-14
+L2/23-065	Proposal to encode a blank character for Khitan Small Script	Andrew West	2023-03-20
+L2/23-066	Glyph Corrections for Eight Tangut Ideographs	Andrew West	2023-03-20
+L2/23-067	Article on Old Hungarian letters for Q, X, Y	Viktor Kovács, Deborah Anderson	2023-03-20
+L2/23-068	Towards an Encoding of the Jurchen Script	Andrew West	2023-03-20
+L2/23-069	Revised designs of the alchemical symbols block (revision 2)	Kirk Miller	2023-04-24
+L2/23-070	Proposal to encode Bima characters (supercedes L2/22-150)	Febri Muhammad Nasrullah	2023-03-20
+L2/23-071	Unicode Cuneiform Sign Lists	Robin Leroy	2023-03-28
+L2/23-072	Proposed changes for line breaking on orthographic syllables	Robin Leroy	2023-03-28
+L2/23-073	About the Encoding Model on Han Ligatures	CheonHyeong Sim (沈天珩)	2023-03-23
+L2/23-074	Proposal to Encode Slovene Metelko Alphabet 2022	Nikita Manulov	2023-03-28
+L2/23-075	UTC #175 Agenda	Peter Constable	2023-04-22
+L2/23-076	UTC #175 Minutes	Peter Constable	2023-05-02
+L2/23-077	Recently Closed Action Items (since 2023-01-05)	Rick McGowan	2023-04-24
+L2/23-078	Comments on Public Review Issues (January 5 - April 5, 2023)	Rick McGowan	2023-04-06
+L2/23-079	UTC #175 properties feedback & recommendations	Markus Scherer, et al	2023-04-21
+L2/23-080	Editorial Committee Report and Recommendations for UTC #175 Meeting	Ken Whistler	2023-04-17
+L2/23-081	Emoji Subcommittee Report for UTC #175 (2023Q2)	ESC / Jennifer Daniel	2023-04-17
+L2/23-082	CJK & Unihan Group Recommendations for UTC #175 Meeting	Ken Lunde	2023-04-22
+L2/23-083	Recommendations to UTC #175 April 2023 on Script Proposals	Deborah Anderson, et al	2023-04-24
+L2/23-084	SEI Liaison Report	Deborah Anderson / SEI	2023-04-21
+L2/23-085	Request to Update Glyph for U+31D5A	Henry Chan, Woo Chi Chung	2023-03-28
+L2/23-086	A revised proposal requesting a Horizontal Extension of 150 Hanja chars	SHIN Sanghyun, KIM Kyongsok, PYO Seungju	2023-03-28
+L2/23-087	IRG Meeting #60 Recommendations and Action Items	IRG	2023-03-28
+L2/23-088	Editorial Report on Miscellaneous Issues	IRG / CJK editorial group	2023-03-28
+L2/23-089	G glyphs for U+25D89 and U+28BBA	Jaemin Chung	2023-03-28
+L2/23-090	Proposal to encode dashed-box symbols in Plane 14	Michael Everson	2023-04-10
+L2/23-091	ESC Priorities for Unicode Version 16.0 & Beyond	ESC / Jennifer Daniel	2023-04-19
+L2/23-092	Proposed Update UAX #9, Unicode Bidirectional Algorithm (HTML version)	Manish Goregaokar, Robin Leroy	2023-04-05
+L2/23-093	Proposed Update UAX #31, Unicode Identifiers and Syntax (HTML version)	Mark Davis, Robin Leroy	2023-04-05
+L2/23-094	Proposed Update UAX #38, Unicode Han Database (HTML version)	Richard Cook, Ken Lunde	2023-04-05
+L2/23-095	Proposed Update UTS #39, Unicode Security Mechanisms (HTML version)	Mark Davis, Michel Suignard	2023-04-05
+L2/23-096	Proposed Update UAX #44, Unicode Character Database (HTML version)	Ken Whistler	2023-04-05
+L2/23-097	Proposed Update UTS #51, Unicode Emoji (HTML version)	Mark Davis, Ned Holbrook	2023-04-05
+L2/23-098	Draft UTS #55, Unicode Source Code Handling (revised; HTML version)	Robin Leroy, Mark Davis	2023-04-20
+L2/23-099	Proposed Update UAX #14, Unicode Line Breaking Algorithm (HTML version)	Robin Leroy	2023-04-06
+L2/23-100	GB 18030-2022 Amendment, Draft 2 + Disposition of Comments, Draft 1	China NB	2023-04-10
+L2/23-101	Text representation and shaping manual of the Mongolian script	Kushim Jiang	2023-04-14
+L2/23-102	Unicode request for Initial Teaching Alphabet	Kirk Miller	2023-04-17
+L2/23-103	Proposal for ARABIC BIBLICAL END OF VERSE	Lorna Priest Evans	2023-04-17
+L2/23-104	Draft Template for character additions to an existing script in Unicode	Deborah Anderson	2023-05-05
+L2/23-105	Draft Template for new script proposal	Deborah Anderson	2023-05-05
+L2/23-106	Proposal to provisionally assign or accept 603 urgently-needed ideographs	Ken Lunde	2023-04-20
+L2/23-107	Proper Complex Script Support in Text Terminals	Renzhi Li, et al	2023-04-24
+L2/23-108	Release Management Group Report to UTC #175	RMG / Peter Constable	2023-04-21
+L2/23-109	Draft encoding proposal for an extended Egyptian Hieroglyphs repertoire (41MB, data file HERE)	Michel Suignard, et al	2023-04-19
+L2/23-110	Proposal to encode a Chinese character from Xiao Lin Guan Ji	Zhiyu Yuan	2023-04-21
+L2/23-111	Conformance clauses in UAX #29	Mark Davis	2023-04-24
+L2/23-112	Proposal for missing Kana-Ligatures	Gen Kojitani	2023-04-25
+L2/23-113	GB 18030-2022 Amendment, Draft 1	China NB	2023-04-26
+L2/23-114	Proposal to encode 603 urgently needed ideographs in UCS	Ken Lunde, USNB	2023-05-02
+L2/23-115	USNB Comments on Draft 2 of GB 18030-2020 Amendment 1 and recommendation for ISO/IEC 10646:2022 Amendment 2	Peter Constable	2023-05-03
+L2/23-116	Proposal to update Appendix F: Documentation of CJK Strokes in Unicode 16.0	Night Koo	2023-05-02
+L2/23-117	Handling of the Heh in Sindhi Text	Kamal Mansour	2023-05-05

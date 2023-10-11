@@ -67,8 +67,8 @@ public class EmojiData implements EmojiDataSource {
             new UnicodeSet().add(0x1F46B).add(0x1F46C).add(0x1F46D).freeze();
     public static final UnicodeSet OTHER_GROUP = new UnicodeSet("[💏 💑]").freeze();
 
-    static final String ZWJ_HANDSHAKE_ZWJ = Emoji.JOINER_STR + "🤝" + Emoji.JOINER_STR;
-    private static final String BAD_HANDSHAKE = "👨🏻‍🤝‍👨🏼";
+    static final String ZWJ_HANDSHAKE_ZWJ = Emoji.ZWJ_HANDSHAKE_ZWJ;
+
     static final String RIGHTWARDS_HAND = UTF16.valueOf(0x1faf1);
     static final String LEFTWARDS_HAND = UTF16.valueOf(0x1faf2);
     static final String SHAKING_HANDS = RIGHTWARDS_HAND + Emoji.JOINER_STR + LEFTWARDS_HAND;
@@ -140,6 +140,8 @@ public class EmojiData implements EmojiDataSource {
                             .addAll(Emoji.ZWJ_GENDER_MARKERS)
                             .addAll(Emoji.FULL_ZWJ_GENDER_MARKERS)
                             .freeze());
+    public static final UnicodeSetSpanner GENDER_SPANNER =
+            new UnicodeSetSpanner(new UnicodeSet(Emoji.GENDER_MARKERS).freeze());
     public static final UnicodeSetSpanner SKIN_SPANNER =
             new UnicodeSetSpanner(new UnicodeSet(MODIFIERS).freeze());
 
@@ -192,12 +194,19 @@ public class EmojiData implements EmojiDataSource {
         this.version = version;
         final String directory =
                 Settings.UnicodeTools.getDataPathString("emoji", version.getVersionString(2, 4));
+        String ucdDirectory = directory;
+        if (version.compareTo(Emoji.VERSION13) >= 0) {
+            // As of E13.0 emoji-data.txt and emoji-variation-sequences.txt are in the UCD.
+            VersionInfo unicodeVersion = Emoji.getUnicodeVersionForEmojiVersion(version);
+            ucdDirectory =
+                    Settings.UnicodeTools.DataDir.UCD.asPath(unicodeVersion).toString() + "/emoji";
+        }
         UnicodeRelation<EmojiProp> emojiData = new UnicodeRelation<>();
 
         boolean oldFormat = version.compareTo(Emoji.VERSION2) < 0;
         int lineCount = 0;
 
-        for (String line : FileUtilities.in(directory, "emoji-data.txt")) {
+        for (String line : FileUtilities.in(ucdDirectory, "emoji-data.txt")) {
             // # Code ; Default Style ; Ordering ; Annotations ; Sources #Version Char Name
             // U+263A ; text ; 0 ; face, human, outlined, relaxed, smile, smiley, smiling ;
             // jw # V1.1 (☺) white smiling face
@@ -555,7 +564,7 @@ public class EmojiData implements EmojiDataSource {
                 emojiWithVariants.add(0x2640).add(0x2642).add(0x2695);
             }
         } else {
-            for (String line : FileUtilities.in(directory, "emoji-variation-sequences.txt")) {
+            for (String line : FileUtilities.in(ucdDirectory, "emoji-variation-sequences.txt")) {
                 int hashPos = line.indexOf('#');
                 if (hashPos >= 0) {
                     line = line.substring(0, hashPos);
@@ -1585,7 +1594,7 @@ public class EmojiData implements EmojiDataSource {
                     throw new IllegalArgumentException("internal error");
                 }
                 String result = prefixMod + infix + postfixMod;
-                if (result.equals(BAD_HANDSHAKE)) {
+                if (result.equals("👨🏻‍🤝‍👨🏼")) {
                     int x = 0;
                 }
                 if (result.contains("👯")) {

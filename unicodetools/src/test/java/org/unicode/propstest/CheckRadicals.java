@@ -20,6 +20,8 @@ public class CheckRadicals {
     }
 
     static void getRadicals() {
+        // Note: CJKRadicals.txt cannot be completely represented via a UnicodeMap.
+        // See the comments in RadicalStroke.getCJKRadicals().
         IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
         UnicodeMap<String> radicals = iup.load(UcdProperty.CJK_Radical);
         Relation<String, String> ordered = Relation.of(new TreeMap(), TreeSet.class);

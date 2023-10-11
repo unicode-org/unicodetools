@@ -7,17 +7,14 @@ import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
-import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,34 +30,6 @@ import org.unicode.text.utility.Utility;
  * @internal
  */
 public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
-    static class IntRange {
-        int start;
-        int end;
-        String string;
-
-        public IntRange set(String source) {
-            if (source.startsWith("U+")) {
-                source = source.substring(2);
-            }
-            final int range = source.indexOf("..");
-            if (range >= 0) {
-                start = Integer.parseInt(source.substring(0, range), 16);
-                end = Integer.parseInt(source.substring(range + 2), 16);
-                string = null;
-            } else if (source.contains(" ")) {
-                string = Utility.fromHex(source);
-                start = end = -1;
-            } else if (source.isEmpty()) {
-                string = "";
-                start = end = -1;
-            } else {
-                start = end = Integer.parseInt(source, 16);
-                string = null;
-            }
-            return this;
-        }
-    }
-
     enum SpecialProperty {
         None,
         Skip1FT,
@@ -212,6 +181,10 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         return fieldNumber - arg0.fieldNumber;
     }
 
+    public static String getFullFileName(UcdProperty prop, VersionInfo ucdVersion) {
+        return getPropertyInfo(prop).getFullFileName(ucdVersion);
+    }
+
     public String getFullFileName(VersionInfo ucdVersionRequested) {
         return Utility.getMostRecentUnicodeDataFile(
                 getFileName(ucdVersionRequested), ucdVersionRequested.toString(), true, false);
@@ -236,23 +209,29 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     public static final Normalizer2 NFD = Normalizer2.getNFDInstance();
     public static final Normalizer2 NFC = Normalizer2.getNFCInstance();
 
-    public void put(UnicodeMap<String> data, IntRange intRange, String string) {
+    public void put(UnicodeMap<String> data, UcdLineParser.IntRange intRange, String string) {
         put(data, intRange, string, null);
     }
 
     public void put(
-            UnicodeMap<String> data, IntRange intRange, String string, Merge<String> merger) {
+            UnicodeMap<String> data,
+            UcdLineParser.IntRange intRange,
+            String string,
+            Merge<String> merger) {
         put(data, null, intRange, string, merger, false);
     }
 
     public void put(
             UnicodeMap<String> data,
             UnicodeSet missingSet,
-            IntRange intRange,
+            UcdLineParser.IntRange intRange,
             String value,
             Merge<String> merger,
             boolean hackHangul) {
-        if (value != null && value.isEmpty() && property != UcdProperty.NFKC_Casefold) {
+        if (value != null
+                && value.isEmpty()
+                && property != UcdProperty.NFKC_Casefold
+                && property != UcdProperty.NFKC_Simple_Casefold) {
             value = null;
         }
         value = normalizeAndVerify(value);
@@ -462,179 +441,6 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         multivalued = toMultiValued.get(multivalued2);
     }
 
-    private static final class UcdFileStats {
-        int lineCount;
-        boolean containsEOF;
-    }
-
-    private static final class UcdLine implements Iterator<UcdLine> {
-        private enum State {
-            LOOK,
-            HAVE_NEXT,
-            NO_NEXT
-        }
-
-        private static final Pattern MISSING =
-                Pattern.compile("\\s*#\\s*@(missing|empty):?\\s*(.+)\\s*");
-
-        enum Contents {
-            DATA,
-            MISSING,
-            EMPTY
-        }
-
-        private final Matcher splitter;
-        private final boolean withRange;
-        private final boolean withMissing;
-        private final Iterator<String> rawLines;
-        /** Code points covered by @missing lines for less than all of Unicode. */
-        private final UnicodeSet missingSet = new UnicodeSet();
-
-        private State state = State.LOOK;
-        String line; // original line for logging and error messages
-        String line2; // modified line for parsing
-        private final UcdFileStats stats;
-        Contents contents = Contents.DATA;
-        ArrayList<String> partsList = new ArrayList<>();
-        String[] parts = null;
-        final IntRange intRange = new IntRange();
-
-        UcdLine(
-                Pattern splitPattern,
-                boolean withRange,
-                boolean withMissing,
-                Iterator<String> rawLines,
-                UcdFileStats stats) {
-            splitter = splitPattern.matcher("");
-            this.withRange = withRange;
-            this.withMissing = withMissing;
-            this.rawLines = rawLines;
-            this.stats = stats;
-        }
-
-        @Override
-        public boolean hasNext() {
-            if (state == State.NO_NEXT) {
-                return false;
-            }
-            if (state == State.LOOK) {
-                contents = Contents.DATA;
-                do {
-                    if (!rawLines.hasNext()) {
-                        state = State.NO_NEXT;
-                        return false;
-                    }
-                    line = line2 = rawLines.next();
-                    ++stats.lineCount;
-                    final int hashPos = line2.indexOf('#');
-                    if (hashPos >= 0) {
-                        if (line2.contains("# EOF")) {
-                            stats.containsEOF = true;
-                        } else {
-                            if (line2.contains("@missing:")) { // quick test
-                                // # @missing: 0000..10FFFF; cjkIRG_KPSource; <none>
-                                if (!withMissing) {
-                                    throw new IllegalArgumentException(
-                                            "Unhandled @missing line: " + line);
-                                }
-                                final Matcher missingMatcher = MISSING.matcher(line2);
-                                if (!missingMatcher.matches()) {
-                                    System.err.println(RegexUtilities.showMismatch(MISSING, line2));
-                                    throw new UnicodePropertyException(
-                                            "Bad @missing statement: " + line);
-                                }
-                                contents =
-                                        missingMatcher.group(1).equals("empty")
-                                                ? Contents.EMPTY
-                                                : Contents.MISSING;
-                                line2 = missingMatcher.group(2);
-                            }
-                        }
-                        if (contents == Contents.DATA) {
-                            line2 = line2.substring(0, hashPos);
-                        }
-                    }
-                    line2 = line2.trim();
-                    if (line2.startsWith("\ufeff")) {
-                        line2 = line2.substring(1).trim();
-                    }
-                } while (line2.isEmpty());
-                partsList.clear();
-                parts = Regexes.split(splitter.reset(line2), line2, partsList, parts);
-                // 3400;<CJK Ideograph Extension A, First>;Lo;0;L;;;;;N;;;;;
-                // 4DB5;<CJK Ideograph Extension A, Last>;Lo;0;L;;;;;N;;;;;
-                // U+4F70   kAccountingNumeric  100
-                if (withRange || contents != Contents.DATA) {
-                    try {
-                        intRange.set(parts[0]);
-                    } catch (Exception e) {
-                        throw new IllegalArgumentException("line: " + line, e);
-                    }
-                    if (contents != Contents.DATA) {
-                        if (intRange.start != 0 || intRange.end != 0x10FFFF) {
-                            if (contents == Contents.MISSING) {
-                                // @missing line for less than all of Unicode
-                                missingSet.add(intRange.start, intRange.end);
-                                contents = Contents.DATA;
-                            } else {
-                                System.err.println("Unexpected range: " + line);
-                            }
-                        }
-                    }
-                }
-                state = State.HAVE_NEXT;
-            }
-            return true; // HAVE_NEXT
-        }
-
-        @Override
-        public UcdLine next() {
-            if (state != State.HAVE_NEXT && !hasNext()) {
-                throw new NoSuchElementException();
-            }
-            state = State.LOOK;
-            return this;
-        }
-    }
-
-    /**
-     * Low-level parser for lines of Unicode data files with TAB or semicolon separators. Skips
-     * comments and empty lines. Handles @missing lines, if this option is turned on. Parses a range
-     * of code points from the first field, unless this option is turned off.
-     */
-    private static final class UcdLineParser implements Iterable<UcdLine> {
-        private boolean withTabs = false;
-        private boolean withRange = true;
-        private boolean withMissing = false;
-        private final Iterable<String> rawLines;
-        final UcdFileStats stats = new UcdFileStats();
-
-        UcdLineParser(Iterable<String> rawLines) {
-            this.rawLines = rawLines;
-        }
-
-        UcdLineParser withTabs(boolean t) {
-            withTabs = t;
-            return this;
-        }
-
-        UcdLineParser withRange(boolean r) {
-            withRange = r;
-            return this;
-        }
-
-        UcdLineParser withMissing(boolean m) {
-            withMissing = m;
-            return this;
-        }
-
-        @Override
-        public Iterator<UcdLine> iterator() {
-            return new UcdLine(
-                    withTabs ? TAB : SEMICOLON, withRange, withMissing, rawLines.iterator(), stats);
-        }
-    }
-
     static void parseSourceFile(
             IndexUnicodeProperties indexUnicodeProperties,
             final String fullFilename,
@@ -748,8 +554,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                 + "\tLoaded: "
                                 + fileName
                                 + "\tlines: "
-                                + parser.stats.lineCount
-                                + (parser.stats.containsEOF ? "" : "\t*NO '# EOF'"));
+                                + parser.getLineCount()
+                                + (parser.containsEOF() ? "" : "\t*NO '# EOF'"));
             }
         }
         for (final PropertyParsingInfo propInfo : propInfoSet) {
@@ -787,7 +593,14 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     // do nothing, already none;
                     break;
                 case CODE_POINT:
-                    // requires special handling later
+                    // NOTE(egg): The naïve thing here would be
+                    //   for (final String cp : nullValues) {
+                    //     data.put(cp, cp);
+                    //   }
+                    // However, UnicodeMap is extremely slow with large numbers of values.
+                    // Instead we fill it with <code point>, and let IndexUnicodeProperty resolve
+                    // that.
+                    data.putAll(nullValues, propInfo.getDefaultValue());
                     break;
                 default:
                     throw new UnicodePropertyException(); // unexpected error
@@ -802,6 +615,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
 
     private static void parseCJKRadicalsFile(
             UcdLineParser parser, PropertyParsingInfo propInfo, UnicodeMap<String> data) {
+        // Note: CJKRadicals.txt cannot be completely represented via a UnicodeMap.
+        // See the comments in RadicalStroke.getCJKRadicals().
         /*
          * CJKRadicals
          * The first field is the radical number.
@@ -809,11 +624,13 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
          * The third field is the CJK Unified Ideograph.
          * 1; 2F00; 4E00
          */
-        for (UcdLine line : parser) {
-            IntRange intRange = line.intRange;
-            String[] parts = line.parts;
-            intRange.set(parts[1]);
-            propInfo.put(data, intRange, parts[0]);
+        for (UcdLineParser.UcdLine line : parser) {
+            UcdLineParser.IntRange intRange = line.getRange();
+            String[] parts = line.getParts();
+            if (!parts[1].isEmpty()) {
+                intRange.set(parts[1]);
+                propInfo.put(data, intRange, parts[0]);
+            }
             intRange.set(parts[2]);
             propInfo.put(data, intRange, parts[0]);
         }
@@ -823,20 +640,20 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             UcdLineParser parser,
             IndexUnicodeProperties indexUnicodeProperties,
             Set<PropertyParsingInfo> propInfoSet) {
-        for (UcdLine line : parser) {
-            line.intRange.set(line.parts[1]);
+        for (UcdLineParser.UcdLine line : parser) {
+            line.getRange().set(line.getParts()[1]);
             for (final PropertyParsingInfo propInfo : propInfoSet) {
                 final UnicodeMap<String> data =
                         indexUnicodeProperties.property2UnicodeMap.get(propInfo.property);
-                propInfo.put(data, line.intRange, line.parts[0]);
+                propInfo.put(data, line.getRange(), line.getParts()[0]);
             }
         }
     }
 
     private static void parsePropertyValueFile(
             UcdLineParser parser, IndexUnicodeProperties indexUnicodeProperties) {
-        for (UcdLine line : parser) {
-            String propName = line.parts[1];
+        for (UcdLineParser.UcdLine line : parser) {
+            String propName = line.getParts()[1];
             UcdProperty item = UcdProperty.forString(propName);
 
             if (item == null) {
@@ -851,7 +668,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             try {
                 propInfo = property2PropertyInfo.get(item);
             } catch (Exception e) {
-                throw new IllegalArgumentException(line.line, e);
+                throw new IllegalArgumentException(line.getOriginalLine(), e);
             }
             if (propInfo == null) {
                 throw new IllegalArgumentException(
@@ -862,14 +679,19 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             // file: " + propInfo);
             //                    }
             String value;
-            if (line.parts.length == 2) {
+            if (line.getParts().length == 2) {
                 assert propInfo.property.getType() == PropertyType.Binary;
                 value = "Yes";
             } else {
-                value = propInfo.property.getType() == PropertyType.Binary ? "Yes" : line.parts[2];
+                value =
+                        propInfo.property.getType() == PropertyType.Binary
+                                ? "Yes"
+                                : line.getParts()[2];
                 // The value should not be an empty string.
                 // Exception: NFKC_Casefold does remove some characters by mapping them to nothing.
-                assert !value.isEmpty() || propInfo.property == UcdProperty.NFKC_Casefold;
+                assert !value.isEmpty()
+                        || propInfo.property == UcdProperty.NFKC_Casefold
+                        || propInfo.property == UcdProperty.NFKC_Simple_Casefold;
                 if (propInfo.property == UcdProperty.kMandarin) {
                     if (indexUnicodeProperties.oldVersion) {
                         value =
@@ -878,13 +700,14 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     }
                 }
             }
-            if (line.contents == UcdLine.Contents.DATA) {
+            if (line.getType() == UcdLineParser.UcdLine.Contents.DATA) {
                 if (propInfo.getDefaultValue() == null) {
                     // Old versions of data files did not yet have @missing lines.
                     // Supply the default value before applying the first real data line.
                     String defaultValue = null;
                     switch (propInfo.property) {
                         case NFKC_Casefold:
+                        case NFKC_Simple_Casefold:
                             defaultValue = "<code point>";
                             break;
                         default:
@@ -898,15 +721,15 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 try {
                     data = indexUnicodeProperties.property2UnicodeMap.get(propInfo.property);
                 } catch (Exception e) {
-                    throw new IllegalArgumentException(line.line, e);
+                    throw new IllegalArgumentException(line.getOriginalLine(), e);
                 }
-                propInfo.put(data, line.intRange, value);
+                propInfo.put(data, line.getRange(), value);
             } else {
                 setPropDefault(
                         propInfo.property,
                         value,
-                        line.line,
-                        line.contents == UcdLine.Contents.EMPTY);
+                        line.getOriginalLine(),
+                        line.getType() == UcdLineParser.UcdLine.Contents.EMPTY);
             }
         }
     }
@@ -915,9 +738,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             UcdLineParser parser,
             IndexUnicodeProperties indexUnicodeProperties,
             Set<PropertyParsingInfo> propInfoSet) {
-        for (UcdLine line : parser) {
-            IntRange intRange = line.intRange;
-            String[] parts = line.parts;
+        for (UcdLineParser.UcdLine line : parser) {
+            UcdLineParser.IntRange intRange = line.getRange();
+            String[] parts = line.getParts();
             String propName = "Confusable_" + parts[2];
             final UcdProperty ucdProp = UcdProperty.forString(propName);
             if (ucdProp == null) {
@@ -949,8 +772,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             UcdLineParser parser,
             IndexUnicodeProperties indexUnicodeProperties,
             Set<PropertyParsingInfo> propInfoSet) {
-        for (UcdLine line : parser) {
-            String[] parts = line.parts;
+        for (UcdLineParser.UcdLine line : parser) {
+            String[] parts = line.getParts();
             if (!parts[2].isEmpty()) {
                 parts[1] = parts[1] + " (" + parts[2] + ")";
             }
@@ -967,7 +790,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             UcdLineParser parser,
             IndexUnicodeProperties indexUnicodeProperties,
             Set<PropertyParsingInfo> propInfoSet) {
-        for (UcdLine line : parser) {
+        for (UcdLineParser.UcdLine line : parser) {
             parseFields(
                     line,
                     indexUnicodeProperties,
@@ -982,11 +805,11 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             IndexUnicodeProperties indexUnicodeProperties,
             Set<PropertyParsingInfo> propInfoSet) {
         int lastCodepoint = 0;
-        for (UcdLine line : parser) {
-            String[] parts = line.parts;
+        for (UcdLineParser.UcdLine line : parser) {
+            String[] parts = line.getParts();
             boolean hackHangul = false;
             if (parts[1].endsWith("Last>")) {
-                line.intRange.start = lastCodepoint + 1;
+                line.getRange().start = lastCodepoint + 1;
             }
             if (parts[1].startsWith("<")) {
                 /*
@@ -1021,7 +844,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             } else if (parts[1].startsWith("CJK COMPATIBILITY IDEOGRAPH-")) {
                 parts[1] = "CJK COMPATIBILITY IDEOGRAPH-#"; // hack for uniform data
             }
-            lastCodepoint = line.intRange.end;
+            lastCodepoint = line.getRange().end;
             if (!parts[5].isEmpty() && parts[5].indexOf('<') >= 0) {
                 // Decomposition_Mapping: Remove the decomposition type.
                 parts[5] = DECOMP_REMOVE.matcher(parts[5]).replaceAll("").trim();
@@ -1034,19 +857,19 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             UcdLineParser parser,
             IndexUnicodeProperties indexUnicodeProperties,
             Set<PropertyParsingInfo> propInfoSet) {
-        for (UcdLine line : parser) {
+        for (UcdLineParser.UcdLine line : parser) {
             parseFields(line, indexUnicodeProperties, propInfoSet, null, false);
         }
     }
 
     private static void parseFields(
-            UcdLine line,
+            UcdLineParser.UcdLine line,
             IndexUnicodeProperties indexUnicodeProperties,
             Set<PropertyParsingInfo> propInfoSet,
             Merge<String> merger,
             boolean hackHangul) {
-        String[] parts = line.parts;
-        if (line.contents == UcdLine.Contents.DATA) {
+        String[] parts = line.getParts();
+        if (line.getType() == UcdLineParser.UcdLine.Contents.DATA) {
             for (final PropertyParsingInfo propInfo : propInfoSet) {
                 final UnicodeMap<String> data =
                         indexUnicodeProperties.property2UnicodeMap.get(propInfo.property);
@@ -1087,8 +910,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         propInfo.fieldNumber >= parts.length ? "" : parts[propInfo.fieldNumber];
                 propInfo.put(
                         data,
-                        line.missingSet,
-                        line.intRange,
+                        line.getMissingSet(),
+                        line.getRange(),
                         value,
                         merger,
                         hackHangul && propInfo.property == UcdProperty.Decomposition_Mapping);
@@ -1100,16 +923,16 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 setPropDefault(
                         propInfo.property,
                         value,
-                        line.line,
-                        line.contents == UcdLine.Contents.EMPTY);
+                        line.getOriginalLine(),
+                        line.getType() == UcdLineParser.UcdLine.Contents.EMPTY);
             }
         }
     }
 
     private static void parseSimpleFieldFile(
             UcdLineParser parser, PropertyParsingInfo propInfo, UnicodeMap<String> data) {
-        for (UcdLine line : parser) {
-            if (line.contents == UcdLine.Contents.DATA) {
+        for (UcdLineParser.UcdLine line : parser) {
+            if (line.getType() == UcdLineParser.UcdLine.Contents.DATA) {
                 if (propInfo.getDefaultValue() == null) {
                     // Old versions of data files did not yet have @missing lines.
                     // Supply the default value before applying the first real data line.
@@ -1131,21 +954,27 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         setPropDefault(propInfo.property, defaultValue, "hardcoded", false);
                     }
                 }
-                propInfo.put(data, line.missingSet, line.intRange, line.parts[1], null, false);
+                propInfo.put(
+                        data,
+                        line.getMissingSet(),
+                        line.getRange(),
+                        line.getParts()[1],
+                        null,
+                        false);
             } else {
                 setPropDefault(
                         propInfo.property,
-                        line.parts[1],
-                        line.line,
-                        line.contents == UcdLine.Contents.EMPTY);
+                        line.getParts()[1],
+                        line.getOriginalLine(),
+                        line.getType() == UcdLineParser.UcdLine.Contents.EMPTY);
             }
         }
     }
 
     private static void parseListFile(
             UcdLineParser parser, PropertyParsingInfo propInfo, UnicodeMap<String> data) {
-        for (UcdLine line : parser) {
-            propInfo.put(data, line.intRange, "Yes");
+        for (UcdLineParser.UcdLine line : parser) {
+            propInfo.put(data, line.getRange(), "Yes");
         }
     }
 
@@ -1219,7 +1048,6 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     }
 
     /**
-     * @param ucdVersion2
      * @internal
      * @deprecated
      */
@@ -1349,11 +1177,15 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
     }
 
     private static void parseMissingFromValueAliases(Iterable<String> aliasesLines) {
-        for (UcdLine line : new UcdLineParser(aliasesLines).withRange(false).withMissing(true)) {
-            if (line.contents == UcdLine.Contents.MISSING) {
+        for (UcdLineParser.UcdLine line :
+                new UcdLineParser(aliasesLines).withRange(false).withMissing(true)) {
+            if (line.getType() == UcdLineParser.UcdLine.Contents.MISSING) {
                 // # @missing: 0000..10FFFF; cjkIRG_KPSource; <none>
                 setDefaultValueForPropertyName(
-                        line.line, line.parts[1], line.parts[2], /* isEmpty=*/ false);
+                        line.getOriginalLine(),
+                        line.getParts()[1],
+                        line.getParts()[2],
+                        /* isEmpty=*/ false);
             }
         }
     }

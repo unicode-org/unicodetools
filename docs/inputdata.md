@@ -6,7 +6,9 @@ Starting with Unicode 15, we are developing most of the Unicode data files
 in this Unicode Tools project, and publish them to the Public folder
 only for alpha/beta/final releases.
 That is, we are reversing the flow of files.
-(See [issue #144](https://github.com/unicode-org/unicodetools/issues/144).)
+
+See [data workflow](data-workflow.md). (Based on
+[issue #144](https://github.com/unicode-org/unicodetools/issues/144).)
 
 We are also no longer generating and posting files with version suffixes.
 
@@ -14,6 +16,34 @@ Except: Some files, such as Unihan and ucdxml data files, are developed elsewher
 and we continue to ingest them as before.
 
 ## Source Files
+
+*Starting with Unicode 15.1, the “source of truth” for most data files is in the repo,
+and most of this section is obsolete. See [data workflow](data-workflow.md).
+The biggest exception is Unihan.zip, which we don't track in the repo; see the Unihan section below.
+Also, it's still useful to delete the BIN files/folders after changing data files.*
+
+### Unihan
+
+You may need to manually change the "Unihan-8.0.0d2 Folder" to "Unihan".
+
+Unzip the Unihan.zip file into a "Unihan" subfolder.
+
+Starting with Unicode 13, we split the Unihan data into single-property files
+and parse those.
+
+Run the script that is checked in at
+[py/splitunihan.py](../py/splitunihan.py)
+with one argument, the path to the Unihan folder.
+
+Ignore or delete the Unihan\*.txt files now. Do not check them into the tools
+any more.
+
+Check for new and no-longer-present files (Unihan properties).
+`git add` and `git rm` as necessary.
+
+### Fetching files from Public
+
+Only for Unicode 15.0 and earlier:
 
 The source files that you will need for a release such as 8.0.0 are in:
 
@@ -68,6 +98,7 @@ files have the version suffix.
 ### Removing Suffixes
 
 Only for Unicode 14 and earlier:
+
 For the ucd and uca files, you will have to remove the suffixes.
 
 Tip: On Linux, you can remove version suffixes on the command line like this:
@@ -133,25 +164,6 @@ This is checked into /data, so you can clean a target directory (such as "stagin
 $ cd {workspace}/unicodetools/data/ucd/staging
 $ ../../desuffixucd.py .
 ```
-
-### Unihan
-
-You may need to manually change the "Unihan-8.0.0d2 Folder" to "Unihan".
-
-Unzip the Unihan.zip file into a "Unihan" subfolder.
-
-Starting with Unicode 13, we split the Unihan data into single-property files
-and parse those.
-
-Run the script that is checked in at
-[py/splitunihan.py](../py/splitunihan.py)
-with one argument, the path to the Unihan folder.
-
-Ignore or delete the Unihan\*.txt files now. Do not check them into the tools
-any more.
-
-Check for new and no-longer-present files (Unihan properties).
-`git add` and `git rm` as necessary.
 
 ## Original data file setup instructions
 

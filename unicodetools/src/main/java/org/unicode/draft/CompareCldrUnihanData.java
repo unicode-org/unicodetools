@@ -59,6 +59,8 @@ public class CompareCldrUnihanData {
                         .addAll(blocks.getSet(Block_Values.Kangxi_Radicals))
                         .removeAll(gc.getSet(General_Category_Values.Unassigned));
 
+        // Note: CJKRadicals.txt cannot be completely represented via a UnicodeMap.
+        // See the comments in RadicalStroke.getCJKRadicals().
         UnicodeMap<String> cjkRadical = IUP.load(UcdProperty.CJK_Radical);
         for (String value : cjkRadical.values()) {
             UnicodeSet withRadical = cjkRadical.getSet(value);

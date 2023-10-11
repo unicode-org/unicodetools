@@ -104,13 +104,53 @@ public final class UCD_Names implements UCD_Types {
         "Prepended_Concatenation_Mark",
         "Regional_Indicator",
         "IDS_Unary_Operator",
+        "ID_Compat_Math_Start",
+        "ID_Compat_Math_Continue",
     };
 
     static final String[] SHORT_BP = {
-        "Bidi_M", "CE", "WSpace", "NBrk", "Bidi_C", "JoinC", "Dash", "Hyphen", "QMark", "Term",
-        "OMath", "Hex", "AHex", "OAlpha", "Ideo", "Dia", "Ext", "OLower", "OUpper", "NChar",
-        "TurkI", "OGrExt", "Gr_Link", "IDSB", "IDST", "Radical", "UIdeo", "ODI", "Dep", "SD", "LOE",
-        "OIDS", "STerm", "VS", "OIDC", "PatWS", "PatSyn", "PCM", "RI", "IDSU",
+        "Bidi_M",
+        "CE",
+        "WSpace",
+        "NBrk",
+        "Bidi_C",
+        "JoinC",
+        "Dash",
+        "Hyphen",
+        "QMark",
+        "Term",
+        "OMath",
+        "Hex",
+        "AHex",
+        "OAlpha",
+        "Ideo",
+        "Dia",
+        "Ext",
+        "OLower",
+        "OUpper",
+        "NChar",
+        "TurkI",
+        "OGrExt",
+        "Gr_Link",
+        "IDSB",
+        "IDST",
+        "Radical",
+        "UIdeo",
+        "ODI",
+        "Dep",
+        "SD",
+        "LOE",
+        "OIDS",
+        "STerm",
+        "VS",
+        "OIDC",
+        "PatWS",
+        "PatSyn",
+        "PCM",
+        "RI",
+        "IDSU",
+        "ID_Compat_Math_Start",
+        "ID_Compat_Math_Continue",
     };
 
     public static final int BINARY_UNIFIED_IDEOGRAPH =
@@ -145,7 +185,8 @@ public final class UCD_Names implements UCD_Types {
     static final String[] LINE_BREAK = {
         "XX", "OP", "CL", "QU", "GL", "NS", "EX", "SY", "IS", "PR", "PO", "NU", "AL", "ID", "IN",
         "HY", "CM", "BB", "BA", "SP", "BK", "CR", "LF", "CB", "SA", "AI", "B2", "SG", "ZW", "NL",
-        "WJ", "JL", "JV", "JT", "H2", "H3", "CP", "HL", "CJ", "RI", "EB", "EM", "ZWJ"
+        "WJ", "JL", "JV", "JT", "H2", "H3", "CP", "HL", "CJ", "RI", "EB", "EM", "ZWJ", "AK", "AP",
+        "AS", "VI", "VF"
     };
 
     static final String[] LONG_LINE_BREAK = {
@@ -191,7 +232,12 @@ public final class UCD_Names implements UCD_Types {
         "Regional_Indicator",
         "E_Base",
         "E_Modifier",
-        "ZWJ"
+        "ZWJ",
+        "Aksara",
+        "Aksara_Prebase",
+        "Aksara_Start",
+        "Virama",
+        "Virama_Final",
     };
 
     public static final String[] LONG_SCRIPT = {
@@ -368,8 +414,19 @@ public final class UCD_Names implements UCD_Types {
         // Unicode 15
         "Kawi",
         "Nag_Mundari",
-        // Unicode 16?
+        // Unicode 16
+        "Garay",
+        "Gurung_Khema",
+        "Kirat_Rai",
+        "Ol_Onal",
         "Sunuwar",
+        "Todhri",
+        "Tulu_Tigalari",
+        // Provisionally assigned
+        "Chisoi",
+        "Sidetic",
+        "Tai_Yo",
+        "Tolong_Siki",
     };
 
     public static final Relation<String, String> EXTRA_SCRIPT =
@@ -554,14 +611,26 @@ public final class UCD_Names implements UCD_Types {
         // Unicode 15
         "Kawi",
         "Nagm",
-        // Unicode 16?
+        // Unicode 16
+        "Gara",
+        "Gukh",
+        "Krai",
+        "Onao",
         "Sunu",
+        "Todr",
+        "Tutg",
+        // Provisionally assigned
+        "Chis",
+        "Sidt",
+        "Tayo",
+        "Tols",
     };
 
     static final String[] SHORT_AGE = {
         "NA", "1.1", "2.0", "2.1", "3.0", "3.1", "3.2", "4.0", "4.1", "5.0", "5.1", "5.2", "6.0",
         "6.1", "6.2", "6.3", "7.0", "8.0", "9.0", "10.0", "11.0", "12.0", "12.1", "13.0", "14.0",
-        "15.0", "15.1",
+        "15.0", "15.1", "16.0",
+        // FIX_FOR_NEW_VERSION
     };
 
     static final String[] LONG_AGE = {
@@ -592,6 +661,8 @@ public final class UCD_Names implements UCD_Types {
         "V14_0",
         "V15_0",
         "V15_1",
+        "V16_0",
+        // FIX_FOR_NEW_VERSION
     };
 
     static final String[] GENERAL_CATEGORY = {

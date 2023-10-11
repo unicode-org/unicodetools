@@ -1,6 +1,6 @@
-# DerivedAge-15.1.0.txt
-# Date: 2022-12-20, 01:07:57 GMT
-# © 2022 Unicode®, Inc.
+# DerivedAge-16.0.0.txt
+# Date: 2023-10-11, 21:15:38 GMT
+# © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -1999,9 +1999,21 @@ FDFE..FDFF    ; 14.0 #   [2] ARABIC LIGATURE SUBHAANAHU WA TAAALAA..ARABIC LIGAT
 
 2FFC..2FFF    ; 15.1 #   [4] IDEOGRAPHIC DESCRIPTION CHARACTER SURROUND FROM RIGHT..IDEOGRAPHIC DESCRIPTION CHARACTER ROTATION
 31EF          ; 15.1 #       IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
-11BC0..11BE1  ; 15.1 #  [34] SUNUWAR LETTER DEVI..SUNUWAR SIGN PVO
-11BF0..11BF9  ; 15.1 #  [10] SUNUWAR DIGIT ZERO..SUNUWAR DIGIT NINE
+2EBF0..2EE5D  ; 15.1 # [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
 
-# Total code points: 49
+# Total code points: 627
+
+# ================================================
+
+# Age=V16_0
+
+# Newly assigned in Unicode 16.0.0 (September, 2024)
+
+0897          ; 16.0 #       ARABIC PEPET
+10EC2..10EC4  ; 16.0 #   [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
+11BC0..11BE1  ; 16.0 #  [34] SUNUWAR LETTER DEVI..SUNUWAR SIGN PVO
+11BF0..11BF9  ; 16.0 #  [10] SUNUWAR DIGIT ZERO..SUNUWAR DIGIT NINE
+
+# Total code points: 48
 
 # EOF

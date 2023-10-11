@@ -484,9 +484,7 @@ public class CountEmoji {
             _html =
                     _html.replace(
                             Attribute.skin.label,
-                            "<span style=\"display:inline-block;\">"
-                                    + Attribute.skin.label
-                                    + "</span>");
+                            ChartUtilities.htmlSpanForSkintone(Attribute.skin.label));
             html = title == null ? _html : "<span title='" + title + "'>" + _html + "</span>";
         }
 
@@ -572,10 +570,20 @@ public class CountEmoji {
                     if (role) {
                         attributes.add(Attribute.role);
                     }
+                    boolean direction = s.endsWith(Emoji.ZWJ_RIGHTWARDS_ARROW);
+                    if (direction && !gender) {
+                        // Directional sequences are currently limited to people
+                        // so make sure they don't end up in the "Other" bucket.
+                        attributes.add(Attribute.role);
+                    }
                     boolean family =
-                            noVariants.contains(EmojiData.ZWJ_HANDSHAKE_ZWJ)
-                                    || Emoji.FAMILY_MARKERS.contains(first)
-                                            && Emoji.FAMILY_MARKERS.containsSome(butFirst);
+                            noVariants.contains(Emoji.ZWJ_HANDSHAKE_ZWJ) // holding hands
+                                    || noVariants.contains(
+                                            Emoji.ZWJ_HEART_ZWJ) // couple with heart, kiss
+                                    || EmojiData.of(Emoji.VERSION_BETA).isHandshake(s)
+                                    || (Emoji.FAMILY_MARKERS.contains(first)
+                                            && Emoji.FAMILY_MARKERS.containsSome(butFirst))
+                                    || Emoji.NEUTRAL_FAMILY_ZWJ_SEQUENCES.contains(s);
                     if (family) {
                         attributes.add(Attribute.family);
                     }

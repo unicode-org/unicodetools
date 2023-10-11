@@ -18,6 +18,7 @@ import org.unicode.props.UcdPropertyValues.Identifier_Status_Values;
 import org.unicode.props.UcdPropertyValues.Identifier_Type_Values;
 import org.unicode.props.UcdPropertyValues.Idn_2008_Values;
 import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
+import org.unicode.props.UcdPropertyValues.Indic_Conjunct_Break_Values;
 import org.unicode.props.UcdPropertyValues.Indic_Positional_Category_Values;
 import org.unicode.props.UcdPropertyValues.Indic_Syllabic_Category_Values;
 import org.unicode.props.UcdPropertyValues.Joining_Group_Values;
@@ -55,10 +56,12 @@ public enum UcdProperty {
     Confusable_SA(PropertyType.String, "ConfSA"),
     Confusable_SL(PropertyType.String, "ConfSL"),
     Decomposition_Mapping(PropertyType.String, "dm"),
+    Equivalent_Unified_Ideograph(PropertyType.String, "EqUIdeo"),
     FC_NFKC_Closure(PropertyType.String, "FC_NFKC"),
     Idn_Mapping(PropertyType.String, "idnm"),
     Lowercase_Mapping(PropertyType.String, "lc"),
     NFKC_Casefold(PropertyType.String, "NFKC_CF"),
+    NFKC_Simple_Casefold(PropertyType.String, "NFKC_SCF"),
     Simple_Case_Folding(PropertyType.String, "scf", "sfc"),
     Simple_Lowercase_Mapping(PropertyType.String, "slc"),
     Simple_Titlecase_Mapping(PropertyType.String, "stc"),
@@ -76,7 +79,6 @@ public enum UcdProperty {
     Emoji_DCM(PropertyType.Miscellaneous, "EDCM"),
     Emoji_KDDI(PropertyType.Miscellaneous, "EKDDI"),
     Emoji_SB(PropertyType.Miscellaneous, "ESB"),
-    Equivalent_Unified_Ideograph(PropertyType.Miscellaneous, "EqUIdeo"),
     ISO_Comment(PropertyType.Miscellaneous, "isc"),
     Jamo_Short_Name(PropertyType.Miscellaneous, "JSN"),
     Name(PropertyType.Miscellaneous, "na"),
@@ -226,6 +228,7 @@ public enum UcdProperty {
             "idtype"),
     Idn_2008(PropertyType.Enumerated, Idn_2008_Values.class, null, "idn8"),
     Idn_Status(PropertyType.Enumerated, Idn_Status_Values.class, null, "idns"),
+    Indic_Conjunct_Break(PropertyType.Enumerated, Indic_Conjunct_Break_Values.class, null, "InCB"),
     Indic_Positional_Category(
             PropertyType.Enumerated, Indic_Positional_Category_Values.class, null, "InPC"),
     Indic_Syllabic_Category(
@@ -281,6 +284,8 @@ public enum UcdProperty {
     IDS_Binary_Operator(PropertyType.Binary, Binary.class, null, "IDSB"),
     IDS_Trinary_Operator(PropertyType.Binary, Binary.class, null, "IDST"),
     IDS_Unary_Operator(PropertyType.Binary, Binary.class, null, "IDSU"),
+    ID_Compat_Math_Continue(PropertyType.Binary, Binary.class, null, "ID_Compat_Math_Continue"),
+    ID_Compat_Math_Start(PropertyType.Binary, Binary.class, null, "ID_Compat_Math_Start"),
     ID_Continue(PropertyType.Binary, Binary.class, null, "IDC"),
     ID_Start(PropertyType.Binary, Binary.class, null, "IDS"),
     Ideographic(PropertyType.Binary, Binary.class, null, "Ideo"),

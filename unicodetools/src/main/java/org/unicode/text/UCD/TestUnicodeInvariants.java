@@ -16,9 +16,11 @@ import java.text.ParseException;
 import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Tabber;
@@ -239,6 +241,8 @@ public class TestUnicodeInvariants {
                                 showMapLine(line, pp);
                             } else if (line.startsWith("Show")) {
                                 showLine(line, pp);
+                            } else if (line.startsWith("EquivalencesOf")) {
+                                equivalencesLine(line, pp);
                             } else {
                                 testLine(line, pp);
                             }
@@ -270,6 +274,187 @@ public class TestUnicodeInvariants {
         UnicodeProperty property1;
         boolean shouldBeEqual;
         UnicodeProperty property2;
+    }
+
+    private static void equivalencesLine(String line, ParsePosition pp) throws ParseException {
+        pp.setIndex("EquivalencesOf".length());
+        final UnicodeSet domain = new UnicodeSet(line, pp, symbolTable);
+        final var leftProperty = CompoundProperty.of(LATEST_PROPS, line, pp);
+        scan(PATTERN_WHITE_SPACE, line, pp, true);
+        char relationOperator = line.charAt(pp.getIndex());
+        pp.setIndex(pp.getIndex() + 1);
+        final var rightProperty = CompoundProperty.of(LATEST_PROPS, line, pp);
+
+        boolean leftShouldImplyRight = false;
+        boolean rightShouldImplyLeft = false;
+
+        boolean negated = true;
+        switch (relationOperator) {
+            case '⇍':
+                relationOperator = '⇐';
+                break;
+            case '⇎':
+                relationOperator = '⇔';
+                break;
+            case '⇏':
+                relationOperator = '⇒';
+                break;
+            default:
+                negated = false;
+        }
+
+        switch (relationOperator) {
+            case '⇐':
+                rightShouldImplyLeft = true;
+                break;
+            case '⇔':
+                leftShouldImplyRight = true;
+                rightShouldImplyLeft = true;
+                break;
+            case '⇒':
+                leftShouldImplyRight = true;
+                break;
+            default:
+                throw new ParseException(line, pp.getIndex());
+        }
+        final var leftValues = new HashMap<String, String>();
+        final var rightValues = new HashMap<String, String>();
+        final var leftClasses = new HashMap<String, UnicodeSet>();
+        final var rightClasses = new HashMap<String, UnicodeSet>();
+        for (String element : domain) {
+            final var leftValue = new StringBuilder();
+            final var rightValue = new StringBuilder();
+            for (int codepoint : element.codePoints().toArray()) {
+                leftValue.append(leftProperty.getValue(codepoint));
+                rightValue.append(rightProperty.getValue(codepoint));
+            }
+            leftValues.put(element, leftValue.toString());
+            rightValues.put(element, rightValue.toString());
+            leftClasses.computeIfAbsent(leftValue.toString(), (k) -> new UnicodeSet()).add(element);
+            rightClasses
+                    .computeIfAbsent(rightValue.toString(), (k) -> new UnicodeSet())
+                    .add(element);
+        }
+        UnicodeSet remainingDomain = domain.cloneAsThawed();
+        final var leftImpliesRightCounterexamples = new ArrayList<String>();
+        final var rightImpliesLeftCounterexamples = new ArrayList<String>();
+
+        // For the implication ⇒, produce at most one counterexample per equivalence class of the
+        // left-hand-side equivalence relation: we do not want an example per pair of Unicode code
+        // points!
+        if (leftShouldImplyRight) {
+            while (!remainingDomain.isEmpty()) {
+                String representative = remainingDomain.iterator().next();
+                UnicodeSet leftEquivalenceClass = leftClasses.get(leftValues.get(representative));
+                UnicodeSet rightEquivalenceClass =
+                        rightClasses.get(rightValues.get(representative));
+                if (leftShouldImplyRight
+                        && !rightEquivalenceClass.containsAll(leftEquivalenceClass)) {
+                    final String counterexampleRhs =
+                            leftEquivalenceClass
+                                    .cloneAsThawed()
+                                    .removeAll(rightEquivalenceClass)
+                                    .iterator()
+                                    .next();
+                    leftImpliesRightCounterexamples.add(
+                            "\t\t"
+                                    + leftProperty.getNameAliases()
+                                    + "("
+                                    + representative
+                                    + ") \t=\t "
+                                    + leftProperty.getNameAliases()
+                                    + "("
+                                    + counterexampleRhs
+                                    + ") \t=\t "
+                                    + leftValues.get(representative)
+                                    + " \tbut\t "
+                                    + rightValues.get(representative)
+                                    + " \t=\t "
+                                    + rightProperty.getNameAliases()
+                                    + "("
+                                    + representative
+                                    + ") \t≠\t "
+                                    + rightProperty.getNameAliases()
+                                    + "("
+                                    + counterexampleRhs
+                                    + ") \t=\t "
+                                    + rightValues.get(counterexampleRhs));
+                }
+                remainingDomain.removeAll(leftEquivalenceClass);
+            }
+        }
+
+        // Likewise, for the implication ⇐, produce at most one counterexample per equivalence class
+        // of the
+        // right-hand-side equivalence relation.
+        remainingDomain = domain.cloneAsThawed();
+        if (rightShouldImplyLeft) {
+            while (!remainingDomain.isEmpty()) {
+                String representative = remainingDomain.iterator().next();
+                UnicodeSet leftEquivalenceClass = leftClasses.get(leftValues.get(representative));
+                UnicodeSet rightEquivalenceClass =
+                        rightClasses.get(rightValues.get(representative));
+                if (!leftEquivalenceClass.containsAll(rightEquivalenceClass)) {
+                    final String counterexampleRhs =
+                            rightEquivalenceClass
+                                    .cloneAsThawed()
+                                    .removeAll(leftEquivalenceClass)
+                                    .iterator()
+                                    .next();
+                    rightImpliesLeftCounterexamples.add(
+                            leftValues.get(representative)
+                                    + " \t=\t "
+                                    + leftProperty.getNameAliases()
+                                    + "("
+                                    + representative
+                                    + ") \t≠\t "
+                                    + leftProperty.getNameAliases()
+                                    + "("
+                                    + counterexampleRhs
+                                    + ") \t=\t "
+                                    + rightValues.get(counterexampleRhs)
+                                    + " \teven though\t "
+                                    + rightValues.get(representative)
+                                    + " \t=\t "
+                                    + rightProperty.getNameAliases()
+                                    + "("
+                                    + representative
+                                    + ") \t=\t "
+                                    + rightProperty.getNameAliases()
+                                    + "("
+                                    + counterexampleRhs
+                                    + ")\t\t");
+                }
+                remainingDomain.removeAll(rightEquivalenceClass);
+            }
+        }
+        final var counterexamples = new ArrayList<>(leftImpliesRightCounterexamples);
+        counterexamples.addAll(rightImpliesLeftCounterexamples);
+        boolean failure = counterexamples.isEmpty() == negated;
+        if (failure) {
+            ++testFailureCount;
+            printErrorLine("Test Failure", Side.START, testFailureCount);
+        }
+        if (counterexamples.isEmpty()) {
+            println("There are no counterexamples to " + relationOperator + ".");
+        } else {
+            if (leftShouldImplyRight) {
+                println("The implication ⇒ is " + leftImpliesRightCounterexamples.isEmpty() + ".");
+            }
+            if (rightShouldImplyLeft) {
+                println("The implication ⇐ is " + rightImpliesLeftCounterexamples.isEmpty() + ".");
+            }
+        }
+        out.println(failure ? "<table class='f'>" : "<table>");
+        for (String counterexample : counterexamples) {
+            out.println("<tr><td>");
+            out.println(toHTML.transform(counterexample).replace("\t", "</td><td>"));
+            out.println("</tr></td>");
+        }
+        out.println("</table>");
+        if (failure) {
+            printErrorLine("Test Failure", Side.END, testFailureCount);
+        }
     }
 
     private static void inLine(ParsePosition pp, String line) throws ParseException {
@@ -318,7 +503,7 @@ public class TestUnicodeInvariants {
         propertyComparison.valueSet = new UnicodeSet(line, pp, symbolTable);
         propertyComparison.property1 = CompoundProperty.of(LATEST_PROPS, line, pp);
         final int cp = line.codePointAt(pp.getIndex());
-        if (cp != '=' && cp != 'x') {
+        if (cp != '=' && cp != '≠') {
             throw new ParseException(line, pp.getIndex());
         }
         propertyComparison.shouldBeEqual = cp == '=';
@@ -354,7 +539,7 @@ public class TestUnicodeInvariants {
         }
 
         private static final UnicodeSet PROPCHARS =
-                new UnicodeSet("[a-zA-Z0-9\\:\\-\\_\\u0020\\p{pattern white space}]");
+                new UnicodeSet("[a-zA-Z0-9.\\:\\-\\_\\u0020\\p{pattern white space}]");
         private final List<FilterOrProp> propOrFilters = new ArrayList<FilterOrProp>();
 
         static UnicodeProperty of(
@@ -800,6 +985,9 @@ public class TestUnicodeInvariants {
             for (final UnicodeSetIterator it = new UnicodeSetIterator(valueSet);
                     it.nextRange() && rangeLimit > 0;
                     --rangeLimit) {
+                if (it.codepoint == it.IS_STRING) {
+                    continue; // TODO(egg): Show strings too.
+                }
                 shorter.add(it.codepoint, it.codepointEnd);
             }
             abbreviated = totalSize - shorter.size();
@@ -808,6 +996,12 @@ public class TestUnicodeInvariants {
         if (doHtml) {
             out.println("<table class='s'>");
         }
+        // Show the GC if it happens to be constant over a range, but do not split because of it:
+        // We limit the output based on unsplit ranges.
+        showLister
+                .setLabelSource(null)
+                .setRangeBreakSource(null)
+                .setRefinedLabelSource(LATEST_PROPS.getProperty("General_Category"));
         showLister.showSetNames(out, valueSet);
         if (doHtml) {
             out.println("</table>");
@@ -1037,14 +1231,38 @@ public class TestUnicodeInvariants {
         private UnicodeProperty property;
         private final transient PatternMatcher matcher = new UnicodeProperty.RegexMatcher();
 
+        private static final Set<String> TOOL_ONLY_PROPERTIES =
+                Set.of("toNFC", "toNFD", "toNFKC", "toNFKD");
+
+        private static boolean isTrivial(UnicodeMap<String> map) {
+            return map.isEmpty()
+                    || (map.values().size() == 1
+                            && map.getSet(map.values().iterator().next())
+                                    .equals(UnicodeSet.ALL_CODE_POINTS));
+        }
+
         public VersionedProperty set(String xPropertyName) {
             xPropertyName = xPropertyName.trim();
+            boolean allowRetroactive = false;
             if (xPropertyName.contains(":")) {
                 final String[] names = xPropertyName.split(":");
-                if (names.length != 2 || !names[0].startsWith("U")) {
+                if (names.length != 2) {
                     throw new IllegalArgumentException("Too many ':' fields in " + xPropertyName);
                 }
-                if (names[0].equalsIgnoreCase("U-1")) {
+                if (names[0].isEmpty()) {
+                    throw new IllegalArgumentException("Empty version field in " + xPropertyName);
+                }
+                switch (names[0].charAt(0)) {
+                    case 'U':
+                        break;
+                    case 'R':
+                        allowRetroactive = true;
+                        break;
+                    default:
+                        throw new IllegalArgumentException(
+                                "Version field should start with U or R in " + xPropertyName);
+                }
+                if (names[0].substring(1).equals("-1")) {
                     version = LAST_VERSION;
                 } else {
                     version = names[0].substring(1);
@@ -1055,18 +1273,19 @@ public class TestUnicodeInvariants {
             }
             ;
             propertyName = xPropertyName;
-            propSource = getProperties(version);
+            propSource = getIndexedProperties(version);
             property = propSource.getProperty(xPropertyName);
-            if (property == null) {
-                propSource = getIndexedProperties(version);
+            if ((property == null && TOOL_ONLY_PROPERTIES.contains(xPropertyName))
+                    || (isTrivial(property.getUnicodeMap()) && allowRetroactive)) {
+                propSource = getProperties(version);
                 property = propSource.getProperty(xPropertyName);
-                if (property == null) {
-                    throw new IllegalArgumentException(
-                            "Can't create property from name: "
-                                    + propertyName
-                                    + " and version: "
-                                    + version);
-                }
+            }
+            if (property == null || isTrivial(property.getUnicodeMap())) {
+                throw new IllegalArgumentException(
+                        "Can't create property from name: "
+                                + propertyName
+                                + " and version: "
+                                + version);
             }
             return this;
         }
