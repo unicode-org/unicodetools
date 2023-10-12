@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2023-10-12, 18:06:56 GMT
+# Date: 2023-10-12, 21:06:44 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1688,6 +1688,9 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 11A9E..11AA2  ; 0 # Po   [5] SOYOMBO HEAD MARK WITH MOON AND SUN AND TRIPLE FLAME..SOYOMBO TERMINAL MARK-2
 11AB0..11AF8  ; 0 # Lo  [73] CANADIAN SYLLABICS NATTILIK HI..PAU CIN HAU GLOTTAL STOP FINAL
 11B00..11B09  ; 0 # Po  [10] DEVANAGARI HEAD MARK..DEVANAGARI SIGN MINDU
+11BC0..11BE0  ; 0 # Lo  [33] SUNUWAR LETTER DEVI..SUNUWAR LETTER KLOKO
+11BE1         ; 0 # Po       SUNUWAR SIGN PVO
+11BF0..11BF9  ; 0 # Nd  [10] SUNUWAR DIGIT ZERO..SUNUWAR DIGIT NINE
 11C00..11C08  ; 0 # Lo   [9] BHAIKSUKI LETTER A..BHAIKSUKI LETTER VOCALIC L
 11C0A..11C2E  ; 0 # Lo  [37] BHAIKSUKI LETTER E..BHAIKSUKI LETTER HA
 11C2F         ; 0 # Mc       BHAIKSUKI VOWEL SIGN AA
@@ -2006,7 +2009,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 826760 code points not listed here.
+# The above property value applies to 826716 code points not listed here.
 # Total code points: 1113189
 
 # ================================================
