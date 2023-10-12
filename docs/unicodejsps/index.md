@@ -1,11 +1,5 @@
 # Building UnicodeJsp
 
-- Note: you can run the latest UnicodeJsp locally with docker using:
-
-```
-docker run --rm -p 8080:8080 unicode/unicode-jsp
-```
-
 - Note 2: there are some notes on updated processes for using GCP at [gcp-run.md](./gcp-run.md) - at present, automated deployment is TODO.
 
 ## Compiling
@@ -113,7 +107,26 @@ Look at <http://localhost:8080/UnicodeJsps/properties.jsp>, and make sure that
 there aren't any Z-Other props at the bottom (you'll need to update via Adding
 New Properties if there are).
 
-(:construction: **TODO**: explain how to do a Docker-based build here.)
+### Running a Docker-based build
+
+compile java stuff
+
+- `mvn -B package -am -pl UnicodeJsps -DskipTests=true`
+
+”backup” copy of CLDR and UnicodeTools. (`~/src/cldr` is an optional existing CLDR dir to save a few packets)
+
+- `git clone --reference-if-able ~/src/cldr https://github.com/unicode-org/cldr.git || (cd cldr && git pull)`
+- `mkdir -p UnicodeJsps/target && tar -cpz --exclude=.git --exclude=unicodetools/target/ -f UnicodeJsps/target/cldr-unicodetools.tgz ./cldr/ ./unicodetools/`
+
+Now, finally build.
+
+- `docker build -t unicode/unicode-jsp:latest UnicodeJsps/`
+
+… And run. Control-C to cancel it, otherwise visit <http://127.0.0.1:8080>
+
+```
+docker run --rm -p 8080:8080 unicode/unicode-jsp:latest
+```
 
 ## Commit/PR
 
