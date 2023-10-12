@@ -1,5 +1,5 @@
 # VerticalOrientation-16.0.0.txt
-# Date: 2023-10-02, 12:17:09 GMT
+# Date: 2023-10-11, 21:16:28 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2024,6 +2024,9 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 11AB0..11ABF   ; U  # Lo    [16] CANADIAN SYLLABICS NATTILIK HI..CANADIAN SYLLABICS SPA
 11AC0..11AF8   ; R  # Lo    [57] PAU CIN HAU LETTER PA..PAU CIN HAU GLOTTAL STOP FINAL
 11B00..11B09   ; R  # Po    [10] DEVANAGARI HEAD MARK..DEVANAGARI SIGN MINDU
+11BC0..11BE0   ; R  # Lo    [33] SUNUWAR LETTER DEVI..SUNUWAR LETTER KLOKO
+11BE1          ; R  # Po         SUNUWAR SIGN PVO
+11BF0..11BF9   ; R  # Nd    [10] SUNUWAR DIGIT ZERO..SUNUWAR DIGIT NINE
 11C00..11C08   ; R  # Lo     [9] BHAIKSUKI LETTER A..BHAIKSUKI LETTER VOCALIC L
 11C0A..11C2E   ; R  # Lo    [37] BHAIKSUKI LETTER E..BHAIKSUKI LETTER HA
 11C2F          ; R  # Mc         BHAIKSUKI VOWEL SIGN AA
