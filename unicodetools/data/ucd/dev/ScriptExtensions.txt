@@ -1,5 +1,5 @@
-# ScriptExtensions-16.0.0.txt
-# Date: 2023-10-11, 23:27:48 GMT
+# ScriptExtensions-15.1.0.txt
+# Date: 2023-02-01, 23:02:24 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -116,20 +116,6 @@
 1CFA          ; Nand # Lo       VEDIC SIGN DOUBLE ANUSVARA ANTARGOMUKHA
 
 # Total code points: 1
-
-# ================================================
-
-# Script_Extensions=Sunu
-
-0300..0301    ; Sunu # Mn   [2] COMBINING GRAVE ACCENT..COMBINING ACUTE ACCENT
-0303          ; Sunu # Mn       COMBINING TILDE
-030D          ; Sunu # Mn       COMBINING VERTICAL LINE ABOVE
-0310          ; Sunu # Mn       COMBINING CANDRABINDU
-032D          ; Sunu # Mn       COMBINING CIRCUMFLEX ACCENT BELOW
-0331          ; Sunu # Mn       COMBINING MACRON BELOW
-1DF5          ; Sunu # Mn       COMBINING UP TACK ABOVE
-
-# Total code points: 8
 
 # ================================================
 
@@ -645,5 +631,16 @@ A830..A832    ; Deva Dogr Gujr Guru Khoj Knda Kthi Mahj Mlym Modi Nand Shrd Sind
 0965          ; Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Limb Mahj Mlym Nand Orya Sind Sinh Sylo Takr Taml Telu Tirh # Po       DEVANAGARI DOUBLE DANDA
 
 # Total code points: 1
+
+# From L2/21-157R:
+# Script_Extensions=Sunu
+0300 ; Sunu # Mn COMBINING GRAVE ACCENT
+0301 ; Sunu # Mn COMBINING ACUTE ACCENT
+0303 ; Sunu # Mn COMBINING TILDE
+030D ; Sunu # Mn COMBINING VERTICAL LINE ABOVE
+0310 ; Sunu # Mn COMBINING CANDRABINDU
+032D ; Sunu # Mn COMBINING CIRCUMFLEX ACCENT BELOW
+0331 ; Sunu # Mn COMBINING MACRON BELOW
+1DF5 ; Sunu # Mn COMBINING UP TACK ABOVE
 
 # EOF
