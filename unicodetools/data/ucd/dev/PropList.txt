@@ -1,5 +1,5 @@
 # PropList-16.0.0.txt
-# Date: 2023-10-10, 11:51:10 GMT
+# Date: 2023-10-13, 11:33:44 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -429,7 +429,6 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 
 # ================================================
 
-10EFC; Other_Alphabetic
 0345          ; Other_Alphabetic # Mn       COMBINING GREEK YPOGEGRAMMENI
 05B0..05BD    ; Other_Alphabetic # Mn  [14] HEBREW POINT SHEVA..HEBREW POINT METEG
 05BF          ; Other_Alphabetic # Mn       HEBREW POINT RAFE
@@ -692,6 +691,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 10A0C..10A0F  ; Other_Alphabetic # Mn   [4] KHAROSHTHI VOWEL LENGTH MARK..KHAROSHTHI SIGN VISARGA
 10D24..10D27  ; Other_Alphabetic # Mn   [4] HANIFI ROHINGYA SIGN HARBAHAY..HANIFI ROHINGYA SIGN TASSI
 10EAB..10EAC  ; Other_Alphabetic # Mn   [2] YEZIDI COMBINING HAMZA MARK..YEZIDI COMBINING MADDA MARK
+10EFC         ; Other_Alphabetic # Mn       ARABIC COMBINING ALEF OVERLAY
 11000         ; Other_Alphabetic # Mc       BRAHMI SIGN CANDRABINDU
 11001         ; Other_Alphabetic # Mn       BRAHMI SIGN ANUSVARA
 11002         ; Other_Alphabetic # Mc       BRAHMI SIGN VISARGA
@@ -836,7 +836,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1426
+# Total code points: 1427
 
 # ================================================
 
