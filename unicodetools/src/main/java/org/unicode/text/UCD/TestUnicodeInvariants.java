@@ -503,7 +503,7 @@ public class TestUnicodeInvariants {
         propertyComparison.valueSet = new UnicodeSet(line, pp, symbolTable);
         propertyComparison.property1 = CompoundProperty.of(LATEST_PROPS, line, pp);
         final int cp = line.codePointAt(pp.getIndex());
-        if (cp != '=' && cp != 'x') {
+        if (cp != '=' && cp != '≠') {
             throw new ParseException(line, pp.getIndex());
         }
         propertyComparison.shouldBeEqual = cp == '=';
