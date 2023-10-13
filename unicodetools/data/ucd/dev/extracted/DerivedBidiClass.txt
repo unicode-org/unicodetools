@@ -1,5 +1,5 @@
 # DerivedBidiClass-16.0.0.txt
-# Date: 2023-10-13, 11:29:16 GMT
+# Date: 2023-10-13, 15:52:28 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -272,7 +272,7 @@
 0C3D          ; L # Lo       TELUGU SIGN AVAGRAHA
 0C41..0C44    ; L # Mc   [4] TELUGU VOWEL SIGN U..TELUGU VOWEL SIGN VOCALIC RR
 0C58..0C5A    ; L # Lo   [3] TELUGU LETTER TSA..TELUGU LETTER RRRA
-0C5D          ; L # Lo       TELUGU LETTER NAKAARA POLLU
+0C5C..0C5D    ; L # Lo   [2] TELUGU ARCHAIC SHRII..TELUGU LETTER NAKAARA POLLU
 0C60..0C61    ; L # Lo   [2] TELUGU LETTER VOCALIC RR..TELUGU LETTER VOCALIC LL
 0C66..0C6F    ; L # Nd  [10] TELUGU DIGIT ZERO..TELUGU DIGIT NINE
 0C77          ; L # Po       TELUGU SIGN SIDDHAM
@@ -293,7 +293,7 @@
 0CC7..0CC8    ; L # Mc   [2] KANNADA VOWEL SIGN EE..KANNADA VOWEL SIGN AI
 0CCA..0CCB    ; L # Mc   [2] KANNADA VOWEL SIGN O..KANNADA VOWEL SIGN OO
 0CD5..0CD6    ; L # Mc   [2] KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
-0CDD..0CDE    ; L # Lo   [2] KANNADA LETTER NAKAARA POLLU..KANNADA LETTER FA
+0CDC..0CDE    ; L # Lo   [3] KANNADA ARCHAIC SHRII..KANNADA LETTER FA
 0CE0..0CE1    ; L # Lo   [2] KANNADA LETTER VOCALIC RR..KANNADA LETTER VOCALIC LL
 0CE6..0CEF    ; L # Nd  [10] KANNADA DIGIT ZERO..KANNADA DIGIT NINE
 0CF1..0CF2    ; L # Lo   [2] KANNADA SIGN JIHVAMULIYA..KANNADA SIGN UPADHMANIYA
@@ -1185,7 +1185,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 820416 code points not listed here.
+# The above property value applies to 820414 code points not listed here.
 # Total code points: 1096267
 
 # ================================================
