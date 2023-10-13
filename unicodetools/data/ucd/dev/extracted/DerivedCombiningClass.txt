@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2023-10-11, 21:15:46 GMT
+# Date: 2023-10-12, 21:06:44 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -664,7 +664,7 @@
 1C5A..1C77    ; 0 # Lo  [30] OL CHIKI LETTER LA..OL CHIKI LETTER OH
 1C78..1C7D    ; 0 # Lm   [6] OL CHIKI MU TTUDDAG..OL CHIKI AHAD
 1C7E..1C7F    ; 0 # Po   [2] OL CHIKI PUNCTUATION MUCAAD..OL CHIKI PUNCTUATION DOUBLE MUCAAD
-1C80..1C88    ; 0 # L&   [9] CYRILLIC SMALL LETTER ROUNDED VE..CYRILLIC SMALL LETTER UNBLENDED UK
+1C80..1C8A    ; 0 # L&  [11] CYRILLIC SMALL LETTER ROUNDED VE..CYRILLIC SMALL LETTER TJE
 1C90..1CBA    ; 0 # L&  [43] GEORGIAN MTAVRULI CAPITAL LETTER AN..GEORGIAN MTAVRULI CAPITAL LETTER AIN
 1CBD..1CBF    ; 0 # L&   [3] GEORGIAN MTAVRULI CAPITAL LETTER AEN..GEORGIAN MTAVRULI CAPITAL LETTER LABIAL SIGN
 1CC0..1CC7    ; 0 # Po   [8] SUNDANESE PUNCTUATION BINDU SURYA..SUNDANESE PUNCTUATION BINDU BA SATANGA
@@ -2009,7 +2009,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 826718 code points not listed here.
+# The above property value applies to 826716 code points not listed here.
 # Total code points: 1113189
 
 # ================================================

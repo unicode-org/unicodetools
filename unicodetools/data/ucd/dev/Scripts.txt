@@ -1,5 +1,5 @@
 # Scripts-16.0.0.txt
-# Date: 2023-10-11, 22:00:46 GMT
+# Date: 2023-10-12, 21:07:08 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -769,7 +769,7 @@ AB65          ; Greek # L&       GREEK LETTER SMALL CAPITAL OMEGA
 0487          ; Cyrillic # Mn       COMBINING CYRILLIC POKRYTIE
 0488..0489    ; Cyrillic # Me   [2] COMBINING CYRILLIC HUNDRED THOUSANDS SIGN..COMBINING CYRILLIC MILLIONS SIGN
 048A..052F    ; Cyrillic # L& [166] CYRILLIC CAPITAL LETTER SHORT I WITH TAIL..CYRILLIC SMALL LETTER EL WITH DESCENDER
-1C80..1C88    ; Cyrillic # L&   [9] CYRILLIC SMALL LETTER ROUNDED VE..CYRILLIC SMALL LETTER UNBLENDED UK
+1C80..1C8A    ; Cyrillic # L&  [11] CYRILLIC SMALL LETTER ROUNDED VE..CYRILLIC SMALL LETTER TJE
 1D2B          ; Cyrillic # L&       CYRILLIC LETTER SMALL CAPITAL EL
 1D78          ; Cyrillic # Lm       MODIFIER LETTER CYRILLIC EN
 2DE0..2DFF    ; Cyrillic # Mn  [32] COMBINING CYRILLIC LETTER BE..COMBINING CYRILLIC LETTER IOTIFIED BIG YUS
@@ -788,7 +788,7 @@ FE2E..FE2F    ; Cyrillic # Mn   [2] COMBINING CYRILLIC TITLO LEFT HALF..COMBININ
 1E030..1E06D  ; Cyrillic # Lm  [62] MODIFIER LETTER CYRILLIC SMALL A..MODIFIER LETTER CYRILLIC SMALL STRAIGHT U WITH STROKE
 1E08F         ; Cyrillic # Mn       COMBINING CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I
 
-# Total code points: 506
+# Total code points: 508
 
 # ================================================
 
