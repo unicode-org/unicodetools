@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-16.0.0.txt
-# Date: 2023-10-09, 14:51:05 GMT
+# Date: 2023-10-16, 14:30:08 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -326,7 +326,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 10D24..10D27  ; Extend # Mn   [4] HANIFI ROHINGYA SIGN HARBAHAY..HANIFI ROHINGYA SIGN TASSI
 10D69..10D6D  ; Extend # Mn   [5] GARAY VOWEL SIGN E..GARAY CONSONANT NASALIZATION MARK
 10EAB..10EAC  ; Extend # Mn   [2] YEZIDI COMBINING HAMZA MARK..YEZIDI COMBINING MADDA MARK
-10EFD..10EFF  ; Extend # Mn   [3] ARABIC SMALL LOW WORD SAKTA..ARABIC SMALL LOW WORD MADDA
+10EFC..10EFF  ; Extend # Mn   [4] ARABIC COMBINING ALEF OVERLAY..ARABIC SMALL LOW WORD MADDA
 10F46..10F50  ; Extend # Mn  [11] SOGDIAN COMBINING DOT BELOW..SOGDIAN COMBINING STROKE BELOW
 10F82..10F85  ; Extend # Mn   [4] OLD UYGHUR COMBINING DOT ABOVE..OLD UYGHUR COMBINING TWO DOTS BELOW
 11001         ; Extend # Mn       BRAHMI SIGN ANUSVARA
@@ -460,7 +460,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2136
+# Total code points: 2137
 
 # ================================================
 

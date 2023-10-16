@@ -1,5 +1,5 @@
 # CaseFolding-16.0.0.txt
-# Date: 2023-10-03, 14:22:31 GMT
+# Date: 2023-10-16, 14:29:43 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -603,6 +603,7 @@
 1C86; C; 044A; # CYRILLIC SMALL LETTER TALL HARD SIGN
 1C87; C; 0463; # CYRILLIC SMALL LETTER TALL YAT
 1C88; C; A64B; # CYRILLIC SMALL LETTER UNBLENDED UK
+1C89; C; 1C8A; # CYRILLIC CAPITAL LETTER TJE
 1C90; C; 10D0; # GEORGIAN MTAVRULI CAPITAL LETTER AN
 1C91; C; 10D1; # GEORGIAN MTAVRULI CAPITAL LETTER BAN
 1C92; C; 10D2; # GEORGIAN MTAVRULI CAPITAL LETTER GAN

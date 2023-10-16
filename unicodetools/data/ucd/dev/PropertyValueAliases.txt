@@ -1,5 +1,5 @@
 # PropertyValueAliases-16.0.0.txt
-# Date: 2023-10-03, 14:23:19 GMT
+# Date: 2023-10-16, 14:30:14 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -427,6 +427,7 @@ blk; Soyombo                          ; Soyombo
 blk; Specials                         ; Specials
 blk; Sundanese                        ; Sundanese
 blk; Sundanese_Sup                    ; Sundanese_Supplement
+blk; Sunuwar                          ; Sunuwar
 blk; Sup_Arrows_A                     ; Supplemental_Arrows_A
 blk; Sup_Arrows_B                     ; Supplemental_Arrows_B
 blk; Sup_Arrows_C                     ; Supplemental_Arrows_C
@@ -1426,6 +1427,7 @@ sc ; Sogo                             ; Old_Sogdian
 sc ; Sora                             ; Sora_Sompeng
 sc ; Soyo                             ; Soyombo
 sc ; Sund                             ; Sundanese
+sc ; Sunu                             ; Sunuwar
 sc ; Sylo                             ; Syloti_Nagri
 sc ; Syrc                             ; Syriac
 sc ; Tagb                             ; Tagbanwa
