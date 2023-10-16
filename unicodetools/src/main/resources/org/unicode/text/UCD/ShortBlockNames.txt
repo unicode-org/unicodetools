@@ -308,6 +308,7 @@ Thai	;	Thai
 Tibetan	;	Tibetan
 Tifinagh	;	Tifinagh
 Tirhuta	;	Tirhuta
+Todhri	;	Todhri
 Toto    ;   Toto
 Transport_And_Map	;	Transport_And_Map_Symbols
 Ugaritic	;	Ugaritic

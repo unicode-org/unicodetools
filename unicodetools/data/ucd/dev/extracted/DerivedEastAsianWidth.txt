@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-16.0.0.txt
-# Date: 2023-10-13, 15:52:32 GMT
+# Date: 2023-10-16, 14:22:24 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1397,6 +1397,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 105A3..105B1  ; N # L&  [15] VITHKUQI SMALL LETTER HA..VITHKUQI SMALL LETTER RE
 105B3..105B9  ; N # L&   [7] VITHKUQI SMALL LETTER SE..VITHKUQI SMALL LETTER XE
 105BB..105BC  ; N # L&   [2] VITHKUQI SMALL LETTER Y..VITHKUQI SMALL LETTER ZE
+105C0..105F3  ; N # Lo  [52] TODHRI LETTER A..TODHRI LETTER OO
 10600..10736  ; N # Lo [311] LINEAR A SIGN AB001..LINEAR A SIGN A664
 10740..10755  ; N # Lo  [22] LINEAR A SIGN A701 A..LINEAR A SIGN A732 JE
 10760..10767  ; N # Lo   [8] LINEAR A SIGN A800..LINEAR A SIGN A807
@@ -2047,7 +2048,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 766231 code points not listed here.
+# The above property value applies to 766179 code points not listed here.
 # Total code points: 792618
 
 # ================================================

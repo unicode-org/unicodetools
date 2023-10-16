@@ -1,5 +1,5 @@
 # NormalizationTest-16.0.0.txt
-# Date: 2023-10-02, 12:41:11 GMT
+# Date: 2023-10-09, 15:12:35 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -15130,6 +15130,8 @@ FFEB;FFEB;FFEB;2192;2192; # (￫; ￫; ￫; →; →; ) HALFWIDTH RIGHTWARDS ARR
 FFEC;FFEC;FFEC;2193;2193; # (￬; ￬; ￬; ↓; ↓; ) HALFWIDTH DOWNWARDS ARROW
 FFED;FFED;FFED;25A0;25A0; # (￭; ￭; ￭; ■; ■; ) HALFWIDTH BLACK SQUARE
 FFEE;FFEE;FFEE;25CB;25CB; # (￮; ￮; ￮; ○; ○; ) HALFWIDTH WHITE CIRCLE
+105C9;105C9;105D2 0307;105C9;105D2 0307; # (𐗉; 𐗉; 𐗒◌̇; 𐗉; 𐗒◌̇; ) TODHRI LETTER EI
+105E4;105E4;105DA 0307;105E4;105DA 0307; # (𐗤; 𐗤; 𐗚◌̇; 𐗤; 𐗚◌̇; ) TODHRI LETTER U
 10781;10781;10781;02D0;02D0; # (𐞁; 𐞁; 𐞁; ː; ː; ) MODIFIER LETTER SUPERSCRIPT TRIANGULAR COLON
 10782;10782;10782;02D1;02D1; # (𐞂; 𐞂; 𐞂; ˑ; ˑ; ) MODIFIER LETTER SUPERSCRIPT HALF TRIANGULAR COLON
 10783;10783;10783;00E6;00E6; # (𐞃; 𐞃; 𐞃; æ; æ; ) MODIFIER LETTER SMALL AE

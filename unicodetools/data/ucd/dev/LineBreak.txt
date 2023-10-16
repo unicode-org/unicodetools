@@ -1,5 +1,5 @@
 # LineBreak-16.0.0.txt
-# Date: 2023-10-13, 11:29:24 GMT
+# Date: 2023-10-16, 14:22:28 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2721,6 +2721,7 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 105A3..105B1   ; AL # Ll    [15] VITHKUQI SMALL LETTER HA..VITHKUQI SMALL LETTER RE
 105B3..105B9   ; AL # Ll     [7] VITHKUQI SMALL LETTER SE..VITHKUQI SMALL LETTER XE
 105BB..105BC   ; AL # Ll     [2] VITHKUQI SMALL LETTER Y..VITHKUQI SMALL LETTER ZE
+105C0..105F3   ; AL # Lo    [52] TODHRI LETTER A..TODHRI LETTER OO
 10600..10736   ; AL # Lo   [311] LINEAR A SIGN AB001..LINEAR A SIGN A664
 10740..10755   ; AL # Lo    [22] LINEAR A SIGN A701 A..LINEAR A SIGN A732 JE
 10760..10767   ; AL # Lo     [8] LINEAR A SIGN A800..LINEAR A SIGN A807

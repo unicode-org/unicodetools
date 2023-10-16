@@ -1,5 +1,5 @@
 # Scripts-16.0.0.txt
-# Date: 2023-10-13, 15:52:54 GMT
+# Date: 2023-10-16, 14:22:46 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -3038,5 +3038,11 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 11BF0..11BF9  ; Sunuwar # Nd  [10] SUNUWAR DIGIT ZERO..SUNUWAR DIGIT NINE
 
 # Total code points: 44
+
+# ================================================
+
+105C0..105F3  ; Todhri # Lo  [52] TODHRI LETTER A..TODHRI LETTER OO
+
+# Total code points: 52
 
 # EOF
