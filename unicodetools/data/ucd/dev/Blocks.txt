@@ -217,6 +217,7 @@ FFF0..FFFF; Specials
 10500..1052F; Elbasan
 10530..1056F; Caucasian Albanian
 10570..105BF; Vithkuqi
+105C0..105FF; Todhri
 10600..1077F; Linear A
 10780..107BF; Latin Extended-F
 10800..1083F; Cypriot Syllabary
@@ -275,6 +276,7 @@ FFF0..FFFF; Specials
 11AB0..11ABF; Unified Canadian Aboriginal Syllabics Extended-A
 11AC0..11AFF; Pau Cin Hau
 11B00..11B5F; Devanagari Extended-A
+11BC0..11BFF; Sunuwar
 11C00..11C6F; Bhaiksuki
 11C70..11CBF; Marchen
 11D00..11D5F; Masaram Gondi

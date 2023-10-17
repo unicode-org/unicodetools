@@ -273,6 +273,7 @@ Soyombo	;	Soyombo
 Specials	;	Specials
 Sundanese	;	Sundanese
 Sundanese_Sup	;	Sundanese_Supplement
+Sunuwar	;	Sunuwar
 Super_And_Sub	;	Superscripts_And_Subscripts
 Sup_Arrows_A	;	Supplemental_Arrows_A
 Sup_Arrows_B	;	Supplemental_Arrows_B
@@ -308,6 +309,7 @@ Thai	;	Thai
 Tibetan	;	Tibetan
 Tifinagh	;	Tifinagh
 Tirhuta	;	Tirhuta
+Todhri	;	Todhri
 Toto    ;   Toto
 Transport_And_Map	;	Transport_And_Map_Symbols
 Ugaritic	;	Ugaritic
