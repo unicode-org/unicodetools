@@ -1,5 +1,5 @@
 # DerivedBidiClass-16.0.0.txt
-# Date: 2023-10-16, 14:22:20 GMT
+# Date: 2023-10-17, 12:28:55 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -940,6 +940,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 116B8         ; L # Lo       TAKRI LETTER ARCHAIC KHA
 116B9         ; L # Po       TAKRI ABBREVIATION SIGN
 116C0..116C9  ; L # Nd  [10] TAKRI DIGIT ZERO..TAKRI DIGIT NINE
+116D0..116E3  ; L # Nd  [20] MYANMAR PAO DIGIT ZERO..MYANMAR EASTERN PWO KAREN DIGIT NINE
 11700..1171A  ; L # Lo  [27] AHOM LETTER KA..AHOM LETTER ALTERNATE BA
 11720..11721  ; L # Mc   [2] AHOM VOWEL SIGN A..AHOM VOWEL SIGN AA
 11726         ; L # Mc       AHOM VOWEL SIGN E
@@ -1186,7 +1187,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 820362 code points not listed here.
+# The above property value applies to 820342 code points not listed here.
 # Total code points: 1096267
 
 # ================================================

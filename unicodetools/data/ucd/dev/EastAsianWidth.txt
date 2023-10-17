@@ -1,5 +1,5 @@
 # EastAsianWidth-16.0.0.txt
-# Date: 2023-10-16, 14:22:27 GMT
+# Date: 2023-10-17, 12:29:07 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2125,6 +2125,7 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 116B8          ; N  # Lo         TAKRI LETTER ARCHAIC KHA
 116B9          ; N  # Po         TAKRI ABBREVIATION SIGN
 116C0..116C9   ; N  # Nd    [10] TAKRI DIGIT ZERO..TAKRI DIGIT NINE
+116D0..116E3   ; N  # Nd    [20] MYANMAR PAO DIGIT ZERO..MYANMAR EASTERN PWO KAREN DIGIT NINE
 11700..1171A   ; N  # Lo    [27] AHOM LETTER KA..AHOM LETTER ALTERNATE BA
 1171D..1171F   ; N  # Mn     [3] AHOM CONSONANT SIGN MEDIAL LA..AHOM CONSONANT SIGN MEDIAL LIGATING RA
 11720..11721   ; N  # Mc     [2] AHOM VOWEL SIGN A..AHOM VOWEL SIGN AA

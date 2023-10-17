@@ -214,6 +214,7 @@ Music	;	Musical_Symbols
 Myanmar	;	Myanmar
 Myanmar_Ext_A	;	Myanmar_Extended_A
 Myanmar_Ext_B	;	Myanmar_Extended_B
+Myanmar_Ext_C	;	Myanmar_Extended_C
 Nabataean	;	Nabataean
 Nag_Mundari	;	Nag_Mundari
 Nandinagari	;	Nandinagari

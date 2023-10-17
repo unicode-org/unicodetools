@@ -1,5 +1,5 @@
 # DerivedLineBreak-16.0.0.txt
-# Date: 2023-10-16, 14:22:25 GMT
+# Date: 2023-10-17, 12:29:04 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -68,8 +68,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 762620 code points not listed here.
-# Total code points: 900088
+# The above property value applies to 762600 code points not listed here.
+# Total code points: 900068
 
 # ================================================
 
@@ -531,6 +531,7 @@ ABF0..ABF9    ; NU # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NINE
 114D0..114D9  ; NU # Nd  [10] TIRHUTA DIGIT ZERO..TIRHUTA DIGIT NINE
 11650..11659  ; NU # Nd  [10] MODI DIGIT ZERO..MODI DIGIT NINE
 116C0..116C9  ; NU # Nd  [10] TAKRI DIGIT ZERO..TAKRI DIGIT NINE
+116D0..116E3  ; NU # Nd  [20] MYANMAR PAO DIGIT ZERO..MYANMAR EASTERN PWO KAREN DIGIT NINE
 11730..11739  ; NU # Nd  [10] AHOM DIGIT ZERO..AHOM DIGIT NINE
 118E0..118E9  ; NU # Nd  [10] WARANG CITI DIGIT ZERO..WARANG CITI DIGIT NINE
 11BF0..11BF9  ; NU # Nd  [10] SUNUWAR DIGIT ZERO..SUNUWAR DIGIT NINE
@@ -547,7 +548,7 @@ ABF0..ABF9    ; NU # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NINE
 1E950..1E959  ; NU # Nd  [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 1FBF0..1FBF9  ; NU # Nd  [10] SEGMENTED DIGIT ZERO..SEGMENTED DIGIT NINE
 
-# Total code points: 634
+# Total code points: 654
 
 # ================================================
 

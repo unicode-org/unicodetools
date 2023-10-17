@@ -393,6 +393,7 @@ public class UcdPropertyValues {
         Myanmar("Myanmar"),
         Myanmar_Extended_A("Myanmar_Ext_A"),
         Myanmar_Extended_B("Myanmar_Ext_B"),
+        Myanmar_Extended_C("Myanmar_Ext_C"),
         Nabataean("Nabataean"),
         Nag_Mundari("Nag_Mundari"),
         Nandinagari("Nandinagari"),

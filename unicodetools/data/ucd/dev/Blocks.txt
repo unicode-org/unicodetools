@@ -265,6 +265,7 @@ FFF0..FFFF; Specials
 11600..1165F; Modi
 11660..1167F; Mongolian Supplement
 11680..116CF; Takri
+116D0..116FF; Myanmar Extended-C
 11700..1174F; Ahom
 11800..1184F; Dogra
 118A0..118FF; Warang Citi
