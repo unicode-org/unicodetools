@@ -139,9 +139,37 @@ public class ReorderCodes {
             // TODO:
             // - Remove scripts supported by ICU4J UScript and CLDR ScriptMetadata.
             // - Add scripts not yet supported there.
+            //
+            // See https://www.unicode.org/alloc/Pipeline.html
+            // and https://cldr.unicode.org/development/updating-codes/updating-script-metadata
             switch (reorderCode) {
                     //            case UCD_Types.Old_Hungarian:
                     //                return "𐲡";
+                    // Approved for Unicode 16:
+                case UCD_Types.Garay:
+                    return "\uD803\uDD5D";
+                case UCD_Types.Gurung_Khema:
+                    return "\uD818\uDD12";
+                case UCD_Types.Kirat_Rai:
+                    return "\uD81B\uDD4B";
+                case UCD_Types.Ol_Onal:
+                    return "\uD839\uDDD0";
+                case UCD_Types.Sunuwar:
+                    return "\uD806\uDFC4";
+                case UCD_Types.Todhri:
+                    return "\uD801\uDDC2";
+                case UCD_Types.Tulu_Tigalari:
+                    return "\uD804\uDF92";
+
+                    // Provisionally assigned so far:
+                case UCD_Types.Chisoi:
+                    return "\uD81B\uDD84";
+                case UCD_Types.Sidetic:
+                    return "\uD802\uDD50";
+                case UCD_Types.Tai_Yo:
+                    return "\uD839\uDED5";
+                case UCD_Types.Tolong_Siki:
+                    return "\uD807\uDDC6";
                 default:
                     throw new UnsupportedOperationException("unknown reorderCode " + reorderCode);
             }
