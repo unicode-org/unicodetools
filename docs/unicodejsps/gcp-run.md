@@ -24,7 +24,7 @@ mkdir -p UnicodeJsps/target && tar -cpz --exclude=.git -f UnicodeJsps/target/cld
 - build it
 
 ```
-docker build -t unicode/unicode-jsps .
+docker build -t unicode/unicode-jsps UnicodeJsps/
 ```
 
 - try it
