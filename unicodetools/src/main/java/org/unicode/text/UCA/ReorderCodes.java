@@ -149,9 +149,9 @@ public class ReorderCodes {
                 case UCD_Types.Garay:
                     return "\uD803\uDD5D";
                 case UCD_Types.Gurung_Khema:
-                    return "\uD818\uDD12";
+                    return "\uD818\uDD1C";
                 case UCD_Types.Kirat_Rai:
-                    return "\uD81B\uDD4B";
+                    return "\uD81B\uDD45";
                 case UCD_Types.Ol_Onal:
                     return "\uD839\uDDD0";
                 case UCD_Types.Sunuwar:
@@ -163,7 +163,7 @@ public class ReorderCodes {
 
                     // Provisionally assigned so far:
                 case UCD_Types.Chisoi:
-                    return "\uD81B\uDD84";
+                    return "\uD81B\uDD93";
                 case UCD_Types.Sidetic:
                     return "\uD802\uDD50";
                 case UCD_Types.Tai_Yo:
