@@ -1328,7 +1328,7 @@ public final class UCD implements UCD_Types {
                 // REMOVE BEFORE FLIGHT: The actual version will be greater than 0x100000.
                 if (ch <= 0x18D1C && rCompositeVersion >= 0x100000) {
                     // Unicode [..] added TANGUT IDEOGRAPH-18D09..TANGUT IDEOGRAPH-18D1C.
-                    return TANGUT_BASE;
+                    return TANGUT_SUP_BASE;
                 }
             }
 
