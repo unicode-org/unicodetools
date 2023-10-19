@@ -302,6 +302,7 @@ Tamil	;	Tamil
 Tamil_Sup	;	Tamil_Supplement
 Tangut	;	Tangut
 Tangut_Components	;	Tangut_Components
+Tangut_Components_Sup	;	Tangut_Components_Supplement
 Tangut_Sup	;	Tangut_Supplement
 Telugu	;	Telugu
 Thaana	;	Thaana
