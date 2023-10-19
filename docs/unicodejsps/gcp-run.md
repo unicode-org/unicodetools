@@ -45,14 +45,13 @@ docker run --rm -p 8080:8080 unicode/unicode-jsps
 - login to docker
 
 ```
-gcloud auth configure-docker \
-    us-central1-docker.pkg.dev
+gcloud auth configure-docker us-central1-docker.pkg.dev
 ```
 
 - build docker image
 
 ```
-docker build -t us-central1-docker.pkg.dev/goog-unicode-dev/unicode-jsps/unicode-jsps:latest .
+docker build -t us-central1-docker.pkg.dev/goog-unicode-dev/unicode-jsps/unicode-jsps:latest UnicodeJsps/
 ```
 
 - push docker image
