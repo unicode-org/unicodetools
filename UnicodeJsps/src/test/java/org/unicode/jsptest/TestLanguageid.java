@@ -1,9 +1,8 @@
 package org.unicode.jsptest;
 
-import com.ibm.icu.util.ULocale;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.ibm.icu.util.ULocale;
 import org.junit.jupiter.api.Test;
 import org.unicode.jsp.LanguageCode;
 
