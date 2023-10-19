@@ -27,10 +27,16 @@ public interface UCD_Types {
     // Unicode 12:
     // 17000;<Tangut Ideograph, First>;Lo;0;L;;;;;N;;;;;
     // 187F7;<Tangut Ideograph, Last>;Lo;0;L;;;;;N;;;;;
+    // Unicode [..]:
+    // 17000;<Tangut Ideograph, First>;Lo;0;L;;;;;N;;;;;
+    // 187FF;<Tangut Ideograph, Last>;Lo;0;L;;;;;N;;;;;
     public static final int TANGUT_SUP_BASE = 0x18D00;
     // Unicode 13:
     // 18D00;<Tangut Ideograph Supplement, First>;Lo;0;L;;;;;N;;;;;
     // 18D08;<Tangut Ideograph Supplement, Last>;Lo;0;L;;;;;N;;;;;
+    // Unicode [..]:
+    // 18D00;<Tangut Ideograph Supplement, First>;Lo;0;L;;;;;N;;;;;
+    // 18D1C;<Tangut Ideograph Supplement, Last>;Lo;0;L;;;;;N;;;;;
 
     public static final int
             // 4E00;<CJK Ideograph, First>;Lo;0;L;;;;;N;;;;;
