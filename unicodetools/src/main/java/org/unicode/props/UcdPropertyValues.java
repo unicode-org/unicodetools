@@ -481,6 +481,7 @@ public class UcdPropertyValues {
         Tangsa("Tangsa"),
         Tangut("Tangut"),
         Tangut_Components("Tangut_Components"),
+        Tangut_Components_Supplement("Tangut_Components_Sup"),
         Tangut_Supplement("Tangut_Sup"),
         Telugu("Telugu"),
         Thaana("Thaana"),
