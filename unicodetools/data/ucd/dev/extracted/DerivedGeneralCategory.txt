@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2023-10-17, 12:29:02 GMT
+# Date: 2023-10-19, 23:02:31 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -565,7 +565,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 16FF2..16FFF  ; Cn #  [14] <reserved-16FF2>..<reserved-16FFF>
 187F8..187FF  ; Cn #   [8] <reserved-187F8>..<reserved-187FF>
 18CD6..18CFF  ; Cn #  [42] <reserved-18CD6>..<reserved-18CFF>
-18D09..1AFEF  ; Cn # [8935] <reserved-18D09>..<reserved-1AFEF>
+18D09..18D81  ; Cn # [121] <reserved-18D09>..<reserved-18D81>
+18DF4..1AFEF  ; Cn # [8700] <reserved-18DF4>..<reserved-1AFEF>
 1AFF4         ; Cn #       <reserved-1AFF4>
 1AFFC         ; Cn #       <reserved-1AFFC>
 1AFFF         ; Cn #       <reserved-1AFFF>
@@ -728,7 +729,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 824593
+# Total code points: 824479
 
 # ================================================
 
@@ -2600,6 +2601,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 17000..187F7  ; Lo # [6136] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F7
 18800..18CD5  ; Lo # [1238] TANGUT COMPONENT-001..KHITAN SMALL SCRIPT CHARACTER-18CD5
 18D00..18D08  ; Lo #   [9] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D08
+18D82..18DF3  ; Lo # [114] TANGUT COMPONENT-771..TANGUT COMPONENT-884
 1B000..1B122  ; Lo # [291] KATAKANA LETTER ARCHAIC E..KATAKANA LETTER ARCHAIC WU
 1B132         ; Lo #       HIRAGANA LETTER SMALL KO
 1B150..1B152  ; Lo #   [3] HIRAGANA LETTER SMALL WI..HIRAGANA LETTER SMALL WO
@@ -2664,7 +2666,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 30000..3134A  ; Lo # [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Lo # [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 132324
+# Total code points: 132438
 
 # ================================================
 

@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-16.0.0.txt
-# Date: 2023-10-17, 12:29:01 GMT
+# Date: 2023-10-19, 23:02:31 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1828,6 +1828,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 16F51..16F87  ; N # Mc  [55] MIAO SIGN ASPIRATION..MIAO VOWEL SIGN UI
 16F8F..16F92  ; N # Mn   [4] MIAO TONE RIGHT..MIAO TONE BELOW
 16F93..16F9F  ; N # Lm  [13] MIAO LETTER TONE-2..MIAO LETTER REFORMED TONE-8
+18D82..18DF3  ; N # Lo [114] TANGUT COMPONENT-771..TANGUT COMPONENT-884
 1BC00..1BC6A  ; N # Lo [107] DUPLOYAN LETTER H..DUPLOYAN LETTER VOCALIC M
 1BC70..1BC7C  ; N # Lo  [13] DUPLOYAN AFFIX LEFT HORIZONTAL SECANT..DUPLOYAN AFFIX ATTACHED TANGENT HOOK
 1BC80..1BC88  ; N # Lo   [9] DUPLOYAN AFFIX HIGH ACUTE..DUPLOYAN AFFIX HIGH VERTICAL
@@ -2049,7 +2050,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 766159 code points not listed here.
+# The above property value applies to 766045 code points not listed here.
 # Total code points: 792618
 
 # ================================================

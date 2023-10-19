@@ -1,5 +1,5 @@
 # DerivedLineBreak-16.0.0.txt
-# Date: 2023-10-17, 12:29:04 GMT
+# Date: 2023-10-19, 23:02:33 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -68,8 +68,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 762600 code points not listed here.
-# Total code points: 900068
+# The above property value applies to 762486 code points not listed here.
+# Total code points: 899954
 
 # ================================================
 
@@ -1738,6 +1738,7 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 17000..187F7  ; ID # Lo [6136] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F7
 18800..18AFF  ; ID # Lo [768] TANGUT COMPONENT-001..TANGUT COMPONENT-768
 18D00..18D08  ; ID # Lo   [9] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D08
+18D82..18DF3  ; ID # Lo [114] TANGUT COMPONENT-771..TANGUT COMPONENT-884
 1B000..1B122  ; ID # Lo [291] KATAKANA LETTER ARCHAIC E..KATAKANA LETTER ARCHAIC WU
 1B170..1B2FB  ; ID # Lo [396] NUSHU CHARACTER-1B170..NUSHU CHARACTER-1B2FB
 1F000..1F02B  ; ID # So  [44] MAHJONG TILE EAST WIND..MAHJONG TILE BACK
@@ -1830,7 +1831,7 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 31350..323AF  ; ID # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
 # The above property value applies to 61978 code points not listed here.
-# Total code points: 172568
+# Total code points: 172682
 
 # ================================================
 

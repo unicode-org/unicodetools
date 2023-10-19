@@ -1,5 +1,5 @@
 # VerticalOrientation-16.0.0.txt
-# Date: 2023-10-17, 12:29:38 GMT
+# Date: 2023-10-19, 23:03:16 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2150,6 +2150,7 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 18CD6..18CFF   ; U  # Cn    [42] <reserved-18CD6>..<reserved-18CFF>
 18D00..18D08   ; U  # Lo     [9] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D08
 18D09..18D7F   ; U  # Cn   [119] <reserved-18D09>..<reserved-18D7F>
+18D82..18DF3   ; R  # Lo   [114] TANGUT COMPONENT-771..TANGUT COMPONENT-884
 1AFF0..1AFF3   ; U  # Lm     [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
 1AFF4          ; U  # Cn         <reserved-1AFF4>
 1AFF5..1AFFB   ; U  # Lm     [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
