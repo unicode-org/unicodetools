@@ -1,3 +1,4 @@
+18D80..18D81;Tangut
 # Scripts-16.0.0.txt
 # Date: 2023-10-19, 22:42:02 GMT
 # © 2023 Unicode®, Inc.
