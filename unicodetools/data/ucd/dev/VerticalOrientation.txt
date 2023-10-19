@@ -1,5 +1,5 @@
 # VerticalOrientation-16.0.0.txt
-# Date: 2023-10-17, 12:29:38 GMT
+# Date: 2023-10-19, 22:42:07 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2143,13 +2143,13 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 16FE5..16FEF   ; U  # Cn    [11] <reserved-16FE5>..<reserved-16FEF>
 16FF0..16FF1   ; U  # Mc     [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 16FF2..16FFF   ; U  # Cn    [14] <reserved-16FF2>..<reserved-16FFF>
-17000..187F7   ; U  # Lo  [6136] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F7
-187F8..187FF   ; U  # Cn     [8] <reserved-187F8>..<reserved-187FF>
+17000..187FF   ; U  # Lo  [6144] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187FF
 18800..18AFF   ; U  # Lo   [768] TANGUT COMPONENT-001..TANGUT COMPONENT-768
 18B00..18CD5   ; U  # Lo   [470] KHITAN SMALL SCRIPT CHARACTER-18B00..KHITAN SMALL SCRIPT CHARACTER-18CD5
 18CD6..18CFF   ; U  # Cn    [42] <reserved-18CD6>..<reserved-18CFF>
-18D00..18D08   ; U  # Lo     [9] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D08
-18D09..18D7F   ; U  # Cn   [119] <reserved-18D09>..<reserved-18D7F>
+18D00..18D1C   ; U  # Lo    [29] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D1C
+18D1D..18D7F   ; U  # Cn    [99] <reserved-18D1D>..<reserved-18D7F>
+18D80..18D81   ; R  # Lo     [2] TANGUT COMPONENT-769..TANGUT COMPONENT-770
 1AFF0..1AFF3   ; U  # Lm     [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
 1AFF4          ; U  # Cn         <reserved-1AFF4>
 1AFF5..1AFFB   ; U  # Lm     [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
