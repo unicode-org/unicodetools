@@ -50,6 +50,8 @@
 #	      [Grammar of the Tangut Language]. Moscow, 1968.
 # UTN42 = Andrew West and Viacheslav Zaytsev, Tangut Character Additions and Glyph Corrections,
 #         Unicode Technical Note #42. 2019-12-21.
+# N5217 = Andrew West, Proposal to encode 2 Tangut components and 28 Tangut ideographs,
+#         WG2 N5217 = L2/23-149. 2023-10-02.
 #
 #	For more information, see Section 18.10, Tangut, of the
 #	core specification.
@@ -12326,6 +12328,22 @@ U+187F6	kTGT_MergedSrc	UTN42-010
 U+187F6	kRSTUnicode	79.14
 U+187F7	kTGT_MergedSrc	UTN42-011
 U+187F7	kRSTUnicode	79.19
+U+187F8	kTGT_MergedSrc	N5217-01
+U+187F8	kRSTUnicode	206.19
+U+187F9	kTGT_MergedSrc	N5217-02
+U+187F9	kRSTUnicode	267.9
+U+187FA	kTGT_MergedSrc	N5217-03
+U+187FA	kRSTUnicode	75.19
+U+187FB	kTGT_MergedSrc	N5217-04
+U+187FB	kRSTUnicode	490.12
+U+187FC	kTGT_MergedSrc	N5217-05
+U+187FC	kRSTUnicode	114.9
+U+187FD	kTGT_MergedSrc	N5217-06
+U+187FD	kRSTUnicode	217.15
+U+187FE	kTGT_MergedSrc	N5217-07
+U+187FE	kRSTUnicode	519.13
+U+187FF	kTGT_MergedSrc	N5217-08
+U+187FF	kRSTUnicode	736.18
 U+18D00	kTGT_MergedSrc	L2008-3489
 U+18D00	kRSTUnicode	17.7
 U+18D01	kTGT_MergedSrc	L2008-1667
@@ -12344,5 +12362,45 @@ U+18D07	kTGT_MergedSrc	L2008-1106
 U+18D07	kRSTUnicode	485.12
 U+18D08	kTGT_MergedSrc	L2008-4456
 U+18D08	kRSTUnicode	674.14
+U+18D09	kTGT_MergedSrc	N5217-09
+U+18D09	kRSTUnicode	590.14
+U+18D0A	kTGT_MergedSrc	N5217-10
+U+18D0A	kRSTUnicode	267.18
+U+18D0B	kTGT_MergedSrc	N5217-11
+U+18D0B	kRSTUnicode	267.10
+U+18D0C	kTGT_MergedSrc	N5217-12
+U+18D0C	kRSTUnicode	655.13
+U+18D0D	kTGT_MergedSrc	N5217-13
+U+18D0D	kRSTUnicode	456.14
+U+18D0E	kTGT_MergedSrc	N5217-14
+U+18D0E	kRSTUnicode	273.9
+U+18D0F	kTGT_MergedSrc	N5217-15
+U+18D0F	kRSTUnicode	278.11
+U+18D10	kTGT_MergedSrc	N5217-16
+U+18D10	kRSTUnicode	106.13
+U+18D11	kTGT_MergedSrc	N5217-17
+U+18D11	kRSTUnicode	75.8
+U+18D12	kTGT_MergedSrc	N5217-18
+U+18D12	kRSTUnicode	17.7
+U+18D13	kTGT_MergedSrc	N5217-19
+U+18D13	kRSTUnicode	106.15
+U+18D14	kTGT_MergedSrc	N5217-20
+U+18D14	kRSTUnicode	167.15
+U+18D15	kTGT_MergedSrc	N5217-21
+U+18D15	kRSTUnicode	462.11
+U+18D16	kTGT_MergedSrc	N5217-22
+U+18D16	kRSTUnicode	579.17
+U+18D17	kTGT_MergedSrc	N5217-23
+U+18D17	kRSTUnicode	210.13
+U+18D18	kTGT_MergedSrc	N5217-24
+U+18D18	kRSTUnicode	278.13
+U+18D19	kTGT_MergedSrc	N5217-25
+U+18D19	kRSTUnicode	141.19
+U+18D1A	kTGT_MergedSrc	N5217-26
+U+18D1A	kRSTUnicode	75.13
+U+18D1B	kTGT_MergedSrc	N5217-27
+U+18D1B	kRSTUnicode	36.7
+U+18D1C	kTGT_MergedSrc	N5217-28
+U+18D1C	kRSTUnicode	141.9
 
 # EOF
