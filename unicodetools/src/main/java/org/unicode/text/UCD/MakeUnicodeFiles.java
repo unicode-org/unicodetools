@@ -662,6 +662,7 @@ public class MakeUnicodeFiles {
         final BagFormatter bf = new BagFormatter();
         bf.setHexValue(false)
                 .setMergeRanges(true)
+                .setRangeBreakSource(null)
                 .setNoSpacesBeforeSemicolon()
                 .setMinSpacesAfterSemicolon(0)
                 .setUnicodeDataStyleRanges(true)
