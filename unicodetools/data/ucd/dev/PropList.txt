@@ -1,3 +1,7 @@
+1E5EE; Diacritic
+1E5EF; Diacritic
+1E5EF; Extender
+
 # PropList-15.1.0.txt
 # Date: 2023-08-01, 21:56:53 GMT
 # © 2023 Unicode®, Inc.
