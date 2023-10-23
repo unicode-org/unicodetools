@@ -223,6 +223,7 @@ public final class DefaultValues {
         private static final Line_Break_Values XX = Line_Break_Values.Unknown;
         private static final Line_Break_Values ID = Line_Break_Values.Ideographic;
         private static final Line_Break_Values PR = Line_Break_Values.Prefix_Numeric;
+        private static final Line_Break_Values AL = Line_Break_Values.Alphabetic;
 
         private static final class Builder extends MapBuilderBase<Line_Break_Values> {
             UnicodeMap<Line_Break_Values> lb = new UnicodeMap<>();
@@ -250,6 +251,8 @@ public final class DefaultValues {
                 addRangeValueIfAtLeast(lb, 0x1F000, 0x1FFFD, 0x90000, ID);
                 // Unicode 13+: punch a hole
                 addRangeValueIfAtLeast(lb, 0x1FB00, 0x1FBFF, 0xD0000, XX);
+                // Unicode 16+: Supplemental Arrows-C to AL.
+                addRangeValueIfAtLeast(lb, 0x1F800, 0x1F8FF, 0x100000, AL);
 
                 return lb;
             }
