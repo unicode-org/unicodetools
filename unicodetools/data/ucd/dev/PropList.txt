@@ -1,10 +1,5 @@
-113D3;Diacritic
-113D3;Extender
-113D2;Diacritic
-113D2;Extender
-
-# PropList-15.1.0.txt
-# Date: 2023-08-01, 21:56:53 GMT
+# PropList-16.0.0.txt
+# Date: 2023-10-23, 21:44:00 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1064,6 +1059,8 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1134D         ; Diacritic # Mc       GRANTHA SIGN VIRAMA
 11366..1136C  ; Diacritic # Mn   [7] COMBINING GRANTHA DIGIT ZERO..COMBINING GRANTHA DIGIT SIX
 11370..11374  ; Diacritic # Mn   [5] COMBINING GRANTHA LETTER A..COMBINING GRANTHA LETTER PA
+113D2         ; Diacritic # Mn       TULU-TIGALARI GEMINATION MARK
+113D3         ; Diacritic # Lo       TULU-TIGALARI SIGN PLUTA
 11442         ; Diacritic # Mn       NEWA SIGN VIRAMA
 11446         ; Diacritic # Mn       NEWA SIGN NUKTA
 114C2..114C3  ; Diacritic # Mn   [2] TIRHUTA SIGN VIRAMA..TIRHUTA SIGN NUKTA
@@ -1108,7 +1105,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1144
+# Total code points: 1146
 
 # ================================================
 
@@ -1138,6 +1135,8 @@ AAF3..AAF4    ; Extender # Lm   [2] MEETEI MAYEK SYLLABLE REPETITION MARK..MEETE
 FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND MARK
 10781..10782  ; Extender # Lm   [2] MODIFIER LETTER SUPERSCRIPT TRIANGULAR COLON..MODIFIER LETTER SUPERSCRIPT HALF TRIANGULAR COLON
 1135D         ; Extender # Lo       GRANTHA SIGN PLUTA
+113D2         ; Extender # Mn       TULU-TIGALARI GEMINATION MARK
+113D3         ; Extender # Lo       TULU-TIGALARI SIGN PLUTA
 115C6..115C8  ; Extender # Po   [3] SIDDHAM REPETITION MARK-1..SIDDHAM REPETITION MARK-3
 11A98         ; Extender # Mn       SOYOMBO GEMINATION MARK
 16B42..16B43  ; Extender # Lm   [2] PAHAWH HMONG SIGN VOS NRUA..PAHAWH HMONG SIGN IB YAM
@@ -1146,7 +1145,7 @@ FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND 
 1E13C..1E13D  ; Extender # Lm   [2] NYIAKENG PUACHUE HMONG SIGN XW XW..NYIAKENG PUACHUE HMONG SYLLABLE LENGTHENER
 1E944..1E946  ; Extender # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 
-# Total code points: 50
+# Total code points: 52
 
 # ================================================
 
