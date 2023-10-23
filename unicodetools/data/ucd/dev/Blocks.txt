@@ -312,6 +312,7 @@ FFF0..FFFF; Specials
 1B170..1B2FF; Nushu
 1BC00..1BC9F; Duployan
 1BCA0..1BCAF; Shorthand Format Controls
+1CC00..1CEBF; Symbols for Legacy Computing Supplement
 1CF00..1CFCF; Znamenny Musical Notation
 1D000..1D0FF; Byzantine Musical Symbols
 1D100..1D1FF; Musical Symbols
