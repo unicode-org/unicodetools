@@ -1,5 +1,5 @@
 # DerivedAge-16.0.0.txt
-# Date: 2023-10-09, 13:21:29 GMT
+# Date: 2023-10-23, 13:16:27 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2010,10 +2010,18 @@ FDFE..FDFF    ; 14.0 #   [2] ARABIC LIGATURE SUBHAANAHU WA TAAALAA..ARABIC LIGAT
 # Newly assigned in Unicode 16.0.0 (September, 2024)
 
 0897          ; 16.0 #       ARABIC PEPET
+0C5C          ; 16.0 #       TELUGU ARCHAIC SHRII
+0CDC          ; 16.0 #       KANNADA ARCHAIC SHRII
+1C89..1C8A    ; 16.0 #   [2] CYRILLIC CAPITAL LETTER TJE..CYRILLIC SMALL LETTER TJE
+105C0..105F3  ; 16.0 #  [52] TODHRI LETTER A..TODHRI LETTER OO
 10EC2..10EC4  ; 16.0 #   [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
+10EFC         ; 16.0 #       ARABIC COMBINING ALEF OVERLAY
+116D0..116E3  ; 16.0 #  [20] MYANMAR PAO DIGIT ZERO..MYANMAR EASTERN PWO KAREN DIGIT NINE
+11BC0..11BE1  ; 16.0 #  [34] SUNUWAR LETTER DEVI..SUNUWAR SIGN PVO
+11BF0..11BF9  ; 16.0 #  [10] SUNUWAR DIGIT ZERO..SUNUWAR DIGIT NINE
 1E5D0..1E5FA  ; 16.0 #  [43] OL ONAL LETTER O..OL ONAL DIGIT NINE
 1E5FF         ; 16.0 #       OL ONAL ABBREVIATION SIGN
 
-# Total code points: 48
+# Total code points: 169
 
 # EOF

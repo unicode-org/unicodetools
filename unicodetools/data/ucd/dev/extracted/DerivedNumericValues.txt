@@ -1,5 +1,5 @@
 # DerivedNumericValues-16.0.0.txt
-# Date: 2023-10-09, 13:21:54 GMT
+# Date: 2023-10-23, 13:17:06 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -100,9 +100,12 @@ FF10          ; 0.0 ; ; 0 # Nd       FULLWIDTH DIGIT ZERO
 114D0         ; 0.0 ; ; 0 # Nd       TIRHUTA DIGIT ZERO
 11650         ; 0.0 ; ; 0 # Nd       MODI DIGIT ZERO
 116C0         ; 0.0 ; ; 0 # Nd       TAKRI DIGIT ZERO
+116D0         ; 0.0 ; ; 0 # Nd       MYANMAR PAO DIGIT ZERO
+116DA         ; 0.0 ; ; 0 # Nd       MYANMAR EASTERN PWO KAREN DIGIT ZERO
 11730         ; 0.0 ; ; 0 # Nd       AHOM DIGIT ZERO
 118E0         ; 0.0 ; ; 0 # Nd       WARANG CITI DIGIT ZERO
 11950         ; 0.0 ; ; 0 # Nd       DIVES AKURU DIGIT ZERO
+11BF0         ; 0.0 ; ; 0 # Nd       SUNUWAR DIGIT ZERO
 11C50         ; 0.0 ; ; 0 # Nd       BHAIKSUKI DIGIT ZERO
 11D50         ; 0.0 ; ; 0 # Nd       MASARAM GONDI DIGIT ZERO
 11DA0         ; 0.0 ; ; 0 # Nd       GUNJALA GONDI DIGIT ZERO
@@ -127,7 +130,7 @@ FF10          ; 0.0 ; ; 0 # Nd       FULLWIDTH DIGIT ZERO
 1F10B..1F10C  ; 0.0 ; ; 0 # No   [2] DINGBAT CIRCLED SANS-SERIF DIGIT ZERO..DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ZERO
 1FBF0         ; 0.0 ; ; 0 # Nd       SEGMENTED DIGIT ZERO
 
-# Total code points: 89
+# Total code points: 92
 
 # ================================================
 
@@ -512,9 +515,12 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 114D1         ; 1.0 ; ; 1 # Nd       TIRHUTA DIGIT ONE
 11651         ; 1.0 ; ; 1 # Nd       MODI DIGIT ONE
 116C1         ; 1.0 ; ; 1 # Nd       TAKRI DIGIT ONE
+116D1         ; 1.0 ; ; 1 # Nd       MYANMAR PAO DIGIT ONE
+116DB         ; 1.0 ; ; 1 # Nd       MYANMAR EASTERN PWO KAREN DIGIT ONE
 11731         ; 1.0 ; ; 1 # Nd       AHOM DIGIT ONE
 118E1         ; 1.0 ; ; 1 # Nd       WARANG CITI DIGIT ONE
 11951         ; 1.0 ; ; 1 # Nd       DIVES AKURU DIGIT ONE
+11BF1         ; 1.0 ; ; 1 # Nd       SUNUWAR DIGIT ONE
 11C51         ; 1.0 ; ; 1 # Nd       BHAIKSUKI DIGIT ONE
 11C5A         ; 1.0 ; ; 1 # No       BHAIKSUKI NUMBER ONE
 11D51         ; 1.0 ; ; 1 # Nd       MASARAM GONDI DIGIT ONE
@@ -555,7 +561,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 1FBF1         ; 1.0 ; ; 1 # Nd       SEGMENTED DIGIT ONE
 2092A         ; 1.0 ; ; 1 # Lo       CJK UNIFIED IDEOGRAPH-2092A
 
-# Total code points: 145
+# Total code points: 148
 
 # ================================================
 
@@ -663,9 +669,12 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 114D2         ; 2.0 ; ; 2 # Nd       TIRHUTA DIGIT TWO
 11652         ; 2.0 ; ; 2 # Nd       MODI DIGIT TWO
 116C2         ; 2.0 ; ; 2 # Nd       TAKRI DIGIT TWO
+116D2         ; 2.0 ; ; 2 # Nd       MYANMAR PAO DIGIT TWO
+116DC         ; 2.0 ; ; 2 # Nd       MYANMAR EASTERN PWO KAREN DIGIT TWO
 11732         ; 2.0 ; ; 2 # Nd       AHOM DIGIT TWO
 118E2         ; 2.0 ; ; 2 # Nd       WARANG CITI DIGIT TWO
 11952         ; 2.0 ; ; 2 # Nd       DIVES AKURU DIGIT TWO
+11BF2         ; 2.0 ; ; 2 # Nd       SUNUWAR DIGIT TWO
 11C52         ; 2.0 ; ; 2 # Nd       BHAIKSUKI DIGIT TWO
 11C5B         ; 2.0 ; ; 2 # No       BHAIKSUKI NUMBER TWO
 11D52         ; 2.0 ; ; 2 # Nd       MASARAM GONDI DIGIT TWO
@@ -710,7 +719,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 1FBF2         ; 2.0 ; ; 2 # Nd       SEGMENTED DIGIT TWO
 22390         ; 2.0 ; ; 2 # Lo       CJK UNIFIED IDEOGRAPH-22390
 
-# Total code points: 147
+# Total code points: 150
 
 # ================================================
 
@@ -809,9 +818,12 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 114D3         ; 3.0 ; ; 3 # Nd       TIRHUTA DIGIT THREE
 11653         ; 3.0 ; ; 3 # Nd       MODI DIGIT THREE
 116C3         ; 3.0 ; ; 3 # Nd       TAKRI DIGIT THREE
+116D3         ; 3.0 ; ; 3 # Nd       MYANMAR PAO DIGIT THREE
+116DD         ; 3.0 ; ; 3 # Nd       MYANMAR EASTERN PWO KAREN DIGIT THREE
 11733         ; 3.0 ; ; 3 # Nd       AHOM DIGIT THREE
 118E3         ; 3.0 ; ; 3 # Nd       WARANG CITI DIGIT THREE
 11953         ; 3.0 ; ; 3 # Nd       DIVES AKURU DIGIT THREE
+11BF3         ; 3.0 ; ; 3 # Nd       SUNUWAR DIGIT THREE
 11C53         ; 3.0 ; ; 3 # Nd       BHAIKSUKI DIGIT THREE
 11C5C         ; 3.0 ; ; 3 # No       BHAIKSUKI NUMBER THREE
 11D53         ; 3.0 ; ; 3 # Nd       MASARAM GONDI DIGIT THREE
@@ -859,7 +871,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 22998         ; 3.0 ; ; 3 # Lo       CJK UNIFIED IDEOGRAPH-22998
 23B1B         ; 3.0 ; ; 3 # Lo       CJK UNIFIED IDEOGRAPH-23B1B
 
-# Total code points: 145
+# Total code points: 148
 
 # ================================================
 
@@ -952,9 +964,12 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 114D4         ; 4.0 ; ; 4 # Nd       TIRHUTA DIGIT FOUR
 11654         ; 4.0 ; ; 4 # Nd       MODI DIGIT FOUR
 116C4         ; 4.0 ; ; 4 # Nd       TAKRI DIGIT FOUR
+116D4         ; 4.0 ; ; 4 # Nd       MYANMAR PAO DIGIT FOUR
+116DE         ; 4.0 ; ; 4 # Nd       MYANMAR EASTERN PWO KAREN DIGIT FOUR
 11734         ; 4.0 ; ; 4 # Nd       AHOM DIGIT FOUR
 118E4         ; 4.0 ; ; 4 # Nd       WARANG CITI DIGIT FOUR
 11954         ; 4.0 ; ; 4 # Nd       DIVES AKURU DIGIT FOUR
+11BF4         ; 4.0 ; ; 4 # Nd       SUNUWAR DIGIT FOUR
 11C54         ; 4.0 ; ; 4 # Nd       BHAIKSUKI DIGIT FOUR
 11C5D         ; 4.0 ; ; 4 # No       BHAIKSUKI NUMBER FOUR
 11D54         ; 4.0 ; ; 4 # Nd       MASARAM GONDI DIGIT FOUR
@@ -1001,7 +1016,7 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 200E2         ; 4.0 ; ; 4 # Lo       CJK UNIFIED IDEOGRAPH-200E2
 2626D         ; 4.0 ; ; 4 # Lo       CJK UNIFIED IDEOGRAPH-2626D
 
-# Total code points: 136
+# Total code points: 139
 
 # ================================================
 
@@ -1098,9 +1113,12 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 114D5         ; 5.0 ; ; 5 # Nd       TIRHUTA DIGIT FIVE
 11655         ; 5.0 ; ; 5 # Nd       MODI DIGIT FIVE
 116C5         ; 5.0 ; ; 5 # Nd       TAKRI DIGIT FIVE
+116D5         ; 5.0 ; ; 5 # Nd       MYANMAR PAO DIGIT FIVE
+116DF         ; 5.0 ; ; 5 # Nd       MYANMAR EASTERN PWO KAREN DIGIT FIVE
 11735         ; 5.0 ; ; 5 # Nd       AHOM DIGIT FIVE
 118E5         ; 5.0 ; ; 5 # Nd       WARANG CITI DIGIT FIVE
 11955         ; 5.0 ; ; 5 # Nd       DIVES AKURU DIGIT FIVE
+11BF5         ; 5.0 ; ; 5 # Nd       SUNUWAR DIGIT FIVE
 11C55         ; 5.0 ; ; 5 # Nd       BHAIKSUKI DIGIT FIVE
 11C5E         ; 5.0 ; ; 5 # No       BHAIKSUKI NUMBER FIVE
 11D55         ; 5.0 ; ; 5 # Nd       MASARAM GONDI DIGIT FIVE
@@ -1145,7 +1163,7 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 1FBF5         ; 5.0 ; ; 5 # Nd       SEGMENTED DIGIT FIVE
 20121         ; 5.0 ; ; 5 # Lo       CJK UNIFIED IDEOGRAPH-20121
 
-# Total code points: 134
+# Total code points: 137
 
 # ================================================
 
@@ -1232,9 +1250,12 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 114D6         ; 6.0 ; ; 6 # Nd       TIRHUTA DIGIT SIX
 11656         ; 6.0 ; ; 6 # Nd       MODI DIGIT SIX
 116C6         ; 6.0 ; ; 6 # Nd       TAKRI DIGIT SIX
+116D6         ; 6.0 ; ; 6 # Nd       MYANMAR PAO DIGIT SIX
+116E0         ; 6.0 ; ; 6 # Nd       MYANMAR EASTERN PWO KAREN DIGIT SIX
 11736         ; 6.0 ; ; 6 # Nd       AHOM DIGIT SIX
 118E6         ; 6.0 ; ; 6 # Nd       WARANG CITI DIGIT SIX
 11956         ; 6.0 ; ; 6 # Nd       DIVES AKURU DIGIT SIX
+11BF6         ; 6.0 ; ; 6 # Nd       SUNUWAR DIGIT SIX
 11C56         ; 6.0 ; ; 6 # Nd       BHAIKSUKI DIGIT SIX
 11C5F         ; 6.0 ; ; 6 # No       BHAIKSUKI NUMBER SIX
 11D56         ; 6.0 ; ; 6 # Nd       MASARAM GONDI DIGIT SIX
@@ -1274,7 +1295,7 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 1FBF6         ; 6.0 ; ; 6 # Nd       SEGMENTED DIGIT SIX
 20AEA         ; 6.0 ; ; 6 # Lo       CJK UNIFIED IDEOGRAPH-20AEA
 
-# Total code points: 118
+# Total code points: 121
 
 # ================================================
 
@@ -1360,9 +1381,12 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 114D7         ; 7.0 ; ; 7 # Nd       TIRHUTA DIGIT SEVEN
 11657         ; 7.0 ; ; 7 # Nd       MODI DIGIT SEVEN
 116C7         ; 7.0 ; ; 7 # Nd       TAKRI DIGIT SEVEN
+116D7         ; 7.0 ; ; 7 # Nd       MYANMAR PAO DIGIT SEVEN
+116E1         ; 7.0 ; ; 7 # Nd       MYANMAR EASTERN PWO KAREN DIGIT SEVEN
 11737         ; 7.0 ; ; 7 # Nd       AHOM DIGIT SEVEN
 118E7         ; 7.0 ; ; 7 # Nd       WARANG CITI DIGIT SEVEN
 11957         ; 7.0 ; ; 7 # Nd       DIVES AKURU DIGIT SEVEN
+11BF7         ; 7.0 ; ; 7 # Nd       SUNUWAR DIGIT SEVEN
 11C57         ; 7.0 ; ; 7 # Nd       BHAIKSUKI DIGIT SEVEN
 11C60         ; 7.0 ; ; 7 # No       BHAIKSUKI NUMBER SEVEN
 11D57         ; 7.0 ; ; 7 # Nd       MASARAM GONDI DIGIT SEVEN
@@ -1401,7 +1425,7 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 1FBF7         ; 7.0 ; ; 7 # Nd       SEGMENTED DIGIT SEVEN
 20001         ; 7.0 ; ; 7 # Lo       CJK UNIFIED IDEOGRAPH-20001
 
-# Total code points: 118
+# Total code points: 121
 
 # ================================================
 
@@ -1484,9 +1508,12 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 114D8         ; 8.0 ; ; 8 # Nd       TIRHUTA DIGIT EIGHT
 11658         ; 8.0 ; ; 8 # Nd       MODI DIGIT EIGHT
 116C8         ; 8.0 ; ; 8 # Nd       TAKRI DIGIT EIGHT
+116D8         ; 8.0 ; ; 8 # Nd       MYANMAR PAO DIGIT EIGHT
+116E2         ; 8.0 ; ; 8 # Nd       MYANMAR EASTERN PWO KAREN DIGIT EIGHT
 11738         ; 8.0 ; ; 8 # Nd       AHOM DIGIT EIGHT
 118E8         ; 8.0 ; ; 8 # Nd       WARANG CITI DIGIT EIGHT
 11958         ; 8.0 ; ; 8 # Nd       DIVES AKURU DIGIT EIGHT
+11BF8         ; 8.0 ; ; 8 # Nd       SUNUWAR DIGIT EIGHT
 11C58         ; 8.0 ; ; 8 # Nd       BHAIKSUKI DIGIT EIGHT
 11C61         ; 8.0 ; ; 8 # No       BHAIKSUKI NUMBER EIGHT
 11D58         ; 8.0 ; ; 8 # Nd       MASARAM GONDI DIGIT EIGHT
@@ -1524,7 +1551,7 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 1F109         ; 8.0 ; ; 8 # No       DIGIT EIGHT COMMA
 1FBF8         ; 8.0 ; ; 8 # Nd       SEGMENTED DIGIT EIGHT
 
-# Total code points: 113
+# Total code points: 116
 
 # ================================================
 
@@ -1610,9 +1637,12 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 114D9         ; 9.0 ; ; 9 # Nd       TIRHUTA DIGIT NINE
 11659         ; 9.0 ; ; 9 # Nd       MODI DIGIT NINE
 116C9         ; 9.0 ; ; 9 # Nd       TAKRI DIGIT NINE
+116D9         ; 9.0 ; ; 9 # Nd       MYANMAR PAO DIGIT NINE
+116E3         ; 9.0 ; ; 9 # Nd       MYANMAR EASTERN PWO KAREN DIGIT NINE
 11739         ; 9.0 ; ; 9 # Nd       AHOM DIGIT NINE
 118E9         ; 9.0 ; ; 9 # Nd       WARANG CITI DIGIT NINE
 11959         ; 9.0 ; ; 9 # Nd       DIVES AKURU DIGIT NINE
+11BF9         ; 9.0 ; ; 9 # Nd       SUNUWAR DIGIT NINE
 11C59         ; 9.0 ; ; 9 # Nd       BHAIKSUKI DIGIT NINE
 11C62         ; 9.0 ; ; 9 # No       BHAIKSUKI NUMBER NINE
 11D59         ; 9.0 ; ; 9 # Nd       MASARAM GONDI DIGIT NINE
@@ -1651,7 +1681,7 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 1FBF9         ; 9.0 ; ; 9 # Nd       SEGMENTED DIGIT NINE
 2F890         ; 9.0 ; ; 9 # Lo       CJK COMPATIBILITY IDEOGRAPH-2F890
 
-# Total code points: 119
+# Total code points: 122
 
 # ================================================
 
