@@ -1,5 +1,5 @@
 # SentenceBreakProperty-16.0.0.txt
-# Date: 2023-10-16, 14:30:27 GMT
+# Date: 2023-10-23, 12:20:29 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2358,7 +2358,9 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 10B80..10B91  ; OLetter # Lo  [18] PSALTER PAHLAVI LETTER ALEPH..PSALTER PAHLAVI LETTER TAW
 10C00..10C48  ; OLetter # Lo  [73] OLD TURKIC LETTER ORKHON A..OLD TURKIC LETTER ORKHON BASH
 10D00..10D23  ; OLetter # Lo  [36] HANIFI ROHINGYA LETTER A..HANIFI ROHINGYA MARK NA KHONNA
-10D4A..10D4F  ; OLetter # Lo   [6] GARAY VOWEL SIGN A..GARAY SUKUN
+10D4A..10D4D  ; OLetter # Lo   [4] GARAY VOWEL SIGN A..GARAY VOWEL SIGN EE
+10D4E         ; OLetter # Lm       GARAY VOWEL LENGTH MARK
+10D4F         ; OLetter # Lo       GARAY SUKUN
 10D6F         ; OLetter # Lm       GARAY REDUPLICATION MARK
 10E80..10EA9  ; OLetter # Lo  [42] YEZIDI LETTER ELIF..YEZIDI LETTER ET
 10EB0..10EB1  ; OLetter # Lo   [2] YEZIDI LETTER LAM WITH DOT ABOVE..YEZIDI LETTER YOT WITH CIRCUMFLEX ABOVE

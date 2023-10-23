@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2023-10-16, 14:30:02 GMT
+# Date: 2023-10-23, 12:19:55 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1460,7 +1460,9 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 10D00..10D23  ; 0 # Lo  [36] HANIFI ROHINGYA LETTER A..HANIFI ROHINGYA MARK NA KHONNA
 10D30..10D39  ; 0 # Nd  [10] HANIFI ROHINGYA DIGIT ZERO..HANIFI ROHINGYA DIGIT NINE
 10D40..10D49  ; 0 # Nd  [10] GARAY DIGIT ZERO..GARAY DIGIT NINE
-10D4A..10D4F  ; 0 # Lo   [6] GARAY VOWEL SIGN A..GARAY SUKUN
+10D4A..10D4D  ; 0 # Lo   [4] GARAY VOWEL SIGN A..GARAY VOWEL SIGN EE
+10D4E         ; 0 # Lm       GARAY VOWEL LENGTH MARK
+10D4F         ; 0 # Lo       GARAY SUKUN
 10D50..10D65  ; 0 # L&  [22] GARAY CAPITAL LETTER A..GARAY CAPITAL LETTER OLD NA
 10D6E         ; 0 # Pd       GARAY HYPHEN
 10D6F         ; 0 # Lm       GARAY REDUPLICATION MARK

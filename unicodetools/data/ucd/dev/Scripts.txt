@@ -1,5 +1,5 @@
 # Scripts-16.0.0.txt
-# Date: 2023-10-16, 14:30:27 GMT
+# Date: 2023-10-23, 12:20:28 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -3034,7 +3034,9 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 # ================================================
 
 10D40..10D49  ; Garay # Nd  [10] GARAY DIGIT ZERO..GARAY DIGIT NINE
-10D4A..10D4F  ; Garay # Lo   [6] GARAY VOWEL SIGN A..GARAY SUKUN
+10D4A..10D4D  ; Garay # Lo   [4] GARAY VOWEL SIGN A..GARAY VOWEL SIGN EE
+10D4E         ; Garay # Lm       GARAY VOWEL LENGTH MARK
+10D4F         ; Garay # Lo       GARAY SUKUN
 10D50..10D65  ; Garay # L&  [22] GARAY CAPITAL LETTER A..GARAY CAPITAL LETTER OLD NA
 10D69..10D6D  ; Garay # Mn   [5] GARAY VOWEL SIGN E..GARAY CONSONANT NASALIZATION MARK
 10D6E         ; Garay # Pd       GARAY HYPHEN
