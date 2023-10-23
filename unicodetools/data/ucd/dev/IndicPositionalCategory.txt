@@ -1,5 +1,5 @@
 # IndicPositionalCategory-16.0.0.txt
-# Date: 2023-10-02, 22:58:33 GMT
+# Date: 2023-10-23, 22:44:01 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -796,7 +796,7 @@ A9BF          ; Bottom_And_Left # Mc       JAVANESE CONSONANT SIGN CAKRA
 # Indic_Positional_Category=Top_And_Bottom_And_Left
 
 103C          ; Top_And_Bottom_And_Left # Mc       MYANMAR CONSONANT SIGN MEDIAL RA
-1171E         ; Top_And_Bottom_And_Left # Mn       AHOM CONSONANT SIGN MEDIAL RA
+1171E         ; Top_And_Bottom_And_Left # Mc       AHOM CONSONANT SIGN MEDIAL RA
 
 # Indic_Positional_Category=Overstruck
 

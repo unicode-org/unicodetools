@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-16.0.0.txt
-# Date: 2023-10-13, 11:29:23 GMT
+# Date: 2023-10-23, 22:44:00 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -380,7 +380,8 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 116AD         ; Extend # Mn       TAKRI VOWEL SIGN AA
 116B0..116B5  ; Extend # Mn   [6] TAKRI VOWEL SIGN U..TAKRI VOWEL SIGN AU
 116B7         ; Extend # Mn       TAKRI SIGN NUKTA
-1171D..1171F  ; Extend # Mn   [3] AHOM CONSONANT SIGN MEDIAL LA..AHOM CONSONANT SIGN MEDIAL LIGATING RA
+1171D         ; Extend # Mn       AHOM CONSONANT SIGN MEDIAL LA
+1171F         ; Extend # Mn       AHOM CONSONANT SIGN MEDIAL LIGATING RA
 11722..11725  ; Extend # Mn   [4] AHOM VOWEL SIGN I..AHOM VOWEL SIGN UU
 11727..1172B  ; Extend # Mn   [5] AHOM VOWEL SIGN AW..AHOM SIGN KILLER
 1182F..11837  ; Extend # Mn   [9] DOGRA VOWEL SIGN U..DOGRA SIGN ANUSVARA
@@ -459,7 +460,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2132
+# Total code points: 2131
 
 # ================================================
 
@@ -603,6 +604,7 @@ ABEC          ; SpacingMark # Mc       MEETEI MAYEK LUM IYEK
 116AC         ; SpacingMark # Mc       TAKRI SIGN VISARGA
 116AE..116AF  ; SpacingMark # Mc   [2] TAKRI VOWEL SIGN I..TAKRI VOWEL SIGN II
 116B6         ; SpacingMark # Mc       TAKRI SIGN VIRAMA
+1171E         ; SpacingMark # Mc       AHOM CONSONANT SIGN MEDIAL RA
 11726         ; SpacingMark # Mc       AHOM VOWEL SIGN E
 1182C..1182E  ; SpacingMark # Mc   [3] DOGRA VOWEL SIGN AA..DOGRA VOWEL SIGN II
 11838         ; SpacingMark # Mc       DOGRA SIGN VISARGA
@@ -635,7 +637,7 @@ ABEC          ; SpacingMark # Mc       MEETEI MAYEK LUM IYEK
 1D166         ; SpacingMark # Mc       MUSICAL SYMBOL COMBINING SPRECHGESANG STEM
 1D16D         ; SpacingMark # Mc       MUSICAL SYMBOL COMBINING AUGMENTATION DOT
 
-# Total code points: 395
+# Total code points: 396
 
 # ================================================
 

@@ -1,5 +1,5 @@
 # DerivedBidiClass-16.0.0.txt
-# Date: 2023-10-23, 11:33:55 GMT
+# Date: 2023-10-23, 22:43:48 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -942,6 +942,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 116C0..116C9  ; L # Nd  [10] TAKRI DIGIT ZERO..TAKRI DIGIT NINE
 116D0..116E3  ; L # Nd  [20] MYANMAR PAO DIGIT ZERO..MYANMAR EASTERN PWO KAREN DIGIT NINE
 11700..1171A  ; L # Lo  [27] AHOM LETTER KA..AHOM LETTER ALTERNATE BA
+1171E         ; L # Mc       AHOM CONSONANT SIGN MEDIAL RA
 11720..11721  ; L # Mc   [2] AHOM VOWEL SIGN A..AHOM VOWEL SIGN AA
 11726         ; L # Mc       AHOM VOWEL SIGN E
 11730..11739  ; L # Nd  [10] AHOM DIGIT ZERO..AHOM DIGIT NINE
@@ -1188,7 +1189,7 @@ F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
 # The above property value applies to 820337 code points not listed here.
-# Total code points: 1096262
+# Total code points: 1096263
 
 # ================================================
 
@@ -2280,7 +2281,8 @@ FE20..FE2F    ; NSM # Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC 
 116AD         ; NSM # Mn       TAKRI VOWEL SIGN AA
 116B0..116B5  ; NSM # Mn   [6] TAKRI VOWEL SIGN U..TAKRI VOWEL SIGN AU
 116B7         ; NSM # Mn       TAKRI SIGN NUKTA
-1171D..1171F  ; NSM # Mn   [3] AHOM CONSONANT SIGN MEDIAL LA..AHOM CONSONANT SIGN MEDIAL LIGATING RA
+1171D         ; NSM # Mn       AHOM CONSONANT SIGN MEDIAL LA
+1171F         ; NSM # Mn       AHOM CONSONANT SIGN MEDIAL LIGATING RA
 11722..11725  ; NSM # Mn   [4] AHOM VOWEL SIGN I..AHOM VOWEL SIGN UU
 11727..1172B  ; NSM # Mn   [5] AHOM VOWEL SIGN AW..AHOM SIGN KILLER
 1182F..11837  ; NSM # Mn   [9] DOGRA VOWEL SIGN U..DOGRA SIGN ANUSVARA
@@ -2354,7 +2356,7 @@ FE20..FE2F    ; NSM # Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC 
 1E944..1E94A  ; NSM # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; NSM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 1995
+# Total code points: 1994
 
 # ================================================
 

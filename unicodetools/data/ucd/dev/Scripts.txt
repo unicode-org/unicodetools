@@ -1,5 +1,5 @@
 # Scripts-16.0.0.txt
-# Date: 2023-10-23, 11:34:29 GMT
+# Date: 2023-10-23, 22:44:31 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2618,7 +2618,9 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 # ================================================
 
 11700..1171A  ; Ahom # Lo  [27] AHOM LETTER KA..AHOM LETTER ALTERNATE BA
-1171D..1171F  ; Ahom # Mn   [3] AHOM CONSONANT SIGN MEDIAL LA..AHOM CONSONANT SIGN MEDIAL LIGATING RA
+1171D         ; Ahom # Mn       AHOM CONSONANT SIGN MEDIAL LA
+1171E         ; Ahom # Mc       AHOM CONSONANT SIGN MEDIAL RA
+1171F         ; Ahom # Mn       AHOM CONSONANT SIGN MEDIAL LIGATING RA
 11720..11721  ; Ahom # Mc   [2] AHOM VOWEL SIGN A..AHOM VOWEL SIGN AA
 11722..11725  ; Ahom # Mn   [4] AHOM VOWEL SIGN I..AHOM VOWEL SIGN UU
 11726         ; Ahom # Mc       AHOM VOWEL SIGN E

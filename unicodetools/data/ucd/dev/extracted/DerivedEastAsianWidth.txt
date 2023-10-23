@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-16.0.0.txt
-# Date: 2023-10-23, 11:33:59 GMT
+# Date: 2023-10-23, 22:43:53 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1651,7 +1651,9 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 116C0..116C9  ; N # Nd  [10] TAKRI DIGIT ZERO..TAKRI DIGIT NINE
 116D0..116E3  ; N # Nd  [20] MYANMAR PAO DIGIT ZERO..MYANMAR EASTERN PWO KAREN DIGIT NINE
 11700..1171A  ; N # Lo  [27] AHOM LETTER KA..AHOM LETTER ALTERNATE BA
-1171D..1171F  ; N # Mn   [3] AHOM CONSONANT SIGN MEDIAL LA..AHOM CONSONANT SIGN MEDIAL LIGATING RA
+1171D         ; N # Mn       AHOM CONSONANT SIGN MEDIAL LA
+1171E         ; N # Mc       AHOM CONSONANT SIGN MEDIAL RA
+1171F         ; N # Mn       AHOM CONSONANT SIGN MEDIAL LIGATING RA
 11720..11721  ; N # Mc   [2] AHOM VOWEL SIGN A..AHOM VOWEL SIGN AA
 11722..11725  ; N # Mn   [4] AHOM VOWEL SIGN I..AHOM VOWEL SIGN UU
 11726         ; N # Mc       AHOM VOWEL SIGN E

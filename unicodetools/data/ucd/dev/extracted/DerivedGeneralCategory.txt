@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2023-10-23, 11:33:59 GMT
+# Date: 2023-10-23, 22:43:54 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2944,7 +2944,8 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 116AD         ; Mn #       TAKRI VOWEL SIGN AA
 116B0..116B5  ; Mn #   [6] TAKRI VOWEL SIGN U..TAKRI VOWEL SIGN AU
 116B7         ; Mn #       TAKRI SIGN NUKTA
-1171D..1171F  ; Mn #   [3] AHOM CONSONANT SIGN MEDIAL LA..AHOM CONSONANT SIGN MEDIAL LIGATING RA
+1171D         ; Mn #       AHOM CONSONANT SIGN MEDIAL LA
+1171F         ; Mn #       AHOM CONSONANT SIGN MEDIAL LIGATING RA
 11722..11725  ; Mn #   [4] AHOM VOWEL SIGN I..AHOM VOWEL SIGN UU
 11727..1172B  ; Mn #   [5] AHOM VOWEL SIGN AW..AHOM SIGN KILLER
 1182F..11837  ; Mn #   [9] DOGRA VOWEL SIGN U..DOGRA SIGN ANUSVARA
@@ -3018,7 +3019,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 1987
+# Total code points: 1986
 
 # ================================================
 
@@ -3186,6 +3187,7 @@ ABEC          ; Mc #       MEETEI MAYEK LUM IYEK
 116AC         ; Mc #       TAKRI SIGN VISARGA
 116AE..116AF  ; Mc #   [2] TAKRI VOWEL SIGN I..TAKRI VOWEL SIGN II
 116B6         ; Mc #       TAKRI SIGN VIRAMA
+1171E         ; Mc #       AHOM CONSONANT SIGN MEDIAL RA
 11720..11721  ; Mc #   [2] AHOM VOWEL SIGN A..AHOM VOWEL SIGN AA
 11726         ; Mc #       AHOM VOWEL SIGN E
 1182C..1182E  ; Mc #   [3] DOGRA VOWEL SIGN AA..DOGRA VOWEL SIGN II
@@ -3219,7 +3221,7 @@ ABEC          ; Mc #       MEETEI MAYEK LUM IYEK
 1D165..1D166  ; Mc #   [2] MUSICAL SYMBOL COMBINING STEM..MUSICAL SYMBOL COMBINING SPRECHGESANG STEM
 1D16D..1D172  ; Mc #   [6] MUSICAL SYMBOL COMBINING AUGMENTATION DOT..MUSICAL SYMBOL COMBINING FLAG-5
 
-# Total code points: 452
+# Total code points: 453
 
 # ================================================
 
