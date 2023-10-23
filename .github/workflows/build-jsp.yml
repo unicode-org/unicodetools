@@ -1,8 +1,8 @@
 name: Build JSP
 
 env:
-  CURRENT_UVERSION: 15.1.0
-  PREVIOUS_UVERSION: 15.0.0  # not used at present
+  CURRENT_UVERSION: 16.0.0
+  PREVIOUS_UVERSION: 15.1.0  # not used at present
 
 on:
   push:

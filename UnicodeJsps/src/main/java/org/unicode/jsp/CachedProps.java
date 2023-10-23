@@ -29,7 +29,7 @@ import org.unicode.jsp.UnicodeDataInput.ItemReader;
 import org.unicode.props.UnicodeProperty;
 
 public class CachedProps {
-    public static final boolean IS_BETA = true;
+    public static final boolean IS_BETA = false;
 
     public static final Splitter HASH_SPLITTER = Splitter.on('#').trimResults();
     public static final Splitter SEMI_SPLITTER = Splitter.on(';').trimResults();
