@@ -1,5 +1,5 @@
 # PropList-16.0.0.txt
-# Date: 2023-10-09, 12:39:17 GMT
+# Date: 2023-10-23, 13:31:21 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -820,8 +820,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 11F40         ; Other_Alphabetic # Mn       KAWI VOWEL SIGN EU
 1611E..16129  ; Other_Alphabetic # Mn  [12] GURUNG KHEMA VOWEL SIGN AA..GURUNG KHEMA VOWEL LENGTH MARK
 1612A..1612C  ; Other_Alphabetic # Mc   [3] GURUNG KHEMA CONSONANT SIGN MEDIAL YA..GURUNG KHEMA CONSONANT SIGN MEDIAL HA
-1612D..1612E  ; Other_Alphabetic # Mn
-1612F ; Diacritic
+1612D..1612E  ; Other_Alphabetic # Mn   [2] GURUNG KHEMA SIGN ANUSVARA..GURUNG KHEMA CONSONANT SIGN MEDIAL RA
 16F4F         ; Other_Alphabetic # Mn       MIAO SIGN CONSONANT MODIFIER BAR
 16F51..16F87  ; Other_Alphabetic # Mc  [55] MIAO SIGN ASPIRATION..MIAO VOWEL SIGN UI
 16F8F..16F92  ; Other_Alphabetic # Mn   [4] MIAO TONE RIGHT..MIAO TONE BELOW
@@ -838,7 +837,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1443
+# Total code points: 1442
 
 # ================================================
 
@@ -1084,6 +1083,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 11D44..11D45  ; Diacritic # Mn   [2] MASARAM GONDI SIGN HALANTA..MASARAM GONDI VIRAMA
 11D97         ; Diacritic # Mn       GUNJALA GONDI VIRAMA
 13447..13455  ; Diacritic # Mn  [15] EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP START..EGYPTIAN HIEROGLYPH MODIFIER DAMAGED
+1612F         ; Diacritic # Mn       GURUNG KHEMA SIGN THOLHOMA
 16AF0..16AF4  ; Diacritic # Mn   [5] BASSA VAH COMBINING HIGH TONE..BASSA VAH COMBINING HIGH-LOW TONE
 16B30..16B36  ; Diacritic # Mn   [7] PAHAWH HMONG MARK CIM TUB..PAHAWH HMONG MARK CIM TAUM
 16F8F..16F92  ; Diacritic # Mn   [4] MIAO TONE RIGHT..MIAO TONE BELOW
@@ -1107,7 +1107,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1144
+# Total code points: 1145
 
 # ================================================
 
