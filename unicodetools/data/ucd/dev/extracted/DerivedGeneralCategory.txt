@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2023-10-17, 12:29:02 GMT
+# Date: 2023-10-23, 11:33:59 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -579,7 +579,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1BC7D..1BC7F  ; Cn #   [3] <reserved-1BC7D>..<reserved-1BC7F>
 1BC89..1BC8F  ; Cn #   [7] <reserved-1BC89>..<reserved-1BC8F>
 1BC9A..1BC9B  ; Cn #   [2] <reserved-1BC9A>..<reserved-1BC9B>
-1BCA4..1CEFF  ; Cn # [4700] <reserved-1BCA4>..<reserved-1CEFF>
+1BCA4..1CEAF  ; Cn # [4620] <reserved-1BCA4>..<reserved-1CEAF>
+1CEB4..1CEFF  ; Cn #  [76] <reserved-1CEB4>..<reserved-1CEFF>
 1CF2E..1CF2F  ; Cn #   [2] <reserved-1CF2E>..<reserved-1CF2F>
 1CF47..1CF4F  ; Cn #   [9] <reserved-1CF47>..<reserved-1CF4F>
 1CFC4..1CFFF  ; Cn #  [60] <reserved-1CFC4>..<reserved-1CFFF>
@@ -700,7 +701,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1F85A..1F85F  ; Cn #   [6] <reserved-1F85A>..<reserved-1F85F>
 1F888..1F88F  ; Cn #   [8] <reserved-1F888>..<reserved-1F88F>
 1F8AE..1F8AF  ; Cn #   [2] <reserved-1F8AE>..<reserved-1F8AF>
-1F8B2..1F8FF  ; Cn #  [78] <reserved-1F8B2>..<reserved-1F8FF>
+1F8B3..1F8FF  ; Cn #  [77] <reserved-1F8B3>..<reserved-1F8FF>
 1FA54..1FA5F  ; Cn #  [12] <reserved-1FA54>..<reserved-1FA5F>
 1FA6E..1FA6F  ; Cn #   [2] <reserved-1FA6E>..<reserved-1FA6F>
 1FA7D..1FA7F  ; Cn #   [3] <reserved-1FA7D>..<reserved-1FA7F>
@@ -728,7 +729,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 824593
+# Total code points: 824588
 
 # ================================================
 
@@ -4149,6 +4150,7 @@ FFFC..FFFD    ; So #   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 16B3C..16B3F  ; So #   [4] PAHAWH HMONG SIGN XYEEM NTXIV..PAHAWH HMONG SIGN XYEEM FAIB
 16B45         ; So #       PAHAWH HMONG SIGN CIM TSOV ROG
 1BC9C         ; So #       DUPLOYAN SIGN O WITH CROSS
+1CEB0..1CEB3  ; So #   [4] HORIZONTAL ZIGZAG LINE..BLACK RIGHT TRIANGLE CARET
 1CF50..1CFC3  ; So # [116] ZNAMENNY NEUME KRYUK..ZNAMENNY NEUME PAUK
 1D000..1D0F5  ; So # [246] BYZANTINE MUSICAL SYMBOL PSILI..BYZANTINE MUSICAL SYMBOL GORGON NEO KATO
 1D100..1D126  ; So #  [39] MUSICAL SYMBOL SINGLE BARLINE..MUSICAL SYMBOL DRUM CLEF-2
@@ -4193,7 +4195,7 @@ FFFC..FFFD    ; So #   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1F850..1F859  ; So #  [10] LEFTWARDS SANS-SERIF ARROW..UP DOWN SANS-SERIF ARROW
 1F860..1F887  ; So #  [40] WIDE-HEADED LEFTWARDS LIGHT BARB ARROW..WIDE-HEADED SOUTH WEST VERY HEAVY BARB ARROW
 1F890..1F8AD  ; So #  [30] LEFTWARDS TRIANGLE ARROWHEAD..WHITE ARROW SHAFT WIDTH TWO THIRDS
-1F8B0..1F8B1  ; So #   [2] ARROW POINTING UPWARDS THEN NORTH WEST..ARROW POINTING RIGHTWARDS THEN CURVING SOUTH WEST
+1F8B0..1F8B2  ; So #   [3] ARROW POINTING UPWARDS THEN NORTH WEST..RIGHTWARDS ARROW WITH LOWER HOOK
 1F900..1FA53  ; So # [340] CIRCLED CROSS FORMEE WITH FOUR DOTS..BLACK CHESS KNIGHT-BISHOP
 1FA60..1FA6D  ; So #  [14] XIANGQI RED GENERAL..XIANGQI BLACK SOLDIER
 1FA70..1FA7C  ; So #  [13] BALLET SHOES..CRUTCH
@@ -4206,7 +4208,7 @@ FFFC..FFFD    ; So #   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1FB00..1FB92  ; So # [147] BLOCK SEXTANT-1..UPPER HALF INVERSE MEDIUM SHADE AND LOWER HALF BLOCK
 1FB94..1FBCA  ; So #  [55] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..WHITE UP-POINTING CHEVRON
 
-# Total code points: 6639
+# Total code points: 6644
 
 # ================================================
 
