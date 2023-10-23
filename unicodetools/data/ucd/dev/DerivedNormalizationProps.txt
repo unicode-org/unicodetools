@@ -1,5 +1,5 @@
-# DerivedNormalizationProps-15.1.0.txt
-# Date: 2023-05-02, 13:20:58 GMT
+# DerivedNormalizationProps-16.0.0.txt
+# Date: 2023-10-16, 14:22:26 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -981,6 +981,8 @@ FB3E          ; NFD_QC; N # Lo       HEBREW LETTER MEM WITH DAGESH
 FB40..FB41    ; NFD_QC; N # Lo   [2] HEBREW LETTER NUN WITH DAGESH..HEBREW LETTER SAMEKH WITH DAGESH
 FB43..FB44    ; NFD_QC; N # Lo   [2] HEBREW LETTER FINAL PE WITH DAGESH..HEBREW LETTER PE WITH DAGESH
 FB46..FB4E    ; NFD_QC; N # Lo   [9] HEBREW LETTER TSADI WITH DAGESH..HEBREW LETTER PE WITH RAFE
+105C9         ; NFD_QC; N # Lo       TODHRI LETTER EI
+105E4         ; NFD_QC; N # Lo       TODHRI LETTER U
 1109A         ; NFD_QC; N # Lo       KAITHI LETTER DDDHA
 1109C         ; NFD_QC; N # Lo       KAITHI LETTER RHA
 110AB         ; NFD_QC; N # Lo       KAITHI LETTER VA
@@ -994,7 +996,7 @@ FB46..FB4E    ; NFD_QC; N # Lo   [9] HEBREW LETTER TSADI WITH DAGESH..HEBREW LET
 1D1BB..1D1C0  ; NFD_QC; N # So   [6] MUSICAL SYMBOL MINIMA..MUSICAL SYMBOL FUSA BLACK
 2F800..2FA1D  ; NFD_QC; N # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# Total code points: 13233
+# Total code points: 13235
 
 # ================================================
 
@@ -1597,6 +1599,8 @@ FFE5..FFE6    ; NFKD_QC; N # Sc   [2] FULLWIDTH YEN SIGN..FULLWIDTH WON SIGN
 FFE8          ; NFKD_QC; N # So       HALFWIDTH FORMS LIGHT VERTICAL
 FFE9..FFEC    ; NFKD_QC; N # Sm   [4] HALFWIDTH LEFTWARDS ARROW..HALFWIDTH DOWNWARDS ARROW
 FFED..FFEE    ; NFKD_QC; N # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
+105C9         ; NFKD_QC; N # Lo       TODHRI LETTER EI
+105E4         ; NFKD_QC; N # Lo       TODHRI LETTER U
 10781..10785  ; NFKD_QC; N # Lm   [5] MODIFIER LETTER SUPERSCRIPT TRIANGULAR COLON..MODIFIER LETTER SMALL B WITH HOOK
 10787..107B0  ; NFKD_QC; N # Lm  [42] MODIFIER LETTER SMALL DZ DIGRAPH..MODIFIER LETTER SMALL V WITH RIGHT HOOK
 107B2..107BA  ; NFKD_QC; N # Lm   [9] MODIFIER LETTER SMALL CAPITAL Y..MODIFIER LETTER SMALL S WITH CURL
@@ -1698,7 +1702,7 @@ FFED..FFEE    ; NFKD_QC; N # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CI
 1FBF0..1FBF9  ; NFKD_QC; N # Nd  [10] SEGMENTED DIGIT ZERO..SEGMENTED DIGIT NINE
 2F800..2FA1D  ; NFKD_QC; N # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# Total code points: 17029
+# Total code points: 17031
 
 # ================================================
 
@@ -2379,6 +2383,8 @@ FB3E          ; Expands_On_NFD # Lo       HEBREW LETTER MEM WITH DAGESH
 FB40..FB41    ; Expands_On_NFD # Lo   [2] HEBREW LETTER NUN WITH DAGESH..HEBREW LETTER SAMEKH WITH DAGESH
 FB43..FB44    ; Expands_On_NFD # Lo   [2] HEBREW LETTER FINAL PE WITH DAGESH..HEBREW LETTER PE WITH DAGESH
 FB46..FB4E    ; Expands_On_NFD # Lo   [9] HEBREW LETTER TSADI WITH DAGESH..HEBREW LETTER PE WITH RAFE
+105C9         ; Expands_On_NFD # Lo       TODHRI LETTER EI
+105E4         ; Expands_On_NFD # Lo       TODHRI LETTER U
 1109A         ; Expands_On_NFD # Lo       KAITHI LETTER DDDHA
 1109C         ; Expands_On_NFD # Lo       KAITHI LETTER RHA
 110AB         ; Expands_On_NFD # Lo       KAITHI LETTER VA
@@ -2391,7 +2397,7 @@ FB46..FB4E    ; Expands_On_NFD # Lo   [9] HEBREW LETTER TSADI WITH DAGESH..HEBRE
 1D15E..1D164  ; Expands_On_NFD # So   [7] MUSICAL SYMBOL HALF NOTE..MUSICAL SYMBOL ONE HUNDRED TWENTY-EIGHTH NOTE
 1D1BB..1D1C0  ; Expands_On_NFD # So   [6] MUSICAL SYMBOL MINIMA..MUSICAL SYMBOL FUSA BLACK
 
-# Total code points: 12216
+# Total code points: 12218
 
 # ================================================
 
@@ -2733,6 +2739,8 @@ FE76..FE7F    ; Expands_On_NFKD # Lo  [10] ARABIC FATHA ISOLATED FORM..ARABIC SU
 FE81..FE8C    ; Expands_On_NFKD # Lo  [12] ARABIC LETTER ALEF WITH MADDA ABOVE ISOLATED FORM..ARABIC LETTER YEH WITH HAMZA ABOVE MEDIAL FORM
 FEF5..FEFC    ; Expands_On_NFKD # Lo   [8] ARABIC LIGATURE LAM WITH ALEF WITH MADDA ABOVE ISOLATED FORM..ARABIC LIGATURE LAM WITH ALEF FINAL FORM
 FFE3          ; Expands_On_NFKD # Sk       FULLWIDTH MACRON
+105C9         ; Expands_On_NFKD # Lo       TODHRI LETTER EI
+105E4         ; Expands_On_NFKD # Lo       TODHRI LETTER U
 1109A         ; Expands_On_NFKD # Lo       KAITHI LETTER DDDHA
 1109C         ; Expands_On_NFKD # Lo       KAITHI LETTER RHA
 110AB         ; Expands_On_NFKD # Lo       KAITHI LETTER VA
@@ -2754,7 +2762,7 @@ FFE3          ; Expands_On_NFKD # Sk       FULLWIDTH MACRON
 1F213         ; Expands_On_NFKD # So       SQUARED KATAKANA DE
 1F240..1F248  ; Expands_On_NFKD # So   [9] TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-672C..TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-6557
 
-# Total code points: 13390
+# Total code points: 13392
 
 # ================================================
 
@@ -3545,6 +3553,7 @@ FFE3          ; Expands_On_NFKC # Sk       FULLWIDTH MACRON
 1C86          ; NFKC_CF; 044A           # L&       CYRILLIC SMALL LETTER TALL HARD SIGN
 1C87          ; NFKC_CF; 0463           # L&       CYRILLIC SMALL LETTER TALL YAT
 1C88          ; NFKC_CF; A64B           # L&       CYRILLIC SMALL LETTER UNBLENDED UK
+1C89          ; NFKC_CF; 1C8A           # L&       CYRILLIC CAPITAL LETTER TJE
 1C90          ; NFKC_CF; 10D0           # L&       GEORGIAN MTAVRULI CAPITAL LETTER AN
 1C91          ; NFKC_CF; 10D1           # L&       GEORGIAN MTAVRULI CAPITAL LETTER BAN
 1C92          ; NFKC_CF; 10D2           # L&       GEORGIAN MTAVRULI CAPITAL LETTER GAN
@@ -9001,7 +9010,7 @@ E0080..E00FF  ; NFKC_CF;                # Cn [128] <reserved-E0080>..<reserved-E
 E0100..E01EF  ; NFKC_CF;                # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; NFKC_CF;                # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10491
+# Total code points: 10492
 
 # ================================================
 
@@ -9652,6 +9661,7 @@ E01F0..E0FFF  ; NFKC_CF;                # Cn [3600] <reserved-E01F0>..<reserved-
 1C86          ; NFKC_SCF; 044A           # L&       CYRILLIC SMALL LETTER TALL HARD SIGN
 1C87          ; NFKC_SCF; 0463           # L&       CYRILLIC SMALL LETTER TALL YAT
 1C88          ; NFKC_SCF; A64B           # L&       CYRILLIC SMALL LETTER UNBLENDED UK
+1C89          ; NFKC_SCF; 1C8A           # L&       CYRILLIC CAPITAL LETTER TJE
 1C90          ; NFKC_SCF; 10D0           # L&       GEORGIAN MTAVRULI CAPITAL LETTER AN
 1C91          ; NFKC_SCF; 10D1           # L&       GEORGIAN MTAVRULI CAPITAL LETTER BAN
 1C92          ; NFKC_SCF; 10D2           # L&       GEORGIAN MTAVRULI CAPITAL LETTER GAN
@@ -15072,7 +15082,7 @@ E0080..E00FF  ; NFKC_SCF;                # Cn [128] <reserved-E0080>..<reserved-
 E0100..E01EF  ; NFKC_SCF;                # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; NFKC_SCF;                # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10453
+# Total code points: 10454
 
 # ================================================
 
@@ -15411,7 +15421,7 @@ E01F0..E0FFF  ; NFKC_SCF;                # Cn [3600] <reserved-E01F0>..<reserved
 180B..180D    ; Changes_When_NFKC_Casefolded # Mn   [3] MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
 180E          ; Changes_When_NFKC_Casefolded # Cf       MONGOLIAN VOWEL SEPARATOR
 180F          ; Changes_When_NFKC_Casefolded # Mn       MONGOLIAN FREE VARIATION SELECTOR FOUR
-1C80..1C88    ; Changes_When_NFKC_Casefolded # L&   [9] CYRILLIC SMALL LETTER ROUNDED VE..CYRILLIC SMALL LETTER UNBLENDED UK
+1C80..1C89    ; Changes_When_NFKC_Casefolded # L&  [10] CYRILLIC SMALL LETTER ROUNDED VE..CYRILLIC CAPITAL LETTER TJE
 1C90..1CBA    ; Changes_When_NFKC_Casefolded # L&  [43] GEORGIAN MTAVRULI CAPITAL LETTER AN..GEORGIAN MTAVRULI CAPITAL LETTER AIN
 1CBD..1CBF    ; Changes_When_NFKC_Casefolded # L&   [3] GEORGIAN MTAVRULI CAPITAL LETTER AEN..GEORGIAN MTAVRULI CAPITAL LETTER LABIAL SIGN
 1D2C..1D2E    ; Changes_When_NFKC_Casefolded # Lm   [3] MODIFIER LETTER CAPITAL A..MODIFIER LETTER CAPITAL B
@@ -16084,6 +16094,6 @@ E0080..E00FF  ; Changes_When_NFKC_Casefolded # Cn [128] <reserved-E0080>..<reser
 E0100..E01EF  ; Changes_When_NFKC_Casefolded # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; Changes_When_NFKC_Casefolded # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10491
+# Total code points: 10492
 
 # EOF
