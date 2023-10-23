@@ -1,5 +1,5 @@
 # DerivedCoreProperties-16.0.0.txt
-# Date: 2023-10-16, 14:30:03 GMT
+# Date: 2023-10-23, 12:16:27 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1042,6 +1042,7 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 10D24..10D27  ; Alphabetic # Mn   [4] HANIFI ROHINGYA SIGN HARBAHAY..HANIFI ROHINGYA SIGN TASSI
 10D4A..10D4F  ; Alphabetic # Lo   [6] GARAY VOWEL SIGN A..GARAY SUKUN
 10D50..10D65  ; Alphabetic # L&  [22] GARAY CAPITAL LETTER A..GARAY CAPITAL LETTER OLD NA
+10D69         ; Alphabetic # Mn       GARAY VOWEL SIGN E
 10D6F         ; Alphabetic # Lm       GARAY REDUPLICATION MARK
 10D70..10D85  ; Alphabetic # L&  [22] GARAY SMALL LETTER A..GARAY SMALL LETTER OLD NA
 10E80..10EA9  ; Alphabetic # Lo  [42] YEZIDI LETTER ELIF..YEZIDI LETTER ET
@@ -1411,7 +1412,7 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 30000..3134A  ; Alphabetic # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Alphabetic # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 138480
+# Total code points: 138481
 
 # ================================================
 
