@@ -1,5 +1,5 @@
 # PropertyValueAliases-16.0.0.txt
-# Date: 2023-10-23, 11:34:11 GMT
+# Date: 2023-10-23, 18:45:09 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -258,6 +258,7 @@ blk; Ethiopic_Ext                     ; Ethiopic_Extended
 blk; Ethiopic_Ext_A                   ; Ethiopic_Extended_A
 blk; Ethiopic_Ext_B                   ; Ethiopic_Extended_B
 blk; Ethiopic_Sup                     ; Ethiopic_Supplement
+blk; Garay                            ; Garay
 blk; Geometric_Shapes                 ; Geometric_Shapes
 blk; Geometric_Shapes_Ext             ; Geometric_Shapes_Extended
 blk; Georgian                         ; Georgian
@@ -1331,6 +1332,7 @@ sc ; Egyp                             ; Egyptian_Hieroglyphs
 sc ; Elba                             ; Elbasan
 sc ; Elym                             ; Elymaic
 sc ; Ethi                             ; Ethiopic
+sc ; Gara                             ; Garay
 sc ; Geor                             ; Georgian
 sc ; Glag                             ; Glagolitic
 sc ; Gong                             ; Gunjala_Gondi

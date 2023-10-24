@@ -1,5 +1,5 @@
 # PropList-16.0.0.txt
-# Date: 2023-10-13, 11:33:44 GMT
+# Date: 2023-10-23, 12:20:11 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -62,9 +62,10 @@ FE31..FE32    ; Dash # Pd   [2] PRESENTATION FORM FOR VERTICAL EM DASH..PRESENTA
 FE58          ; Dash # Pd       SMALL EM DASH
 FE63          ; Dash # Pd       SMALL HYPHEN-MINUS
 FF0D          ; Dash # Pd       FULLWIDTH HYPHEN-MINUS
+10D6E         ; Dash # Pd       GARAY HYPHEN
 10EAD         ; Dash # Pd       YEZIDI HYPHENATION MARK
 
-# Total code points: 30
+# Total code points: 31
 
 # ================================================
 
@@ -690,6 +691,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 10A05..10A06  ; Other_Alphabetic # Mn   [2] KHAROSHTHI VOWEL SIGN E..KHAROSHTHI VOWEL SIGN O
 10A0C..10A0F  ; Other_Alphabetic # Mn   [4] KHAROSHTHI VOWEL LENGTH MARK..KHAROSHTHI SIGN VISARGA
 10D24..10D27  ; Other_Alphabetic # Mn   [4] HANIFI ROHINGYA SIGN HARBAHAY..HANIFI ROHINGYA SIGN TASSI
+10D69         ; Other_Alphabetic # Mn       GARAY VOWEL SIGN E
 10EAB..10EAC  ; Other_Alphabetic # Mn   [2] YEZIDI COMBINING HAMZA MARK..YEZIDI COMBINING MADDA MARK
 10EFC         ; Other_Alphabetic # Mn       ARABIC COMBINING ALEF OVERLAY
 11000         ; Other_Alphabetic # Mc       BRAHMI SIGN CANDRABINDU
@@ -836,7 +838,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1427
+# Total code points: 1428
 
 # ================================================
 
@@ -1044,6 +1046,8 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 10AE5..10AE6  ; Diacritic # Mn   [2] MANICHAEAN ABBREVIATION MARK ABOVE..MANICHAEAN ABBREVIATION MARK BELOW
 10D22..10D23  ; Diacritic # Lo   [2] HANIFI ROHINGYA MARK SAKIN..HANIFI ROHINGYA MARK NA KHONNA
 10D24..10D27  ; Diacritic # Mn   [4] HANIFI ROHINGYA SIGN HARBAHAY..HANIFI ROHINGYA SIGN TASSI
+10D4E         ; Diacritic # Lm       GARAY VOWEL LENGTH MARK
+10D69..10D6D  ; Diacritic # Mn   [5] GARAY VOWEL SIGN E..GARAY CONSONANT NASALIZATION MARK
 10EFD..10EFF  ; Diacritic # Mn   [3] ARABIC SMALL LOW WORD SAKTA..ARABIC SMALL LOW WORD MADDA
 10F46..10F50  ; Diacritic # Mn  [11] SOGDIAN COMBINING DOT BELOW..SOGDIAN COMBINING STROKE BELOW
 10F82..10F85  ; Diacritic # Mn   [4] OLD UYGHUR COMBINING DOT ABOVE..OLD UYGHUR COMBINING TWO DOTS BELOW
@@ -1105,7 +1109,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1144
+# Total code points: 1150
 
 # ================================================
 
@@ -1134,6 +1138,9 @@ AADD          ; Extender # Lm       TAI VIET SYMBOL SAM
 AAF3..AAF4    ; Extender # Lm   [2] MEETEI MAYEK SYLLABLE REPETITION MARK..MEETEI MAYEK WORD REPETITION MARK
 FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND MARK
 10781..10782  ; Extender # Lm   [2] MODIFIER LETTER SUPERSCRIPT TRIANGULAR COLON..MODIFIER LETTER SUPERSCRIPT HALF TRIANGULAR COLON
+10D4E         ; Extender # Lm       GARAY VOWEL LENGTH MARK
+10D6A         ; Extender # Mn       GARAY CONSONANT GEMINATION MARK
+10D6F         ; Extender # Lm       GARAY REDUPLICATION MARK
 1135D         ; Extender # Lo       GRANTHA SIGN PLUTA
 115C6..115C8  ; Extender # Po   [3] SIDDHAM REPETITION MARK-1..SIDDHAM REPETITION MARK-3
 11A98         ; Extender # Mn       SOYOMBO GEMINATION MARK
@@ -1143,7 +1150,7 @@ FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND 
 1E13C..1E13D  ; Extender # Lm   [2] NYIAKENG PUACHUE HMONG SIGN XW XW..NYIAKENG PUACHUE HMONG SYLLABLE LENGTHENER
 1E944..1E946  ; Extender # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 
-# Total code points: 50
+# Total code points: 53
 
 # ================================================
 
