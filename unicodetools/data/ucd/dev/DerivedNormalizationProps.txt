@@ -1,5 +1,5 @@
 # DerivedNormalizationProps-16.0.0.txt
-# Date: 2023-10-16, 14:22:26 GMT
+# Date: 2023-10-24, 18:13:45 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -5370,6 +5370,8 @@ A7C5          ; NFKC_CF; 0282           # L&       LATIN CAPITAL LETTER S WITH H
 A7C6          ; NFKC_CF; 1D8E           # L&       LATIN CAPITAL LETTER Z WITH PALATAL HOOK
 A7C7          ; NFKC_CF; A7C8           # L&       LATIN CAPITAL LETTER D WITH SHORT STROKE OVERLAY
 A7C9          ; NFKC_CF; A7CA           # L&       LATIN CAPITAL LETTER S WITH SHORT STROKE OVERLAY
+A7CB          ; NFKC_CF; 0264           # L&       LATIN CAPITAL LETTER RAMS HORN
+A7CC          ; NFKC_CF; A7CD           # L&       LATIN CAPITAL LETTER S WITH DIAGONAL STROKE
 A7D0          ; NFKC_CF; A7D1           # L&       LATIN CAPITAL LETTER CLOSED INSULAR G
 A7D6          ; NFKC_CF; A7D7           # L&       LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D8          ; NFKC_CF; A7D9           # L&       LATIN CAPITAL LETTER SIGMOID S
@@ -7018,6 +7020,28 @@ FFF0..FFF8    ; NFKC_CF;                # Cn   [9] <reserved-FFF0>..<reserved-FF
 10CB0         ; NFKC_CF; 10CF0          # L&       OLD HUNGARIAN CAPITAL LETTER EZS
 10CB1         ; NFKC_CF; 10CF1          # L&       OLD HUNGARIAN CAPITAL LETTER ENT-SHAPED SIGN
 10CB2         ; NFKC_CF; 10CF2          # L&       OLD HUNGARIAN CAPITAL LETTER US
+10D50         ; NFKC_CF; 10D70          # L&       GARAY CAPITAL LETTER A
+10D51         ; NFKC_CF; 10D71          # L&       GARAY CAPITAL LETTER CA
+10D52         ; NFKC_CF; 10D72          # L&       GARAY CAPITAL LETTER MA
+10D53         ; NFKC_CF; 10D73          # L&       GARAY CAPITAL LETTER KA
+10D54         ; NFKC_CF; 10D74          # L&       GARAY CAPITAL LETTER BA
+10D55         ; NFKC_CF; 10D75          # L&       GARAY CAPITAL LETTER JA
+10D56         ; NFKC_CF; 10D76          # L&       GARAY CAPITAL LETTER SA
+10D57         ; NFKC_CF; 10D77          # L&       GARAY CAPITAL LETTER WA
+10D58         ; NFKC_CF; 10D78          # L&       GARAY CAPITAL LETTER LA
+10D59         ; NFKC_CF; 10D79          # L&       GARAY CAPITAL LETTER GA
+10D5A         ; NFKC_CF; 10D7A          # L&       GARAY CAPITAL LETTER DA
+10D5B         ; NFKC_CF; 10D7B          # L&       GARAY CAPITAL LETTER XA
+10D5C         ; NFKC_CF; 10D7C          # L&       GARAY CAPITAL LETTER YA
+10D5D         ; NFKC_CF; 10D7D          # L&       GARAY CAPITAL LETTER TA
+10D5E         ; NFKC_CF; 10D7E          # L&       GARAY CAPITAL LETTER RA
+10D5F         ; NFKC_CF; 10D7F          # L&       GARAY CAPITAL LETTER NYA
+10D60         ; NFKC_CF; 10D80          # L&       GARAY CAPITAL LETTER FA
+10D61         ; NFKC_CF; 10D81          # L&       GARAY CAPITAL LETTER NA
+10D62         ; NFKC_CF; 10D82          # L&       GARAY CAPITAL LETTER PA
+10D63         ; NFKC_CF; 10D83          # L&       GARAY CAPITAL LETTER HA
+10D64         ; NFKC_CF; 10D84          # L&       GARAY CAPITAL LETTER OLD KA
+10D65         ; NFKC_CF; 10D85          # L&       GARAY CAPITAL LETTER OLD NA
 118A0         ; NFKC_CF; 118C0          # L&       WARANG CITI CAPITAL LETTER NGAA
 118A1         ; NFKC_CF; 118C1          # L&       WARANG CITI CAPITAL LETTER A
 118A2         ; NFKC_CF; 118C2          # L&       WARANG CITI CAPITAL LETTER WI
@@ -9010,7 +9034,7 @@ E0080..E00FF  ; NFKC_CF;                # Cn [128] <reserved-E0080>..<reserved-E
 E0100..E01EF  ; NFKC_CF;                # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; NFKC_CF;                # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10492
+# Total code points: 10516
 
 # ================================================
 
@@ -11442,6 +11466,8 @@ A7C5          ; NFKC_SCF; 0282           # L&       LATIN CAPITAL LETTER S WITH 
 A7C6          ; NFKC_SCF; 1D8E           # L&       LATIN CAPITAL LETTER Z WITH PALATAL HOOK
 A7C7          ; NFKC_SCF; A7C8           # L&       LATIN CAPITAL LETTER D WITH SHORT STROKE OVERLAY
 A7C9          ; NFKC_SCF; A7CA           # L&       LATIN CAPITAL LETTER S WITH SHORT STROKE OVERLAY
+A7CB          ; NFKC_SCF; 0264           # L&       LATIN CAPITAL LETTER RAMS HORN
+A7CC          ; NFKC_SCF; A7CD           # L&       LATIN CAPITAL LETTER S WITH DIAGONAL STROKE
 A7D0          ; NFKC_SCF; A7D1           # L&       LATIN CAPITAL LETTER CLOSED INSULAR G
 A7D6          ; NFKC_SCF; A7D7           # L&       LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D8          ; NFKC_SCF; A7D9           # L&       LATIN CAPITAL LETTER SIGMOID S
@@ -13090,6 +13116,28 @@ FFF0..FFF8    ; NFKC_SCF;                # Cn   [9] <reserved-FFF0>..<reserved-F
 10CB0         ; NFKC_SCF; 10CF0          # L&       OLD HUNGARIAN CAPITAL LETTER EZS
 10CB1         ; NFKC_SCF; 10CF1          # L&       OLD HUNGARIAN CAPITAL LETTER ENT-SHAPED SIGN
 10CB2         ; NFKC_SCF; 10CF2          # L&       OLD HUNGARIAN CAPITAL LETTER US
+10D50         ; NFKC_SCF; 10D70          # L&       GARAY CAPITAL LETTER A
+10D51         ; NFKC_SCF; 10D71          # L&       GARAY CAPITAL LETTER CA
+10D52         ; NFKC_SCF; 10D72          # L&       GARAY CAPITAL LETTER MA
+10D53         ; NFKC_SCF; 10D73          # L&       GARAY CAPITAL LETTER KA
+10D54         ; NFKC_SCF; 10D74          # L&       GARAY CAPITAL LETTER BA
+10D55         ; NFKC_SCF; 10D75          # L&       GARAY CAPITAL LETTER JA
+10D56         ; NFKC_SCF; 10D76          # L&       GARAY CAPITAL LETTER SA
+10D57         ; NFKC_SCF; 10D77          # L&       GARAY CAPITAL LETTER WA
+10D58         ; NFKC_SCF; 10D78          # L&       GARAY CAPITAL LETTER LA
+10D59         ; NFKC_SCF; 10D79          # L&       GARAY CAPITAL LETTER GA
+10D5A         ; NFKC_SCF; 10D7A          # L&       GARAY CAPITAL LETTER DA
+10D5B         ; NFKC_SCF; 10D7B          # L&       GARAY CAPITAL LETTER XA
+10D5C         ; NFKC_SCF; 10D7C          # L&       GARAY CAPITAL LETTER YA
+10D5D         ; NFKC_SCF; 10D7D          # L&       GARAY CAPITAL LETTER TA
+10D5E         ; NFKC_SCF; 10D7E          # L&       GARAY CAPITAL LETTER RA
+10D5F         ; NFKC_SCF; 10D7F          # L&       GARAY CAPITAL LETTER NYA
+10D60         ; NFKC_SCF; 10D80          # L&       GARAY CAPITAL LETTER FA
+10D61         ; NFKC_SCF; 10D81          # L&       GARAY CAPITAL LETTER NA
+10D62         ; NFKC_SCF; 10D82          # L&       GARAY CAPITAL LETTER PA
+10D63         ; NFKC_SCF; 10D83          # L&       GARAY CAPITAL LETTER HA
+10D64         ; NFKC_SCF; 10D84          # L&       GARAY CAPITAL LETTER OLD KA
+10D65         ; NFKC_SCF; 10D85          # L&       GARAY CAPITAL LETTER OLD NA
 118A0         ; NFKC_SCF; 118C0          # L&       WARANG CITI CAPITAL LETTER NGAA
 118A1         ; NFKC_SCF; 118C1          # L&       WARANG CITI CAPITAL LETTER A
 118A2         ; NFKC_SCF; 118C2          # L&       WARANG CITI CAPITAL LETTER WI
@@ -15082,7 +15130,7 @@ E0080..E00FF  ; NFKC_SCF;                # Cn [128] <reserved-E0080>..<reserved-
 E0100..E01EF  ; NFKC_SCF;                # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; NFKC_SCF;                # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10454
+# Total code points: 10478
 
 # ================================================
 
@@ -15851,6 +15899,7 @@ A7C0          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER OLD
 A7C2          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER ANGLICANA W
 A7C4..A7C7    ; Changes_When_NFKC_Casefolded # L&   [4] LATIN CAPITAL LETTER C WITH PALATAL HOOK..LATIN CAPITAL LETTER D WITH SHORT STROKE OVERLAY
 A7C9          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER S WITH SHORT STROKE OVERLAY
+A7CB..A7CC    ; Changes_When_NFKC_Casefolded # L&   [2] LATIN CAPITAL LETTER RAMS HORN..LATIN CAPITAL LETTER S WITH DIAGONAL STROKE
 A7D0          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER CLOSED INSULAR G
 A7D6          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D8          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER SIGMOID S
@@ -15993,6 +16042,7 @@ FFF0..FFF8    ; Changes_When_NFKC_Casefolded # Cn   [9] <reserved-FFF0>..<reserv
 10787..107B0  ; Changes_When_NFKC_Casefolded # Lm  [42] MODIFIER LETTER SMALL DZ DIGRAPH..MODIFIER LETTER SMALL V WITH RIGHT HOOK
 107B2..107BA  ; Changes_When_NFKC_Casefolded # Lm   [9] MODIFIER LETTER SMALL CAPITAL Y..MODIFIER LETTER SMALL S WITH CURL
 10C80..10CB2  ; Changes_When_NFKC_Casefolded # L&  [51] OLD HUNGARIAN CAPITAL LETTER A..OLD HUNGARIAN CAPITAL LETTER US
+10D50..10D65  ; Changes_When_NFKC_Casefolded # L&  [22] GARAY CAPITAL LETTER A..GARAY CAPITAL LETTER OLD NA
 118A0..118BF  ; Changes_When_NFKC_Casefolded # L&  [32] WARANG CITI CAPITAL LETTER NGAA..WARANG CITI CAPITAL LETTER VIYO
 16E40..16E5F  ; Changes_When_NFKC_Casefolded # L&  [32] MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN CAPITAL LETTER Y
 1BCA0..1BCA3  ; Changes_When_NFKC_Casefolded # Cf   [4] SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
@@ -16094,6 +16144,6 @@ E0080..E00FF  ; Changes_When_NFKC_Casefolded # Cn [128] <reserved-E0080>..<reser
 E0100..E01EF  ; Changes_When_NFKC_Casefolded # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; Changes_When_NFKC_Casefolded # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10492
+# Total code points: 10516
 
 # EOF

@@ -106,6 +106,7 @@ Ethiopic_Ext_A	;	Ethiopic_Extended_A
 Ethiopic_Ext_B	;	Ethiopic_Extended_B
 Ethiopic_Sup	;	Ethiopic_Supplement
 Punctuation	;	General_Punctuation
+Garay	;	Garay
 Geometric_Shapes	;	Geometric_Shapes
 Geometric_Shapes_Ext	;	Geometric_Shapes_Extended
 Georgian	;	Georgian
@@ -288,6 +289,7 @@ Sutton_SignWriting	;	Sutton_SignWriting
 Syloti_Nagri	;	Syloti_Nagri
 Symbols_And_Pictographs_Ext_A	;	Symbols_And_Pictographs_Extended_A
 Symbols_For_Legacy_Computing	;	Symbols_For_Legacy_Computing
+Symbols_For_Legacy_Computing_Sup	;	Symbols_For_Legacy_Computing_Supplement
 Syriac	;	Syriac
 Syriac_Sup	;	Syriac_Supplement
 Tagalog	;	Tagalog
