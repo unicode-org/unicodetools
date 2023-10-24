@@ -1,5 +1,5 @@
 # ScriptExtensions-16.0.0.txt
-# Date: 2024-02-29, 13:02:14 GMT
+# Date: 2024-02-29, 13:02:29 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -39,10 +39,10 @@
 0484          ; Cyrl Glag                      # Mn      COMBINING CYRILLIC PALATALIZATION
 0485..0486    ; Cyrl Latn                      # Mn  [2] COMBINING CYRILLIC DASIA PNEUMATA..COMBINING CYRILLIC PSILI PNEUMATA
 0487          ; Cyrl Glag                      # Mn      COMBINING CYRILLIC POKRYTIE
-060C          ; Arab Nkoo Rohg Syrc Thaa Yezi  # Po      ARABIC COMMA
-061B          ; Arab Nkoo Rohg Syrc Thaa Yezi  # Po      ARABIC SEMICOLON
+060C          ; Arab Gara Nkoo Rohg Syrc Thaa Yezi #Po   ARABIC COMMA
+061B          ; Arab Gara Nkoo Rohg Syrc Thaa Yezi #Po   ARABIC SEMICOLON
 061C          ; Arab Syrc Thaa                 # Cf      ARABIC LETTER MARK
-061F          ; Adlm Arab Nkoo Rohg Syrc Thaa Yezi #Po   ARABIC QUESTION MARK
+061F          ; Adlm Arab Gara Nkoo Rohg Syrc Thaa Yezi #Po ARABIC QUESTION MARK
 0640          ; Adlm Arab Mand Mani Ougr Phlp Rohg Sogd Syrc #Lm ARABIC TATWEEL
 064B..0655    ; Arab Syrc                      # Mn [11] ARABIC FATHATAN..ARABIC HAMZA BELOW
 0660..0669    ; Arab Thaa Yezi                 # Nd [10] ARABIC-INDIC DIGIT ZERO..ARABIC-INDIC DIGIT NINE
