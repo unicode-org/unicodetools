@@ -76,6 +76,11 @@ public final class FileUtilities {
                     if (line == null) {
                         break;
                     }
+                    if (line.startsWith("<<<<<<<")
+                            || line.startsWith("=======")
+                            || line.startsWith(">>>>>>>")) {
+                        continue;
+                    }
                     final int comment = line.indexOf("#");
                     if (comment >= 0) {
                         processComment(line, comment);
