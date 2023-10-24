@@ -1,5 +1,5 @@
 # DerivedLineBreak-16.0.0.txt
-# Date: 2023-10-24, 09:17:27 GMT
+# Date: 2023-10-24, 18:13:45 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -68,8 +68,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 762525 code points not listed here.
-# Total code points: 899993
+# The above property value applies to 762524 code points not listed here.
+# Total code points: 899992
 
 # ================================================
 
@@ -1136,8 +1136,7 @@ A788          ; AL # Lm       MODIFIER LETTER LOW CIRCUMFLEX ACCENT
 A789..A78A    ; AL # Sk   [2] MODIFIER LETTER COLON..MODIFIER LETTER SHORT EQUALS SIGN
 A78B..A78E    ; AL # L&   [4] LATIN CAPITAL LETTER SALTILLO..LATIN SMALL LETTER L WITH RETROFLEX HOOK AND BELT
 A78F          ; AL # Lo       LATIN LETTER SINOLOGICAL DOT
-A790..A7CA    ; AL # L&  [59] LATIN CAPITAL LETTER N WITH DESCENDER..LATIN SMALL LETTER S WITH SHORT STROKE OVERLAY
-A7CC..A7CD    ; AL # L&   [2] LATIN CAPITAL LETTER S WITH DIAGONAL STROKE..LATIN SMALL LETTER S WITH DIAGONAL STROKE
+A790..A7CD    ; AL # L&  [62] LATIN CAPITAL LETTER N WITH DESCENDER..LATIN SMALL LETTER S WITH DIAGONAL STROKE
 A7D0..A7D1    ; AL # L&   [2] LATIN CAPITAL LETTER CLOSED INSULAR G..LATIN SMALL LETTER CLOSED INSULAR G
 A7D3          ; AL # L&       LATIN SMALL LETTER DOUBLE THORN
 A7D5..A7D9    ; AL # L&   [5] LATIN SMALL LETTER DOUBLE WYNN..LATIN SMALL LETTER SIGMOID S
@@ -1597,7 +1596,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1FB00..1FB92  ; AL # So [147] BLOCK SEXTANT-1..UPPER HALF INVERSE MEDIUM SHADE AND LOWER HALF BLOCK
 1FB94..1FBCA  ; AL # So  [55] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..WHITE UP-POINTING CHEVRON
 
-# Total code points: 21882
+# Total code points: 21883
 
 # ================================================
 
