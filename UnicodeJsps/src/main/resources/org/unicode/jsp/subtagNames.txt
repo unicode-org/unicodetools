@@ -4773,7 +4773,7 @@ mhz;Mor (Mor Islands)
 mi;Māori
 mia;Miami
 mib;Atatláhuca Mixtec
-mic;Mi'kmaq
+mic;Mi'kmaw
 mid;Mandaic
 mie;Ocotepec Mixtec
 mif;Mofu-Gudur

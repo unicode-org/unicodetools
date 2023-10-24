@@ -24,7 +24,7 @@ mkdir -p UnicodeJsps/target && tar -cpz --exclude=.git -f UnicodeJsps/target/cld
 - build it
 
 ```
-docker build -t unicode/unicode-jsps .
+docker build -t unicode/unicode-jsps UnicodeJsps/
 ```
 
 - try it
@@ -45,14 +45,14 @@ docker run --rm -p 8080:8080 unicode/unicode-jsps
 - login to docker
 
 ```
-gcloud auth configure-docker \
-    us-central1-docker.pkg.dev
+gcloud auth configure-docker us-central1-docker.pkg.dev
 ```
 
-- build docker image
+- build docker image and run it
 
 ```
-docker build -t us-central1-docker.pkg.dev/goog-unicode-dev/unicode-jsps/unicode-jsps:latest .
+docker build -t us-central1-docker.pkg.dev/goog-unicode-dev/unicode-jsps/unicode-jsps:latest UnicodeJsps/
+docker run --rm -p 8080:8080 us-central1-docker.pkg.dev/goog-unicode-dev/unicode-jsps/unicode-jsps:latest
 ```
 
 - push docker image
