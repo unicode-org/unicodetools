@@ -34,6 +34,7 @@ import org.junit.jupiter.api.condition.EnabledIf;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.opentest4j.TestAbortedException;
 import org.unicode.jsp.CharEncoder;
 import org.unicode.jsp.Common;
 import org.unicode.jsp.UnicodeJsp;
@@ -380,6 +381,9 @@ public class TestUnicodeSet extends TestFmwk2 {
         CharEncoder encoder;
         try {
             encoder = new CharEncoder(charset, false, false);
+        } catch (UnsupportedOperationException e) {
+            // skip charsets that aren't supported
+            throw new TestAbortedException("Skipping charset " + charset.name(), e);
         } catch (Exception e) {
             e.printStackTrace();
             assumeTrue(e == null, "Caught exception " + e);

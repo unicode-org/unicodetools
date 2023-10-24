@@ -3,7 +3,7 @@ FROM alpine as cbuild
 WORKDIR /build
 RUN apk add --update wget make gcc musl-dev
 ARG CPATH=https://www.unicode.org/Public/PROGRAMS/BidiReferenceC/
-ARG CVERSION=15.0.0
+ARG CVERSION=15.1.0
 RUN wget -np -nv --reject-regex='.*\.(lib|exe)$' --cut-dirs=4 -nH -r ${CPATH}${CVERSION}/
 RUN cd source && gcc -I ../include/ -static -Os -o3 -o bidiref1 bidiref1.c brutils.c brtest.c brtable.c brrule.c
 RUN ls -lh /build/source/bidiref1 && (/build/source/bidiref1 || true)
