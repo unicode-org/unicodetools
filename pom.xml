@@ -31,7 +31,7 @@
         <!--
              For CLDR versions, see https://github.com/orgs/unicode-org/packages?repo_name=cldr
           -->
-        <cldr.version>0.0.0-SNAPSHOT-66d15bfc1b</cldr.version>
+        <cldr.version>0.0.0-SNAPSHOT-ba1c4f0cb1</cldr.version>
 
 
         <!-- these two set the JDK version for source and target -->
@@ -120,7 +120,7 @@
                     <artifactId>maven-failsafe-plugin</artifactId>
                     <version>${maven-surefire-plugin-version}</version>
                 </plugin>
-                <!-- 
+                <!--
                     Spotless info:
                       - How to preview what `mvn spotless:apply` will do: https://github.com/diffplug/spotless/tree/main/plugin-maven#how-do-i-preview-what-mvn-spotlessapply-will-do
                       - Apply Spotless to specific files: https://github.com/diffplug/spotless/tree/main/plugin-maven#can-i-apply-spotless-to-specific-files
@@ -155,7 +155,7 @@
                     that contains `<skip>false</skip>` in the pom.xml.
                     See comments in this answer: https://stackoverflow.com/a/26448447/2077918
 
-                    If we ever need to have more fine-grained customziation of which submodules should skip 
+                    If we ever need to have more fine-grained customziation of which submodules should skip
                     (or not) the `exec:java` execution, then we might need to use profiles to configure which
                     submodules are skipping / not skipping `exec:java` for a particular execution, as described
                     in a sibling answer: https://stackoverflow.com/a/8098019/2077918
