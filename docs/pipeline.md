@@ -45,9 +45,11 @@ Indic scripts only:
 - [ ] UCD — [Regenerate](#regenerate-ucd)
 - [ ] Commit
 
-- [ ] Draft PR
-- [ ] Set data-for-new label
-- [ ] Set pipeline-* label
+PR preparation:
+- [ ] Proposal document — Cite L2 number
+- [ ] UTC decisions — Cite _in extenso_
+- [ ] data-for-new — Set label
+- [ ] pipeline-* — Set label
 
 ## Scripts
 
