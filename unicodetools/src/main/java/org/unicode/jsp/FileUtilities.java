@@ -76,6 +76,7 @@ public final class FileUtilities {
                     if (line == null) {
                         break;
                     }
+                    // Ignore merge conflict markers.
                     if (line.startsWith("<<<<<<<")
                             || line.startsWith("=======")
                             || line.startsWith(">>>>>>>")) {
