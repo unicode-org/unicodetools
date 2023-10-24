@@ -1,5 +1,5 @@
 # DerivedBidiClass-16.0.0.txt
-# Date: 2023-10-24, 18:13:39 GMT
+# Date: 2023-10-24, 21:03:35 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1165,6 +1165,10 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 1E4D0..1E4EA  ; L # Lo  [27] NAG MUNDARI LETTER O..NAG MUNDARI LETTER ELL
 1E4EB         ; L # Lm       NAG MUNDARI SIGN OJOD
 1E4F0..1E4F9  ; L # Nd  [10] NAG MUNDARI DIGIT ZERO..NAG MUNDARI DIGIT NINE
+1E5D0..1E5ED  ; L # Lo  [30] OL ONAL LETTER O..OL ONAL LETTER EG
+1E5F0         ; L # Lo       OL ONAL SIGN HODDOND
+1E5F1..1E5FA  ; L # Nd  [10] OL ONAL DIGIT ZERO..OL ONAL DIGIT NINE
+1E5FF         ; L # Po       OL ONAL ABBREVIATION SIGN
 1E7E0..1E7E6  ; L # Lo   [7] ETHIOPIC SYLLABLE HHYA..ETHIOPIC SYLLABLE HHYO
 1E7E8..1E7EB  ; L # Lo   [4] ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HHWE
 1E7ED..1E7EE  ; L # Lo   [2] ETHIOPIC SYLLABLE GURAGE MWI..ETHIOPIC SYLLABLE GURAGE MWEE
@@ -1188,8 +1192,8 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 820334 code points not listed here.
-# Total code points: 1096262
+# The above property value applies to 820290 code points not listed here.
+# Total code points: 1096260
 
 # ================================================
 
@@ -2361,11 +2365,12 @@ FE20..FE2F    ; NSM # Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC 
 1E2AE         ; NSM # Mn       TOTO SIGN RISING TONE
 1E2EC..1E2EF  ; NSM # Mn   [4] WANCHO TONE TUP..WANCHO TONE KOINI
 1E4EC..1E4EF  ; NSM # Mn   [4] NAG MUNDARI SIGN MUHOR..NAG MUNDARI SIGN SUTUH
+1E5EE..1E5EF  ; NSM # Mn   [2] OL ONAL SIGN MU..OL ONAL SIGN IKIR
 1E8D0..1E8D6  ; NSM # Mn   [7] MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 1E944..1E94A  ; NSM # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; NSM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2000
+# Total code points: 2002
 
 # ================================================
 
