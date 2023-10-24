@@ -1,5 +1,5 @@
 # DerivedDecompositionType-16.0.0.txt
-# Date: 2023-10-06, 12:04:01 GMT
+# Date: 2023-10-24, 20:32:27 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -249,6 +249,8 @@ FB3E          ; Canonical # Lo       HEBREW LETTER MEM WITH DAGESH
 FB40..FB41    ; Canonical # Lo   [2] HEBREW LETTER NUN WITH DAGESH..HEBREW LETTER SAMEKH WITH DAGESH
 FB43..FB44    ; Canonical # Lo   [2] HEBREW LETTER FINAL PE WITH DAGESH..HEBREW LETTER PE WITH DAGESH
 FB46..FB4E    ; Canonical # Lo   [9] HEBREW LETTER TSADI WITH DAGESH..HEBREW LETTER PE WITH RAFE
+105C9         ; Canonical # Lo       TODHRI LETTER EI
+105E4         ; Canonical # Lo       TODHRI LETTER U
 1109A         ; Canonical # Lo       KAITHI LETTER DDDHA
 1109C         ; Canonical # Lo       KAITHI LETTER RHA
 110AB         ; Canonical # Lo       KAITHI LETTER VA
@@ -263,7 +265,7 @@ FB46..FB4E    ; Canonical # Lo   [9] HEBREW LETTER TSADI WITH DAGESH..HEBREW LET
 1D1BB..1D1C0  ; Canonical # So   [6] MUSICAL SYMBOL MINIMA..MUSICAL SYMBOL FUSA BLACK
 2F800..2FA1D  ; Canonical # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# Total code points: 13236
+# Total code points: 13238
 
 # ================================================
 

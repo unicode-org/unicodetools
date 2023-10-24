@@ -530,7 +530,10 @@ Show [\u20b9]
 # exceptions. Should such exceptions arise, they can be added to the definition of
 # $nonAlphabeticBindus to avoid a failure on this test.
 Let $nonAlphabeticBindus = []
-[\p{InSc=Bindu} - $nonAlphabeticBindus - \p{Alphabetic}] = [] 
+[\p{InSc=Bindu} - \p{Alphabetic}] = $nonAlphabeticBindus
+
+Let $nonAlphabeticDependentVowels = [\N{ORIYA SIGN OVERLINE}\N{THAI CHARACTER MAITAIKHU}\N{LIMBU SIGN KEMPHRENG}\N{SHARADA VOWEL MODIFIER MARK}\N{SHARADA EXTRA SHORT VOWEL MARK}]
+[\p{InSC=Vowel_Dependent} - \p{Alphabetic}] = $nonAlphabeticDependentVowels
 
 ##########################
 # LineBreak property
