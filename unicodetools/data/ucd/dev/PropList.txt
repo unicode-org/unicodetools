@@ -1,6 +1,5 @@
-1AD9..1ADD; Diacritic
 # PropList-16.0.0.txt
-# Date: 2023-10-24, 21:03:48 GMT
+# Date: 2023-10-25, 10:19:34 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -968,6 +967,7 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 1AB0..1ABD    ; Diacritic # Mn  [14] COMBINING DOUBLED CIRCUMFLEX ACCENT..COMBINING PARENTHESES BELOW
 1ABE          ; Diacritic # Me       COMBINING PARENTHESES OVERLAY
 1AC1..1ACB    ; Diacritic # Mn  [11] COMBINING LEFT PARENTHESIS ABOVE LEFT..COMBINING TRIPLE ACUTE ACCENT
+1AD9..1ADD    ; Diacritic # Mn   [5] COMBINING SHARP SIGN..COMBINING DOT-AND-RING BELOW
 1B34          ; Diacritic # Mn       BALINESE SIGN REREKAN
 1B44          ; Diacritic # Mc       BALINESE ADEG ADEG
 1B6B..1B73    ; Diacritic # Mn   [9] BALINESE MUSICAL SYMBOL COMBINING TEGEH..BALINESE MUSICAL SYMBOL COMBINING GONG
@@ -1111,7 +1111,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1152
+# Total code points: 1157
 
 # ================================================
 
