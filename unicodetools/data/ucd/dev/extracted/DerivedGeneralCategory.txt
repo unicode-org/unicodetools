@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2023-10-24, 21:03:39 GMT
+# Date: 2023-10-25, 09:44:48 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -264,7 +264,6 @@
 2427..243F    ; Cn #  [25] <reserved-2427>..<reserved-243F>
 244B..245F    ; Cn #  [21] <reserved-244B>..<reserved-245F>
 2B74..2B75    ; Cn #   [2] <reserved-2B74>..<reserved-2B75>
-2B96          ; Cn #       <reserved-2B96>
 2CF4..2CF8    ; Cn #   [5] <reserved-2CF4>..<reserved-2CF8>
 2D26          ; Cn #       <reserved-2D26>
 2D28..2D2C    ; Cn #   [5] <reserved-2D28>..<reserved-2D2C>
@@ -706,7 +705,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1F85A..1F85F  ; Cn #   [6] <reserved-1F85A>..<reserved-1F85F>
 1F888..1F88F  ; Cn #   [8] <reserved-1F888>..<reserved-1F88F>
 1F8AE..1F8AF  ; Cn #   [2] <reserved-1F8AE>..<reserved-1F8AF>
-1F8B3..1F8FF  ; Cn #  [77] <reserved-1F8B3>..<reserved-1F8FF>
+1F8B3..1F8CF  ; Cn #  [29] <reserved-1F8B3>..<reserved-1F8CF>
+1F8D9..1F8FF  ; Cn #  [39] <reserved-1F8D9>..<reserved-1F8FF>
 1FA54..1FA5F  ; Cn #  [12] <reserved-1FA54>..<reserved-1FA5F>
 1FA6E..1FA6F  ; Cn #   [2] <reserved-1FA6E>..<reserved-1FA6F>
 1FA7D..1FA7F  ; Cn #   [3] <reserved-1FA7D>..<reserved-1FA7F>
@@ -734,7 +734,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 824472
+# Total code points: 824462
 
 # ================================================
 
@@ -3949,6 +3949,7 @@ FF64..FF65    ; Po #   [2] HALFWIDTH IDEOGRAPHIC COMMA..HALFWIDTH KATAKANA MIDDL
 29FE..2AFF    ; Sm # [258] TINY..N-ARY WHITE VERTICAL BAR
 2B30..2B44    ; Sm #  [21] LEFT ARROW WITH SMALL CIRCLE..RIGHTWARDS ARROW THROUGH SUPERSET
 2B47..2B4C    ; Sm #   [6] REVERSE TILDE OPERATOR ABOVE RIGHTWARDS ARROW..RIGHTWARDS ARROW ABOVE REVERSE TILDE OPERATOR
+2B96          ; Sm #       MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR
 FB29          ; Sm #       HEBREW LETTER ALTERNATIVE PLUS SIGN
 FE62          ; Sm #       SMALL PLUS SIGN
 FE64..FE66    ; Sm #   [3] SMALL LESS-THAN SIGN..SMALL EQUALS SIGN
@@ -3970,8 +3971,9 @@ FFE9..FFEC    ; Sm #   [4] HALFWIDTH LEFTWARDS ARROW..HALFWIDTH DOWNWARDS ARROW
 1D7A9         ; Sm #       MATHEMATICAL SANS-SERIF BOLD ITALIC NABLA
 1D7C3         ; Sm #       MATHEMATICAL SANS-SERIF BOLD ITALIC PARTIAL DIFFERENTIAL
 1EEF0..1EEF1  ; Sm #   [2] ARABIC MATHEMATICAL OPERATOR MEEM WITH HAH WITH TATWEEL..ARABIC MATHEMATICAL OPERATOR HAH WITH DAL
+1F8D0..1F8D8  ; Sm #   [9] LONG RIGHTWARDS ARROW OVER LONG LEFTWARDS ARROW..LONG LEFT RIGHT ARROW WITH DEPENDENT LOBE
 
-# Total code points: 950
+# Total code points: 960
 
 # ================================================
 
