@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2023-10-24, 21:03:39 GMT
+# Date: 2023-10-25, 11:28:11 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -583,7 +583,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1BC89..1BC8F  ; Cn #   [7] <reserved-1BC89>..<reserved-1BC8F>
 1BC9A..1BC9B  ; Cn #   [2] <reserved-1BC9A>..<reserved-1BC9B>
 1BCA4..1CEAF  ; Cn # [4620] <reserved-1BCA4>..<reserved-1CEAF>
-1CEB4..1CEFF  ; Cn #  [76] <reserved-1CEB4>..<reserved-1CEFF>
+1CEB4..1CEBF  ; Cn #  [12] <reserved-1CEB4>..<reserved-1CEBF>
+1CED1..1CEFF  ; Cn #  [47] <reserved-1CED1>..<reserved-1CEFF>
 1CF2E..1CF2F  ; Cn #   [2] <reserved-1CF2E>..<reserved-1CF2F>
 1CF47..1CF4F  ; Cn #   [9] <reserved-1CF47>..<reserved-1CF4F>
 1CFC4..1CFFF  ; Cn #  [60] <reserved-1CFC4>..<reserved-1CFFF>
@@ -697,7 +698,6 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1F6D8..1F6DB  ; Cn #   [4] <reserved-1F6D8>..<reserved-1F6DB>
 1F6ED..1F6EF  ; Cn #   [3] <reserved-1F6ED>..<reserved-1F6EF>
 1F6FD..1F6FF  ; Cn #   [3] <reserved-1F6FD>..<reserved-1F6FF>
-1F777..1F77A  ; Cn #   [4] <reserved-1F777>..<reserved-1F77A>
 1F7DA..1F7DF  ; Cn #   [6] <reserved-1F7DA>..<reserved-1F7DF>
 1F7EC..1F7EF  ; Cn #   [4] <reserved-1F7EC>..<reserved-1F7EF>
 1F7F1..1F7FF  ; Cn #  [15] <reserved-1F7F1>..<reserved-1F7FF>
@@ -734,7 +734,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 824472
+# Total code points: 824451
 
 # ================================================
 
@@ -4173,6 +4173,7 @@ FFFC..FFFD    ; So #   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 16B45         ; So #       PAHAWH HMONG SIGN CIM TSOV ROG
 1BC9C         ; So #       DUPLOYAN SIGN O WITH CROSS
 1CEB0..1CEB3  ; So #   [4] HORIZONTAL ZIGZAG LINE..BLACK RIGHT TRIANGLE CARET
+1CEC0..1CED0  ; So #  [17] HEBE..LEUKOTHEA
 1CF50..1CFC3  ; So # [116] ZNAMENNY NEUME KRYUK..ZNAMENNY NEUME PAUK
 1D000..1D0F5  ; So # [246] BYZANTINE MUSICAL SYMBOL PSILI..BYZANTINE MUSICAL SYMBOL GORGON NEO KATO
 1D100..1D126  ; So #  [39] MUSICAL SYMBOL SINGLE BARLINE..MUSICAL SYMBOL DRUM CLEF-2
@@ -4208,8 +4209,7 @@ FFFC..FFFD    ; So #   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1F400..1F6D7  ; So # [728] RAT..ELEVATOR
 1F6DC..1F6EC  ; So #  [17] WIRELESS..AIRPLANE ARRIVING
 1F6F0..1F6FC  ; So #  [13] SATELLITE..ROLLER SKATE
-1F700..1F776  ; So # [119] ALCHEMICAL SYMBOL FOR QUINTESSENCE..LUNAR ECLIPSE
-1F77B..1F7D9  ; So #  [95] HAUMEA..NINE POINTED WHITE STAR
+1F700..1F7D9  ; So # [218] ALCHEMICAL SYMBOL FOR QUINTESSENCE..NINE POINTED WHITE STAR
 1F7E0..1F7EB  ; So #  [12] LARGE ORANGE CIRCLE..LARGE BROWN SQUARE
 1F7F0         ; So #       HEAVY EQUALS SIGN
 1F800..1F80B  ; So #  [12] LEFTWARDS ARROW WITH SMALL TRIANGLE ARROWHEAD..DOWNWARDS ARROW WITH LARGE TRIANGLE ARROWHEAD
@@ -4230,7 +4230,7 @@ FFFC..FFFD    ; So #   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1FB00..1FB92  ; So # [147] BLOCK SEXTANT-1..UPPER HALF INVERSE MEDIUM SHADE AND LOWER HALF BLOCK
 1FB94..1FBCA  ; So #  [55] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..WHITE UP-POINTING CHEVRON
 
-# Total code points: 6644
+# Total code points: 6665
 
 # ================================================
 

@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2023-10-24, 21:03:41 GMT
+# Date: 2023-10-25, 11:28:14 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -37980,6 +37980,23 @@ FFFD          ; REPLACEMENT CHARACTER
 1CEB1         ; KEYHOLE
 1CEB2         ; OLD PERSONAL COMPUTER WITH MONITOR IN PORTRAIT ORIENTATION
 1CEB3         ; BLACK RIGHT TRIANGLE CARET
+1CEC0         ; HEBE
+1CEC1         ; IRIS
+1CEC2         ; FLORA
+1CEC3         ; METIS
+1CEC4         ; PARTHENOPE
+1CEC5         ; VICTORIA
+1CEC6         ; EGERIA
+1CEC7         ; IRENE
+1CEC8         ; EUNOMIA
+1CEC9         ; PSYCHE
+1CECA         ; THETIS
+1CECB         ; MELPOMENE
+1CECC         ; FORTUNA
+1CECD         ; ASTRONOMICAL SYMBOL FOR ASTEROID PROSERPINA
+1CECE         ; BELLONA
+1CECF         ; AMPHITRITE
+1CED0         ; LEUKOTHEA
 1CF00         ; ZNAMENNY COMBINING MARK GORAZDO NIZKO S KRYZHEM ON LEFT
 1CF01         ; ZNAMENNY COMBINING MARK NIZKO S KRYZHEM ON LEFT
 1CF02         ; ZNAMENNY COMBINING MARK TSATA ON LEFT
@@ -43143,6 +43160,10 @@ FFFD          ; REPLACEMENT CHARACTER
 1F774         ; LOT OF FORTUNE
 1F775         ; OCCULTATION
 1F776         ; LUNAR ECLIPSE
+1F777         ; VESTA FORM TWO
+1F778         ; ASTRAEA FORM TWO
+1F779         ; HYGIEA FORM TWO
+1F77A         ; PARTHENOPE FORM TWO
 1F77B         ; HAUMEA
 1F77C         ; MAKEMAKE
 1F77D         ; GONGGONG
@@ -44422,6 +44443,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 150059
+# Total code points: 150080
 
 # EOF

@@ -1,5 +1,5 @@
 # LineBreak-16.0.0.txt
-# Date: 2023-10-25, 11:17:05 GMT
+# Date: 2023-10-25, 11:28:18 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -3534,7 +3534,7 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 1F6FD..1F6FF   ; ID # Cn     [3] <reserved-1F6FD>..<reserved-1F6FF>
 1F700..1F773   ; AL # So   [116] ALCHEMICAL SYMBOL FOR QUINTESSENCE..ALCHEMICAL SYMBOL FOR HALF OUNCE
 1F774..1F776   ; ID # So     [3] LOT OF FORTUNE..LUNAR ECLIPSE
-1F777..1F77A   ; AL
+1F777..1F77A   ; AL # So     [4] VESTA FORM TWO..PARTHENOPE FORM TWO
 1F77B..1F77F   ; ID # So     [5] HAUMEA..ORCUS
 1F780..1F7D4   ; AL # So    [85] BLACK LEFT-POINTING ISOSCELES RIGHT TRIANGLE..HEAVY TWELVE POINTED PINWHEEL STAR
 1F7D5..1F7D9   ; ID # So     [5] CIRCLED TRIANGLE..NINE POINTED WHITE STAR
