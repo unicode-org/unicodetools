@@ -229,6 +229,7 @@ Nushu	;	Nushu
 Nyiakeng_Puachue_Hmong	;	Nyiakeng_Puachue_Hmong
 Ogham	;	Ogham
 Ol_Chiki	;	Ol_Chiki
+Ol_Onal	;	Ol_Onal
 Old_Italic	;	Old_Italic
 Old_Hungarian	;	Old_Hungarian
 Old_North_Arabian	;	Old_North_Arabian

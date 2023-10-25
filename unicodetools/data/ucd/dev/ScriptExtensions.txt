@@ -1,5 +1,5 @@
 # ScriptExtensions-16.0.0.txt
-# Date: 2023-10-09, 14:49:47 GMT
+# Date: 2023-10-24, 21:04:04 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -618,17 +618,17 @@ A830..A832    ; Deva Dogr Gujr Guru Khoj Knda Kthi Mahj Mlym Modi Nand Shrd Sind
 
 # ================================================
 
-# Script_Extensions=Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Mahj Mlym Nand Orya Sind Sinh Sylo Takr Taml Telu Tirh
+# Script_Extensions=Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Mahj Mlym Nand Onao Orya Sind Sinh Sylo Takr Taml Telu Tirh
 
-0964          ; Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Mahj Mlym Nand Orya Sind Sinh Sylo Takr Taml Telu Tirh # Po       DEVANAGARI DANDA
+0964          ; Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Mahj Mlym Nand Onao Orya Sind Sinh Sylo Takr Taml Telu Tirh # Po       DEVANAGARI DANDA
 
 # Total code points: 1
 
 # ================================================
 
-# Script_Extensions=Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Limb Mahj Mlym Nand Orya Sind Sinh Sylo Takr Taml Telu Tirh
+# Script_Extensions=Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Limb Mahj Mlym Nand Onao Orya Sind Sinh Sylo Takr Taml Telu Tirh
 
-0965          ; Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Limb Mahj Mlym Nand Orya Sind Sinh Sylo Takr Taml Telu Tirh # Po       DEVANAGARI DOUBLE DANDA
+0965          ; Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Limb Mahj Mlym Nand Onao Orya Sind Sinh Sylo Takr Taml Telu Tirh # Po       DEVANAGARI DOUBLE DANDA
 
 # Total code points: 1
 

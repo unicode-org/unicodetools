@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-16.0.0.txt
-# Date: 2023-10-24, 20:32:28 GMT
+# Date: 2023-10-25, 12:52:49 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1956,6 +1956,11 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 1E4EB         ; N # Lm       NAG MUNDARI SIGN OJOD
 1E4EC..1E4EF  ; N # Mn   [4] NAG MUNDARI SIGN MUHOR..NAG MUNDARI SIGN SUTUH
 1E4F0..1E4F9  ; N # Nd  [10] NAG MUNDARI DIGIT ZERO..NAG MUNDARI DIGIT NINE
+1E5D0..1E5ED  ; N # Lo  [30] OL ONAL LETTER O..OL ONAL LETTER EG
+1E5EE..1E5EF  ; N # Mn   [2] OL ONAL SIGN MU..OL ONAL SIGN IKIR
+1E5F0         ; N # Lo       OL ONAL SIGN HODDOND
+1E5F1..1E5FA  ; N # Nd  [10] OL ONAL DIGIT ZERO..OL ONAL DIGIT NINE
+1E5FF         ; N # Po       OL ONAL ABBREVIATION SIGN
 1E7E0..1E7E6  ; N # Lo   [7] ETHIOPIC SYLLABLE HHYA..ETHIOPIC SYLLABLE HHYO
 1E7E8..1E7EB  ; N # Lo   [4] ETHIOPIC SYLLABLE GURAGE HHWA..ETHIOPIC SYLLABLE HHWE
 1E7ED..1E7EE  ; N # Lo   [2] ETHIOPIC SYLLABLE GURAGE MWI..ETHIOPIC SYLLABLE GURAGE MWEE
@@ -2065,7 +2070,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 766024 code points not listed here.
+# The above property value applies to 765980 code points not listed here.
 # Total code points: 792618
 
 # ================================================

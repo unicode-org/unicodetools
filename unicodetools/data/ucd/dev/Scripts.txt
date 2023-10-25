@@ -1,5 +1,5 @@
 # Scripts-16.0.0.txt
-# Date: 2023-10-24, 20:33:06 GMT
+# Date: 2023-10-25, 12:53:25 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -3057,6 +3057,16 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 16D70..16D79  ; Kirat_Rai # Nd  [10] KIRAT RAI DIGIT ZERO..KIRAT RAI DIGIT NINE
 
 # Total code points: 58
+
+# ================================================
+
+1E5D0..1E5ED  ; Ol_Onal # Lo  [30] OL ONAL LETTER O..OL ONAL LETTER EG
+1E5EE..1E5EF  ; Ol_Onal # Mn   [2] OL ONAL SIGN MU..OL ONAL SIGN IKIR
+1E5F0         ; Ol_Onal # Lo       OL ONAL SIGN HODDOND
+1E5F1..1E5FA  ; Ol_Onal # Nd  [10] OL ONAL DIGIT ZERO..OL ONAL DIGIT NINE
+1E5FF         ; Ol_Onal # Po       OL ONAL ABBREVIATION SIGN
+
+# Total code points: 44
 
 # ================================================
 
