@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2023-10-24, 21:03:41 GMT
+# Date: 2023-10-25, 10:15:33 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -6114,6 +6114,11 @@
 1ACC          ; COMBINING LATIN SMALL LETTER INSULAR G
 1ACD          ; COMBINING LATIN SMALL LETTER INSULAR R
 1ACE          ; COMBINING LATIN SMALL LETTER INSULAR T
+1AD9          ; COMBINING SHARP SIGN
+1ADA          ; COMBINING FLAT SIGN
+1ADB          ; COMBINING DOWN TACK ABOVE
+1ADC          ; COMBINING FALLING DIAGONAL DIAERESIS
+1ADD          ; COMBINING DOT-AND-RING BELOW
 1B00          ; BALINESE SIGN ULU RICEM
 1B01          ; BALINESE SIGN ULU CANDRA
 1B02          ; BALINESE SIGN CECEK
@@ -44422,6 +44427,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 150059
+# Total code points: 150064
 
 # EOF

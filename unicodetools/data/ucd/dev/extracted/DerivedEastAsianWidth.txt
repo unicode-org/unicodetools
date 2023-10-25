@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-16.0.0.txt
-# Date: 2023-10-24, 21:03:39 GMT
+# Date: 2023-10-25, 10:15:30 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -692,6 +692,7 @@
 1AB0..1ABD    ; N # Mn  [14] COMBINING DOUBLED CIRCUMFLEX ACCENT..COMBINING PARENTHESES BELOW
 1ABE          ; N # Me       COMBINING PARENTHESES OVERLAY
 1ABF..1ACE    ; N # Mn  [16] COMBINING LATIN SMALL LETTER W BELOW..COMBINING LATIN SMALL LETTER INSULAR T
+1AD9..1ADD    ; N # Mn   [5] COMBINING SHARP SIGN..COMBINING DOT-AND-RING BELOW
 1B00..1B03    ; N # Mn   [4] BALINESE SIGN ULU RICEM..BALINESE SIGN SURANG
 1B04          ; N # Mc       BALINESE SIGN BISAH
 1B05..1B33    ; N # Lo  [47] BALINESE LETTER AKARA..BALINESE LETTER HA
@@ -2065,7 +2066,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 766038 code points not listed here.
+# The above property value applies to 766033 code points not listed here.
 # Total code points: 792618
 
 # ================================================

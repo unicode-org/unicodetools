@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2023-10-24, 21:03:39 GMT
+# Date: 2023-10-25, 10:15:31 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -228,7 +228,8 @@
 1A8A..1A8F    ; Cn #   [6] <reserved-1A8A>..<reserved-1A8F>
 1A9A..1A9F    ; Cn #   [6] <reserved-1A9A>..<reserved-1A9F>
 1AAE..1AAF    ; Cn #   [2] <reserved-1AAE>..<reserved-1AAF>
-1ACF..1AFF    ; Cn #  [49] <reserved-1ACF>..<reserved-1AFF>
+1ACF..1AD8    ; Cn #  [10] <reserved-1ACF>..<reserved-1AD8>
+1ADE..1AFF    ; Cn #  [34] <reserved-1ADE>..<reserved-1AFF>
 1B4D..1B4F    ; Cn #   [3] <reserved-1B4D>..<reserved-1B4F>
 1B7F          ; Cn #       <reserved-1B7F>
 1BF4..1BFB    ; Cn #   [8] <reserved-1BF4>..<reserved-1BFB>
@@ -734,7 +735,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 824472
+# Total code points: 824467
 
 # ================================================
 
@@ -2829,6 +2830,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 1A7F          ; Mn #       TAI THAM COMBINING CRYPTOGRAMMIC DOT
 1AB0..1ABD    ; Mn #  [14] COMBINING DOUBLED CIRCUMFLEX ACCENT..COMBINING PARENTHESES BELOW
 1ABF..1ACE    ; Mn #  [16] COMBINING LATIN SMALL LETTER W BELOW..COMBINING LATIN SMALL LETTER INSULAR T
+1AD9..1ADD    ; Mn #   [5] COMBINING SHARP SIGN..COMBINING DOT-AND-RING BELOW
 1B00..1B03    ; Mn #   [4] BALINESE SIGN ULU RICEM..BALINESE SIGN SURANG
 1B34          ; Mn #       BALINESE SIGN REREKAN
 1B36..1B3A    ; Mn #   [5] BALINESE VOWEL SIGN ULU..BALINESE VOWEL SIGN RA REPA
@@ -3035,7 +3037,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 1994
+# Total code points: 1999
 
 # ================================================
 
