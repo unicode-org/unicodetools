@@ -11,6 +11,7 @@ The plan is for this process to be part of the PAG’s review of encoding propos
 - [ ] SAH report — Check counts, code points, names, properties
 - [ ] Ken’s UnicodeData draft — [Check consistent](#ken-unicodedata)
 
+---
 If the proposal supplies LineBreak.txt:
 - [ ] LineBreak.txt — Prepend lines from proposal
 - [ ] Commit
@@ -19,33 +20,41 @@ If the proposal does not supply LineBreak.txt:
 - [ ] Update modified lines
 - [ ] Commit
 
+---
 New scripts only:
 - [ ] UCD_Names — Check script name
 
+---
 - [ ] Scripts.txt — Prepend ranges
 - [ ] Commit
 
+---
 New blocks only:
 - [ ] ShortBlockNames.txt — Update, keep sorted
 - [ ] Blocks.txt — Update, keep sorted [TODO(egg): This one wants to be generated…]
 - [ ] Commit
 
+---
 Joining scripts only:
 - [ ] ArabicShaping.txt — Merge from proposal, keep sorted
 - [ ] Commit
 
+---
 Indic scripts only:
 - [ ] IndicPositionalCategory — Prepend lines from proposal
 - [ ] IndicSyllabicCategory — Prepend lines from proposal
 - [ ] Commit
 
+---
 - [ ] UCD — [Regenerate](#regenerate-ucd)
 - [ ] Enums — [Regenerate](#generateenums)
 
+---
 - [ ] PropsList.txt — Add Other_Alphabetic, Diacritic, and Extender to satisfy invariants, or to taste
 - [ ] UCD — [Regenerate](#regenerate-ucd)
 - [ ] Commit
 
+---
 PR preparation:
 - [ ] Proposal document — Cite L2 number
 - [ ] UTC decisions — Cite _in extenso_
