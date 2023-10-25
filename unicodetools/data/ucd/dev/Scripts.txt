@@ -1,5 +1,5 @@
 # Scripts-16.0.0.txt
-# Date: 2023-10-24, 21:04:04 GMT
+# Date: 2023-10-25, 12:53:25 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -3047,6 +3047,16 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 10D8E..10D8F  ; Garay # Sm   [2] GARAY PLUS SIGN..GARAY MINUS SIGN
 
 # Total code points: 69
+
+# ================================================
+
+16D40..16D42  ; Kirat_Rai # Lm   [3] KIRAT RAI SIGN ANUSVARA..KIRAT RAI SIGN VISARGA
+16D43..16D6A  ; Kirat_Rai # Lo  [40] KIRAT RAI LETTER A..KIRAT RAI VOWEL SIGN AU
+16D6B..16D6C  ; Kirat_Rai # Lm   [2] KIRAT RAI SIGN VIRAMA..KIRAT RAI SIGN SAAT
+16D6D..16D6F  ; Kirat_Rai # Po   [3] KIRAT RAI SIGN YUPI..KIRAT RAI DOUBLE DANDA
+16D70..16D79  ; Kirat_Rai # Nd  [10] KIRAT RAI DIGIT ZERO..KIRAT RAI DIGIT NINE
+
+# Total code points: 58
 
 # ================================================
 

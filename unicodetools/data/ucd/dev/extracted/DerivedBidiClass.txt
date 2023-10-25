@@ -1,5 +1,5 @@
 # DerivedBidiClass-16.0.0.txt
-# Date: 2023-10-24, 21:03:35 GMT
+# Date: 2023-10-25, 12:52:43 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1067,6 +1067,11 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 16B5B..16B61  ; L # No   [7] PAHAWH HMONG NUMBER TENS..PAHAWH HMONG NUMBER TRILLIONS
 16B63..16B77  ; L # Lo  [21] PAHAWH HMONG SIGN VOS LUB..PAHAWH HMONG SIGN CIM NRES TOS
 16B7D..16B8F  ; L # Lo  [19] PAHAWH HMONG CLAN SIGN TSHEEJ..PAHAWH HMONG CLAN SIGN VWJ
+16D40..16D42  ; L # Lm   [3] KIRAT RAI SIGN ANUSVARA..KIRAT RAI SIGN VISARGA
+16D43..16D6A  ; L # Lo  [40] KIRAT RAI LETTER A..KIRAT RAI VOWEL SIGN AU
+16D6B..16D6C  ; L # Lm   [2] KIRAT RAI SIGN VIRAMA..KIRAT RAI SIGN SAAT
+16D6D..16D6F  ; L # Po   [3] KIRAT RAI SIGN YUPI..KIRAT RAI DOUBLE DANDA
+16D70..16D79  ; L # Nd  [10] KIRAT RAI DIGIT ZERO..KIRAT RAI DIGIT NINE
 16E40..16E7F  ; L # L&  [64] MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN SMALL LETTER Y
 16E80..16E96  ; L # No  [23] MEDEFAIDRIN DIGIT ZERO..MEDEFAIDRIN DIGIT THREE ALTERNATE FORM
 16E97..16E9A  ; L # Po   [4] MEDEFAIDRIN COMMA..MEDEFAIDRIN EXCLAMATION OH
@@ -1192,7 +1197,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 820290 code points not listed here.
+# The above property value applies to 820232 code points not listed here.
 # Total code points: 1096260
 
 # ================================================
