@@ -21,6 +21,7 @@ If the proposal does not supply LineBreak.txt:
 
 New scripts only:
 - [ ] UCD_Names — Check script name
+
 - [ ] Scripts.txt — Prepend ranges
 - [ ] Commit
 
