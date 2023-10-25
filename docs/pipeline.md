@@ -49,13 +49,12 @@ Indic scripts only:
 - [ ] Commit
 
 ---
-- [ ] UCD — [Regenerate](#regenerate-ucd)
-- [ ] Enums — [Regenerate](#generateenums)
+- [ ] PropsList.txt — Add Other_Alphabetic, Diacritic, and Extender to satisfy invariants, or to taste
+- [ ] Commit
 
 ---
-- [ ] PropsList.txt — Add Other_Alphabetic, Diacritic, and Extender to satisfy invariants, or to taste
 - [ ] UCD — [Regenerate](#regenerate-ucd)
-- [ ] Commit
+- [ ] Enums — [Regenerate](#generateenums)
 
 ---
 PR preparation:
