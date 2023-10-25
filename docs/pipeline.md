@@ -5,6 +5,8 @@ The plan is for this process to be part of the PAG’s review of encoding propos
 
 ## Checklist
 
+Prerequisites: proposal posted to L2, SAH agreed to recommend for provisional assignment (or the proposal is already in the pipeline).
+
 - [ ] UnicodeData.txt — Prepend lines from proposal
 - [ ] Commit
 - [ ] UTC decision — Check counts, code points, names, properties
