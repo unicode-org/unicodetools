@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2023-10-24, 21:03:39 GMT
+# Date: 2023-10-25, 12:02:20 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -440,7 +440,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 10EAA         ; Cn #       <reserved-10EAA>
 10EAE..10EAF  ; Cn #   [2] <reserved-10EAE>..<reserved-10EAF>
 10EB2..10EC1  ; Cn #  [16] <reserved-10EB2>..<reserved-10EC1>
-10EC5..10EFB  ; Cn #  [55] <reserved-10EC5>..<reserved-10EFB>
+10EC5..10EF9  ; Cn #  [53] <reserved-10EC5>..<reserved-10EF9>
+10EFB         ; Cn #       <reserved-10EFB>
 10F28..10F2F  ; Cn #   [8] <reserved-10F28>..<reserved-10F2F>
 10F5A..10F6F  ; Cn #  [22] <reserved-10F5A>..<reserved-10F6F>
 10F8A..10FAF  ; Cn #  [38] <reserved-10F8A>..<reserved-10FAF>
@@ -734,7 +735,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 824472
+# Total code points: 824471
 
 # ================================================
 
@@ -2910,6 +2911,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 10D24..10D27  ; Mn #   [4] HANIFI ROHINGYA SIGN HARBAHAY..HANIFI ROHINGYA SIGN TASSI
 10D69..10D6D  ; Mn #   [5] GARAY VOWEL SIGN E..GARAY CONSONANT NASALIZATION MARK
 10EAB..10EAC  ; Mn #   [2] YEZIDI COMBINING HAMZA MARK..YEZIDI COMBINING MADDA MARK
+10EFA         ; Mn #       ARABIC DOUBLE VERTICAL BAR BELOW
 10EFC..10EFF  ; Mn #   [4] ARABIC COMBINING ALEF OVERLAY..ARABIC SMALL LOW WORD MADDA
 10F46..10F50  ; Mn #  [11] SOGDIAN COMBINING DOT BELOW..SOGDIAN COMBINING STROKE BELOW
 10F82..10F85  ; Mn #   [4] OLD UYGHUR COMBINING DOT ABOVE..OLD UYGHUR COMBINING TWO DOTS BELOW
@@ -3035,7 +3037,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 1994
+# Total code points: 1995
 
 # ================================================
 

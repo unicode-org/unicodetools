@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2023-10-24, 21:03:36 GMT
+# Date: 2023-10-25, 12:02:18 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2026,8 +2026,8 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 826520 code points not listed here.
-# Total code points: 1113182
+# The above property value applies to 826519 code points not listed here.
+# Total code points: 1113181
 
 # ================================================
 
@@ -2577,6 +2577,7 @@ FE27..FE2D    ; 220 # Mn   [7] COMBINING LIGATURE LEFT HALF BELOW..COMBINING CON
 10A0D         ; 220 # Mn       KHAROSHTHI SIGN DOUBLE RING BELOW
 10A3A         ; 220 # Mn       KHAROSHTHI SIGN DOT BELOW
 10AE6         ; 220 # Mn       MANICHAEAN ABBREVIATION MARK BELOW
+10EFA         ; 220 # Mn       ARABIC DOUBLE VERTICAL BAR BELOW
 10EFD..10EFF  ; 220 # Mn   [3] ARABIC SMALL LOW WORD SAKTA..ARABIC SMALL LOW WORD MADDA
 10F46..10F47  ; 220 # Mn   [2] SOGDIAN COMBINING DOT BELOW..SOGDIAN COMBINING TWO DOTS BELOW
 10F4B         ; 220 # Mn       SOGDIAN COMBINING CURVE BELOW
@@ -2589,7 +2590,7 @@ FE27..FE2D    ; 220 # Mn   [7] COMBINING LIGATURE LEFT HALF BELOW..COMBINING CON
 1E5EF         ; 220 # Mn       OL ONAL SIGN IKIR
 1E8D0..1E8D6  ; 220 # Mn   [7] MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 182
+# Total code points: 183
 
 # ================================================
 

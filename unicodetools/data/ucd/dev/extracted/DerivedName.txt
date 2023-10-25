@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2023-10-24, 21:03:41 GMT
+# Date: 2023-10-25, 12:02:22 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -30197,6 +30197,7 @@ FFFD          ; REPLACEMENT CHARACTER
 10EC2         ; ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW
 10EC3         ; ARABIC LETTER TAH WITH TWO DOTS VERTICALLY BELOW
 10EC4         ; ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
+10EFA         ; ARABIC DOUBLE VERTICAL BAR BELOW
 10EFC         ; ARABIC COMBINING ALEF OVERLAY
 10EFD         ; ARABIC SMALL LOW WORD SAKTA
 10EFE         ; ARABIC SMALL LOW WORD QASR
@@ -44422,6 +44423,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 150059
+# Total code points: 150060
 
 # EOF
