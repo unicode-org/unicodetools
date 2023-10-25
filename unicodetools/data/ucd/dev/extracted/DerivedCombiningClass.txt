@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2023-10-24, 21:03:36 GMT
+# Date: 2023-10-25, 10:41:32 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2026,8 +2026,8 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 826520 code points not listed here.
-# Total code points: 1113182
+# The above property value applies to 826517 code points not listed here.
+# Total code points: 1113179
 
 # ================================================
 
@@ -2699,6 +2699,7 @@ FE27..FE2D    ; 220 # Mn   [7] COMBINING LIGATURE LEFT HALF BELOW..COMBINING CON
 1AC1..1AC2    ; 230 # Mn   [2] COMBINING LEFT PARENTHESIS ABOVE LEFT..COMBINING RIGHT PARENTHESIS ABOVE RIGHT
 1AC5..1AC9    ; 230 # Mn   [5] COMBINING SQUARE BRACKETS ABOVE..COMBINING DOUBLE PLUS SIGN ABOVE
 1ACB..1ACE    ; 230 # Mn   [4] COMBINING TRIPLE ACUTE ACCENT..COMBINING LATIN SMALL LETTER INSULAR T
+1AD6..1AD8    ; 230 # Mn   [3] COMBINING VERTICAL-LINE-ACUTE-GRAVE..COMBINING MACRON-ACUTE-GRAVE
 1B6B          ; 230 # Mn       BALINESE MUSICAL SYMBOL COMBINING TEGEH
 1B6D..1B73    ; 230 # Mn   [7] BALINESE MUSICAL SYMBOL COMBINING KEMPUL..BALINESE MUSICAL SYMBOL COMBINING GONG
 1CD0..1CD2    ; 230 # Mn   [3] VEDIC TONE KARSHANA..VEDIC TONE PRENKHA
@@ -2765,7 +2766,7 @@ FE2E..FE2F    ; 230 # Mn   [2] COMBINING CYRILLIC TITLO LEFT HALF..COMBINING CYR
 1E5EE         ; 230 # Mn       OL ONAL SIGN MU
 1E944..1E949  ; 230 # Mn   [6] ADLAM ALIF LENGTHENER..ADLAM GEMINATE CONSONANT MODIFIER
 
-# Total code points: 517
+# Total code points: 520
 
 # ================================================
 

@@ -1,6 +1,5 @@
-1AD6..1AD8; Inherited
 # Scripts-16.0.0.txt
-# Date: 2023-10-24, 21:04:04 GMT
+# Date: 2023-10-25, 10:42:15 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1647,6 +1646,7 @@ A490..A4C6    ; Yi # So  [55] YI RADICAL QOT..YI RADICAL KE
 1AB0..1ABD    ; Inherited # Mn  [14] COMBINING DOUBLED CIRCUMFLEX ACCENT..COMBINING PARENTHESES BELOW
 1ABE          ; Inherited # Me       COMBINING PARENTHESES OVERLAY
 1ABF..1ACE    ; Inherited # Mn  [16] COMBINING LATIN SMALL LETTER W BELOW..COMBINING LATIN SMALL LETTER INSULAR T
+1AD6..1AD8    ; Inherited # Mn   [3] COMBINING VERTICAL-LINE-ACUTE-GRAVE..COMBINING MACRON-ACUTE-GRAVE
 1CD0..1CD2    ; Inherited # Mn   [3] VEDIC TONE KARSHANA..VEDIC TONE PRENKHA
 1CD4..1CE0    ; Inherited # Mn  [13] VEDIC SIGN YAJURVEDIC MIDLINE SVARITA..VEDIC TONE RIGVEDIC KASHMIRI INDEPENDENT SVARITA
 1CE2..1CE8    ; Inherited # Mn   [7] VEDIC SIGN VISARGA SVARITA..VEDIC SIGN VISARGA ANUDATTA WITH TAIL
@@ -1675,7 +1675,7 @@ FE20..FE2D    ; Inherited # Mn  [14] COMBINING LIGATURE LEFT HALF..COMBINING CON
 1D1AA..1D1AD  ; Inherited # Mn   [4] MUSICAL SYMBOL COMBINING DOWN BOW..MUSICAL SYMBOL COMBINING SNAP PIZZICATO
 E0100..E01EF  ; Inherited # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 657
+# Total code points: 660
 
 # ================================================
 
