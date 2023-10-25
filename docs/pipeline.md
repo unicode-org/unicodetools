@@ -15,6 +15,7 @@ The plan is for this process to be part of the PAG’s review of encoding propos
 If the proposal supplies LineBreak.txt:
 - [ ] LineBreak.txt — Prepend lines from proposal
 - [ ] Commit
+
 If the proposal does not supply LineBreak.txt:
 - [ ] LineBreak.txt — [Regenerate](#regenerate-linebreak) [TODO(markus): This should become « invoke Ken’s tool »]
 - [ ] Update modified lines
