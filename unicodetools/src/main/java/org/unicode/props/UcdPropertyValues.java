@@ -382,6 +382,7 @@ public class UcdPropertyValues {
         Miscellaneous_Mathematical_Symbols_B("Misc_Math_Symbols_B"),
         Miscellaneous_Symbols_And_Pictographs("Misc_Pictographs"),
         Miscellaneous_Symbols("Misc_Symbols"),
+        Miscellaneous_Symbols_Supplement("Misc_Symbols_Sup"),
         Miscellaneous_Technical("Misc_Technical"),
         Modi("Modi"),
         Spacing_Modifier_Letters("Modifier_Letters"),
