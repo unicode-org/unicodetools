@@ -1395,29 +1395,17 @@ public class MakeUnicodeFiles {
             } else if (defaultBidiValues != null) {
                 Bidi_Class_Values bidiValue = Bidi_Class_Values.forName(value);
                 if (defaultBidiValues.containsValue(bidiValue)) {
-                    // We assume that unassigned code points that have this value
-                    // according to the props data also have this value according to the defaults.
-                    // Otherwise we would need to intersect defaultBidiValues.keySet(bidiValue)
-                    // with the unassigned set before removing from s.
-                    s.removeAll(unassigned);
+                    s.removeAll(defaultBidiValues.keySet(bidiValue).retainAll(unassigned));
                 }
             } else if (defaultEaValues != null) {
                 East_Asian_Width_Values eaValue = East_Asian_Width_Values.forName(value);
                 if (defaultEaValues.containsValue(eaValue)) {
-                    // We assume that unassigned code points that have this value
-                    // according to the props data also have this value according to the defaults.
-                    // Otherwise we would need to intersect defaultEaValues.keySet(eaValue)
-                    // with the unassigned set before removing from s.
-                    s.removeAll(unassigned);
+                    s.removeAll(defaultEaValues.keySet(eaValue).retainAll(unassigned));
                 }
             } else if (defaultLbValues != null) {
                 Line_Break_Values lbValue = Line_Break_Values.forName(value);
                 if (defaultLbValues.containsValue(lbValue)) {
-                    // We assume that unassigned code points that have this value
-                    // according to the props data also have this value according to the defaults.
-                    // Otherwise we would need to intersect defaultEaValues.keySet(eaValue)
-                    // with the unassigned set before removing from s.
-                    s.removeAll(unassigned);
+                    s.removeAll(defaultLbValues.keySet(lbValue).retainAll(unassigned));
                 }
             }
 

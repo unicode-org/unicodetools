@@ -240,6 +240,7 @@ FFF0..FFFF; Specials
 10C00..10C4F; Old Turkic
 10C80..10CFF; Old Hungarian
 10D00..10D3F; Hanifi Rohingya
+10D40..10D8F; Garay
 10E60..10E7F; Rumi Numeral Symbols
 10E80..10EBF; Yezidi
 10EC0..10EFF; Arabic Extended-C
@@ -329,6 +330,7 @@ FFF0..FFFF; Specials
 1E290..1E2BF; Toto
 1E2C0..1E2FF; Wancho
 1E4D0..1E4FF; Nag Mundari
+1E5D0..1E5FF; Ol Onal
 1E7E0..1E7FF; Ethiopic Extended-B
 1E800..1E8DF; Mende Kikakui
 1E900..1E95F; Adlam
