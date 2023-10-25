@@ -1,5 +1,5 @@
 # DerivedAge-16.0.0.txt
-# Date: 2023-10-24, 21:03:11 GMT
+# Date: 2023-10-25, 11:43:54 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2024,10 +2024,11 @@ A7CB..A7CD    ; 16.0 #   [3] LATIN CAPITAL LETTER RAMS HORN..LATIN SMALL LETTER 
 11BC0..11BE1  ; 16.0 #  [34] SUNUWAR LETTER DEVI..SUNUWAR SIGN PVO
 11BF0..11BF9  ; 16.0 #  [10] SUNUWAR DIGIT ZERO..SUNUWAR DIGIT NINE
 1CEB0..1CEB3  ; 16.0 #   [4] HORIZONTAL ZIGZAG LINE..BLACK RIGHT TRIANGLE CARET
+1CEE0..1CEEF  ; 16.0 #  [16] GEOMANTIC FIGURE POPULUS..GEOMANTIC FIGURE VIA
 1E5D0..1E5FA  ; 16.0 #  [43] OL ONAL LETTER O..OL ONAL DIGIT NINE
 1E5FF         ; 16.0 #       OL ONAL ABBREVIATION SIGN
 1F8B2         ; 16.0 #       RIGHTWARDS ARROW WITH LOWER HOOK
 
-# Total code points: 246
+# Total code points: 262
 
 # EOF

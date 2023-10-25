@@ -1,5 +1,5 @@
 # PropertyValueAliases-16.0.0.txt
-# Date: 2023-10-24, 21:03:50 GMT
+# Date: 2023-10-25, 11:44:38 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -357,6 +357,7 @@ blk; Misc_Math_Symbols_A              ; Miscellaneous_Mathematical_Symbols_A
 blk; Misc_Math_Symbols_B              ; Miscellaneous_Mathematical_Symbols_B
 blk; Misc_Pictographs                 ; Miscellaneous_Symbols_And_Pictographs
 blk; Misc_Symbols                     ; Miscellaneous_Symbols
+blk; Misc_Symbols_Sup                 ; Miscellaneous_Symbols_Supplement
 blk; Misc_Technical                   ; Miscellaneous_Technical
 blk; Modi                             ; Modi
 blk; Modifier_Letters                 ; Spacing_Modifier_Letters
