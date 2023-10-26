@@ -292,6 +292,7 @@ FFF0..FFFF; Specials
 12F90..12FFF; Cypro-Minoan
 13000..1342F; Egyptian Hieroglyphs
 13430..1345F; Egyptian Hieroglyph Format Controls
+13460..143FF; Egyptian Hieroglyphs Extended-A
 14400..1467F; Anatolian Hieroglyphs
 16800..16A3F; Bamum Supplement
 16A40..16A6F; Mro
