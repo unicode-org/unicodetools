@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-16.0.0.txt
-# Date: 2023-10-23, 18:45:01 GMT
+# Date: 2023-10-25, 12:52:55 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -454,13 +454,14 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 1E2AE         ; Extend # Mn       TOTO SIGN RISING TONE
 1E2EC..1E2EF  ; Extend # Mn   [4] WANCHO TONE TUP..WANCHO TONE KOINI
 1E4EC..1E4EF  ; Extend # Mn   [4] NAG MUNDARI SIGN MUHOR..NAG MUNDARI SIGN SUTUH
+1E5EE..1E5EF  ; Extend # Mn   [2] OL ONAL SIGN MU..OL ONAL SIGN IKIR
 1E8D0..1E8D6  ; Extend # Mn   [7] MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 1E944..1E94A  ; Extend # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 1F3FB..1F3FF  ; Extend # Sk   [5] EMOJI MODIFIER FITZPATRICK TYPE-1-2..EMOJI MODIFIER FITZPATRICK TYPE-6
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2137
+# Total code points: 2139
 
 # ================================================
 
@@ -649,8 +650,10 @@ A960..A97C    ; L # Lo  [29] HANGUL CHOSEONG TIKEUT-MIEUM..HANGUL CHOSEONG SSANG
 
 1160..11A7    ; V # Lo  [72] HANGUL JUNGSEONG FILLER..HANGUL JUNGSEONG O-YAE
 D7B0..D7C6    ; V # Lo  [23] HANGUL JUNGSEONG O-YEO..HANGUL JUNGSEONG ARAEA-E
+16D63         ; V # Lo       KIRAT RAI VOWEL SIGN AA
+16D67..16D6A  ; V # Lo   [4] KIRAT RAI VOWEL SIGN E..KIRAT RAI VOWEL SIGN AU
 
-# Total code points: 95
+# Total code points: 100
 
 # ================================================
 

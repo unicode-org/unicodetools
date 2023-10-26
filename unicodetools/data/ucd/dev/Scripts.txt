@@ -1,5 +1,5 @@
 # Scripts-16.0.0.txt
-# Date: 2023-10-24, 08:08:19 GMT
+# Date: 2023-10-26, 22:43:26 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -676,7 +676,7 @@ A770          ; Latin # Lm       MODIFIER LETTER US
 A771..A787    ; Latin # L&  [23] LATIN SMALL LETTER DUM..LATIN SMALL LETTER INSULAR T
 A78B..A78E    ; Latin # L&   [4] LATIN CAPITAL LETTER SALTILLO..LATIN SMALL LETTER L WITH RETROFLEX HOOK AND BELT
 A78F          ; Latin # Lo       LATIN LETTER SINOLOGICAL DOT
-A790..A7CA    ; Latin # L&  [59] LATIN CAPITAL LETTER N WITH DESCENDER..LATIN SMALL LETTER S WITH SHORT STROKE OVERLAY
+A790..A7CD    ; Latin # L&  [62] LATIN CAPITAL LETTER N WITH DESCENDER..LATIN SMALL LETTER S WITH DIAGONAL STROKE
 A7D0..A7D1    ; Latin # L&   [2] LATIN CAPITAL LETTER CLOSED INSULAR G..LATIN SMALL LETTER CLOSED INSULAR G
 A7D3          ; Latin # L&       LATIN SMALL LETTER DOUBLE THORN
 A7D5..A7D9    ; Latin # L&   [5] LATIN SMALL LETTER DOUBLE WYNN..LATIN SMALL LETTER SIGMOID S
@@ -702,7 +702,7 @@ FF41..FF5A    ; Latin # L&  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN
 1DF0B..1DF1E  ; Latin # L&  [20] LATIN SMALL LETTER ESH WITH DOUBLE BAR..LATIN SMALL LETTER S WITH CURL
 1DF25..1DF2A  ; Latin # L&   [6] LATIN SMALL LETTER D WITH MID-HEIGHT LEFT HOOK..LATIN SMALL LETTER T WITH MID-HEIGHT LEFT HOOK
 
-# Total code points: 1481
+# Total code points: 1484
 
 # ================================================
 
@@ -3049,6 +3049,26 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 10D8E..10D8F  ; Garay # Sm   [2] GARAY PLUS SIGN..GARAY MINUS SIGN
 
 # Total code points: 69
+
+# ================================================
+
+16D40..16D42  ; Kirat_Rai # Lm   [3] KIRAT RAI SIGN ANUSVARA..KIRAT RAI SIGN VISARGA
+16D43..16D6A  ; Kirat_Rai # Lo  [40] KIRAT RAI LETTER A..KIRAT RAI VOWEL SIGN AU
+16D6B..16D6C  ; Kirat_Rai # Lm   [2] KIRAT RAI SIGN VIRAMA..KIRAT RAI SIGN SAAT
+16D6D..16D6F  ; Kirat_Rai # Po   [3] KIRAT RAI SIGN YUPI..KIRAT RAI DOUBLE DANDA
+16D70..16D79  ; Kirat_Rai # Nd  [10] KIRAT RAI DIGIT ZERO..KIRAT RAI DIGIT NINE
+
+# Total code points: 58
+
+# ================================================
+
+1E5D0..1E5ED  ; Ol_Onal # Lo  [30] OL ONAL LETTER O..OL ONAL LETTER EG
+1E5EE..1E5EF  ; Ol_Onal # Mn   [2] OL ONAL SIGN MU..OL ONAL SIGN IKIR
+1E5F0         ; Ol_Onal # Lo       OL ONAL SIGN HODDOND
+1E5F1..1E5FA  ; Ol_Onal # Nd  [10] OL ONAL DIGIT ZERO..OL ONAL DIGIT NINE
+1E5FF         ; Ol_Onal # Po       OL ONAL ABBREVIATION SIGN
+
+# Total code points: 44
 
 # ================================================
 

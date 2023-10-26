@@ -1,5 +1,5 @@
 # PropertyValueAliases-16.0.0.txt
-# Date: 2023-10-24, 08:08:01 GMT
+# Date: 2023-10-26, 22:43:02 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -313,6 +313,7 @@ blk; Khmer                            ; Khmer
 blk; Khmer_Symbols                    ; Khmer_Symbols
 blk; Khojki                           ; Khojki
 blk; Khudawadi                        ; Khudawadi
+blk; Kirat_Rai                        ; Kirat_Rai
 blk; Lao                              ; Lao
 blk; Latin_1_Sup                      ; Latin_1_Supplement               ; Latin_1
 blk; Latin_Ext_A                      ; Latin_Extended_A
@@ -383,6 +384,7 @@ blk; Nyiakeng_Puachue_Hmong           ; Nyiakeng_Puachue_Hmong
 blk; OCR                              ; Optical_Character_Recognition
 blk; Ogham                            ; Ogham
 blk; Ol_Chiki                         ; Ol_Chiki
+blk; Ol_Onal                          ; Ol_Onal
 blk; Old_Hungarian                    ; Old_Hungarian
 blk; Old_Italic                       ; Old_Italic
 blk; Old_North_Arabian                ; Old_North_Arabian
@@ -1363,6 +1365,7 @@ sc ; Khmr                             ; Khmer
 sc ; Khoj                             ; Khojki
 sc ; Kits                             ; Khitan_Small_Script
 sc ; Knda                             ; Kannada
+sc ; Krai                             ; Kirat_Rai
 sc ; Kthi                             ; Kaithi
 sc ; Lana                             ; Tai_Tham
 sc ; Laoo                             ; Lao
@@ -1399,6 +1402,7 @@ sc ; Nkoo                             ; Nko
 sc ; Nshu                             ; Nushu
 sc ; Ogam                             ; Ogham
 sc ; Olck                             ; Ol_Chiki
+sc ; Onao                             ; Ol_Onal
 sc ; Orkh                             ; Old_Turkic
 sc ; Orya                             ; Oriya
 sc ; Osge                             ; Osage

@@ -160,6 +160,7 @@ Khmer	;	Khmer
 Khmer_Symbols	;	Khmer_Symbols
 Khojki	;	Khojki
 Khudawadi	;	Khudawadi
+Kirat_Rai	;	Kirat_Rai
 Lao	;	Lao
 Latin_1_Sup	;	Latin_1_Supplement
 Latin_Ext_A	;	Latin_Extended_A
@@ -228,6 +229,7 @@ Nushu	;	Nushu
 Nyiakeng_Puachue_Hmong	;	Nyiakeng_Puachue_Hmong
 Ogham	;	Ogham
 Ol_Chiki	;	Ol_Chiki
+Ol_Onal	;	Ol_Onal
 Old_Italic	;	Old_Italic
 Old_Hungarian	;	Old_Hungarian
 Old_North_Arabian	;	Old_North_Arabian

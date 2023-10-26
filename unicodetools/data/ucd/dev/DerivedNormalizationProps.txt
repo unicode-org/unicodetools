@@ -1,5 +1,5 @@
 # DerivedNormalizationProps-16.0.0.txt
-# Date: 2023-10-24, 08:07:50 GMT
+# Date: 2023-10-26, 22:42:49 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1018,11 +1018,12 @@ FB46..FB4E    ; NFD_QC; N # Lo   [9] HEBREW LETTER TSADI WITH DAGESH..HEBREW LET
 114BE         ; NFD_QC; N # Mc       TIRHUTA VOWEL SIGN AU
 115BA..115BB  ; NFD_QC; N # Mc   [2] SIDDHAM VOWEL SIGN O..SIDDHAM VOWEL SIGN AU
 11938         ; NFD_QC; N # Mc       DIVES AKURU VOWEL SIGN O
+16D68..16D6A  ; NFD_QC; N # Lo   [3] KIRAT RAI VOWEL SIGN AI..KIRAT RAI VOWEL SIGN AU
 1D15E..1D164  ; NFD_QC; N # So   [7] MUSICAL SYMBOL HALF NOTE..MUSICAL SYMBOL ONE HUNDRED TWENTY-EIGHTH NOTE
 1D1BB..1D1C0  ; NFD_QC; N # So   [6] MUSICAL SYMBOL MINIMA..MUSICAL SYMBOL FUSA BLACK
 2F800..2FA1D  ; NFD_QC; N # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# Total code points: 13235
+# Total code points: 13238
 
 # ================================================
 
@@ -1161,8 +1162,9 @@ FB46..FB4E    ; NFC_QC; N # Lo   [9] HEBREW LETTER TSADI WITH DAGESH..HEBREW LET
 114BD         ; NFC_QC; M # Mc       TIRHUTA VOWEL SIGN SHORT O
 115AF         ; NFC_QC; M # Mc       SIDDHAM VOWEL SIGN AA
 11930         ; NFC_QC; M # Mc       DIVES AKURU VOWEL SIGN AA
+16D67         ; NFC_QC; M # Lo       KIRAT RAI VOWEL SIGN E
 
-# Total code points: 111
+# Total code points: 112
 
 # ================================================
 
@@ -1639,6 +1641,7 @@ FFED..FFEE    ; NFKD_QC; N # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CI
 114BE         ; NFKD_QC; N # Mc       TIRHUTA VOWEL SIGN AU
 115BA..115BB  ; NFKD_QC; N # Mc   [2] SIDDHAM VOWEL SIGN O..SIDDHAM VOWEL SIGN AU
 11938         ; NFKD_QC; N # Mc       DIVES AKURU VOWEL SIGN O
+16D68..16D6A  ; NFKD_QC; N # Lo   [3] KIRAT RAI VOWEL SIGN AI..KIRAT RAI VOWEL SIGN AU
 1CCD6..1CCEF  ; NFKD_QC; N # So  [26] OUTLINED LATIN CAPITAL LETTER A..OUTLINED LATIN CAPITAL LETTER Z
 1CCF0..1CCF9  ; NFKD_QC; N # Nd  [10] OUTLINED DIGIT ZERO..OUTLINED DIGIT NINE
 1D15E..1D164  ; NFKD_QC; N # So   [7] MUSICAL SYMBOL HALF NOTE..MUSICAL SYMBOL ONE HUNDRED TWENTY-EIGHTH NOTE
@@ -1730,7 +1733,7 @@ FFED..FFEE    ; NFKD_QC; N # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CI
 1FBF0..1FBF9  ; NFKD_QC; N # Nd  [10] SEGMENTED DIGIT ZERO..SEGMENTED DIGIT NINE
 2F800..2FA1D  ; NFKD_QC; N # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# Total code points: 17067
+# Total code points: 17070
 
 # ================================================
 
@@ -2190,8 +2193,9 @@ FFED..FFEE    ; NFKC_QC; N # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CI
 114BD         ; NFKC_QC; M # Mc       TIRHUTA VOWEL SIGN SHORT O
 115AF         ; NFKC_QC; M # Mc       SIDDHAM VOWEL SIGN AA
 11930         ; NFKC_QC; M # Mc       DIVES AKURU VOWEL SIGN AA
+16D67         ; NFKC_QC; M # Lo       KIRAT RAI VOWEL SIGN E
 
-# Total code points: 111
+# Total code points: 112
 
 # ================================================
 
@@ -2424,10 +2428,11 @@ FB46..FB4E    ; Expands_On_NFD # Lo   [9] HEBREW LETTER TSADI WITH DAGESH..HEBRE
 114BE         ; Expands_On_NFD # Mc       TIRHUTA VOWEL SIGN AU
 115BA..115BB  ; Expands_On_NFD # Mc   [2] SIDDHAM VOWEL SIGN O..SIDDHAM VOWEL SIGN AU
 11938         ; Expands_On_NFD # Mc       DIVES AKURU VOWEL SIGN O
+16D68..16D6A  ; Expands_On_NFD # Lo   [3] KIRAT RAI VOWEL SIGN AI..KIRAT RAI VOWEL SIGN AU
 1D15E..1D164  ; Expands_On_NFD # So   [7] MUSICAL SYMBOL HALF NOTE..MUSICAL SYMBOL ONE HUNDRED TWENTY-EIGHTH NOTE
 1D1BB..1D1C0  ; Expands_On_NFD # So   [6] MUSICAL SYMBOL MINIMA..MUSICAL SYMBOL FUSA BLACK
 
-# Total code points: 12218
+# Total code points: 12221
 
 # ================================================
 
@@ -2780,6 +2785,7 @@ FFE3          ; Expands_On_NFKD # Sk       FULLWIDTH MACRON
 114BE         ; Expands_On_NFKD # Mc       TIRHUTA VOWEL SIGN AU
 115BA..115BB  ; Expands_On_NFKD # Mc   [2] SIDDHAM VOWEL SIGN O..SIDDHAM VOWEL SIGN AU
 11938         ; Expands_On_NFKD # Mc       DIVES AKURU VOWEL SIGN O
+16D68..16D6A  ; Expands_On_NFKD # Lo   [3] KIRAT RAI VOWEL SIGN AI..KIRAT RAI VOWEL SIGN AU
 1D15E..1D164  ; Expands_On_NFKD # So   [7] MUSICAL SYMBOL HALF NOTE..MUSICAL SYMBOL ONE HUNDRED TWENTY-EIGHTH NOTE
 1D1BB..1D1C0  ; Expands_On_NFKD # So   [6] MUSICAL SYMBOL MINIMA..MUSICAL SYMBOL FUSA BLACK
 1F100..1F10A  ; Expands_On_NFKD # No  [11] DIGIT ZERO FULL STOP..DIGIT NINE COMMA
@@ -2792,7 +2798,7 @@ FFE3          ; Expands_On_NFKD # Sk       FULLWIDTH MACRON
 1F213         ; Expands_On_NFKD # So       SQUARED KATAKANA DE
 1F240..1F248  ; Expands_On_NFKD # So   [9] TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-672C..TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-6557
 
-# Total code points: 13392
+# Total code points: 13395
 
 # ================================================
 
@@ -5400,6 +5406,8 @@ A7C5          ; NFKC_CF; 0282           # L&       LATIN CAPITAL LETTER S WITH H
 A7C6          ; NFKC_CF; 1D8E           # L&       LATIN CAPITAL LETTER Z WITH PALATAL HOOK
 A7C7          ; NFKC_CF; A7C8           # L&       LATIN CAPITAL LETTER D WITH SHORT STROKE OVERLAY
 A7C9          ; NFKC_CF; A7CA           # L&       LATIN CAPITAL LETTER S WITH SHORT STROKE OVERLAY
+A7CB          ; NFKC_CF; 0264           # L&       LATIN CAPITAL LETTER RAMS HORN
+A7CC          ; NFKC_CF; A7CD           # L&       LATIN CAPITAL LETTER S WITH DIAGONAL STROKE
 A7D0          ; NFKC_CF; A7D1           # L&       LATIN CAPITAL LETTER CLOSED INSULAR G
 A7D6          ; NFKC_CF; A7D7           # L&       LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D8          ; NFKC_CF; A7D9           # L&       LATIN CAPITAL LETTER SIGMOID S
@@ -9098,7 +9106,7 @@ E0080..E00FF  ; NFKC_CF;                # Cn [128] <reserved-E0080>..<reserved-E
 E0100..E01EF  ; NFKC_CF;                # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; NFKC_CF;                # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10550
+# Total code points: 10552
 
 # ================================================
 
@@ -11530,6 +11538,8 @@ A7C5          ; NFKC_SCF; 0282           # L&       LATIN CAPITAL LETTER S WITH 
 A7C6          ; NFKC_SCF; 1D8E           # L&       LATIN CAPITAL LETTER Z WITH PALATAL HOOK
 A7C7          ; NFKC_SCF; A7C8           # L&       LATIN CAPITAL LETTER D WITH SHORT STROKE OVERLAY
 A7C9          ; NFKC_SCF; A7CA           # L&       LATIN CAPITAL LETTER S WITH SHORT STROKE OVERLAY
+A7CB          ; NFKC_SCF; 0264           # L&       LATIN CAPITAL LETTER RAMS HORN
+A7CC          ; NFKC_SCF; A7CD           # L&       LATIN CAPITAL LETTER S WITH DIAGONAL STROKE
 A7D0          ; NFKC_SCF; A7D1           # L&       LATIN CAPITAL LETTER CLOSED INSULAR G
 A7D6          ; NFKC_SCF; A7D7           # L&       LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D8          ; NFKC_SCF; A7D9           # L&       LATIN CAPITAL LETTER SIGMOID S
@@ -15228,7 +15238,7 @@ E0080..E00FF  ; NFKC_SCF;                # Cn [128] <reserved-E0080>..<reserved-
 E0100..E01EF  ; NFKC_SCF;                # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; NFKC_SCF;                # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10512
+# Total code points: 10514
 
 # ================================================
 
@@ -15997,6 +16007,7 @@ A7C0          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER OLD
 A7C2          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER ANGLICANA W
 A7C4..A7C7    ; Changes_When_NFKC_Casefolded # L&   [4] LATIN CAPITAL LETTER C WITH PALATAL HOOK..LATIN CAPITAL LETTER D WITH SHORT STROKE OVERLAY
 A7C9          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER S WITH SHORT STROKE OVERLAY
+A7CB..A7CC    ; Changes_When_NFKC_Casefolded # L&   [2] LATIN CAPITAL LETTER RAMS HORN..LATIN CAPITAL LETTER S WITH DIAGONAL STROKE
 A7D0          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER CLOSED INSULAR G
 A7D6          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D8          ; Changes_When_NFKC_Casefolded # L&       LATIN CAPITAL LETTER SIGMOID S
@@ -16243,6 +16254,6 @@ E0080..E00FF  ; Changes_When_NFKC_Casefolded # Cn [128] <reserved-E0080>..<reser
 E0100..E01EF  ; Changes_When_NFKC_Casefolded # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..E0FFF  ; Changes_When_NFKC_Casefolded # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 10550
+# Total code points: 10552
 
 # EOF
