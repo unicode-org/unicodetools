@@ -1,3 +1,5 @@
+113CE..113CF; Diacritic
+113E1..113E2; Diacritic
 # PropList-16.0.0.txt
 # Date: 2023-10-02, 14:20:41 GMT
 # © 2023 Unicode®, Inc.
