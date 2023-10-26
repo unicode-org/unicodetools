@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2023-10-25, 12:52:52 GMT
+# Date: 2023-10-26, 12:39:00 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -43460,6 +43460,8 @@ FFFD          ; REPLACEMENT CHARACTER
 1F8B0         ; ARROW POINTING UPWARDS THEN NORTH WEST
 1F8B1         ; ARROW POINTING RIGHTWARDS THEN CURVING SOUTH WEST
 1F8B2         ; RIGHTWARDS ARROW WITH LOWER HOOK
+1F8C0         ; LEFTWARDS ARROW FROM DOWNWARDS ARROW
+1F8C1         ; RIGHTWARDS ARROW FROM DOWNWARDS ARROW
 1F900         ; CIRCLED CROSS FORMEE WITH FOUR DOTS
 1F901         ; CIRCLED CROSS FORMEE WITH TWO DOTS
 1F902         ; CIRCLED CROSS FORMEE
@@ -44480,6 +44482,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 150117
+# Total code points: 150119
 
 # EOF
