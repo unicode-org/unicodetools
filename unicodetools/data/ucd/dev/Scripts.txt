@@ -1,6 +1,5 @@
-13460..143F9 ; Egyptian_Hieroglyphs # Lo [3994] EGYPTIAN HIEROGLYPH-13460..EGYPTIAN HIEROGLYPH-143FD
 # Scripts-16.0.0.txt
-# Date: 2023-10-25, 12:53:25 GMT
+# Date: 2023-10-26, 12:57:25 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2112,8 +2111,9 @@ AADE..AADF    ; Tai_Viet # Po   [2] TAI VIET SYMBOL HO HOI..TAI VIET SYMBOL KOI 
 13440         ; Egyptian_Hieroglyphs # Mn       EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY
 13441..13446  ; Egyptian_Hieroglyphs # Lo   [6] EGYPTIAN HIEROGLYPH FULL BLANK..EGYPTIAN HIEROGLYPH WIDE LOST SIGN
 13447..13455  ; Egyptian_Hieroglyphs # Mn  [15] EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP START..EGYPTIAN HIEROGLYPH MODIFIER DAMAGED
+13460..143F9  ; Egyptian_Hieroglyphs # Lo [3994] EGYPTIAN HIEROGLYPH-13460..EGYPTIAN HIEROGLYPH-143F9
 
-# Total code points: 1110
+# Total code points: 5104
 
 # ================================================
 
