@@ -1,7 +1,5 @@
-0363..036F; Other_Alphabetic
-1DD3..1DE6; Other_Alphabetic
 # PropList-16.0.0.txt
-# Date: 2023-10-24, 21:03:48 GMT
+# Date: 2023-10-27, 00:18:48 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -433,6 +431,7 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 # ================================================
 
 0345          ; Other_Alphabetic # Mn       COMBINING GREEK YPOGEGRAMMENI
+0363..036F    ; Other_Alphabetic # Mn  [13] COMBINING LATIN SMALL LETTER A..COMBINING LATIN SMALL LETTER X
 05B0..05BD    ; Other_Alphabetic # Mn  [14] HEBREW POINT SHEVA..HEBREW POINT METEG
 05BF          ; Other_Alphabetic # Mn       HEBREW POINT RAFE
 05C1..05C2    ; Other_Alphabetic # Mn   [2] HEBREW POINT SHIN DOT..HEBREW POINT SIN DOT
@@ -638,7 +637,7 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 1C2C..1C33    ; Other_Alphabetic # Mn   [8] LEPCHA VOWEL SIGN E..LEPCHA CONSONANT SIGN T
 1C34..1C35    ; Other_Alphabetic # Mc   [2] LEPCHA CONSONANT SIGN NYIN-DO..LEPCHA CONSONANT SIGN KANG
 1C36          ; Other_Alphabetic # Mn       LEPCHA SIGN RAN
-1DE7..1DF4    ; Other_Alphabetic # Mn  [14] COMBINING LATIN SMALL LETTER ALPHA..COMBINING LATIN SMALL LETTER U WITH DIAERESIS
+1DD3..1DF4    ; Other_Alphabetic # Mn  [34] COMBINING LATIN SMALL LETTER FLATTENED OPEN A ABOVE..COMBINING LATIN SMALL LETTER U WITH DIAERESIS
 24B6..24E9    ; Other_Alphabetic # So  [52] CIRCLED LATIN CAPITAL LETTER A..CIRCLED LATIN SMALL LETTER Z
 2DE0..2DFF    ; Other_Alphabetic # Mn  [32] COMBINING CYRILLIC LETTER BE..COMBINING CYRILLIC LETTER IOTIFIED BIG YUS
 A674..A67B    ; Other_Alphabetic # Mn   [8] COMBINING CYRILLIC LETTER UKRAINIAN IE..COMBINING CYRILLIC LETTER OMEGA
@@ -840,7 +839,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1428
+# Total code points: 1461
 
 # ================================================
 
