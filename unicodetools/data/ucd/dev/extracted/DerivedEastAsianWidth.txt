@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-16.0.0.txt
-# Date: 2023-10-25, 12:52:49 GMT
+# Date: 2023-10-27, 17:36:37 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1145,6 +1145,7 @@
 2E5C          ; N # Pe       BOTTOM HALF RIGHT PARENTHESIS
 2E5D          ; N # Pd       OBLIQUE HYPHEN
 303F          ; N # So       IDEOGRAPHIC HALF FILL SPACE
+31E4..31E5    ; N # So   [2] CJK STROKE HZXG..CJK STROKE SZP
 4DC0..4DFF    ; N # So  [64] HEXAGRAM FOR THE CREATIVE HEAVEN..HEXAGRAM FOR BEFORE COMPLETION
 A4D0..A4F7    ; N # Lo  [40] LISU LETTER BA..LISU LETTER OE
 A4F8..A4FD    ; N # Lm   [6] LISU LETTER TONE MYA TI..LISU LETTER TONE MYA JEU
@@ -2070,7 +2071,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 765980 code points not listed here.
+# The above property value applies to 765978 code points not listed here.
 # Total code points: 792618
 
 # ================================================

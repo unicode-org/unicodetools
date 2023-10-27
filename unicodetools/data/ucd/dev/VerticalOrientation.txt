@@ -1,5 +1,5 @@
 # VerticalOrientation-16.0.0.txt
-# Date: 2023-10-25, 12:53:29 GMT
+# Date: 2023-10-27, 17:37:18 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1291,8 +1291,8 @@
 3192..3195     ; U  # No     [4] IDEOGRAPHIC ANNOTATION ONE MARK..IDEOGRAPHIC ANNOTATION FOUR MARK
 3196..319F     ; U  # So    [10] IDEOGRAPHIC ANNOTATION TOP MARK..IDEOGRAPHIC ANNOTATION MAN MARK
 31A0..31BF     ; U  # Lo    [32] BOPOMOFO LETTER BU..BOPOMOFO LETTER AH
-31C0..31E3     ; U  # So    [36] CJK STROKE T..CJK STROKE Q
-31E4..31EE     ; U  # Cn    [11] <reserved-31E4>..<reserved-31EE>
+31C0..31E5     ; U  # So    [38] CJK STROKE T..CJK STROKE SZP
+31E6..31EE     ; U  # Cn     [9] <reserved-31E6>..<reserved-31EE>
 31EF           ; U  # So         IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
 31F0..31FF     ; Tu # Lo    [16] KATAKANA LETTER SMALL KU..KATAKANA LETTER SMALL RO
 3200..321E     ; U  # So    [31] PARENTHESIZED HANGUL KIYEOK..PARENTHESIZED KOREAN CHARACTER O HU
