@@ -1,5 +1,5 @@
 # LineBreak-16.0.0.txt
-# Date: 2023-10-25, 12:52:56 GMT
+# Date: 2023-10-27, 17:28:42 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1520,6 +1520,7 @@
 3196..319F     ; ID # So    [10] IDEOGRAPHIC ANNOTATION TOP MARK..IDEOGRAPHIC ANNOTATION MAN MARK
 31A0..31BF     ; ID # Lo    [32] BOPOMOFO LETTER BU..BOPOMOFO LETTER AH
 31C0..31E3     ; ID # So    [36] CJK STROKE T..CJK STROKE Q
+31E4..31E5     ; ID # So     [2] CJK STROKE HZXG..CJK STROKE SZP
 31EF           ; ID # So         IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
 31F0..31FF     ; CJ # Lo    [16] KATAKANA LETTER SMALL KU..KATAKANA LETTER SMALL RO
 3200..321E     ; ID # So    [31] PARENTHESIZED HANGUL KIYEOK..PARENTHESIZED KOREAN CHARACTER O HU
