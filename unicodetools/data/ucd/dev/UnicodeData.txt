@@ -1,3 +1,5 @@
+31E4;CJK STROKE HZXG;So;0;ON;;;;;N;;;;;
+31E5;CJK STROKE SZP;So;0;ON;;;;;N;;;;;
 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0001;<control>;Cc;0;BN;;;;;N;START OF HEADING;;;;
 0002;<control>;Cc;0;BN;;;;;N;START OF TEXT;;;;
