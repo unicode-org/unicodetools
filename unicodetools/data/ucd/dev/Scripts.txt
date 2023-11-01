@@ -1,3 +1,10 @@
+1FAE9;Common
+1FAC6;Common
+1FADC;Common
+1FABE;Common
+1FA89;Common
+1FA8F;Common
+1FADF;Common
 # Scripts-16.0.0.txt
 # Date: 2023-10-25, 12:53:25 GMT
 # © 2023 Unicode®, Inc.
