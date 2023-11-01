@@ -1,3 +1,10 @@
+1FAE9;FACE WITH BAGS UNDER EYES;So;0;ON;;;;;N;;;;;
+1FAC6;FINGERPRINT;So;0;ON;;;;;N;;;;;
+1FADC;ROOT VEGETABLE;So;0;ON;;;;;N;;;;;
+1FABE;LEAFLESS TREE;So;0;ON;;;;;N;;;;;
+1FA89;HARP;So;0;ON;;;;;N;;;;;
+1FA8F;SHOVEL;So;0;ON;;;;;N;;;;;
+1FADF;SPLATTER;So;0;ON;;;;;N;;;;;
 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0001;<control>;Cc;0;BN;;;;;N;START OF HEADING;;;;
 0002;<control>;Cc;0;BN;;;;;N;START OF TEXT;;;;
