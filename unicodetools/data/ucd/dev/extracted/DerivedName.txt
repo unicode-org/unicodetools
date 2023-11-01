@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2023-10-25, 12:52:52 GMT
+# Date: 2023-11-01, 17:19:52 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -43836,6 +43836,8 @@ FFFD          ; REPLACEMENT CHARACTER
 1FA86         ; NESTING DOLLS
 1FA87         ; MARACAS
 1FA88         ; FLUTE
+1FA89         ; HARP
+1FA8F         ; SHOVEL
 1FA90         ; RINGED PLANET
 1FA91         ; CHAIR
 1FA92         ; RAZOR
@@ -43882,6 +43884,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1FABB         ; HYACINTH
 1FABC         ; JELLYFISH
 1FABD         ; WING
+1FABE         ; LEAFLESS TREE
 1FABF         ; GOOSE
 1FAC0         ; ANATOMICAL HEART
 1FAC1         ; LUNGS
@@ -43889,6 +43892,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1FAC3         ; PREGNANT MAN
 1FAC4         ; PREGNANT PERSON
 1FAC5         ; PERSON WITH CROWN
+1FAC6         ; FINGERPRINT
 1FACE         ; MOOSE
 1FACF         ; DONKEY
 1FAD0         ; BLUEBERRIES
@@ -43903,6 +43907,8 @@ FFFD          ; REPLACEMENT CHARACTER
 1FAD9         ; JAR
 1FADA         ; GINGER ROOT
 1FADB         ; PEA POD
+1FADC         ; ROOT VEGETABLE
+1FADF         ; SPLATTER
 1FAE0         ; MELTING FACE
 1FAE1         ; SALUTING FACE
 1FAE2         ; FACE WITH OPEN EYES AND HAND OVER MOUTH
@@ -43912,6 +43918,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1FAE6         ; BITING LIP
 1FAE7         ; BUBBLES
 1FAE8         ; SHAKING FACE
+1FAE9         ; FACE WITH BAGS UNDER EYES
 1FAF0         ; HAND WITH INDEX FINGER AND THUMB CROSSED
 1FAF1         ; RIGHTWARDS HAND
 1FAF2         ; LEFTWARDS HAND
@@ -44480,6 +44487,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 150117
+# Total code points: 150124
 
 # EOF
