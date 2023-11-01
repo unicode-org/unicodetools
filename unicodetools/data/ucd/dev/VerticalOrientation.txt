@@ -1,5 +1,5 @@
 # VerticalOrientation-16.0.0.txt
-# Date: 2023-10-27, 17:37:18 GMT
+# Date: 2023-11-01, 23:30:36 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2428,16 +2428,14 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1FA6E..1FA6F   ; U  # Cn     [2] <reserved-1FA6E>..<reserved-1FA6F>
 1FA70..1FA7C   ; U  # So    [13] BALLET SHOES..CRUTCH
 1FA7D..1FA7F   ; U  # Cn     [3] <reserved-1FA7D>..<reserved-1FA7F>
-1FA80..1FA88   ; U  # So     [9] YO-YO..FLUTE
-1FA89..1FA8F   ; U  # Cn     [7] <reserved-1FA89>..<reserved-1FA8F>
-1FA90..1FABD   ; U  # So    [46] RINGED PLANET..WING
-1FABE          ; U  # Cn         <reserved-1FABE>
-1FABF..1FAC5   ; U  # So     [7] GOOSE..PERSON WITH CROWN
-1FAC6..1FACD   ; U  # Cn     [8] <reserved-1FAC6>..<reserved-1FACD>
-1FACE..1FADB   ; U  # So    [14] MOOSE..PEA POD
-1FADC..1FADF   ; U  # Cn     [4] <reserved-1FADC>..<reserved-1FADF>
-1FAE0..1FAE8   ; U  # So     [9] MELTING FACE..SHAKING FACE
-1FAE9..1FAEF   ; U  # Cn     [7] <reserved-1FAE9>..<reserved-1FAEF>
+1FA80..1FA89   ; U  # So    [10] YO-YO..HARP
+1FA8A..1FA8E   ; U  # Cn     [5] <reserved-1FA8A>..<reserved-1FA8E>
+1FA8F..1FAC6   ; U  # So    [56] SHOVEL..FINGERPRINT
+1FAC7..1FACD   ; U  # Cn     [7] <reserved-1FAC7>..<reserved-1FACD>
+1FACE..1FADC   ; U  # So    [15] MOOSE..ROOT VEGETABLE
+1FADD..1FADE   ; U  # Cn     [2] <reserved-1FADD>..<reserved-1FADE>
+1FADF..1FAE9   ; U  # So    [11] SPLATTER..FACE WITH BAGS UNDER EYES
+1FAEA..1FAEF   ; U  # Cn     [6] <reserved-1FAEA>..<reserved-1FAEF>
 1FAF0..1FAF8   ; U  # So     [9] HAND WITH INDEX FINGER AND THUMB CROSSED..RIGHTWARDS PUSHING HAND
 1FAF9..1FAFF   ; U  # Cn     [7] <reserved-1FAF9>..<reserved-1FAFF>
 1FB00..1FB92   ; R  # So   [147] BLOCK SEXTANT-1..UPPER HALF INVERSE MEDIUM SHADE AND LOWER HALF BLOCK

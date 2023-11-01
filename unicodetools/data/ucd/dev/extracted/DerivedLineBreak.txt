@@ -1,5 +1,5 @@
 # DerivedLineBreak-16.0.0.txt
-# Date: 2023-10-27, 17:36:40 GMT
+# Date: 2023-11-01, 23:30:15 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1833,11 +1833,11 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 1F9DE..1F9FF  ; ID # So  [34] GENIE..NAZAR AMULET
 1FA60..1FA6D  ; ID # So  [14] XIANGQI RED GENERAL..XIANGQI BLACK SOLDIER
 1FA70..1FA7C  ; ID # So  [13] BALLET SHOES..CRUTCH
-1FA80..1FA88  ; ID # So   [9] YO-YO..FLUTE
-1FA90..1FABD  ; ID # So  [46] RINGED PLANET..WING
-1FABF..1FAC2  ; ID # So   [4] GOOSE..PEOPLE HUGGING
-1FACE..1FADB  ; ID # So  [14] MOOSE..PEA POD
-1FAE0..1FAE8  ; ID # So   [9] MELTING FACE..SHAKING FACE
+1FA80..1FA89  ; ID # So  [10] YO-YO..HARP
+1FA8F..1FAC2  ; ID # So  [52] SHOVEL..PEOPLE HUGGING
+1FAC6         ; ID # So       FINGERPRINT
+1FACE..1FADC  ; ID # So  [15] MOOSE..ROOT VEGETABLE
+1FADF..1FAE9  ; ID # So  [11] SPLATTER..FACE WITH BAGS UNDER EYES
 20000..2A6DF  ; ID # Lo [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
 2A700..2B739  ; ID # Lo [4154] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B739
 2B740..2B81D  ; ID # Lo [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
@@ -1848,7 +1848,7 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 30000..3134A  ; ID # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; ID # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# The above property value applies to 61977 code points not listed here.
+# The above property value applies to 61970 code points not listed here.
 # Total code points: 172569
 
 # ================================================
