@@ -1,5 +1,5 @@
 # SentenceBreakProperty-16.0.0.txt
-# Date: 2023-10-25, 12:53:26 GMT
+# Date: 2023-11-02, 18:05:29 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1242,6 +1242,7 @@ A7D3          ; Lower # L&       LATIN SMALL LETTER DOUBLE THORN
 A7D5          ; Lower # L&       LATIN SMALL LETTER DOUBLE WYNN
 A7D7          ; Lower # L&       LATIN SMALL LETTER MIDDLE SCOTS S
 A7D9          ; Lower # L&       LATIN SMALL LETTER SIGMOID S
+A7DB          ; Lower # L&       LATIN SMALL LETTER LAMBDA
 A7F2..A7F4    ; Lower # Lm   [3] MODIFIER LETTER CAPITAL C..MODIFIER LETTER CAPITAL Q
 A7F6          ; Lower # L&       LATIN SMALL LETTER REVERSED HALF H
 A7F8..A7F9    ; Lower # Lm   [2] MODIFIER LETTER CAPITAL H WITH STROKE..MODIFIER LETTER SMALL LIGATURE OE
@@ -1302,7 +1303,7 @@ FF41..FF5A    ; Lower # L&  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN
 1E030..1E06D  ; Lower # Lm  [62] MODIFIER LETTER CYRILLIC SMALL A..MODIFIER LETTER CYRILLIC SMALL STRAIGHT U WITH STROKE
 1E922..1E943  ; Lower # L&  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 2521
+# Total code points: 2522
 
 # ================================================
 
@@ -1914,6 +1915,8 @@ A7CB..A7CC    ; Upper # L&   [2] LATIN CAPITAL LETTER RAMS HORN..LATIN CAPITAL L
 A7D0          ; Upper # L&       LATIN CAPITAL LETTER CLOSED INSULAR G
 A7D6          ; Upper # L&       LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D8          ; Upper # L&       LATIN CAPITAL LETTER SIGMOID S
+A7DA          ; Upper # L&       LATIN CAPITAL LETTER LAMBDA
+A7DC          ; Upper # L&       LATIN CAPITAL LETTER LAMBDA WITH STROKE
 A7F5          ; Upper # L&       LATIN CAPITAL LETTER REVERSED HALF H
 FF21..FF3A    ; Upper # L&  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LATIN CAPITAL LETTER Z
 10400..10427  ; Upper # L&  [40] DESERET CAPITAL LETTER LONG I..DESERET CAPITAL LETTER EW
@@ -1962,7 +1965,7 @@ FF21..FF3A    ; Upper # L&  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LAT
 1F150..1F169  ; Upper # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Upper # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1961
+# Total code points: 1963
 
 # ================================================
 
