@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2023-11-02, 16:20:20 GMT
+# Date: 2023-11-02, 20:54:21 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1095,7 +1095,7 @@ A78F          ; 0 # Lo       LATIN LETTER SINOLOGICAL DOT
 A790..A7CD    ; 0 # L&  [62] LATIN CAPITAL LETTER N WITH DESCENDER..LATIN SMALL LETTER S WITH DIAGONAL STROKE
 A7D0..A7D1    ; 0 # L&   [2] LATIN CAPITAL LETTER CLOSED INSULAR G..LATIN SMALL LETTER CLOSED INSULAR G
 A7D3          ; 0 # L&       LATIN SMALL LETTER DOUBLE THORN
-A7D5..A7D9    ; 0 # L&   [5] LATIN SMALL LETTER DOUBLE WYNN..LATIN SMALL LETTER SIGMOID S
+A7D5..A7DC    ; 0 # L&   [8] LATIN SMALL LETTER DOUBLE WYNN..LATIN CAPITAL LETTER LAMBDA WITH STROKE
 A7F2..A7F4    ; 0 # Lm   [3] MODIFIER LETTER CAPITAL C..MODIFIER LETTER CAPITAL Q
 A7F5..A7F6    ; 0 # L&   [2] LATIN CAPITAL LETTER REVERSED HALF H..LATIN SMALL LETTER REVERSED HALF H
 A7F7          ; 0 # Lo       LATIN EPIGRAPHIC LETTER SIDEWAYS I
@@ -2030,7 +2030,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 826454 code points not listed here.
+# The above property value applies to 826451 code points not listed here.
 # Total code points: 1113182
 
 # ================================================
