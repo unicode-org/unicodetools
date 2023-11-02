@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2023-11-01, 17:19:48 GMT
+# Date: 2023-11-02, 16:20:20 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1814,7 +1814,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 16FE4         ; 0 # Mn       KHITAN SMALL SCRIPT FILLER
 17000..187F7  ; 0 # Lo [6136] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F7
 18800..18CD5  ; 0 # Lo [1238] TANGUT COMPONENT-001..KHITAN SMALL SCRIPT CHARACTER-18CD5
-18D00..18D08  ; 0 # Lo   [9] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D08
+18CFF..18D08  ; 0 # Lo  [10] KHITAN SMALL SCRIPT CHARACTER-18CFF..TANGUT IDEOGRAPH-18D08
 1AFF0..1AFF3  ; 0 # Lm   [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
 1AFF5..1AFFB  ; 0 # Lm   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
 1AFFD..1AFFE  ; 0 # Lm   [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
@@ -2030,7 +2030,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 826455 code points not listed here.
+# The above property value applies to 826454 code points not listed here.
 # Total code points: 1113182
 
 # ================================================

@@ -1,6 +1,5 @@
-18CFF;Khitan_Small_Script
 # Scripts-16.0.0.txt
-# Date: 2023-11-01, 17:20:11 GMT
+# Date: 2023-11-02, 16:20:43 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2952,8 +2951,9 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 
 16FE4         ; Khitan_Small_Script # Mn       KHITAN SMALL SCRIPT FILLER
 18B00..18CD5  ; Khitan_Small_Script # Lo [470] KHITAN SMALL SCRIPT CHARACTER-18B00..KHITAN SMALL SCRIPT CHARACTER-18CD5
+18CFF         ; Khitan_Small_Script # Lo       KHITAN SMALL SCRIPT CHARACTER-18CFF
 
-# Total code points: 471
+# Total code points: 472
 
 # ================================================
 

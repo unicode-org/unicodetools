@@ -1,5 +1,5 @@
 # DerivedBidiClass-16.0.0.txt
-# Date: 2023-11-01, 17:19:47 GMT
+# Date: 2023-11-02, 16:20:19 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1084,7 +1084,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 16FF0..16FF1  ; L # Mc   [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 17000..187F7  ; L # Lo [6136] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F7
 18800..18CD5  ; L # Lo [1238] TANGUT COMPONENT-001..KHITAN SMALL SCRIPT CHARACTER-18CD5
-18D00..18D08  ; L # Lo   [9] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D08
+18CFF..18D08  ; L # Lo  [10] KHITAN SMALL SCRIPT CHARACTER-18CFF..TANGUT IDEOGRAPH-18D08
 1AFF0..1AFF3  ; L # Lm   [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
 1AFF5..1AFFB  ; L # Lm   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
 1AFFD..1AFFE  ; L # Lm   [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
@@ -1197,7 +1197,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 820225 code points not listed here.
+# The above property value applies to 820224 code points not listed here.
 # Total code points: 1096253
 
 # ================================================
