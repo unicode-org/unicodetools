@@ -43,8 +43,7 @@ import org.unicode.text.utility.Utility;
 
 public class CheckProperties {
     private static final boolean VERBOSE = true;
-    private static final String LAST_RELEASE = Utility.searchPath[0];
-    ;
+
     private static final String JUNK = Settings.UnicodeTools.UCD_DIR; // force load
 
     private static final int DEBUG_CODE_POINT = 0x0600;
@@ -129,7 +128,7 @@ public class CheckProperties {
             extent = Extent.ALL;
         }
         if (version == null) {
-            version = LAST_RELEASE;
+            version = Settings.lastVersion;
         }
 
         final Timer total = new Timer();
@@ -855,6 +854,11 @@ public class CheckProperties {
         if (slashPos >= 0) {
             return Double.parseDouble(a.substring(0, slashPos))
                     / Double.parseDouble(a.substring(slashPos + 1));
+        }
+        // Unicode 15.1+: A character may have multiple Unihan numeric values.
+        int pos = a.indexOf(' ');
+        if (pos >= 0) {
+            a = a.substring(0, pos);
         }
         return Double.parseDouble(a);
     }

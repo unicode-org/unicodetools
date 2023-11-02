@@ -67,6 +67,7 @@ public class MakeUnicodeFiles {
         Map<String, List<String>> fileToPropertySet = new TreeMap<String, List<String>>();
         Map<String, String> fileToComments = new TreeMap<String, String>();
         Map<String, String> fileToDirectory = new TreeMap<String, String>();
+        Map<String, List<String>> propertyToOrderedValues = new TreeMap<String, List<String>>();
         Map<String, Map<String, String>> propertyToValueToComments =
                 new TreeMap<String, Map<String, String>>();
         Map<String, String> hackMap = new HashMap<String, String>();
@@ -110,6 +111,12 @@ public class MakeUnicodeFiles {
             // Unicode 15.1 and later LineBreak.txt and EastAsianWidth.txt, which are all generated
             // in that format by some other tool.
             boolean kenFile = false;
+            // Whether the file should be produced in the style of IndicPositionalCategory.txt and
+            // IndicSyllabicCategory.txt, which are both generated in that format by some other
+            // tool.
+            boolean roozbehFile = false;
+            // Whether to separate values of enumerated properties using a line of equal signs.
+            boolean separateValues = true;
             boolean hackValues = false;
             boolean mergeRanges = true;
             String nameStyle = "none";
@@ -138,6 +145,10 @@ public class MakeUnicodeFiles {
                         interleaveValues = true;
                     } else if (piece.equals("kenFile")) {
                         kenFile = true;
+                    } else if (piece.equals("roozbehFile")) {
+                        roozbehFile = true;
+                    } else if (piece.startsWith("separateValues=")) {
+                        separateValues = afterEqualsBoolean(piece);
                     } else if (piece.equals("hackValues")) {
                         hackValues = true;
                     } else if (piece.equals("sortNumeric")) {
@@ -301,6 +312,10 @@ public class MakeUnicodeFiles {
                     }
                     line = line.trim();
                     if (line.length() == 0) {
+                        if (comments.length() != 0) {
+                            // Preserve blank lines between comments.
+                            comments += "\n";
+                        }
                         continue;
                     }
                     if (DEBUG) {
@@ -321,6 +336,7 @@ public class MakeUnicodeFiles {
                         comments += line;
                     } else {
                         // end of comments, roll up
+                        comments = comments.trim();
                         if (comments.length() != 0) {
                             if (property != null) {
                                 addValueComments(property, value, comments);
@@ -350,6 +366,10 @@ public class MakeUnicodeFiles {
                             value = "";
                         } else if (line.startsWith("Value:")) {
                             value = lineValue;
+                            final var values =
+                                    propertyToOrderedValues.computeIfAbsent(
+                                            property, k -> new ArrayList<String>());
+                            values.add(value);
                         } else if (line.startsWith("HackName:")) {
                             final String regularItem = Utility.getUnskeleton(lineValue, true);
                             hackMap.put(regularItem, lineValue);
@@ -1152,6 +1172,9 @@ public class MakeUnicodeFiles {
                             filename, Format.theFormat.getPrintStyle(name));
             if (!ps.kenFile) {
                 pwProp.println();
+                if (!ps.separateValues) {
+                    pwProp.println();
+                }
                 pwProp.println(SEPARATOR);
             }
             final String propComment = Format.theFormat.getValueComments(name, "");
@@ -1161,7 +1184,11 @@ public class MakeUnicodeFiles {
                     pwProp.println(propComment);
                 } else if (!prop.isType(UnicodeProperty.BINARY_MASK)) {
                     pwProp.println();
-                    pwProp.println("# Property:\t" + name);
+                    if (ps.roozbehFile) {
+                        pwProp.println("# Property: " + name);
+                    } else {
+                        pwProp.println("# Property:\t" + name);
+                    }
                 }
             }
 
@@ -1182,9 +1209,12 @@ public class MakeUnicodeFiles {
                         v = v + " (" + v2 + ")";
                     }
                 }
-                pwProp.println();
+                pwProp.println(ps.roozbehFile ? "#" : "");
                 pwProp.println("#  All code points not explicitly listed for " + prop.getName());
-                pwProp.println("#  have the value " + v + ".");
+                pwProp.println(
+                        "#  have the value "
+                                + v
+                                + (ps.roozbehFile && v.equals("NA") ? " (not applicable)." : "."));
             }
 
             if (!ps.interleaveValues && prop.isType(UnicodeProperty.BINARY_MASK)) {
@@ -1254,6 +1284,21 @@ public class MakeUnicodeFiles {
             temp2.addAll(aliases);
             aliases = temp2;
         }
+        if (ps.roozbehFile) {
+            aliases.removeIf(alias -> UnicodeProperty.compareNames(alias, ps.skipValue) == 0);
+            if (!Format.theFormat
+                    .propertyToOrderedValues
+                    .get(prop.getName())
+                    .containsAll(aliases)) {
+                final TreeSet<String> missingAliases = new TreeSet<String>(aliases);
+                missingAliases.removeAll(
+                        Format.theFormat.propertyToOrderedValues.get(prop.getName()));
+                throw new IllegalArgumentException(
+                        "All values must be listed when using roozbehFile; missing "
+                                + missingAliases);
+            }
+            aliases = Format.theFormat.propertyToOrderedValues.get(prop.getName());
+        }
         if (ps.sortNumeric) {
             if (DEBUG) {
                 System.out.println("Reordering");
@@ -1284,7 +1329,7 @@ public class MakeUnicodeFiles {
 
         final String missing = ps.skipUnassigned != null ? ps.skipUnassigned : ps.skipValue;
         if (missing != null && !missing.equals(UCD_Names.NO)) {
-            pw.println();
+            pw.println(ps.roozbehFile ? "#" : "");
             final String propName = bf.getPropName();
             //      if (propName == null) propName = "";
             //      else if (propName.length() != 0) propName = propName + "; ";
@@ -1301,6 +1346,10 @@ public class MakeUnicodeFiles {
                 Line_Break_Values overallDefault = Line_Break_Values.forName(missing);
                 writeEnumeratedMissingValues(pw, overallDefault, defaultLbValues);
             }
+        }
+        if (!ps.separateValues) {
+            pw.println();
+            pw.println(SEPARATOR.replace('=', '-'));
         }
         for (final Iterator<String> it = aliases.iterator(); it.hasNext(); ) {
             final String value = it.next();
@@ -1346,29 +1395,17 @@ public class MakeUnicodeFiles {
             } else if (defaultBidiValues != null) {
                 Bidi_Class_Values bidiValue = Bidi_Class_Values.forName(value);
                 if (defaultBidiValues.containsValue(bidiValue)) {
-                    // We assume that unassigned code points that have this value
-                    // according to the props data also have this value according to the defaults.
-                    // Otherwise we would need to intersect defaultBidiValues.keySet(bidiValue)
-                    // with the unassigned set before removing from s.
-                    s.removeAll(unassigned);
+                    s.removeAll(defaultBidiValues.keySet(bidiValue).retainAll(unassigned));
                 }
             } else if (defaultEaValues != null) {
                 East_Asian_Width_Values eaValue = East_Asian_Width_Values.forName(value);
                 if (defaultEaValues.containsValue(eaValue)) {
-                    // We assume that unassigned code points that have this value
-                    // according to the props data also have this value according to the defaults.
-                    // Otherwise we would need to intersect defaultEaValues.keySet(eaValue)
-                    // with the unassigned set before removing from s.
-                    s.removeAll(unassigned);
+                    s.removeAll(defaultEaValues.keySet(eaValue).retainAll(unassigned));
                 }
             } else if (defaultLbValues != null) {
                 Line_Break_Values lbValue = Line_Break_Values.forName(value);
                 if (defaultLbValues.containsValue(lbValue)) {
-                    // We assume that unassigned code points that have this value
-                    // according to the props data also have this value according to the defaults.
-                    // Otherwise we would need to intersect defaultEaValues.keySet(eaValue)
-                    // with the unassigned set before removing from s.
-                    s.removeAll(unassigned);
+                    s.removeAll(defaultLbValues.keySet(lbValue).retainAll(unassigned));
                 }
             }
 
@@ -1416,9 +1453,13 @@ public class MakeUnicodeFiles {
 
             if (!prop.isType(UnicodeProperty.BINARY_MASK)) {
                 pw.println();
-                pw.println(SEPARATOR);
+                if (ps.separateValues) {
+                    pw.println(SEPARATOR);
+                }
                 if (nonLongValue) {
-                    pw.println();
+                    if (ps.separateValues) {
+                        pw.println();
+                    }
                     pw.println("# " + prop.getName() + "=" + value);
                 }
             }
@@ -1442,6 +1483,11 @@ public class MakeUnicodeFiles {
             pw.println();
             // if (s.size() != 0)
             bf.setMergeRanges(ps.mergeRanges);
+            bf.setShowTotal(!ps.roozbehFile);
+            if (ps.roozbehFile) {
+                bf.setRangeBreakSource(
+                        ToolUnicodePropertySource.make(Default.ucdVersion()).getProperty("Block"));
+            }
             bf.showSetNames(pw, s);
             if (DEBUG) {
                 System.out.println(bf.showSetNames(s));

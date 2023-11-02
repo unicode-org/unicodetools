@@ -233,6 +233,9 @@ Value:  V15_0
 Value:  V15_1
 # Newly assigned in Unicode 15.1.0 (September, 2023)
 
+Value:  V16_0
+# Newly assigned in Unicode 16.0.0 (September, 2024)
+
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class
 # Bidi Class (listing UnicodeData.txt, field 4: see UAX #44: https://www.unicode.org/reports/tr44/)
@@ -904,6 +907,376 @@ Format: kenFile skipValue=Rotated
 # the code point count in square brackets.
 #
 Property: VerticalOrientation
+
+File:	IndicPositionalCategory
+#
+# This file defines the following property:
+#
+#    Indic_Positional_Category     enumerated property
+#
+# Scope: This property is aimed at the problem of
+# the specification of syllabic structure for Indic scripts.
+# Because dependent vowels (matras), visible viramas, and other
+# characters are placed in notional slots around the consonant (or
+# consonant cluster) core of an Indic syllable, there may be
+# cooccurrence constraints or other interactions. Also, it may be
+# desirable, in cases where more than one such character may occur in
+# sequence, as for example, in a top slot and a bottom slot, to
+# specify preferred orders for spelling. As such, this property
+# is designed primarily to supplement the Indic_Syllabic_Category
+# property.
+#
+# In addition to combining marks associated with Indic scripts, the
+# Indic_Positional_Category has non-trivial values for special signs
+# associated with Indic_Syllabic_Category=Consonant_Prefixed
+# or Indic_Syllabic_Category=Consonant_Preceding_Repha. Those signs
+# have General_Category=Lo, rather than being combining marks.
+# They occur in initial position in syllabic structure. However, when
+# rendered, they appear as marks positioned with respect to another
+# base letter (usually above it). Hence, having an explicit value for
+# Indic_Positional_Category for those signs can be helpful.
+#
+# Note that this property is *not* intended as
+# a prescriptive property regarding display or font design,
+# for a number of reasons. Good font design requires information
+# that is outside the context of a character encoding standard,
+# and is best handled in other venues. For Indic dependent
+# vowels and similar characters, in particular:
+#
+#   1. Matra placement may vary somewhat based on typeface design.
+#   2. Matra placement, even within a single script, may vary
+#      somewhat according to historic period or local conventions.
+#   3. Matra placement may be changed by explicit orthographic reform
+#      decisions.
+#   4. Matras may ligate in various ways with a consonant (or even
+#      other elements of a syllable) instead of occurring in a
+#      discrete location.
+#   5. Matra display may be contextually determined. This is
+#      notable, for example, in the Tamil script, where the shape
+#      and placement of -u and -uu vowels depends strongly on
+#      which consonant they adjoin.
+#
+# Format:
+#    Field 0  Unicode code point value or range of code point values
+#    Field 1  Indic_Positional_Category property value
+#
+# Field 1 is followed by a comment field, starting with the number sign '#',
+# which shows the General_Category property value, the Unicode character name
+# or names, and, in lines with ranges of code points, the code point count in
+# square brackets.
+#
+# The scripts assessed as containing dependent vowels or similar characters
+# in the structural sense used for the Indic_Positional_Category are the
+# following:
+#
+# Ahom, Balinese, Batak, Bengali, Bhaiksuki, Brahmi, Buginese, Buhid,
+# Chakma, Cham, Devanagari, Dives Akuru, Dogra, Grantha, Gujarati,
+# Gunjala Gondi, Gurmukhi, Hanunoo, Javanese, Kaithi, Kannada, Kawi,
+# Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Lao, Lepcha, Limbu,
+# Makasar, Malayalam, Marchen, Masaram Gondi, Meetei Mayek, Modi,
+# Myanmar, Nandinagari, Newa, New Tai Lue, Oriya, Rejang, Saurashtra,
+# Sharada, Siddham, Sinhala, Soyombo, Sundanese, Syloti Nagri,
+# Tagalog, Tagbanwa, Tai Tham, Tai Viet, Takri, Tamil, Telugu, Thai,
+# Tibetan, Tirhuta, and Zanabazar Square.
+#
+# All characters for all other scripts not in that list
+# take the default value for this property.
+#
+# See IndicSyllabicCategory.txt for a slightly more extended
+# list of Indic scripts, including those which do not have
+# positional characters. Currently, those additional
+# Indic scripts without positional characters are
+# Kirat Rai, Multani, Phags-pa, and Tai Le.
+#
+# Notes:
+#
+# 1. The following characters are all assigned the positional category Right,
+# but may have different positions in some cases:
+#   * U+0BC1 TAMIL VOWEL SIGN U and U+0BC2 TAMIL VOWEL SIGN UU have
+#     contextually variable placement in Tamil.
+#   * U+0D41 MALAYALAM VOWEL SIGN U and U+0D42 MALAYALAM VOWEL SIGN UU form
+#     complex ligatures with consonants in older Malayalam orthography.
+#   * U+11341 GRANTHA VOWEL SIGN U and U+11342 GRANTHA VOWEL SIGN UU have
+#     contextually variable placement in Grantha.
+#   * U+11440 NEWA VOWEL SIGN O and U+11441 NEWA VOWEL SIGN AU have contextually
+#     variable placement in Newa.
+#
+# 2. The following characters are all assigned the positional category Top,
+# but may have different positions in some cases:
+#   * U+1143E NEWA VOWEL SIGN E and U+1143F NEWA VOWEL SIGN AI have contextually
+#     variable placement in Newa.
+#
+# 3. The following characters are all assigned the positional category Bottom,
+# but may have different positions in some cases:
+#   * U+102F MYANMAR VOWEL SIGN U and U+1030 MYANMAR VOWEL SIGN UU have
+#     contextually variable placement in Myanmar.
+#   * U+1A69 TAI THAM VOWEL SIGN U and U+1A6A TAI THAM VOWEL SIGN UU have
+#     contextually variable placement in Tai Tham.
+#
+# 4. The following character is assigned the positional category Left, but
+# may have different positions in different styles:
+#   * U+119D2 NANDINAGARI VOWEL SIGN I has stylistically variable placement
+#     in Nandinagari.
+Property: Indic_Positional_Category
+Format:	roozbehFile separateValues=false valueStyle=short skipValue=NA
+Value: Right
+Value: Left
+Value: Visual_Order_Left
+
+# These are dependent vowels that occur to the left of the consonant
+# letter in a syllable, but which occur in scripts using the visual order
+# model, instead of the logical order model. Because of the different
+# model, these left-side vowels occur first in the backing store (before
+# the consonant letter) and are not reordered during text rendering.
+#
+# [Derivation: Logical_Order_Exception=Yes]
+Value: Left_And_Right
+Value: Top
+Value: Bottom
+Value: Top_And_Bottom
+Value: Top_And_Right
+Value: Top_And_Left
+Value: Top_And_Left_And_Right
+Value: Bottom_And_Right
+Value: Bottom_And_Left
+Value: Top_And_Bottom_And_Right
+Value: Top_And_Bottom_And_Left
+Value: Overstruck
+
+File:	IndicSyllabicCategory
+#
+# This file defines the following property:
+#
+#    Indic_Syllabic_Category     enumerated property
+#
+# Scope: This property is aimed at two general problem
+# areas involving the analysis and processing of Indic scripts:
+#
+#   1. Specification of syllabic structure.
+#   2. Specification of segmentation rules.
+#
+# Both of these problem areas may benefit from having defined subtypes
+# of Indic script characters which are relevant to how Indic
+# syllables (or aksaras) are constructed. Note that rules for
+# syllabic structure in Indic scripts may differ significantly
+# from how phonological syllables are defined.
+#
+# Format:
+#    Field 0  Unicode code point value or range of code point values
+#    Field 1  Indic_Syllabic_Category property value
+#
+# Field 1 is followed by a comment field, starting with the number sign '#',
+# which shows the General_Category property value, the Unicode character name
+# or names, and, in lines with ranges of code points, the code point count in
+# square brackets.
+#
+# The scripts assessed as Indic in the structural sense used for the
+# Indic_Syllabic_Category are the following:
+#
+# Ahom, Balinese, Batak, Bengali, Bhaiksuki, Brahmi, Buginese, Buhid,
+# Chakma, Cham, Devanagari, Dives Akuru, Dogra, Grantha, Gujarati,
+# Gunjala Gondi, Gurmukhi, Hanunoo, Javanese, Kaithi, Kannada, Kawi,
+# Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Kirat Rai, Lao, Lepcha, Limbu,
+# Mahajani, Makasar, Malayalam, Marchen, Masaram Gondi, Meetei Mayek,
+# Modi, Multani, Myanmar, Nandinagari, Newa, New Tai Lue, Oriya,
+# Phags-pa, Rejang, Saurashtra, Sharada, Siddham, Sinhala, Soyombo,
+# Sundanese, Syloti Nagri, Tagalog, Tagbanwa, Tai Le, Tai Tham,
+# Tai Viet, Takri, Tamil, Telugu, Thai, Tibetan, Tirhuta, and
+# Zanabazar Square.
+#
+# All characters for all other scripts not in that list
+# take the default value for this property, unless they
+# are individually listed in this data file.
+#
+Property: Indic_Syllabic_Category
+Format: roozbehFile valueStyle=short skipValue=Other
+Value: Bindu
+# Bindu/Anusvara (nasalization or -n)
+
+# [Not derivable]
+Value: Visarga
+# Visarga (-h)
+# Excludes letters for jihvamuliya and upadhmaniya, which are
+#   related, but structured somewhat differently.
+
+# [Not derivable]
+Value: Avagraha
+# Avagraha (elision of initial a- in sandhi)
+
+# [Not derivable]
+Value: Nukta
+# Nukta (diacritic for borrowed consonants or other consonant
+# modifications). Note that while the resulting sound is typically a
+# consonant, the base letter a nukta follows may be an independent
+# vowel. For example, <U+0A85 GUJARATI LETTER A, U+0AFD GUJARATI
+# SIGN THREE-DOT NUKTA ABOVE> is used to transcribe ARABIC LETTER
+# AIN.
+
+# [Not derivable]
+Value: Virama
+# Virama (killing of inherent vowel in consonant sequence
+#         or consonant stacker)
+# Only includes characters that can act both as visible killer viramas
+# and consonant stackers. Separate property values exist for characters
+# that can only act as pure killers or only as consonant stackers.
+
+# [Derivation: (ccc=9) - (InSC=Pure_Killer) - (InSC=Invisible_Stacker)
+#  - (InSC=Number_Joiner) - 2D7F]
+Value: Pure_Killer
+# Pure killer (killing of inherent vowel in consonant sequence,
+#              with no consonant stacking behavior)
+
+# [Not derivable]
+Value: Invisible_Stacker
+# Invisible stacker (invisible consonant stacker virama).
+#
+# Note that in some scripts, such as Kharoshthi and Masaram Gondi, an invisible
+# stacker may have a second function, changing the shape and/or location of the
+# consonant preceding it, even when there is no consonant following the
+# invisible stacker.
+
+# [Not derivable]
+Value: Vowel_Independent
+# Independent Vowels (contrasted with matras)
+
+# [Not derivable]
+Value: Vowel_Dependent
+# Dependent Vowels (contrasted with independent vowels and/or with
+# complex placement). Known as matras in Indic scripts. Also
+# includes vowel modifiers that follow dependent (and sometimes
+# independent) vowels.
+
+# [Not derivable]
+Value: Vowel
+# (Other) Vowels (reanalyzed as ordinary alphabetic letters or marks)
+
+# [Not derivable]
+Value: Consonant_Placeholder
+# Consonant Placeholder
+# This includes generic placeholders used for
+# Indic script layout (NBSP and dotted circle), as well as a few script-
+# specific vowel-holder characters which are not technically
+# consonants, but serve instead as bases for placement of vowel marks.
+
+# [Not derivable]
+Value: Consonant
+# Consonant (ordinary abugida consonants, with inherent vowels)
+
+# [Not derivable]
+Value: Consonant_Dead
+# Dead Consonant (special consonant with killed vowel)
+
+# [Not derivable]
+Value: Consonant_With_Stacker
+# Consonants that may make stacked ligatures with the next consonant
+# without the use of a virama
+
+# [Not derivable]
+Value: Consonant_Prefixed
+# Cluster-initial consonants
+
+# [Not derivable]
+Value: Consonant_Preceding_Repha
+# Repha Form of RA (reanalyzed in some scripts), when preceding the main
+# consonant.
+
+# [Not derivable]
+Value: Consonant_Initial_Postfixed
+# Consonants that succeed the main consonant in character sequences, but are
+# pronounced before it.
+
+# [Not derivable]
+Value: Consonant_Succeeding_Repha
+# Repha Form of RA (reanalyzed in some scripts), when succeeding the main
+# consonant.
+
+# [Not derivable]
+Value: Consonant_Subjoined
+# Subjoined Consonant (C2 form subtending a base consonant in Tibetan, etc.)
+
+# [Not derivable]
+Value: Consonant_Medial
+# Medial Consonant (medial liquid, occurring in clusters)
+
+# [Not derivable]
+Value: Consonant_Final
+# Final Consonant (special final forms which do not take vowels)
+
+# [Not derivable]
+Value: Consonant_Head_Letter
+# Head Letter (Tibetan)
+
+# [Not derivable]
+Value: Modifying_Letter
+# Reanalyzed letters not participating in the abugida structure, but
+# serving to modify the sound of an adjacent vowel or consonant.
+# Note that this is not the same as General_Category=Modifier_Letter.
+
+# [Not derivable]
+Value: Tone_Letter
+# Tone Letter (spacing lexical tone mark with status as a letter)
+
+# [Not derivable]
+Value: Tone_Mark
+# Tone Mark (nonspacing or spacing lexical tone mark)
+
+# [Not derivable]
+Value: Gemination_Mark
+# Gemination Mark (doubling of the preceding or following consonant)
+#
+# U+0A71 GURMUKHI ADDAK precedes the consonant it geminates, while the
+# others follow the consonant they geminate.
+
+# [Not derivable]
+Value: Cantillation_Mark
+# Cantillation Mark (recitation marks, such as svara markers for the Samaveda)
+
+# [Not derivable]
+Value: Register_Shifter
+# Register Shifter (shifts register for consonants, akin to a tone mark)
+
+# [Not derivable]
+Value: Syllable_Modifier
+# Syllable Modifier (miscellaneous combining characters that modify
+# something in the orthographic syllable they succeed or appear in)
+
+# [Not derivable]
+Value: Consonant_Killer
+# Consonant Killer (signifies that the previous consonant or consonants are
+# not pronounced)
+
+# [Not derivable]
+Value: Non_Joiner
+# Non_Joiner (Zero Width Non-Joiner)
+
+# [Not derivable]
+Value: Joiner
+# Joiner (Zero Width Joiner)
+
+# [Not derivable]
+Value: Number_Joiner
+# Number_Joiner (forms ligatures between numbers for multiplication)
+
+# [Not derivable]
+Value: Number
+# Number (can be used as vowel-holders like consonant placeholders)
+# Note: A number may even hold subjoined consonants which may in turn
+# have been formed using a virama or a stacker, e.g. the sequence
+# <U+1A93, U+1A60, U+1A34> where THAI THAM LETTER LOW TA is subjoined to
+# TAI THAM THAM DIGIT THREE using an invisible stacker.
+
+# [Not derivable]
+Value: Brahmi_Joining_Number
+# Brahmi Joining Number (may be joined by a Number_Joiner of the same
+# script, e.g. in Brahmi)
+#
+# Note: These are different from Numbers, in the way that there is no known
+# evidence of Brahmi Joining Numbers taking vowels or subjoined consonants. 
+# Until such evidence is found, implementations may assume that Brahmi
+# Joining Numbers only participate in shaping with other Brahmi Joining
+# Numbers.
+
+# [Not derivable]
 
 File:	UnicodeData
 Property: SPECIAL
