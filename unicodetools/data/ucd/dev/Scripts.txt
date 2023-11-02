@@ -1,5 +1,5 @@
 # Scripts-16.0.0.txt
-# Date: 2023-11-02, 20:54:48 GMT
+# Date: 2023-11-02, 22:37:26 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -616,6 +616,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 1F860..1F887  ; Common # So  [40] WIDE-HEADED LEFTWARDS LIGHT BARB ARROW..WIDE-HEADED SOUTH WEST VERY HEAVY BARB ARROW
 1F890..1F8AD  ; Common # So  [30] LEFTWARDS TRIANGLE ARROWHEAD..WHITE ARROW SHAFT WIDTH TWO THIRDS
 1F8B0..1F8B2  ; Common # So   [3] ARROW POINTING UPWARDS THEN NORTH WEST..RIGHTWARDS ARROW WITH LOWER HOOK
+1F8C0..1F8C1  ; Common # So   [2] LEFTWARDS ARROW FROM DOWNWARDS ARROW..RIGHTWARDS ARROW FROM DOWNWARDS ARROW
 1F900..1FA53  ; Common # So [340] CIRCLED CROSS FORMEE WITH FOUR DOTS..BLACK CHESS KNIGHT-BISHOP
 1FA60..1FA6D  ; Common # So  [14] XIANGQI RED GENERAL..XIANGQI BLACK SOLDIER
 1FA70..1FA7C  ; Common # So  [13] BALLET SHOES..CRUTCH
@@ -630,7 +631,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 E0001         ; Common # Cf       LANGUAGE TAG
 E0020..E007F  ; Common # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 8318
+# Total code points: 8320
 
 # ================================================
 

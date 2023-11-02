@@ -1,5 +1,5 @@
 # DerivedLineBreak-16.0.0.txt
-# Date: 2023-11-02, 20:54:24 GMT
+# Date: 2023-11-02, 22:37:04 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1601,12 +1601,13 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1F860..1F887  ; AL # So  [40] WIDE-HEADED LEFTWARDS LIGHT BARB ARROW..WIDE-HEADED SOUTH WEST VERY HEAVY BARB ARROW
 1F890..1F8AD  ; AL # So  [30] LEFTWARDS TRIANGLE ARROWHEAD..WHITE ARROW SHAFT WIDTH TWO THIRDS
 1F8B2         ; AL # So       RIGHTWARDS ARROW WITH LOWER HOOK
+1F8C0..1F8C1  ; AL # So   [2] LEFTWARDS ARROW FROM DOWNWARDS ARROW..RIGHTWARDS ARROW FROM DOWNWARDS ARROW
 1F900..1F90B  ; AL # So  [12] CIRCLED CROSS FORMEE WITH FOUR DOTS..DOWNWARD FACING NOTCHED HOOK WITH DOT
 1FA00..1FA53  ; AL # So  [84] NEUTRAL CHESS KING..BLACK CHESS KNIGHT-BISHOP
 1FB00..1FB92  ; AL # So [147] BLOCK SEXTANT-1..UPPER HALF INVERSE MEDIUM SHADE AND LOWER HALF BLOCK
 1FB94..1FBCA  ; AL # So  [55] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..WHITE UP-POINTING CHEVRON
 
-# Total code points: 21965
+# Total code points: 21967
 
 # ================================================
 
@@ -1849,8 +1850,8 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 30000..3134A  ; ID # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; ID # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# The above property value applies to 61970 code points not listed here.
-# Total code points: 172567
+# The above property value applies to 61968 code points not listed here.
+# Total code points: 172565
 
 # ================================================
 
