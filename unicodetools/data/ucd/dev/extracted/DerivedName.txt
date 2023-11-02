@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2023-11-02, 21:47:19 GMT
+# Date: 2023-11-02, 22:37:04 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -37575,6 +37575,7 @@ FFFD          ; REPLACEMENT CHARACTER
 18AFE         ; TANGUT COMPONENT-767
 18AFF         ; TANGUT COMPONENT-768
 18B00..18CD5  ; KHITAN SMALL SCRIPT CHARACTER-*
+18CFF         ; KHITAN SMALL SCRIPT CHARACTER-*
 18D00..18D08  ; TANGUT IDEOGRAPH-*
 1AFF0         ; KATAKANA LETTER MINNAN TONE-2
 1AFF1         ; KATAKANA LETTER MINNAN TONE-3
@@ -44492,6 +44493,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 150129
+# Total code points: 150130
 
 # EOF
