@@ -1,5 +1,5 @@
 # DerivedLineBreak-16.0.0.txt
-# Date: 2023-11-02, 22:55:28 GMT
+# Date: 2023-11-03, 05:19:37 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -68,8 +68,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 762418 code points not listed here.
-# Total code points: 899886
+# The above property value applies to 762416 code points not listed here.
+# Total code points: 899884
 
 # ================================================
 
@@ -1687,7 +1687,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 3192..3195    ; ID # No   [4] IDEOGRAPHIC ANNOTATION ONE MARK..IDEOGRAPHIC ANNOTATION FOUR MARK
 3196..319F    ; ID # So  [10] IDEOGRAPHIC ANNOTATION TOP MARK..IDEOGRAPHIC ANNOTATION MAN MARK
 31A0..31BF    ; ID # Lo  [32] BOPOMOFO LETTER BU..BOPOMOFO LETTER AH
-31C0..31E3    ; ID # So  [36] CJK STROKE T..CJK STROKE Q
+31C0..31E5    ; ID # So  [38] CJK STROKE T..CJK STROKE SZP
 31EF          ; ID # So       IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
 3200..321E    ; ID # So  [31] PARENTHESIZED HANGUL KIYEOK..PARENTHESIZED KOREAN CHARACTER O HU
 3220..3229    ; ID # No  [10] PARENTHESIZED IDEOGRAPH ONE..PARENTHESIZED IDEOGRAPH TEN
@@ -1851,7 +1851,7 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 31350..323AF  ; ID # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
 # The above property value applies to 61968 code points not listed here.
-# Total code points: 172565
+# Total code points: 172567
 
 # ================================================
 

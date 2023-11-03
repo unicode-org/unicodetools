@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2023-11-02, 22:37:04 GMT
+# Date: 2023-11-03, 05:19:37 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -11689,6 +11689,8 @@
 31E1          ; CJK STROKE HZZZG
 31E2          ; CJK STROKE PG
 31E3          ; CJK STROKE Q
+31E4          ; CJK STROKE HZXG
+31E5          ; CJK STROKE SZP
 31EF          ; IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
 31F0          ; KATAKANA LETTER SMALL KU
 31F1          ; KATAKANA LETTER SMALL SI
@@ -44493,6 +44495,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 150130
+# Total code points: 150132
 
 # EOF
