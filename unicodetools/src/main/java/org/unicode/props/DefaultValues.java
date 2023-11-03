@@ -223,7 +223,6 @@ public final class DefaultValues {
         private static final Line_Break_Values XX = Line_Break_Values.Unknown;
         private static final Line_Break_Values ID = Line_Break_Values.Ideographic;
         private static final Line_Break_Values PR = Line_Break_Values.Prefix_Numeric;
-        private static final Line_Break_Values AL = Line_Break_Values.Alphabetic;
 
         private static final class Builder extends MapBuilderBase<Line_Break_Values> {
             UnicodeMap<Line_Break_Values> lb = new UnicodeMap<>();
