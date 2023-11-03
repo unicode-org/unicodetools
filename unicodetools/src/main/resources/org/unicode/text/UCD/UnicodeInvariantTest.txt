@@ -549,7 +549,7 @@ Let $IDInclusions = [[:block=/Ideographs/:] [[\U00020000-\U0003FFFF][\U0001F000-
 # 13.0 exclude those in 1FB00..1FBFF Symbols for Legacy Computing
 # 16.0 exclude Supplemental Arrows C
 \p{LB=ID} ⊃ $IDInclusions
-\p{Line_Break=Unknown} = [\p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse} - $IDInclusions - [\u20C0-\u20CF] - \p{block=Supplemental Arrows C}]
+\p{Line_Break=Unknown} = [\p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse} - $IDInclusions - [\u20C0-\u20CF]]
 
 Let $BrahmicLineBreaking = [\p{sc=Balinese}\p{sc=Batak}\p{sc=Brahmi}\p{sc=Cham}\p{sc=DivesAkuru}\p{sc=Grantha}\p{sc=Javanese}\p{sc=Makasar}\p{sc=Kawi}\p{sc=Cham}\p{sc=Makasar}]
 Let $VFScripts = [\p{sc=Batak}]
