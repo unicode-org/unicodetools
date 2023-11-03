@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2023-11-02, 22:55:22 GMT
+# Date: 2023-11-03, 05:19:32 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1042,7 +1042,7 @@
 3192..3195    ; 0 # No   [4] IDEOGRAPHIC ANNOTATION ONE MARK..IDEOGRAPHIC ANNOTATION FOUR MARK
 3196..319F    ; 0 # So  [10] IDEOGRAPHIC ANNOTATION TOP MARK..IDEOGRAPHIC ANNOTATION MAN MARK
 31A0..31BF    ; 0 # Lo  [32] BOPOMOFO LETTER BU..BOPOMOFO LETTER AH
-31C0..31E3    ; 0 # So  [36] CJK STROKE T..CJK STROKE Q
+31C0..31E5    ; 0 # So  [38] CJK STROKE T..CJK STROKE SZP
 31EF          ; 0 # So       IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
 31F0..31FF    ; 0 # Lo  [16] KATAKANA LETTER SMALL KU..KATAKANA LETTER SMALL RO
 3200..321E    ; 0 # So  [31] PARENTHESIZED HANGUL KIYEOK..PARENTHESIZED KOREAN CHARACTER O HU
@@ -2033,7 +2033,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 826449 code points not listed here.
+# The above property value applies to 826447 code points not listed here.
 # Total code points: 1113182
 
 # ================================================
