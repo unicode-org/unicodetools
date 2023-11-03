@@ -1,5 +1,5 @@
 # DerivedNumericValues-16.0.0.txt
-# Date: 2023-10-17, 12:29:07 GMT
+# Date: 2023-10-25, 12:52:55 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -91,6 +91,7 @@ FF10          ; 0.0 ; ; 0 # Nd       FULLWIDTH DIGIT ZERO
 1018A         ; 0.0 ; ; 0 # No       GREEK ZERO SIGN
 104A0         ; 0.0 ; ; 0 # Nd       OSMANYA DIGIT ZERO
 10D30         ; 0.0 ; ; 0 # Nd       HANIFI ROHINGYA DIGIT ZERO
+10D40         ; 0.0 ; ; 0 # Nd       GARAY DIGIT ZERO
 11066         ; 0.0 ; ; 0 # Nd       BRAHMI DIGIT ZERO
 110F0         ; 0.0 ; ; 0 # Nd       SORA SOMPENG DIGIT ZERO
 11136         ; 0.0 ; ; 0 # Nd       CHAKMA DIGIT ZERO
@@ -113,6 +114,7 @@ FF10          ; 0.0 ; ; 0 # Nd       FULLWIDTH DIGIT ZERO
 16A60         ; 0.0 ; ; 0 # Nd       MRO DIGIT ZERO
 16AC0         ; 0.0 ; ; 0 # Nd       TANGSA DIGIT ZERO
 16B50         ; 0.0 ; ; 0 # Nd       PAHAWH HMONG DIGIT ZERO
+16D70         ; 0.0 ; ; 0 # Nd       KIRAT RAI DIGIT ZERO
 16E80         ; 0.0 ; ; 0 # No       MEDEFAIDRIN DIGIT ZERO
 1D2C0         ; 0.0 ; ; 0 # No       KAKTOVIK NUMERAL ZERO
 1D2E0         ; 0.0 ; ; 0 # No       MAYAN NUMERAL ZERO
@@ -124,12 +126,13 @@ FF10          ; 0.0 ; ; 0 # Nd       FULLWIDTH DIGIT ZERO
 1E140         ; 0.0 ; ; 0 # Nd       NYIAKENG PUACHUE HMONG DIGIT ZERO
 1E2F0         ; 0.0 ; ; 0 # Nd       WANCHO DIGIT ZERO
 1E4F0         ; 0.0 ; ; 0 # Nd       NAG MUNDARI DIGIT ZERO
+1E5F1         ; 0.0 ; ; 0 # Nd       OL ONAL DIGIT ZERO
 1E950         ; 0.0 ; ; 0 # Nd       ADLAM DIGIT ZERO
 1F100..1F101  ; 0.0 ; ; 0 # No   [2] DIGIT ZERO FULL STOP..DIGIT ZERO COMMA
 1F10B..1F10C  ; 0.0 ; ; 0 # No   [2] DINGBAT CIRCLED SANS-SERIF DIGIT ZERO..DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ZERO
 1FBF0         ; 0.0 ; ; 0 # Nd       SEGMENTED DIGIT ZERO
 
-# Total code points: 91
+# Total code points: 94
 
 # ================================================
 
@@ -499,6 +502,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 10BA9         ; 1.0 ; ; 1 # No       PSALTER PAHLAVI NUMBER ONE
 10CFA         ; 1.0 ; ; 1 # No       OLD HUNGARIAN NUMBER ONE
 10D31         ; 1.0 ; ; 1 # Nd       HANIFI ROHINGYA DIGIT ONE
+10D41         ; 1.0 ; ; 1 # Nd       GARAY DIGIT ONE
 10E60         ; 1.0 ; ; 1 # No       RUMI DIGIT ONE
 10F1D         ; 1.0 ; ; 1 # No       OLD SOGDIAN NUMBER ONE
 10F51         ; 1.0 ; ; 1 # No       SOGDIAN NUMBER ONE
@@ -534,6 +538,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 16A61         ; 1.0 ; ; 1 # Nd       MRO DIGIT ONE
 16AC1         ; 1.0 ; ; 1 # Nd       TANGSA DIGIT ONE
 16B51         ; 1.0 ; ; 1 # Nd       PAHAWH HMONG DIGIT ONE
+16D71         ; 1.0 ; ; 1 # Nd       KIRAT RAI DIGIT ONE
 16E81         ; 1.0 ; ; 1 # No       MEDEFAIDRIN DIGIT ONE
 16E94         ; 1.0 ; ; 1 # No       MEDEFAIDRIN DIGIT ONE ALTERNATE FORM
 1D2C1         ; 1.0 ; ; 1 # No       KAKTOVIK NUMERAL ONE
@@ -549,6 +554,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 1E141         ; 1.0 ; ; 1 # Nd       NYIAKENG PUACHUE HMONG DIGIT ONE
 1E2F1         ; 1.0 ; ; 1 # Nd       WANCHO DIGIT ONE
 1E4F1         ; 1.0 ; ; 1 # Nd       NAG MUNDARI DIGIT ONE
+1E5F2         ; 1.0 ; ; 1 # Nd       OL ONAL DIGIT ONE
 1E8C7         ; 1.0 ; ; 1 # No       MENDE KIKAKUI DIGIT ONE
 1E951         ; 1.0 ; ; 1 # Nd       ADLAM DIGIT ONE
 1EC71         ; 1.0 ; ; 1 # No       INDIC SIYAQ NUMBER ONE
@@ -559,7 +565,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 1FBF1         ; 1.0 ; ; 1 # Nd       SEGMENTED DIGIT ONE
 2092A         ; 1.0 ; ; 1 # Lo       CJK UNIFIED IDEOGRAPH-2092A
 
-# Total code points: 147
+# Total code points: 150
 
 # ================================================
 
@@ -653,6 +659,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 10B79         ; 2.0 ; ; 2 # No       INSCRIPTIONAL PAHLAVI NUMBER TWO
 10BAA         ; 2.0 ; ; 2 # No       PSALTER PAHLAVI NUMBER TWO
 10D32         ; 2.0 ; ; 2 # Nd       HANIFI ROHINGYA DIGIT TWO
+10D42         ; 2.0 ; ; 2 # Nd       GARAY DIGIT TWO
 10E61         ; 2.0 ; ; 2 # No       RUMI DIGIT TWO
 10F1E         ; 2.0 ; ; 2 # No       OLD SOGDIAN NUMBER TWO
 10FC6         ; 2.0 ; ; 2 # No       CHORASMIAN NUMBER TWO
@@ -691,6 +698,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 16A62         ; 2.0 ; ; 2 # Nd       MRO DIGIT TWO
 16AC2         ; 2.0 ; ; 2 # Nd       TANGSA DIGIT TWO
 16B52         ; 2.0 ; ; 2 # Nd       PAHAWH HMONG DIGIT TWO
+16D72         ; 2.0 ; ; 2 # Nd       KIRAT RAI DIGIT TWO
 16E82         ; 2.0 ; ; 2 # No       MEDEFAIDRIN DIGIT TWO
 16E95         ; 2.0 ; ; 2 # No       MEDEFAIDRIN DIGIT TWO ALTERNATE FORM
 1D2C2         ; 2.0 ; ; 2 # No       KAKTOVIK NUMERAL TWO
@@ -705,6 +713,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 1E142         ; 2.0 ; ; 2 # Nd       NYIAKENG PUACHUE HMONG DIGIT TWO
 1E2F2         ; 2.0 ; ; 2 # Nd       WANCHO DIGIT TWO
 1E4F2         ; 2.0 ; ; 2 # Nd       NAG MUNDARI DIGIT TWO
+1E5F3         ; 2.0 ; ; 2 # Nd       OL ONAL DIGIT TWO
 1E8C8         ; 2.0 ; ; 2 # No       MENDE KIKAKUI DIGIT TWO
 1E952         ; 2.0 ; ; 2 # Nd       ADLAM DIGIT TWO
 1EC72         ; 2.0 ; ; 2 # No       INDIC SIYAQ NUMBER TWO
@@ -716,7 +725,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 1FBF2         ; 2.0 ; ; 2 # Nd       SEGMENTED DIGIT TWO
 22390         ; 2.0 ; ; 2 # Lo       CJK UNIFIED IDEOGRAPH-22390
 
-# Total code points: 149
+# Total code points: 152
 
 # ================================================
 
@@ -801,6 +810,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 10B7A         ; 3.0 ; ; 3 # No       INSCRIPTIONAL PAHLAVI NUMBER THREE
 10BAB         ; 3.0 ; ; 3 # No       PSALTER PAHLAVI NUMBER THREE
 10D33         ; 3.0 ; ; 3 # Nd       HANIFI ROHINGYA DIGIT THREE
+10D43         ; 3.0 ; ; 3 # Nd       GARAY DIGIT THREE
 10E62         ; 3.0 ; ; 3 # No       RUMI DIGIT THREE
 10F1F         ; 3.0 ; ; 3 # No       OLD SOGDIAN NUMBER THREE
 10FC7         ; 3.0 ; ; 3 # No       CHORASMIAN NUMBER THREE
@@ -840,6 +850,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 16A63         ; 3.0 ; ; 3 # Nd       MRO DIGIT THREE
 16AC3         ; 3.0 ; ; 3 # Nd       TANGSA DIGIT THREE
 16B53         ; 3.0 ; ; 3 # Nd       PAHAWH HMONG DIGIT THREE
+16D73         ; 3.0 ; ; 3 # Nd       KIRAT RAI DIGIT THREE
 16E83         ; 3.0 ; ; 3 # No       MEDEFAIDRIN DIGIT THREE
 16E96         ; 3.0 ; ; 3 # No       MEDEFAIDRIN DIGIT THREE ALTERNATE FORM
 1D2C3         ; 3.0 ; ; 3 # No       KAKTOVIK NUMERAL THREE
@@ -854,6 +865,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 1E143         ; 3.0 ; ; 3 # Nd       NYIAKENG PUACHUE HMONG DIGIT THREE
 1E2F3         ; 3.0 ; ; 3 # Nd       WANCHO DIGIT THREE
 1E4F3         ; 3.0 ; ; 3 # Nd       NAG MUNDARI DIGIT THREE
+1E5F4         ; 3.0 ; ; 3 # Nd       OL ONAL DIGIT THREE
 1E8C9         ; 3.0 ; ; 3 # No       MENDE KIKAKUI DIGIT THREE
 1E953         ; 3.0 ; ; 3 # Nd       ADLAM DIGIT THREE
 1EC73         ; 3.0 ; ; 3 # No       INDIC SIYAQ NUMBER THREE
@@ -867,7 +879,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 22998         ; 3.0 ; ; 3 # Lo       CJK UNIFIED IDEOGRAPH-22998
 23B1B         ; 3.0 ; ; 3 # Lo       CJK UNIFIED IDEOGRAPH-23B1B
 
-# Total code points: 147
+# Total code points: 150
 
 # ================================================
 
@@ -946,6 +958,7 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 10B7B         ; 4.0 ; ; 4 # No       INSCRIPTIONAL PAHLAVI NUMBER FOUR
 10BAC         ; 4.0 ; ; 4 # No       PSALTER PAHLAVI NUMBER FOUR
 10D34         ; 4.0 ; ; 4 # Nd       HANIFI ROHINGYA DIGIT FOUR
+10D44         ; 4.0 ; ; 4 # Nd       GARAY DIGIT FOUR
 10E63         ; 4.0 ; ; 4 # No       RUMI DIGIT FOUR
 10F20         ; 4.0 ; ; 4 # No       OLD SOGDIAN NUMBER FOUR
 10FC8         ; 4.0 ; ; 4 # No       CHORASMIAN NUMBER FOUR
@@ -986,6 +999,7 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 16A64         ; 4.0 ; ; 4 # Nd       MRO DIGIT FOUR
 16AC4         ; 4.0 ; ; 4 # Nd       TANGSA DIGIT FOUR
 16B54         ; 4.0 ; ; 4 # Nd       PAHAWH HMONG DIGIT FOUR
+16D74         ; 4.0 ; ; 4 # Nd       KIRAT RAI DIGIT FOUR
 16E84         ; 4.0 ; ; 4 # No       MEDEFAIDRIN DIGIT FOUR
 1D2C4         ; 4.0 ; ; 4 # No       KAKTOVIK NUMERAL FOUR
 1D2E4         ; 4.0 ; ; 4 # No       MAYAN NUMERAL FOUR
@@ -999,6 +1013,7 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 1E144         ; 4.0 ; ; 4 # Nd       NYIAKENG PUACHUE HMONG DIGIT FOUR
 1E2F4         ; 4.0 ; ; 4 # Nd       WANCHO DIGIT FOUR
 1E4F4         ; 4.0 ; ; 4 # Nd       NAG MUNDARI DIGIT FOUR
+1E5F5         ; 4.0 ; ; 4 # Nd       OL ONAL DIGIT FOUR
 1E8CA         ; 4.0 ; ; 4 # No       MENDE KIKAKUI DIGIT FOUR
 1E954         ; 4.0 ; ; 4 # Nd       ADLAM DIGIT FOUR
 1EC74         ; 4.0 ; ; 4 # No       INDIC SIYAQ NUMBER FOUR
@@ -1011,7 +1026,7 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 200E2         ; 4.0 ; ; 4 # Lo       CJK UNIFIED IDEOGRAPH-200E2
 2626D         ; 4.0 ; ; 4 # Lo       CJK UNIFIED IDEOGRAPH-2626D
 
-# Total code points: 138
+# Total code points: 141
 
 # ================================================
 
@@ -1095,6 +1110,7 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 10AEC         ; 5.0 ; ; 5 # No       MANICHAEAN NUMBER FIVE
 10CFB         ; 5.0 ; ; 5 # No       OLD HUNGARIAN NUMBER FIVE
 10D35         ; 5.0 ; ; 5 # Nd       HANIFI ROHINGYA DIGIT FIVE
+10D45         ; 5.0 ; ; 5 # Nd       GARAY DIGIT FIVE
 10E64         ; 5.0 ; ; 5 # No       RUMI DIGIT FIVE
 10F21         ; 5.0 ; ; 5 # No       OLD SOGDIAN NUMBER FIVE
 11056         ; 5.0 ; ; 5 # No       BRAHMI NUMBER FIVE
@@ -1133,6 +1149,7 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 16A65         ; 5.0 ; ; 5 # Nd       MRO DIGIT FIVE
 16AC5         ; 5.0 ; ; 5 # Nd       TANGSA DIGIT FIVE
 16B55         ; 5.0 ; ; 5 # Nd       PAHAWH HMONG DIGIT FIVE
+16D75         ; 5.0 ; ; 5 # Nd       KIRAT RAI DIGIT FIVE
 16E85         ; 5.0 ; ; 5 # No       MEDEFAIDRIN DIGIT FIVE
 1D2C5         ; 5.0 ; ; 5 # No       KAKTOVIK NUMERAL FIVE
 1D2E5         ; 5.0 ; ; 5 # No       MAYAN NUMERAL FIVE
@@ -1147,6 +1164,7 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 1E145         ; 5.0 ; ; 5 # Nd       NYIAKENG PUACHUE HMONG DIGIT FIVE
 1E2F5         ; 5.0 ; ; 5 # Nd       WANCHO DIGIT FIVE
 1E4F5         ; 5.0 ; ; 5 # Nd       NAG MUNDARI DIGIT FIVE
+1E5F6         ; 5.0 ; ; 5 # Nd       OL ONAL DIGIT FIVE
 1E8CB         ; 5.0 ; ; 5 # No       MENDE KIKAKUI DIGIT FIVE
 1E955         ; 5.0 ; ; 5 # Nd       ADLAM DIGIT FIVE
 1EC75         ; 5.0 ; ; 5 # No       INDIC SIYAQ NUMBER FIVE
@@ -1157,7 +1175,7 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 1FBF5         ; 5.0 ; ; 5 # Nd       SEGMENTED DIGIT FIVE
 20121         ; 5.0 ; ; 5 # Lo       CJK UNIFIED IDEOGRAPH-20121
 
-# Total code points: 136
+# Total code points: 139
 
 # ================================================
 
@@ -1232,6 +1250,7 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 104A6         ; 6.0 ; ; 6 # Nd       OSMANYA DIGIT SIX
 109C5         ; 6.0 ; ; 6 # No       MEROITIC CURSIVE NUMBER SIX
 10D36         ; 6.0 ; ; 6 # Nd       HANIFI ROHINGYA DIGIT SIX
+10D46         ; 6.0 ; ; 6 # Nd       GARAY DIGIT SIX
 10E65         ; 6.0 ; ; 6 # No       RUMI DIGIT SIX
 11057         ; 6.0 ; ; 6 # No       BRAHMI NUMBER SIX
 1106C         ; 6.0 ; ; 6 # Nd       BRAHMI DIGIT SIX
@@ -1266,6 +1285,7 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 16A66         ; 6.0 ; ; 6 # Nd       MRO DIGIT SIX
 16AC6         ; 6.0 ; ; 6 # Nd       TANGSA DIGIT SIX
 16B56         ; 6.0 ; ; 6 # Nd       PAHAWH HMONG DIGIT SIX
+16D76         ; 6.0 ; ; 6 # Nd       KIRAT RAI DIGIT SIX
 16E86         ; 6.0 ; ; 6 # No       MEDEFAIDRIN DIGIT SIX
 1D2C6         ; 6.0 ; ; 6 # No       KAKTOVIK NUMERAL SIX
 1D2E6         ; 6.0 ; ; 6 # No       MAYAN NUMERAL SIX
@@ -1278,6 +1298,7 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 1E146         ; 6.0 ; ; 6 # Nd       NYIAKENG PUACHUE HMONG DIGIT SIX
 1E2F6         ; 6.0 ; ; 6 # Nd       WANCHO DIGIT SIX
 1E4F6         ; 6.0 ; ; 6 # Nd       NAG MUNDARI DIGIT SIX
+1E5F7         ; 6.0 ; ; 6 # Nd       OL ONAL DIGIT SIX
 1E8CC         ; 6.0 ; ; 6 # No       MENDE KIKAKUI DIGIT SIX
 1E956         ; 6.0 ; ; 6 # Nd       ADLAM DIGIT SIX
 1EC76         ; 6.0 ; ; 6 # No       INDIC SIYAQ NUMBER SIX
@@ -1288,7 +1309,7 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 1FBF6         ; 6.0 ; ; 6 # Nd       SEGMENTED DIGIT SIX
 20AEA         ; 6.0 ; ; 6 # Lo       CJK UNIFIED IDEOGRAPH-20AEA
 
-# Total code points: 120
+# Total code points: 123
 
 # ================================================
 
@@ -1362,6 +1383,7 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 104A7         ; 7.0 ; ; 7 # Nd       OSMANYA DIGIT SEVEN
 109C6         ; 7.0 ; ; 7 # No       MEROITIC CURSIVE NUMBER SEVEN
 10D37         ; 7.0 ; ; 7 # Nd       HANIFI ROHINGYA DIGIT SEVEN
+10D47         ; 7.0 ; ; 7 # Nd       GARAY DIGIT SEVEN
 10E66         ; 7.0 ; ; 7 # No       RUMI DIGIT SEVEN
 11058         ; 7.0 ; ; 7 # No       BRAHMI NUMBER SEVEN
 1106D         ; 7.0 ; ; 7 # Nd       BRAHMI DIGIT SEVEN
@@ -1395,6 +1417,7 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 16A67         ; 7.0 ; ; 7 # Nd       MRO DIGIT SEVEN
 16AC7         ; 7.0 ; ; 7 # Nd       TANGSA DIGIT SEVEN
 16B57         ; 7.0 ; ; 7 # Nd       PAHAWH HMONG DIGIT SEVEN
+16D77         ; 7.0 ; ; 7 # Nd       KIRAT RAI DIGIT SEVEN
 16E87         ; 7.0 ; ; 7 # No       MEDEFAIDRIN DIGIT SEVEN
 1D2C7         ; 7.0 ; ; 7 # No       KAKTOVIK NUMERAL SEVEN
 1D2E7         ; 7.0 ; ; 7 # No       MAYAN NUMERAL SEVEN
@@ -1407,6 +1430,7 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 1E147         ; 7.0 ; ; 7 # Nd       NYIAKENG PUACHUE HMONG DIGIT SEVEN
 1E2F7         ; 7.0 ; ; 7 # Nd       WANCHO DIGIT SEVEN
 1E4F7         ; 7.0 ; ; 7 # Nd       NAG MUNDARI DIGIT SEVEN
+1E5F8         ; 7.0 ; ; 7 # Nd       OL ONAL DIGIT SEVEN
 1E8CD         ; 7.0 ; ; 7 # No       MENDE KIKAKUI DIGIT SEVEN
 1E957         ; 7.0 ; ; 7 # Nd       ADLAM DIGIT SEVEN
 1EC77         ; 7.0 ; ; 7 # No       INDIC SIYAQ NUMBER SEVEN
@@ -1417,7 +1441,7 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 1FBF7         ; 7.0 ; ; 7 # Nd       SEGMENTED DIGIT SEVEN
 20001         ; 7.0 ; ; 7 # Lo       CJK UNIFIED IDEOGRAPH-20001
 
-# Total code points: 120
+# Total code points: 123
 
 # ================================================
 
@@ -1488,6 +1512,7 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 104A8         ; 8.0 ; ; 8 # Nd       OSMANYA DIGIT EIGHT
 109C7         ; 8.0 ; ; 8 # No       MEROITIC CURSIVE NUMBER EIGHT
 10D38         ; 8.0 ; ; 8 # Nd       HANIFI ROHINGYA DIGIT EIGHT
+10D48         ; 8.0 ; ; 8 # Nd       GARAY DIGIT EIGHT
 10E67         ; 8.0 ; ; 8 # No       RUMI DIGIT EIGHT
 11059         ; 8.0 ; ; 8 # No       BRAHMI NUMBER EIGHT
 1106E         ; 8.0 ; ; 8 # Nd       BRAHMI DIGIT EIGHT
@@ -1521,6 +1546,7 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 16A68         ; 8.0 ; ; 8 # Nd       MRO DIGIT EIGHT
 16AC8         ; 8.0 ; ; 8 # Nd       TANGSA DIGIT EIGHT
 16B58         ; 8.0 ; ; 8 # Nd       PAHAWH HMONG DIGIT EIGHT
+16D78         ; 8.0 ; ; 8 # Nd       KIRAT RAI DIGIT EIGHT
 16E88         ; 8.0 ; ; 8 # No       MEDEFAIDRIN DIGIT EIGHT
 1D2C8         ; 8.0 ; ; 8 # No       KAKTOVIK NUMERAL EIGHT
 1D2E8         ; 8.0 ; ; 8 # No       MAYAN NUMERAL EIGHT
@@ -1533,6 +1559,7 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 1E148         ; 8.0 ; ; 8 # Nd       NYIAKENG PUACHUE HMONG DIGIT EIGHT
 1E2F8         ; 8.0 ; ; 8 # Nd       WANCHO DIGIT EIGHT
 1E4F8         ; 8.0 ; ; 8 # Nd       NAG MUNDARI DIGIT EIGHT
+1E5F9         ; 8.0 ; ; 8 # Nd       OL ONAL DIGIT EIGHT
 1E8CE         ; 8.0 ; ; 8 # No       MENDE KIKAKUI DIGIT EIGHT
 1E958         ; 8.0 ; ; 8 # Nd       ADLAM DIGIT EIGHT
 1EC78         ; 8.0 ; ; 8 # No       INDIC SIYAQ NUMBER EIGHT
@@ -1542,7 +1569,7 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 1F109         ; 8.0 ; ; 8 # No       DIGIT EIGHT COMMA
 1FBF8         ; 8.0 ; ; 8 # Nd       SEGMENTED DIGIT EIGHT
 
-# Total code points: 115
+# Total code points: 118
 
 # ================================================
 
@@ -1616,6 +1643,7 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 104A9         ; 9.0 ; ; 9 # Nd       OSMANYA DIGIT NINE
 109C8         ; 9.0 ; ; 9 # No       MEROITIC CURSIVE NUMBER NINE
 10D39         ; 9.0 ; ; 9 # Nd       HANIFI ROHINGYA DIGIT NINE
+10D49         ; 9.0 ; ; 9 # Nd       GARAY DIGIT NINE
 10E68         ; 9.0 ; ; 9 # No       RUMI DIGIT NINE
 1105A         ; 9.0 ; ; 9 # No       BRAHMI NUMBER NINE
 1106F         ; 9.0 ; ; 9 # Nd       BRAHMI DIGIT NINE
@@ -1649,6 +1677,7 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 16A69         ; 9.0 ; ; 9 # Nd       MRO DIGIT NINE
 16AC9         ; 9.0 ; ; 9 # Nd       TANGSA DIGIT NINE
 16B59         ; 9.0 ; ; 9 # Nd       PAHAWH HMONG DIGIT NINE
+16D79         ; 9.0 ; ; 9 # Nd       KIRAT RAI DIGIT NINE
 16E89         ; 9.0 ; ; 9 # No       MEDEFAIDRIN DIGIT NINE
 1D2C9         ; 9.0 ; ; 9 # No       KAKTOVIK NUMERAL NINE
 1D2E9         ; 9.0 ; ; 9 # No       MAYAN NUMERAL NINE
@@ -1661,6 +1690,7 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 1E149         ; 9.0 ; ; 9 # Nd       NYIAKENG PUACHUE HMONG DIGIT NINE
 1E2F9         ; 9.0 ; ; 9 # Nd       WANCHO DIGIT NINE
 1E4F9         ; 9.0 ; ; 9 # Nd       NAG MUNDARI DIGIT NINE
+1E5FA         ; 9.0 ; ; 9 # Nd       OL ONAL DIGIT NINE
 1E8CF         ; 9.0 ; ; 9 # No       MENDE KIKAKUI DIGIT NINE
 1E959         ; 9.0 ; ; 9 # Nd       ADLAM DIGIT NINE
 1EC79         ; 9.0 ; ; 9 # No       INDIC SIYAQ NUMBER NINE
@@ -1671,7 +1701,7 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 1FBF9         ; 9.0 ; ; 9 # Nd       SEGMENTED DIGIT NINE
 2F890         ; 9.0 ; ; 9 # Lo       CJK COMPATIBILITY IDEOGRAPH-2F890
 
-# Total code points: 121
+# Total code points: 124
 
 # ================================================
 

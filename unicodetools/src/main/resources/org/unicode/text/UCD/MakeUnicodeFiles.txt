@@ -986,7 +986,7 @@ File:	IndicPositionalCategory
 # list of Indic scripts, including those which do not have
 # positional characters. Currently, those additional
 # Indic scripts without positional characters are
-# Multani, Phags-pa, and Tai Le.
+# Kirat Rai, Multani, Phags-pa, and Tai Le.
 #
 # Notes:
 #
@@ -1076,7 +1076,7 @@ File:	IndicSyllabicCategory
 # Ahom, Balinese, Batak, Bengali, Bhaiksuki, Brahmi, Buginese, Buhid,
 # Chakma, Cham, Devanagari, Dives Akuru, Dogra, Grantha, Gujarati,
 # Gunjala Gondi, Gurmukhi, Hanunoo, Javanese, Kaithi, Kannada, Kawi,
-# Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Lao, Lepcha, Limbu,
+# Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Kirat Rai, Lao, Lepcha, Limbu,
 # Mahajani, Makasar, Malayalam, Marchen, Masaram Gondi, Meetei Mayek,
 # Modi, Multani, Myanmar, Nandinagari, Newa, New Tai Lue, Oriya,
 # Phags-pa, Rejang, Saurashtra, Sharada, Siddham, Sinhala, Soyombo,

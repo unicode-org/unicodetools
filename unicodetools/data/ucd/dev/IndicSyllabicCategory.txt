@@ -1,5 +1,5 @@
 # IndicSyllabicCategory-16.0.0.txt
-# Date: 2023-10-02, 22:58:33 GMT
+# Date: 2023-11-02, 22:55:33 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -38,7 +38,7 @@
 # Ahom, Balinese, Batak, Bengali, Bhaiksuki, Brahmi, Buginese, Buhid,
 # Chakma, Cham, Devanagari, Dives Akuru, Dogra, Grantha, Gujarati,
 # Gunjala Gondi, Gurmukhi, Hanunoo, Javanese, Kaithi, Kannada, Kawi,
-# Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Lao, Lepcha, Limbu,
+# Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Kirat Rai, Lao, Lepcha, Limbu,
 # Mahajani, Makasar, Malayalam, Marchen, Masaram Gondi, Meetei Mayek,
 # Modi, Multani, Myanmar, Nandinagari, Newa, New Tai Lue, Oriya,
 # Phags-pa, Rejang, Saurashtra, Sharada, Siddham, Sinhala, Soyombo,
@@ -135,6 +135,7 @@ A980..A981    ; Bindu # Mn   [2] JAVANESE SIGN PANYANGGA..JAVANESE SIGN CECAK
 11D40         ; Bindu # Mn       MASARAM GONDI SIGN ANUSVARA
 11D95         ; Bindu # Mn       GUNJALA GONDI SIGN ANUSVARA
 11F00..11F01  ; Bindu # Mn   [2] KAWI SIGN CANDRABINDU..KAWI SIGN ANUSVARA
+16D40..16D41  ; Bindu # Lm   [2] KIRAT RAI SIGN ANUSVARA..KIRAT RAI SIGN TONPI
 
 # ================================================
 
@@ -182,6 +183,7 @@ AAF5          ; Visarga # Mc       MEETEI MAYEK VOWEL SIGN VISARGA
 11D41         ; Visarga # Mn       MASARAM GONDI SIGN VISARGA
 11D96         ; Visarga # Mc       GUNJALA GONDI SIGN VISARGA
 11F03         ; Visarga # Mc       KAWI SIGN VISARGA
+16D42         ; Visarga # Lm       KIRAT RAI SIGN VISARGA
 
 # ================================================
 
@@ -324,6 +326,7 @@ ABED          ; Pure_Killer # Mn       MEETEI MAYEK APUN IYEK
 11A34         ; Pure_Killer # Mn       ZANABAZAR SQUARE SIGN VIRAMA
 11D44         ; Pure_Killer # Mn       MASARAM GONDI SIGN HALANTA
 11F41         ; Pure_Killer # Mc       KAWI SIGN KILLER
+16D6B..16D6C  ; Pure_Killer # Lm   [2] KIRAT RAI SIGN VIRAMA..KIRAT RAI SIGN SAAT
 
 # ================================================
 
@@ -712,6 +715,7 @@ ABE9..ABEA    ; Vowel_Dependent # Mc   [2] MEETEI MAYEK VOWEL SIGN CHEINAP..MEET
 11F36..11F3A  ; Vowel_Dependent # Mn   [5] KAWI VOWEL SIGN I..KAWI VOWEL SIGN VOCALIC R
 11F3E..11F3F  ; Vowel_Dependent # Mc   [2] KAWI VOWEL SIGN E..KAWI VOWEL SIGN AI
 11F40         ; Vowel_Dependent # Mn       KAWI VOWEL SIGN EU
+16D63..16D6A  ; Vowel_Dependent # Lo   [8] KIRAT RAI VOWEL SIGN AA..KIRAT RAI VOWEL SIGN AU
 
 # ================================================
 
@@ -922,6 +926,7 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 11D6C..11D89  ; Consonant # Lo  [30] GUNJALA GONDI LETTER YA..GUNJALA GONDI LETTER SA
 11EE0..11EF1  ; Consonant # Lo  [18] MAKASAR LETTER KA..MAKASAR LETTER A
 11F12..11F33  ; Consonant # Lo  [34] KAWI LETTER KA..KAWI LETTER JNYA
+16D43..16D62  ; Consonant # Lo  [32] KIRAT RAI LETTER A..KIRAT RAI LETTER HA
 
 # ================================================
 
@@ -1046,7 +1051,9 @@ A9BD          ; Consonant_Medial # Mn       JAVANESE CONSONANT SIGN KERET
 A9BE..A9BF    ; Consonant_Medial # Mc   [2] JAVANESE CONSONANT SIGN PENGKAL..JAVANESE CONSONANT SIGN CAKRA
 AA33..AA34    ; Consonant_Medial # Mc   [2] CHAM CONSONANT SIGN YA..CHAM CONSONANT SIGN RA
 AA35..AA36    ; Consonant_Medial # Mn   [2] CHAM CONSONANT SIGN LA..CHAM CONSONANT SIGN WA
-1171D..1171F  ; Consonant_Medial # Mn   [3] AHOM CONSONANT SIGN MEDIAL LA..AHOM CONSONANT SIGN MEDIAL LIGATING RA
+1171D         ; Consonant_Medial # Mn       AHOM CONSONANT SIGN MEDIAL LA
+1171E         ; Consonant_Medial # Mc       AHOM CONSONANT SIGN MEDIAL RA
+1171F         ; Consonant_Medial # Mn       AHOM CONSONANT SIGN MEDIAL LIGATING RA
 11940         ; Consonant_Medial # Mc       DIVES AKURU MEDIAL YA
 11942         ; Consonant_Medial # Mc       DIVES AKURU MEDIAL RA
 11A3B..11A3E  ; Consonant_Medial # Mn   [4] ZANABAZAR SQUARE CLUSTER-FINAL LETTER YA..ZANABAZAR SQUARE CLUSTER-FINAL LETTER VA
@@ -1326,6 +1333,7 @@ ABF0..ABF9    ; Number # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NI
 11D50..11D59  ; Number # Nd  [10] MASARAM GONDI DIGIT ZERO..MASARAM GONDI DIGIT NINE
 11DA0..11DA9  ; Number # Nd  [10] GUNJALA GONDI DIGIT ZERO..GUNJALA GONDI DIGIT NINE
 11F50..11F59  ; Number # Nd  [10] KAWI DIGIT ZERO..KAWI DIGIT NINE
+16D70..16D79  ; Number # Nd  [10] KIRAT RAI DIGIT ZERO..KIRAT RAI DIGIT NINE
 
 # ================================================
 

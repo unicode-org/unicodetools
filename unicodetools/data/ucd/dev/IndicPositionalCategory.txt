@@ -1,5 +1,5 @@
 # IndicPositionalCategory-16.0.0.txt
-# Date: 2023-10-02, 22:58:33 GMT
+# Date: 2023-11-02, 22:55:33 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -83,7 +83,7 @@
 # list of Indic scripts, including those which do not have
 # positional characters. Currently, those additional
 # Indic scripts without positional characters are
-# Multani, Phags-pa, and Tai Le.
+# Kirat Rai, Multani, Phags-pa, and Tai Le.
 #
 # Notes:
 #
@@ -161,7 +161,6 @@
 0CF3          ; Right # Mc       KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT
 0D02..0D03    ; Right # Mc   [2] MALAYALAM SIGN ANUSVARA..MALAYALAM SIGN VISARGA
 0D3E..0D40    ; Right # Mc   [3] MALAYALAM VOWEL SIGN AA..MALAYALAM VOWEL SIGN II
-0D41..0D42    ; Right # Mn   [2] MALAYALAM VOWEL SIGN U..MALAYALAM VOWEL SIGN UU
 0D57          ; Right # Mc       MALAYALAM AU LENGTH MARK
 0D82..0D83    ; Right # Mc   [2] SINHALA SIGN ANUSVARAYA..SINHALA SIGN VISARGAYA
 0DCF..0DD1    ; Right # Mc   [3] SINHALA VOWEL SIGN AELA-PILLA..SINHALA VOWEL SIGN DIGA AEDA-PILLA
@@ -621,7 +620,7 @@ ABE5          ; Top # Mn       MEETEI MAYEK VOWEL SIGN ANAP
 0C62..0C63    ; Bottom # Mn   [2] TELUGU VOWEL SIGN VOCALIC L..TELUGU VOWEL SIGN VOCALIC LL
 0CBC          ; Bottom # Mn       KANNADA SIGN NUKTA
 0CE2..0CE3    ; Bottom # Mn   [2] KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
-0D43..0D44    ; Bottom # Mn   [2] MALAYALAM VOWEL SIGN VOCALIC R..MALAYALAM VOWEL SIGN VOCALIC RR
+0D41..0D44    ; Bottom # Mn   [4] MALAYALAM VOWEL SIGN U..MALAYALAM VOWEL SIGN VOCALIC RR
 0D62..0D63    ; Bottom # Mn   [2] MALAYALAM VOWEL SIGN VOCALIC L..MALAYALAM VOWEL SIGN VOCALIC LL
 0DD4          ; Bottom # Mn       SINHALA VOWEL SIGN KETTI PAA-PILLA
 0DD6          ; Bottom # Mn       SINHALA VOWEL SIGN DIGA PAA-PILLA
@@ -796,7 +795,7 @@ A9BF          ; Bottom_And_Left # Mc       JAVANESE CONSONANT SIGN CAKRA
 # Indic_Positional_Category=Top_And_Bottom_And_Left
 
 103C          ; Top_And_Bottom_And_Left # Mc       MYANMAR CONSONANT SIGN MEDIAL RA
-1171E         ; Top_And_Bottom_And_Left # Mn       AHOM CONSONANT SIGN MEDIAL RA
+1171E         ; Top_And_Bottom_And_Left # Mc       AHOM CONSONANT SIGN MEDIAL RA
 
 # Indic_Positional_Category=Overstruck
 
