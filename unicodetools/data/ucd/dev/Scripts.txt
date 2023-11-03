@@ -1,5 +1,5 @@
 # Scripts-16.0.0.txt
-# Date: 2023-11-02, 22:56:02 GMT
+# Date: 2023-11-03, 05:20:10 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -398,7 +398,7 @@
 3190..3191    ; Common # So   [2] IDEOGRAPHIC ANNOTATION LINKING MARK..IDEOGRAPHIC ANNOTATION REVERSE MARK
 3192..3195    ; Common # No   [4] IDEOGRAPHIC ANNOTATION ONE MARK..IDEOGRAPHIC ANNOTATION FOUR MARK
 3196..319F    ; Common # So  [10] IDEOGRAPHIC ANNOTATION TOP MARK..IDEOGRAPHIC ANNOTATION MAN MARK
-31C0..31E3    ; Common # So  [36] CJK STROKE T..CJK STROKE Q
+31C0..31E5    ; Common # So  [38] CJK STROKE T..CJK STROKE SZP
 31EF          ; Common # So       IDEOGRAPHIC DESCRIPTION CHARACTER SUBTRACTION
 3220..3229    ; Common # No  [10] PARENTHESIZED IDEOGRAPH ONE..PARENTHESIZED IDEOGRAPH TEN
 322A..3247    ; Common # So  [30] PARENTHESIZED IDEOGRAPH MOON..CIRCLED IDEOGRAPH KOTO
@@ -631,7 +631,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 E0001         ; Common # Cf       LANGUAGE TAG
 E0020..E007F  ; Common # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 8320
+# Total code points: 8322
 
 # ================================================
 

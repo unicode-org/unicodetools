@@ -535,6 +535,11 @@ Let $nonAlphabeticBindus = []
 Let $nonAlphabeticDependentVowels = [\N{ORIYA SIGN OVERLINE}\N{THAI CHARACTER MAITAIKHU}\N{LIMBU SIGN KEMPHRENG}\N{SHARADA VOWEL MODIFIER MARK}\N{SHARADA EXTRA SHORT VOWEL MARK}]
 [\p{InSC=Vowel_Dependent} - \p{Alphabetic}] = $nonAlphabeticDependentVowels
 
+# Combining letters are often alphabetic (medievalist abbreviations).
+# The others are diacritic (cantillation marks, phonetics).
+# See 177-CXX.
+\p{name=/COMBINING .* LETTER/} ⊆ [\p{Alphabetic}\p{Diacritic}]
+
 ##########################
 # LineBreak property
 ##########################
