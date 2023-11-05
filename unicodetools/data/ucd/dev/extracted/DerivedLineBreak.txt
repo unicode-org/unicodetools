@@ -1,5 +1,5 @@
 # DerivedLineBreak-16.0.0.txt
-# Date: 2023-11-05, 18:24:36 GMT
+# Date: 2023-11-05, 18:33:01 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1752,6 +1752,7 @@ FFE3          ; ID # Sk       FULLWIDTH MACRON
 FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 11049..1104D  ; ID # Po   [5] BRAHMI PUNCTUATION DOT..BRAHMI PUNCTUATION LOTUS
 11052..11065  ; ID # No  [20] BRAHMI NUMBER ONE..BRAHMI NUMBER ONE THOUSAND
+113D3         ; ID # Lo       TULU-TIGALARI SIGN PLUTA
 11F45..11F4F  ; ID # Po  [11] KAWI PUNCTUATION SECTION MARKER..KAWI PUNCTUATION CLOSING SPIRAL
 17000..187F7  ; ID # Lo [6136] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F7
 18800..18AFF  ; ID # Lo [768] TANGUT COMPONENT-001..TANGUT COMPONENT-768
@@ -1847,7 +1848,7 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 31350..323AF  ; ID # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
 # The above property value applies to 61865 code points not listed here.
-# Total code points: 172422
+# Total code points: 172423
 
 # ================================================
 
@@ -2489,7 +2490,6 @@ ABEB          ; BA # Po       MEETEI MAYEK CHEIKHEI
 112A9         ; BA # Po       MULTANI SECTION MARK
 1133D         ; BA # Lo       GRANTHA SIGN AVAGRAHA
 1135D         ; BA # Lo       GRANTHA SIGN PLUTA
-113D3         ; BA # Lo       TULU-TIGALARI SIGN PLUTA
 1144B..1144E  ; BA # Po   [4] NEWA DANDA..NEWA GAP FILLER
 1145A..1145B  ; BA # Po   [2] NEWA DOUBLE COMMA..NEWA PLACEHOLDER MARK
 115C2..115C3  ; BA # Po   [2] SIDDHAM DANDA..SIDDHAM DOUBLE DANDA
@@ -2515,7 +2515,7 @@ ABEB          ; BA # Po       MEETEI MAYEK CHEIKHEI
 1BC9F         ; BA # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA87..1DA8A  ; BA # Po   [4] SIGNWRITING COMMA..SIGNWRITING COLON
 
-# Total code points: 270
+# Total code points: 269
 
 # ================================================
 
