@@ -1,5 +1,5 @@
-# PropertyValueAliases-15.1.0.txt
-# Date: 2023-05-10, 16:59:10 GMT
+# PropertyValueAliases-16.0.0.txt
+# Date: 2023-10-17, 12:29:15 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -92,6 +92,7 @@ age; 13.0                             ; V13_0
 age; 14.0                             ; V14_0
 age; 15.0                             ; V15_0
 age; 15.1                             ; V15_1
+age; 16.0                             ; V16_0
 age; NA                               ; Unassigned
 
 # Alphabetic (Alpha)
@@ -367,6 +368,7 @@ blk; Music                            ; Musical_Symbols
 blk; Myanmar                          ; Myanmar
 blk; Myanmar_Ext_A                    ; Myanmar_Extended_A
 blk; Myanmar_Ext_B                    ; Myanmar_Extended_B
+blk; Myanmar_Ext_C                    ; Myanmar_Extended_C
 blk; Nabataean                        ; Nabataean
 blk; Nag_Mundari                      ; Nag_Mundari
 blk; Nandinagari                      ; Nandinagari
@@ -425,6 +427,7 @@ blk; Soyombo                          ; Soyombo
 blk; Specials                         ; Specials
 blk; Sundanese                        ; Sundanese
 blk; Sundanese_Sup                    ; Sundanese_Supplement
+blk; Sunuwar                          ; Sunuwar
 blk; Sup_Arrows_A                     ; Supplemental_Arrows_A
 blk; Sup_Arrows_B                     ; Supplemental_Arrows_B
 blk; Sup_Arrows_C                     ; Supplemental_Arrows_C
@@ -460,6 +463,7 @@ blk; Thai                             ; Thai
 blk; Tibetan                          ; Tibetan
 blk; Tifinagh                         ; Tifinagh
 blk; Tirhuta                          ; Tirhuta
+blk; Todhri                           ; Todhri
 blk; Toto                             ; Toto
 blk; Transport_And_Map                ; Transport_And_Map_Symbols
 blk; UCAS                             ; Unified_Canadian_Aboriginal_Syllabics; Canadian_Syllabics
@@ -852,6 +856,13 @@ IDS; Y                                ; Yes                              ; T    
 
 Ideo; N                               ; No                               ; F                                ; False
 Ideo; Y                               ; Yes                              ; T                                ; True
+
+# Indic_Conjunct_Break (InCB)
+
+InCB; Consonant                       ; Consonant
+InCB; Extend                          ; Extend
+InCB; Linker                          ; Linker
+InCB; None                            ; None
 
 # Indic_Positional_Category (InPC)
 
@@ -1416,6 +1427,7 @@ sc ; Sogo                             ; Old_Sogdian
 sc ; Sora                             ; Sora_Sompeng
 sc ; Soyo                             ; Soyombo
 sc ; Sund                             ; Sundanese
+sc ; Sunu                             ; Sunuwar
 sc ; Sylo                             ; Syloti_Nagri
 sc ; Syrc                             ; Syriac
 sc ; Tagb                             ; Tagbanwa
@@ -1433,6 +1445,7 @@ sc ; Thai                             ; Thai
 sc ; Tibt                             ; Tibetan
 sc ; Tirh                             ; Tirhuta
 sc ; Tnsa                             ; Tangsa
+sc ; Todr                             ; Todhri
 sc ; Toto                             ; Toto
 sc ; Ugar                             ; Ugaritic
 sc ; Vaii                             ; Vai

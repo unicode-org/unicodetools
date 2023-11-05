@@ -106,6 +106,7 @@ Ethiopic_Ext_A	;	Ethiopic_Extended_A
 Ethiopic_Ext_B	;	Ethiopic_Extended_B
 Ethiopic_Sup	;	Ethiopic_Supplement
 Punctuation	;	General_Punctuation
+Garay	;	Garay
 Geometric_Shapes	;	Geometric_Shapes
 Geometric_Shapes_Ext	;	Geometric_Shapes_Extended
 Georgian	;	Georgian
@@ -159,6 +160,7 @@ Khmer	;	Khmer
 Khmer_Symbols	;	Khmer_Symbols
 Khojki	;	Khojki
 Khudawadi	;	Khudawadi
+Kirat_Rai	;	Kirat_Rai
 Lao	;	Lao
 Latin_1_Sup	;	Latin_1_Supplement
 Latin_Ext_A	;	Latin_Extended_A
@@ -214,6 +216,7 @@ Music	;	Musical_Symbols
 Myanmar	;	Myanmar
 Myanmar_Ext_A	;	Myanmar_Extended_A
 Myanmar_Ext_B	;	Myanmar_Extended_B
+Myanmar_Ext_C	;	Myanmar_Extended_C
 Nabataean	;	Nabataean
 Nag_Mundari	;	Nag_Mundari
 Nandinagari	;	Nandinagari
@@ -226,6 +229,7 @@ Nushu	;	Nushu
 Nyiakeng_Puachue_Hmong	;	Nyiakeng_Puachue_Hmong
 Ogham	;	Ogham
 Ol_Chiki	;	Ol_Chiki
+Ol_Onal	;	Ol_Onal
 Old_Italic	;	Old_Italic
 Old_Hungarian	;	Old_Hungarian
 Old_North_Arabian	;	Old_North_Arabian
@@ -272,6 +276,7 @@ Soyombo	;	Soyombo
 Specials	;	Specials
 Sundanese	;	Sundanese
 Sundanese_Sup	;	Sundanese_Supplement
+Sunuwar	;	Sunuwar
 Super_And_Sub	;	Superscripts_And_Subscripts
 Sup_Arrows_A	;	Supplemental_Arrows_A
 Sup_Arrows_B	;	Supplemental_Arrows_B
@@ -285,6 +290,7 @@ Sutton_SignWriting	;	Sutton_SignWriting
 Syloti_Nagri	;	Syloti_Nagri
 Symbols_And_Pictographs_Ext_A	;	Symbols_And_Pictographs_Extended_A
 Symbols_For_Legacy_Computing	;	Symbols_For_Legacy_Computing
+Symbols_For_Legacy_Computing_Sup	;	Symbols_For_Legacy_Computing_Supplement
 Syriac	;	Syriac
 Syriac_Sup	;	Syriac_Supplement
 Tagalog	;	Tagalog
@@ -307,6 +313,7 @@ Thai	;	Thai
 Tibetan	;	Tibetan
 Tifinagh	;	Tifinagh
 Tirhuta	;	Tirhuta
+Todhri	;	Todhri
 Toto    ;   Toto
 Tulu_Tigalari   ;   Tulu_Tigalari
 Transport_And_Map	;	Transport_And_Map_Symbols
