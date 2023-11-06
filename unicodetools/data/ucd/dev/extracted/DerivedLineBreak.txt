@@ -1,5 +1,5 @@
 # DerivedLineBreak-16.0.0.txt
-# Date: 2023-11-06, 03:48:56 GMT
+# Date: 2023-11-06, 03:51:48 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -69,8 +69,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 761720 code points not listed here.
-# Total code points: 899188
+# The above property value applies to 761788 code points not listed here.
+# Total code points: 899256
 
 # ================================================
 
@@ -1819,9 +1819,6 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 1F7D5..1F7D9  ; ID # So   [5] CIRCLED TRIANGLE..NINE POINTED WHITE STAR
 1F7E0..1F7EB  ; ID # So  [12] LARGE ORANGE CIRCLE..LARGE BROWN SQUARE
 1F7F0         ; ID # So       HEAVY EQUALS SIGN
-1F8AE..1F8AF  ; ID # Cn   [2] <reserved-1F8AE>..<reserved-1F8AF>
-1F8BC..1F8BF  ; ID # Cn   [4] <reserved-1F8BC>..<reserved-1F8BF>
-1F8C2..1F8FF  ; ID # Cn  [62] <reserved-1F8C2>..<reserved-1F8FF>
 1F90D..1F90E  ; ID # So   [2] WHITE HEART..BROWN HEART
 1F910..1F917  ; ID # So   [8] ZIPPER-MOUTH FACE..HUGGING FACE
 1F920..1F925  ; ID # So   [6] FACE WITH COWBOY HAT..LYING FACE
@@ -1852,7 +1849,7 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 31350..323AF  ; ID # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
 # The above property value applies to 61865 code points not listed here.
-# Total code points: 172490
+# Total code points: 172422
 
 # ================================================
 
