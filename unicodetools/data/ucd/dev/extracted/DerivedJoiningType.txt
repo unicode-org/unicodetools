@@ -1,5 +1,5 @@
 # DerivedJoiningType-16.0.0.txt
-# Date: 2023-10-24, 21:03:40 GMT
+# Date: 2023-11-02, 22:55:27 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -491,7 +491,8 @@ FFF9..FFFB    ; T # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANNOTATI
 116AD         ; T # Mn       TAKRI VOWEL SIGN AA
 116B0..116B5  ; T # Mn   [6] TAKRI VOWEL SIGN U..TAKRI VOWEL SIGN AU
 116B7         ; T # Mn       TAKRI SIGN NUKTA
-1171D..1171F  ; T # Mn   [3] AHOM CONSONANT SIGN MEDIAL LA..AHOM CONSONANT SIGN MEDIAL LIGATING RA
+1171D         ; T # Mn       AHOM CONSONANT SIGN MEDIAL LA
+1171F         ; T # Mn       AHOM CONSONANT SIGN MEDIAL LIGATING RA
 11722..11725  ; T # Mn   [4] AHOM VOWEL SIGN I..AHOM VOWEL SIGN UU
 11727..1172B  ; T # Mn   [5] AHOM VOWEL SIGN AW..AHOM SIGN KILLER
 1182F..11837  ; T # Mn   [9] DOGRA VOWEL SIGN U..DOGRA SIGN ANUSVARA
@@ -572,6 +573,6 @@ E0001         ; T # Cf       LANGUAGE TAG
 E0020..E007F  ; T # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; T # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2159
+# Total code points: 2158
 
 # EOF
