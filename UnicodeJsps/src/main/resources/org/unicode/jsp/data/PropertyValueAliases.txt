@@ -1,6 +1,6 @@
-# PropertyValueAliases-15.0.0.txt
-# Date: 2022-08-05, 23:42:17 GMT
-# © 2022 Unicode®, Inc.
+# PropertyValueAliases-16.0.0.txt
+# Date: 2023-10-17, 12:29:15 GMT
+# © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -91,6 +91,8 @@ age; 12.1                             ; V12_1
 age; 13.0                             ; V13_0
 age; 14.0                             ; V14_0
 age; 15.0                             ; V15_0
+age; 15.1                             ; V15_1
+age; 16.0                             ; V16_0
 age; NA                               ; Unassigned
 
 # Alphabetic (Alpha)
@@ -208,6 +210,7 @@ blk; CJK_Ext_E                        ; CJK_Unified_Ideographs_Extension_E
 blk; CJK_Ext_F                        ; CJK_Unified_Ideographs_Extension_F
 blk; CJK_Ext_G                        ; CJK_Unified_Ideographs_Extension_G
 blk; CJK_Ext_H                        ; CJK_Unified_Ideographs_Extension_H
+blk; CJK_Ext_I                        ; CJK_Unified_Ideographs_Extension_I
 blk; CJK_Radicals_Sup                 ; CJK_Radicals_Supplement
 blk; CJK_Strokes                      ; CJK_Strokes
 blk; CJK_Symbols                      ; CJK_Symbols_And_Punctuation
@@ -365,6 +368,7 @@ blk; Music                            ; Musical_Symbols
 blk; Myanmar                          ; Myanmar
 blk; Myanmar_Ext_A                    ; Myanmar_Extended_A
 blk; Myanmar_Ext_B                    ; Myanmar_Extended_B
+blk; Myanmar_Ext_C                    ; Myanmar_Extended_C
 blk; Nabataean                        ; Nabataean
 blk; Nag_Mundari                      ; Nag_Mundari
 blk; Nandinagari                      ; Nandinagari
@@ -423,6 +427,7 @@ blk; Soyombo                          ; Soyombo
 blk; Specials                         ; Specials
 blk; Sundanese                        ; Sundanese
 blk; Sundanese_Sup                    ; Sundanese_Supplement
+blk; Sunuwar                          ; Sunuwar
 blk; Sup_Arrows_A                     ; Supplemental_Arrows_A
 blk; Sup_Arrows_B                     ; Supplemental_Arrows_B
 blk; Sup_Arrows_C                     ; Supplemental_Arrows_C
@@ -458,6 +463,7 @@ blk; Thai                             ; Thai
 blk; Tibetan                          ; Tibetan
 blk; Tifinagh                         ; Tifinagh
 blk; Tirhuta                          ; Tirhuta
+blk; Todhri                           ; Todhri
 blk; Toto                             ; Toto
 blk; Transport_And_Map                ; Transport_And_Map_Symbols
 blk; UCAS                             ; Unified_Canadian_Aboriginal_Syllabics; Canadian_Syllabics
@@ -817,6 +823,21 @@ IDSB; Y                               ; Yes                              ; T    
 IDST; N                               ; No                               ; F                                ; False
 IDST; Y                               ; Yes                              ; T                                ; True
 
+# IDS_Unary_Operator (IDSU)
+
+IDSU; N                               ; No                               ; F                                ; False
+IDSU; Y                               ; Yes                              ; T                                ; True
+
+# ID_Compat_Math_Continue (ID_Compat_Math_Continue)
+
+ID_Compat_Math_Continue; N            ; No                               ; F                                ; False
+ID_Compat_Math_Continue; Y            ; Yes                              ; T                                ; True
+
+# ID_Compat_Math_Start (ID_Compat_Math_Start)
+
+ID_Compat_Math_Start; N               ; No                               ; F                                ; False
+ID_Compat_Math_Start; Y               ; Yes                              ; T                                ; True
+
 # ID_Continue (IDC)
 
 IDC; N                                ; No                               ; F                                ; False
@@ -835,6 +856,13 @@ IDS; Y                                ; Yes                              ; T    
 
 Ideo; N                               ; No                               ; F                                ; False
 Ideo; Y                               ; Yes                              ; T                                ; True
+
+# Indic_Conjunct_Break (InCB)
+
+InCB; Consonant                       ; Consonant
+InCB; Extend                          ; Extend
+InCB; Linker                          ; Linker
+InCB; None                            ; None
 
 # Indic_Positional_Category (InPC)
 
@@ -1074,7 +1102,10 @@ jt ; U                                ; Non_Joining
 # Line_Break (lb)
 
 lb ; AI                               ; Ambiguous
+lb ; AK                               ; Aksara
 lb ; AL                               ; Alphabetic
+lb ; AP                               ; Aksara_Prebase
+lb ; AS                               ; Aksara_Start
 lb ; B2                               ; Break_Both
 lb ; BA                               ; Break_After
 lb ; BB                               ; Break_Before
@@ -1112,6 +1143,8 @@ lb ; SA                               ; Complex_Context
 lb ; SG                               ; Surrogate
 lb ; SP                               ; Space
 lb ; SY                               ; Break_Symbols
+lb ; VF                               ; Virama_Final
+lb ; VI                               ; Virama
 lb ; WJ                               ; Word_Joiner
 lb ; XX                               ; Unknown
 lb ; ZW                               ; ZWSpace
@@ -1155,6 +1188,9 @@ NFD_QC; Y                             ; Yes
 NFKC_QC; M                            ; Maybe
 NFKC_QC; N                            ; No
 NFKC_QC; Y                            ; Yes
+
+# NFKC_Simple_Casefold (NFKC_SCF)
+
 
 # NFKD_Quick_Check (NFKD_QC)
 
@@ -1391,6 +1427,7 @@ sc ; Sogo                             ; Old_Sogdian
 sc ; Sora                             ; Sora_Sompeng
 sc ; Soyo                             ; Soyombo
 sc ; Sund                             ; Sundanese
+sc ; Sunu                             ; Sunuwar
 sc ; Sylo                             ; Syloti_Nagri
 sc ; Syrc                             ; Syriac
 sc ; Tagb                             ; Tagbanwa
@@ -1408,6 +1445,7 @@ sc ; Thai                             ; Thai
 sc ; Tibt                             ; Tibetan
 sc ; Tirh                             ; Tirhuta
 sc ; Tnsa                             ; Tangsa
+sc ; Todr                             ; Todhri
 sc ; Toto                             ; Toto
 sc ; Ugar                             ; Ugaritic
 sc ; Vaii                             ; Vai

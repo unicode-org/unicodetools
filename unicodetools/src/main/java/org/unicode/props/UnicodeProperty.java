@@ -316,7 +316,11 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
     public final String getFirstValueAlias(String value) {
         if (valueToFirstValueAlias == null) _getFirstValueAliasCache();
-        return valueToFirstValueAlias.get(value).toString();
+        String result = valueToFirstValueAlias.get(value);
+        if (result == null) {
+            throw new IllegalArgumentException(value + " is not a value alias for " + name);
+        }
+        return result;
     }
 
     private void _getFirstValueAliasCache() {

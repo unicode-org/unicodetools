@@ -9,8 +9,8 @@ on:
     - '*'
 
 env:
-  CURRENT_UVERSION: 15.1.0
-  PREVIOUS_UVERSION: 15.0.0
+  CURRENT_UVERSION: 16.0.0
+  PREVIOUS_UVERSION: 15.1.0
 
 jobs:
 
@@ -81,8 +81,14 @@ jobs:
         run: |
           mkdir -p Generated/BIN
 
-      - name: Run command - Build and Test
-        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+      # Since these are just examples to smoke-test the in-source build process,
+      # let’s not run the whole build and test suite, which is quite slow (6 min
+      # 26 s as of this writing).  Just run the invariant tests and smoke-test
+      # MakeUnicodeFiles.  We don’t even check that MakeUnicodeFiles doesn’t
+      # change anything, which makes little sense; but that is the job of the
+      # other job.
+      - name: Run invariant tests
+        run: MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestTestUnicodeInvariants -DfailIfNoTests=false -DCLDR_DIR=$(cd ../cldr ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd Generated; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -91,8 +97,177 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  out-of-source-build:
-    name: Out-of-source Instructions
+
+  # Out-of-source build.
+  ucd-and-smoke-tests:
+    name: Check UCD consistency, invariants, smoke-test generators
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Unicode Tools
+        uses: actions/checkout@v3
+        with:
+          path: unicodetools/mine/src
+      - name: Get the CLDR_REF from pom.xml
+        id: cldr_ref
+        run: echo "CLDR_REF="$(mvn --file unicodetools/mine/src/pom.xml help:evaluate -Dexpression=cldr.version -q -DforceStdout | cut -d- -f3) >> $GITHUB_OUTPUT && cat ${GITHUB_OUTPUT}
+      - name: Verify CLDR checkout ref
+        run: echo CLDR_REF="${{ steps.cldr_ref.outputs.CLDR_REF }}" && [ "${{ steps.cldr_ref.outputs.CLDR_REF }}x" != "x" ] # fail if empty
+      - name: Cache CLDR repository
+        uses: actions/cache@v3
+        with:
+          path: cldr/mine/src
+          key: cldr-${{ steps.cldr_ref.outputs.CLDR_REF }}
+          restore-keys: |
+            cldr
+      - name: Check out CLDR
+        uses: actions/checkout@v3
+        with:
+          repository: unicode-org/cldr
+          path: cldr/mine/src
+          ref: main
+          fetch-depth: 0
+      - name: Switch CLDR to CLDR_REF
+        run: cd cldr/mine/src && git fetch && git checkout ${{ steps.cldr_ref.outputs.CLDR_REF }}
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Set up out-of-source output dir
+        run: |
+          mkdir -p unicodetools/mine/Generated/BIN
+
+      - name: Run command - Make Unicode Files
+        run: |
+          cd unicodetools/mine/src
+          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version $CURRENT_UVERSION build MakeUnicodeFiles" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check that UCD files are consistent
+        run: |
+          cd unicodetools/mine/src
+          ./py/copygenerateducd.py --out-of-source -y
+          git diff --compact-summary --exit-code || {
+            git diff --compact-summary |
+              awk '{
+                if (previous) {
+                  print "::error file="previous",title=File must be regenerated::Run org.unicode.text.UCD.Main build MakeUnicodeFiles and copy any changed files to unicodetools/data/ucd/dev."
+                }
+                previous=$1
+              }'
+            exit 1
+          }
+
+      # Only test once we know the UCD is internally consistent.
+      # MakeUnicodeFiles is much faster than this anyway.
+      - name: Run command - Build and Test
+        run: |
+          cd unicodetools/mine/src
+          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload UnicodeTestResults artifact
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: unicode-test-results
+          path: |
+            unicodetools/mine/Generated/UnicodeTestResults.*
+
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/emoji/aac.md#aacorderjava
+      - name: Run command - AAC Order
+        run: |
+          cd unicodetools/mine/src
+          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.tools.AacOrder"  -Dexec.args="version $CURRENT_UVERSION build MakeUnicodeFiles" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/idna.md
+      - name: Run command - IDNA
+        run: |
+          cd unicodetools/mine/src
+          # Confirm that the directory for the bin files exists
+          compgen -G "../Generated/BIN"
+          # "Delete all the bin files" as per instructions
+          rm -rf ../Generated/BIN/*
+          # run GenerateIdna
+          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.idna.GenerateIdna"  -Dexec.args="" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/idna.md
+      - name: Run command - Generate IDNA Test
+        run: |
+          cd unicodetools/mine/src
+          # run GenerateIdnaTest
+          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.idna.GenerateIdnaTest"  -Dexec.args="" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/newunicodeproperties.md#run-generateenumsjava
+      - name: Run command - Generate Enums Test
+        run: |
+          cd unicodetools/mine/src
+          # run GenerateEnums
+          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.props.GenerateEnums"  -Dexec.args="" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+          # apply formatting because generated file will not pass Java formatter
+          mvn spotless:apply '-DspotlessFiles=.*[\\/]org[\\/]unicode[\\/]props[\\/]UcdProperty(Values)?.java'
+          # Fail if we haven't committed changes from Generate Enums.
+          echo "Check if GenerateEnums output has been committed to repo"
+          echo "git diff --compact-summary"
+          if git diff --compact-summary --exit-code; then
+            echo "Success: Any output from GenerateEnums has already been committed."
+            exit 0
+          else
+            echo "Failure: GenerateEnums has changes that need to be committed."
+            exit 1
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/security.md#generating
+      - name: Run command - Generate Confusables
+        run: |
+          cd unicodetools/mine/src
+          # run GenerateConfusables
+          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCD.GenerateConfusables"  -Dexec.args="-c -b" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+          # run Build & Test command again to rerun TestSecurity test to verify output is okay
+          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestSecurity -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION -DfailIfNoTests=false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/unihan.md#run-generateunihancollators
+      - name: Run command - Generate Unihan Collators
+        run: |
+          cd unicodetools/mine/src
+          # run GenerateUnihanCollators
+          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.draft.GenerateUnihanCollators"  -Dexec.args="" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # https://github.com/unicode-org/unicodetools/blob/main/docs/newunicodeproperties.md#checking-other-properties
+      - name: Run command - Checking Other Properties
+        run: |
+          cd unicodetools/mine/src
+          # run CheckProperties
+          # Note: the test-compile phase/target needs to precede `compile exec:java` because
+          # the source code is in src/test/java, not src/main/java, and we need the
+          # code to compile before it is executed.
+          mvn -s .github/workflows/mvn-settings.xml -Dexec.mainClass="org.unicode.propstest.CheckProperties" -Dexec.classpathScope=test test-compile  -Dexec.args="COMPARE ALL $PREVIOUS_UVERSION" compile exec:java -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Out-of-source build.
+  uca:
+    name: Check UCA data
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Unicode Tools
@@ -136,36 +311,6 @@ jobs:
         run: |
           mkdir -p unicodetools/mine/Generated/BIN
 
-      - name: Run command - Build and Test
-        run: |
-          cd unicodetools/mine/src
-          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml package -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload UnicodeTestResults artifact
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: unicode-test-results
-          path: |
-            unicodetools/mine/Generated/UnicodeTestResults.*
-
-      - name: Run command - Make Unicode Files
-        run: |
-          cd unicodetools/mine/src
-          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCD.Main"  -Dexec.args="version $CURRENT_UVERSION build MakeUnicodeFiles" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # https://github.com/unicode-org/unicodetools/blob/main/docs/emoji/aac.md#aacorderjava
-      - name: Run command - AAC Order
-        run: |
-          cd unicodetools/mine/src
-          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.tools.AacOrder"  -Dexec.args="version $CURRENT_UVERSION build MakeUnicodeFiles" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       # https://github.com/unicode-org/unicodetools/blob/main/docs/uca/index.md#tools--tests
       # Note: Not running desuffixucd.py in UCA jobs because no version numbers detected in data file names
       - name: Run command - UCA - collation validity log
@@ -175,97 +320,5 @@ jobs:
           mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCA.Main"  -Dexec.args="writeCollationValidityLog ICU" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
           # check for output file
           compgen -G "../Generated/UCA/*/CheckCollationValidity.html"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # https://github.com/unicode-org/unicodetools/blob/main/docs/idna.md
-      - name: Run command - IDNA
-        run: |
-          cd unicodetools/mine/src
-          # Confirm that the directory for the bin files exists
-          compgen -G "../Generated/BIN"
-          # "Delete all the bin files" as per instructions
-          rm -rf ../Generated/BIN/*
-          # run GenerateIdna
-          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.idna.GenerateIdna"  -Dexec.args="" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # https://github.com/unicode-org/unicodetools/blob/main/docs/idna.md
-      - name: Run command - Generate IDNA Test
-        run: |
-          cd unicodetools/mine/src
-          # run GenerateIdnaTest
-          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.idna.GenerateIdnaTest"  -Dexec.args="" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # https://github.com/unicode-org/unicodetools/blob/main/docs/newunicodeproperties.md#run-generateenumsjava
-      - name: Run command - Generate Enums Test
-        run: |
-          cd unicodetools/mine/src
-          # run GenerateEnums
-          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.props.GenerateEnums"  -Dexec.args="" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
-          # apply formatting because generated file will not pass Java formatter
-          mvn spotless:apply
-          # TODO(#100) Get rid of need for fake version 13.1 of Unicode enum val
-          # Fail if we haven't committed changes from Generate Enums, but make exception for fake Unicode version hack (#100)
-          echo "Check if GenerateEnums output has been committed to repo"
-          echo "git diff --compact-summary"
-          if git diff --compact-summary --exit-code; then
-            echo "Success: Any output from GenerateEnums has already been committed."
-            exit 0
-          else
-            echo "git diff --name-status | awk '{print $2;}'"
-            names=`git diff --name-status | awk '{print $2;}'`
-            if [[ "$names" == "unicodetools/src/main/java/org/unicode/props/UcdPropertyValues.java" ]]; then
-              gitdiffstat=`git diff --stat | tail -n 1`
-              if [[ "$gitdiffstat" = " 1 file changed, 1 insertion(+), 2 deletions(-)" ]]; then
-                git diff | grep 'V13_1("13.1")'
-                if [ $? -eq 0 ]; then
-                  echo "Inferred: Only non-committed change after GenerateEnums is temporary V13_1 hack (issue #100)"
-                  echo "Check passed."
-                  exit 0
-                fi
-              fi
-            fi
-            echo "Failure: GenerateEnums has changes that need to be committed."
-            exit 1
-          fi
-          # TODO(#100): Note: when running locally on a clean checkout, this command
-          # leaves a change in UcdPropertyValues.java by not preserving the comment
-          # about the fake Unicode version 13.1.
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # https://github.com/unicode-org/unicodetools/blob/main/docs/security.md#generating
-      - name: Run command - Generate Confusables
-        run: |
-          cd unicodetools/mine/src
-          # run GenerateConfusables
-          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.text.UCD.GenerateConfusables"  -Dexec.args="-c -b" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
-          # run Build & Test command again to rerun TestSecurity test to verify output is okay
-          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestSecurity -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION -DfailIfNoTests=false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # https://github.com/unicode-org/unicodetools/blob/main/docs/unihan.md#run-generateunihancollators
-      - name: Run command - Generate Unihan Collators
-        run: |
-          cd unicodetools/mine/src
-          # run GenerateUnihanCollators
-          mvn -s .github/workflows/mvn-settings.xml compile exec:java -Dexec.mainClass="org.unicode.draft.GenerateUnihanCollators"  -Dexec.args="" -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # https://github.com/unicode-org/unicodetools/blob/main/docs/newunicodeproperties.md#checking-other-properties
-      - name: Run command - Checking Other Properties
-        run: |
-          cd unicodetools/mine/src
-          # run CheckProperties
-          # Note: the test-compile phase/target needs to precede `compile exec:java` because
-          # the source code is in src/test/java, not src/main/java, and we need the
-          # code to compile before it is executed.
-          mvn -s .github/workflows/mvn-settings.xml -Dexec.mainClass="org.unicode.propstest.CheckProperties" -Dexec.classpathScope=test test-compile  -Dexec.args="COMPARE ALL $PREVIOUS_UVERSION" compile exec:java -am -pl unicodetools  -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DUVERSION=$CURRENT_UVERSION
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

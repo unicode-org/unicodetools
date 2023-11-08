@@ -1396,27 +1396,24 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             sampleEmoji + zwj + sampleEmoji,
                             "a" + zwj + sampleEmoji,
                             sampleEXP + zwj + sampleEXP,
-                            "a" + zwj + sampleEXP
+                            "a" + zwj + sampleEXP,
 
                             // zwj + GCB.get("EBG") + GCB.get("E_Modifier"),
                             // zwj + GCB.get("Glue_After_Zwj"),
                             // zwj + GCB.get("EBG"),
                             // GCB.get("EBG") + GCB.get("EBG")
-                            ));
-            if (seg.target == Segmenter.Target.FOR_CLDR) {
-                this.extraSingleSamples.addAll(
-                        Arrays.asList(
-                                "क" + "त",
-                                "क" + "\u094D" + "त",
-                                "क" + "\u094D" + "\u094D" + "त",
-                                "क" + "\u094D" + zwj + "त",
-                                "क" + "\u093C" + zwj + "\u094D" + "त",
-                                "क" + "\u093C" + "\u094D" + zwj + "त",
-                                "क" + "\u094D" + "त" + '\u094D' + "य",
-                                "क" + "\u094D" + "a",
-                                "a" + "\u094D" + "त",
-                                "?" + "\u094D" + "त"));
-            }
+
+                            "क" + "त",
+                            "क" + "\u094D" + "त",
+                            "क" + "\u094D" + "\u094D" + "त",
+                            "क" + "\u094D" + zwj + "त",
+                            "क" + "\u093C" + zwj + "\u094D" + "त",
+                            "क" + "\u093C" + "\u094D" + zwj + "त",
+                            "क" + "\u094D" + "त" + '\u094D' + "य",
+                            "क" + "\u094D" + "a",
+                            "a" + "\u094D" + "त",
+                            "?" + "\u094D" + "त",
+                            "क" + "\u094D\u094D" + "त"));
         }
     }
 
@@ -1685,6 +1682,47 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         "\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDF8\uD83C\uDDEA",
                         "\uD83C\uDDF7\uD83C\uDDFA\u200B\uD83C\uDDF8\uD83C\uDDEA",
                         "\u05D0-\u05D0",
+                        // Examples from L2/22-080R2, pp. 10 sq.
+                        // NOTE(egg): This one does not use escape sequences,
+                        // since it is in Kawi, which is outside the BMP.
+                        "𑼦𑼂𑼭𑼦𑽂𑼦𑼱𑽁",
+                        "\u1BD7\u1BEC\u1BD2\u1BEA\u1BC9\u1BF3\u1BC2\u1BE7\u1BC9\u1BF3",
+                        "\u1B18\u1B27\u1B44\u200C\u1B2B\u1B38\u1B31\u1B44\u1B1D\u1B36",
+                        // Dotted circle behaviour.  Balinese examples from
+                        // L2/22-080R2, p. 20.
+                        "e◌̂◌̣",
+                        "◌᭄ᬬ",
+                        "◌᭄◌᭄ᬬ",
+                        // A Javanese cecak telu (nukta) and a subjoined consonant on the same
+                        // dotted circle.
+                        "◌꦳꧀ꦠ",
+                        // Quotation mark examples from L2/23-063.  All spaces are U+0020 SPACE.
+                        // Swedish.
+                        "”Jo, når’n da ha gått ett stöck te, så kommer’n te e å, å i åa ä e ö.”\n"
+                                + "”Vasa”, sa’n.\n"
+                                + "”Å i åa ä e ö”, sa ja.",
+                        "En gång undföll det honom dock, medan han släpade på det våta "
+                                + "höet: »Varför är höet redan torrt och inkört där borta på "
+                                + "Solbacken, och här hos oss är det vått?» — »Därför att de ha "
+                                + "oftare sol än vi.»",
+                        // French.
+                        "vous me heurtez, vous dites : « Excusez-moi, » et vous croyez que cela "
+                                + "suffit ?",
+                        "j’ai dit : « Excusez-moi. » Il me semble donc que c’est assez.",
+                        "Et vise au front mon père en criant : « Caramba ! »\u2028"
+                                + "Le coup passa si près, que le chapeau tomba\u2028"
+                                + "Et que le cheval fit un écart en arrière.\u2028"
+                                + "« Donne-lui tout de même à boire, » dit mon père.",
+                        "« Je me suis vengé […]\u2029"
+                                + "» On ne me verra ni parler ni écrire ; vous aurez eu mes "
+                                + "dernières paroles comme mes dernières adorations.\u2029"
+                                + "» J. S. »",
+                        // Vietnamese. Note that here we have a full stop *after* the quotation
+                        // marks.
+                        "— Không ai hãm bao giờ mà bây giờ hãm, thế nó mới « mới ».",
+                        // ZWSP.
+                        "Pas une citation »Zitat« Pas une citation non plus",
+                        "« Citation »\u200BKein Zitat\u200B« Autre citation »"
                     });
 
             // Additions for Unicode 14 LB30b   [\p{Extended_Pictographic}&\p{Cn}] × EM
@@ -1772,6 +1810,12 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         "etc.\u3002",
                         "\u5B57\u3002\u5B83",
                         "!\u0020\u0020",
+                        // Examples from ICU4X, see https://github.com/unicode-org/icu4x/pull/3126.
+                        "a.",
+                        "a.\r\n",
+                        "a.\r\n ",
+                        "a.\r\na",
+                        "A.\r\nA",
                     };
             final String[] temp = new String[extraSingleSamples.length * 2];
             System.arraycopy(extraSingleSamples, 0, temp, 0, extraSingleSamples.length);
@@ -1803,7 +1847,15 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         "1,",
                         "1.\u2060",
                     },
-                    new String[] {});
+                    new String[] {
+                        // Last word of and end of ayah 1, from
+                        // https://en.wikipedia.org/wiki/Al-Fatiha.
+                        "ٱلرَّحِيمِ ۝١",
+                        // TUS Figure 9-9, 1st line, preceded by the word “psalm”.
+                        "ܡܙܡܘܪܐ ܏ܝܗ",
+                        // TUS Figure 9-9, 3rd line (abbreviation of ܬܫܒܘܚܬܐ).
+                        "ܬ܏ܫܒܘ",
+                    });
             System.out.println();
             Sampler WB = new Sampler("WB");
             this.extraSingleSamples.addAll(

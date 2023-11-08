@@ -233,6 +233,9 @@ Value:  V15_0
 Value:  V15_1
 # Newly assigned in Unicode 15.1.0 (September, 2023)
 
+Value:  V16_0
+# Newly assigned in Unicode 16.0.0 (September, 2024)
+
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class
 # Bidi Class (listing UnicodeData.txt, field 4: see UAX #44: https://www.unicode.org/reports/tr44/)
@@ -363,6 +366,15 @@ Property:	Default_Ignorable_Code_Point
 #  - FFF9..FFFB (Interlinear annotation format characters)
 #  - 13430..13440 (Egyptian hieroglyph format characters)
 #  - Prepended_Concatenation_Mark (Exceptional format characters that should be visible)
+#
+# There are currently no stability guarantees for DICP. However, the
+# values of DICP interact with the derivation of XID_Continue
+# and NFKC_CF, for which there are stability guarantees.
+# Maintainers of this property should note that in the
+# unlikely case that the DICP value changes for an existing character
+# which is also XID_Continue=Yes, then exceptions must be put
+# in place to ensure that the NFKC_CF mapping value for that
+# existing character does not change.
 
 Property:	Grapheme_Extend
 # Derived Property: Grapheme_Extend
@@ -381,6 +393,13 @@ Property:	Grapheme_Link
 # Derived Property: Grapheme_Link (deprecated)
 #  Generated from: Canonical_Combining_Class=Virama
 #  Use Canonical_Combining_Class=Virama directly instead
+
+Property:	Indic_Conjunct_Break
+# Derived Property: Indic_Conjunct_Break
+#  Generated from the Grapheme_Cluster_Break, Indic_Syllabic_Category,
+#  Canonical_Combining_Class, and Script properties as described in UAX #44:
+#  https://www.unicode.org/reports/tr44/.
+Format:	nameStyle=short valueStyle=short skipValue=None
 
 File:	extracted/DerivedDecompositionType
 Property:	Decomposition_Type
@@ -484,7 +503,19 @@ Property:   NFKC_Casefold
 #            For more information, see [https://www.unicode.org/reports/tr44/]
 # Omitted code points are unchanged by this mapping.
 # @missing: 0000..10FFFF; NFKC_CF; <code point>
-Format: nameStyle=short skipValue=<codepoint>
+Format: nameStyle=short skipValue="<code point>"
+
+Property:   NFKC_Simple_Casefold
+# Derived Property:   NFKC_Simple_Casefold (NFKC_SCF)
+#   This property removes certain variations from characters: case, compatibility, and default-ignorables.
+#   It is used for loose matching and certain types of identifiers.
+#   It is constructed by applying NFKC, simple CaseFolding, and removal of Default_Ignorable_Code_Points.
+#   The process of applying these transformations is repeated until a stable result is produced.
+#   WARNING: Application to STRINGS must apply NFC after mapping each character, because characters may interact.
+#            For more information, see [https://www.unicode.org/reports/tr44/]
+# Omitted code points are unchanged by this mapping.
+# @missing: 0000..10FFFF; NFKC_SCF; <code point>
+Format: nameStyle=short skipValue="<code point>"
 
 Property:   Changes_When_NFKC_Casefolded
 # Derived Property:   Changes_When_NFKC_Casefolded (CWKCF)
@@ -723,6 +754,533 @@ File:	Scripts
 Property:	Script
 Format:	nameStyle=none skipValue=Unknown
 
+File:	LineBreak
+Format: kenFile skipValue=Unknown
+#
+# Line_Break Property
+#
+# This file is a normative contributory data file in the
+# Unicode Character Database.
+#
+# The format is two fields separated by a semicolon.
+# Field 0: Unicode code point value or range of code point values
+# Field 1: Line_Break property, consisting of one of the following values:
+#   Non-tailorable:
+#         "BK", "CM", "CR", "GL", "LF", "NL", "SP", "WJ", "ZW", "ZWJ"
+#   Tailorable:
+#         "AI", "AK", "AL", "AP", "AS", "B2", "BA", "BB", "CB", "CJ",
+#         "CL", "CP", "EB", "EM", "EX", "H2", "H3", "HL", "HY", "ID",
+#         "IN", "IS", "JL", "JT", "JV", "NS", "NU", "OP", "PO", "PR",
+#         "QU", "RI", "SA", "SG", "SY", "VF", "VI", "XX"
+#  - All code points, assigned and unassigned, that are not listed
+#      explicitly are given the value "XX".
+#  - The unassigned code points in the following blocks default to "ID":
+#         CJK Unified Ideographs Extension A: U+3400..U+4DBF
+#         CJK Unified Ideographs:             U+4E00..U+9FFF
+#         CJK Compatibility Ideographs:       U+F900..U+FAFF
+#  - All undesignated code points in Planes 2 and 3, whether inside or
+#      outside of allocated blocks, default to "ID":
+#         Plane 2:                            U+20000..U+2FFFD
+#         Plane 3:                            U+30000..U+3FFFD
+#  - All unassigned code points in the following Plane 1 ranges, whether
+#      inside or outside of allocated blocks, also default to "ID":
+#         Plane 1 range:                      U+1F000..U+1FAFF
+#         Plane 1 range:                      U+1FC00..U+1FFFD
+#  - The unassigned code points in the following block default to "PR":
+#         Currency Symbols:                   U+20A0..U+20CF
+#
+# Character ranges are specified as for other property files in the
+# Unicode Character Database.
+#
+# The comments following the number sign "#" list the General_Category
+# property value or the L& alias of the derived value LC, the Unicode
+# character name or names, and, in lines with ranges of code points,
+# the code point count in square brackets.
+#
+# For more information, see UAX #14: Unicode Line Breaking Algorithm,
+# at https://www.unicode.org/reports/tr14/
+#
+Property: Line_Break
+
+File:	EastAsianWidth
+Format: kenFile skipValue=Neutral
+#
+# East_Asian_Width Property
+#
+# This file is a normative contributory data file in the
+# Unicode Character Database.
+#
+# The format is two fields separated by a semicolon.
+# Field 0: Unicode code point value or range of code point values
+# Field 1: East_Asian_Width property, consisting of one of the following values:
+#         "A", "F", "H", "N", "Na", "W"
+#  - All code points, assigned or unassigned, that are not listed
+#      explicitly are given the value "N".
+#  - The unassigned code points in the following blocks default to "W":
+#         CJK Unified Ideographs Extension A: U+3400..U+4DBF
+#         CJK Unified Ideographs:             U+4E00..U+9FFF
+#         CJK Compatibility Ideographs:       U+F900..U+FAFF
+#  - All undesignated code points in Planes 2 and 3, whether inside or
+#      outside of allocated blocks, default to "W":
+#         Plane 2:                            U+20000..U+2FFFD
+#         Plane 3:                            U+30000..U+3FFFD
+#
+# Character ranges are specified as for other property files in the
+# Unicode Character Database.
+#
+# The comments following the number sign "#" list the General_Category
+# property value or the L& alias of the derived value LC, the Unicode
+# character name or names, and, in lines with ranges of code points,
+# the code point count in square brackets.
+#
+# For more information, see UAX #11: East Asian Width,
+# at https://www.unicode.org/reports/tr11/
+#
+Property: East_Asian_Width
+
+File:	VerticalOrientation
+Format: kenFile skipValue=Rotated
+#
+# Vertical_Orientation (vo) Property
+#
+# This file defines the Vertical_Orientation property. See UAX #50:
+# Unicode Vertical Text Layout, at https://www.unicode.org/reports/tr50/
+#
+# The format of the file is two fields separated by a semicolon.
+# Field 0: Unicode code point value or range of code point values in
+#   hexadecimal form
+# Field 1: Vertical_Orientation property value, one of the following:
+#   U - Upright, the same orientation as in the code charts
+#   R - Rotated 90 degrees clockwise compared to the code charts
+#   Tu - Transformed typographically, with fallback to Upright
+#   Tr - Transformed typographically, with fallback to Rotated
+#
+#  - Certain ranges of unassigned code points default to U. These ranges
+#      are mostly associated with CJK scripts and punctuation, or with
+#      a small number of other scripts which are predominantly Upright.
+#      The private use areas also default to U, because of their most
+#      common use for CJK. In the following list of explicit code points
+#      and ranges, all unassigned code points default to U:
+#         Canadian Syllabics Extended:        U+18B0..U+18FF
+#         Reserved Default_Ignorable_Code_Point:      U+2065
+#         Number Forms:                       U+2150..U+218F
+#         Control Pictures & OCR              U+2400..U+245F
+#         Symbols:                            U+2BB8..U+2BFF
+#         CJK-Related & Yi:                   U+2E80..U+A4CF
+#         Hangul Jamo Extended-A:             U+A960..U+A97F
+#         Hangul Syllables & Jamo Extended-B: U+AC00..U+D7FF
+#         PUA & CJK Compatibility Ideographs: U+E000..U+FAFF
+#         Vertical Forms:                     U+FE10..U+FE1F
+#         Small Form Variants:                U+FE50..U+FE6F
+#         Fullwidth Forms:                            U+FFE7
+#         Specials:                           U+FFF0..U+FFF8
+#         Siddham:                           U+11580..U+115FF
+#         Zanabazar Square & Soyombo:        U+11A00..U+11AAF
+#         Egyptian Hieroglyphs & Controls:   U+13000..U+1345F
+#         Anatolian Hieroglyphs:             U+14400..U+1467F
+#         Ideographic Symbols & Tangut:      U+16FE0..U+18AFF
+#         Khitan Small Script & Tangut Sup:  U+18B00..U+18D7F
+#         Kana Extended-B:                   U+1AFF0..U+1AFFF
+#         Kana Extended-A & Small Kana Ext:  U+1B100..U+1B16F
+#         Nushu:                             U+1B170..U+1B2FF
+#         Musical Symbols:                   U+1CF00..U+1CFCF
+#         Musical Symbols:                   U+1D000..U+1D1FF
+#         Mayan Numerals:                    U+1D2E0..U+1D2FF
+#         Symbols & Rods:                    U+1D300..U+1D37F
+#         Sutton SignWriting:                U+1D800..U+1DAAF
+#         Game Symbols:                      U+1F000..U+1F0FF
+#         Enclosed Symbols:                  U+1F100..U+1F2FF
+#         Symbols:                           U+1F680..U+1F7FF
+#         Symbols and Pictographs:           U+1F900..U+1F9FF
+#         Chess Symbols & Pictographs Ext-A: U+1FA00..U+1FAFF
+#         Plane 2:                           U+20000..U+2FFFD
+#         Plane 3:                           U+30000..U+3FFFD
+#         Plane 15 PUA:                      U+F0000..U+FFFFD
+#         Plane 16 PUA:                     U+100000..U+10FFFD
+#
+#  - All other code points, assigned and unassigned, that are not listed
+#      explicitly in the data section of this file are given the value R.
+#
+# The comments following the number sign "#" list the General_Category
+# property value or the L& alias of the derived value LC, the Unicode
+# character name or names, and, in lines with ranges of code points,
+# the code point count in square brackets.
+#
+Property: VerticalOrientation
+
+File:	IndicPositionalCategory
+#
+# This file defines the following property:
+#
+#    Indic_Positional_Category     enumerated property
+#
+# Scope: This property is aimed at the problem of
+# the specification of syllabic structure for Indic scripts.
+# Because dependent vowels (matras), visible viramas, and other
+# characters are placed in notional slots around the consonant (or
+# consonant cluster) core of an Indic syllable, there may be
+# cooccurrence constraints or other interactions. Also, it may be
+# desirable, in cases where more than one such character may occur in
+# sequence, as for example, in a top slot and a bottom slot, to
+# specify preferred orders for spelling. As such, this property
+# is designed primarily to supplement the Indic_Syllabic_Category
+# property.
+#
+# In addition to combining marks associated with Indic scripts, the
+# Indic_Positional_Category has non-trivial values for special signs
+# associated with Indic_Syllabic_Category=Consonant_Prefixed
+# or Indic_Syllabic_Category=Consonant_Preceding_Repha. Those signs
+# have General_Category=Lo, rather than being combining marks.
+# They occur in initial position in syllabic structure. However, when
+# rendered, they appear as marks positioned with respect to another
+# base letter (usually above it). Hence, having an explicit value for
+# Indic_Positional_Category for those signs can be helpful.
+#
+# Note that this property is *not* intended as
+# a prescriptive property regarding display or font design,
+# for a number of reasons. Good font design requires information
+# that is outside the context of a character encoding standard,
+# and is best handled in other venues. For Indic dependent
+# vowels and similar characters, in particular:
+#
+#   1. Matra placement may vary somewhat based on typeface design.
+#   2. Matra placement, even within a single script, may vary
+#      somewhat according to historic period or local conventions.
+#   3. Matra placement may be changed by explicit orthographic reform
+#      decisions.
+#   4. Matras may ligate in various ways with a consonant (or even
+#      other elements of a syllable) instead of occurring in a
+#      discrete location.
+#   5. Matra display may be contextually determined. This is
+#      notable, for example, in the Tamil script, where the shape
+#      and placement of -u and -uu vowels depends strongly on
+#      which consonant they adjoin.
+#
+# Format:
+#    Field 0  Unicode code point value or range of code point values
+#    Field 1  Indic_Positional_Category property value
+#
+# Field 1 is followed by a comment field, starting with the number sign '#',
+# which shows the General_Category property value, the Unicode character name
+# or names, and, in lines with ranges of code points, the code point count in
+# square brackets.
+#
+# The scripts assessed as containing dependent vowels or similar characters
+# in the structural sense used for the Indic_Positional_Category are the
+# following:
+#
+# Ahom, Balinese, Batak, Bengali, Bhaiksuki, Brahmi, Buginese, Buhid,
+# Chakma, Cham, Devanagari, Dives Akuru, Dogra, Grantha, Gujarati,
+# Gunjala Gondi, Gurmukhi, Hanunoo, Javanese, Kaithi, Kannada, Kawi,
+# Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Lao, Lepcha, Limbu,
+# Makasar, Malayalam, Marchen, Masaram Gondi, Meetei Mayek, Modi,
+# Myanmar, Nandinagari, Newa, New Tai Lue, Oriya, Rejang, Saurashtra,
+# Sharada, Siddham, Sinhala, Soyombo, Sundanese, Syloti Nagri,
+# Tagalog, Tagbanwa, Tai Tham, Tai Viet, Takri, Tamil, Telugu, Thai,
+# Tibetan, Tirhuta, and Zanabazar Square.
+#
+# All characters for all other scripts not in that list
+# take the default value for this property.
+#
+# See IndicSyllabicCategory.txt for a slightly more extended
+# list of Indic scripts, including those which do not have
+# positional characters. Currently, those additional
+# Indic scripts without positional characters are
+# Kirat Rai, Multani, Phags-pa, and Tai Le.
+#
+# Notes:
+#
+# 1. The following characters are all assigned the positional category Right,
+# but may have different positions in some cases:
+#   * U+0BC1 TAMIL VOWEL SIGN U and U+0BC2 TAMIL VOWEL SIGN UU have
+#     contextually variable placement in Tamil.
+#   * U+0D41 MALAYALAM VOWEL SIGN U and U+0D42 MALAYALAM VOWEL SIGN UU form
+#     complex ligatures with consonants in older Malayalam orthography.
+#   * U+11341 GRANTHA VOWEL SIGN U and U+11342 GRANTHA VOWEL SIGN UU have
+#     contextually variable placement in Grantha.
+#   * U+11440 NEWA VOWEL SIGN O and U+11441 NEWA VOWEL SIGN AU have contextually
+#     variable placement in Newa.
+#
+# 2. The following characters are all assigned the positional category Top,
+# but may have different positions in some cases:
+#   * U+1143E NEWA VOWEL SIGN E and U+1143F NEWA VOWEL SIGN AI have contextually
+#     variable placement in Newa.
+#
+# 3. The following characters are all assigned the positional category Bottom,
+# but may have different positions in some cases:
+#   * U+102F MYANMAR VOWEL SIGN U and U+1030 MYANMAR VOWEL SIGN UU have
+#     contextually variable placement in Myanmar.
+#   * U+1A69 TAI THAM VOWEL SIGN U and U+1A6A TAI THAM VOWEL SIGN UU have
+#     contextually variable placement in Tai Tham.
+#
+# 4. The following character is assigned the positional category Left, but
+# may have different positions in different styles:
+#   * U+119D2 NANDINAGARI VOWEL SIGN I has stylistically variable placement
+#     in Nandinagari.
+Property: Indic_Positional_Category
+Format:	roozbehFile separateValues=false valueStyle=short skipValue=NA
+Value: Right
+Value: Left
+Value: Visual_Order_Left
+
+# These are dependent vowels that occur to the left of the consonant
+# letter in a syllable, but which occur in scripts using the visual order
+# model, instead of the logical order model. Because of the different
+# model, these left-side vowels occur first in the backing store (before
+# the consonant letter) and are not reordered during text rendering.
+#
+# [Derivation: Logical_Order_Exception=Yes]
+Value: Left_And_Right
+Value: Top
+Value: Bottom
+Value: Top_And_Bottom
+Value: Top_And_Right
+Value: Top_And_Left
+Value: Top_And_Left_And_Right
+Value: Bottom_And_Right
+Value: Bottom_And_Left
+Value: Top_And_Bottom_And_Right
+Value: Top_And_Bottom_And_Left
+Value: Overstruck
+
+File:	IndicSyllabicCategory
+#
+# This file defines the following property:
+#
+#    Indic_Syllabic_Category     enumerated property
+#
+# Scope: This property is aimed at two general problem
+# areas involving the analysis and processing of Indic scripts:
+#
+#   1. Specification of syllabic structure.
+#   2. Specification of segmentation rules.
+#
+# Both of these problem areas may benefit from having defined subtypes
+# of Indic script characters which are relevant to how Indic
+# syllables (or aksaras) are constructed. Note that rules for
+# syllabic structure in Indic scripts may differ significantly
+# from how phonological syllables are defined.
+#
+# Format:
+#    Field 0  Unicode code point value or range of code point values
+#    Field 1  Indic_Syllabic_Category property value
+#
+# Field 1 is followed by a comment field, starting with the number sign '#',
+# which shows the General_Category property value, the Unicode character name
+# or names, and, in lines with ranges of code points, the code point count in
+# square brackets.
+#
+# The scripts assessed as Indic in the structural sense used for the
+# Indic_Syllabic_Category are the following:
+#
+# Ahom, Balinese, Batak, Bengali, Bhaiksuki, Brahmi, Buginese, Buhid,
+# Chakma, Cham, Devanagari, Dives Akuru, Dogra, Grantha, Gujarati,
+# Gunjala Gondi, Gurmukhi, Hanunoo, Javanese, Kaithi, Kannada, Kawi,
+# Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Kirat Rai, Lao, Lepcha, Limbu,
+# Mahajani, Makasar, Malayalam, Marchen, Masaram Gondi, Meetei Mayek,
+# Modi, Multani, Myanmar, Nandinagari, Newa, New Tai Lue, Oriya,
+# Phags-pa, Rejang, Saurashtra, Sharada, Siddham, Sinhala, Soyombo,
+# Sundanese, Syloti Nagri, Tagalog, Tagbanwa, Tai Le, Tai Tham,
+# Tai Viet, Takri, Tamil, Telugu, Thai, Tibetan, Tirhuta, and
+# Zanabazar Square.
+#
+# All characters for all other scripts not in that list
+# take the default value for this property, unless they
+# are individually listed in this data file.
+#
+Property: Indic_Syllabic_Category
+Format: roozbehFile valueStyle=short skipValue=Other
+Value: Bindu
+# Bindu/Anusvara (nasalization or -n)
+
+# [Not derivable]
+Value: Visarga
+# Visarga (-h)
+# Excludes letters for jihvamuliya and upadhmaniya, which are
+#   related, but structured somewhat differently.
+
+# [Not derivable]
+Value: Avagraha
+# Avagraha (elision of initial a- in sandhi)
+
+# [Not derivable]
+Value: Nukta
+# Nukta (diacritic for borrowed consonants or other consonant
+# modifications). Note that while the resulting sound is typically a
+# consonant, the base letter a nukta follows may be an independent
+# vowel. For example, <U+0A85 GUJARATI LETTER A, U+0AFD GUJARATI
+# SIGN THREE-DOT NUKTA ABOVE> is used to transcribe ARABIC LETTER
+# AIN.
+
+# [Not derivable]
+Value: Virama
+# Virama (killing of inherent vowel in consonant sequence
+#         or consonant stacker)
+# Only includes characters that can act both as visible killer viramas
+# and consonant stackers. Separate property values exist for characters
+# that can only act as pure killers or only as consonant stackers.
+
+# [Derivation: (ccc=9) - (InSC=Pure_Killer) - (InSC=Invisible_Stacker)
+#  - (InSC=Number_Joiner) - 2D7F]
+Value: Pure_Killer
+# Pure killer (killing of inherent vowel in consonant sequence,
+#              with no consonant stacking behavior)
+
+# [Not derivable]
+Value: Invisible_Stacker
+# Invisible stacker (invisible consonant stacker virama).
+#
+# Note that in some scripts, such as Kharoshthi and Masaram Gondi, an invisible
+# stacker may have a second function, changing the shape and/or location of the
+# consonant preceding it, even when there is no consonant following the
+# invisible stacker.
+
+# [Not derivable]
+Value: Vowel_Independent
+# Independent Vowels (contrasted with matras)
+
+# [Not derivable]
+Value: Vowel_Dependent
+# Dependent Vowels (contrasted with independent vowels and/or with
+# complex placement). Known as matras in Indic scripts. Also
+# includes vowel modifiers that follow dependent (and sometimes
+# independent) vowels.
+
+# [Not derivable]
+Value: Vowel
+# (Other) Vowels (reanalyzed as ordinary alphabetic letters or marks)
+
+# [Not derivable]
+Value: Consonant_Placeholder
+# Consonant Placeholder
+# This includes generic placeholders used for
+# Indic script layout (NBSP and dotted circle), as well as a few script-
+# specific vowel-holder characters which are not technically
+# consonants, but serve instead as bases for placement of vowel marks.
+
+# [Not derivable]
+Value: Consonant
+# Consonant (ordinary abugida consonants, with inherent vowels)
+
+# [Not derivable]
+Value: Consonant_Dead
+# Dead Consonant (special consonant with killed vowel)
+
+# [Not derivable]
+Value: Consonant_With_Stacker
+# Consonants that may make stacked ligatures with the next consonant
+# without the use of a virama
+
+# [Not derivable]
+Value: Consonant_Prefixed
+# Cluster-initial consonants
+
+# [Not derivable]
+Value: Consonant_Preceding_Repha
+# Repha Form of RA (reanalyzed in some scripts), when preceding the main
+# consonant.
+
+# [Not derivable]
+Value: Consonant_Initial_Postfixed
+# Consonants that succeed the main consonant in character sequences, but are
+# pronounced before it.
+
+# [Not derivable]
+Value: Consonant_Succeeding_Repha
+# Repha Form of RA (reanalyzed in some scripts), when succeeding the main
+# consonant.
+
+# [Not derivable]
+Value: Consonant_Subjoined
+# Subjoined Consonant (C2 form subtending a base consonant in Tibetan, etc.)
+
+# [Not derivable]
+Value: Consonant_Medial
+# Medial Consonant (medial liquid, occurring in clusters)
+
+# [Not derivable]
+Value: Consonant_Final
+# Final Consonant (special final forms which do not take vowels)
+
+# [Not derivable]
+Value: Consonant_Head_Letter
+# Head Letter (Tibetan)
+
+# [Not derivable]
+Value: Modifying_Letter
+# Reanalyzed letters not participating in the abugida structure, but
+# serving to modify the sound of an adjacent vowel or consonant.
+# Note that this is not the same as General_Category=Modifier_Letter.
+
+# [Not derivable]
+Value: Tone_Letter
+# Tone Letter (spacing lexical tone mark with status as a letter)
+
+# [Not derivable]
+Value: Tone_Mark
+# Tone Mark (nonspacing or spacing lexical tone mark)
+
+# [Not derivable]
+Value: Gemination_Mark
+# Gemination Mark (doubling of the preceding or following consonant)
+#
+# U+0A71 GURMUKHI ADDAK precedes the consonant it geminates, while the
+# others follow the consonant they geminate.
+
+# [Not derivable]
+Value: Cantillation_Mark
+# Cantillation Mark (recitation marks, such as svara markers for the Samaveda)
+
+# [Not derivable]
+Value: Register_Shifter
+# Register Shifter (shifts register for consonants, akin to a tone mark)
+
+# [Not derivable]
+Value: Syllable_Modifier
+# Syllable Modifier (miscellaneous combining characters that modify
+# something in the orthographic syllable they succeed or appear in)
+
+# [Not derivable]
+Value: Consonant_Killer
+# Consonant Killer (signifies that the previous consonant or consonants are
+# not pronounced)
+
+# [Not derivable]
+Value: Non_Joiner
+# Non_Joiner (Zero Width Non-Joiner)
+
+# [Not derivable]
+Value: Joiner
+# Joiner (Zero Width Joiner)
+
+# [Not derivable]
+Value: Number_Joiner
+# Number_Joiner (forms ligatures between numbers for multiplication)
+
+# [Not derivable]
+Value: Number
+# Number (can be used as vowel-holders like consonant placeholders)
+# Note: A number may even hold subjoined consonants which may in turn
+# have been formed using a virama or a stacker, e.g. the sequence
+# <U+1A93, U+1A60, U+1A34> where THAI THAM LETTER LOW TA is subjoined to
+# TAI THAM THAM DIGIT THREE using an invisible stacker.
+
+# [Not derivable]
+Value: Brahmi_Joining_Number
+# Brahmi Joining Number (may be joined by a Number_Joiner of the same
+# script, e.g. in Brahmi)
+#
+# Note: These are different from Numbers, in the way that there is no known
+# evidence of Brahmi Joining Numbers taking vowels or subjoined consonants. 
+# Until such evidence is found, implementations may assume that Brahmi
+# Joining Numbers only participate in shaping with other Brahmi Joining
+# Numbers.
+
+# [Not derivable]
+
+File:	UnicodeData
+Property: SPECIAL
+
 File:	SpecialCasing
 Property: SPECIAL
 
@@ -775,10 +1333,6 @@ sorts by the short name
 ArabicShaping
 BidiMirroring
 CompositionExclusions
-EastAsianWidth
-LineBreak
 StandardizedVariants
-UnicodeData
-VerticalOrientation
 
 

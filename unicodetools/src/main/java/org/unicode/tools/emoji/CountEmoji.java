@@ -484,9 +484,7 @@ public class CountEmoji {
             _html =
                     _html.replace(
                             Attribute.skin.label,
-                            "<span style=\"display:inline-block;\">"
-                                    + Attribute.skin.label
-                                    + "</span>");
+                            ChartUtilities.htmlSpanForSkintone(Attribute.skin.label));
             html = title == null ? _html : "<span title='" + title + "'>" + _html + "</span>";
         }
 
@@ -570,6 +568,12 @@ public class CountEmoji {
                             Emoji.MAN_OR_WOMAN_OR_ADULT.contains(first)
                                     && Emoji.PROFESSION_OBJECT.containsSome(noVariants);
                     if (role) {
+                        attributes.add(Attribute.role);
+                    }
+                    boolean direction = s.endsWith(Emoji.ZWJ_RIGHTWARDS_ARROW);
+                    if (direction && !gender) {
+                        // Directional sequences are currently limited to people
+                        // so make sure they don't end up in the "Other" bucket.
                         attributes.add(Attribute.role);
                     }
                     boolean family =

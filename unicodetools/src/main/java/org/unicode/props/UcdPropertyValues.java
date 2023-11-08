@@ -66,6 +66,7 @@ public class UcdPropertyValues {
         V14_0("14.0"),
         V15_0("15.0"),
         V15_1("15.1"),
+        V16_0("16.0"),
         Unassigned("NA");
         private final PropertyNames<Age_Values> names;
 
@@ -232,6 +233,7 @@ public class UcdPropertyValues {
         CJK_Unified_Ideographs_Extension_F("CJK_Ext_F"),
         CJK_Unified_Ideographs_Extension_G("CJK_Ext_G"),
         CJK_Unified_Ideographs_Extension_H("CJK_Ext_H"),
+        CJK_Unified_Ideographs_Extension_I("CJK_Ext_I"),
         CJK_Radicals_Supplement("CJK_Radicals_Sup"),
         CJK_Strokes("CJK_Strokes"),
         CJK_Symbols_And_Punctuation("CJK_Symbols"),
@@ -280,6 +282,7 @@ public class UcdPropertyValues {
         Ethiopic_Extended_A("Ethiopic_Ext_A"),
         Ethiopic_Extended_B("Ethiopic_Ext_B"),
         Ethiopic_Supplement("Ethiopic_Sup"),
+        Garay("Garay"),
         Geometric_Shapes("Geometric_Shapes"),
         Geometric_Shapes_Extended("Geometric_Shapes_Ext"),
         Georgian("Georgian"),
@@ -334,6 +337,7 @@ public class UcdPropertyValues {
         Khmer_Symbols("Khmer_Symbols"),
         Khojki("Khojki"),
         Khudawadi("Khudawadi"),
+        Kirat_Rai("Kirat_Rai"),
         Lao("Lao"),
         Latin_1_Supplement("Latin_1_Sup", "Latin_1"),
         Latin_Extended_A("Latin_Ext_A"),
@@ -390,6 +394,7 @@ public class UcdPropertyValues {
         Myanmar("Myanmar"),
         Myanmar_Extended_A("Myanmar_Ext_A"),
         Myanmar_Extended_B("Myanmar_Ext_B"),
+        Myanmar_Extended_C("Myanmar_Ext_C"),
         Nabataean("Nabataean"),
         Nag_Mundari("Nag_Mundari"),
         Nandinagari("Nandinagari"),
@@ -403,6 +408,7 @@ public class UcdPropertyValues {
         Optical_Character_Recognition("OCR"),
         Ogham("Ogham"),
         Ol_Chiki("Ol_Chiki"),
+        Ol_Onal("Ol_Onal"),
         Old_Hungarian("Old_Hungarian"),
         Old_Italic("Old_Italic"),
         Old_North_Arabian("Old_North_Arabian"),
@@ -449,6 +455,7 @@ public class UcdPropertyValues {
         Specials("Specials"),
         Sundanese("Sundanese"),
         Sundanese_Supplement("Sundanese_Sup"),
+        Sunuwar("Sunuwar"),
         Supplemental_Arrows_A("Sup_Arrows_A"),
         Supplemental_Arrows_B("Sup_Arrows_B"),
         Supplemental_Arrows_C("Sup_Arrows_C"),
@@ -462,6 +469,7 @@ public class UcdPropertyValues {
         Syloti_Nagri("Syloti_Nagri"),
         Symbols_And_Pictographs_Extended_A("Symbols_And_Pictographs_Ext_A"),
         Symbols_For_Legacy_Computing("Symbols_For_Legacy_Computing"),
+        Symbols_For_Legacy_Computing_Supplement("Symbols_For_Legacy_Computing_Sup"),
         Syriac("Syriac"),
         Syriac_Supplement("Syriac_Sup"),
         Tagalog("Tagalog"),
@@ -484,6 +492,7 @@ public class UcdPropertyValues {
         Tibetan("Tibetan"),
         Tifinagh("Tifinagh"),
         Tirhuta("Tirhuta"),
+        Todhri("Todhri"),
         Toto("Toto"),
         Transport_And_Map_Symbols("Transport_And_Map"),
         Unified_Canadian_Aboriginal_Syllabics("UCAS", "Canadian_Syllabics"),
@@ -982,6 +991,37 @@ public class UcdPropertyValues {
         }
     }
 
+    public enum Indic_Conjunct_Break_Values implements Named {
+        Consonant("Consonant"),
+        Extend("Extend"),
+        Linker("Linker"),
+        None("None");
+        private final PropertyNames<Indic_Conjunct_Break_Values> names;
+
+        private Indic_Conjunct_Break_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Indic_Conjunct_Break_Values>(
+                            Indic_Conjunct_Break_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<Indic_Conjunct_Break_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Indic_Conjunct_Break_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Indic_Conjunct_Break_Values.class);
+
+        public static Indic_Conjunct_Break_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
     public enum Indic_Positional_Category_Values implements Named {
         Bottom("Bottom"),
         Bottom_And_Left("Bottom_And_Left"),
@@ -1435,7 +1475,10 @@ public class UcdPropertyValues {
     // kZVariant
     public enum Line_Break_Values implements Named {
         Ambiguous("AI"),
+        Aksara("AK"),
         Alphabetic("AL"),
+        Aksara_Prebase("AP"),
+        Aksara_Start("AS"),
         Break_Both("B2"),
         Break_After("BA"),
         Break_Before("BB"),
@@ -1473,6 +1516,8 @@ public class UcdPropertyValues {
         Surrogate("SG"),
         Space("SP"),
         Break_Symbols("SY"),
+        Virama_Final("VF"),
+        Virama("VI"),
         Word_Joiner("WJ"),
         Unknown("XX"),
         ZWSpace("ZW"),
@@ -1598,6 +1643,7 @@ public class UcdPropertyValues {
         }
     }
 
+    // NFKC_Simple_Casefold
     public enum NFKD_Quick_Check_Values implements Named {
         No("N"),
         Yes("Y");
@@ -1697,6 +1743,7 @@ public class UcdPropertyValues {
         Elbasan("Elba"),
         Elymaic("Elym"),
         Ethiopic("Ethi"),
+        Garay("Gara"),
         Georgian("Geor"),
         Glagolitic("Glag"),
         Gunjala_Gondi("Gong"),
@@ -1727,6 +1774,7 @@ public class UcdPropertyValues {
         Khojki("Khoj"),
         Khitan_Small_Script("Kits"),
         Kannada("Knda"),
+        Kirat_Rai("Krai"),
         Kaithi("Kthi"),
         Tai_Tham("Lana"),
         Lao("Laoo"),
@@ -1763,6 +1811,7 @@ public class UcdPropertyValues {
         Nushu("Nshu"),
         Ogham("Ogam"),
         Ol_Chiki("Olck"),
+        Ol_Onal("Onao"),
         Old_Turkic("Orkh"),
         Oriya("Orya"),
         Osage("Osge"),
@@ -1795,6 +1844,7 @@ public class UcdPropertyValues {
         Sora_Sompeng("Sora"),
         Soyombo("Soyo"),
         Sundanese("Sund"),
+        Sunuwar("Sunu"),
         Syloti_Nagri("Sylo"),
         Syriac("Syrc"),
         Tagbanwa("Tagb"),
@@ -1812,6 +1862,7 @@ public class UcdPropertyValues {
         Tibetan("Tibt"),
         Tirhuta("Tirh"),
         Tangsa("Tnsa"),
+        Todhri("Todr"),
         Toto("Toto"),
         Ugaritic("Ugar"),
         Vai("Vaii"),
