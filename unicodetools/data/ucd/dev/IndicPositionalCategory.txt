@@ -1,5 +1,5 @@
 # IndicPositionalCategory-16.0.0.txt
-# Date: 2023-11-09, 18:41:18 GMT
+# Date: 2023-11-09, 18:48:36 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -69,7 +69,7 @@
 # Ahom, Balinese, Batak, Bengali, Bhaiksuki, Brahmi, Buginese, Buhid,
 # Chakma, Cham, Devanagari, Dives Akuru, Dogra, Grantha, Gujarati,
 # Gunjala Gondi, Gurmukhi, Hanunoo, Javanese, Kaithi, Kannada, Kawi,
-# Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Lao, Lepcha, Limbu,
+# Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Kirat Rai, Lao, Lepcha, Limbu,
 # Makasar, Malayalam, Marchen, Masaram Gondi, Meetei Mayek, Modi,
 # Myanmar, Nandinagari, Newa, New Tai Lue, Oriya, Rejang, Saurashtra,
 # Sharada, Siddham, Sinhala, Soyombo, Sundanese, Syloti Nagri,
@@ -83,7 +83,7 @@
 # list of Indic scripts, including those which do not have
 # positional characters. Currently, those additional
 # Indic scripts without positional characters are
-# Kirat Rai, Multani, Phags-pa, and Tai Le.
+# Multani, Phags-pa, and Tai Le.
 #
 # Notes:
 #
