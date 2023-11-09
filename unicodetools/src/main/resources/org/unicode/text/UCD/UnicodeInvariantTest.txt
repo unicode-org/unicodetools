@@ -896,7 +896,7 @@ Let $ideohack = [〆 〇 〡-〩]
 
 # InPC-InSC-gc invariants
 # See https://www.unicode.org/L2/L2023/23200-category-invariants.pdf.
-\p{InPC=/(Left|Right)/} ⊆ [\p{gc=Mc}\p{gc=Lo}]
+\p{InPC=/(Left|Right)/} ⊆ [\p{gc=Mc}\p{gc=Lo}\p{gc=Lm}]
 [\P{InPC=NA}&\p{gc=Mc}] ⊆ \p{InPC=/(Left|Right)/}
 [\P{InPC=NA}&\P{InPC=/(Left|Right)/}] ⊆ [\p{gc=Mn}\p{gc=Lo}]
 \p{gc=Mn} ⊆ \P{InPC=/(Left|Right)/}
