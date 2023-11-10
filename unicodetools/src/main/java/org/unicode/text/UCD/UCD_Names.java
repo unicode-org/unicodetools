@@ -414,19 +414,19 @@ public final class UCD_Names implements UCD_Types {
         // Unicode 15
         "Kawi",
         "Nag_Mundari",
-        // A future version of Unicode
-        "Sunuwar",
-        "Tulu_Tigalari",
-        "Kirat_Rai",
-        "Todhri",
+        // Unicode 16
         "Garay",
         "Gurung_Khema",
+        "Kirat_Rai",
         "Ol_Onal",
+        "Sunuwar",
+        "Todhri",
+        "Tulu_Tigalari",
         // Provisionally assigned
-        "Sidetic",
         "Chisoi",
-        "Tolong_Siki",
+        "Sidetic",
         "Tai_Yo",
+        "Tolong_Siki",
     };
 
     public static final Relation<String, String> EXTRA_SCRIPT =
@@ -611,19 +611,19 @@ public final class UCD_Names implements UCD_Types {
         // Unicode 15
         "Kawi",
         "Nagm",
-        // A future version of Unicode
-        "Qaba",
-        "Qabb",
-        "Qabc",
-        "Qabd",
-        "Qabe",
-        "Qabf",
-        "Qabg",
+        // Unicode 16
+        "Gara",
+        "Gukh",
+        "Krai",
+        "Onao",
+        "Sunu",
+        "Todr",
+        "Tutg",
         // Provisionally assigned
-        "Qabh",
-        "Qabi",
-        "Qabj",
-        "Qabk",
+        "Chis",
+        "Sidt",
+        "Tayo",
+        "Tols",
     };
 
     static final String[] SHORT_AGE = {

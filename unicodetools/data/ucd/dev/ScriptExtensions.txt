@@ -1,5 +1,5 @@
-# ScriptExtensions-15.1.0.txt
-# Date: 2023-02-01, 23:02:24 GMT
+# ScriptExtensions-16.0.0.txt
+# Date: 2023-10-24, 21:04:04 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -497,15 +497,6 @@ FE45..FE46    ; Bopo Hang Hani Hira Kana # Po   [2] SESAME DOT..WHITE SESAME DOT
 
 # ================================================
 
-# Script_Extensions=Arab Nkoo Rohg Syrc Thaa Yezi
-
-060C          ; Arab Nkoo Rohg Syrc Thaa Yezi # Po       ARABIC COMMA
-061B          ; Arab Nkoo Rohg Syrc Thaa Yezi # Po       ARABIC SEMICOLON
-
-# Total code points: 2
-
-# ================================================
-
 # Script_Extensions=Bopo Hang Hani Hira Kana Yiii
 
 3001..3002    ; Bopo Hang Hani Hira Kana Yiii # Po   [2] IDEOGRAPHIC COMMA..IDEOGRAPHIC FULL STOP
@@ -545,9 +536,18 @@ FF64..FF65    ; Bopo Hang Hani Hira Kana Yiii # Po   [2] HALFWIDTH IDEOGRAPHIC C
 
 # ================================================
 
-# Script_Extensions=Adlm Arab Nkoo Rohg Syrc Thaa Yezi
+# Script_Extensions=Arab Gara Nkoo Rohg Syrc Thaa Yezi
 
-061F          ; Adlm Arab Nkoo Rohg Syrc Thaa Yezi # Po       ARABIC QUESTION MARK
+060C          ; Arab Gara Nkoo Rohg Syrc Thaa Yezi # Po       ARABIC COMMA
+061B          ; Arab Gara Nkoo Rohg Syrc Thaa Yezi # Po       ARABIC SEMICOLON
+
+# Total code points: 2
+
+# ================================================
+
+# Script_Extensions=Adlm Arab Gara Nkoo Rohg Syrc Thaa Yezi
+
+061F          ; Adlm Arab Gara Nkoo Rohg Syrc Thaa Yezi # Po       ARABIC QUESTION MARK
 
 # Total code points: 1
 
@@ -618,17 +618,17 @@ A830..A832    ; Deva Dogr Gujr Guru Khoj Knda Kthi Mahj Mlym Modi Nand Shrd Sind
 
 # ================================================
 
-# Script_Extensions=Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Mahj Mlym Nand Orya Sind Sinh Sylo Takr Taml Telu Tirh
+# Script_Extensions=Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Mahj Mlym Nand Onao Orya Sind Sinh Sylo Takr Taml Telu Tirh
 
-0964          ; Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Mahj Mlym Nand Orya Sind Sinh Sylo Takr Taml Telu Tirh # Po       DEVANAGARI DANDA
+0964          ; Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Mahj Mlym Nand Onao Orya Sind Sinh Sylo Takr Taml Telu Tirh # Po       DEVANAGARI DANDA
 
 # Total code points: 1
 
 # ================================================
 
-# Script_Extensions=Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Limb Mahj Mlym Nand Orya Sind Sinh Sylo Takr Taml Telu Tirh
+# Script_Extensions=Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Limb Mahj Mlym Nand Onao Orya Sind Sinh Sylo Takr Taml Telu Tirh
 
-0965          ; Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Limb Mahj Mlym Nand Orya Sind Sinh Sylo Takr Taml Telu Tirh # Po       DEVANAGARI DOUBLE DANDA
+0965          ; Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Limb Mahj Mlym Nand Onao Orya Sind Sinh Sylo Takr Taml Telu Tirh # Po       DEVANAGARI DOUBLE DANDA
 
 # Total code points: 1
 
