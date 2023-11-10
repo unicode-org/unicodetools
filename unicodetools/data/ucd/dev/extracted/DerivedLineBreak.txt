@@ -1,5 +1,5 @@
 # DerivedLineBreak-16.0.0.txt
-# Date: 2023-11-10, 20:57:24 GMT
+# Date: 2023-11-10, 21:08:49 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1758,7 +1758,6 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 113D4..113D5  ; ID # Po   [2] TULU-TIGALARI DANDA..TULU-TIGALARI DOUBLE DANDA
 113D7..113D8  ; ID # Po   [2] TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA
 11F45..11F4F  ; ID # Po  [11] KAWI PUNCTUATION SECTION MARKER..KAWI PUNCTUATION CLOSING SPIRAL
-16130..16139  ; ID # Nd  [10] GURUNG KHEMA DIGIT ZERO..GURUNG KHEMA DIGIT NINE
 17000..187F7  ; ID # Lo [6136] TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187F7
 18800..18AFF  ; ID # Lo [768] TANGUT COMPONENT-001..TANGUT COMPONENT-768
 18D00..18D08  ; ID # Lo   [9] TANGUT IDEOGRAPH-18D00..TANGUT IDEOGRAPH-18D08
@@ -1853,7 +1852,7 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 31350..323AF  ; ID # Lo [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
 # The above property value applies to 61865 code points not listed here.
-# Total code points: 172437
+# Total code points: 172427
 
 # ================================================
 
@@ -3907,8 +3906,9 @@ AA50..AA59    ; AS # Nd  [10] CHAM DIGIT ZERO..CHAM DIGIT NINE
 11EE0..11EF1  ; AS # Lo  [18] MAKASAR LETTER KA..MAKASAR LETTER A
 11F50..11F59  ; AS # Nd  [10] KAWI DIGIT ZERO..KAWI DIGIT NINE
 16100..1611D  ; AS # Lo  [30] GURUNG KHEMA LETTER A..GURUNG KHEMA LETTER SA
+16130..16139  ; AS # Nd  [10] GURUNG KHEMA DIGIT ZERO..GURUNG KHEMA DIGIT NINE
 
-# Total code points: 204
+# Total code points: 214
 
 # ================================================
 
