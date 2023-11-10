@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-16.0.0.txt
-# Date: 2023-11-06, 03:48:54 GMT
+# Date: 2023-11-10, 01:48:04 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1793,6 +1793,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 11F42         ; N # Mn       KAWI CONJOINER
 11F43..11F4F  ; N # Po  [13] KAWI DANDA..KAWI PUNCTUATION CLOSING SPIRAL
 11F50..11F59  ; N # Nd  [10] KAWI DIGIT ZERO..KAWI DIGIT NINE
+11F5A         ; N # Mn       KAWI SIGN NUKTA
 11FB0         ; N # Lo       LISU LETTER YHA
 11FC0..11FD4  ; N # No  [21] TAMIL FRACTION ONE THREE-HUNDRED-AND-TWENTIETH..TAMIL FRACTION DOWNSCALING FACTOR KIIZH
 11FD5..11FDC  ; N # So   [8] TAMIL SIGN NEL..TAMIL SIGN MUKKURUNI
@@ -2075,7 +2076,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 765234 code points not listed here.
+# The above property value applies to 765233 code points not listed here.
 # Total code points: 792608
 
 # ================================================

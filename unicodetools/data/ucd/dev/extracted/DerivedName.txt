@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2023-11-06, 03:48:57 GMT
+# Date: 2023-11-10, 01:48:07 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -32563,6 +32563,7 @@ FFFD          ; REPLACEMENT CHARACTER
 11F57         ; KAWI DIGIT SEVEN
 11F58         ; KAWI DIGIT EIGHT
 11F59         ; KAWI DIGIT NINE
+11F5A         ; KAWI SIGN NUKTA
 11FB0         ; LISU LETTER YHA
 11FC0         ; TAMIL FRACTION ONE THREE-HUNDRED-AND-TWENTIETH
 11FC1         ; TAMIL FRACTION ONE ONE-HUNDRED-AND-SIXTIETH
@@ -45226,6 +45227,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 150863
+# Total code points: 150864
 
 # EOF

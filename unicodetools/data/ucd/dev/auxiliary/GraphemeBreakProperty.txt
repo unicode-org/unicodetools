@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-16.0.0.txt
-# Date: 2023-11-02, 22:55:32 GMT
+# Date: 2023-11-10, 01:48:10 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -422,6 +422,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 11F36..11F3A  ; Extend # Mn   [5] KAWI VOWEL SIGN I..KAWI VOWEL SIGN VOCALIC R
 11F40         ; Extend # Mn       KAWI VOWEL SIGN EU
 11F42         ; Extend # Mn       KAWI CONJOINER
+11F5A         ; Extend # Mn       KAWI SIGN NUKTA
 13440         ; Extend # Mn       EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY
 13447..13455  ; Extend # Mn  [15] EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP START..EGYPTIAN HIEROGLYPH MODIFIER DAMAGED
 16AF0..16AF4  ; Extend # Mn   [5] BASSA VAH COMBINING HIGH TONE..BASSA VAH COMBINING HIGH-LOW TONE
@@ -462,7 +463,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2138
+# Total code points: 2139
 
 # ================================================
 

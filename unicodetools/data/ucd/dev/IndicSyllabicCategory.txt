@@ -1,5 +1,5 @@
 # IndicSyllabicCategory-16.0.0.txt
-# Date: 2023-11-02, 22:55:33 GMT
+# Date: 2023-11-10, 01:48:11 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -251,6 +251,7 @@ A9B3          ; Nukta # Mn       JAVANESE SIGN CECAK TELU
 1183A         ; Nukta # Mn       DOGRA SIGN NUKTA
 11943         ; Nukta # Mn       DIVES AKURU SIGN NUKTA
 11D42         ; Nukta # Mn       MASARAM GONDI SIGN NUKTA
+11F5A         ; Nukta # Mn       KAWI SIGN NUKTA
 
 # ================================================
 

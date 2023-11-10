@@ -1,5 +1,5 @@
 # Scripts-16.0.0.txt
-# Date: 2023-11-06, 03:49:30 GMT
+# Date: 2023-11-10, 01:48:40 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -3026,8 +3026,9 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 11F42         ; Kawi # Mn       KAWI CONJOINER
 11F43..11F4F  ; Kawi # Po  [13] KAWI DANDA..KAWI PUNCTUATION CLOSING SPIRAL
 11F50..11F59  ; Kawi # Nd  [10] KAWI DIGIT ZERO..KAWI DIGIT NINE
+11F5A         ; Kawi # Mn       KAWI SIGN NUKTA
 
-# Total code points: 86
+# Total code points: 87
 
 # ================================================
 
