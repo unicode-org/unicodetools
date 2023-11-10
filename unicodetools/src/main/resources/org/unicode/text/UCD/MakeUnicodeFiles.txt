@@ -977,7 +977,7 @@ File:	IndicPositionalCategory
 # Myanmar, Nandinagari, Newa, New Tai Lue, Oriya, Rejang, Saurashtra,
 # Sharada, Siddham, Sinhala, Soyombo, Sundanese, Syloti Nagri,
 # Tagalog, Tagbanwa, Tai Tham, Tai Viet, Takri, Tamil, Telugu, Thai,
-# Tibetan, Tirhuta, and Zanabazar Square.
+# Tibetan, Tirhuta, Tulu-Tigalari, and Zanabazar Square.
 #
 # All characters for all other scripts not in that list
 # take the default value for this property.
@@ -1012,6 +1012,9 @@ File:	IndicPositionalCategory
 #     contextually variable placement in Myanmar.
 #   * U+1A69 TAI THAM VOWEL SIGN U and U+1A6A TAI THAM VOWEL SIGN UU have
 #     contextually variable placement in Tai Tham.
+#   * U+113BB TULU-TIGALARI VOWEL SIGN U and
+#     U+113BC TULU-TIGALARI VOWEL SIGN UU form complex ligatures with
+#     consonants.
 #
 # 4. The following character is assigned the positional category Left, but
 # may have different positions in different styles:
@@ -1081,7 +1084,7 @@ File:	IndicSyllabicCategory
 # Modi, Multani, Myanmar, Nandinagari, Newa, New Tai Lue, Oriya,
 # Phags-pa, Rejang, Saurashtra, Sharada, Siddham, Sinhala, Soyombo,
 # Sundanese, Syloti Nagri, Tagalog, Tagbanwa, Tai Le, Tai Tham,
-# Tai Viet, Takri, Tamil, Telugu, Thai, Tibetan, Tirhuta, and
+# Tai Viet, Takri, Tamil, Telugu, Thai, Tibetan, Tirhuta, Tulu-Tigalari, and
 # Zanabazar Square.
 #
 # All characters for all other scripts not in that list

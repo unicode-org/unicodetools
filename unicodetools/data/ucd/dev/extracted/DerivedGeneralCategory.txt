@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2023-11-10, 01:48:04 GMT
+# Date: 2023-11-10, 04:28:11 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -480,7 +480,19 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 11358..1135C  ; Cn #   [5] <reserved-11358>..<reserved-1135C>
 11364..11365  ; Cn #   [2] <reserved-11364>..<reserved-11365>
 1136D..1136F  ; Cn #   [3] <reserved-1136D>..<reserved-1136F>
-11375..113FF  ; Cn # [139] <reserved-11375>..<reserved-113FF>
+11375..1137F  ; Cn #  [11] <reserved-11375>..<reserved-1137F>
+1138A         ; Cn #       <reserved-1138A>
+1138C..1138D  ; Cn #   [2] <reserved-1138C>..<reserved-1138D>
+1138F         ; Cn #       <reserved-1138F>
+113B6         ; Cn #       <reserved-113B6>
+113C1         ; Cn #       <reserved-113C1>
+113C3..113C4  ; Cn #   [2] <reserved-113C3>..<reserved-113C4>
+113C6         ; Cn #       <reserved-113C6>
+113CB         ; Cn #       <reserved-113CB>
+113D2..113D3  ; Cn #   [2] <reserved-113D2>..<reserved-113D3>
+113D6         ; Cn #       <reserved-113D6>
+113D9..113E0  ; Cn #   [8] <reserved-113D9>..<reserved-113E0>
+113E3..113FF  ; Cn #  [29] <reserved-113E3>..<reserved-113FF>
 1145C         ; Cn #       <reserved-1145C>
 11462..1147F  ; Cn #  [30] <reserved-11462>..<reserved-1147F>
 114C8..114CF  ; Cn #   [8] <reserved-114C8>..<reserved-114CF>
@@ -735,7 +747,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 823667
+# Total code points: 823589
 
 # ================================================
 
@@ -2551,6 +2563,12 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 1133D         ; Lo #       GRANTHA SIGN AVAGRAHA
 11350         ; Lo #       GRANTHA OM
 1135D..11361  ; Lo #   [5] GRANTHA SIGN PLUTA..GRANTHA LETTER VOCALIC LL
+11380..11389  ; Lo #  [10] TULU-TIGALARI LETTER A..TULU-TIGALARI LETTER VOCALIC LL
+1138B         ; Lo #       TULU-TIGALARI LETTER EE
+1138E         ; Lo #       TULU-TIGALARI LETTER AI
+11390..113B5  ; Lo #  [38] TULU-TIGALARI LETTER OO..TULU-TIGALARI LETTER LLLA
+113B7         ; Lo #       TULU-TIGALARI SIGN AVAGRAHA
+113D1         ; Lo #       TULU-TIGALARI REPHA
 11400..11434  ; Lo #  [53] NEWA LETTER A..NEWA LETTER HA
 11447..1144A  ; Lo #   [4] NEWA SIGN AVAGRAHA..NEWA SIDDHI
 1145F..11461  ; Lo #   [3] NEWA LETTER VEDIC ANUSVARA..NEWA SIGN UPADHMANIYA
@@ -2687,7 +2705,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 30000..3134A  ; Lo # [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Lo # [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 132401
+# Total code points: 132453
 
 # ================================================
 
@@ -2948,6 +2966,10 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 11340         ; Mn #       GRANTHA VOWEL SIGN II
 11366..1136C  ; Mn #   [7] COMBINING GRANTHA DIGIT ZERO..COMBINING GRANTHA DIGIT SIX
 11370..11374  ; Mn #   [5] COMBINING GRANTHA LETTER A..COMBINING GRANTHA LETTER PA
+113BB..113C0  ; Mn #   [6] TULU-TIGALARI VOWEL SIGN U..TULU-TIGALARI VOWEL SIGN VOCALIC LL
+113CE         ; Mn #       TULU-TIGALARI SIGN VIRAMA
+113D0         ; Mn #       TULU-TIGALARI CONJOINER
+113E1..113E2  ; Mn #   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 11438..1143F  ; Mn #   [8] NEWA VOWEL SIGN U..NEWA VOWEL SIGN AI
 11442..11444  ; Mn #   [3] NEWA SIGN VIRAMA..NEWA SIGN ANUSVARA
 11446         ; Mn #       NEWA SIGN NUKTA
@@ -3044,7 +3066,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 1994
+# Total code points: 2004
 
 # ================================================
 
@@ -3196,6 +3218,12 @@ ABEC          ; Mc #       MEETEI MAYEK LUM IYEK
 1134B..1134D  ; Mc #   [3] GRANTHA VOWEL SIGN OO..GRANTHA SIGN VIRAMA
 11357         ; Mc #       GRANTHA AU LENGTH MARK
 11362..11363  ; Mc #   [2] GRANTHA VOWEL SIGN VOCALIC L..GRANTHA VOWEL SIGN VOCALIC LL
+113B8..113BA  ; Mc #   [3] TULU-TIGALARI VOWEL SIGN AA..TULU-TIGALARI VOWEL SIGN II
+113C2         ; Mc #       TULU-TIGALARI VOWEL SIGN EE
+113C5         ; Mc #       TULU-TIGALARI VOWEL SIGN AI
+113C7..113CA  ; Mc #   [4] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CC..113CD  ; Mc #   [2] TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN VISARGA
+113CF         ; Mc #       TULU-TIGALARI SIGN LOOPED VIRAMA
 11435..11437  ; Mc #   [3] NEWA VOWEL SIGN AA..NEWA VOWEL SIGN II
 11440..11441  ; Mc #   [2] NEWA VOWEL SIGN O..NEWA VOWEL SIGN AU
 11445         ; Mc #       NEWA SIGN VISARGA
@@ -3246,7 +3274,7 @@ ABEC          ; Mc #       MEETEI MAYEK LUM IYEK
 1D165..1D166  ; Mc #   [2] MUSICAL SYMBOL COMBINING STEM..MUSICAL SYMBOL COMBINING SPRECHGESANG STEM
 1D16D..1D172  ; Mc #   [6] MUSICAL SYMBOL COMBINING AUGMENTATION DOT..MUSICAL SYMBOL COMBINING FLAG-5
 
-# Total code points: 453
+# Total code points: 465
 
 # ================================================
 
@@ -3876,6 +3904,8 @@ FF64..FF65    ; Po #   [2] HALFWIDTH IDEOGRAPHIC COMMA..HALFWIDTH KATAKANA MIDDL
 111DD..111DF  ; Po #   [3] SHARADA CONTINUATION SIGN..SHARADA SECTION MARK-2
 11238..1123D  ; Po #   [6] KHOJKI DANDA..KHOJKI ABBREVIATION SIGN
 112A9         ; Po #       MULTANI SECTION MARK
+113D4..113D5  ; Po #   [2] TULU-TIGALARI DANDA..TULU-TIGALARI DOUBLE DANDA
+113D7..113D8  ; Po #   [2] TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA
 1144B..1144F  ; Po #   [5] NEWA DANDA..NEWA ABBREVIATION SIGN
 1145A..1145B  ; Po #   [2] NEWA DOUBLE COMMA..NEWA PLACEHOLDER MARK
 1145D         ; Po #       NEWA INSERTION SIGN
@@ -3912,7 +3942,7 @@ FF64..FF65    ; Po #   [2] HALFWIDTH IDEOGRAPHIC COMMA..HALFWIDTH KATAKANA MIDDL
 1E5FF         ; Po #       OL ONAL ABBREVIATION SIGN
 1E95E..1E95F  ; Po #   [2] ADLAM INITIAL EXCLAMATION MARK..ADLAM INITIAL QUESTION MARK
 
-# Total code points: 633
+# Total code points: 637
 
 # ================================================
 
