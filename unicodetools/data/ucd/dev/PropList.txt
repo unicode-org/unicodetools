@@ -1,6 +1,5 @@
-113BB..113C0;Other_Alphabetic
 # PropList-16.0.0.txt
-# Date: 2023-10-26, 10:54:18 GMT
+# Date: 2023-11-10, 04:24:19 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -738,6 +737,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 11357         ; Other_Alphabetic # Mc       GRANTHA AU LENGTH MARK
 11362..11363  ; Other_Alphabetic # Mc   [2] GRANTHA VOWEL SIGN VOCALIC L..GRANTHA VOWEL SIGN VOCALIC LL
 113B8..113BA  ; Other_Alphabetic # Mc   [3] TULU-TIGALARI VOWEL SIGN AA..TULU-TIGALARI VOWEL SIGN II
+113BB..113C0  ; Other_Alphabetic # Mn   [6] TULU-TIGALARI VOWEL SIGN U..TULU-TIGALARI VOWEL SIGN VOCALIC LL
 113C2         ; Other_Alphabetic # Mc       TULU-TIGALARI VOWEL SIGN EE
 113C5         ; Other_Alphabetic # Mc       TULU-TIGALARI VOWEL SIGN AI
 113C7..113CA  ; Other_Alphabetic # Mc   [4] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
@@ -844,7 +844,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1439
+# Total code points: 1445
 
 # ================================================
 
