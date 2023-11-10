@@ -1,5 +1,5 @@
 # DerivedAge-16.0.0.txt
-# Date: 2023-11-10, 22:05:06 GMT
+# Date: 2023-11-10, 22:24:48 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -2012,6 +2012,8 @@ FDFE..FDFF    ; 14.0 #   [2] ARABIC LIGATURE SUBHAANAHU WA TAAALAA..ARABIC LIGAT
 0897          ; 16.0 #       ARABIC PEPET
 0C5C          ; 16.0 #       TELUGU ARCHAIC SHRII
 0CDC          ; 16.0 #       KANNADA ARCHAIC SHRII
+1B4E..1B4F    ; 16.0 #   [2] BALINESE INVERTED CARIK SIKI..BALINESE INVERTED CARIK PAREREN
+1B7F          ; 16.0 #       BALINESE PANTI BAWAK
 1C89..1C8A    ; 16.0 #   [2] CYRILLIC CAPITAL LETTER TJE..CYRILLIC SMALL LETTER TJE
 2427..2429    ; 16.0 #   [3] SYMBOL FOR DELETE SQUARE CHECKER BOARD FORM..SYMBOL FOR DELETE MEDIUM SHADE FORM
 31E4..31E5    ; 16.0 #   [2] CJK STROKE HZXG..CJK STROKE SZP
@@ -2056,6 +2058,6 @@ A7DA..A7DC    ; 16.0 #   [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER L
 1FAE9         ; 16.0 #       FACE WITH BAGS UNDER EYES
 1FBCB..1FBEF  ; 16.0 #  [37] WHITE CROSS MARK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 
-# Total code points: 1189
+# Total code points: 1192
 
 # EOF

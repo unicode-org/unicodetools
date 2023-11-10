@@ -1,5 +1,5 @@
 # DerivedLineBreak-16.0.0.txt
-# Date: 2023-11-10, 22:06:12 GMT
+# Date: 2023-11-10, 22:25:34 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -69,8 +69,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 761649 code points not listed here.
-# Total code points: 899117
+# The above property value applies to 761646 code points not listed here.
+# Total code points: 899114
 
 # ================================================
 
@@ -2443,9 +2443,10 @@ A8FC          ; BB # Po       DEVANAGARI SIGN SIDDHAM
 17D8          ; BA # Po       KHMER SIGN BEYYAL
 17DA          ; BA # Po       KHMER SIGN KOOMUUT
 1804..1805    ; BA # Po   [2] MONGOLIAN COLON..MONGOLIAN FOUR DOTS
+1B4E..1B4F    ; BA # Po   [2] BALINESE INVERTED CARIK SIKI..BALINESE INVERTED CARIK PAREREN
 1B5A..1B5B    ; BA # Po   [2] BALINESE PANTI..BALINESE PAMADA
 1B5D..1B60    ; BA # Po   [4] BALINESE CARIK PAMUNGKAH..BALINESE PAMENENG
-1B7D..1B7E    ; BA # Po   [2] BALINESE PANTI LANTANG..BALINESE PAMADA LANTANG
+1B7D..1B7F    ; BA # Po   [3] BALINESE PANTI LANTANG..BALINESE PANTI BAWAK
 1C3B..1C3F    ; BA # Po   [5] LEPCHA PUNCTUATION TA-ROL..LEPCHA PUNCTUATION TSHOOK
 1C7E..1C7F    ; BA # Po   [2] OL CHIKI PUNCTUATION MUCAAD..OL CHIKI PUNCTUATION DOUBLE MUCAAD
 2000..2006    ; BA # Zs   [7] EN QUAD..SIX-PER-EM SPACE
@@ -2533,7 +2534,7 @@ ABEB          ; BA # Po       MEETEI MAYEK CHEIKHEI
 1BC9F         ; BA # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA87..1DA8A  ; BA # Po   [4] SIGNWRITING COMMA..SIGNWRITING COLON
 
-# Total code points: 269
+# Total code points: 272
 
 # ================================================
 
