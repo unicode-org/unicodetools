@@ -1,9 +1,5 @@
 # EastAsianWidth-16.0.0.txt
-<<<<<<< HEAD
-# Date: 2023-10-09, 12:15:22 GMT
-=======
-# Date: 2023-11-10, 01:48:10 GMT
->>>>>>> la-vache/main
+# Date: 2023-11-10, 06:45:21 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html

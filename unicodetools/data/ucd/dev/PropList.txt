@@ -1,9 +1,5 @@
 # PropList-16.0.0.txt
-<<<<<<< HEAD
-# Date: 2023-10-23, 13:31:21 GMT
-=======
-# Date: 2023-11-10, 01:58:50 GMT
->>>>>>> la-vache/main
+# Date: 2023-11-10, 06:45:32 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -848,11 +844,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-<<<<<<< HEAD
-# Total code points: 1442
-=======
-# Total code points: 1461
->>>>>>> la-vache/main
+# Total code points: 1478
 
 # ================================================
 
@@ -1126,11 +1118,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-<<<<<<< HEAD
-# Total code points: 1145
-=======
-# Total code points: 1153
->>>>>>> la-vache/main
+# Total code points: 1154
 
 # ================================================
 

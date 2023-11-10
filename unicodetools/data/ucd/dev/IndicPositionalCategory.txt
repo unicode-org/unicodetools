@@ -1,9 +1,5 @@
 # IndicPositionalCategory-16.0.0.txt
-<<<<<<< HEAD
-# Date: 2023-10-09, 12:15:22 GMT
-=======
-# Date: 2023-11-10, 01:48:11 GMT
->>>>>>> la-vache/main
+# Date: 2023-11-10, 06:45:23 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -72,9 +68,9 @@
 #
 # Ahom, Balinese, Batak, Bengali, Bhaiksuki, Brahmi, Buginese, Buhid,
 # Chakma, Cham, Devanagari, Dives Akuru, Dogra, Grantha, Gujarati,
-# Gunjala Gondi, Gurmukhi, Hanunoo, Javanese, Kaithi, Kannada, Kawi,
-# Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Kirat Rai, Lao, Lepcha, Limbu,
-# Makasar, Malayalam, Marchen, Masaram Gondi, Meetei Mayek, Modi,
+# Gunjala Gondi, Gurmukhi, Gurung Khema, Hanunoo, Javanese, Kaithi, Kannada,
+# Kawi, Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Kirat Rai, Lao, Lepcha,
+# Limbu, Makasar, Malayalam, Marchen, Masaram Gondi, Meetei Mayek, Modi,
 # Myanmar, Nandinagari, Newa, New Tai Lue, Oriya, Rejang, Saurashtra,
 # Sharada, Siddham, Sinhala, Soyombo, Sundanese, Syloti Nagri,
 # Tagalog, Tagbanwa, Tai Tham, Tai Viet, Takri, Tamil, Telugu, Thai,
@@ -303,13 +299,10 @@ ABEC          ; Right # Mc       MEETEI MAYEK LUM IYEK
 11F03         ; Right # Mc       KAWI SIGN VISARGA
 11F34..11F35  ; Right # Mc   [2] KAWI VOWEL SIGN AA..KAWI VOWEL SIGN ALTERNATE AA
 11F41         ; Right # Mc       KAWI SIGN KILLER
-<<<<<<< HEAD
 1612C         ; Right # Mc       GURUNG KHEMA CONSONANT SIGN MEDIAL HA
-=======
 16D40..16D42  ; Right # Lm   [3] KIRAT RAI SIGN ANUSVARA..KIRAT RAI SIGN VISARGA
 16D63..16D6A  ; Right # Lo   [8] KIRAT RAI VOWEL SIGN AA..KIRAT RAI VOWEL SIGN AU
 16D6B..16D6C  ; Right # Lm   [2] KIRAT RAI SIGN VIRAMA..KIRAT RAI SIGN SAAT
->>>>>>> la-vache/main
 
 # Indic_Positional_Category=Left
 
@@ -601,12 +594,9 @@ ABE5          ; Top # Mn       MEETEI MAYEK VOWEL SIGN ANAP
 11F02         ; Top # Lo       KAWI SIGN REPHA
 11F36..11F37  ; Top # Mn   [2] KAWI VOWEL SIGN I..KAWI VOWEL SIGN II
 11F40         ; Top # Mn       KAWI VOWEL SIGN EU
-<<<<<<< HEAD
+11F5A         ; Top # Mn       KAWI SIGN NUKTA
 1611E..16129  ; Top # Mn  [12] GURUNG KHEMA VOWEL SIGN AA..GURUNG KHEMA VOWEL LENGTH MARK
 1612D         ; Top # Mn       GURUNG KHEMA SIGN ANUSVARA
-=======
-11F5A         ; Top # Mn       KAWI SIGN NUKTA
->>>>>>> la-vache/main
 
 # Indic_Positional_Category=Bottom
 
