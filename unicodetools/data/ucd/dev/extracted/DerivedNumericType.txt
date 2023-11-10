@@ -1,5 +1,5 @@
 # DerivedNumericType-16.0.0.txt
-# Date: 2023-11-06, 03:48:59 GMT
+# Date: 2023-11-10, 20:57:28 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -279,6 +279,7 @@ FF10..FF19    ; Decimal # Nd  [10] FULLWIDTH DIGIT ZERO..FULLWIDTH DIGIT NINE
 11D50..11D59  ; Decimal # Nd  [10] MASARAM GONDI DIGIT ZERO..MASARAM GONDI DIGIT NINE
 11DA0..11DA9  ; Decimal # Nd  [10] GUNJALA GONDI DIGIT ZERO..GUNJALA GONDI DIGIT NINE
 11F50..11F59  ; Decimal # Nd  [10] KAWI DIGIT ZERO..KAWI DIGIT NINE
+16130..16139  ; Decimal # Nd  [10] GURUNG KHEMA DIGIT ZERO..GURUNG KHEMA DIGIT NINE
 16A60..16A69  ; Decimal # Nd  [10] MRO DIGIT ZERO..MRO DIGIT NINE
 16AC0..16AC9  ; Decimal # Nd  [10] TANGSA DIGIT ZERO..TANGSA DIGIT NINE
 16B50..16B59  ; Decimal # Nd  [10] PAHAWH HMONG DIGIT ZERO..PAHAWH HMONG DIGIT NINE
@@ -292,6 +293,6 @@ FF10..FF19    ; Decimal # Nd  [10] FULLWIDTH DIGIT ZERO..FULLWIDTH DIGIT NINE
 1E950..1E959  ; Decimal # Nd  [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 1FBF0..1FBF9  ; Decimal # Nd  [10] SEGMENTED DIGIT ZERO..SEGMENTED DIGIT NINE
 
-# Total code points: 750
+# Total code points: 760
 
 # EOF

@@ -1,5 +1,5 @@
 # Scripts-16.0.0.txt
-# Date: 2023-11-10, 04:28:43 GMT
+# Date: 2023-11-10, 20:58:18 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -3053,6 +3053,16 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 10D8E..10D8F  ; Garay # Sm   [2] GARAY PLUS SIGN..GARAY MINUS SIGN
 
 # Total code points: 69
+
+# ================================================
+
+16100..1611D  ; Gurung_Khema # Lo  [30] GURUNG KHEMA LETTER A..GURUNG KHEMA LETTER SA
+1611E..16129  ; Gurung_Khema # Mn  [12] GURUNG KHEMA VOWEL SIGN AA..GURUNG KHEMA VOWEL LENGTH MARK
+1612A..1612C  ; Gurung_Khema # Mc   [3] GURUNG KHEMA CONSONANT SIGN MEDIAL YA..GURUNG KHEMA CONSONANT SIGN MEDIAL HA
+1612D..1612F  ; Gurung_Khema # Mn   [3] GURUNG KHEMA SIGN ANUSVARA..GURUNG KHEMA SIGN THOLHOMA
+16130..16139  ; Gurung_Khema # Nd  [10] GURUNG KHEMA DIGIT ZERO..GURUNG KHEMA DIGIT NINE
+
+# Total code points: 58
 
 # ================================================
 
