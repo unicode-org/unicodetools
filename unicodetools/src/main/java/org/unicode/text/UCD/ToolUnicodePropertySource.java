@@ -33,6 +33,7 @@ import org.unicode.props.UcdPropertyValues.Indic_Syllabic_Category_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.AliasAddAction;
 import org.unicode.props.UnicodeProperty.BaseProperty;
+import org.unicode.props.UnicodeProperty.RegexMatcher;
 import org.unicode.props.UnicodeProperty.SimpleProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.text.utility.Settings;
@@ -1090,8 +1091,16 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             unicodeMap.putAll(gcbSpacingMarkSet, "SpacingMark");
 
             final UnicodeProperty hangul = getProperty("Hangul_Syllable_Type");
+            final UnicodeProperty name = getProperty("Name");
             unicodeMap.putAll(hangul.getSet("L"), "L");
-            unicodeMap.putAll(hangul.getSet("V"), "V");
+            var regexMatcher = new RegexMatcher();
+            unicodeMap.putAll(
+                    hangul.getSet("V")
+                            .addAll(
+                                    name.getSet(
+                                            regexMatcher.set(
+                                                    "KIRAT RAI VOWEL SIGN (E|AI|AA|O|AU)"))),
+                    "V");
             unicodeMap.putAll(hangul.getSet("T"), "T");
             unicodeMap.putAll(hangul.getSet("LV"), "LV");
             unicodeMap.putAll(hangul.getSet("LVT"), "LVT");
