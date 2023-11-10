@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-16.0.0.txt
-# Date: 2023-11-10, 22:00:30 GMT
+# Date: 2023-11-10, 22:25:29 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1616,6 +1616,8 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 113CF         ; N # Mc       TULU-TIGALARI SIGN LOOPED VIRAMA
 113D0         ; N # Mn       TULU-TIGALARI CONJOINER
 113D1         ; N # Lo       TULU-TIGALARI REPHA
+113D2         ; N # Mn       TULU-TIGALARI GEMINATION MARK
+113D3         ; N # Lo       TULU-TIGALARI SIGN PLUTA
 113D4..113D5  ; N # Po   [2] TULU-TIGALARI DANDA..TULU-TIGALARI DOUBLE DANDA
 113D7..113D8  ; N # Po   [2] TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA
 113E1..113E2  ; N # Mn   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
@@ -2100,7 +2102,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 765094 code points not listed here.
+# The above property value applies to 765092 code points not listed here.
 # Total code points: 792608
 
 # ================================================

@@ -1,5 +1,5 @@
 # VerticalOrientation-16.0.0.txt
-# Date: 2023-11-10, 22:01:46 GMT
+# Date: 2023-11-10, 22:27:08 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1916,6 +1916,8 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 113CF          ; R  # Mc         TULU-TIGALARI SIGN LOOPED VIRAMA
 113D0          ; R  # Mn         TULU-TIGALARI CONJOINER
 113D1          ; R  # Lo         TULU-TIGALARI REPHA
+113D2          ; R  # Mn         TULU-TIGALARI GEMINATION MARK
+113D3          ; R  # Lo         TULU-TIGALARI SIGN PLUTA
 113D4..113D5   ; R  # Po     [2] TULU-TIGALARI DANDA..TULU-TIGALARI DOUBLE DANDA
 113D7..113D8   ; R  # Po     [2] TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA
 113E1..113E2   ; R  # Mn     [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA

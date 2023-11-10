@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2023-11-10, 22:00:31 GMT
+# Date: 2023-11-10, 22:25:30 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -488,7 +488,6 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 113C3..113C4  ; Cn #   [2] <reserved-113C3>..<reserved-113C4>
 113C6         ; Cn #       <reserved-113C6>
 113CB         ; Cn #       <reserved-113CB>
-113D2..113D3  ; Cn #   [2] <reserved-113D2>..<reserved-113D3>
 113D6         ; Cn #       <reserved-113D6>
 113D9..113E0  ; Cn #   [8] <reserved-113D9>..<reserved-113E0>
 113E3..113FF  ; Cn #  [29] <reserved-113E3>..<reserved-113FF>
@@ -747,7 +746,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 823528
+# Total code points: 823526
 
 # ================================================
 
@@ -2569,6 +2568,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 11390..113B5  ; Lo #  [38] TULU-TIGALARI LETTER OO..TULU-TIGALARI LETTER LLLA
 113B7         ; Lo #       TULU-TIGALARI SIGN AVAGRAHA
 113D1         ; Lo #       TULU-TIGALARI REPHA
+113D3         ; Lo #       TULU-TIGALARI SIGN PLUTA
 11400..11434  ; Lo #  [53] NEWA LETTER A..NEWA LETTER HA
 11447..1144A  ; Lo #   [4] NEWA SIGN AVAGRAHA..NEWA SIDDHI
 1145F..11461  ; Lo #   [3] NEWA LETTER VEDIC ANUSVARA..NEWA SIGN UPADHMANIYA
@@ -2706,7 +2706,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 30000..3134A  ; Lo # [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Lo # [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 
-# Total code points: 132483
+# Total code points: 132484
 
 # ================================================
 
@@ -2970,6 +2970,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 113BB..113C0  ; Mn #   [6] TULU-TIGALARI VOWEL SIGN U..TULU-TIGALARI VOWEL SIGN VOCALIC LL
 113CE         ; Mn #       TULU-TIGALARI SIGN VIRAMA
 113D0         ; Mn #       TULU-TIGALARI CONJOINER
+113D2         ; Mn #       TULU-TIGALARI GEMINATION MARK
 113E1..113E2  ; Mn #   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 11438..1143F  ; Mn #   [8] NEWA VOWEL SIGN U..NEWA VOWEL SIGN AI
 11442..11444  ; Mn #   [3] NEWA SIGN VIRAMA..NEWA SIGN ANUSVARA
@@ -3069,7 +3070,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2019
+# Total code points: 2020
 
 # ================================================
 

@@ -1,5 +1,5 @@
 # PropList-16.0.0.txt
-# Date: 2023-11-10, 20:57:39 GMT
+# Date: 2023-11-10, 22:06:29 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1079,6 +1079,8 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 11370..11374  ; Diacritic # Mn   [5] COMBINING GRANTHA LETTER A..COMBINING GRANTHA LETTER PA
 113CE         ; Diacritic # Mn       TULU-TIGALARI SIGN VIRAMA
 113CF         ; Diacritic # Mc       TULU-TIGALARI SIGN LOOPED VIRAMA
+113D2         ; Diacritic # Mn       TULU-TIGALARI GEMINATION MARK
+113D3         ; Diacritic # Lo       TULU-TIGALARI SIGN PLUTA
 113E1..113E2  ; Diacritic # Mn   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 11442         ; Diacritic # Mn       NEWA SIGN VIRAMA
 11446         ; Diacritic # Mn       NEWA SIGN NUKTA
@@ -1127,7 +1129,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1158
+# Total code points: 1160
 
 # ================================================
 
@@ -1160,6 +1162,8 @@ FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND 
 10D6A         ; Extender # Mn       GARAY CONSONANT GEMINATION MARK
 10D6F         ; Extender # Lm       GARAY REDUPLICATION MARK
 1135D         ; Extender # Lo       GRANTHA SIGN PLUTA
+113D2         ; Extender # Mn       TULU-TIGALARI GEMINATION MARK
+113D3         ; Extender # Lo       TULU-TIGALARI SIGN PLUTA
 115C6..115C8  ; Extender # Po   [3] SIDDHAM REPETITION MARK-1..SIDDHAM REPETITION MARK-3
 11A98         ; Extender # Mn       SOYOMBO GEMINATION MARK
 16B42..16B43  ; Extender # Lm   [2] PAHAWH HMONG SIGN VOS NRUA..PAHAWH HMONG SIGN IB YAM
@@ -1169,7 +1173,7 @@ FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND 
 1E5EF         ; Extender # Mn       OL ONAL SIGN IKIR
 1E944..1E946  ; Extender # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 
-# Total code points: 54
+# Total code points: 56
 
 # ================================================
 

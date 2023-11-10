@@ -1,5 +1,5 @@
 # DerivedBidiClass-16.0.0.txt
-# Date: 2023-11-10, 22:00:21 GMT
+# Date: 2023-11-10, 22:25:22 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -915,6 +915,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 113CC..113CD  ; L # Mc   [2] TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN VISARGA
 113CF         ; L # Mc       TULU-TIGALARI SIGN LOOPED VIRAMA
 113D1         ; L # Lo       TULU-TIGALARI REPHA
+113D3         ; L # Lo       TULU-TIGALARI SIGN PLUTA
 113D4..113D5  ; L # Po   [2] TULU-TIGALARI DANDA..TULU-TIGALARI DOUBLE DANDA
 113D7..113D8  ; L # Po   [2] TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA
 11400..11434  ; L # Lo  [53] NEWA LETTER A..NEWA LETTER HA
@@ -1217,8 +1218,8 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 819346 code points not listed here.
-# Total code points: 1095519
+# The above property value applies to 819344 code points not listed here.
+# Total code points: 1095518
 
 # ================================================
 
@@ -2306,6 +2307,7 @@ FE20..FE2F    ; NSM # Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC 
 113BB..113C0  ; NSM # Mn   [6] TULU-TIGALARI VOWEL SIGN U..TULU-TIGALARI VOWEL SIGN VOCALIC LL
 113CE         ; NSM # Mn       TULU-TIGALARI SIGN VIRAMA
 113D0         ; NSM # Mn       TULU-TIGALARI CONJOINER
+113D2         ; NSM # Mn       TULU-TIGALARI GEMINATION MARK
 113E1..113E2  ; NSM # Mn   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 11438..1143F  ; NSM # Mn   [8] NEWA VOWEL SIGN U..NEWA VOWEL SIGN AI
 11442..11444  ; NSM # Mn   [3] NEWA SIGN VIRAMA..NEWA SIGN ANUSVARA
@@ -2405,7 +2407,7 @@ FE20..FE2F    ; NSM # Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC 
 1E944..1E94A  ; NSM # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; NSM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2027
+# Total code points: 2028
 
 # ================================================
 

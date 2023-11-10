@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-16.0.0.txt
-# Date: 2023-11-10, 20:57:30 GMT
+# Date: 2023-11-10, 22:25:48 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -363,6 +363,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 113BB..113C0  ; Extend # Mn   [6] TULU-TIGALARI VOWEL SIGN U..TULU-TIGALARI VOWEL SIGN VOCALIC LL
 113CE         ; Extend # Mn       TULU-TIGALARI SIGN VIRAMA
 113D0         ; Extend # Mn       TULU-TIGALARI CONJOINER
+113D2         ; Extend # Mn       TULU-TIGALARI GEMINATION MARK
 113E1..113E2  ; Extend # Mn   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 11438..1143F  ; Extend # Mn   [8] NEWA VOWEL SIGN U..NEWA VOWEL SIGN AI
 11442..11444  ; Extend # Mn   [3] NEWA SIGN VIRAMA..NEWA SIGN ANUSVARA
@@ -470,7 +471,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2164
+# Total code points: 2165
 
 # ================================================
 

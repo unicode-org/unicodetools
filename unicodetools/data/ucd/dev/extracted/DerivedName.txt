@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2023-11-10, 22:00:33 GMT
+# Date: 2023-11-10, 22:25:34 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -31145,6 +31145,8 @@ FFFD          ; REPLACEMENT CHARACTER
 113CF         ; TULU-TIGALARI SIGN LOOPED VIRAMA
 113D0         ; TULU-TIGALARI CONJOINER
 113D1         ; TULU-TIGALARI REPHA
+113D2         ; TULU-TIGALARI GEMINATION MARK
+113D3         ; TULU-TIGALARI SIGN PLUTA
 113D4         ; TULU-TIGALARI DANDA
 113D5         ; TULU-TIGALARI DOUBLE DANDA
 113D7         ; TULU-TIGALARI SIGN OM PUSHPIKA
@@ -45366,6 +45368,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 151003
+# Total code points: 151005
 
 # EOF
