@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2023-11-10, 20:57:24 GMT
+# Date: 2023-11-10, 22:00:33 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -6191,6 +6191,8 @@
 1B4A          ; BALINESE LETTER ZAL SASAK
 1B4B          ; BALINESE LETTER ASYURA SASAK
 1B4C          ; BALINESE LETTER ARCHAIC JNYA
+1B4E          ; BALINESE INVERTED CARIK SIKI
+1B4F          ; BALINESE INVERTED CARIK PAREREN
 1B50          ; BALINESE DIGIT ZERO
 1B51          ; BALINESE DIGIT ONE
 1B52          ; BALINESE DIGIT TWO
@@ -6238,6 +6240,7 @@
 1B7C          ; BALINESE MUSICAL SYMBOL LEFT-HAND OPEN PING
 1B7D          ; BALINESE PANTI LANTANG
 1B7E          ; BALINESE PAMADA LANTANG
+1B7F          ; BALINESE PANTI BAWAK
 1B80          ; SUNDANESE SIGN PANYECEK
 1B81          ; SUNDANESE SIGN PANGLAYAR
 1B82          ; SUNDANESE SIGN PANGWISAD
@@ -45363,6 +45366,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 151000
+# Total code points: 151003
 
 # EOF

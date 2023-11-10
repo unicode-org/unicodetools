@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-16.0.0.txt
-# Date: 2023-11-10, 20:57:21 GMT
+# Date: 2023-11-10, 22:00:30 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -704,12 +704,13 @@
 1B42          ; N # Mn       BALINESE VOWEL SIGN PEPET
 1B43..1B44    ; N # Mc   [2] BALINESE VOWEL SIGN PEPET TEDUNG..BALINESE ADEG ADEG
 1B45..1B4C    ; N # Lo   [8] BALINESE LETTER KAF SASAK..BALINESE LETTER ARCHAIC JNYA
+1B4E..1B4F    ; N # Po   [2] BALINESE INVERTED CARIK SIKI..BALINESE INVERTED CARIK PAREREN
 1B50..1B59    ; N # Nd  [10] BALINESE DIGIT ZERO..BALINESE DIGIT NINE
 1B5A..1B60    ; N # Po   [7] BALINESE PANTI..BALINESE PAMENENG
 1B61..1B6A    ; N # So  [10] BALINESE MUSICAL SYMBOL DONG..BALINESE MUSICAL SYMBOL DANG GEDE
 1B6B..1B73    ; N # Mn   [9] BALINESE MUSICAL SYMBOL COMBINING TEGEH..BALINESE MUSICAL SYMBOL COMBINING GONG
 1B74..1B7C    ; N # So   [9] BALINESE MUSICAL SYMBOL RIGHT-HAND OPEN DUG..BALINESE MUSICAL SYMBOL LEFT-HAND OPEN PING
-1B7D..1B7E    ; N # Po   [2] BALINESE PANTI LANTANG..BALINESE PAMADA LANTANG
+1B7D..1B7F    ; N # Po   [3] BALINESE PANTI LANTANG..BALINESE PANTI BAWAK
 1B80..1B81    ; N # Mn   [2] SUNDANESE SIGN PANYECEK..SUNDANESE SIGN PANGLAYAR
 1B82          ; N # Mc       SUNDANESE SIGN PANGWISAD
 1B83..1BA0    ; N # Lo  [30] SUNDANESE LETTER A..SUNDANESE LETTER HA
@@ -2099,7 +2100,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 765097 code points not listed here.
+# The above property value applies to 765094 code points not listed here.
 # Total code points: 792608
 
 # ================================================

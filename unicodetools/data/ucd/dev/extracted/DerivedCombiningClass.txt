@@ -1,5 +1,5 @@
 # DerivedCombiningClass-16.0.0.txt
-# Date: 2023-11-10, 20:57:16 GMT
+# Date: 2023-11-10, 22:00:24 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -629,11 +629,12 @@
 1B42          ; 0 # Mn       BALINESE VOWEL SIGN PEPET
 1B43          ; 0 # Mc       BALINESE VOWEL SIGN PEPET TEDUNG
 1B45..1B4C    ; 0 # Lo   [8] BALINESE LETTER KAF SASAK..BALINESE LETTER ARCHAIC JNYA
+1B4E..1B4F    ; 0 # Po   [2] BALINESE INVERTED CARIK SIKI..BALINESE INVERTED CARIK PAREREN
 1B50..1B59    ; 0 # Nd  [10] BALINESE DIGIT ZERO..BALINESE DIGIT NINE
 1B5A..1B60    ; 0 # Po   [7] BALINESE PANTI..BALINESE PAMENENG
 1B61..1B6A    ; 0 # So  [10] BALINESE MUSICAL SYMBOL DONG..BALINESE MUSICAL SYMBOL DANG GEDE
 1B74..1B7C    ; 0 # So   [9] BALINESE MUSICAL SYMBOL RIGHT-HAND OPEN DUG..BALINESE MUSICAL SYMBOL LEFT-HAND OPEN PING
-1B7D..1B7E    ; 0 # Po   [2] BALINESE PANTI LANTANG..BALINESE PAMADA LANTANG
+1B7D..1B7F    ; 0 # Po   [3] BALINESE PANTI LANTANG..BALINESE PANTI BAWAK
 1B80..1B81    ; 0 # Mn   [2] SUNDANESE SIGN PANYECEK..SUNDANESE SIGN PANGLAYAR
 1B82          ; 0 # Mc       SUNDANESE SIGN PANGWISAD
 1B83..1BA0    ; 0 # Lo  [30] SUNDANESE LETTER A..SUNDANESE LETTER HA
@@ -2056,7 +2057,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 825579 code points not listed here.
+# The above property value applies to 825576 code points not listed here.
 # Total code points: 1113178
 
 # ================================================

@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2023-11-10, 20:57:21 GMT
+# Date: 2023-11-10, 22:00:31 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -229,8 +229,7 @@
 1A9A..1A9F    ; Cn #   [6] <reserved-1A9A>..<reserved-1A9F>
 1AAE..1AAF    ; Cn #   [2] <reserved-1AAE>..<reserved-1AAF>
 1ACF..1AFF    ; Cn #  [49] <reserved-1ACF>..<reserved-1AFF>
-1B4D..1B4F    ; Cn #   [3] <reserved-1B4D>..<reserved-1B4F>
-1B7F          ; Cn #       <reserved-1B7F>
+1B4D          ; Cn #       <reserved-1B4D>
 1BF4..1BFB    ; Cn #   [8] <reserved-1BF4>..<reserved-1BFB>
 1C38..1C3A    ; Cn #   [3] <reserved-1C38>..<reserved-1C3A>
 1C4A..1C4C    ; Cn #   [3] <reserved-1C4A>..<reserved-1C4C>
@@ -748,7 +747,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 823531
+# Total code points: 823528
 
 # ================================================
 
@@ -3814,8 +3813,9 @@ FF3F          ; Pc #       FULLWIDTH LOW LINE
 1A1E..1A1F    ; Po #   [2] BUGINESE PALLAWA..BUGINESE END OF SECTION
 1AA0..1AA6    ; Po #   [7] TAI THAM SIGN WIANG..TAI THAM SIGN REVERSED ROTATED RANA
 1AA8..1AAD    ; Po #   [6] TAI THAM SIGN KAAN..TAI THAM SIGN CAANG
+1B4E..1B4F    ; Po #   [2] BALINESE INVERTED CARIK SIKI..BALINESE INVERTED CARIK PAREREN
 1B5A..1B60    ; Po #   [7] BALINESE PANTI..BALINESE PAMENENG
-1B7D..1B7E    ; Po #   [2] BALINESE PANTI LANTANG..BALINESE PAMADA LANTANG
+1B7D..1B7F    ; Po #   [3] BALINESE PANTI LANTANG..BALINESE PANTI BAWAK
 1BFC..1BFF    ; Po #   [4] BATAK SYMBOL BINDU NA METEK..BATAK SYMBOL BINDU PANGOLAT
 1C3B..1C3F    ; Po #   [5] LEPCHA PUNCTUATION TA-ROL..LEPCHA PUNCTUATION TSHOOK
 1C7E..1C7F    ; Po #   [2] OL CHIKI PUNCTUATION MUCAAD..OL CHIKI PUNCTUATION DOUBLE MUCAAD
@@ -3948,7 +3948,7 @@ FF64..FF65    ; Po #   [2] HALFWIDTH IDEOGRAPHIC COMMA..HALFWIDTH KATAKANA MIDDL
 1E5FF         ; Po #       OL ONAL ABBREVIATION SIGN
 1E95E..1E95F  ; Po #   [2] ADLAM INITIAL EXCLAMATION MARK..ADLAM INITIAL QUESTION MARK
 
-# Total code points: 637
+# Total code points: 640
 
 # ================================================
 
