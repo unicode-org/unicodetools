@@ -1,5 +1,5 @@
 # IndicSyllabicCategory-16.0.0.txt
-# Date: 2023-11-10, 04:28:17 GMT
+# Date: 2023-11-10, 20:38:16 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -43,7 +43,7 @@
 # Modi, Multani, Myanmar, Nandinagari, Newa, New Tai Lue, Oriya,
 # Phags-pa, Rejang, Saurashtra, Sharada, Siddham, Sinhala, Soyombo,
 # Sundanese, Syloti Nagri, Tagalog, Tagbanwa, Tai Le, Tai Tham,
-# Tai Viet, Takri, Tamil, Telugu, Thai, Tibetan, Tirhuta, and
+# Tai Viet, Takri, Tamil, Telugu, Thai, Tibetan, Tirhuta, Tulu-Tigalari, and
 # Zanabazar Square.
 #
 # All characters for all other scripts not in that list
