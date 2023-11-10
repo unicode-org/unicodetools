@@ -540,6 +540,12 @@ Let $nonAlphabeticDependentVowels = [\N{ORIYA SIGN OVERLINE}\N{THAI CHARACTER MA
 # See 177-CXX.
 \p{name=/COMBINING .* LETTER/} ⊆ [\p{Alphabetic}\p{Diacritic}]
 
+# Nuktas should probably be diacritic, but as of 15.1 this is only the case of
+# those that have NUKTA in their name.
+# See https://github.com/unicode-org/properties/issues/195#issuecomment-1804962555.
+Let $nonDiacriticNuktas = [\u1BE6\U00010A38\U00010A39\U00010A3A\U0001133B]
+[\p{InSc=Nukta} - \p{Diacritic}] = $nonDiacriticNuktas
+
 ##########################
 # LineBreak property
 ##########################
