@@ -1,5 +1,5 @@
 # IndicSyllabicCategory-16.0.0.txt
-# Date: 2023-10-26, 10:54:13 GMT
+# Date: 2023-11-10, 04:28:17 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -255,6 +255,7 @@ A9B3          ; Nukta # Mn       JAVANESE SIGN CECAK TELU
 1183A         ; Nukta # Mn       DOGRA SIGN NUKTA
 11943         ; Nukta # Mn       DIVES AKURU SIGN NUKTA
 11D42         ; Nukta # Mn       MASARAM GONDI SIGN NUKTA
+11F5A         ; Nukta # Mn       KAWI SIGN NUKTA
 
 # ================================================
 
@@ -1069,7 +1070,9 @@ A9BD          ; Consonant_Medial # Mn       JAVANESE CONSONANT SIGN KERET
 A9BE..A9BF    ; Consonant_Medial # Mc   [2] JAVANESE CONSONANT SIGN PENGKAL..JAVANESE CONSONANT SIGN CAKRA
 AA33..AA34    ; Consonant_Medial # Mc   [2] CHAM CONSONANT SIGN YA..CHAM CONSONANT SIGN RA
 AA35..AA36    ; Consonant_Medial # Mn   [2] CHAM CONSONANT SIGN LA..CHAM CONSONANT SIGN WA
-1171D..1171F  ; Consonant_Medial # Mn   [3] AHOM CONSONANT SIGN MEDIAL LA..AHOM CONSONANT SIGN MEDIAL LIGATING RA
+1171D         ; Consonant_Medial # Mn       AHOM CONSONANT SIGN MEDIAL LA
+1171E         ; Consonant_Medial # Mc       AHOM CONSONANT SIGN MEDIAL RA
+1171F         ; Consonant_Medial # Mn       AHOM CONSONANT SIGN MEDIAL LIGATING RA
 11940         ; Consonant_Medial # Mc       DIVES AKURU MEDIAL YA
 11942         ; Consonant_Medial # Mc       DIVES AKURU MEDIAL RA
 11A3B..11A3E  ; Consonant_Medial # Mn   [4] ZANABAZAR SQUARE CLUSTER-FINAL LETTER YA..ZANABAZAR SQUARE CLUSTER-FINAL LETTER VA

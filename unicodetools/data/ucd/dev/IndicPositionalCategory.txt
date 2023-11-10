@@ -1,5 +1,5 @@
 # IndicPositionalCategory-16.0.0.txt
-# Date: 2023-10-26, 10:54:13 GMT
+# Date: 2023-11-10, 04:28:17 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -69,7 +69,7 @@
 # Ahom, Balinese, Batak, Bengali, Bhaiksuki, Brahmi, Buginese, Buhid,
 # Chakma, Cham, Devanagari, Dives Akuru, Dogra, Grantha, Gujarati,
 # Gunjala Gondi, Gurmukhi, Hanunoo, Javanese, Kaithi, Kannada, Kawi,
-# Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Lao, Lepcha, Limbu,
+# Kayah Li, Kharoshthi, Khmer, Khojki, Khudawadi, Kirat Rai, Lao, Lepcha, Limbu,
 # Makasar, Malayalam, Marchen, Masaram Gondi, Meetei Mayek, Modi,
 # Myanmar, Nandinagari, Newa, New Tai Lue, Oriya, Rejang, Saurashtra,
 # Sharada, Siddham, Sinhala, Soyombo, Sundanese, Syloti Nagri,
@@ -83,7 +83,7 @@
 # list of Indic scripts, including those which do not have
 # positional characters. Currently, those additional
 # Indic scripts without positional characters are
-# Kirat Rai, Multani, Phags-pa, and Tai Le.
+# Multani, Phags-pa, and Tai Le.
 #
 # Notes:
 #
@@ -161,7 +161,6 @@
 0CF3          ; Right # Mc       KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT
 0D02..0D03    ; Right # Mc   [2] MALAYALAM SIGN ANUSVARA..MALAYALAM SIGN VISARGA
 0D3E..0D40    ; Right # Mc   [3] MALAYALAM VOWEL SIGN AA..MALAYALAM VOWEL SIGN II
-0D41..0D42    ; Right # Mn   [2] MALAYALAM VOWEL SIGN U..MALAYALAM VOWEL SIGN UU
 0D57          ; Right # Mc       MALAYALAM AU LENGTH MARK
 0D82..0D83    ; Right # Mc   [2] SINHALA SIGN ANUSVARAYA..SINHALA SIGN VISARGAYA
 0DCF..0DD1    ; Right # Mc   [3] SINHALA VOWEL SIGN AELA-PILLA..SINHALA VOWEL SIGN DIGA AEDA-PILLA
@@ -304,6 +303,9 @@ ABEC          ; Right # Mc       MEETEI MAYEK LUM IYEK
 11F03         ; Right # Mc       KAWI SIGN VISARGA
 11F34..11F35  ; Right # Mc   [2] KAWI VOWEL SIGN AA..KAWI VOWEL SIGN ALTERNATE AA
 11F41         ; Right # Mc       KAWI SIGN KILLER
+16D40..16D42  ; Right # Lm   [3] KIRAT RAI SIGN ANUSVARA..KIRAT RAI SIGN VISARGA
+16D63..16D6A  ; Right # Lo   [8] KIRAT RAI VOWEL SIGN AA..KIRAT RAI VOWEL SIGN AU
+16D6B..16D6C  ; Right # Lm   [2] KIRAT RAI SIGN VIRAMA..KIRAT RAI SIGN SAAT
 
 # Indic_Positional_Category=Left
 
@@ -600,6 +602,7 @@ ABE5          ; Top # Mn       MEETEI MAYEK VOWEL SIGN ANAP
 11F02         ; Top # Lo       KAWI SIGN REPHA
 11F36..11F37  ; Top # Mn   [2] KAWI VOWEL SIGN I..KAWI VOWEL SIGN II
 11F40         ; Top # Mn       KAWI VOWEL SIGN EU
+11F5A         ; Top # Mn       KAWI SIGN NUKTA
 
 # Indic_Positional_Category=Bottom
 
@@ -631,7 +634,7 @@ ABE5          ; Top # Mn       MEETEI MAYEK VOWEL SIGN ANAP
 0C62..0C63    ; Bottom # Mn   [2] TELUGU VOWEL SIGN VOCALIC L..TELUGU VOWEL SIGN VOCALIC LL
 0CBC          ; Bottom # Mn       KANNADA SIGN NUKTA
 0CE2..0CE3    ; Bottom # Mn   [2] KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
-0D43..0D44    ; Bottom # Mn   [2] MALAYALAM VOWEL SIGN VOCALIC R..MALAYALAM VOWEL SIGN VOCALIC RR
+0D41..0D44    ; Bottom # Mn   [4] MALAYALAM VOWEL SIGN U..MALAYALAM VOWEL SIGN VOCALIC RR
 0D62..0D63    ; Bottom # Mn   [2] MALAYALAM VOWEL SIGN VOCALIC L..MALAYALAM VOWEL SIGN VOCALIC LL
 0DD4          ; Bottom # Mn       SINHALA VOWEL SIGN KETTI PAA-PILLA
 0DD6          ; Bottom # Mn       SINHALA VOWEL SIGN DIGA PAA-PILLA
@@ -809,7 +812,7 @@ A9BF          ; Bottom_And_Left # Mc       JAVANESE CONSONANT SIGN CAKRA
 # Indic_Positional_Category=Top_And_Bottom_And_Left
 
 103C          ; Top_And_Bottom_And_Left # Mc       MYANMAR CONSONANT SIGN MEDIAL RA
-1171E         ; Top_And_Bottom_And_Left # Mn       AHOM CONSONANT SIGN MEDIAL RA
+1171E         ; Top_And_Bottom_And_Left # Mc       AHOM CONSONANT SIGN MEDIAL RA
 
 # Indic_Positional_Category=Overstruck
 
