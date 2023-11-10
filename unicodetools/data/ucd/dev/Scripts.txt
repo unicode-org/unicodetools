@@ -1,5 +1,5 @@
 # Scripts-16.0.0.txt
-# Date: 2023-11-10, 06:46:04 GMT
+# Date: 2023-11-10, 20:58:18 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -3097,5 +3097,28 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 105C0..105F3  ; Todhri # Lo  [52] TODHRI LETTER A..TODHRI LETTER OO
 
 # Total code points: 52
+
+# ================================================
+
+11380..11389  ; Tulu_Tigalari # Lo  [10] TULU-TIGALARI LETTER A..TULU-TIGALARI LETTER VOCALIC LL
+1138B         ; Tulu_Tigalari # Lo       TULU-TIGALARI LETTER EE
+1138E         ; Tulu_Tigalari # Lo       TULU-TIGALARI LETTER AI
+11390..113B5  ; Tulu_Tigalari # Lo  [38] TULU-TIGALARI LETTER OO..TULU-TIGALARI LETTER LLLA
+113B7         ; Tulu_Tigalari # Lo       TULU-TIGALARI SIGN AVAGRAHA
+113B8..113BA  ; Tulu_Tigalari # Mc   [3] TULU-TIGALARI VOWEL SIGN AA..TULU-TIGALARI VOWEL SIGN II
+113BB..113C0  ; Tulu_Tigalari # Mn   [6] TULU-TIGALARI VOWEL SIGN U..TULU-TIGALARI VOWEL SIGN VOCALIC LL
+113C2         ; Tulu_Tigalari # Mc       TULU-TIGALARI VOWEL SIGN EE
+113C5         ; Tulu_Tigalari # Mc       TULU-TIGALARI VOWEL SIGN AI
+113C7..113CA  ; Tulu_Tigalari # Mc   [4] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CC..113CD  ; Tulu_Tigalari # Mc   [2] TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN VISARGA
+113CE         ; Tulu_Tigalari # Mn       TULU-TIGALARI SIGN VIRAMA
+113CF         ; Tulu_Tigalari # Mc       TULU-TIGALARI SIGN LOOPED VIRAMA
+113D0         ; Tulu_Tigalari # Mn       TULU-TIGALARI CONJOINER
+113D1         ; Tulu_Tigalari # Lo       TULU-TIGALARI REPHA
+113D4..113D5  ; Tulu_Tigalari # Po   [2] TULU-TIGALARI DANDA..TULU-TIGALARI DOUBLE DANDA
+113D7..113D8  ; Tulu_Tigalari # Po   [2] TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA
+113E1..113E2  ; Tulu_Tigalari # Mn   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
+
+# Total code points: 78
 
 # EOF

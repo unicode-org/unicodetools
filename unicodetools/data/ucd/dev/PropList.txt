@@ -1,5 +1,5 @@
 # PropList-16.0.0.txt
-# Date: 2023-11-10, 06:45:32 GMT
+# Date: 2023-11-10, 20:57:39 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -737,6 +737,12 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1134B..1134C  ; Other_Alphabetic # Mc   [2] GRANTHA VOWEL SIGN OO..GRANTHA VOWEL SIGN AU
 11357         ; Other_Alphabetic # Mc       GRANTHA AU LENGTH MARK
 11362..11363  ; Other_Alphabetic # Mc   [2] GRANTHA VOWEL SIGN VOCALIC L..GRANTHA VOWEL SIGN VOCALIC LL
+113B8..113BA  ; Other_Alphabetic # Mc   [3] TULU-TIGALARI VOWEL SIGN AA..TULU-TIGALARI VOWEL SIGN II
+113BB..113C0  ; Other_Alphabetic # Mn   [6] TULU-TIGALARI VOWEL SIGN U..TULU-TIGALARI VOWEL SIGN VOCALIC LL
+113C2         ; Other_Alphabetic # Mc       TULU-TIGALARI VOWEL SIGN EE
+113C5         ; Other_Alphabetic # Mc       TULU-TIGALARI VOWEL SIGN AI
+113C7..113CA  ; Other_Alphabetic # Mc   [4] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CC..113CD  ; Other_Alphabetic # Mc   [2] TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN VISARGA
 11435..11437  ; Other_Alphabetic # Mc   [3] NEWA VOWEL SIGN AA..NEWA VOWEL SIGN II
 11438..1143F  ; Other_Alphabetic # Mn   [8] NEWA VOWEL SIGN U..NEWA VOWEL SIGN AI
 11440..11441  ; Other_Alphabetic # Mc   [2] NEWA VOWEL SIGN O..NEWA VOWEL SIGN AU
@@ -844,7 +850,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1478
+# Total code points: 1495
 
 # ================================================
 
@@ -1071,6 +1077,9 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1134D         ; Diacritic # Mc       GRANTHA SIGN VIRAMA
 11366..1136C  ; Diacritic # Mn   [7] COMBINING GRANTHA DIGIT ZERO..COMBINING GRANTHA DIGIT SIX
 11370..11374  ; Diacritic # Mn   [5] COMBINING GRANTHA LETTER A..COMBINING GRANTHA LETTER PA
+113CE         ; Diacritic # Mn       TULU-TIGALARI SIGN VIRAMA
+113CF         ; Diacritic # Mc       TULU-TIGALARI SIGN LOOPED VIRAMA
+113E1..113E2  ; Diacritic # Mn   [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 11442         ; Diacritic # Mn       NEWA SIGN VIRAMA
 11446         ; Diacritic # Mn       NEWA SIGN NUKTA
 114C2..114C3  ; Diacritic # Mn   [2] TIRHUTA SIGN VIRAMA..TIRHUTA SIGN NUKTA
@@ -1118,7 +1127,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1154
+# Total code points: 1158
 
 # ================================================
 
