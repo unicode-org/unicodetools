@@ -994,8 +994,6 @@ File:	IndicPositionalCategory
 # but may have different positions in some cases:
 #   * U+0BC1 TAMIL VOWEL SIGN U and U+0BC2 TAMIL VOWEL SIGN UU have
 #     contextually variable placement in Tamil.
-#   * U+0D41 MALAYALAM VOWEL SIGN U and U+0D42 MALAYALAM VOWEL SIGN UU form
-#     complex ligatures with consonants in older Malayalam orthography.
 #   * U+11341 GRANTHA VOWEL SIGN U and U+11342 GRANTHA VOWEL SIGN UU have
 #     contextually variable placement in Grantha.
 #   * U+11440 NEWA VOWEL SIGN O and U+11441 NEWA VOWEL SIGN AU have contextually
@@ -1008,6 +1006,10 @@ File:	IndicPositionalCategory
 #
 # 3. The following characters are all assigned the positional category Bottom,
 # but may have different positions in some cases:
+#   * U+0D41 MALAYALAM VOWEL SIGN U and U+0D42 MALAYALAM VOWEL SIGN UU form
+#     complex ligatures with consonants in older Malayalam orthography, and
+#     are spacing marks to the right of the base in reformed Malayalam
+#     orthography.
 #   * U+102F MYANMAR VOWEL SIGN U and U+1030 MYANMAR VOWEL SIGN UU have
 #     contextually variable placement in Myanmar.
 #   * U+1A69 TAI THAM VOWEL SIGN U and U+1A6A TAI THAM VOWEL SIGN UU have

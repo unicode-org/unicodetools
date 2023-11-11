@@ -1,5 +1,5 @@
 # IndicPositionalCategory-16.0.0.txt
-# Date: 2023-11-10, 22:06:18 GMT
+# Date: 2023-11-11, 19:47:00 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -91,8 +91,6 @@
 # but may have different positions in some cases:
 #   * U+0BC1 TAMIL VOWEL SIGN U and U+0BC2 TAMIL VOWEL SIGN UU have
 #     contextually variable placement in Tamil.
-#   * U+0D41 MALAYALAM VOWEL SIGN U and U+0D42 MALAYALAM VOWEL SIGN UU form
-#     complex ligatures with consonants in older Malayalam orthography.
 #   * U+11341 GRANTHA VOWEL SIGN U and U+11342 GRANTHA VOWEL SIGN UU have
 #     contextually variable placement in Grantha.
 #   * U+11440 NEWA VOWEL SIGN O and U+11441 NEWA VOWEL SIGN AU have contextually
@@ -105,6 +103,10 @@
 #
 # 3. The following characters are all assigned the positional category Bottom,
 # but may have different positions in some cases:
+#   * U+0D41 MALAYALAM VOWEL SIGN U and U+0D42 MALAYALAM VOWEL SIGN UU form
+#     complex ligatures with consonants in older Malayalam orthography, and
+#     are spacing marks to the right of the base in reformed Malayalam
+#     orthography.
 #   * U+102F MYANMAR VOWEL SIGN U and U+1030 MYANMAR VOWEL SIGN UU have
 #     contextually variable placement in Myanmar.
 #   * U+1A69 TAI THAM VOWEL SIGN U and U+1A6A TAI THAM VOWEL SIGN UU have
