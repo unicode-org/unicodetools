@@ -1,5 +1,5 @@
 # ScriptExtensions-16.0.0.txt
-# Date: 2024-02-29, 13:02:59 GMT
+# Date: 2024-02-29, 13:03:13 GMT
 # © 2024 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -59,7 +59,7 @@
 0BE6..0BEF    ; Gran Taml                      # Nd [10] TAMIL DIGIT ZERO..TAMIL DIGIT NINE
 0BF0..0BF2    ; Gran Taml                      # No  [3] TAMIL NUMBER TEN..TAMIL NUMBER ONE THOUSAND
 0BF3          ; Gran Taml                      # So      TAMIL DAY SIGN
-0CE6..0CEF    ; Knda Nand                      # Nd [10] KANNADA DIGIT ZERO..KANNADA DIGIT NINE
+0CE6..0CEF    ; Knda Nand Tutg                 # Nd [10] KANNADA DIGIT ZERO..KANNADA DIGIT NINE
 1040..1049    ; Cakm Mymr Tale                 # Nd [10] MYANMAR DIGIT ZERO..MYANMAR DIGIT NINE
 10FB          ; Geor Latn                      # Po      GEORGIAN PARAGRAPH SEPARATOR
 1735..1736    ; Buhd Hano Tagb Tglg            # Po  [2] PHILIPPINE SINGLE PUNCTUATION..PHILIPPINE DOUBLE PUNCTUATION
@@ -86,9 +86,9 @@
 1CEB..1CEC    ; Deva                           # Lo  [2] VEDIC SIGN ANUSVARA VAMAGOMUKHA..VEDIC SIGN ANUSVARA VAMAGOMUKHA WITH TAIL
 1CED          ; Beng Deva                      # Mn      VEDIC SIGN TIRYAK
 1CEE..1CF1    ; Deva                           # Lo  [4] VEDIC SIGN HEXIFORM LONG ANUSVARA..VEDIC SIGN ANUSVARA UBHAYATO MUKHA
-1CF2          ; Beng Deva Gran Knda Mlym Nand Orya Sinh Telu Tirh #Lo VEDIC SIGN ARDHAVISARGA
+1CF2          ; Beng Deva Gran Knda Mlym Nand Orya Sinh Telu Tirh Tutg #Lo VEDIC SIGN ARDHAVISARGA
 1CF3          ; Deva Gran                      # Lo      VEDIC SIGN ROTATED ARDHAVISARGA
-1CF4          ; Deva Gran Knda                 # Mn      VEDIC TONE CANDRA ABOVE
+1CF4          ; Deva Gran Knda Tutg            # Mn      VEDIC TONE CANDRA ABOVE
 1CF5..1CF6    ; Beng Deva                      # Lo  [2] VEDIC SIGN JIHVAMULIYA..VEDIC SIGN UPADHMANIYA
 1CF7          ; Beng                           # Mc      VEDIC SIGN ATIKRAMA
 1CF8..1CF9    ; Deva Gran                      # Mn  [2] VEDIC TONE RING ABOVE..VEDIC TONE DOUBLE RING ABOVE
@@ -151,12 +151,12 @@
 33E0..33FE    ; Hani                           # So [31] IDEOGRAPHIC TELEGRAPH SYMBOL FOR DAY ONE..IDEOGRAPHIC TELEGRAPH SYMBOL FOR DAY THIRTY-ONE
 A66F          ; Cyrl Glag                      # Mn      COMBINING CYRILLIC VZMET
 A700..A707    ; Hani Latn                      # Sk  [8] MODIFIER LETTER CHINESE TONE YIN PING..MODIFIER LETTER CHINESE TONE YANG RU
-A830..A832    ; Deva Dogr Gujr Guru Khoj Knda Kthi Mahj Mlym Modi Nand Shrd Sind Takr Tirh #No [3] NORTH INDIC FRACTION ONE QUARTER..NORTH INDIC FRACTION THREE QUARTERS
-A833..A835    ; Deva Dogr Gujr Guru Khoj Knda Kthi Mahj Modi Nand Shrd Sind Takr Tirh #No [3] NORTH INDIC FRACTION ONE SIXTEENTH..NORTH INDIC FRACTION THREE SIXTEENTHS
+A830..A832    ; Deva Dogr Gujr Guru Khoj Knda Kthi Mahj Mlym Modi Nand Shrd Sind Takr Tirh Tutg #No [3] NORTH INDIC FRACTION ONE QUARTER..NORTH INDIC FRACTION THREE QUARTERS
+A833..A835    ; Deva Dogr Gujr Guru Khoj Knda Kthi Mahj Modi Nand Shrd Sind Takr Tirh Tutg #No [3] NORTH INDIC FRACTION ONE SIXTEENTH..NORTH INDIC FRACTION THREE SIXTEENTHS
 A836..A837    ; Deva Dogr Gujr Guru Khoj Kthi Mahj Modi Sind Takr Tirh #So [2] NORTH INDIC QUARTER MARK..NORTH INDIC PLACEHOLDER MARK
 A838          ; Deva Dogr Gujr Guru Khoj Kthi Mahj Modi Shrd Sind Takr Tirh #Sc NORTH INDIC RUPEE MARK
 A839          ; Deva Dogr Gujr Guru Khoj Kthi Mahj Modi Sind Takr Tirh #So NORTH INDIC QUANTITY MARK
-A8F1          ; Beng Deva                      # Mn      COMBINING DEVANAGARI SIGN AVAGRAHA
+A8F1          ; Beng Deva Tutg                 # Mn      COMBINING DEVANAGARI SIGN AVAGRAHA
 A8F3          ; Deva Taml                      # Lo      DEVANAGARI SIGN CANDRABINDU VIRAMA
 A92E          ; Kali Latn Mymr                 # Po      KAYAH LI SIGN CWI
 A9CF          ; Bugi Java                      # Lm      JAVANESE PANGRANGKEP
