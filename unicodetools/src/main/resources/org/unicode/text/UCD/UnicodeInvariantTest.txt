@@ -571,6 +571,7 @@ Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288
 [\p{LB=CL}\p{LB=CP}] ⊃ [\p{GC=Pe} - [\u2309\u230B]]
 
 # See L2/22-086 for an explanation of the special case of Batak.
+# (Note that Consensus 177-C43 changed the Batak viramas from InSC=Pure_Killer to Reordering_Killer.)
 \p{LB=VI} = [[\p{Indic_Syllabic_Category=Virama}\p{Indic_Syllabic_Category=Invisible_Stacker}] & $BrahmicLineBreaking]
 \p{LB=VF} = [\p{Indic_Syllabic_Category=Reordering_Killer} & $VFScripts]
 
