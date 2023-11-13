@@ -571,8 +571,9 @@ Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288
 [\p{LB=CL}\p{LB=CP}] ⊃ [\p{GC=Pe} - [\u2309\u230B]]
 
 # See L2/22-086 for an explanation of the special case of Batak.
+# (Note that Consensus 177-C43 changed the Batak viramas from InSC=Pure_Killer to Reordering_Killer.)
 \p{LB=VI} = [[\p{Indic_Syllabic_Category=Virama}\p{Indic_Syllabic_Category=Invisible_Stacker}] & $BrahmicLineBreaking]
-\p{LB=VF} = [\p{Indic_Syllabic_Category=Pure_Killer} & $VFScripts]
+\p{LB=VF} = [\p{Indic_Syllabic_Category=Reordering_Killer} & $VFScripts]
 
 # 15.1: Action item UTC-176-A81: change [[:PCM:]-\u070F] lb=AL->NU
 \p{LB=CM} = [[\u3035] \p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -[\U00013437\U00013438\U0001343C-\U0001343F] -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL} -\p{LB=ZWJ} - \p{LB=VI} - \p{LB=VF} - \p{LB=NU}]

@@ -919,6 +919,7 @@ InSC; Number_Joiner                   ; Number_Joiner
 InSC; Other                           ; Other
 InSC; Pure_Killer                     ; Pure_Killer
 InSC; Register_Shifter                ; Register_Shifter
+InSC; Reordering_Killer               ; Reordering_Killer
 InSC; Syllable_Modifier               ; Syllable_Modifier
 InSC; Tone_Letter                     ; Tone_Letter
 InSC; Tone_Mark                       ; Tone_Mark

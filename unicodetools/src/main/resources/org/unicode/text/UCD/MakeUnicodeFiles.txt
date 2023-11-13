@@ -1119,21 +1119,30 @@ Value: Nukta
 
 # [Not derivable]
 Value: Virama
-# Virama (killing of inherent vowel in consonant sequence
-#         or consonant stacker)
+# Virama (kills inherent vowel of consonant; may act as a Pure_Killer
+#         or Invisible_Stacker depending on context)
 # Only includes characters that can act both as visible killer viramas
 # and consonant stackers. Separate property values exist for characters
-# that can only act as pure killers or only as consonant stackers.
+# that can only act as pure killers, only as reordering killers, or only
+# as consonant stackers.
 
 # [Derivation: (ccc=9) - (InSC=Pure_Killer) - (InSC=Invisible_Stacker)
-#  - (InSC=Number_Joiner) - 2D7F]
+#  - (InSC=Reordering_Killer) - (InSC=Number_Joiner) - 2D7F]
 Value: Pure_Killer
-# Pure killer (killing of inherent vowel in consonant sequence,
-#              with no consonant stacking behavior)
+# Pure killer (kills inherent vowel of consonant; always visible;
+#              has no conjuct formation, consonant stacking, or reordering
+#              behavior)
+
+# [Not derivable]
+Value: Reordering_Killer
+# Reordering killer (kills inherent vowel of consonant; always visible;
+#                    may cause consonant reordering)
 
 # [Not derivable]
 Value: Invisible_Stacker
-# Invisible stacker (invisible consonant stacker virama).
+# Invisible stacker (usually kills inherent vowel of consonant; is not visible
+#                    by itself; causes conjunct formation or consonant
+#                    stacking)
 #
 # Note that in some scripts, such as Kharoshthi and Masaram Gondi, an invisible
 # stacker may have a second function, changing the shape and/or location of the

@@ -1096,6 +1096,7 @@ public class UcdPropertyValues {
         Other("Other"),
         Pure_Killer("Pure_Killer"),
         Register_Shifter("Register_Shifter"),
+        Reordering_Killer("Reordering_Killer"),
         Syllable_Modifier("Syllable_Modifier"),
         Tone_Letter("Tone_Letter"),
         Tone_Mark("Tone_Mark"),

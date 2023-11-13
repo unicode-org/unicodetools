@@ -1,5 +1,5 @@
 # IndicSyllabicCategory-16.0.0.txt
-# Date: 2023-11-10, 22:06:18 GMT
+# Date: 2023-11-13, 19:36:00 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -262,14 +262,15 @@ A9B3          ; Nukta # Mn       JAVANESE SIGN CECAK TELU
 
 # Indic_Syllabic_Category=Virama
 
-# Virama (killing of inherent vowel in consonant sequence
-#         or consonant stacker)
+# Virama (kills inherent vowel of consonant; may act as a Pure_Killer
+#         or Invisible_Stacker depending on context)
 # Only includes characters that can act both as visible killer viramas
 # and consonant stackers. Separate property values exist for characters
-# that can only act as pure killers or only as consonant stackers.
+# that can only act as pure killers, only as reordering killers, or only
+# as consonant stackers.
 
 # [Derivation: (ccc=9) - (InSC=Pure_Killer) - (InSC=Invisible_Stacker)
-#  - (InSC=Number_Joiner) - 2D7F]
+#  - (InSC=Reordering_Killer) - (InSC=Number_Joiner) - 2D7F]
 
 094D          ; Virama # Mn       DEVANAGARI SIGN VIRAMA
 09CD          ; Virama # Mn       BENGALI SIGN VIRAMA
@@ -303,8 +304,9 @@ A9C0          ; Virama # Mc       JAVANESE PANGKON
 
 # Indic_Syllabic_Category=Pure_Killer
 
-# Pure killer (killing of inherent vowel in consonant sequence,
-#              with no consonant stacking behavior)
+# Pure killer (kills inherent vowel of consonant; always visible;
+#              has no conjuct formation, consonant stacking, or reordering
+#              behavior)
 
 # [Not derivable]
 
@@ -320,7 +322,6 @@ A9C0          ; Virama # Mc       JAVANESE PANGKON
 17D1          ; Pure_Killer # Mn       KHMER SIGN VIRIAM
 1A7A          ; Pure_Killer # Mn       TAI THAM SIGN RA HAAM
 1BAA          ; Pure_Killer # Mc       SUNDANESE SIGN PAMAAEH
-1BF2..1BF3    ; Pure_Killer # Mc   [2] BATAK PANGOLAT..BATAK PANONGONAN
 A82C          ; Pure_Killer # Mn       SYLOTI NAGRI SIGN ALTERNATE HASANTA
 A953          ; Pure_Killer # Mc       REJANG VIRAMA
 ABED          ; Pure_Killer # Mn       MEETEI MAYEK APUN IYEK
@@ -339,9 +340,22 @@ ABED          ; Pure_Killer # Mn       MEETEI MAYEK APUN IYEK
 
 # ================================================
 
+# Indic_Syllabic_Category=Reordering_Killer
+
+# Reordering killer (kills inherent vowel of consonant; always visible;
+#                    may cause consonant reordering)
+
+# [Not derivable]
+
+1BF2..1BF3    ; Reordering_Killer # Mc   [2] BATAK PANGOLAT..BATAK PANONGONAN
+
+# ================================================
+
 # Indic_Syllabic_Category=Invisible_Stacker
 
-# Invisible stacker (invisible consonant stacker virama).
+# Invisible stacker (usually kills inherent vowel of consonant; is not visible
+#                    by itself; causes conjunct formation or consonant
+#                    stacking)
 #
 # Note that in some scripts, such as Kharoshthi and Masaram Gondi, an invisible
 # stacker may have a second function, changing the shape and/or location of the
