@@ -1,5 +1,5 @@
 # USourceData-15.1.0.txt
-# Date: 2023-07-28, 00:00:00 GMT [KL]
+# Date: 2023-10-21, 00:00:00 GMT [KL]
 #
 # © 2023 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -3388,4 +3388,66 @@ UTC-03333;FutureWS;;85.3;;⿰氵士;UTCDoc L2/22-206 36;;6;1
 UTC-03334;FutureWS;;85.4;;⿰氵五;UTCDoc L2/22-206 37;;7;1
 UTC-03335;FutureWS;;85.4;;⿰氵六;UTCDoc L2/22-206 38;;7;4
 UTC-03336;FutureWS;;195'.8;;⿰鱼孟;UTCDoc L2/22-282;kTraditionalVariant U+9BED;16;5
+# Unicode 16.0.0 Additions: 61
+UTC-03337;FutureWS;;44.19;;⿸尸醮;UTCDoc L2/23-110 1;;22;1
+UTC-03338;NoAction;;44.19;;⿸尸𬋕;UTCDoc L2/23-110 2;Variant of UTC-03337;22;1
+UTC-03339;FutureWS;;86.8;;⿰火奈;UTCDoc L2/23-124;kMandarin nà:kCantonese naat3;12;1
+UTC-03340;FutureWS;;74.52;;⿰月⿹⿶戈丶⿳⿲糹⿱二口糹⿲長馬長心;UTCDoc L2/23-126 1;;56;4
+UTC-03341;FutureWS;;74.31;;⿰月⿹⿶戈丶⿳⿲纟⿱二口纟⿲长马长心;UTCDoc L2/23-126 2;;35;4
+UTC-03342;FutureWS;;74.53;;⿲月⿳亠⿲糹⿱二口糹⿱⿲長馬長心戈;UTCDoc L2/23-126 3;;57;4
+UTC-03343;FutureWS;;74.32;;⿲月⿳亠⿲糹⿱二口糹⿱⿲長馬長心戈;UTCDoc L2/23-126 4;;36;4
+UTC-03344;FutureWS;;8.60;;⿳亠⿲月⿳⿲糹⿱二口糹一⿲長馬長戔心;UTCDoc L2/23-126 5;;62;3
+UTC-03345;FutureWS;;61.46;;⿳䜌⿲長馬長必;UTCDoc L2/23-126 6;;50;5
+UTC-03346;FutureWS;;46.52;;⿹⿶戈⿱山丶⿳⿲糹⿱二口糹⿲長馬長灬;UTCDoc L2/23-126 7;;55;4
+UTC-03347;FutureWS;;8.27;;⿳亠⿲幺⿱二口幺⿱⿲月贝戈心;UTCDoc L2/23-126 8;;29;5
+UTC-03348;FutureWS;;74.32;;⿰月⿵⿶戈⿲纟言纟⿱⿲长马长心;UTCDoc L2/23-126 9;;36;5
+UTC-03349;FutureWS;;62.52;;⿰⿸广⿳⿲糹言糹⿲長馬長心戈;UTCDoc L2/23-126 10;;56;4
+UTC-03350;FutureWS;;85.6;;⿰氵𠧗;UTCDoc L2/23-130 1;kJapanese いと;9;1
+UTC-03351;FutureWS;;93.4;;⿰牛化;UTCDoc L2/23-130 2;kJapanese こっとい;8;3
+UTC-03352;FutureWS;;75.7;;⿰木励;UTCDoc L2/23-130 3;kJapanese とち:Variant of 栃 (probably);11;1
+UTC-03353;FutureWS;;140.7;;⿳艹从干;UTCDoc L2/23-130 4;kJapanese ケ:Variant of 華 (probably);10;3
+UTC-03354;FutureWS;;75.9;;⿰木⿱艹𡧃;UTCDoc L2/23-130 5;kJapanese へら;13;1
+UTC-03355;FutureWS;;85.9;;⿰氵神;UTCDoc L2/23-130 6;kJapanese ほうり;12;4
+UTC-03356;FutureWS;;46.3;;〾⿰山川;UTCDoc L2/23-130 7;kJapanese ほき:The last stroke of left part is strange, but it is certainly 山:Variant of 𡵅 (probably);6;3
+UTC-03357;FutureWS;;75.13;;⿰木蒔;UTCDoc L2/23-130 8;kJapanese たぶ;17;1
+UTC-03358;FutureWS;;115.5;;⿰禾⿱千又;UTCDoc L2/23-130 9;kJapanese ぬき;10;3
+UTC-03359;FutureWS;;64.6;;〾⿰扌年;UTCDoc L2/23-130 10;kJapanese ハイ:The right part looks like 年, but a bit different shape:It is unclear if this part is 年 or not:Variant of 拝 (probably):Unified with 𢬧?;9;3
+UTC-03360;FutureWS;;64.9;;〾⿰扌乗;UTCDoc L2/23-130 11;kJapanese はと:The right part looks like a 乗, but vertical stroke was hook;12;3
+UTC-03361;FutureWS;;140.13;;⿱艹⿰身瓜;UTCDoc L2/23-130 12;kJapanese こも:Variant of 菰 (probably);16;3
+UTC-03362;FutureWS;;94.4;;⿰犭丒;UTCDoc L2/23-130 13;kJapanese チュウ:Variant of 狃;7;5
+UTC-03363;FutureWS;;128.10;;⿱𬔜耳;UTCDoc L2/23-130 14;;16;4
+UTC-03364;FutureWS;;116.11;;⿱穴堀;UTCDoc L2/23-130 15;kJapanese ほき ほっき:Similar to 𫁗;16;1
+UTC-03365;FutureWS;;38.14;;⿱皷女;UTCDoc L2/23-130 16;kJapanese ごぜ:Similar to 𰌘;17;1
+UTC-03366;FutureWS;;46.9;;⿱山段;UTCDoc L2/23-130 17;kJapanese ゆり;12;3
+UTC-03367;FutureWS;;75.1;;⿰木畔;UTCDoc L2/23-130 18;kJapanese くるが;14;2
+UTC-03368;FutureWS;;75.2;;⿰木㐅;UTCDoc L2/23-130 19;kJapanese しめ;6;3
+UTC-03369;FutureWS;;140.9;;⿳艹冖⿺元⿱⺊又;UTCDoc L2/23-130 20;kJapanese ク:Variant of 蔻;12;2
+UTC-03370;FutureWS;;46.7;;⿰山花;UTCDoc L2/23-130 21;kJapanese はな;10;1
+UTC-03371;FutureWS;;142.5;;⿰虫矢;UTCDoc L2/23-130 22;kJapanese けら;11;3
+UTC-03372;FutureWS;;142.16;;⿳𠫓罒⿲月虫丸;UTCDoc L2/23-130 24;kJapanese ほらがい:Variant of 蠃;22;4
+UTC-03373;FutureWS;;46.12;;⿱山𪿢;UTCDoc L2/23-130 25;kJapanese びゃく;15;1
+UTC-03374;FutureWS;;75.8;;⿰木⿱止⿰冫⿱丿乀;UTCDoc L2/23-130 26;kJapanese しぶ;12;1
+UTC-03375;FutureWS;;75.7;;⿰木⿱且八;UTCDoc L2/23-130 27;Similar to 椇;11;2
+UTC-03376;FutureWS;;142.15;;⿳亡罒⿲月虫卂;UTCDoc L2/23-130 28;kJapanese つぶら:Variant of 蠃;21;4
+UTC-03377;FutureWS;;48.0;;⿱𠃍一;UTCDoc L2/23-130 29;kJapanese コウ:Variant of 工;2;0
+UTC-03378;Variant;U+9BC7;195.7;;⿰𩵋完;UTCDoc L2/23-130 30;;17;4
+UTC-03379;FutureWS;;195.9;;⿰魚砂;UTCDoc L2/23-130 31;kJapanese はぜ:Variant of 鯊 (probably);20;1
+UTC-03380;FutureWS;;140.14;;⿱艹⿸广黄;UTCDoc L2/23-130 32;;17;4
+UTC-03381;FutureWS;;46.6;;⿰山㦮;UTCDoc L2/23-130 33;kJapanese がけ:Simplified of 㟞;9;1
+UTC-03382;FutureWS;;30.6;;⿰口成;UTCDoc L2/23-130 34;kJapanese かみ;9;1
+UTC-03383;FutureWS;;75.5;;⿱平木;UTCDoc L2/23-130 35;kJapanese なろ;9;1
+UTC-03384;FutureWS;;112.9;;⿰石飛;UTCDoc L2/23-130 36;kJapanese つぶて:Variant of 礫 (probably);14;5
+UTC-03385;FutureWS;;53.2;;⿸广龴;UTCDoc L2/23-139R 1;Japanese simplified forms of U+6469 and U+9B54;5;5
+UTC-03386;FutureWS;;18.6;;⿰虍刂;UTCDoc L2/23-139R 2;Japanese simplified form of U+5287;8;2
+UTC-03387;FutureWS;;75.9;;⿰木⿱𭕄⿹戈人;UTCDoc L2/23-139R 3;Japanese simplified form of U+6A5F;13;4
+UTC-03388;FutureWS;;75.10;;⿰木⿵⿱丷八⿹戈人;UTCDoc L2/23-139R 4;Japanese simplified form of U+6A5F;14;4
+UTC-03389;FutureWS;;162.9;;⿺辶⿱𭕄共;UTCDoc L2/23-139R 5;Japanese simplified form of U+9078;13;4
+UTC-03390;FutureWS;;44.2;;⿸尸丷;UTCDoc L2/23-139R 6;Japanese simplified form of U+5C64;5;4
+UTC-03391;FutureWS;;53.5;;⿸广⿱夕力;UTCDoc L2/23-139R 7;Japanese simplified form of U+9DF9;8;3
+UTC-03392;FutureWS;;140.6;;⿱艹⿰月卜;UTCDoc L2/23-139R 8;Japanese simplified form of U+85E4;10;3
+UTC-03393;FutureWS;;31.1;;⿴囗丶;UTCDoc L2/23-139R 9;Japanese simplified forms of U+56FD and U+5712;4;4
+UTC-03394;FutureWS;;5.6;;⿺九未;UTCDoc L2/23-202;kKorean KWUMI MI;7;3
+UTC-03395;FutureWS;;196'.9;;⿰春鸟;UTCDoc L2/23-213;kTraditionalVariant U+2A0B9:kMandarin chūn:kCantonese ceon1;14;1
+UTC-03396;FutureWS;;1.2;;⿻十丿;UTCDoc L2/23-214;kSemanticVariant U+6563:kSpoofingVariant U+5344 U+535D U+5EFE U+8279 U+21B1D;2;3
+UTC-03397;FutureWS;;195'.7;;⿰鱼希;UTCDoc L2/23-226;kTraditionalVariant U+9BD1:kMandarin xī:kCantonese hei1;15;3
 # EOF
