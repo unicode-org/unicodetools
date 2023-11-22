@@ -1,5 +1,5 @@
 # unidata-16.0.0.txt
-# Date: 2023-10-09, 00:00:00 GMT [KW]
+# Date: 2023-10-23, 00:00:00 GMT [KW]
 # © 2023 Unicode®, Inc.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
 #
@@ -9,8 +9,8 @@
 # Default Unicode Collation Element Table (DUCET) for
 # the Unicode Collation Algorithm.
 #
-# Version 16.0.0 draft 11 (Unicode Version: 16.0.0)
-# based on Unicode data file UnicodeData-16.0.0d8.txt
+# Version 16.0.0 draft 12 (Unicode Version: 16.0.0)
+# based on Unicode data file UnicodeData-16.0.0d10.txt
 # Ordering for Unicode 16.0
 #
 # Fields:
@@ -29280,7 +29280,7 @@ A6EF;BAMUM LETTER KOGHOM;Nl;;0;;;;
 10D4B;GARAY VOWEL SIGN I;Lo;;;;;;
 10D4C;GARAY VOWEL SIGN O;Lo;;;;;;
 10D4D;GARAY VOWEL SIGN EE;Lo;;;;;;
-10D4E;GARAY VOWEL LENGTH MARK;Lo;;;;;;
+10D4E;GARAY VOWEL LENGTH MARK;Lm;;;;;;
 10D4F;GARAY SUKUN;Lo;;;;;;
 10D69;GARAY VOWEL SIGN E;Mn;;;;;;
 
@@ -34962,9 +34962,9 @@ CONTRACTION
 16D68;KIRAT RAI VOWEL SIGN AI;Lo;16D67 16D67;;;;;
 16D69;KIRAT RAI VOWEL SIGN O;Lo;16D63 16D67;;;;;
 # The vowel sign au has a complex decomposition that recurses.
-# Add a secondary decomposition to 16D6A for canonical closure.
+# Add two secondary decompositions to 16D6A for canonical closure.
 # 16D6A;KIRAT RAI VOWEL SIGN AU;Lo;16D69 16D67;;;;;
-16D6A;KIRAT RAI VOWEL SIGN AU;Lo;16D69 16D67, 16D63 16D67 16D67;;;;;
+16D6A;KIRAT RAI VOWEL SIGN AU;Lo;16D69 16D67, 16D63 16D68, 16D63 16D67 16D67;;;;;
 
 DEFAULT
 
