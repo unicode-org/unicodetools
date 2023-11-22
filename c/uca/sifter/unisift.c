@@ -49,6 +49,8 @@
  *   2023-May-09 Adjust for use of 4 more variant secondaries.
  *   2023-Jul-28 Adjust end range of CJK Extension I.
  *   2023-Oct-09 Updates for Unicode 16.0.
+ *   2023-Oct-23 Adjust processContractions() to deal correctly
+ *               with multiple secondary decompositions in the input data.
  */
 
 /*
@@ -173,7 +175,7 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 16.0.0d1, 2023-10-09\n";
+static char versionString[] = "Sifter version 16.0.0d2, 2023-10-23\n";
 
 static char unidatafilename[] = "unidata-16.0.0.txt";
 static char allkeysfilename[] = "allkeys-16.0.0.txt";
@@ -329,6 +331,26 @@ int digitsInitialized;
  */
 int currentPrimary;
 int currentSecondary;
+
+/*
+ * DCW (Decomposition and Weights)
+ *
+ * A temporary struct used to calculate store multiple decomposition
+ * strings and associated weight strings in processContraction().
+ *
+ * At least to start with, it is easier to just allocate a small
+ * static array of these, as the number of secondary decompositions
+ * is rather limited. No need to build in next pointers and treat
+ * these as dynamically linked lists.
+ */
+
+typedef struct dcw_rec {
+  int    initialized;
+  UInt32 decompstr[20];  /* stored as a vector of Unicode scalar values */
+  char   weightstr[512]; /*  */
+  } DCW ;
+
+typedef DCW* DCWPTR;
 
 /*
  * Arrays to store basic data for each character.
@@ -3229,44 +3251,47 @@ int rc;
 }
 
 /*
- * preprocessDecomp()
+ * dcw is a small array of DCW structs.
  *
- * Check if any secondary decomposition has been stored
- * in t1->decomp. If so, extract it and output in decomp2.
- * Fix up t1->decomp
- * to remove the comma delimited secondary decomposition.
+ * These are used to store the primary and any secondary
+ * decomposition strings parsed out of the WALNUT decomposition
+ * field, along with calculated weight strings.
  *
- * Returns the number of charTokens found in the secondary
- * decomposition.
+ * Done this way for now, to avoid having to build in list processing
+ * and dynamically build up and tear down a list for each
+ * element processed.
+ *
+ * The size of the array is set to 4. The usual case for a secondary
+ * decomposition is a single additional secondary decomposition
+ * (see Kannada and Sinhala vowels). The new, exceptional case
+ * takes two additional secondary decompositions (see Kirat Rai).
+ * The array is set to be one bigger than that, to allow for some extreme
+ * possible future case that would require three additional
+ * secondary decompositions, without requiring further rewrite of this code.
  */
 
-static int preprocessDecomp ( WALNUTPTR t1, UInt32 *d, int dlen )
+static DCW dcw[4];
+
+/*
+ * convertDecomp()
+ *
+ * Convert one ASCII secondary decomposition string into
+ * a UTF-32 string and store in a dcw array entry.
+ *
+ * This code assumes that we are dealing simply with
+ * clean CharToken vectors less than 20 elements long.
+ */
+
+static int convertDecomp ( char *s, int n )
 {
-char *s;
 char *newsp;
 UInt32 cc;
 int tokenType;
 int numCharTokens;
 UInt32 *sd;
 UInt32 *si;
-UInt32 buf[30];  /* decomp string stored as UTF-32 */
+UInt32 buf[20];  /* decomp string stored as UTF-32 */
 
-    s = strchr ( t1->decomp, ',' );
-    if ( s == NULL )
-    {
-/*
- * No secondary, comma-delimited decomposition was given.
- * Just return and continue processing.
- */
-        return ( 0 );
-    }
-/*
- * Found a comma. Poke a null to terminate t1->decomp at
- * that position. Advance s past the comma and space. It now points
- * to the remainder of the string -- the secondary decomposition.
- */
-    *s++ = '\0';
-    s++;
 /*
  * Now convert the decomp string into a UInt32 array in buf.
  */
@@ -3282,10 +3307,10 @@ UInt32 buf[30];  /* decomp string stored as UTF-32 */
         {
             if ( tokenType == CharToken )
             {
-                if ( numCharTokens >= dlen )
+                if ( numCharTokens >= 20 )
                 {
                     badValues++;
-                    printf ( "Bad Value in preprocessDecomp: %s\n", s );
+                    printf ( "Bad Value in convertDecomp: %s\n", s );
                     break;
                 }
                 buf[numCharTokens] = cc;
@@ -3294,24 +3319,140 @@ UInt32 buf[30];  /* decomp string stored as UTF-32 */
             else
             {
                 badValues++;
-                printf ( "Bad Value in preprocessDecomp: %s\n", s );
+                printf ( "Bad Value in convertDecomp: %s\n", s );
                 return ( 0 );
             }
             s = newsp;
         }
     }
 /*
- * Now that we are out of the for loop, terminate the temporary buffer
+ * Now that we are out of the while loop, terminate the temporary buffer
  * (buf) with a 32-bit NULL and then copy it
- * into the caller's buffer. Return the total length.
+ * into the dcw[n].decompstr. Return the total length.
  */
     buf[numCharTokens] = 0;
-    for ( si = buf, sd = d; *si != 0; )
+    for ( si = buf, sd = dcw[n].decompstr; *si != 0; )
     {
         *sd++ = *si++;
     }
     *sd = 0;
+    dcw[n].initialized = 1;
     return ( numCharTokens );
+}
+
+/*
+ * copyField()
+ *
+ * Copy one comma-delimited sub-string from src (no fancy escaping involved)
+ * into dest and return a pointer to the point just past the input
+ * string that was copied.
+ *
+ * The return value will point to the null at the end of the string
+ * (i.e. one past the end of the string) if there are no more comma-delimited
+ * substrings. 
+ */
+
+static char *copyField ( char *dest, int destlen, char *src )
+{
+char *sp;
+char *dp;
+char *dend;
+
+    sp = src;
+    dp = dest;
+    dend = dest + destlen - 1;
+    while ( (*sp != ',') && (*sp != '\0') && (dp < dend) )
+    {
+        *dp++ = *sp++;
+    }
+    *dp = '\0';
+    /*
+     * Skip past the delimiting comma and any initial spaces
+     * after the comma.
+     */
+    if ( *sp == ',' )
+    {
+        sp++;
+    }
+    while ( *sp == ' ' )
+    {
+        sp++;
+    }
+    return sp;
+}
+
+/*
+ * preprocessDecomp()
+ *
+ * Run through t1->decomp and parse it into any
+ * comma-delmited substrings. If there are no comma-delimited
+ * secondary decompositions, this will process just the
+ * single decomposition value.
+ *
+ * For each substring found, call convertDecomp, which will
+ * convert the raw decomposition string into a UTF-32
+ * string stored in dcw[].
+ *
+ * Return the numTokens found. Usually this should be 1,
+ * unless there are any secondary decompositions present.
+ * Returns -1 on error.
+ *
+ */
+
+static int preprocessDecomp ( WALNUTPTR t1, int *tokenTypeP )
+{
+char *s;
+char *send;
+char decompSubstr[40];
+int numTokens;
+int numCharTokens;
+
+/*
+ * Set s to the raw t1->decomp string and send to the null
+ * byte at the end of that string.
+ */
+    s = t1->decomp;
+    send = s + strlen ( t1->decomp );
+    numTokens = 0;
+
+    while ( s < send )
+    {
+        s = copyField ( decompSubstr, 40, s );
+        if ( numTokens == 0 )
+        {
+/*
+ * decompSubstr contains the possibly truncated ASCII decomp string parsed
+ * out of the unidata input file. It now needs to be processed. This
+ * processing calls the full recursive decomposition, which also handles
+ * any initial token such as "<sort>", "<font>", etc., and converts the
+ * decomposition into a UTF-32 string stored in the dcw array at position 0.
+ */
+            numCharTokens = doRecursiveDecomp ( dcw[0].decompstr, 40, decompSubstr, 
+                tokenTypeP, t1->uvalue );
+            dcw[0].initialized = 1;
+        }
+        else
+/*
+ * Secondary decomposition strings, if any. Convert these and store
+ * in dcw[]. These don't require recursive processing and don't
+ * need to deal with the tokenType value.
+ */
+        {
+            numCharTokens = convertDecomp ( decompSubstr, numTokens );
+        }
+        if ( debugLevel > 1 )
+        {
+            printf ( "DEBUG: %d %d [%s]\n", numTokens, numCharTokens, decompSubstr );
+        }
+        numTokens++;
+        if ( numTokens > 3 )
+        {
+            printf ( "ERROR in preprocessDecomps(), too many tokens\n" );
+            return ( -1 );
+        }
+    }
+
+    return ( numTokens );
 }
 
 /*
@@ -3326,18 +3467,17 @@ UInt32 buf[30];  /* decomp string stored as UTF-32 */
  * U+0140 & U+013F (the Catalan l-dot characters) are exceptions.
  * They get a call *first* to processDecomp() to set the main entry,
  * and then get a call to processContractions().
+ *
+ * Returns 0 on exit, even in error conditions. This would only
+ * need to be elaborated for debugging odd issues.
  */
 
 static int processContractions ( WALNUTPTR t1 )
 {
 int tokenType;
 int rc;
-UInt32 decompstr[20];
-UInt32 decompstr2[8];
-int numCharTokens;
-int numCharTokens2;
-char weightstr[512];
-char weightstr2[512];
+int i;
+int numTokens;
 
     if ( t1->decomp == NULL )
     {
@@ -3345,23 +3485,23 @@ char weightstr2[512];
         return ( 0 );
     }
 /*
- * First check if any secondary decomposition has been stored
- * in the decomp field. If so, extract it and store in decompstr2
- * for temporary processing here, before attempting recursive
- * decomposition on the primary decomposition. Fix up t1->decomp
- * to remove the comma delimited secondary decomposition.
+ * Clear the initialized flag for the static dcw array.
  */
-    numCharTokens2 = preprocessDecomp ( t1, decompstr2, 8 );
-
-    if ( ( debugLevel > 1 ) && ( numCharTokens2 > 0 ) )
+    for ( i = 0; i <= 3; i++)
     {
-        printf ( "Secondary decomp: char=%04X, num=%d\n", t1->uvalue, numCharTokens2 );
+        dcw[i].initialized = 0;
     }
+/*
+ * Do a preprocessing step. This parses t1->decomp and determines
+ * whether any secondary decompositions are present.
+ * The primary decomposition (and any secondary decompositions)
+ * are converted into UTF-32 strings stored in dcw[].
+ */
+    numTokens = preprocessDecomp ( t1, &tokenType );
 
-    numCharTokens = doRecursiveDecomp ( decompstr, 20, t1->decomp, &tokenType,
-                                        t1->uvalue );
-    if ( numCharTokens == 0 )
+    if ( numTokens <= 0 )
     {
+        printf ( "Error in processContractions for: %04X\n", t1->uvalue );
         return ( 0 );
     }
 
@@ -3373,11 +3513,17 @@ char weightstr2[512];
  *
  * Exclude the l-dots, which already got dumped in their decomposition
  * processing pass.
+ *
+ * Run through the dcw array, and for any secondary decompositions
+ * that have been initialized, also dump out those decompositions to
+ * the output file.
  */
-        rc = dumpToDecompsFile ( t1, decompstr, tokenType );
-        if ( numCharTokens2 > 0 )
+        for ( i = 0; i <= numTokens; i++ )
         {
-            rc = dumpToDecompsFile ( t1, decompstr2, tokenType );
+            if ( dcw[i].initialized )
+            {
+                rc = dumpToDecompsFile ( t1, dcw[i].decompstr, tokenType );
+            }
         }
     }
 
@@ -3386,10 +3532,12 @@ char weightstr2[512];
  *
  * Temporarily store the formatted UCA weights in weightstr.
  */
-    rc = dumpToContractionsFile ( t1, decompstr, weightstr );
-    if ( numCharTokens2 > 0 )
+    for ( i = 0; i <= numTokens; i++ )
     {
-        rc = dumpToContractionsFile ( t1, decompstr2, weightstr2 );
+        if ( dcw[i].initialized )
+        {
+            rc = dumpToContractionsFile ( t1, dcw[i].decompstr, dcw[i].weightstr );
+        }
     }
 
 
@@ -3401,10 +3549,12 @@ char weightstr2[512];
  * Pass the formatted UCA entry in weightstr, for storage in
  * the btree as well.
  */
-        rc = dumpToSymbolFile ( t1, decompstr, weightstr );
-        if ( numCharTokens2 > 0 )
+        for ( i = 0; i <= numTokens; i++ )
         {
-            rc = dumpToSymbolFile ( t1, decompstr2, weightstr2 );
+            if ( dcw[i].initialized )
+            {
+                rc = dumpToSymbolFile ( t1, dcw[i].decompstr, dcw[i].weightstr );
+            }
         }
     }
 
@@ -5110,7 +5260,7 @@ int foundInfile = 0;
     dumpDecomps = 0;
     dumpFileFormat = DFORM_New;
     dumpSymbols = 0;
-    debugLevel   = 0;
+    debugLevel  = 0;
     strcpy ( outpath, "" );
 
     while ( numargs > 1 )
