@@ -460,9 +460,9 @@ public class TestSecurity extends TestFmwkMinusMinus {
             {"\u303C", "Han, Korean, Japanese"},
             {"\u303Cー", "Japanese"},
             {"\u303CA", "Latin; Han, Korean, Japanese"},
-            {"\u030F", "Common"},
-            {"\u030F.", "Common"},
-            {"a\u030F", "Latin"},
+            {"\u0300", "Common"},
+            {"\u0300.", "Common"},
+            {"a\u0300", "Latin"},
             {"ä", "Latin"},
         };
         for (String[] test : tests) {
@@ -524,8 +524,8 @@ public class TestSecurity extends TestFmwkMinusMinus {
             {"⼒", Status.SAME}, // KANGXI RADICAL POWER
             {"力", Status.SAME}, // CJK UNIFIED IDEOGRAPH-529B
             {"!", Status.SAME, Status.OTHER},
-            {"\u030F", Status.SAME},
-            {"a\u030F", Status.SAME, Status.COMMON, Status.OTHER},
+            {"\u0300", Status.SAME},
+            {"a\u0300", Status.SAME, Status.COMMON, Status.OTHER},
             {"ä", Status.SAME, Status.COMMON, Status.OTHER},
             {"idSet", "[[:L:][:M:][:N:]-[:nfkcqc=n:]]"}, // a typical identifier set
             {"google", Status.SAME},
@@ -551,7 +551,7 @@ public class TestSecurity extends TestFmwkMinusMinus {
         final ScriptDetector scriptDetector = new ScriptDetector();
         for (Object[] test : tests) {
             String source = (String) test[0];
-            if (source.equals("\u030F")) {
+            if (source.equals("\u0300")) {
                 int debug = 0;
             }
 
