@@ -847,14 +847,6 @@ FF64..FF65    ; Bopo Hang Hani Hira Kana Yiii # Po   [2] HALFWIDTH IDEOGRAPHIC C
 
 # ================================================
 
-# Script_Extensions=Cher Copt Cyrl Grek Latn Perm Sunu Tale
-
-0300          ; Cher Copt Cyrl Grek Latn Perm Sunu Tale # Mn       COMBINING GRAVE ACCENT
-
-# Total code points: 1
-
-# ================================================
-
 # Script_Extensions=Cher Cyrl Grek Latn Osge Sunu Tale Todr
 
 0301          ; Cher Cyrl Grek Latn Osge Sunu Tale Todr # Mn       COMBINING ACUTE ACCENT
