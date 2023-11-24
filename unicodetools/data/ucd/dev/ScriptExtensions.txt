@@ -871,14 +871,6 @@ FF64..FF65    ; Bopo Hang Hani Hira Kana Yiii # Po   [2] HALFWIDTH IDEOGRAPHIC C
 
 # ================================================
 
-# Script_Extensions=Armn Cyrl Goth Grek Hebr Latn Perm Syrc Tale
-
-0308          ; Armn Cyrl Goth Grek Hebr Latn Perm Syrc Tale # Mn       COMBINING DIAERESIS
-
-# Total code points: 1
-
-# ================================================
-
 # Script_Extensions=Aghb Cher Copt Cyrl Goth Grek Latn Osge Syrc Tfng Todr
 
 0304          ; Aghb Cher Copt Cyrl Goth Grek Latn Osge Syrc Tfng Todr # Mn       COMBINING MACRON
