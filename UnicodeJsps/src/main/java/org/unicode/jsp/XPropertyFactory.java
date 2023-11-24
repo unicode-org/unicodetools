@@ -96,6 +96,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(
                 new CodepointTransformProperty(
                                 new Transform<Integer, String>() {
+                                    @Override
                                     public String transform(Integer source) {
                                         return Normalizer.normalize(source, Normalizer.NFC);
                                     }
@@ -105,6 +106,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(
                 new CodepointTransformProperty(
                                 new Transform<Integer, String>() {
+                                    @Override
                                     public String transform(Integer source) {
                                         return Normalizer.normalize(source, Normalizer.NFD);
                                     }
@@ -114,6 +116,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(
                 new CodepointTransformProperty(
                                 new Transform<Integer, String>() {
+                                    @Override
                                     public String transform(Integer source) {
                                         return Normalizer.normalize(source, Normalizer.NFKC);
                                     }
@@ -123,6 +126,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(
                 new CodepointTransformProperty(
                                 new Transform<Integer, String>() {
+                                    @Override
                                     public String transform(Integer source) {
                                         return Normalizer.normalize(source, Normalizer.NFKD);
                                     }
@@ -133,6 +137,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(
                 new StringTransformProperty(
                                 new StringTransform() {
+                                    @Override
                                     public String transform(String source) {
                                         return UCharacter.foldCase(source, true);
                                     }
@@ -142,6 +147,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(
                 new StringTransformProperty(
                                 new StringTransform() {
+                                    @Override
                                     public String transform(String source) {
                                         return UCharacter.toLowerCase(ULocale.ROOT, source);
                                     }
@@ -151,6 +157,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(
                 new StringTransformProperty(
                                 new StringTransform() {
+                                    @Override
                                     public String transform(String source) {
                                         return UCharacter.toUpperCase(ULocale.ROOT, source);
                                     }
@@ -160,6 +167,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(
                 new StringTransformProperty(
                                 new StringTransform() {
+                                    @Override
                                     public String transform(String source) {
                                         return UCharacter.toTitleCase(ULocale.ROOT, source, null);
                                     }
@@ -170,6 +178,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(
                 new StringTransformProperty(
                                 new StringTransform() {
+                                    @Override
                                     public String transform(String source) {
                                         StringBuilder b = new StringBuilder();
                                         for (int cp : CharSequences.codePoints(source)) {
@@ -184,6 +193,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(
                 new StringTransformProperty(
                                 new StringTransform() {
+                                    @Override
                                     public String transform(String source) {
                                         String result = NFM.nfm.get(source);
                                         return result == null ? source : result;
@@ -201,6 +211,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(
                 new CodepointTransformProperty(
                                 new Transform<Integer, String>() {
+                                    @Override
                                     public String transform(Integer source) {
                                         return UnicodeUtilities.getSubheader().getSubheader(source);
                                     }
@@ -251,7 +262,8 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                         .setMain("Script_Extensions", "scx", UnicodeProperty.ENUMERATED, "1.1")
                         .addValueAliases(
                                 ScriptTester.getScriptSpecialsAlternates(),
-                                AliasAddAction.IGNORE_IF_MISSING));
+                                AliasAddAction.IGNORE_IF_MISSING)
+                        .setMultivalued(true));
 
         CachedProps cp = CachedProps.CACHED_PROPS;
         for (String prop : cp.getAvailable()) {
@@ -652,6 +664,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             setUniformUnassigned(hasUniformUnassigned);
         }
 
+        @Override
         protected String _getValue(int codepoint) {
             return transform.transform(UTF16.valueOf(codepoint));
         }
@@ -666,6 +679,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             setUniformUnassigned(hasUniformUnassigned);
         }
 
+        @Override
         protected String _getValue(int codepoint) {
             return transform.transform(codepoint);
         }
@@ -682,6 +696,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             encoder = new CharEncoder(charset, false, false);
         }
 
+        @Override
         protected String _getValue(int codepoint) {
             int len = encoder.getValue(codepoint, temp, 0);
             if (len < 0) {
@@ -697,6 +712,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             return result.toString();
         }
 
+        @Override
         public boolean isDefault(int codepoint) {
             int len = encoder.getValue(codepoint, temp, 0);
             return len < 0;
@@ -716,6 +732,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             encoder = new CharEncoder(charset, true, true);
         }
 
+        @Override
         protected String _getValue(int codepoint) {
             return (encoder.getValue(codepoint, null, 0) > 0) ? "Yes" : "No";
         }
@@ -731,6 +748,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             return this;
         }
 
+        @Override
         protected UnicodeMap<String> _getUnicodeMap() {
             UnicodeMap<String> result = new UnicodeMap<String>();
             result.putAll(unicodeSet, "Yes");
@@ -743,10 +761,12 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             return set(new UnicodeSet(string).freeze());
         }
 
+        @Override
         protected String _getValue(int codepoint) {
             return YESNO_ARRAY[unicodeSet.contains(codepoint) ? 0 : 1];
         }
 
+        @Override
         protected List _getAvailableValues(List result) {
             return YESNO;
         }
