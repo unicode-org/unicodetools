@@ -152,9 +152,9 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     private Map<String, String> valueToFirstValueAlias = null;
 
     private boolean hasUniformUnassigned = true;
-    
+
     private boolean isMultivalued = false;
-    
+
     public UnicodeProperty setMultivalued(boolean value) {
         isMultivalued = value;
         return this;
@@ -387,10 +387,15 @@ public abstract class UnicodeProperty extends UnicodeLabel {
      * the original contents.
      */
     public final UnicodeSet getSet(String propertyValue, UnicodeSet result) {
-        return getSet(
-                new SimpleMatcher(
-                        propertyValue, isType(STRING_OR_MISC_MASK) ? null : PROPERTY_COMPARATOR),
-                result);
+        if (isMultivalued && propertyValue.contains(",")) {
+            throw new IllegalArgumentException("Multivalued property values can't contain commas.");
+        } else {
+            return getSet(
+                    new SimpleMatcher(
+                            propertyValue,
+                            isType(STRING_OR_MISC_MASK) ? null : PROPERTY_COMPARATOR),
+                    result);
+        }
     }
 
     private UnicodeMap<String> unicodeMap = null;
@@ -423,12 +428,12 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                 String value2 = it2.next();
                 // System.out.println("Values:" + value2);
                 if (isMultivalued && value2.contains(",")) {
-                   for (String part : SPLIT_COMMAS.split(value2)) {
-                       if (matcher.test(part) || matcher.test(toSkeleton(part))) {
-                           um.keySet(value, result);
-                           continue main;
-                       }
-                   }
+                    for (String part : SPLIT_COMMAS.split(value2)) {
+                        if (matcher.test(part) || matcher.test(toSkeleton(part))) {
+                            um.keySet(value, result);
+                            continue main;
+                        }
+                    }
                 } else if (matcher.test(value2) || matcher.test(toSkeleton(value2))) {
                     um.keySet(value, result);
                     continue main;

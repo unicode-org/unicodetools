@@ -7,10 +7,33 @@ import org.unicode.unittest.TestFmwkMinusMinus;
 
 public class TestScriptExtensions extends TestFmwkMinusMinus {
     @Test
-    public void TestBasic() {
+    public void TestScx1Script() {
         // As of 2023-11-24, scx was not working properly
-        String setA = "\\p{scx=deva}";
-        UnicodeSet deva = UnicodeSetUtilities.parseUnicodeSet(setA);
-        assertTrue(setA + "contains \\u1CD5", deva.contains(0x1cd5));
+        String unicodeSetString = "\\p{scx=deva}";
+        UnicodeSet parsed = UnicodeSetUtilities.parseUnicodeSet(unicodeSetString);
+
+        UnicodeSet mustContain = new UnicodeSet("[ᳵ।]"); // one character B&D, other B&D&D&G&...
+        assertTrue(unicodeSetString + " contains " + mustContain, parsed.containsAll(mustContain));
+
+        UnicodeSet mustNotContain = new UnicodeSet("[ক]"); // one Bengali character
+        assertFalse(
+                unicodeSetString + " !contains " + mustNotContain,
+                parsed.containsAll(mustNotContain));
+    }
+
+    @Test
+    public void TestScxMulti() {
+        // As of 2023-11-24, scx was not working properly
+        String unicodeSetString = "\\p{scx=beng,deva}";
+        String exceptionMessage = null;
+        try {
+            UnicodeSet parsed = UnicodeSetUtilities.parseUnicodeSet(unicodeSetString);
+        } catch (Exception e) {
+            exceptionMessage = e.getMessage();
+        }
+        assertEquals(
+                "Expected exception",
+                "Multivalued property values can't contain commas.",
+                exceptionMessage);
     }
 }
