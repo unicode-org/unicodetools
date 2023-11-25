@@ -1,6 +1,10 @@
 package org.unicode.jsp;
 
+import com.google.common.base.Joiner;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty.NameChoice;
@@ -12,13 +16,19 @@ import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeSet;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Idna2003;
 import org.unicode.idna.Idna2008;
@@ -28,8 +38,12 @@ import org.unicode.props.UnicodeProperty.AliasAddAction;
 import org.unicode.props.UnicodeProperty.BaseProperty;
 import org.unicode.props.UnicodeProperty.Factory;
 import org.unicode.props.UnicodeProperty.SimpleProperty;
+import org.unicode.text.utility.Utility;
 
 public class XPropertyFactory extends UnicodeProperty.Factory {
+
+    private static final Joiner JOIN_COMMAS = Joiner.on(",");
+    private static final boolean DEBUG_MULTI = false;
 
     static final UnicodeSet ALL =
             new UnicodeSet("[[:^C:][:Cc:][:Cf:][:noncharactercodepoint:]]").freeze();
@@ -250,6 +264,9 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                         .setMain("bmp", "bmp", UnicodeProperty.BINARY, "6.0"));
 
         addCollationProperty();
+        addExamplarProperty(LocaleData.ES_STANDARD, "exem", "exemplar");
+        addExamplarProperty(LocaleData.ES_AUXILIARY, "exema", "exemplar_aux");
+        addExamplarProperty(LocaleData.ES_PUNCTUATION, "exemp", "exemplar_punct");
 
         // set up the special script property
         UnicodeProperty scriptProp = base.getProperty("sc");
@@ -299,6 +316,84 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                 new UnicodeSetProperty()
                         .set(RGI_Emoji)
                         .setMain("RGI_Emoji", "RGI_Emoji", UnicodeProperty.BINARY, "13.0"));
+    }
+
+    private void addExamplarProperty(
+            int exemplarType, String propertyAbbreviation, String propertyName) {
+        Multimap<Integer, String> data = TreeMultimap.create();
+        Set<String> localeSet = new TreeSet<>();
+
+        for (ULocale ulocale : ULocale.getAvailableLocales()) {
+            if (!ulocale.getCountry().isEmpty()) {
+                continue;
+                // we want to skip cases where characters are in the parent locale, but there is no
+                // ULocale parentLocale = ulocale.getParent();
+            }
+            UnicodeSet exemplarSet = LocaleData.getExemplarSet(ulocale, 0, exemplarType);
+            if (!ulocale.getScript().isEmpty()) {
+                // we can't find out the parent locale or defaultContent locale in ICU, so we hack
+                // it
+                String langLocale = ulocale.getLanguage();
+                UnicodeSet langExemplarSet =
+                        LocaleData.getExemplarSet(new ULocale(langLocale), 0, exemplarType);
+                if (langExemplarSet.equals(exemplarSet)) {
+                    continue;
+                }
+            }
+            String locale = ulocale.toString();
+            localeSet.add(locale);
+            for (UnicodeSetIterator it = new UnicodeSetIterator(exemplarSet); it.nextRange(); ) {
+                if (it.codepoint == UnicodeSetIterator.IS_STRING) {
+                    // flatten
+                    int cp = 0;
+                    for (int i = 0; i < it.string.length(); i += Character.charCount(cp)) {
+                        cp = it.string.codePointAt(i);
+                        data.put(cp, locale);
+                    }
+                } else {
+                    for (int cp = it.codepoint; cp <= it.codepointEnd; ++cp) {
+                        data.put(cp, locale);
+                    }
+                }
+            }
+        }
+
+        // convert to UnicodeMap
+        UnicodeMap<String> unicodeMap = new UnicodeMap<>();
+        for (Entry<Integer, Collection<String>> entry : data.asMap().entrySet()) {
+            String value = JOIN_COMMAS.join(entry.getValue()).intern();
+            unicodeMap.put(entry.getKey(), value);
+        }
+        if (DEBUG_MULTI) {
+            System.out.println("\n" + propertyName);
+            for (EntryRange<String> entry : unicodeMap.entryRanges()) {
+                System.out.println(
+                        Utility.hex(entry.codepoint)
+                                + (entry.codepoint == entry.codepointEnd
+                                        ? ""
+                                        : "-" + Utility.hex(entry.codepointEnd))
+                                + " ;\t"
+                                + entry.value);
+            }
+        }
+
+        // put locales into right format
+        String[] localeList = localeSet.toArray(new String[localeSet.size()]);
+        String[][] locales = new String[][] {localeList, localeList}; // abbreviations are the same
+
+
+        add(
+                new UnicodeProperty.UnicodeMapProperty()
+                        .set(unicodeMap)
+                        .setMain(
+                                propertyName,
+                                propertyAbbreviation,
+                                UnicodeProperty.ENUMERATED,
+                                "1.1")
+                        .addValueAliases(
+                                locales,
+                                AliasAddAction.ADD_MAIN_ALIAS)
+                        .setMultivalued(true));
     }
 
     private void addCollationProperty() {

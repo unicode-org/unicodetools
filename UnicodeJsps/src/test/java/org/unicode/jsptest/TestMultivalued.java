@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
-public class TestScriptExtensions extends TestFmwkMinusMinus {
+public class TestMultivalued extends TestFmwkMinusMinus {
     @Test
     public void TestScx1Script() {
         // As of 2023-11-24, scx was not working properly
@@ -35,5 +35,19 @@ public class TestScriptExtensions extends TestFmwkMinusMinus {
                 "Expected exception",
                 "Multivalued property values can't contain commas.",
                 exceptionMessage);
+    }
+    
+    @Test
+    public void TestExemplars() {
+        String unicodeSetString = "\\p{exem=da}";
+        UnicodeSet parsed = UnicodeSetUtilities.parseUnicodeSet(unicodeSetString);
+        
+        UnicodeSet mustContain = new UnicodeSet("[æ]");
+        assertTrue(unicodeSetString + " contains " + mustContain, parsed.containsAll(mustContain));
+
+        UnicodeSet mustNotContain = new UnicodeSet("[ç]");
+        assertFalse(
+                unicodeSetString + " !contains " + mustNotContain,
+                parsed.containsAll(mustNotContain));
     }
 }
