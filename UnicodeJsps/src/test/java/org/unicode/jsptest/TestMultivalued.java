@@ -36,12 +36,12 @@ public class TestMultivalued extends TestFmwkMinusMinus {
                 "Multivalued property values can't contain commas.",
                 exceptionMessage);
     }
-    
+
     @Test
     public void TestExemplars() {
         String unicodeSetString = "\\p{exem=da}";
         UnicodeSet parsed = UnicodeSetUtilities.parseUnicodeSet(unicodeSetString);
-        
+
         UnicodeSet mustContain = new UnicodeSet("[æ]");
         assertTrue(unicodeSetString + " contains " + mustContain, parsed.containsAll(mustContain));
 

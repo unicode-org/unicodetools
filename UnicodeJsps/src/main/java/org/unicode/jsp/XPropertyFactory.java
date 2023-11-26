@@ -381,7 +381,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         String[] localeList = localeSet.toArray(new String[localeSet.size()]);
         String[][] locales = new String[][] {localeList, localeList}; // abbreviations are the same
 
-
         add(
                 new UnicodeProperty.UnicodeMapProperty()
                         .set(unicodeMap)
@@ -390,9 +389,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                                 propertyAbbreviation,
                                 UnicodeProperty.ENUMERATED,
                                 "1.1")
-                        .addValueAliases(
-                                locales,
-                                AliasAddAction.ADD_MAIN_ALIAS)
+                        .addValueAliases(locales, AliasAddAction.ADD_MAIN_ALIAS)
                         .setMultivalued(true));
     }
 
