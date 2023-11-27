@@ -14,7 +14,7 @@ public class TestMultivalued extends TestFmwkMinusMinus {
         UnicodeSet mustContain = new UnicodeSet("[ᳵ।]"); // one character B&D, other B&D&D&G&...
         assertTrue(unicodeSetString + " contains " + mustContain, parsed.containsAll(mustContain));
 
-        UnicodeSet mustNotContain = new UnicodeSet("[ক]"); // one Bengali character
+        UnicodeSet mustNotContain = new UnicodeSet("[ক]"); // one Bangla character
         assertFalse(
                 unicodeSetString + " !contains " + mustNotContain,
                 parsed.containsAll(mustNotContain));
