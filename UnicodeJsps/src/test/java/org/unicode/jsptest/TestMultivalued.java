@@ -8,7 +8,6 @@ import org.unicode.unittest.TestFmwkMinusMinus;
 public class TestMultivalued extends TestFmwkMinusMinus {
     @Test
     public void TestScx1Script() {
-        // As of 2023-11-24, scx was not working properly
         String unicodeSetString = "\\p{scx=deva}";
         UnicodeSet parsed = UnicodeSetUtilities.parseUnicodeSet(unicodeSetString);
 
@@ -23,7 +22,6 @@ public class TestMultivalued extends TestFmwkMinusMinus {
 
     @Test
     public void TestScxMulti() {
-        // As of 2023-11-24, scx was not working properly
         String unicodeSetString = "\\p{scx=beng,deva}";
         String exceptionMessage = null;
         try {

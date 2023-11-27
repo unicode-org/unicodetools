@@ -4,7 +4,6 @@ import com.google.common.base.Joiner;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty.NameChoice;
@@ -324,7 +323,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         Set<String> localeSet = new TreeSet<>();
 
         for (ULocale ulocale : ULocale.getAvailableLocales()) {
-            if (!ulocale.getCountry().isEmpty()) {
+            if (!ulocale.getCountry().isEmpty() || !ulocale.getVariant().isEmpty()) {
                 continue;
                 // we want to skip cases where characters are in the parent locale, but there is no
                 // ULocale parentLocale = ulocale.getParent();
@@ -340,7 +339,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                     continue;
                 }
             }
-            String locale = ulocale.toString();
+            String locale = ulocale.toLanguageTag();
             localeSet.add(locale);
             for (UnicodeSetIterator it = new UnicodeSetIterator(exemplarSet); it.nextRange(); ) {
                 if (it.codepoint == UnicodeSetIterator.IS_STRING) {
@@ -366,7 +365,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         }
         if (DEBUG_MULTI) {
             System.out.println("\n" + propertyName);
-            for (EntryRange<String> entry : unicodeMap.entryRanges()) {
+            for (UnicodeMap.EntryRange<String> entry : unicodeMap.entryRanges()) {
                 System.out.println(
                         Utility.hex(entry.codepoint)
                                 + (entry.codepoint == entry.codepointEnd
