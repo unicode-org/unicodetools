@@ -162,14 +162,14 @@ constexpr char32_t parse_hex_codepoint(std::string_view hex) {
 }
 
 constexpr CodePointRange parse_hex_codepoint_range(std::string_view hex) {
-    auto const front_end = hex.find("..");
-    if (front_end == std::string_view::npos) {
-        char32_t const front = parse_hex_codepoint(hex);
-        return CodePointRange::Inclusive(front, front);
+    auto const first_dot = hex.find("..");
+    if (first_dot == std::string_view::npos) {
+        char32_t const code_point = parse_hex_codepoint(hex);
+        return CodePointRange::Inclusive(code_point, code_point);
     }
     return CodePointRange::Inclusive(
-        parse_hex_codepoint(hex.substr(0, front_end)),
-        parse_hex_codepoint(hex.substr(front_end + 2)));
+        parse_hex_codepoint(hex.substr(0, first_dot)),
+        parse_hex_codepoint(hex.substr(first_dot + 2)));
 }
 
 class UCD {
