@@ -26,67 +26,68 @@ class CheckFailure {
 
 class CodePointRange {
    public:
-    constexpr CodePointRange(char32_t front, char32_t back)
-        : front_(front), back_(back) {
-        if (empty()) {
-            front_ = 1;
-            back_ = 0;
-        }
-    }
-
-    constexpr bool empty() const {
-        return front_ > back_;
-    }
-
-    constexpr bool contains(char32_t c) const {
-        return c >= front_ && c <= back_;
-    }
-
-    constexpr CodePointRange intersection(CodePointRange const& other) const {
-        return CodePointRange(std::max(front_, other.front_),
-                              std::min(back_, other.back_));
-    }
-
-    constexpr char32_t front() const {
-        return front_;
-    }
-
-    constexpr char32_t back() const {
-        return back_;
-    }
-
     struct iterator {
-        char32_t operator*() const {
+        constexpr char32_t operator*() const {
             return value;
         }
 
-        void operator++() {
+        constexpr void operator++() {
             ++value;
         }
 
-        bool operator==(iterator const& other) const = default;
-        bool operator!=(iterator const& other) const = default;
+        constexpr std::strong_ordering operator<=>(
+            iterator const& other) const = default;
 
         char32_t value;
     };
 
+    constexpr CodePointRange(iterator begin, iterator end)
+        : begin_(begin), end_(end) {}
+
+    static constexpr CodePointRange Inclusive(char32_t front, char32_t back) {
+        return CodePointRange({front}, {back + 1});
+    }
+
+    constexpr bool empty() const {
+        return begin_ >= end_;
+    }
+
+    constexpr bool contains(char32_t c) const {
+        return iterator{c} >= begin_ && iterator{c} < end_;
+    }
+
+    constexpr CodePointRange intersection(CodePointRange const& other) const {
+        return CodePointRange(std::max(begin_, other.begin_),
+                              std::min(end_, other.end_));
+    }
+
+    constexpr char32_t front() const {
+        CHECK(!empty());
+        return *begin_;
+    }
+
+    constexpr char32_t back() const {
+        CHECK(!empty());
+        return end_.value - 1;
+    }
+
     iterator begin() const {
-        return {front_};
+        return begin_;
     }
 
     iterator end() const {
-        return {back_ + 1};
+        return end_;
     }
 
    private:
-    char32_t front_;
-    char32_t back_;
+    iterator begin_;
+    iterator end_;
 };
 
 constexpr CodePointRange convex_hull(CodePointRange const& r1,
                                      CodePointRange const& r2) {
-    return CodePointRange(std::min(r1.front(), r2.front()),
-                          std::max(r1.back(), r2.back()));
+    return CodePointRange(std::min(r1.begin(), r2.begin()),
+                          std::max(r1.end(), r2.end()));
 }
 
 class CodePointSet {
@@ -164,10 +165,11 @@ constexpr CodePointRange parse_hex_codepoint_range(std::string_view hex) {
     auto const front_end = hex.find("..");
     if (front_end == std::string_view::npos) {
         char32_t const front = parse_hex_codepoint(hex);
-        return CodePointRange(front, front);
+        return CodePointRange::Inclusive(front, front);
     }
-    return CodePointRange(parse_hex_codepoint(hex.substr(0, front_end)),
-                          parse_hex_codepoint(hex.substr(front_end + 2)));
+    return CodePointRange::Inclusive(
+        parse_hex_codepoint(hex.substr(0, front_end)),
+        parse_hex_codepoint(hex.substr(front_end + 2)));
 }
 
 class UCD {
@@ -201,7 +203,8 @@ class UCD {
                             stc] = fields<15>(line);
                 char32_t const code_point = parse_hex_codepoint(cp);
                 // TODO(egg): Handle ranges.
-                auto const range = CodePointRange(code_point, code_point);
+                auto const range =
+                    CodePointRange::Inclusive(code_point, code_point);
                 coarse_general_category_[gc.front()].Include(range);
                 general_category_[std::string(gc)].Include(range);
                 canonical_combining_class_.emplace(code_point,
