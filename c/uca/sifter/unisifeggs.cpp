@@ -41,53 +41,56 @@ class CodePointRange {
         char32_t value;
     };
 
-    constexpr CodePointRange(iterator begin, iterator end)
-        : begin_(begin), end_(end) {}
-
     static constexpr CodePointRange Inclusive(char32_t front, char32_t back) {
         return CodePointRange({front}, {back + 1});
     }
 
     constexpr bool empty() const {
-        return begin_ >= end_;
+        return first_ >= past_the_end_;
     }
 
     constexpr bool contains(char32_t c) const {
-        return iterator{c} >= begin_ && iterator{c} < end_;
+        return c >= first_ && c < past_the_end_;
     }
 
     constexpr CodePointRange intersection(CodePointRange const& other) const {
-        return CodePointRange(std::max(begin_, other.begin_),
-                              std::min(end_, other.end_));
+        return CodePointRange({std::max(first_, other.first_)},
+                              {std::min(past_the_end_, other.past_the_end_)});
     }
 
     constexpr char32_t front() const {
         CHECK(!empty());
-        return *begin_;
+        return first_;
     }
 
     constexpr char32_t back() const {
         CHECK(!empty());
-        return end_.value - 1;
+        return past_the_end_ - 1;
     }
 
     iterator begin() const {
-        return begin_;
+        return {first_};
     }
 
     iterator end() const {
-        return end_;
+        return {past_the_end_};
     }
 
    private:
-    iterator begin_;
-    iterator end_;
+    constexpr CodePointRange(char32_t first, char32_t past_the_end)
+        : first_(first), past_the_end_(past_the_end) {}
+
+    char32_t first_;
+    char32_t past_the_end_;
+
+    friend constexpr CodePointRange convex_hull(CodePointRange const& r1,
+                                                CodePointRange const& r2);
 };
 
 constexpr CodePointRange convex_hull(CodePointRange const& r1,
                                      CodePointRange const& r2) {
-    return CodePointRange(std::min(r1.begin(), r2.begin()),
-                          std::max(r1.end(), r2.end()));
+    return CodePointRange(std::min(r1.first_, r2.first_),
+                          std::max(r1.past_the_end_, r2.past_the_end_));
 }
 
 class CodePointSet {
@@ -147,10 +150,11 @@ constexpr std::array<std::string_view, n> fields(std::string_view const line) {
     for (auto& field : result) {
         CHECK(it != split.end()) << line;
         std::string_view field_with_spaces(*it++);
-        auto const begin = std::min(field_with_spaces.find_first_not_of(" "),
-                                    field_with_spaces.size());
-        auto const end = field_with_spaces.find_last_not_of(" ") + 1;
-        field = field_with_spaces.substr(begin, end - begin);
+        auto const field_first = std::min(
+            field_with_spaces.find_first_not_of(" "), field_with_spaces.size());
+        auto const field_last = field_with_spaces.find_last_not_of(" ");
+        auto const field_size = field_last - field_first + 1;
+        field = field_with_spaces.substr(field_first, field_size);
     }
     return result;
 }
