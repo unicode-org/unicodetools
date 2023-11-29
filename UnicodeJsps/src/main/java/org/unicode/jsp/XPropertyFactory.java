@@ -269,15 +269,18 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
 
         // set up the special script property
         UnicodeProperty scriptProp = base.getProperty("sc");
+
+        // Compose the function and add
         UnicodeMap<String> specialMap = new UnicodeMap<String>();
-        specialMap.putAll(scriptProp.getUnicodeMap());
+        specialMap.putAll(
+                scriptProp.getUnicodeMap()); // if there is no value, use the script property
         specialMap.putAll(ScriptTester.getScriptSpecialsNames());
         add(
                 new UnicodeProperty.UnicodeMapProperty()
                         .set(specialMap)
                         .setMain("Script_Extensions", "scx", UnicodeProperty.ENUMERATED, "1.1")
                         .addValueAliases(
-                                ScriptTester.getScriptSpecialsAlternates(),
+                                ScriptTester.getScriptSpecialsAlternates(scriptProp),
                                 AliasAddAction.IGNORE_IF_MISSING)
                         .setMultivalued(true));
 
@@ -359,6 +362,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
 
         // convert to UnicodeMap
         UnicodeMap<String> unicodeMap = new UnicodeMap<>();
+        unicodeMap.putAll(0, 0x10FFFF, ""); // default is empty string
         for (Entry<Integer, Collection<String>> entry : data.asMap().entrySet()) {
             String value = JOIN_COMMAS.join(entry.getValue()).intern();
             unicodeMap.put(entry.getKey(), value);
@@ -383,11 +387,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(
                 new UnicodeProperty.UnicodeMapProperty()
                         .set(unicodeMap)
-                        .setMain(
-                                propertyName,
-                                propertyAbbreviation,
-                                UnicodeProperty.ENUMERATED,
-                                "1.1")
+                        .setMain(propertyName, propertyAbbreviation, UnicodeProperty.STRING, "1.1")
                         .addValueAliases(locales, AliasAddAction.ADD_MAIN_ALIAS)
                         .setMultivalued(true));
     }
