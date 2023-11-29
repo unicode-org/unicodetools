@@ -190,7 +190,14 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                     (1 << ENUMERATED)
                             | (1 << EXTENDED_ENUMERATED)
                             | (1 << CATALOG)
-                            | (1 << EXTENDED_CATALOG);
+                            | (1 << EXTENDED_CATALOG),
+            BINARY_OR_ENUMERATED_OR_CATALOG_MASK =
+                    (1 << ENUMERATED)
+                            | (1 << EXTENDED_ENUMERATED)
+                            | (1 << CATALOG)
+                            | (1 << EXTENDED_CATALOG)
+                            | (1 << BINARY)
+                            | (1 << EXTENDED_BINARY);
 
     private static final String[] TYPE_NAMES = {
         "Unknown",
@@ -405,7 +412,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
         if (result == null) result = new UnicodeSet();
         boolean uniformUnassigned = hasUniformUnassigned();
-        if (isType(STRING_OR_MISC_MASK)) {
+        if (isType(STRING_OR_MISC_MASK) && !isMultivalued) {
             for (UnicodeSetIterator usi = getStuffToTest(uniformUnassigned);
                     usi.next(); ) { // int i = 0; i <= 0x10FFFF; ++i
                 int i = usi.codepoint;
@@ -423,7 +430,8 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         while (it.hasNext()) {
             String value = it.next();
             temp.clear();
-            Iterator<String> it2 = getValueAliases(value, temp).iterator();
+            final List<String> valueAliases = getValueAliases(value, temp);
+            Iterator<String> it2 = valueAliases.iterator();
             while (it2.hasNext()) {
                 String value2 = it2.next();
                 // System.out.println("Values:" + value2);
