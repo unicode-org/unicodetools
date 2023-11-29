@@ -9,12 +9,16 @@ import org.unicode.unittest.TestFmwkMinusMinus;
 
 public class TestMultivalued extends TestFmwkMinusMinus {
 
+    private static final boolean DEBUG = false;
+
     UnicodeProperty exemplarProp = XPropertyFactory.make().getProperty("exemplar");
     UnicodeProperty scxProp = XPropertyFactory.make().getProperty("scx");
 
     @Test
     public void TestScx1Script() {
-        String x = scxProp.getValue('।');
+        if (DEBUG) {
+            String x = scxProp.getValue('।');
+        }
 
         String unicodeSetString = "\\p{scx=deva}";
         UnicodeSet parsed = UnicodeSetUtilities.parseUnicodeSet(unicodeSetString);
@@ -59,7 +63,9 @@ public class TestMultivalued extends TestFmwkMinusMinus {
 
     @Test
     public void TestExemplars() {
-        String x = exemplarProp.getValue('æ');
+        if (DEBUG) {
+            String x = exemplarProp.getValue('æ');
+        }
 
         String unicodeSetString = "\\p{exem=da}";
         UnicodeSet parsed = UnicodeSetUtilities.parseUnicodeSet(unicodeSetString);
@@ -98,14 +104,5 @@ public class TestMultivalued extends TestFmwkMinusMinus {
         String first2 = parsed2.iterator().next();
         String firstValue2 = exemplarProp.getValue(first2.codePointAt(0));
         assertEquals(unicodeSetString2, "el", firstValue2);
-
-        //        UnicodeSet mustContain = new UnicodeSet("[æ]");
-        //        assertTrue(unicodeSetString + " contains " + mustContain,
-        // parsed.containsAll(mustContain));
-        //
-        //        UnicodeSet mustNotContain = new UnicodeSet("[ç]");
-        //        assertFalse(
-        //                unicodeSetString + " !contains " + mustNotContain,
-        //                parsed.containsAll(mustNotContain));
     }
 }

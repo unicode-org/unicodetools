@@ -280,7 +280,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                         .set(specialMap)
                         .setMain("Script_Extensions", "scx", UnicodeProperty.ENUMERATED, "1.1")
                         .addValueAliases(
-                                // valueArray,
                                 ScriptTester.getScriptSpecialsAlternates(scriptProp),
                                 AliasAddAction.IGNORE_IF_MISSING)
                         .setMultivalued(true));
