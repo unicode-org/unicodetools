@@ -215,10 +215,23 @@ public class TestProperties extends TestFmwkMinusMinus {
     }
 
     @Test
-    public void TestQuickCheckConsistency() {
+    public void TestNFCQuickCheckConsistency() {
         UnicodeMap<String> nfcqc = iup.load(UcdProperty.NFC_Quick_Check);
         UnicodeMap<String> dm = iup.load(UcdProperty.Decomposition_Mapping);
         UnicodeMap<String> dt = iup.load(UcdProperty.Decomposition_Type);
+        UnicodeMap<String> age = iup.load(UcdProperty.Age);
+        for (String codepoint : nfcqc.getSet("Yes")) {
+            if (!dt.getValue(codepoint).equals("Canonical") || age.getValue(codepoint).equals("V16_0")) {
+                continue;
+            }
+            String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
+            String decompositionFirstNFCQC = nfcqc.getValue(decompositionFirst);
+            assertEquals(
+                "Pre-16 U+" + getCodeAndName(codepoint) + "(Age=" + age.getValue(codepoint) + ") has NFC_QC=Yes, but its (canonical) Decomposition_Mapping starts with U+"
+                + getCodeAndName(decompositionFirst) + ", which has NFC_QC=" + decompositionFirstNFCQC,
+                "Yes",
+                decompositionFirstNFCQC);
+        }
         for (String codepoint : nfcqc.getSet("Yes")) {
             if (!dt.getValue(codepoint).equals("Canonical")) {
                 continue;
@@ -230,6 +243,34 @@ public class TestProperties extends TestFmwkMinusMinus {
                 + getCodeAndName(decompositionFirst) + ", which has NFC_QC=" + decompositionFirstNFCQC,
                 "Yes",
                 decompositionFirstNFCQC);
+        }
+    }
+
+    @Test
+    public void TestNFKCQuickCheckConsistency() {
+        UnicodeMap<String> nfkcqc = iup.load(UcdProperty.NFC_Quick_Check);
+        UnicodeMap<String> dm = iup.load(UcdProperty.Decomposition_Mapping);
+        UnicodeMap<String> age = iup.load(UcdProperty.Age);
+        for (String codepoint : nfkcqc.getSet("Yes")) {
+            if (age.getValue(codepoint).equals("V16_0")) {
+                continue;
+            }
+            String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
+            String decompositionFirstNFKCQC = nfkcqc.getValue(decompositionFirst);
+            assertEquals(
+                "Pre-16 U+" + getCodeAndName(codepoint) + "(Age=" + age.getValue(codepoint) + ") has NFKC_QC=Yes, but its Decomposition_Mapping starts with U+"
+                + getCodeAndName(decompositionFirst) + ", which has NFKC_QC=" + decompositionFirstNFKCQC,
+                "Yes",
+                decompositionFirstNFKCQC);
+        }
+        for (String codepoint : nfkcqc.getSet("Yes")) {
+            String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
+            String decompositionFirstNFKCQC = nfkcqc.getValue(decompositionFirst);
+            assertEquals(
+                "U+" + getCodeAndName(codepoint) + " has NFKC_QC=Yes, but its Decomposition_Mapping starts with U+"
+                + getCodeAndName(decompositionFirst) + ", which has NFKC_QC=" + decompositionFirstNFKCQC,
+                "Yes",
+                decompositionFirstNFKCQC);
         }
     }
 
