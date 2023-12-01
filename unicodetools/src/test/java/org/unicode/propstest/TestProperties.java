@@ -215,6 +215,25 @@ public class TestProperties extends TestFmwkMinusMinus {
     }
 
     @Test
+    public void TestQuickCheckConsistency() {
+        UnicodeMap<String> nfcqc = iup.load(UcdProperty.NFC_Quick_Check);
+        UnicodeMap<String> dm = iup.load(UcdProperty.Decomposition_Mapping);
+        UnicodeMap<String> dt = iup.load(UcdProperty.Decomposition_Type);
+        for (String codepoint : nfcqc.getSet("Yes")) {
+            if (!dt.getValue(codepoint).equals("Canonical")) {
+                continue;
+            }
+            String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
+            String decompositionFirstNFCQC = nfcqc.getValue(decompositionFirst);
+            assertEquals(
+                "U+" + getCodeAndName(codepoint) + " has NFC_QC=Yes, but its (canonical) Decomposition_Mapping starts with U+"
+                + getCodeAndName(decompositionFirst) + ", which has NFC_QC=" + decompositionFirstNFCQC,
+                "Yes",
+                decompositionFirstNFCQC);
+        }
+    }
+
+    @Test
     public void TestJoiningGroupConsistency() {
         // TODO(egg): I would like to be able to put that in the invariants tests as « the partition
         // defined by Joining_Group is finer than that defined by Joining_Type ».
