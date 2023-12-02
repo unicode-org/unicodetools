@@ -248,7 +248,7 @@ public class TestProperties extends TestFmwkMinusMinus {
 
     @Test
     public void TestNFKCQuickCheckConsistency() {
-        UnicodeMap<String> nfkcqc = iup.load(UcdProperty.NFC_Quick_Check);
+        UnicodeMap<String> nfkcqc = iup.load(UcdProperty.NFKC_Quick_Check);
         UnicodeMap<String> dm = iup.load(UcdProperty.Decomposition_Mapping);
         UnicodeMap<String> age = iup.load(UcdProperty.Age);
         for (String codepoint : nfkcqc.getSet("Yes")) {
