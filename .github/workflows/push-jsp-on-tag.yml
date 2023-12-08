@@ -1,4 +1,7 @@
 name: Push to GCR Github Action
+permissions:
+  contents: read
+  id-token: write
 on:
   push:
     tags:
