@@ -3,6 +3,8 @@ on:
   push:
     tags:
     - '*'
+    branches:
+    - 'srl295/issue46'  # TESTING!
 jobs:
   build-and-push-to-gcr:
     runs-on: ubuntu-latest
@@ -58,12 +60,20 @@ jobs:
     - name: Get the version
       id: get_tag_name
       run: echo ::set-output name=GIT_TAG_NAME::${GITHUB_REF/refs\/tags\//}
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v0.4.0'
+      with:
+        token_format: 'access_token'
+        workload_identity_provider: 'projects/goog-unicode-dev/locations/global/workloadIdentityPools/pool1/providers/unicode-dev-provider'
+        service_account: 'gha-unicodetools@goog-unicode-dev.iam.gserviceaccount.com'
     - uses: RafikFarhad/push-to-gcr-github-action@241707854fb71f655ec4e2a98bb16505f218bcc2
       with:
-        gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
-        registry: us.gcr.io
-        project_id: dev-infra-273822
+        gcloud_service_key: ${{ steps.auth.outputs.access_token }}
+        registry: us-central1-docker.pkg.dev
+        project_id: goog-unicode-dev
         image_name: unicode-jsps
-        image_tag: ${{ steps.get_tag_name.outputs.GIT_TAG_NAME }}
+        image_tag: srl-test
+        #image_tag: ${{ steps.get_tag_name.outputs.GIT_TAG_NAME }}
         dockerfile: ./UnicodeJsps/Dockerfile
         context: ./UnicodeJsps/
