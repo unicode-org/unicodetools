@@ -1,7 +1,4 @@
 name: Push to GCR Github Action
-permissions:
-  contents: read
-  id-token: write
 on:
   push:
     tags:
@@ -10,6 +7,9 @@ on:
     - 'srl295/issue46'  # TESTING!
 jobs:
   build-and-push-to-gcr:
+    permissions:
+      contents: read
+      id-token: write
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
