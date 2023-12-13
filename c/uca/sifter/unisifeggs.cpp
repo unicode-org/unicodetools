@@ -11,6 +11,8 @@
 #include <string_view>
 #include <vector>
 
+namespace {
+
 class CheckFailure {
    public:
     ~CheckFailure() {
@@ -46,16 +48,16 @@ class CodePointRange {
     }
 
     constexpr bool empty() const {
-        return first_ >= past_the_end_;
+        return first_ >= pastTheEnd_;
     }
 
     constexpr bool contains(char32_t c) const {
-        return c >= first_ && c < past_the_end_;
+        return c >= first_ && c < pastTheEnd_;
     }
 
     constexpr CodePointRange intersection(CodePointRange const& other) const {
         return CodePointRange(std::max(first_, other.first_),
-                              std::min(past_the_end_, other.past_the_end_));
+                              std::min(pastTheEnd_, other.pastTheEnd_));
     }
 
     constexpr char32_t front() const {
@@ -65,7 +67,7 @@ class CodePointRange {
 
     constexpr char32_t back() const {
         CHECK(!empty());
-        return past_the_end_ - 1;
+        return pastTheEnd_ - 1;
     }
 
     iterator begin() const {
@@ -73,24 +75,24 @@ class CodePointRange {
     }
 
     iterator end() const {
-        return {past_the_end_};
+        return {pastTheEnd_};
     }
 
    private:
     constexpr CodePointRange(char32_t first, char32_t past_the_end)
-        : first_(first), past_the_end_(past_the_end) {}
+        : first_(first), pastTheEnd_(past_the_end) {}
 
     char32_t first_;
-    char32_t past_the_end_;
+    char32_t pastTheEnd_;
 
-    friend constexpr CodePointRange convex_hull(CodePointRange const& r1,
-                                                CodePointRange const& r2);
+    friend constexpr CodePointRange convexHull(CodePointRange const& r1,
+                                               CodePointRange const& r2);
 };
 
-constexpr CodePointRange convex_hull(CodePointRange const& r1,
-                                     CodePointRange const& r2) {
+constexpr CodePointRange convexHull(CodePointRange const& r1,
+                                    CodePointRange const& r2) {
     return CodePointRange(std::min(r1.first_, r2.first_),
-                          std::max(r1.past_the_end_, r2.past_the_end_));
+                          std::max(r1.pastTheEnd_, r2.pastTheEnd_));
 }
 
 class CodePointSet {
@@ -106,7 +108,7 @@ class CodePointSet {
         return it != ranges_.end() && it->contains(c);
     }
 
-    void Include(CodePointRange range) {
+    void addAll(CodePointRange range) {
         auto it = std::partition_point(
             ranges_.begin(), ranges_.end(), [&range](CodePointRange const& r) {
                 return r.back() < range.front();
@@ -115,21 +117,21 @@ class CodePointSet {
             it = ranges_.insert(it, range);
             if ((it + 1) != ranges_.end() &&
                 (it + 1)->front() == it->back() + 1) {
-                *it = convex_hull(*it, *(it + 1));
+                *it = convexHull(*it, *(it + 1));
                 ranges_.erase(it + 1);
             }
             if (it != ranges_.begin() && (it - 1)->back() + 1 == it->front()) {
-                *(it - 1) = convex_hull(*(it - 1), *it);
+                *(it - 1) = convexHull(*(it - 1), *it);
                 ranges_.erase(it);
             }
         } else {
-            *it = convex_hull(*it, range);
+            *it = convexHull(*it, range);
         }
     }
 
-    CodePointSet Include(CodePointSet const& other) {
+    CodePointSet addAll(CodePointSet const& other) {
         for (auto const& range : other.ranges_) {
-            Include(range);
+            addAll(range);
         }
     }
 
@@ -138,7 +140,7 @@ class CodePointSet {
     std::vector<CodePointRange> ranges_;
 };
 
-constexpr std::string_view strip_comment(std::string_view const line) {
+constexpr std::string_view stripComment(std::string_view const line) {
     return line.substr(0, line.find_first_of('#'));
 }
 
@@ -159,33 +161,33 @@ constexpr std::array<std::string_view, n> fields(std::string_view const line) {
     return result;
 }
 
-constexpr char32_t parse_hex_codepoint(std::string_view hex) {
+constexpr char32_t parseHexCodepoint(std::string_view hex) {
     std::uint32_t c;
     std::from_chars(hex.data(), hex.data() + hex.size(), c, 16);
     return static_cast<char32_t>(c);
 }
 
-constexpr CodePointRange parse_hex_codepoint_range(std::string_view hex) {
+constexpr CodePointRange parseHexCodepointRange(std::string_view hex) {
     auto const first_dot = hex.find("..");
     if (first_dot == std::string_view::npos) {
-        char32_t const code_point = parse_hex_codepoint(hex);
+        char32_t const code_point = parseHexCodepoint(hex);
         return CodePointRange::Inclusive(code_point, code_point);
     }
     return CodePointRange::Inclusive(
-        parse_hex_codepoint(hex.substr(0, first_dot)),
-        parse_hex_codepoint(hex.substr(first_dot + 2)));
+        parseHexCodepoint(hex.substr(0, first_dot)),
+        parseHexCodepoint(hex.substr(first_dot + 2)));
 }
 
 class UCD {
    public:
     explicit UCD() {
-        auto const ucd_directory = std::filesystem::current_path()
-                                       .parent_path()
-                                       .parent_path()
-                                       .parent_path() /
-                                   "unicodetools" / "data" / "ucd" / "dev";
+        auto const ucdDirectory = std::filesystem::current_path()
+                                      .parent_path()
+                                      .parent_path()
+                                      .parent_path() /
+                                  "unicodetools" / "data" / "ucd" / "dev";
         {
-            std::ifstream unicode_data(ucd_directory / "UnicodeData.txt");
+            std::ifstream unicode_data(ucdDirectory / "UnicodeData.txt");
             CHECK(unicode_data.good());
             std::cout << "Reading UnicodeData.txt...\n";
             for (std::string line; std::getline(unicode_data, line);) {
@@ -195,134 +197,133 @@ class UCD {
                             gc,
                             ccc,
                             bc,
-                            dt_dm,
-                            nv_decimal,
-                            nv_digit,
-                            nv_numeric,
+                            dtDm,
+                            nvDecimal,
+                            nvDigit,
+                            nvNumeric,
                             bm,
-                            unicode_1_name,
-                            iso_comment,
+                            unicode1Name,
+                            isoComment,
                             suc,
                             slc,
                             stc] = fields<15>(line);
-                char32_t const code_point = parse_hex_codepoint(cp);
+                char32_t const codepoint = parseHexCodepoint(cp);
                 // TODO(egg): Handle ranges.
                 auto const range =
-                    CodePointRange::Inclusive(code_point, code_point);
-                coarse_general_category_[gc.front()].Include(range);
-                general_category_[std::string(gc)].Include(range);
-                canonical_combining_class_.emplace(code_point,
-                                                   std::stoi(std::string(ccc)));
+                    CodePointRange::Inclusive(codepoint, codepoint);
+                coarseGeneralCategory_[gc.front()].addAll(range);
+                generalCategory_[std::string(gc)].addAll(range);
+                canonicalCombiningClass_.emplace(codepoint,
+                                                 std::stoi(std::string(ccc)));
                 if (!suc.empty()) {
-                    simple_uppercase_mapping_.emplace(code_point,
-                                                      parse_hex_codepoint(suc));
+                    simpleUppercaseMapping_.emplace(codepoint,
+                                                    parseHexCodepoint(suc));
                 }
                 if (!slc.empty()) {
-                    simple_lowercase_mapping_.emplace(code_point,
-                                                      parse_hex_codepoint(slc));
+                    simpleLowercaseMapping_.emplace(codepoint,
+                                                    parseHexCodepoint(slc));
                 }
             }
         }
-        ReadMultiPropertyFile(ucd_directory / "PropList.txt");
-        ReadMultiPropertyFile(ucd_directory / "DerivedCoreProperties.txt");
+        readMultiPropertyFile(ucdDirectory / "PropList.txt");
+        readMultiPropertyFile(ucdDirectory / "DerivedCoreProperties.txt");
         {
-            std::ifstream derived_numeric_value(ucd_directory / "extracted" /
-                                                "DerivedNumericValues.txt");
-            CHECK(derived_numeric_value.good());
+            std::ifstream derivedNumericValue(ucdDirectory / "extracted" /
+                                              "DerivedNumericValues.txt");
+            CHECK(derivedNumericValue.good());
             std::cout << "Reading DerivedNumericValues.txt...\n";
-            for (std::string line; std::getline(derived_numeric_value, line);) {
+            for (std::string line; std::getline(derivedNumericValue, line);) {
                 // See https://www.unicode.org/reports/tr44/#UnicodeData.txt.
-                auto const record = strip_comment(line);
+                auto const record = stripComment(line);
                 if (record.empty()) {
                     continue;
                 }
-                auto const [cp, decimal_nv, _, rational_nv] = fields<4>(record);
-                auto const range = parse_hex_codepoint_range(cp);
-                code_points_with_numeric_value_.Include(range);
-                if (rational_nv.find_first_not_of("0123456789") ==
+                auto const [cp, decimalNV, _, rationalNV] = fields<4>(record);
+                auto const range = parseHexCodepointRange(cp);
+                codePointsWithNumericValue_.addAll(range);
+                if (rationalNV.find_first_not_of("0123456789") ==
                     std::string_view::npos) {
-                    for (char32_t const code_point : range) {
-                        natural_numeric_value_.emplace(
-                            code_point, std::stoll(std::string(rational_nv)));
+                    for (char32_t const codepoint : range) {
+                        naturalNumericValue_.emplace(
+                            codepoint, std::stoll(std::string(rationalNV)));
                     }
                 }
             }
         }
     }
 
-    CodePointSet const& GeneralCategorySet(std::string_view const gc) {
+    CodePointSet const& generalCategorySet(std::string_view const gc) {
         if (gc.size() == 1) {
-            return coarse_general_category_.at(gc.front());
+            return coarseGeneralCategory_.at(gc.front());
         }
-        auto it = general_category_.find(gc);
-        CHECK(it != general_category_.end()) << gc;
+        auto it = generalCategory_.find(gc);
+        CHECK(it != generalCategory_.end()) << gc;
         return it->second;
     }
 
-    CodePointSet const& BinaryPropertySet(
+    CodePointSet const& binaryPropertySet(
         std::string_view const binary_property_name) {
-        auto it = binary_properties_.find(binary_property_name);
-        CHECK(it != binary_properties_.end()) << binary_property_name;
+        auto it = binaryProperties_.find(binary_property_name);
+        CHECK(it != binaryProperties_.end()) << binary_property_name;
         return it->second;
     }
 
-    char32_t SimpleLowercaseMapping(char32_t const c) const {
-        auto const it = simple_lowercase_mapping_.find(c);
-        if (it == simple_lowercase_mapping_.end()) {
+    char32_t simpleLowercaseMapping(char32_t const c) const {
+        auto const it = simpleLowercaseMapping_.find(c);
+        if (it == simpleLowercaseMapping_.end()) {
             return c;
         } else {
             return it->second;
         }
     }
 
-    char32_t SimpleUppercaseMapping(char32_t const c) const {
-        auto const it = simple_uppercase_mapping_.find(c);
-        if (it == simple_uppercase_mapping_.end()) {
+    char32_t simpleUppercaseMapping(char32_t const c) const {
+        auto const it = simpleUppercaseMapping_.find(c);
+        if (it == simpleUppercaseMapping_.end()) {
             return c;
         } else {
             return it->second;
         }
     }
 
-    std::uint8_t CanonicalCombiningClass(char32_t const c) const {
-        auto const it = canonical_combining_class_.find(c);
-        if (it == canonical_combining_class_.end()) {
+    std::uint8_t canonicalCombiningClass(char32_t const c) const {
+        auto const it = canonicalCombiningClass_.find(c);
+        if (it == canonicalCombiningClass_.end()) {
             return 0;
         } else {
             return it->second;
         }
     }
 
-    std::optional<std::uint64_t> NaturalNumericValue(char32_t const c) const {
-        auto const it = natural_numeric_value_.find(c);
-        if (it == natural_numeric_value_.end()) {
+    std::optional<std::uint64_t> naturalNumericValue(char32_t const c) const {
+        auto const it = naturalNumericValue_.find(c);
+        if (it == naturalNumericValue_.end()) {
             return std::nullopt;
         } else {
             return it->second;
         }
     }
 
-    CodePointSet const& CodePointsWithNumericValue() const {
-        return code_points_with_numeric_value_;
+    CodePointSet const& codePointsWithNumericValue() const {
+        return codePointsWithNumericValue_;
     }
 
    private:
-    void ReadMultiPropertyFile(std::filesystem::path const& file) {
-        std::ifstream prop_list(file);
-        CHECK(prop_list.good());
+    void readMultiPropertyFile(std::filesystem::path const& file) {
+        std::ifstream stream(file);
+        CHECK(stream.good());
         std::cout << "Reading " << file << "...\n";
-        for (std::string line; std::getline(prop_list, line);) {
+        for (std::string line; std::getline(stream, line);) {
             // See https://www.unicode.org/reports/tr44/#UnicodeData.txt.
-            auto const record = strip_comment(line);
+            auto const record = stripComment(line);
             if (record.empty()) {
                 continue;
             }
             switch (std::count(record.begin(), record.end(), ';')) {
                 case 1: {
-                    auto const [cp, property_name] = fields<2>(record);
-                    CodePointRange const range = parse_hex_codepoint_range(cp);
-                    binary_properties_[std::string(property_name)].Include(
-                        range);
+                    auto const [cp, propertyName] = fields<2>(record);
+                    CodePointRange const range = parseHexCodepointRange(cp);
+                    binaryProperties_[std::string(propertyName)].addAll(range);
                     break;
                 }
                 case 2:  // Enumerated property.
@@ -334,19 +335,19 @@ class UCD {
     }
 
     // Keys are C, L, M, N, P, S, Z.
-    std::map<char, CodePointSet> coarse_general_category_;
+    std::map<char, CodePointSet> coarseGeneralCategory_;
     // Keyed on short alias.
-    std::map<std::string, CodePointSet, std::less<>> general_category_;
-    std::map<std::string, CodePointSet, std::less<>> binary_properties_;
+    std::map<std::string, CodePointSet, std::less<>> generalCategory_;
+    std::map<std::string, CodePointSet, std::less<>> binaryProperties_;
     // Default <code point> omitted.
-    std::map<char32_t, char32_t> simple_uppercase_mapping_;
+    std::map<char32_t, char32_t> simpleUppercaseMapping_;
     // Default <code point> omitted.
-    std::map<char32_t, char32_t> simple_lowercase_mapping_;
+    std::map<char32_t, char32_t> simpleLowercaseMapping_;
     // Default 0 omitted.
-    std::map<char32_t, std::uint8_t> canonical_combining_class_;
-    std::map<char32_t, std::uint64_t> natural_numeric_value_;
+    std::map<char32_t, std::uint8_t> canonicalCombiningClass_;
+    std::map<char32_t, std::uint64_t> naturalNumericValue_;
     // Characters with a non-NaN Numeric_Value.
-    CodePointSet code_points_with_numeric_value_;
+    CodePointSet codePointsWithNumericValue_;
 };
 
 typedef unsigned short UShort16;
@@ -369,76 +370,78 @@ static bool isSpecialCJKIdeograph(char32_t c) {
             0xFA27 <= c);
 }
 
+}  // namespace
+
 extern "C" int unisift_IsAlphabetic(UInt32 c) {
-    return ucd->BinaryPropertySet("Alphabetic").contains(c) &&
+    return ucd->binaryPropertySet("Alphabetic").contains(c) &&
            !isSpecialCJKIdeograph(c) &&
            !(c == 0x1E13C || c == 0x1E13D || c == 0x16B42 || c == 0x16B43);
 }
 extern "C" int unisift_IsNonSpacing(UInt32 c) {
-    return ucd->GeneralCategorySet("Mn").contains(c) ||
+    return ucd->generalCategorySet("Mn").contains(c) ||
            isSifterNonSpacingCombining(c);
 }
 extern "C" int unisift_IsCombining(UInt32 c) {
-    return ucd->GeneralCategorySet("M").contains(c) ||
+    return ucd->generalCategorySet("M").contains(c) ||
            isSifterNonSpacingCombining(c);
 }
 extern "C" int unisift_IsExtender(UInt32 c) {
-    return ucd->BinaryPropertySet("Extender").contains(c);
+    return ucd->binaryPropertySet("Extender").contains(c);
 }
 extern "C" int unisift_IsCurrency(UInt32 c) {
-    return ucd->GeneralCategorySet("Sc").contains(c);
+    return ucd->generalCategorySet("Sc").contains(c);
 }
 extern "C" int unisift_IsPunctuation(UInt32 c) {
-    return ucd->GeneralCategorySet("P").contains(c);
+    return ucd->generalCategorySet("P").contains(c);
 }
 extern "C" int unisift_IsDiacritic(UInt32 c) {
-    return ucd->BinaryPropertySet("Diacritic").contains(c);
+    return ucd->binaryPropertySet("Diacritic").contains(c);
 }
 extern "C" int unisift_IsNumeric(UInt32 c) {
-    return ucd->GeneralCategorySet("N").contains(c);
+    return ucd->generalCategorySet("N").contains(c);
 }
 extern "C" int unisift_IsDecimalDigit(UInt32 c) {
-    return ucd->GeneralCategorySet("Nd").contains(c);
+    return ucd->generalCategorySet("Nd").contains(c);
 }
 extern "C" int unisift_IsWhiteSpace(UInt32 c) {
-    return ucd->BinaryPropertySet("White_Space").contains(c);
+    return ucd->binaryPropertySet("White_Space").contains(c);
 }
 extern "C" int unisift_IsMath(UInt32 c) {
-    return ucd->BinaryPropertySet("Math").contains(c);
+    return ucd->binaryPropertySet("Math").contains(c);
 }
 extern "C" int unisift_IsIdeographic(UInt32 c) {
-    return ucd->BinaryPropertySet("Ideographic").contains(c);
+    return ucd->binaryPropertySet("Ideographic").contains(c);
 }
 extern "C" int unisift_IsMiscSymbolic(UInt32 c) {
-    return ucd->GeneralCategorySet("Sk").contains(c) ||
-           ucd->GeneralCategorySet("So").contains(c);
+    return ucd->generalCategorySet("Sk").contains(c) ||
+           ucd->generalCategorySet("So").contains(c);
 }
 extern "C" int unisift_IsIgnorable(UInt32 c) {
-    return ((ucd->GeneralCategorySet("Cc").contains(c) ||
-             ucd->GeneralCategorySet("Cf").contains(c)) &&
-            !ucd->BinaryPropertySet("White_Space").contains(c)) ||
-           ucd->BinaryPropertySet("Variation_Selector").contains(c) ||
+    return ((ucd->generalCategorySet("Cc").contains(c) ||
+             ucd->generalCategorySet("Cf").contains(c)) &&
+            !ucd->binaryPropertySet("White_Space").contains(c)) ||
+           ucd->binaryPropertySet("Variation_Selector").contains(c) ||
            c == U'\u00AD';
 }
 
 extern "C" int unisift_IsUpper(UInt32 c) {
-    return ucd->BinaryPropertySet("Uppercase").contains(c);
+    return ucd->binaryPropertySet("Uppercase").contains(c);
 }
 
 extern "C" UInt32 unisift_ToLower(UInt32 c) {
-    return ucd->SimpleLowercaseMapping(c);
+    return ucd->simpleLowercaseMapping(c);
 }
 
 extern "C" UInt32 unisift_ToUpper(UInt32 c) {
-    return ucd->SimpleUppercaseMapping(c);
+    return ucd->simpleUppercaseMapping(c);
 }
 
 extern "C" int unisift_ToIntValue(UInt32 c) {
     // TODO(egg): The conversion to the return type is UB for large numbers.
-    return ucd->NaturalNumericValue(c).value_or(
-        ucd->CodePointsWithNumericValue().contains(c) ? -2 : -1);
+    return ucd->naturalNumericValue(c).value_or(
+        ucd->codePointsWithNumericValue().contains(c) ? -2 : -1);
 }
 
 extern "C" int unisift_GetCombiningClass(UInt32 c) {
-    return ucd->CanonicalCombiningClass(c);
+    return ucd->canonicalCombiningClass(c);
 }
