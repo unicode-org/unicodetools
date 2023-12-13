@@ -41,8 +41,8 @@ class CodePointRange {
         char32_t value;
     };
 
-    static constexpr CodePointRange Inclusive(char32_t front, char32_t back) {
-        return CodePointRange({front}, {back + 1});
+    static constexpr CodePointRange Inclusive(char32_t first, char32_t last) {
+        return CodePointRange(first, last + 1);
     }
 
     constexpr bool empty() const {
@@ -54,8 +54,8 @@ class CodePointRange {
     }
 
     constexpr CodePointRange intersection(CodePointRange const& other) const {
-        return CodePointRange({std::max(first_, other.first_)},
-                              {std::min(past_the_end_, other.past_the_end_)});
+        return CodePointRange(std::max(first_, other.first_),
+                              std::min(past_the_end_, other.past_the_end_));
     }
 
     constexpr char32_t front() const {
