@@ -374,9 +374,16 @@ static bool isSpecialCJKIdeograph(char32_t c) {
 
 extern "C" int unisift_IsAlphabetic(UInt32 c) {
     return ucd->binaryPropertySet("Alphabetic").contains(c) &&
+           // HACK: TODO: Deal with the 12 special CJK ideographs
+           // ("compatibility" but no decompositions) in sift() before testing
+           // Alphabetic.
            !isSpecialCJKIdeograph(c) &&
+           // Ken: Exceptions for gc=Lm extenders to match his sifter.
+           // TODO: Look to modify this behavior for gc=Lm extenders in the
+           // future.
            !(c == 0x1E13C || c == 0x1E13D || c == 0x16B42 || c == 0x16B43);
 }
+
 extern "C" int unisift_IsNonSpacing(UInt32 c) {
     return ucd->generalCategorySet("Mn").contains(c) ||
            isSifterNonSpacingCombining(c);
