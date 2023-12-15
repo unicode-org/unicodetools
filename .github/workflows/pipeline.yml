@@ -4,7 +4,7 @@ name: Pipeline
 on:
   pull_request:
     branches: ['*']
-    types: [opened, synchronize, reopened, labeled, ready_for_review, converted_to_draft]
+    types: [opened, synchronize, reopened, labeled, unlabeled, ready_for_review, converted_to_draft]
 
 jobs:
   labels-for-repertoire-changes:
