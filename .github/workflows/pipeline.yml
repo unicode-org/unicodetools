@@ -32,7 +32,7 @@ jobs:
         else echo "changed=true" >> "$GITHUB_OUTPUT"
         fi
     - name: Test
-      if: steps.compare-repertoire.changed == 'true'
+      if: steps.compare-repertoire.outputs.changed == 'true'
       run: |
         echo test
 
