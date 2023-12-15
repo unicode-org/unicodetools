@@ -84,16 +84,7 @@ class CodePointRange {
 
     char32_t first_;
     char32_t pastTheEnd_;
-
-    friend constexpr CodePointRange convexHull(CodePointRange const& r1,
-                                               CodePointRange const& r2);
 };
-
-constexpr CodePointRange convexHull(CodePointRange const& r1,
-                                    CodePointRange const& r2) {
-    return CodePointRange(std::min(r1.first_, r2.first_),
-                          std::max(r1.pastTheEnd_, r2.pastTheEnd_));
-}
 
 class CodePointSet {
    public:
@@ -109,24 +100,26 @@ class CodePointSet {
     }
 
     void addAll(CodePointRange range) {
-        auto it = std::partition_point(
+        auto const first_modified_range = std::partition_point(
             ranges_.begin(), ranges_.end(), [&range](CodePointRange const& r) {
-                return r.back() < range.front();
+                return r.back() + 1 < range.front();
             });
-        if (it == ranges_.end() || it->intersection(range).empty()) {
-            it = ranges_.insert(it, range);
-            if ((it + 1) != ranges_.end() &&
-                (it + 1)->front() == it->back() + 1) {
-                *it = convexHull(*it, *(it + 1));
-                ranges_.erase(it + 1);
-            }
-            if (it != ranges_.begin() && (it - 1)->back() + 1 == it->front()) {
-                *(it - 1) = convexHull(*(it - 1), *it);
-                ranges_.erase(it);
-            }
-        } else {
-            *it = convexHull(*it, range);
+        auto const past_modified_ranges = std::partition_point(
+            ranges_.begin(), ranges_.end(), [&range](CodePointRange const& r) {
+                return r.front() <= range.back() + 1;
+            });
+        char32_t inserted_range_first = range.front();
+        if (first_modified_range != ranges_.end()) {
+            inserted_range_first = std::min(first_modified_range->front(), inserted_range_first);
         }
+        char32_t inserted_range_last = range.back();
+        if (past_modified_ranges != ranges_.begin()) {
+            auto const last_modified_range = past_modified_ranges - 1;
+            inserted_range_last =
+                std::max(last_modified_range->back(), inserted_range_last);
+        }
+        auto const it = ranges_.erase(first_modified_range, past_modified_ranges);
+        ranges_.insert(it, CodePointRange::Inclusive(inserted_range_first, inserted_range_last));
     }
 
     CodePointSet addAll(CodePointSet const& other) {
@@ -135,8 +128,12 @@ class CodePointSet {
         }
     }
 
+    std::vector<CodePointRange> const& ranges() const {
+      return ranges_;
+    }
+
    private:
-    // Non-overlapping ranges in ascending order.
+    // Non-overlapping, non-adjacent ranges, in ascending order.
     std::vector<CodePointRange> ranges_;
 };
 
@@ -188,7 +185,8 @@ class UCD {
                                   "unicodetools" / "data" / "ucd" / "dev";
         {
             std::ifstream unicode_data(ucdDirectory / "UnicodeData.txt");
-            CHECK(unicode_data.good());
+            CHECK(unicode_data.good())
+                << "Run this tool from the c/uca/sifter directory";
             std::cout << "Reading UnicodeData.txt...\n";
             for (std::string line; std::getline(unicode_data, line);) {
                 // See https://www.unicode.org/reports/tr44/#UnicodeData.txt.
