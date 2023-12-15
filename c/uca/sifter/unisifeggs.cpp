@@ -86,6 +86,7 @@ class CodePointRange {
     char32_t pastTheEnd_;
 };
 
+// TODO(egg): Make this behave like a container.
 class CodePointSet {
    public:
     // Empty set.
@@ -100,26 +101,29 @@ class CodePointSet {
     }
 
     void addAll(CodePointRange range) {
-        auto const first_modified_range = std::partition_point(
+        auto const firstModifiedRange = std::partition_point(
             ranges_.begin(), ranges_.end(), [&range](CodePointRange const& r) {
                 return r.back() + 1 < range.front();
             });
-        auto const past_modified_ranges = std::partition_point(
+        auto const pastModifiedRanges = std::partition_point(
             ranges_.begin(), ranges_.end(), [&range](CodePointRange const& r) {
                 return r.front() <= range.back() + 1;
             });
-        char32_t inserted_range_first = range.front();
-        if (first_modified_range != ranges_.end()) {
-            inserted_range_first = std::min(first_modified_range->front(), inserted_range_first);
+        char32_t insertedRangeFirst = range.front();
+        if (firstModifiedRange != ranges_.end()) {
+            insertedRangeFirst =
+                std::min(firstModifiedRange->front(), insertedRangeFirst);
         }
-        char32_t inserted_range_last = range.back();
-        if (past_modified_ranges != ranges_.begin()) {
-            auto const last_modified_range = past_modified_ranges - 1;
-            inserted_range_last =
-                std::max(last_modified_range->back(), inserted_range_last);
+        char32_t insertedRangeLast = range.back();
+        if (pastModifiedRanges != ranges_.begin()) {
+            auto const lastModifiedRange = pastModifiedRanges - 1;
+            insertedRangeLast =
+                std::max(lastModifiedRange->back(), insertedRangeLast);
         }
-        auto const it = ranges_.erase(first_modified_range, past_modified_ranges);
-        ranges_.insert(it, CodePointRange::Inclusive(inserted_range_first, inserted_range_last));
+        auto const it = ranges_.erase(firstModifiedRange, pastModifiedRanges);
+        ranges_.insert(
+            it,
+            CodePointRange::Inclusive(insertedRangeFirst, insertedRangeLast));
     }
 
     CodePointSet addAll(CodePointSet const& other) {
