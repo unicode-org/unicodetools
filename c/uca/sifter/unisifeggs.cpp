@@ -43,7 +43,7 @@ class CodePointRange {
         char32_t value;
     };
 
-    static constexpr CodePointRange Inclusive(char32_t first, char32_t last) {
+    static constexpr CodePointRange inclusive(char32_t first, char32_t last) {
         return CodePointRange(first, last + 1);
     }
 
