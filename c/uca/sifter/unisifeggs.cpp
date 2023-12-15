@@ -38,7 +38,7 @@ class CodePointRange {
         }
 
         constexpr std::strong_ordering operator<=>(
-                iterator const& other) const = default;
+                const iterator& other) const = default;
 
         char32_t value;
     };
@@ -55,7 +55,7 @@ class CodePointRange {
         return c >= first_ && c < pastTheEnd_;
     }
 
-    constexpr CodePointRange intersection(CodePointRange const& other) const {
+    constexpr CodePointRange intersection(const CodePointRange& other) const {
         return CodePointRange(std::max(first_, other.first_),
                               std::min(pastTheEnd_, other.pastTheEnd_));
     }
@@ -93,24 +93,24 @@ class CodePointSet {
     CodePointSet() = default;
 
     bool contains(char32_t c) const {
-        auto const it = std::partition_point(
+        const auto it = std::partition_point(
                 ranges_.begin(),
                 ranges_.end(),
-                [c](CodePointRange const& range) { return range.back() < c; });
+                [c](const CodePointRange& range) { return range.back() < c; });
         return it != ranges_.end() && it->contains(c);
     }
 
     void addAll(CodePointRange range) {
-        auto const firstModifiedRange =
+        const auto firstModifiedRange =
                 std::partition_point(ranges_.begin(),
                                      ranges_.end(),
-                                     [&range](CodePointRange const& r) {
+                                     [&range](const CodePointRange& r) {
                                          return r.back() + 1 < range.front();
                                      });
-        auto const pastModifiedRanges =
+        const auto pastModifiedRanges =
                 std::partition_point(ranges_.begin(),
                                      ranges_.end(),
-                                     [&range](CodePointRange const& r) {
+                                     [&range](const CodePointRange& r) {
                                          return r.front() <= range.back() + 1;
                                      });
         char32_t insertedRangeFirst = range.front();
@@ -120,23 +120,23 @@ class CodePointSet {
         }
         char32_t insertedRangeLast = range.back();
         if (pastModifiedRanges != ranges_.begin()) {
-            auto const lastModifiedRange = pastModifiedRanges - 1;
+            const auto lastModifiedRange = pastModifiedRanges - 1;
             insertedRangeLast =
                     std::max(lastModifiedRange->back(), insertedRangeLast);
         }
-        auto const it = ranges_.erase(firstModifiedRange, pastModifiedRanges);
+        const auto it = ranges_.erase(firstModifiedRange, pastModifiedRanges);
         ranges_.insert(it,
                        CodePointRange::Inclusive(insertedRangeFirst,
                                                  insertedRangeLast));
     }
 
-    CodePointSet addAll(CodePointSet const& other) {
-        for (auto const& range : other.ranges_) {
+    CodePointSet addAll(const CodePointSet& other) {
+        for (const auto& range : other.ranges_) {
             addAll(range);
         }
     }
 
-    std::vector<CodePointRange> const& ranges() const {
+    const std::vector<CodePointRange>& ranges() const {
         return ranges_;
     }
 
@@ -157,11 +157,11 @@ constexpr std::array<std::string_view, n> fields(std::string_view const line) {
     for (auto& field : result) {
         CHECK(it != split.end()) << line;
         std::string_view field_with_spaces(*it++);
-        auto const field_first =
+        const auto field_first =
                 std::min(field_with_spaces.find_first_not_of(" "),
                          field_with_spaces.size());
-        auto const field_last = field_with_spaces.find_last_not_of(" ");
-        auto const field_size = field_last - field_first + 1;
+        const auto field_last = field_with_spaces.find_last_not_of(" ");
+        const auto field_size = field_last - field_first + 1;
         field = field_with_spaces.substr(field_first, field_size);
     }
     return result;
@@ -174,9 +174,9 @@ constexpr char32_t parseHexCodePoint(std::string_view hex) {
 }
 
 constexpr CodePointRange parseHexCodePointRange(std::string_view hex) {
-    auto const first_dot = hex.find("..");
+    const auto first_dot = hex.find("..");
     if (first_dot == std::string_view::npos) {
-        char32_t const code_point = parseHexCodePoint(hex);
+        const char32_t code_point = parseHexCodePoint(hex);
         return CodePointRange::Inclusive(code_point, code_point);
     }
     return CodePointRange::Inclusive(
@@ -187,7 +187,7 @@ constexpr CodePointRange parseHexCodePointRange(std::string_view hex) {
 class UCD {
    public:
     explicit UCD() {
-        auto const ucdDirectory = std::filesystem::current_path()
+        const auto ucdDirectory = std::filesystem::current_path()
                                           .parent_path()
                                           .parent_path()
                                           .parent_path() /
@@ -199,7 +199,7 @@ class UCD {
             std::cout << "Reading UnicodeData.txt...\n";
             for (std::string line; std::getline(unicodeData, line);) {
                 // See https://www.unicode.org/reports/tr44/#UnicodeData.txt.
-                auto const [cp,
+                const auto [cp,
                             name,
                             gc,
                             ccc,
@@ -214,9 +214,9 @@ class UCD {
                             suc,
                             slc,
                             stc] = fields<15>(line);
-                char32_t const codePoint = parseHexCodePoint(cp);
+                const char32_t codePoint = parseHexCodePoint(cp);
                 // TODO(egg): Handle ranges.
-                auto const range =
+                const auto range =
                         CodePointRange::Inclusive(codePoint, codePoint);
                 coarseGeneralCategory_[gc.front()].addAll(range);
                 generalCategory_[std::string(gc)].addAll(range);
@@ -241,16 +241,16 @@ class UCD {
             std::cout << "Reading DerivedNumericValues.txt...\n";
             for (std::string line; std::getline(derivedNumericValue, line);) {
                 // See https://www.unicode.org/reports/tr44/#UnicodeData.txt.
-                auto const record = stripComment(line);
+                const auto record = stripComment(line);
                 if (record.empty()) {
                     continue;
                 }
-                auto const [cp, decimalNV, _, rationalNV] = fields<4>(record);
-                auto const range = parseHexCodePointRange(cp);
+                const auto [cp, decimalNV, _, rationalNV] = fields<4>(record);
+                const auto range = parseHexCodePointRange(cp);
                 codePointsWithNumericValue_.addAll(range);
                 if (rationalNV.find_first_not_of("0123456789") ==
                     std::string_view::npos) {
-                    for (char32_t const codePoint : range) {
+                    for (const char32_t codePoint : range) {
                         naturalNumericValue_.emplace(
                                 codePoint, std::stoll(std::string(rationalNV)));
                     }
@@ -259,7 +259,7 @@ class UCD {
         }
     }
 
-    CodePointSet const& generalCategorySet(std::string_view const gc) {
+    const CodePointSet& generalCategorySet(std::string_view const gc) {
         if (gc.size() == 1) {
             return coarseGeneralCategory_.at(gc.front());
         }
@@ -268,15 +268,15 @@ class UCD {
         return it->second;
     }
 
-    CodePointSet const& binaryPropertySet(
+    const CodePointSet& binaryPropertySet(
             std::string_view const binary_property_name) {
         auto it = binaryProperties_.find(binary_property_name);
         CHECK(it != binaryProperties_.end()) << binary_property_name;
         return it->second;
     }
 
-    char32_t simpleLowercaseMapping(char32_t const c) const {
-        auto const it = simpleLowercaseMapping_.find(c);
+    char32_t simpleLowercaseMapping(const char32_t c) const {
+        const auto it = simpleLowercaseMapping_.find(c);
         if (it == simpleLowercaseMapping_.end()) {
             return c;
         } else {
@@ -284,8 +284,8 @@ class UCD {
         }
     }
 
-    char32_t simpleUppercaseMapping(char32_t const c) const {
-        auto const it = simpleUppercaseMapping_.find(c);
+    char32_t simpleUppercaseMapping(const char32_t c) const {
+        const auto it = simpleUppercaseMapping_.find(c);
         if (it == simpleUppercaseMapping_.end()) {
             return c;
         } else {
@@ -293,8 +293,8 @@ class UCD {
         }
     }
 
-    std::uint8_t canonicalCombiningClass(char32_t const c) const {
-        auto const it = canonicalCombiningClass_.find(c);
+    std::uint8_t canonicalCombiningClass(const char32_t c) const {
+        const auto it = canonicalCombiningClass_.find(c);
         if (it == canonicalCombiningClass_.end()) {
             return 0;
         } else {
@@ -302,8 +302,8 @@ class UCD {
         }
     }
 
-    std::optional<std::uint64_t> naturalNumericValue(char32_t const c) const {
-        auto const it = naturalNumericValue_.find(c);
+    std::optional<std::uint64_t> naturalNumericValue(const char32_t c) const {
+        const auto it = naturalNumericValue_.find(c);
         if (it == naturalNumericValue_.end()) {
             return std::nullopt;
         } else {
@@ -311,25 +311,25 @@ class UCD {
         }
     }
 
-    CodePointSet const& codePointsWithNumericValue() const {
+    const CodePointSet& codePointsWithNumericValue() const {
         return codePointsWithNumericValue_;
     }
 
    private:
-    void readMultiPropertyFile(std::filesystem::path const& file) {
+    void readMultiPropertyFile(const std::filesystem::path& file) {
         std::ifstream stream(file);
         CHECK(stream.good());
         std::cout << "Reading " << file << "...\n";
         for (std::string line; std::getline(stream, line);) {
             // See https://www.unicode.org/reports/tr44/#UnicodeData.txt.
-            auto const record = stripComment(line);
+            const auto record = stripComment(line);
             if (record.empty()) {
                 continue;
             }
             switch (std::count(record.begin(), record.end(), ';')) {
                 case 1: {
-                    auto const [cp, propertyName] = fields<2>(record);
-                    CodePointRange const range = parseHexCodePointRange(cp);
+                    const auto [cp, propertyName] = fields<2>(record);
+                    const CodePointRange range = parseHexCodePointRange(cp);
                     binaryProperties_[std::string(propertyName)].addAll(range);
                     break;
                 }
