@@ -34,10 +34,10 @@ jobs:
     - name: Check pipeline labels
       if: steps.compare-repertoire.outputs.changed == 'true'
       run: |
-        cat $GITHUB_EVENT_PATH |
         python3 <<EOF
-        import sys, json
-        labels = json.load(sys.stdin)['pull_request']['labels']
+        import os, json
+        with open(os.environ['GITHUB_EVENT_PATH'], 'r') as event:
+          labels = json.load(event.read())['pull_request']['labels']
         for label in labels:
           if label.startswith('pipeline-'):
             print("Labeled", label)
