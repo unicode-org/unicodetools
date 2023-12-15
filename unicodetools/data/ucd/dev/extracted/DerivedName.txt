@@ -1,5 +1,5 @@
 # DerivedName-16.0.0.txt
-# Date: 2023-12-14, 01:49:35 GMT
+# Date: 2023-11-10, 22:25:34 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -14251,9 +14251,7 @@ A7CC          ; LATIN CAPITAL LETTER S WITH DIAGONAL STROKE
 A7CD          ; LATIN SMALL LETTER S WITH DIAGONAL STROKE
 A7D0          ; LATIN CAPITAL LETTER CLOSED INSULAR G
 A7D1          ; LATIN SMALL LETTER CLOSED INSULAR G
-A7D2          ; LATIN CAPITAL LETTER DOUBLE THORN
 A7D3          ; LATIN SMALL LETTER DOUBLE THORN
-A7D4          ; LATIN CAPITAL LETTER DOUBLE WYNN
 A7D5          ; LATIN SMALL LETTER DOUBLE WYNN
 A7D6          ; LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D7          ; LATIN SMALL LETTER MIDDLE SCOTS S
@@ -45370,6 +45368,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 151007
+# Total code points: 151005
 
 # EOF
