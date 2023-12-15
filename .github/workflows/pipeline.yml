@@ -3,12 +3,12 @@ name: Pipeline
 
 on:
   pull_request:
-    branches:
-    - '*'
+    branches: ['*']
+    types: [opened, synchronize, reopened, labeled, ready_for_review, converted_to_draft]
 
 jobs:
-  check-repertoire-changes:
-    name: Check repertoire changes
+  labels-for-repertoire-changes:
+    name: Labels for repertoire changes
     runs-on: ubuntu-latest
     steps:
     - name: Checkout merged UnicodeData.txt
@@ -35,5 +35,14 @@ jobs:
       if: steps.compare-repertoire.outputs.changed == 'true'
       run: |
         cat $GITHUB_EVENT_PATH |
-        python3 -c "import sys, json; print(json.load(sys.stdin)['pull_request']['labels'])"
+        python3 <<EOF
+        import sys, json
+        labels = json.load(sys.stdin)['pull_request']['labels'])
+        for label in labels:
+          if label.startswith('pipeline-'):
+            print("Labeled", label)
+            exit(0)
+        print("::error file=unicodetools/data/ucd/dev/UnicodeData.txt,title=Missing pipeline label::PRs for character additions must have a pipeline label")
+        exit(1)
+        EOF
 
