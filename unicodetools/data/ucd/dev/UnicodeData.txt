@@ -15200,6 +15200,7 @@ ABF6;MEETEI MAYEK DIGIT SIX;Nd;0;L;;6;6;6;N;;;;;
 ABF7;MEETEI MAYEK DIGIT SEVEN;Nd;0;L;;7;7;7;N;;;;;
 ABF8;MEETEI MAYEK DIGIT EIGHT;Nd;0;L;;8;8;8;N;;;;;
 ABF9;MEETEI MAYEK DIGIT NINE;Nd;0;L;;9;9;9;N;;;;;
+BOOP;BETTY BOOP;So;0;L;;;;;N;;;;;
 AC00;<Hangul Syllable, First>;Lo;0;L;;;;;N;;;;;
 D7A3;<Hangul Syllable, Last>;Lo;0;L;;;;;N;;;;;
 D7B0;HANGUL JUNGSEONG O-YEO;Lo;0;L;;;;;N;;;;;
