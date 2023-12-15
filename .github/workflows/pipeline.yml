@@ -42,7 +42,7 @@ jobs:
         labels = event['pull_request']['labels']
         print(labels)
         for label in labels:
-          if label.startswith('pipeline-'):
+          if label['name'].startswith('pipeline-'):
             print("Labeled", label)
             exit(0)
         print("::error file=unicodetools/data/ucd/dev/UnicodeData.txt,title=Missing pipeline label::PRs for character additions must have a pipeline label")
