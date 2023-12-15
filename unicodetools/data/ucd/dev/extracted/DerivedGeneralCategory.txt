@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-16.0.0.txt
-# Date: 2023-12-14, 01:49:34 GMT
+# Date: 2023-11-10, 22:25:30 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -295,6 +295,8 @@ A4C7..A4CF    ; Cn #   [9] <reserved-A4C7>..<reserved-A4CF>
 A62C..A63F    ; Cn #  [20] <reserved-A62C>..<reserved-A63F>
 A6F8..A6FF    ; Cn #   [8] <reserved-A6F8>..<reserved-A6FF>
 A7CE..A7CF    ; Cn #   [2] <reserved-A7CE>..<reserved-A7CF>
+A7D2          ; Cn #       <reserved-A7D2>
+A7D4          ; Cn #       <reserved-A7D4>
 A7DD..A7F1    ; Cn #  [21] <reserved-A7DD>..<reserved-A7F1>
 A82D..A82F    ; Cn #   [3] <reserved-A82D>..<reserved-A82F>
 A83A..A83F    ; Cn #   [6] <reserved-A83A>..<reserved-A83F>
@@ -744,7 +746,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 823524
+# Total code points: 823526
 
 # ================================================
 
@@ -1353,8 +1355,6 @@ A7C4..A7C7    ; Lu #   [4] LATIN CAPITAL LETTER C WITH PALATAL HOOK..LATIN CAPIT
 A7C9          ; Lu #       LATIN CAPITAL LETTER S WITH SHORT STROKE OVERLAY
 A7CB..A7CC    ; Lu #   [2] LATIN CAPITAL LETTER RAMS HORN..LATIN CAPITAL LETTER S WITH DIAGONAL STROKE
 A7D0          ; Lu #       LATIN CAPITAL LETTER CLOSED INSULAR G
-A7D2          ; Lu #       LATIN CAPITAL LETTER DOUBLE THORN
-A7D4          ; Lu #       LATIN CAPITAL LETTER DOUBLE WYNN
 A7D6          ; Lu #       LATIN CAPITAL LETTER MIDDLE SCOTS S
 A7D8          ; Lu #       LATIN CAPITAL LETTER SIGMOID S
 A7DA          ; Lu #       LATIN CAPITAL LETTER LAMBDA
@@ -1404,7 +1404,7 @@ FF21..FF3A    ; Lu #  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LATIN CAP
 1D7CA         ; Lu #       MATHEMATICAL BOLD CAPITAL DIGAMMA
 1E900..1E921  ; Lu #  [34] ADLAM CAPITAL LETTER ALIF..ADLAM CAPITAL LETTER SHA
 
-# Total code points: 1860
+# Total code points: 1858
 
 # ================================================
 

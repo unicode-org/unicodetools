@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-16.0.0.txt
-# Date: 2023-12-14, 01:49:33 GMT
+# Date: 2023-11-10, 22:25:29 GMT
 # © 2023 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see https://www.unicode.org/terms_of_use.html
@@ -1182,7 +1182,9 @@ A789..A78A    ; N # Sk   [2] MODIFIER LETTER COLON..MODIFIER LETTER SHORT EQUALS
 A78B..A78E    ; N # L&   [4] LATIN CAPITAL LETTER SALTILLO..LATIN SMALL LETTER L WITH RETROFLEX HOOK AND BELT
 A78F          ; N # Lo       LATIN LETTER SINOLOGICAL DOT
 A790..A7CD    ; N # L&  [62] LATIN CAPITAL LETTER N WITH DESCENDER..LATIN SMALL LETTER S WITH DIAGONAL STROKE
-A7D0..A7DC    ; N # L&  [13] LATIN CAPITAL LETTER CLOSED INSULAR G..LATIN CAPITAL LETTER LAMBDA WITH STROKE
+A7D0..A7D1    ; N # L&   [2] LATIN CAPITAL LETTER CLOSED INSULAR G..LATIN SMALL LETTER CLOSED INSULAR G
+A7D3          ; N # L&       LATIN SMALL LETTER DOUBLE THORN
+A7D5..A7DC    ; N # L&   [8] LATIN SMALL LETTER DOUBLE WYNN..LATIN CAPITAL LETTER LAMBDA WITH STROKE
 A7F2..A7F4    ; N # Lm   [3] MODIFIER LETTER CAPITAL C..MODIFIER LETTER CAPITAL Q
 A7F5..A7F6    ; N # L&   [2] LATIN CAPITAL LETTER REVERSED HALF H..LATIN SMALL LETTER REVERSED HALF H
 A7F7          ; N # Lo       LATIN EPIGRAPHIC LETTER SIDEWAYS I
@@ -2100,7 +2102,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 765090 code points not listed here.
+# The above property value applies to 765092 code points not listed here.
 # Total code points: 792608
 
 # ================================================
