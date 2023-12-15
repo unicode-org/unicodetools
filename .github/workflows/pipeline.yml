@@ -1,0 +1,36 @@
+name: Pipeline
+
+
+on:
+  pull_request:
+    branches:
+    - '*'
+
+jobs:
+  check-repertoire-changes:
+    name: Check repertoire changes
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout merged unicodetools
+      uses: actions/checkout@v3
+      with:
+        path: merged
+    - name: Checkout base unicodetools
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.base.sha }}
+        path: base
+    - name: Compare repertoire
+      id: compare-repertoire
+      run: |
+        sed 's/^\([^;]*;[^;]*\);.*$/\1/' merged/unicodetools/data/ucd/dev/UnicodeData.txt > merged-repertoire.txt
+        sed 's/^\([^;]*;[^;]*\);.*$/\1/' base/unicodetools/data/ucd/dev/UnicodeData.txt > base-repertoire.txt
+        if diff base-repertoire.txt merged-repertoire.txt
+        then echo "changed=false" >> "$GITHUB_OUTPUT"
+        else echo "changed=true" >> "$GITHUB_OUTPUT"
+        fi
+    - name: Compare repertoire
+      if: steps.compare-repertoire.changed == 'true'
+      run: |
+        echo test
+
