@@ -31,8 +31,9 @@ jobs:
         then echo "changed=false" >> "$GITHUB_OUTPUT"
         else echo "changed=true" >> "$GITHUB_OUTPUT"
         fi
-    - name: Test
+    - name: Check pipeline labels
       if: steps.compare-repertoire.outputs.changed == 'true'
       run: |
-        echo test
+        cat $GITHUB_EVENT_PATH |
+        python3 -c "import sys, json; print(json.load(sys.stdin)['pull_request']['labels'])"
 
