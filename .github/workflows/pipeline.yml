@@ -37,7 +37,7 @@ jobs:
         cat $GITHUB_EVENT_PATH |
         python3 <<EOF
         import sys, json
-        labels = json.load(sys.stdin)['pull_request']['labels'])
+        labels = json.load(sys.stdin)['pull_request']['labels']
         for label in labels:
           if label.startswith('pipeline-'):
             print("Labeled", label)
