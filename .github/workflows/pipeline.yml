@@ -36,8 +36,10 @@ jobs:
       run: |
         python3 <<EOF
         import os, json
-        with open(os.environ['GITHUB_EVENT_PATH'], 'r') as event:
-          labels = json.load(event)['pull_request']['labels']
+        with open(os.environ['GITHUB_EVENT_PATH'], 'r') as f:
+          event = json.load(f)
+        print(event)
+        labels = event['pull_request']['labels']
         print(labels)
         for label in labels:
           if label.startswith('pipeline-'):
