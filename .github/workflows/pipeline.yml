@@ -55,13 +55,11 @@ jobs:
         EOF
   l2-document:
     needs: labels-for-repertoire-changes
-    if: ${{ always() }}
+    if: needs.labels-for-repertoire-changes.outputs.repertoire-changed == 'true'
     name: Proposal document
     runs-on: ubuntu-latest
     steps:
     - name: Check L2 document
-      env:
-        PIPELINE_LABEL: ${{needs.labels-for-repertoire-changes.outputs.pipeline-label}}
       run: |
         python3 <<EOF
         import os, json, re
@@ -75,7 +73,7 @@ jobs:
         EOF
   utc-decision:
     needs: labels-for-repertoire-changes
-    if: ${{ always() && needs.labels-for-repertoire-changes.outputs.pipeline-label != 'pipeline-recommended-to-UTC' }}
+    if: needs.labels-for-repertoire-changes.outputs.pipeline-label != 'pipeline-recommended-to-UTC'
     name: UTC decision
     runs-on: ubuntu-latest
     steps:
