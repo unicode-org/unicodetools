@@ -28,11 +28,11 @@ jobs:
         sed 's/^\([^;]*;[^;]*\);.*$/\1/' merged/unicodetools/data/ucd/dev/UnicodeData.txt > merged-repertoire.txt
         sed 's/^\([^;]*;[^;]*\);.*$/\1/' base/unicodetools/data/ucd/dev/UnicodeData.txt > base-repertoire.txt
         if diff base-repertoire.txt merged-repertoire.txt
-        then echo "changed=false" >> "$GITHUB_OUTPUT"
-        else echo "changed=true" >> "$GITHUB_OUTPUT"
+        then echo "repertoire-changed=false" >> "$GITHUB_OUTPUT"
+        else echo "repertoire-changed=true" >> "$GITHUB_OUTPUT"
         fi
     - name: Check pipeline labels
-      if: steps.compare-repertoire.outputs.changed == 'true'
+      if: steps.compare-repertoire.outputs.repertoire-changed == 'true'
       run: |
         python3 <<EOF
         import os, json
@@ -49,9 +49,47 @@ jobs:
           exit(1)
         label = pipeline_labels[0]
         print("Labeled", label)
-        with open(os.environ['GITHUB_OUTPUT'], 'w') as f:
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
           print("pipeline-label=" + label['name'], file=f)
         exit(0)
+        EOF
+  l2-document:
+    needs: labels-for-repertoire-changes
+    if: ${{ always() }}
+    name: Proposal document
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check L2 document
+      env:
+        PIPELINE_LABEL: ${{needs.labels-for-repertoire-changes.outputs.pipeline-label}}
+      run: |
+        python3 <<EOF
+        import os, json, re
+        with open(os.environ['GITHUB_EVENT_PATH'], 'r') as f:
+          event = json.load(f)
+        print(event)
+        pr_body = event['pull_request']['body']
+        if not re.search(r"L2/\d\d-\d\d\d", pr_body):
+          print("::error title=Need proposal document::PRs for character additions must include a link to an L2 document in the PR description.")
+          exit(1)
+        EOF
+  utc-decision:
+    needs: labels-for-repertoire-changes
+    if: ${{ always() && needs.labels-for-repertoire-changes.outputs.pipeline-label != 'pipeline-recommended-to-utc' }}
+    name: UTC decision
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check UTC decision
+      run: |
+        python3 <<EOF
+        import os, json, re
+        with open(os.environ['GITHUB_EVENT_PATH'], 'r') as f:
+          event = json.load(f)
+        print(event)
+        pr_body = event['pull_request']['body']
+        if not re.search(r"UTC-\d\d\d-[MC]\d", pr_body):
+          print("::error title=Need UTC decision::PRs for approved or provisionally assigned must include a link to a UTC decision.")
+          exit(1)
         EOF
   draft-unless-approved:
     needs: labels-for-repertoire-changes
@@ -60,8 +98,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check draft status
-      env:
-        PIPELINE_LABEL: ${{needs.labels-for-repertoire-changes.outputs.pipeline-label}}
       run: |
         python3 <<EOF
         import os, json
