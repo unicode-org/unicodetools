@@ -1,3 +1,5 @@
+1D127..1D128;Inherited
+1D1FF;Common
 # Scripts-16.0.0.txt
 # Date: 2023-11-10, 22:26:58 GMT
 # © 2023 Unicode®, Inc.
