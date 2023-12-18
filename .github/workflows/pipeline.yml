@@ -44,8 +44,29 @@ jobs:
         for label in labels:
           if label['name'].startswith('pipeline-'):
             print("Labeled", label)
+            with open(os.environ['GITHUB_OUTPUT'], 'r') as f:
+              print("pipeline-label=" + label['name'], file=f)
             exit(0)
-        print("::error file=unicodetools/data/ucd/dev/UnicodeData.txt,title=Missing pipeline label::PRs for character additions must have a pipeline label")
+        print("::error title=Missing pipeline label::PRs for character additions must have a pipeline label.")
         exit(1)
+        EOF
+  draft-unless-approved:
+    needs: labels-for-repertoire-changes
+    if: needs.labels-for-repertoire-changes.outputs.pipeline-label != 'pipeline-16.0'
+    name: Draft unless approved
+    runs-on: ubuntu-latest
+    steps:
+    - env:
+        PIPELINE_LABEL: ${{needs.labels-for-repertoire-changes.outputs.pipeline-label}}
+      run: |
+        python3 <<EOF
+        import os, json
+        with open(os.environ['GITHUB_EVENT_PATH'], 'r') as f:
+          event = json.load(f)
+        print(event)
+        draft = event['pull_request']['draft']
+        if not draft:
+          print("::error title=PR must be draft::PRs for character additions must be draft unless approved for the upcoming version of Unicode.")
+          exit(1)
         EOF
 
