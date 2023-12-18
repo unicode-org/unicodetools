@@ -9,6 +9,9 @@ on:
 jobs:
   labels-for-repertoire-changes:
     name: Labels for repertoire changes
+    outputs:
+      repertoire-changed: ${{ steps.compare-repertoire.outputs.repertoire-changed }}
+      pipeline-label: ${{ steps.check-labels.outputs.pipeline-label }}
     runs-on: ubuntu-latest
     steps:
     - name: Checkout merged UnicodeData.txt
@@ -32,6 +35,7 @@ jobs:
         else echo "repertoire-changed=true" >> "$GITHUB_OUTPUT"
         fi
     - name: Check pipeline labels
+      id: check-labels
       if: steps.compare-repertoire.outputs.repertoire-changed == 'true'
       run: |
         python3 <<EOF
@@ -55,7 +59,7 @@ jobs:
         EOF
   l2-document:
     needs: labels-for-repertoire-changes
-    if: needs.labels-for-repertoire-changes.outputs.repertoire-changed == 'true'
+    if: ${{ always() && needs.labels-for-repertoire-changes.outputs.repertoire-changed == 'true' }}
     name: Proposal document
     runs-on: ubuntu-latest
     steps:
