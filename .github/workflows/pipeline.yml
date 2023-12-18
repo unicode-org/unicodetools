@@ -44,7 +44,7 @@ jobs:
         for label in labels:
           if label['name'].startswith('pipeline-'):
             print("Labeled", label)
-            with open(os.environ['GITHUB_OUTPUT'], 'r') as f:
+            with open(os.environ['GITHUB_OUTPUT'], 'w') as f:
               print("pipeline-label=" + label['name'], file=f)
             exit(0)
         print("::error title=Missing pipeline label::PRs for character additions must have a pipeline label.")
