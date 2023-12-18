@@ -55,7 +55,6 @@ jobs:
         print("Labeled", label)
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
           print("pipeline-label=" + label['name'], file=f)
-        exit(0)
         EOF
   l2-document:
     needs: labels-for-repertoire-changes
