@@ -75,7 +75,7 @@ jobs:
         EOF
   utc-decision:
     needs: labels-for-repertoire-changes
-    if: ${{ always() && needs.labels-for-repertoire-changes.outputs.pipeline-label != 'pipeline-recommended-to-utc' }}
+    if: ${{ always() && needs.labels-for-repertoire-changes.outputs.pipeline-label != 'pipeline-recommended-to-UTC' }}
     name: UTC decision
     runs-on: ubuntu-latest
     steps:
