@@ -47,7 +47,7 @@ jobs:
         if len(pipeline_labels) > 1:
           print("::error title=Multiple pipeline labels::Only one pipeline-* label must be applied.")
           exit(1)
-        label = pipeline_labels[0]:
+        label = pipeline_labels[0]
         print("Labeled", label)
         with open(os.environ['GITHUB_OUTPUT'], 'w') as f:
           print("pipeline-label=" + label['name'], file=f)
